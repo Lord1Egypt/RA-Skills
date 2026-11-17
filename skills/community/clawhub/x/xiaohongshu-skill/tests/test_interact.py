@@ -4,10 +4,9 @@
 
 import json
 from unittest.mock import MagicMock, patch
-import pytest
 
-from scripts.interact import InteractAction
 from scripts.client import XiaohongshuClient
+from scripts.interact import InteractAction
 
 
 class TestGetInteractState:

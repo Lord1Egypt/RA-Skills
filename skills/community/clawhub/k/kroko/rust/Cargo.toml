@@ -1,0 +1,27 @@
+[package]
+name = "kroko"
+version = "2.0.0"
+edition = "2021"
+description = "Write code a tool can prove is small, leak-free, recursion-free and readable"
+license = "MIT"
+authors = ["Sakib Dalal"]
+repository = "https://github.com/Sakib-Dalal/KROKO"
+readme = "../README.md"
+
+[dependencies]
+tree-sitter = "0.24"
+tree-sitter-python = "0.23"
+
+[lib]
+name = "kroko"
+path = "src/lib.rs"
+
+[[bin]]
+name = "kroko"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"

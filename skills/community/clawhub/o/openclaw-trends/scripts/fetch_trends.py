@@ -23,7 +23,7 @@ import urllib.parse
 import urllib.error
 
 # YouTube API Key (set via environment or default)
-YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", "AIzaSyC-4zq2k2ohAwtQM7lF8jPct_QhzpENG88")
+YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", "REDACTED-SECRET")
 
 # Search queries
 SEARCH_TERMS = [

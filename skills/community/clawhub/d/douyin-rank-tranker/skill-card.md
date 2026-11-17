@@ -1,49 +1,66 @@
-## Description: <br>
-抖音每日最具影响力账号榜单追踪分析工具；日榜每日17:30更新/回溯7天，周榜每周一17:30更新/回溯3周，月榜每月2号9点更新/回溯3月；当用户需要查询抖音账号排名、抖音日榜/周榜/月榜、抖音赛道TOP账号或下载榜单报告时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks influential Douyin accounts by daily, weekly, and monthly rankings, with niche filtering, Markdown summaries, and HTML report generation based on RedFox API data.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External creators, brand teams, MCN operators, and analysts use this skill to query Douyin daily, weekly, and monthly account rankings, filter rankings by niche, generate visual HTML reports, and set up recurring ranking updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive REDFOX_API_KEY credential. <br>
-Mitigation: Use only trusted RedFox credentials, keep the key in the environment, and avoid exposing it in prompts, logs, code, or generated files. <br>
-Risk: The skill sends ranking requests to redfox.hk and generated reports may load an external CDN script. <br>
-Mitigation: Use the skill only where calls to redfox.hk and the report CDN dependency are acceptable, and avoid opening generated reports in sensitive contexts. <br>
-Risk: Report generation can automatically open files, including via an unsafe Windows shell command. <br>
-Mitigation: Review generated report paths before opening them, especially on Windows or when an agent can choose output filenames. <br>
-Risk: Recurring ranking subscriptions may continue sending updates after setup. <br>
-Mitigation: Confirm that any subscription includes a clear stop or cancellation path before enabling recurring updates. <br>
+## Use Case:
 
+External users such as content creators, brand marketers, MCN teams, and analysts use this skill to find top Douyin accounts, compare niche performance, monitor competitors, and generate shareable ranking reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/douyin-rank-tranker) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [API documentation](references/api_docs.md) <br>
-- [Category map](references/category_map.md) <br>
-- [Update rules](references/update_rules.md) <br>
-- [Score rules](references/score_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown ranking summaries, JSON data files, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and network access to redfox.hk; generated reports may reference an external CDN asset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Generated reports may behave like active web pages, including remote JavaScript loaded by the HTML report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open reports only when the RedFox API data source is trusted, and review generated HTML before sharing or archiving it.
+
+Risk: Report generation creates local files and may open them automatically in a browser.
+
+Mitigation: Use trusted output locations and disable or avoid automatic opening when reviewing output in a sensitive environment.
+
+Risk: Custom Windows output paths with shell metacharacters can increase command-execution risk.
+
+Mitigation: Use simple, trusted output paths without shell metacharacters when generating reports on Windows.
+
+Risk: Ranking results depend on the external RedFox API data source and may not reflect real-time Douyin data.
+
+Mitigation: Treat rankings as dated snapshots and include the reported data date and update schedule when making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/douyin-rank-tranker)
+- [RedFox API documentation](references/api_docs.md)
+- [Category mapping rules](references/category_map.md)
+- [Scoring rules](references/score_rules.md)
+- [Update and date calculation rules](references/update_rules.md)
+- [RedFox API endpoint](https://redfox.hk/story/api/dyData/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown ranking tables with optional JSON data files and HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY and may create local report files.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-CLI guidance for using the ship command to log in, submit URLs, preview metadata, check versions, and self-update for aidirs.org and backlinkdirs.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dirs Submit helps an agent use the `ship` CLI to log in, submit URLs to supported directory services, preview site metadata, check versions, and guide self-update behavior.
 
-## Publisher: <br>
-[allinaigc](https://clawhub.ai/user/allinaigc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allinaigc](https://clawhub.ai/user/allinaigc)
 
-## Use Case: <br>
-Developers and site operators use this skill to run ship CLI workflows for browser login, URL submission, metadata preview, version checks, and self-update handling across supported directory sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented installer and self-update flow can replace local CLI code. <br>
-Mitigation: Review or pin the installer and confirm release assets before running install or self-update commands. <br>
-Risk: The CLI stores account tokens in ~/.config/ship/config.json. <br>
-Mitigation: Protect the config file, avoid sharing logs or screenshots that expose tokens, and re-run login if authorization fails. <br>
-Risk: Submit commands send user-provided URLs to a selected directory site. <br>
-Mitigation: Confirm the target site and URL before running submit commands. <br>
+## Use Case:
 
+Developers and external users use this skill when they need an agent to operate the `ship` CLI for URL submission, metadata preview, login recovery, subscription-error handling, and version checks.
 
-## Reference(s): <br>
-- [Dirs Submit Homepage](https://github.com/RobinWM/ship-skills#dirs-submit) <br>
-- [API Reference](references/api.md) <br>
-- [Config Reference](references/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and status interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local token configuration at ~/.config/ship/config.json and command output from the ship CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Install and self-update flows can replace local executable code from upstream assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream source before installing or updating, and verify downloaded code or release assets before execution.
+
+Risk: Reusable service tokens are stored in `~/.config/ship/config.json`.
+
+Mitigation: Treat the config file as sensitive, keep it out of logs, backups, and source control, and revoke or remove tokens when they are no longer needed.
+
+## Reference(s):
+
+- [Dirs Submit on ClawHub](https://clawhub.ai/allinaigc/skills/dirs-submit)
+- [Project Homepage](https://github.com/RobinWM/ship-skills#dirs-submit)
+- [API Reference](references/api.md)
+- [Config Reference](references/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and natural-language result interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service error details such as authorization or subscription guidance when the CLI reports them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

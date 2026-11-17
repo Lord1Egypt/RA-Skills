@@ -1,42 +1,55 @@
-## Description: <br>
-Marcus Investment Analyst helps agents analyze A-share stocks, run strategy backtests, provide portfolio guidance, and update technical-indicator data using Chan theory, MACD, RSI, and trailing-stop rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marcus Investment Analyst is a Chinese-language A-share technical analysis skill for stock analysis, strategy backtesting, and investment guidance using Chan theory, MACD, RSI, and trailing-stop rules.
 
-## Publisher: <br>
-[chenweiw09](https://clawhub.ai/user/chenweiw09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenweiw09](https://clawhub.ai/user/chenweiw09)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate selected A-share equities, inspect technical signals, run historical backtests, and draft informational investment guidance. It is intended for analysis support, not as a guarantee of investment performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Backtests and portfolio suggestions may be inaccurate or unsuitable for a user's financial situation. <br>
-Mitigation: Treat all analysis as informational, review assumptions and source data, and require qualified human judgment before making investment decisions. <br>
-Risk: The indicator updater can create or append records in local stock-indicator databases under /root/data. <br>
-Mitigation: Review the scripts and dependencies first, back up existing stock databases, and run the updater only in an environment where local data writes are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to analyze Chinese A-share stocks, run historical backtests, review technical indicators, and generate portfolio or position-sizing guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chenweiw09/marcus-investment-skill) <br>
-- [Marcus trading strategy v6.0](references/strategy.md) <br>
-- [Strategy optimization report](references/optimization_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown analysis with optional shell commands and script output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize backtest metrics, technical indicators, portfolio allocation suggestions, and local database update status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact documents strategy v6.0) <br>
+Risk: The skill can generate investment recommendations from historical technical-analysis and backtest data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational analysis, not licensed or personalized financial advice, and review recommendations before acting.
+
+Risk: Running scripts may call external market-data services and write local SQLite or JSON analysis files.
+
+Mitigation: Run scripts in an environment where external data access and writes to /root/data or backtest output paths are acceptable.
+
+## Reference(s):
+
+- [Marcus Trading Strategy v6.0](references/strategy.md)
+- [Comprehensive Strategy Optimization Report](references/optimization_report.md)
+- [ClawHub Skill Page](https://clawhub.ai/chenweiw09/skills/marcus-investment-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with analysis summaries, backtest results, investment guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local SQLite market indicator data and saved backtest JSON files when scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

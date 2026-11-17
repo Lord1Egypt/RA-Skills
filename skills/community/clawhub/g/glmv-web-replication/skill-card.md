@@ -1,41 +1,58 @@
-## Description: <br>
-Explores authorized, publicly visible website pages, captures screenshots, layout details, navigation, interactions, and assets, then helps generate a frontend-only static or client-side visual replica. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explores authorized, publicly visible website pages, captures screenshots, layout, interactions, and assets, then guides agents to build a static or client-side frontend visual replica without backend or non-public content.
 
-## Publisher: <br>
-[zai-org](https://clawhub.ai/user/zai-org) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zai-org](https://clawhub.ai/user/zai-org)
 
-## Use Case: <br>
-Developers and designers use this skill to document public website presentation and build an authorized frontend-only reference mockup or replica. It is intended for sites the user owns, controls, or has explicit permission to copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized website copying could violate copyright, license terms, site policies, or applicable law. <br>
-Mitigation: Use only on websites the user owns, controls, or has explicit permission to copy; verify robots.txt, rate limits, licensing, and asset reuse rights before broad capture workflows. <br>
-Risk: Crawling private, account, checkout, admin, or login-protected areas could expose credentials, tokens, personal data, or non-public content. <br>
-Mitigation: Limit collection to publicly accessible pages, do not provide credentials, and redact or exclude any credentials, tokens, or personal data if encountered. <br>
-Risk: A visual replica may be mistaken for a complete working service. <br>
-Mitigation: Keep the output frontend-only and do not reproduce or claim to reproduce backend logic, authentication systems, databases, API business logic, or server-side behavior. <br>
+## Use Case:
 
+Developers and designers use this skill to document and approximate the frontend visual presentation of websites they own or are explicitly authorized to replicate. It is intended for static or client-side mockups, design study, and frontend reconstruction, not backend behavior or non-public content.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown blueprints, screenshots, asset files, frontend code, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Frontend-only outputs based on authorized public pages; excludes backend behavior, authentication, private content, credentials, and personal data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The workflow can interact with page controls during exploration, including controls that may submit forms, trigger account actions, or leave the target domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated browser profile with no saved credentials or payment data, and require manual approval before clicking forms, action buttons, or external navigation.
+
+Risk: The workflow downloads discovered assets, which can fetch unexpected files or an excessive number of files.
+
+Mitigation: Restrict downloads to safe http/https URLs from expected hosts, apply size and count limits, and review or scan downloaded files before reuse.
+
+Risk: Website visual replication can create copyright, terms-of-service, or privacy issues if used without authorization or against restricted content.
+
+Mitigation: Require explicit authorization before use, respect robots.txt and rate limits, avoid login-protected areas, and exclude credentials, personal data, and copyrighted text unless rights are confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zai-org/skills/glmv-web-replication)
+- [Publisher profile](https://clawhub.ai/user/zai-org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and generated frontend files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a website replication blueprint and frontend-only static or client-side replica; excludes backend behavior, authentication, databases, credentials, and non-public content.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

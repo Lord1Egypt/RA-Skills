@@ -1,39 +1,55 @@
-## Description: <br>
-AI paraphrasing and de-AI tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI paraphrasing and de-AI tool for rewriting AI-generated text into more natural prose.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users use this skill to rewrite, paraphrase, polish, or humanize text while preserving the source meaning, facts, and arguments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to rewrite AI-generated text in ways that may conceal AI authorship from detector or integrity systems. <br>
-Mitigation: Use it only for transparent editing, clarity, and style improvement; do not use it to bypass school, workplace, publisher, or platform rules. <br>
+## Use Case:
 
+External users use this skill to rewrite, paraphrase, humanize, or polish text while preserving the original meaning. It supports light, medium, and aggressive paraphrasing modes for different levels of structural and stylistic change.
 
-## Reference(s): <br>
-- [Human Writing Characteristics Checklist](references/human-patterns.md) <br>
-- [Paraphrasing Modes Explained with Examples](references/modes-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language rewritten text with optional markdown structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Light, Medium, and Aggressive paraphrasing modes; long text may be processed in segments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be used to avoid AI-detection and similarity systems, including academic detector systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for legitimate editing, and do not use it to misrepresent authorship or bypass academic, platform, or workplace review controls.
+
+Risk: Aggressive restructuring can unintentionally change meaning, tone, or factual emphasis.
+
+Mitigation: Review the paraphrased output against the source text and verify that facts, citations, data, and core arguments are preserved.
+
+## Reference(s):
+
+- [Human Writing Characteristics Checklist](references/human-patterns.md)
+- [Paraphrasing Modes Explained with Examples](references/modes-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/ai-paraphraser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown paraphrase with brief editing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Light, Medium, and Aggressive modes; preserves meaning while changing style and structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

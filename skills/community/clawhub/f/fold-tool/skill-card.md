@@ -1,40 +1,53 @@
-## Description: <br>
-Wrap long lines of text to a specified width. Use for formatting text files to fit within column limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wrap long lines of text to a specified width for formatting text files within column limits.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and agents use this skill to wrap long lines of local text so files fit terminal columns or document margins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documented command-line options may not work exactly as described. <br>
-Mitigation: Test commands on non-critical text before relying on option-specific behavior. <br>
-Risk: Local file contents can appear in the agent output. <br>
-Mitigation: Avoid using the skill on sensitive files unless that disclosure is intended. <br>
+## Use Case:
 
+Developers and technical writers use this skill to wrap long text lines so files fit terminal columns, documentation margins, or project formatting limits.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/fold-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read from standard input or local text files and return wrapped text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The helper may read file contents that are explicitly passed to it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only intended files and avoid using the skill on sensitive paths unless that access is expected.
+
+Risk: The bundled helper may not fully match the documented command-line options.
+
+Mitigation: Verify option behavior in the target environment before relying on flags such as space-only or byte-count wrapping.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/skills/fold-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and plain text wrapping output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper wraps stdin or an explicitly supplied file to a specified line width.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

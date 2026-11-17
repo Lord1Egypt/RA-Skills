@@ -1,50 +1,64 @@
-## Description: <br>
-Stock Monitor helps an agent manage stock watchlists, retrieve real-time A-share and Hong Kong market data, analyze technical indicators, track positions and trades, and produce monitoring reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors custom stock pools with real-time quotes, technical indicator analysis, trend signals, position tracking, and report generation.
 
-## Publisher: <br>
-[xsqorange](https://clawhub.ai/user/xsqorange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xsqorange](https://clawhub.ai/user/xsqorange)
 
-## Use Case: <br>
-Developers and external users use this skill to automate stock quote checks, technical analysis, portfolio tracking, scheduled market reports, and alert-style reporting for A-share and Hong Kong stock monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may include private holdings, cost basis, trades, and profit/loss and may be posted to a Feishu group. <br>
-Mitigation: Confirm the Feishu destination before enabling scheduled delivery, remove private fields where possible, or use a watchlist-only workflow. <br>
-Risk: Position and trade commands can mutate local JSON records used for portfolio reporting. <br>
-Mitigation: Back up local OpenClaw stock pool, position, trade, and alert JSON files before using mutating commands. <br>
-Risk: Automated technical signals and report guidance can be incomplete or misleading for financial decisions. <br>
-Mitigation: Treat generated reports as informational, review source data and assumptions, and avoid relying on the skill as investment advice. <br>
+## Use Case:
 
+External users and agents use this skill to monitor A-share and Hong Kong watchlists or positions, run technical analysis, manage local portfolio records, and draft scheduled market reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xsqorange/stock-monitor-xsq) <br>
-- [Publisher profile](https://clawhub.ai/user/xsqorange) <br>
-- [Command reference](references/commands.md) <br>
-- [Configuration reference](references/config.md) <br>
-- [Indicator reference](references/index.md) <br>
-- [Scheduled tasks reference](references/scheduled-tasks.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
-- [Report prompt templates](reports/prompts.md) <br>
-- [Report templates](reports/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, console text, JSON records, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local OpenClaw JSON files for stock pools, positions, trades, alerts, and scheduled tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive portfolio and trade records may be stored under ~/.openclaw or included in scheduled Feishu reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact local portfolio files before sharing reports, verify the Feishu destination, and disable automated delivery when it is not needed.
+
+Risk: Automated signals and generated market reports may be mistaken for investment advice.
+
+Mitigation: Treat outputs as informational analysis, keep a human review step, and confirm prices and trading decisions with authoritative sources.
+
+Risk: The documented dependency workaround may weaken environment hygiene.
+
+Mitigation: Avoid the pip install workaround noted by security guidance unless the publisher fixes it and dependencies have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xsqorange/skills/stock-monitor-xsq)
+- [Command reference](references/commands.md)
+- [Configuration reference](references/config.md)
+- [Indicator and workflow reference](references/index.md)
+- [Scheduled task reference](references/scheduled-tasks.md)
+- [Troubleshooting reference](references/troubleshooting.md)
+- [Report templates](reports/templates.md)
+- [Scheduled report prompts](reports/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, CLI text or JSON output, and local JSON configuration files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include market data, technical indicators, watchlist status, position summaries, alerts, and scheduled report content.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

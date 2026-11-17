@@ -1,39 +1,48 @@
-## Description: <br>
-Validate .circleci/config.yml files for syntax, structure, security, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate .circleci/config.yml files for syntax, structure, security, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to validate, lint, audit, and inspect CircleCI pipeline configuration files before committing or running CI workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted CircleCI configuration content could affect human-readable terminal output.
+
+Mitigation: Prefer JSON output for untrusted configs or review raw terminal output carefully until terminal-control escaping is added.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to validate, audit, and inspect CircleCI pipeline configuration files before committing or running CI/CD workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The validator reads whichever CircleCI configuration file path the user provides and may report locations that look like hardcoded secrets. <br>
-Mitigation: Run it only on intended configuration files and review reported secret locations before sharing output. <br>
-Risk: Findings are static lint results and may be incomplete or context-dependent. <br>
-Mitigation: Use the results as review guidance alongside CircleCI's own validation and normal CI/CD review practices. <br>
+**Output Format:** [Markdown guidance with shell command examples and validator output that may be text, JSON, or summary format.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The validator supports full validation, quick checks, job listing, workflow graph output, JSON output, summary output, and strict mode.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI output in text, JSON, or summary format, plus Markdown usage guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-specified CircleCI YAML file and reports validation findings without modifying files.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

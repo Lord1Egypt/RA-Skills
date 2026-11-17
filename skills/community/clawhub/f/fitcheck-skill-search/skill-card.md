@@ -1,38 +1,57 @@
-## Description: <br>
-Find and retrieve available skills using keyword search, semantic search, or LLM-powered task matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and retrieve available skills using keyword search, semantic search, or LLM-powered task matching.
 
-## Publisher: <br>
-[at6132](https://clawhub.ai/user/at6132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[at6132](https://clawhub.ai/user/at6132)
 
-## Use Case: <br>
-Developers and agents use this skill to discover installed OpenClaw skills before loading a task-specific skill into context. It supports keyword search, semantic matching, hybrid scoring, and recommendation-style results for natural language task descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search results and confidence labels may be treated as authoritative even when they are only discovery hints. <br>
-Mitigation: Inspect the matched skill before using it, as recommended by the server-resolved security guidance. <br>
-Risk: The skill reads installed OpenClaw skill folders and maintains a local search index. <br>
-Mitigation: Install it only in environments where local skill metadata may be indexed, and review the generated index if the skill set includes sensitive metadata. <br>
+## Use Case:
 
+Developers and agent operators use this skill to find relevant installed skills before loading them into an agent context. It supports keyword, semantic, and hybrid task matching over local skill metadata.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Plain text search results or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include relevance scores, confidence labels, triggers, locations, and matched skill metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The local index may contain installed skill metadata and absolute skill paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated index and embedding cache files as local workspace data and avoid sharing them when paths or installed skill names are sensitive.
+
+Risk: Search recommendations may overstate matching quality or return low-confidence candidates.
+
+Mitigation: Use results as a candidate list, then inspect the matched SKILL.md before loading or executing another skill.
+
+Risk: Documentation advertises AI-powered or BM25-style matching more strongly than the current local implementation supports.
+
+Mitigation: Set user expectations that matching is heuristic and verify important recommendations manually.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/at6132/skills/fitcheck-skill-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text recommendation lists and Markdown usage guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations include scores or confidence labels and should be reviewed before loading or executing another skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

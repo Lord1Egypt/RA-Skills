@@ -1,41 +1,55 @@
-## Description: <br>
-Multisig is a reference tool for working with multisig concepts in blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multisig provides command-driven reference material for blockchain multisig concepts, risks, compliance prompts, tools, strategies, glossary terms, and checklists.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, operators, and blockchain practitioners use this skill to print quick multisig reference material, including fundamentals, formulas, regulatory topics, risks, strategies, glossary terms, and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic multisig, custody, governance, compliance, legal, or financial guidance could be mistaken for operational advice. <br>
-Mitigation: Use the skill only as a lightweight reference and verify real wallet, custody, governance, compliance, legal, and financial decisions against authoritative documentation and qualified reviewers. <br>
-Risk: Static reference text may be incomplete, outdated, or too generic for a specific blockchain environment. <br>
-Mitigation: Treat outputs as checklist starters and confirm details against current wallet, chain, protocol, and security documentation before acting. <br>
+## Use Case:
 
+Developers, operators, and external users working in blockchain contexts can use this skill for quick multisig reference output and generic due diligence prompts. Its content should be treated as general reference material, not as authoritative wallet setup, transaction approval, governance, recovery, compliance, or fund-safety advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/multisig) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text printed by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no detected API calls, credential requirements, or MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generic placeholder multisig guidance may be inadequate for wallet setup, transaction approvals, governance, recovery, compliance, or fund-safety decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as a starting reference and require independent expert verification before applying it to funds, governance, recovery, or compliance workflows.
+
+Risk: The skill is a shell-backed command interface, so users may run local scripts during installation or use.
+
+Mitigation: Review the shell script before installation and confirm it remains locally contained and non-persistent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/multisig)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A single positional command selects the reference topic; content is static and generic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

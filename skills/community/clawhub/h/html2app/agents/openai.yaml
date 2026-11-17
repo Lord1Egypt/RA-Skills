@@ -1,0 +1,4 @@
+interface:
+  display_name: "HTML 转桌面应用"
+  short_description: "将本地网页离线封装为 macOS 或 Windows 桌面应用"
+  default_prompt: "Use $html2app to package this local web project as a signed-ready Electron desktop app."

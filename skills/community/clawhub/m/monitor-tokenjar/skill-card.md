@@ -1,42 +1,56 @@
-## Description: <br>
-Monitor the Uniswap TokenJar with a real-time dashboard showing balances, accumulation rates, burn economics, and projected time to next profitable burn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors the Uniswap TokenJar with a dashboard of balances, accumulation rates, burn economics, live deposit activity, and projected time to the next profitable burn.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers, analysts, and Uniswap protocol operators use this skill to inspect TokenJar balances, fee accumulation, burn economics, and short live monitoring sessions. It is intended for read-only monitoring and analysis, not transaction execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generic protocol-fee requests may activate this monitoring skill when the user intended another Uniswap fee workflow. <br>
-Mitigation: Confirm the request concerns Uniswap TokenJar monitoring before relying on the dashboard or live updates. <br>
-Risk: Profitability projections depend on token prices, gas estimates, and historical accumulation rates that may change quickly. <br>
-Mitigation: Treat projections as estimates and refresh the dashboard before making operational decisions. <br>
-Risk: The skill is read-only and does not execute burns. <br>
-Mitigation: Use an execution-oriented workflow only after independently reviewing the monitoring output and intended transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/monitor-tokenjar) <br>
-- [Publisher profile](https://clawhub.ai/user/wpank) <br>
+## Use Case:
 
+Developers, protocol operators, and analysts use this skill to monitor Ethereum mainnet TokenJar balances, fee accumulation, profitability, and live deposit events without executing transactions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown dashboard report with optional live update summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only TokenJar balance, accumulation, profitability, history, projection, and alert summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release documentation includes unpinned install commands that can install code different from the reviewed artifact.
+
+Mitigation: Install only from a pinned reviewed version or commit and avoid elevated privileges for changeable @latest or main-branch install sources.
+
+Risk: Runtime permissions depend on the configured Uniswap MCP tools, even though the reviewed skill is intended for read-only monitoring and analysis.
+
+Mitigation: Verify the Uniswap MCP permissions before use and confirm they are limited to public on-chain reads rather than wallet actions or transaction execution.
+
+Risk: Profitability projections can be inaccurate because accumulation rates, token pricing, gas costs, and UNI price can change.
+
+Mitigation: Treat projections as estimates, refresh the dashboard before acting, and review underlying balances, prices, and rates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/monitor-tokenjar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with formatted dashboard sections, live-feed updates, and alerts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports one-shot snapshots and streaming updates; projections depend on public on-chain data, token prices, accumulation estimates, and the configured streaming duration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

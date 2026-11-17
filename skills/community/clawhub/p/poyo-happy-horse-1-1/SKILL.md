@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-happy-horse-1-1
 description: Happy Horse 1.1 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `happy-horse-1.1`, text-to-video, image-to-video, reference-to-video, aspect ratio, duration, resolution, seed control, task submission, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/happy-horse-1-1","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/happy-horse-1-1","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Happy Horse 1.1 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/happy-horse-1-1>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/happy-horse-1-1>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Happy Horse 1.1 video jobs on PoYo. It helps agents prepare text-to-video, image-to-video, and reference-to-video payloads, submit async tasks, and explain polling or webhook follow-up.
 

@@ -1,0 +1,96 @@
+{
+  "n": 1304,
+  "n_base": 927,
+  "auroc": 0.9022,
+  "tpr@fpr1%": 0.2977,
+  "thr@fpr1%": 83.6,
+  "tpr@fpr5%": 0.4246,
+  "thr@fpr5%": 76.9,
+  "thresholds": {
+    "medium": 63.7,
+    "high": 74.9
+  },
+  "human_fpr@med": 0.1985,
+  "human_fpr@high": 0.0687,
+  "human_med_fpr@med": 0.6667,
+  "per_model": {
+    "claude-3.5-haiku": {
+      "n": 62,
+      "mean": 75.6,
+      "tpr@thr5%": 0.4032
+    },
+    "deepseek-r1": {
+      "n": 72,
+      "mean": 72.2,
+      "tpr@thr5%": 0.3333
+    },
+    "deepseek-v3": {
+      "n": 72,
+      "mean": 74.6,
+      "tpr@thr5%": 0.4028
+    },
+    "doubao-1.5-pro": {
+      "n": 75,
+      "mean": 75.5,
+      "tpr@thr5%": 0.4133
+    },
+    "gemini-2.5-flash": {
+      "n": 81,
+      "mean": 77.9,
+      "tpr@thr5%": 0.5679
+    },
+    "glm": {
+      "n": 38,
+      "mean": 76.1,
+      "tpr@thr5%": 0.3684
+    },
+    "gpt-3.5-turbo": {
+      "n": 72,
+      "mean": 75.5,
+      "tpr@thr5%": 0.4028
+    },
+    "gpt-4o": {
+      "n": 76,
+      "mean": 81.0,
+      "tpr@thr5%": 0.6579
+    },
+    "gpt4o": {
+      "n": 47,
+      "mean": 71.0,
+      "tpr@thr5%": 0.2979
+    },
+    "qwen": {
+      "n": 49,
+      "mean": 70.8,
+      "tpr@thr5%": 0.2449
+    },
+    "qwen-2.5": {
+      "n": 64,
+      "mean": 78.6,
+      "tpr@thr5%": 0.5625
+    },
+    "qwen-3": {
+      "n": 79,
+      "mean": 73.6,
+      "tpr@thr5%": 0.3418
+    },
+    "unknown": {
+      "n": 9,
+      "mean": 63.0,
+      "tpr@thr5%": 0.1111
+    }
+  },
+  "auroc_paraphrase": 0.8714,
+  "decay_paraphrase": 0.0341,
+  "auroc_mixed": 0.4204,
+  "decay_mixed": 0.534,
+  "auroc_adversarial": 0.7646,
+  "decay_adversarial": 0.1525,
+  "auroc_by_len": {
+    "short<300": 0.9176,
+    "mid300-800": 0.9181,
+    "long>800": 0.8412
+  },
+  "engine": "current",
+  "tag": "v370_fresh2"
+}

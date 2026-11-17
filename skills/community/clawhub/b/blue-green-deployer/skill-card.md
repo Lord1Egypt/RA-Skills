@@ -1,38 +1,53 @@
-## Description: <br>
-A specialized skill for safely managing and testing OpenClaw configuration changes using a Blue/Green deployment pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A specialized skill for safely managing and testing OpenClaw configuration changes using a Blue/Green deployment pattern.
 
-## Publisher: <br>
-[joshualeecowan33-ui](https://clawhub.ai/user/joshualeecowan33-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joshualeecowan33-ui](https://clawhub.ai/user/joshualeecowan33-ui)
 
-## Use Case: <br>
-Developers and engineers use this skill to stage, validate, promote, or roll back OpenClaw configuration changes without immediately replacing the primary configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the deployment script can change the live OpenClaw configuration while presenting part of the workflow as validation. <br>
-Mitigation: Review openclaw.json.green, run JSON checks manually, keep an independent backup, and run the script only when a live configuration change is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to stage, validate, promote, or roll back OpenClaw configuration changes without immediately overwriting the primary configuration.
 
-## Reference(s): <br>
-- [Blue Green Deployer on ClawHub](https://clawhub.ai/joshualeecowan33-ui/blue-green-deployer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through OpenClaw configuration staging and invokes a shell deployment script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The deployment script can replace the live OpenClaw configuration during validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the script before use; validate Green without replacing the live configuration and require explicit confirmation before promotion.
+
+Risk: Rollback and temporary-file handling are unsafe in the provided script.
+
+Mitigation: Use per-run temporary files, separate validation from promotion, and remove the BLUE_LONG_NAME cleanup path before deployment.
+
+## Reference(s):
+
+- [Blue Green Deployer ClawHub page](https://clawhub.ai/joshualeecowan33-ui/skills/blue-green-deployer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and a Bash deployment script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires openclaw and jq; the deployment script can modify ~/.openclaw/openclaw.json.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

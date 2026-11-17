@@ -1,42 +1,54 @@
-## Description: <br>
-用 find_skills.py 在 ClawHub 搜索或列举已装技能，支持 JSON 输出。当用户说：ClawHub 上有没有天气技能、我本地装了哪些 skill，或类似技能发现问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 find_skills.py 在 ClawHub 搜索或列举已装技能，支持 JSON 输出。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Agents and developers use this skill to search ClawHub for relevant skills, list installed skills, inspect candidates, view stats, and prepare installs with a dry-run default. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search input can include stdin or @file content and may be sent to ClawHub search or API lookups. <br>
-Mitigation: Use normal search terms where possible and avoid passing sensitive files or stdin as search input. <br>
-Risk: Running install with --execute may add a new skill with its own code and behavior to the agent environment. <br>
-Mitigation: Use the dry-run default first, and only run install --execute after reviewing and trusting the target skill. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover ClawHub skills, inspect local installed skills, and get readable or JSON-formatted search results for skill selection workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisuapi/jisu-find-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/jisuapi) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Human-readable terminal text or structured JSON, with command examples in Markdown documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and list commands can include ranked results, install hints, detail lines, and optional JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Using search @file can send selected local file contents to ClawHub as a remote search query.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use search @file with secrets, keys, .env files, private documents, or source files.
+
+Risk: install --execute can install third-party code into the agent environment.
+
+Mitigation: Inspect the target skill and review its source before executing an install.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/jisu-find-skill)
+- [JisuAPI](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, shell commands, guidance]
+
+**Output Format:** [Readable text or structured JSON, with command examples in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include skill names, ClawHub paths, install hints, descriptions, authors, stars, downloads, and local installation status.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

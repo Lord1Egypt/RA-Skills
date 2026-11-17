@@ -1,0 +1,44 @@
+# `GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT`
+
+> **分类**：2. Analytics Reports  
+> **说明**：经常被一起购买的商品  
+> **可用范围**：Seller 与 Vendor 均适用
+
+## 官方索引（Report type values）
+
+- **Schema 专页（请求体、`reportOptions`、结果 JSON）**：[`sellingPartnerMarketBasketAnalysisReport.md`](../sellingPartnerMarketBasketAnalysisReport.md)
+- **Amazon 文档（权限/站点等；与 Schema 专页技术描述重复处以 Schema 专页为准）**：[Analytics Reports](https://developer-docs.amazon.com/sp-api/docs/report-type-values-analytics#market-basket-analysis-report)（章节：**Market Basket Analysis Report**）
+
+- **受限报告**：按当前小节文本为否（仍以官方为准）
+- **角色**：[Brand Analytics](https://developer-docs.amazon.com/sp-api/docs/roles-in-the-selling-partner-api#brand-analytics)
+- **可用条件**：拥有 Brand Analytics SP-API 角色并已在 [Amazon Brand Registry](https://brandservices.amazon.com) 注册的卖家与 Vendor。
+- **站点可用性**：NA（全部站点）、EU（西班牙、英国、法国、荷兰、德国、意大利、瑞典、土耳其、沙特阿拉伯、阿联酋、印度）、FE（全部站点）。
+- **请求/调度**：本报告仅支持按需请求。
+- **报告输出类型**：JSON
+
+- **官方直达**：<https://developer-docs.amazon.com/sp-api/docs/report-type-values-analytics#market-basket-analysis-report>
+
+
+## 官方 JSON Schema 与请求/结果说明
+
+技术细节（`reportSpecification`、`reportOptions`、下载结果的 JSON 结构）见本节上方 **Schema 专页**链接，此处不重复列出。
+
+
+## CreateReport
+
+**请优先以专页中的官方示例构造请求体**；下列仅为占位，**可能缺少必填 `reportOptions` 或日期规则**。
+
+```json
+{
+  "reportType": "GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT",
+  "marketplaceIds": ["ATVPDKIKX0DER"]
+}
+```
+
+## LinkFox
+
+`scripts/get_report.py`、`references/api.md`。
+
+## 另见
+
+- `references/report-types.md`

@@ -1,0 +1,790 @@
+{
+  "relations": [
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.16923852",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "A Computational, Observer-Centric Universe Model",
+        "source_sha256": "accbb3d5ba6b4afb8b1f383fcd9ee549405d3430ffdc0f26ea39d43fa825c757"
+      },
+      "paper_doi": "10.5281/zenodo.16923852",
+      "paper_scope": "external",
+      "relation_type": "lineage",
+      "repository_head_sha": "19614c7828aa0b984fe3a8136b96c1abd3ab6adc",
+      "repository_url": "https://github.com/kadubon/UniverseModel"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.17136050",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "A Pure Natural Theory of Benevolent Propagation (Static Spec v0.1)",
+        "source_sha256": "7229e2d2fe0b0c0aa91e50a97379e43967f16abc4ac6e8612984a3d6b69972b3"
+      },
+      "paper_doi": "10.5281/zenodo.17136050",
+      "paper_scope": "external",
+      "relation_type": "implements",
+      "repository_head_sha": "3f57f917185087ff1196fe079c718dd230f21295",
+      "repository_url": "https://github.com/kadubon/Benevolent-Propagation-spec"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.17138320",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "A Pure Natural Theory of Benevolent Propagation (Static Spec v0.1)",
+        "source_sha256": "7229e2d2fe0b0c0aa91e50a97379e43967f16abc4ac6e8612984a3d6b69972b3"
+      },
+      "paper_doi": "10.5281/zenodo.17138320",
+      "paper_scope": "external",
+      "relation_type": "implements",
+      "repository_head_sha": "3f57f917185087ff1196fe079c718dd230f21295",
+      "repository_url": "https://github.com/kadubon/Benevolent-Propagation-spec"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18050287",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Reference theory (DOIs)",
+        "source_sha256": "3871110da1ffcafdf2d69687b96257c7317a313ba4a1f12c90ec6321295c1a9e"
+      },
+      "paper_doi": "10.5281/zenodo.18050287",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "7889666b9490ba9f3811c2919dccd26e928b5dbb",
+      "repository_url": "https://github.com/kadubon/bottleneck-audit-toolkit"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18051330",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Reference theory (DOIs)",
+        "source_sha256": "3871110da1ffcafdf2d69687b96257c7317a313ba4a1f12c90ec6321295c1a9e"
+      },
+      "paper_doi": "10.5281/zenodo.18051330",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "7889666b9490ba9f3811c2919dccd26e928b5dbb",
+      "repository_url": "https://github.com/kadubon/bottleneck-audit-toolkit"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18057956",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Reference theory (DOIs)",
+        "source_sha256": "3871110da1ffcafdf2d69687b96257c7317a313ba4a1f12c90ec6321295c1a9e"
+      },
+      "paper_doi": "10.5281/zenodo.18057956",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "7889666b9490ba9f3811c2919dccd26e928b5dbb",
+      "repository_url": "https://github.com/kadubon/bottleneck-audit-toolkit"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18136347",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "MemoryFlow Agent Memory Auditor",
+        "source_sha256": "bf9f4bd2e307ca96578598da43f6c6db7f25a88916b8b8f701fe037cd8f88d7a"
+      },
+      "paper_doi": "10.5281/zenodo.18136347",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "c8ee3f4c81f5303535ba2d2e9882c409f05e641e",
+      "repository_url": "https://github.com/kadubon/memoryflow-agent-memory-auditor"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18490939",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation",
+        "source_sha256": "3aa9e1f8d8ae137d304bf7d96f06ce67961ca938f495471947d479c4f62001f2"
+      },
+      "paper_doi": "10.5281/zenodo.18490939",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "d4e148a42b450d5a03d7e544e644134fa6bc04c6",
+      "repository_url": "https://github.com/kadubon/Proof-Carrying-Skills--PCS-Core-"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18653537",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Canonical Papers (DOI)",
+        "source_sha256": "aeb13021f600a011e3d4e3edd0febf594b13e26befbfac2f813470e272f5f4c2"
+      },
+      "paper_doi": "10.5281/zenodo.18653537",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "068851c962c5b7072d2fbb8e9f55a32b4711a351",
+      "repository_url": "https://github.com/kadubon/no-meta-drift-papers"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18677068",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Theory Implemented",
+        "source_sha256": "991df99a420bbb8708b7c34b4f09b559f5fe8f93152fb89eacae42c13a2da22b"
+      },
+      "paper_doi": "10.5281/zenodo.18677068",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "f9427a832911d8798d928a4fae6a3dfa33910bba",
+      "repository_url": "https://github.com/kadubon/ai-real-economy-bottleneck-simulator"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18688712",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Theory Implemented",
+        "source_sha256": "991df99a420bbb8708b7c34b4f09b559f5fe8f93152fb89eacae42c13a2da22b"
+      },
+      "paper_doi": "10.5281/zenodo.18688712",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "f9427a832911d8798d928a4fae6a3dfa33910bba",
+      "repository_url": "https://github.com/kadubon/ai-real-economy-bottleneck-simulator"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18728589",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Reference paper",
+        "source_sha256": "99dac77dc1e3f7154a728ac2ee4483b8768cff71c5e57c01c84d3b6ef734a55e"
+      },
+      "paper_doi": "10.5281/zenodo.18728589",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "6c514f98ece80f0009dc9d3965fefa1f074bc611",
+      "repository_url": "https://github.com/kadubon/audit-closed-ai-scientist"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18753475",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Canonical Papers (DOI)",
+        "source_sha256": "aeb13021f600a011e3d4e3edd0febf594b13e26befbfac2f813470e272f5f4c2"
+      },
+      "paper_doi": "10.5281/zenodo.18753475",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "068851c962c5b7072d2fbb8e9f55a32b4711a351",
+      "repository_url": "https://github.com/kadubon/no-meta-drift-papers"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18768899",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Canonical Papers (DOI)",
+        "source_sha256": "aeb13021f600a011e3d4e3edd0febf594b13e26befbfac2f813470e272f5f4c2"
+      },
+      "paper_doi": "10.5281/zenodo.18768899",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "068851c962c5b7072d2fbb8e9f55a32b4711a351",
+      "repository_url": "https://github.com/kadubon/no-meta-drift-papers"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18779490",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Canonical Papers (DOI)",
+        "source_sha256": "aeb13021f600a011e3d4e3edd0febf594b13e26befbfac2f813470e272f5f4c2"
+      },
+      "paper_doi": "10.5281/zenodo.18779490",
+      "paper_scope": "indexed",
+      "relation_type": "lineage",
+      "repository_head_sha": "068851c962c5b7072d2fbb8e9f55a32b4711a351",
+      "repository_url": "https://github.com/kadubon/no-meta-drift-papers"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18828900",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Paper Sources (in `paper/`)",
+        "source_sha256": "8a9b896e3524c7b29ab6d718bde185b08356244eedcdf8d7c3783ffc0eb39d7d"
+      },
+      "paper_doi": "10.5281/zenodo.18828900",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "6b4048889b8e01978f7296f73558e9be4be41ebc",
+      "repository_url": "https://github.com/kadubon/observable-replay-lab"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18845340",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Paper Sources (in `paper/`)",
+        "source_sha256": "8a9b896e3524c7b29ab6d718bde185b08356244eedcdf8d7c3783ffc0eb39d7d"
+      },
+      "paper_doi": "10.5281/zenodo.18845340",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "6b4048889b8e01978f7296f73558e9be4be41ebc",
+      "repository_url": "https://github.com/kadubon/observable-replay-lab"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18856604",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Repository overview",
+        "source_sha256": "8a9b896e3524c7b29ab6d718bde185b08356244eedcdf8d7c3783ffc0eb39d7d"
+      },
+      "paper_doi": "10.5281/zenodo.18856604",
+      "paper_scope": "external",
+      "relation_type": "implements",
+      "repository_head_sha": "6b4048889b8e01978f7296f73558e9be4be41ebc",
+      "repository_url": "https://github.com/kadubon/observable-replay-lab"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18870260",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Repository overview",
+        "source_sha256": "99dac77dc1e3f7154a728ac2ee4483b8768cff71c5e57c01c84d3b6ef734a55e"
+      },
+      "paper_doi": "10.5281/zenodo.18870260",
+      "paper_scope": "external",
+      "relation_type": "cites",
+      "repository_head_sha": "6c514f98ece80f0009dc9d3965fefa1f074bc611",
+      "repository_url": "https://github.com/kadubon/audit-closed-ai-scientist"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18870261",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation",
+        "source_sha256": "99dac77dc1e3f7154a728ac2ee4483b8768cff71c5e57c01c84d3b6ef734a55e"
+      },
+      "paper_doi": "10.5281/zenodo.18870261",
+      "paper_scope": "external",
+      "relation_type": "cites",
+      "repository_head_sha": "6c514f98ece80f0009dc9d3965fefa1f074bc611",
+      "repository_url": "https://github.com/kadubon/audit-closed-ai-scientist"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18905242",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Theoretical basis",
+        "source_sha256": "0a642dca40da9e8d46f217a15567d1fcd5547f93f8a2d01d2fcb4b5e53fc59c0"
+      },
+      "paper_doi": "10.5281/zenodo.18905242",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "54b24fce5a62380c98fa89d2cb4cc9eadc120ce5",
+      "repository_url": "https://github.com/kadubon/search-stability-lab"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18932509",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation",
+        "source_sha256": "b5d62589fcf551b98172db3a29684a248123594df14133b08676bd6710a8d763"
+      },
+      "paper_doi": "10.5281/zenodo.18932509",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "a9bbbfe1b390e5888dca0e1b04c14ea736941043",
+      "repository_url": "https://github.com/kadubon/split-inference-bench"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18973272",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Oversight-Centered Metrology PoC for Small Coding-Agent Workflows",
+        "source_sha256": "daec0738cb338c4a7761d61dd7d1f1641041d470cfa56d8188531d750cf6aedc"
+      },
+      "paper_doi": "10.5281/zenodo.18973272",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "a814d7e02e52d3c7e2a3ce268e2c1bcc0b5ba43b",
+      "repository_url": "https://github.com/kadubon/Oversight-Centered-Metrology-PoC"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.18997828",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "SEC PoC v2",
+        "source_sha256": "8bd006ccf48e6f0642d6aacbf796e1ecdf64108827229f1ae290a1ae8fcb036f"
+      },
+      "paper_doi": "10.5281/zenodo.18997828",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "14471f43d2921221f62b350d0726be592d9dce24",
+      "repository_url": "https://github.com/kadubon/sovereign-epistemic-commons-poc"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19044634",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "RSI Yardstick Drift PoC",
+        "source_sha256": "502d4a8297b4652e5c2bb0a24a11b6fca3b7ba9f9524a527e6a8600203a39ad2"
+      },
+      "paper_doi": "10.5281/zenodo.19044634",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "a936b5928235f5e2dde67c9224b8e8d897ea8bd1",
+      "repository_url": "https://github.com/kadubon/rsi-yardstick-drift-poc"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19089134",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Counterfactually Auditable Lifecycle Certification PoC",
+        "source_sha256": "0b20d3584d9f4f4f1d123a1a5f77282d78b2577564ce20649aa3ee77ad6ae23a"
+      },
+      "paper_doi": "10.5281/zenodo.19089134",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "c12cf337afe2ca73350f0eeb33f0b3b6582b4382",
+      "repository_url": "https://github.com/kadubon/agent-lifecycle-certification-poc"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19231780",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Auditing Compressed Interfaces, Multi-Stage Composition, and Deployment Bottlenecks",
+        "source_sha256": "91a5f93f871f5bde8b07e7a6d5dcea90b744547d9c87c2c63a3d627f4e7cb404"
+      },
+      "paper_doi": "10.5281/zenodo.19231780",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "773ca7b422063395c09de5bae51af94726a65f7a",
+      "repository_url": "https://github.com/kadubon/semantic-translation-contracts-poc"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19272154",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation And Attribution",
+        "source_sha256": "2f670b3c5ad28f69e58e87a1334d7a1a50c5d498caedf2c4f5e25f49e38d9752"
+      },
+      "paper_doi": "10.5281/zenodo.19272154",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "7f6aa17574b52e1ed978e606a91711c3e0d32bcc",
+      "repository_url": "https://github.com/kadubon/record-absence-poc"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19363526",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Replay-Certified Self-Modification Gate without Meta-Evaluators, v4",
+        "source_sha256": "5affe1f772f7cff07761bdaecb5b8f9529a0bb624d162990ff40dddc1e7b0ea7"
+      },
+      "paper_doi": "10.5281/zenodo.19363526",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "f83066ede5fd997672e0869a98f13c2109d10591",
+      "repository_url": "https://github.com/kadubon/no-meta-observable-invention-poc"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19394600",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Certified Local Participation Gate",
+        "source_sha256": "2455a6862a05baa7811a02f2e0c738635a98d1ece08bcf80f1613367ca1e5b58"
+      },
+      "paper_doi": "10.5281/zenodo.19394600",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "8f598604cdab5856840d7c0a30356a7b3a391818",
+      "repository_url": "https://github.com/kadubon/certified-local-participation-gate"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19447443",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "no-meta-standing-ledger",
+        "source_sha256": "de383f12da0612574dbea67c0a293a627f7d14ee7a4c271616b0c9169644b0fe"
+      },
+      "paper_doi": "10.5281/zenodo.19447443",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "e87a9001536070bb968ec569f07e287a2ee386d2",
+      "repository_url": "https://github.com/kadubon/no-meta-standing-ledger"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19619480",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Frontier Transfer Certifier",
+        "source_sha256": "c4b0774ec7329b56eb797143a9653980ff01635e5f5c08dd0237609872c3c572"
+      },
+      "paper_doi": "10.5281/zenodo.19619480",
+      "paper_scope": "indexed",
+      "relation_type": "implements",
+      "repository_head_sha": "5a392e99e6683cc0e58e39ca27d81df7ddc4fc92",
+      "repository_url": "https://github.com/kadubon/frontier-transfer-certifier"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19690749",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Certified Reuse vs Flat Control PoC",
+        "source_sha256": "1d6acf5e90ae42ac9d0dc967b67797a4ef76c4c77a26bf4b7691a05b0e76f3f4"
+      },
+      "paper_doi": "10.5281/zenodo.19690749",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "cdbdb00b7d04a99db1ec3f73e0286a1b6ec1552b",
+      "repository_url": "https://github.com/kadubon/long-running-AI-agent-PoC"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19753529",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "no-meta-authority-runtime",
+        "source_sha256": "e5bbd4d2814e787fc309e33b0afefa099e4ed5679fe88804f94ee1e1ba431a77"
+      },
+      "paper_doi": "10.5281/zenodo.19753529",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "7acf0b9c1a0d4a6598f0c675f4202b21de17950d",
+      "repository_url": "https://github.com/kadubon/no-meta-authority-runtime"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19836225",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation",
+        "source_sha256": "45e8d92ba46c621782c84ac1218b4f69fcc38d66d831f1e7d963173ba01ffdf2"
+      },
+      "paper_doi": "10.5281/zenodo.19836225",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "334307b59a4870b90f6162705c793bb5615a555a",
+      "repository_url": "https://github.com/kadubon/loscr"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19875498",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation",
+        "source_sha256": "45e8d92ba46c621782c84ac1218b4f69fcc38d66d831f1e7d963173ba01ffdf2"
+      },
+      "paper_doi": "10.5281/zenodo.19875498",
+      "paper_scope": "external",
+      "relation_type": "cites",
+      "repository_head_sha": "334307b59a4870b90f6162705c793bb5615a555a",
+      "repository_url": "https://github.com/kadubon/loscr"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.19904514",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "License and Citation",
+        "source_sha256": "991df99a420bbb8708b7c34b4f09b559f5fe8f93152fb89eacae42c13a2da22b"
+      },
+      "paper_doi": "10.5281/zenodo.19904514",
+      "paper_scope": "external",
+      "relation_type": "implements",
+      "repository_head_sha": "f9427a832911d8798d928a4fae6a3dfa33910bba",
+      "repository_url": "https://github.com/kadubon/ai-real-economy-bottleneck-simulator"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20061296",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Start Here",
+        "source_sha256": "cf41e0019d8c88094ba5898b08fb36992b013a3268a8af6e5ed6adadc0b00d96"
+      },
+      "paper_doi": "10.5281/zenodo.20061296",
+      "paper_scope": "indexed",
+      "relation_type": "lineage",
+      "repository_head_sha": "8ef4bc1ea272751804655a6e056467837ff35670",
+      "repository_url": "https://github.com/kadubon/cait-certificate-schema"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20107660",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "OASG",
+        "source_sha256": "c22371220c560807ed1153cee788e76a3e6af36adcd7ca5a30bd2a4da72e8236"
+      },
+      "paper_doi": "10.5281/zenodo.20107660",
+      "paper_scope": "external",
+      "relation_type": "cites",
+      "repository_head_sha": "7593f74b5d6a4701865dc97b079c3e725c4fd7ee",
+      "repository_url": "https://github.com/kadubon/oasg"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20116149",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "cimt-kernel",
+        "source_sha256": "23ce0924a1617942ce859b2d3a55690ff3f47361d5b32841f1c888a608604ae6"
+      },
+      "paper_doi": "10.5281/zenodo.20116149",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "1a48f0862cc346f0dcbd9a4d987f35f504d29455",
+      "repository_url": "https://github.com/kadubon/cimt-kernel"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20254492",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "CGT mapping",
+        "source_sha256": "3121dd7dbc2d09d047c8b7a036269fd5c9d6f169cd8c5bf91964fc704c07442d"
+      },
+      "paper_doi": "10.5281/zenodo.20254492",
+      "paper_scope": "external",
+      "relation_type": "implements",
+      "repository_head_sha": "206ba1f451b134cf1226393bd42b7e134789f4d0",
+      "repository_url": "https://github.com/kadubon/cgt-marker"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20262492",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation",
+        "source_sha256": "b1b5c22f6adfa4a974abb0934732324b8cbceba6802ee1007d565c525779687d"
+      },
+      "paper_doi": "10.5281/zenodo.20262492",
+      "paper_scope": "external",
+      "relation_type": "cites",
+      "repository_head_sha": "264b76566302dca1689aebd50c5105c4d70850d3",
+      "repository_url": "https://github.com/kadubon/cgt-availability"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20278525",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Citation",
+        "source_sha256": "c35031e50267e7656764dbe1bcbf4d20d637fd194c4c964ddd7c64c74a164d29"
+      },
+      "paper_doi": "10.5281/zenodo.20278525",
+      "paper_scope": "external",
+      "relation_type": "cites",
+      "repository_head_sha": "ed73e79ac29f083440e0d2bf5ff2b6f38ba88358",
+      "repository_url": "https://github.com/kadubon/cgt-bandwidth-dynamics"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20426928",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "cgt-ledgered-scientific-availability",
+        "source_sha256": "daa98e1773c07bc40c637db55dbd60dfd134cd330fe73a35e683908929f47609"
+      },
+      "paper_doi": "10.5281/zenodo.20426928",
+      "paper_scope": "external",
+      "relation_type": "implements",
+      "repository_head_sha": "706bde2748135a4f41c27328442f5ef3d44d803c",
+      "repository_url": "https://github.com/kadubon/cgt-ledgered-scientific-availability"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20476200",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "ALT Foundry Kernel",
+        "source_sha256": "e4c06ae3b69d9d01acd6df59c4ce6d552e3703ad602ef9fed445a8abd8aa6445"
+      },
+      "paper_doi": "10.5281/zenodo.20476200",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "b5170dbee93b9183f86570c9b2fa325be9cded51",
+      "repository_url": "https://github.com/kadubon/alt-foundry-kernel"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20913669",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Problem Frame Gate",
+        "source_sha256": "63f4fb7fd801e24a01f40c8003703a0cd40efe313f01e8089d29e9812c8dabe8"
+      },
+      "paper_doi": "10.5281/zenodo.20913669",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "9449b338c4c8b959878704a48b2f16e291e2dfb8",
+      "repository_url": "https://github.com/kadubon/problem-frame-gate"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.20995846",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "fost-agent-ledger",
+        "source_sha256": "831dc6931ade2378b51f2a4ffa41996c6dc1b89e7f93a36827a0321623b00a12"
+      },
+      "paper_doi": "10.5281/zenodo.20995846",
+      "paper_scope": "indexed",
+      "relation_type": "lineage",
+      "repository_head_sha": "e3a937a4a3f28c4077b5f658d6bfb1fc67ddd8fa",
+      "repository_url": "https://github.com/kadubon/fost-agent-ledger"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.21147093",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "verification-ecology-kit",
+        "source_sha256": "46c430c30d5e2ee9ea35aafc5ba6e8c2bc57612c83053074873f8074539ab13e"
+      },
+      "paper_doi": "10.5281/zenodo.21147093",
+      "paper_scope": "indexed",
+      "relation_type": "lineage",
+      "repository_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85",
+      "repository_url": "https://github.com/kadubon/verification-ecology-kit"
+    },
+    {
+      "evidence": {
+        "commit_path": "README.md",
+        "confidence": 0.95,
+        "matched_text": "10.5281/zenodo.21199529",
+        "review_status": "pinned_source_reviewed_v1.1",
+        "rule_id": "relation.readme-doi-context.v1",
+        "section": "Future Claim Certifier",
+        "source_sha256": "7a5aa3eae0f656a91061f99f9666bf144f2702bb3155ee9cc6dd69eab970e4cd"
+      },
+      "paper_doi": "10.5281/zenodo.21199529",
+      "paper_scope": "indexed",
+      "relation_type": "cites",
+      "repository_head_sha": "017a4c1be9adce4cd7035d77a8b73520884e5243",
+      "repository_url": "https://github.com/kadubon/future-claim-certifier"
+    }
+  ],
+  "schema_version": "1.1.0",
+  "source_scope": "DOI strings extracted from pinned root README files."
+}

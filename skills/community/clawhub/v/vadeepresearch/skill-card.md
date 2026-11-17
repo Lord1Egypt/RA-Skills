@@ -1,41 +1,53 @@
-## Description: <br>
-vaDeepresearch guides agents through quick or deep multi-source research, evidence validation, structured analysis, and Markdown report delivery for market, competitor, industry, technical, academic, and project research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+vaDeepresearch guides agents through systematic, multi-source research and produces traceable Markdown reports for market, competitor, industry, technical, paper, open-source, and document-preparation analysis.
 
-## Publisher: <br>
-[va-ais](https://clawhub.ai/user/va-ais) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[va-ais](https://clawhub.ai/user/va-ais)
 
-## Use Case: <br>
-External users, developers, analysts, and researchers use this skill when they need an agent to plan and perform current multi-source research, compare evidence, surface uncertainty, and produce a decision-oriented Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad research triggers and external retrieval can expose sensitive private topics or produce generated artifacts that users may over-trust. <br>
-Mitigation: Use explicit prompts, review the intended sources and generated files, and avoid sensitive private research unless external retrieval and artifact creation are acceptable. <br>
-Risk: Research reports may contain incorrect, incomplete, stale, or conflicting source interpretations. <br>
-Mitigation: Review key claims against cited sources, keep uncertainty and source limitations visible, and require human review before using outputs for decisions. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to turn broad research requests into sourced, structured analysis with evidence extraction, source comparison, risk notes, and actionable recommendations. It is suited to current-fact research, market analysis, competitor analysis, industry research, technical surveys, paper and open-source reviews, and pre-work for documents or presentations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/va-ais/vadeepresearch) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/va-ais) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown research reports with structured evidence tables, citations, risk notes, and optional conversion guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to choose or confirm quick-analysis or deep-analysis mode before execution; final research output is expected as a Markdown file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may perform external research and create Markdown report files for analysis-style requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit wording when a short answer is desired, when web research should be avoided, or when no report file should be created.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/va-ais/skills/vadeepresearch)
+- [AI open and closed models deep analysis example](reference/ai_open_vs_closed_models_deep_analysis_2026.md)
+- [Memory market deep analysis example](reference/memory_market_deep_analysis_2026.md)
+- [Pet wearable market deep analysis example](reference/pet_wearable_market_deep_analysis.md)
+- [Shenzhen coffee shop location deep analysis example](reference/shenzhen_coffee_shop_location_deep_analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown reports with structured tables, citations or source references, evidence matrices, risk notes, and delivery links or file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill normally creates a .md report file and may provide follow-up conversion guidance for Word, PDF, PPT, HTML, or Excel when requested.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

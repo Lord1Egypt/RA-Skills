@@ -1,47 +1,60 @@
-## Description: <br>
-Supermemory gives AI agents long-term memory by extracting atomic facts from conversations, tracking how knowledge changes over time, and enabling semantic recall across sessions and agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supermemory gives agents long-term memory with atomic fact extraction, relational versioning, semantic search, entity profiles, and local-first storage.
 
-## Publisher: <br>
-[jared-goering](https://clawhub.ai/user/jared-goering) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jared-goering](https://clawhub.ai/user/jared-goering)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add persistent, searchable memory to agent workflows. It helps agents recall relevant facts, inspect entity history, and reuse context across sessions and agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain sensitive or regulated conversation facts across sessions. <br>
-Mitigation: Define what may be ingested before enabling the skill, avoid secrets or regulated data unless approved, and confirm how stored memories can be inspected, deleted, or separated. <br>
-Risk: Fact extraction may send ingested text to an external LLM provider. <br>
-Mitigation: Use a controlled LLM API key, review provider and retention requirements, and restrict ingestion to text approved for external processing. <br>
-Risk: Automatic memory injection and extraction can reuse stale, incorrect, or unintended context. <br>
-Mitigation: Review recalled memories before relying on them for high-impact decisions and use session or agent boundaries where separation matters. <br>
-Risk: The local API may expose stored memories if it is reachable outside the intended environment. <br>
-Mitigation: Keep the local API private, bind it only to trusted interfaces, and limit access to the memory database and service port. <br>
+## Use Case:
 
+Developers and agent builders use Supermemory to add cross-session recall, semantic search, and entity-aware memory to agents while preserving version history of facts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jared-goering/openclaw-supermemory) <br>
-- [PyPI Package](https://pypi.org/project/openclaw-supermemory/) <br>
-- [GitHub Repository](https://github.com/jared-goering/openclaw-supermemory) <br>
-- [OpenClaw Plugin](https://github.com/jared-goering/openclaw-supermemory/tree/main/plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a local Supermemory service and an LLM API key for fact extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill stores and serves sensitive cross-session agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the memory database as private data and define clear redaction, retention, and deletion controls before auto-ingesting conversations.
+
+Risk: Automatic ingestion and external LLM-based extraction can process sensitive conversation content.
+
+Mitigation: Avoid auto-ingesting sensitive conversations unless inputs are reviewed, redacted, and covered by the configured LLM provider's data handling terms.
+
+Risk: The local API and plugin can expose memory data if installed or served without appropriate controls.
+
+Mitigation: Use a pinned, trusted package version, inspect the plugin source, and keep the API bound to localhost or protected by authentication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jared-goering/skills/openclaw-supermemory)
+- [PyPI package](https://pypi.org/project/openclaw-supermemory/)
+- [GitHub repository](https://github.com/jared-goering/openclaw-supermemory)
+- [OpenClaw plugin](https://github.com/jared-goering/openclaw-supermemory/tree/main/plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localhost API usage, CLI commands, and memory-ingestion guidance.]
+
+## Skill Version(s):
+
+0.2.1 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

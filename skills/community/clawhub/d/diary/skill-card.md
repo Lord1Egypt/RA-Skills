@@ -1,39 +1,59 @@
-## Description: <br>
-Write diary entries with mood tracking, photos, and monthly summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diary is a local plaintext productivity logging toolkit for recording work notes, plans, progress, reminders, priorities, reviews, timelines, and exports.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers, operators, and individual users use this skill to record local work notes, plans, reviews, reminders, habits, priorities, and summaries from a Bash-based diary workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diary entries and exports are stored as plaintext under ~/.local/share/diary and may include sensitive personal or work information. <br>
-Mitigation: Avoid entering passwords, tokens, regulated data, or highly sensitive personal information unless the local data directory and any exports are separately protected or deleted. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to keep searchable local productivity logs and export journal-style activity records for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/diary) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; the script writes plaintext logs and JSON, CSV, or TXT exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores diary data locally under ~/.local/share/diary and creates plaintext export files on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence; artifact frontmatter and script report 2.0.0) <br>
+Risk: The public diary description may overstate mood, photo, and monthly-summary behavior compared with the observed local productivity-log behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill description before installation and align user-facing documentation with the actual logging commands.
+
+Risk: Entries and exports are stored locally as plaintext and may contain sensitive personal or work information.
+
+Mitigation: Avoid storing secrets, regulated data, or highly private content; protect, review, and delete exported JSON, CSV, and TXT files as sensitive records.
+
+Risk: JSON and CSV exports may not safely encode arbitrary entry content.
+
+Mitigation: Validate and fix export escaping before relying on exported files for automation, sharing, or archival workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/diary)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain1)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text command output with local JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores plaintext logs and exports under ~/.local/share/diary.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

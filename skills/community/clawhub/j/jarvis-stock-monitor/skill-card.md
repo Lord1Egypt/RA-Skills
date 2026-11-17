@@ -1,42 +1,64 @@
-## Description: <br>
-Jarvis Stock Monitor monitors configured stocks, ETFs, and gold positions with price, cost-basis, volume, technical-indicator, gap, and trailing-stop alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jarvis Stock Monitor is a stock, ETF, and gold monitoring and alerting skill for China-market workflows with cost, price-move, volume, moving-average, RSI, gap, trailing-stop, and tiered alerts.
 
-## Publisher: <br>
-[15910701838](https://clawhub.ai/user/15910701838) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15910701838](https://clawhub.ai/user/15910701838)
 
-## Use Case: <br>
-External users configure watchlists and cost bases so an agent can monitor Chinese A-shares, ETFs, and gold, then surface tiered alerts and analysis-style messages. The skill is intended as monitoring and reference material, not professional investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured watchlists and cost bases can reveal portfolio-like financial interests during market-data polling. <br>
-Mitigation: Review the configured holdings before use and only run continuous monitoring when those local details are acceptable for the selected data sources. <br>
-Risk: The skill produces advisory-style buy, hold, sell, and risk messages that may be incomplete or misleading. <br>
-Mitigation: Treat generated alerts and analysis as non-professional reference material and confirm decisions with independent financial review. <br>
-Risk: The daemon runs background polling until stopped. <br>
-Mitigation: Start the daemon only when continuous monitoring is desired and use the provided control script to check status, view logs, or stop it. <br>
+## Use Case:
 
+External users who monitor China-market stocks, ETFs, and gold use this skill to configure holdings, run price and technical alert checks, and receive tiered monitoring reports. The outputs are informational and do not replace financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/15910701838/jarvis-stock-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and alert message text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces monitoring alerts and analysis-style summaries from user-configured market watchlists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and _meta.json) <br>
+Risk: Portfolio details are stored in local configuration and watched symbols or names are sent to external market-data services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, keep config.py private, and avoid committing portfolio details to version control.
+
+Risk: The background monitor can continue making periodic market-data requests after it is started.
+
+Mitigation: Start the daemon only when continuous monitoring is needed and stop it when monitoring is finished.
+
+Risk: Notification credentials may be added to the optional Feishu or email configuration.
+
+Mitigation: Keep webhook URLs and email credentials out of shared files and rotate them if they are exposed.
+
+Risk: Generated alerts and trading suggestions may be incomplete, delayed, or misleading.
+
+Mitigation: Treat outputs as informational signals and verify them against independent financial sources before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/15910701838/skills/jarvis-stock-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/15910701838)
+- [Eastmoney quote API endpoint used by artifact](https://push2.eastmoney.com/api/qt/stock/get)
+- [Sina Finance quote endpoint used by artifact](https://hq.sinajs.cn/list=)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python configuration snippets, shell commands, and text alert reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces informational monitoring alerts from locally configured watchlists and external market-data responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, README.md, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Local speech-to-text using whisper-cli (whisper.cpp). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text using whisper-cli (whisper.cpp).
 
-## Publisher: <br>
-[wuxxin](https://clawhub.ai/user/wuxxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wuxxin](https://clawhub.ai/user/wuxxin)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe local audio files with whisper-cli and the large-v3-turbo whisper.cpp model. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup command downloads a model from Hugging Face into /usr/share, which may require elevated local permissions. <br>
-Mitigation: Verify the model source and checksum before installation, and use normal local change-control practices before writing to system directories. <br>
-Risk: The wrapper depends on the locally installed whisper-cli binary and model path. <br>
-Mitigation: Confirm whisper-cli is installed and that the expected model file exists before running transcription commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ggml-large-v3-turbo model download](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo.bin?download=true) <br>
-- [Local Whisper (cpp) on ClawHub](https://clawhub.ai/wuxxin/local-whisper-cpp) <br>
+## Use Case:
 
+Developers and agent users use this skill to transcribe local audio files with whisper-cli and a locally installed large-v3-turbo whisper.cpp model.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and transcription text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires whisper-cli and a local model file at /usr/share/whisper.cpp-model-large-v3-turbo/ggml-large-v3-turbo.bin.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Model setup may involve downloading a file into a system path, where source integrity and privileges matter.
+
+Mitigation: Download the model as an unprivileged user when possible, verify the source and checksum if available, and avoid running setup commands with more privileges than necessary.
+
+Risk: The transcription command runs locally against user-provided audio paths and optional whisper-cli arguments.
+
+Mitigation: Use trusted local audio files, review any additional command options before execution, and keep whisper-cli on a trusted system path.
+
+## Reference(s):
+
+- [Local Whisper (cpp) on ClawHub](https://clawhub.ai/wuxxin/skills/local-whisper-cpp)
+- [whisper.cpp large-v3-turbo model download](https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3-turbo.bin?download=true)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text transcription and Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires whisper-cli and a local model file at the configured path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

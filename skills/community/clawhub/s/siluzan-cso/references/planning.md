@@ -70,10 +70,10 @@
 
 业务上都叫「企业 ID」，CLI 里对应**两个不同字段**，混用会导致查不到企业或生成失败。
 
-| 名称              | 出现位置                                               | 含义                                                           | 用于                                                                 |
-| ----------------- | ------------------------------------------------------ | -------------------------------------------------------------- | -------------------------------------------------------------------- |
+| 名称              | 出现位置                                                                      | 含义                                                           | 用于                                                                 |
+| ----------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------- |
 | **知识库企业 ID** | `<knowledge_base_selection>` 中的 `comid=`；或 `planning enterprises` 的 `id` | 知识库里的企业目录 ID（**comid**）                             | `planning generate --enterprise-id`、`planning list --enterprise-id` |
-| **组织归属 ID**   | `planning enterprises --belong-to-id`                  | 当前登录账号所属组织（类似 RAG 的 `belongToId` / `companyId`） | **仅**查询企业目录时的筛选参数                                       |
+| **组织归属 ID**   | `planning enterprises --belong-to-id`                                         | 当前登录账号所属组织（类似 RAG 的 `belongToId` / `companyId`） | **仅**查询企业目录时的筛选参数                                       |
 
 **需要解析企业时（无 `<knowledge_base_selection>`）：**
 
@@ -198,19 +198,19 @@ siluzan-cso planning export txt --plan-id <planId> -o plan.txt
 
 ## 命令速查
 
-| 命令                            | 说明                                                      |
-| ------------------------------- | --------------------------------------------------------- |
+| 命令                            | 说明                                                             |
+| ------------------------------- | ---------------------------------------------------------------- |
 | `planning enterprises`          | 查询企业目录（无 `<knowledge_base_selection>` 时生成前先选企业） |
-| `planning content-types`        | 查询可用内容类型（post / video）                          |
-| `planning generate`             | 创建规划生成任务                                          |
-| `planning watch <taskId>`       | 监听生成任务进度（SSE 实时推送）                          |
-| `planning list`                 | 查询规划任务列表                                          |
-| `planning get <planId>`         | 获取规划详情                                              |
-| `planning regenerate <planId>`  | 对已有规划重新生成                                        |
-| `planning task cancel <taskId>` | 取消任务                                                  |
-| `planning task retry <taskId>`  | 重试失败/取消的任务                                       |
-| `planning task delete <taskId>` | 删除任务                                                  |
-| `planning export txt`           | 导出规划为 TXT（Markdown 表格格式）                       |
+| `planning content-types`        | 查询可用内容类型（post / video）                                 |
+| `planning generate`             | 创建规划生成任务                                                 |
+| `planning watch <taskId>`       | 监听生成任务进度（SSE 实时推送）                                 |
+| `planning list`                 | 查询规划任务列表                                                 |
+| `planning get <planId>`         | 获取规划详情                                                     |
+| `planning regenerate <planId>`  | 对已有规划重新生成                                               |
+| `planning task cancel <taskId>` | 取消任务                                                         |
+| `planning task retry <taskId>`  | 重试失败/取消的任务                                              |
+| `planning task delete <taskId>` | 删除任务                                                         |
+| `planning export txt`           | 导出规划为 TXT（Markdown 表格格式）                              |
 
 ---
 
@@ -240,8 +240,8 @@ siluzan-cso planning enterprises --belong-to-id <组织归属ID>
 
 | 参数                             | 必填 | 说明                                                                                                                       |
 | -------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------- |
-| `--enterprise-id`                | ✅   | 知识库企业 ID（`<knowledge_base_selection>` 中的 `comid=`，或 `planning enterprises` 的 `id`；**不是** `--belong-to-id`） |
-| `--enterprise-name`              | ✅   | 企业名称（`<knowledge_base_selection>` 中的库名，或 `planning enterprises` 的 `name`，须与 `--enterprise-id` 配套）       |
+| `--enterprise-id`                | ✅   | 知识库企业 ID（`<knowledge_base_selection>` 中的 `comid=`，或 `planning enterprises` 的 `id`；**不是** `--belong-to-id`）  |
+| `--enterprise-name`              | ✅   | 企业名称（`<knowledge_base_selection>` 中的库名，或 `planning enterprises` 的 `name`，须与 `--enterprise-id` 配套）        |
 | `--year-month`                   | ✅   | 规划月份，格式 `YYYY-MM`                                                                                                   |
 | `--content-types`                | ✅   | 内容类型，支持逗号或空格：`post`（图文）/ `video`（视频）                                                                  |
 | `--freq-unit`                    | —    | 发布频率单位：`week` / `month`；与 `--freq-count` **须同时提供**（只传其一 CLI 报错）                                      |

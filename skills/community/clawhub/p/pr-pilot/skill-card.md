@@ -1,40 +1,57 @@
-## Description: <br>
-pr-pilot helps agents submit professional pull requests and manage the lifecycle from branch push through PR creation, CI monitoring, review responses, iteration, and tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit professional-quality pull requests and manage them through the full review lifecycle until merge or closure.
 
-## Publisher: <br>
-[sliverp](https://clawhub.ai/user/sliverp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sliverp](https://clawhub.ai/user/sliverp)
 
-## Use Case: <br>
-Developers and engineering agents use pr-pilot to prepare structured pull request descriptions, run GitHub CLI workflows, monitor CI and reviews, respond to feedback, and track multiple PRs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide pushes, PR creation, comments, and other GitHub actions using the user's account. <br>
-Mitigation: Before allowing commands, confirm the exact repository, branch, staged files, PR title and body, comments, and any force-push or merge-conflict steps. <br>
-Risk: GitHub authentication may expose or overuse credentials if tokens are pasted into chat, logs, or broad-permission environments. <br>
-Mitigation: Use least-privileged GitHub authentication and avoid pasting long-lived tokens into chat or logs. <br>
+## Use Case:
 
+Developers and engineers use this skill to create structured pull requests, monitor CI, respond to reviews, iterate on code, and track multiple open PRs across repositories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sliverp/pr-pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with shell command blocks and PR description templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PR URLs, CI status summaries, review responses, and a pr-tracker.md table for multi-PR tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill guides repository mutation actions such as git pushes, PR creation, review comments, and PR tracking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution and run them only in the intended repository, branch, and PR context.
+
+Risk: The security guidance flags unsafe GitHub token handling patterns.
+
+Mitigation: Authenticate GitHub CLI with gh auth login or a secure secret manager; avoid pasting tokens into chat or running literal export GH_TOKEN=<token> commands.
+
+Risk: The security guidance flags a fixed /tmp/pr_body.md path for PR body files.
+
+Mitigation: Use a secure temporary file or add a cleanup step when creating PR body files.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/sliverp/skills/pr-pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured PR templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PR URLs, CI status summaries, review responses, iteration steps, and updates to pr-tracker.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

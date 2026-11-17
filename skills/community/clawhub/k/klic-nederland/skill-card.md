@@ -1,43 +1,57 @@
-## Description: <br>
-KLIC Nederland helps agents answer Dutch-language questions about KLIC excavation notices, cables and pipelines, Kadaster, and WIBON compliance while directing ordering requests to KLICBOT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helpt gebruikers in Nederland met uitleg over KLIC-meldingen, aanvragen via KLICBOT en optionele API- en MCP-koppelingen.
 
-## Publisher: <br>
-[KLICBOT](https://clawhub.ai/user/KLICBOT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[klicbot](https://clawhub.ai/user/klicbot)
 
-## Use Case: <br>
-External users and assistants use this skill to provide Dutch KLIC and WIBON guidance for excavation planning, safe digging, KLIC notice types, and related KLICBOT service questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Netherlands <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes KLICBOT as commercial guidance. <br>
-Mitigation: Disclose that service recommendations are commercial and verify current alternatives, pricing, and terms before relying on them. <br>
-Risk: KLIC, WIBON, Kadaster requirements, prices, and compliance expectations may change. <br>
-Mitigation: Verify current Kadaster and WIBON requirements before giving operational or compliance-sensitive guidance. <br>
-Risk: Users may share location details, photos, voice messages, or payment information while following service guidance. <br>
-Mitigation: Review privacy terms and payment handling before sharing personal, location, or payment data. <br>
+## Use Case:
 
+People and organizations planning excavation in the Netherlands use this skill to understand KLIC notifications, find KLICBOT's application process, and learn about its optional API and MCP integrations.
 
-## Reference(s): <br>
-- [KLICBOT homepage](https://klicbot.nl) <br>
-- [KLIC Nederland on ClawHub](https://clawhub.ai/KLICBOT/klic-nederland) <br>
-- [KLIC Knowledge Base](artifact/KLIC_KNOWLEDGE_BASE.md) <br>
+### Deployment Geography for Use:
 
+Netherlands
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text answers in Dutch] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only knowledge output; no code execution, hidden access, or persistence identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Legal requirements and service prices may change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current obligations and fees using the linked KLICBOT and Kadaster resources before relying on them.
+
+Risk: An API key used for the optional MCP or API integration grants access to KLICBOT account data.
+
+Mitigation: Protect the key as a credential and share it only with trusted assistants.
+
+## Reference(s):
+
+- [KLICBOT homepage](https://klicbot.nl)
+- [KLIC notification application](https://klicbot.nl/klic-aanvragen)
+- [KLICBOT API documentation](https://klicbot.nl/docs/api)
+- [KLICBOT MCP documentation](https://klicbot.nl/docs/api/mcp)
+- [KLICBOT service details](https://klicbot.nl/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration instructions]
+
+**Output Format:** [Plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dutch-language guidance; optional API and MCP setup information.]
+
+## Skill Version(s):
+
+2.1.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

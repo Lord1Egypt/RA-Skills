@@ -1,46 +1,61 @@
-## Description: <br>
-Monitor line movements at sharp sportsbooks (Pinnacle, Circa, Bookmaker), detect steam moves, reverse line movement, and significant implied probability shifts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor line movements at sharp sportsbooks (Pinnacle, Circa, Bookmaker), detect steam moves, reverse line movement, and significant implied probability shifts.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users and developers use this skill to inspect sports betting line movement, identify sharp-book changes, and capture odds snapshots for later comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends ODDS_API_KEY to The Odds API when fetching odds data. <br>
-Mitigation: Use a normal sport key, store it only in the expected environment variable, and rotate or remove it if it is exposed. <br>
-Risk: Odds snapshots are saved as local JSON files and may accumulate over time. <br>
-Mitigation: Use a snapshot directory you control and delete old snapshot files when they are no longer needed. <br>
-Risk: Sports odds and line-movement signals can be stale, incomplete, or misleading if used without review. <br>
-Mitigation: Review current source data and treat generated line-movement analysis as decision support rather than a guarantee. <br>
+## Use Case:
 
+External users and agent developers use this skill to collect sportsbook line snapshots and reason about line movement, sharp action, steam moves, and reverse line movement signals.
 
-## Reference(s): <br>
-- [Sharp Line Detector on ClawHub](https://clawhub.ai/rsquaredsolutions2026/sharp-line-detector) <br>
-- [The Odds API](https://the-odds-api.com/) <br>
-- [AgentBets Sharp Line Detector Guide](https://agentbets.ai/guides/openclaw-sharp-line-detector-skill/) <br>
-- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON files, Analysis] <br>
-**Output Format:** [Markdown with inline bash commands and JSON snapshot files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ODDS_API_KEY, optional threshold environment variables, and local snapshot files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill uses an Odds API key when requesting sportsbook odds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep shell tracing and verbose logging off around commands, restrict or rotate the key when needed, and avoid sharing captured command output that may expose credentials.
+
+Risk: The skill creates local odds snapshot files in a configurable directory.
+
+Mitigation: Use a trusted SHARP_SNAPSHOT_DIR value and review filesystem permissions for stored snapshot data.
+
+Risk: Untrusted SPORT_KEY or snapshot path values could send unintended API requests or write files to unexpected locations.
+
+Mitigation: Use known SPORT_KEY values and trusted environment variable settings before running the generated commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rsquaredsolutions2026/skills/sharp-line-detector)
+- [The Odds API](https://the-odds-api.com/)
+- [AgentBets Sharp Line Detector Tutorial](https://agentbets.ai/guides/openclaw-sharp-line-detector-skill/)
+- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON snapshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ODDS_API_KEY and optional SPORT_KEY, SHARP_SPREAD_THRESHOLD, SHARP_ML_THRESHOLD, and SHARP_SNAPSHOT_DIR settings.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

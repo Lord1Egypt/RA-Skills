@@ -1,49 +1,64 @@
-## Description: <br>
-HealthFit helps users manage fitness, nutrition, body metrics, TCM wellness, and optional sexual-health records through four role-specific advisors and local logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HealthFit is a personal health management skill that integrates workout planning, nutrition guidance, health data tracking, TCM constitution support, solar-term wellness, tongue self-exam workflows, and sexual-health record handling through four advisor roles.
 
-## Publisher: <br>
-[ChenChen913](https://clawhub.ai/user/ChenChen913) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchen913](https://clawhub.ai/user/chenchen913)
 
-## Use Case: <br>
-External users use HealthFit as an agent-assisted wellness journal for workout planning, diet logging, health summaries, TCM constitution guidance, and local personal health record management. It is wellness support and should not be used as a substitute for medical diagnosis or care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores health, body, diet, medication/history, TCM, and optional sexual-health information in local plaintext files. <br>
-Mitigation: Keep the data directory and generated export or backup folders out of shared and cloud-synced locations unless intentionally sharing them. <br>
-Risk: Exports and backups can contain sensitive health information. <br>
-Mitigation: Review exported files before sharing and leave optional private sexual-health records excluded unless explicit inclusion is intended. <br>
-Risk: Health, fitness, nutrition, TCM, and sexual-health guidance may be mistaken for medical care. <br>
-Mitigation: Treat responses as wellness support and seek qualified medical care for diagnosis, treatment, urgent symptoms, or condition-specific decisions. <br>
+## Use Case:
 
+External users use HealthFit to create a personal health profile, receive fitness and nutrition guidance, track workouts and body metrics, generate progress summaries, and access TCM-oriented wellness workflows. The skill is intended for wellness support and self-tracking, not medical diagnosis or treatment.
 
-## Reference(s): <br>
-- [HealthFit ClawHub Release](https://clawhub.ai/ChenChen913/healthfit) <br>
-- [HealthFit Evidence Base](references/evidence_base.md) <br>
-- [HealthFit Storage Schema](references/storage_schema.md) <br>
-- [Quick Commands Instructions](references/commands.md) <br>
-- [Western and TCM Onboarding Flow](references/onboarding.md) <br>
-- [TCM Constitution Guide](references/tcm_constitution.md) <br>
-- [Exercise Library](references/exercise_library.md) <br>
-- [Nutrition Guidelines](references/nutrition_guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses, local file updates, and optional shell commands for backup, export, and database setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may reference or update local plaintext health logs and JSON profile files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter, config, and changelog state 3.0.1) <br>
+Risk: Sensitive health and sexual-health records may be stored as plaintext in the skill workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a trusted local workspace, avoid entering sexual-health details unless needed, and confirm encryption, file permissions, retention, export, and deletion behavior before relying on it for sensitive records.
+
+Risk: Broad natural-language triggers can load private profile context more easily than expected.
+
+Mitigation: Use explicit HealthFit commands for intended actions and confirm before opening or updating sensitive modules.
+
+Risk: Wellness, nutrition, exercise, and TCM responses can be mistaken for medical diagnosis or treatment.
+
+Mitigation: Treat outputs as general wellness guidance and seek qualified medical care for symptoms, chronic conditions, medication questions, sexual-health concerns, or abnormal health signals.
+
+## Reference(s):
+
+- [HealthFit ClawHub Skill Page](https://clawhub.ai/chenchen913/skills/healthfit)
+- [Evidence Base](references/evidence_base.md)
+- [Storage Schema](references/storage_schema.md)
+- [Commands](references/commands.md)
+- [Sexual Health Profiling Flow](references/onboarding_sexual_health.md)
+- [NSCA Position Statements](https://www.nsca.com/about-us/position-statements/)
+- [ExRx.net Exercise Library](https://exrx.net/Lists/Directory)
+- [National Standard Information Public Service Platform](https://std.samr.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversational responses with optional JSON, CSV, or Markdown export files and shell command suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local profile, log, draft, backup, export, and SQLite data files in the skill workspace.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and changelog report 3.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

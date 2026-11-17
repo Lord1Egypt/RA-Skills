@@ -1,41 +1,58 @@
-## Description: <br>
-Search, compare, and research products from Argos.co.uk with natural language queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, compare, and research products from Argos.co.uk with natural language queries
 
-## Publisher: <br>
-[notsurewhoisthis](https://clawhub.ai/user/notsurewhoisthis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[notsurewhoisthis](https://clawhub.ai/user/notsurewhoisthis)
 
-## Use Case: <br>
-External users and shopping researchers use this skill to search Argos products, compare 2-4 candidate products, inspect product details, and summarize customer reviews before making purchase decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Product searches and optional caching may involve shopping preferences or other personal context. <br>
-Mitigation: Avoid entering private information into product searches and keep caching disabled or clear cached data when handling sensitive shopping context. <br>
-Risk: Prices, stock, delivery options, and customer reviews can change after the skill retrieves product information. <br>
-Mitigation: Verify price, stock, delivery, and reviews directly on Argos before purchasing. <br>
+## Use Case:
 
+External shoppers and product researchers use this skill to search Argos.co.uk, inspect product details, compare products, and summarize customer reviews from natural language requests.
 
-## Reference(s): <br>
-- [Argos](https://www.argos.co.uk) <br>
-- [ClawHub skill page](https://clawhub.ai/notsurewhoisthis/argos-product-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tables and concise product research summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product links, prices, availability, specifications, ratings, review themes, and recommendations based on current web results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Installing the skill through an npx command can run package-manager code from the selected registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted registry, avoid administrator privileges, and pin the installer version or use a reviewed local install path when possible.
+
+Risk: Optional local caching may retain product data when caching is enabled.
+
+Mitigation: Keep caching disabled unless needed, set a short cache TTL, and avoid storing sensitive user-specific shopping context in cached files.
+
+Risk: Real-time product details such as price, stock, delivery, and reviews can change after the skill reports them.
+
+Mitigation: Fetch current Argos product pages when answering and encourage users to verify price and availability on Argos before purchase.
+
+## Reference(s):
+
+- [Argos](https://www.argos.co.uk)
+- [ClawHub Skill Page](https://clawhub.ai/notsurewhoisthis/skills/argos-product-research)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown tables and concise prose summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Argos product links, prices, availability, ratings, comparisons, recommendations, and review themes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

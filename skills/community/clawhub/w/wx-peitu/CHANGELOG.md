@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [7.4.0] - 2026-07-13
+
+### Changed — Font Size Enlargement (v7.3 changes, consolidated)
+
+- **L3 Body text**: 14-16px → 16-18px (improve readability on mobile)
+- **L4 Auxiliary text**: 11-12px → 13-14px (meet WeChat mobile minimum legibility)
+- **Cover kicker**: font size enlarged
+- **Cover meta**: font size enlarged
+- Rationale: Previous font sizes were too small for WeChat mobile reading; enlarged to match actual rendering on phone screens
+
+### Removed — Quote Card Removal (v7.4 changes)
+
+- **Removed S08 / quote-card recipe** from all files (SKILL.md, references/design-system.md, references/workflow.md, references/assets.md)
+- **Default illustration count**: 8 → 7 (quote card slot removed from default plan)
+- Rationale: Quote cards had low actual usage density in WeChat article illustration scenarios; removing simplifies the recipe system and reduces redundant illustrations
+
 ## [7.0.0] - 2026-06-11
 
 ### Breaking Changes — Design System Overhaul

@@ -1,42 +1,54 @@
-## Description: <br>
-Transform Markdown or outlines into polished Word/PDF documents with professional templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform Markdown or outlines into polished Word/PDF documents with professional templates.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers, operators, and document authors use this skill to convert Markdown or structured outlines into polished Word, PDF, or preview documents using built-in templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted Markdown is processed by local document-conversion tooling. <br>
-Mitigation: Review input files and output paths before running commands, and handle untrusted Markdown as local converter input. <br>
-Risk: PDF generation requires optional local pandoc and weasyprint dependencies. <br>
-Mitigation: Run the documented doctor check before PDF conversion; use Word output when PDF dependencies are unavailable. <br>
+## Use Case:
 
+Developers, operators, and document authors use Doc Weaver to convert Markdown drafts or outlines into formatted Word documents, PDFs, or styled Markdown previews using built-in templates.
 
-## Reference(s): <br>
-- [Doc Weaver README](README.md) <br>
-- [Template Reference](references/templates.md) <br>
-- [Doc Weaver ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/doc-weaver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts may be .docx, .pdf, or Markdown preview text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local document conversion; PDF output depends on pandoc and weasyprint, while Word output depends on python-docx.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter, skill.json, server release metadata) <br>
+Risk: PDF conversion can allow Markdown to trigger external or local resource loading during the pandoc and WeasyPrint workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid converting untrusted Markdown to PDF unless the conversion runs in a sandbox or network and local resource access are disabled.
+
+Risk: Local document conversion depends on user-managed pandoc, WeasyPrint, and python-docx installations.
+
+Mitigation: Use pinned dependency versions and run the bundled doctor and verification checks before relying on generated documents.
+
+## Reference(s):
+
+- [Doc Weaver Template Reference](references/templates.md)
+- [Doc Weaver on ClawHub](https://clawhub.ai/harrylabsj/skills/doc-weaver)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [DOCX/PDF files, styled Markdown previews, and Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [DOCX generation requires python-docx; PDF generation additionally requires pandoc and WeasyPrint.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

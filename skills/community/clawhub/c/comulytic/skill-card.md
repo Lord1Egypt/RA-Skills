@@ -1,41 +1,59 @@
-## Description: <br>
-Query meetings, contacts, action items, and conversations from Comulytic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comulytic helps agents query Comulytic meetings, contacts, action items, and conversation history.
 
-## Publisher: <br>
-[chenbaochao](https://clawhub.ai/user/chenbaochao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenbaochao](https://clawhub.ai/user/chenbaochao)
 
-## Use Case: <br>
-External users and teams with Comulytic accounts use this skill to search meeting records, retrieve summaries or transcripts, inspect contact history, and review pending action items through Comulytic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Comulytic login credentials and can retrieve sensitive meeting summaries, transcripts, contacts, conversation snippets, and action items. <br>
-Mitigation: Install only if you trust the Comulytic service and publisher with that data, and avoid broad searches or full transcript requests unless they are necessary. <br>
-Risk: The login helper stores an access token at ~/.comulytic/mcp-token.json for later API access. <br>
-Mitigation: Keep the token file private, remove or revoke it when access is no longer needed, and rerun login only in trusted environments. <br>
+## Use Case:
 
+Employees or external users who rely on Comulytic use this skill to retrieve meeting summaries, transcripts, contact profiles, meeting history, action items, and conversation search results.
 
-## Reference(s): <br>
-- [Comulytic MCP API endpoint](https://api.comulytic.ai/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/chenbaochao/comulytic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, python3, and a Comulytic access token; responses may include private meeting, transcript, contact, conversation, and action item data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Saved Comulytic MCP access tokens can expose meeting, transcript, contact, action-item, and conversation data if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the token file and COMULYTIC_MCP_TOKEN as sensitive, keep token access limited to the user account, and avoid showing token status in shared or logged terminals.
+
+Risk: Shell examples that interpolate user-supplied search text can mishandle quotes or special characters.
+
+Mitigation: Prefer hardened commands or scripts that serialize API arguments as JSON instead of substituting raw user text into shell snippets.
+
+Risk: The skill can query sensitive Comulytic meeting summaries, transcripts, contacts, action items, and conversation history.
+
+Mitigation: Install and use it only for accounts and workspaces where the publisher and requested data access are trusted.
+
+## Reference(s):
+
+- [Comulytic Skill Release](https://clawhub.ai/chenbaochao/skills/comulytic)
+- [Comulytic MCP API Endpoint](https://api.comulytic.ai/mcp)
+- [Comulytic API Service](https://api.comulytic.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-RPC curl examples and parsed JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, python3, and a valid Comulytic MCP access token.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

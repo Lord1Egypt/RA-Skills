@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically analyzes CSV or JSON data, recommends chart combinations, and generates interactive HTML dashboards with chart views, theme switching, table previews, and statistical summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically analyze and recommend optimal chart combinations based on data characteristics, generate beautiful interactive HTML dashboards (including line charts, bar charts, scatter plots, pie charts, etc.), support dark/light theme switching, CSV and JSON input, and data statistical summaries.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to turn tabular CSV or JSON data into an HTML dashboard with recommended charts, summary statistics, and a raw-data preview. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated dashboards can turn crafted CSV or JSON content into active browser code when opened. <br>
-Mitigation: Use trusted datasets or a restricted workspace, avoid opening dashboards generated from unknown files, and escape or render user data as text in safer versions. <br>
-Risk: Dashboard HTML can contain raw source data. <br>
-Mitigation: Treat generated HTML as sensitive, review it before sharing, and avoid uploading confidential datasets unless the output handling is acceptable. <br>
-Risk: The generated HTML loads Chart.js from a CDN. <br>
-Mitigation: Use a local or integrity-pinned Chart.js asset where network trust, reproducibility, or supply-chain controls are required. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect CSV or JSON datasets, select appropriate chart types, and generate interactive HTML dashboards with summary statistics and data previews.
 
-## Reference(s): <br>
-- [Chart Selection Rules](references/chart-selection.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/ai-data-visualizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated HTML dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated dashboards may include raw input data and load Chart.js from a CDN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated dashboards are active web pages, and untrusted CSV or JSON content can introduce browser-code execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted data until HTML escaping and JSON embedding are fixed; review generated dashboards before opening, sharing, or hosting them.
+
+Risk: Generated dashboards load Chart.js from an external CDN.
+
+Mitigation: Bundle Chart.js locally or add subresource integrity and a clear network disclosure before use on sensitive or authenticated domains.
+
+## Reference(s):
+
+- [Chart Selection Rules](artifact/references/chart-selection.md)
+- [AI Data Visualizer ClawHub Page](https://clawhub.ai/openlark/skills/ai-data-visualizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with bash command snippets and generated interactive HTML dashboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated dashboards include Chart.js visualizations, a theme toggle, summary statistics, and a data table preview limited to 500 rows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

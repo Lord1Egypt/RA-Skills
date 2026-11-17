@@ -1,0 +1,4 @@
+interface:
+  display_name: "PT Agent"
+  short_description: "快速搜索电影电视剧并安全操作私有 PT 站点与下载器"
+  default_prompt: "Use $pt-agent to quickly search my authorized PT sites for a movie or TV show and present selectable results."

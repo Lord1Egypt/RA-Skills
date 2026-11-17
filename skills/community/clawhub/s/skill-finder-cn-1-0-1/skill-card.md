@@ -1,41 +1,55 @@
-## Description: <br>
-Skill Finder CN helps users discover, inspect, install, and verify ClawHub skills, with Chinese-first search result summaries and install guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Finder Cn helps agents search ClawHub for relevant skills, inspect skill details and statistics, recommend matching skills, and verify installation status with Chinese-oriented output.
 
-## Publisher: <br>
-[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouhuihui008](https://clawhub.ai/user/zhouhuihui008)
 
-## Use Case: <br>
-External users and developers use this skill to find relevant ClawHub skills for a task, compare search results with download and star signals, install a selected skill, and verify that installation succeeded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may lead users to install third-party ClawHub skills with different publishers, permissions, or purposes. <br>
-Mitigation: Review a recommended skill's source, publisher, permissions, and purpose before running `clawhub install`. <br>
-Risk: Chinese-first output may be unclear for users who do not read Chinese. <br>
-Mitigation: Translate or summarize the recommendation details before acting on install or verification commands. <br>
+## Use Case:
 
+Agents and users use this skill to discover ClawHub skills that match a requested capability, review basic popularity and installation signals, and receive installation or verification commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhouhuihui008/skill-finder-cn-1-0-1) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhouhuihui008) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and ranked skill recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first output; may include skill names, brief descriptions, download counts, stars, installed status, install commands, and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill may recommend installing other skills from ClawHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recommended skill's source, metadata, and security signals before approving installation.
+
+Risk: The skill is designed for Chinese-oriented prompts and output, which may reduce clarity for users expecting another language.
+
+Mitigation: Ask the agent to translate or provide output in the preferred language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouhuihui008/skills/skill-finder-cn-1-0-1)
+- [Publisher profile](https://clawhub.ai/user/zhouhuihui008)
+- [ClawHub CLI requirement](metadata.openclaw.requires.bins: clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Chinese-oriented search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ClawHub search results, download counts, star counts, installation status, install commands, and verification commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json; artifact _meta.json states 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

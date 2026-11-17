@@ -1,43 +1,55 @@
-## Description: <br>
-Metaso Search helps agents query the Metaso Chinese AI search service and return structured Chinese search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Metaso Search helps agents query the MetaSo Chinese AI search API and return structured Chinese search results and answers.
 
-## Publisher: <br>
-[qiuxinyuan321](https://clawhub.ai/user/qiuxinyuan321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qiuxinyuan321](https://clawhub.ai/user/qiuxinyuan321)
 
-## Use Case: <br>
-Developers and agents use this skill to run Chinese-language web searches through Metaso, retrieve structured results, and support Chinese knowledge lookup, concept explanation, question answering, and information organization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Metaso API keys may be exposed if stored in plaintext files or committed to synced project directories. <br>
-Mitigation: Store the key in an environment variable or secret manager, keep plaintext key files out of version control and sync tools, and rotate the key after suspected exposure. <br>
-Risk: Search results can be incomplete, stale, or misleading for high-impact decisions. <br>
-Mitigation: Review retrieved sources and use additional verification before relying on results for legal, medical, financial, or security-sensitive work. <br>
+## Use Case:
 
+Developers and agents use this skill to perform Chinese-language web searches, retrieve structured results, and optionally request JSON output for downstream processing.
 
-## Reference(s): <br>
-- [Metaso Search ClawHub release](https://clawhub.ai/qiuxinyuan321/metaso-search) <br>
-- [qiuxinyuan321 publisher profile](https://clawhub.ai/user/qiuxinyuan321) <br>
-- [Metaso API playground](https://metaso.cn/search-api/playground) <br>
-- [Metaso](https://metaso.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-oriented search result guidance with PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can request a result count and JSON output when the underlying PowerShell command is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: API keys may be exposed if stored in the documented plaintext local secrets file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the METASO_API_KEY environment variable or a secret manager, avoid shared or version-controlled storage, and rotate any key that may have been exposed.
+
+Risk: Search queries are sent to a third-party MetaSo API endpoint.
+
+Mitigation: Avoid submitting confidential data in queries and review returned content before using it in user-facing or automated workflows.
+
+## Reference(s):
+
+- [ClawHub Metaso Search Skill Page](https://clawhub.ai/qiuxinyuan321/skills/metaso-search)
+- [MetaSo Search API Playground](https://metaso.cn/search-api/playground)
+- [MetaSo](https://metaso.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with PowerShell examples; search results can be returned as text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MetaSo API key supplied through METASO_API_KEY or another secret-management mechanism.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release, artifact skill.json, artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

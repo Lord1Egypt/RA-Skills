@@ -1,37 +1,57 @@
-## Description: <br>
-Use when starting feature work that needs isolation from the current workspace by creating isolated git branches with setup and safety verification for OpenClaw environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when starting feature work that needs isolation from the current workspace; it creates isolated git branches with clean setup and safety verification for OpenClaw environments.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and engineering agents use this skill at the start of feature work to choose a workspace location, create a feature branch, run project setup, and verify a clean baseline before implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overstate workspace isolation because it uses branch-based workflow steps and can direct persistent repository changes and setup commands in the current working tree. <br>
-Mitigation: Confirm the working directory before use, review any .gitignore diff before committing, and pause before running package-manager setup commands in repositories that are not fully trusted. <br>
+## Use Case:
 
+Developers and engineering agents use this skill at the start of feature work to create a separate feature branch, select or prepare a workspace path, install project dependencies, and verify a clean baseline before implementation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose git branch creation, .gitignore updates, dependency installation, and baseline test commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can run package-manager and build commands in the current checkout, which may execute project-controlled code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories you trust and review dependency or build setup before allowing those commands to run.
+
+Risk: The skill can create branches and alter or commit .gitignore, changing repository state.
+
+Mitigation: Confirm the intended branch and ignore-file changes before proceeding, then inspect git status afterward.
+
+Risk: The skill describes isolation while relying on git branches and workspace selection, which may not provide a fully separate working tree.
+
+Mitigation: Treat it as branch and workspace preparation rather than strong filesystem isolation; use a real separate workspace when that isolation is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/superpowers-isolated-workspace)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with bash command blocks and status-report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repository state changes such as branch creation, .gitignore updates, dependency setup, and baseline test execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

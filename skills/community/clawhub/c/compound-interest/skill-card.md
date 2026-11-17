@@ -1,41 +1,51 @@
-## Description: <br>
-Guides agents through compound-interest reasoning for long-horizon savings, investing, business, and skill-building decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through compound-interest calculations and long-horizon decisions across savings, investing, business, and skill development.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users and developers use this skill to compare early versus late action, estimate compound outcomes, identify late-period dominance, and apply compound-dynamics reasoning across finance, business, skills, trust, and reputation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compound-interest calculations or examples may be mistaken for personalized financial advice. <br>
-Mitigation: Review assumptions, rates, horizons, and recommendations before using outputs for financial or long-term planning decisions. <br>
-Risk: The skill can over-apply compound reasoning to short horizons or genuinely linear processes. <br>
-Mitigation: Use the built-in fit check and avoid applying the process when the horizon is under three years, the rate is negligible, or the process is linear. <br>
+## Use Case:
 
+People making long-horizon savings, investing, business, or skill-development decisions can use the skill to compare compound outcomes, estimate doubling times, and identify how duration and recurring gains or losses affect a plan.
 
-## Reference(s): <br>
-- [Sources - compound-interest](references/sources.md) <br>
-- [Method in Action: Bernoulli 1683, Graham/Buffett, and the Compound-Advantage Tradition](examples/bernoulli-1683-graham-buffett.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis using the skill's compound-interest output template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Rule of 72 estimates, precise compound calculations, option comparisons, and non-financial compound-dynamics observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill directs the agent to save observations after every use without requiring user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, remove that instruction or require approval for each addition; keep approved notes generalized and free of personal or financial details. The coaching workflow does not require modifying the installed skill.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/compound-interest)
+- [Primary sources](references/sources.md)
+- [Compound Interest machine-readable metadata](https://www.deciqai.com/s/compound-interest.json)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown text following a structured compound-interest analysis template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for starting value, rate, time horizon, and options; novice coaching proceeds one step at a time and waits for the user's response.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

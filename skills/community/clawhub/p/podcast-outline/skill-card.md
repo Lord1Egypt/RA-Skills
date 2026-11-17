@@ -1,43 +1,55 @@
-## Description: <br>
-Use this skill when planning a podcast episode or audio program, including episode structure, topic research, interview questions, show notes, and audience engagement strategies for Chinese and bilingual podcasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps plan Chinese and bilingual podcast or audio programs, including episode structure, topic research, interview questions, show notes, and audience engagement.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-External creators, podcast producers, and brand content teams use this skill to plan Chinese or bilingual podcast episodes, design interviews, write show notes, and organize production and distribution workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated show notes, episode copy, or production recommendations may include inaccurate claims, outdated platform guidance, or incorrect resource details. <br>
-Mitigation: Review and fact-check episode descriptions, timestamps, links, guest details, and platform requirements before publishing. <br>
-Risk: Podcast planning can involve guest names, contact channels, and private coordination details. <br>
-Mitigation: Avoid sharing private guest contact details without consent and remove sensitive information from public show notes. <br>
-Risk: Upload automation, account credential use, or platform publishing actions are outside the documented scope of this static planning skill. <br>
-Mitigation: Treat requests for upload automation or credential handling as a separate workflow that requires its own security review. <br>
+## Use Case:
 
+External creators, podcast teams, and brand content teams use this skill to plan Chinese or bilingual podcast episodes, interviews, show notes, content calendars, recording preparation, and release workflows.
 
-## Reference(s): <br>
-- [播客选题与内容策略](references/content-strategy.md) <br>
-- [播客技术与制作参考](references/production-tech.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and structured planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces podcast outlines, interview question frameworks, show notes, content calendars, checklists, and production guidance; no code execution or account automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users who need English-only guidance may find the skill's language coverage limited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for Chinese or bilingual podcast planning, or translate and adapt the generated templates before production use.
+
+Risk: Podcast plans, show notes, production checklists, and platform guidance may need editorial or operational review before publishing.
+
+Mitigation: Review generated outlines, guest questions, links, production settings, and distribution steps against the team's current requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/podcast-outline)
+- [播客选题与内容策略](artifact/references/content-strategy.md)
+- [播客技术与制作参考](artifact/references/production-tech.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured outlines, checklists, tables, templates, and sample copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language templates with bilingual podcast planning coverage]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

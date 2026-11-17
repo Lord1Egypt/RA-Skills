@@ -1,42 +1,54 @@
-## Description: <br>
-Find Skills searches and recommends OpenClaw skills across ClawHub, a public mirror API, and GitHub with bilingual query handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Skills helps agents search, inspect, and discover OpenClaw skills across ClawHub, mirror, and GitHub sources with Chinese and English query support.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and agents use this skill to find, inspect, filter, and compare skill packages by keyword, source, tags, quality signals, popularity, related skills, or stated interests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to external public sources and appear in local console logs. <br>
-Mitigation: Avoid secrets, private project names, sensitive personal data, and confidential identifiers in search queries. <br>
-Risk: Results and recommendations depend on availability and freshness of external public skill sources. <br>
-Mitigation: Review returned skill metadata and source links before installing or relying on a recommended skill. <br>
+## Use Case:
 
+Developers and agents use this skill to find relevant OpenClaw skills, inspect skill details, compare sources, and receive related or popular skill suggestions before installing or evaluating a skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/findskills) <br>
-- [Publisher profile](https://clawhub.ai/user/hgta23) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Console text with skill listings, details, recommendations, source status, and help output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search queries may be sent to external public skill sources and printed in local console logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Search results may overstate trust in third-party metadata, including displayed verified status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat trust indicators as advisory and verify the actual skill source, owner, and identifier before relying on a result.
+
+Risk: Remote result data may include unsafe or misleading install-command suggestions.
+
+Mitigation: Inspect suggested commands and the referenced skill package before running installation commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/findskills)
+- [Publisher profile](https://clawhub.ai/user/hgta23)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Console text with skill metadata, search results, recommendations, source status, and install command suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include remote third-party metadata and suggested install commands that require user verification before use.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

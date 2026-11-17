@@ -1,45 +1,61 @@
-## Description: <br>
-A local memory skill that combines Baidu Embedding semantic search, Git Notes structured storage, and filesystem-backed memory management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A secure local memory system combining Baidu Embedding semantic search, Git Notes structured storage, and filesystem-backed memory management.
 
-## Publisher: <br>
-[xqicxx](https://clawhub.ai/user/xqicxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xqicxx](https://clawhub.ai/user/xqicxx)
 
-## Use Case: <br>
-Developers and agent users use this skill to set up and operate a local memory stack with semantic search, tagged structured memories, filesystem storage, health checks, and maintenance commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes local-only privacy claims while enabling Baidu API-based embedding. <br>
-Mitigation: Treat the skill as hybrid local-plus-remote unless remote embedding is disabled or audited, and avoid storing secrets or sensitive personal or business data. <br>
-Risk: Setup, fix, and maintenance scripts perform broad actions in /root/clawd. <br>
-Mitigation: Review scripts before execution and run them only in a contained /root/clawd environment that is acceptable to modify. <br>
+## Use Case:
 
+Developers and agent operators use this skill to initialize, configure, search, and maintain a local memory stack that combines semantic search, Git Notes, and Markdown file storage.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xqicxx/secure-memory-stack) <br>
-- [README](artifact/README.md) <br>
-- [Documentation](artifact/DOCUMENTATION.md) <br>
-- [Installation guide](artifact/INSTALLATION.md) <br>
-- [Memory system guide](artifact/MEMORY_SYSTEM_GUIDE.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local files under /root/clawd and optional Baidu API environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, CHANGELOG, server release metadata) <br>
+Risk: Privacy and offline-use claims may not hold when Baidu Embedding is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on zero-upload claims until data flows are documented; avoid storing secrets or regulated data when external embedding APIs are configured.
+
+Risk: Permission repair, cleanup, verification, and refresh paths operate broadly in a shared /root/clawd workspace.
+
+Mitigation: Audit scripts before execution and run them only in an isolated or clearly scoped workspace.
+
+Risk: The security verdict is suspicious and the scanner summary says the skill is too broad or unsafe for automatic trust.
+
+Mitigation: Review and scan the skill before installation or deployment, and require human approval before running maintenance or repair commands.
+
+## Reference(s):
+
+- [Secure Memory Stack README](artifact/README.md)
+- [Secure Memory Stack Documentation](artifact/DOCUMENTATION.md)
+- [Installation Guide](artifact/INSTALLATION.md)
+- [Memory System Guide](artifact/MEMORY_SYSTEM_GUIDE.md)
+- [Baidu AI Cloud](https://cloud.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local configuration or memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local memory, session, notes, and configuration files under the configured /root/clawd workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, CHANGELOG released 2026-01-31, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

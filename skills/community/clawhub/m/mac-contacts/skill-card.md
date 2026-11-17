@@ -1,42 +1,56 @@
-## Description: <br>
-CLI for reading and managing macOS Contacts, including search, full contact display, create, update, delete, and contact list membership management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apple Contacts helps agents search, view, create, update, delete, and organize macOS Contacts records and lists on macOS.
 
-## Publisher: <br>
-[bdwelle](https://clawhub.ai/user/bdwelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bdwelle](https://clawhub.ai/user/bdwelle)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill on macOS to look up contact details, create or update contacts, delete contacts, and manage contact list membership through an agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify sensitive macOS Contacts data. <br>
-Mitigation: Grant Contacts access only when acceptable, use narrow searches, and treat returned contact data as private. <br>
-Risk: Create, update, delete, and list-membership actions can change real contacts, and delete --force bypasses confirmation. <br>
-Mitigation: Confirm exact contact identities before write actions and avoid delete --force unless certain. <br>
-Risk: The included live tests can modify the real Contacts store. <br>
-Mitigation: Run tests only when prepared for Contacts changes, preferably with disposable fixture contacts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bdwelle/mac-contacts) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/bdwelle) <br>
+## Use Case:
 
+Users and agents on macOS use this skill to look up contact details, create or modify contacts, and manage contact list membership when workflows need local Contacts data.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [YAML contact data, success or error text, and command-oriented guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS Contacts permission; read outputs can contain personal contact data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose sensitive contact data after the agent host is granted macOS Contacts access.
+
+Mitigation: Install only when Contacts access is appropriate, use narrowly scoped queries, and avoid sharing returned contact details beyond the intended workflow.
+
+Risk: Create, update, delete, and list membership actions can persistently change real Contacts data, especially when a name match is ambiguous.
+
+Mitigation: Manually confirm the exact contact before write actions, prefer stable contact IDs when available, and avoid acting on ambiguous name matches.
+
+Risk: The bundled tests exercise write and delete behavior against the Contacts database.
+
+Mitigation: Run tests only in a disposable or backed-up Contacts environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bdwelle/skills/mac-contacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [YAML for search, show, and list results, plus plain-text success and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS Contacts permission; write actions can persistently modify the user's Contacts database.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

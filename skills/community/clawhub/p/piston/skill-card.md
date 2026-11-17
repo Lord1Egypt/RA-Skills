@@ -1,39 +1,50 @@
-## Description: <br>
-Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Piston. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup documentation for Piston concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use Piston as a quick reference for devtools-oriented Piston concepts, setup guidance, patterns, debugging, performance, security, migration, and cheat-sheet material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security guidance notes that related maintenance or review workflows can use existing authenticated CLI access and may run nested review with broad access when enabled. <br>
-Mitigation: Install only where that access is intended, review the disclosed maintenance and autoreview behavior before use, and prefer restricted review modes when available. <br>
+## Use Case:
 
+Developers and engineers use this skill as an agent-accessible reference for Piston concepts, quickstart steps, patterns, debugging, performance, security, migration, and command cheat sheets.
 
-## Reference(s): <br>
-- [Piston on ClawHub](https://clawhub.ai/xueyetianya/piston) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Broad command terms such as security or intro could cause an agent to invoke this static reference in unrelated tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it explicitly as a Piston reference when Piston documentation is needed.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub Piston skill page](https://clawhub.ai/xueyetianya/skills/piston)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific reference content; security evidence reports no credentials, network access, file access, or persistence.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

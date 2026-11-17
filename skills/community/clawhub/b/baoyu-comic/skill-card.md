@@ -1,51 +1,67 @@
-## Description: <br>
-Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers, educators, and creators use this skill to turn source material into original educational comics, including analysis, storyboards, character guides, image prompts, generated pages, and a final PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Preference files can persist watermark text and other defaults across projects. <br>
-Mitigation: Review the first-time setup and choose project-local preferences when settings should not be reused. <br>
-Risk: Watermark and preference fields could contain secrets or sensitive text. <br>
-Mitigation: Avoid placing secrets, private identifiers, or sensitive content in watermark or preference fields. <br>
-Risk: Image generation may invoke installed backends or the Codex CLI using the user's existing local login. <br>
-Mitigation: Confirm the selected image backend and account context before generating images. <br>
-Risk: The ohmsha preset defaults to recognizable Doraemon characters, which may be unsuitable for original or rights-sensitive work. <br>
-Mitigation: Use custom characters when original or rights-safe output is required. <br>
+## Use Case:
 
+External users and developers use Baoyu Comic to turn educational, biographical, tutorial, or concept content into original knowledge comics with storyboards, character references, page prompts, generated raster images, and merged PDFs.
 
-## Reference(s): <br>
-- [Baoyu Comic Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-comic) <br>
-- [Complete Workflow](references/workflow.md) <br>
-- [Analysis Framework](references/analysis-framework.md) <br>
-- [Auto Selection](references/auto-selection.md) <br>
-- [Partial Workflows](references/partial-workflows.md) <br>
-- [Codex Image Generation](references/codex-imagegen.md) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown workflow artifacts, saved image prompts, generated image files, and an optional PDF] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses project or user preferences, supports batch image generation, and may use bun or npx for PDF merging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.4 (source: frontmatter and server release metadata) <br>
+Risk: Fallback paths can download or execute local tooling during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install trusted Bun tooling directly, avoid the npx -y bun fallback, and review generated commands before execution.
+
+Risk: Comic prompts and reference images may be sent to image-generation backends.
+
+Mitigation: Use approved image-generation backends and avoid submitting sensitive source material or reference images.
+
+Risk: Default presets may include third-party character or style assumptions.
+
+Mitigation: Review selected presets, character plans, and prompt files before image generation.
+
+## Reference(s):
+
+- [Baoyu Comic Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-comic)
+- [Complete Workflow](references/workflow.md)
+- [Comic Content Analysis Framework](references/analysis-framework.md)
+- [Auto Selection](references/auto-selection.md)
+- [Base Prompt](references/base-prompt.md)
+- [Storyboard Template](references/storyboard-template.md)
+- [Character Definition Template](references/character-template.md)
+- [Partial Workflows](references/partial-workflows.md)
+- [Codex Imagegen Wrapper Invocation](references/codex-imagegen.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Watermark Guide](references/config/watermark-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance, prompt files, raster images, and PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an available raster image-generation backend and local Bun-compatible tooling for PDF merge operations.]
+
+## Skill Version(s):
+
+1.117.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

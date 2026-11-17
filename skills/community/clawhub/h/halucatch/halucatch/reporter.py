@@ -1,10 +1,143 @@
 """HaluCatch 报告生成器：生成专业版、标准版、AI 行动版三份报告。"""
 
-import re
 import os
+import re
 from datetime import date
-from .config import MESSAGES
+
 from .classifier import classify_skill
+from .config import MESSAGES
+
+
+def _lang_stats_table(code_result, msg):
+    """生成代码风险按语言统计表。"""
+    ls = code_result.get('lang_stats', {})
+    if not ls:
+        return ''
+
+    lang_names = {'python': 'Python', 'shell': 'Shell', 'go': 'Go',
+                  'javascript': 'JS', 'typescript': 'TS', 'ruby': 'Ruby',
+                  'rust': 'Rust', 'perl': 'Perl'}
+
+    header = '| 代码文件类型 | 审查规则数量 | 全通过 | 部分问题 | 全不通过 |'
+    sep = '|------|------|------|------|------|'
+
+    rows = []
+    for lang, stats in sorted(ls.items()):
+        name = lang_names.get(lang, lang)
+        rows.append(
+            f'| {name} | {stats["rules"]} | {stats["clean"]} | '
+            f'{stats["partial"]} | {stats["all_fail"]} |'
+        )
+
+    table = header + '\n' + sep + '\n' + '\n'.join(rows) + '\n'
+    return table
+
+
+def _code_risk_grouped(issues):
+    """将代码风险按语言分组，排除 pass/skip。返回 {lang: [(text, status), ...]} 和 info 列表。"""
+    groups = {}
+    infos = []
+    for text, status in issues:
+        if status == 'pass':
+            continue
+        if status == 'info':
+            infos.append(text)
+            continue
+        # 从 text 中提取语言标记，如 [javascript/未捕获 Promise]
+        m = re.search(r'\[(\w+)/', text)
+        lang = m.group(1) if m else '其他'
+        groups.setdefault(lang, []).append(text)
+
+    # 排序：按问题数量
+    sorted_groups = sorted(groups.items(), key=lambda x: len(x[1]), reverse=True)
+    return sorted_groups, infos
+
+
+def _code_risk_md(sorted_groups, infos):
+    """生成代码风险分组展示 markdown。"""
+    if not sorted_groups and not infos:
+        return '- ✅ 未发现代码风险\n'
+
+    lang_names = {'python': 'Python', 'shell': 'Shell', 'go': 'Go',
+                  'javascript': 'JS', 'typescript': 'TS', 'ruby': 'Ruby',
+                  'rust': 'Rust', 'perl': 'Perl'}
+    ext_lang = {'.py': 'Python', '.sh': 'Shell', '.go': 'Go',
+                '.js': 'JS', '.ts': 'TS', '.rb': 'Ruby',
+                '.rs': 'Rust', '.pl': 'Perl'}
+
+    parts = []
+    for lang, items in sorted_groups:
+        name = lang_names.get(lang, lang)
+        parts.append(f'#### {name}（{len(items)} 项）\n')
+        for text in items:
+            parts.append(f'- {text}')
+
+    # 其他提示（info 级别）——用表格
+    if infos:
+        parts.append(f'\n#### ℹ️ 其他提示（{len(infos)} 项）\n')
+        header = '| 语言 | 文件 | 规则 | 详情 |'
+        sep = '|------|------|------|------|'
+        rows = [header, sep]
+        for text in infos:
+            # 解析：ℹ️ [规则名] 描述（N 行超过..., 出现在 path）
+            rule_m = re.search(r'\[(\S+)\]', text)
+            rule = rule_m.group(1) if rule_m else '-'
+            file_m = re.search(r'出现在\s+(.+?)[）\)]$', text)
+            fpath = file_m.group(1) if file_m else '-'
+            # 从文件后缀推断语言
+            _, ext = os.path.splitext(fpath)
+            lang = ext_lang.get(ext, ext.lstrip('.').upper() if ext else '-')
+            # 详情：规则描述和具体数值
+            detail_m = re.search(r'\]\s+(.+?)\（\d+\s*行', text)
+            detail = detail_m.group(1) if detail_m else '-'
+            rows.append(f'| {lang} | {fpath} | {rule} | {detail} |')
+        parts.append('\n'.join(rows))
+
+    return '\n'.join(parts)
+
+
+def _complexity_table(cx_result):
+    """生成复杂度评估指标表。"""
+    raw = cx_result.get('raw', {})
+    if not raw:
+        return ''
+
+    headers = '| 指标 | 权重 | 得分 | 详情 |\n|------|------|------|------|\n'
+    rows = []
+    for _key, s in raw.items():
+        label = s.get('label', _key)
+        weight = s.get('weight')
+        score = s.get('score', 0)
+        value = s.get('value', '')
+        level = s.get('level', '')
+        score_str = f'{level} {score:.1f}' if isinstance(score, (int, float)) else f'{level} {score}'
+        if 'multiplier' in s:
+            score_str += f'（折扣 ×{s["multiplier"]:.2f}）'
+        weight_str = f'{weight:.0%}' if weight is not None else '—'
+        rows.append(f'| {label} | {weight_str} | {score_str} | {value} |')
+
+    if not rows:
+        return ''
+
+    table = headers + '\n'.join(rows)
+
+    # 复杂度汇总表（三行）
+    weighted = cx_result.get('weighted')
+    final = cx_result.get('final')
+    if weighted is not None and final is not None:
+        # 读取覆盖率信息填充计算公式
+        cov = raw.get('coverage', {})
+        mul = cov.get('multiplier', 1.0)
+        ratio = cov.get('ratio', 0)
+        summary_header = '\n#### 复杂度加权结果\n\n| 名称 | 数值 | 计算公式 |\n|------|------|----------|\n'
+        summary_rows = [
+            f'| 加权总得分 | {weighted:.1f} | 11 项指标加权平均 |',
+            f'| 脚本覆盖率折扣 | ×{mul:.2f}（覆盖率 {ratio:.0%}） | $1 - \\sqrt{{\\text{{脚本覆盖率}}}}$ |',
+            f'| **最终复杂度** | **{final:.1f} / 10** | $\\text{{加权总得分}} \\times \\text{{脚本覆盖率折扣}}$ |',
+        ]
+        table += '\n' + summary_header + '\n'.join(summary_rows)
+
+    return table + '\n'
 
 
 def generate_report(info, results, output_dir=None, lang='zh-CN'):
@@ -24,9 +157,10 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
     c = results['code']
     r = results['rules']
     g = results['guardrails']
+    cx = results['complexity']
 
     # 摘要
-    all_items = f['issues'] + c['issues'] + r['issues'] + g['issues']
+    all_items = f['issues'] + c['issues'] + r['issues'] + g['issues'] + cx['issues']
     issues = [i for i in all_items if i[1] in ['fail', 'warn']]
     infos = [i for i in all_items if i[1] == 'info']
     if not issues and not infos:
@@ -43,7 +177,7 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
     # 议题文本
     def fmt_issues(iss):
         lines = []
-        for text, status in iss:
+        for text, _status in iss:
             lines.append(f'- {text}')
         return '\n'.join(lines) if lines else '- ' + msg['none']
 
@@ -55,14 +189,20 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
     r_score = r['score']
     g_rating = g['rating']
     g_score = g['score']
+    cx_rating = cx['rating']
+    cx_score = cx['score']
     fi = fmt_issues(f['issues'])
-    ci = fmt_issues(c['issues'])
     ri = fmt_issues(r['issues'])
     gi = fmt_issues(g['issues'])
+    cxi = ''  # 复杂度详情已由 _complexity_table 中的指标表 + 汇总表覆盖
     sp = info.get('skill_md_path', '')
 
+    # 代码风险分组展示
+    code_groups, code_infos = _code_risk_grouped(c['issues'])
+    code_risk_block = _code_risk_md(code_groups, code_infos)
+
     # 专业版
-    self_check_passed = all(k in results for k in ['foundation', 'code', 'rules', 'guardrails'])
+    self_check_passed = all(k in results for k in ['foundation', 'code', 'rules', 'guardrails', 'complexity'])
     self_check_msg = msg['self_check_pass'] if self_check_passed else msg['self_check_warn']
 
     report = f"""# {msg['report_title']} — {skill_name}
@@ -73,7 +213,7 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
 
 ---
 
-## 📌 TL;DR
+## 📌 {msg['tldr']}
 
 {summary}
 
@@ -84,9 +224,10 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
 | {msg['dimension']} | {msg['rating']} | {msg['score']} |
 |------|------|------|
 | 🏗️ {msg['foundation']} | {f_rating} | {f_score} |
-| 🤖 {msg['code']} | {c_rating} | {c_score} |
+| 💻 {msg['code']} | {c_rating} | {c_score} |
 | 📝 {msg['rules']} | {r_rating} | {r_score} |
 | 🛡️ {msg['guardrails']} | {g_rating} | {g_score} |
+| 📐 {msg['complexity']} | {cx_rating} | {cx_score} |
 
 ---
 
@@ -95,14 +236,25 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
 ### 🏗️ {msg['foundation']}
 {fi}
 
-### 🤖 {msg['code']}
-{ci}
+### 💻 {msg['code']}
+
+{_lang_stats_table(c, msg)}
+
+{code_risk_block}
 
 ### 📝 {msg['rules']}
 {ri}
 
 ### 🛡️ {msg['guardrails']}
 {gi}
+
+### 📐 {msg['complexity']}
+
+*得分越低，Skill 越简洁可靠。*
+
+{_complexity_table(cx)}
+
+{cxi}
 
 ---
 
@@ -141,7 +293,7 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
         '检测到.*测试': '有测试代码，说明作者管得住代码质量',
         '未检测到常见篡改点': '代码里没有除零、裸异常等常见坑',
     }
-    
+
     # 英文版语境解释
     context_map_en = {
         '硬编码路径': "The script has hardcoded file paths from someone's computer. It won't run on another machine.",
@@ -181,9 +333,15 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
     # 提取 pass 和 warn/fail 项
     standard_good = []
     standard_attention = []
+    cx_keywords = ['📋', '章节深度', '章节复杂度', '文档引用链', '脚本引用链',
+                   '重复冗余', '表格复杂度', '脚本覆盖', '代码/文档', '指令密度',
+                   '加权', '原始复杂度', '折扣', '最终复杂度']
     for iss in all_items:
         text, status = iss[0], iss[1]
         if status in ['info', 'skip']:
+            continue
+        # 复杂度指标留在专业版，不入标准版
+        if any(kw in text for kw in cx_keywords):
             continue
         if status == 'pass':
             clean = text.replace('✅ ', '').replace('🟢 ', '')
@@ -206,20 +364,20 @@ def generate_report(info, results, output_dir=None, lang='zh-CN'):
 
 **{msg['date']}**: {today}
 
+### {msg['tldr']}
+{summary}
+
 ## {msg['simple_result']}
 
-| 🏗️ {msg['foundation']} | 🤖 {msg['code']} | 📝 {msg['rules']} | 🛡️ {msg['guardrails']} |
+| 🏗️ {msg['foundation']} | 💻 {msg['code']} | 📝 {msg['rules']} | 🛡️ {msg['guardrails']} | 📐 {msg['complexity']} |
 |--------|--------|--------|--------|
-| {f_rating} {f_score} | {c_rating} {c_score} | {r_rating} {r_score} | {g_rating} {g_score} |
+| {f_rating} {f_score} | {c_rating} {c_score} | {r_rating} {r_score} | {g_rating} {g_score} | {cx_rating} {cx_score} |
 
 ### {msg['simple_good']}
 {standard_good_block}
 
 ### {msg['simple_attention']}
 {standard_attention_block}
-
-### {msg['simple_summary']}
-{summary}
 
 ---
 

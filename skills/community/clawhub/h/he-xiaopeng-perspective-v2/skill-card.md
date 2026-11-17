@@ -1,43 +1,55 @@
-## Description: <br>
-基于公开信息模拟何小鹏视角，帮助分析智能汽车定义、自动驾驶落地、互联网造车、软件定义汽车和用户运营相关问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于何小鹏视角，深入解析智能汽车定义、自动驾驶落地、互联网造车与用户运营的思维模型和决策逻辑。
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Employees, external users, developers, and analysts can use this skill to draft Chinese-language perspective analysis for smart-car product definition, autonomous-driving rollout, software-defined vehicle strategy, and user operations. Outputs should be treated as simulated public-information analysis, not real quotes, endorsements, or verified technical or business advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present a simulated first-person perspective as though it were a real statement from He Xiaopeng. <br>
-Mitigation: Label outputs as simulated analysis based on public information and avoid presenting them as quotes, endorsements, or verified private views. <br>
-Risk: The skill may activate on broad smart-car or autonomous-driving prompts and produce strategic or technical guidance beyond the certainty of the source material. <br>
-Mitigation: Review outputs for factual accuracy and use qualified domain review before relying on them for business, safety, or autonomous-driving decisions. <br>
+## Use Case:
 
+External users and developers use this Chinese-language skill to ask an agent for disclosed, He Xiaopeng-inspired analysis of smart-car product definition, autonomous-driving rollout, software-defined vehicles, and user operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/he-xiaopeng-perspective-v2) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Classic works index](artifact/CLASSIC_WORKS.md) <br>
-- [Connection map](artifact/CONNECTIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese prose or Markdown perspective analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Simulated public-information perspective; no code execution, credentials, network access, or system-level behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: First-person responses could be mistaken for actual statements or predictions from He Xiaopeng.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit prompts and label outputs as roleplay based on public information.
+
+Risk: The skill can provide perspective-style analysis for smart-car topics but cannot know a real person's private views or future reactions.
+
+Mitigation: Treat outputs as interpretive guidance and verify factual claims against current, authoritative sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/he-xiaopeng-perspective-v2)
+- [CONNECTIONS.md](artifact/CONNECTIONS.md)
+- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown prose, often framed as first-person roleplay analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or privileged behavior; treat responses as public-information roleplay, not actual statements or predictions from He Xiaopeng.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

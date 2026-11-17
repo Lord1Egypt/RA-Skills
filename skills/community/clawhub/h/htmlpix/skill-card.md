@@ -1,44 +1,59 @@
-## Description: <br>
-Use when the user wants to call, test, or integrate the HTMLPix HTML-to-image API, including auth setup, signed URL minting, image rendering, template CRUD, and AI template generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to call, test, or integrate the HTMLPix HTML-to-image API, including auth setup, signed URL minting, image rendering, template CRUD, and AI template generation.
 
-## Publisher: <br>
-[jymaa](https://clawhub.ai/user/jymaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jymaa](https://clawhub.ai/user/jymaa)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate integration guidance, curl examples, SDK wrappers, and troubleshooting steps for the HTMLPix HTML-to-image API. It supports backend API-key handling, signed image URL minting, template management, and AI-assisted template generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys could be exposed if private HTMLPix endpoints are called from browser client code. <br>
-Mitigation: Keep HTMLPix API keys server-side or in secret-managed environments and mint signed image URLs from backend code. <br>
-Risk: Template create/update requests and AI-generated templates may introduce unexpected rendering behavior or incorrect output. <br>
-Mitigation: Review template code and generated template results before deploying or using them in production workflows. <br>
-Risk: Generated image URLs and submitted template variables are data shared with a third-party service. <br>
-Mitigation: Treat signed URLs as opaque, avoid mutating their query parameters, and avoid sending sensitive data unless approved for the integration. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate code, curl commands, SDK wrapper guidance, and troubleshooting responses for HTMLPix API integrations. It supports server-side image URL minting, template management, image rendering, and AI-assisted template generation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jymaa/htmlpix) <br>
-- [HTMLPix API Base URL](https://api.htmlpix.com) <br>
-- [HTMLPix API Key Management](https://htmlpix.com/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JSON, curl, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request bodies, endpoint constraints, authentication notes, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server evidence release.version) <br>
+Risk: The agent may prepare or run HTMLPix API requests using HTMLPIX_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the API key server-side, avoid browser client calls to private endpoints, and review commands before execution.
+
+Risk: Template code, variables, or generation prompts may be sent to HTMLPix during normal use.
+
+Mitigation: Do not include secrets or private data in template variables, template code, or prompts unless the transfer is intended.
+
+Risk: Changing a minted image URL's query parameters can invalidate the signed URL.
+
+Mitigation: Treat minted URLs as opaque and store or embed the returned URL directly.
+
+## Reference(s):
+
+- [HTMLPix API base URL](https://api.htmlpix.com)
+- [HTMLPix API keys](https://htmlpix.com/api-keys)
+- [HTMLPix ClawHub skill page](https://clawhub.ai/jymaa/skills/htmlpix)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, endpoint contract summaries, and integration troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

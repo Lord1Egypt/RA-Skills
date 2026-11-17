@@ -1,50 +1,65 @@
-## Description: <br>
-YAML-driven workflow orchestrator for AI agent teams with human-in-the-loop approval gates and optional Notion, n8n, and Discord integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YAML-driven workflow orchestrator for AI agent teams with human-in-the-loop approval gates. Includes optional Notion, n8n, and Discord integrations.
 
-## Publisher: <br>
-[vanhuelsing](https://clawhub.ai/user/vanhuelsing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanhuelsing](https://clawhub.ai/user/vanhuelsing)
 
-## Use Case: <br>
-Developers and engineers use Flowclaw to run YAML-defined AI agent workflows, coordinate approval gates, and connect optional Notion, n8n, and Discord automation around agent tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service can trigger agents, scripts, external updates, and deployments. <br>
-Mitigation: Install only where this privileged local automation is intended, and restrict n8n and Notion triggers to approved tasks. <br>
-Risk: Approval enforcement may be weaker than the skill description implies. <br>
-Mitigation: Add enforced wait_approval gates before production deployment steps or any final Done status. <br>
-Risk: Workflow files and QA scripts are trusted inputs that can affect local automation behavior. <br>
-Mitigation: Protect the workflow and scripts directories from untrusted edits, and install workflows only from trusted sources. <br>
-Risk: Enabling FLOWCLAW_LOAD_OPENCLAW_CONFIG expands credential access to the global OpenClaw config. <br>
-Mitigation: Leave FLOWCLAW_LOAD_OPENCLAW_CONFIG disabled unless needed, and use dedicated credentials for Flowclaw. <br>
-Risk: Network exposure would increase impact if the API key is weak or leaked. <br>
-Mitigation: Keep the service bound to localhost or behind strong network controls, and use a dedicated strong API key. <br>
+## Use Case:
 
+Developers and engineers use Flowclaw to define and run multi-step OpenClaw agent workflows from YAML, with optional Notion-triggered n8n automation and Discord notifications. It is suited to workflow execution where human approval gates are needed before sensitive steps continue.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vanhuelsing/flowclaw-orchestrator) <br>
-- [README](README.md) <br>
-- [Security Policy](SECURITY.md) <br>
-- [Integration Steps](docs/INTEGRATION-STEPS.md) <br>
-- [n8n Integration Guide](docs/n8n-integration-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, YAML workflow definitions, JSON workflow templates, and Python service code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WORKFLOW_EXECUTOR_API_KEY; optional integrations use Notion, Discord, n8n, and OpenClaw gateway environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter, release evidence) <br>
+Risk: The executor API key can authorize workflow execution and approvals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate a strong WORKFLOW_EXECUTOR_API_KEY, keep the service on loopback or behind strong authentication, and treat the key as an approval-capable credential.
+
+Risk: Approval and production-deployment controls may be weaker than the user-facing description implies.
+
+Mitigation: Review workflows before installation and do not enable fastlane production deployment until approval or pre-approval checks are enforced server-side.
+
+Risk: Dashboard or metrics exposure could reveal operational details if made network-accessible.
+
+Mitigation: Keep dashboard and metrics endpoints local, or add authentication before exposing them beyond loopback.
+
+Risk: Unpinned production dependencies may change behavior over time.
+
+Mitigation: Pin Python dependencies before production deployment and retest the security and validation suite after upgrades.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vanhuelsing/skills/flowclaw-orchestrator)
+- [README](README.md)
+- [Security Policy](SECURITY.md)
+- [Integration Steps](docs/INTEGRATION-STEPS.md)
+- [n8n Integration Guide](docs/n8n-integration-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, JSON, environment variable, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow orchestration guidance and configuration for a local executor; runtime behavior depends on configured OpenClaw agents and optional Notion, n8n, and Discord services.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

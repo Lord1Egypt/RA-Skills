@@ -1,47 +1,62 @@
-## Description: <br>
-System Data Intelligence helps agents read common document and data files, analyze datasets, create visual reports, connect to databases and APIs, and handle sensitive data with masking workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Data Intelligence helps agents read common office and data files, connect to databases and REST APIs, analyze datasets, mask selected sensitive values, and generate charts or reports.
 
-## Publisher: <br>
-[zhaojie911272507](https://clawhub.ai/user/zhaojie911272507) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaojie911272507](https://clawhub.ai/user/zhaojie911272507)
 
-## Use Case: <br>
-Developers, analysts, and agent operators use this skill to automate file ingestion, data profiling, database or API retrieval, chart generation, and concise reporting across Windows, macOS, Linux, and Docker environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate broadly on common file, analysis, database, API, and sensitive-data tasks. <br>
-Mitigation: Review the skill before installation and invoke it only for tasks where this broad data access is intended. <br>
-Risk: The skill can use high-impact local OS automation, database connections, API tokens, and file paths. <br>
-Mitigation: Run it in a contained workspace, grant OS automation permissions cautiously, and provide only credentials and paths needed for the current task. <br>
-Risk: The skill may persist extracted data in JSON, HTML, PNG, CSV, or markdown report files. <br>
-Mitigation: Use it only with data suitable for local report files and clean generated outputs after the task, especially when sensitive data is involved. <br>
+## Use Case:
 
+Developers and agent users use this skill to process spreadsheets, documents, CSV/JSON data, SQL query results, and API responses, then produce analysis summaries, structured outputs, and visual reports. It is intended for broad data work where file access, database/API access, and report generation are explicitly desired.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaojie911272507/system-data-intelligence) <br>
-- [File formats reference](references/file-formats.md) <br>
-- [Windows API reference](references/windows-api.md) <br>
-- [macOS API reference](references/macos-api.md) <br>
-- [Linux API reference](references/linux-api.md) <br>
-- [Visualization patterns reference](references/viz-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command blocks; generated artifacts may include JSON analysis results, HTML reports, PNG charts, and markdown summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report, chart, JSON, and summary files under an outputs directory when the skill's scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The scanner judged this a suspicious broad data-processing skill because it can expand simple requests into file reading, data analysis, network or database access, and persistent report output without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it only where broad data processing is intended, and require explicit user approval before reading sensitive files, querying databases, calling APIs, or writing reports.
+
+Risk: The skill includes masking utilities for sensitive values, but the security guidance says not to rely on masking as complete privacy protection.
+
+Mitigation: Use a contained environment for sensitive work, minimize input data, validate masking results, and clean temporary outputs after use.
+
+Risk: The security guidance warns against opening untrusted Office or WPS documents through desktop automation.
+
+Mitigation: Avoid desktop automation for untrusted documents; prefer contained parsing or conversion workflows and inspect files before opening them with office applications.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhaojie911272507/skills/system-data-intelligence)
+- [File Formats Reference](references/file-formats.md)
+- [Windows API Reference](references/windows-api.md)
+- [macOS API Reference](references/macos-api.md)
+- [Linux API Reference](references/linux-api.md)
+- [Visualization Patterns Reference](references/viz-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; generated artifacts may include HTML, PNG, JSON, CSV, and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent report files and structured analysis outputs under an outputs directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

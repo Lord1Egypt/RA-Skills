@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "image-3d-scene-reconstruction",
-  "version": "0.0.2",
-  "publishedAt": 1778123883658
+  "version": "0.0.1",
+  "changelog": [
+    {
+      "version": "0.0.1",
+      "changes": [
+        "Initial release. 首次发布。",
+        "Support depth estimation, point cloud generation, 3DGS output. 支持深度估计、点云生成、3DGS 输出。"
+      ]
+    }
+  ]
 }

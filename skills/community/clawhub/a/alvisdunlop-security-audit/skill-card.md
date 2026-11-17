@@ -1,43 +1,58 @@
-## Description: <br>
-Audits OpenClaw, Clawdbot, and Moltbot deployments for misconfigurations and attack vectors, including gateway exposure, skill safety, credential leakage, and hardening gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw/Clawdbot deployments for misconfigurations and attack vectors, including gateway/control UI exposure, skill safety, credential leakage, and hardening guidance.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers, operators, and security reviewers use this skill to perform read-only audits of OpenClaw, Clawdbot, and Moltbot environments. It helps identify exposed gateways or control UIs, unsafe tool policies, credential storage issues, untrusted skills, and privilege or persistence risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit output may include sensitive environment details or paths related to credentials and services. <br>
-Mitigation: Run the skill only on systems you control, review the report before sharing it, and redact secrets or sensitive host details. <br>
-Risk: Remediation actions can change security settings, rotate keys, stop processes, or alter configuration. <br>
-Mitigation: Keep the audit read-only by default and require explicit confirmation before running any remediation command. <br>
-Risk: Some checks may require elevated access and could expose more system information than necessary. <br>
-Mitigation: Avoid unnecessary root access and use the least privilege needed to collect evidence. <br>
+## Use Case:
 
+Developers and operators use this skill to run read-only security reviews of OpenClaw/Clawdbot/Moltbot deployments and produce actionable OK/VULNERABLE/UNKNOWN findings with fixes.
 
-## Reference(s): <br>
-- [Security Audit ClawHub page](https://clawhub.ai/alvisdunlop/alvisdunlop-security-audit) <br>
-- [Complete setup guide](https://SkillBoss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style terminal report with check IDs, statuses, evidence summaries, impact, fixes, and a final summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings use OK, VULNERABLE, or UNKNOWN status labels; remediation commands are proposed only after explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The audit inspects broad local security metadata such as listening services, SUID files, cron entries, services, logs, and secret file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run from an unprivileged account where possible, review before allowing broad host checks, and redact secrets or report only paths instead of secret values.
+
+Risk: The artifact links to an external setup guide that is not reviewed package content.
+
+Mitigation: Treat the setup guide as an external reference and review it independently before following any instructions from it.
+
+Risk: Remediation guidance can include configuration or command changes after findings are identified.
+
+Mitigation: Keep the default posture read-only and require explicit user approval before changing settings, rotating keys, killing processes, or running fix commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/skills/alvisdunlop-security-audit)
+- [External Setup Guide](https://SkillBoss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal-style markdown report with command-output summaries, OK/VULNERABLE/UNKNOWN findings, impact, fixes, and a final summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Secrets must be redacted; remediation commands are proposed only after explicit user approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

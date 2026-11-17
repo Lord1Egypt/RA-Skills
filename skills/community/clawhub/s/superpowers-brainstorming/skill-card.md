@@ -1,41 +1,58 @@
-## Description: <br>
-Use before any creative work - creating features, building components, adding functionality, or modifying behavior - guides through exploration, questioning, design proposal, and spec documentation before any implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through exploration, questioning, design proposals, and specification documentation before creative implementation work.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and coding agents use this skill to turn feature or behavior-change ideas into reviewed designs and specification documents before implementation work begins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may slow or redirect direct implementation work by requiring context review, design approval, specification writing, and handoff before coding. <br>
-Mitigation: Use it for creative or design-sensitive changes; skip or disable it for quick fixes or tasks where direct implementation is desired. <br>
-Risk: The skill instructs the agent to create and commit a design specification before implementation. <br>
-Mitigation: Review the generated specification and commit contents before proceeding to implementation planning. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn creative feature, component, functionality, or behavior-change requests into reviewed design proposals and written specifications before implementation begins.
 
-## Reference(s): <br>
-- [Superpowers Brainstorming on ClawHub](https://clawhub.ai/axelhu/superpowers-brainstorming) <br>
-- [Publisher profile: axelhu](https://clawhub.ai/user/axelhu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with design-spec file paths and git workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning dialogue, design proposals, design specification documents, and handoff guidance for implementation planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill enforces a design-first workflow that can slow direct implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for projects where mandatory upfront design review is desired.
+
+Risk: The skill directs the agent to write specification files and commit them to the repository.
+
+Mitigation: Require explicit approval before file writes and git commits when operating in protected or shared repositories.
+
+Risk: The skill steers the agent to a specific follow-up planning skill before implementation.
+
+Mitigation: Review downstream skill invocation policies and require approval before invoking additional skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/superpowers-brainstorming)
+- [Publisher profile: axelhu](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown design proposals and specification text with occasional shell command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to write and commit a specification file before handing off to a planning skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

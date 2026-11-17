@@ -1,45 +1,56 @@
-## Description: <br>
-PDF to HTML helps an agent convert local or URL-based PDF documents into HTML using the MinerU CLI service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF documents to HTML using MinerU while preserving document structure and formatting.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers, content teams, and publishing workflows use this skill to turn PDFs into web-ready HTML while preserving document structure where MinerU supports it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external MinerU CLI package and service. <br>
-Mitigation: Install the CLI only from trusted package sources and use it only where MinerU service use is approved. <br>
-Risk: The MinerU token can grant access to extraction features if exposed. <br>
-Mitigation: Use a dedicated MINERU_TOKEN and keep it out of shared files, prompts, logs, and committed configuration. <br>
-Risk: PDF content may be sent through MinerU during conversion. <br>
-Mitigation: Avoid processing confidential, regulated, or credential-bearing PDFs unless organizational policy approves that data path. <br>
+## Use Case:
 
+Developers, web publishers, and content teams use this skill to convert local or URL-hosted PDF documents into HTML for web display, CMS integration, or online archives.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzlzyca/pdf-to-html) <br>
-- [MinerU Homepage](https://mineru.net) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU Project](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers MinerU CLI installation, MINERU_TOKEN authentication, PDF inputs, HTML output, language hints, and page ranges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: PDF contents may be sent to the external MinerU/OpenDataLab service during conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only PDFs the user is allowed to process through that service, and review provider privacy, retention, and compliance terms before handling sensitive documents.
+
+Risk: The documented installer uses an unpinned mineru-open-api command-line tool.
+
+Mitigation: Prefer a pinned, project-local or isolated installation and avoid installing or running the tool with elevated privileges.
+
+## Reference(s):
+
+- [PDF to HTML ClawHub Skill](https://clawhub.ai/mzlzyca/skills/pdf-to-html)
+- [MinerU Homepage](https://mineru.net)
+- [MinerU Token Management](https://mineru.net/apiManage/token)
+- [MinerU Repository](https://github.com/opendatalab/MinerU)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated HTML-file output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires mineru-open-api and a MINERU_TOKEN for HTML extraction.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

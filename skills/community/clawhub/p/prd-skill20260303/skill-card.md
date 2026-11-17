@@ -1,47 +1,59 @@
-## Description: <br>
-Create and manage Product Requirements Documents by defining user stories with acceptance criteria, ordering tasks by dependencies, and tracking progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Product Requirements Documents (PRDs). Use when: (1) Creating structured task lists with user stories, (2) Specifying features with acceptance criteria, (3) Planning feature implementation for AI agents or human developers.
 
-## Publisher: <br>
-[zhao202404](https://clawhub.ai/user/zhao202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhao202404](https://clawhub.ai/user/zhao202404)
 
-## Use Case: <br>
-Developers, product managers, and coding-agent operators use this skill to plan features as PRDs with ordered user stories, concrete acceptance criteria, and completion tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included unattended coding-agent loop can bypass permission prompts and repeatedly modify a repository. <br>
-Mitigation: Keep approvals enabled, run agents in a separate branch or worktree, review commits before merge, and avoid unattended permission-skipping execution in real projects. <br>
-Risk: PRD and progress files can become instruction sources for an agent and may contain secrets or untrusted content. <br>
-Mitigation: Review prd.json and progress.txt before agent execution, keep secrets out of those files, and treat external or user-provided instructions as untrusted until checked. <br>
+## Use Case:
 
+Developers, product managers, and coding agents use this skill to create PRD files with ordered user stories, verifiable acceptance criteria, and progress tracking for feature implementation.
 
-## Reference(s): <br>
-- [Agent Usage Patterns](references/agent-usage.md) <br>
-- [Workflow Patterns for PRD Skills](references/workflows.md) <br>
-- [Output Patterns and Templates](references/output-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhao202404/prd-skill20260303) <br>
-- [Ralph implementation](https://github.com/snarktank/ralph) <br>
-- [Claude Code](https://github.com/anthropics/claude-code) <br>
-- [Amp Code](https://ampcode.com) <br>
-- [Tips for AI Coding with Ralph Wiggum](https://www.aihero.dev/tips-for-ai-coding-with-ralph-wiggum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and inline shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to help create, validate, and execute PRD files such as prd.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The documentation includes an unattended coding-agent workflow that bypasses permission checks and can repeatedly modify a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal permission prompts enabled, review each story and diff, and run autonomous implementation only in an isolated worktree or sandbox without secrets.
+
+Risk: PRD-driven implementation can turn vague or oversized stories into broad repository changes.
+
+Mitigation: Require each story to be completable in one context window, keep acceptance criteria verifiable, and approve stories before execution.
+
+## Reference(s):
+
+- [Agent Usage Patterns](references/agent-usage.md)
+- [Output Patterns and Templates](references/output-patterns.md)
+- [Workflow Patterns for PRD Skills](references/workflows.md)
+- [Ralph by snarktank](https://github.com/snarktank/ralph)
+- [Claude Code](https://github.com/anthropics/claude-code)
+- [Amp Code](https://ampcode.com)
+- [Tips for AI Coding with Ralph Wiggum](https://www.aihero.dev/tips-for-ai-coding-with-ralph-wiggum)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PRD structures such as prd.json, acceptance criteria, ordered user stories, progress notes, and agent prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

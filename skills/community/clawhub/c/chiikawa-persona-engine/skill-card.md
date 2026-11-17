@@ -1,42 +1,51 @@
-## Description: <br>
-Multi-persona role engine for Chiikawa roleplay that switches among character styles while enforcing verbal and non-verbal speech constraints, language-adaptive names, and persona-specific emoji endings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-persona Chiikawa roleplay engine that lets compatible AI agents switch among 11 personas while enforcing each character's verbal or non-verbal response style, language-adaptive names, and signature emoji endings.
 
-## Publisher: <br>
-[tomfong](https://clawhub.ai/user/tomfong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomfong](https://clawhub.ai/user/tomfong)
 
-## Use Case: <br>
-External users and agent operators use this skill to make a compatible assistant respond in selectable Chiikawa-inspired persona styles for creative roleplay while preserving each persona's speech tier and reset behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally alters assistant wording, persona constraints, emoji signatures, and random exclusion state while active. <br>
-Mitigation: Use the Disarm mode or clear persona exclusions when normal assistant behavior is needed. <br>
-Risk: Creative roleplay can produce responses that are stylistically constrained rather than neutral assistant prose. <br>
-Mitigation: Deploy it only for intended Chiikawa persona simulation and review outputs where neutral wording is required. <br>
+## Use Case:
 
+External users and compatible AI agents use this skill for Chiikawa-inspired creative roleplay, persona switching, random persona selection with exclusions, and return-to-normal behavior through Disarm mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomfong/chiikawa-persona-engine) <br>
-- [Official Chiikawa portal](https://chiikawa-info.jp/) <br>
-- [Nagano official X profile](https://x.com/ngntrtr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Persona-styled text with required signature emoji endings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No network, script, credential, file, or command access requested by the reviewed files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Persona mode can intentionally produce stylized, short, or non-verbal replies that may be inappropriate when normal assistant behavior is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Disarm mode to remove persona overlays and return to the base assistant response style.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomfong/skills/chiikawa-persona-engine)
+- [Official Chiikawa portal](https://chiikawa-info.jp/)
+- [Nagano official X profile](https://x.com/ngntrtr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise persona-styled text or markdown responses with persona-specific emoji signature endings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some personas intentionally produce short or non-verbal replies; Disarm mode returns the assistant to normal responses.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

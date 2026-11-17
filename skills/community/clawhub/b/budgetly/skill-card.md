@@ -1,39 +1,54 @@
-## Description: <br>
-Set category budgets, log expenses, and visualize spending limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Budgetly helps users set category budgets, log expenses, visualize spending limits, monitor subscriptions, and forecast spending.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use Budgetly to record expenses, categorize spending, check budgets, forecast costs, and export local finance logs from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Budget entries, balances, tax notes, and exports are stored unencrypted in local plain-text files. <br>
-Mitigation: Avoid entering bank logins, full account numbers, or secrets, and protect or periodically delete ~/.local/share/budgetly on shared or backed-up machines. <br>
+## Use Case:
 
+External users and agents use Budgetly to keep local records of expenses, balances, budget checks, trends, forecasts, alerts, and tax notes from the command line. It is suited for personal finance tracking where local plaintext storage and user-managed exports are acceptable.
 
-## Reference(s): <br>
-- [Budgetly on ClawHub](https://clawhub.ai/ckchzh/budgetly) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores command logs and exports under ~/.local/share/budgetly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Finance, balance, and tax notes are stored as local plaintext files under ~/.local/share/budgetly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter account numbers or highly sensitive tax details, and review local file permissions before use on shared systems.
+
+Risk: CSV exports may contain personal finance data and can be risky to open directly in spreadsheet applications.
+
+Mitigation: Inspect exported CSV content before opening it in spreadsheets and share exports only through trusted channels.
+
+## Reference(s):
+
+- [Budgetly ClawHub listing](https://clawhub.ai/ckchzh/skills/budgetly)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text command output with optional JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores finance logs and generated exports locally under ~/.local/share/budgetly.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

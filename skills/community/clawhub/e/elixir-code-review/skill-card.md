@@ -1,43 +1,52 @@
-## Description: <br>
-Reviews Elixir code for idiomatic patterns, OTP basics, documentation, pattern matching, GenServer usage, and module documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Elixir code for idiomatic patterns, OTP basics, and documentation.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Elixir .ex and .exs code for idiomatic style, pattern matching, OTP basics, documentation, and common Elixir security issues before reporting anchored findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local sibling review-verification-protocol skill for its mandatory verification gate, and that sibling skill was not included in the reviewed package. <br>
-Mitigation: Confirm that the local sibling verification protocol is trusted before relying on the gate, and require each substantive finding to cite the protocol subsection satisfied or state why it is not applicable. <br>
-Risk: Review guidance can produce misleading findings if claims are not anchored to the reviewed code and supporting artifacts. <br>
-Mitigation: Require each finding to include a concrete locator and supporting evidence, and downgrade unverified claims to questions or uncertain notes. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Elixir .ex and .exs files for idiomatic style, pattern matching, OTP usage, documentation, and selected security-sensitive constructs.
 
-## Reference(s): <br>
-- [Elixir Code Style](references/code-style.md) <br>
-- [Pattern Matching](references/pattern-matching.md) <br>
-- [OTP Basics](references/otp-basics.md) <br>
-- [Documentation](references/documentation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review guidance and findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should include concrete locators and artifact-backed claims, with uncertain assertions downgraded to questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill requires loading a sibling review-verification-protocol file that is not included in the artifact, so that external file can affect review behavior and outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and review the expected sibling protocol before use, and only use this skill when that dependency comes from a trusted, controlled package or path.
+
+## Reference(s):
+
+- [Elixir Code Style](references/code-style.md)
+- [Pattern Matching](references/pattern-matching.md)
+- [OTP Basics](references/otp-basics.md)
+- [Documentation](references/documentation.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown review findings with code references and supporting evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should be anchored to file locations or module/function identifiers and backed by reviewed artifacts.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

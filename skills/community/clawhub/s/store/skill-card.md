@@ -1,41 +1,55 @@
-## Description: <br>
-Manage a physical store of any kind with opening routines, inventory control, staffing, cash discipline, merchandising, and weekly reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a physical store of any kind with opening routines, inventory control, staffing, cash discipline, merchandising, and weekly reviews.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Store operators, managers, and agents use this skill to manage daily floor execution, inventory accuracy, staffing, merchandising, cash discipline, shrink signals, incidents, and weekly KPI reviews for physical retail locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation could make store-operations guidance appear in general retail conversations where the user did not intend it. <br>
-Mitigation: Choose narrow activation unless proactive support for broad store, shop, retail, inventory, staffing, merchandising, promotions, and cash-up topics is desired. <br>
-Risk: Local store notes could accidentally include sensitive payroll, employee, customer, card, PIN, or payment credential data. <br>
-Mitigation: Keep local memory limited to operational context and avoid storing payroll details, private records, personal identifiers, card numbers, PINs, or payment credentials. <br>
+## Use Case:
 
+Store operators, managers, and agents supporting brick-and-mortar retail locations use this skill to manage opening and closing routines, inventory accuracy, staffing decisions, merchandising, cash discipline, incidents, and weekly KPI reviews.
 
-## Reference(s): <br>
-- [ClawHub Store skill page](https://clawhub.ai/ivangdavila/store) <br>
-- [Store skill homepage](https://clawic.com/skills/store) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with optional local file templates and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local-first operating advice and may propose user-confirmed notes under ~/store/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local store-operation notes in ~/store/ could contain sensitive payroll, payment card, customer, or employee information if users enter it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for confirmation before file creation and avoid putting payroll records, payment card data, private customer details, or sensitive employee records into store notes.
+
+Risk: Broad activation could surface store-operation guidance when the user only wants help on explicit request.
+
+Mitigation: Narrow the activation preference during setup if support should engage only when explicitly requested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/store)
+- [Skill homepage](https://clawic.com/skills/store)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain-language operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown notes under ~/store/ only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,62 @@
-## Description: <br>
-Claw Compactor v6.0 - 50%+ savings through rule-based compression, dictionary encoding, session observation compression, and progressive context loading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Compactor v6.0 provides rule-based workspace, memory, and session transcript compression using dictionary encoding, observation extraction, and progressive context summaries.
 
-## Publisher: <br>
-[aeromomo](https://clawhub.ai/user/aeromomo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aeromomo](https://clawhub.ai/user/aeromomo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to estimate, compress, deduplicate, and summarize workspace memory files and OpenClaw session transcripts so agents can load less context while retaining important facts and decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process local OpenClaw transcripts and workspace memory files that may contain private paths, commands, transcript-derived facts, or secrets. <br>
-Mitigation: Run benchmark and command-specific dry-run modes first, review affected files, and keep version control or backups before writing changes. <br>
-Risk: The full pipeline and heartbeat or cron automation can rewrite workspace memory without interactive review. <br>
-Mitigation: Avoid full or unattended automation on important workspaces until the files it touches and the automation schedule are explicitly acceptable. <br>
-Risk: Generated .codebook.json files and observation summaries may preserve sensitive facts from the original workspace or transcripts. <br>
-Mitigation: Treat generated compression artifacts as sensitive and review storage or sharing controls before distributing them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to estimate token usage, compress workspace memory files, convert session transcripts into concise observations, and generate progressive memory summaries for lower-cost context loading.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aeromomo/cut-your-tokens-97percent-savings-on-session-transcripts-via-observation-extraction) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/aeromomo) <br>
-- [References Overview](references/README.md) <br>
-- [Architecture](references/architecture.md) <br>
-- [Compression Techniques](references/compression-techniques.md) <br>
-- [Performance Benchmarks](references/benchmarks.md) <br>
-- [Testing](references/testing.md) <br>
-- [Compression Prompts](references/compression-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown, JSON reports, compressed memory files, observation summaries, tiered summaries, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rewrite workspace memory files, create codebooks and observation summaries, and emit dry-run or JSON reports depending on the selected command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.0 (source: server release metadata) <br>
+Risk: The skill can rewrite many workspace files during compression.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with benchmark or dry-run mode in a version-controlled or disposable workspace before allowing write operations.
+
+Risk: The skill can read global session transcripts and produce observations or codebooks that may retain sensitive transcript details.
+
+Mitigation: Review generated observations and codebooks before committing or sharing them, and keep transcript-derived artifacts private unless approved.
+
+Risk: Heartbeat or cron automation can cause recurring future workspace mutations.
+
+Mitigation: Avoid install, heartbeat, or cron automation unless recurring compression is explicitly intended and its scope has been reviewed.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Compression Techniques](references/compression-techniques.md)
+- [Benchmarks](references/benchmarks.md)
+- [Testing](references/testing.md)
+- [Compression Prompts](references/compression-prompts.md)
+- [Reference Index](references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate or update workspace memory files, codebooks, observation summaries, and tiered memory summaries; benchmark and dry-run modes are available for preview.]
+
+## Skill Version(s):
+
+6.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

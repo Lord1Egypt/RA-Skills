@@ -138,11 +138,12 @@ def print_summary(results: list[dict], skill_name: str):
 
 def run_healthcheck(skill_dir: Path, auto_install: bool = False,
                     modules: list[int] | None = None, install_timeout: int = 60,
-                    profile: dict | None = None):
+                    profile: dict | None = None, fmt: str = "text"):
     skill_name = skill_dir.name
     profile = profile or load_profile(DEFAULT_PROFILE)
-    print_header(skill_name)
-    print(f"  {DIM}{t('report.target_profile', name=profile.get('name', DEFAULT_PROFILE))}{RESET}")
+    if fmt == "text":
+        print_header(skill_name)
+        print(f"  {DIM}{t('report.target_profile', name=profile.get('name', DEFAULT_PROFILE))}{RESET}")
 
     all_modules = [
         (1, check_logic.run),
@@ -170,8 +171,12 @@ def run_healthcheck(skill_dir: Path, auto_install: bool = False,
                     "severity": "ERROR",
                 }],
             }
-        print_module_result(result)
+        if fmt == "text":
+            print_module_result(result)
         results.append(result)
+
+    if fmt == "json":
+        return results
 
     total_errors, total_warns = print_summary(results, skill_name)
     return total_errors
@@ -218,6 +223,13 @@ def main():
         default=None,
         help="Report output language (zh|en). Default: zh (or $SKILL_AUDIT_LANG).",
     )
+    parser.add_argument(
+        "--format",
+        choices=["text", "json"],
+        default="text",
+        help="Output format: text (human report) or json (machine-readable findings; "
+             "stable interface for downstream automation like GLIC). Default: text.",
+    )
     args = parser.parse_args()
 
     # Resolve language before any user-facing output.
@@ -252,6 +264,48 @@ def main():
     # Auto-install is OFF by default (auditor must not silently change the env).
     # --auto-install opts in; --no-auto-install is a no-op kept for backward compat.
     auto_install = bool(args.auto_install) and not args.no_auto_install
+
+    if args.format == "json":
+        import json as _json
+        results = run_healthcheck(
+            skill_dir, auto_install=auto_install, modules=modules,
+            install_timeout=args.install_timeout, profile=profile, fmt="json",
+        )
+        payload = {
+            "skill": skill_dir.name,
+            "target": profile.get("name", DEFAULT_PROFILE),
+            "modules": [],
+        }
+        for r in results:
+            mod = {
+                "module": r.get("module", ""),
+                "status": r.get("status", ""),
+                "issues": [
+                    {
+                        "code": i.get("code", ""),
+                        "severity": i.get("severity", ""),
+                        "file": i.get("file", ""),
+                        "line": i.get("line"),
+                        "message": i.get("message", ""),
+                        "variable": i.get("variable", ""),
+                    }
+                    for i in r.get("issues", [])
+                ],
+            }
+            # deps module: attach classified evidence (hidden findings included)
+            if r.get("module") == t("module.deps"):
+                for extra_key in ("env_evidence",):
+                    if extra_key in r:
+                        mod[extra_key] = r[extra_key]
+            payload["modules"].append(mod)
+        payload["summary"] = {
+            "errors": sum(1 for m in payload["modules"] for i in m["issues"]
+                          if i["severity"] == "ERROR"),
+            "warns": sum(1 for m in payload["modules"] for i in m["issues"]
+                         if i["severity"] == "WARN"),
+        }
+        print(_json.dumps(payload, ensure_ascii=False, indent=2))
+        sys.exit(1 if payload["summary"]["errors"] > 0 else 0)
 
     error_count = run_healthcheck(
         skill_dir,

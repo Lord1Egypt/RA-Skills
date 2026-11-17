@@ -1,42 +1,55 @@
-## Description: <br>
-Plan campaign visuals and hooks for operations promotions for paid campaign planning by operators, agencies, and business teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for operations promotions. Use when working on paid campaign planning for operators, agencies, business teams.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Operations teams, agencies, and business teams use this skill to clarify audiences, campaign goals, constraints, visuals, and hooks for paid operations promotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ad briefs may contain inaccurate, misleading, or unsuitable campaign guidance. <br>
-Mitigation: Review and refine outputs for accuracy, readability, brand fit, and business impact before publication or execution. <br>
-Risk: The available security adjudication did not include a full independent local review of the artifact text. <br>
-Mitigation: Install only after reviewing the supplied skill files or the trusted publisher profile. <br>
+## Use Case:
 
+External operators, agencies, and business teams use this skill to draft paid campaign creative briefs for operations-focused promotions, including audience, goal, constraints, visuals, and hooks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobeyrebecca/toby-generate-operations-ad-creative-brief) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-operations-ad-creative-brief) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown creative brief with campaign planning recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review outputs before external publication or automated execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests broad shell access for an ad brief generation workflow that appears to need only content generation and file reading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review allowed tools before installation and remove or restrict Bash unless a specific user-approved shell operation is required.
+
+Risk: Generated campaign brief guidance may be inaccurate or unsuitable for external publication.
+
+Mitigation: Review claims, audience assumptions, and creative recommendations before launch or automated execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-operations-ad-creative-brief)
+- [SkillBoss Skill Page](https://www.skillboss.co/skills/generate-operations-ad-creative-brief)
+- [SkillBoss Setup Guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text creative brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign visuals, hooks, audience assumptions, goals, constraints, and review-ready recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

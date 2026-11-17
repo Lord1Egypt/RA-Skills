@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "name": "公开合成素材 · 8秒能力演示",
+  "notes": "全部画面和音频为合成测试素材，没有私人故事。小尺寸用于快速验证；正式作品按素材和画布重新检查构图。",
+  "canvas": {"width": 360, "height": 640, "fps": 30, "background": "#17221f"},
+  "clips": [
+    {"id": "video-background", "type": "video", "source": "examples/media/demo_video.mp4", "source_in": 0, "duration": 4, "fit": "cover", "audio": false},
+    {"id": "static-page", "type": "image", "source": "examples/media/demo_card.png", "duration": 2, "fit": "cover"},
+    {"id": "photo-hold", "type": "image", "source": "examples/media/demo_photo.jpg", "duration": 2, "fit": "cover", "crop_center": [0.5, 0.5]}
+  ],
+  "overlays": [
+    {"type": "photo_card", "source": "examples/media/demo_photo.jpg", "start": 0.4, "duration": 2.4, "entry": 0.65, "center": [0.5, 0.53], "max_size": [0.70, 0.48], "angle": -1.2, "fade_out": 0.15, "motion_samples": 3},
+    {"type": "sticker_title", "text": "照片轻放", "font": "公共资源/字体/SmileySans/SmileySans-Oblique.ttf", "start": 0.6, "duration": 2.3, "font_size": 34, "center": [0.35, 0.18], "max_width": 0.55, "direction": -1, "angle": -2},
+    {"type": "sticker_title", "text": "背景继续", "font": "公共资源/字体/SmileySans/SmileySans-Oblique.ttf", "start": 0.72, "duration": 2.18, "font_size": 28, "center": [0.65, 0.26], "max_width": 0.50, "direction": 1, "angle": 2, "color": "#EAAA7E"},
+    {"type": "subtitle", "text": "照片叠加期间，背景视频仍在播放", "font": "公共资源/字体/SmileySans/SmileySans-Oblique.ttf", "start": 0.3, "duration": 3.5, "font_size": 20, "center": [0.5, 0.9], "max_width": 0.92},
+    {"type": "full_photo", "source": "examples/media/demo_photo.jpg", "start": 5, "duration": 3, "entry": 0.65, "expand": 0.28, "center": [0.5, 0.49], "crop_center": [0.5, 0.5], "angle": -1.2, "motion_samples": 3},
+    {"type": "subtitle", "text": "全屏照片落位后铺满画布", "font": "公共资源/字体/SmileySans/SmileySans-Oblique.ttf", "start": 6, "duration": 2, "font_size": 21, "center": [0.5, 0.9], "max_width": 0.92}
+  ],
+  "audio": {
+    "master_audio": {"source": "examples/media/demo_audio.m4a", "source_in": 0, "copy_aac": true}
+  }
+}

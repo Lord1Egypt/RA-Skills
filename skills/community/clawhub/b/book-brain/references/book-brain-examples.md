@@ -1,5 +1,7 @@
 # BOOK BRAIN Examples & Patterns
 
+**Version:** 2.0.0 · pairs with **lyra-brain** · see `MEMORY_LAYOUT.md` + `LATTICE_INTEGRATION.md`
+
 This file provides concrete examples for the BOOK BRAIN skill.
 
 ## 1. Example Folder Tree (Fresh Haven)
@@ -158,6 +160,24 @@ For details on each Champion, see:
 ```
 
 Agents using BOOK BRAIN should **update** this index when they create important new files, instead of trying to keep it perfect.
+
+Use `python scripts/update_memory_index.py --root . --topic champions --path reference/CLAWHUB_LYGO_STACK.ref.txt`
+
+---
+
+## 5b. LYRA session close snip (2026 pattern)
+
+`memory/2026-07-04-session-close.md`:
+
+```markdown
+# Session close — lattice balanced
+**Status:** COMPLETE
+- stack sha: verify on GitHub
+- snip: memory/2026-07-04-lattice-close.md
+- outer: memory/reference/SESSION_20260704_to_LATTICE.resonance.ref.txt
+```
+
+Hand off to **lyra-brain**: `session_log_snip.py --grow`
 
 ---
 

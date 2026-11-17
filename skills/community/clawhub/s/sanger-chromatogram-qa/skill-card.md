@@ -1,45 +1,56 @@
-## Description: <br>
-Use sanger chromatogram qa for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Sanger chromatogram QA workflows with explicit assumptions, bounded execution, and reviewable outputs.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and lab informatics users can use this skill to structure Sanger sequencing review tasks such as mutation verification, clone confirmation, genotyping QC, and SNP validation. The packaged implementation should be treated as a draft aid rather than a validated chromatogram QA system.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may rely on prototype scientific output for mutation confirmation or other Sanger QA decisions.
+
+Mitigation: Require validation with known chromatograms and make clear that results need expert review before they inform scientific or operational decisions.
+
+Risk: The packaged code does not provide validated AB1 parsing or substantive mixed-peak detection.
+
+Mitigation: Add real AB1 parsing, mixed-peak detection, and input validation before using the skill as a chromatogram QA tool.
+
+Risk: The NumPy dependency is unpinned.
+
+Mitigation: Install dependencies in an isolated environment and use a pinned or locked dependency set before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, lab informatics teams, and sequencing analysts use this skill to guide Sanger chromatogram quality checks, mutation verification, clone confirmation, genotyping QC, and SNP validation with explicit assumptions and bounded outputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Local script execution may read input files and write outputs in the workspace. <br>
-Mitigation: Confirm intended input and output paths before running the script, and keep execution inside a project-specific workspace or sandbox. <br>
-Risk: The Python dependency is declared without a pinned version. <br>
-Mitigation: Install the skill in a project-specific virtual environment and consider pinning numpy before operational use. <br>
-Risk: Sequencing QA conclusions can be misleading when required trace, reference, variant position, or threshold inputs are missing or ambiguous. <br>
-Mitigation: Require the minimum inputs before analysis and report assumptions, unresolved items, and repeat recommendations explicitly. <br>
+**Output Format:** [Markdown with inline shell commands and structured QA findings]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/sanger-chromatogram-qa) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Packaged Python workflow](artifact/scripts/main.py) <br>
+**Other Properties Related to Output:** [Outputs should separate assumptions, workflow, results, risks, unresolved items, and validation needs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and text QA report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report quality scores, low-quality base counts, mutation calls, mixed-peak considerations, repeat recommendations, assumptions, risks, and unresolved validation needs.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

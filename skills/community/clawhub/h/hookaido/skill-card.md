@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents configure, validate, operate, and troubleshoot Hookaido webhook ingress, durable queues, delivery modes, signature verification, retry policy, and dead-letter queue workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Durable, signature-verified webhooks for OpenClaw agents and other consumers.
 
-## Publisher: <br>
-[7schmiede](https://clawhub.ai/user/7schmiede) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[7schmiede](https://clawhub.ai/user/7schmiede)
 
-## Use Case: <br>
-Developers and operators use this skill to implement Hookaido webhook endpoints, configure authenticated pull or push delivery, validate runtime configuration, inspect queue health, and triage backlog or dead-letter queue incidents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide production webhook queue mutations, DLQ deletes, runtime control, exec-based handlers, and live webhook delivery actions. <br>
-Mitigation: Use read-only diagnostics by default and require explicit operator approval before production mutations, DLQ deletes, runtime control, exec delivery changes, or sending real webhook payloads to live services. <br>
-Risk: Webhook operation requires sensitive tokens and ingress secrets. <br>
-Mitigation: Keep secrets in environment variables or file references, validate configuration before runtime use, and avoid disabling authentication for tests or troubleshooting. <br>
-Risk: Downloaded Hookaido release binaries introduce supply-chain risk. <br>
-Mitigation: Use pinned Hookaido v2.6.0 install sources and verify release artifact SHA256 checksums before installation. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Hookaido as a durable webhook ingress for OpenClaw agents and other consumers. It provides guidance for signature verification, event delivery or pull relays, queue operations, and MCP diagnostics.
 
-## Reference(s): <br>
-- [Hookaido Operations Reference](references/operations.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/7schmiede/hookaido) <br>
-- [Public Skill Repository](https://github.com/7schmiede/claw-skill-hookaido) <br>
-- [Upstream Hookaido Project](https://github.com/nuetzliches/hookaido) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, HCL configuration snippets, JSON examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands for installing Hookaido, validating Hookaidofile configuration, running local services, configuring MCP mode, and calling webhook queue APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: frontmatter and server release evidence) <br>
+Risk: Webhook payloads can contain untrusted content that reaches an agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted agent for incoming events and keep its allowed agent IDs narrow.
+
+Risk: Webhook credentials and stored event data could be exposed through insecure connections or broad access.
+
+Mitigation: Use dedicated tokens, HTTPS for remote connections, and protect stored webhook data; keep MCP read-only unless performing an intentional maintenance task.
+
+Risk: The security review did not verify the downloaded upstream binary or establish publisher identity.
+
+Mitigation: Verify the upstream release signatures and checksums before installing the binary.
+
+## Reference(s):
+
+- [OpenClaw integration guide](references/openclaw.md)
+- [Hookaido operations guide](references/operations.md)
+- [Skill homepage](https://github.com/7schmiede/claw-skill-hookaido)
+- [Hookaido project](https://github.com/nuetzliches/hookaido)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code]
+
+**Output Format:** [Markdown with configuration examples, code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.15.4 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

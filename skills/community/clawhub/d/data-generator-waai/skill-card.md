@@ -1,41 +1,54 @@
-## Description: <br>
-Data Generator creates JSONL training data from a tool name and a list of user commands by calling a configured LLM endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Generator / 数据生成器 generates JSONL training data from user instructions, a tool name, and command lists.
 
-## Publisher: <br>
-[HuaiBuer](https://clawhub.ai/user/HuaiBuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaibuer](https://clawhub.ai/user/huaibuer)
 
-## Use Case: <br>
-Developers and data builders use this skill to batch-generate tool-call training samples from natural-language commands and write them as JSONL for downstream model training or testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command text and generated prompts may be sent to the configured model service. <br>
-Mitigation: Use only a trusted API_URL or base_url and avoid putting secrets, private data, or sensitive user content in command text. <br>
-Risk: The documented Excel and custom-prompt examples do not match the current Python interface. <br>
-Mitigation: Use the current Generator.generate(tool_name, commands, output_file) interface or the CLI form shown by data_generator.py. <br>
+## Use Case:
 
+Developers and dataset builders use this skill to generate JSONL conversation training samples from command lists for supported tool-call scenarios such as smart-home control, reminders, weather, and chat fallback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HuaiBuer/data-generator-waai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/HuaiBuer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python API or CLI output that writes JSONL training records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a trusted LLM endpoint configured through API_URL or constructor parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; SKILL.md frontmatter says 1.0) <br>
+Risk: Prompts and command data are sent to the configured LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide confidential commands or datasets unless the configured API_URL endpoint is trusted.
+
+Risk: The documented npx install command is unpinned.
+
+Mitigation: Install from a trusted ClawHub/npm environment and pin installer or package versions in controlled workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaibuer/skills/data-generator-waai)
+- [Publisher profile](https://clawhub.ai/user/huaibuer)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [JSONL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each record contains conversation turns and system context; generation depends on the configured LLM endpoint.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

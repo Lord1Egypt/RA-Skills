@@ -1,44 +1,63 @@
-## Description: <br>
-Installs, updates, runs, and verifies the public ClawStatus dashboard locally or on a LAN host. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, update, run, and verify the public ClawStatus dashboard from GitHub.
 
-## Publisher: <br>
-[NeverChenX](https://clawhub.ai/user/NeverChenX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverchenx](https://clawhub.ai/user/neverchenx)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy or refresh ClawStatus, restart the dashboard service, and verify that the dashboard is reachable on port 8900. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer clones and installs code from a GitHub repository. <br>
-Mitigation: Install only when the target repository is trusted, and prefer a virtual environment or dedicated user account. <br>
-Risk: Overriding REPO_URL can redirect installation to a different repository. <br>
-Mitigation: Avoid overriding REPO_URL unless the replacement repository is trusted. <br>
-Risk: Binding the dashboard to 0.0.0.0 can expose it to LAN devices. <br>
-Mitigation: Bind to 127.0.0.1 unless LAN access is intentionally required. <br>
+## Use Case:
 
+Developers and engineers use this skill to install or refresh a local or LAN-accessible ClawStatus dashboard, start or restart it, and verify that it responds on port 8900.
 
-## Reference(s): <br>
-- [ClawStatus command reference](references/commands.md) <br>
-- [ClawHub skill page](https://clawhub.ai/NeverChenX/clawstatus-dashboard) <br>
-- [ClawStatus GitHub repository install target](https://github.com/NeverChenX/ClawStatus.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install/update, foreground run, systemd user service, and HTTP verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release evidence) <br>
+Risk: The install workflow retrieves mutable remote Python code before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source before installing and use a trusted, pinned ClawStatus revision when possible.
+
+Risk: The installer uses pip with --break-system-packages, which can affect the user's Python environment.
+
+Mitigation: Prefer installation inside a virtual environment or another isolated Python environment.
+
+Risk: The REPO_URL override can redirect installation to an untrusted repository.
+
+Mitigation: Avoid REPO_URL overrides unless the repository source is explicitly trusted.
+
+Risk: The documented run command binds the dashboard to 0.0.0.0 for LAN access.
+
+Mitigation: Bind to 127.0.0.1 by default, or use firewall and authentication controls when LAN exposure is intentional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/neverchenx/skills/clawstatus-dashboard)
+- [ClawStatus Commands](references/commands.md)
+- [ClawStatus GitHub Repository](https://github.com/NeverChenX/ClawStatus.git)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes install, run, restart, and HTTP verification commands for a dashboard service.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

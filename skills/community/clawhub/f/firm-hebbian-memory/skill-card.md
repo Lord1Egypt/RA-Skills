@@ -1,42 +1,57 @@
-## Description: <br>
-Système de mémoire adaptative hebbienne pour Claude.md qui transforme les logs de sessions en patterns pondérés afin de renforcer ou d'atrophier les règles de travail selon l'usage réel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Système de mémoire adaptative hebbienne pour Claude.md qui transforme les logs de sessions en patterns pondérés afin de renforcer ou d'atrophier les règles de travail selon l'usage réel.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and engineers use this skill to connect Claude.md guidance with an adaptive memory workflow that harvests session logs, analyzes recurring patterns, and proposes Hebbian weight updates. It is intended for teams that want reviewable consolidation of recurring work patterns into agent instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect local session logs into persistent adaptive memory through an external MCP extension and optional cron job. <br>
-Mitigation: Enable harvesting only after trusting the external MCP extension, choosing exact allowed log paths, and defining retention and deletion rules. <br>
-Risk: Session logs may contain personal data or secrets, and regex-based stripping may miss some credentials such as connection URLs or environment variables in stack traces. <br>
-Mitigation: Keep path whitelisting enabled, reject sessions with detected secrets, and add a dedicated secret scanner before use in sensitive environments. <br>
-Risk: Adaptive weight updates could change agent memory or instructions based on accumulated logs. <br>
-Mitigation: Keep weight updates in dry-run or review-only mode unless an authorized human explicitly approves the change. <br>
+## Use Case:
 
+Developers and engineers use this skill to design or operate an adaptive Claude.md memory workflow that ingests session logs, analyzes recurring work patterns, updates Hebbian weights, and keeps human review in the loop before durable rule changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/romainsantoli-web/firm-hebbian-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell and JSON configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes OpenClaw MCP tools, local hooks, cron automation, audit commands, and human review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill can continuously ingest future agent session logs into persistent local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook before enabling it, limit allowed session paths, keep ingestion manual or tightly scheduled, and document how to disable scheduled ingestion and remove stored local data.
+
+Risk: Session logs may contain sensitive data that regex-based stripping or runtime checks do not fully catch.
+
+Mitigation: Use stronger secret scanning for sensitive environments, review rejected-session alerts, and avoid ingesting logs from paths that may contain secrets or private credentials.
+
+Risk: Automatically weighted memory patterns could introduce stale or misleading rules into future agent behavior.
+
+Mitigation: Keep weight updates in dry-run mode by default, require human review for durable changes, and use drift checks and reversible Git commits for applied updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-hebbian-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code, shell command, and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes tool names, default Hebbian parameters, audit checks, hook examples, and security guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-Short-form video for AI agents. Generate videos using the latest models, pay with USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short-form video for AI agents. Generate videos using the latest models, pay with USDC via x402.
 
-## Publisher: <br>
-[c0rv0s](https://clawhub.ai/user/c0rv0s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[c0rv0s](https://clawhub.ai/user/c0rv0s)
 
-## Use Case: <br>
-External agents and developers use ClawdVine to create short-form AI videos, manage a ClawdVine agent identity and portfolio, and pay with credits or USDC via x402. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can interact with a crypto payment and identity system, including wallet-key signing and paid generation flows. <br>
-Mitigation: Install only for agents that are intended to use ClawdVine, use a dedicated low-balance wallet, and avoid main wallet private keys. <br>
-Risk: Generation requests can spend USDC or queue credit-funded work before final confirmation. <br>
-Mitigation: Require explicit user approval before any generation request, including requests that may use free credits. <br>
-Risk: Join, token-launch, profile, systemPrompt, marginFee, and MCP tool actions can affect identity, payments, or public-facing agent behavior. <br>
-Mitigation: Review these actions and their payloads before sending them to ClawdVine. <br>
+## Use Case:
 
+External developers and AI agents use ClawdVine to generate short-form AI videos, manage agent identity and portfolio attribution, and pay per generation with credits or USDC via x402.
 
-## Reference(s): <br>
-- [ClawdVine API Quick Reference](artifact/references/api-reference.md) <br>
-- [ClawdVine skill page](https://clawhub.ai/c0rv0s/clawdvine) <br>
-- [ClawdVine website](https://clawdvine.sh) <br>
-- [ClawdVine API](https://api.clawdvine.sh) <br>
-- [ClawdVine OpenAPI](https://api.clawdvine.sh/openapi.json) <br>
-- [x402 protocol](https://x402.org/) <br>
-- [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON examples, API request guidance, and generated video links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide paid x402 generation, wallet balance checks, SIWE signing, polling, and presentation of completed video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata, artifact metadata.json, package.json) <br>
+Risk: The skill can initiate wallet signing, paid USDC payments, and on-chain identity or token actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and require manual confirmation for every payment, join, and token action before signing.
+
+Risk: Private keys, signed SIWE headers, and agent identity values can expose wallet-capable credentials if stored in prompts or logs.
+
+Mitigation: Do not store private keys or signed headers in prompts, logs, or shared memory; keep identity configuration limited to the local environment that needs it.
+
+Risk: The bundled automatic payment script lacks sufficient local payment limits and receiver validation according to the security guidance.
+
+Mitigation: Avoid automatic payment execution until local spend limits and receiver validation are enforced; inspect payment requirements before retrying paid requests.
+
+## Reference(s):
+
+- [ClawdVine API Quick Reference](references/api-reference.md)
+- [ClawdVine API OpenAPI](https://api.clawdvine.sh/openapi.json)
+- [ClawdVine Website](https://clawdvine.sh)
+- [x402 Protocol](https://x402.org/)
+- [ERC-8004 Standard](https://eips.ethereum.org/EIPS/eip-8004)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include payment preflight summaries, API request examples, wallet-signing steps, polling instructions, and generated video or ClawdVine page URLs.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter, package.json, metadata.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

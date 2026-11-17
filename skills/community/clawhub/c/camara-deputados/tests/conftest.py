@@ -1,4 +1,5 @@
 """Configuração do pytest para testes do camara_client."""
+
 import pytest
 
 
@@ -13,7 +14,7 @@ def mock_camara_response():
                 "siglaPartido": "PL",
                 "siglaUf": "SP",
                 "urlFoto": "https://...",
-                "email": "dep.marcospontes@camara.leg.br"
+                "email": "dep.marcospontes@camara.leg.br",
             }
         ]
     }
@@ -22,14 +23,4 @@ def mock_camara_response():
 @pytest.fixture
 def mock_proposicao_response():
     """Mock de resposta de pesquisa de proposições."""
-    return {
-        "dados": [
-            {
-                "id": 2366661,
-                "siglaTipo": "PL",
-                "numero": 1234,
-                "ano": 2026,
-                "ementa": "Dispõe sobre..."
-            }
-        ]
-    }
+    return {"dados": [{"id": 2366661, "siglaTipo": "PL", "numero": 1234, "ano": 2026, "ementa": "Dispõe sobre..."}]}

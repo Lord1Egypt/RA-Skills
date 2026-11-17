@@ -1,45 +1,61 @@
-## Description: <br>
-Restic-powered encrypted time machine for OpenClaw: hourly incremental snapshots, fast restore by time/snapshot/file, local-only privacy defaults, integrity checks, retention, and optional alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restic-powered encrypted time machine for OpenClaw: hourly incremental snapshots, fast restore by time/snapshot/file, local-only privacy defaults, integrity checks, retention, and optional alerts.
 
-## Publisher: <br>
-[marzliak](https://clawhub.ai/user/marzliak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marzliak](https://clawhub.ai/user/marzliak)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure and run encrypted local snapshots of OpenClaw memory, sessions, configuration, and selected workspace paths, then restore by time, snapshot, or file when state is corrupted or overwritten. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Configured backup paths may include OpenClaw memory, sessions, configuration, or user-added files containing secrets. <br>
-Mitigation: Review config.yaml and run setup.sh --dry-run before installation; avoid adding credential stores unless repository and password-file controls are appropriate. <br>
-Risk: Restore, prune, and purge operations can overwrite current state or remove recovery points and backup data. <br>
-Mitigation: Use restore previews and non-root targets first, require explicit confirmation for restore-to-root, and run prune or uninstall --purge only after confirming the data impact. <br>
-Risk: Losing the restic password file makes encrypted snapshots unrecoverable. <br>
-Mitigation: Back up the restic password file separately and protect it from disclosure alongside the backup repository. <br>
-Risk: Optional Telegram, healthcheck, and update-check integrations can create network egress. <br>
-Mitigation: Keep privacy.local_only enabled unless external integrations are intentionally configured and reviewed. <br>
+## Use Case:
 
+Developers and operators use this skill to add local encrypted backup, status, retention, and restore workflows for OpenClaw memory, sessions, configuration, and selected workspace paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marzliak/quick-backup-restore) <br>
-- [Project homepage](https://github.com/marzliak/quick-backup-restore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operator-facing backup, restore, status, pruning, setup, and uninstall guidance for local OpenClaw recovery workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.3 (source: skill.json and changelog, released 2026-06-01) <br>
+Risk: Privileged scheduler setup can expose a root cron injection risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix cron fallback behavior before default installation, or use systemd-compatible schedules with trusted, root-controlled configuration.
+
+Risk: Backup and restore operations may read sensitive OpenClaw state or overwrite live files.
+
+Mitigation: Run setup.sh --dry-run first, protect configured backup paths and the restic password file, and restore to a temporary target before overwriting current OpenClaw state.
+
+Risk: Optional alerts and update checks may create external network egress.
+
+Mitigation: Keep privacy.local_only true unless external Telegram, healthcheck, or ClawHub update checks are intentionally configured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marzliak/skills/quick-backup-restore)
+- [Project homepage](https://github.com/marzliak/quick-backup-restore)
+- [Security policy](SECURITY.md)
+- [Privacy notes](PRIVACY.md)
+- [Setup guide](SETUP_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose privileged local commands, dry-run checks, backup/restore targets, retention settings, and optional alert configuration.]
+
+## Skill Version(s):
+
+3.2.3 (source: skill.json and changelog, released 2026-06-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

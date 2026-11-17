@@ -1,43 +1,58 @@
-## Description: <br>
-高考志愿规划顾问。根据考生省份、科类、成绩/位次、意向专业和区域，联网检索招生计划和录取数据，生成个性化志愿填报推荐（含保研率、就业去向、薪资待遇、专业前景批判分析）。当用户询问高考志愿填报、院校选择、专业推荐时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高考志愿规划顾问。根据考生省份、科类、成绩/位次、意向专业和区域，联网检索招生计划和录取数据，生成个性化志愿填报推荐（含保研率、就业去向、薪资待遇、专业前景批判分析）。当用户询问高考志愿填报、院校选择、专业推荐时调用。
 
-## Publisher: <br>
-[edmandcui](https://clawhub.ai/user/edmandcui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edmandcui](https://clawhub.ai/user/edmandcui)
 
-## Use Case: <br>
-External users use this skill to receive Chinese Gaokao college application guidance based on province, exam stream or subject combination, score or rank, intended majors, and preferred regions. It produces structured reach, match, and safety recommendations with supporting admissions, employment, salary, and program-risk context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: College application recommendations may be inaccurate if admissions plans, score cutoffs, or program rules have changed. <br>
-Mitigation: Verify final choices against official provincial exam authority notices, university enrollment plans, and current admissions brochures. <br>
-Risk: The skill requests academic details such as province, score or rank, subject track, and preferences. <br>
-Mitigation: Provide only the minimum academic details needed for advice and avoid names, ID numbers, account credentials, or private documents. <br>
-Risk: Outputs are advisory and may not reflect all factors that affect admission outcomes. <br>
-Mitigation: Use the recommendations as planning support and make final decisions with official materials and qualified human review. <br>
+## Use Case:
 
+Students, families, and advisors use this skill to prepare Chinese gaokao application plans based on province, subject track, score or rank, intended majors, and preferred regions. It researches current admissions and employment data, asks for missing critical inputs, and returns advisory reach, match, and safety recommendations with risk notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edmandcui/gaokao-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/edmandcui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown recommendations and analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reach, match, and safety recommendation tiers, source notes, risk notes, and an advisory disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may produce admissions advice from current web search results that are incomplete, stale, or inconsistent across sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify admissions plans against official provincial exam authority publications and university admissions materials before acting on the recommendations.
+
+Risk: The skill may ask for student province, subject track, score or rank, target majors, and target regions.
+
+Mitigation: Share only the information needed for the advising task and avoid including unnecessary personal identifiers.
+
+Risk: Recommendations can affect high-stakes education decisions but remain advisory.
+
+Mitigation: Treat the output as planning support and make final decisions with official sources, qualified advisors, and the student's guardians where appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edmandcui/skills/gaokao-advisor)
+- [Publisher profile](https://clawhub.ai/user/edmandcui)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown advisory report with structured recommendation tiers, tables, source notes, and disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses web search for current public admissions and employment data; recommendations are advisory and should be verified against official exam authority and university sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

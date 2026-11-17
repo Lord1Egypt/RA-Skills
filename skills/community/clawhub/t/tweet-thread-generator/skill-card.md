@@ -1,40 +1,54 @@
-## Description: <br>
-Converts technical articles and blog posts into Twitter/X thread drafts with multilingual support and suggested hashtags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将技术文章、博客转换为吸引人的 Twitter/X 推文线程，支持多语言，自动添加话题标签。
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Content creators, developers, and marketing teams use this skill to turn technical writing, product updates, tutorials, or industry commentary into draft Twitter/X threads for manual review and posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper produces placeholder-style thread content and may not actually fetch URLs or parse files as described. <br>
-Mitigation: Treat it as a local template helper unless extended, and compare generated text with the source material before use. <br>
-Risk: Generated social posts and engagement estimates can be inaccurate, misleading, or unsuitable for publication. <br>
-Mitigation: Manually review and edit every thread, hashtag set, and posting recommendation before publishing. <br>
+## Use Case:
 
+Content creators, developers, and social media teams use this skill to draft Twitter/X thread outlines, hashtags, engagement tips, and posting guidance from technical article or blog input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/tweet-thread-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style thread draft with a summary table, suggested hashtags, and posting tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed before posting; URL and file handling claims are not implemented in the observed shell helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill presents itself as an article converter, but the security review says it behaves like a placeholder/demo-style formatter rather than a true summarizer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated threads, hashtags, and summaries against the original source before publishing.
+
+Risk: Generated engagement estimates, hashtags, and posting-time guidance may be generic or unsupported by the input content.
+
+Mitigation: Treat these as drafting aids and replace them with content-specific and policy-compliant copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/tweet-thread-generator)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-like thread text with CLI examples and summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes placeholder-style tweet segments, suggested hashtags, engagement tips, and manual next steps; output should be reviewed before posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Audit and clean up Git repositories by finding stale or merged branches, large files in history, orphaned tags, repo bloat, and generating cleanup scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Repo Cleaner audits Git repositories for stale or merged branches, large files, repository bloat, maintenance issues, and optional cleanup script generation.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Git repository health, identify branch and file-history cleanup opportunities, and generate reviewable cleanup commands before performing repository maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cleanup scripts can delete local branches and run repository optimization commands. <br>
-Mitigation: Treat `--fix` output as a draft, review every command before execution, and keep backups or remote copies of important branches. <br>
-Risk: `--force-delete` can generate force-deletion commands for branches that may contain unmerged work. <br>
-Mitigation: Avoid `--force-delete` unless the affected branches are disposable or safely backed up. <br>
-Risk: Auditing untrusted repositories can produce misleading cleanup recommendations or scripts. <br>
-Mitigation: Run the skill only on repositories chosen explicitly and do not execute generated scripts from untrusted repositories without manual verification. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit Git repositories before maintenance work, identify stale branches and large files, and generate reviewable cleanup scripts when they choose to act on findings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/git-repo-cleaner) <br>
-- [Publisher Profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, JSON, Markdown reports, and generated bash cleanup scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated cleanup scripts are printed for review and are not executed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated cleanup scripts can delete branches and run aggressive garbage collection with immediate pruning if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated command, confirm the intended repository, and keep backups or remote copies before running cleanup output.
+
+Risk: The cleanup output can affect the wrong repository if commands are run from an unintended location or reused without checking paths.
+
+Mitigation: Bind cleanup work to the intended repository path and re-run the audit in that repository before executing any generated shell commands.
+
+Risk: Force-delete mode can remove branches even when normal safe deletion would refuse them.
+
+Mitigation: Avoid --force-delete unless the branch state is understood and recoverable from backups or remotes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/git-repo-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Text, JSON, or Markdown audit reports; optional bash cleanup script printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git CLI; supports configurable checks, stale branch age, and minimum file size thresholds; exits 1 when issues are found.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

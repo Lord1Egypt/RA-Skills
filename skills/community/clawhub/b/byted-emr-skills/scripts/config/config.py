@@ -37,12 +37,16 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
-from typing import Dict, Optional, Iterable, Any
+from typing import Any
 
 try:
     from serverless.client import ServerlessClient
 except Exception as e:
     ServerlessClient = Any
+
+from typing import Dict, Optional, Iterable
+from serverless.client import ServerlessClient
+
 
 class EMRSkillConfigError(Exception):
     """在加载 EMR Skill 配置时发生错误。"""

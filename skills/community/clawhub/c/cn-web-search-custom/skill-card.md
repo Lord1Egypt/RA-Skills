@@ -1,43 +1,56 @@
-## Description: <br>
-Aggregates free Chinese and international public web search engines for WeChat, finance, technical, academic, encyclopedia, and general search workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese web search helper that aggregates free public search engines through web fetching, with coverage for general Chinese search, WeChat public-account content, finance, technical, academic, and encyclopedia queries.
 
-## Publisher: <br>
-[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c595390153-a11y](https://clawhub.ai/user/c595390153-a11y)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to route search terms to public search engines and compare results across Chinese, English, WeChat, finance, technical, and encyclopedia sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be disclosed to public search engines. <br>
-Mitigation: Do not use the skill for secrets, credentials, personal data, private project names, sensitive business topics, or confidential investment research. <br>
-Risk: Public search results can be incomplete, stale, or misleading. <br>
-Mitigation: Compare results across multiple engines and verify important claims against authoritative sources before acting on them. <br>
+## Use Case:
 
+Developers and agent users use this skill to compose web_fetch calls for Chinese-oriented and multilingual search across public search engines without API keys. It is suited to retrieving current public web information, public-account articles, finance/investment pages, technical community results, and encyclopedia entries.
 
-## Reference(s): <br>
-- [Cn Web Search Custom on ClawHub](https://clawhub.ai/c595390153-a11y/cn-web-search-custom) <br>
-- [Publisher profile](https://clawhub.ai/user/c595390153-a11y) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with public search URLs and web_fetch examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search terms are sent to public search engines; avoid secrets, personal data, private project names, sensitive business topics, and confidential investment research.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Search terms are sent to external public search engines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, credentials, private customer data, or sensitive personal information.
+
+Risk: Public search results can be incomplete, stale, biased, or inconsistent across engines.
+
+Mitigation: Cross-check important findings against authoritative sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c595390153-a11y/skills/cn-web-search-custom)
+- [Publisher profile](https://clawhub.ai/user/c595390153-a11y)
+- [Repository declared in artifact metadata](https://github.com/joansongjr/cn-web-search)
+- [Author URL declared in artifact metadata](https://github.com/joansongjr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with web_fetch URL examples and engine-selection tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search terms are embedded in public search-engine URLs; examples use extractMode and maxChars parameters for web_fetch.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; artifact frontmatter and _meta.json report 2.3.0, package.json reports 0.9.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

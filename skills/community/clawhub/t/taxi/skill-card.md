@@ -1,46 +1,52 @@
-## Description: <br>
-Handle everything for ground transportation, from price comparison to booking, tracking, disputes, and expense management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle everything for ground transportation, from price comparison to booking, tracking, disputes, and expense management.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to compare ground transportation options, prepare ride bookings, track trip expenses, and draft support or dispute messages. It is intended to keep the user in control of final ride and payment confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local taxi memory can contain sensitive home or work addresses, trip history, receipts, account identifiers, and promo details. <br>
-Mitigation: Keep only necessary ride details, avoid passwords and full payment data, mask exact addresses when possible, and review the local ~/taxi files periodically. <br>
-Risk: Booking assistance can prepare ride or payment steps that still require user judgment. <br>
-Mitigation: Have the user confirm ride details, driver or vehicle information, payment actions, and any new account verification before a booking is finalized. <br>
-Risk: Complaint drafts or social escalation can expose account-specific ride, receipt, or location details. <br>
-Mitigation: Remove private identifiers and exact addresses before sharing support messages publicly, and use private support channels for sensitive disputes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/taxi) <br>
-- [Booking Workflows](artifact/booking.md) <br>
-- [City Coverage](artifact/cities.md) <br>
-- [Fare Estimation & Savings](artifact/fares.md) <br>
-- [Memory Setup](artifact/memory-template.md) <br>
-- [Problem Resolution](artifact/problems.md) <br>
+## Use Case:
 
+External users use this skill to compare ground transportation options, prepare bookings, monitor fares, track trip expenses, and draft support or dispute requests while keeping final ride requests and payments under user confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, templates, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local memory templates, trip logs, fare comparisons, booking steps, and complaint drafts for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead agents to maintain concentrated plaintext records of addresses, account notes, payment preferences, trip history, and travel patterns.
+
+Mitigation: Store only the minimum useful labels, avoid phone, email, account, and exact address details unless necessary, restrict permissions on ~/taxi, and periodically review or delete old records.
+
+Risk: Booking, payment, account changes, public complaints, and safety escalations can have financial, privacy, or reputational impact.
+
+Mitigation: Keep final ride requests, payments, new payment methods, account changes, and public-facing complaints under explicit user confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/taxi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, templates, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or maintain local Markdown files under ~/taxi for taxi preferences, account notes, promo tracking, and trip history.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

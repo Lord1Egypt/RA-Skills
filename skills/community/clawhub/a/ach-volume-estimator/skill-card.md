@@ -1,43 +1,59 @@
-## Description: <br>
-Estimate Dwolla's end-of-month ACH transaction volume from daily KPI emails and PDF data by extracting transactions and business days, calculating a per-business-day rate, and projecting monthly totals with a US Federal Reserve holiday calendar. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimates Dwolla's end-of-month ACH transaction volume from daily KPI emails by extracting transaction and business-day inputs, calculating a per-business-day rate, and projecting monthly totals with a US Federal Reserve holiday calendar.
 
-## Publisher: <br>
-[daveglaser0823](https://clawhub.ai/user/daveglaser0823) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daveglaser0823](https://clawhub.ai/user/daveglaser0823)
 
-## Use Case: <br>
-Employees who process Dwolla ACH KPI emails use this skill to turn daily email and PDF metrics into end-of-month ACH volume projections, optional revenue forecasts, and dashboard updates for KPI reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive Gmail ACH KPI messages and PDF attachments. <br>
-Mitigation: Install only where the named Gmail account and ACH KPI email workflow are approved, and limit access to authorized users. <br>
-Risk: The bundle includes revenue forecasting and local calibration file use beyond the core ACH volume estimate. <br>
-Mitigation: Confirm revenue forecasting is in scope for this release, or split it into a separate skill with explicit review and approval. <br>
-Risk: Dashboard automation writes local report data and is intended for recurring cron use. <br>
-Mitigation: Approve the dashboard destination, local paths, and cron schedule before enabling automated runs. <br>
+## Use Case:
 
+Business operators and analysts use this skill to estimate month-end ACH transaction volume from daily KPI email data and PDF dashboard exports. It also supports ACH summary reporting and dashboard updates when the user has approved access to the relevant mailbox, attachments, and local report files.
 
-## Reference(s): <br>
-- [Federal Reserve Bank Holiday Schedule](https://www.federalreserve.gov/aboutthefed/k8.htm) <br>
-- [FRED SOFR Data](https://fred.stlouisfed.org/series/SOFR) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [One-line ACH estimates, optional JSON forecast output, and local dashboard data updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use approved Gmail KPI messages, PDF attachments, local calibration files, and local dashboard HTML/JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may access named Gmail KPI emails and PDF attachments containing sensitive business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming mailbox and attachment access is intended, and limit credentials or tool access to the approved KPI workflow.
+
+Risk: Bundled scripts include revenue forecasting, revenue calibration file reads, external SOFR fetching, and dashboard writes beyond the basic ACH estimate.
+
+Mitigation: Remove or disable revenue-related scripts and SOFR access when approving the skill only for ACH volume estimation.
+
+Risk: Cron or automated dashboard use can repeatedly read business data and write local report artifacts.
+
+Mitigation: Require explicit approval before scheduled execution and confirm local dashboard/report paths before allowing writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daveglaser0823/skills/ach-volume-estimator)
+- [Publisher profile](https://clawhub.ai/user/daveglaser0823)
+- [Federal Reserve holiday schedule](https://www.federalreserve.gov/aboutthefed/k8.htm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, one-line text estimates, optional JSON script output, and local dashboard/report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read approved Gmail KPI emails and attachments, calculate forecasts from ACH transaction inputs, and write local ACH report or dashboard files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

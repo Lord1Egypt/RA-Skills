@@ -1,41 +1,53 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perf Analyzer is a devtools reference helper that provides quick plain-text guidance for concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and operators use this skill to retrieve concise Perf Analyzer reference guidance for concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat-sheet workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the static reference text as an authoritative performance analysis tool or product manual. <br>
-Mitigation: Use the output as general guidance and verify operational decisions against official documentation, environment measurements, and local review. <br>
-Risk: Installing any shell-based skill without review can introduce unexpected local behavior. <br>
-Mitigation: Review the packaged script and scan results before deployment; this artifact only prints embedded documentation and does not request credentials, network access, or persistent permissions. <br>
+## Use Case:
 
+Developers and engineers use Perf Analyzer for quick lookup of operational and devtools guidance around performance analysis workflows. It is most useful when an agent needs concise reference material for common Perf Analyzer topics without external API calls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/perf-analyzer) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static embedded command output; no credentials, network access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The activation wording is broad enough that the skill may be invoked for general performance or devtools questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the requested task is about Perf Analyzer reference guidance before relying on the output.
+
+Risk: The skill outputs static reference documentation, which may be incomplete or outdated for a specific environment.
+
+Mitigation: Validate operational recommendations against current project documentation and environment-specific requirements before applying them.
+
+## Reference(s):
+
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc content; no external API calls, credentials, or network access.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

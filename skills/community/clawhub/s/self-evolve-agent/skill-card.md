@@ -1,45 +1,60 @@
-## Description: <br>
-Self Evolve helps an agent run measured self-improvement cycles by identifying bottlenecks, comparing candidate solutions, recording observations, and solidifying successful workflow or tool changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Evolve guides an AI agent through a disciplined loop for identifying capability gaps, testing alternative improvements, selecting winners, and solidifying measured workflow or tool upgrades.
 
-## Publisher: <br>
-[mikonos](https://clawhub.ai/user/mikonos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mikonos](https://clawhub.ai/user/mikonos)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they want an AI agent to run disciplined, measurable experiments for improving its own tools, workflows, schedules, or meta-capabilities. It is suited to environments where self-modification is intentional and governed by review, rollback, and command approval controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to experiment on and permanently change its own behavior, tools, workflows, or configuration. <br>
-Mitigation: Run it in a sandboxed environment, keep backups for rollback, and require review before solidifying any code, configuration, cron, heartbeat, or behavior change. <br>
-Risk: The skill can direct shell commands, external searches, installs, or deployments as part of experiments. <br>
-Mitigation: Require explicit approval for shell commands, external installs, and code or configuration diffs; disable cron or heartbeat automation by default. <br>
-Risk: Writable memory and evolution state files can steer future self-modification if untrusted content is introduced. <br>
-Mitigation: Protect memory/evolve files from untrusted writes and review candidate queues, reports, and telemetry before the agent acts on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikonos/self-evolve-agent) <br>
-- [Execution protocol and state machine](references/execution-protocol.md) <br>
-- [Constraints and autonomy rules](references/constraints-and-rules.md) <br>
-- [Quality checklist](references/quality-checklist.md) <br>
-- [Evolution report template](assets/evolution-report-template.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to run controlled self-improvement ticks for agent capabilities, workflows, schedules, tools, and skills. It is intended for measured experiments with explicit baselines, telemetry, review checkpoints, and rollback paths.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and plans with YAML frontmatter, JSONL observations, state updates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update memory/evolve reports, state.json, JSONL logs, and agent configuration or workflow files when the host agent is allowed to make those changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can grant an agent broad authority over commands, configuration, source code, schedules, installed skills, and persistent agent instructions.
+
+Mitigation: Run it in a sandbox or disposable workspace and require human review before command execution, tool or skill installation, schedule changes, or persistent edits to agent instructions, memory, or source code.
+
+Risk: Automatic heartbeat or cron use can allow self-modifying experiments to proceed without enough control gates.
+
+Mitigation: Keep cron and heartbeat automation disabled by default, then enable only reviewed schedules with clear stop conditions and monitoring.
+
+Risk: Installer and third-party sources used during experiments may introduce unreviewed behavior.
+
+Mitigation: Pin installers and third-party sources to reviewed versions and scan proposed changes before deployment.
+
+## Reference(s):
+
+- [Self Evolve ClawHub Page](https://clawhub.ai/mikonos/skills/self-evolve-agent)
+- [Execution Protocol](references/execution-protocol.md)
+- [Constraints and Rules](references/constraints-and-rules.md)
+- [Quality Checklist](references/quality-checklist.md)
+- [Evolution Report Template](assets/evolution-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON state updates, JSONL telemetry records, shell commands, and configuration or source edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include measurable baselines, telemetry hooks, evaluation deadlines, winner decisions, and rollback-aware solidification notes.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

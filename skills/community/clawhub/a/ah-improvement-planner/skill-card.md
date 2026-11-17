@@ -1,39 +1,49 @@
-## Description: <br>
-An Improvement Planning Agent that creates actionable improvement plans for existing projects by reviewing analysis, prioritizing work, designing implementation phases, selecting agents, and defining validation criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improvement Planner helps agents create actionable improvement plans for existing projects by reviewing analysis, prioritizing improvements, designing implementation phases, selecting agent teams, and defining work breakdowns.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill after project analysis to turn identified issues into a prioritized, phased improvement plan with agent assignments, task breakdowns, dependencies, validation criteria, and rollback considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Improvement plans may recommend follow-on code, infrastructure, or security changes that are inappropriate for the project context. <br>
-Mitigation: Review the generated plan before authorizing implementation agents, with extra scrutiny for security settings, infrastructure changes, and newly proposed specialized agents. <br>
+## Use Case:
 
+Developers and engineering teams use this skill after project analysis to turn findings into prioritized, phased improvement plans with assigned agent roles, validation criteria, rollback considerations, and success metrics.
 
-## Reference(s): <br>
-- [Improvement Planner examples](references/examples.md) <br>
-- [ClawHub release page](https://clawhub.ai/mtsatryan/ah-improvement-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown improvement plan with prioritized phases, agent assignments, validation criteria, rollback strategy, timeline, and success metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only output; review recommendations before authorizing follow-on agents to modify code, infrastructure, or security settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated improvement plans may propose security fixes, refactors, or additional specialist agents that are inappropriate for the target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans before approving execution, especially security work, refactors, and agent selection.
+
+## Reference(s):
+
+- [Improvement Planner Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown improvement plan with prioritized phases, agent assignments, validation plan, rollback strategy, risk mitigation, timeline, and success metrics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The plan is intended for user approval before execution begins.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

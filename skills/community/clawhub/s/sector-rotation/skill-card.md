@@ -1,42 +1,54 @@
-## Description: <br>
-行业板块轮动策略 — 基于宏观经济周期、行业景气度、资金流向判断板块轮动节奏。当用户说「板块轮动」「行业轮动」「主线切换」「资金切换」「顺周期」「逆周期」时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for discussing sector rotation using macroeconomic cycles, industry conditions, and capital-flow signals.
 
-## Publisher: <br>
-[danpian1](https://clawhub.ai/user/danpian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danpian1](https://clawhub.ai/user/danpian1)
 
-## Use Case: <br>
-External users and analysts use this Chinese-language skill to structure sector rotation conversations around macro cycles, A-share sector categories, fund-flow timing signals, and main-line switching. It supports market-analysis reasoning but does not trade, access accounts, or replace current market data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sector rotation guidance may be outdated or misleading if used without current market data. <br>
-Mitigation: Verify any investment conclusion against current market data and the user's own risk limits. <br>
-Risk: The skill can shape market-analysis conversations but has no trading authority or account access. <br>
-Mitigation: Treat outputs as analytical guidance only, not automated trading instructions. <br>
+## Use Case:
 
+External users use this skill to discuss Chinese-language sector rotation strategies, map macroeconomic phases to industries and asset classes, and evaluate timing signals for possible sector shifts.
 
-## Reference(s): <br>
-- [Sector Rotation release page](https://clawhub.ai/danpian1/sector-rotation) <br>
-- [danpian1 publisher profile](https://clawhub.ai/user/danpian1) <br>
-- [板块轮动速查](references/sector-cycle.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text market-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, account access, trading authority, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill provides generalized sector-rotation heuristics that may be mistaken for personalized trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs carefully and do not use them as the sole basis for trades or financial decisions.
+
+Risk: The skill may activate on common finance phrases and provide market-cycle guidance outside the user's intended scope.
+
+Mitigation: Confirm that the user is asking for sector-rotation discussion before relying on the generated guidance.
+
+## Reference(s):
+
+- [Sector Cycle Reference](references/sector-cycle.md)
+- [ClawHub Skill Page](https://clawhub.ai/danpian1/skills/sector-rotation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generalized strategy heuristics; no files, code, shell commands, or system access produced.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

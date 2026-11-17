@@ -1,46 +1,65 @@
-## Description: <br>
-Personal Nutritionist helps an agent log meals, estimate portions, calculate calories and macros, summarize nutrition trends, and maintain a user nutrition profile through conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Nutritionist helps an agent log meals, estimate nutrition and calorie burn, track daily goals, maintain nutrition memory, and set optional reminders through conversation.
 
-## Publisher: <br>
-[javi23ruiz](https://clawhub.ai/user/javi23ruiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javi23ruiz](https://clawhub.ai/user/javi23ruiz)
 
-## Use Case: <br>
-External users use this skill as a conversational nutrition tracker for meal logging, calorie and macro estimates, daily or weekly summaries, and optional reminders. It is intended to support personal tracking workflows, not replace medical or dietetic advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and reuse sensitive long-term information about meals, goals, allergies, routines, health context, and possible medication details. <br>
-Mitigation: Review the memory behavior before use, share only information suitable for retention, and inspect, edit, or delete saved memory when needed. <br>
-Risk: Heartbeat and cron reminders can continue prompting or summarizing based on saved nutrition data. <br>
-Mitigation: Enable only the reminders the user explicitly wants, review the scheduled messages, and disable unwanted jobs. <br>
-Risk: Nutrition, calorie, macro, and burn calculations are estimates and may be inappropriate for medical dietary decisions. <br>
-Mitigation: Confirm uncertain portions, treat outputs as estimates, and use qualified professional advice for medical or clinical nutrition needs. <br>
+## Use Case:
 
+External users use this skill for conversational nutrition tracking, including meal logging, calorie and macro estimates, daily summaries, trend review, and optional proactive reminders. Agents use it to maintain a persistent nutrition profile and memory-backed history for the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/javi23ruiz/nutrition-pro) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Onboarding workflow](artifact/ONBOARDING.md) <br>
-- [Memory template](artifact/MEMORY_TEMPLATE.md) <br>
-- [Heartbeat snippet](artifact/HEARTBEAT_SNIPPET.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with meal summaries, memory-file entries, and optional OpenClaw cron commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update MEMORY.md, memory/YYYY-MM-DD.md, HEARTBEAT.md, and scheduled reminder configuration after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill can build a lasting health-adjacent profile with nutrition goals, allergies, meal timing, preferences, patterns, and health context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent nutrition memory is acceptable, review MEMORY.md contents periodically, and remove health context that should not be retained.
+
+Risk: The skill can update memory silently after onboarding, including weekly rewrites of the user's profile and pattern summary.
+
+Mitigation: Review memory updates during early use and keep only explicitly stated health details; do not rely on inferred diagnoses or medical conclusions.
+
+Risk: The skill can add heartbeat behavior and optional OpenClaw cron reminders that continue to prompt or run later.
+
+Mitigation: Confirm reminder choices before enabling them, then inspect HEARTBEAT.md and openclaw cron entries and disable any reminder that is not wanted.
+
+Risk: Nutrition, calorie burn, and TDEE outputs are estimates and may be wrong for medical or clinical decisions.
+
+Mitigation: Treat outputs as general tracking guidance, require user confirmation before logging uncertain portions, and consult qualified professionals for medical nutrition needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/javi23ruiz/skills/nutrition-pro)
+- [Publisher profile](https://clawhub.ai/user/javi23ruiz)
+- [ONBOARDING.md](artifact/ONBOARDING.md)
+- [MEMORY_TEMPLATE.md](artifact/MEMORY_TEMPLATE.md)
+- [HEARTBEAT_SNIPPET.md](artifact/HEARTBEAT_SNIPPET.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation responses, memory file entries, and optional OpenClaw cron commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update persistent memory files and create optional reminders after user confirmation.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

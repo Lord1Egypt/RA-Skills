@@ -1,40 +1,54 @@
-## Description: <br>
-Send and receive SMS messages via API. Shared or dedicated numbers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive SMS messages via API using shared or dedicated numbers.
 
-## Publisher: <br>
-[dommholland](https://clawhub.ai/user/dommholland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dommholland](https://clawhub.ai/user/dommholland)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect an agent to the GetPost SMS API for sending texts, reading an inbox, provisioning dedicated numbers, and registering SMS webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent with API credentials can send SMS messages, read inbox contents, provision numbers, or register webhooks. <br>
-Mitigation: Keep the API key private and require explicit approval for recipients, message content, number provisioning, inbox access, and webhook registration. <br>
-Risk: Phone numbers and SMS contents can contain sensitive data. <br>
-Mitigation: Treat phone numbers and SMS messages as sensitive data, limit retention and logging, and use the skill only with appropriate consent. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to integrate GetPost SMS signup, sending, inbox, dedicated-number provisioning, and webhook workflows into an agent or application.
 
-## Reference(s): <br>
-- [GetPost SMS API documentation](https://getpost.dev/docs/api-reference#sms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with curl command examples and endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GetPost Bearer API key; actions may send SMS messages, read inbox contents, provision numbers, or register webhooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Phone numbers, SMS message bodies, webhook payloads, and GetPost API keys may contain sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store API keys in a secret manager, limit logging of message contents and phone numbers, and protect webhook endpoints.
+
+Risk: SMS sending can create consent, telecom compliance, and billing exposure.
+
+Mitigation: Send messages only to recipients who have consented, review provider terms and regional messaging rules, and monitor credit usage.
+
+## Reference(s):
+
+- [GetPost SMS API Documentation](https://getpost.dev/docs/api-reference#sms)
+- [ClawHub Skill Page](https://clawhub.ai/dommholland/skills/getpost-sms)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint examples and bearer-token authentication patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

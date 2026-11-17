@@ -1,38 +1,50 @@
-## Description: <br>
-提供全球思想洞察、中英双语字幕及核心观点解析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供全球思想洞察、中英双语字幕及核心观点解析。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users can use this skill to ask an agent for TED talk discovery support, bilingual subtitle-oriented summaries, and key-idea analysis. The release should be reviewed before reliance because the artifact also contains course and exam wording that may not match the TED Talks label. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact mixes TED Talks messaging with course, exam, subscription, and learning-progress wording, which may confuse users about the skill's real purpose. <br>
-Mitigation: Review outputs for topic fit and ask the publisher to rewrite the skill instructions before relying on TED talk search, subtitles, or summaries. <br>
+## Use Case:
 
+External users can ask an agent for TED Talks related insight summaries, bilingual subtitles, and key-point analysis, while reviewing the skill carefully because the artifact content also describes unrelated paid education-course workflows.
 
-## Reference(s): <br>
-- [ClawHub TED Talks release](https://clawhub.ai/CodeKungfu/ted-talks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no tools, credentials, persistence, sensitive access, or code execution are requested by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill is labeled as TED Talks, but its artifact instructions mostly describe an unrelated paid education-course platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing or using it, and rename or rewrite the artifact so the TED Talks purpose, examples, and capabilities are consistent before normal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/ted-talks)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summaries, bilingual subtitle guidance, key-point analysis, education-course fields, and user-facing caveats depending on the prompt.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

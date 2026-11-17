@@ -1,43 +1,59 @@
-## Description: <br>
-Coordinates PR code review, AI fix suggestions, and GitHub issue tracking so teams can decide whether a pull request is ready to merge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PR Quality Gate coordinates structured pull request review, AI-assisted fix suggestions, and GitHub Issue tracking so code is checked before merge.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to review PR diffs across logic, security, performance, readability, and test coverage, create follow-up issues for findings, and produce a pass or blocked merge recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may write to GitHub issues, PR comments, or PR status without a clear approval gate. <br>
-Mitigation: Require explicit user approval or a read-only dry run before creating issues, posting comments or statuses, invoking external coding agents, or merging PRs. <br>
-Risk: Review findings and generated fix suggestions may be incomplete or incorrect. <br>
-Mitigation: Have a code owner review the report, linked issues, and suggested patches before applying changes or accepting a merge recommendation. <br>
-Risk: High-severity findings may send code snippets to external coding agents when those integrations are enabled. <br>
-Mitigation: Use the workflow only on repositories and code snippets approved for the configured external tools. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull requests, identify quality and security issues, create tracking issues, request fix suggestions for high-severity findings, and produce merge guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/pr-quality-gate) <br>
-- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with severity tables, issue links, fix suggestions, and gate status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update GitHub issues, PR comments, and PR status when configured with write access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can change GitHub repository state through issue creation, PR comments, statuses, or merge-related actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user approval for repository write actions and confirm the target repository and pull request before executing them.
+
+Risk: The workflow can invoke kimi-cli, which may share code or security findings with a third-party service.
+
+Mitigation: Use the external CLI only where third-party code sharing is permitted, and avoid sending secrets or sensitive repository content.
+
+Risk: Automated review and fix suggestions may be incomplete or incorrect.
+
+Mitigation: Have a reviewer validate high-severity findings, generated code snippets, and final merge guidance before relying on the gate outcome.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlszhonglongshen/skills/pr-quality-gate)
+- [Skill README](artifact/README.md)
+- [Workflow Manifest](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown review report with issue links, gate status, and optional code snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce GitHub Issue IDs and PR comment or status links when repository write actions are approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

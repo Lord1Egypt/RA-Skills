@@ -1,44 +1,54 @@
-## Description: <br>
-Interacts with Jira Cloud via REST API for JQL searches, issue viewing and editing, comments, status transitions, sprint and board queries, and worklog operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Jira Cloud via REST API for searching issues with JQL, viewing issue details, creating and updating issues, adding comments, transitioning status, querying sprints and boards, and logging work.
 
-## Publisher: <br>
-[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises)
 
-## Use Case: <br>
-Developers, engineers, and Jira operators use this skill to inspect and modify Jira Cloud issues, comments, statuses, sprints, boards, and worklogs through documented CLI commands and REST API examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live changes to Jira data, including creating and updating issues, adding comments, transitioning statuses, and logging work. <br>
-Mitigation: Require explicit review before write operations and use the least-privileged Jira account or token available. <br>
-Risk: The skill requires a Jira API token that gives the agent access to Jira Cloud. <br>
-Mitigation: Provide credentials only through environment variables, scope the token to the minimum needed access, and rotate it according to organizational policy. <br>
-Risk: Raw API calls and broad Jira routing can bypass the narrower command examples. <br>
-Mitigation: Review raw request URLs and payloads before execution, and prefer documented script commands with visible issue keys and field values. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to operate Jira Cloud workflows from an agent, including issue search, issue updates, comments, transitions, sprint queries, and worklog tracking.
 
-## Reference(s): <br>
-- [Jira Field Reference](references/fields.md) <br>
-- [Atlassian Jira Cloud REST API v3](https://developer.atlassian.com/cloud/jira/platform/rest/v3/) <br>
-- [Snowsand Jira ClawHub Page](https://clawhub.ai/snowsand-enterprises/snowsand-jira) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can call Jira Cloud REST APIs and may return JSON from Jira.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can make live Jira changes, including creating or updating issues, adding comments, transitioning status, and logging work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly permissioned Jira API token and require explicit approval before any create, update, comment, transition, worklog, raw API, link, or attachment operation.
+
+Risk: Jira API credentials can be sent to the URL configured in JIRA_BASE_URL.
+
+Mitigation: Set JIRA_BASE_URL only to the intended HTTPS Atlassian tenant and review the environment before running authenticated commands.
+
+## Reference(s):
+
+- [Jira Field Reference](references/fields.md)
+- [Atlassian Jira Cloud REST API v3 documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate against Jira Cloud REST APIs using environment-provided Jira credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

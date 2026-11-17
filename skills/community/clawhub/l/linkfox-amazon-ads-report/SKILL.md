@@ -1,11 +1,11 @@
 ---
 name: linkfox-amazon-ads-report
-description: 亚马逊广告（Amazon Ads）报告一站式获取技能，覆盖 Sponsored Products (SP) / Sponsored Brands (SB) / Sponsored Display (SD) 全部报告类型。脚本自动完成报告的创建、等待、下载和解压，直接返回可读的结构化数据。真实可用的报告类型及每类的列清单/groupBy/filters 以 `references/report-types/<adProduct-dir>/<reportTypeId>.md` 为单一真相源。当用户提到拉取亚马逊广告报告、下载 Amazon Ads 报告、获取 SP/SB/SD 广告活动/关键词/搜索词/投放商品/购买商品/广告组/流量异常/Prompt 扩展等任意报告时触发。本技能依赖 linkfox-amazon-ads-auth。Sponsored Television (ST) / Amazon DSP 暂未覆盖。
+description: 亚马逊广告（Amazon Ads）报告一站式获取技能，覆盖 Sponsored Products (SP) / Sponsored Brands (SB) / Sponsored Display (SD) 全部报告类型。脚本自动完成报告的创建、等待、下载和解压，直接返回可读的结构化数据。真实可用的报告类型及每类的列清单/groupBy/filters 以 `references/report-types/{adProduct-dir}/{reportTypeId}.md` 为单一真相源。当用户提到拉取亚马逊广告报告、下载 Amazon Ads 报告、获取 SP/SB/SD 广告活动/关键词/搜索词/投放商品/购买商品/广告组/流量异常/Prompt 扩展等任意报告时触发。本技能依赖 linkfox-amazon-ads-auth。Sponsored Television (ST) / Amazon DSP 暂未覆盖。
 ---
 
 # Amazon Ads 报告获取
 
-报告一站式获取：脚本自动完成报告的创建、等待（约 2–10 分钟）、下载和解压，直接返回可读的结构化数据。
+报告一站式获取：脚本经 `developerProxy` 传 `profileId`（服务端解析 token），自动完成报告的创建、等待（约 2–10 分钟）、下载和解压，直接返回可读的结构化数据。
 脚本本身不做"该选哪些列 / 该怎么分组"的业务判断，这些由 agent 先查 `references/report-types/` 下对应的 `.md` 文件，再显式传给脚本。
 
 **依赖 `linkfox-amazon-ads-auth`**（脚本启动自动检查；未安装时 exit 42，stderr 打 `DEPENDENCY_MISSING`）。
@@ -28,7 +28,7 @@ description: 亚马逊广告（Amazon Ads）报告一站式获取技能，覆盖
 
 - **API 端点**：`POST /amazonAds/developerProxy`（不同操作通过请求体区分；完整参数/响应/错误码见 `references/api.md`）
 - **Python 脚本**：`python scripts/<脚本名>.py '<JSON 参数>' [--inline]`（可用脚本见上文脚本一览）
-- **成本约束**：本工具会消耗积分；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
+- **成本约束**：本工具会消耗算力；失败/空结果不得自动换关键词、翻页或连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
 **输出策略（脚本默认行为）**：
 - **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/<skill-name>-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
@@ -37,6 +37,14 @@ description: 亚马逊广告（Amazon Ads）报告一站式获取技能，覆盖
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## Core Concepts
 
@@ -184,7 +192,7 @@ python scripts/get_report.py '{
 - 用户指定了 reportTypeId 就只拉那一种，不擅自替换
 - 报告失败（非 2xx 或 status=FAILED）时如实告知错误原因，不盲目重试
 - 成功后把报告的本地文件路径和访问链接完整展示给用户，并提醒访问链接有时效（默认 5 分钟内有效，过期需重新拉取）
-- **超时不是失败**：当脚本返回 `status=STILL_PROCESSING`（exit code=2），说明客户端已等满默认 10 分钟但报告仍在 Amazon 侧生成。此时 **必须**向用户说明情况并询问是否继续等待，绝不能当成失败处理。参考回复："报告还在 Amazon 侧生成中（已等 10 分钟），要继续等吗？可以选：A. 再等 ~20 分钟（maxAttempts=60）、B. 再等 ~1 小时（maxAttempts=120）、C. 先停，我稍后用 reportId 回来。" 用户选 A/B → 用 `resumeHint.params` 切到仅轮询模式续跑
+- **超时不是失败**：当脚本返回 `status=STILL_PROCESSING`（exit code=2），说明客户端已等满默认约 7.5 分钟但报告仍在 Amazon 侧生成。此时 **必须**向用户说明情况并询问是否继续等待，绝不能当成失败处理。参考回复："报告还在 Amazon 侧生成中（已等约 7.5 分钟），要继续等吗？可以选：A. 再等 ~30 分钟（maxAttempts=60）、B. 再等 ~1 小时（maxAttempts=120）、C. 先停，我稍后用 reportId 回来。" 用户选 A/B → 用 `resumeHint.params` 切到仅轮询模式续跑
 
 ## 常见错误
 
@@ -213,6 +221,26 @@ python scripts/get_report.py '{
 - 报告删除 / 修改 / 定时任务 → 不在本 skill
 - 实体元数据（campaign 名、keyword 匹配类型等）→ `linkfox-amazon-ads-manager`
 - 授权 / token → `linkfox-amazon-ads-auth`
+
+## Amazon Ads API 接口保护与重试指引
+
+同一广告账号/profile 连续收到 Amazon Ads API 的 400、403、404 或 429 时，网关会返回 450、453、454 或 459 并短暂冷却。这些自定义状态码不是 Amazon 原生状态，也不表示封号；目的是避免持续异常或高频调用扩大广告账号风险。
+
+| 状态与 message | 范围 | 触发与冷却 | 处理 |
+|---|---|---|---|
+| `450`：`400，请求异常，请优化您的参数` | 广告账号/profile+接口 | 60 秒内超过 3 次：5 分钟；10 分钟内超过 4 次：20 分钟 | 停止原参数重试，检查 profileId、region、实体/报告 ID、日期和请求体 |
+| `453`：`403，店铺未授权，请先授权` | 广告账号/profile 全部接口 | 60 秒内超过 2 次：5 分钟；10 分钟内超过 4 次：30 分钟 | 停止该广告账号调用，检查 Ads 授权、应用权限、profile 归属和区域 |
+| `454`：`404，资源不存在，请优化您的参数` | 广告账号/profile+接口 | 60 秒内超过 3 次：5 分钟；10 分钟内超过 4 次：30 分钟 | 确认资源 ID、所属 profile/区域、资源状态和接口路径 |
+| `459`：`429限流中，请降低频率` | 广告账号/profile+接口 | 首次：15 秒；2 分钟内超过 2 次：30 秒；3 分钟内超过 4 次：2 分钟 | 降低并发、分页和轮询频率并逐级退避 |
+
+- 立即停止自动或并发重试，不得通过换脚本或重复创建任务绕过保护；优先遵循 `retryAfter`、`blockedUntil`，没有时按表中时长说明。
+- 450/453/454 必须先修正参数、授权或资源标识，冷却后最多谨慎重试一次；再次触发则停止调用。453 期间停止该广告账号/profile 全部 Ads API。
+- 保留已有 `reportId` 等任务 ID；写操作结果不确定时先查询状态，不直接重放。
+- 向用户先说明广告账号保护，再给原因、处理和等待时间。可回复：“为保护您的亚马逊广告账号安全，检测到 Amazon Ads API 连续返回{原因}，当前已进入短暂保护。请先{处理动作}，预计{等待时间}后再试；这不代表封号，也不是套餐或积分限制。”不要只说“LinkFox 限流”或“服务器繁忙”。
+
+## 算力消耗规则
+
+不消耗算力。
 
 **Feedback:**
 

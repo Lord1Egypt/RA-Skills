@@ -1,40 +1,53 @@
-## Description: <br>
-Xunlei helps agents guide users through download acceleration, resource management, remote downloads, cloud drive use, and NAS integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xunlei helps agents explain download acceleration mechanics, compare Xunlei cloud and local download workflows, and guide remote download or NAS setup.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers, NAS administrators, and power users use this skill for Xunlei download setup, bandwidth tuning, cloud-drive workflows, remote download control, and NAS/Docker integration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The NAS Docker example runs a persistent third-party container with broad host privileges. <br>
-Mitigation: Review the command before use, prefer a trusted and pinned image, avoid privileged mode and host networking unless necessary, restrict mounted folders, secure the web interface, and know how to stop and remove the container. <br>
-Risk: Download and resource-management guidance can be misapplied to copyrighted or untrusted resources. <br>
-Mitigation: Use the skill for lawful resources, validate links before downloading, and keep NAS data backed up before changing storage or container configuration. <br>
+## Use Case:
 
+External users and developers use this skill to understand Xunlei download acceleration, assess membership and cloud-storage trade-offs, manage download tasks, and configure remote or NAS-based download workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhangifonly/xunlei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration notes, and troubleshooting tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides Xunlei, cloud drive, remote download, and NAS setup guidance; no API calls or credentials are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The NAS Docker example uses host networking, privileged mode, mutable latest image tags, and broad host volume access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified image digest, bridge networking with only required ports, no privileged mode unless specifically justified, a dedicated non-root user, narrowly scoped writable volumes, and firewall or authentication controls for the web interface.
+
+Risk: Download guidance can be misused for copyrighted or unauthorized content.
+
+Mitigation: Follow the skill's stated boundary to use legal resources only and avoid piracy channels, cracked memberships, or bypass methods.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/xunlei)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Docker and NAS configuration recommendations; users should review commands before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

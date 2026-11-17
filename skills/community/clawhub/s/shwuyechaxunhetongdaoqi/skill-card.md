@@ -1,45 +1,58 @@
-## Description: <br>
-Queries Shanghai property-management announcements to extract contract terms and award dates, calculate contract-expiry dates, and produce CSV results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents query Shanghai property project contract expirations by analyzing property procurement announcements, extracting contract terms and award dates, and producing CSV-ready results.
 
-## Publisher: <br>
-[misbah-boop](https://clawhub.ai/user/misbah-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misbah-boop](https://clawhub.ai/user/misbah-boop)
 
-## Use Case: <br>
-Property analysts, real estate operators, and developers use this skill to batch query Shanghai property-management project announcements by district or year and identify contracts that are expired or nearing expiry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Shanghai) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The end-to-end workflow depends on the separate shwuyeyanjiu skill and external Python packages. <br>
-Mitigation: Review and install the required dependency skill and packages before running batch queries. <br>
-Risk: Batch runs write CSV output files and may use a caller-selected output path. <br>
-Mitigation: Choose an expected output path and review the generated CSV before using it for operational decisions. <br>
-Risk: PDF download, OCR, and date extraction can leave some contract-expiry records incomplete or uncertain. <br>
-Mitigation: Check source notes and failure reasons in the results, and verify important dates against the original announcements. <br>
+## Use Case:
 
+Property analysts, operations teams, and agent workflows use this skill to batch query Shanghai property projects by district or expiration year, identify contracts nearing expiration, and prepare CSV results for follow-up review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/misbah-boop/shwuyechaxunhetongdaoqi) <br>
-- [Shanghai property tender announcements](https://962121.fgj.sh.gov.cn/wyweb/web/front/common/greenmorelist.jsp) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and CSV result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CSV results can include project names, contract terms, award dates, calculated expiry dates, and source notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/package.json) <br>
+Risk: The security review found unpinned dependencies and external code paths that were not fully present for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the dependency installation path, and verify the separate shwuyeyanjiu skill before running the documented batch workflow.
+
+Risk: The workflow contacts an external Shanghai property-announcement site, downloads PDFs, performs OCR, and writes CSV files locally.
+
+Mitigation: Run it in a controlled workspace with network access reviewed, expected output paths configured, and downloaded documents treated as untrusted input.
+
+Risk: OCR failures, date-format variation, missing announcements, or failed PDF downloads can produce incomplete or incorrect expiration dates.
+
+Mitigation: Review generated CSV rows, preserve source annotations, and manually check high-impact or uncertain contract-expiration results before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/misbah-boop/skills/shwuyechaxunhetongdaoqi)
+- [Shanghai property announcement site](https://962121.fgj.sh.gov.cn/wyweb/web/front/common/greenmorelist.jsp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and CSV output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write CSV output locally when the query workflow is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

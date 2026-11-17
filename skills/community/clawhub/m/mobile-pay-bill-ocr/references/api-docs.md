@@ -1,4 +1,6 @@
-# Sugon-Scnet OCR API 文档摘要
+# Sugon-Scnet 移动支付账单 OCR API 文档摘要
+
+> 本文档仅针对 `mobile_pay_bill_ocr` 技能使用的 **移动支付账单识别** 场景。本技能仅支持 `MOBILE_PAYMENT_BILL` 一种识别类型，不接受身份证、合同、印章、发票、卡证等非支付类文档。
 
 ## 接口地址
 `POST https://api.scnet.cn/api/llm/v1/ocr/recognize`
@@ -10,75 +12,46 @@
 ## 请求参数（表单）
 | 参数名  | 类型 | 必填 | 描述                                   |
 | ------- | ---- | ---- | -------------------------------------- |
-| file    | File | 是   | 需要识别的图片文件                     |
-| ocrType | str  | 是   | 识别类型枚举，详见 SKILL.md 参数说明   |
+| file    | File | 是   | 需要识别的移动支付账单图片（jpg/png 等常见图片格式） |
+| ocrType | str  | 是   | 识别类型枚举，本技能固定为 `MOBILE_PAYMENT_BILL` |
 
 ## 响应结构
 ```json
 {
   "code": "0",
   "msg": "success",
-  "data": [
-    {
-      "traceId": "202604010000001",
-      "originalFilename": "通用文字示例.png",
-      "cosPath": "/ocr/202604/01/通用文字示例.png",
-      "result": [
-        {
-          "status": 200,
-          "originFilename": "id-card.jpg",
-          "cosPath": "scnetAPIService/20260323/2e204eb284bb438ba7863f5e65470c40_cut_1.jpg",
-          "fileIndex": 1,
-          "cutIndex": 1,
-          "coordinate": [ 88, 734, 88, 61, 1115, 61, 1115, 734 ],
-          "classifyCode": "",
-          "confidence": 1.0,
-          "elements": {
-            "address": "湖南省衡东县**镇**村1组11号",
-            "gender": "男",
-            "nation": "汉",
-            "confidence": "1.0",
-            "name": "张示例",
-            "bornDate": "1990年9月4日",
-            "IDNumber": "2300***********311"
-          },
-          "stamps": [
-            {
-              "stampPosition": [
-                566,
-                46,
-                789,
-                269
-              ],
-              "stampConfidence": 0.9686,
-              "stampShape": "圆形",
-              "stampColor": "红色",
-              "stampType": "合同专用章",
-              "stampTextList": [
-                "某某某某管理有限公司",
-                "合同专用章"
-              ]
-            },
-            {
-              "stampPosition": [
-                569,
-                381,
-                804,
-                616
-              ],
-              "stampConfidence": 0.9666,
-              "stampShape": "圆形",
-              "stampColor": "红色",
-              "stampType": "公章",
-              "stampTextList": [
-                "北京某某某某发展有限公司"
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "data": {
+    "traceId": "12345678909",
+    "originalFilename": "移动支付账单示例.PNG",
+    "cosPath": "scnetAPIService/20260101/3990c1e6b3944947bcb75d548313bbff.PNG",
+    "result": [
+      {
+        "status": 200,
+        "originFilename": "移动支付账单示例.PNG",
+        "cosPath": "scnetAPIService/20260101/3990c1e6b3944947bcb75d548313bbff_cut_1.PNG",
+        "fileIndex": 1,
+        "cutIndex": 1,
+        "coordinate": [21, 1754, 21, 0, 801, 0, 801, 1754],
+        "classifyCode": "",
+        "confidence": 0.951,
+        "elements": {
+          "title": "耶里夏丽东方店",
+          "transAmount": "-179.00",
+          "transStatus": "支付成功",
+          "transDate": "2025年10月20日 18:00:53",
+          "goods": "耶里夏丽东方店",
+          "merchantName": "上海西夜餐饮有限公司",
+          "acquiringInstitution": "财付通支付科技有限公司",
+          "transType": "招商银行储蓄卡(2005)",
+          "transNo": "4200002955202510205438716000",
+          "merchantNo": "003518872Y3NtApckr98IHaySg2PeM",
+          "remarks": "",
+          "refundNo": ""
+        },
+        "stamps": []
+      }
+    ]
+  }
 }
 ```
 ## 错误码
@@ -87,8 +60,6 @@
 - `业务错误码（如 code 非 0）：见返回的 msg 字段`
 
 ## 注意事项
-- `支持单张图片、PDF 或多页压缩包（自动解压识别）`
-- `识别结果位于 data[0].result[0].elements 中`
-- `不同 ocrType 返回的 elements 字段不同，详见 assets/templates/fields-summary.md`
-- `识别结果位于 data[0].result[0].stamps 中`
-- `不同 ocrType 返回的 stamps 字段不同，详见 assets/templates/fields-summary.md`
+- 本技能仅识别单张移动支付账单图片。
+- 识别结果位于 `data[0].result[0].elements` 中。
+- 返回字段以 `assets/templates/fields-summary.md` 为准。

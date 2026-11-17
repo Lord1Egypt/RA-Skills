@@ -1,46 +1,61 @@
-## Description: <br>
-XLMTools lets agents retrieve live Stellar/XLM data and broader external data, use Stellar DEX and wallet functions, and call paid search, research, scraping, screenshots, stocks, YouTube, and image tools through MCP or CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live data and actions for Stellar (XLM, Soroban, DEX, USDC), plus crypto prices, stock quotes, weather, domain checks, web search, deep research, screenshots, URL scraping, AI images, and YouTube.
 
-## Publisher: <br>
-[blockchain-oracle](https://clawhub.ai/user/blockchain-oracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blockchain-oracle](https://clawhub.ai/user/blockchain-oracle)
 
-## Use Case: <br>
-Developers and external agents use this skill to answer requests that require live Stellar, market, web, media, weather, or domain data, and to perform small paid data actions with cost disclosure. It is intended for external data and actions rather than general knowledge, math, coding, or summarizing user-provided text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent local Stellar testnet wallet configuration and make USDC-paid calls. <br>
-Mitigation: Install only when that behavior is acceptable, set an MCP budget where possible, and treat ~/.xlmtools/config.json as sensitive local account configuration. <br>
-Risk: Some paid tools are designed to run after cost mention rather than explicit approval. <br>
-Mitigation: Require explicit approval for every paid call when the agent host supports that policy, especially for research, screenshots, and image generation. <br>
-Risk: Broad activation rules may route current-events, URL, or Stellar-related requests through external services. <br>
-Mitigation: Use the skill only for requests that need live or external data, and avoid it for general knowledge, math, code, or pasted-text summarization. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve current Stellar ecosystem data, market data, weather, domain status, web results, page content, screenshots, generated images, and YouTube information. It also guides agents on paid-tool cost disclosure, confirmation, and transaction reporting for USDC-paid calls.
 
-## Reference(s): <br>
-- [XLMTools ClawHub listing](https://clawhub.ai/blockchain-oracle/xlmtools) <br>
-- [XLMTools runtime manifest](https://api.xlmtools.com/.well-known/xlmtools.json) <br>
-- [XLMTools llms.txt](https://api.xlmtools.com/llms.txt) <br>
-- [Circle testnet USDC faucet](https://faucet.circle.com) <br>
-- [Stellar Laboratory account funding](https://lab.stellar.org/account/fund) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid tool responses can include Stellar testnet payment transaction hashes; MCP responses may be cached for repeated queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned npm install commands can run mutable package code in the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned package versions, review the XLMTools npm packages separately, and run them in an isolated sandbox where practical.
+
+Risk: Broad triggers can route general latest, URL, or live-data requests through external tools and paid services.
+
+Mitigation: Review calls before execution, use the cheapest sufficient tool, and avoid paid tools for requests answerable from existing context or training data.
+
+Risk: First run creates a local Stellar testnet wallet configuration and sets up payment-related state automatically.
+
+Mitigation: Install only when that local wallet behavior is acceptable, inspect the generated configuration, and set an MCP budget before paid use.
+
+## Reference(s):
+
+- [ClawHub XLMTools Skill Page](https://clawhub.ai/blockchain-oracle/skills/xlmtools)
+- [XLMTools Runtime Manifest](https://api.xlmtools.com/.well-known/xlmtools.json)
+- [XLMTools LLM Service Metadata](https://api.xlmtools.com/llms.txt)
+- [Circle Testnet USDC Faucet](https://faucet.circle.com)
+- [Stellar Lab Testnet Account Funding](https://lab.stellar.org/account/fund)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline tool names, shell commands, JSON results, links, costs, and transaction hashes when paid tools are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on MCP tools or the xlm CLI; paid calls require cost disclosure, approval for higher-cost tools, and Stellar transaction hash reporting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

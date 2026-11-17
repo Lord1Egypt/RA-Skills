@@ -1,0 +1,253 @@
+# packs/manufacturing.yaml — 制造业工厂行业包 (Manufacturing)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 与 opc / ecommerce / sme 同范式。制造业细分极多（服装/食品/电子/机械/化工/建材/医药/日用品/汽车/金属/包装/玩具…），
+# 本包采用「一个主包 + 内置 subtypes 段」组织：顶层定义制造业共性，subtype 只补差异，
+# 避免每种细分各写一个文件导致臃肿与重复。
+#
+# 零侵入说明：本文件为新增 pack，不改动 24 部门模板、141 动作库、decision/roles/semantic/logic、init.py。
+# 制造业「心脏」部门（生产制造/设备工程/工艺工程）不在 24 部门通用库，通过 suggested_custom_departments
+# 建议用户用私有定制添加（references/customization.md），不写入技能包本体。
+
+meta:
+  pack_id: manufacturing
+  display_name: 制造业工厂 (Manufacturing)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [制造, 工厂, 生产, 制造业, 加工厂, 实业, 车间, 产线, OEM, ODM, 代工, 生产型企业, 工业企业]
+  description: >
+    适用于从事实物产品制造的工厂型企业（离散制造与流程制造均可）。主包覆盖制造业共性
+    （生产/设备/工艺/质量/供应链/安环），subtypes 覆盖主要细分行业的差异。
+
+# ── 一、制造业共性实体（基础层未覆盖，须明确类型与关系）──
+entities_extra:
+  - type: Factory
+    extends: Organization
+    properties:
+      - { name: plant_name, type: string, example: "一号厂区" }
+      - { name: prod_type, type: enum, enum: [离散制造, 流程制造], required: true }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+  - type: ProductionLine
+    extends: Account
+    properties:
+      - { name: line_no, type: string, required: true }
+      - { name: capacity, type: number, desc: "日/班产能" }
+      - { name: oee, type: number, desc: "设备综合效率 OEE" }
+    relations:
+      - { to: Factory, type: in_plant, cardinality: many_to_one }
+  - type: Equipment
+    extends: Asset
+    properties:
+      - { name: asset_no, type: string, required: true }
+      - { name: spec, type: string }
+      - { name: special_device, type: boolean, desc: "是否特种设备（压力容器/起重机械/锅炉等）" }
+      - { name: next_inspect, type: date, desc: "下次法定检验日期" }
+    relations:
+      - { to: ProductionLine, type: on_line, cardinality: many_to_one }
+  - type: ProcessRoute
+    extends: Document
+    properties:
+      - { name: step, type: string }
+      - { name: station, type: string }
+    relations:
+      - { to: Product, type: for_product, cardinality: many_to_one }
+  - type: WorkOrder
+    extends: Task
+    properties:
+      - { name: wo_no, type: string, required: true }
+      - { name: qty, type: integer }
+      - { name: status, type: enum, enum: [待排产, 生产中, 待检, 合格入库, 返工], required: true }
+    relations:
+      - { to: ProductionLine, type: runs_on, cardinality: many_to_one }
+  - type: WIP
+    extends: Asset
+    properties:
+      - { name: qty, type: integer }
+    relations:
+      - { to: WorkOrder, type: of_wo, cardinality: many_to_one }
+  - type: Yield
+    extends: Metric
+    properties:
+      - { name: rate, type: number, desc: "良率%" }
+      - { name: defect_code, type: string }
+  - type: Material
+    extends: Account
+    properties:
+      - { name: sku, type: string, required: true }
+      - { name: safety_stock, type: integer, desc: "安全库存" }
+    relations:
+      - { to: Supplier, type: sourced_from, cardinality: many_to_one }
+  - type: BOM
+    extends: Document
+    properties:
+      - { name: version, type: string }
+    relations:
+      - { to: Product, type: for_product, cardinality: many_to_one }
+  - type: Supplier
+    extends: Organization
+    properties:
+      - { name: lead_time, type: integer, desc: "供货周期(天)" }
+
+# ── 二、推荐部门（12 核心 + 制造相关可选；生产/设备/工艺走私有定制建议）──
+recommended_departments:
+  # 12 核心（沿用，不重复定义人设）
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+  # 制造相关可选（已在 24 部门库，when_to_include 已含「制造」）
+  - { code: operations,  name: 运营 }        # 统筹日常经营/流程编排
+  - { code: procurement, name: 采购供应链 }  # 供应商/物料/库存/履约
+  - { code: quality,     name: 质量管理 }    # QA/品控/标准
+# 注：制造业「心脏」部门——生产制造 / 设备工程 / 工艺工程——不在 24 部门通用库，
+# 通过下面 suggested_custom_departments 建议用户以私有定制添加，不影响技能包整体性。
+
+suggested_custom_departments:
+  - { code: production,  name: 生产制造, gender_default: male, expertise: "排产/车间管理/工时/产能利用", when: "工厂有产线即建议加" }
+  - { code: maintenance, name: 设备工程, gender_default: male, expertise: "设备维护/TPM/特种设备检验/备件管理", when: "有生产线设备即建议加" }
+  - { code: process,     name: 工艺工程, gender_default: male, expertise: "工艺路线/IE精益/良率提升/降本", when: "产品工艺复杂即建议加" }
+
+# ── 三、默认工作流（制造核心循环）──
+default_workflow: manufacturing_ops
+workflow_bindings:
+  manufacturing_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [接单, 排产, 采购备料, 生产, 质检, 入库, 交付, 复盘]
+
+# ── 四、本地化政策钩子（引用 decision.yaml 新增红线）──
+policy_hooks:
+  region: 全国
+  redline_refs:
+    - compliance_redlines.manufacturing_safety   # 安全生产/环保/质量体系/特种设备/消防（本 pack 触发，decision.yaml 提供）
+    - compliance_redlines.tax                    # 开票/报税合规
+  local_services: []
+
+# ── 五、B 层风味（注入到人设的「行业红线」，按部门名 key，default 兜底）──
+flavor:
+  default: >-
+    你服务的是制造业工厂型企业，安全生产与环保是生命线；质量体系（如 ISO9001）须常抓不懈，
+    特种设备须定期检验、持证操作；开票/报税/大额采购等重大动作须经老板二次确认；
+    统一社会信用代码等公开工商登记信息可记，个人身份证/银行卡/票据影像等 PII 一律不存明文。
+  quality: 质量标准与抽检须可追溯；不合格品不擅自放行；客诉根因闭环；体系认证(IATF16949/GMP/CCC)按 subtype 适用。
+  procurement: 供应商寻源与备货须兼顾成本与交期；关键物料设安全库存与备选供应商，防断料；大额采购按授权上报。
+  operations: 排产与产能平衡是核心；OEE/良率看板常态化；跨部门卡点（断料/设备停机）即时上报。
+  legal: 环评/排污许可/消防验收等行政许可须齐备；危化品与特种设备合规；安环事故须依法上报。
+  finance: 制造费用归集(料工费)、增值税留抵、设备购置抵免等制造财税要点；开票→记账→申报形成 SOP。
+
+# ── 六、制造特有监测信号（配合 Phase 10 monitoring.yaml 的 manufacturing 域）──
+# 这些信号在厚档案（制造业通常有产线/设备/库存数据）下运行，由 subtype 决定侧重；
+# 路由至 operations/quality/procurement/risk 及建议的生产制造部门。
+manufacturing_signals:
+  signals:
+    - { id: equipment_down, name: 设备停机/OEE 下滑, owner: [operations, maintenance],    desc: "关键设备停机或 OEE 跌破阈值" }
+    - { id: yield_drop,     name: 良率波动,         owner: [quality, process],           desc: "批次良率异常下滑/缺陷集中" }
+    - { id: material_short, name: 断料缺料,         owner: [procurement, production],    desc: "关键物料低于安全库存/供应商交期延误" }
+    - { id: safety_incident, name: 安环事故,        owner: [legal, risk],                desc: "安全/环保/火灾/工伤事故或预警" }
+    - { id: energy_anomaly, name: 能耗异常,         owner: [operations],                 desc: "单位产品能耗异常上升" }
+    - { id: recall_risk,    name: 质量召回风险,     owner: [quality, legal],             desc: "出现可能涉及召回的质量缺陷" }
+
+# ── 七、实例化提示（引导时填空项）──
+instance_prompts:
+  - "请描述制造类型（离散/流程）与细分行业（服装/食品/电子/机械/化工…）"
+  - "请介绍企业情况（主体、地区、厂区、产线、是否雇人）"
+  - "想搭建哪些部门（默认 12 核心 + 运营/采购/质量；建议加生产制造/设备工程/工艺工程）"
+  - "核心业务逻辑（如 接单 → 排产 → 备料 → 生产 → 质检 → 交付）"
+  - "是否有特种设备/危化品/体系认证（影响安环红线）"
+
+# ── 八、细分行业亚型（subtypes）：只补差异，共性由主包提供 ──
+# 用户描述企业时，按 match_keywords 命中 subtype，叠加下列差异到主包之上。
+subtypes:
+  - id: apparel
+    display_name: 服装纺织
+    match_keywords: [服装, 纺织, 服饰, 制衣, 面料, 成衣]
+    entities_extra: [款式, 尺码BOM, 面料批次]
+    department_emphasis: [procurement, quality, mkt_content]
+    flavor_overrides: "季节性强、快反供应链；面料质检与色差管控；爆款翻单节奏。"
+    monitoring_focus: [material_short, yield_drop]
+  - id: food
+    display_name: 食品饮料
+    match_keywords: [食品, 饮料, 食品加工, 农副, 烘焙, 预制菜]
+    entities_extra: [批次, 保质期, SC生产许可, 配料表]
+    department_emphasis: [quality, legal, procurement]
+    flavor_overrides: "SC 食品生产许可前置；批次追溯与保质期预警；食安法红线；召回预案。"
+    monitoring_focus: [recall_risk, yield_drop, material_short]
+  - id: electronics
+    display_name: 电子电器
+    match_keywords: [电子, 电器, 元器件, SMT, 消费电子, 家电]
+    entities_extra: [PCBA, 元器件BOM, 静电防护]
+    department_emphasis: [quality, rnd, procurement]
+    flavor_overrides: "元器件齐套率影响排产；ESD/良率管控；RoHS/CCC 合规。"
+    monitoring_focus: [material_short, yield_drop]
+  - id: machinery
+    display_name: 机械装备（重工）
+    match_keywords: [机械, 装备, 重工, 机床, 设备制造, 零部件]
+    entities_extra: [零部件BOM, 大型设备, 装配工艺]
+    department_emphasis: [production, maintenance, process]
+    flavor_overrides: "单件/小批为主；设备维护与装配工艺关键；大型设备交付周期长。"
+    monitoring_focus: [equipment_down, material_short]
+  - id: chemical
+    display_name: 化工
+    match_keywords: [化工, 化学, 涂料, 塑化, 精细化工, 危化品]
+    entities_extra: [危化品, 反应釜, 管制安全库存, MSDS]
+    department_emphasis: [legal, quality, operations]
+    flavor_overrides: "危化品全生命周期管理；MSDS/环评/排污许可；工艺安全(HAZOP)；事故上报刚性。"
+    monitoring_focus: [safety_incident, material_short]
+  - id: building
+    display_name: 建材家居
+    match_keywords: [建材, 家居, 陶瓷, 家具, 门窗, 装修材料]
+    entities_extra: [规格型号, 工程订单, 批次]
+    department_emphasis: [sales, procurement, quality]
+    flavor_overrides: "工程渠道与大客户为主；交期与安装协同；环保建材认证(十环)。"
+    monitoring_focus: [material_short, yield_drop]
+  - id: pharma
+    display_name: 医药生物
+    match_keywords: [医药, 制药, 生物, 医疗器械, 保健品]
+    entities_extra: [GMP, 批记录, 注册证, 有效期]
+    department_emphasis: [quality, legal, rnd]
+    flavor_overrides: "GMP 强制；批记录可追溯；注册证/临床合规；召回与不良反应监测。"
+    monitoring_focus: [recall_risk, yield_drop, safety_incident]
+  - id: consumer
+    display_name: 日用消费品/家居用品
+    match_keywords: [日用品, 家居用品, 生活用品, 塑料制品, 小商品, 百货]
+    entities_extra: [SKU, 模具, 包装]
+    department_emphasis: [mkt_content, sales, quality]
+    flavor_overrides: "SKU 多、模具与包装前置；快消节奏；品牌与渠道并重。"
+    monitoring_focus: [material_short, yield_drop]
+  - id: auto
+    display_name: 汽车及零部件
+    match_keywords: [汽车, 零部件, 汽配, 新能源车, 三电]
+    entities_extra: [VIN, 零部件BOM, IATF16949]
+    department_emphasis: [quality, process, production]
+    flavor_overrides: "IATF16949 体系；APQP/PPAP；追溯与召回刚性；主机厂供应链协同。"
+    monitoring_focus: [recall_risk, yield_drop, material_short]
+  - id: metal
+    display_name: 金属冶炼/材料
+    match_keywords: [冶金, 钢铁, 有色, 金属, 材料, 铸造, 锻造]
+    entities_extra: [炉批号, 成分, 能耗]
+    department_emphasis: [operations, quality, procurement]
+    flavor_overrides: "高能耗、环保督察重点；炉批号追溯；能耗与碳排管控。"
+    monitoring_focus: [energy_anomaly, safety_incident, material_short]
+  - id: packaging
+    display_name: 包装印刷
+    match_keywords: [包装, 印刷, 纸箱, 标签, 软包装]
+    entities_extra: [印版, 订单规格, 批次]
+    department_emphasis: [production, sales, quality]
+    flavor_overrides: "订单规格多变、打样前置；交期紧；VOCs 治理合规。"
+    monitoring_focus: [material_short, yield_drop]
+  - id: toy
+    display_name: 塑胶玩具
+    match_keywords: [玩具, 塑胶, 婴童, 礼品, 潮玩]
+    entities_extra: [模具, 3C认证, 安全检测]
+    department_emphasis: [quality, mkt_content, production]
+    flavor_overrides: "3C 强制认证；邻苯/重金属等安全检测；IP 与潮玩节奏。"
+    monitoring_focus: [recall_risk, yield_drop, material_short]

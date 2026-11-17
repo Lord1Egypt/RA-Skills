@@ -1,41 +1,54 @@
-## Description: <br>
-Form Builder Pro helps agents create, validate, render, and serialize dynamic forms using JSON Schema, YAML or JSON configuration, conditional field logic, and Jinja2 templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Form Builder Pro helps agents create and validate dynamic JSON Schema forms with YAML configuration, conditional logic, custom validation, and Jinja2 rendering.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and agents use this skill to build form definitions, generate JSON Schema, validate submitted form data, render HTML form markup, and work with conditional form fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency versions are not pinned in the artifact. <br>
-Mitigation: For production use, pin and review jsonschema, PyYAML, and Jinja2 versions before deployment. <br>
-Risk: Untrusted form configurations or templates can affect validation and rendering behavior. <br>
-Mitigation: Do not load form configs or render templates from untrusted sources unless additional validation and sandboxing are in place. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate, configure, render, and validate application forms backed by JSON Schema and YAML definitions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/form-builder-pro) <br>
-- [Project homepage from ClawHub metadata](https://github.com/kaiyuelv/form-builder-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code, JSON Schema, YAML or JSON form definitions, and HTML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include validation results, serialized form definitions, and rendered form markup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and skill frontmatter) <br>
+Risk: Custom Jinja2 template rendering can be unsafe when templates or form definitions come from untrusted sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted templates and form definitions unless the renderer is changed to use sandboxing, autoescaping, strict validation, and pinned dependencies.
+
+Risk: The server security verdict is suspicious for use in web-facing or multi-user environments.
+
+Mitigation: Review the skill before installation in those environments and apply the server security guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/skills/form-builder-pro)
+- [Project Homepage](https://github.com/kaiyuelv/form-builder-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or text with Python code snippets, JSON Schema, and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated form definitions, validation results, rendered HTML, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

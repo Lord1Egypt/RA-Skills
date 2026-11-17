@@ -1,50 +1,63 @@
-## Description: <br>
-Invoke Alibaba Cloud Apsara Data Agent for Analytics via CLI to perform natural language-driven data analysis on enterprise databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoke Alibaba Cloud Apsara Data Agent for Analytics via CLI to perform natural language-driven data analysis on enterprise databases.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to discover Alibaba Cloud DMS data resources, start natural language database or file analysis sessions, monitor progress, and retrieve generated reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses enterprise databases and Data Agent sessions with Alibaba Cloud credentials. <br>
-Mitigation: Use least-privilege RAM credentials and prefer the custom minimal policy documented in references/RAM-POLICIES.md over broad managed DMS policies. <br>
-Risk: Session directories can contain prompts, progress logs, reports, generated files, and other sensitive analysis artifacts. <br>
-Mitigation: Treat all files under sessions/ as sensitive, restrict local access, and review artifacts before sharing them. <br>
-Risk: External notification behavior can send session progress or results to configured push destinations. <br>
-Mitigation: Review notification and logging behavior before installation, avoid setting ASYNC_TASK_PUSH_URL unless the destination is approved, and disable HEARTBEAT-style notifications for sensitive sessions. <br>
-Risk: Deep analysis and insight modes can generate execution plans, SQL, reports, and charts that may be incorrect or require user approval. <br>
-Mitigation: Review generated plans, SQL, and reports before relying on them, and use attach-based confirmation only after checking the proposed analysis. <br>
+## Use Case:
 
+Developers, data engineers, and analysts use this skill to discover Alibaba Cloud DMS/Data Agent data resources, start natural-language database or file analysis sessions, monitor progress, and retrieve generated reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-data-agent-skill) <br>
-- [Alibaba Cloud Credential Chain Documentation](https://help.aliyun.com/document_detail/378659.html) <br>
-- [Data Agent API Key Console](https://agent.dms.aliyun.com/cn-hangzhou/api-key) <br>
-- [COMMANDS.md](references/COMMANDS.md) <br>
-- [WORKFLOWS.md](references/WORKFLOWS.md) <br>
-- [ANALYSIS_MODE.md](references/ANALYSIS_MODE.md) <br>
-- [RAM-POLICIES.md](references/RAM-POLICIES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce session logs, status files, downloaded reports, charts, and local artifacts under sessions/<SESSION_ID>/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.5 (source: release evidence, SKILL.md metadata, changelog) <br>
+Risk: The skill handles Alibaba Cloud credentials, database access, local files, generated reports, background monitoring, and custom network destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use tightly scoped Alibaba RAM permissions, avoid broad DMS full-access credentials, and verify trusted destinations before setting custom endpoints.
+
+Risk: Sensitive files or production databases could be analyzed or included in reports before containment issues are resolved.
+
+Mitigation: Avoid sensitive files and production databases until endpoint validation and path-safety issues are fixed; start with non-sensitive test data.
+
+Risk: Autonomous heartbeat notifications can push session progress or report content to chat channels.
+
+Mitigation: Disable or ignore heartbeat-style notifications unless session progress and report delivery to chat channels is explicitly desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-data-agent-skill)
+- [Alibaba Cloud Credential Chain Documentation](https://help.aliyun.com/document_detail/378659.html)
+- [Data Agent API Key Console](https://agent.dms.aliyun.com/cn-hangzhou/api-key)
+- [Subcommand Reference](references/COMMANDS.md)
+- [Typical Workflows](references/WORKFLOWS.md)
+- [RAM Permission Policies](references/RAM-POLICIES.md)
+- [ANALYSIS Mode Sub-Agent Specification](references/ANALYSIS_MODE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, CLI text output, generated reports, and local session artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Long-running ANALYSIS and INSIGHT sessions may require plan confirmation and later attachment to retrieve progress, reports, charts, or files.]
+
+## Skill Version(s):
+
+1.8.5 (source: server release evidence and SKILL.md metadata/changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

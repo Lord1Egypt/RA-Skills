@@ -1,45 +1,66 @@
-## Description: <br>
-Self-improvement through conversation analysis that extracts learnings from corrections and success patterns, proposes updates to agent files, or creates new skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improvement through conversation analysis; extracts learnings from corrections and success patterns, proposes updates to agent files, and can draft new skills.
 
-## Publisher: <br>
-[stevengonsalvez](https://clawhub.ai/user/stevengonsalvez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stevengonsalvez](https://clawhub.ai/user/stevengonsalvez)
 
-## Use Case: <br>
-Developers and agent users use Reflect to analyze conversations for durable learnings, review proposed agent or skill updates, and preserve approved behavior changes across future sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived learnings may preserve private content or secrets in local state or reflection files. <br>
-Mitigation: Review proposed diffs and generated reflection files before approval, avoid approving learnings that contain secrets or private content, and consider setting REFLECT_STATE_DIR to a project-local or private location. <br>
-Risk: Hook-based auto-reflection can write local files during context compaction. <br>
-Mitigation: Keep auto-reflection disabled until the hook behavior and output locations are understood, and review hook configuration before enabling it. <br>
-Risk: Bundled session logs may contain conversation history that users should evaluate before installation or redistribution. <br>
-Mitigation: Review bundled logs before installing or sharing the release, and remove or avoid distributing logs that contain private data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Signal Detection Patterns](references/signal_patterns.md) <br>
-- [Agent Mappings Reference](references/agent_mappings.md) <br>
-- [Skill Template Reference](references/skill_template.md) <br>
-- [Reflect Hooks Integration](hooks/README.md) <br>
-- [Learnings Schema](assets/learnings_schema.yaml) <br>
+## Use Case:
 
+Developers and agent maintainers use Reflect to analyze conversations for explicit corrections, successful patterns, and reusable lessons, then review proposed updates to agent files or new skills before applying them.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with proposed diffs, shell commands, JSON hook output, YAML state, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Human approval is expected before applying proposed agent or skill changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can propose and apply persistent changes to agent instructions or create new skills.
+
+Mitigation: Require explicit user approval, inspect generated diffs, and apply only selected changes that preserve existing structure.
+
+Risk: The optional PreCompact hook can create reflection output during context compaction when auto-reflection is enabled.
+
+Mitigation: Keep auto-reflection disabled until the hook script and settings snippet are reviewed, then use remind-only mode or a pinned hook command when possible.
+
+Risk: The artifact bundle includes private developer session logs.
+
+Mitigation: Remove bundled logs before installation or redistribution and avoid using log contents as public provenance.
+
+Risk: Generated skill names and paths can affect persistent user or project files.
+
+Mitigation: Validate proposed skill names and target paths before file creation, and use a controlled REFLECT_STATE_DIR for state files.
+
+## Reference(s):
+
+- [Reflect Skill Definition](artifact/SKILL.md)
+- [Hook Integration Guide](artifact/hooks/README.md)
+- [Signal Detection Patterns](artifact/references/signal_patterns.md)
+- [Agent Mappings Reference](artifact/references/agent_mappings.md)
+- [Skill Template Reference](artifact/references/skill_template.md)
+- [Reflection Template](artifact/assets/reflection_template.md)
+- [Learnings Schema](artifact/assets/learnings_schema.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reflection reports with diff blocks, shell commands, YAML or JSON state and configuration, and skill file drafts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write reflection files, indexes, learnings state, hook logs, and optional new skill files after review.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

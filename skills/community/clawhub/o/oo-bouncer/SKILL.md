@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Bouncer"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["bouncer"]
   icon: "https://static.oomol.com/logo/third-party/Bouncer.svg"
 ---
@@ -41,7 +41,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_toxicity_list_job` — Create a Bouncer toxicity list job for multiple email addresses. [write]
 - `delete_batch_request` — Delete a Bouncer batch verification request and its stored results. [destructive]
 - `delete_toxicity_list_job` — Delete a Bouncer toxicity list job and its stored results. [destructive]
-- `finish_batch` — Request early completion for a Bouncer batch verification request.
+- `finish_batch` — Request early completion for a Bouncer batch verification request. [write]
 - `get_batch_results` — Download normalized results from a completed Bouncer batch verification request.
 - `get_batch_status` — Get the current processing status of a Bouncer batch verification request.
 - `get_credits` — Get the current Bouncer credit balance.
@@ -49,7 +49,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_toxicity_list_results` — Download normalized results from a completed Bouncer toxicity list job.
 - `verify_domain` — Verify one domain with Bouncer and inspect its DNS and catch-all signals.
 - `verify_email` — Verify a single email address with Bouncer in real time.
-- `verify_emails_batch_sync` — Verify multiple email addresses with Bouncer batch sync in a single request. [write]
+- `verify_emails_batch_sync` — Verify multiple email addresses with Bouncer batch sync in a single request.
 
 ## Safety
 
@@ -80,11 +80,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Bouncer is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=bouncer
+  https://console.oomol.com/connections/bouncer
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Bouncer homepage: https://www.usebouncer.com/
+- API documentation: https://docs.usebouncer.com/

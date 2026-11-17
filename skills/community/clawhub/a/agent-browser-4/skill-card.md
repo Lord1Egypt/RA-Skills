@@ -1,48 +1,62 @@
-## Description: <br>
-Browser automation CLI for AI agents that need to navigate websites, fill forms, click buttons, take screenshots, extract data, test web apps, or automate browser tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation CLI for AI agents that need to interact with websites by navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating browser tasks.
 
-## Publisher: <br>
-[Justinpoulido](https://clawhub.ai/user/Justinpoulido) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[justinpoulido](https://clawhub.ai/user/justinpoulido)
 
-## Use Case: <br>
-Developers and agents use this skill to control browser sessions for website interaction, form automation, data extraction, visual capture, authentication workflows, and web app testing. It is intended for tasks where command-driven browser control is needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes powerful browser control, session persistence, recording, proxy, and script-execution capabilities that can expose sensitive accounts, credentials, cookies, screenshots, videos, proxy credentials, and auth-state files. <br>
-Mitigation: Use it only where browser automation is necessary; avoid personal banking, admin consoles, production accounts, and SSO or MFA sessions unless explicitly required; keep browser artifacts out of repositories and shared logs; delete them after use. <br>
-Risk: Saved browser state can contain cookies, local storage, session storage, and authentication tokens. <br>
-Mitigation: Store state files securely, never commit them, prefer short-lived sessions for CI/CD, encrypt persistent sessions when used, and clear cookies or remove state files after automation. <br>
-Risk: Screenshots, videos, traces, PDFs, and profiling output can capture private page content or credential entry. <br>
-Mitigation: Do not record credential entry, limit capture to the minimum needed for the task, and review generated artifacts before sharing or retaining them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Justinpoulido/agent-browser-4) <br>
-- [Command Reference](references/commands.md) <br>
-- [Snapshot and Refs](references/snapshot-refs.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Video Recording](references/video-recording.md) <br>
-- [Profiling](references/profiling.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
+## Use Case:
 
+Developers and agents use this skill to automate browser workflows, including navigation, form submission, authenticated session reuse, screenshots, data extraction, web app testing, and visual debugging.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline bash, JSON, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce browser artifacts such as screenshots, PDFs, videos, traces, saved session state, extracted text, or JSON output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can invoke a powerful browser automation tool through an unpinned npm package.
+
+Mitigation: Use a pinned, reviewed agent-browser version before execution.
+
+Risk: Authenticated browser state, screenshots, videos, profiles, and traces can contain sensitive account data.
+
+Mitigation: Store these artifacts outside shared or version-controlled locations with restrictive permissions, avoid real credentials in examples, and clear sessions after use.
+
+Risk: Saved sessions may extend access to sensitive accounts beyond the immediate task.
+
+Mitigation: Use saved sessions only when explicitly needed, prefer short-lived sessions for sensitive accounts, and remove stale session files.
+
+## Reference(s):
+
+- [Command Reference](references/commands.md)
+- [Snapshot and Refs](references/snapshot-refs.md)
+- [Session Management](references/session-management.md)
+- [Authentication Patterns](references/authentication.md)
+- [Video Recording](references/video-recording.md)
+- [Profiling](references/profiling.md)
+- [Proxy Support](references/proxy-support.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JSON examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser artifacts such as screenshots, PDFs, videos, traces, extracted text, JSON snapshots, and saved session state when commands are executed.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

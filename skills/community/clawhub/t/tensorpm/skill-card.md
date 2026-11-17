@@ -1,41 +1,58 @@
-## Description: <br>
-AI-powered project management - a Notion and Jira alternative with local-first architecture. Manage projects, track action items, and coordinate teams via MCP tools or A2A agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TensorPM provides AI-powered project management with local-first project tracking, action item management, MCP tools, and A2A agent communication.
 
-## Publisher: <br>
-[Neo552](https://clawhub.ai/user/Neo552) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neo552](https://clawhub.ai/user/neo552)
 
-## Use Case: <br>
-Developers, agents, and project teams use this skill to connect an AI assistant to the TensorPM desktop app for project creation, action item tracking, workspace switching, and project-agent conversations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: TensorPM's local API can read and change project data without authentication while the app is running. <br>
-Mitigation: Run TensorPM only on trusted machines, enable A2A_HTTP_AUTH_TOKEN before starting TensorPM when using A2A, and avoid placing sensitive secrets in projects, imported files, or conversations. <br>
-Risk: The skill depends on the TensorPM desktop app and its download channels. <br>
-Mitigation: Install only when you trust the TensorPM app and its published download sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TensorPM homepage](https://tensorpm.com) <br>
-- [ClawHub skill listing](https://clawhub.ai/Neo552/tensorpm) <br>
-- [TensorPM release notes](https://github.com/Neo552/TensorPM-Releases/releases/latest) <br>
+## Use Case:
 
+Developers, agents, and project teams use this skill to connect an AI client to TensorPM for project management, action item tracking, provider key setup, and coordination through MCP tools or local A2A endpoints.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration steps, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the TensorPM desktop app for MCP tools and A2A communication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.12 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local A2A API can read and change project data when exposed without authentication.
+
+Mitigation: Enable A2A_HTTP_AUTH_TOKEN before using A2A and run TensorPM only on trusted local machines.
+
+Risk: The skill directs users to install external TensorPM application binaries.
+
+Mitigation: Install only from trusted TensorPM publisher and release channels.
+
+Risk: The integration can store provider API keys through TensorPM.
+
+Mitigation: Use trusted AI clients, store only intended provider keys, and rotate keys if the local system may be compromised.
+
+## Reference(s):
+
+- [TensorPM homepage](https://tensorpm.com)
+- [TensorPM ClawHub skill page](https://clawhub.ai/neo552/skills/tensorpm)
+- [TensorPM release notes](https://github.com/Neo552/TensorPM-Releases/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the TensorPM desktop app to be running; A2A can be protected with A2A_HTTP_AUTH_TOKEN.]
+
+## Skill Version(s):
+
+1.1.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

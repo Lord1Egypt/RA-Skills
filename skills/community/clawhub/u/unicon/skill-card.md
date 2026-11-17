@@ -1,50 +1,63 @@
-## Description: <br>
-Help users add icons to their projects using the Unicon icon library, including 19,000+ icons across Lucide, Phosphor, Hugeicons, Heroicons, Tabler, Feather, Remix, Simple Icons, and Iconoir. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unicon CLI helps agents add and manage icons in React, Vue, Svelte, and web projects using search, bundling, configuration, component generation, API usage, and format conversion.
 
-## Publisher: <br>
-[charlesrhoward](https://clawhub.ai/user/charlesrhoward) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[charlesrhoward](https://clawhub.ai/user/charlesrhoward)
 
-## Use Case: <br>
-Developers and agent users use this skill to search, select, bundle, configure, and generate project-specific icons for React, Vue, Svelte, or web projects. It also guides use of the Unicon CLI, REST API, local cache, and assistant-skill installation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to install and run the @webrenew/unicon npm package. <br>
-Mitigation: Install only if the package and publisher are trusted, and use npx or a pinned dependency workflow when your environment requires package review. <br>
-Risk: CLI commands can write generated icon files, configuration files, cache data, or assistant rule files to the current project. <br>
-Mitigation: Run commands from the intended project directory, review generated changes before committing, and use dry-run or explicit output paths where available. <br>
-Risk: Assistant-skill installation with --all or --force can add or overwrite persistent rules for multiple AI tools. <br>
-Mitigation: Use targeted assistant installation commands unless broad persistent rule installation is intended, and inspect rule files after installation. <br>
-Risk: Remote API SVG content can be unsafe if rendered blindly in sensitive applications. <br>
-Mitigation: Sanitize or precompile SVG content before rendering it in sensitive contexts. <br>
+## Use Case:
 
+Developers and coding agents use this skill to select, configure, generate, and maintain project icons from the Unicon CLI and API. It supports icon search, bundle creation, framework-specific component output, project audits, cache management, and assistant integration guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlesrhoward/unicon) <br>
-- [Publisher profile](https://clawhub.ai/user/charlesrhoward) <br>
-- [Unicon website](https://unicon.sh) <br>
-- [Unicon repository](https://github.com/WebRenew/unicon) <br>
-- [CLI Commands Reference](references/cli-commands.md) <br>
-- [Config File Reference](references/config-file.md) <br>
-- [API Reference](references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and framework code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may lead users to run CLI commands that write icon components, SVG files, JSON config, cache data, or assistant rule files in the current project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and skill metadata) <br>
+Risk: Installing or running mutable third-party npm code globally or through unpinned npx execution can introduce supply-chain risk in sensitive projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package source, pin an exact trusted version, and avoid global or unpinned npx execution in sensitive projects.
+
+Risk: Assistant integration commands such as unicon skill --all or --force can persistently overwrite assistant rule files.
+
+Mitigation: Review the files the command will write and keep backups before using --all or --force.
+
+Risk: API-returned SVG content is untrusted markup when rendered inside an application.
+
+Mitigation: Sanitize API-returned SVG before rendering it and review any direct HTML injection patterns.
+
+## Reference(s):
+
+- [CLI Commands Reference](references/cli-commands.md)
+- [Config File Reference](references/config-file.md)
+- [API Reference](references/api-reference.md)
+- [Unicon Website](https://unicon.sh)
+- [Unicon API](https://unicon.sh/api)
+- [Unicon Config Schema](https://unicon.sh/schema/uniconrc.json)
+- [Unicon Repository](https://github.com/WebRenew/unicon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and generated code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project files such as icon components, SVG or JSON icon data, .uniconrc.json configuration, and assistant rule files when the documented CLI commands are executed.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

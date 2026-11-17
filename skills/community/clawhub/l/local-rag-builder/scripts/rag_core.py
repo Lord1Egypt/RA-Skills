@@ -1,11 +1,9 @@
 """
 local-rag-builder 共享核心模块
-v0.3.0
+v0.2.0
 
 纯核心层：不涉及任何 LLM 调用，不依赖外部服务。
 同时被 rag_skill.py（技能接口）和 rag_standalone.py（独立系统）导入。
-
-v0.3.0 新增：路由层（router）和重排序层（reranker）集成
 """
 
 import os
@@ -99,93 +97,33 @@ def build_context(docs):
     return "\n\n---\n\n".join(parts)
 
 
-def retrieve_context(question, kb_name="default", k=None, score_threshold=None, embeddings=None,
-                     use_router=True, use_reranker=True):
+def retrieve_context(question, kb_name="default", k=None, score_threshold=None, embeddings=None):
     """
     纯检索接口：只检索和构建 context，不调用 LLM。
-
-    路由逻辑（v0.3.0）：
-    - 从 knowledge_base_manager 直接拿硬编码规则做第一次路由
-    - 失败后用 FallbackRouter（KB 签名 + 语义模型）
-    - 再失败 → broadcast 所有 KB
+    返回结构化结果，供任何调用方（智能体 / 独立系统）消费。
     """
-    from config import load_config
-    cfg = load_config()
+    docs = retrieve_documents(
+        question, kb_name=kb_name, k=k,
+        score_threshold=score_threshold, embeddings=embeddings,
+    )
+    if not docs:
+        return {"context": "", "source_docs": [], "source_count": 0, "question": question}
 
-    # ==================== 路由阶段 ====================
-    if use_router and cfg.get("router", {}).get("enabled", True):
-        from router import route_query
-        routing = route_query(question)
-        kb_names = routing["kb_names"]
-        routing_method = routing["method"]
-    else:
-        kb_names = [kb_name]
-        routing_method = "direct"
-
-    # ==================== 检索阶段 ====================
-    all_docs = []
-    source_kb_map = {}
-    for target_kb in kb_names:
-        try:
-            docs = retrieve_documents(
-                question, kb_name=target_kb, k=k,
-                score_threshold=score_threshold, embeddings=embeddings,
-            )
-            for d in docs:
-                if hasattr(d, "metadata"):
-                    d.metadata["_kb"] = target_kb
-                source_kb_map[id(d)] = target_kb
-            all_docs.extend(docs)
-        except Exception:
-            continue
-
-    # ==================== Rerank 阶段 ====================
-    if use_reranker and cfg.get("reranker", {}).get("enabled", True) and all_docs:
-        from reranker import Reranker
-        try:
-            reranker = Reranker(cfg)
-            reranked = reranker.rerank(question, all_docs)
-            reranked_docs = [d for d, _ in reranked]
-        except Exception:
-            reranked_docs = all_docs
-    else:
-        reranked_docs = all_docs
-
-    # ==================== 构建输出 ====================
-    if not reranked_docs:
-        return {
-            "context": "",
-            "source_docs": [],
-            "source_count": 0,
-            "question": question,
-            "routing_info": {
-                "method": routing_method,
-                "kb_names": kb_names,
-                "kb_count": len(kb_names),
-            },
-        }
-
-    context = build_context(reranked_docs)
+    context = build_context(docs)
+    # source_docs 转可序列化格式
     serialized = []
-    for d in reranked_docs:
-        source_kb = source_kb_map.get(id(d), kb_name)
+    for d in docs:
         serialized.append({
             "content": d.page_content if hasattr(d, "page_content") else str(d),
             "metadata": d.metadata if hasattr(d, "metadata") else {},
             "length": len(d.page_content) if hasattr(d, "page_content") else len(str(d)),
-            "_kb": source_kb,
         })
 
     return {
         "context": context,
         "source_docs": serialized,
-        "source_count": len(reranked_docs),
+        "source_count": len(docs),
         "question": question,
-        "routing_info": {
-            "method": routing_method,
-            "kb_names": kb_names,
-            "kb_count": len(kb_names),
-        },
     }
 
 
@@ -245,10 +183,7 @@ def format_skill_output(question, kb_name="default", k=None, score_threshold=Non
 
 
 def import_documents_to_kb(file_path, kb_name="default", embeddings=None, splitter_config=None):
-    """导入文档到知识库
-
-    v0.3.0 新增：导入后自动更新 KB 签名
-    """
+    """导入文档到知识库"""
     from text_splitter import split_pipeline
     from knowledge_base_manager import add_documents_to_kb
 
@@ -294,15 +229,6 @@ def import_documents_to_kb(file_path, kb_name="default", embeddings=None, splitt
         chunk.metadata["source"] = os.path.basename(file_path)
 
     ok, msg = add_documents_to_kb(kb_name, chunks, embeddings)
-
-    # 导入后自动更新 KB 签名
-    router_cfg = cfg.get("router", {})
-    if router_cfg.get("fallback", {}).get("auto_update_signatures", True):
-        try:
-            from router import update_kb_signature
-            update_kb_signature(kb_name, chunks)
-        except Exception:
-            pass
 
     return {
         "success": ok,

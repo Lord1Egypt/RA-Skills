@@ -3,17 +3,6 @@ name: xhs-explore
 description: |
   小红书内容发现与分析技能。搜索笔记、浏览首页、查看详情、获取用户资料。
   当用户要求搜索小红书、查看笔记详情、浏览首页、查看用户主页时触发。
-version: 1.0.0
-metadata:
-  openclaw:
-    requires:
-      bins:
-        - python3
-        - uv
-    emoji: "\U0001F50D"
-    os:
-      - darwin
-      - linux
 ---
 
 # 小红书内容发现
@@ -37,23 +26,6 @@ metadata:
 | `search-feeds` | 关键词搜索笔记（支持筛选） |
 | `get-feed-detail` | 获取笔记完整内容和评论 |
 | `user-profile` | 获取用户主页信息 |
-
----
-
-## 账号选择（前置步骤）
-
-每次 skill 触发后，先运行：
-
-```bash
-python scripts/cli.py list-accounts
-```
-
-根据返回的 `count`：
-- **0 个命名账号**：直接使用默认账号（后续命令不加 `--account`）。
-- **1 个命名账号**：告知用户"将使用账号 X"，直接加 `--account <名称>` 执行。
-- **多个命名账号**：向用户展示列表，询问选择哪个，再用 `--account <选择的名称>` 执行所有后续命令。
-
-账号选定后，本次操作全程固定该账号，**不重复询问**。
 
 ---
 

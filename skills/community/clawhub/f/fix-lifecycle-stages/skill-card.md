@@ -1,42 +1,54 @@
-## Description: <br>
-Ensures contacts and companies have appropriate lifecycle stages by backfilling missing values, correcting disallowed stages, and creating prevention workflows to stop future gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensure all contacts and companies have appropriate lifecycle stages by auditing missing or disallowed values, applying HubSpot lifecycle-stage corrections, and creating prevention workflows.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-Revenue operations and CRM administrators use this skill to audit and repair HubSpot lifecycle stage data for contacts and companies, then add workflows that reduce future lifecycle-stage gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk edits can change HubSpot contact and company lifecycle stages at scale. <br>
-Mitigation: Export affected records, test on a small sample, review the disallowed-stage mapping for the tenant, and keep a rollback plan before running update scripts. <br>
-Risk: Prevention workflows can continue applying default lifecycle stages after the cleanup. <br>
-Mitigation: Review workflow enrollment and re-enrollment settings before activation, then monitor initial runs for unintended stage changes. <br>
-Risk: Incorrect lifecycle-stage mappings can degrade funnel reporting and segmentation. <br>
-Mitigation: Define tenant-specific mappings and spot-check records associated with customer and opportunity companies before applying broad changes. <br>
+## Use Case:
 
+CRM administrators, RevOps teams, and developers use this skill to audit HubSpot lifecycle-stage coverage, correct records in missing or disallowed stages, and add prevention workflows for future records.
 
-## Reference(s): <br>
-- [ClawHub release: Fix Lifecycle Stages](https://clawhub.ai/tomgranot/fix-lifecycle-stages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code blocks and workflow configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bundled scripts can produce CSV audit trails when run against HubSpot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact metadata version 1.0) <br>
+Risk: The executable workflow can bulk change HubSpot contact and company lifecycle stages to Lead.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only the audit first, verify the target account and record counts, use a narrowly scoped token or sandbox, export record-level backups, and require an explicit apply step before changes.
+
+Risk: Lifecycle-stage corrections can reduce CRM data quality if records are moved without account or company context.
+
+Mitigation: Review the proposed mappings and apply context-aware stage assignment before running updates on a live HubSpot portal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomgranot/skills/fix-lifecycle-stages)
+- [HubSpot API endpoint](https://api.hubapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python scripts and CSV audit outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a HubSpot access token and may write before, execute, and after CSV audit files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

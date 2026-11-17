@@ -1,41 +1,61 @@
-## Description: <br>
-Provides a local Python CLI and OpenAPI client for managing and troubleshooting Volcengine Cloud Phone resources, including instances, resources, screenshots, command execution, applications, hosts, data centers, tags, DNS, routes, and authorized test devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages and troubleshoots authorized Volcengine Cloud Phone resources through a local Python CLI and OpenAPI client.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and cloud operations teams use this skill to inspect, troubleshoot, and administer configured Volcengine Cloud Phone test resources through documented CLI commands and OpenAPI calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend money, delete cloud resources or data, and run remote root commands. <br>
-Mitigation: Use tightly scoped Volcengine credentials, prefer test or non-production resources, and require explicit review before create, delete, reset, subscribe, unsubscribe, or run-command actions. <br>
-Risk: Command output may expose signed URLs, access keys, proxy passwords, screenshots, logs, or downloaded device data. <br>
-Mitigation: Avoid exposing signed URLs, access keys, proxy passwords, or downloaded device data in chat output unless the user explicitly requests and is authorized to receive them. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect and administer authorized Volcengine Cloud Phone test resources, including instances, resources, screenshots, tasks, apps, hosts, capacity, tags, DNS, routes, files, and device commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-acep-api) <br>
-- [Volcengine Skills publisher profile](https://clawhub.ai/user/volcengine-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, command outputs, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive cloud-phone operational details when commands return signed URLs, credentials, proxy settings, screenshots, logs, or downloaded device data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill exposes broad destructive and privileged controls over authorized cloud-phone resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly scoped Volcengine credentials and require explicit user approval before state-changing operations such as create, delete, power, reboot, reset, install, uninstall, file transfer, or command execution.
+
+Risk: Generic action calls and root command execution can perform high-impact operations outside routine workflows.
+
+Mitigation: Review generic action-call requests carefully and avoid root command execution unless it is necessary for the authorized task.
+
+Risk: File transfers and pre-signed edge URLs can expose sensitive data or access paths.
+
+Mitigation: Treat transferred files, paths, and signed URLs as sensitive and avoid printing or sharing them unless the user explicitly requests it.
+
+Risk: Resource subscription, renewal, and host operations can affect capacity or cost.
+
+Mitigation: Confirm the product ID, resource type, data center, order history, and intended quantity before subscription, renewal, unsubscription, or host-level changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-acep-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, CLI arguments, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON parameter examples, file paths, and guidance for handling sensitive signed URLs and credentials.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

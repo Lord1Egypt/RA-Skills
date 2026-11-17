@@ -1,45 +1,57 @@
-## Description: <br>
-Publish selected Obsidian markdown from a vault to a static site and deploy to Cloudflare Pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish selected Obsidian markdown from a vault to a static site and deploy to Cloudflare Pages.
 
-## Publisher: <br>
-[davidyoh](https://clawhub.ai/user/davidyoh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davidyoh](https://clawhub.ai/user/davidyoh)
 
-## Use Case: <br>
-Developers and technical users use this skill to publish selected Obsidian or Markdown notes as a Quartz static site and deploy it to Cloudflare Pages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The publishing CLI can delete files in configurable local paths. <br>
-Mitigation: Use a dedicated empty workspace and verify workspaceDir, contentDir, include folders, exclude folders, and generated content before running the full pipeline. <br>
-Risk: Setup and deployment may run unpinned external commands. <br>
-Mitigation: Review the CLI behavior before execution and start with a test Cloudflare Pages project. <br>
-Risk: Cloudflare API credentials are required for deployment. <br>
-Mitigation: Use least-privileged Cloudflare tokens, keep secrets out of chat, and store them only in the intended environment or local .env file. <br>
-Risk: Optional Basic Auth is not sufficient protection for highly sensitive notes. <br>
-Mitigation: Avoid publishing highly sensitive content unless a stronger security model and deployment hardening are in place. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davidyoh/obsidian-cloudflare-pages-skill) <br>
-- [Cloudflare Pages](https://pages.cloudflare.com/) <br>
-- [Obsidian Web Clipper](https://obsidian.md/clipper) <br>
+## Use Case:
 
+Developers, engineers, and Obsidian users use this skill to publish selected Markdown notes as a static site on Cloudflare Pages. It helps configure a publishing workspace, sync allowed content, build with Quartz, and deploy with Wrangler.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and generated static-site deployment files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local configuration, synchronized Markdown content, Quartz build output, optional Basic Auth middleware, and Cloudflare Pages deployment commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe shell command construction and configurable destructive deletion can affect files reachable through configured publish paths.
+
+Mitigation: Run the skill only in a dedicated workspace with backed-up content and no valuable files under configured publish or workspace directories.
+
+Risk: Cloudflare credentials and optional Basic Auth settings can expose sensitive deployment access or plaintext passwords.
+
+Mitigation: Use a narrowly scoped Cloudflare Pages token, keep secrets out of chat and committed files, and avoid Basic Auth until password handling uses Cloudflare secrets or another managed secret store.
+
+Risk: Unpinned Quartz and Wrangler tooling can change behavior between runs.
+
+Mitigation: Review and pin the Quartz and Wrangler versions before production deployment.
+
+## Reference(s):
+
+- [Cloudflare Pages](https://pages.cloudflare.com/)
+- [Obsidian Web Clipper](https://obsidian.md/clipper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to create or update local configuration files and run publish, build, and deploy commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

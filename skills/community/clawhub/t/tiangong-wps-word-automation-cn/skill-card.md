@@ -1,40 +1,56 @@
-## Description: <br>
-Automates common Word and WPS Writer document operations on Windows via COM, including reading text, replacing or inserting content, setting headings, headers and footers, page breaks, merging, splitting, exporting, and adding images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate common Word/WPS document operations on Windows via COM, including reading text, replacement, insertion, headings, headers and footers, page breaks, merging, splitting, exporting to PDF or TXT, and adding or replacing images.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jirboy](https://clawhub.ai/user/jirboy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and document-automation users use this skill to run single-document Word or WPS Writer operations on Windows from command-line Python scripts. It is suited for trusted document editing, conversion, and content manipulation workflows that require Microsoft Word or WPS Writer COM automation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Opening Word or WPS documents through COM can expose the user to active-content risks when documents are untrusted.
+
+Mitigation: Use the skill only with trusted documents, or enforce Office/WPS macro and Protected View policies before opening unknown files.
+
+Risk: Write, merge, split, export, and image operations can alter documents or create unexpected outputs.
+
+Mitigation: Use separate output paths, keep backups of source documents, and review generated files before relying on them.
+
+Risk: The required pywin32 dependency is not pinned in the artifact guidance.
+
+Mitigation: Pin and review the pywin32 package version before installing it in a managed environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and document automation users use this skill to have an agent run local Windows commands that operate on individual Word or WPS Writer documents. It is intended for single-document workflows such as extraction, edits, formatting, export, merge, split, and image insertion. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Document operations can overwrite or alter original files when replacing text, inserting content, merging, splitting, exporting, or adding images. <br>
-Mitigation: Work on copies of trusted documents and choose save, output, and output-directory paths carefully before running commands. <br>
-Risk: The automation opens local documents through Microsoft Word or WPS Writer on Windows, so untrusted documents may expose the user to document-borne risks outside the skill itself. <br>
-Mitigation: Run the skill only on trusted files in a controlled local environment with Word or WPS security settings kept enabled. <br>
+**Output Format:** [Markdown with inline shell commands and file-operation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/tiangong-wps-word-automation-cn) <br>
+**Other Properties Related to Output:** [Produces instructions for running a bundled Python script; script operations may read, modify, merge, split, export, or create document files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local command guidance for Windows Word/WPS automation; generated files depend on the selected command and user-provided paths.] <br>
+1.0.0 (source: server release evidence and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

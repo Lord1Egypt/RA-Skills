@@ -1,43 +1,60 @@
-## Description: <br>
-Set up and run tabletop RPG campaigns with OpenClaw DM and player-character agents, shared rules and lore, session logging, and Discord or Feishu group play. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and run tabletop RPG campaigns with OpenClaw agents for dungeon mastering, player-character roleplay, rule references, session memory, and group play through Discord or Feishu.
 
-## Publisher: <br>
-[gejiliang](https://clawhub.ai/user/gejiliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gejiliang](https://clawhub.ai/user/gejiliang)
 
-## Use Case: <br>
-Developers and tabletop RPG facilitators use this skill to configure campaign workspaces, DM and PC agents, rule references, character files, Discord or Feishu triggers, and ongoing session logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent campaign files and agent memory can contain private character notes, hidden motives, or player-provided information. <br>
-Mitigation: Keep real personal secrets out of campaign files and separate DM-only or per-character notes when players should not have access. <br>
-Risk: Discord or Feishu agent integrations can respond in shared play channels if triggers are configured too broadly. <br>
-Mitigation: Keep mention-only triggering enabled and use a dedicated campaign channel for configured agents. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run tabletop RPG campaigns with DM and PC agents, campaign workspaces, character files, rule references, session logs, and channel-based play.
 
-## Reference(s): <br>
-- [TRPG Session ClawHub Release](https://clawhub.ai/gejiliang/trpg-session) <br>
-- [DM Agent Behavior Guide](artifact/references/dm-guide.md) <br>
-- [Session Template](artifact/references/session-template.md) <br>
-- [Rule System Presets](artifact/references/systems.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce campaign workspace layouts, agent configuration snippets, character templates, rule indexing guidance, dice-roll formats, and session log templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Campaign notes, character files, and session logs may contain private or sensitive roleplay details that persist on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide where logs and campaign files are stored before use, and avoid putting real personal or confidential information into shared campaign directories.
+
+Risk: The skill describes private character secrets while also placing multiple agents in the same campaign workspace.
+
+Mitigation: Use separate workspaces or filesystem permissions for DM-only notes and per-character files before relying on isolation.
+
+Risk: AI player characters and DM notes can affect group play and reveal or preserve unintended information.
+
+Mitigation: Review the skill before installing, define which agents can access each file, and test the campaign setup with non-sensitive content first.
+
+## Reference(s):
+
+- [TRPG Session ClawHub Page](https://clawhub.ai/gejiliang/skills/trpg-session)
+- [DM Agent Behavior Guide](references/dm-guide.md)
+- [Session Log Template](references/session-template.md)
+- [Rule System Presets](references/systems.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent setup guidance, workspace layouts, character templates, reference files, and session-management instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

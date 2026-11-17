@@ -1,43 +1,57 @@
-## Description: <br>
-Create, schedule, and manage social media posts via Typefully for X/Twitter, LinkedIn, Threads, Bluesky, and Mastodon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, schedule, and manage social media posts via Typefully for Twitter/X, LinkedIn, Threads, Bluesky, and Mastodon.
 
-## Publisher: <br>
-[frankdilo](https://clawhub.ai/user/frankdilo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[frankdilo](https://clawhub.ai/user/frankdilo)
 
-## Use Case: <br>
-Developers and content operators use this skill to draft, schedule, publish, and manage Typefully posts across connected social accounts from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, schedule, or publish public social posts for connected accounts. <br>
-Mitigation: Review the selected social set and final post content before scheduling or publishing, and create drafts when approval is needed. <br>
-Risk: An API endpoint override could send API keys and post content to an unintended endpoint if misconfigured. <br>
-Mitigation: Keep TYPEFULLY_API_BASE unset unless the endpoint is intentionally configured and trusted. <br>
-Risk: Setup may store the Typefully API key in local or global configuration. <br>
-Mitigation: Store credentials only in trusted locations and avoid committing local Typefully configuration files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frankdilo/typefully-social-media) <br>
-- [Typefully API documentation](https://typefully.com/docs/api) <br>
-- [Typefully API key settings](https://typefully.com/?settings=api) <br>
+## Use Case:
 
+External users and developers use this skill to draft, schedule, publish, and manage Typefully social media content across connected accounts and platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON responses, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Typefully API key and selected social set before API operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Typefully API key that can affect real connected social media accounts.
+
+Mitigation: Install it only in trusted agent environments, prefer interactive setup or carefully managed secret environment variables, and avoid exposing the API key in command history or shared project files.
+
+Risk: Publishing or deleting social content can have immediate public or irreversible effects.
+
+Mitigation: Review commands before execution, create drafts for review when intent is not explicit, and require clear confirmation before publishing or deleting content.
+
+Risk: Changing the API base can redirect authenticated requests away from the normal Typefully API.
+
+Mitigation: Avoid setting TYPEFULLY_API_BASE unless it is required for a trusted test environment.
+
+## Reference(s):
+
+- [Typefully API Documentation](https://typefully.com/docs/api)
+- [Typefully](https://typefully.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, schedule, publish, update, delete, or inspect Typefully drafts and media through authenticated API-backed commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

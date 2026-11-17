@@ -1,42 +1,64 @@
-## Description: <br>
-Creates triage-ready OpenClaw bug report drafts by collecting conservative diagnostics, comparing config and plugin state, searching similar issues, and preparing reviewed GitHub issue text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates triage-ready OpenClaw GitHub issue drafts by collecting conservative diagnostics, comparing configuration and plugin state, searching similar issues, and preparing a reviewed bug report.
 
-## Publisher: <br>
-[100yenadmin](https://clawhub.ai/user/100yenadmin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[100yenadmin](https://clawhub.ai/user/100yenadmin)
 
-## Use Case: <br>
-Developers, support engineers, and OpenClaw users use this skill to turn slow, broken, unresponsive, tool-starved, or degraded agent reports into reviewed GitHub issue drafts with diagnostics, duplicate-search notes, and explicit unknowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostics and log excerpts can include private paths, prompts, organization names, credentials, or other sensitive local details. <br>
-Mitigation: Review every generated file and selected excerpt before sharing; use the skill's redaction and keep private-config, tmp-log, and git-detail collection disabled unless explicitly approved. <br>
-Risk: A public GitHub issue or comment can expose unreviewed diagnostics if posted too early. <br>
-Mitigation: Keep output as a draft until the user approves the final body and excerpt list, and never upload the full diagnostics directory. <br>
+## Use Case:
 
+Developers and support engineers use this skill to turn vague OpenClaw agent failures into privacy-conscious diagnostics, duplicate-search notes, and GitHub issue drafts for maintainer triage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/100yenadmin/file-bug-report) <br>
-- [Issue template](references/issue-template.md) <br>
-- [Similar issue search guidance](references/similar-issue-search.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown issue drafts, diagnostic summaries, reviewed excerpts, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft-only public issue text until the user approves posting; generated diagnostics require review before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The diagnostics workflow can collect local OpenClaw state, configuration metadata, plugin information, and log excerpts that may contain sensitive local details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default conservative collection mode, write output to a private directory, inspect every generated file, and share only selected redacted excerpts.
+
+Risk: Users may accidentally publish an entire diagnostics bundle or unreviewed logs to a public issue.
+
+Mitigation: Keep the workflow draft-only until explicit user approval, do not attach the full bundle publicly, and paste only reviewed excerpts into the issue body.
+
+Risk: Optional collection flags can include private config, temporary logs, or raw git details.
+
+Mitigation: Enable those flags only after explaining the privacy risk and receiving explicit user approval.
+
+Risk: Generated output written into a shared location may be readable by unintended local users.
+
+Mitigation: Choose a private output directory before running diagnostics because the security guidance notes that the script does not force restrictive file permissions.
+
+## Reference(s):
+
+- [OpenClaw Bug Report ClawHub page](https://clawhub.ai/100yenadmin/skills/file-bug-report)
+- [OpenClaw Agent Bug Issue Template](references/issue-template.md)
+- [Similar Issue Search](references/similar-issue-search.md)
+- [Conservative OpenClaw diagnostics collector](scripts/collect-openclaw-diagnostics.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown issue drafts with inline shell commands and summarized diagnostics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only public output until the user reviews selected excerpts and approves posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

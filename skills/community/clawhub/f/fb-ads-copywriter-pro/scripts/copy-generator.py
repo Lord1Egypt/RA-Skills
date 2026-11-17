@@ -19,7 +19,7 @@ from datetime import datetime
 from pathlib import Path
 
 # 配置
-GLM_API_KEY = os.getenv('GLM_API_KEY', 'sk-JSJg7OYHJZPOn87CpHq0d5VMGLkTCBdJcVxUOdUp06IpUABx')
+GLM_API_KEY = os.getenv('GLM_API_KEY', 'REDACTED-SECRET')
 GLM_API_URL = 'https://open.bigmodel.cn/api/paas/v4/chat/completions'
 RESEND_API_KEY = os.getenv('RESEND_API_KEY', '')
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')

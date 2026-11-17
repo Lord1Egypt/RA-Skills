@@ -1,42 +1,58 @@
-## Description: <br>
-专门控制 Claude Code 的技能。提供简化的命令接口，支持快速任务、长时间任务、并行任务和进度跟踪。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专门控制 Claude Code 的技能。提供简化的命令接口，支持快速任务、长时间任务、并行任务和进度跟踪。
 
-## Publisher: <br>
-[steven-chen13](https://clawhub.ai/user/steven-chen13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steven-chen13](https://clawhub.ai/user/steven-chen13)
 
-## Use Case: <br>
-Developers and agent operators use this skill to launch and manage Claude Code sessions for quick tasks, longer background work, parallel worktree-based tasks, code review, and progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages launching Claude Code with permission checks bypassed, including background and parallel sessions. <br>
-Mitigation: Review carefully before installing, prefer normal permission modes, explicitly approve background or parallel runs, and monitor or stop sessions when complete. <br>
-Risk: Running agent sessions against sensitive repositories or broad directories can expose or modify files outside the intended task scope. <br>
-Mitigation: Use the skill only in intentional project or temporary directories and avoid sensitive repositories or directories. <br>
+## Use Case:
 
+Developers use this skill to run Claude Code for quick tasks, longer background work, parallel worktree tasks, code review, refactoring, and progress tracking from a project or temporary workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/steven-chen13/claude-code-controller) <br>
-- [Publisher profile](https://clawhub.ai/user/steven-chen13) <br>
-- [Claude Code CLI package](https://www.npmjs.com/package/@anthropic-ai/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Claude Code CLI binary named claude.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill recommends bypassing Claude Code permission checks for code-changing tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in isolated project directories or disposable worktrees, avoid bypassing permission checks for routine work, and review commands before execution.
+
+Risk: Prompts, logs, or task descriptions could expose secrets or sensitive project details to Claude Code.
+
+Mitigation: Do not paste secrets or sensitive logs into prompts; redact sensitive data before using the command templates.
+
+Risk: The recursive chmod troubleshooting guidance could change permissions more broadly than intended.
+
+Mitigation: Run permission changes only after identifying the exact file or directory that needs access changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steven-chen13/skills/claude-code-controller)
+- [Publisher profile](https://clawhub.ai/user/steven-chen13)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Claude Code CLI binary named claude.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

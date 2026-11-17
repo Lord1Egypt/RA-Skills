@@ -1,45 +1,58 @@
-## Description: <br>
-Manage documents in Paperless-ngx - search, upload, tag, and retrieve. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage documents in Paperless-ngx - search, upload, tag, and retrieve.
 
-## Publisher: <br>
-[madmantim](https://clawhub.ai/user/madmantim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[madmantim](https://clawhub.ai/user/madmantim)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent search, list, upload, download, and manage metadata in a Paperless-ngx document archive through the Paperless REST API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The Paperless-ngx token can allow an agent to read documents, upload files, and create or modify archive metadata. <br>
-Mitigation: Use a least-privilege Paperless account and review agent actions before running commands that change the archive. <br>
-Risk: Connections to remote Paperless-ngx instances may expose sensitive document data or tokens if sent over insecure transport. <br>
-Mitigation: Prefer HTTPS for remote Paperless-ngx instances and protect PAPERLESS_TOKEN as a secret. <br>
-Risk: Downloads write document files to a local path chosen by the command. <br>
-Mitigation: Pass a safe --output path when downloading and review the destination before execution. <br>
-Risk: Advanced direct API operations can update, delete, or bulk-edit documents and metadata. <br>
-Mitigation: Require explicit user approval before any advanced update, delete, or bulk operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/madmantim/paperless-ngx-tools) <br>
-- [Paperless-ngx API Reference](artifact/references/api.md) <br>
-- [Paperless-ngx project](https://github.com/paperless-ngx/paperless-ngx) <br>
+## Use Case:
 
+Developers, operators, and Paperless-ngx users use this skill to let an agent search, list, retrieve, upload, download, and organize documents in a configured Paperless-ngx instance.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Configuration] <br>
-**Output Format:** [JSON responses from Node.js command-line scripts; downloaded documents are written as files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PAPERLESS_URL and PAPERLESS_TOKEN; download output paths are user-controlled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive Paperless-ngx document data and credentials.
+
+Mitigation: Install only for trusted Paperless servers, prefer HTTPS outside strictly local environments, and use a low-privilege Paperless token.
+
+Risk: Full OCR content and downloads can expose sensitive document contents.
+
+Mitigation: Use full-content retrieval only when needed and choose safe, explicit download output paths.
+
+Risk: Advanced API operations can modify or delete Paperless records.
+
+Mitigation: Review delete, bulk-edit, upload, and metadata-creation operations before allowing an agent to run them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/madmantim/skills/paperless-ngx-tools)
+- [Paperless-ngx API Reference](references/api.md)
+- [Paperless-ngx project](https://github.com/paperless-ngx/paperless-ngx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; helper scripts return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PAPERLESS_URL and PAPERLESS_TOKEN; document search and metadata operations depend on the configured Paperless-ngx server and token permissions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

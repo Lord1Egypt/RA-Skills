@@ -1,43 +1,54 @@
-## Description: <br>
-Design Panel runs a multi-persona UX/UI review of a live web app, captures visual evidence, cross-votes findings, and outputs a ranked report plus fix plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs multiple UX/UI designer personas in parallel against a live web app, ranks findings through cross-persona voting, and outputs a ranked report plus a machine-readable fix plan.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill during design milestones to review a live web app through accessibility, brand, conversion, mobile, information architecture, trust, motion, and power-user lenses. It helps prioritize the highest-impact UI changes before handing a fix plan to a human or follow-on implementation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local gstack analytics and invokes external helper commands as part of the review workflow. <br>
-Mitigation: Install and run it only in environments where local telemetry files and helper execution are acceptable, and review the skill behavior before use. <br>
-Risk: Screenshots, computed page data, findings, and reports may contain sensitive information from authenticated or internal apps. <br>
-Mitigation: Avoid sensitive authenticated targets unless local evidence capture is acceptable, and review generated artifacts before committing or sharing them. <br>
-Risk: The generated ranked findings and fix plan are recommendations that may be incomplete or wrong. <br>
-Mitigation: Have a human review the report and verify fixes before applying, committing, or shipping changes. <br>
+## Use Case:
 
+Developers and designers use this skill to review live web apps through multiple UX lenses, prioritize the most impactful issues, and produce a fix plan that can guide follow-up implementation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/design-panel) <br>
-- [gstack browser tooling](https://github.com/garrytan/gstack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports, schema-versioned Markdown fix plans, and JSON finding and score artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped report and fix-plan files under docs/design-panel/ and may print app startup or handoff guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill writes design reports into the reviewed project and stores temporary evidence/session data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on projects where report and fix-plan files are acceptable, then review generated artifacts before committing or sharing them.
+
+Risk: Server security evidence flags persistent local telemetry and sourceable shell state as suspicious.
+
+Mitigation: Review or disable telemetry, timeline, and learnings hooks before installing, especially hooks that create state under ~/.gstack or execute helpers under ~/.claude/skills/gstack/bin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/design-panel)
+- [gstack browser tooling](https://github.com/garrytan/gstack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report and schema-versioned Markdown fix plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes review artifacts under docs/design-panel/ and temporary evidence/session files under local gstack paths when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

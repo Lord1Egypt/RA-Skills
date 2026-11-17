@@ -137,7 +137,11 @@ crm_view() {
 
 crm_get() {
   local module="$1" id="$2"
-  api GET "${crm_base}/${module}/${id}"
+  if [[ "${module}" == "opportunity/quotation" ]]; then
+    api GET "${crm_base}/${module}/get/${id}"
+  else
+    api GET "${crm_base}/${module}/${id}"
+  fi
 }
 
 crm_contact() {
@@ -161,6 +165,10 @@ crm_page() {
 
 crm_search() {
   local module="$1" json="${2:-}"
+  if [[ "${module}" == "opportunity/quotation" ]]; then
+    crm_page "${module}" "${json}"
+    return
+  fi
   local body
   if [[ "$json" == \{* ]]; then
     body=$(merge_payload "$json")
@@ -174,14 +182,89 @@ crm_search() {
 crm_follow_page() {
   local kind="$1" module="$2" payload="${3:-}"
   [[ "${kind}" == "plan" || "${kind}" == "record" ]] || die "follow 子命令只支持 plan/record"
-  [[ -n "${module}" ]] || die "follow ${kind} 需要指定模块（lead/account 等）"
+  [[ "${module}" == "lead" || "${module}" == "account" || "${module}" == "opportunity" ]] || die "follow ${kind} 的模块必须为 lead/account/opportunity"
   local body
-  if [[ "${payload}" == \{* ]]; then
-    body="${payload}"
-  else
-    body=$(page_payload "${payload}")
-  fi
+  body=$(merge_payload "${payload}")
   api POST "${crm_base}/${module}/follow/${kind}/page" --data-binary "$body"
+}
+
+# ── 写入操作（创建/更新/转化）─────────────────────────────────────────
+
+# 当前 Skill 允许写入的表单模块；路径使用 CRM API 的模块名。
+validate_write_module() {
+  local module="${1:-}"
+  case "${module}" in
+    lead|account|opportunity|account/contact|lead/follow/plan|lead/follow/record|account/follow/plan|account/follow/record|opportunity/follow/plan|opportunity/follow/record|contract|contract/payment-plan|contract/payment-record|invoice|contract/business-title|opportunity/quotation|order)
+      ;;
+    *)
+      die "不支持的写入模块: ${module}"
+      ;;
+  esac
+}
+
+validate_batch_update_module() {
+  local module="${1:-}"
+  case "${module}" in
+    lead|account|opportunity|account/contact|contract|order)
+      ;;
+    *)
+      die "batch-update 不支持的模块: ${module}。仅支持: lead, account, opportunity, account/contact, contract, order"
+      ;;
+  esac
+}
+
+# 获取模块表单定义
+# 用法: crm_form <模块>            → GET /{module}/module/form
+#       crm_form account/contact   → GET /account/contact/module/form
+crm_form() {
+  local module="${1:-}"
+  if [[ "${module}" != "follow/plan" && "${module}" != "follow/record" ]]; then
+    validate_write_module "${module}"
+  fi
+  api GET "${crm_base}/${module}/module/form"
+}
+
+# 创建记录
+# 用法: crm_add <模块> <JSON>
+crm_add() {
+  local module="${1:-}" payload="${2:-}"
+  validate_write_module "${module}"
+  [[ -n "${payload}" && "${payload}" == \{* ]] || die "add 需要 JSON body"
+  api POST "${crm_base}/${module}/add" --data-binary "$payload"
+}
+
+# 更新记录
+# 用法: crm_update <模块> <JSON>   → JSON 中必须包含 id 字段
+crm_update() {
+  local module="${1:-}" payload="${2:-}"
+  validate_write_module "${module}"
+  [[ -n "${payload}" && "${payload}" == \{* ]] || die "update 需要 JSON body（须包含 id）"
+  api POST "${crm_base}/${module}/update" --data-binary "$payload"
+}
+
+# 批量更新（按字段批量修改多条记录的同一字段值）
+# 用法: crm_batch_update <模块> '{"ids":["id1","id2"],"fieldId":"字段key","fieldValue":"新值"}'
+crm_batch_update() {
+  local module="${1:-}" payload="${2:-}"
+  validate_batch_update_module "${module}"
+  [[ -n "${payload}" && "${payload}" == \{* ]] || die "batch-update 需要 JSON body（须包含 ids, fieldId, fieldValue）"
+  api POST "${crm_base}/${module}/batch/update" --data-binary "$payload"
+}
+
+# 线索转客户
+# 用法: crm_lead_transition '{"clueId":"线索ID","name":"客户名称",...}'
+crm_lead_transition() {
+  local payload="${1:-}"
+  [[ -n "${payload}" && "${payload}" == \{* ]] || die "transition 需要 JSON body（须包含 clueId, name）"
+  api POST "${crm_base}/lead/transition/account" --data-binary "$payload"
+}
+
+# 线索转换（快速转为客户+可选商机）
+# 用法: crm_lead_transform '{"clueId":"线索ID","oppCreated":true,"oppName":"商机名称"}'
+crm_lead_transform() {
+  local payload="${1:-}"
+  [[ -n "${payload}" && "${payload}" == \{* ]] || die "transform 需要 JSON body（须包含 clueId）"
+  api POST "${crm_base}/lead/transform" --data-binary "$payload"
 }
 
 # ── 审批相关 ──────────────────────────────────────────────────────────
@@ -239,7 +322,6 @@ crm_approval_flow() {
     get)          api GET "${crm_base}/approval-flow/get/$1" ;;
     add)          api POST "${crm_base}/approval-flow/add" --data-binary "$1" ;;
     update)       api POST "${crm_base}/approval-flow/update" --data-binary "$1" ;;
-    delete)       api GET "${crm_base}/approval-flow/delete/$1" ;;
     enable)       api GET "${crm_base}/approval-flow/enable/$1?enable=true" ;;
     disable)      api GET "${crm_base}/approval-flow/enable/$1?enable=false" ;;
     by-form)      api GET "${crm_base}/approval-flow/get-by-form-type/$1" ;;
@@ -406,6 +488,14 @@ CRM 数据操作:
   crm acct-sub <子资源> <客户ID> [JSON]    客户子资源（contract/opportunity/order/payment-plan等）
   crm contract-sub <子资源> <合同ID>       合同子资源统计（invoice-stat）
 
+写入操作（创建/更新/转化）:
+  crm form <模块>                         获取可写模块表单定义
+  crm add <模块> <JSON>                   创建记录
+  crm update <模块> <JSON>                更新记录（JSON 须包含 id）
+  crm batch-update <模块> <JSON>          按字段批量更新（lead/account/opportunity/account/contact/contract/order）
+  crm transition <JSON>                   线索转客户
+  crm transform <JSON>                    线索转换（转客户+可选商机）
+
 用户与组织:
   crm whoami                              获取当前用户信息
   crm verify                              验证 API 密钥
@@ -428,9 +518,18 @@ CRM 数据操作:
 审批 todo 类型: pending（待审）, processed（已处理）, initiated（我发起的）, cc（抄送我）, count（统计）
 审批 action 操作: approve（同意）, reject（驳回）, back（退回）, sign（加签）, revoke（撤回）, batch-approve（批量同意）, batch-reject（批量驳回）
 审批 resource 操作: push（提审）, revoke（撤销）, simple-detail（列表详情）, detail（记录详情）
-审批 flow 操作: list（列表）, get（详情）, add（新建）, update（更新）, delete（删除）, enable（启用）, disable（禁用）, by-form（按表单类型）, setting（状态权限）, webhook-test（测试webhook）
+审批 flow 操作: list（列表）, get（详情）, add（新建）, update（更新）, enable（启用）, disable（禁用）, by-form（按表单类型）, setting（状态权限）, webhook-test（测试webhook）
 
-示例:
+写入操作支持的模块:
+  lead（线索）, account（客户）, opportunity（商机）, account/contact（联系人）,
+  {lead|account|opportunity}/follow/plan（跟进计划）,
+  {lead|account|opportunity}/follow/record（跟进记录）, contract（合同）,
+  contract/payment-plan（回款计划）, contract/payment-record（回款记录）,
+  invoice（发票记录）, contract/business-title（工商抬头）,
+  opportunity/quotation（报价单）, order（订单）
+批量编辑仅支持: lead（线索）, account（客户）, opportunity（商机）, account/contact（联系人）, contract（合同）, order（订单）
+
+查询示例:
   cordys crm approval todo pending '{"current":1,"pageSize":30}'
   cordys crm approval todo pending '{"resourceType":"CONTRACT"}'
   cordys crm approval todo pending '{"combineSearch":{"conditions":[{"value":"2026-05-01","operator":"GT","name":"createTime","type":"DATE_TIME"}]}}'
@@ -439,6 +538,18 @@ CRM 数据操作:
   cordys crm approval action reject '{"resourceId":"xxx","remark":"驳回原因"}'
   cordys crm approval resource push '{"resourceId":"xxx"}'
   cordys crm approval flow list '{"current":1,"pageSize":30}'
+
+写入示例:
+  cordys crm form lead                        获取线索表单定义
+  cordys crm form account/contact             获取联系人表单定义
+  cordys crm add lead '{"name":"张三","phone":"13800138000","products":["p1"]}'
+  cordys crm add account '{"name":"华星科技","owner":"user123"}'
+  cordys crm add opportunity '{"name":"华星采购项目","customerId":"xxx","contactId":"yyy","amount":120000,"owner":"user123","products":["p1"]}'
+  cordys crm add account/contact '{"customerId":"xxx","name":"张三","phone":"13800138000"}'
+  cordys crm update lead '{"id":"xxx","name":"张三（已联系）"}'
+  cordys crm batch-update lead '{"ids":["id1","id2"],"fieldId":"635449004900383","fieldValue":"admin"}'
+  cordys crm transition '{"clueId":"xxx","name":"华星科技"}'
+  cordys crm transform '{"clueId":"xxx","oppCreated":true,"oppName":"华星采购项目"}'
 
 原始 API:
   raw <方法> <路径> [curl参数...]
@@ -471,6 +582,12 @@ case "$cmd" in
       glocount) crm_glocount "$@" ;;
       acct-sub) crm_acct_sub "$@" ;;
       contract-sub) crm_contract_sub "$@" ;;
+      form)       crm_form "$@" ;;
+      add)        crm_add "$@" ;;
+      update)     crm_update "$@" ;;
+      batch-update) crm_batch_update "$@" ;;
+      transition) crm_lead_transition "$@" ;;
+      transform)  crm_lead_transform "$@" ;;
       follow)
         kind="${1:-}"; shift || die "follow 需要 plan 或 record"
         case "${kind}" in

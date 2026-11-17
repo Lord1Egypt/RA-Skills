@@ -1,42 +1,61 @@
-## Description: <br>
-Manage Capacities notes, daily entries, and weblinks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Capacities notes, daily entries, and weblinks.
 
-## Publisher: <br>
-[davidsmorais](https://clawhub.ai/user/davidsmorais) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[davidsmorais](https://clawhub.ai/user/davidsmorais)
 
-## Use Case: <br>
-External users and developers use this skill to add notes, tasks, thoughts, and weblinks to a Capacities workspace and to look up object and space information through the Capacities API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent uses a Capacities API token and can send note text, URLs, search terms, and space metadata to Capacities. <br>
-Mitigation: Install only when this access is intended, keep CAPACITIES_API_TOKEN scoped and protected, and avoid sending secrets or highly sensitive material unless it should be stored in Capacities. <br>
-Risk: When multiple Capacities spaces exist, content may be saved to an unintended space if no space ID is provided. <br>
-Mitigation: Set CAPACITIES_SPACE_ID explicitly when using multiple spaces and review content before saving. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Capacities skill page](https://clawhub.ai/davidsmorais/capacities) <br>
-- [Capacities save-to-daily-note endpoint](https://api.capacities.io/save-to-daily-note) <br>
-- [Capacities save-weblink endpoint](https://api.capacities.io/save-weblink) <br>
-- [Capacities lookup endpoint](https://api.capacities.io/lookup) <br>
+## Use Case:
 
+External Capacities users use this skill to ask an agent to add notes, tasks, thoughts, and weblinks to a Capacities space, search for object IDs, and retrieve space information.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAPACITIES_API_TOKEN; CAPACITIES_SPACE_ID is optional for selecting a workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe value substitution in shell examples could run unintended local commands.
+
+Mitigation: Review generated commands before running them and avoid pasting arbitrary note text directly into shell command source.
+
+Risk: The skill requires access to a private Capacities API token.
+
+Mitigation: Use only your own Capacities account and keep CAPACITIES_API_TOKEN private.
+
+Risk: Interpolating user content into curl JSON payloads can break request structure or alter command behavior.
+
+Mitigation: Prefer structured JSON construction or an HTTP client that escapes user-provided content safely.
+
+## Reference(s):
+
+- [Capacities skill page](https://clawhub.ai/davidsmorais/skills/capacities)
+- [Capacities publisher profile](https://clawhub.ai/user/davidsmorais)
+- [Capacities save-to-daily-note API endpoint](https://api.capacities.io/save-to-daily-note)
+- [Capacities save-weblink API endpoint](https://api.capacities.io/save-weblink)
+- [Capacities lookup API endpoint](https://api.capacities.io/lookup)
+- [Capacities space-info API endpoint](https://api.capacities.io/space-info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAPACITIES_API_TOKEN; CAPACITIES_SPACE_ID is optional and defaults to the first available space when omitted.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

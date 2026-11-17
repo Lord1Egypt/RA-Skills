@@ -1,48 +1,66 @@
-## Description: <br>
-Meeting Scheduler Pro helps an agent schedule meetings, manage availability, prepare briefs and agendas, and draft follow-ups using Google Calendar and optional Gmail, web search, and local meeting-note context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Scheduler Pro helps an OpenClaw agent schedule meetings, manage availability, prepare briefs and agendas, and capture follow-up work using Google Calendar, optional Gmail context, web search, and local notes.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Employees and teams use this skill to coordinate meetings through an agent: finding open slots, booking calendar events, generating meeting prep and agendas, and capturing follow-up actions after calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar, Gmail, web-search, and local note data can contain sensitive business or personal information. <br>
-Mitigation: Install only with Google permissions you accept, review config/settings.json after setup, and disable email context or web search when those data flows are not appropriate. <br>
-Risk: Generated meeting notes, agendas, follow-ups, and dashboard history may persist sensitive meeting context locally. <br>
-Mitigation: Treat the notes directory and dashboard history as sensitive records; secure, review, prune, or delete them according to your retention needs. <br>
-Risk: AI-generated prep briefs, agendas, and follow-up drafts may be incomplete or inaccurate. <br>
-Mitigation: Review generated meeting content before relying on it, sharing it with attendees, or sending follow-up email. <br>
+## Use Case:
 
+Employees and external-facing professionals use this skill to coordinate meetings, find available time, create calendar events, generate meeting preparation, and track follow-up tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nollio/normieclaw-meeting-scheduler-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/nollio) <br>
-- [OpenClaw](https://openclaw.com) <br>
-- [NormieClaw](https://normieclaw.ai) <br>
-- [README.md](README.md) <br>
-- [SECURITY.md](SECURITY.md) <br>
-- [Dashboard specification](dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown, with shell commands and JSON configuration updates when setup or calendar workflows require them.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Google Calendar events through gog, local meeting notes, prep briefs, agendas, follow-up drafts, and dashboard metrics when the user authorizes those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can request broad Calendar read/write access and may use Gmail content, web search, local notes, and cross-skill data during meeting preparation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config/settings.json before use, grant only acceptable gog permissions, and disable email context or web search for sensitive meetings.
+
+Risk: Meeting notes and follow-up files can persist locally with attendee names, decisions, discussion points, and action items.
+
+Mitigation: Review and prune the configured meeting-notes directory periodically and adjust retention practices for sensitive work.
+
+Risk: Meeting content processed by the configured AI provider may be subject to that provider's data handling terms.
+
+Mitigation: Confirm the configured AI provider's retention and training policies before processing confidential calendar, email, or meeting-note content.
+
+Risk: The server security verdict is suspicious because the release defaults to automated calendar, Gmail, web-search, local-note, and cross-skill data use.
+
+Mitigation: Install only after reviewing the security summary, settings, and required permissions, and verify gog is sourced from a trusted OpenClaw distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-meeting-scheduler-pro)
+- [Publisher profile](https://clawhub.ai/user/nollio)
+- [README](artifact/README.md)
+- [Security considerations](artifact/SECURITY.md)
+- [Default settings](artifact/config/settings.json)
+- [Dashboard manifest](artifact/dashboard-kit/manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and conversational text with inline shell commands, JSON configuration, calendar-event details, agendas, prep briefs, and follow-up task drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Google Calendar events through gog, write local markdown notes, and draft email or task follow-ups after user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

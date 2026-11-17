@@ -1,43 +1,59 @@
-## Description: <br>
-YMind Chat Visualizer turns public or pasted AI chat transcripts into interactive D3.js thinking maps with reasoning nodes, thinking shifts, and action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YMind Chat Visualizer turns AI chat transcripts from shared links or pasted text into interactive D3.js thinking maps with reasoning nodes, thinking shifts, and action items.
 
-## Publisher: <br>
-[yslenjoy](https://clawhub.ai/user/yslenjoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yslenjoy](https://clawhub.ai/user/yslenjoy)
 
-## Use Case: <br>
-External users and developers use this skill to fetch or parse AI chat transcripts, extract a structured thinking graph, and render local HTML, PNG, JSON, and Markdown outputs for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves complete fetched or pasted chat transcripts in the local YMind workspace. <br>
-Mitigation: Use a controlled output directory, avoid confidential or regulated conversations, and review or delete raw_chat.json and graph.html after use. <br>
-Risk: Generated HTML loads third-party CDN assets for visualization. <br>
-Mitigation: Open generated HTML only in environments where external asset loading is acceptable, or review and adapt the template for offline use. <br>
-Risk: Auto-fetch behavior uses browser automation for some providers and may encounter platform anti-bot controls. <br>
-Mitigation: Prefer paste mode for sensitive or unreliable fetches, and only fetch public share links that the user intentionally provides. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to visualize AI assistant conversations, extract reasoning paths, identify friction points and thinking shifts, and capture action items for later review.
 
-## Reference(s): <br>
-- [YMind Graph Schema Reference](references/graph-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yslenjoy/chat-visualizer-ymind) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus generated JSON, HTML, PNG, and workspace index files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores raw_chat.json, graph.json, graph.html, graph.png when screenshot support is available, meta.json, index.json, and index.html under a local YMind workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: Full chat transcripts and derived graph data are saved locally by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with non-sensitive conversations, set YMIND_DIR to an appropriate private workspace, and review or delete ~/ymind-ws outputs after use.
+
+Risk: Generated HTML may contact third-party CDNs for visualization libraries and fonts.
+
+Mitigation: Open generated HTML only in trusted environments and avoid rendering sensitive chats until CDN and HTML handling risks are reviewed.
+
+Risk: The authoritative scan reports review-level concerns around HTML escaping, index rendering, helper discovery, and dependency pinning.
+
+Mitigation: Prefer paste mode with non-sensitive content and defer use on credentials, private business data, or untrusted shared-chat links until those issues are fixed.
+
+## Reference(s):
+
+- [YMind Graph Schema Reference](references/graph-schema.md)
+- [ClawHub skill page](https://clawhub.ai/yslenjoy/skills/chat-visualizer-ymind)
+- [Publisher profile](https://clawhub.ai/user/yslenjoy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, HTML files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary plus local graph.json, graph.html, optional graph.png, raw_chat.json, meta.json, index.json, and index.html files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are saved locally under YMIND_DIR, defaulting to ~/ymind-ws; URL fetching and screenshot generation require optional requests and Playwright dependencies.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

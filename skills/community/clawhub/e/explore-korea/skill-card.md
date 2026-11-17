@@ -1,46 +1,60 @@
-## Description: <br>
-Plan Korea travel across Seoul, Busan, Jeju, flights, hotels, tickets, itineraries, visa information, insurance, car rentals, and related booking workflows powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Korea travel using flyai CLI results for flights, hotels, attractions, itinerary planning, visa information, travel insurance, car rental, and booking-linked recommendations.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travel users and agents use this skill to search real-time Korea trip options, compare flights, hotels, attractions, and related services, and produce booking-oriented travel recommendations from flyai CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and rely on the global @fly-ai/flyai-cli package. <br>
-Mitigation: Install only in environments where the package is trusted and global CLI installation is acceptable. <br>
-Risk: Travel details may be sent to the flyai or Fliggy-backed service to retrieve real-time results. <br>
-Mitigation: Use only when users are comfortable sharing trip details with that service and avoid sending unnecessary sensitive information. <br>
-Risk: Local execution logs may retain raw trip requests and command history. <br>
-Mitigation: Prevent creation of .flyai-execution-log.json when possible or remove it when retained travel request history is not desired. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search Korea flights, hotels, attractions, and related travel services through flyai CLI output, then present concise Markdown recommendations with booking links.
 
-## Reference(s): <br>
-- [Explore Korea Skill Page](https://clawhub.ai/xiejinsong/explore-korea) <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Fallback Guidance](references/fallbacks.md) <br>
-- [Execution Log Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and occasional inline shell commands for retries or setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output and booking detail URLs; raw JSON is not intended for user-facing output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill may run a third-party flyai CLI and install it globally through npm if missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a pinned CLI version manually before use; inspect proposed commands before execution.
+
+Risk: Travel queries may be sent to a third-party provider and booking links may route users to external services.
+
+Mitigation: Avoid entering sensitive passport, payment, or private itinerary details unless the provider's data handling is acceptable.
+
+Risk: The artifact describes local execution logging that can include raw user queries.
+
+Mitigation: Review or disable local logging before production use, especially for personal or confidential travel requests.
+
+## Reference(s):
+
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with comparison tables, inline booking links, and occasional bash commands for CLI setup or retry guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

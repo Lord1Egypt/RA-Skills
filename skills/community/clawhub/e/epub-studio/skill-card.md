@@ -1,40 +1,58 @@
-## Description: <br>
-Generates professional EPUB ebooks from Markdown, text, or structured content with chapters, a table of contents, cover image support, and metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Epub Studio helps agents create professional EPUB ebooks from Markdown, text, or structured content with chapters, table of contents, cover images, and metadata.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, authors, and content teams use this skill to create EPUB 3.0 ebooks from Markdown or structured chapter content, including generated chapters, navigation, a table of contents, optional cover images, and book metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and uses the third-party `ebooklib` Python package. <br>
-Mitigation: Install `ebooklib` in a trusted Python environment before using the generated EPUB workflow. <br>
-Risk: Cover image and output paths are local file paths, so an incorrect path could read the wrong image or overwrite an existing EPUB. <br>
-Mitigation: Provide explicit cover and output paths and confirm before overwriting existing EPUB files. <br>
+## Use Case:
 
+Developers, authors, and content teams use this skill to guide agents in generating EPUB ebooks from Markdown or structured text, including chapters, table of contents, cover images, and metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/epub-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance and Python code that can produce EPUB files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3 and the ebooklib package; generated EPUB output depends on supplied chapter text, metadata, cover image path, and output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Dependency behavior can change if ebooklib is installed without a reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the dependency in a virtual environment and pin ebooklib to a reviewed version before use.
+
+Risk: Generated EPUB files could be written to unintended locations if the output path is not chosen carefully.
+
+Mitigation: Generate files only to explicit, user-selected output paths.
+
+Risk: Untrusted Markdown or HTML content may carry unsafe markup into generated ebook content.
+
+Mitigation: Sanitize untrusted Markdown or HTML before conversion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/epub-studio)
+- [ClawHub publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python code snippets; generated EPUB files when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the ebooklib Python package; writes EPUB output to user-selected file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

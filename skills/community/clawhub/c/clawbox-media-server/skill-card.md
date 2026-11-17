@@ -1,41 +1,61 @@
-## Description: <br>
-Clawbox Media Server provides bidirectional LAN file sharing for AI agents through a static file server for downloads and an upload server with a browser upload UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawbox Media Server provides bidirectional LAN file sharing for AI agents through a local static file server and browser-based upload server.
 
-## Publisher: <br>
-[techthrasher](https://clawhub.ai/user/techthrasher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[techthrasher](https://clawhub.ai/user/techthrasher)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to exchange files with users over a trusted local network when the chat channel cannot carry media or larger artifacts directly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated upload and download servers can expose files to any device that can reach the configured ports. <br>
-Mitigation: Use only on trusted networks, bind to localhost or a specific trusted interface when possible, and firewall ports 18801 and 18802. <br>
-Risk: Files placed in the shared media directory may become visible or downloadable on the local network. <br>
-Mitigation: Keep sensitive files out of ~/projects/shared-media and remove shared files when they are no longer needed. <br>
-Risk: User services can keep file sharing available after the immediate transfer workflow is complete. <br>
-Mitigation: Stop or disable the media and upload services when sharing is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/techthrasher/clawbox-media-server) <br>
+## Use Case:
 
+Developers and AI agents use this skill to exchange files with users on a trusted LAN when inline media transfer is unavailable, including serving generated files and receiving uploads for processing.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands, local URLs, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Node.js and Python servers on configurable LAN ports; no external service is required for file exchange.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and CHANGELOG, released 2026-03-06) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unauthenticated file-sharing services can allow anyone who can reach the configured ports to upload or download files.
+
+Mitigation: Run only on trusted networks, bind to localhost or a specific trusted interface, and use firewall rules to limit access.
+
+Risk: Shared directories and directory listings can expose sensitive filenames or file contents.
+
+Mitigation: Avoid placing sensitive files in the shared directory and remove files when sharing is complete.
+
+Risk: Auto-started services can keep file sharing available beyond the current session.
+
+Mitigation: Disable or remove the systemd user services when the sharing workflow is finished.
+
+Risk: Uploads can consume local disk space.
+
+Mitigation: Monitor disk usage and clean the shared directory regularly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/techthrasher/skills/clawbox-media-server)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in local files, upload and download URLs, and optional systemd user services when the provided scripts are run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, CHANGELOG, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,52 @@
-## Description: <br>
-React composition guidance for refactoring boolean prop proliferation, building flexible component libraries, and designing reusable APIs with scalable component architecture patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React composition patterns for refactoring boolean prop proliferation, building flexible component libraries, and designing reusable component APIs with compound components, context providers, and React 19 guidance.
 
-## Publisher: <br>
-[ktaesthetix](https://clawhub.ai/user/ktaesthetix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ktaesthetix](https://clawhub.ai/user/ktaesthetix)
 
-## Use Case: <br>
-Developers and engineers use this skill when maintaining, generating, or refactoring React codebases that need compound components, context providers, lifted state, explicit variants, or React 19 API guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: React 19-specific recommendations may not apply to projects using React 18 or earlier. <br>
-Mitigation: Verify the target project's React version and local conventions before applying React 19 API guidance. <br>
-Risk: Architecture guidance can conflict with existing component-library conventions or product constraints. <br>
-Mitigation: Treat recommendations as style guidance and review proposed refactors against the codebase's established patterns. <br>
+## Use Case:
 
+Developers and code-review agents use this skill to refactor and review React component APIs, especially when boolean props, shared state, or reusable composition patterns need clearer structure.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ktaesthetix/vercel-composition-patterns) <br>
-- [SKILL.md](SKILL.md) <br>
-- [AGENTS.md](AGENTS.md) <br>
-- [Avoid Boolean Prop Proliferation](rules/architecture-avoid-boolean-props.md) <br>
-- [Use Compound Components](rules/architecture-compound-components.md) <br>
-- [React 19 API Changes](rules/react19-no-forwardref.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with TypeScript and React code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools, scripts, credentials, or runtime execution are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: React 19 API recommendations may be incorrect for projects still using React 18 or earlier.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the project's React version and official React documentation before applying React 19-specific ref, context, or use() guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ktaesthetix/skills/vercel-composition-patterns)
+- [React documentation](https://react.dev)
+- [React context guide](https://react.dev/learn/passing-data-deeply-with-context)
+- [React use API reference](https://react.dev/reference/react/use)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and TSX examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no detected tool, MCP, API-key, or shell-command requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

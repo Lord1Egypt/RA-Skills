@@ -1,37 +1,48 @@
-## Description: <br>
-Enables interactive browsing and navigation of web pages to retrieve, summarize, or analyze online content based on user queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Navigator is presented as a web browsing skill for retrieving, summarizing, or analyzing online content, but the released artifact is still an unfinished template.
 
-## Publisher: <br>
-[mematron](https://clawhub.ai/user/mematron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mematron](https://clawhub.ai/user/mematron)
 
-## Use Case: <br>
-External users and developers can use this skill to guide an agent through web navigation, retrieval, summarization, and analysis tasks. The current artifact is an unfinished template and should be completed before relying on it for web-navigation behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifact is an unfinished template and may not provide useful web-navigation behavior. <br>
-Mitigation: Complete the skill instructions before deployment, including activation criteria, handling of untrusted web content, and permitted agent actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mematron/web-navigator) <br>
+## Use Case:
 
+External users and developers would use this skill to guide an agent through web navigation tasks, including retrieving, summarizing, and analyzing online content. This release should be treated as incomplete until the publisher replaces the TODOs with a clear purpose, activation criteria, allowed and prohibited browsing actions, and confirmation requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance for agent behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable scripts, credential requirements, or privileged behavior are present in the submitted artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The released artifact is an unfinished template with TODO placeholders rather than a usable web-navigation workflow.
+
+Mitigation: Ask the publisher to complete the skill purpose, activation criteria, allowed and prohibited browsing actions, and confirmation requirements before installing it for normal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mematron/skills/web-navigator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable scripts, configuration files, or reference assets are included in the released artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

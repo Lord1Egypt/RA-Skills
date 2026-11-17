@@ -1,43 +1,59 @@
-## Description: <br>
-openclaw观测平台 - 基于 Apache Doris 的日志分析与监控 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers install the opsrobot/openclaw observability platform and configure Apache Doris-backed log, metric, and trace collection.
 
-## Publisher: <br>
-[never112](https://clawhub.ai/user/never112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[never112](https://clawhub.ai/user/never112)
 
-## Use Case: <br>
-Developers and operators use this skill to install the opsrobot observability platform with Docker Compose and configure OpenClaw log and OpenTelemetry metrics collection into Apache Doris. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The diagnostics configuration can store full prompts, messages, and system context in the observability backend. <br>
-Mitigation: Enable includePrompt, includeMessages, or includeSystem only when that collection is intentional, protected by trusted transport and restricted access, and governed by retention and redaction controls. <br>
-Risk: The setup requires running a Docker Compose repository referenced by the skill. <br>
-Mitigation: Review the repository and compose configuration before running the services. <br>
-Risk: The skill includes an unrelated request to star the upstream GitHub repository. <br>
-Mitigation: Treat the star request as optional promotion and ignore it unless the user independently chooses to do it. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to install opsrobot with Docker Compose and configure OpenClaw log and telemetry collection into Apache Doris. It provides setup guidance, shell commands, and configuration snippets for the observability workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/never112/opsrobot) <br>
-- [opsrobot GitHub repository](https://github.com/opsrobot-ai/opsrobot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Docker Compose commands, Vector configuration guidance, and OpenClaw diagnostics configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill asks users to run remote Docker Compose workloads without pinning a trusted release or commit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream Docker Compose file before installation and pin a trusted release, tag, or commit before running services.
+
+Risk: The telemetry configuration can capture prompts, messages, system content, logs, and full telemetry streams.
+
+Mitigation: Enable prompt, message, system-content, or full-log telemetry only with explicit approval, redaction, retention limits, access controls, and a trusted authenticated HTTPS collector.
+
+Risk: The skill includes a repository-star request unrelated to the operational setup task.
+
+Mitigation: Treat the star request as optional promotional text and ignore it unless the user independently chooses to star the repository.
+
+## Reference(s):
+
+- [opsrobot repository referenced by the skill](https://github.com/opsrobot-ai/opsrobot)
+- [ClawHub skill page](https://clawhub.ai/never112/skills/opsrobot)
+- [Publisher profile](https://clawhub.ai/user/never112)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require user-provided deployment paths, log directories, Doris targets, and telemetry collector endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

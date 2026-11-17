@@ -1,44 +1,54 @@
-## Description: <br>
-Guides an agent through Dataify Builder submissions for YouTube profile collection by URL or keyword, returning task IDs and statuses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect YouTube channel or profile records by channel URL or keyword, excluding videos, comments, transcripts, and media downloads.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Dataify Builder jobs that collect YouTube channel profile data from specific URLs or search keywords, then receive task metadata for follow-up in Dataify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked implicitly for YouTube profile collection requests. <br>
-Mitigation: Install it only when Dataify YouTube profile collection is intended, and confirm the selected mode, targets, and parameters before submission. <br>
-Risk: The skill can reuse a saved DATAIFY_API_TOKEN to submit Dataify Builder jobs. <br>
-Mitigation: Keep the token scoped and rotatable, avoid sharing it in prompts when possible, and remove or rotate it when access is no longer needed. <br>
-Risk: Submitted jobs may collect data from unintended YouTube URLs or keywords. <br>
-Mitigation: Review URL or keyword inputs, page counts, and file names before running the Builder request. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify Builder jobs that collect YouTube channel/profile records by channel URL or keyword, then monitor the returned task and retrieve final JSON results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-youtube-profiles) <br>
-- [Publisher profile](https://clawhub.ai/user/dataify-server) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with optional shell commands and JSON task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Dataify task_id, status, selected mode, submitted parameters, file name, dashboard URL, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill loads an unpinned external Python helper from dataify-task-operations/scripts and passes the Dataify API token to it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the Dataify runtime dependency before installation or execution, and keep the helper source/version controlled in the deployment environment.
+
+Risk: Profile collection jobs may consume Dataify credits and require an API token.
+
+Mitigation: Configure DATAIFY_API_TOKEN through the environment rather than chat, and use explicit invocation or no-wait behavior for tasks with potentially large scope.
+
+## Reference(s):
+
+- [Modes and Parameters](references/modes-and-parameters.md)
+- [Dataify YouTube Profiles on ClawHub](https://clawhub.ai/dataify-server/skills/dataify-youtube-profiles)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task/result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns final collected JSON results by default; can stop after submission when explicitly requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

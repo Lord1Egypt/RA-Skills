@@ -1,39 +1,50 @@
-## Description: <br>
-Evaluate and score Go code quality based on syntax, style, and best practices to provide constructive feedback and improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate and score Go code quality based on syntax, style, and best practices to provide constructive feedback and improvements.
 
-## Publisher: <br>
-[knifeAn](https://clawhub.ai/user/knifeAn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[knifean](https://clawhub.ai/user/knifean)
 
-## Use Case: <br>
-Developers use this skill to review Go code quality, style, and best-practice adherence and to receive constructive feedback for improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is presented as a Go code-scoring skill, but its Markdown instruction files are unreadable, so users cannot verify the agent instructions before installation. <br>
-Mitigation: Install only after the publisher provides readable plain-text SKILL.md, README.md, and config.md that match the Go code-scoring description. <br>
+## Use Case:
 
+Developers use this skill to assess Go code quality and receive feedback on syntax, style, and best-practice improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/knifeAn/golang-coding) <br>
-- [Publisher profile](https://clawhub.ai/user/knifeAn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown feedback and scoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by the user before applying suggested code changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The package presents skill instructions, README, and configuration as Markdown, but the files are opaque binary data, so behavior cannot be reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install this version until the publisher replaces the opaque files with complete plain-text, reviewable instructions and configuration, or provides a documented decoder and reviewed canonical content digest.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/knifean/skills/golang-coding)
+- [Publisher profile](https://clawhub.ai/user/knifean)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown text with Go code feedback and improvement guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Artifact behavior could not be reviewed because packaged Markdown files are opaque binary data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

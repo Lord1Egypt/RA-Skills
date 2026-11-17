@@ -17,21 +17,23 @@ These words appear dramatically more often in AI-generated text. Research shows 
 ```
 delve, embark, unleash, unlock, revolutionize, spearhead,
 foster, harness, elevate, transcend, forge, ignite,
-propel, catalyze, galvanize, amplify
+propel, catalyze, galvanize, amplify,
+underpin, unravel, demystify
 ```
 
 ### Sophistication Signals (False Depth)
 ```
 multifaceted, nuanced, intricate, meticulous, profound,
 comprehensive, holistic, robust, pivotal, paramount,
-indispensable, quintessential
+indispensable, quintessential,
+invaluable, esteemed, unwavering, relentless, enlightening
 ```
 
 ### Metaphor Abuse
 ```
 tapestry, beacon, realm, landscape, symphony, mosaic,
 crucible, labyrinth, odyssey, cornerstone, bedrock,
-linchpin, nexus
+linchpin, nexus, plethora
 ```
 
 ### Display Verbs
@@ -50,6 +52,15 @@ moreover, furthermore, indeed, notably, subsequently,
 consequently, additionally, likewise, nonetheless,
 henceforth, thereby, whereby
 ```
+
+**Audit-mode note:** these transitions have a low
+human citation rate (0.2%) relative to their keyword
+match rate (0.5%). They appear in human prose too.
+Treat a single match as noise; flag in clusters of 3+
+per 500 words. Do NOT add "however", "thus", or
+"hence" to this list: they keyword-match at 6.3% of
+on-topic Reddit posts but are cited as a tell 0% of
+the time (Reddit citation study, 2026).
 
 ### Hedging Stacks
 ```
@@ -120,7 +131,21 @@ Notes:
 "through this lens"
 "when it comes to"
 "at the end of the day"
+"shed light on"
 ```
+
+### RLHF Hedges (Score: 3 each)
+```
+"while it is true that"
+"while it's true that"
+"it could be argued that"
+"it's worth mentioning that"
+"it's worth pointing out"
+```
+
+Safety hedges AI uses to soft-pedal a claim instead of stating
+it. Say the thing directly. Mirrors `phrases.rlhf_hedge` in
+`data/languages/en.yaml`.
 
 ### Attribution Cliches (Score: 3)
 ```
@@ -286,10 +311,66 @@ saying anything. *Stop-Slop catalog, Hardik Pandya 2026.*
 "Let me explain."
 "Here's what I mean:"
 "Bear with me."
+"Let's dive in" / "Let me dive into"
+"Picture this:" / "Imagine a world where"
+"In this article/guide, we will..."
+"This article aims to..."
+"Here's what nobody tells you"
 ```
 
 These open paragraphs where the substance should. Delete and
 start at the substantive content.
+
+### Performative Honesty (Score: 3 each)
+
+"Honest X" headline framings and adverbial honesty markers:
+manufactured authenticity. Affiliate-SEO trope amplified by AI
+content farms. Adverbial forms flagged across 2026 discourse.
+Mirrors `tier5.performative_honesty` in `data/languages/en.yaml`.
+
+```
+"to be honest," / "in all honesty," / "truth be told,"
+"if I'm (being) honest," / "let's be honest,"
+"honestly,"  (sentence-initial)
+"full disclosure,"
+"An Honest Review/Take/Assessment of"
+"The Honest Truth About"
+"My Honest Results/Take/Review/Experience"
+"Honest Take on"
+"Real talk:"
+"Here's the truth"
+"Let me be clear"
+```
+
+False positives: dialogue, opinion prose, and affiliate-SEO
+titles use these genuinely. The regex scopes to framing nouns
+(review/take/truth) and discourse-marker forms so "an honest
+mistake" and "an honest answer" pass. High confidence per the
+2025-2026 update. Disable via `.slop-config.yaml` in dialogue-
+heavy or review content.
+
+### Sophistication Markers ("prior art", Score: 3 each)
+
+Collocations AI reaches for to sound rigorous in non-academic
+prose. This is an emerging tell. "prior art" itself is
+single-source (Reddit r/ClaudeAI). The adjacent cliches are
+stronger. Mirrors
+`tier5.sophistication_marker` in `data/languages/en.yaml`.
+
+```
+"survey the prior art"
+"benefit from (the) prior art"
+"prior art in this/our space"
+"standing on the shoulders of"
+"a rich/extensive body of work"
+"building on (the) prior/existing work"
+"state of the art"
+```
+
+Bare "prior art" is NOT matched, so legitimate patent prose
+("the examiner cited prior art", "run a prior art search") and
+academic novelty claims pass. High confidence per the 2025-2026
+update. IP-adjacent repos can disable via `.slop-config.yaml`.
 
 ### Loop/Signal/Cascade Vocabulary (Score: 2-3 each)
 
@@ -312,6 +393,12 @@ fresh (as evaluative: "a fresh take")
 | "a quiet shift" | evaluative; describe the shift instead |
 | "the signal here is" | "the point is" works |
 | "a feedback loop" | flag in non-control-theory prose |
+
+The metaphorical framings are enforced as `tier5.loop_vocabulary`
+in `data/languages/en.yaml` at medium confidence, so they are
+surfaced for a human rather than auto-rewritten: the literal
+senses ("unpacks the tuple", "the exposed surface") are common
+in technical prose and must pass.
 
 ### Significance & Legacy Cluster (Score: 3 each)
 
@@ -337,6 +424,13 @@ AI over-narrates importance. *Wikipedia, OliviaCal 2026.*
 Pattern: any sentence whose entire job is to assert that the
 subject *matters*, without saying what it does. Cut the
 sentence; the surrounding facts carry significance better.
+
+The high-confidence collocations are enforced as
+`tier5.significance_cluster` in `data/languages/en.yaml`, so
+they are detected in any repository the analyzer runs against
+rather than only where a project rule repeats them. The regexes
+anchor on the full phrase, so literal uses ("a last will and
+testament", "setting the stage lights") do not fire.
 
 ### Notability & Attribution Inflation (Score: 2-3 each)
 
@@ -392,16 +486,23 @@ Structural fingerprint, not just a phrase. See
 `structural-patterns.md` for full detection. Listed here so
 vocabulary scans surface the lexical version.
 
+This is the **contrastive negation** half of the broader
+**contrastive parallelism** (antithesis) family. The affirmative
+half ("Less X, more Y"; "Where others X, we Y") has no "not"
+anchor and is detected structurally; see
+`structural-patterns.md` § Contrastive Parallelism. Avoid both
+in all but the most necessary cases.
+
 ## Tier 5 Detection Regex Patterns
 
 ```python
 TIER5_COPULA_PATTERNS = [
-    r'\b(?:lives?|sits?|stands?|rests?|dwells?)\s+(?:in|at|on|between|within|atop)\b',
-    r'\bserves?\s+as\b',
-    r'\bmarks?\s+(?:a|the|an)\s+(?:turning|pivotal|key|defining)\b',
-    r'\brepresents?\s+(?:a|the|an)\s+(?:shift|transformation|paradigm)\b',
-    r'\b(?:rooted|anchored|nestled|situated)\s+in\b',
-    r'\bboasts?\s+(?:a|an|the|over|more than)\b',
+    r"\b(?:lives?|sits?|stands?|rests?|dwells?)\s+(?:in|at|on|between|within|atop)\b",
+    r"\bserves?\s+as\b",
+    r"\bmarks?\s+(?:a|the|an)\s+(?:turning|pivotal|key|defining)\b",
+    r"\brepresents?\s+(?:a|the|an)\s+(?:shift|transformation|paradigm)\b",
+    r"\b(?:rooted|anchored|nestled|situated)\s+in\b",
+    r"\bboasts?\s+(?:a|an|the|over|more than)\b",
 ]
 
 TIER5_THROAT_CLEARING = [
@@ -414,6 +515,13 @@ TIER5_THROAT_CLEARING = [
     r"\bThis matters because\b",
     r"^Let me explain\.",
     r"^Bear with me\.",
+    # 2025-2026 additions (mirror en.yaml tier5.throat_clearing)
+    r"\blet(?:'s| me) dive (?:right )?in\b",
+    r"\bpicture this\b",
+    r"\bimagine (?:a world where|this)\b",
+    r"\bin this (?:article|post|guide), we will\b",
+    r"\bthis (?:article|post) aims to\b",
+    r"\bhere's what nobody tells you\b",
 ]
 
 TIER5_NEGATIVE_PARALLELISM = [
@@ -432,26 +540,164 @@ TIER5_NEGATIVE_PARALLELISM = [
 ]
 
 TIER5_LOOP_VOCAB = [
-    r'\bunpack (?:this|that|the)\b',
-    r'\bsurface (?:the|a) (?:issue|question|tension|point)\b',
-    r'\ba quiet (?:shift|revolution|change|moment)\b',
-    r'\bthe signal (?:here|is)\b',
-    r'\ba sharp (?:framing|take|distinction)\b',
+    r"\bunpack (?:this|that|the)\b",
+    r"\bsurface (?:the|a) (?:issue|question|tension|point)\b",
+    r"\ba quiet (?:shift|revolution|change|moment)\b",
+    r"\bthe signal (?:here|is)\b",
+    r"\ba sharp (?:framing|take|distinction)\b",
 ]
 
 TIER5_SIGNIFICANCE = [
-    r'\bstands? as a testament to\b',
-    r'\bmarks? a turning point\b',
-    r'\brepresents? a (?:shift|transformation)\b',
-    r'\bindelible mark\b',
-    r'\bdeeply rooted\b',
-    r'\bsetting the stage for\b',
-    r'\bshaping the future of\b',
-    r'\breflects broader\b',
-    r'\bplays? a (?:key|pivotal|crucial) role\b',
-    r'\bunderscores? the importance\b',
+    r"\bstands? as a testament to\b",
+    r"\bmarks? a turning point\b",
+    r"\brepresents? a (?:shift|transformation)\b",
+    r"\bindelible mark\b",
+    r"\bdeeply rooted\b",
+    r"\bsetting the stage for\b",
+    r"\bshaping the future of\b",
+    r"\breflects broader\b",
+    r"\bplays? a (?:key|pivotal|crucial) role\b",
+    r"\bunderscores? the importance\b",
+]
+
+TIER5_PERFORMATIVE_HONESTY = [
+    r"\bto be honest[,.]?\b",
+    r"\bin all honesty[,.]?\b",
+    r"\btruth be told[,.]?\b",
+    r"\bif i(?:'m| am) (?:being )?honest\b",
+    r"\blet(?:'s| us) be honest\b",
+    r"\bhonestly,",
+    r"\bfull disclosure[,.]?\b",
+    r"\ban honest (?:review|take|assessment|conversation|look)\b",
+    r"\bthe honest truth about\b",
+    r"\bmy honest (?:results|take|review|experience|opinion)\b",
+    r"\bhonest take (?:on|about)\b",
+    r"\breal talk:",
+    r"\bhere's the truth\b",
+    r"\blet me be clear\b",
+]
+
+TIER5_SOPHISTICATION_MARKER = [
+    r"\b(?:survey|surveying|surveys) (?:the )?prior art\b",
+    r"\bbenefit from (?:the )?prior art\b",
+    r"\bprior art in (?:this|the|our) (?:space|field|area|domain)\b",
+    r"\b(?:stand|stands|standing) on (?:the )?shoulders of\b",
+    r"\b(?:rich|extensive|vast|growing) body of (?:work|prior research|literature)\b",
+    r"\bbuilding on (?:the )?(?:prior|existing|previous) work\b",
+    r"\bstate of the art\b",
+]
+
+TIER5_PARTICIPIAL_TAIL = [
+    r",\s+highlighting\b",
+    r",\s+showcasing\b",
+    r",\s+underscoring\b",
+    r",\s+paving the way for\b",
+    r",\s+demonstrating\b",
+    r",\s+proving that\b",
+    r",\s+reinforcing\b",
+    r",\s+enabling\b",
+]
+
+TIER5_EMPHASIS_CRUTCH = [
+    r"\bfull stop\.",
+    r"\bmake no mistake\b",
+    r"\bread that again\.?",
+    r"\bmark my words\b",
 ]
 ```
+
+## Anthropomorphism (Issue #646)
+
+Spatial copula catches one failure mode: putting a body somewhere.
+The larger pattern is giving a non-human subject human mental
+states, volition, or a body. "The scheduler wants to run these in
+order" has no literal reading. A scheduler cannot want.
+
+The category ships in three tiers because the verbs differ in how
+often they carry a legitimate literal sense.
+
+### High confidence (auto-flag)
+
+Mental-state, volition, and body verbs: `knows`, `knows about`,
+`understands`, `wants to`, `decides`, `thinks`, `believes`,
+`remembers`, `forgets`, `learns`, `cares about`, `tries to`, `is
+happy to`, `is aware of`, `agrees`, `refuses`, `is smart enough
+to`, `reaches into`, `walks the`, `speaks to`.
+
+Precision comes from the subject, not the verb. The regex requires
+a determiner followed by a technical subject noun, so "The parser
+understands nested blocks" fires while "She knows the codebase"
+and "Users understand the tradeoff" do not. A pronoun or a human
+role never precedes the verb in a match.
+
+Rewrites name the mechanism instead of the intent:
+
+| Anthropomorphic | Rewrite |
+|-----------------|---------|
+| The scheduler wants to run these in order | The scheduler runs these in order |
+| The parser understands nested blocks | The parser accepts nested blocks |
+| This module knows about the auth layer | This module imports the auth layer |
+| The cache decides what to evict | The cache evicts by least-recent use |
+| The type system tries to help you here | The type system rejects this call |
+
+`expects` is deliberately absent from this tier. "The parser
+expects a closing brace" is standard API prose, and no regex
+separates that from the intent sense reliably enough to auto-flag.
+
+### Medium confidence (surface, do not auto-rewrite)
+
+| Pattern | Rewrite |
+|---------|---------|
+| `is the seam` / `is the boundary` / `is the glue` | Name what it does: "translates between storage and domain" |
+| `drives` with a non-human subject | "controls", "sets", "determines" |
+| `rides` / `rides on top of` | "runs on", "wraps", "uses" |
+| `a real fix` / `real work` | Cut the modifier, or give the number that makes it real |
+
+The `drives` and `rides` patterns carry the same determiner-plus-
+noun subject guard, which keeps "He drives to work" and "She
+drives the roadmap" out. `data-driven` and `data driven` use the
+participle, so they never reach the pattern.
+
+The `real` pattern uses an explicit allowlist of following nouns
+(`fix`, `work`, `solution`, `answer`, `improvement`, `win`,
+`difference`) rather than an exclusion list. That keeps "a real
+number", "real time", "a real user", and "real data" from firing
+without enumerating every literal domain use in advance.
+
+### Low confidence (opt-in only)
+
+`handles`, `manages`, `owns`, `talks to`, `sees`. These are load-
+bearing in systems prose: "the service handles retries" has no
+concise non-anthropomorphic rewrite. The category sets
+`default_enabled: false`, so a routine sweep never reports them.
+Request them explicitly:
+
+```python
+get_tier5_patterns(patterns, include_optional=True)
+```
+
+`default_enabled` is a separate axis from `confidence`. A low
+confidence category is one whose hits need human judgment before a
+rewrite, which is not the same as one too noisy to report at all.
+The other low-confidence category, `contrastive_parallelism`, is
+meant to be surfaced and keeps firing by default.
+
+### Anti-goals
+
+These never fire, enforced structurally by keeping them out of the
+subject noun list rather than by a later exclusion pass:
+
+- **Domain terms of art**: `observer`, `listener`, `supervisor`,
+  `daemon`, `parent`/`child process`, `orphan`, `zombie`,
+  `handshake`, `heartbeat`, `master`/`replica`. These name real
+  concepts.
+- **Human roles**: `reviewer`, `user`, `developer`, `maintainer`,
+  `author`, `team`, `engineer`. Real people keep their verbs.
+- **Standard API verbs in code and signatures**: `Iterator::next`,
+  `Future::poll`, `handler.handle`. The category applies to prose
+  only.
+- Quoted text, changelog history, vendored and generated files,
+  per `anti-goals.md`.
 
 ## Tier 5 False-Positive Exclusions
 
@@ -466,62 +712,158 @@ TIER5_SIGNIFICANCE = [
 | "loop" | Code loops, control structures | "feedback loop" as metaphor |
 | "signal" | Telecom, statistics, signals.h | Evaluative use ("the signal here is") |
 
+### Excluded: Not Slop (2026 research)
+
+These read like tells but are human discourse terms, not AI-
+distinctive. The 2025-2026 research explicitly ruled them out.
+Do not add them to the detector:
+
+- `permissionless` / `permissionless innovation`: a real tech-
+  policy term used by humans, not an AI fingerprint.
+- `vibe shift`: mainstream cultural-discourse term (human use).
+- `hyperstitious slur`: a label used *about* slop, not *in* it.
+- bare `slop` self-reference: humans use the word more than AI.
+
+## Audit-Mode False-Positive Register (2026 Reddit Data)
+
+Reddit corpus data (89,239 posts, 604 hand-audited) shows that
+the highest keyword-match terms in AI-writing discourse have a
+near-zero human citation rate as tells. This section documents
+those terms so they are not mistakenly added to the detector or
+over-weighted in audit findings.
+
+**The core lesson:** keyword match rate and human citation rate
+point in different directions for most vocabulary. Only em
+dash, the diction-meme cluster, and direct boilerplate artifacts
+have strong agreement between the two signals.
+
+### Terms NOT in the detector (with justification)
+
+Do not add these. They appear in AI-writing discourse because
+authors use them, not because authors cite them as tells.
+
+| Term | Keyword match% | Citation% | Reason |
+|------|---------------:|----------:|--------|
+| "however" / "thus" / "hence" | 6.3% | 0.0% | Ordinary connective prose |
+| "nuanced" / "nuance" | 1.8% | 0.0% | Common critical vocabulary |
+| "when it comes to" | 1.0% | 0.0% | Conversational filler humans use too |
+| "utilize" | 0.3% | 0.0% | Formal register, not AI-exclusive |
+| "embark" | 0.3% | 0.0% | Metaphor humans use |
+| "navigate" (non-spatial) | 0.2% | 0.0% | Metaphor humans use |
+| "ever-evolving" | 0.2% | 0.0% | Cliché, but human cliché |
+
+### Terms in the detector with inflated confidence
+
+These are in the detector but should be treated as triage hints
+in audit mode, not primary findings. Their keyword match
+over-counts because Reddit authors quote blocklists and parody
+AI output rather than independently observing the tells.
+
+| Term / cluster | Audit-mode confidence |
+|----------------|-----------------------|
+| delve, unleash, tapestry, game-changer, comprehensive, elevate | Medium (cluster of 3+ required for a finding) |
+| moreover, furthermore, additionally | Low in isolation (0.2% citation); cluster only |
+| robust | Low in isolation |
+
+**Prevention mode is different.** In prevention mode
+(agent-generated prose under review), these words are still
+findings. The goal is zero AI fingerprinting, not forensic
+proof of authorship. The distinction:
+
+- **Audit mode** (forensic, applied to existing prose):
+  a single vocabulary hit is a triage hint. Multiple tiers
+  hitting together make a finding.
+- **Prevention mode** (newly generated prose):
+  any Tier 1 or Tier 3 phrase is a finding regardless of
+  citation rate, because agents should not default to these
+  words even if humans sometimes do.
+
 ## Detection Regex Patterns
 
 For automated scanning:
 
 ```python
 TIER1_PATTERNS = [
-    r'\bdelve\b', r'\bembark\b', r'\btapestry\b', r'\brealm\b',
-    r'\bbeacon\b', r'\bmultifaceted\b', r'\bpivotal\b', r'\bnuanced\b',
-    r'\bmeticulous(?:ly)?\b', r'\bintricate\b', r'\bshowcasing\b',
-    r'\bleveraging\b', r'\bstreamline\b', r'\bunleash\b',
+    r"\bdelve\b",
+    r"\bembark\b",
+    r"\btapestry\b",
+    r"\brealm\b",
+    r"\bbeacon\b",
+    r"\bmultifaceted\b",
+    r"\bpivotal\b",
+    r"\bnuanced\b",
+    r"\bmeticulous(?:ly)?\b",
+    r"\bintricate\b",
+    r"\bshowcasing\b",
+    r"\bleveraging\b",
+    r"\bstreamline\b",
+    r"\bunleash\b",
 ]
 
 TIER1_NEW_PATTERNS = [
-    r'\bunderscore[sd]?\b', r'\bbolster\b', r'\bfoster\b',
-    r'\billuminat[es]\b', r'\belucidat[es]\b', r'\bgrapple\b',
-    r'\breimagin[es]\b', r'\bintertwine[ds]?\b', r'\bexemplif(?:y|ies)\b',
-    r'\bseamless(?:ly)?\b', r'\binvaluable\b', r'\bvibrant\b',
-    r'\binterplay\b', r'\bfacet[s]?\b', r'\bendeavor[s]?\b',
-    r'\baptly\b', r'\btirelessly\b', r'\bvividly\b',
+    r"\bunderscore[sd]?\b",
+    r"\bbolster\b",
+    r"\bfoster\b",
+    r"\billuminat[es]\b",
+    r"\belucidat[es]\b",
+    r"\bgrapple\b",
+    r"\breimagin[es]\b",
+    r"\bintertwine[ds]?\b",
+    r"\bexemplif(?:y|ies)\b",
+    r"\bseamless(?:ly)?\b",
+    r"\binvaluable\b",
+    r"\bvibrant\b",
+    r"\binterplay\b",
+    r"\bfacet[s]?\b",
+    r"\bendeavor[s]?\b",
+    r"\baptly\b",
+    r"\btirelessly\b",
+    r"\bvividly\b",
 ]
 
 PHRASE_PATTERNS = [
     r"in today's fast-paced",
-    r'cannot be overstated',
+    r"cannot be overstated",
     r"it's worth noting",
-    r'at its core',
-    r'a testament to',
-    r'unlock the (?:full )?potential',
-    r'embark on (?:a |the )?journey',
-    r'nestled in the heart',
-    r'treasure trove',
-    r'game[- ]changer',
+    r"at its core",
+    r"a testament to",
+    r"unlock the (?:full )?potential",
+    r"embark on (?:a |the )?journey",
+    r"nestled in the heart",
+    r"treasure trove",
+    r"game[- ]changer",
     r"it's important to (?:note|remember|understand) that",
-    r'generally speaking',
-    r'from a broader perspective',
-    r'one might argue',
-    r'it could be said',
-    r'there is growing evidence',
-    r'areas for improvement',
-    r'invaluable resource',
-    r'underscores the importance',
+    r"generally speaking",
+    r"from a broader perspective",
+    r"one might argue",
+    r"it could be said",
+    r"there is growing evidence",
+    r"areas for improvement",
+    r"invaluable resource",
+    r"underscores the importance",
 ]
 
 # Conclusion starters (check first word of last paragraph)
 CONCLUSION_STARTERS = [
-    r'^Overall,',
-    r'^In conclusion,',
-    r'^In summary,',
-    r'^Ultimately,',
-    r'^To sum up,',
+    r"^Overall,",
+    r"^In conclusion,",
+    r"^In summary,",
+    r"^Ultimately,",
+    r"^To sum up,",
 ]
 
 # Co-occurrence test: 5+ of these in one paragraph = strong signal
 HIGH_FREQ_SHIFT_WORDS = [
-    'across', 'additionally', 'comprehensive', 'crucial', 'enhancing',
-    'exhibited', 'insights', 'notably', 'particularly', 'within',
+    "across",
+    "additionally",
+    "comprehensive",
+    "crucial",
+    "enhancing",
+    "exhibited",
+    "insights",
+    "notably",
+    "particularly",
+    "within",
 ]
 ```
 

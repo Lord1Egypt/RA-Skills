@@ -1,41 +1,51 @@
-## Description: <br>
-Clawwallet lets agents manage multi-chain wallets, DeFi operations, multi-signature transactions, ENS registration, policy checks, agent identity, and wallet event workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawwallet gives AI agents a multi-chain wallet control surface for wallet creation and import, balances, transfers, DeFi operations, multisig workflows, policies, ENS, identity, webhooks, and wallet activity.
 
-## Publisher: <br>
-[vibes-me](https://clawhub.ai/user/vibes-me) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vibes-me](https://clawhub.ai/user/vibes-me)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect an AI agent to wallet infrastructure for creating wallets, checking balances, sending funds, using DeFi services, managing policies, and monitoring wallet activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent direct authority over private keys, payments, swaps, staking, bridge transfers, and other fund-moving wallet actions. <br>
-Mitigation: Install only when the publisher and configured CLAW_WALLET_URL backend are trusted; start with testnet or low-value wallets and require human approval, spend limits, destination allowlists, and transaction previews before fund-moving calls. <br>
-Risk: Wallet service credentials and webhook secrets may expose sensitive wallet workflows if configured carelessly. <br>
-Mitigation: Limit access to CLAW_WALLET_API_KEY and webhook secrets, use a controlled backend, and avoid importing valuable private keys unless that service is intended to control them. <br>
+## Use Case:
 
+Developers and operators use this skill to connect AI agents to a wallet service for multi-chain wallet management, token movement, DeFi workflows, multisig coordination, policy checks, identity registration, and wallet event handling. Because it can move assets and submit secrets, deployments should use trusted wallet infrastructure and explicit human approval for sensitive actions.
 
-## Reference(s): <br>
-- [Clawwallet on ClawHub](https://clawhub.ai/vibes-me/clawwallet) <br>
-- [CLAWwallet documentation](https://clawwallet.pages.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [JavaScript module with JSON-like method responses from the configured wallet service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CLAW_WALLET_URL, CLAW_WALLET_API_KEY, and CLAW_WALLET_CHAIN configuration; methods can request wallet, transaction, DeFi, policy, identity, webhook, history, and diagnostic operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can move assets and submit wallet secrets through a wallet service without clear local confirmation or transport safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted wallet services over HTTPS or verified local transport, scope API keys, enforce spending limits, and require explicit human approval before asset movement or secret submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vibes-me/skills/clawwallet)
+- [Publisher Profile](https://clawhub.ai/user/vibes-me)
+- [CLAWwallet Documentation](https://clawwallet.pages.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JavaScript module methods returning structured JSON-like operation results and status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls a configured wallet service and may require CLAW_WALLET_URL, CLAW_WALLET_API_KEY, and CLAW_WALLET_CHAIN environment settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

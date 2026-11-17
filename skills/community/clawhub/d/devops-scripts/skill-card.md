@@ -1,42 +1,54 @@
-## Description: <br>
-Reference tool for devtools that covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet reference topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Devops Scripts provides static DevOps reference material for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise DevOps script reference material, including quickstart guidance, best practices, troubleshooting, performance, security, migration, and command cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security assessment marks the release suspicious because the autoreview helper can give a nested agent full local access by default. <br>
-Mitigation: Install only in a trusted ClawHub maintainer or development environment and prefer --no-yolo or AUTOREVIEW_YOLO=0 unless full local access is intentional. <br>
-Risk: Moderation and proof-publishing commands can perform real external mutations that affect users, roles, tokens, public comments, and published artifacts. <br>
-Mitigation: Review command intent and target environment before execution, and treat proof-publishing or moderation operations as production-affecting actions. <br>
+## Use Case:
 
+Developers and DevOps practitioners use this skill as a quick reference for common DevOps concepts, workflows, troubleshooting, performance, security, migration, and cheat sheet guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/devops-scripts) <br>
-- [Publisher Profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required for the documented commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server-resolved release evidence) <br>
+Risk: Users may mistake the generic reference text for a complete DevOps automation tool.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as quick reference guidance only, and independently review any operational change before applying it.
+
+Risk: A command-name mismatch in the reference output may confuse users.
+
+Mitigation: Check the skill's help output for supported command names before relying on a referenced command.
+
+## Reference(s):
+
+- [Devops Scripts on ClawHub](https://clawhub.ai/bytesagain3/skills/devops-scripts)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command-specific reference output; no credentials, network access, or persistent system changes are expected.]
+
+## Skill Version(s):
+
+2.0.4 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

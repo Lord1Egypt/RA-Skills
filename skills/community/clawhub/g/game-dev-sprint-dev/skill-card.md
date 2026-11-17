@@ -1,37 +1,53 @@
-## Description: <br>
-Sprint-based game development workflow for epic and story breakdown, sprint planning, and dev-story execution with readiness and done criteria for solo developers and small teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sprint-based game development workflow for epic and story breakdown, sprint planning, and dev-story execution with readiness and done criteria.
 
-## Publisher: <br>
-[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910)
 
-## Use Case: <br>
-Developers, solo game creators, and small game teams use this skill to convert game design work into sprint backlogs, stories, sprint boards, daily check-ins, and retrospective notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers may cause the skill to appear for generic development-planning requests outside game-development sprint work. <br>
-Mitigation: Review or narrow triggers during installation when the skill should only activate for game-development sprint planning. <br>
+## Use Case:
 
+External developers, solo game developers, and small game teams use this skill to turn game design work into epics, stories, sprint plans, Markdown tracking artifacts, and review routines.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with task lists, tables, templates, and inline shell or branch-name examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning artifacts such as backlog, current sprint, done log, and retrospective markdown structures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation phrases could trigger the skill during general software planning conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow triggers or scope activation to game-development sprint planning contexts when accidental activation would be disruptive.
+
+Risk: Generated sprint plans and Markdown tracking files may become stale or misaligned with actual project status.
+
+Mitigation: Review sprint artifacts with the project owner or team before treating them as the source of record.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-sprint-dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with templates, checklists, tables, and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or maintain sprint planning files under a sprint/ folder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

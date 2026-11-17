@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>速记板</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; height: 100%;
+        font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+        color: #1f2329; background: #eef0f4;
+      }
+      .appbar {
+        position: sticky; top: 0; z-index: 5;
+        display: flex; align-items: center; gap: 8px;
+        padding: 10px 16px; background: #fff; border-bottom: 1px solid #e5e6eb;
+      }
+      .brand { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 6px; }
+      .brand .dot { width: 9px; height: 9px; border-radius: 3px; background: #2f6bff; }
+      .spacer { flex: 1; }
+      .btn {
+        border: 1px solid #e5e6eb; background: #fff; color: #1f2329; border-radius: 8px;
+        padding: 6px 12px; cursor: pointer; font-size: 13px; transition: 0.15s;
+      }
+      .btn:hover { background: #f3f5f9; border-color: #d6dae2; }
+      .btn:disabled { opacity: 0.55; cursor: default; }
+      .btn.primary { background: #2f6bff; border-color: #2f6bff; color: #fff; }
+      .btn.primary:hover { filter: brightness(1.05); }
+      .hint { color: #8a8f99; font-size: 12px; }
+      .ver { color: #b0b4bc; font-size: 11px; margin-left: -4px; font-weight: 400; }
+      .ver-check { background: none; border: none; color: #b0b4bc; cursor: pointer; padding: 3px; margin-left: 2px; border-radius: 5px; display: inline-flex; align-items: center; line-height: 1; transition: 0.15s; vertical-align: middle; }
+      .ver-check:hover { color: #2f6bff; background: #f3f5f9; }
+      .ver-check:disabled { opacity: 0.5; cursor: default; }
+      .ver-check svg { transform-origin: center; }
+      .ver-check.spinning svg { animation: ver-spin 0.8s linear infinite; }
+      @keyframes ver-spin { to { transform: rotate(360deg); } }
+      .page-wrap {
+        padding: 28px; display: flex; justify-content: center;
+        background-image: radial-gradient(#d8dbe2 1px, transparent 1px); background-size: 22px 22px;
+      }
+      .page {
+        width: 794px; max-width: 100%; min-height: 70vh;
+        background: #fff; box-shadow: 0 6px 24px rgba(20, 30, 60, 0.12); border-radius: 2px;
+        padding: 48px 56px;
+      }
+      /* 条目 */
+      .entry {
+        display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start;
+      }
+      .entry-num {
+        flex: 0 0 auto; min-width: 28px; text-align: right;
+        font-weight: 700; font-size: 15px; color: #2f6bff; line-height: 1.9;
+        user-select: none; -webkit-user-select: none; cursor: default;
+      }
+      .entry-body {
+        flex: 1 1 auto; position: relative;
+      }
+      .entry-text {
+        width: 100%; border: 1px solid #e5e6eb; border-radius: 8px;
+        padding: 8px 12px; font-size: 15px; line-height: 1.9; font-family: inherit;
+        color: #1f2329; outline: none; resize: vertical; min-height: 44px;
+        background: #fafbfc;
+      }
+      .entry-text:focus { border-color: #2f6bff; background: #fff; }
+      .entry-text.collapsed {
+        max-height: 40px !important; height: 40px !important; overflow: hidden; opacity: 0.6; resize: none;
+      }
+      .entry-actions {
+        position: absolute; top: -8px; right: -6px;
+        display: none; gap: 4px;
+      }
+      .entry:hover .entry-actions { display: flex; }
+      .entry-copy, .entry-draft, .entry-toggle, .entry-del, .entry-img-btn {
+        width: 22px; height: 22px; border-radius: 50%; border: none;
+        color: #fff; font-size: 12px; line-height: 1;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+      }
+      .entry-copy { background: #2f6bff; }
+      .entry-copy:hover { background: #1a55e0; }
+      .entry-draft { background: #f59e0b; }
+      .entry-draft:hover { background: #d97706; }
+      .entry-toggle { background: #6b7280; }
+      .entry-toggle:hover { background: #4b5563; }
+      .entry-del { background: #e23; font-size: 14px; }
+      .entry-del:hover { background: #c11; }
+      .entry-img-btn { background: #10b981; }
+      .entry-img-btn:hover { background: #059669; }
+      /* 图片缩略图区 */
+      .entry-images {
+        display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
+      }
+      .entry-images:empty { display: none; }
+      .img-thumb {
+        position: relative; width: 72px; height: 72px; border-radius: 8px; overflow: hidden;
+        border: 1px solid #e5e6eb; cursor: pointer; background: #f3f5f9;
+      }
+      .img-thumb img {
+        width: 100%; height: 100%; object-fit: cover; display: block;
+      }
+      .img-thumb .img-overlay {
+        position: absolute; inset: 0; background: rgba(0,0,0,0.45);
+        display: none; align-items: center; justify-content: center; gap: 4px;
+      }
+      .img-thumb:hover .img-overlay { display: flex; }
+      .img-thumb .img-act {
+        width: 20px; height: 20px; border-radius: 50%; border: none;
+        color: #fff; font-size: 11px; cursor: pointer; display: flex;
+        align-items: center; justify-content: center;
+      }
+      .img-act.view { background: #2f6bff; }
+      .img-act.download { background: #22c55e; font-size: 10px; }
+      .img-act.rename { background: #f59e0b; }
+      .img-act.del { background: #e23; font-size: 13px; }
+      .img-drop-zone {
+        border: 2px dashed #c5c9d2; border-radius: 8px; padding: 8px;
+        margin-top: 6px; text-align: center; font-size: 12px; color: #8a8f99;
+        display: none; cursor: pointer;
+      }
+      .entry-body.drag-img .img-drop-zone { display: block; }
+      .add-row {
+        display: flex; gap: 12px; margin-top: 4px;
+      }
+      .add-row .placeholder { flex: 0 0 auto; min-width: 28px; }
+      .add-input {
+        flex: 1 1 auto; border: 1px dashed #c5c9d2; border-radius: 8px;
+        padding: 8px 12px; font-size: 15px; line-height: 1.9; font-family: inherit;
+        outline: none; background: #f9fafb; color: #1f2329;
+      }
+      .add-input:focus { border-color: #2f6bff; border-style: solid; background: #fff; }
+      .add-input::placeholder { color: #b0b4be; }
+      .empty-hint {
+        color: #b0b4be; font-size: 14px; line-height: 2; text-align: center;
+        padding: 40px 0;
+      }
+      .toast {
+        position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
+        background: #1f2329; color: #fff; padding: 9px 16px; border-radius: 10px; font-size: 13px;
+        box-shadow: 0 6px 24px rgba(20, 30, 60, 0.12); opacity: 0; transition: 0.25s; z-index: 50;
+      }
+      .toast.show { opacity: 1; }
+      .modal { position: fixed; inset: 0; z-index: 30; display: none; }
+      .modal.open { display: block; }
+      .modal-mask { position: absolute; inset: 0; background: rgba(20, 30, 60, 0.35); }
+      .modal-box {
+        position: relative; margin: 60px auto; width: 560px; max-width: 92%; max-height: 76vh;
+        background: #fff; border-radius: 12px; box-shadow: 0 12px 48px rgba(20, 30, 60, 0.25);
+        display: flex; flex-direction: column; overflow: hidden;
+      }
+      .modal-head {
+        display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid #e5e6eb; font-weight: 700;
+      }
+      .modal-head .btn { margin-left: auto; }
+      .modal-close {
+        width: 26px; height: 26px; border: none; border-radius: 8px; background: #f3f5f9; color: #1f2329;
+        font-size: 18px; line-height: 1; cursor: pointer; margin-left: auto;
+      }
+      .modal-close:hover { background: #e5e6eb; }
+      .modal-body { padding: 12px 18px; overflow-y: auto; }
+      /* 提醒模块 */
+      .remind-form { display: flex; flex-direction: column; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid #eef0f3; }
+      .remind-form > label { font-size: 12px; color: #8a8f99; }
+      .remind-form input[type=text] { padding: 7px 9px; border: 1px solid #e5e6eb; border-radius: 8px; font-size: 13px; }
+      .remind-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .remind-row label { font-size: 12px; color: #8a8f99; }
+      .remind-row input { padding: 6px 8px; border: 1px solid #e5e6eb; border-radius: 8px; font-size: 13px; }
+      .remind-list-wrap { padding-top: 14px; }
+      .remind-list-wrap h4 { margin: 0 0 8px; font-size: 13px; color: #1f2329; }
+      .remind-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f2f3f5; }
+      .remind-item .ri-time { font-weight: 600; color: #2f6bff; font-size: 13px; white-space: nowrap; }
+      .remind-item .ri-text { flex: 1; color: #1f2329; font-size: 13px; word-break: break-all; }
+      .remind-item.past .ri-time { color: #b0b4bc; }
+      .remind-item.past .ri-text { color: #b0b4bc; text-decoration: line-through; }
+      .remind-del { background: none; border: none; color: #c0392b; cursor: pointer; font-size: 18px; line-height: 1; padding: 0 4px; }
+      .remind-empty { color: #8a8f99; font-size: 13px; padding: 12px 0; }
+      .trash-item {
+        border: 1px solid #e5e6eb; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; background: #fafbfc;
+      }
+      .trash-text {
+        font-size: 14px; line-height: 1.7; color: #1f2329; white-space: pre-wrap; word-break: break-word;
+        max-height: 120px; overflow: hidden; margin-bottom: 8px;
+      }
+      .trash-actions { display: flex; gap: 8px; justify-content: flex-end; }
+      .trash-empty-hint { color: #b0b4be; font-size: 14px; text-align: center; padding: 40px 0; }
+      .badge { margin-left: 4px; color: #e23; font-weight: 700; }
+
+      /* 图片查看器 */
+      .img-viewer {
+        position: fixed; inset: 0; z-index: 60; display: none;
+        background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
+      }
+      .img-viewer.open { display: flex; }
+      .img-viewer img {
+        max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 4px;
+      }
+      .img-viewer .iv-bar {
+        position: absolute; bottom: 0; left: 0; right: 0;
+        display: flex; align-items: center; gap: 12px; padding: 12px 24px;
+        background: rgba(0,0,0,0.6); color: #fff; font-size: 13px;
+      }
+      .img-viewer .iv-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .img-viewer .iv-btn {
+        border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);
+        color: #fff; border-radius: 8px; padding: 5px 14px; cursor: pointer; font-size: 13px;
+      }
+      .img-viewer .iv-btn:hover { background: rgba(255,255,255,0.2); }
+      .img-viewer .iv-close {
+        position: absolute; top: 12px; right: 16px; font-size: 28px; color: #fff;
+        cursor: pointer; line-height: 1; opacity: 0.7;
+      }
+      .img-viewer .iv-close:hover { opacity: 1; }
+
+      /* ===== 文件夹模块 ===== */
+      .folder-modal .modal-box { width: 880px; height: 82vh; }
+      .folder-modal .modal-body { flex: 1 1 auto; overflow: hidden; padding: 0; }
+      .folder-layout { display: flex; height: 100%; }
+      .folder-side {
+        flex: 0 0 220px; border-right: 1px solid #e5e6eb; padding: 14px;
+        overflow-y: auto; background: #fafbfc;
+      }
+      .folder-side h4 { margin: 0 0 10px; font-size: 13px; color: #8a8f99; font-weight: 600; }
+      .folder-new { display: flex; gap: 6px; margin-bottom: 12px; }
+      .folder-new input {
+        flex: 1 1 auto; min-width: 0; border: 1px solid #e5e6eb; border-radius: 8px;
+        padding: 6px 10px; font-size: 13px; outline: none;
+      }
+      .folder-new input:focus { border-color: #2f6bff; }
+      .folder-item {
+        display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 8px;
+        cursor: pointer; font-size: 14px; margin-bottom: 4px;
+      }
+      .folder-item:hover { background: #f3f5f9; }
+      .folder-item.active { background: #eaf0ff; color: #2f6bff; font-weight: 600; }
+      .folder-item.drag-over { background: #dbe7ff; outline: 2px dashed #2f6bff; outline-offset: -2px; }
+      .folder-main.drag-over .file-list {
+        outline: 2px dashed #2f6bff; outline-offset: -4px; background: #f5f8ff;
+      }
+      .folder-main.drag-hint::after {
+        content: "松开即可上传到「" attr(data-folder) "」";
+        position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+        font-size: 15px; color: #2f6bff; background: rgba(245,248,255,0.85); border-radius: 8px;
+        pointer-events: none;
+      }
+      .folder-item .fname { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .folder-item .fcount { font-size: 12px; color: #8a8f99; }
+      .folder-item .fdel {
+        border: none; background: transparent; color: #c4c9d2; cursor: pointer;
+        font-size: 14px; line-height: 1; padding: 2px 4px; border-radius: 6px;
+      }
+      .folder-item .fdel:hover { background: #ffe3e3; color: #e23; }
+      .folder-main {
+        position: relative;
+        flex: 1 1 auto; padding: 14px 18px; display: flex; flex-direction: column;
+        overflow: hidden;
+      }
+      .folder-main-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+      .folder-main-head .ftitle { font-weight: 700; font-size: 15px; }
+      .folder-main-head .spacer { flex: 1; }
+      .file-list { flex: 1 1 auto; overflow-y: auto; }
+      .file-row {
+        display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+        border: 1px solid #e5e6eb; border-radius: 8px; margin-bottom: 8px; background: #fafbfc;
+      }
+      .file-row .fname {
+        flex: 1 1 auto; cursor: pointer; font-size: 14px; color: #1f2329;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      }
+      .file-row .fname:hover { color: #2f6bff; text-decoration: underline; }
+      .file-row .fmeta { font-size: 12px; color: #8a8f99; white-space: nowrap; }
+      .file-row .fac { display: flex; gap: 6px; }
+      .file-row .fbtn {
+        border: 1px solid #e5e6eb; background: #fff; border-radius: 6px;
+        padding: 3px 10px; font-size: 12px; cursor: pointer;
+      }
+      .file-row .fbtn:hover { background: #f3f5f9; }
+      .file-row .fbtn.del:hover { background: #ffe3e3; border-color: #ffc9c9; color: #e23; }
+      .file-empty { color: #b0b4be; font-size: 14px; text-align: center; padding: 40px 0; }
+      .file-view { flex: 1 1 auto; display: flex; flex-direction: column; overflow: hidden; }
+      .file-view .fv-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+      .file-view .fv-title {
+        font-weight: 700; font-size: 14px; flex: 1 1 auto;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      }
+      .file-view textarea {
+        flex: 1 1 auto; width: 100%; border: 1px solid #e5e6eb; border-radius: 8px;
+        padding: 12px; font-size: 14px; line-height: 1.8; font-family: inherit;
+        resize: none; outline: none; background: #fafbfc; color: #1f2329;
+      }
+      @media (max-width: 640px) {
+        .folder-layout { flex-direction: column; }
+        .folder-side {
+          flex: none; max-height: 30%; border-right: none;
+          border-bottom: 1px solid #e5e6eb;
+        }
+        .folder-modal .modal-box { width: 94%; height: 86vh; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 版本更新提示条 -->
+    <div id="update-bar" style="display:none;position:sticky;top:0;z-index:6;display:none;align-items:center;gap:8px;padding:8px 16px;background:#1a1a2e;color:#fff;font-size:13px;">
+      <span id="update-text"></span>
+      <a id="update-link" href="https://clawhub.ai/weijunz766-collab/skills/suji-board" target="_blank" rel="noopener" style="color:#6cf;text-decoration:underline;">前往升级</a>
+      <button id="update-dismiss" style="margin-left:auto;background:none;border:none;color:#999;cursor:pointer;font-size:16px;">×</button>
+    </div>
+    <header class="appbar">
+      <div class="brand"><span class="dot"></span>速记板</div><span class="ver" id="ver-tag" style="cursor:pointer" title="点击检查更新">v1.8.0</span>
+      <button id="btn-check-update" class="ver-check" title="检查更新" aria-label="检查更新"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button>
+      <span class="hint">每段文字自动编号，复制时不带序号 · 支持粘贴/拖拽图片</span>
+      <span class="spacer"></span>
+      <button class="btn" id="btn-draft">草稿箱<span id="draft-badge" class="badge"></span></button>
+      <button class="btn" id="btn-folder">文件夹</button>
+      <button class="btn" id="btn-trash">回收站<span id="trash-badge" class="badge"></span></button>
+      <button class="btn" id="btn-clear">清空</button>
+      <button class="btn" id="btn-collapse-all">展开全部</button>
+      <button class="btn" id="btn-save">保存</button>
+      <button class="btn" id="btn-feedback">反馈</button>
+      <button class="btn" id="btn-remind">⏰ 提醒</button>
+      <button class="btn primary" id="btn-export">导出 Word</button>
+    </header>
+
+    <div class="page-wrap">
+      <div class="page" id="page">
+        <div id="entries"></div>
+        <div class="add-row">
+          <div class="placeholder"></div>
+          <textarea class="add-input" id="add-input" rows="1"
+            placeholder="粘贴或输入文字，按回车添加为一条…（Ctrl+V 直接粘贴文字或图片）"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- 图片查看器 -->
+    <div id="img-viewer" class="img-viewer">
+      <span class="iv-close" id="iv-close">×</span>
+      <img id="iv-img" src="" alt="" />
+      <div class="iv-bar">
+        <span class="iv-name" id="iv-name"></span>
+        <button class="iv-btn" id="iv-rename">重命名</button>
+        <button class="iv-btn" id="iv-download">下载</button>
+        <button class="iv-btn" id="iv-delete">删除</button>
+      </div>
+    </div>
+
+    <!-- 提醒弹窗 -->
+    <div id="remind-modal" class="modal">
+      <div class="modal-mask"></div>
+      <div class="modal-box">
+        <div class="modal-head">
+          <span>⏰ 提醒</span>
+          <button class="modal-close" id="remind-close">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="remind-form">
+            <label>提醒内容（可选）</label>
+            <input id="remind-text" type="text" placeholder="例如：提交周报" maxlength="100" />
+            <div class="remind-row">
+              <label>日期</label>
+              <input type="date" id="remind-date" />
+              <label>时间</label>
+              <input type="time" id="remind-time" />
+            </div>
+            <button class="btn primary" id="remind-add">添加提醒</button>
+          </div>
+          <div class="remind-list-wrap">
+            <h4>已设置的提醒</h4>
+            <div id="remind-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 回收站弹窗 -->
+    <div id="trash-modal" class="modal">
+      <div class="modal-mask"></div>
+      <div class="modal-box">
+        <div class="modal-head">
+          <span>回收站</span>
+          <button class="btn" id="trash-empty">清空回收站</button>
+          <button class="modal-close" id="trash-close">×</button>
+        </div>
+        <div class="modal-body" id="trash-list"></div>
+      </div>
+    </div>
+
+    <!-- 草稿箱弹窗 -->
+    <div id="draft-modal" class="modal">
+      <div class="modal-mask"></div>
+      <div class="modal-box">
+        <div class="modal-head">
+          <span>草稿箱</span>
+          <button class="btn" id="draft-empty">清空草稿箱</button>
+          <button class="modal-close" id="draft-close">×</button>
+        </div>
+        <div class="modal-body" id="draft-list"></div>
+      </div>
+    </div>
+
+    <!-- 文件夹弹窗 -->
+    <div id="folder-modal" class="modal folder-modal">
+      <div class="modal-mask"></div>
+      <div class="modal-box">
+        <div class="modal-head">
+          <span>📁 文件夹</span>
+          <button class="modal-close" id="folder-close">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="folder-layout">
+            <div class="folder-side">
+              <h4>我的文件夹</h4>
+              <div class="folder-new">
+                <input id="folder-new-input" placeholder="新建文件夹名称" maxlength="40" />
+                <button class="btn primary" id="folder-create">＋</button>
+              </div>
+              <div id="folder-list"></div>
+            </div>
+            <div class="folder-main" id="folder-main">
+              <div class="folder-main-head" id="folder-main-head">
+                <span class="ftitle" id="folder-title">未选择文件夹</span>
+                <span class="spacer"></span>
+                <button class="btn primary" id="folder-upload">上传文本文档</button>
+                <input type="file" id="folder-file" accept=".txt,.doc,.docx,.md,.rtf,.json,.csv,.log,.xml,.html,.htm" multiple style="display:none" />
+              </div>
+              <div class="file-list" id="file-list"></div>
+              <div class="file-view" id="file-view" style="display:none;">
+                <div class="fv-head">
+                  <span class="fv-title" id="fv-title"></span>
+                  <button class="btn" id="fv-back">返回列表</button>
+                </div>
+                <textarea id="fv-text" readonly></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ===== IndexedDB 存储（图片 + 文件 blob） =====
+      const IMG_DB = "sujiboard_img";
+      const IMG_STORE = "images";
+      const FILE_STORE = "files";
+      let imgDB = null;
+
+      function openImgDB() {
+        return new Promise((resolve, reject) => {
+          const req = indexedDB.open(IMG_DB, 2);
+          req.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains(IMG_STORE)) {
+              db.createObjectStore(IMG_STORE, { keyPath: "id" });
+            }
+            if (!db.objectStoreNames.contains(FILE_STORE)) {
+              db.createObjectStore(FILE_STORE, { keyPath: "id" });
+            }
+          };
+          req.onsuccess = (e) => { imgDB = e.target.result; resolve(imgDB); };
+          req.onerror = (e) => reject(e.target.error);
+        });
+      }
+
+      // data URL 转 Blob
+      function dataURLToBlob(dataURL) {
+        const arr = dataURL.split(",");
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8 = new Uint8Array(n);
+        while (n--) { u8[n] = bstr.charCodeAt(n); }
+        return new Blob([u8], { type: mime });
+      }
+
+      function fileBlobPut(id, blob, name, type) {
+        return new Promise((resolve, reject) => {
+          if (!imgDB) return reject("db not ready");
+          // 将 blob 转成 base64 存储，避免结构化克隆问题
+          const reader = new FileReader();
+          reader.onload = () => {
+            const base64 = reader.result; // data:...;base64,...
+            const tx = imgDB.transaction([FILE_STORE], "readwrite");
+            tx.objectStore(FILE_STORE).put({ id, base64, name, type: type || "application/octet-stream", size: blob.size });
+            tx.oncomplete = () => resolve();
+            tx.onerror = (e) => reject(e.target.error);
+          };
+          reader.onerror = () => reject(reader.error);
+          reader.readAsDataURL(blob);
+        });
+      }
+
+      function fileBlobGet(id) {
+        return new Promise((resolve, reject) => {
+          if (!imgDB) return reject("db not ready");
+          const tx = imgDB.transaction([FILE_STORE], "readonly");
+          const req = tx.objectStore(FILE_STORE).get(id);
+          req.onsuccess = () => {
+            const rec = req.result || null;
+            if (rec && rec.base64 && !rec.blob) {
+              // 旧格式转新：从 base64 恢复 blob
+              try {
+                rec.blob = dataURLToBlob(rec.base64);
+              } catch (e) { console.warn("base64 to blob failed", e); }
+            }
+            resolve(rec);
+          };
+          req.onerror = (e) => reject(e.target.error);
+        });
+      }
+
+      function fileBlobDelete(id) {
+        return new Promise((resolve, reject) => {
+          if (!imgDB) return reject("db not ready");
+          const tx = imgDB.transaction([FILE_STORE], "readwrite");
+          tx.objectStore(FILE_STORE).delete(id);
+          tx.oncomplete = () => resolve();
+          tx.onerror = (e) => reject(e.target.error);
+        });
+      }
+
+      // 复制 IndexedDB 中的 blob 记录到新 id（用于回收站恢复）
+      window._fileBlobCopy = function(fromId, toId) {
+        fileBlobGet(fromId).then(rec => {
+          if (rec && rec.base64) {
+            const tx = imgDB.transaction([FILE_STORE], "readwrite");
+            tx.objectStore(FILE_STORE).put({ id: toId, base64: rec.base64, name: rec.name, type: rec.type, size: rec.size });
+            tx.oncomplete = () => console.log("blob copied", fromId, "->", toId);
+            tx.onerror = (e) => console.warn("blob copy failed", e.target.error);
+          } else {
+            console.warn("no blob to copy for", fromId);
+          }
+        }).catch(e => console.warn("fileBlobCopy failed", e));
+      };
+
+      function imgPut(id, blob, name, type) {
+        return new Promise((resolve, reject) => {
+          if (!imgDB) return reject("db not ready");
+          const tx = imgDB.transaction([IMG_STORE], "readwrite");
+          const store = tx.objectStore(IMG_STORE);
+          const record = { id, blob, name: name || ("图片 " + id.slice(-6)), type: type || "image/png", size: blob.size, createdAt: Date.now() };
+          store.put(record);
+          tx.oncomplete = () => resolve(record);
+          tx.onerror = (e) => reject(e.target.error);
+        });
+      }
+
+      function imgGet(id) {
+        return new Promise((resolve, reject) => {
+          if (!imgDB) return reject("db not ready");
+          const tx = imgDB.transaction([IMG_STORE], "readonly");
+          const store = tx.objectStore(IMG_STORE);
+          const req = store.get(id);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = (e) => reject(e.target.error);
+        });
+      }
+
+      function imgDelete(id) {
+        return new Promise((resolve, reject) => {
+          if (!imgDB) return reject("db not ready");
+          const tx = imgDB.transaction([IMG_STORE], "readwrite");
+          tx.objectStore(IMG_STORE).delete(id);
+          tx.oncomplete = () => resolve();
+          tx.onerror = (e) => reject(e.target.error);
+        });
+      }
+
+      function imgURL(id) {
+        return new Promise((resolve, reject) => {
+          imgGet(id).then(rec => {
+            if (!rec) return resolve(null);
+            const url = URL.createObjectURL(rec.blob);
+            resolve({ url, name: rec.name, type: rec.type, size: rec.size });
+          }).catch(reject);
+        });
+      }
+
+      // 初始化 DB
+      openImgDB().catch(e => console.warn("IndexedDB open failed:", e));
+
+      // ---- CRC32（用于构造 .docx 的 ZIP 校验）----
+      function crc32(buf) {
+        let table = crc32._t;
+        if (!table) {
+          table = crc32._t = [];
+          for (let n = 0; n < 256; n++) {
+            let c = n;
+            for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+            table[n] = c >>> 0;
+          }
+        }
+        let crc = 0xffffffff;
+        for (let i = 0; i < buf.length; i++) crc = (crc >>> 8) ^ table[(crc ^ buf[i]) & 0xff];
+        return (crc ^ 0xffffffff) >>> 0;
+      }
+
+      // ---- 打包一个无压缩(STORE)的 ZIP，产出真正的 .docx ----
+      function makeZip(files) {
+        const enc = new TextEncoder();
+        const u16 = (n) => [n & 0xff, (n >> 8) & 0xff];
+        const u32 = (n) => [n & 0xff, (n >> 8) & 0xff, (n >> 16) & 0xff, (n >> 24) & 0xff];
+        const chunks = [];
+        const central = [];
+        let offset = 0;
+        for (const f of files) {
+          const nameBytes = enc.encode(f.name);
+          const data = f.bytes;
+          const crc = crc32(data);
+          const local = [
+            ...u32(0x04034b50), ...u16(20), ...u16(0), ...u16(0),
+            ...u16(0), ...u16(0),
+            ...u32(crc), ...u32(data.length), ...u32(data.length),
+            ...u16(nameBytes.length), ...u16(0),
+            ...nameBytes,
+          ];
+          const localBytes = new Uint8Array(local);
+          chunks.push(localBytes);
+          chunks.push(data);
+          const cen = [
+            ...u32(0x02014b50), ...u16(20), ...u16(20), ...u16(0), ...u16(0),
+            ...u16(0), ...u16(0),
+            ...u32(crc), ...u32(data.length), ...u32(data.length),
+            ...u16(nameBytes.length), ...u16(0), ...u16(0), ...u16(0), ...u16(0),
+            ...u32(0), ...u32(offset),
+            ...nameBytes,
+          ];
+          central.push(new Uint8Array(cen));
+          offset += localBytes.length + data.length;
+        }
+        const centralSize = central.reduce((s, c) => s + c.length, 0);
+        const eocd = [
+          ...u32(0x06054b50), ...u16(0), ...u16(0),
+          ...u16(files.length), ...u16(files.length),
+          ...u32(centralSize), ...u32(offset), ...u16(0),
+        ];
+        const all = [...chunks, ...central, new Uint8Array(eocd)];
+        return new Blob(all, {
+          type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        });
+      }
+
+      function escapeXml(s) {
+        return s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+      }
+
+      function buildDocumentXml(entries) {
+        const paras = entries
+          .map((e, i) => {
+            const num = i + 1;
+            const lines = e.text.split(/\r?\n/).map((line) => escapeXml(line)).join("</w:t></w:r><w:br/><w:r><w:t xml:space=\"preserve\">");
+            return `<w:p><w:r><w:t xml:space="preserve">${num}. </w:t></w:r><w:r><w:t xml:space="preserve">${lines}</w:t></w:r></w:p>`;
+          })
+          .join("");
+        return (
+          '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
+          '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+          "<w:body>" + paras + "</w:body></w:document>"
+        );
+      }
+
+      const CONTENT_TYPES =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+        '<Default Extension="xml" ContentType="application/xml"/>' +
+        '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
+        "</Types>";
+
+      const ROOT_RELS =
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+        '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>' +
+        "</Relationships>";
+
+      function generateDocx(entries) {
+        const enc = new TextEncoder();
+        const files = [
+          { name: "[Content_Types].xml", bytes: enc.encode(CONTENT_TYPES) },
+          { name: "_rels/.rels", bytes: enc.encode(ROOT_RELS) },
+          { name: "word/document.xml", bytes: enc.encode(buildDocumentXml(entries)) },
+        ];
+        return makeZip(files);
+      }
+
+      // ---- 以下为界面逻辑 ----
+      function startApp() {
+        const STORE_KEY = "wordpad_entries";
+        const entriesEl = document.getElementById("entries");
+        const addInput = document.getElementById("add-input");
+        const toastEl = document.getElementById("toast");
+        let toastTimer = null;
+        function toast(msg) {
+          toastEl.textContent = msg;
+          toastEl.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toastEl.classList.remove("show"), 1600);
+        }
+        function fallbackCopy(text, btn) {
+          try {
+            const ta = document.createElement("textarea");
+            ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+            document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta);
+            if (btn) { btn.textContent = "✓"; toast("已复制"); setTimeout(() => (btn.textContent = "⧉"), 800); }
+          } catch (e) { toast("复制失败，请手动选中文字"); }
+        }
+
+        function genId() {
+          return "img" + Date.now() + Math.random().toString(36).slice(2, 7);
+        }
+
+        let entries = [];
+        let trash = [];
+        let drafts = [];
+        let collapsedAll = true;
+        try {
+          entries = JSON.parse(localStorage.getItem(STORE_KEY) || "[]");
+        } catch (e) { entries = []; }
+        try {
+          trash = JSON.parse(localStorage.getItem("wordpad_trash") || "[]");
+        } catch (e) { trash = []; }
+        try {
+          drafts = JSON.parse(localStorage.getItem("wordpad_drafts") || "[]");
+        } catch (e) { drafts = []; }
+
+        function save() { localStorage.setItem(STORE_KEY, JSON.stringify(entries)); }
+        function saveTrash() { localStorage.setItem("wordpad_trash", JSON.stringify(trash)); }
+        function saveDrafts() { localStorage.setItem("wordpad_drafts", JSON.stringify(drafts)); }
+
+        // ---- 图片查看器 ----
+        const iv = document.getElementById("img-viewer");
+        const ivImg = document.getElementById("iv-img");
+        const ivName = document.getElementById("iv-name");
+        let ivCurrent = null; // { id, entryIdx }
+
+        function openImageViewer(imgId, entryIdx) {
+          imgGet(imgId).then(rec => {
+            if (!rec) { toast("图片不存在"); return; }
+            ivCurrent = { id: imgId, entryIdx };
+            const url = URL.createObjectURL(rec.blob);
+            ivImg.src = url;
+            ivImg.alt = rec.name;
+            ivName.textContent = rec.name;
+            iv.classList.add("open");
+          });
+        }
+
+        function closeImageViewer() {
+          iv.classList.remove("open");
+          if (ivImg.src) { URL.revokeObjectURL(ivImg.src); ivImg.src = ""; }
+          ivCurrent = null;
+        }
+
+        document.getElementById("iv-close").addEventListener("click", closeImageViewer);
+        iv.addEventListener("click", (e) => { if (e.target === iv) closeImageViewer(); });
+
+        document.getElementById("iv-rename").addEventListener("click", () => {
+          if (!ivCurrent) return;
+          imgGet(ivCurrent.id).then(rec => {
+            if (!rec) return;
+            const name = prompt("输入新的图片名称：", rec.name);
+            if (!name || !name.trim()) return;
+            rec.name = name.trim();
+            const tx = imgDB.transaction([IMG_STORE], "readwrite");
+            tx.objectStore(IMG_STORE).put(rec);
+            tx.oncomplete = () => {
+              ivName.textContent = name.trim();
+              renderImages(ivCurrent.entryIdx);
+              toast("已重命名");
+            };
+          });
+        });
+
+        document.getElementById("iv-download").addEventListener("click", () => {
+          if (!ivCurrent) return;
+          imgGet(ivCurrent.id).then(rec => {
+            if (!rec) return;
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(rec.blob);
+            a.download = rec.name + (rec.type === "image/png" ? ".png" : rec.type === "image/jpeg" ? ".jpg" : "");
+            a.click();
+            URL.revokeObjectURL(a.href);
+            toast("已下载");
+          });
+        });
+
+        document.getElementById("iv-delete").addEventListener("click", () => {
+          if (!ivCurrent) return;
+          const { id, entryIdx } = ivCurrent;
+          if (!confirm("删除这张图片？")) return;
+          imgDelete(id).then(() => {
+            entries[entryIdx].images = (entries[entryIdx].images || []).filter(x => x !== id);
+            save();
+            closeImageViewer();
+            renderImages(entryIdx);
+            toast("已删除图片");
+          });
+        });
+
+        // 渲染某条目的图片缩略图
+        function renderImages(entryIdx) {
+          const entry = entries[entryIdx];
+          if (!entry) return;
+          const imgArr = entry.images || [];
+          const container = document.querySelector(`[data-entry-idx="${entryIdx}"] .entry-images`);
+          if (!container) return;
+          container.innerHTML = "";
+          imgArr.forEach(imgId => {
+            imgURL(imgId).then(info => {
+              if (!info) return;
+              const thumb = document.createElement("div");
+              thumb.className = "img-thumb";
+              const img = document.createElement("img");
+              img.src = info.url;
+              img.alt = info.name;
+              const overlay = document.createElement("div");
+              overlay.className = "img-overlay";
+              const vBtn = document.createElement("button");
+              vBtn.className = "img-act view"; vBtn.textContent = "⤢"; vBtn.title = "查看大图";
+              vBtn.addEventListener("click", () => openImageViewer(imgId, entryIdx));
+              const rnBtn = document.createElement("button");
+              rnBtn.className = "img-act rename"; rnBtn.textContent = "✎"; rnBtn.title = "重命名";
+              rnBtn.addEventListener("click", () => {
+                imgGet(imgId).then(rec => {
+                  if (!rec) return;
+                  const name = prompt("输入新的图片名称：", rec.name);
+                  if (!name || !name.trim()) return;
+                  rec.name = name.trim();
+                  const tx = imgDB.transaction([IMG_STORE], "readwrite");
+                  tx.objectStore(IMG_STORE).put(rec);
+                  tx.oncomplete = () => { renderImages(entryIdx); toast("已重命名"); };
+                });
+              });
+              const dlBtn = document.createElement("button");
+              dlBtn.className = "img-act download"; dlBtn.textContent = "⬇"; dlBtn.title = "下载";
+              dlBtn.addEventListener("click", () => {
+                imgGet(imgId).then(rec => {
+                  if (!rec) { toast("无法下载"); return; }
+                  const a = document.createElement("a");
+                  a.href = URL.createObjectURL(rec.blob);
+                  a.download = rec.name + (rec.type === "image/png" ? ".png" : rec.type === "image/jpeg" ? ".jpg" : rec.type === "image/webp" ? ".webp" : "");
+                  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+                  toast("已下载");
+                });
+              });
+              const dBtn = document.createElement("button");
+              dBtn.className = "img-act del"; dBtn.textContent = "×"; dBtn.title = "删除";
+              dBtn.addEventListener("click", () => {
+                if (!confirm("删除这张图片？")) return;
+                imgDelete(imgId).then(() => {
+                  entry.images = entry.images.filter(x => x !== imgId);
+                  save();
+                  renderImages(entryIdx);
+                  toast("已删除图片");
+                });
+              });
+              overlay.appendChild(vBtn);
+              overlay.appendChild(dlBtn);
+              overlay.appendChild(rnBtn);
+              overlay.appendChild(dBtn);
+              thumb.appendChild(img);
+              thumb.appendChild(overlay);
+              container.appendChild(thumb);
+            });
+          });
+        }
+
+        // 添加图片到条目
+        function addImagesToEntry(entryIdx, files) {
+          const entry = entries[entryIdx];
+          if (!entry) return;
+          entry.images = entry.images || [];
+          let pending = files.length;
+          let added = 0;
+          files.forEach(file => {
+            const id = genId();
+            imgPut(id, file, file.name, file.type).then(() => {
+              entry.images.push(id);
+              added++;
+              if (--pending === 0) {
+                save();
+                renderImages(entryIdx);
+                toast("已添加 " + added + " 张图片");
+              }
+            }).catch(err => {
+              console.error("imgPut failed:", err);
+              if (--pending === 0) {
+                save();
+                renderImages(entryIdx);
+                toast("已添加 " + added + " 张图片");
+              }
+            });
+          });
+        }
+
+        function render() {
+          entriesEl.innerHTML = "";
+          if (entries.length === 0) {
+            entriesEl.innerHTML = '<div class="empty-hint">还没有内容。<br/>在下方框里粘贴或输入文字，按回车添加。<br/>也可直接 Ctrl+V 粘贴图片。</div>';
+            return;
+          }
+          entries.forEach((e, i) => {
+            const row = document.createElement("div");
+            row.className = "entry";
+            row.setAttribute("data-entry-idx", i);
+
+            const num = document.createElement("div");
+            num.className = "entry-num";
+            num.textContent = (i + 1) + ".";
+            num.style.userSelect = "none";
+            num.style.webkitUserSelect = "none";
+
+            const body = document.createElement("div");
+            body.className = "entry-body";
+
+            const ta = document.createElement("textarea");
+            ta.className = "entry-text";
+            ta.value = e.text;
+            ta.style.height = "auto";
+            ta.style.overflowY = "hidden";
+            if (collapsedAll) ta.classList.add("collapsed");
+            ta.addEventListener("input", () => {
+              e.text = ta.value;
+              ta.style.height = "auto";
+              ta.style.height = ta.scrollHeight + "px";
+              save();
+            });
+            requestAnimationFrame(() => {
+              ta.style.height = Math.max(44, ta.scrollHeight) + "px";
+            });
+
+            // 图片缩略图容器
+            const imgContainer = document.createElement("div");
+            imgContainer.className = "entry-images";
+
+            // 图片拖放区
+            const dropZone = document.createElement("div");
+            dropZone.className = "img-drop-zone";
+            dropZone.textContent = "拖拽图片到此处，或点击选择图片";
+            dropZone.addEventListener("click", () => {
+              const input = document.createElement("input");
+              input.type = "file";
+              input.accept = "image/*";
+              input.multiple = true;
+              input.addEventListener("change", () => {
+                const files = Array.from(input.files || []).filter(f => f.type.startsWith("image/"));
+                if (files.length) addImagesToEntry(i, files);
+              });
+              input.click();
+            });
+
+            // 拖拽上传到条目
+            body.addEventListener("dragover", (ev) => {
+              if (ev.dataTransfer && ev.dataTransfer.types.includes("Files")) {
+                ev.preventDefault();
+                body.classList.add("drag-img");
+              }
+            });
+            body.addEventListener("dragleave", (ev) => {
+              if (ev.target === body || !body.contains(ev.relatedTarget)) {
+                body.classList.remove("drag-img");
+              }
+            });
+            body.addEventListener("drop", (ev) => {
+              if (ev.dataTransfer && ev.dataTransfer.files.length) {
+                const files = Array.from(ev.dataTransfer.files).filter(f => f.type.startsWith("image/"));
+                if (files.length) {
+                  ev.preventDefault();
+                  body.classList.remove("drag-img");
+                  addImagesToEntry(i, files);
+                }
+              }
+            });
+
+            const actions = document.createElement("div");
+            actions.className = "entry-actions";
+
+            const cp = document.createElement("button");
+            cp.className = "entry-copy";
+            cp.textContent = "⧉";
+            cp.title = "复制内容（不带序号）";
+            cp.addEventListener("click", () => {
+              const txt = e.text;
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(txt).then(() => {
+                  cp.textContent = "✓"; toast("已复制");
+                  setTimeout(() => (cp.textContent = "⧉"), 800);
+                }).catch(() => fallbackCopy(txt, cp));
+              } else {
+                fallbackCopy(txt, cp);
+              }
+            });
+
+            const toggle = document.createElement("button");
+            toggle.className = "entry-toggle";
+            toggle.textContent = collapsedAll ? "▸" : "▾";
+            toggle.title = collapsedAll ? "展开" : "收缩";
+            toggle.addEventListener("click", () => {
+              if (ta.classList.contains("collapsed")) {
+                ta.classList.remove("collapsed");
+                toggle.textContent = "▾";
+                toggle.title = "收缩";
+              } else {
+                ta.classList.add("collapsed");
+                toggle.textContent = "▸";
+                toggle.title = "展开";
+              }
+            });
+
+            const draftBtn = document.createElement("button");
+            draftBtn.className = "entry-draft";
+            draftBtn.textContent = "✎";
+            draftBtn.title = "存入草稿箱";
+            draftBtn.addEventListener("click", () => {
+              drafts.unshift({ text: e.text, savedAt: Date.now() });
+              saveDrafts();
+              entries.splice(i, 1);
+              save(); render();
+              updateDraftBadge();
+              toast("已存入草稿箱");
+            });
+
+            const del = document.createElement("button");
+            del.className = "entry-del";
+            del.textContent = "×";
+            del.title = "删除此条";
+            del.addEventListener("click", () => {
+              trash.unshift({ text: e.text, deletedAt: Date.now() });
+              saveTrash();
+              entries.splice(i, 1);
+              save(); render();
+              updateTrashBadge();
+              toast("已移入回收站");
+            });
+
+            actions.appendChild(cp);
+            actions.appendChild(toggle);
+            actions.appendChild(draftBtn);
+            actions.appendChild(del);
+
+            body.appendChild(ta);
+            body.appendChild(imgContainer);
+            body.appendChild(dropZone);
+            body.appendChild(actions);
+            row.appendChild(num);
+            row.appendChild(body);
+            entriesEl.appendChild(row);
+
+            // 渲染该条目的图片
+            if (e.images && e.images.length) {
+              renderImages(i);
+            }
+          });
+        }
+
+        function updateTrashBadge() {
+          const badge = document.getElementById("trash-badge");
+          if (badge) badge.textContent = trash.length ? String(trash.length) : "";
+        }
+
+        function updateDraftBadge() {
+          const badge = document.getElementById("draft-badge");
+          if (badge) badge.textContent = drafts.length ? String(drafts.length) : "";
+        }
+
+        function renderDrafts() {
+          const list = document.getElementById("draft-list");
+          list.innerHTML = "";
+          if (drafts.length === 0) {
+            list.innerHTML = '<div class="trash-empty-hint">草稿箱是空的</div>';
+            return;
+          }
+          drafts.forEach((d, i) => {
+            const item = document.createElement("div");
+            item.className = "trash-item";
+
+            const txt = document.createElement("div");
+            txt.className = "trash-text";
+            txt.textContent = d.text;
+
+            const acts = document.createElement("div");
+            acts.className = "trash-actions";
+
+            const restore = document.createElement("button");
+            restore.className = "btn";
+            restore.textContent = "放回列表";
+            restore.addEventListener("click", () => {
+              entries.push({ text: d.text });
+              save();
+              drafts.splice(i, 1);
+              saveDrafts();
+              render(); renderDrafts(); updateDraftBadge();
+              toast("已放回列表");
+            });
+
+            const purge = document.createElement("button");
+            purge.className = "btn";
+            purge.textContent = "彻底删除";
+            purge.addEventListener("click", () => {
+              drafts.splice(i, 1);
+              saveDrafts(); renderDrafts(); updateDraftBadge();
+              toast("已彻底删除");
+            });
+
+            acts.appendChild(restore);
+            acts.appendChild(purge);
+            item.appendChild(txt);
+            item.appendChild(acts);
+            list.appendChild(item);
+          });
+        }
+
+        function openDrafts() {
+          renderDrafts();
+          document.getElementById("draft-modal").classList.add("open");
+        }
+        function closeDrafts() {
+          document.getElementById("draft-modal").classList.remove("open");
+        }
+
+        function renderTrash() {
+          const list = document.getElementById("trash-list");
+          list.innerHTML = "";
+          if (trash.length === 0) {
+            list.innerHTML = '<div class="trash-empty-hint">回收站是空的</div>';
+            return;
+          }
+          trash.forEach((t, i) => {
+            const item = document.createElement("div");
+            item.className = "trash-item";
+
+            const txt = document.createElement("div");
+            txt.className = "trash-text";
+
+            const acts = document.createElement("div");
+            acts.className = "trash-actions";
+
+            if (t.type === "file") {
+              // 文件类型
+              txt.textContent = "📄 " + (t.name || "未命名文件");
+              const meta = document.createElement("span");
+              meta.style.fontSize = "12px"; meta.style.color = "#8a8f99"; meta.style.marginLeft = "8px";
+              meta.textContent = (t.folderName ? "来自「" + t.folderName + "」" : "") + (t.size ? " · " + (t.size < 1024 ? t.size + " B" : t.size < 1048576 ? (t.size/1024).toFixed(1) + " KB" : (t.size/1024/1024).toFixed(2) + " MB") : "");
+              txt.appendChild(meta);
+
+              const restore = document.createElement("button");
+              restore.className = "btn"; restore.textContent = "恢复";
+              restore.addEventListener("click", () => {
+                // 直接操作 localStorage 恢复文件到原文件夹
+                try {
+                  const fkey = "wordpad_folders";
+                  const foldersArr = JSON.parse(localStorage.getItem(fkey) || "[]");
+                  let folder = foldersArr.find(f => f.id === t.folderId);
+                  if (!folder) {
+                    folder = { id: "f" + Date.now() + Math.random().toString(36).slice(2,7), name: t.folderName || "已恢复文件", files: [] };
+                    foldersArr.push(folder);
+                  }
+                  const newFileId = "f" + Date.now() + Math.random().toString(36).slice(2, 7);
+                  folder.files.unshift({
+                    id: newFileId,
+                    name: t.name, size: t.size, uploadedAt: t.uploadedAt || Date.now(),
+                    previewable: !!t.text, text: t.text || "", type: t.mime || ""
+                  });
+                  localStorage.setItem(fkey, JSON.stringify(foldersArr));
+                  // 从旧 id 复制 IndexedDB 中的 blob 到新 id
+                  if (window._fileBlobCopy && t.origId) {
+                    window._fileBlobCopy(t.origId, newFileId);
+                  }
+                } catch (e) { console.warn("restore file failed", e); }
+                // 从回收站移除
+                trash.splice(i, 1); saveTrash(); renderTrash(); updateTrashBadge();
+                // 通知文件夹模块刷新
+                window.dispatchEvent(new CustomEvent("folders-changed"));
+                toast("文件已恢复到「" + (t.folderName || "已恢复文件") + "」");
+              });
+
+              const purge = document.createElement("button");
+              purge.className = "btn"; purge.textContent = "彻底删除";
+              purge.addEventListener("click", () => {
+                trash.splice(i, 1); saveTrash(); renderTrash(); updateTrashBadge();
+                toast("已彻底删除");
+              });
+
+              acts.appendChild(restore); acts.appendChild(purge);
+            } else {
+              // 笔记条目（旧数据无 type 字段，默认为 entry）
+              txt.textContent = t.text;
+
+              const restore = document.createElement("button");
+              restore.className = "btn"; restore.textContent = "恢复";
+              restore.addEventListener("click", () => {
+                entries.push({ text: t.text, images: [] });
+                save();
+                trash.splice(i, 1); saveTrash(); render(); renderTrash(); updateTrashBadge();
+                toast("已恢复");
+              });
+
+              const purge = document.createElement("button");
+              purge.className = "btn"; purge.textContent = "彻底删除";
+              purge.addEventListener("click", () => {
+                trash.splice(i, 1); saveTrash(); renderTrash(); updateTrashBadge();
+                toast("已彻底删除");
+              });
+
+              acts.appendChild(restore); acts.appendChild(purge);
+            }
+
+            item.appendChild(txt); item.appendChild(acts);
+            list.appendChild(item);
+          });
+        }
+
+        function openTrash() {
+          // 从 localStorage 重新读取，包含文件夹 IIFE 写入的文件回收项
+          try { trash = JSON.parse(localStorage.getItem("wordpad_trash") || "[]"); } catch (e) { trash = []; }
+          renderTrash();
+          document.getElementById("trash-modal").classList.add("open");
+        }
+        function closeTrash() {
+          document.getElementById("trash-modal").classList.remove("open");
+        }
+
+        function addEntry(text) {
+          text = (text || "").trim();
+          if (!text) return;
+          entries.push({ text, images: [] });
+          save();
+          render();
+          const page = document.getElementById("page");
+          page.scrollTop = page.scrollHeight;
+          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+        }
+
+        // 回车添加（Shift+Enter 换行不提交）
+        addInput.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            addEntry(addInput.value);
+            addInput.value = "";
+            addInput.style.height = "auto";
+          }
+        });
+        // 自动高度
+        addInput.addEventListener("input", () => {
+          addInput.style.height = "auto";
+          addInput.style.height = Math.max(44, addInput.scrollHeight) + "px";
+        });
+
+        // 全局粘贴：文字和图片都支持
+        document.addEventListener("paste", (e) => {
+          const inEntry = e.target && e.target.classList && e.target.classList.contains("entry-text");
+          if (inEntry) return;
+
+          // 检查剪贴板是否有图片
+          const items = (e.clipboardData || {}).items || [];
+          let hasImage = false;
+          for (const item of items) {
+            if (item.type && item.type.startsWith("image/")) {
+              hasImage = true;
+              const file = item.getAsFile();
+              if (file) {
+                // 创建新条目并添加图片
+                const idx = entries.length;
+                entries.push({ text: "", images: [] });
+                save();
+                render();
+                const id = genId();
+                imgPut(id, file, "粘贴图片 " + new Date().toLocaleTimeString(), file.type).then(() => {
+                  entries[idx].images.push(id);
+                  save();
+                  renderImages(idx);
+                  toast("已粘贴图片");
+                }).catch(err => {
+                  console.error("paste image failed:", err);
+                  toast("图片粘贴失败");
+                });
+              }
+            }
+          }
+
+          if (!hasImage) {
+            const text = (e.clipboardData || {}).getData("text");
+            if (text && text.trim()) {
+              e.preventDefault();
+              addEntry(text);
+            }
+          } else {
+            e.preventDefault();
+          }
+        });
+
+        // 保存按钮
+        document.getElementById("btn-save").addEventListener("click", () => {
+          save();
+          toast("已保存");
+        });
+
+        // Ctrl+S
+        document.addEventListener("keydown", (e) => {
+          if ((e.ctrlKey || e.metaKey) && (e.key === "s" || e.key === "S")) {
+            e.preventDefault();
+            save();
+            toast("已保存");
+          }
+        });
+
+        // 收起/展开全部（大纲视图）
+        function setAllCollapsed(v) {
+          collapsedAll = v;
+          entriesEl.querySelectorAll(".entry").forEach((row) => {
+            const ta = row.querySelector(".entry-text");
+            const tg = row.querySelector(".entry-toggle");
+            if (!ta || !tg) return;
+            if (v) { ta.classList.add("collapsed"); tg.textContent = "▸"; tg.title = "展开"; }
+            else { ta.classList.remove("collapsed"); tg.textContent = "▾"; tg.title = "收缩"; }
+          });
+          const btn = document.getElementById("btn-collapse-all");
+          if (btn) btn.textContent = collapsedAll ? "展开全部" : "收起全部";
+        }
+        document.getElementById("btn-collapse-all").addEventListener("click", () => setAllCollapsed(!collapsedAll));
+
+        // 清空
+        document.getElementById("btn-clear").addEventListener("click", () => {
+          if (entries.length && !confirm("确定清空所有条目？此操作不可撤销。")) return;
+          // 清空也进回收站，同时删除关联图片
+          entries.forEach((e) => {
+            trash.unshift({ text: e.text, deletedAt: Date.now() });
+            if (e.images) e.images.forEach(imgId => imgDelete(imgId));
+          });
+          saveTrash();
+          entries = [];
+          save();
+          render(); updateTrashBadge();
+          toast("已移入回收站");
+        });
+
+        // 导出 Word
+        document.getElementById("btn-export").addEventListener("click", () => {
+          if (entries.length === 0) { toast("没有内容可导出"); return; }
+          const blob = generateDocx(entries);
+          const d = new Date();
+          const pad = (n) => String(n).padStart(2, "0");
+          const name = `文字文档-${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}.docx`;
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = name;
+          a.click();
+          URL.revokeObjectURL(a.href);
+          toast("已导出 " + name);
+        });
+
+        // 回收站
+        document.getElementById("btn-trash").addEventListener("click", openTrash);
+        document.getElementById("trash-close").addEventListener("click", closeTrash);
+        document.querySelector("#trash-modal .modal-mask").addEventListener("click", closeTrash);
+        document.getElementById("trash-empty").addEventListener("click", () => {
+          if (trash.length && !confirm("确定清空回收站？所有已删内容将被永久删除。")) return;
+          trash = [];
+          saveTrash(); renderTrash(); updateTrashBadge();
+          toast("回收站已清空");
+        });
+
+        // 草稿箱
+        document.getElementById("btn-draft").addEventListener("click", openDrafts);
+        document.getElementById("draft-close").addEventListener("click", closeDrafts);
+        document.querySelector("#draft-modal .modal-mask").addEventListener("click", closeDrafts);
+        document.getElementById("draft-empty").addEventListener("click", () => {
+          if (drafts.length && !confirm("确定清空草稿箱？所有草稿将被永久删除。")) return;
+          drafts = [];
+          saveDrafts(); renderDrafts(); updateDraftBadge();
+          toast("草稿箱已清空");
+        });
+
+        render();
+        updateTrashBadge();
+        updateDraftBadge();
+        addInput.focus();
+      }
+
+      if (typeof document !== "undefined" && document.getElementById("entries")) {
+        startApp();
+      }
+
+      // ===== 文件夹模块 =====
+      (function () {
+        const FOLDER_KEY = "wordpad_folders";
+        const el = (id) => document.getElementById(id);
+        const fmtSize = (n) => {
+          if (n < 1024) return n + " B";
+          if (n < 1024 * 1024) return (n / 1024).toFixed(1) + " KB";
+          return (n / 1024 / 1024).toFixed(2) + " MB";
+        };
+        const fmtTime = (ts) => {
+          const d = new Date(ts);
+          const p = (x) => String(x).padStart(2, "0");
+          return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+        };
+
+        function readFileText(file) {
+          return new Promise((resolve) => {
+            const name = file.name.toLowerCase();
+            if (name.endsWith(".txt") || name.endsWith(".md") || name.endsWith(".json") ||
+                name.endsWith(".csv") || name.endsWith(".log") || name.endsWith(".xml") ||
+                name.endsWith(".html") || name.endsWith(".htm") || name.endsWith(".rtf")) {
+              const r = new FileReader();
+              r.onload = () => resolve({ text: String(r.result || ""), previewable: true });
+              r.onerror = () => resolve({ text: "", previewable: false });
+              r.readAsText(file, "utf-8");
+            } else {
+              resolve({ text: "", previewable: false });
+            }
+          });
+        }
+
+        let folders = [];
+        let activeId = null;
+        try { folders = JSON.parse(localStorage.getItem(FOLDER_KEY) || "[]"); } catch (e) { folders = []; }
+        function save() { try { localStorage.setItem(FOLDER_KEY, JSON.stringify(folders)); } catch (e) {} }
+
+        function getFolder(id) { return folders.find((f) => f.id === id) || null; }
+
+        function toast(msg) {
+          const t = el("toast");
+          t.textContent = msg; t.classList.add("show");
+          clearTimeout(toast._t);
+          toast._t = setTimeout(() => t.classList.remove("show"), 1600);
+        }
+
+        function renderFolderList() {
+          const list = el("folder-list");
+          list.innerHTML = "";
+          if (folders.length === 0) {
+            list.innerHTML = '<div class="file-empty">还没有文件夹</div>';
+            return;
+          }
+          folders.forEach((f) => {
+            const item = document.createElement("div");
+            item.className = "folder-item" + (f.id === activeId ? " active" : "");
+            const nm = document.createElement("span");
+            nm.className = "fname"; nm.textContent = "📁 " + f.name;
+            const cnt = document.createElement("span");
+            cnt.className = "fcount"; cnt.textContent = f.files.length;
+            const del = document.createElement("button");
+            del.className = "fdel"; del.textContent = "×"; del.title = "删除文件夹";
+            del.addEventListener("click", (e) => {
+              e.stopPropagation();
+              if (!confirm(`删除文件夹「${f.name}」？其中的 ${f.files.length} 个文件也会一并删除。`)) return;
+              folders = folders.filter((x) => x.id !== f.id);
+              save();
+              if (activeId === f.id) activeId = null;
+              renderFolderList(); renderMain();
+              toast("已删除文件夹");
+            });
+            item.appendChild(nm); item.appendChild(cnt); item.appendChild(del);
+            item.addEventListener("click", () => { activeId = f.id; renderFolderList(); renderMain(); });
+            item.addEventListener("dragover", (e) => { e.preventDefault(); item.classList.add("drag-over"); });
+            item.addEventListener("dragleave", () => item.classList.remove("drag-over"));
+            item.addEventListener("drop", (e) => {
+              e.preventDefault(); item.classList.remove("drag-over");
+              uploadFiles(f, e.dataTransfer.files);
+            });
+            list.appendChild(item);
+          });
+        }
+
+        function renderMain() {
+          const f = getFolder(activeId);
+          el("file-view").style.display = "none";
+          const list = el("file-list");
+          list.style.display = ""; // 修复：openFile 查看文件后会把 list 设为 display:none，返回/切换文件夹时必须恢复可见，否则主区空白
+          if (!f) {
+            el("folder-title").textContent = "未选择文件夹";
+            list.innerHTML = '<div class="file-empty">请选择左侧文件夹，或新建一个文件夹</div>';
+            return;
+          }
+          el("folder-title").textContent = f.name;
+          if (f.files.length === 0) {
+            list.innerHTML = '<div class="file-empty">该文件夹还没有文件，点右上角「上传文本文档」</div>';
+            return;
+          }
+          list.innerHTML = "";
+          f.files.forEach((file) => {
+            const row = document.createElement("div");
+            row.className = "file-row";
+            const nm = document.createElement("span");
+            nm.className = "fname"; nm.textContent = file.name; nm.title = "点击查看内容";
+            nm.addEventListener("click", () => openFile(f, file));
+            const meta = document.createElement("span");
+            meta.className = "fmeta";
+            meta.textContent = `${fmtSize(file.size)} · ${fmtTime(file.uploadedAt)}`;
+            const ac = document.createElement("div");
+            ac.className = "fac";
+            const cp = document.createElement("button");
+            cp.className = "fbtn"; cp.textContent = "复制";
+            cp.addEventListener("click", () => {
+              const txt = file.text || "";
+              if (!txt) { toast("该文件不支持复制正文"); return; }
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(txt).then(() => toast("已复制")).catch(() => fallbackCopy(txt));
+              } else { fallbackCopy(txt); }
+            });
+            const dlBtn = document.createElement("button");
+            dlBtn.className = "fbtn"; dlBtn.textContent = "下载";
+            dlBtn.addEventListener("click", () => downloadFile(file));
+            const delBtn = document.createElement("button");
+            delBtn.className = "fbtn del"; delBtn.textContent = "删除";
+            delBtn.addEventListener("click", () => {
+              if (!confirm(`删除文件「${file.name}」？`)) return;
+              // 文件进回收站（直接操作 localStorage，与 startApp 内的 trash 数组共用同一个 key）
+              try {
+                const t = JSON.parse(localStorage.getItem("wordpad_trash") || "[]");
+                t.unshift({
+                  type: "file",
+                  text: file.text || "",
+                  name: file.name,
+                  size: file.size,
+                  mime: file.type || "",
+                  uploadedAt: file.uploadedAt,
+                  folderId: f.id,
+                  folderName: f.name,
+                  origId: file.id,
+                  deletedAt: Date.now()
+                });
+                localStorage.setItem("wordpad_trash", JSON.stringify(t));
+              } catch (e) { console.warn("trash save failed", e); }
+              // 不删 blob，恢复时还能用
+              f.files = f.files.filter((x) => x.id !== file.id);
+              save(); renderFolderList(); renderMain();
+              // 更新回收站角标
+              const badge = document.getElementById("trash-badge");
+              if (badge) {
+                try {
+                  const t2 = JSON.parse(localStorage.getItem("wordpad_trash") || "[]");
+                  badge.textContent = t2.length ? String(t2.length) : "";
+                } catch (e) {}
+              }
+              toast("已删除文件，可在回收站恢复");
+            });
+            ac.appendChild(cp); ac.appendChild(dlBtn); ac.appendChild(delBtn);
+            row.appendChild(nm); row.appendChild(meta); row.appendChild(ac);
+            list.appendChild(row);
+          });
+        }
+
+        function fallbackCopy(text) {
+          try {
+            const ta = document.createElement("textarea");
+            ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+            document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta);
+            toast("已复制");
+          } catch (e) { toast("复制失败，请手动选中"); }
+        }
+
+        function openFile(f, file) {
+          el("file-list").style.display = "none";
+          const view = el("file-view");
+          view.style.display = "flex";
+          el("fv-title").textContent = file.name;
+          const ta = el("fv-text");
+          if (file.previewable && file.text) {
+            ta.value = file.text;
+          } else {
+            ta.value = file.previewable ? "" : "（该格式为二进制文档，无法在此预览正文。可保留在文件夹中作为附件管理。）";
+          }
+        }
+
+        el("folder-upload").addEventListener("click", () => {
+          const f = getFolder(activeId);
+          if (!f) { toast("请先选择或新建一个文件夹"); return; }
+          el("folder-file").click();
+        });
+
+        el("folder-file").addEventListener("change", (e) => {
+          const input = e.target;
+          const f = getFolder(activeId);
+          if (!f) return;
+          const files = Array.from(input.files || []);
+          if (!files.length) return;
+          uploadFiles(f, files);
+          input.value = "";
+        });
+
+        function uploadFiles(folder, fileList) {
+          const files = Array.from(fileList || []);
+          if (!files.length) return;
+          let pending = files.length;
+          let added = 0;
+          files.forEach((file) => {
+            const fileId = "f" + Date.now() + Math.random().toString(36).slice(2, 7);
+            readFileText(file).then((res) => {
+              folder.files.unshift({
+                id: fileId,
+                name: file.name,
+                size: file.size,
+                uploadedAt: Date.now(),
+                previewable: res.previewable,
+                text: res.text,
+                type: file.type || "",
+              });
+              added++;
+              save();
+              if (--pending === 0) { renderFolderList(); renderMain(); toast("已上传 " + added + " 个文件"); }
+              // 存原始 blob 到 IndexedDB（fileBlobPut 内部转 base64 存储）
+              fileBlobPut(fileId, file, file.name, file.type).catch(err => console.warn("blob save failed:", err));
+            });
+          });
+        }
+
+        function downloadFile(file) {
+          fileBlobGet(file.id).then(rec => {
+            if (rec && rec.blob && rec.blob.size > 0) {
+              // 有原始 blob，直接下载
+              try {
+                const url = URL.createObjectURL(rec.blob);
+                const a = document.createElement("a");
+                a.href = url; a.download = rec.name || file.name || "download";
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                toast("已下载");
+              } catch (e) {
+                console.warn("blob download failed, trying fallback", e);
+                if (file.text) {
+                  const blob = new Blob([file.text], { type: "text/plain;charset=utf-8" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url; a.download = file.name || "download.txt";
+                  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                  setTimeout(() => URL.revokeObjectURL(url), 1000);
+                  toast("已下载（文本内容）");
+                } else {
+                  toast("无法下载：该文件为二进制格式，原始内容未保存");
+                }
+              }
+            } else if (file.text) {
+              // 旧文件没有 blob，但有文本内容，用 text 生成 blob
+              const blob = new Blob([file.text], { type: "text/plain;charset=utf-8" });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url; a.download = file.name || "download.txt";
+              document.body.appendChild(a); a.click(); document.body.removeChild(a);
+              setTimeout(() => URL.revokeObjectURL(url), 1000);
+              toast("已下载（文本内容）");
+            } else {
+              toast("无法下载：该文件为二进制格式，原始内容未保存");
+            }
+          }).catch(() => toast("下载失败"));
+        }
+
+        const folderMain = el("folder-main");
+        folderMain.addEventListener("dragover", (e) => {
+          const f = getFolder(activeId);
+          if (!f) return;
+          e.preventDefault();
+          folderMain.classList.add("drag-over");
+          folderMain.classList.add("drag-hint");
+          folderMain.setAttribute("data-folder", f.name);
+        });
+        folderMain.addEventListener("dragleave", (e) => {
+          if (e.target === folderMain || !folderMain.contains(e.relatedTarget)) {
+            folderMain.classList.remove("drag-over", "drag-hint");
+          }
+        });
+        folderMain.addEventListener("drop", (e) => {
+          const f = getFolder(activeId);
+          e.preventDefault();
+          folderMain.classList.remove("drag-over", "drag-hint");
+          if (!f) { toast("请先选择或新建一个文件夹"); return; }
+          uploadFiles(f, e.dataTransfer.files);
+        });
+
+        el("fv-back").addEventListener("click", () => { renderMain(); });
+
+        el("folder-create").addEventListener("click", createFolder);
+        el("folder-new-input").addEventListener("keydown", (e) => { if (e.key === "Enter") createFolder(); });
+        function createFolder() {
+          const inp = el("folder-new-input");
+          const name = (inp.value || "").trim();
+          if (!name) { toast("请输入文件夹名称"); return; }
+          if (folders.some((f) => f.name === name)) { toast("已存在同名文件夹"); return; }
+          const id = "d" + Date.now() + Math.random().toString(36).slice(2, 7);
+          folders.push({ id, name, files: [] });
+          save();
+          inp.value = "";
+          activeId = id;
+          renderFolderList(); renderMain();
+          toast("已创建文件夹");
+        }
+
+        el("btn-folder").addEventListener("click", () => {
+          renderFolderList(); renderMain();
+          el("folder-modal").classList.add("open");
+        });
+        el("folder-close").addEventListener("click", () => el("folder-modal").classList.remove("open"));
+        el("folder-modal").querySelector(".modal-mask").addEventListener("click", () => el("folder-modal").classList.remove("open"));
+
+        // 监听外部作用域的 folders-changed 事件，重新读取 localStorage 并刷新
+        window.addEventListener("folders-changed", () => {
+          try { folders = JSON.parse(localStorage.getItem(FOLDER_KEY) || "[]"); } catch (e) { folders = []; }
+          renderFolderList();
+          if (activeId) { renderMain(); }
+        });
+      })();
+      // ===== 版本检查（手动） =====
+      (function checkVersion() {
+        const CURRENT = "1.8.0";
+        const API_URL = "https://clawhub.ai/api/v1/skills/suji-board";
+        const CACHE_KEY = "wordpad_version_check";
+        const CHECK_INTERVAL = 24 * 60 * 60 * 1000; // 24小时
+
+        function compareVersions(a, b) {
+          const pa = a.split(".").map(Number);
+          const pb = b.split(".").map(Number);
+          for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+            const va = pa[i] || 0;
+            const vb = pb[i] || 0;
+            if (va > vb) return 1;
+            if (va < vb) return -1;
+          }
+          return 0;
+        }
+
+        function showUpdateBar(latest) {
+          const bar = document.getElementById("update-bar");
+          const text = document.getElementById("update-text");
+          text.textContent = "发现新版本 v" + latest + "（当前 v" + CURRENT + "），建议升级。";
+          bar.style.display = "flex";
+          document.getElementById("update-dismiss").addEventListener("click", function() {
+            bar.style.display = "none";
+          });
+        }
+
+        function doCheck(force) {
+          // 检查缓存，24小时内不重复请求（仅在手动点击时跳过网络请求）
+          if (!force) {
+            try {
+              const cache = JSON.parse(localStorage.getItem(CACHE_KEY) || "{}");
+              if (cache.checkedAt && Date.now() - cache.checkedAt < CHECK_INTERVAL) {
+                if (cache.latest && compareVersions(cache.latest, CURRENT) > 0) {
+                  showUpdateBar(cache.latest);
+                } else if (force) {
+                  toast("当前已是最新版本 v" + CURRENT);
+                }
+                return;
+              }
+            } catch (e) {}
+          }
+
+          const btn = document.getElementById("btn-check-update");
+          if (btn) { btn.disabled = true; btn.classList.add("spinning"); btn.title = "检查中..."; }
+
+          fetch(API_URL)
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              const latest = data && data.skill && data.skill.tags && data.skill.tags.latest;
+              if (!latest) { toast("检查更新失败，请稍后再试"); return; }
+              try {
+                localStorage.setItem(CACHE_KEY, JSON.stringify({ latest: latest, checkedAt: Date.now() }));
+              } catch (e) {}
+              if (compareVersions(latest, CURRENT) > 0) {
+                showUpdateBar(latest);
+              } else {
+                toast("当前已是最新版本 v" + CURRENT);
+              }
+            })
+            .catch(function(e) {
+              toast("检查更新失败，请稍后再试");
+            })
+            .finally(function() {
+              if (btn) { btn.disabled = false; btn.classList.remove("spinning"); btn.title = "检查更新"; }
+            });
+        }
+
+        // 手动触发：点击「检查更新」按钮
+        document.getElementById("btn-check-update").addEventListener("click", function() {
+          doCheck(true);
+        });
+        // 点击版本号也可触发检查
+        document.getElementById("ver-tag").addEventListener("click", function() {
+          doCheck(true);
+        });
+      })();
+
+      // ===== 提醒模块（自包含，不依赖 startApp 作用域） =====
+      (function remindModule() {
+        const KEY = "wordpad_reminders";
+        function load() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; } }
+        function save(arr) { try { localStorage.setItem(KEY, JSON.stringify(arr)); } catch (e) {} }
+        function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+        function fmt(ts) {
+          const d = new Date(ts); const p = (n) => String(n).padStart(2, "0");
+          return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + " " + p(d.getHours()) + ":" + p(d.getMinutes());
+        }
+        function showToast(msg) {
+          const el = document.getElementById("toast"); if (!el) return;
+          el.textContent = msg; el.classList.add("show");
+          clearTimeout(window.__remindT);
+          window.__remindT = setTimeout(() => el.classList.remove("show"), 2200);
+        }
+        function renderList() {
+          const list = load(); const box = document.getElementById("remind-list"); if (!box) return;
+          if (!list.length) { box.innerHTML = '<div class="remind-empty">暂无提醒，添加一个试试</div>'; return; }
+          list.sort((a, b) => a.ts - b.ts);
+          box.innerHTML = list.map((r) => {
+            const past = r.ts <= Date.now();
+            return '<div class="remind-item' + (past ? ' past' : '') + '">' +
+              '<span class="ri-time">' + fmt(r.ts) + '</span>' +
+              '<span class="ri-text">' + esc(r.text || "") + '</span>' +
+              '<button class="remind-del" data-id="' + r.id + '" title="删除">×</button>' +
+              '</div>';
+          }).join("");
+        }
+        function beep() {
+          try {
+            const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+            const ctx = new AC();
+            function tone(freq, start, dur) {
+              const o = ctx.createOscillator(); const g = ctx.createGain();
+              o.connect(g); g.connect(ctx.destination); o.type = "sine"; o.frequency.value = freq;
+              const t0 = ctx.currentTime + start;
+              g.gain.setValueAtTime(0.0001, t0);
+              g.gain.exponentialRampToValueAtTime(0.3, t0 + 0.02);
+              g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+              o.start(t0); o.stop(t0 + dur + 0.02);
+            }
+            tone(880, 0, 0.5); tone(660, 0.6, 0.5);
+          } catch (e) {}
+        }
+        function check() {
+          const now = Date.now(); const list = load(); let changed = false;
+          list.forEach((r) => {
+            if (!r.fired && r.ts <= now) {
+              r.fired = true; changed = true; beep(); showToast("⏰ 提醒：" + (r.text || "时间到"));
+            }
+          });
+          if (changed) { save(list); renderList(); }
+        }
+        const modal = document.getElementById("remind-modal");
+        document.getElementById("btn-remind").addEventListener("click", function() {
+          const d = new Date(); const p = (n) => String(n).padStart(2, "0");
+          if (!document.getElementById("remind-date").value) {
+            document.getElementById("remind-date").value = d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+          }
+          renderList(); modal.classList.add("open");
+        });
+        document.getElementById("remind-close").addEventListener("click", function() { modal.classList.remove("open"); });
+        modal.querySelector(".modal-mask").addEventListener("click", function() { modal.classList.remove("open"); });
+        document.getElementById("remind-add").addEventListener("click", function() {
+          const date = document.getElementById("remind-date").value;
+          const time = document.getElementById("remind-time").value;
+          if (!date || !time) { showToast("请选择日期和时间"); return; }
+          const ts = new Date(date + "T" + time).getTime();
+          if (isNaN(ts)) { showToast("日期时间格式错误"); return; }
+          if (ts <= Date.now()) { showToast("请选择将来的时间"); return; }
+          const text = document.getElementById("remind-text").value.trim();
+          const list = load();
+          list.push({ id: "r" + Date.now() + Math.random().toString(36).slice(2, 6), ts: ts, text: text, fired: false });
+          save(list); document.getElementById("remind-text").value = "";
+          renderList(); showToast("已添加提醒");
+        });
+        document.getElementById("remind-list").addEventListener("click", function(e) {
+          const btn = e.target.closest && e.target.closest(".remind-del"); if (!btn) return;
+          const id = btn.getAttribute("data-id");
+          save(load().filter((r) => r.id !== id)); renderList();
+        });
+        renderList(); check();
+        setInterval(check, 1000);
+      })();
+
+      // ===== 反馈入口 =====
+      (function feedbackEntry() {
+        const FEEDBACK_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeq6oQKhZ44zH6wgDoO0BTeC4IzckzjhRqwLLz96m5uWmwrng/viewform?usp=publish-editor";
+        document.getElementById("btn-feedback").addEventListener("click", function() {
+          window.open(FEEDBACK_URL, "_blank", "noopener");
+        });
+      })();
+
+    </script>
+  </body>
+</html>

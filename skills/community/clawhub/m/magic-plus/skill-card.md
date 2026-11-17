@@ -1,39 +1,53 @@
-## Description: <br>
-A local source-navigation skill for magic-api development, troubleshooting, extension work, and upgrade review across magic-api, magic-api-plugin, magic-script, and magic-api-example materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向 magic-api 开发、排障、二开与升版审查的本地源码技能。基于 magic-api、magic-api-plugin、magic-script、magic-api-example 四个仓库整理，强调按问题类型快速定位源码、样例与升级审查资料。
 
-## Publisher: <br>
-[kwin-lv](https://clawhub.ai/user/kwin-lv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kwin-lv](https://clawhub.ai/user/kwin-lv)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly choose the right magic-api source, example, or review material when writing .ms endpoints, diagnosing behavior, building extensions or plugins, and assessing upgrade impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to inspect local magic-api, magic-script, magic-api-example, magic-api-plugin, and related reference files. <br>
-Mitigation: Install and use it only when that local source access is acceptable, and keep secrets or unrelated sensitive files outside the inspected repositories. <br>
-Risk: Generated development, troubleshooting, or upgrade advice may be incomplete or mismatched to the user's local magic-api version and extensions. <br>
-Mitigation: Review recommendations against the local source and examples, then test changes before applying them to production projects. <br>
+## Use Case:
 
+Developers and engineers use this skill for Chinese-language guidance when developing, troubleshooting, extending, or upgrade-reviewing magic-api projects. It helps route questions to relevant magic-api, magic-api-plugin, magic-script, and magic-api-example source areas and examples.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code, command, and configuration snippets when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-navigation paths, troubleshooting sequences, implementation examples, and upgrade-review recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may be incomplete when the expected magic-api repositories or referenced local documents are not available with the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in workspaces that include the referenced magic-api source repositories and local references, and require the agent to state when a supporting file or repository is unavailable.
+
+Risk: Generated troubleshooting or upgrade-review guidance could be wrong if it is not checked against the user's actual magic-api version and project code.
+
+Mitigation: Review recommendations against the local source, configuration, scripts, and target version before applying changes.
+
+## Reference(s):
+
+- [magic-plus ClawHub Skill Page](https://clawhub.ai/kwin-lv/skills/magic-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code, file paths, configuration snippets, and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses oriented around source navigation, examples, troubleshooting steps, extension guidance, and upgrade-review conclusions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

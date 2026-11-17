@@ -1,40 +1,53 @@
-## Description: <br>
-从小说大纲自动拆解逐章 prompt，支持纯文本、JSON、Markdown 格式大纲，并生成每章写作指令。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Outliner - 大纲解析器 parses plain text, JSON, or Markdown novel outlines into per-chapter writing prompts and a chapter summary.
 
-## Publisher: <br>
-[shine8592](https://clawhub.ai/user/shine8592) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shine8592](https://clawhub.ai/user/shine8592)
 
-## Use Case: <br>
-External authors and agent users use this skill to convert a novel outline into chapter-level prompt files and a structured chapter summary. It is intended for outline parsing and prompt preparation, not for writing or expanding the novel prose itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The parser writes prompt files and chapters.json to the selected output directory, which may overwrite existing files with matching names. <br>
-Mitigation: Choose the output directory intentionally and review existing files before running the parser. <br>
-Risk: Generated prompts enforce Chinese-only style and other fixed writing constraints that may not match every project. <br>
-Mitigation: Review the generated prompts before using them with a novel generation tool. <br>
+## Use Case:
 
+Authors and developers use this skill to convert structured novel outlines into per-chapter prompt files and a JSON chapter summary for downstream writing workflows. It does not write or expand the novel itself.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shine8592/novel-outliner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands] <br>
-**Output Format:** [Plain text prompt files and a chapters.json summary file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates one prompt file per parsed chapter and writes chapters.json in the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Outline content may contain instruction-like text that is copied into generated prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted outlines or review generated prompts before sending them to an agent with sensitive tools or data access.
+
+Risk: Generated prompts force Chinese-only novel-writing constraints that may not fit every writing workflow.
+
+Mitigation: Confirm the downstream writing task requires these constraints before using the generated prompt files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shine8592/skills/novel-outliner)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Per-chapter text prompt files plus a JSON chapter summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated prompts include Chinese-only writing constraints and may copy outline text into downstream prompts.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Auto Bug Finder iteratively scans, analyzes, fixes, and verifies Solidity contracts with Hardhat, Slither, coverage checks, and heuristic security checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Solidity Hardhat projects with Slither, tests, coverage, and heuristics, then documents or applies fixes until configured severity gates are clear or the sprint limit is reached.
 
-## Publisher: <br>
-[jengajojo](https://clawhub.ai/user/jengajojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jengajojo](https://clawhub.ai/user/jengajojo)
 
-## Use Case: <br>
-Developers and smart-contract engineers use this skill to run iterative Solidity security checks before deployment, after refactors, or as a CI gate. It compiles and tests a Hardhat project, runs Slither and heuristic checks, applies supported fixes, and produces review artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool can automatically rewrite smart-contract files. <br>
-Mitigation: Run it only on a disposable branch or copy, and manually inspect every generated diff before merging or deploying. <br>
-Risk: The artifact contains hardcoded AgentEscrow paths and computes its project directory from the script location. <br>
-Mitigation: Review and adjust the target contract, test paths, and project directory assumptions before running it on another project. <br>
-Risk: The final report can use production-ready language that may overstate the assurance provided by automated checks. <br>
-Mitigation: Treat the report as a helper artifact, not an independent audit signoff; keep human review and formal security review in the release process. <br>
+## Use Case:
 
+Developers and smart-contract engineers use this skill before deployment, after refactors, or in CI to scan Solidity contracts, analyze severity-ranked findings, document patch rationale, and apply limited automated fixes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jengajojo/auto-bug-finder) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Auto Bug Finder script](artifact/auto-bug-finder.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON sprint data, patch notes, console output, and Solidity code changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an auto-bug-finder output directory and may rewrite Solidity contract files during supported fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can automatically rewrite smart-contract source files without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a clean disposable branch or sandbox and manually review every generated diff before keeping changes.
+
+Risk: The skill runs project-local build, test, Slither, and coverage commands in the target repository.
+
+Mitigation: Do not run it on untrusted projects or production worktrees with secrets in the environment.
+
+Risk: The artifact presents its workflow as mandatory, which can overstate its authority over project completion decisions.
+
+Mitigation: Treat the skill output as advisory and keep human security review and project approval gates in place.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/jengajojo/skills/auto-bug-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON sprint data, patch Markdown, and console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes auto-bug-finder/FINAL-REPORT.md, sprint-results.json, and patch docs; may modify the configured Solidity contract file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

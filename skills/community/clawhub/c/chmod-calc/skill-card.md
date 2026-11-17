@@ -1,37 +1,54 @@
-## Description: <br>
-Calculate chmod permissions by converting between numeric and symbolic notation and generating the corresponding chmod command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate chmod permissions by converting between numeric octal and symbolic notation and generating matching chmod commands.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
 
-## Use Case: <br>
-Developers, operators, and technical users use this skill to understand Unix file permissions, convert between octal and symbolic forms, and draft chmod commands for files or directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chmod commands can grant overly broad access, especially permissions such as 777. <br>
-Mitigation: Review generated commands before running them and prefer the least permissive permission set that satisfies the intended access need. <br>
+## Use Case:
 
+Developers, engineers, and system administrators use this skill to interpret Unix file permissions, translate between chmod formats, and draft chmod commands with plain-English explanations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with chmod command examples and plain-English explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes numeric and symbolic permission notation, generated chmod commands, validation feedback, and warnings for insecure permissions when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Symbolic chmod commands that use additive forms can be misleading for restrictive changes because they may not remove permissions already present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the numeric chmod command for exact permission changes and review generated symbolic commands before execution.
+
+Risk: World-writable or fully permissive settings such as 777 can expose files or directories to unintended modification.
+
+Mitigation: Warn users when 777 is requested and encourage least-privilege permissions appropriate to the file or directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/skills/chmod-calc)
+- [ClawHub publisher profile](https://clawhub.ai/user/ohernandez-dev-blossom)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples and plain-text explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces numeric permission notation, symbolic notation, chmod command examples, and warnings for risky permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

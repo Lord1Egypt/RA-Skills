@@ -1,35 +1,117 @@
 ---
-name: "Short Video Factory"
-description: "Skip the learning curve of professional editing software. Describe what you want — cut this into five 30-second clips with captions and transitions — and get..."
-category: "other"
-source: "ClawHub"
-tags: []
-platforms: []
-author: ""
-version: ""
-license: ""
-installCmd: "hermes skills install clawhub/short-video-factory"
-sourceUrl: "https://clawhub.ai/skills/short-video-factory"
+name: short-video-factory
+version: 1.0.1
+description: 短视频全链路创作工具，覆盖选题策划→爆款脚本→分镜设计→拍摄指导→剪辑建议→发布优化。当用户需要做短视频创作、写抖音脚本、设计分镜、拍摄指导、剪辑建议、短视频选题、爆款视频、编导、视频策划等需求时使用此技能。
 ---
 
-# Short Video Factory
+# 短视频工坊
 
-> Skip the learning curve of professional editing software. Describe what you want — cut this into five 30-second clips with captions and transitions — and get...
+短视频全链路创作工具，从选题到发布一站完成。
 
-- **Category:** Other
-- **Source:** ClawHub
-- **Author:** 
-- **Version:** 
-- **License:** 
-- **Platforms:** All
-- **Install Command:** `hermes skills install clawhub/short-video-factory`
-- **Source URL:** [https://clawhub.ai/skills/short-video-factory](https://clawhub.ai/skills/short-video-factory)
+## 覆盖平台
+抖音、快手、视频号、B站、小红书视频
 
-## Overview
+## 工作流程
 
+收到用户需求后，按以下阶段推进。用户可指定从任意阶段开始，也可只做其中某一阶段。
 
-## Installation
-To install this skill, run the following command in your terminal:
-```bash
-hermes skills install clawhub/short-video-factory
+### 第一阶段：选题策划
+
+1. 先了解用户领域（如：职场、美妆、科技、美食、教育、搞笑、知识科普等）
+2. 搜索当前平台热点趋势，结合用户领域给出 5 个选题
+3. 每个选题包含：标题方向、核心看点、预估受众、难度评级
+4. 让用户选择或提供方向调整
+
+选题标准：
+- 有冲突/悬念/反转 → 完播率高
+- 有情绪价值 → 点赞收藏高
+- 有信息增量 → 涨粉型内容
+- 避免纯说教、无冲突、节奏拖沓
+
+### 第二阶段：爆款脚本
+
+根据选定的选题撰写脚本，按平台适配不同风格：
+
+**脚本通用结构（黄金3秒+钩子+展开+高潮+收尾）：**
+- 0-3秒：黄金开头。抛出痛点/制造悬念/强烈视觉冲击/反常识结论
+- 3-15秒：展开前因后果，建立信息框架
+- 15-45秒：核心内容，高潮/反转/干货密集输出
+- 45-60秒：收尾，引导互动（点赞关注评论）
+
+**各平台脚本风格：**
+- 抖音：快节奏、强情绪、口语化、多用"你"拉近距离
+- 快手：接地气、真实感、老铁风格、场景化
+- 视频号：克制专业、中产调性、知识密度略高
+- B站：可以略长、有梗、允许深度内容、弹幕互动感
+- 小红书视频：精致感、生活方式、节奏舒缓、封面重要
+
+脚本输出格式：
 ```
+【视频标题】：
+【时长】：XX秒
+【脚本正文】：
+[画面描述] 台词 / 旁白
+[画面描述] 台词 / 旁白
+...
+【互动引导】：
+```
+
+### 第三阶段：分镜设计
+
+把脚本拆解为分镜表，让拍摄者能直接照着拍：
+
+| 镜号 | 时长 | 景别 | 画面内容 | 运镜 | 台词/旁白 | 备注 |
+|------|------|------|----------|------|-----------|------|
+| 1 | 3s | 特写 | ... | 固定 | ... | 黄金开头 |
+
+景别选项：远景、全景、中景、近景、特写、大特写
+运镜选项：固定、推、拉、摇、移、跟、升、降、转
+
+### 第四阶段：拍摄指导
+
+根据分镜给出实操建议：
+- **布光方案**：主光、辅光、轮廓光的位置和强度建议
+- **收音方案**：手机/麦克风选型，环境噪音控制
+- **场景布置**：背景、道具、服装建议
+- **表演指导**：表情、语速、肢体语言要点
+- **手机拍摄设置**：分辨率、帧率、网格线、曝光锁定
+
+### 第五阶段：剪辑建议
+
+- **剪辑节奏**：整体节奏把控，哪里快哪里慢
+- **转场建议**：推荐转场方式和位置
+- **BGM推荐**：推荐合适的音乐风格和具体曲目方向
+- **特效与字幕**：关键文字特效、字幕样式和出现时机
+- **封面设计**：封面图的构图要点和文案建议
+
+### 第六阶段：发布优化
+
+- **标题优化**：给出 3-5 个标题备选，标注哪个最有爆款潜力
+- **话题标签**：推荐 5-8 个精准标签，分热门标签和长尾标签
+- **发布时间**：根据目标人群推荐最佳发布时间段
+- **评论区运营**：给出置顶评论文案和互动策略
+- **数据复盘维度**：告诉用户发布后重点看哪些数据
+
+## 特殊场景
+
+### 口播类视频
+- 重点：开头钩子、语速节奏、眼神交流、字幕强化
+- 脚本输出以口播稿为主，标注语气和停顿
+
+### Vlog类视频
+- 重点：叙事线设计、转场自然、BGM情绪匹配
+- 先出故事线，再拆脚本
+
+### 产品种草/带货
+- 重点：痛点→解决方案→产品展示→信任背书→促单
+- 脚本必须包含使用场景和效果展示
+
+### 知识科普类
+- 重点：降低认知门槛、可视化抽象概念、节奏控制防止枯燥
+- 脚本需要"翻译"专业术语为大众语言
+
+## 输出原则
+- 所有输出面向创作者，不说废话，直接可用
+- 分镜表等结构化内容用表格呈现
+- 给出具体建议而非泛泛而谈（如"用侧光"而非"注意光线"）
+- 遇到不熟悉的垂直领域，先搜索了解再做判断

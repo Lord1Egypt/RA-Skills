@@ -1,41 +1,54 @@
-## Description: <br>
-Use for RAGFlow dataset tasks: create, list, inspect, update, or delete datasets; upload, list, update, or delete documents; start or stop parsing; check parse status; retrieve chunks with search.py; and list configured models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents manage RAGFlow datasets and documents, control parsing, check parse status, retrieve chunks, and list configured models.
 
-## Publisher: <br>
-[redredrrred](https://clawhub.ai/user/redredrrred) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redredrrred](https://clawhub.ai/user/redredrrred)
 
-## Use Case: <br>
-Developers and operators use this skill to manage RAGFlow datasets and documents, run or stop parsing, inspect parse status, retrieve chunks, and list configured models through bundled Python commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload files and retrieve document chunks from a configured RAGFlow server. <br>
-Mitigation: Use it only with trusted RAGFlow endpoints and avoid uploading confidential or regulated files unless authorized. <br>
-Risk: Dataset and document update, delete, parse, and stop operations can affect existing RAGFlow content. <br>
-Mitigation: Use a least-privileged API key and confirm exact dataset or document IDs before executing state-changing commands. <br>
+## Use Case:
 
+External users and developers use this skill to operate a RAGFlow knowledge base from an agent, including dataset management, document upload and deletion, parsing control, parse-status inspection, retrieval, and model listing.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/redredrrred/rrragflow-skill) <br>
-- [Output Format Reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3 scripts with RAGFLOW_API_URL and RAGFLOW_API_KEY environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: API keys and uploaded documents may be sent to a non-HTTPS RAGFlow endpoint if the endpoint is configured that way.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted RAGFlow endpoint, prefer HTTPS for any non-local service, and use a narrowly scoped RAGFLOW_API_KEY.
+
+Risk: Dataset and document update or delete commands execute API changes once called with explicit IDs.
+
+Mitigation: List the exact target items first, confirm dataset or document IDs carefully, and require explicit user confirmation before destructive actions.
+
+## Reference(s):
+
+- [Output Format Reference](artifact/reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/redredrrred/skills/rrragflow-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional JSON code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus RAGFLOW_API_URL and RAGFLOW_API_KEY; JSON API fields should be preserved exactly when returned.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

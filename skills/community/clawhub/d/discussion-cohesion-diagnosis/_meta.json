@@ -1,0 +1,26 @@
+{
+  "name": "discussion-cohesion-diagnosis",
+  "version": "1.0.0",
+  "description": "Diagnose cohesion in the Discussion of an English psychology research paper. Covers both (1) local-level cohesion devices — connectives, reference chains, citation as glue — and (2) global-level narrative thread — forward-moving wrap, take-home message, navigational signposting.",
+  "author": "UX Course Project - Discussion Group",
+  "license": "MIT",
+  "keywords": [
+    "discussion",
+    "cohesion",
+    "narrative",
+    "connectives",
+    "academic-writing"
+  ],
+  "metadata": {
+    "clawhub": {
+      "emoji": "🔗",
+      "triggers": [
+        "check Discussion cohesion",
+        "is my discussion connected",
+        "Discussion 衔接",
+        "narrative flow check"
+      ],
+      "theory_basis": "Glasman-Deal (2021) Science Research Writing Unit 4 (cohesion devices) + 4.1.1 (narrative wrap)"
+    }
+  }
+}

@@ -1,41 +1,59 @@
-## Description: <br>
-Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Graphql Client concepts and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Graphql Client is a reference skill for developers that prints local guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick GraphQL client reference for concepts, setup, common patterns, troubleshooting, performance, security, migration, and command cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic GraphQL guidance may not match a specific production environment. <br>
-Mitigation: Verify suggested migration, security, and operational steps against the target system before applying them. <br>
-Risk: Reference-only output can become outdated as GraphQL client tooling changes. <br>
-Mitigation: Review generated guidance against current project documentation and dependency versions before use. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for GraphQL client concepts, common workflows, debugging, performance, security, migration, and command cheatsheets.
 
-## Reference(s): <br>
-- [Graphql Client on ClawHub](https://clawhub.ai/xueyetianya/graphql-client) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, persistence, or system changes are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The reference text is shallow and generic rather than authoritative GraphQL client documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate operational decisions against the specific GraphQL client library or platform documentation before applying the guidance.
+
+Risk: The cheatsheet labels a troubleshooting command, while the skill command table and script expose the debugging command.
+
+Mitigation: Use `graphql-client debugging` for troubleshooting guidance.
+
+Risk: The script reports version 2.0.1 while release evidence and SKILL.md identify version 2.0.2.
+
+Mitigation: Treat 2.0.2 as the release version and verify the CLI version string before relying on it for automation or audit records.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/graphql-client)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference content printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heredoc output; no external API calls, credentials, or network access indicated.]
+
+## Skill Version(s):
+
+2.0.2 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Enables and maintains cron-driven real-execution auto progression for the crypto-hedge-backtest project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and maintains recurring, real-execution automation for the crypto-hedge-backtest project using cron-driven progress, health checks, and status reporting.
 
-## Publisher: <br>
-[evanfirefly](https://clawhub.ai/user/evanfirefly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[evanfirefly](https://clawhub.ai/user/evanfirefly)
 
-## Use Case: <br>
-Developers and maintainers use this skill to set up, verify, and troubleshoot recurring cron jobs that keep the crypto-hedge-backtest project moving through real script runs, code changes, generated files, and progress reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring cron automation can keep running project scripts or changing files without clear limits. <br>
-Mitigation: Require exact cron definitions before enabling jobs, set an expiration or maximum run count, and document how to pause or delete each job. <br>
-Risk: Automated progress jobs may modify the crypto backtest project during unattended runs. <br>
-Mitigation: Restrict allowed scripts and paths, require approval before code changes, and run the workflow on a separate branch or sandbox. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/evanfirefly/crypto-auto-progression) <br>
+## Use Case:
 
+Developers and operators use this skill to set up recurring project automation that runs real tasks, verifies cron execution, monitors progress, and reports only substantive stage results.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and cron configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unattended cron automation may continue running scripts or changing project files beyond the intended window.
+
+Mitigation: Confirm schedules, working directory, permitted actions, expiration or run limits, and exact disable or removal commands before enabling recurring jobs.
+
+Risk: Recurring jobs target the main session and can keep modifying the active project without a clear approval checkpoint.
+
+Mitigation: Use the required forced test run and cron status checks before adding additional jobs, and pause for a decision when blocked or when substantive progress is absent.
+
+Risk: Network-dependent crypto data pulls can fail intermittently and interrupt the automation chain.
+
+Mitigation: Apply retry logic with exponential backoff in the data-fetching layer before continuing scan or progression workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evanfirefly/skills/crypto-auto-progression)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and cron configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces recurring automation instructions, validation steps, troubleshooting guidance, and concise progress-reporting language.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

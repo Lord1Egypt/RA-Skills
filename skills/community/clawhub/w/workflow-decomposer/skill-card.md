@@ -1,45 +1,65 @@
-## Description: <br>
-Decomposes complex work into actionable steps, selects suitable models for each step, tracks workflow progress, and provides troubleshooting options when a step is blocked. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow Decomposer breaks complex tasks into clear executable steps, selects suitable models for each step, tracks workflow progress, and provides blocker diagnosis with solution options.
 
-## Publisher: <br>
-[lpj18337105261](https://clawhub.ai/user/lpj18337105261) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lpj18337105261](https://clawhub.ai/user/lpj18337105261)
 
-## Use Case: <br>
-Developers and agents use this skill to break complex requests into executable workflows, assign an appropriate model to each step, and keep progress visible during multi-step work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow steps or model assignments may be inaccurate or unsuitable for sensitive file changes, deployments, account actions, or public-facing work. <br>
-Mitigation: Review generated steps before execution and require human approval for actions that change files, deploy systems, affect accounts, or publish content. <br>
-Risk: Optional progress tracking can save task context in local workflow-state JSON files. <br>
-Mitigation: Delete local workflow-state files when saved task context is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Workflow Decomposer README](README.md) <br>
-- [Model Capabilities Reference](references/model-capabilities.md) <br>
-- [Model-Specific Prompt Guide](references/model-prompt-guide.md) <br>
-- [Model Selection Guide](references/model-selection.md) <br>
-- [Workflow Decomposition Template](references/workflow-template.md) <br>
-- [Workflow Templates](references/workflow-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lpj18337105261/workflow-decomposer) <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to turn complex work requests into sequenced plans with visible progress, per-step model assignments, and recovery guidance when a task stalls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown workflow reports with optional shell commands and JSON workflow-state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include decomposition model, current step, current step model, progress status, and blocker guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage use of specific model families even when they are unavailable or not approved in the deployment environment.
+
+Mitigation: Review model assignments before execution and map suggested models to approved local equivalents.
+
+Risk: Generated workflow plans can be incorrect, incomplete, or misleading for complex tasks.
+
+Mitigation: Review decomposition steps, dependencies, and completion criteria before letting an agent execute the plan.
+
+Risk: Optional progress tracking may create local workflow-state.json files containing task details.
+
+Mitigation: Store workflow state only in approved workspaces and remove it when it is no longer needed.
+
+Risk: The skill may produce Chinese-language output that some operators cannot review effectively.
+
+Mitigation: Request output in the operator's preferred review language before executing or approving a workflow plan.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lpj18337105261/skills/workflow-decomposer)
+- [Model Capabilities Reference](references/model-capabilities.md)
+- [Model Selection Guide](references/model-selection.md)
+- [Model-Specific Prompt Guide](references/model-prompt-guide.md)
+- [Workflow Decomposition Template](references/workflow-template.md)
+- [Workflow Templates](references/workflow-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with optional JSON workflow state and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local workflow-state.json files when progress tracking scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

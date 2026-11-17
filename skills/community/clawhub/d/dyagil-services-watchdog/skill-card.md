@@ -1,43 +1,60 @@
-## Description: <br>
-Helps an agent set up a user-systemd watchdog that monitors and restarts long-running Node.js services across shell exits, SSH disconnects, runtime restarts, and server reboots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a systemd-based watchdog that keeps long-running Node.js services alive across shell exits, SSH disconnects, agent-runtime restarts, and server reboots.
 
-## Publisher: <br>
-[dyagil](https://clawhub.ai/user/dyagil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyagil](https://clawhub.ai/user/dyagil)
 
-## Use Case: <br>
-Developers and operators use this skill when they need an agent to stabilize always-on Node.js services, customize watchdog checks, and install user-systemd timer-based recovery for service restarts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included script is personalized and can send Telegram status messages to a hard-coded chat using a local bot token. <br>
-Mitigation: Remove the Telegram notification block or explicitly configure the bot token source and chat ID before enabling the watchdog. <br>
-Risk: The watchdog restarts hard-coded local projects and loads service .env files into new systemd scopes. <br>
-Mitigation: Replace all service paths, process checks, unit names, and startup commands, then inspect the environment files and credentials each service will load. <br>
-Risk: The install flow references systemd unit files that are not included in the artifact. <br>
-Mitigation: Create and review the user service and timer unit files yourself before running systemctl enable or start commands. <br>
-Risk: Enabling a user timer and loginctl linger can keep services running after logout or reboot. <br>
-Mitigation: Confirm that persistent background execution is intended and document how to disable the timer and loginctl linger for the target user. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a user-systemd watchdog that checks long-running Node.js services and restarts them when they stop. It is most relevant for Telegram bots, dashboards, or similar services that need to survive shell exits, SSH disconnects, runtime restarts, and reboots.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands, configuration steps, and shell script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and customization guidance for systemd user timers and a service watchdog shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The watchdog enables persistent background execution through user-systemd timers and login lingering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the timer and lingering behavior before enabling it, and add explicit stop, disable, and uninstall steps for the deployed service.
+
+Risk: The script sends service status to a hard-coded Telegram chat using a bot token read from a project .env file.
+
+Mitigation: Remove the Telegram notification code or make the chat ID and token source configurable, then confirm the recipient and credential handling are intentional.
+
+Risk: The artifact references systemd unit files that are not present in the provided artifact.
+
+Mitigation: Verify or create the referenced unit and timer files before installing or enabling the watchdog.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dyagil/skills/dyagil-services-watchdog)
+- [ClawHub publisher profile](https://clawhub.ai/user/dyagil)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Watchdog shell script](artifact/scripts/services-watchdog.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands and shell script configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational setup guidance and service-specific script edits; users should review paths, service names, credentials, and systemd units before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

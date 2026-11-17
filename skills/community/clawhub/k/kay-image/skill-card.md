@@ -1,42 +1,60 @@
-## Description: <br>
-Kay Image helps agents generate or edit images and analyze images or videos through KIE AI, with optional LaoZhang-backed understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kay Image helps agents generate images from text or reference images and analyze images or videos through KIE AI and optional LaoZhang API integrations.
 
-## Publisher: <br>
-[papayalove](https://clawhub.ai/user/papayalove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[papayalove](https://clawhub.ai/user/papayalove)
 
-## Use Case: <br>
-Developers and creators use this skill to generate images from prompts, transform reference images, and run image or video understanding from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected image or video inputs are sent to external AI APIs. <br>
-Mitigation: Use only media and prompts that are allowed under the user's privacy and compliance requirements. <br>
-Risk: Optional understanding modes can use KIE AI or LaoZhang credentials, while the manifest declares only KIE_API_KEY. <br>
-Mitigation: Configure only the provider credentials intended for the workflow and verify which provider flag is used before execution. <br>
+## Use Case:
 
+Developers and agent users use Kay Image to create images, edit images from references, inspect image or video content, and poll generation task status from a command-line workflow.
 
-## Reference(s): <br>
-- [Kay Image on ClawHub](https://clawhub.ai/papayalove/kay-image) <br>
-- [KIE AI](https://kie.ai/) <br>
-- [LaoZhang API endpoint](https://api.laozhang.ai/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated images are saved as local files and understanding results are text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KIE_API_KEY for generation; KIE_UNDERSTANDING_API_KEY or LAOZHANG_API_KEY may be needed for understanding modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact changelog top entry is 1.0.0) <br>
+Risk: Prompts and selected images or videos may be sent to cloud AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data suitable for the configured providers and avoid confidential or regulated media unless provider handling is acceptable.
+
+Risk: Custom base URL environment variables can redirect API-key-bearing requests.
+
+Mitigation: Use clean, trusted environment variables and avoid setting custom *_BASE_URL values unless the endpoint is explicitly trusted.
+
+Risk: The release under-discloses some external routing and provider credentials.
+
+Mitigation: Review configured providers and credentials before deployment, and prefer a version that declares all providers and validates API destinations.
+
+## Reference(s):
+
+- [Kay Image ClawHub listing](https://clawhub.ai/papayalove/skills/kay-image)
+- [KIE AI](https://kie.ai/)
+- [KIE AI API endpoint](https://api.kie.ai)
+- [LaoZhang API endpoint](https://api.laozhang.ai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [CLI output, generated image files, downloaded media files, and optional text analysis files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KIE_API_KEY for image generation; understanding mode uses KIE_UNDERSTANDING_API_KEY by default or LAOZHANG_API_KEY when configured.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

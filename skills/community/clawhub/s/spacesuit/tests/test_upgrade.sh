@@ -123,7 +123,7 @@ It has no markers at all.
 - Do that
 EOF
 
-bash "$UPGRADE_SCRIPT" "$WORKSPACE2" > /dev/null 2>&1
+bash "$UPGRADE_SCRIPT" --adopt-unmarked "$WORKSPACE2" > /dev/null 2>&1
 
 if grep -qF "<!-- SPACESUIT:BEGIN AGENTS -->" "$WORKSPACE2/AGENTS.md"; then
   pass "SPACESUIT:BEGIN marker added to unmarked file"

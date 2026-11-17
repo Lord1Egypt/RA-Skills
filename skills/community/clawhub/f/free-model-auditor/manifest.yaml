@@ -1,0 +1,29 @@
+# SkillHub / 市场发布元数据（辅助文件）
+# 说明：ClawHub 用 SKILL.md 的 frontmatter；上架腾讯 SkillHub（skillhub.cn）市场时，
+# 若平台要求 manifest.yaml 或需网页填表，以下字段可直接抄录。以 skillhub.cn 实际表单为准。
+name: free-model-auditor
+version: 1.7.1
+display_name: 免费模型审计员
+author: iGenomed
+category: productivity
+license: MIT-0
+requires_api_key: true
+homepage: https://clawhub.ai/igenomed/skills/free-model-auditor
+description: |
+  审计 WorkBuddy 自定义模型注册表（models.json）中的免费模型：跨多个 OpenAI 兼容厂商
+  新增可发现的免费模型、剔除已转付费或失效的模型，保持注册表真实有效。
+  内置各厂商「如何判定免费」的隐性知识，对海外厂商先做 VPN 连通性探针，逐条活体实测，
+  并自动把新增/移除差异应用到 models.json。已做路径自动识别（适配任意用户环境）与
+  无 API Key 引导（无 Key 时暂停并给出申请地址）。
+triggers:
+  - 审计自定义模型
+  - 检查有没有新的免费模型
+  - 测试其余平台有无遗漏
+  - 定期巡检模型清单
+  - 对免费 API 模型做健康检查
+tags:
+  - 模型审计
+  - 免费API
+  - 自定义模型
+  - 跨厂商
+  - 路径自动识别

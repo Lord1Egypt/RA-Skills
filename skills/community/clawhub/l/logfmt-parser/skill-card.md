@@ -1,41 +1,49 @@
-## Description: <br>
-Parses and converts log lines into JSON for easier analysis, debugging, and forwarding to log aggregation tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses and converts log files into clean JSON for analysis, debugging, and forwarding to log aggregators.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert log files or piped log streams into line-delimited JSON for inspection, debugging, and downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processed logs may contain sensitive data and the default output preserves the original log line. <br>
-Mitigation: Review logs before processing highly sensitive data and use --no-log-field when the original line should not be retained. <br>
-Risk: The advertised logfmt_parser wrapper may not be installed in every agent runtime. <br>
-Mitigation: Invoke the bundled tool.py directly when no wrapper command is available. <br>
+## Use Case:
 
+Developers and operations teams use this skill to convert local application or server logs into structured JSON for easier analysis, debugging, and forwarding to log aggregators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/logfmt-parser) <br>
-- [Publisher profile](https://clawhub.ai/user/albionaiinc-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-oriented output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The parser emits one JSON object per processed log line and can optionally extract timestamps or omit the original log field.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Default output includes each original log line, which may expose secrets or personal data contained in logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-log-field or sanitize logs before processing when inputs may contain sensitive information.
+
+## Reference(s):
+
+- [Logfmt Parser ClawHub Skill Page](https://clawhub.ai/albionaiinc-del/skills/logfmt-parser)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Newline-delimited JSON records with Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read from a file or standard input, optionally extract timestamps, and optionally omit the original log line.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

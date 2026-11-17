@@ -1,0 +1,18 @@
+@language nodecoda/1
+@mode workflow
+
+// Python FFI 单输出:04 是多输出结构体,这里是单输出直接使用
+// 展示 foreign code python3 单输出契约、source 模板串
+
+function main(string text) -> string {
+    // 单输出:直接使用 slug 本身(不是 slug.result,见 language-reference §6)
+    let slug = foreign code python3(
+        string text = text
+    ) -> string {
+        source `def main(text: str) -> dict:
+    words = text.strip().lower().split()
+    return {"result": "-".join(words)}`;
+    };
+
+    return slug;
+}

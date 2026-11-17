@@ -1,42 +1,53 @@
-## Description: <br>
-Manages agent memory by auto-pruning old or low-relevance entries, compressing duplicates, and reporting storage costs with safe defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages agent memory by pruning old or low-relevance entries, compressing duplicates, and reporting storage costs with safe defaults.
 
-## Publisher: <br>
-[jiuge897](https://clawhub.ai/user/jiuge897) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuge897](https://clawhub.ai/user/jiuge897)
 
-## Use Case: <br>
-Developers and agents use Memory Pruner to inspect, prune, compress, and configure persistent memory so stale, duplicate, or low-value entries do not accumulate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify persistent agent memory, which may remove useful context or change future agent behavior. <br>
-Mitigation: Start with dry-run, require explicit confirmation before pruning, keep backups, and limit access to the intended memory directory. <br>
-Risk: The package references a memory-pruner shell entry that is not included in the artifact. <br>
-Mitigation: Do not run real pruning unless the executable is supplied from a trusted source and reviewed before installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect, prune, compress, and configure agent memory so older, duplicate, or low-relevance entries do not accumulate unchecked.
 
-## Reference(s): <br>
-- [Memory Pruner ClawHub page](https://clawhub.ai/jiuge897/memory-pruner) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [config.json](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and CLI-style text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Memory-modifying actions should be previewed with dry-run, confirmed by the user, and backed up before pruning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact config.json) <br>
+Risk: The declared memory-pruner shell CLI is not included in the artifact, so executable behavior cannot be verified for a tool that may delete or rewrite agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing and ask the publisher to include the executable plus clear trigger and scope rules.
+
+Risk: Automatic pruning can remove or rewrite useful agent memory if enabled without guardrails.
+
+Mitigation: Use dry-run mode, explicit confirmation, backups, and a narrow memory directory before allowing pruning actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiuge897/skills/memory-pruner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose deletion, compression, backup, and retention-policy actions for memory files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

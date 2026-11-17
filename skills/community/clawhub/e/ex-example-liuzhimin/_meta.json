@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn776mk69kpjzn8dk72j32sp31844jhr",
-  "slug": "ex-example-liuzhimin",
+  "name": "ex_example_liuzhimin",
   "version": "1.0.0",
-  "publishedAt": 1775189181711
+  "description": "Zhimin Liu（유지민 / Karina），女 23-27，分手，白羊☀，ISFP 3w2，回避型依恋",
+  "author": "openclaw-user",
+  "license": "MIT",
+  "keywords": ["ex", "example", "persona", "relationship", "korean"],
+  "triggers": ["/ex_example_liuzhimin"],
+  "dependencies": [],
+  "created_at": "2026-04-03",
+  "updated_at": "2026-04-03"
 }

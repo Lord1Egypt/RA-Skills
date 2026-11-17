@@ -1,45 +1,60 @@
-## Description: <br>
-Find anime releases from raw Chinese or English requests, normalize episode, season, and download intent, verify likely titles, search releases, and return a best result, magnet fallback, or download/status payload. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find anime releases from natural-language Chinese or English requests, verify anime identity, search public torrent sources, and return results, magnet links, or queued download status.
 
-## Publisher: <br>
-[tiggy-chan](https://clawhub.ai/user/tiggy-chan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiggy-chan](https://clawhub.ai/user/tiggy-chan)
 
-## Use Case: <br>
-External users and agent developers use this skill to resolve anime-release requests that may include aliases, latest-season or latest-episode wording, subtitle preferences, magnet-only requests, direct downloads, or follow-up download status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically queue torrents and start a persistent Transmission daemon from natural-language requests without a clear confirmation gate. <br>
-Mitigation: Prefer search-only or cli-only magnet mode unless the user explicitly wants downloading, and review or disable high-confidence auto-download behavior before use. <br>
-Risk: The skill can contact Bangumi and Nyaa and write local preference or download-status files. <br>
-Mitigation: Use it only in environments where those network calls and local state changes are acceptable, especially when legal, bandwidth, or disk side effects matter. <br>
+## Use Case:
 
+External users and agent developers use this skill to resolve anime search or follow-up download requests, inspect ranked release results, and optionally queue a selected torrent through Transmission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tiggy-chan/anime-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/tiggy-chan) <br>
-- [README](README.md) <br>
-- [Intent Examples](references/intent_examples.md) <br>
-- [Bangumi API](https://api.bgm.tv) <br>
-- [Nyaa.si](https://nyaa.si) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON workflow output with optional human-readable text, shell commands, magnet links, torrent URLs, and download status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local preference and last-download state, contact Bangumi and Nyaa, and queue torrents through Transmission when explicitly used in download mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: evidence release metadata and artifact changelog, released 2026-04-12) <br>
+Risk: The skill can automatically queue torrent downloads and start Transmission from broad natural-language requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer search-only or cli-only operation in cautious deployments, and review any proposed torrent before allowing a download.
+
+Risk: The skill persists local user preferences and last-download state.
+
+Mitigation: Inspect or clear state/user_profile.json and state/last_download.json when saved preferences or download history should not be retained.
+
+Risk: The skill searches public anime torrent sources.
+
+Mitigation: Use it only where public torrent search and any resulting downloads are acceptable under local policy and applicable rights.
+
+## Reference(s):
+
+- [Intent Examples](references/intent_examples.md)
+- [Bangumi Subject Search API](https://api.bgm.tv/search/subject/{query}?type=2)
+- [Bangumi Subject API](https://api.bgm.tv/subject/{subject_id})
+- [Nyaa RSS Search](https://nyaa.si/?page=rss&q={query})
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON workflow payloads with optional plain-text CLI summaries, magnet links, torrent URLs, and Transmission status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local preference state and last-download state when requests explicitly ask for persistent preferences or status tracking.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and changelog, released 2026-04-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Collect Korean government support programs (TIPS, Small Business, R&D grants) into structured JSONL files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Korean government support programs (TIPS, Small Business, R&D grants) into structured JSONL files. Supports incremental collection with checkpoints.
 
-## Publisher: <br>
-[lifeissea](https://clawhub.ai/user/lifeissea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lifeissea](https://clawhub.ai/user/lifeissea)
 
-## Use Case: <br>
-Developers and operators use this skill to collect Korean government support program listings into append-only JSONL datasets and inspect collection totals. It supports incremental scraping with checkpoints for repeated updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The scraper contacts public Korean government sites and writes local output files. <br>
-Mitigation: Install only where outbound scraping and local file writes are acceptable, and use a simple trusted output path such as ./data. <br>
-Risk: The stats helper has a local path-handling flaw that could run unintended code with crafted directory names. <br>
-Mitigation: Run scripts/stats.sh only against trusted, ordinary directory names and avoid untrusted or unusual paths. <br>
-Risk: Package metadata mismatch may make it unclear whether the installed package contains the reviewed scripts. <br>
-Mitigation: Verify the installed package includes the reviewed SKILL.md, scripts/collect.py, and scripts/stats.sh before use. <br>
+## Use Case:
 
+Developers, operators, and program analysts use this skill to collect Korean government support program listings into local JSONL datasets and inspect collection totals.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/lifeissea/korean-gov-programs) <br>
-- [BizInfo support program listings](https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do) <br>
-- [NIA public listing source](https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=78336) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSONL files with terminal status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends records to soho_programs.jsonl and gov_programs.jsonl, and maintains .checkpoint.json in the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: SKILL.md frontmatter and server release evidence; package.json reports 1.0.7) <br>
+Risk: The status script has a local code-execution risk when given a crafted data directory path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running, use only trusted data directory paths, and fix scripts/stats.sh to pass the checkpoint path as data rather than interpolating it into python3 -c.
+
+Risk: The collector performs outbound requests to Korean public program listing sites and writes JSONL and checkpoint files under the selected output directory.
+
+Mitigation: Run it in an approved network environment, choose a controlled output directory, and review generated records before downstream use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lifeissea/skills/korean-gov-programs)
+- [BizInfo program listing](https://www.bizinfo.go.kr/sii/siia/selectSIIA200View.do)
+- [NIA program listing](https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=78336)
+- [SEMAS board](https://www.semas.or.kr/web/board/boardList.do)
+- [MSS](https://www.mss.go.kr/)
+- [K-Startup](https://www.k-startup.go.kr/)
+- [Innopolis](https://www.innopolis.or.kr/)
+- [KISED](https://www.kised.or.kr/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, JSONL files, guidance]
+
+**Output Format:** [JSONL files with local checkpoint JSON and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Append-only local writes with title-based deduplication and checkpointed incremental collection.]
+
+## Skill Version(s):
+
+1.0.8 (source: release metadata and SKILL.md frontmatter; package.json reports 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

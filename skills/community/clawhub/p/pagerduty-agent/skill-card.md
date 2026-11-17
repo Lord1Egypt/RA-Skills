@@ -1,42 +1,60 @@
-## Description: <br>
-Manage PagerDuty incidents, on-call schedules, services, and maintenance windows directly from your agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage PagerDuty incidents, on-call schedules, services, and maintenance windows directly from your agent.
 
-## Publisher: <br>
-[clawdbotworker](https://clawhub.ai/user/clawdbotworker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[clawdbotworker](https://clawhub.ai/user/clawdbotworker)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect PagerDuty services, incidents, schedules, on-call assignments, and maintenance windows from an agent workflow. With appropriate credentials, it can also create, acknowledge, resolve, and annotate incidents or create maintenance windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change PagerDuty account data, including incidents and maintenance windows. <br>
-Mitigation: Use a least-privileged PagerDuty API key and require explicit confirmation before write operations. <br>
-Risk: The PAGERDUTY_BASE_URL setting can direct the PagerDuty API token to a configured HTTP or HTTPS endpoint. <br>
-Mitigation: Keep PAGERDUTY_BASE_URL unset unless the endpoint is fully trusted, and avoid any http:// endpoint. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect PagerDuty incidents, on-call schedules, services, and maintenance windows from an agent workflow. With appropriate credentials and human approval, it can also create, acknowledge, resolve, annotate, and schedule maintenance for live PagerDuty resources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawdbotworker/pagerduty-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/clawdbotworker) <br>
-- [PagerDuty API Base Endpoint](https://api.pagerduty.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON on stdout; setup and invocation guidance may include shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and PAGERDUTY_API_KEY; PAGERDUTY_FROM_EMAIL is required for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, CHANGELOG released 2026-03-04) <br>
+Risk: The skill can change live PagerDuty incident and alerting state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before commands that create incidents, acknowledge or resolve incidents, add incident notes, or create maintenance windows.
+
+Risk: The PagerDuty API key could be sent to an arbitrary or unencrypted endpoint if PAGERDUTY_BASE_URL is set.
+
+Mitigation: Keep PAGERDUTY_BASE_URL unset unless the code is changed to restrict requests to HTTPS PagerDuty-controlled hosts.
+
+Risk: Broad PagerDuty credentials could grant more access than the workflow needs.
+
+Mitigation: Use a least-privilege PagerDuty API key scoped to the intended account and operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawdbotworker/skills/pagerduty-agent)
+- [Publisher profile](https://clawhub.ai/user/clawdbotworker)
+- [OpenClaw skills homepage](https://github.com/openclaw/skills)
+- [PagerDuty REST API endpoint](https://api.pagerduty.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Shell commands, Configuration guidance]
+
+**Output Format:** [Structured JSON responses on stdout, with setup and invocation examples in Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and PAGERDUTY_API_KEY; PAGERDUTY_FROM_EMAIL is required for write operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, CHANGELOG, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

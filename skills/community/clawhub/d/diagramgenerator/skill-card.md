@@ -1,42 +1,61 @@
-## Description: <br>
-Generates and iteratively edits Mermaid.js and Draw.io diagrams. Supports multimodal context (reading source code, architecture sketches, and documentation). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and iteratively edits Mermaid.js and Draw.io diagrams with multimodal context from source code, architecture sketches, and documentation.
 
-## Publisher: <br>
-[kaudata](https://clawhub.ai/user/kaudata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaudata](https://clawhub.ai/user/kaudata)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate, revise, preview, and export Mermaid or Draw.io diagrams from prompts, source files, documentation, PDFs, and sketches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected prompts and attached files are sent to Gemini for diagram generation. <br>
-Mitigation: Attach only non-secret, non-confidential files and avoid sending credentials, environment files, private repositories, or sensitive business data. <br>
-Risk: Saved diagram outputs are managed by an unauthenticated local web server. <br>
-Mitigation: Run the server locally, avoid exposing port 3000 to other users or networks, and periodically delete saved diagrams that are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate or revise Mermaid and Draw.io diagrams from prompts, existing diagram code, source files, documentation, PDFs, or images. It supports architecture, flowchart, ER, Gantt, Git graph, and similar diagramming workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaudata/diagramgenerator) <br>
-- [Mermaid.js Runtime](https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs) <br>
-- [diagrams.net Viewer](https://viewer.diagrams.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions and API payloads that produce Mermaid code, Draw.io XML, and exported diagram files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated diagrams may be saved locally as .mmd, .drawio, .png, or .jpg files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The local web server is unauthenticated and can use the user's Gemini key or manage saved files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a trusted local machine, avoid exposing port 3000, and add authentication plus local-only binding before broader deployment.
+
+Risk: Prompt context may include source code, documents, PDFs, or images that are sent for Gemini processing.
+
+Mitigation: Do not upload secrets or confidential code unless approved, and enforce the documented allowlist and blocklist before attaching files.
+
+Risk: Browser dependencies and viewers are loaded from external URLs and saved outputs are served from the local downloads path.
+
+Mitigation: Pin or bundle browser dependencies where possible, review saved artifacts before sharing, and document retention and deletion expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaudata/skills/diagramgenerator)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Mermaid browser renderer](https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs)
+- [diagrams.net viewer](https://viewer.diagrams.net/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request payloads and shell commands; generated diagrams are Mermaid text or Draw.io XML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Node.js server, GEMINI_API_KEY, curl, and base64; the web UI can export .mmd, .drawio, .png, and .jpg files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

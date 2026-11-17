@@ -1,43 +1,56 @@
-## Description: <br>
-File To JSON Parsing converts CSV, HTML, JSON, ICS, ODS, PDF, RTF, plain text, XLS, and XLSX files into structured JSON output from base64 content or cloud file IDs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File To JSON Parsing helps agents convert CSV, HTML, JSON, ICS, ODS, PDF, RTF, text, XLS, and XLSX files into structured JSON.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this AgentPMT-hosted skill to parse uploaded files into JSON for database import, API submission, scheduling integrations, document processing, and data transformation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected file contents or cloud file IDs are sent to AgentPMT for remote processing. <br>
-Mitigation: Use only files approved for transfer to AgentPMT, and avoid secrets, credentials, highly sensitive personal data, legal or medical records, and confidential business files unless explicit approval and acceptable retention terms are in place. <br>
-Risk: The skill requires AgentPMT account setup and may involve credentials or payment headers in surrounding setup workflows. <br>
-Mitigation: Use the setup skills for credential handling and keep account secrets, wallet private keys, mnemonics, signatures, and payment headers out of prompts and logs. <br>
+## Use Case:
 
+Developers and agents use this skill to extract structured JSON from uploaded documents and data files for downstream imports, analysis, scheduling, and workflow integrations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/file-to-json-parsing) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/file-to-json-parsing) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with JSON examples and schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides remote AgentPMT MCP or REST calls that return structured JSON from selected file inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Selected files or file IDs may be sent to AgentPMT for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved data, avoid secrets, regulated data, or confidential documents unless your organization approves that use, and confirm before invoking the skill on sensitive uploads.
+
+Risk: Setup examples recommend unpinned npx installs.
+
+Mitigation: Prefer the OpenClaw install path or pinned, reviewed setup commands.
+
+## Reference(s):
+
+- [File To JSON Parsing schema](artifact/schema.md)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/file-to-json-parsing)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/file-to-json-parsing)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON responses with Markdown instructions and example MCP/REST call bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parsed file outputs are returned under the configured output_field; maximum file size is 100 MB, and file-to-base64 inline returns are limited to 10 MB.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

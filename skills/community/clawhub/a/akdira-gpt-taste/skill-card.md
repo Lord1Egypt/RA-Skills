@@ -1,40 +1,58 @@
-## Description: <br>
-Gpt Tasteskill guides agents to create premium frontend interfaces with varied layouts, GSAP motion, strict AIDA structure, wide hero typography, gapless bento grids, and strong asset usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout variance, strict AIDA page structure, wide editorial typography (bans 6-line wraps), gapless bento grids, strict GSAP ScrollTriggers (pinning, stacking, scrubbing), inline micro-images, and massive section spacing.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akdira](https://clawhub.ai/user/akdira)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to plan and implement motion-rich landing pages or frontend screens with strict layout, typography, asset, and GSAP animation requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Motion-heavy frontend guidance can produce inaccessible, hard-to-review, or performance-intensive pages if applied without product constraints. <br>
-Mitigation: Review generated UI for accessibility, responsive behavior, motion comfort, and performance before deployment. <br>
-Risk: The security guidance warns that production-affecting commands and stored CLI tokens require care in ClawHub registry or maintenance workflows. <br>
-Mitigation: Use dry-run and confirmation paths for operational commands and avoid production-affecting actions unless the target deployment is understood. <br>
+## Use Case:
 
+Frontend developers and design-focused agents use this skill to guide creation of polished web interfaces with structured AIDA pages, GSAP motion, wide hero typography, gapless bento grids, and pre-flight design checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akdira/akdira-gpt-taste) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown with design-plan text and frontend code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include React, Tailwind CSS, and GSAP implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated UI code can be visually opinionated or project-incompatible because the skill strongly steers layout, typography, motion, and formatting choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code against project design, accessibility, performance, and maintainability requirements before running or deploying it.
+
+Risk: The skill directs agents toward external placeholder imagery, which may be unsuitable for production use or restricted in some deployment environments.
+
+Mitigation: Replace placeholder imagery with approved assets and confirm external network usage is acceptable for the target environment.
+
+Risk: Mandatory GSAP animation patterns can introduce performance or accessibility concerns if applied without adaptation.
+
+Mitigation: Test motion-heavy pages across target devices and provide reduced-motion handling where required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akdira/skills/akdira-gpt-taste)
+- [Picsum Photos placeholder image service](https://picsum.photos/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance followed by React/UI code when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a required <design_plan> block before generated UI code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

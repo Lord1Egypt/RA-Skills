@@ -1,43 +1,58 @@
-## Description: <br>
-Manage multiple communication channels, admin identity recognition, and primary channel configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple communication channels, admin identity recognition, and primary channel configuration.
 
-## Publisher: <br>
-[MontyCN](https://clawhub.ai/user/MontyCN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[montycn](https://clawhub.ai/user/montycn)
 
-## Use Case: <br>
-Agents and operators use this skill to recognize the admin across communication channels, manage trusted contacts, configure a primary notification channel, and route proactive messages or escalations to the right place. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect admin or channel identity could route operational updates to the wrong recipient. <br>
-Mitigation: Verify that only the real admin can DM the agent and confirm channel IDs carefully before setting a primary channel. <br>
-Risk: Primary-channel and trusted-contact files contain sensitive routing and trust decisions. <br>
-Mitigation: Protect and periodically review ~/primary-channel.json and ~/trusted-contacts.json. <br>
-Risk: Sensitive notifications may pass through third-party communication providers. <br>
-Mitigation: Avoid routing sensitive operational updates through providers the operator does not trust. <br>
+## Use Case:
 
+Managers and OpenClaw operators use this skill to identify administrators and trusted contacts across messaging channels, maintain a primary notification channel, and route escalation messages to the administrator.
 
-## Reference(s): <br>
-- [Channel Management Skill Page](https://clawhub.ai/MontyCN/channel-management) <br>
-- [MontyCN Publisher Profile](https://clawhub.ai/user/MontyCN) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes file-based channel state and trusted-contact workflows for an agent to follow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Direct-message senders may receive administrator-level trust if the deployment's allowlist is not tightly controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where direct-message ingress is restricted to the administrator, and verify administrator identity explicitly for each channel before allowing privileged actions.
+
+Risk: The skill uses broad full-trust language for recognized administrators.
+
+Mitigation: Keep normal approval and authorization checks for sensitive or irreversible operations, and scope the skill to channel-management workflows.
+
+Risk: Primary-channel and trusted-contact state files affect who receives notifications and who can interact with the agent.
+
+Mitigation: Protect the state files with appropriate filesystem permissions and review changes to primary-channel and trusted-contact configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/montycn/skills/channel-management)
+- [Publisher profile](https://clawhub.ai/user/montycn)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline JSON examples and bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for identity recognition, trusted-contact handling, primary-channel state, and cross-channel escalation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

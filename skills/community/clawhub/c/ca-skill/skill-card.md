@@ -1,44 +1,62 @@
-## Description: <br>
-Full-service CA skill for TallyPrime running locally that reads accounting reports and helps post or update vouchers through TallyPrime XML-over-HTTP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ca Skill helps agents connect to a locally running TallyPrime instance to read accounting reports and prepare or send XML-over-HTTP workflows for vouchers, masters, inventory, GST, and troubleshooting.
 
-## Publisher: <br>
-[purvik6062](https://clawhub.ai/user/purvik6062) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[purvik6062](https://clawhub.ai/user/purvik6062)
 
-## Use Case: <br>
-External accountants, CAs, and developers use this skill to connect an agent to a local TallyPrime instance, inspect accounting reports, manage masters, and prepare or post supervised voucher changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change local TallyPrime accounting books. <br>
-Mitigation: Use only with a trusted localhost Tally server, confirm the exact company and date scope before reads, and require explicit review before any create, alter, or cancel action. <br>
-Risk: Incorrect company, ledger, GST, voucher class, or total values could create inaccurate accounting records. <br>
-Mitigation: Verify company spelling, required ledgers, GST fields, voucher class settings, balanced totals, and current backups before write operations. <br>
+## Use Case:
 
+External accounting users and CA workflows use this skill to work with local TallyPrime company data, including report exports, ledger and inventory master setup, voucher posting, voucher alteration or cancellation, GST checks, and invoice-to-entry workflows.
 
-## Reference(s): <br>
-- [Reports & Data Export](reference/reports.md) <br>
-- [Vouchers](reference/vouchers.md) <br>
-- [Masters](reference/masters.md) <br>
-- [Inventory](reference/inventory.md) <br>
-- [Errors & Troubleshooting](reference/errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with XML and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TALLY_URL for a trusted local TallyPrime server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can read and change TallyPrime accounting data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended accounting workflows and require explicit review before any voucher, master, alteration, or cancellation is sent.
+
+Risk: A non-local or incorrect TALLY_URL could expose accounting operations to the wrong endpoint.
+
+Mitigation: Set TALLY_URL to a loopback address such as localhost or 127.0.0.1 and avoid remote HTTP endpoints.
+
+Risk: Wrong company, report period, or voucher details could affect financial records or produce misleading exports.
+
+Mitigation: Confirm the company, report date range, ledger names, GST fields, voucher totals, and operation type before export or write actions.
+
+## Reference(s):
+
+- [Ca Skill on ClawHub](https://clawhub.ai/purvik6062/skills/ca-skill)
+- [Errors & Troubleshooting - TallyPrime XML](reference/errors.md)
+- [Inventory (Stock Groups / Items / UOM) + Item Invoices](reference/inventory.md)
+- [Masters (Ledgers / Groups) - TallyPrime XML](reference/masters.md)
+- [Reports & Data Export (TallyPrime XML)](reference/reports.md)
+- [Vouchers (Create / Alter / Cancel) - TallyPrime XML](reference/vouchers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with XML templates, shell commands, and concise accounting-operation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided TALLY_URL for a local TallyPrime XML-over-HTTP endpoint.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

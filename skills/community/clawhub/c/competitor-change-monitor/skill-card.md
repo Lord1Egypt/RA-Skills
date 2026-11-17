@@ -1,43 +1,61 @@
-## Description: <br>
-Monitor competitor websites for changes, analyze updates, and generate competitive intelligence reports tracking pricing, content, features, and significant changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor competitor websites for changes, analyze updates, generate competitive intelligence reports.
 
-## Publisher: <br>
-[clawdio-afk](https://clawhub.ai/user/clawdio-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdio-afk](https://clawhub.ai/user/clawdio-afk)
 
-## Use Case: <br>
-Sales teams, product managers, and competitive strategists use this skill to monitor public competitor websites, detect pricing, product, content, and messaging changes, and produce competitive intelligence reports and recommended actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring may collect content from target sites whose terms restrict automated access. <br>
-Mitigation: Confirm each target site is public and that the monitoring frequency and collection method comply with the site's terms before enabling scheduled snapshots. <br>
-Risk: Reports may contain sensitive, non-public, or retained competitive intelligence beyond the intended review window. <br>
-Mitigation: Avoid collecting non-public content and set a local retention policy for snapshot and report files before operational use. <br>
-Risk: Optional delivery to email, Slack, databases, or webhooks can broaden access to generated reports. <br>
-Mitigation: Review and approve every outbound destination before forwarding reports outside the local workspace. <br>
+## Use Case:
 
+Sales teams, product managers, and competitive strategists use this skill to monitor selected competitor websites for pricing, product, content, and messaging changes and turn those changes into competitive intelligence reports.
 
-## Reference(s): <br>
-- [Competitor Change Monitor on ClawHub](https://clawhub.ai/clawdio-afk/competitor-change-monitor) <br>
-- [API & Configuration Guide](references/api-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and generated JSON snapshot and report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local snapshots and reports under snapshots/ and reports/ when the monitoring script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill fetches user-configured websites, which can reach unintended domains or internal network locations if configuration is not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted competitor configurations, restrict allowed domains, and run monitoring away from internal networks.
+
+Risk: Snapshots and reports may store website content, pricing data, and competitive analysis longer than intended.
+
+Mitigation: Set data-retention expectations before use, cap response and report sizes, and periodically remove stale snapshots and reports.
+
+Risk: Reports sent to Slack, email, or custom webhooks may disclose inaccurate or sensitive competitive intelligence.
+
+Mitigation: Sanitize competitor names where appropriate and review reports before forwarding them to external systems or teams.
+
+Risk: Cron-style continuous monitoring can repeatedly collect external website data without enough legal, privacy, or operational review.
+
+Mitigation: Enable scheduled monitoring only after legal, privacy, and data-retention expectations are clear.
+
+## Reference(s):
+
+- [Competitor Change Monitor API & Configuration Guide](references/api-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples, shell commands, and generated JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include snapshots, detected changes, pricing data, change summaries, competitive implications, and recommended actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

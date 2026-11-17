@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-N-gram Similarity Calculator — paper-polisher v1.0.0
+N-gram Similarity Calculator — paper-polisher-pro (package version: see SKILL.md frontmatter)
 Calculate n-gram overlap/repetition rate for paraphrase evaluation.
 
 Usage:

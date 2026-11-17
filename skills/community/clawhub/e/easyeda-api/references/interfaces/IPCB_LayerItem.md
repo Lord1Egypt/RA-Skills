@@ -1,11 +1,11 @@
 # IPCB\_LayerItem interface
 
-图层属性
+Layer properties
 
 ## Signature
 
 ```typescript
-interface IPCB_LayerItem 
+interface IPCB_LayerItem
 ```
 
 ## Properties
@@ -14,192 +14,152 @@ interface IPCB_LayerItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [color](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-颜色（RGB HEX 格式）
-
+Color (RGB HEX format)
 
 </td></tr>
 <tr><td>
 
 [id](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [EPCB\_LayerId](../enums/EPCB_LayerId.md)
 
-
 </td><td>
 
-图层 ID
-
+Layer ID
 
 </td></tr>
 <tr><td>
 
 [inactiveColor](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-非激活颜色（RGB HEX 格式）
-
+Inactive color (RGB HEX format)
 
 </td></tr>
 <tr><td>
 
 [inactiveTransparency](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-非激活透明度（%）
-
+Inactive transparency (%)
 
 </td></tr>
 <tr><td>
 
 [layerStatus](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [EPCB\_LayerStatus](../enums/EPCB_LayerStatus.md)
 
-
 </td><td>
 
-层状态
-
+Layer status
 
 </td></tr>
 <tr><td>
 
 [locked](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 boolean
 
-
 </td><td>
 
-是否锁定
-
+Whether it is locked
 
 </td></tr>
 <tr><td>
 
 [name](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-名称
-
+Name
 
 </td></tr>
 <tr><td>
 
 [transparency](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-透明度（%）
-
+Transparency (%)
 
 </td></tr>
 <tr><td>
 
 [type](./IPCB_LayerItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [EPCB\_LayerType](../enums/EPCB_LayerType.md)
 
-
 </td><td>
 
-类型
-
+Type
 
 </td></tr>
 </tbody></table>
@@ -212,7 +172,7 @@ number
 
 # IPCB\_LayerItem.color property
 
-颜色（RGB HEX 格式）
+Color (RGB HEX format)
 
 ## Signature
 
@@ -224,7 +184,7 @@ color: string;
 
 # IPCB\_LayerItem.id property
 
-图层 ID
+Layer ID
 
 ## Signature
 
@@ -236,7 +196,7 @@ id: EPCB_LayerId;
 
 # IPCB\_LayerItem.inactiveColor property
 
-非激活颜色（RGB HEX 格式）
+Inactive color (RGB HEX format)
 
 ## Signature
 
@@ -248,7 +208,7 @@ inactiveColor: string;
 
 # IPCB\_LayerItem.inactiveTransparency property
 
-非激活透明度（%）
+Inactive transparency (%)
 
 ## Signature
 
@@ -260,7 +220,7 @@ inactiveTransparency: number;
 
 # IPCB\_LayerItem.layerStatus property
 
-层状态
+Layer status
 
 ## Signature
 
@@ -272,7 +232,7 @@ layerStatus: EPCB_LayerStatus;
 
 # IPCB\_LayerItem.locked property
 
-是否锁定
+Whether it is locked
 
 ## Signature
 
@@ -284,7 +244,7 @@ locked: boolean;
 
 # IPCB\_LayerItem.name property
 
-名称
+Name
 
 ## Signature
 
@@ -296,7 +256,7 @@ name: string;
 
 # IPCB\_LayerItem.transparency property
 
-透明度（%）
+Transparency (%)
 
 ## Signature
 
@@ -308,7 +268,7 @@ transparency: number;
 
 # IPCB\_LayerItem.type property
 
-类型
+Type
 
 ## Signature
 

@@ -1,43 +1,54 @@
-## Description: <br>
-Determines whether a clinical trial incident is a major, critical, or minor protocol deviation and explains the supporting risk factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies clinical trial protocol deviation incidents as major, minor, or critical and provides risk rationale, regulatory basis, and recommended actions.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinical operations, quality assurance, and trial documentation teams use this skill to triage protocol deviation descriptions, classify likely severity, and prepare structured rationale for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce high-stakes clinical trial classifications and recommended actions. <br>
-Mitigation: Require review by qualified clinical quality, regulatory, or legal staff under the organization's SOPs before decisions are acted on. <br>
-Risk: Input records may contain sensitive clinical trial or subject information. <br>
-Mitigation: Use deidentified data whenever possible and avoid sharing unnecessary subject, site, or investigator details. <br>
-Risk: requirements.txt lists standard-library modules that do not need installation on modern Python. <br>
-Mitigation: Run the packaged script in a sandboxed local environment and avoid unnecessary pip installs unless your environment specifically requires them. <br>
+## Use Case:
 
+Clinical trial operations, quality assurance, and data analysis users use this skill to classify documented protocol deviation events and generate structured rationale or reports for review. Final determinations remain subject to clinical quality assurance review.
 
-## Reference(s): <br>
-- [Runtime Checklist](references/runtime_checklist.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/protocol-deviation-classifier-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON classification results, and shell commands for local execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include classification, confidence, rationale, risk factors, regulatory basis, and recommended actions when sufficient input is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security evidence reports a suspicious verdict and notes broader file handling and dependency installation behavior than the documentation promises.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it only in an isolated workspace or virtual environment, and avoid the documented pip install path unless dependencies are removed or pinned.
+
+Risk: Clinical-trial subject or site data may be written to local output files.
+
+Mitigation: Use controlled output paths and redact or securely store sensitive fields before processing real clinical-trial data.
+
+## Reference(s):
+
+- [Runtime Checklist](references/runtime_checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/protocol-deviation-classifier-1)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, shell commands, guidance]
+
+**Output Format:** [JSON or text summaries, with optional markdown guidance and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce single-event classifications, batch classification results, and summary reports when input and output paths are provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

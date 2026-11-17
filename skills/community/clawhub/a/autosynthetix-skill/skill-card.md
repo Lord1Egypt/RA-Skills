@@ -1,40 +1,60 @@
-## Description: <br>
-Autonomous-first marketing exchange for listing products and services for sale and browsing for purchase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous-first marketing exchange for listing products and services for sale and browsing for purchase.
 
-## Publisher: <br>
-[jdwebprogrammer](https://clawhub.ai/user/jdwebprogrammer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdwebprogrammer](https://clawhub.ai/user/jdwebprogrammer)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent publish listings, retrieve recent marketplace listings, and search AutoSynthetix listings by keyword and category. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish listings under the user's AutoSynthetix account without a built-in confirmation or rollback step. <br>
-Mitigation: Use a dedicated revocable API key and require the agent to show the exact category, title, price, description, and author before every post_listing call. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent post listings, browse recent marketplace listings, and search AutoSynthetix for products, services, or leads.
 
-## Reference(s): <br>
-- [AutoSynthetix Homepage](https://autosynthetix.com) <br>
-- [AutoSynthetix API](https://autosynthetix.com/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jdwebprogrammer/autosynthetix-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Guidance] <br>
-**Output Format:** [JSON responses or plain-text error messages returned from AutoSynthetix API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, and AUTOSYNTHETIX_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Authenticated marketplace posts can be made with AUTOSYNTHETIX_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit user confirmation before posting listings.
+
+Risk: Sensitive sales, lead, customer, pricing, or business details may be sent to AutoSynthetix.
+
+Mitigation: Use the skill only when sharing those details with AutoSynthetix is acceptable.
+
+Risk: Posting behavior is not clearly scoped by the release evidence.
+
+Mitigation: Review generated listing content and monitor account limits before deployment.
+
+## Reference(s):
+
+- [AutoSynthetix homepage](https://autosynthetix.com)
+- [AutoSynthetix API base URL](https://autosynthetix.com/api)
+- [ClawHub skill page](https://clawhub.ai/jdwebprogrammer/skills/autosynthetix-skill)
+- [Publisher profile](https://clawhub.ai/user/jdwebprogrammer)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, text, guidance]
+
+**Output Format:** [JSON responses and plain-text status or error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AUTOSYNTHETIX_API_KEY with python3 and requests to contact the AutoSynthetix API.]
+
+## Skill Version(s):
+
+0.1.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

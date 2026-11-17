@@ -1,45 +1,56 @@
-## Description: <br>
-Provides PoYo Gemini 3.5 Flash chat guidance for OpenAI-compatible chat payloads, Gemini Native Format payloads, streaming requests, generation settings, and server-side curl usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare PoYo Gemini 3.5 Flash chat requests using OpenAI-compatible chat completions or Gemini Native Format, including payloads, streaming options, generation config, and server-side integration notes.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare PoYo Gemini 3.5 Flash chat requests, choose between OpenAI-compatible and Gemini Native formats, configure streaming or generation options, and avoid leaking API keys or private prompt data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys or authorization headers could be exposed if copied into client code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in a server-side environment or secret manager and avoid logging raw credentials. <br>
-Risk: Private messages, system prompts, or media may be sent to PoYo when using the generated request payloads. <br>
-Mitigation: Review payloads before sending and only forward private data when the user's policy allows it. <br>
-Risk: The included shell helper makes a live network request to the PoYo chat completions endpoint. <br>
-Mitigation: Run it only from a trusted shell with an intended payload and a properly scoped POYO_API_KEY. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare PoYo Gemini 3.5 Flash request payloads, curl commands, and integration notes for chat, streaming, and Gemini Native Format workflows.
 
-## Reference(s): <br>
-- [PoYo Gemini Native Format Documentation](https://docs.poyo.ai/api-manual/chat-series/gemini-native-format) <br>
-- [PoYo Chat Completions Documentation](https://docs.poyo.ai/api-manual/chat-series/chat-completions) <br>
-- [PoYo Gemini 3.5 Flash Model Page](https://poyo.ai/models/gemini-3-5-flash) <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolhackboy/skills/poyo-gemini-3-5-flash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include endpoint selection, model id, request payloads, streaming notes, generation configuration, safety settings, and response parsing notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can help send prompts or payload files to PoYo's API when a user runs its curl examples or helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended PoYo workflows, review payload files before submission, and run helper commands only from a trusted server-side shell.
+
+Risk: POYO_API_KEY and private prompt data could be exposed if copied into browser code, logs, screenshots, public repositories, or chat output.
+
+Mitigation: Store POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid logging private messages, system prompts, inline media data, or authorization headers.
+
+## Reference(s):
+
+- [PoYo Gemini 3.5 Flash API Reference](references/api.md)
+- [PoYo Gemini 3.5 Flash model page](https://poyo.ai/models/gemini-3-5-flash)
+- [PoYo Gemini Native Format docs](https://docs.poyo.ai/api-manual/chat-series/gemini-native-format)
+- [PoYo Chat Completions docs](https://docs.poyo.ai/api-manual/chat-series/chat-completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON payloads and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint selection, model id, synchronous or streaming handling, generation configuration, safety settings, and response parsing notes.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

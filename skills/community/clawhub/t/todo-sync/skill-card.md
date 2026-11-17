@@ -1,41 +1,53 @@
-## Description: <br>
-Todo Sync is intended to help address unsynchronized to-dos between WeCom and Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users address unsynchronized to-dos between Enterprise WeChat and Feishu tasks.
 
-## Publisher: <br>
-[neutronstar238](https://clawhub.ai/user/neutronstar238) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neutronstar238](https://clawhub.ai/user/neutronstar238)
 
-## Use Case: <br>
-External users or developers using OpenClaw can invoke `/todo_sync` for assistance with coordinating task items between WeCom and Feishu. The artifact indicates the core implementation, tests, and documentation are still planned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review describes the skill as unfinished and requesting broad local file and shell access without documenting how access is scoped or controlled. <br>
-Mitigation: Review the skill before installation and avoid granting broad Read, Write, Edit, or Bash access until permissions, data access, and confirmation behavior are documented. <br>
-Risk: The intended WeCom and Feishu synchronization behavior may read or modify task data without documented permission boundaries. <br>
-Mitigation: Confirm the exact WeCom and Feishu permissions, data touched, and user confirmation steps before using the skill with real task data. <br>
+## Use Case:
 
+OpenClaw users can invoke this skill when they need help planning or operating a workflow for keeping Enterprise WeChat to-dos and Feishu tasks aligned. The current artifact is a minimal stub and does not yet implement core sync behavior.
 
-## Reference(s): <br>
-- [Todo Sync ClawHub release](https://clawhub.ai/neutronstar238/todo-sync) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline command text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [User-invoked through `/todo_sync`; no completed synchronization behavior is documented in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The artifact is an unfinished sync stub, so users may assume automated synchronization exists before core behavior is implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed version before deployment and confirm that the sync workflow, tests, and documentation are present.
+
+Risk: Future versions may handle task-system credentials, background sync, or broad write access to task systems.
+
+Mitigation: Review future versions for API credential handling, explicit permission boundaries, and write-scope limits before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neutronstar238/skills/todo-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown or plain text responses with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No implementation-specific output contract is documented.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Turns a product and keyword opportunity into GEO-aware analysis, AI-generated product visuals, localized commerce copy, structured product data, and export-ready commerce assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a product and keyword opportunity into AI-generated visuals, structured product data, localized commerce copy, and export-ready commerce assets.
 
-## Publisher: <br>
-[GEO-SEO](https://clawhub.ai/user/GEO-SEO) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geo-seo](https://clawhub.ai/user/geo-seo)
 
-## Use Case: <br>
-Commerce teams, DTC brands, agencies, and growth teams use this skill to convert product opportunities into visual assets, localized copy, product data, and Shopify or WooCommerce export packages. Direct store publishing is optional and should be enabled only after credential and output review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated product data, image assets, and commerce copy may be inaccurate or unsuitable for a live storefront. <br>
-Mitigation: Review generated outputs before export or publication, especially prices, inventory, product claims, and localized copy. <br>
-Risk: Enabling direct Shopify or WooCommerce publishing can create products, upload images, and set inventory on a live store. <br>
-Mitigation: Keep publishing flags disabled by default, test with a staging store first, and use narrowly scoped store credentials for the enabled target only. <br>
-Risk: Image generation and optional publishing require external service credentials. <br>
-Mitigation: Provide only the credentials needed for the selected action and avoid sharing store credentials when only analysis, image generation, or export packaging is required. <br>
+## Use Case:
 
+Commerce, DTC, agency, and growth teams use this skill to analyze product opportunities, generate product image prompts and visuals, create localized listing copy, and prepare Shopify or WooCommerce export assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GEO-SEO/geo-visual-opportunity-engine) <br>
-- [Project homepage](https://github.com/GEO-SEO/geo-visual-opportunity-engine) <br>
-- [Dageno.ai](https://dageno.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON and Markdown-oriented commerce asset packages with optional generated image file paths and platform export status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces opportunity analysis, image prompts, generated image references, localized content drafts, posting schedules, product data, and export-ready Shopify or WooCommerce assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: server release metadata and skill frontmatter) <br>
+Risk: Store credentials may enable live Shopify or WooCommerce writes when direct export is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege test-store tokens first, avoid ambient store admin credentials unless publishing is intended, and require explicit direct-export flags before store writes.
+
+Risk: Writable output paths can place generated images or workflow result files outside the intended workspace if not constrained.
+
+Mitigation: Constrain output paths to a dedicated directory and review caller-provided paths before running workflows.
+
+Risk: External API calls for image generation and commerce export can expose product data or credentials to third-party services.
+
+Mitigation: Review inputs before execution, validate store URLs, and keep Google, Shopify, and WooCommerce credentials scoped to the minimum required action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geo-seo/skills/geo-visual-opportunity-engine)
+- [Project homepage](https://github.com/GEO-SEO/geo-visual-opportunity-engine)
+- [Dageno.ai](https://dageno.ai)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Files, API Calls, Configuration]
+
+**Output Format:** [Structured JSON with generated image paths, commerce copy, product data, schedules, and optional export results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated images and workflow result files to an output directory; direct Shopify or WooCommerce export occurs only when explicitly enabled with matching credentials.]
+
+## Skill Version(s):
+
+3.0.5 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

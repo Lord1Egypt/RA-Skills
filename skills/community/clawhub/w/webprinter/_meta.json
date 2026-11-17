@@ -1,6 +1,9 @@
 {
   "ownerId": "kn79nxbamnc7k6t9adgdmqmsx983re3t",
   "slug": "webprinter",
-  "version": "1.0.11",
-  "publishedAt": 1778950599304
+  "version": "1.0.10",
+  "publishedAt": 1774791756753,
+  "requiredEnvVars": [
+    "WEBPRINTER_ACCESS_TOKEN"
+  ]
 }

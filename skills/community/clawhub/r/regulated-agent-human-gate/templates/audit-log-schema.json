@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/kya/audit-event.schema.json",
+  "title": "KYA Audit Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "trace_id",
+    "decision_id",
+    "tenant_id",
+    "action_id",
+    "action_hash",
+    "event_type",
+    "actor_type",
+    "actor_id",
+    "timestamp",
+    "policy_version",
+    "reason_codes",
+    "required_controls",
+    "satisfied_controls",
+    "evidence_references",
+    "previous_event_hash",
+    "event_hash"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "event_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "trace_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "decision_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "tenant_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "action_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "action_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "receipt_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "idempotency_key": { "type": "string", "minLength": 16, "maxLength": 128 },
+    "event_type": {
+      "enum": [
+        "ACTION_FROZEN",
+        "DECISION_EVALUATED",
+        "CONTROL_CHALLENGE_CREATED",
+        "CONTROL_RESULT_RECORDED",
+        "RECEIPT_ISSUED",
+        "RECEIPT_REJECTED",
+        "RECEIPT_CONSUMED",
+        "EXECUTION_SUCCEEDED",
+        "EXECUTION_FAILED",
+        "ACTION_DENIED"
+      ]
+    },
+    "actor_type": { "enum": ["ai_agent", "user", "human", "provider", "system"] },
+    "actor_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "policy_version": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "decision": {
+      "enum": [
+        "ALLOW",
+        "USER_CONFIRMATION",
+        "STEP_UP_AUTHENTICATION",
+        "IDENTITY_VERIFICATION",
+        "HUMAN_APPROVAL",
+        "COMPLIANCE_REVIEW",
+        "DENY"
+      ]
+    },
+    "risk_level": { "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+    "reason_codes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "required_controls": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "satisfied_controls": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "evidence_references": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 512 }
+    },
+    "outcome": { "enum": ["PENDING", "PASSED", "REJECTED", "SUCCEEDED", "FAILED"] },
+    "failure_code": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "payload_digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "previous_event_hash": { "type": "string", "pattern": "^(GENESIS|sha256:[a-f0-9]{64})$" },
+    "event_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "event_signature_reference": { "type": "string", "minLength": 1, "maxLength": 512 }
+  }
+}

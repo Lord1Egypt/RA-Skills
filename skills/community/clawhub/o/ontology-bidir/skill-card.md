@@ -1,44 +1,55 @@
-## Description: <br>
-Typed knowledge graph for structured agent memory and composable skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Typed knowledge graph for structured agent memory and composable skills.
 
-## Publisher: <br>
-[jg20260212](https://clawhub.ai/user/jg20260212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jg20260212](https://clawhub.ai/user/jg20260212)
 
-## Use Case: <br>
-Developers and agents use this skill to create, query, relate, validate, and share structured workspace memory as a typed knowledge graph. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workspace-local memory graph may contain sensitive personal or business information. <br>
-Mitigation: Avoid storing actual secrets, review entries before storing sensitive data, and use credential references instead of secret values. <br>
-Risk: Deletes remove entities from active retrieval but may leave historical JSONL records. <br>
-Mitigation: Do not store data that requires assured erasure unless the history file is also reviewed and purged. <br>
-Risk: Ontology commands create and modify persistent workspace files. <br>
-Mitigation: Review generated commands before execution and run validation before relying on the graph. <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain a local typed knowledge graph for entities, relations, task dependencies, planning state, and cross-skill shared memory.
 
-## Reference(s): <br>
-- [Ontology Schema Reference](artifact/references/schema.md) <br>
-- [Query Reference](artifact/references/queries.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jg20260212/ontology-bidir) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, Python snippets, JSON/JSONL examples, and YAML schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may write workspace-local ontology files such as memory/ontology/graph.jsonl and memory/ontology/schema.yaml.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and user changelog dated 2026-06-15) <br>
+Risk: Persistent shared workspace memory can retain sensitive, stale, or invalid ontology records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or highly sensitive personal data, and run validation before relying on persisted graph data.
+
+Risk: Broad activation can cause routine agent workflows to create or update shared graph state.
+
+Mitigation: Review intended ontology changes and keep append/merge history so prior definitions are not overwritten.
+
+## Reference(s):
+
+- [Ontology Schema Reference](references/schema.md)
+- [Query Reference](references/queries.md)
+- [ClawHub Skill Page](https://clawhub.ai/jg20260212/skills/ontology-bidir)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, JSON, JSONL, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads local workspace ontology files, primarily memory/ontology/graph.jsonl and memory/ontology/schema.yaml.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and user changelog, released 2026-06-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

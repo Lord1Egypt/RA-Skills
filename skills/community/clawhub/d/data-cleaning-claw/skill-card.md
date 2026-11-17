@@ -1,42 +1,60 @@
-## Description: <br>
-Cleans CSV, Excel, and JSON datasets by removing duplicate rows, filling missing values, standardizing dates, amounts, and phone numbers, stripping HTML noise, validating common fields, and producing cleaned data plus a JSON report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Cleaning Claw helps agents clean CSV, Excel, and JSON datasets by removing duplicate records and HTML noise, filling missing values, standardizing common date, amount, and phone formats, and producing a cleaned file with a JSON cleaning report.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External users and developers use this skill to clean user-provided tabular datasets before analysis, reporting, migration, or quality review. It is suited for workflows that need repeatable deduplication, missing-value handling, format normalization, HTML noise removal, and validation summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes files or pasted data supplied by the user and writes cleaned outputs plus a JSON report in the workspace. <br>
-Mitigation: Use it only with datasets you are comfortable processing locally, review sensitive or regulated data before cleaning, and choose output paths deliberately. <br>
-Risk: Cleaning operations can modify values, fill missing data, remove duplicate rows, and add quality markers, which may affect downstream analysis. <br>
-Mitigation: Keep a backup of original datasets and review the cleaning report plus flagged rows before relying on the cleaned output. <br>
+## Use Case:
 
+Developers, analysts, and data operations users can use this skill to prepare messy tabular data for review or downstream processing. It is aimed at common cleanup workflows such as deduplication, missing-value handling, format normalization, HTML noise removal, and data-quality flagging.
 
-## Reference(s): <br>
-- [Cleaning Rules](references/cleaning-rules.md) <br>
-- [Noise Patterns](references/noise-patterns.md) <br>
-- [Data Types](references/data-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; cleaned CSV, Excel, or JSON files; JSON cleaning report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a cleaned output file and a sibling .report.json file summarizing row counts and operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may install unpinned Python packages at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment and pin or review dependencies before installation.
+
+Risk: Cleaned CSV or Excel outputs may preserve formula-like values from untrusted input.
+
+Mitigation: Neutralize spreadsheet formulas before opening outputs in spreadsheet software.
+
+Risk: Deduplication and missing-value filling can change datasets in ways that may not match business rules.
+
+Mitigation: Keep original data backups and review the generated cleaning report before relying on the cleaned dataset.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tujinsama/skills/data-cleaning-claw)
+- [Data cleaning rules](references/cleaning-rules.md)
+- [Data type recognition rules](references/data-types.md)
+- [Noise pattern rules](references/noise-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated cleaned data files and JSON cleaning reports when the script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script accepts input and output paths, comma-separated cleaning rules, optional key fields for deduplication, and optional date, amount, and phone field lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

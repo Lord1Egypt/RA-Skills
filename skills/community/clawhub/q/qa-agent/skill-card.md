@@ -1,40 +1,53 @@
-## Description: <br>
-QA Agent helps an agent perform quality assurance tasks, including code analysis, test execution, and issue reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Un agente para realizar tareas de control de calidad (QA), incluyendo analisis de codigo, ejecucion de pruebas y reporte de problemas.
 
-## Publisher: <br>
-[Steven-Mr3](https://clawhub.ai/user/Steven-Mr3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steven-mr3](https://clawhub.ai/user/steven-mr3)
 
-## Use Case: <br>
-Developers and engineers use this skill to run local Python and JavaScript linting and test workflows, then review the resulting QA findings for a codebase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Linting and test commands execute code from the target project. <br>
-Mitigation: Run the skill only on trusted projects or inside an isolated workspace before relying on results. <br>
-Risk: Extra tool flags, such as fixer options, can modify project files. <br>
-Mitigation: Review extra flags before execution and use version control or a disposable copy for file-changing runs. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to run local Python and JavaScript linting and tests, then summarize defects, warnings, and test outcomes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Steven-Mr3/qa-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local lint or test output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local QA commands against a target path; results depend on project configuration and available Python or JavaScript tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Running test frameworks can execute code from the target project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run tests only against projects and paths you trust, preferably in an isolated workspace when reviewing unfamiliar code.
+
+Risk: Fixer flags such as ruff --fix or eslint --fix can modify project files.
+
+Mitigation: Review the target path and use version control or backups before enabling automatic fixes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steven-mr3/skills/qa-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell commands and QA result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include lint findings, test results, file paths, line references, and suggested fixes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-自我改进守护进程，持续学习优化系统 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-improvement daemon for continual learning and system optimization.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agent users can use this skill to control a documented self-improvement daemon workflow for continual learning and system optimization, including start, stop, status, and trigger-oriented usage patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags broad self-improvement and background system-optimization behavior without enough scoping or safety detail. <br>
-Mitigation: Review the skill before installation and require explicit scope, stop, and rollback procedures before allowing background execution or system changes. <br>
-Risk: The package does not include the daemon implementation it claims to document. <br>
-Mitigation: Verify the missing implementation separately and install only when the executable code, dependencies, and operating behavior are available for review. <br>
+## Use Case:
 
+Developers and OpenCode users use this skill to control a daemon-style self-improvement workflow, including starting, stopping, and checking daemon status for continual learning and system optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/self-improvement-daemon) <br>
-- [Bilibili reference: Daemon irrepit callidus](https://www.bilibili.com/video/BV18z421e7az) <br>
-- [Bilibili reference: Daemon Tools Lite ISO installation](https://www.bilibili.com/video/BV1gSc9eAEhy) <br>
-- [Bilibili reference: daemon girl](https://www.bilibili.com/video/BV1aX4y1k7gq) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline PowerShell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents daemon control actions; artifact does not include the claimed executable daemon implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes daemon-style self-improvement behavior without enough detail about what will run or what it can modify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the actual daemon code before installation and require explicit approval for actions that start, stop, or modify the daemon workflow.
+
+Risk: Broad triggers such as "improve" could activate the skill unexpectedly.
+
+Mitigation: Disable broad auto-triggering unless the reviewed code and trigger policy are approved for the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/self-improvement-daemon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include daemon control commands and status guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

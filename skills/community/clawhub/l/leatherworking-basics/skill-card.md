@@ -1,42 +1,57 @@
-## Description: <br>
-Helps users plan leather repair and small leather goods projects by producing material lists, measurements, patterns, project plans, maintenance logs, and safety-aware step-by-step guidance while the user performs all hands-on craft work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan leather goods repair and creation projects by producing sourcing guidance, custom patterns, material calculations, timelines, maintenance logs, and troubleshooting steps while the user performs all hands-on craft work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to repair worn leather goods or create durable everyday items such as belts, bags, sheaths, wallets, boots, and gloves. The agent handles planning, sourcing research, measurements, project tracking, reminders, and troubleshooting while the human performs cutting, stitching, dyeing, riveting, fitting, and finishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Leatherworking involves sharp tools, dyes, solvents, and irreversible cutting or finishing steps. <br>
-Mitigation: Keep the human responsible for physical work, require safety checks before cutting or dyeing, use ventilation for finishes, and stop when the user is uncertain. <br>
-Risk: The skill is not certified for life-safety, load-bearing, equestrian, regulated commercial, or structurally critical gear. <br>
-Mitigation: Use the skill only for ordinary craft, repair, and planning work; consult a qualified professional for critical or regulated items. <br>
-Risk: Project planning can involve measurements, photos, local sourcing details, and saved logs. <br>
-Mitigation: Share only the measurements and photos needed for the task, and keep control over where any files, logs, or reminders are saved. <br>
+## Use Case:
 
+External users and makers use this skill to plan repair or fabrication of durable leather goods such as boots, belts, bags, sheaths, wallets, and pouches. The agent supports project intake, sourcing, pattern generation, material estimates, step sequencing, logs, reminders, and decision-tree troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/leatherworking-basics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, configuration] <br>
-**Output Format:** [Markdown instructions, checklists, project logs, sourcing messages, reminder text, and pattern specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file-backed project logs or reminders when the user chooses where to save them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented npx install command is not pinned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only through a trusted ClawHub path, prefer pinned or verified installation when available, and run installation as a normal user.
+
+Risk: The skill may generate marketplace messages, calendar reminders, logs, or pattern files that affect user projects.
+
+Mitigation: Keep generated files in a dedicated project folder and review outbound messages, reminders, and irreversible project steps before acting.
+
+Risk: Leatherworking tasks involve sharp tools, dyes, solvents, and items where structural failure can matter.
+
+Mitigation: Follow the skill's safety checkpoints, use ventilation and protective practices, test on scrap before final work, and avoid critical life-safety gear without professional certification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/leatherworking-basics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with lists, templates, calculations, install commands, and optional printable pattern specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shopping lists, tool checklists, project logs, sourcing messages, maintenance reminders, and safety checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

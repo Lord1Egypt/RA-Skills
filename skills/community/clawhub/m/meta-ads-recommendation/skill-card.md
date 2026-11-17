@@ -1,43 +1,52 @@
-## Description: <br>
-[Didoo AI] Produces specific, prioritized action plans based on campaign analysis data for Meta Ads campaign performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces specific, prioritized action plans based on Meta Ads campaign analysis data.
 
-## Publisher: <br>
-[elias-didoo](https://clawhub.ai/user/elias-didoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[elias-didoo](https://clawhub.ai/user/elias-didoo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External marketers and Meta Ads operators use this skill after campaign analysis to convert performance findings into one to three prioritized, data-backed actions in Meta Ads Manager.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads Meta Ads campaign analysis context from the current session.
+
+Mitigation: Review what campaign data is available in the session before invoking the skill.
+
+Risk: Recommendations may include pauses, budget changes, or other campaign actions that affect ad delivery.
+
+Mitigation: Review each recommendation before applying changes manually in Meta Ads Manager.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External marketers and operators use this skill to turn existing Meta Ads campaign analysis into one to three prioritized, data-backed recommendations. It helps decide what to change in Ads Manager, such as budget, creative, audience, or landing-page follow-up. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may affect ad spend or campaign delivery if applied without review. <br>
-Mitigation: Treat outputs as advisory and confirm budget changes, pauses, or account edits in Meta Ads Manager before execution. <br>
-Risk: The skill depends on campaign analysis already present in the conversation; missing or low-quality data can lead to weak recommendations. <br>
-Mitigation: Run an analysis skill first or provide the required campaign data before asking for recommendations. <br>
-Risk: Capability metadata includes unrelated tags for cryptocurrency and purchase-making. <br>
-Mitigation: Review metadata-driven permissions if the deployment environment uses capability tags for access control. <br>
+**Output Format:** [Markdown recommendations with concise context, prioritized action steps, data-backed reasons, and optional observations.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elias-didoo/meta-ads-recommendation) <br>
-- [Publisher profile](https://clawhub.ai/user/elias-didoo) <br>
+**Other Properties Related to Output:** [Requires existing campaign analysis context; if analysis data is missing, asks which time period to analyze first.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations with data-backed reasons and Ads Manager steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a brief context sentence, one to three recommendations, and optional observations.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

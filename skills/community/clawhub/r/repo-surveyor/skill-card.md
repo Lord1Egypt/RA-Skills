@@ -1,38 +1,48 @@
-## Description: <br>
-Use when Cartograph CLI or MCP is unavailable and you still need Cartograph-style repo orientation, task context, or documentation inputs from manual file survey. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when Cartograph CLI or MCP is unavailable and you still need Cartograph-style repo orientation, task context, or documentation inputs from manual file survey.
 
-## Publisher: <br>
-[anthony-maio](https://clawhub.ai/user/anthony-maio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[anthony-maio](https://clawhub.ai/user/anthony-maio)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to manually survey a repository when Cartograph is unavailable, producing a narrow set of key files, dependency hubs, task context, and documentation-ready summary material.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs an agent to inspect repository source and configuration files, which can expose sensitive project details if used in an inappropriate workspace.
+
+Mitigation: Use it only in repositories where file inspection for orientation and documentation is acceptable, and keep manual reads limited to relevant source, configuration, and entry files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use Repo Surveyor to orient themselves in a repository when Cartograph is unavailable, select a small set of important files, and summarize task-relevant context. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Manual repository survey summaries can include private or sensitive details from files the agent reads. <br>
-Mitigation: Use this skill only on repositories you intend to inspect, keep reads narrow, and review generated summaries before sharing them. <br>
+**Output Format:** [Markdown summary with structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Repo Surveyor on ClawHub](https://clawhub.ai/anthony-maio/repo-surveyor) <br>
+**Other Properties Related to Output:** [Produces key files, dependency hubs, minimal task context, and a doc-ready summary from a narrow manual repository survey.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with file lists and concise analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include key files, dependency hubs, minimal task context, and a doc-ready summary.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-Generates standalone HTML slide decks from structured Markdown using a cinematic dark product-launch style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standalone HTML slide decks from structured Markdown using a technology-launch visual style with cinematic dark gradients, card and tag layouts, inline SVG icons, and built-in slide navigation.
 
-## Publisher: <br>
-[Anderson-Lu](https://clawhub.ai/user/Anderson-Lu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderson-lu](https://clawhub.ai/user/anderson-lu)
 
-## Use Case: <br>
-Developers, presenters, and content creators use this skill to convert structured Markdown into a standalone HTML slide deck with responsive sections, inline SVG icons, navigation dots, and a progress bar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML slide decks may include unsafe or misleading content if created from untrusted Markdown. <br>
-Mitigation: Review generated HTML before sharing it or opening decks created from untrusted Markdown. <br>
-Risk: The default output is highly opinionated toward a dark cinematic Chinese product-launch style. <br>
-Mitigation: Request a different style explicitly and inspect the rendered deck before using it in a public or commercial setting. <br>
+## Use Case:
 
+Developers, content authors, and product storytellers use this skill to turn structured Markdown into a self-contained HTML presentation for technology-launch style slide decks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, text] <br>
-**Output Format:** [Standalone HTML file with embedded CSS and JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single index.html file with no external dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill condenses verbose source material into short slide copy, which can omit nuance or change emphasis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated slides against the source Markdown before publication.
+
+Risk: Generated standalone HTML includes inline JavaScript for slide navigation and progress behavior.
+
+Mitigation: Review generated HTML before distribution or embedding in controlled environments.
+
+Risk: The default instructions and template are Chinese-language and tuned for technology launch presentations.
+
+Mitigation: Adjust language and style defaults when producing decks for other audiences or presentation formats.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anderson-lu/skills/md-ppt-generator)
+
+## Skill Output:
+
+**Output Type(s):** [code, files, guidance]
+
+**Output Format:** [Standalone HTML file with embedded CSS and JavaScript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a single index.html-style presentation with no external dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

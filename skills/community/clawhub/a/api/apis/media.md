@@ -2,19 +2,20 @@
 
 | API | Line |
 |-----|------|
-| Cloudinary | 2 |
-| Mux | 66 |
-| Bunny.net | 145 |
-| UploadThing | 287 |
-| Uploadcare | 353 |
-| Transloadit | 431 |
-| Vimeo | 500 |
-| YouTube Data API | 581 |
-| Spotify | 654 |
-| Unsplash | 742 |
-| Pexels | 813 |
-| GIPHY | 882 |
-| Tenor | 950 |
+| Cloudinary | 22 |
+| Mux | 86 |
+| Bunny.net | 165 |
+| imgix | 240 |
+| UploadThing | 307 |
+| Uploadcare | 373 |
+| Transloadit | 451 |
+| Vimeo | 520 |
+| YouTube Data API | 601 |
+| Spotify | 674 |
+| Unsplash | 762 |
+| Pexels | 833 |
+| GIPHY | 902 |
+| Tenor | 970 |
 
 ---
 

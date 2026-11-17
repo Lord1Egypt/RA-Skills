@@ -1,0 +1,8 @@
+# iso14971-risk-matrix
+
+> ISO 14971 risk-management helper for medical devices. Score a risk with
+
+- 版本：1.0.0
+- 调用入口：`SKILL.md`（AI 代理请先读此文件）
+- 配套文件：README.md, SKILL.md
+- 系列归属：SynomosAI 治理技能生态（LGD/UIBC/[REDACTED]）

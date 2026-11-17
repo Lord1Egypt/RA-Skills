@@ -1,41 +1,54 @@
-## Description: <br>
-Skill Distributor generates platform-specific marketplace listings, README content, social posts, and publishing commands for an agent skill from its SKILL.md metadata, with optional GitHub publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates multi-platform distribution materials for agent skills, including marketplace listings, social promotion copy, GitHub README content, validation guidance, and optional publishing commands.
 
-## Publisher: <br>
-[gmf515](https://clawhub.ai/user/gmf515) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmf515](https://clawhub.ai/user/gmf515)
 
-## Use Case: <br>
-Developers and skill creators use this skill to prepare a Skill package for distribution by validating SKILL.md metadata and generating platform-specific marketplace, repository, and social promotion materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional publishing path may handle GitHub credentials and write to a repository. <br>
-Mitigation: Use generation-only mode unless publishing is required; if publishing, use a fine-grained token scoped to one repository and remove any tokenized remote URL after use. <br>
-Risk: Generated distribution files and README updates may overwrite or introduce misleading project materials. <br>
-Mitigation: Verify the destination repository, inspect generated diffs, and back up README.md before applying or publishing changes. <br>
+## Use Case:
 
+Developers and skill creators use this skill to prepare distribution assets for publishing an agent skill across ClawHub, GitHub, domestic skill marketplaces, and social platforms. It helps validate skill metadata, generate platform-specific copy, and provide publish or push commands when requested.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gmf515/skill-distributor) <br>
-- [Platform Format Reference](artifact/references/platform-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, README content, shell command snippets, and platform-specific listing text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated distribution materials under a distro/ folder and may provide optional GitHub publishing commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: GitHub publishing flows can expose credentials if tokens are pasted into chat, logs, or remote URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use GitHub CLI or a credential helper, and do not store tokens in generated commands or repository remotes.
+
+Risk: Generated distribution files and publishing commands can overwrite README content or publish externally before review.
+
+Mitigation: Review diffs before writing or pushing files, confirm target platforms, and pin or preinstall the ClawHub CLI before validation or publishing.
+
+## Reference(s):
+
+- [Platform format reference](artifact/references/platform-formats.md)
+- [ClawHub skill listing](https://clawhub.ai/gmf515/skills/skill-distributor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown files and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes distribution materials under distro/ and may provide publishing commands for GitHub or ClawHub.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

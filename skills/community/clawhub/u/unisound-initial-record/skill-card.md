@@ -1,44 +1,65 @@
-## Description: <br>
-Generates structured initial outpatient medical record content from Chinese doctor-patient dialogue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured outpatient initial medical record information from Chinese doctor-patient dialogue.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Healthcare developers and clinical operations teams use this skill to convert de-identified Chinese consultation transcripts or supported input files into structured initial-visit record fields for clinician review and downstream systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical dialogue may contain sensitive patient information and is sent to the configured LLM endpoint. <br>
-Mitigation: Use only authorized medical dialogue, de-identify patient text before processing, and use only approved base endpoints. <br>
-Risk: The app key grants access to the configured LLM service. <br>
-Mitigation: Protect the app key and avoid exposing it in logs, shared commands, or committed files. <br>
-Risk: Prepared data or generated records can be written to local files when output options are used. <br>
-Mitigation: Avoid save-prepared or file outputs unless local storage of medical records is permitted. <br>
+## Use Case:
 
+Clinicians, clinical documentation teams, and healthcare developers can use this skill to convert de-identified Chinese outpatient doctor-patient dialogue into structured initial-record sections for clinician review and downstream parsing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-initial-record) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Example dialogue JSON](artifact/example/gen_records.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured plain text with optional file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an app key for the configured LLM service; supported inputs include text, JSON, PDF, document, spreadsheet, and CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive medical dialogue may be sent to a configured API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified inputs in an environment approved for medical data and keep the API base URL fixed to a trusted HTTPS endpoint.
+
+Risk: The required bearer key may be exposed if handled in an unsafe runtime or sent to an untrusted endpoint.
+
+Mitigation: Protect the appkey as a secret, restrict where the skill can run, and do not override the API base URL without approval.
+
+Risk: Prepared patient dialogue can be written locally when debug saving is enabled.
+
+Mitigation: Avoid --save-prepared unless a local debug copy is intentionally required and covered by the data-handling policy.
+
+Risk: Generated medical records may contain inaccurate or incomplete clinical information.
+
+Mitigation: Require clinician review before using generated records operationally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-initial-record)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Default medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+- [Example dialogue input](artifact/example/dialogue.txt)
+- [Example JSON input](artifact/example/gen_records.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Structured plain text with one medical-record field per line; optionally written to an output file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated through a configured chat-completions API using the selected model and may be printed to stdout or written to a provided path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

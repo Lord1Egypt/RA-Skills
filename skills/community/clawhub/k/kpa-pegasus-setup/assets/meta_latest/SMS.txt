@@ -1,0 +1,528 @@
+collection: SMS
+sort-by: 10
+shortname: sms
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/genesis_plus_gx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 007 决斗
+file: 007 决斗.sms
+assets.box_front: Imgs/007 决斗.png
+description: 《007 决斗》，Master System 平台。
+game: 七喜小子
+file: 七喜小子.sms
+assets.box_front: Imgs/七喜小子.png
+description: 《七喜小子》，由 Virgin 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Virgin
+genre: Platform
+players: 1
+game: 中华大仙
+file: 中华大仙.sms
+assets.box_front: Imgs/中华大仙.png
+description: 《中华大仙》，由 SEGA 出品，动作类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Action
+players: 2
+game: 伊苏
+file: 伊苏.sms
+assets.box_front: Imgs/伊苏.png
+description: 《伊苏》，由 SEGA 出品，Role-playing (RPG)类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Role-playing (RPG)
+players: 1
+game: 侏罗纪公园
+file: 侏罗纪公园.sms
+assets.box_front: Imgs/侏罗纪公园.png
+description: 《侏罗纪公园》，由 SEGA 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 兰博1
+file: 兰博1.sms
+assets.box_front: Imgs/兰博1.png
+description: 《兰博1》，由 SEGA 出品，射击类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Shooter
+players: 2
+game: 兰博3
+file: 兰博3.sms
+assets.box_front: Imgs/兰博3.png
+description: 《兰博3》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 兽王记
+file: 兽王记.sms
+assets.box_front: Imgs/兽王记.png
+description: 《兽王记》，由 SEGA 出品，清版动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Beat'em Up
+players: 1
+game: 冲破火网
+file: 冲破火网.sms
+assets.box_front: Imgs/冲破火网.png
+description: 《冲破火网》，Master System 平台。
+game: 北斗神拳
+file: 北斗神拳.sms
+assets.box_front: Imgs/北斗神拳.png
+description: 《北斗神拳》，由 SEGA 出品，1986 年发行，动作类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 1986
+genre: Action
+players: 2
+game: 吃豆小精灵
+file: 吃豆小精灵.sms
+assets.box_front: Imgs/吃豆小精灵.png
+description: 《吃豆小精灵》，由 Tengen 出品，动作类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: Tengen
+genre: Action
+players: 2
+game: 吸血鬼传说
+file: 吸血鬼传说.sms
+assets.box_front: Imgs/吸血鬼传说.png
+description: 《吸血鬼传说》，由 Sony Imagesoft 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: Sony Imagesoft
+genre: Action
+players: 1
+game: 吸血鬼复苏
+file: 吸血鬼复苏.sms
+assets.box_front: Imgs/吸血鬼复苏.png
+description: 《吸血鬼复苏》，由 SEGA 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 回到未来2
+file: 回到未来2.sms
+assets.box_front: Imgs/回到未来2.png
+description: 《回到未来2》，由 Image Works 出品，冒险类游戏，Master System 平台，单人游玩。
+publisher: Image Works
+genre: Adventure
+players: 1
+game: 回到未来3
+file: 回到未来3.sms
+assets.box_front: Imgs/回到未来3.png
+description: 《回到未来3》，由 Image Works 出品，冒险类游戏，Master System 平台，单人游玩。
+publisher: Image Works
+genre: Adventure
+players: 1
+game: 太空战斗机
+file: 太空战斗机.sms
+assets.box_front: Imgs/太空战斗机.png
+description: 《太空战斗机》，由 Taito 出品，Shoot'em Up类游戏，Master System 平台，单人游玩。
+publisher: Taito
+genre: Shoot'em Up
+players: 1
+game: 太空枪
+file: 太空枪.sms
+assets.box_front: Imgs/太空枪.png
+description: 《太空枪》，由 Taito 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: Taito
+genre: Action
+players: 1
+game: 女警刑事2
+file: 女警刑事2.sms
+assets.box_front: Imgs/女警刑事2.png
+description: 《女警刑事2》，由 SEGA 出品，1987 年发行，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1987
+genre: Action
+players: 1
+game: 孔雀王
+file: 孔雀王.sms
+assets.box_front: Imgs/孔雀王.png
+description: 《孔雀王》，Master System 平台。
+game: 小原始人1
+file: 小原始人1.sms
+assets.box_front: Imgs/小原始人1.png
+description: 《小原始人1》，由 Virgin Games 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: Virgin Games
+genre: Action
+players: 1
+game: 小原始人2
+file: 小原始人2.sms
+assets.box_front: Imgs/小原始人2.png
+description: 《小原始人2》，由 SEGA 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 异形3
+file: 异形3.sms
+assets.box_front: Imgs/异形3.png
+description: 《异形3》，由 Arena Entertainment 出品，1992 年发行，平台跳跃类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: Arena Entertainment
+release: 1992
+genre: Platform
+players: 2
+game: 异形战机
+file: 异形战机.sms
+assets.box_front: Imgs/异形战机.png
+description: 《异形战机》，1988 年发行，Master System 平台。
+release: 1988
+game: 异形风暴
+file: 异形风暴.sms
+assets.box_front: Imgs/异形风暴.png
+description: 《异形风暴》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 强力战机1
+file: 强力战机1.sms
+assets.box_front: Imgs/强力战机1.png
+description: 《强力战机1》，由 SEGA 出品，1988 年发行，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1988
+genre: Action
+players: 1
+game: 强力战机2
+file: 强力战机2.sms
+assets.box_front: Imgs/强力战机2.png
+description: 《强力战机2》，由 SEGA 出品，1993 年发行，Shoot'em Up类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1993
+genre: Shoot'em Up
+players: 1
+game: 彩虹岛
+file: 彩虹岛.sms
+assets.box_front: Imgs/彩虹岛.png
+description: 《彩虹岛》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 影舞者
+file: 影舞者.sms
+assets.box_front: Imgs/影舞者.png
+description: 《影舞者》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 忍者龙剑传
+file: 忍者龙剑传.sms
+assets.box_front: Imgs/忍者龙剑传.png
+description: 《忍者龙剑传》，由 SEGA 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 所罗门之匙
+file: 所罗门之匙.sms
+assets.box_front: Imgs/所罗门之匙.png
+description: 《所罗门之匙》，由 Salio 出品，1988 年发行，策略类游戏，Master System 平台，单人游玩。
+publisher: Salio
+release: 1988
+genre: Strategy
+players: 1
+game: 托托世界3
+file: 托托世界3.sms
+assets.box_front: Imgs/托托世界3.png
+description: 《托托世界3》，由 Daou Infosys 出品，1995 年发行，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Daou Infosys
+release: 1995
+genre: Platform
+players: 1
+game: 捉鬼敢死队
+file: 捉鬼敢死队.sms
+assets.box_front: Imgs/捉鬼敢死队.png
+description: 《捉鬼敢死队》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 摩登原始人
+file: 摩登原始人.sms
+assets.box_front: Imgs/摩登原始人.png
+description: 《摩登原始人》，由 Grandslam Entertainment 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: Grandslam Entertainment
+genre: Action
+players: 1
+game: 暴力摩托
+file: 暴力摩托.sms
+assets.box_front: Imgs/暴力摩托.png
+description: 《暴力摩托》，由 U.S. Gold 出品，竞速类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: U.S. Gold
+genre: Racing
+players: 2
+game: 机械战警3
+file: 机械战警3.sms
+assets.box_front: Imgs/机械战警3.png
+description: 《机械战警3》，由 Flying Edge 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Flying Edge
+genre: Platform
+players: 1
+game: 机械战警对终结者
+file: 机械战警对终结者.sms
+assets.box_front: Imgs/机械战警对终结者.png
+description: 《机械战警对终结者》，由 Virgin 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Virgin
+genre: Platform
+players: 1
+game: 李小龙传奇
+file: 李小龙传奇.sms
+assets.box_front: Imgs/李小龙传奇.png
+description: 《李小龙传奇》，由 Acclaim 出品，平台跳跃类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: Acclaim
+genre: Platform
+players: 2
+game: 武士之刃
+file: 武士之刃.sms
+assets.box_front: Imgs/武士之刃.png
+description: 《武士之刃》，由 Taito 出品，1989 年发行，动作类游戏，Master System 平台，单人游玩。
+publisher: Taito
+release: 1989
+genre: Action
+players: 1
+game: 毁灭公爵
+file: 毁灭公爵.sms
+assets.box_front: Imgs/毁灭公爵.png
+description: 《毁灭公爵》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 沙漠风暴
+file: 沙漠风暴.sms
+assets.box_front: Imgs/沙漠风暴.png
+description: 《沙漠风暴》，Master System 平台。
+game: 泡泡龙
+file: 泡泡龙.sms
+assets.box_front: Imgs/泡泡龙.png
+description: 《泡泡龙》，由 SEGA 出品，动作类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Action
+players: 2
+game: 波斯王子
+file: 波斯王子.sms
+assets.box_front: Imgs/波斯王子.png
+description: 《波斯王子》，1994 年发行，Master System 平台。
+release: 1994
+game: 海豚历险记
+file: 海豚历险记.sms
+assets.box_front: Imgs/海豚历险记.png
+description: 《海豚历险记》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 火烈鸟
+file: 火烈鸟.sms
+assets.box_front: Imgs/火烈鸟.png
+description: 《火烈鸟》，由 Tec Toy 出品，1996 年发行，动作类游戏，Master System 平台，单人游玩。
+publisher: Tec Toy
+release: 1996
+genre: Action
+players: 1
+game: 火线大行动
+file: 火线大行动.sms
+assets.box_front: Imgs/火线大行动.png
+description: 《火线大行动》，由 SEGA 出品，Shoot'em Up类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Shoot'em Up
+players: 1
+game: 特别刑事组
+file: 特别刑事组.sms
+assets.box_front: Imgs/特别刑事组.png
+description: 《特别刑事组》，由 Taito 出品，竞速类游戏，Master System 平台，单人游玩。
+publisher: Taito
+genre: Racing
+players: 1
+game: 狮子王
+file: 狮子王.sms
+assets.box_front: Imgs/狮子王.png
+description: 《狮子王》，由 Virgin 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Virgin
+genre: Platform
+players: 1
+game: 猫和老鼠
+file: 猫和老鼠.sms
+assets.box_front: Imgs/猫和老鼠.png
+description: 《猫和老鼠》，由 SEGA 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 王者之剑
+file: 王者之剑.sms
+assets.box_front: Imgs/王者之剑.png
+description: 《王者之剑》，由 SEGA 出品，1988 年发行，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1988
+genre: Action
+players: 1
+game: 环游世界
+file: 环游世界.sms
+assets.box_front: Imgs/环游世界.png
+description: 《环游世界》，由 SEGA 出品，竞速类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Racing
+players: 1
+game: 真宝珠小子
+file: 真宝珠小子.sms
+assets.box_front: Imgs/真宝珠小子.png
+description: 《真宝珠小子》，由 Gremlin Interactive 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Gremlin Interactive
+genre: Platform
+players: 1
+game: 神奇男孩1
+file: 神奇男孩1.sms
+assets.box_front: Imgs/神奇男孩1.png
+description: 《神奇男孩1》，由 SEGA 出品，平台跳跃类游戏，Master System 平台，支持 2-2 人游玩。
+publisher: SEGA
+genre: Platform
+players: 2
+game: 神奇男孩2
+file: 神奇男孩2.sms
+assets.box_front: Imgs/神奇男孩2.png
+description: 《神奇男孩2》，由 SEGA 出品，1988 年发行，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1988
+genre: Platform
+players: 1
+game: 神奇男孩3
+file: 神奇男孩3.sms
+assets.box_front: Imgs/神奇男孩3.png
+description: 《神奇男孩3》，由 SEGA 出品，1989 年发行，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1989
+genre: Platform
+players: 1
+game: 神奇男孩4
+file: 神奇男孩4.sms
+assets.box_front: Imgs/神奇男孩4.png
+description: 《神奇男孩4》，1993 年发行，Master System 平台。
+release: 1993
+game: 空中魂斗罗
+file: 空中魂斗罗.sms
+assets.box_front: Imgs/空中魂斗罗.png
+description: 《空中魂斗罗》，由 SEGA 出品，Shoot'em Up类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Shoot'em Up
+players: 1
+game: 红狐冒险
+file: 红狐冒险.sms
+assets.box_front: Imgs/红狐冒险.png
+description: 《红狐冒险》，由 SEGA 出品，1989 年发行，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1989
+genre: Platform
+players: 1
+game: 终结者1
+file: 终结者1.sms
+assets.box_front: Imgs/终结者1.png
+description: 《终结者1》，由 Virgin 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Virgin
+genre: Platform
+players: 1
+game: 终结者2 审判日
+file: 终结者2 审判日.sms
+assets.box_front: Imgs/终结者2 审判日.png
+description: 《终结者2 审判日》，Master System 平台。
+game: 终结者2 街机
+file: 终结者2 街机.sms
+assets.box_front: Imgs/终结者2 街机.png
+description: 《终结者2 街机》，Master System 平台。
+game: 绿巨人
+file: 绿巨人.sms
+assets.box_front: Imgs/绿巨人.png
+description: 《绿巨人》，由 U.S. Gold 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: U.S. Gold
+genre: Platform
+players: 1
+game: 蒸发密令
+file: 蒸发密令.sms
+assets.box_front: Imgs/蒸发密令.png
+description: 《蒸发密令》，由 U.S. Gold 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: U.S. Gold
+genre: Action
+players: 1
+game: 蓝精灵
+file: 蓝精灵.sms
+assets.box_front: Imgs/蓝精灵.png
+description: 《蓝精灵》，由 Infogrames 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Infogrames
+genre: Platform
+players: 1
+game: 蚯蚓战士
+file: 蚯蚓战士.sms
+assets.box_front: Imgs/蚯蚓战士.png
+description: 《蚯蚓战士》，由 Shiny Entertainment 出品，1996 年发行，动作类游戏，Master System 平台，单人游玩。
+publisher: Shiny Entertainment
+release: 1996
+genre: Action
+players: 1
+game: 蝙蝠侠
+file: 蝙蝠侠.sms
+assets.box_front: Imgs/蝙蝠侠.png
+description: 《蝙蝠侠》，由 SEGA 出品，1993 年发行，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1993
+genre: Platform
+players: 1
+game: 詹姆斯邦德2
+file: 詹姆斯邦德2.sms
+assets.box_front: Imgs/詹姆斯邦德2.png
+description: 《詹姆斯邦德2》，Master System 平台。
+game: 超人
+file: 超人.sms
+assets.box_front: Imgs/超人.png
+description: 《超人》，由 Virgin 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Virgin
+genre: Platform
+players: 1
+game: 迪克探长
+file: 迪克探长.sms
+assets.box_front: Imgs/迪克探长.png
+description: 《迪克探长》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 送报童
+file: 送报童.sms
+assets.box_front: Imgs/送报童.png
+description: 《送报童》，由 U.S. Gold 出品，体育类游戏，Master System 平台，单人游玩。
+publisher: U.S. Gold
+genre: Sports
+players: 1
+game: 野狼特工队
+file: 野狼特工队.sms
+assets.box_front: Imgs/野狼特工队.png
+description: 《野狼特工队》，由 SEGA 出品，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Action
+players: 1
+game: 铁头小子
+file: 铁头小子.sms
+assets.box_front: Imgs/铁头小子.png
+description: 《铁头小子》，由 SEGA 出品，1995 年发行，动作类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Action
+players: 1
+game: 铁血战士2
+file: 铁血战士2.sms
+assets.box_front: Imgs/铁血战士2.png
+description: 《铁血战士2》，由 Arena Entertainment 出品，射击类游戏，Master System 平台，单人游玩。
+publisher: Arena Entertainment
+genre: Shooter
+players: 1
+game: 铁钩船长
+file: 铁钩船长.sms
+assets.box_front: Imgs/铁钩船长.png
+description: 《铁钩船长》，由 Core Design 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: Core Design
+genre: Platform
+players: 1
+game: 银行危机
+file: 银行危机.sms
+assets.box_front: Imgs/银行危机.png
+description: 《银行危机》，Master System 平台。
+game: 闪电侠
+file: 闪电侠.sms
+assets.box_front: Imgs/闪电侠.png
+description: 《闪电侠》，由 SEGA 出品，平台跳跃类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+genre: Platform
+players: 1
+game: 阿历克斯小子 - 奇幻世界大冒险
+file: 阿历克斯小子 - 奇幻世界大冒险.sms
+assets.box_front: Imgs/阿历克斯小子 - 奇幻世界大冒险.png
+description: 《阿历克斯小子 - 奇幻世界大冒险》，Master System 平台。
+game: 雷霆之刃
+file: 雷霆之刃.sms
+assets.box_front: Imgs/雷霆之刃.png
+description: 《雷霆之刃》，由 SEGA 出品，1988 年发行，Shoot'em Up类游戏，Master System 平台，单人游玩。
+publisher: SEGA
+release: 1988
+genre: Shoot'em Up
+players: 1

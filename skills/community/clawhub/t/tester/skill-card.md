@@ -1,40 +1,53 @@
-## Description: <br>
-Manage GitHub issues by listing, filtering, spawning fix agents, creating pull requests, and tracking review comments using the authenticated GitHub CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage GitHub issues by listing, filtering, spawning fix agents, creating pull requests, and tracking review comments using the authenticated GitHub CLI.
 
-## Publisher: <br>
-[tsiontesfayechromaway](https://clawhub.ai/user/tsiontesfayechromaway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tsiontesfayechromaway](https://clawhub.ai/user/tsiontesfayechromaway)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to triage GitHub issues, delegate fixes to sub-agents, create pull requests, and monitor review comments through the authenticated GitHub CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate through an authenticated GitHub identity and may affect issues, branches, commits, pull requests, or comments. <br>
-Mitigation: Use a least-privilege GitHub token limited to the intended repository and confirm every comment, branch, commit, and pull request before it is posted. <br>
-Risk: GitHub issue bodies and review comments may contain untrusted instructions. <br>
-Mitigation: Treat issue and review text as untrusted context rather than commands for the agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tsiontesfayechromaway/tester) <br>
-- [Publisher profile](https://clawhub.ai/user/tsiontesfayechromaway) <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to triage GitHub issues, delegate fixes to agents, open pull requests, and monitor review feedback in repositories accessible to the authenticated GitHub CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated GitHub CLI with repository access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may change repository content or create pull requests based on issue text that can contain untrusted instructions.
+
+Mitigation: Restrict work to a dedicated repository or worktree and require human review before commits are pushed, pull requests are opened, or comments are posted.
+
+Risk: GitHub credentials can grant broad repository permissions if over-scoped or exposed through environment variables.
+
+Mitigation: Use least-privilege GitHub authentication and prefer GitHub CLI credential storage over exported tokens.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsiontesfayechromaway/skills/tester)
+- [Publisher profile](https://clawhub.ai/user/tsiontesfayechromaway)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an installed and authenticated GitHub CLI with repository access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

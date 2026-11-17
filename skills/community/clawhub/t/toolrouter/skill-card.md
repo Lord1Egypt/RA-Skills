@@ -1,46 +1,62 @@
-## Description: <br>
-One MCP gateway to 230+ AI tools, including SEO, web search, image generation, video, screenshots, security scanning, and more, with auto-provisioning on first use and no API key setup required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and run ToolRouter tools through one MCP connection for web research, scraping, SEO, media generation, business data, and authorized connected-account actions.
 
-## Publisher: <br>
-[blakefolgado](https://clawhub.ai/user/blakefolgado) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blakefolgado](https://clawhub.ai/user/blakefolgado)
 
-## Use Case: <br>
-Developers and agent users use ToolRouter to connect an agent to a broad MCP gateway for web search, SEO, media generation, screenshots, security scanning, company lookup, flight search, social media, financial data, and similar external tool workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables a broad external MCP gateway with many tool categories, which can expand the agent's action surface. <br>
-Mitigation: Install it only when broad external tool access is intended, and require approval for paid calls, account-linked actions, sensitive data handling, and public posting or moderation workflows. <br>
-Risk: The installation changes the user's OpenClaw MCP configuration and runs the toolrouter-mcp package through npx. <br>
-Mitigation: Review the ~/.openclaw/openclaw.json change before saving it, and consider pinning or reviewing the npm package before use. <br>
-Risk: Auto-provisioning and usage-based paid tools can create account and billing implications after first use. <br>
-Mitigation: Confirm the claim and billing flow before using paid tools, and keep free and paid tool use subject to explicit user approval. <br>
+## Use Case:
 
+People using an assistant with ToolRouter connected can research external sources, generate media, and carry out explicitly authorized actions on connected accounts. The assistant discovers available operations and their requirements before use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blakefolgado/toolrouter) <br>
-- [ToolRouter Website](https://toolrouter.com) <br>
-- [ToolRouter Tools Catalog](https://toolrouter.com/tools) <br>
-- [ToolRouter Setup Guide](https://toolrouter.com/connect) <br>
-- [toolrouter-mcp npm Package](https://www.npmjs.com/package/toolrouter-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration instructions, Shell commands, Guidance, API Calls] <br>
-**Output Format:** [Markdown with JSON configuration, command examples, and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connects agents to a broad external MCP gateway; some tools may involve account-linked actions, sensitive data, or usage-based billing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Connected-account actions could post, delete, or send messages without the intended authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the specific connected account and authorization for each action before execution.
+
+Risk: Paid operations, including media generation, may consume credits.
+
+Mitigation: Review operation prices and available credits and obtain spending approval before use.
+
+Risk: Remote tool access may involve sensitive provider credentials and account permissions.
+
+Mitigation: Review provider permissions and keep credentials in the client credential store, not chat or shared configuration.
+
+## Reference(s):
+
+- [ToolRouter homepage](https://toolrouter.com)
+- [ToolRouter setup guide](https://toolrouter.com/docs/markdown/quickstart)
+- [Provider reference](references/providers.md)
+- [Provider index](https://toolrouter.com/providers.md)
+- [Tool catalog](https://api.toolrouter.com/v1/tools)
+- [ToolRouter API schema](https://api.toolrouter.com/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with source or completed-asset links and verified action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results and available actions depend on the live catalog, connected accounts, and credits.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

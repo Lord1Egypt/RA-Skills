@@ -1,41 +1,50 @@
-## Description: <br>
-飞书审批 API：审批实例、审批任务管理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书审批 API：审批实例、审批任务管理。
 
-## Publisher: <br>
-[gu2003li](https://clawhub.ai/user/gu2003li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gu2003li](https://clawhub.ai/user/gu2003li)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Lark Approval schemas, query approval instances and tasks, and perform approval actions through lark-cli when their Lark credentials allow it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform approval workflow actions when the user's Lark credentials include approval write scopes. <br>
-Mitigation: Install only for agents that should operate Lark Approval workflows, and review requested approval scopes before use. <br>
-Risk: Incorrect data or parameter shapes could affect real approval instances or tasks. <br>
-Mitigation: Run the documented schema command before API calls and review command inputs before execution. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect Feishu/Lark approval schemas and manage approval instances and tasks through lark-cli.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gu2003li/lark-approval) <br>
-- [Publisher profile](https://clawhub.ai/user/gu2003li) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and CLI method names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires lark-cli and appropriate Lark approval scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can change real Feishu/Lark approval workflows by approving, rejecting, canceling, transferring, adding signers, sending reminders, or rolling back approval tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any write action and inspect the relevant lark-cli schema before submitting parameters.
+
+## Reference(s):
+
+- [ClawHub skill page: lark-approval](https://clawhub.ai/gu2003li/skills/lark-approval)
+- [ClawHub publisher profile: gu2003li](https://clawhub.ai/user/gu2003li)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and API method guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires lark-cli; instructs agents to inspect schemas before calling approval APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Memory management skill for AI assistants that stores, retrieves, deletes, and searches memories using SQLite by default or Milvus with optional Ollama embeddings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mem RAG Milvus stores, retrieves, and manages AI assistant memories with SQLite by default, optional Milvus vector search, and automatic JSON backups.
 
-## Publisher: <br>
-[liushuangfa666](https://clawhub.ai/user/liushuangfa666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liushuangfa666](https://clawhub.ai/user/liushuangfa666)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give assistants persistent memory backed by local SQLite storage or optional Milvus vector search. It supports storing memory content with metadata, searching recent or semantically similar memories, and managing memory records through a Python API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored memories can include sensitive content and are persisted in the configured database and JSON backup files. <br>
-Mitigation: Do not store secrets or regulated data unless the database and backup paths are controlled, and explicitly remove backup files when deleting memories. <br>
-Risk: Milvus and Ollama configurations can send stored memory content or search text to configured local services. <br>
-Mitigation: Use only trusted Milvus and Ollama endpoints under your control, and review endpoint configuration before enabling vector search. <br>
+## Use Case:
 
+External developers and agent builders use this skill to persist assistant memories, retrieve recent or semantically similar items, and configure SQLite or Milvus-backed storage for memory workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liushuangfa666/mem-rag-milvus) <br>
-- [OpenClaw RAG Memory documentation](https://docs.openclaw.ai/skills/rag-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [JSON-like Python dictionaries and text status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include memory IDs, content, timestamps, metadata, and optional distance scores when vector search is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Stored memories and search terms may be sent to the configured or auto-detected Ollama HTTP embedding service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private local-only embedding endpoint, set OLLAMA_URL deliberately, and avoid storing secrets or regulated data.
+
+Risk: Memory data is persisted locally and automatically backed up to JSON files.
+
+Mitigation: Choose storage and backup paths deliberately, protect the backup directory, and review retention before deployment.
+
+Risk: The security review flagged the default SQLite network behavior and backup controls as needing review.
+
+Mitigation: Review the skill before execution and deploy only after the network and backup behavior matches the intended privacy posture.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liushuangfa666/skills/mem-rag-milvus)
+- [OpenClaw RAG Memory Documentation](https://docs.openclaw.ai/skills/rag-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime APIs return memory IDs and search result dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores memory content, metadata, timestamps, embeddings when available, and JSON backups in configured local paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Official Lemlist API integration for sales automation and multichannel outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official Lemlist API integration for sales automation and multichannel outreach.
 
-## Publisher: <br>
-[micktaiwan](https://clawhub.ai/user/micktaiwan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[micktaiwan](https://clawhub.ai/user/micktaiwan)
 
-## Use Case: <br>
-External users, developers, and sales operations teams use this skill to guide agent interactions with the Lemlist API for campaigns, leads, outbound messages, webhooks, schedules, exports, enrichment, unsubscribes, and inbox workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to send outreach, start or pause campaigns, change lead and contact records, manage unsubscribes, export data, and create external webhooks. <br>
-Mitigation: Use a dedicated or least-privilege Lemlist API key when possible and require explicit confirmation before sending messages, changing campaign or lead data, exporting data, changing unsubscribes, or creating webhooks. <br>
-Risk: Actions may affect real customer or prospect data in a Lemlist account. <br>
-Mitigation: Start with test campaigns and review proposed API calls, payloads, and target records before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lemlist API endpoint reference](references/api-endpoints.md) <br>
-- [Official Lemlist API documentation](https://developer.lemlist.com/api-reference) <br>
-- [Lemlist app API key settings](https://app.lemlist.com) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage Lemlist campaigns, leads, schedules, inbox messages, webhooks, unsubscribes, exports, enrichment, and related account data through the Lemlist API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with API paths, JSON configuration, shell commands, and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LEMLIST_API_KEY and explicit review before account-changing or message-sending actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access a Lemlist account and perform powerful account actions, including sending outreach, exporting data, and modifying campaign records.
+
+Mitigation: Install only when account access is intended, use the least-privileged API key available, and require confirmation before sending messages, exporting data, or modifying campaign state.
+
+Risk: Broad unattended instructions could cause unintended outreach, unsubscribe changes, resource deletion, or webhook creation.
+
+Mitigation: Keep agent instructions narrowly scoped and confirm before changing unsubscribes, deleting resources, creating webhooks, or performing other account-changing actions.
+
+## Reference(s):
+
+- [Lemlist API endpoint reference](references/api-endpoints.md)
+- [Official Lemlist API documentation](https://developer.lemlist.com/api-reference)
+- [ClawHub skill page](https://clawhub.ai/micktaiwan/skills/lemlist-official)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses LEMLIST_API_KEY for authenticated Lemlist API access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

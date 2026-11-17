@@ -1,40 +1,53 @@
-## Description: <br>
-Mp Caveman lets an agent use an ultra-compressed communication style that removes filler, articles, and pleasantries while preserving technical accuracy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mp Caveman switches the assistant into an ultra-compressed communication mode that removes filler, articles, and pleasantries while preserving technical accuracy.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Agent users activate this skill when they want terse, token-conscious replies for technical work, while keeping exact code, error text, and critical warnings clear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent compressed style may become unhelpful after activation. <br>
-Mitigation: Use the documented stop phrases, "stop caveman" or "normal mode", to return to normal responses. <br>
-Risk: Very terse wording can reduce clarity for warnings or complex multi-step instructions. <br>
-Mitigation: The skill documents an auto-clarity exception for security warnings, irreversible actions, and complex sequences. <br>
+## Use Case:
 
+Developers and other ClawHub users use this skill when they want terse, token-conscious responses for routine technical or operational work. It keeps technical terms, code blocks, and exact error text intact while allowing fuller wording for warnings or complex instructions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/mp-caveman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with code blocks preserved when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persistent terse style remains active until the user says "stop caveman" or "normal mode".] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package.json) <br>
+Risk: Persistent terse responses can omit context that a user may need for safety-critical, destructive, or complex tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use "stop caveman" or "normal mode" before tasks that need fuller explanations; the skill also allows fuller wording for warnings and complex instructions.
+
+Risk: Users may forget the terse mode is still active after activation.
+
+Mitigation: Disable the mode with "stop caveman" or "normal mode" when detailed rationale or step-by-step explanation is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/mp-caveman)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise natural-language responses, often Markdown for technical answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Code blocks and exact error text remain unchanged; fuller wording may be used for security warnings, irreversible action confirmations, and complex instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

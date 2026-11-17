@@ -1,42 +1,58 @@
-## Description: <br>
-Organizes PDF files by using an AI provider to analyze content, extract metadata, rename files, and sort them into topic folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI tool that categorizes PDFs by topic, extracts metadata, renames files smartly, and organizes them into hierarchical folders automatically.
 
-## Publisher: <br>
-[yxl184](https://clawhub.ai/user/yxl184) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yxl184](https://clawhub.ai/user/yxl184)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to configure and run a Python PDF organizer that classifies PDFs, renames them with extracted metadata, and moves them into structured folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF text may be sent to an external AI provider during content analysis. <br>
-Mitigation: Use a dedicated API key and avoid processing confidential, regulated, or proprietary documents unless the selected provider is approved for that data. <br>
-Risk: The workflow can rename or move local PDF files. <br>
-Mitigation: Start with dry-run mode or backed-up test PDFs before applying it to important document collections. <br>
-Risk: The package evidence describes Python implementation files that were not included in the artifact. <br>
-Mitigation: Review the actual implementation and dependencies before running the organizer. <br>
+## Use Case:
 
+Developers and document-heavy users use this skill to configure and run an AI-assisted workflow that classifies, renames, and organizes batches of PDF files by topic and metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yxl184/pdf-organizer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run, incremental processing, API provider, model, folder, and character-limit configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: PDF excerpts may be sent to the selected AI provider during content analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with provider settings appropriate for the PDF contents, keep the input folder narrow, and avoid regulated or confidential PDFs unless approved.
+
+Risk: API keys and processed PDF contents should be treated as sensitive.
+
+Mitigation: Store API keys outside shared repositories and rotate them if exposed.
+
+Risk: Batch organization can move or rename files in ways the user did not intend.
+
+Mitigation: Run in dry-run mode first and review planned changes before allowing file movement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yxl184/skills/pdf-organizer-skill)
+- [Publisher profile](https://clawhub.ai/user/yxl184)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend dry-run operation before moving or renaming PDF files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

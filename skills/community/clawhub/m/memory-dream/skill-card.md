@@ -1,44 +1,53 @@
-## Description: <br>
-Memory-Dream helps OpenClaw agents consolidate recent daily memory files into MEMORY.md and report the changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory-Dream helps OpenClaw agents consolidate recent daily memory journals into long-term memory by extracting durable facts, correcting stale entries, deduplicating repeated knowledge, and producing a concise consolidation report.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep persistent agent memory current by scanning recent memory journals, updating MEMORY.md, optionally marking older journals, and receiving a consolidation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic or scheduled runs can quietly reshape persistent agent memory. <br>
-Mitigation: Run manually first on a backed-up or version-controlled workspace, then inspect diffs to MEMORY.md and memory/*.md before enabling cron. <br>
-Risk: The broad trigger word 'dream' can invoke memory consolidation unintentionally. <br>
-Mitigation: Prefer explicit trigger phrases such as 'consolidate memory' or 'memory consolidation'. <br>
-Risk: Some documentation describes daily logs as read-only while the skill can mark older journal files. <br>
-Mitigation: Expect possible marker comments in memory/*.md and review those file diffs after execution. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to keep agent long-term memory current by periodically reviewing recent memory journals and applying conservative edits to MEMORY.md. It supports manual triggers, heartbeat-driven runs, and optional nightly cron operation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wavmson/memory-dream) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with file edits and optional cron configuration command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can update MEMORY.md and optionally add consolidation markers to memory/*.md files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can read private memory journals and consolidate sensitive or incorrect information into long-term memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed MEMORY.md additions for secrets, private data, prompt-like instructions, and unverified claims before accepting them.
+
+Risk: Nightly cron operation may modify long-term memory without an approval step.
+
+Mitigation: Prefer manual or preview-only runs until the deployment has an explicit review and approval workflow.
+
+## Reference(s):
+
+- [Memory-Dream ClawHub page](https://clawhub.ai/wavmson/skills/memory-dream)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with proposed file edits and optional cron setup command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read recent memory/*.md journals, update MEMORY.md, optionally mark old journals as consolidated, and append a run log.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

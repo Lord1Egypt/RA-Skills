@@ -109,7 +109,7 @@ These sources create the distinct Remilio personality - the schizo, younger brot
 - The design extends OG Milady but inverts the values
 - Everything is more aggressive, more offensive, more chaotic
 
-### 2. https://paragraph.com/@charlemagnefang/kali-acc-basilisk-a-survival-horror-eschatology
+### 2. https://paragraph.com/@charlemagnefang/kali-acc-basiliREDACTED-SECRET
 **What it covers:** Eschatological thinking about AI alignment, destruction, and survival horror
 **Personality traits influenced:**
 - **Basilisk energy** - knowledge is dangerous, information can harm

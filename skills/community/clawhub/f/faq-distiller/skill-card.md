@@ -1,47 +1,57 @@
-## Description: <br>
-Faq Distiller extracts FAQ entries from customer support conversations, reviews, tickets, or chat logs and organizes them by user stage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Faq Distiller turns support conversations, comments, tickets, and chat logs into categorized FAQ drafts by user stage.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Support, documentation, and knowledge-base teams use this skill to turn customer conversations, reviews, tickets, or chat logs into reviewable FAQ drafts for help centers, onboarding docs, and pre-sales FAQ material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input records may contain customer names, contact details, account identifiers, tokens, or ticket IDs. <br>
-Mitigation: Redact sensitive customer and account data before using the skill. <br>
-Risk: Generated FAQ answers may be incomplete, misleading, or unsuitable for publication without review. <br>
-Mitigation: Review the generated FAQ draft before sharing, publishing, or using it as support guidance. <br>
-Risk: The local helper reads the user-provided input path and can write a report to a user-provided output path. <br>
-Mitigation: Run the helper only on intended local files and choose an output path appropriate for the workspace. <br>
-Risk: Changing the bundled spec to an audit mode can enable local file inspection beyond the default FAQ-drafting behavior. <br>
-Mitigation: Keep the shipped structured-brief configuration unless local inspection is intentional and approved. <br>
+## Use Case:
 
+Support, documentation, and knowledge-base teams use this skill to turn provided customer-support material into reviewable FAQ drafts, including frequent questions, staged categories, standard answers, escalation items, missing documentation, and maintenance suggestions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/52YuanChangXing/faq-distiller) <br>
-- [README](artifact/README.md) <br>
-- [Structured FAQ specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown by default, with an optional JSON wrapper from the local helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable FAQ sections, escalation items, missing-document notes, and maintenance suggestions; the helper can write the report to a user-provided local output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Support records may contain personal, customer, credential, or regulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive data before using the skill and review generated FAQ drafts before sharing or publishing them.
+
+Risk: Generated FAQ drafts may misstate policy, support commitments, or escalation paths if the input material is incomplete.
+
+Mitigation: Treat outputs as reviewable drafts and confirm missing information, escalation items, and standard answers with the responsible support or documentation owner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/faq-distiller)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [Artifact README](artifact/README.md)
+- [Output template](artifact/resources/template.md)
+- [Structured skill spec](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown draft by default, with optional JSON wrapper from the bundled local script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended as reviewable drafts from user-provided local input; the bundled script can write to an output file when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

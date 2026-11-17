@@ -1,7 +1,7 @@
 ---
 name: "迅雷"
-version: "1.0.0"
-description: "迅雷下载助手，精通下载加速、资源管理、远程下载、NAS集成"
+version: "1.1.0"
+description: "迅雷下载使用指南。Use for: (1) 下载加速原理理解（P2SP/会员加速/离线下载）与会员划算性判断, (2) 迅雷云盘与本地下载的取舍, (3) thunder:// 专链处理（详见 thunder skill 的编解码工具）。Xunlei download guide: acceleration mechanics, membership value assessment, and cloud-storage trade-offs."
 tags: ["download", "cloud", "nas", "storage"]
 author: "ClawSkills Team"
 category: "tools"
@@ -123,6 +123,13 @@ docker run -d --name xunlei \
 - Docker 部署注意映射正确的目录和端口
 - 带宽优化要考虑家庭/办公网络中其他用户的需求
 
+## 工作边界
+
+- 加速效果取决于资源热度：热门资源免费也快，冷门资源会员也慢——买会员前先认清这一点
+- 不提供破解会员、绕过敏感资源限制的方法
+- 版权内容下载的合规风险自担，本 skill 不推荐盗版资源渠道
+- thunder:// 链接与普通 URL 互转工具见本团队 `thunder` skill
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

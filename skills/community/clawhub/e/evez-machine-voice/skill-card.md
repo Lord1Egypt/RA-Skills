@@ -1,38 +1,49 @@
-## Description: <br>
-Synthesize robotic machine voices from pure math, including formant-based vowel synthesis, gear grind, digital flow, machine breathing, and staged voice transformation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synthesize robotic machine voices from pure math with formant-based vowel synthesis, gear grind, digital flow, machine breathing, bit-translation, ring modulation, and formant morphing.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Audio creators and DAW-agent users use this skill to guide local robotic machine-voice synthesis and voice transformation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may only be useful in DAW or audio-agent environments with local synthesis capabilities. <br>
-Mitigation: Confirm the target environment supports local audio synthesis before relying on the workflow. <br>
+## Use Case:
 
+External users and developers use this skill to guide a DAW agent in creating local robotic machine-voice synthesis and voice-transformation effects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-machine-voice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown instructions for audio synthesis settings and workflow stages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for local DAW/audio-agent synthesis; no executable code, network behavior, or credential handling is included in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Voice recordings may be processed by the host agent or DAW environment during synthesis workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only recordings that are appropriate for that local processing environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-machine-voice)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance for agent-driven audio synthesis workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes local machine-voice synthesis stages and audio effects; no external execution or credential access is requested by the evidence.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

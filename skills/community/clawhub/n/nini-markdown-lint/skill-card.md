@@ -1,45 +1,56 @@
-## Description: <br>
-Helps developers set up markdownlint-cli2, pre-commit Markdown checks, repository markdownlint configuration, and horizontal-rule cleanup workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through setting up markdownlint-cli2 and pre-commit checks, repairing common Markdown lint violations, and removing horizontal rules while preserving YAML frontmatter.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to establish Markdown linting standards, configure pre-commit checks, repair common markdownlint findings, and remove horizontal rules outside YAML frontmatter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Batch-fix commands can rewrite Markdown files in the target repository. <br>
-Mitigation: Start from a clean git state, preview the affected file list, run fixes intentionally, and review the resulting diff before committing. <br>
-Risk: Installing the pre-commit hook can block commits until Markdown files satisfy the configured checks. <br>
-Mitigation: Install it only in repositories where markdownlint enforcement is desired and run the documented validation commands before committing. <br>
-Risk: The horizontal-rule checker is a Bash script and may not run in native Windows shells. <br>
-Mitigation: Use Git Bash or WSL on Windows, as the skill documentation specifies. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Markdown formatting checks, pre-commit hooks, repository-wide lint repair commands, and horizontal-rule validation to documentation repositories.
 
-## Reference(s): <br>
-- [Markdown Lint skill page](https://clawhub.ai/niracler/nini-markdown-lint) <br>
-- [Release v0.3.0](https://github.com/niracler/skill/releases/tag/v0.3.0) <br>
-- [markdownlint-cli2 pre-commit hook](https://github.com/DavidAnson/markdownlint-cli2) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON, YAML, text, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository-specific markdownlint rule choices, pre-commit configuration, and batch-fix commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: Repository-wide lint fixes and horizontal-rule cleanup can modify many Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run bulk --fix and cleanup commands only in a clean git working tree, preview affected files where possible, and review diffs before committing.
+
+Risk: Unpinned markdownlint-cli2 or hook versions can change lint behavior over time.
+
+Mitigation: Prefer a pinned markdownlint-cli2 version or project devDependency with a committed lockfile before installing or running hooks.
+
+## Reference(s):
+
+- [markdownlint-cli2](https://github.com/DavidAnson/markdownlint-cli2)
+- [Node.js](https://nodejs.org/)
+- [ClawHub skill page](https://clawhub.ai/niracler/skills/nini-markdown-lint)
+- [Horizontal rule checker script](artifact/scripts/check-horizontal-rules.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JSON, YAML, Bash, and text code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repository-wide lint and fix commands that modify Markdown files.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

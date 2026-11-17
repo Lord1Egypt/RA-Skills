@@ -1,49 +1,68 @@
-## Description: <br>
-Helps agents discover and configure free or very low-cost AI models with task-aware routing and fallback chains across SiliconFlow, NVIDIA NIM, OpenRouter, DeepSeek, and Zhipu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds free and low-cost AI models and helps configure OpenClaw routing and fallback behavior across SiliconFlow, NVIDIA NIM, OpenRouter, DeepSeek, and Zhipu.
 
-## Publisher: <br>
-[chenni666](https://clawhub.ai/user/chenni666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenni666](https://clawhub.ai/user/chenni666)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to find lower-cost model options, generate routing and fallback configuration, and decide when to use free models versus a primary paid model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated routing or fallback configuration can change which providers handle future AI requests. <br>
-Mitigation: Review the generated provider list and selected mode before applying configuration. <br>
-Risk: Generated configuration may contain placeholders or provider choices that do not match the user's account setup. <br>
-Mitigation: Replace placeholders, confirm API keys and provider access, and keep the backup before patching OpenClaw configuration. <br>
-Risk: Health checks and future prompts may reach SiliconFlow, OpenRouter, NVIDIA, DeepSeek, or Zhipu depending on mode and configuration. <br>
-Mitigation: Confirm the chosen providers are acceptable for the data being routed before enabling monitoring or fallback behavior. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to identify free or low-cost model providers and generate cost-aware routing and fallback configuration. It supports normal agent setup workflows where provider choices, fallback order, and budget posture need to be reviewed before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenni666/api-optimization) <br>
-- [NVIDIA NIM model catalog](https://build.nvidia.com) <br>
-- [OpenRouter API keys](https://openrouter.ai/settings/keys) <br>
-- [SiliconFlow documentation](https://docs.siliconflow.cn) <br>
-- [SiliconFlow pricing](https://siliconflow.cn/pricing) <br>
-- [DeepSeek platform](https://platform.deepseek.com/) <br>
-- [Zhipu BigModel platform](https://open.bigmodel.cn/) <br>
-- [OpenClaw provider documentation](https://docs.openclaw.ai/providers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate OpenClaw routing and fallback JSON for royal, balanced, or savings mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated OpenClaw configuration can change routing priorities or switch the primary model in savings mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated configuration before applying it, replace any primary-model placeholder with the intended model, and keep a backup of the existing OpenClaw configuration.
+
+Risk: Provider API keys are required for some discovery and health-check flows.
+
+Mitigation: Store provider keys in environment variables, avoid committing them to repositories, and rotate keys if they are exposed.
+
+Risk: The SiliconFlow invitation URL is a referral-style registration link.
+
+Mitigation: Treat the link as a referral and use a direct provider registration path when referral attribution is not desired.
+
+Risk: Free model availability, pricing, and rate limits can change over time.
+
+Mitigation: Run discovery again and review provider pricing or quota information before relying on a generated low-cost routing plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenni666/skills/api-optimization)
+- [SiliconFlow documentation](https://docs.siliconflow.cn)
+- [SiliconFlow pricing](https://siliconflow.cn/pricing)
+- [NVIDIA NIM](https://build.nvidia.com)
+- [OpenRouter](https://openrouter.ai)
+- [DeepSeek platform](https://platform.deepseek.com/)
+- [Zhipu BigModel platform](https://open.bigmodel.cn/)
+- [OpenClaw provider documentation](https://docs.openclaw.ai/providers)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY for OpenRouter discovery; optional provider keys enable additional model checks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TradingBot"
+  short_description: "下载、构建并以本地模拟模式运行 TradingBot"
+  default_prompt: "Use $tradingbot to download, build, and run TradingBot locally in safe demo mode."

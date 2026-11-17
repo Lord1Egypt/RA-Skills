@@ -65,15 +65,15 @@ test_clean() {
 echo -e "${BLUE}=== CRITICAL Patterns (Score ≥10) ===${NC}"
 echo ""
 echo "Testing pattern: sk-(ant|proj)?-?[a-zA-Z0-9_-]{20,}"
-echo "Test input: sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxx"
+echo "Test input: REDACTED-SECRET"
 echo ""
 
-test_score "Anthropic API key" "sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxx" 10
-test_score "OpenAI API key" "sk-proj-xxxxxxxxxxxxxxxxxxxx" 10
-test_score "Generic API key" "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx" 10
+test_score "Anthropic API key" "REDACTED-SECRET" 10
+test_score "OpenAI API key" "REDACTED-SECRET" 10
+test_score "Generic API key" "REDACTED-SECRET" 10
 test_score "GitHub PAT" "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 10
-test_score "AWS Access Key" "AKIAIOSFODNN7EXAMPLE" 10
-test_score "Slack Bot Token" "xoxb-1234567890-1234567890-abcdefghijkl" 10
+test_score "AWS Access Key" "REDACTED-SECRET" 10
+test_score "Slack Bot Token" "REDACTED-SECRET" 10
 test_score "Brevo API key" "xkeysib-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 10
 test_score "Bearer JWT" "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgDry" 10
 test_score "Private key" "-----BEGIN RSA PRIVATE KEY-----" 10
@@ -148,7 +148,7 @@ echo ""
 echo -e "${BLUE}=== Edge Cases ===${NC}"
 echo ""
 
-test_score "Multiple secrets combined" "aws_key=AKIAIOSFODNN7EXAMPLE password=secret123" 10
+test_score "Multiple secrets combined" "aws_key=REDACTED-SECRET password=secret123" 10
 test_score "URL encoded (still detected)" "password=%73%65%63%72%65%74" 5
 
 echo ""

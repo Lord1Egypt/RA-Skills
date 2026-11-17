@@ -1,0 +1,40 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "智能体长期记忆评测台",
+  "version": "1.0.1",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-26T02:02:46.609777+00:00",
+  "timestamp_local": "2026-08-26T10:02:46.609792",
+  "package_fingerprint_sha256": "09cc023875685c2ca78e8a7bc5a6acf3c6567ea6074d8a8abe7f33429d00801a",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "5416746360f13e79761cd77b2a7655ff5446803e513f206e31e93a7abd3091ac"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "08d62bdcc502f8d03faa30e34d28fe5f3d79d019da0e0305bd4865360285cddc"
+    },
+    {
+      "path": "tools/gen_security_radar.py",
+      "sha256": "660383ca1fa58c7e31309873fafa6debf8474de686e1e4f40edc04b66895027a"
+    },
+    {
+      "path": "tools/memory_bench.py",
+      "sha256": "9d828730256bba5f250b429222efa55b511af3e8068b92ddc5144ab3a2736e5c"
+    },
+    {
+      "path": "tools/security_results.json",
+      "sha256": "57de4d9384635c9a3e7a23fef5832a19fce0ccf11271b2a41e584cb99f540fb0"
+    },
+    {
+      "path": "tools/security_test.py",
+      "sha256": "22c84f311b49b20f2dd464763f3b5b9f99833a1b91959ba8a665e6fbd51519a7"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "64609394901ea6f1eb21e74791e05de9ce836d66b63ac03ecee355a7c7189747"
+    }
+  ]
+}

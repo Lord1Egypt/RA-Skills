@@ -1,47 +1,60 @@
-## Description: <br>
-StockBuddy helps agents analyze CN, HK, and US equities, review portfolios, track account cash and positions, and produce execution-aware buy, sell, hold, and watchlist guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+StockBuddy helps agents analyze CN, HK, and US equities, review portfolios, manage watchlists and accounts, and produce execution-aware trading guidance with risk disclaimers.
 
-## Publisher: <br>
-[tacitlab](https://clawhub.ai/user/tacitlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tacitlab](https://clawhub.ai/user/tacitlab)
 
-## Use Case: <br>
-External users and agents use StockBuddy to analyze individual equities, review portfolios, manage watchlists, positions, accounts, and cash balances, and convert user-confirmed trading constraints into practical non-advisory execution guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency setup can alter system Python packages. <br>
-Mitigation: Review scripts/install_deps.sh before use and prefer installing dependencies in a virtual environment. <br>
-Risk: Automatic database migration can delete stored positions. <br>
-Mitigation: Back up ~/.stockbuddy/stockbuddy.db before first use, upgrade, or migration. <br>
-Risk: The skill can read or modify portfolio, account, cash, and watchlist data. <br>
-Mitigation: Confirm user intent before allowing portfolio, account, cash, or watchlist changes. <br>
-Risk: Market data and analysis can be delayed, incomplete, or unsuitable as investment advice. <br>
-Mitigation: Treat outputs as reference material, verify market data independently, and include the required risk disclaimer in final analysis. <br>
+## Use Case:
 
+External users and developers use StockBuddy to analyze individual stocks, review portfolios, track durable account and position facts, and generate practical order suggestions for CN, HK, and US equities.
 
-## Reference(s): <br>
-- [StockBuddy ClawHub Page](https://clawhub.ai/tacitlab/stockbuddy) <br>
-- [Output Templates](references/output_templates.md) <br>
-- [Technical Indicators](references/technical_indicators.md) <br>
-- [Data Source Roadmap](references/data-source-roadmap.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with short bullets or tables; helper scripts emit JSON when run directly.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local portfolio, account, cash, watchlist, and cache data in SQLite; financial analysis should be treated as reference material and include a risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The skill stores portfolio and account facts locally, and the security summary warns that migration can erase legacy positions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up any existing ~/.stockbuddy/stockbuddy.db before use and test migrations on a copy when preserving prior portfolio data matters.
+
+Risk: The dependency installer can modify the Python environment, including a fallback that uses --break-system-packages.
+
+Mitigation: Install dependencies in an isolated virtual environment or user environment, and avoid running the installer against system Python unless that package-management risk is acceptable.
+
+Risk: The skill calls external market, news, and filing services and can produce action-oriented trading guidance.
+
+Mitigation: Treat outputs as reference material, verify market data independently, require missing execution constraints before order-size guidance, and retain the investment-risk disclaimer.
+
+## Reference(s):
+
+- [Technical Indicators Reference](references/technical_indicators.md)
+- [Output Templates](references/output_templates.md)
+- [Data Source Roadmap](references/data-source-roadmap.md)
+- [ClawHub Skill Page](https://clawhub.ai/tacitlab/skills/stockbuddy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands; analysis scripts return JSON for agent interpretation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes action labels, scores, confidence, event-adjusted suggestions, portfolio summaries, execution constraints, and investment-risk disclaimers.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

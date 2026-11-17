@@ -1,39 +1,52 @@
-## Description: <br>
-Structured symptom intake and health conversation assistant <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured symptom intake and health conversation assistant
 
-## Publisher: <br>
-[kritsanan1](https://clawhub.ai/user/kritsanan1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kritsanan1](https://clawhub.ai/user/kritsanan1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to turn symptom descriptions into organized health discussion notes and follow-up questions for later review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may share sensitive health information while using the intake flow.
+
+Mitigation: Ask only for necessary context and advise users to avoid unnecessary personal identifiers.
+
+Risk: Structured notes or follow-up questions could be mistaken for diagnosis or treatment guidance.
+
+Mitigation: Keep outputs focused on organization, avoid diagnosis and prescription recommendations, and direct urgent symptoms or treatment decisions to professional medical services.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can use this skill to organize health symptom descriptions into concise summaries, missing context, and follow-up questions for later discussion. It supports health conversation preparation but is not intended for emergencies, diagnosis, prescriptions, or replacement of professional care. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive health information while using the skill. <br>
-Mitigation: Share only the minimum needed and avoid unnecessary identifying details. <br>
-Risk: Users may mistake organized symptom notes for medical diagnosis or treatment advice. <br>
-Mitigation: Use the output only to prepare health conversations and seek qualified medical care for diagnosis, treatment, prescriptions, or emergencies. <br>
+**Output Format:** [Markdown-style structured notes and follow-up questions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Organizes health information while avoiding diagnosis, prescription recommendations, and emergency-care replacement.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured symptom summaries, missing-information lists, and suggested follow-up questions.] <br>
+1.0.1 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

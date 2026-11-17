@@ -1,41 +1,54 @@
-## Description: <br>
-Edit or combine images by applying styles or elements from one image to another while preserving identity, pose, and lighting using the AtlasCloud Nanobanana model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit or combine images by applying styles or visual elements from one image to another while preserving identity, pose, and lighting with the AtlasCloud Nanobanana image-editing model.
 
-## Publisher: <br>
-[guilherme-funchal](https://clawhub.ai/user/guilherme-funchal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guilherme-funchal](https://clawhub.ai/user/guilherme-funchal)
 
-## Use Case: <br>
-External users and image-editing agents use this skill to call AtlasCloud Nanobanana image-to-image generation for tasks such as swapping clothing, combining reference images, or transferring visual style while preserving key subject details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release requires an AtlasCloud API token and evidence reports overly loose credential handling, including a bundled API key. <br>
-Mitigation: Remove and rotate any bundled key before use, then use only a scoped, revocable AtlasCloud token and avoid storing it in general agent memory. <br>
-Risk: Image URLs, prompts, prediction metadata, and generated output URLs are sent to AtlasCloud and written to local result files. <br>
-Mitigation: Submit only prompts and image URLs that are acceptable to share with AtlasCloud, and review or clear last_result.json and last_url.txt when they contain sensitive output. <br>
+## Use Case:
 
+External users and agents use this skill to submit source and reference image URLs with editing prompts to AtlasCloud, then return a generated image URL. Typical tasks include changing clothes, combining visual styles, or applying elements from one image to another.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guilherme-funchal/nano-banana-atlas-ai) <br>
-- [AtlasCloud API endpoint](https://api.atlascloud.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples, shell commands, and generated image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the latest prediction metadata to last_result.json and the generated image URL to last_url.txt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: AtlasCloud API tokens may be exposed through persistent memory storage, command-line arguments, or a packaged environment file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only short-lived, least-privilege tokens; remove or revoke any packaged API key; and update the skill to avoid persistent token memory and command-line secret passing before trusted use.
+
+Risk: Prompts, source image URLs, generated image URLs, and job metadata are sent to AtlasCloud and may remain in local result files or logs.
+
+Mitigation: Use the skill only with image URLs and prompts that are acceptable to share with AtlasCloud, and delete runtime result files and logs after use when they contain sensitive data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guilherme-funchal/skills/nano-banana-atlas-ai)
+- [Publisher profile](https://clawhub.ai/user/guilherme-funchal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON parameters, shell commands, and a generated image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submits prompts and image URLs to AtlasCloud, polls for completion, and writes the latest image URL and job metadata to local result files.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

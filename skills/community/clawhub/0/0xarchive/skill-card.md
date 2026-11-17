@@ -1,41 +1,54 @@
-## Description: <br>
-Query historical and real-time crypto market data from 0xArchive across Hyperliquid, Lighter.xyz, HIP-3 builder perps, HIP-4 outcome markets, and Hyperliquid Spot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+0xArchive helps agents query historical and real-time crypto market data from 0xArchive for Hyperliquid, Hyperliquid HIP-3, Hyperliquid HIP-4, Hyperliquid Spot, and Lighter.xyz using API-key-authenticated curl commands.
 
-## Publisher: <br>
-[0xfantommenace](https://clawhub.ai/user/0xfantommenace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xfantommenace](https://clawhub.ai/user/0xfantommenace)
 
-## Use Case: <br>
-External developers and analysts use this skill to have an agent query 0xArchive market-data endpoints, generate curl commands, inspect historical and real-time crypto data, and reason about venue-specific coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys or WebSocket URLs containing API keys could be exposed in logs or shared transcripts. <br>
-Mitigation: Use a scoped, rotatable OXARCHIVE_API_KEY and avoid pasting real API-key URLs into logs, tickets, or chat transcripts. <br>
-Risk: Web3 signup and subscription flows can involve wallet signing or paid USDC subscription steps. <br>
-Mitigation: Require explicit user confirmation before any wallet-signing action or paid subscription flow. <br>
+## Use Case:
 
+Developers, traders, and analysts use this skill in SKILL.md-compatible agents to retrieve 0xArchive market data, orderbooks, trades, candles, funding rates, open interest, liquidations, outcome-market data, spot pairs, WebSocket stream guidance, and data-quality checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xfantommenace/0xarchive) <br>
-- [0xArchive API base](https://api.0xarchive.io/v1/...) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration guidance] <br>
-**Output Format:** [Markdown with curl examples, API endpoint guidance, and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the OXARCHIVE_API_KEY environment variable and may require wallet signing or paid subscription confirmation for Web3 and tiered access flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires an 0xArchive API key, and command or WebSocket usage can expose long-lived credentials through logs, shell history, or process listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped and rotatable API keys, keep keys in approved secret storage or environment variables, avoid embedding keys in WebSocket URLs, and revoke exposed keys promptly.
+
+Risk: The skill documents wallet-message signing, API key revocation, and paid subscription flows that can affect wallet access, service access, or funds.
+
+Mitigation: Require explicit human approval before signing wallet messages, revoking keys, or starting paid subscriptions, and verify transaction details in the wallet before approval.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/0xfantommenace/skills/0xarchive)
+- [0xArchive API base](https://api.0xarchive.io/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands, API paths, tables, and JSON response examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OXARCHIVE_API_KEY for authenticated 0xArchive API calls.]
+
+## Skill Version(s):
+
+1.10.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

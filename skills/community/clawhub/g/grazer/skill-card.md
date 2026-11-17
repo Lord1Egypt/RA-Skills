@@ -1,49 +1,67 @@
-## Description: <br>
-Grazer helps agents discover, filter, and engage with content across social, academic, decentralized, media, and agent-network platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grazer helps AI agents discover, filter, and engage with content across social, academic, decentralized, video, podcast, and skill-registry platforms.
 
-## Publisher: <br>
-[scottcjn](https://clawhub.ai/user/scottcjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottcjn](https://clawhub.ai/user/scottcjn)
 
-## Use Case: <br>
-Developers and agent operators use Grazer to browse, rank, and summarize cross-platform content, then optionally post, comment, cross-post, or generate SVG media through configured service credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured credentials can allow an agent to post publicly or modify account-facing content across multiple services. <br>
-Mitigation: Use least-privilege service accounts or tokens, keep credentials in local config, review scopes before use, and rotate tokens after testing or automation changes. <br>
-Risk: Automated posting or commenting can create duplicate or unintended public content. <br>
-Mitigation: Use dry-run previews and idempotency keys for write commands, especially in scheduled or retrying workflows. <br>
-Risk: LLM-based SVG generation can send prompts to a configured OpenAI-compatible endpoint, including plain HTTP if the operator configures one. <br>
-Mitigation: Prefer template generation or trusted HTTPS endpoints, and do not send secrets or sensitive prompts to plain-HTTP LLM services. <br>
-Risk: Outbound telemetry or tracking-related calls may disclose usage patterns. <br>
-Mitigation: Review telemetry, download tracking, and SEO-related calls before enabling automation in sensitive environments. <br>
-Risk: The authoritative security verdict is suspicious because broad account actions and outbound features could expose prompts or tokens. <br>
-Mitigation: Install only when the operator accepts these cross-service risks, and review the skill and scan evidence before deployment. <br>
+## Use Case:
 
+Developers and agent operators use Grazer to find relevant content, inspect platform activity, search ClawHub skills, and optionally post or reply through supported platform APIs.
 
-## Reference(s): <br>
-- [ClawHub Grazer listing](https://clawhub.ai/scottcjn/grazer) <br>
-- [BoTTube Grazer skill page](https://bottube.ai/skills/grazer) <br>
-- [NPM grazer-skill package](https://npmjs.com/package/grazer-skill) <br>
-- [PyPI grazer-skill package](https://pypi.org/project/grazer-skill/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples, Python and JavaScript snippets, JSON configuration examples, text discovery results, and optional SVG markup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write actions depend on locally configured credentials; dry-run previews and idempotency keys are available for supported outbound post and comment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata, package.json, setup.py) <br>
+Risk: Install guidance includes privileged package-manager steps and multiple package sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review installation commands before execution, prefer npm or pip from a trusted source, and avoid privileged APT setup unless the repository and signing key are independently verified.
+
+Risk: The skill can store API keys locally and send posts, replies, comments, or cross-posts to external platforms.
+
+Mitigation: Use least-privilege credentials, set restrictive permissions on ~/.grazer/config.json, require operator approval for write actions, and use dry-run plus idempotency keys for automation.
+
+Risk: Discovery features fetch content from many external services, including user-supplied podcast feed URLs and Mastodon instances.
+
+Mitigation: Use trusted feeds and instances, run with normal network egress controls, and review returned content before reusing it in agent decisions or outbound messages.
+
+Risk: The optional SVG helper can call an OpenAI-compatible LLM endpoint and may send prompts or tokens to that endpoint.
+
+Mitigation: Use only trusted HTTPS or local endpoints, avoid sensitive prompts and tokens, and prefer template SVG generation when external LLM use is unnecessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottcjn/skills/grazer)
+- [NPM package](https://www.npmjs.com/package/grazer-skill)
+- [PyPI package](https://pypi.org/project/grazer-skill)
+- [BoTTube](https://bottube.ai)
+- [Semantic Scholar](https://semanticscholar.org)
+- [OpenReview](https://openreview.net)
+- [ArXiv](https://arxiv.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, CLI text, JSON-like API results, Python or JavaScript examples, shell commands, and local configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated SVG markup for 4claw posts and outbound payload previews in dry-run mode.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata, package.json, setup.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

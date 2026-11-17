@@ -1,45 +1,61 @@
-## Description: <br>
-Helps agents generate SQL and shell commands for MySQL querying, data analysis, schema management, backup, restore, and performance checks from natural-language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MySQL 数据库管理技能。通过自然语言查询、管理 MySQL 数据库，支持 SELECT/INSERT/UPDATE/DELETE、表管理、备份恢复等操作。当用户提到 MySQL、数据库查询、建表、数据备份时使用此技能。
 
-## Publisher: <br>
-[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanlee-gemini](https://clawhub.ai/user/ryanlee-gemini)
 
-## Use Case: <br>
-Developers, database administrators, and data analysts use this skill to translate natural-language database tasks into MySQL queries, administration commands, backup and restore workflows, and optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce high-impact MySQL write, delete, schema-change, backup-overwrite, or restore actions. <br>
-Mitigation: Use a dedicated least-privilege account, prefer read-only credentials for analysis, and require explicit manual review and confirmation before execution. <br>
-Risk: Database credentials and credential files may be exposed if handled carelessly. <br>
-Mitigation: Protect credential files and environment variables, and avoid placing plaintext passwords in command-line arguments or shared logs. <br>
-Risk: The security evidence flags unclear confirmation safeguards for production database operations. <br>
-Mitigation: Treat production changes as approval-gated proposals and verify backups before write, delete, schema-change, overwrite, or restore operations. <br>
+## Use Case:
 
+Developers, database administrators, and data analysts use this skill to turn natural-language requests into MySQL queries, table-management operations, backups, restores, and optimization checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanlee-gemini/mysql-skill) <br>
-- [MySQL documentation](https://dev.mysql.com/doc/) <br>
-- [MySQL optimization documentation](https://dev.mysql.com/doc/refman/8.0/en/optimization.html) <br>
-- [MySQL Workbench](https://www.mysql.com/products/workbench/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SQL, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database administration actions that require human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can propose SQL and shell commands that alter data, schema, backups, or restores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review and explicit confirmation before running UPDATE, DELETE, ALTER, restore, or production backup commands.
+
+Risk: Database credentials may be exposed or over-privileged if stored casually or used through broad accounts.
+
+Mitigation: Use least-privilege accounts, prefer read-only credentials for analysis, avoid long-lived password environment variables, and protect credential files with restrictive permissions.
+
+Risk: Installation and database administration commands may require privileged local or database access.
+
+Mitigation: Install only in environments where agent-assisted MySQL administration is intended and restrict execution to approved operators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryanlee-gemini/skills/mysql-skill)
+- [Publisher profile](https://clawhub.ai/user/ryanlee-gemini)
+- [MySQL documentation](https://dev.mysql.com/doc/)
+- [MySQL optimization documentation](https://dev.mysql.com/doc/refman/8.0/en/optimization.html)
+- [MySQL Workbench](https://www.mysql.com/products/workbench/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, shell, and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include database-changing SQL or shell commands that require manual review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

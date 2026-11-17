@@ -1,43 +1,55 @@
-## Description: <br>
-Controls and prints text, barcodes, and QR codes on the Gprinter GP-C200V ESC/POS thermal printer via Node.js or command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and print text, barcodes, and QR codes on the Gprinter GP-C200V ESC/POS thermal printer via Node.js or command line.
 
-## Publisher: <br>
-[yardfarmer](https://clawhub.ai/user/yardfarmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yardfarmer](https://clawhub.ai/user/yardfarmer)
 
-## Use Case: <br>
-Developers and operators use this skill to build ESC/POS print commands and run Node.js or CLI printing workflows for GP-C200V or compatible receipt printers, including Chinese text, QR codes, and barcodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Print jobs may be sent to the wrong network device if the printer host or port is misconfigured. <br>
-Mitigation: Verify the configured printer IP and port before running the CLI or reusable Node.js helper. <br>
-Risk: The optional localhost HTTP bridge can expose printing behavior if it is run in an environment the user does not trust. <br>
-Mitigation: Use direct TCP printing by default and run the bridge only when browser-based printing is intentionally required. <br>
-Risk: The --file option prints the contents of the provided path. <br>
-Mitigation: Avoid passing sensitive files and review file contents before printing. <br>
+## Use Case:
 
+Developers and operations teams use this skill to create Node.js or CLI print workflows for GP-C200V-compatible ESC/POS receipt printers, including Chinese text, barcodes, QR codes, and basic image commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yardfarmer/gprinter) <br>
-- [ESC/POS Protocol Reference](esc-pos-protocol.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ESC/POS byte arrays, printer host and port settings, and file paths supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence, package.json) <br>
+Risk: Untrusted host, port, file path, or print payload values could send data to an unintended printer or print unintended content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured printer or bridge host before use, and validate externally supplied host, port, file path, and print payload values.
+
+Risk: Raw TCP printing can expose print payloads on networks that are not trusted.
+
+Mitigation: Use the skill only on trusted local networks or protected network paths, especially when printing sensitive content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yardfarmer/skills/gprinter)
+- [ESC/POS Protocol Reference](esc-pos-protocol.md)
+- [Gprinter Publisher Profile](https://clawhub.ai/user/yardfarmer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include printer host, port, print payload, file path, barcode or QR content, alignment, text size, feed, and cut options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

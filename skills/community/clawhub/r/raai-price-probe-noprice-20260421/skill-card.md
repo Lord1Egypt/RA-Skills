@@ -1,47 +1,62 @@
-## Description: <br>
-A Russian-language customer support automation skill for categorizing tickets, tracking SLA, routing escalations, drafting customer replies, producing support reports, and guiding CRM-backed support workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Russian-language customer support automation skill for ticket categorization, SLA tracking, escalation workflows, sentiment-aware response drafting, NPS/CSAT reporting, onboarding, and optional CRM integrations.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-Support leaders, operations managers, and support teams use this skill to standardize ticket triage, escalation, SLA monitoring, response drafting, onboarding, and daily support reporting for businesses with recurring customer requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process customer data and produce CRM updates or customer messages without clear privacy and approval boundaries. <br>
-Mitigation: Start with test data and least-privilege credentials; configure redaction, retention, and human approval before using live customer records or sending outbound messages. <br>
-Risk: Refund, compensation, escalation, and customer-response workflows could affect customers or business operations if automated without review. <br>
-Mitigation: Disable automatic CRM writes, refunds, compensation decisions, and outbound customer messages until an accountable human approval flow is configured. <br>
-Risk: The packaged install flow references a .env.example file that is not present in the artifact evidence. <br>
-Mitigation: Fix the setup package or provide the missing environment template before installation, and verify required API keys and optional integration credentials are documented. <br>
+## Use Case:
 
+Support leaders, operations teams, and developers use this skill to standardize high-volume customer support workflows: classify incoming tickets, monitor SLA risk, escalate sensitive cases, draft customer replies, generate service-quality reports, and configure CRM/helpdesk handoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raaipro/raai-price-probe-noprice-20260421) <br>
-- [README](README.md) <br>
-- [Onboarding guide](docs/onboarding.md) <br>
-- [Anti-fail guide](docs/anti-fail.md) <br>
-- [ROI guide](docs/roi.md) <br>
-- [Quick start examples](examples/quick-start.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with configuration snippets, shell commands, ticket summaries, escalation notes, customer response templates, and operational reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily Russian-language support operations content; may reference customer records, CRM fields, refund workflows, SLA status, and outbound customer messaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and release evidence) <br>
+Risk: Broad customer-data processing across tickets, CRM records, sentiment analysis, and support reports can expose sensitive customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in a real support environment, keep live secrets out of config.yaml, and use least-privilege credentials only for explicitly enabled integrations.
+
+Risk: CRM or ticket mutations could update customer records, create tickets, change tags, or alter statuses without enough scoping.
+
+Mitigation: Require human approval for CRM writes and limit triggers to deliberate commands or approved channels.
+
+Risk: Automatic customer replies and refund handling can send incorrect, unauthorized, or policy-inconsistent messages.
+
+Mitigation: Require human approval for outbound customer messages and refund decisions before using the skill in production support workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raaipro/skills/raai-price-probe-noprice-20260421)
+- [Publisher profile](https://clawhub.ai/user/raaipro)
+- [README](artifact/README.md)
+- [Onboarding guide](artifact/docs/onboarding.md)
+- [Anti-fail guide](artifact/docs/anti-fail.md)
+- [Quick start examples](artifact/examples/quick-start.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, structured text templates, YAML configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language support operations outputs; optional integration behavior depends on configured credentials and enabled channels.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

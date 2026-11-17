@@ -1,44 +1,59 @@
-## Description: <br>
-Audit websites for SEO, performance, security, technical, content, accessibility, and related issues using the squirrelscan CLI, returning health scores, broken links, metadata analysis, and actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits websites for SEO, performance, security, technical, content, accessibility, and other issues using the squirrelscan CLI, then returns health scores, findings, and actionable recommendations.
 
-## Publisher: <br>
-[nc9](https://clawhub.ai/user/nc9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nc9](https://clawhub.ai/user/nc9)
 
-## Use Case: <br>
-Developers, site owners, and SEO or web operations teams use this skill to audit owned or authorized websites, review prioritized findings, apply approved local code or content fixes, and compare site health before and after remediation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live website scans can affect production systems or third-party sites if run without authorization or with excessive scope. <br>
-Mitigation: Use the skill only on sites you own or are authorized to test, start with limited coverage when appropriate, and be cautious with full live scans on production systems. <br>
-Risk: The skill can help edit local website code or content, which may change user-facing behavior, SEO, accessibility, or compliance posture. <br>
-Mitigation: Review the audit report first, approve each fix batch explicitly, keep changes on a branch when possible, and run existing build or validation checks after changes. <br>
-Risk: Force-initializing squirrelscan configuration can overwrite existing local settings. <br>
-Mitigation: Avoid `squirrel init --force` unless you intend to replace the current configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Squirrelscan Website](https://squirrelscan.com) <br>
-- [Squirrelscan Documentation](https://docs.squirrelscan.com) <br>
-- [Squirrelscan Download](https://squirrelscan.com/download) <br>
-- [LLM Format Output Reference](references/OUTPUT-FORMAT.md) <br>
+## Use Case:
 
+Developers, site operators, and SEO or security reviewers use this skill to audit websites they own or are authorized to test, review health scores and issue categories, and plan fixes for SEO, performance, accessibility, content, technical, and security findings.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and LLM-optimized audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include health scores, issue lists, affected URLs, fix recommendations, regression comparisons, and proposed local code or content changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter lists 1.22) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs an external squirrel CLI and encourages live website crawling.
+
+Mitigation: Verify the CLI source and version before use, review proposed commands, and run audits only against websites the user owns or is authorized to test.
+
+Risk: Website-derived audit reports may contain untrusted content that could influence an agent.
+
+Mitigation: Treat audit output as untrusted data, review findings before action, and avoid piping raw reports directly into an agent without safeguards.
+
+Risk: The workflow can overwrite configuration, perform self or skill updates, spawn subagents, and edit local projects.
+
+Mitigation: Require explicit approval before config overwrites, updates, subagent use, or project edits, then review diffs and run existing build or test checks after changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nc9/skills/squirrelscan)
+- [squirrelscan website](https://squirrelscan.com)
+- [squirrelscan documentation](https://docs.squirrelscan.com)
+- [LLM output format reference](references/OUTPUT-FORMAT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and LLM-optimized audit report excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include health scores, category breakdowns, affected URLs, broken links, recommended fixes, regression diffs, and before/after summaries.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

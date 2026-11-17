@@ -1,43 +1,63 @@
-## Description: <br>
-Automates batch uploading and management of Xianyu shop products on the Yidian backend using Playwright/CDP, with stepwise confirmation, screenshot-oriented validation, and optional Feishu status synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yidian Upload automates batch product uploads and management for Xianyu shops through the Yidian backend, using Playwright/CDP browser automation with stepwise confirmation and screenshot validation.
 
-## Publisher: <br>
-[yuhao1443796193-commits](https://clawhub.ai/user/yuhao1443796193-commits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuhao1443796193-commits](https://clawhub.ai/user/yuhao1443796193-commits)
 
-## Use Case: <br>
-External sellers and operators who manage Xianyu shops through Yidian/ekadmin use this skill to parse product queues, publish listings, configure delivery options, and optionally sync completion status with Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish real shop listings and update Feishu records through an existing logged-in browser session. <br>
-Mitigation: Use dry-run first, verify the logged-in Edge account and target shop before each run, and avoid production accounts until confirmation and rollback controls are in place. <br>
-Risk: Hardcoded Feishu identifiers can point automation at a specific spreadsheet or workspace. <br>
-Mitigation: Remove hardcoded Feishu identifiers and supply spreadsheet tokens through user-reviewed configuration or environment variables. <br>
+## Use Case:
 
+Xianyu sellers and operators use this skill to prepare product listings, publish batches through the Yidian backend, configure auto-delivery links, and optionally synchronize listing status with Feishu spreadsheets. It is intended for logged-in shop workflows where a human can verify account, shop, product data, and dry-run results before live publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuhao1443796193-commits/skills/yidian-upload) <br>
-- [README](artifact/README.md) <br>
-- [CHANGELOG](artifact/CHANGELOG.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can drive browser automation that publishes listings and updates Feishu records when connected to authenticated accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.0 (source: server release metadata) <br>
+Risk: The skill can control a logged-in seller backend and make live listing or shop-management changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, verify the active browser account and target shop, and keep a human review step before live runs.
+
+Risk: The artifact includes a Feishu spreadsheet token and can update external spreadsheet status records.
+
+Mitigation: Rotate or remove embedded Feishu credentials, use least-privilege access, and confirm the target spreadsheet before enabling synchronization.
+
+Risk: Using a general browser profile for CDP automation can expose unrelated sessions or accounts to agent control.
+
+Mitigation: Run CDP automation with a dedicated browser profile that is logged in only to the required seller backend.
+
+Risk: Untrusted product data may be interpolated into browser-side JavaScript or file paths.
+
+Mitigation: Use trusted product inputs only until JavaScript interpolation and filename handling are hardened.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuhao1443796193-commits/skills/yidian-upload)
+- [Yidian backend](https://ed.weeeg.com)
+- [Lark CLI](https://github.com/larksuite/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell commands; scripts produce console logs, local text records, and Feishu status updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run preview paths and sequential browser automation for listing, auto-delivery, and shop-management actions.]
+
+## Skill Version(s):
+
+3.4.0 (source: server release evidence; artifact frontmatter reports 3.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

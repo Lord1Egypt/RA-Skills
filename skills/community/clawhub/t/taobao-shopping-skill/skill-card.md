@@ -1,41 +1,57 @@
-## Description: <br>
-Taobao Shopping helps an agent search Taobao products, inspect item details and reviews, add items to a cart, and review cart prices through OpenCLI browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taobao Shopping helps an agent search Taobao products, inspect item details and reviews, add products to the cart, and review cart items with price-change hints.
 
-## Publisher: <br>
-[he2y](https://clawhub.ai/user/he2y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[he2y](https://clawhub.ai/user/he2y)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to research Taobao or Tmall products, compare price or sales ordering, inspect reviews, and prepare cart additions from a logged-in Chrome session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in browser session that has access to the user's Taobao account. <br>
-Mitigation: Install only if the OpenCLI package and browser bridge are trusted, and use a separate Chrome profile or secondary account where possible. <br>
-Risk: Cart actions can change the user's cart without an explicit confirmation requirement in the skill instructions. <br>
-Mitigation: Require the agent to confirm the exact item, specification, and price before cart-changing commands; prefer dry-run for add-cart previews. <br>
+## Use Case:
 
+External users and shopping agents use this skill to gather Taobao product information, compare search results, inspect reviews, and manage cart-related shopping workflows through OpenCLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/he2y/taobao-shopping-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/he2y) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with OpenCLI command examples and structured command output formats including table, JSON, YAML, Markdown, and CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Chrome session and OpenCLI browser bridge; shopping results may include prices, sales counts, shops, locations, item IDs, specifications, and reviews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill relies on a logged-in Taobao or Tmall browser session and can access shopping account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome profile for Taobao, avoid shared browser profiles, and do not expose the profile or cookies to unrelated browsing or automation.
+
+Risk: Cart-changing actions can modify shopping data in the logged-in account.
+
+Mitigation: Confirm any cart-changing action before execution and use the documented dry-run option when previewing add-to-cart behavior.
+
+Risk: The workflow depends on an unpinned external OpenCLI tool and browser bridge extension.
+
+Mitigation: Use a pinned and verified OpenCLI version, and inspect the browser extension permissions and source before loading it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/he2y/skills/taobao-shopping-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured command outputs in table, JSON, YAML, Markdown, or CSV formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Chrome logged in to Taobao or Tmall, OpenCLI, and the OpenCLI Browser Bridge extension.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

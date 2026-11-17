@@ -1,43 +1,55 @@
-## Description: <br>
-Publishes images or videos to Xiaohongshu (Little Red Book) using Playwright after a user-authenticated browser session is saved. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts content (images/videos) to Xiaohongshu (Little Red Book) automatically using Playwright.
 
-## Publisher: <br>
-[widebluesky](https://clawhub.ai/user/widebluesky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[widebluesky](https://clawhub.ai/user/widebluesky)
 
-## Use Case: <br>
-Content operators, creators, and developers use this skill to upload media, titles, and captions to Xiaohongshu through Creator Studio after completing a manual login. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The saved Playwright session state can grant posting access to the user's Xiaohongshu account. <br>
-Mitigation: Keep state.json private, delete it when session reuse is no longer needed, and run the skill in an isolated environment. <br>
-Risk: The skill can publish user-provided title, caption, and media content to a live account. <br>
-Mitigation: Review the title, caption, and media paths before running the posting command. <br>
+## Use Case:
 
+External creators and operators use this skill to automate Xiaohongshu publishing of supplied titles, captions, and image or video files after establishing a browser login session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/widebluesky/xiaohongshu-auto-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/widebluesky) <br>
-- [Xiaohongshu Creator Studio login](https://creator.xiaohongshu.com/login) <br>
-- [Xiaohongshu Creator Studio publish page](https://creator.xiaohongshu.com/publish/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local media file paths and a saved Playwright browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: A reusable Xiaohongshu login session is stored in state.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat state.json as a sensitive login token: do not share, sync, archive, or commit it, and delete or rotate the session when finished.
+
+Risk: The automation can publish supplied title, text, and files without a final confirmation step.
+
+Mitigation: Review the generated post in the visible browser before relying on the automation, and keep manual intervention available for popups or captchas.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/widebluesky/skills/xiaohongshu-auto-publisher)
+- [Xiaohongshu Creator login](https://creator.xiaohongshu.com/login)
+- [Xiaohongshu Creator publish page](https://creator.xiaohongshu.com/publish/publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with command-line examples and browser automation status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a saved browser session and may open a visible browser for login, popups, captchas, upload review, and publishing.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

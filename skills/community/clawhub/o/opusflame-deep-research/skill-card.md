@@ -1,41 +1,56 @@
-## Description: <br>
-OpusFlame Deep Research conducts autonomous multi-model research by coordinating Gemini, o3, Opus, and MiniMax agents, applying analytical frameworks, cross-validating findings, and producing a cited final report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous multi-model deep research with framework-driven reasoning, parallel model analysis, cross-validation, and a final cited report.
 
-## Publisher: <br>
-[LeadingOT](https://clawhub.ai/user/LeadingOT) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leadingot](https://clawhub.ai/user/leadingot)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill for complex research questions that need multiple sources, framework-driven reasoning, cross-model agreement checks, and a cited final report. It is not intended for simple factual lookups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research topics may be processed by multiple model providers and web research tools. <br>
-Mitigation: Avoid sensitive or confidential prompts unless that handling is acceptable for the intended use. <br>
-Risk: The final report may contain incorrect, stale, or overconfident claims despite cross-validation. <br>
-Mitigation: Review high-impact conclusions and independently verify quantitative, pricing, regulatory, and other time-sensitive claims before relying on them. <br>
-Risk: The workflow saves research files locally and produces a PDF for delivery. <br>
-Mitigation: Review generated files and sharing destinations before distributing reports externally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Financial Research Reference](references/financial-research.md) <br>
+## Use Case:
 
+Developers, analysts, and other external users use this skill to run in-depth research tasks that require source gathering, framework-based analysis, model disagreement checks, and a cited synthesis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown research report and PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes inline citations, a source list, model disagreement notes, an agreement matrix, confidence scoring, and saved local research files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deep research prompts and source material may be sent through several model agents and web tools.
+
+Mitigation: Avoid confidential or regulated information unless those sharing behaviors are acceptable for the use case.
+
+Risk: Generated research can still contain inaccurate, stale, or weakly sourced claims.
+
+Mitigation: Review cited sources, confidence labels, disagreements, and single-model quantitative claims before relying on the report.
+
+Risk: Generated research may be saved locally and packaged as a PDF for delivery.
+
+Mitigation: Handle local report files and outbound PDFs according to the user's data retention and access-control requirements.
+
+## Reference(s):
+
+- [Financial Research Reference](references/financial-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown research report with inline citations and a PDF delivery artifact]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model-specific intermediate notes, an agreement matrix, confidence labels, cited sources, and locally saved report files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

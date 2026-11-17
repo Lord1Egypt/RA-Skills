@@ -1,12 +1,14 @@
 # Gemma 4 Developer Tool (gemma4-dev)
 
-The **Gemma 4 Developer Tool** for OpenClaw is a powerful suite of capabilities designed to empower agents using Google's Gemma 4 models. It integrates directly into the OpenClaw environment to facilitate complex coding tasks, architectural planning, and autonomous agent workflows.
+The **Gemma 4 Developer Tool** for OpenClaw provides architecture guidance, deployment reference patterns, and orchestration utilities for building with Google's Gemma 4 models.
 
 ## Features
 
-- **Gemma 4 Orchestration**: Manage and deploy Gemma 4 models.
-- **Thinking Mode**: Activate specialized inference paths for reasoning.
-- **Agentic Integration**: Seamless coordination with OpenClaw's sub-agent framework.
+- **Model Selection & Sizing**: Comprehensive hardware and VRAM sizing across 26B (MoE), 31B, 12B, and E2B/E4B (`references/hardware-sizing.md`).
+- **Thinking Mode Orchestration**: Native `<thought>` tag encapsulation with real-time stream parsing (`scripts/stream_parser.py`).
+- **Native Multimodality**: First-class support for native audio waveforms and image tokens (`references/multimodal.md`).
+- **Tool Calling**: Turn-based schema definitions for robust agentic tool loops.
+- **Reference Deployments**: Safe, modular patterns for WebGPU/ONNX and Vertex AI cloud hosting (`examples/`).
 
 ## Installation
 
@@ -14,9 +16,15 @@ The **Gemma 4 Developer Tool** for OpenClaw is a powerful suite of capabilities 
 clawhub install gemma4-dev
 ```
 
+## Running Tests
+
+```bash
+python3 tests/test_stream_parser.py
+```
+
 ## Security & Compliance
 
-This tool follows the OpenClaw development best practices:
-- Principle of Least Privilege: Tools are scoped strictly to the workspace.
-- Input Validation: Sanitized commands for all tool calls.
-- Sandboxed Environment: Execution is isolated within the designated OpenClaw sandbox.
+This tool adheres strictly to the OpenClaw AgentSkills specification:
+- Principle of Least Privilege: Zero ambient network egress or disk access in core guidelines.
+- Cloud Egress Governance: Cloud deployment examples explicitly declare network requirements (`aiplatform.googleapis.com`) and required IAM scopes.
+- Zero External Injections: All prompts and function signatures are validated within local sandbox boundaries.

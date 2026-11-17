@@ -1,44 +1,63 @@
-## Description: <br>
-Provides cross-platform desktop automation for mouse and keyboard control, screenshots, image utilities, overlay markers, OCR/template-based element locating, clipboard actions, and cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform mouse/keyboard automation skill that supports mouse control, keyboard input, screenshots, region screenshots, image utilities, screen and image markers, template/OCR locating, clipboard automation, and cleanup of generated image files.
 
-## Publisher: <br>
-[Ikaros-521](https://clawhub.ai/user/Ikaros-521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ikaros-521](https://clawhub.ai/user/ikaros-521)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect the screen, locate UI elements, annotate screenshots, and execute local desktop automation tasks through bundled Python scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Desktop automation can click, type, paste, or invoke hotkeys in the wrong active window. <br>
-Mitigation: Confirm the target window and coordinates before running actions, use coordinate markers or screenshots first, and keep PyAutoGUI failsafe available. <br>
-Risk: Screenshots, OCR, and clipboard operations can expose sensitive information. <br>
-Mitigation: Avoid using screenshot, OCR, copy, paste, or copy_paste commands around secrets, and prefer region screenshots when full-screen capture is unnecessary. <br>
-Risk: Cleanup commands can delete generated files when execution mode is enabled. <br>
-Mitigation: Run cleanup in preview mode first and use --execute only after reviewing the files selected for deletion. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to inspect screen state, calibrate coordinates, control mouse and keyboard actions, locate UI elements by template or OCR, and manage generated screenshots or annotated images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ikaros-521/pyautogui) <br>
-- [README.md](README.md) <br>
-- [requirements.txt](references/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python command snippets, terminal text, JSON image metadata, and generated image or screenshot files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can affect the local desktop, clipboard, screenshots, OCR output, and cleanup of generated files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: The skill can click, type, paste, and invoke hotkeys in active desktop applications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit UI automation tasks; verify the focused window, target coordinates, and expected action before execution, and keep PyAutoGUI failsafe behavior available.
+
+Risk: Screenshots, OCR, and clipboard operations can expose sensitive on-screen or copied content.
+
+Mitigation: Avoid using the skill over sensitive windows, do not include real passwords or secrets in prompts or examples, and review captured or recognized content before sharing it.
+
+Risk: Template or OCR matches can identify the wrong UI target, especially when automatic clicking is enabled.
+
+Mitigation: Review matches with screen overlays or marked images before using click actions, and avoid automatic click flags unless the target has been visually confirmed.
+
+Risk: Cleanup commands can delete generated image files in selected directories.
+
+Mitigation: Run cleanup only in directories containing disposable generated screenshots or marked images, preview clean operations first, and use custom patterns carefully.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ikaros-521/skills/pyautogui)
+- [Publisher profile](https://clawhub.ai/user/ikaros-521)
+- [requirements.txt](references/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance, files]
+
+**Output Format:** [Markdown instructions with inline shell commands plus text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots, cropped regions, annotated images, temporary OCR/template matching files, and cleanup reports.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

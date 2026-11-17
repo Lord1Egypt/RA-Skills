@@ -1,44 +1,59 @@
-## Description: <br>
-Control Chrome browser with AI using MCP protocol to automate navigation, screenshots, form filling, content extraction, history, bookmark, and network tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Chrome browser with AI using MCP protocol. Use when users want to automate browser tasks, take screenshots, fill forms, click elements, navigate pages, search browsing history, manage bookmarks, or perform any browser-based automation. Works with your existing Chrome browser and login sessions.
 
-## Publisher: <br>
-[femto](https://clawhub.ai/user/femto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[femto](https://clawhub.ai/user/femto)
 
-## Use Case: <br>
-Developers, engineers, and MCP-compatible agent users use this skill to connect an AI client to an existing Chrome browser session for web navigation, page inspection, screenshots, form interaction, history search, bookmark management, and network monitoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an AI client broad access to a real logged-in Chrome browser. <br>
-Mitigation: Use a dedicated Chrome profile and avoid sensitive logged-in accounts unless the task requires them. <br>
-Risk: Browser history, network traffic, screenshots, cookies, form submissions, bookmarks, and account data may expose private or security-sensitive information. <br>
-Mitigation: Require explicit confirmation before reading history, capturing network traffic, sending cookie-backed requests, submitting forms, deleting bookmarks, posting content, or changing account data. <br>
-Risk: The skill depends on an upstream npm bridge and Chrome extension. <br>
-Mitigation: Install only from trusted upstream sources, and pin and verify the npm package and extension release where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/femto/browser-automation-2) <br>
-- [mcp-chrome GitHub repository](https://github.com/femto/mcp-chrome) <br>
-- [mcp-chrome releases](https://github.com/femto/mcp-chrome/releases) <br>
-- [mcp-chrome-bridger npm package](https://www.npmjs.com/package/mcp-chrome-bridger) <br>
+## Use Case:
 
+Developers and other MCP client users use this skill to automate browser navigation, screenshots, form entry, content extraction, history and bookmark operations, and network monitoring in an existing Chrome session.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Screenshots] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and browser automation tool names.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on the user's active Chrome profile, open tabs, login sessions, bookmarks, history, and browser extension state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can connect an AI client to an existing Chrome profile with active login sessions.
+
+Mitigation: Use a dedicated Chrome profile without unrelated logins, saved passwords, history, or bookmarks.
+
+Risk: Cookie-backed requests, network capture, history searches, bookmark deletion, and actions on logged-in sites can expose or change sensitive data.
+
+Mitigation: Require explicit confirmation before these actions and review the target site, selector, URL, and requested data scope.
+
+Risk: Persistent bridge and extension components are not pinned in the artifact instructions.
+
+Mitigation: Pin and verify the exact bridge and extension versions before installation, and review extension permissions.
+
+## Reference(s):
+
+- [Browser Automation on ClawHub](https://clawhub.ai/femto/skills/browser-automation-2)
+- [mcp-chrome GitHub repository](https://github.com/femto/mcp-chrome)
+- [mcp-chrome releases](https://github.com/femto/mcp-chrome/releases)
+- [mcp-chrome-bridger npm package](https://www.npmjs.com/package/mcp-chrome-bridger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON configuration, and tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose browser actions that should be reviewed before execution, especially on logged-in sites.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-MdSpliter helps agents split large Markdown knowledge files into topic-based chunks and use an index to retrieve only relevant sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents split large Markdown knowledge documents into topic-based chunks with an index so relevant sections can be found without loading the whole file.
 
-## Publisher: <br>
-[Josephyb97](https://clawhub.ai/user/Josephyb97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[josephyb97](https://clawhub.ai/user/josephyb97)
 
-## Use Case: <br>
-Developers and agents use this skill to organize large Markdown knowledge bases into smaller thematic files with an INDEX.md, then load only the chunks relevant to a query. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated chunks or INDEX.md entries may misrepresent the source knowledge file. <br>
-Mitigation: Confirm the exact knowledge folder and review generated chunks and INDEX.md before relying on them. <br>
-Risk: Sensitive documents may become indexed for future agent use if included in the target folder. <br>
-Mitigation: Avoid pointing the skill at sensitive documents unless they are intentionally approved for indexing. <br>
+## Use Case:
 
+Developers and agents use this skill to organize large Markdown knowledge bases into indexed, topic-focused chunks for targeted lookup and incremental maintenance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Josephyb97/md-knowledge-spliter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files and indexing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates topic-based chunks and INDEX.md; recommends chunks under 2KB and avoiding folders such as node_modules, .git, and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill may restructure Markdown files in broad target locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target paths before allowing writes and prefer documentation folders over private or sensitive directories.
+
+Risk: Broad triggers such as loading or splitting large files could apply outside the intended knowledge-base workflow.
+
+Mitigation: Confirm the task is documentation organization before invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephyb97/skills/md-knowledge-spliter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown guidance and indexed Markdown file structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an INDEX.md convention and topic-based chunk files for Markdown knowledge directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

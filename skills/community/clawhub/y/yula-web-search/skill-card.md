@@ -1,43 +1,53 @@
-## Description: <br>
-Yula's custom web search helper uses public anonymous search services through curl and Python HTML parsing to retrieve current web results, extract selected page content, and summarize it for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yula Web Search helps an agent run no-API-key web searches through public search services, fetch selected result pages with curl and Python, and summarize current information for the user.
 
-## Publisher: <br>
-[wjzhb](https://clawhub.ai/user/wjzhb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjzhb](https://clawhub.ai/user/wjzhb)
 
-## Use Case: <br>
-Developers and external users use this skill when an agent needs current web information, news, prices, product availability, specific page extraction, or Chinese-language web research without configuring a search API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User queries and selected page URLs may be sent to public search engines and websites. <br>
-Mitigation: Use only when that disclosure is acceptable, and avoid searching for sensitive, confidential, or regulated data. <br>
-Risk: The artifact includes shell and Python snippets that interpolate query text into commands. <br>
-Mitigation: Pass query text as an argument or through stdin, and review generated commands before execution with untrusted input. <br>
-Risk: Broad activation can route requests to live web search when a narrower tool would be more appropriate. <br>
-Mitigation: Prefer specialized tools for weather, local file search, or already-provided context, and confirm web access is needed before use. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs current web information, news, prices, product availability, or content extracted from specific public URLs, including Chinese-language searches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjzhb/yula-web-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wjzhb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with summarized search results, source URLs, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and python3; extracts content from selected public web pages and should keep total extracted text bounded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Search terms and fetched pages may be sent to public search engines and arbitrary websites from the user's network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a restricted environment, avoid sensitive or private queries, and review searches before execution.
+
+Risk: Automatic page fetching can reach unsafe destinations, including redirects to internal services or private network addresses.
+
+Mitigation: Require confirmation before fetching pages and block localhost, private IP ranges, redirects to internal services, and unsafe query interpolation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wjzhb/skills/yula-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown answer with source references and optional shell/Python command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are based on selected public search results and extracted page text, with artifact guidance to fetch the top 2-3 relevant URLs and limit extracted text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

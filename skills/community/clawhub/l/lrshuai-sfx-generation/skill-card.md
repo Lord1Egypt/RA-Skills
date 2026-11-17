@@ -1,41 +1,59 @@
-## Description: <br>
-Generates environmental or special sound effects from text prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates environmental audio and special sound effects from text prompts using the Keling SFX model.
 
-## Publisher: <br>
-[lrshu](https://clawhub.ai/user/lrshu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrshu](https://clawhub.ai/user/lrshu)
 
-## Use Case: <br>
-Agents and developers use this skill to submit text prompts for SFX generation through a Python helper, with optional local or remote media inputs when the selected model supports them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can invoke remote model calls beyond the advertised SFX-only flow. <br>
-Mitigation: Review the command before running it and use only the expected SFX model unless the broader behavior has been approved. <br>
-Risk: The helper uses an API key and can upload local image or video files when optional media arguments are supplied. <br>
-Mitigation: Use a narrowly scoped TEAM_API_KEY, verify TEAM_BASE_URL, and avoid passing private local media paths. <br>
+## Use Case:
 
+Developers and agent users use this skill to submit text prompts for environmental audio or special sound effects and receive generation results from the configured model service.
 
-## Reference(s): <br>
-- [LrshuAI Sfx Generation on ClawHub](https://clawhub.ai/lrshu/lrshuai-sfx-generation) <br>
-- [Publisher profile: lrshu](https://clawhub.ai/user/lrshu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Text] <br>
-**Output Format:** [CLI stdout containing JSON responses, status messages, or error text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TEAM_API_KEY; TEAM_BASE_URL may override the default remote API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires direct Python execution rather than the standard runner path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before installation and remove or justify the runner-bypass instruction before routine use.
+
+Risk: The model client can send local image or video file contents to the configured remote service.
+
+Mitigation: Do not allow local file path arguments unless uploading those files is intended and approved.
+
+Risk: The remote endpoint and bearer credential determine where prompts and optional media are sent.
+
+Mitigation: Use a dedicated, revocable TEAM_API_KEY and verify TEAM_BASE_URL or the default endpoint before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrshu/skills/lrshuai-sfx-generation)
+- [Publisher profile](https://clawhub.ai/user/lrshu)
+- [Default remote model API endpoint](https://dlazy.com/api/ai/tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Command-line status text and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TEAM_API_KEY; optional local image, image-tail, or video paths may be encoded and sent to the configured remote service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+ "ownerId": "624226",
+ "slug": "gongwen-writting-2",
+ "version": "1.0.58",
+ "publishedAt": 1787303349308,
+ "file_hashes": {
+  "config.json": "113197f822b99d83",
+  "SKILL.md": "494074f1079ccb3b",
+  "references/word-export.md": "62365f18c2b7a0b8"
+ }
+}

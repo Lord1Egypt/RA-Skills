@@ -1,41 +1,55 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Developers and external users use this skill to summarize web pages, local files, PDFs, images, audio, and YouTube links through the summarize CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided files, private URLs, and extracted content may be sent to configured AI providers or optional extraction services. <br>
-Mitigation: Avoid confidential, secret, or regulated data unless the configured providers and services are approved for that data. <br>
-Risk: The skill depends on the external summarize CLI distributed through a Homebrew tap. <br>
-Mitigation: Install only after trusting the Homebrew tap and verifying the summarize binary source. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent summarize URLs, local files, PDFs, images, audio, and YouTube links through the third-party summarize CLI.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/summarize-jarvis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce JSON when the summarize CLI is run with --json; install metadata requires the summarize binary from the Homebrew formula steipete/tap/summarize.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Content submitted for summarization may be sent to configured model or extraction providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not summarize sensitive, regulated, or confidential files or URLs unless those disclosures are approved.
+
+Risk: The skill depends on a third-party summarize CLI installed through a Homebrew tap.
+
+Mitigation: Review the Homebrew tap and CLI source before installing in a high-trust environment.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/summarize-jarvis)
+- [Publisher profile](https://clawhub.ai/user/bingze00000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON output when the summarize CLI is invoked with --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

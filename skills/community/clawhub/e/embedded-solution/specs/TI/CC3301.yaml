@@ -1,0 +1,101 @@
+part: CC3301
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI SimpleLink CC3301 \u2014 Wi-Fi 6 + BLE 5.4 Companion IC"
+main_page: https://www.ti.com/product/CC3301
+datasheet_path_expected: datasheets/cc3301.pdf
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/cc3301.pdf
+created_at: '2026-06-30T18:42:00+08:00'
+specs:
+  family: SimpleLink CC33xx (Wi-Fi 6 + BLE companion IC series)
+  wireless:
+    wifi_6_802_11ax:
+      band: 2.4 GHz
+      channel_mhz: 20
+      spatial_streams: 1
+      mac_baseband_rf: integrated
+      backward_compatibility:
+      - 802.11 a/b/g/n/ax
+      features:
+      - OFDMA
+      - trigger frame
+      - MU-MIMO downlink
+      - BSS coloring
+      - TWT
+      encryption_hardware:
+      - WPA2
+      - WPA3
+      multirole: STA + AP concurrent
+    bluetooth_le_5_4:
+      phys:
+      - LE Coded (long range)
+      - LE 2M PHY (high speed)
+      - advertising extension
+      hci_transport:
+      - UART
+      - shared SDIO
+    coexistence:
+      pta:
+      - 3-wire
+      - 1-wire
+  rf:
+    integrated_pa_2_4ghz: true
+    tx_power_max_dbm: 20.5
+    application_throughput_mbps: 50
+  host_interface:
+  - 4-bit SDIO
+  - SPI
+  host_requirement: any processor/MCU capable of TCP/IP stack
+  power:
+    vmain_vio_vpp: 1.8 V
+    vpa: 3.3 V
+  clocks:
+    xtal_fast: 40 MHz
+    slow_clock_options:
+    - internal slow clock
+    - external 32.768 kHz
+  operating_temp_c_min: -40
+  operating_temp_c_max: 105
+  security:
+    features:
+    - Secured host interface
+    - Firmware authentication
+    - Anti-rollback protection
+  package:
+    type: WQFN (RSB)
+    pins: 40
+    dim_mm: 5x5
+    pitch_mm: 0.4
+  os_support:
+    host_side:
+    - Android
+    - FreeRTOS
+    - Linux
+    - Zephyr RTOS
+  certifications:
+    wifi_certified_chip: true
+  use_cases:
+  - Wi-Fi 6 + BLE 5.4 companion for any host MCU (i.MX-RT, STM32H7, ESP32-P4)
+  - Industrial IoT gateway (Wi-Fi 6 + BLE 5.4, 50 Mbps, WPA3)
+  - Smart home hub
+  - Audio streaming
+  - Replacement for CC3100/CC3200 (legacy Wi-Fi 4 only)
+unverified:
+- exact simultaneous Wi-Fi + BLE throughput
+- exact peak RX current
+- exact operating voltage range
+- exact sleep current
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com CC3301 product page via Firecrawl (72,568 bytes raw)."
+- 'Family differentiator vs CC3300 (existing yaml): CC3300 is Wi-Fi 6 only (no BLE); CC3301 adds BLE 5.4 with HCI transport
+  over UART/SDIO.'
+- 'Family differentiator vs CC1352P (existing yaml): CC1352P is multi- band Sub-1 + 2.4 GHz with integrated MCU; CC3301 is
+  co-processor (no host CPU).'
+- 'Use case: TI-only Wi-Fi 6 + BLE 5.4 companion. Pair with TI CC33xx family of M4F/M33 hosts, or with NXP i.MX-RT, ESP32-P4,
+  etc.'
+- 'Verified 2026-07-01 via pdfplumber against cc3301.pdf: 14/17 spec fields matched (82%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T18:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page + manual enrich
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/CC3301-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/TI/firecrawl-snapshots/CC3301-family_raw.md
+extraction_credits_used: 1

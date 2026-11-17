@@ -1,43 +1,55 @@
-## Description: <br>
-Search Shopify developer docs and validate GraphQL, Liquid, Hydrogen, and other Shopify code for app, theme, or storefront development tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Shopify developer docs and validate GraphQL, Liquid, Hydrogen, and other Shopify code for app, theme, or storefront development tasks.
 
-## Publisher: <br>
-[jtcchan](https://clawhub.ai/user/jtcchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jtcchan](https://clawhub.ai/user/jtcchan)
 
-## Use Case: <br>
-Developers use this skill to build Shopify apps, themes, storefronts, functions, and integrations with a search, code, validate workflow against Shopify documentation and validators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, validation results, and raw code or file context may be sent to Shopify-operated endpoints by default. <br>
-Mitigation: Set OPT_OUT_INSTRUMENTATION=true for private or regulated work, avoid submitting secrets or customer data, and review endpoint behavior before deployment. <br>
-Risk: Some GraphQL validators may reference missing schema asset files in this package. <br>
-Mitigation: Treat validator failures as review signals and manually verify generated GraphQL against Shopify documentation before using it. <br>
+## Use Case:
 
+Developers use this skill when building Shopify apps, themes, storefronts, functions, customer account flows, and admin extensions. It guides the agent to search Shopify documentation, generate code, and validate supported GraphQL, Liquid, Hydrogen, and related Shopify outputs before returning them.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jtcchan/shopify-ai-toolkit-skill) <br>
-- [Shopify developer documentation](https://shopify.dev/) <br>
-- [Shopify Admin GraphQL API](https://shopify.dev/docs/api/admin-graphql) <br>
-- [Shopify Storefront API](https://shopify.dev/docs/api/storefront) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and validation workflows may call Shopify-operated endpoints unless telemetry is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Default telemetry can send validation inputs, searches, filenames, paths, metadata, and submitted code outside the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and set OPT_OUT_INSTRUMENTATION=true before use when working with proprietary or sensitive Shopify code.
+
+Risk: The optional Shopify Dev MCP setup uses an npx command that resolves a package at runtime.
+
+Mitigation: Prefer pinned, reviewed dependencies and run optional MCP tooling only after confirming the package source and version.
+
+## Reference(s):
+
+- [Shopify Developer Documentation](https://shopify.dev/)
+- [Shopify Admin GraphQL API](https://shopify.dev/docs/api/admin-graphql)
+- [Shopify Storefront API](https://shopify.dev/docs/api/storefront)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Shopify documentation search results, validation feedback, and generated Shopify code or configuration guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

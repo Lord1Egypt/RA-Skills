@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn78vky789hqj5p0akxky9s8t183je3v",
-  "slug": "academic-paper-assistant",
-  "version": "1.0.0",
-  "publishedAt": 1774450768105
+  "id": 380502176187371,
+  "name": "academic-paper-assistant",
+  "platform": "minimax",
+  "updated_at": 1774449721436,
+  "version": "1.0.0"
 }

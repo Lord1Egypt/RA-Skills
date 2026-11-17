@@ -1,42 +1,58 @@
-## Description: <br>
-Organize, audit, and generate investor or acquirer due diligence data rooms for startups and SMBs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize, audit, and generate investor or acquirer due diligence data rooms for startups and SMBs, including document mapping, gap analysis, checklists, summaries, readiness scoring, folder structures, reports, and investor-ready indexes.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Startup founders, CFOs, finance teams, and advisors use this skill to prepare fundraising or M&A due diligence data rooms, audit document completeness, identify gaps, and produce investor-ready indexes and readiness reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Due-diligence preparation can involve confidential payroll, bank, tax, legal, HR, security, and customer materials. <br>
-Mitigation: Use redacted or summary documents where possible, avoid unnecessary SSNs or account details, and store sensitive files only in approved secure repositories. <br>
-Risk: Generated summaries, readiness scores, and gap reports may miss issues or be mistaken for legal, tax, bookkeeping, or SEC filing advice. <br>
-Mitigation: Have finance, legal, or HR owners review outputs before opening the data room, and escalate risky legal documents or excluded work to the appropriate professional. <br>
-Risk: Incorrect data room permissions can expose sensitive company or employee information to the wrong reviewers. <br>
-Mitigation: Use tiered access for sensitive folders, restrict bank statements and personal employee data to approved viewers, and perform a final permission QA pass before sharing access. <br>
+## Use Case:
 
+Founders, finance operators, and advisors use this skill to prepare fundraising or M&A due diligence data rooms, audit missing materials, prioritize gaps, and produce investor-ready indexes and reports. Legal-risk items and specific document advice should be escalated to counsel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/due-diligence-dataroom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured checklists, folder taxonomies, gap reports, readiness scores, and data room indexes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not install or execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata) <br>
+Risk: Sensitive deal materials or personal identifiers could be exposed if raw data-room contents are pasted into chat or broadly shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved secure data-room platform, apply least-privilege access, redact unnecessary personal identifiers, and avoid pasting raw sensitive documents unless organizational policy allows it.
+
+Risk: Generated reports may include a fixed assessor attribution that does not identify the actual authorized preparer.
+
+Mitigation: Replace any fixed assessor name with the actual authorized preparer before sharing outputs.
+
+Risk: Legal-risk items could be mistaken for legal advice if generated outputs are used without review.
+
+Mitigation: Route flagged legal issues and document-specific legal questions to counsel before relying on or distributing the materials.
+
+## Reference(s):
+
+- [Due Diligence Dataroom on ClawHub](https://clawhub.ai/samledger67-dotcom/skills/due-diligence-dataroom)
+- [Publisher Profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and structured text checklists, gap reports, readiness scores, folder structures, document summaries, and data room indexes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs should be reviewed before sharing and adjusted for the deal type, audience, and authorized preparer.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

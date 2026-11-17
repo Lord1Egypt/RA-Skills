@@ -1,39 +1,57 @@
-## Description: <br>
-Calendar Manager helps an agent read calendar events, create or update events, set reminders, and summarize upcoming schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calendar Manager helps an agent read schedules, create or update calendar events, set reminders, find free time, and summarize upcoming events through calendar tools.
 
-## Publisher: <br>
-[Jackeven02](https://clawhub.ai/user/Jackeven02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jackeven02](https://clawhub.ai/user/jackeven02)
 
-## Use Case: <br>
-Employees and individual users can use this skill to ask an agent about upcoming events, add calendar entries, find free time, and prepare reminders through supported calendar tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private calendar data and local calendar credentials. <br>
-Mitigation: Install only when the user is comfortable giving the agent calendar access, and keep credentials scoped to the intended calendar account. <br>
-Risk: The skill describes creating, modifying, deleting, importing, emailing, and scheduling reminder workflows without clear approval boundaries. <br>
-Mitigation: Require explicit user confirmation before calendar changes, email-derived imports, reminder emails, or scheduled reminder jobs are run. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Calendar management resources](references/resources.md) <br>
+## Use Case:
 
+Users and agent operators use this skill to inspect calendars, add or adjust events, create reminders, and summarize upcoming schedule items across supported calendar tools.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include private calendar details; calendar actions depend on user-authorized local tools and credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Calendar access and event changes can expose or alter sensitive schedule information.
+
+Mitigation: Grant calendar access only in environments where that exposure is acceptable, and require explicit approval before every event creation, modification, deletion, or reminder email.
+
+Risk: Email-derived scheduling workflows can convert untrusted or misleading messages into calendar events.
+
+Mitigation: Avoid automatic event creation from untrusted emails and have the user confirm the event details before writing to a calendar.
+
+Risk: Persistent reminder or scheduled-task examples can continue running after the user no longer expects them.
+
+Mitigation: Create scheduled tasks only after user approval and provide a clear way to inspect and remove them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackeven02/skills/calendar-manager)
+- [Calendar management reference resources](artifact/references/resources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose calendar reads, event changes, reminders, and scheduling workflows that require user approval before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

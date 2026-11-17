@@ -1,42 +1,60 @@
-## Description: <br>
-获取 A 股市场日报，包括大盘指数、热门板块和龙头股。使用东方财富 API，无需 API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取 A 股市场日报，包括大盘指数、热门板块和龙头股。使用东方财富 API，无需 API Key。
 
-## Publisher: <br>
-[chenchaoqun](https://clawhub.ai/user/chenchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchaoqun](https://clawhub.ai/user/chenchaoqun)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to generate a daily Chinese A-share market report covering major indices, leading sectors, sector leaders, and short market commentary from public Eastmoney data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes public HTTP requests to Eastmoney and depends on the Python requests package. <br>
-Mitigation: Install and run it only in environments where outbound requests to Eastmoney and the requests dependency are acceptable. <br>
-Risk: Market reports can be stale outside Chinese A-share trading hours or misleading if treated as investment advice. <br>
-Mitigation: Use the report as reference market information, check the report timestamp and trading session, and verify important financial conclusions elsewhere. <br>
+## Use Case:
 
+External users, analysts, and agents use this skill to generate a concise A-share market daily report covering major indices, top concept sectors, leading stocks, and a brief market comment. The output is informational and should not be used as the sole basis for trading or investment decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenchaoqun/a-stock-daily-report-cn) <br>
-- [Eastmoney stock quote endpoint](http://push2.eastmoney.com/api/qt/stock/get) <br>
-- [Eastmoney sector list endpoint](http://push2.eastmoney.com/api/qt/clist/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown-style plain text report with shell and Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires public HTTP access to Eastmoney and the Python requests package; market data is reference information and not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md version note) <br>
+Risk: Market data is fetched over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where plaintext market-data requests are acceptable, and prefer updating endpoints to HTTPS if supported before relying on the output for analysis.
+
+Risk: The Python dependency is not pinned.
+
+Mitigation: Install dependencies in an isolated environment and pin or review the requests package version before operational use.
+
+Risk: Financial output may be stale, incomplete, or unsuitable for investment decisions.
+
+Mitigation: Treat the report as informational, verify important figures from a trusted market-data source, and do not use it as the sole basis for trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchaoqun/skills/a-stock-daily-report-cn)
+- [Eastmoney quote API base endpoint](http://push2.eastmoney.com/api/qt)
+- [Eastmoney stock quote endpoint](http://push2.eastmoney.com/api/qt/stock/get)
+- [Eastmoney list quote endpoint](http://push2.eastmoney.com/api/qt/clist/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown market report with optional Python usage examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market figures are fetched from Eastmoney public endpoints at runtime; non-trading periods may show the latest closing data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

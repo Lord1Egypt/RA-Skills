@@ -1,41 +1,51 @@
-## Description: <br>
-Web crawling and scraping reference: robots.txt protocol, Scrapy framework, anti-bot detection, headless browsers, and legal considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web crawling and scraping reference covering robots.txt, Scrapy, anti-bot detection, headless browsers, and legal considerations.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a reference for crawler design, scraping frameworks, crawl politeness, troubleshooting, migration, and legal or ethical considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference includes dual-use anti-bot, proxy, CAPTCHA, fingerprint, and cookie or session rotation guidance that could be misused to bypass site controls. <br>
-Mitigation: Use it only for authorized crawling; prefer official APIs, follow robots.txt and site terms, identify the crawler honestly, rate-limit requests, and avoid bypassing access controls. <br>
-Risk: Commercial scraping can create legal, privacy, terms-of-service, and content-rights exposure. <br>
-Mitigation: Review the target site's terms, privacy obligations, and applicable law before use, especially for personal data or authenticated content. <br>
+## Use Case:
 
+Developers and external users use this skill as reference guidance for web crawling and scraping workflows, including crawl etiquette, troubleshooting, performance, migration, and legal or ethical considerations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/crawler) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown headings and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Anti-blocking guidance could be misused to bypass a site's access controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for lawful, permissioned crawling; prefer official APIs; follow site terms and robots.txt; and avoid proxy, fingerprint, CAPTCHA, or cookie-rotation advice for bypassing controls.
+
+## Reference(s):
+
+- [Crawler skill page](https://clawhub.ai/bytesagain3/skills/crawler)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text reference documentation with markdown-style headings and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are required by the artifact.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

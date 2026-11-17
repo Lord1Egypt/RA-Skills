@@ -1,41 +1,56 @@
-## Description: <br>
-Recognizes the main content in lifestyle images, classifies the scene, and provides practical everyday advice based on the image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes key elements in everyday lifestyle images, classifies the scene, and provides practical daily-life advice based on the image content.
 
-## Publisher: <br>
-[xxxx536](https://clawhub.ai/user/xxxx536) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xxxx536](https://clawhub.ai/user/xxxx536)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users upload everyday life photos to identify the main objects, scene, or activity and receive practical advice for categories such as food, pets, plants, outfits, home, and travel. The skill is primarily written for Chinese-language image analysis and lifestyle guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may upload photos containing private details, documents, account information, addresses, or faces of people who have not consented.
+
+Mitigation: Avoid uploading sensitive or non-consensual images, and review photos for private information before using the skill.
+
+Risk: The skill provides practical lifestyle advice from image content that may be incomplete or incorrect.
+
+Mitigation: Treat advice as general guidance and verify important health, safety, financial, or legal decisions through appropriate expert sources.
+
+Risk: The skill is written for Chinese-language use, which may cause usability issues for users expecting another language.
+
+Mitigation: Confirm the language fit before deployment and provide translation or localization review where needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users can upload everyday life photos to identify objects, scenes, or activities and receive practical lifestyle suggestions for categories such as food, pets, plants, outfits, home, and travel. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: User-uploaded photos may contain sensitive personal information. <br>
-Mitigation: Avoid uploading sensitive photos unless the user is comfortable sharing them with the agent environment. <br>
-Risk: Image recognition and lifestyle suggestions may be incomplete or incorrect. <br>
-Mitigation: Treat outputs as practical guidance and review important decisions before acting on them. <br>
+**Output Format:** [Natural language text in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xxxx536/lifeimagerecognitionskill) <br>
-- [Publisher profile](https://clawhub.ai/user/xxxx536) <br>
+**Other Properties Related to Output:** [Requires a user-provided image; evidence reports no code execution, persistence, or hidden access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Text response with image recognition results and practical suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes a user-provided image and returns scene classification plus practical advice.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

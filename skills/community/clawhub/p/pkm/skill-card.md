@@ -1,42 +1,57 @@
-## Description: <br>
-Help users build a personal knowledge base by organizing whatever they send into structured notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users build a personal knowledge base by organizing whatever they send into structured notes.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to capture links, ideas, quotes, questions, and other notes into a local Markdown personal knowledge base, then progressively organize them with tags, links, and an inbox workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive material may be stored in the local knowledge base under ~/kb/. <br>
-Mitigation: Avoid sending secrets or private material unless local Markdown storage is acceptable for that content. <br>
-Risk: Fetching user-provided links may contact external sites. <br>
-Mitigation: Review links before fetching and avoid opening untrusted URLs when network contact is not intended. <br>
-Risk: Inbox processing can remove items after they are converted into notes. <br>
-Mitigation: Review generated notes before deleting inbox entries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/pkm) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+People who capture personal notes, links, questions, quotes, and ideas use this skill to turn loose input into a portable Markdown knowledge base.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown notes, concise guidance, and optional shell commands for local search or file operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local Markdown files under ~/kb/ and may fetch linked pages when the user provides URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores user-provided material in a persistent local Markdown folder.
+
+Mitigation: Confirm the target folder before first use and keep backups for important notes.
+
+Risk: Fetching links can expose the requested URL to external sites and may capture inaccurate page summaries.
+
+Mitigation: Ask for confirmation before fetching links and keep the original source URL with each saved summary.
+
+Risk: Processed inbox items may be removed after conversion into notes.
+
+Mitigation: Review converted notes before deleting inbox entries.
+
+## Reference(s):
+
+- [Personal Knowledge Base on ClawHub](https://clawhub.ai/ivangdavila/skills/pkm)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes and concise guidance, with filenames, links, tags, and occasional shell commands when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown files under ~/kb/ when the agent has filesystem access and user approval.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

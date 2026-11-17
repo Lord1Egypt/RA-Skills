@@ -1,7 +1,7 @@
 ---
 name: "smyx-plant-night-respiration-rate-analysis"
 description: "In a plant factory, a fixed thermal imaging camera continuously captures thermal images of the plant canopy leaves at night (no-light period), analyzes leaf temperature trends (respiration releases heat, causing leaf temperature to be slightly higher than air temperature), and combined with optional ambient CO₂ sensor data (respiration releases CO₂ raising concentration), an AI model estimates the relative respiration. | 通过植物工厂内的固定热成像摄像头，在夜间（无光照时段）连续采集植物冠层叶片的热图像，分析叶片温度变化趋势（呼吸作用释放热量导致叶片温度略高于气温），结合可选的环境CO₂传感器数据（呼吸作用释放CO₂浓度升高），利用AI模型估算整株或群体的呼吸强度相对值（0-100%）。"
-version: "1.0.3"
+version: "1.0.22"
 license: "MIT-0"
 ---
 

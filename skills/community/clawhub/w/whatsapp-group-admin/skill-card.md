@@ -1,38 +1,50 @@
-## Description: <br>
-Group administration utilities - info, stats, invite link parsing, and creation templates <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Group administration utilities - info, stats, invite link parsing, and creation templates
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect cached WhatsApp group metadata, list groups with member counts, parse invite links, and create JSON templates for group setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect local OpenClaw WhatsApp state and expose cached group IDs, names, and member counts in the conversation. <br>
-Mitigation: Install only when that local state access is acceptable; prefer parse-link or create-template when local state is not needed, and run list or info only when you explicitly want cached group metadata displayed. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect WhatsApp group metadata, list locally cached groups with inferred member counts, parse invite links, and generate group creation templates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MarcosRippel/whatsapp-group-admin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output and markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can read local OpenClaw WhatsApp state when listing groups or showing group information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The list and info commands can reveal private WhatsApp group identifiers, group names, and inferred member counts from local session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a WhatsApp account and OpenClaw state directory that the operator is authorized to inspect, and review command output before sharing it.
+
+## Reference(s):
+
+- [WhatsApp Group Admin ClawHub page](https://clawhub.ai/marcosrippel/skills/whatsapp-group-admin)
+- [Publisher profile](https://clawhub.ai/user/marcosrippel)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON emitted by Node.js CLI commands, with command guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads WhatsApp session metadata from the OpenClaw state directory when listing or inspecting groups.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

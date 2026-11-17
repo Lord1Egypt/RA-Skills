@@ -1,47 +1,62 @@
-## Description: <br>
-This skill helps agents batch-process images with rotation, resizing, translation, skeletonization, and image listing workflows built around imutils-style CLI commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing commands and guidance for batch image rotation, resizing, translation, skeletonization, and image listing using imutils-based tooling.
 
-## Publisher: <br>
-[JuMeng1997](https://clawhub.ai/user/JuMeng1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jumeng1997](https://clawhub.ai/user/jumeng1997)
 
-## Use Case: <br>
-Developers, creators, and automation agents can use this skill to prepare batches of product, social media, photography, or dataset images by issuing repeatable image-processing commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted filenames or option values may be interpreted as unintended shell commands by the JavaScript wrapper scripts. <br>
-Mitigation: Run the skill only on trusted folders and filenames, avoid untrusted parameters, and prefer a patched wrapper that uses spawn or execFile with argument arrays. <br>
-Risk: The skill depends on an external cli-anything-imutils installation to process local image files. <br>
-Mitigation: Verify the installation source and behavior of cli-anything-imutils before installing or running the skill. <br>
-Risk: Batch image operations may overwrite files or remove temporary files if output paths are chosen carelessly. <br>
-Mitigation: Review output directories and batch scripts before execution, and keep originals in a separate trusted folder. <br>
+## Use Case:
 
+Developers, creators, and operations teams can use this skill to prepare batches of images for ecommerce, social media, photography workflows, and dataset augmentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JuMeng1997/imutils-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/JuMeng1997) <br>
-- [PyImageSearch imutils](https://github.com/PyImageSearch/imutils) <br>
-- [imutils README](https://github.com/PyImageSearch/imutils#readme) <br>
-- [OpenCV documentation](https://docs.opencv.org/) <br>
-- [NumPy documentation](https://numpy.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or modifies local image files through external CLI execution; output paths and batch folders should be reviewed before running.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, README changelog, package.json) <br>
+Risk: Executable wrappers build shell commands from unvalidated user input, creating arbitrary-command-execution risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Harden wrappers to avoid shell execution, validate numeric options, restrict input and output paths, and use disposable workspaces for any interim evaluation.
+
+Risk: Image outputs may overwrite or modify local files if paths are chosen carelessly.
+
+Mitigation: Use explicit output directories, keep backups of source images, and define non-overwrite behavior before batch processing.
+
+Risk: Untrusted filenames or parameters can increase execution and file-system risk.
+
+Mitigation: Process only trusted local files until validation and path restrictions are implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jumeng1997/skills/imutils-skill)
+- [Publisher profile](https://clawhub.ai/user/jumeng1997)
+- [PyImageSearch imutils](https://github.com/PyImageSearch/imutils)
+- [imutils README](https://github.com/PyImageSearch/imutils#readme)
+- [OpenCV documentation](https://docs.opencv.org/)
+- [PyImageSearch](https://www.pyimagesearch.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with command examples and script-backed command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-processing guidance and command invocations for local image inputs and outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

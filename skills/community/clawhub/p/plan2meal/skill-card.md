@@ -1,43 +1,59 @@
-## Description: <br>
-Manage recipes and grocery lists in Plan2Meal via chat, including adding recipe URLs, listing, searching, showing, and deleting recipes, and creating or managing grocery lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage recipes and grocery lists in Plan2Meal via chat by adding recipe URLs, listing, searching, showing, and deleting recipes, and creating and managing grocery lists.
 
-## Publisher: <br>
-[okikeSolutions](https://clawhub.ai/user/okikeSolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[okikesolutions](https://clawhub.ai/user/okikesolutions)
 
-## Use Case: <br>
-Plan2Meal users and agents use this skill to authenticate and manage stored recipes and grocery lists through Plan2Meal commands. It is intended for explicit Plan2Meal recipe or grocery-list actions, not general cooking advice or nutrition coaching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Recipe, grocery-list, and authentication traffic is routed to the configured Convex backend, and users can opt in to a shared default backend. <br>
-Mitigation: Prefer a private CONVEX_URL for private use, review OAuth scopes and callback URLs, and enable ALLOW_DEFAULT_BACKEND only when shared-backend routing is acceptable. <br>
-Risk: OAuth credentials and access tokens are required for Plan2Meal commands. <br>
-Mitigation: Store provider credentials in environment variables, protect secrets and tokens, and avoid exposing them in agent responses. <br>
+## Use Case:
 
+External Plan2Meal users use this skill to manage their stored recipes and grocery lists through chat commands. Developers or operators configure the Plan2Meal backend and OAuth credentials before enabling authenticated recipe and grocery actions.
 
-## Reference(s): <br>
-- [Plan2Meal Skill Definition](SKILL.md) <br>
-- [Plan2Meal README](README.md) <br>
-- [Plan2Meal Output Templates](references/output-templates.md) <br>
-- [ClawHub Plan2meal Page](https://clawhub.ai/okikeSolutions/plan2meal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text responses with command examples, IDs, links, counts, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OAuth login links, recipe or grocery-list IDs, backend or configuration errors, and data-routing disclosures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: evidence.release.version, package.json, and src/index.ts) <br>
+Risk: The skill routes authentication and recipe or grocery data to a configured Plan2Meal backend, with an optional shared backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted HTTPS CONVEX_URL, enable the shared backend only intentionally with ALLOW_DEFAULT_BACKEND=true, and disclose backend routing in relevant responses.
+
+Risk: OAuth login grants temporary access to provider profile tokens and Plan2Meal recipe or grocery data.
+
+Mitigation: Configure only needed OAuth providers, protect client secrets, avoid exposing tokens in output, and prefer scoped Plan2Meal tokens bound to authenticated sessions.
+
+Risk: Recipe URL ingestion can send user-provided URLs to backend extraction logic.
+
+Mitigation: Restrict accepted URL schemes and targets, reject invalid URLs, and review backend extraction behavior before deployment.
+
+## Reference(s):
+
+- [Plan2Meal Output Templates](references/output-templates.md)
+- [Plan2meal ClawHub Skill Page](https://clawhub.ai/okikesolutions/skills/plan2meal)
+- [okikesolutions Publisher Profile](https://clawhub.ai/user/okikesolutions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls]
+
+**Output Format:** [Markdown command responses with IDs, counts, links, errors, and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should avoid exposing secrets or tokens and should disclose backend routing when relevant.]
+
+## Skill Version(s):
+
+1.2.5 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

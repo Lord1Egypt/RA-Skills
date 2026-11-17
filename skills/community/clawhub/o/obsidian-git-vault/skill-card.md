@@ -1,46 +1,59 @@
-## Description: <br>
-在 Obsidian 库（Markdown + Git）内检索笔记、创建与管理 .md；用 Git 查看历史与提交变更，并管理远程与同步（fetch/pull/push）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and manages Markdown notes in an Obsidian vault, uses Git to inspect history and commit changes, and guides remote setup and fetch/pull/push synchronization.
 
-## Publisher: <br>
-[cfddd](https://clawhub.ai/user/cfddd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cfddd](https://clawhub.ai/user/cfddd)
 
-## Use Case: <br>
-Developers, knowledge workers, and agent operators use this skill to manage an Obsidian Markdown vault through safe file operations and Git-based history, remote setup, and synchronization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may edit or synchronize the wrong vault if the resolved path is not checked. <br>
-Mitigation: Verify the resolved vault path before file edits, Git initialization, commits, pulls, pushes, or scheduled sync setup. <br>
-Risk: Git commits or pushes may publish unintended notes or local changes. <br>
-Mitigation: Review Git status and diffs before staging, committing, or pushing, and confirm the intended file scope. <br>
-Risk: Remote authentication can expose excessive repository or account permissions. <br>
-Mitigation: Use narrow SSH deploy keys or minimal PAT scopes, and do not store tokens or private keys inside the vault. <br>
-Risk: Recurring cron sync can continue making networked Git operations after setup. <br>
-Mitigation: Enable cron only after explicit consent and only when the user understands how to inspect, pause, or disable the job. <br>
+## Use Case:
 
+Developers and note-taking users use this skill to let an agent work inside an Obsidian Markdown vault, create or update notes, review Git history, and coordinate local and remote vault synchronization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cfddd/obsidian-git-vault) <br>
-- [Git remote wizard](git-remote-wizard.md) <br>
-- [Vault sync SOP](vault-sync-sop.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify Markdown notes and propose Git commands for status, commits, pulls, pushes, remote setup, conflict handling, and scheduled sync setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Optional auto-sync can create a recurring agent task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the cron helper only after reviewing the scheduled message, interval, vault path, remote target, and disable procedure.
+
+Risk: The Git workflow can rewrite remote history after broad consent.
+
+Mitigation: Treat force-with-lease as a manual recovery action and confirm the exact branch and remote before allowing it.
+
+Risk: The skill can modify and synchronize personal notes in a selected vault.
+
+Mitigation: Confirm the vault path before file or Git operations and keep synchronization scoped to the intended Obsidian repository.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cfddd/skills/obsidian-git-vault)
+- [Git remote setup guide](git-remote-wizard.md)
+- [Vault sync SOP](vault-sync-sop.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute Git and filesystem operations within the selected vault when the user has confirmed the target path and operation.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

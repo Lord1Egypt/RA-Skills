@@ -1,42 +1,49 @@
-## Description: <br>
-头号红娘公众号内容创作工作流，用于生产婚恋行业公众号文章，包含热点抓取、标题生成、文章撰写和品牌软植入。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Chinese WeChat public-account articles for Touhao Hongniang relationship and matchmaking topics, including topic discovery, headline generation, article drafting, and brand insertion.
 
-## Publisher: <br>
-[hushaw06](https://clawhub.ai/user/hushaw06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hushaw06](https://clawhub.ai/user/hushaw06)
 
-## Use Case: <br>
-Content marketers and operators use this skill to draft Chinese-language marriage, matchmaking, and relationship-themed WeChat public account articles with topic selection, headline options, article copy, source notes, and a restrained promotional mention of 头号红娘. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may include inaccurate factual claims, stale statistics, or unverifiable source links. <br>
-Mitigation: Review each article for factual accuracy and verify cited data sources before publication. <br>
-Risk: Branded advertorial content may be mistaken for neutral editorial content. <br>
-Mitigation: Label promotional or sponsored content appropriately and keep the brand mention transparent. <br>
+## Use Case:
 
+External content marketers and operators use this skill to draft Chinese relationship-industry WeChat articles with topical hooks, title options, article structure, source notes, and a Touhao Hongniang promotional close.
 
-## Reference(s): <br>
-- [爆款标题示例库](references/headline-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/hushaw06/touhao-hongniang-media) <br>
-- [Publisher profile](https://clawhub.ai/user/hushaw06) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown article drafts with topic, headline, body, source notes, related links, and optional shell commands for search] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates branded advertorial content that should be fact-checked and labeled appropriately before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can add promotional Touhao Hongniang copy to relationship articles without a separate user approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated article before publishing and confirm that the brand recommendation, advertising disclosure, and factual service claims are appropriate for the request.
+
+## Reference(s):
+
+- [Headline Examples](references/headline-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown article drafts with topic options, headline options, source links, and occasional inline search commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated articles should be reviewed before publication for factual claims, ad disclosure, and whether the brand recommendation is appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

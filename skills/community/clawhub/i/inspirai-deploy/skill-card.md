@@ -1,42 +1,52 @@
-## Description: <br>
-InspirAI Deploy helps agents detect a project's deployment strategy, run pre-deployment checks, execute releases, and monitor deployments across Kubernetes/Helm, Docker Compose, Vercel, and Fly.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deployment assistant that detects project deployment strategies and helps generate configuration, run prechecks, deploy, and monitor K8s/Helm, Docker Compose, Vercel, and Fly.io releases.
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and release engineers use this skill to initialize deployment configuration, run deployment readiness checks, execute deployments, and monitor rollout status across common container and platform targets.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Repository-controlled deployment commands may run with the user's deployment privileges.
+
+Mitigation: Use the skill only on repositories whose deployment configuration is trusted, and review each generated or selected command before execution.
+
+Risk: Skip or force options can bypass normal deployment checks.
+
+Mitigation: Require explicit human review before using skip or force options, especially for production deployments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and release engineers use this skill to initialize deployment configuration, check deployment readiness, run deployments, and monitor rollout health for common container and platform deployment targets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect live or production-like deployment environments. <br>
-Mitigation: Require explicit user confirmation before every deploy and review generated commands before execution. <br>
-Risk: Bypass flags such as skip-check or force can weaken deployment safeguards. <br>
-Mitigation: Restrict bypass flags to disposable development environments or cases where checks are technically blocked. <br>
-Risk: Use with real deployment credentials can expose or misuse sensitive access. <br>
-Mitigation: Review before installation in credentialed environments and avoid writing secrets into generated configuration. <br>
+**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexxxiong/inspirai-deploy) <br>
+**Other Properties Related to Output:** [May produce deployment configuration such as .deploy.yaml and command recommendations for the current repository.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell snippets and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose deployment commands and generate or update deployment configuration such as .deploy.yaml.] <br>
+1.0.0 (source: release evidence and frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

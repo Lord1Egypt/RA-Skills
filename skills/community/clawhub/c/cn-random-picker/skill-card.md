@@ -1,39 +1,53 @@
-## Description: <br>
-Selects random entries from comma- or newline-delimited lists for drawings, lotteries, and simple picking tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Random Picker helps an agent randomly select one or more entries from comma- or newline-separated input using a small bundled Python script.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Agents can use this skill to provide a Python-based random selection utility for developers, maintainers, or end users who need to draw one or more items from simple lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the release suspicious and notes that related maintainer workflows may use sandbox bypasses or expose diffs to fallback reviewers. <br>
-Mitigation: Install only if the publisher is trusted, review commands before allowing writes, and follow the server guidance to avoid yolo autoreview behavior when applicable. <br>
+## Use Case:
 
+Users can ask an agent to perform a simple lottery, drawing, or random-pick task from a supplied list. The agent can run the bundled Python script and return the selected item or items as JSON-backed text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-random-picker) <br>
-- [AISoBrand](https://aisobrand.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; the bundled script returns JSON when executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python standard-library random sampling over comma- or newline-delimited input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata) <br>
+Risk: The documentation describes a --count flag, weighted selection, and cryptographic randomness that the script does not implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the positional count argument supported by scripts/random_picker.py, treat selections as non-cryptographic, and test behavior before using it for prize, compliance-sensitive, or fairness-sensitive decisions.
+
+Risk: The documentation is Chinese-only and includes unrelated promotional AISoBrand links.
+
+Mitigation: Review localized instructions before deployment and treat external AISoBrand links as optional promotional material, not required setup or runtime dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-random-picker)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output from the picker script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script uses the Python standard library and returns a JSON object containing picked values and whether all values were returned.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

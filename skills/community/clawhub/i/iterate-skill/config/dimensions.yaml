@@ -1,0 +1,84 @@
+# 审查维度定义 / Review Dimension Definitions
+# 可被 iterate.config.yaml 中的 dimensions 列表引用；数量可按需增减。
+
+correctness:
+  name: "正确性"
+  name_en: "Correctness"
+  priority: critical
+  focus: |
+    Crash risks: force-unwrap, out-of-bounds, nil/None dereference, division by zero.
+    Logic errors: inverted conditions, off-by-one, wrong boolean operators, stale state.
+    Concurrency: race conditions, deadlocks, unprotected shared mutable state.
+    Type mismatches, swallowed errors, silent except blocks.
+
+security:
+  name: "安全"
+  name_en: "Security"
+  priority: critical
+  focus: |
+    Command/SQL injection, path traversal, hardcoded secrets/tokens/API keys.
+    Missing input validation, unsafe deserialization, privilege escalation.
+    Sensitive data in logs, insecure file permissions, SSRF.
+
+performance:
+  name: "性能"
+  name_en: "Performance"
+  priority: high
+  focus: |
+    N+1 queries, unbounded caches/queues, retain cycles, main-thread blocking.
+    O(n²) or worse algorithms, redundant computation, large allocations in loops.
+    Startup bottlenecks, synchronous I/O in async paths.
+
+architecture:
+  name: "架构"
+  name_en: "Architecture"
+  priority: high
+  focus: |
+    Module boundary violations, circular dependencies, God objects (>500 lines).
+    Missing abstractions, inconsistent error codes, tight coupling.
+    Protocol versioning, public API surface bloat.
+
+style-tests:
+  name: "风格与测试"
+  name_en: "Style & Tests"
+  priority: medium
+  focus: |
+    Functions >80 lines, cyclomatic complexity >15, nesting >3 levels.
+    Magic numbers/strings, dead code, missing tests, undocumented public APIs.
+    Linter violations, inconsistent naming, duplicated logic.
+
+tech-debt:
+  name: "技术债"
+  name_en: "Tech Debt"
+  priority: medium
+  focus: |
+    TODO/FIXME/HACK markers, deprecated APIs, workaround code.
+    Inconsistent patterns across modules, missing observability/logging.
+    Hardcoded configuration that should be externalized.
+
+spec-compliance:
+  name: "规范一致性"
+  name_en: "Spec Compliance"
+  priority: high
+  focus: |
+    Cross-reference specs/ directory with actual code.
+    Unimplemented features, spec deviations, missing handlers.
+    Incorrect data models compared to spec.
+
+frontend-backend:
+  name: "前后端一致性"
+  name_en: "Frontend-Backend Consistency"
+  priority: high
+  focus: |
+    API/RPC definitions implemented on both client and server.
+    Data field parity, error propagation, event stream coverage.
+    Serialization/deserialization mismatches.
+
+ui-ux:
+  name: "UI/UX"
+  name_en: "UI/UX"
+  priority: medium
+  focus: |
+    Loading/empty/error/success states, navigation completeness.
+    Responsive breakpoints, accessibility (a11y), keyboard navigation.
+    Consistency in copy, spacing, color, motion.

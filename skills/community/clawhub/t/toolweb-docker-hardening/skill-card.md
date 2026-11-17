@@ -1,40 +1,53 @@
-## Description: <br>
-Professional Docker security configuration generator aligned with CIS Benchmark v1.8.0 standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Docker security configuration generator aligned with CIS Benchmark v1.8.0 standards.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-DevOps engineers, security teams, and infrastructure architects use this skill to generate CIS-aligned Docker deployment files, security policies, compliance scores, and recommendations for Docker environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may send linkable session or user identifiers to the service. <br>
-Mitigation: Use pseudonymous or short-lived identifiers where possible and review publisher documentation for retention, deletion, and audit-log access. <br>
+## Use Case:
 
+Developers, DevOps engineers, security teams, and infrastructure architects use this skill to request Docker hardening options and generate hardened Dockerfiles, Docker Compose manifests, security policy documents, compliance scores, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-docker-hardening) <br>
-- [Docker hardening API route](https://api.mkkpro.com/hardening/docker) <br>
-- [Docker hardening API docs](https://api.mkkpro.com:8136/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, code, configuration, guidance] <br>
-**Output Format:** [JSON responses containing generated Dockerfile content, docker-compose YAML, security policy JSON, compliance scores, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires hardening options, sessionId, and timestamp; userId is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and OpenAPI info.version) <br>
+Risk: Requests are sent to an external provider API and may include Docker hardening choices plus session metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when comfortable sharing those request details with the provider, and avoid sending secrets, private hostnames, internal topology, or account identifiers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-docker-hardening)
+- [OpenAPI Specification](artifact/openapi.json)
+- [Docker Hardening API Docs](https://api.mkkpro.com:8136/docs)
+- [Docker Hardening API Route](https://api.mkkpro.com/hardening/docker)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JSON responses containing generated file contents, applied policy lists, compliance scores, timestamps, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API-backed output may include Dockerfile, docker-compose, and security policy content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

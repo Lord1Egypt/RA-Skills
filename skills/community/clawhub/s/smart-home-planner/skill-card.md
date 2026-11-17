@@ -1,48 +1,64 @@
-## Description: <br>
-Guides users through smart-home planning, device selection, automation design, platform comparison, and configuration for Home Assistant, Mijia/Xiaomi, and Apple HomeKit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan smart-home systems, compare Home Assistant, Mijia/Xiaomi, and Apple HomeKit, and produce device, automation, purchase, and configuration guidance.
 
-## Publisher: <br>
-[soullhcn](https://clawhub.ai/user/soullhcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soullhcn](https://clawhub.ai/user/soullhcn)
 
-## Use Case: <br>
-Homeowners, smart-home hobbyists, and agents assisting them use this skill to plan device layouts, compare Home Assistant, Mijia/Xiaomi, and HomeKit, design automation scenes, and produce setup guidance or configuration snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence real smart-home devices, including sensitive automations for locks, cameras, alarms, and occupancy behavior. <br>
-Mitigation: Review every generated automation before enabling it, test with noncritical devices first, require explicit confirmation for sensitive devices, and keep manual override and fail-safe behavior visible. <br>
-Risk: Setup flows may involve smart-home credentials, long-lived tokens, and Homebridge access details. <br>
-Mitigation: Avoid storing long-lived tokens in plaintext, rotate default credentials, prefer HTTPS or local-only access, and grant only the minimum access needed. <br>
-Risk: Install scripts and background automation runners can modify the local environment and run continuously. <br>
-Mitigation: Inspect scripts before running them, avoid remote install commands with elevated privileges unless independently verified, and run automation services with limited permissions and logs. <br>
+## Use Case:
 
+External users and smart-home maintainers use this skill to plan device layouts, compare platforms, design automation scenes, generate purchase phases, and receive setup guidance for Home Assistant, Mijia/Xiaomi, and Apple HomeKit.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soullhcn/skills/smart-home-planner) <br>
-- [Homebridge](https://homebridge.io) <br>
-- [homebridge-mcp-server](https://github.com/mp-consulting/homebridge-mcp-server) <br>
-- [mijia-api](https://github.com/Do1e/mijia-api) <br>
-- [Local Automation Guide](knowledge/automation-guide.md) <br>
-- [Platform Knowledge Base](knowledge/platforms.md) <br>
-- [Plan Template](templates/plan-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, YAML snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include estimated CNY prices, compatibility warnings, and user-confirmed automation plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Smart-home credentials and tokens may be stored or used by setup and automation flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege accounts, protect or delete token/profile files, avoid default admin credentials, and avoid LAN HTTP where possible.
+
+Risk: Local automation can control locks, alarms, cameras, climate, plugs, and other safety-sensitive devices.
+
+Mitigation: Require explicit manual confirmation, keep manual override paths, and use fail-safe defaults before enabling or running sensitive automations.
+
+Risk: Setup scripts can install dependencies and enable local automation behavior on an always-on host.
+
+Mitigation: Review and pin dependencies before running setup scripts, run on an isolated host, and disable Homebridge MCP admin tools unless they are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soullhcn/skills/smart-home-planner)
+- [Mijia API Guide](artifact/knowledge/mijia-api-guide.md)
+- [HomeKit Guide](artifact/knowledge/homekit-guide.md)
+- [Automation Guide](artifact/knowledge/automation-guide.md)
+- [Platform Reference](artifact/knowledge/platforms.md)
+- [mijia-api](https://github.com/Do1e/mijia-api)
+- [homebridge-mcp-server](https://github.com/mp-consulting/homebridge-mcp-server)
+- [Homebridge](https://homebridge.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with tables, YAML/configuration snippets, Python examples, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write profile or automation configuration files under user configuration paths when the user opts in; optional local automation setup can install dependencies and run a polling engine.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

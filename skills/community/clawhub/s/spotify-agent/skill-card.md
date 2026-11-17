@@ -1,41 +1,55 @@
-## Description: <br>
-Controls Spotify playback, search, playlist management, music discovery, and listening-history analysis through the Spotify Web API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Spotify playback, search music, manage playlists, generate discovery playlists, and analyze listening habits via the Spotify Web API.
 
-## Publisher: <br>
-[cdmichaelb](https://clawhub.ai/user/cdmichaelb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdmichaelb](https://clawhub.ai/user/cdmichaelb)
 
-## Use Case: <br>
-External users and developers use this skill to operate Spotify from an agent: control playback, search music, manage playlists, create discovery playlists, and inspect profile and listening data after OAuth authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad Spotify OAuth permissions, including playlist and library changes plus profile and follow-related access. <br>
-Mitigation: Authorize it only when those permissions match the intended use, trim unused OAuth scopes before authorization when possible, and revoke the Spotify app if it is no longer needed. <br>
-Risk: Reusable Spotify tokens and app credentials are stored locally in config.json. <br>
-Mitigation: Keep config.json private, do not commit or share it, and protect the local file wherever the skill is installed. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent control Spotify playback, search music, manage playlists, create discovery playlists, and inspect listening data through Spotify's Web API.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cdmichaelb/spotify-agent) <br>
-- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON responses from Spotify scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Spotify OAuth authorization and may return Spotify API JSON responses or error objects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill requests broad Spotify account access and can modify playback, playlists, saved tracks, and followed artists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review agent requests before execution and limit use to Spotify accounts where these account changes are acceptable.
+
+Risk: Reusable Spotify tokens and app credentials are stored in local config.json without strong protection.
+
+Mitigation: Keep config.json private, exclude it from version control, restrict local file permissions, and use a dedicated Spotify app credential.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cdmichaelb/skills/spotify-agent)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+- [Spotify Web API](https://api.spotify.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May change Spotify account state, including playback, saved tracks, playlists, queue, and followed artists.]
+
+## Skill Version(s):
+
+1.1.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

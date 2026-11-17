@@ -1,46 +1,67 @@
-## Description: <br>
-Relationship intelligence for OpenClaw that detects outreach signals, scores and ranks opportunities, and prepares multilingual tone-aware drafts while requiring final user approval before anything is sent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relationship intelligence for OpenClaw that detects outreach signals, scores and ranks them, and prepares multilingual tone-aware drafts while requiring final user approval before anything is sent.
 
-## Publisher: <br>
-[Abderrahman-Jalled](https://clawhub.ai/user/Abderrahman-Jalled) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abderrahman-jalled](https://clawhub.ai/user/abderrahman-jalled)
 
-## Use Case: <br>
-External users use this skill to identify timely personal and professional outreach opportunities, rank them by evidence and appropriateness, and draft messages in an appropriate channel, tone, and language. It is intended for relationship maintenance, not sales pipelines, lead generation, or CRM data entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill normalizes using private communication history and inferred cultural or language attributes without clear consent or override controls. <br>
-Mitigation: Use it only with contacts and data sources intentionally provided by the user, and verify inferred language or cultural cues before drafting. <br>
-Risk: Outreach drafts may include sensitive relationship, health, financial, legal, or life-event context if the user provides that information. <br>
-Mitigation: Keep drafts limited to evidence the user has supplied, avoid sensitive details unless explicitly instructed, and require user review before any message is sent. <br>
-Risk: The skill may over-personalize messages by mixing work and personal context. <br>
-Mitigation: Keep work and personal streams separate unless the user explicitly asks to combine them. <br>
+## Use Case:
 
+External users use this skill to find timely relationship outreach opportunities across user-provided context, rank them by evidence and appropriateness, and prepare work or personal message drafts in an appropriate tone and language. It is designed for relationship maintenance, not sales pipelines, lead generation, or CRM data entry.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/Abderrahman-Jalled/improve-relationships) <br>
-- [Digest template](artifact/templates/digest.md) <br>
-- [Personal outreach templates](artifact/templates/outreach_personal.md) <br>
-- [Professional outreach templates](artifact/templates/outreach_professional.md) <br>
-- [Ritual and cultural occasion templates](artifact/templates/rituals.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Text] <br>
-**Output Format:** [Markdown digests and draft outreach messages with evidence, channel, language, tone, score, and approval action fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output; the skill states that messages require final user approval and are not sent automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Risk: The skill may analyze sensitive relationship context such as calendars, messages, contact notes, or shared social pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with context the user intentionally provides or connects, and avoid retaining data beyond the session unless explicitly configured.
+
+Risk: Drafts may contain incorrect inferred language, relationship context, personal details, or cultural assumptions.
+
+Mitigation: Require user review of every draft, flag low-confidence evidence, and ask before drafting when language, relationship stream, or cultural background is unclear.
+
+Risk: Work-only and personal-only context could be mixed in a way that over-personalizes outreach or exposes private details.
+
+Mitigation: Keep work and personal streams separate, ask when the stream is unclear, and use only details appropriate to the selected channel.
+
+Risk: Sensitive situations such as layoffs, health issues, breakups, deaths, financial matters, or legal matters can make outreach inappropriate.
+
+Mitigation: Ask before drafting for sensitive situations and omit sensitive details unless the user explicitly instructs otherwise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abderrahman-jalled/skills/improve-relationships)
+- [Metadata homepage](https://github.com/Abderrahman-Jalled/improve-relationships)
+- [Skill definition](artifact/SKILL.md)
+- [Digest template](artifact/templates/digest.md)
+- [Professional outreach template](artifact/templates/outreach_professional.md)
+- [Personal outreach template](artifact/templates/outreach_personal.md)
+- [Ritual and cultural occasion template](artifact/templates/rituals.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown relationship digests, ranked opportunity summaries, watching tables, and draft outreach messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output; messages require user review and approval before sending.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence; artifact metadata lists 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

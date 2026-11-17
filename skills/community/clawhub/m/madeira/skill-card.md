@@ -1,44 +1,54 @@
-## Description: <br>
-Navigate Madeira as visitor, digital nomad, or resident with neighborhoods, levadas, costs, visas, and local insights for the Atlantic island. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Madeira as visitor, digital nomad, or resident with neighborhoods, levadas, costs, visas, and local insights for the Atlantic island.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to get practical Madeira travel, relocation, remote-work, cost, safety, transport, food, nature, and visa guidance tailored to visitor, digital nomad, or resident contexts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Visa, tax, healthcare, trail-condition, and cost guidance can become outdated or vary by individual circumstances. <br>
-Mitigation: Verify important decisions with official, current local sources and qualified professionals before acting. <br>
-Risk: Outdoor activity guidance may not reflect current weather, closures, ocean conditions, or trail hazards. <br>
-Mitigation: Check local forecasts, webcams, posted safety notices, and official route status before hiking, swimming, or driving mountain roads. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Madeira release page](https://clawhub.ai/ivangdavila/madeira) <br>
-- [Madeira skill homepage](https://clawic.com/skills/madeira) <br>
-- [Madeira skill source guide](artifact/SKILL.md) <br>
-- [Madeira safety and healthcare guide](artifact/safety.md) <br>
-- [Madeira visa guidance for non-EU citizens](artifact/visas-non-eu.md) <br>
-- [Madeira taxes and residency guide](artifact/visas-tax.md) <br>
+## Use Case:
 
+Travelers, remote workers, prospective residents, and retirees use this skill to plan Madeira visits or longer stays, including where to stay, how to get around, costs, food, safety, climate, visas, and local practicalities.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text travel guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no executable code, tool calls, credential access, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Visa, registration, healthcare, and tax guidance may become outdated or may not fit a user's personal situation.
+
+Mitigation: Use the skill for orientation only and confirm current requirements with official Portuguese sources or qualified professionals before making relocation, work, healthcare, or filing decisions.
+
+Risk: Travel, hiking, ocean, weather, driving, and cost recommendations may vary by season, local conditions, and user ability.
+
+Mitigation: Check current local conditions, official alerts, trail status, transport schedules, and provider prices before relying on the guidance for bookings or activities.
+
+## Reference(s):
+
+- [Madeira skill page](https://clawhub.ai/ivangdavila/skills/madeira)
+- [Madeira skill homepage](https://clawic.com/skills/madeira)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with lists, tables, and practical recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only reference guidance; no executable tools, API calls, MCP servers, or credential requirements were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

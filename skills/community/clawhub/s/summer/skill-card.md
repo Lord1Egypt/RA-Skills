@@ -1,40 +1,55 @@
-## Description: <br>
-Displays a live time dashboard with a summer solstice countdown, Beijing sunrise and sunset times, and current date and time information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display a time dashboard with a live countdown to the 2026 summer solstice, Beijing sunrise and sunset times, and current time information.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to create a live seasonal time widget that counts down to the 2026 summer solstice and shows Beijing sunrise, sunset, and current time details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated widget contacts third-party public data APIs from the browser. <br>
-Mitigation: Use it only in environments where those disclosed external requests are acceptable, or review and replace the endpoints before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to generate a live HTML time widget for summer solstice countdowns and Beijing-specific sunrise, sunset, solar noon, day length, date, and clock displays.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/summer) <br>
-- [U.S. Naval Observatory Seasons API](https://aa.usno.navy.mil/api/seasons?year=2026) <br>
-- [Sunrise-Sunset API for Beijing](https://api.sunrise-sunset.org/json?lat=39.9075&lng=116.3972&formatted=0&date=today) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Guidance] <br>
-**Output Format:** [HTML file with CSS and JavaScript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated widget fetches disclosed public solstice and sunrise/sunset data at runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Generated widgets contact public time and sunrise APIs when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review deployment policy for browser access to those public APIs before using or sharing the widget.
+
+Risk: The sunrise panel is intentionally Beijing-specific and may be mistaken for the user's local sunrise and sunset data.
+
+Mitigation: Label the panel as Beijing, China and adjust coordinates only when a different location is intended.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/goog/skills/summer)
+- [USNO seasons API](https://aa.usno.navy.mil/api/seasons?year=2026)
+- [Sunrise-sunset API for Beijing](https://api.sunrise-sunset.org/json?lat=39.9075&lng=116.3972&formatted=0&date=today)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML may fetch public solstice and sunrise/sunset APIs at runtime.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

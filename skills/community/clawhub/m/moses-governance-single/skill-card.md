@@ -1,47 +1,66 @@
-## Description: <br>
-MOSES Governance Single provides single-agent constitutional controls for behavioral modes, posture controls, role awareness, and a SHA-256 chained local audit trail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MOSES Governance Single provides single-agent governance controls for agent mode, posture, role, and audit logging.
 
-## Publisher: <br>
-[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunrisesillneversee](https://clawhub.ai/user/sunrisesillneversee)
 
-## Use Case: <br>
-Developers and operators use this skill to add a local governance layer that tracks an agent's active mode, posture, and role while recording governed actions in a tamper-evident audit ledger. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes persistent local governance and audit state that can contain operational details. <br>
-Mitigation: Treat ~/.openclaw/audits/moses and ~/.openclaw/governance as sensitive local data and avoid logging secrets or private details. <br>
-Risk: MOSES_OPERATOR_SECRET is an optional local HMAC signing secret. <br>
-Mitigation: Set MOSES_OPERATOR_SECRET only in a trusted shell and never paste it into chat or expose it to agents. <br>
-Risk: Unrestricted or offense modes can reduce behavioral constraints while retaining audit logging. <br>
-Mitigation: Use unrestricted and offense modes deliberately, and review the active mode, posture, and role before consequential actions. <br>
+## Use Case:
 
+Developers and operators use this skill to apply advisory governance modes, transaction posture controls, role awareness, and tamper-evident audit logging to a single OpenClaw agent.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sunrisesillneversee/moses-governance-single) <br>
-- [MOSES DOI record](https://zenodo.org/records/18792459) <br>
-- [MOSES website](https://mos2es.io) <br>
-- [Governance modes reference](references/modes.md) <br>
-- [Posture controls reference](references/postures.md) <br>
-- [Role hierarchy reference](references/roles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON or JSONL state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local governance state and audit ledger files under ~/.openclaw when its helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can persist governance settings and audit records across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or clear ~/.openclaw/governance and ~/.openclaw/audits/moses when switching projects, trust contexts, or operators.
+
+Risk: The governance controls are advisory and should not be treated as a hard safety boundary.
+
+Mitigation: Use human approval for sensitive actions and avoid unrestricted or offense posture for high-risk work.
+
+Risk: Audit entries may capture action details that should not include secrets or hidden reasoning.
+
+Mitigation: Keep secrets and private reasoning out of audit detail fields and review recent ledger entries before sharing logs.
+
+Risk: MOSES_OPERATOR_SECRET is an optional signing key for audit attestation.
+
+Mitigation: Set it only in trusted local environments and never paste it into chat, prompts, logs, or shared artifacts.
+
+## Reference(s):
+
+- [MOSES Governance Modes Reference](references/modes.md)
+- [MOSES Posture Controls Reference](references/postures.md)
+- [MOSES Role Hierarchy Reference](references/roles.md)
+- [Zenodo record](https://zenodo.org/records/18792459)
+- [MOSES project site](https://mos2es.io)
+- [ClawHub skill page](https://clawhub.ai/sunrisesillneversee/skills/moses-governance-single)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-backed state and audit files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist governance state and audit ledger files under ~/.openclaw when its commands are run.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence; artifact metadata openclaw version 0.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

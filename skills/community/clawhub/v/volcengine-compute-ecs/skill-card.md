@@ -1,39 +1,52 @@
-## Description: <br>
-Manage Volcengine ECS instances and related resources for instance inventory, lifecycle operations, troubleshooting, and automation templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Volcengine ECS instances and related resources for inventory, lifecycle operations, troubleshooting, and automation templates.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to inspect Volcengine ECS inventory and prepare or execute scoped lifecycle operations such as start, stop, and reboot with explicit account, region, and instance targeting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cloud lifecycle operations can affect running Volcengine ECS instances if the wrong account, region, or targets are used. <br>
-Mitigation: Confirm account and region, query inventory first, and require exact instance IDs before start, stop, reboot, or batch operations. <br>
-Risk: Over-privileged cloud credentials could allow broader infrastructure changes than intended. <br>
-Mitigation: Use least-privileged Volcengine credentials scoped to the needed ECS actions and regions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Source Notes](references/sources.md) <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inspect Volcengine ECS inventory, prepare scoped lifecycle actions, troubleshoot instances, and draft automation-oriented operational guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with command examples and action summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include account, region, instance IDs, requested action, and pre/post status when lifecycle operations are performed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cloud operations could affect unintended Volcengine ECS resources if account scope, region, filters, or target instance IDs are ambiguous.
+
+Mitigation: Confirm account scope, region, filters, and explicit target IDs before lifecycle actions; query inventory before mutating operations.
+
+Risk: Lifecycle actions such as start, stop, or reboot could disrupt workloads when run with over-privileged credentials or without operator confirmation.
+
+Mitigation: Use least-privilege cloud credentials, require explicit confirmation for lifecycle actions, and record pre- and post-action status.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with operational summaries and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes scoped, auditable ECS operations with pre- and post-action status summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

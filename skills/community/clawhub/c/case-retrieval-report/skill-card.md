@@ -1,46 +1,60 @@
-## Description: <br>
-生成面向中国裁判文书类案检索的标准化报告，使用得理案例检索 API 执行检索、筛选、比对分析和裁判规则提炼。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized Chinese similar-case retrieval reports by guiding an agent through case fact collection, Deli Legal CLI search, case screening, comparison, and rule analysis.
 
-## Publisher: <br>
-[coolalam](https://clawhub.ai/user/coolalam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolalam](https://clawhub.ai/user/coolalam)
 
-## Use Case: <br>
-Legal professionals and legal operations teams use this skill to prepare Chinese similar-case retrieval reports for court submission or internal litigation strategy. It collects matter facts, searches Delilegal case data, compares similar cases, and summarizes judicial views in a structured report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive legal facts and API credentials to Delilegal. <br>
-Mitigation: Use only information the user is permitted to share, redact party details where possible, and avoid entering production credentials until security review is complete. <br>
-Risk: The artifact disables HTTPS certificate and hostname verification for the API request path. <br>
-Mitigation: Do not use a real API key or confidential matter data until certificate verification is fixed and the connection can be trusted. <br>
-Risk: Similar-case retrieval can produce incomplete or misleading legal conclusions if results are not checked against authoritative sources. <br>
-Mitigation: Cross-check key cases through official sources and present both favorable and unfavorable cases before relying on the report. <br>
+## Use Case:
 
+External legal practitioners, court staff, and in-house legal teams use this skill to collect case facts, retrieve similar Chinese judgments, compare outcomes, and draft a standardized similar-case report for court submission or internal strategy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolalam/case-retrieval-report) <br>
-- [Delilegal case retrieval API](https://platform.delilegal.com/api/v1/generice/case/list) <br>
-- [API guide](references/api-guide.md) <br>
-- [Report template](references/report-template.md) <br>
-- [Legal basis](references/legal-basis.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional shell command invocations and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Delilegal API key; case reports should preserve data-source attribution and distinguish assumptions from verified case data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill runs an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the Deli Legal CLI version before use, and execute it only in trusted environments.
+
+Risk: Case facts, API keys, and legal materials may be confidential or sensitive.
+
+Mitigation: Avoid passing API keys directly on the command line, and redact privileged, sealed, personal, or commercially sensitive facts unless disclosure is authorized.
+
+Risk: The generated report can contain incomplete or stale case information if CLI results are missing, unavailable, or not independently checked.
+
+Mitigation: Do not fabricate missing case fields; verify important cases, citations, court names, dates, and conclusions through official sources before legal reliance.
+
+## Reference(s):
+
+- [deli-cli 通用前置](references/cli-common.md)
+- [类案检索 CLI 策略指南](references/api-guide.md)
+- [类案检索报告标准模板](references/report-template.md)
+- [类案检索制度法律依据](references/legal-basis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown case-retrieval report with structured tables and CLI command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one final report; case facts, retrieved case details, legal citations, and conclusions require review before legal reliance.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-OpenClaw Rescue Kit helps agents guide local OpenClaw gateway operations, including startup wrapping, watchdog monitoring, automatic restart, configuration rollback, security hardening, log cleanup, and Git-based configuration versioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw rescue toolkit for gateway startup protection, watchdog monitoring, automatic restart, configuration rollback, security hardening, log cleanup, and Git-based configuration versioning.
 
-## Publisher: <br>
-[m17y](https://clawhub.ai/user/m17y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[m17y](https://clawhub.ai/user/m17y)
 
-## Use Case: <br>
-Developers and operators use this skill to install and operate a local OpenClaw maintenance kit for gateway health checks, restart handling, notification setup, configuration rollback, and log management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide installation of scripts that keep running in the background and make high-impact local changes. <br>
-Mitigation: Review the scripts before enabling LaunchAgent or crontab jobs, use a dedicated gateway port, and keep unload or removal commands available. <br>
-Risk: Notification and gateway configuration may involve local secrets such as webhook tokens. <br>
-Mitigation: Protect ~/.openclaw/notify.conf and avoid committing webhook tokens or other secrets into local Git snapshots. <br>
-Risk: Cleanup and rollback actions may alter local logs or configuration state. <br>
-Mitigation: Test cleanup and rollback behavior on copies first, then save a known-safe configuration baseline before enabling automation. <br>
+## Use Case:
 
+Developers and operators use this skill to install and operate local OpenClaw recovery scripts for gateway health monitoring, restart handling, alerting, safe configuration changes, and cleanup of logs or session state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/m17y/openclaw-rescue-kit) <br>
-- [OpenClaw complete guide](references/guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for local scripts and background jobs; no structured API output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.11.0 (source: server-resolved release evidence) <br>
+Risk: Persistent local automation can restart OpenClaw and kill processes using the configured gateway port.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation, test manually first, and avoid automatic scheduling until behavior is understood in the target environment.
+
+Risk: Cleanup and rollback scripts can rewrite configuration history, logs, sessions, memory, and related local files.
+
+Mitigation: Keep independent backups of important OpenClaw state and review cleanup settings before running scheduled maintenance.
+
+Risk: Configured alert webhooks can send information to external services and notify.conf may contain sensitive credentials.
+
+Mitigation: Keep notify.conf private, restrict file permissions, and use only trusted notification endpoints.
+
+Risk: The security guidance states that log-cleaner.sh --dry-run should not be relied on as a safe preview in this version.
+
+Mitigation: Inspect planned cleanup behavior directly and run on disposable or backed-up data before using it on production state.
+
+## Reference(s):
+
+- [OpenClaw Rescue Kit Guide](references/guide.md)
+- [OpenClaw Rescue Kit on ClawHub](https://clawhub.ai/m17y/skills/openclaw-rescue-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for installing, scheduling, monitoring, alerting, rollback, hardening, and cleanup scripts.]
+
+## Skill Version(s):
+
+1.11.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-格语 helps an agent turn a story idea into a 4, 6, or 9 panel hand-drawn grid comic with a consistent main character, selected visual style, panel copy, a complete prompt, and publishing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+格语 helps agents turn a story theme or synopsis into a complete hand-drawn grid-comic story image with recommended 4-, 6-, or 9-panel layouts and optional reference-image consistency.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fslong520](https://clawhub.ai/user/fslong520)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators and social-content teams use this skill to turn a story theme into a publishable grid-comic concept, generated illustration, panel copy, reusable prompt, and posting suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Reference images or their URLs may expose private or personal information to the image-generation tool.
+
+Mitigation: Use non-sensitive reference images and avoid private links, account-protected URLs, or personal images that should not be processed externally.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators, social media operators, and visual storytellers use this skill to convert a theme or short story brief into a structured grid-comic plan, image-generation prompt, generated story image, and reusable publishing copy. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided character images can contain sensitive or private personal information. <br>
-Mitigation: Use only images the user is authorized to process, avoid third-party or private photos without consent, and treat uploaded character references as sensitive. <br>
-Risk: Generated prompts and story images may be copied or published with unintended character, privacy, or rights issues. <br>
-Mitigation: Review the full prompt, panel copy, and generated image before copying, sharing, or publishing the result. <br>
+**Output Format:** [Markdown with story-plan tables, image-generation prompt text, generated image references, and publishing suggestions.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/gridtale) <br>
+**Other Properties Related to Output:** [Uses user-provided or generated character reference images to help maintain visual consistency across panels.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, image generation request] <br>
-**Output Format:** [Markdown-style planning document with panel tables, an image-generation prompt, generated image references, and publishing suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference user-provided character images and generated image URLs when building the final story package.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

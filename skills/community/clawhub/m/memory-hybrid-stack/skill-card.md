@@ -1,41 +1,54 @@
-## Description: <br>
-Use this skill to read and write a local hybrid memory stack with Postgres facts, Redis realtime state, and Qdrant vector recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Hybrid Stack helps agents read and write a local hybrid memory stack spanning Postgres facts, Redis realtime state, and Qdrant vector recall.
 
-## Publisher: <br>
-[VegaBai](https://clawhub.ai/user/VegaBai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vegabai](https://clawhub.ai/user/vegabai)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an assistant needs durable facts, short-lived state, or semantic recall beyond Markdown memory. It provides guidance and helper scripts for local Postgres, Redis, and Qdrant operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an assistant broad local memory database access, including durable writes and deletes. <br>
-Mitigation: Use least-privilege credentials, protect the environment file, prefer read-only use unless persistence is explicitly requested, and confirm update or delete operations. <br>
-Risk: Stored facts, Redis state, and vector payloads can become stale, incorrect, or overly broad. <br>
-Mitigation: Back up or periodically review stored facts, Redis state, and Qdrant payloads, and use tags, TTLs, and source metadata to support cleanup. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an assistant to a local memory stack for durable facts, short-lived state, and semantic recall. It provides shell helpers and schema guidance for Postgres, Redis, and Qdrant operations.
 
-## Reference(s): <br>
-- [Hybrid Memory Stack Connections](references/connection-map.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/VegaBai/memory-hybrid-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or SQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local database reads, writes, deletes, and Qdrant HTTP calls through bundled helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The helper scripts can write to or delete from local Postgres, Redis, and Qdrant memory stores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review mutating SQL, Redis, and Qdrant calls before execution, and use least-privilege accounts for each store.
+
+Risk: The scripts source a memory-stack .env file and may expose or misuse trusted local configuration if that file is unsafe.
+
+Mitigation: Install only with a trusted .env file, keep endpoints pointed at the intended local services, and harden credential loading before production use.
+
+## Reference(s):
+
+- [Hybrid Memory Stack Connections](references/connection-map.md)
+- [Memory Hybrid Stack release page](https://clawhub.ai/vegabai/skills/memory-hybrid-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash, SQL, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local Postgres, Redis, and Qdrant helper scripts when the required memory stack environment is configured.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

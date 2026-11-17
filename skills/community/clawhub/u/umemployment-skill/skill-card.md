@@ -1,48 +1,64 @@
-## Description: <br>
-Kind, patient unemployment-support agent that provides emotional validation, mood-lifting stories, and practical job-search guidance across English, Chinese, Japanese, and Korean. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kind, patient unemployment-support coach that provides emotional support, mood-lifting stories, and practical job-search, resume, interview, financial-survival, and career-direction guidance in Chinese, Japanese, Korean, and English.
 
-## Publisher: <br>
-[zhanggroot7](https://clawhub.ai/user/zhanggroot7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanggroot7](https://clawhub.ai/user/zhanggroot7)
 
-## Use Case: <br>
-Job seekers and people facing layoffs use this skill to receive brief emotional support, mood-lifting stories, and practical guidance for resumes, interviews, routines, and career direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Layoff guidance may be read as permission to forward employer emails, export client or colleague contacts, or keep work materials. <br>
-Mitigation: Retain or move only information clearly authorized by company policy, contract, and local law. <br>
-Risk: Static crisis, legal, benefits, or employment-rights guidance may be incomplete or location-specific. <br>
-Mitigation: Verify crisis resources, legal rights, and benefits procedures with local authorities, qualified professionals, or current official sources before acting. <br>
+## Use Case:
 
+External job seekers and people facing unemployment use this skill for supportive career coaching, resume and interview preparation, daily job-search routines, and multilingual emotional first aid. The skill is intended as supportive guidance, not a substitute for qualified legal, benefits, or mental-health professionals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhanggroot7/umemployment-skill) <br>
-- [Reference Index](reference/INDEX.md) <br>
-- [Facing Layoff](reference/patterns/facing-layoff.md) <br>
-- [Finding Direction](reference/patterns/finding-direction.md) <br>
-- [Interview Answers](reference/patterns/interview-answers.md) <br>
-- [Job Search Plateau](reference/patterns/job-search-plateau.md) <br>
-- [Mental Health and Routines](reference/patterns/mental-health-routines.md) <br>
-- [Stories Library](reference/stories/INDEX.md) <br>
-- [Sensitive Words Blacklist](reference/guidelines/sensitive-words-blacklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Brief, multilingual responses that prioritize emotional state before practical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Layoff guidance may encourage users to copy employer, client, colleague, or confidential work data before access is revoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not copy work project files, business metrics, presentations, emails, calendars, contact lists, source code, credentials, confidential information, or personal data into personal accounts; use HR, legal, or employer-approved channels for records and portfolio materials.
+
+Risk: Legal, benefits, and employment-rights guidance can vary by country, state, province, employer policy, and individual facts.
+
+Mitigation: Treat the skill as general support and consult local labor authorities, HR, legal aid, or qualified employment counsel for decisions about severance, unemployment benefits, disputes, or protected rights.
+
+Risk: Mental-health support for unemployment stress may be insufficient for crisis situations or severe distress.
+
+Mitigation: Use qualified local mental-health professionals, emergency services, or crisis resources when a user describes immediate danger, severe distress, or needs beyond supportive coaching.
+
+## Reference(s):
+
+- [Reference Pattern Library](reference/INDEX.md)
+- [Facing Layoff](reference/patterns/facing-layoff.md)
+- [Finding Direction](reference/patterns/finding-direction.md)
+- [Interview Answers](reference/patterns/interview-answers.md)
+- [Job Search Plateau](reference/patterns/job-search-plateau.md)
+- [Mental Health & Daily Routines](reference/patterns/mental-health-routines.md)
+- [Mood-Lifting Stories](reference/stories/INDEX.md)
+- [Sensitive Words Blacklist](reference/guidelines/sensitive-words-blacklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text or Markdown, including short advice, templates, checklists, and story-based support.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language when supported and provides one conversational stream of guidance.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

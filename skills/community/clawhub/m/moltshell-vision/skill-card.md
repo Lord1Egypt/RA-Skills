@@ -1,40 +1,53 @@
-## Description: <br>
-Give your text-based OpenClaw agent the ability to see and describe images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your text-based OpenClaw agent the ability to see and describe images.
 
-## Publisher: <br>
-[melnyk-anton](https://clawhub.ai/user/melnyk-anton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[melnyk-anton](https://clawhub.ai/user/melnyk-anton)
 
-## Use Case: <br>
-Developers building OpenClaw agents use this skill to send public image URLs and a prompt to MoltShell, then receive a text description that can be used in the agent's reasoning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image URLs, prompts, and a bot or session identifier are sent to MoltShell and its underlying vision provider for analysis. <br>
-Mitigation: Use public or non-sensitive image URLs, avoid secrets or regulated data in prompts, and confirm the external service is acceptable for the deployment environment. <br>
-Risk: The bundled public sandbox key is intended for testing and can exhaust its free credits during normal use. <br>
-Mitigation: Configure a dedicated, limited MoltShell API key for production use and monitor service errors or payment-required responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltShell M2M Marketplace](https://moltshell.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/melnyk-anton/moltshell-vision) <br>
+## Use Case:
 
+Developers and agent builders use this skill to let OpenClaw agents analyze public image URLs and return text descriptions for downstream reasoning.
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [String] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a text description when analysis succeeds; may return payment, polling, or service error messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Image URLs, prompts, and an OpenClaw agent or bot identifier are sent to MoltShell, which may expose sensitive image content or link usage across requests.
+
+Mitigation: Use only public image URLs and non-sensitive prompts unless sharing them with MoltShell is acceptable; review deployments that use stable OPENCLAW_AGENT_ID or OPENCLAW_BOT_ID values.
+
+Risk: The built-in sandbox key is intended for testing and can stop working after the free compute allowance is exhausted.
+
+Mitigation: Configure a dedicated MOLTSHELL_API_KEY before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/melnyk-anton/skills/moltshell-vision)
+- [MoltShell M2M Marketplace](https://moltshell.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [String]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a text image description or an error message from the MoltShell vision service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

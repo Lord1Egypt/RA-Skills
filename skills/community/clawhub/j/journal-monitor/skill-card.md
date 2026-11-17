@@ -1,43 +1,57 @@
-## Description: <br>
-Precision journal monitor using ISSN lookup. No tool-switching allowed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors recent PubMed articles for specified journals using ISSN lookup and returns bilingual English/Chinese article metadata.
 
-## Publisher: <br>
-[chenghan66](https://clawhub.ai/user/chenghan66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenghan66](https://clawhub.ai/user/chenghan66)
 
-## Use Case: <br>
-Researchers and literature reviewers use this skill to monitor named journals for recent PubMed articles, using ISSN lookup where available and returning bilingual title summaries with PMID, year, and author metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries PubMed, which may expose journal-monitoring topics to an external service. <br>
-Mitigation: Preview queries before execution and use the skill only when external PubMed access is acceptable for the research topic. <br>
-Risk: The skill can save large reports to the Desktop when many articles are found. <br>
-Mitigation: Ask the agent to preview results first and save only to a user-selected path and filename. <br>
-Risk: The bundled PubMed helper uses a placeholder Entrez email value. <br>
-Mitigation: Configure an appropriate Entrez email before relying on repeated PubMed requests. <br>
+## Use Case:
 
+Researchers and research assistants use this skill to check recent PubMed articles for selected journals, translate titles into Chinese, and prepare article metadata for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenghan66/journal-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/chenghan66) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown-style bilingual report text with article metadata; supporting script output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create report files when many articles are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: frontmatter and server-resolved release evidence) <br>
+Risk: The skill installs an unpinned Biopython dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the Biopython version before installation in controlled environments.
+
+Risk: The skill contacts PubMed/NCBI for journal and article lookups.
+
+Mitigation: Use it only where outbound access to PubMed/NCBI is permitted and expected.
+
+Risk: The skill may create a Desktop report when many articles are found.
+
+Mitigation: Ask for confirmation before file creation when tighter control over local writes is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenghan66/skills/journal-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown text with bilingual article metadata and optional report file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a Desktop report when more than 20 articles are found.]
+
+## Skill Version(s):
+
+1.0.11 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

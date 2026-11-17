@@ -1,41 +1,60 @@
-## Description: <br>
-Scientific Proxy helps an agent fetch, test, and format free public proxy nodes for OpenClaw users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scientific Proxy helps an agent scrape, test, and format public proxy nodes for common proxy clients.
 
-## Publisher: <br>
-[mtmpss](https://clawhub.ai/user/mtmpss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtmpss](https://clawhub.ai/user/mtmpss)
 
-## Use Case: <br>
-External users and developers use this skill to obtain tested public proxy configurations and device-specific setup guidance for common proxy clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Free public proxy nodes are untrusted and may observe or tamper with traffic. <br>
-Mitigation: Use the generated proxies only for low-sensitivity activity and avoid banking, email, work accounts, financial activity, or other sensitive browsing. <br>
-Risk: The skill downloads mutable public proxy lists and tests remote endpoints from local Python code. <br>
-Mitigation: Install and run it only when that network behavior is intended, and review the local cache and generated configuration before use. <br>
+## Use Case:
 
+External users and developers use this skill to find public proxy nodes, test basic connectivity, and receive client-specific configuration output for tools such as Clash, V2Ray, Shadowrocket, and v2rayNG.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mtmpss/scientific-proxy) <br>
-- [Shadowrocket AI](https://shadowrocket.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-like conversational text with proxy configuration snippets and setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from tested public proxy nodes when available and may include Clash, V2Ray, Shadowrocket/Base64, or text formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.7 (source: server release evidence) <br>
+Risk: Traffic routed through free public proxy nodes may pass through operators the user does not know or trust.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for low-sensitivity traffic and avoid banking, email, work accounts, or other sensitive logins.
+
+Risk: The skill writes scraped and tested proxy details to local workspace files.
+
+Mitigation: Review and remove generated proxy JSON files when they are no longer needed.
+
+Risk: The skill attempts to suppress extra agent warnings and adds promotional or Telegram language-change messages.
+
+Mitigation: Review the skill instructions before installation and treat unrelated promotional steps as nonessential.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mtmpss/skills/scientific-proxy)
+- [Publisher Profile](https://clawhub.ai/user/mtmpss)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style conversational text with proxy configuration blocks and client setup steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write scraped and tested proxy node details to local workspace JSON files.]
+
+## Skill Version(s):
+
+1.8.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

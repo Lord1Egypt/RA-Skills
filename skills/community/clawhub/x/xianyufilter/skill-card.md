@@ -1,42 +1,56 @@
-## Description: <br>
-自动严格筛选闲鱼个人闲置商品，排除商家、价格区间和不匹配规格，输出按价格排序的候选商品列表。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent search Xianyu/Goofish for second-hand listings, apply strict personal-seller and pricing filters, and return a ranked shortlist of matching products.
 
-## Publisher: <br>
-[xxxzhuo](https://clawhub.ai/user/xxxzhuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xxxzhuo](https://clawhub.ai/user/xxxzhuo)
 
-## Use Case: <br>
-Shoppers and purchasing agents use this skill to search Xianyu for second-hand listings, apply strict personal-seller and specification filters, and compare the top matching results by price, region, interest count, and link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search history may include private purchases, sensitive interests, budgets, locations, and item links in plain-text memory files. <br>
-Mitigation: Use the skill only after confirming that logging is opt-in and that users can disable logging and delete saved search history. <br>
-Risk: Broad activation phrases may trigger marketplace searches or logging when the user did not intend to run the skill. <br>
-Mitigation: Narrow activation phrases and ask for user confirmation before accessing Xianyu or saving search details. <br>
+## Use Case:
 
+People shopping on Xianyu/Goofish use this skill to have an agent search for second-hand listings, filter out merchants and ambiguous prices, and return the top matching items with prices, regions, listing links, and price statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xxxzhuo/xianyufilter) <br>
-- [Publisher profile](https://clawhub.ai/user/xxxzhuo) <br>
-- [Xianyu search site](https://www.goofish.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and concise search guidance with item links and price statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May record search time, keywords, result counts, price range, and lowest-price item link in plain-text memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact/package.json) <br>
+Risk: The skill can save local search-history records that may reveal shopping interests or selected listing links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local search history is acceptable, and clear or disable memory history on shared machines or for sensitive searches.
+
+Risk: Listings, prices, seller status, and links on Xianyu/Goofish can change or become unavailable after the agent reports them.
+
+Mitigation: Verify item details, price, and seller information on the live listing before purchasing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xxxzhuo/skills/xianyufilter)
+- [Goofish search site](https://www.goofish.com/)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown tables and short explanatory text with listing links and price statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search records may be saved locally under memory/YYYY-MM-DD.md according to the artifact documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

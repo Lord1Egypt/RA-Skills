@@ -11,8 +11,8 @@
 [one concrete practice, number, or lived example that backs the answer].
 ```
 
-**Example (Serge replying to Kevin Payne asking "How are you building that conviction muscle with your team?"):**
-> Kevin conviction doesn't build in meetings, it builds when you ship what you argued for and find out within a week whether the customer actually cared.
+**Example (Serge replying to the post author asking "How are you building that conviction muscle with your team?"):**
+> conviction doesn't build in meetings, it builds when you ship what you argued for and find out within a week whether the customer actually cared.
 >
 > our default now.. if a team member can't turn an opinion into something shippable in two or three days, we park the opinion until they can.
 

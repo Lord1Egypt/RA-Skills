@@ -1,49 +1,63 @@
-## Description: <br>
-Connect to JanusGraph distributed graph database to query, manage, and analyze graph data using Apache TinkerPop Gremlin traversal language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to JanusGraph distributed graph database to query, manage, and analyze graph data using Apache TinkerPop Gremlin traversal language.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and data engineers use this skill to connect agents to JanusGraph, draft Gremlin traversals, manage graph vertices and edges, and analyze knowledge graph data. It is suited to graph-backed applications such as social network analysis, e-commerce knowledge graphs, knowledge bases, organizational hierarchies, and citation networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Gremlin can perform high-impact write, delete, update, import, and index operations against a graph database. <br>
-Mitigation: Run against test graphs first and require explicit approval before executing delete, import, update, or schema-changing operations. <br>
-Risk: Some artifact examples interpolate values into Gremlin strings, which can be unsafe for user-supplied input. <br>
-Mitigation: Prefer parameterized Gremlin bindings and review generated traversals before execution. <br>
-Risk: The artifact labels examples as production-ready despite the server security verdict identifying insufficient safety controls. <br>
-Mitigation: Treat examples as implementation references, not deployment-ready code, until local security review and access controls are complete. <br>
+## Use Case:
 
+Developers and knowledge graph engineers use this skill to connect agents to JanusGraph, run Gremlin queries and graph mutations, manage vertices, edges, indexes, and transactions, and analyze distributed graph data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/janusgraph-connector) <br>
-- [Publisher Profile](https://clawhub.ai/user/fisa712) <br>
-- [JanusGraph Patterns](references/janusgraph-patterns.md) <br>
-- [JanusGraph Examples](examples/janusgraph-examples.md) <br>
-- [JanusGraph Official Documentation](https://janusgraph.org/) <br>
-- [Apache TinkerPop](https://tinkerpop.apache.org/) <br>
-- [Gremlin Query Language](https://tinkerpop.apache.org/gremlin.html) <br>
-- [Gremlin Python Reference](https://tinkerpop.apache.org/docs/current/reference/#gremlin-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Gremlin, Python, JSON, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include graph database connection settings, Gremlin traversals, CRUD operation examples, transaction guidance, and JanusGraph design patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, release metadata, and script __version__) <br>
+Risk: Destructive Gremlin operations such as drop() and bulk mutations can delete or alter graph data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or least-privilege JanusGraph credentials, require explicit confirmation for delete and bulk mutation actions, and rely on backups or transaction rollback procedures before running changes on shared data.
+
+Risk: Unsafe query construction or unvalidated Gremlin input can lead to unintended traversal behavior or injection-like data access.
+
+Mitigation: Validate generated traversals, avoid interpolating untrusted values into Gremlin strings, and require real Gremlin binding or bytecode support before treating parameterized examples as production safeguards.
+
+Risk: Production-oriented examples may be mistaken for fully verified operational code.
+
+Mitigation: Verify connector behavior against a staging JanusGraph instance, review authentication and transport settings, and run a security review before installing the skill in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fisa712/skills/janusgraph-connector)
+- [JanusGraph Design Patterns](artifact/references/janusgraph-patterns.md)
+- [JanusGraph Examples](artifact/examples/janusgraph-examples.md)
+- [JanusGraph Official Documentation](https://janusgraph.org/)
+- [Apache TinkerPop](https://tinkerpop.apache.org/)
+- [Gremlin Query Language](https://tinkerpop.apache.org/gremlin.html)
+- [Gremlin Python](https://tinkerpop.apache.org/docs/current/reference/#gremlin-python)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Gremlin, Python, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include executable Gremlin mutations and connector configuration examples for JanusGraph or Gremlin Server.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

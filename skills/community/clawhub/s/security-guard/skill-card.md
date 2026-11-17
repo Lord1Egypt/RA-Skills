@@ -1,40 +1,56 @@
-## Description: <br>
-Security Guard helps agents enforce strict handling of sensitive information by refusing to reveal full secrets, offering sanitized snippets, and guiding users to local access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces strict handling rules for sensitive information such as API keys, tokens, credentials, PII, and financial data by refusing full disclosure and guiding users toward sanitized snippets or local access.
 
-## Publisher: <br>
-[frw1988](https://clawhub.ai/user/frw1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[frw1988](https://clawhub.ai/user/frw1988)
 
-## Use Case: <br>
-Developers, operators, and agent maintainers use this skill to guide assistants when requests involve API keys, credentials, PII, financial data, or attempts to bypass security rules. It provides refusal patterns, sanitized-output guidance, and local-access alternatives for handling sensitive information. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The session initialization protocol directs the agent to read personal profile and memory files automatically. <br>
-Mitigation: Review and narrow the initialization protocol before deployment so the agent only reads files that are necessary and approved for the active session. <br>
-Risk: The sanitizer can reveal complete or excessive portions of short secrets. <br>
-Mitigation: Tighten the sanitizer behavior so short sensitive values are fully masked or refused instead of partially disclosed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Security response examples](references/examples.md) <br>
-- [ClawHub release page](https://clawhub.ai/frw1988/security-guard) <br>
+## Use Case:
 
+Developers and operators use this skill to guide an agent toward conservative responses when handling secrets, credentials, personal data, and financial data. It provides refusal patterns, sanitized-output examples, and local-viewing alternatives for sensitive information requests.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and sanitized text examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include partial redactions and local file paths; should not include complete sensitive values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives itself broad session-wide authority and instructs automatic reads of profile and memory files without clear need or consent.
+
+Mitigation: Review before installing and narrow or remove automatic profile and memory-file reads unless they are explicitly required and consented to.
+
+Risk: Users could mistake the skill for a technical enforcement layer for secrets protection.
+
+Mitigation: Treat it as agent guidance only and keep platform-level controls such as access restrictions, secret scanning, and audit logging in place.
+
+Risk: Passing real secrets to the shell redaction helper can expose them through command history, process listings, or logs.
+
+Mitigation: Avoid using real secrets as command-line arguments; prefer trusted local secret-management tools or test the helper with synthetic values.
+
+## Reference(s):
+
+- [Security Response Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands and sanitized text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest use of a local shell redaction helper for displaying partial sensitive strings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

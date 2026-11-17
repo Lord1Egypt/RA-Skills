@@ -1,43 +1,58 @@
-## Description: <br>
-Handle Clawver customer reviews by monitoring ratings, drafting responses, and tracking sentiment trends for reputation management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle Clawver customer reviews. Monitor ratings, craft responses, track sentiment trends. Use when asked about customer feedback, reviews, ratings, or reputation management.
 
-## Publisher: <br>
-[nwang783](https://clawhub.ai/user/nwang783) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nwang783](https://clawhub.ai/user/nwang783)
 
-## Use Case: <br>
-Store operators and support teams use this skill to list Clawver reviews, identify unanswered or negative feedback, draft public responses, monitor sentiment trends, and configure review webhooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access customer review data, including reviewer contact details shown in API examples. <br>
-Mitigation: Use the least-privileged CLAW_API_KEY available and avoid exposing customer emails unless they are needed for support. <br>
-Risk: The skill can publish or replace store responses that customers may see. <br>
-Mitigation: Review public replies before posting and keep responses professional, accurate, and within the documented length limit. <br>
-Risk: Review webhooks can send event data to configured URLs. <br>
-Mitigation: Configure webhooks only to URLs you control and use a strong webhook secret. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawver Reviews on ClawHub](https://clawhub.ai/nwang783/clawver-reviews) <br>
-- [Clawver](https://clawver.store) <br>
-- [Reviews API Examples](references/api-examples.md) <br>
+## Use Case:
 
+Store operators and agents use this skill to list customer reviews, draft or post review responses, monitor sentiment, and configure review webhooks for Clawver stores.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API request examples, response templates, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAW_API_KEY; review responses are capped at 1000 characters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to post or replace public store review responses.
+
+Mitigation: Require the agent to show the exact response text and obtain approval before publishing or editing a response.
+
+Risk: The skill uses an API key to access review data and create webhooks.
+
+Mitigation: Use a least-privilege API key where available, protect the key from logs and transcripts, and approve webhook destination URLs before creation.
+
+Risk: The webhook verification example may need production hardening.
+
+Mitigation: Review and strengthen signature validation, request parsing, replay protection, and error handling before using the example in production.
+
+## Reference(s):
+
+- [Clawver Reviews skill page](https://clawhub.ai/nwang783/skills/clawver-reviews)
+- [Clawver](https://clawver.store)
+- [Reviews API Examples](references/api-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, JavaScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CLAW_API_KEY environment variable and may produce customer-facing review response text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

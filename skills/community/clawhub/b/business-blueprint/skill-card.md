@@ -1,45 +1,60 @@
-## Description: <br>
-Turns presales requirements, meeting notes, and solution materials into editable business capability blueprints, swimlane flows, application architecture diagrams, and related exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when turning presales requirements, meeting notes, or solution materials into editable business capability blueprints, swimlane flows, and application architecture diagrams.
 
-## Publisher: <br>
-[kaisersong](https://clawhub.ai/user/kaisersong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaisersong](https://clawhub.ai/user/kaisersong)
 
-## Use Case: <br>
-Developers, solution architects, and presales teams use this skill to convert raw requirements or meeting notes into structured blueprint JSON, validate the result, and generate viewer or diagram exports for downstream reports and presentations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workspace artifacts, patch logs, or generation prompts may retain sensitive business requirements or meeting notes. <br>
-Mitigation: Use dedicated workspace folders, avoid passing secrets or full confidential notes in CLI arguments, and review generated files before sharing or committing them. <br>
-Risk: Server evidence reports sensitive capability tags that are not explained by the release materials. <br>
-Mitigation: Install only in environments where those tags do not grant additional authority, and review the skill before enabling it in a broader agent runtime. <br>
+## Use Case:
 
+Developers, solution architects, and presales teams use this skill to transform requirements, meeting notes, and solution materials into canonical blueprint JSON, editable viewers, and diagram exports for business and application architecture planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaisersong/business-blueprint) <br>
-- [Business Blueprint README](README.md) <br>
-- [Entity schema reference](references/entities-schema.md) <br>
-- [Systems schema reference](references/systems-schema.md) <br>
-- [Architecture design system](references/architecture-design-system.md) <br>
-- [Export evaluation strategy](evals/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Blueprint JSON, projection JSON, static HTML viewers, SVG, draw.io, Excalidraw, Mermaid Markdown, and validation diagnostics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are written to workspace project folders and may include patch logs or generation prompts that should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.13.0 (source: server release metadata) <br>
+Risk: Crafted blueprint content can inject browser script into generated HTML/SVG viewers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted blueprint inputs, review generated viewer/export files before opening or sharing them, and avoid opening HTML/SVG generated from untrusted external data until escaping defects are fixed.
+
+Risk: Generated blueprint files, patch logs, viewer HTML, and export folders may contain sensitive business records.
+
+Mitigation: Store generated artifacts in controlled workspaces, review them before external distribution, and handle patch logs and exports according to the organization's data handling rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaisersong/skills/business-blueprint)
+- [README](artifact/README.md)
+- [Skill routing instructions](artifact/SKILL.md)
+- [Entity schema](artifact/references/entities-schema.md)
+- [Systems schema](artifact/references/systems-schema.md)
+- [Architecture design system](artifact/references/architecture-design-system.md)
+- [Export evaluation strategy](artifact/references/test-and-eval-strategy.md)
+- [Export eval inputs](artifact/evals/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON schemas, Python CLI commands, and generated blueprint/export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates canonical blueprint JSON, static HTML viewers, SVG, draw.io, Excalidraw, Mermaid, projection JSON, and validation diagnostics.]
+
+## Skill Version(s):
+
+0.13.0 (source: server release metadata, created 2026-04-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

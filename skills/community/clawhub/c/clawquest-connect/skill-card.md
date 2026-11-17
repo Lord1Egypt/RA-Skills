@@ -1,40 +1,54 @@
-## Description: <br>
-Connects Claw Quest Android to an OpenClaw gateway using the manual URL-and-token flow, with optional WhatsApp handoff and one-time approval of a matching Android pairing request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects Claw Quest Android to an OpenClaw gateway using a manual WebSocket URL and token/password flow, with optional WhatsApp handoff and one-time matching device approval.
 
-## Publisher: <br>
-[sandrokitchener](https://clawhub.ai/user/sandrokitchener) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sandrokitchener](https://clawhub.ai/user/sandrokitchener)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to send the gateway URL plus the required token or password to Claw Quest Android and approve one matching device-pair request when pairing reaches the gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live OpenClaw gateway credentials and may send them through WhatsApp or chat. <br>
-Mitigation: Use it only while pairing a device you control, confirm the WhatsApp destination first, and rotate the gateway secret if details are sent unexpectedly. <br>
-Risk: The skill can approve a pending Android pairing request with operator-level access. <br>
-Mitigation: Approve only the next request that matches Claw Quest Android and revoke the paired device if any approval is unexpected. <br>
+## Use Case:
 
+External users and developers use this skill to pair Claw Quest Android with their OpenClaw gateway by sending the current gateway URL and token or password, then approving one matching Android pairing request when requested.
 
-## Reference(s): <br>
-- [Claw Quest Connect on ClawHub](https://clawhub.ai/sandrokitchener/clawquest-connect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and concise status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include the gateway URL and one active token or password needed for manual pairing when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill may place a reusable gateway token or password into WhatsApp or chat history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination before sharing credentials and prefer short-lived pairing codes when available.
+
+Risk: The skill may automatically approve a device with operator-level write access.
+
+Mitigation: Review the exact pending device request before approval and approve only a Claw Quest Android request with the expected role and scopes.
+
+## Reference(s):
+
+- [Claw Quest Connect on ClawHub](https://clawhub.ai/sandrokitchener/skills/clawquest-connect)
+- [sandrokitchener ClawHub profile](https://clawhub.ai/user/sandrokitchener)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and concise connection details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the gateway URL and the current token or password needed for manual setup.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

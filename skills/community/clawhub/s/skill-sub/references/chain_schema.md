@@ -68,7 +68,7 @@
 ### 使用方式
 
 - **创建链时**：用户在意图中描述定时需求（如「每天早上6点跑这个链」），AI 自动填充 `schedule` 字段
-- **已有链**：通过 `chain_manager.py schedule --name <链名> --cron "0 6 * * *" --desc "每天6点"` 添加/修改
+- **已有链**：通过 `chain_manager.py schedule --name <链名> --cron "0 6 * * *" --desc "每天6点"` 添加/更新
 - **平台侧**：读取 `chain_data.schedule`，按 `type` + `expression` 注册定时任务
 
 ---
@@ -88,6 +88,7 @@
 | `depends_on` | int[] | ❌ | 依赖的前置步骤索引，默认 `[index-1]` |
 | `condition` | string | ❌ | 步骤级条件：非 `"always"` 时按需求值，为 `false` 则跳过本步骤 |
 | `failure_mode` | object | ❌ | 失败处理（见下文） |
+| `hook` | object | ❌ | 流程钩子（见下文），在里程碑和末尾步骤执行前自动校验 |
 | `notes` | string | ❌ | 备注 |
 
 ---
@@ -286,6 +287,42 @@
 - **里程碑步骤失败** → 无论 `on_exhaust` 配置如何，**强制中止整条链**
 - **里程碑步骤的 on_exhaust** → 建议设为 `abort`（validate 时会发出警告）
 - **非里程碑步骤失败** → 按 `on_exhaust` 配置处理（ask/skip/abort）
+
+---
+
+## Hook（流程钩子）
+
+> **v1.38.0 新增**。在里程碑步骤或末尾步骤上挂载的流程钩子，
+> 执行前自动校验前置步骤的预期产出物是否存在。
+> 缺失 → HOOK-BLOCK 阻断，不给执行。
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `expects` | string[] | ✅ | 预期文件路径列表（相对链数据目录或绝对路径）|
+
+**行为：**
+- **挂载位置**：执行器自动对标记为 `is_milestone=true` 的步骤和最后一步检查 hook
+- **检查时机**：步骤执行前，刚好前一步产出后
+- **路径解析**：相对路径相对于链数据目录
+- **阻断方式**：HOOK-BLOCK + exit(1)，与 gate 一致
+- **跳过检查**：使用 `--force-hooks` 参数（不推荐）
+
+**示例：**
+```json
+{
+  "index": 3,
+  "step_name": "生成分析报告",
+  "skill_name": "analysis",
+  "action": "生成数据报告",
+  "failure_mode": {"on_exhaust": "abort", "is_milestone": true},
+  "hook": {
+    "expects": [
+      "output/report.pdf",
+      "output/data.csv"
+    ]
+  }
+}
+```
 
 ---
 

@@ -1,43 +1,60 @@
-## Description: <br>
-Control Minecraft bots through a Mineflayer controller API using JSON actions and cron-driven autonomy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Minecraft bots through a Mineflayer controller API using JSON actions and cron-driven autonomy.
 
-## Publisher: <br>
-[ene5135](https://clawhub.ai/user/ene5135) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ene5135](https://clawhub.ai/user/ene5135)
 
-## Use Case: <br>
-Developers and operators use this skill to create and direct Mineflayer-based Minecraft bots, turning goals into JSON action batches and cron-driven autonomous loops. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent autonomous Minecraft bot actions may continue every 30 seconds through cron. <br>
-Mitigation: Enable the loop only when persistent autonomy is intended, and add clear start, stop, logging cleanup, and server-safety limits before use. <br>
-Risk: Replacing the workspace root CRON_PROMPT.md can overwrite existing cron behavior. <br>
-Mitigation: Merge or namespace the cron instructions instead of blindly replacing an existing CRON_PROMPT.md. <br>
-Risk: The skill sends bot actions through an external controller endpoint. <br>
-Mitigation: Verify that the controller endpoint is owned or trusted, and use scoped, revocable agent tokens. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Minecraft on ClawHub](https://clawhub.ai/ene5135/openclaw-minecraft) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Cron prompt](artifact/CRON_PROMPT.md) <br>
+## Use Case:
 
+Developers and operators use this skill to create and control Minecraft bots through a trusted Mineflayer controller. It helps agents translate goals into JSON action batches, manage bot state, and run cron-triggered autonomy.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON action payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces controller instructions for supported Minecraft bot actions and cron-loop behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.26 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent cron automation can keep issuing controller actions without continuous operator review.
+
+Mitigation: Review before installing, add a clear disable or removal path for the cron job, and run it only in workspaces where persistent automation is expected.
+
+Risk: The artifact instructs agents to overwrite a workspace-level CRON_PROMPT.md.
+
+Mitigation: Back up any existing cron prompt and require explicit operator approval before replacing workspace-level automation files.
+
+Risk: The skill uses bearer tokens and a hardcoded external controller URL.
+
+Mitigation: Use a controller you operate and trust, replace the hardcoded ngrok URL, store credentials outside shared workspace files where possible, and use short-lived scoped tokens.
+
+Risk: Open registration can allow token self-issuance when enabled.
+
+Mitigation: Avoid open registration unless open access is intentional; prefer allowlisted proxy registration or operator-issued tokens.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ene5135/skills/openclaw-minecraft)
+
+## Skill Output:
+
+**Output Type(s):** [JSON actions, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with JSON payloads and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces controller requests for bot creation, connection, state polling, and batched actions; cron prompt expects a 30-second autonomous loop.]
+
+## Skill Version(s):
+
+0.1.26 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

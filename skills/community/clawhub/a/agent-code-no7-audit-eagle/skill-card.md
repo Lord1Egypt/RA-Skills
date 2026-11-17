@@ -1,42 +1,57 @@
-## Description: <br>
-Financial statement analysis and audit assistance agent that extracts financial data, cross-checks statements, detects anomalies, and supports CAS and IFRS workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Code No.7 Audit Eagle supports Chinese-language financial statement analysis and audit assistance from user-provided financial data.
 
-## Publisher: <br>
-[monarchmio](https://clawhub.ai/user/monarchmio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[monarchmio](https://clawhub.ai/user/monarchmio)
 
-## Use Case: <br>
-Developers, finance teams, and auditors use this skill to draft financial statement analyses, identify unusual movements, calculate key ratios, and prepare audit workpaper-style outputs from user-provided financial data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce incorrect calculations, benchmarks, anomaly interpretations, or audit judgments. <br>
-Mitigation: Treat outputs as drafts and verify all figures, assumptions, benchmarks, and audit conclusions with qualified professionals before relying on them. <br>
-Risk: Financial inputs may contain confidential or regulated business information. <br>
-Mitigation: Use only data you are authorized to process and redact sensitive identifiers when practical. <br>
-Risk: Generated analysis is not a substitute for a formal audit opinion. <br>
-Mitigation: Retain the skill's stated limitation that analyses are for reference only and require supporting audit evidence for material judgments. <br>
+## Use Case:
 
+Finance teams, auditors, and agent builders use this skill to analyze balance sheets, income statements, and cash flow statements, identify anomalies, calculate ratios, and draft audit-oriented reports or workpaper templates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/monarchmio/agent-code-no7-audit-eagle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown financial analysis reports with tables, anomaly lists, audit focus areas, suggested audit procedures, and workpaper templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft analytical guidance based on user-provided financial data and should be independently verified before reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package metadata) <br>
+Risk: Financial data submitted to an agent environment may include confidential or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only financial data approved for the target agent environment and apply the organization's confidentiality controls before invoking the skill.
+
+Risk: The skill's financial analysis and audit suggestions may be mistaken for a formal audit opinion or licensed professional judgment.
+
+Mitigation: Treat outputs as advisory, preserve the skill's reference-only disclaimer, and require qualified professional review before relying on conclusions.
+
+Risk: The artifact is written primarily in Chinese, which can reduce reviewability for non-Chinese users.
+
+Mitigation: Request output in the user's preferred language and verify translated details before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/monarchmio/skills/agent-code-no7-audit-eagle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style financial analysis report with tables, risk notes, audit procedure suggestions, and workpaper templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language advisory audit support based on user-provided financial data; no code execution, persistence, credential access, or hidden data movement is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

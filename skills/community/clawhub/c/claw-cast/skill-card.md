@@ -1,49 +1,62 @@
-## Description: <br>
-Bootstrap and automate OBS scenes for local or remote instances via agentic-obs and mcporter, including baseline scene creation, LAN-served browser overlays, recording walkthroughs, and optional streaming dry runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap and automate OBS scenes for local or remote instances via agentic-obs + mcporter.
 
-## Publisher: <br>
-[ironystock](https://clawhub.ai/user/ironystock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironystock](https://clawhub.ai/user/ironystock)
 
-## Use Case: <br>
-Developers, engineers, and stream operators use ClawCast to let an OpenClaw agent bootstrap reusable OBS scene packs, serve local overlay assets, point automation at a local or remote OBS host, and run recording or streaming smoke checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can replace OBS scenes and alter the active OBS scene collection. <br>
-Mitigation: Use a disposable OBS scene collection or back up existing scenes before running scene rebuild helpers. <br>
-Risk: Recording or streaming helpers can start real OBS output. <br>
-Mitigation: Run those helpers only after confirming OBS is pointed at a private test recording or stream target. <br>
-Risk: The overlay HTTP server and OBS WebSocket target can expose control or display surfaces if reachable from untrusted networks. <br>
-Mitigation: Keep OBS WebSocket and overlay HTTP access limited to a trusted LAN or VPN and verify the target host before execution. <br>
-Risk: The target-switch helper writes agentic-obs database configuration. <br>
-Mitigation: Provide the DB path only intentionally and keep the explicit cross-component-write acknowledgement requirement in place. <br>
+## Use Case:
 
+Developers and stream operators use this skill to bootstrap reusable OBS scene packs, host browser overlays, switch OBS targets, apply transition and audio defaults, and run recording or streaming smoke tests.
 
-## Reference(s): <br>
-- [ClawCast ClawHub page](https://clawhub.ai/ironystock/claw-cast) <br>
-- [ClawCast homepage](https://github.com/ironystock/clawcast) <br>
-- [Scene Map](references/scene-map.md) <br>
-- [Networking Notes](references/networking.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [v0.2.0 Feature Notes](references/v0.2-features.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and bundled HTML, shell, and reference files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may control OBS, update agentic-obs target configuration when explicitly acknowledged, serve browser overlays over local HTTP, and start recording or streaming helpers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: server release metadata) <br>
+Risk: The skill can alter OBS scenes and recording or streaming state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it first against a test OBS profile, back up scenes, and only run the streaming dry-run when you intend to go live.
+
+Risk: The target-switch workflow can write an external agentic-obs configuration database.
+
+Mitigation: Back up the agentic-obs database and require an explicit database path plus acknowledgement flag before running the target switch.
+
+Risk: Overlay HTTP and OBS WebSocket ports can expose control or files if placed on public networks.
+
+Mitigation: Keep OBS WebSocket and overlay HTTP ports on trusted LAN or VPN networks and avoid placing private files under the skill folder.
+
+## Reference(s):
+
+- [ClawCast homepage](https://github.com/ironystock/clawcast)
+- [ClawHub skill page](https://clawhub.ai/ironystock/skills/claw-cast)
+- [Scene Map](references/scene-map.md)
+- [Networking Notes](references/networking.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [v0.2.0 Feature Notes](references/v0.2-features.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local shell scripts that control OBS, write an agentic-obs configuration database, serve overlay files over HTTP, and start recording or streaming workflows.]
+
+## Skill Version(s):
+
+0.2.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

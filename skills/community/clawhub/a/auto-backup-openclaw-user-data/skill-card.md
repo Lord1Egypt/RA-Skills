@@ -1,49 +1,61 @@
-## Description: <br>
-Backs up OpenClaw user data with full or selective backup targets, scheduled execution, ZIP compression, logging, notifications, and retention cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw data backup skill that helps agents configure and run full or selective backups with ZIP compression, scheduled execution, logging, notifications, and retention management.
 
-## Publisher: <br>
-[hjj345](https://clawhub.ai/user/hjj345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hjj345](https://clawhub.ai/user/hjj345)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to configure and run local backups of OpenClaw workspaces and memory, including scheduled backups, status checks, retention cleanup, and notification reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can receive broad local access to OpenClaw workspaces and memory. <br>
-Mitigation: Configure partial backup targets before enabling automation and use a private backup directory. <br>
-Risk: Backup archives can include sensitive local data such as keys, credentials, environment files, or memory content. <br>
-Mitigation: Turn on sensitive-file exclusions, review selected targets, and confirm backup contents before relying on scheduled runs. <br>
-Risk: External notifications and schedule templates can expose backup metadata or operational details. <br>
-Mitigation: Review the HEARTBEAT and cron templates, disable notifications when not required, and restrict notification channels and recipients. <br>
-Risk: ZIP encryption may not protect backups if the password is stored only in the skill's plaintext config file. <br>
-Mitigation: Do not rely on ZIP encryption alone; protect the backup directory and manage encryption secrets outside plaintext skill configuration. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to configure, run, schedule, inspect, and clean backups of OpenClaw workspace data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjj345/auto-backup-openclaw-user-data) <br>
-- [README](README.md) <br>
-- [Configuration schema](references/config-schema.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [HEARTBEAT prompt example](HEARTBEAT_prompt_example.md) <br>
-- [Cron prompt example](cron_prompt_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance and JSON-like command results with backup file paths, status details, logs, and notification content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create ZIP backup archives, local logs, retained backup lists, and external notification messages when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: Backups can include more OpenClaw workspace data than users expect, including sensitive files when broad targets are selected or sensitive-file exclusions remain disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review backup targets before first use, prefer selective backups, enable sensitive-file exclusions when appropriate, and keep backup storage private.
+
+Risk: Unencrypted backup archives or copied notification prompts can expose secrets, credentials, or messaging tokens.
+
+Mitigation: Enable encryption for sensitive backups, store passwords in a password manager, and avoid saving Telegram tokens or other secrets in copied prompts.
+
+Risk: Custom backup targets that contain parent-directory traversal or absolute paths can expand the backup scope.
+
+Mitigation: Use workspace-relative backup targets and reject targets containing '..' or absolute path syntax before running backup commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hjj345/skills/auto-backup-openclaw-user-data)
+- [Configuration Schema](references/config-schema.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [HEARTBEAT Prompt Example](HEARTBEAT_prompt_example.md)
+- [Cron Prompt Example](cron_prompt_example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown or plain text responses with inline shell commands and JSON status or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When backup commands run, the skill may create local ZIP backup files, backup logs, and configuration files in the user's OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release and package.json; artifact docs note v1.1.0.20260414 released 2026-04-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Search Jerusalem specialty coffee shops by name, amenities, ratings, opening hours, reviews, and locations using a public community-curated data source. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Jerusalem specialty coffee shops by name, amenities, ratings, and opening hours.
 
-## Publisher: <br>
-[alexpolonsky](https://clawhub.ai/user/alexpolonsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexpolonsky](https://clawhub.ai/user/alexpolonsky)
 
-## Use Case: <br>
-External users and agents use this skill to find Jerusalem specialty coffee shops, check amenities such as WiFi or kosher status, inspect ratings and reviews, and identify shops that may be open now. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Venue hours, amenities, and ratings may be stale because the skill relies on a public community data export and cached upstream place data. <br>
-Mitigation: Verify hours and important venue details directly before travel or time-sensitive decisions. <br>
-Risk: The skill contacts a public Google Docs export and writes a short-lived cache under the system temporary directory. <br>
-Mitigation: Use it only in environments where that outbound request and temporary local cache are acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to find Jerusalem specialty coffee shops, compare amenities, check ratings and reviews, and identify shops that appear to be open now.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexpolonsky/jlm-coffee) <br>
-- [Skill Homepage](https://github.com/alexpolonsky/agent-skill-jlm-coffee) <br>
-- [Jerusalem Coffee Finder Data Site](https://coffee.amsterdamski.com) <br>
-- [Public Google Docs Data Export](https://docs.google.com/document/d/1BfsXKQLbKjogfSebRr0Ixt4L4VJHqPqTfnWxkosvcuM/export?format=txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Terminal text or JSON command output with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports colorized terminal output, a --json mode, and a 15-minute local cache in the system temporary directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata; artifact frontmatter: 2.0.0) <br>
+Risk: The skill fetches public Google Docs data and caches it locally; the security evidence flags cache handling as a local file-safety concern, especially in shared multi-user environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where this local cache behavior is acceptable; avoid administrator execution or shared multi-user use until the cache is private per user and terminal output is sanitized.
+
+## Reference(s):
+
+- [Jlm Coffee on ClawHub](https://clawhub.ai/alexpolonsky/skills/jlm-coffee)
+- [Publisher profile](https://clawhub.ai/user/alexpolonsky)
+- [Jerusalem coffee data site](https://coffee.amsterdamski.com)
+- [Public JSON data export](https://docs.google.com/document/d/1BfsXKQLbKjogfSebRr0Ixt4L4VJHqPqTfnWxkosvcuM/export?format=txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON CLI output, often summarized as Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python 3 on macOS or Linux; CLI output can include ANSI color unless disabled; data is cached locally for 15 minutes.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

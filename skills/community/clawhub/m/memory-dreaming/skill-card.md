@@ -1,46 +1,59 @@
-## Description: <br>
-Autonomous memory consolidation for OpenClaw agents that periodically gathers signal from daily logs, session transcripts, learnings, and plans; consolidates durable knowledge into MEMORY.md; optionally syncs structured knowledge to an Obsidian vault; and prunes stale or contradictory entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous memory consolidation for OpenClaw agents that periodically gathers signal from daily logs, session transcripts, learnings, and plans, then updates long-term memory and optionally syncs structured knowledge to Obsidian.
 
-## Publisher: <br>
-[oryanmoshe](https://clawhub.ai/user/oryanmoshe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oryanmoshe](https://clawhub.ai/user/oryanmoshe)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to keep long-running agent memory coherent by consolidating daily logs, learnings, session-transcript matches, and active plans into durable memory. It is also used to configure an optional Obsidian knowledge-base sync for people, projects, plans, tools, and decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads private memory logs, learnings, plan files, and matched session transcript lines. <br>
-Mitigation: Use it only in workspaces where those sources are appropriate for autonomous review, and add redaction or approval controls before using it around secrets or sensitive client data. <br>
-Risk: The skill can silently rewrite durable memory and mark learning entries as promoted. <br>
-Mitigation: Review MEMORY.md, learning-file diffs, and memory/dreaming-log.md regularly after dream cycles. <br>
-Risk: Optional Obsidian sync can export consolidated memory into an external vault. <br>
-Mitigation: Keep Obsidian sync disabled unless the configured vault is approved for the information being consolidated. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to schedule or manually run memory maintenance that consolidates agent notes, corrections, decisions, and plans into durable memory and optional Obsidian notes.
 
-## Reference(s): <br>
-- [Memory Dreaming Skill](https://clawhub.ai/oryanmoshe/memory-dreaming) <br>
-- [Architecture - Memory Dreaming](references/architecture.md) <br>
-- [Dream Prompt](references/dream-prompt.md) <br>
-- [Obsidian Sync - How It Works](references/obsidian-sync.md) <br>
-- [Dreaming Configuration Defaults](assets/dreaming-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can modify MEMORY.md, memory/dreaming-log.md, learning status files, and optional Obsidian Markdown notes when executed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: Unattended memory consolidation can read transcripts, daily logs, task plans, and vault content that may contain credentials, private URLs, personal information, or sensitive project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review transcript and workspace scope before enabling cron, keep Obsidian sync disabled until a dedicated vault path is configured, and add redaction or review steps for sensitive data.
+
+Risk: Consolidated memory or Obsidian notes can persist incorrect, stale, or contradictory facts if the source material is noisy.
+
+Mitigation: Review memory and dreaming-log changes after early runs, use manual dream cycles before unattended scheduling, and correct durable memory entries promptly.
+
+Risk: Periodic cron execution gives an isolated agent recurring access to broad memory and plan data.
+
+Mitigation: Use the built-in time gate, restrict workspace and vault paths where possible, and avoid unattended cron use until access scope and memory deletion behavior are acceptable.
+
+## Reference(s):
+
+- [Architecture](references/architecture.md)
+- [Dream Prompt](references/dream-prompt.md)
+- [Obsidian Sync](references/obsidian-sync.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON configuration, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update MEMORY.md, memory/dreaming-log.md, learning status files, and opt-in Obsidian vault notes.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

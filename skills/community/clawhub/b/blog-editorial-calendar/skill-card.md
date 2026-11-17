@@ -1,41 +1,58 @@
-## Description: <br>
-Blog Editorial Calendar helps content teams manage an evidence-backed topic backlog, choose balanced blog topics, and schedule posts through their configured publishing workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blog Editorial Calendar helps an agent manage a blog publishing queue by selecting topics from a balanced backlog, scheduling posts into configured cadence slots, syncing with CMS state, and delegating writing and publishing to companion skills.
 
-## Publisher: <br>
-[automatelab](https://clawhub.ai/user/automatelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[automatelab](https://clawhub.ai/user/automatelab)
 
-## Use Case: <br>
-External content teams, founders, and developers use this skill to keep a blog backlog moving through topic selection, scheduling, status checks, and completion tracking. It is intended for recurring long-tail SEO publishing workflows that rely on configured CMS and writer skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create drafts or schedule posts in a connected CMS from broad prompts. <br>
-Mitigation: Use it only with CMS accounts and sites where automated drafts or scheduled posts are acceptable, and confirm before running publishing commands such as `next`, `sync`, or `mark-done`. <br>
-Risk: Concurrent `next` jobs may pick or schedule overlapping work because concurrency controls are under-specified. <br>
-Mitigation: Run one publishing job at a time until a real lock or transaction mechanism is available. <br>
+## Use Case:
 
+External users, founders, indie hackers, and content teams use this skill to run a recurring long-tail SEO publishing cadence, keep topic clusters and post formats balanced, and avoid duplicate work by reconciling a local backlog with live CMS state.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/automatelab/blog-editorial-calendar) <br>
-- [Publisher Profile](https://clawhub.ai/user/automatelab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples and JSON configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger configured publishing workflows and update local backlog status files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can drive companion publishing workflows that create drafts or scheduled CMS posts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config.json, connected CMS credentials, and requested /blog-editorial-calendar commands before allowing publishing actions.
+
+Risk: Publishing state depends on local backlog and published-index files matching the CMS.
+
+Mitigation: Run sync before publishing, review any ambiguous or missing-post diff entries, and keep the writer adapter's publish locks enabled.
+
+Risk: An empty backlog can trigger a refill workflow through blog-topic-research.
+
+Mitigation: Require review of proposed refill candidates before they are appended to the queue.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/automatelab/skills/blog-editorial-calendar)
+- [Publisher Profile](https://clawhub.ai/user/automatelab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell or command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local backlog and published-index state files and may invoke companion publishing skills when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

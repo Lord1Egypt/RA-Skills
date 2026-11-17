@@ -1,0 +1,126 @@
+/* ================================================================
+   html-slides 主题样式（可无损转换为 PPTX 的净化版）
+   视觉风格：联想 Lenovo 品牌视觉 · 深蓝中轴 + 联想红强调 + 炭黑深底
+
+   【使用契约 —— 写页面时必须遵守】
+   1. 本文件提供：CSS 变量(色板/字体) + Reset + 少量工具类。
+      CSS 变量在转换时会被解析成具体颜色,安全无损。
+   2. ❌ 不要使用伪元素(::before/::after)做装饰——转换时会被忽略。
+      装饰线/圆点/角标一律用真实 <div data-object="true" data-object-type="shape"> 表达。
+   3. ❌ 不要使用 opacity 做半透明装饰——转换时按不透明处理。
+      半透明色请预先与底色混合,直接写混合后的 hex。
+   4. ⚠️ 非统一边框(如 border-top:4px solid ...)已支持:转换器逐边生成细条。
+      但圆角卡片仍建议统一边框(逐边细条不贴合圆角);
+      顶部/侧边强调条更稳的写法是独立的细长 shape 叠加。
+   5. 每个可见元素必须带 data-object="true";定位支持三种方式:
+      A 绝对定位 / B flex/grid 流式 / C data-layout 声明式。
+      详见 reference/html-spec.md。
+   ================================================================ */
+
+:root {
+  /* 主色：三色主结构 */
+  --brand-primary: #E2232A;
+  --lenovo-red: var(--brand-primary);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-primary-dark: #B81C22;
+  --lenovo-red-dark: var(--brand-primary-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark: #0A2E5C;
+  --deep-navy: var(--brand-dark);   /* 别名(向后兼容,169 处历史引用) */
+  --brand-dark-soft: #14477A;
+  --deep-navy-light: var(--brand-dark-soft);   /* 别名(向后兼容,169 处历史引用) */
+  --charcoal: #1A1A1A;
+  --charcoal-soft: #2C2C2C;
+
+  /* 白+灰系（承载） */
+  --white: #FFFFFF;
+  --off-white: #F5F7FA;
+  --card-bg: #FAFBFC;
+  --text-primary: #1F1F1F;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-light: #E5E7EB;
+  --border-medium: #D1D5DB;
+
+  /* 深色底上的浅色文字(预算混合色,非 rgba) */
+  --on-navy-text: #FFFFFF;
+  --on-navy-sub: #D9E2F0;    /* ≈ 白 85% 混 deep-navy */
+  --on-navy-dim: #A9BCD6;    /* ≈ 白 70% 混 deep-navy */
+
+  /* 代码块 */
+  --code-bg: #0F1419;
+  --code-text: #E8E8E8;
+  --code-highlight: #FFD966;
+  --code-comment: #7A8B99;
+
+  /* 信号色（类别区分时少量使用） */
+  --signal-green: #00A651;
+  --signal-yellow: #F9A825;
+  --signal-blue: #1976D2;
+  --signal-red: #E2232A;
+  --signal-gray: #757575;
+
+  /* 强调橙（高亮卡/徽章） */
+  --accent-orange: #F39800;
+  /* ── 色板梯级(第九轮 P1 自动生成:tools/gen-ladder.js;勿手改值)────── */
+  --brand-primary-soft: #FADADB;      /* --brand-primary @17% · 主色浅底:徽章/高亮格/热力中档 */
+  --brand-primary-pale: #FDEDEE;      /* --brand-primary @8% · 主色最浅底:提示条/斑马纹 */
+  --brand-dark-pale: #EBEEF2;         /* --brand-dark @8% · 深底浅化:卡片浅底/浅色分区 */
+  --brand-dark-tint: #C9D1DB;         /* --brand-dark @22% · 深底中浅:表头底纹/分层底 */
+  --brand-dark-mid: #788CA5;          /* --brand-dark @55% · 深底中间层:金字塔/漏斗中段 */
+  --ink-soft: #626262;                /* --text-primary @70% · 中性深灰:次级文字/较重分隔线 */
+  --ink-faint: #8F8F8F;               /* --text-primary @50% · 中性中灰:弱化文字/网格线 */
+  --surface-sunken: #F6F6F6;          /* --text-primary @4% · 下沉面:浅灰面板底(区别于画布底) */
+  --signal-green-soft: #D6F1E3;       /* --signal-green @16% · 语义浅底:达成/正向格 */
+  --signal-yellow-soft: #FEF1DC;      /* --signal-yellow @16% · 语义浅底:预警/中档格 */
+  --signal-red-soft: #FADCDD;         /* --signal-red @16% · 语义浅底:风险/未达格 */
+  --signal-blue-soft: #DAE9F8;        /* --signal-blue @16% · 语义浅底:信息/参照格 */
+  /* ── 色板梯级结束 ── */
+
+
+  /* 字体 */
+  --font-cn: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --font-en: "Inter", -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  /* ── 版面分区与间距(2026-08-02 设计总纲;规则见 reference/design-principles.md) ── */
+  --zone-header-top: 60px;       /* 页眉区起(kicker/页标题/页码) */
+  --zone-content-top: 320px;     /* 内容区起(内容带顶 ≤360px) */
+  --zone-content-bottom: 940px;  /* 内容区止(内容带底 ≥880px) */
+  --zone-footer-top: 980px;      /* 页脚区起 */
+  --page-margin: 100px;          /* 左右边距 */
+  --content-width: 1720px;       /* 内容宽 = 1920 - 2×100 */
+  --space-block: 60px;           /* 内容块间距(分栏 gap) */
+  --space-item: 40px;            /* 条目间距(scale-to-fill 加大档) */
+  --space-item-tight: 24px;      /* 条目间距(紧凑档) */
+
+  /* ── 字号阶(演讲档基准;混合/阅读档按 design-principles.md 字号阶等比) ── */
+  --text-cover: 104px;           /* 封面主标 88-120 */
+  --text-title-page: 60px;       /* 页标题 56-64 */
+  --text-title-block: 32px;      /* 区块/卡片标题 32-38 */
+  --text-body: 24px;             /* 正文 24-28(绝对下限 14px,正文破档下限 22px) */
+  --text-note: 16px;             /* 注释/来源 ≥16 */
+  --text-floor: 14px;            /* 绝对下限(页码/页脚) */
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { margin: 0; padding: 0; overflow: hidden; }
+
+body {
+  font-family: var(--font-cn);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 画布：转换器只认 1920x1080 + relative + hidden */
+.slide-container {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--off-white);
+  font-family: var(--font-cn);
+}
+
+/* 数字/西文用 Inter（表格数字、页码等,可加 class="num"） */
+.num { font-family: var(--font-en); font-feature-settings: "tnum"; }

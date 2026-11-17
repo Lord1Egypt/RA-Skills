@@ -1,41 +1,50 @@
-## Description: <br>
-Guides agents through creating custom Node.js http.Agent subclasses with agent-base and choosing proxy-agent subclasses when appropriate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create custom http.Agent.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and coding agents use this skill to produce TypeScript or JavaScript guidance and examples for custom HTTP connection handling, proxy routing, and agent-base connect() implementations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proxy or custom Agent code may route traffic through unintended destinations or weaken TLS handling if used without review. <br>
-Mitigation: Verify proxy destinations, TLS settings, routing rules, and package names before using generated code with production or corporate traffic. <br>
-Risk: Suggested npm packages may add dependencies to an application. <br>
-Mitigation: Confirm package names and dependency trust posture before installing packages or committing dependency changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose proxy-agent subclasses or implement custom Node.js http.Agent connection logic with agent-base for HTTP, HTTPS, SOCKS, PAC, and custom socket routing scenarios.
 
-## Reference(s): <br>
-- [Proxy Details and Subclass Selection](references/proxy-details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/agent-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with TypeScript or JavaScript examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; generated code and package recommendations should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Proxy or custom connection code can route application traffic to unintended destinations if PAC, SOCKS, or proxy settings are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated proxy URLs, PAC rules, SOCKS settings, and connect() implementations before using them in production.
+
+## Reference(s):
+
+- [Proxy Details and Subclass Selection](references/proxy-details.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/agent-base)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript/JavaScript code blocks and npm install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

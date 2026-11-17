@@ -1,0 +1,50 @@
+{
+  "skill_name": "huawei-cloud-rds-export-markdown",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Export Markdown report (default current-dir output)",
+      "command": "python3 scripts/list_rds_export_markdown.py --region {region}",
+      "expected": "Prints the generated .md path; file has title, header row (实例名称/实例ID/状态/引擎/版本/规格/私网IP/可用区/创建时间) + one row per instance",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "Explicit output path",
+      "command": "python3 scripts/list_rds_export_markdown.py --region {region} --output /tmp/rds_instances_{region}.md",
+      "expected": "Markdown file written to the given path",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-03",
+      "name": "Name / status filters",
+      "command": "python3 scripts/list_rds_export_markdown.py --region {region} --name rds-demo --status ACTIVE --output /tmp/rds_filtered.md",
+      "expected": "Only matching instances rendered (status applied client-side)",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-04",
+      "name": "Empty result still writes a Markdown file",
+      "command": "python3 scripts/list_rds_export_markdown.py --region {region} --name __no_such_instance__ --output /tmp/rds_empty_{region}.md",
+      "expected": "Header + '无 RDS 实例' note written, exit 0, no error",
+      "type": "readonly",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-05",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/list_rds_export_markdown.py --help",
+      "expected": "argparse help printed, exit 0",
+      "type": "syntax",
+      "executor": "sdk"
+    }
+  ],
+  "env_vars_required": [
+    "HUAWEICLOUD_SDK_AK / HUAWEICLOUD_SDK_SK（或 HUAWEI_ACCESS_KEY / HUAWEI_SECRET_KEY、HW_ACCESS_KEY / HW_SECRET_KEY）"
+  ],
+  "notes": "只读操作（ListInstances），无资源创建/修改/删除风险；Markdown 仅在本机生成，绝不写回云端。CLI 主路径使用 hcloud RDS ListInstances（只读 GET /v3/{project_id}/instances）；SDK 回退使用 huaweicloudsdkrds v3；SDK 依赖缺失时可运行 scripts/ensure_env.py 自动安装。缺 hcloud 后端/凭据时用例按后端可用性降级或跳过，不产生伪失败；真实只读验证由 QA 带外执行。"
+}

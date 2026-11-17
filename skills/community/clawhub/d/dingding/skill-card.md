@@ -1,44 +1,54 @@
-## Description: <br>
-Dingding helps developers integrate DingTalk Open Platform APIs for bots, approvals, schedules, directory, attendance, OAuth2, and event callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dingding helps agents send DingTalk group notifications as text, markdown, or link cards through a zero-dependency Python CLI, and provides concise DingTalk Open Platform development guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and enterprise automation teams use this skill for guidance, request examples, and implementation patterns when connecting agents or applications to DingTalk Open Platform workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DingTalk credentials, webhook tokens, and app secrets could be exposed or used with broader permissions than needed. <br>
-Mitigation: Use environment variables or a secret manager, avoid hardcoding credentials, and grant only the DingTalk app scopes required for the task. <br>
-Risk: The skill can guide sensitive enterprise actions, including sending messages, starting approvals, creating calendar events, or reading directory and attendance records. <br>
-Mitigation: Require authorization for the tenant and target users, and ask for explicit confirmation before performing actions that affect users or expose records. <br>
-Risk: DingTalk integrations may fail or behave unexpectedly when mixing newer api.dingtalk.com endpoints with legacy oapi.dingtalk.com endpoints. <br>
-Mitigation: Confirm endpoint choice against current DingTalk documentation and test flows with non-production data before using real enterprise workflows. <br>
+## Use Case:
 
+Developers and automation agents use this skill to send CI/CD results, monitoring alerts, scheduled reports, and reminder messages to DingTalk groups. It is also useful for implementation guidance around common DingTalk Open Platform server APIs.
 
-## Reference(s): <br>
-- [Dingding ClawHub release](https://clawhub.ai/zhangifonly/dingding) <br>
-- [DingTalk Open Platform API base](https://api.dingtalk.com) <br>
-- [DingTalk legacy OAPI base](https://oapi.dingtalk.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with API endpoints, JSON examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DingTalk request bodies, authentication guidance, event callback notes, and troubleshooting tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The CLI can send markdown file contents to the URL provided through DING_WEBHOOK, so a misconfigured or malicious environment could transmit readable local text files outside the intended DingTalk endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only run the skill in trusted environments, validate that DING_WEBHOOK targets https://oapi.dingtalk.com before sending, and require explicit confirmation before sending local file contents.
+
+Risk: Using @all can create broad group notifications and operational noise.
+
+Mitigation: Require user confirmation before using @all, and prefer targeted mobile-number mentions for alerts that need a specific responder.
+
+## Reference(s):
+
+- [DingTalk Open Platform](https://open.dingtalk.com)
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/dingding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI prints DingTalk API JSON responses and exits nonzero when DingTalk returns an error code.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

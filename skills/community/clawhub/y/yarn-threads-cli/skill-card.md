@@ -1,41 +1,53 @@
-## Description: <br>
-Interact with Threads by Meta through yarn-threads-cli to read feeds, likes, saved posts, threads, profiles, and search results, and to post, reply, or quote after authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Threads (by Meta) via the yarn-threads-cli to read feeds and posts, inspect profiles, search users, and post, reply, or quote on Threads.
 
-## Publisher: <br>
-[jeizzon](https://clawhub.ai/user/jeizzon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jeizzon](https://clawhub.ai/user/jeizzon)
 
-## Use Case: <br>
-Developers, operators, and social-media automation users use this skill to ask an agent for Threads CLI commands, authentication guidance, feed/profile lookup, and publishing actions. It is useful when the agent should access Threads data or prepare explicit post, reply, or quote commands through the user's authenticated browser profile or session tokens. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The underlying CLI can use Threads browser sessions or manual cookies, exposing account access if session IDs, CSRF tokens, or user IDs are shared insecurely. <br>
-Mitigation: Treat session values like passwords, avoid placing them in visible command lines or chats, and prefer browser-profile authentication when appropriate. <br>
-Risk: Posting, replying, or quoting can publish from the user's Threads account. <br>
-Mitigation: Require explicit user confirmation before any publish command is run, including the exact text and target thread when applicable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [yarn-threads Command Reference](references/commands.md) <br>
-- [yarn-threads-cli documentation](https://github.com/jeizzon/yarn-threads-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/jeizzon/yarn-threads-cli) <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent operate yarn-threads-cli for authenticated Threads browsing, profile lookup, search, and posting workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline CLI commands, flags, and short examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-output recommendations for downstream parsing when the CLI supports --json or --json-full.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give an agent sensitive Threads account access, including private feeds, saved content, account cookies, and public posting ability.
+
+Mitigation: Install only reviewed, pinned versions in an isolated environment and require explicit user approval before reading private account data or posting publicly.
+
+Risk: Manual session and CSRF tokens can be exposed if pasted into chat, logs, or shell history.
+
+Mitigation: Prefer Chrome or Firefox profile authentication and avoid pasting session or CSRF tokens into chat or command history.
+
+## Reference(s):
+
+- [yarn-threads-cli documentation](https://github.com/jeizzon/yarn-threads-cli)
+- [yarn-threads Command Reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct use of JSON or plain-text CLI flags for parseable Threads data.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

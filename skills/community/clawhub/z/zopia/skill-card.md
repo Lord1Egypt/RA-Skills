@@ -1,45 +1,62 @@
-## Description: <br>
-Zopia helps an agent create and manage AI video and image projects on the Zopia platform by configuring projects, sending user prompts, polling progress, downloading generated media, and rendering final episodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zopia helps agents manage AI video and image creation projects on the Zopia platform, including scripts, character design, storyboards, multi-episode production, media generation, progress tracking, and result downloads.
 
-## Publisher: <br>
-[lambdua](https://clawhub.ai/user/lambdua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lambdua](https://clawhub.ai/user/lambdua)
 
-## Use Case: <br>
-External users and developers use this skill through an agent to create Zopia video or image projects, configure style and model settings, submit creative prompts, track generation progress, download generated assets, and render final MP4 episodes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, project names, generated project data, and account credentials are sent to the configured Zopia service. <br>
-Mitigation: Install only when that data sharing is acceptable, treat ZOPIA_ACCESS_KEY as an account credential, and verify ZOPIA_BASE_URL before use. <br>
-Risk: The skill downloads generated media files into a local output directory. <br>
-Mitigation: Run downloads in a directory where generated media is expected and review downloaded files before reuse or redistribution. <br>
-Risk: Episode deletion is irreversible. <br>
-Mitigation: Double-check episode IDs before using the delete action. <br>
+## Use Case:
 
+External users, developers, and creative teams use this skill to create and manage Zopia projects for AI-assisted scripts, characters, storyboards, generated media, and rendered videos.
 
-## Reference(s): <br>
-- [Zopia platform](https://zopia.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/lambdua/zopia) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON script output, and downloaded image or video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZOPIA_ACCESS_KEY and may use ZOPIA_BASE_URL to call the configured Zopia API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence, created 2026-04-25) <br>
+Risk: The skill sends prompts, project metadata, generated assets, and the account token to Zopia.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for Zopia workflows you trust, and avoid submitting confidential or regulated content.
+
+Risk: The skill can direct requests to a custom ZOPIA_BASE_URL.
+
+Mitigation: Keep ZOPIA_BASE_URL at https://zopia.ai unless intentionally testing against a known local or controlled endpoint.
+
+Risk: The skill downloads generated media files to the local filesystem.
+
+Mitigation: Review downloaded images and videos before opening, sharing, or importing them into other tools.
+
+Risk: The episode deletion script does not require an additional confirmation step.
+
+Mitigation: Verify the episode ID and project context before running deletion commands.
+
+## Reference(s):
+
+- [Zopia skill page](https://clawhub.ai/lambdua/skills/zopia)
+- [Zopia platform](https://zopia.ai)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON command output, project URLs, and downloaded image or video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and ZOPIA_ACCESS_KEY; ZOPIA_BASE_URL defaults to the official HTTPS endpoint.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

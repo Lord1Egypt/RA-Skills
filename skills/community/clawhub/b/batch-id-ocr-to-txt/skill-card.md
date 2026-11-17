@@ -1,43 +1,58 @@
-## Description: <br>
-Batch ID uses Tencent Cloud OCR to extract names, sex, and ID numbers from up to 50 ID-card images and return a formatted text file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+batch-id extracts name, sex, and ID number fields from up to 50 Chinese ID card image URLs using Tencent Cloud OCR and returns a plain text file.
 
-## Publisher: <br>
-[linyao58](https://clawhub.ai/user/linyao58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linyao58](https://clawhub.ai/user/linyao58)
 
-## Use Case: <br>
-Developers and operators use this skill to process authorized batches of ID-card images through Tencent Cloud OCR and receive a downloadable, consistently formatted text result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes full government-ID data in bulk. <br>
-Mitigation: Use it only for IDs the operator is authorized to process, with consent and compliance checks for Tencent Cloud OCR. <br>
-Risk: The generated .txt attachment can expose sensitive identity data. <br>
-Mitigation: Treat the output as highly sensitive, define retention controls, and consider masking ID numbers or avoiding plaintext export. <br>
-Risk: Tencent Cloud credentials are required to call the OCR API. <br>
-Mitigation: Use a dedicated least-privilege Tencent key and keep credentials in the skill configuration rather than source files. <br>
+## Use Case:
 
+Developers and operators use this skill to process batches of Chinese ID-card front images and produce a copyable text attachment containing extracted identity fields. It is intended for workflows where the user is authorized to process those documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linyao58/batch-id-ocr-to-txt) <br>
-- [Tencent Cloud CAM API key console](https://console.cloud.tencent.com/cam/capi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text file plus short status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts up to 50 image URLs and returns a generated .txt attachment containing extracted fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill processes highly sensitive government ID data and sends image URLs to Tencent Cloud OCR.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when authorized to process the documents, disclose the third-party OCR processing path, and treat the returned text file as sensitive personal data.
+
+Risk: The generated text file can persist extracted identity data after delivery.
+
+Mitigation: Use unique secure temporary output paths or in-memory attachments where supported, clean up generated files after delivery, and restrict access to output storage.
+
+Risk: The dependency declaration allows any tencentcloud-sdk-python version at or above 3.0.0.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/linyao58/skills/batch-id-ocr-to-txt)
+- [Tencent Cloud CAM API key management](https://console.cloud.tencent.com/cam/capi)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, configuration]
+
+**Output Format:** [Plain text .txt attachment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Up to 50 image URLs are processed per run; each recognized document is formatted as name, sex, and ID number with blank lines between documents.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact skill.yaml declares 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

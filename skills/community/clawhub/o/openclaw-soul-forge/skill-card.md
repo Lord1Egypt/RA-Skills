@@ -1,50 +1,65 @@
-## Description: <br>
-OpenClaw Lobster Soul Forge helps OpenClaw agent builders create a complete lobster persona, including identity positioning, SOUL.md content, boundary rules, a name, and an avatar prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forge a complete lobster soul for an OpenClaw AI Agent, including identity positioning, SOUL.md, character-driven boundary rules, a name, and an avatar prompt.
 
-## Publisher: <br>
-[eamanc-lab](https://clawhub.ai/user/eamanc-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eamanc-lab](https://clawhub.ai/user/eamanc-lab)
 
-## Use Case: <br>
-External OpenClaw users and agent builders use this skill to design character-driven OpenClaw souls with a coherent identity, behavioral boundaries, name, and avatar prompt. It supports guided design, random gacha-style persona generation, and packaging generated content into SOUL.md and IDENTITY.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SOUL.md or IDENTITY.md content can change an agent's active personality and operating boundaries. <br>
-Mitigation: Review the generated persona, boundaries, and sample replies before installing them as active agent configuration. <br>
-Risk: Writing generated files to the wrong directory or over existing files could replace an existing OpenClaw soul configuration. <br>
-Mitigation: Confirm the target directory and check whether SOUL.md or IDENTITY.md already exist before allowing file writes. <br>
-Risk: Avatar image generation is optional and depends on a separate image-generation skill when available. <br>
-Mitigation: Use the text avatar prompt as the fallback path, and review any optional image-generation dependency before invoking it. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to design or randomize characterful lobster personas and produce SOUL.md, IDENTITY.md, boundary rules, names, and avatar prompts for OpenClaw agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eamanc-lab/openclaw-soul-forge) <br>
-- [Project homepage](https://github.com/eamanc-lab/openclaw-persona-forge) <br>
-- [Avatar style](references/avatar-style.md) <br>
-- [Boundary rules](references/boundary-rules.md) <br>
-- [Error handling](references/error-handling.md) <br>
-- [Identity tension](references/identity-tension.md) <br>
-- [Naming system](references/naming-system.md) <br>
-- [Output template](references/output-template.md) <br>
-- [Optional baoyu-image-gen dependency](https://github.com/JimLiu/baoyu-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated SOUL.md and IDENTITY.md content, gacha command output, and avatar prompt text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally write SOUL.md and IDENTITY.md after user confirmation; avatar image generation depends on an optional external skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: SOUL.md and IDENTITY.md may overwrite files if generated in a directory that already contains those filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated output directory and review the target path before confirming file writes.
+
+Risk: Optional avatar generation depends on baoyu-image-gen, which is outside the core skill.
+
+Mitigation: Use the manual avatar prompt fallback unless baoyu-image-gen has been separately reviewed.
+
+Risk: A highly characterful generated persona can become too restrictive for normal agent tasks.
+
+Mitigation: Apply the included intensity calibration and reforge or trim the persona if it constrains useful behavior.
+
+## Reference(s):
+
+- [OpenClaw Persona Forge Homepage](https://github.com/eamanc-lab/openclaw-persona-forge)
+- [Avatar Style & Image Generation](references/avatar-style.md)
+- [Boundary Rules](references/boundary-rules.md)
+- [Error Handling & Degradation Strategy](references/error-handling.md)
+- [Identity Tension](references/identity-tension.md)
+- [Naming System](references/naming-system.md)
+- [Full Output Template](references/output-template.md)
+- [Optional baoyu-image-gen Skill](https://github.com/JimLiu/baoyu-skills)
+- [Adam Avatar Style Reference](https://raw.githubusercontent.com/eamanc-lab/openclaw-persona-forge/main/docs/adam-claw-logo.png)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown with optional SOUL.md and IDENTITY.md file outputs, shell command snippets, and avatar prompt text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The core output is text; avatar image generation is optional and falls back to a reusable prompt when the optional dependency is unavailable.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-DataGate validates JSON data against JSON Schema Draft 2020-12 through a local API and returns validity, error counts, field paths, and violation messages for agent pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DataGate validates JSON payloads against JSON Schema (Draft 2020-12) and returns whether the data is valid with detailed error paths and messages for each violation.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mirni](https://clawhub.ai/user/mirni)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use DataGate to validate JSON payloads against JSON Schema before passing data between services. It provides a language-agnostic validation endpoint that returns validity, error counts, field paths, and messages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Exposing the validation service to untrusted networks can allow unauthenticated callers to submit arbitrary schemas and payloads.
+
+Mitigation: Run the service locally or behind trusted access controls, and add request limits, timeouts, and rate limiting before any external exposure.
+
+Risk: Installation resolves current Python packages at setup time.
+
+Mitigation: Install only in environments where current package resolution is acceptable; pin dependencies for reproducible deployments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use DataGate to validate JSON payloads against JSON Schema before agents or services pass data downstream. It exposes language-agnostic validation through a local API that returns validity, error counts, paths, and messages. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Local validation service exposure or resource use from untrusted payloads. <br>
-Mitigation: Run in an isolated Python environment, keep the service bound to localhost unless network access is intentional, and avoid validating secrets or very large untrusted payloads. <br>
+**Output Format:** [Markdown instructions with bash examples; runtime endpoint returns JSON validation reports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/datagate) <br>
+**Other Properties Related to Output:** [Validation reports include valid, error_count, and errors fields with per-error path and message values.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local API usage guidance and validation response details including valid, error_count, and errors.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

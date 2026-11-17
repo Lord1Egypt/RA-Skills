@@ -1,45 +1,55 @@
-## Description: <br>
-Read and write WordPress.com site content through WordPress.com's hosted MCP server for posts, pages, media, comments, and publishing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and write WordPress.com site content through WordPress.com's hosted MCP server. Thin pass-through to WordPress.com's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about WordPress.com sites, posts, pages, media, comments, or publishing workflows.
 
-## Publisher: <br>
-[maverick](https://clawhub.ai/user/maverick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick](https://clawhub.ai/user/maverick)
 
-## Use Case: <br>
-External users and developers use this skill to manage WordPress.com posts, pages, media, comments, and site content through the official hosted MCP server with OAuth-backed access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected OAuth grant can allow an agent to change WordPress.com content, including creating, editing, publishing, deleting, moderating, or uploading content. <br>
-Mitigation: Use the least-privileged WordPress.com account available, confirm clear user intent before write or destructive actions, and read current state before making changes. <br>
-Risk: Tool arguments and results transit WordPress.com's hosted MCP server. <br>
-Mitigation: Do not send unrelated sensitive content through tool arguments or prompts for this connector. <br>
-Risk: The OAuth grant persists until revoked, and rerunning setup with stale credentials can overwrite newer vault credentials. <br>
-Mitigation: Revoke the grant in WordPress.com when access is no longer needed and rerun setup only with freshly minted OAuth credentials. <br>
+## Use Case:
 
+WordPress.com site owners and authorized users can manage posts, pages, media, comments, and publishing workflows through the hosted WordPress.com MCP integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick/maverick-wordpress-mcp) <br>
-- [WordPress.com MCP documentation](https://developer.wordpress.com/docs/mcp/) <br>
-- [WordPress.com custom MCP client authentication](https://developer.wordpress.com/docs/mcp/connect-custom-mcp-client/) <br>
-- [mcporter config reference](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with shell command examples and optional JSON tool output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live tool availability and permitted actions depend on the WordPress.com MCP server catalog and the connected OAuth grant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release evidence) <br>
+Risk: WordPress operations can make public or private changes to site content, including publishing or deleting content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm clear user intent and check the target site, current state, and intended changes before write actions.
+
+Risk: Setup overwrites stored OAuth values; stale refresh credentials can break the connection after token rotation.
+
+Mitigation: Rerun setup only with fresh credentials, and revoke the OAuth grant when access is no longer needed.
+
+## Reference(s):
+
+- [WordPress.com MCP documentation](https://developer.wordpress.com/docs/mcp/)
+- [WordPress.com custom MCP client authentication](https://developer.wordpress.com/docs/mcp/connect-custom-mcp-client/)
+- [mcporter configuration reference](https://github.com/openclaw/mcporter/blob/v0.11.1/docs/config.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text]
+
+**Output Format:** [WordPress.com content changes and text responses through hosted MCP tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write actions can create, edit, publish, unpublish, delete, moderate, or upload WordPress.com content, depending on the live tool catalog and account permissions.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

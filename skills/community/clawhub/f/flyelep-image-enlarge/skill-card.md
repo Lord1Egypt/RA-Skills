@@ -1,41 +1,60 @@
-## Description: <br>
-Image Enlarge helps an agent upscale one or more publicly accessible image URLs through the Flyelep AI image-enlargement API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enlarges images without loss through the Flyelep AI tool API, supporting single-image and batch processing.
 
-## Publisher: <br>
-[flyelepai](https://clawhub.ai/user/flyelepai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyelepai](https://clawhub.ai/user/flyelepai)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to upscale or enhance clarity for single images or batches of product images by calling Flyelep with user-provided image URLs and a runtime API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected image URLs are sent to Flyelep for processing. <br>
-Mitigation: Use only image links that are approved for Flyelep processing, and avoid private or sensitive image URLs unless Flyelep is approved for that data. <br>
-Risk: The Flyelep secretKey is required to call the API. <br>
-Mitigation: Provide the secretKey only at runtime and avoid storing it in shared files, chats, examples, or persistent configuration. <br>
+## Use Case:
 
+External users and developers use this skill to upscale one or more images through Flyelep and receive links to the processed images.
 
-## Reference(s): <br>
-- [Flyelep Image Enlarge API Endpoint](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/enlarge) <br>
-- [Flyelep Controlboard](https://www.flyelep.cn/controlboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with request JSON, optional curl commands, and returned image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns comma-separated enhanced image URLs from the API; the agent should split and present them individually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Images are sent to Flyelep for processing; local uploads return links described as temporary public URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images you are authorized to share, avoid sensitive images, and use upload links promptly rather than retaining them.
+
+Risk: The API requires a Flyelep secret key.
+
+Mitigation: Obtain the key from the user at runtime and keep it out of skill files, repositories, and persistent configuration.
+
+Risk: ClawScan reported a possible mismatch between the skill's stated purpose and demonstrated behavior; its analysis was partial.
+
+Mitigation: Review the skill and test it with non-sensitive images before relying on it. Treat the scanner verdict as a review warning, not proof of malicious intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flyelepai/skills/flyelep-image-enlarge)
+- [Flyelep image enlargement API](https://www.flyelep.cn/prod-api/poster-design/api/v1/poster/aiTool/enlarge)
+- [Flyelep image upload API](https://www.flyelep.cn/prod-api/poster-design/api/v1/file/upload)
+- [Flyelep developer platform](https://www.flyelep.cn/controlboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Image URLs]
+
+**Output Format:** [JSON response containing URLs for successfully enlarged images]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch results may contain fewer URLs than inputs when individual images fail; supports up to 20 images per request.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

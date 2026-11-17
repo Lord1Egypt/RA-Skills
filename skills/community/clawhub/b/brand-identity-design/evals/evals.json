@@ -1,0 +1,32 @@
+{
+  "skill_name": "brand-identity-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We are building an AI devtools startup called 'Vortex'. Create a full brand visual identity strategy and core metaphor.",
+      "expected_output": "Comprehensive VI design strategy including brand soul (mission, vision, values), core metaphor, style quadrant positioning, foundation layer specs, and developer touchpoint applications.",
+      "files": [],
+      "expectations": [
+        "Defines Mission, Vision, and Values answering the three fundamental brand questions",
+        "Establishes a core creative concept or metaphor ('Polaris')",
+        "Defines style quadrant positioning (e.g. Modern vs Classic, Human vs Tech)",
+        "Outlines Foundation Layer (Logo clear space, Color strategy, Typography hierarchy, Grid system)",
+        "Includes digital touchpoints (hero website, IDE plugin badge, dev docs)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "做一个国风轻养生茶饮品牌'草木知'的 VI 视觉系统全案设计。",
+      "expected_output": "A complete Brand VI strategy for a modern herbal tea brand, integrating cultural aesthetics, color psychology, and physical touchpoints.",
+      "files": [],
+      "expectations": [
+        "明确品牌灵魂三问与核心受众画像（情绪与生活方式）",
+        "提炼东方美学核心隐喻与视觉调性（如草木灵气、极简留白）",
+        "规划多触点应用规范（茶饮杯包装、门店招牌、线上小程序、周边物料）",
+        "提供基础层规范框架（品牌标准字、东方矿物色彩系统与WCAG对比度校验）",
+        "包含品牌交付手册与防错规范（禁止拉伸、错误色彩搭配等）"
+      ]
+    }
+  ]
+}
+

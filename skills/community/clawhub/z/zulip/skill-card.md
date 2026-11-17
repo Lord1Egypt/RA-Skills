@@ -1,39 +1,52 @@
-## Description: <br>
-Interact with Zulip chat platform via REST API and Python client. Use when you need to read messages from streams/topics, send messages to channels or users, manage DM conversations, list users, or integrate with Zulip organizations for team communication workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Zulip chat platform via REST API and Python client. Use when you need to read messages from streams/topics, send messages to channels or users, manage DM conversations, list users, or integrate with Zulip organizations for team communication workflows.
 
-## Publisher: <br>
-[suky57](https://clawhub.ai/user/suky57) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[suky57](https://clawhub.ai/user/suky57)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to a Zulip organization for reading streams, topics, direct messages, and mentions, and for sending messages or sharing uploaded files through a configured bot account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and send Zulip chat content using the permissions of the configured bot account. <br>
-Mitigation: Use a restricted bot account and review recipients, topics, message content, and uploaded files before allowing send or upload actions. <br>
-Risk: The Zulip bot API key grants access to organization data and actions available to that bot. <br>
-Mitigation: Protect the zuliprc file, avoid putting real keys directly in shell commands, and rotate credentials if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zulip API Quick Reference](references/api-quick-reference.md) <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to a Zulip organization through a bot account, read stream or direct messages, send replies, list users, and share files for team communication workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python, shell, curl, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that call the Zulip API using credentials from a zuliprc configuration file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read private messages, send direct messages, post to streams, and upload files through the configured Zulip bot.
+
+Mitigation: Use a least-privilege bot account and require confirmation before reading private messages, sending messages, posting to streams, or uploading files.
+
+Risk: Zulip bot API credentials can be exposed through source control, shell history, or shared logs.
+
+Mitigation: Keep zuliprc out of source control, restrict its file permissions, and avoid pasting real API keys into shell commands or shared logs.
+
+## Reference(s):
+
+- [Zulip API Quick Reference](references/api-quick-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, curl, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Zulip API reads, message sends, and file uploads through a configured bot account.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

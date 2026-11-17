@@ -1,6 +1,4 @@
 {
-  "ownerId": "kn7ajg6j7kr3fnjnj0ss558hjd83ej8m",
-  "slug": "minimax-tts-feishu",
-  "version": "1.0.2",
-  "publishedAt": 1774456554033
+  "primaryEnv": "MINIMAX_API_KEY",
+  "requiredEnvVars": ["MINIMAX_API_KEY", "FEISHU_APP_ID", "FEISHU_APP_SECRET"]
 }

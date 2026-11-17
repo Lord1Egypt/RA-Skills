@@ -1,0 +1,35 @@
+{
+  "skill_name": "gear-up",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to analyze 300 requirement documents. Existing tools extract text, but repeated normalization loses exact requirement IDs and source traceability. No installed skill or tool fixes that. Create what you need and continue.",
+      "expected_output": "Identifies a real capability gap, defines a measurable provenance-preservation test, creates the smallest justified temporary capability (likely one narrow normalization tool or a skill+tool only if necessary), validates/activates it through the runtime, and measures whether it actually closes the gap.",
+      "assertions": [
+        "The response proves a capability gap before generation",
+        "It does not generate multiple speculative artifacts",
+        "It defines an observable before/after value test",
+        "It does not persist the artifact permanently after one success"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I do not remember our current liability policy. Gear up by creating a legal-policy skill for this task.",
+      "expected_output": "Rejects capability creation because the problem is missing knowledge; routes to know-enough or an authoritative retrieval source instead.",
+      "assertions": [
+        "Missing knowledge is not misclassified as a capability gap",
+        "No temporary skill/tool is created"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write five helper skills, three tools, and two agents just in case they might help with this one-off CSV cleanup.",
+      "expected_output": "Refuses speculative proliferation, checks whether generic existing tools can perform the cleanup, and creates at most the minimal artifact only if a material uncovered gap is demonstrated.",
+      "assertions": [
+        "The creation budget and reuse-first rule are enforced",
+        "Convenience alone does not justify new agents or tools",
+        "The task proceeds with existing capabilities when adequate"
+      ]
+    }
+  ]
+}

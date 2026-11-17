@@ -1,0 +1,41 @@
+{
+  "id": "gamer-16-30",
+  "label": "Gamer 16-30",
+  "emoji": "🎮",
+  "demographics": {
+    "gender": "any",
+    "age_range": [16, 30],
+    "tier": "gen-z-millennial"
+  },
+  "active_hours": {
+    "description": "Late night sessions, weekends heavy",
+    "peak": [16, 20, 23, 4],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "description": "Fast, chat-optimised, abbreviations common",
+    "wpm": { "min": 100, "max": 145 },
+    "profile": "fast",
+    "think_prob": 0.003,
+    "think_ms": [100, 300],
+    "backspace_freq": 0.015
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Fast skipping, goes where content is",
+    "speed_px_per_ms": { "min": 50, "max": 110 },
+    "pause_between_passes_ms": { "min": 100, "max": 500 },
+    "depth_per_pass": { "min": 0.2, "max": 0.5 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 200, "max": 800 },
+    "pre_click_pause_ms": { "min": 50, "max": 150 },
+    "inter_action_pause_ms": { "min": 60, "max": 250 }
+  },
+  "mouse": {
+    "speed": 1.5,
+    "curvature": 0.35,
+    "jitter": 0.55,
+    "description": "Fast, sharp curves — high DPI mouse habits"
+  }
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "C00",
+    "factor": "企业资质",
+    "matched_keywords": [
+      "企业资质"
+    ],
+    "coverage_hint": "partial"
+  },
+  {
+    "id": "C01",
+    "factor": "类似业绩",
+    "matched_keywords": [
+      "类似业绩"
+    ],
+    "coverage_hint": "partial"
+  },
+  {
+    "id": "C02",
+    "factor": "技术方案",
+    "matched_keywords": [
+      "技术方案"
+    ],
+    "coverage_hint": "partial"
+  },
+  {
+    "id": "C03",
+    "factor": "项目团队",
+    "matched_keywords": [
+      "项目团队"
+    ],
+    "coverage_hint": "partial"
+  },
+  {
+    "id": "C04",
+    "factor": "售后服务",
+    "matched_keywords": [
+      "售后服务",
+      "响应时间"
+    ],
+    "coverage_hint": "covered"
+  }
+]

@@ -1,41 +1,54 @@
-## Description: <br>
-Provides Drupal and WordPress CMS development guidance for architecture, custom themes, plugins, modules, editor workflows, audits, and code-first implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drupal and WordPress specialist for theme development, custom plugins and modules, content architecture, and code-first CMS implementation.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers and agency engineering teams use this skill to plan, implement, and review Drupal and WordPress sites, including content models, themes, custom plugins or modules, Gutenberg or Layout Builder workflows, and CMS quality audits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CMS code or configuration can affect production behavior, authentication, permissions, escaping, nonces, database state, or deployment flow. <br>
-Mitigation: Review generated WordPress and Drupal code before applying it to production, with extra attention to plugin or module installs, database changes, authentication flows, permissions, escaping, nonces, and deployment commands. <br>
-Risk: Recommended third-party WordPress plugins or Drupal modules may introduce maintenance or security exposure. <br>
-Mitigation: Vet extension update history, active installs or usage, open issues, and security advisories before adoption. <br>
+## Use Case:
 
+Developers and agency teams use this skill to plan, build, and audit Drupal and WordPress CMS implementations. It supports content modeling, theme development, custom plugins and modules, editorial workflows, accessibility, performance, and launch readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-cms-developer) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill with no install scripts, executables, credential requests, or hidden privileged behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad CMS-related requests may activate the skill when a narrower specialist would be more appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it with explicit WordPress or Drupal context and confirm the intended CMS, build type, and scope before relying on its recommendations.
+
+Risk: Generated CMS code or configuration can affect production behavior, especially plugins, modules, authentication integrations, and launch settings.
+
+Mitigation: Review, test, and security-check generated changes before applying them to production; vet any contributed plugins or modules before recommendation or installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-cms-developer)
+- [Publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and structured checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WordPress PHP, Drupal PHP/YAML/Twig, shell commands, configuration snippets, architecture notes, audit findings, and launch checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

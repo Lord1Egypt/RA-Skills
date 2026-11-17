@@ -1,44 +1,57 @@
-## Description: <br>
-Russian Humanizer helps agents detect and remove AI-style cliches, bureaucratic phrasing, artificial structure, and unnatural constructions from Russian-language text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Russian Humanizer analyzes and rewrites Russian-language text to remove AI-slop markers, bureaucratic phrasing, artificial structure, and unnatural constructions.
 
-## Publisher: <br>
-[Horosheff](https://clawhub.ai/user/Horosheff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horosheff](https://clawhub.ai/user/horosheff)
 
-## Use Case: <br>
-Developers, editors, and agents use this skill to review Russian text for AI-style filler, rhythm problems, stock phrases, and rigid structures, then rewrite or clean the text into a more natural form. It is most useful when preparing Russian prose, marketing copy, documentation, or assistant-generated drafts for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional Glavred analyzer can send the full submitted text to glvrd.ru. <br>
-Mitigation: Use the local analyzer and auto-fix tools for confidential text; use the Glavred check only when external submission is acceptable. <br>
-Risk: The bundled anti-slop prompt can broadly change an assistant's Russian writing style if installed as a global instruction. <br>
-Mitigation: Apply the prompt only in contexts where this stricter editing style is desired, or scope it to the specific writing workflow. <br>
+## Use Case:
 
+Developers, editors, and agents use this skill to audit Russian drafts for AI-generated cliches and to produce cleaner, more natural Russian rewrites. It also provides optional Glavred scoring for teams that accept sending text to glvrd.ru.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Horosheff/russian-humanizer) <br>
-- [Phrases reference](references/phrases.md) <br>
-- [Structures reference](references/structures.md) <br>
-- [Examples reference](references/examples.md) <br>
-- [Glavred service](https://glvrd.ru) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Plain text or Markdown reports with detected phrases, scoring, rewrite guidance, and optional cleaned text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The optional Glavred analyzer sends submitted text to glvrd.ru; the local analyzer and auto-fix paths can be used without that external submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The optional Glavred check sends user-provided text to glvrd.ru.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the Glavred tool with confidential drafts, personal data, customer text, or proprietary material unless that external submission is acceptable.
+
+Risk: Automatic cleanup can change tone or meaning while removing stylistic markers.
+
+Mitigation: Review rewritten or auto-fixed output before publishing or sending it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horosheff/skills/russian-humanizer)
+- [README](README.md)
+- [Transformation examples](references/examples.md)
+- [Phrases to remove](references/phrases.md)
+- [Structures to avoid](references/structures.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown reports with rewrite guidance and optional cleaned Russian text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally send submitted text to glvrd.ru for style scoring when the Glavred tool is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

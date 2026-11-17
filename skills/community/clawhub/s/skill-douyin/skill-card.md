@@ -1,43 +1,55 @@
-## Description: <br>
-Provides Douyin Open Platform API reference material for generating a client_token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+douyin:api - 抖音开放平台 API
 
-## Publisher: <br>
-[lentiancn](https://clawhub.ai/user/lentiancn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lentiancn](https://clawhub.ai/user/lentiancn)
 
-## Use Case: <br>
-Developers and agents use this skill to look up the Douyin Open Platform client_token endpoint, request parameters, response shape, and error codes when preparing API calls that do not require user authorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security verdict is suspicious and the server guidance recommends review before installation or credentialed use. <br>
-Mitigation: Install only when the publisher is trusted, and review any proposed command or remote-state change before allowing credentials to be used. <br>
-Risk: The API workflow uses client_key and client_secret values to request a client_token. <br>
-Mitigation: Keep client_secret values out of prompts, logs, and shared files, and use the correct environment credentials to avoid invalidating production tokens. <br>
+## Use Case:
 
+Developers use this skill as a Douyin Open Platform API reference for obtaining a client_token and understanding request parameters, response fields, and common error codes.
 
-## Reference(s): <br>
-- [Douyin API index](references/apidocs/apis.md) <br>
-- [douyin.open.client.token API reference](references/apidocs/douyin.open.client.token.md) <br>
-- [Douyin client_token endpoint](https://open.douyin.com/oauth/client_token/) <br>
-- [ClawHub skill page](https://clawhub.ai/lentiancn/skill-douyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with API tables and curl and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example client credentials placeholders; users should substitute their own Douyin application credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Douyin app credentials such as client_secret could be exposed in shared logs, prompts, or copied curl examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended Douyin endpoint before use and avoid placing production client_secret values in shared logs or prompts.
+
+Risk: Using production client_key or client_secret values in a test environment can invalidate production tokens and disrupt live integrations.
+
+Mitigation: Keep test and production Douyin credentials separate and verify the target environment before requesting a client_token.
+
+## Reference(s):
+
+- [douyin.open.client.token API index](references/apidocs/apis.md)
+- [douyin.open.client.token reference](references/apidocs/douyin.open.client.token.md)
+- [Douyin client_token endpoint](https://open.douyin.com/oauth/client_token/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with API tables and inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents the Douyin client_token request and response; does not execute code.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

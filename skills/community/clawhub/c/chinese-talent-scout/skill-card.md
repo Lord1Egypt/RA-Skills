@@ -1,52 +1,64 @@
-## Description: <br>
-Discover, score, and monitor Chinese GitHub developers with GitHub signals, rule-based processing, optional OpenClaw AI evaluation, shortlist queries, cron management, workspace export, and controlled config-change requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers, scores, and monitors Chinese GitHub developers using GitHub signals, rule-based processing, optional OpenClaw AI evaluation, shortlist queries, cron management, workspace export, and controlled configuration-change requests.
 
-## Publisher: <br>
-[huandu](https://clawhub.ai/user/huandu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huandu](https://clawhub.ai/user/huandu)
 
-## Use Case: <br>
-External developers and recruiting or talent intelligence operators use this skill to collect public GitHub signals, process candidate records, evaluate fit, query shortlists, and manage scheduled talent-scouting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill profiles a nationality-linked developer group using public GitHub and ranking signals. <br>
-Mitigation: Review the intended use, data sources, scoring thresholds, and evaluation outputs before deployment; use the results as decision-support rather than sole decision criteria. <br>
-Risk: The skill can send OpenClaw messages and manage OpenClaw cron jobs. <br>
-Mitigation: Use least-privileged GitHub and OpenClaw accounts, review channel targets, inspect config-request payloads with dry runs, and confirm cron definitions before syncing or enabling jobs. <br>
-Risk: Workspace exports may include local configuration from workspace-data/talents.yaml. <br>
-Mitigation: Review generated ZIP contents before sharing and remove local-only routing or configuration values that should not leave the workspace. <br>
+## Use Case:
 
+External users and developers use this skill to collect GitHub signals, process candidate records, evaluate talent fit, query shortlists, manage scheduled runs, and export local workspace results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huandu/chinese-talent-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/huandu) <br>
-- [Repository metadata](https://github.com/presence-io/talent-scout) <br>
-- [Architecture](references/architecture.md) <br>
-- [Credential Model](references/credentials.md) <br>
-- [Security Notes](references/security.md) <br>
-- [Data Sources](references/data-sources.md) <br>
-- [Identity Detection](references/identity.md) <br>
-- [Evaluation Model](references/evaluation.md) <br>
-- [China Ranking](https://china-ranking.aolifu.org) <br>
-- [GitHubRank](https://githubrank.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text, local workspace files, ZIP archive paths, and optional OpenClaw-delivered messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on local GitHub CLI, OpenClaw CLI, workspace configuration, and enabled cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill profiles and scores Chinese GitHub users at scale and may process identity or location signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for a legitimate, reviewed recruiting or analysis need; use a test workspace first and review candidate exports before sharing them.
+
+Risk: Optional AI evaluation and channel delivery can share candidate data with external OpenClaw agents or configured channels.
+
+Mitigation: Prefer --skip-ai when external AI processing is unnecessary, keep provider and channel credentials outside the skill, and dry-run config messages before enabling delivery.
+
+Risk: Recurring cron jobs can repeatedly collect and evaluate public GitHub data.
+
+Mitigation: Do not enable cron until collection scope, schedules, credentials, and review processes have been approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huandu/skills/chinese-talent-scout)
+- [Repository](https://github.com/presence-io/talent-scout)
+- [Architecture](references/architecture.md)
+- [Credential Model](references/credentials.md)
+- [Data Sources](references/data-sources.md)
+- [Identity Detection](references/identity.md)
+- [Evaluation Model](references/evaluation.md)
+- [Security Notes](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Plain text or Markdown-style command output with local file paths and workspace artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create workspace-data outputs and local ZIP exports; AI evaluation and channel delivery depend on external CLI configuration.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

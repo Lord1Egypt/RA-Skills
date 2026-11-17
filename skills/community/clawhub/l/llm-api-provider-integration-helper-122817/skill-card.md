@@ -1,39 +1,50 @@
-## Description: <br>
-Helps maintainers and users plan, analyze, and produce implementation support for adding MiniMax Provider Response API support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users plan, analyze, and implement support for the MiniMax Provider Response API feature request.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers and maintainers use this skill to turn a MiniMax Provider Response API feature request into implementation plans, checklists, code guidance, and verification steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Implicit invocation can route broad API or support requests to this skill when a narrower skill would be preferred. <br>
-Mitigation: Review trigger terms and disable or tighten implicit invocation if precise routing matters. <br>
+## Use Case:
 
+Developers and maintainers use this skill to plan and produce implementation support, checklists, analyses, or code changes for adding MiniMax Provider Response API support.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Feature Request: Support Response API for MiniMax Provider](https://github.com/QuantumNous/new-api/issues/5472) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with optional code, shell command, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: Broad trigger terms may invoke the skill during unrelated API support conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly for MiniMax Provider Response API work or tighten activation text if unrelated conversations should not use it.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Feature Request: Support Response API for MiniMax Provider](https://github.com/QuantumNous/new-api/issues/5472)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, risks, and next steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

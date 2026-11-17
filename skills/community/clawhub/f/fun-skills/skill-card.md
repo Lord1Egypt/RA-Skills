@@ -1,41 +1,50 @@
-## Description: <br>
-Fun Skills helps agents manage game collections and activity ideas, generate jokes, and run quick local entertainment utilities such as guessing games, coin flips, rock-paper-scissors, dice rolls, and fortune prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive entertainment and fun skills collection that supports game tracking, joke generation, party activities, kids entertainment, and quick interactive utilities.
 
-## Publisher: <br>
-[chris7ji](https://clawhub.ai/user/chris7ji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris7ji](https://clawhub.ai/user/chris7ji)
 
-## Use Case: <br>
-External users and developers use this skill to plan entertainment, track video and board games, generate jokes for different contexts, and run small local games or randomizers from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The initializer creates the ~/games directory structure and overwrites template files inside it. <br>
-Mitigation: Run the initializer only intentionally, review the target paths first, and back up existing ~/games content before execution. <br>
-Risk: The release materials claim scheduled retries to install other skills without enough user-control detail. <br>
-Mitigation: Do not enable or rely on any scheduled retry or skill-install behavior unless the publisher clearly documents the schedule, target skills, and opt-out controls. <br>
+## Use Case:
 
+External users and developers use this skill to plan entertainment, manage game lists and activity notes, generate jokes, and run simple local party or family-friendly utilities.
 
-## Reference(s): <br>
-- [Fun Skills on ClawHub](https://clawhub.ai/chris7ji/fun-skills) <br>
-- [chris7ji publisher profile](https://clawhub.ai/user/chris7ji) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The initializer can create or overwrite files under ~/games when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: The initializer writes template Markdown files under ~/games and can replace existing game progress, collections, favorites, wishlists, and game-night notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/init_games_directory.sh before running it, back up any existing ~/games files, or create the directory structure manually instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chris7ji/skills/fun-skills)
+- [Publisher profile](https://clawhub.ai/user/chris7ji)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with optional shell and Python commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or overwrite local Markdown templates under ~/games when the initializer script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

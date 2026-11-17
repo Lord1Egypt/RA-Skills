@@ -1,41 +1,50 @@
-## Description: <br>
-Provides community group-buying risk and compliance guidance covering food safety, legal exposure, crisis communications, competition compliance, data protection, and operational checklists for platform operations and legal/compliance leads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+社区团购风险与合规全链路技能包。涵盖食品安全合规、法律风险防控、危机公关预案、竞争合规及配套工具。适用于平台运营负责人、法务/合规负责人。
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External platform operations managers and legal/compliance leads use this skill to review community group-buying food safety, legal, competition, data protection, crisis response, and emergency-drill controls before taking operational action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal and regulatory guidance may be jurisdiction-specific or become outdated. <br>
-Mitigation: Confirm requirements with qualified local counsel before relying on the guidance for operations or compliance decisions. <br>
-Risk: Some artifact guidance discusses high-impact actions such as freezing funds, removing products, issuing refunds, contacting regulators, notifying users, and publishing public statements. <br>
-Mitigation: Require explicit human approval and accountable business, legal, and communications review before taking those actions. <br>
+## Use Case:
 
+Platform operations managers and legal or compliance leads use this skill as China-focused reference material for community group buying risk controls, including food safety, legal compliance, competition compliance, data protection, crisis response, and incident SOPs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/10-risk-compliance) <br>
-- [Continuation Reference](references/continuation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Code] <br>
-**Output Format:** [Markdown guidance with checklists, SOPs, examples, and short Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference guide only; human review is required before operational, legal, regulatory, refund, or public-communications actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Users may rely on China-focused compliance SOPs as legal advice or use stale requirements during real incidents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified counsel verify current legal requirements before using the skill for refunds, supplier payments, employment disputes, public statements, regulator reporting, or incident response.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/skills/10-risk-compliance)
+- [Supplemental case library and SOP material](references/continuation.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with checklists, SOPs, examples, and small code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language compliance reference material; not legal advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

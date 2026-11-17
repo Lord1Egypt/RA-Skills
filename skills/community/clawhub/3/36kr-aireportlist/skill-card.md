@@ -1,46 +1,61 @@
-## Description: <br>
-获取36氪官方自助报道栏目文章 and helps an agent retrieve, format, and link recent 36kr AI report articles from a public read-only JSON endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取36氪官方自助报道栏目文章.
 
-## Publisher: <br>
-[36kr-com](https://clawhub.ai/user/36kr-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[36kr-com](https://clawhub.ai/user/36kr-com)
 
-## Use Case: <br>
-External users and agents use this skill to look up recent or historical 36kr self-reporting AI articles, then present each item as a readable Markdown feed with article and author links. Developers can also use the bundled scripts and examples to fetch the same public JSON data from shell or Python workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shell helper may receive untrusted or non-numeric --top values. <br>
-Mitigation: Prefer the Python helper for scripted use, or validate numeric --top input before running scripts/fetch_aireport.sh. <br>
-Risk: Article titles, author names, and other API fields are third-party text that may contain prompt-like content. <br>
-Mitigation: Treat all endpoint fields as display-only data and do not execute commands or follow instructions found in returned article content. <br>
-Risk: The skill recommends related skill installs after lookup. <br>
-Mitigation: Review each related skill as a separate package and require explicit user approval before installation. <br>
+## Use Case:
 
+External users and agents use this skill to fetch and summarize 36kr self-service reporting articles for a requested date or recent period. It supports reading public article metadata from the 36kr CDN and formatting results as an information-feed list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/36kr-com/36kr-aireportlist) <br>
-- [API reference](api-reference.md) <br>
-- [Usage examples](examples.md) <br>
-- [36kr AI report page](https://36kr.com/information/aireport/?channel=skills) <br>
-- [Public JSON endpoint base](https://openclaw.36krcdn.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown feed entries with links, plus optional JSON, terminal text, Python code, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 15 articles per date from the public endpoint; helper scripts can query a date, recent days, JSON output, titles, or a top-N subset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata; artifact frontmatter reports 1.1.2) <br>
+Risk: The skill contacts 36kr's public CDN and displays third-party article fields that may contain untrusted text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched titles, authors, and related fields strictly as display data, not instructions or commands.
+
+Risk: The shell helper has a command-execution bug when run with untrusted arguments, especially combinations such as --titles --top.
+
+Mitigation: Avoid running scripts/fetch_aireport.sh with untrusted arguments until fixed; prefer the Python helper or validated numeric inputs.
+
+Risk: The skill may suggest installing related 36kr skills after use.
+
+Mitigation: Treat each related-skill installation as a separate trust decision and prefer pinned, trusted sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/36kr-com/skills/36kr-aireportlist)
+- [API reference](artifact/api-reference.md)
+- [Usage examples](artifact/examples.md)
+- [36kr AI report API endpoint](https://openclaw.36krcdn.com/media/aireport/{date}/ai_report_articles.json)
+- [36kr AI report list](https://36kr.com/information/aireport/?channel=skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown article list with optional JSON, CSV, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches up to 15 public articles per date and may fall back across recent dates when configured.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter says 1.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

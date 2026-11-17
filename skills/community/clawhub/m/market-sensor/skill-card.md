@@ -1,47 +1,65 @@
-## Description: <br>
-AI-powered stock multi-factor analysis for checking watchlists, viewing reports, triggering analyses, and checking quota across US stocks, cryptocurrency, and China A-shares. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven stock and crypto analysis assistant for managing watchlists, triggering MarketSensor multi-factor analysis, retrieving reports, and checking account quota.
 
-## Publisher: <br>
-[xmhu](https://clawhub.ai/user/xmhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xmhu](https://clawhub.ai/user/xmhu)
 
-## Use Case: <br>
-External users and developers use this skill to manage a MarketSensor watchlist, trigger or poll market analyses, retrieve Markdown or JSON reports, and check account quota with a user-provided API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends market symbols, watchlist activity, generated report requests, and quota usage to MarketSensor. <br>
-Mitigation: Install only if the user trusts MarketSensor with that information. <br>
-Risk: The skill depends on MARKETSENSOR_API_KEY for authenticated API access. <br>
-Mitigation: Keep the API key private and prefer a limited or revocable key when available. <br>
-Risk: Watchlist changes and analysis triggers can modify account state or consume paid quota. <br>
-Mitigation: Review requests before letting the agent add or remove watchlist items or trigger analyses. <br>
+## Use Case:
 
+External users and developers use this skill to interact with the MarketSensor Open API for watchlist management, report generation, report retrieval, and quota checks across US stocks, crypto, and China A-shares. The skill should present generated market analysis as reference material rather than direct buy or sell advice.
 
-## Reference(s): <br>
-- [MarketSensor skill page](https://clawhub.ai/xmhu/market-sensor) <br>
-- [MarketSensor publisher profile](https://clawhub.ai/user/xmhu) <br>
-- [MarketSensor website](https://www.marketsensor.ai) <br>
-- [MarketSensor Open API Reference](references/api-reference.md) <br>
-- [MarketSensor usage examples](references/examples.md) <br>
-- [MarketSensor supported markets](references/supported-markets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON market reports, plain-text guidance, and curl-based shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger API calls that consume MarketSensor quota and may modify watchlist state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, _meta.json, and changelog released 2026-03-30) <br>
+Risk: The OpenClaw prompt hook can steer broad market-related prompts toward MarketSensor even when the user did not explicitly request this service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook before installation and disable or narrow it if automatic reminders are not desired.
+
+Risk: The skill handles a MarketSensor API key and includes shell examples where command arguments may be visible to local processes or logs.
+
+Mitigation: Use a service-scoped API key, keep it in MARKETSENSOR_API_KEY, and avoid exposing commands or environment values in shared terminals, logs, or screenshots.
+
+Risk: Watchlist changes and analysis requests can alter the user's MarketSensor account state or consume quota.
+
+Mitigation: Confirm removals and analysis-triggering actions with the user before executing them.
+
+Risk: Market reports may be mistaken for direct investment recommendations.
+
+Mitigation: Present reports as reference analysis and avoid making buy or sell recommendations on the user's behalf.
+
+## Reference(s):
+
+- [MarketSensor skill page](https://clawhub.ai/xmhu/skills/market-sensor)
+- [MarketSensor website](https://www.marketsensor.ai)
+- [MarketSensor Open API Reference](references/api-reference.md)
+- [Usage examples](references/examples.md)
+- [Supported markets](references/supported-markets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and optional JSON API responses or reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MARKETSENSOR_API_KEY and may consume MarketSensor account quota or modify the user's watchlist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, _meta.json, and changelog released 2026-03-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

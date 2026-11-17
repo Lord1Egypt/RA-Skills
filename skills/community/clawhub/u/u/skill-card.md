@@ -1,44 +1,58 @@
-## Description: <br>
-Universal Utility Toolkit - 全能实用工具包 provides common developer utilities for unit conversion, UUID generation, URL handling, Unicode exploration, JSON/YAML formatting, hash calculation, password generation, and color conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Utility Toolkit - 全能实用工具包 provides common developer utilities for unit conversion, UUID generation, URL handling, Unicode exploration, data formatting, hashing, password generation, and color conversion.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-Developers and engineers use this skill for everyday utility tasks such as converting units, generating UUIDs or passwords, encoding and decoding URLs or Base64 text, formatting structured data, calculating hashes, and converting color values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Currency conversion output may be inaccurate because the security guidance notes that rates are hardcoded. <br>
-Mitigation: Treat currency conversions as approximate and verify current rates with a trusted financial data source before making decisions. <br>
-Risk: The artifact README includes an npm install example, and the security guidance recommends verifying any separately installed package name. <br>
-Mitigation: Confirm the package identity and publisher before running installation commands. <br>
-Risk: The toolkit includes password generation and strength scoring, but generated credentials still depend on user-selected options. <br>
-Mitigation: Use strong length and character settings, review generated values before use, and follow the consuming system's credential policy. <br>
+## Use Case:
 
+Developers and engineers use this skill for everyday utility tasks such as converting units, generating test UUIDs, encoding URLs, formatting JSON or YAML, calculating hashes, creating passwords, and converting colors.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgta23/u) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, plain text utility results, and structured values where useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include converted values, UUIDs, passwords, hashes, encoded strings, formatted JSON/YAML/Base64, and color values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and package.json) <br>
+Risk: Security-sensitive UUID and password generation may be unsuitable for security-critical systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use vetted cryptographic libraries or platform credential managers for security-critical tokens, identifiers, and passwords.
+
+Risk: Currency conversion results may not reflect live exchange rates despite the documentation wording.
+
+Mitigation: Verify currency and USDT conversions against an authoritative live source before financial or operational use.
+
+Risk: The broad utility scope may produce convenience answers where a specialized tool would be more accurate.
+
+Mitigation: Use domain-specific validators for high-impact formatting, encoding, hashing, or conversion workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgta23/skills/u)
+- [Publisher profile](https://clawhub.ai/user/hgta23)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown responses, with code blocks when returning formatted data or usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include converted values, generated identifiers, encoded strings, hashes, passwords, color values, or formatted data.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

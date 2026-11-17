@@ -1,43 +1,55 @@
-## Description: <br>
-Creates professional reveal.js HTML presentations with AI-generated whiteboard images, presenter view, and complete word-for-word speaker scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates reveal.js HTML presentations with planned slide content, AI-generated whiteboard illustrations, presenter view, and complete word-for-word speaker scripts.
 
-## Publisher: <br>
-[lewislulu](https://clawhub.ai/user/lewislulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lewislulu](https://clawhub.ai/user/lewislulu)
 
-## Use Case: <br>
-Employees, external users, developers, and presenters use this skill to turn topics, notes, or markdown into structured slide decks with full speaker scripts, presenter notes, and generated visual prompts or assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide prompts are sent to Google Gemini for image generation, which can expose confidential or proprietary material if users include it. <br>
-Mitigation: Use only content approved for external processing, prefer a dedicated Gemini API key, and avoid confidential or proprietary material unless that processing is approved. <br>
-Risk: The image helper can write outside the intended image folder if slide names include '/', absolute paths, or '..'. <br>
-Mitigation: Review or sanitize slide names before running image generation, and supervise or patch the helper so generated output paths stay inside the target image directory. <br>
+## Use Case:
 
+Employees, external presenters, and developers use this skill to turn topics, notes, or Markdown into polished HTML slide decks with structured sections, generated visuals, and readable presenter scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lewislulu/ppt-presenter) <br>
-- [Publisher profile](https://clawhub.ai/user/lewislulu) <br>
-- [Google Gemini image generation endpoint](https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent) <br>
-- [reveal.js 5.1.0 CDN stylesheet](https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown plans and scripts, reveal.js HTML, JSON image prompts, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local presentation files and image-generation prompts that require a Gemini API key for image assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The bundled image-generation helper can write generated image files outside the requested output folder when slide names are path-like.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted prompts JSON files and keep slide names to simple filenames containing letters, numbers, dashes, and underscores.
+
+Risk: Image prompts are sent to Google's API, and generated presentations load JavaScript, CSS, and fonts from external CDNs.
+
+Mitigation: Avoid sensitive prompt content, use a restricted Gemini API key, and review or modify the presentation template when external network loading is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lewislulu/skills/ppt-presenter)
+- [Google Generative Language API generateContent endpoint](https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent)
+- [reveal.js 5.1.0 CSS CDN](https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, HTML presentation code, JSON image prompts, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated presentations use reveal.js presenter notes; optional slide images are produced through a Gemini API helper script.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Scan photographed documents into searchable PDFs with OCR and stable file naming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan photographed documents into searchable PDFs with OCR and stable file naming for local scan creation, storage, and retrieval.
 
-## Publisher: <br>
-[kimjoohyeon-wq](https://clawhub.ai/user/kimjoohyeon-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kimjoohyeon-wq](https://clawhub.ai/user/kimjoohyeon-wq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to turn document photos into local searchable PDFs, preserve originals, name files from capture date and OCR headline text, and retrieve saved scans by date, title, or keyword.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Document photos, originals, and searchable PDFs may contain sensitive information stored in local scan folders.
+
+Mitigation: Use a private scan folder, avoid shared writable directories, and delete originals or generated PDFs when they should no longer be retained.
+
+Risk: OCR quality for Korean and English documents can vary, which may affect generated filenames, searchable text, and retrieval results.
+
+Mitigation: Review the extracted title line and search results before relying on them for archiving or retrieval.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to turn phone photos of documents into locally stored searchable PDFs, archive them with stable date-and-title filenames, and find prior scans by date, title, or keyword. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, files, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Scanned document outputs are saved locally for later lookup and may contain sensitive information. <br>
-Mitigation: Use the skill only where local file permissions and a retention or deletion process are controlled. <br>
-Risk: Highly sensitive records could remain in daily-scan-storage after processing. <br>
-Mitigation: Avoid scanning highly sensitive records unless storage access and deletion practices are appropriate for the use case. <br>
-Risk: VirusTotal analysis is pending in the security evidence. <br>
-Mitigation: Review the final security status before deploying in environments that require VirusTotal clearance. <br>
+**Output Format:** [Concise text result with saved filename, save location, and extracted title line; helper scripts may emit JSON status.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces local searchable PDF files and keeps source images with the processed result when possible.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands] <br>
-**Output Format:** [Concise text plus local searchable PDF files; helper scripts return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Korean and English OCR by default, stores outputs under daily-scan-storage/YYYY-MM, and returns filename, save location, and extracted title line when available.] <br>
+1.0.4 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

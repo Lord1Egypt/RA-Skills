@@ -1,43 +1,58 @@
-## Description: <br>
-A skill to interact with Gaode Map (AMap) for location search and route planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to interact with Gaode Map (AMap) for location search and route planning.
 
-## Publisher: <br>
-[279458179](https://clawhub.ai/user/279458179) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[279458179](https://clawhub.ai/user/279458179)
 
-## Use Case: <br>
-Developers and agents use this skill to search places, geocode addresses, and plan driving, walking, bicycling, or transit routes through the Gaode Map API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Map searches, addresses, coordinates, and route details are sent to Gaode/AMap under the user's API key. <br>
-Mitigation: Use the skill only for data acceptable to share with Gaode/AMap and review provider terms before sensitive or regulated use. <br>
-Risk: Passing the API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Set AMAP_API_KEY in the environment or agent configuration instead of using the --key argument. <br>
-Risk: The requests dependency is unpinned. <br>
-Mitigation: Pin and review dependencies before production or sensitive deployments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/279458179/gaodemapskill) <br>
-- [AMap Console](https://console.amap.com/) <br>
-- [AMap REST API endpoint](https://restapi.amap.com/v3) <br>
+## Use Case:
 
+External users and developers use this skill to search for places, geocode addresses, and plan driving, walking, bicycling, or transit routes through Gaode Map (AMap).
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON responses from a Python command-line tool, with markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AMAP_API_KEY and the Python requests package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Map searches, addresses, and route endpoints are sent to AMap.
+
+Mitigation: Use the skill only when sharing that location data with AMap is acceptable.
+
+Risk: The skill requires an AMap API key.
+
+Mitigation: Prefer AMAP_API_KEY over the --key option, restrict the key where possible, and avoid exposing it in command history or logs.
+
+Risk: The Python dependency is declared without a pinned version.
+
+Mitigation: Pin or review the requests dependency before production deployment.
+
+## Reference(s):
+
+- [AMap Console](https://console.amap.com/)
+- [AMap REST API](https://restapi.amap.com/v3)
+- [ClawHub Skill Page](https://clawhub.ai/279458179/skills/gaodemapskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON responses from the AMap tool]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AMAP_API_KEY value and sends map queries, addresses, and route endpoints to AMap.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

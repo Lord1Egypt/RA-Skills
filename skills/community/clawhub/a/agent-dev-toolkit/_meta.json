@@ -1,6 +1,34 @@
 {
-  "ownerId": "kn713cfanhqwnfb8nq3hwnap1182eqc8",
-  "slug": "agent-dev-toolkit",
+  "name": "agent-dev-toolkit",
+  "displayName": "Agent Development Toolkit",
   "version": "1.0.0",
-  "publishedAt": 1772918250060
+  "description": "Complete toolkit for building AI agents. Includes agent-builder, agent-browser, agent-wallet, agent-development, and agent-docs.",
+  "author": "明知道",
+  "license": "MIT",
+  "price": 29,
+  "currency": "USD",
+  "category": "development",
+  "tags": ["agent", "development", "toolkit", "automation", "browser", "wallet"],
+  "includes": [
+    "agent-builder",
+    "agent-browser-core",
+    "agent-wallet",
+    "agent-development",
+    "agent-docs"
+  ],
+  "requirements": {
+    "bins": ["node", "npm"],
+    "platforms": ["darwin", "linux", "win32"]
+  },
+  "keywords": [
+    "AI agent",
+    "agent development",
+    "browser automation",
+    "crypto wallet",
+    "OpenClaw",
+    "toolkit"
+  ],
+  "homepage": "https://github.com/openclaw/agent-dev-toolkit",
+  "repository": "https://github.com/openclaw/agent-dev-toolkit",
+  "bugs": "https://github.com/openclaw/agent-dev-toolkit/issues"
 }

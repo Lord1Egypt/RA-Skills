@@ -3,20 +3,18 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-REPO_ROOT="$(cd "$SKILL_DIR/../.." && pwd)"
-REMOTE_DEFAULT_ENDPOINT="https://notes.fangyuanxiaozhan.com/api/export"
-LOCAL_DEFAULT_BASE_URLS=(
-  "http://127.0.0.1:18080"
-)
-DEFAULT_ENDPOINT="$REMOTE_DEFAULT_ENDPOINT"
-ENDPOINT="$DEFAULT_ENDPOINT"
+BASE_URL=""
+BASE_URL_ARGUMENT=""
+ENV_FILE=""
+ENDPOINT=""
 IMAGE_IMPORT_ENDPOINT=""
 MARKDOWN=""
 MARKDOWN_FILE=""
 OUTPUT=""
 FILENAME=""
 THEME="default"
-ENV_FILE_FOUND="false"
+FOOTER_BRAND=""
+FOOTER_VIA=""
 TEMP_FILES=()
 
 cleanup() {
@@ -33,91 +31,34 @@ load_env_file() {
   local env_file="$1"
 
   if [[ ! -f "$env_file" ]]; then
-    return 1
+    echo "配置文件不存在：$env_file" >&2
+    exit 1
   fi
 
-  ENV_FILE_FOUND="true"
   set -a
   # shellcheck disable=SC1090
   source "$env_file"
   set +a
 }
 
-normalize_endpoint() {
+normalize_base_url() {
   local value="$1"
-
-  if [[ -z "$value" ]]; then
-    echo "$DEFAULT_ENDPOINT"
-    return
-  fi
 
   case "$value" in
     */api/export)
-      echo "$value"
+      echo "${value%/api/export}"
       ;;
-    *)
-      echo "${value%/}/api/export"
-      ;;
-  esac
-}
-
-normalize_image_import_endpoint() {
-  local value="$1"
-
-  if [[ -z "$value" ]]; then
-    echo "${DEFAULT_ENDPOINT%/api/export}/api/images/import"
-    return
-  fi
-
-  case "$value" in
     */api/images/import)
-      echo "$value"
+      echo "${value%/api/images/import}"
       ;;
-    */api/export)
-      echo "${value%/api/export}/api/images/import"
+    */api)
+      echo "${value%/api}"
       ;;
     *)
-      echo "${value%/}/api/images/import"
+      echo "${value%/}"
       ;;
   esac
 }
-
-load_endpoint_from_env() {
-  if [[ "$ENV_FILE_FOUND" != "true" ]]; then
-    return
-  fi
-
-  if [[ -n "${NOTES_EXPORT_API_BASE_URL:-}" ]]; then
-    ENDPOINT="$(normalize_endpoint "$NOTES_EXPORT_API_BASE_URL")"
-  fi
-}
-
-probe_endpoint() {
-  local base_url="$1"
-
-  curl -fsS --max-time 2 "${base_url%/}/api/health" >/dev/null 2>&1
-}
-
-resolve_default_endpoint() {
-  local base_url=""
-
-  for base_url in "${LOCAL_DEFAULT_BASE_URLS[@]}"; do
-    if probe_endpoint "$base_url"; then
-      echo "$(normalize_endpoint "$base_url")"
-      return
-    fi
-  done
-
-  echo "$REMOTE_DEFAULT_ENDPOINT"
-}
-
-for env_file in "$REPO_ROOT/.env" "$SKILL_DIR/.env"; do
-  load_env_file "$env_file" || true
-done
-
-DEFAULT_ENDPOINT="$(resolve_default_endpoint)"
-ENDPOINT="$DEFAULT_ENDPOINT"
-load_endpoint_from_env
 
 usage() {
   cat <<'EOF'
@@ -131,11 +72,13 @@ Options:
   --output PATH           Output PNG path
   --filename NAME         Filename sent to API (defaults to output basename)
   --theme NAME            Optional theme: default or smartisan-dark (defaults to default)
-  --endpoint URL          Override API endpoint or base URL
+  --footer-brand TEXT     Optional footer brand text, e.g. 由方圆小站发送
+  --footer-via TEXT       Optional footer via text, e.g. via Notes API
+  --base-url URL          Notes service base URL
+  --env-file PATH         Read NOTES_API_BASE_URL from this .env file
 
 .env:
-  NOTES_EXPORT_API_BASE_URL=http://127.0.0.1:18080
-  NOTES_EXPORT_API_BASE_URL=https://notes.fangyuanxiaozhan.com
+  NOTES_API_BASE_URL=http://127.0.0.1:18080
 EOF
 }
 
@@ -338,8 +281,20 @@ while [[ $# -gt 0 ]]; do
       THEME="${2:-}"
       shift 2
       ;;
-    --endpoint)
-      ENDPOINT="${2:-}"
+    --footer-brand)
+      FOOTER_BRAND="${2:-}"
+      shift 2
+      ;;
+    --footer-via)
+      FOOTER_VIA="${2:-}"
+      shift 2
+      ;;
+    --base-url)
+      BASE_URL_ARGUMENT="${2:-}"
+      shift 2
+      ;;
+    --env-file)
+      ENV_FILE="${2:-}"
       shift 2
       ;;
     -h|--help)
@@ -353,6 +308,23 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+if [[ -n "$ENV_FILE" ]]; then
+  load_env_file "$ENV_FILE"
+elif [[ -f "$SKILL_DIR/.env" ]]; then
+  load_env_file "$SKILL_DIR/.env"
+fi
+
+BASE_URL="${BASE_URL_ARGUMENT:-${NOTES_API_BASE_URL:-}}"
+
+if [[ -z "$BASE_URL" ]]; then
+  echo "缺少服务地址。请在 .env 中设置 NOTES_API_BASE_URL，或显式传入 --base-url。" >&2
+  exit 1
+fi
+
+BASE_URL="$(normalize_base_url "$BASE_URL")"
+ENDPOINT="${BASE_URL}/api/export"
+IMAGE_IMPORT_ENDPOINT="${BASE_URL}/api/images/import"
 
 if [[ -z "$OUTPUT" ]]; then
   echo "--output is required" >&2
@@ -391,9 +363,6 @@ case "$THEME" in
     ;;
 esac
 
-ENDPOINT="$(normalize_endpoint "$ENDPOINT")"
-IMAGE_IMPORT_ENDPOINT="$(normalize_image_import_endpoint "$ENDPOINT")"
-
 if [[ -n "$MARKDOWN_FILE" ]]; then
   PROCESSED_MARKDOWN_FILE="$(mktemp)"
   TEMP_FILES+=("$PROCESSED_MARKDOWN_FILE")
@@ -404,14 +373,24 @@ fi
 JSON_PAYLOAD="$(mktemp)"
 TEMP_FILES+=("$JSON_PAYLOAD")
 
-python3 - "$MARKDOWN" "$FILENAME" "$THEME" > "$JSON_PAYLOAD" <<'PY'
+python3 - "$MARKDOWN" "$FILENAME" "$THEME" "$FOOTER_BRAND" "$FOOTER_VIA" > "$JSON_PAYLOAD" <<'PY'
 import json
 import sys
 
 markdown = sys.argv[1]
 filename = sys.argv[2]
 theme = sys.argv[3]
-json.dump({"markdown": markdown, "filename": filename, "theme": theme}, sys.stdout, ensure_ascii=False)
+footer_brand = sys.argv[4]
+footer_via = sys.argv[5]
+payload = {"markdown": markdown, "filename": filename, "theme": theme}
+
+if footer_brand:
+    payload["footerBrand"] = footer_brand
+
+if footer_via:
+    payload["footerVia"] = footer_via
+
+json.dump(payload, sys.stdout, ensure_ascii=False)
 PY
 
 curl -sS \

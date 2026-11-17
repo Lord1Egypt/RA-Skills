@@ -1,38 +1,54 @@
-## Description: <br>
-Discover the most popular, newest, and security-certified ClawHub skills via live API data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover the most popular, newest, and security-certified ClawHub skills via live API data.
 
-## Publisher: <br>
-[sdrabent](https://clawhub.ai/user/sdrabent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sdrabent](https://clawhub.ai/user/sdrabent)
 
-## Use Case: <br>
-Developers and ClawHub users use this skill to query live skill rankings, search results, certification status, deleted-skill listings, and aggregate platform statistics, then format the results with direct ClawHub links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Popularity, deletion history, and security-certified labels from the third-party API can be mistaken for proof that a listed skill is safe or appropriate to install. <br>
-Mitigation: Treat the labels as informational and review each linked skill's permissions, source, and current ClawHub security status before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Top ClawHub Skills on ClawHub](https://clawhub.ai/sdrabent/topclawhubskills) <br>
-- [Top ClawHub Skills API](https://topclawhubskills.com/api) <br>
+## Use Case:
 
+Developers and skill users use this skill to query live ClawHub metadata for popular, newest, certified, deleted, and searched skills, then present the results as concise Markdown tables with installation links.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and concise text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live third-party API data and should include direct ClawHub links when presenting skill results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on a third-party API domain for live ClawHub metadata.
+
+Mitigation: Check API responses and links before acting on recommendations or installing referenced skills.
+
+Risk: Security or certification claims may influence installation decisions.
+
+Mitigation: Verify security or certification claims independently before installing recommended skills.
+
+## Reference(s):
+
+- [Top ClawHub Skills API](https://topclawhubskills.com/api)
+- [ClawHub skill page](https://clawhub.ai/sdrabent/skills/topclawhubskills)
+- [Publisher profile](https://clawhub.ai/user/sdrabent)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance, API Calls]
+
+**Output Format:** [Markdown tables and concise text based on JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live third-party API data and includes ClawHub links when presenting skill results.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

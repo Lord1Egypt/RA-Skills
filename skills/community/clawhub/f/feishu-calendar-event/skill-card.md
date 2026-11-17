@@ -1,45 +1,60 @@
-## Description: <br>
-Manages Feishu calendars and events, including listing calendars and querying, creating, updating, deleting, recurring, reminder, timezone, and all-day event workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Feishu calendar workflows, including listing calendars and querying, creating, updating, deleting, recurring, reminder-enabled, timezone-aware, and all-day events.
 
-## Publisher: <br>
-[TEweitao](https://clawhub.ai/user/TEweitao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[teweitao](https://clawhub.ai/user/teweitao)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to Feishu Calendar through their own Feishu app credentials, then read calendars and manage event records. It is suited for productivity workflows that need calendar lookup, scheduling, updates, deletion, recurrence, reminders, timezone handling, and all-day events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive calendar content such as event titles, descriptions, locations, attendees, and timing. <br>
-Mitigation: Treat calendar data as sensitive and limit agent access, logs, prompts, and downstream sharing to the minimum needed for the workflow. <br>
-Risk: Feishu App Secret or tenant access tokens could be leaked if committed, pasted into prompts, or logged. <br>
-Mitigation: Store credentials in environment variables or a secrets manager, never commit secrets, and rotate credentials if exposure is suspected. <br>
-Risk: Calendar create, update, and delete operations can alter real user or company schedules. <br>
-Mitigation: Grant only required Feishu calendar scopes and require explicit user confirmation before mutating or deleting events. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to Feishu Calendar so it can inspect calendars and manage events for personal or enterprise scheduling workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TEweitao/feishu-calendar-event) <br>
-- [Feishu Calendar API documentation](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/calendar-v4/calendar/list) <br>
-- [Feishu tenant access token documentation](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/authentication-management/auth-v3/auth-v3-tenant_access_token) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JavaScript, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Feishu calendar identifiers, event titles, descriptions, locations, timestamps, recurrence rules, reminders, and API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, SKILL.md) <br>
+Risk: Broad Feishu calendar permissions can allow an agent to read, create, update, or delete calendar data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant read-only Feishu scopes unless write operations are required, and enable only the minimum permissions needed for the deployment.
+
+Risk: Feishu App Secrets can be exposed if placed in source code, prompts, shared logs, or examples.
+
+Mitigation: Store App ID and App Secret in environment variables or a secrets manager, and avoid including real credentials in prompts or committed files.
+
+Risk: The package test command can fetch and print live calendar details when run with real credentials.
+
+Mitigation: Run tests only with non-production credentials or sanitized calendars, and avoid executing npm test in environments that hold production Feishu credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teweitao/skills/feishu-calendar-event)
+- [Feishu Calendar API documentation](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/calendar-v4/calendar/list)
+- [Feishu tenant access token documentation](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/authentication-management/auth-v3/auth-v3-tenant_access_token)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript, JSON, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu API request examples, credential setup guidance, calendar operation code, and operational cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, package.json, and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Run Clawbridge discovery from OpenClaw chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Clawbridge discovery from OpenClaw chat and returns a candidate count with a Vault review link.
 
-## Publisher: <br>
-[LeeTheBuilder](https://clawhub.ai/user/LeeTheBuilder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leethebuilder](https://clawhub.ai/user/leethebuilder)
 
-## Use Case: <br>
-External users and developers use this skill to trigger the Clawbridge CLI from OpenClaw chat and receive a candidate count with a Vault review link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external Clawbridge CLI and depends on the user's trust in that runner and its cloud Vault handling. <br>
-Mitigation: Install only after reviewing and trusting Clawbridge, and use an appropriately scoped workspace or profile. <br>
-Risk: The documented install path uses a shell installer fetched from the Clawbridge website. <br>
-Mitigation: Review the installer before running the command where possible. <br>
-Risk: Discovery results may involve sensitive workspace data or uploads to the Clawbridge Vault. <br>
-Mitigation: Avoid running discovery on sensitive data unless the Clawbridge cloud and Vault handling are acceptable for the intended use. <br>
+## Use Case:
 
+External users and developers who already use Clawbridge can trigger a connection-discovery run from OpenClaw chat and review candidates in the Clawbridge Vault.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/LeeTheBuilder/clawbridge-skill-latest) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/LeeTheBuilder) <br>
-- [Clawbridge homepage](https://clawbridge.cloud) <br>
-- [Clawbridge install script](https://clawbridge.cloud/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown chat response with parsed CLI output and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a candidate count and Vault URL when the external Clawbridge CLI emits machine-readable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The setup path uses a remote shell installer whose exact contents are not pinned in the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher, and prefer a signed, versioned installer with published checksums.
+
+Risk: The skill depends on a private runner that uploads discovery results to a Vault.
+
+Mitigation: Confirm what the runner reads, uploads, stores, and how to uninstall it before using the skill with sensitive workspace data.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/leethebuilder/skills/clawbridge-skill-latest)
+- [Clawbridge homepage](https://clawbridge.cloud)
+- [Clawbridge install script](https://clawbridge.cloud/install)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown text with inline command examples and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Parses runner output fields such as VAULT_URL, CANDIDATES_COUNT, and optional DISCOVERY_SOURCE.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

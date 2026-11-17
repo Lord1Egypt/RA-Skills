@@ -1,41 +1,55 @@
-## Description: <br>
-Create a React/Vite Workspace Presentation from one paper-reading source workspace or source chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a React/Vite Workspace Presentation from one paper-reading source workspace or source chain for packaging, presenting, reviewing, handing off, rereading, or browsing generated paper-reading artifacts in an interactive frontend.
 
-## Publisher: <br>
-[snake-fan](https://clawhub.ai/user/snake-fan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snake-fan](https://clawhub.ai/user/snake-fan)
 
-## Use Case: <br>
-Developers, researchers, and reviewers use this skill to turn one paper-reading workspace or coherent source chain into a read-only local presentation app with source-linked summaries and previews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The presentation can expose indexed previews of files from the selected paper-reading workspace. <br>
-Mitigation: Use it only for the intended source workspace or source chain and review generated source indexes before sharing the app. <br>
-Risk: Running npm install or the development server executes the local presentation app setup. <br>
-Mitigation: Review the generated app and run those commands only when comfortable with the local setup. <br>
+## Use Case:
 
+Developers and researchers use this skill to turn one paper-reading workspace or coherent source chain into a read-only local React/Vite presentation with source-linked summaries, structured modules, and source-file previews.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/snake-fan/Paper-Reading-Skills/tree/main/skills/workspace-presentation) <br>
-- [ClawHub skill page](https://clawhub.ai/snake-fan/skills/workspace-presentation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [React/Vite project files, JSON metadata, source-linked summaries, and terminal commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or refreshes a read-only presentation under workspace/presentations for exactly one selected source workspace or source chain.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The generated local presentation can preview files from the selected paper-reading workspace, which may expose sensitive content if that workspace contains secrets or private notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected source workspace before generation and use the Presentation Source Gate to confirm exactly one intended source path and output path.
+
+Risk: The artifact references templates and schema files that are not included, so a release installed from this artifact may be incomplete.
+
+Mitigation: Verify the package includes the referenced templates and schema files before relying on it to scaffold or refresh a presentation.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/snake-fan/Paper-Reading-Skills/tree/main/skills/workspace-presentation)
+- [ClawHub skill page](https://clawhub.ai/snake-fan/skills/workspace-presentation)
+- [Publisher profile](https://clawhub.ai/user/snake-fan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with file-generation instructions, JSON presentation metadata, React/Vite app files, and shell commands for local execution.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates or refreshes a local presentation under {workspace-root}/presentations/{presentation-slug}/ and stops with install/run commands unless the user explicitly asks to run them.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

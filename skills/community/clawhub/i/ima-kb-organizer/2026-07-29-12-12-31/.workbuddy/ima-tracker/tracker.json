@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "last_scan_time": "2026-07-29T12:19:54+08:00",
+  "last_scan_by": "initial-setup",
+  "knowledge_bases": {
+    "0019ed21e8806f81": {
+      "name": "wowkie的知识库",
+      "role": "main",
+      "designated_inbox": true,
+      "total_items_at_last_scan": 32,
+      "categories": {
+        "AI+体育": {
+          "description": "AI在体育领域的应用：运动捕捉、穿戴传感器、体测、赛事分析、竞技训练等",
+          "items": [
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_e0c6439dce44d9f37d28a4cda0ee91b0", "title": "从3D姿态到专业文本：生物力学驱动的视觉语言健身辅导框架", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_a41dab2729d1713a5cd08c3f05070453", "title": "穿在身上的AI教练：多模态传感技术开启数字化运动时代", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_50aaec4fd9b959c2026f6ad154e2e80b", "title": "顶刊突破！全集成AI柔性穿戴设备重塑高精度运动捕捉与评估", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_3c43ef185c20bec9ac8d04aeaedec6ea", "title": "穿戴设备与AI的双向奔赴：双尺度仿生柔性传感器重塑深蹲监测与膝关节损伤预防", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_cdfa4afc87cbec9a08afb53abf711ca5", "title": "AI运动姿态分析的最后一块拼图：新型淀粉基柔性凝胶", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_30e48f4cff15b8d74fdd5fc9d6626696", "title": "体育老师的数字替身来了！AI重塑体测的3大硬核逻辑", "source": "赵书华学习力", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_bd574069faec0386a67f997ec32ce90e", "title": "AI解读篮球战术新范式！Hoop-MSSL框架", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_e9a5be9e61b615455fda27dc8b1520e9", "title": "体育赛事的无人驾驶时代：AI重构万亿体育赛事市场", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_419993629a419c3cc2573322eda9a1d8", "title": "国家队背后的数字教练：AI在竞技体育中的技术落地与商业路径", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_f1f9650a15075d62b321992b4909e8cd", "title": "从量化自我到智能陪伴：AI赋能大众体育的商业逻辑解析", "source": "智体研AI", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"}
+          ]
+        },
+        "AI+教育研究": {
+          "description": "AI在教育领域的学术研究：教育智能体、学习投入度、作业评估、学生画像、教师角色转型等",
+          "items": [
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_b1beefff99115bfe6a9897897cc0bdd9", "title": "教育智能体的何种反馈能够促进学习？", "source": "慢话数学教育", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_0419be62d81b364b555907b21c448afa", "title": "人工智能反馈对人与人工智能协作学习中大学生学习投入度的影响机制", "source": "西里马拉", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_45748b38d232e600539f1b11979017c8", "title": "AI赋能教学全流程，一文全搞定", "source": "樊华岗名班主任工作室", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_f35a366fea7e07e44b1e2012f63d3cee", "title": "基于教育智能体的大学课程作业质量评估方法", "source": "西里马拉", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_55ecd2e20434b565c7c0726d708fe6cb", "title": "使用生成式人工智能辅助学习的学生类型画像", "source": "华东师范大学学报教育科学版", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_358c35a963daa64ca40013246a348533", "title": "AI教育建构者：智能时代教师角色转型与能力重构", "source": "MOOC", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_993d8668666b2a2e0991358d8cd61bbf", "title": "跨学科：人工智能与人文智能的深度融合", "source": "中国社会科学报", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"}
+          ]
+        },
+        "AI教学工具实操": {
+          "description": "AI教学工具的实操教程：交互式网页制作、部署、数据分析等",
+          "items": [
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_d1d120bb4112e6bc82292d69c09902c1", "title": "AI制作交互式网页（一）：使用教程和注意事项", "source": "信息教与学", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_f2daaaede4097cf8852405492146fb85", "title": "AI制作交互式网页（二）：如何免费部署上线交互式网页", "source": "信息教与学", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_2bd1c20a2eba6a7bf59ad8a81b90f1ab", "title": "AI制作交互式网页（三）：答题类交互式网页使用问题与解决方案", "source": "信息教与学", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_f880987c7d93bc4c120c0491f2491c16", "title": "AI制作交互式网页（四）：交互式网页数据回收与分析", "source": "信息教与学", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"}
+          ]
+        },
+        "教育政策文件": {
+          "description": "教育领域的人工智能相关政策文件、指导意见、实施方案等",
+          "items": [
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_03c1158636f1f5ee0424516bc46f991d", "title": "复旦大学生成式人工智能教育教学应用指引1.0版", "source": "复旦大学教师教学发展中心", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00", "note": "保留此篇（官方源头）"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_54ebc4e5b6b80d0225c6934bdc1d2fb2", "title": "复旦大学生成式人工智能教育教学应用指引1.0版", "source": "离谱纪", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00", "note": "重复内容，建议删除"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_1c6e4787009975a4a3736b5d137c329f", "title": "教育部发布：教师生成式人工智能应用指引第一版", "source": "AI瞭望星球", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_c987fc3481d2f7f311e88488bdf47934", "title": "教育部副部长任友群：将教师AI教育成果纳入职称评定", "source": "高校教师发展工作室", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_f413f7c3970a8b6df857fc531243a2fd", "title": "上海电力大学产教融合育人工作实施方案（2025-2030年）", "source": "上电校友", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"}
+          ]
+        },
+        "AI见解与培训": {
+          "description": "AI领域的观点见解、技术分析、教师培训资源等",
+          "items": [
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_64fd16ef8c056b6fe96d5529d087e040", "title": "AI时代的真正护城河：不是提示词，而是这个东西", "source": "陈天AI实战笔记", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "weburl_0659835d014621940b0c2757c0560b96_e7f98bdb464382a3de42bd3792b6eee9", "title": "谷歌Gemini准确率从21%提升至97%仅靠复制粘贴", "source": "知乎", "type": "WEB", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "weburl_0659835d014621940b0c2757c0560b96_fe5464f49d1ddd5379f1800562bec5f9", "title": "数字技能赋能教师培训——生成式人工智能实战与教学实践", "source": "网页", "type": "WEB", "first_seen": "2026-07-29T12:19:54+08:00"}
+          ]
+        },
+        "待清理-无关内容": {
+          "description": "与知识库主题无关的内容，建议从知识库中删除",
+          "items": [
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_8f1cf31521beb226dd51fdb91c87aa87", "title": "美国拟将CSSA列为外国使团", "source": "托研社", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00", "note": "与知识库主题无关"},
+            {"media_id": "img_0659835d014621940b0c2757c0560b96_b959bb8e427da0f3d5872486db7236330019ed21e8806f81", "title": "韭菜炒鸡蛋菜谱图片", "source": "", "type": "IMG", "first_seen": "2026-07-29T12:19:54+08:00", "note": "生活内容，与知识库主题无关"},
+            {"media_id": "img_0659835d014621940b0c2757c0560b96_bb5de1c6bc188aad20b8b3b98e4341e50019ed21e8806f81", "title": "莲藕炒肉丝菜谱图片", "source": "", "type": "IMG", "first_seen": "2026-07-29T12:19:54+08:00", "note": "生活内容，与知识库主题无关"}
+          ]
+        }
+      }
+    },
+    "7453321606477909": {
+      "name": "结题知识库",
+      "role": "project",
+      "designated_inbox": false,
+      "total_items_at_last_scan": 5,
+      "note": "此知识库仅扫描，不作为收件箱。2篇可见内容均属于AI+教育研究。",
+      "categories": {
+        "AI+教育研究": {
+          "description": "AI在教育领域的学术研究",
+          "items": [
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_5f2987dd7a75e83a57bc220f95d143c67453321606477909", "title": "AI赋能教育的探索与实践", "source": "计算机教育", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"},
+            {"media_id": "wechatarticle_0659835d014621940b0c2757c0560b96_3a34d9c621434b734a3ce4b0efafc01c7453321606477909", "title": "基于大模型智能体的信息技术课程课堂教学行为分析", "source": "计算机教育", "type": "WECHAT_ARTICLE", "first_seen": "2026-07-29T12:19:54+08:00"}
+          ]
+        }
+      }
+    }
+  },
+  "category_rules": {
+    "AI+体育": "关键词：体育、运动、穿戴、传感器、姿态分析、体测、赛事、竞技、教练、生物力学、柔性、运动员。来源优先级：智体研AI > 其他",
+    "AI+教育研究": "关键词：教育智能体、学习投入度、作业评估、学生画像、教师角色、教学反馈、协作学习、个性化教育、课程。排除政策文件和工具教程",
+    "AI教学工具实操": "关键词：交互式网页、部署上线、教程、实操、工具使用、AI制作、防作弊、数据回收。以「信息教与学」公众号系列为主",
+    "教育政策文件": "关键词：指引、意见、方案、通知、教育部、大学政策、产教融合、职称评定、绩效考核。官方文件及解读",
+    "AI见解与培训": "关键词：护城河、提示词、Gemini、培训、实战、观点、趋势分析。非学术研究的技术观点和培训资源",
+    "待清理-无关内容": "与AI、教育、体育均无关的内容。如生活类（菜谱）、时政新闻（非教育类）等"
+  }
+}

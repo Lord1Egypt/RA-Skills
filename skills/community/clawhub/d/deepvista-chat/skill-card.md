@@ -1,43 +1,59 @@
-## Description: <br>
-DeepVista Chat: Send messages to the AI agent and manage chat sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepVista Chat: Send messages to the AI agent and manage chat sessions.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-Agents and users use this skill to send messages to DeepVista, start or continue chat sessions, list and search sessions, inspect session metadata, and delete sessions after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The +send command can create or update remote chat sessions and may trigger DeepVista agent actions. <br>
-Mitigation: Require explicit user confirmation before running +send, especially when the requested message could create cards, search the web, or execute tools. <br>
-Risk: The delete command removes remote chat data. <br>
-Mitigation: Confirm the target chat ID and user intent before running delete. <br>
-Risk: Authentication behavior is handled by the companion shared DeepVista skill. <br>
-Mitigation: Review deepvista-shared before use so the agent understands profiles, authentication, and global flags. <br>
+## Use Case:
 
+Developers and external users use this skill to interact with the DeepVista AI agent from the CLI, manage chat sessions, and stream assistant responses. The skill also documents when chat commands can create or modify remote session state.
 
-## Reference(s): <br>
-- [DeepVista CLI homepage](https://cli.deepvista.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/jingconan/deepvista-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and streamed NDJSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the deepvista CLI and companion deepvista-shared skill for authentication and global flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release evidence) <br>
+Risk: The skill sends user messages to a remote DeepVista agent that may search, use tools, or create cards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm before using +send and avoid sending sensitive information unless remote DeepVista processing is intended.
+
+Risk: The delete command removes chat sessions.
+
+Mitigation: Confirm the target chat session with the user before executing destructive delete actions.
+
+Risk: The skill depends on the deepvista-cli package and DeepVista service behavior.
+
+Mitigation: Install only from trusted DeepVista package sources and review the CLI source or package metadata before deployment.
+
+## Reference(s):
+
+- [DeepVista CLI homepage](https://cli.deepvista.ai)
+- [Deepvista Chat on ClawHub](https://clawhub.ai/jingconan/skills/deepvista-chat)
+- [Publisher profile](https://clawhub.ai/user/jingconan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and streamed NDJSON response details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents read-only session commands plus user-confirmed delete and send actions. The send command streams one JSON object per line as the remote agent responds.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

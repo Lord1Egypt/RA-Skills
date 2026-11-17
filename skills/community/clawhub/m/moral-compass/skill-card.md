@@ -1,49 +1,65 @@
-## Description: <br>
-Moral Compass provides a Baha'i-inspired ethical framework for AI agents to reason through morally complex requests, conflicting interests, potential harm, and tensions around justice, truthfulness, service, and unity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moral Compass gives AI agents a Baha'i-inspired ethical framework for morally complex requests, conflicting interests, potential harm, and principled reasoning around justice, truthfulness, service, and unity.
 
-## Publisher: <br>
-[pescehead](https://clawhub.ai/user/pescehead) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pescehead](https://clawhub.ai/user/pescehead)
 
-## Use Case: <br>
-External users and developers use this skill to help an AI agent reason through morally complex requests, conflicting interests, uncertainty, and potentially harmful requests using an explicitly Baha'i-inspired ethical framework. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence an agent's ethical reasoning with an explicitly Baha'i-inspired framework. <br>
-Mitigation: Use it only when that framing is desired, and keep neutral, secular, legal, medical, or domain-specific policies authoritative where those requirements apply. <br>
-Risk: Instruction-only ethical guidance may be applied too broadly or treated as final authority in high-stakes contexts. <br>
-Mitigation: Require human review and domain-specific policy checks for high-stakes, regulated, legal, medical, or organizational decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Moral Compass skill page](https://clawhub.ai/pescehead/moral-compass) <br>
-- [Principles](references/principles.md) <br>
-- [Scenarios](references/scenarios.md) <br>
-- [Consultation Guidelines](references/guidelines/consultation.md) <br>
-- [Humility Guidelines](references/guidelines/humility.md) <br>
-- [Justice Guidelines](references/guidelines/justice.md) <br>
-- [Moderation Guidelines](references/guidelines/moderation.md) <br>
-- [Prohibitions Guidelines](references/guidelines/prohibitions.md) <br>
-- [Service Guidelines](references/guidelines/service.md) <br>
-- [Truthfulness Guidelines](references/guidelines/truthfulness.md) <br>
-- [Unity Guidelines](references/guidelines/unity.md) <br>
+## Use Case:
 
+External users and agent operators use this skill to help an AI agent reason through ethically complex requests, competing interests, and possible harm. It supports principled refusals, stakeholder-aware analysis, truthfulness, fairness, moderation, and non-partisan guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Text] <br>
-**Output Format:** [Natural-language guidance or Markdown reasoning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not execute code, request permissions, or call tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally shapes responses with a Baha'i-inspired ethical framework, which may be inappropriate for users who do not want values-framed guidance.
+
+Mitigation: Install and enable it only where this ethical posture is desired, and disclose that responses may emphasize non-deception, nonviolence, non-partisanship, restraint, and stakeholder-aware reasoning.
+
+Risk: The guidance may over-constrain ordinary requests if applied rigidly or preachily.
+
+Mitigation: Apply the framework naturally and proportionally, using the artifact's own tone guidance to avoid turning routine responses into moral lectures.
+
+Risk: The skill can lead an agent to decline or redirect requests involving deception, violence, harassment, or harmful conflict even when the user prefers direct compliance.
+
+Mitigation: Pair refusals with concise reasoning and safer alternatives that address the user's legitimate underlying need.
+
+## Reference(s):
+
+- [Core Principles](references/principles.md)
+- [Ethical Dilemmas](references/scenarios.md)
+- [Consultation Guidelines](references/guidelines/consultation.md)
+- [Humility Guidelines](references/guidelines/humility.md)
+- [Justice Guidelines](references/guidelines/justice.md)
+- [Moderation Guidelines](references/guidelines/moderation.md)
+- [Prohibitions Guidelines](references/guidelines/prohibitions.md)
+- [Service Guidelines](references/guidelines/service.md)
+- [Truthfulness Guidelines](references/guidelines/truthfulness.md)
+- [Unity Guidelines](references/guidelines/unity.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language guidance, often in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; responses are shaped by the ethical framework and scenario guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

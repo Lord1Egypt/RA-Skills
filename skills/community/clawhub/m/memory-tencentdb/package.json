@@ -1,6 +1,6 @@
 {
   "name": "@tencentdb-agent-memory/memory-tencentdb",
-  "version": "0.3.8",
+  "version": "0.3.6",
   "description": "Four-layer local memory system plugin for OpenClaw — auto-captures, structures, and profiles conversational knowledge using local LLM + SQLite vector search (L0→L1→L2→L3 pipeline)",
   "type": "module",
   "main": "./dist/index.mjs",
@@ -43,7 +43,6 @@
     "scripts/README.memory-tencentdb-ctl.md",
     "src/",
     "scripts/openclaw-after-tool-call-messages.patch.sh",
-    "scripts/nomic_atlas_visualizer.py",
     "scripts/setup-offload.sh",
     "hermes-plugin/",
     "openclaw.plugin.json",

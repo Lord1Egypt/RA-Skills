@@ -1,43 +1,63 @@
-## Description: <br>
-Fox Agent Reach gives an AI agent command guidance for searching, reading, and interacting with web, social, video, code, RSS, and article platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and reads content across Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, Douyin, Weibo, WeChat Articles, LinkedIn, Instagram, RSS, Exa web search, and general web pages, with setup guidance for supported channels.
 
-## Publisher: <br>
-[qinthqod](https://clawhub.ai/user/qinthqod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinthqod](https://clawhub.ai/user/qinthqod)
 
-## Use Case: <br>
-Developers and agent users use this skill when an assistant needs to search or read supported platforms, inspect shared URLs, run diagnostics, or configure platform channels. It also provides command patterns for posting, commenting, and platform-specific setup when the user explicitly asks for those actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require sensitive account cookies for some platforms. <br>
-Mitigation: Use limited-scope or disposable accounts where possible and store cookies only in locations intended for persistent agent-reach data. <br>
-Risk: The skill includes commands for posting, commenting, and publishing to supported platforms. <br>
-Mitigation: Require an explicit preview and user confirmation before any public write action. <br>
-Risk: The skill describes a WeChat article workflow that bypasses anti-bot controls. <br>
-Mitigation: Use that workflow only when permission and a compliant access path are clear; otherwise avoid it. <br>
+## Use Case:
 
+Developers and external agent users use this skill when they need an agent to search, read, summarize, or configure access to supported web and social platforms. It is also used when a user provides a supported platform URL or requests public posting, commenting, or other account interactions.
 
-## Reference(s): <br>
-- [Agent Reach homepage](https://github.com/Panniantong/Agent-Reach) <br>
-- [Agent Reach install guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific command examples and operational cautions for cookies, proxies, and temporary files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad web access can send agent requests to many third-party platforms and services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested destinations before execution and restrict access to the minimum platforms needed for the user task.
+
+Risk: Authenticated channels may require cookies or browser-derived credentials.
+
+Mitigation: Use a dedicated browser profile or scoped cookie file, avoid normal browser profiles, and keep credentials limited to the intended channel.
+
+Risk: Posting, commenting, or other account interactions can create public or persistent changes.
+
+Mitigation: Require an explicit preview and user confirmation before any post, comment, publish, or account action.
+
+Risk: Remote setup instructions and global package installs can change the local environment.
+
+Mitigation: Review remote setup guides before following them, prefer scoped or isolated installs, and avoid global package installation where practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qinthqod/skills/fox-agent-reach)
+- [Agent Reach homepage](https://github.com/Panniantong/Agent-Reach)
+- [Agent Reach install guide](https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose web requests, local tool commands, channel setup steps, and account interaction workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

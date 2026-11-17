@@ -1,40 +1,53 @@
-## Description: <br>
-Scaffolds new OpenClaw skills in a workspace by creating skill folders, generating concise SKILL.md files, and verifying skill registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffolds new OpenClaw skills in a local workspace by creating skill folders, generating concise skill files, and verifying registration.
 
-## Publisher: <br>
-[runaway001](https://clawhub.ai/user/runaway001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[runaway001](https://clawhub.ai/user/runaway001)
 
-## Use Case: <br>
-Developers and workspace maintainers use this skill to scaffold local OpenClaw skill directories with a concise SKILL.md and minimal supporting files while keeping writes constrained to the configured skills workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated skills persist and can influence future agent sessions. <br>
-Mitigation: Review generated SKILL.md and code before using a new skill, and scan the skill before enabling it broadly. <br>
-Risk: The skill asks an agent to create local files and run verification commands. <br>
-Mitigation: Keep writes scoped to the configured skills workspace and confirm proposed commands avoid destructive operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/runaway001/henry-skill-installer) <br>
-- [Publisher profile](https://clawhub.ai/user/runaway001) <br>
+## Use Case:
 
+Developers and skill authors use this skill to scaffold new local OpenClaw skills with minimal files, local-only constraints, and guardrails against destructive commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local skill scaffolds and verifies registration in the OpenClaw skills list.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated skill instructions can later affect agent behavior.
+
+Mitigation: Review generated skills before using or enabling them.
+
+Risk: The skill creates local folders and files for new OpenClaw skills.
+
+Mitigation: Install only when local skill scaffolding is intended, and keep use constrained to the configured OpenClaw workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/runaway001/skills/henry-skill-installer)
+- [Publisher Profile](https://clawhub.ai/user/runaway001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with file contents and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local skill folders and files within the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

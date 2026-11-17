@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7c87q4dpsqbppabk9grkr2f180jhyn",
+  "name": "OpenClaw Email Bypass",
   "slug": "openclaw-email-bypass",
-  "version": "0.1.2",
-  "publishedAt": 1770451383328
+  "version": "1.0.0",
+  "description": "Bypass SMTP port blocks by routing mail through a private Google Apps Script relay. (Requires scripts from GitHub repo)",
+  "homepage": "https://github.com/RISHIKREDDYL/openclaw-email-bypass"
 }

@@ -1,39 +1,48 @@
-## Description: <br>
-Translates Dutch news text into English with interlinear formatting for language learning and detailed analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates Dutch news text into English with interlinear formatting for language learning and detailed analysis.
 
-## Publisher: <br>
-[rogerscristo](https://clawhub.ai/user/rogerscristo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rogerscristo](https://clawhub.ai/user/rogerscristo)
 
-## Use Case: <br>
-Language learners, analysts, and other external users can provide Dutch news text and receive sentence- or clause-level English translations aligned with the original Dutch text. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential Dutch text into the agent for translation. <br>
-Mitigation: Avoid submitting confidential text unless the agent environment is approved for that data. <br>
-Risk: Translations may be inaccurate or miss source-text nuance. <br>
-Mitigation: Review the English output against the original Dutch text before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rogerscristo/dutch-translator) <br>
+## Use Case:
 
+Language learners, analysts, and readers use this skill to compare Dutch source text with English translations line by line.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with paired Dutch and English lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interlinear sentence- or clause-level translation pairs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Translations may lose nuance or introduce meaning errors, especially when Dutch source text is split into clauses.
+
+Mitigation: Review the Dutch source text alongside the English output before relying on the translation for important decisions.
+
+## Reference(s):
+
+- [Dutch Translator on ClawHub](https://clawhub.ai/rogerscristo/skills/dutch-translator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style interlinear Dutch and English sentence pairs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Splits Dutch input by sentence or meaningful clause and pairs each original line with an English translation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

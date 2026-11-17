@@ -1,45 +1,60 @@
-## Description: <br>
-Defines a unified file protocol that bundles data, logic, and views into a self-contained unit for human-agent and agent-agent collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines a unified file protocol that bundles canonical data, logic, and views so agents and people can collaborate around self-contained, evolving files or .self packages.
 
-## Publisher: <br>
-[mozii](https://clawhub.ai/user/mozii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mozii](https://clawhub.ai/user/mozii)
 
-## Use Case: <br>
-Developers, agent builders, and external teams use this protocol reference to design Selfware packages, declare canonical data boundaries, and define consent-aware update, discovery, collaboration, memory, packaging, and publishing flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Implementers may treat the protocol reference as a complete runtime. <br>
-Mitigation: Verify any Selfware implementation separately before use, including API binding, write scope, update behavior, and consent prompts. <br>
-Risk: A runtime could expose APIs beyond localhost or write outside the declared content scope. <br>
-Mitigation: Require loopback-only API binding by default and confirm that writes are limited to the declared canonical content scope. <br>
-Risk: Remote updates, discovery requests, publishing, or context sharing could be applied or sent without informed user approval. <br>
-Mitigation: Show summaries or diffs, create rollback points, and require explicit confirmation before applying remote changes or sending context externally. <br>
+## Use Case:
 
+Developers and agent builders use this skill as a protocol reference for creating Selfware runtimes, packages, views, update flows, collaboration flows, and consent boundaries around canonical data.
 
-## Reference(s): <br>
-- [Selfware release page](https://clawhub.ai/mozii/selfware) <br>
-- [Release changelog](https://github.com/floatboatai/selfware.md) <br>
-- [Protocol source](https://floatboat.ai/selfware.md) <br>
-- [Protocol source repository](https://github.com/floatboatai/selfware) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown protocol guidance with example API shapes, metadata fields, and packaging rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Protocol/reference skill; no runtime is included in the release artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated or selected runtimes could expose local services beyond the intended boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind servers to localhost or loopback unless the user explicitly configures a wider boundary.
+
+Risk: Updates, publishing, discovery, or collaboration flows could modify files or send context externally without sufficient consent.
+
+Mitigation: Require explicit user confirmation, minimal context sharing, rollback points, and change records before applying updates, publishing, or sending context.
+
+Risk: Generated implementations may fail to preserve the promised canonical data write boundaries.
+
+Mitigation: Review implementation output against the release security guidance and limit default writes to content/ or the declared canonical landing scope.
+
+## Reference(s):
+
+- [Artifact skill source](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/mozii/skills/selfware)
+- [Selfware protocol source](https://floatboat.ai/selfware.md)
+- [Release changelog](https://github.com/floatboatai/selfware.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Code]
+
+**Output Format:** [Markdown protocol guidance with API, packaging, update, collaboration, and consent requirements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent outputs should preserve explicit consent, localhost exposure, canonical data write-scope, rollback, and change-record requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact protocol draft 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

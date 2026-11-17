@@ -1,41 +1,58 @@
-## Description: <br>
-Log, query, import, and chart private local baby-care records, including diapers, feeds, sleep, growth, temperature, medication, illness notes, and CSV exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log, query, import, and chart baby care events as a private CSV-based replacement for baby tracking apps such as Huckleberry.
 
-## Publisher: <br>
-[martinzokov](https://clawhub.ai/user/martinzokov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martinzokov](https://clawhub.ai/user/martinzokov)
 
-## Use Case: <br>
-Caregivers and agents use this skill to keep a private local baby-care log, import Huckleberry CSV exports, query recent events, and generate growth or care charts from CSV data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sensitive baby-care, routine, and possible health data in local files. <br>
-Mitigation: Protect the data directory, avoid unnecessary raw notes or source text when privacy matters, and periodically review or delete generated records and charts. <br>
-Risk: Large imports can add many care records from an external CSV export. <br>
-Mitigation: Use the documented dry-run import mode before unusual or large Huckleberry imports. <br>
+## Use Case:
 
+External users and caregivers use this skill to maintain a private local baby log, answer natural-language queries about care events, import Huckleberry CSV exports, and generate growth or weight charts.
 
-## Reference(s): <br>
-- [Baby Tracker ClawHub listing](https://clawhub.ai/martinzokov/baby-tracker) <br>
-- [Schema Reference](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown with inline shell commands and generated CSV, JSON, HTML, or PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local CSV and JSON storage, supports idempotent CSV imports, and can generate chart files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Sensitive baby identity, care, and health records are stored as local plaintext CSV, JSON, HTML, and PNG files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private data directory on a trusted single-user device, avoid synced or shared folders, and restrict file permissions.
+
+Risk: CSV imports or exports may be unsafe when opened in spreadsheet tools.
+
+Mitigation: Treat CSV files as untrusted, review unusual imports with dry-run first, and inspect exports before opening them in spreadsheets.
+
+Risk: Approximate percentile data may be mistaken for precise medical guidance.
+
+Mitigation: Use official WHO LMS data for percentile claims and treat charts as tracking aids rather than medical advice.
+
+## Reference(s):
+
+- [Baby Tracker Schema Reference](references/schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/martinzokov/skills/baby-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Plain text or Markdown with shell commands, plus optional JSON, CSV, HTML, and PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated local files can contain sensitive baby identity, care, and health records.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

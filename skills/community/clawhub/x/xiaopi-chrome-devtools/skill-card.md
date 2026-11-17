@@ -1,44 +1,56 @@
-## Description: <br>
-Uses Chrome DevTools via MCP for efficient debugging, troubleshooting and browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Chrome DevTools via MCP for efficient debugging, troubleshooting and browser automation.
 
-## Publisher: <br>
-[a-din](https://clawhub.ai/user/a-din) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-din](https://clawhub.ai/user/a-din)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect pages, automate browser interactions, debug web behavior, review network activity, and gather performance or visual state from Chrome DevTools through MCP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a mutable npm package for Chrome DevTools MCP. <br>
-Mitigation: Pin the npm package version before using it in controlled or repeatable environments. <br>
-Risk: The configured Chrome launch arguments disable sandbox protections. <br>
-Mitigation: Remove the no-sandbox flags unless the runtime container requires them. <br>
-Risk: DevTools-level browser access and persistent browser state can affect sensitive logged-in sessions. <br>
-Mitigation: Use a dedicated disposable Chrome profile and avoid sensitive accounts or pages where unintended clicks, form submissions, or script execution would matter. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect, debug, and automate browser pages through Chrome DevTools MCP workflows.
 
-## Reference(s): <br>
-- [Chrome DevTools Documentation](https://developer.chrome.com/docs/devtools) <br>
-- [Chrome DevTools AI Assistance](https://developer.chrome.com/docs/devtools/ai-assistance) <br>
-- [Chrome DevTools MCP Troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide DevTools MCP browser actions against the currently selected page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The runtime setup automatically runs an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a release that pins chrome-devtools-mcp to a reviewed exact version before installation.
+
+Risk: Chrome is launched with sandbox protections disabled.
+
+Mitigation: Run the skill only inside a dedicated low-privilege container or VM with a temporary browser profile and no sensitive logged-in sessions.
+
+## Reference(s):
+
+- [Chrome DevTools documentation](https://developer.chrome.com/docs/devtools)
+- [Chrome DevTools AI assistance documentation](https://developer.chrome.com/docs/devtools/ai-assistance)
+- [Chrome DevTools MCP troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/a-din/skills/xiaopi-chrome-devtools)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated browser artifacts such as screenshots, snapshots, and traces when the MCP server is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

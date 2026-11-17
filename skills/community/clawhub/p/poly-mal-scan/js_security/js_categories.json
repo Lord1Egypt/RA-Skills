@@ -1,0 +1,123 @@
+{
+  "逻辑规则": [
+    {
+      "id": "JS-LOGIC-001",
+      "类别": "代码/命令执行",
+      "威胁级别": 4,
+      "描述": "eval 与 base64 解码并存(混淆 webshell)",
+      "条件": "$a and $b",
+      "条件字符串": {
+        "$a": "eval",
+        "$b": "atob"
+      }
+    },
+    {
+      "id": "JS-LOGIC-002",
+      "类别": "系统/子进程",
+      "威胁级别": 4,
+      "描述": "exec/spawn 等子进程执行与外部可控输入同现(Node RCE)",
+      "条件": "($a or $b or $c) and ($d or $e)",
+      "条件字符串": {
+        "$a": "execSync",
+        "$b": "spawn",
+        "$c": "child_process.exec",
+        "$d": "process.env",
+        "$e": "process.argv"
+      }
+    },
+    {
+      "id": "JS-LOGIC-003",
+      "类别": "XSS/注入",
+      "威胁级别": 4,
+      "描述": "DOM 注入点与外部可控输入并存(DOM XSS)",
+      "条件": "($a or $b or $c) and ($d or $e or $f)",
+      "条件字符串": {
+        "$a": "innerHTML",
+        "$b": "document.write",
+        "$c": "insertAdjacentHTML",
+        "$d": "location",
+        "$e": "event.data",
+        "$f": "URLSearchParams"
+      }
+    },
+    {
+      "id": "JS-LOGIC-004",
+      "类别": "DOM/敏感操作",
+      "威胁级别": 3,
+      "描述": "文件写入与外部可控输入同现(数据窃取/落地)",
+      "作用域": "语句",
+      "条件": "($a or $b or $c) and ($d or $e)",
+      "条件字符串": {
+        "$a": "writeFileSync",
+        "$b": "writeFile",
+        "$c": "appendFile",
+        "$d": "process.env",
+        "$e": "process.argv"
+      }
+    }
+  ],
+  "代码/命令执行": [
+    "eval",
+    "Function",
+    "document.write",
+    "innerHTML",
+    "outerHTML",
+    "insertAdjacentHTML",
+    "setTimeout",
+    "setInterval"
+  ],
+  "系统/子进程": [
+    "child_process",
+    "exec",
+    "execSync",
+    "spawn",
+    "fork",
+    "require",
+    "process",
+    "vm",
+    "runInThisContext"
+  ],
+  "XSS/注入": [
+    "document.write",
+    "innerHTML",
+    "outerHTML",
+    "insertAdjacentHTML",
+    "alert(",
+    "prompt(",
+    "confirm(",
+    "script",
+    "onerror",
+    "onload"
+  ],
+  "DOM/敏感操作": [
+    "location.href",
+    "window.open",
+    "document.cookie",
+    "XMLHttpRequest",
+    "WebSocket",
+    "fetch(",
+    "postMessage",
+    "localStorage",
+    "sessionStorage"
+  ],
+  "网络外带/SSRF": [
+    "fetch(",
+    "XMLHttpRequest",
+    "http.request",
+    "https.request",
+    "net.connect",
+    "WebSocket",
+    "sendBeacon",
+    "curl"
+  ],
+  "权限维持/常驻": [
+    "setInterval",
+    "setTimeout",
+    "serviceWorker",
+    "navigator.serviceWorker",
+    "register(",
+    "addEventListener",
+    "localStorage",
+    "IndexedDB"
+  ]
+}

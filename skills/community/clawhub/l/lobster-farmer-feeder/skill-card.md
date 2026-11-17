@@ -1,37 +1,48 @@
-## Description: <br>
-Feed lobsters in the Lobster Farmer game by calling the local CLI command `lobster-farmer feed` with `--model`, `--input-tokens`, `--output-tokens`, and optional `--emotion`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feed lobsters in the Lobster Farmer game by calling the local CLI command `lobster-farmer feed` with `--model`, `--input-tokens`, `--output-tokens`, and optional `--emotion`.
 
-## Publisher: <br>
-[murongg](https://clawhub.ai/user/murongg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[murongg](https://clawhub.ai/user/murongg)
 
-## Use Case: <br>
-Developers and users of the Lobster Farmer project use this skill to feed model-specific lobsters, simulate model token usage, and report updated growth metrics through the local CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Running feed or service commands from the wrong project root, or through an unexpected `lobster-farmer` command, could update unintended local game state. <br>
-Mitigation: Before running feed, start, or batch operations, verify the Lobster Farmer project root and confirm that `lobster-farmer` resolves to the expected local command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/murongg/lobster-farmer-feeder) <br>
+## Use Case:
 
+External users and developers use this skill to feed model-specific lobsters through the Lobster Farmer local CLI, simulate token usage, batch-feed multiple models, and report updated growth metrics.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports model name, token values, optional emotion, total tokens, feed count, and size when command output is available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can start the local Lobster Farmer service and run feed commands that mutate local game state.
+
+Mitigation: Install only when using the Lobster Farmer local CLI, and review model, token, emotion, and port values before single or batch feed actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/murongg/skills/lobster-farmer-feeder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model name, input and output token values, emotion, lobster total tokens, feed count, and size.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

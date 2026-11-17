@@ -1,47 +1,57 @@
-## Description: <br>
-Guides Hong Kong primary and secondary school selection with school data, Banding explanations, secondary school placement process guidance, through-train school information, and Cantonese-free selection strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全方位的香港中小學選校指導技能，涵蓋 512 所學校數據、Banding 分析、升中派位流程、一條龍資訊、不會粵語選校策略等。
 
-## Publisher: <br>
-[wuchenyao-tx](https://clawhub.ai/user/wuchenyao-tx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuchenyao-tx](https://clawhub.ai/user/wuchenyao-tx)
 
-## Use Case: <br>
-Parents, guardians, and education advisors use this skill to compare Hong Kong schools, understand Banding and secondary school placement options, plan applications, and identify language-support strategies for students who do not speak Cantonese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: School status, admissions dates, fees, language support, and Banding information may be outdated or incomplete. <br>
-Mitigation: Use the skill as a planning aid and confirm important decisions with official Education Bureau sources or the schools directly before applying. <br>
-Risk: The structured school database is limited and does not fully substantiate all broader school-count claims in the documentation. <br>
-Mitigation: Treat database-backed results as partial coverage and review the included data quality report when relying on school listings. <br>
+## Use Case:
 
+Parents, students, and advisors use this skill to compare Hong Kong primary and secondary school options, understand Banding and Secondary School Places Allocation considerations, and prepare school-selection checklists. Users should verify school status, deadlines, fees, language support, and Banding assessments with official Education Bureau or school sources before acting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuchenyao-tx/hk-school-selection) <br>
-- [Publisher profile](https://clawhub.ai/user/wuchenyao-tx) <br>
-- [README](artifact/README.md) <br>
-- [Data quality verification report](artifact/data/verification_report.md) <br>
-- [Cantonese-free school selection strategy](artifact/guides/cantonese-free-strategy.md) <br>
-- [Hong Kong secondary school placement guide](artifact/guides/spa-process.md) <br>
-- [Education Bureau secondary school places allocation](https://www.edb.gov.hk/tc/edu-system/primary-secondary/spa-systems/secondary-spa/index.html) <br>
-- [schooland.hk](https://www.schooland.hk) <br>
+### Deployment Geography for Use:
 
+Hong Kong
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, checklists, comparison templates, and structured JSON data references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static school-selection guidance based on a 2026-04-20 data snapshot; users should verify current school status, dates, fees, language support, and admissions details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; README changelog also lists v1.1.0) <br>
+Risk: School data may be stale, incomplete, or partly unverified, including school status, fees, deadlines, and language-support claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every application-relevant fact with the Hong Kong Education Bureau or the school's official channels before making decisions.
+
+Risk: Banding and recommendation claims are advisory and may not reflect official placement outcomes or a student's individual situation.
+
+Mitigation: Use the skill as a planning aid only, and combine its output with official guidance, current school information, and family-specific constraints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuchenyao-tx/skills/hk-school-selection)
+- [README](README.md)
+- [Data quality verification report](data/verification_report.md)
+- [Cantonese-free school selection strategy](guides/cantonese-free-strategy.md)
+- [SPA process guide](guides/spa-process.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance, structured comparisons, checklists, and school data references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on static school data snapshots and user-supplied preferences; outputs require human verification before school application decisions.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata and README; SKILL.md frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

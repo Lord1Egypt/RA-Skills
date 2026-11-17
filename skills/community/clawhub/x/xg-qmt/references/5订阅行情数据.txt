@@ -1,0 +1,88 @@
+#encoding:gbk
+'''
+5订阅行情数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+ContextInfo.get_full_tick - 获取全推数据
+ContextInfo.subscribe_quote - 订阅行情数据
+提示
+
+该函数属于订阅函数，非VIP用户限制订阅数量
+
+VIP用户支持全推市场指定周期K线
+
+VIP用户权限请参考vip-行情用户优势对比
+
+原型
+
+内置python
+
+ContextInfo.subscribe_quote(
+    stock_code,
+    period='follow',
+    dividend_type='follow',
+    result_type='',
+    callback=None)
+释义
+
+订阅行情数据,关于订阅机制请参考运行机制对比
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，'stkcode.market'，如'600000.SH'
+period	string	K线周期类型
+dividend_type	string	除权方式,可选值为
+'none'：不复权
+'front':前复权
+'back':后复权
+'front_ratio': 等比前复权
+'back_ratio': 等比后复权
+注意：分笔周期返回数据均为不复权
+result_type	string	返回数据格式,可选范围：<br>'DataFrame'或''（默认）：返回{code:data}，data为pd.DataFrame数据集，index为字符串格式的时间序列，columns为数据字段<br>'dict'：返回{code:{k1:v1,k2:v2,...}}，k为数据字段名，v为字段值<br>'list'：返回{code:{k1:[v1],k2:[v2],...}}，k为数据字段名，v为字段值
+callback	function	指定推送行情的回调函数
+返回值
+
+int：订阅号，用于反订阅
+逐 K 线驱动：handlebar
+handlebar是主图历史 k 线+盘中订阅推送。运行开始时，所选周期历史 k 线从左向右每根触发一次handlebar函数调用。盘中时，主图品种每个新分笔数据到达，触发一次handlebar函数调用。
+
+提示
+
+盘中分笔驱动，但是逐 K 线生效。请参考常见问题：系统对象ContextInfo 逐K线保存的机制
+
+事件驱动 ：subscribe 订阅推送
+盘中订阅指定品种的分笔数据，新分笔到达时，触发指定的回调函数。
+
+定时任务 ：run_time 定时运行
+指定固定的时间间隔，持续触发指定的回调函数.
+
+不同机制匹配不同场景需求
+
+
+机制	分类	特点	匹配需求
+逐 K 线运行（handlebar）	事件驱动	同时支持历史回测和盘中可模拟逐K线效果	在实盘中模拟逐K线运行的效果
+订阅推送（subscribe）	事件驱动	盘中行情分笔触发函数调用	盘中随分笔行情判断交易
+定时运行（run_time）	定时任务	固定间隔触发调用	盘中固定时间间隔判断交易
+'''
+# conding = gbk
+def call_back(data):
+	print(data)
+	
+def init(c):
+	c.subID = c.subscribe_quote("000001.SZ","1d", callback = call_back)
+def handlebar(c):
+	print("============================")
+	print("c.subID: ",c.subID)
+	
+'''
+运行结果
+
+【2026-03-17 15:29:16.942】  [quote]start simulation mode
+【2026-03-17 15:29:16.976】  ============================
+c.subID:  12
+============================
+c.subID:  12
+============================
+c.subID:  12
+'''
+

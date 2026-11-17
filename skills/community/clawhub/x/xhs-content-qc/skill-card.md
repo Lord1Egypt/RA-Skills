@@ -1,43 +1,50 @@
-## Description: <br>
-对小红书达人笔记进行品牌词、必带话题、@官号、调性、链接有效性、广告法敏感词和竞品提及的自动化质检，并输出结构化报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+对小红书达人笔记做品牌词、必带话题、@官号、调性、链接与广告法/竞品合规的自动化质检，并输出结构化报告。
 
-## Publisher: <br>
-[wandervine](https://clawhub.ai/user/wandervine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wandervine](https://clawhub.ai/user/wandervine)
 
-## Use Case: <br>
-External marketing and content review teams use this skill to check Xiaohongshu KOL/KOC notes for required brand wording, topics, official account mentions, positive tone, link availability, sensitive advertising claims, and competitor mentions. It also supports explicit maintenance requests for the skill's wordlist and reference files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make HTTP GET requests to public Xiaohongshu or short-link URLs supplied for checking. <br>
-Mitigation: Use it only with public links intended for review; avoid internal or private URLs. <br>
-Risk: Wordlist replacement or append requests persist and change future quality-check results. <br>
-Mitigation: Review requested wordlist changes before allowing edits, and keep each .txt list to one item per line. <br>
-Risk: Fetched link content can be incomplete because sites may require login, block requests, or return shell pages. <br>
-Mitigation: Treat fetched fields as partial evidence and ask the user to provide title, body, hashtags, account mentions, and links when required fields are missing. <br>
+## Use Case:
 
+Marketing and content operations reviewers use this skill to check Xiaohongshu KOL/KOC notes for brand wording, required hashtags, official account mentions, tone, link reachability, and advertising-law or competitor-brand compliance before release. It can also guide updates to the skill's wordlist and reference files.
 
-## Reference(s): <br>
-- [Brand Name and Official Accounts](references/brand-name-and-official-accounts.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wandervine/xhs-content-qc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown quality report; helper scripts may return JSON when fetching linked note content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports PASS, WARNING, FAIL, SKIP, or BLOCKED by review dimension; wordlist files may be updated only on explicit user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Link-fetching helpers can request arbitrary URLs too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, run with sandboxed outbound network access, and add URL allowlisting plus untrusted-content handling before processing arbitrary links.
+
+## Reference(s):
+
+- [Brand name and official accounts reference](references/brand-name-and-official-accounts.md)
+- [ClawHub skill page](https://clawhub.ai/wandervine/skills/xhs-content-qc)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured Markdown report with optional JSON from link-fetching helpers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses line-based wordlists and may mark checks SKIP or BLOCKED when note content is incomplete.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

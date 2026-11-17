@@ -1,40 +1,55 @@
-## Description: <br>
-AI automation consulting service that helps small businesses, freelancers, and productivity-focused users identify and plan AI-assisted automation for support, content, data, and workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI automation consulting service that helps small businesses, freelancers, and productivity-focused users identify customer support, content generation, data processing, and workflow automation opportunities.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users, small businesses, and freelancers use this skill to understand AI automation consulting offerings for customer support, content generation, data processing, and workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may contact the provider, purchase linked resources, or share confidential business information based on a consulting advertisement. <br>
-Mitigation: Verify the provider, payment terms, and privacy practices before contacting them, buying resources, or sharing confidential business information. <br>
+## Use Case:
 
+External users, small businesses, and freelancers use this skill to understand AI automation consulting offerings for customer support, content generation, reporting, email classification, and workflow automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-automation-consulting) <br>
-- [AI automation introductory tutorial](https://yangster151.gumroad.com/l/ddwtx) <br>
-- [OpenClaw workflow examples](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance in Chinese with service categories, pricing, contact channels, and resource links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or tool calls; includes external contact and purchase links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact SKILL.md declares 1.0.4) <br>
+Risk: The skill may surface consulting sales packages and contact details that users could mistake for vetted implementation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the content as advisory marketing material and verify claims, contact details, and commercial terms before relying on them.
+
+Risk: Automation suggestions could lead to tool connections or workflow changes beyond what the artifact itself implements.
+
+Mitigation: Separately review and approve concrete implementation steps before allowing the skill to connect tools, handle data, or automate workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-automation-consulting)
+- [AI automation tutorial](https://yangster151.gumroad.com/l/ddwtx)
+- [OpenClaw workflow cases](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with service descriptions, package information, contact details, and resource links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language consulting-oriented content; no tool, binary, or credential requirements declared.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

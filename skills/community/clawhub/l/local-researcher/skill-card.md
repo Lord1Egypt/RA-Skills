@@ -1,46 +1,61 @@
-## Description: <br>
-Local Researcher helps agents run privacy-oriented iterative web research with Ollama or LMStudio local LLMs and produce cited Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Researcher guides agents through setting up and using local LLM research workflows with Ollama or LMStudio to generate cited Markdown research reports.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to configure local-model research workflows, run iterative web searches, and generate structured Markdown reports with cited sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, URLs, and fetched pages can be disclosed to external search providers or target websites. <br>
-Mitigation: Avoid confidential subjects and sensitive internal identifiers unless using a trusted offline or self-hosted search path. <br>
-Risk: Installer commands that pipe remote shell scripts can execute unreviewed code. <br>
-Mitigation: Prefer package-manager installs or verified installer steps, and review remote installation scripts before running them. <br>
-Risk: Local LLM processing does not make the overall workflow fully local when web search is enabled. <br>
-Mitigation: Document configured search providers and disable or self-host search for privacy-sensitive research. <br>
+## Use Case:
 
+Developers, researchers, and analysts use this skill to configure local LLM-backed research workflows, run iterative web research, and produce structured Markdown reports with cited sources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/antonia-sz/local-researcher) <br>
-- [LMStudio](https://lmstudio.ai/) <br>
-- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) <br>
-- [Ollama Model Library](https://ollama.com/library) <br>
-- [LangChain Academy](https://academy.langchain.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Research outputs may include cited sources, summaries, workflow metadata, and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The skill is network-enabled research software, so search topics and provider API use may leave the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review provider configuration before use and avoid sensitive research topics until privacy wording and network behavior are verified.
+
+Risk: Install instructions include a curl-to-shell installer and an unpinned repository clone workflow.
+
+Mitigation: Independently verify upstream source, version, and installer contents before executing installation commands.
+
+Risk: Privacy claims may understate network and code-execution risks.
+
+Mitigation: Treat generated setup steps as proposals, review commands before running them, and scan the skill before deployment.
+
+## Reference(s):
+
+- [Local Researcher Skill Page](https://clawhub.ai/antonia-sz/skills/local-researcher)
+- [LMStudio](https://lmstudio.ai/)
+- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+- [Ollama Model Library](https://ollama.com/library)
+- [LangChain Academy](https://academy.langchain.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and Python examples; generated research reports are Markdown with citations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include environment variables, provider choices, installation steps, local command sequences, and cited research metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

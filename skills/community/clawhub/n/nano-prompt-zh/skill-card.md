@@ -1,39 +1,54 @@
-## Description: <br>
-NanoBanana电商图片生成提示词工程 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NanoBanana电商图片生成提示词工程
 
-## Publisher: <br>
-[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhongkedy-del](https://clawhub.ai/user/zhongkedy-del)
 
-## Use Case: <br>
-External ecommerce merchants, designers, and agent users use this Chinese prompt-engineering guide to draft and refine prompts for product photos, lifestyle images, banners, apparel presentations, packaging mockups, and conversational edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model capability and platform-fit claims may be inaccurate or change over time. <br>
-Mitigation: Verify current model documentation and test representative prompts before relying on the guidance in production workflows. <br>
-Risk: Generated ecommerce images may misrepresent product materials, packaging text, proportions, or real-world attributes. <br>
-Mitigation: Review outputs against the actual product and marketplace requirements before publication. <br>
+## Use Case:
 
+E-commerce merchants, designers, and marketers use this skill to draft structured Chinese prompt guidance for product images, banners, lifestyle scenes, apparel try-ons, packaging mockups, and iterative edits for Nano Banana image models.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt-engineering guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external access; the skill provides reusable prompt templates, examples, and editing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Prompt guidance can produce product imagery or marketing copy that misrepresents the actual product if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated prompts and resulting assets for product accuracy, platform compliance, and brand requirements before publication.
+
+Risk: Chinese or other non-English text rendered directly inside generated product images may be unreliable.
+
+Mitigation: Adapt prompts for the target model and add exact product-label text in post-production when fidelity is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhongkedy-del/skills/nano-prompt-zh)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhongkedy-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with prompt structures, templates, and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only prompting aid; no tool access, credentials, persistence, or code execution requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

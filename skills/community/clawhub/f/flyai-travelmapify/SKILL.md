@@ -1,23 +1,22 @@
 ---
 name: flyai-travelmapify
-version: 2.2.2
-description: Create interactive travel route maps from location names with real FlyAI hotel search. Supports AI Vision analysis of travel planning images.
+version: 2.2.1
+description: Copy Xiaohongshu travel planning homework into interactive route maps with real FlyAI hotel search in seconds.
 author: rudy2steiner
 license: MIT
-tags: [travel, maps, routing, geocoding, flyai, hotels, unique-id, server-management, interactive, ai-vision]
+tags: [travel, maps, routing, ai-vision, geocoding, flyai, hotels, unique-id, server-management, interactive, xiaohongshu]
 ---
 
 # Travel Mapify
 
-Create interactive, professional travel route maps from location names.
+Transform travel planning images into interactive, professional travel route maps.
 
 ## Overview
 
 This skill automatically:
-1. **Processes text input**: Parses comma-separated location names directly
-2. **Geocodes locations** to get precise coordinates using Amap API
-3. **Generates interactive maps** with route optimization and POI management
-4. **Supports AI Vision workflow**: When given travel planning images, use agent's AI Vision to extract POI names, then process as text input
+1. **Supports dual input modes**: Process travel planning images (OCR) OR direct comma-separated location names
+2. **Extracts POIs** from images using OCR and AI analysis (image mode)
+3. **Parses location names** directly from text input (text mode)
 4. **Geocodes locations** to get precise coordinates using Amap API
 5. **Generates interactive maps** with route optimization and POI management
 6. **Integrates real hotel search** using FlyAI for actual hotel recommendations
@@ -25,16 +24,15 @@ This skill automatically:
 
 ## When to Use
 
+**Image Input Mode:**
+- User uploads a travel planning screenshot/image with location names
+- User wants to convert a hand-drawn or digital travel itinerary into an interactive map
+- User has a photo of a travel plan written on paper or displayed on screen
+
 **Text Input Mode:**
 - User provides comma-separated location names directly (e.g., "上海外滩,上海迪士尼乐园,豫园")
 - User wants to quickly create a travel map from a simple list of destinations
 - User has location names but no visual reference image
-
-**AI Vision Image Processing Workflow:**
-- User has a travel planning image (screenshot, photo, or digital plan)
-- Agent uses AI Vision to analyze the image and extract POI names with sequence/order
-- Extracted POI names are passed as text input to the skill
-- This hybrid approach combines AI automation with the skill's robust text processing
 
 **Hotel Integration Mode:**
 - User wants real hotel recommendations near their destination
@@ -45,18 +43,19 @@ This skill automatically:
 
 ### Step 1: Input Processing and POI Extraction
 
-**For Direct Text Input:**
+**For Image Input (AI Vision Enhanced):**
+- **Use AI Vision analysis** instead of traditional OCR for better accuracy on complex travel planning images
+- **Interactive clarification**: When recognition is uncertain, request user input for city/location context and expected attraction count
+- **Manual fallback**: If AI vision cannot confidently identify attractions, prompt user to provide attraction names directly
+- **Preserve sequence**: Maintain the exact numbered order as marked in the original travel planning image
+- **Filter noise**: Ignore garbled text, background interference, and corrupted characters that plague traditional OCR
+
+**For Text Input:**
 - Parse comma-separated location names directly
 - Create POI entries with high confidence (user-provided)
 - **Automatic city detection**: Smart city detection from location names (e.g., "北京军事博物馆" → city="北京")
 - **Fallback to default**: Uses Shanghai as default when no city can be detected
-
-**For Image Input (AI Vision Workflow):**
-- **Use agent's AI Vision capability** to analyze travel planning images
-- **Extract POI names and sequence** from numbered markers or route indicators
-- **Preserve exact order** as marked in the original image
-- **Pass extracted names as text input** to the skill's standard processing pipeline
-- **Leverage existing text processing** for geocoding, validation, and map generation
+- No OCR processing required
 
 ### Step 2: Geocoding and Coordinate Resolution
 - Use Amap geocoding API to resolve location names to precise coordinates
@@ -95,12 +94,11 @@ flyai-travelmapify/
 ├── flyai-travelmapify.py              # **PORTABLE ENTRY POINT**: Main executable script
 ├── scripts/
 │   ├── config.py                      # **DYNAMIC CONFIGURATION**: Path and environment detection
-│   ├── main_travel_mapify_enhanced.py # **PRODUCTION MAIN**: Auto-starts servers + text input + unique ID isolation
+│   ├── main_travel_mapify_enhanced.py # **PRODUCTION MAIN**: Auto-starts servers + dual input + unique ID isolation
+│   ├── extract_pois_from_image_vision.py # **AI VISION ENHANCED**: Interactive POI extraction with user clarification
 │   ├── geocode_locations.py           # Amap geocoding integration
 │   ├── generate_from_optimized_template.py # Optimized template with unique map ID isolation
 │   └── hotel-search-server.py         # FlyAI hotel search backend server
-
-**Note**: Image processing is handled externally using the agent's AI Vision capability. The extracted POI names are passed as text input to this skill.
 ├── references/
 │   ├── amap_api_guide.md              # Amap API usage patterns
 │   ├── poi_validation_rules.md        # POI validation and filtering rules
@@ -131,12 +129,7 @@ flyai-travelmapify/
 python3 flyai-travelmapify.py --locations "上海外滩,迪士尼乐园,豫园" --output-html shanghai-trip.html
 
 # From any directory
-python3 /path/to/flyai-travelmapify/flyai-travelmapify.py --locations "北京故宫,天坛,颐和园" --output-html beijing-trip.html
-
-# AI Vision Image Processing Workflow:
-# 1. Use agent's AI Vision to analyze travel image and extract POI names
-# 2. Pass extracted names as text input to the skill
-# Example: locations="解放碑,山城步道,十八梯,白象居,湖广会馆,来福士,洪崖洞,千厮门大桥"
+python3 /path/to/flyai-travelmapify/flyai-travelmapify.py --image ~/Downloads/trip-plan.jpg --output-html my-trip.html
 
 # With custom ports
 python3 flyai-travelmapify.py --locations "Tokyo Tower,Shibuya Crossing" --output-html tokyo-trip.html --http-port 8080 --hotel-port 9000

@@ -1,43 +1,62 @@
-## Description: <br>
-Model-agnostic WhatsApp @mention skill for OpenClaw that converts @Name, @Phone, and @LID mentions into clickable WhatsApp mentions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Model-agnostic WhatsApp @mention skill for OpenClaw that converts @Name, @Phone, and @LID to blue clickable WhatsApp mentions with any AI model.
 
-## Publisher: <br>
-[junwei1213](https://clawhub.ai/user/junwei1213) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwei1213](https://clawhub.ai/user/junwei1213)
 
-## Use Case: <br>
-Developers and operators use this skill to make OpenClaw WhatsApp bots produce clickable group mentions regardless of how the underlying AI model formats @mentions. It patches OpenClaw message handling and maintains local WhatsApp LID mappings used to resolve names, phone numbers, and LIDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer modifies OpenClaw runtime files and restarts the service. <br>
-Mitigation: Review install.sh before running it, install only on an OpenClaw system you control, and rely on the generated backups or uninstall.sh to restore patched files if needed. <br>
-Risk: The skill stores local WhatsApp identity mappings in LID_CACHE.json and installs mention guidance into OpenClaw memory. <br>
-Mitigation: Audit the local mapping and memory files periodically, and remove them manually after uninstall if the mappings should not be retained. <br>
-Risk: OpenClaw updates can overwrite the runtime patches. <br>
-Mitigation: Re-run the installer after OpenClaw updates and verify that mentions still resolve as expected. <br>
+## Use Case:
 
+External OpenClaw bot operators and developers use this skill to make WhatsApp group @mentions reliable across AI models by converting names, phone numbers, and LIDs into WhatsApp-compatible mention text and metadata.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/junwei1213/openclaw-mention-skill) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, shell commands, JavaScript and shell files, and WhatsApp message text with mention metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, bash, and python3; targets the OpenClaw WhatsApp channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.2) <br>
+Risk: The installer patches OpenClaw's installed JavaScript messaging files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before installation, keep the generated backups, and use uninstall.sh to restore the patched files if behavior is unexpected.
+
+Risk: Installation can restart the OpenClaw service and interrupt active bot operation.
+
+Mitigation: Install during a maintenance window and verify the service status after installation.
+
+Risk: The skill stores WhatsApp contact and group identity mappings in LID_CACHE.json.
+
+Mitigation: Restrict file permissions on LID_CACHE.json and avoid adding unnecessary contact or group data.
+
+Risk: Running add-member.js with a phone number and no --group can update every cached group.
+
+Mitigation: Use --group for targeted updates unless updating all cached groups is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwei1213/skills/openclaw-mention-skill)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [WhatsApp message text with mention metadata, plus Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mention conversion depends on the local LID cache and the current WhatsApp group context.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

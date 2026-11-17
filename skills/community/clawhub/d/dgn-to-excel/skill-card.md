@@ -1,41 +1,58 @@
-## Description: <br>
-Convert DGN files (v7-v8) to Excel databases. Extract elements, levels, and properties from infrastructure CAD files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert DGN files (v7-v8) to Excel databases. Extract elements, levels, and properties from infrastructure CAD files.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert Bentley MicroStation DGN v7/v8 infrastructure CAD files into Excel workbooks and analyze extracted elements, levels, cells, text, coordinates, and revision changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes an external DgnExporter.exe binary and depends on the executable being trustworthy. <br>
-Mitigation: Install the converter only from a trusted source and configure an explicit executable path before running conversions. <br>
-Risk: Recursive batch conversion can process broad folder trees and create many Excel outputs, including possible replacement of same-named outputs depending on converter behavior. <br>
-Mitigation: Use explicit input folders, review the batch scope before execution, and direct outputs to a controlled working directory. <br>
-Risk: The skill needs local filesystem access to read DGN files and write Excel workbooks. <br>
-Mitigation: Limit execution to intended project directories and review generated workbooks before sharing them. <br>
+## Use Case:
 
+Developers and infrastructure CAD engineers use this skill to convert Bentley MicroStation DGN files into Excel workbooks and inspect elements, levels, cells, text, and geometry for reporting and analysis.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline command and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local DGN input paths and Excel workbook outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and claw.json) <br>
+Risk: The skill invokes a native DGN converter executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted absolute path to the converter, verify the executable publisher or hash before use, and run it with limited privileges where possible.
+
+Risk: Batch conversion examples can write Excel outputs across project folders without explicit overwrite safeguards.
+
+Mitigation: Direct batch outputs to a dedicated working folder, review target paths before execution, and keep backups of source project files.
+
+Risk: The skill requests filesystem access for CAD inputs and generated outputs.
+
+Mitigation: Grant access only to the folders needed for the conversion task and avoid running the converter against untrusted DGN files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/dgn-to-excel)
+- [cad2data Pipeline](https://github.com/datadrivenconstruction/cad2data-Revit-IFC-DWG-DGN-pipeline-with-conversion-validation-qto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with shell command and Python examples; converted DGN output is an Excel .xlsx workbook when the external converter is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires filesystem access to read DGN inputs and write Excel outputs.]
+
+## Skill Version(s):
+
+2.0.0 (source: artifact/claw.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

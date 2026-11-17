@@ -1,44 +1,57 @@
-## Description: <br>
-处理中国租房押金不退、房东扣押金、提前退租、中介费、维修责任、涨租和退租争议；输出事实清单、证据包、赔偿估算、催告函、12315/住建委投诉路径和协商话术。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+处理中国租房押金不退、房东扣押金、提前退租、中介费、维修责任、涨租和退租争议；输出事实清单、证据包、赔偿估算、催告函、12315/住建委投诉路径和协商话术。
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agents use this skill to organize China rental-dispute facts, assess deposit and lease issues, prepare evidence, estimate disputed amounts, draft Chinese demand or complaint text, and plan negotiation or escalation steps. It is informational guidance and should be checked against current local rules and qualified legal advice for important matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; content is focused on rental disputes in China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled shell script has a local code-execution risk when crafted user-supplied filenames are embedded into Python commands. <br>
-Mitigation: Use only trusted case files with ordinary filenames and paths, avoid files supplied by other parties, and review or sandbox the script before running it on sensitive materials. <br>
-Risk: Rental-dispute inputs can contain sensitive identity, payment, account, and private chat information. <br>
-Mitigation: Redact ID numbers, account details, and unrelated chat content before use, and store case files only in trusted local directories. <br>
-Risk: Generated letters, filings, and legal analyses may be incomplete or inaccurate for a specific city or current rule set. <br>
-Mitigation: Treat outputs as drafts and verify facts, local rules, deadlines, and legal strategy with local authorities or a licensed lawyer before relying on them. <br>
+## Use Case:
 
+External users, especially tenants in China, use this skill to structure rental deposit and lease disputes, assess evidence gaps, estimate recoverable amounts, draft demand or complaint text, and plan escalation through negotiation, mediation, 12315, housing authorities, arbitration, or court where appropriate.
 
-## Reference(s): <br>
-- [Deposit Dispute Playbook](references/deposit-dispute-playbook.md) <br>
-- [Input Schema](schemas/input.schema.json) <br>
-- [Output Schema](schemas/output.schema.json) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, shell commands, configuration] <br>
-**Output Format:** [Markdown and structured text, with optional JSON input and output schemas for the bundled CLI workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces initial risk labels, missing-fact lists, evidence packages, compensation estimates, demand letters, complaint packages, negotiation scripts, and escalation timelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The local script has unsafe input-file handling that could allow a crafted filename to run code on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, and do not run the script on JSON files or paths from untrusted sources until the Python path handling is fixed.
+
+Risk: Generated letters, legal analysis, dates, and escalation recommendations may be incomplete or outdated for a specific city or dispute.
+
+Mitigation: Treat outputs as drafts, verify current local law and deadlines, and consult a licensed lawyer or local housing authority for important matters.
+
+Risk: Rental dispute case files can contain sensitive personal, financial, housing, and conflict details.
+
+Mitigation: Avoid storing case files in shared or synced folders unless that exposure is intended.
+
+## Reference(s):
+
+- [Deposit Dispute Playbook](references/deposit-dispute-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-style structured reports, with shell command examples for the bundled CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include legal-information disclaimers, evidence checklists, amount estimates in RMB, demand letters, complaint packages, negotiation scripts, and escalation timelines.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence, SKILL.md frontmatter, skill.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

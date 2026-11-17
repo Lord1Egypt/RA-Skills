@@ -1,0 +1,28 @@
+'''
+52集合竞价下单
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+集合竞价下单
+本示例演示了利用定时器函数和passorder下单函数在集合竞价期间以指定价买入平安银行100股。
+
+python
+
+#coding:gbk
+
+import time
+c = 0
+s = '000001.SZ'
+def init(ContextInfo):
+	# 设置定时器，历史时间表示会在一次间隔时间后开始调用回调函数 比如本例中 5秒后会后第一次触发myHandlebar调用 之后五秒触发一次
+	ContextInfo.run_time("myHandlebar","5nSecond","2019-10-14 13:20:00")
+
+
+def myHandlebar(ContextInfo):
+	global c
+	now = time.strftime('%H%M%S')
+	if c ==0 and '092500' >= now >= '091500':
+		c += 1
+		passorder(23,1101,account,s,11,14.00,100,2,ContextInfo) # 立即下单
+
+def handlebar(ContextInfo):
+	return

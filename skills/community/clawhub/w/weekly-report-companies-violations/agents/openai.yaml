@@ -1,0 +1,13 @@
+interface:
+  display_name: "违规案例周报"
+  short_description: "基于聚源违规案例库生成最近七天结构化周报与处罚对象明细"
+  default_prompt: "使用 $weigui-weekly-report 生成最近七天的上市公司违规案例周报，并输出可交付 Word 文档。"
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "weigui"
+      description: "聚源违规案例库 MCP，提供最近七天违规案例周报工具"
+      transport: "streamable_http"
+      url: "http://127.0.0.1:3102/mcp"
+policy:
+  allow_implicit_invocation: true

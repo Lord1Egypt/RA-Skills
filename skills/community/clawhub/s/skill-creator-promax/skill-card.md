@@ -1,42 +1,54 @@
-## Description: <br>
-Helps users turn an idea, workflow, scenario, or requirement into a structured agent prompt and optional multi-platform skill file through a staged, multi-turn process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users from an initial idea through iterative prompt design to bilingual, multi-platform agent Skill files.
 
-## Publisher: <br>
-[z-zihan](https://clawhub.ai/user/z-zihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-zihan](https://clawhub.ai/user/z-zihan)
 
-## Use Case: <br>
-External users, developers, and prompt engineers use this skill to design, refine, and package high-quality skill prompts for OpenClaw, Claude Code, Cursor, Cline, and general system-prompt workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill prompts may include tool, credential, or broad file-access instructions that are inappropriate for the user's environment. <br>
-Mitigation: Review the generated prompt and SKILL.md preview before approving file creation or publishing. <br>
-Risk: The skill can create a workspace SKILL.md file after explicit user confirmation. <br>
-Mitigation: Confirm the target path and generated content before approving the write, and keep writes scoped to the intended workspace. <br>
+## Use Case:
 
+Developers and agent builders use this skill to turn an idea, workflow, or business need into a refined Chinese and English agent prompt, then prepare Skill files for platforms such as OpenClaw, Claude Code, Cursor, and Cline. It is not intended for reviewing existing Skills or writing code directly.
 
-## Reference(s): <br>
-- [Skill Creator ProMax release page](https://clawhub.ai/z-zihan/skill-creator-promax) <br>
-- [Publisher profile](https://clawhub.ai/user/z-zihan) <br>
-- [Clawdis homepage](https://github.com/z-Zihan/awesome-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance, files] <br>
-**Output Format:** [Markdown prompt drafts, bilingual prompt content, and optional SKILL.md-style file content after user confirmation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses staged interaction and pauses for confirmation before generating or writing skill files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The required Chinese and English output may not suit every user or task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check that bilingual output fits the intended audience and request language adjustments where needed.
+
+Risk: Scanner coverage was partial because some referenced paths were missing.
+
+Mitigation: Review referenced inputs and generated prompts or Skill files before adopting them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/z-zihan/skills/skill-creator-promax)
+- [Project homepage](https://github.com/z-Zihan/awesome-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Structured Chinese and English Markdown prompts, with optional platform-specific Skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses staged, user-confirmed refinement and generation.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

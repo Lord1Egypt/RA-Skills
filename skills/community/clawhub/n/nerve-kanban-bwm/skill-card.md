@@ -1,40 +1,58 @@
-## Description: <br>
-Interact with the Nerve Kanban board API to create, update, delete, reorder, execute, approve, reject, abort, propose, and configure Kanban tasks under /api/kanban. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Nerve Kanban board API. CRUD tasks, manage workflow (execute, approve, reject, abort), handle proposals, configure the board. All endpoints are under /api/kanban on the Nerve server.
 
-## Publisher: <br>
-[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueworldmarketing](https://clawhub.ai/user/blueworldmarketing)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a Nerve Kanban board through its REST API, including task CRUD, workflow transitions, proposal review, and board configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API includes sensitive board-changing actions such as delete, execute, approve, reject, complete, and configuration updates. <br>
-Mitigation: Install only for trusted Nerve boards and confirm that the Nerve server enforces authentication, authorization, and audit logging before agents use shared or production boards. <br>
-Risk: Concurrent task updates can conflict if an agent acts on stale task versions. <br>
-Mitigation: Use the documented CAS version field, re-read on 409 version_conflict, and retry only with the server's latest task state. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to manage Nerve Kanban tasks through the local REST API, including task CRUD, workflow transitions, proposal handling, and board configuration.
 
-## Reference(s): <br>
-- [Nerve Kanban API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with REST endpoint descriptions, JSON request and response shapes, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task and proposal operations, board configuration, workflow transition rules, and CAS version guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can mutate live Kanban board data, including task creation, updates, reordering, workflow state changes, and permanent deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted Nerve API and require explicit operator confirmation before delete, execute, approve, reject, complete, or configuration update requests.
+
+Risk: Proposal auto-approval can allow autonomous agent changes to be applied without human review.
+
+Mitigation: Keep proposalPolicy set to confirm unless the board is intentionally configured for autonomous agent changes.
+
+Risk: Task execution can spawn agent sessions and move work into review based on run completion.
+
+Mitigation: Review execution requests and resulting task output before approval, especially when the board contains important work data.
+
+## Reference(s):
+
+- [Nerve Kanban API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/blueworldmarketing/skills/nerve-kanban-bwm)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown with REST endpoint descriptions, JSON request and response shapes, curl commands, and JavaScript fetch examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires access to a trusted Nerve server origin; mutating endpoints should be used with explicit operator approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

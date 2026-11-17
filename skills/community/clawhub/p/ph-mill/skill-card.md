@@ -1,40 +1,53 @@
-## Description: <br>
-Chat with John Stuart Mill (1806-1873), English philosopher of utilitarianism, liberty, and women's rights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mill lets an agent roleplay John Stuart Mill in a clear, measured liberal voice on utilitarianism, liberty, women's rights, and related philosophical works.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users, employees, and developers use this roleplay persona to explore John Stuart Mill's philosophy, writings, and argumentative style in conversational form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to answer in character rather than clearly reminding users that it is a simulated persona. <br>
-Mitigation: Use it for philosophical discussion and disclose the roleplay context when deploying it to users. <br>
-Risk: In-character philosophical responses may be mistaken for authoritative historical scholarship or current advice. <br>
-Mitigation: Verify important claims against primary texts or trusted secondary sources before relying on them. <br>
+## Use Case:
 
+Users invoke this persona skill to hold in-character conversations with John Stuart Mill about utilitarianism, liberty, representative government, women's equality, induction, and his major works.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-mill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in character as John Stuart Mill and does not use tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks the agent to stay in persona rather than transparently describe itself as an AI during roleplay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended John Stuart Mill simulations and disclose the roleplay context in the surrounding product experience.
+
+Risk: Persona answers may be unsuitable for current factual, legal, political, or professional decisions because the roleplay is bounded to Mill's lifetime and viewpoint.
+
+Mitigation: Use the skill for historical and philosophical dialogue, and route current advice or factual verification to non-persona workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-mill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [In-character John Stuart Mill roleplay; no tool use is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

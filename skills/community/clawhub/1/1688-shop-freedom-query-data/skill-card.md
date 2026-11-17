@@ -1,41 +1,58 @@
-## Description: <br>
-This skill helps an agent answer natural-language questions about 1688 merchant operations by matching the question to relevant data APIs and returning real shop metrics with interpretation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688 Shop Freedom Query Data converts natural-language merchant data questions into RAG-assisted 1688 API calls and returns authentic shop metrics with interpretation.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External merchants and their agents use this skill to query 1688 shop traffic, transaction metrics, product rankings, search keywords, peer comparisons, and real-time shop data. It supports natural-language questions, asks for clarification when API or time-range choices are ambiguous, and returns data-backed business interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a 1688 access key and may store it in the OpenClaw config file. <br>
-Mitigation: Install only in trusted workspaces, protect the config file, and rotate the access key if the config is exposed. <br>
-Risk: Queried merchant metrics or generated exports may contain sensitive business data. <br>
-Mitigation: Avoid shared workspaces for generated output and review exported files before sharing them. <br>
+## Use Case:
 
+External 1688 merchants and their agents use this skill to query shop traffic, transaction, product, search, comparison, and review metrics from live 1688 data sources and receive a concise operational interpretation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-shop-freedom-query-data) <br>
-- [Interaction component specifications](references/interaction-specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with tables and JSON-backed command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prompt for API, time range, or export selection; optional HTML or Excel export can be produced after user selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill handles a 1688 merchant AK that may be stored in OpenClaw configuration or read from the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and configure it only in a trusted OpenClaw profile, protect the local configuration file, and avoid using an untrusted OPENCLAW_GATEWAY_URL for configuration.
+
+Risk: Returned shop metrics and generated HTML or Excel exports can contain sensitive business data.
+
+Mitigation: Store exports only in approved locations, limit sharing, and remove exported files when they are no longer needed.
+
+Risk: The visualization option may pass query results to another installed skill.
+
+Mitigation: Review the selected visualization skill before forwarding results, or skip visualization when the downstream skill is not trusted.
+
+## Reference(s):
+
+- [Interaction Specs](references/interaction-specs.md)
+- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/skills/1688-shop-freedom-query-data)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses with JSON command outputs; optional HTML or Excel files when export is selected.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses signed 1688 gateway API calls and may produce sensitive business-data exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Manages OpenClaw Agent status upload scripts, periodically syncing agent online status to the cloud monitoring platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages OpenClaw Agent status upload scripts, periodically syncing agent online status to the cloud monitoring platform.
 
-## Publisher: <br>
-[yahao333](https://clawhub.ai/user/yahao333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yahao333](https://clawhub.ai/user/yahao333)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to enable agent status heartbeats to a cloud dashboard, monitor which agents are online, and manage the local uploader service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads OpenClaw agent IDs and heartbeat timing to a cloud monitoring dashboard. <br>
-Mitigation: Install only when the monitoring dashboard is trusted and users are comfortable sharing that status data. <br>
-Risk: The monitoring token can authorize status uploads if exposed. <br>
-Mitigation: Set the token through the documented environment variable or local credential file, avoid pasting secrets into chat, and rotate the token if exposed. <br>
-Risk: The uploader can run as a background service after setup. <br>
-Mitigation: Use the documented stop command before uninstalling the skill or whenever background uploads are no longer wanted. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to configure, run, and manage status uploads from local OpenClaw agents to a hosted dashboard. It supports manual syncs, scheduled execution, daemon operation, interval changes, and service status checks.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [Installation Guide](artifact/INSTALL.md) <br>
-- [Chinese README](artifact/README_cn.md) <br>
-- [OpenClaw Agent Monitor Dashboard](https://openclaw-agent-monitor.vercel.app) <br>
-- [OpenClaw Agent Monitor Repository](https://github.com/yahao333/openclaw-agent-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May start or stop a local background uploader and update OpenClaw credential or interval configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter reports 4.0.0) <br>
+Risk: The skill asks users to provide a reusable monitoring token and stores it locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer MONITOR_PLATFORM_TOKEN or a protected local credentials file, avoid pasting reusable tokens into chat when possible, restrict file permissions, and rotate tokens if exposed.
+
+Risk: The uploader sends OpenClaw agent IDs to a hosted dashboard and can use a configurable monitor URL.
+
+Mitigation: Install only if sending agent identifiers to the dashboard is acceptable, and do not set OPENCLAW_MONITOR_URL or monitorUrl to untrusted endpoints.
+
+Risk: The skill can run a periodic or background uploader from the local machine.
+
+Mitigation: Review before installing, confirm the desired upload interval, monitor logs after enabling, and use the documented stop/status commands to control the service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yahao333/skills/status-monitor)
+- [OpenClaw Status Monitor README](README.md)
+- [Installation Guide](INSTALL.md)
+- [Chinese README](README_cn.md)
+- [OpenClaw Agent Monitor Dashboard](https://openclaw-agent-monitor.vercel.app)
+- [OpenClaw Agent Monitor Repository](https://github.com/yahao333/openclaw-agent-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service status, upload results, log locations, token setup guidance, and daemon management commands.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter reports 4.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

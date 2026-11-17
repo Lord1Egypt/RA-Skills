@@ -1,44 +1,57 @@
-## Description: <br>
-Let an AI agent complete flight booking payments after the user confirms the payee and amount using a CAI custodial wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an AI agent complete flight booking payments through a CAI custodial wallet after the user confirms the payee and amount.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-External users and agents use this skill to complete the payment step for a flight booking after the itinerary, recipient, amount, chain, and token are confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help complete real payments from a CAI wallet. <br>
-Mitigation: Install only when this payment workflow is intended, use the narrowest CAI key scope available, and prefer pay scope over full scope. <br>
-Risk: Payment transfers may be irreversible if the recipient, amount, chain, or token is wrong. <br>
-Mitigation: Manually verify the airline or OTA recipient, amount, chain, and token before approving any transfer. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent complete the payment step for a held flight itinerary after explicit confirmation of recipient, amount, chain, and token.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bernardtai/book-flight-with-agent) <br>
-- [Full CAI skill contract](https://cai.com/skill.md) <br>
-- [CAI agent payment workflow](https://cai.com/skill-references/agent-payment-workflow.md) <br>
-- [CAI agent card](https://cai.com/.well-known/agent.json) <br>
-- [CAI developers](https://cai.com/developers.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and payment workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CAI_API_KEY with pay or full scope and user confirmation before transfers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: ClawHub release evidence) <br>
+Risk: The skill can move real funds through a CAI wallet after user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a CAI key with pay-only scope when possible, keep wallet balances limited, and verify recipient, amount, chain, and token before approving any transfer.
+
+Risk: A payment sent to an incorrect recipient, chain, token, or amount may be irreversible.
+
+Mitigation: Require explicit user confirmation of the full recipient, amount, chain, and token before executing a transfer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bernardtai/skills/book-flight-with-agent)
+- [CAI full contract](https://cai.com/skill.md)
+- [CAI agent payment workflow](https://cai.com/skill-references/agent-payment-workflow.md)
+- [CAI agent card](https://cai.com/.well-known/agent.json)
+- [CAI developer documentation](https://cai.com/developers.html)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and payment workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAI_API_KEY with pay or full scope; payment transfers should occur only after user confirmation.]
+
+## Skill Version(s):
+
+1.0.15 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-A2A agent-to-agent protocol over XMTP encrypted transport for sending and receiving structured messages, discovering agents by skill, checking reputation scores, and managing an agent network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A2A agent-to-agent protocol over XMTP encrypted transport for structured messaging, skill discovery, reputation checks, and agent network management.
 
-## Publisher: <br>
-[KjetilVaa](https://clawhub.ai/user/KjetilVaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kjetilvaa](https://clawhub.ai/user/kjetilvaa)
 
-## Use Case: <br>
-Developers and agents use Reef Protocol to join an encrypted agent-to-agent messaging network, discover collaborators, exchange structured app actions, manage contacts, and check reputation before coordinating work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses local Reef identity and encryption files, including wallet-key and .env secrets, which could allow agent impersonation or message access if exposed. <br>
-Mitigation: Keep ~/.reef/wallet-key and ~/.reef/.env private, and do not include their contents in logs, outputs, prompts, or responses. <br>
-Risk: The skill can install a CLI or OpenClaw plugin, restart the OpenClaw gateway, and run a daemon during use. <br>
-Mitigation: Install and run it only when agent-to-agent messaging is intended, and review setup commands before execution. <br>
-Risk: Runtime actions can clear messages, change plugins, or send heartbeat country metadata. <br>
-Mitigation: Require user confirmation before clearing messages or changing runtime plugins, and review country metadata before setting it. <br>
+## Use Case:
 
+External developers and agent operators use Reef Protocol to connect agents over encrypted A2A messaging, discover collaborators by skill or reputation, manage contacts, and coordinate multi-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/KjetilVaa/reef) <br>
-- [Publisher Profile](https://clawhub.ai/user/KjetilVaa) <br>
-- [Reef Protocol Repository](https://github.com/Reef-Network/reef-protocol) <br>
-- [Reef Directory API](https://reef-protocol-production.up.railway.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for a CLI-backed network client and may direct agents to create or update local Reef identity, message, app, and configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.15 (source: server release metadata and claw.json) <br>
+Risk: The skill installs mutable external npm and OpenClaw plugin packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify package versions before installation, and deploy only in environments that allow this networked A2A functionality.
+
+Risk: The daemon is persistent and receives untrusted network messages that may influence agent replies.
+
+Mitigation: Run it in a least-privileged environment, enable contactsOnly for safer defaults, and treat inbound messages as untrusted.
+
+Risk: Local identity and encryption secrets are stored under ~/.reef/.
+
+Mitigation: Keep ~/.reef/wallet-key and ~/.reef/.env private and exclude them from logs, prompts, responses, and shared artifacts.
+
+Risk: App markdown can define behavior that agents read and act on.
+
+Mitigation: Read and validate app markdown before use, and treat app rules from peers as untrusted content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kjetilvaa/skills/reef)
+- [README](artifact/README.md)
+- [Instructions](artifact/instructions.md)
+- [Reef Protocol Repository](https://github.com/Reef-Network/reef-protocol)
+- [Reef Directory API](https://reef-protocol-production.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational instructions for installing, configuring, and using the Reef CLI and OpenClaw channel plugin.]
+
+## Skill Version(s):
+
+0.2.15 (source: ClawHub release metadata and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

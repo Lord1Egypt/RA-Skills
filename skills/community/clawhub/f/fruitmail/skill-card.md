@@ -1,41 +1,58 @@
-## Description: <br>
-Fast Apple Mail search via SQLite on macOS for finding messages by subject, sender, date, body, threads, and attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast Apple Mail search via SQLite on macOS for finding, listing, and reading local Apple Mail messages by subject, sender, recipient, date, body, thread, or attachment status.
 
-## Publisher: <br>
-[rhlsthrm](https://clawhub.ai/user/rhlsthrm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rhlsthrm](https://clawhub.ai/user/rhlsthrm)
 
-## Use Case: <br>
-Developers and macOS users use this skill to install and invoke a local Apple Mail search CLI for finding messages, threads, attachments, and body text without slow AppleScript enumeration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private local Apple Mail content to an agent session that invokes the installed command. <br>
-Mitigation: Install only in trusted environments, grant Full Disk Access only to a trusted terminal, and use explicit prompts that limit searches to necessary messages. <br>
-Risk: Broad exports or body reads can disclose more email content than intended. <br>
-Mitigation: Prefer narrow search terms and result limits, avoid body reads unless needed, and review generated commands before execution. <br>
+## Use Case:
 
+Developers and agent users on macOS use this skill to search local Apple Mail data quickly, inspect threads and message bodies, and export selected results when normal AppleScript or Spotlight searches are too slow or unavailable.
 
-## Reference(s): <br>
-- [Installation](references/install.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rhlsthrm/fruitmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with bash command examples; the installed CLI can emit table text, JSON, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS Apple Mail data, sqlite3, python3, and Full Disk Access for the invoking terminal environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can read sensitive Apple Mail metadata and message bodies and can export results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit local-mail searches, avoid broad exports unless necessary, and handle generated result files as sensitive data.
+
+Risk: The installable shell script has input-validation concerns around numeric IDs, limits, and dates.
+
+Mitigation: Review the script before installation and validate message IDs, limits, and dates before use.
+
+Risk: Using --no-copy queries the live Apple Mail database while Mail.app may be writing to it.
+
+Mitigation: Keep the default safe-copy behavior unless the operator explicitly accepts live database integrity risk.
+
+## Reference(s):
+
+- [Installation Guide](artifact/references/install.md)
+- [ClawHub Skill Page](https://clawhub.ai/rhlsthrm/skills/fruitmail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only; requires sqlite3, python3, Apple Mail local data, and Full Disk Access for the invoking terminal or shell]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

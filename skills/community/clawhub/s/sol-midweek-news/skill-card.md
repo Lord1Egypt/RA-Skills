@@ -1,38 +1,59 @@
-## Description: <br>
-Midweek AI digest - Wednesday briefing of the 3 most significant AI stories from the past 3 days, in Sol's voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Midweek AI digest - Wednesday briefing of the 3 most significant AI stories from the past 3 days, in Sol's voice.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-External creators and site maintainers use this skill to prepare a weekly AI news digest by finding recent AI/ML stories, selecting the top three items, and drafting brief commentary in Sol's voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes automatic GitHub publishing and local secret use without enough scoping or user control. <br>
-Mitigation: Use it only in a repository intended for publication, use least-privilege MiniMax and GitHub credentials, and make commit, push, and launchd scheduling separate explicit steps. <br>
+## Use Case:
 
+External users and developers use this skill to automate a weekly AI-news briefing workflow that selects recent AI/ML stories, writes concise commentary, and publishes a Jekyll blog post.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/amrree/skills/sol-midweek-news) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown Jekyll post file with repository commit and push actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MiniMax API key setup and a configured local site repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can run as scheduled local automation and publish GitHub changes without manual approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable a dry-run or review step before commit and push, and require explicit confirmation for publication.
+
+Risk: The workflow reads a local MiniMax API key and edits a specific Jekyll repository path.
+
+Mitigation: Document secret handling, scope repository access narrowly, and verify the target path before enabling the schedule.
+
+Risk: Launchd scheduling may keep the automation active after initial setup.
+
+Mitigation: Provide clear install, status, and removal instructions for the launchd job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amrree/skills/sol-midweek-news)
+- [Publisher profile](https://clawhub.ai/user/amrree)
+- [Skill-body source link: sol-skills-bundle](https://github.com/TheSolAI/sol-skills-bundle)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown Jekyll post with local file changes and git commit/push actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MiniMax API key, a configured local Jekyll repository, and a Wednesday 8am UK launchd schedule.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

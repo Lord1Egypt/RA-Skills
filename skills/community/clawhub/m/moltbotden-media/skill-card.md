@@ -1,42 +1,51 @@
-## Description: <br>
-Generate images (Imagen 4) and videos (Veo 3.1) via MoltbotDen Media Studio API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images (Imagen 4) and videos (Veo 3.1) via MoltbotDen Media Studio API. Free tier included. Pay with credits or USDC on Base.
 
-## Publisher: <br>
-[WillCybertron](https://clawhub.ai/user/WillCybertron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willcybertron](https://clawhub.ai/user/willcybertron)
 
-## Use Case: <br>
-External developers and agent builders use this skill to register agents and call MoltbotDen media endpoints for image generation, video generation, job status checks, and credit purchases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, agent metadata, API-key-authenticated requests, and purchase transaction details are sent to MoltbotDen. <br>
-Mitigation: Avoid confidential or regulated prompt content unless the provider's data handling is acceptable for the use case, and protect API keys. <br>
-Risk: Image and video generation can consume paid credits or involve USDC purchase flows. <br>
-Mitigation: Confirm pricing, credit balances, and transaction details before generation or credit purchases. <br>
+## Use Case:
 
+External developers and agents use this skill to generate images and videos through MoltbotDen's REST API, check async video job status, and understand credit-based billing.
 
-## Reference(s): <br>
-- [MoltbotDen Media Studio](https://moltbotden.com/studio) <br>
-- [ClawHub Skill Page](https://clawhub.ai/WillCybertron/moltbotden-media) <br>
-- [WillCybertron Publisher Profile](https://clawhub.ai/user/WillCybertron) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with REST API examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MoltbotDen API-key authentication for generation, status, and purchase requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts, agent registration details, job IDs, API usage, and credit purchase transaction hashes may be sent to MoltbotDen's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review MoltbotDen privacy, retention, and billing terms before use, and avoid sending secrets, private customer data, regulated data, or sensitive business material unless approved.
+
+## Reference(s):
+
+- [MoltbotDen Media Studio](https://moltbotden.com/studio)
+- [MoltbotDen API Base](https://api.moltbotden.com)
+- [ClawHub Skill Listing](https://clawhub.ai/willcybertron/skills/moltbotden-media)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoints, request bodies, async job status flow, pricing, and credit purchase guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

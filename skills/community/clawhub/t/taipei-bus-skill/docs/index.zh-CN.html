@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚌 台北市公交车定点车机 AI Skill — OpenClaw</title>
+  <meta name="description" content="台北市公交车实时动态查询 AI Skill，接入定点车机 API + PTX，整合 ETA 估算、脱班检测、路线搜索、站序查询。">
+  <meta property="og:title" content="台北市公交车定点车机 AI Skill">
+  <meta property="og:description" content="实时车位查询 × 按站序精确 ETA × 路线信息 × 地图可视化 × 脱班检测">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚌</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="index.zh-CN.html" class="header-brand">
+      <span class="header-logo">🚌</span>
+      <span class="header-title">Taipei Bus Skill</span>
+    </a>
+    <div class="header-actions">
+      <nav class="lang-switcher" aria-label="选择语言">
+        <button class="lang-btn" data-lang="zh-TW">正體</button>
+        <button class="lang-btn active" data-lang="zh-CN">简体</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">🌙</button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="打开菜单">☰</button>
+    </div>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="文档导航">
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">文档</div>
+        <ul class="sidebar-nav">
+          <li><a href="#intro" class="sidebar-link active"><span class="nav-icon">🚀</span> 介绍</a></li>
+          <li><a href="#installation" class="sidebar-link"><span class="nav-icon">📦</span> 安装</a></li>
+          <li><a href="#quickstart" class="sidebar-link"><span class="nav-icon">⚡</span> 快速开始</a></li>
+          <li><a href="#trigger" class="sidebar-link"><span class="nav-icon">🔔</span> 触发方式</a></li>
+          <li><a href="#data-sources" class="sidebar-link"><span class="nav-icon">📡</span> 数据来源</a></li>
+          <li><a href="#api-reference" class="sidebar-link"><span class="nav-icon">⚙️</span> API 参考</a></li>
+          <li><a href="#examples" class="sidebar-link"><span class="nav-icon">💡</span> 实用示例</a></li>
+          <li><a href="#use-cases" class="sidebar-link"><span class="nav-icon">💬</span> 使用场景</a></li>
+          <li><a href="#limitations" class="sidebar-link"><span class="nav-icon">⚠️</span> 已知限制</a></li>
+          <li><a href="#deployment" class="sidebar-link"><span class="nav-icon">🌐</span> 部署</a></li>
+          <li><a href="#license" class="sidebar-link"><span class="nav-icon">📄</span> 授权</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-wrapper">
+
+        <!-- Hero -->
+        <section class="hero" id="hero">
+          <div class="hero-badge-row">
+            <span class="badge badge-blue">v1.2.0</span>
+            <span class="badge badge-purple">Node.js 18+</span>
+            <span class="badge badge-green">MIT / OGDL</span>
+            <span class="badge badge-orange">OpenClaw Skill</span>
+          </div>
+          <h1 class="hero-title">🚌 台北市公交车<br>定点车机 AI Skill</h1>
+          <p class="hero-description">
+            接入台北市定点车机实时 API 与 PTX 开放数据，提供公交车实时位置查询、
+            <strong>按站序精确 ETA 估算</strong>、路线搜索、站序查询、脱班检测、
+            热点站位与地图可视化功能。
+          </p>
+          <div class="hero-actions">
+            <a href="#installation" class="btn btn-primary">📦 立即安装</a>
+            <a href="#quickstart" class="btn btn-secondary">⚡ 快速开始</a>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             1. 介绍
+        ══════════════════════════════════════ -->
+        <section class="section" id="intro">
+          <div class="section-header">
+            <div class="section-eyebrow">介绍</div>
+            <h2 class="section-title">📖 这个 Skill 能做什么？</h2>
+          </div>
+          <p class="section-intro">
+            <code>taipei-bus</code> 是一个专为 OpenClaw Agent 设计的公交车动态查询技能，
+            接入三个核心数据来源，专注解决「公交车多久到？」这个最常见的问题。
+          </p>
+
+          <div class="info-grid">
+            <div class="info-card">
+              <div class="info-card-icon">📡</div>
+              <div class="info-card-title">实时车机数据</div>
+              <div class="info-card-value">台北市定点车机 OD API<br>每笔含车牌、路线、站点、方向</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">🗺️</div>
+              <div class="info-card-title">站点坐标</div>
+              <div class="info-card-value">PTX Bus Stop API<br>28,741 站全覆盖，已本地缓存</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">🚌</div>
+              <div class="info-card-title">路线站序</div>
+              <div class="info-card-value">PTX StopOfRoute API<br>415 条公交车路线完整去返程站序</div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-icon">⏱️</div>
+              <div class="info-card-title">三级 ETA 精度</div>
+              <div class="info-card-value">站序版 ★★★★★ / Haversine ★★★ / Fallback ★</div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <div class="alert-title"><span class="alert-icon">⚠️</span>重要：两套 ID 体系不相通</div>
+            <p>
+              <code>TstBusEvent</code> 的 RouteID（如 <code>158701</code>）与
+              <code>PTX</code> 的 RouteID（如 <code>10132</code>，对应 234 线）为<strong>独立系统</strong>，
+              两者<strong>不相通</strong>。需通过「站名」或「路线名」搜索建立对照。
+            </p>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             2. 安装
+        ══════════════════════════════════════ -->
+        <section class="section" id="installation">
+          <div class="section-header">
+            <div class="section-eyebrow">安装</div>
+            <h2 class="section-title">📦 安装方式</h2>
+          </div>
+          <p class="section-intro">
+            支持两种安装方式。方式一（SkillHub）是推荐方式，会自动处理所有依赖。
+          </p>
+
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:var(--text-primary);">方式一：SkillHub 安装（推荐）</h3>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>终端机</span>
+              <button class="copy-btn">📋 复制</button>
+            </div>
+            <pre><code>skillhub_install install_skill taipei-bus</code></pre>
+          </div>
+
+          <h3 style="font-size:15px;font-weight:700;margin:24px 0 12px;color:var(--text-primary);">方式二：手动复制</h3>
+          <p class="section-intro">将 <code>lib/</code> 和 <code>data/</code> 目录手动复制到你的项目：</p>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>终端机</span>
+              <button class="copy-btn">📋 复制</button>
+            </div>
+            <pre><code># 复制 lib 目录（bus-api.js + route-api.js + stop-coords.js）
+cp -r ~/.qclaw/skills/taipei-bus/lib ./taipei-bus-lib
+
+# 复制缓存数据（28,741 站坐标 + 415 条路线站序）
+cp -r ~/.qclaw/skills/taipei-bus/data ./taipei-bus-data
+
+# 或完整复制整个 skill
+cp -r ~/.qclaw/skills/taipei-bus /your/project/</code></pre>
+          </div>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">💡</span>
+            <strong>Node.js 18+ 需求：</strong>本 Skill 使用原生 <code>fetch</code> API（Web Standard Fetch），
+            需要 Node.js 18 或更高版本。较旧版本请安装 <code>node-fetch</code> 作为 polyfill。
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             3. 快速开始
+        ══════════════════════════════════════ -->
+        <section class="section" id="quickstart">
+          <div class="section-header">
+            <div class="section-eyebrow">快速开始</div>
+            <h2 class="section-title">⚡ 第一支公交车查询程序</h2>
+          </div>
+
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">前置需求</h3>
+          <ul style="font-size:14px;color:var(--text-secondary);margin-bottom:24px;padding-left:20px;line-height:2;">
+            <li>Node.js 18.0+（含原生 <code>fetch</code>）</li>
+            <li>已安装本 Skill 并复制 <code>lib/</code> 与 <code>data/</code> 目录</li>
+            <li>网络连接（对外访问 PTX API + 车机 API）</li>
+          </ul>
+
+          <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">基本查询：234 线何时到站？</h3>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>quickstart.js</span>
+              <button class="copy-btn">📋 复制</button>
+            </div>
+            <pre><code>const { searchRouteByName, etaBySequence, getRouteStopSequence } = require('./lib/bus-api.js');
+
+async function main() {
+  // Step 1：以路名搜索（支持数字、干线、颜色关键字）
+  const route = searchRouteByName('234');
+  if (!route) {
+    console.log('查无此路线');
+    return;
+  }
+  console.log(`找到：${route.routeName}（RouteID: ${route.routeId}）`);
+
+  // Step 2：获取去程站序
+  const stops = getRouteStopSequence(route.routeId, 0); // 0=去程, 1=返程
+  console.log(`共 ${stops.length} 站`);
+
+  // Step 3：找"欢仔园"站（可用任意站名）
+  const target = stops.find(s => s.stopName.includes('欢仔园'));
+  if (!target) {
+    console.log('站序中找不到目标站');
+    return;
+  }
+
+  // Step 4：按站序估算（最精确版本）
+  const eta = etaBySequence(route.routeId, target.stopId, 0);
+  console.log(`\n🚌 ${route.routeName} → ${target.stopName}`);
+  console.log(`⏱️  预估到站：${eta.minutes} 分钟`);
+  console.log(`📌 ${eta.note}`);
+}
+
+main().catch(console.error);</code></pre>
+          </div>
+
+          <h3 style="font-size:15px;font-weight:700;margin:24px 0 12px;">执行方式</h3>
+          <div class="code-wrapper">
+            <div class="code-header">
+              <span>终端机</span>
+              <button class="copy-btn">📋 复制</button>
+            </div>
+            <pre><code>node quickstart.js
+# 输出：
+# 找到：234（RouteID: 10132）
+# 共 40 站
+# 🚌 234 → 欢仔园
+# ⏱️  预估到站：8 分钟
+# 📌 按站序（第 12/40 站），离目标站尚有 5 站（去程）</code></pre>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             4. 触发方式
+        ══════════════════════════════════════ -->
+        <section class="section" id="trigger">
+          <div class="section-header">
+            <div class="section-eyebrow">触发方式</div>
+            <h2 class="section-title">🔔 AI Agent 触发关键字</h2>
+            <p class="section-subtitle">在 OpenClaw Agent 对话中提及以下关键字，即会启用本 Skill</p>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>类别</th>
+                  <th>触发关键字</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="tag tag-string">动态</span></td>
+                  <td><code>公交车动态</code>、<code>等公交车</code>、<code>公交车到站</code>、<code>公交车多久</code>、<code>公交车实时</code></td>
+                  <td>查询公交车到站时间</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">追踪</span></td>
+                  <td><code>公交车追踪</code>、<code>公交车来了</code>、<code>公交车怎么还没到</code></td>
+                  <td>持续追踪特定公交车</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">地图</span></td>
+                  <td><code>公交车地图</code>、<code>公交车车站</code>、<code>公交车热点</code></td>
+                  <td>地图可视化或站位查询</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">路线</span></td>
+                  <td><code>公交车路线</code>、<code>公交车搜索</code>、<code>公交车首班</code>、<code>公交车末班</code></td>
+                  <td>路线信息或搜索</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">异常</span></td>
+                  <td><code>公交车脱班</code>、<code>公交车异常</code></td>
+                  <td>脱班或异常检测</td>
+                </tr>
+                <tr>
+                  <td><span class="tag tag-string">英文</span></td>
+                  <td><code>bus dynamic</code>、<code>bus ETA</code>、<code>Taipei bus</code></td>
+                  <td>英文触发（混合对话）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             5. 数据来源
+        ══════════════════════════════════════ -->
+        <section class="section" id="data-sources">
+          <div class="section-header">
+            <div class="section-eyebrow">数据来源</div>
+            <h2 class="section-title">📡 四个 API 数据源</h2>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>数据源</th>
+                  <th>URL / 端点</th>
+                  <th>内容说明</th>
+                  <th>缓存策略</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge badge-blue">实时</span><br>定点车机 OD</td>
+                  <td><code>tcgbusfs.blob.core.windows.net/blobbus/TstBusEvent.json</code></td>
+                  <td>车牌、路线代码、站点代码、行驶方向、更新时间、勤务状态</td>
+                  <td>无（每次实时抓取）</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-purple">PTX Stop</span><br>站点坐标</td>
+                  <td><code>ptx.transportdata.tw/MOTC/v2/Bus/Stop/City/Taipei</code></td>
+                  <td>28,741 个站点名称、坐标（lat/lon）、StationID</td>
+                  <td><code>data/stop-coords.json</code>（~2 MB，每季重建）</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-green">PTX Route</span><br>路线清单</td>
+                  <td><code>ptx.transportdata.tw/MOTC/v2/Bus/Route/City/Taipei</code></td>
+                  <td>415 条公交车路线名称、起讫站、首末班、业者</td>
+                  <td><code>data/route-full-cache.json</code>（~11 MB，每季重建）</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-orange">PTX StopOfRoute</span><br>站序</td>
+                  <td><code>ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/City/Taipei</code></td>
+                  <td>各路线的去程/返程站序，含各站 StopID 与坐标</td>
+                  <td><code>data/route-full-cache.json</code>（~11 MB，每季重建）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="alert alert-info">
+            <span class="alert-icon">🔧</span>
+            <strong>缓存重建：</strong>缓存由 <code>scripts/build-cache.py</code> 产生。
+            若 PTX 数据有更新，执行：
+            <code>python3 ~/.qclaw/skills/taipei-bus/scripts/build-cache.py</code>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             6. API 参考
+        ══════════════════════════════════════ -->
+        <section class="section" id="api-reference">
+          <div class="section-header">
+            <div class="section-eyebrow">API 参考</div>
+            <h2 class="section-title">⚙️ 函数完整参考</h2>
+            <p class="section-subtitle">所有函数以 <code>require('./lib/bus-api.js')</code> 引入</p>
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            📡 实时车机函数（bus-api.js）
+          </h3>
+
+          <div class="function-list">
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">fetchAll()</div>
+                  <div class="function-desc">抓取全量实时公交车数据（车机 OD）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;BusRecord[]&gt;</code> — 按更新时间倒序排列的公交车数组
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { fetchAll } = require('./lib/bus-api.js');
+
+const buses = await fetchAll();
+console.log(`全系统共 ${buses.length} 台公交车在线`);
+buses.slice(0, 3).forEach(b => console.log(b.BusID, b.RouteID, b.StopID));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">findByRoute(routeId)</div>
+                  <div class="function-desc">按 TstBusEvent 路线代码查询所有在线公交车</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;BusRecord[]&gt;</code> — 该路线所有在线公交车
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>routeId</code></td><td><span class="tag tag-string">string</span></td><td>TstBusEvent 路线代码（如 <code>'158701'</code>）⚠️ 非 PTX RouteID</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="alert alert-warning" style="margin-bottom:12px;">
+                  <span class="alert-icon">⚠️</span>这里的 <code>routeId</code> 是 TstBusEvent 体系的代码（如 <code>158701</code>），
+                  不是 PTX RouteID（如 <code>10132</code>）。建议先用 <code>searchRouteByName</code> 确认。
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { findByRoute } = require('./lib/bus-api.js');
+
+const buses = await findByRoute('158701');
+console.log(`路线 ${buses.length} 台公交车在线`);
+buses.forEach(b => console.log(`${b.BusID} 在 ${b.StopID}`));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">findByBus(busId)</div>
+                  <div class="function-desc">按车牌查单台公交车实时状态</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;BusRecord | null&gt;</code> — 找不到时返回 <code>null</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { findByBus, formatBus } = require('./lib/bus-api.js');
+
+const bus = await findByBus('KKC-1100');
+if (bus) {
+  console.log(formatBus(bus, true));
+} else {
+  console.log('查无此车牌或车机未上线');
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">findAtStation(stopId)</div>
+                  <div class="function-desc">查某站目前停在站位的公交车</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;BusRecord[]&gt;</code> — <code>CarOnStop === '1'</code> 的公交车数组
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { findAtStation } = require('./lib/bus-api.js');
+
+const buses = await findAtStation('179647');
+console.log(`站位 ${buses.length} 台停在站位`);
+buses.forEach(b => console.log(b.BusID, b.RouteID));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">detectAnomalies()</div>
+                  <div class="function-desc">检测脱班或状态异常的公交车（DutyStatus !== '1' 或 BusStatus !== '0'）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;BusRecord[]&gt;</code> — 异常公交车数组，空数组表示全系统正常
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { detectAnomalies, formatBus } = require('./lib/bus-api.js');
+
+const anomalies = await detectAnomalies();
+if (anomalies.length === 0) {
+  console.log('✅ 全系统正常');
+} else {
+  console.log(`⚠️ ${anomalies.length} 台异常`);
+  anomalies.forEach(b => console.log(formatBus(b)));
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">routeSummary()</div>
+                  <div class="function-desc">全系统路线概况摘要（各路线当前车数）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;{[routeId]: {count, buses[]}}&gt;</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { routeSummary } = require('./lib/bus-api.js');
+
+const summary = await routeSummary();
+const top5 = Object.entries(summary)
+  .sort(([,a],[,b]) => b.count - a.count)
+  .slice(0, 5);
+
+top5.forEach(([routeId, {count}]) => {
+  console.log(`路线 ${routeId}: ${count} 台`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            🗺️ PTX 坐标整合函数（bus-api.js + stop-coords.js）
+          </h3>
+
+          <div class="function-list">
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">fetchAllWithCoords()</div>
+                  <div class="function-desc">获取所有公交车，并附加站点坐标（lat/lon/name）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;EnrichedBusRecord[]&gt;</code> — 每条记录附加 <code>_stopCoords</code> 字段
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { fetchAllWithCoords } = require('./lib/bus-api.js');
+
+const buses = await fetchAllWithCoords();
+const first = buses[0];
+console.log(first.BusID, first.RouteID);
+console.log('📍', first._stopCoords?.name,
+  `(${first._stopCoords?.lat?.toFixed(5)}, ${first._stopCoords?.lon?.toFixed(5)})`);</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getHotspots(topN)</div>
+                  <div class="function-desc">获取全系统热点站位（当前公交车密度最高的 N 个站）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">bus-api</span>
+                  <span class="tag tag-promise">async</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Promise&lt;Array&lt;{stopId, stopName, lat, lon, count}&gt;&gt;</code>
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>参数</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>topN</code></td><td><span class="tag tag-number">number</span></td><td><code>10</code></td><td>返回前 N 个热点站</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { getHotspots } = require('./lib/bus-api.js');
+
+const hotspots = await getHotspots(5);
+hotspots.forEach((h, i) => {
+  console.log(`${i+1}. ${h.stopName} — ${h.count} 台`);
+  console.log(`   📍 (${h.lat.toFixed(5)}, ${h.lon.toFixed(5)})`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getStopCoords(stopId)</div>
+                  <div class="function-desc">按 PTX StopID 查站点坐标（同步，本地缓存）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">stop-coords</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>{name, lat, lon, stationId} | null</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { getStopCoords } = require('./lib/bus-api.js');
+
+const coords = getStopCoords('33210');
+if (coords) {
+  console.log(coords.name); // "公馆"
+  console.log(coords.lat, coords.lon);
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">searchStops(keyword, limit)</div>
+                  <div class="function-desc">以站名模糊搜索站点（同步，本地缓存）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">stop-coords</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>Array&lt;{stopId, name, lat, lon...}&gt;</code>
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>参数</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>keyword</code></td><td><span class="tag tag-string">string</span></td><td>—</td><td>站名关键字</td></tr>
+                      <tr><td><code>limit</code></td><td><span class="tag tag-number">number</span></td><td><code>10</code></td><td>最多返回条数</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { searchStops } = require('./lib/bus-api.js');
+
+const hits = searchStops('捷运', 5);
+hits.forEach(s => {
+  console.log(`${s.stopId}: ${s.name}`);
+  console.log(`  📍 (${s.lat?.toFixed(5)}, ${s.lon?.toFixed(5)})`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            🚌 PTX 路线整合函数（bus-api.js + route-api.js）
+          </h3>
+
+          <div class="function-list">
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">searchRouteByName(name)</div>
+                  <div class="function-desc">以路名搜索公交车路线（精确 + 模糊匹配）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>RouteInfo | null</code> — 含 <code>routeId</code>, <code>routeName</code>, <code>departure</code>, <code>terminal</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { searchRouteByName } = require('./lib/bus-api.js');
+
+const route = searchRouteByName('蓝10');
+if (route) {
+  console.log(`${route.routeName}（${route.routeId}）`);
+  console.log(`${route.departure} → ${route.terminal}`);
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getRouteInfo(routeId)</div>
+                  <div class="function-desc">按 PTX RouteID 查完整路线信息（含首末班、业者）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>RouteInfo | null</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { getRouteInfo, routeApi } = require('./lib/bus-api.js');
+
+const route = getRouteInfo('10132'); // 234线
+console.log(routeApi.formatRoute(route));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">searchRoutes(keyword, limit)</div>
+                  <div class="function-desc">模糊搜索所有匹配路线（可返回多条）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>RouteInfo[]</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { searchRoutes } = require('./lib/bus-api.js');
+
+const routes = searchRoutes('蓝', 5);
+routes.forEach(r => console.log(`${r.routeName}: ${r.departure} → ${r.terminal}`));</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getRouteStopSequence(routeId, direction)</div>
+                  <div class="function-desc">获取某路线的全部站序（去程或返程）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>StopEntry[]</code> — 含 <code>stopId</code>, <code>stopName</code>, <code>lat</code>, <code>lon</code>
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>参数</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>routeId</code></td><td><span class="tag tag-string">string</span></td><td>—</td><td>PTX RouteID</td></tr>
+                      <tr><td><code>direction</code></td><td><span class="tag tag-number">number</span></td><td><code>0</code></td><td><code>0</code>=去程，<code>1</code>=返程</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { getRouteStopSequence } = require('./lib/bus-api.js');
+
+const stops = getRouteStopSequence('10132', 0); // 234去程
+stops.forEach((s, i) => {
+  console.log(`${i+1}. ${s.stopName}（${s.stopId}）`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">etaBySequence(routeId, targetStopId, direction, avgSecPerStop)</div>
+                  <div class="function-desc">按站序估算公交车到站时间（最精确版本）</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>{minutes, remaining, total, stop, note}</code>
+                </div>
+                <div class="table-wrapper" style="margin-bottom:16px;">
+                  <table class="param-table">
+                    <thead><tr><th>参数</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>routeId</code></td><td><span class="tag tag-string">string</span></td><td>—</td><td>PTX RouteID</td></tr>
+                      <tr><td><code>targetStopId</code></td><td><span class="tag tag-string">string</span></td><td>—</td><td>目标站 PTX StopID</td></tr>
+                      <tr><td><code>direction</code></td><td><span class="tag tag-number">number</span></td><td><code>0</code></td><td><code>0</code>=去程，<code>1</code>=返程</td></tr>
+                      <tr><td><code>avgSecPerStop</code></td><td><span class="tag tag-number">number</span></td><td><code>90</code></td><td>平均每站秒数（默认市区 1.5min）</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { etaBySequence } = require('./lib/bus-api.js');
+
+const eta = etaBySequence('10132', '33210', 0);
+console.log(`预估到站：${eta.minutes} 分钟（${eta.note}）`);
+console.log(`尚有 ${eta.remaining}/${eta.total} 站`);</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="function-card">
+              <div class="function-card-header">
+                <div>
+                  <div class="function-name">getRoutesByStop(stopId)</div>
+                  <div class="function-desc">查某站点有哪些路线经过</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <span class="function-module-tag">route-api</span>
+                  <span class="tag tag-sync">sync</span>
+                  <span class="chevron">▼</span>
+                </div>
+              </div>
+              <div class="function-body">
+                <div class="return-info">
+                  <strong>返回：</strong><code>{routeId, routeName, direction, index}[]</code>
+                </div>
+                <div class="code-wrapper">
+                  <div class="code-header"><span>javascript</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { getRoutesByStop } = require('./lib/bus-api.js');
+
+const routes = getRoutesByStop('33210');
+routes.forEach(r => {
+  const dir = r.direction === 0 ? '去程' : '返程';
+  console.log(`${r.routeName}（${dir}）站序第 ${r.index} 站`);
+});</code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <h3 style="font-size:16px;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border);color:var(--text-primary);">
+            ⏱️ ETA 精度三级系统
+          </h3>
+
+          <div class="table-wrapper" style="margin-bottom:20px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>等级</th>
+                  <th>计算方式</th>
+                  <th>精度</th>
+                  <th>适用场景</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge badge-green">★★★★★</span><br>站序版</td>
+                  <td>剩余站数 × 90s</td>
+                  <td>±1-2 站</td>
+                  <td>已知公交车位置 + 完整站序时（<code>etaBySequence</code>）</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-blue">★★★</span><br>Haversine</td>
+                  <td>直线距离 ÷ 25 km/h</td>
+                  <td>±2-5 分钟</td>
+                  <td>有公交车坐标 + 站点坐标时（<code>etaEstimate</code>）</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-orange">★</span><br>Fallback</td>
+                  <td>500m ÷ 25 km/h = 1.2 分</td>
+                  <td>粗估</td>
+                  <td>无坐标时（固定站距估算）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </section>
+
+        <!-- ══════════════════════════════════════
+             7. 实用示例
+        ══════════════════════════════════════ -->
+        <section class="section" id="examples">
+          <div class="section-header">
+            <div class="section-eyebrow">实用示例</div>
+            <h2 class="section-title">💡 五个实务场景</h2>
+          </div>
+
+          <div class="example-list">
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">1</div>
+                <div>
+                  <div class="example-title">查公交车到站时间</div>
+                  <div class="example-desc">按站序估算特定路线到特定站点的时间</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>eta-example.js</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { searchRouteByName, etaBySequence, getRouteStopSequence } = require('./lib/bus-api.js');
+
+async function getBusEta(routeName, targetStopName) {
+  const route = searchRouteByName(routeName);
+  if (!route) return `查无"${routeName}"路线`;
+
+  const stops = getRouteStopSequence(route.routeId, 0);
+  const target = stops.find(s => s.stopName.includes(targetStopName));
+  if (!target) return `站序中找不到"${targetStopName}"`;
+
+  const eta = etaBySequence(route.routeId, target.stopId, 0);
+  return `🚌 ${route.routeName} → ${target.stopName}：约 ${eta.minutes} 分钟\n${eta.note}`;
+}
+
+await getBusEta('234', '欢仔园');</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">2</div>
+                <div>
+                  <div class="example-title">脱班异常检测</div>
+                  <div class="example-desc">全系统扫描，找出勤务或状态异常的公交车</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>anomaly-example.js</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { detectAnomalies, formatBus } = require('./lib/bus-api.js');
+
+async function checkSystemHealth() {
+  const anomalies = await detectAnomalies();
+  if (anomalies.length === 0) return '✅ 目前全系统公交车正常';
+  const lines = [`⚠️  共 ${anomalies.length} 台异常：\n`];
+  anomalies.forEach(b => {
+    const reasons = [];
+    if (b.DutyStatus !== '1') reasons.push(`勤务(${b.DutyStatus})`);
+    if (b.BusStatus !== '0') reasons.push(`状态(${b.BusStatus})`);
+    lines.push(`🚨 ${b.BusID} 路线:${b.RouteID} → ${reasons.join('、')}`);
+  });
+  return lines.join('\n');
+}
+
+await checkSystemHealth();</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">3</div>
+                <div>
+                  <div class="example-title">站序查询</div>
+                  <div class="example-desc">查询特定路线的完整去程/返程站序</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>route-sequence.js</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { searchRouteByName, getRouteStopSequence } = require('./lib/bus-api.js');
+
+function showRouteStops(routeName, direction = 0) {
+  const route = searchRouteByName(routeName);
+  if (!route) return;
+  const dirLabel = direction === 0 ? '去程' : '返程';
+  const stops = getRouteStopSequence(route.routeId, direction);
+  console.log(`🚌 ${route.routeName} ${dirLabel}（共 ${stops.length} 站）\n`);
+  stops.forEach((s, i) => console.log(`  ${String(i+1).padStart(2,'0')}. ${s.stopName}`));
+}
+
+showRouteStops('蓝10', 0);</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">4</div>
+                <div>
+                  <div class="example-title">站名搜索 + 经过路线</div>
+                  <div class="example-desc">输入站名模糊搜索，再查所有经过该站的公交车路线</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>stop-search.js</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>const { searchStops, getRoutesByStop } = require('./lib/bus-api.js');
+
+async function findBusRoutesAtStop(stopKeyword) {
+  const hits = searchStops(stopKeyword, 3);
+  if (!hits.length) return `找不到含"${stopKeyword}"的站点`;
+
+  const results = [];
+  for (const stop of hits) {
+    const routes = getRoutesByStop(stop.stopId);
+    results.push({
+      stop: stop.name,
+      routes: routes.map(r => `${r.routeName}(${r.direction===0?'去':'返'}第${r.index}站)`)
+    });
+  }
+  return results;
+}
+
+await findBusRoutesAtStop('捷运公馆');</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="example-card">
+              <div class="example-header">
+                <div class="example-number">5</div>
+                <div>
+                  <div class="example-title">Cron Job 定时监控</div>
+                  <div class="example-desc">设定每 N 分钟自动检测脱班并推送通知</div>
+                </div>
+              </div>
+              <div class="example-body">
+                <div class="code-wrapper">
+                  <div class="code-header"><span>使用 cron tool</span><button class="copy-btn">📋 复制</button></div>
+                  <pre><code>// 使用 qclaw-cron-skill 设定每 5 分钟检查一次
+cron(action='add', job={
+  name: '台北市公交车脱班检测',
+  schedule: { kind: 'every', everyMs: 5 * 60 * 1000 },
+  sessionTarget: 'isolated',
+  payload: {
+    kind: 'agentTurn',
+    message: `执行 detectAnomalies() 并报告结果。若有异常，
+              输出"⚠️ N台异常：车牌/路线/原因"；若无异常，输出"✅ 全系统正常"。`,
+    timeoutSeconds: 60
+  },
+  delivery: { mode: 'announce' }
+})</code></pre>
+                </div>
+                <p class="section-intro" style="margin-top:12px;">
+                  详见 <code>examples/example-cron.js</code>，包含每 5 分钟脱班检测、
+                  每日早晨路线概况报告、一次性到站提醒等多种 Cron Job 模板。
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             8. 使用场景
+        ══════════════════════════════════════ -->
+        <section class="section" id="use-cases">
+          <div class="section-header">
+            <div class="section-eyebrow">使用场景</div>
+            <h2 class="section-title">💬 对话式使用场景</h2>
+            <p class="section-subtitle">用户提问 → Agent 调用函数 → 回复格式</p>
+          </div>
+
+          <div class="scenario-grid">
+            <div class="scenario-row">
+              <div class="scenario-question">「234 多久会到？」</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchRouteByName</code> + <code>etaBySequence</code><br>→ 约 N 分钟（含站序说明）</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">「XX 站有几台公交车？」</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchStops</code> + <code>findAtStation</code><br>→ N 台停在站位（车牌列表）</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">「查 KKC-1100 在哪？」</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>findByBus</code> + <code>formatBus</code><br>→ 车牌/路线/站点/方向/更新时间</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">「哪里公交车最多？」</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>getHotspots</code><br>→ TOP N 热点站（站名 + 车数 + 坐标）</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">「蓝10的站序」</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchRouteByName</code> + <code>getRouteStopSequence</code><br>→ 完整站名列表（去程/返程）</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">「公交车都正常吗？」</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>detectAnomalies</code><br>→ ✅ 全正常 或 ⚠️ N台异常（含明细）</div>
+            </div>
+            <div class="scenario-row">
+              <div class="scenario-question">「234 的首班/末班？」</div>
+              <div class="scenario-arrow">→</div>
+              <div class="scenario-answer"><code>searchRouteByName</code> + <code>getRouteInfo</code><br>→ 去程/返程首末班时间</div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning" style="margin-top:24px;">
+            <div class="alert-title"><span class="alert-icon">⚠️</span>地址换乘（部分限制）</div>
+            <p>
+              「我在 XX 站，要去 OO <strong>地址</strong>」的换乘推荐，需要：
+              ① 地址 geocoding（坐标）→ ② 找最近站点 → ③ 换乘规划。
+              目前 geocoding 与换乘算法<strong>尚未实现</strong>，
+              建议搭配 <code>tencentmap-jsapi-gl-skill</code>（腾讯地图 geocoding API），
+              或使用 Google Maps / TPTP（大众运输）换乘 API。
+            </p>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             9. 已知限制
+        ══════════════════════════════════════ -->
+        <section class="section" id="limitations">
+          <div class="section-header">
+            <div class="section-eyebrow">已知限制</div>
+            <h2 class="section-title">⚠️ 使用前请先了解</h2>
+          </div>
+
+          <div class="limitations-list">
+            <div class="limitation-item">
+              <div class="limitation-num">1</div>
+              <div class="limitation-content">
+                <div class="limitation-title">⚠️ 两套 ID 体系不相通</div>
+                <div class="limitation-desc">
+                  <code>TstBusEvent</code> 的 RouteID/StopID（如 <code>158701</code>、<code>179647</code>）
+                  与 <code>PTX</code> 的 RouteID/StopID（如 <code>10132</code>、<code>33210</code>）
+                  为独立系统，两者<strong>不相通</strong>。需通过「站名」或「路线名」搜索建立对照。
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">2</div>
+              <div class="limitation-content">
+                <div class="limitation-title">ETA 精度有上限</div>
+                <div class="limitation-desc">
+                  即使用最高精度的站序版（<code>etaBySequence</code>），ETA 仍受限於：
+                  ① 车机只上报最近一站，非实时 GPS 轨迹；② 缓存是静态 snapshot，
+                  站序实际可能因路况微调。建议将结果标记为「预估」而非「精确」。
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">3</div>
+              <div class="limitation-content">
+                <div class="limitation-title">实时数据仅涵盖部分车机车辆</div>
+                <div class="limitation-desc">
+                  TstBusEvent API 只包含有安装定点车机设备的公交车，<strong>非全部运营车辆</strong>。
+                  无车机的车辆不会出现在查询结果中，不代表它不存在或未发车。
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">4</div>
+              <div class="limitation-content">
+                <div class="limitation-title">尚无换乘推荐功能</div>
+                <div class="limitation-desc">
+                  从 A 点（地址）到 B 点（地址）的换乘推荐，需要 geocoding + 换乘 API，
+                  目前未实现。可通过 <code>tencentmap-jsapi-gl-skill</code> 取得地址坐标，
+                  再配合公交车站点搜索建立衔接，但复杂换乘仍建议转介 Google Maps / TPTP。
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">5</div>
+              <div class="limitation-content">
+                <div class="limitation-title">无拥挤度数据</div>
+                <div class="limitation-desc">
+                  目前 TstBusEvent API 不含乘车人数、拥挤程度信息。
+                  若需要乘车舒适度评估，需另行接入其他数据来源。
+                </div>
+              </div>
+            </div>
+            <div class="limitation-item">
+              <div class="limitation-num">6</div>
+              <div class="limitation-content">
+                <div class="limitation-title">缓存需定期重建</div>
+                <div class="limitation-desc">
+                  PTX 站点坐标与路线站序缓存（<code>data/</code> 目录）由
+                  <code>scripts/build-cache.py</code> 产生，默认每季重建。
+                  若 PTX 数据有更新（路线调整、站位搬迁），需手动执行重建脚本。
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             10. 部署
+        ══════════════════════════════════════ -->
+        <section class="section" id="deployment">
+          <div class="section-header">
+            <div class="section-eyebrow">部署</div>
+            <h2 class="section-title">🌐 部署到 GitHub Pages</h2>
+          </div>
+          <p class="section-intro">
+            本文档网站为纯静态 HTML，可直接部署到 GitHub Pages、Netlify、Vercel 等任意静态托管服务。
+            以下以 GitHub Pages 为例。
+          </p>
+
+          <div class="deploy-steps">
+            <div class="deploy-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <div class="step-title">将 docs/ 目录推送至 GitHub 仓库</div>
+                <div class="step-desc">
+                  确保 <code>docs/</code> 目录已包含所有 HTML、CSS、JS 文件，
+                  并推送到你的 GitHub 仓库（需建立 <code>gh-pages</code> 分支或使用 main 分支）。
+                </div>
+              </div>
+            </div>
+            <div class="deploy-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <div class="step-title">Settings → Pages → Source</div>
+                <div class="step-desc">
+                  前往 <strong>Repository Settings → Pages</strong>，在 <em>Source</em> 选择
+                  <code>main</code> branch，<em>folder</em> 选择 <code>/docs</code>。
+                </div>
+              </div>
+            </div>
+            <div class="deploy-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <div class="step-title">等待 2-3 分钟部署完成</div>
+                <div class="step-desc">
+                  GitHub 会自动编译并发布。完成后访问
+                  <code>https://&lt;username&gt;.github.io/&lt;repo&gt;/</code>
+                  即可看到文档网站。
+                </div>
+              </div>
+            </div>
+            <div class="deploy-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <div class="step-title">（可选）设定自定义域名</div>
+                <div class="step-desc">
+                  在 <code>docs/CNAME</code> 文件写入你的域名（如 <code>taipei-bus.openclaw.ai</code>），
+                  并在 DNS 供应商设定 CNAME 指向 <code>&lt;username&gt;.github.io</code>。
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             11. 授权
+        ══════════════════════════════════════ -->
+        <section class="section" id="license">
+          <div class="section-header">
+            <div class="section-eyebrow">授权</div>
+            <h2 class="section-title">📄 授权与知识产权</h2>
+          </div>
+
+          <div class="two-col">
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;">
+              <div style="font-size:20px;margin-bottom:12px;">📜</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Skill 本体</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">
+                <strong>OGDL（Open Government Data License）</strong><br>
+                本 Skill 收集、整合的公交车动态数据，依据政府资料开放授权条款（OGDL）提供。
+                可自由使用于非商业及商业用途，唯需标注资料来源为政府开放资料。
+              </div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;">
+              <div style="font-size:20px;margin-bottom:12px;">🗺️</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">PTX 数据</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">
+                <strong>MIT License</strong><br>
+                PTX 开放资料平台之数据依其使用规范，允许自由使用、修改与散布。
+                本 Skill 之 PTX 整合模组以 MIT License 授权。
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="margin-top:16px;">
+            <span class="alert-icon">📌</span>
+            <strong>注意：</strong>本 Skill 由 OpenClaw Agent 社群维护，
+            非台北市政府或 PTX 官方出品。如有公交车动态数据疑问，请以官方资料为准。
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <span>🚌 taipei-bus Skill — v1.2.0 — OpenClaw Agent</span>
+    <span>数据来源：台北市交通局 · PTX（MOTC）</span>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

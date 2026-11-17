@@ -1,6 +1,6 @@
 name: personal_card_ocr
 version: 1.0.5
-description: 将图片中的文字、身份证、银行卡、社保卡、户口本、出生医学证明、往来港澳通行证、往来台湾通行证、台湾居民来往大陆通行证、港澳居民来往内地通行证等信息识别并提取出来。本技能应在用户需要 OCR 识别图片中的文字，或识别身份证、银行卡、社保卡、户口本、出生医学证明、往来港澳通行证、往来台湾通行证、台湾居民来往大陆通行证、港澳居民来往内地通行证,中国香港身份证，外国人永久居留身份证，结婚证，不动产权证书，机动车行驶证正页，机动车行驶证副页，机动车驾驶证正页，机动车驾驶证副页，中国护照，学历证书，学历证书电子注册备案表，学位证书等信息识别并提取出来
+description: 将图片中的文字、身份证、银行卡、社保卡、户口本、出生医学证明、往来港澳通行证、往来台湾通行证、台湾居民来往大陆通行证、港澳居民来往内地通行证、中国香港身份证、外国人永久居留身份证、结婚证、不动产权证书、机动车行驶证正页、机动车行驶证副页、机动车驾驶证正页、机动车驾驶证副页、中国护照、学历证书、学历证书电子注册备案表、学位证书等信息识别并提取出来。仅在用户明确要求对图片进行 OCR 识别，并确认可以将图片上传到第三方 OCR 服务（Scnet）处理时，才触发本技能。本技能只处理用户主动指定路径的本地文件，不会主动枚举文件系统。
 author: SCNet
 license: MIT
 tags:
@@ -15,9 +15,31 @@ optional_env_vars:
 
 primary_credential: SCNET_API_KEY
 
-# 增加项目主页，解决 missing homepage 警告
-homepage: https://github.com/SCNet-sugon/personal_card_ocr.git  # 请替换为实际仓库地址
+homepage: https://github.com/SCNet-sugon/personal_card_ocr.git
 
 dependencies:
   - python3
   - requests
+
+permissions:
+  - capability: local-file-read
+    description: 读取用户提供的本地图片文件（filePath）以进行 OCR 识别。仅读取用户主动指定的路径，不会扫描或枚举文件系统。
+    paths:
+      - "${filePath}"
+  - capability: network-request
+    description: 通过 HTTPS 向 Scnet OCR API 发送识别请求，并接收识别结果。
+    hosts:
+      - api.scnet.cn
+  - capability: shell-execution
+    description: 通过 Python 解释器执行 scripts/main.py 脚本完成 OCR 调用，不会执行用户输入或外部不可信命令。
+    commands:
+      - python3
+      - python
+
+warnings:
+  - level: high
+    message: 本技能会将您提供的图片上传到第三方服务（Scnet，https://api.scnet.cn）进行 OCR 识别。图片及其中包含的身份证、银行卡、护照、户口本等个人敏感信息均会离开本地设备并被外部处理，请确认您同意后再使用。
+  - level: high
+    message: 请勿上传非必要或他人的敏感证件图片。建议仅上传当前识别任务所需的最小数据，并在识别完成后妥善保管或删除原图。
+  - level: medium
+    message: API Key 仅通过本地 config/.env 文件或环境变量读取，请勿将密钥直接粘贴到聊天对话中。

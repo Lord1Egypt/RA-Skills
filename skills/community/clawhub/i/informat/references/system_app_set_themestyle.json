@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_set_themestyle",
+    "description": "Set the application theme style, used to configure the overall visual style of the application (such as colors, fonts, etc.). Before calling, you must first query the theme style specification document via _app_themestyle_doc.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "themeStyle": {
+          "type": "string",
+          "description": "Theme style content, used to define the application's theme configuration, such as colors, fonts, layout, etc. Must conform to the theme style document specification."
+        }
+      },
+      "required": ["themeStyle"]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Pet Generator"
+  short_description: "输入任意关键词，一键生成可安装的 Codex 宠物包"
+  default_prompt: "Use $hatch-pet to turn my keyword or reference image into a complete installable Codex pet package."

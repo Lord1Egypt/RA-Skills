@@ -1,41 +1,57 @@
-## Description: <br>
-Reddit Spy browses, reads, and analyzes subreddit posts and comments using Reddit API, Tor/proxy, browser, and archive fallback layers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reddit Spy browses, reads, searches, and analyzes Reddit communities using OAuth, Tor, stealth HTTP/browser fetching, and PullPush fallback layers.
 
-## Publisher: <br>
-[hioliver933](https://clawhub.ai/user/hioliver933) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hioliver933](https://clawhub.ai/user/hioliver933)
 
-## Use Case: <br>
-Developers and analysts use this skill to gather read-only intelligence from public Reddit communities, compare subreddit activity, inspect posts and comments, search keywords, and profile posting patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags stealth scraping, Tor/proxy routing, credentials, and persistent session state as behaviors requiring review. <br>
-Mitigation: Install only when those behaviors are intended, review or disable Tor/proxy/browser fallback behavior, and clear ~/.openclaw/.reddit-spy-cache after use. <br>
-Risk: Optional Reddit OAuth credentials and proxy URLs may expose account or infrastructure secrets if overprivileged or reused. <br>
-Mitigation: Use a throwaway or least-privilege Reddit account, avoid entering sensitive credentials, and scope proxy credentials to this use case. <br>
-Risk: User and subreddit analysis can create privacy or compliance concerns when directed at private individuals or sensitive communities. <br>
-Mitigation: Use the skill only with a legitimate basis, review collected outputs before sharing, and avoid targeting private individuals without appropriate authorization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hioliver933/reddit-spy) <br>
+## Use Case:
 
+Developers, analysts, and external users can use this skill to gather read-only subreddit intelligence, inspect posts and comments, compare communities, extract content strategy patterns, and analyze public Reddit user posting behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON written to stdout, with operational logs written to stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include subreddit metrics, post and comment data, content pattern analysis, keyword search results, user posting patterns, health-check results, and recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses stealth scraping, Tor rotation, optional proxies, third-party archives, and user profiling, which can create policy, privacy, and operational risk.
+
+Mitigation: Install only for authorized Reddit research, run in a dedicated low-privilege environment, keep collection limits low, and disable Tor, proxy, or PullPush fallback layers unless they are explicitly approved for the task.
+
+Risk: Optional Reddit OAuth setup requires Reddit credentials and the skill can persist cookies under a local cache directory.
+
+Mitigation: Use a dedicated low-privilege Reddit account instead of a primary account, provide secrets through controlled environment variables, and regularly clear the .reddit-spy cache when session persistence is not needed.
+
+Risk: PullPush archive data may be stale and subreddit or user analysis can be misleading if treated as complete real-time evidence.
+
+Mitigation: Treat archive-backed results as historical, check the reported data source, and verify important conclusions against current Reddit data before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hioliver933/skills/reddit-spy)
+- [Publisher profile](https://clawhub.ai/user/hioliver933)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON to stdout with diagnostic logs on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command outputs may include subreddit metrics, post and comment records, search results, user posting summaries, strategy analysis, recommendations, and fetch-layer health checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

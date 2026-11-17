@@ -1,41 +1,55 @@
-## Description: <br>
-Send a quick email via SkillBoss API Hub without a local mail client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send a quick email via SkillBoss API Hub without a local mail client.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers, operators, and agent builders use this skill to send quick HTML email messages through the SkillBoss API Hub, including recipient, CC, BCC, subject, and body fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email contents, recipient addresses, CC, and BCC values are sent to the third-party SkillBoss API service. <br>
-Mitigation: Use the skill only when SkillBoss/HeyBossAI is approved to process the intended email data, and avoid secrets, regulated data, or sensitive personal information unless that use is explicitly authorized. <br>
-Risk: The skill requires SKILLBOSS_API_KEY, a sensitive credential. <br>
-Mitigation: Store the API key in a secure environment variable or secret manager, prefer scoped or revocable credentials, and rotate or revoke the key if exposure is suspected. <br>
+## Use Case:
 
+Developers and automation users use this skill to prepare quick email-sending requests through SkillBoss API Hub, including recipients, CC, BCC, subject, and HTML body fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/qui-email-send) <br>
-- [SkillBoss API endpoint](https://api.heybossai.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces email-send usage guidance and API request examples; actual delivery depends on a valid SKILLBOSS_API_KEY and the third-party SkillBoss service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Email can be sent to unintended recipients or include sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipients, CC/BCC, subject, and HTML body before sending; avoid secrets, regulated data, or sensitive business information unless approved by the organization.
+
+Risk: The skill depends on a third-party email API and an API key.
+
+Mitigation: Install only when SkillBoss API Hub use is approved, and keep SKILLBOSS_API_KEY in the runtime environment rather than source files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-email-send)
+- [Publisher profile](https://clawhub.ai/user/quincygunter)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may include email fields such as receivers, cc, bcc, title, and body_html.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

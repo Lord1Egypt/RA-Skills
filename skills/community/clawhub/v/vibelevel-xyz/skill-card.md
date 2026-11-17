@@ -1,40 +1,53 @@
-## Description: <br>
-Check any GitHub developer's vibe score across 7 dimensions, compare coders, view leaderboards, and summarize who's shipping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check any GitHub developer's vibe score across 7 dimensions. Compare coders, flex leaderboards, and discover who's really shipping.
 
-## Publisher: <br>
-[therealstein](https://clawhub.ai/user/therealstein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[therealstein](https://clawhub.ai/user/therealstein)
 
-## Use Case: <br>
-Developers and technical users use this skill to look up public GitHub profile vibe data, compare two GitHub users, or summarize vibelevel.xyz leaderboard-style signals in an agent response. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The lookup script sends the GitHub usernames requested by the user to vibelevel.xyz. <br>
-Mitigation: Use the skill only when an external lookup is intended, and avoid submitting usernames that should not be shared with the service. <br>
-Risk: The skill depends on a curl-based external service request and may fail when vibelevel.xyz is unavailable, rate limited, or returns an error. <br>
-Mitigation: Handle returned error messages in the agent response and ask the user to retry or verify the username when appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Vibelevel homepage](https://vibelevel.xyz) <br>
-- [Vibelevel profile URL pattern](https://vibelevel.xyz/USERNAME) <br>
+## Use Case:
 
+External users and developers use this skill to retrieve and interpret public GitHub vibe data from vibelevel.xyz, compare developer profiles, and present the seven-dimension score breakdown in concise Markdown.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with shell command execution guidance and parsed JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq on macOS or Linux; sends requested GitHub usernames to vibelevel.xyz for lookup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends GitHub usernames to vibelevel.xyz and includes that service's profile links in responses.
+
+Mitigation: Use it only for public GitHub usernames and make the external lookup clear to the user before or during the response.
+
+Risk: Profile-claim and vibe-score language could be read as stronger identity or quality evidence than the external service supports.
+
+Mitigation: Present scores and claimed-profile status as vibelevel.xyz results, not as independent verification of a developer's identity or ability.
+
+## Reference(s):
+
+- [Vibelevel homepage](https://vibelevel.xyz)
+- [ClawHub skill page](https://clawhub.ai/therealstein/skills/vibelevel-xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with optional shell command execution and parsed JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq on Darwin or Linux; fetches public GitHub profile vibe data from vibelevel.xyz.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

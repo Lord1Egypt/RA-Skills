@@ -1,47 +1,64 @@
-## Description: <br>
-Set up a reusable X/Twitter growth automation system with OpenClaw, Bird CLI, X API, dry-run/live rollout, anti-repetition controls, and niche-specific posting policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a reusable X/Twitter growth automation system with OpenClaw, Bird CLI, X API, optional source branching, optional community CTA, dry-run/live rollout, anti-repetition controls, and niche-specific posting policy.
 
-## Publisher: <br>
-[roskva000](https://clawhub.ai/user/roskva000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roskva000](https://clawhub.ai/user/roskva000)
 
-## Use Case: <br>
-External users and developers use this skill to scaffold and configure a reusable X/Twitter growth automation project for their own account. It helps collect setup decisions, generate project files, configure cadence and source options, and choose a dry-run or explicitly approved live rollout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live X/Twitter posting can publish unwanted or excessive content if enabled without clear approval, cadence limits, and review. <br>
-Mitigation: Start in dry-run, require explicit user approval before live posting, configure daily and monthly caps, and review generated drafts and schedules. <br>
-Risk: Credentials for X/Bird access could be exposed if shared in chat or copied from another project. <br>
-Mitigation: Keep credentials out of chat and store them only in a local secret file or secret manager. <br>
-Risk: Reply automation has higher operational risk because reply targets may be restricted or unsuitable. <br>
-Mitigation: Keep reply automation disabled by default, validate targets where possible, apply per-day caps, and log posted, skipped, and failed outcomes. <br>
-Risk: Automated posting can repeat similar drafts or repost the same source when deduplication is weak. <br>
-Mitigation: Use idempotent slot keys based on stable fields and apply recent-post similarity checks plus source deduplication. <br>
+## Use Case:
 
+Developers and operators use this skill to install or adapt a reusable X/Twitter automation scaffold for a specific account, niche, language, cadence, and rollout mode. It guides setup questions, generates project files, and keeps live publishing gated behind explicit caps and approval choices.
 
-## Reference(s): <br>
-- [X Growth Automation on ClawHub](https://clawhub.ai/roskva000/x-growth-automation) <br>
-- [Setup Questionnaire](references/setup-questionnaire.md) <br>
-- [Rollout Modes](references/rollout-modes.md) <br>
-- [Operational Hardening](references/operational-hardening.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to start from dry-run defaults, require explicit approval for live publishing, and keep credentials outside chat.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The helper script can overwrite files in the target folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a new empty directory and review generated config before adding credentials.
+
+Risk: Live X/Twitter publishing can post externally visible content if enabled.
+
+Mitigation: Keep dry-run enabled first, then enable live publishing only after explicit caps, approval rules, reply policy, and source-branching behavior are configured.
+
+Risk: Reply automation is higher risk than normal posting because targets may reject replies or create unwanted outreach.
+
+Mitigation: Leave reply automation disabled by default, validate reply targets when possible, and record posted, skipped, and failed outcomes.
+
+Risk: Repeated or same-source posts can occur when automation reuses similar drafts or mutable de-duplication keys.
+
+Mitigation: Use stable slot keys, recent-post similarity checks, and source de-duplication before assigning live slots.
+
+## Reference(s):
+
+- [Setup Questionnaire](references/setup-questionnaire.md)
+- [Rollout Modes](references/rollout-modes.md)
+- [Operational Hardening](references/operational-hardening.md)
+- [ClawHub Skill Page](https://clawhub.ai/roskva000/skills/x-growth-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scaffold output includes configuration JSON, Markdown operator notes, prompt files, an environment template, and helper scripts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

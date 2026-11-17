@@ -1,41 +1,58 @@
-## Description: <br>
-Provides templates and coding guidance for a custom business platform, including Groovy backend scripts, JavaScript form scripts, SQL queries, and attachment handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides templates and coding conventions for an internal business platform, including Groovy backend scripts, JavaScript form scripts, SQL queries, attachment handling, and workflow scripts.
 
-## Publisher: <br>
-[lan2898408767](https://clawhub.ai/user/lan2898408767) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lan2898408767](https://clawhub.ai/user/lan2898408767)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to draft platform-specific Groovy, JavaScript, and SQL scripts for data operations, form behavior, approvals, attachment workflows, and related automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Template examples can reset many user passwords or mutate account and business data. <br>
-Mitigation: Require explicit authorization, confirmation, least-privilege platform credentials, and non-production testing before using generated mutation scripts. <br>
-Risk: Template examples can expose sensitive passwords, recipient lists, or message bodies through logs or generated code. <br>
-Mitigation: Remove password-read/reset examples when not needed and avoid logging passwords, full recipient lists, or message bodies. <br>
+## Use Case:
 
+Developers and platform operators use this skill to draft platform-specific Groovy, JavaScript, SQL, attachment-processing, and approval-flow scripts from bundled examples and conventions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lan2898408767/shucheng-platform-script) <br>
-- [Platform Script Templates](references/platform-script-templates.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Groovy, JavaScript, and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated scripts are platform-specific templates and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill includes examples that could expose passwords or reset many accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not copy the password-reset listener, do not log credentials, and require operator review before using generated account-management scripts.
+
+Risk: The skill can generate scripts that delete or modify business data.
+
+Mitigation: Test destructive or data-changing scripts outside production first and prepare rollback plans before execution.
+
+Risk: The skill includes SQL examples that may be unsafe when adapted directly.
+
+Mitigation: Validate SQL inputs or use parameterized queries before running generated SQL.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lan2898408767/skills/shucheng-platform-script)
+- [Platform script templates](references/platform-script-templates.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, SQL, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and platform-specific script examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before use because examples include data-changing operations and credential-handling patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

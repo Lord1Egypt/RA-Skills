@@ -1,43 +1,60 @@
-## Description: <br>
-Manage Vercel projects, deployments, domains, environment variables, and team resources via the Vercel REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Vercel projects, deployments, domains, environment variables, and team resources via the Vercel REST API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect deployments, manage projects, configure domains, update environment variables, and automate Vercel DevOps workflows from an agent chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact Vercel write operations, including changes to deployments, domains, environment variables, secrets, and team membership. <br>
-Mitigation: Review ClawLink previews and approve writes only when the proposed resource, scope, and production impact match the user's intent. <br>
-Risk: The skill requires a connected Vercel account and handles sensitive credentials through ClawLink. <br>
-Mitigation: Install only when the user accepts the ClawLink connection model, and verify the Vercel integration status before making tool calls. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage Vercel projects, deployments, domains, environment variables, secrets, audit logs, and team resources from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/vercel-deployments) <br>
-- [Vercel REST API Documentation](https://vercel.com/docs/rest-api) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live ClawLink Vercel tool catalog as the source of truth before tool execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release evidence) <br>
+Risk: The skill requires installing and allowlisting an external ClawLink plugin that mediates access to Vercel account actions and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and ClawLink are trusted, review OAuth scopes before connecting, and know how to revoke the Vercel connection and remove the plugin allowlist entry.
+
+Risk: Write or destructive Vercel operations can change deployments, domains, environment variables, secrets, projects, or team access.
+
+Mitigation: Preview write operations, confirm the exact target and effect with the user, and use the least-privileged Vercel account or team role practical.
+
+Risk: Environment variable, secret, and domain changes can affect running production deployments.
+
+Mitigation: Check the intended environment or domain status first, prefer read/list/get operations before changes, and confirm production-impacting updates explicitly.
+
+## Reference(s):
+
+- [Vercel REST API Documentation](https://vercel.com/docs/rest-api)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/vercel-deployments)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured tool-call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Vercel resource identifiers, JSON parameters for ClawLink tool calls, previews, confirmations, and error summaries.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

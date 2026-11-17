@@ -1,47 +1,67 @@
-## Description: <br>
-Generate AI images from text prompts using YouMind's multi-model API with one API key for GPT Image, Gemini, Seedream, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images from text prompts with YouMind's multi-model API and saves generated images to a YouMind board.
 
-## Publisher: <br>
-[DophinL](https://clawhub.ai/user/DophinL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dophinl](https://clawhub.ai/user/dophinl)
 
-## Use Case: <br>
-External users and developers use this skill to generate images from natural-language prompts through YouMind and save the resulting image URLs to a YouMind board. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated images may be saved to the user's YouMind board. <br>
-Mitigation: Avoid sensitive, proprietary, or confidential prompts and confirm that YouMind storage is appropriate for the use case. <br>
-Risk: The workflow may install or depend on the global @youmind-ai/cli package. <br>
-Mitigation: Verify the package source and installation command before use. <br>
-Risk: Image generation requires a YouMind API key. <br>
-Mitigation: Configure the API key outside chat and never paste the key into a conversation. <br>
+## Use Case:
 
+External users and developers use this skill to generate images from natural-language prompts through the YouMind CLI. The skill returns generated image URLs in chat and stores the images on the user's YouMind board.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DophinL/youmind-image-generator) <br>
-- [YouMind](https://youmind.com?utm_source=youmind-image-generator) <br>
-- [YouMind CLI](https://www.npmjs.com/package/@youmind-ai/cli) <br>
-- [Setup](references/setup.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Long-Running Tasks](references/long-running-tasks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the YouMind CLI and YOUMIND_API_KEY; image generation is polled until completion or timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install a persistent global YouMind npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and review a pinned CLI version yourself before enabling the skill.
+
+Risk: Image prompts and generated images are sent to and saved by YouMind.
+
+Mitigation: Avoid sensitive prompts and confirm YouMind storage, retention, and deletion behavior before use.
+
+Risk: Image generation uses polling and background task behavior that can continue after the first response.
+
+Mitigation: Keep the documented polling timeout and review returned image URLs before sharing or reusing outputs.
+
+Risk: The skill includes vendor promotional and upgrade messaging.
+
+Mitigation: Review user-facing messages for policy fit before deploying the skill in managed environments.
+
+## Reference(s):
+
+- [Setup](references/setup.md)
+- [Error Handling](references/error-handling.md)
+- [Long-Running Tasks](references/long-running-tasks.md)
+- [YouMind CLI package](https://www.npmjs.com/package/@youmind-ai/cli)
+- [YouMind API keys](https://youmind.com/settings/api-keys?utm_source=youmind-image-generator)
+- [YouMind issue tracker](https://github.com/YouMindInc/youmind/issues)
+- [ClawHub skill page](https://clawhub.ai/dophinl/skills/youmind-image-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns generated image URLs; may include setup, timeout, error, paywall, and follow-up guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

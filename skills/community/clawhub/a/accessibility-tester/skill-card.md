@@ -1,42 +1,60 @@
-## Description: <br>
-Accessibility Tester specializes in WCAG 2.1 compliance testing, screen reader compatibility, keyboard navigation, color contrast, and ARIA validation for application accessibility reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accessibility Tester specializes in WCAG 2.1 and 2.2 accessibility checks, including screen reader compatibility, keyboard navigation, color contrast, and ARIA validation.
 
-## Publisher: <br>
-[alshowse-tech](https://clawhub.ai/user/alshowse-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alshowse-tech](https://clawhub.ai/user/alshowse-tech)
 
-## Use Case: <br>
-Developers and test engineers use this skill to plan and run accessibility checks for web applications, with attention to WCAG rules, keyboard navigation, color contrast, ARIA landmarks, and remediation reporting. Treat its compliance scores as preliminary because the server security review warns that current behavior can produce results for pages it does not actually inspect. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overstate accessibility coverage and produce compliance results for pages it has not loaded or checked. <br>
-Mitigation: Use it as a prototype or reference aid; verify results with a real browser-backed accessibility audit before relying on scores, WCAG levels, CI pass/fail output, or legal compliance claims. <br>
-Risk: The artifact claims broad WCAG 2.1 and 2.2 coverage while the implemented checks are limited and partly simulated. <br>
-Mitigation: Document the actual implemented rule coverage and require human review or established accessibility tooling for unsupported WCAG criteria. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to generate accessibility testing guidance and structured WCAG-oriented reports for web application validation. It is best treated as a supporting accessibility review aid rather than a standalone compliance gate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alshowse-tech/accessibility-tester) <br>
-- [W3C WCAG 2.1 Understanding: Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html) <br>
-- [W3C WCAG 2.1 Understanding: Contrast Minimum](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Structured accessibility reports, remediation guidance, TypeScript examples, and CI/configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WCAG status, severity, affected elements, score summaries, compliance flags, and remediation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can report successful WCAG compliance without actually inspecting the supplied target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as advisory until the implementation uses real browser and DOM inspection against the target under test.
+
+Risk: Accessibility criteria may be marked as passed when they were not tested.
+
+Mitigation: Require output to clearly distinguish tested, untested, failed, and simulated results before using it for release decisions.
+
+Risk: Using the skill as a compliance gate could create misleading audit evidence.
+
+Mitigation: Use fail-closed behavior for untested criteria and require human accessibility review or a trusted audit tool for compliance signoff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alshowse-tech/skills/accessibility-tester)
+- [Publisher profile](https://clawhub.ai/user/alshowse-tech)
+- [WCAG 2.1: Non-text Content](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html)
+- [WCAG 2.1: Contrast Minimum](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown and JSON-style accessibility report content with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WCAG status, issue severity, element details, scores, remediation guidance, and CI threshold examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

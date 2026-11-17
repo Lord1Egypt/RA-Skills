@@ -1,43 +1,59 @@
-## Description: <br>
-Pinduoduo Automation helps Pinduoduo merchants prepare store operations workflows, sales reports, competitor monitoring, and pricing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pinduoduo Automation helps merchants automate store operations, reporting, competitor monitoring, and pricing workflows for Pinduoduo shops.
 
-## Publisher: <br>
-[wukaikai522](https://clawhub.ai/user/wukaikai522) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wukaikai522](https://clawhub.ai/user/wukaikai522)
 
-## Use Case: <br>
-External Pinduoduo merchants and developers can use this skill to configure store automation, generate sales reports, monitor competitors, and prepare pricing or promotion guidance. Live merchant actions should be reviewed before use because the release requests merchant API credentials and the implementation is incomplete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for Pinduoduo merchant credentials. <br>
-Mitigation: Use a limited or non-production account and do not enter production credentials until the publisher documents least-privilege scopes and credential handling. <br>
-Risk: The skill advertises automation that could affect products, orders, pricing, promotions, and logistics. <br>
-Mitigation: Require explicit confirmations, dry-run previews, and human review before enabling any live business-changing action. <br>
-Risk: The artifact includes placeholder scripts and missing implementation for real API behavior. <br>
-Mitigation: Treat generated reports and recommendations as templates until the missing implementation is supplied and reviewed. <br>
+## Use Case:
 
+Merchants and operations teams use this skill to generate sales reports, monitor competitors, manage shop automation settings, and receive pricing or operational guidance for Pinduoduo stores.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wukaikai522/pinduoduo-automation) <br>
-- [Pinduoduo Open Platform](https://open.pinduoduo.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, shell-command output, and YAML configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local Markdown reports and requires user-provided Pinduoduo API credentials for live integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: The skill asks for sensitive Pinduoduo store credentials and may store them in local plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secrets manager or environment variables where possible, restrict local file permissions, and avoid committing populated config.yaml files.
+
+Risk: Advertised store automation actions can affect listings, orders, pricing, and other business operations without documented dry-runs, confirmations, or rollback steps.
+
+Mitigation: Test with limited permissions first, require human confirmation before live changes, and keep operation logs and rollback procedures for production use.
+
+Risk: Competitor monitoring and store automation may need clear data-handling boundaries before production use.
+
+Mitigation: Review platform terms, document exactly what data is collected or changed, and limit API scopes to the minimum needed for each workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wukaikai522/skills/pinduoduo-automation)
+- [Publisher profile](https://clawhub.ai/user/wukaikai522)
+- [Pinduoduo Open Platform](https://open.pinduoduo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, command-line text, and YAML configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports are written to the configured reports directory when scripts are executed.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

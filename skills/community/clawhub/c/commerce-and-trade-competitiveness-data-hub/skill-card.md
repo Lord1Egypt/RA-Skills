@@ -1,46 +1,59 @@
-## Description: <br>
-Commerce and Trade Competitiveness Data Hub lets agents query World Bank TCdata360 trade and competitiveness data by country or region through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Commerce and Trade Competitiveness Data Hub lets an agent query World Bank TCdata360 trade and competitiveness data by country or region through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch trade, competitiveness, logistics, tariff, trade-cost, and regional comparison data for countries, regions, income groups, and global aggregates. It supports export market analysis, trade competitiveness benchmarking, tariff and logistics monitoring, cross-border policy research, and country trade profile comparisons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external AgentPMT-hosted service and the action is listed at 5 credits per query. <br>
-Mitigation: Confirm the AgentPMT service relationship and credit cost before installation or repeated use. <br>
-Risk: Account secrets, wallet keys, signatures, or payment headers could be exposed if included in prompts or logs. <br>
-Mitigation: Keep secrets and payment data out of prompts and logs, and use the referenced setup skills for credential handling. <br>
-Risk: Endpoint details, schemas, setup steps, or examples may change after publication. <br>
-Mitigation: Refresh the skill if it is more than 7 days past its listed update date and fetch live schema or instructions before production integrations. <br>
-Risk: Queries can fail or return corrections when country, region, income group, or time-period inputs are unsupported or ambiguous. <br>
-Mitigation: Use English country or region names within the documented limits, preserve failed request parameters, and retry only after fixing schema, authentication, payment, or input issues. <br>
+## Use Case:
 
+External users and developers use this skill to query trade data, benchmark country competitiveness, analyze export and import trends, compare regions, and review tariff, logistics, and trade-cost indicators.
 
-## Reference(s): <br>
-- [Commerce and Trade Competitiveness Data Hub marketplace page](https://www.agentpmt.com/marketplace/trade-competitiveness-data) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/commerce-and-trade-competitiveness-data-hub) <br>
-- [Action schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, JSON, API calls, text] <br>
-**Output Format:** [Markdown instructions with JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill defines one AgentPMT-hosted action, query_trade_data, with country_or_region required and optional trade topic, time period, trend, LPI, Doing Business, regional comparison, and trade balance controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Calls go to AgentPMT's hosted service and may cost credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that AgentPMT is trusted and that the enabled Agent Group and credit usage are appropriate before use.
+
+Risk: Prompts or logs could expose secrets or payment credentials.
+
+Mitigation: Do not include account secrets, wallet private keys, signatures, payment headers, or credentials in prompts or logs.
+
+Risk: Optional unpinned setup commands can change over time.
+
+Mitigation: Prefer OpenClaw or pinned, reviewed setup commands before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/commerce-and-trade-competitiveness-data-hub)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/trade-competitiveness-data)
+- [Action Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides calls to a hosted AgentPMT action that returns JSON trade and competitiveness data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

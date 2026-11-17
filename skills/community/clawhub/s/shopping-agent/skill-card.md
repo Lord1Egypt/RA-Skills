@@ -1,40 +1,49 @@
-## Description: <br>
-Provides support for overseas e-commerce purchasing, freight-forwarding route configuration, and product quality and customs or tax guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides overseas e-commerce shopping assistance, including ordering support, forwarding route configuration, and quality, customs, and tax guidance.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users use this skill to compare overseas e-commerce offers, review logistics and seller trust signals, and get guidance before approving a purchase or forwarding route. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes buying on the user's behalf without clear checkout, payment, shipping, or privacy safeguards. <br>
-Mitigation: Use it as a shopping research assistant unless the user explicitly authorizes a purchase, and require confirmation of the product, seller, total cost, taxes, shipping or forwarding route, delivery address, return policy, and payment method before any order-affecting action. <br>
-Risk: Shopping tasks may expose unnecessary personal data or payment secrets. <br>
-Mitigation: Do not share passwords, payment secrets, or unnecessary personal data with the skill. <br>
+## Use Case:
 
+External users and shopping agents use this skill to compare overseas e-commerce options, plan ordering and forwarding routes, and review price, logistics, after-sales, seller-trust, and customs or tax considerations before purchase.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/shopping-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text shopping guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product filters, payment totals, logistics details, after-sales information, review summaries, and purchase-readiness checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Shopping guidance can influence purchases, forwarding routes, payment steps, address disclosure, customs or tax obligations, return conditions, and seller trust assessments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before acting, explicitly confirm purchase details, forwarding route, payment step, address disclosure, customs or tax obligation, return condition, and seller trust assessment yourself.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codenova58/skills/shopping-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text shopping guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes price, discount, logistics, after-sales, review, seller-trust, forwarding, and customs or tax considerations.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

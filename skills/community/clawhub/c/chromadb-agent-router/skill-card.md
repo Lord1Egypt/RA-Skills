@@ -1,43 +1,58 @@
-## Description: <br>
-Local semantic message routing for multi-agent systems using embeddings, keyword scoring, and context scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local semantic message routing for multi-agent systems that routes messages to agents using ChromaDB embeddings, keyword scoring, and action verb context without external APIs.
 
-## Publisher: <br>
-[mars375](https://clawhub.ai/user/mars375) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars375](https://clawhub.ai/user/mars375)
 
-## Use Case: <br>
-Developers and engineers use this skill to route messages to specialized local agents in multi-agent systems. It is especially suited to local French/English intent routing where external API calls are not desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Python dependencies are unpinned in the release metadata. <br>
-Mitigation: Install in an isolated environment and review resolved package versions before use. <br>
-Risk: The ChromaDB embedding stack may download a model during first use. <br>
-Mitigation: Run the first initialization in a network environment and cache location that match local policy. <br>
-Risk: Route descriptions and routed messages can expose sensitive operational intent. <br>
-Mitigation: Keep route descriptions free of secrets and ensure downstream agents enforce their own approval gates for deploy, install, and security-sensitive actions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local intent routing to multi-agent systems, message buses, and command handling flows. It is suited for routing English and French messages to specialized agents while keeping routing data local.
 
-## Reference(s): <br>
-- [Routing Research Notes](artifact/references/ROUTING-RESEARCH.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mars375/chromadb-agent-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python, JSON, and shell command examples; the router API returns JSON route decisions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run locally with ChromaDB and numpy; optional REST API usage requires Starlette and Uvicorn.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Shared or stale ChromaDB cache contents can affect routing behavior when route definitions change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private cache directory and clear or rebuild the cache when routes are updated.
+
+Risk: Unpinned Python dependencies may change embedding or routing behavior across installs.
+
+Mitigation: Pin and review the Python dependency chain before deployment in shared or security-sensitive systems.
+
+Risk: Messages sent through the local API may contain sensitive content even though the router is designed for local operation.
+
+Mitigation: Avoid sending sensitive messages through the API until cache location, model provenance, and deployment access controls are controlled.
+
+## Reference(s):
+
+- [Routing Research Notes](references/ROUTING-RESEARCH.md)
+- [ChromaDB Agent Router on ClawHub](https://clawhub.ai/mars375/skills/chromadb-agent-router)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, and JSON examples; router API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local ChromaDB cache is persisted under /tmp/semantic_router_cache unless the cache directory is overridden.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

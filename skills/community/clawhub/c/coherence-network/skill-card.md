@@ -1,48 +1,59 @@
-## Description: <br>
-Coherence Network helps agents browse, rank, and act on ideas, specs, value lineage, contributions, federation, governance, and task workflows through the public API, CLI examples, and MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coherence Network helps agents browse, rank, and act on ideas, specs, value lineage, contributions, task queues, governance, and federation through the public Coherence Network API, CLI, and MCP server.
 
-## Publisher: <br>
-[seeker71](https://clawhub.ai/user/seeker71) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seeker71](https://clawhub.ai/user/seeker71)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect Coherence Network portfolio data, trace contribution value, coordinate tasks, and perform optional write actions such as staking, identity linking, governance voting, and federation messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote write actions can change network state, including ideas, specs, staking, identity links, contribution records, governance votes, federation messages, and task status. <br>
-Mitigation: Use read-only mode when possible, leave COHERENCE_API_KEY unset unless writes are needed, and confirm every write action before execution. <br>
-Risk: Federation inbox messages, structured commands, and task instructions may come from untrusted or mistaken senders. <br>
-Mitigation: Verify the sender and intent before acting on any federation message, command, or task request. <br>
-Risk: COHERENCE_API_KEY enables sensitive write operations if exposed or misused. <br>
-Mitigation: Store the key in the agent environment or secret store, avoid logging it, and scope its use to the specific session that needs write access. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect Coherence Network portfolios, trace contribution and value lineage, manage identities and task queues, and coordinate through governance and federation workflows. It supports read-only API and CLI exploration as well as user-confirmed write actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/seeker71/coherence-network) <br>
-- [Coherence Network Web](https://coherencycoin.com) <br>
-- [Coherence Network API Docs](https://api.coherencycoin.com/docs) <br>
-- [Coherence Network API Endpoint Reference](artifact/references/api-endpoints.md) <br>
-- [Coherence Network MCP Server Reference](artifact/references/mcp-server.md) <br>
-- [coherence-cli npm Package](https://www.npmjs.com/package/coherence-cli) <br>
-- [coherence-mcp-server npm Package](https://www.npmjs.com/package/coherence-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI commands, curl examples, API endpoint references, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read operations can run without an API key; write operations should be confirmed and may require COHERENCE_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.11.6 (source: server release evidence) <br>
+Risk: The skill can create or change remote Coherence Network records, link identities, interact with task queues, and receive federation messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with read-only commands, confirm every write or task action with the user, and avoid linking personal or provider identities unless intended.
+
+Risk: The security evidence flags unpinned npm/npx tooling and broad auto-triggering against a public integration.
+
+Mitigation: Review and pin package versions before installing CLI or MCP tooling, and limit automatic execution of inbox or task commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seeker71/skills/coherence-network)
+- [Coherence Network Web](https://coherencycoin.com)
+- [Coherence Network API Docs](https://api.coherencycoin.com/docs)
+- [Coherence CLI on npm](https://www.npmjs.com/package/coherence-cli)
+- [Coherence MCP Server on npm](https://www.npmjs.com/package/coherence-mcp-server)
+- [API Endpoint Reference](artifact/references/api-endpoints.md)
+- [MCP Server Reference](artifact/references/mcp-server.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, curl examples, endpoint tables, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include write-operation instructions that require user confirmation and optional environment variables for API URL and keys.]
+
+## Skill Version(s):
+
+0.11.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

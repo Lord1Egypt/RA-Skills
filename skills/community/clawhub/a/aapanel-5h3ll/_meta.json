@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn71x08sqvhqjbkdz48y0nfs1184jc9g",
-  "slug": "aapanel-5h3ll",
+  "title": "btpanel",
+  "description": "aaPanel/BT-Panel server monitoring and file management skill for OpenClaw — system resources, site status, service status, SSL certs, SSH logs, cron jobs, file ops, databases, firewall, FTP, PHP version switching",
   "version": "1.0.7",
-  "publishedAt": 1777593153761
+  "openclaw": {
+    "format": "skill@1"
+  },
+  "tags": [
+    "server",
+    "monitoring",
+    "btpanel",
+    "aapanel",
+    "file-management",
+    "ssl",
+    "database",
+    "firewall",
+    "ftp",
+    "panel"
+  ],
+  "links": {
+    "aaPanel GitHub": "https://github.com/aaPanel",
+    "author": "https://github.com/social5h3ll"
+  }
 }

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn76b3dg4zkgwkrqk358gn9bph81s6aw",
-  "slug": "ppt-translator",
+  "name": "ppt-translator",
   "version": "1.0.0",
-  "publishedAt": 1771959266988
+  "description": "Translate PPTX files with layout-preserving agent loop (LibreOffice render + Vision verification)",
+  "author": "mida",
+  "requires": {
+    "bins": ["libreoffice"],
+    "python": ["python-pptx"]
+  }
 }

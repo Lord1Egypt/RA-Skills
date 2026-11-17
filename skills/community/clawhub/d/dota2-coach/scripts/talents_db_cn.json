@@ -238,7 +238,7 @@
     {
       "level": 25,
       "left": "灵魂盛宴+{s:bonus_cast_speed_pct}% 施法速度",
-      "right": "毁灭阴影施加攻击伤害"
+      "right": "毁灭阴影施加攻击伤害（不施加攻击特效或触发效果）"
     }
   ],
   "phantom_lancer": [
@@ -1332,7 +1332,7 @@
     },
     {
       "level": 20,
-      "left": "追踪术提供共享视野",
+      "left": "+190",
       "right": "+{s:bonus_gold_steal} 忍术窃取金钱"
     },
     {
@@ -2262,7 +2262,7 @@
     {
       "level": 25,
       "left": "+{s:bonus_hp_leech_percent}% 勇气之霎吸血",
-      "right": "决斗获胜时刷新冷却"
+      "right": "决斗获胜时减少30秒冷却"
     }
   ],
   "techies": [
@@ -2604,7 +2604,7 @@
     {
       "level": 15,
       "left": "+{s:bonus_buffed_attacks} 霹雳铁手攻击次数",
-      "right": "-3秒 龙炎饼干冷却"
+      "right": "+125 施法距离"
     },
     {
       "level": 20,

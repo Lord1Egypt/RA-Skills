@@ -1,6 +1,29 @@
 {
-  "ownerId": "kn74pevtm6718v45ghdc50xmsn83cjax",
-  "slug": "novel-free",
-  "version": "1.0.3",
-  "publishedAt": 1774429246200
+  "name": "novel-free",
+  "version": "1.0.1",
+  "description": "中文长篇小说创作技能（轻量优化版）。完整独立版中文长篇小说创作技能，内置固定层压缩、fixed-context.md强制缓存、SummarizerGuardianCombo合并触发三项优化。新增用户体验优化和自动化工具。",
+  "author": "openclaw",
+  "baseSkill": null,
+  "supersedes": "12agent-novel",
+  "optimizations": [
+    "方案一：用户体验优化（交互式菜单+自动配置）",
+    "方案二：SummarizerGuardianCombo 合并触发（摘要+OOC单次调用）",
+    "方案三：固定层压缩至≤2600字 + fixed-context.md 强制复用",
+    "方案四：错误处理与恢复框架"
+  ],
+  "estimatedSavings": {
+    "tokenPerChapter": 1900,
+    "callsPer20Chapters": 4,
+    "token50Chapters": 95000
+  },
+  "changelog": {
+    "1.0.1": [
+      "新增交互式启动脚本 novel-free-launch.sh",
+      "修复模型分工选择问题，新增自动配置脚本",
+      "添加错误处理与恢复框架",
+      "增强项目管理功能",
+      "优化用户交互体验",
+      "新增项目隔离和环境管理"
+    ]
+  }
 }

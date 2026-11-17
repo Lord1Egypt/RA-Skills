@@ -1,43 +1,58 @@
-## Description: <br>
-Configures multiple OpenClaw agents and Feishu channels through a guided workflow that writes local OpenClaw configuration and initializes agent workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch configures OpenClaw agents with Feishu channels through a guided workflow that updates openclaw.json and initializes each agent workspace.
 
-## Publisher: <br>
-[cchenwei](https://clawhub.ai/user/cchenwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cchenwei](https://clawhub.ai/user/cchenwei)
 
-## Use Case: <br>
-Developers and operators use this skill to add, preview, list, or remove OpenClaw agents that are bound to Feishu bot accounts. It is intended for local OpenClaw administration where the user can review a dry run before writing configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script can write real local OpenClaw configuration and optionally restart the gateway. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json, review the dry-run output first, and confirm write or restart actions separately. <br>
-Risk: Feishu App Secrets are collected and stored in the local OpenClaw configuration. <br>
-Mitigation: Protect Feishu App Secrets, avoid echoing them in conversation, and keep the OpenClaw configuration file access-controlled. <br>
-Risk: Removing an agent changes OpenClaw configuration while leaving workspace directories for manual cleanup. <br>
-Mitigation: Confirm any --remove action separately and inspect remaining workspace directories before deleting them manually. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create one or more Feishu-connected agents, preview the planned configuration, write local OpenClaw settings, and initialize workspace files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cchenwei/feishu-multi-agent-factory) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/cchenwei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON payloads and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dry-run previews and local OpenClaw configuration changes when executed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can rewrite OpenClaw agent configuration, create persistent workspaces, expand agent-to-agent access, and restart the gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dry-run preview and configuration changes before running the setup script without --dry-run or with --restart.
+
+Risk: The workflow handles Feishu app credentials and may store them locally in OpenClaw configuration.
+
+Mitigation: Prefer config files or a secret manager over pasted production secrets, and rotate credentials if they are exposed in chat or command history.
+
+Risk: Agent names and descriptions are written into persistent agent workspace files.
+
+Mitigation: Review names and descriptions for multiline instructions or unexpected operational guidance before creating agents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cchenwei/skills/feishu-multi-agent-factory)
+- [Publisher profile](https://clawhub.ai/user/cchenwei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces dry-run previews and local OpenClaw configuration changes when its setup script is executed.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

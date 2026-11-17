@@ -1,0 +1,65 @@
+{
+  "name": "skill-cybernetic-thinking",
+  "version": "0.6.0",
+  "description": "Control-theoretic thinking scaffold for AI coding agents — identify state, measure, stabilize, close the loop.",
+  "license": "MIT",
+  "main": "SKILL.md",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README_CN.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "references/",
+    "templates/",
+    "evals/",
+    "init.ps1",
+    "scripts/"
+  ],
+  "scripts": {
+    "verify": "pwsh init.ps1",
+    "install-skill": "node scripts/install.js"
+  },
+  "bin": {
+    "skill-cybernetic-thinking": "scripts/install.js"
+  },
+  "keywords": [
+    "skill",
+    "agentskill",
+    "kilocode",
+    "claude-code",
+    "aider",
+    "cursor",
+    "copilot",
+    "codex",
+    "windsurf",
+    "zed",
+    "control-theory",
+    "cybernetics",
+    "cybernetic-thinking",
+    "ai-agent",
+    "coding-agent",
+    "skills-sh",
+    "workbuddy",
+    "trae",
+    "trae-cn",
+    "agent-skills",
+    "kilocode"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShrimpLeon/cybernetic-thinking.git"
+  },
+  "homepage": "https://github.com/ShrimpLeon/cybernetic-thinking#readme",
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.9.1"
+  }
+}

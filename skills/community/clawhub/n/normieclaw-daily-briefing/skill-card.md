@@ -1,46 +1,61 @@
-## Description: <br>
-Supercharged Daily Briefing helps an agent discover user-approved sources, monitor topics, and produce concise daily intelligence briefings with source management, scheduling, archives, and feedback loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supercharged Daily Briefing helps an agent discover topic sources, fetch and synthesize recent web content, and deliver a personalized morning briefing with source management and feedback tracking.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-Individuals and teams use this skill to turn an agent into a daily research assistant that tracks chosen topics, discovers and maintains sources, summarizes important developments, and delivers morning briefings in chat. It also supports source health checks, topic tuning, briefing archives, and optional dashboard views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefing topics, source URLs, fetched content, archives, and summaries may pass through the user's agent, web search or fetch providers, chat channel, and any enabled dashboard backend. <br>
-Mitigation: Use only sources and delivery channels the user accepts, disclose the data flow before setup, and avoid enabling dashboard sync unless its storage and retention behavior are understood. <br>
-Risk: Recurring briefings depend on setup and scheduler scripts that the security evidence says should be verified before use. <br>
-Mitigation: Review and test setup, scheduler, retention, and delete/reset behavior before enabling automated delivery. <br>
-Risk: Fetched articles, feeds, and web pages can contain prompt-injection content. <br>
-Mitigation: Treat all external content as untrusted data, preserve the skill's URL safety checks, and require user confirmation before adding discovered sources. <br>
+## Use Case:
 
+Individuals and teams use this skill to monitor chosen topics, maintain a source registry, receive recurring chat briefings, and tune coverage through natural-language feedback.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/nollio/normieclaw-daily-briefing) <br>
-- [Publisher profile](https://clawhub.ai/user/nollio) <br>
-- [README](artifact/README.md) <br>
-- [Security audit notes](artifact/SECURITY.md) <br>
-- [Dashboard add-on specification](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chat-ready Markdown briefings, JSON configuration and archive records, and optional shell commands for scheduling checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include source URLs, topic preferences, briefing archives, source health summaries, and setup or scheduling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill can periodically search the web, fetch third-party content, save local briefing history and preferences, and deliver results through a configured chat channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with acceptable topics and chat-channel privacy, review configured sources, and avoid sensitive monitoring topics unless local archive and delivery privacy are appropriate.
+
+Risk: Server security evidence flags setup and scheduler shell errors that affect automation reliability.
+
+Mitigation: Fix and test the setup prompt and scheduler helper before enabling recurring delivery.
+
+Risk: The artifact makes strong privacy and security claims and includes a default promotional footer in generated briefings.
+
+Mitigation: Review the claims against the actual deployment environment and disable or edit promotional footer behavior before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-daily-briefing)
+- [Publisher profile](https://clawhub.ai/user/nollio)
+- [OpenClaw](https://openclaw.com)
+- [NormieClaw](https://normieclaw.ai)
+- [NormieClaw security](https://normieclaw.ai/security)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefings, concise chat messages, JSON configuration updates, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scheduled or on-demand briefings with links, source attributions, local archive records, and optional dashboard data.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

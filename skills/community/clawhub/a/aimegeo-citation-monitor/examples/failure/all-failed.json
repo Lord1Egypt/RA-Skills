@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "dataset_kind": "simulated",
+  "note": "纯合成失败样例，验证错误、超时、未运行以及零有效样本；未执行在线查询。",
+  "brand": {
+    "name": "青禾工具",
+    "aliases": [
+      "青禾",
+      "Qinghe Tools"
+    ],
+    "domains": [
+      "example.com"
+    ],
+    "include_subdomains": true
+  },
+  "platforms": [
+    "demo-platform"
+  ],
+  "queries": [
+    {
+      "id": "q1",
+      "text": "青禾工具是什么，适合谁使用？",
+      "category": "品牌",
+      "priority": "critical",
+      "expected_native_citation": true
+    },
+    {
+      "id": "q2",
+      "text": "小团队有哪些知识整理工具？",
+      "category": "品类"
+    },
+    {
+      "id": "q3",
+      "text": "青禾工具和速记表有哪些区别？",
+      "category": "比较"
+    },
+    {
+      "id": "q4",
+      "text": "怎样整理多人协作的会议记录？",
+      "category": "场景"
+    },
+    {
+      "id": "q5",
+      "text": "青禾工具的价格信息在哪里看？",
+      "category": "价格",
+      "priority": "high"
+    },
+    {
+      "id": "q6",
+      "text": "选知识整理工具时要核对哪些限制？",
+      "category": "限制"
+    }
+  ],
+  "runs": [
+    {
+      "id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "records": [
+        {
+          "platform": "demo-platform",
+          "query_id": "q1",
+          "status": "error",
+          "reason": "受控失败样例：执行器返回错误",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:failure/q1"
+          }
+        },
+        {
+          "platform": "demo-platform",
+          "query_id": "q2",
+          "status": "timeout",
+          "reason": "受控失败样例：采集超时",
+          "source": {
+            "kind": "simulation",
+            "executor": "offline-fixture",
+            "reference": "fixture:failure/q2"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,41 +1,55 @@
-## Description: <br>
-ISO 9001:2015 Quality Management System Certification Assistant - Parse client documents, perform gap analysis, and auto-generate compliant documents (Chinese/English bilingual). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ISO 9001:2015 Quality Management System Certification Assistant - Parse client documents, perform gap analysis, and auto-generate compliant documents (Chinese/English bilingual)
 
-## Publisher: <br>
-[kooui](https://clawhub.ai/user/kooui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kooui](https://clawhub.ai/user/kooui)
 
-## Use Case: <br>
-Quality managers, consultants, and technical service teams use this skill to review ISO 9001:2015 quality management documents, identify gaps, and generate bilingual QMS document drafts or templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client ISO/QMS documents may contain confidential business information or personal data. <br>
-Mitigation: Redact unnecessary sensitive data before sharing documents with the agent environment. <br>
-Risk: Generated gap analyses or QMS documents may be incomplete or may not satisfy a specific certification audit. <br>
-Mitigation: Have a qualified ISO 9001 reviewer validate generated guidance and documents before relying on them. <br>
-Risk: Document generation can write local output files and may replace an existing file if the same path is reused. <br>
-Mitigation: Choose output paths deliberately and review generated files before replacing existing documents. <br>
+## Use Case:
 
+External consultants, quality teams, and implementation staff use this skill to parse ISO 9001-related Word documents, analyze gaps against ISO 9001:2015 expectations, and generate bilingual quality management system document drafts for technical service companies.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance, files] <br>
-**Output Format:** [Bilingual Chinese/English Markdown-style reports, JSON parsing results, status tables, and generated document files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local parsed JSON, gap analysis reports, rewritten document drafts, and template-based QMS files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The document-generation workflow can overwrite arbitrary writable files if an unsafe output path is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in environments with important writable files, write outputs to a dedicated folder, avoid absolute or traversal paths, and confirm files are not being overwritten.
+
+Risk: Uploaded quality management documents may contain confidential company data or personal information.
+
+Mitigation: Use the skill only on intended documents and redact unnecessary confidential or personal information before processing.
+
+## Reference(s):
+
+- [ISO 9001 Framework Data](artifact/knowledge/iso9001_framework.json)
+- [Generic QMS Templates](artifact/knowledge/generic_templates.json)
+- [ClawHub Skill Page](https://clawhub.ai/kooui/skills/iso9001-certificate-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON analysis outputs, and generated document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write parsed document structures, gap reports, and generated QMS document drafts to user-specified paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact body lists 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ACTIVITY_NAME}} - 活动策划方案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: #333; line-height: 1.8; background: #f5f5f5;
+        }
+        .container { max-width: 900px; margin: 0 auto; background: #fff; }
+        
+        /* Cover */
+        .cover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff; padding: 80px 40px; text-align: center;
+        }
+        .cover h1 { font-size: 36px; margin-bottom: 16px; font-weight: 700; }
+        .cover .subtitle { font-size: 18px; opacity: 0.9; margin-bottom: 8px; }
+        .cover .meta { font-size: 14px; opacity: 0.7; margin-top: 24px; }
+        
+        /* Nav */
+        .nav {
+            position: sticky; top: 0; z-index: 100; background: #fff;
+            border-bottom: 1px solid #e0e0e0; padding: 12px 40px;
+            display: flex; gap: 24px; overflow-x: auto; flex-wrap: wrap;
+        }
+        .nav a { color: #666; text-decoration: none; font-size: 13px; white-space: nowrap; transition: color 0.2s; }
+        .nav a:hover { color: #667eea; }
+        
+        /* Section */
+        .section { padding: 40px; border-bottom: 1px solid #f0f0f0; }
+        .section:last-child { border-bottom: none; }
+        .section h2 { font-size: 24px; color: #333; margin-bottom: 24px; padding-left: 12px; border-left: 4px solid #667eea; }
+        .section h3 { font-size: 18px; color: #444; margin: 20px 0 12px; }
+        .section p { margin-bottom: 12px; color: #555; }
+        .section ul, .section ol { margin: 12px 0 12px 20px; color: #555; }
+        .section li { margin-bottom: 6px; }
+        
+        /* Cards */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 20px 0; }
+        .card { background: #f8f9ff; border-radius: 8px; padding: 20px; border: 1px solid #e8ecff; }
+        .card .label { font-size: 12px; color: #999; margin-bottom: 4px; }
+        .card .value { font-size: 16px; color: #333; font-weight: 600; }
+        
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+        th { background: #667eea; color: #fff; padding: 12px; text-align: left; font-weight: 500; }
+        td { padding: 10px 12px; border-bottom: 1px solid #eee; color: #555; }
+        tr:hover td { background: #f8f9ff; }
+        .table-total td { font-weight: 700; background: #f0f3ff; color: #333; }
+        
+        /* Timeline */
+        .timeline { position: relative; padding-left: 24px; margin: 20px 0; }
+        .timeline::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: #e0e0e0; }
+        .timeline-item { position: relative; margin-bottom: 20px; }
+        .timeline-item::before { content: ''; position: absolute; left: -22px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: #667eea; border: 2px solid #fff; box-shadow: 0 0 0 2px #667eea; }
+        .timeline-item .time { font-size: 13px; color: #667eea; font-weight: 600; }
+        .timeline-item .content { font-size: 14px; color: #555; margin-top: 4px; }
+        
+        /* Alert */
+        .alert { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 12px 0; border-radius: 4px; font-size: 14px; color: #856404; }
+        .alert-danger { background: #f8d7da; border-left-color: #dc3545; color: #721c24; }
+        .alert-info { background: #d1ecf1; border-left-color: #17a2b8; color: #0c5460; }
+        
+        /* Badges */
+        .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; margin: 2px; }
+        .badge-primary { background: #667eea; color: #fff; }
+        .badge-success { background: #28a745; color: #fff; }
+        .badge-warning { background: #ffc107; color: #333; }
+        .badge-danger { background: #dc3545; color: #fff; }
+        
+        /* Script block */
+        .script-block { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 16px 20px; margin: 12px 0; font-size: 14px; color: #444; line-height: 1.9; white-space: pre-wrap; }
+        .script-block .script-title { font-size: 13px; color: #667eea; font-weight: 600; margin-bottom: 8px; }
+        .script-tag { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 11px; margin-left: 8px; }
+        
+        /* Copy block */
+        .copy-block { background: #fffde6; border-left: 3px solid #ffc107; padding: 14px 18px; margin: 12px 0; border-radius: 4px; font-size: 14px; color: #555; line-height: 1.8; white-space: pre-wrap; }
+        .copy-block .copy-label { font-size: 12px; color: #b8860b; font-weight: 600; margin-bottom: 6px; }
+        
+        /* Monitor dashboard */
+        .monitor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+        .monitor-card { border-radius: 8px; padding: 16px; text-align: center; }
+        .monitor-card .metric { font-size: 24px; font-weight: 700; }
+        .monitor-card .metric-label { font-size: 12px; margin-top: 4px; }
+        .monitor-normal { background: #e8f5e9; color: #2e7d32; }
+        .monitor-warning { background: #fff3e0; color: #ef6c00; }
+        .monitor-danger { background: #ffebee; color: #c62828; }
+        
+        /* Channel tag */
+        .channel-tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; background: #e8ecff; color: #667eea; margin: 2px; }
+        
+        /* Tab */
+        .tab-group { display: flex; gap: 0; margin: 16px 0; border-bottom: 2px solid #e0e0e0; }
+        .tab { padding: 8px 20px; cursor: pointer; font-size: 14px; color: #666; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab.active { color: #667eea; border-bottom-color: #667eea; font-weight: 600; }
+        
+        /* Footer */
+        .footer { padding: 24px 40px; background: #f8f8f8; text-align: center; color: #999; font-size: 12px; }
+        
+        /* Print */
+        @media print {
+            body { background: #fff; }
+            .nav { display: none; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cover -->
+        <div class="cover">
+            <h1>{{ACTIVITY_NAME}}</h1>
+            <div class="subtitle">{{ACTIVITY_THEME}}</div>
+            <div class="meta">
+                {{ACTIVITY_TYPE}} | {{ACTIVITY_DATE}} | {{ACTIVITY_LOCATION}}
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <div class="nav">
+            <a href="#overview">概述</a>
+            <a href="#strategy">策略定位</a>
+            <a href="#creative">创意概念</a>
+            <a href="#flow">流程设计</a>
+            <a href="#budget">预算分配</a>
+            <a href="#promotion">宣传推广</a>
+            <a href="#copywriting">物料文案</a>
+            <a href="#scripts">话术脚本</a>
+            <a href="#monitor">推广监控</a>
+            <a href="#team">人员分工</a>
+            <a href="#risk">风险预案</a>
+            <a href="#evaluation">效果评估</a>
+        </div>
+
+        <!-- Overview -->
+        <div class="section" id="overview">
+            <h2>活动概述</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="label">活动名称</div>
+                    <div class="value">{{ACTIVITY_NAME}}</div>
+                </div>
+                <div class="card">
+                    <div class="label">活动主题</div>
+                    <div class="value">{{ACTIVITY_THEME}}</div>
+                </div>
+                <div class="card">
+                    <div class="label">活动时间</div>
+                    <div class="value">{{ACTIVITY_DATE}}</div>
+                </div>
+                <div class="card">
+                    <div class="label">活动地点</div>
+                    <div class="value">{{ACTIVITY_LOCATION}}</div>
+                </div>
+                <div class="card">
+                    <div class="label">参与规模</div>
+                    <div class="value">{{PARTICIPANT_COUNT}}</div>
+                </div>
+                <div class="card">
+                    <div class="label">总预算</div>
+                    <div class="value">{{TOTAL_BUDGET}}</div>
+                </div>
+            </div>
+            <h3>核心目标</h3>
+            <p>{{ACTIVITY_GOALS}}</p>
+        </div>
+
+        <!-- Strategy -->
+        <div class="section" id="strategy">
+            <h2>策略定位</h2>
+            {{STRATEGY_CONTENT}}
+        </div>
+
+        <!-- Creative -->
+        <div class="section" id="creative">
+            <h2>创意概念</h2>
+            {{CREATIVE_CONTENT}}
+        </div>
+
+        <!-- Flow -->
+        <div class="section" id="flow">
+            <h2>活动流程设计</h2>
+            <h3>预热期（活动前）</h3>
+            {{PREHEAT_CONTENT}}
+            <h3>活动当天流程</h3>
+            <div class="timeline">
+                {{TIMELINE_CONTENT}}
+            </div>
+            <h3>延续期（活动后）</h3>
+            {{FOLLOWUP_CONTENT}}
+        </div>
+
+        <!-- Budget -->
+        <div class="section" id="budget">
+            <h2>预算分配</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>类别</th>
+                        <th>占比</th>
+                        <th>金额（元）</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{BUDGET_ROWS}}
+                    <tr class="table-total">
+                        <td>合计</td>
+                        <td>100%</td>
+                        <td>{{TOTAL_BUDGET}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Promotion -->
+        <div class="section" id="promotion">
+            <h2>宣传推广计划</h2>
+            {{PROMOTION_CONTENT}}
+        </div>
+
+        <!-- Copywriting -->
+        <div class="section" id="copywriting">
+            <h2>物料文案</h2>
+            <h3>邀请函文案</h3>
+            {{INVITATION_COPY}}
+            
+            <h3>预热海报文案</h3>
+            {{POSTER_COPY}}
+            
+            <h3>社交媒体文案</h3>
+            <div class="tab-group">
+                <div class="tab active">朋友圈/社群</div>
+                <div class="tab">公众号推文</div>
+                <div class="tab">小红书/抖音</div>
+            </div>
+            {{SOCIAL_COPY}}
+            
+            <h3>现场物料文案</h3>
+            {{ONSITE_COPY}}
+            
+            <h3>短视频脚本</h3>
+            {{VIDEO_SCRIPT}}
+        </div>
+
+        <!-- Scripts -->
+        <div class="section" id="scripts">
+            <h2>话术脚本</h2>
+            <h3>邀约话术</h3>
+            {{INVITATION_SCRIPT}}
+            
+            <h3>现场话术</h3>
+            {{ONSITE_SCRIPT}}
+            
+            <h3>客服话术（FAQ）</h3>
+            {{FAQ_SCRIPT}}
+            
+            <h3>活动后话术</h3>
+            {{FOLLOWUP_SCRIPT}}
+        </div>
+
+        <!-- Monitor -->
+        <div class="section" id="monitor">
+            <h2>推广过程监控</h2>
+            <h3>监控指标体系</h3>
+            {{MONITOR_METRICS}}
+            
+            <h3>目标值与预警阈值</h3>
+            <div class="monitor-grid">
+                {{MONITOR_DASHBOARD}}
+            </div>
+            
+            <h3>数据回收频率</h3>
+            {{DATA_COLLECTION}}
+            
+            <h3>动态优化策略</h3>
+            {{OPTIMIZATION_RULES}}
+            
+            <h3>每日推广日报模板</h3>
+            {{DAILY_REPORT_TEMPLATE}}
+        </div>
+
+        <!-- Team -->
+        <div class="section" id="team">
+            <h2>人员分工</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>角色</th>
+                        <th>职责</th>
+                        <th>人数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{TEAM_ROWS}}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Risk -->
+        <div class="section" id="risk">
+            <h2>风险预案</h2>
+            {{RISK_CONTENT}}
+        </div>
+
+        <!-- Evaluation -->
+        <div class="section" id="evaluation">
+            <h2>效果评估</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>评估维度</th>
+                        <th>KPI指标</th>
+                        <th>目标值</th>
+                        <th>数据来源</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{EVALUATION_ROWS}}
+                </tbody>
+            </table>
+            <div class="alert alert-info">
+                复盘时间节点：活动结束后 {{REVIEW_TIMEFRAME}} 内完成数据回收和效果复盘。
+            </div>
+        </div>
+
+        <div class="footer">
+            本方案由 WorkBuddy 活动策划方案生成器（activity-planner）生成 | {{GENERATED_DATE}}
+        </div>
+    </div>
+</body>
+</html>

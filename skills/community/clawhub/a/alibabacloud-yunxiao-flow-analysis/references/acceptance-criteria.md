@@ -7,7 +7,7 @@
 
 # Correct Script Usage Patterns
 
-> **Token Note**: The `--token` parameter in all script commands below can be provided via the environment variable `YUNXIAO_ACCESS_TOKEN`. If the environment variable is set, the `--token` argument can be omitted
+> **Authentication**: All scripts read the token exclusively from the environment variable `YUNXIAO_ACCESS_TOKEN`. Ensure it is set before running any command: `export YUNXIAO_ACCESS_TOKEN="pt-xxx"`
 
 ## 1. Pipeline Runs Retrieval
 
@@ -17,7 +17,6 @@ python3 scripts/yunxiao_flow_get_pipeline_runs.py \
   --org-id ${org-id} \
   --pipeline-id ${pipeline-id} \
   --pipeline-runid ${pipeline-runid} \
-  --token ${token} \
   --domain ${domain}
 ```
 
@@ -52,7 +51,6 @@ python3 scripts/yunxiao_flow_get_job_step_log.py \
   --pipeline-runid ${pipeline-runid} \
   --job-id ${job-id} \
   --step-index ${step-index} \
-  --token ${token} \
   --domain openapi-rdc.aliyuncs.com \
   --full-log
 ```
@@ -70,8 +68,7 @@ python3 scripts/yunxiao_flow_get_job_step_log.py \
   --pipeline-id 'abc' \
   --pipeline-runid ${pipeline-runid} \
   --job-id abc \
-  --step-index '0' \
-  --token ${token}
+  --step-index '0'
 ```
 
 **Issues:**
@@ -89,7 +86,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_order.py \
   --org-id ${org-id} \
   --pipeline-id ${pipeline-id} \
   --deploy-order-id ${deploy-order-id} \
-  --token ${token} \
   --domain ${domain}
 ```
 
@@ -105,7 +101,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_order.py \
   --org-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx \
   --pipeline-id ${pipeline-id} \
   --deploy-order-id ${deploy-order-id} \
-  --token ${token} \
   --domain openapi-rdc.aliyuncs.com
 ```
 
@@ -125,7 +120,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_machine_log.py \
   --pipeline-runid ${pipeline-runid} \
   --deploy-order-id ${deploy-order-id} \
   --machine-sn ${machine-sn} \
-  --token ${token} \
   --domain ${domain}
 ```
 
@@ -140,8 +134,7 @@ python3 scripts/yunxiao_flow_get_vm_deploy_machine_log.py \
   --org-id ${org-id} \
   --pipeline-id ${pipeline-id} \
   --pipeline-runid ${pipeline-runid} \
-  --deploy-order-id ${deploy-order-id} \
-  --token ${token}
+  --deploy-order-id ${deploy-order-id}
 ```
 
 **Issues:**

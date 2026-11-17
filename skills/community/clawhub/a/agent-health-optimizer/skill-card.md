@@ -1,45 +1,60 @@
-## Description: <br>
-Audit and improve your OpenClaw setup with one skill. Scores agent health, audits memory hygiene, checks cron reliability, and compares installed skills against ClawHub — with conservative fixes instead of reckless auto-repair. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and improve your OpenClaw setup with one skill by scoring agent health, auditing memory hygiene, checking cron reliability, and comparing installed skills against ClawHub with conservative fixes.
 
-## Publisher: <br>
-[zihaofeng2001](https://clawhub.ai/user/zihaofeng2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-SA 4.0 <br>
+## Publisher:
 
+[zihaofeng2001](https://clawhub.ai/user/zihaofeng2001)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to audit agent memory, cron jobs, installed skills, security posture, and continuity files, then review prioritized recommendations and trend reports. It is suited for periodic health checks and conservative maintenance planning rather than unattended self-repair. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw workspace, memory, skill metadata, and cron configuration, which may include sensitive operational context. <br>
-Mitigation: Run it only in workspaces where local diagnostic scanning is acceptable, and review generated reports before sharing them. <br>
-Risk: The cron optimizer can edit cron jobs when explicitly run with --fix. <br>
-Mitigation: Run cron_optimizer.py without --fix first, review the proposed changes, and rely on its backup at memory/cron-backup.json before accepting fixes. <br>
-Risk: The skill comparator contacts ClawHub to compare installed skills against public catalog signals. <br>
-Mitigation: Use it only when outbound ClawHub API access is acceptable for the environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit an OpenClaw workspace, identify memory, cron, skill, security, and continuity issues, and generate prioritized recommendations or conservative cron fixes.
 
-## Reference(s): <br>
-- [Agent Health Optimizer on ClawHub](https://clawhub.ai/zihaofeng2001/agent-health-optimizer) <br>
-- [ClawHub API](https://clawhub.ai/api/v1/) <br>
-- [proactive-agent](https://clawhub.ai/halthelobster/proactive-agent) <br>
-- [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown console reports, JSON report files, and OpenClaw cron command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local diagnostic reports under memory/ and only changes cron timing when cron_optimizer.py is run with --fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The skill scans OpenClaw workspace memory, cron, skill metadata, and continuity files and writes audit reports into memory/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in workspaces where these files may be inspected and retained as local diagnostic reports.
+
+Risk: The skill comparator queries ClawHub with installed skill names to compare community signals.
+
+Mitigation: Avoid running the comparator when installed skill names should not be sent to the public ClawHub API.
+
+Risk: The cron optimizer can edit cron jobs when explicitly run with --fix.
+
+Mitigation: Review proposed cron changes first and rely on the generated memory/cron-backup.json before accepting repairs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zihaofeng2001/skills/agent-health-optimizer)
+- [ClawHub API](https://clawhub.ai/api/v1/)
+- [proactive-agent](https://clawhub.ai/halthelobster/proactive-agent)
+- [self-improving-agent](https://clawhub.ai/pskoett/self-improving-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text and Markdown guidance with JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audit reports to memory/ and can modify cron jobs only when explicitly run with --fix.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

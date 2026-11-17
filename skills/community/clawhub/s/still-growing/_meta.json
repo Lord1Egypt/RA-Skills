@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn740dspnt5pyzkc21gr4yx9e9850my0",
-  "slug": "still-growing",
+  "name": "still-growing",
   "version": "0.3.6",
-  "publishedAt": 1779453071449
+  "displayName": "Still Growing / 第二代父母",
+  "description": "困在自己没走完的成长里，把孩子当成答案的一代人",
+  "tags": [
+    "parenting",
+    "psychology",
+    "emotional-health",
+    "parent-child",
+    "compassion"
+  ],
+  "author": "yun520-1"
 }

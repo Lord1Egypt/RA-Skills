@@ -1,52 +1,63 @@
-## Description: <br>
-Helps OpenClaw users switch between configured AI models, add provider configurations, and update local OpenClaw settings through bundled Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Model Switch helps agents switch between configured OpenClaw AI models and add new provider configurations using local scripts and guided prompts.
 
-## Publisher: <br>
-[williamwg2025](https://clawhub.ai/user/williamwg2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[williamwg2025](https://clawhub.ai/user/williamwg2025)
 
-## Use Case: <br>
-External users and developers who run OpenClaw use this skill to switch among local model presets, add new model providers, and update the active model configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit ~/.openclaw/openclaw.json and the bundled models.json, changing the active OpenClaw model configuration. <br>
-Mitigation: Back up configuration before use and verify the active model after switching. <br>
-Risk: Provider API keys may be stored in plaintext in ~/.openclaw/openclaw.json. <br>
-Mitigation: Restrict file permissions, avoid committing the file to source control, and use external secret management where required. <br>
-Risk: Switching models can restart the OpenClaw gateway and briefly interrupt service. <br>
-Mitigation: Run switches during an acceptable maintenance window and confirm gateway status after restart. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to view, switch, and add local AI model configurations for providers such as Gemini, GPT, Claude, Qwen, Kimi, MiniMax, GLM, DeepSeek, and custom endpoints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/williamwg2025/openclaw-model-switch-2) <br>
-- [README](artifact/README.md) <br>
-- [English README](artifact/README_EN.md) <br>
-- [Google AI Studio API keys](https://makersuite.google.com/app/apikey) <br>
-- [OpenAI API keys](https://platform.openai.com/api-keys) <br>
-- [Anthropic API keys](https://console.anthropic.com/settings/keys) <br>
-- [DashScope API keys](https://dashscope.console.aliyun.com/apiKey) <br>
-- [Moonshot platform](https://platform.moonshot.cn) <br>
-- [MiniMax platform](https://platform.minimaxi.com) <br>
-- [Zhipu GLM platform](https://open.bigmodel.cn) <br>
-- [DeepSeek platform](https://platform.deepseek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with shell commands and JSON configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify ~/.openclaw/openclaw.json and artifact/config/models.json, create backups, and restart the OpenClaw gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: ClawHub release metadata) <br>
+Risk: The skill can change local OpenClaw model configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw/openclaw.json before use and review the resulting configuration after switching or adding a model.
+
+Risk: Provider API keys may be saved in plaintext in ~/.openclaw/openclaw.json.
+
+Mitigation: Use this only where local plaintext config storage is acceptable, keep the file out of version control, and set owner-only permissions such as chmod 600.
+
+Risk: Restarting the OpenClaw gateway can briefly interrupt active service.
+
+Mitigation: Run model switches during an acceptable maintenance window or after confirming no critical sessions are active.
+
+Risk: Optional README recommendations include unpinned npx installs for other skills.
+
+Mitigation: Review and pin external install commands before running them.
+
+## Reference(s):
+
+- [Openclaw Model Switch on ClawHub](https://clawhub.ai/williamwg2025/skills/openclaw-model-switch-2)
+- [README_EN.md](artifact/README_EN.md)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify local OpenClaw configuration files and restart the OpenClaw gateway when the user runs the scripts.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

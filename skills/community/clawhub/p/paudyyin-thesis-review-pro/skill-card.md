@@ -1,43 +1,54 @@
-## Description: <br>
-高校硕士/博士学位论文智能评审技能，基于13篇真实论文评审经验总结的结构化评审框架，支持学硕、专硕和博士论文评审，并生成Word格式评审意见。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高校硕士/博士学位论文智能评审技能。基于13篇真实论文评审经验总结的结构化评审框架，支持学硕/专硕/博士论文评审，自动生成Word格式评审意见。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Academic reviewers, thesis supervisors, and graduate program staff use this skill to extract thesis information, assess methodology, experiments, writing quality, and novelty, and produce structured review feedback for master’s or doctoral theses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Thesis PDFs and generated review files may contain confidential student, institutional, or unpublished research information. <br>
-Mitigation: Use the skill only in environments authorized to process thesis material and store generated review files in access-controlled locations. <br>
-Risk: Search queries based on thesis details may expose identifying or unpublished research information. <br>
-Mitigation: Avoid web searches with identifying or novel unpublished details unless the reviewer has explicit authorization. <br>
-Risk: The skill reads thesis files and may generate Word review artifacts. <br>
-Mitigation: Confirm which files will be read before use and review generated outputs before sharing or archiving them. <br>
+## Use Case:
 
+External academic reviewers, advisors, and thesis-review teams use this skill to analyze master's or doctoral theses, compare claims against recent public literature, and draft structured review comments. It supports individual and batch reviews and can produce Word-format review documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/paudyyin-thesis-review-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/paudyyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review content with optional Python examples for PDF extraction and Word document generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured thesis review sections, reviewer questions, revision recommendations, batch comparison summaries, and .docx generation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Thesis PDFs may contain unpublished research, personal details, or institution-confidential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents you are authorized to process and avoid sharing generated review outputs beyond approved review channels.
+
+Risk: Generated review comments or .docx files may contain errors, unsupported claims, or inappropriate recommendations.
+
+Mitigation: Have a qualified reviewer check the generated analysis and any Word documents before they are used in formal academic review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/paudyyin-thesis-review-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/paudyyin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown review guidance with code examples and optional Word document output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate structured thesis-review comments, reviewer questions, batch comparison reports, and .docx review files.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

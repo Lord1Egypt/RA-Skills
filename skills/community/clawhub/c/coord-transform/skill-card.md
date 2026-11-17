@@ -1,39 +1,57 @@
-## Description: <br>
-Coordinate conversion skill for transforming GeoJSON files and WKT strings across EPSG, CGCS2000, WGS84, GCJ-02, BD-09, geographic, and projected coordinate systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts GeoJSON files and WKT geometries between WGS84, CGCS2000, Web Mercator, Beijing 1954, GCJ-02, BD-09, and related EPSG coordinate systems.
 
-## Publisher: <br>
-[chenpipy](https://clawhub.ai/user/chenpipy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenpipy](https://clawhub.ai/user/chenpipy)
 
-## Use Case: <br>
-Developers, GIS analysts, and engineers use this skill to convert GeoJSON files or WKT geometries between common global and China-specific coordinate systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing pyproj from an untrusted package source could introduce supply-chain risk. <br>
-Mitigation: Install pyproj only from a trusted package source before running the conversion script. <br>
-Risk: The command can write converted results to a path supplied with --output. <br>
-Mitigation: Review the output path before execution and run the tool only on intended GeoJSON or WKT inputs. <br>
+## Use Case:
 
+Developers, GIS analysts, and agents use this skill to prepare coordinate-conversion commands and convert GeoJSON or WKT data between common global and China-specific coordinate systems.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, files, guidance] <br>
-**Output Format:** [GeoJSON, WKT, or concise Markdown with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print converted results to stdout or write them to a user-specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Untrusted geospatial input files may be read and transformed by the local conversion script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted GeoJSON or WKT inputs and inspect input paths before running conversion commands.
+
+Risk: A user-selected output path can cause converted results to be written to disk.
+
+Mitigation: Choose output paths deliberately and avoid overwriting important files.
+
+Risk: The documented dependency installation uses an apt package install command.
+
+Mitigation: Review package installation commands in the target environment before executing them.
+
+## Reference(s):
+
+- [Coord Transform ClawHub release page](https://clawhub.ai/chenpipy/skills/coord-transform)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; converted GeoJSON or WKT when the bundled script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write converted output to a user-selected file path when an output argument is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

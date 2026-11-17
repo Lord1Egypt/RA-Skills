@@ -1,39 +1,48 @@
-## Description: <br>
-Conversation Focus is a Chinese-language clarification workflow that analyzes user intent, asks focused follow-up questions when needs or constraints are vague, and consolidates clarified requirements into a clean task context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conversation Focus helps an agent detect ambiguous user requests, ask concise clarification questions, and restate the clarified task, constraints, and success criteria before proceeding.
 
-## Publisher: <br>
-[as1113435](https://clawhub.ai/user/as1113435) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[as1113435](https://clawhub.ai/user/as1113435)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to keep agent conversations focused when requests are vague, multi-part, or missing constraints such as format, timing, budget, or success criteria.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Clarification details and original user requests may be saved persistently for self-improvement without clear consent, redaction, or retention limits.
+
+Mitigation: Use the skill only where conversation logging is acceptable, disable or constrain logging when possible, and avoid confidential, regulated, or sensitive conversations unless retention and deletion controls are clear.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to keep conversations focused by clarifying goals, constraints, and success criteria before execution. It is most useful for vague requests, multi-step tasks, or conversations that need to be brought back on topic. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may log clarified requests to a local self-improvement record, which could capture sensitive personal, business, or credential-like content. <br>
-Mitigation: Review or disable the self-improving/corrections.md logging behavior before using the skill with sensitive content. <br>
-Risk: The skill references companion components such as self-improving, thought-retriever, and prompt-optimizer-chinese that are not included in this artifact. <br>
-Mitigation: Assess and trust those companion components separately before enabling integrations that depend on them. <br>
+**Output Format:** [Markdown-formatted clarification prompts and focused task summaries]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May propose recording clarification feedback for later self-improvement when integrated with a compatible logging workflow.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and plain-language clarification prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured task context with goals, constraints, and success criteria.] <br>
+1.0.0 (source: server-resolved release metadata and artifact/_meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

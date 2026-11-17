@@ -1,50 +1,65 @@
-## Description: <br>
-实施项目经理 helps IT and software delivery project managers run Feishu-based project setup, milestone tracking, risk and change management, contract receivables, subcontract payments, and Chinese Markdown reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+实施项目经理 is an agent skill for IT and software delivery project managers that reads Feishu sheet data, calculates milestones, payment status, risks, and warnings, and updates sheets after conversational confirmation.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Implementation project managers use this skill to manage IT/software delivery projects in Feishu spreadsheets, calculate milestones and payment status, identify project risks, and generate Chinese Markdown project documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports an exposed Feishu App Secret. <br>
-Mitigation: Rotate the secret, remove hardcoded credentials, and require credentials through secure user configuration before installation. <br>
-Risk: New project sheets are configured for broad organization-wide edit access by default. <br>
-Mitigation: Change sharing defaults to private or project-team-only and require explicit confirmation before widening access. <br>
-Risk: The skill can read and update Feishu project spreadsheets containing project, contract, and payment tracking data. <br>
-Mitigation: Confirm Feishu app permissions, target sheets, and write operations before use, and keep changes reversible. <br>
+## Use Case:
 
+Project managers and delivery teams use this skill to manage IT/software delivery workflows across project initiation, milestones, risks, changes, contract receivables, subcontract payments, progress reporting, and closeout reviews. The skill is designed around Feishu online sheets as the source of project data and produces Chinese project-management guidance and Markdown deliverables.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smallkeyboy/impl-project-manager) <br>
-- [需求说明](references/requirements.md) <br>
-- [里程碑模板](references/milestone-template.md) <br>
-- [风险识别规则](references/risk-rules.md) <br>
-- [变更管理模板](references/change-management.md) <br>
-- [合同与回款模板](references/contract-payment-template.md) <br>
-- [分包类型参考](references/subcontract-types.md) <br>
-- [飞书应用配置](references/feishu-config.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown guidance with optional Python command snippets and Feishu spreadsheet updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read from and write to Feishu online spreadsheets after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports an exposed Feishu App Secret and token handling that can leave credentials available to unintended users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate and remove the exposed secret, require credentials through a protected secret mechanism, and disable token printing and insecure source-tree token caching before use.
+
+Risk: The release evidence reports that newly created project sheets are automatically made editable across the organization.
+
+Mitigation: Make new sheets private by default and require explicit approval before broadening sharing to organization-wide edit access.
+
+Risk: The release evidence recommends reviewing broad Feishu permissions used for reading, writing, creating sheets, and changing drive sharing.
+
+Mitigation: Reduce Feishu scopes to only the operations actually needed for the deployment and review the skill before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smallkeyboy/skills/impl-project-manager)
+- [需求说明](references/requirements.md)
+- [飞书配置](references/feishu-config.md)
+- [里程碑模板](references/milestone-template.md)
+- [风险识别规则](references/risk-rules.md)
+- [变更管理模板](references/change-management.md)
+- [合同与回款模板](references/contract-payment-template.md)
+- [分包类型参考](references/subcontract-types.md)
+- [Feishu Open Platform](https://open.feishu.cn/app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown, conversational guidance, shell command examples, and structured tabular updates for Feishu sheets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, create, and update Feishu online sheets when credentials, permissions, and sheet tokens are available; calculates milestone dates, payment amounts, status labels, warnings, and risk records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

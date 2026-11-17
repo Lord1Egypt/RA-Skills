@@ -1,46 +1,64 @@
-## Description: <br>
-Helps an agent configure OpenClaw or Claude Code to receive WeChat messages and media through ClawBot, reply through the bridge, and optionally send proactive text messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent configure a Claude Code or OpenClaw bridge for receiving WeChat ClawBot messages, handling inbound media files, replying to users, and sending proactive text notifications.
 
-## Publisher: <br>
-[tinadu-ai](https://clawhub.ai/user/tinadu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinadu-ai](https://clawhub.ai/user/tinadu-ai)
 
-## Use Case: <br>
-Developers and personal automation users use this skill to connect a dedicated WeChat ClawBot account to OpenClaw or Claude Code, pass inbound text and media into the agent, and send progress updates back to WeChat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose WeChat conversations and attachments to the local agent workflow and connected services. <br>
-Mitigation: Use a dedicated WeChat account, avoid sending secrets or sensitive files, and review the content before allowing the agent to process it. <br>
-Risk: The proactive sender reuses stored WeChat credentials and can send outbound messages without a built-in per-message approval step. <br>
-Mitigation: Review wsend.js before use, protect the local credential directory, and enable proactive sending only when that behavior is intentional. <br>
-Risk: The media patch downloads inbound images, files, voice, and video to local storage. <br>
-Mitigation: Treat the media directory as sensitive local data, limit access to the machine, and remove retained media when it is no longer needed. <br>
-Risk: The bridge depends on a third-party npm package and development-channel loading. <br>
-Mitigation: Pin the npm package version, review updates before installing them, and stop the bridge process when the session is complete. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect Claude Code or OpenClaw to WeChat ClawBot for remote human-agent interaction, inbound file handling, and proactive task status messages. It is suited to workflows where the agent runs on a computer while the user interacts from mobile WeChat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tinadu-ai/claude-wechat-bridge-with-files) <br>
-- [claude-wechat-channel npm package](https://www.npmjs.com/package/claude-wechat-channel) <br>
-- [WeChat ClawBot overview](https://cloud.tencent.com/developer/article/2644003) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets, shell commands, and JavaScript/Bash helper files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes optional local scripts for patching media handling and sending proactive WeChat text messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill gives an agent broad real-world messaging capability through WeChat and can send proactive messages using local credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable proactive sending only when that authority is acceptable, and stop the bridge when the workflow is complete.
+
+Risk: The bridge stores and reuses local account credentials for WeChat access.
+
+Mitigation: Use a dedicated WeChat account, protect the host system, and avoid sending secrets through the bridge.
+
+Risk: Inbound files from WeChat are downloaded locally and exposed to the agent as file paths.
+
+Mitigation: Treat received files as untrusted content and scan or inspect them before relying on their contents.
+
+Risk: The skill depends on a third-party npm package and a development-channel loading flag.
+
+Mitigation: Pin the npm package version, review updates before upgrading, and avoid long-running unattended use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tinadu-ai/skills/claude-wechat-bridge-with-files)
+- [claude-wechat-channel npm package](https://www.npmjs.com/package/claude-wechat-channel)
+- [claude-wechat-channel GitHub repository](https://github.com/fengliu222/claude-wechat-channel)
+- [Tencent WeChat ClawBot article](https://cloud.tencent.com/developer/article/2644003)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration, shell commands, and helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands for MCP setup, media patch installation, bridge troubleshooting, and proactive text sending.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

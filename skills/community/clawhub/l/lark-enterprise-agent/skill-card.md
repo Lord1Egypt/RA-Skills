@@ -1,40 +1,54 @@
-## Description: <br>
-Provides an enterprise automation skill for Feishu/Lark documents, knowledge bases, multidimensional tables, calendars, and tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language enterprise automation guidance for Feishu/Lark documents, knowledge bases, multidimensional tables, calendars, and tasks.
 
-## Publisher: <br>
-[wukai8289](https://clawhub.ai/user/wukai8289) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wukai8289](https://clawhub.ai/user/wukai8289)
 
-## Use Case: <br>
-Enterprise teams use this skill to design and operate Feishu/Lark-based agents for internal knowledge bases, onboarding Q&A, project automation, meeting notes, and cross-team workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate broad Feishu/Lark enterprise automation across shared documents, tables, wikis, calendars, and tasks. <br>
-Mitigation: Use least-privilege app permissions, restrict access to named workspaces and resources, and keep read-only behavior by default where possible. <br>
-Risk: Automation could create, update, delete, schedule, or assign enterprise resources without clear user intent. <br>
-Mitigation: Require explicit confirmation before any write, delete, scheduling, or assignment action. <br>
+## Use Case:
 
+Enterprise teams use this skill to plan Feishu/Lark based internal knowledge-base agents, onboarding assistance, project-management automation, meeting-summary workflows, and cross-department collaboration processes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wukai8289/lark-enterprise-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance and configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent toward Feishu/Lark document, table, wiki, calendar, and task operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Connected Feishu/Lark credentials could allow sensitive or state-changing document, table, calendar, or task actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human confirmation before an agent uses connected Feishu credentials or business data for write or scheduling actions.
+
+Risk: Broad trigger words may invoke the skill for general enterprise automation requests.
+
+Mitigation: Confirm the user intends to use the Chinese-language Feishu/Lark automation workflow before applying its guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wukai8289/skills/lark-enterprise-agent)
+- [Publisher profile](https://clawhub.ai/user/wukai8289)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown prose with bullet lists and pricing table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance for enterprise Feishu/Lark automation scenarios.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

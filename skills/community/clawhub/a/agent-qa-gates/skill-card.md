@@ -1,41 +1,59 @@
-## Description: <br>
-Output validation gates for AI agent systems that help prevent hallucinated data, leaked internal context, wrong formats, duplicate sends, post-compaction drift, and false delegated completions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent QA Gates provides output validation gates for AI agent systems to reduce hallucinated data, leaked internal context, wrong formats, duplicate sends, post-compaction drift, and false delegated completions.
 
-## Publisher: <br>
-[zurbrick](https://clawhub.ai/user/zurbrick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zurbrick](https://clawhub.ai/user/zurbrick)
 
-## Use Case: <br>
-Developers and operators use this skill to apply pre-ship validation gates to agent outputs before they reach humans, external channels, or code workflows. It is most useful for reviewing messages, technical deliverables, scheduled outputs, and delegated-work handoffs for completeness, format, leakage, and verification gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner describes this as a narrow advisory lint/review helper rather than a complete validation framework. <br>
-Mitigation: Invoke it explicitly as a review aid, keep human review in the delivery path, and do not treat a passed checklist as proof that all output risks are eliminated. <br>
-Risk: The included shell checker inspects provided files or stdin and may flag patterns without full business context. <br>
-Mitigation: Review any BLOCK or FIX findings before acting on them, especially when content intentionally contains examples, internal terms, or test data. <br>
+## Use Case:
 
+Developers and operators use this skill to apply tiered QA gates before an agent delivers human-facing, external, technical, or delegated-work output. It helps classify blocking issues, identify fix-before-ship problems, and evolve validation gates from observed failures.
 
-## Reference(s): <br>
-- [Gate Detail Reference](references/gates-detail.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zurbrick/agent-qa-gates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces checklist-style review guidance and optional gate-check diagnostics for supplied content or files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The trigger scope is broad, so the skill may activate in conversations where a narrower QA checklist would be more appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow trigger phrases or invocation rules to the specific delivery surfaces and agent workflows where these gates are required.
+
+Risk: The helper script prints terminal output and scanner findings directly, which can expose sensitive text if run on untrusted files.
+
+Mitigation: Review inputs before running the script and sanitize or suppress command output when checking untrusted files or artifacts.
+
+Risk: The skill is a lightweight QA aid rather than a complete automated safety system.
+
+Mitigation: Use it as a review gate alongside human review, source verification, and deployment-specific security controls.
+
+## Reference(s):
+
+- [Gate Detail Reference](artifact/references/gates-detail.md)
+- [QA Check Script](artifact/scripts/qa-check.sh)
+- [ClawHub Skill Page](https://clawhub.ai/zurbrick/skills/agent-qa-gates)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes gate tiers, protocol checklists, severity classifications, and optional local QA script output.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

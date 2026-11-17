@@ -1,49 +1,61 @@
-## Description: <br>
-File Management lets agents upload, list, retrieve, share, download, delete, and manage AgentPMT cloud-storage files with signed URLs, metadata updates, access history, and expiration controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+File Management lets agents upload, list, download, share, delete, tag, and audit files stored in AgentPMT cloud storage through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External developers and agents use this skill to manage AgentPMT-hosted files across upload, retrieval, sharing, auditing, metadata, and expiration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded or shared files are handled by AgentPMT cloud storage and may include external data handling. <br>
-Mitigation: Avoid sensitive files unless approved for AgentPMT storage, and keep uploads limited to the minimum content needed. <br>
-Risk: Share links and signed URLs can expose files beyond the current agent run. <br>
-Mitigation: Use short share and URL expiration limits where possible and confirm the target file before sharing. <br>
-Risk: Delete operations permanently remove files from storage. <br>
-Mitigation: Confirm the exact file identifier and intended file before invoking delete. <br>
-Risk: Wallet and payment setup may require sensitive credentials or payment headers. <br>
-Mitigation: Use the referenced setup skills for credential handling and do not place secrets, wallet keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
+## Use Case:
 
+Developers and external agents use this skill to manage temporary and budget-scoped files in AgentPMT, including uploads, signed URLs, file downloads, metadata updates, sharing, access history, and expiration extension.
 
-## Reference(s): <br>
-- [AgentPMT File Management marketplace page](https://www.agentpmt.com/marketplace/file-management) <br>
-- [ClawHub File Management skill page](https://clawhub.ai/agentpmt/file-management-newest) <br>
-- [File Management action schema](artifact/schema.md) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [AgentPMT no-account AgentAddress/x402 setup](https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402) <br>
-- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API request examples] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes AgentPMT MCP, REST, and x402 invocation patterns; product responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can upload files to AgentPMT cloud storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for files appropriate to store with AgentPMT, keep inputs minimal, and avoid placing secrets, wallet material, or payment headers in prompts or logs.
+
+Risk: Delete and share actions can permanently remove files or create public access links.
+
+Mitigation: Require explicit confirmation before delete or share actions, and use short share password expiration and use limits.
+
+Risk: Related setup instructions and install commands can change after release.
+
+Mitigation: Review before installing and prefer pinned or verified install commands for related setup skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/file-management-newest)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/file-management)
+- [File Management Schema](artifact/schema.md)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [No-Account AgentAddress/x402 Setup](https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration, JSON]
+
+**Output Format:** [Markdown instructions with JSON tool-call examples and remote tool JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote actions can return signed URLs, base64 file content for files up to 5MB, file metadata, share links, and access history; upload actions cover files up to 100MB.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

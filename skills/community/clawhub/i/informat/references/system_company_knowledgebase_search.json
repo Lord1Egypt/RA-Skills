@@ -1,0 +1,19 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_company_knowledgebase_search",
+		"description": "Search the team (company) level knowledge base by keyword. The team knowledge base does not belong to any application; each team has one, and it must be enabled in team settings before it can be searched.",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"keyword": {
+					"type": "string",
+					"description": "Search keyword"
+				}
+			},
+			"required": [
+				"keyword"
+			]
+		}
+	}
+}

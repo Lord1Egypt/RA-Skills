@@ -1,45 +1,60 @@
-## Description: <br>
-Find decision-makers and key contacts at exhibitor companies using the Lensmor API for pre-show LinkedIn outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Show Contact Finder helps agents search Lensmor contact records by company and optional role or person name, then summarize returned contact fields and lock states.
 
-## Publisher: <br>
-[weilun88313](https://clawhub.ai/user/weilun88313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weilun88313](https://clawhub.ai/user/weilun88313)
 
-## Use Case: <br>
-B2B sales and marketing teams use this skill to identify senior decision-makers, influencers, and likely outreach contacts at exhibitor companies before trade shows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends company names and role filters to Lensmor and returns contact and LinkedIn profile data for outreach. <br>
-Mitigation: Confirm Lensmor is trusted for these inputs and use returned data only under applicable privacy, marketing, anti-spam, and platform-use rules. <br>
-Risk: Returned contact data may be incomplete, stale, or unsuitable for a specific buyer function. <br>
-Mitigation: Verify high-priority contacts before outreach, broaden filters when results are sparse, and do not fabricate missing contacts or email addresses. <br>
-Risk: The skill requires a Lensmor API key. <br>
-Mitigation: Store LENSMOR_API_KEY securely, never print it in responses, and stop execution when the key is missing or rejected. <br>
+## Use Case:
 
+External users and sales or event teams use this skill to find relevant contacts at exhibitor companies before a trade show. The skill is intended to return API-backed contact records, preserve lock-state semantics, and avoid unsupported claims about decision authority.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weilun88313/trade-show-contact-finder) <br>
-- [Lensmor API Documentation](https://api.lensmor.com/) <br>
-- [Lensmor Platform](https://platform.lensmor.com) <br>
-- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, guidance] <br>
-**Output Format:** [Markdown with prioritized contact tables and outreach notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; does not return email addresses and uses LinkedIn as the primary outreach channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The security scan reports an unpinned third-party install command that acknowledges a ClawHub risk warning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package provenance before installing and prefer a pinned audited release.
+
+Risk: The skill requires LENSMOR_API_KEY and may be invoked by broad contact-finding phrases.
+
+Mitigation: Only provide the API key when the agent is intended to query Lensmor, keep the key secret, and confirm broad contact-finding requests before making API calls.
+
+Risk: Contact results can include professional contact fields and already-unlocked emails.
+
+Mitigation: Report returned lock states accurately, avoid unlock workflows, and expose unlocked contact details only when the user explicitly requests them in the current workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/weilun88313/skills/trade-show-contact-finder)
+- [Lensmor API Docs](https://api.lensmor.com/)
+- [Lensmor Contact Search Endpoint](https://platform.lensmor.com/external/contacts/search)
+- [Lensmor](https://www.lensmor.com/?utm_source=github&utm_medium=skill&utm_campaign=trade-show-skills)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown contact summaries with tables, priority notes, and contact lock-state status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LENSMOR_API_KEY; does not unlock email or phone data; preserves returned contact fields and seniority values.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

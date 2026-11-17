@@ -1,44 +1,54 @@
-## Description: <br>
-Manage Sophiie sales pipeline data, inquiries, appointments, FAQs, policies, SMS, and calls through the Sophiie REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your Sophiie sales pipeline - leads, inquiries, appointments, FAQs, policies, SMS, and calls via the Sophiie REST API.
 
-## Publisher: <br>
-[tomc98](https://clawhub.ai/user/tomc98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tomc98](https://clawhub.ai/user/tomc98)
 
-## Use Case: <br>
-Sophiie customers and their agents use this skill to manage live sales pipeline workflows, review organization data, and initiate customer communications from natural-language requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on a live Sophiie account and modify CRM, FAQ, policy, and lead records. <br>
-Mitigation: Use a test or least-privileged API key where possible, and require explicit confirmation before create, update, or delete actions. <br>
-Risk: The skill can initiate outbound SMS messages and calls to real leads or phone numbers. <br>
-Mitigation: Confirm the recipient, phone number, and message or call intent with the user before sending. <br>
-Risk: Changes to FAQs and policies may alter customer-facing assistant behavior. <br>
-Mitigation: Review proposed content before applying it and verify changes against the organization's approved customer guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tomc98/sophiie) <br>
-- [Sophiie Documentation](https://docs.sophiie.ai) <br>
-- [Sophiie API Reference](https://docs.sophiie.ai/api) <br>
-- [Sophiie Dashboard](https://app.sophiie.ai) <br>
+## Use Case:
 
+Sales and operations teams use this skill through an OpenClaw-compatible agent to inspect and manage Sophiie leads, inquiries, appointments, FAQs, policies, outbound SMS, and outbound calls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command invocations and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOPHIIE_API_KEY, curl, and jq; commands can read and modify live Sophiie account data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A production API key may allow the skill to send real SMS messages or calls and change customer or business records.
+
+Mitigation: Use a least-privilege or sandbox Sophiie API key where possible, and require human confirmation before sending SMS or calls or changing/deleting leads, FAQs, and policies.
+
+Risk: The skill can access live sales pipeline and organization data through the Sophiie API.
+
+Mitigation: Limit access to workspaces and API keys that are appropriate for the user, and avoid sharing sensitive API responses outside the intended agent session.
+
+## Reference(s):
+
+- [Sophiie Documentation](https://docs.sophiie.ai)
+- [Sophiie API Reference](https://docs.sophiie.ai/api)
+- [ClawHub Skill Page](https://clawhub.ai/tomc98/skills/sophiie)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SOPHIIE_API_KEY plus curl and jq; list endpoints are paginated and default to 50 items per page.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

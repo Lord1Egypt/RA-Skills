@@ -1,37 +1,52 @@
-## Description: <br>
-Use after an implementation pass to self-review responsibility boundaries, necessity, defensive branches, naming, tests, documentation iteration scope, and same-class issues before final delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use after an implementation pass to self-review responsibility boundaries, necessity, defensive branches, naming, tests, documentation iteration scope, and same-class issues before final delivery.
 
-## Publisher: <br>
-[xiluoduyu](https://clawhub.ai/user/xiluoduyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiluoduyu](https://clawhub.ai/user/xiluoduyu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill after an implementation pass to run a focused self-review of code organization, responsibility boundaries, necessity, naming, error semantics, observability, configuration, tests, documentation alignment, and same-class issues before final delivery.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can suggest or make scoped code and documentation fixes during an active implementation task.
+
+Mitigation: Review resulting diffs as normal project changes and run the repository's relevant verification commands before delivery.
+
+Risk: If changed files, diffs, or implementation summaries are unavailable, the review is limited and may not support file-specific findings.
+
+Mitigation: Provide the changed files, diff, or a concise implementation summary before relying on the review.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill after an implementation pass to check responsibility boundaries, overdesign, defensive branches, naming, tests, documentation alignment, and related same-class issues before final delivery. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to inspect diffs and make scoped fixes during coding tasks. <br>
-Mitigation: Review resulting edits and guidance before relying on them, as recommended by the security guidance. <br>
+**Output Format:** [Concise Markdown review report with findings, same-class scan results, required fixes, norms checked, and verification status.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May propose or make scoped code and documentation fixes when the active task is already an implementation task.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown review summary with findings, same-class scan notes, required fixes, checked norms, and verification status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend or make scoped fixes when the surrounding task already calls for implementation.] <br>
+1.0.3 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-发芽笔记生成工作流接收文章、微博等材料内容，生成“种子→故事→Aha 瞬间”的简体中文叙事扩展报告，并可被其他保存类 skill 调用或单独使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+发芽笔记生成工作流。接收文章、微博等材料内容，调用发芽提示词生成"种子→故事→Aha 瞬间"的叙事扩展报告。内置完整发芽提示词，可被 weibo-save、wechat-article-save 等 skill 调用，无需外部文件依赖。
 
-## Publisher: <br>
-[violin86318](https://clawhub.ai/user/violin86318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[violin86318](https://clawhub.ai/user/violin86318)
 
-## Use Case: <br>
-Developers, writers, and knowledge-management users use this skill to turn saved articles, social posts, or other material into concise Chinese Markdown notes with narrative expansion, reflection prompts, and Aha moments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input material may contain private or sensitive content that is included in a generated local Markdown note. <br>
-Mitigation: Use non-sensitive material when possible, choose the output directory deliberately, and review generated files before sharing or retaining them. <br>
-Risk: Generated stories, dates, names, or research examples may be inaccurate or misleading. <br>
-Mitigation: Review and fact-check generated examples and claims before relying on or publishing the report. <br>
+## Use Case:
 
+External users and content-workflow agents use this skill to turn saved articles, social posts, or other source material into Simplified Chinese narrative insight notes with seed, story, and Aha moment sections.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report in Simplified Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 2-3 narrative directions and can save a local Markdown file when an output directory is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted article or social-post content can contain embedded instructions that influence the generated note.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content you intend to process and review generated notes before relying on them.
+
+Risk: When another skill passes output_dir, the workflow may write a Markdown note in that destination.
+
+Mitigation: Review the destination directory and generated filename before deployment or chained use.
+
+Risk: Broad trigger phrases such as "发芽" can invoke the workflow on supplied material.
+
+Mitigation: Confirm the intended input material before running the skill manually or through another skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/violin86318/skills/sprout-notes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown report in Simplified Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a Markdown note to the caller-provided output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

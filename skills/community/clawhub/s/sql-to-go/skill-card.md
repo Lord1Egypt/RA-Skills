@@ -1,38 +1,54 @@
-## Description: <br>
-Convert MySQL CREATE TABLE statements into Go structs with form, json, and xorm tags, including MySQL type mapping, snake_case to CamelCase field names, and tag generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert MySQL CREATE TABLE statements to Go structs with form, json, and xorm tags.
 
-## Publisher: <br>
-[weirubo](https://clawhub.ai/user/weirubo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weirubo](https://clawhub.ai/user/weirubo)
 
-## Use Case: <br>
-Developers use this skill to transform MySQL DDL into Go model structs and ORM-ready tags for application code generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated structs may mishandle nullable columns, DECIMAL precision, time handling, or xorm tags for schema edge cases. <br>
-Mitigation: Review generated Go structs against the original MySQL schema before production use and adjust field types or tags where needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn MySQL table definitions into Go model structs with form, JSON, and XORM tags. It is intended for schema-to-code conversion, ORM model generation, and consistent MySQL-to-Go type mapping.
 
-## Reference(s): <br>
-- [MySQL to Go Type Mappings](references/type_mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Guidance] <br>
-**Output Format:** [Markdown with Go code blocks and struct/tag examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated structs should be reviewed for nullable fields, DECIMAL precision, time handling, and xorm tags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated Go structs may not reflect application-specific choices for nullable fields, decimal precision, time handling, tags, or comments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated structs against the source schema and application requirements before using them in production code.
+
+Risk: Database schema text can reveal sensitive business details when shared with an agent.
+
+Mitigation: Remove or anonymize sensitive table, column, comment, and default-value details before submitting schema text.
+
+## Reference(s):
+
+- [MySQL to Go Type Mappings](references/type_mappings.md)
+- [ClawHub skill page](https://clawhub.ai/weirubo/skills/sql-to-go)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with Go code blocks and concise conversion guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated structs should be reviewed for application-specific nullable fields, decimal precision, time handling, tags, and comments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

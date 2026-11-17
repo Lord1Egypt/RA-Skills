@@ -1,41 +1,57 @@
-## Description: <br>
-Optimizes EPUB files for e-ink readers by deduplicating images, removing tiny decorative images, resizing oversized images, and recompressing JPEGs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps optimize EPUB files for e-ink readers by deduplicating images, removing tiny decorative images, resizing oversized images, and recompressing JPEGs to reduce file size while preserving readability.
 
-## Publisher: <br>
-[wangkf](https://clawhub.ai/user/wangkf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangkf](https://clawhub.ai/user/wangkf)
 
-## Use Case: <br>
-Readers, ebook maintainers, and developers use this skill to reduce EPUB file size for Kindle, Kobo, Boox, and other e-ink devices while preserving readability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optimizer can permanently change the selected EPUB file. <br>
-Mitigation: Use the skill on a copy or keep a backup, and run the bundled script with --dry-run before applying changes. <br>
-Risk: The optimizer depends on Pillow for image processing. <br>
-Mitigation: Install Pillow from a trusted source in an isolated Python environment when possible. <br>
+## Use Case:
 
+External users and developers use this skill to reduce EPUB size for e-ink reading workflows, especially when books contain duplicated, decorative, oversized, or high-quality images. It provides command-line guidance and scripts for analysis-first or in-place EPUB optimization.
 
-## Reference(s): <br>
-- [Manual fixes guide](references/manual-fixes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wangkf/epub-eink-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Python script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose dry-run checks and local EPUB file modifications through the bundled optimizer script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The optimizer overwrites the selected EPUB when run without --dry-run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep a backup copy and run with --dry-run before allowing the script to write changes.
+
+Risk: Image deletion and lossy recompression can remove decorative images or reduce visual fidelity more than intended.
+
+Mitigation: Review dry-run output and adjust --min-size, --quality, --max-width, or disable individual stages with the --no-* flags.
+
+Risk: Very large or crafted EPUB archives and images can consume significant memory or CPU during extraction and image processing.
+
+Mitigation: Process EPUBs from trusted sources in a normal user or virtual-environment Python setup, avoid sudo, and test suspicious files in an isolated workspace.
+
+## Reference(s):
+
+- [epub manual-fixes.md](references/manual-fixes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include EPUB optimization commands, parameter recommendations, dry-run instructions, and manual remediation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,57 @@
-## Description: <br>
-Find academic papers, studies, and research on any topic using Exa's research paper category search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find academic papers, studies, and research on a user-specified topic using Exa's research paper category search, then synthesize relevant findings.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to search for academic papers with Exa, fetch relevant paper content, and synthesize findings for a research question. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries or local marketing context may include confidential or sensitive information. <br>
-Mitigation: Avoid submitting confidential details to Exa and review any product marketing context before using it in searches or summaries. <br>
-Risk: The skill depends on the local exa.js CLI and third-party search results, which may affect result quality or trust. <br>
-Mitigation: Confirm exa.js is approved in the environment and verify important paper metadata and claims against source papers before relying on them. <br>
+## Use Case:
 
+External users and research-focused agents use this skill to search for academic papers, fetch relevant paper content, and summarize findings for a research question.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured paper summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes paper metadata, key findings, relevance notes, URLs, and a synthesis section.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter metadata) <br>
+Risk: Sensitive research topics or confidential workspace context may be transformed into Exa queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with information that may be shared with Exa, and avoid confidential topics or private workspace context unless disclosure is acceptable.
+
+Risk: The artifact tells agents to read product marketing context even for ordinary literature searches.
+
+Mitigation: Limit context reads to material directly needed for the research task, and avoid loading unrelated local files.
+
+Risk: Shell-style examples include user-supplied topics.
+
+Mitigation: Pass user input as separate command arguments when invoking exa.js, and avoid interpolating raw user text into shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mariokarras/skills/abm-exa-research-papers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with paper metadata, links, synthesis notes, and inline shell commands for Exa searches.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes title, authors, year, key findings, relevance, URL, synthesis, research gaps, and suggested follow-up searches.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

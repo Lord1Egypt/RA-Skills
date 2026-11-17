@@ -1,44 +1,54 @@
-## Description: <br>
-Extract text from images using Tesseract.js OCR locally without an API key, with support for Simplified Chinese, Traditional Chinese, and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from images using Tesseract.js OCR (100% local, no API key required). Supports Chinese (simplified/traditional) and English.
 
-## Publisher: <br>
-[shaw555](https://clawhub.ai/user/shaw555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaw555](https://clawhub.ai/user/shaw555)
 
-## Use Case: <br>
-Developers and agents use this skill to run local OCR over image files and return extracted text or structured OCR details without configuring an external OCR API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use may download Tesseract language data, which can be unsuitable for restricted or offline environments. <br>
-Mitigation: Preload or vendor required language data through a controlled process before deployment in restricted environments. <br>
-Risk: Sensitive image content may become visible as extracted text in the agent session. <br>
-Mitigation: Avoid OCRing sensitive images unless the session and downstream handling are approved for that data. <br>
-Risk: The skill depends on npm packages for OCR execution. <br>
-Mitigation: Install from a trusted registry and review dependency provenance before use in managed environments. <br>
+## Use Case:
 
+Developers and end users use this skill to extract text from local images, screenshots, and documents in Simplified Chinese, Traditional Chinese, and English without using an OCR API key.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaw555/ocr-local) <br>
-- [Tesseract.js](https://github.com/naptha/tesseract.js) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text or JSON OCR results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes recognized text, confidence, words, and bounding boxes when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Installation and first use can download npm packages and Tesseract language data from third-party sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environments that permit those downloads, or pin tesseract.js to a reviewed exact version, add a lockfile, and prefetch or vendor required language data for offline or restricted deployments.
+
+Risk: OCR output may be inaccurate for handwritten, low-contrast, poorly lit, or unclear images.
+
+Mitigation: Review extracted text before using it in downstream decisions, and prefer clear, high-contrast source images.
+
+## Reference(s):
+
+- [Tesseract.js Project](https://github.com/naptha/tesseract.js)
+- [ClawHub Skill Page](https://clawhub.ai/shaw555/skills/ocr-local)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [Plain text, or JSON containing recognized text, confidence scores, words, and bounding boxes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language selection supports chi_sim, chi_tra, eng, and combined language codes; OCR quality depends on source image clarity.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

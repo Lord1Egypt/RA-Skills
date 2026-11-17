@@ -1,46 +1,65 @@
-## Description: <br>
-Tracks OpenClaw session token usage, summarizes daily, weekly, and cumulative consumption, and provides token-saving and model-selection suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Tracker Pro tracks OpenClaw session token usage with daily, weekly, and cumulative statistics and provides token-saving suggestions.
 
-## Publisher: <br>
-[longziruo-max](https://clawhub.ai/user/longziruo-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longziruo-max](https://clawhub.ai/user/longziruo-max)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to monitor local token consumption, inspect usage history, export reports, and get practical suggestions for reducing token costs. It also supports optional local dashboard and shortcut workflows for repeated operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes local command execution paths through Node CLI wrappers. <br>
-Mitigation: Install only from a trusted publisher, review the wrapper code before use, and avoid passing untrusted arguments to the global token-tracker command. <br>
-Risk: Shortcut setup can persist changes to shell profile files or OS launcher locations. <br>
-Mitigation: Run shortcut setup only after reviewing the generated changes and only on systems where persistent shortcut/profile edits are acceptable. <br>
-Risk: Token history, exports, and dashboard views can include session-linked usage metadata. <br>
-Mitigation: Treat exported reports and local dashboard access as sensitive, restrict local access, and clear or back up history according to the user's data-retention needs. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor local token consumption, review historical usage, export or clean usage data, and receive cost-saving model recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/longziruo-max/token-tracker-pro) <br>
-- [README](artifact/README.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [OpenClaw Integration Guide](artifact/INTEGRATION.md) <br>
-- [Smart Recommendation Guide](artifact/SMART-RECOMMENDATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text reports, Markdown/JSON/CSV exports, TypeScript integration snippets, and local dashboard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores token history locally and may expose session-linked usage metadata through exports or the local dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata and SKILL.md) <br>
+Risk: The skill stores local token history that may include session identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local storage of token usage history is acceptable, and review or minimize stored history before sharing the environment.
+
+Risk: The security evidence reports under-disclosed persistent system changes related to shortcut setup.
+
+Mitigation: Avoid running shortcut setup until autostart and shell profile changes are clearly disclosed and acceptable.
+
+Risk: The security evidence reports dashboard exposure of sensitive local usage history.
+
+Mitigation: Avoid running the dashboard until it is bound to localhost with authentication or field minimization appropriate for the environment.
+
+Risk: The security guidance calls out shell-based npx execution, unpinned browser dependencies, and reset behavior that may not accurately delete data.
+
+Mitigation: Review shell execution paths, pin or bundle browser dependencies, and verify data deletion behavior before deployment.
+
+## Reference(s):
+
+- [Token Tracker Pro Skill Definition](artifact/SKILL.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [Integration Guide](artifact/INTEGRATION.md)
+- [Smart Recommendation Guide](artifact/SMART-RECOMMENDATION.md)
+- [Release Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, TypeScript integration snippets, CLI text output, and local dashboard views]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local token usage summaries, history exports, cleanup/reset commands, dashboard launch instructions, and model cost recommendations.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and SKILL.md; package.json lists 2.1.0 and CHANGELOG top entry lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

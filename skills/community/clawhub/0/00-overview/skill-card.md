@@ -1,39 +1,58 @@
-## Description: <br>
-Miki is a parenting assistant overview for 0-3 year child development, feeding, sleep, language, behavior, school readiness, and family growth tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miki 智能育儿助手 · 0-3岁宝宝发育评估、辅食指导、睡眠分析、语言开发、行为解读、入园准备的全程AI陪伴
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Parents and caregivers use this skill as an overview of Miki's planned parenting assistant capabilities for tracking early childhood development, feeding, sleep, behavior, and family guidance from birth through age three. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share identifiable child, family, health, feeding, sleep, or behavior details while seeking parenting guidance. <br>
-Mitigation: Avoid entering sensitive personal details unless data storage, access, deletion, and export practices are understood. <br>
-Risk: Parenting, feeding, sleep, development, or behavior guidance may be mistaken for medical or professional advice. <br>
-Mitigation: Treat outputs as general guidance and consult a pediatrician or qualified professional for health, safety, or developmental concerns. <br>
+## Use Case:
 
+External caregivers and parenting-support agents use this skill to frame guidance for 0-3 year-old child development, feeding, sleep, language, behavior, growth records, and preschool preparation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only overview; no code, shell commands, or external tool calls declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill describes long-term child development records without clear privacy, consent, deletion, export, or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require parental consent, collect only necessary child data, use secure storage, define retention limits, and provide export and deletion controls before deployment.
+
+Risk: Family or social sharing could expose minors' data without explicit permissions.
+
+Mitigation: Gate all sharing behind clear caregiver permissions, minimize shared details, and make sharing optional.
+
+Risk: Developmental comparisons and parenting guidance could be mistaken for medical diagnosis.
+
+Mitigation: Present comparisons as informational support and direct caregivers to qualified professionals for medical or developmental concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/00-overview)
+- [Publisher profile](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text parenting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should be reviewed for child privacy, consent, data retention, and medical-safety boundaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

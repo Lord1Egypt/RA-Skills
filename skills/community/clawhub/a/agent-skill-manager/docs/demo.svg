@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" font-family="'Cascadia Code','JetBrains Mono',Consolas,monospace">
+  <defs>
+    <linearGradient id="bar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3f4451"/>
+      <stop offset="100%" stop-color="#2c313a"/>
+    </linearGradient>
+  </defs>
+  <rect width="880" height="470" rx="10" fill="#1e2127"/>
+  <rect width="880" height="36" rx="10" fill="url(#bar)"/>
+  <circle cx="22" cy="18" r="6" fill="#ff5f57"/>
+  <circle cx="42" cy="18" r="6" fill="#febc2e"/>
+  <circle cx="62" cy="18" r="6" fill="#28c840"/>
+  <text x="440" y="23" text-anchor="middle" fill="#9da5b4" font-size="12">PowerShell — askill</text>
+
+  <text x="24" y="62" fill="#4ec9b0" font-size="13">PS C:\Users\demo&gt;</text>
+  <text x="160" y="62" fill="#e6e6e6" font-size="13">askill status</text>
+
+  <text x="24" y="88" fill="#e6e6e6" font-size="12">Skill                     autoclaw     kimi         minimax      trae        score</text>
+  <text x="24" y="104" fill="#5c6370" font-size="12">--------------------------------------------------------------------------</text>
+
+  <text x="24" y="126" fill="#e6e6e6" font-size="12">yt-dlp-downloader         ok link     ok link     ok native   ok link     100/A OK</text>
+  <text x="24" y="146" fill="#e6e6e6" font-size="12">gh-stack                  ok link     ok link     ok native   ok link      97/A OK</text>
+  <text x="24" y="166" fill="#e6e6e6" font-size="12">naval-perspective         ok link     ok link     ok native   ok link      88/B OK</text>
+  <text x="24" y="186" fill="#e6e6e6" font-size="12">unified_stock_skill       ok link     ok link     ok native   ok link      85/B OK</text>
+  <text x="24" y="206" fill="#e6e6e6" font-size="12">agently-mail              ok link     ok link     ok native   ok link      60/D RISKY</text>
+  <text x="24" y="226" fill="#e6e6e6" font-size="12">book-to-skill             ok link     ok link     ok native   ok link      42/F DANGEROUS</text>
+
+  <text x="24" y="258" fill="#4ec9b0" font-size="13">PS C:\Users\demo&gt;</text>
+  <text x="160" y="258" fill="#e6e6e6" font-size="13">askill audit book-to-skill</text>
+
+  <text x="24" y="284" fill="#e6e6e6" font-size="12">[book-to-skill] score=42/100 grade=F verdict=DANGEROUS files=48</text>
+  <text x="24" y="302" fill="#e6e6e6" font-size="12">  findings: critical=0 high=1 medium=1 low=14 info=0</text>
+  <text x="24" y="326" fill="#f44747" font-size="12">  - [high] reads sensitive credential files (tools/scan_generated_skill.py:75)</text>
+  <text x="24" y="344" fill="#f44747" font-size="12">  - [medium] dynamic module import (tests/test_discovery_tax.py:111)</text>
+  <text x="24" y="362" fill="#cca700" font-size="12">  - [low] network access in script (book_to_skill/dependencies.py:64)</text>
+
+  <text x="24" y="394" fill="#4ec9b0" font-size="13">PS C:\Users\demo&gt;</text>
+  <text x="160" y="394" fill="#e6e6e6" font-size="13">askill install --sync --audit https://github.com/user/awesome-skill</text>
+  <text x="24" y="414" fill="#5c6370" font-size="12">  Installing from URL: https://github.com/user/awesome-skill</text>
+  <text x="24" y="432" fill="#5c6370" font-size="12">  Installed: C:\Users\demo\.agents\skills\awesome-skill</text>
+  <text x="24" y="450" fill="#28c840" font-size="12">  Synced to 11 products | audit: score=100/100 grade=A</text>
+</svg>

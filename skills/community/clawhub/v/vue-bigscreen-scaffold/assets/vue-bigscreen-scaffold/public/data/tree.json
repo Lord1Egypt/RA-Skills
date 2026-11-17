@@ -1,0 +1,36 @@
+{
+  "name": "产品结构树",
+  "unit": "万元",
+  "items": {
+    "name": "2025 年度营收",
+    "value": 4090,
+    "children": [
+      {
+        "name": "产品A",
+        "value": 1560,
+        "children": [
+          { "name": "旗舰版", "value": 780 },
+          { "name": "标准版", "value": 540 },
+          { "name": "轻量版", "value": 240 }
+        ]
+      },
+      {
+        "name": "产品B",
+        "value": 1100,
+        "children": [
+          { "name": "订阅", "value": 660 },
+          { "name": "买断", "value": 440 }
+        ]
+      },
+      {
+        "name": "产品C",
+        "value": 900,
+        "children": [
+          { "name": "云服务", "value": 520 },
+          { "name": "本地部署", "value": 380 }
+        ]
+      },
+      { "name": "产品D", "value": 530 }
+    ]
+  }
+}

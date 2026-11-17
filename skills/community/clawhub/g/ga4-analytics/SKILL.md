@@ -18,7 +18,7 @@ Configure credentials by creating a `.env` file in the project root:
 ```
 GA4_PROPERTY_ID=123456789
 GA4_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
-GA4_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GA4_PRIVATE_KEY="REDACTED-SECRET\n"
 SEARCH_CONSOLE_SITE_URL=https://your-domain.com
 GA4_DEFAULT_DATE_RANGE=30d
 ```

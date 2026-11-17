@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//e//**)",
+      "Read(//c/Users/Administrator/**)",
+      "Read(//c/Users/Administrator/Documents/**)",
+      "Bash(find /e -maxdepth 3 -type d -iname \"biji\")",
+      "Bash(find /e -maxdepth 3 -type d -iname \"笔记\")",
+      "Bash(find /c -maxdepth 5 -type d -name \".obsidian\")",
+      "Bash(find /e -maxdepth 5 -type d -name \".obsidian\")",
+      "Bash(find /d -maxdepth 5 -type d -name \".obsidian\")",
+      "WebSearch"
+    ]
+  }
+}

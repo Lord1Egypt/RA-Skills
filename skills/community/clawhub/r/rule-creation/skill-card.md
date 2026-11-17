@@ -1,43 +1,58 @@
-## Description: <br>
-Auto-triggers Context Engineering compliance and Lobster enforcement when proposing, creating, or formalizing rules, policies, processes, or behavioral constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-triggers Context Engineering compliance and Lobster enforcement when proposing, creating, or formalizing rules, policies, processes, or behavioral constraints.
 
-## Publisher: <br>
-[levineam](https://clawhub.ai/user/levineam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[levineam](https://clawhub.ai/user/levineam)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn newly stated rules, policies, workflows, or behavioral constraints into persistent governance documentation and, when available, Lobster enforcement workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically modify persistent governance files. <br>
-Mitigation: Use a review-first workflow, keep backups, and restrict writes to known governance files. <br>
-Risk: The skill can generate executable Lobster workflows from unreviewed rule text. <br>
-Mitigation: Inspect generated Lobster workflow files before enabling or running them. <br>
-Risk: An uncontrolled TARGET_FILE value could direct writes outside the intended governance documents. <br>
-Mitigation: Remove or tightly control TARGET_FILE and allow only approved governance paths. <br>
+## Use Case:
 
+Developers and agent operators use this skill to persist newly proposed rules, policies, and behavioral constraints into governance files, optionally creating Lobster enforcement workflows when the rule meets CR-012 criteria.
 
-## Reference(s): <br>
-- [ClawHub Rule Creation skill page](https://clawhub.ai/levineam/rule-creation) <br>
-- [Context Engineering reference](https://x.com/koylanai/status/2025286163641118915) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, JSON script results, generated workflow files, governance document entries, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent governance files and generate Lobster workflow files when invoked by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact/package.json) <br>
+Risk: Broad triggers can cause persistent governance files to be changed without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only where automatic rule persistence is desired, require human review before relying on new governance entries, and restrict allowed write destinations.
+
+Risk: Rule text is treated as trusted input and can be written into Markdown or workflow configuration.
+
+Mitigation: Review and sanitize rule names and descriptions before enabling generated docs or Lobster workflows.
+
+Risk: Unsafe file or script handling may affect local agent configuration.
+
+Mitigation: Run in a controlled workspace, review generated files before deployment, and avoid use until confirmation gates and destination allowlists are in place.
+
+## Reference(s):
+
+- [Rule Creation ClawHub release page](https://clawhub.ai/levineam/skills/rule-creation)
+- [Context Engineering source post](https://x.com/koylanai/status/2025286163641118915)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, JSON script results, governance-file entries, and optional Lobster workflow files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append to governance files and generate workflow configuration when enforcement is available.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

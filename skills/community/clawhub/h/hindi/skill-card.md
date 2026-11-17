@@ -1,37 +1,48 @@
-## Description: <br>
-Write Hindi that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Hindi that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to steer Hindi writing toward casual, human-sounding Hindi and Hinglish with appropriate formality, fillers, particles, reactions, regional flavor, and script consistency. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Casual Hinglish, slang, and informal pronouns may be inappropriate for formal, professional, elder-facing, or audience-sensitive writing. <br>
-Mitigation: Review the target audience and requested register before applying the skill; choose formal Hindi when the context requires respect or professional tone. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/hindi) <br>
+## Use Case:
 
+External users and employees use this skill to have an agent write Hindi or Hinglish in a casual, natural register instead of overly formal or robotic Hindi.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language Hindi or Hinglish text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, or tool use is described by the evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally steers output toward casual Hindi and Hinglish, which may be inappropriate for formal writing, respectful address, pure Hindi, or a specific regional or script preference.
+
+Mitigation: Tell the agent the required formality, honorific level, region, and script when those constraints matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/hindi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, files, credentials, persistence, or system access are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

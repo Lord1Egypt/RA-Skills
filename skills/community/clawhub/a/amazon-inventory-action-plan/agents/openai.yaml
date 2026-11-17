@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Inventory Action Plan"
+  short_description: "Plan stockout recovery, restocking, and overstock actions."
+  default_prompt: "Use $amazon-inventory-action-plan to turn my Amazon inventory situation into a prioritized operating plan."

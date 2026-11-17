@@ -1,41 +1,55 @@
-## Description: <br>
-Abaqus后处理完整流程技能。覆盖结果可视化、输出数据类型、数据处理、图形显示、数据导出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for Abaqus postprocessing workflows, including result visualization, output data types, data processing, graphics display, data export, and explicit-analysis checks.
 
-## Publisher: <br>
-[jijinbao-code](https://clawhub.ai/user/jijinbao-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jijinbao-code](https://clawhub.ai/user/jijinbao-code)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Abaqus ODB results, visualize deformation and field outputs, extract XY/history data, export reports, and check explicit-analysis energy behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Engineering-analysis guidance can be misapplied to production or safety-critical models. <br>
-Mitigation: Review solver settings, model assumptions, and job execution decisions before relying on results. <br>
-Risk: Large ODB files and high field-output frequency can increase disk usage and slow postprocessing. <br>
-Mitigation: Select output frequency and exported report scope deliberately for the model size and review task. <br>
+## Use Case:
 
+Developers and structural engineers use this skill to review Abaqus/CAE postprocessing steps, select relevant output variables, export plots and tabular data, and sanity-check explicit-analysis energy histories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jijinbao-code/abaqus-postprocessing) <br>
-- [Abaqus documentation](https://help.3ds.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Abaqus/Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers visualization workflows, output variables, report export, and engineering checks for Abaqus postprocessing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Example Abaqus snippets and export workflows can create local report, image, animation, or data files and may consume significant disk space when used with large ODB files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review snippets before execution, run them against intended ODB files only, and confirm output paths and available disk space before exporting reports or animations.
+
+Risk: Postprocessing conclusions depend on the quality and setup of the underlying Abaqus analysis.
+
+Mitigation: Validate model setup, units, output frequency, and energy-history checks before relying on exported plots or reports.
+
+## Reference(s):
+
+- [Abaqus documentation](https://help.3ds.com)
+- [ClawHub skill page](https://clawhub.ai/jijinbao-code/skills/abaqus-postprocessing)
+- [ClawHub publisher profile](https://clawhub.ai/user/jijinbao-code)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with Abaqus Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested Abaqus/CAE menu actions, output variable names, export steps, and postprocessing checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

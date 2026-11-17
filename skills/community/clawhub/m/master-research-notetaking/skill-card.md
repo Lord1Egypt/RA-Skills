@@ -1,42 +1,57 @@
-## Description: <br>
-系统研究一位大师/思想家/名人的核心体系，提炼最值得学的内容，写入Obsidian笔记库。基于女娲(Nuwa)的多智能体并行研究方法论升级——不是简单摘录百科，而是提取可复用的思维框架。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+系统研究一位大师、思想家或名人的核心体系，提炼最值得学的内容并写入 Obsidian 笔记库，重点产出可复用的思维框架而非百科摘录。
 
-## Publisher: <br>
-[realpda](https://clawhub.ai/user/realpda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realpda](https://clawhub.ai/user/realpda)
 
-## Use Case: <br>
-External users use this skill to research a public thinker, founder, author, or notable person and turn public-source findings into reusable mental models, decision heuristics, practical actions, and an Obsidian-ready note. It is intended for structured knowledge capture rather than simple biography summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can write notes into an Obsidian vault and may overwrite or duplicate existing notes if paths are not checked. <br>
-Mitigation: Confirm the exact vault path and filename before writing, and review existing notes before creating or updating a file. <br>
-Risk: Research prompts may include sensitive personal or business context to tailor the final note. <br>
-Mitigation: Provide only context needed for the note and avoid unnecessary sensitive personal or business details. <br>
-Risk: Delegated web research can produce incomplete or outdated conclusions about a person. <br>
-Mitigation: Use the built-in quality checkpoint, preserve information gaps and contradictions, and include source references and honest boundaries in the final note. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to research a public figure's ideas, extract reusable mental models, and produce a structured Obsidian note with sources, contradictions, practical actions, and honest limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realpda/master-research-notetaking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown research notes with interim text summaries and occasional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create an Obsidian Markdown note after confirming the target vault path and filename.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to use private user context and an Obsidian vault when creating research notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact vault path, constrain which notes may be read, and avoid sharing unrelated private notes with delegated research tasks.
+
+Risk: The skill writes research output into an Obsidian vault, which can introduce unwanted or misleading notes if the scope is wrong.
+
+Mitigation: Require preview-before-write and user confirmation before creating or updating vault files.
+
+Risk: The artifact includes a shell search example for checking existing notes.
+
+Mitigation: Replace ad hoc shell search with a safer file-search method scoped to the confirmed vault path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realpda/skills/master-research-notetaking)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research note with tables, source lists, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or proposes structured Obsidian note content after a research quality checkpoint.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

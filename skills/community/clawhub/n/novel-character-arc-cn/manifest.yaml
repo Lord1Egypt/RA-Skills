@@ -1,0 +1,27 @@
+name: novel-character-arc-cn
+display_name: 角色成长弧线卡
+slug: "novel-character-arc-cn"
+version: "1.0.1"
+short_description: "把人物设定和已写章节整理成带证据与建议的成长弧线卡"
+description: "根据角色设定、故事概要和已写章节，整理角色的核心欲望、内在缺陷、转折、最终选择与章节锚点，输出独立Markdown成长弧线卡；已发生的事实与后续创作建议分别标注，资料缺失时指出缺项，不补造人物经历。"
+repository: "https://github.com/xxjrq/novel-character-arc-cn"
+license: MIT-0
+tags:
+  - "小说创作"
+  - "角色塑造"
+  - "故事大纲"
+  - "中文写作"
+  - "自媒体创作"
+trigger_words:
+  - "角色成长弧线"
+  - "人物弧光"
+  - "角色卡"
+  - "章节锚点"
+entrypoint: "SKILL.md"
+self_test: "python3 scripts/self_test.py"
+assets:
+  icon: "icon-512.png"
+  promo: "assets/promo-1600x900.png"
+sources:
+  - "sources/chinese-novelist-skill.md"
+icon: icon-512.png

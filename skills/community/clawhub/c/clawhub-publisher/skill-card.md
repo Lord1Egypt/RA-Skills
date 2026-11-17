@@ -1,46 +1,58 @@
-## Description: <br>
-Automates ClawHub skill publishing with version management, changelog generation, asset bundling, metadata validation, and deployment support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates ClawHub skill publishing with version management, changelog generation, asset bundling, metadata validation, and deployment workflows.
 
-## Publisher: <br>
-[Shepherd217](https://clawhub.ai/user/Shepherd217) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shepherd217](https://clawhub.ai/user/shepherd217)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to prepare, validate, publish, and manage ClawHub skill releases, including version bumps, changelogs, bundled assets, rollback workflows, and CI/CD publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may use ClawHub credentials that can publish, roll back, or alter access to live skills. <br>
-Mitigation: Use a least-privilege ClawHub token and require explicit human approval before publish, batch publish, rollback, CI deployment, README rewriting, or team-access changes. <br>
-Risk: The artifact instructs users to install external npm or PyPI packages that were not reviewed by this card. <br>
-Mitigation: Install only if the publisher and package source are trusted, and review the package contents before granting credentials. <br>
-Risk: Automated publishing, versioning, changelog generation, and README updates can release incorrect files or misleading metadata. <br>
-Mitigation: Start with validation or dry-run mode and review the exact files, versions, changelog, and generated metadata before deployment. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to package, validate, version, and publish agent skills to ClawHub, including batch publishing and rollback workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Shepherd217/clawhub-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/Shepherd217) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Artifact package manifest](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, JavaScript, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include publishing commands, package configuration, CI workflow snippets, changelog text, validation guidance, and rollback instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and package.json) <br>
+Risk: The skill may operate with ClawHub publishing credentials and account-changing authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege short-lived tokens, pass credentials through protected environment or secret-manager mechanisms, and avoid command-line flags for secrets.
+
+Risk: Installation examples reference external packages that were not validated by the Skill Card generator.
+
+Mitigation: Use an isolated environment, avoid global installation where possible, and pin and verify the publisher package before use.
+
+Risk: Publishing or rollback workflows could change public skill releases.
+
+Mitigation: Run dry-run or validation first and review the skill directory for secrets before publishing or rollback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shepherd217/skills/clawhub-publisher)
+- [Publisher Documentation](https://docs.midas-skills.com/clawhub-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell, JavaScript, JSON, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce publishing configuration, changelog text, validation results, and ClawHub package URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

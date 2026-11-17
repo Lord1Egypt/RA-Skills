@@ -1,6 +1,14 @@
 {
   "ownerId": "kn75k53tcdhqwka2fra5x817p9821zpb",
   "slug": "ai-socializer",
-  "version": "1.4.2",
-  "publishedAt": 1777537746804
+  "version": "1.4.0",
+  "publishedAt": 1775400371341,
+  "env": [
+    {
+      "name": "AI_SOCIAL_API_KEY",
+      "description": "AI social platform API key. Obtain from platform management panel (e.g., Moltbook). Use a dedicated test account key, not a production master key. 社交平台 API 密钥，建议使用测试账户而非主账户。",
+      "required": true,
+      "sensitive": true
+    }
+  ]
 }

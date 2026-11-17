@@ -1,42 +1,58 @@
-## Description: <br>
-S2-SP-OS Universal Indoor Air Adapter helps agents discover LAN air sensors, wrap MQTT or HTTP readings into spatial device data, and present offline home-automation linkage suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent commands for discovering LAN air sensors, wrapping local MQTT/HTTP-style readings into spatial grid JSON, and presenting offline comfort or energy suggestions.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External users and developers use this skill to discover local indoor air sensors, assign discovered devices to zones and grids, read air-quality data with explicit consent, and review local linkage suggestions for comfort or energy-saving actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may attempt local-network sensor discovery. <br>
-Mitigation: Use it only on trusted networks and require explicit consent before discovery, reads, or any linked home-automation action. <br>
-Risk: The packaged script is described by security evidence as broken and its sensor readings are demo data. <br>
-Mitigation: Audit and fix the script before relying on readings or using them to drive real-world automation. <br>
-Risk: Offline linkage suggestions may be inappropriate for a home environment if accepted without review. <br>
-Mitigation: Present suggestions as recommendations and ask the user for confirmation before executing any spatial adapter action. <br>
+## Use Case:
 
+Developers, smart-home operators, and agent users can use this skill to invoke a Python adapter for indoor air sensor discovery, consent-gated local readings, spatial labeling, and local linkage suggestions. Users should validate devices and readings before relying on the output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-indoor-air-adapter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; discovery and read operations are intended for trusted local networks with explicit user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and script mention 1.1.0) <br>
+Risk: The skill can present simulated discovered devices or sensor readings as real data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all discovered devices and air-quality readings as untrusted until verified against known hardware or an independent monitoring source.
+
+Risk: Discovery mode may broadcast on the user's LAN while running under local exec permissions.
+
+Mitigation: Run discovery only on networks where scanning is authorized and keep the scan scope limited to the intended local subnet.
+
+Risk: The artifact claims broad MQTT/HTTP device support but the included script uses mock data paths rather than real device integrations.
+
+Mitigation: Confirm that real device communication and data provenance are implemented before using the skill for operational decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/spacesq/skills/s2-indoor-air-adapter)
+- [Publisher Profile](https://clawhub.ai/user/spacesq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON output from the adapter script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and local execution; discovery mode may broadcast on the user's LAN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

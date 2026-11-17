@@ -1,42 +1,55 @@
-## Description: <br>
-待办大师 helps agents manage local todos through a Python CLI backed by SQLite, including initialization, add, list, show, update, complete, reopen, archive, statistics, and migration support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+待办大师 helps agents manage local todos through a Python CLI backed by a user-confirmed SQLite database.
 
-## Publisher: <br>
-[Asir-zhang](https://clawhub.ai/user/Asir-zhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asir-zhang](https://clawhub.ai/user/asir-zhang)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to keep local personal or workflow todos without relying on an online service. It is intended for user-directed task creation, querying, status updates, archiving, and local persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Todo titles and content are stored locally on disk. <br>
-Mitigation: Choose the data directory deliberately and avoid putting secrets in todo entries. <br>
-Risk: State-changing commands can alter todo records. <br>
-Mitigation: Keep add, update, done, reopen, and archive commands user-directed. <br>
+## Use Case:
 
+Developers and agents use this skill to keep local task lists, query due work, and update task status without relying on an online service. It is suited to single-user local workflows that need a CLI and durable SQLite storage.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Asir-zhang/todo-master) <br>
-- [OpenClaw Todo Skill introduction](references/INTRO.md) <br>
-- [OpenClaw Todo Skill technical design](references/TECH_SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI-oriented text with optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local filesystem and SQLite state after explicit initialization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates a local configuration file and SQLite todo database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Initialize it only after confirming the intended storage directory, and use an existing absolute path when choosing custom storage.
+
+Risk: Reference documents describe an older file-partitioned design while the current SKILL.md and script use SQLite.
+
+Mitigation: Use SKILL.md and scripts/todo.py as the operational source for current commands and storage behavior.
+
+## Reference(s):
+
+- [OpenClaw Todo Skill Introduction](references/INTRO.md)
+- [OpenClaw Todo Skill Technical Design (V1)](references/TECH_SPEC.md)
+- [ClawHub Skill Page](https://clawhub.ai/asir-zhang/skills/todo-master)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Configuration]
+
+**Output Format:** [Human-readable CLI text or JSON, with local config and SQLite data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates config.json and a local SQLite todo database in the user-confirmed data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

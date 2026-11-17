@@ -1,43 +1,56 @@
-## Description: <br>
-Searches Amazon products across supported marketplace regions through the ClawEC API and returns product prices, sales, ratings, review counts, and links for sourcing and competitor research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill searches Amazon products through the ClawEC API across supported marketplace regions and returns product price, sales, rating, review, and link data for product research.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-External users and ecommerce operators use this skill to search Amazon products by keyword and marketplace region, compare product metrics, and support sourcing or competitor research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive ClawEC API key. <br>
-Mitigation: Store CLAWEC_API_KEY in an environment variable or secret store and never hard-code it in skill files or prompts. <br>
-Risk: Product-search keywords and selected marketplace regions are sent to a third-party ClawEC API. <br>
-Mitigation: Use the skill only when the user accepts sending those queries to clawec.com, and avoid private or sensitive keywords. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and developers use this skill to search Amazon marketplaces and compare products for product sourcing, keyword research, and competitor analysis.
 
-## Reference(s): <br>
-- [Amazon product search response schema](references/response-schema.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anyunzhong/clawec-amazon-product-search) <br>
-- [ClawEC API base URL](https://www.clawec.com/api) <br>
-- [ClawEC API key page](https://www.clawec.com/api-key?source=q-clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and tables, with JSON responses from the ClawEC API when called directly.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWEC_API_KEY and sends product-search keywords and marketplace region codes to the ClawEC API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Amazon search keywords, selected region, and a Clawec API token are sent to Clawec when the API is called.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those values with Clawec is acceptable, and prefer a restricted Clawec API key.
+
+Risk: The shell helper uses the API token in a curl command, which can be exposed through process inspection or command-line logs on shared systems.
+
+Mitigation: Run the helper only in controlled environments, avoid shared systems for token-bearing commands, and rotate the key if command-line logs may have captured it.
+
+## Reference(s):
+
+- [Response schema](references/response-schema.md)
+- [ClawEC API base URL](https://www.clawec.com/api)
+- [Amazon product search endpoint](https://www.clawec.com/api/aigc/tool/amazon_product_search)
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-amazon-product-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries and tables; JSON from the shell helper/API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default summaries are in Chinese and may include product count, target region, comparison tables, sorting, and 2-3 observations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

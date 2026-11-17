@@ -1,43 +1,64 @@
-## Description: <br>
-Biaoshu Writer is a bid technical proposal drafting skill that parses txt, pdf, docx, and xlsx tender files and helps generate scoring-aligned Word documents for transportation engineering bids. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Biaoshu Writer helps an agent parse Chinese tender files, draft technical bid content against scoring criteria, check chapter word counts, humanize Chinese text, merge chapters, and produce formatted Word documents.
 
-## Publisher: <br>
-[wuliwenjing](https://clawhub.ai/user/wuliwenjing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuliwenjing](https://clawhub.ai/user/wuliwenjing)
 
-## Use Case: <br>
-External bid writers, proposal teams, and developers use this skill to parse tender materials, draft technical proposal sections, check chapter word counts, merge chapter files, and convert Markdown drafts into formatted Word bid documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-authorship masking and document metadata rewriting may conflict with tender rules or organizational policy. <br>
-Mitigation: Use those behaviors only when the tender rules and the organization explicitly allow them; otherwise avoid AI-trace removal and metadata-masking steps for real submissions. <br>
-Risk: The skill processes bid files and writes generated outputs to user-controlled project paths. <br>
-Mitigation: Use only bid files the user is authorized to process, change output paths before use, and review generated content before submission. <br>
-Risk: Dependency and font installation relies on external package and font sources. <br>
-Mitigation: Install Python packages and SimSun fonts from trusted sources and review the installation script before running it. <br>
+## Use Case:
 
+External bid writers and procurement teams use this skill to turn tender files and scoring criteria into Chinese technical bid drafts, supporting Markdown chapter generation, quality checks, and DOCX conversion.
 
-## Reference(s): <br>
-- [Humanizer-zh reference](references/humanizer-zh.md) <br>
-- [iLovePDF OCR](https://www.ilovepdf.com/ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, generated proposal text, shell commands, and Word document files produced through bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python dependencies python-docx, pdfplumber, openpyxl, and PyPDF2; generated Word output may include document metadata rewriting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.4.0 (source: server release metadata and skill changelog, released 2026-04-14) <br>
+Risk: Tender documents may contain sensitive procurement, pricing, or project information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a controlled workspace and avoid sending documents to public OCR or conversion services unless approved by the organization.
+
+Risk: Generated bid content may be incomplete, inaccurate, or misaligned with tender scoring requirements.
+
+Mitigation: Require human review of outlines, chapter drafts, word-count checks, and final DOCX output before submission.
+
+Risk: Dependency and font installation can introduce supply-chain exposure.
+
+Mitigation: Install pinned Python dependencies from trusted sources and obtain SimSun.ttf only from verified systems or approved internal software sources.
+
+Risk: DOCX metadata rewriting and AI-trace removal can affect document provenance.
+
+Mitigation: Review document metadata and keep an internal audit copy before submitting or distributing generated Word files.
+
+## Reference(s):
+
+- [Biaoshu Writer ClawHub listing](https://clawhub.ai/wuliwenjing/skills/biaoshu-writer)
+- [humanizer-zh reference](references/humanizer-zh.md)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, local command guidance, and generated DOCX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Python scripts for tender-file parsing, chapter word-count checks, Markdown merging, and DOCX conversion with configurable document formatting.]
+
+## Skill Version(s):
+
+5.4.0 (source: server release metadata and SKILL.md changelog, released 2026-04-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

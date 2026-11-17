@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>屏幕坐标助手</title>
+  <desc>十字准星落在屏幕网格上的图标</desc>
+  <rect width="512" height="512" rx="96" fill="#141A22"/>
+  <g stroke="#2C3A48" stroke-width="2">
+    <path d="M64 128H448M64 224H448M64 320H448M64 416H448"/>
+    <path d="M128 64V448M224 64V448M320 64V448M416 64V448"/>
+  </g>
+  <g stroke="#0E7C5A" stroke-width="3" opacity="0.55">
+    <path d="M64 176H448M64 272H448M64 368H448"/>
+    <path d="M176 64V448M272 64V448M368 64V448"/>
+  </g>
+  <circle cx="256" cy="256" r="118" fill="none" stroke="#00E682" stroke-width="14"/>
+  <circle cx="256" cy="256" r="14" fill="#00E682"/>
+  <g stroke="#00E682" stroke-width="14" stroke-linecap="round">
+    <path d="M256 84V150"/>
+    <path d="M256 362V428"/>
+    <path d="M84 256H150"/>
+    <path d="M362 256H428"/>
+  </g>
+  <rect x="318" y="118" width="132" height="42" rx="10" fill="#1B2430" stroke="#2E4A5C" stroke-width="3"/>
+  <text x="384" y="148" font-family="Consolas, monospace" font-size="30" font-weight="bold"
+        fill="#7FE8C4" text-anchor="middle">X,Y</text>
+</svg>

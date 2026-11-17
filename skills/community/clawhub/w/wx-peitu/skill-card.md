@@ -1,49 +1,65 @@
-## Description: <br>
-公众号长文配图生成器。输入MD文章，输出PNG配图包，同步到飞书云盘。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wx Peitu generates PNG/JPEG illustration packs for WeChat long-form Markdown articles and can sync the results to Lark/Feishu Drive.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Content creators and operators use this skill to turn Markdown long-form articles into WeChat public-account illustration packages, including covers, visual cards, section graphics, and usage guidance. It is intended for article illustration workflows rather than full article typesetting, video, or image retouching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically write generated images and intermediate files to a local Desktop folder. <br>
-Mitigation: Use it only in workspaces where local file creation is expected, and review the generated output directory before sharing or publishing files. <br>
-Risk: The workflow can upload outputs through a Feishu or lark-cli account without a clear per-run confirmation step. <br>
-Mitigation: Require explicit confirmation before cloud upload, disable upload steps for sensitive drafts, or manually review files before running lark-cli upload commands. <br>
-Risk: The workflow may contact external image or font services while generating article illustrations. <br>
-Mitigation: Avoid unpublished or confidential article content when external assets are enabled, and prefer user-provided local images or approved asset sources for sensitive work. <br>
-Risk: Master Mode can skip normal confirmation points for plan and style choices. <br>
-Mitigation: Avoid Master Mode for sensitive or brand-critical content; use the multi-step mode so the illustration plan and style decisions are reviewed before generation. <br>
+## Use Case:
 
+External creators, content marketers, and agent users use this skill to turn Markdown WeChat articles into a planned set of cover, body, data, flow, and back-cover illustrations ready for publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardwason/wx-peitu) <br>
-- [Source repository](https://github.com/EdwardWason/wx-peitu) <br>
-- [Workflow](references/workflow.md) <br>
-- [Design System](references/design-system.md) <br>
-- [Quality Gates](references/quality-gates.md) <br>
-- [Assets](references/assets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with generated HTML/CSS, screenshot scripts, PNG/JPEG image files, and upload links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces standalone HTML as an intermediate artifact, screenshots it with Puppeteer, saves images locally, and can sync outputs to Feishu cloud drive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.0.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Markdown-derived search terms or generated image material may be sent to third-party photo services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive articles, or disable external photo search when drafts or source material should stay private.
+
+Risk: Generated files may be written to the desktop and uploaded to Lark/Feishu Drive automatically.
+
+Mitigation: Disable or remove the cloud-sync and file-opening steps unless the user explicitly wants those side effects.
+
+Risk: Zero-confirmation Master Mode can combine file access, network calls, and uploads without enough runtime control.
+
+Mitigation: Use the confirmation-based workflow for sensitive drafts and review the illustration plan before generation.
+
+Risk: The Puppeteer screenshot flow uses browser rendering settings and external assets that need hardening for untrusted Markdown.
+
+Mitigation: Use a reviewed, pinned release and harden the screenshot script before processing untrusted Markdown or remote assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardwason/skills/wx-peitu)
+- [Workflow reference](references/workflow.md)
+- [Design system reference](references/design-system.md)
+- [Quality gates reference](references/quality-gates.md)
+- [Assets reference](references/assets.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, standalone HTML/CSS files, Puppeteer screenshot commands, and PNG/JPEG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Typical delivery includes a local desktop folder of generated images and optional Lark/Feishu Drive upload links; screenshot generation depends on Puppeteer-core and local Chrome or Chromium.]
+
+## Skill Version(s):
+
+7.4.0 (source: frontmatter, release evidence, changelog released 2026-07-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

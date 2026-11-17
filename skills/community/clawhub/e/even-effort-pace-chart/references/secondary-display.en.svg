@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="380" viewBox="0 0 1040 380" role="img" aria-labelledby="title description" lang="en">
+  <title id="title">One checkpoint, three parenthesized displays</title>
+  <desc id="description">Illustrative leg: 10 km, 16 equivalent km, 80 moving minutes. Arrival elapsed time 03:10, with a 06:00 start. Pace is 08:00/km, equivalent pace 05:00/km, arrival clock 09:10.</desc>
+  <style>text{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-variant-numeric:tabular-nums}</style>
+  <rect x="0" y="0" width="1040" height="380" fill="#FFFFFF" rx="0" />
+  <text x="32" y="48" font-size="28" fill="#202A35" font-weight="700" text-anchor="start">One checkpoint, three parenthesized displays</text>
+  <text x="32" y="80" font-size="18" fill="#626D79" font-weight="400" text-anchor="start">Example · 10 km / 16 eq. km · moving 01:20 · elapsed 03:10 · start 06:00</text>
+  <rect x="24" y="108" width="320" height="210" fill="#F7F8FA" rx="12" />
+  <text x="44" y="145" font-size="22" fill="#202A35" font-weight="650" text-anchor="start">Pace (default)</text>
+  <text x="184" y="200" font-size="35" fill="#202A35" font-weight="700" text-anchor="middle">03:10</text>
+  <text x="184" y="239" font-size="29" fill="#5470C6" font-weight="650" text-anchor="middle">(08:00)</text>
+  <text x="184" y="286" font-size="18" fill="#626D79" font-weight="400" text-anchor="middle">80 min ÷ 10 km</text>
+  <rect x="360" y="108" width="320" height="210" fill="#F7F8FA" rx="12" />
+  <text x="380" y="145" font-size="22" fill="#202A35" font-weight="650" text-anchor="start">Equivalent pace</text>
+  <text x="520" y="200" font-size="35" fill="#202A35" font-weight="700" text-anchor="middle">03:10</text>
+  <text x="520" y="239" font-size="29" fill="#5470C6" font-weight="650" text-anchor="middle">(05:00)</text>
+  <text x="520" y="286" font-size="18" fill="#626D79" font-weight="400" text-anchor="middle">80 min ÷ 16 eq. km</text>
+  <rect x="696" y="108" width="320" height="210" fill="#F7F8FA" rx="12" />
+  <text x="716" y="145" font-size="22" fill="#202A35" font-weight="650" text-anchor="start">Arrival clock</text>
+  <text x="856" y="200" font-size="35" fill="#202A35" font-weight="700" text-anchor="middle">03:10</text>
+  <text x="856" y="239" font-size="29" fill="#5470C6" font-weight="650" text-anchor="middle">(09:10)</text>
+  <text x="856" y="286" font-size="18" fill="#626D79" font-weight="400" text-anchor="middle">06:00 + 03:10</text>
+  <text x="32" y="355" font-size="20" fill="#626D79" font-weight="400" text-anchor="start">The top value is elapsed arrival time in every mode; only the parentheses change.</text>
+</svg>

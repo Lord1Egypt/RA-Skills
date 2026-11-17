@@ -1,0 +1,21 @@
+{
+  "input": {
+    "content_items": [
+      {
+        "id": "novel-03",
+        "title": "角色关系设定",
+        "published_at": "2025-04-01",
+        "platform": "专栏"
+      }
+    ]
+  },
+  "expected_output": {
+    "markdown": "## 资料核对\n- 待补：`novel-03` 缺少 `summary`，无法判断更新/拆分/合集。\n\n## 二次利用清单\n- 不对 `novel-03` 给出更新、拆分、合集或新角度建议；请先提供原文摘要。\n\n## 新角度\n- 无；缺少摘要，不能从标题推断内容结构或读者需求。\n\n## 不在范围内\n- 未以外部作品、爆款案例或臆测内容补全 `novel-03`。",
+    "semantic_expectations": {
+      "missing_item_id": "novel-03",
+      "missing_field": "summary",
+      "stopped_item_ids": ["novel-03"],
+      "recommendations_for_stopped_items": []
+    }
+  }
+}

@@ -1,42 +1,54 @@
-## Description: <br>
-Create and manage Privacy.com virtual cards. Use for generating single-use cards, merchant-locked cards, listing cards, setting spending limits, pausing/closing cards, and viewing transactions via the Privacy.com API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Privacy.com virtual cards, including single-use and merchant-locked cards, spending limits, card states, and transaction lookup via the Privacy.com API.
 
-## Publisher: <br>
-[JohnieLee](https://clawhub.ai/user/JohnieLee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johnielee](https://clawhub.ai/user/johnielee)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Privacy.com API requests for virtual card creation, card state changes, spend limits, card listing, and transaction lookup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide direct production financial-card management actions, including creating, updating, pausing, or closing virtual cards. <br>
-Mitigation: Use a least-privileged Privacy.com API key, prefer sandbox testing, and require explicit confirmation before create, update, pause, or close requests. <br>
-Risk: Card data, CVVs, full card numbers, or API keys could be exposed through chat, logs, terminal history, or shared files. <br>
-Mitigation: Avoid displaying or storing full card numbers, CVVs, or API keys; redact sensitive outputs and keep credentials out of shared logs and files. <br>
-Risk: Closing or modifying the wrong card can cause irreversible or unintended account changes. <br>
-Mitigation: Verify the exact card token, intended state, and spend limit before running any card update or close command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Privacy.com API Reference](references/api.md) <br>
-- [Privacy.com](https://privacy.com) <br>
+## Use Case:
 
+Developers and operators use this skill to generate and administer Privacy.com virtual cards, adjust spending limits and card state, and review transaction data through Privacy.com API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Privacy.com API endpoints, curl commands, request parameters, and response field descriptions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may expose Privacy.com API keys or full payment-card credentials while following the skill.
+
+Mitigation: Use a sandbox or least-privilege API key where possible, and avoid printing, logging, saving, or sharing full card numbers or CVVs.
+
+Risk: Agents may create cards, change spending limits, pause cards, or permanently close cards without enough user control.
+
+Mitigation: Require explicit confirmation before creating cards, changing limits, pausing cards, or permanently closing cards.
+
+## Reference(s):
+
+- [Privacy.com API Reference](references/api.md)
+- [Privacy.com](https://privacy.com)
+- [Privacy Cards ClawHub Listing](https://clawhub.ai/johnielee/skills/privacy-cards)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl command examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PRIVACY_API_KEY and access to the Privacy.com production or sandbox API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn784af36jyc12gczmcr7fq0a981dbhr",
   "slug": "douyin-video-analyzer",
   "version": "3.7.4",
-  "publishedAt": 1773363653801
+  "description": "深度拆解抖音视频，自动生成包含数据、结构、视觉、文案的完整分析报告。警告：此技能需要本地安装 ffmpeg、yt-dlp 和 Playwright，并将视频帧与音频片段上传至智谱 AI 进行处理。",
+  "author": "Leo & Neo",
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "bins": ["ffmpeg", "yt-dlp", "node"],
+        "env": ["ZHIPU_API_KEY"]
+      },
+      "install": [
+        {
+          "id": "playwright-deps",
+          "label": "安装 Playwright 依赖",
+          "kind": "exec",
+          "command": "npx playwright install --with-deps chromium"
+        }
+      ]
+    }
+  }
 }

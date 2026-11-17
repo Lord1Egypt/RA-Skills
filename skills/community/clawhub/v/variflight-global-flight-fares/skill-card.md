@@ -1,41 +1,55 @@
-## Description: <br>
-Variflight Global Flight Fares searches one-way flight fares from the Variflight ticket API by departure IATA city code, arrival IATA city code, and departure date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Variflight Global Flight Fares searches one-way flight fares from the Variflight ticket API by departure IATA city code, arrival IATA city code, and departure date.
 
-## Publisher: <br>
-[AriseFX](https://clawhub.ai/user/AriseFX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arisefx](https://clawhub.ai/user/arisefx)
 
-## Use Case: <br>
-Travel assistants, operations teams, and end users use this skill to look up one-way flight fare options for a single route and date from Variflight using IATA city codes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries send the departure code, arrival code, and departure date to Variflight's ticket API. <br>
-Mitigation: Inform users before lookup and avoid submitting sensitive itinerary details beyond the route and date needed for the fare search. <br>
-Risk: Fare and flight availability data can change or the external API can return errors or no results. <br>
-Mitigation: Surface API error messages and empty-result responses clearly, and advise users to verify important fare decisions before booking. <br>
+## Use Case:
 
+External users and agents use this skill to look up one-way flight fare options for a specific route and departure date, then summarize airports, times, duration, price, transfers, and fare tag text.
 
-## Reference(s): <br>
-- [Variflight Ticket Homepage](https://ticket.variflight.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AriseFX/variflight-global-flight-fares) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown summary or raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries include airports, times, duration, price, transfer status, and flight tag text; result count can be limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends the route and departure date supplied by the user to Variflight's ticket API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the route and date needed for the fare lookup and avoid adding sensitive personal details.
+
+Risk: Default formatted results are Chinese text, which may be unclear for users who expect English output.
+
+Mitigation: Ask the agent to translate or summarize the output, or request raw JSON when exact payload data is needed.
+
+## Reference(s):
+
+- [Variflight Ticket Homepage](https://ticket.variflight.com/)
+- [Variflight Flight List API Endpoint](https://ticket.variflight.com/ticket-api-gateway/open/search/flightListAI)
+- [ClawHub Skill Page](https://clawhub.ai/arisefx/skills/variflight-global-flight-fares)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Formatted text output is Chinese by default; raw JSON is available when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

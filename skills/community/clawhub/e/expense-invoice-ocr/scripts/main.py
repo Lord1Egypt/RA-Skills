@@ -82,7 +82,12 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     """
     带重试机制的 OCR 识别函数。
     当遇到 429 (Too Many Requests) 时，自动等待后重试。
-    调用 Scnet OCR API 进行识别"""
+    调用 Scnet OCR API 进行识别。
+
+    安全提示：本函数会将 file_path 指向的文件完整上传到
+    Scnet 远程 OCR 服务 (https://api.scnet.cn)。调用方应确保
+    用户已明确同意上传，且文件不包含机密或受监管信息。
+    """
     api_base = config['SCNET_API_BASE']
     api_key = config['SCNET_API_KEY']
     url = f"{api_base}/ocr/recognize"
@@ -90,6 +95,18 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
     # 检查文件是否存在
     if not os.path.isfile(file_path):
         sys.exit(f"错误: 文件不存在 - {file_path}")
+
+    # 在实际上传前输出明确的安全警告/确认提示
+    sys.stderr.write(
+        "\n===============================================\n"
+        "⚠️  数据安全提示\n"
+        "===============================================\n"
+        f"即将把以下文件上传到 Scnet OCR 服务：\n  {os.path.abspath(file_path)}\n"
+        f"目标地址：{url}\n"
+        "该文件可能包含个人身份信息、财务或医疗等敏感内容。\n"
+        "请确认您已授权将此文件发送到 Scnet，且不含机密/受监管信息。\n"
+        "===============================================\n\n"
+    )
 
     # 自动检测 MIME 类型
     mime_type, _ = mimetypes.guess_type(file_path)
@@ -182,7 +199,7 @@ def recognize_with_retry(ocr_type, file_path, config, retry_count=0):
 def main():
     if len(sys.argv) != 3:
         print("用法: python main.py <ocrType> <filePath>")
-        print("ocrType 可选值: UNIFIED_IDENTIFICATION_OF_FINANC, VAT_INVOICE, VAT_ROLL_INVOICE, TAXI_INVOICE, TRAIN_TICKET, AIRPORT_TICKET, VEHICLE_SALE_INVOICE, QUOTA_INVOICE, TOLL_INVOICE, MEDICAL_INVOICE, TAX_CERTIFICATE, SHIP_TICKET, NON_TAX_BILL, GENERAL_MACHINE_INVOICE, BUS_TICKET")
+        print("ocrType 可选值: UNIFIED_IDENTIFICATION_OF_FINANC, VAT_INVOICE, VAT_TOLL_INVOICE, VAT_ROLL_INVOICE, TAXI_INVOICE, TRAIN_TICKET, AIRPORT_TICKET, VEHICLE_SALE_INVOICE, QUOTA_INVOICE, TOLL_INVOICE, MEDICAL_INVOICE, MEDICAL_INPATIENT_INVOICE, MEDICAL_EXPENSE_SETTLEMENT, TAX_CERTIFICATE, SHIP_TICKET, NON_TAX_BILL, GENERAL_MACHINE_INVOICE, BUS_TICKET, RIDE_HAILING_ITINERARY, UNIONPAY_POS_RECEIPT")
         sys.exit(1)
 
     ocr_type = sys.argv[1]

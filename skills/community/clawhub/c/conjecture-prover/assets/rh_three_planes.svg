@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="100%" role="img">
+  <title>三平面相交框架</title>
+  <desc>素数平面、零点平面、K-hat曲面绕ζ交线交汇</desc>
+
+  <rect x="30" y="170" width="620" height="160" rx="6" fill="#26215C" stroke="#534AB7" stroke-width="0.5" transform="skewX(-15)"/>
+  <text x="340" y="200" text-anchor="middle" class="th" fill="#AFA9EC" transform="skewX(-15)">K-hat 曲面</text>
+  <text x="340" y="225" text-anchor="middle" class="ts" fill="#CECBF6" transform="skewX(-15)">由全部素数共同生成, σ和γ各是一个维度</text>
+
+  <rect x="30" y="120" width="620" height="140" rx="6" fill="#04342C" stroke="#0F6E56" stroke-width="0.5" transform="skewX(15)"/>
+  <text x="340" y="150" text-anchor="middle" class="th" fill="#5DCAA5" transform="skewX(15)">零点平面</text>
+  <text x="340" y="175" text-anchor="middle" class="ts" fill="#9FE1CB" transform="skewX(15)">关机点散布在 σ=0.5 的竖线上</text>
+
+  <text x="100" y="380" class="ts" fill="#9FE1CB">左侧: 素数平面</text>
+  <text x="500" y="380" class="ts" fill="#CECBF6">右侧: K-hat 曲面</text>
+
+  <line x1="340" y1="40" x2="340" y2="420" stroke="#D85A30" stroke-width="2"/>
+  <text x="355" y="60" class="th" fill="#D85A30">ζ 交线</text>
+
+  <rect x="30" y="60" width="80" height="40" rx="6" fill="#04342C" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="70" y="84" text-anchor="middle" class="ts" fill="#9FE1CB">零点</text>
+
+  <rect x="570" y="60" width="80" height="40" rx="6" fill="#26215C" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="610" y="84" text-anchor="middle" class="ts" fill="#CECBF6">K-hat</text>
+
+  <rect x="280" y="60" width="120" height="40" rx="6" fill="#4B1528" stroke="#F0997B" stroke-width="0.5"/>
+  <text x="340" y="84" text-anchor="middle" class="ts" fill="#F0997B">交点 = ζ 函数</text>
+
+  <text x="340" y="440" text-anchor="middle" class="ts" fill="#D3D1C7">三平面描述同一个数学结构。证明RH = 说清它们之间的关系</text>
+</svg>

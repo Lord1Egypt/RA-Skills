@@ -1,44 +1,53 @@
-## Description: <br>
-Installs and manages OpenClaw mobile gateway as a system service. Invoke when users need one-command deploy, start, stop, upgrade, or uninstall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and manages OpenClaw mobile gateway as a system service. Invoke when users need one-command deploy, start, stop, upgrade, or uninstall.
 
-## Publisher: <br>
-[jason141123-sys](https://clawhub.ai/user/jason141123-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason141123-sys](https://clawhub.ai/user/jason141123-sys)
 
-## Use Case: <br>
-Developers and operators use this skill to install, upgrade, check, restart, and uninstall an OpenClaw mobile administration gateway as a systemd service. It is intended for hosts where a network-accessible gateway on port 4800 is acceptable and can be protected appropriately. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installed service exposes a broad administrative API and sensitive controls on a network-accessible gateway. <br>
-Mitigation: Install only on intended hosts, restrict port 4800 with a firewall or authenticated reverse proxy, and review who can call the API. <br>
-Risk: Gateway tokens or upstream authorization values may be stored in /etc/openclaw-mobile-gateway/env. <br>
-Mitigation: Protect the environment file, limit host access, and rotate any stored token after testing or if exposure is suspected. <br>
-Risk: The gateway can read or write OpenClaw configuration paths selected through environment variables. <br>
-Mitigation: Inspect OPENCLAW_CONFIG_PATH, OPENCLAW_RUNTIME_CONFIG_PATH, and OPENCLAW_USAGE_CONFIG_PATH before installation and run with the least suitable service account. <br>
-Risk: The uninstall script removes the configured install directory recursively. <br>
-Mitigation: Do not run uninstall.sh with a custom INSTALL_DIR unless the target path has been verified. <br>
+## Use Case:
 
+Developers and operators use this skill to install, upgrade, check, restart, and uninstall an OpenClaw mobile gateway backed by a systemd service. It is intended for environments where a mobile APK needs a gateway endpoint for OpenClaw administration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jason141123-sys/openclaw-mobile-gateway-installer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operator-facing install, check, service-management, and uninstall guidance for a packaged gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The installed gateway can expose administrative OpenClaw functions and secrets if reachable from untrusted networks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a tightly controlled environment, do not expose port 4800 to untrusted networks, and place the service behind authentication, TLS, and firewall rules.
+
+Risk: The installer creates an autostarting systemd service and writes service configuration containing sensitive OpenClaw and provider credentials.
+
+Mitigation: Review the install and uninstall scripts before use, protect configured credentials, and rotate credentials if the service has already been reachable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jason141123-sys/skills/openclaw-mobile-gateway-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may direct users to run installer, health-check, service-management, and uninstall commands.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

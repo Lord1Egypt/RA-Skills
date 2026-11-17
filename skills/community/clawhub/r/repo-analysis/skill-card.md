@@ -1,43 +1,57 @@
-## Description: <br>
-Repo Analysis helps agents read, explain, and evaluate software repositories or GitHub projects through engineering-oriented summaries, architecture analysis, adoption review, and lightweight GitHub health context when relevant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, explain, and evaluate a software repository or GitHub project in an engineering-oriented way for codebase understanding, architecture analysis, adoption review, onboarding notes, and risk-oriented engineering summaries.
 
-## Publisher: <br>
-[9penny](https://clawhub.ai/user/9penny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[9penny](https://clawhub.ai/user/9penny)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand unfamiliar repositories, map structure and key flows, and evaluate maintainability or adoption risk. It supports quick reads, architecture analysis, and takeover reviews, with optional lightweight GitHub health signals for public projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository files as part of its purpose, which can expose unrelated private code if the target scope is too broad. <br>
-Mitigation: Use it only on repositories or subdirectories that are appropriate to share with the agent, and specify the intended target scope when a workspace contains unrelated code. <br>
-Risk: Repository health and adoption guidance can be incomplete when documentation, tests, or public project metadata are sparse. <br>
-Mitigation: Treat the analysis as review input and verify critical runtime behavior, security posture, and operational assumptions before adopting or modifying a project. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly understand unfamiliar repositories, map stack and module boundaries, trace important execution paths, and judge maintainability or adoption risk. It supports quick-read, architecture, and takeover-review modes, with a lightweight public GitHub health layer when project adoption signals matter.
 
-## Reference(s): <br>
-- [Signals for Repo Analysis](references/signals.md) <br>
-- [Repo Analysis Output Templates](references/output-template.md) <br>
-- [Lightweight GitHub health layer](references/github-health.md) <br>
-- [Adapted notes from surveyed skills](references/adapted-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown engineering analysis with evidence labels and file-path references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output depth varies by selected mode: quick read, architecture analysis, or takeover review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: Repository analysis can be misleading when the requested scope, output mode, or target repository is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the repository scope and preferred output language when the request could be interpreted in multiple ways.
+
+Risk: The skill may inspect local repository files and optionally public GitHub health signals when adoption context is requested.
+
+Mitigation: Review the repository scope before use and avoid pointing it at directories containing unrelated sensitive material.
+
+## Reference(s):
+
+- [Repo Analysis Skill](artifact/SKILL.md)
+- [Repo Analysis Output Templates](artifact/references/output-template.md)
+- [Signals for Repo Analysis](artifact/references/signals.md)
+- [Lightweight GitHub Health Layer](artifact/references/github-health.md)
+- [Adapted Notes from Surveyed Skills](artifact/references/adapted-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown engineering summary with evidence labels and optional command or code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output depth varies by requested mode: quick read, architecture analysis, or takeover review.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

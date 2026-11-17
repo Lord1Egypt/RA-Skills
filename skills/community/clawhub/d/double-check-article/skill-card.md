@@ -1,39 +1,52 @@
-## Description: <br>
-Reviews Chinese article drafts for typos, unclear expression, and improvement opportunities, then returns a structured article inspection report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese articles for typos, unclear expression, and opportunities to improve structure, style, and readability.
 
-## Publisher: <br>
-[tobegit3hub](https://clawhub.ai/user/tobegit3hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tobegit3hub](https://clawhub.ai/user/tobegit3hub)
 
-## Use Case: <br>
-External users and content reviewers use this skill to proofread Chinese articles, identify typo and expression issues, and receive concrete improvement suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Article drafts may contain private or sensitive text. <br>
-Mitigation: Only provide drafts that are appropriate for the configured agent environment to process. <br>
-Risk: Proofreading and factual-error suggestions may be inaccurate or subjective. <br>
-Mitigation: Review suggested edits before publication and verify factual claims against authoritative sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobegit3hub/double-check-article) <br>
+## Use Case:
 
+External users and content reviewers use this skill to proofread Chinese articles, identify likely typos and punctuation issues, improve expression clarity, and receive actionable revision suggestions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown report in Chinese with structured sections for typo corrections, expression fixes, and improvement suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files, code, or shell commands are produced; output is advisory text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is scoped to Chinese article proofreading and may produce poor results for other languages.
+
+Mitigation: Use it for Chinese text review, and choose or revise a different skill for non-Chinese proofreading.
+
+Risk: Proofreading suggestions can be incorrect or change intended meaning.
+
+Mitigation: Review suggested corrections before applying them to final content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobegit3hub/skills/double-check-article)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown article-check report with Chinese section headings and numbered findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces typo corrections, expression revisions, and improvement suggestions for Chinese article text.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

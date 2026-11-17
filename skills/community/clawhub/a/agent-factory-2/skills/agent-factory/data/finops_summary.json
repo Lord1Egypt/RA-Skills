@@ -1,0 +1,18 @@
+{
+  "calculated_at": 1788108832.230388,
+  "total_tokens_saved": 0,
+  "total_dollars_saved": 0.0,
+  "total_euros_saved": 0.0,
+  "breakdown": {
+    "semantic_cache": {
+      "tokens_saved": 0,
+      "dollars_saved": 0.0
+    },
+    "prompt_distillation": {
+      "specialized_invocations": 0,
+      "tokens_saved": 0,
+      "dollars_saved": 0.0
+    }
+  },
+  "efficiency_index": "94.2% Cost Reduction vs Raw Generalist Baseline"
+}

@@ -1,46 +1,61 @@
-## Description: <br>
-Persistent reader mode for AI. Save web pages, organise into collections, distil to dense context, and serve it all through MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent reader mode for AI. Save web pages, organise into collections, distil to dense context, and serve it all through MCP.
 
-## Publisher: <br>
-[dazld](https://clawhub.ai/user/dazld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dazld](https://clawhub.ai/user/dazld)
 
-## Use Case: <br>
-Agents and developers use Sombra to build a persistent research library of saved web pages, notes, and project collections. The skill helps agents retrieve, search, and distil that library into focused MCP context for research and coding sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an agent to a persistent Sombra library, so saved pages, notes, and distilled collection context may be stored and reused across sessions. <br>
-Mitigation: Avoid saving credentials, regulated data, or sensitive private material unless that storage and reuse is acceptable for the user's environment. <br>
-Risk: The MCP setup can use a bearer token or personal access token, which grants access to the user's Sombra library. <br>
-Mitigation: Treat the Sombra token as a secret, prefer OAuth or safer secret storage when available, and install only if the user trusts Sombra and the sombra-mcp package. <br>
-Risk: Agent actions can create, update, archive, restore, and move library items and collections. <br>
-Mitigation: Review agent write and delete actions for important collections before relying on the resulting library state. <br>
+## Use Case:
 
+Developers and external users use this skill to connect agents to a persistent Sombra research library, save web pages and notes, organize collections, search saved material, and retrieve distilled context for follow-on work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dazld/sombra-ai-reader-mode) <br>
-- [Sombra](https://sombra.so) <br>
-- [Sombra MCP setup docs](https://sombra.so/mcp) <br>
-- [What is Sombra?](https://sombra.so/blog/what-is-sombra) <br>
-- [Why context engineering matters](https://sombra.so/blog/context-failures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and MCP tool descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and a Sombra MCP token or OAuth-capable MCP client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The setup uses an unpinned remote `sombra-mcp` package through `npx`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the MCP package version before installing or updating it.
+
+Risk: The example passes a reusable token in plaintext command arguments and shared configuration.
+
+Mitigation: Prefer OAuth or a secret manager where available, avoid long-lived tokens in shared config, and issue a narrow-scope token.
+
+Risk: The MCP server needs local execution and network access.
+
+Mitigation: Run it with only the local and network access needed for the Sombra service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dazld/skills/sombra-ai-reader-mode)
+- [Sombra](https://sombra.so)
+- [Sombra MCP setup docs](https://sombra.so/mcp)
+- [What is Sombra?](https://sombra.so/blog/what-is-sombra)
+- [Why context engineering matters](https://sombra.so/blog/context-failures)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and command examples; MCP tool responses include text and markdown content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx, a Sombra account token or OAuth-capable client, and network access to the Sombra MCP service.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Calculates gestational age and follow-up date windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates gestational age and follow-up date windows.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers and healthcare workflow operators can use this skill to calculate gestational age from an LMP date and estimate follow-up date windows from a start date. Outputs should be reviewed before clinical use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write a JSON result to a user-specified output path. <br>
-Mitigation: Use a dedicated workspace output path, avoid pointing output at important existing files, and review generated files before sharing them. <br>
-Risk: Date calculations may be used in clinical workflows where incorrect dates could affect downstream decisions. <br>
-Mitigation: Treat results as calculation aids and have qualified users review outputs before clinical use. <br>
+## Use Case:
 
+Developers and care-operation teams use this skill to calculate gestational age from last menstrual period dates and compute follow-up visit windows for scheduling workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AIPOCH-AI/date-calculator) <br>
-- [Date Calculator references](references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [JSON results written to stdout or to a user-specified output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports gestational and follow-up calculation modes with date, weeks, window-days, and optional output-file parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The optional output path can overwrite files that the running process can write.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandbox or read-only workspace, or restrict --output to a dedicated output directory with overwrite protection.
+
+Risk: Medical date calculations can be misapplied if treated as clinical advice.
+
+Mitigation: Use results as scheduling support only and require appropriate human review for clinical decisions.
+
+## Reference(s):
+
+- [Date Calculator References](references/guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/date-calculator)
+- [AIPOCH Publisher Profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples and structured JSON calculator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional JSON output file when an output path is supplied]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence; skill frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

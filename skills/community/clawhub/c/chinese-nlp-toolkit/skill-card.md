@@ -1,40 +1,48 @@
-## Description: <br>
-Specialized natural language processing for Chinese text. Covers segmentation (jiaba), sentiment analysis, keyword extraction, text summarization, tone detection, readability scoring, and format conversion (simplified/traditional, pinyin annotation). Use when processing, analyzing, or transforming Chinese text content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Specialized natural language processing for Chinese text. Covers segmentation (jiaba), sentiment analysis, keyword extraction, text summarization, tone detection, readability scoring, and format conversion (simplified/traditional, pinyin annotation). Use when processing, analyzing, or transforming Chinese text content.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users use this skill to process, analyze, summarize, and transform Chinese text for segmentation, sentiment, keywords, readability, and script or pronunciation conversion tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may default to Chinese-labeled output, which can be inconvenient when the user needs another response language or format.
+
+Mitigation: Ask the agent for the desired response language, labels, or structured output format when non-Chinese labels or a specific format are required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, translators, and writers use this skill to segment, analyze, summarize, score, and convert Chinese text while preserving Chinese-specific signals such as variants, named entities, sentiment markers, slang, and pinyin or zhuyin annotations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential, regulated, or sensitive Chinese text may be exposed to the user's agent or runtime during analysis. <br>
-Mitigation: Avoid pasting sensitive text unless the user is comfortable with the agent processing that content. <br>
-Risk: Chinese NLP results can be unreliable for dialectal text, classical Chinese, internet slang, sarcasm, mixed-language text, or invisible characters. <br>
-Mitigation: Review outputs before relying on them, and treat flagged edge cases as requiring human validation. <br>
+**Output Format:** [Markdown or structured text with Chinese annotations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Chinese NLP Toolkit on ClawHub](https://clawhub.ai/371166758-qq/chinese-nlp-toolkit) <br>
+**Other Properties Related to Output:** [May produce Chinese-labeled analysis fields unless the user requests another response language or format.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with Chinese annotations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces segmented text, keywords, sentiment labels with confidence and signals, summaries, readability scores, and format-conversion guidance.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

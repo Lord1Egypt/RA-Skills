@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d289fg9rr68tv3e36nb5ajh84d2w5",
-  "slug": "ai-short-drama-director",
-  "version": "1.0.1",
-  "publishedAt": 1775955817277
+  "id": 378623320145992,
+  "version": "1.0.0",
+  "name": "ai-short-drama-director",
+  "updated_at": 1773990653226,
+  "platform": "minimax"
 }

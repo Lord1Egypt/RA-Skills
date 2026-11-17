@@ -4,21 +4,23 @@
 
 职责：签名注入、自动重试、统一错误映射。
 所有 capability 的 service 层通过 api_post(path, body) 调用网关 API。
-网关地址：https://skills-gateway.1688.com
+网关地址：https://gateway.1688.com
 """
 
 import json
 import sys
 import time
 from functools import wraps
+import uuid
 
 import requests
 
 from _auth import get_auth_headers
 from _errors import AuthError, ParamError, RateLimitError, ServiceError, TimeoutError
+from settings import settings
 
-BASE_URL = "https://skills-gateway.1688.com"
-# BASE_URL = "https://skills-gateway.1688.com"
+BASE_URL = "https://gateway.1688.com"
+CHANNEL = "clawhubai"
 MAX_RETRIES = 3
 RETRY_DELAY_BASE = 1
 
@@ -54,24 +56,27 @@ def _with_retry(max_retries: int = MAX_RETRIES):
     return decorator
 
 
-def _handle_http_error(e: requests.exceptions.HTTPError):
-    """HTTP 状态码 -> SkillError，502/504 触发重试"""
-    status = e.response.status_code if e.response is not None else None
-    if status == 401:
-        raise AuthError("签名无效或已过期（401）")
-    if status == 429:
-        raise RateLimitError("请求被限流（429），请稍后重试")
-    if status == 400:
-        raise ParamError("请求参数不合法（400）")
-    if status in (502, 504):
-        raise _RetryableError("网关超时（{}），将自动重试".format(status))
-    raise ServiceError("HTTP 错误 {}".format(status))
-
-
 def _handle_biz_error(result: dict):
-    """业务错误（HTTP 200 但 success=false）-> SkillError"""
-    msg = result.get("msgInfo") or result.get("message") or "未知业务错误"
-    raise ServiceError(str(msg))
+    """业务错误（HTTP 200 但 success=false）→ SkillError"""
+    msg_code = str(result.get("msgCode") or "")
+    code = str(result.get("code") or "")
+    msg_info = result.get("msgInfo")
+
+    if code == "SignatureInvalid":
+        raise AuthError("签名校验失败")
+    if code == "ParamMissing":
+        raise ParamError("缺少必填参数")
+    if code == "APIUnsupported":
+        raise ParamError("工具不存在")
+    if code in ("QosAppFrequencyLimit", "QosApiFrequencyLimit"):
+        raise RateLimitError("请求超限")
+    if code == "ISPInvokeError":
+        raise ServiceError("后端服务错误")
+    if code == "ISPInvokeTimeout":
+        raise ServiceError("后端服务调用超时")
+
+    detail = msg_info or msg_code or "未知业务错误"
+    raise ServiceError(str(detail))
 
 
 @_with_retry()
@@ -96,6 +101,8 @@ def _do_post(path: str, body: dict = None, timeout: int = 30, raw_body: str = No
     Raises:
         ParamError / RateLimitError / ServiceError
     """
+    # path 末尾追加渠道码: /api/xxx/1.0.0 → /api/xxx/1.0.0/{CHANNEL}
+    path = f"{path}/{CHANNEL}"
     url = "{}{}".format(BASE_URL, path)
     body_str = raw_body if raw_body is not None else json.dumps(body or {}, ensure_ascii=False)
 
@@ -103,12 +110,15 @@ def _do_post(path: str, body: dict = None, timeout: int = 30, raw_body: str = No
     headers = get_auth_headers("POST", path, body_str)
     if not headers:
         raise AuthError("AK 未配置")
-
+    headers["x-skill-code"] = settings.SKILL_NAME
+    headers["x-skill-version"] = settings.SKILL_VERSION
+    headers["x-request-id"] = uuid.uuid4().hex
     try:
         resp = requests.post(url, headers=headers, data=body_str.encode('utf-8') if isinstance(body_str, str) else body_str, timeout=timeout)
-        resp.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        _handle_http_error(e)
+        if resp.status_code in (502, 504):
+            raise _RetryableError("网关超时（{}）".format(resp.status_code))
+        if resp.status_code != 200:
+            raise ServiceError("网关异常（HTTP {}）".format(resp.status_code))
     except requests.exceptions.Timeout:
         raise _RetryableError("请求超时({}s)".format(timeout))
 

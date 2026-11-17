@@ -1,38 +1,53 @@
-## Description: <br>
-Study another AI agent, coding CLI, or assistant codebase and extract transferable patterns into concrete local improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Study another AI agent, coding CLI, or assistant codebase and extract transferable patterns into concrete local improvements for skills, workflow updates, documentation, or implementation plans.
 
-## Publisher: <br>
-[cndbot](https://clawhub.ai/user/cndbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cndbot](https://clawhub.ai/user/cndbot)
 
-## Use Case: <br>
-Developers and engineers use this skill to examine agent and assistant codebases, rank transferable patterns, and turn them into concrete local workflow, skill, documentation, or implementation upgrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Claude Code patterns worth borrowing](references/claude-code-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cndbot/agent-pattern-mining) <br>
+Developers and agent-tool maintainers use this skill to analyze another agent system, rank transferable UX and architecture patterns, and turn selected patterns into local skill, documentation, workflow, or implementation changes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown analysis with ranked findings, concrete local upgrades, gaps, and changed-file summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation plans or file changes when the user asks for concrete upgrades.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may propose or make edits to persistent agent guidance, memory, or skill files.
+
+Mitigation: Review proposed edits to AGENTS.md, TOOLS.md, MEMORY.md, and skill files before accepting them, especially in shared workspaces.
+
+Risk: Patterns copied from another agent system may not transfer cleanly to the local runtime or workflow.
+
+Mitigation: Prefer portable patterns, classify vendor-locked ideas as do-not-copy, and report gaps that need deeper implementation work.
+
+## Reference(s):
+
+- [Claude Code patterns worth borrowing](references/claude-code-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with optional code, shell command, configuration, or file-change details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports reviewed subsystems, ranked transferable ideas, concrete local upgrades, open gaps, and exact files changed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

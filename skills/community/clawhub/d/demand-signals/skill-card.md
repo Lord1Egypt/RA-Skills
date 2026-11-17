@@ -1,44 +1,57 @@
-## Description: <br>
-Identify and interpret early demand signals from social trends, search patterns, competitor behavior, and market data to inform product sourcing and inventory timing decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify and interpret early demand signals from social trends, search patterns, competitor behavior, and market data to inform product sourcing and inventory timing decisions.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers and inventory teams use this skill to collect, validate, size, and act on early product demand signals before committing sourcing capital. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inventory and sourcing decisions may be influenced by incomplete, outdated, or misleading demand signals. <br>
-Mitigation: Independently verify assumptions, use multi-source validation, start with conservative test orders, and require explicit human approval before supplier outreach, purchases, reorders, or liquidation decisions. <br>
-Risk: Business account data and generated demand reports may contain commercially sensitive information. <br>
-Mitigation: Share only the minimum necessary account or market data with the agent and keep generated reports private. <br>
+## Use Case:
 
+External ecommerce sellers and sourcing teams use this skill to evaluate emerging product demand, validate signals across multiple sources, size opportunities, assess competition and timing, and make go/no-go inventory decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/demand-signals) <br>
-- [Output Template](output-template.md) <br>
-- [Signal Sources Guide](signal-sources-guide.md) <br>
-- [Validation Framework](validation-framework.md) <br>
-- [Quality Checklist](quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report with tables, scoring rubrics, demand estimates, timing analysis, and a go/no-go recommendation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided market, search, social, supplier, and marketplace data; does not make purchases or contact suppliers automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can influence sourcing, inventory, or capital allocation decisions if its analysis is treated as authoritative.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as decision support only; independently verify source data and require explicit human approval before placing orders or spending money.
+
+Risk: Demand signals can be false positives, manipulated, or stale by the time inventory arrives.
+
+Mitigation: Require multi-source validation, sustained growth checks, re-validation before ordering, and predefined review or liquidation triggers.
+
+## Reference(s):
+
+- [Demand Signals ClawHub Page](https://clawhub.ai/leooooooow/skills/demand-signals)
+- [Demand Signal Report Template](artifact/output-template.md)
+- [Signal Sources Guide](artifact/signal-sources-guide.md)
+- [Demand Signal Validation Framework](artifact/validation-framework.md)
+- [Demand Signal Analysis Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured analysis and action brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces raw signal lists, validated shortlists, demand sizing estimates, competition assessments, timing recommendations, go/no-go decisions, and risk controls.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

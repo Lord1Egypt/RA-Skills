@@ -1,43 +1,60 @@
-## Description: <br>
-Causal Sufficiency Determinability Checker - Meta-Skill Gatekeeper based on JEP Paper CheckDeterminability Algorithm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check target determinability on a bounded finite configuration set.
 
-## Publisher: <br>
-[schchit](https://clawhub.ai/user/schchit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schchit](https://clawhub.ai/user/schchit)
 
-## Use Case: <br>
-Developers and agents use this skill to check whether a target judgment is zero-error determinable from a finite set of observed configurations before proceeding with an action. When evidence is insufficient, it returns a counterexample and missing-evidence guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The proceed/not-proceed result could be over-trusted for high-impact workflows. <br>
-Mitigation: Use the result as advisory evidence and require human or policy review before automatic approval of sensitive actions. <br>
-Risk: Running the FastAPI service on an unintended network interface could expose the checker to unwanted requests. <br>
-Mitigation: Bind the service only to the intended interface and deploy it inside an isolated Python environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate whether a target field is determinable from observations across a bounded finite set of configurations, and to obtain counterexamples or evidence suggestions when it is not.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/schchit/determinability-checker) <br>
-- [README](artifact/determinability-checker-skill/README.md) <br>
-- [CHANGELOG](artifact/determinability-checker-skill/CHANGELOG.md) <br>
-- [Skill manifest](artifact/determinability-checker-skill/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis, Guidance] <br>
-**Output Format:** [JSON response with determinability status, decision table or counterexample, and missing-evidence guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The HTTP API returns a structured response for a single check request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata, frontmatter, manifest, and changelog) <br>
+Risk: Remote API exposure may exceed the package's local-service assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the service only on 127.0.0.1 unless it is protected by a trusted proxy with TLS plus request-rate and read-time limits.
+
+Risk: Bearer-token or trusted-key configuration could expose service access if stored in source control or shared outside the service account.
+
+Mitigation: Keep JEP_CLIENTS and trusted-key configuration out of source control, generate strong bearer tokens, and grant only the check permission unless other helpers are intentionally used.
+
+Risk: A determinability result may be mistaken for factual correctness, legal compliance, or execution permission.
+
+Mitigation: Treat can_proceed as a statement about the submitted finite dataset only, and require separate validation before acting on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/schchit/skills/determinability-checker)
+- [README](README.md)
+- [Security profile](SECURITY.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Guidance]
+
+**Output Format:** [JSON API responses with determinability status, decision tables, counterexamples, missing evidence, and guidance messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bounded to 1-128 configurations, at most 32 evidence fields, and finite JSON scalar observation and target values.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

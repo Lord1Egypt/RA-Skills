@@ -1,43 +1,53 @@
-## Description: <br>
-A MuMu novel-management skill that helps an agent bind or create a single novel project, generate and materialize outlines, trigger chapter batches, audit chapters with RAG, and approve or rewrite published content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MuMu AI Novel helps an agent create or bind a novel project, generate chapter batches, audit plot consistency with RAG, and review or rewrite chapters for Chinese fiction workflows.
 
-## Publisher: <br>
-[crypto-2042](https://clawhub.ai/user/crypto-2042) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crypto-2042](https://clawhub.ai/user/crypto-2042)
 
-## Use Case: <br>
-External developers and writing teams use this skill to operate a MuMu-backed fiction workflow for one bound novel project, including initialization, outline expansion, batch chapter generation, RAG-based review, foreshadow tracking, and chapter approval or rewrite. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can authenticate to MuMu and publish, approve, or overwrite chapters when review commands are run. <br>
-Mitigation: Use a limited-purpose MuMu account and double-check project_id and chapter_id before approving or rewriting content. <br>
-Risk: MuMu credentials or a session file can expose access to the configured MuMu server. <br>
-Mitigation: Set MUMU_API_URL, MUMU_USERNAME, and MUMU_PASSWORD explicitly, protect any session file, and leave MUMU_SESSION_FILE unset unless the file can be secured. <br>
-Risk: The workflow depends on the configured MuMu server for project state and generated content. <br>
-Mitigation: Install and run the skill only when the target MuMu server and endpoint are trusted. <br>
+## Use Case:
 
+External developers and writing agents use this skill to manage a MuMu novel project lifecycle: initialize or bind a project, create outlines and chapter slots, trigger generation, inspect drafts, analyze chapters for lore consistency, and publish approved rewrites.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/crypto-2042/mumuai-novel-skills) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/crypto-2042) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and script output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some helper scripts can emit JSON; review and rewrite actions can update a MuMu project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata, SKILL.md metadata) <br>
+Risk: The skill can overwrite or publish chapters through approve and rewrite commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target chapter IDs and rewritten content before running approve or rewrite actions.
+
+Risk: API authentication and session handling are under-protected for shared or untrusted environments.
+
+Mitigation: Use a trusted MuMu API endpoint, prefer HTTPS for non-local endpoints, configure explicit credentials, and avoid shared session files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crypto-2042/skills/mumuai-novel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script-generated text or JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MuMu API endpoint credentials and explicit project_id and optional style_id values for project-bound operations.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

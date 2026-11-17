@@ -1,44 +1,51 @@
-## Description: <br>
-Generic publishing tool for Claude Code skills that validates, packages, and publishes to ClawHub, Hermes Agent, and anthropics/skills with bilingual README support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generic publishing tool for Claude Code skills that validates, packages, and publishes to ClawHub, Hermes Agent, and anthropics/skills with bilingual README support.
 
-## Publisher: <br>
-[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to validate Claude Code skill metadata, generate publish packages and bilingual README files, and prepare publishing steps for ClawHub, Hermes Agent, and anthropics/skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may direct an agent to read local GitHub and ClawHub credentials from ~/.env or the shell environment. <br>
-Mitigation: Require explicit user confirmation before reading credential files or environment variables, and use least-privilege tokens scoped only to the intended publish target. <br>
-Risk: Publishing, branch pushes, pull requests, and proxy changes can affect external accounts or local network behavior. <br>
-Mitigation: Confirm the target platform, repository, branch, and proxy settings before making changes, and prefer dry-run validation before any upload or push. <br>
-Risk: Generated publish packages may contain copied scripts, manifests, README content, or examples that were not intended for release. <br>
-Mitigation: Inspect the generated package contents and run validation or scanning before uploading to ClawHub or submitting GitHub pull requests. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to validate Claude Code skill metadata, generate publish packages, and publish or prepare submissions for ClawHub, Hermes Agent, and anthropics/skills.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhangyanbo2007/skill-publisher-universal) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhangyanbo2007) <br>
-- [Hermes Agent GitHub API Endpoint](https://api.github.com/repos/NousResearch/hermes-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, generated files, manifests, and validation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local publish package artifacts such as SKILL.md, README.md, scripts, examples, and .clawhub.json when helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill asks agents to automatically read local credentials and source a user .env file before network and publishing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit approval for each token, selected target, proxy, git push, pull request, and ClawHub publish action; avoid following the ~/.env sourcing instruction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangyanbo2007/skills/skill-publisher-universal)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, generated README content, package files, and publishing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces publishing packages for selected marketplaces and may prepare validation or submission commands.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

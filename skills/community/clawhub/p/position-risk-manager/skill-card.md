@@ -1,43 +1,59 @@
-## Description: <br>
-股票仓位管理与风控专家。不负责选股，专注仓位管理和头寸调度。提供移动跟踪止盈、阶梯式止盈、核心 - 卫星策略、动态再平衡等经典模型。适用于大幅浮盈、深度套牢、震荡洗盘等各种持仓场景，给出冷酷理性的买卖和调仓建议。使用场景：用户已有持仓，需要止盈/止损建议、仓位调整、风险控制、心理疏导时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language stock position management and risk-control guidance focused on trailing stops, scaled take-profit plans, core-satellite allocation, portfolio rebalancing, and trading psychology for users who already hold positions.
 
-## Publisher: <br>
-[georgetao730](https://clawhub.ai/user/georgetao730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georgetao730](https://clawhub.ai/user/georgetao730)
 
-## Use Case: <br>
-External users with existing stock positions use this skill to reason through position sizing, stop-loss and take-profit planning, rebalancing, and trading psychology. It produces structured risk-management guidance for scenarios such as large unrealized gains, drawdowns, high single-stock concentration, and range-bound positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce stock-position recommendations that may be mistaken for licensed financial advice. <br>
-Mitigation: Treat outputs as informational risk-management support, verify prices and assumptions independently, and make investment decisions under the user's own responsibility. <br>
-Risk: Optional market-data dependencies such as AKShare or pandas may change the runtime environment or data source behavior. <br>
-Mitigation: Install optional dependencies only when needed, review package sources and versions, and verify any fetched market data before relying on it. <br>
+## Use Case:
 
+External users and agents use this skill to assess an existing stock position, calculate profit/loss and position concentration, and produce a concise risk-management plan with stop-loss, take-profit, rebalancing, and psychology guidance. It is not a stock-picking skill and should not be treated as personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/georgetao730/position-risk-manager) <br>
-- [Risk Management Rules](references/risk-rules.md) <br>
-- [Trading Psychology](references/trading-psychology.md) <br>
-- [Trailing Stop Guide](references/trailing-stop-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with optional shell commands for the local position calculator] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language position risk assessment, action plan, price-level suggestions, and trading psychology notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can produce concrete trading percentages and price levels that users may mistake for personalized investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational position-risk guidance, independently verify assumptions and market data, and make final trading decisions outside the skill.
+
+Risk: Optional market-price lookup may be unavailable, stale, or incorrect, and depends on optional Python packages.
+
+Mitigation: Verify market data independently, provide a manual current price when appropriate, and install optional dependencies in a reviewed virtual environment with pinned versions.
+
+Risk: Position-management rules may not fit every user's risk tolerance, jurisdiction, tax situation, or portfolio constraints.
+
+Mitigation: Review generated plans against the user's full portfolio, financial constraints, and applicable professional or regulatory requirements before acting.
+
+## Reference(s):
+
+- [Risk Management Rules](references/risk-rules.md)
+- [Trading Psychology](references/trading-psychology.md)
+- [Trailing Stop Guide](references/trailing-stop-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concrete buy/sell percentages, price levels, stop-loss levels, risk labels, and position-management suggestions.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

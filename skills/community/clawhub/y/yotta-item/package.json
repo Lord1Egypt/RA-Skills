@@ -1,0 +1,45 @@
+{
+  "name": "@yottameta/yotta-item",
+  "version": "0.1.3",
+  "description": "YuanTi (yotta-item) — a local, deterministic paper assembler and exam checker for AI agents: reads a local item bank (id, type, points, difficulty, knowledge, optional minutes and source) plus a blueprint (item types, knowledge coverage, difficulty quotas, points, time limit), assembles a paper whose selection is reproducible from a fixed seed, and checks an existing paper for unknown items, duplicates, section and points deviations, difficulty drift, coverage gaps and time overrun. Markdown and JSON output, input validation commands, and a CI gate are included. Triggers: assembling an exam paper from a local bank, selecting items against a double-spec table, checking whether a paper matches its blueprint, or wiring paper review into automation. Boundaries: selection and deterministic checking only — no item text or answer generation, no prediction of measured difficulty or discrimination, no student ranking, comments or admission predictions; no network access, no model calls, no upload of item banks or papers; no textbook or real-exam text is bundled, and samples are synthetic. Fully local, zero-dependency (Python 3.8+ standard library).",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-item",
+    "yottaskills",
+    "exam-paper",
+    "education"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "!scripts/test_*.py",
+    "!scripts/fixtures",
+    "!scripts/fixtures/**",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!**/*.pyo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-item.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-item": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_item.py"
+  }
+}

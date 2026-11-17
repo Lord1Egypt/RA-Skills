@@ -1,43 +1,59 @@
-## Description: <br>
-Monitor Poe API point balance and usage history from the terminal using poeusage CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Poe API point balance and usage history from the terminal using poeusage CLI.
 
-## Publisher: <br>
-[rgstephens](https://clawhub.ai/user/rgstephens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rgstephens](https://clawhub.ai/user/rgstephens)
 
-## Use Case: <br>
-External developers and Poe API users use this skill to check point balances, inspect usage history, and summarize spend from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and relies on a third-party Homebrew tap and CLI. <br>
-Mitigation: Install it only when you trust the poeusage tap and CLI maintainer. <br>
-Risk: The skill requires POE_API_KEY, which is an account secret. <br>
-Mitigation: Keep the key out of shared files and prefer environment variables over storing it in config. <br>
-Risk: The history command can fetch all available usage records by default. <br>
-Mitigation: Use limits, date filters, or no-pagination mode when you do not want a full history fetch. <br>
+## Use Case:
 
+Developers and Poe API users use this skill to check point balance, review usage history, and summarize spend from the terminal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rgstephens/poeusage) <br>
-- [Project homepage](https://github.com/rgstephens/poeusage-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying CLI supports table, CSV, JSON, and plain text output modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: frontmatter and server release evidence) <br>
+Risk: The third-party poeusage CLI receives the user's Poe API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources and provide POE_API_KEY through a controlled environment rather than command-line arguments or persistent config files.
+
+Risk: Usage, balance, and spend outputs can expose Poe account activity metadata.
+
+Mitigation: Handle JSON, CSV, and table outputs as sensitive operational data and avoid sharing logs or terminal captures broadly.
+
+Risk: Homebrew installation depends on the rgstephens tap.
+
+Mitigation: Review and trust the tap and formula before installation in managed environments.
+
+## Reference(s):
+
+- [Poe Usage ClawHub listing](https://clawhub.ai/rgstephens/skills/poeusage)
+- [poeusage-skill homepage](https://github.com/rgstephens/poeusage-skill)
+- [rgstephens publisher profile](https://clawhub.ai/user/rgstephens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON, CSV, or table output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the poeusage binary and a POE_API_KEY environment variable; command output can include Poe account usage and spend metadata.]
+
+## Skill Version(s):
+
+0.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,25 @@
+{
+  "suite": "fde-delivery-loop",
+  "version": "1.0.0",
+  "author": "xukun",
+  "skill": "fde-delivery-router",
+  "stage": 0,
+  "purpose": "Determine the current link, quality gate, fallback point and only next action.",
+  "risk_level": "low",
+  "scripts": [
+    "fde-delivery-router/scripts/project-state.js"
+  ],
+  "writes": [
+    "fde-project.jsonin the user-specified directory",
+    "Same directory append-onlyfde-events.jsonl"
+  ],
+  "human_confirmation": [
+    "Advance to the next level",
+    "Skip the quality gate",
+    "Modify responsible persons or key decisions"
+  ],
+  "high_risk_boundaries": [
+    "Does not replace business approval",
+    "Do not save complete customer sensitive data in state files"
+  ]
+}

@@ -1,45 +1,57 @@
-## Description: <br>
-Writes, critiques, scores, compares, and revises English academic abstracts for AI, systems, and computer science papers using symbolic discourse rules, lightweight ontologies, and sentence-level constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Abstract Logic Writer helps agents draft, critique, score, compare, and revise English academic abstracts for AI, systems, and computer science papers using symbolic discourse rules, lightweight ontology checks, and sentence-level constraints.
 
-## Publisher: <br>
-[zhiweiwei-nami](https://clawhub.ai/user/zhiweiwei-nami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhiweiwei-nami](https://clawhub.ai/user/zhiweiwei-nami)
 
-## Use Case: <br>
-Developers, researchers, and technical writers use this skill to draft, critique, repair, and compare academic abstracts with explicit discourse roles, ontology-aware word choice, and rule-based scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The ontology bootstrap workflow can download a public ontology from a user-provided URL. <br>
-Mitigation: Use only trusted public URLs and review downloaded ontology files before relying on them in abstract-writing decisions. <br>
-Risk: The ontology bootstrap script writes generated or downloaded files to a user-selected output directory. <br>
-Mitigation: Choose an output directory intended for generated ontology artifacts and review the resulting files before sharing or committing them. <br>
+## Use Case:
 
+Developers, researchers, and technical writers use this skill to turn paper notes or draft abstracts into logically ordered, ontology-aware abstracts and to lint or score alternative abstract fragments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhiweiwei-nami/abstract-logic-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/zhiweiwei-nami) <br>
-- [Computable Rules for Abstract Construction](artifact/references/computable-rules.md) <br>
-- [Lexeme Typing and Selection Rules](artifact/references/lexeme-typing.md) <br>
-- [Domain Ontology Bootstrap and Download Workflow](artifact/references/ontology-bootstrap.md) <br>
-- [Negative Examples and Rule Tags](artifact/references/negative-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with abstract drafts, critiques, rule violations, score summaries, lexical substitutions, and optional shell commands for local linting, scoring, or ontology generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local ontology_seed.json and ontology_seed.ttl files when the user runs the bundled ontology bootstrap script with an output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The optional ontology downloader can fetch arbitrary network or local-file URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS ontology sources, avoid untrusted or local-file URLs, and inspect downloaded or generated ontology files before reuse or publication.
+
+Risk: Rule-based linting and scoring can miss domain-specific claims or overstate abstract quality.
+
+Mitigation: Treat diagnostics and scores as review aids and check final abstracts against the source paper, evidence, and expert judgment.
+
+## Reference(s):
+
+- [Computable Rules for Abstract Construction](references/computable-rules.md)
+- [Lexeme Typing and Selection Rules](references/lexeme-typing.md)
+- [Domain Ontology Bootstrap and Download Workflow](references/ontology-bootstrap.md)
+- [Negative Examples](references/negative-examples.md)
+- [Source Abstract Corpus](references/source-abstract-corpus.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional plain-text abstracts, rule diagnostics, score summaries, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create ontology_seed.json and ontology_seed.ttl when the optional ontology bootstrap script is run.]
+
+## Skill Version(s):
+
+0.1.1 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,201 @@
+version: mock-oa-1.0
+domain: OA·协同办公流程
+datasets:
+- name: todos
+  source: todos
+  cn: 统一待办表
+  grain: 一行一条待办
+  primary_key: todo_id
+  ai:
+    instructions: 能答待办量/按期办结率；必带时间围栏（created_date）
+    synonyms: [待办表, 待办事项]
+  fields:
+  - name: todo_id
+    role: pk
+    cn: 待办编号
+  - name: created_date
+    role: time
+    cn: 创建日期
+  - name: source
+    role: dim
+    cn: 待办来源
+    enum: &oa_source
+    - 审批
+    - 公文
+    - 任务
+    - 提醒
+  - name: status
+    role: dim
+    cn: 待办状态
+    enum: &oa_tstatus
+    - 待处理
+    - 处理中
+    - 已办结
+    - 已取消
+  - name: ontime
+    role: dim
+    cn: 是否按期办结
+    enum: &oa_ontime
+    - 是
+    - 否
+  - name: owner_dept
+    role: dim
+    cn: 承办部门
+    enum:
+    - 综合部
+    - 财务部
+    - 人事部
+  ontology_ref: 待办
+- name: workflow_instances
+  source: workflow_instances
+  cn: 流程实例表
+  grain: 一行一次流程流转
+  primary_key: instance_id
+  ai:
+    instructions: 能答流程量/平均时长/节点超时；流程定义版本管理不在本表
+    synonyms: [流程实例, 审批流程]
+  fields:
+  - name: instance_id
+    role: pk
+    cn: 实例编号
+  - name: submit_date
+    role: time
+    cn: 提交日期
+  - name: def_name
+    role: dim
+    cn: 流程定义
+    enum: &oa_defs
+    - 请假审批
+    - 报销审批
+    - 采购审批
+  - name: status
+    role: dim
+    cn: 流程状态
+    enum: &oa_wstatus
+    - 运行中
+    - 已完成
+    - 已驳回
+  - name: duration_hours
+    role: measure
+    cn: 流转时长小时
+  - name: timeout_nodes
+    role: measure
+    cn: 超时节点数
+  ontology_ref: 流程实例
+relationships: []
+concepts:
+- term: 超时流程
+  synonyms:
+  - 有超时节点的流程
+  - 流程卡住了
+  expand:
+    dataset: workflow_instances
+    field: timeout_nodes
+    values:
+    - 1
+    - 2
+metrics:
+- id: workflow_done_count
+  name: 已办结流程数
+  synonyms:
+  - 办结流程数
+  - 完成的审批流程
+  - 流程办结量
+  type: count
+  dataset: workflow_instances
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: status
+    values:
+    - 已完成
+  time_field: submit_date
+  unit: 件
+  caliber:
+    note: 状态为已完成的流程实例计数
+    basis: mock 内部约定
+- id: avg_duration_hours
+  name: 流程平均时长
+  synonyms:
+  - 平均审批时长
+  - 流程平均要多久
+  - 平均流转时间
+  type: avg
+  dataset: workflow_instances
+  structured: true
+  status: 已发布
+  expr: AVG(duration_hours)
+  filters:
+  - field: status
+    values:
+    - 已完成
+  time_field: submit_date
+  unit: 小时
+  caliber:
+    note: 已办结流程的平均流转时长（行级均值是合法指标类型，非比率误用）
+    basis: mock 内部约定
+- id: node_timeout_count
+  name: 节点超时总数
+  synonyms:
+  - 超时节点数
+  - 流程节点超时量
+  - 节点超时有多少
+  type: sum
+  dataset: workflow_instances
+  structured: true
+  status: 已发布
+  expr: SUM(timeout_nodes)
+  time_field: submit_date
+  unit: 个
+  caliber:
+    note: 全部流程实例的超时节点加总
+    basis: mock 内部约定
+- id: todo_ontime_rate
+  name: 待办按期办结率
+  synonyms:
+  - 按期办结率
+  - 待办及时办结比例
+  - 按时办结率
+  type: ratio
+  dataset: todos
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(CASE WHEN status = '已办结' AND ontime = '是' THEN 1 ELSE 0 END)
+  denominator:
+    expr: SUM(CASE WHEN status = '已办结' THEN 1 ELSE 0 END)
+  time_field: created_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: 已办结待办中按期办结的占比（分母只含已办结，SUM/SUM 加权）
+    basis: mock 内部约定
+  on_zero_denominator: 'null'
+ontology:
+  entities:
+  - name: 待办
+    attributes:
+    - name: 待办来源
+      value_type: enum
+      values: *oa_source
+    - name: 是否按期
+      value_type: enum
+      values: *oa_ontime
+    note: 一行一条待办
+    uid: ent_todo
+    evidence:
+      source: user_provided
+  - name: 流程实例
+    attributes:
+    - name: 流程定义
+      value_type: enum
+      values: *oa_defs
+    - name: 流程状态
+      value_type: enum
+      values: *oa_wstatus
+    note: 一行一次流程流转
+    uid: ent_workflow_instance
+    evidence:
+      source: user_provided
+  relations: []

@@ -2,7 +2,7 @@
 name: stack-rebase
 description: |
   Cascades a rebase through an entire PR stack after a base PR merges or upstream changes
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - stacked-diffs
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Stack Rebase
@@ -23,7 +23,7 @@ source_plugin: sanctum
 Cascade a rebase through an entire PR stack after a base
 PR merges or the upstream base branch changes.
 
-## When to Use
+## When To Use
 
 Run `stack-rebase` in any of these situations:
 
@@ -34,6 +34,11 @@ Run `stack-rebase` in any of these situations:
 - A mid-stack PR was revised and descendants need to
   pick up the change
 
+## When NOT To Use
+
+- The stack has never been published (use `sanctum:stack-push`)
+- The stack does not exist yet (use `sanctum:stack-create`)
+
 ## Prerequisites
 
 - All slice branches exist locally (`git branch --list`)
@@ -43,7 +48,7 @@ Run `stack-rebase` in any of these situations:
 
 ## Required Progress Tracking
 
-Create `TodoWrite` items before starting:
+Create progress items before starting:
 
 1. `stack-rebase:fetch-complete`
 2. `stack-rebase:trigger-identified`
@@ -66,7 +71,7 @@ The merged branch itself is no longer a valid stack base.
 
 Determine what changed:
 
-**Case A — Base PR merged into master:**
+**Case A, Base PR merged into master:**
 The slice that was the old "root" is now in `master`.
 All remaining slices need to rebase onto `master`.
 
@@ -75,13 +80,13 @@ All remaining slices need to rebase onto `master`.
 git branch -r --merged origin/master | grep "${MERGED_BRANCH}"
 ```
 
-**Case B — Master moved forward:**
+**Case B, Master moved forward:**
 Slices are behind `master` but the stack topology is
 unchanged.
 Rebase the root slice onto `master`; `--update-refs`
 carries all descendants.
 
-**Case C — Mid-stack revision:**
+**Case C, Mid-stack revision:**
 A slice was amended.
 All descendant slices need to rebase onto it.
 
@@ -186,7 +191,7 @@ gh pr edit "${NEXT_PR}" --base master
 
 For PRs further down the stack, their bases remain the
 previous slice branch, which `--update-refs` already
-rewrote; no base edit is needed for them.
+rewrote. No base edit is needed for them.
 
 Verify the full stack is consistent:
 
@@ -219,3 +224,18 @@ done
   reviews as stale; remind reviewers to re-approve
 - The `stack-push` skill documents how to re-post the
   stack summary comment after a rebase changes PR SHAs
+
+## Exit Criteria
+
+- [ ] All 6 progress items (`stack-rebase:fetch-complete` through
+      `stack-rebase:prs-updated`) are created before the rebase starts
+      and marked complete in order
+- [ ] `git fetch origin` completes before the rebase trigger is
+      identified and classified as Case A, B, or C
+- [ ] `git rebase --update-refs` completes without abort for Cases A
+      and B; if conflicts occur, each is resolved before continuing
+- [ ] All slice branches force-pushed with `--force-with-lease`; plain
+      `--force` is never used
+- [ ] For Case A only: `gh pr edit <next-pr> --base master` updates
+      the new stack root's base target and the full stack topology
+      verified with `gh pr list` output

@@ -1,43 +1,55 @@
-## Description: <br>
-AI model cost calculator for comparing Claude, GPT, DeepSeek, and other model prices, calculating token costs, and estimating API spending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI model cost calculator. Compare pricing across Claude, GPT, DeepSeek, and other AI models. Calculate token costs, optimize API spending, and find the best value model for your use case. Use when choosing AI models or estimating API costs.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and external users use this skill to estimate input and output token costs across several AI models and compare approximate spending before choosing a model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hardcoded model prices may become stale or differ from provider billing. <br>
-Mitigation: Verify current provider pricing before relying on the calculator for budget or purchasing decisions. <br>
-Risk: The skill runs a local Node.js script. <br>
-Mitigation: Install and run it only in environments where local Node.js script execution is acceptable. <br>
-Risk: The artifact includes an external support link. <br>
-Mitigation: Review external links before sharing information or purchasing support services. <br>
+## Use Case:
 
+Developers and teams use this skill to compare example AI model pricing, estimate token costs, and choose lower-cost models for API usage planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-ai-cost-calc) <br>
-- [OpenClaw installation service](https://yang1002378395-cmyk.github.io/openclaw-install-service/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text console output with tabular cost comparisons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts optional input and output token counts as command-line arguments; model prices are hardcoded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented install command uses a mutable remote npm installer rather than a pinned reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed ClawHub installer version or verify package provenance before installation.
+
+Risk: The displayed model prices and savings claims are static examples and may become outdated.
+
+Mitigation: Confirm current provider pricing before making purchasing or deployment decisions based on the calculator output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-ai-cost-calc)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+- [OpenClaw installation service landing page](https://yang1002378395-cmyk.github.io/openclaw-install-service/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text output with model cost comparisons and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses input and output token counts supplied as command-line arguments, defaulting to 1,000,000 each.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

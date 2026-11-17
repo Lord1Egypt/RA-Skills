@@ -1,6 +1,7 @@
 # truenas-aiops setup & security guide
 
-> Preview / mock-only — not yet validated against a live TrueNAS SCALE appliance.
+> Validated against live TrueNAS SCALE 25.04 and 26 appliances; docs/VERIFICATION.md
+> records exactly what was checked.
 
 ## 1. Install
 
@@ -60,8 +61,8 @@ export TRUENAS_AIOPS_MASTER_PASSWORD='your-master-password'
 
 State lives under `~/.truenas-aiops/` (relocate with `TRUENAS_AIOPS_HOME`):
 
-- `audit.db` — every tool call (SQLite), with risk tier, approver, rationale
-- `rules.yaml` — policy: deny rules, maintenance windows, approval tiers
+- `audit.db` — every tool call (SQLite), with its descriptive risk tier and any
+  optional approver/rationale annotations
 - `undo.db` — inverse descriptors for reversible writes (e.g. `snapshot_create`)
 - budget / runaway guard — caps cumulative tool calls and wall-time; trips on
   tight scrub/poll loops

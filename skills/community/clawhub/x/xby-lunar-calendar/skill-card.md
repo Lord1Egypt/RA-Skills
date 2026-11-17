@@ -1,43 +1,59 @@
-## Description: <br>
-Provides Chinese lunar calendar services including BaZi calculation, calendar conversion, Chinese almanac lookup, daily fortune, solar-term, and five-elements analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese lunar calendar utilities for BaZi, solar-lunar calendar conversion, Huangli, daily fortune, solar terms, and Wu Xing analysis through the XiaoBenYang API.
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Chinese lunar calendar conversions, almanac details, BaZi and five-elements analysis, daily fortune, and yearly solar terms. It requires a XiaoBenYang API key and sends query inputs to a third-party service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a XiaoBenYang API key locally in a .env file. <br>
-Mitigation: Treat the .env file as a local secret, avoid shared or untrusted workspaces, and prefer a scoped or disposable key. <br>
-Risk: Calendar, birth-date, and birth-time queries are sent to xiaobenyang.com or mcp.xiaobenyang.com. <br>
-Mitigation: Do not submit sensitive personal data unless the user accepts the third-party service data flow. <br>
-Risk: The security evidence marks the release suspicious because it sends calendar and birth-date queries to a third-party API. <br>
-Mitigation: Review the skill and the third-party API behavior before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Chinese lunar calendar, almanac, BaZi, Wu Xing, solar-term, and daily fortune results. The skill routes user-supplied dates and birth times to XiaoBenYang API tools and formats the returned data for the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/xby-lunar-calendar) <br>
-- [XiaoBenYang service and API key page](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown or text summaries derived from JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided XBY_APIKEY; selected queries may include dates, birth dates, and birth times sent to the XiaoBenYang API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill stores the XiaoBenYang API key in a local .env file in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a throwaway or low-privilege API key, keep .env out of shared workspaces and source control, and rotate or remove the key when access is no longer needed.
+
+Risk: The skill sends user-provided calendar and birth date/time information to the third-party XiaoBenYang API.
+
+Mitigation: Avoid entering sensitive personal birth data and inform users that requests are sent to mcp.xiaobenyang.com.
+
+Risk: The security verdict is suspicious because the skill presents as a calendar tool while requiring credential storage and third-party API transfer.
+
+Mitigation: Review the skill and its network behavior before deployment, and install it only if the API key and data-sharing requirements are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/xby-lunar-calendar)
+- [XiaoBenYang API key portal](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries derived from JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY value before API-backed tools can return results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

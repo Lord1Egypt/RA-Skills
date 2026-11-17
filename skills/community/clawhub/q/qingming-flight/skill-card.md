@@ -1,46 +1,61 @@
-## Description: <br>
-Helps agents collect Qingming travel details, run live flyai/Fliggy flight searches, and return bookable flight options with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Qingming Festival flights for Tomb Sweeping Day travel and spring outings, with additional support for flight booking, hotel reservations, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and related Fliggy-powered travel tasks.
 
-## Publisher: <br>
-[ivan97](https://clawhub.ai/user/ivan97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivan97](https://clawhub.ai/user/ivan97)
 
-## Use Case: <br>
-External users and travel-booking agents use this skill to search Qingming Festival and spring-outing flights, compare recommended, cheapest, fastest, or direct options, and present booking links from live CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to install an unpinned global npm package automatically. <br>
-Mitigation: Review before installing, approve global npm installation explicitly, and prefer installing or verifying @fly-ai/flyai-cli with a pinned trusted version before use. <br>
-Risk: Live flight queries may be sent to flyai/Fliggy. <br>
-Mitigation: Use the skill only when users are comfortable sending travel search details to the live flight-search provider. <br>
-Risk: The skill can activate for ordinary flight-booking requests beyond Qingming-specific searches. <br>
-Mitigation: Confirm the user intends to use this flight-booking workflow before running CLI commands for general travel queries. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search Qingming Festival and general travel options through the flyai CLI, then present bookable flight and travel results with links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivan97/qingming-flight) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables and summaries with inline booking links and supporting shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight results must come from flyai CLI output and include Book links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs agents to install an unpinned global npm package for the flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation and prefer a pinned local CLI version in a controlled environment.
+
+Risk: Travel itinerary details are sent to a third-party travel CLI.
+
+Mitigation: Use the skill only when users accept sharing itinerary details with the third-party CLI provider.
+
+Risk: Shell commands are built from user-provided travel parameters.
+
+Mitigation: Validate route and date parameters and execute commands without shell interpolation.
+
+## Reference(s):
+
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires booking results to come from flyai CLI output and include Book links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

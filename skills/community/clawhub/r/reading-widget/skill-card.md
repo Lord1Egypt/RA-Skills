@@ -1,43 +1,59 @@
-## Description: <br>
-Installs and manages a macOS desktop widget that displays WeRead reading statistics, current-book progress, monthly goals, and rotating quotes using a local helper and WeRead API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reading Widget Clawhub helps an agent install and maintain a macOS desktop widget that displays WeRead reading streaks, reading time, goal progress, current-book progress, yearly totals, and a rotating quote.
 
-## Publisher: <br>
-[tinadu-ai](https://clawhub.ai/user/tinadu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinadu-ai](https://clawhub.ai/user/tinadu-ai)
 
-## Use Case: <br>
-Claw, OpenClaw, and Claude Code users on macOS use this skill to install, open, customize, troubleshoot, or uninstall a personal WeRead desktop reading widget. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WeRead API key that identifies the user's WeRead account. <br>
-Mitigation: Store the key only in local agent settings or the skill's local config, avoid shell startup files, and remove it from settings when uninstalling. <br>
-Risk: The widget runs a local helper on 127.0.0.1:47900 to serve the card and persist goal edits. <br>
-Mitigation: Install only if a local helper is acceptable, keep it bound to localhost, and stop or remove the widget directory when no longer needed. <br>
-Risk: Optional LaunchAgent setup adds a background startup service. <br>
-Mitigation: Enable startup persistence only with explicit user consent and remove the LaunchAgent plist during uninstall. <br>
+## Use Case:
 
+External ClawHub users and agent operators use this skill to set up a macOS reading dashboard backed by a WeRead Agent API key. The skill guides installation, opening, customization, troubleshooting, optional startup persistence, and removal of the local widget files.
 
-## Reference(s): <br>
-- [ClawHub Reading Widget release page](https://clawhub.ai/tinadu-ai/reading-widget) <br>
-- [WeRead official skill package](https://cdn.weread.qq.com/skills/weread-skills.zip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local files under ~/Desktop/reading-widget and configure a local WeRead API key when the user provides one.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server evidence and frontmatter) <br>
+Risk: The skill uses a WeRead API key and can read it from agent settings or local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer providing WEREAD_API_KEY through a controlled environment or dedicated secret store, and avoid adding an api_key field to config.json.
+
+Risk: The optional LaunchAgent creates a long-running background helper on the user's machine.
+
+Mitigation: Enable the LaunchAgent only after explicit user consent, and unload it when the widget is no longer needed.
+
+Risk: The local helper serves content on localhost and exposes a goal-update endpoint with weak controls.
+
+Mitigation: Review before installing; for broader use, harden the helper to serve only the widget page and require a per-install token for /set-goal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tinadu-ai/skills/reading-widget)
+- [WeRead official skill package](https://cdn.weread.qq.com/skills/weread-skills.zip)
+- [Ubersicht](http://tracesof.net/uebersicht/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown instructions with shell commands, configuration snippets, and file-editing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides creation and operation of local widget files; normal output is human-readable agent guidance rather than a structured API response.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

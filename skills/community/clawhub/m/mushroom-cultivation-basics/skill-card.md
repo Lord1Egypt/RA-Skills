@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agents plan and track beginner home cultivation of legal gourmet mushrooms using waste substrates, including personalized species selection, schedules, recipes, supplier research, troubleshooting, yield forecasts, and progress logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, personalize, schedule, log, and troubleshoot beginner gourmet mushroom cultivation using low-cost waste substrates while the user performs all physical growing tasks.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users interested in legal gourmet mushroom cultivation use this skill to plan low-space home grows, maintain cultivation calendars and logs, and troubleshoot contamination or yield issues while keeping physical cultivation work human-led. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for location details and may keep local progress logs containing personal or commercial details. <br>
-Mitigation: Share city or region instead of an exact address unless needed, review local logs it creates, and delete logs that contain details you do not want retained. <br>
-Risk: Cultivation guidance can involve legal, food safety, mold exposure, or commercial sale considerations. <br>
-Mitigation: Use only legal gourmet species from verified spawn, verify local regulations before cultivation or sale, and follow the skill's hygiene and disposal guidance. <br>
+## Use Case:
 
+External users and agents use this skill to plan home-scale cultivation of oyster, lion's mane, or shiitake mushrooms, including supplier research, calendars, recipes, logs, and troubleshooting. The skill is intended for legal, non-psilocybin species, with the user responsible for local rule checks and all hands-on cultivation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/mushroom-cultivation-basics) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command, tables, templates, checklists, and filesystem log structures.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request location, space, budget, goals, allergies, and cultivation observations; may maintain local filesystem progress logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install command can fetch mutable code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install path before running it and prefer a pinned, trusted ClawHub installer.
+
+Risk: The skill asks to persist cultivation logs that may include personal location, health, budget, or sales details.
+
+Mitigation: Provide only the location detail needed for planning, choose an intentional log location, and periodically delete or redact sensitive entries.
+
+Risk: Cultivation guidance may involve food safety, mold exposure, or local sale restrictions.
+
+Mitigation: Use verified gourmet spawn only, discard contaminated material safely, and verify local rules before commercial sale or medicinal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/mushroom-cultivation-basics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, tables, templates, filesystem log entries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include location-sensitive supplier research, cultivation calendars, contamination troubleshooting, and yield forecasts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

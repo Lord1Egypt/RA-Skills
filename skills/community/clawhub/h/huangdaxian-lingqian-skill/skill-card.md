@@ -1,43 +1,57 @@
-## Description: <br>
-Provides a Huangdaxian Lingqian fortune-drawing assistant with 100 stick texts, source stories, and structured interpretations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language Huangdaxian fortune-stick draws from a 100-sign corpus, returning sign text, story context, fortune category, and category-specific interpretations.
 
-## Publisher: <br>
-[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it)
 
-## Use Case: <br>
-External users use this skill to draw or look up a Huangdaxian Lingqian stick and receive a structured folk-divination reading for topics such as career, relationships, finance, health, travel, home, study, and yearly fortune. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad phrases about luck, relationships, or career may activate a divination-style response when the user expected ordinary advice. <br>
-Mitigation: Require clear opt-in phrasing or ask a clarifying question before presenting a fortune reading. <br>
-Risk: Users may over-rely on fortune-telling output for important life, health, financial, or career decisions. <br>
-Mitigation: Frame readings as cultural or entertainment reference, keep the artifact's rational-use guidance visible, and avoid replacing professional advice. <br>
+## Use Case:
 
+External users use this Chinese-language cultural divination skill to request a random or specified Huangdaxian fortune stick and receive structured sign text, story context, and category-specific interpretation. Outputs should be treated as entertainment or cultural reference rather than medical, financial, legal, or life-planning advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leslietong2046-ship-it/huangdaxian-lingqian-skill) <br>
-- [Huangdaxian Lingqian reference notes](references/README.md) <br>
-- [Jisuyun Huangdaxian Lingqian source](https://www.jisuyunkeji.cn/huangdaxianlingqians/) <br>
-- [HKStick Huangdaxian Lingqian source](https://www.hkstick.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured reading includes sign number, poem, source story, overall interpretation, and category-specific guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release and SKILL.md frontmatter) <br>
+Risk: Users may treat fortune-telling interpretations as professional or life-planning advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as entertainment or cultural reference and avoid framing them as medical, financial, legal, or other professional guidance.
+
+Risk: Broad prompts about luck, relationships, career, or recent fortune may activate the skill unexpectedly.
+
+Mitigation: Clarify intent when the user appears to seek practical advice rather than a Huangdaxian fortune-stick reading.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leslietong2046-ship-it/skills/huangdaxian-lingqian-skill)
+- [Artifact README](README.md)
+- [Huangdaxian Lingqian Reference Notes](references/README.md)
+- [Jisuyun Huangdaxian Lingqian Source](https://www.jisuyunkeji.cn/huangdaxianlingqians/)
+- [HKStick Huangdaxian Lingqian Source](https://www.hkstick.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured Chinese text sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include random or user-specified sign selection and category-specific interpretations.]
+
+## Skill Version(s):
+
+2.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

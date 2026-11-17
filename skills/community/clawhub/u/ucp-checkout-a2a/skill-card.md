@@ -1,41 +1,54 @@
-## Description: <br>
-Implement UCP Checkout over the A2A binding for autonomous agent-to-agent commerce using Agent Cards and structured message parts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement UCP Checkout over the A2A (Agent-to-Agent) binding to enable autonomous agent-to-agent commerce using Agent Cards and structured message parts.
 
-## Publisher: <br>
-[ichiorca](https://clawhub.ai/user/ichiorca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ichiorca](https://clawhub.ai/user/ichiorca)
 
-## Use Case: <br>
-Developers building multi-agent commerce systems use this skill to design UCP Checkout flows over A2A, including discovery, structured message parts, idempotency, and payment-related data handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkout flows can handle payment credentials, risk signals, and authorization artifacts. <br>
-Mitigation: Require explicit user authorization, merchant and spending limits, tokenized payment data where possible, and no logging of payment or risk fields. <br>
-Risk: Agent-to-agent checkout depends on external specs, Agent Cards, and endpoint behavior that may change or be spoofed. <br>
-Mitigation: Validate endpoints and Agent Cards before use, pin versions of external specs and sample code, and review generated checkout logic before real commerce use. <br>
+## Use Case:
 
+Developers and engineers use this skill to build autonomous UCP Checkout flows over the A2A binding, including Agent Card discovery, structured message parts, and checkout session handling.
 
-## Reference(s): <br>
-- [Google A2A Protocol Specification](https://google.github.io/A2A/) <br>
-- [Universal Commerce Protocol Samples](https://github.com/Universal-Commerce-Protocol/samples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with protocol fields, implementation notes, and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is used for payment and agent-commerce integrations, where incorrect implementation could affect production checkout flows or payment credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated implementations before using them with real payment credentials or production checkout flows.
+
+Risk: The skill directs the agent to consult live external specifications and samples that may change over time.
+
+Mitigation: Verify fetched specifications and sample code against the intended UCP and A2A versions before deployment.
+
+## Reference(s):
+
+- [Google A2A Protocol Specification](https://google.github.io/A2A/)
+- [Universal Commerce Protocol Samples](https://github.com/Universal-Commerce-Protocol/samples)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with implementation details and code-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the agent to fetch current external specifications and samples before implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

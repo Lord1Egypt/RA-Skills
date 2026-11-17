@@ -1,53 +1,73 @@
-## Description: <br>
-Create AI images with GPT Image, Gemini Nano Banana, FLUX, Imagen, and top providers using prompt engineering, style control, and smart editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create AI images with GPT Image, Gemini Nano Banana, FLUX, Imagen, and top providers using prompt engineering, style control, and smart editing.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users, developers, and creative teams use this skill to choose image generation and editing providers, write stronger prompts, configure provider access, and plan model-specific workflows for AI visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and reference images may be sent to the selected third-party image provider. <br>
-Mitigation: Use only providers trusted for the content being processed, and remove confidential details from prompts or reference assets before generation. <br>
-Risk: API keys could be exposed if pasted into chat or stored in ordinary text. <br>
-Mitigation: Keep provider keys in environment variables or platform secret configuration, and avoid including secrets in prompts, memory, or logs. <br>
-Risk: Local memory may contain sensitive project context or provider preferences. <br>
-Mitigation: Periodically review or delete ~/image-generation/memory.md when it contains confidential or stale context. <br>
-Risk: Model names, aliases, and benchmark rankings can drift over time. <br>
-Mitigation: Resolve aliases to current provider model IDs and recheck current rankings before quality-critical generation. <br>
+## Use Case:
 
+Developers, designers, and external users use this skill to choose image generation providers, write stronger prompts, and plan image generation or editing workflows across cloud and local models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/image-generation-zhouli) <br>
-- [Skill homepage](https://clawic.com/skills/image-generation) <br>
-- [Setup guide](setup.md) <br>
-- [API patterns](api-patterns.md) <br>
-- [Benchmark snapshot](benchmarks-2026.md) <br>
-- [Image prompting guide](prompting.md) <br>
-- [GPT Image](gpt-image.md) <br>
-- [Google Image Models](gemini.md) <br>
-- [FLUX](flux.md) <br>
-- [Stable Diffusion](stable-diffusion.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, API request examples, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to local memory in ~/image-generation/ and selected provider APIs; the skill itself does not persist generated images unless the user asks to save them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
+Risk: Prompt text and reference images may be sent to the selected image provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved providers for sensitive work, and avoid sending sensitive or regulated content unless the data handling path is approved.
+
+Risk: API keys are required for several cloud providers.
+
+Mitigation: Keep keys in environment variables or a secrets manager, and never paste secret values into chat or committed files.
+
+Risk: Optional local examples use package installation commands.
+
+Mitigation: Run install examples in an isolated environment and pin package versions where practical.
+
+Risk: Provider model names, access, benchmarks, and pricing can change.
+
+Mitigation: Verify current provider documentation and account access before high-value or quality-critical generation work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/image-generation-zhouli)
+- [Skill Homepage](https://clawic.com/skills/image-generation)
+- [Setup - AI Image Generation](artifact/setup.md)
+- [API Patterns (2026)](artifact/api-patterns.md)
+- [Benchmark Snapshot (2025-2026)](artifact/benchmarks-2026.md)
+- [Image Prompting Guide (2026)](artifact/prompting.md)
+- [GPT Image (OpenAI)](artifact/gpt-image.md)
+- [Google Image Models (Gemini + Imagen)](artifact/gemini.md)
+- [FLUX (Black Forest Labs)](artifact/flux.md)
+- [Replicate](artifact/replicate.md)
+- [Leonardo AI](artifact/leonardo.md)
+- [Ideogram](artifact/ideogram.md)
+- [Stable Diffusion (Local)](artifact/stable-diffusion.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration notes, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce provider-specific prompts, model choices, setup steps, and example API calls; generated images are produced only when the agent invokes a selected provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

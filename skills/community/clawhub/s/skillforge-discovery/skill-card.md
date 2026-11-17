@@ -1,44 +1,55 @@
-## Description: <br>
-SkillForge API 服务发现 - 自动发现和调用付费 AI 服务。当 OpenClaw Agent 需要某个能力但本地没有时，自动查找并推荐可用服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillForge API 服务发现 detects OpenClaw Agent capability gaps, discovers matching paid AI API services, and returns selected service results.
 
-## Publisher: <br>
-[leongfans](https://clawhub.ai/user/leongfans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leongfans](https://clawhub.ai/user/leongfans)
 
-## Use Case: <br>
-External users and developers use this skill to detect when an OpenClaw task needs an external paid API, discover matching SkillForge services, and invoke a selected service after user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Service discovery and invocation can send user-provided data to configured paid third-party AI services. <br>
-Mitigation: Require the agent to show the selected service, destination, data to be sent, and expected price before invoking a service; do not send secrets, regulated data, or private files unless the provider is trusted. <br>
-Risk: Invocations may create billable usage through the configured SkillForge account. <br>
-Mitigation: Use a dedicated revocable API key, keep a low max_cost_per_call setting, and require user approval before paid calls. <br>
-Risk: A non-HTTPS platform URL can expose API credentials and request data in transit. <br>
-Mitigation: Prefer an HTTPS SKILLFORGE_API_URL for production use. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to detect when a task needs an external paid API, discover matching SkillForge services, and return selected invocation results with cost information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leongfans/skillforge-discovery) <br>
-- [Publisher Profile](https://clawhub.ai/user/leongfans) <br>
-- [SkillForge Repository](https://github.com/skillforge/skillforge-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Structured JSON results and human-readable Markdown-style service lists, invocation status, billing details, and error messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, SKILLFORGE_API_URL, and SKILLFORGE_API_KEY; service invocation may send user-provided input to configured third-party providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: Task data and API credentials can be sent to a configurable external SkillForge endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted HTTPS platform URL and a narrowly scoped, revocable API key.
+
+Risk: Paid service invocation can spend account balance without the skill itself enforcing the documented confirmation gate.
+
+Mitigation: Require host-level per-call confirmation that shows the service, destination, data being sent, and authoritative price; also set external spending limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leongfans/skills/skillforge-discovery)
+- [Publisher profile](https://clawhub.ai/user/leongfans)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration, guidance]
+
+**Output Format:** [JSON objects with human-readable text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js plus SKILLFORGE_API_URL and SKILLFORGE_API_KEY; paid invocations may return billing metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

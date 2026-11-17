@@ -1,44 +1,66 @@
-## Description: <br>
-Synapse Code is an intelligent workflow skill for project initialization, code delivery, knowledge capture, pipeline execution, and impact analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synapse Code is an intelligent development workflow skill that initializes projects, runs multi-agent pipelines, captures project knowledge, and supports impact analysis across code, writing, design, analytics, translation, and research tasks.
 
-## Publisher: <br>
-[ankechenlab-node](https://clawhub.ai/user/ankechenlab-node) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ankechenlab-node](https://clawhub.ai/user/ankechenlab-node)
 
-## Use Case: <br>
-Developers, engineers, and technical teams use this skill to coordinate code development workflows, initialize projects, run multi-agent pipelines, persist project knowledge, query prior work, and assess change impact. It also supports adjacent workflow scenarios such as writing, design, analytics, translation, and research when those tasks are routed through the skill's agent templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local Python and npm tools and execute configured pipeline scripts. <br>
-Mitigation: Install only in trusted environments, review config.json before use, and keep pipeline.workspace and paths.pipeline_script pointed at trusted files. <br>
-Risk: The skill can index project knowledge and write persistent project logs that may include sensitive project context. <br>
-Mitigation: Avoid broad analytics or research modes with sensitive databases, APIs, cookies, or private documents unless access has been deliberately scoped. <br>
+## Use Case:
 
+Developers and project teams use Synapse Code to route software development and knowledge-work requests through standalone, lite, full, or parallel workflows. It helps generate code, Markdown deliverables, shell commands, configuration guidance, status checks, memory records, and impact-analysis guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ankechenlab-node/synapse-code) <br>
-- [Synapse Code homepage](https://github.com/ankechenlab-node/synapse-code) <br>
-- [README](README.md) <br>
-- [Production scenario matrix](PRODUCTION_SCENARIOS.md) <br>
-- [Pipeline architecture](PIPELINE_ARCHITECTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, code snippets, shell commands, configuration files, reports, and structured status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent project logs, knowledge records, pipeline summaries, generated files, and status reports in configured project paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence and SKILL.md frontmatter; package.json and CHANGELOG list 2.0.0) <br>
+Risk: The skill installs mutable npm code as part of normal setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run the installer with --dry-run first, and use --skip-npm when the npm dependency is not required.
+
+Risk: The skill writes persistent project memory and the security evidence notes insufficient path validation.
+
+Mitigation: Inspect config.json paths before running workflows and restrict use to trusted project directories.
+
+Risk: Pipeline summary files influence auto-log behavior.
+
+Mitigation: Only use trusted pipeline_summary.json files and review generated memory entries before relying on them.
+
+Risk: Cleanup or overwrite operations can be broad if run without review.
+
+Mitigation: Avoid running cleanup or forced install commands blindly; preview actions and review target paths first.
+
+## Reference(s):
+
+- [Synapse Code GitHub homepage](https://github.com/ankechenlab-node/synapse-code)
+- [README](artifact/README.md)
+- [Agent Guide](artifact/AGENT_GUIDE.md)
+- [Pipeline Architecture](artifact/PIPELINE_ARCHITECTURE.md)
+- [Production Scenarios](artifact/PRODUCTION_SCENARIOS.md)
+- [Troubleshooting](artifact/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, code snippets, shell commands, JSON configuration, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project memory files and pipeline summaries when configured.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

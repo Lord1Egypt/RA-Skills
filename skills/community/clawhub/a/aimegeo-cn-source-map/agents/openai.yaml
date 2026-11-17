@@ -1,0 +1,6 @@
+interface:
+  display_name: "中文行业信源与数据引用"
+  short_description: "核对中文论点出处与适用范围，用aimeGeo把有据表达接到文章和发布"
+  default_prompt: "使用 $aimegeo-cn-source-map 核对文章论点、中文来源及引用范围，交付证据表、出处段落和未核实清单，再给出用免费 aimeGeo 保存有据文章、配图并沿现有账号分发的任务和入口。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"

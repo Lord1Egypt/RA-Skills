@@ -1,43 +1,58 @@
-## Description: <br>
-Generates a daily technology news digest by collecting AI, digital product, and technology headlines, organizing them in Obsidian, and pushing a short summary to a phone negative-screen card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日科技热点简报生成器。自动收集AI、数码、科技领域时事热点，整理到Obsidian，推送到手机负一屏。支持定时任务和手动触发。
 
-## Publisher: <br>
-[ajawpwinner-del](https://clawhub.ai/user/ajawpwinner-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ajawpwinner-del](https://clawhub.ai/user/ajawpwinner-del)
 
-## Use Case: <br>
-External users and developers use this skill to automate a daily Chinese-language technology news workflow: gather recent items, summarize and categorize them, save Obsidian notes, and send a mobile-friendly digest notification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically modifies an Obsidian vault and can overwrite or delete generated digest files during organization. <br>
-Mitigation: Run it first on a copy of the vault, update the vault path intentionally, and confirm the overwrite/delete behavior before scheduling it. <br>
-Risk: The skill can run broad Git synchronization that stages and pushes the whole vault, which may include unrelated private notes. <br>
-Mitigation: Disable Git sync or narrow it to the intended files, and review repository status before allowing automatic commits and pushes. <br>
-Risk: The workflow depends on companion skills for news collection and mobile push delivery. <br>
-Mitigation: Confirm that daily-tech-broadcast and today-task are trusted and working before enabling cron jobs or notifications. <br>
+## Use Case:
 
+External users and developers use this skill to collect daily AI, digital product, and technology news, summarize articles, organize the results into Obsidian notes, and push a short digest to a phone feed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ajawpwinner-del/daily-tech-digest) <br>
-- [Skill README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown notes and mobile-card text, with JSON execution status and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes files in an Obsidian vault and may run Git synchronization and device push commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact changelog also lists v1.0.0) <br>
+Risk: Automatic Git sync can push the full Obsidian vault, including unintended private notes, to a remote repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated vault or repository, review the sync target, and disable or narrow the automatic Git push before scheduling the skill.
+
+Risk: The organizer rewrites archive notes and deletes the original daily digest after creating an index, which can cause data loss if parsing or categorization is wrong.
+
+Mitigation: Keep backups and test organizer runs on a copy of the vault before enabling recurring execution.
+
+Risk: The skill depends on other local skills for news collection and phone-feed push behavior.
+
+Mitigation: Confirm the dependent skills are installed and trusted before running the scripts or enabling OpenClaw cron jobs.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/ajawpwinner-del/skills/daily-tech-digest)
+- [Publisher profile](https://clawhub.ai/user/ajawpwinner-del)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, phone-feed summaries, shell command examples, and JSON execution results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates dated Obsidian digest and archive files; can run manually or through scheduled OpenClaw cron commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

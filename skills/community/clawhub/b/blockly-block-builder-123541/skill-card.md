@@ -1,40 +1,50 @@
-## Description: <br>
-Helps users turn the Blockly enable/disable block feature request into practical guidance, artifacts, checklists, analysis, or implementation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps maintainers and users turn the Blockly enable/disable block feature request into practical plans, artifacts, checklists, analysis, code changes, or decision support.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Maintainers, developers, and users use this skill to clarify and act on the Blockly feature request for adding enable/disable blocks. It produces practical planning, review, and implementation support that can be checked against the stated requirement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-invocation wording may cause the skill to trigger for general terms such as add, block, enable, or disable. <br>
-Mitigation: Invoke the skill explicitly with $blockly-block-builder when needed, and consider narrowing triggers in a future release. <br>
+## Use Case:
 
+Developers, maintainers, and users use this skill to clarify and act on a Blockly feature request for enabling or disabling Things. It produces practical planning, review, implementation, and verification support tailored to the user's immediate context.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Blockly enable/disable block feature request](https://github.com/openhab/openhab-js/issues/532) <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/blockly-block-builder-123541) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or text with optional code snippets and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, validation notes, risks, and follow-up work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Broad trigger keywords and implicit invocation may cause this skill to activate for unrelated prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review automatic skill-selection behavior before deployment and narrow trigger metadata if unrelated invocation would affect users.
+
+## Reference(s):
+
+- [Blockly Block Builder Requirement Plan](references/requirement-plan.md)
+- [openHAB Blockly Feature Request](https://github.com/openhab/openhab-js/issues/532)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or text with optional code snippets and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, and follow-up risks when helpful.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Provides guidance for running a Flask frontend with a FastAPI backend, including route registration, API proxying, imports, cascading deletes, startup, and Docker Compose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for combining a FastAPI API backend with a Flask frontend proxy, including route registration, API proxying, imports, cascade deletion, startup scripts, and Docker Compose.
 
-## Publisher: <br>
-[hunwenpinghao](https://clawhub.ai/user/hunwenpinghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hunwenpinghao](https://clawhub.ai/user/hunwenpinghao)
 
-## Use Case: <br>
-Developers and engineers use this skill when wiring a Flask frontend to a FastAPI backend and need practical guidance on routing, proxying API calls, startup scripts, and Docker Compose configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example services may expose network bindings or ports that are broader than a production deployment needs. <br>
-Mitigation: Restrict host bindings, published ports, and firewall rules to the minimum required environment before deployment. <br>
-Risk: Proxy snippets may omit production auth, cookie, header, timeout, and error-handling behavior. <br>
-Mitigation: Review and adapt proxy behavior so authentication, session state, headers, status codes, and failures are preserved correctly. <br>
-Risk: Deletion examples can remove related database records when used directly in an application. <br>
-Mitigation: Protect destructive routes with access control, test cascade behavior, and maintain recovery or backup procedures. <br>
+## Use Case:
 
+Developers and engineers use this skill to design or review a hybrid FastAPI API and Flask frontend setup. It is most useful when resolving route registration, proxy routing, import, cascade deletion, startup, and Docker Compose issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hunwenpinghao/fastapi-flask-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, Bash, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; snippets require review before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The guide presents the FastAPI backend as publicly exposed in sample deployment commands and Docker Compose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the backend privately, avoid publishing the FastAPI port, and expose access through the Flask proxy or another controlled edge service.
+
+Risk: The proxy examples include state-changing HTTP methods without authentication or authorization controls.
+
+Mitigation: Add authentication, authorization, request validation, and error handling before using the pattern outside local development.
+
+Risk: The source includes a real internal user, host, and path reference.
+
+Mitigation: Remove the internal project reference from published copies and review the skill for environment-specific identifiers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hunwenpinghao/skills/fastapi-flask-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, and YAML code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

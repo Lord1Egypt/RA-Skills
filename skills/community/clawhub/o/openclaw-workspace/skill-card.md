@@ -1,41 +1,50 @@
-## Description: <br>
-Audits and improves OpenClaw workspaces across persona, memory, tools, skills, and agent behavior so users can tune proactivity, recall, and workflow fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and improve OpenClaw workspaces across SOUL, AGENTS, TOOLS, USER, MEMORY, and skills for persona tuning, proactive behavior, recall, and workflow fit.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and workspace owners use this skill to audit OpenClaw configuration and turn repeated behavior issues into concrete, reviewable changes across memory, bootstrap files, tools, and skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be selected for broad workspace-improvement requests and can propose edits to personal memory, profile, or bootstrap behavior files. <br>
-Mitigation: Review proposed changes before applying them, especially changes affecting personal memory, user-profile, or agent startup behavior. <br>
-Risk: Workspace recommendations may be weaker when prior conversation or memory evidence is unavailable. <br>
-Mitigation: Treat recommendations as provisional when evidence is missing, and confirm the relevant behavior pattern before changing durable memory or proactivity rules. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to audit workspace behavior files, memory, tools, and skills, then produce targeted, reviewable improvement proposals.
 
-## Reference(s): <br>
-- [OpenClaw Workspace on ClawHub](https://clawhub.ai/ivangdavila/openclaw-workspace) <br>
-- [OpenClaw Workspace Homepage](https://clawic.com/skills/openclaw-workspace) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with audit findings, improvement plans, and optional exact replacement blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include target workspace files and reviewable diffs for proposed configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Workspace audits may inspect personal memory and behavior files, creating privacy exposure if sensitive memory is copied into shared context or broad indexes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed diffs before applying them and avoid broad memory indexing unless that privacy tradeoff is intentional.
+
+## Reference(s):
+
+- [OpenClaw Workspace on ClawHub](https://clawhub.ai/ivangdavila/skills/openclaw-workspace)
+- [OpenClaw Workspace homepage](https://clawic.com/skills/openclaw-workspace)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional code blocks, concrete diffs, and improvement plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend reviewable edits to workspace behavior, memory, tool, and skill files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

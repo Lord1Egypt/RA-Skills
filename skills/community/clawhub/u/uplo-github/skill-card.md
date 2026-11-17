@@ -1,44 +1,59 @@
-## Description: <br>
-AI-powered GitHub knowledge management. Search repository metadata, code review standards, issue tracking, and team workflows with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered GitHub knowledge management. Search repository metadata, code review standards, issue tracking, and team workflows with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to search organization-specific GitHub repository metadata, ownership records, pull request and issue history, review standards, and workflow guidance through a configured UPLO knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured UPLO instance may expose sensitive organizational GitHub metadata, discussions, repository ownership, and team context. <br>
-Mitigation: Install only for trusted UPLO instances, use least-privilege MCP tokens, and keep access aligned with organizational classification tiers. <br>
-Risk: The export_org_context tool may return broad internal repository and team context. <br>
-Mitigation: Limit use of broad exports, review outputs before sharing, and avoid surfacing credentials or deployment secrets. <br>
-Risk: Indexed GitHub data is a snapshot and may be stale for current CI status, latest commits, or recently changed ownership. <br>
-Mitigation: Confirm time-sensitive repository state directly in GitHub before acting on it. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to query organization-specific GitHub repository metadata, CODEOWNERS mappings, issue and pull request history, code review standards, and team workflow context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-github) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline tool calls and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return organization-specific GitHub context from the configured UPLO MCP instance; users should confirm time-sensitive GitHub state in GitHub directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and ClawHub release evidence) <br>
+Risk: The skill runs an unpinned downloaded MCP server and uses an API token that may access broad organizational context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a short-lived least-privilege UPLO token, avoid shared configs, prefer a pinned or verified MCP server version, and run with limited local filesystem and environment access.
+
+Risk: GitHub information may reflect the last UPLO ingestion snapshot rather than live GitHub state.
+
+Mitigation: Verify time-sensitive CI status, latest commits, permissions, and issue or pull request state directly in GitHub before acting.
+
+Risk: Organizational context exports, repository metadata, and team information may be sensitive.
+
+Mitigation: Respect classification tiers, limit export and sharing of organization context, and never surface access tokens or deployment credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-github)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses grounded in UPLO GitHub knowledge queries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository names, team handles, relevant links, ownership details, review requirements, issue context, directives, and stale-entry flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

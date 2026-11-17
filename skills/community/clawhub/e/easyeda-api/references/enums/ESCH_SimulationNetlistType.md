@@ -1,11 +1,11 @@
 # ESCH\_SimulationNetlistType enum
 
-仿真网表类型
+Simulation netlist type
 
 ## Signature
 
 ```typescript
-declare enum ESCH_SimulationNetlistType 
+enum ESCH_SimulationNetlistType
 ```
 
 ## Enumeration Members
@@ -14,32 +14,24 @@ declare enum ESCH_SimulationNetlistType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 NGSPICE
 
-
 </td><td>
 
-`"NGspice"`
-
+`'Ngspice'`
 
 </td><td>
-
-NGspice
-
 
 </td></tr>
 </tbody></table>

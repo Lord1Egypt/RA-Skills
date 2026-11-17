@@ -1,46 +1,60 @@
-## Description: <br>
-AI-driven document compliance review skill that uses a Python API to check PDF, Word, and image documents for completeness, timeliness, and visual compliance signals such as stamps and signatures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks PDF, Word, and image project documents for completeness, timeliness, and visual compliance indicators such as seals and signatures.
 
-## Publisher: <br>
-[evob-z](https://clawhub.ai/user/evob-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evob-z](https://clawhub.ai/user/evob-z)
 
-## Use Case: <br>
-External users, developers, and compliance reviewers use this skill to inspect project, invoice, and administrative approval documents for required files, validity dates, and stamp or signature evidence. It is intended for document review workflows where structured Python dictionary results can be summarized by an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Document text or images may be sent to configured LLM, embedding, vision, or OCR providers. <br>
-Mitigation: Use private or local endpoints for sensitive documents, prefer local OCR when appropriate, and redact sensitive content before processing. <br>
-Risk: Command-based SecretRef providers can run local commands with broad authority. <br>
-Mitigation: Avoid untrusted exec providers and restrict SecretRef configuration to reviewed providers. <br>
-Risk: Unreviewed dependency updates may be unsuitable for regulated or enterprise environments. <br>
-Mitigation: Review and pin dependencies before deployment. <br>
+## Use Case:
 
+Developers and external users use this skill to review project, invoice, or administrative approval documents for required files, validity dates, and visual indicators such as seals and signatures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evob-z/compliance-checker-light) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [DashScope vision model documentation](https://help.aliyun.com/zh/dashscope/developer-reference/vl-plus-quick-start) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, API Calls, Analysis] <br>
-**Output Format:** [Markdown guidance with Python code examples and structured dictionary or JSON-like API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided file or directory paths and SecretRef configuration for LLM access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.6 (source: server release metadata, SKILL.md frontmatter, pyproject.toml, CHANGELOG.md) <br>
+Risk: The optional exec SecretRef provider can run local commands and may expose the process environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer env or file SecretRef providers; allow exec only for administrator-approved commands with an explicit minimal passEnv allowlist.
+
+Risk: Sensitive documents or extracted content may be sent to configured vision, OCR, LLM, or embedding endpoints.
+
+Mitigation: Use local OCR, private or local model endpoints, and redact sensitive content before remote processing.
+
+Risk: Visual detection and compliance results are advisory and may be wrong or affected by unusual target text.
+
+Mitigation: Treat results as decision support and require human review for compliance decisions, especially for unusual targets or high-impact documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evob-z/skills/compliance-checker-light)
+- [Qwen-VL DashScope quick start](https://help.aliyun.com/zh/dashscope/developer-reference/vl-plus-quick-start)
+- [README](README.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and structured Python dictionary results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The Python APIs return dictionaries for completeness, timeliness, visual inspection, and health-check results.]
+
+## Skill Version(s):
+
+1.1.6 (source: SKILL.md frontmatter, pyproject.toml, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

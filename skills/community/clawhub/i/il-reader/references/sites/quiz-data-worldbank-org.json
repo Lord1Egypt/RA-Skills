@@ -1,0 +1,427 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-data-worldbank-org",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:04:15.472Z",
+  "entry": {
+    "url": "https://data.worldbank.org",
+    "final_url": "https://data.worldbank.org/",
+    "title": "World Bank Open Data | Data",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:04:15.472Z",
+    "identity": {
+      "declared_name": "世界银行公开数据",
+      "hostname": "data.worldbank.org",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "Help Desk",
+        "href": "http://datahelpdesk.worldbank.org/",
+        "target": ""
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://worldbank.demdex.net/dest5.html?d_nsid=0#https%3A%2F%2Fdata.worldbank.org",
+        "id": "destination_publishing_iframe_worldbank_0",
+        "name": "destination_publishing_iframe_worldbank_0_name",
+        "title": "Adobe ID Syncing iFrame"
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "select",
+      "type": null,
+      "text": "English\nEspañol\nFrançais\nالعربية\n中文",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Search data e.g. GDP, population, Indonesia",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "Search data e.g. GDP, population, Indonesia",
+      "name": null,
+      "id": "selector",
+      "css": "#selector",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#selector"
+      },
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Search economy",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "Search economy",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"Search economy\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"Search economy\"]"
+      },
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "Zoom in",
+      "label": "",
+      "aria_label": "Zoom in",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Zoom in",
+        "exact": true
+      },
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    },
+    {
+      "tag": "a",
+      "type": null,
+      "text": "Zoom out",
+      "label": "",
+      "aria_label": "Zoom out",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Zoom out",
+        "exact": true
+      },
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "Help / Feedback",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Help / Feedback",
+        "exact": true
+      },
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Close",
+      "label": "",
+      "aria_label": "Close",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Close",
+        "exact": true
+      },
+      "observed_url": "https://data.worldbank.org/",
+      "observed_at": "2026-10-09T09:04:13.627Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-data-worldbank-org:record-lookup",
+      "source_id": "quiz-data-worldbank-org",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "先按retrieval_channels选择覆盖本题缺口的官方API/指南；原status只描述浏览器。指南不能支持当前数量或排名，受阻渠道不重复预检；需要界面时再执行下列浏览器步骤。",
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://data.worldbank.org/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "Search data e.g. GDP, population, Indonesia",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "Search data e.g. GDP, population, Indonesia",
+          "name": null,
+          "id": "selector",
+          "css": "#selector",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#selector"
+          },
+          "observed_url": "https://data.worldbank.org/",
+          "observed_at": "2026-10-09T09:04:13.627Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "Search economy",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "Search economy",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"Search economy\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"Search economy\"]"
+          },
+          "observed_url": "https://data.worldbank.org/",
+          "observed_at": "2026-10-09T09:04:13.627Z"
+        },
+        {
+          "tag": "a",
+          "type": null,
+          "text": "Zoom in",
+          "label": "",
+          "aria_label": "Zoom in",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Zoom in",
+            "exact": true
+          },
+          "observed_url": "https://data.worldbank.org/",
+          "observed_at": "2026-10-09T09:04:13.627Z"
+        },
+        {
+          "tag": "a",
+          "type": null,
+          "text": "Zoom out",
+          "label": "",
+          "aria_label": "Zoom out",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "button",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Zoom out",
+            "exact": true
+          },
+          "observed_url": "https://data.worldbank.org/",
+          "observed_at": "2026-10-09T09:04:13.627Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "Help / Feedback",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Help / Feedback",
+            "exact": true
+          },
+          "observed_url": "https://data.worldbank.org/",
+          "observed_at": "2026-10-09T09:04:13.627Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Close",
+          "label": "",
+          "aria_label": "Close",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://data.worldbank.org/",
+          "observed_at": "2026-10-09T09:04:13.627Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      },
+      "status_scope": "browser",
+      "retrieval_channels": [
+        {
+          "id": "worldbank-indicators-v2",
+          "kind": "official-api",
+          "method": "GET",
+          "url_template": "https://api.worldbank.org/v2/country/{country}/indicator/{indicator}?date={year}&source={source}&format=json",
+          "metadata_url_template": "https://api.worldbank.org/v2/indicator/{indicator}?source={source}&format=json",
+          "response_format": "json",
+          "api_key_required": false,
+          "documentation": [
+            "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation",
+            "https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures"
+          ],
+          "use_when": "世界银行指定国家/指标/年份/数据源数值；指标已确认时只请求缺失数值，定义缺口才读metadata。",
+          "verification": {
+            "status": "sample_verified",
+            "checked_at": "2026-10-10T03:26:35.657255+00:00",
+            "http_status": 200,
+            "scope": "一条国家/指标/年份/source观测及对应指标metadata"
+          },
+          "field_paths": [
+            "[0].sourceid",
+            "[0].lastupdated",
+            "[0].page/pages/total",
+            "[1][].indicator.id",
+            "[1][].countryiso3code",
+            "[1][].date",
+            "[1][].value",
+            "metadata[1][].sourceNote",
+            "metadata[1][].sourceOrganization"
+          ],
+          "constraints": [
+            "国家、指标、source和年份须全部匹配；覆盖所问范围的分页。",
+            "unit可能为空；读官方指标名称/定义，不补造单位字段。",
+            "null不等于零；lastupdated是数据刷新日期，不是观测年份。",
+            "不替代题目指定国家统计局等其他库的口径或网站排名。"
+          ],
+          "fallback": "参数或定义不明先补读相关官方说明；API失败时使用对应官方数据页。"
+        }
+      ]
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-028"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:04:15.472Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-data-worldbank-org-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-data-worldbank-org-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  },
+  "status_scope": "browser"
+}

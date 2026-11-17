@@ -1,0 +1,21 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 2,
+    "pageCount": 1,
+    "list": [
+      {
+        "companyName": "深圳市绿城物业服务有限公司",
+        "cooperationCount": 12,
+        "cooperationAmount": 3680000
+      },
+      {
+        "companyName": "深圳市安信后勤服务有限公司",
+        "cooperationCount": 6,
+        "cooperationAmount": 1560000
+      }
+    ]
+  },
+  "success": true
+}

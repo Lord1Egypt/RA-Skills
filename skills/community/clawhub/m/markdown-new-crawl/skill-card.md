@@ -1,41 +1,54 @@
-## Description: <br>
-Uses markdown.new crawl endpoints to recursively crawl a site section and return Markdown, including async job creation, status polling, and optional JSON page records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawls website sections through markdown.new crawl endpoints and returns page content as Markdown or per-page JSON.
 
-## Publisher: <br>
-[ctxinf](https://clawhub.ai/user/ctxinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctxinf](https://clawhub.ai/user/ctxinf)
 
-## Use Case: <br>
-Developers and agents use this skill to crawl public websites or documentation sections and convert the pages into Markdown while controlling crawl scope, polling async jobs, and falling back when the crawl endpoint is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive URLs may be processed and retained by markdown.new. <br>
-Mitigation: Use this skill for public websites or documentation where third-party processing is acceptable; avoid intranet pages, localhost URLs, authenticated content, presigned links, confidential documents, and URLs containing tokens unless that processing is acceptable. <br>
-Risk: Overly broad crawls can consume quota and increase runtime. <br>
-Mitigation: Set explicit limits, depth, include and exclude patterns, and external-link or subdomain options before starting a crawl. <br>
+## Use Case:
 
+Developers and agents use this skill to crawl public documentation or public site sections, extract multi-page content, and retrieve the result as Markdown or structured JSON.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ctxinf/markdown-new-crawl) <br>
-- [markdown.new crawl endpoint](https://markdown.new/crawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and optional JSON crawl results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Crawl output is Markdown by default, with per-page JSON available when requested; artifact evidence states results are retained for 14 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Target URLs are sent to the external markdown.new service for crawl requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public documentation or public site sections, and do not submit private URLs, authenticated pages, localhost or internal hosts, secrets, or tokenized links.
+
+Risk: Broad crawl settings can increase runtime and service usage.
+
+Mitigation: Keep crawl scope explicit and narrow by setting low limits, depth, include patterns, and exclude patterns for the task.
+
+## Reference(s):
+
+- [markdown.new crawl endpoint](https://markdown.new/crawl)
+- [ClawHub skill page](https://clawhub.ai/ctxinf/skills/markdown-new-crawl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; crawl results are returned as Markdown by default or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Crawl jobs default to same-domain links, up to 500 pages, and retained results for 14 days according to the skill evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

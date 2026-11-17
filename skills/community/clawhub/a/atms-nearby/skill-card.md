@@ -1,39 +1,58 @@
-## Description: <br>
-Find nearby ATMs when the user asks for cash withdrawal options near their current location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby ATMs. Invoke when user asks for cash withdrawal near me.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users and location-aware app integrators use this skill to request nearby ATM points of interest from an authorized location, with radius, result limit, and optional ATM filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires user location data to find nearby ATMs. <br>
-Mitigation: Request location only when needed, obtain user authorization, and avoid retaining precise coordinates except where necessary for the query. <br>
-Risk: The referenced standard response schema is not included in the artifact. <br>
-Mitigation: Verify the expected response fields before integrating the skill into a frontend, API, or downstream workflow. <br>
+## Use Case:
 
+External users invoke this skill after sharing location to find nearby ATMs for cash withdrawal and receive standardized POI-style results for frontend or API reuse.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Structured point-of-interest response guidance with location, radius, limit, filters, category, and error code conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authorized latitude and longitude input; default radius is 3000 meters, default limit is 20, and maximum limit is 50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Precise location may reveal sensitive user movement or banking intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke only after the user chooses to share location, and avoid retaining precise coordinates; use grid-level blurring when storage or logging is necessary.
+
+Risk: Broad banking-related wording could trigger the skill for general banking questions instead of nearby ATM lookup.
+
+Mitigation: Limit activation to nearby ATM or cash-withdrawal intent that includes or requests a location.
+
+Risk: Invalid coordinates, excessive radius, provider outages, or rate limits may produce incomplete results.
+
+Mitigation: Validate latitude, longitude, radius, and limit before lookup, and surface the documented error states when providers are unavailable or rate limited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/atms-nearby)
+- [Publisher profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, JSON]
+
+**Output Format:** [Text guidance with structured JSON-style POI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Location is required; radius defaults to 3000 meters; limit defaults to 20 and maxes at 50; optional ATM filters may apply.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

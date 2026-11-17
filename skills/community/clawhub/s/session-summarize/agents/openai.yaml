@@ -1,0 +1,4 @@
+interface:
+  display_name: "Summarize"
+  short_description: "总结·精简·交接 → 状态证据·风险决策·行动建议"
+  default_prompt: "Use $summarize to produce a concise, evidence-backed task summary with the single most important next action."

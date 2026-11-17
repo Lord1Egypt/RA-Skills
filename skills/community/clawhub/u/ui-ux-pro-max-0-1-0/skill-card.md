@@ -1,39 +1,58 @@
-## Description: <br>
-Provides UI/UX design intelligence and implementation guidance for polished interfaces, including layouts, UX flows, design systems, component specs, accessibility, and frontend code refinement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+UI/UX design intelligence and implementation guidance for building polished interfaces across web, mobile, desktop, and common frontend stacks.
 
-## Publisher: <br>
-[15349185792](https://clawhub.ai/user/15349185792) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[15349185792](https://clawhub.ai/user/15349185792)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to plan, critique, and implement UI/UX flows, design-system tokens, accessibility states, and frontend interface changes across common web and mobile stacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional persistence script can create or overwrite local markdown files at caller-controlled paths without path validation or confirmation. <br>
-Mitigation: Use search and design generation in read-only mode by default; avoid --persist unless file writes are intended, and do not pass absolute paths, parent-directory traversal, or untrusted project/page names. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to plan, critique, and implement UI/UX work, including layouts, flows, design-system tokens, component guidance, accessibility coverage, and frontend code changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/15349185792/ui-ux-pro-max-0-1-0) <br>
-- [Upstream README](artifact/references/upstream-README.md) <br>
-- [Upstream skill content](artifact/references/upstream-skill-content.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with optional code blocks, design-system tokens, and file-level implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional helper scripts can produce generated design-system Markdown files when persistence is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Optional persistence can write design-system files based on project, page, or output-dir inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted paths, avoid persistence with untrusted values, and review generated files before reusing them.
+
+Risk: The reference material mentions an optional global npm CLI install without a pinned package version.
+
+Mitigation: Prefer the bundled Python scripts, or pin and verify the CLI package before installing it.
+
+Risk: Broad UI/UX guidance can introduce design or implementation choices that do not fit a specific product, brand, or accessibility target.
+
+Mitigation: Review recommendations against project requirements, accessibility targets, and existing code conventions before applying changes.
+
+## Reference(s):
+
+- [Upstream README](references/upstream-README.md)
+- [Upstream Skill Content](references/upstream-skill-content.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with optional code snippets, shell commands, design tokens, and generated design-system files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce file-level implementation plans and optional persisted design-system artifacts when the persistence workflow is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

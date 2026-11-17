@@ -1,10 +1,10 @@
 # majia-guanyuan · 观远 BI 实战增益层 · 马甲实战版
 
-> **官方全家桶之上的实战增益层** —— 观远官方 BI 全家桶（`guancli` 查数 / `guanvis` 建卡发布截图 / `guanetl` ETL / `guanwf` 数据流 / `guands` 数据源）2026-06-03 全部公网化后，本 skill **不再自造轮子**：标准查数/建卡/ETL/数据集 CRUD 一律**路由官方全家桶**，只攻官方 DSL/命令够不着的硬骨头 —— ETL 治理判断 + 引擎报错手册、自定义图表注入 + descriptor patch、v7 状态机绕过、SuperApp 反向工程、AI-native ADS 方法论、餐饮公式库。
+> **官方全家桶之上的实战增益层** —— 观远官方 BI 全家桶（`guancli` 查数 / `guanvis` 建卡发布截图 / `guanetl` ETL / `guanwf` 数据流 / `guands` 数据源 / `guanmetric` 指标写）全部公网化后（2026-06-03 首发五件套、2026-07-08 `guanmetric` 入桶扩至 6 员），本 skill **不再自造轮子**：标准查数/建卡/ETL/数据集 CRUD 一律**路由官方全家桶**，只攻官方 DSL/命令够不着的硬骨头 —— ETL 治理判断 + 引擎报错手册、自定义图表注入 + descriptor patch、v7 状态机绕过、SuperApp 反向工程、AI-native ADS 方法论、餐饮公式库。
 > 兼容 **Claude Code** · **OpenClaw** · **Codex** · **Hermes (gbrain)** 等所有支持 SKILL.md 的 agent 工具。
 > 60+ 张 ETL 创建/重构/修复 + 治理扫描 + 自定义图表注入排障的真实战场记录。
 
-[![Skill Version](https://img.shields.io/badge/skill-v3.1.5-blue)](./SKILL.md)
+[![Skill Version](https://img.shields.io/badge/skill-v3.5.2-blue)](./SKILL.md)
 [![GitHub Release](https://img.shields.io/github/v/release/maojiebc/majia-guanyuan?label=release&color=success)](https://github.com/maojiebc/majia-guanyuan/releases)
 [![skills.sh](https://skills.sh/b/maojiebc/majia-guanyuan)](https://skills.sh/maojiebc/majia-guanyuan)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
@@ -17,30 +17,41 @@
 [![BI](https://img.shields.io/badge/Guandata-BI_6.x_/_7.x-purple)](https://www.guandata.com/)
 
 **[English README](README.en.md)** · 中文文档 ↓
+**本次能力更新**：取数完成后，可以独立核对分块是否漏了、范围是否重叠、数据是否符合筛选，再生成验收报告和数字出处。见 [取数验收](references/extraction-evidence.md)。已对齐 guancli 1.0.66 / guanskill 0.1.46。详见 [兼容说明](references/official-cli-compatibility.md)。
+
+
+**新增看板口径验收：** 把已有看板记录成可复查的口径档案，按页面默认筛选取原始值，再核对具体数据行和字段；公式或筛选变化会提示重新确认。两张真实看板只读对照，16 项正确断言通过、5 项错配断言被拒绝。见 [操作说明](references/dashboard-evidence.md) 和 [验证记录](docs/dashboard-evidence-validation.md)。感谢 [Jeremy 的 guanbi-agent-builder](https://github.com/JeremyWXL/guanbi-agent-builder) 提供档案与验收工作流思路，详见 [来源及许可](ATTRIBUTIONS.md)。
+
+**手机案例最新版：** [V2 离线演示与源码](examples/store-mobile-scorecard-v2/README.md) · [ETL 与数据口径](references/part-c-store-mobile-scorecard-v2.md)。
 
 ---
+
+## 受限环境取数
+
+SQL 直查不可用时，先读受限取数手册。小结果汇总能留下数字出处，大表分块能检查是否取全并断点续跑；超时不会自动重发。分块完成后另行 [验收覆盖与数字出处](references/extraction-evidence.md)。结果限制与操作见 [受限取数](references/restricted-query-playbook.md) 和 [分块读取](references/bounded-extraction.md)。
 
 ## 概述
 
 **V3.0.0 重定位**：观远官方已把"查数 / 建卡 / ETL / 数据流 / 数据源 / 截图 / 管理"做成公网全家桶（`npm i -g @guandata/guanskill`）。本 skill 从早期"自造全栈 + fallback"**彻底重构为「官方全家桶之上的实战增益层」**——退役 2789 行自造 HTTP 客户端 `guandata.py`、删 ~1600 行死代码、砍掉所有镜像官方命令的章节。
 
 两层分工：
-- **🧭 路由层**：标准查数 / 建卡 / ETL / 数据集 CRUD 一律**路由给官方全家桶**（`guancli` / `guanvis` / `guanetl` / `guanwf` / `guands`），本 skill 不再自造这些轮子。
+- **🧭 路由层**：标准查数 / 建卡 / ETL / 数据集 CRUD 一律**路由给官方全家桶**（`guancli` / `guanvis` / `guanetl` / `guanwf` / `guands` / `guanmetric`），本 skill 不再自造这些轮子。
 - **💪 实战增益层（本 skill 主体）**：只攻官方 DSL/命令覆盖不到的硬骨头——3 大支柱：① **治理与引擎踩坑**（Part B ETL 整库治理判断 + 10 类引擎报错手册 + 双源审计 + B-17 全链路重写）② **前端注入与发布状态机**（Part C 既有页自定义图表注入排障 + Part C-12 HTML 应用化看板 descriptor patch + Part D v7 草稿-发布状态机绕过 + phoneLayout）③ **反向工程与方法论**（Part E SuperApp 开放应用反向工程 + AI-native ADS 数据架构方法论 + 餐饮 BI 公式实战库）。
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/maojiebc/majia-guanyuan/main/docs/architecture.png" alt="majia-guanyuan v3.1.5 · 马甲实战版 架构图：官方全家桶路由层（guancli 查数 / guanvis 建卡发布截图 / guanetl ETL / guanwf 数据流 / guands 数据源，2026-06-03 全部公网化）+ 本 skill 实战增益层 3 支柱——① 治理与引擎踩坑（Part B ETL 整库治理判断 + 10 类引擎报错手册 + 双源字段审计 + B-17 全链路重写/ExecPlan）② 前端注入与发布状态机（Part C 既有页自定义图表 HTML/JS 注入排障 + Part C-12 HTML 应用化看板 descriptor patch 联 dataView + Part D v7 草稿-发布状态机绕过 + customChart autoBootstrap + 移动端 phoneLayout ZIP inject）③ 反向工程与方法论（Part E SuperApp 开放应用反向工程 + form 建表 + LLM 中转 ILLEGAL_JSON_RES 三路径解析 + AI-native ADS 设计方法论 + 餐饮 BI 公式实战库）" width="100%"/>
+  <img src="https://raw.githubusercontent.com/maojiebc/majia-guanyuan/main/docs/architecture.png" alt="majia-guanyuan v3.5.2 · 马甲实战版 架构图：官方全家桶路由层（guancli 1.0.72 查数 / guanvis 0.1.62 建卡发布截图 live / guanetl 0.1.45 ETL / guanwf 0.1.842 数据流 / guands 0.1.41 数据源 / guanmetric 0.1.23 指标写，6 件套）+ 本 skill 实战增益层 3 支柱——① 治理与引擎踩坑（Part B ETL 整库治理判断 + 10 类引擎报错手册 + 双源字段审计 + B-17 全链路重写/ExecPlan）② 前端注入与发布状态机（Part C 既有页自定义图表 HTML/JS 注入排障 + Part C-12 HTML 应用化看板 descriptor patch 联 dataView + Part D v7 草稿-发布状态机绕过 + customChart autoBootstrap + 移动端 phoneLayout ZIP inject）③ 反向工程与方法论（Part E SuperApp 开放应用反向工程 + form 历史兼容 + LLM 中转 ILLEGAL_JSON_RES 三路径解析 + AI-native ADS 设计方法论）" width="100%"/>
 </p>
 
 | 层 | 你想做 | 走 |
 |---|---|---|
-| 🧭 **路由层** | 查数据、建卡、出报表、标准 ETL / 数据集 CRUD | 交给官方全家桶（`guancli` / `guanvis` / `guanetl` / `guanwf` / `guands`） |
+| 🧭 **路由层** | 查数据、建卡、出报表、标准 ETL / 数据集 CRUD | 交给官方全家桶（`guancli` / `guanvis` / `guanetl` / `guanwf` / `guands` / `guanmetric`） |
+| **看板口径验收** | 口径档案、页面筛选对账、具体行和字段验收、变化复查 | [dashboard-evidence.md](references/dashboard-evidence.md) |
 | 🅱️ **Part B** | ETL 整库治理判断 + 引擎报错手册 + 双源字段审计 | "扫一遍 ETL 看哪些可以删" / "direct-save 报错怎么修" / "字段裁剪安不安全" |
 | 🅱️ **B-17** | 全链路重写方法论 | "把这条 SmartETL 链整个改成 SQL 版" / "副本页验收 / 卡片级对比" |
-| 🆎 **Part C / C-12** | 自定义图表注入排障 + HTML 应用化看板 | "payload_json 解析失败" / "固定卡片错位" / "更高级/应用化看板" |
+| 🆎 **Part C / C-12** | 自定义图表注入排障 + HTML 应用化看板 + 门店手机成绩单 | "payload_json 解析失败" / "固定卡片错位" / "更高级/应用化看板" / "加盟店老板手机成绩单" |
 | 🇩 **Part D** | v7 草稿-发布状态机绕过 + phoneLayout | "v7 page+card 被 60004 卡住" / "移动端 phoneLayout 怎么注入" |
-| 🇪 **Part E** | SuperApp 开放应用反向工程 | "form 建表脚手架没暴露" / "LLM 中转 ILLEGAL_JSON_RES" |
-| 🧠 **方法论 / 公式库** | AI-native ADS 判断 + 餐饮 BI 公式 | "想给现有 BI 接 AI，该治理还是该重搭" / "复购率/RFM/客单价怎么算" |
+| 🇪 **Part E** | SuperApp 开放应用反向工程 | "表单结构先走 guands form；旧脚手架兼容问题再查 E" / "LLM 中转 ILLEGAL_JSON_RES" |
+| 🧠 **方法论 / 公式库** | AI-native ADS 判断 + 餐饮 BI 公式（公式库已迁至 [majia-huiyuan](https://github.com/maojiebc/majia-huiyuan)） | "想给现有 BI 接 AI，该治理还是该重搭" / "复购率/RFM/客单价怎么算" |
 
 ---
 
@@ -48,13 +59,14 @@
 
 ### 🧭 路由层（标准活交给官方全家桶）
 
-- ✅ 标准查数 / 同环比 / Top N / 归因 / ChatBI 问数 → `guancli`
-- ✅ 74 种图表 JS DSL 建卡 + Page 装配 + 服务端截图出 PNG → `guanvis`
+- ✅ 标准查数 / 同环比 / Top N / 归因 / ChatBI 问数 / 仪表板洞察 / Dashboard Agent → `guancli`
+- ✅ 74 种图表 JS DSL 建卡 + Page 装配 + 服务端截图出 PNG + `live` 实时工程 → `guanvis`
 - ✅ 单个 ETL 新建/改/lint/preview/save/run/schedule → `guanetl`
 - ✅ 工作流数据流 Dataflow（DB 直连回写、增量输出）→ `guanwf`
-- ✅ 数据源 + 数据集 CRUD（建连接、create-db/import/replace-data）→ `guands`
+- ✅ 数据源 + 数据集 CRUD（建连接、create-db/import/replace-data、追加/清理、schema 同步）→ `guands`
+- ✅ 指标建/改/删 + 指标主题/目录 + 公共维度 + 指标树 + 查询加速 + 指标 Excel 标准化 → `guanmetric` 🆕（07-08 入桶第 6 员）
 - ⚠️ 管理员级操作（dynamicCode / svc SQL）：`guanadmin` **2026-06-04 已退出全家桶**（需另装 standalone 或走 BI UI）
-- 一句话路由：**标准查数 → `guancli`；标准建卡/发布/截图 → `guanvis`；标准 ETL → `guanetl`；数据流 → `guanwf`；数据源/数据集 → `guands`。** 遇到官方够不着的字段/报错/状态机/反向工程/业务口径 → 回到本 skill 对应 Part。
+- 一句话路由：**标准查数 / 洞察 / Dashboard Agent → `guancli`；标准建卡/发布/截图 / live → `guanvis`；标准 ETL → `guanetl`；数据流 → `guanwf`；数据源/数据集 → `guands`；指标建/改/删 + 指标树 / 查询加速 → `guanmetric`。** 遇到官方够不着的字段/报错/状态机/反向工程/业务口径 → 回到本 skill 对应 Part。
 
 ### ETL 治理写入侧（Part B）
 
@@ -207,7 +219,7 @@ gbrain skillpack install majia-guanyuan
 本 skill 的标准活全部路由给官方全家桶，所以**先装官方聚合包并登录一次**：
 
 ```bash
-# 1. 一键装齐官方全家桶（guancli / guanvis / guanetl / guanwf / guands + 各自 AI skill）
+# 1. 一键装齐官方全家桶（guancli / guanvis / guanetl / guanwf / guands / guanmetric + 各自 AI skill）
 npm i -g @guandata/guanskill
 guanskill install-skill
 
@@ -217,11 +229,12 @@ guancli auth login
 
 | 命令 | 角色 | 路由什么需求给它 |
 |---|---|---|
-| `guancli` | 只读分析中枢 + 表单 CRUD | 查 ETL/dsId/page/card/血缘、`ds execute-sql`、`metric query` 同环比/Top N、归因、ChatBI 问数、取数导出 |
-| `guanvis` | 标准建卡 + Page 装配 + 服务端截图 | 74 种图表 JS DSL、selector 联动、custom chart、`guanvis pack/publish/upload`、`guanvis screenshot` 出 PNG |
+| `guancli` | 只读分析中枢 + 表单 CRUD + 洞察 | 查 ETL/dsId/page/card/血缘、`ds execute-sql`、`metric query` 同环比/Top N、归因、ChatBI 问数、`insight` 仪表板洞察 / Dashboard Agent、取数导出 |
+| `guanvis` | 标准建卡 + Page 装配 + 服务端截图 + live | 74 种图表 JS DSL、selector 联动、custom chart、`guanvis pack/publish/upload`、`guanvis live` 实时工程、`guanvis screenshot` 出 PNG |
 | `guanetl` | ETL 写操作闭环 | 单个 ETL 新建/改/lint/preview/save/run/schedule |
-| `guanwf` | 工作流数据流 Dataflow | 工作流引擎里建/编/存/跑数据流（DB 直连回写、增量输出） |
-| `guands` | 数据源 + 数据集 CRUD | 建连接、`dataset create-db/create-query/import/replace-data`、批量移删、增量更新 |
+| `guanwf` | 工作流数据流 Dataflow | 工作流引擎里建/编/存/跑数据流（DB 直连回写、增量输出；写操作要 `--confirm`） |
+| `guands` | 数据源 + 数据集 CRUD | 建连接、`dataset create-db/create-query/import/replace-data`、批量移删、增量更新、追加/清理、schema 同步 |
+| `guanmetric` 🆕 | 指标写操作（2026-07-08 入桶） | 指标 `create`/`edit`/`delete`（均支持 `--dry-run`）、指标主题/指标目录、公共维度、`metric-tree` 指标树、`accelerate` 查询加速、`template normalize` 指标 Excel 标准化；指标查询仍走 `guancli` |
 | ~~`guanadmin`~~ | 已退出全家桶（2026-06-04） | 管理员操作不再在公开全家桶，需另装 standalone |
 
 > ⚠️ **认证不再用 `config.json`**：V3.0.0 退役了自造客户端 `guandata.py`，凭据统一由 `guancli auth login` 管理，本 skill 不再读写 `config.json`。
@@ -301,18 +314,21 @@ majia-guanyuan/
 │   └── inject_phone_layout.py        # Part D 移动端 phoneLayout ZIP inject 工具
 ├── templates/
 │   └── html-dashboard/               # Part C-12 HTML 应用化看板模板包（GDHTML runtime + 起手模块 + selector 联动 patch）
-└── references/                       # 深度参考资料（V3.0.0 后 13 份）
+├── examples/
+│   └── store-mobile-scorecard/       # 门店手机成绩单脱敏离线 HTML（V1 版）
+└── references/                       # 深度参考资料
     ├── part-b-errors.md              # Part B 10 类报错详方案
     ├── part-b-payload.md             # ETL payload schema 详解
     ├── part-b-sdk.md                 # v2→v3 批量改造 SDK
     ├── part-b17-fullchain-rewrite.md # B-17 全链路重写方法论全章节 + ExecPlan 工作法
     ├── part-c-payload-json.md        # C-3 payload_json 排障详解
     ├── part-c-html-dashboard.md      # C-12 HTML 应用化看板生成方法论
+    ├── part-c-store-mobile-scorecard.md # 门店手机成绩单经验（产品规则 / 19 视图 / 换店 / 对比脱敏）
     ├── part-c-design-baseline.md     # HTML 看板视觉设计底线（V3.1.0，吸收 design-taste-skills）
     ├── v7-page-card-publish-pipeline.md  # Part D v7 草稿/发布状态机 + 节点化静默坑 + phoneLayout
     ├── part-e-superapp-pipeline.md   # Part E SuperApp 反向工程流水线
     ├── ai-native-ads-design.md       # AI-native ADS 设计方法论（哲学层文档）
-    ├── restaurant-bi-formulas/       # 餐饮 BI 公式实战库（README + 9 篇分册）
+    ├── restaurant-bi-formulas/       # ➡️ 指针：公式库已迁至独立仓库 majia-huiyuan（公式库/）
     ├── custom-chart-playbook.md      # CTO 张进自定义图表完整排障手册原文（V1.1）
     ├── etl-rewrite-original.md       # CTO 张进 SmartETL 改写经验原文（V1.1）
     ├── execplan-spec.md              # OpenAI Codex ExecPlan 规范（V1.2）
@@ -334,8 +350,9 @@ majia-guanyuan/
 | "30+ 表跨多日工程怎么管 / 给我 ExecPlan 骨架" | **B-17.11** |
 | "自定义图表脚本不执行 / payload_json 报错" / "固定卡片错位 / overlay 切页残留" | **C** |
 | "更高级 / 应用化看板 / selector 联不到 custom chart dataView" | **C-12** |
+| "加盟店老板手机成绩单 / 换店后财务空白 / 对比不要写多少家店" | **门店手机成绩单** |
 | "v7 page+card 被 60004 草稿页面卡住" / "移动端 phoneLayout 怎么注入" | **D** |
-| "form 建表脚手架没暴露 API" / "LLM 中转报 ILLEGAL_JSON_RES" | **E** |
+| "常规表单建改用 guands form；历史兼容 / LLM 中转报错" | **E** |
 | "想给现有 BI 接 AI，该治理还是该重搭" / "AI-native ADS 怎么设计" | **方法论** |
 | "复购率 / 客单价 / RFM / 同店增长怎么算" | **餐饮公式库** |
 
@@ -377,11 +394,14 @@ majia-guanyuan/
 
 ## 📋 版本记录
 
-**最新：V3.1.5** (2026-07-01) — **官方全家桶 07-01 版本对齐**。guanskill 0.1.8→**0.1.10**：guancli→**1.0.38**（**新增 Personal Access Token (PAT) 登录**，自动化/CI/无浏览器环境认证）、guanvis→**0.1.29**（**筛选器级联联动** + 画布可放筛选器 + **自定义图表 dataView 作联动来源/页面筛选器过滤自定义图表** + 表格卡只配维度 + 比较卡本期对比期）、guanetl→**0.1.18**（建 ETL 目录类型诊断更清晰）、guands→**0.1.18**（`dataset import` 按列指定类型 + `replace-data` 加编码/分隔符）；guanwf **0.1.6** 不变。路由表 + Part C-12（guanvis 0.1.29 官方 selector 联动 note）+ manifest 基线 pin 同步。护城河零删减。
+**最新：V3.5.2** (2026-11-11) — 跟进官方 CLI1.0.72，补齐连续计算、自助取数字段选择和指标快照边界；[合成示例](examples/local-analysis-plan/README.md)已验证精确结果、输入上限和已有结果保护。
 
-**V3.1.4** (2026-06-26) — **官方全家桶 06-24 版本对齐**。guanskill 0.1.7→**0.1.8**：guancli→**1.0.36**（`metric` 加指标主题/指标目录创建 + 补 SuperApp 创建指导 `app create` + 页面搜索/展示增强）、guanvis→**0.1.28**（**修复自定义图表重复生成数据视图卡片**、减少资源包冗余/冲突配置）、guanetl→**0.1.17** / guands→**0.1.17** / guanwf→**0.1.6**（均仅 `install-skill` 适配 WorkBuddy、CLI 行为无变化）。路由表 + manifest 基线 pin 同步。护城河零删减。
+**V3.5.1** (2026-11-02) — 参数默认值变化检测，每周兼容补丁独立推进。
 
-**V3.1.3** (2026-06-22) — **官方全家桶 06-17 版本对齐**。guanskill 0.1.6→**0.1.7**：guancli→**1.0.35**（`login status` 服务端校验登录态 + 字段输出加 raw name/alias 误用提示）、guanvis→**0.1.27**（`publish`/`upload` 发布前不再额外导入探测、减少跨环境误拦截）、guanetl→**0.1.16**（**`save --dry-run` 保存影响预览** + `run` 上游失败态提示 + `preview` LEFT JOIN 全空样本告警）、guands→**0.1.16**（`dataset list` 统一目录搜索）；guanwf **0.1.5** 不变。路由表 + manifest 基线 pin 同步，并滚入 rank9 保守去冗余（B-0.5/B-11 同行压指针，护城河零删减）。
+**V3.5.0** (2026-10-13) — 分块取数独立验收与数字出处。
+
+
+
 
 完整变更历史见 [CHANGELOG.md](CHANGELOG.md) 或 [GitHub Releases](https://github.com/maojiebc/majia-guanyuan/releases)。
 

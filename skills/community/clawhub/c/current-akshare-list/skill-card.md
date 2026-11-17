@@ -1,43 +1,53 @@
-## Description: <br>
-Uses Akshare market data to build and cross-check current A-share, ChiNext, B-share, and Sci-Tech Innovation Board stock lists, then separates actively trading stocks from stocks not present in real-time quote feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Chinese A-share, B-share, Beijing Stock Exchange, and STAR Market stock lists with AkShare, cross-checks real-time quote lists, and saves current trading and non-trading stock CSV files.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch Chinese equity list data, compare it with real-time Akshare quote endpoints, and produce CSV/JSON outputs that distinguish currently trading stocks from stocks missing in spot-market feeds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags under-scoped persistent retry instructions that could create scheduled background agent work. <br>
-Mitigation: Do not create cron jobs or scheduled agent turns unless the exact task, duration, output path, logs, and removal command are shown and approved first. <br>
-Risk: The skill recommends VPN use when Akshare or Eastmoney quote endpoints are blocked. <br>
-Mitigation: Use VPN guidance only when it complies with the user's organization and network policy. <br>
-Risk: Market-data endpoint failures or partial coverage can produce incomplete trading and non-trading lists. <br>
-Mitigation: Review generated CSV and JSON outputs before relying on them, especially when B-share or Sci-Tech Innovation Board endpoints fail. <br>
+## Use Case:
 
+Developers and market-data analysts use this skill to refresh Chinese stock universe lists, compare them against real-time AkShare quote endpoints, and produce CSV outputs for trading and non-trading securities.
 
-## Reference(s): <br>
-- [Current Akshare List on ClawHub](https://clawhub.ai/ugpoor/current-akshare-list) <br>
-- [Publisher profile: ugpoor](https://clawhub.ai/user/ugpoor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated data files are CSV and JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes stock-list and spot-market comparison outputs such as stocklist.csv, stocklist_intrading.csv, notspot.csv, and temporary Akshare JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill suggests recurring cron-based retry tasks when the Eastmoney-backed AkShare endpoint is blocked, which could continue running without enough user oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for the exact command, schedule, timeout, output path, and self-removal behavior; prefer manual retry or bounded in-process retry when possible.
+
+Risk: The skill runs Python code that installs or imports AkShare and makes outbound market-data requests.
+
+Mitigation: Review the script before installation or execution and run it only in an environment where outbound market-data access is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ugpoor/skills/current-akshare-list)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell snippets plus generated CSV and temporary JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected files include stocklist.csv, stocklist_intrading.csv, notspot.csv, and temporary AkShare quote JSON files under /tmp.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,70 @@
-## Description: <br>
-Deterministic SanMar API toolkit that wraps SanMar SOAP web services and PromoStandards order-shipment services behind typed CLI tools for product search, inventory, pricing, cart validation, purchase orders, order tracking, PO PDF parsing, and mainframe color-code resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+drivethru-sanmar provides typed CLI tools for SanMar product search, pricing, inventory, purchase orders, tracking, invoicing, PO PDF parsing, color-code resolution, and portal return preparation.
 
-## Publisher: <br>
-[zmtucker](https://clawhub.ai/user/zmtucker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmtucker](https://clawhub.ai/user/zmtucker)
 
-## Use Case: <br>
-Developers, operators, and purchasing agents use this skill to query SanMar catalog, inventory, pricing, and shipping data and to prepare or submit SanMar order workflows through deterministic CLI actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real SanMar credentials may be exposed in tool output or retained in raw payloads. <br>
-Mitigation: Use platform secret storage, prefer environment variables over inline JSON, redact raw payloads before retention, and avoid logging outputs that may include credentials. <br>
-Risk: The skill can perform business-write actions such as purchase-order submission. <br>
-Mitigation: Use least-privilege SanMar credentials, run validation and dry-run previews first, and require explicit user confirmation before live submit actions. <br>
-Risk: Parsed purchase-order PDFs are heuristic drafts and may contain incorrect fields. <br>
-Mitigation: Show parsed PO details to the user and obtain approval before submitting any generated purchase order. <br>
-Risk: Browser-driven return processing is partially implemented and final return submission is not supported by the artifact. <br>
-Mitigation: Treat return output as a dry-run or not-implemented result unless the implementation is completed and tested against an intentional real return. <br>
+## Use Case:
 
+Developers, purchasing agents, and accounts-payable operators use this skill to read from and write to SanMar systems for apparel sourcing, pricing, ordering, fulfillment tracking, returns preparation, and invoice reconciliation. Side-effecting purchase-order and return flows require explicit confirmation and should be reviewed before execution.
 
-## Reference(s): <br>
-- [Drivethru Sanmar ClawHub release](https://clawhub.ai/zmtucker/drivethru-sanmar) <br>
-- [SanMar homepage](https://www.sanmar.com) <br>
-- [SanMar runtime docs index](references/README.md) <br>
-- [SanMar skill agent examples](references/examples.md) <br>
-- [SanMar API auth, environments, and integration patterns](references/auth_and_patterns.md) <br>
-- [SanMar SOAP Web Services API](references/web_services.md) <br>
-- [SanMar Purchase Order Integration](references/purchase_orders.md) <br>
-- [SanMar FTP Integration and File Feeds](references/ftp_feeds.md) <br>
-- [SanMar portal process a return flow notes](references/returns_flow_notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON tool responses and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI actions read JSON from stdin and print one JSON object on stdout; side-effecting actions require explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Credentials and credential-bearing payloads may be exposed through inline inputs, logs, or output surfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer environment-managed secrets, redact credentials and raw payloads from outputs, and avoid pasting secrets into user-visible responses.
+
+Risk: Purchase-order submission is an external write that can create real vendor orders.
+
+Mitigation: Require explicit human approval, validate the cart first, and preserve idempotency or reference keys before running a confirmed submission.
+
+Risk: SFTP and portal access can be redirected or broadened if hosts, paths, or uploaded files are not constrained.
+
+Mitigation: Restrict SFTP and portal destinations to approved SanMar endpoints and folders, validate SFTP host keys, and confine uploaded return images to approved user attachments.
+
+Risk: The portal return flow is browser-driven and the final return submission path is not fully implemented in this artifact.
+
+Mitigation: Treat return output as a dry-run preview unless the final submission path has been reviewed, captured, and explicitly approved for a real return.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmtucker/skills/drivethru-sanmar)
+- [SanMar](https://www.sanmar.com)
+- [Examples](references/examples.md)
+- [Authentication and patterns](references/auth_and_patterns.md)
+- [Web services](references/web_services.md)
+- [Purchase orders](references/purchase_orders.md)
+- [Invoicing](references/invoicing.md)
+- [Shipment status](references/shipment_status.md)
+- [FTP feeds](references/ftp_feeds.md)
+- [Returns flow notes](references/returns_flow_notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON from CLI tools, with Markdown guidance and shell command examples for agent use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls read JSON from stdin and emit a single JSON object on stdout; failures return structured error objects.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

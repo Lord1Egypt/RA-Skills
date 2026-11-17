@@ -1,46 +1,63 @@
-## Description: <br>
-Run Apify Actors, manage tasks, inspect datasets and key-value stores, and review usage via the Apify API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run Apify Actors, manage tasks, inspect datasets and key-value stores, and review usage via the Apify API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, operators, and automation users use this skill to connect an Apify account through ClawLink, discover available Apify tools, run Actors or tasks, inspect datasets and stores, and manage scraping workflow resources from chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on ClawLink storing and using the user's Apify API key for authenticated requests. <br>
-Mitigation: Install only if the user trusts ClawLink with Apify credentials, and revoke the credential in Apify or ClawLink when access is no longer needed. <br>
-Risk: Actor runs, writes, and deletes can change Apify resources or incur compute costs. <br>
-Mitigation: Use the described preview and confirmation flow before launches, writes, or destructive actions, and verify the target resource and intended effect before execution. <br>
-Risk: Large or long-running Actor jobs can exceed synchronous run limits. <br>
-Mitigation: Prefer asynchronous runs for large datasets or long scraping jobs, then inspect run status, logs, and dataset output after launch. <br>
+## Use Case:
 
+Developers and operators use this skill to automate Apify web scraping workflows, coordinate Actor and task runs, inspect run outputs, and manage datasets, key-value stores, request queues, schedules, logs, and usage from an agent chat.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/apify-actors) <br>
-- [Apify API Documentation](https://docs.apify.com/api/v2) <br>
-- [Apify Platform](https://apify.com/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-like tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Apify resource data, run logs, dataset items, usage information, and confirmation prompts through ClawLink tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Risk: The skill routes Apify API access through the ClawLink plugin and hosted service, which handles connected Apify credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user trusts ClawLink, use a narrowly scoped and revocable Apify token, and revoke the integration when it is no longer needed.
+
+Risk: Actor runs and other Apify write operations can change account state or incur compute costs.
+
+Mitigation: Preview and confirm the target resource and intended effect before write, delete, or run operations, and monitor Apify usage and billing.
+
+Risk: The ClawLink plugin is installed without a pinned version in the artifact instructions.
+
+Mitigation: Review the installed plugin before deployment and re-check security posture after plugin updates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/apify-actors)
+- [Publisher Profile](https://clawhub.ai/user/hith3sh)
+- [Apify API Documentation](https://docs.apify.com/api/v2)
+- [Apify Platform](https://apify.com/)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=apify-actors)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include previews before write operations, paginated retrieval guidance for large datasets, and operational error-handling steps.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Install Chinese/CJK fonts on Linux hosts using distro packages and fontconfig verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install Chinese/CJK fonts on Linux hosts using distro packages and fontconfig verification.
 
-## Publisher: <br>
-[totongf](https://clawhub.ai/user/totongf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[totongf](https://clawhub.ai/user/totongf)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and automation agents use this skill to install and verify Chinese/CJK font support on Linux servers, containers, desktops, screenshots, PDFs, browser automation, and headless Chrome or Playwright environments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The installer changes system or container font packages and may require a privileged shell.
+
+Mitigation: Run `scripts/install_chinese_fonts.sh --dry-run` or `--verify-only` first, and execute the installer with privileges only when system-wide CJK font installation is intended.
+
+Risk: The bundled script supports only dnf, yum, and apt-get package managers.
+
+Mitigation: Use the documented manual font installation fallback when those package managers are unavailable or when a specific font family or version is required.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to install and verify Chinese/CJK fonts on Linux hosts, containers, desktops, headless browser environments, screenshot pipelines, PDF renderers, and document export workflows where Chinese text may otherwise render as missing glyphs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled workflow can install system packages and refresh font caches, which may require administrator privileges and change the host environment. <br>
-Mitigation: Run the dry-run or verify-only mode first, and use administrator privileges only when system-level font installation is intended. <br>
-Risk: Unsupported Linux package managers are not handled by the script. <br>
-Mitigation: Use the documented manual font installation fallback when dnf, yum, or apt-get is unavailable. <br>
+**Output Format:** [Markdown guidance with bash commands and an executable shell script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/totongf/install-chinese-fonts) <br>
-- [Publisher profile](https://clawhub.ai/user/totongf) <br>
+**Other Properties Related to Output:** [Includes dry-run and verify-only modes for package installation and fontconfig checks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and bundled shell script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose package-manager commands that install system fonts and refresh fontconfig caches.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

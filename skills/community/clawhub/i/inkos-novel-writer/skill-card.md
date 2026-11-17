@@ -1,47 +1,62 @@
-## Description: <br>
-Autonomous novel writing CLI agent with a local web workbench for creative fiction writing, chapter continuation, import, style analysis, EPUB export, AIGC detection, fan fiction, multi-agent drafting, auditing, revision, analytics, and configurable LLM provider routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+InkOS helps agents operate a novel-writing CLI and local Studio workbench to plan, generate, audit, revise, import, and export long-form fiction with configurable LLM providers.
 
-## Publisher: <br>
-[adchina2025](https://clawhub.ai/user/adchina2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adchina2025](https://clawhub.ai/user/adchina2025)
 
-## Use Case: <br>
-External users, writers, and developers use this skill to drive InkOS for long-form fiction projects, including creating books, generating and revising chapters, importing existing drafts, managing story state, and exporting manuscripts. It is most useful when an agent needs command guidance for a project-local novel writing workflow that uses configured LLM provider credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires LLM provider credentials such as OPENAI_API_KEY, and configured providers may incur cost or expose prompts to the selected provider. <br>
-Mitigation: Use a dedicated API key with spending limits and configure only trusted LLM provider endpoints. <br>
-Risk: Custom OpenAI-compatible base URLs can receive the configured API key and manuscript content. <br>
-Mitigation: Avoid untrusted custom base URLs; use only provider endpoints or proxies that the user controls or has audited. <br>
-Risk: Bulk rewrite, rename, delete, daemon, and multi-chapter generation workflows can make large project-local manuscript changes. <br>
-Mitigation: Keep projects under version control or export backups before running large automated edits or generation batches. <br>
-Risk: Private manuscripts, truth files, logs, and configuration may contain sensitive creative work or credentials. <br>
-Mitigation: Store projects in protected folders and keep configuration files containing keys out of shared repositories. <br>
+## Use Case:
 
+Writers, developers, and agent operators use this skill to create or continue novels, steer chapter focus, manage story state, audit generated prose, detect AI-generated passages, and export manuscripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adchina2025/inkos-novel-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/adchina2025) <br>
-- [InkOS homepage](https://github.com/Narcooo/inkos) <br>
-- [npm package](https://www.npmjs.com/package/@actalk/inkos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON command examples where supported by InkOS.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide commands that create or edit project-local manuscript files, configuration files, logs, exports, and local web workbench sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill installs and drives an unpinned third-party npm executable that may process manuscripts and API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the @actalk/inkos package and publisher before installation, pin an approved package version where possible, and run it only in trusted project workspaces.
+
+Risk: Configured LLM provider endpoints receive prompts, manuscript context, and API credentials needed for generation.
+
+Mitigation: Use scoped API keys, prefer environment-variable based key configuration, and point custom base URLs only at trusted or audited providers.
+
+Risk: Project configuration, logs, and generated files may contain sensitive manuscript material or credentials.
+
+Mitigation: Keep inkos.json, logs, and draft project directories out of source control unless reviewed and scrubbed.
+
+Risk: Self-update behavior can change the executable after approval in managed environments.
+
+Mitigation: Avoid self-update paths in managed deployments unless the updated package receives a fresh review.
+
+## Reference(s):
+
+- [InkOS GitHub Repository](https://github.com/Narcooo/inkos)
+- [ClawHub Skill Page](https://clawhub.ai/adchina2025/skills/inkos-novel-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, configuration notes, and structured JSON command options where supported]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to generate or manage local manuscript files, project configuration, exports, logs, and Studio sessions through the InkOS CLI.]
+
+## Skill Version(s):
+
+2.3.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

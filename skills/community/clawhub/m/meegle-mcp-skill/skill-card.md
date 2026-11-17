@@ -1,43 +1,57 @@
-## Description: <br>
-Interact with Meegle project management system via MCP protocol <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Meegle project management system via MCP protocol.
 
-## Publisher: <br>
-[pkycy](https://clawhub.ai/user/pkycy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pkycy](https://clawhub.ai/user/pkycy)
 
-## Use Case: <br>
-Developers, operators, and project teams use this skill to connect an agent to Meegle so it can list and manage projects, tasks, workflows, members, and reports through the MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated Meegle operations can make real workspace changes, including creating projects, moving tasks, adding members, or changing permissions. <br>
-Mitigation: Install only for trusted workspaces, review prompts before write actions, and use least-privilege or service-account credentials where possible. <br>
-Risk: The setup script can persist Meegle credentials in shell startup files. <br>
-Mitigation: Prefer secure environment management, avoid syncing shell profiles that contain secrets, and rotate keys if they are exposed. <br>
+## Use Case:
 
+Developers and teams use this skill to connect OpenClaw to Meegle through MCP so an agent can manage projects, tasks, workflows, team membership, and reporting with natural-language requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pkycy/meegle-mcp-skill) <br>
-- [Meegle official website](https://www.meegle.com/) <br>
-- [Meegle overview](https://www.larksuite.com/hc/en-US/articles/040270863407-meegle-overview) <br>
-- [Model Context Protocol specification](https://modelcontextprotocol.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and agent text with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger authenticated MCP requests that read or modify Meegle workspace data, depending on the user's credentials and prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The setup flow can store live Meegle credentials in shell startup files, and crafted key values may enable persistent shell command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OpenClaw config or a secret store for credentials, avoid running the setup script with untrusted values, and review shell profile changes before restarting the shell.
+
+Risk: Natural-language requests can create, update, or change permissions and membership in a live Meegle workspace.
+
+Mitigation: Use a narrowly scoped Meegle account or service account and review create, update, permission, and member-management requests before execution.
+
+## Reference(s):
+
+- [Meegle Official Website](https://www.meegle.com/)
+- [Meegle Documentation](https://www.larksuite.com/hc/en-US/articles/040270863407-meegle-overview)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/tools/skills)
+- [Model Context Protocol Spec](https://modelcontextprotocol.io/)
+- [ClawHub Skill Page](https://clawhub.ai/pkycy/skills/meegle-mcp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate authenticated MCP operations against the user's authorized Meegle workspace.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

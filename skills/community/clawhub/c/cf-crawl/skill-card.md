@@ -1,43 +1,58 @@
-## Description: <br>
-Crawl websites using the Cloudflare Browser Rendering /crawl API with async multi-page crawling, markdown/HTML/JSON output, link following, pattern filtering, and AI-powered structured data extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawl websites using Cloudflare Browser Rendering /crawl API. Async multi-page crawl with markdown/HTML/JSON output, link following, pattern filtering, and AI-powered structured data extraction. Use when crawling entire sites or multiple pages, building knowledge bases, extracting structured data from websites, or when web_fetch is insufficient (JS rendering, multi-page, authenticated crawls).
 
-## Publisher: <br>
-[bill492](https://clawhub.ai/user/bill492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bill492](https://clawhub.ai/user/bill492)
 
-## Use Case: <br>
-Developers and engineers use this skill to crawl multi-page websites through Cloudflare Browser Rendering when basic fetch tools are insufficient, including JavaScript-rendered pages, filtered crawls, knowledge-base ingestion, and structured data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloudflare credentials are required to run crawl and poll commands. <br>
-Mitigation: Store the token carefully and prefer a least-privileged Cloudflare token with only the access needed for Browser Rendering. <br>
-Risk: Large, deep, rendered, external-link, or JSON extraction crawls can create network, cost, and data-volume exposure. <br>
-Mitigation: Start with small limits and shallow depth, avoid external-link crawling unless required, and review paid browser rendering and JSON extraction options before running large jobs. <br>
-Risk: Crawl results may be written to output files and can contain website content returned by Cloudflare. <br>
-Mitigation: Choose output paths deliberately and review generated files before sharing or ingesting them downstream. <br>
+## Use Case:
 
+Developers and engineers use this skill to start and poll Cloudflare Browser Rendering crawl jobs for multi-page site crawling, knowledge-base collection, JavaScript-rendered pages, authenticated crawls, and structured data extraction.
 
-## Reference(s): <br>
-- [Cloudflare /crawl API Reference](references/api-reference.md) <br>
-- [ClawHub cf-crawl Release Page](https://clawhub.ai/bill492/cf-crawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown, HTML, JSON, and shell command output from Cloudflare crawl jobs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write full crawl results to a user-specified output file; raw API responses are available with --raw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill executes the local Cloudflare credential file as shell code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the credential file in a tightly protected location, keep it writable only by trusted users, and do not generate or modify it from untrusted input.
+
+Risk: The skill requires a Cloudflare token with Browser Rendering read and edit access.
+
+Mitigation: Use a dedicated least-privilege token and rotate or revoke it if the credential file may have been exposed.
+
+Risk: Crawl targets, page contents, prompts, schemas, and results are sent to Cloudflare services.
+
+Mitigation: Avoid crawling sensitive or regulated content unless Cloudflare's data handling is acceptable for that data.
+
+## Reference(s):
+
+- [Cloudflare /crawl API Reference](references/api-reference.md)
+- [ClawHub cf-crawl skill page](https://clawhub.ai/bill492/skills/cf-crawl)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration guidance, Markdown, HTML, JSON]
+
+**Output Format:** [Markdown guidance with bash commands and Cloudflare crawl results in markdown, HTML, or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write full crawl results to a file, print raw API responses, or return summarized job and page metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

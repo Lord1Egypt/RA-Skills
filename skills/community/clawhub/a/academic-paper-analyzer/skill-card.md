@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes academic journal papers from uploaded PDFs, covering structure, abstract characteristics, article framework, word counts, reference counts, journal-format checks, and improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes academic journal papers from PDFs, including structure, abstract characteristics, framework, word counts, references, and journal-format expectations.
 
-## Publisher: <br>
-[shaniu001](https://clawhub.ai/user/shaniu001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaniu001](https://clawhub.ai/user/shaniu001)
 
-## Use Case: <br>
-Students, researchers, editors, and academic writers use this skill to inspect uploaded PDF papers and generate a structured Markdown analysis report about paper organization, abstract quality, section balance, references, formatting, and improvement opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads full PDF contents, which may include confidential manuscripts, private reviewer copies, or restricted copyrighted material. <br>
-Mitigation: Use it only with documents the user is allowed to process, and confirm the platform's PDF extraction and OCR handling meets privacy and rights requirements before uploading sensitive papers. <br>
-Risk: Generated journal-format and improvement guidance may be incomplete or inaccurate for a specific venue. <br>
-Mitigation: Review the Markdown report against the target journal's official author guidelines before relying on formatting or submission advice. <br>
+## Use Case:
 
+Students, researchers, editors, and academic authors use this skill to inspect uploaded PDF papers and generate a structured Markdown report on paper organization, abstract completeness, section balance, citation makeup, formatting, and improvement suggestions.
 
-## Reference(s): <br>
-- [Academic paper analysis guidelines](artifact/references/analysis-guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report with tables, checklists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses extracted PDF text and may adapt the analysis framework for scanned, foreign-language, or non-standard paper structures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill reads the full contents of PDFs supplied by the user, which may expose confidential, unpublished, paywalled, or rights-restricted paper content during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with papers the user is authorized to process, and avoid confidential or restricted documents unless permission and handling expectations are clear.
+
+Risk: OCR or unusual paper structures can lead to incomplete extraction or misleading section, word-count, citation, or compliance analysis.
+
+Mitigation: Review the generated report against the source paper before relying on its findings or recommendations.
+
+## Reference(s):
+
+- [Analysis Guidelines](references/analysis-guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include section checklists, word-count tables, reference breakdowns, formatting checks, and improvement suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

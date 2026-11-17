@@ -1,6 +1,38 @@
 {
-  "ownerId": "kn7cznn4j3cb0853gxtf1nqvb182354c",
-  "slug": "ecommerce-scraper-pro",
-  "version": "1.0.1",
-  "publishedAt": 1775293878086
+  "name": "data-scraper",
+  "displayName": "智能数据抓取工具",
+  "version": "0.1.0",
+  "description": "从网页/API 提取结构化数据，支持批量处理",
+  "author": "VIC ai-company",
+  "license": "MIT",
+  "homepage": "https://github.com/ai-company/data-scraper",
+  "repository": "https://github.com/ai-company/data-scraper",
+  "keywords": [
+    "web-scraping",
+    "data-extraction",
+    "api",
+    "automation",
+    "data-collection",
+    "openclaw"
+  ],
+  "category": "data",
+  "pricing": {
+    "basic": 49,
+    "professional": 149,
+    "enterprise": 499
+  },
+  "features": [
+    "6 种数据类型",
+    "3 种输出格式",
+    "批量处理",
+    "API 集成",
+    "智能延迟控制"
+  ],
+  "requirements": [
+    "python3.8+",
+    "requests>=2.28.0",
+    "beautifulsoup4>=4.11.0"
+  ],
+  "publishedAt": "2026-02-28T01:16:00+08:00",
+  "status": "published"
 }

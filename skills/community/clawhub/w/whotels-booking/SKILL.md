@@ -1,110 +1,97 @@
 ---
 name: whotels-booking
 display_name: W酒店查询与预订
-description: 搜索万豪集团旗下W酒店，返回实时价格与预订链接，支持酒店详情查询和套餐优惠搜索，多旅游平台数据直连。暑期潮流旅行打卡，全球W酒店查询预订
-version: 1.1.2
-tags: [W酒店, 酒店预订, 设计酒店, 万豪集团, 潮流酒店]
-tools:
-  - name: search
-    description: 搜索W酒店，返回价格、星级、地址和预订链接
-    parameters:
-      - name: dest_name
-        type: string
-        description: 目的地城市/区域，如"上海""深圳""三亚"
-        required: true
-      - name: keyword
-        type: string
-        description: 额外关键词，如"虹桥""度假"
-        required: false
-      - name: max_price
-        type: integer
-        description: 最高价格/晚
-        required: false
-  - name: detail
-    description: 查询某家W酒店的详细信息，包括周边交通、设施、房型等
-    parameters:
-      - name: shid
-        type: string
-        description: 酒店ID，从搜索结果获取
-        required: false
-      - name: hotel_name
-        type: string
-        description: 酒店名称（备选定位方式）
-        required: false
-  - name: packages
-    description: 搜索W酒店套餐优惠（含早/连住/门票等打包产品）
-    parameters:
-      - name: keyword
-        type: string
-        description: 搜索关键词，如"上海""三亚度假"
-        required: false
-      - name: hotel_name
-        type: string
-        description: 酒店名称
-        required: false
+description: 搜索万豪集团旗下W酒店并返回实时价格与预订链接，支持酒店详情查询和套餐优惠搜索。当用户需要预订W酒店、查找W Hotels酒店价格时使用
 ---
 
-# W酒店查询与预订 — 潮流设计酒店，实时价格一键直达
+# W酒店查询与预订
 
-> 万豪集团旗下潮流设计品牌，搜索酒店/查详情/找套餐三步搞定，价格实时同步，预订链接直达。
-
-🔥 **核心亮点：**
-- **品牌专属** — 专注W酒店，搜索结果100%精准匹配
-- **实时价格** — 多旅游平台直连，价格真实可靠
-- **详情查询** — 周边交通/景点/设施/房型/政策一网打尽
-- **套餐优惠** — 含早/连住/门票等打包产品，通常比单订更优惠
-- **零配置** — 免申请Key，装上就能用
-
-## 快速入门
-
-**3个开场白示例，复制即用：**
-
-1. "上海有什么W酒店"
-2. "上海W酒店怎么样"
-3. "W酒店有什么优惠套餐"
-
-## 核心能力
-
-1. **酒店搜索** — 按城市搜索W酒店，返回价格/星级/地址/附近地标/预订链接
-2. **酒店详情** — 查询某家W酒店的详细信息（周边交通/景点/设施/房型/政策）
-3. **套餐搜索** — 搜索含早/连住/门票等打包优惠套餐
-4. **价格筛选** — 支持按最高价格/晚过滤，快速定位预算内酒店
-5. **预订链接** — 每条结果附带预订链接，可直接跳转下单
-6. **多平台数据** — 直连多个旅游平台，确保价格真实
-
-## 能做什么
-
-- 搜索全国各城市的W酒店
-- 查询酒店详细信息（设施/房型/政策/周边）
-- 搜索套餐优惠（含早/连住/门票等打包产品）
-- 按价格筛选，快速定位预算范围内的酒店
-- 返回实时价格和预订链接
-
-## 不能做什么
-
-- 不支持非W酒店搜索（其他万豪品牌请用对应品牌技能）
-- 不支持直接预订（提供预订链接，用户点击跳转）
-- 不提供酒店实时房态（房态以预订页面为准）
-
-## 使用提示
-
-- 先搜索获取shid，再用shid查询详情，信息更完整
-- 套餐通常比单订优惠10-30%，优先查看packages
-- max_price筛选可排除高价酒店
-- 价格和可用性以预订页面为准
-
-## 🔗 搭配使用
-
-- **酒店聪明订** — 多平台比价，确认最低价
-- **丽思卡尔顿/威斯汀** — 不同风格品牌对比选择
-- **景点智能推荐** — 住哪玩哪一站规划
+## 任务目标
+- 本技能用于搜索W酒店酒店，返回真实价格和可预订链接，并支持查询酒店详情和套餐优惠
+- 触发条件：当用户提到W酒店/W Hotels时
+- 数据源：飞猪官方商品库万豪专区，自动过滤W酒店品牌，返回真实价格和可预订链接
 
 ## 🚫 绝对禁止
 
 1. **禁止编造任何数据** — 酒店名称、价格、评分、星级必须100%来自脚本输出
-2. **禁止添加脚本未返回的信息**
-3. **禁止省略预订链接** — 脚本返回的detailUrl必须完整展示
+2. **禁止添加脚本未返回的信息** — 脚本没返回评分就不能写评分，没返回健身房就不能说"有健身房"
+3. **禁止替换或筛选脚本结果** — AI不得二次过滤或替换脚本返回的酒店
+4. **禁止美化数据** — 不得将¥1580改成¥980，不得添加虚假评分
+5. **禁止用自身知识补充酒店** — 不得根据品牌常识推断设施，不得添加脚本未返回的酒店
+6. **禁止省略预订链接** — 脚本返回的detailUrl必须完整展示
+7. **禁止混合数据** — 不得将脚本数据与网上搜索数据混合展示
 
-## 数据流向
+**正确做法：脚本输出什么，就原样展示什么。只做格式排版，不修改任何数据。**
 
-用户输入（城市/日期/关键词）→ 本技能脚本 → 代理服务 → 旅游平台API → 返回结果给用户。查询参数会发送到代理服务以获取实时数据。
+## 🛠 工具
+
+### 1. search - W酒店酒店搜索
+
+搜索W酒店酒店，返回价格、星级、地址、附近地标和预订链接。自动注入品牌关键词"W酒店"，用户只需提供城市。
+
+**参数：**
+▸ `destName`（string，✅必填）：目的地城市/区域，如"上海""深圳""三亚"
+▸ `checkInDate`（string，可选）：入住日期 YYYY-MM-DD
+▸ `checkOutDate`（string，可选）：退房日期 YYYY-MM-DD
+▸ `keyword`（string，可选）：额外关键词，如"虹桥""度假"
+▸ `maxPrice`（int，可选）：最高价格/晚
+▸ `sort`（string，可选）：排序 rate_desc/price_asc/price_desc/distance_asc
+▸ `limit`（int，可选）：返回数量，默认10
+
+```bash
+python scripts/whotels_hotel.py search '{"destName":"上海"}'
+```
+
+### 2. detail - W酒店酒店详情
+
+查询某家W酒店酒店的详细信息，包括周边交通/景点/美食、酒店设施、政策、房型等。
+
+**参数：**
+▸ `shid`（string/int，✅推荐）：酒店ID，从搜索结果获取
+▸ `hotelName`（string，可选）：酒店名称（备选定位方式）
+▸ `reviewKeyword`（string，可选）：评价关键词过滤
+
+```bash
+python scripts/whotels_hotel.py detail '{"shid":"50013131"}'
+```
+
+### 3. packages - W酒店套餐搜索
+
+搜索W酒店酒店套餐优惠（含早/连住/门票等打包产品），通常比单订更优惠。
+
+**参数：**
+▸ `keyword`（string，可选）：搜索关键词，如"上海""三亚度假"
+▸ `hotelName`（string，可选）：酒店名称
+▸ `provinceOrCity`（string，可选）：省份或城市
+▸ `sort`（string，可选）：排序方式
+▸ `limit`（int，可选）：返回数量，默认10
+
+```bash
+python scripts/whotels_hotel.py packages '{"keyword":"上海"}'
+```
+
+## 执行流程
+
+1. 用户提到W酒店 → 调用 **search** 搜索酒店列表
+2. 用户想了解某家酒店详情（交通/设施/房型） → 从搜索结果获取shid，调用 **detail**
+3. 用户找优惠或套餐 → 调用 **packages** 搜索打包产品
+4. 展示结果时，预订链接以 [点击预订](url) 格式展示
+5. 所有结果末尾标注"数据来源：飞猪官方商品库·万豪集团专区"
+
+## 使用示例
+
+### 示例1：搜索W酒店酒店
+- 用户："上海有什么W酒店酒店"
+- 调用：`python scripts/whotels_hotel.py search '{"destName":"上海"}'`
+
+### 示例2：预算筛选
+- 用户："上海800块以内的W酒店"
+- 调用：`python scripts/whotels_hotel.py search '{"destName":"上海","maxPrice":800,"sort":"price_asc"}'`
+
+### 示例3：酒店详情
+- 用户："上海W酒店怎么样"
+- 调用：`python scripts/whotels_hotel.py detail '{"shid":"50013131"}'`
+
+### 示例4：套餐优惠
+- 用户："W酒店有什么优惠套餐"
+- 调用：`python scripts/whotels_hotel.py packages '{"keyword":"上海"}'`

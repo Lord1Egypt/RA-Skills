@@ -1,40 +1,52 @@
-## Description: <br>
-Turn financial-services outputs into a polished Word deliverable. Use when the user wants an IC memo, customer memo, internal note, diligence summary, or banker-ready .docx built from this plugin's analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn financial-services outputs into a polished Word deliverable. Use when the user wants an IC memo, customer memo, internal note, diligence summary, or banker-ready .docx built from this plugin's analysis.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jackdark425](https://clawhub.ai/user/jackdark425)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and financial-services practitioners use this skill to turn analysis pack, model, and diligence outputs into banker-ready Word memos, briefing notes, IC summaries, and written appendices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Companion Word conversion or validation tools may introduce risk if they are not already trusted in the deployment environment.
+
+Mitigation: Confirm the routed DOCX and validation tools are approved before installation or use.
+
+Risk: Financial deliverables can misstate numbers or sources if generated from incomplete analysis material.
+
+Mitigation: Source hard numbers from the underlying analysis and provenance files, run the required validation for Chinese-market targets, and report open assumptions with the delivered document.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Financial-services teams use this skill to turn existing analysis outputs, notes, tables, and diligence materials into structured Word deliverables such as IC memos, customer memos, internal briefs, and diligence summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [files, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive financial materials may be passed to DOCX conversion or validation tools. <br>
-Mitigation: Confirm that the referenced DOCX conversion and validation tools in the environment are trusted and permitted to process that data before use. <br>
-Risk: Word memos can include incorrect hard numbers if they are not tied back to source material. <br>
-Mitigation: For Chinese-market targets, source hard numbers from analysis or provenance files and run the documented delivery validation before release. <br>
+**Output Format:** [Word .docx file plus a concise Markdown delivery note]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackdark425/word-deliverable) <br>
+**Other Properties Related to Output:** [Includes a short contents summary and any open assumptions or numbers requiring verification.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance for producing a real .docx deliverable, with routing preferences and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected agent output includes a .docx file, a short summary, and open assumptions or numbers requiring verification.] <br>
+0.9.6 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.9.6 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

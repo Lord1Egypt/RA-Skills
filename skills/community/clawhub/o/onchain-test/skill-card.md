@@ -1,46 +1,62 @@
-## Description: <br>
-CLI for crypto portfolio tracking, market data, and CEX history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CLI-based crypto portfolio tracking, market data, CEX history, wallet balance, and prediction-market lookup workflows for agents.
 
-## Publisher: <br>
-[arein](https://clawhub.ai/user/arein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arein](https://clawhub.ai/user/arein)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve crypto prices, wallet balances, portfolio values, centralized exchange history, and Polymarket market information through the Onchain CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use sensitive exchange and wallet service API credentials through an external npm CLI that was not included in the reviewed artifact. <br>
-Mitigation: Install only if the @cyberdrk/onchain package is trusted, use read-only exchange API keys with trading and withdrawals disabled, and avoid exposing secrets in prompts, logs, screenshots, or version control. <br>
-Risk: Crypto portfolio, market, and exchange data may be time-sensitive or incomplete if upstream APIs fail, rate-limit requests, or return stale data. <br>
-Mitigation: Use JSON output, check command exit codes, respect provider rate limits, and verify important financial conclusions against the source service before acting. <br>
+## Use Case:
 
+Developers and agents use this skill to run the @cyberdrk/onchain CLI for crypto prices, wallet and portfolio checks, Coinbase and Binance account history, and Polymarket market lookups.
 
-## Reference(s): <br>
-- [Onchain Test on ClawHub](https://clawhub.ai/arein/onchain-test) <br>
-- [DeBank Cloud](https://cloud.debank.com/) <br>
-- [Helius](https://helius.xyz/) <br>
-- [Coinbase CDP](https://portal.cdp.coinbase.com/) <br>
-- [Binance API Management](https://www.binance.com/en/my/settings/api-management) <br>
-- [CoinGecko API](https://www.coingecko.com/en/api) <br>
-- [CoinMarketCap API](https://coinmarketcap.com/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing CLI usage should prefer --json output and check exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release metadata) <br>
+Risk: The release directs agents to use an unpinned external npm CLI for crypto workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the npm package before installation and prefer running it in an isolated environment.
+
+Risk: Wallet addresses, portfolio data, and exchange history may be sent to third-party providers.
+
+Mitigation: Use only the providers required for the task and avoid sending sensitive portfolio or account data unless the user has approved that disclosure.
+
+Risk: Exchange API credentials can expose financial account data if over-scoped or mishandled.
+
+Mitigation: Use read-only, minimally scoped exchange API keys, never enable withdrawals, and store credentials outside prompts or transcripts.
+
+## Reference(s):
+
+- [DeBank Cloud](https://cloud.debank.com/)
+- [Helius](https://helius.xyz/)
+- [Coinbase CDP](https://portal.cdp.coinbase.com/)
+- [Binance API Management](https://www.binance.com/en/my/settings/api-management)
+- [CoinGecko API](https://www.coingecko.com/en/api)
+- [CoinMarketCap API](https://coinmarketcap.com/api/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing use should prefer --json output, check exit codes, and account for provider rate limits.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

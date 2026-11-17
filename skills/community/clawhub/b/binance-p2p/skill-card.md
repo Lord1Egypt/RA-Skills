@@ -1,43 +1,60 @@
-## Description: <br>
-Binance P2P trading assistant for P2P prices, advertisements, payment methods, and authenticated P2P order history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance P2P trading assistant for checking P2P prices, advertisements, payment methods, and personal P2P order history, excluding spot, futures, and exchange trading.
 
-## Publisher: <br>
-[dexploarer](https://clawhub.ai/user/dexploarer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dexploarer](https://clawhub.ai/user/dexploarer)
 
-## Use Case: <br>
-External users and agents use this skill to answer Binance P2P market questions, compare ads by payment method, and summarize a user's own P2P order history when read-only API credentials are provided. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated order-history workflows require Binance API credentials. <br>
-Mitigation: Use environment injection, request read-only Binance API permissions, mask secrets in responses, and write credentials to disk only with explicit user agreement. <br>
-Risk: Incorrect Binance SAPI signing can cause failed authenticated requests. <br>
-Mitigation: Keep SAPI parameters in insertion order, percent-encode according to RFC 3986, include timestamp and signature, and use the required X-MBX-APIKEY and User-Agent headers. <br>
-Risk: Users may confuse P2P market lookup with trading operations. <br>
-Mitigation: Do not place, cancel, release, appeal, or modify P2P orders; provide official Binance ad or order-page links when the user wants to act. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Binance P2P market quotes and ads, compare payment methods, and summarize personal P2P order history when read-only Binance API credentials are supplied.
 
-## Reference(s): <br>
-- [Binance P2P Authentication](references/authentication.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dexploarer/binance-p2p) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with structured lists and occasional code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint guidance, UTC timestamps, masked credentials, and direct Binance P2P ad links when an ad number is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Binance API credentials for personal order history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only API keys, enable IP allowlisting where possible, and provide secrets through a secure runtime mechanism rather than committed files.
+
+Risk: The artifact includes a Bash authentication example that could expose real credentials if copied directly with live keys.
+
+Mitigation: Keep example values as placeholders, avoid placing real keys in command arguments or shared shell history, and prefer an in-process client or secret manager.
+
+Risk: Incorrect credential scope could allow actions beyond order-history lookup.
+
+Mitigation: Enable only Binance reading permission and avoid trading, withdrawal, modification, or advertisement-management permissions.
+
+## Reference(s):
+
+- [Authentication reference](references/authentication.md)
+- [ClawHub skill page](https://clawhub.ai/dexploarer/skills/binance-p2p)
+- [Binance public API host](https://www.binance.com)
+- [Binance SAPI host](https://api.binance.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request guidance, concise lists or tables, and optional code or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Binance endpoint parameters, read-only credential setup guidance, and UTC-formatted order summaries; does not support automated order placement.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

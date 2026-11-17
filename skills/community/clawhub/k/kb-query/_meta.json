@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn7cp7eb6ymqv898hke0ersmc1847fed",
-  "slug": "kb-query",
-  "version": "1.0.1",
-  "publishedAt": 1782415644503
+  "name": "kb_query",
+  "version": "0.3.1",
+  "description": "Answer Research KB questions with OpenClaw-led bounded page selection, fetched KB evidence, optional reference attachments, and optional high-value Q&A persistence.",
+  "entrypoints": [
+    {
+      "name": "prepare",
+      "command": "python3 scripts/run_task.py prepare --input <payload.json> --context-output <context.json>"
+    },
+    {
+      "name": "fetch",
+      "command": "python3 scripts/run_task.py fetch --input <payload.json> --context <context.json> --selection <page-selection.json> --evidence-output <evidence.json>"
+    },
+    {
+      "name": "apply",
+      "command": "python3 scripts/run_task.py apply --input <payload.json> --context <context.json> --evidence <evidence.json> --answer <answer.json>"
+    }
+  ],
+  "input": "Research KB backend query payload JSON.",
+  "output": "apply writes resultFile JSON with answer, sources, optional createdQaPath, page changes, errors, and commitId."
 }

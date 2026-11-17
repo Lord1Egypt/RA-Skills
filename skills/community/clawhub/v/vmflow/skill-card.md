@@ -1,47 +1,63 @@
-## Description: <br>
-Manage a vending machine fleet by sending credits, inspecting device health, querying sales and inventory, and triggering firmware updates through MQTT RPC and Supabase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your vending machine fleet - send credits, inspect device health, query sales and inventory, and trigger firmware updates via MQTT RPC and Supabase.
 
-## Publisher: <br>
-[nodestark](https://clawhub.ai/user/nodestark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nodestark](https://clawhub.ai/user/nodestark)
 
-## Use Case: <br>
-External fleet operators and developers use this skill to monitor VMflow vending devices, review sales and inventory, diagnose device health, and prepare signed device commands for authorized machines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to issue credit, restart, out-of-sequence, and firmware update actions against real vending machines. <br>
-Mitigation: Require manual approval for device-changing commands and prefer read-only diagnostics before any operational command. <br>
-Risk: The skill depends on Supabase credentials and per-device passkeys that can authorize fleet data access or signed device commands. <br>
-Mitigation: Install only for authorized VMflow fleet operators, keep credentials out of logs and chat output, and limit agent access to the minimum required environment variables. <br>
+## Use Case:
 
+External fleet operators and developers use this skill to inspect vending machine sales, inventory, telemetry, and device health, and to issue authenticated Supabase and MQTT control actions for ESP32-based vending devices.
 
-## Reference(s): <br>
-- [VMflow skill page](https://clawhub.ai/nodestark/skills/vmflow) <br>
-- [Publisher profile](https://clawhub.ai/user/nodestark) <br>
-- [VMflow project homepage](https://github.com/nodestark/mdb-esp32-cashless) <br>
-- [Firmware RPC handler](https://github.com/nodestark/mdb-esp32-cashless/blob/main/mdb-slave-esp32s3/main/mdb-slave-esp32s3.c) <br>
-- [Supabase schema migrations](https://github.com/nodestark/mdb-esp32-cashless/tree/main/docker/supabase/migrations) <br>
-- [VMflow dashboard](https://vmflow.xyz/dashboard) <br>
-- [Agent context and BLE payload spec](artifact/AGENTS.md) <br>
-- [RPC helper script](artifact/tools/rpc.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include signed MQTT command examples, Supabase REST queries, operational playbooks, and device diagnostic summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can issue real-world fleet-control actions, including credits, restart, OOS recovery, buzzer, DEX, and OTA commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before sending credit, restart, OOS, buzzer, DEX, or OTA actions to devices.
+
+Risk: Device passkeys and operator credentials enable authenticated Supabase and MQTT actions.
+
+Mitigation: Use a dedicated low-privilege operator account, keep passkeys out of logs and shell history, and avoid passing passkeys directly on the command line.
+
+Risk: MQTT transport configuration can affect command confidentiality and broker access control.
+
+Mitigation: Configure MQTT with TLS and broker authentication before using the skill with real devices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nodestark/skills/vmflow)
+- [Project homepage](https://github.com/nodestark/mdb-esp32-cashless)
+- [AGENTS.md](./AGENTS.md)
+- [RPC helper script](./tools/rpc.sh)
+- [Firmware RPC handler](https://github.com/nodestark/mdb-esp32-cashless/blob/main/mdb-slave-esp32s3/main/mdb-slave-esp32s3.c)
+- [Supabase schema](https://github.com/nodestark/mdb-esp32-cashless/tree/main/docker/supabase/migrations)
+- [VMflow dashboard](https://vmflow.xyz/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Supabase REST calls, MQTT command payloads, fleet reports, device diagnostics, and operational playbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

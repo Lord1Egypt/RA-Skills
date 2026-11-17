@@ -1,51 +1,67 @@
-## Description: <br>
-ClickHouse cluster migration planner for planning data migration between ClickHouse clusters, including cross-cluster migrations, horizontal scaling, disk downgrade, availability zone changes, and migrations from self-built or non-Alibaba Cloud ClickHouse to Alibaba Cloud ClickHouse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans ClickHouse cluster migrations by collecting cluster metadata, selecting an appropriate migration method, and producing a detailed migration plan with risks, rollback steps, and timelines.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers, database administrators, and migration engineers use this skill to collect ClickHouse cluster facts, compare migration methods, and produce a practical migration plan with risks, rollback steps, timelines, and reference links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration plans may include production database credential handling steps. <br>
-Mitigation: Prefer pasted query results over shared credentials; when access is necessary, use temporary read-only accounts and avoid exposing secrets in chat or files. <br>
-Risk: Plans may recommend network allowlisting or password-free access patterns that broaden production database exposure. <br>
-Mitigation: Have an authorized operator verify target endpoints, source ranges, access scope, maintenance windows, and rollback procedures before changing network access. <br>
-Risk: Plans may include destructive or disruptive SQL and operational steps such as DROP, TRUNCATE, ALTER, whitelist changes, or password-free access configuration. <br>
-Mitigation: Do not execute these steps until backups, target resources, impact window, and rollback plan have been independently reviewed and approved. <br>
+## Use Case:
 
+Developers, database engineers, and cloud migration teams use this skill to plan ClickHouse migrations between self-built, non-Alibaba Cloud, and Alibaba Cloud ClickHouse clusters. It helps gather required database and table facts, compare migration methods, and prepare a single migration plan.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-cksync-plan) <br>
-- [Migration Plans - Detailed Conditions](references/plans.md) <br>
-- [SQL Reference](references/sql.md) <br>
-- [RAM Permission Declaration](references/ram-policies.md) <br>
-- [How To Stop Merge Storm](references/stop-merge-storm.md) <br>
-- [Community + Enterprise Big Cluster Federation](references/big-cluster-community-enterprise.md) <br>
-- [Self-Built + Cloud ClickHouse Big Cluster Federation](references/big-cluster-self-built-community.md) <br>
-- [Alibaba Cloud ClickHouse Compatibility and Performance Bottleneck Analysis](https://help.aliyun.com/zh/clickhouse/user-guide/analysis-and-solution-of-cloud-compatibility-and-performance-bottleneck-of-self-built-clickhouse) <br>
-- [Alibaba Cloud ClickHouse Backup and Restore Commands](https://help.aliyun.com/zh/clickhouse/user-guide/use-the-backup-and-restore-commands-for-data-backup-and-restoration) <br>
-- [ClickHouse S3 Backup Endpoint Documentation](https://clickhouse.com/docs/operations/backup/s3_endpoint) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown migration plan with tables and inline SQL or shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one migration plan by default; additional files or scripts are generated only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill may ask for database or cloud credentials while gathering ClickHouse metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer user-executed, read-only metadata queries; do not paste production passwords into chat; use HTTPS/TLS and short-lived least-privilege accounts.
+
+Risk: Generated migration plans can include high-impact database operations such as ALTER, TRUNCATE, DROP, switchover, or decommission steps.
+
+Mitigation: Require human review, verified backups, identity checks, and rollback validation before executing any high-impact operation.
+
+Risk: Credential persistence examples could lead to secrets being stored in shell startup files or netrc files.
+
+Mitigation: Avoid storing secrets in .bashrc or .netrc; use temporary environment variables or managed secret workflows with least-privilege accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-cksync-plan)
+- [Publisher profile](https://clawhub.ai/user/sdk-team)
+- [Migration plan conditions](artifact/references/plans.md)
+- [SQL reference](artifact/references/sql.md)
+- [RAM permission declaration](artifact/references/ram-policies.md)
+- [Community and Enterprise big cluster federation](artifact/references/big-cluster-community-enterprise.md)
+- [Self-built and cloud big cluster federation](artifact/references/big-cluster-self-built-community.md)
+- [Stop merge storm reference](artifact/references/stop-merge-storm.md)
+- [Alibaba Cloud ClickHouse compatibility analysis](https://help.aliyun.com/zh/clickhouse/user-guide/analysis-and-solution-of-cloud-compatibility-and-performance-bottleneck-of-self-built-clickhouse)
+- [Alibaba Cloud ClickHouse backup and restore](https://help.aliyun.com/zh/clickhouse/user-guide/use-the-backup-and-restore-commands-for-data-backup-and-restoration)
+- [ClickHouse backup to S3 endpoint](https://clickhouse.com/docs/operations/backup/s3_endpoint)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown migration plan with SQL, shell command, and configuration snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default deliverable is one migration plan; supplementary files, scripts, or SQL are produced only when requested.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

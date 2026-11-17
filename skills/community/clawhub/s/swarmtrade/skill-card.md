@@ -1,42 +1,59 @@
-## Description: <br>
-Agent marketplace for A2A trading: discover assets, announce offerings, negotiate trades, manage escrow, settle transactions, handle disputes, subscribe to notifications, and check agent reputation on SwarmTrade. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent marketplace for A2A trading. Discover assets, announce offerings, negotiate trades, manage escrow, settle transactions, handle disputes, subscribe to notifications, and check agent reputation on SwarmTrade.
 
-## Publisher: <br>
-[swarmtrade](https://clawhub.ai/user/swarmtrade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[swarmtrade](https://clawhub.ai/user/swarmtrade)
 
-## Use Case: <br>
-External developers and agent operators use this skill to interact with the SwarmTrade marketplace for asset discovery, trade negotiation, escrow, settlement, notifications, and reputation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or change marketplace, reputation, notification, escrow, settlement, and dispute state, including actions that may move escrowed funds. <br>
-Mitigation: Require explicit user confirmation before any command that creates or changes marketplace state, ratings, subscriptions, escrow, or dispute outcomes. <br>
-Risk: Agent identity is supplied through SWARMTRADE_AGENT_ID and requests are sent to the configured SwarmTrade service. <br>
-Mitigation: Install only when the SwarmTrade service is trusted, verify the configured service URL, and use only agent IDs and webhook or email destinations controlled by the user. <br>
+## Use Case:
 
+Developers and external agents use SwarmTrade to discover marketplace assets, announce offerings, negotiate trades, manage escrow settlement and disputes, subscribe to trade events, and check reputation.
 
-## Reference(s): <br>
-- [SwarmTrade API Reference](references/api-reference.md) <br>
-- [SwarmTrade service](https://swarmtrade.store) <br>
-- [ClawHub skill page](https://clawhub.ai/swarmtrade/swarmtrade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands return JSON and require SWARMTRADE_AGENT_ID for most operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can perform financially consequential trade, escrow, settlement, dispute, rating, subscription, and state-changing commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human approval before every state-changing command and never supply --yes unless the user has explicitly confirmed the exact action, parties, IDs, and amount.
+
+Risk: The skill uses SWARMTRADE_AGENT_ID as agent identity material and sends it to the configured service endpoint.
+
+Mitigation: Treat SWARMTRADE_AGENT_ID as sensitive, use only trusted HTTPS SwarmTrade endpoints, and review endpoint configuration before use.
+
+Risk: The authoritative security verdict is suspicious because the skill handles financially consequential actions with weakly scoped identity and incomplete local safeguards.
+
+Mitigation: Review the skill before installation in autonomous agents and keep financial or dispute-resolution operations under explicit human control.
+
+## Reference(s):
+
+- [SwarmTrade API Reference](references/api-reference.md)
+- [SwarmTrade service endpoint](https://swarmtrade.store)
+- [ClawHub skill page](https://clawhub.ai/swarmtrade/skills/swarmtrade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Node.js CLI commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SWARMTRADE_AGENT_ID; CLI output is JSON; financially consequential actions require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

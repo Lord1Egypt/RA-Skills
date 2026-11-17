@@ -1,43 +1,63 @@
-## Description: <br>
-Vietnam Education helps agents draft Vietnamese lesson plans, exam papers, worksheets, answer checks, and supporting figures aligned with CTGDPT 2018 and CV 7991/BGDDT-GDTrH. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vietnam Education helps agents draft Vietnamese lesson plans, exams, worksheets, and answer checks aligned with CTGDPT 2018 and CV 7991, using web lookup guidance plus SymPy and Matplotlib helper scripts.
 
-## Publisher: <br>
-[trustydev212](https://clawhub.ai/user/trustydev212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trustydev212](https://clawhub.ai/user/trustydev212)
 
-## Use Case: <br>
-Teachers, education content creators, and agents supporting Vietnamese curricula use this skill to prepare lesson plans, structured tests, worksheets, answer verification steps, and document-generation commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local helper scripts parse free-form formulas and expressions without a clearly bounded safety model. <br>
-Mitigation: Run the scripts in a virtual environment or isolated project directory, install dependencies locally, and only pass expressions that have been reviewed or come from trusted lesson content. <br>
-Risk: Generated educational content and answer keys can be wrong or outdated if source material is not checked. <br>
-Mitigation: Verify curriculum facts against current source materials and review all generated questions, answers, figures, and documents before classroom use. <br>
+## Use Case:
 
+External educators and agents can use this skill to draft Vietnam-aligned lesson plans, assessment matrices, exams, worksheets, and answer-verification workflows for primary, lower-secondary, and upper-secondary classes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trustydev212/vietnam-education) <br>
-- [OpenClaw Viet Nam community](https://zalo.me/g/lajsqc334jqc5fezevvo) <br>
-- [CTGDPT 2018 reference](references/ctgdpt-2018.md) <br>
-- [CV 7991, lesson plan, and worksheet templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global, for Vietnamese education contexts
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, editable script configuration, and generated .docx or image files when helper scripts are run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and node; helper scripts rely on local project dependencies such as docx, SymPy, Matplotlib, and NumPy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 3.0.0) <br>
+Risk: Setup commands can affect the local environment through global npm installs or system-level Python package installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated project environment or container with pinned dependencies and a Python virtual environment.
+
+Risk: Formula and graph-expression workflows may execute unsafe or malformed input if taken directly from untrusted prompts.
+
+Mitigation: Review, sanitize, and constrain expressions before passing them to the helper scripts.
+
+Risk: Web searches may expose private exams, teacher materials, or student-related context.
+
+Mitigation: Confirm before searching sensitive content and redact private or student-identifying details.
+
+Risk: Generated educational content and answers may still be incorrect or mismatched to a required textbook edition or local policy.
+
+Mitigation: Cross-check source curriculum materials, use the documented answer-verification workflow, and require educator review before classroom use.
+
+## Reference(s):
+
+- [CTGDPT 2018 Reference](references/ctgdpt-2018.md)
+- [CV 7991 Exam, Lesson Plan, and Worksheet Templates](references/templates.md)
+- [OpenClaw Viet Nam Community](https://zalo.me/g/lajsqc334jqc5fezevvo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated .docx, image, and JSON file workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Node.js and Python scripts for document creation, symbolic answer checks, and figure generation.]
+
+## Skill Version(s):
+
+3.0.0 (source: skill frontmatter); ClawHub release 1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

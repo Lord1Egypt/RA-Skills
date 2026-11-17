@@ -1,45 +1,57 @@
-## Description: <br>
-Detects imminent regime transitions before they fully materialise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A paid x402 endpoint that returns a market signal about the likelihood of an imminent regime transition.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and trading-system developers use this skill to request a paid, wallet-authenticated signal for anticipating crypto market regime shifts and reducing exposure ahead of uncertainty. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses EVM_PRIVATE_KEY for wallet-based x402 payments, and each invocation may spend USDC on Base mainnet. <br>
-Mitigation: Use a dedicated low-balance wallet, configure external spending limits and monitoring, and avoid recurring or autonomous use without separate payment controls. <br>
-Risk: The security verdict is suspicious because the skill does not provide built-in spending controls or explicit per-call user consent. <br>
-Mitigation: Require operator review or policy gating before enabling the skill, and inspect payment behavior before deployment. <br>
+## Use Case:
 
+Developers and automated trading agents use the paid signal to inform strategy changes or exposure decisions during changing market conditions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kynto2001-ctrl/skills/regime-transition) <br>
-- [Regime Transition signal](https://apexrunner.ai/signals/regime-transition) <br>
-- [Pricing lookup](https://apexrunner.ai/signals/my-pricing) <br>
-- [Regime signal](https://apexrunner.ai/signals/regime) <br>
-- [Regime Confluence signal](https://apexrunner.ai/signals/regime-confluence) <br>
-- [Regime Transition Probability signal](https://apexrunner.ai/signals/regime-transition-probability) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with a Python example and JSON response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and may spend USDC per invocation on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Each request authorizes a USDC payment using an EVM wallet private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet funded for expected calls, protect the private key in a secret store, cap each signed payment, and confirm the current price before use.
+
+Risk: A regime signal is probabilistic and may not predict future market conditions.
+
+Mitigation: Treat the response as one input to a decision and apply independent trading risk controls.
+
+## Reference(s):
+
+- [Regime Transition endpoint](https://apexrunner.ai/signals/regime-transition)
+- [ClawHub release page](https://clawhub.ai/kynto2001-ctrl/skills/regime-transition)
+- [Related regime signals](https://apexrunner.ai/signals/regime)
+- [Regime Confluence signal](https://apexrunner.ai/signals/regime-confluence)
+- [Regime Transition Probability signal](https://apexrunner.ai/signals/regime-transition-probability)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON signal response with transition_likely, probability, and target_regime fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid per call; the artifact describes a $0.007 USDC early-adopter price and a $0.01 standard price.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

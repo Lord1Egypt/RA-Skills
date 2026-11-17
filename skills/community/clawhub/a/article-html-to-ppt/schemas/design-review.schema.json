@@ -1,0 +1,238 @@
+{
+  "type": "object",
+  "properties": {
+    "build_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$"
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reviewer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "method": {
+          "enum": [
+            "human",
+            "independent_multimodal"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "required": [
+        "id",
+        "method",
+        "environment"
+      ],
+      "additionalProperties": false
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$"
+          },
+          "design": {
+            "enum": [
+              "pass",
+              "revise",
+              "reject"
+            ]
+          },
+          "reconstruction": {
+            "enum": [
+              "pass",
+              "revise",
+              "reject",
+              "not_applicable"
+            ]
+          },
+          "content": {
+            "enum": [
+              "pass",
+              "revise",
+              "reject"
+            ]
+          },
+          "editability": {
+            "enum": [
+              "pass",
+              "revise",
+              "reject"
+            ]
+          },
+          "fonts": {
+            "enum": [
+              "pass",
+              "revise",
+              "reject"
+            ]
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "maxItems": 50,
+            "minItems": 1
+          },
+          "observed_node_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$"
+            },
+            "maxItems": 500,
+            "minItems": 1
+          },
+          "accepted_differences": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "maxItems": 50,
+            "minItems": 0
+          },
+          "inherited_from": {
+            "type": "object",
+            "properties": {
+              "build_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$"
+              },
+              "manifest_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "review_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "required": [
+              "build_id",
+              "manifest_sha256",
+              "review_sha256"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "page_id",
+          "design",
+          "reconstruction",
+          "content",
+          "editability",
+          "fonts",
+          "observations",
+          "observed_node_ids",
+          "accepted_differences"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 60,
+      "minItems": 1
+    },
+    "target_software": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "not_tested",
+            "fail"
+          ]
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "maxItems": 100,
+          "minItems": 0
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "status",
+        "actions"
+      ],
+      "additionalProperties": false
+    },
+    "deck_composition": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "revise",
+            "reject"
+          ]
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "maxItems": 50,
+          "minItems": 1
+        },
+        "reviewed_page_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,79}$"
+          },
+          "maxItems": 60,
+          "minItems": 1
+        }
+      },
+      "required": [
+        "status",
+        "observations",
+        "reviewed_page_ids"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "build_id",
+    "manifest_sha256",
+    "reviewer",
+    "pages",
+    "target_software"
+  ],
+  "additionalProperties": false
+}

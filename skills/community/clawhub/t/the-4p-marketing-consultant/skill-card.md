@@ -1,40 +1,54 @@
-## Description: <br>
-Provides Chinese-language marketing consulting guidance using the 4P framework of product, price, place, and promotion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language marketing consulting guidance using the 4P framework for product, pricing, channel, and promotion decisions.
 
-## Publisher: <br>
-[jacobluxj](https://clawhub.ai/user/jacobluxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacobluxj](https://clawhub.ai/user/jacobluxj)
 
-## Use Case: <br>
-External users and marketing teams use this skill to diagnose marketing questions, shape 4P strategy, and turn product, pricing, channel, and promotion choices into actionable advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive business information such as product plans, pricing details, customer data, or competitive information could be exposed if included in prompts or web searches. <br>
-Mitigation: Avoid entering confidential business data, anonymize examples, and review any search-backed recommendations before using them. <br>
-Risk: Marketing recommendations may be incomplete, context-dependent, or unsuitable as financial or strategy advice. <br>
-Mitigation: Use the output as marketing guidance, validate assumptions with qualified reviewers, and do not rely on it for financial calculations or full business strategy. <br>
+## Use Case:
 
+External users and business operators use this skill to diagnose marketing questions and develop actionable 4P marketing recommendations in Chinese. It is intended for marketing analysis, positioning, pricing approach, channel planning, promotion ideas, and case-based explanation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacobluxj/the-4p-marketing-consultant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or conversational text with structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for product, audience, competition, and current constraints before giving advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Pricing and business recommendations may be mistaken for professional financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for marketing analysis only, confirm the desired scope on ambiguous business or finance questions, and have qualified professionals review financial decisions.
+
+Risk: Marketing recommendations may be incomplete when product, customer, competitor, or channel context is missing.
+
+Mitigation: Ask follow-up questions and treat recommendations as planning input that should be tested against current market facts before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jacobluxj/skills/the-4p-marketing-consultant)
+- [ClawHub publisher profile](https://clawhub.ai/user/jacobluxj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language marketing advice; may ask follow-up questions when business context is incomplete.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

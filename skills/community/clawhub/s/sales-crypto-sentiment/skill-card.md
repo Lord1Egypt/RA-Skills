@@ -1,42 +1,53 @@
-## Description: <br>
-Analyzes crypto sentiment, on-chain data, and technical indicators to provide trading signals and market insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes crypto sentiment, on-chain data, and technical indicators to provide trading-signal style market analysis and risk-aware insights.
 
-## Publisher: <br>
-[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuzzyb33s](https://clawhub.ai/user/fuzzyb33s)
 
-## Use Case: <br>
-External traders and investors use this skill to request crypto market sentiment, on-chain, and technical-analysis signals for assets and timeframes they specify. The skill frames outputs as market analysis rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be speculative crypto market signals that a user could mistake for investment advice. <br>
-Mitigation: Treat outputs as market analysis only, verify market data independently, and review risk factors before acting. <br>
-Risk: Wallet or trading-account exposure could occur if a user shares private keys or authorizes trades through related tooling. <br>
-Mitigation: Do not share wallet private keys, seed phrases, or trading credentials, and do not authorize trades through this skill. <br>
-Risk: The skill declares curl and clawhub dependencies that may be installed by compatible OpenClaw clients. <br>
-Mitigation: Check the OpenClaw client install plan and dependency sources before deployment. <br>
+## Use Case:
 
+External traders, investors, and market analysts use this skill to request crypto asset sentiment, on-chain, and technical analysis framed as informational signals rather than financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/fuzzyb33s/sales-crypto-sentiment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown response with structured trading-signal fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include asset, direction, confidence, timeframe, entry zone, stop loss, take profit, catalyst, and risk/reward.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated crypto signals may be mistaken for financial advice or used directly for trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational market analysis only and require independent verification, risk controls, and user judgment before any trading decision.
+
+Risk: Install metadata pulls an unexplained unpinned Node package and requests curl.
+
+Mitigation: Review the install dependency and required binary before enabling the skill in an agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuzzyb33s/skills/sales-crypto-sentiment)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured trading-signal fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include asset, direction, confidence, timeframe, entry zone, stop loss, take profit, catalyst, risk/reward, and risk factors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

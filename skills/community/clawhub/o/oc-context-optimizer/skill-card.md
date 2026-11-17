@@ -1,43 +1,57 @@
-## Description: <br>
-Optimizes OpenClaw conversation context by deduplicating and compressing messages, summarizing long chats, managing token budgets, deferring tool loading, and parallelizing tool execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize conversation context by deduplicating and compressing messages, summarizing long chats, tracking token budgets, parallelizing tool calls, and loading tool descriptions on demand.
 
-## Publisher: <br>
-[penghang1223](https://clawhub.ai/user/penghang1223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[penghang1223](https://clawhub.ai/user/penghang1223)
 
-## Use Case: <br>
-OpenClaw administrators and agent platform developers use this runtime optimizer to reduce token usage, preserve long-running conversation continuity, and load tools on demand across agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic compaction can remove or rewrite conversation context in ways that affect downstream agent decisions. <br>
-Mitigation: Enable the skill only in administrator-controlled scopes and keep audit logs or diffs for compaction events. <br>
-Risk: Summaries and token-budget logs can expose sensitive content, file paths, or operational details. <br>
-Mitigation: Redact secrets and sensitive paths before storing summaries, preserved-file lists, or token usage history. <br>
-Risk: Parallel execution, retries, and deferred tool loading can increase the impact of tools that write, send, delete, or call external services. <br>
-Mitigation: Use conservative retry and parallelism settings, and restrict high-impact tools to explicitly approved administrator configurations. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to reduce context size, manage token budgets, and make tool execution more efficient across agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/penghang1223/oc-context-optimizer) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON results, Markdown or text summaries, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can update conversation context, token-budget state, and tool execution ordering when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Automatic context rewriting can omit, compress, or reshape information that agents later rely on.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review compaction behavior on representative conversations and disable or narrow automatic compaction for workflows that require exact context retention.
+
+Risk: Deferred tool loading changes which tool descriptions agents see and may expose or hide capabilities unexpectedly.
+
+Mitigation: Review the always-loaded tools, deferred categories, keywords, and trigger weights before enabling the skill in sensitive environments.
+
+Risk: Private files, chat content, OAuth-related data, or business data may pass through summaries, logs, or runtime state.
+
+Mitigation: Confirm secret redaction, logging paths, and retention behavior before using the skill with private or regulated data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/penghang1223/skills/oc-context-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell command examples, Python integration snippets, and JSON status or configuration data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce compressed conversation summaries, token budget reports, deferred-tool search results, and parallel tool execution results.]
+
+## Skill Version(s):
+
+1.2.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Assess data privacy compliance across 20 control areas with 63 controls covering governance, consent, security, breach response, vendor management, and cross-border transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess data privacy compliance across 20 control areas with 63 controls covering governance, consent, security, breach response, vendor management, and cross-border transfers.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security, compliance, and privacy teams use this skill to collect privacy-control answers and request a ToolWeb-backed assessment of privacy readiness, audit preparation, GDPR/CCPA checklist coverage, and program maturity. It reports overall compliance, area scores, critical findings, and priority remediation actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Privacy-control answers, optional notes, and a session ID are sent to ToolWeb.in under a ToolWeb API key. <br>
-Mitigation: Send only information needed for the assessment, avoid unnecessary confidential details, and confirm organizational approval for third-party processing before use. <br>
-Risk: Successful API calls may consume billable ToolWeb quota. <br>
-Mitigation: Confirm the configured ToolWeb plan and expected call volume before running assessments. <br>
-Risk: Partial assessments can produce incomplete or conservative results because unanswered areas may be scored as non-compliant. <br>
-Mitigation: Label partial runs clearly and collect answers for all relevant control areas before treating results as a full compliance view. <br>
+## Use Case:
 
+Employees, external auditors, developers, and compliance teams use this skill to gather privacy control answers, call the ToolWeb privacy checklist API, and receive area scores with prioritized findings for privacy program assessment or audit preparation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/krishnakumarmahadevan-cmd/data-privacy-checklist) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
-- [Data Privacy Checklist API endpoint](https://portal.toolweb.in/apis/compliance/data-privacy-checklist) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown assessment report with area scores, prioritized findings, and remediation actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; successful API calls may consume ToolWeb quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Privacy assessment answers and notes about organizational weaknesses are sent to portal.toolweb.in without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when off-system disclosure is acceptable, avoid unnecessary sensitive free-form notes, and prefer a workflow with explicit confirmation for local-only or controlled disclosure needs.
+
+Risk: Successful API calls are counted for billing and require a ToolWeb API key.
+
+Mitigation: Use a least-privilege API key, configure it only where needed, and confirm billing expectations before running assessments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/data-privacy-checklist)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [Data Privacy Checklist API Endpoint](https://portal.toolweb.in/apis/compliance/data-privacy-checklist)
+- [ToolWeb](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, configuration]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces area-by-area compliance scores, critical findings, priority actions, and API error guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

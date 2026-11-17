@@ -1,45 +1,69 @@
-## Description: <br>
-基于 Word 模板和结构化业务信息生成合同草稿。适用于 AI 总助根据现有 .docx 模板起草合同、填充甲乙方与合作信息、识别缺失字段并输出可审阅草稿的场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reviewable contract drafts from Word templates and structured business facts, including party details, cooperation content, missing-field lists, and validation artifacts.
 
-## Publisher: <br>
-[renjicode](https://clawhub.ai/user/renjicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renjicode](https://clawhub.ai/user/renjicode)
 
-## Use Case: <br>
-Employees and external users can use this skill to draft reviewable contract documents from existing Word templates and structured business terms. It helps prepare a JSON job spec, generate an editable .docx draft, identify unresolved fields, and produce run and validation summaries for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may write contract artifacts and diagnostic summaries to disk and may save or reuse sensitive business-contract context more broadly than users expect. <br>
-Mitigation: Use redacted inputs where possible, confirm where outputs and memory are stored before processing confidential agreements, review generated reports, and clean up generated files or saved memory that should not persist. <br>
+## Use Case:
 
+External users and developers use this skill to turn an existing Word contract template and structured business terms into a reviewable draft, missing-items note, run summary, and validation report. It supports business and legal review workflows and should not be treated as final legal advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/renjicode/keplerjai-contract-draft) <br>
-- [README](README.md) <br>
-- [Generic Requirements](references/generic-requirements.md) <br>
-- [Input Contracting Rules](references/input-contracting-rules.md) <br>
-- [Runtime Output Contract](references/runtime-output-contract.md) <br>
-- [Template Analysis](references/template-analysis.md) <br>
-- [Word Plugin Setup](references/word-plugin-setup.md) <br>
-- [Iteration Notes](references/iteration-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [JSON job specs, Markdown summaries, shell commands, editable .docx files, unresolved item lists, run summaries, and validation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft contract artifacts for business and legal review; generated documents should not be treated as final legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can prepare environment or login changes and install helper tooling as part of Word plugin setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an isolated or trusted workspace, and approve package installation or login steps before execution.
+
+Risk: Contract templates, generated drafts, and auxiliary reports may contain sensitive business or legal information.
+
+Mitigation: Review generated .docx, JSON, and Markdown outputs before sharing, and avoid using sensitive data in untrusted workspaces.
+
+Risk: Template paths and output filenames influence file reads and writes performed by the runner.
+
+Mitigation: Use trusted template paths and explicit output locations, and avoid attacker-controlled paths or filenames.
+
+Risk: Generated contract text can be incomplete, inconsistent, or unsuitable for signature without professional review.
+
+Mitigation: Treat outputs as review drafts, keep unresolved fields visible, and require business and legal review before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renjicode/skills/keplerjai-contract-draft)
+- [Publisher profile](https://clawhub.ai/user/renjicode)
+- [README](README.md)
+- [Generic requirements](references/generic-requirements.md)
+- [Input contracting rules](references/input-contracting-rules.md)
+- [Runtime output contract](references/runtime-output-contract.md)
+- [Template analysis](references/template-analysis.md)
+- [Word plugin setup](references/word-plugin-setup.md)
+- [Iteration notes](references/iteration-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JSON job specs, shell commands, Word .docx drafts, and JSON/Markdown validation artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces editable contract drafts plus missing-items, run-summary, and validation-report files for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

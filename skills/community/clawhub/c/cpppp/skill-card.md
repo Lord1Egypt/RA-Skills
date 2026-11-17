@@ -1,44 +1,60 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, and corrections so coding agents can record failures, user corrections, feature requests, outdated knowledge, and recurring improvements for later review.
 
-## Publisher: <br>
-[blockcloud](https://clawhub.ai/user/blockcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockcloud](https://clawhub.ai/user/blockcloud)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill to record corrections, command failures, feature requests, and durable lessons in markdown files so future sessions can reuse validated learnings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning logs can retain conversation, prompt, or error details and carry them into future agent memory. <br>
-Mitigation: Keep logs private, avoid storing secrets or raw prompts, and redact error output before saving it. <br>
-Risk: Unreviewed learning entries can promote incorrect or misleading guidance into future agent instruction files. <br>
-Mitigation: Review every entry before promotion and scan the skill before deployment. <br>
-Risk: Global every-prompt hooks and cross-session sharing can increase privacy exposure. <br>
-Mitigation: Avoid global hooks unless needed and use transcript or messaging tools only with explicit approval and sanitized summaries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Examples](references/examples.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture actionable learnings, errors, and feature requests during coding-agent work, then review or promote recurring lessons into project memory files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create or update .learnings markdown files and optional hook configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent learning files may capture broad conversational, command, or error context that includes secrets, personal data, or customer data.
+
+Mitigation: Keep .learnings local by default, redact sensitive data before logging, and avoid storing raw command output.
+
+Risk: Incorrect or misleading lessons could be promoted into future agent memory and affect later work.
+
+Mitigation: Require human review before promoting learnings into AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, or copilot instructions.
+
+Risk: Global hook setup or empty hook matchers can run reminders on every prompt.
+
+Mitigation: Enable hooks intentionally, prefer project-scoped configuration, and review hook behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blockcloud/skills/cpppp)
+- [OpenClaw Integration Guide](references/openclaw-integration.md)
+- [Hook Setup Guide](references/hooks-setup.md)
+- [Examples](references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update .learnings markdown files and project memory files after human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

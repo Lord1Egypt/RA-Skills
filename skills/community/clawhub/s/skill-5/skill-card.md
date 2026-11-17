@@ -1,39 +1,56 @@
-## Description: <br>
-AI video production workflow using Remotion. Use when creating videos, short films, commercials, or motion graphics. Triggers on requests to make promotional videos, product demos, social media videos, animated explainers, or any programmatic video content. Produces polished motion graphics, not slideshows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI video production workflow using Remotion for creating videos, short films, commercials, motion graphics, product demos, social media videos, and animated explainers.
 
-## Publisher: <br>
-[diederik24](https://clawhub.ai/user/diederik24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[diederik24](https://clawhub.ai/user/diederik24)
 
-## Use Case: <br>
-Developers and creators use this skill to plan, scaffold, preview, iterate on, and render Remotion-based motion graphics videos for product demos, promotional clips, explainers, social media videos, and similar programmatic video work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a local Remotion preview through a public Cloudflare tunnel. <br>
-Mitigation: Use it only for non-sensitive projects, require explicit confirmation before starting the tunnel, share only intended preview content, and stop the tunnel and development server when review is finished. <br>
-Risk: The workflow uses external brand scraping and remote asset downloads. <br>
-Mitigation: Confirm the target URLs before scraping or downloading assets, avoid confidential or private URLs, and use limited Firecrawl credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Video Generator on ClawHub](https://clawhub.ai/diederik24/skill-5) <br>
+## Use Case:
 
+Developers and content creators use this skill to build polished programmatic video projects with React and Remotion, including branded promotional videos, product demos, social videos, and animated explainers.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Remotion project guidance and may direct creation of local project files, dependency installs, a development server, a public preview tunnel, and an exported MP4 when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow may expose a local Remotion development server through a public tunnel.
+
+Mitigation: Use public tunneling only when explicitly needed, avoid exposing sensitive local work, and stop the tunnel immediately after preview.
+
+Risk: The workflow uses mutable npm and npx package execution during project setup.
+
+Mitigation: Run it in an isolated workspace and prefer pinned dependencies and lockfiles before installing or executing packages.
+
+Risk: Product or company videos may trigger website scraping and local asset downloads.
+
+Mitigation: Confirm the target site and intended assets before scraping or downloading, and avoid collecting sensitive or unauthorized content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diederik24/skills/skill-5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Remotion project files and preview workflow guidance when used by an agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

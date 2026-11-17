@@ -1,40 +1,48 @@
-## Description: <br>
-Build a personal gratitude practice for logging what's good, discovering patterns, and cultivating appreciation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal gratitude practice for logging what's good, discovering patterns, and cultivating appreciation.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to maintain a local gratitude journal, capture daily entries, and review recurring themes, favorites, and reflections over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Gratitude entries may contain private reflections and are stored locally in ~/gratitude/. <br>
-Mitigation: Use the skill only on devices where local journal storage is acceptable, and periodically review or delete entries that should not be retained. <br>
-Risk: Shared, backed-up, or synced devices may expose journal content beyond the local user. <br>
-Mitigation: Treat ~/gratitude/ as private data and avoid syncing or backing it up to services that should not hold these entries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/gratitude) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to keep a local gratitude journal, capture daily entries, revisit favorites, and identify recurring themes in what they appreciate.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown journal entries, reflection notes, and conversational prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local files under ~/gratitude/ for logs, patterns, favorites, and practice preferences.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gratitude entries and generated summaries may contain sensitive personal reflections stored as local plaintext under ~/gratitude/.
+
+Mitigation: Avoid recording details you would not want exposed through device sharing, backups, search indexing, or synced home folders, and review or delete local files when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/gratitude)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance with local journal file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local plaintext gratitude files under ~/gratitude/ when the agent has filesystem access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

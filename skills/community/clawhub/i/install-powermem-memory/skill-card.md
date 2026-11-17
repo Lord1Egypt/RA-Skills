@@ -1,46 +1,61 @@
-## Description: <br>
-Step-by-step guide to install and configure the PowerMem long-term memory plugin for OpenClaw, including setup paths, options, troubleshooting, and auto-capture and auto-recall behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step guide to install and configure the PowerMem long-term memory plugin (full path, options, troubleshooting). After setup, the plugin auto-captures conversation highlights and auto-recalls relevant memories. This skill is self-contained and can be published independently of any minimal-install skill.
 
-## Publisher: <br>
-[teingi](https://clawhub.ai/user/teingi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teingi](https://clawhub.ai/user/teingi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and configure PowerMem as a long-term memory backend. It helps set up local CLI mode or HTTP server mode, verify plugin health, and understand configuration and troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent automatic memory can store sensitive or regulated conversation content longer than intended. <br>
-Mitigation: Install only when long-term memory is intended, avoid storing secrets or regulated data, and review or delete memories periodically. <br>
-Risk: HTTP server mode can expose memory access if bound broadly without protection. <br>
-Mitigation: Prefer local CLI and SQLite mode for personal use; protect HTTP mode with authentication, TLS or a trusted network boundary, and clear access controls. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, verify, and troubleshoot PowerMem as an OpenClaw long-term memory plugin. It supports local CLI/SQLite setups and optional HTTP server deployments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teingi/install-powermem-memory) <br>
-- [PowerMem GitHub repository](https://github.com/oceanbase/powermem) <br>
-- [memory-powermem installation guide](https://github.com/ob-labs/memory-powermem/blob/main/INSTALL.md) <br>
-- [PowerMem environment example](https://github.com/oceanbase/powermem/blob/master/.env.example) <br>
-- [PowerMem issues](https://github.com/oceanbase/powermem/issues) <br>
-- [PowerMem Introduction](artifact/powermem-intro.md) <br>
-- [Config & Commands Quick Reference](artifact/config-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation, verification, configuration, and troubleshooting guidance for PowerMem memory setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release metadata) <br>
+Risk: The HTTP setup can expose persistent conversation memory on all network interfaces when run on 0.0.0.0 with optional authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local CLI/SQLite mode, or place the HTTP server behind strong authentication and network restrictions.
+
+Risk: Auto-capture can store secrets, regulated data, or other sensitive conversation content.
+
+Mitigation: Disable autoCapture when handling secrets or regulated data, and review memory contents and retention settings before deployment.
+
+Risk: Unverified package or plugin versions can create supply-chain or compatibility risk during installation.
+
+Mitigation: Use a virtual environment and pin or verify the PowerMem package and plugin versions before installing.
+
+## Reference(s):
+
+- [PowerMem GitHub Repository](https://github.com/oceanbase/powermem)
+- [PowerMem Environment Example](https://github.com/oceanbase/powermem/blob/master/.env.example)
+- [PowerMem Issues](https://github.com/oceanbase/powermem/issues)
+- [memory-powermem Installation Guide](https://github.com/ob-labs/memory-powermem/blob/main/INSTALL.md)
+- [ClawHub Skill Page](https://clawhub.ai/teingi/skills/install-powermem-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation order, CLI and HTTP mode configuration, verification commands, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-Automates weekly work report generation by logging into a report system, fetching team report data, summarizing it with AI, and producing a formatted Word document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates weekly report generation by logging into a report system, fetching team report entries, summarizing them with an LLM, and producing a formatted Word document.
 
-## Publisher: <br>
-[kaillera999](https://clawhub.ai/user/kaillera999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kaillera999](https://clawhub.ai/user/kaillera999)
 
-## Use Case: <br>
-Employees and team leads use this skill to collect weekly report entries for a configured team, summarize this week's work and next week's plans, and generate a Word report for review or sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles workplace credentials and stores local token and data caches. <br>
-Mitigation: Use scoped credentials where possible, protect the working directory, and clear .token_cache and .data_cache after generating the report. <br>
-Risk: Report contents may be sent to a configured external AI provider for summarization. <br>
-Mitigation: Confirm that the configured LLM provider and base URL are approved for the report contents before use. <br>
-Risk: Setup uses remote dependency installers and browser automation dependencies. <br>
-Mitigation: Review setup.sh and dependency sources before installation, and run setup in a trusted environment. <br>
-Risk: An incorrect report-system URL or LLM base URL could expose credentials or report contents. <br>
-Mitigation: Review the configured HTTP report-system URL and LLM base URL before login or generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaillera999/weekly-report-openclaw) <br>
-- [Configuration Guide](references/configuration.md) <br>
-- [Workflow Guide](references/workflow.md) <br>
-- [Setup Script](scripts/setup.sh) <br>
+## Use Case:
 
+Employees, team leads, and operations staff use this skill to compile weekly team activity data into structured summaries and Word reports for the current, previous, or a specified week.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output includes JSON status and generated .docx report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus WEEKLY_REPORT_USERNAME, WEEKLY_REPORT_PASSWORD, and DEEPSEEK_API_KEY; may use local token and data caches during report generation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles report-system credentials and cached authentication tokens.
+
+Mitigation: Use least-privilege test credentials first, keep secrets out of project `.env` files, and protect or delete `.token_cache` after use.
+
+Risk: Team report content may be confidential and is summarized through the configured LLM provider.
+
+Mitigation: Process confidential reports only after organizational approval and with an approved LLM endpoint and data-handling policy.
+
+Risk: Security evidence flags weak transport safeguards for the report system.
+
+Mitigation: Use an HTTPS report-system endpoint before handling real workplace data.
+
+Risk: Setup guidance includes running a streamed remote installer.
+
+Mitigation: Verify installer source and contents independently or install dependencies through approved package-management procedures.
+
+Risk: The data cache can contain raw team report data.
+
+Mitigation: Protect or delete `.data_cache` after use and avoid storing it in shared or versioned directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaillera999/skills/weekly-report-openclaw)
+- [Configuration Guide](references/configuration.md)
+- [Workflow Guide](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; runtime output is JSON status plus a .docx report file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires report-system credentials and an LLM API key; generated reports are saved as Word documents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

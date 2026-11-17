@@ -1,41 +1,58 @@
-## Description: <br>
-Configures OpenClaw to use NewCLI as a provider for Claude, GPT, and Gemini models, including provider definitions, aliases, fallback routing, validation, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures OpenClaw to use NewCLI/FoxCode as a model proxy for Claude, GPT, and Gemini, including provider definitions, aliases, fallback routing, and validation steps.
 
-## Publisher: <br>
-[jooey](https://clawhub.ai/user/jooey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jooey](https://clawhub.ai/user/jooey)
 
-## Use Case: <br>
-Developers and OpenClaw administrators use this skill to add NewCLI-backed Claude, GPT, and Gemini model routes to an OpenClaw configuration and verify that each provider works. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reroute OpenClaw model traffic through NewCLI/code.newcli.com, a third-party proxy. <br>
-Mitigation: Review the provider and fallback edits before applying them and confirm that organizational policy allows prompts, code, and metadata to pass through the proxy. <br>
-Risk: The workflow handles API keys and edits the OpenClaw configuration file. <br>
-Mitigation: Avoid exposing raw API keys in shell history or shared logs, and restrict permissions on the OpenClaw config file. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to add NewCLI/FoxCode model-provider routes for Claude, GPT, and Gemini, then validate model availability, aliases, and fallback behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jooey/add-newcli-provider) <br>
-- [NewCLI service](https://code.newcli.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw provider, alias, fallback, validation, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server-resolved release metadata) <br>
+Risk: OpenClaw traffic and an API key may be routed through a third-party model proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after independently verifying NewCLI/FoxCode, use a dedicated scoped key where possible, and avoid sensitive test prompts.
+
+Risk: Provider, alias, and fallback changes can persistently alter model routing.
+
+Mitigation: Back up the OpenClaw configuration before applying changes and review fallback routes before restarting the gateway.
+
+Risk: Promotional or unapproved routes may be included in the setup material.
+
+Mitigation: Remove referral-driven links and any unapproved endpoints before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jooey/skills/add-newcli-provider)
+- [NewCLI/FoxCode service](https://code.newcli.com)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides persistent OpenClaw provider, alias, and fallback configuration changes.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

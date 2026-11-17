@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn75nfde6ajrhj4zpwq6dee61982fgfc",
-  "slug": "reddit-aggregate-scraper",
+  "ownerId": "maxhub-skills",
+  "slug": "maxhub-reddit",
   "version": "3.6.1",
-  "publishedAt": 1780387548880
+  "publishedAt": 0,
+  "homepage": "https://www.aconfig.cn",
+  "repository": "https://github.com/XieWxx/maxhub-api-skills"
 }

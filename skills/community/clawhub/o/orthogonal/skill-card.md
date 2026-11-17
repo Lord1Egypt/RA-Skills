@@ -1,44 +1,59 @@
-## Description: <br>
-Orthogonal API Platform helps agents search, discover, integrate, and call paid APIs through the Orthogonal SDK, Run API, or x402 direct payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orthogonal API Platform helps agents search, discover, integrate, and call paid APIs using the Orthogonal SDK, Run API, or x402 direct payment.
 
-## Publisher: <br>
-[ChristianPickettCode](https://clawhub.ai/user/ChristianPickettCode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[christianpickettcode](https://clawhub.ai/user/christianpickettcode)
 
-## Use Case: <br>
-Developers and agents use this skill to find paid APIs, inspect endpoint details and pricing, generate integration snippets, and run selected API calls through Orthogonal credits or x402 payment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate paid API calls through /v1/run or x402 payment flows. <br>
-Mitigation: Require explicit approval before every paid request, including review of the target API, request body, destination, and price. <br>
-Risk: API keys or payment credentials could expose spend authority if used too broadly. <br>
-Mitigation: Use a restricted Orthogonal API key and avoid main wallet private keys; prefer a dedicated low-balance wallet or safer secret storage for payment flows. <br>
-Risk: Search and list results may surface endpoints that are broader than the user's intended task. <br>
-Mitigation: Prefer targeted search over bulk listing, inspect endpoint details and pricing, and confirm the selected API before integration or execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Orthogonal Homepage](https://orthogonal.com) <br>
-- [Orthogonal Dashboard Documentation](https://orthogonal.com/dashboard/docs) <br>
-- [Orthogonal API Discovery](https://orthogonal.com/discover) <br>
-- [Orthogonal API Base URL](https://api.orth.sh/v1) <br>
+## Use Case:
 
+Developers and agent builders use this skill to discover paid APIs, inspect endpoint requirements, generate integration snippets, and make API calls through Orthogonal.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with JSON responses, cURL commands, and JavaScript or Python code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid API call requests and x402 payment examples; review target API, request body, destination, and price before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may make paid API calls or direct x402 payments without sufficient user control.
+
+Mitigation: Require explicit approval for each paid call and set spending limits where possible.
+
+Risk: Prompts, internal URLs, API keys, or wallet private keys may be exposed to external services.
+
+Mitigation: Avoid sending confidential prompts or internal URLs, keep credentials narrowly scoped, and protect wallet private keys.
+
+Risk: Installing or using the SDK may add unreviewed dependency risk.
+
+Mitigation: Pin and review the SDK before installation.
+
+## Reference(s):
+
+- [Orthogonal](https://orthogonal.com)
+- [Orthogonal Documentation](https://orthogonal.com/dashboard/docs)
+- [Browse Orthogonal APIs](https://orthogonal.com/discover)
+- [ClawHub Skill Page](https://clawhub.ai/christianpickettcode/skills/orthogonal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline JSON, JavaScript, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to make paid API calls or direct x402 payments; each paid call should require explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

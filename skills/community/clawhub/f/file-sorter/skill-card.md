@@ -1,40 +1,47 @@
-## Description: <br>
-File Sorter helps organize local files by type, size, date, or documented keyword rules for workflows such as download cleanup, photo archiving, and document classification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A general-purpose file organization skill that sorts files by type, size, date, and keywords for workflows such as downloads cleanup, photo archiving, and document classification.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers and end users can use this skill to organize batches of local files into folder structures by file type, size, or date. It is suited for routine cleanup and archiving tasks where preview and undo behavior help reduce accidental changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move, copy, or create symlinks in folders the user explicitly points it at. <br>
-Mitigation: Use preview first, restrict runs to intended directories, and keep the backup log until undo is no longer needed. <br>
-Risk: Move is the default action, so a confirmed run can reorganize files. <br>
-Mitigation: Review proposed operations before confirming, or choose copy for lower-impact runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/utopiabenben/file-sorter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/utopiabenben) <br>
+## Use Case:
+
+External users and developers use this skill to generate and execute file-sorting workflows for local folders, including organizing files into type, size, or date-based output directories.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Undo and overwrite behavior can cause unexpected file loss or movement.
+
+Mitigation: Review before installing, use preview first, avoid output directories with valuable overlapping filenames, do not run undo when the hidden backup file may have been modified by other users or untrusted processes, and do not run with elevated privileges.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe preview, move, copy, symlink, and undo workflows for local file organization.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file move, copy, symlink, preview, and undo operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-03-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Build vector retrieval with Alibaba Cloud DashVector using the Python SDK for collection creation, document upserts, and filtered similarity search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build vector retrieval with DashVector using the Python SDK. Use when creating collections, upserting docs, and running similarity search with filters in Claude Code/Codex.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure DashVector access, create vector collections, upsert documents, and run scoped similarity searches from Claude Code or Codex workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DashVector operations can create collections and upsert documents in the configured cluster. <br>
-Mitigation: Confirm the endpoint, collection name, and intended scope before running mutating actions, and test first against a non-production or intended collection. <br>
-Risk: Credentials and uploaded vectors or document fields may expose sensitive data if handled carelessly. <br>
-Mitigation: Use a scoped DashVector API key and upload only data approved for storage in the target DashVector cluster. <br>
-Risk: Unpinned SDK installation can change behavior across environments. <br>
-Mitigation: Consider pinning the dashvector package version for production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure DashVector collections, upsert vector documents, and run filtered similarity search through the Python SDK.
 
-## Reference(s): <br>
-- [Source list](artifact/references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-ai-search-dashvector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHVECTOR_API_KEY and DASHVECTOR_ENDPOINT; operations can create collections, upsert documents, and query DashVector.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The quickstart can create a collection and upsert sample documents in a DashVector cluster.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against a verified endpoint with a least-privileged API key and explicit collection settings.
+
+Risk: The skill depends on API-key and endpoint configuration.
+
+Mitigation: Keep DASHVECTOR_API_KEY scoped, rotate it as needed, and avoid exposing credentials in logs, shell history, or committed files.
+
+Risk: An unpinned dashvector SDK install can change behavior over time.
+
+Mitigation: Install the SDK in an isolated virtual environment and pin the package version for repeatable runs.
+
+## Reference(s):
+
+- [Source List](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose DashVector API calls that require DASHVECTOR_API_KEY and DASHVECTOR_ENDPOINT.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

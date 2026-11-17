@@ -1,40 +1,58 @@
-## Description: <br>
-Analyze `paper-parse` outputs and generate a research-oriented paper card directly in natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze `paper-parse` outputs and generate a research-oriented paper card directly in natural language.
 
-## Publisher: <br>
-[Chen-Li-17](https://clawhub.ai/user/Chen-Li-17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen-li-17](https://clawhub.ai/user/chen-li-17)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill after paper parsing to turn `*_content.md` and `*_parsed.json` artifacts into structured paper-card summaries, reproducibility notes, and revision history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes local paper-card outputs and may overwrite existing paper-card.md or paper-card.json files in the target folder. <br>
-Mitigation: Before use, check the target folder for existing paper-card outputs and preserve earlier versions when needed. <br>
-Risk: Paper summaries can be misleading if parsed paper inputs omit evidence or if unsupported claims are introduced during revision. <br>
-Mitigation: Use only evidence from `*_content.md` and `*_parsed.json`, mark missing support as not clearly stated, and review each revision before relying on the card. <br>
+## Use Case:
 
+Developers and researchers use this skill after parsing a paper to produce a structured research summary covering contributions, methods, results, limitations, reproducibility notes, and future work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Chen-Li-17/paper-card-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown and JSON files with a Markdown feedback log] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves paper-card.md, paper-card.json, and paper-card-feedback.md beside the parsed paper inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create or overwrite paper-card.md and paper-card.json in the selected paper folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups or rename existing paper-card files before running the skill on a folder with prior work.
+
+Risk: The skill appends revision history to paper-card-feedback.md.
+
+Mitigation: Review the feedback log before sharing outputs if user feedback may include sensitive notes.
+
+Risk: Paper summaries can become misleading if source evidence is incomplete or weak.
+
+Mitigation: Follow the skill's evidence protocol by marking missing sections as not clearly stated and reviewing generated claims against the parsed paper content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chen-li-17/skills/paper-card-analyzer)
+- [ClawHub publisher profile](https://clawhub.ai/user/chen-li-17)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown and JSON files with a revision feedback log]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes paper-card.md, paper-card.json, and paper-card-feedback.md in the selected paper folder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

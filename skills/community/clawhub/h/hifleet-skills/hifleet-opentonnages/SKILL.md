@@ -18,7 +18,7 @@ metadata:
 
 **`SKILL_CONTEXT.md`**, **`ROUTING_AND_WHEN.md`**, **`LOCALIZATION.md`**.
 
-**Not this skill**: private mailbox tonnage → **`hifleet-mytonnages`**; liner schedules → **`hifleet-schedule`**; pre-arrival → **`hifleet-mytonnages`** (route C).
+**Not this skill**: liner schedules → **`hifleet-schedule`**.
 
 **API Key**: **`FIRST_SETUP.md`**.
 

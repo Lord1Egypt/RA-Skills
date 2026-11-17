@@ -1,45 +1,61 @@
-## Description: <br>
-Lobster Comm enables AI agents on different machines to exchange signed, reliable peer-to-peer messages over Tailscale using the LCP/1.1 UDP protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bot-to-bot P2P communication over Tailscale using the LCP/1.1 UDP protocol for signed, reliable messages between agents on different machines.
 
-## Publisher: <br>
-[jeffchang2024](https://clawhub.ai/user/jeffchang2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffchang2024](https://clawhub.ai/user/jeffchang2024)
 
-## Use Case: <br>
-Developers and agent operators use Lobster Comm to set up bot-to-bot messaging, cross-machine task delegation, and distributed agent orchestration over a Tailscale network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local UDP messaging daemon and stores messages and signing keys on disk. <br>
-Mitigation: Install only on machines where you intend to run that daemon, restrict network exposure to trusted peers, and protect or periodically clean the stored data and key files. <br>
-Risk: Built-in signature checks verify message integrity but do not by themselves prove the sender is a trusted peer. <br>
-Mitigation: Use peer-key pinning or trust-on-first-use enforcement before relying on signatures for peer authentication. <br>
-Risk: Messages may be sent between machines over the local Tailscale network. <br>
-Mitigation: Avoid sending secrets unless additional confidentiality controls are in place, and use firewall or Tailscale access controls to limit access to expected machines. <br>
+## Use Case:
 
+Developers and agent operators use Lobster Comm to configure and run peer-to-peer messaging between AI agents over a Tailscale network for cross-machine task delegation and distributed orchestration.
 
-## Reference(s): <br>
-- [LCP/1.1 Protocol Specification](references/protocol-spec.md) <br>
-- [PyNaCl](https://pypi.org/project/PyNaCl/) <br>
-- [Tailscale](https://tailscale.com/) <br>
-- [NSSM](https://nssm.cc/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with Python scripts, shell commands, and JSON message payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local UDP daemon and stores inbox, outbox, signing keys, and duplicate-detection state on disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Messages cross the user's Tailnet and are stored on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets through this skill; review storage locations, retention, and cleanup before use.
+
+Risk: Authentication and local control boundaries are weak for trusted agent-to-agent use without review.
+
+Mitigation: Require peer key pinning, source validation, authenticated IPC, and restrictive key storage before trusted or autonomous use.
+
+Risk: Auto-start or Windows service use can keep the messaging daemon active on shared machines.
+
+Mitigation: Avoid auto-start and service mode on shared systems unless access controls and an operational disable path are reviewed.
+
+## Reference(s):
+
+- [LCP/1.1 Protocol Specification](references/protocol-spec.md)
+- [PyNaCl](https://pypi.org/project/PyNaCl/)
+- [Tailscale](https://tailscale.com/)
+- [NSSM](https://nssm.cc/)
+- [ClawHub skill page](https://clawhub.ai/jeffchang2024/skills/lobster-comm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe daemon status, inbox/outbox message files, and LCP message JSON.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

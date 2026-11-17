@@ -1,43 +1,58 @@
-## Description: <br>
-生成结构精简的 Claude Code skill 骨架，强制 routing-signal 三要素、五类 body taxonomy 和 Faithfulness gate，并在用户要求起草、设计、新建或 scaffold skill 时触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成结构精简的 Claude Code skill 骨架，强制 routing-signal 三要素、五类 body taxonomy 和 Faithfulness gate。
 
-## Publisher: <br>
-[david0ming](https://clawhub.ai/user/david0ming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[david0ming](https://clawhub.ai/user/david0ming)
 
-## Use Case: <br>
-Developers and skill authors use this skill to turn a skill idea into a concise Claude Code skill scaffold with routing signals, taxonomy checks, split Markdown files, and an architect report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill files may encode incomplete or unsuitable guidance for the intended agent workflow. <br>
-Mitigation: Review the generated files and architect report before installing or relying on the scaffold. <br>
-Risk: The skill writes files to a user-selected output path. <br>
-Mitigation: Use a dedicated output directory and confirm the generated path before adopting the files. <br>
-Risk: The README includes remote install commands that depend on external package or repository identity. <br>
-Mitigation: Verify the remote repository or package source before running git, npx, or ClawHub install commands. <br>
+## Use Case:
 
+Developers and skill authors use this agent skill to turn a skill idea into a concise Claude Code skill scaffold. It produces a day-zero structure with routing signals, taxonomy checks, split-file frontmatter, and a Faithfulness audit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/david0ming/skill-scaffolder) <br>
-- [SkillReducer paper](https://arxiv.org/abs/2603.29919) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown skill files and concise implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a scaffold to a user-chosen path and uses an alternate .new directory when the target already exists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes scaffold files into a target directory, so an incorrect target path can create files in an unintended location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide a fresh target directory and review generated files before enabling or publishing the scaffolded skill.
+
+Risk: The README includes an unpinned npx install command, which may resolve changing installer behavior over time.
+
+Mitigation: Prefer ClawHub or a reviewed pinned installer before installing the skill.
+
+Risk: Broad trigger wording can cause the skill to activate for general skill-authoring discussions where a full scaffold is not needed.
+
+Mitigation: Use it only when intentionally creating a new skill scaffold, and retire ideas that can be handled by the base model, an existing tool, or CLAUDE.md rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/david0ming/skills/skill-scaffolder)
+- [SkillReducer: A Two-Stage Compression Method for Agent Skills](https://arxiv.org/abs/2603.29919)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown files and structured scaffold content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a new skill directory with SKILL.md, optional background.md, examples.md, templates.md, and ARCHITECT_REPORT.md; avoids overwriting an existing target directory by writing to a .new directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

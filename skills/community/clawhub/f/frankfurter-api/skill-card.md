@@ -1,43 +1,59 @@
-## Description: <br>
-Fetch exchange rates and convert currencies with the free Frankfurter API (no API key). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch exchange rates and convert currencies with the free Frankfurter API (no API key). Use for any exchange rate, currency conversion, forex, or historical FX data task, even if Frankfurter isn't mentioned.
 
-## Publisher: <br>
-[nanookai](https://clawhub.ai/user/nanookai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nanookai](https://clawhub.ai/user/nanookai)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch current or historical foreign exchange reference rates, convert currencies, inspect available currencies and providers, and shape Frankfurter API responses for integration work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to use public Frankfurter API exchange rates as if they were live trading prices. <br>
-Mitigation: Treat returned rates as daily reference rates, read the response date, and avoid using them as live tick data. <br>
-Risk: Compliance-sensitive work may require an official data source rather than blended exchange-rate data. <br>
-Mitigation: Check the returned provider information and pin an appropriate provider when official or compliance-sensitive rates are required. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve exchange rates, convert currencies, inspect historical foreign exchange data, and understand Frankfurter API endpoint behavior.
 
-## Reference(s): <br>
-- [Frankfurter API Skill Page](https://clawhub.ai/nanookai/skills/frankfurter-api) <br>
-- [Frankfurter API](https://api.frankfurter.dev) <br>
-- [Frankfurter API v2 Endpoint Reference](references/endpoints.md) <br>
-- [Frankfurter v1 API Legacy Reference](references/v1-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, markdown] <br>
-**Output Format:** [Markdown guidance with HTTP request examples, JSON or CSV response examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files; the skill may guide agents to call the public Frankfurter API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Exchange-rate requests to the public Frankfurter API can expose currency pairs, dates, and similar request parameters to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive business context in requests unless the requester is comfortable sharing those parameters with the public API.
+
+Risk: Frankfurter rates are daily reference rates rather than live market data, and the latest available date may be an earlier business day.
+
+Mitigation: Read the returned date field and avoid using the data where live tick-level pricing is required.
+
+Risk: Blended rates may shift as contributing provider data changes and may not be suitable for official or compliance workflows.
+
+Mitigation: Use the providers parameter to pin an appropriate source when official provider-specific rates are required.
+
+## Reference(s):
+
+- [Frankfurter public API](https://api.frankfurter.dev)
+- [Frankfurter API v2 endpoint reference](references/endpoints.md)
+- [Frankfurter v1 API legacy reference](references/v1-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with API examples, request patterns, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe JSON, CSV, or NDJSON response formats for Frankfurter API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

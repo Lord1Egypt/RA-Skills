@@ -1,0 +1,38 @@
+{
+  "name": "xiaohongshu-topic-analysis",
+  "version": "1.1.4",
+  "description": "当用户需要做小红书选题、xhs内容选题、rednote笔记选题策划、爆款角度拆解、内容方向规划或选题素材整理时使用。面向内容运营、品牌调研和创作者。",
+  "keywords": [
+    "小红书",
+    "选题分析",
+    "爆款笔记",
+    "内容方向规划",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长",
+    "用户画像"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

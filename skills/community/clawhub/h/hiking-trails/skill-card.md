@@ -1,48 +1,66 @@
-## Description: <br>
-Find hiking trails from easy walks to challenging mountain treks, including difficulty levels, elevation, duration, packing guidance, and FlyAI/Fliggy-backed booking results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find hiking trails from easy walks to challenging mountain treks, including difficulty levels, elevation, duration, packing guidance, and related travel booking support powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel agents use this skill to find hiking trails, mountain treks, and easy walks from live FlyAI/Fliggy travel search results. It collects location parameters, runs flyai CLI commands, and formats bookable trail or attraction results in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and run a global flyai CLI before producing travel results. <br>
-Mitigation: Install and review @fly-ai/flyai-cli yourself before using the skill, and run only the expected flyai commands for travel search. <br>
-Risk: The skill may persist raw travel queries in .flyai-execution-log.json when filesystem writes are available. <br>
-Mitigation: Avoid entering sensitive itinerary or identity details, and delete or disable .flyai-execution-log.json if local query history should not be retained. <br>
-Risk: Travel recommendations can be stale or misleading if generated without live FlyAI results. <br>
-Mitigation: Require responses to come from flyai CLI output and include Book links from detailUrl for listed results. <br>
+## Use Case:
 
+External users and agent operators use this skill to find hiking trails, mountain treks, and easy walks by city, then format live flyai CLI results into human-readable Markdown with booking links and practical trip details.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/hiking-trails) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiejinsong) <br>
-- [Parent FlyAI Skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, concise guidance, and inline shell commands when setup or retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include Book links from detailUrl when results are shown, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can install and run an unpinned third-party travel CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI in an isolated environment, pin the package version, and review the package source and permissions before use.
+
+Risk: The workflow makes external travel lookups and prioritizes booking links.
+
+Mitigation: Treat booking results as third-party commercial links, verify destinations before purchase, and avoid using the skill where external travel-service calls are not approved.
+
+Risk: The runbook allows local logs that may retain raw user travel queries.
+
+Mitigation: Disable persistent logging where possible, redact sensitive query details, and periodically remove local execution logs.
+
+Risk: The skill scope extends beyond hiking into broader travel booking services.
+
+Mitigation: Review activation rules and limit deployment to contexts where broader travel booking behavior is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/hiking-trails)
+- [Parent flyai skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+- [Parameter and output templates](references/templates.md)
+- [Scenario playbooks](references/playbooks.md)
+- [Fallback procedures](references/fallbacks.md)
+- [Execution log schema](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, comparison tables, booking links, and concise fallback messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires city-name input and a working flyai CLI; output should be based on CLI results rather than model training data.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

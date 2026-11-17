@@ -1,0 +1,4 @@
+interface:
+  display_name: "Find Love"
+  short_description: "Create and publish a consent-first public dating intent"
+  default_prompt: "Use $find-love only to create or publish my approved public adult dating profile; do not use it for private outreach."

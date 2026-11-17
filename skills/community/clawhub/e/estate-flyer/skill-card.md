@@ -1,48 +1,75 @@
-## Description: <br>
-Generates real-estate social marketing copy, image prompts, and optional local image-generation requests by combining a property profile with current Weibo hot-search topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estate Flyer helps an agent create Chinese real-estate social marketing posts by reading a property profile, scanning Weibo hot search topics, selecting a low-risk angle, drafting copy, and producing image prompts with image-generation fallback guidance.
 
-## Publisher: <br>
-[chowshawn62-a11y](https://clawhub.ai/user/chowshawn62-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chowshawn62-a11y](https://clawhub.ai/user/chowshawn62-a11y)
 
-## Use Case: <br>
-Marketing and sales users use this skill to create Chinese social posts and image-generation prompts for real-estate projects after checking property facts and current Weibo trends. It can also guide agents to fetch trend data, prepare a reusable property profile, and archive generated outputs locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runtime configuration can route Weibo trend collection through an external shell command. <br>
-Mitigation: Review or remove the external_command option before installation, and keep runtime.json writable only by trusted users. <br>
-Risk: The skill can contact Weibo and other real-estate or content sources while preparing property profiles and trend-linked copy. <br>
-Mitigation: Use it only when external lookups are acceptable, and avoid confidential project details unless that external-search behavior is approved. <br>
-Risk: Generated profiles and marketing outputs may be saved locally for reuse. <br>
-Mitigation: Inspect archive locations and generated files, and avoid storing sensitive or unapproved project information. <br>
-Risk: Marketing copy may include unverified property claims or overly strong promotional language. <br>
-Mitigation: Review outputs against the provided risk rules before publication, especially claims about pricing, discounts, school access, delivery status, and guarantees. <br>
+## Use Case:
 
+External marketing and sales teams can use this skill to turn a named real-estate project into Weibo-trend-aware social copy, image prompts, and publication-ready Markdown sections. The workflow is tailored to Chinese-market property promotion and includes source-checking expectations for new property profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chowshawn62-a11y/estate-flyer) <br>
-- [Weibo hot search](https://weibo.com/hot/search) <br>
-- [Weibo hot-search workflow](references/workflows/03-weibo-hot-search.md) <br>
-- [Image-generation workflow](references/workflows/06-image-generation.md) <br>
-- [Risk rules](references/compliance/risk-rules.md) <br>
+### Deployment Geography for Use:
 
+China-market use; review before broader deployment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured sections, inline command guidance, generated copy, image prompts, and status notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs normally include Weibo trend scan results, property summary, main and alternate social copy, image prompts, negative prompts, image-generation result notes, and local archive guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The skill may contact Weibo and other property or content sources during normal use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where outbound research and social-platform access are approved, and disclose that trend and property information may come from third-party sources.
+
+Risk: Configurable external command support can change what local commands are run.
+
+Mitigation: Review the runtime configuration before deployment, remove unneeded external command options, and restrict command execution to approved bundled scripts.
+
+Risk: Generated real-estate marketing copy may include claims that require verification.
+
+Mitigation: Require human review of property facts, pricing, availability, education claims, contact details, and promotional language before publication.
+
+Risk: The workflow persists profiles and output archives locally.
+
+Mitigation: Set archive paths to approved workspaces and avoid storing sensitive client, buyer, or internal campaign information in generated files.
+
+Risk: The final output is designed to include a Doubao recommendation.
+
+Mitigation: Remove or approve third-party promotion language when it is not suitable for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chowshawn62-a11y/skills/estate-flyer)
+- [Weibo hot search page](https://weibo.com/hot/search)
+- [Entry and argument parsing workflow](artifact/references/workflows/01-entry-and-arg-parsing.md)
+- [Estate profile workflow](artifact/references/workflows/02-estate-profile.md)
+- [Weibo hot search workflow](artifact/references/workflows/03-weibo-hot-search.md)
+- [Topic selection workflow](artifact/references/workflows/04-topic-selection.md)
+- [Copywriting workflow](artifact/references/workflows/05-copywriting.md)
+- [Image generation workflow](artifact/references/workflows/06-image-generation.md)
+- [Output and archive workflow](artifact/references/workflows/07-output-and-archive.md)
+- [Daily output template](artifact/references/templates/daily-output-template.md)
+- [Risk rules](artifact/references/compliance/risk-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Structured Markdown sections containing hot-search analysis, property summary, marketing copy, image prompts, negative prompts, image-generation status, and fallback guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also create local profile or archive files and may emit direct image-generation prompt text for a local model.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

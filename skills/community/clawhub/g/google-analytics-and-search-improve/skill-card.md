@@ -1,48 +1,65 @@
-## Description: <br>
-Analyzes GSC/GA4 data and live-site audit results to identify gaps between website goals and user behavior, then produces prioritized improvement plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes website goals, Google Search Console and GA4 data, and live-site audits to produce goal-aligned SEO, performance, UX, and conversion improvement plans.
 
-## Publisher: <br>
-[morvanzhou](https://clawhub.ai/user/morvanzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morvanzhou](https://clawhub.ai/user/morvanzhou)
 
-## Use Case: <br>
-Developers, site owners, and marketing analytics teams use this skill to define website goals, collect or import GSC/GA4/Bing/PageSpeed data, audit the live site, and produce goal-aligned SEO, performance, funnel, and persona improvement reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles website analytics, Search Console data, OAuth/API credentials, and service-account keys. <br>
-Mitigation: Use dedicated read-only credentials, keep the skill data directory private and out of git or synced folders, and delete or rotate stored keys and exports after the audit. <br>
-Risk: Generated scripts and commands may access external analytics/search APIs or process sensitive exports. <br>
-Mitigation: Review generated scripts and commands before running them, and run only the collection modes and data sources needed for the audit. <br>
-Risk: Persona analysis can involve user demographics or behavioral data with consent and legal constraints. <br>
-Mitigation: Avoid persona analysis unless the operator has the right consent and legal basis for the data being analyzed. <br>
+## Use Case:
 
+Developers, site owners, and growth teams use this skill to diagnose website search, analytics, performance, technical SEO, GEO readiness, and conversion issues. It helps turn confirmed site goals and collected data into prioritized improvement reports and implementation guidance.
 
-## Reference(s): <br>
-- [Data Collection Reference](references/data-collection-reference.md) <br>
-- [Data Visualization Guide](references/data-visualization-guide.md) <br>
-- [Key Metrics & Analysis Dimensions](references/metrics-glossary.md) <br>
-- [SEO & GEO Optimization Checklist](references/SEO-GEO-Optimization-Checklist.md) <br>
-- [Final Report Template](references/report-template.md) <br>
-- [User Persona Analysis Reference](references/user-persona-analysis-reference.md) <br>
-- [Website Reconnaissance Reference](references/website-reconnaissance-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance and reports with inline shell commands, generated Python analysis code, JSON audit outputs, and chart image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores raw exports, configuration, generated reports, scripts, logs, cache files, and charts under the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Site-audit scripts can be directed to request internal network URLs through user-supplied URLs, sitemaps, or redirects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on sites you control or trust, avoid untrusted sitemaps, and add URL validation before using it in environments with access to private networks or cloud metadata services.
+
+Risk: Analytics and webmaster data collection uses service account files and API keys stored under the skill data directory.
+
+Mitigation: Use read-only analytics credentials, restrict permissions on .skills-data, and remove or rotate keys when the work is complete.
+
+## Reference(s):
+
+- [Data Collection Reference](references/data-collection-reference.md)
+- [Data Visualization Guide](references/data-visualization-guide.md)
+- [Key Metrics and Analysis Dimensions](references/metrics-glossary.md)
+- [SEO and GEO Optimization Checklist](references/SEO-GEO-Optimization-Checklist.md)
+- [Website Reconnaissance Reference](references/website-reconnaissance-reference.md)
+- [Final Report Template](references/report-template.md)
+- [User Persona Analysis Reference](references/user-persona-analysis-reference.md)
+- [Google Search Console](https://search.google.com/search-console/)
+- [Google Analytics](https://analytics.google.com/)
+- [Google Structured Data Documentation](https://developers.google.com/search/docs/appearance/structured-data)
+- [Schema.org](https://schema.org/)
+- [IndexNow Protocol](https://www.indexnow.org/)
+- [llms.txt Standard Proposal](https://llmstxt.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON audit data, PNG charts, Python scripts, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes runtime data, raw inputs, analysis reports, charts, cache, configuration, logs, and temporary files under .skills-data/google-analytics-and-search-improve/.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

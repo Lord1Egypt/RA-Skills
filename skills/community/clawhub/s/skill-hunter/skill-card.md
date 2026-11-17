@@ -1,43 +1,56 @@
-## Description: <br>
-Find, evaluate, and install ClawHub skills using semantic search, security vetting, and side-by-side comparison. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, evaluate, and install ClawHub skills. Semantic search across 10,000+ skills, security vetting before install, side-by-side comparison. The skill that makes skills useful.
 
-## Publisher: <br>
-[kenoodl-synthesis](https://clawhub.ai/user/kenoodl-synthesis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kenoodl-synthesis](https://clawhub.ai/user/kenoodl-synthesis)
 
-## Use Case: <br>
-Developers and agent users use Skill Hunter to discover ClawHub skills, inspect candidate skill files before installation, compare trust and adoption signals, and manage local skill installs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Install, update, update-all, and uninstall workflows can change local skill files. <br>
-Mitigation: Treat those commands as explicit approval steps and confirm the target slug before running them. <br>
-Risk: Search and inspection queries are sent to ClawHub public endpoints. <br>
-Mitigation: Avoid including secrets or sensitive project details in ClawHub search queries. <br>
+## Use Case:
 
+Developers and agent users use Skill Hunter to discover ClawHub skills, inspect candidate skill files, compare options, and manage user-directed installs, updates, and removals.
 
-## Reference(s): <br>
-- [Skill Hunter ClawHub page](https://clawhub.ai/kenoodl-synthesis/skill-hunter) <br>
-- [Publisher profile](https://clawhub.ai/user/kenoodl-synthesis) <br>
-- [ClawHub search API example](https://clawhub.ai/api/v1/search?q=code+review+security) <br>
-- [ClawHub skills API example](https://clawhub.ai/api/v1/skills?sort=trending&limit=10) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with curl and ClawHub CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public ClawHub API URLs, ranked skill metadata, comparison criteria, and install-management commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence and artifact/claw.json) <br>
+Risk: The agent queries ClawHub public endpoints during search, browsing, metadata lookup, and remote file inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when ClawHub public API queries are acceptable for the task, and avoid placing sensitive information in search terms.
+
+Risk: The skill helps run install, update, and uninstall commands for ClawHub skills selected by the user.
+
+Mitigation: Inspect candidate skill files and security profile before installation, then run only explicit ClawHub management commands for skills you intend to trust.
+
+## Reference(s):
+
+- [Skill Hunter on ClawHub](https://clawhub.ai/kenoodl-synthesis/skills/skill-hunter)
+- [Publisher Profile](https://clawhub.ai/user/kenoodl-synthesis)
+- [Skill Hunter Full Workflow](artifact/instructions.md)
+- [ClawHub Public API Base](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Markdown]
+
+**Output Format:** [Markdown with inline bash commands and API response inspection examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public ClawHub endpoints and produces human-readable search, vetting, comparison, and install guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: claw.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

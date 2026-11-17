@@ -1,41 +1,59 @@
-## Description: <br>
-AIUSD trading and account management skill for cryptocurrency trading and account management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIUSD trading and account management skill for cryptocurrency trading and account management.
 
-## Publisher: <br>
-[ChaunceyLiu](https://clawhub.ai/user/ChaunceyLiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chaunceyliu](https://clawhub.ai/user/chaunceyliu)
 
-## Use Case: <br>
-External users and agents use this skill to check AIUSD balances, view trading accounts and transaction history, and prepare account, staking, withdrawal, gas top-up, and trading operations through natural language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move funds through trading, staking, gas top-ups, and withdrawals. <br>
-Mitigation: Require explicit human confirmation of token, amount, destination address, network, fees, and expected result before any fund-moving action. <br>
-Risk: Installers and reset flows can make broad local changes, including changes to local authentication state. <br>
-Mitigation: Install only from a trusted AIUSD source, inspect the extracted package before running installers, and avoid shared hosts or machines with unrelated wallet, exchange, or API credentials. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw or ClawdBot assistant check AIUSD balances, query account data, execute crypto trades, stake or unstake AIUSD, withdraw stablecoin, and guide deposits through AIUSD services.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/ChaunceyLiu/aiusd-skill-agent) <br>
-- [AIUSD official website](https://aiusd.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and structured parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require live tool schema checks and explicit human confirmation before fund-moving actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can place trades, stake assets, withdraw funds, and otherwise affect real crypto balances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user intent for fund-moving actions, review live tool schemas before calls, and confirm trade, staking, and withdrawal details before execution.
+
+Risk: Setup and reauthentication can read local authentication tokens and delete shared authentication state.
+
+Mitigation: Use a dedicated environment for installation, keep credential backups, and avoid running it where unrelated MCP credentials are present unless that risk is accepted.
+
+Risk: The provided self-extracting installers run package extraction and npm dependency installation under the current user account.
+
+Mitigation: Review the decoded package and dependencies before running installers or npm install.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaunceyliu/skills/aiusd-skill-agent)
+- [AIUSD official website](https://aiusd.ai)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, configuration guidance, and tool result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke MCP-backed account, trading, staking, withdrawal, gas, transaction, recharge, and authentication workflows when used by an agent.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

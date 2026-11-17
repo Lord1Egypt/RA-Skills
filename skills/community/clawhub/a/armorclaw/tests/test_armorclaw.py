@@ -84,9 +84,9 @@ def test_set_get():
     ck = ArmorClaw()
     r = ck.unlock(PWD)
     assert r["ok"], r
-    ck.set("OPENAI_KEY", "sk-testkey12345678901234567890")
+    ck.set("OPENAI_KEY", "REDACTED-SECRET")
     val = ck.get("OPENAI_KEY")
-    assert val == "sk-testkey12345678901234567890"
+    assert val == "REDACTED-SECRET"
 
 def test_list():
     ck = ArmorClaw()

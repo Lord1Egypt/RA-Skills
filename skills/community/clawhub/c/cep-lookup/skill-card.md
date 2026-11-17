@@ -1,42 +1,55 @@
-## Description: <br>
-Looks up address data for a Brazilian CEP using the ViaCEP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up address data for a Brazilian CEP using the ViaCEP API.
 
-## Publisher: <br>
-[guilherme-funchal](https://clawhub.ai/user/guilherme-funchal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guilherme-funchal](https://clawhub.ai/user/guilherme-funchal)
 
-## Use Case: <br>
-External users and developers use this skill to look up Brazilian postal-code address details from CEP values. It returns street, neighborhood, city, state, and complement data when ViaCEP has a matching record. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CEP values entered by users are sent to the external ViaCEP service for lookup. <br>
-Mitigation: Disclose the external lookup behavior and avoid submitting postal codes the user considers private. <br>
-Risk: Lookup results depend on ViaCEP availability and response accuracy. <br>
-Mitigation: Handle unavailable, not-found, and failed lookup responses clearly before relying on returned address data. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Brazilian postal-code address details from a CEP in conversational workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guilherme-funchal/cep-lookup) <br>
-- [ViaCEP API](https://viacep.com.br) <br>
-- [axios npm package](https://www.npmjs.com/package/axios) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text with labeled address fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes invalid-format, not-found, and network-failure messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json) <br>
+Risk: CEP queries are sent to ViaCEP over the network, so postal-code lookups leave the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only CEP queries appropriate for the deployment context and confirm network access to ViaCEP is acceptable.
+
+Risk: npm will resolve axios dynamically because the artifact does not include a lockfile.
+
+Mitigation: Install in an isolated OpenClaw environment and ask the publisher to pin dependencies and include a lockfile for reproducible installs.
+
+## Reference(s):
+
+- [ViaCEP API](https://viacep.com.br)
+- [axios package](https://www.npmjs.com/package/axios)
+- [ClawHub skill page](https://clawhub.ai/guilherme-funchal/skills/cep-lookup)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text address summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns street, neighborhood, city, state, and complement when available; reports invalid CEP, not found, or network errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

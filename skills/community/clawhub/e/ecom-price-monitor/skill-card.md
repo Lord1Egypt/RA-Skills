@@ -1,44 +1,60 @@
-## Description: <br>
-Monitors competitor prices across cross-border e-commerce marketplaces, triggers price alerts, analyzes trends, and supports pricing decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors cross-border ecommerce product prices, issues price-change alerts, analyzes trends, and supports pricing decisions.
 
-## Publisher: <br>
-[guaguaren](https://clawhub.ai/user/guaguaren) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guaguaren](https://clawhub.ai/user/guaguaren)
 
-## Use Case: <br>
-External e-commerce sellers, pricing operators, and developers use this skill to configure product price monitoring, receive change alerts, review historical trends, export reports, and identify potential cross-market arbitrage opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace monitoring can violate platform terms or trigger rate limits when product URLs are checked too frequently. <br>
-Mitigation: Review each marketplace's rules before use, configure a reasonable monitoring interval, and avoid high-frequency scraping. <br>
-Risk: The skill may require API keys, SMTP credentials, webhook URLs, or 1688 cookies for platform access and notifications. <br>
-Mitigation: Keep credentials out of prompts, logs, and source control, and enable email or webhook notifications only for trusted destinations. <br>
-Risk: Price, inventory, and arbitrage outputs may be delayed, incomplete, or based on configured assumptions. <br>
-Mitigation: Validate exported data and pricing recommendations against authoritative marketplace data before making business decisions. <br>
+## Use Case:
 
+Ecommerce operators and developers use this skill to prototype competitor price monitoring, alert rules, trend analysis, arbitrage checks, and JSON export workflows across marketplaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guaguaren/ecom-price-monitor) <br>
-- [Skill README](artifact/ecom-price-monitor/docs/README.md) <br>
-- [Skill configuration](artifact/ecom-price-monitor/config/settings.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python, YAML, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also guide JSON or spreadsheet-style export workflows for monitored price data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata, skill.json, configuration, and README changelog) <br>
+Risk: The current implementation is unfinished and uses mock data, so live scraping and notification behavior may not be reliable for real operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a demo until live scraping and notification code is completed, reviewed, and tested in a controlled environment.
+
+Risk: Marketplace API keys, cookies, passwords, and webhook URLs may be needed for real use.
+
+Mitigation: Keep credentials out of tracked files and provide them only through a controlled runtime environment or secret store.
+
+Risk: Unpinned or unaudited dependencies and broad export paths can increase operational risk.
+
+Mitigation: Pin and audit dependencies before deployment, and restrict exports to a dedicated directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guaguaren/skills/ecom-price-monitor)
+- [Artifact skill overview](artifact/ecom-price-monitor/SKILL.md)
+- [Artifact documentation](artifact/ecom-price-monitor/docs/README.md)
+- [Artifact configuration](artifact/ecom-price-monitor/config/settings.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Console text, Python examples, YAML configuration, and JSON export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses mock price data in the current implementation and can export monitored products and alerts to local JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

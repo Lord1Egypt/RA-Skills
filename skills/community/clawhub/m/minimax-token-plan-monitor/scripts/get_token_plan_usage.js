@@ -187,7 +187,7 @@ async function main() {
   
   if (args.length < 2) {
     console.error('Usage: node get_token_plan_usage.js <phone> <password>');
-    console.error('Example: node get_token_plan_usage.js your_account yourpassword');
+    console.error('Example: node get_token_plan_usage.js 15605428773 yourpassword');
     process.exit(1);
   }
   

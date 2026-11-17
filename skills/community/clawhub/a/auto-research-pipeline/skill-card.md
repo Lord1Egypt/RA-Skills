@@ -1,37 +1,53 @@
-## Description: <br>
-Automates an AutoResearch pipeline from experiment setup and analysis through multi-agent project delivery and skill packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Research Pipeline automates an AutoResearch experiment loop, analysis, multi-agent project orchestration, and skill packaging from a single agent invocation.
 
-## Publisher: <br>
-[fireflywwj](https://clawhub.ai/user/fireflywwj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fireflywwj](https://clawhub.ai/user/fireflywwj)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a single-command research and project-delivery workflow that initializes AutoResearch, executes experiments, analyzes results, and hands the selected changes to an agent orchestrator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A single command can trigger broad automated experiments and multi-agent project changes without clear boundaries or approval checkpoints. <br>
-Mitigation: Run it in a version-controlled or backed-up workspace, constrain the files and commands AutoResearch may touch, and review results before allowing downstream agents to apply changes. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run AutoResearch setup, execution, and analysis, then coordinate specialized agents to apply the selected project changes and package the result as a skill.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline command examples and generated research/project-delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead downstream agents to produce experiment reports, project changes, and skill packaging outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can coordinate experiments and multi-agent project work automatically, which may produce broad code or configuration changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a workspace where broad automated edits are acceptable, and configure AutoResearch setup with explicit editable files, metrics, and allowed commands before execution.
+
+Risk: The security scan summary flags insufficient user control and boundaries for autonomous research and orchestration.
+
+Mitigation: Review the generated plan, experiment outputs, and final workspace diff before accepting or publishing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fireflywwj/skills/auto-research-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, code changes, configuration, and command-oriented agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate automated experiments and multi-agent workspace changes through the surrounding agent environment.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

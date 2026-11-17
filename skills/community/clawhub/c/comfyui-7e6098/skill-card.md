@@ -1,45 +1,55 @@
-## Description: <br>
-Comfyui 7e6098 helps agents provide ComfyUI setup and learning guidance based on referenced Chinese-language video tutorials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comfyui 7e6098 provides ComfyUI learning guidance drawn from Chinese-language video tutorials, including setup considerations for Linux, Mac, and Intel GPU environments.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and AI image practitioners use this skill to ask an agent for ComfyUI learning paths, setup considerations, and tutorial references for Linux, macOS, and Intel GPU environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad ComfyUI-related wording. <br>
-Mitigation: Install it only where ComfyUI guidance is desired and review agent responses for relevance before acting on them. <br>
-Risk: Referenced tutorials may include external setup advice, downloads, or platform-specific steps. <br>
-Mitigation: Review the linked tutorials and verify setup commands against trusted ComfyUI and platform documentation before running them. <br>
-Risk: ComfyUI setup guidance can become outdated as dependencies and hardware support change. <br>
-Mitigation: Confirm current package, driver, and platform requirements before applying generated guidance. <br>
+## Use Case:
 
+Developers, creators, and agent users use this skill to get concise ComfyUI tutorial guidance, setup pointers, and video references for learning AI image-generation workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/534422530/comfyui-7e6098) <br>
-- [Bilibili tutorial: Linux local ComfyUI deployment](https://www.bilibili.com/video/BV194coeyEkb) <br>
-- [Bilibili tutorial: ComfyUI on Mac with M-series chips](https://www.bilibili.com/video/BV1vG8SzpEwG) <br>
-- [Bilibili tutorial: ComfyUI setup for Intel graphics](https://www.bilibili.com/video/BV1xyMHz3EGi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline links and occasional command or configuration suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in the artifact; any external setup steps should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad ComfyUI activation wording may route general ComfyUI requests to this tutorial-focused skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or tighten trigger wording before enabling it in an agent with many ComfyUI-related skills.
+
+Risk: Tutorial-derived setup guidance may be incomplete or become outdated for a user's operating system, hardware, or ComfyUI version.
+
+Mitigation: Check current ComfyUI and hardware vendor documentation before applying installation or configuration guidance.
+
+## Reference(s):
+
+- [Linux local ComfyUI deployment tutorial](https://www.bilibili.com/video/BV194coeyEkb)
+- [Mac ComfyUI deployment guide for M-series users](https://www.bilibili.com/video/BV1vG8SzpEwG)
+- [Intel GPU ComfyUI environment configuration tutorial](https://www.bilibili.com/video/BV1xyMHz3EGi)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with links to tutorial references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; guidance may include setup-oriented recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

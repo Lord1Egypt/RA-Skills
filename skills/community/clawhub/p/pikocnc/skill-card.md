@@ -1,38 +1,49 @@
-## Description: <br>
-Provides a PikoCNC G-code reference for interpreting commands, tracking modal state, validating CNC program structure, and designing CNC simulator or interpreter logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets PikoCNC G-code commands with modal state tracking, motion-control semantics, parameter handling, and error detection for CNC machining workflows.
 
-## Publisher: <br>
-[midware](https://clawhub.ai/user/midware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[midware](https://clawhub.ai/user/midware)
 
-## Use Case: <br>
-Developers, CNC programmers, and machining workflow reviewers use this skill as a PikoCNC G-code reference for program structure, command behavior, modal state handling, validation, and simulator or interpreter planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect or unverified G-code can cause unsafe CNC machine motion, tool crashes, damaged workpieces, or operator risk. <br>
-Mitigation: Compare any generated program with official PikoCNC documentation, simulate or dry-run it, confirm units, coordinates, tool table, clearances, spindle and coolant behavior, and treat unknown commands as errors unless a trained operator approves them. <br>
+## Use Case:
 
+CNC programmers, machinists, and simulator developers use this skill to draft, interpret, validate, or reason about PikoCNC G-code programs. It supports modal state, motion, drilling, scaling, tool change, parameter, and error-handling guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/midware/pikocnc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with G-code examples and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only output; generated G-code or machining instructions require operator review, simulation, and dry-run validation before machine use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Generated or interpreted G-code may be safety-critical if used on real CNC equipment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify, simulate, and review G-code carefully before running it on a machine.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/midware/skills/pikocnc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with G-code examples and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated G-code and interpretation guidance should be reviewed and simulated before use on real CNC equipment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

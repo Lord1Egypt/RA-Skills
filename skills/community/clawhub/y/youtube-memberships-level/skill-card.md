@@ -1,43 +1,61 @@
-## Description: <br>
-Manage YouTube memberships levels by helping agents list channel membership-level information through the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube memberships levels. Use this skill to list information about channel membership levels. Useful when working with YouTube memberships level - provides commands to list memberships level via the yutu CLI. Includes setup and installation instructions for first-time users. Triggers: list memberships levels, list memberships level, list my memberships level
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-Developers, creators, and channel operators use this skill to prepare yutu CLI commands and setup guidance for listing YouTube channel membership levels from an authenticated account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth client secrets and cached YouTube tokens can expose account access if committed, shared, or logged. <br>
-Mitigation: Keep client_secret.json and youtube.token.json out of git and shared folders, use private paths or a secret manager, and revoke or rotate credentials after suspected exposure. <br>
-Risk: The skill depends on authenticated yutu CLI access to YouTube account data. <br>
-Mitigation: Install only when OAuth access to the relevant YouTube account is acceptable and review commands before execution. <br>
+## Use Case:
 
+External users and developers use this skill to inspect YouTube channel membership level information through the yutu CLI after configuring YouTube API OAuth credentials.
 
-## Reference(s): <br>
-- [Memberships Level List](references/membershipsLevel-list.md) <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [yutu project homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires yutu, Google Cloud OAuth client credentials, and a cached YouTube token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server release evidence) <br>
+Risk: The skill depends on an unpinned third-party yutu CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned and verified yutu release where possible, and review the tool before use.
+
+Risk: YouTube OAuth client secrets and cached tokens are stored locally.
+
+Mitigation: Keep client_secret.json and youtube.token.json outside source-controlled folders, restrict file permissions, and revoke or rotate the OAuth token if either file is exposed.
+
+Risk: The skill can access YouTube API data once OAuth credentials are configured.
+
+Mitigation: Use a non-privileged account and grant only the access needed for the intended channel membership-level lookup.
+
+## Reference(s):
+
+- [Memberships Level List](references/membershipsLevel-list.md)
+- [Yutu Setup Guide](references/setup.md)
+- [yutu project homepage](https://github.com/eat-pray-ai/yutu)
+- [yutu README](https://github.com/eat-pray-ai/yutu#readme)
+- [yutu releases](https://github.com/eat-pray-ai/yutu/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports table, JSON, and YAML output from the yutu CLI when the agent runs the documented command.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

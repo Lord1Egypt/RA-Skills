@@ -1,41 +1,56 @@
-## Description: <br>
-Provides a privacy-oriented workflow and local Python script for merging PDFs in a specified order, with guidance for German application document bundles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF Zusammenfügen helps German-language users merge local PDF files in a chosen order, including structured application PDFs with privacy-aware checks.
 
-## Publisher: <br>
-[wsgtcyx](https://clawhub.ai/user/wsgtcyx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wsgtcyx](https://clawhub.ai/user/wsgtcyx)
 
-## Use Case: <br>
-German-speaking users and support agents use this skill to merge PDFs locally, confirm input order and output paths, and assemble application PDFs while considering data-protection expectations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The output file may replace an existing PDF if overwrite is used unintentionally. <br>
-Mitigation: Confirm the output path before execution and use --overwrite only when replacement is intended. <br>
-Risk: Installing or using PDF dependencies can affect the local Python environment. <br>
-Mitigation: Prefer installing pypdf in a virtual environment before running the helper script. <br>
-Risk: Sensitive PDFs may be exposed if an external website is used instead of the local workflow. <br>
-Mitigation: Use the local script for sensitive PDFs and only use the linked external site when it is independently trusted for the documents involved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [pdfzus.de PDF merge reference](https://pdfzus.de/) <br>
+## Use Case:
 
+External users and developers use this skill to combine multiple local PDF files in a defined order, especially German application packages, while confirming paths, overwrite behavior, and result readability.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash command examples and a Python helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local helper script can produce a merged PDF file when executed with user-selected input files and an output path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The merged PDF can be incorrect if the user supplies files in the wrong order or chooses the wrong output path.
+
+Mitigation: Confirm the input order, output path, and overwrite choice before running the merge.
+
+Risk: Dependency installation can reduce reproducibility if packages are installed ad hoc.
+
+Mitigation: Prefer installing pypdf in a virtual environment or from a pinned, trusted requirements file.
+
+Risk: Encrypted PDFs may fail to merge when they cannot be opened without a password.
+
+Mitigation: Check whether inputs are password protected before running the merge and request usable files when needed.
+
+## Reference(s):
+
+- [PDF zusammenfügen](https://pdfzus.de/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with bash commands and local PDF file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local PDF inputs and a Python PDF backend such as pypdf or PyPDF2.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

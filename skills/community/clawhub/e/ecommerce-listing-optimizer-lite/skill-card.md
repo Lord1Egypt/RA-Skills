@@ -1,43 +1,54 @@
-## Description: <br>
-Generates optimized Amazon listing copy with titles, bullet points, descriptions, and backend keywords from product information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free version: generate optimized Amazon listings with titles, bullets, and backend keywords from product information.
 
-## Publisher: <br>
-[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apex-stack-ai](https://clawhub.ai/user/apex-stack-ai)
 
-## Use Case: <br>
-External ecommerce sellers, marketers, and product teams use this skill to draft Amazon product listing copy from a product name, key features, and target audience. It produces an optimized title, five benefit-focused bullets, a sales description, and backend keyword terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential supplier details, private SKUs, customer data, or unreleased product information into a copy-generation session. <br>
-Mitigation: Avoid entering sensitive or private product, supplier, customer, or launch information unless it is appropriate for the agent session. <br>
-Risk: Generated Amazon listing copy may be inaccurate, misleading, or unsuitable for publication without review. <br>
-Mitigation: Review and edit generated titles, bullets, descriptions, and keywords before using them in a live marketplace listing. <br>
-Risk: The skill body includes a promotional Gumroad link for a paid version. <br>
-Mitigation: Verify the destination and seller separately before purchasing or entering payment information. <br>
+## Use Case:
 
+External ecommerce sellers and marketers use this skill to draft Amazon product listings from a product name, key features, and target audience. It produces a title, five benefit-driven bullet points, a sales-focused description, and backend keywords for human review before publishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/apex-stack-ai/ecommerce-listing-optimizer-lite) <br>
-- [Full Ecommerce Listing Optimizer](https://apexstack.gumroad.com/l/ecommerce-listing-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown Amazon listing with title, five bullets, description, and backend keywords] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Amazon-only lite output; title capped at 200 characters, description at 2,000 characters, and backend keywords at 250 bytes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated listing copy may contain inaccurate, unsupported, or Amazon-policy-sensitive claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit all titles, bullets, descriptions, and keywords for factual accuracy and Amazon policy compliance before publishing.
+
+Risk: The artifact includes a disclosed link to a paid product.
+
+Mitigation: Treat the paid product link as an external upgrade option and evaluate it separately from the free lite skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apex-stack-ai/skills/ecommerce-listing-optimizer-lite)
+- [Full Ecommerce Listing Optimizer](https://apexstack.gumroad.com/l/ecommerce-listing-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown listing draft with title, five numbered bullets, description, and backend keywords.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Amazon-only lite output; artifact states title, description, and backend keyword limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Analyzes a user's chat history with AI to infer an MBTI personality type from communication style and thinking patterns, then generates structured JSON and opens a visual profile page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a user's OpenClaw chat history to infer an MBTI-style personality profile, produce structured JSON, and show the result in a visualization page.
 
-## Publisher: <br>
-[ArchangelXu](https://clawhub.ai/user/ArchangelXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archangelxu](https://clawhub.ai/user/archangelxu)
 
-## Use Case: <br>
-OpenClaw users use this skill to scan their local chat history, extract user-authored messages, and produce an MBTI-style behavioral profile with structured evidence and a browser-rendered visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly scans local OpenClaw history and consolidates user-authored messages into local plaintext files. <br>
-Mitigation: Run it only on chat history you are comfortable profiling; use a reviewed subset of sessions when possible and delete _mbti_work after use if the extracted messages and result should not be retained. <br>
-Risk: The extracted messages are analyzed through the user's configured LLM backend. <br>
-Mitigation: Install only if that matches the user's expected OpenClaw privacy model and the selected LLM backend is acceptable for the chat content being analyzed. <br>
-Risk: The derived profile is opened through a third-party visualization URL containing the encoded result in the URL hash. <br>
-Mitigation: Review _mbti_work/result.json before opening or sharing the URL, and avoid sharing the generated link if the profile should remain private. <br>
+## Use Case:
 
+OpenClaw users run this skill to analyze their own chat history, extract user-authored messages, and generate an MBTI-style JSON profile with a short visual summary link. It is intended for personal insight and should be used only where the user is comfortable processing local conversation history through the configured agent LLM backend.
 
-## Reference(s): <br>
-- [mbti-from-ai on ClawHub](https://clawhub.ai/ArchangelXu/mbti-from-ai) <br>
-- [Visualization site](https://www.mingxi.tech/) <br>
-- [RFC 3986 Section 3.5](https://datatracker.ietf.org/doc/html/rfc3986#section-3.5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus a local structured JSON result and a URL hash for browser visualization] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local _mbti_work files containing discovered session paths, extracted user messages, and the final MBTI profile JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server evidence and skill frontmatter) <br>
+Risk: The skill reads broad OpenClaw chat history and writes extracted user messages to _mbti_work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a private workspace, review the extracted files before using the result, and delete _mbti_work after the analysis.
+
+Risk: The analysis processes private conversation text through the user's configured agent LLM backend.
+
+Mitigation: Avoid running it on accounts or workspaces that contain secrets, work data, or sensitive personal conversations unless that backend is approved for the data.
+
+Risk: The derived profile and short quotes are opened in a third-party visualization page via URL hash.
+
+Mitigation: Inspect the generated result.json and only open the visualization link when the derived content is acceptable to display in the browser.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archangelxu/skills/mbti-from-ai)
+- [Visualization page](https://www.mingxi.tech/)
+- [RFC 3986 Section 3.5](https://datatracker.ietf.org/doc/html/rfc3986#section-3.5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown instructions and terminal text with bash commands, plus local JSON files under _mbti_work.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates _mbti_work/session_list.txt, _mbti_work/user_messages.txt, and _mbti_work/result.json, then opens a browser URL with the derived profile encoded in the URL hash.]
+
+## Skill Version(s):
+
+0.2.0 (source: SKILL.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

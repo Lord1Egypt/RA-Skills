@@ -1,0 +1,14 @@
+# SMS Campaign Compliance - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+Hi {{first_name}}, it's {{brand_name}}.
+{{offer_sentence}}
+{{second_sentence}}
+{{cta_sentence}}
+Reply STOP to opt out, HELP for help.
+Message frequency: {{frequency_note}}
+Message and data rates may apply.
+Consent record ID: {{consent_id}}
+Consent captured: {{consent_date}} via {{consent_capture_method}}
+Sender ID: {{sender_id}}
+10DLC campaign: {{campaign_id}}
+Link: {{shortened_url}}

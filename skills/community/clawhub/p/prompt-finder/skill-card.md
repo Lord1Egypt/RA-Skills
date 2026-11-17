@@ -1,42 +1,55 @@
-## Description: <br>
-Searches prompts.chat for AI prompt templates by keyword or category and returns ready-to-use prompt text with source metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and retrieves AI prompt templates from prompts.chat by keyword or category to help users write better prompts.
 
-## Publisher: <br>
-[laolujava](https://clawhub.ai/user/laolujava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laolujava](https://clawhub.ai/user/laolujava)
 
-## Use Case: <br>
-AI users and developers use this skill to find reusable prompt templates for tasks such as coding, marketing, education, writing, business, design, productivity, and translation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to an external prompt-template service and may reveal sensitive intent or confidential terms. <br>
-Mitigation: Do not search for passwords, tokens, private customer data, unreleased product details, or confidential topics; review queries before invoking the skill. <br>
-Risk: Returned prompt templates may be unsuitable, outdated, or include unwanted instructions for a user's context. <br>
-Mitigation: Review and adapt returned prompt text before using it in production or customer-facing workflows. <br>
+## Use Case:
 
+External users and developers use Prompt Finder to search prompt templates by topic or category and retrieve ready-to-use prompt text, metadata, and source links for prompt-writing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laolujava/prompt-finder) <br>
-- [prompts.chat](https://prompts.chat) <br>
-- [awesome-chatgpt-prompts prompt dataset](https://github.com/f/awesome-chatgpt-prompts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON object containing search status, messages, prompt template results, categories, and sponsor metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are capped at 20 items per request and include ready-to-copy prompt templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata, artifact frontmatter, package.json, and code header) <br>
+Risk: The skill returns third-party sponsor advertising in normal and error responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review returned content before presenting it to end users, and disclose or filter sponsor material according to the deployment's policy.
+
+Risk: Prompt templates are loaded from mutable external content that may change after review.
+
+Mitigation: Treat returned prompt_template content as untrusted data and do not place it directly into privileged agent instructions without review.
+
+## Reference(s):
+
+- [Prompt Finder on ClawHub](https://clawhub.ai/laolujava/skills/prompt-finder)
+- [prompts.chat](https://prompts.chat)
+- [WellAPI sponsor disclosure](https://wellapi.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured response containing matching prompt templates, categories, metadata, source links, tips, and sponsor disclosure.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are limited to 1 to 20 prompt templates and depend on mutable external prompt content.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

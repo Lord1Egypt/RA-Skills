@@ -1,49 +1,70 @@
-## Description: <br>
-Guides an agent through setting up a self-hosted local mail server using Stalwart Mail Server, Brevo outbound relay, VPS inbound relay, Tailscale, DNS records, and related webmail configuration for environments without a public home IP address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through setting up a local mail server with Stalwart Mail Server, Brevo outbound relay, a VPS inbound relay, Tailscale, DNS records, Postfix, and OpenDKIM.
 
-## Publisher: <br>
-[franklili3](https://clawhub.ai/user/franklili3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[franklili3](https://clawhub.ai/user/franklili3)
 
-## Use Case: <br>
-Developers, operators, and self-hosting administrators use this skill to configure a mail stack for home or NAT environments, including Stalwart, Postfix, OpenDKIM, Brevo relay, Tailscale connectivity, DNS authentication records, and webmail integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Example passwords, SMTP keys, and placeholder credentials could be reused or exposed if copied directly. <br>
-Mitigation: Replace all example credentials with strong, unique secrets and store operational credentials in an appropriate secret manager or protected configuration store. <br>
-Risk: Disabling TLS peer verification or using invalid certificates can expose mail credentials and traffic. <br>
-Mitigation: Use valid certificates or a trusted internal certificate authority, and keep TLS peer verification enabled for production deployments. <br>
-Risk: Mail or administrative interfaces could be exposed beyond the intended local or VPN boundary. <br>
-Mitigation: Restrict administrative interfaces to localhost or VPN access and verify firewall, DNS, and proxy settings before opening services. <br>
-Risk: Following infrastructure changes without backups can make mail, DNS, VPS, or Nextcloud services difficult to recover. <br>
-Mitigation: Back up VPS, DNS, Nextcloud, and mail-server configuration and data before applying changes. <br>
+## Use Case:
 
+Developers, self-hosters, and operators use this skill to configure mail sending and receiving for a local server in home, NAT, or no-public-IP environments. It provides deployment commands, configuration examples, DNS guidance, user-management examples, webmail integration notes, and troubleshooting steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/franklili3/local-mail-server) <br>
-- [Stalwart Mail Server](https://github.com/stalwartlabs/stalwart) <br>
-- [Brevo](https://www.brevo.com) <br>
-- [Tailscale](https://tailscale.com) <br>
-- [Postfix](http://www.postfix.org/) <br>
-- [OpenDKIM](http://www.opendkim.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash, TOML, INI, DNS, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces setup guidance and example configuration snippets; users must replace placeholder domains, IP addresses, usernames, and secrets before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Example credentials and placeholder secrets could be reused in a real deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace all example passwords, SMTP keys, and placeholder credentials with unique, strong secrets before use.
+
+Risk: Mail, relay, or management services could be exposed beyond the intended local or private network.
+
+Mitigation: Bind management interfaces to loopback or intended Tailscale addresses only, restrict firewall rules, and avoid public exposure of the management API.
+
+Risk: Broad relay trust settings could allow unintended peers to relay mail.
+
+Mitigation: Narrow Postfix relay trust to exact approved peers instead of broad network ranges.
+
+Risk: Disabled TLS peer verification could expose mail traffic or credentials.
+
+Mitigation: Keep TLS certificate verification enabled and fix certificate trust issues directly.
+
+Risk: Downloaded server binaries could be tampered with or mismatched for the environment.
+
+Mitigation: Verify downloaded binaries and release checksums before execution.
+
+## Reference(s):
+
+- [Stalwart Mail Server](https://github.com/stalwartlabs/stalwart)
+- [Brevo](https://www.brevo.com)
+- [Tailscale](https://tailscale.com)
+- [Postfix](http://www.postfix.org/)
+- [OpenDKIM](http://www.opendkim.org/)
+- [ClawHub skill page](https://clawhub.ai/franklili3/skills/local-mail-server)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with shell commands, TOML snippets, INI snippets, DNS records, tables, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include placeholders for domains, IP addresses, credentials, and service-specific account values.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

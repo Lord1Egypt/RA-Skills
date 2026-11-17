@@ -1,40 +1,54 @@
-## Description: <br>
-A comprehensive AI agent skill for understanding and participating in foreign exchange markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for understanding and participating in foreign exchange markets. Explains how currency markets work, helps you analyze currency pairs, manage exchange rate risk for businesses and travelers, understand the factors that move currencies, and approach forex trading with the discipline and risk awareness the market demands.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-External users, businesses, travelers, expats, and retail forex learners use this skill to understand currency markets, analyze currency exposure, plan conversions, and frame trading decisions with risk discipline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may disclose sensitive financial, broker, counterparty, contract, or account information while asking for forex help. <br>
-Mitigation: Use summaries, ranges, and redactions; avoid sharing broker credentials, account identifiers, full live position lists, counterparty names, contracts, or exact confidential business figures. <br>
-Risk: Users may mistake forex trading or hedging explanations for personalized financial advice. <br>
-Mitigation: Treat outputs as general education and review trading, hedging, leverage, and business exposure decisions with qualified financial or treasury professionals before acting. <br>
+## Use Case:
 
+Businesses, travelers, expats, finance professionals, and retail forex learners use this skill to understand currency markets, assess exchange-rate exposure, plan currency conversion, and frame disciplined forex risk management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenticio/forex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, account access, or live market data access is declared in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: Currency and forex guidance can affect real money decisions if treated as trading authority or current market advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as educational support and verify rates, fees, hedging choices, and trading risks with current sources or qualified financial advice before acting.
+
+Risk: Broad currency-related triggers may activate the skill for questions that need up-to-date market data or regulated financial advice.
+
+Mitigation: Confirm important market facts externally and avoid relying on the skill for trading signals, investment recommendations, or guaranteed outcomes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agenticio/skills/forex)
+- [Publisher Profile](https://clawhub.ai/user/agenticio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational currency-market, hedging, travel-currency, and forex-risk guidance; not trading signals or investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

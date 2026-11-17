@@ -1,42 +1,60 @@
-## Description: <br>
-Amazon niche market analysis tool for cross-border e-commerce product selection that retrieves demand scores, competition analysis, price ranges, brand concentration, and sales metrics for US, Japan, and Germany markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon niche market analysis tool for cross-border e-commerce product selection that retrieves demand scores, competition analysis, price ranges, brand concentration, and sales metrics.
 
-## Publisher: <br>
-[ctzys](https://clawhub.ai/user/ctzys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctzys](https://clawhub.ai/user/ctzys)
 
-## Use Case: <br>
-External e-commerce sellers, product researchers, and developers use this skill to query Amazon niche-market data through LinkFoxAgent, compare demand, competition, pricing, and sales signals, and prepare product-selection analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product-research keywords, filters, target markets, and API usage are sent to LinkFoxAgent. <br>
-Mitigation: Use the skill only when the provider's data handling terms are acceptable, avoid submitting confidential product plans, and keep the API key in the current session or a secrets manager. <br>
-Risk: API keys can be exposed if copied into shared logs, screenshots, or committed configuration. <br>
-Mitigation: Set LINKFOXAGENT_API_KEY through a secure environment or secrets workflow and avoid printing it in shared output. <br>
+## Use Case:
 
+External users, product researchers, and cross-border e-commerce sellers use this skill to query Amazon niche-market data, compare demand and competition, and identify product-selection opportunities in the US, Japan, and Germany markets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ctzys/amazon-asin-data) <br>
-- [API Overview](references/API-Overview.md) <br>
-- [Jiimore API Reference](references/Jiimore.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON data summaries, tables, Python examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY for live API use and may include Amazon marketplace metrics, filters, and report links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market-research keywords and filters are sent to LinkFoxAgent for external processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when external processing is acceptable, and avoid entering confidential product ideas unless that sharing is approved.
+
+Risk: The skill requires a LinkFoxAgent API key.
+
+Mitigation: Store the API key in a protected secret manager or secured configuration, and avoid printing the full key in terminal output.
+
+Risk: The release does not include a pinned dependency file for the Python client examples.
+
+Mitigation: Run the client in a virtual environment and pin dependencies before production use.
+
+## Reference(s):
+
+- [API Overview](references/API-Overview.md)
+- [Jiimore API Reference](references/Jiimore.md)
+- [Jiimore endpoint](https://test-tool-gateway.linkfox.com/jiimore/getNicheInfoByKeyword)
+- [Skill release page](https://clawhub.ai/ctzys/skills/amazon-asin-data)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON data, Python examples, shell commands, and tabular analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a LinkFoxAgent API key and sends Amazon market-research keywords and filters to an external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

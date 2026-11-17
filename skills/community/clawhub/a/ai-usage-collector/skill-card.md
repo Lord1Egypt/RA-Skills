@@ -1,43 +1,58 @@
-## Description: <br>
-Extracts AI tool usage details from WeChat group text or screenshots and organizes relevant coworker activity into structured CSV records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts coworkers' AI tool usage from WeChat chat text or screenshots and organizes relevant messages into structured records.
 
-## Publisher: <br>
-[gmf515](https://clawhub.ai/user/gmf515) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmf515](https://clawhub.ai/user/gmf515)
 
-## Use Case: <br>
-Team AI adoption leads, HR or operations staff, and product managers use this skill to summarize coworker AI tool usage from group chat messages or screenshots into spreadsheet-ready records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat excerpts or screenshots may contain personal, unrelated, or confidential information. <br>
-Mitigation: Provide only the minimum relevant messages, redact unrelated sensitive content, and share outputs only with authorized recipients. <br>
-Risk: Extracted names, tools, and usage details may be incomplete or incorrect when source messages are ambiguous or OCR is imperfect. <br>
-Mitigation: Review the CSV rows before sharing or pasting into Excel or Teams, and leave uncertain fields blank rather than adding unsupported details. <br>
-Risk: CSV cell contents may behave unexpectedly when pasted into spreadsheet tools. <br>
-Mitigation: Check generated CSV cells before pasting into Excel or Teams and quote fields that contain commas. <br>
+## Use Case:
 
+Team AI adoption leads, HR or administrative staff, and product managers use this skill to summarize WeChat reports of AI tool usage into spreadsheet-ready records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gmf515/ai-usage-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/gmf515) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text CSV rows, optionally accompanied by a short Markdown note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CSV columns are name, AI tool, business scenario, value or action point, and notes; missing fields are left blank.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: WeChat messages may include coworker names or unrelated sensitive chat content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only authorized messages, minimize unrelated content, and anonymize names when possible.
+
+Risk: The generated CSV may be shared beyond the intended audience.
+
+Mitigation: Restrict distribution of the CSV to people authorized to view the underlying coworker AI-usage data.
+
+Risk: Spreadsheet software may interpret cells beginning with =, +, -, or @ as formulas.
+
+Mitigation: Review and neutralize formula-like cells before opening or sharing the CSV in spreadsheet tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gmf515/skills/ai-usage-collector)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain-text CSV rows with a brief Markdown note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV rows omit a header and use empty fields when source data is missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Feishu Cli helps an agent use the Feishu command line tool to convert Markdown and Feishu documents and manage docs, wikis, spreadsheets, messages, calendars, tasks, permissions, and cloud space resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu CLI helps agents use the feishu-cli command line tool to convert between Markdown and Feishu documents and manage Feishu docs, wikis, sheets, messages, calendars, tasks, permissions, and cloud files.
 
-## Publisher: <br>
-[niesongyang](https://clawhub.ai/user/niesongyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niesongyang](https://clawhub.ai/user/niesongyang)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need an agent to perform Feishu workspace operations through feishu-cli, including document conversion, content import or export, messaging, scheduling, task creation, and collaborator permission changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to write Feishu documents or spreadsheets, send messages, create events or tasks, import or export sensitive content, and change collaborator permissions. <br>
-Mitigation: Use a dedicated least-privileged Feishu app and require explicit manual confirmation before any write, messaging, export, scheduling, task, or permission-changing command is run. <br>
-Risk: The installation path references a remote GitHub installer. <br>
-Mitigation: Inspect and pin the installer or release artifact before installation. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Feishu workspaces through CLI commands, including document import/export, wiki and sheet access, message sending, calendar and task creation, permission changes, and cloud file operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/niesongyang/feishu-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/niesongyang) <br>
-- [Feishu CLI releases](https://github.com/riba2534/feishu-cli/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and feishu-cli command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in Feishu API side effects when an agent follows the command guidance with valid credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends installing a third-party CLI through a remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a pinned release and verify its checksum or signature before configuring credentials.
+
+Risk: The CLI can perform sensitive Feishu workspace actions including exports, writes, message sends, calendar and task creation, and permission changes.
+
+Mitigation: Grant only the minimum required Feishu app scopes and require explicit user confirmation before any sensitive or write operation.
+
+Risk: Feishu app credentials may provide broad access if configured before the CLI and scopes are reviewed.
+
+Mitigation: Configure credentials only after reviewing the CLI source or release artifact and confirming the required app permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niesongyang/skills/feishu-cli)
+- [Publisher profile](https://clawhub.ai/user/niesongyang)
+- [feishu-cli release downloads](https://github.com/riba2534/feishu-cli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Feishu workspace write actions that require credentials, app scopes, and user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

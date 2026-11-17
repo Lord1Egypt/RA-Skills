@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a practical guide and SOP for handling customer complaints and should be invoked for complaint-handling work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides practical guidance and SOP structure for handling customer complaints.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Customer support, operations, and customer experience teams use this skill to structure complaint-handling workflows, define SOPs, connect reporting data, run pilots, and update knowledge-base materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real complaint data may include unnecessary personal information. <br>
-Mitigation: Avoid pasting unnecessary personal data and apply data minimization when using the skill with customer complaints. <br>
-Risk: Complaint dashboards or data-ingestion work may fall outside an organization's privacy or compliance rules. <br>
-Mitigation: Keep dashboard and data-ingestion work within organizational privacy, compliance, and platform-rule requirements. <br>
+## Use Case:
 
+Customer support, operations, and compliance teams use this skill to standardize complaint-handling workflows, define ownership and metrics, run pilots, and maintain reusable SOP artifacts.
 
-## Reference(s): <br>
-- [Complaint skill page](https://clawhub.ai/clawkk/complaint) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with SOP steps, checklist structures, dashboard cadence, and reusable templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; guidance should be reviewed before being applied to live complaint-handling operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Complaint workflows may involve personal information or jurisdiction-specific regulatory requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adapt the SOP to applicable local law and platform rules, and apply data minimization before operational use.
+
+Risk: Generic SOP guidance may not match an organization's escalation paths, metrics, or reporting cadence.
+
+Mitigation: Review the workflow with support, operations, and compliance owners before deployment and update the knowledge base after pilots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/complaint)
+- [Publisher profile](https://clawhub.ai/user/clawkk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with SOP steps, checklist items, metric definitions, and reporting structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, external access, persistence, or privileged behavior identified in security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

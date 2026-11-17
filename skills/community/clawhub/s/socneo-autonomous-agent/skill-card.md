@@ -1,43 +1,57 @@
-## Description: <br>
-AI Autonomous Agent Framework with self-driven capabilities. Implements perception, judgment, execution, and reflection layers for intelligent autonomous operation. Use when building self-aware, adaptive AI systems that can operate independently while maintaining safety and user control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI autonomous agent framework that implements perception, judgment, execution, and reflection layers for self-aware, adaptive operation with safety and user-control concepts.
 
-## Publisher: <br>
-[socneo](https://clawhub.ai/user/socneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[socneo](https://clawhub.ai/user/socneo)
 
-## Use Case: <br>
-Developers and external builders use this skill to assemble autonomous agents that monitor state, evaluate task priority and risk, execute approved work with recovery, and learn from outcomes while preserving user controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect broad local system state and offers autonomous execution without clearly enforced user controls. <br>
-Mitigation: Keep it in assisted or manual mode, define explicit approval rules, and avoid connecting it to sensitive write-capable tools or production credentials. <br>
-Risk: Monitoring and memory features can capture more system or user activity than intended. <br>
-Mitigation: Define explicit monitored paths, event sources, retention limits, and audit review practices before enabling monitoring. <br>
-Risk: Risk-aware autonomous decisions may still be incorrect or overconfident. <br>
-Mitigation: Require human approval for medium- and high-risk actions, preserve user override, and keep rollback or recovery procedures available. <br>
+## Use Case:
 
+Developers and agent builders use this skill as a framework for autonomous monitoring, task evaluation, execution resilience, reflection, and adaptive learning workflows. It is most appropriate for tightly scoped agent experiments or assisted automation where human oversight remains available.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/socneo/socneo-autonomous-agent) <br>
-- [Skill-declared GitHub repository](https://github.com/Socneo/autonomous-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include configuration thresholds, approval rules, monitoring status, decision rationale, and task execution reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad autonomous monitoring and safety claims are not fully proven by the provided implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use assisted mode, keep human review in the loop, and validate permission, override, audit, and rollback behavior in a controlled environment before enabling autonomous operation.
+
+Risk: Artifact behavior includes filesystem monitoring and log/config inspection paths that may exceed the intended scope.
+
+Mitigation: Run with an explicit filesystem allowlist, disable broad log scanning where possible, and execute under a sandbox or read-only permissions until scope is verified.
+
+Risk: Recovery and permission behavior includes simulated or under-scoped controls, including elevated-permission and rollback paths.
+
+Mitigation: Do not rely on claimed rollback or elevated-permission safeguards without implementation review, tests, and environment-specific authorization checks.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/socneo/skills/socneo-autonomous-agent)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with Python modules and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes autonomous monitoring, risk assessment, recovery, progress tracking, reflection, and memory components; review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

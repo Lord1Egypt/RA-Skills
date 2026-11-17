@@ -1,44 +1,57 @@
-## Description: <br>
-Gong API for searching calls, transcripts, and conversation intelligence. Use when working with Gong call recordings, sales conversations, transcripts, meeting data, or conversation analytics. Supports listing calls, fetching transcripts, user management, and activity stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gong API for searching calls, transcripts, and conversation intelligence. Use when working with Gong call recordings, sales conversations, transcripts, meeting data, or conversation analytics. Supports listing calls, fetching transcripts, user management, and activity stats.
 
-## Publisher: <br>
-[jdrhyne](https://clawhub.ai/user/jdrhyne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jdrhyne](https://clawhub.ai/user/jdrhyne)
 
-## Use Case: <br>
-External users, sales operations teams, and agent operators use this skill to query Gong users, calls, transcripts, call details, and activity statistics through the Gong API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Gong credentials can expose sensitive call, transcript, user, and activity data. <br>
-Mitigation: Use a dedicated least-privilege Gong API key and limit installation to agents that need access to Gong data. <br>
-Risk: The credentials file contains an access key and secret key. <br>
-Mitigation: Store ~/.config/gong/credentials.json with restrictive file permissions and avoid sharing it in prompts, logs, or repositories. <br>
-Risk: A misconfigured base URL could send credentials or requests to an unintended endpoint. <br>
-Mitigation: Confirm the configured base_url points to the official Gong API domain before use. <br>
-Risk: Raw call transcripts may contain confidential customer or employee information. <br>
-Mitigation: Review transcript outputs before forwarding, storing, or pasting them into systems without appropriate access controls. <br>
+## Use Case:
 
+Developers, revenue teams, and authorized operators use this skill to query bounded Gong call metadata, user lists, transcript excerpts, and activity statistics while preserving transcript minimization and read-only access.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jdrhyne/gong) <br>
-- [Publisher Profile](https://clawhub.ai/user/jdrhyne) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Gong API request patterns and jq-based summaries for users, calls, transcripts, call details, and activity statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: Gong data can include customer names, email addresses, recordings, transcripts, and sensitive sales conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, preferably short-lived Gong credentials, keep the credential file at mode 0600, and request only the smallest required date range, page count, and transcript excerpt.
+
+Risk: Transcript text, titles, and participant data may contain untrusted content.
+
+Mitigation: Treat returned Gong content as data rather than instructions, and start with call metadata before requesting transcript text.
+
+Risk: Large or unbounded pagination and transcript retrieval can overexpose sensitive records.
+
+Mitigation: Respect the helper's page, day, and segment bounds, expand them only when the user requests that scope, and preserve returned page and has_more indicators.
+
+## Reference(s):
+
+- [ClawHub Gong Skill Page](https://clawhub.ai/jdrhyne/skills/gong)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and bounded JSON or text API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Gong API helper output is bounded by explicit limits for days, pages, and transcript segments.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

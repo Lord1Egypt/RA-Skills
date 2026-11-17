@@ -1,0 +1,156 @@
+{
+  "status": "needs_review",
+  "user_intent": {
+    "platform": null,
+    "audience": null,
+    "objective": null,
+    "target_duration_seconds": null,
+    "cta_preference": null,
+    "not_provided": [
+      "发布平台",
+      "目标受众",
+      "推广目标",
+      "目标时长",
+      "是否需要行动引导"
+    ]
+  },
+  "title_options": [
+    {
+      "text": "伞柄里的旧车票",
+      "angle": "信封/车票线索",
+      "source_anchor": "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。",
+      "creative_note": ""
+    },
+    {
+      "text": "她发现车票上的日期",
+      "angle": "人物发现",
+      "source_anchor": "车票上的日期正是她失踪哥哥离开的那天。",
+      "creative_note": ""
+    },
+    {
+      "text": "伞主人留下了地址",
+      "angle": "结尾变化",
+      "source_anchor": "她追到门口，发现伞的主人已经不见了，只留下一个地址。",
+      "creative_note": ""
+    }
+  ],
+  "selected_hook": "雨停后，苏棠发现伞柄里藏着一张旧车票。",
+  "hook_source_anchor": "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。",
+  "hook_creative_note": "调整原句语序以适配口播；事件信息未新增。",
+  "characters": [
+    {
+      "name": "苏棠",
+      "role": "原文中的人物",
+      "goal": "原文写明她把伞留在咖啡馆并发现车票；内心目标未说明",
+      "conflict": "车票日期与失踪哥哥离开的那天相同；伞主人不见并留下地址",
+      "relationship": "哥哥（原文称其为失踪的哥哥）",
+      "facts": [
+        "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。",
+        "车票上的日期正是她失踪哥哥离开的那天。",
+        "她追到门口，发现伞的主人已经不见了，只留下一个地址。"
+      ],
+      "visual_traits": "外貌未提供",
+      "source_anchor": "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。",
+      "creative_note": ""
+    }
+  ],
+  "scenes": [
+    {
+      "scene_id": "P-S01",
+      "location": "咖啡馆至门口（具体空间未细写）",
+      "time": "雨停后（原文未给出时刻）",
+      "goal": "呈现发现车票、查看日期并追到门口的原文动作",
+      "conflict": "车票日期牵连失踪哥哥；到门口时伞主人已不见",
+      "actions": [
+        "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。",
+        "车票上的日期正是她失踪哥哥离开的那天。",
+        "她追到门口，发现伞的主人已经不见了，只留下一个地址。"
+      ],
+      "dialogue": [],
+      "visual_focus": "伞柄中的旧车票及其日期",
+      "conflict_turn": "苏棠追到门口后只找到一个地址，伞主人已不见",
+      "source_anchor": "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。 车票上的日期正是她失踪哥哥离开的那天。 她追到门口，发现伞的主人已经不见了，只留下一个地址。",
+      "creative_note": "画面衔接和镜头调度为制作建议，不补写原文没有的角色行为。"
+    }
+  ],
+  "voiceover": [
+    {
+      "segment_id": "VO01",
+      "start": 0,
+      "end": 3,
+      "text": "雨停后，苏棠发现伞柄里藏着一张旧车票。",
+      "source_anchor": "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。",
+      "origin": "source",
+      "creative_note": "调整语序，未新增事实。"
+    },
+    {
+      "segment_id": "VO02",
+      "start": 3,
+      "end": 7,
+      "text": "车票上的日期正是她失踪哥哥离开的那天。",
+      "source_anchor": "车票上的日期正是她失踪哥哥离开的那天。",
+      "origin": "source",
+      "creative_note": ""
+    },
+    {
+      "segment_id": "VO03",
+      "start": 7,
+      "end": 12,
+      "text": "她追到门口，发现伞的主人已经不见了，只留下一个地址。",
+      "source_anchor": "她追到门口，发现伞的主人已经不见了，只留下一个地址。",
+      "origin": "source",
+      "creative_note": ""
+    }
+  ],
+  "shots": [
+    {
+      "shot_id": "P01",
+      "start": 0,
+      "end": 3,
+      "duration_seconds": 3,
+      "visual": "雨停后的咖啡馆，镜头落在伞柄与旧车票。",
+      "caption": "伞柄里藏着旧车票",
+      "voiceover_ref": "VO01",
+      "sound": "雨声渐弱，室内环境声",
+      "source_anchor": "苏棠把伞留在咖啡馆，雨停后才发现伞柄里藏着一张旧车票。",
+      "creative_note": "景别与构图是制作建议。"
+    },
+    {
+      "shot_id": "P02",
+      "start": 3,
+      "end": 7,
+      "duration_seconds": 4,
+      "visual": "车票日期特写；苏棠看清日期。",
+      "caption": "日期正是哥哥离开的那天",
+      "voiceover_ref": "VO02",
+      "sound": "纸张轻响，音乐收紧",
+      "source_anchor": "车票上的日期正是她失踪哥哥离开的那天。",
+      "creative_note": "音乐提示为制作建议，不代表原文已有配乐。"
+    },
+    {
+      "shot_id": "P03",
+      "start": 7,
+      "end": 12,
+      "duration_seconds": 5,
+      "visual": "苏棠追到门口，画面呈现空下来的门口和留下的地址。",
+      "caption": "伞主人不见了，只留下地址",
+      "voiceover_ref": "VO03",
+      "sound": "脚步声止住，保留环境声",
+      "source_anchor": "她追到门口，发现伞的主人已经不见了，只留下一个地址。",
+      "creative_note": "不补写伞主人身份或后续去向。"
+    }
+  ],
+  "ending_action": {
+    "status": "none",
+    "text": "",
+    "note": "用户未要求 CTA，本示例不添加固定引导。"
+  },
+  "source_notes": {
+    "source_scope": "提供的三句梗概",
+    "source_version": null,
+    "gaps": [
+      "原文未交代车票如何藏入伞柄，也未交代伞主人身份。"
+    ]
+  },
+  "duration_seconds": 12
+}

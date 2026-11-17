@@ -1,45 +1,61 @@
-## Description: <br>
-Publora API helps agents schedule, publish, draft, bulk-schedule, and manage social media posts across supported platforms through Publora. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publora API helps agents schedule, publish, draft, bulk-schedule, manage workspace users, configure webhooks, and retrieve LinkedIn analytics across supported social media platforms.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-Developers, marketers, and workspace operators use this skill to guide agents through Publora API workflows for creating posts, scheduling content, uploading media, configuring webhooks, managing workspace users, and retrieving LinkedIn analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Publora API key can publish, schedule, delete posts, upload media, configure webhooks, and act for workspace users. <br>
-Mitigation: Use least-privilege handling for API keys, never expose workspace keys client-side, and require explicit confirmation before live posts, deletions, media uploads, webhook changes, or workspace-user actions. <br>
-Risk: Draft-versus-publish behavior is ambiguous in the artifact and could affect real social accounts. <br>
-Mitigation: Verify Publora's current draft and immediate publishing behavior before use, and treat omitted scheduling fields as requiring explicit user confirmation. <br>
-Risk: Webhook configuration can send publishing, failure, and token-expiration events to external endpoints. <br>
-Mitigation: Configure webhooks only to endpoints the operator controls, save and verify webhook secrets, and rotate secrets when endpoint ownership or access changes. <br>
+## Use Case:
 
+Developers, social media operators, and workspace administrators use this skill to have an agent work with the Publora API for drafting, scheduling, publishing, deleting, monitoring posts, configuring webhooks, and managing workspace users across connected social accounts.
 
-## Reference(s): <br>
-- [Publora skill page](https://clawhub.ai/sergebulaev/publora) <br>
-- [Publora API Docs](https://github.com/publora/publora-api-docs) <br>
-- [Publora Pricing](https://publora.com/pricing) <br>
-- [Publora API base URL](https://api.publora.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript, Python, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint paths, request headers, JSON payload examples, webhook setup steps, and platform limit guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill enables broad public-posting, deletion, webhook, reaction, API-key, and workspace-management actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before publishing, bulk scheduling, deleting posts or reactions, creating webhooks, generating API keys, or acting on behalf of workspace users.
+
+Risk: A Publora API key can authorize actions on real connected social accounts.
+
+Mitigation: Use only a Publora API key the user intends the agent to use, keep workspace keys server-side, and prefer per-user API keys for client-facing scenarios.
+
+Risk: Draft versus immediate-publish behavior may be unclear before a request is sent.
+
+Mitigation: Confirm whether the user wants a draft, scheduled post, or immediate publication before calling posting endpoints for real accounts.
+
+## Reference(s):
+
+- [ClawHub Publora Skill](https://clawhub.ai/sergebulaev/skills/publora)
+- [Publora](https://publora.com)
+- [Publora Pricing](https://publora.com/pricing)
+- [Publora API Docs](https://github.com/publora/publora-api-docs)
+- [Publora API Base URL](https://api.publora.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JavaScript, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST endpoint guidance, request examples, platform constraints, authentication notes, and operational cautions.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

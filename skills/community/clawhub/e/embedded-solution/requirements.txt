@@ -1,0 +1,21 @@
+# Python dependencies for the embedded-solution skill scripts.
+# Install with: python3 -m pip install --user -r requirements.txt
+#
+# firecrawl-py is the v0.4.0 Tier 3/4 fetch tool. The skill works without
+# it (falls back to web_fetch + curl + pdfplumber), but Firecrawl is
+# preferred when FIRECRAWL_API_KEY is configured. See
+# .planning/v0.4.0-firecrawl-integration.md.
+firecrawl-py>=4.30
+pydantic>=2.0
+requests>=2.28
+aiohttp>=3.8
+httpx>=0.24
+python-dotenv>=1.0
+websockets>=10.0
+
+# PDF + YAML I/O used by update_specs.py / upgrade_yaml_to_verified.py /
+# verify_yaml_vs_datasheet.py / reextract_da_ble.py. Imported lazily with
+# a friendly ImportError message in some scripts, but the user gets a
+# clearer experience if these are installed up front.
+pdfplumber>=0.10
+PyYAML>=6.0

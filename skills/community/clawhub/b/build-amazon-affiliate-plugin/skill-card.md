@@ -1,44 +1,59 @@
-## Description: <br>
-Create a production-ready WordPress plugin that displays Amazon product ads when users insert Amazon affiliate links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a production-ready WordPress plugin that displays Amazon product ads when users insert Amazon affiliate links.
 
-## Publisher: <br>
-[imjohnathanblog-spec](https://clawhub.ai/user/imjohnathanblog-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL v2 or later <br>
+## Publisher:
 
+[imjohnathanblog-spec](https://clawhub.ai/user/imjohnathanblog-spec)
 
-## Use Case: <br>
-Developers use this skill to generate a WordPress plugin for Amazon Associates workflows, including Amazon link detection, ASIN extraction, ad display, admin settings, caching, and Gutenberg block support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL v2 or later
 
-## Known Risks and Mitigations: <br>
-Risk: Generated WordPress plugin code could affect site content rendering, affiliate disclosures, or link behavior. <br>
-Mitigation: Review the generated PHP before production use and test replace and append display modes on a staging site. <br>
-Risk: Optional Amazon PA-API credentials include a secret key that must be protected. <br>
-Mitigation: Store and handle PA-API credentials carefully in WordPress, and limit access to the settings page to administrators. <br>
-Risk: Affiliate ad behavior must comply with Amazon Associates requirements and site disclosure practices. <br>
-Mitigation: Confirm affiliate tags, nofollow links, and disclosure behavior before enabling the plugin broadly. <br>
+## Use Case:
 
+Developers and site operators use this skill to generate an Amazon Associates WordPress plugin that detects Amazon links, extracts ASINs, renders ad units, configures affiliate and PA-API settings, and supports Gutenberg blocks.
 
-## Reference(s): <br>
-- [Plugin Specification](references/PLUGIN_SPEC.md) <br>
-- [Amazon PA-API Integration Guide](references/AMAZON_API.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/imjohnathanblog-spec/build-amazon-affiliate-plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, files, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and generated WordPress plugin files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PHP, CSS, JavaScript, installation instructions, and expansion documentation for the generated plugin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact plugin readme, and plugin specification) <br>
+Risk: Generated plugin code handles affiliate ad insertion in WordPress content and stores Amazon PA-API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before use, store PA-API keys only in a properly secured WordPress admin environment, and verify sanitization, escaping, nonces, and capability checks before deployment.
+
+Risk: The artifact includes Gutenberg build dependencies that may become outdated.
+
+Mitigation: Update and audit the WordPress block npm dependencies before building or deploying generated block assets.
+
+Risk: The source skill directs output to a hard-coded local workspace path.
+
+Mitigation: Change the generated output directory to the target project workspace before running file-generation steps.
+
+## Reference(s):
+
+- [Amazon PA-API Integration Guide](references/AMAZON_API.md)
+- [Ad Symbiont Plugin Specification](references/PLUGIN_SPEC.md)
+- [ClawHub Skill Page](https://clawhub.ai/imjohnathanblog-spec/skills/build-amazon-affiliate-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with generated WordPress plugin files and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PHP plugin code, CSS and JavaScript assets, installation guidance, and expansion options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

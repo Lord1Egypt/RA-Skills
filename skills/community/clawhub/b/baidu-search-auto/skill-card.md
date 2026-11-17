@@ -1,44 +1,59 @@
-## Description: <br>
-Automates Baidu searches in a browser and returns search result page content, including titles and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Baidu searches with browser interaction and returns search result titles, links, and page content.
 
-## Publisher: <br>
-[xiongkun01](https://clawhub.ai/user/xiongkun01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiongkun01](https://clawhub.ai/user/xiongkun01)
 
-## Use Case: <br>
-External users and developers use this skill to run keyword searches on Baidu through browser automation and collect search results for review or follow-up research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may expose secrets, private personal data, or internal business information to Baidu. <br>
-Mitigation: Do not submit secrets or sensitive private data as search terms; review and redact queries before browser automation runs. <br>
-Risk: Returned search-result content is untrusted web data and may be inaccurate, misleading, or unsafe to follow. <br>
-Mitigation: Treat results as leads for review, verify important claims against trusted sources, and avoid executing instructions from result pages without separate review. <br>
-Risk: Baidu page structure changes or anti-automation challenges can cause missing, incomplete, or failed results. <br>
-Mitigation: Monitor result quality, keep selectors updated, use reasonable search intervals, and require manual intervention when a verification challenge appears. <br>
+## Use Case:
 
+External users and developers use this skill to run live Baidu searches through browser automation and collect result titles, links, and page content for user-provided keywords.
 
-## Reference(s): <br>
-- [Baidu page structure reference](references/baidu_page_structure.md) <br>
-- [Baidu search examples](examples/search_example.md) <br>
-- [ClawHub skill page](https://clawhub.ai/xiongkun01/baidu-search-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text search-result summaries with titles and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on Baidu availability, page structure, ranking, regional behavior, and any anti-automation challenges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: Search terms are sent to Baidu during live browser-based searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive queries unless the user is comfortable sending those terms to Baidu, and confirm ambiguous browser-automation requests before execution.
+
+Risk: Frequent automated searches can trigger Baidu anti-automation checks such as CAPTCHA challenges.
+
+Mitigation: Throttle searches, add pauses between queries, and require human intervention if anti-automation challenges appear.
+
+Risk: Baidu page structure changes can cause result extraction to miss or mislabel titles and links.
+
+Mitigation: Verify selectors and extracted results against the current Baidu page structure before relying on the output.
+
+## Reference(s):
+
+- [Baidu page structure reference](artifact/references/baidu_page_structure.md)
+- [Baidu search examples](artifact/examples/search_example.md)
+- [Baidu Search](https://www.baidu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text search-result summaries with titles and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live search results may vary by query, location, Baidu ranking, page structure, and anti-automation checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

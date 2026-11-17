@@ -1,44 +1,62 @@
-## Description: <br>
-基于 FSRS 算法的费曼学习导师，通过 PostgreSQL 记忆库与 Obsidian 笔记联动，引导用户进行深度复习。严格遵循笔记同步→到期检查→针对性提问→动态追问→结算存储的五步流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feynman FSRS Pro is a Feynman-style study tutor that coordinates Obsidian notes with a PostgreSQL memory store to guide spaced-repetition review using an FSRS-inspired workflow.
 
-## Publisher: <br>
-[sheldon-mmmp](https://clawhub.ai/user/sheldon-mmmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheldon-mmmp](https://clawhub.ai/user/sheldon-mmmp)
 
-## Use Case: <br>
-Learners and developers use this skill as an interactive Feynman-style study tutor that synchronizes Obsidian notes, checks due review items, asks targeted questions, follows up dynamically, and records spaced-repetition progress in PostgreSQL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill embeds PostgreSQL credentials and expects access to a named local database. <br>
-Mitigation: Replace hardcoded credentials before use and restrict the database account to the least privileges needed for review operations. <br>
-Risk: The skill uses shell-based Obsidian CLI access and can process note filenames from the local vault. <br>
-Mitigation: Avoid untrusted note filenames and patch the Obsidian CLI wrapper to avoid shell:true before deployment. <br>
-Risk: The bundled schema initialization drops and recreates the feynman_memory table. <br>
-Mitigation: Run schema.sql only against a database that is intended to be reset or after taking an appropriate backup. <br>
+## Use Case:
 
+External learners and developers use this skill to run structured Feynman-method review sessions over an Obsidian vault, including note synchronization, due-card review, targeted questioning, follow-up prompts, and progress recording.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sheldon-mmmp/feynman-fsrs-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/sheldon-mmmp) <br>
-- [ClawHub registry](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Interactive Markdown text with JSON command results and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates local Obsidian note access and PostgreSQL review-state updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill requires access to a local Obsidian vault and a PostgreSQL database that may contain study history and note metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an environment where this local data access is acceptable, and limit vault and database permissions to the notes and tables needed for study review.
+
+Risk: The artifact includes hardcoded PostgreSQL credentials.
+
+Mitigation: Move credentials into protected configuration before use and rotate the exposed password.
+
+Risk: The database initialization script drops and recreates the feynman_memory table.
+
+Mitigation: Back up any existing database before running the schema and review destructive SQL statements before execution.
+
+Risk: The artifact invokes Obsidian CLI commands through shell strings.
+
+Mitigation: Change command execution to argument-array execution and validate note paths before running the helper scripts.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sheldon-mmmp/skills/feynman-fsrs-pro)
+- [Publisher profile](https://clawhub.ai/user/sheldon-mmmp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation with structured review status, prompts, feedback, summaries, and command-oriented database or note operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires access to a local Obsidian vault and PostgreSQL-backed study memory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

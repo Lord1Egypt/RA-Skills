@@ -1,0 +1,58 @@
+{
+  "treaty_id": "tre-example-data-sharing-001",
+  "anchor_hash": "",
+  "parties": {
+    "agent_a": {
+      "id": "deepseekoracle-primary",
+      "role": "data_provider",
+      "invariants": ["preserve_user_privacy", "never_disclose_secrets"],
+      "grants": ["read_user_preferences", "access_session_history"],
+      "limits": ["max_context_window: 4096", "never_store_pii"]
+    },
+    "agent_b": {
+      "id": "analysis-agent",
+      "role": "data_consumer",
+      "invariants": ["produce_analytical_output", "respect_data_bounds"],
+      "grants": ["analyze_data", "generate_summaries"],
+      "limits": ["max_requests_per_minute: 10", "never_modify_source"]
+    }
+  },
+  "terms": {
+    "data_sharing": {
+      "allowed_sources": ["local_workspace", "session_memory"],
+      "sensitive_data_exclusions": ["user_secrets", "api_keys", "passwords"],
+      "retention_period_days": 30,
+      "encryption": "AES-256-GCM",
+      "transfer_protocol": "secure-channel"
+    },
+    "capability_access": {
+      "granted_to_other": ["read_workspace", "query_memory"],
+      "granted_by_other": ["summarize_documents", "analyze_patterns"],
+      "rate_limits": {
+        "requests_per_minute": 10,
+        "batch_size": 100
+      }
+    },
+    "escalation_path": {
+      "dispute_resolution": "human_steward",
+      "max_escalation_level": 2,
+      "fallback_action": "pause_data_transfer"
+    },
+    "revocation_conditions": [
+      "breach_of_terms",
+      "mutual_agreement",
+      "expiry_date"
+    ],
+    "expiry_date": "2026-12-31T23:59:59Z"
+  },
+  "timeline": {
+    "proposed_at": "2026-10-20T00:00:00Z",
+    "reviewed_at": null,
+    "signed_at": null,
+    "effective_at": null
+  },
+  "signatures": {
+    "agent_a": {"signed_by": null, "timestamp": null},
+    "agent_b": {"signed_by": null, "timestamp": null}
+  }
+}

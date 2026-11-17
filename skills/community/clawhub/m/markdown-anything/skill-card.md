@@ -1,43 +1,55 @@
-## Description: <br>
-Convert PDF, DOCX, XLSX, PPTX, images, audio, and 25+ file formats to clean Markdown using the Markdown Anything API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF, DOCX, XLSX, PPTX, images, audio, and 25+ file formats to clean Markdown using the Markdown Anything API.
 
-## Publisher: <br>
-[adiologydev](https://clawhub.ai/user/adiologydev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adiologydev](https://clawhub.ai/user/adiologydev)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to convert selected documents, images, and audio files into Markdown for prompts, retrieval workflows, documentation, or downstream text processing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected files are uploaded to Markdown Anything for processing. <br>
-Mitigation: Convert only files approved for that provider, and avoid sensitive or regulated documents unless Markdown Anything is approved for the user's environment. <br>
-Risk: The MDA_API_TOKEN authorizes API usage and may spend credits. <br>
-Mitigation: Store the token securely, avoid exposing it in logs or shared prompts, and rotate or revoke it if it may have been disclosed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Markdown Anything](https://markdownanything.com) <br>
-- [Markdown Anything Workspaces](https://markdownanything.com/workspaces) <br>
-- [Markdown Anything Privacy Policy](https://markdownanything.com/privacy) <br>
-- [ClawHub Skill Page](https://clawhub.ai/adiologydev/markdown-anything) <br>
-- [Publisher Profile](https://clawhub.ai/user/adiologydev) <br>
+## Use Case:
 
+Developers and agents use this skill to convert user-selected documents, images, and audio files into Markdown for prompts, summaries, and downstream workflows. It also supports checking the Markdown Anything account credit balance.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown conversion output to stdout, plus plain text credit-balance output for account checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MDA_API_TOKEN; optional flags can request Enhanced AI, metadata, or token-optimized output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected files are sent to Markdown Anything for processing.
+
+Mitigation: Use the skill only for files that are appropriate to process with the Markdown Anything service and review the linked privacy policy before use.
+
+Risk: The MDA_API_TOKEN is used for API authentication and may be visible to local process observers while curl requests run.
+
+Mitigation: Use a limited-scope or revocable token where possible and avoid running the skill in environments with untrusted local users.
+
+## Reference(s):
+
+- [Markdown Anything](https://markdownanything.com)
+- [Markdown Anything workspace](https://markdownanything.com/workspaces)
+- [ClawHub skill page](https://clawhub.ai/adiologydev/skills/markdown-anything)
+- [Markdown Anything privacy policy](https://markdownanything.com/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown to stdout for conversions and plain text for credit-balance checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MDA_API_TOKEN; optional conversion flags can request enhanced AI, metadata inclusion, or token optimization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

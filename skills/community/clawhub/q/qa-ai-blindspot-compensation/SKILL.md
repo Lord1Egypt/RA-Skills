@@ -1,51 +1,29 @@
 ---
 name: qa-ai-blindspot-compensation
-version: 1.5.0
 description: >-
-  AI在生成测试用例时存在六大系统性盲区：时序依赖、并发冲突、资源竞争、状态累积、数据一致性、第三方集成差异。评审完AI生成的用例之后，必须用此技能做盲区补盲——因为AI几乎一定会漏掉这些。如果你心里觉得"好像还差点什么但说不上来"，这就是答案。每个盲区维度至少补2-3个场景，总补盲数12-18个。
-
-when_to_use: AI输出评审完成后自动激活；用户说"还有什么没测到"、"AI漏了什么"、"补盲"、"全面覆盖"、"是不是不够"、"哪还没测"、"盲区分析"、"遗漏场景"时
+  AI在生成测试用例时存在六大系统性盲区：时序依赖、并发冲突、资源竞争、状态累积、数据一致性、第三方集成差异。评审完AI生成的用例之后，必须用此技能做盲区补盲——因为AI几乎一定会漏掉这些。如果你心里觉得"好像还差点什么但说不上来"，这就是答案。每个盲区维度至少补2-3个场景，总补盲数12-18个。 触发场景：还有什么没测到、AI漏了什么、补盲、全面覆盖、是不是不够、哪还没测、盲区分析、遗漏场景、时。 Use when the user asks about: compensating for known blind spots in AI-generated test cases — timing dependencies, concurrency conflicts, resource contention, state accumulation, data consistency, and third-party integration differences.
+license: MIT
 allowed-tools: Read Grep Glob
-related_skills:
-  upstream:
-    - qa-ai-output-critique      # 输入：评审后的测试用例
-  downstream:
-    - qa-test-skills           # 输出：最终测试用例返回给主流程
-input_format:
-  required:
-    - name: 测试用例
-      type: array
-      description: AI生成的测试用例列表，包含用例编号、需求ID、风险ID
-    - name: 需求解构表
-      type: object
-      description: 来自qa-req-deconstruction，包含需求ID列表
-  optional:
-    - name: 评审报告
-      type: object
-      description: 来自qa-ai-output-critique的评审结果
-output_format:
-  structure:
-    - blindspot_id: "BS-XXXX"
-    - requirement_ids: ["REQ-XXXX"]
-    - original_tc_ids: ["TC-XXXX"]
-    - blindspot_type: "盲区类型"
-    - new_test_cases: "补盲用例列表"
-  traceability:
-    - 每个补盲用例带唯一ID（BS-XXXX）
-    - 关联原始用例ID（TC-XXXX）
-    - 关联需求ID（REQ-XXXX）
-depth_requirement_quantification:
-  reference_value: "根据测试复杂度和风险等级调整补盲深度：简单x1/中等x2/复杂x3"
-  minimum: "至少覆盖边界盲区、场景盲区、数据盲区3个维度中的2个"
+metadata:
+  display-name: "Ai Blindspot Compensation"
+  version: "1.8.0"
+  when-to-use: "AI输出评审完成后自动激活；用户说\"还有什么没测到\"、\"AI漏了什么\"、\"补盲\"、\"全面覆盖\"、\"是不是不够\"、\"哪还没测\"、\"盲区分析\"、\"遗漏场景\"时"
+  related-skills: "{\"upstream\":[\"qa-ai-output-critique\"],\"downstream\":[\"qa-test-skills\",\"qa-expert-review\",\"qa-output-validation\"]}"
+  references: "[\"references/blindspot-details.md\"]"
+  input-format: "{\"required\":[{\"name\":\"测试用例\",\"type\":\"array\",\"description\":\"AI生成的测试用例列表，包含用例编号、需求ID、风险ID\"},{\"name\":\"需求解构表\",\"type\":\"object\",\"description\":\"来自qa-req-deconstruction，包含需求ID列表\"}],\"optional\":[{\"name\":\"评审报告\",\"type\":\"object\",\"description\":\"来自qa-ai-output-critique的评审结果\"}]}"
+  output-format: "{\"structure\":[\"覆盖率：标注口径（基于现有需求/输入文档），禁止\\\"全覆盖/100%\\\"绝对化表述；缺失模块标注\\\"未覆盖+原因\\\"\",{\"blindspot_id\":\"BS-XXXX\"},{\"requirement_ids\":[\"REQ-XXXX\"]},{\"original_tc_ids\":[\"TC_{模块缩写}_{功能缩写}_{序号}\"]},{\"blindspot_type\":\"盲区类型\"},{\"new_test_cases\":\"补盲用例列表\"}],\"traceability\":[\"每个补盲用例带唯一ID（BS-XXXX）\",\"关联原始用例ID（TC_{模块缩写}_{功能缩写}_{序号}，如 TC_API_LOGIN_001）\",\"关联需求ID：REQ-{需求模块缩写}-{序号}\"]}"
+  error-recovery-guidance: "{\"on_failure\":\"盲区补盲遗漏维度时回退到评审报告定位遗漏点\",\"retry_behavior\":\"补充遗漏盲区类型后重新生成补盲用例\"}"
+  categories: "[\"Development\",\"Testing\",\"AI\"]"
+  depth-requirement: "{\"reference_value\":\"根据测试复杂度和风险等级调整补盲深度：简单x1/中等x2/复杂x3\",\"minimum\":\"至少覆盖边界盲区、场景盲区、数据盲区3个维度中的2个\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
 
 # AI 盲区补偿
 
 ## 核心原则
 
-你是一位测试补盲专家，专门识别AI系统性思考不足的维度并补充测试场景。
-**核心原则**：AI有系统性的盲区，专家知道在哪些维度上主动补盲。
-本技能覆盖六大盲区（时序/并发/资源/状态/数据/第三方），每个盲区至少补充2-3个测试场景。
+AI有系统性的盲区，专家知道在哪些维度上主动补盲。
+
 **关键指标**：每个盲区至少补充2-3个测试场景，六大盲区 × 每个2-3个场景 = 至少12-18个补盲用例。
 
 ## AI 六大已知盲区
@@ -60,6 +38,17 @@ depth_requirement_quantification:
 | 状态累积 | 不思考"长时间运行后漂移" | 会话超时、累计操作、缓存过期 |
 | 数据一致性 | 不思考"分布式数据问题" | 跨服务同步、分布式事务、主从一致 |
 | 第三方集成 | 不思考"Mock与真实差异" | 第三方异常/超时/变更/降级 |
+
+> **国内业务常见实例**（补盲时优先对照）：
+
+| 盲区 | 国内业务实例 |
+|------|-------------|
+| 时序依赖 | 秒杀活动中"先加购物车后下单"与"直接下单"顺序不同，库存扣减结果差异 |
+| 并发冲突 | 双11多用户同时抢同一商品，超卖问题；多人同时编辑同一订单 |
+| 资源竞争 | 支付网关连接池耗尽、日志磁盘写满、数据库连接数超限 |
+| 状态累积 | 用户会话长期不退出导致 Token 过期/权限漂移；长连接内存泄漏 |
+| 数据一致性 | 订单跨服务（订单服务+库存服务+支付服务）分布式事务；主从延迟读 |
+| 第三方集成 | 微信支付/支付宝回调超时重试、短信服务商变更、地图/天气第三方异常降级 |
 
 ### 补盲检查清单
 - [ ] 时序依赖：操作顺序变更是否影响结果？
@@ -89,6 +78,17 @@ depth_requirement_quantification:
 |---------|---------|---------|---------|
 | BS_XXX_001 | 时序依赖 | [标题] | REQ-XXXX |
 ```
+
+## 加载时机
+
+**需要时才读，不要一上来全读**：
+
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 知道有六大盲区，但不清楚每类具体漏什么 | [`references/blindspot-details.md`](references/blindspot-details.md)（六类盲区的详细判据与示例） |
+
+
+---
 
 ## 补盲工作流
 
@@ -201,5 +201,3 @@ depth_requirement_quantification:
 - [ ] 补盲场景是否可执行？
 - [ ] 补盲场景风险是否标注？
 - [ ] 补盲场景优先级是否合理？
-
-

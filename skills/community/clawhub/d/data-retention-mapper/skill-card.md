@@ -1,47 +1,66 @@
-## Description: <br>
-Maps data retention periods, storage locations, cleanup responsibilities, and expiry handling recommendations for governance and privacy workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maps data retention periods, storage locations, cleanup ownership, expiry handling, and improvement suggestions for governance, privacy, and audit workflows.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Privacy, governance, audit, and data operations teams use this skill to turn retention notes or inventories into reviewable reports covering data assets, storage locations, retention periods, cleanup responsibilities, risks, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input materials may include sensitive retention inventories or storage locations. <br>
-Mitigation: Redact sensitive details when practical and review the generated report before sharing. <br>
-Risk: The bundled Python helper runs locally over files selected by the user. <br>
-Mitigation: Run it only on intended inputs and inspect outputs before using them in governance decisions. <br>
-Risk: Unused audit modes are present in the code but are not active in the shipped configuration. <br>
-Mitigation: Avoid modifying the bundled spec to enable broader inspection unless that behavior is intentional and reviewed. <br>
-Risk: The skill supports governance drafts but does not replace formal compliance advice. <br>
-Mitigation: Treat outputs as review drafts and route compliance decisions through the appropriate reviewer. <br>
+## Use Case:
 
+Developers, privacy teams, governance teams, and auditors use this skill to turn provided data asset, storage location, and retention requirement details into reviewable retention maps, risk notes, and cleanup recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/data-retention-mapper) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact specification](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report, with optional JSON output from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local inputs only; the helper script supports input/output paths, format selection, result limits, and dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Inputs may contain personal data, secrets, or sensitive storage-location details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary personal data and secrets before use, and limit inputs to the details needed for the retention review.
+
+Risk: Retention guidance may be mistaken for formal compliance or legal advice.
+
+Mitigation: Treat outputs as governance drafts and route them through qualified privacy, compliance, or legal review before adoption.
+
+Risk: Incomplete source material can produce an incomplete or misleading retention map.
+
+Mitigation: Review the generated pending-confirmation items and resolve missing data before using the map for decisions.
+
+Risk: Generated cleanup checklists could be over-applied to external systems.
+
+Mitigation: Use the skill in review or dry-run mode first, and require human approval before any deletion, publication, configuration, or external-system change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/data-retention-mapper)
+- [README](artifact/README.md)
+- [Structured Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+- [Example Input](artifact/examples/example-input.md)
+- [Example Output](artifact/examples/example-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown report or JSON object, with optional inline shell command usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local user-provided input and can print to stdout or write a chosen local output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

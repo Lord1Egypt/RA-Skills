@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "confidence": {"direct_label": 0.95, "pattern_match": 0.78, "geometry_pattern": 0.86, "inferred": 0.5},
+  "view_rules": [
+    {"type": "bridge_plan", "patterns": ["桥梁平面图", "桥位平面", "BRIDGE PLAN"]},
+    {"type": "bridge_elevation", "patterns": ["桥梁立面", "桥型布置", "BRIDGE ELEVATION"]},
+    {"type": "tunnel_plan", "patterns": ["隧道平面", "隧道纵断面", "TUNNEL PLAN"]},
+    {"type": "tunnel_detail", "patterns": ["隧道洞口", "明洞", "TUNNEL DETAIL"]},
+    {"type": "road_alignment", "patterns": ["路线平面", "道路线形", "平面线位", "ROAD ALIGNMENT"]},
+    {"type": "traffic_marking", "patterns": ["交通标线", "标志标线", "信号灯", "TRAFFIC MARK"]},
+    {"type": "intersection", "patterns": ["交叉口", "匝道", "立交", "INTERSECTION"]}
+  ],
+  "system_rules": [
+    {"system": "bridge", "patterns": ["桥梁", "桥墩", "桥台", "盖梁", "支座", "BRIDGE", "PIER"]},
+    {"system": "tunnel", "patterns": ["隧道", "洞口", "明洞", "仰拱", "TUNNEL"]},
+    {"system": "road", "patterns": ["道路", "路线", "平曲线", "竖曲线", "横断面", "ROAD"]},
+    {"system": "traffic_safety", "patterns": ["交通", "标志", "标线", "护栏", "信号灯", "TRAFFIC"]}
+  ],
+  "component_rules": [
+    {"category": "pier", "system": "bridge", "patterns": ["桥墩", "墩柱", "盖梁", "承台", "PIER"]},
+    {"category": "abutment", "system": "bridge", "patterns": ["桥台", "台身", "锥坡", "ABUTMENT"]},
+    {"category": "bearing", "system": "bridge", "patterns": ["支座", "伸缩缝", "BEARING"]},
+    {"category": "tunnel_portal", "system": "tunnel", "patterns": ["洞口", "明洞", "端墙", "PORTAL"]},
+    {"category": "tunnel_arch", "system": "tunnel", "patterns": ["衬砌", "仰拱", "二衬", "初支", "ARCH"]},
+    {"category": "road_centerline", "system": "road", "patterns": ["中线", "中心线", "道路中线", "CENTERLINE"]},
+    {"category": "road_profile", "system": "road", "patterns": ["竖曲线", "纵坡", "横断面", "PROFILE"]},
+    {"category": "safety_facility", "system": "traffic_safety", "patterns": ["标志", "标线", "护栏", "信号灯", "防撞", "SIGN"]}
+  ],
+  "reference_patterns": {
+    "chainage": "(?<![A-Za-z0-9])(?:K|DK|AK)\\d{1,5}(?:\\+|-)\\s*\\d{1,4}(?![A-Za-z0-9])",
+    "pile_no": "(?<![A-Za-z0-9])P\\d{1,4}[A-Za-z]?(?![A-Za-z0-9])",
+    "coordinate": "(?<![A-Za-z0-9])[XY]\\s*[:：]?\\s*[-+]?\\d{3,}\\.?\\d*"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,5}",
+  "unit_patterns": {"mm": ["单位\\s*[:：]?\\s*mm", "mm"], "m": ["单位\\s*[:：]?\\s*m"]},
+  "layer_rules": [
+    {"category": "bridge", "system": "bridge", "patterns": ["桥", "BRIDGE", "PIER", "BEAM"]},
+    {"category": "tunnel", "system": "tunnel", "patterns": ["隧道", "TUNNEL", "洞"]},
+    {"category": "road", "system": "road", "patterns": ["道路", "ROAD", "路线"]},
+    {"category": "traffic", "system": "traffic_safety", "patterns": ["交通", "标志", "TRAFFIC", "SIGN"]}
+  ]
+}

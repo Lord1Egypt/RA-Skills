@@ -1,0 +1,13 @@
+name: de-ai
+version: 1.0.0
+description: "自动扫描项目生成HTML检测报告，检测AI常用色、Emoji图标、英文报错暴露，支持一键替换为专业品牌风格"
+category: ui-design
+author: moan19921019-code
+tags:
+  - UI美化
+  - 品牌设计
+  - 前端优化
+  - 去AI味道
+  - 配色替换
+license: MIT
+homepage: https://github.com/moan19921019-code/remove-ai-sence

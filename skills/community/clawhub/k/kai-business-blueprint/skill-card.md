@@ -1,48 +1,54 @@
-## Description: <br>
-Turns presales requirements, meeting notes, and solution materials into editable business capability blueprints, swimlane flows, application architecture diagrams, and exports such as JSON, HTML, SVG, draw.io, Excalidraw, or Mermaid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns presales requirements, meeting notes, and solution materials into editable business capability blueprints, swimlane flows, application architecture diagrams, and exports such as JSON, HTML viewers, SVG, draw.io, Excalidraw, and Mermaid.
 
-## Publisher: <br>
-[kaisersong](https://clawhub.ai/user/kaisersong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaisersong](https://clawhub.ai/user/kaisersong)
 
-## Use Case: <br>
-Developers, solution architects, and presales teams use this skill to convert raw requirements or meeting notes into structured blueprint JSON, visual viewers, diagrams, and downstream projection files for reports or slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business materials provided to the skill may be transformed into local blueprint files, diagrams, patch logs, and audit metadata. <br>
-Mitigation: Use a controlled workspace for sensitive engagements and review generated files before sharing them outside the workspace. <br>
-Risk: Command-line arguments may be retained in export audit files. <br>
-Mitigation: Do not pass tokens, passwords, customer secrets, or sensitive source text as command-line arguments. <br>
-Risk: Generated HTML, SVG, JSON, and diagram exports may include business details from the source material. <br>
-Mitigation: Review exported artifacts before publishing, emailing, or committing them. <br>
+## Use Case:
 
+Developers and solution engineers use this skill to convert raw presales inputs into canonical blueprint JSON and visual outputs for review, editing, and downstream report or slide workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaisersong/kai-business-blueprint) <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Blueprint Schema](references/blueprint-schema.md) <br>
-- [Entities Schema](references/entities-schema.md) <br>
-- [Systems Schema](references/systems-schema.md) <br>
-- [Export Quality Evals](evals/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [JSON blueprint files, Markdown guidance, shell commands, static HTML viewers, SVG, draw.io, Excalidraw, Mermaid, and projection JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts are intended to be written locally, commonly under a workspace project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.15.0 (source: server release evidence) <br>
+Risk: Crafted blueprint content can inject JavaScript into the generated HTML viewer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix generated viewers before opening blueprints from untrusted sources, and avoid generating or opening HTML viewers for third-party blueprint JSON until entity IDs are validated or escaped correctly.
+
+## Reference(s):
+
+- [Business Blueprint Skill page](https://clawhub.ai/kaisersong/skills/kai-business-blueprint)
+- [Blueprint schema](references/blueprint-schema.md)
+- [Entities schema](references/entities-schema.md)
+- [Systems schema](references/systems-schema.md)
+- [Architecture design system](references/architecture-design-system.md)
+- [Test and eval strategy](references/test-and-eval-strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, HTML, SVG, draw.io, Excalidraw, Mermaid, and shell-command artifacts generated through the skill scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated project artifacts are intended for projects/workspace/ rather than the repository root.]
+
+## Skill Version(s):
+
+0.15.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

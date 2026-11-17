@@ -1,43 +1,59 @@
-## Description: <br>
-Generates bilingual Chinese-English Word portfolios for Hong Kong secondary school applications using templates for traditional, direct-subsidy/private, and international schools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bilingual Hong Kong secondary-school application portfolio Word documents from structured student data, with templates for traditional local schools, direct-subsidy or private schools, and international schools.
 
-## Publisher: <br>
-[wuchenyao-tech](https://clawhub.ai/user/wuchenyao-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuchenyao-tech](https://clawhub.ai/user/wuchenyao-tech)
 
-## Use Case: <br>
-Parents, guardians, and education advisors use this skill to collect student profile data and generate editable .docx portfolios for Hong Kong secondary school applications. It supports conversational or JSON-driven workflows and provides school-style-specific layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Hong Kong <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can handle sensitive information about minors, including identity details, addresses, phone numbers, school records, awards, and teacher comments. <br>
-Mitigation: Avoid entering ID numbers, full addresses, phone numbers, or teacher contact details unless a school specifically requires them, and treat generated Word/PDF files as sensitive documents. <br>
-Risk: The security evidence flags insufficient privacy guidance and activation scoping for a school-application workflow. <br>
-Mitigation: Use the skill only for the intended school-application portfolio workflow, review generated content before sharing, and store or transmit outputs only through appropriate channels. <br>
+## Use Case:
 
+Parents, education consultants, and agents use this skill to turn Hong Kong secondary-school application data into a polished bilingual portfolio document. It is intended for local document generation and school-application preparation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuchenyao-tech/hk-student-portfolio) <br>
-- [Publisher profile](https://clawhub.ai/user/wuchenyao-tech) <br>
-- [Miss Kirby Portfolio guide](https://www.misskirby.com/portfoliomaking) <br>
-- [Big Bang Academy secondary intake portfolio guide](https://www.bigbangacademyhk.com/blog-zh/secondary-intake-portfolio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON student data, shell commands, and generated Word (.docx) files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Word/PDF derivatives may contain sensitive information about a minor and should be handled as sensitive documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence and artifact metadata) <br>
+Risk: The workflow can collect sensitive child and family data, including identity numbers, birth dates, addresses, contact details, guardian information, grades, and recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact fields that are not required by the target school, avoid entering exact identifiers unless necessary, store generated Word or PDF files in access-controlled locations, and delete drafts when no longer needed.
+
+Risk: Generated application content may overstate achievements or include inaccurate school-application claims if the input data is incomplete or embellished.
+
+Mitigation: Review the portfolio with the applicant and guardian, verify awards and rankings against source records, and keep the included declaration accurate before submission.
+
+Risk: The skill depends on local Python execution and document-generation dependencies.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions and review files before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuchenyao-tech/skills/hk-student-portfolio)
+- [Miss Kirby Portfolio guide](https://www.misskirby.com/portfoliomaking)
+- [Big Bang Academy secondary intake portfolio guide](https://www.bigbangacademyhk.com/blog-zh/secondary-intake-portfolio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON data structures, Python commands, and generated Word .docx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses python-docx locally; generated documents may be converted to PDF outside the skill.]
+
+## Skill Version(s):
+
+2.2.0 (source: SKILL.md frontmatter, artifact/_meta.json, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

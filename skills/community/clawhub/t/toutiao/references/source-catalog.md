@@ -31,7 +31,7 @@
 - 美国：
   - https://www.whitehouse.gov/
   - https://www.ftc.gov/
-  - https://www.nist.gov/itl/ai-risk-management-framework
+  - https://www.nist.gov/itl/ai-riREDACTED-SECRET
 - 欧盟：
   - https://digital-strategy.ec.europa.eu/
   - https://artificialintelligenceact.eu/

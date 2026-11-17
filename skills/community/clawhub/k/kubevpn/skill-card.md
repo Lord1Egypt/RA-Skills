@@ -1,43 +1,64 @@
-## Description: <br>
-KubeVPN is a cloud-native dev tool to connect a local machine to Kubernetes cluster networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KubeVPN helps agents provide guidance for connecting local machines to Kubernetes cluster networks, intercepting workload traffic, running workloads locally, and syncing code into cluster workloads.
 
-## Publisher: <br>
-[wencaiwulue](https://clawhub.ai/user/wencaiwulue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wencaiwulue](https://clawhub.ai/user/wencaiwulue)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to get KubeVPN command guidance for local development, debugging, cluster-network access, traffic interception, local workload simulation, and hot-reload workflows against Kubernetes clusters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: KubeVPN workflows can change routing, proxy traffic, inject sidecars, run workload images locally, sync code, reset workloads, or uninstall cluster components. <br>
-Mitigation: Use only authorized kube contexts, prefer non-production namespaces and header-scoped routing, and confirm the context, namespace, workload, and cleanup plan before running proxy, run, sync, reset, or uninstall commands. <br>
-Risk: Kubernetes credentials, SSH details, tokens, passwords, or kubeconfig JSON can be exposed through command history or logs if supplied inline. <br>
-Mitigation: Use least-privilege kube contexts and avoid placing secrets or kubeconfig JSON directly in commands, chat transcripts, shell history, or logs. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to get practical KubeVPN command guidance for local Kubernetes development, debugging remote workloads, selective traffic routing, cluster access through SSH jump hosts, and cleanup operations.
 
-## Reference(s): <br>
-- [KubeVPN CLI Command Reference](references/commands.md) <br>
-- [KubeVPN Architecture](references/architecture.md) <br>
-- [KubeVPN install script](https://kubevpn.dev/install.sh) <br>
-- [KubeVPN Helm repository](https://kubevpn.dev/helm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command guidance should be reviewed against the active kube context, namespace, workload, and cleanup requirements before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.14 (source: server release evidence) <br>
+Risk: The skill includes a pipe-to-shell installation command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install KubeVPN through a trusted package manager or verified signed release instead of piping a remote script to a shell.
+
+Risk: KubeVPN commands can make high-impact Kubernetes and Docker changes, including traffic interception, workload injection, and local privileged containers.
+
+Mitigation: Use least-privilege kubeconfigs, prefer non-production namespaces, check injected or deployed resources before running commands, and avoid privileged local containers unless required.
+
+Risk: Inline tokens, passwords, kubeconfigs, and SSH credentials can expose cluster or jump-host access.
+
+Mitigation: Avoid inline secrets, prefer existing kubeconfig and SSH config references, and keep credentials out of prompts and command history.
+
+Risk: Traffic interception can disrupt shared workloads when all inbound traffic is proxied to a local machine.
+
+Mitigation: Use header-based routing where possible and run cleanup commands such as leave, disconnect, quit, reset, or uninstall after use.
+
+## Reference(s):
+
+- [KubeVPN CLI Command Reference](references/commands.md)
+- [KubeVPN Architecture](references/architecture.md)
+- [KubeVPN Helm Repository](https://kubevpn.dev/helm)
+- [ClawHub kubevpn Skill Page](https://clawhub.ai/wencaiwulue/skills/kubevpn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Kubernetes, Docker, Helm, SSH, and kubeconfig command options tailored to the user's cluster workflow.]
+
+## Skill Version(s):
+
+2.9.14 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

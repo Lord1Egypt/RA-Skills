@@ -1,39 +1,58 @@
-## Description: <br>
-碎片知识缝纫师 helps agents collect scattered notes, files, screenshots, and web content, discover relationships with an existing local knowledge base, create connection notes, and draft outlines when a topic has enough fragments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+碎片知识缝纫师 helps users collect scattered notes and files, identify relationships among knowledge fragments, and generate connection notes or outline drafts.
 
-## Publisher: <br>
-[TeamoPlum](https://clawhub.ai/user/TeamoPlum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teamoplum](https://clawhub.ai/user/teamoplum)
 
-## Use Case: <br>
-External users and developers use this skill to turn scattered personal or project knowledge into structured local notes, relationship summaries, and outline drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided notes, files, screenshots, or web content may be retained in the local knowledge base. <br>
-Mitigation: Avoid adding secrets, credentials, regulated data, or private chats unless local retention is intended, and periodically review or delete generated knowledge files. <br>
+## Use Case:
 
+Knowledge workers, researchers, product teams, and developers use this skill to organize fragmented notes from text, documents, meetings, and web sources into a local knowledge base. It helps them find related fragments and draft Markdown connection notes, PRD supplements, weekly summaries, and topic outlines.
 
-## Reference(s): <br>
-- [Fragment Metadata Fields](references/fields.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/TeamoPlum/fragment-stitcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown notes, JSON-like structured fragment records, Python API examples, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-provided knowledge locally when a knowledge base path or default knowledge directory is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can ingest user-provided local files and persist their contents in a configured knowledge base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the file path and sensitivity of the content before collection, and avoid storing secrets, private chats, or sensitive business files unless local persistence is acceptable.
+
+Risk: Generated fragments, connection notes, and outlines may retain sensitive source material in local knowledge files.
+
+Mitigation: Review and delete generated knowledge files when they are no longer needed or when they include sensitive content.
+
+Risk: Relationship notes and outline drafts are heuristic and may overstate or miss connections between fragments.
+
+Mitigation: Review generated connections and outlines before relying on them for decisions or publishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teamoplum/skills/fragment-stitcher)
+- [Fragment metadata fields](artifact/references/fields.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, JSON-like Python dictionaries, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist user-provided fragments, connection notes, and outlines to a configured local knowledge base.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

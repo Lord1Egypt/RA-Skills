@@ -1,41 +1,58 @@
-## Description: <br>
-实时资讯观点博客写作助手。输入一个技术新闻链接或主题，输出深度、有观点、带真实引用和截图的公众号/博客文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理围绕技术新闻链接或主题进行实时调研，产出有观点、带真实引用和截图素材的公众号或博客文章。
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Writers, editors, and technical communicators use this skill to research current AI and technology news, compare official and community sources, and draft viewpoint-driven Chinese blog or WeChat articles with citations and screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can browse public sources and use screenshots or quotations from third-party pages. <br>
-Mitigation: Review citations, quoted viewpoints, and screenshots for accuracy, copyright, privacy, and publication suitability before publishing. <br>
-Risk: The skill may use npx or Playwright commands to capture webpages. <br>
-Mitigation: Run capture commands only in an approved environment and inspect generated files before distribution. <br>
+## Use Case:
 
+External writers, analysts, and content teams use this skill to turn current AI or technology news topics into researched Chinese blog or WeChat-style articles with source citations, representative reactions, analysis, and screenshot assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessy-huang/news-insight-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/jessy-huang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown article with cited links and a generated-images folder of screenshot files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May browse public sources, quote third-party viewpoints, and capture webpage screenshots for article evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill directs agents to perform live web research, where sources or quoted reactions may be incorrect, stale, or unverifiable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify factual claims and quotations against primary or reputable sources, and remove any claim or quote that cannot be confirmed.
+
+Risk: The skill suggests unpinned npx commands, which can run changing tool versions.
+
+Mitigation: Use pinned, trusted, preinstalled tool versions where possible and review commands before execution.
+
+Risk: The skill asks agents to browse and screenshot arbitrary URLs, which could capture private or logged-in content.
+
+Mitigation: Restrict screenshots to trusted public sources, avoid authenticated pages, and review generated images before publication.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/jessy-huang/skills/news-insight-writer)
+- [ClawHub publisher profile](https://clawhub.ai/user/jessy-huang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown article with source citations and linked screenshot assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a generated-images folder containing screenshots referenced by the article.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

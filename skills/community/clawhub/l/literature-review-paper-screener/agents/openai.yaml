@@ -1,0 +1,9 @@
+name: literature-review-paper-screener
+description: >-
+  Literature Review Paper Screener local agent: search literature, collect evidence, build one
+  Evidence Record per paper with levels A-D, hand the records to a private Cloud template, audit and
+  render Paper Sheet + Reading List Excel outputs. Use only for Literature Review tasks in the
+  Medical Science focus; not for general citation management, other task types, or disciplines this
+  package is not configured for. Documented in SKILL.md.
+short_description: "Literature review screening: search, evidence, Excel (Medical Science only)."
+default_prompt: "Literature Review Paper Screener, local internet-enabled stage. Collect literature evidence, assemble one Evidence Record per paper with Evidence Availability Levels A-D, hand the records to the private cloud template for screening, then audit the returned results and render the Excel Paper Sheet and Reading List. The workflow, its operating rules, and the scope of each bundled script are documented in SKILL.md."

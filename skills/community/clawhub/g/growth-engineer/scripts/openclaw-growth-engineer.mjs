@@ -9,13 +9,79 @@ const PRIORITY_WEIGHT = {
     medium: 2,
     low: 1,
 };
+const AGENT_BRIEF_KIND = 'analyticscli.agent-brief';
+const AGENT_BRIEF_SEVERITY_PRIORITY = {
+    critical: 'high',
+    warning: 'medium',
+    info: 'low',
+};
 const AREA_KEYWORDS = {
     onboarding: ['onboarding', 'welcome', 'signup', 'register', 'tutorial', 'first_session'],
+    activation: [
+        'activation',
+        'activate',
+        'first_event',
+        'first_query',
+        'first_value',
+        'time_to_value',
+        'project_created',
+        'signup_completed',
+    ],
     paywall: ['paywall', 'pricing', 'subscription', 'purchase', 'premium', 'trial', 'revenuecat', 'paddle'],
     retention: ['retention', 'streak', 'come_back', 'session', 'habit', 'reminder', 'notification'],
     conversion: ['checkout', 'purchase', 'billing', 'trial', 'subscribe', 'price', 'paddle'],
+    acquisition: [
+        'acquisition',
+        'campaign',
+        'utm',
+        'referrer',
+        'first_touch',
+        'landing_path',
+        'source',
+        'medium',
+        'cac',
+        'roas',
+    ],
     revenue: ['revenue', 'mrr', 'subscriber', 'subscription', 'refund', 'chargeback', 'paddle', 'revenuecat'],
     crash: ['error', 'exception', 'crash', 'stack', 'sentry', 'fatal'],
+    performance: [
+        'performance',
+        'latency',
+        'slow',
+        'response_time',
+        'web_vital',
+        'lcp',
+        'inp',
+        'cls',
+        'tti',
+        'cold_start',
+    ],
+    web: ['web', 'browser', 'pageview', 'landing', 'dashboard', 'cta', 'form', 'route', 'core web vitals'],
+    agent: [
+        'agent',
+        'mcp',
+        'cli',
+        'tool_call',
+        'model_run',
+        'prompt',
+        'completion',
+        'task_success',
+        'token',
+        'guardrail',
+    ],
+    'data-quality': [
+        'data quality',
+        'instrumentation',
+        'identity',
+        'runtimeenv',
+        'schema',
+        'stale ingestion',
+        'delayed ingestion',
+        'release data',
+        'debug data',
+        'consent',
+        'taxonomy',
+    ],
     marketing: ['store', 'metadata', 'keyword', 'seo', 'landing', 'copy', 'conversion_copy', 'gsc', 'dataforseo', 'search console'],
     infrastructure: ['coolify', 'deployment', 'deploy', 'hosting', 'server', 'health check', 'availability'],
 };
@@ -24,6 +90,11 @@ const DEFAULT_PROPOSALS = {
         'Move highest-friction step later in onboarding and reduce required fields in first session.',
         'Add event-level instrumentation around each onboarding step to verify exact drop-off.',
         'Ship one A/B variant with shorter copy and a clearer progression indicator.',
+    ],
+    activation: [
+        'Define the first-value event and instrument each step from signup to that outcome.',
+        'Remove one avoidable step before first value and compare time-to-value by cohort.',
+        'Verify project creation, SDK initialization, first event, and first successful query as distinct outcomes.',
     ],
     paywall: [
         'Reposition paywall after first user value moment instead of at first launch.',
@@ -40,6 +111,11 @@ const DEFAULT_PROPOSALS = {
         'Clarify plan differentiation and default to the strongest value package.',
         'Track abandonment reasons at each step to drive follow-up fixes.',
     ],
+    acquisition: [
+        'Preserve privacy-safe first-touch source, medium, campaign, referrer host, and landing path through signup.',
+        'Compare qualified activation by channel instead of optimizing pageview volume alone.',
+        'Standardize UTM naming and add a bounded landing-to-activation funnel for each active campaign.',
+    ],
     revenue: [
         'Compare revenue movement with activation, checkout, and recent release data before changing pricing.',
         'Inspect plan, geography, and cohort mix so the issue is tied to a specific monetization surface.',
@@ -49,6 +125,26 @@ const DEFAULT_PROPOSALS = {
         'Reproduce the issue with a deterministic test case and lock a failing assertion.',
         'Harden null/undefined boundaries around failing callsites.',
         'Add telemetry breadcrumbs to isolate the exact pre-crash state.',
+    ],
+    performance: [
+        'Measure the affected latency or Web Vital at p50 and p95 by release and product surface.',
+        'Profile the slow path, remove the largest blocking dependency, and protect it with a regression budget.',
+        'Correlate performance movement with activation and conversion before assigning business impact.',
+    ],
+    web: [
+        'Trace the landing-page or dashboard journey from entry to the primary outcome with route and CTA context.',
+        'Remove the highest-friction form or navigation step and validate the change on release traffic.',
+        'Check responsive behavior, accessibility, and Core Web Vitals on the affected browser surface.',
+    ],
+    agent: [
+        'Instrument agent task starts, tool calls, terminal outcomes, retries, latency, and bounded cost without storing prompt PII.',
+        'Segment task success by agent, model, tool, and product surface to isolate the failing capability.',
+        'Add a deterministic evaluation case and a fallback path before widening autonomous permissions.',
+    ],
+    'data-quality': [
+        'Restore trustworthy release telemetry before making product or growth decisions from the affected metric.',
+        'Add an automated schema, freshness, identity, and Release/Debug separation check for this signal.',
+        'Document the metric semantics and ensure aggregate event counts are never presented as people or retention.',
     ],
     infrastructure: [
         'Fix the deployment or hosting blocker before increasing traffic to the affected surface.',
@@ -238,7 +334,7 @@ Usage:
   node scripts/openclaw-growth-engineer.mjs --analytics <file> [options]
 
 Required:
-  --analytics <file>     Analytics summary JSON
+  --analytics <file>     Analytics summary or analyticscli.agent-brief JSON
 
 Optional:
   --revenuecat <file>    RevenueCat summary JSON
@@ -273,12 +369,114 @@ async function readJson(filePath) {
     const raw = await fs.readFile(filePath, 'utf8');
     return JSON.parse(raw);
 }
+function isAnalyticsAgentBrief(payload) {
+    return payload?.kind === AGENT_BRIEF_KIND;
+}
+function normalizeAgentBriefArea(finding, payload) {
+    const code = String(finding?.code || '').trim().toUpperCase();
+    if (code === 'NO_RELEASE_EVENTS' ||
+        code === 'STALE_INGESTION' ||
+        code === 'DELAYED_INGESTION' ||
+        code === 'INSTRUMENTATION_GAPS' ||
+        code === 'MISSING_RUNTIME_ENV' ||
+        code === 'IDENTITY_NOT_MEASURABLE' ||
+        code === 'CONTEXT_HEALTHY' ||
+        /(DATA_QUALITY|INSTRUMENTATION|IDENTITY|SCHEMA|TAXONOMY|INGESTION|FRESHNESS)/.test(code)) {
+        return 'data-quality';
+    }
+    if (code === 'MISSING_ACQUISITION_CONTEXT' || /(ACQUISITION|ATTRIBUTION|CAMPAIGN|UTM|REFERRER)/.test(code)) {
+        return 'acquisition';
+    }
+    if (code === 'MISSING_REVENUE_CONTEXT' || /(REVENUE|MONETIZATION|PURCHASE|SUBSCRIPTION)/.test(code)) {
+        return 'revenue';
+    }
+    if (/(PERFORMANCE|LATENCY|WEB_VITAL|LCP|INP|CLS|COLD_START)/.test(code)) {
+        return 'performance';
+    }
+    if (/(AGENT|MCP|TOOL_CALL|MODEL_RUN|PROMPT)/.test(code)) {
+        return 'agent';
+    }
+    if (/(ACTIVATION|FIRST_VALUE|TIME_TO_VALUE)/.test(code)) {
+        return 'activation';
+    }
+    if (/(WEB|LANDING|DASHBOARD|BROWSER)/.test(code)) {
+        return 'web';
+    }
+    const text = [
+        finding?.title,
+        finding?.evidence,
+        finding?.recommendation,
+    ]
+        .filter(Boolean)
+        .join(' ');
+    const inferred = inferAreaFromText(text);
+    if (inferred !== 'general') {
+        return inferred;
+    }
+    return payload?.focus === 'web' ? 'web' : 'general';
+}
+function normalizeAgentBriefSignals(payload, source) {
+    const findings = Array.isArray(payload?.findings) ? payload.findings : [];
+    const project = String(payload?.project || payload?.projectName || payload?.projectId || '').trim() || null;
+    const focus = String(payload?.focus || '').trim().toLowerCase() || null;
+    const dataMode = String(payload?.dataMode || '').trim().toLowerCase() || null;
+    const detectedCapabilities = toStringArray(payload?.instrumentation?.detectedCapabilities);
+    const requestedRange = String(payload?.requestedRange || '').trim();
+    const observedSince = String(payload?.observedRange?.since || '').trim();
+    const observedUntil = String(payload?.observedRange?.until || '').trim();
+    return findings
+        .filter((finding) => finding && typeof finding === 'object')
+        .map((finding, index) => {
+        const severity = String(finding.severity || 'warning').trim().toLowerCase();
+        const priority = AGENT_BRIEF_SEVERITY_PRIORITY[severity] || 'medium';
+        const code = String(finding.code || `FINDING_${index + 1}`).trim() || `FINDING_${index + 1}`;
+        const area = normalizeAgentBriefArea(finding, payload);
+        const findingEvidence = toStringArray(finding.evidence);
+        const contextEvidence = [
+            `Finding code: ${code}`,
+            dataMode ? `Data mode: ${dataMode}` : null,
+            requestedRange ? `Requested range: ${requestedRange}` : null,
+            observedSince && observedUntil ? `Observed range: ${observedSince} to ${observedUntil}` : null,
+        ].filter(Boolean);
+        const keywordCandidates = [
+            area,
+            focus,
+            focus ? `focus_${focus}` : null,
+            ...code.toLowerCase().split(/[^a-z0-9]+/),
+            ...detectedCapabilities,
+        ].filter(Boolean);
+        return {
+            source,
+            id: `agent_brief_${slugify(project || source) || 'project'}_${slugify(code) || index + 1}`,
+            title: String(finding.title || code),
+            area,
+            priority,
+            evidence: [...findingEvidence, ...contextEvidence],
+            suggestedActions: toStringArray(finding.recommendation),
+            keywords: [...new Set(keywordCandidates)],
+            metric: null,
+            deltaPercent: null,
+            currentValue: null,
+            baselineValue: null,
+            confidence: null,
+            releaseVersions: [],
+            app: null,
+            project,
+            focus,
+            dataMode,
+            sourceUrl: null,
+        };
+    });
+}
 function normalizeSignals(payload, source, service = source) {
     if (!payload || typeof payload !== 'object') {
         return [];
     }
     const result = [];
     const serviceKind = classifyServiceKind(service);
+    if (isAnalyticsAgentBrief(payload)) {
+        result.push(...normalizeAgentBriefSignals(payload, source));
+    }
     const normalizeApp = (item) => item?.app
         ? String(item.app)
         : item?.sourceProject
@@ -289,6 +487,14 @@ function normalizeSignals(payload, source, service = source) {
                     ? String(payload.project)
                     : null;
     const normalizeSourceUrl = (item) => String(item?.sourceUrl || item?.source_url || item?.issueUrl || item?.issue_url || item?.permalink || '').trim();
+    const normalizeOccurredAt = (item) => String(item?.occurredAt ||
+        item?.occurred_at ||
+        item?.lastSeenAt ||
+        item?.last_seen_at ||
+        item?.lastSeen ||
+        item?.latestEventAt ||
+        item?.latest_event_at ||
+        '').trim() || null;
     if (Array.isArray(payload.signals)) {
         for (const signal of payload.signals) {
             const sourceUrl = normalizeSourceUrl(signal);
@@ -309,6 +515,7 @@ function normalizeSignals(payload, source, service = source) {
                 releaseVersions: toStringArray(signal.releaseVersions || signal.release_versions),
                 app: normalizeApp(signal),
                 sourceUrl: sourceUrl || null,
+                occurredAt: normalizeOccurredAt(signal),
             });
         }
     }
@@ -338,6 +545,7 @@ function normalizeSignals(payload, source, service = source) {
                 releaseVersions: toStringArray(issue.releaseVersions || issue.release_versions),
                 app: normalizeApp(issue),
                 sourceUrl: sourceUrl || null,
+                occurredAt: normalizeOccurredAt(issue),
             });
         }
     }
@@ -395,6 +603,14 @@ function getRecognizedSignalContainers(payload, service = 'custom') {
     }
     const containers = [];
     const serviceKind = classifyServiceKind(service);
+    if (isAnalyticsAgentBrief(payload)) {
+        if (Array.isArray(payload.findings)) {
+            containers.push(`agent-brief findings[${payload.findings.length}]`);
+        }
+        else {
+            containers.push('agent-brief findings[invalid]');
+        }
+    }
     if (Array.isArray(payload.signals)) {
         containers.push(`signals[${payload.signals.length}]`);
     }
@@ -428,15 +644,19 @@ function summarizeNoSignalsSource({ payload, source, service }) {
 }
 function buildNoSignalsError(sourceEntries) {
     const summaries = sourceEntries.map(summarizeNoSignalsSource);
+    const hasMalformedAgentBrief = sourceEntries.some((entry) => isAnalyticsAgentBrief(entry.payload) && !Array.isArray(entry.payload?.findings));
     const hasRecognizedShape = sourceEntries.some((entry) => getRecognizedSignalContainers(entry.payload, entry.service).length > 0);
-    const headline = hasRecognizedShape
-        ? 'No actionable growth signals found. Source JSON shape is recognized, but all signal containers are empty.'
-        : 'No signals found. Check input JSON shape (expected: signals[], crash issues[], or feedback items[]).';
+    const headline = hasMalformedAgentBrief
+        ? 'No actionable growth signals found. The AnalyticsCLI Agent Brief kind is recognized, but `findings` must be an array.'
+        : hasRecognizedShape
+            ? 'No actionable growth signals found. Source JSON shape is recognized, but all signal containers are empty.'
+            : 'No signals found. Check input JSON shape (expected: analyticscli.agent-brief findings[], signals[], crash issues[], or feedback items[]).';
     return [
         headline,
         'Sources:',
         ...summaries.map((summary) => `- ${summary}`),
         'Next steps:',
+        '- Regenerate agent context with `analyticscli --format json agent brief --last 14d --focus auto` and pass that JSON via `--analytics`.',
         '- Leave AnalyticsCLI project scope unpinned by default; the exporter scans all accessible projects unless a task explicitly needs `--project <id>`.',
         '- Verify accessible AnalyticsCLI projects have release analytics events in the requested window, or enable additional sources such as ASC CLI, RevenueCat, Sentry, or feedback.',
     ].join('\n');
@@ -604,8 +824,23 @@ function buildIssueDraft(signal, matchedFiles, titlePrefix, activeCadences = [])
         ? signal.suggestedActions
         : DEFAULT_PROPOSALS[signal.area] || DEFAULT_PROPOSALS.general;
     const evidence = [...signal.evidence];
-    if (signal.app) {
-        evidence.unshift(`App: ${signal.app}`);
+    const contextEvidence = [];
+    if (signal.project && !evidence.some((line) => /^project:/i.test(String(line)))) {
+        contextEvidence.push(`Project: ${signal.project}`);
+    }
+    if (signal.focus && !evidence.some((line) => /^focus:/i.test(String(line)))) {
+        contextEvidence.push(`Focus: ${signal.focus}`);
+    }
+    if (signal.dataMode && !evidence.some((line) => /^data mode:/i.test(String(line)))) {
+        contextEvidence.push(`Data mode: ${signal.dataMode}`);
+    }
+    if (signal.app &&
+        signal.app !== signal.project &&
+        !evidence.some((line) => /^app:/i.test(String(line)))) {
+        contextEvidence.push(`App: ${signal.app}`);
+    }
+    if (contextEvidence.length > 0) {
+        evidence.unshift(...contextEvidence);
     }
     if (signal.sourceUrl && !evidence.some((line) => String(line).includes(signal.sourceUrl))) {
         evidence.push(`Issue link: ${signal.sourceUrl}`);
@@ -669,7 +904,11 @@ function buildIssueDraft(signal, matchedFiles, titlePrefix, activeCadences = [])
         expected_impact: expectedImpact,
         confidence,
         app: signal.app || null,
+        project: signal.project || null,
+        focus: signal.focus || null,
+        data_mode: signal.dataMode || null,
         source_url: signal.sourceUrl || null,
+        occurred_at: signal.occurredAt || null,
         cadences: activeCadences.map((cadence) => cadence.key),
     };
 }
@@ -680,8 +919,26 @@ function inferExpectedImpact(signal) {
     if (signal.area === 'marketing') {
         return 'Increase top-of-funnel acquisition quality and store listing conversion.';
     }
+    if (signal.area === 'acquisition') {
+        return 'Increase attributable, qualified acquisition and expose which channels create activated users.';
+    }
+    if (signal.area === 'activation') {
+        return 'Shorten time-to-first-value and increase the share of new users who reach a measurable activation outcome.';
+    }
     if (signal.area === 'revenue') {
         return 'Improve revenue quality, subscriber growth, or monetization reliability with measurable business impact.';
+    }
+    if (signal.area === 'performance') {
+        return 'Improve response speed and experience reliability while measuring the downstream effect on activation and conversion.';
+    }
+    if (signal.area === 'web') {
+        return 'Improve the affected landing-page or dashboard journey and lift its primary release-traffic outcome.';
+    }
+    if (signal.area === 'agent') {
+        return 'Increase agent task success, tool reliability, and safe product adoption with bounded latency and cost.';
+    }
+    if (signal.area === 'data-quality') {
+        return 'Restore decision-grade telemetry so growth and product changes are based on correctly scoped events, users, and environments.';
     }
     if (signal.area === 'paywall' || signal.area === 'conversion') {
         return 'Increase trial start and paid conversion rates in primary monetization flow.';
@@ -706,6 +963,8 @@ function buildPrPrompt(signal, files, proposals) {
     return [
         `Implement issue: ${signal.title}.`,
         `Focus area: ${signal.area}.`,
+        ...(signal.project ? [`Analytics project: ${signal.project}.`] : []),
+        ...(signal.focus ? [`Product focus: ${signal.focus}.`] : []),
         `Likely files: ${primaryFiles}.`,
         'Requirements:',
         actions,
@@ -763,6 +1022,9 @@ function signalSearchText(signal) {
         signal.area,
         signal.title,
         signal.metric,
+        signal.project,
+        signal.focus,
+        signal.dataMode,
         ...signal.evidence,
         ...signal.suggestedActions,
         ...signal.keywords,

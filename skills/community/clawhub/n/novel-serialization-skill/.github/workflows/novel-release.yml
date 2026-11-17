@@ -1,0 +1,136 @@
+name: Novel Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'chapter-*'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Chapter Format
+        run: |
+          echo "Validating chapter file format..."
+          # Check that chapter files follow naming convention: ch-{number}-{title}.md
+          # Two fixes over the spec text, both needed for this to be a real gate:
+          #  1. `while` is fed by process substitution instead of a pipe, so `exit 1`
+          #     is not swallowed by the subshell.
+          #  2. Every top-level file under chapters/ is examined, not only those that
+          #     already match `ch-*`; otherwise a wrongly-named chapter is never seen
+          #     and the gate can never fail.
+          # `README.md` is allowed as an index; nested directories are out of scope.
+          if [ ! -d chapters ]; then
+            echo "No chapters/ directory in this repository; skipping chapter format validation."
+          else
+            status=0
+            while read -r file; do
+              [ -n "$file" ] || continue
+              case "$file" in chapters/README.md) continue ;; esac
+              if [[ ! "$file" =~ ^chapters/ch-[0-9]+-.+\.md$ ]]; then
+                echo "ERROR: Invalid chapter file format: $file"
+                status=1
+              fi
+            done < <(find chapters/ -maxdepth 1 -type f)
+            [ "$status" -eq 0 ] || exit 1
+          fi
+          echo "Chapter format validation passed."
+
+      - name: Verify License Compliance
+        run: |
+          echo "Verifying license compliance..."
+          # Check LICENSE file exists and contains GPL-3.0
+          if [ ! -f LICENSE ]; then
+            echo "ERROR: LICENSE file not found"
+            exit 1
+          fi
+          if ! grep -q "GNU GENERAL PUBLIC LICENSE" LICENSE; then
+            echo "ERROR: LICENSE file does not contain GPL-3.0 text"
+            exit 1
+          fi
+          # Check LICENSES directory for CC BY-NC-SA 4.0
+          if [ ! -d LICENSES ]; then
+            echo "ERROR: LICENSES directory not found"
+            exit 1
+          fi
+          if [ ! -f LICENSES/CC-BY-NC-SA-4.0.txt ]; then
+            echo "ERROR: LICENSES/CC-BY-NC-SA-4.0.txt not found"
+            exit 1
+          fi
+          if ! grep -q "Attribution-NonCommercial-ShareAlike 4.0" LICENSES/CC-BY-NC-SA-4.0.txt; then
+            echo "ERROR: LICENSES/CC-BY-NC-SA-4.0.txt does not contain CC BY-NC-SA 4.0 text"
+            exit 1
+          fi
+          # Spec Section 0.5: every generated novel file MUST begin with the CC BY-NC-SA 4.0
+          # header block. Checking only that the license FILES exist leaves that rule
+          # unenforced, so the novel content itself is inspected here. The header may follow
+          # the YAML frontmatter (see method-patterns-publishing.md Section 3), so the first
+          # 40 lines are scanned rather than a fixed narrow window.
+          if [ -d chapters ]; then
+            lic_status=0
+            while read -r file; do
+              [ -n "$file" ] || continue
+              if ! head -n 40 "$file" | grep -q "Attribution-NonCommercial-ShareAlike 4.0"; then
+                echo "ERROR: missing CC BY-NC-SA 4.0 license header: $file"
+                lic_status=1
+              fi
+            done < <(find chapters/ -maxdepth 1 -type f -name 'ch-*.md')
+            [ "$lic_status" -eq 0 ] || exit 1
+          fi
+          echo "License compliance verification passed."
+
+      - name: Run Continuity Check
+        run: |
+          echo "Running continuity verification..."
+          # Spec Section 6: no chapter publishes without passing checks. A missing module
+          # used to print a WARNING and let the release continue, so it now fails the gate.
+          cont_status=0
+          if [ -f modules/continuity-check/SKILL.md ]; then
+            echo "Continuity check module found."
+          else
+            echo "ERROR: Continuity check module not found (modules/continuity-check/SKILL.md)"
+            cont_status=1
+          fi
+          # Novel content must be accompanied by the state files that make continuity
+          # verifiable; only enforced when this repository actually serialises chapters.
+          if [ -d chapters ] && find chapters/ -maxdepth 1 -type f -name 'ch-*.md' | grep -q .; then
+            for f in state/timeline.md state/character-states.md state/thread-ledger.md; do
+              if [ -f "$f" ]; then
+                echo "State file present: $f"
+              else
+                echo "ERROR: required state file missing: $f"
+                cont_status=1
+              fi
+            done
+          else
+            echo "No chapters/ to verify; skipping state-file checks."
+          fi
+          [ "$cont_status" -eq 0 ] || exit 1
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            chapters/*.md
+            SKILL.md
+            README.md
+
+      - name: Generate Release Notes
+        run: |
+          echo "Generating release notes..."
+          TAG_NAME=${{ github.ref_name }}
+          echo "Release tag: $TAG_NAME"
+          # Extract changelog entries for this version
+          if [ -f CHANGELOG.md ]; then
+            echo "CHANGELOG entries for $TAG_NAME:"
+            sed -n "/## \[$TAG_NAME\]/,/## \[/p" CHANGELOG.md | head -n -1
+          fi

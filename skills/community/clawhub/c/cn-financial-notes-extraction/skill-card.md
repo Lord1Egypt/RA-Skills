@@ -1,41 +1,53 @@
-## Description: <br>
-Extracts detailed financial statement note tables from China A-share annual-report PDFs for analyses that need data beyond the primary financial statements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提取中国 A 股上市公司年报 (PDF) 中的财务报表附注明细。适用于获取主表无法体现的深层数据（如 CapEx 明细、研发费用细分、应收账款账龄、关联方交易等）。
 
-## Publisher: <br>
-[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cgxxxxxxxxxxxx](https://clawhub.ai/user/cgxxxxxxxxxxxx)
 
-## Use Case: <br>
-Financial analysts and data engineers use this skill to locate and extract financial note tables from Chinese A-share annual reports for CapEx, receivables aging, goodwill impairment, related-party transactions, and R&D expense analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local annual-report PDFs using host Python tools. <br>
-Mitigation: Keep input PDFs in a limited project folder and install pdfplumber or OCR tools only from trusted sources. <br>
-Risk: Downloaded financial reports may be untrusted or unsuitable for broad processing. <br>
-Mitigation: Review downloaded reports before broad processing. <br>
-Risk: Multi-page tables or scanned PDFs can produce incomplete extraction results. <br>
-Mitigation: Review extracted tables, merge split tables when needed, and use OCR only after confirming the PDF requires it. <br>
+## Use Case:
 
+External analysts, finance researchers, and developers use this skill to extract detailed financial-note tables from China A-share annual report PDFs for CapEx analysis, receivables aging, goodwill impairment review, related-party transaction review, and R&D expense breakdowns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration instructions] <br>
-**Output Format:** [Markdown with inline Python code and structured data output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides extraction into Dict[List] or DataFrame-style structures from local annual-report PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Scanned, older, or irregularly formatted annual report PDFs may produce incomplete or incorrect table extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate extracted tables against the source PDF pages and use OCR or manual review when PDFs are scanned or table boundaries are unclear.
+
+Risk: The workflow depends on trusted PDF acquisition and a Python environment with pdfplumber available.
+
+Mitigation: Obtain PDFs from trusted sources, review files before parsing, and confirm the execution environment has the required PDF parsing dependency installed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cgxxxxxxxxxxxx/skills/cn-financial-notes-extraction)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, markdown, structured data]
+
+**Output Format:** [Markdown guidance with Python code examples and extracted tables represented as dictionaries, lists, or DataFrames]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on annual report PDF text quality, table layout consistency, selected keywords, and pdfplumber availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

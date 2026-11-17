@@ -1,45 +1,54 @@
-## Description: <br>
-Production skill for orchestrating Claude Code's native agent teams feature for multi-lens reviews, competing-hypotheses debugging, full-stack features, architecture debates, and cross-domain investigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claude Code Agent Teams orchestrates Claude Code's native agent teams feature for multi-lens reviews, competing-hypothesis debugging, full-stack features, architecture debates, and cross-domain investigations.
 
-## Publisher: <br>
-[matthew-a-gordon](https://clawhub.ai/user/matthew-a-gordon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[matthew-a-gordon](https://clawhub.ai/user/matthew-a-gordon)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate Claude Code agent teams for parallel code reviews, debugging, feature work, architecture decisions, performance investigations, and bulk classification or refactoring tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Parallel Claude Code agents can create conflicting or unsafe edits when work boundaries are unclear. <br>
-Mitigation: Assign narrow file or directory ownership, review all diffs and generated files, and run tests before merging. <br>
-Risk: Prompts or team messages can expose secrets or sensitive project data to agent sessions. <br>
-Mitigation: Avoid putting secrets in prompts and keep agent work scoped to the minimum project files needed. <br>
-Risk: Force cleanup can interrupt active Claude Code sessions before work is saved or reviewed. <br>
-Mitigation: Use graceful cleanup by default and use force cleanup only when no important Claude Code session is running. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multiple Claude Code agents on parallel work with clear roles, file boundaries, monitoring, and cleanup workflows. It is suited to reviews, debugging, full-stack implementation, architecture decisions, performance investigations, and data-parallel classification tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/matthew-a-gordon/claude-code-teams) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Claude Code repository](https://github.com/anthropics/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with copy-paste prompts and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces team templates, setup guidance, monitoring commands, cleanup commands, and review or implementation plans for Claude Code agent teams.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, release metadata) <br>
+Risk: Force cleanup can terminate Claude PTY sessions beyond the intended team and may lose in-progress work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts/team-cleanup.sh before use and prefer graceful cleanup. Avoid ./scripts/team-cleanup.sh --force --yes unless no other Claude PTY sessions are active and work loss is acceptable.
+
+Risk: Spawned agents receive the repository and task context they are given and can materially increase token usage.
+
+Mitigation: Limit shared context to what teammates need, define clear file and task boundaries, and right-size the team before spawning agents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matthew-a-gordon/skills/claude-code-teams)
+- [Repository listed in artifact metadata](https://github.com/matthew-a-gordon/claude-code-teams)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with copy-paste prompts, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce team spawn prompts, review findings, debugging plans, ADR drafts, implementation coordination notes, and cleanup or monitoring commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, SKILL.md metadata, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

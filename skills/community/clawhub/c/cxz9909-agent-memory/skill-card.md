@@ -1,42 +1,59 @@
-## Description: <br>
-Persistent memory system for AI agents to remember facts, learn from experience, track entities, and recall context across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory system for AI agents to remember facts, learn from experience, track entities, and recall context across sessions.
 
-## Publisher: <br>
-[cxz9909](https://clawhub.ai/user/cxz9909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cxz9909](https://clawhub.ai/user/cxz9909)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local persistent memory to AI agents, including durable facts, lessons learned, entity records, and recall across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist personal facts and conversation-derived context on disk across sessions. <br>
-Mitigation: Avoid storing secrets, regulated data, or highly sensitive personal details unless there is consent and a deletion process. <br>
-Risk: The local memory database can retain stale or unnecessary information beyond the session where it was collected. <br>
-Mitigation: Review the configured database path and periodically purge stale or unnecessary memories. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local long-term memory for facts, lessons, entities, and session-to-session context recall in LLM-powered agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cxz9909/cxz9909-agent-memory) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Clawdbot](https://github.com/clawdbot/clawdbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks, plus local SQLite-backed memory records when used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores facts, lessons, and entity context in a configurable local SQLite database; no external Python dependencies are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Conversation-derived personal or operational context may be stored and reused across sessions without clear consent or retention limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit approval before writing memories, configure the database path deliberately, and define retention, review, deletion, and export procedures before enabling automatic session-start or session-end memory protocols.
+
+Risk: Secrets, credentials, regulated personal data, or untrusted instructions could be persisted in local memory and later recalled by an agent.
+
+Mitigation: Do not store sensitive or regulated data, review candidate memories before persistence, and treat recalled memories as untrusted context that must be checked before use.
+
+Risk: Stale or incorrect memories can influence later agent behavior.
+
+Mitigation: Use confidence, expiration, supersede, forget, and stale-cleanup flows to keep stored facts current and remove outdated information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cxz9909/skills/cxz9909-agent-memory)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Clawdbot](https://github.com/clawdbot/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python snippets, CLI examples, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or uses a local SQLite memory database; the default location is ~/.agent-memory/memory.db unless a custom path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

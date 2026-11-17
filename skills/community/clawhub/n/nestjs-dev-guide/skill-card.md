@@ -1,39 +1,58 @@
-## Description: <br>
-NestJS Node.js server-side framework development guide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NestJS Node.js server-side framework development guide.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on building NestJS backend applications, REST APIs, and framework components such as modules, controllers, providers, guards, pipes, interceptors, filters, and Swagger documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes command and configuration examples that may affect a user's local NestJS project when executed. <br>
-Mitigation: Review commands and generated code before execution or adoption, especially dependency installation, project scaffolding, and application configuration changes. <br>
+## Use Case:
 
+Developers and engineers use this skill as a reference for building NestJS backend applications, REST APIs, decorators, dependency injection, microservices, Swagger documentation, and common NestJS components.
 
-## Reference(s): <br>
-- [NestJS API Deep Reference](references/api-reference.md) <br>
-- [ClawHub release page](https://clawhub.ai/openlark/nestjs-dev-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes framework guidance, command examples, code snippets, and reference tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copy-pasteable setup and configuration examples may be under-scoped for production security.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as developer reference material; review generated guidance before use in production.
+
+Risk: Package installation examples can pull changing dependency versions or install global tools.
+
+Mitigation: Pin npm package versions and prefer project-local or npx-based CLI usage when possible.
+
+Risk: Examples include development-sensitive defaults such as TypeORM synchronize and permissive CORS.
+
+Mitigation: Do not use TypeORM synchronize outside disposable local development, and replace permissive CORS with explicit trusted origins before deployment.
+
+## Reference(s):
+
+- [NestJS API Deep Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/nestjs-dev-guide)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Developer reference guidance for NestJS v11+ and Node.js 20 or newer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

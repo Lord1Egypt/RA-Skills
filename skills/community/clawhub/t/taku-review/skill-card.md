@@ -1,40 +1,49 @@
-## Description: <br>
-Use after implementation is complete to analyze diffs for security issues, bugs, code quality, scope drift, and missing verification before shipping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taku Review reviews implementation diffs after build work, checking for security issues, bugs, code quality concerns, scope drift, and verification evidence before shipping.
 
-## Publisher: <br>
-[kkenny0](https://clawhub.ai/user/kkenny0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkenny0](https://clawhub.ai/user/kkenny0)
 
-## Use Case: <br>
-Developers and engineering teams use this skill as a delivery gate after implementation work to inspect the current diff, identify blocking defects or security issues, and summarize residual concerns before merge or release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect repository diffs and may run local git or verification commands. <br>
-Mitigation: Use it in version-controlled repositories, inspect command output and edits, and ask for report-only review when automatic fixes are not desired. <br>
-Risk: Review findings can be incorrect or incomplete when intent, test output, or repository context is missing. <br>
-Mitigation: Provide the approved requirements and visible verification evidence, then treat the report as review input rather than a replacement for human judgment. <br>
+## Use Case:
 
+Developers and engineers use Taku Review after implementation to inspect repository diffs, identify blocking delivery risks, and summarize verification evidence and residual concerns before merging or shipping.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kkenny0/taku-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review report with HARD STOPS, CONCERNS, and SUMMARY sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make small local code fixes when the correct change is clear and locally verifiable; does not commit, push, or open pull requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill can automatically edit repository files during review when it considers a fix clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local diffs after each run and invoke it only when code review plus possible fixes are intended.
+
+## Reference(s):
+
+- [Taku Review ClawHub skill page](https://clawhub.ai/kkenny0/skills/taku-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown with HARD STOPS, CONCERNS, and SUMMARY sections; may include code edits or shell commands when auto-fixing clear issues.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires visible verification evidence before reporting a change as ready to ship.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

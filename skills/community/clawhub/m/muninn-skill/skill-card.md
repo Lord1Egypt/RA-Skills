@@ -1,45 +1,61 @@
-## Description: <br>
-Production memory for AI agents. Cloudflare-native with 99.1% LOCOMO accuracy. Knowledge graph, temporal reasoning, multi-hop retrieval. Free tier available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Production memory for AI agents. Cloudflare-native with 99.1% LOCOMO accuracy. Knowledge graph, temporal reasoning, multi-hop retrieval. Free tier available.
 
-## Publisher: <br>
-[phillipneho](https://clawhub.ai/user/phillipneho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[phillipneho](https://clawhub.ai/user/phillipneho)
 
-## Use Case: <br>
-Developers and agent operators use Muninn Memory to add persistent semantic, episodic, and procedural memory to AI agents through MCP tools, with local SQLite/Ollama operation or a hosted cloud API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent memories can contain private or sensitive user data. <br>
-Mitigation: Use local mode for private data, avoid storing secrets, and review memory retention and deletion behavior before deployment. <br>
-Risk: Cloud and model-backed embedding modes can send memory content or queries to configured services. <br>
-Mitigation: Verify environment variables and provider settings before use, and choose local Ollama processing when external processing is not acceptable. <br>
-Risk: Persisted or stale memories can influence later agent responses. <br>
-Mitigation: Use the forget, audit, integrity, and contradiction review capabilities to remove, verify, and reconcile stored memories. <br>
+## Use Case:
 
+Developers and agent operators use Muninn Memory to add persistent semantic, episodic, and procedural memory to AI agents through MCP tools or a cloud API. The skill supports memory storage, recall, session briefings, entity tracking, temporal reasoning, and multi-hop retrieval.
 
-## Reference(s): <br>
-- [ClawHub Muninn Memory Listing](https://clawhub.ai/phillipneho/muninn-skill) <br>
-- [Muninn Cloud Dashboard](https://muninn.au) <br>
-- [LOCOMO Benchmark Analysis](docs/LOCOMO_ANALYSIS.md) <br>
-- [Muninn Enhancement Ideation](docs/ENHANCEMENT_IDEATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [MCP tool responses, Markdown guidance, JSON-like tool results, TypeScript code, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store and retrieve user or agent memory content; behavior depends on selected local or cloud embedding mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release metadata and package.json) <br>
+Risk: The skill is a persistent memory system and may retain user-provided information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only store information you are comfortable retaining, and choose the local or cloud/API embedding path deliberately before installation.
+
+Risk: Integrity verification can rely on a weak default secret if it is not configured.
+
+Mitigation: Set a strong MUNINN_INTEGRITY_SECRET before using integrity verification.
+
+Risk: Publisher, benchmark, cloud, and license claims may matter for adoption decisions.
+
+Mitigation: Verify the publisher, benchmark results, cloud claims, and applicable license before production rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phillipneho/skills/muninn-skill)
+- [Muninn cloud dashboard](https://muninn.au/dashboard)
+- [LOCOMO benchmark repository](https://github.com/snap-research/locomo)
+- [Artifact README](README.md)
+- [LOCOMO analysis](docs/LOCOMO_ANALYSIS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API examples, and MCP memory-tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Node for local use, Ollama for local embeddings, MUNINN_API_KEY for cloud mode, and MUNINN_INTEGRITY_SECRET when integrity verification is enabled.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Collects and formats daily game-industry AI news from game, AI, and technology sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects, filters, categorizes, and summarizes game-industry AI news from public RSS feeds and API-backed news sources.
 
-## Publisher: <br>
-[zhuhuimin0224-create](https://clawhub.ai/user/zhuhuimin0224-create) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuhuimin0224-create](https://clawhub.ai/user/zhuhuimin0224-create)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for current game AI daily reports, weekly reports, topical roundups, and concise shareable briefings with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a Python news-fetching workflow that contacts public RSS and API sources and updates local cache files. <br>
-Mitigation: Install only in environments where network access to those sources and local cache updates are acceptable. <br>
-Risk: Generated reports may include loosely related or non-authoritative game AI items. <br>
-Mitigation: Treat outputs as curated news leads, verify important claims against linked primary sources, and review source attribution before sharing. <br>
+## Use Case:
 
+Developers, analysts, and game-industry teams use this skill to retrieve Chinese and English game-AI daily or weekly briefings, filtered by categories such as AI content creation, in-game AI, development tools, operations, industry news, and research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuhuimin0224-create/ai-game) <br>
-- [Source catalog](references/sources.json) <br>
-- [Keyword and category rules](references/keywords.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown news briefings with source links and concise recommendations; JSON cache files may be read or refreshed by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily reports are intended to stay under 10 items and weekly reports under 15 items, with category grouping and full URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: Live searches may send confidential project names or private strategy terms to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public or non-sensitive search terms when requesting live game-AI news.
+
+Risk: Generated news briefs may contain outdated, incomplete, or secondary-source summaries.
+
+Mitigation: Verify source links and original publications before relying on a report for important business or technical decisions.
+
+Risk: The skill writes local daily cache files during normal operation.
+
+Mitigation: Deploy it only in workspaces where local cache-file creation under the skill data directory is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuhuimin0224-create/skills/ai-game)
+- [Source catalog](references/sources.json)
+- [Keyword and category filters](references/keywords.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown news brief with titles, links, summaries, details, recommendations, and optional JSON-backed source data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily reports are normally limited to 10 items and weekly reports to 15 items; generated cache files are written under data/YYYY-MM-DD.json.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

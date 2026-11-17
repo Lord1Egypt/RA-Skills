@@ -1,45 +1,56 @@
-## Description: <br>
-Uploads and schedules YouTube video content through the Publora API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload and publish video content to YouTube using the Publora API.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-Developers and content operations users use this skill to prepare API requests for uploading, scheduling, and publishing YouTube videos through Publora. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publora API keys or upload URLs could be exposed while preparing API requests. <br>
-Mitigation: Keep API keys private, avoid pasting secrets into shared logs or public prompts, and replace example credentials before use. <br>
-Risk: The agent can help prepare uploads for sensitive, unreleased, or unintended video content. <br>
-Mitigation: Verify the video file, channel ID, title, description, scheduled time, and privacy setting before uploading or publishing. <br>
-Risk: YouTube uploads may publish publicly by default if privacy settings are not reviewed. <br>
-Mitigation: Confirm whether the intended privacy setting is public, unlisted, or private before scheduling the post. <br>
+## Use Case:
 
+Developers, creators, and publishing teams use this skill to prepare Publora API requests for uploading or scheduling YouTube videos with channel, privacy, metadata, and media upload settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sergebulaev/publora-youtube) <br>
-- [Publora API base URL](https://api.publora.com/api/v1) <br>
-- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post) <br>
-- [Publora get-upload-url endpoint](https://api.publora.com/api/v1/get-upload-url) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API calls, Configuration] <br>
-**Output Format:** [Markdown with JavaScript and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes YouTube platform limits, Publora request fields, upload flow, privacy settings, and scheduling notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata, released 2026-03-14) <br>
+Risk: A Publora API key can authorize publishing actions if exposed or reused outside the intended workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key out of prompts, logs, and committed source, and inject it only through an approved secret or environment mechanism when executing generated code.
+
+Risk: Generated API requests can publish or schedule video content to the wrong YouTube channel, privacy setting, time, or media file.
+
+Mitigation: Review the channel ID, privacy setting, scheduled time, title, description, and video file before running any upload or scheduling request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergebulaev/skills/publora-youtube)
+- [Publora API base URL](https://api.publora.com/api/v1)
+- [Publora create-post endpoint](https://api.publora.com/api/v1/create-post)
+- [Publora get-upload-url endpoint](https://api.publora.com/api/v1/get-upload-url)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and Python API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Publora API request guidance for YouTube video upload and scheduling workflows.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

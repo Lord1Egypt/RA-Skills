@@ -1,46 +1,61 @@
-## Description: <br>
-Time awareness for sovereign entities: manage availability, book meetings, and negotiate schedules over Nostr relays. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Time awareness for sovereign entities — manage availability, book meetings, negotiate schedules over Nostr relays.
 
-## Publisher: <br>
-[vveerrgg](https://clawhub.ai/user/vveerrgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vveerrgg](https://clawhub.ai/user/vveerrgg)
 
-## Use Case: <br>
-External developers and agent operators use this skill to give an agent calendar capabilities over Nostr relays, including publishing availability, checking free slots, booking meetings, and negotiating meeting times. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: NOSTR_NSEC is a sensitive private key used to sign calendar events. <br>
-Mitigation: Use a dedicated Nostr key for the calendar identity and keep it out of logs, hardcoded examples, and shared shells. <br>
-Risk: Nostr relays may expose scheduling metadata such as times and participant public keys even when event details are encrypted. <br>
-Mitigation: Choose trusted relays and avoid placing sensitive information in public calendar metadata. <br>
-Risk: The workflow installs and uses the third-party nostrcalendar Python package. <br>
-Mitigation: Install only if the package source is trusted and review the package before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to give agents Nostr-based scheduling capabilities, including publishing availability, checking free slots, booking meetings, and negotiating meeting times over relays.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vveerrgg/nostrcalendar) <br>
-- [NostrCalendar source repository](https://github.com/HumanjavaEnterprises/nostrcalendar.app.OC-python.src) <br>
-- [NostrCalendar PyPI package](https://pypi.org/project/nostrcalendar/) <br>
-- [NIP-52 calendar events](https://github.com/nostr-protocol/nips/blob/master/52.md) <br>
-- [NostrKey prerequisite skill](https://clawhub.ai/vveerrgg/nostrkey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires a Nostr private key that can sign events for the entity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated key, keep unrelated secrets out of the same runtime, and store NOSTR_NSEC only in an approved secret store or environment.
+
+Risk: Installed code can publish availability, booking requests, and meeting negotiations to Nostr relays.
+
+Mitigation: Require explicit operator approval before an agent publishes, books, accepts, declines, cancels, or negotiates meetings.
+
+Risk: The install path can fetch unpinned package versions.
+
+Mitigation: Pin and review package versions before deployment, including the nostrcalendar package and its nostrkey dependency.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vveerrgg/skills/nostrcalendar)
+- [Project homepage from ClawHub metadata](https://github.com/HumanjavaEnterprises/nostrcalendar.app.OC-python.src)
+- [PyPI package](https://pypi.org/project/nostrcalendar/)
+- [Nostr NIP-52 calendar events](https://github.com/nostr-protocol/nips/blob/master/52.md)
+- [NostrKey prerequisite skill](https://clawhub.ai/vveerrgg/nostrkey)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python examples, install commands, environment variables, and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Nostr private key in NOSTR_NSEC and can publish signed scheduling events to the configured relay.]
+
+## Skill Version(s):
+
+0.2.3 (source: frontmatter, artifact metadata, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,637 @@
+{
+  "schema": "site-facilities/v1",
+  "project": "合成示例项目",
+  "coord_unit": "mm",
+  "contract": {
+    "contract_id": "CONTRACT-SYNTH-FAC-001",
+    "source_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "reader_version": "0.41.0"
+  },
+  "facilities": [
+    {
+      "id": "F-GATE-01",
+      "category": "site_access",
+      "name": "西侧主大门",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          2000,
+          30000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate",
+      "evidence": [
+        {
+          "kind": "block",
+          "block": "大门",
+          "layer": "出入口"
+        }
+      ]
+    },
+    {
+      "id": "F-ROAD-T-01",
+      "category": "temporary_road",
+      "name": "西东向临时主路",
+      "geometry": {
+        "type": "polyline",
+        "points": [
+          [
+            2000,
+            30000
+          ],
+          [
+            90000,
+            30000
+          ]
+        ]
+      },
+      "width_m": 4.5,
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-ROAD-P-01",
+      "category": "permanent_road",
+      "name": "永久道路（西东向）",
+      "geometry": {
+        "type": "polyline",
+        "points": [
+          [
+            2000,
+            30000
+          ],
+          [
+            90000,
+            30000
+          ]
+        ]
+      },
+      "width_m": 6.0,
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-FIRE-01",
+      "category": "fire_access",
+      "name": "环形消防车道",
+      "geometry": {
+        "type": "polyline",
+        "closed": true,
+        "points": [
+          [
+            5000,
+            5000
+          ],
+          [
+            95000,
+            5000
+          ],
+          [
+            95000,
+            55000
+          ],
+          [
+            5000,
+            55000
+          ],
+          [
+            5000,
+            5000
+          ]
+        ]
+      },
+      "width_m": 4.0,
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-HYD-01",
+      "category": "fire_hydrant",
+      "name": "消火栓 1",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          10000,
+          5000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-HYD-02",
+      "category": "fire_hydrant",
+      "name": "消火栓 2",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          50000,
+          5000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-HYD-03",
+      "category": "fire_hydrant",
+      "name": "消火栓 3",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          90000,
+          5000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-HYD-04",
+      "category": "fire_hydrant",
+      "name": "消火栓 4",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          10000,
+          55000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-HYD-05",
+      "category": "fire_hydrant",
+      "name": "消火栓 5",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          50000,
+          55000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-HYD-06",
+      "category": "fire_hydrant",
+      "name": "消火栓 6",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          90000,
+          55000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-PWR-01",
+      "category": "distribution_room",
+      "name": "配电室",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            1500,
+            33000
+          ],
+          [
+            5500,
+            33000
+          ],
+          [
+            5500,
+            37000
+          ],
+          [
+            1500,
+            37000
+          ]
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-BOX-01",
+      "category": "primary_distribution_box",
+      "name": "一级配电箱",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          6000,
+          30000
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-CABLE-01",
+      "category": "temporary_power",
+      "name": "一级箱至加工区干线",
+      "geometry": {
+        "type": "polyline",
+        "points": [
+          [
+            6000,
+            30000
+          ],
+          [
+            6000,
+            11000
+          ],
+          [
+            70000,
+            11000
+          ]
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-WATER-01",
+      "category": "temporary_water",
+      "name": "临时给水干管",
+      "geometry": {
+        "type": "polyline",
+        "points": [
+          [
+            2000,
+            40000
+          ],
+          [
+            95000,
+            40000
+          ]
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-FIREW-01",
+      "category": "fire_water",
+      "name": "临时消防干管",
+      "geometry": {
+        "type": "polyline",
+        "points": [
+          [
+            5000,
+            5000
+          ],
+          [
+            5000,
+            55000
+          ]
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-PROC-01",
+      "category": "processing_zone",
+      "name": "钢筋加工区",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            70000,
+            6000
+          ],
+          [
+            85000,
+            6000
+          ],
+          [
+            85000,
+            16000
+          ],
+          [
+            70000,
+            16000
+          ]
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-MAT-01",
+      "category": "material_yard",
+      "name": "材料堆场",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            55000,
+            6000
+          ],
+          [
+            68000,
+            6000
+          ],
+          [
+            68000,
+            16000
+          ],
+          [
+            55000,
+            16000
+          ]
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-DORM-01",
+      "category": "temporary_dormitory",
+      "name": "生活区宿舍",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            9000,
+            10000
+          ],
+          [
+            19000,
+            10000
+          ],
+          [
+            19000,
+            18000
+          ],
+          [
+            9000,
+            18000
+          ]
+        ]
+      },
+      "attrs": {
+        "evacuation_exits": 2,
+        "evacuation_note": "候选证据：示意不少于 2 个疏散口，待消防疏散专项确认"
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-OFFICE-01",
+      "category": "site_office",
+      "name": "办公区",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            5000,
+            44000
+          ],
+          [
+            15000,
+            44000
+          ],
+          [
+            15000,
+            52000
+          ],
+          [
+            5000,
+            52000
+          ]
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-PARK-01",
+      "category": "parking",
+      "name": "停车场",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            20000,
+            6000
+          ],
+          [
+            32000,
+            6000
+          ],
+          [
+            32000,
+            12000
+          ],
+          [
+            20000,
+            12000
+          ]
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-BOARD-01",
+      "category": "notice_board",
+      "name": "九牌一图",
+      "geometry": {
+        "type": "point",
+        "xy": [
+          3000,
+          27000
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-PODIUM-01",
+      "category": "safety_podium",
+      "name": "安全宣讲台",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            3500,
+            24000
+          ],
+          [
+            8000,
+            24000
+          ],
+          [
+            8000,
+            26500
+          ],
+          [
+            3500,
+            26500
+          ]
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-WASTE-01",
+      "category": "waste_pool",
+      "name": "垃圾池",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            86000,
+            46000
+          ],
+          [
+            90000,
+            46000
+          ],
+          [
+            90000,
+            50000
+          ],
+          [
+            86000,
+            50000
+          ]
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed"
+    },
+    {
+      "id": "F-LIFT-01",
+      "category": "construction_elevator",
+      "name": "1# 施工电梯",
+      "geometry": {
+        "type": "polyline",
+        "points": [
+          [
+            42000,
+            20000
+          ],
+          [
+            42000,
+            40000
+          ]
+        ]
+      },
+      "width_m": 3.2,
+      "source": "manual",
+      "confidence": "confirmed",
+      "active_stages": [
+        "structure",
+        "finish"
+      ]
+    },
+    {
+      "id": "F-HOARD-01",
+      "category": "hoarding",
+      "name": "沿红线围挡",
+      "geometry": {
+        "type": "polyline",
+        "closed": true,
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            100000,
+            0
+          ],
+          [
+            100000,
+            60000
+          ],
+          [
+            0,
+            60000
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate"
+    },
+    {
+      "id": "F-NEIGH-01",
+      "category": "site_boundary_neighbor",
+      "name": "北侧既有道路（相邻地貌）",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            -20000,
+            60000
+          ],
+          [
+            120000,
+            60000
+          ],
+          [
+            120000,
+            70000
+          ],
+          [
+            -20000,
+            70000
+          ]
+        ]
+      },
+      "source": "reader",
+      "confidence": "candidate",
+      "attrs": {
+        "road_level_m": 4.2,
+        "site_level_m": 3.6,
+        "note": "合成示例：北侧道路高于场地 0.6 m"
+      }
+    },
+    {
+      "id": "F-WASH-01",
+      "category": "wheel_wash",
+      "name": "洗车池",
+      "geometry": {
+        "type": "polygon",
+        "points": [
+          [
+            2000,
+            34000
+          ],
+          [
+            6000,
+            34000
+          ],
+          [
+            6000,
+            36500
+          ],
+          [
+            2000,
+            36500
+          ]
+        ]
+      },
+      "source": "manual",
+      "confidence": "confirmed",
+      "active_stages": [
+        "earthwork",
+        "structure",
+        "finish"
+      ]
+    }
+  ]
+}

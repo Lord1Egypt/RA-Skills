@@ -1,46 +1,62 @@
-## Description: <br>
-将任意网页链接或本地文件转为结构化 Markdown，并可保存到 Obsidian Vault、飞书云文档或腾讯 IMA 笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web To Fim converts web links or local files into structured Markdown and stores the result in an Obsidian vault, Feishu Drive, and Tencent IMA knowledge base.
 
-## Publisher: <br>
-[edwardwason](https://clawhub.ai/user/edwardwason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwardwason](https://clawhub.ai/user/edwardwason)
 
-## Use Case: <br>
-Developers, knowledge workers, and agent users use this skill to convert web pages or local files into structured Markdown and route the result to a local Obsidian vault or configured cloud note destinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu and Tencent IMA credentials can grant access to create or modify cloud documents and notes. <br>
-Mitigation: Use least-privilege, revocable API credentials stored in environment variables, and rotate them when no longer needed. <br>
-Risk: Private URLs or local files may be uploaded to cloud note services when those destinations are enabled. <br>
-Mitigation: Use local-only operation with documented flags such as --no-feishu and --no-ima for private material. <br>
-Risk: Generated Markdown is written to user-selected local paths and may include converted content from untrusted pages. <br>
-Mitigation: Set the Obsidian vault path to an intended inbox location and review converted content before relying on or sharing it. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to archive web pages, social posts, Feishu wiki pages, and local documents as Markdown while optionally syncing the same material to personal or team knowledge stores.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/edwardwason/web-to-fim) <br>
-- [飞书云文档 API 配置指南](references/feishu-setup.md) <br>
-- [腾讯 ima 笔记 API 配置指南](references/ima-setup.md) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [Tencent IMA Agent Interface](https://ima.qq.com/agent-interface) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, cloud note or document records, and concise command or configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save locally to a configured Obsidian vault or upload to Feishu and Tencent IMA when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence and artifact metadata) <br>
+Risk: Selected URLs or local files may be written locally and transferred to Feishu or Tencent IMA.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --no-feishu and --no-ima unless cloud storage is explicitly required, and avoid processing sensitive or regulated documents.
+
+Risk: Feishu wiki processing may follow content-derived original links.
+
+Mitigation: Review Feishu wiki original links before processing and confirm that each linked source is intended for conversion.
+
+Risk: Dependencies and command-line tools affect fetching and cloud upload behavior.
+
+Mitigation: Pin and review Python dependencies and external tools before use in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardwason/skills/web-to-fim)
+- [Feishu setup guide](references/feishu-setup.md)
+- [Feishu block type mapping](references/feishu-blocks.md)
+- [Tencent IMA setup guide](references/ima-setup.md)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Tencent IMA agent interface](https://ima.qq.com/agent-interface)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, local files, cloud-upload actions, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write converted Markdown locally and upload selected content to Feishu and Tencent IMA when configured.]
+
+## Skill Version(s):
+
+3.7.0 (source: frontmatter, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

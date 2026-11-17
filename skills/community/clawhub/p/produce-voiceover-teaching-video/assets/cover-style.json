@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "canvas": {"width": 1080, "height": 1920},
+  "safe_bounds": {"left": 90, "top": 180, "right": 990, "bottom": 1640},
+  "palette": {
+    "background": "#081017",
+    "panel": "#121c26",
+    "line": "#334654",
+    "foreground": "#f5f7f8",
+    "muted": "#aebbc5",
+    "primary": "#35e0a1",
+    "secondary": "#ffb24a"
+  },
+  "typography": {
+    "font_family": "Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif",
+    "title_size": 82,
+    "subtitle_size": 32,
+    "letter_spacing": 0
+  }
+}

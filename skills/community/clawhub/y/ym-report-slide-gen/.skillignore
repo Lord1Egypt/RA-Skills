@@ -1,0 +1,3 @@
+# 「中文字体」为知情项：render_report.py 生成的 HTML 已内置字体回退栈
+# （雅黑→苹方→冬青黑→文泉驿→sans-serif），回退顺序与缺失表现已写入 SKILL.md「常见坑」第 0 条。
+rule:中文字体

@@ -1,44 +1,55 @@
-## Description: <br>
-Install and configure LLM-WikiMind MCP, a local Markdown knowledge-base server with BM25 search and MCP tools for search, reading, listing, ingestion, and domain discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure the LLM-WikiMind MCP server, a local knowledge base built on Karpathy's LLM Wiki pattern.
 
-## Publisher: <br>
-[hal-9909](https://clawhub.ai/user/hal-9909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hal-9909](https://clawhub.ai/user/hal-9909)
 
-## Use Case: <br>
-Developers and knowledge-base users use this skill to set up a local MCP-backed personal wiki, register it with an MCP-compatible client, and keep Markdown knowledge indexed for retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup installs external code and the qmd dependency. <br>
-Mitigation: Install only after reviewing and trusting the linked repository and dependency. <br>
-Risk: Adopting a broad notes directory can expose more local Markdown content than intended to the MCP server. <br>
-Mitigation: Choose a narrow wiki folder and avoid adopting sensitive note directories unless that access is intentional. <br>
-Risk: Adding the watcher to ~/.zshrc starts background syncing in future shell sessions. <br>
-Mitigation: Enable shell autostart only when persistent watcher behavior is desired. <br>
+## Use Case:
 
+Developers and MCP users use this skill to install a local Markdown-backed knowledge base, register its MCP server with compatible AI clients, and keep the wiki search index synchronized.
 
-## Reference(s): <br>
-- [LLM-WikiMind repository](https://github.com/HAL-9909/llm-wikimind) <br>
-- [Karpathy LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) <br>
-- [ClawHub skill page](https://clawhub.ai/hal-9909/llm-wikimind-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides setup steps, MCP client registration examples, verification commands, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks users to run mutable remote code from a Git repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the WikiMind repository and package sources first, and prefer pinned versions or a reviewed commit before installation.
+
+Risk: The setup can add a background watcher that starts quietly on login.
+
+Mitigation: Run setup in a restricted environment, choose a narrow knowledge-base directory, and avoid adding the auto-start line unless you understand how to remove and monitor it.
+
+## Reference(s):
+
+- [LLM-WikiMind GitHub repository](https://github.com/HAL-9909/llm-wikimind)
+- [Karpathy LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [ClawHub skill page](https://clawhub.ai/hal-9909/skills/llm-wikimind-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup steps, MCP client registration snippets, verification commands, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

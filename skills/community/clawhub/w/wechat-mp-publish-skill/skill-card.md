@@ -1,49 +1,65 @@
-## Description: <br>
-微信公众号文章发布工具 v1.0。基于官方 API，支持智能配图、模板渲染、草稿/发布双模式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+微信公众号文章发布工具 v1.0。基于官方 API，支持智能配图、模板渲染、草稿/发布双模式。当用户说"发公众号"、"发布微信公众号"时使用此技能。
 
-## Publisher: <br>
-[brucesongs](https://clawhub.ai/user/brucesongs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucesongs](https://clawhub.ai/user/brucesongs)
 
-## Use Case: <br>
-Content creators, WeChat official account operators, and developers use this skill to prepare Markdown-based articles, generate or select supporting images, create WeChat drafts, and optionally publish to a configured public account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect a live WeChat public account by creating drafts or publishing content. <br>
-Mitigation: Test with a dedicated WeChat account first and use draft mode until a human verifies the account, content, images, and audience. <br>
-Risk: Credential handling guidance may be unsafe if secrets are stored in config.yaml or committed to version control. <br>
-Mitigation: Keep config.yaml out of version control and use environment variables or a secret store for AppSecret and image-provider API keys. <br>
-Risk: Browser automation in publish.js is under-disclosed and may operate an administrative WeChat session. <br>
-Mitigation: Avoid publish.js unless browser-based admin automation is intentional and has been reviewed. <br>
+## Use Case:
 
+External users, content creators, and operators use this skill to prepare Markdown-based WeChat Official Account articles, generate or attach images, render templates, and save drafts or publish through the official API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucesongs/wechat-mp-publish-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/brucesongs) <br>
-- [WeChat image upload API](https://api.weixin.qq.com/cgi-bin/media/uploadimg) <br>
-- [WeChat draft API](https://api.weixin.qq.com/cgi-bin/draft/add) <br>
-- [WeChat mass send API](https://api.weixin.qq.com/cgi-bin/message/mass/sendall) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/) <br>
-- [Unsplash Developers](https://unsplash.com/developers) <br>
-- [DashScope Console](https://dashscope.console.aliyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown, HTML article content, shell commands, Python snippets, configuration values, and WeChat API side effects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create WeChat drafts or publish to a configured account and can generate or upload article images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and VERSION.md) <br>
+Risk: The skill requires WeChat publishing credentials and optional image-provider API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a credential manager or environment-managed secrets, avoid committing local configuration, and grant only credentials acceptable for this publishing workflow.
+
+Risk: Bundled tests and helper scripts may perform live account-changing actions unexpectedly.
+
+Mitigation: Remove or quarantine live tests before installation, do not run pytest with production credentials, and validate first with a test WeChat account.
+
+Risk: Browser automation and image-processing behavior may add operational and dependency risk.
+
+Mitigation: Disable or document browser automation before deployment and upgrade the image-processing dependency before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucesongs/skills/wechat-mp-publish-skill)
+- [WeChat Official Account Platform](https://mp.weixin.qq.com/)
+- [WeChat upload image API](https://api.weixin.qq.com/cgi-bin/media/uploadimg)
+- [WeChat add draft API](https://api.weixin.qq.com/cgi-bin/draft/add)
+- [WeChat mass publish API](https://api.weixin.qq.com/cgi-bin/message/mass/sendall)
+- [Unsplash Developers](https://unsplash.com/developers)
+- [Alibaba Cloud DashScope Console](https://dashscope.console.aliyun.com/)
+- [User Guide](artifact/USER_GUIDE.md)
+- [Version History](artifact/VERSION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, API Calls, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python usage snippets, configuration examples, rendered HTML, and generated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WeChat publishing credentials and optional image-provider API keys.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and VERSION.md, released 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

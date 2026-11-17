@@ -1,44 +1,59 @@
-## Description: <br>
-A skill to interact with Gaode Map (AMap) for location search and route planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to interact with Gaode Map (AMap) for location search and route planning.
 
-## Publisher: <br>
-[Beelkic](https://clawhub.ai/user/Beelkic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beelkic](https://clawhub.ai/user/beelkic)
 
-## Use Case: <br>
-Developers and agents use this skill to search points of interest, geocode addresses, and plan driving, walking, bicycling, or transit routes through the Gaode Map API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location searches, addresses, coordinates, and route endpoints are sent to Gaode/AMap. <br>
-Mitigation: Use the skill only when sharing those queries with Gaode/AMap is acceptable for the deployment. <br>
-Risk: AMap API credentials could be exposed if passed directly on the command line. <br>
-Mitigation: Use a dedicated restricted API key and provide it through the AMAP_API_KEY environment variable. <br>
-Risk: The requests dependency is not pinned in requirements.txt. <br>
-Mitigation: Pin or audit dependencies before repeatable or production installs. <br>
+## Use Case:
 
+Developers and external users can use this skill to let an agent search Gaode/AMap points of interest, geocode addresses, and plan routes for driving, walking, bicycling, or transit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Beelkic/gaodemapskill-bak) <br>
-- [AMap Console](https://console.amap.com/) <br>
-- [AMap REST API endpoint](https://restapi.amap.com/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses from the tool.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python, the requests package, and an AMAP_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: Location queries and route endpoints may send user-provided places, addresses, or coordinates to Gaode/AMap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only with location queries the user is comfortable sending to Gaode/AMap.
+
+Risk: The AMAP_API_KEY is required for API access and could be exposed if handled carelessly.
+
+Mitigation: Store AMAP_API_KEY in the agent environment or secret manager and avoid placing it in prompts, logs, or shared files.
+
+Risk: The requests dependency is unpinned, which can reduce reproducibility across installs.
+
+Mitigation: Pin or lock the requests dependency before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beelkic/skills/gaodemapskill-bak)
+- [AMap Console](https://console.amap.com/)
+- [AMap REST API endpoint](https://restapi.amap.com/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AMAP_API_KEY and the Python requests dependency to call Gaode/AMap APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

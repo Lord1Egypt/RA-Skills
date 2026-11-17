@@ -1,39 +1,52 @@
-## Description: <br>
-Fetch aviation weather data (METAR, TAF, PIREPs) from aviationweather.gov. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch aviation weather data (METAR, TAF, PIREPs) from aviationweather.gov for flight planning, weather briefings, airport condition checks, and pilot-related weather queries.
 
-## Publisher: <br>
-[dimitryvin](https://clawhub.ai/user/dimitryvin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dimitryvin](https://clawhub.ai/user/dimitryvin)
 
-## Use Case: <br>
-Pilots, flight planners, and aviation-focused agents use this skill to retrieve METAR observations, TAF forecasts, and nearby PIREPs for airport weather checks and briefing support. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Aviation weather can be incomplete, stale, or unsuitable as the sole basis for flight-critical decisions. <br>
-Mitigation: Verify flight-critical weather through official aviation briefing channels before operational use. <br>
-Risk: Airport identifiers or PIREP coordinates are sent to aviationweather.gov during lookups. <br>
-Mitigation: Use only if sharing those lookup parameters with aviationweather.gov is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AviationWeather.gov API](https://aviationweather.gov/api/data) <br>
+## Use Case:
 
+External users, developers, and aviation operators can use this skill to retrieve current METAR observations, TAF forecasts, and nearby PIREPs for airport weather checks and flight-planning context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls] <br>
-**Output Format:** [Markdown text or raw JSON from aviationweather.gov] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ICAO station identifiers for METAR and TAF lookups, and latitude, longitude, and radius for PIREP searches.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes live requests to aviationweather.gov using airport codes or latitude/longitude values supplied by the user.
+
+Mitigation: Use the skill only when that network disclosure is acceptable, and provide only the location detail needed for the weather lookup.
+
+Risk: The release evidence notes that a stricter manifest declaring the network scope would improve auditability.
+
+Mitigation: Review the skill before deployment and consider adding explicit network-scope metadata for aviationweather.gov.
+
+## Reference(s):
+
+- [Aviation Weather API](https://aviationweather.gov/api/data)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands]
+
+**Output Format:** [Markdown-style weather summaries or raw JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live aviationweather.gov responses for requested station IDs or latitude/longitude PIREP searches.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

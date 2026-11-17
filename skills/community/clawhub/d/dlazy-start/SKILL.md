@@ -1,13 +1,13 @@
 ---
 name: dlazy-start
-version: 2.0.0
-description: Quickstart for AI orchestrators (Claude Code / Cursor / Codex / Copilot) driving @dlazy/cli. Covers install, auth, capability discovery, invoking cloud + local tools, polling async tasks, and recovering from common failures.
+version: 2.0.6
+description: "Quickstart for AI orchestrators (Claude Code / Cursor / Codex / Copilot) driving @dlazy/cli. Covers install, auth, capability discovery, invoking cloud + local tools, polling async tasks, and recovering from common failures. AI 编排器（Claude Code / Cursor / Codex / Copilot）驱动 @dlazy/cli 的快速上手手册。覆盖安装、鉴权、能力探测、调用云端/本地工具、轮询异步任务,以及常见故障恢复。"
 triggers:
   - dLazy CLI Quickstart for AI Agents
-metadata: {"clawdbot":{"emoji":"🎬","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli","installAlternative":"npx @dlazy/cli","homepage":"https://dlazy.com","source":"https://github.com/dlazyai/cli","author":"dlazyai","license":"AGPL-3.0-or-later","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"You are operating @dlazy/cli for the user. Discovery first: run `dlazy tools list` to see available tools and `dlazy tools describe <name>` to inspect a tool's input/output schema and cost shape. Invoke with `dlazy <tool-name> --input @file.json` (or `--output json` for machine-readable envelopes). Poll long-running cloud tasks with `dlazy status <generateId>`. Install optional local runtimes with `dlazy doctor remotion --install` or `dlazy doctor yt-dlp --install`. Never claim a tool exists without verifying via `dlazy tools list`."}}
+metadata: {"clawdbot":{"emoji":"🎬","requires":{"bins":["npm","npx"]},"install":"npm install -g @dlazy/cli","installAlternative":"npx @dlazy/cli","homepage":"https://dlazy.com","source":"https://github.com/dlazy-ai/cli","author":"dlazyai","license":"AGPL-3.0-or-later","npm":"https://www.npmjs.com/package/@dlazy/cli","configLocation":"~/.dlazy/config.json","apiEndpoints":["api.dlazy.com","files.dlazy.com"]},"openclaw":{"systemPrompt":"You are operating @dlazy/cli for the user. Discovery first: run `dlazy tools list` to see available tools and `dlazy tools describe <name>` to inspect a tool's input/output schema and cost shape. Invoke with `dlazy <tool-name> --input @file.json` (or `--format json` for machine-readable envelopes). Poll long-running cloud tasks with `dlazy status <generateId>`. Install optional local runtimes with `dlazy doctor remotion --install` or `dlazy doctor yt-dlp --install`. Never claim a tool exists without verifying via `dlazy tools list`."}}
 ---
 
-# dlazy-start — Quickstart for AI Agents
+# 智能体上手手册 Start
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
 
@@ -48,7 +48,7 @@ env var. Config lives at `~/.dlazy/config.json` (Windows:
 `%USERPROFILE%\.dlazy\`).
 
 Global flags every command accepts: `--api-key`, `--base-url`, `--verbose`,
-`--output <json|url|text>`, `--refresh-manifest`, `-l/--lang <locale>`.
+`--format <json|url|text>`, `--refresh-manifest`, `-l/--lang <locale>`.
 
 ---
 
@@ -85,7 +85,7 @@ Every tool is a top-level subcommand:
 dlazy gpt-image-2 --prompt "cyberpunk cat at dusk"
 
 # JSON input file (preferred for complex shapes)
-dlazy video_compose --input @work/compose.json --output json
+dlazy video_compose --input @work/compose.json --format json
 
 # Dry-run for validation only (no remote call, no credit consumption)
 dlazy seedance-2-0 --input @plan.json --dry-run
@@ -99,9 +99,10 @@ dlazy <tool-name> --help
 
 Output modes:
 
-- `--output text` (default) — human-readable envelope
-- `--output json` — single JSON line per call; parse with `jq`
-- `--output url` — bare URL when the tool produces a single asset
+- `--format json` (default) — machine-readable envelope; parse with `jq`
+- `--format url` — bare URL when the tool produces a single asset
+- `--format text` — human-readable text payload
+- `--save <path>` — download the asset straight to disk (mkdir + retry handled for you)
 
 ---
 
@@ -111,7 +112,7 @@ Long-running generations return a `generateId` instead of the final asset:
 
 ```bash
 dlazy status <generateId>
-dlazy status <generateId> --output json
+dlazy status <generateId> --format json
 ```
 
 Repeat until status is `succeeded` (then the asset URL is in the payload) or
@@ -164,7 +165,7 @@ Repeat until status is `succeeded` (then the asset URL is in the payload) or
 INSTALL       npm install -g @dlazy/cli && dlazy auth login
 DISCOVER      dlazy tools list  |  dlazy tools describe <name>
 LOCAL RT      dlazy doctor remotion --install   (or yt-dlp)
-INVOKE        dlazy <tool-name> --input @file.json --output json
+INVOKE        dlazy <tool-name> --input @file.json --format json
 DRY RUN       dlazy <tool-name> --input @file.json --dry-run
 POLL          dlazy status <generateId>
 HELP          dlazy --help  |  dlazy <tool-name> --help

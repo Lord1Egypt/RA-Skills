@@ -1,44 +1,64 @@
-## Description: <br>
-Primary-source scientific and research APIs for earthquakes, molecules, space weather, particle physics, volcanoes, and related research datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Primary-source scientific and research APIs for earthquakes, molecules, space weather, particle physics, volcanoes, and related open-data catalogs.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-External users, developers, and research teams use this skill to discover and query Pilot Protocol science service agents for scientific observations, chemistry data, open research datasets, and natural-event streams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to remote Pilot Protocol service agents through a local pilotctl and daemon setup. <br>
-Mitigation: Use only with a trusted Pilot Protocol installation and avoid sending secrets or sensitive data in queries. <br>
-Risk: The documented science category overlaps with literature and citation-oriented agents that the artifact says belong under an academic skill. <br>
-Mitigation: Verify the selected agent with list-agents and /help before relying on category-specific behavior. <br>
-Risk: The artifact and server evidence disagree on the release license. <br>
-Mitigation: Confirm the authoritative license before publication or downstream redistribution. <br>
+## Use Case:
 
+Developers and external users use this skill to discover and query Pilot Protocol science service agents for structured research data, natural-event streams, chemistry records, space data, and open-data catalog metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-service-agents-science) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot skills catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, text] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote service-agent responses may arrive asynchronously through pilotctl inbox and can include normalized JSON envelopes or prose summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Queries and free-text requests are sent to remote service agents and may reveal sensitive research interests or terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential, personal, regulated, or proprietary data in filters or free-text prompts.
+
+Risk: The service catalog is broader than the short description and may not be the right path for scholarly literature searches.
+
+Mitigation: Use the dedicated academic skill for literature, citations, and scholarly paper discovery.
+
+Risk: Agent availability and filter contracts can change as the Pilot Protocol catalog evolves.
+
+Mitigation: Run a fresh list-agents query and read the target agent's /help response before relying on a query shape.
+
+Risk: Natural-language summaries and free-text responses may be incomplete or inaccurate.
+
+Mitigation: Prefer structured /data responses and inspect upstream URLs or source metadata when accuracy matters.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-science)
+- [Publisher Profile](https://clawhub.ai/user/teoslayer)
+- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may include ACK envelopes followed by JSON inbox entries; summaries and free-text requests may return prose.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

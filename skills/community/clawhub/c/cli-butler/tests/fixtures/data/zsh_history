@@ -1,0 +1,3 @@
+: 1700000000:0;docker ps
+: 1799000000:0;docker compose up -d
+: 1700000001:0;git status

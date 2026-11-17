@@ -1,40 +1,54 @@
-## Description: <br>
-A Chinese-language execution coach that interrupts analysis paralysis and turns hesitation, collecting, and over-comparison into concrete action items and follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execution Coach is a Chinese-language coaching skill that interrupts analysis paralysis and pushes the user toward immediate action, concrete action items, and closed-loop follow-up.
 
-## Publisher: <br>
-[fanxlab](https://clawhub.ai/user/fanxlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanxlab](https://clawhub.ai/user/fanxlab)
 
-## Use Case: <br>
-External users who opt into forceful coaching use this skill to stop over-planning, pick a next action, and report concrete follow-through. It is intended for situations involving saved reading lists, comparison loops, delayed starts, upgrade checking, or post-purchase second guessing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a blunt coaching style and broad triggers that may interrupt ordinary planning, shopping, learning, or reflection. <br>
-Mitigation: Install it only when this direct coaching style is desired, narrow activation where possible, and disable proactive audits if forceful follow-up is not wanted. <br>
-Risk: The artifact is tailored to a specific named user profile, so its assumptions may not fit every user. <br>
-Mitigation: Review and adapt the user profile and tone before relying on it in a different personal or team context. <br>
+## Use Case:
 
+External users use this skill for direct execution coaching when they are procrastinating, over-comparing options, collecting material instead of acting, or questioning value before starting. The skill responds with blunt Chinese-language guidance, a small next action, and follow-up pressure to close the loop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanxlab/execution-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text coaching responses with concrete action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no code, tool calls, or data access are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill intentionally uses blunt coaching and limits comparison or reflection, which may be inappropriate for sensitive, high-stakes, or emotionally distressing situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for low-stakes productivity and execution coaching, and let the user pause, soften, or disable the posture when context requires reflection or support.
+
+Risk: The artifact is tailored to a named user profile and may overfit its guidance to that profile.
+
+Mitigation: Confirm the user wants this personalized Chinese-language execution-coach behavior before applying it broadly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanxlab/skills/execution-coach)
+- [ClawHub publisher profile](https://clawhub.ai/user/fanxlab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text with concise action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language coaching responses; no files, shell commands, credentials, network access, or system changes are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

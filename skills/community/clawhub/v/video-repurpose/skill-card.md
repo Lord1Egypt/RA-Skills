@@ -1,39 +1,55 @@
-## Description: <br>
-Video Repurpose is an AI repurposing assistant for turning a long or finished video into platform-specific short-form variants with new hooks, captions, layouts, and localization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Repurpose is an AI repurposing assistant for turning one long or finished video into multiple short-form assets with new hooks, captions, formats, and platform-specific variants.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to plan and describe short-form variants of existing videos for multiple social platforms, including hooks, captions, crops, and localized narration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes anti-duplicate and fingerprint-changing guidance that could be misused to bypass platform uniqueness checks, spam controls, copyright restrictions, or moderation systems. <br>
-Mitigation: Use only for content the user owns or is authorized to repurpose, and do not use the guidance to evade platform rules or moderation controls. <br>
+## Use Case:
 
+Content teams, creators, and marketing operators use this skill to plan short-form video variants from a longer or finished video, including hooks, captions, aspect ratios, localization, and platform-specific edits.
 
-## Reference(s): <br>
-- [MediaClaw video content production suite](https://mediaclaw.ai) <br>
-- [MediaClawBot batch repurposing and API access](https://mediaclawbot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text instructions for video repurposing plans and platform-specific variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific hooks, captions, crop guidance, localization notes, and variant planning details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill promotes video fingerprint changes and platform uniqueness checks, which could be used to bypass duplicate-detection, moderation, or copyright enforcement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content the user owns or has explicit rights to repurpose, and reject requests aimed at evading platform enforcement or copyright controls.
+
+Risk: Installation may depend on the ClawHub CLI even though the artifact itself contains no executable payload.
+
+Mitigation: Use a pinned, trusted ClawHub CLI version and avoid running install commands with administrator privileges.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imwyvern/skills/video-repurpose)
+- [MediaClaw](https://mediaclaw.ai)
+- [MediaClawBot](https://mediaclawbot.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with platform-specific video repurposing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hooks, captions, aspect ratios, localization notes, edit variants, and platform targeting guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

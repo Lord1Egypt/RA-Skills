@@ -1,0 +1,41 @@
+{
+  "id": "executive-35-55",
+  "label": "Executive 35-55",
+  "emoji": "👔",
+  "demographics": {
+    "gender": "any",
+    "age_range": [35, 55],
+    "tier": "gen-x"
+  },
+  "active_hours": {
+    "description": "Sharp business hours, early morning, no late nights",
+    "peak": [7, 10, 13, 16, 19],
+    "off_peak_min": 7
+  },
+  "typing": {
+    "description": "Brief, fast bursts (short emails). Slow on long text.",
+    "wpm": { "min": 70, "max": 110 },
+    "profile": "natural",
+    "think_prob": 0.008,
+    "think_ms": [200, 800],
+    "backspace_freq": 0.02
+  },
+  "scroll": {
+    "passes": 1,
+    "description": "Minimal — task-focused, skims headlines",
+    "speed_px_per_ms": { "min": 35, "max": 80 },
+    "pause_between_passes_ms": { "min": 200, "max": 700 },
+    "depth_per_pass": { "min": 0.1, "max": 0.35 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 500, "max": 1500 },
+    "pre_click_pause_ms": { "min": 100, "max": 350 },
+    "inter_action_pause_ms": { "min": 150, "max": 600 }
+  },
+  "mouse": {
+    "speed": 1.1,
+    "curvature": 0.12,
+    "jitter": 0.2,
+    "description": "Fast, precise, minimal wasted movement"
+  }
+}

@@ -1,44 +1,58 @@
-## Description: <br>
-Helps employees review visit-analysis records, prepare structured CRM lead follow-up entries, confirm them with the user, and sync or query CRM project data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CRM Sync Assistant helps employees turn visit-analysis records into structured CRM lead records, review them for confirmation, sync them to CRM, and inspect synced or unsynced projects.
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-Employees, team leads, and managers use this skill to inspect CRM synchronization status, turn visit-analysis records into structured lead follow-up data, confirm proposed changes, and sync or review CRM projects within the user's permitted scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may be asked to enter CRM passwords in chat. <br>
-Mitigation: Use only in organizations that explicitly approve this workflow, and prefer a secure authentication flow before broad deployment. <br>
-Risk: Credentials and API traffic may be sent over plain HTTP. <br>
-Mitigation: Require HTTPS for CRM API and H5 endpoints before handling production CRM credentials or customer data. <br>
-Risk: Bearer tokens are cached locally and may be exposed in generated links. <br>
-Mitigation: Protect and rotate cached tokens, prefer short-lived exchange codes, and remove bearer-token URL fallback where possible. <br>
-Risk: CRM records can be created or updated after user confirmation. <br>
-Mitigation: Keep explicit confirmation, scoped triggers, backend authorization checks, and review of proposed record changes before synchronization. <br>
+## Use Case:
 
+Employees and sales managers use this skill to authenticate to a CRM service, query visit-analysis and lead records, review generated lead summaries, sync confirmed records, and inspect project data within documented subordinate-access permissions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/crm-sync-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON payloads, structured CRM summaries, and generated project links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and python3 on Linux or macOS; outputs should be reviewed before CRM synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles employee passwords, bearer tokens, and CRM records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted CRM operators, replace chat-based password collection with a secure login flow, and store tokens in a credential store or locked-down file.
+
+Risk: The artifact describes HTTP service endpoints and a fallback that can place a full token in a URL.
+
+Mitigation: Require HTTPS for production use and remove token-in-URL fallback before deployment.
+
+Risk: Broad trigger phrases and manager/subordinate data access can expose CRM records beyond the user's intent.
+
+Mitigation: Narrow triggers and document manager/subordinate access rules clearly before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/skills/crm-sync-assistant)
+- [Publisher profile](https://clawhub.ai/user/vivalavida-say-hi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown status reports and CRM record summaries, with JSON payloads and shell commands for authenticated API calls.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include markdown links to CRM and visit-board pages; requires curl, jq, and python3 on Linux or macOS.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

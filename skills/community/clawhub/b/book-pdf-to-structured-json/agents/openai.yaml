@@ -1,0 +1,7 @@
+interface:
+  display_name: "书籍 PDF 结构化电子版"
+  short_description: "把整本 PDF 重建为可审计、可上传验证的 JSON/TXT 电子版"
+  default_prompt: "Use $book-pdf-to-structured-json to convert these book sources into a validated hierarchical JSON/TXT edition."
+policy:
+  allow_implicit_invocation: true
+

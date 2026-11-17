@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7575tg9698kwkfvfrmga517181jt1r",
   "slug": "summarize-all",
-  "version": "3.0.6",
-  "publishedAt": 1774361547501
+  "version": "3.0.2",
+  "author": "gu2003li",
+  "description": "智能总结工具 - 自动检测内容类型、智能选择长度、缓存、关键点提取。支持网页、PDF、图片、音频、YouTube。"
 }

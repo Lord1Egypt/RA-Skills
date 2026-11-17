@@ -1,42 +1,57 @@
-## Description: <br>
-Convert PowerPoint PPTX files to high-quality JPG or PNG images with customizable DPI while preserving slide proportions and orientation on Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PowerPoint PPTX files to high-quality JPG or PNG slide images with configurable DPI while preserving original slide proportions and orientation on Windows.
 
-## Publisher: <br>
-[Leodai12123](https://clawhub.ai/user/Leodai12123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leodai12123](https://clawhub.ai/user/leodai12123)
 
-## Use Case: <br>
-Developers and content operators use this skill to convert slide decks into JPG or PNG image files for publishing, review, or downstream processing. It is intended for Windows environments with Microsoft PowerPoint and pywin32 available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PowerPoint opens the presentation locally during export. <br>
-Mitigation: Convert only trusted presentations and run the tool in an environment appropriate for handling those files. <br>
-Risk: The converter depends on Windows, Microsoft PowerPoint, and pywin32. <br>
-Mitigation: Confirm those dependencies are available before use and install pywin32 only from a trusted package source. <br>
+## Use Case:
 
+Developers, automation users, and content teams use this skill to convert PowerPoint presentations into image assets for publishing, review, archival, or downstream processing. It is intended for Windows environments with Microsoft PowerPoint and pywin32 installed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Leodai12123/pptx-to-image) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [JPG or PNG image files plus console progress text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows, Microsoft PowerPoint, and pywin32; accepts input path, output folder, DPI, image format, and JPG quality options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and documentation) <br>
+Risk: The converter automates Microsoft PowerPoint on Windows and may open Office documents supplied by users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Convert only trusted presentations or run the conversion in a low-privilege, disposable Windows environment.
+
+Risk: The skill depends on pywin32 and a local Microsoft PowerPoint installation.
+
+Mitigation: Use a virtual environment, pin pywin32 before use, and verify PowerPoint 2010 or later is installed before relying on the conversion workflow.
+
+Risk: High-DPI exports can create large per-slide image files.
+
+Mitigation: Choose lower DPI for previews and confirm output storage capacity before batch conversion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leodai12123/skills/pptx-to-image)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, guidance]
+
+**Output Format:** [JPG or PNG image files with plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable input path, output folder, DPI from 72 to 600, image format, JPG quality, and verbose progress reporting.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

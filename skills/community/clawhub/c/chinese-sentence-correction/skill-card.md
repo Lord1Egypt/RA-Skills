@@ -1,38 +1,48 @@
-## Description: <br>
-Use when correcting Chinese ill-formed sentences (病句) with minimal edits while preserving original meaning, including grammar, wording, word order, redundancy, and logical consistency issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when correcting Chinese ill-formed sentences (病句) with minimal edits while preserving original meaning, including grammar, wording, word order, redundancy, and logical consistency issues.
 
-## Publisher: <br>
-[catchFishCat](https://clawhub.ai/user/catchFishCat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[catchfishcat](https://clawhub.ai/user/catchfishcat)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Chinese-language users and writing workflows use this skill to correct ill-formed Chinese sentences while preserving the original meaning and avoiding unnecessary rewriting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally returns corrected text without explanation, which may be insufficient for teaching, review, or multilingual correction workflows.
+
+Mitigation: Use it for concise Chinese sentence correction, and request a separate explanation or broader writing support when those outputs are needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to correct Chinese ill-formed sentences with minimal edits while preserving the original meaning. It focuses on grammar, wording, word order, redundancy, logical consistency, and similar sentence-level issues. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Sentence correction can unintentionally change the original meaning. <br>
-Mitigation: Use minimal edits and compare important corrected text against the source sentence before relying on it. <br>
+**Output Format:** [Plain text corrected sentence]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/catchFishCat/chinese-sentence-correction) <br>
+**Other Properties Related to Output:** [Returns only the corrected sentence; repeats the original sentence when no correction is needed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text sentence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns only the corrected sentence, or repeats the original sentence if no correction is needed.] <br>
+1.0.0 (source: server release metadata, released 2026-03-19)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

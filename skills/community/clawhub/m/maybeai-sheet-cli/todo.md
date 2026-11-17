@@ -6,11 +6,12 @@
 - [x] Split long API docs into `references/`
 - [x] CLI-first execution contract
 - [x] Remove `scripts/*.sh` curl examples — replaced by `references/cli-commands.md`
+- [x] Add `scripts/sync_cli_release.py` hook to sync skill version after CLI PyPI publish
 
 ## P1
 
-- [ ] Add CLI wrappers for uncovered high-value endpoints: `workbook_profile`, `lineage_trace`, SQL compile/write, export
-- [ ] Keep `references/cli-commands.md` in sync with CLI repo releases
+- [ ] Add CLI wrappers for uncovered high-value endpoints: lineage trace and SQL compile/write
+- [ ] Keep command examples in `references/cli-commands.md` in sync with CLI repo releases
 
 ## P2
 

@@ -491,7 +491,7 @@ describe('PIIFilter', () => {
 
   test('should redact API keys', () => {
     const filter = new PIIFilter();
-    expect(filter.filterString('Use key sk_live_abc123def456ghi789jkl0'))
+    expect(filter.filterString('Use key REDACTED-SECRET'))
       .toBe('Use key [REDACTED]');
   });
 

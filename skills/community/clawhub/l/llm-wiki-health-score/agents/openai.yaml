@@ -1,0 +1,4 @@
+interface:
+  display_name: "LLM Wiki 健康评分"
+  short_description: "用结构化扫描和语义抽样评估 Obsidian/个人知识库健康度"
+  default_prompt: "使用 $llm-wiki-health-score 审计我的本地 Obsidian Vault，并基于文件证据和语义抽样报告最终 LLM Wiki 健康分。"

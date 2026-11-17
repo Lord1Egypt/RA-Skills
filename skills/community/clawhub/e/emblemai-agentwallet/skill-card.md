@@ -1,46 +1,60 @@
-## Description: <br>
-Connects to EmblemVault and manages crypto wallets via Emblem AI Agent Hustle across Solana, Ethereum, Base, BSC, Polygon, Hedera, and Bitcoin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to EmblemVault and manage crypto wallets via Emblem AI - Agent Hustle. Supports Solana, Ethereum, Base, BSC, Polygon, Hedera, and Bitcoin.
 
-## Publisher: <br>
-[genecyber](https://clawhub.ai/user/genecyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[genecyber](https://clawhub.ai/user/genecyber)
 
-## Use Case: <br>
-External users and developers use this skill to connect agents to EmblemVault, check wallet addresses and balances, query crypto portfolio data, and request wallet operations through the Emblem AI CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent-mode wallet commands can request high-impact transfers, swaps, or other transaction actions. <br>
-Mitigation: Use wallets with limited funds and require explicit human review and approval before any transfer, swap, signing, order, or DeFi operation. <br>
-Risk: EMBLEM_PASSWORD and files under ~/.emblemai can grant access to wallet sessions or deterministic wallets. <br>
-Mitigation: Protect the password and local credential files, avoid logging secrets or storing them in shell history, and prefer browser authentication for interactive use. <br>
-Risk: The skill depends on a third-party npm CLI that runs locally with the user's permissions. <br>
-Mitigation: Install only if you trust EmblemVault and the @emblemvault/agentwallet package, and inspect package contents before use in sensitive environments. <br>
-Risk: The server security summary states that the transaction approval boundary is not fully demonstrated in the submitted artifact. <br>
-Mitigation: Do not permit unattended agent-mode transfers or swaps unless you independently verify that every transaction requires explicit human approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/genecyber/emblemai-agentwallet) <br>
-- [EmblemVault homepage](https://emblemvault.dev) <br>
-- [npm package: @emblemvault/agentwallet](https://www.npmjs.com/package/@emblemvault/agentwallet) <br>
-- [Hustle AI](https://agenthustle.ai) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent connect to EmblemVault and Agent Hustle for wallet addresses, balances, portfolio queries, swaps, transfers, and other crypto actions across supported chains. It is intended for workflows where users can supply wallet credentials and review transaction approvals.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and text responses returned by emblemai] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, emblemai, and EMBLEM_PASSWORD or browser authentication; CLI responses may include wallet, portfolio, market, and transaction details.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.9 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The required global npm CLI can receive wallet-level authority.
+
+Mitigation: Verify or pin the package before installing and start with a low-value or test wallet.
+
+Risk: Wallet passwords, local credentials, and session files can grant access to funds if exposed.
+
+Mitigation: Prefer browser authentication, avoid putting passwords in command-line arguments, shell history, scripts, or environment variables, and protect `~/.emblemai/`.
+
+Risk: Wallet-modifying actions such as swaps, transfers, or signing can move funds.
+
+Mitigation: Review every transaction detail before approving any wallet-modifying action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/genecyber/skills/emblemai-agentwallet)
+- [Publisher Profile](https://clawhub.ai/user/genecyber)
+- [EmblemVault](https://emblemvault.dev)
+- [Agent Wallet npm Package](https://www.npmjs.com/package/@emblemvault/agentwallet)
+- [Agent Hustle](https://agenthustle.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a local CLI, wallet credential setup, and user confirmation before wallet-modifying actions.]
+
+## Skill Version(s):
+
+3.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

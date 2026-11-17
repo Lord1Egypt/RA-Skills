@@ -1,48 +1,57 @@
-## Description: <br>
-Advanced expert in prompt engineering, custom instructions design, and prompt optimization for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced expert in prompt engineering, custom instructions design, and prompt optimization for AI agents.
 
-## Publisher: <br>
-[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeycacciatore3](https://clawhub.ai/user/joeycacciatore3)
 
-## Use Case: <br>
-Developers, AI builders, and prompt authors use this skill to review, generate, refine, and troubleshoot prompts, system instructions, and agent skill guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refusal-troubleshooting advice could be misused to rephrase harmful requests to bypass model safeguards. <br>
-Mitigation: Use refusal-troubleshooting guidance only for legitimate, safe requests and keep model safety policies in force. <br>
-Risk: Prompt recommendations may be incorrect, misleading, or unsuitable for a specific deployment. <br>
-Mitigation: Review, test, and validate suggested prompts and instructions against the intended use case before deployment. <br>
+## Use Case:
 
+Developers, prompt authors, and agent builders use this skill to review, generate, refine, and troubleshoot prompts, system prompts, custom instructions, and prompt evaluation plans.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joeycacciatore3/nate-prompt-engineering) <br>
-- [Claude Documentation](https://docs.claude.com) <br>
-- [Anthropic Blog](https://www.anthropic.com/blog) <br>
-- [Claude Cookbooks](https://github.com/anthropics/claude-cookbooks) <br>
-- [Prompt Engineering Guide](https://www.promptingguide.ai) <br>
-- [Best Practices Guide](docs/BEST_PRACTICES.md) <br>
-- [Advanced Techniques](docs/TECHNIQUES.md) <br>
-- [Troubleshooting Guide](docs/TROUBLESHOOTING.md) <br>
-- [Examples](examples/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with examples, templates, and structured snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not execute prompts, call APIs, or access real-time data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may share sensitive prompts, files, or documentation while seeking prompt-engineering analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only prompts, files, or documentation that are appropriate to disclose to the model, especially for file-based analysis, linked references, or detailed reasoning examples.
+
+Risk: Prompt recommendations may be incomplete, misleading, or unsuitable for critical use cases if adopted without testing.
+
+Mitigation: Review suggested prompts with human judgment and validate them against representative tasks, edge cases, and success criteria before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/joeycacciatore3/skills/nate-prompt-engineering)
+- [Claude Documentation](https://docs.claude.com)
+- [Anthropic Blog](https://www.anthropic.com/blog)
+- [Claude Cookbooks](https://github.com/anthropics/claude-cookbooks)
+- [Prompt Engineering Guide](https://www.promptingguide.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with examples, templates, checklists, and occasional code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory text and prompt artifacts; it does not execute prompts, call external APIs, or validate results automatically.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

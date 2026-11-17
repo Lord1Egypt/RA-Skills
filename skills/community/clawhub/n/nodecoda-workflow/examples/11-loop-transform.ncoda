@@ -1,0 +1,28 @@
+@language nodecoda/1
+@mode workflow
+
+// 循环 + 集合操作:CSV → split → filter → take → for 打标签
+// 展示 for 表达式(yield 收集)、split/filter/take、lambda、字符串方法
+
+const MODEL = "openai_api_compatible/gpt-5.4";
+
+function main(string csv) -> string[] {
+    // 1) split:CSV 字符串 → 数组
+    let items = split(csv, ",");
+
+    // 2) filter + lambda:只保留含 "AI" 的条目
+    let relevant = filter(items, (x) -> x.contains("AI"));
+
+    // 3) take:截取前 3 条
+    let top = take(relevant, 3);
+
+    // 4) for 表达式:逐条让 LLM 打标签,collect 为 string[]
+    let tagged = for (item in top) {
+        let r = llm(MODEL, {
+            "messages": [{ "role": "user", "content": `给「${item}」打一个 10 字内的标签` }]
+        });
+        yield r.text;
+    };
+
+    return tagged;
+}

@@ -1,42 +1,58 @@
-## Description: <br>
-Generate platform-specific product photography shot lists and creative direction briefs covering hero images, lifestyle shots, infographics, and video thumbnails that meet marketplace requirements and convert browsers into buyers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate platform-specific product photography shot lists and creative direction briefs covering hero images, lifestyle shots, infographics, and video thumbnails that meet marketplace requirements and convert browsers into buyers.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, marketplace sellers, and creative teams use this skill to plan product photography briefs, shot lists, image specifications, and review checklists for Amazon, Shopify, TikTok Shop, Shopee, Lazada, and related sales channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a non-executable product photography guide, but its guidance can encourage demographic or body-type matching for models without clear lawful-use guardrails. <br>
-Mitigation: Edit outputs before use, treat model-selection suggestions as optional, avoid specifying or excluding protected traits unless there is a lawful and product-relevant reason, and prefer inclusive representation and use-case fit over demographic mirroring. <br>
+## Use Case:
 
+Ecommerce operators, marketers, photographers, and brand teams use this skill to produce product photography briefs, platform-specific shot lists, infographic direction, and video thumbnail guidance for marketplace listings.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leooooooow/product-photo-guide) <br>
-- [Photography Brief Template](artifact/output-template.md) <br>
-- [Platform Image Technical Specifications](artifact/platform-image-specs.md) <br>
-- [Product Photo Guide Quality Checklist](artifact/quality-checklist.md) <br>
-- [Shot List by Product Category](artifact/shot-list-by-category.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown briefs, shot lists, checklists, and creative direction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable planning output; review model-selection and platform-compliance guidance before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: Marketplace image requirements and file limits may change after the guide is published.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current requirements directly with each target marketplace before using the guidance operationally.
+
+Risk: Competitive audits, reviews, return data, and support tickets may include data the user is not authorized to use.
+
+Mitigation: Use only data sources the user is authorized to access and handle customer information according to the user's privacy and data governance requirements.
+
+## Reference(s):
+
+- [Product Photo Guide on ClawHub](https://clawhub.ai/leooooooow/skills/product-photo-guide)
+- [Publisher Profile: leooooooow](https://clawhub.ai/user/leooooooow)
+- [Photography Brief Template](artifact/output-template.md)
+- [Platform Image Technical Specifications](artifact/platform-image-specs.md)
+- [Product Photo Guide Quality Checklist](artifact/quality-checklist.md)
+- [Shot List by Product Category](artifact/shot-list-by-category.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable planning guidance such as shot lists, creative direction briefs, checklists, and platform-specific photography requirements.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Analyzes stock CSV data with moving averages, MACD, RSI, and Bollinger Bands to generate trend assessments, trading-signal summaries, and optional visual charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Trend Analysis analyzes stock CSV data with moving averages, MACD, RSI, Bollinger Bands, and a composite trend score to produce trend judgments, trading signals, and reports.
 
-## Publisher: <br>
-[wang-junjian](https://clawhub.ai/user/wang-junjian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wang-junjian](https://clawhub.ai/user/wang-junjian)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and external users can use this skill to run local technical analysis on individual or batches of stock CSV files and generate trend reports for review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A crafted stock name or output path could cause report files to be written outside the intended folder.
+
+Mitigation: Use trusted or sanitized stock names and constrain output paths until filename sanitization is added.
+
+Risk: The skill runs local Python scripts that read CSV files, install dependencies, and write reports.
+
+Mitigation: Install dependencies in an isolated environment and review the scripts before running them on sensitive data.
+
+Risk: Generated trading signals may be incorrect or misleading if treated as financial advice.
+
+Mitigation: Treat all outputs as informational analysis and require qualified human review before making investment decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to run local technical analysis on selected stock CSV files, either one security at a time or in batch, and produce reports that summarize trend direction, indicator signals, and risk notes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill outputs trading suggestions and trend signals that could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational technical analysis only and require human review before making investment decisions. <br>
-Risk: Batch mode scans a user-provided directory and writes generated reports and indicator files. <br>
-Mitigation: Run in a virtual environment, point batch mode only at intended folders, and review generated files before sharing or relying on them. <br>
+**Output Format:** [Markdown reports, CSV indicator files, and terminal text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wang-junjian/super-trend-analysis) <br>
+**Other Properties Related to Output:** [Optional plotting is documented, but the artifact indicates chart generation is not yet implemented.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal summaries, optional PNG charts, and generated CSV indicator files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally on user-selected CSV files and writes generated reports and optional chart artifacts to an output directory.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

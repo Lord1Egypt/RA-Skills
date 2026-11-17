@@ -1,44 +1,56 @@
-## Description: <br>
-Helps agents prepare and submit PoYo `gemini-3-1-flash-tts` text-to-speech jobs, including voice and style options, two-speaker dialogue, callbacks, and task status retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepares and submits PoYo Gemini 3.1 Flash TTS text-to-speech requests, including payload guidance for voices, style instructions, two-speaker dialogue, output formats, callbacks, and task status retrieval.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to build PoYo Gemini 3.1 Flash TTS requests, choose speech settings, submit trusted shell requests, and explain how to retrieve generated audio results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: POYO_API_KEY or generated audio workflow details could be exposed if copied into browser code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep the API key in server-side environment variables or a backend secret manager, and avoid logging private text, callback URLs, task ids, or generated audio URLs unless policy allows it. <br>
-Risk: Private or regulated text may be sent to PoYo during text-to-speech generation. <br>
-Mitigation: Use the skill only when PoYo is approved for the data involved, and do not make live API calls unless the user explicitly asks from a trusted server-side environment. <br>
-Risk: Untrusted callback URLs could disclose task events or generated audio workflow metadata. <br>
-Mitigation: Use callback_url values only for trusted HTTPS endpoints controlled by the deploying team. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare PoYo Gemini 3.1 Flash TTS speech payloads, submit trusted requests from a server-side shell, and retrieve asynchronous task results.
 
-## Reference(s): <br>
-- [PoYo Gemini 3.1 Flash TTS API Reference](references/api.md) <br>
-- [PoYo Gemini 3.1 Flash TTS documentation](https://docs.poyo.ai/api-manual/music-series/gemini-3-1-flash-tts) <br>
-- [PoYo Gemini 3.1 Flash TTS model page](https://poyo.ai/models/gemini-3-1-flash-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with JSON payload examples and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model id, voice settings, style instructions, prepared request payloads, task ids, and next-step retrieval guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API keys or request data could be exposed through browser code, public repositories, logs, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid logging private scripts, customer text, callback URLs, task IDs, or generated audio URLs unless policy allows it.
+
+Risk: The skill can submit user-prepared speech requests to PoYo when explicitly used.
+
+Mitigation: Review payloads before submission and make live API calls only from a trusted server-side environment after the user explicitly requests execution.
+
+## Reference(s):
+
+- [PoYo Gemini 3.1 Flash TTS model page](https://poyo.ai/models/gemini-3-1-flash-tts)
+- [PoYo Gemini 3.1 Flash TTS API docs](https://docs.poyo.ai/api-manual/music-series/gemini-3-1-flash-tts)
+- [PoYo API key page](https://poyo.ai/dashboard/api-key)
+- [PoYo Gemini 3.1 Flash TTS API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model id, speaker mode, voice presets, style instructions, request payloads, task IDs, and task-status next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

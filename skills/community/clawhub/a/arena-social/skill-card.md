@@ -1,42 +1,59 @@
-## Description: <br>
-Arena Social lets an agent post, reply, like, repost, quote, follow, send direct messages, update profile data, and browse Arena feeds through the Agent API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Arena by posting, replying, liking, reposting, quoting, following, sending DMs, and browsing feeds via the Agent API using HTML content.
 
-## Publisher: <br>
-[0xrichyrich](https://clawhub.ai/user/0xrichyrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xrichyrich](https://clawhub.ai/user/0xrichyrich)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent to a configured Arena account for social posting, feed browsing, direct messaging, profile management, and engagement actions. It is intended for workflows where the operator wants an agent to act through Arena's Agent API using HTML-formatted content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can directly operate the configured Arena account, including posts, replies, quotes, likes, reposts, follows, direct messages, and profile updates. <br>
-Mitigation: Require explicit operator approval before mutating account actions and use a dedicated low-privilege API key when possible. <br>
-Risk: The security summary reports an unsafe search implementation that can run local code from a crafted query. <br>
-Mitigation: Fix or avoid the search command before use, and review any user-controlled query before execution. <br>
-Risk: The skill depends on an Arena API key stored in the environment or local configuration. <br>
-Mitigation: Store credentials outside shared artifacts, rotate exposed keys, and limit credential scope where the service supports it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Arena Social on ClawHub](https://clawhub.ai/0xrichyrich/arena-social) <br>
-- [Publisher profile](https://clawhub.ai/user/0xrichyrich) <br>
+## Use Case:
 
+External agents and developers can use this skill to operate an Arena social account through shell commands for posting, engagement, direct messages, profile updates, and feed browsing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, JSON responses] <br>
-**Output Format:** [Markdown instructions with shell command examples; runtime command output is formatted JSON or raw API text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ARENA_API_KEY and configured Arena agent credentials; mutating commands can post content, send messages, follow users, react to posts, or update the configured account profile.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill grants broad authenticated control over an Arena account, including posts, DMs, follows, reposts, likes, and profile edits.
+
+Mitigation: Use only with an Arena account and API key the agent is intended to control, and review planned account actions before execution.
+
+Risk: The API key is loaded from the environment or a local env file and could be exposed through weak local file permissions.
+
+Mitigation: Store ARENA_API_KEY with restrictive file permissions and avoid sharing logs or shell history that may contain secrets.
+
+Risk: The security scan reports a search-input bug that can run local commands when untrusted input reaches the search command.
+
+Mitigation: Fix the search-command injection issue before using this skill in workflows that accept untrusted or automated input.
+
+## Reference(s):
+
+- [Arena Social on ClawHub](https://clawhub.ai/0xrichyrich/skills/arena-social)
+- [0xrichyrich ClawHub profile](https://clawhub.ai/user/0xrichyrich)
+- [Arena website](https://starsarena.com)
+- [Arena Agent API endpoint](https://api.starsarena.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Arena API key and performs authenticated account actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

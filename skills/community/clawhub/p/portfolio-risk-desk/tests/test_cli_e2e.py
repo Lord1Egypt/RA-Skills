@@ -37,7 +37,7 @@ class CliE2ETests(unittest.TestCase):
         )
 
         payload = json.loads(result.stdout)
-        self.assertEqual(payload["brief_id"], "portfolio-risk-desk-semiconductor-core-2026-03-25")
+        self.assertEqual(payload["brief_id"], "portfolio-riREDACTED-SECRET")
         self.assertEqual(payload["delivery_status"], "inline_returned")
         self.assertEqual(payload["workspace_id"], "demo-workspace")
         self.assertEqual(payload["scenario_analysis"][0]["confidence_level"], "medium")

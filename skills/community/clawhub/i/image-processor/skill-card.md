@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools covering Image Processor concepts, quickstart guidance, patterns, debugging, performance, security, migration, and cheatsheet material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Image Processor.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Image Processor reference guidance while working through implementation, operations, troubleshooting, performance, security, and migration tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could be granted broader credentials, file access, or tool authority than this reference skill requires. <br>
-Mitigation: Review the visible skill instructions before use and grant only the access needed for the expected reference-documentation task. <br>
+## Use Case:
 
+Developers and operators use this skill as a quick local reference for Image Processor concepts, setup, troubleshooting, performance, security, migration, and command cheat sheets.
 
-## Reference(s): <br>
-- [Image Processor ClawHub listing](https://clawhub.ai/bytesagain3/image-processor) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Plain-text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release metadata) <br>
+Risk: The reference documentation is generic and may not match a user's specific Image Processor implementation or operational policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as convenience guidance and verify operational, security, and compliance steps against authoritative project documentation before acting.
+
+Risk: The release metadata and SKILL.md identify version 2.0.3, while the bundled script declares VERSION=2.0.2.
+
+Mitigation: Confirm the packaged script version before relying on version output, release notes, or compatibility claims.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/image-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heredoc output; no API keys, credentials, network access, file access, or persistence mechanisms are described in the security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

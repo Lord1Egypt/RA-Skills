@@ -1,41 +1,55 @@
-## Description: <br>
-Google Draco 3D geometry compression library. Compresses and decompresses 3D meshes and point clouds, with glTF, Three.js, and Unity integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Draco 3D geometry compression library. Compresses and decompresses 3D meshes and point clouds, with glTF, Three.js, and Unity integration.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on compressing and decompressing 3D meshes and point clouds with Draco3D, including glTF, Three.js, browser, and Node.js integration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples rely on third-party Draco3D package and CDN decoder dependencies. <br>
-Mitigation: Pin package and CDN versions, use trusted sources, and review production dependency policy before adoption. <br>
-Risk: WASM objects created by Draco3D can leak memory if not released. <br>
-Mitigation: Follow the skill guidance to release module-created objects with d.destroy(obj). <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance on compressing and decompressing Draco 3D meshes or point clouds, integrating Draco with glTF and Three.js, and applying encoder, decoder, quantization, and memory-management APIs.
 
-## Reference(s): <br>
-- [Draco3D API Reference](references/api-reference.md) <br>
-- [Versioned Draco decoder CDN](https://www.gstatic.com/draco/versioned/decoders/1.5.7/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with JavaScript code examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples require users to manage third-party Draco3D package and CDN dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Unpinned package or CDN use can make installs and decoder behavior less reproducible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin draco3d and the Draco decoder CDN to reviewed exact versions, and use a lockfile or npm ci for installs.
+
+Risk: Draco WASM objects can leak memory if they are not released.
+
+Mitigation: Release module-created decoder, encoder, mesh, point-cloud, and array objects with d.destroy(obj) after use.
+
+## Reference(s):
+
+- [Draco3D API Reference](references/api-reference.md)
+- [Draco decoder CDN](https://www.gstatic.com/draco/versioned/decoders/1.5.7/)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/draco3d)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript code blocks, install commands, API notes, and integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Draco decoder and encoder usage patterns, Three.js loader configuration, quantization defaults, and memory-release guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

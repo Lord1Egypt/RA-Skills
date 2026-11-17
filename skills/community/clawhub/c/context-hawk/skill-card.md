@@ -1,51 +1,65 @@
-## Description: <br>
-Context Hawk provides a Python memory manager for preserving, compressing, retrieving, and injecting agent memory across sessions, topics, and long-running tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Hawk is a pure Python memory manager for preserving, compressing, and retrieving AI agent memories across sessions, topics, and time without requiring external services by default.
 
-## Publisher: <br>
-[relunctance](https://clawhub.ai/user/relunctance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[relunctance](https://clawhub.ai/user/relunctance)
 
-## Use Case: <br>
-Developers and agent builders use Context Hawk to add persistent memory, task-state recovery, context compression, and retrieval workflows to Python-based AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled installer paths can import existing OpenClaw memories. <br>
-Mitigation: Review installer scripts before execution and avoid scripts/install.sh unless importing existing local memories is intended. <br>
-Risk: Optional cloud extraction and embedding providers can send sensitive conversation or memory content outside the local environment. <br>
-Mitigation: Use local or offline retrieval modes for sensitive data, and enable cloud providers only after reviewing provider configuration and data-handling requirements. <br>
-Risk: The cron health-check script can automatically commit and push repository changes. <br>
-Mitigation: Do not schedule the cron health-check script unless automatic git commits and pushes are acceptable for the target repository. <br>
-Risk: Curl-to-bash installation can execute remote shell code before review. <br>
-Mitigation: Prefer pip installation or inspect downloaded scripts before running them. <br>
+## Use Case:
 
+Developers and agent builders use Context Hawk to add persistent memory, task-state recall, context compression, and retrieval behavior to Python-based AI agents. It is suited to agents that need continuity across sessions while controlling memory noise and context size.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/relunctance/context-hawk) <br>
-- [README](README.md) <br>
-- [Four-Tier Memory Architecture](references/memory-system.md) <br>
-- [Task State Memory](references/task-state.md) <br>
-- [Compression Strategies](references/compression-strategies.md) <br>
-- [Context Injection Strategies](references/injection-strategies.md) <br>
-- [CLI Reference](references/cli.md) <br>
-- [LanceDB Integration](references/lancedb-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local memory files, vector indexes, task-state records, and compressed context summaries when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill persists and reuses conversation-derived memory, which can retain sensitive user or project information across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep memory stores isolated per user and project, periodically inspect or delete ~/.hawk data, and avoid storing secrets or confidential content.
+
+Risk: One-line shell installation and bundled automation paths can make review harder before code runs.
+
+Mitigation: Review the artifact first, install in a virtual environment with pinned dependencies, and avoid running the cron health-check script.
+
+Risk: Optional remote embedding or LLM providers can receive conversation and stored memory text when enabled.
+
+Mitigation: Use local or keyword-only modes for sensitive data, and enable remote providers only after confirming data-sharing requirements are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/relunctance/skills/context-hawk)
+- [README](artifact/README.md)
+- [Four-Tier Memory Architecture](artifact/references/memory-system.md)
+- [Structured Memory Format](artifact/references/structured-memory.md)
+- [Task State Memory](artifact/references/task-state.md)
+- [Context Injection Strategies](artifact/references/injection-strategies.md)
+- [Compression Strategies](artifact/references/compression-strategies.md)
+- [CLI Reference](artifact/references/cli.md)
+- [LanceDB Integration](artifact/references/lancedb-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime components produce text recall snippets and JSON-compatible memory records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist conversation-derived memory locally and may use optional remote embedding or LLM providers when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact pyproject.toml reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

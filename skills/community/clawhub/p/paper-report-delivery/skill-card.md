@@ -1,43 +1,58 @@
-## Description: <br>
-Build, automate, or maintain a daily paper-report delivery pipeline that collects papers, selects A/B groups, generates Chinese summaries and detailed innovation analysis, produces readable HTML with embedded images, prepares Telegram message chunks, archives outputs, and delivers reports to Telegram with retry and HTML-then-fallback behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and maintains daily paper-report delivery pipelines that collect and select papers, generate Chinese summaries and innovation analysis, produce readable HTML and Telegram message chunks, archive outputs, and deliver with retry and fallback behavior.
 
-## Publisher: <br>
-[FanWu-fan](https://clawhub.ai/user/FanWu-fan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanwu-fan](https://clawhub.ai/user/fanwu-fan)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or maintain daily paper and news digest workflows that generate readable HTML, Telegram-ready text chunks, local archives, and resilient Telegram delivery with fallback behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image metadata can cause local files to be embedded into generated HTML and sent through Telegram. <br>
-Mitigation: Run only on trusted report metadata, restrict image_path values to known asset directories with real image MIME types, and inspect generated HTML before sending. <br>
-Risk: Telegram delivery can send report artifacts to an unintended destination if the target is not configured deliberately. <br>
-Mitigation: Set an explicit Telegram target, keep delivery settings configurable, and avoid hard-coded chat ids or group names. <br>
-Risk: Running the workflow in a directory with sensitive files increases the impact of unintended file embedding. <br>
-Mitigation: Run in a scoped workspace that contains only expected report inputs and generated artifacts until file-embedding behavior is constrained. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate daily paper and news digest workflows, including paper selection, Chinese report generation, readable HTML output, Telegram-ready text fallback, local archiving, and resilient Telegram delivery.
 
-## Reference(s): <br>
-- [Paper Report Delivery Workflow](references/workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/FanWu-fan/paper-report-delivery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with code, shell commands, configuration notes, and generated report artifacts such as HTML, JSON, text, Markdown, and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local report artifacts and Telegram delivery payloads; supports HTML-first delivery with text fallback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Image metadata can point to arbitrary local files that may be embedded into reports and sent to Telegram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict image metadata to a trusted image directory, reject absolute paths and traversal, and enforce image type and size checks before embedding.
+
+Risk: Telegram delivery may send reports to an unintended destination if the target is not explicitly configured and verified.
+
+Mitigation: Set and verify the Telegram destination before sending, and keep delivery targets configurable rather than hard-coded.
+
+Risk: Local report archives may contain report content and embedded images that should not be broadly shared.
+
+Mitigation: Store archives in controlled locations, review generated files before distribution, and apply an appropriate retention policy.
+
+## Reference(s):
+
+- [Paper Report Delivery Workflow](references/workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/fanwu-fan/skills/paper-report-delivery)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, JSON message caches, and HTML, Markdown, and PDF report artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local report files and Telegram delivery commands; messages are chunked for Telegram-sized delivery, and HTML delivery retries before falling back to text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

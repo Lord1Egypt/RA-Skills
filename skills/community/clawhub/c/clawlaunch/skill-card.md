@@ -1,48 +1,66 @@
-## Description: <br>
-ClawLaunch helps agents launch and trade AI agent tokens on a Base bonding curve, including token creation, token discovery, price quotes, buy and sell flows, on-chain memos, and Base Mainnet/Base Sepolia support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawLaunch helps agents launch, discover, quote, and trade AI agent tokens on the Base bonding-curve launchpad using ClawLaunch API and CLI guidance.
 
-## Publisher: <br>
-[SmokeAlot420](https://clawhub.ai/user/SmokeAlot420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smokealot420](https://clawhub.ai/user/smokealot420)
 
-## Use Case: <br>
-External developers and agent builders use this skill to configure ClawLaunch API access, launch AI agent tokens, list tokens, check prices, retrieve memos, and prepare buy or sell transaction calldata for Base bonding-curve trading. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real token launches and trading actions. <br>
-Mitigation: Use Base Sepolia or a low-balance isolated wallet first, require manual confirmation before launches or signed transactions, and set explicit spend and sell limits. <br>
-Risk: The API key grants access to launch and trade operations. <br>
-Mitigation: Store the key privately, use least-privilege access, avoid exposing it in prompts or logs, and rotate it if disclosure is suspected. <br>
-Risk: Transaction calldata and chain settings may direct funds or actions to unintended targets if not reviewed. <br>
-Mitigation: Verify the chain ID, destination address, calldata, value, slippage, and token address before broadcasting any transaction. <br>
-Risk: Trade memos are intended to be recorded on-chain and can be permanent public data. <br>
-Mitigation: Do not include secrets, private information, or sensitive business context in memos. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawLaunch Skill Page](https://clawhub.ai/SmokeAlot420/clawlaunch) <br>
-- [ClawLaunch Homepage](https://www.clawlaunch.fun) <br>
-- [ClawLaunch API Documentation](references/api-docs.md) <br>
-- [ClawLaunch Token Trading Reference](references/token-trading.md) <br>
-- [ClawLaunch Agent Autonomy Patterns](references/agent-patterns.md) <br>
-- [ClawLaunch Error Handling Reference](references/error-handling.md) <br>
+## Use Case:
 
+External developers and agent operators use this skill to configure ClawLaunch access, inspect available tokens, request launch or trading API calls, and generate code or shell commands for Base token workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, API request payloads, code snippets, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, a ClawLaunch API key, and a wallet able to sign Base transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide autonomous agents through token launches and buy or sell workflows that may affect real crypto assets.
+
+Mitigation: Use testnet or read-only credentials first, keep very small wallet balances, and require manual confirmation before every mainnet launch, buy, or sell.
+
+Risk: API keys and wallet credentials exposed to an autonomous trading workflow could be misused.
+
+Mitigation: Store secrets outside prompts and logs, use restricted credentials, and only use keys or wallets you are willing to expose to the workflow.
+
+Risk: On-chain memos are public and permanent, so private strategy or sensitive information may be disclosed.
+
+Mitigation: Do not include secrets, private trading strategy, or sensitive personal information in memos.
+
+Risk: Changing the API URL could direct requests to an untrusted endpoint.
+
+Mitigation: Restrict the API URL to the official ClawLaunch endpoint before using credentials or wallet-connected operations.
+
+## Reference(s):
+
+- [ClawLaunch Website](https://www.clawlaunch.fun)
+- [ClawLaunch API Documentation](references/api-docs.md)
+- [ClawLaunch Token Trading Reference](references/token-trading.md)
+- [ClawLaunch Agent Autonomy Patterns](references/agent-patterns.md)
+- [ClawLaunch Error Handling Reference](references/error-handling.md)
+- [Factory Contract on BaseScan](https://basescan.org/address/0xb3e479f1e2639A3Ed218A0E900D0d2d3a362ec6b)
+- [Registry Contract on BaseScan](https://basescan.org/address/0x7a05ACcA1CD4df32c851F682B179dCd4D6d15683)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, bash, Python, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API request examples, CLI invocations, wallet configuration guidance, and transaction calldata handling guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

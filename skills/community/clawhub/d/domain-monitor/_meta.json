@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "domain-monitor",
   "version": "1.0.0",
-  "publishedAt": 1773651384308
+  "openclaw": {
+    "emoji": "🌐",
+    "requires": {
+      "bins": ["python3", "whois", "openssl"]
+    },
+    "install": []
+  }
 }

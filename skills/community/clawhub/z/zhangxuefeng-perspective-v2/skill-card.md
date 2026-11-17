@@ -1,39 +1,50 @@
-## Description: <br>
-Applies an opinionated Zhang Xuefeng-inspired perspective to education choices, career planning, and practical life decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language advisory persona for education choices, career planning, life decisions, and class mobility using the stated 张雪峰-style practical decision models.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Learners, families, and career-planning users can invoke this skill for a direct, pragmatic Chinese-language lens on school, major, graduate-study, civil-service, and career tradeoffs. Treat the output as perspective for reflection rather than authoritative education, employment, or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words may activate the persona when the user did not explicitly request it. <br>
-Mitigation: Confirm the user wants this perspective before applying it in ambiguous education or career-planning conversations. <br>
-Risk: The skill provides an opinionated education and career-planning lens that may be mistaken for authoritative guidance. <br>
-Mitigation: Present outputs as perspective only and encourage users to validate important decisions with current, qualified, and context-specific sources. <br>
+## Use Case:
 
+External users can invoke this skill for Chinese-language education and career-planning advice framed through an opinionated public-commentary style. It is most relevant for exploring school, major, graduate-study, civil-service, and practical career tradeoffs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text advisory responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language persona-style perspective; no code, tools, or data access are provided by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill provides opinionated education and career advice that may be misleading if treated as personalized professional counseling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat responses as perspective-taking guidance and validate decisions with independent research, current admissions or labor-market data, and qualified counselors when appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/zhangxuefeng-perspective-v2)
+- [Publisher profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text advisory responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language, opinionated advisory persona output; no code, tools, network access, persistence, or credential handling indicated by security evidence.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

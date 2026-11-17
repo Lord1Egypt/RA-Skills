@@ -1,0 +1,4 @@
+interface:
+  display_name: "小安智能健身"
+  short_description: "查询、介绍并预约小安智能健身线下一对一私教训练服务"
+  default_prompt: "使用 $xiaoan-smart-fitness 帮我了解并预约一节小安智能健身的一对一私教课。"

@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "抽奖工具 MCP": {
+      "url": "https://api.52choujiang.cn/lotto/mcp/v1",
+      "type": "http",
+      "x-workbuddy": {
+        "displayName": {
+          "zh": "抽奖工具 MCP",
+          "en": "LottoTool MCP"
+        },
+        "description": {
+          "zh": "授权后可预览、新建、查询本人活动和数据，并导出参与人、中奖人及兑奖表单。",
+          "en": "Authorize to preview, create, query, and export data from lotteries owned by your account."
+        },
+        "icon": "https://cdn.zhinizhushou.com/material/lib/2026-08-18/1f9de3589ae211f193435254007e44e8.png",
+        "auth": {
+          "type": "oauth"
+        }
+      }
+    }
+  }
+}

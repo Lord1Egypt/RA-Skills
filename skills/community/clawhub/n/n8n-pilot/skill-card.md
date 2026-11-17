@@ -1,42 +1,62 @@
-## Description: <br>
-Design, build, deploy, test, and secure advanced n8n workflows with architecture patterns, flow logic, dangerous pattern detection, self-hosting guidance, credential management, and workflow recipes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, build, deploy, test, and secure advanced n8n workflows with architecture patterns, flow logic, dangerous pattern detection, self-hosting, credential management, and workflow recipes.
 
-## Publisher: <br>
-[wahajahmed010](https://clawhub.ai/user/wahajahmed010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wahajahmed010](https://clawhub.ai/user/wahajahmed010)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to design, review, test, deploy, and harden n8n workflows from intent through production activation. It is especially relevant for workflows that need credential handling, webhooks, branching, retries, self-hosting, and pre-deployment safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide actions that require sensitive n8n credentials, administrator-level n8n access, and possibly container authority. <br>
-Mitigation: Provide the exact n8n URL or container, use least-privilege credentials, avoid inline real secrets, and prefer a secret manager or the n8n UI for credential storage. <br>
-Risk: Generated workflows can trigger real external side effects, including destructive operations, webhook exposure, unexpected API usage, or purchase-capable automations. <br>
-Mitigation: Review the logic map or diff before deployment, deploy new workflows inactive, scan for dangerous patterns, test with mock or staged data, and require explicit confirmation before activation or destructive changes. <br>
-Risk: Community nodes or package-based extensions can introduce supply-chain or production stability risk. <br>
-Mitigation: Vet and pin community node packages in a staging n8n instance before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, build, deploy, test, and secure n8n workflow automations, including webhook flows, credential setup, self-hosting patterns, and production safety checks.
 
-## Reference(s): <br>
-- [n8n Built-in Integrations Documentation](https://docs.n8n.io/integrations/builtin/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with workflow JSON, code snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires N8N_API_KEY and N8N_BASE_URL; some workflows require OAuth browser consent, n8n administrator access, or container authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, release evidence, artifact metadata) <br>
+Risk: Community-node installation can run third-party npm code inside the n8n container.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only trusted, pinned, reviewed packages in staging before promoting them to production.
+
+Risk: n8n API and encryption keys protect workflow access and stored credentials.
+
+Mitigation: Store N8N_API_KEY and N8N_ENCRYPTION_KEY in a secret manager or protected environment, avoid plaintext secret backups, and verify backups include the encryption key.
+
+Risk: Automated workflows can perform destructive email or business-data actions.
+
+Mitigation: Prefer quarantine or labels over automatic deletion, require explicit confirmation for destructive changes, and test workflows inactive before activation.
+
+Risk: Unauthenticated or unvalidated webhooks can be triggered externally.
+
+Mitigation: Use header, basic, or JWT authentication, validate inputs at the first workflow node, and rate limit public endpoints.
+
+## Reference(s):
+
+- [n8n built-in integrations documentation](https://docs.n8n.io/integrations/builtin/)
+- [ClawHub skill page](https://clawhub.ai/wahajahmed010/skills/n8n-pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, JavaScript, YAML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires N8N_API_KEY and N8N_BASE_URL for API-driven workflows; some OAuth2 credential setup requires browser interaction.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, artifact/_meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+[Unit]
+Description=Min service
+After=network.target
+
+[Service]
+User=openclaw
+WorkingDirectory=/opt/myapp
+ExecStart=/usr/bin/python3 /opt/myapp/server.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

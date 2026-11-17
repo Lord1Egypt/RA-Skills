@@ -1,41 +1,59 @@
-## Description: <br>
-Build automation workflows and internal tools with Windmill's code-first platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build automation workflows and internal tools with Windmill's code-first platform.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and automation engineers use this skill as concise reference guidance when creating Windmill scripts, flows, schedules, secrets, self-hosted deployments, and webhook-triggered workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Windmill workflows, scripts, schedules, secrets, or webhook logic may be incorrect or unsafe for production if applied without review. <br>
-Mitigation: Review and test generated Windmill assets before production use, including input schemas, schedules, concurrency behavior, secret handling, and webhook authentication. <br>
-Risk: Webhook-triggered workflows can expose unauthenticated entry points if generated logic omits token validation or proxy controls. <br>
-Mitigation: Require explicit token validation in script logic or enforce authentication through a reverse proxy before exposing webhook URLs. <br>
-Risk: Plaintext variables or hardcoded paths can leak sensitive data or reduce portability across Windmill workspaces. <br>
-Mitigation: Use Windmill secrets for sensitive values and resource lookup helpers such as wmill.get_resource() for workspace-portable configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Windmill skill page](https://clawhub.ai/ivangdavila/windmill) <br>
+## Use Case:
+
+Developers and automation engineers use this skill as concise guidance for building Windmill scripts, flows, schedules, secrets, self-hosted deployments, and webhook-triggered internal tools.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Windmill workflows created from this guidance may expose webhook-triggered automation without authentication.
+
+Mitigation: Validate tokens in script logic or place webhook endpoints behind an authenticated reverse proxy.
+
+Risk: Sensitive values may be exposed if users store secrets as plaintext Windmill variables.
+
+Mitigation: Use Windmill secrets for sensitive data and avoid placing credentials in visible variables.
+
+Risk: Scheduled or suspended flows may run at unexpected times, overlap, or wait indefinitely.
+
+Mitigation: Set explicit timezones, mutex locks, and suspend-step timeouts when building production workflows.
+
+Risk: Generated scripts and flows may fail if type signatures, return values, dependencies, or branch result references are incorrect.
+
+Mitigation: Test scripts individually, verify flow branches, and review dependencies before deploying workflows.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code references and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable code is included in the skill artifact.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with concise operational notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or external tool calls are included in the skill package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Analyzes A-share market sentiment with seven indicators to score the current cycle stage, detect turning points, and produce a structured review report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes A-share speculative sentiment cycles by scoring limit-up counts, consecutive-board height, failed-board rate, premium, turnover, limit-down pressure, and market breadth to classify cycle stage and surface reversal signals.
 
-## Publisher: <br>
-[qiuqp](https://clawhub.ai/user/qiuqp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuqp](https://clawhub.ai/user/qiuqp)
 
-## Use Case: <br>
-External users and market analysts use this skill to collect or enter A-share market breadth, limit-up/down, turnover, and premium data, then receive a sentiment-stage score, turning-point assessment, and trading-reference report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce market-stage, entry/exit, or position-size suggestions that users could mistake for personalized financial advice. <br>
-Mitigation: Use it as research support only, verify data independently, and do not treat outputs as personalized investment advice. <br>
-Risk: Reports depend on third-party or manually supplied market data that may be stale, incomplete, or unavailable. <br>
-Mitigation: Check data freshness and source reliability, fall back to manual input when APIs fail, and clearly mark missing dimensions. <br>
+## Use Case:
 
+External traders and market analysts use this skill to produce structured A-share sentiment-cycle reviews, including stage classification, trend assessment, reversal-signal checks, and position-reference guidance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/qiuqp/stock-sentimental-cycle) <br>
-- [Eastmoney financial data query endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report with scoring tables and trading-reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-stage scores, turning-point signals, position-size suggestions, and caveats based on supplied or third-party market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated position guidance could be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as trading reference only and require human review before acting on them.
+
+Risk: External market-data calls may have cost or data-sharing implications.
+
+Mitigation: Confirm before relying on configured external API calls when cost, credentials, or data sharing matters.
+
+Risk: Market-data APIs may be unavailable or incomplete.
+
+Mitigation: Use the skill's manual data-completion path and mark missing dimensions clearly in the report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiuqp/skills/stock-sentimental-cycle)
+- [Eastmoney financial data API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/query)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, text, markdown, guidance]
+
+**Output Format:** [Markdown report with scoring tables, trend analysis, reversal-signal status, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call market-data tools or request manual data completion when automated data is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-06-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

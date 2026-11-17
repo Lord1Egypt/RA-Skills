@@ -1,45 +1,57 @@
-## Description: <br>
-Guide and instructions for using Google Customer Experience Agent Studio (CX Agent Studio). Use when creating conversational agents, writing or structuring instructions with XML tags, setting up few-shot examples, or building evaluation test cases (Golden or Scenario). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide and instructions for using Google Customer Experience Agent Studio (CX Agent Studio). Use when creating conversational agents, writing or structuring instructions with XML tags, setting up few-shot examples, or building evaluation test cases (Golden or Scenario).
 
-## Publisher: <br>
-[Yash-Kavaiya](https://clawhub.ai/user/Yash-Kavaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yash-kavaiya](https://clawhub.ai/user/yash-kavaiya)
 
-## Use Case: <br>
-Developers and CX teams use this skill as a concise reference for designing, configuring, testing, and evaluating Google Customer Experience Agent Studio conversational agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Applying the guidance to production CX Agent Studio agents may involve Python tools, callbacks, API connectors, SaaS integrations, logging destinations, or data stores that handle sensitive data or affect live systems. <br>
-Mitigation: Review and test those external configurations separately before deployment, including permissions, data handling, logging, and integration behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agents in CX Agent Studio](references/agents.md) <br>
-- [Best Practices in CX Agent Studio](references/best-practices.md) <br>
-- [Callbacks in CX Agent Studio](references/callbacks.md) <br>
-- [CX Agent Studio Evaluation Reference](references/evaluation.md) <br>
-- [Flows in CX Agent Studio](references/flows.md) <br>
-- [Guardrails in CX Agent Studio](references/guardrails.md) <br>
-- [Instructions in CX Agent Studio](references/instructions.md) <br>
-- [Tools in CX Agent Studio](references/tools.md) <br>
-- [Variables in CX Agent Studio](references/variables.md) <br>
+## Use Case:
 
+Developers and customer experience teams use this skill for guidance on building CX Agent Studio conversational agents, including agent structure, instructions, tools, callbacks, guardrails, and evaluation test cases.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline examples and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no code is installed or executed by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Customer-facing CX Agent Studio configurations can involve sensitive data through tools, callbacks, SaaS connectors, logging, and data stores.
+
+Mitigation: Review configured integrations, callbacks, logging, redaction, and data-store settings before deploying agents that use this guidance.
+
+## Reference(s):
+
+- [Agents in CX Agent Studio](references/agents.md)
+- [Best Practices in CX Agent Studio](references/best-practices.md)
+- [Callbacks in CX Agent Studio](references/callbacks.md)
+- [CX Agent Studio Evaluation Reference](references/evaluation.md)
+- [Flows in CX Agent Studio](references/flows.md)
+- [Guardrails in CX Agent Studio](references/guardrails.md)
+- [Instructions in CX Agent Studio](references/instructions.md)
+- [Tools in CX Agent Studio](references/tools.md)
+- [Variables in CX Agent Studio](references/variables.md)
+- [ClawHub skill page](https://clawhub.ai/yash-kavaiya/skills/cx-agent-studio)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with examples and reference links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no code execution, install hooks, or automatic access to user data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

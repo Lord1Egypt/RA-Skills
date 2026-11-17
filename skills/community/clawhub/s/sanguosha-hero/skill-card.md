@@ -1,43 +1,52 @@
-## Description: <br>
-Looks up standard-edition Sanguosha hero skills from public sources and returns concise skill names and descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up standard-edition Sanguosha hero skills from web sources and returns the hero name with concise skill descriptions.
 
-## Publisher: <br>
-[cpufreestyle](https://clawhub.ai/user/cpufreestyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cpufreestyle](https://clawhub.ai/user/cpufreestyle)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to answer natural-language questions about standard-edition Sanguosha hero abilities. It identifies the requested hero, searches trusted web sources, and summarizes skill names and effects.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Web search results may contain source-dependent or version-dependent Sanguosha skill wording.
+
+Mitigation: Check important rules questions against official or wiki sources before relying on the answer.
+
+Risk: The skill is scoped to standard-edition heroes and may omit expansion-pack characters.
+
+Mitigation: Ask for clarification when a requested hero may come from an expansion or outside the standard edition.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and game-reference agents use this skill to answer natural-language questions about standard-edition Sanguosha hero abilities. It identifies a requested hero, searches public references, and summarizes the relevant skill names and descriptions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous character-name questions could trigger this skill unexpectedly. <br>
-Mitigation: Confirm the user is asking about a Sanguosha standard-edition hero when the request is unclear. <br>
-Risk: Lookup prompts may be sent through web search. <br>
-Mitigation: Avoid including private information in hero-skill lookup prompts. <br>
-Risk: The skill is limited to standard-edition heroes. <br>
-Mitigation: Tell users when a requested hero appears to come from an expansion set and suggest checking a complete Sanguosha reference. <br>
+**Output Format:** [Markdown text with hero names and bullet-listed skill descriptions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cpufreestyle/sanguosha-hero) <br>
-- [Sanguosha Wiki](https://wiki.sanguosha.com) <br>
+**Other Properties Related to Output:** [Answers depend on current web-search results and the selected source wording.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with hero names, skill names, and skill descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask a follow-up question when the user does not specify a hero; limited to standard-edition heroes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

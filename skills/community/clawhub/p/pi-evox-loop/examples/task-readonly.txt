@@ -1,0 +1,2 @@
+Update `config/settings.json`: set `max_retries` to 5 and `timeout_seconds` to 60, keeping all other fields unchanged.
+Then read the file back and report its final JSON content.

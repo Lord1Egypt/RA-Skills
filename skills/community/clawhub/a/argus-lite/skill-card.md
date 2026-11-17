@@ -1,42 +1,58 @@
-## Description: <br>
-Argus Lite — Code Scanner (Free) scans a single Python file for the top 10 most critical security and bug patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Argus Lite scans a single Python file for ten critical and high-priority security and bug patterns.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a lightweight local scan of one Python file for common high-impact security and bug patterns before deeper review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install command can affect a system-managed Python environment if run directly. <br>
-Mitigation: Install and run the skill in a virtual environment, pipx-style isolation, or a disposable/containerized workspace. <br>
-Risk: Scanning a directory selects only the first Python file, so other files may remain unchecked. <br>
-Mitigation: Set SOURCE_PATH to the specific Python file that needs review and use broader scanning for full-codebase coverage. <br>
-Risk: The scanner uses a small fixed set of pattern rules and can miss vulnerabilities outside those patterns. <br>
-Mitigation: Treat results as preliminary guidance and combine them with code review, testing, and additional security scanning. <br>
+## Use Case:
 
+Developers use Argus Lite to run a lightweight review of one Python file for common security issues and bug patterns before deeper review or scanning.
 
-## Reference(s): <br>
-- [Argus Lite ClawHub Page](https://clawhub.ai/occupythemilkyway/argus-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and console scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scans one Python file at a time using SOURCE_PATH and reports matched rules, severities, affected lines, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and frontmatter) <br>
+Risk: The security review verdict is suspicious because the install step and runtime behavior need review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it in a virtual environment, and pin or verify the rich dependency.
+
+Risk: The default SOURCE_PATH value can scan the first Python file found from the current directory instead of an explicit target.
+
+Mitigation: Set SOURCE_PATH to an explicit Python file before running the scan.
+
+Risk: The skill includes an upgrade and payment prompt that is advertising rather than scan output.
+
+Mitigation: Treat Pro install and purchase links as promotional content and separate them from security findings.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/occupythemilkyway/argus-lite)
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/argus-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown instructions with bash and Python code blocks; terminal text and table scan results when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, pip3, and the rich Python package; SOURCE_PATH selects the Python file or directory to scan.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

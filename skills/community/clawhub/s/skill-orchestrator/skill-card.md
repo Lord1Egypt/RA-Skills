@@ -1,49 +1,60 @@
-## Description: <br>
-Skill Orchestrator decomposes complex, multi-domain requests, discovers suitable skills, coordinates parallel or serial subtasks, manages checkpoints, and merges results into human-readable reports with optional JSON bundles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-skill orchestrator: decompose complex asks, discover skills, plan parallel/serial steps, checkpoints, merge outputs; optional JSON bundle for hosts.
 
-## Publisher: <br>
-[windymonkeys](https://clawhub.ai/user/windymonkeys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windymonkeys](https://clawhub.ai/user/windymonkeys)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn complex requests into coordinated subtask plans, select local, marketplace, or fallback skills, track progress and checkpoints, and combine sub-results into a final answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local skill discovery and optional memory lookup can expose local skill metadata or brief prior execution summaries. <br>
-Mitigation: Keep configured skill and memory paths limited to trusted locations, and avoid storing secrets, full business content, or sensitive paths in execution summaries. <br>
-Risk: Subtask coordination may pass task summaries and intermediate results between selected skills. <br>
-Mitigation: Route only the minimum context needed for each subtask, review checkpoint prompts, and avoid delegating sensitive work to untrusted third-party skills. <br>
-Risk: Direct-execution or bypass modes can increase the chance of unintended side effects for deployment, external, sensitive, or destructive work. <br>
-Mitigation: Use confirmation checkpoints for high-risk tasks and avoid bypass modes when the task involves external side effects, sensitive data, or destructive operations. <br>
+## Use Case:
 
+Developers and agent users use this skill to coordinate complex requests across multiple domains by decomposing work, selecting relevant skills, sequencing or parallelizing steps, checkpointing risky decisions, and merging results into a final report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/windymonkeys/skill-orchestrator) <br>
-- [Project homepage](https://github.com/Windymonkeys/skill-orchestrator) <br>
-- [Machine Contract](references/machine-contract.md) <br>
-- [Skill Registry](references/skill-registry.md) <br>
-- [Orchestration Engine](references/orchestration-engine.md) <br>
-- [Execution Tracker](references/execution-tracker.md) <br>
-- [Result Merger](references/result-merger.md) <br>
-- [Human-in-the-Loop](references/human-in-the-loop.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown reports with optional JSON plan, event, and merge bundles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session IDs, step IDs, checkpoint prompts, progress summaries, conflict notes, and concise execution summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill can coordinate other skills, including workflows that may touch files, deployments, APIs, payments, personal data, or third-party skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before orchestration steps that involve those actions, especially when direct execution or bypassPermissions is requested.
+
+Risk: The skill may scan local skill registries and use brief orchestration history.
+
+Mitigation: Install only in environments where reading the declared skill and memory paths is acceptable, and keep orchestration history limited to brief summaries without secrets or sensitive business content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/windymonkeys/skills/skill-orchestrator)
+- [Homepage](https://github.com/Windymonkeys/skill-orchestrator)
+- [Machine Contract](references/machine-contract.md)
+- [Skill Registry](references/skill-registry.md)
+- [Orchestration Engine](references/orchestration-engine.md)
+- [Execution Tracker](references/execution-tracker.md)
+- [Result Merger](references/result-merger.md)
+- [Human-in-the-Loop](references/human-in-the-loop.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown report with optional JSON bundles and inline command or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include plan, event, and merge JSON bundles for host or script integration.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata; artifact frontmatter states 2.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

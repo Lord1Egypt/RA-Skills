@@ -1,42 +1,61 @@
-## Description: <br>
-Systematic root-cause debugging with verification for errors, stack traces, broken tests, flaky tests, regressions, or other unexpected behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic root-cause debugging with verification.
 
-## Publisher: <br>
-[iliaal](https://clawhub.ai/user/iliaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iliaal](https://clawhub.ai/user/iliaal)
 
-## Use Case: <br>
-Developers and engineers use this skill to reproduce failures, identify root causes with evidence, test competing hypotheses, and verify fixes before completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iliaal/compound-eng-debugging) <br>
-- [SPEC.md](artifact/SPEC.md) <br>
-- [Analysis of Competing Hypotheses](artifact/references/competing-hypotheses.md) <br>
-- [Defense in Depth](artifact/references/defense-in-depth.md) <br>
-- [Root Cause Tracing](artifact/references/root-cause-tracing.md) <br>
-- [Specialized Debugging Patterns](artifact/references/specialized-patterns.md) <br>
+Developers and engineers use this skill to investigate errors, stack traces, broken or flaky tests, regressions, and other unexpected behavior. It guides evidence-backed root-cause analysis and verification of authorized repairs.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown debug reports with evidence, file:line references, verification commands, and optional diagnostic reports from collect-diagnostics.sh.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated diagnostics can include local and repository metadata; review and redact repository URLs, usernames, local paths, commit messages, branch names, and environment values before sharing.] <br>
+Global
 
-## Skill Version(s): <br>
-4.1.1 (source: ClawHub release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Diagnostic reports may expose sensitive environment or project information if shared without review.
+
+Mitigation: Review and sanitize diagnostics for credentials, customer data, hostnames, IP addresses, paths, and SQL fragments before saving or sharing them.
+
+Risk: The security analysis reports broad diagnostic collection and logging, and notes that one script was only partially analyzed.
+
+Mitigation: Review the diagnostic collection and logging behavior before use, and limit collection to information needed for the investigation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iliaal/skills/compound-eng-debugging)
+- [Baseline and data handling](references/baseline-and-data-handling.md)
+- [Reproduction and investigation](references/reproduction-and-investigation.md)
+- [Root-cause tracing](references/root-cause-tracing.md)
+- [Competing hypotheses](references/competing-hypotheses.md)
+- [Repair and escalation](references/repair-and-escalation.md)
+- [Specialized debugging patterns](references/specialized-patterns.md)
+- [Defense in depth](references/defense-in-depth.md)
+- [Diagnostic collection script](scripts/collect-diagnostics.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown debugging report with evidence, findings, and repair or verification guidance; code or shell commands when relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report scope and proposed or verified changes depend on the request and available evidence.]
+
+## Skill Version(s):
+
+5.1.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

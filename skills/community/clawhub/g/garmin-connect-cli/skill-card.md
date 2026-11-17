@@ -1,44 +1,59 @@
-## Description: <br>
-Garmin Connect CLI for activities, health, body composition, workouts, devices, gear, goals, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Garmin Connect CLI helps agents work with Garmin Connect activities, health, body composition, workouts, devices, gear, goals, and related account data.
 
-## Publisher: <br>
-[bpauli](https://clawhub.ai/user/bpauli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bpauli](https://clawhub.ai/user/bpauli)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent operate `gccli` for Garmin Connect account setup, health and activity queries, data export, workout/course management, and related fitness workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help access sensitive Garmin Connect health data and account tokens. <br>
-Mitigation: Treat `gccli auth token` and `gccli auth export` output like passwords; do not paste tokens into chats, logs, repositories, or unsecured files. <br>
-Risk: Some commands can create, upload, rename, retype, link, unlink, schedule, send, or delete Garmin data. <br>
-Mitigation: Require explicit user confirmation before running commands that modify Garmin Connect data or devices. <br>
-Risk: Agent-selected strength exercise mappings may be incorrect when converting free text into Garmin catalog entries. <br>
-Mitigation: Show the proposed Garmin CATEGORY/EXERCISE_NAME mapping and wait for user confirmation before creating the activity or setting exercise sets. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent produce or run gccli commands for authenticated Garmin Connect account workflows, including activity, health, workout, course, device, gear, goal, and wellness tasks.
 
-## Reference(s): <br>
-- [Garmin Connect CLI homepage](https://github.com/bpauli/gccli) <br>
-- [ClawHub skill page](https://clawhub.ai/bpauli/garmin-connect-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/bpauli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce human-readable tables, JSON, TSV, and downloaded activity files depending on the selected gccli flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: The skill operates on authenticated Garmin Connect data, including sensitive health and fitness information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use interactive login where possible, and avoid exporting tokens unless necessary.
+
+Risk: Some supported workflows can upload, delete, schedule, or make course and event changes.
+
+Mitigation: Confirm user intent before upload, delete, schedule, or public course/event changes.
+
+Risk: Exported credentials or tokens could expose the Garmin account if stored insecurely.
+
+Mitigation: Do not store exported credentials in plaintext and prefer the CLI's OS keyring-backed authentication flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bpauli/skills/garmin-connect-cli)
+- [Publisher profile](https://clawhub.ai/user/bpauli)
+- [gccli source repository](https://github.com/bpauli/gccli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [For programmatic command output, the skill instructs agents to prefer gccli JSON output.]
+
+## Skill Version(s):
+
+1.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

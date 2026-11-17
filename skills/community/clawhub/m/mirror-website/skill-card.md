@@ -1,43 +1,62 @@
-## Description: <br>
-Mirrors static or server-rendered websites to a local folder for offline browsing, with steps for downloading assets, cleaning filenames and links, validating the mirror, and starting a local preview server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mirrors a target website into a local folder for offline browsing, including network checks, recursive download, filename cleanup, link rewriting, validation, and a localhost preview server.
 
-## Publisher: <br>
-[wenbing3049](https://clawhub.ai/user/wenbing3049) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbing3049](https://clawhub.ai/user/wenbing3049)
 
-## Use Case: <br>
-Developers and technical users use this skill to create local, offline copies of websites they own or are authorized to copy, then inspect and preview the mirrored result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can mirror websites and includes commands that bypass certificate checks or robots.txt policy. <br>
-Mitigation: Use only sites you own or are authorized to copy, review each command before execution, and remove bypass flags unless they are explicitly needed. <br>
-Risk: The workflow writes downloaded content and helper scripts into a user-selected local directory. <br>
-Mitigation: Choose a new empty destination folder and verify the resolved path before running file-creation or cleanup steps. <br>
-Risk: The workflow may use a local proxy and start a background preview server. <br>
-Mitigation: Confirm proxy use before routing traffic through it, bind preview serving to localhost, record the PID, and stop the server when finished. <br>
+## Use Case:
 
+Developers and operators use this skill to mirror static or server-rendered websites into a local directory for backup, inspection, or offline browsing. It is not suitable for login-only sites or JavaScript-rendered single-page applications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenbing3049/mirror-website) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local website mirror, helper shell scripts, validation output, and a localhost preview server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow can modify local folders and create or rewrite mirrored files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a new empty dedicated directory and review the proposed paths before running commands.
+
+Risk: The download commands disable TLS certificate checks and ignore site crawling rules.
+
+Mitigation: Remove insecure TLS bypass unless explicitly required, respect site crawling rules, and review the commands before execution.
+
+Risk: The workflow can leave a preview server running after mirroring completes.
+
+Mitigation: Start preview only when needed, bind it to localhost, record the process ID, and stop it after use.
+
+Risk: Mirroring sensitive or login-only sites can capture private content locally.
+
+Mitigation: Avoid using the skill on sensitive, authenticated, or login-only websites.
+
+## Reference(s):
+
+- [Skill README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/wenbing3049/skills/mirror-website)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands and generated shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local mirror files, helper shell scripts, and a localhost preview server when followed by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

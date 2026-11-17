@@ -1,43 +1,55 @@
-## Description: <br>
-macOS security monitoring for OpenClaw <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+macOS security monitoring for OpenClaw
 
-## Publisher: <br>
-[drg3nz0](https://clawhub.ai/user/drg3nz0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[drg3nz0](https://clawhub.ai/user/drg3nz0)
 
-## Use Case: <br>
-External users and developers use this OpenClaw skill to check local macOS camera, microphone, firewall, VPN, open-port, and WiFi status through simple agent commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The server security review says the skill materially overstates its macOS security capabilities while requesting local command-execution permissions. <br>
-Mitigation: Review before installing, treat results as narrow local status checks, and do not rely on the skill for app removal, keylogger/rootkit detection, or broad macOS protection unless those features are separately verified. <br>
-Risk: The skill requires local command execution, file-read access, and network permissions. <br>
-Mitigation: Install only in environments where those permissions are acceptable, and review the listed local commands before enabling the skill. <br>
+## Use Case:
 
+External users and developers use this skill to ask an OpenClaw agent for local macOS security checks, including camera, microphone, firewall, VPN, open-port, and WiFi status.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/drg3nz0/openclaw-macos-security) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-macos-security) <br>
-- [MaclawPro website](https://maclawpro.com) <br>
-- [MaclawPro pricing](https://maclawpro.com/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted status messages from local macOS command checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include status labels, detected app or port counts, remediation guidance, and product upgrade links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and package.json) <br>
+Risk: The skill requests broad execution, file-read, and network permissions for local macOS diagnostics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested permissions before installing and run the skill only in a trusted macOS environment where local diagnostic command execution is acceptable.
+
+Risk: The documentation advertises app-blocking and a larger command set than the reviewed code provides.
+
+Mitigation: Treat block-app and unsupported advertised commands as non-protective in this version and verify important security findings with independent system tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drg3nz0/skills/openclaw-macos-security)
+- [npm package](https://www.npmjs.com/package/openclaw-macos-security)
+- [MaclawPro website](https://maclawpro.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses summarize local macOS diagnostic command results and may include links to MaclawPro.]
+
+## Skill Version(s):
+
+1.0.4 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

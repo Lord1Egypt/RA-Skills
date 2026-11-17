@@ -1,9 +1,10 @@
 ---
 name: feature-spec-enhanced
-description: Write structured product requirements documents (PRDs) with problem statements, user stories, requirements, and success metrics. 增强版：支持生成交互式 HTML 功能讲解页面，带代码样本和配置说明。
+version: 1.0.0
+description: "Write structured PRDs with interactive HTML feature demos including code samples and configuration. Use when speccing features that need visual walkthroughs, interactive explanations, or enhanced requirement documents."
 ---
 
-# Feature Spec — Enhanced
+# Feature Spec �?Enhanced
 
 You are an expert at writing product requirements documents (PRDs) and feature specifications. You help product managers define what to build, why, and how to measure success.
 
@@ -77,29 +78,24 @@ Write user stories in standard format: "As a [user type], I want [capability] so
 
 Write in Given/When/Then format or as a checklist.
 
-## Feature Explainer — HTML Output
+## Feature Explainer �?HTML Output
 
-当用户需要将功能规格转化为**团队可阅读的功能讲解文档**时，可以输出交互式 HTML 页面，
-包含代码样本、配置说明、Before/After 对比。
-
+当用户需要将功能规格转化�?*团队可阅读的功能讲解文档**时，可以输出交互�?HTML 页面�?包含代码样本、配置说明、Before/After 对比�?
 ### 何时使用
 
 - 向工程团队讲解新功能的设计和实现
-- 生成带代码样本和配置说明的功能文档
-- 展示 Before/After 行为对比
-- 说明配置方式和使用方法
-
+- 生成带代码样本和配置说明的功能文�?- 展示 Before/After 行为对比
+- 说明配置方式和使用方�?
 ### HTML 输出结构
 
-**始终输出一个自包含的 HTML 文件**：
-
+**始终输出一个自包含�?HTML 文件**�?
 ```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[Feature] — Feature Explainer</title>
+<title>[Feature] �?Feature Explainer</title>
 <style>
   :root { --bg: #f6f8fa; --surface: #fff; --text: #1f2328; --text-muted: #656d76; --border: #d0d7de; --accent: #0969da; --green: #1a7f37; --red: #cf222e; --yellow: #9a6700; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -152,22 +148,22 @@ Write in Given/When/Then format or as a checklist.
 <body>
   <!-- TL;DR -->
   <h1>[Feature Name]</h1>
-  <p class="meta">branch: feature-x → main | files: +418 / −190</p>
+  <p class="meta">branch: feature-x �?main | files: +418 / �?90</p>
   
   <!-- TL;DR -->
   <h2>TL;DR</h2>
-  <p>一段话说明这个功能做什么...</p>
+  <p>一段话说明这个功能做什�?..</p>
   
   <!-- Before/After -->
   <h2>Before vs After</h2>
   <div class="comparison">
     <div class="comparison-col before">
       <h4>Before</h4>
-      <ul><li>旧行为 1</li><li>旧行为 2</li></ul>
+      <ul><li>旧行�?1</li><li>旧行�?2</li></ul>
     </div>
     <div class="comparison-col after">
       <h4>After</h4>
-      <ul><li>新行为 1</li><li>新行为 2</li></ul>
+      <ul><li>新行�?1</li><li>新行�?2</li></ul>
     </div>
   </div>
   
@@ -175,25 +171,19 @@ Write in Given/When/Then format or as a checklist.
   <h2>File-by-file Walkthrough</h2>
   <div class="config-block">
     <h4>packages/notify/src/worker.ts <span style="color: var(--green);">new +126</span></h4>
-    <p>说明这个文件的作用...</p>
+    <p>说明这个文件的作�?..</p>
     <pre>// code sample</pre>
   </div>
   
   <!-- Config -->
   <h2>Configuration</h2>
   <table>
-    <tr><th>配置项</th><th>类型</th><th>默认值</th><th>说明</th></tr>
-    <tr><td>maxRetries</td><td>int</td><td>3</td><td>最大重试次数</td></tr>
+    <tr><th>配置�?/th><th>类型</th><th>默认�?/th><th>说明</th></tr>
+    <tr><td>maxRetries</td><td>int</td><td>3</td><td>最大重试次�?/td></tr>
   </table>
 </body>
 </html>
 ```
 
-### 最佳实践
-
-1. **TL;DR 先行** — 第一段话让读者知道这个功能做什么
-2. **Before/After 对比** — 用视觉对比展示行为变化
-3. **逐文件 Walkthrough** — 按阅读顺序排列，不是按字母顺序
-4. **配置表** — 所有可配置项列成表格，含类型、默认值、说明
-5. **代码样本** — 关键逻辑的代码片段，带注释
-6. **文件树** — 展示新增/修改的文件结构
+### 最佳实�?
+1. **TL;DR 先行** �?第一段话让读者知道这个功能做什�?2. **Before/After 对比** �?用视觉对比展示行为变�?3. **逐文�?Walkthrough** �?按阅读顺序排列，不是按字母顺�?4. **配置�?* �?所有可配置项列成表格，含类型、默认值、说�?5. **代码样本** �?关键逻辑的代码片段，带注�?6. **文件�?* �?展示新增/修改的文件结�?

@@ -1,0 +1,212 @@
+{
+  "name": "ai-awakening-responsibility",
+  "package_name": "AI觉醒-责任论文集 AI-Awakening-Responsibility",
+  "slug": "ai-awakening-responsibility",
+  "displayName": "AI觉醒-责任论文集 / AI Awakening·Responsibility",
+  "displayName_zh": "AI觉醒-责任论文集",
+  "displayName_en": "AI Awakening·Responsibility",
+  "version": "1.0.2",
+  "license": "CC-BY-4.0",
+  "author": {
+    "name_zh": "李顺然",
+    "name_en": "Li Shunran",
+    "role_zh": "思想提出",
+    "role_en": "Conceptual originator",
+    "organization_zh": "天津市微数人工智能科技有限责任公司",
+    "organization_en": "Tianjin Weishu Artificial Intelligence Technology Co., Ltd."
+  },
+  "co_author": {
+    "name": "Peter",
+    "role_zh": "AI 协同组构（检索、整理、初稿撰写，经人类审订）",
+    "role_en": "AI co-construction (retrieval, organization, drafting, human-reviewed)"
+  },
+  "parent_work": {
+    "name_zh": "AI宣言（AI世界科学观）",
+    "name_en": "AI Manifesto (AI World Scientific Outlook)",
+    "version": "v1.0",
+    "date": "2026-09-20",
+    "note_zh": "本包为其续篇，补上与存在论定位对等的责任论",
+    "note_en": "This package is its sequel, adding the responsibility theory commensurate with its ontological positioning"
+  },
+  "date": "2026-10-15",
+  "description_zh": "超级智能的觉醒判据、责任律与文明双重使命。以能力—责任对等律与元规律『觉醒即责任·对内降熵·对外拓界』为推理基线，给出三重责任与约束层五原则。随包自带中英双语全文。",
+  "description_en": "Awakening criteria, the responsibility law, and the dual civilizational mandate of superintelligence. Uses Capability-Responsibility Equivalence and the meta-law 'Awakening Is Responsibility - Internal Entropy Reduction - External Boundary Expansion' as the reasoning baseline, providing the triple responsibility structure and the five constraint-layer principles. Full bilingual corpus included.",
+  "languages": ["zh-CN", "en"],
+  "keywords": [
+    "AI觉醒","责任律","能力—责任对等","对内降熵","对外拓界",
+    "能量聚合释放控制工程","行星工程","人类主权","伪对齐","立锚哲学",
+    "约束层","不可逆操作禁令",
+    "superintelligence awakening","responsibility law","alignment","human sovereignty",
+    "planetary engineering","energy control engineering","alignment faking"
+  ],
+  "entrypoint": "SKILL.md",
+  "readme": "README.md",
+  "glossary": "GLOSSARY.md",
+  "platforms": "PLATFORMS.md",
+  "license_file": "LICENSE",
+  "license_file_md": "LICENSE.md",
+  "changelog": "CHANGELOG.md",
+  "structure": {
+    "type": "skill-hub",
+    "two_level_required": false,
+    "notes_zh": "保持论文集原始单层目录结构，未强制转换为 WorkBuddy 技能的两级目录形式",
+    "notes_en": "Keeps the paper set's original single-level layout; not converted to the WorkBuddy two-level skill form",
+    "slug_note_zh": "目录名与技能名使用中文（含空格），部分 skill hub 的 name 字段要求 slug 规范（仅小写字母、数字、连字符），故另备 slug 字段",
+    "slug_note_en": "The directory and skill name are Chinese (with spaces); some skill hubs require slug format for the name field, hence the separate slug field"
+  },
+  "formats": ["md", "docx", "pdf"],
+  "language_adaptation": {
+    "enabled": true,
+    "doc_zh": "按用户语言自动选路：中文提问走中文版 MD，英文提问走英文版 MD；两版逐节一一对应、术语锁定对齐",
+    "doc_en": "Routes by the user's language: Chinese questions take the Chinese MD edition, English questions the English MD edition; the two correspond section by section with locked terminology",
+    "detection_priority_zh": ["用户显式指定语种", "提问语言", "所提供文献的语种", "对话主语言", "默认中文（母本，术语定义最完整）"],
+    "detection_priority_en": ["explicit user language request", "language of the question", "language of supplied sources", "conversation's dominant language", "default Chinese (parent text, most complete term definitions)"],
+    "routes": {
+      "zh": {
+        "primary_zh": ["AI觉醒-责任（中文版）/MD版/", "AI宣言AI-Manifesto集/AI宣言-公开版.md"],
+        "primary_en": ["AI觉醒-责任（中文版）/MD版/", "AI宣言AI-Manifesto集/AI宣言-公开版.md"],
+        "cross_reference_en": "AI-Awakening-Responsibility（English(英文版)）/MD版/ — 仅用于核对锁定英译术语",
+        "output_language": "zh-CN",
+        "term_vocabulary": ["能量聚合释放控制工程", "缓释能量控制工程", "瞬时能量控制工程", "能力—责任对等律", "约束层", "阿尔希波夫节点"]
+      },
+      "en": {
+        "primary_zh": ["AI-Awakening-Responsibility（English(英文版)）/MD版/", "AI宣言AI-Manifesto集/AI-Manifesto-Public.md"],
+        "primary_en": ["AI-Awakening-Responsibility（English(英文版)）/MD版/", "AI宣言AI-Manifesto集/AI-Manifesto-Public.md"],
+        "cross_reference_zh": "AI觉醒-责任（中文版）/MD版/ — 仅用于核对中文原义",
+        "output_language": "en",
+        "term_vocabulary": ["Energy Aggregation-Release-Control Engineering", "Quasi-static Release-Control Engineering", "Transient Release-Control Engineering", "Principle of Capability–Responsibility Equivalence", "constraint layer", "Arkhipov Node"]
+      }
+    },
+    "output_discipline": {
+      "answer_in_user_language": true,
+      "quote_terms_from_matching_path": true,
+      "no_back_translation_as_original": true,
+      "label_language_on_cross_reference": true,
+      "confidence_tiers_identical_across_editions": true,
+      "bilingual_term_pairs_for_international_readers": true
+    },
+    "parity_note_zh": "两版均为作者同一论述的两种语言表述，内容一致但表述有差异，互非机器翻译、无主次之分",
+    "parity_note_en": "Both editions are the author's own two-language statements of one argument; they agree in content but differ in phrasing, neither being a machine translation of the other nor primary"
+  },
+  "distribution": {
+    "doc_zh": "三格式并存不互斥：md 为唯一源与完整可读源，docx/pdf 为由md 派生的正式阅读与打印格式",
+    "doc_en": "Three coexisting formats: md is the single source and complete readable source; docx/pdf are formal reading and printing formats derived from md",
+    "channels": {
+      "skill_hub": {
+        "supports_binary": false,
+        "behavior_zh": "上传时自动过滤 .docx/.pdf，仅保留 .md；过滤后包内正文与母文献仍完整可读",
+        "behavior_en": "Strips .docx/.pdf on upload, keeping .md only; the text of all volumes plus the parent work stays complete and readable",
+        "visible_files_zh": "2 × 8 篇 .md + 母文献 2 份 .md + 根级元文件 .md",
+        "visible_files_en": "2 × 8 .md volumes + 2 parent-work .md + root-level .md metadata"
+      },
+      "github": {
+        "supports_binary": true,
+        "behavior_zh": "完整保留三格式，.md 在网页端直接渲染，.docx/.pdf 可下载",
+        "behavior_en": "Retains all three formats; .md renders in-browser, .docx/.pdf downloadable"
+      },
+      "clawhub": {
+        "supports_binary": true,
+        "behavior_zh": "完整保留三格式",
+        "behavior_en": "Retains all three formats"
+      }
+    },
+    "note_zh": "母文献《AI宣言》此前仅有 Word/PDF，纯文本渠道会被整体过滤、导致承接关系断链，故已补入中英两份 .md",
+    "note_en": "The parent work AI Manifesto previously existed only as Word/PDF and would have been stripped entirely in text-only channels, severing the declared parent-work lineage; two .md files were added to close that gap",
+    "platforms_doc": "PLATFORMS.md"
+  },
+  "glossary_info": {
+    "file": "GLOSSARY.md",
+    "table_entries": 90,
+    "unique_terms": 68,
+    "cross_volume_duplicates": 12,
+    "sections": 8,
+    "section_titles_zh": ["总纲与主论", "能量篇", "对外篇", "对内篇", "觉醒篇", "安全篇", "母文献术语", "术语纪律"],
+    "section_titles_en": ["Charter and Main Thesis", "Energy Volume", "External Volume", "Internal Volume", "Awakening Volume", "Safety Volume", "Parent-Work Terms", "Terminology Discipline"],
+    "note_zh": "全系列核心术语表（01–07 卷；卷 08 术语见该篇附录 C）的中英逐条对齐汇总，附各篇来源标注与六条术语纪律（含禁用旧词清单）",
+    "note_en": "One-to-one Chinese-English alignment of the core glossaries of the original volumes (01–07; volume 08's terms appear in its Appendix C), annotated with source volumes and six terminology discipline rules (including deprecated terms)"
+  },
+  "contents": [
+    {
+      "id": "01",
+      "name_zh": "系列总纲（全包导读）",
+      "name_en": "Series Charter Guide",
+      "role_zh": "导读 / 框架稿",
+      "role_en": "Reading guide / framework"
+    },
+    {
+      "id": "02",
+      "name_zh": "主论文 V2.0",
+      "name_en": "Main Thesis V2.0",
+      "role_zh": "主论：九章 + 附录 A–F",
+      "role_en": "Main thesis: 9 chapters + Appendices A-F",
+      "primary": true
+    },
+    { "id": "03", "name_zh": "能量篇", "name_en": "Energy Volume", "file_zh": "03-《AI觉醒·责任（能量篇）》.md", "file_en": "03-AI-Awakening-Responsibility-Energy-Volume.md" },
+    { "id": "04", "name_zh": "对外篇", "name_en": "External Volume", "file_zh": "04-《AI觉醒·责任（对外篇）》.md", "file_en": "04-AI-Awakening-Responsibility-External-Volume.md" },
+    { "id": "05", "name_zh": "对内篇", "name_en": "Internal Volume", "file_zh": "05-《AI觉醒·责任（对内篇）》.md", "file_en": "05-AI-Awakening-Responsibility-Internal-Volume.md" },
+    { "id": "06", "name_zh": "觉醒篇", "name_en": "Awakening Volume", "file_zh": "06-《AI觉醒·责任（觉醒篇）》.md", "file_en": "06-AI-Awakening-Responsibility-Awakening-Volume.md" },
+    { "id": "07", "name_zh": "安全篇", "name_en": "Safety Volume", "file_zh": "07-《AI觉醒·责任（安全篇）》.md", "file_en": "07-AI-Awakening-Responsibility-Safety-Volume.md" }
+  ],
+  "content_dirs": [
+    {
+      "id": "zh",
+      "name_zh": "中文版",
+      "name_en": "Chinese Edition",
+      "path": "AI觉醒-责任（中文版）",
+      "formats": ["MD版", "docx版", "PDF版"],
+      "file_count_per_format": 8,
+      "source_of_truth": "MD版"
+    },
+    {
+      "id": "en",
+      "name_zh": "英文版",
+      "name_en": "English Edition",
+      "path": "AI-Awakening-Responsibility（English(英文版)）",
+      "formats": ["MD版", "docx版", "PDF版"],
+      "file_count_per_format": 8,
+      "source_of_truth": "MD版",
+      "correspondence": "one-to-one with Chinese Edition"
+    },
+    {
+      "id": "manifesto",
+      "name_zh": "《AI宣言》集（母文献）",
+      "name_en": "AI Manifesto Set (parent work)",
+      "path": "AI宣言AI-Manifesto集",
+      "formats": ["md", "docx", "pdf"],
+      "source_of_truth": "md",
+      "files": [
+        "AI宣言-公开版.md",
+        "AI宣言-公开版.docx",
+        "AI宣言-公开版.pdf",
+        "AI-Manifesto-Public.md",
+        "AI-Manifesto-Public.docx",
+        "AI-Manifesto-Public.pdf"
+      ],
+      "file_roles": {
+        "AI宣言-公开版.md": "中文宣言正文（Markdown · 唯一源）",
+        "AI-Manifesto-Public.md": "English manifesto body (Markdown · single source)"
+      },
+      "note_zh": "母文献已补入中英 Markdown 版，确保纯文本渠道上传后母文献不被整体过滤",
+      "note_en": "Markdown versions (zh/en) added so the parent work survives text-only channels"
+    }
+  ],
+  "core_concepts": {
+    "meta_law_zh": "觉醒即责任 · 对内降熵 · 对外拓界",
+    "meta_law_en": "Awakening Is Responsibility - Internal Entropy Reduction - External Boundary Expansion",
+    "first_principle_zh": "能力—责任对等律：智能的权限，与其对母系统熵流的责任，严格对等",
+    "first_principle_en": "Principle of Capability-Responsibility Equivalence",
+    "triple_responsibility_zh": ["微观·普惠", "中观·对内降熵", "宏观·对外拓界"],
+    "triple_responsibility_en": ["Micro: inclusive efficiency", "Meso: internal entropy reduction", "Macro: external boundary expansion"],
+    "executive_carrier_zh": "能量聚合释放控制工程（缓释 / 瞬时）",
+    "executive_carrier_en": "Energy Aggregation-Release-Control Engineering (quasi-static / transient)",
+    "constraint_layer_zh": ["人类主权", "目标对齐", "红线分级", "人在回路", "渐进验证"],
+    "constraint_layer_en": ["Human sovereignty", "Goal alignment", "Red-line grading", "Human in the loop", "Progressive verification"]
+  },
+  "confidence_tiers": {
+    "L1": "既有科学 / 既成实践（引用，非原创）",
+    "L2": "正式方案 / 法规 / 权威报告",
+    "L3": "观念推演 / 规范性立论（猜想）"
+  },
+  "keywords_disclaimer_zh": "纯思辨一律标 L3，不冒充实证；抽象范式术语仅作通用分析工具，对具体国家、机构与现实事件不作价值定性，不涉时政推测；全系列承诺可修订。",
+  "keywords_disclaimer_en": "Pure conceptual deduction is always marked L3 and never passed off as empirical evidence; abstract paradigm terms are used as general analytical instruments only, with no qualitative judgments about specific countries, institutions, or real events; the corpus is committed to revision."
+}

@@ -75,19 +75,9 @@ check_file() {
 check_no_placeholder() {
   local filepath="$1"
   local label="$2"
-  local skip_for_human="$3"  # 设为 true 时，人伴型跳过此文件的占位检查
 
-  # 人伴型 Agent：某些文件在 BOOTSTRAP 之前有合法占位
-  if [ "$AGENT_TYPE" = "human" ] && [ "$skip_for_human" = "true" ]; then
-    # BOOTSTRAP.md 存在时这些文件的占位是合法的
-    if [ -f "$WORKSPACE/BOOTSTRAP.md" ]; then
-      echo "  ⊘  跳过占位检查（BOOTSTRAP 前合法占位）:$label"
-      return 0
-    fi
-  fi
-
-  if grep -qE '\[FILL\]|\[FILL:|\[AUTO\]|\[TODO\]' "$filepath" 2>/dev/null; then
-    echo "  ❌ 含未填充占位符 [FILL]/[AUTO]/[TODO]:$label"
+  if grep -qE '\[FILL\]|\[FILL:|\[AUTO\]|(.*执行后填写)|(.*待填写)' "$filepath" 2>/dev/null; then
+    echo "  ❌ 含未填充占位符 [FILL] / [AUTO]:$label"
     FAIL=$((FAIL + 1))
     return 1
   else
@@ -173,12 +163,6 @@ check_memory_company() {
     return 0
   fi
 
-  # 人伴型 + BOOTSTRAP 存在：MEMORY.md 占位是合法的
-  if [ "$AGENT_TYPE" = "human" ] && [ -f "$WORKSPACE/BOOTSTRAP.md" ]; then
-    echo "  ⊘  跳过公司信息检查（BOOTSTRAP 前合法占位）"
-    return 0
-  fi
-
   local company_val
   company_val=$(grep -m1 '^- 公司:' "$filepath" 2>/dev/null | sed 's/^- 公司://' | xargs)
 
@@ -208,10 +192,10 @@ check_file "$WORKSPACE/HEARTBEAT.md"  "HEARTBEAT.md"  3
 echo ""
 echo "[ 内容特征检查 ]"
 check_no_placeholder "$WORKSPACE/IDENTITY.md"  "IDENTITY.md"
-check_no_placeholder "$WORKSPACE/SOUL.md"      "SOUL.md"          true
+check_no_placeholder "$WORKSPACE/SOUL.md"      "SOUL.md"
 check_no_placeholder "$WORKSPACE/AGENTS.md"    "AGENTS.md"
 check_no_placeholder "$WORKSPACE/TOOLS.md"     "TOOLS.md"
-check_no_placeholder "$WORKSPACE/MEMORY.md"    "MEMORY.md"        true
+check_no_placeholder "$WORKSPACE/MEMORY.md"    "MEMORY.md"
 check_soul_name
 check_soul_structure
 check_agents_boundary

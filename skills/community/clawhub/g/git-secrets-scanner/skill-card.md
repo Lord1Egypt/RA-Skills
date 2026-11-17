@@ -1,44 +1,60 @@
-## Description: <br>
-Guides agents and developers through scanning Git repositories and commits for leaked API keys, passwords, tokens, private keys, certificates, and environment files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and developers through scanning Git repositories for leaked API keys, passwords, tokens, private keys, certificates, and environment files using tools such as Gitleaks, TruffleHog, and git-secrets.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers, security engineers, and release reviewers use this skill to choose and run Git secret-scanning tools, configure pre-commit or CI checks, and respond when leaked credentials are found. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Secret scan output can contain live credentials or sensitive repository details. <br>
-Mitigation: Redact scan output before sharing it and revoke or rotate any exposed credentials immediately. <br>
-Risk: History cleanup and force-push commands can disrupt collaborators or remove needed repository history. <br>
-Mitigation: Run destructive cleanup only with backups, explicit approval, and team coordination. <br>
-Risk: Installing scanners from untrusted sources can introduce supply-chain risk. <br>
-Mitigation: Install referenced tools only from trusted upstream release channels. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/git-secrets-scanner) <br>
-- [Gitleaks releases](https://github.com/gitleaks/gitleaks/releases) <br>
-- [TruffleHog releases](https://github.com/trufflesecurity/trufflehog/releases) <br>
-- [git-secrets repository](https://github.com/awslabs/git-secrets.git) <br>
+## Use Case:
 
+Developers, security engineers, and agent operators use this skill to select and run Git secret-scanning workflows before commits, during CI, across repository history, and during incident response for leaked credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, YAML, and TOML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; commands require a local Git repository and separately installed scanning tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent hooks or scheduled scans can create ongoing automatic execution in local repositories.
+
+Mitigation: Enable hooks or cron jobs only after reviewing the exact commands, paths, and expected execution cadence.
+
+Risk: Privileged or unpinned installs can install unexpected versions or require elevated access.
+
+Mitigation: Pin tool and action versions, prefer package-manager or vendor-documented installs, and avoid sudo installs where practical.
+
+Risk: Git history rewrites and force pushes can disrupt collaborators or lose history during incident response.
+
+Mitigation: Back up repositories, coordinate with the team, rotate exposed credentials first, and treat BFG plus git push --force as a controlled incident-response step.
+
+## Reference(s):
+
+- [Gitleaks releases](https://github.com/gitleaks/gitleaks/releases)
+- [TruffleHog releases](https://github.com/trufflesecurity/trufflehog/releases)
+- [git-secrets repository](https://github.com/awslabs/git-secrets.git)
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/git-secrets-scanner)
+- [ClawHub publisher profile](https://clawhub.ai/user/guohongbin-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, YAML, TOML, and plain-text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scanner command examples, CI workflow snippets, hook setup guidance, remediation steps, and sample scanner output.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

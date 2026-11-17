@@ -1,42 +1,59 @@
-## Description: <br>
-Schedule and manage social media posts across 14 platforms from the CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule and manage social media posts across 14 platforms from the CLI.
 
-## Publisher: <br>
-[mikipalet](https://clawhub.ai/user/mikipalet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikipalet](https://clawhub.ai/user/mikipalet)
 
-## Use Case: <br>
-Developers, operators, and AI agents use this skill to authenticate with Zernio, manage profiles and connected social accounts, create or schedule posts, upload media, and retrieve analytics from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI can act on connected Zernio social accounts, including publishing, retrying, uploading media, and deleting posts or profiles. <br>
-Mitigation: Use it only with accounts where this authority is acceptable, and require explicit agent confirmation before actions that publish, retry, upload, or delete content. <br>
-Risk: API keys may be exposed if pasted into shared terminals, logs, transcripts, or unprotected config files. <br>
-Mitigation: Prefer browser login or protected environment secrets, avoid sharing real keys in transcripts, and protect ~/.zernio/config.json. <br>
+## Use Case:
 
+External developers and AI agents use this skill to operate the Zernio CLI for social account discovery, profile management, post scheduling, post status checks, analytics retrieval, and media upload workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikipalet/zernio-cli) <br>
-- [Zernio Documentation](https://docs.zernio.com) <br>
-- [Zernio Homepage](https://zernio.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return compact JSON by default and support pretty-printed JSON with --pretty.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The CLI can create, schedule, retry, or delete social media posts through the user's Zernio account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly scoped API key and require confirmation of profile, account, and post IDs before publishing, retrying, or deleting content.
+
+Risk: API credentials may be stored in ~/.zernio/config.json or provided through environment variables.
+
+Mitigation: Keep the config file private, use secret-management controls for ZERNIO_API_KEY, and rotate keys if they may have been exposed.
+
+Risk: Custom API URLs and media uploads can send credentials or selected local files to external endpoints.
+
+Mitigation: Use only trusted HTTPS API URLs and verify local media paths before uploading files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikipalet/skills/zernio-cli)
+- [Zernio documentation](https://docs.zernio.com)
+- [Zernio website](https://zernio.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI command results are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZERNIO_API_KEY for authenticated API access; browser login or auth:set may store credentials in ~/.zernio/config.json.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Bilibili Subtitles helps an agent use yt-dlp to extract existing or auto-generated subtitles from public Bilibili videos without downloading the full video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses yt-dlp to extract existing uploaded or auto-generated subtitles from public Bilibili videos without downloading the full video.
 
-## Publisher: <br>
-[ScottLiu007](https://clawhub.ai/user/ScottLiu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottliu007](https://clawhub.ai/user/scottliu007)
 
-## Use Case: <br>
-Developers, researchers, and content analysts use this skill to retrieve available Bilibili subtitle tracks for summarization, translation, or question answering. It is intended for public or otherwise authorized videos that already provide subtitle tracks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting may use browser cookies or a cookies.txt file, which can enable authenticated Bilibili access if used without clear user intent. <br>
-Mitigation: Use cookies only with explicit user consent, prefer a narrowly scoped cookies.txt file, and never paste cookie contents or account secrets into chat. <br>
-Risk: The skill runs yt-dlp locally and writes generated subtitle files into the selected working folder. <br>
-Mitigation: Run the commands only for expected Bilibili URLs in a folder where generated subtitle files are intended, then review the files before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Bilibili subtitle availability, download existing subtitle tracks, convert VTT subtitles to plain text, and use the text for summaries or question answering. It is limited to videos where Bilibili already provides subtitle tracks.
 
-## Reference(s): <br>
-- [Bilibili subtitle troubleshooting reference](reference.md) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated subtitle artifacts are typically VTT, SRT, or plain text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local yt-dlp installation and may require user-provided cookies for authenticated Bilibili access; it does not transcribe videos that have no subtitle track.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using browser cookies or exported cookies.txt files can expose Bilibili account secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit approval before cookie access, prefer a Bilibili-scoped cookies.txt file, avoid printing or pasting cookie contents, and delete exported cookie files after use.
+
+Risk: The skill can return no usable content when a video has no uploaded or auto-generated subtitle track.
+
+Mitigation: List available subtitles first and clearly report when no subtitle track exists instead of implying extraction succeeded.
+
+Risk: Subtitle extraction may be inappropriate for content the user is not authorized to access or reuse.
+
+Mitigation: Use the skill only for public or authorized content and follow applicable platform terms and copyright requirements.
+
+## Reference(s):
+
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [Bilibili subtitle troubleshooting reference](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, text]
+
+**Output Format:** [Markdown with inline bash commands and references to generated subtitle or plain-text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce .vtt, .srt, or plain-text subtitle files when commands are executed in the user's environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

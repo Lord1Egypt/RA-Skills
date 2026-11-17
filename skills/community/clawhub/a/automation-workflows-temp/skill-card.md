@@ -1,39 +1,58 @@
-## Description: <br>
-Design and implement no-code automation workflows to save time and scale operations for solopreneurs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and implement automation workflows to save time and scale operations as a solopreneur.
 
-## Publisher: <br>
-[Liguang00806](https://clawhub.ai/user/Liguang00806) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liguang00806](https://clawhub.ai/user/liguang00806)
 
-## Use Case: <br>
-Solopreneurs and business operators use this skill to identify repetitive work, choose no-code automation tools, design workflows, test automations, and maintain them over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automation workflows may access connected accounts or customer data with broader permissions than necessary. <br>
-Mitigation: Grant the smallest necessary account permissions, review customer-data handling, and periodically revoke unused connected-app access. <br>
-Risk: Poorly tested workflows can publish, bill, notify, or update records incorrectly. <br>
-Mitigation: Test with safe sample data first, review field mappings and edge cases, and add approval steps for public, financial, or customer-facing actions. <br>
+## Use Case:
 
+External users and solo business operators use this skill to identify repetitive tasks, choose no-code automation tools, design workflows, test automations, and maintain reliable operations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown with workflow templates and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; it does not execute automations or connect to external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Automation workflows can expose customer, payment, or business data to connected services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each data flow before implementation and use least-privilege OAuth or API access for every connected service.
+
+Risk: Incorrect field mapping or workflow logic can create bad records, missed tasks, or customer-facing errors.
+
+Mitigation: Test with limited data, edge cases, and intentionally triggered failures before relying on the automation.
+
+Risk: Silent automation failures can interrupt business processes without immediate notice.
+
+Mitigation: Keep error notifications, workflow logs, and troubleshooting documentation under the user's control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liguang00806/skills/automation-workflows-temp)
+- [Publisher profile](https://clawhub.ai/user/liguang00806)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown playbook with checklists, comparison tables, workflow templates, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes no-code tool selection, workflow design, testing, ROI, monitoring, and maintenance guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

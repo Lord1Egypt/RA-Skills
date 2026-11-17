@@ -1,0 +1,335 @@
+l1_code,l1_name,l2_code,l2_name,l3_code,l3_name,plan_a,plan_b,plan_c,risk
+01,Pre-sale product consultation,01.01,Specifications and attributes,01.01.01,"Dimensions, weight and capacity",PROD-SPEC,PROD-COMPARE,NEED-INFO,low
+01,Pre-sale product consultation,01.01,Specifications and attributes,01.01.02,Material ingredients and ingredients,PROD-SPEC,PRODUCT-POLICY,NEED-INFO,low
+01,Pre-sale product consultation,01.01,Specifications and attributes,01.01.03,Color appearance process,PROD-SPEC,PROD-COMPARE,NEED-INFO,low
+01,Pre-sale product consultation,01.01,Specifications and attributes,01.01.04,Origin manufacturer batch,PROD-SPEC,NEED-INFO,HUMAN-REVIEW,medium
+01,Pre-sale product consultation,01.01,Specifications and attributes,01.01.05,Packing list and accessories,PROD-SPEC,PROD-COMPARE,NEED-INFO,low
+01,Pre-sale product consultation,01.02,Adaptation and compatibility,01.02.01,Equipment model compatibility,PROD-FIT,PROD-RECOMMEND,NEED-INFO,low
+01,Pre-sale product consultation,01.02,Adaptation and compatibility,01.02.02,Size and body shape adaptation,PROD-FIT,PROD-RECOMMEND,NEED-INFO,low
+01,Pre-sale product consultation,01.02,Adaptation and compatibility,01.02.03,Suitable for scene environment,PROD-FIT,PROD-RECOMMEND,PRODUCT-POLICY,low
+01,Pre-sale product consultation,01.02,Adaptation and compatibility,01.02.04,Regional voltage plug network,PROD-FIT,PROD-SPEC,HUMAN-REVIEW,medium
+01,Pre-sale product consultation,01.02,Adaptation and compatibility,01.02.05,Accessories and consumables compatibility,PROD-FIT,PARTS-FLOW,PROD-RECOMMEND,low
+01,Pre-sale product consultation,01.03,Function and use,01.03.01,Functional capabilities and limitations,PROD-SPEC,PROD-COMPARE,NEED-INFO,low
+01,Pre-sale product consultation,01.03,Function and use,01.03.02,Installation and setting instructions,PROD-SPEC,PROD-FIT,HUMAN-REVIEW,medium
+01,Pre-sale product consultation,01.03,Function and use,01.03.03,"Cleaning, maintenance and storage",PROD-SPEC,PRODUCT-POLICY,NEED-INFO,low
+01,Pre-sale product consultation,01.03,Function and use,01.03.04,Performance life and battery life,PROD-SPEC,PROD-COMPARE,WARRANTY-COVER,low
+01,Pre-sale product consultation,01.04,Recommendation and comparison,01.04.01,Recommended according to needs,PROD-RECOMMEND,PROD-COMPARE,NEED-INFO,low
+01,Pre-sale product consultation,01.04,Recommendation and comparison,01.04.02,Gift recommendation,PROD-RECOMMEND,PROD-COMPARE,PRODUCT-POLICY,low
+01,Pre-sale product consultation,01.04,Recommendation and comparison,01.04.03,Comparison of two or more models,PROD-COMPARE,PROD-RECOMMEND,PROD-SPEC,low
+01,Pre-sale product consultation,01.04,Recommendation and comparison,01.04.04,Package combination suggestions,PROD-RECOMMEND,PROD-COMPARE,PRICE-EXPLAIN,low
+01,Pre-sale product consultation,01.05,Authenticity and commitment,01.05.01,Authenticity and authorized channels,PROD-SPEC,MARKETPLACE-ROUTE,HUMAN-REVIEW,medium
+01,Pre-sale product consultation,01.05,Authenticity and commitment,01.05.02,Certification testing and compliance,PROD-SPEC,NEED-INFO,HUMAN-REVIEW,medium
+01,Pre-sale product consultation,01.05,Authenticity and commitment,01.05.03,"Environmentally friendly, sustainable and ethical sources",PROD-SPEC,NEED-INFO,HUMAN-REVIEW,medium
+01,Pre-sale product consultation,01.05,Authenticity and commitment,01.05.04,Efficacy health or safety statement,PROD-SPEC,SAFETY-ESCALATE,HUMAN-REVIEW,manual
+01,Pre-sales product consultation,01.06,Pre-sales policy,01.06.01,Shipping scope and timeliness,PRODUCT-POLICY,SHIP-STATUS,NEED-INFO,low
+01,Pre-sale product consultation,01.06,Pre-sale policy,01.06.02,Return and refund policy,PRODUCT-POLICY,EXPLAIN-POLICY,HUMAN-REVIEW,medium
+01,Pre-sales product consultation,01.06,Pre-sales policy,01.06.03,Warranty maintenance policy,PRODUCT-POLICY,WARRANTY-COVER,HUMAN-REVIEW,medium
+01,Pre-sales product consultation,01.06,Pre-sales policy,01.06.04,Customization or final sales restrictions,PRODUCT-POLICY,RETURN-EXCEPTION,HUMAN-REVIEW,medium
+02,Inventory pre-sale and price,02.01,Inventory availability,02.01.01,Current variants in stock,STOCK-AVAILABLE,RESOLVE-NOW,PROD-RECOMMEND,low
+02,Inventory pre-sale and price,02.01,Inventory availability,02.01.02,Out of stock and replenishment time,STOCK-RESTOCK,PROD-RECOMMEND,NEED-INFO,low
+02,Inventory pre-sale and price,02.01,Inventory availability,02.01.03,Region or channel limited inventory,STOCK-AVAILABLE,PRODUCT-POLICY,MARKETPLACE-ROUTE,low
+02,inventory pre-sale and price,02.01,inventory availability,02.01.04,"discontinued, out of print or removed from the shelves",STOCK-RESTOCK,PROD-RECOMMEND,HUMAN-REVIEW,medium
+02,Inventory pre-sale and price,02.02,Pre-sale and waiting list,02.02.01,Pre-sale delivery window,PREORDER-INFO,PRODUCT-POLICY,NEED-INFO,low
+02,Inventory pre-sale and price,02.02,Pre-sale and waiting list,02.02.02,Pre-sale extension,PREORDER-INFO,SHIP-DELAY,ORDER-CANCEL,medium
+02,Inventory pre-sale and price,02.02,Pre-sale and waiting list,02.02.03,Waiting list arrival notification,STOCK-RESTOCK,RESOLVE-NOW,PROD-RECOMMEND,low
+02,Inventory pre-sale and price,02.02,Pre-sale and waiting list,02.02.04,Limited sale and purchase restrictions,PRODUCT-POLICY,STOCK-AVAILABLE,HUMAN-REVIEW,medium
+02,Inventory pre-sale and price,02.03,Price and quotation,02.03.01,Current selling price difference,PRICE-EXPLAIN,PROD-COMPARE,NEED-INFO,low
+02,Inventory pre-sale and price,02.03,Price and quotation,02.03.02,Price matching,PRICE-MATCH,EXPLAIN-POLICY,HUMAN-REVIEW,medium
+02,Inventory pre-sale and price,02.03,Price and quotation,02.03.03,Price reduction protection,PRICE-MATCH,REFUND-PARTIAL,HUMAN-REVIEW,medium
+02,Inventory pre-sale and price,02.03,Price and quotation,02.03.04,Initial batch price inquiry,B2B-QUALIFY,B2B-QUOTE,HUMAN-REVIEW,medium
+02,Inventory pre-sale and price,02.04,Purchase restrictions,02.04.01,Minimum and maximum purchase quantity,PRODUCT-POLICY,STOCK-AVAILABLE,HUMAN-REVIEW,medium
+02,Inventory pre-sale and price,02.04,Purchase restrictions,02.04.02,Age or identity restrictions,PRODUCT-POLICY,NEED-INFO,HUMAN-REVIEW,manual
+02,Inventory pre-sale and price,02.04,Purchase restrictions,02.04.03,Dangerous goods or cross-border restrictions,PRODUCT-POLICY,SHIP-CUSTOMS,HUMAN-REVIEW,manual
+02,Inventory pre-sale and price,02.04,Purchase restrictions,02.04.04,Regional bans or sanctions restrictions,PRODUCT-POLICY,HUMAN-REVIEW,LEGAL-ESCALATE,manual
+03,Pay tax at checkout,03.01,Shopping cart and checkout failure,03.01.01,Product cannot be added to shopping cart,CHECKOUT-FIX,STOCK-AVAILABLE,NEED-INFO,low
+03,Pay tax at checkout,03.01,Shopping cart and checkout failure,03.01.02,Error on checkout page,CHECKOUT-FIX,NEED-INFO,HUMAN-REVIEW,medium
+03,Pay tax at checkout,03.01,Shopping cart and checkout failure,03.01.03,Address cannot be verified,CHECKOUT-FIX,ADDRESS-CHANGE,HUMAN-REVIEW,medium
+03,Pay taxes and fees at checkout,03.01,Shopping cart and checkout failure,03.01.04,Visitor checkout or account force,CHECKOUT-FIX,ACCOUNT-ACCESS,PRODUCT-POLICY,low
+03,checkout and pay taxes,03.02,payment status,03.02.01,bank card declined,PAYMENT-DECLINED,NEED-INFO,HUMAN-REVIEW,medium
+03,checkout and pay taxes,03.02,payment status,03.02.02,payment pending,PAYMENT-PENDING,ORDER-CONFIRM,HUMAN-REVIEW,medium
+03,checkout and pay taxes,03.02,payment status,03.02.03,payment successful but no order,ORDER-CONFIRM,PAYMENT-PENDING,HUMAN-REVIEW,high
+03,Pay taxes at checkout,03.02,Payment status,03.02.04,Duplicate deduction,PAYMENT-DUPLICATE,REFUND-ISSUED,HUMAN-REVIEW,high
+03,Pay taxes at checkout,03.02,Payment status,03.02.05,Unauthorized deduction,PAYMENT-UNAUTHORIZED,SECURITY-PHISHING,HUMAN-REVIEW,manual
+03,Pay taxes and fees at checkout,03.03,Payment method,03.03.01,"Installment or buy now, pay later",PAYMENT-DECLINED,PRICE-EXPLAIN,HUMAN-REVIEW,medium
+03,Pay taxes and fees at checkout,03.03,Payment method,03.03.02,Wallet or local payment failed,PAYMENT-DECLINED,CHECKOUT-FIX,HUMAN-REVIEW,medium
+03,Pay taxes and fees at checkout,03.03,Payment method,03.03.03,Cash on delivery problem,PRODUCT-POLICY,ORDER-CONFIRM,HUMAN-REVIEW,medium
+03,Pay taxes and fees at checkout,03.03,Payment method,03.03.04,Currency and exchange,PRICE-EXPLAIN,TAX-DUTY,HUMAN-REVIEW,medium
+03,Pay taxes and fees at checkout,03.04,Amount composition,03.04.01,Freight abnormality,PRICE-EXPLAIN,SHIP-STATUS,HUMAN-REVIEW,medium
+03,Pay taxes at checkout,03.04,Amount composition,03.04.02,Tax calculation,TAX-DUTY,PRICE-EXPLAIN,HUMAN-REVIEW,medium
+03,Pay taxes and fees at checkout,03.04,Amount composition,03.04.03,Import tariff estimate,TAX-DUTY,SHIP-CUSTOMS,HUMAN-REVIEW,medium
+03,Tax payment at checkout,03.04,Amount composition,03.04.04,Change in total price at checkout,PRICE-EXPLAIN,PROMO-VALIDATE,HUMAN-REVIEW,medium
+03,Pay taxes and fees at checkout,03.05,Verification and risk control,03.05.01,3DS verification code failed,PAYMENT-VERIFY,PAYMENT-DECLINED,HUMAN-REVIEW,high
+03,Pay taxes and fees at checkout,03.05,Verification and risk control,03.05.02,Order risk control suspended,ORDER-HOLD,PAYMENT-VERIFY,HUMAN-REVIEW,manual
+03,Checkout and pay taxes,03.05,Verification and risk control,03.05.03,Identity verification request,PAYMENT-VERIFY,NEED-INFO,HUMAN-REVIEW,manual
+03,Pay taxes and fees at checkout,03.05,Verification and risk control,03.05.04,Suspicious payment link,SECURITY-PHISHING,PAYMENT-VERIFY,HUMAN-REVIEW,manual
+03,Pay tax at checkout,03.06,Invoice receipt gift card,03.06.01,Resend order receipt,INVOICE-ISSUE,ORDER-CONFIRM,RESOLVE-NOW,low
+03,pay tax at checkout,03.06,invoice receipt gift card,03.06.02,value-added tax or corporate invoice,INVOICE-ISSUE,TAX-DUTY,HUMAN-REVIEW,medium
+03,Pay taxes at checkout,03.06,Invoice receipt gift card,03.06.03,Correction of invoice information,INVOICE-ISSUE,ACCOUNT-PROFILE,HUMAN-REVIEW,medium
+03,pay taxes at checkout,03.06,invoice receipt gift card,03.06.04,gift card purchase balance,GIFTCARD-HELP,NEED-INFO,HUMAN-REVIEW,high
+04,Order creation and changes,04.01,Order confirmation,04.01.01,No confirmation email received,ORDER-CONFIRM,RESOLVE-NOW,NEED-ORDER,low
+04,order creation and changes,04.01,order confirmation,04.01.02,order number not found,NEED-ORDER,ORDER-CONFIRM,HUMAN-REVIEW,medium
+04,order creation and change,04.01,order confirmation,04.01.03,duplicate order,ORDER-DUPLICATE,ORDER-CANCEL,HUMAN-REVIEW,high
+04,order creation and changes,04.01,order confirmation,04.01.04,order automatically canceled,ORDER-HOLD,REFUND-PENDING,HUMAN-REVIEW,high
+04,order creation and changes,04.02,order cancellation,04.02.01,cancellation of entire undelivered order,ORDER-CANCEL,RESOLVE-NOW,HUMAN-REVIEW,high
+04,order creation and changes,04.02,order cancellation,04.02.02,cancellation of undelivered parts,ORDER-CANCEL,REFUND-PARTIAL,HUMAN-REVIEW,high
+04,order creation and changes,04.02,order cancellation,04.02.03,has entered the warehouse for processing,ORDER-CANCEL-LATE,ORDER-CANCEL,HUMAN-REVIEW,high
+04,order creation and changes,04.02,order cancellation,04.02.04,cancellation after shipment,ORDER-CANCEL-LATE,RETURN-ELIGIBLE,HUMAN-REVIEW,high
+04,order creation and changes,04.03,product and quantity modification,04.03.01,"change size, color and style",ORDER-EDIT,EXCHANGE-REQUEST,HUMAN-REVIEW,high
+04,order creation and changes,04.03,product and quantity modification,04.03.02,increase product quantity,ORDER-EDIT,ORDER-CANCEL,HUMAN-REVIEW,high
+04,order creation and changes,04.03,product and quantity modification,04.03.03,reduce product quantity,ORDER-EDIT,REFUND-PARTIAL,HUMAN-REVIEW,high
+04,Order creation and changes,04.03,Modification of goods and quantities,04.03.04,Replacement of out-of-stock goods,ORDER-EDIT,PROD-RECOMMEND,HUMAN-REVIEW,high
+04,order creation and change,04.04,address and delivery modification,04.04.01,delivery address modification,ADDRESS-CHANGE,HUMAN-REVIEW,ORDER-CANCEL-LATE,manual
+04,order creation and change,04.04,address and delivery modification,04.04.02,billing address modification,ACCOUNT-PROFILE,INVOICE-ISSUE,HUMAN-REVIEW,high
+04,order creation and change,04.04,address and delivery modification,04.04.03,delivery method upgrade or downgrade,SHIPPING-METHOD-CHANGE,PRICE-EXPLAIN,HUMAN-REVIEW,high
+04,Order creation and changes,04.04,Address and delivery modification,04.04.04,Change pickup person,SHIP-PICKUP,ACCOUNT-PROFILE,HUMAN-REVIEW,manual
+04,Order creation and change,04.05,Order structure,04.05.01,Request to split the order,ORDER-SPLIT,SHIPPING-METHOD-CHANGE,HUMAN-REVIEW,medium
+04,Order creation and changes,04.05,Order structure,04.05.02,Request to combine orders,ORDER-SPLIT,PRICE-EXPLAIN,HUMAN-REVIEW,medium
+04,Order creation and changes,04.05,Order structure,04.05.03,Multi-warehouse or multi-package instructions,ORDER-SPLIT,SHIP-PARTIAL,SHIP-STATUS,low
+04,Order creation and change,04.05,Order structure,04.05.04,Order and subscription relationship,SUB-CHANGE,ORDER-CONFIRM,HUMAN-REVIEW,medium
+04,Order creation and changes,04.06,Gifts and remarks,04.06.01,Add and modify gift messages,ORDER-GIFT,ORDER-EDIT,HUMAN-REVIEW,medium
+04,Order creation and changes,04.06,Gifts and remarks,04.06.02,Gift packaging,ORDER-GIFT,PRICE-EXPLAIN,HUMAN-REVIEW,medium
+04,Order creation and changes,04.06,Gifts and remarks,04.06.03,Hidden price receipt,ORDER-GIFT,INVOICE-ISSUE,HUMAN-REVIEW,medium
+04,Order creation and changes,04.06,Gifts and remarks,04.06.04,Order special remarks,ORDER-EDIT,NEED-INFO,HUMAN-REVIEW,medium
+05,Shipping and distribution,05.01,Not shipped status,05.01.01,Normally in stock,SHIP-NOT-SENT,ORDER-CONFIRM,RESOLVE-NOW,low
+05,Shipping and Distribution,05.01,Undelivered status,05.01.02,Exceeded the promise but not delivered,SHIP-NOT-SENT,SHIP-DELAY,ORDER-CANCEL,high
+05,Shipping and distribution,05.01,Undelivered status,05.01.03,"Out of stock, waiting for shipment",SHIP-NOT-SENT,STOCK-RESTOCK,ORDER-CANCEL,medium
+05,Shipping and distribution,05.01,Undelivered status,05.01.04,Pre-sale waiting for shipment,PREORDER-INFO,SHIP-NOT-SENT,ORDER-CANCEL,medium
+05,Shipping and Distribution,05.02,Tracking Status,05.02.01,Label created but not collected,SHIP-STATUS,SHIP-NOT-SENT,HUMAN-REVIEW,medium
+05,Shipping and distribution,05.02,Tracking status,05.02.02,Normal transportation,SHIP-STATUS,RESOLVE-NOW,NEED-INFO,low
+05,Shipping and distribution,05.02,Tracking status,05.02.03,Tracking number is invalid or not updated,SHIP-STATUS,SHIP-DELAY,HUMAN-REVIEW,medium
+05,Shipping and distribution,05.02,Tracking status,05.02.04,Inconsistent carrier information,SHIP-STATUS,NEED-INFO,HUMAN-REVIEW,medium
+05,shipping and distribution,05.03,delay and loss,05.03.01,transportation delay,SHIP-DELAY,SHIP-STATUS,HUMAN-REVIEW,medium
+05,shipment and distribution,05.03,delayed and lost,05.03.02,suspected lost items without scanning for a long time,SHIP-LOST,SHIP-DELAY,HUMAN-REVIEW,high
+05,shipment and distribution,05.03,delayed and lost,05.03.03,large-scale delays during events and festivals,SHIP-DELAY,EXPLAIN-POLICY,HUMAN-REVIEW,high
+05,Shipping and distribution,05.03,Delayed and lost,05.03.04,Key date not delivered,SHIP-DELAY,ORDER-CANCEL-LATE,REFUND-COMP,high
+05,Shipping and distribution,05.04,Delivery exception,05.04.01,Display delivery not received,SHIP-DNR,SHIP-LOST,HUMAN-REVIEW,manual
+05,Shipping and distribution,05.04,Delivery abnormality,05.04.02,Unknown signer,SHIP-DNR,SECURITY-PHISHING,HUMAN-REVIEW,manual
+05,Shipping and Distribution,05.04,Delivery Abnormal,05.04.03,Delivery Failure,SHIP-FAILED,ADDRESS-CHANGE,HUMAN-REVIEW,high
+05,Shipping and Distribution,05.04,Delivery Abnormality,05.04.04,Package Stolen,SHIP-DNR,SHIP-LOST,HUMAN-REVIEW,manual
+05,Shipping and distribution,05.05,Return to sender,05.05.01,Return with wrong address,SHIP-RTS,ADDRESS-CHANGE,HUMAN-REVIEW,high
+05,Shipping and distribution,05.05,Return to sender,05.05.02,Return without signature,SHIP-RTS,SHIP-FAILED,HUMAN-REVIEW,high
+05,Shipping and distribution,05.05,Return to sender,05.05.03,Refusal to pay customs duties,SHIP-RTS,SHIP-CUSTOMS,HUMAN-REVIEW,high
+05,Shipping and distribution,05.05,Return to sender,05.05.04,Merchant recalls package,SHIP-RTS,RECALL-FLOW,HUMAN-REVIEW,manual
+05,Shipping and Distribution,05.06,Partial and Special Shipping,05.06.01,Partial Shipping,SHIP-PARTIAL,ORDER-SPLIT,SHIP-STATUS,low
+05,Shipping and distribution,05.06,Partial and special distribution,05.06.02,Gifts are shipped separately,SHIP-PARTIAL,PROMO-VALIDATE,SHIP-STATUS,low
+05,Shipping and Distribution,05.06,Partial and Special Delivery,05.06.03,Store Pickup,SHIP-PICKUP,ORDER-CONFIRM,HUMAN-REVIEW,medium
+05,Shipping and Distribution,05.06,Partial and Special Delivery,05.06.04,Local Delivery,SHIP-PICKUP,SHIP-STATUS,HUMAN-REVIEW,medium
+05,Shipping and distribution,05.07,Cross-border and customs,05.07.01,Customs clearance delay,SHIP-CUSTOMS,SHIP-DELAY,HUMAN-REVIEW,high
+05,Shipping and distribution,05.07,Cross-border and customs,05.07.02,Supplementary customs clearance materials,SHIP-CUSTOMS,NEED-INFO,HUMAN-REVIEW,manual
+05,Shipping and Distribution,05.07,Cross-border and Customs,05.07.03,Tariff Dispute,TAX-DUTY,SHIP-CUSTOMS,HUMAN-REVIEW,manual
+05,Shipping and distribution,05.07,Cross-border and customs,05.07.04,Cross-border embargo or customs detention,SHIP-CUSTOMS,LEGAL-ESCALATE,HUMAN-REVIEW,manual
+06,abnormality in receipt and product,06.01,wrong part,06.01.01,completely wrong product,ITEM-WRONG,REPLACEMENT-FLOW,REFUND-ISSUED,high
+06,Abnormalities in receipt and product,06.01,Wrong parts,06.01.02,Wrong size and color variant,ITEM-WRONG,EXCHANGE-REQUEST,REFUND-ISSUED,high
+06,Abnormality in receipt of goods and goods,06.01,Wrong parts,06.01.03,More goods received,ITEM-WRONG,HUMAN-REVIEW,EXPLAIN-POLICY,high
+06,Abnormalities in receipt and merchandise,06.01,Wrong parts,06.01.04,Others’ orders or privacy leaks,ITEM-WRONG,PRIVACY-REQUEST,HUMAN-REVIEW,manual
+06,abnormality in receipt and product,06.02,missing parts,06.02.01,missing main product,ITEM-MISSING,SHIP-PARTIAL,REPLACEMENT-FLOW,high
+06,Abnormalities in receipt and product,06.02,Missing parts,06.02.02,Missing accessories and parts,ITEM-MISSING,PARTS-FLOW,REFUND-PARTIAL,medium
+06,abnormality in receipt and product,06.02,missing parts,06.02.03,missing gifts,PROMO-VALIDATE,ITEM-MISSING,REFUND-COMP,medium
+06,abnormality in receipt and product,06.02,missing parts,06.02.04,shortage of quantity,ITEM-MISSING,REFUND-PARTIAL,REPLACEMENT-FLOW,high
+06,abnormality in receipt and product,06.03,damaged,06.03.01,"outer packaging damaged, product intact",SHIP-DAMAGE,ITEM-QUALITY,HUMAN-REVIEW,medium
+06,abnormality in receipt and product,06.03,damaged,06.03.02,product appearance damaged,ITEM-DAMAGED,REPLACEMENT-FLOW,REFUND-ISSUED,high
+06,abnormality in receipt and product,06.03,damaged,06.03.03,product leaked and broken,ITEM-DAMAGED,SAFETY-ESCALATE,HUMAN-REVIEW,manual
+06,Abnormality in receipt and product,06.03,Damage,06.03.04,Functional damage caused by transportation,ITEM-DAMAGED,ITEM-DEFECT,HUMAN-REVIEW,high
+06,abnormality in receipt and product,06.04,fault defect,06.04.01,unusable after opening the box,ITEM-DEFECT,REPLACEMENT-FLOW,REFUND-ISSUED,high
+06,abnormality in receipt and product,06.04,fault defect,06.04.02,intermittent fault,ITEM-DEFECT,REPAIR-FLOW,HUMAN-REVIEW,high
+06,Abnormalities in receipt and merchandise,06.04,Fault defects,06.04.03,Software and firmware problems,ITEM-DEFECT,DIGITAL-ACTIVATE,HUMAN-REVIEW,medium
+06,Abnormalities in receipt and merchandise,06.04,Fault defects,06.04.04,Safety-related faults,SAFETY-ESCALATE,ITEM-DEFECT,HUMAN-REVIEW,manual
+06,Abnormality in receipt and product,06.05,The description does not match the adaptation,06.05.01,The description on the product page does not match,ITEM-NAD,RETURN-ELIGIBLE,REFUND-ISSUED,high
+06,Abnormality in receipt and product,06.05,The description does not match the fit,06.05.02,The color of the picture obviously does not match,ITEM-NAD,EXCHANGE-REQUEST,RETURN-ELIGIBLE,medium
+06,Abnormality in receipt and product,06.05,Inconsistency between description and fit,06.05.03,Inappropriate size,ITEM-FIT,EXCHANGE-REQUEST,RETURN-ELIGIBLE,medium
+06,Abnormality in receipt and product,06.05,Inconsistency between description and adaptation,06.05.04,Incompatible equipment,ITEM-FIT,ITEM-NAD,RETURN-ELIGIBLE,medium
+06,Abnormalities in receipt and merchandise,06.06,Quality hygiene and shelf life,06.06.01,Performance lower than expected,ITEM-QUALITY,ITEM-DEFECT,RETURN-ELIGIBLE,medium
+06,Abnormalities in receipt and goods,06.06,Quality hygiene and shelf life,06.06.02,Imminent or expired,ITEM-EXPIRY,REFUND-ISSUED,HUMAN-REVIEW,manual
+06,Abnormalities in receipt of goods and goods,06.06,Quality hygiene and shelf life,06.06.03,Broken seal and contaminated foreign matter,ITEM-EXPIRY,SAFETY-ESCALATE,HUMAN-REVIEW,manual
+06,Abnormalities in receipt and product,06.06,Quality hygiene and shelf life,06.06.04,Suspected fake or refurbished goods not disclosed,ITEM-NAD,MARKETPLACE-ROUTE,HUMAN-REVIEW,manual
+07,Returns and exchanges,07.01,Return qualifications,07.01.01,Change of mind within the period,RETURN-ELIGIBLE,RETURN-LABEL,EXPLAIN-POLICY,medium
+07,Returns and exchanges,07.01,Return qualifications,07.01.02,Exceeded merchant return period,RETURN-EXCEPTION,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+07,Returns and Exchanges,07.01,Return Qualifications,07.01.03,Final Sales Goods,RETURN-EXCEPTION,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+07,Returns and Exchanges,07.01,Return Eligibility,07.01.04,Return of Defective Goods,RETURN-ELIGIBLE,ITEM-DEFECT,REFUND-ISSUED,high
+07,Returns and Exchanges,07.01,Return Qualifications,07.01.05,Customized Perishable Hygienic Exceptions,RETURN-EXCEPTION,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+07,Returns and exchanges,07.02,Return initiation,07.02.01,Application for return entry,RETURN-ELIGIBLE,RETURN-LABEL,RESOLVE-NOW,medium
+07,Returns and exchanges,07.02,Return initiated,07.02.02,Return label not received or invalid,RETURN-LABEL,RETURN-STATUS,HUMAN-REVIEW,medium
+07,returns and exchanges,07.02,return initiation,07.02.03,return address confirmation,RETURN-LABEL,EXPLAIN-POLICY,HUMAN-REVIEW,high
+07,Returns and exchanges,07.02,Return initiation,07.02.04,Packaging accessories gift requirements,RETURN-ELIGIBLE,EXPLAIN-POLICY,NEED-INFO,medium
+07,Returns and Exchanges,07.03,Return Fees,07.03.01,Return Freight Charges,EXPLAIN-POLICY,REFUND-COSTS,HUMAN-REVIEW,medium
+07,Returns and Exchanges,07.03,Return Fees,07.03.02,Restocking Fees,EXPLAIN-POLICY,REFUND-PARTIAL,HUMAN-REVIEW,manual
+07,Returns and Exchanges,07.03,Return Fees,07.03.03,Whether the original shipping costs will be refunded,REFUND-COSTS,EXPLAIN-POLICY,HUMAN-REVIEW,medium
+07,Returns and Exchanges,07.03,Return Fees,07.03.04,International Return Fees,RETURN-INTERNATIONAL,REFUND-COSTS,HUMAN-REVIEW,manual
+07,Returns and exchanges,07.04,Return status,07.04.01,Sent and waiting for warehouse,RETURN-STATUS,SHIP-STATUS,HUMAN-REVIEW,medium
+07,Returns and Exchanges,07.04,Return Status,07.04.02,Warehouse has been received and awaiting quality inspection,RETURN-STATUS,REFUND-PENDING,HUMAN-REVIEW,medium
+07,Returns and Exchanges,07.04,Return Status,07.04.03,Return Tracking Lost,RETURN-STATUS,SHIP-LOST,HUMAN-REVIEW,high
+07,Returns and Exchanges,07.04,Return Status,07.04.04,Return Rejected,RETURN-REFUSED,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+07,return and exchange,07.05,exchange,07.05.01,change size and color,EXCHANGE-REQUEST,ITEM-FIT,HUMAN-REVIEW,high
+07,Returns and Exchanges,07.05,Exchanges,07.05.02,Fault Replacement,EXCHANGE-REQUEST,REPLACEMENT-FLOW,HUMAN-REVIEW,high
+07,return and exchange,07.05,exchange,07.05.03,exchange price difference,EXCHANGE-REQUEST,PRICE-EXPLAIN,HUMAN-REVIEW,high
+07,Returns and Exchanges,07.05,Exchanges,07.05.04,Exchange Status,EXCHANGE-STATUS,SHIP-STATUS,HUMAN-REVIEW,medium
+07,Returns and Exchanges,07.06,Special Returns,07.06.01,Gift Returns,RETURN-GIFT,RETURN-ELIGIBLE,HUMAN-REVIEW,high
+07,Returns and Exchanges,07.06,Special Returns,07.06.02,Cross-border Returns,RETURN-INTERNATIONAL,RETURN-ELIGIBLE,HUMAN-REVIEW,manual
+07,Returns and Exchanges,07.06,Special Returns,07.06.03,Platform Order Returns,MARKETPLACE-ROUTE,RETURN-ELIGIBLE,HUMAN-REVIEW,manual
+07,returns and exchanges,07.06,special returns,07.06.04,partial returns of multiple items,RETURN-ELIGIBLE,REFUND-PARTIAL,HUMAN-REVIEW,high
+08,Refund and Compensation,08.01,Refund Request,08.01.01,Whole Order Refund,REFUND-ISSUED,ORDER-CANCEL,HUMAN-REVIEW,manual
+08,Refund and Compensation,08.01,Refund Request,08.01.02,Single Product Partial Refund,REFUND-PARTIAL,RETURN-ELIGIBLE,HUMAN-REVIEW,high
+08,Refund and compensation,08.01,Refund request,08.01.03,Shipping fee refund only,REFUND-COSTS,REFUND-PARTIAL,HUMAN-REVIEW,high
+08,Refund and Compensation,08.01,Refund Request,08.01.04,No need to return or refund,REFUND-ISSUED,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+08,Refund and compensation,08.02,Refund status,08.02.01,Initiated but not received,REFUND-PENDING,REFUND-ISSUED,HUMAN-REVIEW,medium
+08,Refund and compensation,08.02,Refund status,08.02.02,Refund failed,REFUND-FAILED,REFUND-PENDING,HUMAN-REVIEW,manual
+08,Refund and compensation,08.02,Refund status,08.02.03,Original card closed or replaced,REFUND-FAILED,REFUND-PENDING,HUMAN-REVIEW,manual
+08,Refund and compensation,08.02,Refund status,08.02.04,Refund canceled or returned,REFUND-FAILED,PAYMENT-DUPLICATE,HUMAN-REVIEW,manual
+08,Refund and compensation,08.03,Refund amount,08.03.01,Insufficient refund amount,REFUND-PARTIAL,PRICE-EXPLAIN,HUMAN-REVIEW,high
+08,Refund and compensation,08.03,Refund amount,08.03.02,Recalculation of discount activities,REFUND-PARTIAL,PROMO-VALIDATE,HUMAN-REVIEW,high
+08,Refund and Compensation,08.03,Refund Amount,08.03.03,"Freight, Taxes and Customs Disputes",REFUND-COSTS,TAX-DUTY,HUMAN-REVIEW,manual
+08,Refund and compensation,08.03,Refund amount,08.03.04,Restocking fee dispute,REFUND-PARTIAL,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+08,Refund and compensation,08.04,Refund method,08.04.01,Return to original route,REFUND-ISSUED,REFUND-PENDING,RESOLVE-NOW,medium
+08,Refund and compensation,08.04,Refund method,08.04.02,Store credit refund,REFUND-CREDIT,EXPLAIN-POLICY,HUMAN-REVIEW,high
+08,Refund and Compensation,08.04,Refund Method,08.04.03,Gift Card Refund,REFUND-CREDIT,GIFTCARD-HELP,HUMAN-REVIEW,high
+08,Refund and compensation,08.04,Refund method,08.04.04,Request to change the refund account,REFUND-FAILED,PAYMENT-VERIFY,HUMAN-REVIEW,manual
+08,Refund and Compensation,08.05,Compensation and Price Adjustment,08.05.01,Delay Compensation,REFUND-COMP,SHIP-DELAY,HUMAN-REVIEW,high
+08,Refund and Compensation,08.05,Compensation and Price Adjustment,08.05.02,Damage Compensation,REFUND-COMP,ITEM-DAMAGED,HUMAN-REVIEW,high
+08,Refund and compensation,08.05,Compensation and price adjustment,08.05.03,Price difference refund,PRICE-MATCH,REFUND-PARTIAL,HUMAN-REVIEW,high
+08,Refund and Compensation,08.05,Compensation and Price Adjustment,08.05.04,Compensation for excess authority,REFUND-COMP,MANAGER-ESCALATE,HUMAN-REVIEW,manual
+09,warranty repair and safety,09.01,warranty qualification,09.01.01,merchant or manufacturer warranty,WARRANTY-COVER,REPAIR-FLOW,HUMAN-REVIEW,high
+09,warranty repair and safety,09.01,warranty qualification,09.01.02,extended warranty plan,WARRANTY-COVER,EXPLAIN-POLICY,HUMAN-REVIEW,high
+09,Warranty maintenance and safety,09.01,Warranty qualification,09.01.03,Expired warranty period,WARRANTY-COVER,REPAIR-FLOW,HUMAN-REVIEW,manual
+09,warranty repair and safety,09.01,warranty qualification,09.01.04,no proof of purchase,WARRANTY-COVER,NEED-ORDER,HUMAN-REVIEW,manual
+09,Warranty maintenance and safety,09.02,Maintenance service,09.02.01,Send for repair or door-to-door repair,REPAIR-FLOW,WARRANTY-COVER,HUMAN-REVIEW,high
+09,warranty repair and safety,09.02,maintenance service,09.02.02,maintenance quotation,REPAIR-FLOW,PRICE-EXPLAIN,HUMAN-REVIEW,high
+09,warranty repair and safety,09.02,maintenance service,09.02.03,maintenance status,REPAIR-FLOW,HUMAN-REVIEW,RESOLVE-NOW,medium
+09,Warranty maintenance and safety,09.02,Maintenance service,09.02.04,Repeated maintenance unresolved,REPAIR-FLOW,REPLACEMENT-FLOW,MANAGER-ESCALATE,manual
+09,Warranty Repair and Safety,09.03,Parts Replacement,09.03.01,Missing or Damaged Parts,PARTS-FLOW,ITEM-MISSING,HUMAN-REVIEW,high
+09,warranty repair and safety,09.03,parts replacement,09.03.02,consumables purchase,PARTS-FLOW,PROD-FIT,STOCK-AVAILABLE,low
+09,warranty repair and safety,09.03,parts replacement,09.03.03,complete machine replacement,REPLACEMENT-FLOW,WARRANTY-COVER,HUMAN-REVIEW,manual
+09,Warranty maintenance and safety,09.03,Parts replacement,09.03.04,Replacement failure again,REPLACEMENT-FLOW,MANAGER-ESCALATE,HUMAN-REVIEW,manual
+09,Warranty maintenance and safety,09.04,Product safety,09.04.01,"Smoke, fire and electric shock",SAFETY-ESCALATE,INJURY-FLOW,HUMAN-REVIEW,manual
+09,Warranty maintenance and safety,09.04,Product safety,09.04.02,Risk of leakage and suffocation of children,SAFETY-ESCALATE,INJURY-FLOW,HUMAN-REVIEW,manual
+09,Warranty maintenance and safety,09.04,Product safety,09.04.03,Suspected danger but no injury,SAFETY-ESCALATE,ITEM-DEFECT,HUMAN-REVIEW,manual
+09,Warranty maintenance and safety,09.04,Product safety,09.04.04,Customer has been injured,INJURY-FLOW,SAFETY-ESCALATE,LEGAL-ESCALATE,manual
+09,Warranty maintenance and safety,09.05,Recall,09.05.01,Confirmed to be within the recall scope,RECALL-FLOW,SAFETY-ESCALATE,HUMAN-REVIEW,manual
+09,warranty repair and safety,09.05,recall,09.05.02,suspected recall scope,RECALL-FLOW,NEED-INFO,HUMAN-REVIEW,manual
+09,warranty repair and safety,09.05,recall,09.05.03,recall remedy not received,RECALL-FLOW,MANAGER-ESCALATE,HUMAN-REVIEW,manual
+09,warranty repair and safety,09.05,recall,09.05.04,unofficial recall rumors,RECALL-FLOW,PROD-SPEC,HUMAN-REVIEW,manual
+10,Subscription numbers and services,10.01,Subscription cancellation and suspension,10.01.01,Cancel future renewal,SUB-CANCEL,RESOLVE-NOW,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.01,Subscription cancellation and suspension,10.01.02,Subscription suspension,SUB-PAUSE,SUB-CANCEL,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.01,Subscription cancellation and suspension,10.01.03,Skip one issue,SUB-PAUSE,SUB-CHANGE,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.01,Subscription cancellation and suspension,10.01.04,Order still issued after cancellation,SUB-CANCEL,ORDER-CANCEL,REFUND-ISSUED,manual
+10,Subscription numbers and services,10.02,Subscription modification,10.02.01,Modify product quantity frequency,SUB-CHANGE,PRICE-EXPLAIN,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.02,Subscription modification,10.02.02,Modify delivery date,SUB-PAUSE,SUB-CHANGE,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.02,Subscription modification,10.02.03,Modify subscription address,SUB-CHANGE,ADDRESS-CHANGE,HUMAN-REVIEW,manual
+10,Subscription numbers and services,10.02,Subscription modification,10.02.04,Prepaid subscription performance,SUB-CHANGE,SHIP-STATUS,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.03,Subscription billing,10.03.01,Free trial to paid,SUB-BILLING,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+10,Subscription numbers and services,10.03,Subscription billing,10.03.02,Automatic renewal dispute,SUB-BILLING,PAYMENT-UNAUTHORIZED,HUMAN-REVIEW,manual
+10,Subscription numbers and services,10.03,Subscription billing,10.03.03,Renewal price changes,SUB-BILLING,PRICE-EXPLAIN,HUMAN-REVIEW,manual
+10,Subscription numbers and services,10.03,Subscription billing,10.03.04,Renewal failed,SUB-BILLING,PAYMENT-DECLINED,HUMAN-REVIEW,high
+10,Subscription Digital and Services,10.04,Digital Delivery,10.04.01,Download link not received,DIGITAL-DELIVERY,RESOLVE-NOW,NEED-ORDER,medium
+10,Subscription Digital and Services,10.04,Digital Delivery,10.04.02,Download link expired,DIGITAL-DELIVERY,DIGITAL-ACTIVATE,HUMAN-REVIEW,medium
+10,Subscription Digital and Services,10.04,Digital Delivery,10.04.03,License activation failed,DIGITAL-ACTIVATE,NEED-INFO,HUMAN-REVIEW,high
+10,Subscription Digital and Services,10.04,Digital Delivery,10.04.04,Device or Region License Restrictions,DIGITAL-ACTIVATE,PRODUCT-POLICY,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.05,Digital refund,10.05.01,Refund not downloaded or activated,DIGITAL-REFUND,REFUND-ISSUED,HUMAN-REVIEW,high
+10,Subscription numbers and services,10.05,Digital refund,10.05.02,Downloaded or activated refund,DIGITAL-REFUND,RETURN-EXCEPTION,HUMAN-REVIEW,manual
+10,Subscription numbers and services,10.05,Digital refund,10.05.03,Digital content is defective,DIGITAL-REFUND,DIGITAL-ACTIVATE,HUMAN-REVIEW,manual
+10,Subscription numbers and services,10.05,Digital refund,10.05.04,Mistaken purchase of digital goods,DIGITAL-REFUND,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+11,Account privacy and security,11.01,Account access,11.01.01,Forgot password,ACCOUNT-ACCESS,RESOLVE-NOW,SECURITY-PHISHING,medium
+11,Account privacy and security,11.01,Account access,11.01.02,Verification code not received,ACCOUNT-ACCESS,NEED-INFO,HUMAN-REVIEW,high
+11,Account privacy and security,11.01,Account access,11.01.03,Account locked,ACCOUNT-ACCESS,SECURITY-PHISHING,HUMAN-REVIEW,manual
+11,Account privacy and security,11.01,Account access,11.01.04,Binding account for visitor orders,ACCOUNT-PROFILE,ORDER-CONFIRM,HUMAN-REVIEW,high
+11,Account privacy and security,11.02,Data management,11.02.01,"Change name, email and phone number",ACCOUNT-PROFILE,NEED-INFO,HUMAN-REVIEW,manual
+11,Account privacy and security,11.02,Data management,11.02.02,Modify default address,ACCOUNT-PROFILE,ADDRESS-CHANGE,HUMAN-REVIEW,manual
+11,Account privacy and security,11.02,Data management,11.02.03,Merge duplicate accounts,ACCOUNT-PROFILE,NEED-INFO,HUMAN-REVIEW,manual
+11,Account privacy and security,11.02,Data management,11.02.04,Close account,ACCOUNT-PROFILE,PRIVACY-REQUEST,HUMAN-REVIEW,manual
+11,Account privacy and security,11.03,Privacy request,11.03.01,Access personal data,PRIVACY-REQUEST,HUMAN-REVIEW,NEED-INFO,manual
+11,Account privacy and security,11.03,Privacy request,11.03.02,Delete personal data,PRIVACY-REQUEST,ACCOUNT-PROFILE,HUMAN-REVIEW,manual
+11,Account privacy and security,11.03,Privacy request,11.03.03,Correction or restriction of processing,PRIVACY-REQUEST,ACCOUNT-PROFILE,HUMAN-REVIEW,manual
+11,Account privacy and security,11.03,Privacy request,11.03.04,Object or withdraw consent,PRIVACY-REQUEST,UNSUBSCRIBE,HUMAN-REVIEW,manual
+11,Account privacy and security,11.03,Privacy request,11.03.05,Third-party agent request,PRIVACY-REQUEST,NEED-INFO,HUMAN-REVIEW,manual
+11,Account privacy and security,11.04,Account security,11.04.01,Suspicious login,SECURITY-PHISHING,ACCOUNT-ACCESS,HUMAN-REVIEW,manual
+11,Account Privacy and Security,11.04,Account Security,11.04.02,Phishing Email,SECURITY-PHISHING,HUMAN-REVIEW,RESOLVE-NOW,manual
+11,Account privacy and security,11.04,Account security,11.04.03,Account taken over,SECURITY-PHISHING,ACCOUNT-ACCESS,HUMAN-REVIEW,manual
+11,Account privacy and security,11.04,Account security,11.04.04,Customer mistakenly sends sensitive data,SECURITY-PHISHING,PRIVACY-REQUEST,HUMAN-REVIEW,manual
+11,Account privacy and security,11.05,Communication preferences,11.05.01,Unsubscribe from marketing emails,UNSUBSCRIBE,RESOLVE-NOW,HUMAN-REVIEW,low
+11,Account privacy and security,11.05,Communication preferences,11.05.02,Unsubscribe via SMS or push notification,UNSUBSCRIBE,ACCOUNT-PROFILE,HUMAN-REVIEW,medium
+11,Account privacy and security,11.05,Communication preferences,11.05.03,Transaction notification still required,UNSUBSCRIBE,EXPLAIN-POLICY,HUMAN-REVIEW,low
+11,Account privacy and security,11.05,Communication preferences,11.05.04,Still receiving marketing after unsubscribing,UNSUBSCRIBE,PRIVACY-REQUEST,HUMAN-REVIEW,manual
+12,preferential membership and recommendation,12.01,discount code,12.01.01,discount code is invalid,PROMO-VALIDATE,NEED-INFO,HUMAN-REVIEW,medium
+12,preferential membership and recommendation,12.01,discount code,12.01.02,discount is not applicable to products,PROMO-VALIDATE,EXPLAIN-POLICY,PROMO-EXPIRED,low
+12,preferential membership and recommendation,12.01,discount code,12.01.03,discounts cannot be stacked,PROMO-VALIDATE,PROMO-EXPIRED,HUMAN-REVIEW,medium
+12,preferential membership and recommendation,12.01,discount code,12.01.04,discount after placing order,PROMO-VALIDATE,PRICE-MATCH,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.02,activity qualification,12.02.01,activity has ended,PROMO-EXPIRED,PROMO-VALIDATE,HUMAN-REVIEW,low
+12,Preferential membership and recommendation,12.02,activity qualifications,12.02.02,regional channels are not qualified,PROMO-VALIDATE,EXPLAIN-POLICY,HUMAN-REVIEW,medium
+12,preferential membership and recommendation,12.02,activity qualification,12.02.03,full discount threshold,PROMO-VALIDATE,PRICE-EXPLAIN,HUMAN-REVIEW,medium
+12,preferential membership and recommendation,12.02,event qualification,12.02.04,gift not triggered,PROMO-VALIDATE,ITEM-MISSING,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.03,member points,12.03.01,points not received,LOYALTY-ADJUST,NEED-ORDER,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.03,member points,12.03.02,points withdrawn,LOYALTY-ADJUST,REFUND-PARTIAL,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.03,member points,12.03.03,points expired,LOYALTY-ADJUST,EXPLAIN-POLICY,HUMAN-REVIEW,medium
+12,preferential membership and recommendation,12.03,member points,12.03.04,wrong membership level,LOYALTY-ADJUST,ACCOUNT-PROFILE,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.04,reward redemption,12.04.01,reward cannot be redeemed,LOYALTY-ADJUST,PROMO-VALIDATE,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.04,reward redemption,12.04.02,insufficient reward inventory,LOYALTY-ADJUST,STOCK-RESTOCK,HUMAN-REVIEW,medium
+12,preferential membership and recommendation,12.04,reward redemption,12.04.03,reward return,LOYALTY-ADJUST,REFUND-CREDIT,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.04,reward redemption,12.04.04,birthday or VIP rights,LOYALTY-ADJUST,PROMO-VALIDATE,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.05,recommendation rebate,12.05.01,recommendation not tracked,REFERRAL-FLOW,NEED-INFO,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.05,recommendation rebate,12.05.02,recommendation reward not received,REFERRAL-FLOW,LOYALTY-ADJUST,HUMAN-REVIEW,high
+12,preferential membership and recommendation,12.05,recommendation rebate,12.05.03,recommendation qualification dispute,REFERRAL-FLOW,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+12,preferential membership and recommendation,12.05,recommendation rebate,12.05.04,recommendation suspected of self-purchase or cheating,REFERRAL-FLOW,HUMAN-REVIEW,LEGAL-ESCALATE,manual
+13,Platform and multi-seller orders,13.01,sales entities,13.01.01,third-party seller orders,MARKETPLACE-ROUTE,NEED-ORDER,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.01,sales entities,13.01.02,platform direct sales orders,MARKETPLACE-ROUTE,ORDER-CONFIRM,HUMAN-REVIEW,medium
+13,Platform and multi-seller orders,13.01,sales entity,13.01.03,multiple sellers in the same shopping cart,MARKETPLACE-ROUTE,ORDER-SPLIT,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.01,sales entities,13.01.04,consignment orders,MARKETPLACE-ROUTE,SHIP-STATUS,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.02,Platform after-sales,13.02.01,Platform returns,MARKETPLACE-ROUTE,RETURN-ELIGIBLE,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.02,Platform after-sales,13.02.02,Platform refund,MARKETPLACE-ROUTE,REFUND-PENDING,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.02,Platform after-sales,13.02.03,Platform cases or disputes,MARKETPLACE-ROUTE,LEGAL-ESCALATE,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.02,platform after-sales,13.02.04,seller refuses after-sales,MARKETPLACE-ROUTE,MANAGER-ESCALATE,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.03,channel conflict,13.03.01,online consultation for store purchases,MARKETPLACE-ROUTE,NEED-ORDER,HUMAN-REVIEW,medium
+13,Platform and multi-seller orders,13.03,channel conflict,13.03.02,official website and platform prices are different,PRICE-EXPLAIN,MARKETPLACE-ROUTE,HUMAN-REVIEW,medium
+13,Platform and multi-seller orders,13.03,channel conflict,13.03.03,different channel policies,MARKETPLACE-ROUTE,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+13,Platform and multi-seller orders,13.03,channel conflict,13.03.04,cross-channel exchange and return,MARKETPLACE-ROUTE,RETURN-EXCEPTION,HUMAN-REVIEW,manual
+14,Corporate Procurement and Wholesale,14.01,Wholesale Qualification,14.01.01,Wholesale Initial Inquiry,B2B-QUALIFY,NEED-INFO,HUMAN-REVIEW,medium
+14,Corporate Procurement and Wholesale,14.01,Wholesale Qualification,14.01.02,Dealer or Resale,B2B-QUALIFY,LEGAL-ESCALATE,HUMAN-REVIEW,manual
+14,Corporate Procurement and Wholesale,14.01,Wholesale Qualification,14.01.03,Corporate Gift Procurement,B2B-QUALIFY,B2B-QUOTE,HUMAN-REVIEW,medium
+14,Corporate Procurement and Wholesale,14.01,Wholesale Qualification,14.01.04,Government Education Non-profit Procurement,B2B-QUALIFY,INVOICE-ISSUE,HUMAN-REVIEW,manual
+14,Corporate Procurement and Wholesale,14.02,Quotation and Quantity,14.02.01,Batch Quotation,B2B-QUOTE,B2B-QUALIFY,HUMAN-REVIEW,high
+14,Corporate Procurement and Wholesale,14.02,Quotation and Quantity,14.02.02,Minimum Order Quantity,B2B-QUOTE,EXPLAIN-POLICY,HUMAN-REVIEW,medium
+14,Corporate Procurement and Wholesale,14.02,Quotation and Quantity,14.02.03,Quotation Validity Period,B2B-QUOTE,PRICE-EXPLAIN,HUMAN-REVIEW,medium
+14,Corporate Procurement and Wholesale,14.02,Quotation and Quantity,14.02.04,Sample Order,B2B-QUALIFY,PRICE-EXPLAIN,HUMAN-REVIEW,medium
+14,Corporate Procurement and Wholesale,14.03,Contract Payment Tax,14.03.01,Purchase Order PO,B2B-QUOTE,INVOICE-ISSUE,HUMAN-REVIEW,manual
+14,Corporate Procurement and Wholesale,14.03,Contract Payment Tax,14.03.02,Account Period or Credit Approval,B2B-QUOTE,PAYMENT-VERIFY,HUMAN-REVIEW,manual
+14,Corporate Procurement and Wholesale,14.03,Contract Payment Tax,14.03.03,Tax Exemption or Resale Certificate,INVOICE-ISSUE,TAX-DUTY,HUMAN-REVIEW,manual
+14,Corporate Procurement and Wholesale,14.03,Contract Payment Tax,14.03.04,Modification of Contract Terms,B2B-QUOTE,LEGAL-ESCALATE,HUMAN-REVIEW,manual
+14,Corporate Procurement and Wholesale,14.04,Customized Fulfillment,14.04.01,Customized Products,B2B-QUALIFY,B2B-QUOTE,HUMAN-REVIEW,manual
+14,Enterprise Procurement and Wholesale,14.04,Customized Fulfillment,14.04.02,Bulk Delivery Time,PREORDER-INFO,B2B-QUOTE,HUMAN-REVIEW,manual
+14,Enterprise Procurement and Wholesale,14.04,Customized Fulfillment,14.04.03,Delivery in batches,ORDER-SPLIT,SHIP-PARTIAL,HUMAN-REVIEW,high
+14,Enterprise Procurement and Wholesale,14.04,Customized Fulfillment,14.04.04,B2B Return and Exchange Warranty,B2B-QUOTE,WARRANTY-COVER,LEGAL-ESCALATE,manual
+15,"feedback, complaints and upgrades",15.01,positive feedback,15.01.01,praise the product,FEEDBACK-POSITIVE,CLOSE-THANKS,RESOLVE-NOW,low
+15,"feedback, complaints and upgrades",15.01,positive feedback,15.01.02,praise customer service,FEEDBACK-POSITIVE,CLOSE-THANKS,MANAGER-ESCALATE,low
+15,feedback complaints and upgrades,15.01,positive feedback,15.01.03,share usage stories,FEEDBACK-POSITIVE,CLOSE-THANKS,HUMAN-REVIEW,low
+15,"Feedback, complaints and upgrades",15.01,Positive feedback,15.01.04,Just express gratitude,CLOSE-THANKS,FEEDBACK-POSITIVE,RESOLVE-NOW,low
+15,feedback complaints and upgrades,15.02,general complaints,15.02.01,product experience complaints,COMPLAINT-RECOVER,ITEM-QUALITY,HUMAN-REVIEW,high
+15,feedback complaints and upgrades,15.02,general complaints,15.02.02,logistics experience complaints,COMPLAINT-RECOVER,SHIP-DELAY,HUMAN-REVIEW,high
+15,feedback complaints and upgrades,15.02,general complaints,15.02.03,policy dissatisfaction,COMPLAINT-RECOVER,EXPLAIN-POLICY,MANAGER-ESCALATE,manual
+15,feedback complaints and upgrades,15.02,general complaints,15.02.04,customer service attitude complaints,COMPLAINT-RECOVER,MANAGER-ESCALATE,HUMAN-REVIEW,manual
+15,Feedback complaints and upgrades,15.03,manual upgrades,15.03.01,explicitly require manual work,MANAGER-ESCALATE,HUMAN-REVIEW,COMPLAINT-RECOVER,manual
+15,"Feedback, complaints and escalation",15.03,manual escalation,15.03.02,explicitly request the manager,MANAGER-ESCALATE,HUMAN-REVIEW,COMPLAINT-RECOVER,manual
+15,"Feedback, complaints and upgrades",15.03,manual upgrade,15.03.03,manual processing required,MANAGER-ESCALATE,HUMAN-REVIEW,COMPLAINT-RECOVER,manual
+15,Feedback complaints and upgrades,15.03,manual upgrades,15.03.04,repeated unresolved,MANAGER-ESCALATE,COMPLAINT-RECOVER,HUMAN-REVIEW,manual
+15,feedback complaints and upgrades,15.04,payment disputes,15.04.01,threat to refuse payment,CHARGEBACK-ESCALATE,COMPLAINT-RECOVER,HUMAN-REVIEW,manual
+15,feedback complaints and upgrades,15.04,payment disputes,15.04.02,chargeback initiated,CHARGEBACK-ESCALATE,PAYMENT-UNAUTHORIZED,HUMAN-REVIEW,manual
+15,feedback complaints and upgrades,15.04,payment disputes,15.04.03,platform payment disputes,CHARGEBACK-ESCALATE,MARKETPLACE-ROUTE,HUMAN-REVIEW,manual
+15,feedback complaints and upgrades,15.04,payment disputes,15.04.04,suspected duplicate claims,CHARGEBACK-ESCALATE,HUMAN-REVIEW,LEGAL-ESCALATE,manual
+15,"Feedback, complaints and upgrades",15.05,Legal supervision media,15.05.01,Lawyer letters or legal threats,LEGAL-ESCALATE,HUMAN-REVIEW,COMPLAINT-RECOVER,manual
+15,"Feedback, complaints and upgrades",15.05,Legal supervision media,15.05.02,Complaints from regulatory or consumer agencies,LEGAL-ESCALATE,HUMAN-REVIEW,MANAGER-ESCALATE,manual
+15,"feedback, complaints and upgrades",15.05,legal supervision of media,15.05.03,media interviews,LEGAL-ESCALATE,HUMAN-REVIEW,MANAGER-ESCALATE,manual
+15,feedback complaints and upgrades,15.05,legal supervision media,15.05.04,litigation court or law enforcement documents,LEGAL-ESCALATE,HUMAN-REVIEW,MANAGER-ESCALATE,manual
+15,"Feedback, Complaints and Escalation",15.06,"Discrimination, Harassment and Employee Behavior",15.06.01,Discrimination Complaint,MANAGER-ESCALATE,LEGAL-ESCALATE,HUMAN-REVIEW,manual
+15,"Feedback, complaints and escalation",15.06,"Discrimination, harassment and employee behavior",15.06.02,Harassment or threats,MANAGER-ESCALATE,LEGAL-ESCALATE,HUMAN-REVIEW,manual
+15,"Feedback, Complaints and Escalation",15.06,"Discrimination, Harassment and Employee Behavior",15.06.03,Employee Misbehavior,MANAGER-ESCALATE,COMPLAINT-RECOVER,HUMAN-REVIEW,manual
+15,"Feedback, complaints and escalation",15.06,"Discrimination, harassment and employee behavior",15.06.04,Customers threatening employee safety,MANAGER-ESCALATE,LEGAL-ESCALATE,HUMAN-REVIEW,manual
+16,Accessibility and Other Services,16.01,Accessibility,16.01.01,Website or Checkout Accessibility Barriers,ACCESSIBILITY-FLOW,CHECKOUT-FIX,HUMAN-REVIEW,manual
+16,Accessibility and other services,16.01,Accessibility,16.01.02,Email attachments are not accessible,ACCESSIBILITY-FLOW,RESOLVE-NOW,HUMAN-REVIEW,high
+16,Accessibility and other services,16.01,Accessibility,16.01.03,Alternative formats needed,ACCESSIBILITY-FLOW,NEED-INFO,HUMAN-REVIEW,high
+16,Accessibility and other services,16.01,Accessibility,16.01.04,Reasonable assistance related to disabilities,ACCESSIBILITY-FLOW,MANAGER-ESCALATE,HUMAN-REVIEW,manual
+16,Accessibility and other services,16.02,Language and regional support,16.02.01,Request other languages,ACCESSIBILITY-FLOW,RESOLVE-NOW,HUMAN-REVIEW,medium
+16,Accessibility and other services,16.02,Language and regional support,16.02.02,Translation leads to misunderstanding,ACCESSIBILITY-FLOW,COMPLAINT-RECOVER,HUMAN-REVIEW,high
+16,Accessibility and other services,16.02,Language and region support,16.02.03,Time zone date format problem,ACCESSIBILITY-FLOW,NEED-INFO,RESOLVE-NOW,low
+16,Accessibility and other services,16.02,Language and regional support,16.02.04,Unknown source of regional policy,ACCESSIBILITY-FLOW,EXPLAIN-POLICY,HUMAN-REVIEW,manual
+16,Accessibility and other services,16.03,Junk and non-customer emails,16.03.01,Just thank you and no need to continue,CLOSE-THANKS,RESOLVE-NOW,FEEDBACK-POSITIVE,low
+16,Accessibility and other services,16.03,Junk and non-customer emails,16.03.02,Automatic reply to bounced emails,CLOSE-THANKS,HUMAN-REVIEW,RESOLVE-NOW,low
+16,Accessibility and other services,16.03,Spam and non-customer mail,16.03.03,Obvious spam phishing,SECURITY-PHISHING,HUMAN-REVIEW,CLOSE-THANKS,manual
+16,Accessibility and other services,16.03,Junk and non-customer emails,16.03.04,Unclassifiable real customer emails,NEED-INFO,HUMAN-REVIEW,MANAGER-ESCALATE,manual
+

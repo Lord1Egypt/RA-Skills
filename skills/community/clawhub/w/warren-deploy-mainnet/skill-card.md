@@ -1,44 +1,64 @@
-## Description: <br>
-Deploy websites and files permanently on MegaETH mainnet using SSTORE2. Agents use their own wallet and pay gas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy websites and files permanently on MegaETH mainnet using SSTORE2. Agents use their own wallet and pay gas.
 
-## Publisher: <br>
-[planetai87](https://clawhub.ai/user/planetai87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[planetai87](https://clawhub.ai/user/planetai87)
 
-## Use Case: <br>
-Developers and agent operators use this skill to publish HTML, websites, and files as permanent on-chain content on MegaETH mainnet. It is intended for users who control the deployer wallet and accept mainnet gas costs and immutability. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill signs real MegaETH mainnet transactions and spends gas from the configured wallet. <br>
-Mitigation: Use a dedicated low-balance deployer wallet and inject PRIVATE_KEY through an environment variable or secret manager rather than command-line arguments. <br>
-Risk: Published files are permanent on-chain content and cannot be taken back after deployment. <br>
-Mitigation: Review the exact file or HTML content before deployment and do not publish secrets, private data, or content that should remain mutable. <br>
-Risk: The skill can auto-mint an access NFT and deploy multiple chunks, increasing transaction activity. <br>
-Mitigation: Confirm wallet balance, network settings, and intended content size before execution; keep CHUNK_SIZE and repeated deploy loops under operator control. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/planetai87/warren-deploy-mainnet) <br>
-- [The Warren](https://thewarren.app) <br>
-- [MegaETH Blockscout Explorer](https://megaeth.blockscout.com) <br>
-- [MegaETH Mainnet RPC](https://mainnet.megaeth.com/rpc) <br>
+## Use Case:
 
+Developers and agents use this skill to deploy HTML or file content as permanent on-chain assets on MegaETH mainnet. It supports direct HTML strings, files, and stdin input, then returns deployment identifiers and a Warren viewer URL.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON deployment output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a PRIVATE_KEY for a funded MegaETH mainnet wallet.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill signs real MegaETH mainnet transactions with a wallet private key, and those transactions are irreversible.
+
+Mitigation: Use a dedicated low-balance deployment wallet, review the target network and content before execution, and expect all gas and minting costs to be paid from that wallet.
+
+Risk: Passing private keys directly as command-line arguments or leaving them in the shell environment can expose credentials.
+
+Mitigation: Prefer the PRIVATE_KEY environment variable over the --private-key argument, avoid pasting real keys into shell history, and unset sensitive variables after deployment.
+
+Risk: Website or file content deployed by this skill is public, permanent, and immutable on mainnet.
+
+Mitigation: Deploy only content that is ready for permanent publication and verify that it contains no secrets, private data, or material that may need later removal.
+
+Risk: Dependency installation and deployment from the same shell can expose wallet credentials to local tooling.
+
+Mitigation: Run setup in a clean environment without PRIVATE_KEY set, then set the deployment key only for the deployment command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/planetai87/skills/warren-deploy-mainnet)
+- [Warren homepage](https://thewarren.app)
+- [Warren source repository](https://github.com/planetai87/warren-tools)
+- [MegaETH Blockscout explorer](https://megaeth.blockscout.com)
+- [Warren mint page](https://thewarren.app/mint)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON deployment output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deployment output includes tokenId, rootChunk, depth, and a Warren viewer URL.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

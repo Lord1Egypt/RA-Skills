@@ -1,0 +1,21 @@
+collection: SATURN
+sort-by: 10
+shortname: saturn
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/yabasanshiro_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 守护英雄
+file: 守护英雄.chd
+assets.box_front: Imgs/守护英雄.png
+description: 《守护英雄》，世嘉土星 平台。
+game: 空牙 2001
+file: 空牙 2001.chd
+assets.box_front: Imgs/空牙 2001.png
+description: 《空牙 2001》，世嘉土星 平台。
+game: 钟表骑士 2
+file: 钟表骑士 2.chd
+assets.box_front: Imgs/钟表骑士 2.png
+description: 《钟表骑士 2》，世嘉土星 平台。
+game: 钟表骑士
+file: 钟表骑士.chd
+assets.box_front: Imgs/钟表骑士.png
+description: 《钟表骑士》，世嘉土星 平台。

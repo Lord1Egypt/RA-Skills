@@ -1,41 +1,57 @@
-## Description: <br>
-Stop waiting for prompts. Keep working. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop waiting for prompts. Keep working.
 
-## Publisher: <br>
-[ayakolin](https://clawhub.ai/user/ayakolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayakolin](https://clawhub.ai/user/ayakolin)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up task queues, proactive heartbeat routines, and handoff notes so an agent can continue meaningful work between human prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables unattended autonomous work and may let agents make broad changes without enough user-control boundaries. <br>
-Mitigation: Define an approved task queue, cap runtime and budget, and require human approval for deployments, external posts, account changes, destructive edits, and sensitive data use. <br>
-Risk: Cron, memory-writing, queue-editing, team-posting, and multi-agent workflows can amplify mistakes if enabled without review. <br>
-Mitigation: Review and scan the skill before deployment, start with limited permissions, and verify the intended source before cloning or installing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure task queues, heartbeat routines, handoff notes, and scheduled progress reports so agents can keep making progress between direct human prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayakolin/agent-autonomy-kit-backup) <br>
-- [Publisher profile](https://clawhub.ai/user/ayakolin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with setup steps, task queue templates, heartbeat templates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions and templates; users should review boundaries before enabling unattended work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Recurring unattended heartbeat or cron automation may continue work without current human approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable recurring jobs only with clear approval rules, logs, scoped permissions, and an easy stop mechanism.
+
+Risk: A mutable task queue can direct agents toward unintended or unauthorized work.
+
+Mitigation: Restrict who can edit the queue and run the skill in a sandboxed or version-controlled workspace.
+
+Risk: External status posting may expose sensitive work details.
+
+Mitigation: Disable external posting for sensitive work or limit it to approved channels with appropriate access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayakolin/skills/agent-autonomy-kit-backup)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance and reusable templates for a task queue and proactive heartbeat routine.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

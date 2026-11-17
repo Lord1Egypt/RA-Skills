@@ -1,0 +1,292 @@
+version: mock-green-factory-1.0
+domain: 绿色制造·绿色工厂评价
+datasets:
+- name: dws_workshop_monthly
+  source: dws_workshop_monthly
+  cn: 车间月度能耗与产出宽表
+  grain: 一行一车间一月
+  primary_key:
+  - workshop
+  - month
+  ai:
+    instructions: 能答单位产品综合能耗/可再生能源利用率/工业用水重复利用率/固废综合利用率等绿色工厂定量指标；必带月份围栏（stat_date）；汇总粒度无处置明细，记录级问题去 waste_records
+  fields:
+  - name: workshop
+    role: dim
+    cn: 车间
+    enum: &gf_ws
+    - 冲压车间
+    - 焊装车间
+    - 涂装车间
+  - name: month
+    role: dim
+    cn: 月份
+    enum: &gf_month
+    - '2026-06'
+    - '2026-07'
+    - '2026-08'
+  - name: energy_tce
+    role: measure
+    cn: 综合能耗（吨标煤）
+  - name: renewable_tce
+    role: measure
+    cn: 可再生能源消耗（吨标煤）
+  - name: output_units
+    role: measure
+    cn: 合格品产量（件）
+  - name: water_intake_t
+    role: measure
+    cn: 取用新水量（吨）
+  - name: water_reuse_t
+    role: measure
+    cn: 重复利用水量（吨）
+  - name: waste_gen_t
+    role: measure
+    cn: 固废产生量（吨）
+  - name: waste_reused_t
+    role: measure
+    cn: 固废综合利用量（吨）
+  - name: stat_date
+    role: time
+    cn: 统计截止日
+  ontology_ref: 车间
+- name: waste_records
+  source: waste_records
+  cn: 固废处置明细表
+  grain: 一行一条固废处置记录
+  primary_key: record_id
+  ai:
+    instructions: 能答固废处置方式构成与安全处置清单；必带时间围栏（record_date）；无企业商业机密字段
+  fields:
+  - name: record_id
+    role: pk
+    cn: 记录编号
+  - name: workshop
+    role: dim
+    cn: 产生车间
+    enum: *gf_ws
+  - name: waste_type
+    role: dim
+    cn: 固废类型
+    enum: &gf_wtype
+    - 边角料
+    - 废包装
+    - 污泥
+  - name: amount_t
+    role: measure
+    cn: 处置量（吨）
+  - name: disposal
+    role: dim
+    cn: 处置方式
+    enum: &gf_disposal
+    - 综合利用
+    - 安全处置
+  - name: record_date
+    role: time
+    cn: 处置日期
+  ontology_ref: 固废
+relationships: []
+constraints:
+- {id: dws_pk, kind: unique, dataset: dws_workshop_monthly, columns: [workshop, month], null_policy: forbid}
+- {id: dws_ws_values, kind: allowed_values, dataset: dws_workshop_monthly, field: workshop, values: [冲压车间, 焊装车间, 涂装车间], null_policy: forbid}
+- {id: dws_month_values, kind: allowed_values, dataset: dws_workshop_monthly, field: month, values: ['2026-06', '2026-07', '2026-08'], null_policy: forbid}
+- {id: dws_energy_nonnegative, kind: range, dataset: dws_workshop_monthly, field: energy_tce, min: 0, null_policy: forbid}
+- {id: dws_stat_date_notnull, kind: not_null, dataset: dws_workshop_monthly, field: stat_date, null_policy: forbid}
+- {id: wr_pk, kind: unique, dataset: waste_records, columns: [record_id], null_policy: forbid}
+- {id: wr_type_values, kind: allowed_values, dataset: waste_records, field: waste_type, values: [边角料, 废包装, 污泥], null_policy: forbid}
+- {id: wr_disposal_values, kind: allowed_values, dataset: waste_records, field: disposal, values: [综合利用, 安全处置], null_policy: forbid}
+- {id: wr_amount_positive, kind: range, dataset: waste_records, field: amount_t, min: 0, null_policy: forbid}
+- {id: wr_ws_ref, kind: referential, dataset: waste_records, columns: [workshop], references: {dataset: dws_workshop_monthly, columns: [workshop]}, null_policy: forbid}
+- {id: wr_date_notnull, kind: not_null, dataset: waste_records, field: record_date, null_policy: forbid}
+concepts:
+- term: 综合利用去向
+  synonyms:
+  - 资源化利用
+  expand:
+    dataset: waste_records
+    field: disposal
+    values:
+    - 综合利用
+metrics:
+- id: energy_per_unit
+  name: 单位产品综合能耗
+  synonyms:
+  - 单位产品能耗
+  - 单件能耗
+  - 产品综合能耗强度
+  type: ratio
+  dataset: dws_workshop_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(energy_tce)
+  denominator:
+    expr: SUM(output_units)
+  time_field: stat_date
+  unit: 吨标煤/件
+  caliber:
+    note: E_ui = E_i / Q_i（综合能耗 ÷ 合格产品产量；SUM/SUM 加权）
+    basis: GB/T 36132-2025《绿色工厂评价通则》能源低碳化关键定量指标
+  on_zero_denominator: 'null'
+- id: renewable_rate
+  name: 可再生能源利用率
+  synonyms:
+  - 可再生能源占比
+  - 绿能利用率
+  - 可再生能源使用比例
+  type: ratio
+  dataset: dws_workshop_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(renewable_tce)
+  denominator:
+    expr: SUM(energy_tce)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: R_re = E_re / E × 100%（可再生能源消耗量 ÷ 综合能耗）
+    basis: GB/T 36132-2025《绿色工厂评价通则》能源低碳化关键定量指标
+  on_zero_denominator: 'null'
+- id: water_reuse_rate
+  name: 工业用水重复利用率
+  synonyms:
+  - 用水重复利用率
+  - 水重复利用率
+  - 工业用水循环率
+  type: ratio
+  dataset: dws_workshop_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(water_reuse_t)
+  denominator:
+    expr: SUM(water_intake_t) + SUM(water_reuse_t)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: R_w = V_r / (V + V_r) × 100%（重复利用水量 ÷ 总用水量，分母含取用新水与重复利用水两部分）
+    basis: GB/T 36132-2025《绿色工厂评价通则》资源高效化关键定量指标（基准值 ≥90%）
+  on_zero_denominator: 'null'
+- id: waste_reuse_rate
+  name: 一般工业固废综合利用率
+  synonyms:
+  - 固废综合利用率
+  - 固废利用率
+  - 工业固废综合利用比例
+  type: ratio
+  dataset: dws_workshop_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(waste_reused_t)
+  denominator:
+    expr: SUM(waste_gen_t)
+  time_field: stat_date
+  unit: '%'
+  display_scale: 100
+  caliber:
+    note: K_r = Z_r / (Z + Z_m) × 100%（综合利用量 ÷ 产生量；mock 简化分母为产生量口径）
+    basis: GB/T 36132-2025《绿色工厂评价通则》资源高效化关键定量指标
+  on_zero_denominator: 'null'
+- id: water_per_unit
+  name: 单位产品取水量
+  synonyms:
+  - 单件取水量
+  - 单位产品新水量
+  - 产品取水强度
+  type: ratio
+  dataset: dws_workshop_monthly
+  structured: true
+  status: 已发布
+  numerator:
+    expr: SUM(water_intake_t)
+  denominator:
+    expr: SUM(output_units)
+  time_field: stat_date
+  unit: 吨/件
+  caliber:
+    note: 取用新水量合计 ÷ 合格品产量合计（SUM/SUM 加权）
+    basis: GB/T 36132-2025《绿色工厂评价通则》资源高效化指标（取水定额口径）
+  on_zero_denominator: 'null'
+- id: safe_disposal_count
+  name: 安全处置记录数
+  synonyms:
+  - 安全处置条数
+  - 非利用处置记录数
+  - 安全处置了多少条
+  type: count
+  dataset: waste_records
+  structured: true
+  status: 已发布
+  expr: COUNT(*)
+  filters:
+  - field: disposal
+    values:
+    - 安全处置
+  time_field: record_date
+  unit: 条
+  caliber:
+    note: 处置方式为安全处置的记录条数（对照综合利用去向的占比故事）
+    basis: GB/T 36132-2025《绿色工厂评价通则》固废处置证据链
+ontology:
+  entities:
+  - name: 车间
+    attributes:
+    - name: 月份
+      value_type: enum
+      values: *gf_month
+    note: 一行一车间一月（车间月度能耗与产出宽表投影）
+    uid: ent_workshop
+    evidence:
+      source: user_provided
+  - name: 固废
+    attributes:
+    - name: 固废类型
+      value_type: enum
+      values: *gf_wtype
+    - name: 处置方式
+      value_type: enum
+      values: *gf_disposal
+    note: 一行一条固废处置记录（固废处置明细表投影）
+    uid: ent_waste
+    evidence:
+      source: user_provided
+  - name: 能流
+    note: 本体需要能流实体承载分能源品种语义，但本场景物理库仅有综合能耗汇总
+    uid: ent_energy_flow
+    unprojected_reason: 分品种能源计量（电/气/蒸汽分项）未接入本场景物理库，宽表中仅有综合能耗与可再生能源两列汇总
+    evidence:
+      source: model_inferred
+  - name: 产品
+    note: 本体需要产品实体承载绿色设计/碳足迹语义，但本场景物理库仅有产量汇总
+    uid: ent_product
+    unprojected_reason: 产品明细与碳足迹报告未结构化接入，宽表中仅有合格品产量汇总列
+    evidence:
+      source: model_inferred
+  relations:
+  - from: 车间
+    to: 固废
+    predicate: 产生
+    mapping: semantic_only
+    note: dws 为车间×月汇总粒度，waste_records 为记录粒度，跨粒度无单一落地键；仅作语义声明不投影合同（无键关系不假装外键）
+templates:
+- id: safe_disposal_records
+  name: 安全处置固废清单
+  dataset: waste_records
+  columns:
+  - record_id
+  - workshop
+  - waste_type
+  - amount_t
+  - record_date
+  extra_where: disposal = '安全处置'
+  time_field: record_date
+  synonyms:
+  - 安全处置记录列表
+  - 非综合利用固废清单
+  - 安全处置明细
+  note: 按 record_date 倒序，默认最多 100 行
+  status: 已发布

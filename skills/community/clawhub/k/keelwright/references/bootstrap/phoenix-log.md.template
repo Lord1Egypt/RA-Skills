@@ -1,0 +1,11 @@
+# phoenix-log.md — keelwright phoenix restarts
+
+> **What this is:** a record of every rollback — when a change had to be undone and why. If
+> the same feature breaks three times, keelwright stops patching it and rewrites it properly
+> instead of looping.
+>
+> **You never have to write in it.** keelwright fills it in. Deleting it resets the counter,
+> so a chronically broken area can start slipping through again.
+
+## Rollbacks
+<!-- Agent appends: feature → iteration → reason -->

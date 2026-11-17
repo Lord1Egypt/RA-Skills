@@ -1,42 +1,58 @@
-## Description: <br>
-Ask the user for their Google saved places list, look up each place with goplaces, and recommend the single best one to visit today based on their preferences and visit history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ask the user for their Google saved places list, look up each place with goplaces, and recommend the single best one to visit today based on their preferences and visit history.
 
-## Publisher: <br>
-[wsq704252212](https://clawhub.ai/user/wsq704252212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wsq704252212](https://clawhub.ai/user/wsq704252212)
 
-## Use Case: <br>
-Users with saved Google Places lists use this skill to choose one place to visit based on live place details, personal notes, cuisine or area preferences, and prior visit history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores saved places, personal notes, preferences, and visit history in a local JSON file. <br>
-Mitigation: Install only if local retention is acceptable, and manually delete or edit skills/goplaces-togo/goplaces-visits.json to remove retained history. <br>
-Risk: Place resolution and details lookups are sent through the configured goplaces and Google Places setup. <br>
-Mitigation: Use a restricted Google Places API key and verify the goplaces binary on PATH before use. <br>
+## Use Case:
 
+External users use this skill to choose one place to visit from their saved Google Places list. It imports saved places, maintains local visit history and notes, uses goplaces/Google Places lookups for current details, and ranks options against stated cuisine, location, and recency preferences.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wsq704252212/goplaces-togo) <br>
-- [Publisher profile](https://clawhub.ai/user/wsq704252212) <br>
-- [Google Takeout](https://takeout.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON file updates, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and local JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist saved places, notes, preferences, and visit history in skills/goplaces-togo/goplaces-visits.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill stores saved places, notes, visit history, city classifications, and preferences locally, which can reveal sensitive location patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with data the user agrees to store locally, restrict access to the state file, and clear or minimize saved history when it is no longer needed.
+
+Risk: Lookup terms are sent through goplaces/Google Places and may expose saved place names or location preferences to external services.
+
+Mitigation: Tell users before lookups are performed and avoid submitting sensitive private locations unless the user explicitly accepts that disclosure.
+
+Risk: The skill shows shell-style goplaces commands that include user-controlled place names.
+
+Mitigation: Invoke goplaces with shell execution disabled and literal argument arrays; do not execute untrusted pasted CSV content or place names through a shell.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wsq704252212/skills/goplaces-togo)
+- [Google Takeout](https://takeout.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown recommendation with a ranked table, inline shell command examples, and local JSON state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists saved places, notes, city classifications, preferences, and visit history in a local JSON file]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

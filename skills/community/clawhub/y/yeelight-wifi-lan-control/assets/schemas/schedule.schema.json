@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yeelight.com/schemas/yeelight-wifi-lan-control/schedule.schema.json",
+  "title": "Yeelight WiFi LAN host-managed schedule",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "timezone", "cadence", "target", "sceneId", "sceneRevision", "status", "state", "revision", "bindingState", "createdBy"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1, "maxLength": 180},
+    "name": {"type": "string", "minLength": 1, "maxLength": 100},
+    "timezone": {"type": "string", "minLength": 1, "maxLength": 100},
+    "cadence": {"$ref": "#/$defs/cadence"},
+    "target": {"$ref": "#/$defs/target"},
+    "sceneId": {"type": "string", "minLength": 1, "maxLength": 180},
+    "sceneRevision": {"type": "integer", "minimum": 1},
+    "sceneHash": {"type": "string", "pattern": "^[a-f0-9]{32,128}$"},
+    "status": {"enum": ["draft", "active", "paused", "inactive", "binding_pending", "delete_pending"]},
+    "state": {"enum": ["draft", "inactive", "binding_pending", "enabled", "paused", "delete_pending"]},
+    "revision": {"type": "integer", "minimum": 1},
+    "lifecycle": {"type": "string", "maxLength": 80},
+    "enabled": {"type": "boolean"},
+    "bindingState": {"enum": ["unbound", "pending", "bound", "delete_pending"]},
+    "createdBy": {"const": "yeelight-wifi-lan-control"},
+    "taskId": {"type": ["string", "null"], "maxLength": 180},
+    "hostTaskId": {"type": ["string", "null"], "maxLength": 180},
+    "taskRevision": {"type": ["integer", "null"], "minimum": 1},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "updatedAt": {"type": "string", "format": "date-time"},
+    "occurrences": {"type": "array", "maxItems": 128, "items": {"$ref": "#/$defs/occurrence"}},
+    "lease": {"type": ["object", "null"]},
+    "description": {"type": "string", "maxLength": 500},
+    "actions": {"type": "array", "maxItems": 64},
+    "hostSchedulerAvailable": {"type": "boolean"},
+    "hostSchedulerRequest": {"type": ["object", "null"]}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "cadence": {
+      "oneOf": [
+        {"type": "object", "required": ["type", "at"], "properties": {"type": {"const": "once"}, "at": {"type": "string", "format": "date-time"}}, "additionalProperties": false},
+        {"type": "object", "required": ["type", "time"], "properties": {"type": {"const": "daily"}, "time": {"pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"}}, "additionalProperties": false},
+        {"type": "object", "required": ["type", "days", "time"], "properties": {"type": {"const": "weekly"}, "days": {"type": "array", "minItems": 1, "maxItems": 7, "uniqueItems": true, "items": {"type": "integer", "minimum": 1, "maximum": 7}}, "time": {"pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"}}, "additionalProperties": false}
+      ]
+    },
+    "target": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {"type": {"enum": ["home", "room", "group", "device", "subset"]}, "id": {"type": "string", "maxLength": 180}, "deviceIds": {"type": "array", "minItems": 1, "maxItems": 256, "uniqueItems": true, "items": {"type": "string", "maxLength": 180}}},
+      "additionalProperties": false
+    },
+    "occurrence": {
+      "type": "object",
+      "required": ["key", "status"],
+      "properties": {"key": {"type": "string", "maxLength": 500}, "status": {"enum": ["running", "success", "partial", "failed", "uncertain"]}, "scheduledAt": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3})?Z$"}, "localDateTime": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$"}, "fold": {"type": "integer", "enum": [0, 1]}, "leaseId": {"type": "string", "maxLength": 180}, "startedAt": {"type": "string", "format": "date-time"}, "finishedAt": {"type": "string", "format": "date-time"}, "leaseExpiresAt": {"type": "string", "format": "date-time"}},
+      "additionalProperties": true
+    }
+  }
+}

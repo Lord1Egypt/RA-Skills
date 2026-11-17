@@ -1,45 +1,56 @@
-## Description: <br>
-Operate monday.com through an OOMOL-connected account for reading, creating, updating, moving, archiving, and deleting Monday resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+monday (monday.com). Use this skill for ANY monday request — reading, creating, updating, and deleting data. Whenever a task involves monday, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to let an agent work with monday.com boards, items, updates, workspaces, users, teams, forms, dashboards, docs, and related resources through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, archive, move, and delete monday.com data. <br>
-Mitigation: Review the exact action, target resource, and payload before approving any write or destructive operation. <br>
-Risk: A broad trigger may activate the skill when a user mentions Monday as a weekday rather than monday.com. <br>
-Mitigation: Confirm the user intends to operate monday.com before running connector actions when the request is ambiguous. <br>
-Risk: The skill requires a connected monday.com account and can act with that account's permissions. <br>
-Mitigation: Install it only for users who want an agent to operate their monday.com account through OOMOL. <br>
+## Use Case:
 
+People using monday.com through an OOMOL-connected account can ask an agent to inspect boards, items, workspaces, users, documents, and activity, or to create and update monday data. The skill directs the agent to inspect an action's schema and confirm state-changing operations before running them.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-monday) <br>
-- [Monday Homepage](https://monday.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions may return JSON data and execution metadata from the OOMOL CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Setup may run downloaded CLI installer code, and the exact local changes from remote installers are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation and automatic skill synchronization before enabling the skill; install only after checking the source and resulting local changes.
+
+Risk: Some actions can modify, archive, or delete monday data.
+
+Mitigation: Inspect the live action schema, confirm the exact target and effect before state-changing actions, and require explicit confirmation for destructive actions.
+
+## Reference(s):
+
+- [monday API documentation](https://developer.monday.com/api-reference/docs)
+- [monday.com](https://monday.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON requests and responses with natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may read monday data or change account data; destructive actions can archive, remove, or overwrite data.]
+
+## Skill Version(s):
+
+1.0.9 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

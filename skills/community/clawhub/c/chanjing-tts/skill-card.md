@@ -1,42 +1,63 @@
-## Description: <br>
-Chanjing TTS converts text to speech through the Chanjing Open API, including voice listing, task creation, polling, and generated audio URL retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Chanjing TTS API to convert text to speech with file-based Chanjing credentials, optional API/configuration environment variables, and Python utility scripts for voice listing, task creation, and task polling.
 
-## Publisher: <br>
-[iamzn1018](https://clawhub.ai/user/iamzn1018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamzn1018](https://clawhub.ai/user/iamzn1018)
 
-## Use Case: <br>
-Developers and agents use this skill to generate speech audio from supplied text with Chanjing voices, including selecting a voice, creating a synthesis task, and polling for the completed audio URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chanjing app credentials and refreshed access tokens are stored in a local credentials.json file. <br>
-Mitigation: Keep credentials.json private, do not commit or paste keys, and use CHANJING_CONFIG_DIR when credentials need to be isolated. <br>
-Risk: Text is sent to the Chanjing API and completed audio is retrieved from URLs returned by the API. <br>
-Mitigation: Send only text acceptable for Chanjing processing and use the skill only when the Chanjing API host and returned URLs are trusted. <br>
-Risk: Changing CHANJING_API_BASE can redirect credential and text requests to another endpoint. <br>
-Mitigation: Leave CHANJING_API_BASE unset unless intentionally using a trusted endpoint. <br>
+## Use Case:
 
+Developers and agents use this skill to generate speech audio from text through the Chanjing TTS API. It supports listing available voices, creating synthesis tasks, polling for completion, and returning generated audio URLs.
 
-## Reference(s): <br>
-- [Chanjing documentation](https://doc.chanjing.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples; scripts print plain text, tabular text, or JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Chanjing credentials, calls the Chanjing API, and returns task IDs or generated audio URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Stored Chanjing credentials may be sent to an endpoint selected by CHANJING_API_BASE.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with CHANJING_API_BASE unset or pinned to the official HTTPS Chanjing API endpoint.
+
+Risk: The skill stores app_id, secret_key, and refreshed access_token values in credentials.json.
+
+Mitigation: Protect ~/.chanjing/credentials.json with owner-only permissions and do not commit or echo credential values.
+
+Risk: An adjacent chanjing-credentials-guard login helper can be executed automatically when credentials are missing or invalid.
+
+Mitigation: Inspect any adjacent chanjing-credentials-guard installation before allowing the skill to run.
+
+Risk: Generated audio is obtained from URLs returned by the API response.
+
+Mitigation: Validate returned download destinations as expected Chanjing media hosts before automatically downloading audio.
+
+## Reference(s):
+
+- [Chanjing API documentation](https://doc.chanjing.cc)
+- [ClawHub skill page](https://clawhub.ai/iamzn1018/skills/chanjing-tts)
+- [ClawHub publisher profile](https://clawhub.ai/user/iamzn1018)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text guidance with shell commands and JSON-capable script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts can print voice tables, task IDs, full JSON voice data, or generated audio URLs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

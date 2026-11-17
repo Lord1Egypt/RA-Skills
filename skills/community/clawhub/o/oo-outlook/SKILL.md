@@ -1,11 +1,11 @@
 ---
 name: oo-outlook
-description: "Outlook (microsoft.com). Use this skill for ANY Outlook request — reading, creating, and updating data. Whenever a task involves Outlook, use this skill instead of calling the API directly."
+description: "Outlook (microsoft.com). Use this skill for ANY Outlook request — reading, creating, updating, and deleting data. Whenever a task involves Outlook, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Outlook"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["outlook"]
   icon: "https://static.oomol.com/logo/third-party/Outlook.webp"
 ---
@@ -37,15 +37,19 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
+- `archive_message` — Move an Outlook message to the mailbox's Archive folder. Use the returned message ID for subsequent operations. This does not move messages to an Exchange Online archive mailbox. [write]
 - `create_draft` — Create a new Outlook draft message with subject, body, recipients, and other writable message properties. [write]
+- `delete_message` — Delete an Outlook message using the standard mailbox deletion operation. To explicitly move a message to Deleted Items, use move_message with destinationId deleteditems. [destructive]
 - `get_mailbox_settings` — Get the current Outlook mailbox settings, including automatic replies, locale, time zone, and working hours.
 - `get_message` — Get a single Outlook message by message ID, including message metadata and optional body formatting.
 - `get_profile` — Get the current Outlook account profile from Microsoft Graph so you can identify the connected mailbox.
 - `list_mail_folders` — List the root-level Outlook mail folders for the connected mailbox, with optional hidden folders and field selection.
 - `list_messages` — List Outlook messages from the mailbox or from a specific mail folder, with support for OData filters, sorting, field selection, and pagination.
+- `move_message` — Move an Outlook message to another folder in the same mailbox, including Archive or Deleted Items. Use the returned message ID for subsequent operations because moving can change it. [write]
 - `reply_email` — Reply to an existing Outlook message with either a comment or a replacement body, and optionally add more recipients to the reply. [write]
 - `send_draft` — Send an existing Outlook draft message by message ID. [write]
 - `send_email` — Send a new Outlook email in a single operation, without creating a standalone draft first. [write]
+- `set_message_read` — Mark an Outlook message as read or unread. [write]
 - `update_draft` — Update an existing Outlook draft message. Use this to revise the subject, body, recipients, or other draft-only properties before sending. [write]
 - `update_mailbox_settings` — Update Outlook mailbox settings such as automatic replies, locale, time zone, working hours, and date or time formatting. [write]
 
@@ -78,11 +82,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Outlook is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=outlook
+  https://console.oomol.com/connections/outlook
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Outlook homepage: https://www.microsoft.com/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook
+- API documentation: https://learn.microsoft.com/en-us/graph/api/resources/mail-api-overview?view=graph-rest-1.0

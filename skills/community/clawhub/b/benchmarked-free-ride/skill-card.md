@@ -1,42 +1,60 @@
-## Description: <br>
-Pick the best free OpenRouter models using live benchmark CI results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmarked Free Ride helps agents choose and configure free OpenRouter models using live benchmark CI leaderboard data.
 
-## Publisher: <br>
-[chengzhang-98](https://clawhub.ai/user/chengzhang-98) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengzhang-98](https://clawhub.ai/user/chengzhang-98)
 
-## Use Case: <br>
-Developers and agent users use this skill to rank free OpenRouter models by benchmarked utility or security scores, then configure OpenClaw model routing with a primary model and fallbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change default OpenClaw model routing by writing primary and fallback model settings. <br>
-Mitigation: Run list or status first to review selections, and back up ~/.openclaw/openclaw.json before applying automatic configuration. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to list, select, or automatically configure benchmark-ranked free OpenRouter models for agent workflows. It is not suited for paid-only, provider-specific, offline, or real-time availability decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chengzhang-98/benchmarked-free-ride) <br>
-- [Benchmarked Free Ride CI leaderboard](https://sequrity-ai.github.io/benchmarked-free-ride-ci/) <br>
-- [Leaderboard API](https://sequrity-ai.github.io/benchmarked-free-ride-ci/api/leaderboard.json) <br>
-- [Benchmark methodology repository](https://github.com/sequrity-ai/benchmarked-free-ride-ci) <br>
-- [Skill source repository](https://github.com/sequrity-ai/benchmarked-free-ride-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Plain text CLI output and JSON configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write OpenClaw model primary and fallback settings in ~/.openclaw/openclaw.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Configuration commands persistently change OpenClaw's default primary and fallback models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the list or status command first, review the selected models, and keep a backup of the existing OpenClaw configuration before running auto, switch, or fallbacks.
+
+Risk: Recommendations depend on live public benchmark data and may not reflect real-time model availability.
+
+Mitigation: Refresh and inspect the leaderboard near the time of use, and verify selected models against operational provider requirements before deployment.
+
+Risk: Optional Daytona end-to-end tests can use API keys and external package installation workflows.
+
+Mitigation: Use scoped disposable test keys, avoid long-lived OpenRouter credentials in tests, and pin CLI or package versions when reproducing integration workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chengzhang-98/skills/benchmarked-free-ride)
+- [Benchmark leaderboard API](https://sequrity-ai.github.io/benchmarked-free-ride-ci/api/leaderboard.json)
+- [Benchmark CI project](https://github.com/sequrity-ai/benchmarked-free-ride-ci)
+- [Benchmark homepage](https://sequrity-ai.github.io/benchmarked-free-ride-ci/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output and OpenClaw JSON configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes only OpenClaw default primary and fallback model settings when configuration commands are run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

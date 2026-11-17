@@ -1,48 +1,61 @@
-## Description: <br>
-Checks exchange rates, currency tips, local payment methods, and related travel booking options by directing the agent to query the flyai CLI for current results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check exchange rates, currency tips, and money-saving strategies for international travel, including ATM fees, card acceptance, local payment methods, and related travel services powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-support agents use this skill to answer currency, exchange-location, payment-method, and related travel-service questions using flyai CLI results rather than model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and run a global third-party npm CLI for travel and currency searches. <br>
-Mitigation: Review the flyai CLI package and installation path before use, and install it only in environments approved for third-party global CLI tools. <br>
-Risk: The skill can persist raw user queries and execution details in .flyai-execution-log.json when filesystem writes are available. <br>
-Mitigation: Avoid entering passport numbers, payment details, booking references, or sensitive itinerary data unless logging behavior and retention are understood. <br>
-Risk: The skill may produce booking links or purchase-oriented travel results from CLI data. <br>
-Mitigation: Treat links and prices as third-party outputs and require user confirmation before any booking or purchase action. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to retrieve exchange-rate, money-exchange, and payment-method guidance from flyai CLI results and present concise travel-facing answers with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/fx-rates) <br>
-- [Publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
-- [Flyai parent skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with result tables, booking links, concise guidance, and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for result data; expected responses include booking links and flyai attribution when results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server evidence and frontmatter) <br>
+Risk: The skill may prompt automatic global installation of the flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before installing software and review the flyai CLI package provenance before use.
+
+Risk: Returned booking links are third-party commercial links.
+
+Mitigation: Validate URLs from CLI output and clearly treat booking links as third-party destinations.
+
+Risk: Execution logging can persist raw user queries.
+
+Mitigation: Disable or redact local logs before use, especially when queries may contain personal travel or payment context.
+
+## Reference(s):
+
+- [ClawHub Fx Rates Listing](https://clawhub.ai/dingtom336-gif/skills/fx-rates)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown responses with tables, booking links, concise tips, and inline shell commands when setup or retry steps are needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to be based on flyai CLI output, include detailUrl booking links when results are shown, and follow the user's language.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

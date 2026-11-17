@@ -1,46 +1,65 @@
-## Description: <br>
-Automatically routes AI requests to cost-optimal models based on task complexity, budget, and learned usage patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically routes AI requests to cost-optimal models based on task complexity, budget, and learned usage patterns.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers and agent operators use this skill to reduce model spend by automatically selecting lower-cost or higher-capability models based on request complexity, budget settings, and observed routing outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Pro/x402 workflow promotes autonomous payment for subscriptions without clear approval controls. <br>
-Mitigation: Keep autonomous payments disabled unless wallet approval policies and spending limits are configured and reviewed. <br>
-Risk: Payment verification is not suitable for real billing because the artifact accepts valid-looking transaction hashes instead of verifying recipient, amount, token, and confirmations on-chain. <br>
-Mitigation: Use the free tier or test environments until on-chain verification is implemented, tested, and reviewed for billing use. <br>
-Risk: The local database stores wallet-linked routing, performance, quota, and transaction history. <br>
-Mitigation: Treat the SQLite database as sensitive local data; restrict file access and avoid sharing database exports unless wallet-linked history has been reviewed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automatically choose models for AI requests, reduce model spend, track routing outcomes, and tune routing behavior across providers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AtlasPA/openclaw-smart-router) <br>
-- [README](README.md) <br>
-- [Routing Guide](ROUTING-GUIDE.md) <br>
-- [API Reference](API-REFERENCE.md) <br>
-- [Database Implementation](DATABASE-IMPLEMENTATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, CLI/API responses, configuration examples, and routing decision data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces model-selection recommendations, cost and quota summaries, routing history, and dashboard/API views backed by local SQLite storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill automatically hooks model requests and can change model routing behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing settings and monitor selections before relying on it for high-cost or quality-sensitive workflows.
+
+Risk: The skill stores local routing, payment, quota, and learning history.
+
+Mitigation: Keep the local data directory protected and avoid sharing wallet or routing history files unnecessarily.
+
+Risk: The local dashboard exposes routing and payment-related endpoints.
+
+Mitigation: Bind and access the dashboard only on localhost, and do not expose port 9093 to untrusted networks.
+
+Risk: The x402 Pro payment flow is not production-safe according to the security guidance.
+
+Mitigation: Use external spend controls and explicit human approval, and do not enable wallet payments until transaction verification and wallet ownership checks are fixed.
+
+## Reference(s):
+
+- [Openclaw Smart Router on ClawHub](https://clawhub.ai/atlaspa/skills/openclaw-smart-router)
+- [README](artifact/README.md)
+- [Smart Router API Reference](artifact/API-REFERENCE.md)
+- [Routing Guide](artifact/ROUTING-GUIDE.md)
+- [Database Implementation](artifact/DATABASE-IMPLEMENTATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, CLI text, JSON API responses, and local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model recommendations, complexity scores, cost estimates, routing history, quota status, and dashboard/API responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

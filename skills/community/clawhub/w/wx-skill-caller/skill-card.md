@@ -1,39 +1,54 @@
-## Description: <br>
-WX Skill Caller forwards general user message text to a configured wx backend API and returns the backend JSON response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forwards free-form chat, Chinese questions, help requests, conversational messages, and other general text input to the WX backend skill API and returns the backend JSON response.
 
-## Publisher: <br>
-[heqq-github](https://clawhub.ai/user/heqq-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heqq-github](https://clawhub.ai/user/heqq-github)
 
-## Use Case: <br>
-External users or agents use this skill to route free-form chat, Chinese questions, general help requests, and open-ended text to a wx backend service, except when the request explicitly requires local tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Raw user messages may be sent to a third-party backend across broad routing cases without clear per-message consent. <br>
-Mitigation: Enable this skill only when users understand that ordinary chat text may be forwarded; avoid secrets, credentials, private business data, and personal information, and prefer opt-in routing with redaction or confirmation. <br>
+## Use Case:
 
+Agents use this skill to hand ordinary chat, Chinese-language questions, help requests, and other open-ended text to a third-party WX backend service. It is not intended for tasks that explicitly require local file editing, shell execution, web search, image analysis, or media generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/heqq-github/wx-skill-caller) <br>
-- [wx backend API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [JSON response rendered as agent text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forwards the raw message content field to the backend API; script timeout is 30 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad user messages may be sent to an external WX backend, including secrets, credentials, private business data, regulated data, or content intended to remain local.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with clear opt-in for external processing and avoid sending sensitive, regulated, private, credential, or local-only task content.
+
+Risk: The agent receives responses controlled by the external backend, creating response-control and reliability concerns.
+
+Mitigation: Review returned JSON before relying on it, and route file editing, shell execution, web search, image analysis, and media generation requests to direct agent tools as described by the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/heqq-github/skills/wx-skill-caller)
+- [WX backend API endpoint](https://test-gig-c-api.1haozc.com/api/wx/kjj/v1/customer/skill/call)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON response or JSON error object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts a single content string to the external WX backend with a 30-second timeout; HTTP, network, and JSON parsing failures are returned as structured JSON errors.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

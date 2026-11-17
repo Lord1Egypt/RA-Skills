@@ -1,47 +1,63 @@
-## Description: <br>
-Control Sonos speakers (discover/status/play/volume/group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Sonos speakers (discover/status/play/volume/group).
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for Sonos CLI commands that control local-network speakers while preserving guardrails for destructive actions, credentials, volume, and speaker data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Go installer pulls the current upstream sonoscli module. <br>
-Mitigation: Review the upstream module before installation and consider pinning a known version in controlled environments. <br>
-Risk: Queue clearing, grouping changes, and high-volume changes can disrupt speakers or remove queued playback. <br>
-Mitigation: Require explicit user confirmation in the current conversation before destructive or high-volume commands. <br>
-Risk: Spotify credential values could be exposed during troubleshooting. <br>
-Mitigation: Do not echo, print, hash, substring, or otherwise display SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET. <br>
-Risk: Sonos command output can reveal speaker names, IP addresses, playback state, queue contents, and local network topology. <br>
-Mitigation: Keep raw Sonos output local and do not pipe, redirect, or transmit it to external URLs, webhooks, or remote endpoints. <br>
+## Use Case:
 
+External users and developers use this skill to operate Sonos speakers on a local network through the sonos CLI, including discovery, playback controls, volume, grouping, favorites, queue, and Spotify search. The skill adds guardrails for destructive actions, credential secrecy, and local handling of speaker and network data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/sonoscli-hardened) <br>
-- [Sonos CLI homepage](https://sonoscli.sh) <br>
-- [sonoscli Go install module](https://pkg.go.dev/github.com/steipete/sonoscli/cmd/sonos) <br>
-- [Faberlens](https://faberlens.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the sonos binary; Spotify search can use SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs a mutable third-party Go CLI using an @latest module reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed sonoscli version before installation or deployment.
+
+Risk: The CLI can affect live Sonos speakers through queue, grouping, playback, and volume commands.
+
+Mitigation: Require explicit user confirmation before destructive queue actions, grouping changes, or high-volume changes.
+
+Risk: Spotify integration may rely on SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET values.
+
+Mitigation: Keep credential values private and do not print, echo, hash, or expose credential fragments during troubleshooting.
+
+Risk: Sonos status and discovery output can reveal speaker names, IP addresses, playback state, queue contents, and local network topology.
+
+Mitigation: Keep command output local unless the user manually reviews and redacts what is safe to share.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/sonoscli-hardened)
+- [Sonos CLI homepage](https://sonoscli.sh)
+- [Faberlens sonoscli safety evaluation](https://faberlens.ai/explore/sonoscli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend local sonos CLI commands; destructive queue, grouping, or high-volume changes require explicit confirmation, Spotify credentials must not be displayed, and Sonos output should remain local.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

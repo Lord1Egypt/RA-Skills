@@ -1,42 +1,53 @@
-## Description: <br>
-Professional career roadmap platform for aspiring data visualization specialists with personalized learning paths and specialization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap platform for aspiring data visualization specialists with personalized learning paths and specialization guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users and organizations use this skill to generate personalized data visualization career roadmaps, review specialization options, and retrieve structured learning paths based on experience, skills, goals, session identifiers, and timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career history, skills, goals, session identifiers, and timestamps may be sent to the third-party service. <br>
-Mitigation: Only send information needed for the roadmap request, omit userId unless required by the account flow, and exclude credentials, financial data, or unrelated private information. <br>
-Risk: Generated career roadmaps and learning paths may not fit every user's current skills, goals, or employment context. <br>
-Mitigation: Review recommendations before acting on them and adjust milestones, timelines, and resources to match the user's circumstances. <br>
+## Use Case:
 
+External users and organizations use this skill to generate personalized data visualization career roadmaps, compare specialization paths, and review structured learning plans based on assessment data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-data-viz-specialist) <br>
-- [Data Visualization Specialist API Docs](https://api.mkkpro.com:8089/docs) <br>
-- [Data Visualization Specialist API Route](https://api.mkkpro.com/career/data-viz-specialist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON responses and concise roadmap guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces roadmap phases, specialization recommendations, learning path listings, milestones, and success metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Career assessment requests may include personal career history, goals, skills, session identifiers, and optional user identifiers sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid unnecessary personal details, use a pseudonymous sessionId when possible, and confirm the provider's privacy, retention, and data-sharing practices before submitting sensitive assessment data.
+
+## Reference(s):
+
+- [OpenAPI specification](artifact/openapi.json)
+- [API documentation](https://api.mkkpro.com:8089/docs)
+- [Data visualization specialist API route](https://api.mkkpro.com/career/data-viz-specialist)
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-data-viz-specialist)
+- [Publisher profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API request and response payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use career assessment data, session identifiers, goals, skills, and experience fields to generate roadmap guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

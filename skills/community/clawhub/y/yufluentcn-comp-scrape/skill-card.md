@@ -1,42 +1,55 @@
-## Description: <br>
-Yufluentcn Comp Scrape performs batch competitor comparison from user-provided CSV exports or authorized API snapshots through Yufluent's cloud service; it is not an unauthorized web scraper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides batch competitor comparison analysis from user-uploaded CSV exports or authorized API snapshots through the Yufluent cloud harness.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External users, developers, and ecommerce teams use this skill to compare batches of competitor listings from their own CSV exports or authorized API snapshots across supported commerce platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected competitor/export data and optional listing text to Yufluent's cloud service. <br>
-Mitigation: Use it only when organizational policy permits that cloud processing, and avoid confidential business data unless approved. <br>
-Risk: The skill requires an API token and supports a TOKENAPI_BASE_URL override. <br>
-Mitigation: Keep TOKENAPI_KEY in a trusted environment and check any TOKENAPI_BASE_URL override before running the skill. <br>
+## Use Case:
 
+Developers, agents, and ecommerce operators use this skill to submit their own CSV exports or authorized API snapshots for batch competitor benchmarking across Amazon, Shopify, or TikTok.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluentcn-comp-scrape) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text competitor comparison report, with optional JSON returned by the cloud API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY; may read competitor data from inline text or a local CSV/text file and send it to Yufluent's cloud service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can upload sensitive business data and an API token to a configurable Yufluent endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data intended for Yufluent, keep TOKENAPI_KEY private, set TOKENAPI_BASE_URL only to a trusted HTTPS service unless deliberately using localhost for development, and verify every CLI file path before execution.
+
+Risk: Competitor comparison output may affect product, pricing, or listing decisions.
+
+Mitigation: Review the source data and generated report before relying on conclusions for commercial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluentcn-comp-scrape)
+- [Yufluent homepage](https://claw.changzhiai.com)
+- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text competitor analysis report, with optional JSON from the API client.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY and accepts competitor data as inline text or a local file path.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

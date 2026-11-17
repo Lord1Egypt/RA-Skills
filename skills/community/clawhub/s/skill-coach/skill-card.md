@@ -1,40 +1,53 @@
-## Description: <br>
-Guides users step-by-step to design and package their professional expertise into reusable OpenClaw Skills, focusing on clarity and reuse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Creation Coach: guides users to turn their expertise into OpenClaw Skills through structured conversation.
 
-## Publisher: <br>
-[mars2003](https://clawhub.ai/user/mars2003) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mars2003](https://clawhub.ai/user/mars2003)
 
-## Use Case: <br>
-Developers, domain experts, and skill authors use this skill to turn recurring workflows or professional knowledge into reusable OpenClaw Skills through a guided, confirmation-based drafting process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills may contain overly broad trigger phrases or unclear activation boundaries. <br>
-Mitigation: Review trigger phrases for the intended domain and make them specific before enabling or publishing the generated skill. <br>
-Risk: Generated skill drafts may add scripts, API access, or credential handling without enough purpose or user control. <br>
-Mitigation: Review generated skills before use and add executable behavior, external access, or credential handling only when the purpose, boundaries, and user controls are explicit. <br>
+## Use Case:
 
+Developers, domain experts, and OpenClaw users use this skill to identify repeatable work scenarios and draft concise, reusable OpenClaw Skill files through a guided confirmation workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mars2003/skill-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with draft SKILL.md content and optional supporting file suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses staged confirmations before moving between discovery, definition, development, and delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill may activate on generic phrases such as "create skill" or "build skill."
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger phrases before installation and adjust them if they conflict with other skills or workflows.
+
+Risk: Generated skill files, scripts, tool definitions, or trigger phrases may encode incomplete or misleading guidance.
+
+Mitigation: Review and scan generated artifacts before deployment or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mars2003/skills/skill-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with code blocks and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose supporting files such as scripts, references, assets, or tool definitions when the created skill requires them.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

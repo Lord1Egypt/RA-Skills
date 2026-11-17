@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="und" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>WeRead Insight</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ===== DARK THEME (default) ===== */
+  :root {
+    --radius: 16px;
+    --radius-sm: 10px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  }
+
+  :root, [data-theme="dark"] {
+    --bg-primary: #0a0a12;
+    --bg-secondary: #12121e;
+    --bg-card: rgba(255,255,255,0.04);
+    --bg-card-hover: rgba(255,255,255,0.07);
+    --border-card: rgba(255,255,255,0.08);
+    --text-primary: #e8e8f0;
+    --text-secondary: #8888a8;
+    --text-dim: #55556a;
+    --accent-blue: #6c8cff;
+    --accent-purple: #a855f7;
+    --accent-green: #34d399;
+    --accent-amber: #f59e0b;
+    --accent-pink: #ec4899;
+    --green-0: #1a1a2e;
+    --green-1: #4a3728;
+    --green-2: #8b7a2b;
+    --green-3: #22804a;
+    --green-4: #2563eb;
+    --glow-purple: rgba(168,85,247,0.3);
+    --glow-blue: rgba(108,140,255,0.2);
+    --ambient-1: rgba(108,140,255,0.08);
+    --ambient-2: rgba(168,85,247,0.06);
+    --diagnosis-bg: rgba(168,85,247,0.06);
+    --diagnosis-border: rgba(168,85,247,0.15);
+    --bar-track: rgba(255,255,255,0.06);
+    --spectrum-bar-bg: rgba(255,255,255,0.04);
+    --h1-grad-from: #e8e8f0;
+    --h1-grad-to: #8888a8;
+    --toggle-bg: rgba(255,255,255,0.1);
+    --toggle-knob: #fff;
+    --glow-amber: rgba(245,158,11,0.25);
+    --analysis-bg: rgba(245,158,11,0.04);
+    --analysis-border: rgba(245,158,11,0.12);
+    --analysis-excerpt-bg: rgba(245,158,11,0.06);
+    --analysis-excerpt-border: rgba(245,158,11,0.2);
+    --analysis-context-bg: rgba(255,255,255,0.02);
+    --analysis-context-border: rgba(255,255,255,0.06);
+    --badge-concept-bg: rgba(108,140,255,0.15);
+    --badge-concept-text: #6c8cff;
+    --badge-pm-bg: rgba(245,158,11,0.15);
+    --badge-pm-text: #f59e0b;
+    --badge-legal-bg: rgba(236,72,153,0.15);
+    --badge-legal-text: #ec4899;
+  }
+
+  /* ===== LIGHT THEME ===== */
+  [data-theme="light"] {
+    --bg-primary: #f5f5f7;
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(0,0,0,0.02);
+    --bg-card-hover: rgba(0,0,0,0.04);
+    --border-card: rgba(0,0,0,0.08);
+    --text-primary: #1a1a2e;
+    --text-secondary: #555570;
+    --text-dim: #9999aa;
+    --accent-blue: #4a6cf7;
+    --accent-purple: #8b3fd4;
+    --accent-green: #059669;
+    --accent-amber: #d97706;
+    --accent-pink: #d63384;
+    --green-0: #ebedf0;
+    --green-1: #d4c4a8;
+    --green-2: #b8a038;
+    --green-3: #2da160;
+    --green-4: #1d4ed8;
+    --glow-purple: rgba(139,63,212,0.15);
+    --glow-blue: rgba(74,108,247,0.1);
+    --ambient-1: rgba(74,108,247,0.04);
+    --ambient-2: rgba(139,63,212,0.03);
+    --diagnosis-bg: rgba(139,63,212,0.05);
+    --diagnosis-border: rgba(139,63,212,0.12);
+    --bar-track: rgba(0,0,0,0.05);
+    --spectrum-bar-bg: rgba(0,0,0,0.04);
+    --h1-grad-from: #1a1a2e;
+    --h1-grad-to: #555570;
+    --toggle-bg: rgba(0,0,0,0.08);
+    --toggle-knob: #fff;
+    --glow-amber: rgba(217,119,6,0.12);
+    --analysis-bg: rgba(217,119,6,0.03);
+    --analysis-border: rgba(217,119,6,0.1);
+    --analysis-excerpt-bg: rgba(217,119,6,0.05);
+    --analysis-excerpt-border: rgba(217,119,6,0.18);
+    --analysis-context-bg: rgba(0,0,0,0.02);
+    --analysis-context-border: rgba(0,0,0,0.06);
+    --badge-concept-bg: rgba(74,108,247,0.1);
+    --badge-concept-text: #4a6cf7;
+    --badge-pm-bg: rgba(217,119,6,0.1);
+    --badge-pm-text: #d97706;
+    --badge-legal-bg: rgba(214,51,132,0.1);
+    --badge-legal-text: #d63384;
+  }
+
+  /* ===== SMOOTH THEME TRANSITION ===== */
+  body, .card, .mbti-card-inner, .mbti-card-outer, .diagnosis,
+  .wall-cell, .bw-bar, .spectrum-bar-fill, .dim-bar-fill,
+  .header h1, .metric-card .value, .mbti-persona,
+  .analysis-card-inner, .analysis-card-outer, .analysis-excerpt,
+  .analysis-context-item, .analysis-badge {
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease,
+                box-shadow 0.5s ease, -webkit-text-fill-color 0.5s ease;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== AMBIENT BACKGROUND ===== */
+  body::before {
+    content: '';
+    position: fixed; top: -30%; left: -10%;
+    width: 60vw; height: 60vw;
+    background: radial-gradient(circle, var(--ambient-1) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+    transition: background 0.5s ease;
+  }
+  body::after {
+    content: '';
+    position: fixed; bottom: -20%; right: -10%;
+    width: 50vw; height: 50vw;
+    background: radial-gradient(circle, var(--ambient-2) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+    transition: background 0.5s ease;
+  }
+
+  /* ===== THEME TOGGLE ===== */
+  .theme-toggle {
+    position: fixed;
+    top: 24px; right: 24px;
+    z-index: 100;
+    width: 64px; height: 32px;
+    border-radius: 16px;
+    background: var(--toggle-bg);
+    border: 1px solid var(--border-card);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    backdrop-filter: blur(8px);
+    transition: background 0.4s ease, border-color 0.4s ease;
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent-purple);
+  }
+  .theme-toggle .knob {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--toggle-knob);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    transition: transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),
+                background 0.4s ease, box-shadow 0.4s ease;
+  }
+  [data-theme="dark"] .theme-toggle .knob { transform: translateX(0); }
+  [data-theme="light"] .theme-toggle .knob { transform: translateX(32px); }
+
+  /* ===== LAYOUT ===== */
+  .dashboard {
+    position: relative; z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ===== HEADER ===== */
+  .header { text-align: center; margin-bottom: 48px; }
+  .header .logo {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+  .header .logo .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 8px var(--accent-green);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .header h1 {
+    font-size: 32px; font-weight: 800;
+    background: linear-gradient(135deg, var(--h1-grad-from) 0%, var(--h1-grad-to) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header .meta { font-size: 14px; color: var(--text-dim); }
+  .header .meta span { color: var(--text-secondary); }
+
+  /* ===== CARD BASE ===== */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(12px);
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  }
+  .card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+  }
+  .card-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title .icon { font-size: 16px; }
+
+  /* ===== METRICS ROW ===== */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .metric-card {
+    text-align: center;
+    padding: 24px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 2px 2px 0 0;
+  }
+  .metric-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-blue), transparent); }
+  .metric-card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-green), transparent); }
+  .metric-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-amber), transparent); }
+  .metric-card:nth-child(4)::before { background: linear-gradient(90deg, var(--accent-pink), transparent); }
+  .metric-card .emoji { font-size: 28px; margin-bottom: 10px; }
+  .metric-card .value {
+    font-family: var(--font-mono);
+    font-size: 36px; font-weight: 800;
+    line-height: 1; margin-bottom: 6px;
+  }
+  .metric-card:nth-child(1) .value { color: var(--accent-blue); }
+  .metric-card:nth-child(2) .value { color: var(--accent-green); }
+  .metric-card:nth-child(3) .value { color: var(--accent-amber); }
+  .metric-card:nth-child(4) .value { color: var(--accent-pink); }
+  .metric-card .label { font-size: 13px; color: var(--text-dim); font-weight: 500; }
+
+  /* ===== GREEN WALL ===== */
+  .green-wall-section { margin-bottom: 24px; }
+  .wall-grid {
+    display: grid;
+    grid-template-columns: 48px repeat(12, 1fr);
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .wall-header { color: var(--text-dim); text-align: center; font-size: 11px; padding: 4px 0; }
+  .wall-day-label { color: var(--text-dim); display: flex; align-items: center; font-size: 11px; padding-right: 8px; }
+  .wall-cell {
+    aspect-ratio: 1; border-radius: 3px;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.5s ease;
+    cursor: default; position: relative;
+  }
+  .wall-cell:hover { transform: scale(1.3); z-index: 10; }
+  .wall-cell.lv0 { background: var(--green-0); }
+  .wall-cell.lv1 { background: var(--green-1); }
+  .wall-cell.lv2 { background: var(--green-2); }
+  .wall-cell.lv3 { background: var(--green-3); }
+  .wall-cell.lv4 { background: var(--green-4); }
+  .wall-legend {
+    display: flex; align-items: center; gap: 6px;
+    justify-content: flex-end;
+    margin-top: 12px;
+    font-size: 11px; color: var(--text-dim);
+  }
+  .wall-legend .swatch { width: 12px; height: 12px; border-radius: 2px; transition: background 0.5s ease; }
+
+  /* ===== TWO-COL GRID ===== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+
+  /* ===== 24H BRAINWAVE ===== */
+  .brainwave-chart { display: flex; align-items: flex-end; gap: 4px; height: 160px; padding-top: 8px; }
+  .bw-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+  .bw-bar {
+    width: 100%; border-radius: 4px 4px 0 0; min-height: 2px;
+    transition: height 0.6s cubic-bezier(0.34,1.56,0.64,1); position: relative;
+  }
+  .bw-bar.peak { box-shadow: 0 0 12px rgba(108,140,255,0.5); }
+  .bw-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-dim); margin-top: 6px; text-align: center; }
+  .peak-badge {
+    position: absolute; top: -24px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; color: var(--accent-blue); white-space: nowrap; font-weight: 700;
+  }
+
+  /* ===== KNOWLEDGE SPECTRUM ===== */
+  .spectrum-list { display: flex; flex-direction: column; gap: 14px; }
+  .spectrum-item { display: flex; align-items: center; gap: 12px; }
+  .spectrum-label {
+    width: 90px; font-size: 13px; color: var(--text-secondary);
+    text-align: right; flex-shrink: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .spectrum-bar-bg {
+    flex: 1; height: 20px;
+    background: var(--spectrum-bar-bg);
+    border-radius: 6px; overflow: hidden; position: relative;
+  }
+  .spectrum-bar-fill { height: 100%; border-radius: 6px; transition: width 1s cubic-bezier(0.34,1.56,0.64,1); }
+  .spectrum-pct {
+    width: 60px; font-family: var(--font-mono);
+    font-size: 13px; color: var(--text-dim); text-align: right; flex-shrink: 0;
+  }
+
+  /* ===== COGNITIVE DIAGNOSIS ===== */
+  .diagnosis {
+    margin-top: 20px; padding: 20px;
+    background: var(--diagnosis-bg);
+    border: 1px solid var(--diagnosis-border);
+    border-radius: 10px;
+  }
+  .diagnosis h4 { font-size: 14px; color: var(--accent-purple); margin-bottom: 8px; }
+  .diagnosis p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+  .diagnosis .book-rec { margin-top: 10px; font-size: 13px; color: var(--accent-green); }
+
+  /* ===== AI ANALYSIS CARD ===== */
+  .analysis-section { margin-bottom: 24px; }
+  .analysis-card-outer {
+    position: relative; padding: 2px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--accent-amber), var(--accent-pink), var(--accent-blue));
+    box-shadow: 0 0 40px var(--glow-amber), 0 0 80px var(--glow-blue);
+    animation: analysis-glow-shift 6s ease-in-out infinite alternate;
+  }
+  @keyframes analysis-glow-shift {
+    0% { box-shadow: 0 0 40px var(--glow-amber), 0 0 80px var(--glow-blue); }
+    100% { box-shadow: 0 0 50px var(--glow-blue), 0 0 90px var(--glow-amber); }
+  }
+  .analysis-card-inner {
+    background: var(--bg-secondary);
+    border-radius: 18px; padding: 36px;
+  }
+  .analysis-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
+  }
+  .analysis-book-info { flex: 1; min-width: 0; }
+  .analysis-book-title {
+    font-size: 22px; font-weight: 800; line-height: 1.3;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, var(--accent-amber), var(--accent-pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .analysis-book-author {
+    font-size: 14px; color: var(--text-dim); font-weight: 500;
+  }
+  .analysis-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .analysis-badge.concept { background: var(--badge-concept-bg); color: var(--badge-concept-text); }
+  .analysis-badge.pm { background: var(--badge-pm-bg); color: var(--badge-pm-text); }
+  .analysis-badge.legal { background: var(--badge-legal-bg); color: var(--badge-legal-text); }
+  .analysis-badge .badge-icon { font-size: 14px; }
+  .analysis-section-label {
+    font-size: 11px; font-weight: 600; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+  }
+  .analysis-excerpt {
+    margin-bottom: 24px; padding: 20px;
+    background: var(--analysis-excerpt-bg);
+    border: 1px solid var(--analysis-excerpt-border);
+    border-left: 3px solid var(--accent-amber);
+    border-radius: 0 10px 10px 0;
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.8; font-style: italic;
+    position: relative;
+  }
+  .analysis-excerpt::before {
+    content: '\201C'; position: absolute; top: -4px; left: 8px;
+    font-size: 48px; color: var(--accent-amber); opacity: 0.2;
+    font-style: normal; line-height: 1; pointer-events: none;
+  }
+  .analysis-result { margin-bottom: 24px; }
+  .analysis-result-content {
+    font-size: 15px; color: var(--text-primary);
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+  .analysis-result-content strong {
+    color: var(--accent-amber); font-weight: 700;
+    display: block; margin-top: 16px; margin-bottom: 6px;
+    font-size: 15px;
+  }
+  .analysis-result-content p { margin-bottom: 10px; }
+  .analysis-result-content ul,
+  .analysis-result-content ol { padding-left: 20px; margin-bottom: 10px; }
+  .analysis-result-content li { margin-bottom: 4px; color: var(--text-secondary); }
+  .analysis-result-content li::marker { color: var(--accent-amber); }
+  .analysis-context {
+    padding-top: 20px;
+    border-top: 1px solid var(--border-card);
+  }
+  .analysis-context-list {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .analysis-context-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 14px;
+    background: var(--analysis-context-bg);
+    border: 1px solid var(--analysis-context-border);
+    border-radius: 10px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .analysis-context-item:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-amber);
+  }
+  .analysis-context-chapter {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--accent-amber);
+    white-space: nowrap; flex-shrink: 0;
+    padding: 3px 8px;
+    background: var(--badge-pm-bg);
+    border-radius: 4px;
+    margin-top: 2px;
+  }
+  .analysis-context-body { flex: 1; min-width: 0; }
+  .analysis-context-text {
+    font-size: 13px; color: var(--text-secondary);
+    line-height: 1.6;
+    display: -webkit-box; -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .analysis-context-thought {
+    font-size: 12px; color: var(--accent-amber);
+    margin-top: 4px; font-style: italic;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  /* ===== MBTI SOUL CARD ===== */
+  .mbti-section { margin-bottom: 24px; }
+  .mbti-card-outer {
+    position: relative; padding: 2px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-green));
+    box-shadow: 0 0 40px var(--glow-purple), 0 0 80px var(--glow-blue);
+    animation: glow-shift 6s ease-in-out infinite alternate;
+  }
+  @keyframes glow-shift {
+    0% { box-shadow: 0 0 40px var(--glow-purple), 0 0 80px var(--glow-blue); }
+    100% { box-shadow: 0 0 50px var(--glow-blue), 0 0 90px var(--glow-purple); }
+  }
+  .mbti-card-inner {
+    background: var(--bg-secondary);
+    border-radius: 18px; padding: 40px;
+    display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center;
+  }
+  .mbti-code-display { text-align: center; }
+  .mbti-letters { display: flex; gap: 6px; margin-bottom: 12px; }
+  .mbti-letter {
+    width: 56px; height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 28px; font-weight: 900; border-radius: 12px; color: #fff;
+  }
+  .mbti-letter:nth-child(1) { background: linear-gradient(135deg, #6c8cff, #4a6cf7); }
+  .mbti-letter:nth-child(2) { background: linear-gradient(135deg, #a855f7, #8b3fd4); }
+  .mbti-letter:nth-child(3) { background: linear-gradient(135deg, #ec4899, #d63384); }
+  .mbti-letter:nth-child(4) { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .mbti-type-label { font-size: 11px; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; }
+  .mbti-persona {
+    font-size: 28px; font-weight: 800; margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .mbti-quote {
+    font-size: 16px; color: var(--text-secondary); line-height: 1.7; font-style: italic;
+    margin-bottom: 16px; padding-left: 16px; border-left: 3px solid var(--accent-purple);
+  }
+  .mbti-meta { display: flex; flex-wrap: wrap; gap: 16px; }
+  .mbti-meta-item { font-size: 13px; color: var(--text-dim); }
+  .mbti-meta-item .label { color: var(--text-secondary); margin-right: 4px; }
+
+  /* ===== DIMENSION BARS ===== */
+  .dim-bars { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .dim-row { display: flex; align-items: center; gap: 10px; }
+  .dim-label {
+    width: 28px; font-family: var(--font-mono);
+    font-size: 14px; font-weight: 700; text-align: center;
+  }
+  .dim-bar-track {
+    flex: 1; height: 8px;
+    background: var(--bar-track);
+    border-radius: 4px; overflow: hidden; position: relative;
+  }
+  .dim-bar-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+  .dim-pct {
+    width: 36px; font-family: var(--font-mono);
+    font-size: 12px; color: var(--text-dim); text-align: right;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center; margin-top: 48px; padding-top: 32px;
+    border-top: 1px solid var(--border-card);
+    font-size: 12px; color: var(--text-dim);
+  }
+  .footer a { color: var(--accent-blue); text-decoration: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 20px; }
+    .wall-grid { grid-template-columns: 38px repeat(12, minmax(0, 1fr)); gap: 2px; }
+    .wall-header { font-size: 9px; }
+    .wall-day-label { font-size: 9px; padding-right: 4px; }
+    .two-col { grid-template-columns: minmax(0, 1fr); }
+    .two-col > .card { min-width: 0; }
+    .brainwave-chart { gap: 2px; }
+    .bw-label { font-size: 7px; }
+    .mbti-card-inner { grid-template-columns: 1fr; text-align: center; }
+    .mbti-letters { justify-content: center; }
+    .mbti-quote { text-align: left; }
+    .dashboard { padding: 24px 16px 48px; }
+    .analysis-card-inner { padding: 24px; }
+    .analysis-header { flex-direction: column; }
+    .analysis-book-title { font-size: 18px; }
+    .analysis-excerpt { font-size: 14px; padding: 16px; }
+    .analysis-result-content { font-size: 14px; }
+    .analysis-context-item { flex-direction: column; gap: 6px; }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease forwards; }
+  .fade-in:nth-child(2) { animation-delay: 0.1s; }
+  .fade-in:nth-child(3) { animation-delay: 0.2s; }
+  .fade-in:nth-child(4) { animation-delay: 0.3s; }
+  .fade-in:nth-child(5) { animation-delay: 0.4s; }
+  .fade-in:nth-child(6) { animation-delay: 0.5s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div class="theme-toggle" id="themeToggle">
+  <div class="knob" id="toggleKnob">🌙</div>
+</div>
+
+<div class="dashboard">
+
+  <header class="header fade-in">
+    <div class="logo"><div class="dot"></div> WeRead Insight</div>
+    <h1 id="dashboardTitle"></h1>
+    <p class="meta"><span id="userLabel"></span><span id="userName"></span> · <span id="generatedAtLabel"></span><span id="generatedDate"></span></p>
+  </header>
+
+  <div class="metrics fade-in">
+    <div class="card metric-card">
+      <div class="emoji">📚</div>
+      <div class="value" id="bookCount"></div>
+      <div class="label" id="readingBooksLabel"></div>
+    </div>
+    <div class="card metric-card">
+      <div class="emoji">⏱️</div>
+      <div class="value" id="readingHours"></div>
+      <div class="label" id="readingHoursLabel"></div>
+    </div>
+    <div class="card metric-card">
+      <div class="emoji">✍️</div>
+      <div class="value" id="noteCount"></div>
+      <div class="label" id="highlightsLabel"></div>
+    </div>
+    <div class="card metric-card">
+      <div class="emoji">🔥</div>
+      <div class="value" id="streakDays"></div>
+      <div class="label" id="streakDaysLabel"></div>
+    </div>
+  </div>
+
+  <div class="card green-wall-section fade-in">
+    <div class="card-title"><span class="icon">📅</span> <span id="readingHeatmapLabel"></span></div>
+    <div class="wall-grid" id="greenWall"></div>
+    <div class="wall-legend">
+      <span id="lessLabel"></span>
+      <div class="swatch" style="background:var(--green-0)"></div>
+      <div class="swatch" style="background:var(--green-1)"></div>
+      <div class="swatch" style="background:var(--green-2)"></div>
+      <div class="swatch" style="background:var(--green-3)"></div>
+      <div class="swatch" style="background:var(--green-4)"></div>
+      <span id="moreLabel"></span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card fade-in">
+      <div class="card-title"><span class="icon">⏰</span> <span id="brainwaveLabel"></span></div>
+      <div class="brainwave-chart" id="brainwaveChart"></div>
+    </div>
+    <div class="card fade-in">
+      <div class="card-title"><span class="icon">🕸️</span> <span id="knowledgeSpectrumLabel"></span></div>
+      <div class="spectrum-list" id="spectrumList"></div>
+      <div class="diagnosis" id="diagnosis">
+        <h4>🧠 <span id="blindSpotLabel"></span></h4>
+        <p id="diagnosisText"></p>
+        <p class="book-rec">💡 <span id="bookRecommendationsLabel"></span><span id="recommendedBooks"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="analysis-section fade-in">
+    <div class="card-title" style="margin-bottom:16px"><span class="icon">🔍</span> <span id="aiAnalysisTitleLabel"></span></div>
+    <div class="analysis-card-outer">
+      <div class="analysis-card-inner">
+        <div class="analysis-header">
+          <div class="analysis-book-info">
+            <div class="analysis-book-title" id="analysisBookTitle"></div>
+            <div class="analysis-book-author" id="analysisBookAuthor"></div>
+          </div>
+          <div class="analysis-badge" id="analysisBadge">
+            <span class="badge-icon" id="badgeIcon"></span>
+            <span id="badgeText"></span>
+          </div>
+        </div>
+        <div class="analysis-section-label"><span class="icon">📝</span> <span id="excerptLabel"></span></div>
+        <div class="analysis-excerpt" id="analysisExcerpt"></div>
+        <div class="analysis-result">
+          <div class="analysis-section-label"><span class="icon">🧠</span> <span id="aiAnalysisLabel"></span></div>
+          <div class="analysis-result-content" id="analysisResult"></div>
+        </div>
+        <div class="analysis-context" id="analysisContext">
+          <div class="analysis-section-label"><span class="icon">🔗</span> <span id="contextLinksLabel"></span></div>
+          <div class="analysis-context-list" id="analysisContextList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mbti-section fade-in">
+    <div class="card-title" style="margin-bottom:16px"><span class="icon">🧠</span> <span id="mbtiTitleLabel"></span></div>
+    <div class="mbti-card-outer">
+      <div class="mbti-card-inner">
+        <div class="mbti-code-display">
+          <div class="mbti-letters">
+            <div class="mbti-letter" id="mbti1"></div>
+            <div class="mbti-letter" id="mbti2"></div>
+            <div class="mbti-letter" id="mbti3"></div>
+            <div class="mbti-letter" id="mbti4"></div>
+          </div>
+          <div class="mbti-type-label" id="readingCodeLabel"></div>
+        </div>
+        <div class="mbti-info">
+          <div class="mbti-persona" id="personaName"></div>
+          <div class="mbti-quote" id="personaQuote"></div>
+          <div class="mbti-meta">
+            <div class="mbti-meta-item"><span class="label">📖 <span id="recentBookLabel"></span></span><span id="recentBook"></span></div>
+          </div>
+          <div class="dim-bars">
+            <div class="dim-row">
+              <div class="dim-label" style="color:var(--accent-blue)">B</div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimBFill" style="background:linear-gradient(90deg,var(--accent-blue),transparent)"></div></div>
+              <div class="dim-pct" id="dimBPct"></div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimDFill" style="background:linear-gradient(270deg,var(--accent-purple),transparent)"></div></div>
+              <div class="dim-label" style="color:var(--accent-purple)">D</div>
+            </div>
+            <div class="dim-row">
+              <div class="dim-label" style="color:var(--accent-green)">L</div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimLFill" style="background:linear-gradient(90deg,var(--accent-green),transparent)"></div></div>
+              <div class="dim-pct" id="dimLPct"></div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimHFill" style="background:linear-gradient(270deg,var(--accent-amber),transparent)"></div></div>
+              <div class="dim-label" style="color:var(--accent-amber)">H</div>
+            </div>
+            <div class="dim-row">
+              <div class="dim-label" style="color:var(--accent-pink)">A</div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimAFill" style="background:linear-gradient(90deg,var(--accent-pink),transparent)"></div></div>
+              <div class="dim-pct" id="dimAPct"></div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimRFill" style="background:linear-gradient(270deg,var(--accent-blue),transparent)"></div></div>
+              <div class="dim-label" style="color:var(--accent-blue)">R</div>
+            </div>
+            <div class="dim-row">
+              <div class="dim-label" style="color:var(--accent-amber)">T</div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimTFill" style="background:linear-gradient(90deg,var(--accent-amber),transparent)"></div></div>
+              <div class="dim-pct" id="dimTPct"></div>
+              <div class="dim-bar-track"><div class="dim-bar-fill" id="dimSFill" style="background:linear-gradient(270deg,var(--accent-green),transparent)"></div></div>
+              <div class="dim-label" style="color:var(--accent-green)">S</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p><span id="generatedByLabel"></span> <span>WeRead Insight</span></p>
+  </footer>
+
+</div>
+
+<script id="dashboardData" type="application/json">{{DASHBOARD_DATA_JSON_ESCAPED_FOR_HTML}}</script>
+<script>
+const dashboardDataElement = document.getElementById('dashboardData');
+const DATA = JSON.parse(dashboardDataElement.textContent);
+const UI = DATA.ui || {};
+const text = (id, value) => {
+  const element = document.getElementById(id);
+  if (element) element.textContent = value == null ? '' : String(value);
+};
+const percent = value => Math.max(0, Math.min(100, Number(value) || 0));
+
+(function renderDocumentMetadata() {
+  const lang = String(DATA.lang || 'und');
+  document.documentElement.lang = /^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$/.test(lang) ? lang : 'und';
+  document.title = ['WeRead Insight', UI.dashboardTitle].filter(Boolean).join(' · ');
+  document.getElementById('themeToggle').title = String(UI.themeToggle || '');
+})();
+
+(function renderStaticData() {
+  const metrics = DATA.metrics || {};
+  const mbti = DATA.mbti || {};
+  const code = String(mbti.code || '').slice(0, 4).padEnd(4, '·');
+  const labels = {
+    dashboardTitle: UI.dashboardTitle, userLabel: UI.userLabel,
+    generatedAtLabel: UI.generatedAtLabel, readingBooksLabel: UI.readingBooks,
+    readingHoursLabel: UI.readingHours, highlightsLabel: UI.highlights,
+    streakDaysLabel: UI.streakDays, readingHeatmapLabel: UI.readingHeatmap,
+    lessLabel: UI.less, moreLabel: UI.more, brainwaveLabel: UI.brainwave,
+    knowledgeSpectrumLabel: UI.knowledgeSpectrum, blindSpotLabel: UI.blindSpotDiagnosis,
+    bookRecommendationsLabel: UI.bookRecommendations, aiAnalysisTitleLabel: UI.aiAnalysisTitle,
+    excerptLabel: UI.excerpt, aiAnalysisLabel: UI.aiAnalysis,
+    contextLinksLabel: UI.contextLinks, mbtiTitleLabel: UI.mbtiTitle,
+    readingCodeLabel: UI.readingCode, recentBookLabel: UI.recentBook,
+    generatedByLabel: UI.generatedBy
+  };
+  Object.entries(labels).forEach(([id, value]) => text(id, value));
+  text('userName', DATA.userName); text('generatedDate', DATA.date);
+  text('bookCount', metrics.bookCount); text('readingHours', metrics.readingHours);
+  text('noteCount', metrics.noteCount); text('streakDays', metrics.streakDays);
+  text('diagnosisText', DATA.diagnosisText); text('recommendedBooks', DATA.recommendedBooks);
+  for (let i = 0; i < 4; i++) text('mbti' + (i + 1), code[i]);
+  text('personaName', mbti.personaName); text('personaQuote', mbti.personaQuote);
+  text('recentBook', mbti.recentBook);
+  const dimensions = mbti.dimensions || {};
+  ['B','D','L','H','A','R','T','S'].forEach(letter => {
+    const value = percent(dimensions[letter]);
+    document.getElementById('dim' + letter + 'Fill').style.width = value + '%';
+    const pct = document.getElementById('dim' + letter + 'Pct');
+    if (pct) pct.textContent = value + '%';
+  });
+})();
+// ===== THEME TOGGLE =====
+(function initTheme() {
+  const toggle = document.getElementById('themeToggle');
+  const knob = document.getElementById('toggleKnob');
+  const html = document.documentElement;
+  const saved = localStorage.getItem('weread-theme');
+  if (saved) { html.setAttribute('data-theme', saved); knob.textContent = saved === 'dark' ? '🌙' : '☀️'; }
+  toggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    knob.textContent = next === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('weread-theme', next);
+  });
+})();
+
+const WALL_DATA = Array.isArray(DATA.wall) ? DATA.wall : [];
+const BRAINWAVE_DATA = Array.isArray(DATA.brainwave) ? DATA.brainwave.map(Number) : [];
+const SPECTRUM_DATA = Array.isArray(DATA.spectrum) ? DATA.spectrum : [];
+const SPECTRUM_COLORS = ['#6c8cff','#a855f7','#34d399','#f59e0b','#ec4899','#60a5fa'];
+
+// ===== RENDER: GREEN WALL =====
+(function renderWall() {
+  const grid = document.getElementById('greenWall');
+  const days = Array.isArray(UI.weekdays) && UI.weekdays.length === 7
+    ? UI.weekdays.map(String)
+    : ['1','2','3','4','5','6','7'];
+  const weekPrefix = String(UI.weekPrefix || '');
+  const emptyHeader = document.createElement('div');
+  emptyHeader.className = 'wall-header';
+  grid.appendChild(emptyHeader);
+  for (let w = 1; w <= 12; w++) {
+    const h = document.createElement('div');
+    h.className = 'wall-header'; h.textContent = weekPrefix + w;
+    grid.appendChild(h);
+  }
+  for (let d = 0; d < 7; d++) {
+    const label = document.createElement('div');
+    label.className = 'wall-day-label'; label.textContent = days[d];
+    grid.appendChild(label);
+    for (let w = 0; w < 12; w++) {
+      const cell = document.createElement('div');
+      const level = Math.max(0, Math.min(4, Number(WALL_DATA[d]?.[w]) || 0));
+      cell.className = 'wall-cell lv' + level;
+      cell.title = days[d] + ' ' + weekPrefix + (w+1);
+      grid.appendChild(cell);
+    }
+  }
+})();
+
+// ===== RENDER: BRAINWAVE CHART =====
+(function renderBrainwave() {
+  const chart = document.getElementById('brainwaveChart');
+  const max = Math.max(...BRAINWAVE_DATA, 1);
+  const peakIdx = BRAINWAVE_DATA.indexOf(Math.max(...BRAINWAVE_DATA));
+  for (let i = 0; i < 24; i++) {
+    const wrap = document.createElement('div');
+    wrap.className = 'bw-bar-wrap';
+    const bar = document.createElement('div');
+    const pct = (BRAINWAVE_DATA[i] / max) * 100;
+    const hue = 220 + (BRAINWAVE_DATA[i] / max) * 40;
+    bar.className = 'bw-bar' + (i === peakIdx ? ' peak' : '');
+    bar.style.height = Math.max(pct, 2) + '%';
+    bar.style.background = `linear-gradient(180deg, hsl(${hue},80%,65%), hsl(${hue},60%,35%))`;
+    if (i === peakIdx) {
+      const badge = document.createElement('div');
+      badge.className = 'peak-badge'; badge.textContent = '🧠 ' + BRAINWAVE_DATA[i];
+      bar.appendChild(badge);
+    }
+    const label = document.createElement('div');
+    label.className = 'bw-label'; label.textContent = String(i).padStart(2,'0');
+    wrap.appendChild(bar); wrap.appendChild(label);
+    chart.appendChild(wrap);
+  }
+})();
+
+// ===== RENDER: SPECTRUM =====
+(function renderSpectrum() {
+  const list = document.getElementById('spectrumList');
+  SPECTRUM_DATA.forEach((item, i) => {
+    const row = document.createElement('div');
+    row.className = 'spectrum-item';
+    const label = document.createElement('div');
+    label.className = 'spectrum-label';
+    label.textContent = String(item.name || '');
+    const barBackground = document.createElement('div');
+    barBackground.className = 'spectrum-bar-bg';
+    const barFill = document.createElement('div');
+    barFill.className = 'spectrum-bar-fill';
+    barFill.style.width = percent(item.pct) + '%';
+    barFill.style.background = SPECTRUM_COLORS[i % SPECTRUM_COLORS.length];
+    barBackground.appendChild(barFill);
+    const pct = document.createElement('div');
+    pct.className = 'spectrum-pct';
+    pct.textContent = percent(item.pct) + '% (' + (Number(item.count) || 0) + String(UI.bookUnit || '') + ')';
+    row.append(label, barBackground, pct);
+    list.appendChild(row);
+  });
+})();
+
+// ===== DATA: AI ANALYSIS =====
+const ANALYSIS = DATA.analysis || {};
+const ANALYSIS_TEMPLATE_KIND = String(ANALYSIS.templateKind || '');
+const ANALYSIS_CONTEXT = Array.isArray(ANALYSIS.context) ? ANALYSIS.context : [];
+
+// ===== RENDER: ANALYSIS BADGE =====
+(function renderAnalysisBadge() {
+  const badge = document.getElementById('analysisBadge');
+  const icon = document.getElementById('badgeIcon');
+  const typeMap = {
+    concept: { cls: 'concept', icon: '📖' },
+    pm: { cls: 'pm', icon: '📋' },
+    legal: { cls: 'legal', icon: '⚖️' }
+  };
+  const config = typeMap[ANALYSIS_TEMPLATE_KIND] || { cls: 'concept', icon: '📖' };
+  badge.classList.add(config.cls);
+  icon.textContent = config.icon;
+  text('badgeText', ANALYSIS.templateType);
+})();
+
+(function renderAnalysisResult() {
+  text('analysisBookTitle', ANALYSIS.bookTitle);
+  text('analysisBookAuthor', ANALYSIS.bookAuthor);
+  text('analysisExcerpt', ANALYSIS.excerpt);
+  text('analysisResult', ANALYSIS.result);
+})();
+
+// ===== RENDER: ANALYSIS CONTEXT =====
+(function renderAnalysisContext() {
+  const container = document.getElementById('analysisContextList');
+  const section = document.getElementById('analysisContext');
+  if (ANALYSIS_CONTEXT.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+  ANALYSIS_CONTEXT.forEach(function(item) {
+    const div = document.createElement('div');
+    div.className = 'analysis-context-item';
+    const chapter = document.createElement('div');
+    chapter.className = 'analysis-context-chapter';
+    chapter.textContent = String(item.chapter || '');
+    const body = document.createElement('div');
+    body.className = 'analysis-context-body';
+    const excerpt = document.createElement('div');
+    excerpt.className = 'analysis-context-text';
+    excerpt.textContent = String(item.text || '');
+    body.appendChild(excerpt);
+    if (item.thought) {
+      const thought = document.createElement('div');
+      thought.className = 'analysis-context-thought';
+      thought.textContent = '💭 ' + String(item.thought);
+      body.appendChild(thought);
+    }
+    div.append(chapter, body);
+    container.appendChild(div);
+  });
+})();
+
+// ===== CONDITIONAL: Hide analysis section if no data =====
+(function hideEmptyAnalysis() {
+  if (!ANALYSIS.bookTitle) {
+    var section = document.querySelector('.analysis-section');
+    if (section) section.style.display = 'none';
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,44 +1,60 @@
-## Description: <br>
-Bearing Search helps agents look up bearing model specifications, compare bearing brands and product lines, decode model codes and suffixes, and provide application-based bearing selection guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bearing model and brand search, model-code parsing, cross-brand comparison, and application-based bearing selection guidance.
 
-## Publisher: <br>
-[openfindbearings](https://clawhub.ai/user/openfindbearings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openfindbearings](https://clawhub.ai/user/openfindbearings)
 
-## Use Case: <br>
-External users, maintenance engineers, and developers use this skill to answer bearing model, brand, specification, cross-reference, and selection questions. It can also use the bundled local Python helper to search expected local bearing model data files when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearing specifications or selection advice may be incorrect or incomplete for safety-critical mechanical applications. <br>
-Mitigation: Verify dimensions, loads, speed limits, environmental suitability, and substitutions against manufacturer documentation before procurement, installation, or operation. <br>
-Risk: The optional Python lookup helper reads local bearing data files, so unexpected or untrusted local data could affect search results. <br>
-Mitigation: Use trusted local data files and review the data source before relying on returned bearing specifications. <br>
+## Use Case:
 
+External users, developers, and maintenance engineers can use this skill to answer bearing model, brand, specification, cross-reference, and selection questions.
 
-## Reference(s): <br>
-- [Bearing Data Structure](references/data-structure.md) <br>
-- [Bearing Model Code Rules](references/model-codes.md) <br>
-- [Bearing Brand Reference](references/brands.md) <br>
-- [SKF](https://www.skf.com) <br>
-- [ClawHub Release Page](https://clawhub.ai/openfindbearings/bearing-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cite local bearing reference files and local model data when present; bearing specifications should be verified against manufacturer documentation for safety-critical use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search results can depend on local JSON data files that were not included in the reviewed skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Package and review the required model and brand databases with the skill, or document the trusted data location before use.
+
+Risk: The skill may provide narrower behavior than its description suggests because the referenced model and brand databases are missing from the artifact.
+
+Mitigation: Confirm available data coverage and test representative model, brand, and selection queries before deployment.
+
+Risk: The skill content and script output are Chinese-language, which may limit usability for non-Chinese workflows.
+
+Mitigation: Add localization or route usage to Chinese-language support contexts.
+
+## Reference(s):
+
+- [Bearing Data Structure](references/data-structure.md)
+- [Bearing Model Codes](references/model-codes.md)
+- [Bearing Brands Reference](references/brands.md)
+- [SKF](https://www.skf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text bearing lookup and selection guidance, with optional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language skill content; lookup quality depends on available local bearing model and brand data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "mode": "readonly",
+  "name": "hackernews-api",
+  "operation_count": 9,
+  "payment_modes": [
+    "prepaid_credit"
+  ],
+  "platform": "hackernews",
+  "source_of_truth": "services/hackernews-fetcher/internal/capabilities/capabilities.go",
+  "title": "Hacker News Public Reads",
+  "version": "2.0.1"
+}

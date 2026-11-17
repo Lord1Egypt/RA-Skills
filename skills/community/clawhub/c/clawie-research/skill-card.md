@@ -1,40 +1,54 @@
-## Description: <br>
-Deep research on any topic with structured markdown report generation, citations, key findings, and actionable insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep research on user-specified topics with structured Markdown reports, citations, key findings, and actionable insights.
 
-## Publisher: <br>
-[mrcalifornian](https://clawhub.ai/user/mrcalifornian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrcalifornian](https://clawhub.ai/user/mrcalifornian)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to investigate topics, compare technologies or markets, synthesize findings from multiple public sources, and produce structured research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries and topic details may be sent to public web, GitHub, Hacker News, and npm services. <br>
-Mitigation: Do not use the skill with secrets, private customer data, internal incident details, or confidential business plans unless those external lookups are approved. <br>
-Risk: External research sources may contain incomplete, outdated, contradictory, or unverified information. <br>
-Mitigation: Cross-reference findings across sources, cite claims, note publication dates, and flag uncertain or unverified information in the report. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to scope research questions, gather public-source evidence, synthesize findings, and produce structured reports for competitive analysis, market research, technology landscape reviews, or general investigations.
 
-## Reference(s): <br>
-- [Research Report Template](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with citations, tables, recommendations, and optional inline shell commands or JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include source counts, methodology notes, key findings, landscape analysis, gaps, opportunities, and recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research prompts and topics may be sent to public search, GitHub, Hacker News, and npm services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public or non-sensitive research and exclude secrets, proprietary identifiers, private customer names, and confidential internal project details from queries.
+
+Risk: Research reports may contain incorrect, stale, or one-sided findings if sources are weak or not cross-checked.
+
+Mitigation: Require citations, prioritize primary sources, verify claims across multiple sources, note publication dates, and flag uncertain or unverified information.
+
+## Reference(s):
+
+- [Report Template](references/report-template.md)
+- [Clawie Research Agent on ClawHub](https://clawhub.ai/mrcalifornian/skills/clawie-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports with citations, tables, recommendations, and optional inline shell commands or JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Research outputs should cite sources, compare perspectives, flag uncertainty, and summarize methodology.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,69 @@
-## Description: <br>
-Buy products from Amazon and eBay using USDC on Solana through SP3ND's autonomous x402 payment flow across 22 Amazon marketplaces, 8 eBay marketplaces, and 200+ shipping countries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Purchase shipped products and tokenized Collector Crypt cards through SP3ND with USDC on Solana using server-priced carts, payment-ready order gates, and fulfillment tracking.
 
-## Publisher: <br>
-[kent-x1](https://clawhub.ai/user/kent-x1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kent-x1](https://clawhub.ai/user/kent-x1)
 
-## Use Case: <br>
-External developers and agent operators use this skill to let an agent create carts, place orders, pay with USDC on Solana through x402, and track Amazon or eBay fulfillment through SP3ND. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can spend real USDC once its wallet is funded. <br>
-Mitigation: Use a dedicated wallet, fund only the amount intended for autonomous purchases, monitor the balance, and add an operator approval or spend-limit gate before payment. <br>
-Risk: The wallet file contains private key material that can authorize spending. <br>
-Mitigation: Store `.wallet.json` with owner-only permissions, keep it out of logs and version control, and use it only for payment signing and credential-regeneration signatures. <br>
-Risk: Order placement sends shipping address, phone, and contact email to SP3ND and fulfillment providers. <br>
-Mitigation: Send only information required for fulfillment and use the skill only when sharing those details with the service and marketplace providers is acceptable. <br>
-Risk: Using a marketplace URL that does not match the shipping country can cause failed orders, wrong pricing, or undeliverable items. <br>
-Mitigation: Validate Amazon and eBay marketplace TLDs against the destination country before creating carts or orders. <br>
+## Use Case:
 
+External agents and developers use this skill to create SP3ND carts and orders for Amazon, eBay, and Collector Crypt purchases, pay approved USDC quotes, and track shipped-product or wallet-delivered fulfillment. It is intended for real checkout flows where server-authoritative pricing, idempotency, wallet attribution, and payment status must be respected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kent-x1/sp3nd) <br>
-- [SP3ND website](https://sp3nd.shop) <br>
-- [SP3ND API documentation](https://sp3nd.shop/partner-api/docs) <br>
-- [SP3ND web skill file](https://sp3nd.shop/skill.md) <br>
-- [SP3ND A2A agent card](https://sp3nd.shop/.well-known/agent-card.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown instructions with HTTP, JSON, JavaScript, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SP3ND API credentials, a funded dedicated Solana wallet, and network access to SP3ND, PayAI, and Solana RPC endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can initiate real USDC payments for shipped products and Collector Crypt cards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-funded wallet, set explicit spending limits or human approval rules, and pay only after SP3ND returns a current payment-ready quote.
+
+Risk: API credentials, wallet key material, shipping details, and contact details are sensitive.
+
+Mitigation: Keep SP3ND credentials and wallet files private, avoid logging or committing secrets, and provide shipping or contact data only for the intended checkout.
+
+Risk: Retrying after a timeout or ambiguous settlement can create payment uncertainty.
+
+Mitigation: Preserve idempotency keys and signed transaction bytes, read the order before retrying, and retry only the identical authorized payment when the API allows it.
+
+Risk: Collector Crypt payment confirms SP3ND treasury receipt but does not itself prove NFT delivery.
+
+Mitigation: Continue polling until the order is delivered with asset transfer evidence, and do not buy replacement cards or transfer assets outside the documented fulfillment flow.
+
+Risk: Collector Crypt listings can sell or change before manual acquisition is completed.
+
+Mitigation: Refresh expired or changed quotes, reconfirm changed totals against the user's authorization, and let SP3ND handle review or refunds.
+
+## Reference(s):
+
+- [Published ClawHub Skill](https://clawhub.ai/kent-x1/skills/sp3nd)
+- [Collector Crypt checkout](references/collector-crypt.md)
+- [SP3ND API documentation](https://sp3nd.shop/partner-api/docs)
+- [SP3ND Agent Card](https://sp3nd.shop/.well-known/agent-card.json)
+- [Published SP3ND skill](https://sp3nd.shop/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with HTTP examples, JSON request and response examples, JavaScript code, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SP3ND API credentials and may use a Solana wallet state file for payment examples.]
+
+## Skill Version(s):
+
+1.11.0 (source: evidence.release.version, artifact SKILL.md metadata.version, clawhub.json version, agent-card.json version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

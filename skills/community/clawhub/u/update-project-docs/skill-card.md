@@ -1,43 +1,55 @@
-## Description: <br>
-Guides agents through auditing, updating, validating, and syncing project documentation based on code changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through auditing code changes, identifying affected documentation, updating or scaffolding docs, validating them, and recording a documentation sync point.
 
-## Publisher: <br>
-[openghz](https://clawhub.ai/user/openghz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openghz](https://clawhub.ai/user/openghz)
 
-## Use Case: <br>
-Developers and maintainers use this skill to identify documentation affected by code changes, update or create docs, validate the result, and record a documentation sync point for future incremental reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read repository contents and propose documentation edits or deletions. <br>
-Mitigation: Use it in a trusted repository or isolated clone, review proposed changes, and require explicit approval before committing. <br>
-Risk: Docs validation commands may execute local project scripts. <br>
-Mitigation: Review validation commands before running them, especially in repositories with untrusted build scripts. <br>
-Risk: An incorrect .docs-sync record can cause future incremental reviews to skip relevant code changes. <br>
-Mitigation: Record the sync point only after documentation changes are reviewed and validation has completed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to keep project documentation aligned with code changes, including full first-run audits, incremental documentation updates, and documentation site scaffolding when needed.
 
-## Reference(s): <br>
-- [Code to Documentation Mapping](references/CODE-TO-DOCS-MAPPING.md) <br>
-- [Documentation Conventions Discovery Guide](references/DOC-CONVENTIONS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, proposed documentation edits, and configuration updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update documentation files and write a .docs-sync record after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can inspect repository contents and propose documentation edits, which may expose or propagate sensitive or inaccurate project information if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in repositories where documentation updates are intended, review proposed changes before applying or committing them, and validate generated docs against the project build or lint checks.
+
+Risk: The scaffolded Docsify template may rely on externally hosted assets or scripts before publication.
+
+Mitigation: Before publishing a scaffolded site, pin dependencies to exact HTTPS URLs, add integrity checks, or vendor reviewed assets as recommended by the security guidance.
+
+## Reference(s):
+
+- [DOC-CONVENTIONS.md](references/DOC-CONVENTIONS.md)
+- [CODE-TO-DOCS-MAPPING.md](references/CODE-TO-DOCS-MAPPING.md)
+- [ClawHub Skill Page](https://clawhub.ai/openghz/skills/update-project-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with proposed file edits, code blocks, shell commands, and documentation content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update documentation files, documentation navigation, Docsify scaffold files, and a documentation sync record after user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

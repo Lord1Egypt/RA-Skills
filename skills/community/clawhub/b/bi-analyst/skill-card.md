@@ -1,41 +1,53 @@
-## Description: <br>
-Generate personalized career roadmaps for aspiring Business Intelligence analysts based on assessment data, experience, and professional goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized career roadmaps for aspiring Business Intelligence analysts based on assessment data, experience, and professional goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, career changers, junior analysts, IT professionals, and managers use this skill to create BI career development roadmaps from experience, skills, and goal assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Assessment data may include personal career details and is sent to an external API provider. <br>
-Mitigation: Avoid confidential employer, client, compensation, or sensitive personal details, and omit or pseudonymize userId unless the provider is trusted. <br>
+## Use Case:
 
+External users and agents use this skill to submit BI career assessment details and receive structured roadmap guidance with development phases, skill priorities, resources, milestones, and next steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/bi-analyst) <br>
-- [API Docs](https://api.mkkpro.com:8053/docs) <br>
-- [Kong Route](https://api.mkkpro.com/career/bi-analyst) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON roadmap content with career phases, milestones, resources, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap requests include session and timestamp fields plus optional userId and assessment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Career assessment details are sent to a third-party API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending unnecessary personal identifiers or sensitive employment details, and review the provider's privacy terms when retention, sharing, or deletion requirements matter.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/bi-analyst)
+- [Kong Route](https://api.mkkpro.com/career/bi-analyst)
+- [API Docs](https://api.mkkpro.com:8053/docs)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [JSON roadmap data summarized or presented as Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roadmap output may include profile assessment, phased timelines, resource suggestions, milestone checkpoints, next steps, and career growth estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and openapi.json info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

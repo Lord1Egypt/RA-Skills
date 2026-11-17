@@ -1,7 +1,7 @@
 ---
 name: "incontinence_alert_analysis"
 description: "Automatically identifies wet clothing and abnormal excretion via visual AI. Instantly notifies caregivers to improve care for incontinent elderly, bedridden patients, and infants, reducing skin issues and complications. | 智能失禁状态提醒技能，基于视觉AI自动识别衣物潮湿、排泄异常等状况，第一时间推送通知给看护人员，提升失能老人、卧床病人、婴幼儿的护理质量，减少皮肤问题和并发症"
-version: "1.0.5"
+version: "1.0.20"
 license: "MIT-0"
 ---
 

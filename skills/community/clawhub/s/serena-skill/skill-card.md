@@ -1,41 +1,54 @@
-## Description: <br>
-Use Serena-backed semantic code navigation and editing when working in existing software projects with non-trivial structure, especially multi-file repos where symbol-aware lookup and targeted edits are more reliable and token-efficient than brute-force file reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Serena-backed semantic code navigation and editing when working in existing software projects with non-trivial structure, especially multi-file repos where symbol-aware lookup and targeted edits are more reliable and token-efficient than brute-force file reading.
 
-## Publisher: <br>
-[juanclaw](https://clawhub.ai/user/juanclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juanclaw](https://clawhub.ai/user/juanclaw)
 
-## Use Case: <br>
-Developers and coding agents use Serena to inspect structured software projects, trace symbol relationships, and make targeted code edits through Serena-backed semantic navigation tools when those tools are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward file edits, shell execution, or passthrough Serena capabilities when those tools are available. <br>
-Mitigation: Use it in repositories where those actions are acceptable, keep edits narrow, and review broad commands or diffs before high-impact changes. <br>
-Risk: Serena results may be unavailable, fail, or be ambiguous for a target project. <br>
-Mitigation: Explain the failure or ambiguity, fall back to ordinary file tools, and avoid claiming semantic confirmation when it was not obtained. <br>
+## Use Case:
 
+Developers and coding agents use this skill to apply Serena's semantic project navigation, reference tracing, and symbol-scoped editing workflows in existing software repositories.
 
-## Reference(s): <br>
-- [Integration patterns](references/integration-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/juanclaw/serena-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, shell commands, code] <br>
-**Output Format:** [Markdown guidance with tool and command names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are workflow instructions for agents using available Serena tools; the skill itself does not declare runtime configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server-resolved release metadata) <br>
+Risk: The workflow permits project-context shell execution or raw passthrough only as advanced escape hatches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review shell or passthrough actions before approval and prefer the normalized Serena tools for routine navigation and edits.
+
+Risk: Ambiguous or failed semantic lookup can lead to edits that were not actually confirmed by Serena.
+
+Mitigation: Disambiguate by path or additional lookup, explain Serena failures, and fall back to the smallest reliable file-based read or edit scope.
+
+## Reference(s):
+
+- [Integration patterns](references/integration-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/juanclaw/skills/serena-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown guidance with tool names, ordered workflows, and prompt patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance for agents; it does not include executable code.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

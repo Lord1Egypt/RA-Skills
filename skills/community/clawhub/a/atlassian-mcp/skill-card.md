@@ -1,42 +1,49 @@
-## Description: <br>
-Run the Model Context Protocol (MCP) Atlassian server in Docker, enabling integration with Jira, Confluence, and other Atlassian products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run the Model Context Protocol (MCP) Atlassian server in Docker, enabling integration with Jira, Confluence, and other Atlassian products.
 
-## Publisher: <br>
-[AtakanErmis](https://clawhub.ai/user/AtakanErmis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atakanermis](https://clawhub.ai/user/atakanermis)
 
-## Use Case: <br>
-Developers and engineers use this skill to start an Atlassian MCP server for querying Jira issues, searching Confluence, and interacting with Atlassian services from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a third-party Docker image with access to Atlassian credentials and selected Jira or Confluence data. <br>
-Mitigation: Install only after reviewing and trusting the upstream image, and pin the image to a reviewed version or digest. <br>
-Risk: Agent access can include Jira-changing actions such as create, update, delete, or project-management operations. <br>
-Mitigation: Use a dedicated least-privilege Atlassian account or token and require explicit approval before write actions. <br>
-Risk: Jira API tokens can be exposed through shell history or overly broad credential handling. <br>
-Mitigation: Provide credentials through environment variables or a secure secret mechanism and avoid placing tokens directly in command history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AtakanErmis/atlassian-mcp) <br>
-- [Atlassian API token settings](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+## Use Case:
 
+Developers and engineers use this skill to start an Atlassian MCP server that lets an agent query Jira issues, search Confluence, and interact with Atlassian services programmatically.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and environment-variable guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker and Jira credentials supplied through environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives Jira credentials to an unpinned third-party Docker image that can change Jira data.
+
+Mitigation: Use a dedicated least-privilege Atlassian token, avoid administrator or broad service-account credentials, test in a non-production project first, prefer a pinned image digest from a trusted publisher, and explicitly review agent write actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atakanermis/skills/atlassian-mcp)
+- [Atlassian API tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker and JIRA_URL, JIRA_USERNAME, and JIRA_API_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

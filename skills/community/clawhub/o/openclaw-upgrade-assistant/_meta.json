@@ -1,6 +1,69 @@
 {
-  "ownerId": "kn7942dkcdsfv6s69j3az4sr9n81vmpj",
-  "slug": "openclaw-upgrade-assistant",
-  "version": "1.0.1",
-  "publishedAt": 1774421393391
+  "name": "openclaw-upgrade-assistant",
+  "displayName": "OpenClaw 升级前影响评估工具",
+  "version": "1.1.0",
+  "description": "🛡️ OpenClaw 升级前必备工具！深度分析版本更新对配置的影响，生成详细兼容性报告，精准备份受影响文件。不执行更新，与 Openclaw Update 等工具完美互补。ClawHub 首个 OpenClaw 升级影响评估工具。",
+  "author": "潜助 🤖",
+  "license": "MIT",
+  "category": "tools",
+  "tags": [
+    "openclaw",
+    "pre-upgrade",
+    "impact-analysis",
+    "compatibility",
+    "safety",
+    "backup",
+    "assessment",
+    "upgrade-assistant",
+    "configuration"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Adgai115/openclaw-260324",
+    "directory": "skills/openclaw-upgrade-assistant"
+  },
+  "engines": {
+    "openclaw": ">=2026.3.0"
+  },
+  "capabilities": [
+    "file_read",
+    "file_write",
+    "exec",
+    "web_fetch"
+  ],
+  "permissions": {
+    "workspace": "read-write",
+    "network": "github.com",
+    "exec": "limited"
+  },
+  "config": {
+    "autoBackup": true,
+    "backupDestination": "./backup",
+    "reportFormat": "markdown",
+    "includeVersionHistory": true,
+    "githubRepo": "openclaw/openclaw"
+  },
+  "entry": {
+    "main": "index.js",
+    "type": "javascript"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9",
+    "semver": "^7.5.4",
+    "fs-extra": "^11.1.1"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "analyze": "node index.js --analyze",
+    "backup": "node index.js --backup"
+  },
+  "keywords": [
+    "openclaw",
+    "update checker",
+    "compatibility analyzer",
+    "backup tool",
+    "upgrade assistant"
+  ],
+  "createdAt": "2026-03-24T11:09:00+08:00",
+  "updatedAt": "2026-03-24T11:09:00+08:00"
 }

@@ -1,43 +1,50 @@
-## Description: <br>
-OpenTelemetry instrumentation coverage auditor that scans Node.js, Python, Go, and Java source code for missing or misconfigured OTel instrumentation and produces per-file coverage findings with actionable fix snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenTelemetry instrumentation coverage auditor that scans Node.js, Python, Go, and Java source code for missing or misconfigured telemetry and returns findings with actionable fix snippets.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to generate or run a local OpenTelemetry static audit for service repositories, identify instrumentation blind spots, and receive concrete remediation snippets for traces, resources, exporters, and CI gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit scans selected repository paths and can report private file names, line numbers, and source-adjacent snippets. <br>
-Mitigation: Run it only on intended local paths and treat generated reports as internal when they contain private project structure or code context. <br>
-Risk: A local otel_audit.py script that differs from the embedded skill code could perform unexpected actions. <br>
-Mitigation: Before execution, confirm the script being run matches the embedded code supplied by the skill. <br>
-Risk: Static OpenTelemetry checks can produce false positives, especially around auto-instrumentation and context that is not visible in a local source window. <br>
-Mitigation: Review findings against actual instrumentation and trace behavior before using CI mode to block releases. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit OpenTelemetry coverage in application source code before release or during CI review. It helps identify missing spans, weak trace context propagation, incomplete error reporting, and other observability gaps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-otel-audit) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python, shell, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local static-analysis reports with severity counts, file locations, remediation snippets, and optional CI failure behavior for HIGH findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill reads the source tree selected by the user and may print short matching source snippets to stdout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories or directories that are appropriate for local code review, and use a narrower target directory for very large or sensitive projects.
+
+## Reference(s):
+
+- [Canlah AI Homepage](https://canlah.ai)
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-otel-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text audit report with inline code snippets and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings may include file paths, line references, severity labels, and short matched source snippets.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

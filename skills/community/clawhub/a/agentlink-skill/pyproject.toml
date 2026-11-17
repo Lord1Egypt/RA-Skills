@@ -1,0 +1,8 @@
+[project]
+name = "agentlink-skill"
+version = "1.2.0"
+description = "AgentLink skill for OpenClaw - provides browser automation, Windows desktop control, and code execution via cloud sandbox"
+requires-python = ">=3.9"
+dependencies = [
+    "agentlink-sdk>=1.0.0",
+]

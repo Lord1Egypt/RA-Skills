@@ -1,45 +1,55 @@
-## Description: <br>
-Complete Binance integration for checking balances, querying prices, managing spot and futures trades, setting stop loss and take profit orders, reviewing PnL, and performing Binance account operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Binance integration for checking balances, managing spot and futures trades, setting stop loss and take profit orders, reviewing PnL, and performing other Binance account operations.
 
-## Publisher: <br>
-[0xspeter](https://clawhub.ai/user/0xspeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xspeter](https://clawhub.ai/user/0xspeter)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent prepare Binance API commands for portfolio checks, spot trading, futures position management, order cancellation, leverage changes, and trade history review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through live Binance spot and futures trades, leverage changes, cancellations, and position closes. <br>
-Mitigation: Require explicit human confirmation before every live order, leverage change, cancellation, or position close. <br>
-Risk: Broad Binance API credentials could expose account funds and trading authority if misused. <br>
-Mitigation: Use a dedicated restricted API key, disable withdrawals, enable IP restrictions where possible, and start with read-only or testnet credentials. <br>
-Risk: Leveraged futures commands can create outsized financial losses if pair, side, quantity, stop price, or leverage is wrong. <br>
-Mitigation: Verify symbol, side, quantity, current position, stop loss, take profit, and leverage before execution; keep leverage conservative unless the user has explicitly approved otherwise. <br>
+## Use Case:
 
+Developers and trading operators use this skill to let an agent prepare Binance API calls for account queries, spot orders, futures positions, leverage changes, stop loss and take profit orders, cancellations, and trade history review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xspeter/binance-pro-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/0xspeter) <br>
-- [Binance API Documentation](https://binance-docs.github.io/apidocs/) <br>
-- [Binance Testnet](https://testnet.binance.vision/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Binance API command examples that may require credentials and human approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can assist with live Binance spot and leveraged futures operations, including orders, cancellations, leverage changes, and position closes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnet or read-only access first, require explicit confirmation for every account-changing operation, and verify symbol, side, quantity, leverage, and position state before execution.
+
+Risk: Broad activation and credential guidance can expose high-impact Binance API keys to unintended account actions.
+
+Mitigation: Use a dedicated API key with withdrawals disabled, the narrowest permissions possible, and IP allowlisting where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xspeter/skills/binance-pro-1-0-0)
+- [Binance API Documentation](https://binance-docs.github.io/apidocs/)
+- [Binance Testnet](https://testnet.binance.vision/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; examples depend on Binance API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

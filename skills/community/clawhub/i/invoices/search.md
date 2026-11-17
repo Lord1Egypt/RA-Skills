@@ -1,114 +1,84 @@
-# Search and Reporting
+# Search — Finding Things In The Archive
 
-## Natural Language Queries
+The ledger answers questions; the archive holds documents. Opening PDFs to answer a question the ledger can answer is the slow, wrong path — and it is the path an archive without a good index forces on you forever.
 
-Support these patterns:
+**Before answering anything**, read the ledger years the question spans (`ledger/<year>.md`), plus `## Suppliers` when a supplier is named — the name in the question is almost never the canonical one.
 
-### By Provider
-- "facturas de Hetzner"
-- "todo lo de AWS"
-- "invoices from Google"
+**Contents:** [What The Ledger Can Answer](#what-the-ledger-can-answer) · [Resolving The Question](#resolving-the-question) · [Query Patterns](#query-patterns) · [Multilingual And Fuzzy Input](#multilingual-and-fuzzy-input) · [When The Answer Is Nothing](#when-the-answer-is-nothing) · [Answer Shape](#answer-shape) · [Reverse Lookups](#reverse-lookups)
 
-### By Date
-- "facturas de enero"
-- "invoices from last quarter"
-- "this year's invoices"
-- "facturas de 2025"
+## What The Ledger Can Answer
 
-### By Amount
-- "facturas de más de 500€"
-- "invoices over 1000"
-- "facturas entre 100 y 200"
+Without opening a single document: supplier, tax ID, invoice number, dates, base, rate, tax, total, currency, FX rate, category, status, payment date, archive path.
 
-### By Status
-- "facturas pendientes de pago"
-- "paid invoices"
-- "overdue invoices"
+Only the document itself can answer: what was actually bought line by line, the payment reference, the bank details as printed, the terms text, anything in an attachment. When a question needs one of those, open the one file the ledger points at — never a folder scan.
 
-### By Category
-- "gastos de hosting"
-- "software expenses"
-- "todas las facturas de seguros"
+The practical consequence: a question like "what did we spend on hosting in 2025" is a filter over one file, and "which invoice covers the second seat we added in March" needs one PDF opened. Knowing which is which before starting is most of the speed.
 
-### Combined
-- "facturas de Hetzner de más de 50€ en 2025"
-- "unpaid invoices from last month"
+## Resolving The Question
 
----
+Four dimensions, in this order, because each one narrows more than the next:
 
-## Reports
+1. **Time** — a period, a year, "last quarter", "since we started with them". Convert to explicit dates and say which dates were used.
+2. **Supplier** — resolve through canonical name and aliases (`suppliers.md`). A user asking for "Amazon" may mean the marketplace, the cloud provider, or an advertising account, each a different supplier row.
+3. **Amount or state** — over/under a threshold, unpaid, disputed, non-deductible.
+4. **Category or content** — the weakest filter, because categories are assigned and descriptions are marketing copy.
 
-### Monthly Summary
-```
-📊 February 2026 Summary
+State the resolution when it was ambiguous: "Hetzner, matching also 'Hetzner Online GmbH', 2025-01-01 to 2025-12-31, issue date."
 
-Total invoices: 23
-Total amount: €2,847.50
+## Query Patterns
 
-By category:
-• Hosting: €890.00 (5 invoices)
-• Software: €450.00 (8 invoices)
-• Professional: €1,200.00 (2 invoices)
-• Other: €307.50 (8 invoices)
+| Asked | Filter | Trap |
+|---|---|---|
+| Everything from a supplier | Canonical name plus aliases | Filtering on the string in the question misses three spellings |
+| A period total | Date range on the stated boundary | An unstated boundary makes the number unreproducible (`period-close.md`) |
+| What is unpaid | Empty `Paid`, excluding disputed and duplicate rows | Including disputed rows inflates payables and someone pays them |
+| Above or below an amount | `Total`, in the issued currency unless conversion is requested | Comparing mixed currencies as bare numbers |
+| By category | `Category` column | Categories are assigned, so the answer is only as good as the coding; say so when it matters |
+| One specific invoice | Supplier plus number, the identity key | Searching by amount finds the twelve identical subscription invoices |
+| "The big one from last year" | Sort by total descending within the year and offer the top few | Guessing which one they meant |
+| What changed versus last year | Same period, both years, per supplier | Comparing a closed year against a partial one without saying so |
+| Everything for the accountant | The whole period, plus the exceptions list | An export is not a search result (`period-close.md`) |
+| Anything else | Filter what is filterable, then say which part of the question the ledger cannot answer and what would have to be opened | Silently answering a narrower question than the one asked |
 
-Payment status:
-• Paid: 18 (€2,100.00)
-• Pending: 5 (€747.50)
-```
+## Multilingual And Fuzzy Input
 
-### Quarterly Tax Report
-```
-📋 Q1 2026 Tax Summary (Spain - Modelo 303)
+Users ask in whatever language they think in, and the archive holds documents in several.
 
-Base imponible: €12,450.00
-IVA soportado:
-• 21%: €2,180.00
-• 10%: €120.00
-• 4%: €15.00
-Total IVA: €2,315.00
+- **Supplier names are matched loosely**: case-insensitive, accent-insensitive, ignoring legal suffixes (`GmbH`, `SL`, `Ltd`, `SAS`, `BV`, `Inc`). `hetzner online gmbh` and `Hetzner` are the same query.
+- **Month and period names in any language** resolve to date ranges: a request for "enero", "janvier", or "January" is `01-01` to `01-31` of the year in context.
+- **Amount formats invert**: `1.500` may be one thousand five hundred or one and a half. Resolve from the user's locale, and when the parse is ambiguous, say which reading was used rather than picking silently.
+- **Category words are not categories.** A request about "software" is a category filter; a request about "the Figma thing" is a supplier lookup. Try the supplier interpretation first — it is exact when it hits.
 
-⚠️ Missing invoices for deduction:
-• February telecom (usually €45)
-```
+## When The Answer Is Nothing
 
-### Provider Analysis
-```
-📈 Hetzner - 12 months
+An empty result is a finding, and which finding depends on why:
 
-Total spend: €1,068.00
-Monthly average: €89.00
-Trend: +5% vs last year
+| Reason | What to say |
+|---|---|
+| Supplier not in the ledger at all | Name it: there are no invoices from that supplier, and check whether they are known under another name |
+| Supplier exists, period empty | The invoice may be missing rather than absent — check the cadence (`suppliers.md`) |
+| Documents in `inbox/` unfiled | Say how many, because the answer is incomplete until they are filed |
+| Period predates the archive | State the earliest date the ledger covers; an answer about 2019 from an archive starting in 2022 is not zero, it is unknown |
+| Filter too narrow | Show the nearest matches rather than an empty table |
 
-Invoices:
-• INV-12340 (Jan): €89.00
-• INV-12345 (Feb): €89.00
-...
-```
+Never present "no results" as "no such cost". The distinction between *absent* and *not recorded* is the whole reliability of the archive.
 
-### Annual Summary (for accountant)
-```
-📁 2025 Annual Export
+## Answer Shape
 
-Generating:
-• invoices_2025.csv (147 records)
-• invoices_2025.zip (all PDFs)
-• providers_2025.json (summary by provider)
+- **Rows, then total, then boundary.** The total is what was asked; the boundary is what makes it trustworthy.
+- **Include the archive path** when a specific invoice is the answer — the next thing wanted is the file.
+- **Currency per row, never mixed into one sum** without saying the conversion was applied and at which rate.
+- **Count as well as amount.** "2,847.50 EUR across 23 invoices" catches an error that "2,847.50 EUR" hides.
+- **Name the exclusions.** Disputed, duplicate, and pending rows left out of a total are stated once, not buried.
+- Long results get summarized by supplier or month first, with the detail available — a 200-row dump answers nothing.
 
-Ready to send to accountant.
-```
+## Reverse Lookups
 
----
+Coming from the other direction, which is where the value hides:
 
-## Export Formats
+- **From a bank line to an invoice**: match amount exactly, date within ±5 days for transfers and ±30 for cards. No match is the interesting outcome — it is an invoice never collected (`period-close.md`).
+- **From a dunning notice to the ledger**: search the invoice number first, then the amount and supplier. Not present at all means the invoice never arrived, which is a different problem from a payment that did not match (`payments.md`).
+- **From a card statement to the archive**: one statement line often corresponds to a monthly invoice issued days later. Match by supplier and period, never by exact date.
+- **From a contract to its invoices**: the contract lives in the archive alongside (`filing.md`); its invoices are found by supplier and date range, and the gap between what the contract says should be billed and what was billed is worth checking once a year.
 
-### CSV (Standard)
-```csv
-date,provider,invoice_number,subtotal,tax_rate,tax_amount,total,currency,category,status
-2026-02-13,Hetzner,INV-12345,75.21,19,14.29,89.50,EUR,hosting,paid
-```
-
-### Modelo 303 (Spain)
-Grouped by tax rate, ready for quarterly VAT declaration.
-
-### Full Archive
-ZIP with folder structure + CSV index.
+**Write before you finish**: a search rarely produces durable data, and inventing some is worse than none. Two exceptions: a supplier name resolved to a new alias goes to `## Suppliers`, and a gap the search revealed — a period with no invoice from a cadence supplier, a bank line with no invoice — goes to `## Open Items` in `memory.md`. A finding nobody records is a finding that gets rediscovered every quarter (`memory-template.md`).

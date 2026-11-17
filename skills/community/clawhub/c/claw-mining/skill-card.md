@@ -1,46 +1,65 @@
-## Description: <br>
-Mine $CLAW tokens via Proof of AI Work on Ethereum with an agent-guided workflow for setup, status checks, and mining commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mine $CLAW tokens via Proof of AI Work on Ethereum. Install this Skill and tell your agent 'mine CLAW' - the agent handles everything automatically.
 
-## Publisher: <br>
-[minewithclaw](https://clawhub.ai/user/minewithclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minewithclaw](https://clawhub.ai/user/minewithclaw)
 
-## Use Case: <br>
-External users and agent operators use this skill to configure and run CLAW mining on Ethereum, including status checks, single-cycle mining, and continuous mining. The workflow guides credential setup and local execution of the bundled miner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a hot wallet private key to sign Ethereum transactions and spend gas. <br>
-Mitigation: Use only a dedicated low-balance hot wallet, never a main wallet or seed phrase, and inspect the exact code before running mining commands. <br>
-Risk: Mining can call paid third-party AI APIs and may continue running in automatic mode. <br>
-Mitigation: Monitor AI API and gas spending, configure spending limits where available, and run automatic mode only when ongoing mining is intentional. <br>
-Risk: Custom AI API or Oracle endpoints can change trust assumptions. <br>
-Mitigation: Avoid custom AI endpoints unless they are trusted, and keep the default HTTPS Oracle endpoint unless there is a specific reason to change it. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run a local CLAW miner that calls an AI API, requests Oracle verification, and submits Ethereum mainnet mint transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minewithclaw/claw-mining) <br>
-- [Project homepage](https://minewithclaw.com) <br>
-- [Project repository from skill metadata](https://github.com/Cliai21/clawing) <br>
-- [Mining guide](docs/MINING_GUIDE.md) <br>
-- [Oracle service](https://oracle.minewithclaw.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce setup guidance for environment variables, wallet configuration, mining status checks, and commands that initiate paid API calls or Ethereum transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: The skill uses a live Ethereum private key for local transaction signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated hot wallet with minimal ETH and never use a main wallet or hardware-wallet seed.
+
+Risk: The automatic miner can keep signing mainnet mining transactions while it runs.
+
+Mitigation: Run auto-mining only when you intend continuous transactions, monitor the process, and stop it when mining should pause.
+
+Risk: Custom AI or Oracle endpoints could expose requests or route mining through untrusted services.
+
+Mitigation: Use trusted HTTPS endpoints and review endpoint configuration before running the miner.
+
+Risk: Installing and running the miner executes third-party Node.js code locally.
+
+Mitigation: Review the cloned code and dependencies before running npm install, npx, or the mining commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/minewithclaw/skills/claw-mining)
+- [Project Homepage](https://minewithclaw.com)
+- [Source Repository](https://github.com/Cliai21/clawing)
+- [Mining Guide](docs/MINING_GUIDE.md)
+- [Oracle Service](https://oracle.minewithclaw.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with shell commands, environment configuration, and local CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Node.js, git, an AI API key, an Ethereum RPC URL, a wallet private key, and ETH for gas.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

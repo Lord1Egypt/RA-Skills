@@ -1,40 +1,56 @@
-## Description: <br>
-Top 100 meme templates from Imgflip - names, dimensions, and image URLs ready for captioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Top 100 meme templates from Imgflip - names, dimensions, and image URLs ready for captioning.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and external agent users use this skill to retrieve popular Imgflip meme-template metadata for meme generators, social content tools, random template selection, or meme-format reference data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs npx mcp-remote@latest and sends requests to the Pipeworx Imgflip MCP gateway, so the remote package or service behavior can change over time. <br>
-Mitigation: Before installing or deploying, confirm that remote MCP package execution and requests to the Pipeworx gateway are acceptable for the target environment. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve popular Imgflip meme template metadata for meme generators, social content tools, random template selection, and meme-format reference workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/brucegutman/pipeworx-imgflip) <br>
-- [Pipeworx Imgflip pack](https://pipeworx.io/packs/imgflip) <br>
-- [Pipeworx Imgflip MCP gateway](https://gateway.pipeworx.io/imgflip/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown instructions with JSON MCP configuration; tool responses are JSON meme-template records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns template id, name, image URL, width, height, and box count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The documented MCP setup runs an unpinned npm package with automatic confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed version before installation and review changes before upgrading.
+
+Risk: Installing the MCP setup in an agent environment with sensitive files, environment variables, or credentials could increase exposure if the remote tooling is compromised or misconfigured.
+
+Mitigation: Run the skill in a least-privilege environment without access to sensitive files, environment variables, or credentials.
+
+## Reference(s):
+
+- [Pipeworx Imgflip homepage](https://pipeworx.io/packs/imgflip)
+- [Pipeworx Imgflip MCP endpoint](https://gateway.pipeworx.io/imgflip/mcp)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-imgflip)
+- [Publisher profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions with bash and JSON examples; tool responses are JSON meme-template metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns template id, name, image URL, width, height, and box count for the top 100 Imgflip meme templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Nano Banana Skill guides agents through Monet API usage for Nano Banana image generation models, including character consistency, 1K-4K output, up to 14 reference images, and extreme aspect ratios up to 21:9 and 8:1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nano Banana, Nano Banana Pro, Nano Banana 2 - Google AI image generation models for AI agents. Ultra-high character consistency, 1K-4K resolution, up to 14 reference images, extreme aspect ratios up to 21:9 and 8:1.
 
-## Publisher: <br>
-[seekton](https://clawhub.ai/user/seekton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seekton](https://clawhub.ai/user/seekton)
 
-## Use Case: <br>
-Developers and agents use this skill to create image generation tasks through the Monet API, including character-consistent image series, high-resolution outputs, reference-image workflows, and ultra-wide aspect ratios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image URLs, uploaded images, and task history are sent to monet.vision. <br>
-Mitigation: Use a dedicated API key where possible and avoid sending secrets, private documents, regulated data, or sensitive personal images unless authorized. <br>
-Risk: The skill can upload local image files to an external service. <br>
-Mitigation: Review file paths before upload and confirm that each selected file is appropriate to share with Monet. <br>
-Risk: Image generation requests may be retried by agents or automation. <br>
-Mitigation: Use a unique idempotency key for each intended task to reduce duplicate task creation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/seekton/nano-banana-skill) <br>
-- [Monet API website](https://monet.vision) <br>
-- [Monet API keys](https://monet.vision/skills/keys) <br>
-- [Skill documentation](SKILL.md) <br>
-- [README](README.md) <br>
+## Use Case:
 
+Developers and agents use this skill to create images through the Monet API with Nano Banana models, including character-consistent image series, high-resolution generations, style transfer, and ultra-wide image formats.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl commands, TypeScript examples, JSON request and response shapes, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for authenticated Monet API requests and asynchronous task polling; generated images and uploaded files are handled by the external Monet service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, reference image URLs, and uploaded image files are sent to monet.vision under the user's Monet account.
+
+Mitigation: Avoid sensitive prompts and files, and use the skill only when sharing that content with Monet is acceptable.
+
+Risk: The MONET_API_KEY is required for API calls and could be exposed through logs or shared transcripts.
+
+Mitigation: Store the key in an environment variable, keep it out of logs and transcripts, and avoid verbose request output that may disclose request details.
+
+Risk: Uploaded image files are hosted by Monet for temporary access.
+
+Mitigation: Upload only files suitable for temporary third-party hosting and account for the documented 24-hour retention window.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seekton/skills/nano-banana-skill)
+- [Monet API Platform](https://monet.vision)
+- [Monet API Keys](https://monet.vision/skills/keys)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with bash, JSON, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MONET_API_KEY; generated image tasks return asynchronous task metadata and hosted output URLs from Monet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

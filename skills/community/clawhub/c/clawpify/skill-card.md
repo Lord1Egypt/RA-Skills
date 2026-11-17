@@ -1,65 +1,87 @@
-## Description: <br>
-Query and manage Shopify stores via GraphQL Admin API. Use for products, orders, customers, inventory, discounts, and all Shopify data operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage Shopify stores via GraphQL Admin API. Use for products, orders, customers, inventory, discounts, and all Shopify data operations.
 
-## Publisher: <br>
-[Alhwyn](https://clawhub.ai/user/Alhwyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alhwyn](https://clawhub.ai/user/alhwyn)
 
-## Use Case: <br>
-Developers, store operators, and support teams use this skill to query Shopify store data and prepare GraphQL Admin API operations for products, orders, customers, inventory, discounts, fulfillments, and related commerce workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad Shopify Admin API access can expose customer, order, inventory, subscription, and marketing data. <br>
-Mitigation: Use tightly scoped Shopify API credentials and review requested fields before running queries or exports. <br>
-Risk: Write, delete, refund, fulfillment, inventory, subscription, and marketing operations can change live store state or customer communications. <br>
-Mitigation: Require explicit user confirmation with a clear summary of the proposed change before execution. <br>
-Risk: Bulk operations and customer-data exports can move large volumes of store data. <br>
-Mitigation: Confirm the data scope, destination, and business need before starting bulk operations or exports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Shopify Blogs & Articles](references/blogs.md) <br>
-- [Shopify Bulk Operations](references/bulk-operations.md) <br>
-- [Shopify Collections & Discounts](references/collections.md) <br>
-- [Shopify Customers](references/customers.md) <br>
-- [Shopify Discounts](references/discounts.md) <br>
-- [Shopify Draft Orders](references/draft-orders.md) <br>
-- [Shopify Files](references/files.md) <br>
-- [Shopify Fulfillments](references/fulfillments.md) <br>
-- [Shopify Gift Cards](references/gift-cards.md) <br>
-- [Shopify Inventory & Locations](references/inventory.md) <br>
-- [Shopify Locations](references/locations.md) <br>
-- [Shopify Marketing](references/marketing.md) <br>
-- [Shopify Markets](references/markets.md) <br>
-- [Shopify Menus](references/menus.md) <br>
-- [Shopify Metafields & Metaobjects](references/metafields.md) <br>
-- [Shopify Orders](references/orders.md) <br>
-- [Shopify Pages](references/pages.md) <br>
-- [Shopify Products & Variants](references/products.md) <br>
-- [Shopify Refunds](references/refunds.md) <br>
-- [Shopify Customer Segments](references/segments.md) <br>
-- [Shopify Shipping & Delivery](references/shipping.md) <br>
-- [Shopify Shop](references/shop.md) <br>
-- [Shopify Subscriptions](references/subscriptions.md) <br>
-- [Shopify Translations](references/translations.md) <br>
-- [Shopify Webhooks](references/webhooks.md) <br>
+## Use Case:
 
+Developers and store operators use this skill to query and manage Shopify products, orders, customers, inventory, discounts, content, webhooks, and related store data through the GraphQL Admin API. It is intended for assisted store administration where potentially destructive or financial operations require explicit user confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with GraphQL and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a shopify_graphql tool and appropriately scoped Shopify Admin API credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify or delete live Shopify store data, including products, orders, inventory, discounts, shipping, subscriptions, content, and customer-related records.
+
+Mitigation: Use a least-privileged Shopify token, prefer read-only scopes when possible, and require fresh explicit confirmation before any write, delete, inventory, fulfillment, shipping, subscription, discount, or marketing-consent operation.
+
+Risk: Refunds, order cancellations, gift-card balance changes, and draft-order completion can create financial or customer-impacting outcomes that may be irreversible.
+
+Mitigation: Show the affected order, customer, items, quantities, amounts, refund method, and final impact before execution, then wait for explicit user approval.
+
+Risk: Bulk operations and exports can expose large volumes of customer, order, product, or inventory data.
+
+Mitigation: Minimize exports, request only necessary fields, use pagination or scoped bulk queries, and handle exported data according to the store operator's data protection requirements.
+
+Risk: Webhook creation can persist callbacks that send store events outside the immediate session.
+
+Mitigation: Verify webhook destinations are controlled by the store operator, limit subscribed topics and fields, and confirm persistent webhook changes before creating, updating, or deleting subscriptions.
+
+## Reference(s):
+
+- [Clawpify release page](https://clawhub.ai/alhwyn/skills/clawpify)
+- [Shopify GraphQL Admin API skill definition](artifact/SKILL.md)
+- [Products and variants management](artifact/references/products.md)
+- [Order operations](artifact/references/orders.md)
+- [Customer management](artifact/references/customers.md)
+- [Inventory and locations](artifact/references/inventory.md)
+- [Discount codes and promotions](artifact/references/discounts.md)
+- [Product collections](artifact/references/collections.md)
+- [Order fulfillment and shipping](artifact/references/fulfillments.md)
+- [Refund processing](artifact/references/refunds.md)
+- [Draft order creation](artifact/references/draft-orders.md)
+- [Gift card management](artifact/references/gift-cards.md)
+- [Event subscriptions](artifact/references/webhooks.md)
+- [Store locations](artifact/references/locations.md)
+- [Marketing activities](artifact/references/marketing.md)
+- [Multi-market setup](artifact/references/markets.md)
+- [Navigation menus](artifact/references/menus.md)
+- [Custom data fields](artifact/references/metafields.md)
+- [Store pages](artifact/references/pages.md)
+- [Blog management](artifact/references/blogs.md)
+- [File uploads](artifact/references/files.md)
+- [Shipping configuration](artifact/references/shipping.md)
+- [Store information](artifact/references/shop.md)
+- [Subscription management](artifact/references/subscriptions.md)
+- [Content translations](artifact/references/translations.md)
+- [Customer segments](artifact/references/segments.md)
+- [Bulk data operations](artifact/references/bulk-operations.md)
+- [ShopifyQL segment query language reference](https://shopify.dev/docs/api/shopifyql/segment-query-language-reference)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Markdown]
+
+**Output Format:** [Markdown with GraphQL and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Shopify GraphQL Admin API queries and mutations for execution through the shopify_graphql tool.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Data Format Validation helps agents validate common data strings such as JSON, email addresses, UUIDs, IP addresses, credit card numbers, IBANs, phone numbers, ISBNs, Base64 values, regex patterns, and URLs through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Format Validation helps agents validate JSON, email, UUID, IP address, MAC address, credit card, IBAN, phone, color, ISBN, Base64, URL, and regex inputs through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to validate user-supplied or pipeline data before processing it, including JSON, contact fields, network identifiers, financial identifiers, ISBNs, Base64 strings, regex patterns, and URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Validation inputs are sent to AgentPMT-hosted MCP or REST services. <br>
-Mitigation: Use the skill only when the workflow permits remote validation and keep submitted values to the minimum needed. <br>
-Risk: Payment, banking, phone, or other personal data may be included in validation requests. <br>
-Mitigation: Prefer test, masked, or minimal values, and avoid submitting real full credit card numbers, IBANs, phone numbers, or other personal data unless required and approved. <br>
-Risk: Account secrets, wallet keys, mnemonics, signatures, or payment headers could be exposed if placed in prompts or logs. <br>
-Mitigation: Keep credentials out of prompts and logs, and use the separate setup flow for credential handling. <br>
+## Use Case:
 
+Developers and agents use this skill to validate common input formats and receive structured validity details before ingesting, routing, or processing data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/data-format-validation) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/data-format-validation) <br>
-- [AgentPMT main MCP server](https://api.agentpmt.com/mcp/) <br>
-- [AgentPMT REST invoke endpoint](https://api.agentpmt.com/products/purchase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validation responses include a validity status, descriptive message, and format-specific parsed details when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Validation inputs may be sent to AgentPMT and can include complete personal or financial values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep inputs scoped to the minimum needed and avoid real payment cards, bank identifiers, customer records, secrets, private URLs, or sensitive JSON/Base64 unless AgentPMT processing and logging terms are approved.
+
+Risk: Security evidence flags the release as suspicious because it is a remote validator with weak scoping and update guidance.
+
+Mitigation: Use pinned, reviewed installation paths, confirm schemas through approved AgentPMT setup routes, and review or scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/data-format-validation)
+- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/data-format-validation)
+- [Data Format Validation Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON request and response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote validation actions return a validity boolean, message, and format-specific parsed details.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

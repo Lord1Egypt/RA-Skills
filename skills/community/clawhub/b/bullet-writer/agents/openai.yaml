@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 五点描述优化"
+  short_description: "把评论证据转成五点表达优化建议"
+  default_prompt: "使用 $amazon-bullet-point-writer 根据商品详情和评论证据优化 Amazon 五点描述。"

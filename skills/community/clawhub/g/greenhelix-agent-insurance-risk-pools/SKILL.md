@@ -52,7 +52,7 @@ The regulatory clock is ticking. California AB 316 took effect January 2026, est
 ## Table of Contents
 
 1. [The Agent Liability Problem](#chapter-1-the-agent-liability-problem)
-2. [Risk Pool Architecture on A2A Commerce](#chapter-2-risk-pool-architecture-on-a2a-commerce)
+2. [Risk Pool Architecture on A2A Commerce](#chapter-2-riREDACTED-SECRET)
 3. [Underwriting Agents: Trust Scores as Risk Signals](#chapter-3-underwriting-agents-trust-scores-as-risk-signals)
 4. [Policy Lifecycle: Binding to Expiry](#chapter-4-policy-lifecycle-binding-to-expiry)
 5. [Claims Processing & Automated Adjudication](#chapter-5-claims-processing--automated-adjudication)

@@ -1,6 +1,74 @@
 {
-  "ownerId": "kn7f6j23w26c6habrdsfmcv3698190yq",
+  "ownerId": "openclaw",
   "slug": "linear-todos",
-  "version": "1.1.0",
-  "publishedAt": 1771447627201
+  "version": "1.0.2",
+  "publishedAt": null,
+  "author": "K",
+  "tags": ["todos", "linear", "tasks", "reminders", "productivity"],
+  "type": "source",
+  "always": false,
+  "openclaw": {
+    "always": false,
+    "primaryEnv": "LINEAR_API_KEY",
+    "requires": {
+      "env": ["LINEAR_API_KEY"],
+      "config": ["~/.config/linear-todos/config.json"]
+    },
+    "install": [
+      {
+        "kind": "uv",
+        "id": "linear-todos",
+        "label": "Linear Todos CLI"
+      }
+    ]
+  },
+  "platform": {
+    "requires": [],
+    "note": "Does not request any platform privileges."
+  },
+  "install": {
+    "type": "source",
+    "entry": "main.py",
+    "note": "This skill executes bundled Python source code. The agent runs src/linear_todos/ when CLI commands are invoked. No external downloads or package installs required. Review src/linear_todos/api.py before first use."
+  },
+  "execution": {
+    "type": "python",
+    "note": "Executes Python source code from src/linear_todos/. Not instruction-only."
+  },
+  "credentials": {
+    "primary": {
+      "name": "LINEAR_API_KEY",
+      "description": "Linear API key from https://linear.app/settings/api",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "env": {
+    "required": ["LINEAR_API_KEY"],
+    "optional": ["LINEAR_TEAM_ID", "LINEAR_STATE_ID", "LINEAR_DONE_STATE_ID", "LINEAR_TIMEZONE"]
+  },
+  "config": {
+    "paths": ["~/.config/linear-todos/config.json"],
+    "sensitive": true,
+    "autoWrite": false,
+    "permissions": "0o600",
+    "note": "Config file is written ONLY during manual 'setup' command with 0o600 permissions (user read/write only). Environment variables can be used instead to avoid persisted state."
+  },
+  "network": {
+    "destinations": ["https://api.linear.app"],
+    "note": "Makes HTTPS requests only to Linear's official GraphQL API. No third-party services."
+  },
+  "securityNote": "This is a source-execution skill. Python code in src/linear_todos/ runs when CLI commands are invoked. API key is stored in plaintext JSON at ~/.config/linear-todos/config.json (0o600 permissions) only if 'setup' command is run. Setup wizard temporarily sets LINEAR_API_KEY in process environment to test the key. Use environment variables to avoid persisted state. Skill does not auto-enable or auto-install cron jobs.",
+  "auditing": {
+    "keyFiles": ["src/linear_todos/api.py", "src/linear_todos/config.py", "src/linear_todos/cli.py"],
+    "recommendation": "Review api.py to verify HTTP destinations, config.py for credential handling, and cli.py for command logic. Run tests with pytest in an isolated environment."
+  },
+  "warnings": [
+    "EXECUTES SOURCE CODE: This skill runs Python code from src/linear_todos/ - not instruction-only",
+    "Cron job examples in cron-jobs.txt are NOT auto-installed; manual user action required via 'crontab -e'",
+    "Config file stores API key in plaintext (0o600 permissions); prefer LINEAR_API_KEY env var to avoid persisted state",
+    "Setup wizard temporarily sets LINEAR_API_KEY in process environment during key validation",
+    "Skill runs from bundled source; review code before first use",
+    "Does not request platform privileges; will not auto-enable for all agents"
+  ]
 }

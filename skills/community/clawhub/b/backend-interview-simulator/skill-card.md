@@ -1,41 +1,58 @@
-## Description: <br>
-Simulates backend engineering interview practice across system design, API design, databases, concurrency, scaling, backend coding, and backend-focused behavioral questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates backend engineering interviews covering system design, API design, databases, concurrency, scaling, backend-focused coding, and backend behavioral practice.
 
-## Publisher: <br>
-[phantue2002](https://clawhub.ai/user/phantue2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phantue2002](https://clawhub.ai/user/phantue2002)
 
-## Use Case: <br>
-Developers and engineers use this skill to run mock backend interviews, targeted system and API design practice, backend coding drills, concept Q&A, and backend-focused behavioral preparation tailored to their role, experience, and optional CV details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local interview history and summarized CV-derived details on the user's machine. <br>
-Mitigation: Avoid providing CV content that should not be retained, and clear ~/.openclaw/backend-interview-simulator/ when saved state is no longer wanted. <br>
-Risk: Interview scoring and feedback may be incomplete or subjective. <br>
-Mitigation: Use the feedback as practice guidance and review important interview preparation decisions with additional trusted sources. <br>
+## Use Case:
 
+External developers and backend engineering candidates use this skill to run mock backend interviews, practice system and API design, solve backend-focused coding problems, and receive structured feedback. It can also tailor practice from a user-provided CV without storing the raw CV text.
 
-## Reference(s): <br>
-- [Backend Interview Simulator Reference](reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/phantue2002/backend-interview-simulator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with optional shell commands and local JSON state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local profile, history, weak-area, and saved-answer JSON files under ~/.openclaw/backend-interview-simulator/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may read user-provided CV files and store summarized profile details locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only CV files intended for interview preparation and review or remove local profile data under ~/.openclaw/backend-interview-simulator when it is no longer needed.
+
+Risk: Broad backend phrases such as "system design" can activate interview practice behavior.
+
+Mitigation: Use clear prompts when working outside backend interview preparation, or disable the skill in contexts where interview simulation is not desired.
+
+Risk: Interview scores and technical feedback are coaching guidance rather than a hiring decision or authoritative assessment.
+
+Mitigation: Treat scores as practice feedback and review important technical recommendations before relying on them.
+
+## Reference(s):
+
+- [Backend Interview Simulator reference](reference.md)
+- [ClawHub skill page](https://clawhub.ai/phantue2002/skills/backend-interview-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with code blocks, scoring rubrics, interview prompts, and structured feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local profile, history, weak-area, and saved-answer JSON files under ~/.openclaw/backend-interview-simulator.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,57 @@
-## Description: <br>
-豆包网页视频批量生成技能，帮助代理基于豆包网页端批量生成推广视频，并完成文案创作、视频生成、拼接混音和压缩输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+豆包批量视频生成 helps agents create batches of promotional short videos through Doubao web workflows, covering copy creation, prompt confirmation, video generation guidance, ffmpeg concatenation, audio mixing, and compression.
 
-## Publisher: <br>
-[hitjcl](https://clawhub.ai/user/hitjcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitjcl](https://clawhub.ai/user/hitjcl)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to guide an agent through batch short-video creation with Doubao, including prompt drafting, required user confirmation, browser-based generation, and local ffmpeg post-processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can operate an authenticated Doubao browser session and consume generation quota. <br>
-Mitigation: Use a dedicated browser profile for Doubao, confirm the account context before generation, and monitor quota use. <br>
-Risk: Generated prompts and browser actions could submit unintended or sensitive content to Doubao. <br>
-Mitigation: Review and approve all prompts before generation, as the skill requires a user confirmation step. <br>
-Risk: The workflow downloads generated videos and writes media files locally. <br>
-Mitigation: Run it in a known working directory, review output paths, and avoid using sensitive local files as inputs. <br>
-Risk: Local post-processing depends on ffmpeg and ffprobe behavior. <br>
-Mitigation: Use trusted ffmpeg builds and inspect the generated MP4 outputs before publishing or uploading them. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to plan Chinese short-video campaigns, confirm generated prompts, operate Doubao or fallback video generation, and assemble downloaded MP4 clips into final upload-ready videos.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hitjcl/doubao-batch-video) <br>
-- [Doubao web app](https://www.doubao.com/) <br>
-- [Doubao video generator](https://www.doubao.com/video-generator) <br>
-- [豆包网页端登录与自动化参考](references/doubao-login.md) <br>
-- [GEO 视频生成提示词参考](references/prompt-references.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with inline bash, JSON, JavaScript, and Python command examples; generated media files are produced through external browser and ffmpeg workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt tables, browser-operation guidance, ffmpeg commands, and local MP4 outputs such as final combined and compressed videos.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can operate a logged-in Doubao browser session, which may expose account state or cookies if reused on shared machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Doubao/browser profile, avoid shared machines, and clear cookies or session data when the work is complete.
+
+Risk: The local ffmpeg combine workflow processes files from an input directory and may behave unexpectedly on untrusted or poorly named video files.
+
+Mitigation: Run the combine script only on video directories you control, with normal filenames and expected MP4 inputs.
+
+## Reference(s):
+
+- [Doubao web login and automation reference](references/doubao-login.md)
+- [GEO video prompt reference](references/prompt-references.md)
+- [Doubao website](https://www.doubao.com/)
+- [Doubao video generator](https://www.doubao.com/video-generator)
+- [ClawHub skill release page](https://clawhub.ai/hitjcl/skills/doubao-batch-video)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with command snippets and generated MP4 file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include prompt tables, browser automation steps, ffmpeg commands, and final or compressed MP4 files when the workflow is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

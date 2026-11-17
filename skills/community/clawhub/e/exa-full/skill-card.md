@@ -1,43 +1,67 @@
-## Description: <br>
-Exa AI search + Research API supports web and code search, content extraction, and asynchronous multi-step research tasks with optional structured output schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exa AI search + Research API. Supports web/code search, content extraction, and async multi-step research tasks with outputSchema.
 
-## Publisher: <br>
-[XieShaocong33Ethan](https://clawhub.ai/user/XieShaocong33Ethan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xieshaocong33ethan](https://clawhub.ai/user/xieshaocong33ethan)
 
-## Use Case: <br>
-Developers and agents use this skill to query Exa for web results, code and documentation context, URL contents, and asynchronous research results. It is useful when an agent needs current external information, page extraction, or structured research output through Exa's API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Exa API key and sends user-directed search queries, URLs, research instructions, and selected schema files to Exa. <br>
-Mitigation: Use a dedicated Exa API key, monitor quota usage, and run the skill only for data that is acceptable to send to Exa. <br>
-Risk: SCHEMA_FILE contents are uploaded as outputSchema for Exa research tasks. <br>
-Mitigation: Do not point SCHEMA_FILE at secrets, credentials, key files, certificates, .env files, or confidential documents; use a dedicated JSON schema file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/XieShaocong33Ethan/exa-full) <br>
-- [Publisher Profile](https://clawhub.ai/user/XieShaocong33Ethan) <br>
-- [Exa Homepage](https://exa.ai) <br>
-- [Exa Documentation](https://docs.exa.ai/) <br>
-- [Exa Subpage Crawling Reference](https://docs.exa.ai/reference/crawling-subpages) <br>
+## Use Case:
 
+Developers and agents use this skill to search the web and code, extract URL content, crawl related pages, and run asynchronous Exa research workflows with optional structured output.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and EXA_API_KEY; optional environment variables tune search, content extraction, and research polling.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: evidence release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Structured research output can upload local JSON schema file contents to Exa when SCHEMA_FILE is set.
+
+Mitigation: Use only a dedicated non-sensitive JSON schema file; do not point SCHEMA_FILE at secrets, credentials, key material, or confidential documents.
+
+Risk: The SCHEMA_FILE guard blocks obvious sensitive filenames but may not identify every confidential local file.
+
+Mitigation: Review or constrain agent-selected SCHEMA_FILE paths before execution, and keep schema files separate from private project data.
+
+Risk: Queries, URLs, research instructions, and optional schema content are sent to Exa API endpoints.
+
+Mitigation: Avoid confidential queries or URLs, and review intended data disclosure before running search, content extraction, or research commands.
+
+Risk: The search script defaults LOCATION to NL when no location is supplied.
+
+Mitigation: Set LOCATION explicitly for location-sensitive tasks, or unset or override it when NL is not appropriate.
+
+Risk: Storing EXA_API_KEY beside the skill can expose credentials if local files are shared or inspected.
+
+Mitigation: Prefer setting EXA_API_KEY through the execution environment rather than storing it in a local .env file.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xieshaocong33ethan/skills/exa-full)
+- [Exa](https://exa.ai)
+- [Exa Docs](https://docs.exa.ai/)
+- [Exa Subpage Crawling Reference](https://docs.exa.ai/reference/crawling-subpages)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and EXA_API_KEY; optional environment variables control search type, filters, crawling, research model, polling, and structured output schema.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

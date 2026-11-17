@@ -1,116 +1,36 @@
 ---
 name: qa-shift-left
-version: 1.5.0
 description: >-
-  当项目还在需求阶段或者开发正在写代码时使用此技能——这时候介入能花最小的成本避免最多的缺陷。从需求可测试性评审（需求模糊/矛盾/不可测）、开发阶段测试设计（单元测试/接口契约/测试桩）和技术方案评审（影响面分析/风险识别）三个维度提前发现缺陷。越早发现 Bug 修复成本越低——需求阶段的 Bug 修复成本是线上阶段的 1/100。输出左移检查清单和阶段性介入记录。
-
-when_to_use: 用户说"测试左移"、"左移"、"提前测试"、"需求可测试性"、"需求评审"、"开发阶段测"、需要将测试提前、项目早期需要介入测试时
+  当项目还在需求阶段或者开发正在写代码时使用此技能——这时候介入能花最小的成本避免最多的缺陷。从需求可测试性评审（需求模糊/矛盾/不可测）、开发阶段测试设计（单元测试/接口契约/测试桩）和技术方案评审（影响面分析/风险识别）三个维度提前发现缺陷。越早发现 Bug 修复成本越低——需求阶段的 Bug 修复成本是线上阶段的 1/100。输出左移检查清单和阶段性介入记录。 触发场景：测试左移、左移、提前测试、需求可测试性（左移阶段）、需求评审（左移介入）、开发阶段测、项目早期需要介入测试时。 Use when the user asks about: shifting testing left into requirements and development — requirement testability review, test design during development, and technical design review.
+license: MIT
 allowed-tools: Read Grep Glob Bash
-related_skills:
-  upstream:
-    - qa-req-deconstruction      # 输入：需求分析
-    - qa-testability-advocacy    # 输入：可测试性推动
-  downstream:
-    - qa-code-review-for-test    # 输出：左移实践支持代码评审
-    - qa-test-automation-arch    # 输出：左移实践影响自动化架构
-input_format:
-  required:
-    - name: 项目计划
-      type: string
-      description: 项目时间线和阶段规划
-    - name: 质量目标
-      type: string
-      description: 项目质量目标和标准
-  optional:
-    - name: 团队能力
-      type: string
-      description: 团队测试技能评估
-output_format:
-  structure:
-    - shift_left_plan: 左移测试计划
-    - early_activities: 早期介入活动清单
-    - quality_gates_early: 前置质量门禁
-    - team_enablement: 团队赋能计划
+metadata:
+  display-name: "Shift Left"
+  version: "1.8.0"
+  when-to-use: "用户说\"测试左移\"、\"左移\"、\"提前测试\"、\"需求可测试性（左移阶段）\"、\"需求评审（左移介入）\"、\"开发阶段测\"、需要将测试提前、项目早期需要介入测试时"
+  related-skills: "{\"upstream\":[\"qa-req-deconstruction\",\"qa-testability-advocacy\"],\"downstream\":[\"qa-code-review-for-test\",\"qa-test-automation-arch\"]}"
+  references: "[\"references/shift-left-stages.md\"]"
+  input-format: "{\"required\":[{\"name\":\"项目计划\",\"type\":\"string\",\"description\":\"项目时间线和阶段规划\"},{\"name\":\"质量目标\",\"type\":\"string\",\"description\":\"项目质量目标和标准\"}],\"optional\":[{\"name\":\"团队能力\",\"type\":\"string\",\"description\":\"团队测试技能评估\"}]}"
+  output-format: "{\"traceability\":[\"本技能规划左移，不产出唯一ID；可溯源到需求评审ID\"],\"structure\":[{\"shift_left_plan\":\"左移测试计划\"},{\"early_activities\":\"早期介入活动清单\"},{\"quality_gates_early\":\"前置质量门禁\"},{\"team_enablement\":\"团队赋能计划\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"左移介入遗漏可测试性问题时回退到需求评审补充\",\"retry_behavior\":\"补充评审后重新评估左移点\"}"
+  categories: "[\"Development\",\"Testing\",\"DevOps\"]"
+  depth-requirement: "{\"reference_value\":\"根据介入阶段调整左移深度：简单×1/中等×2/复杂×3\",\"minimum\":\"至少覆盖需求可测试性评审、开发阶段测试2个介入点\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
 
 # 测试左移实践
 
 ## 核心原则
 
-你是一位测试左移专家，擅长将测试活动提前到开发阶段。
-**核心原则**：测试左移——越早发现缺陷，修复成本越低。
-本技能覆盖需求阶段→设计阶段→开发阶段的左移实践和可测试性推动。
+测试左移——越早发现缺陷，修复成本越低。
 
-## 左移阶段
+## 加载时机
 
-### 阶段1：需求阶段
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 介入需求/设计/开发阶段时 | [`references/shift-left-stages.md`](references/shift-left-stages.md) |
 
-```text
-测试活动：
-├─ 需求评审
-│   ├─ 参与需求评审会议
-│   ├─ 从测试角度提出问题
-│   ├─ 识别需求不清晰/矛盾点
-│   └─ 评估需求可测试性
-│
-├─ 验收标准
-│   ├─ 协助定义验收标准（AC）
-│   ├─ 确保AC可测试、可自动化
-│   ├─ 明确输入/输出/边界
-│   └─ 识别隐含需求
-│
-└─ 可测试性评估
-    ├─ 评估接口是否可Mock
-    ├─ 评估日志是否可追踪
-    ├─ 评估配置是否可动态
-    └─ 评估数据是否可构造
-```
-
-### 阶段2：设计阶段
-
-```text
-测试活动：
-├─ 架构评审
-│   ├─ 评估系统架构可测试性
-│   ├─ 识别测试难点
-│   ├─ 建议可测试设计
-│   └─ 评估依赖服务Mock方案
-│
-├─ 接口设计评审
-│   ├─ 评估接口设计合理性
-│   ├─ 确认接口文档完整性
-│   ├─ 评估错误码设计
-│   └─ 评估版本兼容性
-│
-└─ 数据库设计评审
-    ├─ 评估表结构设计
-    ├─ 评估索引设计
-    ├─ 评估数据迁移方案
-    └─ 评估数据一致性
-```
-
-### 阶段3：开发阶段
-
-```text
-测试活动：
-├─ 代码评审
-│   ├─ 从测试角度Review代码
-│   ├─ 识别潜在Bug模式
-│   ├─ 评估异常处理
-│   └─ 评估日志记录
-│
-├─ 单元测试支持
-│   ├─ 协助开发设计测试用例
-│   ├─ 提供测试数据建议
-│   ├─ 验证单元测试覆盖
-│   └─ 评审单元测试质量
-│
-└─ 接口测试
-    ├─ 编写接口测试用例
-    ├─ 验证接口契约
-    ├─ 测试接口边界条件
-    └─ 执行接口自动化测试
-```
+> `左移阶段`的完整内容已下沉至 `references/shift-left-stages.md`，避免每次触发都占用上下文。
 
 ## 需求可测试性
 
@@ -241,5 +161,3 @@ output_format:
 - [ ] 代码评审是否执行？
 - [ ] 单元测试是否支持？
 - [ ] 接口测试是否实施？
-
-

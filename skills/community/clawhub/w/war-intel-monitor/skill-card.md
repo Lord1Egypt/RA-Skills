@@ -1,43 +1,57 @@
-## Description: <br>
-Real-time war intelligence monitoring and emergency alert system for conflict zones. Use when user needs to track military conflicts, receive emergency alerts, monitor evacuation options, or assess safety risks during wartime situations. Supports customizable location-based threat assessment with distance calculations to military targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time war intelligence monitoring and emergency alert system for conflict zones.
 
-## Publisher: <br>
-[OliviaPp8](https://clawhub.ai/user/OliviaPp8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oliviapp8](https://clawhub.ai/user/oliviapp8)
 
-## Use Case: <br>
-External users and safety-focused operators use this skill to monitor conflict-related news, assess location-based threats, prepare emergency alerts, and track evacuation options during wartime situations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive conflict-zone location, shelter, evacuation, and emergency-contact data. <br>
-Mitigation: Use coarse locations where possible, keep configuration files out of synced folders and repositories, and restrict file access. <br>
-Risk: Recurring monitoring and external alerts can expose sensitive alert payloads or continue longer than intended. <br>
-Mitigation: Redact alert payloads before sending them to messaging services and set an end date or shutdown plan for cron jobs. <br>
-Risk: Conflict monitoring output can be incomplete, delayed, or misleading for personal safety decisions. <br>
-Mitigation: Treat generated briefings as supplemental information and rely on official local emergency, civil aviation, and embassy alerts for safety decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quick Setup Guide](references/setup-guide.md) <br>
-- [Config Template](references/config-template.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/OliviaPp8/war-intel-monitor) <br>
+## Use Case:
 
+External users and developers use this skill to configure location-based conflict monitoring, emergency alerts, evacuation tracking, and safety briefings for wartime situations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefings and alerts with optional shell commands and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include location-distance estimates, alert levels, emergency action lists, evacuation options, and cron monitoring schedules.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for highly sensitive location, shelter, evacuation, and emergency contact data.
+
+Mitigation: Use coarse location data where possible, keep configuration files out of synced folders and repositories, restrict file permissions, and avoid storing shelter details or contact numbers unless needed.
+
+Risk: The skill directs persistent monitoring jobs and external alerts.
+
+Mitigation: Review the exact schedule, command, recipients, payload contents, and removal steps before enabling cron jobs or alert integrations.
+
+Risk: Emergency recommendations may be based on incomplete or fast-changing conflict information.
+
+Mitigation: Prioritize official emergency, embassy, defense, and civil aviation sources, and review generated guidance before acting on it.
+
+## Reference(s):
+
+- [Quick Setup Guide](references/setup-guide.md)
+- [Configuration Template](references/config-template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefings and alerts with JSON configuration and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include location-specific threat assessments, evacuation options, alert schedules, and external alert setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

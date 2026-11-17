@@ -1,40 +1,52 @@
-## Description: <br>
-Platform alignment audit pack for OpenClaw 2026.2 covering Secrets v2, agent routing, voice security, trust model, autoupdate, plugin SDK, content boundaries, and sqlite-vec. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Platform alignment audit pack for OpenClaw 2026.2 covering Secrets v2, agent routing, voice security, trust model, autoupdate, plugin SDK, content boundaries, and sqlite-vec.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and platform engineers use this skill to audit OpenClaw 2026.2 configuration files for migration readiness, routing policy, trust model, voice security, autoupdate, plugin SDK, content boundary, and sqlite-vec alignment.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill depends on external OpenClaw audit tooling that is not bundled with the artifact.
+
+Mitigation: Confirm the mcp-openclaw-extensions dependency is installed from a trusted source before using the skill.
+
+Risk: Audit commands may inspect sensitive OpenClaw configuration files.
+
+Mitigation: Run checks only on configuration files the user intends to audit.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and platform engineers use this skill to audit OpenClaw 2026.2 configuration for Secrets v2 migration, routing policy, voice security, trust model configuration, autoupdate settings, plugin SDK compliance, content boundary enforcement, and sqlite-vec setup. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The audit depends on mcp-openclaw-extensions and reads user-supplied configuration paths. <br>
-Mitigation: Confirm the extension package is trusted and run audit commands only against configuration files intended for review. <br>
-Risk: The artifact notes that generated content requires human validation before use. <br>
-Mitigation: Review audit findings and any resulting configuration changes before relying on them. <br>
+**Output Format:** [Markdown guidance with YAML and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/firm-platform-audit-pack) <br>
+**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0 and OpenClaw >= 2026.2; operates on user-provided configuration paths.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on OpenClaw >= 2026.2 and mcp-openclaw-extensions >= 3.0.0.] <br>
+1.0.0 (source: frontmatter and server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

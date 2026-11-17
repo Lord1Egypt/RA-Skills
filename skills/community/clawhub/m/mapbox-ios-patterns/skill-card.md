@@ -1,49 +1,68 @@
-## Description: <br>
-Official integration patterns for Mapbox Maps SDK on iOS. Covers installation, adding markers, user location, custom data, styles, camera control, and featureset interactions. Based on official Mapbox documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Official integration patterns for Mapbox Maps SDK on iOS. Covers installation, adding markers, user location, custom data, styles, camera control, and featureset interactions. Based on official Mapbox documentation.
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Mapbox Maps SDK v11 into iOS apps with Swift, SwiftUI, and UIKit. It provides patterns for setup, map initialization, annotations, user location, custom GeoJSON data, camera control, map styles, and feature interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location examples can expose precise user coordinates if copied into production diagnostics or logging. <br>
-Mitigation: Use a specific location-use explanation, request location only when needed, provide a clear way to stop location following, and avoid logging precise coordinates in production. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Mapbox Maps SDK v11 into iOS applications with Swift, SwiftUI, and UIKit. It helps with setup, annotations, user location, custom GeoJSON data, styles, camera behavior, and map interactions.
 
-## Reference(s): <br>
-- [iOS Maps Guides](https://docs.mapbox.com/ios/maps/guides/) <br>
-- [Mapbox Maps SDK for iOS API Reference](https://docs.mapbox.com/ios/maps/api/11.18.1/documentation/mapboxmaps/) <br>
-- [Mapbox iOS Example Apps](https://github.com/mapbox/mapbox-maps-ios/tree/main/Sources/Examples) <br>
-- [Mapbox Maps SDK Install Guide](https://docs.mapbox.com/ios/maps/guides/install/) <br>
-- [Mapbox Interactions Guide](https://docs.mapbox.com/ios/maps/guides/user-interaction/Interactions/) <br>
-- [SwiftUI User Guide](https://docs.mapbox.com/ios/maps/api/11.18.1/documentation/mapboxmaps/swiftui-user-guide) <br>
-- [Migration Guide v10 to v11](https://docs.mapbox.com/ios/maps/guides/migrate-to-v11/) <br>
-- [Annotations: Circle, Polyline, Polygon](references/annotations.md) <br>
-- [Camera Control + Map Styles](references/camera-styles.md) <br>
-- [Custom Data (GeoJSON): Lines, Polygons, Points, Update/Remove](references/custom-data.md) <br>
-- [Interactions: Featureset, Custom Layer Taps, Long Press, Gestures](references/interactions.md) <br>
-- [Location Tracking: Camera Follow User + Get Current Location](references/location-tracking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with Swift and XML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides reference patterns and troubleshooting guidance; does not execute tools or write app files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Access tokens can be mishandled when copying setup examples into an application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public Mapbox tokens in iOS client configuration and avoid committing real tokens beyond intended public-token usage.
+
+Risk: Location examples may collect or display precise user location.
+
+Mitigation: Add a clear iOS purpose string, request user consent, and provide an appropriate privacy disclosure before enabling location features.
+
+Risk: Generated implementation guidance can be copied without validating it against the target app and SDK version.
+
+Mitigation: Review generated Swift and configuration snippets against the app's Mapbox Maps SDK version and test map, annotation, and location behavior before release.
+
+## Reference(s):
+
+- [iOS Maps Guides](https://docs.mapbox.com/ios/maps/guides/)
+- [Mapbox Maps iOS API Reference](https://docs.mapbox.com/ios/maps/api/11.18.1/documentation/mapboxmaps/)
+- [Mapbox Maps iOS Example Apps](https://github.com/mapbox/mapbox-maps-ios/tree/main/Sources/Examples)
+- [Install Mapbox Maps SDK for iOS](https://docs.mapbox.com/ios/maps/guides/install/)
+- [Interactions Guide](https://docs.mapbox.com/ios/maps/guides/user-interaction/Interactions/)
+- [SwiftUI User Guide](https://docs.mapbox.com/ios/maps/api/11.18.1/documentation/mapboxmaps/swiftui-user-guide)
+- [Migration Guide v10 to v11](https://docs.mapbox.com/ios/maps/guides/migrate-to-v11/)
+- [Annotations: Circle, Polyline, Polygon](references/annotations.md)
+- [Camera Control + Map Styles](references/camera-styles.md)
+- [Custom Data: GeoJSON](references/custom-data.md)
+- [Interactions: Featureset, Custom Layer Taps, Long Press, Gestures](references/interactions.md)
+- [Location Tracking: Camera Follow User + Get Current Location](references/location-tracking.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with Swift and XML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides implementation patterns and troubleshooting guidance for Mapbox Maps SDK v11 on iOS.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Jury Review creates a dynamic, role-based review panel for multidimensional scoring, extreme-case challenges, and iterative improvement of code or technical tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jury Review guides agents through a Chinese-language, role-based review workflow for multi-dimensional code scoring, edge-case challenge roles, and iterative improvement feedback.
 
-## Publisher: <br>
-[kukuxNd](https://clawhub.ai/user/kukuxNd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuxnd](https://clawhub.ai/user/kukuxnd)
 
-## Use Case: <br>
-Developers and reviewers use this skill to assemble a task-specific review panel, score work across dimensions such as security, performance, testing, architecture, and documentation, and guide iterative improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may activate for broad review or quality-assessment requests. <br>
-Mitigation: Use it intentionally for review tasks and keep the review scope explicit. <br>
-Risk: The optional scorer reads a file path supplied at runtime. <br>
-Mitigation: Run the scorer only against files you intentionally want reviewed. <br>
-Risk: Role-based scoring and extreme challenge feedback can overemphasize edge cases or produce subjective guidance. <br>
-Mitigation: Treat the feedback as review support and verify recommendations before applying changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure code review tasks into role-based evaluation rounds, weighted scoring, edge-case challenges, and actionable improvement feedback.
 
-## Reference(s): <br>
-- [Jury scoring guide](references/scoring-guide.md) <br>
-- [AutoResearch](https://github.com/karpathy/autoresearch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown review plans and feedback, with optional JSON scoring output from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user to choose additional challenge reviewers before producing final review feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled scorer reads code files supplied for scoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on files intended for review and avoid passing sensitive code unless that review is approved.
+
+Risk: The scoring workflow and local scorer are lightweight heuristics and may miss defects or security issues.
+
+Mitigation: Use the output as review guidance alongside normal testing, security scanning, and human review.
+
+## Reference(s):
+
+- [Scoring Guide](references/scoring-guide.md)
+- [AutoResearch](https://github.com/karpathy/autoresearch)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown review reports with optional JSON scoring output from the bundled local scorer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-based scores, issue summaries, challenge feedback, and iteration decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

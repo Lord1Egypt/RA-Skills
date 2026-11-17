@@ -1,0 +1,4 @@
+interface:
+  display_name: "Utilia Audio Normalization"
+  short_description: "Normalize agent audio to a bounded MP3"
+  default_prompt: "Use $utilia-audio-normalization to normalize a public audio file and save the paid MP3 locally."

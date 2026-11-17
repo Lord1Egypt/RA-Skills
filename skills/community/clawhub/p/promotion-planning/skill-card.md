@@ -1,39 +1,54 @@
-## Description: <br>
-Develop promotion strategies and discount recommendations based on historical data analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop promotion strategies and discount recommendations based on historical data analysis.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-Sales, marketing, and business operations teams use this skill to analyze business context and historical data, then develop promotion strategies, discount recommendations, plans, and implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive customer, financial, or confidential pricing data could be exposed if included in prompts. <br>
-Mitigation: Use only data approved for agent processing, and redact or aggregate sensitive customer and pricing details where possible. <br>
-Risk: Promotion and discount recommendations may be inaccurate or unsuitable for a specific business, market, or regulatory context. <br>
-Mitigation: Have qualified sales, finance, compliance, or legal reviewers validate recommendations before applying them. <br>
+## Use Case:
 
+Employees and business teams use this skill to plan promotions, evaluate discount approaches, and turn historical business context into sales management recommendations, implementation guidance, and best practices.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown recommendations, plans, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on user-provided business context and historical data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may paste confidential customer, pricing, regulated, credential, or proprietary business data into the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the business data needed for the task and redact sensitive details unless authorized to process them in the environment.
+
+Risk: Promotion recommendations may be inaccurate or insufficiently tailored for a specific business, industry, or regulatory context.
+
+Mitigation: Have domain experts review outputs and validate recommendations against company policies, industry standards, and applicable requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/promotion-planning)
+- [Publisher profile](https://clawhub.ai/user/1970168137)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with analysis, recommendations, plans, and implementation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on user-provided business context and data; outputs should be reviewed for business-specific customization.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

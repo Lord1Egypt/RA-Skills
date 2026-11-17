@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Apple Reminders via the `remindctl` CLI on macOS (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Reminders via the `remindctl` CLI on macOS (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-External users and developers use this skill on macOS to inspect and manage Apple Reminders from an agent workflow while keeping reminder access scoped to the requested task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify personal reminder data. <br>
-Mitigation: Install only when the remindctl source is trusted, grant macOS Reminders access intentionally, and scope reads to the user's requested list or date range. <br>
-Risk: Edits, completions, renames, and deletes can affect the wrong reminders if the target is ambiguous. <br>
-Mitigation: Confirm exact reminder IDs, list names, or titles before state-changing operations. <br>
-Risk: Reminder contents may expose private schedule or note information if sent to external services. <br>
-Mitigation: Keep reminder output local and do not pipe it to network-transmitting commands or webhooks. <br>
+## Use Case:
 
+Developers and external users on macOS use this skill to inspect and manage Apple Reminders through `remindctl`, including list management, date-filtered views, reminder creation, edits, completion, deletion, and scripting output.
 
-## Reference(s): <br>
-- [Apple Reminders Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/apple-reminders-hardened) <br>
-- [remindctl project](https://github.com/steipete/remindctl) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/apple-reminders) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON/plain CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local remindctl command guidance for macOS; JSON and plain output are available when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reminder edits, completions, renames, deletes, and bulk operations can modify or remove personal data if the target is vague or wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact reminder IDs, list names, or affected targets with the user before destructive or state-modifying commands.
+
+Risk: Reminder content can contain private schedule, task, and note data that should not be transmitted externally.
+
+Mitigation: Keep reminder output local, scope reads to the requested list or date range, and do not pipe `remindctl` output to webhooks or other network destinations.
+
+Risk: Installing and authorizing `remindctl` grants a third-party CLI access to read and modify Apple Reminders on the Mac.
+
+Mitigation: Verify trust in the `steipete/tap/remindctl` Homebrew tap and review macOS Reminders permissions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/apple-reminders-hardened)
+- [remindctl homepage](https://github.com/steipete/remindctl)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/apple-reminders)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON/plain `remindctl` output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS and requires the `remindctl` binary with Apple Reminders permission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

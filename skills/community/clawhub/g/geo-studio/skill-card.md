@@ -1,40 +1,54 @@
-## Description: <br>
-GEO Content Studio is a master GEO content orchestrator that classifies user goals and routes work across specialized GEO research, audit, content creation, optimization, editing, schema, llms.txt, media, sentiment, and reporting skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO Content Studio is a GEO content orchestration skill that classifies user goals and routes work across specialized workflows for strategy, audits, content creation, optimization, technical setup, and reporting.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-External users and content teams use this skill as a starting point for GEO-related work, including AI-search content creation, content optimization, site audits, structured data, llms.txt setup, strategy, and performance reporting. The skill selects an appropriate workflow and produces a final deliverable with a brief summary and one next step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated schema, llms.txt changes, audits, or content may affect published site behavior or public-facing claims. <br>
-Mitigation: Review the selected workflow and final deliverables before applying changes or publishing content. <br>
-Risk: The skill is broad enough to be triggered for tasks outside GEO content and site optimization. <br>
-Mitigation: Use it only for GEO content and site-optimization work, and route unrelated writing or reporting tasks to a more specific skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Studio Workflow Paths](references/workflow-paths.md) <br>
-- [ClawHub skill page](https://clawhub.ai/geoly-geo/geo-studio) <br>
+## Use Case:
 
+External marketers, content strategists, and developers use this skill as a starting point for GEO work. It helps classify a broad GEO request and coordinate the appropriate sequence of specialized skills for content, site visibility, structured data, or reporting deliverables.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with generated content, schema or configuration snippets, audit findings, reports, status summaries, and a single recommended next step] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflow routing may chain specialized GEO skills based on intent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated content, JSON-LD, and llms.txt outputs may be incomplete or unsuitable for direct publication.
+
+Mitigation: Review outputs as drafts before publishing or applying them to site files.
+
+Risk: Downstream skills selected by the orchestrator may request permissions to edit files or publish content.
+
+Mitigation: Review each downstream skill's permissions and behavior before allowing site changes or publication.
+
+## Reference(s):
+
+- [Studio Workflow Paths](artifact/references/workflow-paths.md)
+- [GEO Content Studio ClawHub Listing](https://clawhub.ai/geoly-geo/skills/geo-studio)
+- [GEOLY AI Publisher Profile](https://clawhub.ai/user/geoly-geo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with workflow summaries, deliverables, schema or configuration snippets, and one recommended next step]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes broad GEO tasks to specialized skills and treats generated articles, JSON-LD, and llms.txt outputs as drafts for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

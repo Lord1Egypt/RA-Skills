@@ -1,45 +1,60 @@
-## Description: <br>
-查询上金所、上期所、港金、银行渠道、伦敦金银及品牌金店等多源黄金参考价；涨跌字段可辅助说明走势（非投资建议）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries JisuAPI-backed reference prices for Shanghai, Hong Kong, bank, London precious-metal, jewelry-store, and historical gold-market data, with returned change fields used only to describe observed movement and not as investment advice.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current or recent gold price reference data from JisuAPI across exchanges, banks, London markets, Hong Kong markets, brand stores, and historical market intervals. Agents should use returned price, high-low, close, and change fields to summarize market data without presenting predictions as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gold price queries and the JisuAPI AppKey are sent to a third-party API provider. <br>
-Mitigation: Use only in environments where sending those query parameters to JisuAPI is acceptable, and keep JISU_API_KEY scoped and managed as a credential. <br>
-Risk: Trend summaries could be mistaken for investment advice. <br>
-Mitigation: Limit responses to market-data explanations grounded in returned fields and clearly avoid unsupported predictions or financial recommendations. <br>
-Risk: Returned prices may be delayed, unavailable, or limited by API permissions and quota. <br>
-Mitigation: Surface API errors and timestamps to the user, and avoid relying on the skill as the sole source for time-sensitive trading decisions. <br>
+## Use Case:
 
+External users and agent developers use this skill to answer gold-price questions by calling JisuAPI endpoints for exchange, bank, London, store, and historical market data. It is suited for reference-price lookup and concise movement summaries, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/gold) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI Gold API](https://www.jisuapi.com/api/gold/) <br>
-- [JisuAPI Gold endpoint](https://api.jisuapi.com/gold) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API data] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; store price queries accept an optional date and historical queries require market, startdate, enddate, and type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata) <br>
+Risk: Gold-price lookup parameters are sent to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only where sharing those lookup parameters with JisuAPI is acceptable, and configure the API key through the documented environment variable.
+
+Risk: Returned prices are reference market data and may be time-sensitive or unsuitable for investment decisions.
+
+Mitigation: Present timestamps and source context when available, and avoid predictions or investment recommendations beyond the returned API fields.
+
+Risk: The skill requires a JISU_API_KEY credential.
+
+Mitigation: Store the key in an environment variable or managed secret and avoid exposing it in prompts, logs, or committed files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/gold)
+- [JisuAPI](https://www.jisuapi.com/)
+- [JisuAPI Gold Price API](https://www.jisuapi.com/api/gold/)
+- [JisuAPI Gold API base endpoint](https://api.jisuapi.com/gold)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; the helper script returns API result JSON or structured error JSON.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

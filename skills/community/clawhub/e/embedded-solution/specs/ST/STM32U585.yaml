@@ -1,0 +1,62 @@
+part: STM32U585
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: STM32 Ultra-Low-Power (Cortex-M33, crypto variant)
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32u5-series.html
+datasheet_path_expected: ../../embedded_dev/st/datasheet/STM32U585_datasheet.pdf
+datasheet_source_url: https://cdn-reichelt.de/documents/datenblatt/C700/STM32U585VIT6.pdf
+datasheet_source_note: 'Reichelt CDN mirror of st.com STM32U585 datasheet (DS13086, 350 pages).
+
+  st.com is Cloudflare-gated as of 2026-06; this Reichelt mirror is the reliable route. Distinguishing feature vs U575: adds
+  AES/PKA/OTFDEC crypto accelerators and SAES (secure AES) on top of the HASH unit.
+
+  Sibling: STM32U575 (DS13737, akizukidenshi mirror) shares the same cores / flash / RAM / CoreMark / ULPMark numbers but
+  lacks the crypto block. See specs/ST/STM32U575.yaml for the non-crypto variant.'
+related_parts:
+  STM32U575: ../../embedded_dev/st/datasheet/STM32U5_datasheet.pdf
+created_at: '2026-06-28T08:58:00+08:00'
+updated_at: '2026-06-28T08:58:51+08:00'
+extracted_at: '2026-06-28T08:58:51+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description
+specs:
+  cores:
+  - Arm Cortex-M33 @ up to 160 MHz (TrustZone, FPU, MPU, DSP)
+  dmips: 240
+  flash: up to 2 MB
+  ram: 786 KB
+  coremark: 651.0
+  ulpmark_cp: 450
+  ulpmark_pp: 109.0
+  voltage_v_min: 1.71
+  voltage_v_max: 3.6
+  shutdown_current_na: 160
+  run_current_ua_per_mhz: 19.5
+  crypto_accelerators:
+  - AES
+  - PKA
+  - OTFDEC/SAES
+  - HASH
+  math_coprocessors:
+  - CORDIC
+  - FMAC
+notes:
+- Independent YAML extracted from DS13086 (STM32U585 specific datasheet).
+- Same 13 core specs as STM32U5 family alias; the discriminator is the crypto block (U585 has AES + PKA + OTFDEC; U575 has
+  only HASH).
+- "ST does not publish a separate U585 product page on st.com \u2014 both U575 and U585 share the family landing page; the\
+  \ datasheet doc ID is the only reliable way to distinguish them."
+- For non-crypto designs, prefer STM32U575 (cheaper silicon).
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify against local datasheet PDF: 12/17 spec fields matched
+  (71%). Replaces pre-v0.4.1 tag.'

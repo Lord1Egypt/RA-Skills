@@ -1,43 +1,56 @@
-## Description: <br>
-This skill lets an agent search and read Best Buy product, category, store, and review data through the OOMOL bestbuy connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read Best Buy product, category, review, and store information through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers with an OOMOL-connected Best Buy account use this skill to inspect action schemas and run read-only Best Buy lookup actions for products, categories, stores, and reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Best Buy account and can lead the agent through optional CLI installation or login setup. <br>
-Mitigation: Install and use it only when the user wants an agent to query Best Buy, and run CLI install or login steps only when intentionally setting up that connection. <br>
-Risk: The connector is described as read-only, but its results depend on live Best Buy and OOMOL service access. <br>
-Mitigation: Review returned product, store, category, and review data before relying on it for purchasing or operational decisions. <br>
+## Use Case:
 
+External users can retrieve Best Buy product, category, review, and store information through their connected OOMOL account. The skill is intended for read-only Best Buy lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-bestbuy) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Best Buy homepage](https://www.bestbuy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the oo CLI; Best Buy credentials are handled through the user's OOMOL connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill metadata) <br>
+Risk: Automatic setup executes a remote installer without a separate approval step, and the installer and hosted runtime were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, verify the installer or release, check which agent skills the CLI installs or updates, and disable synchronization if it is unwanted.
+
+Risk: Best Buy queries and account authorization go through OOMOL and may use credit.
+
+Mitigation: Review OOMOL account connection and billing requirements before use.
+
+## Reference(s):
+
+- [Best Buy](https://www.bestbuy.com)
+- [Best Buy API documentation](https://bestbuyapis.github.io/api-documentation/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Natural language summaries based on structured Best Buy lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only product, category, review, and store information]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

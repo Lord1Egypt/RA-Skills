@@ -1,43 +1,57 @@
-## Description: <br>
-Install and operate local NVIDIA Parakeet ASR for OpenClaw with an OpenAI-compatible transcription API on Ubuntu/Linux and macOS (Intel/Apple Silicon). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and operate local NVIDIA Parakeet ASR for OpenClaw with an OpenAI-compatible transcription API on Ubuntu/Linux and macOS.
 
-## Publisher: <br>
-[Hantok](https://clawhub.ai/user/Hantok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hantok](https://clawhub.ai/user/hantok)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, operate, and troubleshoot a local/private speech-to-text service for OpenClaw using NVIDIA Parakeet ASR, with optional Whisper fallback guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: bootstrap.sh clones and runs setup code from an unpinned external repository. <br>
-Mitigation: Review the upstream repository and setup.sh before running bootstrap.sh, and pin a known commit or release when repeatability matters. <br>
-Risk: Setup may involve package-manager or elevated operations outside the skill artifact. <br>
-Mitigation: Confirm any package-manager or elevated commands before execution and keep changes scoped to ASR setup. <br>
-Risk: Changing PARAKEET_URL can send smoke-test audio to a non-local endpoint. <br>
-Mitigation: Keep PARAKEET_URL pointed at localhost unless remote audio upload is intentional and approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Hantok/parakeet-local-asr) <br>
-- [Upstream Parakeet ASR repository used by bootstrap.sh](https://github.com/rundax/parakeet-asr.git) <br>
-- [Publisher profile](https://clawhub.ai/user/Hantok) <br>
+## Use Case:
 
+Developers and engineers use this skill to install, start, health-check, and smoke-test a local private speech-to-text service for OpenClaw using NVIDIA Parakeet ASR.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and endpoint details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup, start, healthcheck, smoke-test, and OpenClaw integration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bootstrap script can run mutable third-party setup code from an unpinned GitHub repository.
+
+Mitigation: Review the upstream repository and setup.sh revision before running bootstrap.sh, and prefer pinning PARAKEET_REPO_URL to a trusted commit or release.
+
+Risk: The bootstrap script allows PARAKEET_REPO_URL overrides, which could direct installation to an untrusted source.
+
+Mitigation: Use repository overrides only for trusted sources and document the exact source used for installation.
+
+Risk: Smoke-test audio is posted to the configured transcription endpoint.
+
+Mitigation: Send test audio only to a trusted local endpoint and verify PARAKEET_URL before running smoke-test.sh.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hantok/skills/parakeet-local-asr)
+- [ClawHub publisher profile](https://clawhub.ai/user/hantok)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local endpoint URLs, health-check results, transcription test commands, and ASR troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

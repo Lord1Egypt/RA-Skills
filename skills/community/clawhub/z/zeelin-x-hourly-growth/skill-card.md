@@ -1,42 +1,58 @@
-## Description: <br>
-X hourly growth ops skill for finding AI/builder follow-back or mutual-connect posts, leaving high-quality English replies through the logged-in Chrome browser, and running on a daily hourly schedule with dedupe, safety filters, and daily caps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X hourly growth ops skill for finding AI/builder follow-back or mutual-connect posts, leaving high-quality English replies through the logged-in Chrome browser, and running on a daily hourly schedule with dedupe, safety filters, and daily caps.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-External users and growth operators use this skill to find relevant X follow-back or mutual-connect posts, post concise replies from a logged-in OpenClaw Chrome profile, and maintain dedupe and daily posting limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can repeatedly post public replies from the logged-in X account. <br>
-Mitigation: Start with --dry-run, verify the target account and generated replies, and lower max-comments or daily caps before enabling posting. <br>
-Risk: The LaunchAgent can run hourly in the background using broad browser control. <br>
-Mitigation: Use a dedicated OpenClaw Chrome profile where possible and uninstall the LaunchAgent when unattended posting is no longer intended. <br>
+## Use Case:
 
+External users and agents use this skill to operate a capped X engagement loop that finds AI/builder follow-back or mutual-connect posts, filters low-quality targets, posts short English replies through a logged-in Chrome browser, and maintains a ledger to avoid repeated replies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelcey2023/zeelin-x-hourly-growth) <br>
-- [Publisher profile](https://clawhub.ai/user/kelcey2023) <br>
-- [Comment templates](references/comment-templates.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and optional JSON dry-run output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts public X replies through the logged-in browser profile unless run with --dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Unattended execution can post public X replies through a logged-in browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first, enable the hourly LaunchAgent only when intentional, keep daily caps in place, and remove the scheduler with the uninstall script when no longer needed.
+
+Risk: Chrome debugging access exposes the selected browser profile broadly while the automation is running.
+
+Mitigation: Keep the OpenClaw Chrome profile limited to X and avoid using a personal browsing profile for this skill.
+
+Risk: Automated replies may be repetitive, mistargeted, or unwanted if candidate filters miss low-quality posts.
+
+Mitigation: Review logs and ledger output, keep the provided safety filters and caps, and use dry-run output to inspect candidates before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/zeelin-x-hourly-growth)
+- [Comment templates](references/comment-templates.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance, Files]
+
+**Output Format:** [Markdown instructions with inline bash commands; runtime output may include text logs, ledger files, or JSON dry-run candidates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime can post public X replies through a logged-in Chrome profile; dry-run mode lists candidates without posting.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

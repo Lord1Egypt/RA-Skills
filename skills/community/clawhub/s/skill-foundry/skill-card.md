@@ -1,41 +1,54 @@
-## Description: <br>
-Discover real user demand from public online sources and turn validated opportunities into reviewed, publishable Skill packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers public demand signals and turns validated opportunities into reviewed, publishable skill packages.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers and teams use Skill Foundry to identify recurring public demand, score and deduplicate skill ideas, generate reviewed skill packages, and optionally prepare them for ClawHub or GitHub publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow searches public sources and can generate many local skill files, so generated content may include inaccurate or unsuitable guidance. <br>
-Mitigation: Review generated skills and run security and quality checks before using or publishing them. <br>
-Risk: Optional ClawHub or GitHub publishing can publish generated packages when credentials are configured. <br>
-Mitigation: Use publishing flags intentionally, review publish manifests and results, and provide only minimum-scope GitHub tokens or logged-in CLI access when needed. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to find demand-backed skill ideas, score and deduplicate them, generate implementation-ready skill folders, review outputs, and optionally prepare publishing artifacts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kyro-ma/skills/skill-foundry) <br>
-- [Server-resolved GitHub source](https://github.com/Kyro-Ma/skill-foundry) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated skill/package files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated skill folders, run reports, catalogs, and optional publishing manifests when used with the described runner.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The package describes execution and publishing workflows while the evidence reports missing execution and publishing files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package contents and verify any referenced scripts before running commands.
+
+Risk: Publishing can involve external ClawHub or GitHub targets and credential-backed operations.
+
+Mitigation: Confirm the target account, repository, token scope, and generated publish manifest before enabling publishing.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/Kyro-Ma/skill-foundry)
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/skill-foundry)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce generated skill folders, catalogs, plans, reviews, scoring reports, and publishing manifests when supporting scripts are present.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

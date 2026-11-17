@@ -1,46 +1,61 @@
-## Description: <br>
-Generate and edit video with Hailuo through RunAPI, routing one-off generation tasks to the RunAPI CLI and application or backend integrations to SDKs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit video with Hailuo through RunAPI.
 
-## Publisher: <br>
-[runapi-ai](https://clawhub.ai/user/runapi-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[runapi-ai](https://clawhub.ai/user/runapi-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate, edit, or transform video with Hailuo through the RunAPI CLI for one-off tasks, or to choose SDK packages when integrating RunAPI into an application or backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party RunAPI CLI and Homebrew tap. <br>
-Mitigation: Confirm the RunAPI CLI and Homebrew tap are trusted before installation or execution. <br>
-Risk: Video prompts, images, and request files may be sent to RunAPI/Hailuo. <br>
-Mitigation: Review RunAPI and Hailuo pricing and data-handling terms before sending sensitive or proprietary inputs. <br>
-Risk: Authentication may use a RunAPI API key. <br>
-Mitigation: Prefer a scoped API key when possible and avoid embedding credentials in prompts, source files, or logs. <br>
+## Use Case:
 
+Developers and agents use this skill to create, edit, or transform video with Hailuo through RunAPI. It guides one-off CLI generation and SDK-based application integration while requiring contract discovery and output verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/runapi-ai/runapi-hailuo) <br>
-- [RunAPI Hailuo model overview](https://runapi.ai/models/hailuo) <br>
-- [RunAPI Hailuo model documentation](https://runapi.ai/models/hailuo.md) <br>
-- [RunAPI Minimax provider documentation](https://runapi.ai/providers/minimax.md) <br>
-- [RunAPI model catalog](https://runapi.ai/models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and package names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to use the runapi CLI for one-off video tasks and SDK package names for application integration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+Risk: Use of RunAPI can involve paid Hailuo generation tasks and uploaded media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization, pricing, authentication state, and intended media inputs before submitting a task.
+
+Risk: A stale or mismatched operation contract can lead to invalid requests or incorrect assumptions about results.
+
+Mitigation: Inspect the installed command help and current API contract, and stop if those sources disagree.
+
+Risk: A successful task status may still omit requested media or return an unexpected file type.
+
+Mitigation: Validate the complete response, download every requested deliverable, and require non-empty files with the expected video MIME family.
+
+## Reference(s):
+
+- [Hailuo model overview](https://runapi.ai/models/hailuo.md)
+- [RunAPI Hailuo homepage](https://runapi.ai/models/hailuo)
+- [Minimax provider overview](https://runapi.ai/providers/minimax.md)
+- [RunAPI model catalog](https://runapi.ai/models.md)
+- [Hailuo SDK integration](https://github.com/runapi-ai/hailuo-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to preserve task/result JSON and verify downloaded video deliverables.]
+
+## Skill Version(s):
+
+0.2.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

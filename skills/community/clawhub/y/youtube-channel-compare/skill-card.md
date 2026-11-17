@@ -1,41 +1,54 @@
-## Description: <br>
-So sanh 2-5 kenh YouTube theo views, engagement rate, trending score va tan suat dang bai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares two to five YouTube channels by recent-video views, likes, comments, engagement rate, posting frequency, and a normalized trending score.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-External creators, marketers, and analysts use this skill to compare two to five YouTube channels for competitive benchmarking across views, likes, comments, engagement rate, trending score, and posting frequency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manual install commands download skill files from a moving branch. <br>
-Mitigation: Review the files before installation and prefer a pinned commit or verified hash instead of downloading from main. <br>
-Risk: Running the comparison script depends on external YouTube metadata fetched through yt-dlp and may produce incomplete results when public stats are unavailable. <br>
-Mitigation: Treat N/A values and generated comparisons as analysis aids, and verify important conclusions against the source channels. <br>
+## Use Case:
 
+Creators, marketers, and analysts use this skill to benchmark competing YouTube channels and generate a local comparison report from recent public video metadata.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcbaivn/youtube-channel-compare) <br>
-- [Publisher Profile](https://clawhub.ai/user/mcbaivn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text report saved as a .txt file and printed to the terminal] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report compares average views, average likes, average comments, trending score, engagement rate, posting frequency, analyzed video count, top videos, and brief observations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install instructions download mutable remote files directly into the active skills folder without integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the packaged reviewed files or pin and review an exact source revision before installing.
+
+Risk: The script contacts YouTube through yt-dlp and writes comparison reports locally.
+
+Mitigation: Run it with normal user privileges, review expected network access, and check the generated Youtube_Compare output before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcbaivn/skills/youtube-channel-compare)
+- [ClawHub publisher profile](https://clawhub.ai/user/mcbaivn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Plain text comparison report with Markdown-style headings and metric rows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local Youtube_Compare report file and prints the report to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -35,12 +35,12 @@
 # vLLM - fuzzy search by Name
 aliyun aiworkspace list-images --verbose true --name vllm \
   --labels 'system.official=true,system.supported.eas=true' \
-  --page-size 50 --user-agent AlibabaCloud-Agent-Skills | jq -r '.Images[] | "\(.ImageId)\t\(.Name)\t\(.Labels[] | select(.Key == "system.chipType") | .Value)"'
+  --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Images[] | "\(.ImageId)\t\(.Name)\t\(.Labels[] | select(.Key == "system.chipType") | .Value)"'
 
 # SGLang - fuzzy search by Name
 aliyun aiworkspace list-images --verbose true --name sglang \
   --labels 'system.official=true,system.supported.eas=true' \
-  --page-size 50 --user-agent AlibabaCloud-Agent-Skills | jq -r '.Images[] | "\(.ImageId)\t\(.Name)\t\(.Labels[] | select(.Key == "system.chipType") | .Value)"'
+  --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Images[] | "\(.ImageId)\t\(.Name)\t\(.Labels[] | select(.Key == "system.chipType") | .Value)"'
 ```
 
 **Image info**:
@@ -73,7 +73,7 @@ aliyun aiworkspace list-images --verbose true --name sglang \
 # ComfyUI - fuzzy search by Name
 aliyun aiworkspace list-images --verbose true --name comfyui \
   --labels 'system.official=true,system.supported.eas=true' \
-  --page-size 50 --user-agent AlibabaCloud-Agent-Skills | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
+  --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
 ```
 
 ### 3. Speech Synthesis
@@ -103,7 +103,7 @@ aliyun aiworkspace list-images --verbose true \
 # PaiRag - fuzzy search by Name
 aliyun aiworkspace list-images --verbose true --name pairag \
   --labels 'system.official=true,system.supported.eas=true' \
-  --page-size 50 --user-agent AlibabaCloud-Agent-Skills | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
+  --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
 ```
 
 ### 5. General Inference
@@ -125,7 +125,7 @@ aliyun aiworkspace list-images --verbose true --name pairag \
 # PyTorch - fuzzy search by Name
 aliyun aiworkspace list-images --verbose true --name pytorch \
   --labels 'system.official=true,system.supported.eas=true' \
-  --page-size 50 --user-agent AlibabaCloud-Agent-Skills | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
+  --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
 ```
 
 ### 6. Tools
@@ -144,7 +144,7 @@ aliyun aiworkspace list-images --verbose true --name pytorch \
 # OpenClaw - fuzzy search by Name
 aliyun aiworkspace list-images --verbose true --name openclaw \
   --labels 'system.official=true,system.supported.eas=true' \
-  --page-size 50 --user-agent AlibabaCloud-Agent-Skills | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
+  --page-size 50 --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy | jq -r '.Images[] | "\(.ImageId)\t\(.Name)"'
 ```
 
 ---

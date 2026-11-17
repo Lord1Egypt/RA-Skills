@@ -1,38 +1,54 @@
-## Description: <br>
-core reference tool <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core provides plain-text devtools reference documentation for core concepts, workflows, debugging, performance, security, migration, and quick-reference use.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to print static Core reference material for devtools workflows, including quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Core on ClawHub](https://clawhub.ai/xueyetianya/core) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+Developers and engineers use Core to ask an agent for concise reference guidance about devtools fundamentals, setup, patterns, troubleshooting, performance, security, migration, and quick commands.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, network access, or external API calls are indicated by the artifact or security evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The reference text mentions credentials as a general prerequisite topic, which could be mistaken for a request to provide secrets.
+
+Mitigation: Treat credential mentions as general documentation only; do not paste secrets into prompts, scripts, or shell commands.
+
+Risk: The skill provides generic devtools reference guidance that may not match a specific production environment.
+
+Mitigation: Review the output against project documentation, security policy, and environment-specific requirements before applying it.
+
+## Reference(s):
+
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Core on ClawHub](https://clawhub.ai/xueyetianya/skills/core)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no external API calls, credential handling, persistence, or network access observed in the inspected artifact evidence.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

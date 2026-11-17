@@ -1,0 +1,11 @@
+{
+  "notice": "Illustrative selectors for a SYNTHETIC page only. Replace with reviewed selectors from the current live rendered Google surface. This file is not a current Google DOM compatibility claim.",
+  "reviewed": false,
+  "surface": "ai-overview",
+  "observed_on": null,
+  "surface_selector": "[data-fixture-ai-surface]",
+  "surface_marker": "AI Overview",
+  "answer_selector": "[data-fixture-answer]",
+  "citation_selector": "a[data-fixture-citation]",
+  "location_selector": "[data-fixture-location]"
+}

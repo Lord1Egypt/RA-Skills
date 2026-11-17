@@ -1,46 +1,57 @@
-## Description: <br>
-Apply semantic ontology rules to knowledge graphs to infer new relationships, class memberships, and properties from explicit RDF/OWL ontology definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply semantic ontology rules to knowledge graphs to infer new relationships, class memberships, and properties from explicit ontology definitions.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and knowledge graph engineers use this skill to apply RDF/OWL-style ontology rules, materialize inferred triples, validate semantic consistency, and choose inference strategies for semantic web and graph applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cyclic ontology relationships or transitive rules can cause repeated inference or excessive closure growth. <br>
-Mitigation: Detect cycles, set depth and iteration limits, and validate ontology structure before materializing inferred facts. <br>
-Risk: Large ontologies can produce too many inferred facts for available memory or query latency targets. <br>
-Mitigation: Use selective materialization, caching, incremental updates, and an inference strategy that matches the workload. <br>
-Risk: Domain, range, or hierarchy mismatches can produce misleading semantic classifications. <br>
-Mitigation: Run semantic consistency checks, review inferred facts against expected domain constraints, and test with representative sample data. <br>
+## Use Case:
 
+Developers and engineers use this skill to reason over RDF/OWL-style ontology definitions, expand knowledge graphs with inferred class memberships and relationships, and validate semantic consistency while designing ontology-based applications.
 
-## Reference(s): <br>
-- [Ontology Patterns](artifact/references/ontology-patterns.md) <br>
-- [Ontology Examples](artifact/examples/ontology-examples.md) <br>
-- [Ontology Inference Engine](artifact/scripts/ontology_inference_engine.py) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/ontology-based-inference-helper) <br>
-- [ClawHub Homepage](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and structured inference outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce inferred class memberships, derived relationships, materialized triples, semantic consistency findings, and ontology reasoning implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security assessment says the skill is a local ontology-reasoning helper with some overstated or incorrect reasoning examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate outputs against a trusted RDF/OWL reasoner before using results for production, compliance, medical, access-control, or policy decisions.
+
+Risk: The bundled Python engine is a simplified helper rather than a complete RDF/OWL reasoner.
+
+Mitigation: Use it for conceptual guidance or prototyping, and replace or cross-check it with established reasoning libraries for complete ontology semantics.
+
+## Reference(s):
+
+- [Ontology-Based Inference Helper Skill Page](https://clawhub.ai/fisa712/skills/ontology-based-inference-helper)
+- [ClawHub Homepage](https://clawhub.com)
+- [Ontology-Based Inference - Design Patterns & Strategies](references/ontology-patterns.md)
+- [Ontology-Based Inference - Real-World Examples](examples/ontology-examples.md)
+- [OntologyInferenceEngine implementation](scripts/ontology_inference_engine.py)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with Python code examples and configuration patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can describe inferred class memberships, derived relationships, materialized triples, semantic consistency results, and local Python helper usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

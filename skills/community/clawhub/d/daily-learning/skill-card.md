@@ -1,40 +1,59 @@
-## Description: <br>
-Standardized daily learning framework for AI agents that guides recurring study, local note creation, optional knowledge-base ingestion, progress tracking, and post-learning review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Learning standardizes a recurring agent workflow for studying one topic at a time, writing structured local notes, optionally submitting learning output to a shared wiki, verifying completion, and completing a post-learning review.
 
-## Publisher: <br>
-[mayf3](https://clawhub.ai/user/mayf3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayf3](https://clawhub.ai/user/mayf3)
 
-## Use Case: <br>
-Agents and operators use this skill to run structured daily learning: select a topic, research it deeply, write evidence-backed notes, update learning progress, optionally submit wiki-ready Markdown, and complete a post-learning review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring learning workflows may inspect workspace guidance or recent conversation context and turn inferred needs into durable learning plans without clear consent. <br>
-Mitigation: Restrict the skill to explicit learning requests or approved project files, disable recent-conversation mining unless intentionally wanted, and review wiki-bound output before sharing it. <br>
+## Use Case:
 
+Agents and agent operators use this skill to set up and run structured daily learning routines, including topic selection, research, note writing, optional wiki ingestion, progress tracking, verification, and review. It is intended for recurring learning workflows rather than one-off Q&A or unstructured information gathering.
 
-## Reference(s): <br>
-- [Daily Learning on ClawHub](https://clawhub.ai/mayf3/daily-learning) <br>
-- [Learning Template](references/learning-template.md) <br>
-- [Post-Learning Review Template](references/post-learning-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local learning notes, wiki-ingest Markdown, progress updates, post-learning review notes, and verification command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow may persist private workspace context in local learning notes and optional shared wiki submissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit workspace and conversation access to intentional context, and review or redact notes before wiki ingestion.
+
+Risk: Shared wiki submissions may publish learning output without clear approval boundaries.
+
+Mitigation: Require review before wiki ingestion and keep the optional wiki path scoped to an approved knowledge base.
+
+Risk: External learning requests can change recurring learning priorities.
+
+Mitigation: Restrict who can edit LEARNING-REQUESTS.md and review urgent or interleaved requests before acting on them.
+
+## Reference(s):
+
+- [Learning Template](references/learning-template.md)
+- [Post-Learning Template](references/post-learning-template.md)
+- [Daily Learning Verification Script](scripts/verify-daily-learning.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local learning notes, progress updates, optional wiki-ingest markdown, verification output, and post-learning review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

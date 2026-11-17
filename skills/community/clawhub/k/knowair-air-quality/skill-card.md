@@ -1,39 +1,56 @@
-## Description: <br>
-Gets hourly and daily weather forecasts by latitude and longitude via the Caiyun Weather API, including temperature, conditions, precipitation probability, wind, humidity, life indices, and daily AQI when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get hourly and daily weather forecasts by latitude and longitude via the Caiyun Weather API, including temperature trends, weather conditions, precipitation probability, wind, humidity, air quality, and life indices.
 
-## Publisher: <br>
-[shuowang-ai](https://clawhub.ai/user/shuowang-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuowang-ai](https://clawhub.ai/user/shuowang-ai)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve forecast data for specific coordinates and present concise daily or hourly weather summaries. It is useful for answering questions about upcoming conditions, rain windows, temperature trends, wind, humidity, life indices, and available daily AQI values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the configured Caiyun API token and queried coordinates to Caiyun when fetching forecasts. <br>
-Mitigation: Use a token intended for this service and avoid querying locations considered sensitive. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve location-based hourly or daily weather forecasts and summarize conditions, precipitation, air quality, and life-index signals for planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuowang-ai/knowair-air-quality) <br>
-- [Caiyun Weather API endpoint](https://api.caiyunapp.com/v2.6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON forecast results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, internet access, CAIYUN_TOKEN, and longitude/latitude coordinates; supports English and Chinese output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Forecast requests send requested coordinates to Caiyun Weather, which may reveal a precise location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approximate coordinates when exact private locations are not necessary.
+
+Risk: The skill requires a Caiyun API token for forecast queries.
+
+Mitigation: Store the token in the CAIYUN_TOKEN environment variable when possible and avoid exposing it in shared prompts, logs, or command output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuowang-ai/skills/knowair-air-quality)
+- [Publisher profile](https://clawhub.ai/user/shuowang-ai)
+- [Caiyun Weather API endpoint](https://api.caiyunapp.com/v2.6)
+- [Usage examples](examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the helper script, typically summarized by the agent as concise Markdown or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English and Chinese output, hourly forecasts up to 360 hours, daily forecasts up to 15 days, and configurable detail levels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

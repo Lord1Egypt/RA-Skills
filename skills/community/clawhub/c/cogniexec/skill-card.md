@@ -1,46 +1,55 @@
-## Description: <br>
-Cogniexec helps an agent route cognitive work, code generation, command execution, and bundled automation utilities into multi-step task workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cogniexec routes cognitive, planning, coding, command execution, and utility-script tasks through a layered orchestration skill for analysis, automation, and code-related work.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-Developers and technical users can use this skill to plan, execute, and summarize complex cognitive or coding tasks that may involve generated scripts, shell commands, file operations, network checks, data processing, and formatted reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local automation can perform high-impact command, file, network, email, clipboard, and data-processing actions. <br>
-Mitigation: Use the skill in a sandbox or narrow working directory, review commands before execution, and require explicit approval for destructive or sensitive actions. <br>
-Risk: Network, email, HTTP debug, clipboard, and .env-related workflows can expose sensitive data if used with secrets or untrusted inputs. <br>
-Mitigation: Keep secrets out of inputs and environment files, review external destinations, and avoid clipboard monitoring or debug output when handling sensitive data. <br>
-Risk: Base64, XOR, and ZIP password handling in the bundled utilities should not be treated as strong encryption. <br>
-Mitigation: Use vetted cryptographic tools and approved key-management practices for confidential data. <br>
-Risk: Bulk file, archive, database, and synchronization operations can overwrite, delete, or move important data. <br>
-Mitigation: Run on copies when possible, keep backups, and inspect target paths and planned changes before applying bulk operations. <br>
+## Use Case:
 
+Developers and technical users use this skill to plan, analyze, write code, generate shell commands, and orchestrate multi-step automation workflows with bundled utility scripts.
 
-## Reference(s): <br>
-- [Cogniexec Skill Page](https://clawhub.ai/wangjiaocheng/cogniexec) <br>
-- [Command Reference](references/command_reference.md) <br>
-- [Security Checklist](references/security_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text with code snippets, shell commands, and generated files when execution is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local files and invoke bundled Python utilities when the agent has tool access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Broad automation can execute code, mutate files, databases, Git state, network services, or email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only in a sandboxed workspace where those actions are acceptable, and review commands and outputs before execution.
+
+Risk: The security summary reports unsafe helper-script behavior that can execute code, mutate data, or expose credentials.
+
+Mitigation: Avoid untrusted datasets, codebases, archives, and credentials until the reported eval, dynamic import, TAR extraction, SMTP TLS, debug redaction, Git hook, and crypto documentation issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangjiaocheng/skills/cogniexec)
+- [Command Reference](references/command_reference.md)
+- [Security Review Checklist](references/security_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Natural language guidance, Markdown, inline shell commands, code snippets, and generated or modified files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform local file, network, database, Git, archive, image, QR, clipboard, and email actions when the host agent grants tools.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

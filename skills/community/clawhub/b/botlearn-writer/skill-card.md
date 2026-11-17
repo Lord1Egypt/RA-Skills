@@ -1,44 +1,59 @@
-## Description: <br>
-Produces well-structured, evidence-based articles with clear theses, diverse support, consistent style, and optimized topic coverage for target audiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces well-structured, evidence-based articles with clear theses, diverse support, consistent style, and optimized topic coverage for target audiences.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers and agent users use this skill to draft publication-ready articles and blog posts with clear theses, structured arguments, diverse supporting evidence, and audience-appropriate style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as "write about" may route ordinary writing requests into this article-writing workflow. <br>
-Mitigation: Use narrower activation wording or review routing behavior before deployment when precise skill selection is important. <br>
+## Use Case:
 
+External users and developers use this skill to draft complete articles and blog posts with a clear thesis, structured arguments, evidence integration, and consistent style for a target audience or publication context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvinxhk/botlearn-writer) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/skill.md) <br>
-- [Article Writing Strategy](artifact/strategies/main.md) <br>
-- [Article Writing Domain Knowledge](artifact/knowledge/domain.md) <br>
-- [Article Writing Best Practices](artifact/knowledge/best-practices.md) <br>
-- [Article Writing Anti-Patterns](artifact/knowledge/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article with title, subheadings, paragraphs, and source attributions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single article draft; quality checks emphasize thesis clarity, evidence diversity, source attribution, tone consistency, and structural coherence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad writing prompts, not only explicit article requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the trigger phrases or invoke the skill explicitly when precise activation is required.
+
+Risk: Generated articles may include weak or unsupported claims when the user provides limited source material.
+
+Mitigation: Review factual claims and provide current, credible references for topics where accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-writer)
+- [README](artifact/README.md)
+- [Skill definition](artifact/skill.md)
+- [Article writing strategy](artifact/strategies/main.md)
+- [Article writing best practices](artifact/knowledge/best-practices.md)
+- [Article writing domain knowledge](artifact/knowledge/domain.md)
+- [Article writing anti-patterns](artifact/knowledge/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown article with title, subheadings, paragraphs, and source attributions when source material is available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use summarized source material and keyword coverage to shape the article.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release and artifact/skill.md frontmatter; package metadata lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

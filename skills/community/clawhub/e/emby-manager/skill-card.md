@@ -1,44 +1,60 @@
-## Description: <br>
-Manages an Emby media server on a Linux NAS, including media library operations, metadata refreshes, playback history, user permissions, and server health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent administer an Emby media server running on a Linux NAS, including library refreshes, metadata operations, user and permission review, playback activity checks, and server health troubleshooting.
 
-## Publisher: <br>
-[gmd170629](https://clawhub.ai/user/gmd170629) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmd170629](https://clawhub.ai/user/gmd170629)
 
-## Use Case: <br>
-External users and media server administrators use this skill to operate Emby instances through guided API calls, structured status reports, user and permission checks, media-library maintenance, and troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Emby API-key access can allow administrative actions or data access beyond the immediate request. <br>
-Mitigation: Use a limited or temporary API key when possible, paste it only when needed, and rotate it after use. <br>
-Risk: Server, user, viewing-history, IP address, and log data may be exposed in agent responses. <br>
-Mitigation: Share only the records needed for the task and redact sensitive user, IP, or log details before broader distribution. <br>
-Risk: Delete, restart, scan, and permission-change operations can affect server availability or media access. <br>
-Mitigation: Confirm these actions with the user before execution and state the expected impact before proceeding. <br>
+## Use Case:
 
+Developers, operators, and NAS administrators use this skill to guide live Emby administration through API calls and Linux service checks while presenting results as concise tables or structured summaries.
 
-## Reference(s): <br>
-- [Emby API Quick Reference](references/api-guide.md) <br>
-- [Media Library Operations Guide](references/media-ops.md) <br>
-- [Emby Troubleshooting Guide](references/troubleshoot.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, structured lists, inline API examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Emby server URL and API key; destructive or disruptive actions should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles a powerful Emby API key for live server administration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS where possible, avoid placing keys in shared logs or transcripts, and prefer a dedicated limited-scope key.
+
+Risk: The skill can guide destructive or administrative actions such as deletes, user policy changes, restarts, firewall changes, and recursive permission commands.
+
+Mitigation: Require explicit user confirmation before these actions and review proposed commands or API calls before execution.
+
+Risk: The security verdict is suspicious because the skill suggests broad administrator commands without enough guardrails.
+
+Mitigation: Install only after reviewing the skill for the target environment and keep operator approval in the loop for live server changes.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/gmd170629/skills/emby-manager)
+- [Emby API Quick Reference](references/api-guide.md)
+- [Media Operations Guide](references/media-ops.md)
+- [Troubleshooting Guide](references/troubleshoot.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Markdown]
+
+**Output Format:** [Markdown with structured lists, tables, API endpoint examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Emby server URL and API key; destructive operations should be confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

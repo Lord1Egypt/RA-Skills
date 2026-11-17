@@ -1,41 +1,58 @@
-## Description: <br>
-Push real-time progress and key metrics to a live statb.io dashboard during long-running, multi-step, or iterative agent tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushes real-time numeric progress and task metrics to a live statb.io dashboard during long-running agent work.
 
-## Publisher: <br>
-[qianlong2005](https://clawhub.ai/user/qianlong2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qianlong2005](https://clawhub.ai/user/qianlong2005)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to expose numeric progress counters, rates, errors, timings, and other task metrics on a live browser dashboard while work is running. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Progress counters and task metrics are sent to statb.io and may be visible to anyone with the board URL. <br>
-Mitigation: Use explicit consent before enabling it on private work, keep board IDs and metric keys generic, and never push secrets, tokens, PII, or sensitive task details. <br>
-Risk: A board can become misleading if the agent pushes only an initial update or stops updating during the work. <br>
-Mitigation: Push updates at meaningful intervals or inside loops, and send a final status update when the task completes. <br>
+## Use Case:
 
+Developers and agents use this skill to expose progress counters, rates, status, timing, and other numeric metrics for long-running or multi-step tasks on a browser-based statb.io board.
 
-## Reference(s): <br>
-- [statb.io homepage](https://statb.io) <br>
-- [ClawHub skill page](https://clawhub.ai/qianlong2005/statb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and URL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates curl-based progress updates using numeric key-value metrics; statb.io free tier supports up to 16 metrics per board.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The skill can send progress metrics to a public third-party dashboard before the user has explicitly opted in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before use, disclose the statb.io board URL, and make progress publishing optional for the task.
+
+Risk: Board IDs, metric names, or metric values could reveal sensitive project, customer, infrastructure, model, or deployment information.
+
+Mitigation: Use sanitized board IDs and metric keys, send only numeric progress metrics, and avoid filenames, secrets, PII, infrastructure labels, and sensitive model or deployment metrics.
+
+Risk: Generated scripts may embed statb.io curl calls or timers that continue sending updates longer than intended.
+
+Mitigation: Review generated scripts before execution, keep push calls scoped to meaningful task stages, and ensure finalization disables recurring updates.
+
+## Reference(s):
+
+- [statb.io](https://statb.io)
+- [ClawHub skill page](https://clawhub.ai/qianlong2005/skills/statb)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with bash curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces numeric statb.io push updates; the free tier supports up to 16 metrics per board.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

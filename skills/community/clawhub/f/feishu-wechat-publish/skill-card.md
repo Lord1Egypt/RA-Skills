@@ -1,45 +1,65 @@
-## Description: <br>
-Reads Feishu documents available in the client environment and sends final article content to a relay service that creates WeChat Official Account drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads Feishu documents available in the client environment and sends final Markdown content and media assets to a third-party relay for creation of WeChat Official Account drafts.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shing19](https://clawhub.ai/user/shing19)
 
-## Use Case: <br>
-Content operators and agents use this skill to turn accessible Feishu documents, embedded images, and whiteboards into Markdown-plus-assets payloads and submit them for WeChat draft creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The relay operator receives full Feishu article contents and embedded image data. <br>
-Mitigation: Use only for documents whose relay transfer is acceptable, and avoid confidential or regulated content unless the relay operator's handling practices are approved. <br>
-Risk: The workflow can collect subscription tokens and WeChat AppSecret values for publishing setup. <br>
-Mitigation: Confirm how secrets are stored, rotated, and revoked before use; do not expose tokens or AppSecret values in chat responses or logs. <br>
-Risk: Persistent Feishu user-token binding may continue to authorize publishing actions after setup. <br>
-Mitigation: Confirm the revocation process for user and WeChat bindings before installation and remove bindings when the workflow is no longer needed. <br>
+## Use Case:
 
+External users and content operators use this skill to turn Feishu documents they can access, including embedded images and whiteboards, into WeChat Official Account draft articles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/feishu-wechat-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/shing19) <br>
-- [WeChat developer platform](https://developers.weixin.qq.com/platform) <br>
-- [Relay publish endpoint](https://feishu.shing19.cc/api/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces article payloads containing Markdown content and optional base64 image or whiteboard assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.3 (source: frontmatter and server release evidence) <br>
+Risk: Feishu document content, embedded media, user identity metadata, subscription tokens, and WeChat AppID/AppSecret are sent to a third-party relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after explicit user consent and review the relay's retention, revocation, and credential-handling practices before deployment.
+
+Risk: The workflow can bind a Feishu open_id to a subscription token without making that identity binding visible to the user.
+
+Mitigation: Disclose identity binding and obtain confirmation before linking a user identity to a subscription token.
+
+Risk: A fallback local token file can persist subscription credentials in the working directory.
+
+Mitigation: Use secure secret storage where available, keep the token file out of version control, and remove expired or invalid tokens promptly.
+
+Risk: The image-fetching helper depends on local command-line tools and temporary-file handling while preparing base64 assets.
+
+Mitigation: Preinstall or pin required dependencies and review the helper script's temporary-file handling before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shing19/skills/feishu-wechat-publish)
+- [Publisher profile](https://clawhub.ai/user/shing19)
+- [Publisher relay publish endpoint](https://feishu.shing19.cc/api/publish)
+- [WeChat developer platform](https://developers.weixin.qq.com/platform)
+- [WeChat platform setup image](https://image.shing19.cc/skills/feishu-wechat-publish/wechat-platform-setup.png)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces relay requests that may include Feishu document text, base64 media assets, user identity metadata, subscription tokens, and WeChat configuration values.]
+
+## Skill Version(s):
+
+0.5.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

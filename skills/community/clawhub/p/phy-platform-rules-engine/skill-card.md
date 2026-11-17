@@ -1,41 +1,54 @@
-## Description: <br>
-Checks draft social-media posts for platform-specific rule issues and returns PASS/WARN/FAIL feedback with fix suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans draft social media posts for platform-specific publishing risks and returns PASS/WARN/FAIL rule results with fix suggestions.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Content creators, marketers, and developers use this skill to pre-check Reddit, LinkedIn, Twitter/X, and Hacker News drafts before publishing. It returns rule-level feedback and suggested edits, but its platform-ranking advice should be treated as advisory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft content may contain secrets, personal data, or embargoed material. <br>
-Mitigation: Only analyze content the user is authorized to process, and avoid entering sensitive information unless that handling is approved. <br>
-Risk: Platform-ranking guidance may be incomplete or change after release. <br>
-Mitigation: Treat recommendations as advisory pre-flight feedback and review final posts against current platform policies before publishing. <br>
+## Use Case:
 
+Developers, marketers, and content teams use this skill to check draft posts for Reddit, LinkedIn, Twitter/X, and Hacker News before publishing. It helps surface platform-specific warnings, failures, and concrete edits for content quality review.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-platform-rules-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, shell commands] <br>
-**Output Format:** [Plain-text report or JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit code 0 for clear results, 1 for warnings, and 2 for failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: Heuristic platform advice can be inaccurate or become outdated, especially around algorithms, reach multipliers, link placement, and shadowbans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations critically and confirm current platform policies or observed behavior before changing publishing strategy.
+
+Risk: The checker could be misused to evade moderation, spam controls, or platform rules.
+
+Mitigation: Use the output only for legitimate content quality review and do not use it to bypass platform enforcement.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-platform-rules-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance, shell commands]
+
+**Output Format:** [Plain-text CLI report or JSON object with platform, word count, score, verdict, and per-rule results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes indicate clear, warnings, or failures; no external dependencies.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Tavily search integration for agents, supporting web search, content extraction, real-time news lookup, site crawling, deep research, and usage checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavilysearch integrates Tavily web search, content extraction, site crawling, research, and usage lookup for agents that need current web information.
 
-## Publisher: <br>
-[guogithubname](https://clawhub.ai/user/guogithubname) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guogithubname](https://clawhub.ai/user/guogithubname)
 
-## Use Case: <br>
-Developers and agents use this skill to query Tavily for current web information, extract content from URLs, crawl scoped sites, generate research reports, and check Tavily account usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, crawl instructions, and research topics are sent to Tavily. <br>
-Mitigation: Install only if sharing those inputs with Tavily is acceptable for the intended use case. <br>
-Risk: The skill requires a Tavily API key and can consume account credits. <br>
-Mitigation: Keep TAVILY_API_KEY private, monitor usage, and use result limits and lower-cost options where appropriate. <br>
-Risk: Crawl and research operations can cover broad external content or run for longer than simple searches. <br>
-Mitigation: Scope crawls with depth, breadth, limit, domain, and path filters; review research outputs before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to search the web, retrieve current news or finance information, extract URL content, crawl sites, run Tavily research tasks, and check Tavily API usage.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/guogithubname/tavilysearch-1-0-4) <br>
-- [Tavily API complete documentation](references/api-docs.md) <br>
-- [Tavily](https://tavily.com/) <br>
-- [Tavily documentation](https://docs.tavily.com) <br>
-- [Tavily Usage API reference](https://docs.tavily.com/documentation/api-reference/endpoint/usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [CLI-formatted text or JSON responses, with optional Markdown content from extraction, crawl, and research operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TAVILY_API_KEY. Search, extract, crawl, research, get-research, and usage commands call Tavily APIs and may consume Tavily credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: artifact _meta.json and SKILL.md changelog; ClawHub release metadata version 1.0.0) <br>
+Risk: Search terms, submitted URLs, crawl instructions, and research prompts are sent to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, private or internal URLs, regulated data, or proprietary research topics unless approved.
+
+Risk: Site crawl mode can follow external domains by default.
+
+Mitigation: Review crawl use before execution and constrain crawl scope with domain and path filters where appropriate.
+
+Risk: The Tavily API key may be exposed if stored in shared source trees.
+
+Mitigation: Store the key outside shared source trees where possible, and restrict its permissions and quota.
+
+## Reference(s):
+
+- [Tavily website](https://tavily.com/)
+- [Tavily Search API](https://api.tavily.com/search)
+- [Tavily usage endpoint documentation](https://docs.tavily.com/documentation/api-reference/endpoint/usage)
+- [Bundled Tavily API reference](artifact/references/api-docs.md)
+- [ClawHub release page](https://clawhub.ai/guogithubname/skills/tavilysearch-1-0-4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text, Markdown, and JSON returned from Tavily API-backed CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY and sends submitted queries, URLs, crawl instructions, and research prompts to Tavily.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

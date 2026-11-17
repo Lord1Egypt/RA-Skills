@@ -1,0 +1,71 @@
+# Fail a build when a Core Web Vital regresses past a budget you set.
+#
+# Copy this into .github/workflows/ in the repository you want to guard. It
+# reads real user measurements from Vercel Speed Insights, so it answers "is the
+# deployed site actually slow for people" rather than "is the site slow in a
+# synthetic lab run". That also means it needs traffic: a project with no recent
+# visitors has nothing to measure, and this workflow treats that as a pass
+# rather than failing on absent data.
+#
+# Exit codes: 0 every budget met, 3 at least one exceeded, 1 the API failed,
+# 2 the command was configured wrongly. Only 3 means "the site got slower".
+
+name: Performance budget
+
+on:
+  # A schedule fits real user monitoring better than per-commit: measurements
+  # accumulate from visitors over time, so they do not change the instant a
+  # deploy lands.
+  schedule:
+    - cron: "0 9 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  vitals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: anatoli-iliev/openclaw-vercel-insights
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: python -m pip install --disable-pip-version-check requests
+
+      - name: Check Core Web Vitals against budget
+        env:
+          # An ACCOUNT or TEAM scoped token. A token scoped to a single project
+          # cannot read Speed Insights: that data comes from Vercel's
+          # observability API, which scopes by account.
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          # A team is its own owner, so this doubles as the scope owner.
+          VERCEL_TEAM_ID: ${{ vars.VERCEL_TEAM_ID }}
+        run: |
+          python -m vercel_insights vitals \
+            --since 7d \
+            --budget lcp=2500 \
+            --budget inp=200 \
+            --budget cls=0.1
+
+      # Optional: keep the numbers even when the budget passes, so a slow drift
+      # is visible before it crosses a threshold.
+      - name: Record the measurements
+        if: always()
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TEAM_ID: ${{ vars.VERCEL_TEAM_ID }}
+        run: |
+          python -m vercel_insights vitals --since 7d --json > vitals.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vitals
+          path: vitals.json

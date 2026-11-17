@@ -1,96 +1,199 @@
 ---
 name: kb_query
-description: Answer simple lookup and factual Q&A questions from Java-specified personal/team Research KB repositories with source grounding and structured citations for the desktop source list. Use for ordinary knowledge-base retrieval; do not use for GitHub/open-source project usefulness evaluation or cross-document literature/special-topic reviews.
+description: Answer Research KB questions from the team Gitea-backed knowledge base with OpenClaw reasoning, optional reference attachments, stable citations, OpenClaw-led evidence selection, and optional high-value Q&A persistence.
 ---
 
-# Skill: kb_query
+# kb_query
 
 ## 职责边界
 
-`kb_query` 只负责在 Java 后端指定的 Research KB 仓库中检索资料、读取相关 Markdown 页面，并基于这些已读页面回答问题。它不负责身份识别、权限判断、知识库范围选择、会话存储、查询历史写入或 Gitea 日志记录。
+`kb_query` 只负责“对话”页面的知识库查询。用户输入可以是纯文字，也可以带附件；附件一律是本轮参考材料，用于辅助理解问题、补充上下文或做临时对比，稳定来源仍以知识库证据页为准。
 
-如果用户问题是在评估开源/GitHub 项目是否有用、是否值得复现、环境风险如何，交给对应的开源项目评估 skill。
-如果用户问题是在写专项综述、跨多篇资料做方法对比、研究缺口分析或主题综合，交给对应的专项综述 skill。
+本 skill 不负责登录、权限、会话历史、文件上传、任务调度或资料源入库。Java 后端负责这些系统动作。OpenClaw 负责理解用户问题、判断需要参考哪些 KB 页面、综合证据、生成回答、判断证据是否充分，以及判断是否值得沉淀为 `qa/` 页面。Python 脚本只做确定性动作：读取 catalog/index 和探索卡片、按 OpenClaw 选择读取证据页面、抽取附件文本预览、校验 OpenClaw 输出、可选写入 `qa/`、维护 `catalog.json`/`index.md`、写出后端 result JSON。
 
-只能访问 `kbTargets[]` 中列出的仓库。不要读取或推断任何未列出的仓库。
+不要提供脚本兜底的抽取式简化回答。没有真实 OpenClaw 理解时，任务应失败或返回明确错误，而不是用脚本假装完成问答。
 
-## 可接受任务
+## 输入约定
 
-只接受满足以下条件的 JSON：
+后端 payload 通常包含：
 
-- `protocol = research_kb_agent_task`
-- `taskType = kb_query`
-- `kbTargets[]` 中有一个或两个目标
-- `payload.question` 非空
+- `taskId`: 后端生成的查询任务 ID，当前格式为 `query-<conversationId>-<messageId>`，用于共享 payload/result 文件和 OpenClaw session key。
+- `skill`: `kb_query`。
+- `question`: 用户问题。
+- `conversationId`: 当前会话 ID。
+- `messageId`: 用户消息 ID。
+- `attachments[]`: 本轮参考附件，字段包括 `attachmentId`、`fileName`、`mimeType`、`storagePath`、`sha256`、`size`、`temporary=true`。
+- `answerPolicy.scopeSelection`: `auto_by_openclaw`。
+- `answerPolicy.knowledgeBaseFirst`: `true`，表示事实性回答必须优先基于团队 KB。`answerPolicy.allowNonKbSupplementWhenInsufficient=true` 时，知识库证据不足可以在明确说明后补充非 KB 或附件分析。
+- `answerPolicy.writeHighValueAnswerToQa`: 是否允许高价值问答写入 `qa/`。
+- `payloadFile`、`resultFile`、`sharedDir`: 后端共享目录路径。
 
-## 查询流程
+环境变量包括 `GITEA_URL`、`GITEA_BOT_TOKEN`、`GITEA_BOT_USERNAME`、`GITEA_ORG`、`TEAM_KB_REPO`、`OPENCLAW_SHARED_DIR`。
 
-每次回答必须按以下顺序执行：
+## 执行流程
 
-1. 校验任务协议和输入字段。
-2. 读取每个目标仓库的 `catalog.json` 和 `index.md`。
-3. 从 catalog、index 和仓库 Markdown 树中收集候选页面。
-4. 基于问题进行中文/英文 token 化检索，对标题、路径、标题层级和正文分别评分。
-5. 只读取和使用评分相关的 Markdown 页面。
-6. 回答中的知识库事实必须只来自本次已读页面，不能用常识、模型记忆或外部网页补全知识库事实。
-7. 如果问题是“你是谁”“介绍一下自己”“你能做什么”等身份类问题，优先读取 `README.md`、`AGENTS.md`、`index.md` 等系统页面。
-8. `citations[]` 只能引用本次已读页面，路径必须是仓库相对路径，供桌面端渲染为来源清单并点击打开。
-9. 不要在回答正文末尾生成 Markdown 链接、脚注或“[来源](path)”列表；来源只放入 `citations[]`。
-10. 不要向 Gitea 写入查询日志；查询历史由 Java 后端保存。
+必须使用四段式流程，让“选哪些页面作为参考”由 OpenClaw 完成，而不是由脚本用关键词配对决定。
 
-## 证据不足规则
+上下文预算必须保守执行。`prepare`/`fetch` 命令会把完整 JSON 写入文件，终端只输出摘要；OpenClaw 应阅读文件路径指向的 JSON，不要把完整 context/evidence 粘贴回聊天。页面选择应坚持“够用即可”：通常选择 1-4 个最关键 KB 页面，最多不得超过 `context.analysisLimits.maxSelectedPages`。如果 OpenClaw 判断问题本身不适合由 KB 回答，或者没有任何相关 KB 页面，可以写出合法的空选择 `{"selectedPages":[],"rationale":"...","unresolvedQuestions":[]}`，继续运行 fetch/apply，并在答案中按证据不足规则说明。不要因为证据不足而停止在 selection 阶段；如果少量证据已经能回答，不要扩大读取范围；如果证据不足，按不足规则回答，而不是继续尝试读取大量页面。
 
-如果知识库中没有足够资料回答问题，答案必须先说明：
+所有中间 JSON 文件必须是严格合法 JSON。写 `page-selection.json` 和 `answer.json` 时不要加入 Markdown 代码围栏、注释、尾随逗号或半截文本；文件写好后再运行下一步脚本。`answer` 正文通常包含 Markdown、双引号和表格，优先用 `python3` 的 `json.dump`/`json.dumps` 写出整个 `answer.json`，不要手写长 JSON 字符串。
 
-`知识库中没有足够资料回答这个问题。`
+1. 运行准备脚本：
 
-此时可以继续给出一般性说明，但必须用“以下是非知识库结论的一般性说明”这样的文字明确标记。`citations` 必须返回空数组。不要把一般性说明伪装成知识库事实。
+```bash
+python3 scripts/run_task.py prepare --input <payload.json> --context-output <context.json>
+```
 
-## 引用规则
+准备脚本会读取 `catalog.json`、`index.md`、页面元数据、少量探索卡片和附件文本预览，输出 OpenClaw 可读的查询规划上下文。命令行只返回摘要，完整内容在 `<context.json>` 中。`starterPageCards` 只是帮助 OpenClaw 快速了解可能相关的页面，不是最终证据，也不能直接作为引用依据。脚本不会生成答案，也不会决定最终参考页面。
 
-每条 citation 必须包含：
+2. OpenClaw 阅读 `<context.json>`，根据用户问题、目录、索引、页面卡片、预算限制和附件上下文，思考并生成 `<page-selection.json>`。OpenClaw 可以选择任意可见 catalog 页面，不限于 `starterPageCards`，但应选择最小充分集合。
 
-- `kbType`
-- `repoFullName`
-- `path`
-- `title`
-- `snippet`
-- `anchor`
-
-`snippet` 应该是支撑答案的短证据片段。不要引用未读取页面，不要引用 `source_files/` 下的原始归档文件。
-
-桌面端会把 `citations[]` 渲染为“来源 1 / 来源 2 / 来源 3”清单。回答正文要专注于结论，不要重复输出来源清单。
-
-## 输出
-
-必须返回一个合法 JSON 对象，不能包 Markdown 代码块：
+`page-selection.json` 示例：
 
 ```json
 {
-  "protocol": "research_kb_agent_result",
-  "protocolVersion": "1.0",
-  "taskId": "...",
-  "taskType": "kb_query",
-  "success": true,
-  "result": {
-    "answer": "...",
-    "citations": [],
-    "usedScopes": ["personal", "team"],
-    "readPages": []
+  "rationale": "为什么这些页面需要被读取作为证据",
+  "selectedPages": [
+    {
+      "path": "projects/example.md",
+      "reason": "用于确认项目边界和当前实现",
+      "expectedUse": "回答功能进度和边界"
+    }
+  ],
+  "unresolvedQuestions": []
+}
+```
+
+3. 按 OpenClaw 选择读取证据页：
+
+```bash
+python3 scripts/run_task.py fetch --input <payload.json> --context <context.json> --selection <page-selection.json> --evidence-output <evidence.json>
+```
+
+`fetch` 只负责校验路径、读取 OpenClaw 选择的 KB 页面、解析 frontmatter `sources[]`，并输出 `<evidence.json>`。命令行只返回证据页摘要，完整内容在 `<evidence.json>` 中。它不做答案判断，也不替 OpenClaw 增删参考范围。
+
+4. OpenClaw 阅读 `<context.json>` 和 `<evidence.json>`，进行知识库问答，生成 `<answer.json>`。`answer.json` 必须符合“OpenClaw 输出格式”。答案中的 `sources[]` 只能引用 `<evidence.json>` 中实际读取到的稳定 KB 页面；临时附件不能作为稳定 KB 来源。
+
+5. 运行应用脚本：
+
+```bash
+python3 scripts/run_task.py apply --input <payload.json> --context <context.json> --evidence <evidence.json> --answer <answer.json>
+```
+
+应用脚本会校验答案、确保结尾有参考来源、必要时写入 `qa/` 并更新 `catalog.json` 和 `index.md`，最后把后端 result JSON 写入 payload 指定的 `resultFile`。
+
+6. 最终回复后端：
+
+```json
+{"success": true, "resultFile": "<result.json>"}
+```
+
+## 回答规则
+
+OpenClaw 必须先判断团队 KB 证据是否足以回答问题。证据充分性判断基于 OpenClaw 自己选择并通过 `fetch` 读取到的稳定 KB 页面。
+
+如果 KB 证据足够：先直接回答结论，再给出必要解释、比较、步骤或建议。回答必须以中文为主，除非用户明确要求其他语言。
+
+如果 KB 证据不足：回答开头必须明确说明“知识库内容无法回答这个问题”或等价表达，然后说明缺少哪些证据。可以在下方补充一般性回答或基于附件的临时分析，但必须标注“以下为非知识库结论/本轮参考附件推断”。
+
+附件只能帮助理解问题、补充本轮上下文或做临时对比；不要把临时附件当作长期 KB 来源，不要因为附件出现就写普通知识页。若答案主要依赖附件且缺少稳定 KB 证据，通常不要沉淀为 `qa/`。
+
+回答正文不强制套固定模板。可以按用户问题自然组织成结论、解释、对比、步骤、表格或建议；但不要为了模板牺牲可读性。
+
+答案结尾必须包含“参考来源”小节，这是唯一强制模板。稳定来源应优先列出 KB 页面路径和标题；如果证据页带有 `sources[]`，同时列出对应源文件、归档路径、仓库 URL、commit 或其他可追溯线索。若没有可引用 KB 页面，写明“知识库中未找到可支撑本问题的页面”。
+
+## 高价值问答沉淀
+
+高价值问答不是“回答得长”或“用户问了一个问题”就沉淀，而是要成为团队以后可复用的知识入口。OpenClaw 必须先做结构化评估，再决定是否把 `highValue` 或 `qa.write` 设为 `true`。
+
+硬性门槛：
+
+- `knowledgeSufficient=true`，且答案有稳定 KB 页面支撑。
+- 主要依据不是本轮临时附件；附件只能帮助理解问题或补充临时上下文。
+- 问题不是一次性操作、临时状态查询、简单事实定位、格式转换、寒暄、泛泛建议或纯外部常识问答。
+- 结论足够稳定，后续成员在相同或相近问题下可以直接复用。
+
+正向信号：
+
+- 跨多个稳定 KB 页面综合，或者把一个重要单页中的规则/边界整理成可复用的规范答案。
+- 回答澄清了项目架构、功能边界、资料源处理规则、实验结论、技术选型、风险判断或工作流程。
+- 答案包含明确判断、适用条件、例外情况和后续行动，而不是只摘录原文。
+- 该问题预计会反复出现，沉淀后能减少后续检索和解释成本。
+
+建议采用 0-5 分评估：`reuseValue`、`synthesisDepth`、`evidenceQuality`、`stability`、`actionability` 各 0/1 分。总分至少 4 分，且通过全部硬性门槛时，才允许写入 `qa/`。
+
+OpenClaw 必须在 `answer.json` 中给出 `qaEvaluation`，说明为什么是或不是高价值问答。apply 脚本只执行确定性拦截：缺少评估、证据不足、无稳定来源、附件驱动、临时/一次性、分数不足时，即使 OpenClaw 请求写入，也不沉淀。
+
+`qa/` 页面应包含：问题、可复用回答、证据页面、适用场景、更新时间。QA 页面只应引用稳定 KB 页面作为来源；临时附件不能作为唯一长期证据。
+
+## OpenClaw 输出格式
+
+`answer.json` 是 OpenClaw 生成、apply 脚本读取的文件：
+
+```json
+{
+  "answer": "完整回答。正文不需要固定模板；结尾可以已包含参考来源，apply 会补齐缺失的参考来源。",
+  "knowledgeSufficient": true,
+  "sources": [
+    {
+      "path": "projects/example.md",
+      "title": "Example",
+      "type": "project",
+      "snippet": "可选引用片段",
+      "sourceIds": [],
+      "sourceTraces": [
+        {
+          "sourceId": 1,
+          "sourceType": "local_folder",
+          "title": "原始资料标题",
+          "fileName": "example.pdf",
+          "archivedPath": "source_files/local_folder/example.pdf",
+          "url": "",
+          "commitHash": ""
+        }
+      ]
+    }
+  ],
+  "usedAttachments": [
+    {
+      "attachmentId": 1,
+      "fileName": "context.docx",
+      "role": "query_reference"
+    }
+  ],
+  "highValue": false,
+  "qaEvaluation": {
+    "reuseValue": 0,
+    "synthesisDepth": 0,
+    "evidenceQuality": 0,
+    "stability": 0,
+    "actionability": 0,
+    "attachmentDriven": false,
+    "ephemeral": false,
+    "reason": "为什么适合或不适合沉淀"
+  },
+  "qa": {
+    "write": false,
+    "path": "qa/example.md",
+    "title": "可复用问答标题",
+    "content": "可选；不填时 apply 根据 answer 自动生成"
   },
   "errors": []
 }
 ```
 
-字段名、层级和类型不能改变。
+后端最终读取 `resultFile` 中的字段：
 
-## 辅助入口
-
-稳定入口是：
-
-```bash
-python3 scripts/run_task.py --stdin
-python3 scripts/run_task.py --task-json <path>
+```json
+{
+  "success": true,
+  "answer": "...",
+  "sources": [],
+  "createdQaPath": "qa/example.md",
+  "processedSources": ["team-kb"],
+  "createdPages": [],
+  "updatedPages": [],
+  "errors": [],
+  "commitId": ""
+}
 ```
-
-脚本会执行候选页收集、证据检索、引用生成和 JSON schema 输出。Agent 如需生成更自然的中文回答，也必须先读取页面；知识库事实必须限制在已读页面证据内，一般性说明必须清楚标注为非知识库结论。

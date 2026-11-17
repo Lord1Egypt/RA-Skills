@@ -1,0 +1,56 @@
+{
+  "deprecated": "use schemas/build-manifest.schema.json",
+  "schema_version": "2.0",
+  "build_id": "20260715-article-ppt",
+  "deck_id": "deck-001",
+  "profile": "standard",
+  "builder": {
+    "requested": "auto",
+    "selected": "pptxgenjs",
+    "version": "4.0.1",
+    "selection_score": 0.92,
+    "selection_reasons": ["BUILDER_SELECTED_BY_SCORE"]
+  },
+  "builder_profile": "python-pptx-standard",
+  "production_profile_ref": ".ppt-work/contracts/production-profile.json",
+  "status": "created",
+  "contract_refs": {
+    "ppt_ir": ".ppt-work/contracts/ppt-ir.json",
+    "style_contract": ".ppt-work/contracts/style-contract.json",
+    "asset_manifest": ".ppt-work/contracts/asset-manifest.json",
+    "delivery_plan": ".ppt-work/contracts/delivery-plan.json",
+    "capability_report": ".ppt-work/capability-report.json",
+    "production_profile": ".ppt-work/contracts/production-profile.json",
+    "qa_report": ".ppt-work/contracts/qa-report.json"
+  },
+  "environment": {
+    "capability_report": ".ppt-work/capability-report.json"
+  },
+  "stages": {
+    "content_locked": true,
+    "ppt_ir_validated": true,
+    "style_validated": true,
+    "built": true,
+    "rendered": false,
+    "read_back": false,
+    "qa_passed": false
+  },
+  "outputs": {
+    "deck": "deck.pptx",
+    "preview_pdf": "deck-preview.pdf",
+    "verification_report": "verification-report.md"
+  },
+  "metrics": {
+    "logical_slide_count": 2,
+    "physical_slide_count": 2,
+    "editable_core_ratio": null,
+    "rasterized_area_ratio": null,
+    "qa_error_count": null
+  },
+  "fallbacks": [],
+  "warnings": ["Renderer unavailable; status capped at created."],
+  "errors": [],
+  "resume_from": null,
+  "last_successful_stage": "build",
+  "failed_stage": null
+}

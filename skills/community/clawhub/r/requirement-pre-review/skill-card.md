@@ -1,39 +1,52 @@
-## Description: <br>
-Reviews requirements documents from business, engineering, and testing perspectives to identify incomplete scenarios, missing boundary conditions, unclear rules, and omitted exception flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews requirement documents from business, development, and testing perspectives to identify incomplete scenarios, missing boundary conditions, unclear business rules, omitted exception flows, and related quality issues, then returns a structured review report with recommendations.
 
-## Publisher: <br>
-[snippyfly](https://clawhub.ai/user/snippyfly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[snippyfly](https://clawhub.ai/user/snippyfly)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, business analysts, QA engineers, and development teams use this skill to pre-review PRDs, requirement documents, feature specifications, user stories, or pasted requirement text before implementation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Requirement documents and PRDs can contain sensitive business or product information.
+
+Mitigation: Use the skill only in an approved agent session for the document being reviewed, and avoid pasting sensitive PRDs unless review in that session is intended.
+
+Risk: The skill may activate when requirement-like text is pasted and produce a review report.
+
+Mitigation: Confirm that the pasted content is intended for review before relying on or sharing the generated report.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Product managers, business analysts, developers, and testers use this skill to pre-review PRDs, feature specifications, user stories, or requirements descriptions before implementation. It produces a structured issue list with prioritized recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording could activate the skill on generic review requests where the user did not intend a requirements pre-review. <br>
-Mitigation: Require clear user intent or narrow activation wording in environments where accidental activation would disrupt normal review workflows. <br>
+**Output Format:** [Markdown requirement review report with a summary, issue table, priority recommendations, and best-practice tips.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snippyfly/requirement-pre-review) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/snippyfly) <br>
+**Other Properties Related to Output:** [Chinese-language report format; security evidence reports no code execution, persistence, or external data access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with summary, issue table, priority recommendations, and best-practice tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language requirements review focused on business, engineering, and testing completeness] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Control smart home devices (lights, TV, etc.) via the Google Assistant SDK. Use when the user wants to trigger home automation commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control smart home devices (lights, TV, etc.) via the Google Assistant SDK. Use when the user wants to trigger home automation commands.
 
-## Publisher: <br>
-[TVDOfficial](https://clawhub.ai/user/TVDOfficial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tvdofficial](https://clawhub.ai/user/tvdofficial)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent send Google Assistant text commands that control linked smart home devices such as lights, TVs, and appliances. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad Google Assistant control over linked home devices using persistent Google OAuth credentials. <br>
-Mitigation: Configure it only on a trusted machine and Google account, protect or revoke the OAuth credential when needed, and restrict use to devices and actions the user is comfortable delegating. <br>
-Risk: Commands may affect safety-sensitive devices such as appliances, locks, thermostats, or security equipment. <br>
-Mitigation: Add confirmation rules, device allowlists, and action limits before allowing the agent to operate safety-sensitive devices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Google Home Control on ClawHub](https://clawhub.ai/TVDOfficial/google-home-control) <br>
-- [Google Cloud Console](https://console.developers.google.com/) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent execute Google Assistant text commands for linked smart home devices after configuring Google Cloud OAuth credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Text] <br>
-**Output Format:** [Markdown setup guidance and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Google OAuth credentials and sends text queries to the Google Assistant SDK.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent persistent access to local Google OAuth credentials and authority to send real commands to linked smart home devices.
+
+Mitigation: Use a dedicated Google project or account where possible, isolate the OAuth credential file, and require explicit confirmation before device-changing commands.
+
+Risk: Smart home actions may affect physical devices with limited guardrails once credentials are available.
+
+Mitigation: Install only in a trusted local environment, pin dependencies, and review requested commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tvdofficial/skills/google-home-control)
+- [Google Cloud Console](https://console.developers.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown setup guidance and plain text command responses from the control script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google OAuth credentials and Google Assistant SDK dependencies.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

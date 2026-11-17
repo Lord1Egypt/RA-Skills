@@ -1,42 +1,59 @@
-## Description: <br>
-Captcha Auto automates CAPTCHA recognition, form filling, and submission for web pages using local Tesseract OCR with fallback to a configured vision model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captcha Auto recognizes, fills, and submits webpage captchas using browser automation, full-page screenshots, and a configurable vision model endpoint.
 
-## Publisher: <br>
-[AnnoyingC](https://clawhub.ai/user/AnnoyingC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[annoyingc](https://clawhub.ai/user/annoyingc)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to recognize CAPTCHA text on web pages, fill matching form fields, and submit the page during authorized browser automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Full-page screenshots can be sent to a third-party vision API and may include passwords, account data, or personal information. <br>
-Mitigation: Use only on authorized CAPTCHA pages, avoid sensitive pages, and prefer cropping to the CAPTCHA region before sending images to the vision API. <br>
-Risk: The skill can automatically submit arbitrary web forms without a confirmation step. <br>
-Mitigation: Require operator confirmation before submission or restrict use to test and authorized workflows where automated form submission is expected. <br>
-Risk: Use of CAPTCHA automation can violate site rules or applicable policy when not explicitly authorized. <br>
-Mitigation: Install and run the skill only where automation of the target site is permitted. <br>
+## Use Case:
 
+Developers and automation users use this skill to recognize captchas in web workflows and, when appropriate, fill the detected code into the page. It is best suited to trusted pages where full-page screenshots and automated submission are acceptable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AnnoyingC/captcha-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Human-readable terminal output or JSON with generated screenshot file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write page, filled-form, result, or error screenshots to the local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: package.json and server-resolved release metadata) <br>
+Risk: Full-page screenshots may include sensitive page content and are sent to the configured vision API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted captcha pages that do not contain passwords, payment data, personal information, or account data.
+
+Risk: The configured vision API key is used during recognition.
+
+Mitigation: Use a dedicated low-privilege API key, provide it through environment or local configuration, and avoid sharing workspace files that may contain configuration.
+
+Risk: The skill can fill arbitrary form fields and click submit or login-style buttons automatically.
+
+Mitigation: Run it in an isolated browser profile or workspace, verify the target URL first, and avoid workflows where an automatic submission could create account, payment, or data-change side effects.
+
+## Reference(s):
+
+- [Captcha Auto ClawHub listing](https://clawhub.ai/annoyingc/skills/captcha-auto)
+- [DashScope compatible-mode API endpoint](https://dashscope.aliyuncs.com/compatible-mode/v1)
+- [Google Chrome download](https://www.google.com/chrome/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, files, configuration guidance]
+
+**Output Format:** [CLI text or JSON result with recognized captcha text, recognition method, status, screenshot paths, and run metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes full-page screenshot files to the OpenClaw workspace and may fill inputs and click submit-style buttons in the browser session.]
+
+## Skill Version(s):
+
+1.0.7 (source: package.json, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

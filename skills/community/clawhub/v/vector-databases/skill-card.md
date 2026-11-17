@@ -1,39 +1,52 @@
-## Description: <br>
-Deep vector database workflow: embedding choice, index algorithms, recall/latency trade-offs, hybrid search, filtering, operational tuning, and cost guidance for selecting or optimizing Pinecone, Milvus, Qdrant, Weaviate, pgvector, OpenSearch kNN, and similar tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep vector database workflow-embedding choice, index algorithms, recall/latency trade-offs, hybrid search, filtering, operational tuning, and cost.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to select, evaluate, and optimize vector database designs for RAG, similarity search, deduplication, recommendations, and related retrieval workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Later agent-suggested database changes, deletions, reindexing, or provider configuration could affect production systems.
+
+Mitigation: Review, test, and approve operational changes before applying them to shared or production environments.
+
+Risk: Vector database recommendations can produce poor recall, latency, or cost outcomes when not validated against real queries and scale.
+
+Mitigation: Benchmark index parameters, filters, embeddings, and reranking choices against representative workloads before rollout.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineers, and technical teams use this skill to plan, evaluate, and troubleshoot vector database systems for RAG, similarity search, recommendations, deduplication, and clustering workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Database operations guidance, including upserts, deletes, backups, scaling, and reindexing, may affect production reliability or data retention if applied without review. <br>
-Mitigation: Review proposed operational changes with the owning engineering team, test against non-production data where possible, and confirm backup, compliance, and rollback procedures before production use. <br>
-Risk: Vector retrieval quality can be misleading when embeddings, index parameters, filters, or evaluation data are mismatched to the product use case. <br>
-Mitigation: Validate recommendations against representative queries and track recall, latency, and ranking metrics before relying on the guidance for user-facing search behavior. <br>
+**Output Format:** [Markdown guidance with checklists and structured workflow steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Documentation-only skill; no code execution or unusual access requested by the skill itself.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists and implementation considerations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning guidance, evaluation criteria, operational checklists, and troubleshooting advice; it does not execute code or access external systems.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

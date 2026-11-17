@@ -54,7 +54,7 @@ MQL 查数接口相关文档：
 | `/docs/specs/datamining/etl/etl.md` | ETL 结构总览 |
 | `/docs/specs/datamining/etl/references/node-structure.md` | ETL 节点结构 |
 | `/docs/specs/datamining/etl/references/sql-node.md` | SQL 节点 |
-| `/docs/specs/datamining/etl/references/smartbi-query.md` | Smartbi 查询节点 |
+| `/docs/specs/datamining/etl/references/smartbi-query.md` | SmartBI 查询节点 |
 | `/docs/specs/datamining/etl/references/python-script.md` | Python 脚本节点 |
 | `/docs/specs/datamining/etl/references/jdbc-datasource.md` | JDBC 数据源 |
 | `/docs/specs/datamining/etl/references/jdbc-datatarget.md` | JDBC 数据目标 |
@@ -77,6 +77,6 @@ MQL 查数接口相关文档：
 
 ## 使用方式
 
-Phase 2 `describe` 输出中，若 `description` 包含 `[说明](/docs/specs/...)` 形式的链接，直接用 `smartbi doc /docs/specs/... --agent` 加载。
+Phase 2 `describe` 输出中，若 `description` 包含 `[说明](/docs/specs/...)` 形式的链接，直接用 `smartbi doc /docs/specs/... --profile <name> --agent` 加载。
 
 本索引用于在 `description` 中无显式链接时，根据 domain 推断可能存在的文档路径。加载时仍应使用 `smartbi doc` 验证路径可用性。

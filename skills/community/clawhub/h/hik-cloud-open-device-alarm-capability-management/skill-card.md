@@ -1,45 +1,60 @@
-## Description: <br>
-Manages Hik-Cloud Open Platform device alarm capabilities by listing alarm abilities, updating alarm status, and controlling the intelligence detection switch while handling OAuth token acquisition and refresh internally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+调用海康云眸开放平台设备报警能力管理接口，包括获取常规报警能力列表、修改报警能力状态和设置智能检测开关。
 
-## Publisher: <br>
-[hik-cloud-open](https://clawhub.ai/user/hik-cloud-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hik-cloud-open](https://clawhub.ai/user/hik-cloud-open)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect and change Hik-Cloud device alarm capability settings, including motion detection, video tampering, intrusion detection, and intelligence detection switch controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change live Hik-Cloud device alarm settings. <br>
-Mitigation: Verify deviceSerial, channelId, abilityCode, type, enable, and status values before running mutating commands. <br>
-Risk: The helper requires sensitive Hik-Cloud OAuth credentials and may cache an access token. <br>
-Mitigation: Use least-privileged credentials and protect or clear ~/.cache/hik_open/token.json on shared systems. <br>
-Risk: A custom base URL can redirect requests away from the intended Hik-Cloud endpoint. <br>
-Mitigation: Use only trusted Hik-Cloud base URLs and avoid untrusted custom base URLs. <br>
+## Use Case:
 
+Developers and operators use this skill to query Hik-Cloud device alarm capabilities, update channel alarm ability status, and control supported intelligence detection switches without manually handling token acquisition.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hik-cloud-open/hik-cloud-open-device-alarm-capability-management) <br>
-- [Hik-Cloud Device Alarm Capability API Reference](https://pic.hik-cloud.com/opencustom/apidoc/online/open/f8cbf864c4ca4395909dad225902a6ee.html) <br>
-- [Authentication Reference](references/auth.md) <br>
-- [Device Alarm Capability Management Reference](references/device-alarm-capability-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python3 and Hik-Cloud credentials from environment variables or OpenClaw configuration; command output may summarize or return raw API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change live Hik-Cloud alarm monitoring and intelligence detection settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review target device serials, channel IDs, ability codes, status values, and enable/type settings before running update commands in production.
+
+Risk: Hik-Cloud credentials and access tokens are required, and token-cache safeguards are weak.
+
+Mitigation: Inject credentials through the agent environment, avoid passing tokens on the command line, and restrict or disable the token cache when local persistence is not acceptable.
+
+Risk: Custom base URLs can redirect authentication and business API calls away from the default Hik-Cloud endpoint.
+
+Mitigation: Use the default HTTPS endpoint unless a controlled, trusted Hik-Cloud endpoint is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hik-cloud-open/skills/hik-cloud-open-device-alarm-capability-management)
+- [设备报警能力管理文档摘要](references/device-alarm-capability-management.md)
+- [认证说明](references/auth.md)
+- [Hik-Cloud device alarm capability API documentation](https://pic.hik-cloud.com/opencustom/apidoc/online/open/f8cbf864c4ca4395909dad225902a6ee.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or text command output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live Hik-Cloud API response fields such as code, message, data, success, abilityCode, status, channelId, deviceSerial, enable, and type.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

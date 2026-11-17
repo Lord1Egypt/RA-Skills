@@ -1,40 +1,53 @@
-## Description: <br>
-Comprehensive PDF manipulation toolkit for extracting text and tables, creating PDFs, merging and splitting documents, handling forms, and guiding PDF command-line workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive PDF manipulation toolkit for extracting text and tables, creating PDFs, merging or splitting documents, handling forms, and processing PDF documents at scale.
 
-## Publisher: <br>
-[liujiang817](https://clawhub.ai/user/liujiang817) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujiang817](https://clawhub.ai/user/liujiang817)
 
-## Use Case: <br>
-Developers and agent users use this skill to get concise PDF-processing guidance, sample Python code, and shell commands for extracting content, creating documents, merging or splitting files, OCR, forms, watermarking, metadata, and password handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF processing examples may expose sensitive document contents through extracted text, images, spreadsheets, decrypted files, or terminal output. <br>
-Mitigation: Use the examples only with PDFs the user owns or is authorized to process, and review generated files and command output before sharing them. <br>
-Risk: Optional PDF, OCR, and command-line dependencies may introduce local installation or supply-chain risk. <br>
-Mitigation: Verify optional dependencies before installation and use trusted package sources and system package managers. <br>
+## Use Case:
 
+Developers and document automation users use this skill to choose Python libraries and command-line tools for extracting, creating, merging, splitting, OCRing, protecting, and form-handling PDFs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujiang817/my-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe file operations that create, transform, extract, encrypt, or decrypt PDFs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: PDF workflows may process sensitive or unauthorized documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with PDFs the user owns or is authorized to access, following the server security guidance.
+
+Risk: OCR examples require additional dependencies that may be installed from package repositories.
+
+Mitigation: Install reviewed dependency versions in an isolated environment instead of blindly running unpinned installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujiang817/skills/my-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is intended for local PDF processing workflows and may require separately installed PDF or OCR tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

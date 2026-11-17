@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pinmoo.com/omni-ecom/schemas/legacy-claim-revalidation-2.0.schema.json",
+  "type": "object",
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "status", "authenticity_status", "run_id", "client_scope", "legacy_record_id", "legacy_record_sha256", "migration_receipt_sha256", "scope_attestation_fingerprint", "scope", "claim_ledger_file", "claim_ledger_sha256", "source_inputs", "source_checks", "claims_count", "verified_count", "derived_count", "unknown_count", "prepared_at", "formal_delivery_completed", "platform_authenticity_verified"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "legacy_claim_revalidation"},
+    "contract_name": {"const": "omni-ecom.legacy-claim-revalidation"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {
+      "type": "object",
+      "required": ["source_contract", "current_authority_inherited", "execution_permission_inherited"],
+      "properties": {"source_contract": {"const": "omni-ecom.claim-ledger@1.0"}, "current_authority_inherited": {"const": false}, "execution_permission_inherited": {"const": false}},
+      "additionalProperties": false
+    },
+    "status": {"const": "source_recomputed_scope_labels_checked_requires_current_report_binding"},
+    "authenticity_status": {"const": "operator_attested_not_platform_authenticated"},
+    "run_id": {"type": "string", "minLength": 1}, "client_scope": {"type": "string", "minLength": 1},
+    "legacy_record_id": {"type": "string", "minLength": 1},
+    "legacy_record_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "migration_receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "scope_attestation_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "scope": {"type": "object"}, "claim_ledger_file": {"const": "claim-ledger.json"},
+    "claim_ledger_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_inputs": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["original_relative_path", "copied_file", "sha256", "bytes"]}},
+    "source_checks": {"type": "array", "minItems": 1},
+    "claims_count": {"type": "integer", "minimum": 1}, "verified_count": {"type": "integer", "minimum": 1},
+    "derived_count": {"type": "integer", "minimum": 0}, "unknown_count": {"type": "integer", "minimum": 0},
+    "prepared_at": {"type": "string", "format": "date-time"},
+    "formal_delivery_completed": {"const": false}, "platform_authenticity_verified": {"const": false}
+  },
+  "additionalProperties": false
+}

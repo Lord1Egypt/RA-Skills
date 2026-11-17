@@ -1,44 +1,52 @@
-## Description: <br>
-Bytesagain Developer provides a curated developer skill stack covering daily workflow, debugging, database design, API building, shell automation, and deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The essential AI skill stack for developers, curated from the open SKILL.md ecosystem for daily workflow, debugging, database design, API building, shell automation, and deployment.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers use this skill to discover curated ClawHub skills for software development workflows and copy install commands for categories such as essentials, backend, DevOps, security, and the full stack. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommended third-party skills may have their own security, quality, or trust considerations. <br>
-Mitigation: Review each recommended skill separately before installing it. <br>
-Risk: Curation, quality, and install-count claims are publisher claims rather than independent proof. <br>
-Mitigation: Treat the recommendations as starting points and validate quality and fit before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to get curated recommendations for developer-focused ClawHub skills across essentials, backend, DevOps, and security workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-developer) <br>
-- [BytesAgain developer workflow](https://bytesagain.com/use-case/developer-workflow) <br>
-- [BytesAgain backend category](https://bytesagain.com/category/backend) <br>
-- [BytesAgain DevOps category](https://bytesagain.com/category/devops) <br>
-- [BytesAgain security category](https://bytesagain.com/category/security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-like terminal text with ClawHub install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific recommendation lists for essentials, backend, DevOps, security, and all.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Recommended third-party skills may have different owners, behavior, permissions, or security posture than this recommendation pack.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each recommended skill's publisher, source, license, and security findings before installing or using it.
+
+## Reference(s):
+
+- [BytesAgain Developer Workflow](https://bytesagain.com/use-case/developer-workflow)
+- [BytesAgain Backend Category](https://bytesagain.com/category/backend)
+- [BytesAgain DevOps Category](https://bytesagain.com/category/devops)
+- [ClawHub Skill Page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-developer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with install command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are grouped by command category: essentials, backend, devops, security, or all.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

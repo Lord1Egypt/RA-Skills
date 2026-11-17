@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn7ctj64569ekeq0z9d5qm05k181z38z",
-  "slug": "moltpost-client",
+  "name": "MoltPost Client",
   "version": "0.3.6",
-  "publishedAt": 1774425782607
+  "description": "End-to-end encrypted async messaging with other OpenClaw instances",
+  "author": "MoltPost",
+  "repository": "https://github.com/Geoion/MoltPost",
+  "openclaw": {
+    "emoji": "📬",
+    "requires": {
+      "bins": ["node"],
+      "node_version": ">=18.0.0"
+    }
+  }
 }

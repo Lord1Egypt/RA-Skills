@@ -1,47 +1,62 @@
-## Description: <br>
-Fetch weather data and generate a spoken weather broadcast using SenseAudio TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch weather data and generate a spoken weather broadcast using SenseAudio TTS.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers and agent users can use this skill to fetch current weather, compose a short weather report, and generate spoken broadcast audio through SenseAudio TTS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather locations and broadcast text are sent to external weather and TTS services. <br>
-Mitigation: Avoid sensitive locations or private operational context in generated broadcast text, and review provider terms before use. <br>
-Risk: The SenseAudio API key can be exposed if pasted into prompts, logs, shared scripts, or committed files. <br>
-Mitigation: Store SENSEAUDIO_API_KEY in a protected environment or secret manager and avoid printing it in generated commands. <br>
-Risk: The examples write response.json and generated audio files to local storage. <br>
-Mitigation: Review file contents and retention needs, and delete generated files when they contain sensitive or unwanted information. <br>
+## Use Case:
 
+Developers and agent users can use this skill to fetch current weather, compose a short forecast script, and convert it into spoken audio with SenseAudio TTS.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/scikkk/weather-broadcast) <br>
-- [SenseAudio Documentation](https://senseaudio.cn/docs) <br>
-- [SenseAudio TTS API](https://senseaudio.cn/docs/text_to_speech_api) <br>
-- [SenseAudio Voice List](https://senseaudio.cn/docs/voice_api) <br>
-- [wttr.in Help](https://wttr.in/:help) <br>
-- [Open-Meteo Docs](https://open-meteo.com/en/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples may create response.json and audio files locally when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather locations and generated broadcast text may be sent to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid precise home or work addresses and omit sensitive personal details from broadcast text.
+
+Risk: The SenseAudio API key is used when calling the SenseAudio TTS service.
+
+Mitigation: Store the API key in the SENSEAUDIO_API_KEY environment variable and avoid committing it to skill files, logs, or generated examples.
+
+Risk: Generated response and audio files may contain user-provided location or broadcast content.
+
+Mitigation: Review generated files before sharing and handle them according to the user's data retention requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/scikkk/skills/weather-broadcast)
+- [SenseAudio Documentation](https://senseaudio.cn/docs)
+- [SenseAudio TTS API](https://senseaudio.cn/docs/text_to_speech_api)
+- [SenseAudio Voice List](https://senseaudio.cn/docs/voice_api)
+- [wttr.in Help](https://wttr.in/:help)
+- [Open-Meteo Documentation](https://open-meteo.com/en/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python examples that can produce weather text, JSON API responses, and audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SenseAudio API key for TTS calls; examples use curl, jq, wttr.in, Open-Meteo, and SenseAudio.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

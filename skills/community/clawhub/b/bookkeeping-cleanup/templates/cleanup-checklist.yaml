@@ -1,0 +1,52 @@
+# Bookkeeping Cleanup - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+company: ""
+period: ""
+prepared_by: ""
+prepared_on: ""
+book_basis: cash
+accounts:
+  - name: ""
+    type: bank
+    statement_balance: 0
+    book_balance: 0
+    difference: 0
+    reconciled: false
+  - name: ""
+    type: credit card
+    statement_balance: 0
+    book_balance: 0
+    difference: 0
+    reconciled: false
+cleanup_items:
+  - item: uncategorized transactions
+    owner: ""
+    due_date: ""
+    status: open
+  - item: duplicate vendor bills
+    owner: ""
+    due_date: ""
+    status: open
+  - item: deposits in transit
+    owner: ""
+    due_date: ""
+    status: open
+  - item: outstanding checks
+    owner: ""
+    due_date: ""
+    status: open
+  - item: sales tax collected reconciliation
+    owner: ""
+    due_date: ""
+    status: open
+  - item: payroll tax deposit reconciliation
+    owner: ""
+    due_date: ""
+    status: open
+handover:
+  preparer: ""
+  due_date: ""
+  files_included:
+    - ""
+open_items:
+  - ""

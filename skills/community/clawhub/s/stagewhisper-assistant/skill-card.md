@@ -1,40 +1,52 @@
-## Description: <br>
-Handle tasks that arrive from StageWhisper live calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle tasks that arrive from StageWhisper live calls.
 
-## Publisher: <br>
-[piotraleksander](https://clawhub.ai/user/piotraleksander) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[piotraleksander](https://clawhub.ai/user/piotraleksander)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and customer-facing teams use this skill to turn live-call follow-up requests into short, concrete agent responses such as research results, drafts, scheduling proposals, lookups, or notifications.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Live-call tasks may request access to calendar, lookup, notification, or internal systems beyond the agent's available permissions.
+
+Mitigation: Confirm StageWhisper tasks come from trusted calls and rely on connected tools that enforce expected permissions; when access is unavailable, state the blocker directly.
+
+Risk: Ambiguous live-call follow-up requests can lead to incorrect assumptions or overbroad action.
+
+Mitigation: Perform the safe version of the task, keep the response short, and explicitly note any assumption.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Teams using StageWhisper live-call workflows can use this skill to turn in-call follow-up tasks into concise research, drafting, scheduling, lookup, or notification responses while the call context is still current. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to act immediately on live-call follow-ups that may involve calendars, messages, internal records, or documents without clear approval boundaries. <br>
-Mitigation: Install it only where connected tools can be restricted, and require human review or policy checks before sending messages, creating calendar events, updating records, or accessing sensitive systems. <br>
-Risk: Ambiguous call context could lead to incorrect follow-up content or actions. <br>
-Mitigation: Have the agent choose the safe version of ambiguous tasks, state assumptions briefly, and call out missing access or other blockers before taking externally visible action. <br>
+**Output Format:** [Concise plain text or Markdown response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/piotraleksander/stagewhisper-assistant) <br>
+**Other Properties Related to Output:** [May include brief assumptions or blocker statements when required access is unavailable]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Short text or Markdown responses with task results, assumptions, and blockers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include draft messages, summaries, lookup results, scheduling proposals, and blocker notes depending on available connected tools.] <br>
+0.1.1 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

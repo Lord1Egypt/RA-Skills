@@ -1,44 +1,59 @@
-## Description: <br>
-Turn a person's tacit know-how into a testable Agent Blueprint through a structured 5-step workshop: scenario discovery, SOP extraction, dependency mapping, blueprint generation, and skill sourcing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users through a 5-step workshop to convert tacit know-how into a testable Agent Blueprint with scenario, SOP, dependencies, and skill sourcing.
 
-## Publisher: <br>
-[BeAChanger](https://clawhub.ai/user/BeAChanger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beachanger](https://clawhub.ai/user/beachanger)
 
-## Use Case: <br>
-Developers, creators, and operators use this workshop to decide whether a person's tacit know-how can become a reusable agent workflow, then structure it into a scenario, SOP, dependency map, Agent Blueprint, and skill sourcing plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill sourcing may lead to installing or creating additional skills without sufficient review. <br>
-Mitigation: Ask to see proposed skills and scan results, then explicitly approve installation or creation. <br>
-Risk: Blueprint work may include sensitive business know-how. <br>
-Mitigation: Tell the agent not to save internal files unless you choose where they go. <br>
+## Use Case:
 
+External users, developers, and agent builders use this skill to structure a person's reusable know-how into a scenario definition, SOP, dependency map, Agent Blueprint, and skill sourcing plan.
 
-## Reference(s): <br>
-- [Yuanyuan Blueprint Workshop](https://clawhub.ai/BeAChanger/yuanyuan-blueprint-workshop) <br>
-- [Yuanyuan Positioning](references/01-positioning.md) <br>
-- [Workflow Summary](references/02-workflow.md) <br>
-- [Testing Rubric](references/03-testing.md) <br>
-- [Skill Sourcing Rules](references/04-skill-sourcing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured workshop deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Scenario Definition, Structured SOP, Dependency Map, Agent Blueprint, and Skill Sourcing Plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Downstream skill installation or newly written skills may introduce separate capability or code risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the specific capability gap and review or scan each proposed skill or code artifact separately before installation or use.
+
+Risk: Blueprint or sourcing-plan guidance can be overconfident if the user's scenario, SOP, or dependency assumptions are incomplete.
+
+Mitigation: Use the skill's scenario convergence, SOP depth, boundary honesty, and test-suggestion checks before treating the blueprint as build-ready.
+
+## Reference(s):
+
+- [Yuanyuan Positioning](references/01-positioning.md)
+- [Workflow Summary](references/02-workflow.md)
+- [Testing Rubric](references/03-testing.md)
+- [Skill Sourcing Rules](references/04-skill-sourcing.md)
+- [Agent Blueprint Template](templates/blueprint-template.md)
+- [Skill Sourcing Plan Template](templates/skill-sourcing-plan-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/beachanger/skills/yuanyuan-blueprint-workshop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scenario definitions, SOPs, dependency maps, Agent Blueprints, skill sourcing plans, and follow-up guidance in chat.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

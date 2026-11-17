@@ -1,44 +1,62 @@
-## Description: <br>
-Vegas T Trading provides Vegas Tunnel technical analysis with EMA channels, Fibonacci retracement, and multi-timeframe scoring for A-share and cryptocurrency short-term trading review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vegas T Trading provides Chinese-first A-share and cryptocurrency intraday trading analysis using Vegas Tunnel EMAs, Fibonacci retracement, and multi-period scoring.
 
-## Publisher: <br>
-[georgetao730](https://clawhub.ai/user/georgetao730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[georgetao730](https://clawhub.ai/user/georgetao730)
 
-## Use Case: <br>
-External users and agents use this skill to run local market-data technical analysis for short-term A-share and cryptocurrency review. Its output should be treated as educational analysis, not investment advice or brokerage automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading reports include buy/sell, confidence, and position-size language that could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as educational technical analysis only, review them independently, and do not trade solely from the skill's output. <br>
-Risk: Requested symbols may be sent to market-data providers while the analyzer retrieves prices. <br>
-Mitigation: Avoid querying sensitive watchlists when provider disclosure is a concern and run the tool only in an approved network environment. <br>
-Risk: Local execution can inherit dependency and environment risks from Python packages and shell invocation. <br>
-Mitigation: Run without elevated privileges in a virtual environment with pinned dependencies. <br>
+## Use Case:
 
+External users and developers can use this skill to analyze A-share or cryptocurrency symbols for short-term trading context, including support and resistance levels, multi-period signal alignment, Fibonacci levels, and risk-aware trade planning. Its output should be treated as analytical guidance, not financial advice or an automated trading signal.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/georgetao730/vegas-t-trading) <br>
-- [Skill README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown-style text reports or JSON from a local Python analyzer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query external market-data providers for requested symbols; outputs include trading signals, confidence language, and risk caveats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The skill prints trading recommendations and confidence-style signals that could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational analysis only, require independent review, and do not use them as automated trade-execution signals.
+
+Risk: The analyzer depends on third-party Python market-data packages and live network data.
+
+Mitigation: Install in an isolated Python environment, pin akshare and pandas versions where possible, and validate data freshness before relying on results.
+
+Risk: Cryptocurrency data coverage is effectively Binance-only.
+
+Mitigation: Disclose the exchange limitation and compare against another data source when coverage or pricing differences matter.
+
+Risk: The skill is Chinese-first and may be less usable for readers expecting English-only output.
+
+Mitigation: Confirm that operators can review Chinese-language reports or translate the output before making decisions from it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/georgetao730/skills/vegas-t-trading)
+- [Publisher profile](https://clawhub.ai/user/georgetao730)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, json, shell commands, guidance]
+
+**Output Format:** [Chinese text trading report or JSON, often with shell commands for running the analyzer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a market symbol and optional period, market, exchange, multi-period, volume-check, and output-format parameters.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

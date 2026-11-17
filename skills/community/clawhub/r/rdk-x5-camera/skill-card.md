@@ -1,42 +1,57 @@
-## Description: <br>
-配置并启动 RDK X5 上的 MIPI CSI 摄像头、USB 摄像头或双目深度摄像头（RealSense/ZED/Orbbec），通过 Web 浏览器预览实时画面。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures and starts MIPI CSI, USB, and depth cameras on RDK X5, then guides live browser preview, image capture, and connection troubleshooting.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure MIPI CSI, USB UVC, or depth cameras on RDK X5 hardware, preview live video in a browser, capture images, and troubleshoot common camera connection issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes package-install and sudo ISP tuning steps that can change the device environment. <br>
-Mitigation: Review package installs before accepting them and run the sudo tuning step only when the local tuning tool contents are trusted. <br>
-Risk: Browser preview can expose live camera video over the network. <br>
-Mitigation: Use the preview only on a trusted network and verify the target RDK X5 address before connecting. <br>
-Risk: MIPI camera hardware can be damaged by hot-plugging. <br>
-Mitigation: Power off the RDK X5 before connecting or reseating MIPI camera ribbon cables. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to bring up camera hardware on RDK X5, preview live image streams in a browser, capture images, tune ISP settings, and troubleshoot common camera connection issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/rdk-x5-camera) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is specific to RDK X5 camera setup and ROS 2 camera launch workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill includes root-level package installation and ISP tuning commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and separate build, package installation, and sudo tuning steps before execution; approve privileged commands only in a trusted RDK X5 camera environment.
+
+Risk: The skill includes broad process-kill commands for stopping camera services.
+
+Mitigation: Prefer shutting down specific ROS 2 nodes or known camera, websocket, and codec processes instead of running broad pkill patterns.
+
+Risk: Wildcard package installation can install more packages than intended.
+
+Mitigation: Replace wildcard package names with exact package names where possible before installing dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/skills/rdk-x5-camera)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RDK X5 camera hardware, ROS 2 tooling, and user review before running privileged setup or tuning commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

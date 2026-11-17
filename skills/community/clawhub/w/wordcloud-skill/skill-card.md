@@ -1,42 +1,53 @@
-## Description: <br>
-Generates a word cloud image from provided text, a Markdown file, or a directory of Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a word-cloud PNG image from supplied text, Markdown files, or Markdown files in a directory.
 
-## Publisher: <br>
-[lijiahao885](https://clawhub.ai/user/lijiahao885) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijiahao885](https://clawhub.ai/user/lijiahao885)
 
-## Use Case: <br>
-Developers and content authors use this skill to create PNG word cloud visualizations from text or Markdown sources, with optional dimensions, mask image, font, stop words, and output directory controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local text, Markdown files, directories, stopword lists, font files, and optional PNG masks from paths supplied by the user. <br>
-Mitigation: Point the skill only at the specific files and folders intended for analysis, and verify paths before execution. <br>
-Risk: The skill writes PNG output to a user-selected directory and creates the directory when it does not exist. <br>
-Mitigation: Choose the output directory deliberately and review generated files before relying on them. <br>
-Risk: The skill depends on local Python packages for tokenization, image handling, and word cloud generation. <br>
-Mitigation: Install dependencies from a trusted Python environment before running the script. <br>
+## Use Case:
 
+Agents and users use this skill to turn supplied text or Markdown content into a saved word-cloud PNG for quick visual analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijiahao885/wordcloud-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands; script output is a PNG image file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a timestamped wordcloud_*.png file in the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Dependency-install instructions include names that are built into Python or may not map to the intended package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install reviewed third-party dependencies manually in a virtual environment, such as jieba, numpy, wordcloud, and Pillow; do not blindly install os, argparse, datetime, or PIL from a package registry.
+
+Risk: Broad file or directory inputs can cause the skill to read more local Markdown content than intended, and the output path controls where the PNG is written.
+
+Mitigation: Use narrow target_file or target_dir paths and choose the output directory intentionally before running the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijiahao885/skills/wordcloud-skill)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifact is a PNG image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a text source and max_words; optional width, height, mask, font path, stop words, and output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

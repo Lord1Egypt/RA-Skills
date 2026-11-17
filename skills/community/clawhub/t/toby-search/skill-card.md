@@ -1,42 +1,54 @@
-## Description: <br>
-Neural web search and content extraction via SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Neural web search and content extraction via SkillBoss API Hub. Requires SKILLBOSS_API_KEY. Use for finding documentation, code examples, research papers, or company info.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and agents use this skill to search the web for documentation, code examples, research papers, company information, and to extract text content from submitted URLs through the SkillBoss API Hub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and submitted URLs are sent to a third-party SkillBoss/HeyBossAI service. <br>
-Mitigation: Avoid submitting secrets, private internal URLs, tokens in query strings, confidential research terms, or personal data unless that third-party handling is acceptable. <br>
-Risk: The skill requires a sensitive API credential in SKILLBOSS_API_KEY. <br>
-Mitigation: Store the key in the environment, restrict access to it, and rotate or revoke it if it may have been exposed. <br>
+## Use Case:
 
+Developers, researchers, and other external users can use this skill to search the web, find code or documentation context, and extract text from supplied URLs through the SkillBoss API Hub.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tobeyrebecca/toby-search) <br>
-- [Publisher profile](https://clawhub.ai/user/tobeyrebecca) <br>
-- [SkillBoss API endpoint used by artifact scripts](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Shell command output from API-backed search and content extraction scripts, typically JSON or text returned by the service.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and jq; submitted search queries and URLs are sent to the SkillBoss/HeyBossAI service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries, requested URLs, and the SkillBoss API token are sent to the HeyBossAI/SkillBoss API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private internal URLs, credential-bearing links, or sensitive queries unless third-party processing is acceptable for the deployment environment.
+
+Risk: Search and extracted-content responses may be incomplete, stale, or unsuitable for direct use without review.
+
+Mitigation: Review returned content and source relevance before using it in downstream decisions, code, or documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-search)
+- [HeyBossAI SkillBoss API endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell command guidance with JSON API responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends search queries or requested URLs to a third-party API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

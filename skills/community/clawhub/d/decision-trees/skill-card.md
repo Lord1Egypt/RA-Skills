@@ -1,45 +1,60 @@
-## Description: <br>
-Decision tree analysis for complex decision-making across business, investment, personal, operations, career, and product strategy choices where options have uncertain outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision tree analysis for complex decision-making across all domains.
 
-## Publisher: <br>
-[evgyur](https://clawhub.ai/user/evgyur) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[evgyur](https://clawhub.ai/user/evgyur)
 
-## Use Case: <br>
-External users and developers use this skill to structure multi-option decisions, estimate outcome probabilities and values, calculate expected value, and compare alternatives with qualitative risk context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Decision-tree outputs can be mistaken for professional financial, legal, medical, or business advice. <br>
-Mitigation: Treat the skill as a decision-structuring aid and have qualified humans review high-stakes decisions before acting. <br>
-Risk: The optional Python calculator reads JSON files and can save interactive results to a user-specified file. <br>
-Mitigation: Run it only against intended local files and avoid saving over important paths. <br>
-Risk: Expected-value recommendations depend on subjective probability and value estimates. <br>
-Mitigation: Document assumptions, test sensitivity to changed inputs, and consider risk tolerance and non-quantitative factors before choosing. <br>
+## Use Case:
 
+External users and developers use this skill to structure decisions with multiple options, uncertain outcomes, probability estimates, and expected-value calculations. It is suited for business, investing, personal, operations, and product strategy decisions when the user needs a transparent comparison framework.
 
-## Reference(s): <br>
-- [Decision Trees on ClawHub](https://clawhub.ai/evgyur/decision-trees) <br>
-- [Decision tree](https://en.wikipedia.org/wiki/Decision_tree) <br>
-- [Decision analysis](https://en.wikipedia.org/wiki/Decision_analysis) <br>
-- [Expected value](https://en.wikipedia.org/wiki/Expected_value) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with decision-tree diagrams, expected-value calculations, recommendations, optional JSON examples, and Python command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an optional local Python calculator workflow for interactive input or JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Decision-tree outputs can be mistaken for professional financial, legal, medical, business-critical, or major life advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a framework for comparing assumptions, verify assumptions independently, and consult qualified professionals for high-stakes decisions.
+
+Risk: The calculator can save interactive results to a user-supplied filename.
+
+Mitigation: Choose a new filename in a safe working directory before saving to avoid overwriting existing files.
+
+Risk: Expected-value recommendations can be misleading when probabilities or outcome values are subjective, incomplete, or unstable.
+
+Mitigation: Review probability and value estimates, test sensitivity to changed assumptions, and consider worst cases and risk tolerance before acting.
+
+## Reference(s):
+
+- [Decision Trees Skill on ClawHub](https://clawhub.ai/evgyur/skills/decision-trees)
+- [Decision tree](https://en.wikipedia.org/wiki/Decision_tree)
+- [Decision analysis](https://en.wikipedia.org/wiki/Decision_analysis)
+- [Expected value](https://en.wikipedia.org/wiki/Expected_value)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with decision trees, expected-value calculations, and optional Python or JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include calculated recommendations, qualitative context, and cautions about assumptions and risk tolerance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

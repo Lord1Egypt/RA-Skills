@@ -1,42 +1,60 @@
-## Description: <br>
-Academic paper discovery and evidence-oriented web search using a SerpApi/SearchAPI-compatible key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Paper Search helps agents find, shortlist, review, and verify scholarly papers and related source evidence using SerpApi-backed Google Scholar and web search.
 
-## Publisher: <br>
-[huangnong598](https://clawhub.ai/user/huangnong598) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangnong598](https://clawhub.ai/user/huangnong598)
 
-## Use Case: <br>
-Researchers, students, faculty, and research-support agents use this skill to find scholarly papers, collect DOI and citation clues, verify candidate sources, and build initial literature-review shortlists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to external search services and may expose confidential unpublished research topics or personal data. <br>
-Mitigation: Use a dedicated API key and avoid submitting confidential unpublished research, personal data, or sensitive institutional details in queries. <br>
-Risk: Scholar and web search results can contain incomplete, stale, or misleading citation and source information. <br>
-Mitigation: Verify important papers against destination pages, DOI landing pages, publisher records, or institutional repositories before citing. <br>
+## Use Case:
 
+External researchers, students, faculty, and developers use this skill to build initial literature pools, verify paper metadata, check DOI/source clues, and locate publisher or repository pages before downstream citation work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangnong598/searchapi-scholar-search) <br>
-- [SerpApi search endpoint](https://serpapi.com/search.json) <br>
-- [Crossref Works API](https://api.crossref.org/works) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON search results with titles, authors, venue clues, years, links, snippets, DOI data, citation signals, verification hints, and query suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and a SERPAPI_API_KEY or SEARCHAPI_API_KEY; Scholar searches may optionally enrich DOI data through Crossref.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Credential-boundary risk: this version can send a SEARCHAPI_API_KEY value to SerpApi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a SerpApi key with this version, avoid setting SEARCHAPI_API_KEY unless provider routing is fixed, and rotate any SearchAPI key that may already have been used.
+
+Risk: Search terms and DOI-enrichment titles are sent to external services.
+
+Mitigation: Avoid confidential, unpublished, regulated, or personally sensitive research topics unless disclosure to those services is acceptable.
+
+Risk: Review-paper detection, DOI enrichment, cited-by counts, and search snippets can be incomplete or misleading.
+
+Mitigation: Verify important claims on destination pages and treat the output as leads for review, deduplication, and citation formatting rather than final truth.
+
+## Reference(s):
+
+- [Academic Paper Search ClawHub release](https://clawhub.ai/huangnong598/skills/searchapi-scholar-search)
+- [huangnong598 publisher profile](https://clawhub.ai/user/huangnong598)
+- [SerpApi search endpoint](https://serpapi.com/search.json)
+- [Crossref Works API endpoint](https://api.crossref.org/works)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Plain text summaries or structured JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes titles, authors, venue and year clues, best links, citation counts, DOI or DOI URLs when available, paper-type heuristics, verification hints, and query suggestions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

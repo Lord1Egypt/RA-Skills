@@ -1,43 +1,56 @@
-## Description: <br>
-Generate precise static or interactive geometry diagrams for geometry problems using GeoGebra's Execute text script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates precise static or interactive GeoGebra geometry diagrams using a single Execute({...}) script.
 
-## Publisher: <br>
-[gallexy-liu](https://clawhub.ai/user/gallexy-liu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gallexy-liu](https://clawhub.ai/user/gallexy-liu)
 
-## Use Case: <br>
-Developers and agents use this skill to turn geometry problems into copy-pasteable GeoGebra Execute scripts that preserve constraints such as perpendiculars, rotations, tangencies, ratios, and dynamic points. It also guides browser-based verification in GeoGebra when automation is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Geometry prompts may contain private or sensitive information that is pasted into geogebra.org during browser verification. <br>
-Mitigation: Review generated GeoGebra commands and source problem text before pasting them into GeoGebra, especially for private or sensitive geometry content. <br>
-Risk: Generated geometry commands can fail or render misleading diagrams if syntax, localization, or hidden browser dialogs interfere with execution. <br>
-Mitigation: Verify expected objects, measurements, or canvas output in GeoGebra before relying on the diagram. <br>
+## Use Case:
 
+Developers, educators, and students use this skill to turn geometry problems into accurate GeoGebra constructions that preserve relationships such as perpendiculars, tangencies, rotations, intersections, and constrained movable points.
 
-## Reference(s): <br>
-- [GeoGebra Diagram Generator homepage](https://github.com/gallexy-liu/geogebra-diagram-generator) <br>
-- [GeoGebra Geometry](https://www.geogebra.org/geometry) <br>
-- [GeoGebra Classic](https://www.geogebra.org/classic) <br>
-- [GeoGebra Execute Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with a fenced geogebra Execute command and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser verification guidance and screenshot instructions when browser automation is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated geometry scripts can contain construction or syntax errors that produce an inaccurate diagram.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Execute({...}) command, verify expected objects or measured values in GeoGebra's Algebra panel, and capture a screenshot when evidence is needed.
+
+Risk: Browser-based verification may open GeoGebra, use clipboard paste, and capture screenshots.
+
+Mitigation: Use the skill only when that visible browser workflow is acceptable, and review screenshots before sharing them.
+
+## Reference(s):
+
+- [GeoGebra Execute Examples](references/examples.md)
+- [Project homepage](https://github.com/gallexy-liu/geogebra-diagram-generator)
+- [GeoGebra Geometry](https://www.geogebra.org/geometry)
+- [GeoGebra Classic](https://www.geogebra.org/classic)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Guidance]
+
+**Output Format:** [Markdown with a fenced geogebra Execute({...}) code block and brief verification notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May identify movable points, sliders, guaranteed geometric relationships, and browser verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,57 +1,79 @@
-## Description: <br>
-Surfaces hard-won axioms and pattern-matched wisdom from experienced startup founders and operators across hiring, fundraising, product, sales, finance, co-founders, governance, and crisis management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surfaces hard-won axioms from experienced startup founders and operators across hiring, fundraising, product, sales, finance, governance, strategy, management, and crisis.
 
-## Publisher: <br>
-[chris-graffagnino](https://clawhub.ai/user/chris-graffagnino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chris-graffagnino](https://clawhub.ai/user/chris-graffagnino)
 
-## Use Case: <br>
-External founders, operators, advisors, coaches, mentors, and investors use this skill to surface concise startup axioms or Socratic coaching questions for early-stage and scale-up decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer advice toward an opinionated, venture-backed startup worldview. <br>
-Mitigation: Ask the agent to narrow, balance, or skip this skill when the user needs neutral, sector-specific, or non-venture-backed guidance. <br>
-Risk: Startup mechanics, legal, tax, finance, hiring, and governance guidance may be incomplete or unsuitable for a specific jurisdiction or company. <br>
-Mitigation: Treat outputs as pattern-matching prompts and consult qualified legal, tax, finance, HR, or governance professionals before acting. <br>
+## Use Case:
 
+Founders, operators, investors, advisors, mentors, and executive coaches use this skill to surface relevant startup operating wisdom for live company decisions. It supports direct axiom-based guidance and Socratic coaching across hiring, fundraising, product, sales, finance, governance, strategy, management, crisis, and related founder-stage topics.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Co-founders and Equity](references/cofounders-equity.md) <br>
-- [Crisis and Resilience](references/crisis-resilience.md) <br>
-- [Culture](references/culture.md) <br>
-- [Customers and Market](references/customers-market.md) <br>
-- [Finance and Operations](references/finance-ops.md) <br>
-- [Fundraising](references/fundraising.md) <br>
-- [Governance](references/governance.md) <br>
-- [Hiring](references/hiring.md) <br>
-- [Meta](references/meta.md) <br>
-- [Product](references/product.md) <br>
-- [Sales and GTM](references/sales-gtm.md) <br>
-- [Startup Mechanics](references/startup-mechanics.md) <br>
-- [Time and Energy](references/time-energy.md) <br>
-- [YC Canon](references/yc-canon.md) <br>
-- [YC Essential Startup Advice](https://www.ycombinator.com/blog/ycs-essential-startup-advice) <br>
-- [YC Startup Library](https://www.ycombinator.com/library) <br>
-- [Harvard Innovation Labs](https://www.youtube.com/@harvardilab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with concise axioms, qualifiers, and Socratic questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically surfaces three to seven relevant axioms or one Socratic question at a time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill may surface legal, tax, finance, hiring, shutdown, or other high-stakes startup guidance that could be mistaken for professional counsel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as prompts for discussion and confirm decisions with qualified legal, tax, financial, HR, or other relevant advisors.
+
+Risk: The corpus is opinionated, pattern-matched, and biased toward largely U.S., venture-backed software startup experience.
+
+Mitigation: Check whether the company stage, geography, sector, capital model, and factual context match the pattern before acting on the guidance.
+
+Risk: Running the optional evaluation harness can require third-party SDK dependencies and an API key.
+
+Mitigation: Run optional eval tooling in an isolated environment, pin dependencies, and provide secrets only through the expected environment variable.
+
+## Reference(s):
+
+- [Founder Wisdom ClawHub Page](https://clawhub.ai/chris-graffagnino/skills/founder-wisdom)
+- [Anthropic Skills Announcement](https://www.anthropic.com/news/skills)
+- [Bootstrapping & the Non-Venture Path](references/bootstrapping.md)
+- [Capital & Valuation](references/capital-valuation.md)
+- [Co-founders & Equity](references/cofounders-equity.md)
+- [Crisis & Resilience](references/crisis-resilience.md)
+- [Culture & Early Team DNA](references/culture.md)
+- [Customers & Market](references/customers-market.md)
+- [Exits & M&A](references/exits-ma.md)
+- [Finance & Operations](references/finance-ops.md)
+- [Fundraising](references/fundraising.md)
+- [Boards & Governance](references/governance.md)
+- [Hiring, Firing, Comp, and Equity](references/hiring.md)
+- [Management & Execution](references/management-execution.md)
+- [Meta-Wisdom](references/meta.md)
+- [Product & Strategy](references/product.md)
+- [Sales & Go-to-Market](references/sales-gtm.md)
+- [Socratic Technique](references/socratic-technique.md)
+- [Startup Legal Mechanics](references/startup-mechanics.md)
+- [Strategy & Moats](references/strategy-moats.md)
+- [Time, Energy & Founder Sustainability](references/time-energy.md)
+- [The YC Canon: Product and Product-Market Fit](references/yc-canon-product.md)
+- [The YC Canon](references/yc-canon.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with bolded axioms, concise reasoning, qualifiers, numbered steps for procedures, and Socratic questions when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a curated markdown reference corpus and limits direct-mode responses to the most relevant axioms rather than exhaustive lists.]
+
+## Skill Version(s):
+
+1.9.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

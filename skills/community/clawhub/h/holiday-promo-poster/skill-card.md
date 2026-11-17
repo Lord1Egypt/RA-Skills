@@ -1,45 +1,59 @@
-## Description: <br>
-Turns product images and campaign copy into polished seasonal promo posters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn product images and campaign copy into polished seasonal promo posters.
 
-## Publisher: <br>
-[shuminliu026](https://clawhub.ai/user/shuminliu026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuminliu026](https://clawhub.ai/user/shuminliu026)
 
-## Use Case: <br>
-External users and marketing teams use this skill to turn product images, offers, and campaign copy into holiday-specific promotional posters through a guided agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires a mew.design API key. <br>
-Mitigation: Use a key that can be rotated or revoked, and stop using any key that returns an authentication error. <br>
-Risk: Product images and campaign copy are sent to Mew's API to generate the poster. <br>
-Mitigation: Use public URLs that the user controls and avoid sending confidential product assets unless the user accepts that data sharing. <br>
-Risk: Local-only or attached images may need a temporary third-party upload before they can be used as API assets. <br>
-Mitigation: Ask for explicit consent before uploading images to an external file host, and prefer user-provided public URLs when available. <br>
+## Use Case:
 
+External marketers, designers, and commerce operators use this skill to convert product image URLs, concise campaign copy, and a chosen holiday or shopping event into a finished seasonal promotional poster.
 
-## Reference(s): <br>
-- [Holiday Promo Poster ClawHub release](https://clawhub.ai/shuminliu026/holiday-promo-poster) <br>
-- [Holiday Promo Poster Presets](references/holiday-presets.md) <br>
-- [Mew design account and API key setup](https://mew.design/login) <br>
-- [Mew design generation API endpoint](https://api.mew.design/open/api/design/generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown response with generated image links, plus JSON request bodies and shell commands during execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided mew.design API key and server-accessible product image URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The workflow handles a user-provided mew.design API key, which could be exposed if copied into logs or reused too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege or newly created API key, avoid sharing it outside the active task, and rotate it if it may have appeared in logs.
+
+Risk: Local or attached product images may need to be uploaded to an external file host before they can be used as public image URLs.
+
+Mitigation: Prefer user-provided public URLs and upload local images only after explicit consent to the privacy tradeoff.
+
+Risk: Changing the validator base URL could send key-validation traffic away from the expected mew.design service.
+
+Mitigation: Keep validation pointed at the default mew.design endpoint unless the user intentionally supplies a trusted alternative.
+
+## Reference(s):
+
+- [Holiday Promo Poster Presets](references/holiday-presets.md)
+- [ClawHub Skill Page](https://clawhub.ai/shuminliu026/skills/holiday-promo-poster)
+- [Mew Design Generate API Endpoint](https://api.mew.design/open/api/design/generate)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with image links, a short campaign summary, and helper command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON request bodies for the Mew design API during poster generation.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

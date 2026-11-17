@@ -1,48 +1,56 @@
-## Description: <br>
-Drafts ASAM criteria-aligned individualized treatment plans for substance use disorder clients, including level-of-care rationale, DSM-5-TR diagnosis documentation, SMART goals, interventions, discharge criteria, and clinician review prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts individualized treatment plans for substance use disorder clients with ASAM six-dimension ratings, level-of-care recommendations, DSM-5-TR diagnosis documentation, SMART goal and intervention mapping, and 42 CFR Part 2 boundary reminders for licensed clinician review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External behavioral health clinicians and SUD treatment teams use this skill to draft ASAM-aligned treatment plan starting points that must be reviewed, modified, and signed by a licensed clinician before clinical, billing, or authorization use.
+
+### Deployment Geography for Use:
+
+United States
+
+## Known Risks and Mitigations:
+
+Risk: Draft clinical content could be mistaken for final documentation or used in records, billing, or authorization workflows without review.
+
+Mitigation: Require qualified licensed clinician review, modification as clinically indicated, signature, and approval before any clinical, billing, or authorization use.
+
+Risk: Direct identifiers or SUD treatment details could create confidentiality exposure.
+
+Mitigation: Use initials or case numbers only, avoid direct identifiers, and follow 42 CFR Part 2 consent boundaries before sharing any draft output.
+
+Risk: Diagnoses, ICD codes, ASAM levels, and care recommendations may be incomplete or incorrect if accepted without clinical confirmation.
+
+Mitigation: Confirm all diagnoses, codes, ASAM ratings, level-of-care recommendations, and unresolved assumptions manually with qualified clinical staff.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External addiction counselors, behavioral health clinicians, SUD treatment teams, and documentation specialists use this skill to draft structured treatment plans for licensed clinician review, signature, and local workflow adaptation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Draft clinical content may be incomplete, incorrect, or unsuitable for a specific client. <br>
-Mitigation: Require review, modification, and signature by an appropriately licensed clinician before clinical, billing, authorization, or medical-record use. <br>
-Risk: Patient identifiers or protected SUD treatment information could be entered into an agent conversation. <br>
-Mitigation: Use initials or case numbers only, omit direct identifiers, and follow 42 CFR Part 2 confidentiality requirements before sharing any draft output. <br>
-Risk: The draft may imply a diagnosis, ICD-10-CM code, or ASAM level of care that has not been clinically confirmed. <br>
-Mitigation: Flag assumptions and unresolved items for clinician confirmation, and keep diagnosis and coding entries as draft material until confirmed by the responsible clinician. <br>
-Risk: Medication-assisted treatment details could be misused as prescribing guidance. <br>
-Mitigation: Do not recommend initiation or dosing; refer medication decisions to a licensed prescriber such as a physician or APRN. <br>
-Risk: Crisis, overdose, or imminent-harm disclosures require immediate local response rather than document drafting. <br>
-Mitigation: Pause plan drafting and direct the clinician to agency crisis protocol and local emergency services until safety is confirmed. <br>
+**Output Format:** [Markdown draft treatment plan]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/sud-treatment-plan-drafter) <br>
-- [README](artifact/README.md) <br>
-- [Skill source](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Draft-only clinical documentation support with open questions and a clinician sign-off block.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft treatment plan with structured sections, open questions, and clinician review block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All clinical output is labeled as draft material for licensed clinician review and signature.] <br>
+0.1.0 (source: release evidence and changelog, released 2026-05-29)
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and changelog, released 2026-05-29) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

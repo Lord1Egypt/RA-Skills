@@ -68,6 +68,38 @@ schema/recipe detail to the `references/` files.
 5. Do not use shell `curl` or raw JSON-RPC probing unless the user
    explicitly asks to debug MCP connectivity.
 
+## Confirmation & Safety
+
+This skill can auto-activate on generic job-search or hiring phrasing.
+Auto-activation only ever runs READ/DISCOVERY calls (search, get, list,
+evidence, transcript). It never performs a state-changing action on its
+own.
+
+Before EVERY consequential (state-changing) action, state exactly what
+you are about to do and to which target, and get an explicit user "yes"
+in the same turn. Do not batch or pre-authorize them:
+
+- Candidate: `apply_to_job`, `withdraw_application`, `accept_invitation`,
+  `decline_invitation` (terminal — blocks re-invite), `set_saved_job`.
+- Employer: `create_job`, `update_job`, `publish_job`, `close_job`,
+  `archive_job`, `delete_job`, `invite_candidate`, `cancel_invitation`,
+  `set_review_status`.
+
+One confirmation authorizes one call. A new target or a repeat needs a
+fresh confirmation.
+
+Credential and privacy disclosures — surface these when relevant, never
+bury them:
+
+- Saving a key with `--best-effort` uses the OS credential store when
+  available and MAY also leave a local `0600` file fallback;
+  `--shared-file` always writes that file. Tell the user which path was
+  used.
+- Every evaluated WorkorAI candidate is discoverable by employers on the
+  platform; there is no per-search privacy opt-out. This is WorkorAI
+  product behavior, disclosed here — the skill itself exfiltrates
+  nothing.
+
 ## Saved Key Behavior
 
 - Resolve `scripts/credential-store.mjs` relative to this `SKILL.md`.

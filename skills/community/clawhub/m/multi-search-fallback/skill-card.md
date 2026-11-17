@@ -1,38 +1,53 @@
-## Description: <br>
-Aggregates multiple search sources with fallback routing and cross-source verification to improve search accuracy for research, fact-checking, and information lookup tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates multiple search sources with fallback routing and cross-source verification to improve search reliability and compare findings.
 
-## Publisher: <br>
-[ruogu1992](https://clawhub.ai/user/ruogu1992) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruogu1992](https://clawhub.ai/user/ruogu1992)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to route search requests across multiple providers, compare results, mark agreement or disagreement, and return a confidence-scored summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms may be sent to multiple external search providers. <br>
-Mitigation: Do not use the skill for secrets, private internal topics, regulated data, or queries that should not be shared with external search services. <br>
+## Use Case:
 
+External users and developers use this skill to route search, research, and fact-checking requests across multiple sources, compare results, and surface confidence or disagreement in the response.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ruogu1992/multi-search-fallback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with confidence score, key findings, source comparison table, and grouped raw results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include agreement, disagreement, and supplemental-result labels across search sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Broad search-like prompts may activate the skill and route the query to multiple search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private or sensitive queries unless multi-provider exposure is acceptable, and scope prompts clearly when multi-source search is not desired.
+
+Risk: Search providers may return conflicting or incomplete results.
+
+Mitigation: Review the skill's confidence labels, source comparison, and disagreement notes before relying on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruogu1992/skills/multi-search-fallback)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown search report with confidence level, key findings, source comparison, and grouped raw results when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source-level agreement, disagreement, or supplemental-result labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

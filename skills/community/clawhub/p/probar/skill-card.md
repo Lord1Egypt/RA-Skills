@@ -1,41 +1,57 @@
-## Description: <br>
-Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send WhatsApp messages to other people or search/sync WhatsApp history via the wacli CLI (not for normal user chats).
 
-## Publisher: <br>
-[gabrielsayumi](https://clawhub.ai/user/gabrielsayumi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gabrielsayumi](https://clawhub.ai/user/gabrielsayumi)
 
-## Use Case: <br>
-External users and agents use this skill to operate the wacli CLI for explicit WhatsApp messaging requests and for searching, syncing, or backfilling WhatsApp history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The external wacli CLI can access a user's WhatsApp account and locally synced message history. <br>
-Mitigation: Install only from trusted sources, complete QR login intentionally, and treat the local wacli store as sensitive account data. <br>
-Risk: The agent can send WhatsApp messages or attachments to other people when directed. <br>
-Mitigation: Require an explicit recipient and message or file, clarify ambiguity, and confirm the recipient, content, and attachment before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PROBAR on ClawHub](https://clawhub.ai/gabrielsayumi/probar) <br>
-- [wacli homepage](https://wacli.sh) <br>
-- [wacli Go module install target](https://github.com/steipete/wacli/cmd/wacli) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate wacli for user-directed WhatsApp messaging, chat discovery, history search, sync, and backfill. It is intended for explicit requests to contact third parties or inspect WhatsApp history, not for routine chats with the agent.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external wacli binary and explicit user confirmation before sending WhatsApp messages or attachments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access WhatsApp authentication state and message history through wacli.
+
+Mitigation: Install only after trusting the upstream wacli package, prefer a pinned or reviewed release, and limit use to expected WhatsApp accounts and stores.
+
+Risk: A mistaken recipient, message, or file path could send unintended WhatsApp content.
+
+Mitigation: Require an explicit recipient and message or file, confirm the action before sending, and ask a clarifying question when details are ambiguous.
+
+Risk: History backfill may be incomplete because it requires the phone to be online and returns best-effort results.
+
+Mitigation: Treat backfill results as incomplete unless independently confirmed, and communicate uncertainty when using recovered history.
+
+## Reference(s):
+
+- [PROBAR on ClawHub](https://clawhub.ai/gabrielsayumi/skills/probar)
+- [wacli homepage](https://wacli.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented command suggestions when machine-readable wacli output is useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

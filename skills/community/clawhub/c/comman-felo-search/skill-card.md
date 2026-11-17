@@ -1,42 +1,59 @@
-## Description: <br>
-Felo Search helps agents answer questions requiring current or live information by sending the user's query to the Felo AI web-search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Felo AI real-time web search for questions requiring current/live information.
 
-## Publisher: <br>
-[comman-kaide](https://clawhub.ai/user/comman-kaide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[comman-kaide](https://clawhub.ai/user/comman-kaide)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current web information through Felo for news, real-time data, recommendations, location queries, and other questions likely to be outdated. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers can send ordinary user questions to Felo more often than users may expect. <br>
-Mitigation: Use the skill only when current or external web information is needed, and confirm before sharing sensitive or unrelated queries. <br>
-Risk: Queries may include confidential, personal, proprietary, credential-related, or local-project content. <br>
-Mitigation: Avoid using the skill for sensitive content unless the user intentionally wants that text sent to Felo. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Felo Search ClawHub Listing](https://clawhub.ai/comman-kaide/comman-felo-search) <br>
-- [Felo Open Platform Documentation](https://openapi.felo.ai) <br>
-- [Felo API Reference](https://openapi.felo.ai/docs) <br>
-- [Felo API Key Setup](https://felo.ai) <br>
+## Use Case:
 
+External users and developers use this skill to route current-information questions to Felo AI search, including news, weather, product comparisons, travel, local recommendations, and other queries that may require live web data.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown answer with query analysis, plus shell commands for setup and execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FELO_API_KEY and sends the user's query to the Felo API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and prompt content may be sent to Felo.
+
+Mitigation: Avoid using the skill for secrets, private project details, account data, or sensitive business content.
+
+Risk: Broad trigger guidance may route unrelated requests to live search.
+
+Mitigation: Narrow invocation to explicit search requests or cases where the user clearly needs current information.
+
+Risk: Temporary-file shell instructions may mishandle query serialization or expose prompt content.
+
+Mitigation: Use safe JSON serialization with a unique temporary file, or avoid temporary files where the agent runtime supports direct request bodies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/comman-kaide/skills/comman-felo-search)
+- [Felo Open Platform Documentation](https://openapi.felo.ai)
+- [Felo API Reference](https://openapi.felo.ai/docs)
+- [Felo API endpoint](https://openapi.felo.ai/v2/chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown answer with query analysis and inline shell/API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FELO_API_KEY and sends the user's search query to Felo.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

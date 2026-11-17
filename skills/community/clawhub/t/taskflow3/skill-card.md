@@ -1,40 +1,57 @@
-## Description: <br>
-TaskFlow 3.0 helps an agent read PROJECT.yaml project definitions, schedule enabled projects, execute ordered workflow steps, and record execution history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TaskFlow 3.0 helps agents run project-based workflows from PROJECT.yaml files, check scheduling constraints, and record execution status.
 
-## Publisher: <br>
-[manwjh](https://clawhub.ai/user/manwjh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manwjh](https://clawhub.ai/user/manwjh)
 
-## Use Case: <br>
-Developers and operators use TaskFlow to coordinate OpenClaw project workflows, check execution constraints, run scheduled project tasks, and review or edit project configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TaskFlow can read local OpenClaw workspace and intel files, persist logs or history, and edit project configuration. <br>
-Mitigation: Review each PROJECT.yaml before execution, keep secrets out of referenced workspace folders, and restrict projects to known directories. <br>
-Risk: Configured workflows may publish externally without clear approval controls. <br>
-Mitigation: Require manual approval before browser-based publication or other external delivery steps. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent inspect TaskFlow project configurations, choose eligible projects, execute ordered workflow steps, and update project and global execution records.
 
-## Reference(s): <br>
-- [TaskFlow 3.0 ClawHub release](https://clawhub.ai/manwjh/taskflow3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with bash, YAML, and JSON examples; CLI scripts emit plain text and may write project configuration or history files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and PyYAML; operates on OpenClaw workspace project files and execution history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: evidence.release.version, package.json) <br>
+Risk: The skill can guide an agent to read local project memory or intelligence files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a contained workspace and review PROJECT.yaml paths before granting access.
+
+Risk: Configured workflows may publish or republish derived content externally without clear approval controls.
+
+Mitigation: Require a human preview and approval before browser-based or platform publication steps.
+
+Risk: Project configuration can drive file paths and workflow actions.
+
+Mitigation: Inspect PROJECT.yaml for unexpected targets, source paths, and workflow steps before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/manwjh/skills/taskflow3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON/YAML configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct file reads and writes in a local TaskFlow workspace and should be reviewed before publication workflows run.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

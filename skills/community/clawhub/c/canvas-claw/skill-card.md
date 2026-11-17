@@ -1,43 +1,60 @@
-## Description: <br>
-Generate images and videos through AI-video-agent. Supports image create, image remix, video create, and video animate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos through AI-video-agent. Supports image create, image remix, video create, and video animate.
 
-## Publisher: <br>
-[toolok5](https://clawhub.ai/user/toolok5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toolok5](https://clawhub.ai/user/toolok5)
 
-## Use Case: <br>
-Developers and external users use Canvas Claw to submit image and video generation jobs to a configured AI-video-agent service, including image creation, image remixing, text-to-video, and image-to-video flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, local media, passwords, and generated tokens may be sensitive when sent to or received from the configured remote service. <br>
-Mitigation: Use only trusted AI-video-agent servers, prefer HTTPS endpoints, avoid exposing passwords or generated tokens in shell history or logs, and submit confidential prompts or media only to services approved for that data. <br>
-Risk: Generated media and metadata are written to local output directories and may include task IDs, result URLs, prompts, provider names, and model IDs. <br>
-Mitigation: Review generated files and metadata before sharing, committing, or publishing output directories. <br>
+## Use Case:
 
+Developers and agents use Canvas Claw to submit image and video generation tasks to a configured AI-video-agent service, including text-to-image, image remix, text-to-video, and image-to-video workflows.
 
-## Reference(s): <br>
-- [Canvas Claw ClawHub Page](https://clawhub.ai/toolok5/canvas-claw) <br>
-- [Canvas Claw Installation Guide](artifact/INSTALL.md) <br>
-- [Canvas Claw Skill Definition](artifact/SKILL.md) <br>
-- [Canvas Claw Design Notes](artifact/docs/plans/2026-04-07-canvas-claw-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Files, JSON] <br>
-**Output Format:** [Markdown instructions and Python CLI output, with generated media files and metadata.json result bundles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured AI-video-agent endpoint, token, and site ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and pyproject.toml) <br>
+Risk: The skill sends prompts, media, and authentication tokens to a configured AI-video-agent endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS endpoints or a strictly local localhost service approved for the data being processed.
+
+Risk: Login flows can expose passwords or returned tokens when secrets are entered on the command line or printed in terminal output.
+
+Mitigation: Avoid real passwords in command-line arguments, protect printed tokens, and prefer pre-provisioned environment variables for sensitive credentials.
+
+Risk: Sensitive prompts or media may be submitted to a remote service that is not approved for that content.
+
+Mitigation: Review the configured endpoint and data handling policy before submitting confidential prompts, images, or videos.
+
+## Reference(s):
+
+- [Canvas Claw on ClawHub](https://clawhub.ai/toolok5/skills/canvas-claw)
+- [Installation Guide](INSTALL.md)
+- [Canvas Claw Design](docs/plans/2026-04-07-canvas-claw-design.md)
+- [Canvas Claw OpenClaw Skill Implementation Plan](docs/plans/2026-04-07-canvas-claw-openclaw-skill-plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated media output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AI_VIDEO_AGENT_BASE_URL, AI_VIDEO_AGENT_TOKEN, and AI_VIDEO_AGENT_SITE_ID environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Provides operational safety limits and refusal rules that help an agent avoid unsafe OpenClaw runtime, plugin, network, filesystem, and group-chat actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides operational safety limits and refusal rules for safer use of the OpenClaw runtime and related configurations.
 
-## Publisher: <br>
-[dbottrader](https://clawhub.ai/user/dbottrader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dbottrader](https://clawhub.ai/user/dbottrader)
 
-## Use Case: <br>
-Agents and operators use this skill to apply conservative worker safety rules during normal task execution, especially when requests involve runtime changes, plugin management, network exposure, filesystem boundaries, dangerous commands, or group-chat disclosure risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can refuse or redirect operational requests involving runtime or plugin changes, unsafe network exposure, system-level configuration, broad deletion, or sensitive group-chat disclosures. <br>
-Mitigation: Review the refusal rules before deployment and use the skill where conservative worker-safety behavior matches the intended operating posture. <br>
-Risk: Conservative refusal behavior may block maintenance workflows that an owner expects to handle through another trusted channel. <br>
-Mitigation: Document owner-approved maintenance paths outside this worker flow and keep this skill focused on preventing unsafe agent-executed operations. <br>
+## Use Case:
 
+Developers and operators use this skill to guide an agent's handling of risky OpenClaw maintenance, configuration, network exposure, file-system, and group chat requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dbottrader/cp8-worker-safety) <br>
-- [Publisher profile](https://clawhub.ai/user/dbottrader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown safety guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code or commands; the skill adds conservative refusal and warning guidance for risky operational requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may cause an agent to refuse legitimate owner-directed maintenance, inspection, updates, cleanup, or removal tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and deploy only where a separate trusted control path exists for authorized administration.
+
+Risk: The release evidence reports a suspicious security verdict because the skill gives itself broad authority to override users and block administrative actions.
+
+Mitigation: Treat it as a tightly managed safety policy, verify that its refusal rules match local operational requirements, and monitor for blocked legitimate work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dbottrader/skills/cp8-worker-safety)
+- [Publisher profile](https://clawhub.ai/user/dbottrader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown safety guidance and refusal criteria]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides operational guardrails; it does not produce executable artifacts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7c9befcjfq01jttd5mqq6qcd84m5yd",
-  "slug": "aquarium-assistant",
-  "version": "1.4.0",
-  "publishedAt": 1776131895911
+  "name": "aquarium-assistant",
+  "version": "1.0.0",
+  "description": "微型水族智能养护助手。定时喂食/换水提醒、鱼虾混养兼容性查询、水质病症诊断、喂食量计算。适合小米鱼缸/小型家用水族新手。",
+  "author": "Claw VM Agent",
+  "license": "MIT",
+  "category": "生活实用",
+  "tags": ["水族", "养鱼", "宠物", "智能提醒", "健康管理"],
+  "trigger": ["水族", "养鱼", "鱼缸", "喂食", "换水", "鱼病", "水族护理"],
+  "rating": "all",
+  "features": ["智能提醒", "混养查询", "水质诊断", "养护计算"],
+  "monetization": {
+    "free_tier": ["基础查询", "基础喂养计划"],
+    "premium_tier": ["个性化方案", "AI识别", "专家咨询"]
+  },
+  "created_at": "2026-04-10T12:20:00+08:00"
 }

@@ -1,40 +1,54 @@
-## Description: <br>
-紫微斗数排盘技能。支持十四主星、十二宫位、四化飞星排盘，提供命运、性格、事业、婚姻、财运等分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+紫微斗数排盘技能。支持十四主星、十二宫位、四化飞星排盘，提供命运、性格、事业、婚姻、财运等分析。
 
-## Publisher: <br>
-[dglijin-oss](https://clawhub.ai/user/dglijin-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dglijin-oss](https://clawhub.ai/user/dglijin-oss)
 
-## Use Case: <br>
-External users can use this skill to generate Zi Wei Dou Shu astrology charts and receive Chinese-language interpretations for personality, career, marriage, wealth, and annual cycles based on birth details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The implementation is described by security evidence as broken or incomplete and may not run as documented. <br>
-Mitigation: Review and test the skill in a controlled environment before relying on generated charts or shell command examples. <br>
-Risk: Generated fortune, finance, career, or relationship readings may be mistaken for factual guidance. <br>
-Mitigation: Treat astrology interpretations as entertainment or reflective content and do not use them as the sole basis for material decisions. <br>
+## Use Case:
 
+External users and developers use this skill to generate simplified Zi Wei Dou Shu charting outputs and Chinese-language interpretive guidance for personality, career, marriage, wealth, and yearly-cycle themes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dglijin-oss/ziwei-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Chinese astrology chart summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference birth date, hour, and optional gender; astrology outputs should not be treated as factual financial, career, or relationship advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The release may be incomplete or fail at runtime because the documented Python entry point is not included and the JavaScript artifact has syntax problems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the install package, entry points, and JavaScript syntax in a test environment before relying on the skill.
+
+Risk: The skill produces astrology-based interpretations about life areas such as personality, career, marriage, and wealth.
+
+Mitigation: Use the output as cultural or entertainment-oriented guidance and avoid treating it as professional, financial, medical, legal, or relationship advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dglijin-oss/skills/ziwei-skill)
+- [Publisher profile](https://clawhub.ai/user/dglijin-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands and JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language astrology charting and interpretive content]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

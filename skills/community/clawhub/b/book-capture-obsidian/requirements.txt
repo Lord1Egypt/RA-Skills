@@ -1,5 +1,5 @@
-# Runtime dependencies for book-capture-obsidian
-requests>=2.31.0,<3
-Pillow>=10.0.0,<12
-pyzbar>=0.1.9,<0.2
-pytesseract>=0.3.10,<0.4
+# Runtime dependencies for book-capture-obsidian (pinned; checked with pip-audit)
+requests==2.34.2
+Pillow==13.0.0
+pyzbar==0.1.9
+pytesseract==0.3.13

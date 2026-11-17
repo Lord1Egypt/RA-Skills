@@ -1,17 +1,17 @@
-# Canvas 与 Three.js
+# Canvas and Three.js
 
-Frontend Craft skill for Canvas 与 Three.js.
+Build or review interactive Canvas, WebGL, Three.js, and React Three Fiber visuals.
 
 ## Skill
 
 - ID: `fec-canvas-threejs`
 - Category: `implementation-capability`
-- Version: `2.5.0`
+- Version: `2.9.0`
 - Source: `skills/fec-canvas-threejs/SKILL.md`
 
 ## Description
 
-Use when building or reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, GLSL shaders, ShaderToy-to-WebGL adaptation, 2D/3D visualization, game rendering, animation loops, GPU resource cleanup, or rendering performance. Do not use for standard DOM UI, charts already covered by a chart library, or non-graphical performance work; Chinese triggers include Canvas, Three.js, WebGL, GLSL, Shader, 3D, 数据可视化, 游戏.
+Use when building or reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, GLSL shaders, ShaderToy-to-WebGL adaptation, 2D/3D visualization, game rendering, animation loops, GPU resource cleanup, or rendering performance. Do not use for standard DOM UI, charts already covered by a chart library, or non-graphical performance work; Chinese triggers include Canvas, Three.js, WebGL, GLSL, Shader, 3D, data visualization, games.
 
 ## Usage
 

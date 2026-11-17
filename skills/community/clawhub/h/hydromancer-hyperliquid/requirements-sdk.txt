@@ -1,0 +1,3 @@
+# Optional: Hydromancer Python SDK (needs Python 3.11+). It isn't published on
+# PyPI, so it is pinned to the commit this skill was tested with.
+hydromancer-sdk @ git+https://github.com/hydromancerxyz/hydromancer-sdk@4371df886245419c92e45a7f8038c0ec85d0789c

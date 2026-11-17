@@ -1,44 +1,60 @@
-## Description: <br>
-This skill automates the creation of Meta (Facebook/Instagram) ads using the Marketing API, including campaign setup, audience targeting, media upload, and ad creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill automates the creation of Meta (Facebook/Instagram) ads using the Marketing API. It handles campaign setup, audience targeting, media upload, and ad creation in a streamlined workflow. Use this skill when users want to create Meta ads programmatically, manage ad campaigns via API, or automate their advertising workflow.
 
-## Publisher: <br>
-[Zine1993](https://clawhub.ai/user/Zine1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zine1993](https://clawhub.ai/user/zine1993)
 
-## Use Case: <br>
-Developers, marketers, and advertising operators use this skill to create Meta ad campaigns, ad sets, creatives, and ads programmatically through the Marketing API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store Meta access tokens and advertising account details in a local configuration file. <br>
-Mitigation: Use the least-privileged token available, protect the local credential file, rotate credentials when finished, and delete credentials that are no longer needed. <br>
-Risk: The skill can create paid advertising campaigns, ad sets, creatives, and ads through the Meta Marketing API. <br>
-Mitigation: Keep created ads paused until intentionally reviewed and activated, and verify budgets, targeting, creative content, and destination links before running scripts. <br>
+## Use Case:
 
+Developers, operators, and advertising teams use this skill to create Meta ads programmatically, including campaign setup, ad set targeting, media upload, creative construction, and ad creation through the Meta Marketing API.
 
-## Reference(s): <br>
-- [Meta Marketing API documentation](https://developers.facebook.com/docs/marketing-api/) <br>
-- [Meta Marketing API limits](https://developers.facebook.com/docs/marketing-api/overview/limits) <br>
-- [Meta audience targeting reference](https://developers.facebook.com/docs/marketing-api/audiences/reference/targeting) <br>
-- [Meta Marketing API reference](references/meta_api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Zine1993/metaad) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python examples, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration files and paid Meta advertising objects when executed with valid credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Meta access token with permissions capable of managing ads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token and install only when that access level is acceptable.
+
+Risk: The skill stores Meta ad credentials in a plaintext local configuration file.
+
+Mitigation: Avoid entering credentials while screen sharing or recording, do not provide the optional App Secret unless needed, and delete or protect ~/.workbuddy/meta_ads_config.json after use.
+
+Risk: The skill can create campaigns, ad sets, creatives, and ads in a Meta ad account.
+
+Mitigation: Keep generated ads paused by default and review all campaigns in Meta Ads Manager before activation.
+
+## Reference(s):
+
+- [Meta Marketing API Reference](artifact/references/meta_api.md)
+- [Meta Marketing API Documentation](https://developers.facebook.com/docs/marketing-api/)
+- [Meta Marketing API Limits](https://developers.facebook.com/docs/marketing-api/overview/limits)
+- [Meta Audience Targeting Reference](https://developers.facebook.com/docs/marketing-api/audiences/reference/targeting)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to create or invoke scripts that configure Meta API credentials, upload media, and create paused Meta ad campaigns for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

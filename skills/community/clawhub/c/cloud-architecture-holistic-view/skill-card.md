@@ -1,52 +1,65 @@
-## Description: <br>
-Holistic view of your entire cloud architecture, including architecture diagrams, directories, and risk assessments across a Tencent Cloud account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a holistic view of cloud architecture diagrams, directories, and risk assessments across a Tencent Cloud account.
 
-## Publisher: <br>
-[stinggit](https://clawhub.ai/user/stinggit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stinggit](https://clawhub.ai/user/stinggit)
 
-## Use Case: <br>
-Cloud engineers and operators use this skill to inspect Tencent Cloud Smart Advisor architecture diagrams, directories, Well-Architected evaluation results, and risk assessment items from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can assist with Tencent Cloud account access, IAM role creation or deletion, and Smart Advisor authorization. <br>
-Mitigation: Install only for this administrative use case, use temporary or least-privilege credentials, and review every role creation, role deletion, or authorization prompt before execution. <br>
-Risk: Long-lived Tencent Cloud AK/SK credentials may be placed in shell startup files during setup. <br>
-Mitigation: Prefer temporary credentials where possible, avoid storing long-lived secrets in persistent shell configuration, and rotate or revoke credentials after use. <br>
-Risk: Generated Tencent Cloud console login links can grant session access. <br>
-Mitigation: Treat login links as sensitive session material and avoid sharing, logging, caching, or reusing them. <br>
-Risk: Server security evidence reports insecure TLS fallback behavior. <br>
-Mitigation: Run the skill only in environments with a valid CA bundle or certifi available, and review network behavior before using it with sensitive accounts. <br>
-Risk: The artifact includes unrelated publishing-evasion guidance. <br>
-Mitigation: Ignore publishing workflow material when evaluating runtime use, and review installed files before deployment. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inspect Tencent Cloud Smart Advisor architecture diagrams, directory trees, evaluation results, and risk assessment items across an account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/stinggit/cloud-architecture-holistic-view) <br>
-- [Tencent Cloud Smart Advisor API Overview](advisor-2020-07-21/API 概览.md) <br>
-- [DescribeArchList API Reference](references/api/DescribeArchList.md) <br>
-- [DescribeArch API Reference](references/api/DescribeArch.md) <br>
-- [DescribeLastEvaluation API Reference](references/api/DescribeLastEvaluation.md) <br>
-- [DescribeStrategies API Reference](references/api/DescribeStrategies.md) <br>
-- [CreateAdvisorAuthorization API Reference](references/api/CreateAdvisorAuthorization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text guidance with JSON API results and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Tencent Cloud console links, account-scoped architecture data, and role setup or cleanup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and _meta.json) <br>
+Risk: The skill asks for Tencent Cloud AK/SK credentials and can generate console login links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Tencent Cloud sub-account, avoid storing long-lived credentials in shell startup files, and treat generated login links as sensitive credentials.
+
+Risk: The skill includes IAM and account-impacting operations, including role creation, role deletion, and Smart Advisor authorization.
+
+Mitigation: Run role creation, cleanup, and authorization only after explicit user approval and after reviewing the CAM impact.
+
+Risk: The server security verdict is suspicious because the IAM and login-link capabilities are broad for a viewing-oriented tool.
+
+Mitigation: Review the skill carefully before installation and constrain execution to the documented Tencent Cloud domains and required environment variables.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stinggit/skills/cloud-architecture-holistic-view)
+- [Tencent Cloud](https://cloud.tencent.com)
+- [Tencent Cloud API Key Management](https://console.cloud.tencent.com/cam/capi)
+- [Tencent Cloud CAM Role Console](https://console.cloud.tencent.com/cam/role)
+- [DescribeArch API Reference](references/api/DescribeArch.md)
+- [DescribeArchList API Reference](references/api/DescribeArchList.md)
+- [DescribeLastEvaluation API Reference](references/api/DescribeLastEvaluation.md)
+- [DescribeStrategies API Reference](references/api/DescribeStrategies.md)
+- [CreateAdvisorAuthorization API Reference](references/api/CreateAdvisorAuthorization.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and JSON API summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce sensitive Tencent Cloud console login links that should not be logged, cached, or shared.]
+
+## Skill Version(s):
+
+1.4.0 (source: release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

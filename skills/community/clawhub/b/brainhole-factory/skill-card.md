@@ -1,38 +1,53 @@
-## Description: <br>
-Brainhole Factory turns what-if, brainhole, and alternate-reality prompts into fictional parallel-universe content with a headline, absurd consequences, life advice, image prompts, and meme lines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brainhole Factory generates humorous fictional alternate-universe responses for prompts containing phrases such as "what if", "假如", "如果", "脑洞", or "平行宇宙".
 
-## Publisher: <br>
-[ideasflowai](https://clawhub.ai/user/ideasflowai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ideasflowai](https://clawhub.ai/user/ideasflowai)
 
-## Use Case: <br>
-External users and creative teams use this skill for entertainment-oriented alternate-universe storytelling from Chinese or English what-if prompts. It produces a structured fictional response and supports follow-up requests that continue the universe or change the style. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases can route ordinary factual, safety-sensitive, or practical what-if questions into fictional parallel-universe output. <br>
-Mitigation: Use explicit wording or disable the skill when factual, safety-sensitive, or practical analysis is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ideasflowai/brainhole-factory) <br>
-- [Publisher profile](https://clawhub.ai/user/ideasflowai) <br>
+## Use Case:
 
+External users and agent operators use this skill to turn creative what-if prompts into fictional news-style stories, absurd consequences, practical advice, image-generation prompts, and meme captions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured creative writing with headings, bullet lists, and English image prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces five content sections: a fictional news headline, three absurd consequences, life advice, three image-generation prompts, and five meme lines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fake-news-style sections could be mistaken for factual reporting.
+
+Mitigation: Present outputs as fictional alternate-universe entertainment and avoid treating generated headlines, sources, dates, or claims as facts.
+
+Risk: Broad trigger phrases such as "if" or "what if" may activate the skill on prompts where the user did not intend a fictional response.
+
+Mitigation: Confirm the user's intent or ask a brief clarification when the prompt is ambiguous.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ideasflowai/skills/brainhole-factory)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ideasflowai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with fictional story sections, image prompts, and meme captions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces five requested content sections and may include a fictional probability note.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7dehpw50yse5vrk4be5s738x8417nc",
-  "slug": "openclaw-3d-blender-mcp",
+  "name": "openclaw-3d-blender-mcp",
+  "description": "Instalación completa de Blender MCP para OpenClaw. Incluye setup local/remoto, ngrok, verificación, troubleshooting y estudio de 3 recursos obligatorios.",
   "version": "1.0.0",
-  "publishedAt": 1775061200236
+  "tags": ["blender", "3d", "mcp", "setup", "animation"]
 }

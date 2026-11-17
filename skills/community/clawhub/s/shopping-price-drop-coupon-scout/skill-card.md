@@ -1,48 +1,62 @@
-## Description: <br>
-Track product prices and surface official coupons or discounts without purchasing or account access. Use when a user wants price alerts, deal summaries, or coupon lists for specific items or retailers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track product prices and surface official coupons or discounts without purchasing or account access.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-External users and agents use this skill to create read-only product price watchlists, identify official coupons or promo codes, and draft alert messages for selected products or retailers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prices, coupon eligibility, or expiration dates may be stale or vary by region. <br>
-Mitigation: Use official retailer sources or user-provided exports, ask for region when needed, and include source, timestamp, eligibility, and expiration details in summaries. <br>
-Risk: Users may provide sensitive retailer credentials, cookies, or payment details. <br>
-Mitigation: Do not request or store login credentials, cookies, or payment data; use public promo pages or explicitly provided scoped API keys only. <br>
-Risk: Automated collection can violate retailer terms or rate limits. <br>
-Mitigation: Use official APIs, public promo pages, trusted alert webhooks, or user-provided data, and avoid prohibited scraping or checkout endpoints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/codedao12/shopping-price-drop-coupon-scout) <br>
-- [Overview](references/overview.md) <br>
-- [Auth](references/auth.md) <br>
-- [Endpoints](references/endpoints.md) <br>
-- [Safety](references/safety.md) <br>
-- [UX](references/ux.md) <br>
-- [Webhooks](references/webhooks.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+## Use Case:
 
+External users use this skill to track prices for selected products, compare official coupons or promos, and draft alert messages without checkout, account login, or payment handling.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown watchlists, coupon lists, price summaries, and draft alert messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only suggestions; no purchases, checkout actions, payment handling, login, or cookie storage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Retailer terms or automated access limits may restrict price and coupon collection.
+
+Mitigation: Use official retailer APIs, public promo pages, or user-provided exports, and avoid scraping or automation that violates retailer terms.
+
+Risk: Shopping workflows can drift toward checkout, account access, or payment handling.
+
+Mitigation: Keep the skill read-only: do not request login credentials, store cookies, handle payment details, add items to carts, or call purchase and checkout endpoints.
+
+Risk: Prices and coupons can vary by region, eligibility, and expiration date.
+
+Mitigation: Ask for region, currency, target price, retailer preferences, cadence, and timezone, then include source, eligibility, and expiration details in outputs.
+
+## Reference(s):
+
+- [Overview](references/overview.md)
+- [Auth](references/auth.md)
+- [Endpoints](references/endpoints.md)
+- [Webhooks](references/webhooks.md)
+- [UX](references/ux.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Safety](references/safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown watchlists, coupon summaries, and alert message drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only suggestions; no purchases, checkout actions, payment details, account login, or cookie storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

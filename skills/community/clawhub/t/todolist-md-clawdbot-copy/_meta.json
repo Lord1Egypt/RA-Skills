@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7eef4bcakev7qgqhdnyj1wqs814dhe",
-  "slug": "todolist-md-clawdbot-copy",
-  "version": "1.0.0",
-  "publishedAt": 1771095587133
+  "name": "todolist-md-clawdbot",
+  "description": "Operate on todolist-md Markdown todo files (Drive).",
+  "homepage": "https://github.com/NitsujY/todolist-md",
+  "openclaw": {
+    "emoji": "📝"
+  }
 }

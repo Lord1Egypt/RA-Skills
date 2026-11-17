@@ -1,39 +1,55 @@
-## Description: <br>
-Guides IndexNow protocol integration for faster search engine indexing, primarily for Bing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides IndexNow protocol integration so agents can help notify search engines of new or updated URLs and support faster indexing.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers and SEO practitioners use this skill to plan IndexNow setup, domain verification, single or batch URL submission, and CI/CD integration for faster indexing of new or updated pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect or unintended URL submissions could notify search engines about the wrong domain or URL set. <br>
-Mitigation: Use a dedicated IndexNow key, confirm the production domain, and review single or batch URL lists before submitting them to search engines. <br>
+## Use Case:
 
+Developers, SEO engineers, and site operators use this skill to set up IndexNow verification, URL submission flows, and deployment-time indexing notifications for sites with newly published or updated pages.
 
-## Reference(s): <br>
-- [Bing Webmaster Tools IndexNow](https://www.bing.com/webmasters/indexnow) <br>
-- [IndexNow Getting Started](https://www.bing.com/indexnow/getstarted) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, URL submission flow, and CI/CD or manual integration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Generated verification files, configuration, or CI/CD scripts could be incorrect for the target domain or deployment flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated verification file, IndexNow configuration, and CI/CD script before running submissions to search engines.
+
+Risk: The skill may activate for Bing indexing or URL notification discussions outside a complete site setup context.
+
+Mitigation: Confirm the site URL, URL source, and deployment method before applying setup or submission guidance.
+
+## Reference(s):
+
+- [IndexNow Get Started](https://www.bing.com/indexnow/getstarted)
+- [Bing Webmaster Tools IndexNow](https://www.bing.com/webmasters/indexnow)
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/indexnow)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup steps, verification-file guidance, single or batch submission flow, CI/CD integration notes, and references.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

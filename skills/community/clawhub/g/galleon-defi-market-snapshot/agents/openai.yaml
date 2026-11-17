@@ -1,0 +1,4 @@
+interface:
+  display_name: Market evidence
+  short_description: Collect sourced prices and validated daily history
+  default_prompt: Use $galleon-defi-market-snapshot to collect a bounded market brief with exact IDs, source hashes, timestamps and explicit gaps.

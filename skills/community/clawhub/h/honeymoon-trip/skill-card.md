@@ -1,46 +1,61 @@
-## Description: <br>
-Plan a dreamy honeymoon with luxury hotels, romantic activities, couples' spa, sunset dinners, and booking-linked travel options powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan a dreamy honeymoon -- luxury hotels, romantic activities, couples' spa, sunset dinners, and unforgettable experiences for newlyweds, with flight, hotel, train, attraction, itinerary, visa, insurance, car-rental, and related travel support powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and agent operators use this skill to plan honeymoon travel by collecting trip parameters, running FlyAI travel lookups, and returning booking-linked flight, hotel, and activity recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or require a global third-party travel CLI before producing results. <br>
-Mitigation: Install only after reviewing and trusting the FlyAI npm CLI, and have the user approve any global installation step. <br>
-Risk: Travel requests may include personal or payment-adjacent trip details and can be sent to third-party travel lookups. <br>
-Mitigation: Ask only for the trip details needed to complete the lookup and avoid collecting unnecessary personal or payment information. <br>
-Risk: The skill may keep raw trip requests in a local .flyai-execution-log.json file. <br>
-Mitigation: Tell users who do not want local trip logs to delete or disable .flyai-execution-log.json after use. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to assemble honeymoon trip options from FlyAI/Fliggy real-time travel results. It is intended for booking-link-centered recommendations covering flights, hotels, attractions, and romantic itinerary components.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/honeymoon-trip) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Fallback guidance](references/fallbacks.md) <br>
-- [Execution log runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands for CLI setup or retries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FlyAI CLI output for travel data and should include booking links for each recommended result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on broad automatic execution of a FlyAI CLI and may install an unpinned global npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation or execution, prefer a pinned local CLI install, and review commands before running them.
+
+Risk: Raw travel queries may be written to a persistent execution log.
+
+Mitigation: Disable persistent logging where possible, or redact user travel details before any log is stored or shared.
+
+Risk: Travel recommendations can be misleading if they are not backed by current FlyAI/Fliggy results and booking links.
+
+Mitigation: Accept only outputs with valid booking detailUrl links and rerun the CLI when links or required result fields are missing.
+
+## Reference(s):
+
+- [Honeymoon Trip Skill Page](https://clawhub.ai/xiejinsong/skills/honeymoon-trip)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel recommendations with comparison tables, booking links, and inline shell commands for retries or CLI setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal results require FlyAI CLI data and booking detailUrl links; failed or partial searches may produce concise retry guidance instead of recommendations.]
+
+## Skill Version(s):
+
+3.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

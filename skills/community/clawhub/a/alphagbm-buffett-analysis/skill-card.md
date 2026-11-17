@@ -1,43 +1,54 @@
-## Description: <br>
-AlphaGBM Buffett Analysis produces a Warren Buffett-style scorecard for a US stock ticker, scoring business simplicity, moat, management, and valuation before returning a weighted HOLDABLE, WATCHABLE, or AVOID verdict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alphagbm Buffett Analysis produces a Warren Buffett-style scorecard for a US stock ticker, scoring business simplicity, moat, management, and valuation before returning an overall HOLDABLE, WATCHABLE, or AVOID verdict.
 
-## Publisher: <br>
-[clementgu](https://clawhub.ai/user/clementgu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clementgu](https://clawhub.ai/user/clementgu)
 
-## Use Case: <br>
-External users and research agents use this skill to request a mechanical Buffett-style assessment of a US stock ticker, including lens-level scores, a weighted verdict, and concise reasoning for long-term hold research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the scorecard for personalized investment advice. <br>
-Mitigation: Present outputs as mechanical financial research only, and require users to make their own investment decisions. <br>
-Risk: The skill may be invoked accidentally on broad investing questions. <br>
-Mitigation: Use explicit Buffett-lens prompts with a confirmed US ticker before requesting an analysis. <br>
-Risk: Uncached ticker calls may consume stock-analysis credits. <br>
-Mitigation: Reuse cached results when appropriate and make cost expectations clear before repeated ticker analysis. <br>
+## Use Case:
 
+External users and analysts use this skill to request a Buffett-style assessment of a US stock ticker and receive a structured scorecard with reasoning across business, moat, management, valuation, and overall verdict.
 
-## Reference(s): <br>
-- [AlphaGBM](https://alphagbm.com) <br>
-- [ClawHub skill page](https://clawhub.ai/clementgu/skills/alphagbm-buffett-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative with structured scorecard fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a US stock ticker; API usage may consume one stock-analysis credit per uncached ticker and cache results for 30 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can return opinionated investment labels such as HOLDABLE, WATCHABLE, or AVOID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as research analysis rather than trading advice and review the scorecard reasoning before making investment decisions.
+
+Risk: Invoking the skill may spend one stock-analysis credit for an uncached ticker request.
+
+Mitigation: Use explicit Buffett-related prompts and confirm the intended ticker before invocation.
+
+## Reference(s):
+
+- [AlphaGBM](https://alphagbm.com)
+- [ClawHub skill page](https://clawhub.ai/clementgu/skills/alphagbm-buffett-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with structured scorecard fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumes one stock-analysis credit per uncached ticker request; cached ticker results are described as free for 30 minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

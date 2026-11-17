@@ -1,43 +1,61 @@
-## Description: <br>
-Helps the agent use the one-wallet CLI to manage Ethereum/EVM wallets, send transactions, call contracts, and sign data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps the agent use the one-wallet CLI to manage Ethereum/EVM wallets, send transactions, call contracts, and sign data.
 
-## Publisher: <br>
-[Viyozc](https://clawhub.ai/user/Viyozc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viyozc](https://clawhub.ai/user/viyozc)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide terminal workflows for Ethereum/EVM wallet management, balance checks, contract calls, transaction submission, and message or typed-data signing with one-wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact wallet, signing, token approval, contract write, and transaction workflows. <br>
-Mitigation: Require explicit human confirmation before any send, token approval, contract write, or signature. <br>
-Risk: Using unverified one-wallet packages or repositories could expose wallet funds or signing authority. <br>
-Mitigation: Verify the one-wallet package and repository before installation, and start with testnet or low-value wallets. <br>
-Risk: Private keys or wallet passwords could be exposed through chat, shell history, logs, or source-controlled files. <br>
-Mitigation: Do not paste real private keys into chat or commands; use a dedicated secret manager or controlled environment variables. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agent-assisted Ethereum/EVM wallet operations through the one-wallet CLI, including wallet management, balance checks, transactions, contract calls, and signing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Viyozc/one-wallet) <br>
-- [one-wallet repository referenced by the skill artifact](https://github.com/viyozc/one-wallet.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-output conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that produce machine-readable JSON when the one-wallet CLI supports --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide irreversible blockchain transactions, token approvals, contract writes, wallet deletion, and signatures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any transaction, approval, contract write, wallet deletion, or signature.
+
+Risk: Private keys, passwords, and wallet session details may be exposed if placed in commands, source files, or chat transcripts.
+
+Mitigation: Use a dedicated least-privileged environment with test wallets or limited funds, keep secrets out of transcripts and repositories, and prefer environment-variable based secret handling.
+
+Risk: Automation flags such as -y can bypass interactive confirmation for value-moving actions.
+
+Mitigation: Avoid -y unless the recipient, amount, network, and action have been pre-approved.
+
+Risk: Unpinned CLI installation may change behavior over time.
+
+Mitigation: Pin the CLI version or commit where possible before using the skill in controlled workflows.
+
+## Reference(s):
+
+- [ClawHub one-wallet skill page](https://clawhub.ai/viyozc/skills/one-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend JSON output for automation and explicit confirmations for transaction or signing actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -12,7 +12,7 @@ describe("anonymize", () => {
     });
 
     it("should replace OpenAI-style API keys", () => {
-      const result = anonymize("key: sk-abc123def456ghi789jkl012mno", emptyNames, emptyProjects, null);
+      const result = anonymize("key: REDACTED-SECRET", emptyNames, emptyProjects, null);
       expect(result).toBe("key: [API_KEY]");
     });
 

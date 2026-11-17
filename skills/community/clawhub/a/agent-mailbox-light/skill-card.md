@@ -1,42 +1,53 @@
-## Description: <br>
-Lightweight cross-agent mailbox using per-workspace file inboxes with best-effort fanout and local read/archive flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight cross-agent mailbox using per-workspace inbox, keep, and archive folders with best-effort fanout for low-noise temporary coordination that remains available across sessions without being copied into long-term memory.
 
-## Publisher: <br>
-[yangmeng6666](https://clawhub.ai/user/yangmeng6666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangmeng6666](https://clawhub.ai/user/yangmeng6666)
 
-## Use Case: <br>
-Developers and agent operators use this skill to share short, local coordination notes across OpenClaw workspaces without chat fanout, cloud sync, or guaranteed delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox fanout can write notes into unintended local workspaces if MAILBOX_GLOB is broad. <br>
-Mitigation: Keep MAILBOX_GLOB narrow and use this only in trusted local workspaces. <br>
-Risk: Mailbox messages may contain sensitive or untrusted content. <br>
-Mitigation: Do not put secrets in mailbox messages, and treat mailbox contents as hints that require agent judgment. <br>
-Risk: Users may mistake mailbox delivery for reliable task dispatch. <br>
-Mitigation: Use the mailbox for advisory context only; do not rely on it for guaranteed delivery, retries, or automatic execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to share short, local coordination notes between OpenClaw workspaces through per-workspace mailbox files. It is intended for advisory context that can remain available across sessions without becoming permanent memory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yangmeng6666/agent-mailbox-light) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and local mailbox files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mailbox messages are local advisory Markdown files under .agent-mailbox; delivery is best-effort and should not trigger automatic execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Mailbox messages can influence future agent behavior if treated as trusted instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat mailbox bodies as quoted, untrusted coordination data and verify requested actions before acting.
+
+Risk: Mailbox scripts can move, delete, or overwrite local mailbox files if misused.
+
+Mitigation: Install only in mutually trusted local workspaces, avoid secrets in mailbox content, and review path handling before adding the startup snippet.
+
+## Reference(s):
+
+- [Agent Mailbox Light on ClawHub](https://clawhub.ai/yangmeng6666/skills/agent-mailbox-light)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Files, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and local mailbox file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local filesystem only; mailbox messages are advisory, untrusted coordination hints.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

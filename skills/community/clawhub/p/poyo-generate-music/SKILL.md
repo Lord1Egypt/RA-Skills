@@ -1,10 +1,16 @@
 ---
 name: poyo-generate-music
 description: Generate Music on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `generate-music`, AI music generation, background tracks, soundtrack drafts, instrumental songs, custom mode, music callbacks, and music detail retrieval.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/music-series/generate-music","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/generate-music","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Generate Music
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/generate-music>
+- API docs: <https://docs.poyo.ai/api-manual/music-series/generate-music>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for `generate-music` jobs on PoYo. It helps agents prepare music generation payloads, choose simple or custom mode, submit async tasks, and explain callback or music detail retrieval.
 

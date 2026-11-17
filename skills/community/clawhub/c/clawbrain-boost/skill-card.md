@@ -1,44 +1,59 @@
-## Description: <br>
-ClawBrain Boost configures OpenClaw to use ClawBrain models with memory, data-fidelity checks, automatic fault tolerance, and writing assistance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBrain Boost helps OpenClaw users route model requests through ClawBrain with memory, data-preservation checks, fault tolerance, and writing assistance.
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-External OpenClaw users use this skill to route default model traffic to ClawBrain, choose performance tiers, and apply memory, data-fidelity, and response-quality behaviors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes OpenClaw model traffic through a third-party provider. <br>
-Mitigation: Install only when that provider routing is intended, and review the provider's privacy and billing terms before use. <br>
-Risk: The skill requires a provider API key. <br>
-Mitigation: Protect the API key, avoid sharing it in prompts or logs, and rotate it if exposed. <br>
-Risk: The skill advertises automatic long-term memory without detailed privacy, consent, or deletion controls in the artifact. <br>
-Mitigation: Confirm controls to inspect, disable, or delete stored memory before relying on memory features. <br>
+## Use Case:
 
+External OpenClaw users use this skill to configure ClawBrain as a model provider and default routing option, including model tiers, memory-assisted context recovery, data fidelity checks, and domain-specific response guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/michaelfeng/clawbrain-boost) <br>
-- [ClawBrain homepage](https://clawbrain.dev) <br>
-- [ClawBrain dashboard](https://clawbrain.dev/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve third-party provider routing and an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata) <br>
+Risk: The skill configures a third-party model provider as the default route for OpenClaw requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the provider terms and use a dedicated, revocable API key.
+
+Risk: Model requests may include text, images, conversation context, and memory-derived information sent to the ClawBrain/FactorHub endpoint.
+
+Mitigation: Avoid regulated, confidential, or secret data unless the publisher's retention, deletion, opt-out, and privacy controls meet your requirements.
+
+Risk: Automatic long-term memory is advertised without enough evidence of data-handling controls.
+
+Mitigation: Keep the existing default model unless intentional global routing and memory behavior are acceptable for the deployment.
+
+## Reference(s):
+
+- [Clawbrain Boost on ClawHub](https://clawhub.ai/michaelfeng/skills/clawbrain-boost)
+- [ClawBrain homepage](https://clawbrain.dev)
+- [ClawBrain dashboard](https://clawbrain.dev/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation and configuration guidance for OpenClaw model routing.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

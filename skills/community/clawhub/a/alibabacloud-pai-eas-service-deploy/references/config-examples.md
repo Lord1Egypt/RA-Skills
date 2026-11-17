@@ -1,65 +1,65 @@
-# 服务配置示例
+# Service Configuration Examples
 
-**目录**
-- [JSON 字段规范](#json-字段规范重要)
-- [容器模式配置](#容器模式配置重要)
-- [基础配置](#基础配置)
-- [完整配置](#完整配置)
-- [公共资源组配置](#公共资源组配置)
-- [专属资源组配置](#专属资源组配置)
-- [ALB 网关配置](#alb-网关配置)
-- [NLB 配置](#nlb-配置)
-- [自动扩缩容配置](#自动扩缩容配置)
-- [存储挂载配置](#存储挂载配置)
+**Contents**
+- [JSON Field Conventions](#json-field-conventions-important)
+- [Container Mode Configuration](#container-mode-configuration-important)
+- [Basic Configuration](#basic-configuration)
+- [Full Configuration](#full-configuration)
+- [Public Resource Group Configuration](#public-resource-group-configuration)
+- [Dedicated Resource Group Configuration](#dedicated-resource-group-configuration)
+- [ALB Gateway Configuration](#alb-gateway-configuration)
+- [NLB Configuration](#nlb-configuration)
+- [Autoscaling Configuration](#autoscaling-configuration)
+- [Storage Mount Configuration](#storage-mount-configuration)
 
-## ⚠️ JSON 字段规范（重要）
+## ⚠️ JSON Field Conventions (Important)
 
-**服务名称必须放在 `metadata.name` 字段**，不是顶层字段：
+**The service name MUST be placed in the `metadata.name` field**, not at the top level:
 
 ```json
 {
   "metadata": {
-    "name": "my-service",    // ✅ 正确：服务名称在这里
+    "name": "my-service",    // ✅ Correct: service name goes here
     "instance": 1
   }
 }
 ```
 
-**错误示例**：
+**Incorrect examples:**
 
 ```json
 {
-  "service_name": "my-service",  // ❌ 错误：这是无效字段
-  "name": "my-service"           // ❌ 错误：不在 metadata 中
+  "service_name": "my-service",  // ❌ Wrong: invalid field
+  "name": "my-service"           // ❌ Wrong: not inside metadata
 }
 ```
 
-## 容器模式配置（重要）
+## Container Mode Configuration (Important)
 
-使用镜像部署时，必须配置 `containers` 字段：
+When deploying from an image, you MUST configure the `containers` field:
 
 ```json
 {
   "metadata": { "name": "my-service", "instance": 1 },
   "containers": [{
-    "image": "镜像地址",
+    "image": "<image-uri>",
     "port": 8000,
-    "command": "启动命令"
+    "command": "<startup command>"
   }],
   "storage": [{ "mount_path": "/model_dir", "oss": { "path": "oss://bucket/models/" } }],
   "cloud": { "computing": { "instance_type": "ecs.gn6i-c8g1.2xlarge" } }
 }
 ```
 
-**关键字段**：
-- `metadata.name` - 服务名称（必填）
-- `containers[].image` - 镜像地址（必填）
-- `containers[].port` - 服务端口（必填）
-- `containers[].command` - 启动命令（可选）
+**Key fields:**
+- `metadata.name` - service name (required)
+- `containers[].image` - image URI (required)
+- `containers[].port` - service port (required)
+- `containers[].command` - startup command (optional)
 
-**⚠️ 注意**：使用 `containers` 字段，不要使用 `processor` 或 `processor_path`。
+**⚠️ Note:** Use the `containers` field; do NOT use `processor` or `processor_path`.
 
-## 基础配置
+## Basic Configuration
 
 ```json
 {
@@ -77,7 +77,7 @@
 }
 ```
 
-## 完整配置
+## Full Configuration
 
 ```json
 {
@@ -117,7 +117,7 @@
 }
 ```
 
-## 公共资源组配置
+## Public Resource Group Configuration
 
 ```json
 {
@@ -136,7 +136,7 @@
 }
 ```
 
-## 专属资源组配置
+## Dedicated Resource Group Configuration
 
 ```json
 {
@@ -156,7 +156,7 @@
 }
 ```
 
-## ALB 网关配置
+## ALB Gateway Configuration
 
 ```json
 {
@@ -168,8 +168,8 @@
   "cloud": {
     "computing": { "instance_type": "ecs.gn6i-c8g1.2xlarge" },
     "networking": {
-      "vpc_id": "{从网关获取}",
-      "vswitch_id": "{从网关获取}",
+      "vpc_id": "{obtained from the gateway}",
+      "vswitch_id": "{obtained from the gateway}",
       "security_group_id": "sg-xxx"
     }
   },
@@ -177,7 +177,7 @@
 }
 ```
 
-## NLB 配置
+## NLB Configuration
 
 ```json
 {
@@ -200,7 +200,7 @@
 }
 ```
 
-## 自动扩缩容配置
+## Autoscaling Configuration
 
 ```json
 {
@@ -215,7 +215,7 @@
 }
 ```
 
-## 存储挂载配置
+## Storage Mount Configuration
 
 ```json
 {

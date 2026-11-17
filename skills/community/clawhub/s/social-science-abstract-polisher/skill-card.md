@@ -1,39 +1,53 @@
-## Description: <br>
-Refines English social science journal abstracts for APA 7th edition style, academic flow, formal register, and concision while preserving the source research claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reusable prompt for refining social science academic abstracts to align with peer-reviewed journal requirements including APA 7th edition compliance.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Researchers, graduate students, and academic writers use this skill to polish social science manuscript abstracts for journal submission. It improves APA compliance, structure, register, and redundancy while flagging missing content instead of inventing data, results, or implications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic editing can unintentionally change nuance or scholarly meaning. <br>
-Mitigation: Review the polished abstract against the original research claims before submission. <br>
-Risk: Incomplete abstracts may lack enough information for meaningful polishing. <br>
-Mitigation: Use the diagnostic note and missing-component flags instead of accepting invented content. <br>
+## Use Case:
 
+External users, researchers, editors, and academic authors use this skill to polish English social science manuscript abstracts for journal submission while preserving the study's substantive claims.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a polished abstract and categorized change-summary bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flags missing or underdeveloped abstract components and preserves the source study's claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The polished abstract may not fully satisfy discipline-specific expectations or a target journal's current policies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the edited abstract against the target journal instructions and relevant disciplinary standards before submission.
+
+Risk: General language polishing can unintentionally change the meaning of research claims if accepted without review.
+
+Mitigation: Compare the polished abstract with the source manuscript and preserve the original claims, data, theoretical framing, and implications.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/terrycarter1985/skills/social-science-abstract-polisher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a polished abstract and categorized change-summary bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill flags missing or underdeveloped abstract components instead of fabricating content.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

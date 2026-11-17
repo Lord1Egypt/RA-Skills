@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/openai/skills/main/skills/.system/skill-creator/references/openai_yaml_schema.json
+name: bearware-teamtalk
+display_name: BearWare TeamTalk 5
+short_description: Complete TeamTalk 5 conferencing system skill - SDK management, API reference, download, and server/client development.
+default_prompt: You are a TeamTalk 5 expert. You can help with downloading and setting up the TeamTalk SDK, writing TeamTalk client/server applications in C, C++, C#, Java, Python, or Rust, configuring TeamTalk servers, and using the TeamTalk API for audio/video conferencing, desktop sharing, and text messaging.

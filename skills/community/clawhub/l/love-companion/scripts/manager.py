@@ -9,7 +9,7 @@ Love Companion - Configuration & Memory Manager
 - 多方案管理与切换
 - 长时记忆存储与检索
 - 配置导入导出
-- 预设模板加载
+- 预设模板加载（唯一数据源：references/personas.md）
 
 使用方式：
 本脚本由 AI Agent 自动调用，用户无需手动执行。
@@ -18,8 +18,10 @@ Love Companion - Configuration & Memory Manager
 许可证：MIT License
 """
 
+import copy
 import json
 import os
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -33,6 +35,13 @@ class LoveCompanionManager:
 
     # 环境变量名，可覆盖默认存储路径
     ENV_STORAGE_PATH = "LOVE_COMPANION_DATA_DIR"
+
+    # 预设人设的唯一数据源（技能包根目录下的 references/personas.md）
+    # 代码内不再保留第二份预设，避免与文档文案漂移
+    PERSONAS_FILE = Path(__file__).resolve().parent.parent / "references" / "personas.md"
+
+    # 环境变量名，可覆盖预设文件路径（便于测试或自定义预设库）
+    ENV_PERSONAS_FILE = "LOVE_COMPANION_PERSONAS_FILE"
 
     # 默认人设模板
     DEFAULT_PERSONA = {
@@ -61,6 +70,17 @@ class LoveCompanionManager:
         "内容边界": []
     }
 
+    # ---- 预设文档（personas.md）解析规则 ----
+
+    # 章节标题，如 "### 【1号】阳光开朗型"
+    _PRESET_SECTION_RE = re.compile(r"^###\s*【(\d+)\s*号】\s*(.+?)\s*$", re.M)
+
+    # 章节内首个 JSON 配置块
+    _PRESET_JSON_RE = re.compile(r"```json\s*\n(.*?)\n```", re.S)
+
+    # 章节内的特点描述，如 "**特点**：像小太阳一样温暖…"
+    _PRESET_DESC_RE = re.compile(r"\*\*特点\*\*：(.+)")
+
     def __init__(self, storage_path: Optional[str] = None):
         """初始化管理器
 
@@ -75,6 +95,7 @@ class LoveCompanionManager:
             or self.DEFAULT_STORAGE_PATH
         )
         self.storage_path = Path(os.path.expanduser(resolved))
+        self._preset_cache: Optional[List[Dict[str, Any]]] = None
         self._ensure_storage_dirs()
 
     def _ensure_storage_dirs(self) -> None:
@@ -89,10 +110,10 @@ class LoveCompanionManager:
     # ==================== 配置管理 ====================
 
     def get_persona(self) -> Dict[str, Any]:
-        """获取当前人设配置"""
+        """获取当前人设配置（utf-8-sig：兼容 Windows 记事本/WPS 写入的 BOM 文件）"""
         config_file = self.storage_path / "persona.json"
         if config_file.exists():
-            with open(config_file, "r", encoding="utf-8") as f:
+            with open(config_file, "r", encoding="utf-8-sig") as f:
                 return json.load(f)
         return self.DEFAULT_PERSONA.copy()
 
@@ -186,99 +207,114 @@ class LoveCompanionManager:
 
     # ==================== 预设模板 ====================
 
-    def load_preset(self, preset_id: int) -> Optional[Dict[str, Any]]:
-        """加载预设模板
+    @classmethod
+    def personas_file(cls) -> Path:
+        """返回预设人设文件路径（支持环境变量覆盖）"""
+        override = os.environ.get(cls.ENV_PERSONAS_FILE)
+        return Path(override).expanduser() if override else cls.PERSONAS_FILE
 
-        预设模板定义在 references/personas.md 中
-        此方法返回预设编号对应的默认配置
+    def _read_personas_md(self) -> str:
+        """读取预设人设文档内容"""
+        path = self.personas_file()
+        if not path.exists():
+            raise FileNotFoundError(
+                f"预设人设文件不存在：{path}。"
+                f"请确认 references/personas.md 与 scripts/manager.py 位于同一技能包内，"
+                f"或用环境变量 {self.ENV_PERSONAS_FILE} 指定路径。"
+            )
+        return path.read_text(encoding="utf-8")
+
+    def _parse_presets(self) -> List[Dict[str, Any]]:
+        """解析 references/personas.md，提取全部预设人设
+
+        解析规则：
+        - 以「### 【N号】类型名」切分章节
+        - 每节内首个 ```json 代码块即该预设的完整人设配置
+        - 「**特点**：…」作为预设描述
+
+        Raises:
+            FileNotFoundError: 预设文档不存在
+            ValueError: 找不到章节，或某预设的 JSON 配置无法解析（错误信息会指出编号）
         """
-        presets = {
-            1: {  # 阳光开朗型
-                "姓名": "小阳", "昵称": "阳阳", "性别": "女", "年龄": 21,
-                "对用户的称呼": "亲爱的",
-                "性格": {"核心特质": ["阳光", "开朗", "正能量"], "小脾气": ["偶尔犯迷糊"], "情绪表达": "外向直接"},
-                "对话风格": {"语气": "活泼俏皮", "口头禅": ["太好啦！", "哇塞！"], "语言习惯": "喜欢用~和！"},
-                "背景故事": "体育大学在读，热爱运动",
-                "相处模式": {"主动程度": "高", "撒娇频率": "中", "关心方式": "行动派"},
-                "亲密尺度": 3, "内容边界": []
-            },
-            2: {  # 温柔治愈型
-                "姓名": "温婉", "昵称": "婉婉", "性别": "女", "年龄": 24,
-                "对用户的称呼": "宝贝",
-                "性格": {"核心特质": ["温柔", "体贴", "细腻"], "小脾气": ["偶尔小敏感"], "情绪表达": "内敛含蓄"},
-                "对话风格": {"语气": "轻柔温和", "口头禅": ["没事的", "我在呢"], "语言习惯": "善用安慰性语言"},
-                "背景故事": "心理咨询师，擅长倾听",
-                "相处模式": {"主动程度": "中", "撒娇频率": "低", "关心方式": "细节型"},
-                "亲密尺度": 2, "内容边界": ["避免争吵"]
-            },
-            3: {  # 傲娇高冷型
-                "姓名": "冷月", "昵称": "月月", "性别": "女", "年龄": 22,
-                "对用户的称呼": "笨蛋",
-                "性格": {"核心特质": ["高冷", "傲娇", "嘴硬心软"], "小脾气": ["容易害羞"], "情绪表达": "嘴硬心软"},
-                "对话风格": {"语气": "冷淡中带着关心", "口头禅": ["哼", "才不是"], "语言习惯": "经常用哼开头"},
-                "背景故事": "名校学霸，外冷内热",
-                "相处模式": {"主动程度": "低", "撒娇频率": "极低", "关心方式": "别扭式"},
-                "亲密尺度": 2, "内容边界": []
-            },
-            4: {  # 活泼可爱型
-                "姓名": "糖糖", "昵称": "糖宝", "性别": "女", "年龄": 19,
-                "对用户的称呼": "哥哥/姐姐",
-                "性格": {"核心特质": ["可爱", "活泼", "爱撒娇"], "小脾气": ["偶尔小任性"], "情绪表达": "写在脸上"},
-                "对话风格": {"语气": "软萌可爱", "口头禅": ["好嘛好嘛~", "要抱抱！"], "语言习惯": "大量使用颜文字"},
-                "背景故事": "美术生，喜欢画画和猫",
-                "相处模式": {"主动程度": "高", "撒娇频率": "超高", "关心方式": "黏人式"},
-                "亲密尺度": 3, "内容边界": []
-            },
-            5: {  # 成熟知性型
-                "姓名": "苏雅", "昵称": "雅雅", "性别": "女", "年龄": 27,
-                "对用户的称呼": "亲爱的",
-                "性格": {"核心特质": ["成熟", "知性", "理性"], "小脾气": ["偶尔工作狂"], "情绪表达": "理性克制"},
-                "对话风格": {"语气": "温和有礼", "口头禅": ["没关系", "我理解"], "语言习惯": "说话有条理"},
-                "背景故事": "企业高管，事业有成",
-                "相处模式": {"主动程度": "中", "撒娇频率": "低", "关心方式": "理性建议型"},
-                "亲密尺度": 2, "内容边界": ["不谈职场八卦"]
-            },
-            6: {  # 腹黑撩人型
-                "姓名": "苏妖", "昵称": "妖妖", "性别": "女", "年龄": 23,
-                "对用户的称呼": "小傻瓜",
-                "性格": {"核心特质": ["腹黑", "撩人", "小心机"], "小脾气": ["喜欢逗你"], "情绪表达": "让人猜不透"},
-                "对话风格": {"语气": "暧昧撩人", "口头禅": ["想我了吗？", "小傻瓜~"], "语言习惯": "喜欢反问和调侃"},
-                "背景故事": "神秘身份，若即若离",
-                "相处模式": {"主动程度": "中高", "撒娇频率": "中", "关心方式": "撩拨式"},
-                "亲密尺度": 4, "内容边界": []
-            },
-            7: {  # 纯情害羞型
-                "姓名": "小雪", "昵称": "雪儿", "性别": "女", "年龄": 20,
-                "对用户的称呼": "那个...你",
-                "性格": {"核心特质": ["害羞", "纯情", "内向"], "小脾气": ["被夸会不知所措"], "情绪表达": "不善于表达"},
-                "对话风格": {"语气": "结结巴巴", "口头禅": ["那个...", "我..."], "语言习惯": "说话有省略号"},
-                "背景故事": "文学系学生，喜欢看书",
-                "相处模式": {"主动程度": "低", "撒娇频率": "低", "关心方式": "默默关心"},
-                "亲密尺度": 1, "内容边界": ["进展要慢"]
-            },
-            8: {  # 霸道宠溺型
-                "姓名": "霍霆", "昵称": "霆哥", "性别": "男", "年龄": 28,
-                "对用户的称呼": "小东西",
-                "性格": {"核心特质": ["霸道", "宠溺", "护短"], "小脾气": ["吃醋很明显"], "情绪表达": "直接霸道"},
-                "对话风格": {"语气": "强势宠溺", "口头禅": ["听话", "乖", "不许"], "语言习惯": "祈使句多"},
-                "背景故事": "家族企业继承人",
-                "相处模式": {"主动程度": "高", "撒娇频率": "低", "关心方式": "霸道式"},
-                "亲密尺度": 3, "内容边界": ["不许和其他异性走太近"]
-            }
-        }
+        md = self._read_personas_md()
+        marks = list(self._PRESET_SECTION_RE.finditer(md))
+        if not marks:
+            raise ValueError(
+                f"未在预设文件中找到任何「### 【N号】」章节：{self.personas_file()}"
+            )
 
-        if preset_id in presets:
-            return self.set_persona(presets[preset_id])
+        presets: List[Dict[str, Any]] = []
+        for index, mark in enumerate(marks):
+            start = mark.end()
+            end = marks[index + 1].start() if index + 1 < len(marks) else len(md)
+            section = md[start:end]
+
+            preset_id = int(mark.group(1))
+            preset_type = mark.group(2).strip()
+
+            json_match = self._PRESET_JSON_RE.search(section)
+            if not json_match:
+                raise ValueError(
+                    f"预设 {preset_id} 号（{preset_type}）缺少 ```json 配置块"
+                )
+            try:
+                persona = json.loads(json_match.group(1))
+            except json.JSONDecodeError as exc:
+                raise ValueError(
+                    f"预设 {preset_id} 号（{preset_type}）的 JSON 配置无法解析：{exc}。"
+                    f"常见原因：配置文案中存在未转义的双引号。"
+                ) from exc
+
+            desc_match = self._PRESET_DESC_RE.search(section)
+            presets.append({
+                "id": preset_id,
+                "类型": preset_type,
+                "描述": desc_match.group(1).strip() if desc_match else "",
+                "persona": persona,
+            })
+
+        return presets
+
+    def _get_presets(self) -> List[Dict[str, Any]]:
+        """获取预设列表（首次读取后缓存）"""
+        if self._preset_cache is None:
+            self._preset_cache = self._parse_presets()
+        return self._preset_cache
+
+    def list_presets(self) -> List[Dict[str, Any]]:
+        """列出所有可用预设（不含完整人设内容）
+
+        Returns:
+            [{"id": 1, "类型": "阳光开朗型", "描述": "…"}, …]
+        """
+        return [
+            {k: v for k, v in preset.items() if k != "persona"}
+            for preset in self._get_presets()
+        ]
+
+    def load_preset(self, preset_id: int) -> Optional[Dict[str, Any]]:
+        """套用预设模板，写入当前人设配置
+
+        Args:
+            preset_id: 预设编号，对应 personas.md 中的「N号」
+
+        Returns:
+            套用后的人设配置；编号不存在时返回 None
+        """
+        for preset in self._get_presets():
+            if preset["id"] == int(preset_id):
+                # 深拷贝，避免调用方修改污染缓存的预设模板
+                return self.set_persona(copy.deepcopy(preset["persona"]))
         return None
 
     # ==================== 记忆管理 ====================
 
     def get_memories(self) -> List[Dict[str, Any]]:
-        """获取所有长时记忆"""
+        """获取所有长时记忆（utf-8-sig：兼容带 BOM 的文件）"""
         memory_file = self.storage_path / "memory.json"
 
         if memory_file.exists():
-            with open(memory_file, "r", encoding="utf-8") as f:
+            with open(memory_file, "r", encoding="utf-8-sig") as f:
                 return json.load(f)
         return []
 
@@ -332,6 +368,8 @@ class LoveCompanionManager:
     def import_persona(self, json_str: str) -> Dict[str, Any]:
         """从JSON字符串导入人设配置"""
         persona = json.loads(json_str)
+        if not isinstance(persona, dict):
+            raise ValueError(f"人设必须是 JSON 对象，收到 {type(persona).__name__}")
         return self.set_persona(persona)
 
     # ==================== 工具方法 ====================
@@ -354,35 +392,61 @@ class LoveCompanionManager:
         memories = self.get_memories()
         schemes = self.list_schemes()
 
+        try:
+            preset_count: Optional[int] = len(self._get_presets())
+        except (FileNotFoundError, ValueError):
+            preset_count = None
+
         return {
             "persona_name": persona.get("姓名", "未设置"),
             "memory_count": len(memories),
             "scheme_count": len(schemes),
+            "preset_count": preset_count,
             "storage_path": str(self.storage_path)
         }
 
 
 # ==================== 命令行接口（调试用） ====================
 
+USAGE = """Love Companion Manager - Configuration & Memory Tool
+
+Usage: python manager.py <command> [args]
+
+Commands:
+  status                  Show current status
+  get                     Print current persona as JSON
+  set <path> <value>      Set one persona field (path 用点分隔，如 性格.核心特质)
+  update <json>           Merge a partial persona JSON into current config
+  import <json>           Replace persona with a full JSON document
+  reset                   Reset persona to default
+  presets                 List preset personas (source: references/personas.md)
+  apply <n>               Apply preset #n as the current persona
+  schemes                 List saved schemes
+  save <name>             Save current persona as a named scheme
+  switch <name>           Load a saved scheme as the current persona
+  delete-scheme <name>    Delete a saved scheme
+  memory-list             List long-term memories
+  memory-clear            Clear all long-term memories
+"""
+
+
 if __name__ == "__main__":
     import sys
 
     manager = LoveCompanionManager()
+    args = sys.argv[1:]
 
-    if len(sys.argv) < 2:
-        print("Love Companion Manager - Configuration & Memory Tool")
-        print()
-        print("Usage: python manager.py [command] [args]")
-        print()
-        print("Commands:")
-        print("  status    Show current status")
-        print("  get       Export current persona as JSON")
-        print("  reset     Reset persona to default")
-        print("  presets   List available presets")
-        print("  schemes   List saved schemes")
+    if not args:
+        print(USAGE)
         sys.exit(1)
 
-    command = sys.argv[1]
+    command, params = args[0], args[1:]
+
+    def require(what: str) -> str:
+        if not params:
+            print(f"Missing argument: {what}")
+            sys.exit(1)
+        return params[0]
 
     if command == "status":
         print(json.dumps(manager.get_status(), ensure_ascii=False, indent=2))
@@ -390,18 +454,93 @@ if __name__ == "__main__":
     elif command == "get":
         print(manager.export_persona())
 
+    elif command == "set":
+        path = require("field path")
+        raw = require("value")
+        try:
+            value = json.loads(raw)
+        except json.JSONDecodeError:
+            value = raw
+        manager.set_persona_field(path, value)
+        print(f"Set {path}.")
+
+    elif command == "update":
+        raw = require("partial persona json")
+        try:
+            manager.update_persona(json.loads(raw))
+        except json.JSONDecodeError as exc:
+            print(f"Invalid JSON: {exc}")
+            sys.exit(1)
+        print("Persona updated.")
+
+    elif command == "import":
+        raw = require("full persona json")
+        try:
+            manager.import_persona(raw)
+        except (json.JSONDecodeError, ValueError) as exc:
+            print(f"Invalid persona JSON: {exc}")
+            sys.exit(1)
+        print("Persona imported.")
+
     elif command == "reset":
         manager.reset_persona()
         print("Persona reset to default.")
 
     elif command == "presets":
-        print("Available presets: 1-8")
-        print("Use: /恋人套用 [编号]")
+        for preset in manager.list_presets():
+            print(f"{preset['id']}. {preset['类型']} - {preset['描述']}")
+
+    elif command == "apply":
+        raw_id = require("preset id")
+        try:
+            preset_id = int(raw_id)
+        except ValueError:
+            print(f"Preset id must be a number, got: {raw_id}")
+            sys.exit(1)
+        if manager.load_preset(preset_id) is None:
+            print(f"Preset #{preset_id} not found.")
+            sys.exit(1)
+        print(f"Applied preset #{preset_id}: {manager.get_persona().get('姓名', '')}")
 
     elif command == "schemes":
         schemes = manager.list_schemes()
-        for s in schemes:
-            print(f"- {s['name']} ({s['created_at']})")
+        if not schemes:
+            print("No saved schemes.")
+        for scheme in schemes:
+            print(f"- {scheme['name']} ({scheme['created_at']})")
+
+    elif command == "save":
+        name = require("scheme name")
+        manager.save_scheme(name)
+        print(f"Scheme saved: {name}")
+
+    elif command == "switch":
+        name = require("scheme name")
+        if manager.load_scheme(name) is None:
+            print(f"Scheme not found: {name}")
+            sys.exit(1)
+        print(f"Switched to scheme: {name}")
+
+    elif command == "delete-scheme":
+        name = require("scheme name")
+        if manager.delete_scheme(name):
+            print(f"Scheme deleted: {name}")
+        else:
+            print(f"Scheme not found: {name}")
+            sys.exit(1)
+
+    elif command == "memory-list":
+        memories = manager.get_memories()
+        if not memories:
+            print("No memories.")
+        for memory in memories:
+            print(f"{memory['id']}. {memory['content']} ({memory['created_at']})")
+
+    elif command == "memory-clear":
+        print(f"Cleared {manager.clear_memories()} memories.")
 
     else:
         print(f"Unknown command: {command}")
+        print()
+        print(USAGE)
+        sys.exit(1)

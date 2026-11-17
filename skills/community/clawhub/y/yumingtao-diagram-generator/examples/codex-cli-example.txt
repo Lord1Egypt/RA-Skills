@@ -1,0 +1,1 @@
+Use the diagram-generator skill to create a standalone HTML system map from the brief in examples/codex-smoke-test-prompt.md. Return only the final HTML.

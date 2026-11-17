@@ -1,44 +1,50 @@
-## Description: <br>
-Turns a user's Google Videos request into a confirmed Dataify Scraper API form submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Google Videos for video results through the Dataify Scraper API, excluding YouTube media downloads or structured YouTube records.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and external users use this skill to prepare and run Google Videos searches through Dataify, with a parameter confirmation table before any API call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Google Videos search parameters are sent to Dataify. <br>
-Mitigation: Install and use the skill only when that data flow is intended, and avoid entering secrets or private data in search fields. <br>
-Risk: Passing a Dataify token on the command line can expose it through shell history or process inspection. <br>
-Mitigation: Prefer DATAIFY_API_TOKEN for authentication and avoid echoing token values in conversation or logs. <br>
-Risk: The skill returns the raw API response body directly. <br>
-Mitigation: Review returned content before relying on it or forwarding it to downstream tools. <br>
+## Use Case:
 
+External users and developers use this skill to translate Google Videos search requests into Dataify Scraper API calls and receive concise video search results.
 
-## Reference(s): <br>
-- [Google Videos API Reference](artifact/references/google_videos_api.md) <br>
-- [Dataify Scraper API Endpoint](https://scraperapi.dataify.com/request) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dataify-server/dataify-google-videos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, JSON, guidance] <br>
-**Output Format:** [Markdown confirmation tables and raw Dataify API response bodies, typically JSON or HTML depending on request parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Dataify API token and returns the API response body directly after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Credential handling can expose parts of a Dataify API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the token through DATAIFY_API_TOKEN, avoid passing tokens on the command line or in chat, and avoid preview output with real credentials until the token masking issue is fixed.
+
+## Reference(s):
+
+- [Dataify Google Videos API](references/google_videos_api.md)
+- [Dataify Scraper API request endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown summaries, Markdown parameter tables, shell commands, and JSON or raw API responses when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the Dataify Scraper API and requires DATAIFY_API_TOKEN for live requests.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

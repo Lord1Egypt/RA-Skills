@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>El Chisme de Silicon Valley 2026 — Carrusel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE0;
+    --cream-dark: #EDE4CE;
+    --ink: #2B2218;
+    --terracota: #C17F5A;
+    --salvia: #8FAF8A;
+    --rojo: #D85A4E;
+    --amarillo: #F4C75B;
+    --morado: #B68EC8;
+    --verde: #9BC289;
+    --azul: #7FA9C9;
+    --rosa: #E8A8B8;
+    --postit-yellow: #FFE881;
+    --postit-pink: #FFCAD4;
+    --postit-green: #CCE3B5;
+    --postit-blue: #BFD8E8;
+    --postit-purple: #DCC8E8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a1a1a;
+    font-family: 'Poppins', sans-serif;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(193,127,90,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(143,175,138,0.04) 0%, transparent 40%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.15  0 0 0 0 0.1  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    color: var(--ink);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  /* TAPE */
+  .tape {
+    position: absolute;
+    width: 140px;
+    height: 32px;
+    background: rgba(255, 232, 129, 0.55);
+    border-left: 1px dashed rgba(0,0,0,0.08);
+    border-right: 1px dashed rgba(0,0,0,0.08);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+
+  /* POST-IT */
+  .postit {
+    position: absolute;
+    padding: 18px 22px;
+    box-shadow: 3px 5px 12px rgba(0,0,0,0.18);
+    font-family: 'Caveat', cursive;
+    font-weight: 600;
+  }
+  .postit::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 16px;
+    background: rgba(255, 232, 129, 0.6);
+  }
+
+  /* HEADERS handwritten */
+  .hand-title {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    line-height: 0.95;
+    color: var(--ink);
+  }
+  .hand {
+    font-family: 'Caveat', cursive;
+    font-weight: 600;
+  }
+
+  /* SVG underlines/circles */
+  .doodle { position: absolute; pointer-events: none; }
+
+  /* Sticker emojis */
+  .sticker {
+    position: absolute;
+    font-size: 80px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+  }
+
+  /* Slide number */
+  .num {
+    position: absolute;
+    bottom: 28px;
+    right: 36px;
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: rgba(43,34,24,0.45);
+  }
+
+  /* Handle */
+  .handle {
+    position: absolute;
+    bottom: 28px;
+    left: 36px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(43,34,24,0.55);
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== SLIDE 1 — PORTADA ===== */
+  .s1 .tape-1 { top: 30px; left: 80px; transform: rotate(-8deg); background: rgba(232, 168, 184, 0.55); }
+  .s1 .tape-2 { top: 50px; right: 100px; transform: rotate(12deg); background: rgba(143, 175, 138, 0.45); }
+
+  .s1-pretitle {
+    position: absolute;
+    top: 140px;
+    left: 90px;
+    transform: rotate(-3deg);
+    font-family: 'Caveat', cursive;
+    font-size: 44px;
+    color: var(--terracota);
+    font-weight: 600;
+  }
+
+  .s1-title {
+    position: absolute;
+    top: 220px;
+    left: 70px;
+    width: 940px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 152px;
+    line-height: 0.9;
+    color: var(--ink);
+    transform: rotate(-1.5deg);
+  }
+  .s1-title .red { color: var(--rojo); }
+  .s1-title .year { color: var(--terracota); display: inline-block; transform: rotate(3deg); }
+
+  .s1-subtitle {
+    position: absolute;
+    top: 720px;
+    left: 110px;
+    width: 760px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--ink);
+    transform: rotate(-1deg);
+  }
+  .s1-subtitle .hl {
+    background: var(--postit-yellow);
+    padding: 2px 10px;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+
+  .s1-quote {
+    position: absolute;
+    bottom: 230px;
+    left: 100px;
+    width: 700px;
+    font-family: 'Caveat', cursive;
+    font-size: 42px;
+    color: var(--ink);
+    line-height: 1.2;
+    transform: rotate(-2deg);
+  }
+
+  .s1 .sticker-popcorn { top: 90px; right: 90px; font-size: 140px; transform: rotate(15deg); }
+  .s1 .sticker-heart { top: 580px; right: 140px; font-size: 100px; transform: rotate(-12deg); }
+  .s1 .sticker-eyes { bottom: 380px; right: 90px; font-size: 90px; transform: rotate(8deg); }
+  .s1 .sticker-shh { bottom: 120px; right: 200px; font-size: 110px; transform: rotate(-5deg); }
+
+  .s1-arrow {
+    position: absolute;
+    bottom: 90px;
+    right: 80px;
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--terracota);
+    transform: rotate(-5deg);
+  }
+
+  /* ===== SLIDE 2 — OpenAI vs Anthropic ===== */
+  .s2 .tape-1 { top: 60px; left: 380px; transform: rotate(-3deg); background: rgba(216, 90, 78, 0.4); }
+
+  .s2-tag {
+    position: absolute;
+    top: 110px;
+    left: 80px;
+    background: var(--rojo);
+    color: white;
+    padding: 14px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: 2px;
+    transform: rotate(-3deg);
+    box-shadow: 4px 6px 12px rgba(0,0,0,0.2);
+  }
+
+  .s2-title {
+    position: absolute;
+    top: 220px;
+    left: 70px;
+    width: 940px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 130px;
+    line-height: 0.95;
+    color: var(--ink);
+    transform: rotate(-1deg);
+  }
+  .s2-title .red { color: var(--rojo); display: inline-block; transform: rotate(2deg); }
+  .s2-title .vs { color: var(--terracota); font-style: italic; padding: 0 16px; }
+
+  .s2-heart {
+    position: absolute;
+    top: 330px;
+    left: 50%;
+    transform: translateX(-50%) rotate(8deg);
+    font-size: 120px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+  }
+
+  .s2-content {
+    position: absolute;
+    top: 600px;
+    left: 90px;
+    width: 900px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .s2-content p { margin-bottom: 24px; }
+  .s2-content .hl { background: var(--postit-pink); padding: 2px 8px; }
+  .s2-content .bold { font-weight: 700; }
+
+  .s2-postit {
+    bottom: 130px;
+    right: 80px;
+    background: var(--postit-pink);
+    width: 280px;
+    transform: rotate(5deg);
+    font-size: 30px;
+    color: var(--ink);
+    text-align: center;
+  }
+
+  .s2 .sticker-fire { top: 70px; right: 100px; font-size: 90px; transform: rotate(-10deg); }
+  .s2 .sticker-broken { bottom: 360px; left: 70px; font-size: 80px; transform: rotate(15deg); }
+
+  /* ===== SLIDE 3 — Meta & MANUS ===== */
+  .s3 .tape-1 { top: 50px; right: 380px; transform: rotate(8deg); background: rgba(244, 199, 91, 0.5); }
+
+  .s3-tag {
+    position: absolute;
+    top: 110px;
+    right: 80px;
+    background: var(--amarillo);
+    color: var(--ink);
+    padding: 14px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 2px;
+    transform: rotate(3deg);
+    box-shadow: 4px 6px 12px rgba(0,0,0,0.2);
+  }
+
+  .s3-title {
+    position: absolute;
+    top: 220px;
+    left: 70px;
+    width: 940px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 116px;
+    line-height: 0.95;
+    color: var(--ink);
+    transform: rotate(-1deg);
+  }
+  .s3-title .yellow {
+    background: var(--postit-yellow);
+    padding: 0 14px;
+    display: inline-block;
+    transform: rotate(2deg);
+  }
+  .s3-title .amp { color: var(--terracota); font-family: 'Caveat', cursive; }
+
+  .s3-broken-heart {
+    position: absolute;
+    top: 470px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+    font-size: 110px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+  }
+
+  .s3-content {
+    position: absolute;
+    top: 660px;
+    left: 90px;
+    width: 900px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .s3-content p { margin-bottom: 22px; }
+  .s3-content .bold { font-weight: 700; }
+  .s3-content .hl { background: var(--postit-yellow); padding: 2px 8px; }
+  .s3-content .strike { text-decoration: line-through; text-decoration-color: var(--rojo); text-decoration-thickness: 3px; }
+
+  .s3-postit {
+    bottom: 100px;
+    left: 80px;
+    background: var(--postit-yellow);
+    width: 320px;
+    transform: rotate(-4deg);
+    font-size: 28px;
+    color: var(--ink);
+    text-align: center;
+  }
+
+  .s3 .sticker-money { top: 90px; left: 90px; font-size: 80px; transform: rotate(-12deg); }
+  .s3 .sticker-china { top: 540px; right: 100px; font-size: 75px; transform: rotate(10deg); }
+
+  /* ===== SLIDE 4 — Higgsfield ===== */
+  .s4 .tape-1 { top: 50px; left: 100px; transform: rotate(-7deg); background: rgba(182, 142, 200, 0.45); }
+  .s4 .tape-2 { top: 70px; right: 90px; transform: rotate(6deg); background: rgba(220, 200, 232, 0.6); }
+
+  .s4-tag {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    background: var(--morado);
+    color: white;
+    padding: 14px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 2px;
+    box-shadow: 4px 6px 12px rgba(0,0,0,0.2);
+    white-space: nowrap;
+  }
+
+  .s4-title {
+    position: absolute;
+    top: 250px;
+    left: 70px;
+    width: 940px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 180px;
+    line-height: 0.9;
+    color: var(--ink);
+    text-align: center;
+    transform: rotate(-1deg);
+  }
+  .s4-title .purple {
+    color: var(--morado);
+    display: inline-block;
+    transform: rotate(2deg);
+  }
+
+  .s4-sub {
+    position: absolute;
+    top: 530px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    font-family: 'Caveat', cursive;
+    font-size: 52px;
+    color: var(--terracota);
+    text-align: center;
+    width: 800px;
+  }
+
+  .s4-content {
+    position: absolute;
+    top: 700px;
+    left: 90px;
+    width: 900px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .s4-content p { margin-bottom: 22px; }
+  .s4-content .bold { font-weight: 700; }
+  .s4-content .hl { background: var(--postit-purple); padding: 2px 8px; }
+
+  .s4 .sticker-hearts { top: 90px; right: 380px; font-size: 90px; transform: rotate(15deg); }
+  .s4 .sticker-flirt { top: 600px; right: 70px; font-size: 75px; transform: rotate(-10deg); }
+  .s4 .sticker-flirt2 { top: 600px; left: 70px; font-size: 75px; transform: rotate(10deg); }
+
+  /* ===== SLIDE 5 — Google & Perplexity ===== */
+  .s5 .tape-1 { top: 50px; left: 200px; transform: rotate(-6deg); background: rgba(155, 194, 137, 0.5); }
+
+  .s5-tag {
+    position: absolute;
+    top: 110px;
+    left: 80px;
+    background: var(--verde);
+    color: var(--ink);
+    padding: 14px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 2px;
+    transform: rotate(-2deg);
+    box-shadow: 4px 6px 12px rgba(0,0,0,0.2);
+  }
+
+  .s5-title {
+    position: absolute;
+    top: 220px;
+    left: 70px;
+    width: 940px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 124px;
+    line-height: 0.95;
+    color: var(--ink);
+    transform: rotate(-1deg);
+  }
+  .s5-title .green { color: var(--verde); display: inline-block; transform: rotate(2deg); }
+  .s5-title .amp { color: var(--terracota); padding: 0 12px; }
+
+  .s5-eyes {
+    position: absolute;
+    top: 480px;
+    left: 50%;
+    transform: translateX(-50%) rotate(5deg);
+    font-size: 130px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+  }
+
+  .s5-content {
+    position: absolute;
+    top: 680px;
+    left: 90px;
+    width: 900px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .s5-content p { margin-bottom: 22px; }
+  .s5-content .bold { font-weight: 700; }
+  .s5-content .hl { background: var(--postit-green); padding: 2px 8px; }
+
+  .s5-postit {
+    bottom: 100px;
+    right: 80px;
+    background: var(--postit-green);
+    width: 340px;
+    transform: rotate(4deg);
+    font-size: 30px;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .s5 .sticker-secret { top: 90px; right: 100px; font-size: 80px; transform: rotate(12deg); }
+
+  /* ===== SLIDE 6 — HuggingFace ===== */
+  .s6 .tape-1 { top: 60px; right: 100px; transform: rotate(7deg); background: rgba(127, 169, 201, 0.45); }
+
+  .s6-tag {
+    position: absolute;
+    top: 110px;
+    right: 80px;
+    background: var(--azul);
+    color: white;
+    padding: 14px 32px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 2px;
+    transform: rotate(3deg);
+    box-shadow: 4px 6px 12px rgba(0,0,0,0.2);
+  }
+
+  .s6-title {
+    position: absolute;
+    top: 220px;
+    left: 70px;
+    width: 940px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 142px;
+    line-height: 0.92;
+    color: var(--ink);
+    transform: rotate(-1deg);
+  }
+  .s6-title .blue { color: var(--azul); }
+  .s6-title .underline {
+    background: var(--postit-blue);
+    padding: 0 14px;
+    display: inline-block;
+    transform: rotate(1deg);
+  }
+
+  .s6-face {
+    position: absolute;
+    top: 540px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 180px;
+    filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.2));
+  }
+
+  .s6-content {
+    position: absolute;
+    top: 800px;
+    left: 90px;
+    width: 900px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .s6-content p { margin-bottom: 20px; }
+  .s6-content .bold { font-weight: 700; }
+  .s6-content .hl { background: var(--postit-blue); padding: 2px 8px; }
+
+  .s6-quote {
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    font-family: 'Caveat', cursive;
+    font-size: 42px;
+    color: var(--terracota);
+    text-align: center;
+    width: 800px;
+  }
+
+  .s6 .sticker-zen { top: 90px; left: 90px; font-size: 75px; transform: rotate(-10deg); }
+  .s6 .sticker-peace { top: 540px; right: 130px; font-size: 70px; transform: rotate(15deg); }
+  .s6 .sticker-peace2 { top: 540px; left: 130px; font-size: 70px; transform: rotate(-15deg); }
+
+  /* ===== SLIDE 7 — CIERRE ===== */
+  .s7 .tape-1 { top: 50px; left: 90px; transform: rotate(-6deg); background: rgba(193,127,90,0.45); }
+  .s7 .tape-2 { top: 50px; right: 90px; transform: rotate(8deg); background: rgba(244, 199, 91, 0.5); }
+
+  .s7-pretag {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    font-family: 'Caveat', cursive;
+    font-size: 44px;
+    color: var(--terracota);
+  }
+
+  .s7-title {
+    position: absolute;
+    top: 210px;
+    left: 70px;
+    width: 940px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 124px;
+    line-height: 0.92;
+    color: var(--ink);
+    text-align: center;
+    transform: rotate(-1deg);
+  }
+  .s7-title .hl {
+    background: var(--postit-yellow);
+    padding: 0 18px;
+    display: inline-block;
+    transform: rotate(2deg);
+  }
+
+  .s7-intro {
+    position: absolute;
+    top: 480px;
+    left: 90px;
+    width: 900px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    line-height: 1.45;
+    color: var(--ink);
+    text-align: center;
+  }
+  .s7-intro .bold { font-weight: 700; }
+
+  .s7-list {
+    position: absolute;
+    top: 670px;
+    left: 130px;
+    width: 820px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .s7-list .item {
+    margin-bottom: 14px;
+    padding-left: 50px;
+    position: relative;
+  }
+  .s7-list .item::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--terracota);
+    font-weight: 700;
+    font-size: 30px;
+  }
+  .s7-list .bold { font-weight: 700; color: var(--terracota); }
+
+  .s7-cta {
+    position: absolute;
+    bottom: 240px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    background: var(--rojo);
+    color: white;
+    padding: 22px 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    box-shadow: 5px 7px 14px rgba(0,0,0,0.25);
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .s7-save {
+    position: absolute;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    font-family: 'Caveat', cursive;
+    font-size: 42px;
+    color: var(--ink);
+    text-align: center;
+    width: 700px;
+  }
+  .s7-save .pin {
+    background: var(--postit-pink);
+    padding: 2px 14px;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  .s7 .sticker-shh { top: 90px; right: 200px; font-size: 95px; transform: rotate(-10deg); }
+  .s7 .sticker-pin { bottom: 210px; right: 100px; font-size: 70px; transform: rotate(15deg); }
+  .s7 .sticker-fire { top: 100px; left: 200px; font-size: 80px; transform: rotate(15deg); }
+
+  /* SVG decorative arrows / underlines reused */
+  .scribble-line {
+    position: absolute;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ SLIDE 1 — PORTADA ============ -->
+<div class="slide s1">
+  <div class="tape tape-1"></div>
+  <div class="tape tape-2"></div>
+
+  <div class="sticker sticker-popcorn">🍿</div>
+  <div class="sticker sticker-heart">💔</div>
+  <div class="sticker sticker-eyes">👀</div>
+  <div class="sticker sticker-shh">🤫</div>
+
+  <div class="s1-pretitle">~ el chisme más jugoso del año ~</div>
+
+  <div class="s1-title">
+    EL <span class="red">CHISME</span><br>
+    DE SILICON<br>
+    VALLEY <span class="year">2026</span>
+  </div>
+
+  <svg class="doodle" style="top: 660px; left: 80px; width: 540px; height: 30px;" viewBox="0 0 540 30">
+    <path d="M5,18 Q135,4 270,15 T535,12" stroke="#C17F5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="s1-subtitle">
+    ¿Quién anda con quién en la <span class="hl">IA</span>?<br>
+    Quién se peleó, quién se casó,<br>
+    quién está coqueteando con todos…
+  </div>
+
+  <div class="s1-quote">
+    "Porque la tecnología tiene<br>
+    más drama que una telenovela."
+  </div>
+
+  <div class="s1-arrow">desliza para el chisme →</div>
+
+  <div class="num">1 / 7</div>
+  <div class="handle">@tuhandle</div>
+</div>
+
+
+<!-- ============ SLIDE 2 — OpenAI vs Anthropic ============ -->
+<div class="slide s2">
+  <div class="tape tape-1"></div>
+
+  <div class="sticker sticker-fire">🔥</div>
+  <div class="sticker sticker-broken">💥</div>
+
+  <div class="s2-tag">SE PELEARON 💔</div>
+
+  <div class="s2-title">
+    <span class="red">OpenAI</span><br>
+    <span class="vs">vs.</span><br>
+    <span class="red">Anthropic</span>
+  </div>
+
+  <div class="s2-heart">💔</div>
+
+  <svg class="doodle" style="top: 530px; left: 50%; transform: translateX(-50%); width: 280px; height: 30px;" viewBox="0 0 280 30">
+    <path d="M5,18 Q70,4 140,15 T275,12" stroke="#D85A4E" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="s2-content">
+    <p>La <span class="bold">ruptura más dramática</span> de la industria 🍿</p>
+    <p>Anthropic fue fundada por ex-empleados clave de OpenAI que se fueron <span class="hl">dando un portazo</span>.</p>
+    <p>¿El motivo? Una diferencia ideológica irreconciliable sobre la <span class="bold">seguridad y el futuro</span> de la humanidad.</p>
+    <p>Hoy <span class="bold">GPT-5 y Claude 4</span> son los peores enemigos peleando por el trono.</p>
+  </div>
+
+  <div class="postit s2-postit">
+    "Ni en pintura<br>se vuelven a ver" 🙅‍♀️
+  </div>
+
+  <div class="num">2 / 7</div>
+  <div class="handle">@tuhandle</div>
+</div>
+
+
+<!-- ============ SLIDE 3 — Meta & MANUS ============ -->
+<div class="slide s3">
+  <div class="tape tape-1"></div>
+
+  <div class="sticker sticker-money">💸</div>
+  <div class="sticker sticker-china">🇨🇳</div>
+
+  <div class="s3-tag">LOS SEPARARON 💛</div>
+
+  <div class="s3-title">
+    <span>Meta</span> <span class="amp">&</span><br>
+    <span class="yellow">MANUS AI</span>
+  </div>
+
+  <div class="s3-broken-heart">💔</div>
+
+  <div class="s3-content">
+    <p>Parecía la <span class="bold">boda del siglo</span>: Meta compró MANUS AI por <span class="hl">$2,000 millones</span> a finales de 2025.</p>
+    <p>Buscaban dominar los agentes autónomos…<br>pero el destino (y la geopolítica) <span class="bold">intervino</span>.</p>
+    <p>En abril 2026, China <span class="strike">aprobó</span> bloqueó la compra por "seguridad nacional".</p>
+    <p>Meta tuvo que <span class="bold">devolver la tecnología</span> y Zuck se quedó solterito.</p>
+  </div>
+
+  <div class="postit s3-postit">
+    Plot twist: tuvo que<br>devolver hasta el anillo 💍
+  </div>
+
+  <div class="num">3 / 7</div>
+  <div class="handle">@tuhandle</div>
+</div>
+
+
+<!-- ============ SLIDE 4 — Higgsfield ============ -->
+<div class="slide s4">
+  <div class="tape tape-1"></div>
+  <div class="tape tape-2"></div>
+
+  <div class="sticker sticker-hearts">💜</div>
+  <div class="sticker sticker-flirt">😏</div>
+  <div class="sticker sticker-flirt2">😉</div>
+
+  <div class="s4-tag">SE LO ROTARON TODOS 💜</div>
+
+  <div class="s4-title">
+    <span class="purple">Higgsfield</span>
+  </div>
+
+  <div class="s4-sub">~ la IA que no sabe decir que no ~</div>
+
+  <div class="s4-content">
+    <p>Es la <span class="bold">herramienta de video</span> que todos quieren en su equipo para sobrevivir.</p>
+    <p>Tiene alianzas con <span class="hl">Meta para Reels</span>, <span class="hl">Google para Shorts</span>, y coquetea con <span class="hl">OpenAI para Sora</span>.</p>
+    <p><span class="bold">No tiene exclusividad con nadie</span>: está en todas las camas tecnológicas para asegurar su distribución global. 👀</p>
+  </div>
+
+  <div class="num">4 / 7</div>
+  <div class="handle">@tuhandle</div>
+</div>
+
+
+<!-- ============ SLIDE 5 — Google & Perplexity ============ -->
+<div class="slide s5">
+  <div class="tape tape-1"></div>
+
+  <div class="sticker sticker-secret">🤫</div>
+
+  <div class="s5-tag">SE HICIERON OJITOS 💚</div>
+
+  <div class="s5-title">
+    <span class="green">Google</span> <span class="amp">&</span><br>
+    <span class="green">Perplexity</span>
+  </div>
+
+  <div class="s5-eyes">👀</div>
+
+  <div class="s5-content">
+    <p>Son <span class="bold">rivales directos</span> en búsquedas… pero hay una atracción técnica innegable.</p>
+    <p>Perplexity usa la <span class="hl">infraestructura de Google Cloud</span> y ofrece Gemini Pro a sus usuarios.</p>
+    <p>Google sabe que Perplexity es el <span class="bold">futuro de la búsqueda</span>. Perplexity sabe que Google tiene los recursos.</p>
+  </div>
+
+  <div class="postit s5-postit">
+    "Compiten de día,<br>colaboran de noche" 🌙
+  </div>
+
+  <div class="num">5 / 7</div>
+  <div class="handle">@tuhandle</div>
+</div>
+
+
+<!-- ============ SLIDE 6 — HuggingFace ============ -->
+<div class="slide s6">
+  <div class="tape tape-1"></div>
+
+  <div class="sticker sticker-zen">🧘‍♀️</div>
+  <div class="sticker sticker-peace">✌️</div>
+  <div class="sticker sticker-peace2">🌿</div>
+
+  <div class="s6-tag">EN SU PROPIO MUNDO 💙</div>
+
+  <div class="s6-title">
+    <span class="blue">HuggingFace</span><br>
+    <span class="underline">la zona neutral</span>
+  </div>
+
+  <div class="s6-face">🤗</div>
+
+  <div class="s6-content">
+    <p>Mientras todos se pelean, se alían o se divorcian… <span class="bold">HuggingFace sonríe</span>.</p>
+    <p>No compite por ser el "mejor" modelo: es la <span class="hl">casa donde viven todos los modelos abiertos</span> del mundo.</p>
+    <p>OpenAI, Meta y Google <span class="bold">tienen que pasar por su plataforma</span> para llegar a los desarrolladores.</p>
+  </div>
+
+  <div class="s6-quote">
+    "El que no se mete en chismes…<br>termina siendo dueño del barrio." 🏘️
+  </div>
+
+  <div class="num">6 / 7</div>
+  <div class="handle">@tuhandle</div>
+</div>
+
+
+<!-- ============ SLIDE 7 — CIERRE ============ -->
+<div class="slide s7">
+  <div class="tape tape-1"></div>
+  <div class="tape tape-2"></div>
+
+  <div class="sticker sticker-shh">🤫</div>
+  <div class="sticker sticker-fire">🔥</div>
+  <div class="sticker sticker-pin">📌</div>
+
+  <div class="s7-pretag">~ pero escucha esto ~</div>
+
+  <div class="s7-title">
+    El verdadero<br>
+    <span class="hl">chisme</span> es otro
+  </div>
+
+  <svg class="doodle" style="top: 460px; left: 50%; transform: translateX(-50%); width: 380px; height: 30px;" viewBox="0 0 380 30">
+    <path d="M5,18 Q95,4 190,15 T375,12" stroke="#C17F5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <div class="s7-intro">
+    Mientras los CEOs de Silicon Valley se pelean,<br>
+    los creadores que ganan <span class="bold">millones de vistas</span><br>
+    no se casan con ninguna IA. Las usan <span class="bold">TODAS</span> 👇
+  </div>
+
+  <div class="s7-list">
+    <div class="item"><span class="bold">ChatGPT y Claude</span> para guionizar</div>
+    <div class="item"><span class="bold">Higgsfield</span> para generar video</div>
+    <div class="item"><span class="bold">Perplexity</span> para investigar tendencias</div>
+    <div class="item"><span class="bold">HuggingFace</span> para encontrar IAs nuevas</div>
+  </div>
+
+  <div class="s7-cta">
+    Comenta <strong>"100K"</strong> y te enseño cómo 🚀
+  </div>
+
+  <div class="s7-save">
+    📌 <span class="pin">Guárdalo</span> para cuando<br>
+    necesites recordar quién es quién
+  </div>
+
+  <div class="num">7 / 7</div>
+  <div class="handle">@tuhandle · Fórmula 100K</div>
+</div>
+
+</body>
+</html>

@@ -1,42 +1,59 @@
-## Description: <br>
-Converts Markdown files into styled, self-contained HTML pages for Canvas display or browser viewing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert markdown files to beautiful HTML pages suitable for Canvas display or browser viewing.
 
-## Publisher: <br>
-[jingyu525](https://clawhub.ai/user/jingyu525) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jingyu525](https://clawhub.ai/user/jingyu525)
 
-## Use Case: <br>
-Developers, technical writers, and agent users use this skill to turn Markdown documents into polished HTML files that can be opened in a browser or presented through Canvas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Markdown content may be rendered into a separate HTML file or shown in Canvas. <br>
-Mitigation: Use the skill only with documents you are comfortable exporting or presenting, and review or redact private content before conversion. <br>
-Risk: Converted output may be written somewhere unexpected if the output path is not checked. <br>
-Mitigation: Confirm the default or custom output path before running the conversion. <br>
+## Use Case:
 
+Developers and external users use this skill to convert Markdown documents into styled HTML pages for Canvas presentation or browser viewing.
 
-## Reference(s): <br>
-- [Markdown Canvas ClawHub page](https://clawhub.ai/jingyu525/markdown-canvas) <br>
-- [Markdown Canvas homepage](https://github.com/jingyu525/markdown-canvas) <br>
-- [Markdown Canvas issues](https://github.com/jingyu525/markdown-canvas/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; generated self-contained HTML files when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and writes the converted HTML beside the input Markdown file unless a custom output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: package.json and release metadata) <br>
+Risk: Generated HTML can include executable content from source Markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted Markdown or inspect the generated HTML before opening, sharing, or presenting it.
+
+Risk: Links and attributes in rendered Markdown may direct users to unsafe locations.
+
+Mitigation: Validate link schemes and review generated pages before presenting them to others.
+
+Risk: Documents may contain secrets or private information that become easier to share after conversion.
+
+Mitigation: Review Markdown content for sensitive information before using the Canvas or share workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jingyu525/skills/markdown-canvas)
+- [Markdown Canvas Repository](https://github.com/jingyu525/markdown-canvas)
+- [Markdown Canvas Issues](https://github.com/jingyu525/markdown-canvas/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; generated HTML is intended for Canvas display or browser viewing.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

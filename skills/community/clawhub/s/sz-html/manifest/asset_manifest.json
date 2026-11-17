@@ -1,0 +1,364 @@
+{
+  "skill": "sz-html",
+  "total_styles": 49,
+  "families": {
+    "order": [
+      {
+        "code": "A1",
+        "label": "瑞士极简",
+        "en": "SWISS MINIMAL",
+        "class": "swiss",
+        "body": "assets/body/A1_swiss.md"
+      },
+      {
+        "code": "A12",
+        "label": "扁平无影",
+        "en": "FLAT DESIGN",
+        "class": "flat",
+        "body": "assets/body/A12_flat.md"
+      },
+      {
+        "code": "A29",
+        "label": "极致留白",
+        "en": "MINIMAL",
+        "class": "min",
+        "body": "assets/body/A29_min.md"
+      },
+      {
+        "code": "A32",
+        "label": "瑞士新章",
+        "en": "SWISS NEW CHAPTER",
+        "class": "sw2",
+        "body": "assets/body/A32_sw2.md"
+      },
+      {
+        "code": "A42",
+        "label": "自然凝练",
+        "en": "ORGANIC EDITORIAL",
+        "class": "organic",
+        "body": "assets/body/A42_organic.md"
+      },
+      {
+        "code": "A47",
+        "label": "杂志编辑",
+        "en": "MAGAZINE EDITORIAL",
+        "class": "magz",
+        "body": "assets/body/A47_magz.md"
+      }
+    ],
+    "organic": [
+      {
+        "code": "A2",
+        "label": "同色浮雕",
+        "en": "NEUMORPHISM",
+        "class": "emboss",
+        "body": "assets/body/A2_emboss.md"
+      },
+      {
+        "code": "A9",
+        "label": "充气黏土",
+        "en": "CLAY",
+        "class": "clay",
+        "body": "assets/body/A9_clay.md"
+      },
+      {
+        "code": "A16",
+        "label": "微态响应",
+        "en": "MICRO INTERACTIONS",
+        "class": "micro",
+        "body": "assets/body/A16_micro.md"
+      },
+      {
+        "code": "A24",
+        "label": "自然有机",
+        "en": "ORGANIC",
+        "class": "org",
+        "body": "assets/body/A24_org.md"
+      },
+      {
+        "code": "A39",
+        "label": "细胞仿生",
+        "en": "CELLULAR",
+        "class": "cell2",
+        "body": "assets/body/A39_cell2.md"
+      },
+      {
+        "code": "A41",
+        "label": "触感果冻",
+        "en": "TACTILE JELLY",
+        "class": "jelly",
+        "body": "assets/body/A41_jelly.md"
+      }
+    ],
+    "glass": [
+      {
+        "code": "A3",
+        "label": "磨砂玻璃",
+        "en": "FROSTED GLASS",
+        "class": "frost",
+        "body": "assets/body/A3_frost.md"
+      },
+      {
+        "code": "A10",
+        "label": "极光晕彩",
+        "en": "AURORA",
+        "class": "aurora",
+        "body": "assets/body/A10_aurora.md"
+      },
+      {
+        "code": "A14",
+        "label": "液态玻璃",
+        "en": "LIQUID GLASS",
+        "class": "liquid",
+        "body": "assets/body/A14_liquid.md"
+      },
+      {
+        "code": "A19",
+        "label": "柔光软塑",
+        "en": "SOFT PLASTIC",
+        "class": "sp",
+        "body": "assets/body/A19_sp.md"
+      },
+      {
+        "code": "A25",
+        "label": "原生智能",
+        "en": "NATIVE AI",
+        "class": "na",
+        "body": "assets/body/A25_na.md"
+      },
+      {
+        "code": "A45",
+        "label": "产品立体",
+        "en": "PRODUCT RENDER",
+        "class": "prod",
+        "body": "assets/body/A45_prod.md"
+      }
+    ],
+    "bold": [
+      {
+        "code": "A4",
+        "label": "粗野主义",
+        "en": "BRUTALISM",
+        "class": "brutal",
+        "body": "assets/body/A4_brutal.md"
+      },
+      {
+        "code": "A5",
+        "label": "立体超真",
+        "en": "HYPERREAL",
+        "class": "hyper",
+        "body": "assets/body/A5_hyper.md"
+      },
+      {
+        "code": "A6",
+        "label": "撞色方块",
+        "en": "COLORBLOCK",
+        "class": "cb",
+        "body": "assets/body/A6_cb.md"
+      },
+      {
+        "code": "A20",
+        "label": "硬边糖果",
+        "en": "HARD CANDY",
+        "class": "hc",
+        "body": "assets/body/A20_hc.md"
+      },
+      {
+        "code": "A26",
+        "label": "孟菲斯彩",
+        "en": "MEMPHIS",
+        "class": "mh",
+        "body": "assets/body/A26_mh.md"
+      },
+      {
+        "code": "A38",
+        "label": "世代极繁",
+        "en": "Y2K MAXIMALISM",
+        "class": "max",
+        "body": "assets/body/A38_max.md"
+      },
+      {
+        "code": "A40",
+        "label": "粗粝原始",
+        "en": "TERMINAL-RAW",
+        "class": "raw",
+        "body": "assets/body/A40_raw.md"
+      }
+    ],
+    "functional": [
+      {
+        "code": "A7",
+        "label": "墨黑纯屏",
+        "en": "INK BLACK",
+        "class": "ink",
+        "body": "assets/body/A7_ink.md"
+      },
+      {
+        "code": "A8",
+        "label": "无碍包容",
+        "en": "ACCESSIBLE",
+        "class": "acc",
+        "body": "assets/body/A8_acc.md"
+      },
+      {
+        "code": "A15",
+        "label": "动势流转",
+        "en": "KINETIC FLOW",
+        "class": "kinetic",
+        "body": "assets/body/A15_kinetic.md"
+      },
+      {
+        "code": "A17",
+        "label": "包容无界",
+        "en": "INCLUSIVE",
+        "class": "ic",
+        "body": "assets/body/A17_ic.md"
+      },
+      {
+        "code": "A18",
+        "label": "隐于无形",
+        "en": "ZERO INTERFACE",
+        "class": "zi",
+        "body": "assets/body/A18_zi.md"
+      },
+      {
+        "code": "A21",
+        "label": "便当拼盒",
+        "en": "BENTO BOX",
+        "class": "bt",
+        "body": "assets/body/A21_bt.md"
+      },
+      {
+        "code": "A30",
+        "label": "流动字态",
+        "en": "FLUID TYPOGRAPHY",
+        "class": "ft",
+        "body": "assets/body/A30_ft.md"
+      },
+      {
+        "code": "A35",
+        "label": "网格便当",
+        "en": "BENTO GRID",
+        "class": "gd",
+        "body": "assets/body/A35_gd.md"
+      },
+      {
+        "code": "A43",
+        "label": "磁吸光标",
+        "en": "MAGNETIC CURSOR",
+        "class": "mag",
+        "body": "assets/body/A43_mag.md"
+      },
+      {
+        "code": "A44",
+        "label": "语音优先",
+        "en": "VOICE-FIRST",
+        "class": "voice",
+        "body": "assets/body/A44_voice.md"
+      }
+    ],
+    "retro": [
+      {
+        "code": "A11",
+        "label": "复古未来",
+        "en": "RETRO-FUTURISM",
+        "class": "retro",
+        "body": "assets/body/A11_retro.md"
+      },
+      {
+        "code": "A13",
+        "label": "仿真实物",
+        "en": "SKEUOMORPHISM",
+        "class": "skeuo",
+        "body": "assets/body/A13_skeuo.md"
+      },
+      {
+        "code": "A31",
+        "label": "视差叙事",
+        "en": "PARALLAX NARRATIVE",
+        "class": "px",
+        "body": "assets/body/A31_px.md"
+      },
+      {
+        "code": "A34",
+        "label": "像素艺术",
+        "en": "PIXEL ART",
+        "class": "pa",
+        "body": "assets/body/A34_pa.md"
+      },
+      {
+        "code": "A36",
+        "label": "空间浮窗",
+        "en": "FLOATING",
+        "class": "float",
+        "body": "assets/body/A36_float.md"
+      },
+      {
+        "code": "A37",
+        "label": "电子墨水",
+        "en": "E-INK",
+        "class": "ink2",
+        "body": "assets/body/A37_ink2.md"
+      },
+      {
+        "code": "A49",
+        "label": "复古胶片",
+        "en": "FILM RETRO",
+        "class": "film",
+        "body": "assets/body/A49_film.md"
+      }
+    ],
+    "tech": [
+      {
+        "code": "A22",
+        "label": "千禧幻彩",
+        "en": "Y2K CHROME",
+        "class": "y2",
+        "body": "assets/body/A22_y2.md"
+      },
+      {
+        "code": "A23",
+        "label": "赛博朋克",
+        "en": "CYBERPUNK",
+        "class": "cy",
+        "body": "assets/body/A23_cy.md"
+      },
+      {
+        "code": "A27",
+        "label": "蒸汽幻紫",
+        "en": "VAPORWAVE",
+        "class": "vs",
+        "body": "assets/body/A27_vs.md"
+      },
+      {
+        "code": "A28",
+        "label": "维度层叠",
+        "en": "DIMENSIONAL",
+        "class": "dim",
+        "body": "assets/body/A28_dim.md"
+      },
+      {
+        "code": "A33",
+        "label": "抬显科幻",
+        "en": "HUD SCIFI",
+        "class": "hud",
+        "body": "assets/body/A33_hud.md"
+      },
+      {
+        "code": "A46",
+        "label": "流彩网格",
+        "en": "FLOW NEON",
+        "class": "flow",
+        "body": "assets/body/A46_flow.md"
+      },
+      {
+        "code": "A48",
+        "label": "色散重影",
+        "en": "CHROMATIC GHOST",
+        "class": "ghosting",
+        "body": "assets/body/A48_ghosting.md"
+      }
+    ]
+  },
+  "family_count": 7
+}

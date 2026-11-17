@@ -1,45 +1,59 @@
-## Description: <br>
-Financial Analyst Skill helps agents structure bilingual financial analysis around cycle position, market drivers, constraints, risk, sequencing, and opponent dynamics for market, sector, company, fund, portfolio, and leverage questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+金融分析师 — 综合趋势判断、周期定位与风险控制的投资分析技能，适用于市场方向判断、行业/公司分析、资产配置、交易策略评估、持仓复盘、杠杆与仓位管理问题。
 
-## Publisher: <br>
-[phoenixlucky](https://clawhub.ai/user/phoenixlucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[phoenixlucky](https://clawhub.ai/user/phoenixlucky)
 
-## Use Case: <br>
-External users and developers use this skill to produce structured financial analysis, portfolio reviews, trade strategy assessments, and risk-aware investment guidance. It is intended to support analysis and decision framing, not to replace professional investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can provide action-oriented financial analysis that users may mistake for personalized investment advice or trade instructions. <br>
-Mitigation: Treat outputs as analysis support only, verify data independently, and consult qualified professionals for personalized advice. <br>
-Risk: Market data, valuation inputs, user-provided holdings, or jurisdiction-specific rules may be incomplete or outdated. <br>
-Mitigation: Require current source data, identify information gaps, and state assumptions before making recommendations. <br>
-Risk: Leverage or concentrated positions can amplify losses and force liquidation during drawdowns. <br>
-Mitigation: Include explicit risk warnings, maximum drawdown thresholds, position sizing, and exit conditions before discussing leverage. <br>
+## Use Case:
 
+External users and developers use this skill to structure investment questions across market direction, sector analysis, equity or fund review, portfolio diagnosis, trading strategy, and risk or leverage decisions. It helps produce conditional financial analysis with explicit assumptions, information gaps, recommended actions, and key risks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/phoenixlucky/financial-analyst-skill) <br>
-- [README](README.md) <br>
-- [Analysis examples](references/examples.md) <br>
-- [Metric playbook](references/metric-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured sections and conditional recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual responses follow the user's language and should mark uncertainty, assumptions, information gaps, and key risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: Financial analysis may be mistaken for personalized financial advice or used for consequential buy, sell, leverage, or concentrated-position decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as decision support only, verify market and portfolio data independently, and consult a licensed advisor for consequential decisions.
+
+Risk: Incomplete or stale financial data can lead to misleading cycle, valuation, or risk conclusions.
+
+Mitigation: Require current source data for the target asset, timeframe, benchmark, holdings, fees, and risk constraints before acting on the analysis.
+
+Risk: Leverage or margin-related guidance can amplify losses if users skip drawdown and liquidation checks.
+
+Mitigation: Review leverage recommendations manually and enforce predefined maximum drawdown, position sizing, and forced-reduction rules before execution.
+
+## Reference(s):
+
+- [Financial Analyst Skill on ClawHub](https://clawhub.ai/phoenixlucky/skills/financial-analyst-skill)
+- [Financial analysis examples](references/examples.md)
+- [Common financial metrics and valuation framework](references/metric-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured bilingual Markdown analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a six-lens framework with conditional conclusions, recommended actions, key risks, assumptions, and verification signals.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

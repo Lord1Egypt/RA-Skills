@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn70bwx0z89zbekx9njenxeh2x81z8zw",
-  "slug": "use-openclaw-manual",
-  "version": "2.0.3",
-  "publishedAt": 1774237967866
+  "name": "use-openclaw-manual",
+  "version": "2.0.2",
+  "description": "配置 OpenClaw 前必须查阅官方文档的技能",
+  "author": "echoflying",
+  "license": "MIT-0",
+  "keywords": ["openclaw", "documentation", "config", "manual", "chinese", "security-hardened"],
+  "changelog": "v2.0.2: 安全优化 - 添加依赖检查、GITHUB_TOKEN 支持、隐私保护通知"
 }

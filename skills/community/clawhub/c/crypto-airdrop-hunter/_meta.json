@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7f7v4gpjd2wzpwjvvxktqcjn83h2bt",
-  "slug": "crypto-airdrop-hunter",
+  "id": "crypto-airdrop-hunter",
+  "name": "Crypto Airdrop Hunter & Market Reporter",
   "version": "1.0.1",
-  "publishedAt": 1774343592971
+  "description": "Automated crypto airdrop discovery and daily market analysis. No API keys required.",
+  "author": "OpenClaw User",
+  "tags": ["crypto", "airdrop", "trading", "market-analysis", "automation"],
+  "runtime": "node",
+  "platforms": ["openclaw"]
 }

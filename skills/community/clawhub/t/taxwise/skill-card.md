@@ -1,42 +1,62 @@
-## Description: <br>
-面向中国中小企业的智能财税助手，支持税率查询、发票识别、基础记账、报税草稿、财务分析、合规检查和税务筹划辅助。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TaxWise is a China-focused tax and bookkeeping assistant for small and midsize businesses, with tools for tax-rate lookup, invoice extraction, bookkeeping, filing drafts, financial analysis, compliance checks, and tax-planning guidance.
 
-## Publisher: <br>
-[keybryant](https://clawhub.ai/user/keybryant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keybryant](https://clawhub.ai/user/keybryant)
 
-## Use Case: <br>
-中国中小企业经营者、财务人员和支持其工作的代理人可用它查询常见税率、整理发票与记账数据、生成财务报告，并获得报税、合规和税务筹划草稿。这些输出应作为参考，最终申报和税务决策需由合格专业人员核验并以税务机关要求为准。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax filing, compliance, and planning outputs may be incomplete or misleading for high-stakes financial workflows. <br>
-Mitigation: Treat all calculations and recommendations as drafts; require review by qualified tax or finance professionals and verify against current tax-authority rules before filing or acting. <br>
-Risk: The artifact uses 2024 reference tax data and mock integrations, so rates, OCR results, and company-credit checks may be stale or synthetic. <br>
-Mitigation: Replace mock OCR, tax-rate, and business-credit integrations with reviewed production APIs and keep the tax-rate reference updated before real business use. <br>
-Risk: Real tax, invoice, bookkeeping, and API credential data is sensitive. <br>
-Mitigation: Avoid entering live credentials or regulated financial data until the code and secret handling have been reviewed, hardened, and deployed in an approved environment. <br>
+## Use Case:
 
+External users and business operators can use this skill to run China-oriented tax-rate queries, invoice recognition, local bookkeeping, draft tax calculations, financial summaries, compliance checks, and tax-planning prompts for small and midsize businesses. Outputs should be reviewed against current tax authority guidance before filing or operational use.
 
-## Reference(s): <br>
-- [中国主要税种及税率参考](references/china_tax_rates.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with JSON bookkeeping data and script command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local calculations, structured invoice fields, bookkeeping summaries, tax filing drafts, compliance findings, planning suggestions, and API replacement guidance for mock integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Sensitive financial records may be stored as local plaintext JSON in the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive test data unless the storage location is access-controlled, encrypted, backed up, and covered by the user's data-retention practices.
+
+Risk: Tax calculations, period filters, and compliance checks may be incomplete or approximate.
+
+Mitigation: Treat generated filing drafts, compliance warnings, and planning suggestions as review aids, then verify them against current tax authority rules and a qualified tax professional before submission.
+
+Risk: Invoice OCR and some external data integrations are mock implementations by default.
+
+Mitigation: Do not rely on mock OCR or static tax data for production decisions; replace mocks with approved OCR, tax-rate, and business-credit APIs before production use.
+
+Risk: Bookkeeping records can be deleted through the command-line tool.
+
+Mitigation: Review delete actions before execution and keep backups or audit exports for records that must be retained.
+
+## Reference(s):
+
+- [China Tax Rates Reference](references/china_tax_rates.md)
+- [ClawHub Skill Page](https://clawhub.ai/keybryant/skills/taxwise)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Command-line text, JSON, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some tools read and write local bookkeeping records in JSON; invoice OCR and live data integrations are mocked until replaced with production APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

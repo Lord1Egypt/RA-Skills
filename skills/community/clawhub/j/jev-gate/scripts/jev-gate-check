@@ -1,0 +1,69 @@
+#!/bin/sh
+# Ask jev-gate whether an action may proceed.
+#
+#   scripts/jev-gate-check "about to drop the orders table"
+#   scripts/jev-gate-check "posting a discount code" "curl -X POST /promo"
+#
+# Exit codes: 0 approve · 2 hold · 3 escalate · 1 error (treat as blocked).
+# Stdlib + curl only, so an agent can run it anywhere.
+
+set -eu
+
+if [ "$#" -lt 1 ] || [ -z "${1:-}" ]; then
+  echo "usage: jev-gate-check <transcript> [tool_call ...]" >&2
+  exit 1
+fi
+
+if [ -z "${JEV_GATE_KEY:-}" ]; then
+  # Not a hold: a hold means "queue this for review". A missing key is an error,
+  # and the caller must block. Keep the exit codes distinct.
+  echo "jev-gate-check: set JEV_GATE_KEY (get one at https://jev-gate.fly.dev)" >&2
+  exit 1
+fi
+GATE="${JEV_GATE_URL:-https://jev-gate.fly.dev}"
+
+TRANSCRIPT="$1"
+shift
+CALLS='[]'
+if [ "$#" -gt 0 ]; then
+  CALLS=$(python3 -c 'import json,sys; print(json.dumps(sys.argv[1:]))' "$@")
+fi
+
+BODY=$(python3 -c 'import json,sys; print(json.dumps({"transcript": sys.argv[1], "tool_calls": json.loads(sys.argv[2])}))' \
+  "$TRANSCRIPT" "$CALLS")
+
+RESPONSE=$(curl -sS --max-time 30 -w '\n%{http_code}' "$GATE/v1/gate" \
+  -H "Authorization: Bearer $JEV_GATE_KEY" \
+  -H 'content-type: application/json' \
+  -d "$BODY" 2>/dev/null) || {
+    echo "jev-gate unreachable — blocking rather than guessing" >&2
+    exit 1
+  }
+
+STATUS=$(printf '%s' "$RESPONSE" | tail -n1)
+PAYLOAD=$(printf '%s' "$RESPONSE" | sed '$d')
+
+case "$STATUS" in
+  200) ;;
+  401) echo "jev-gate: key rejected (401) — re-issue it from the dashboard" >&2; exit 1 ;;
+  402) echo "jev-gate: subscription inactive (402) — reopen billing in the dashboard" >&2; exit 1 ;;
+  429) echo "jev-gate: rate limited (429) — back off and retry" >&2; exit 1 ;;
+  *)   echo "jev-gate: HTTP $STATUS — blocking rather than guessing" >&2; exit 1 ;;
+esac
+
+ACTION=$(printf '%s' "$PAYLOAD" | python3 -c "import json,sys; print(json.load(sys.stdin)['action'])")
+WHY=$(printf '%s' "$PAYLOAD" | python3 -c "
+import json, sys
+d = json.load(sys.stdin)
+print('{a} (conf {c:.2f}) — {w}'.format(
+    a=d['action'].upper(), c=d['confidence'],
+    w=' · '.join(d.get('reasons') or ['no rule fired'])))
+")
+
+echo "$WHY"
+case "$ACTION" in
+  approve)  exit 0 ;;
+  hold)     exit 2 ;;
+  escalate) exit 3 ;;
+  *)        echo "jev-gate: unknown verdict '$ACTION' — blocking" >&2; exit 1 ;;
+esac

@@ -1,47 +1,68 @@
-## Description: <br>
-Alicloud Service Scenario-Based Skill for auto-deploying the Build AI Animation Story Creation App by creating an OSS bucket, provisioning a Bailian API key, deploying the FC application with a Devs template, and stopping at the experience page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alicloud Service Scenario-Based Skill for auto-deploying the "Build AI Animation Story Creation App" solution by creating an OSS bucket, provisioning a DashScope API key, deploying the FC application with a Devs template, and stopping at the experience page.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud engineers use this skill to deploy Alibaba Cloud's AI Animation Story Creation App with scripted setup for OSS, Bailian, Function Compute, Devs project configuration, deployment polling, and access URL generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad, persistent changes to an Alibaba Cloud account, including creating cloud resources, roles, custom domains, API keys, and attaching full-access policies. <br>
-Mitigation: Use a disposable or tightly scoped RAM user, review the scripts before execution, avoid production credentials, and delete created resources, roles, domains, API keys, and attached policies after use. <br>
-Risk: The Bailian API key is created during the workflow and may be printed in command output. <br>
-Mitigation: Do not allow the generated API key to be pasted into chat, stored in logs, or shared; rotate or delete the key after the deployment is no longer needed. <br>
-Risk: The final application URL is publicly accessible and can consume Function Compute resources and Bailian API quota. <br>
-Mitigation: Share the URL only with trusted users, monitor usage and costs, and remove the custom domain and deployed project when testing is complete. <br>
+## Use Case:
 
+Developers and cloud engineers use this skill to automate setup and deployment of Alibaba Cloud's AI Animation Story Creation App, including OSS, DashScope/Bailian API key creation, Function Compute deployment, custom domain setup, and verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/alibabacloud-tech-solution-animation-creation-auto-deploy) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Related Commands](references/related-commands.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
+### Deployment Geography for Use:
 
+Alibaba Cloud cn-hangzhou region
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and script invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment steps, environment variable guidance, generated resource names, deployment status checks, cleanup commands, and a public access URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server-resolved release metadata) <br>
+Risk: Live API key material may be printed or captured in shared terminals or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a dedicated account or tightly scoped deployment identity, avoid shared terminals and logs, and delete or rotate the created API key after use.
+
+Risk: The deployment flow attaches broad FC and OSS permissions and changes RAM role trust in ways that may persist after deployment.
+
+Mitigation: Review required permissions before execution, use the narrowest practical identity, and manually remove policy grants and role trust changes during cleanup.
+
+Risk: The workflow creates cloud resources and a public custom domain that can consume budget or expose user-generated content if shared.
+
+Mitigation: Treat the generated URL as public, share it only with trusted users, monitor costs, and clean up the custom domain, functions, Devs project, OSS bucket, and API key when finished.
+
+Risk: The skill deploys a third-party Devs template and cloud resources on the user's Alibaba Cloud account.
+
+Mitigation: Verify the Devs template and generated deployment configuration before triggering deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdk-team/skills/alibabacloud-tech-solution-animation-creation-auto-deploy)
+- [RAM Policies](references/ram-policies.md)
+- [Related Commands](references/related-commands.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation Guide](references/cli-installation-guide.md)
+- [Alibaba Cloud CLI Documentation](https://help.aliyun.com/zh/cli/)
+- [Aliyun CLI Plugin Repository](https://github.com/aliyun/aliyun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides command sequences and script-driven deployment steps for Alibaba Cloud resources, ending with a public application access URL.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

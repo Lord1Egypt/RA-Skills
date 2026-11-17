@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read GPX"
+  short_description: "Parse GPX routes, CPs, climbs, and pacing tables"
+  default_prompt: "Use $read-gpx to analyze this GPX route and summarize checkpoints, elevation, and segment pacing."

@@ -1,40 +1,55 @@
-## Description: <br>
-A health and wellness skill to remind the user to drink water and stay hydrated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A health and wellness skill to remind the user to drink water and stay hydrated.
 
-## Publisher: <br>
-[YinghaoJia](https://clawhub.ai/user/YinghaoJia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinghaojia](https://clawhub.ai/user/yinghaojia)
 
-## Use Case: <br>
-External users use this skill to receive hydration reminders, track water intake when requested, and get suggestions for recurring drink-water reminders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional water-intake tracking can create daily memory logs that may contain personal hydration details. <br>
-Mitigation: Confirm that the user wants tracking before writing logs, keep entries limited to the intake amount and date, and let the user opt out. <br>
-Risk: Recurring reminder suggestions can become unwanted if the user cannot change or disable the schedule. <br>
-Mitigation: Before suggesting a recurring schedule, confirm the cadence and include a clear way to disable or adjust the reminder. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Water Reminder on ClawHub](https://clawhub.ai/YinghaoJia/water-reminder) <br>
-- [YinghaoJia publisher profile](https://clawhub.ai/user/YinghaoJia) <br>
+## Use Case:
+
+External users use this skill to receive hydration prompts, track water intake when requested, and get guidance for setting up recurring water reminders.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recurring reminders may require cron or heartbeat setup that persists beyond the current conversation.
+
+Mitigation: Only configure recurring reminders after the user explicitly asks for them and understands the persistence involved.
+
+Risk: Hydration tracking can write daily intake details to memory logs.
+
+Mitigation: Record intake only when the user opts into tracking and provides the amount to log.
+
+Risk: The skill may provide occasional hydration prompts that some users may find intrusive.
+
+Mitigation: Use the skill only when the user asks for reminders, tracking, or hydration support.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Concise conversational Markdown with optional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional daily memory log entries when the user chooses intake tracking.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with optional shell command or configuration suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest optional daily memory logging or recurring reminder setup only when the user asks for tracking or scheduling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

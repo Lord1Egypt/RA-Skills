@@ -1,40 +1,52 @@
-## Description: <br>
-观势专家集群的战略分析专家，用于公司战略、业务组合、增长路径、战略执行、战略转型、第二曲线、市场进入或退出以及商业模式评估。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+观势专家集群的战略分析专家，用于在观势 Chief 调度下分析公司战略、业务组合、增长路径、战略执行、战略转型、第二曲线、市场进入/退出和商业模式。
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business strategy teams use this skill, normally through the GuanShi Chief workflow, to structure company-level strategy analysis, market entry or exit evaluation, growth path design, resource allocation, and second-curve planning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Strategic recommendations may be misleading when source business data is incomplete, stale, or unverified.
+
+Mitigation: Require real supporting data where possible, label assumptions and confidence, and validate low-confidence conclusions before business decisions.
+
+Risk: The skill primarily produces Chinese-language strategy analysis, which may not fit users who need another language.
+
+Mitigation: Confirm language expectations with the publisher or request translation/localization before deployment for non-Chinese users.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business strategists, executives, and agent workflows use this skill to structure company-level strategy analysis, portfolio assessment, growth-path design, strategic execution planning, second-curve analysis, market entry or exit evaluation, and business model review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Strategic recommendations may be misleading when the user provides incomplete, stale, or unverified business data. <br>
-Mitigation: Use the skill's confidence labels and assumption annotations, validate low-confidence or inferred points against source data, and treat the output as decision support rather than final business judgment. <br>
-Risk: The workflow may process confidential company strategy or market information supplied by the user. <br>
-Mitigation: Provide confidential data only when it is intended for the analysis and follows the user's organizational data-handling policies. <br>
+**Output Format:** [Markdown or structured text strategy report in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/guanshi-strategy-expert) <br>
+**Other Properties Related to Output:** [The skill asks for conclusion-first reports, confidence labels, resource and timing notes, and a report length of about 3000 Chinese characters or fewer.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategic analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should present the conclusion first, include a do-nothing option, annotate recommendations with resource needs, timing, success probability, core assumptions, and confidence, and keep reports within 3000 Chinese characters when possible.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

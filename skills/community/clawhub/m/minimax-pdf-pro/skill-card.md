@@ -1,47 +1,62 @@
-## Description: <br>
-MiniMax PDF Pro helps agents create PDFs from HTML or LaTeX and process existing PDFs for extraction, merging, splitting, form filling, metadata, and file conversion tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax PDF Pro helps agents create PDFs from HTML/Paged.js or LaTeX and process existing PDFs for extraction, page operations, metadata updates, conversion, and form filling.
 
-## Publisher: <br>
-[luaqnyin](https://clawhub.ai/user/luaqnyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luaqnyin](https://clawhub.ai/user/luaqnyin)
 
-## Use Case: <br>
-Developers and agents use this skill to generate high-quality PDFs from HTML or LaTeX and to automate PDF workflows such as text extraction, table extraction, form filling, metadata updates, page operations, and office-file conversion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify the local Node or Python environment and download browser or TeX dependencies. <br>
-Mitigation: Run it in an isolated workspace or container, and preinstall and pin dependencies when possible. <br>
-Risk: Browser-based HTML rendering and PDF processing can expose sensitive or untrusted document content to local tooling. <br>
-Mitigation: Avoid sensitive or untrusted HTML unless network access is blocked and the execution environment is isolated. <br>
-Risk: The LaTeX route documents a curl-to-shell Tectonic installation step. <br>
-Mitigation: Do not use the curl-to-shell step without independent verification; install Tectonic through a trusted, pinned channel instead. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate polished PDF documents, compile LaTeX when explicitly requested, and operate on existing PDFs for extraction, merging, splitting, rotation, cropping, metadata, conversion, and form filling.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/luaqnyin/minimax-pdf-pro) <br>
-- [HTML route documentation](artifact/handlers/html.md) <br>
-- [PDF processing route documentation](artifact/handlers/process.md) <br>
-- [LaTeX route documentation](artifact/handlers/latex.md) <br>
-- [LibreOffice download](https://www.libreoffice.org/download/) <br>
-- [Tectonic installer endpoint](https://drop-sh.fullyjustified.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets and generated HTML, LaTeX, JSON, or PDF-related files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or modify files and invoke local Node, Python, LibreOffice, Playwright, Chromium, or Tectonic tooling when dependencies are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency setup can modify the development environment and includes a remote `curl | sh` installer path for Tectonic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and use a verified Tectonic release or package manager instead of piping a remote script into the shell.
+
+Risk: HTML to PDF conversion can load local HTML through Chromium and may allow more file and network access than needed for untrusted input.
+
+Mitigation: Run conversion in a sandbox with network access and local file reads disabled or tightly scoped when processing untrusted HTML.
+
+Risk: PDF and Office processing depends on external tools such as Playwright, Chromium, Python packages, and LibreOffice.
+
+Mitigation: Review requested commands before execution and pin or verify dependencies in the deployment environment.
+
+## Reference(s):
+
+- [MiniMax PDF Pro on ClawHub](https://clawhub.ai/luaqnyin/skills/minimax-pdf-pro)
+- [HTML route evidence](artifact/handlers/html.md)
+- [LaTeX route evidence](artifact/handlers/latex.md)
+- [PDF processing route evidence](artifact/handlers/process.md)
+- [LibreOffice download](https://www.libreoffice.org/download/)
+- [Tectonic installer endpoint referenced by artifact](https://drop-sh.fullyjustified.net)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated artifacts such as HTML, LaTeX, JSON command output, and PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local files and install document-processing dependencies when directed by the skill workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

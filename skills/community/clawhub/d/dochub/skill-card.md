@@ -1,45 +1,63 @@
-## Description: <br>
-Dochub helps an agent turn .docx and .xlsx source documents into a structured Markdown knowledge base using a raw -> wiki -> schema architecture, with workflows for initialization, incremental updates, search/Q&A, and knowledge-base health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dochub helps an agent turn .docx and .xlsx source documents into a structured Markdown knowledge base using a raw -> wiki -> schema workflow for initialization, updates, search/Q&A, and health checks.
 
-## Publisher: <br>
-[longjf25](https://clawhub.ai/user/longjf25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longjf25](https://clawhub.ai/user/longjf25)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to organize local office documents into a source-traceable Markdown knowledge base, then search it, ask document-grounded questions, apply incremental updates, and run health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reorganizes local documents into raw/, wiki/, and update/ structures, which can move or rewrite files in the chosen knowledge-base directory. <br>
-Mitigation: Run it only in a clearly scoped folder, keep backups, and require explicit confirmation before initialization or updates. <br>
-Risk: The security summary notes that the skill suggests disabling sandbox protection for Windows file moves. <br>
-Mitigation: Keep sandbox protections enabled and adjust the workspace or permissions instead of disabling the sandbox. <br>
-Risk: The skill may install document-conversion dependencies such as python-docx, openpyxl, or markitdown. <br>
-Mitigation: Require user approval before dependency installation and install only in an isolated Python environment. <br>
+## Use Case:
 
+Developers, knowledge workers, and document owners use this skill to organize local Office documents into a source-traceable Markdown wiki, then answer questions, add updates, and run health checks against that knowledge base.
 
-## Reference(s): <br>
-- [Dochub on ClawHub](https://clawhub.ai/longjf25/dochub) <br>
-- [Publisher profile](https://clawhub.ai/user/longjf25) <br>
-- [Entity type definitions](references/entity-types.md) <br>
-- [Karpathy methodology](references/karpathy-methodology.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with file edits, generated knowledge-base files, shell commands, and structured status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local raw/, wiki/, update/, _schema.md, index, overview, log, source-summary, concept, entity, comparison, and lint-report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: ClawHub server-resolved release metadata) <br>
+Risk: The skill can move many local documents into a managed raw folder during initialization or update.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on a dedicated document folder, review the file move list before proceeding, and avoid broad home, project, Documents, or synced folders.
+
+Risk: The skill may install and run Python dependencies for document conversion.
+
+Mitigation: Provision trusted, pinned dependencies such as python-docx and openpyxl yourself, and review any generated conversion script before execution.
+
+Risk: The artifact discusses sandbox bypass for Windows file moves.
+
+Mitigation: Avoid disabling the sandbox; if elevated access is unavoidable, limit the scope to the dedicated knowledge-base folder and inspect planned file operations first.
+
+Risk: The knowledge base may contain sensitive or confidential document content.
+
+Mitigation: Use the documented safety confirmation step and only proceed after the source documents have been reviewed for sensitive personal or confidential data.
+
+## Reference(s):
+
+- [Dochub skill release](https://clawhub.ai/longjf25/skills/dochub)
+- [Dochub entity types](references/entity-types.md)
+- [Karpathy LLM Wiki methodology reference](references/karpathy-methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown knowledge-base files, cited Markdown answers, lint reports, and occasional shell or Python setup commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operates on a user-selected document knowledge-base directory and may generate or update raw, wiki, update, and schema files.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata, created 2026-06-05T07:30:49Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

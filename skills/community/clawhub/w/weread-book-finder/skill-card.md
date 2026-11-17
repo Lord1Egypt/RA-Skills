@@ -1,43 +1,58 @@
-## Description: <br>
-Searches WeRead for a requested book and adds confident matches to the user's shelf, falling back to Z-Library search and non-PDF download when WeRead is unavailable or has no reliable match. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds a requested book by first searching WeRead and adding a confident match to the user's shelf, then falling back to Z-Library download when WeRead cannot add the book.
 
-## Publisher: <br>
-[jinntrance](https://clawhub.ai/user/jinntrance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinntrance](https://clawhub.ai/user/jinntrance)
 
-## Use Case: <br>
-External users and agents use this skill to satisfy requests such as adding a named book to WeRead, with a disclosed fallback that searches Z-Library and downloads an ebook when WeRead cannot add a reliable match. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates logged-in WeRead and Z-Library browser sessions, which can expose account state through the reused browser profile. <br>
-Mitigation: Use a dedicated browser profile for this skill and avoid sharing that profile with unrelated browsing. <br>
-Risk: The Z-Library fallback may raise copyright or terms-of-use concerns depending on the requested book and user context. <br>
-Mitigation: Use the fallback only when it is lawful and appropriate for the user's situation. <br>
-Risk: Downloaded ebook files may be unsafe or untrusted. <br>
-Mitigation: Inspect or scan downloaded ebook files before opening them. <br>
+## Use Case:
 
+Readers and agents use this skill to automate book lookup requests such as adding a title to a WeRead shelf or, when that fails, downloading an ebook fallback. It supports title and author hints, candidate reporting, login setup, and headed browser debugging.
 
-## Reference(s): <br>
-- [WeRead](https://weread.qq.com/) <br>
-- [Z-Library](https://z-lib.by/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status from the script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create downloaded ebook files under ~/Downloads/OpenClaw-Books and reuse a local browser profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persistent browser profiles can retain WeRead and Z-Library login sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated skill profile, avoid shared machines, and clear the profile after use when credentials should not persist.
+
+Risk: The fallback path may save downloaded ebook files locally from Z-Library.
+
+Mitigation: Use the skill only for content the user is authorized to access, and review downloaded files and their location before opening or sharing them.
+
+Risk: Automation can add a matched title to the user's WeRead shelf.
+
+Mitigation: Provide precise title and author hints for ambiguous books and review candidate output when confidence is uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinntrance/skills/weread-book-finder)
+- [Publisher profile](https://clawhub.ai/user/jinntrance)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON status output, and locally saved ebook files when fallback download succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reuse a persistent browser profile for WeRead and Z-Library login sessions and may save downloads under ~/Downloads/OpenClaw-Books.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

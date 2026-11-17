@@ -1,43 +1,58 @@
-## Description: <br>
-在 BOSS 直聘中筛选候选人、主动打招呼、处理未读消息/接收简历的浏览器自动化技能，触发词：BOSS直聘、招聘、简历、未读消息、打招呼。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在 BOSS 直聘中筛选候选人、主动打招呼、处理未读消息/接收简历的浏览器自动化技能，触发词：BOSS直聘、招聘、简历、未读消息、打招呼。
 
-## Publisher: <br>
-[liaofuyan](https://clawhub.ai/user/liaofuyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liaofuyan](https://clawhub.ai/user/liaofuyan)
 
-## Use Case: <br>
-Recruiters and hiring teams use this skill to operate BOSS Zhipin workflows for candidate screening, greeting candidates, handling unread messages, receiving or requesting resumes, and producing hiring reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in BOSS Zhipin recruiting account, including sending messages and taking resume-related actions. <br>
-Mitigation: Set explicit candidate-count limits and require approval before sending messages or requesting, receiving, or downloading resumes. <br>
-Risk: Downloaded resumes and exported reports may contain personal data. <br>
-Mitigation: Confirm the Feishu destination and permissions before export, and define retention or deletion rules for downloaded resumes and reports before use. <br>
-Risk: Recruiting automation may trigger platform controls or continue beyond the user's intended scope. <br>
-Mitigation: Use the documented rate limits, stop on verification challenges or platform limits, and define clear stop conditions before starting a workflow. <br>
+## Use Case:
 
+Recruiters and recruiting operators use this skill to automate authorized BOSS Zhipin candidate screening, outreach, unread-message triage, resume handling, and Markdown reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liaofuyan/mama-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/liaofuyan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and browser automation guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate screening summaries, action status tables, resume-handling notes, and Feishu report handoff guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill handles sensitive candidate information, including resume receipt, download, reporting, and possible Feishu export.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with authorized recruiting accounts; confirm candidate data handling, Feishu destination, and retention policy before exporting reports or resumes.
+
+Risk: The skill can perform live account actions such as sending greetings, requesting resumes, and downloading resumes.
+
+Mitigation: Require explicit per-run approval before outreach, resume requests, downloads, or external report exports.
+
+Risk: The security verdict is suspicious because consent, stop, export, and retention controls are weak.
+
+Mitigation: Review the skill before installation and stop execution when login, captcha, rate-limit, or authorization conditions are unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liaofuyan/skills/mama-cli)
+- [Publisher profile](https://clawhub.ai/user/liaofuyan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and tabular reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include candidate screening summaries, status tables, operational guidance, and Feishu export instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Expert Terraform engineer specializing in infrastructure as code, multi-cloud provisioning, modular architecture, Terraform best practices, state management, and enterprise patterns with focus on reusability, security, and automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Terraform engineer specializing in infrastructure as code, multi-cloud provisioning, and modular architecture.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and infrastructure engineers use this skill for Terraform infrastructure-as-code design, module development, state management, security review, cost management, and CI/CD integration across cloud environments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Terraform guidance can lead to changes in real cloud resources if applied without review.
+
+Mitigation: Keep plan and apply approval under user control, review proposed changes before execution, and avoid granting cloud write credentials unless infrastructure changes are intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to analyze, design, and improve Terraform infrastructure as code across cloud providers, with attention to modules, state management, security, cost, testing, and CI/CD workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Apply-level or state-changing Terraform actions can affect cloud infrastructure, state, and cost. <br>
-Mitigation: Require explicit review of the target account, workspace, environment, and Terraform plan output before allowing apply-level or state-changing commands. <br>
-Risk: Terraform state, secrets, and sensitive outputs can expose credentials or infrastructure details. <br>
-Mitigation: Use sanitized Terraform files when possible, avoid sharing raw state or secrets unless necessary, and redact sensitive outputs in logs and conversations. <br>
+**Output Format:** [Markdown with Terraform examples, shell commands, configuration guidance, and review notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-terraform-engineer) <br>
+**Other Properties Related to Output:** [May propose infrastructure changes that require human review before plan or apply.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Terraform code, shell commands, configuration guidance, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only agent output; no executable install behavior is included in the artifact.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

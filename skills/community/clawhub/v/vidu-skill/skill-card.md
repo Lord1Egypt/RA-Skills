@@ -1,49 +1,65 @@
-## Description: <br>
-Generate video and images by calling the official Vidu API via vidu CLI for text-to-image, text-to-video, image-to-video, reference generation, lip-sync, text-to-speech, video composition, and task checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate video and images by calling the official Vidu API via vidu CLI.
 
-## Publisher: <br>
-[calvinzhao](https://clawhub.ai/user/calvinzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[calvinzhao](https://clawhub.ai/user/calvinzhao)
 
-## Use Case: <br>
-External users, creators, and agent developers use this skill to submit, monitor, and retrieve Vidu media-generation tasks through the vidu-cli command line. It supports generating and editing images, videos, speech, lip-sync outputs, video timelines, reference elements, quota checks, and cost estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, media files, URLs, task details, and quota or credit queries to Vidu through vidu-cli. <br>
-Mitigation: Use it only with content approved for Vidu processing, avoid private or regulated media unless approved, and confirm the selected Vidu region endpoint is appropriate. <br>
-Risk: A VIDU_TOKEN is required for API access. <br>
-Mitigation: Use a limited token where possible, keep it in the environment rather than in prompts or files, and rotate it if it is exposed. <br>
-Risk: VIDU_DEBUG may print full response bodies to stderr during troubleshooting. <br>
-Mitigation: Leave VIDU_DEBUG off except for trusted local debugging and review logs before sharing them. <br>
-Risk: The npm install path installs vidu-cli and its platform binary dependency. <br>
-Mitigation: Install only in environments where vidu-cli is trusted and where Node.js, npm, and downloaded binaries are allowed. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate or edit Vidu images, videos, speech, lip-sync outputs, and video compositions from prompts and local media. It also guides task submission, polling, cost checks, quota checks, reference element management, and result download workflows through vidu-cli.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/calvinzhao/vidu-skill) <br>
-- [Vidu Homepage](https://www.vidu.cn/) <br>
-- [vidu-cli npm package](https://www.npmjs.com/package/vidu-cli) <br>
-- [Vidu Task Parameters Reference](references/parameters.md) <br>
-- [Video Compose Reference](references/compose.md) <br>
-- [Errors and Retry Strategy](references/errors_and_retry.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented guidance with vidu-cli commands, JSON stdout fields, task identifiers, trace identifiers, status results, error fields, and downloaded file paths when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, vidu-cli, and VIDU_TOKEN; generated media is processed asynchronously by Vidu and must be polled or downloaded through task commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.9 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The reviewed artifact installs a mutable external vidu-cli package that downloads a platform binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned, verified vidu-cli release instead of installing a mutable latest package globally.
+
+Risk: Prompts, images, video, audio, and task settings are sent to Vidu's API for processing.
+
+Mitigation: Avoid sensitive or regulated media and prompts unless that processing is approved for the deployment context.
+
+Risk: A Vidu API token is required for operation.
+
+Mitigation: Use a least-privilege Vidu token and keep VIDU_TOKEN out of shared logs, examples, and committed configuration.
+
+Risk: Debug mode can print full API response bodies to stderr.
+
+Mitigation: Keep VIDU_DEBUG disabled in shared terminals, logs, and support bundles unless the output has been reviewed.
+
+## Reference(s):
+
+- [Vidu Homepage](https://www.vidu.cn/)
+- [vidu-cli npm package](https://www.npmjs.com/package/vidu-cli)
+- [Vidu Task Parameters Reference](references/parameters.md)
+- [Video Compose Reference](references/compose.md)
+- [Errors and Retry Strategy](references/errors_and_retry.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce task IDs, trace IDs, error fields, and downloaded media file paths from vidu-cli workflows.]
+
+## Skill Version(s):
+
+1.4.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to build web components, pages, or applications with distinctive frontend aesthetics and production-grade implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad frontend or web-design requests and may produce UI code intended for production use. <br>
-Mitigation: Review generated UI code, dependencies, accessibility, and security behavior before production deployment. <br>
+## Use Case:
 
+Developers and designers use this skill to create web components, pages, and applications with distinctive visual direction, polished interaction details, and production-grade frontend code.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/frontend-design-v1) <br>
-- [Publisher Profile](https://clawhub.ai/user/onlyloveher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and command snippets when implementation is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce frontend source code, styling guidance, component structure, and implementation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.yaml and server release metadata) <br>
+Risk: The skill may activate for broad frontend or web design requests and propose opinionated visual choices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated UI against product requirements, brand standards, accessibility needs, and dependency policies before deployment.
+
+Risk: Generated frontend code or design guidance may not fit the user's runtime, framework, or production constraints without adaptation.
+
+Mitigation: Validate framework compatibility, run the normal build and test workflow, and inspect generated dependencies and assets before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/frontend-design-v1)
+- [Publisher profile](https://clawhub.ai/user/onlyloveher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with frontend code and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTML, CSS, JavaScript, React, Vue, Svelte, Tailwind, animation details, and design rationale depending on the user's requested frontend target.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+{
+  "name": "pSEO-content-matrix-builder",
+  "version": "1.0.0",
+  "description": "An enterprise-grade AI Agent skill for building, structuring, and deploying programmatic SEO landing page campaigns at scale.",
+  "author": "Muhammad Uzair Abid",
+  "tags": [
+    "seo",
+    "programmatic-seo",
+    "pseo",
+    "content-scale",
+    "automation",
+    "prompt-engineering"
+  ],
+  "entry": "skill.md",
+  "license": "MIT"
+}

@@ -1,0 +1,9 @@
+{
+ "_example": "Made-up numbers for the example, not real posts or real results.",
+ "posts": [
+  {"externalPostUrl": "https://www.tiktok.com/@example.clipper/video/example-0001", "platform": "TIKTOK", "deliveryCompletedAt": "2026-11-16T14:01:40Z", "metricsCollectedAt": "2026-11-19T06:00:00Z", "metrics": {"views": 7420, "likes": 248, "comments": 17, "shares": 21}},
+  {"externalPostUrl": "https://www.instagram.com/reel/example-0001/", "platform": "INSTAGRAM", "deliveryCompletedAt": "2026-11-16T14:02:15Z", "metricsCollectedAt": "2026-11-19T06:00:00Z", "metrics": {"views": 2380, "likes": 41, "comments": 2, "shares": 4}},
+  {"externalPostUrl": "https://www.youtube.com/shorts/example-0001", "platform": "YOUTUBE", "metricsCollectedAt": "2026-11-19T06:00:00Z", "metrics": {"views": 1120, "likes": 30, "comments": 2, "shares": 0}},
+  {"externalPostUrl": "https://www.tiktok.com/@example.clipper/video/example-0999", "platform": "TIKTOK", "metricsCollectedAt": "2026-11-19T06:00:00Z", "metrics": {"views": 12, "likes": 0, "comments": 0, "shares": 0}}
+ ]
+}

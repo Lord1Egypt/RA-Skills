@@ -1,37 +1,48 @@
-## Description: <br>
-Write efficient MariaDB queries with proper indexing, temporal tables, and clustering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write efficient MariaDB queries with proper indexing, temporal tables, and clustering.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and database engineers use this skill for MariaDB query, indexing, clustering, backup, and troubleshooting guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested SQL or shell examples may alter schema, lock tables, reset sequences, replay logs, or affect backups and recovery. <br>
-Mitigation: Confirm the target database and review each operation before allowing an agent to run it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MariaDB skill page on ClawHub](https://clawhub.ai/ivangdavila/mariadb) <br>
+## Use Case:
 
+Developers and database engineers use this skill for MariaDB query writing, indexing, temporal-table usage, clustering guidance, backup and recovery commands, and troubleshooting advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires review before applying database operations to a live MariaDB environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated SQL or database commands can affect live MariaDB databases, especially schema changes, locks, sequence resets, backup and restore operations, and cluster settings.
+
+Mitigation: Review all generated SQL and commands before execution, test changes in a non-production environment when possible, and confirm backups before applying destructive or operational changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/mariadb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the mariadb binary when advice is applied locally; supports linux, darwin, and win32 according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

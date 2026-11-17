@@ -1,41 +1,53 @@
-## Description: <br>
-观势专家集群 — 财务战略专家。Use when 被观势 Chief 调度执行财务模型搭建、投资回报分析、企业估值、资本配置策略、风险量化、现金流压力测试、并购财务评估. 不适用于个人理财、日常报销或独立调用. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guanshi Finance Expert supports financial strategy analysis, including financial modeling, investment return analysis, valuation, capital allocation, risk quantification, cash-flow stress testing, and M&A financial assessment.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Strategy and finance analysts use this skill as a finance-strategy specialist within the GuanShi expert cluster to build financial models, evaluate ROI, estimate valuation ranges, assess capital allocation, quantify risk, stress-test cash flow, and review M&A or partnership economics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial models, valuation ranges, and investment recommendations can be misleading if assumptions or market inputs are stale, incomplete, or inferred. <br>
-Mitigation: Require explicit assumptions, source notes, currency and year labels, sensitivity analysis, and risk warnings before using outputs for decisions. <br>
-Risk: Future prompts could request file writes, network access, credential use, or account-changing actions outside the artifact's documented analysis behavior. <br>
-Mitigation: Review prompts and requested tool actions before granting those capabilities. <br>
+## Use Case:
 
+Strategy teams and coordinating agents use this skill to add a financial-analysis perspective to project investment decisions, company valuation, capital allocation, risk sensitivity, cash-flow resilience, and M&A assessment. It is not intended as standalone personal financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/guanshi-finance-expert) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tuobadaidai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown financial analysis with assumptions, calculations, risk notes, and valuation or investment recommendation ranges] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial figures should include currency and year; assumptions should include evidence; recommendations should include risk warnings and sensitivity analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Financial analyses may be misleading if assumptions, market inputs, or company data are stale, incomplete, or inferred.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify assumptions and current market inputs before using the output for investment, valuation, or capital allocation work.
+
+Risk: The skill can produce analytical support that may be mistaken for final financial advice.
+
+Mitigation: Treat outputs as one financial-analysis input and require human review before strategic or investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/guanshi-finance-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured prose with financial assumptions, calculations, sensitivity notes, valuation ranges, and risk cautions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial figures should identify currency and year; assumptions should be transparent and investment recommendations should include risk notices and sensitivity analysis.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release; artifact frontmatter and _meta.json show 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

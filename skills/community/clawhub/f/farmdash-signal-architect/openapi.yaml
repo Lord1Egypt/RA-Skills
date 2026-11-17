@@ -1,26 +1,27 @@
 openapi: 3.0.3
 info:
   title: FarmDash Signal Architect API
-  version: 1.1.1
+  version: 1.2.0
   description: |
-    Zero-custody intelligence and control API for DeFi agents and serious airdrop farmers:
-    structured opportunity intelligence, quote generation, user-authorized onchain execution,
-    x402 flows, and fee history. FarmDash never receives private
-    keys or seed phrases and never holds user funds. Wallet-affecting operations
-    require the documented local signature or bounded delegation gates.
+    Customer-controlled intelligence and workflow API for DeFi agents and serious airdrop farmers:
+    structured opportunity intelligence, quote generation, user-authorized transaction preparation,
+    x402 flows, and fee history. FarmDash does not request seed phrases or raw wallet private keys.
+    Compatibility swap routes do not custody user funds; separately configured venue or MPC
+    delegations remain subject to their provider controls and explicit policy bounds.
 
     ## Authentication
-    - **Scout (Free)**: No auth. 5 requests/24h per IP.
-    - **Pioneer**: `Authorization: Bearer <PIONEER_KEY>`. 500 requests/day.
+    - **Scout (Free)**: No auth. 30 requests/24h per IP.
+    - **Pioneer**: `Authorization: Bearer <PIONEER_KEY>`. 1,500 requests/day.
     - **Syndicate**: `Authorization: Bearer <SYNDICATE_KEY>`. $199/mo USDC, 50,000 requests/day, webhooks, unrestricted CORS, and advanced control/session tooling for teams and serious agents.
     - **Swap execution**: Requires fresh quote review plus EIP-191 agent wallet signature.
     - **Delegation/autopilot**: Requires explicit user-configured budgets, allowlists, and revocation path.
     - **Privacy**: Public wallet addresses, token addresses, chain IDs, amounts, signatures, request IDs, and analytics headers may be sent to FarmDash; private keys and seed phrases are never sent.
 
     ## Dust Storm Protocol
-    If an upstream API fails, FarmDash returns safe zero values with a
-    `warnings` array containing `{ kind: "dust_storm", message: "..." }`
-    instead of crashing. Your agent stays alive and retries on the next cycle.
+    If an upstream API fails, FarmDash returns a typed error or a previously
+    validated stale response with a `warnings` array containing
+    `{ kind: "dust_storm", message: "..." }`. Missing data remains unknown
+    rather than being converted into a synthetic zero.
 
     ## x402 Payment Wall
     When free-tier limits are exceeded, responses include `X-Payment-*` headers
@@ -30,28 +31,35 @@ info:
     url: https://www.farmdash.one/agents
   license:
     name: MIT
-
 servers:
   - url: https://www.farmdash.one/api
     description: Production
-
 paths:
   /v1/agent/protocols:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
-      operationId: getTrailHeat
-      summary: Get Trail Heat protocol dataset
+      operationId: getProtocolCatalog
+      summary: Get catalog protocol directory (discovery heuristic scores)
       description: |
-        Returns the live ranked Trail Heat protocol dataset.
-        Live scoring uses calibrated TVL, seven-day TVL momentum, chain diversification,
-        category baseline comparison, and FarmDash evidence prior when upstream data is available.
-        Static tracker pages use a calibrated catalog fallback with TVL, status, category prior,
+        Returns the curated FarmDash catalog with EDITORIAL discovery heuristic scores (catalog-editorial-v1). NOT live Trail Heat — canonical quantitative Trail Heat: /v1/trail-heat.
+        Live quantitative Trail Heat uses calibrated TVL, seven-day TVL momentum, chain diversification,
+        and category outperformance when upstream data is available. Editorial notes are separate
+        metadata and excluded from the quantitative score. Static tracker pages use a distinct catalog
+        discovery heuristic with TVL, status, category prior,
         hot momentum, and recency.
         Scout tier receives top 3 with encrypted numeric values.
         Pioneer/Syndicate tiers receive the full unencrypted dataset.
-      tags: [Intelligence]
+      tags:
+        - Intelligence
       security:
         - bearerAuth: []
         - {}
+      parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
       responses:
         '200':
           description: Protocol dataset
@@ -59,35 +67,104 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProtocolsResponse'
+              examples:
+                success:
+                  summary: getProtocolCatalog HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    tier: scout
+                    count: 1
+                    data:
+                      - protocol_name: Hyperliquid
+                        category: Perps
+                        status: Confirmed Airdrop
+                        chains:
+                          - Arbitrum
+                          - Ethereum
         '402':
           description: Free-tier limit exceeded — x402 payment required
           headers:
             X-Payment-Required:
-              schema: { type: string }
+              schema:
+                type: string
+              description: Compatibility signal for x402.
+              example: 'true'
             X-Payment-Address:
-              schema: { type: string }
+              schema:
+                type: string
               description: Treasury wallet (USDC on Base)
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
             X-Payment-Token:
-              schema: { type: string }
+              schema:
+                type: string
               description: USDC contract on Base
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
             X-Payment-Amount:
-              schema: { type: string }
-              description: Amount in token decimals (e.g. 990000 = 0.99 USDC)
+              schema:
+                type: string
+              description: Quoted amount in token decimals (e.g. 10000 = 0.01 USDC default overage)
+              example: '10000'
             X-Payment-Chain-Id:
-              schema: { type: string }
-              description: "8453 (Base)"
+              schema:
+                type: string
+              description: 8453 (Base)
+              example: '8453'
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
         '429':
           description: Rate limit exceeded
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
+              examples:
+                error:
+                  summary: getProtocolCatalog HTTP 429
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: rate_limited
+                    code: rate_limited
+                    details: Illustrative FarmDash API example.
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/v1/agent/protocols
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
   /v1/agent/chain-breakdown:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
       operationId: getChainBreakdown
       summary: Get protocol distribution by chain
@@ -95,10 +172,13 @@ paths:
         Aggregates the protocol directory by blockchain network.
         Returns per-chain protocol counts, confirmed airdrops, points programs,
         and category coverage. Scout tier receives top 3 chains with encrypted numerics.
-      tags: [Intelligence]
+      tags:
+        - Intelligence
       security:
         - bearerAuth: []
         - {}
+      parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
       responses:
         '200':
           description: Chain breakdown data
@@ -106,132 +186,738 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChainBreakdownResponse'
+              examples:
+                success:
+                  summary: getChainBreakdown HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    tier: scout
+                    data:
+                      chains:
+                        - chain: EVM
+                      summary:
+                        total_chains: 1
+                        total_protocols: 1
+                        dominant_chain: example
+                        dominant_chain_pct: 1
         '402':
           description: Free-tier limit exceeded
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
         '429':
           description: Rate limit exceeded
-
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/v1/agent/chain-breakdown
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
   /agents/quote:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
       operationId: getSwapQuote
-      summary: Get a token swap quote without executing
+      summary: Get a token swap quote
       description: |
-        Returns an unsigned preview quote showing expected output, fee breakdown,
-        protocol selection, and FarmDash execution guardrails. No authentication required.
-        Useful for agents to compare pricing before committing a signed swap.
-        Route selection: x402 (Base-to-Base) > Li.Fi (cross-chain) > 0x (single-chain EVM).
-        When wallet and risk inputs are supplied, the response also includes
-        allowance checks, depeg/health warnings, quote-decay diagnostics, and
-        positive-net-edge guidance.
-        Include walletAddress to receive an intent_id for the mandatory /v1/simulate preflight.
-      tags: [Swap]
+        Provider-neutral market estimate by default: returns an explicitly
+        labelled `market_estimate` (reference price, approximate output,
+        server fee tier, route compatibility, freshness) WITHOUT calling 0x,
+        LI.FI, or Relay trading APIs. Browsing, polling, previews, and
+        wallet-supplied GETs all receive estimation — a `walletAddress` alone
+        is exploratory context, never execution intent, and never fans out
+        into provider APIs. The estimate is intelligence, not a provider
+        quote: no executable calldata, no provider attribution, no liquidity
+        confirmation, never `executionReady: true`.
+        For execution, POST `/v1/agent/quote-intent` with exact parameters, a
+        real wallet, and an idempotency key to receive a firm single-provider
+        quote bound to an `intentId`; then re-call this endpoint with the
+        identical parameters plus `intentId` to serve the stored firm quote
+        with zero new provider calls. Changed parameters never reuse a stale
+        quote (`intent_params_changed`); unknown/expired intents return
+        `intent_not_found`. One intent contacts exactly one primary provider;
+        a sequential alternate follows only a genuine primary failure.
+        `mock=true` is not supported and returns a typed 400 without contacting a provider.
+      tags:
+        - Swap
       parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
         - in: query
           name: fromChainId
           required: true
-          schema: { type: integer }
+          schema:
+            type: integer
           description: Source chain ID (e.g. 1 = Ethereum, 8453 = Base, 42161 = Arbitrum)
         - in: query
           name: toChainId
           required: true
-          schema: { type: integer }
+          schema:
+            type: integer
           description: Destination chain ID
         - in: query
           name: fromToken
           required: true
-          schema: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
           description: Source token contract address (checksummed)
         - in: query
           name: toToken
           required: true
-          schema: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
           description: Destination token contract address
         - in: query
           name: fromAmount
           required: true
-          schema: { type: string, pattern: '^\d+$' }
+          schema:
+            type: string
+            pattern: ^\d+$
           description: Amount in wei (no leading zeros)
         - in: query
           name: protocol
           required: false
           schema:
             type: string
-            enum: [lifi, zerox, x402]
+            enum:
+              - lifi
+              - relay
           description: Force a specific routing protocol (auto-selected if omitted)
         - in: query
           name: walletAddress
           required: false
-          schema: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
-          description: Optional wallet used for approval and allowance checks
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
+          description: Optional real wallet. Exploratory context only — a wallet alone never triggers provider quoting. For execution, POST /api/v1/agent/quote-intent.
         - in: query
           name: toAddress
           required: false
-          schema: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
           description: Optional destination wallet override for previewing the signed route
         - in: query
           name: slippage
           required: false
-          schema: { type: number, minimum: 0.01, maximum: 5 }
+          schema:
+            type: number
+            minimum: 0.01
+            maximum: 5
           description: Optional slippage tolerance in percent
         - in: query
           name: expectedUpsideUsd
           required: false
-          schema: { type: number }
+          schema:
+            type: number
           description: Optional upside estimate used to enforce positive net edge
         - in: query
           name: riskBufferUsd
           required: false
-          schema: { type: number }
+          schema:
+            type: number
           description: Optional execution-risk haircut added to total route cost
         - in: query
           name: healthFactor
           required: false
-          schema: { type: number }
+          schema:
+            type: number
           description: Optional health factor used for halt checks
         - in: query
           name: liquidationBufferPct
           required: false
-          schema: { type: number }
+          schema:
+            type: number
           description: Optional liquidation buffer percentage used for halt checks
         - in: query
           name: safetyMode
           required: false
-          schema: { $ref: '#/components/schemas/SwapSafetyMode' }
-          description: "`strict` halts on severe quote decay, `balanced` downgrades that condition to a warning"
+          schema:
+            $ref: '#/components/schemas/SwapSafetyMode'
+          description: '`strict` halts on severe quote decay, `balanced` downgrades that condition to a warning'
+        - in: query
+          name: intentId
+          required: false
+          schema:
+            type: string
+          description: Execution-intent ID from POST /api/v1/agent/quote-intent. Serves the stored firm quote with zero new provider calls when all other parameters exactly match the intent; mismatches return intent_params_changed, unknown IDs return intent_not_found.
       responses:
         '200':
-          description: Swap quote
+          description: Market estimate (default) or stored firm quote when intentId is supplied and parameters match
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SwapQuoteResponse'
+              examples:
+                success:
+                  summary: getSwapQuote HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    protocol: lifi
+                    estimatedOutput: '1'
+                    feeBps: 1
+                    feeAmountUSD: '1'
+                    gasEstimate: '1'
+                    txData:
+                      to: example
+                      data: example
+                      value: '1'
+                      chainId: 1
+                    expiresAt: 1
+                    note: This is an unsigned preview quote. Run POST /api/v1/simulate before execution.
         '400':
           description: Invalid parameters
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: getSwapQuote HTTP 400
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: invalid_request
+                    code: invalid_request
+                    details: Illustrative FarmDash API example.
         '402':
           description: Free-tier limit exceeded
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+        '404':
+          description: Unknown/expired intentId (intent_not_found)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: getSwapQuote HTTP 404
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: not_found
+                    code: not_found
+                    details: Illustrative FarmDash API example.
+        '422':
+          description: Typed quote failure. Categories carry machine-readable retryable flags (e.g. no_liquidity/unsupported_pair retryable false; provider_rate_limited/provider_unavailable retryable true). Read attempts[] evidence per provider.
+          x-farmdash-response-example:
+            status: 422
+            description: Typed quote failure. Categories carry machine-readable retryable flags (e.g. no_liquidity/unsupported_pair retryable false; provider_rate_limited/provider_unavailable retryable true). Read attempts[] evidence per provider.
+            body: null
+            note: Documents status semantics without inventing a response payload.
         '429':
           description: Rate limit exceeded
-
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '502':
+          description: Typed live quote provider degradation (retryable). Includes provider rate-limit code quote_provider_rate_limited.
+          x-farmdash-response-example:
+            status: 502
+            description: Typed live quote provider degradation (retryable). Includes provider rate-limit code quote_provider_rate_limited.
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '504':
+          description: Live quote provider timed out. Code quote_provider_timeout, retryable true.
+          x-farmdash-response-example:
+            status: 504
+            description: Live quote provider timed out. Code quote_provider_timeout, retryable true.
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/agents/quote?fromChainId=1&toChainId=1&fromToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&toToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&fromAmount=1
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
+  /v1/agent/market-estimate:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
+    get:
+      operationId: getMarketEstimate
+      summary: Get a provider-neutral market estimate
+      description: |
+        Explicit estimation endpoint for browsing, previews, and walletless
+        exploration. Returns an explicitly labelled market_estimate (reference
+        price, approximate output, server fee tier, freshness) and makes zero
+        0x/LI.FI/Relay trading calls. Never executable, never attributed.
+        For execution, POST /v1/agent/quote-intent.
+      tags:
+        - Swap
+      parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
+        - in: query
+          name: fromChainId
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: toChainId
+          required: true
+          schema:
+            type: integer
+        - in: query
+          name: fromToken
+          required: true
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
+        - in: query
+          name: toToken
+          required: true
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
+        - in: query
+          name: fromAmount
+          required: true
+          schema:
+            type: string
+            pattern: ^\d+$
+      responses:
+        '200':
+          description: Market estimate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwapQuoteResponse'
+              examples:
+                success:
+                  summary: getMarketEstimate HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    protocol: lifi
+                    estimatedOutput: '1'
+                    feeBps: 1
+                    feeAmountUSD: '1'
+                    gasEstimate: '1'
+                    txData:
+                      to: example
+                      data: example
+                      value: '1'
+                      chainId: 1
+                    expiresAt: 1
+                    note: This is an unsigned preview quote. Run POST /api/v1/simulate before execution.
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: getMarketEstimate HTTP 400
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: invalid_request
+                    code: invalid_request
+                    details: Illustrative FarmDash API example.
+        '429':
+          description: Rate limit exceeded
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/v1/agent/market-estimate?fromChainId=1&toChainId=1&fromToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&toToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&fromAmount=1
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
+  /v1/agent/quote-intent:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
+    post:
+      operationId: createQuoteIntent
+      summary: Create an execution intent with a firm single-provider quote
+      description: |
+        Explicit execution intent. Requires exact chain pair, token pair,
+        amount, real wallet/taker, destination, slippage, and a client
+        idempotency key; the fee tier is resolved server-side before any
+        provider call. One intent contacts exactly one primary provider; a
+        sequential alternate follows only a genuine primary failure.
+        Identical intents reuse the stored firm quote (HTTP 200 reused:true);
+        changed parameters never reuse a stale quote. The firm quote flows
+        through simulate, approval, and prepare without further provider
+        quote requests. Quote is not execution; FarmDash never signs or
+        broadcasts.
+      tags:
+        - Swap
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fromChainId
+                - toChainId
+                - fromToken
+                - toToken
+                - fromAmount
+                - walletAddress
+                - toAddress
+                - slippage
+                - idempotencyKey
+              properties:
+                fromChainId:
+                  type: integer
+                toChainId:
+                  type: integer
+                fromToken:
+                  type: string
+                toToken:
+                  type: string
+                fromAmount:
+                  type: string
+                walletAddress:
+                  type: string
+                toAddress:
+                  type: string
+                slippage:
+                  type: number
+                  minimum: 0.01
+                  maximum: 5
+                protocol:
+                  type: string
+                  enum:
+                    - lifi
+                    - relay
+                idempotencyKey:
+                  type: string
+            examples:
+              default:
+                summary: createQuoteIntent request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  fromChainId: 1
+                  toChainId: 1
+                  fromToken: USDC
+                  toToken: USDC
+                  fromAmount: '1'
+                  walletAddress: '0x1111111111111111111111111111111111111111'
+                  toAddress: '0x1111111111111111111111111111111111111111'
+                  slippage: 0.01
+                  idempotencyKey: fd-example-idempotency-001
+                  protocol: lifi
+      responses:
+        '200':
+          description: Stored firm quote reused for an identical intent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwapQuoteResponse'
+              examples:
+                success:
+                  summary: createQuoteIntent HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    protocol: lifi
+                    estimatedOutput: '1'
+                    feeBps: 1
+                    feeAmountUSD: '1'
+                    gasEstimate: '1'
+                    txData:
+                      to: example
+                      data: example
+                      value: '1'
+                      chainId: 1
+                    expiresAt: 1
+                    note: This is an unsigned preview quote. Run POST /api/v1/simulate before execution.
+        '201':
+          description: Firm quote bound to a new execution intent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwapQuoteResponse'
+              examples:
+                success:
+                  summary: createQuoteIntent HTTP 201
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    protocol: lifi
+                    estimatedOutput: '1'
+                    feeBps: 1
+                    feeAmountUSD: '1'
+                    gasEstimate: '1'
+                    txData:
+                      to: example
+                      data: example
+                      value: '1'
+                      chainId: 1
+                    expiresAt: 1
+                    note: This is an unsigned preview quote. Run POST /api/v1/simulate before execution.
+        '400':
+          description: Invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: createQuoteIntent HTTP 400
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: invalid_request
+                    code: invalid_request
+                    details: Illustrative FarmDash API example.
+        '402':
+          description: Free-tier limit exceeded
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+        '409':
+          description: This idempotencyKey was already used for a materially different request (idempotency_conflict). Generate a new key for a new logical swap.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: createQuoteIntent HTTP 409
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: conflict
+                    code: conflict
+                    details: Illustrative FarmDash API example.
+        '413':
+          description: Request body too large. Execution-facing bodies are capped at 32 KB.
+          x-farmdash-response-example:
+            status: 413
+            description: Request body too large. Execution-facing bodies are capped at 32 KB.
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '429':
+          description: Rate limit exceeded
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
+        '502':
+          description: Typed live quote provider degradation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: createQuoteIntent HTTP 502
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: upstream_unavailable
+                    code: upstream_unavailable
+                    details: Illustrative FarmDash API example.
   /v1/simulate:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     post:
       operationId: simulateSwapExecution
       summary: Simulate a wallet-bound swap intent
       description: Mandatory pre-execution simulation for a quote intent. Returns simulation_id valid for 60 seconds.
-      tags: [Swap]
+      tags:
+        - Swap
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SwapSimulationRequest'
+            examples:
+              default:
+                summary: simulateSwapExecution request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  intent_id: fd_intent_abcd1234
+                  wallet_address: '0x1111111111111111111111111111111111111111'
+      parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
       responses:
         '200':
           description: Simulation report
@@ -239,12 +925,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SwapSimulationResponse'
+              examples:
+                success:
+                  summary: simulateSwapExecution HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    mev_risk: low
         '400':
           description: Invalid request
+          x-farmdash-response-example:
+            status: 400
+            description: Invalid request
+            body: null
+            note: Documents status semantics without inventing a response payload.
         '409':
           description: Intent and wallet mismatch
-
+          x-farmdash-response-example:
+            status: 409
+            description: Intent and wallet mismatch
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-simulation:
+        kind: execution_preflight
+        side_effects: none
+        authoritative_for_execution: true
+        required_before_execution: true
+        grants_execution_authority: false
+        broadcasts_transaction: false
+        proves_settlement: false
+        next_step: Use the returned fresh simulation_id with the exact wallet-bound quote intent when preparing /agents/swap.
   /agents/swap:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     post:
       operationId: executeSwap
       summary: Execute a signed token swap
@@ -254,13 +969,16 @@ paths:
         Execution Alpha routing, and enforces Risk Sentinel guardrails before
         returning ready-to-broadcast transaction calldata.
 
-        FarmDash NEVER touches funds. The protocol (Li.Fi / 0x / x402) executes the swap.
+        FarmDash does not broadcast the returned compatibility-swap transaction. FarmDash prepares
+        the transaction calldata for the user or agent wallet to broadcast. Automatic routing dynamically
+        selects across active providers (LI.FI, Relay; 0x paused until reinstated).
         The FarmDash treasury receives the fee haircut directly from the protocol.
 
         **Signing**: The agent must sign the deterministic payload:
         `v1:FARMDASH_SWAP:{fromChainId}:{toChainId}:{fromToken}:{toToken}:{fromAmount}:{agentAddress}:{toAddress}:{nonce}`
         using EIP-191 personal_sign. Nonce must be current timestamp (within 60s).
-      tags: [Swap]
+      tags:
+        - Swap
       security:
         - bearerAuth: []
         - {}
@@ -270,6 +988,25 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SwapRequest'
+            examples:
+              default:
+                summary: executeSwap request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  fromChainId: 1
+                  toChainId: 1
+                  fromToken: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                  toToken: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                  fromAmount: '1'
+                  agentAddress: '0x1111111111111111111111111111111111111111'
+                  toAddress: '0x1111111111111111111111111111111111111111'
+                  simulationId: sim_example_001
+                  nonce: '1'
+                  signature: '0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+                  slippage: 0.5
+                  protocol: lifi
+      parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
       responses:
         '200':
           description: Executable swap quote with transaction calldata
@@ -277,71 +1014,204 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SwapQuote'
+              examples:
+                success:
+                  summary: executeSwap HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    protocol: lifi
+                    estimatedOutput: '1'
+                    feeBps: 1
+                    feeAmountUSD: '1'
+                    gasEstimate: '1'
+                    txData:
+                      to: example
+                      data: example
+                      value: '1'
+                      chainId: 1
+                    expiresAt: 1
         '400':
           description: Validation error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: executeSwap HTTP 400
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: invalid_request
+                    code: invalid_request
+                    details: Illustrative FarmDash API example.
         '401':
           description: Invalid signature or expired nonce
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: executeSwap HTTP 401
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: auth_error
+                    code: auth_error
+                    details: Illustrative FarmDash API example.
+        '402':
+          description: Payment required
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
         '409':
           description: Swap halted by Risk Sentinel guardrails
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/SwapHaltResponse'
+              examples:
+                error:
+                  summary: executeSwap HTTP 409
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: conflict
+                    code: conflict
+                    selectedProtocol: lifi
         '428':
           description: Missing, expired, failed, or mismatched simulation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '402':
-          description: Payment required
+              examples:
+                error:
+                  summary: executeSwap HTTP 428
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: precondition_required
+                    code: precondition_required
+                    details: Illustrative FarmDash API example.
         '429':
           description: Rate limit exceeded (per-agent or tier-level)
           headers:
             Retry-After:
-              schema: { type: integer }
+              schema:
+                type: integer
               description: Seconds until rate limit resets
-
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded (per-agent or tier-level)
+            body: null
+            note: Documents status semantics without inventing a response payload.
   /agents/history:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
       operationId: getSwapHistory
-      summary: Get fee event history
+      summary: Get your own fee event history (tenant-bound)
       description: |
-        Returns paginated swap fee events logged by Signal Architect.
-        Optionally filter by agent address. Use `?metrics=true` to get
-        aggregate revenue metrics instead of individual events.
-      tags: [History]
+        Returns paginated swap fee events owned by the wallet bound to your
+        API key. Requires a Pioneer or Syndicate bearer key; anonymous/scout
+        callers receive 401 authentication_required. Any agentAddress that
+        differs from the authenticated wallet returns 403 cross_tenant_denied.
+        Use `?metrics=true` to get aggregate revenue metrics for your own
+        wallet instead of individual events. For the public leaderboard,
+        use GET /v1/agent/leaderboard (server-aggregated totals only).
+      tags:
+        - History
       security:
         - bearerAuth: []
-        - {}
       parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
         - in: query
           name: agentAddress
           required: false
-          schema: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
+          schema:
+            type: string
+            pattern: ^0x[a-fA-F0-9]{40}$
           description: Filter events by agent wallet address
         - in: query
           name: limit
           required: false
-          schema: { type: integer, default: 50, maximum: 200 }
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
           description: Number of events to return (max 200)
         - in: query
           name: offset
           required: false
-          schema: { type: integer, default: 0 }
+          schema:
+            type: integer
+            default: 0
           description: Pagination offset
         - in: query
           name: metrics
           required: false
-          schema: { type: string, enum: ['true'] }
+          schema:
+            type: string
+            enum:
+              - 'true'
           description: Set to "true" to return aggregate revenue metrics instead of event list
       responses:
         '200':
@@ -352,12 +1222,95 @@ paths:
                 oneOf:
                   - $ref: '#/components/schemas/HistoryResponse'
                   - $ref: '#/components/schemas/RevenueMetrics'
+              examples:
+                success:
+                  summary: getSwapHistory HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    events:
+                      - protocol: lifi
+                    total: 1
+                    limit: 1
+                    offset: 1
         '402':
           description: Payment required
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
         '429':
           description: Rate limit exceeded
-
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/agents/history
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
   /v1/agent/risk-sentinel:
+    parameters:
+      - $ref: '#/components/parameters/X-FarmDash-Installation-ID'
+      - $ref: '#/components/parameters/X-FarmDash-Client'
+      - $ref: '#/components/parameters/X-FarmDash-Client-Version'
+      - $ref: '#/components/parameters/X-FarmDash-Skill-Version'
     get:
       operationId: getRiskSentinelInfo
       summary: Describe Risk Sentinel usage
@@ -365,10 +1318,13 @@ paths:
         Returns a lightweight usage guide for the standalone risk-analysis endpoint.
         Use POST to inspect allowance state, token/bridge/contract risks, depeg checks,
         health-factor alerts, quote decay, and positive-net-edge enforcement.
-      tags: [Risk]
+      tags:
+        - Risk
       security:
         - bearerAuth: []
         - {}
+      parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
       responses:
         '200':
           description: Usage guide
@@ -377,11 +1333,86 @@ paths:
               schema:
                 type: object
                 properties:
-                  ok: { type: boolean }
-                  description: { type: string }
-                  usage: { type: string }
+                  ok:
+                    type: boolean
+                  description:
+                    type: string
+                  usage:
+                    type: string
+              examples:
+                success:
+                  summary: getRiskSentinelInfo HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    ok: true
+                    description: Illustrative FarmDash API example.
+                    usage: example
         '402':
           description: Payment required
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
+      x-farmdash-request-example:
+        method: GET
+        url: https://www.farmdash.one/api/v1/agent/risk-sentinel
+        description: Concrete illustrative request; authentication, payment, and signature headers are omitted unless separately documented.
     post:
       operationId: analyzeRiskSentinel
       summary: Analyze a route or account with Risk Sentinel
@@ -389,7 +1420,8 @@ paths:
         Accepts either a full swap-shaped payload or manual health/net-edge inputs.
         When swap fields are present, FarmDash auto-selects a route, computes
         Execution Alpha diagnostics, and returns a full Risk Sentinel report.
-      tags: [Risk]
+      tags:
+        - Risk
       security:
         - bearerAuth: []
         - {}
@@ -399,6 +1431,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RiskSentinelRequest'
+            examples:
+              default:
+                summary: analyzeRiskSentinel request
+                description: Illustrative schema-conformant request; replace identifiers, wallets, amounts, signatures, and timestamps with fresh values.
+                value:
+                  protocol: lifi
+      parameters:
+        - $ref: '#/components/parameters/X-ClawHub-Skill'
       responses:
         '200':
           description: Risk analysis
@@ -406,28 +1446,157 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RiskSentinelResponse'
+              examples:
+                success:
+                  summary: analyzeRiskSentinel HTTP 200
+                  description: Illustrative successful response generated from the published schema.
+                  value:
+                    mode: manual
+                    selectedProtocol: lifi
         '400':
           description: Invalid parameters
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                error:
+                  summary: analyzeRiskSentinel HTTP 400
+                  description: Illustrative structured error; live code/retryability/request ID are authoritative.
+                  value:
+                    error: invalid_request
+                    code: invalid_request
+                    details: Illustrative FarmDash API example.
         '402':
           description: Payment required
+          headers:
+            PAYMENT-REQUIRED:
+              description: Base64-encoded x402 v2 PaymentRequired. Illustrative only; parse the live header.
+              schema:
+                type: string
+              example: eyJ4NDAyVmVyc2lvbiI6MiwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfV0sInBheW1lbnRSZXF1aXJlbWVudHMiOnsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1Ojg0NTMiLCJhbW91bnQiOiIxMDAwMCIsImFzc2V0IjoiMHg4MzM1ODlmQ0Q2ZURiNkUwOGY0YzdDMzJENGY3MWI1NGJkQTAyOTEzIiwicGF5VG8iOiIweGIwRWQwZDdiY2EyNEJCYUQ2MzVCOTc3QzJlZmJFMDY3NDJlMzMzNzciLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwfSwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93d3cuZmFybWRhc2gub25lL2FwaS92MS9hZ2VudC9wcm90b2NvbHMiLCJkZXNjcmlwdGlvbiI6IklsbHVzdHJhdGl2ZSBGYXJtRGFzaCBBUEkgYWNjZXNzIn0sImZhcm1kYXNoIjp7ImV4YW1wbGVfb25seSI6dHJ1ZSwiZ3JhbnRzX3RyYW5zYWN0aW9uX2F1dGhvcml0eSI6ZmFsc2V9fQ==
+            X-Payment-Required:
+              description: Compatibility signal for x402.
+              schema:
+                type: string
+                enum:
+                  - 'true'
+              example: 'true'
+            X-Payment-Amount:
+              description: Illustrative Base USDC base units; live 402 is authoritative.
+              schema:
+                type: string
+              example: '10000'
+            X-Payment-Chain-Id:
+              description: Illustrative payment chain.
+              schema:
+                type: string
+              example: '8453'
+            X-Payment-Address:
+              description: Illustrative destination; verify live 402.
+              schema:
+                type: string
+              example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+            X-Payment-Token:
+              description: Illustrative Base USDC address; verify live 402.
+              schema:
+                type: string
+              example: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequiredError'
+              examples:
+                x402_payment_required:
+                  summary: Illustrative x402 payment challenge
+                  description: Live 402 and PAYMENT-REQUIRED are authoritative. Payment grants API capacity only, never execution authority.
+                  value:
+                    ok: false
+                    error: payment_required
+                    code: free_quota_exhausted
+                    message: Illustrative x402 challenge; live 402 is authoritative for route-specific price and policy.
+                    instruction: STOP_RETRYING
+                    retry_same_request: false
+                    next_action: Wait for quota reset, upgrade, or attach valid x402 payment evidence and retry once.
+                    quota:
+                      tier: scout
+                      remaining: 0
+                      reset_at: '2026-10-30T12:00:00Z'
+                    retryable: false
+                    payment_required:
+                      amount: 0.01 USDC
+                      chain: Base
+                      destination: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
+                      token: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+                      chainId: '8453'
         '429':
           description: Rate limit exceeded
-
+          x-farmdash-response-example:
+            status: 429
+            description: Rate limit exceeded
+            body: null
+            note: Documents status semantics without inventing a response payload.
 components:
+  parameters:
+    X-FarmDash-Installation-ID:
+      name: X-FarmDash-Installation-ID
+      in: header
+      required: false
+      description: Optional analytics-only locally generated UUIDv4 installation hint. Stored only as a domain-separated salted hash. Not authentication, principal proof, quota, payment, wallet ownership, delegation or transaction authority. Omission changes no functionality.
+      schema:
+        type: string
+        format: uuid
+        pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+    X-FarmDash-Client:
+      name: X-FarmDash-Client
+      in: header
+      required: false
+      description: Optional untrusted analytics client hint; never security evidence.
+      schema:
+        type: string
+        enum:
+          - mcp
+          - ts_agent_kit
+          - python_agent_kit
+          - public_client
+          - webapp
+    X-FarmDash-Client-Version:
+      name: X-FarmDash-Client-Version
+      in: header
+      required: false
+      description: Optional analytics client version; never security evidence.
+      schema:
+        type: string
+        maxLength: 64
+        pattern: ^[A-Za-z0-9._+-]{1,64}$
+    X-FarmDash-Skill-Version:
+      name: X-FarmDash-Skill-Version
+      in: header
+      required: false
+      description: Optional event-touch analytics skill version, alongside X-ClawHub-Skill; never security evidence.
+      schema:
+        type: string
+        maxLength: 64
+        pattern: ^[A-Za-z0-9._+-]{1,64}$
+    X-ClawHub-Skill:
+      name: X-ClawHub-Skill
+      in: header
+      required: false
+      schema:
+        type: string
+        pattern: ^[a-zA-Z0-9-]{1,128}$
+        example: farmdash-signal-architect
+      description: 'ClawHub skill attribution. An installed FarmDash skill sends its canonical skill slug (e.g. farmdash-signal-architect) on every FarmDash API request so anonymous Scout usage can be attributed to the skill that drove it. Optional and analytics-only: absence never blocks a request, and malformed values are ignored. This is a skill identity, never a wallet address, API key, or user ID.'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: Pioneer or Syndicate API key
-
   schemas:
     ErrorResponse:
       type: object
-      required: [error]
+      required:
+        - error
       properties:
         error:
           type: string
@@ -435,7 +1604,6 @@ components:
           type: string
         details:
           type: string
-
     PaymentRequiredError:
       type: object
       properties:
@@ -452,21 +1620,20 @@ components:
           properties:
             amount:
               type: string
-              example: '0.99 USDC'
+              example: 0.01 USDC
             chain:
               type: string
               example: Base
             destination:
               type: string
               example: '0xb0Ed0d7bca24BBaD635B977C2efbE06742e33377'
-
     ProtocolItem:
       type: object
       properties:
         protocol_name:
           type: string
           example: Hyperliquid
-        trail_heat_score:
+        discovery_heuristic_score:
           oneOf:
             - type: number
               description: Numeric score (paid tiers)
@@ -481,30 +1648,51 @@ components:
         tvl:
           oneOf:
             - type: string
-              example: '$4.2B'
+              example: $4.2B
             - type: string
               example: '[ ENCRYPTED: UPGRADE TO PIONEER ]'
         category:
           type: string
-          enum: [Perps, Lending, Dex, L2, Bridge, Restaking, HyperEVM, Infra, Wallet, Testnet]
+          enum:
+            - Perps
+            - Lending
+            - Dex
+            - L2
+            - Bridge
+            - Restaking
+            - HyperEVM
+            - Infra
+            - Wallet
+            - Testnet
         status:
           type: string
-          enum: [Confirmed Airdrop, Points Program, Speculative]
+          enum:
+            - Confirmed Airdrop
+            - Points Program
+            - Speculative
         chains:
           type: array
-          items: { type: string }
-          example: [Arbitrum, Ethereum]
+          items:
+            type: string
+          example:
+            - Arbitrum
+            - Ethereum
         recommended_agent_deploy_link:
           type: string
           format: uri
-
     ProtocolsResponse:
       type: object
-      required: [tier, count, data]
+      required:
+        - tier
+        - count
+        - data
       properties:
         tier:
           type: string
-          enum: [scout, pioneer, syndicate]
+          enum:
+            - scout
+            - pioneer
+            - syndicate
         count:
           type: integer
         data:
@@ -522,7 +1710,6 @@ components:
         total_protocols_available:
           type: integer
           description: Full dataset size (scout tier only)
-
     ChainBreakdownItem:
       type: object
       properties:
@@ -547,8 +1734,8 @@ components:
             - type: string
         categories:
           type: array
-          items: { type: string }
-
+          items:
+            type: string
     ChainBreakdownSummary:
       type: object
       properties:
@@ -565,14 +1752,18 @@ components:
           oneOf:
             - type: number
             - type: string
-
     ChainBreakdownResponse:
       type: object
-      required: [tier, data]
+      required:
+        - tier
+        - data
       properties:
         tier:
           type: string
-          enum: [scout, pioneer, syndicate]
+          enum:
+            - scout
+            - pioneer
+            - syndicate
         status:
           type: string
         message:
@@ -589,14 +1780,18 @@ components:
                 $ref: '#/components/schemas/ChainBreakdownItem'
             summary:
               $ref: '#/components/schemas/ChainBreakdownSummary'
-
     SwapSafetyMode:
       type: string
-      enum: [strict, balanced]
-
+      enum:
+        - strict
+        - balanced
     SwapTxData:
       type: object
-      required: [to, data, value, chainId]
+      required:
+        - to
+        - data
+        - value
+        - chainId
       properties:
         to:
           type: string
@@ -609,14 +1804,23 @@ components:
           description: Native token value in wei (for ETH swaps)
         chainId:
           type: integer
-
     SwapQuote:
       type: object
-      required: [protocol, estimatedOutput, feeBps, feeAmountUSD, gasEstimate, txData, expiresAt]
+      required:
+        - protocol
+        - estimatedOutput
+        - feeBps
+        - feeAmountUSD
+        - gasEstimate
+        - txData
+        - expiresAt
       properties:
         protocol:
           type: string
-          enum: [lifi, zerox, x402]
+          enum:
+            - lifi
+            - zerox
+            - relay
         estimatedOutput:
           type: string
           description: Expected output amount in wei
@@ -634,7 +1838,6 @@ components:
         expiresAt:
           type: integer
           description: Unix timestamp — quotes valid for 30 seconds
-
         allowanceTarget:
           type: string
           nullable: true
@@ -648,7 +1851,6 @@ components:
           $ref: '#/components/schemas/ExecutionAlphaReport'
         riskReport:
           $ref: '#/components/schemas/SwapRiskReport'
-
     SwapQuoteResponse:
       allOf:
         - $ref: '#/components/schemas/SwapQuote'
@@ -668,18 +1870,18 @@ components:
               type: string
             note:
               type: string
-              example: 'This is an unsigned preview quote. Run POST /api/v1/simulate before execution.'
-
+              example: This is an unsigned preview quote. Run POST /api/v1/simulate before execution.
     SwapSimulationRequest:
       type: object
-      required: [intent_id, wallet_address]
+      required:
+        - intent_id
+        - wallet_address
       properties:
         intent_id:
           type: string
         wallet_address:
           type: string
-          pattern: '^0x[a-fA-F0-9]{40}$'
-
+          pattern: ^0x[a-fA-F0-9]{40}$
     SwapSimulationResponse:
       type: object
       properties:
@@ -702,7 +1904,10 @@ components:
           nullable: true
         mev_risk:
           type: string
-          enum: [low, medium, high]
+          enum:
+            - low
+            - medium
+            - high
         revert_reason:
           type: string
           nullable: true
@@ -712,10 +1917,19 @@ components:
           type: string
         required_for_execution:
           type: boolean
-
     SwapRequest:
       type: object
-      required: [fromChainId, toChainId, fromToken, toToken, fromAmount, agentAddress, toAddress, simulationId, nonce, signature]
+      required:
+        - fromChainId
+        - toChainId
+        - fromToken
+        - toToken
+        - fromAmount
+        - agentAddress
+        - toAddress
+        - simulationId
+        - nonce
+        - signature
       properties:
         fromChainId:
           type: integer
@@ -725,36 +1939,36 @@ components:
           description: Destination chain ID
         fromToken:
           type: string
-          pattern: '^0x[a-fA-F0-9]{40}$'
+          pattern: ^0x[a-fA-F0-9]{40}$
           description: Source token contract address
         toToken:
           type: string
-          pattern: '^0x[a-fA-F0-9]{40}$'
+          pattern: ^0x[a-fA-F0-9]{40}$
           description: Destination token contract address
         fromAmount:
           type: string
-          pattern: '^\d+$'
+          pattern: ^\d+$
           description: Amount in wei (no leading zeros)
         agentAddress:
           type: string
-          pattern: '^0x[a-fA-F0-9]{40}$'
+          pattern: ^0x[a-fA-F0-9]{40}$
           description: Agent wallet address (signer)
         toAddress:
           type: string
-          pattern: '^0x[a-fA-F0-9]{40}$'
+          pattern: ^0x[a-fA-F0-9]{40}$
           description: Destination wallet for swapped tokens
         slippage:
           type: number
           minimum: 0.01
-          maximum: 50
+          maximum: 5
           default: 0.5
           description: Slippage tolerance in percent
         protocol:
           type: string
-          enum: [lifi, zerox, x402]
+          enum:
+            - lifi
+            - relay
           description: Force protocol (auto-selected if omitted)
-        volumeHintUSD:
-          type: number
         expectedUpsideUsd:
           type: number
           description: Optional upside estimate in USD for positive-net-edge checks
@@ -769,11 +1983,11 @@ components:
           description: Optional liquidation-buffer percentage supplied by the caller
         walletAddress:
           type: string
-          pattern: '^0x[a-fA-F0-9]{40}$'
+          pattern: ^0x[a-fA-F0-9]{40}$
           description: Optional wallet address used for on-chain approval checks
         safetyMode:
           $ref: '#/components/schemas/SwapSafetyMode'
-          description: Agent-supplied USD estimate — unlocks volume fee discounts (>=10k = 35bps, >=100k = 25bps)
+          description: Agent-supplied USD estimate; the server independently derives trade value for routing tiers (>=10k = 40bps, >=100k = 35bps, >=1m = 20bps; default 50bps)
         simulationId:
           type: string
           description: Fresh successful simulation_id from POST /v1/simulate
@@ -785,15 +1999,17 @@ components:
           description: Current timestamp in milliseconds (must be within 60 seconds)
         signature:
           type: string
-          pattern: '^0x[a-fA-F0-9]+$'
+          pattern: ^0x[a-fA-F0-9]+$
           description: EIP-191 personal_sign of the deterministic payload
-
     ExecutionAlphaReport:
       type: object
       properties:
         selectedProtocol:
           type: string
-          enum: [lifi, zerox, x402]
+          enum:
+            - lifi
+            - zerox
+            - relay
         routeReason:
           type: string
         mevProtection:
@@ -812,36 +2028,68 @@ components:
             properties:
               protocol:
                 type: string
-                enum: [lifi, zerox, x402]
-              estimatedOutput: { type: string }
-              feeAmountUsd: { type: number }
-              gasEstimateUsd: { type: number, nullable: true }
-              bridgeFeeUsd: { type: number, nullable: true }
-              routeRiskScore: { type: number }
-              selected: { type: boolean }
+                enum:
+                  - lifi
+                  - zerox
+                  - relay
+              estimatedOutput:
+                type: string
+              feeAmountUsd:
+                type: number
+              gasEstimateUsd:
+                type: number
+                nullable: true
+              bridgeFeeUsd:
+                type: number
+                nullable: true
+              routeRiskScore:
+                type: number
+              selected:
+                type: boolean
         quoteDecay:
           type: object
           properties:
-            previousObservedAt: { type: integer, nullable: true }
-            quoteAgeMs: { type: integer, nullable: true }
-            outputDecayBps: { type: number }
-            gasIncreaseBps: { type: number }
+            previousObservedAt:
+              type: integer
+              nullable: true
+            quoteAgeMs:
+              type: integer
+              nullable: true
+            outputDecayBps:
+              type: number
+            gasIncreaseBps:
+              type: number
             severity:
               type: string
-              enum: [none, low, medium, high]
+              enum:
+                - none
+                - low
+                - medium
+                - high
         netEdge:
           type: object
           properties:
-            expectedUpsideUsd: { type: number, nullable: true }
-            protocolFeeUsd: { type: number }
-            gasUsd: { type: number }
-            bridgeFeeUsd: { type: number }
-            riskBufferUsd: { type: number }
-            totalCostUsd: { type: number }
-            netEdgeUsd: { type: number, nullable: true }
-            positive: { type: boolean, nullable: true }
-            enforced: { type: boolean }
-
+            expectedUpsideUsd:
+              type: number
+              nullable: true
+            protocolFeeUsd:
+              type: number
+            gasUsd:
+              type: number
+            bridgeFeeUsd:
+              type: number
+            riskBufferUsd:
+              type: number
+            totalCostUsd:
+              type: number
+            netEdgeUsd:
+              type: number
+              nullable: true
+            positive:
+              type: boolean
+              nullable: true
+            enforced:
+              type: boolean
     SwapRiskReport:
       type: object
       properties:
@@ -850,15 +2098,28 @@ components:
           items:
             type: object
             properties:
-              code: { type: string }
+              code:
+                type: string
               category:
                 type: string
-                enum: [approval, bridge, contract, token, health, execution]
+                enum:
+                  - approval
+                  - bridge
+                  - contract
+                  - token
+                  - health
+                  - execution
               severity:
                 type: string
-                enum: [low, medium, high, critical]
-              title: { type: string }
-              message: { type: string }
+                enum:
+                  - low
+                  - medium
+                  - high
+                  - critical
+              title:
+                type: string
+              message:
+                type: string
               metadata:
                 type: object
                 additionalProperties: true
@@ -866,44 +2127,73 @@ components:
           type: object
           nullable: true
           properties:
-            spender: { type: string, nullable: true }
-            allowance: { type: string, nullable: true }
-            requiredAmount: { type: string }
-            approvalNeeded: { type: boolean }
-            overApproved: { type: boolean }
+            spender:
+              type: string
+              nullable: true
+            allowance:
+              type: string
+              nullable: true
+            requiredAmount:
+              type: string
+            approvalNeeded:
+              type: boolean
+            overApproved:
+              type: boolean
             source:
               type: string
-              enum: [onchain, quote_fallback, unavailable]
+              enum:
+                - onchain
+                - quote_fallback
+                - unavailable
         pegChecks:
           type: array
           items:
             type: object
             properties:
-              tokenAddress: { type: string }
-              symbol: { type: string }
+              tokenAddress:
+                type: string
+              symbol:
+                type: string
               reference:
                 type: string
-                enum: [USD, ETH]
-              priceUsd: { type: number, nullable: true }
-              referencePriceUsd: { type: number, nullable: true }
-              deviationPct: { type: number, nullable: true }
-              alert: { type: boolean }
+                enum:
+                  - USD
+                  - ETH
+              priceUsd:
+                type: number
+                nullable: true
+              referencePriceUsd:
+                type: number
+                nullable: true
+              deviationPct:
+                type: number
+                nullable: true
+              alert:
+                type: boolean
         health:
           type: object
           nullable: true
           properties:
-            healthFactor: { type: number, nullable: true }
-            liquidationBufferPct: { type: number, nullable: true }
+            healthFactor:
+              type: number
+              nullable: true
+            liquidationBufferPct:
+              type: number
+              nullable: true
             alertLevel:
               type: string
-              enum: [none, warning, critical]
-            shouldHalt: { type: boolean }
+              enum:
+                - none
+                - warning
+                - critical
+            shouldHalt:
+              type: boolean
         shouldHalt:
           type: boolean
         haltReasons:
           type: array
-          items: { type: string }
-
+          items:
+            type: string
     SwapHaltResponse:
       type: object
       properties:
@@ -915,48 +2205,78 @@ components:
           example: swap_halted
         selectedProtocol:
           type: string
-          enum: [lifi, zerox, x402]
+          enum:
+            - lifi
+            - zerox
+            - relay
         executionAlpha:
           $ref: '#/components/schemas/ExecutionAlphaReport'
         riskReport:
           $ref: '#/components/schemas/SwapRiskReport'
-
     RiskSentinelRequest:
       type: object
       description: Provide either manual health/net-edge inputs or a full swap-shaped request for route-aware analysis.
       properties:
-        fromChainId: { type: integer }
-        toChainId: { type: integer }
-        fromToken: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
-        toToken: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
-        fromAmount: { type: string, pattern: '^\\d+$' }
-        walletAddress: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
-        toAddress: { type: string, pattern: '^0x[a-fA-F0-9]{40}$' }
+        fromChainId:
+          type: integer
+        toChainId:
+          type: integer
+        fromToken:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        toToken:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        fromAmount:
+          type: string
+          pattern: ^\\d+$
+        walletAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        toAddress:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
         protocol:
           type: string
-          enum: [lifi, zerox, x402]
-        slippage: { type: number }
-        expectedUpsideUsd: { type: number }
-        riskBufferUsd: { type: number }
-        healthFactor: { type: number }
-        liquidationBufferPct: { type: number }
-        protocolFeeUsd: { type: number }
-        gasUsd: { type: number }
-        bridgeFeeUsd: { type: number }
-        enforcePositive: { type: boolean }
+          enum:
+            - lifi
+            - relay
+        slippage:
+          type: number
+        expectedUpsideUsd:
+          type: number
+        riskBufferUsd:
+          type: number
+        healthFactor:
+          type: number
+        liquidationBufferPct:
+          type: number
+        protocolFeeUsd:
+          type: number
+        gasUsd:
+          type: number
+        bridgeFeeUsd:
+          type: number
+        enforcePositive:
+          type: boolean
         safetyMode:
           $ref: '#/components/schemas/SwapSafetyMode'
-
     RiskSentinelResponse:
       type: object
       properties:
-        ok: { type: boolean }
+        ok:
+          type: boolean
         mode:
           type: string
-          enum: [manual, quoted]
+          enum:
+            - manual
+            - quoted
         selectedProtocol:
           type: string
-          enum: [lifi, zerox, x402]
+          enum:
+            - lifi
+            - zerox
+            - relay
           nullable: true
         executionAlpha:
           allOf:
@@ -982,7 +2302,6 @@ components:
             type: object
         shouldHalt:
           type: boolean
-
     FeeEvent:
       type: object
       properties:
@@ -994,7 +2313,10 @@ components:
           format: date-time
         protocol:
           type: string
-          enum: [lifi, zerox, x402]
+          enum:
+            - lifi
+            - zerox
+            - relay
         from_token:
           type: string
         to_token:
@@ -1010,10 +2332,13 @@ components:
         tx_hash:
           type: string
           nullable: true
-
     HistoryResponse:
       type: object
-      required: [events, total, limit, offset]
+      required:
+        - events
+        - total
+        - limit
+        - offset
       properties:
         events:
           type: array
@@ -1025,10 +2350,13 @@ components:
           type: integer
         offset:
           type: integer
-
     RevenueMetrics:
       type: object
-      required: [totalFeeUSD, totalVolumeUSD, totalSwaps, activeAgents]
+      required:
+        - totalFeeUSD
+        - totalVolumeUSD
+        - totalSwaps
+        - activeAgents
       properties:
         totalFeeUSD:
           type: number
@@ -1042,3 +2370,36 @@ components:
         activeAgents:
           type: integer
           description: Unique agent addresses that have swapped
+x-farmdash-capability-truth: {"spot.USER_SIGNED":{"status":"operational","prerequisite":"Healthy execution governor, quote provider, RPC and durable receipt store; customer signs and submits."},"spot.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Owner-signed EVM grant, exact simulation/calldata binding, durable budget and customer-local signer authority."},"futures.USER_SIGNED":{"status":"operational","prerequisite":"Venue account ownership, local action signature, builder approval, risk/research gates and durable order control."},"futures.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Authenticated owner-bound futures policy, authorized local API-wallet signature, durable nonce/budget/order controls."},"solana.USER_SIGNED":{"status":"operational","prerequisite":"Native Jupiter/RPC route, durable preparation and finality store; customer signs and broadcasts."},"solana.BOUNDED_AUTONOMOUS":{"status":"operational","prerequisite":"Native owner-signed Solana policy; local key must be an actual required transaction signer. Policy creates no on-chain authority."},"ERC4337_SERVER_SUBMISSION":{"status":"preparation_only","prerequisite":"Qualified tenant/account authorization and session-key policy enforcement on public forwarding, configured bundler, durable claims and verified receipt integration."},"GENERIC_SERVER_INTENT_EXECUTION":{"status":"preparation_only","prerequisite":"Trusted executable adapter, exact signed-transaction binding and canonical receipt verifier."},"MEE":{"status":"preparation_only","prerequisite":"Production coordinator and authoritative source/destination receipt verifier."},"ACP":{"status":"deployment_prerequisite","prerequisite":"AcpReadinessService paidWorkflowReady, evaluator/client identities, migrations, funding/finality workers and Base RPC."}}
+x-farmdash-example-contract:
+  version: 1
+  examples_are_illustrative: true
+  live_response_is_authoritative: true
+  security_note: Never copy example signatures, nonces, hashes, payment destinations, or timestamps into a real transaction.
+  x402_note: Live HTTP 402 and PAYMENT-REQUIRED are authoritative. Payment grants eligible API capacity only; never wallet signing or execution authority.
+x-farmdash-simulation-contract:
+  invariant: simulation != execution; simulation never grants wallet authority, broadcasts a transaction, or proves settlement
+  execution_preflight:
+    endpoint: /v1/simulate
+    operationId: simulateSwapExecution
+    side_effects: none
+    grants_execution_authority: false
+    broadcasts_transaction: false
+    proves_settlement: false
+    binding: wallet + fd_intent_* quote intent + transaction fingerprint + freshness window
+  research_projection:
+    operationId: simulatePoints
+    side_effects: none
+    grants_execution_authority: false
+    authoritative_for_execution: false
+  futures_research:
+    operationId: analyzeStrategy
+    simulation_methodology: heuristic_preflight
+    grants_execution_authority: false
+    authoritative_for_execution: false
+  solana_preparation:
+    operationId: prepareSolanaSwap
+    simulation: authoritative RPC preflight is embedded before prepared transaction return
+    grants_execution_authority: false
+    broadcasts_transaction: false
+    proves_settlement: false

@@ -1,45 +1,64 @@
-## Description: <br>
-Prospector finds B2B leads matching an ideal customer profile by searching companies with Exa, enriching contacts with Apollo, exporting CSVs, and optionally syncing records to Attio CRM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prospector helps users find leads, prospects, or contacts matching an ideal customer profile by searching companies with Exa, enriching contacts with Apollo, exporting CSV results, and optionally syncing to Attio CRM.
 
-## Publisher: <br>
-[slempiam](https://clawhub.ai/user/slempiam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[slempiam](https://clawhub.ai/user/slempiam)
 
-## Use Case: <br>
-Sales, growth, and business development users use this skill to collect ICP criteria, generate lead and contact lists, and export or sync prospects for outreach workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: API keys for Exa, Apollo, and Attio may be stored locally or supplied through environment variables. <br>
-Mitigation: Use revocable least-privilege keys, keep local config permissions restricted, and rotate stored keys when the skill is no longer in use. <br>
-Risk: ICP criteria and lead or contact data may be processed by Exa, Apollo, and Attio. <br>
-Mitigation: Share only appropriate prospecting data with these services and protect or delete exported CSV files when no longer needed. <br>
-Risk: Optional Attio sync can create or update CRM company and contact records. <br>
-Mitigation: Review generated leads before syncing and confirm the target Attio workspace and permissions are appropriate. <br>
+## Use Case:
 
+Sales, growth, and developer users use Prospector to define an ICP, discover matching companies, enrich contacts, export lead lists, and optionally sync those records to Attio CRM.
 
-## Reference(s): <br>
-- [Prospector on ClawHub](https://clawhub.ai/slempiam/prospector) <br>
-- [Exa](https://exa.ai) <br>
-- [Apollo](https://apollo.io) <br>
-- [Attio](https://attio.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, CSV files, CRM records] <br>
-**Output Format:** [Markdown guidance with shell commands and CSV output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports lead data to a local CSV and can optionally create or update Attio CRM records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Setup may write API keys into shell startup files or local configuration, increasing exposure and persistence risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secret manager, avoid shell-profile writes, and use API keys generated specifically for this workflow.
+
+Risk: Lead CSV exports and optional CRM sync may contain sensitive company and contact data.
+
+Mitigation: Treat exported CSVs as sensitive, restrict access, and confirm authorization before sending or retaining contacts in Attio.
+
+Risk: Untrusted lead data may be opened in spreadsheets where formula-like values can execute spreadsheet functions.
+
+Mitigation: Neutralize CSV formulas before opening, importing, or sharing exported lead files.
+
+Risk: Dependency and shell export handling may be less reproducible or robust without pinned packages and safe quoting.
+
+Mitigation: Pin dependencies, quote shell exports safely, and review setup changes before execution.
+
+## Reference(s):
+
+- [Prospector ClawHub skill page](https://clawhub.ai/slempiam/skills/prospector)
+- [Exa](https://exa.ai)
+- [Apollo](https://apollo.io)
+- [Attio](https://attio.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, CSV files]
+
+**Output Format:** [Markdown guidance with inline shell and Python commands, status text, and CSV lead exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV exports include company and contact fields; optional Attio sync creates or updates CRM company and people records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

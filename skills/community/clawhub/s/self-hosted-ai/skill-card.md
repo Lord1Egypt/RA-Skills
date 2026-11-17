@@ -1,43 +1,62 @@
-## Description: <br>
-Self Hosted Ai helps agents guide users through running self-hosted LLM inference, image generation, speech-to-text, and embeddings without relying on cloud APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self Hosted Ai helps agents guide users through running self-hosted LLM inference, image generation, speech-to-text, embeddings, and local fleet routing without cloud APIs.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, configure, and operate a self-hosted AI stack across macOS, Linux, and Windows machines. It supports local alternatives for chat completions, image generation, speech-to-text, embeddings, fleet health checks, and model recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides use of external packages and a local network service that may process confidential prompts, audio, images, or documents. <br>
-Mitigation: Verify package sources, run the router only on a trusted network, and review ~/.fleet-manager logs/state before using confidential data. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, run, and query a self-hosted AI router across macOS, Linux, and Windows machines for local LLM, image, transcription, and embedding workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/self-hosted-ai) <br>
-- [Ollama Herd Repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
-- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, curl, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local service endpoints, package installation commands, model names, and configuration paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Package and tool installation steps can affect the user's local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the referenced packages before installation and prefer an isolated virtual environment or tool environment.
+
+Risk: herd-node performs local-network discovery.
+
+Mitigation: Run the service only on trusted networks and review router or node exposure before use.
+
+Risk: Prompts, audio, and documents are processed by the local service the user runs.
+
+Mitigation: Confirm that the local service, models, and host machines are appropriate for the sensitivity of the data being processed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/self-hosted-ai)
+- [Ollama Herd repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, API calls, configuration]
+
+**Output Format:** [Markdown with inline bash, Python, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local service endpoints and user-managed local model tooling.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

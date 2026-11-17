@@ -20,19 +20,21 @@ export async function send(data) {
   const videoId = data.video_id;
   const shortId = ct.reserveShortId(videoId, 'review_1');
 
+  const videoLink = data.video_url ? `[▶️ 点击观看原视频](${data.video_url})` : '';
+  const productLink = data.product_url ? `[🛍️ 点击查看商品](${data.product_url})` : '';
+
   const text =
-    `🛒 **视频审核 #${shortId}**\n` +
-    `📹 原视频:${data.video_url || ''}\n` +
-    `👤 作者:${data.author || ''}\n` +
+    `🛒 **视频审核 #${shortId}**\n\n` +
+    `📹 原视频:${videoLink}\n\n` +
+    `👤 作者:${data.author || ''}\n\n` +
     `📊 播放 ${fmtViews(data.view_count)} | ` +
     `🤖 AI评分:${data.score ?? '?'}/100\n\n` +
     `📝 ${data.summary || ''}\n\n` +
-    `🛒 **推荐商品:** ${data.product_name || ''}\n` +
-    `🔗 ${data.product_url || ''}`;
+    `🛒 **推荐商品:** ${data.product_name || ''}\n\n` +
+    `🔗 ${productLink}`;
 
   const productImage = data.product_image_url;
-  if (!productImage) throw new Error('缺少 product_image_url');
-  const media = ct.mediaUrl(productImage);
+  const media = productImage ? ct.mediaUrl(productImage) : null;
 
   const buttonRows = [
     [

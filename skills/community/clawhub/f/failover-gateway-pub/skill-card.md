@@ -1,43 +1,60 @@
-## Description: <br>
-Set up an active-passive failover gateway for OpenClaw with a standby node that auto-promotes when the primary goes down and auto-demotes when it recovers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sets up an active-passive OpenClaw failover gateway with a standby node that auto-promotes on primary failure, auto-demotes on recovery, and uses health monitoring, systemd services, channel splitting, and Git workspace sync.
 
-## Publisher: <br>
-[ember-claw](https://clawhub.ai/user/ember-claw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ember-claw](https://clawhub.ai/user/ember-claw)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy an active-passive OpenClaw standby gateway for high availability, disaster recovery, and redundant access when a primary instance fails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The persistent health monitor can promote a standby service and copy a secrets directory during failover. <br>
-Mitigation: Review every command before deployment, avoid SECRETS_HOST unless it is required, and sync only narrowly scoped secrets with limited tokens and verified SSH host keys. <br>
-Risk: Installer commands run on servers and include curl-to-shell patterns. <br>
-Mitigation: Prefer verified or package-managed installers where possible, and review installer sources before execution. <br>
-Risk: Failover behavior can affect production availability if enabled without testing. <br>
-Mitigation: Test failover in a controlled maintenance window before enabling the monitor. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ember-claw/failover-gateway-pub) <br>
-- [Publisher Profile](https://clawhub.ai/user/ember-claw) <br>
-- [Tailscale](https://tailscale.com) <br>
+## Use Case:
 
+Developers and operators use this skill to deploy and test a standby OpenClaw gateway for high availability, disaster recovery, and redundant access when the primary node is unavailable.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, JSON, and systemd configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an optional health-monitor shell script and deployment checklist.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent root-level monitoring can expand operational impact if misconfigured or compromised.
+
+Mitigation: Review before installation, run the monitor under a dedicated least-privilege account, and apply systemd hardening.
+
+Risk: Remote installer commands may execute unverified code on the target server.
+
+Mitigation: Prefer verified package repositories or pinned checksums before running installation commands.
+
+Risk: Health checks and failover signals may be spoofed or unreliable if not authenticated.
+
+Mitigation: Use authenticated health checks over a private network and test failover behavior before production use.
+
+Risk: Optional secret synchronization handles sensitive production credentials.
+
+Mitigation: Treat rsync secret transfer as production credential handling and restrict access, storage, and logging.
+
+## Reference(s):
+
+- [Tailscale](https://tailscale.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown deployment guidance with bash, JSON, and systemd configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a shell health-monitor script and deployment steps for a standby OpenClaw gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

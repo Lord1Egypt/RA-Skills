@@ -1,43 +1,60 @@
-## Description: <br>
-Submit Dataify Amazon product collection tasks through Dataify Builder for ASINs, product URLs, keywords, category URLs, and Best Sellers URLs, then return the created task_id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Amazon product details by ASIN or URL, or collect standard product results by keyword, category URL, or Best Sellers URL.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Amazon product collection jobs to Dataify Builder, confirm task parameters, manage the Dataify API TOKEN, and receive the resulting task_id for later review in Dataify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits jobs to an external Dataify Builder service using a Dataify API TOKEN. <br>
-Mitigation: Require the token before submission, keep it in DATAIFY_API_TOKEN or explicit runtime input, and review the task parameters before the Builder request is made. <br>
-Risk: Incorrect ASINs, URLs, zip codes, page counts, price ranges, or sort options can create failed or unintended collection tasks. <br>
-Mitigation: Normalize and validate mode-specific parameters, show submitted values in a Markdown table, and ask the user whether values should change before submission. <br>
-Risk: Users may expect downloaded result files after submitting a task. <br>
-Mitigation: Stop after successful Builder submission and direct the user to Dataify with the returned task_id to view or manage results. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify Builder jobs for Amazon product detail, keyword result, category listing, and Best Sellers collection, then retrieve the resulting task output when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-amazon-product) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with parameter tables and optional shell commands; successful script submissions print JSON containing task_id, submitted parameters, dashboard_url, and message.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stops after task submission and does not download result files. Requires a Dataify API TOKEN before calling Builder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The skill uses a Dataify API token and makes external Dataify requests that may consume credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only after confirming the requested collection scope and use an environment where the token is configured without exposing its value.
+
+Risk: The script imports result-monitoring code from a sibling directory outside the reviewed artifact and passes that code the API token.
+
+Mitigation: Install and run the skill only where the sibling task-runtime dependency is trusted, reviewed, and controlled.
+
+Risk: Localized instructions are inconsistent about whether the skill should stop after task submission or retrieve final results.
+
+Mitigation: Prefer the server-resolved default prompt and English release behavior that wait for asynchronous completion unless the user explicitly requests no-wait behavior.
+
+## Reference(s):
+
+- [Modes and parameters](references/modes-and-parameters.md)
+- [Dataify Builder endpoint](https://scraperapi.dataify.com/builder)
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-amazon-product)
+- [Publisher profile](https://clawhub.ai/user/dataify-server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DATAIFY_API_TOKEN and may wait up to 600 seconds by default for final result retrieval.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

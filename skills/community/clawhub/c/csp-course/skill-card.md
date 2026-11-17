@@ -1,48 +1,63 @@
-## Description: <br>
-Creates C++ and CSP informatics lesson material packages, including game-style PPTX slides, DOCX lesson plans and worksheets, C++ examples, and standalone HTML practice games. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete C++ CSP/NOIP teaching material packages, including game-style PPT courseware, lesson plans, student worksheets, C++ examples, interactive HTML exercises, and optional PDF-to-course batch workflows.
 
-## Publisher: <br>
-[ahao2001](https://clawhub.ai/user/ahao2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahao2001](https://clawhub.ai/user/ahao2001)
 
-## Use Case: <br>
-Teachers and course creators use this skill to produce single C++/CSP lessons or batch-generate course materials from PDF textbooks for upper-primary through junior competition classes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated course files may be written to hardcoded or unintended local paths. <br>
-Mitigation: Install in a dedicated workspace and replace the hardcoded C:/Users/ning/... output paths with the intended folder before running Node scripts. <br>
-Risk: File-moving commands may move more files than intended when run in a busy directory. <br>
-Mitigation: Review any Move-Item command and run the skill from a clean output folder that contains only generated lesson assets. <br>
-Risk: The HTML game template imports Google Fonts, which can be unsuitable for offline or privacy-preserving use. <br>
-Mitigation: Remove the Google Fonts import or replace it with local fonts when offline or privacy-preserving HTML output is required. <br>
+## Use Case:
 
+External educators, curriculum authors, and agents use this skill to create Chinese-language C++/CSP courseware for elementary through junior competition students. It supports single-lesson generation and batch conversion from PDF teaching material into structured lesson assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahao2001/csp-course) <br>
-- [Interactive game template](references/game_template.html) <br>
-- [Prime-number lesson reference](references/素数判断讲解.md) <br>
-- [C++ code example](references/代码示例.cpp) <br>
-- [PptxGenJS documentation](https://gitbrent.github.io/PptxGenJS/) <br>
-- [docx documentation](https://docx.js.org/) <br>
-- [pdfplumber](https://github.com/jsvine/pdfplumber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance plus generated PPTX, DOCX, CPP, HTML, JSON, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local files; PDF batch mode depends on Python pdfplumber and Node.js packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundled generation scripts write to hard-coded local Windows paths and may overwrite files outside the user's intended folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace hard-coded output paths before running the scripts, and execute generators in a dedicated working folder.
+
+Risk: Wildcard file moves can relocate unrelated .pptx, .docx, .cpp, or .html files when used in a mixed working directory.
+
+Mitigation: Run cleanup commands only in an empty or purpose-specific generation directory and inspect destination paths before moving files.
+
+Risk: Processing untrusted PDFs or images through local dependencies can expose the user to parser and dependency risk.
+
+Mitigation: Update dependencies before processing untrusted files and run PDF or image processing in an isolated workspace.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/ahao2001/skills/csp-course)
+- [references/game_template.html](references/game_template.html)
+- [references/素数判断讲解.md](references/素数判断讲解.md)
+- [references/代码示例.cpp](references/代码示例.cpp)
+- [PptxGenJS documentation](https://gitbrent.github.io/PptxGenJS/)
+- [docx documentation](https://docx.js.org/)
+- [pdfplumber project](https://github.com/jsvine/pdfplumber)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus generated .pptx, .docx, .cpp, .html, and JSON course-content files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for Chinese C++/CSP course preparation and may require user-selected output directories before script execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

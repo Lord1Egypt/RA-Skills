@@ -1,45 +1,60 @@
-## Description: <br>
-Envoyer des SMS a ton humain via Free Mobile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends SMS notifications to the user's Free Mobile phone number.
 
-## Publisher: <br>
-[dClauzel](https://clawhub.ai/user/dClauzel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-FPC (Fais pas chier) <br>
+## Publisher:
 
+[dclauzel](https://clawhub.ai/user/dclauzel)
 
-## Use Case: <br>
-Agents and developers use this skill to send short SMS notifications to the configured Free Mobile subscriber number. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+FPC (Fais pas chier), https://clauzel.eu/FPC/
 
-## Known Risks and Mitigations: <br>
-Risk: Free Mobile SMS credentials could be exposed through logs, commits, or shared environments. <br>
-Mitigation: Store FREEMOBILE_SMS_USER and FREEMOBILE_SMS_API_KEY as secrets, avoid printing them, and rotate the API key if exposure is suspected. <br>
-Risk: An agent could send an unexpected or important SMS without adequate user intent. <br>
-Mitigation: Require confirmation before sending sensitive, surprising, or high-impact messages. <br>
-Risk: Free Mobile limits SMS length and send frequency, so long or repeated notifications may fail or be truncated. <br>
-Mitigation: Keep messages under 160 characters and space repeated sends by at least 10 seconds. <br>
+## Use Case:
 
+Agents and users use this skill to send short operational alerts or reminders to the configured Free Mobile subscriber phone number. It requires a Free Mobile SMS notification user ID and API key.
 
-## Reference(s): <br>
-- [Free Mobile SMS skill page](https://clawhub.ai/dClauzel/freemobile-sms) <br>
-- [FreeMobile SMS homepage](https://github.com/dClauzel/freemobile-sms) <br>
-- [Free Mobile notification SMS documentation](https://mobile.free.fr/account/mes-options/notifications-sms) <br>
-- [REFERENCE.md](references/REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text CLI status and error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [SMS message content is limited to 160 characters and requires Free Mobile credentials in environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: SMS content and API credentials may be exposed through the URL-query request method.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer changing the implementation to POST before using it with real credentials.
+
+Risk: The skill can send SMS messages without documented confirmation guidance.
+
+Mitigation: Require explicit confirmation before each send.
+
+Risk: SMS messages may carry sensitive content to an external mobile provider.
+
+Mitigation: Avoid sending secrets in SMS messages and use only an account where this API-key access is acceptable.
+
+## Reference(s):
+
+- [Free Mobile SMS reference](references/REFERENCE.md)
+- [Free Mobile SMS notification documentation](https://mobile.free.fr/account/mes-options/notifications-sms)
+- [ClawHub skill page](https://clawhub.ai/dclauzel/skills/freemobile-sms)
+- [Project homepage](https://github.com/dClauzel/freemobile-sms)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [SMS messages are limited to 160 characters by the script.]
+
+## Skill Version(s):
+
+0.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

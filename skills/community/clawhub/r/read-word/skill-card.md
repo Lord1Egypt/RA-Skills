@@ -1,45 +1,57 @@
-## Description: <br>
-Read Microsoft Word documents in .docx and legacy .doc formats with Chinese support, keyword search, document analysis, and optional UTF-8 text export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Microsoft Word documents (.docx and .doc) with Chinese support, extract text, search keywords, and save output as UTF-8 text files without requiring Microsoft Word.
 
-## Publisher: <br>
-[Vincent-Big-fish](https://clawhub.ai/user/Vincent-Big-fish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincent-big-fish](https://clawhub.ai/user/vincent-big-fish)
 
-## Use Case: <br>
-Developers and agents use this skill to extract, inspect, search, and export text from user-selected Microsoft Word documents without requiring Microsoft Word. It is useful for local document review workflows that need Chinese text handling and simple document statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected local Word documents and can write extracted text to a user-provided output path. <br>
-Mitigation: Use it only on documents and output locations the user intends to expose to the agent, and review output paths before execution. <br>
-Risk: Legacy .doc extraction is partial text-only parsing and may miss content or produce imperfect text for complex files. <br>
-Mitigation: Prefer .docx when accuracy matters, or convert legacy .doc files to .docx before extraction. <br>
-Risk: Dependency behavior may vary if packages are installed without version control. <br>
-Mitigation: Pin and review dependency versions in stricter environments before installing or running the skill. <br>
+## Use Case:
 
+External users and developers use this skill to extract text from Microsoft Word .docx and legacy .doc files, search document paragraphs for keywords, inspect basic document statistics, and optionally export extracted text as UTF-8 text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Vincent-Big-fish/read-word) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [requirements.txt](artifact/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [Plain text, UTF-8 text files, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on user-selected local Word documents; preview and search output may be limited by command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Word documents from untrusted sources may trigger vulnerabilities in document parsing dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open only documents from trusted sources where possible and keep parsing dependencies updated or pinned according to deployment policy.
+
+Risk: The optional output flag can create or overwrite a text file at a user-specified path.
+
+Mitigation: Use output paths that are intended for new or replaceable files and review the path before execution.
+
+Risk: Legacy .doc extraction is partial and may produce incomplete or garbled text for complex files.
+
+Mitigation: Validate extracted text before relying on it, and convert problematic legacy documents to .docx when higher fidelity is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincent-big-fish/skills/read-word)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, UTF-8 text files, Python return values, and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-specified Word documents locally; optional export writes to a user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, _meta.json, __init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Guides users through a minimalist entrepreneurship framework for validating business ideas before building, focusing on problem clarity, manual validation, willingness to pay, and clear next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用极简主义创业者框架验证商业创意，帮助用户在构建前测试创意是否值得追求，并强调通过销售而不是构建来验证。
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-Entrepreneurs, founders, and product builders use this skill to evaluate whether a business idea has enough customer pain, manual-solution evidence, and willingness to pay before investing in an MVP. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat advisory validation output as proof of market demand. <br>
-Mitigation: Treat conclusions as startup advice and confirm them with real customer conversations, manual service tests, and payment evidence. <br>
-Risk: Users may include confidential business details while seeking idea validation. <br>
-Mitigation: Avoid sharing confidential business information unless it is appropriate to include it in the agent chat context. <br>
+## Use Case:
 
+External users and founders use this skill to evaluate a business idea before building by defining the customer problem, testing manual fulfillment, assessing willingness to pay, and deciding whether to proceed, gather more evidence, or pivot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethan-china/miniest-validate) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ethan-china) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists and a clear validation judgment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No file, shell command, credential, or system-access output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate on broad idea-validation or startup phrasing, including the English phrase "validate idea," even when the user expected a different language or approach.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to translate, use a different validation approach, or avoid invoking this skill when Chinese-language minimalist startup coaching is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ethan-china/skills/miniest-validate)
+- [Publisher Profile](https://clawhub.ai/user/ethan-china)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown coaching response with a validation judgment and next-step recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a clear outcome such as validated, needs more validation, or pivot.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

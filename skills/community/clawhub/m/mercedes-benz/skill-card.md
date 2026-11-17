@@ -1,42 +1,58 @@
-## Description: <br>
-Locate Mercedes-Benz dealerships and search new, used, and certified pre-owned vehicle inventory across the United States using zip code-based filters and vehicle specifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locate Mercedes-Benz dealerships and search for new, used, and certified pre-owned vehicle inventory across the United States using zip code based filters and detailed vehicle specifications.
 
-## Publisher: <br>
-[kaudata](https://clawhub.ai/user/kaudata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaudata](https://clawhub.ai/user/kaudata)
 
-## Use Case: <br>
-External users and agents use this skill to find Mercedes-Benz USA dealers and compare nearby vehicle inventory by zip code, model, price, mileage, year, color, fuel type, and other filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This is an unofficial Mercedes-Benz USA integration, so users may mistake the results for an official MBUSA or NVIDIA service. <br>
-Mitigation: Present the skill as third-party and unofficial, and verify critical dealer, price, availability, and vehicle details with Mercedes-Benz USA or the dealer before acting. <br>
-Risk: Zip codes and search filters are sent to Mercedes-Benz USA services, and the optional REST server may expose search endpoints if reachable on an untrusted network. <br>
-Mitigation: Avoid submitting sensitive location queries, and keep any REST server deployment on a trusted local network unless authentication and access controls are added. <br>
+## Use Case:
 
+Developers and agent users use this skill to find Mercedes-Benz USA dealers and compare nearby new, used, or certified pre-owned inventory by location, model, class, price, mileage, color, fuel type, year, and related filters.
 
-## Reference(s): <br>
-- [Mercedes-Benz USA Utilities on ClawHub](https://clawhub.ai/kaudata/mercedes-benz) <br>
-- [Artifact README](artifact/README.md) <br>
-- [OpenClaw tool schema](artifact/schema.json) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, API Calls] <br>
-**Output Format:** [JSON strings containing dealer or vehicle records with URLs intended for Markdown link presentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns zip code-based dealer and inventory search results, including contact details, vehicle attributes, prices, mileage, availability, image URLs, dealer URLs, and service scheduling URLs when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.6 (source: server release evidence) <br>
+Risk: If npm start exposes the REST server beyond localhost, it can become an unauthenticated proxy to MBUSA services with weak input limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the server bound to localhost or place it behind authentication, then add rate limits and strict input validation before any network exposure.
+
+Risk: The skill contacts MBUSA services to retrieve dealer and inventory data.
+
+Mitigation: Install only when that external service access is acceptable for the deployment environment and user workflow.
+
+Risk: The security guidance calls for dependency updates.
+
+Mitigation: Update the flagged npm dependencies before deployment and repeat the release security scan.
+
+## Reference(s):
+
+- [Mercedes-Benz USA Utilities on ClawHub](https://clawhub.ai/kaudata/skills/mercedes-benz)
+- [kaudata publisher profile](https://clawhub.ai/user/kaudata)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [JSON tool results summarized as Markdown with clickable links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns dealer contact details, service links, inventory records, vehicle specifications, prices, image URLs, and dealer website URLs when available.]
+
+## Skill Version(s):
+
+0.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

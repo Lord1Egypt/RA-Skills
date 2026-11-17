@@ -1,6 +1,6 @@
 # Ticket Price Compare - Multi-Platform Ticket Price Comparison
 
-[![Version](https://img.shields.io/badge/Version-v1.2.6-blue)]()
+[![Version](https://img.shields.io/badge/Version-v1.2.7-blue)]()
 [![Skill Type](https://img.shields.io/badge/Type-AI%20Skill-blue)]()
 [![Python](https://img.shields.io/badge/Python-3.8%2B-green)]()
 [![License](https://img.shields.io/badge/License-MIT-yellow)]()
@@ -273,7 +273,7 @@ ticket-price-compare/
 ## Technical Details
 
 - **Core Zero Dependencies** - `ticket_search.py` uses only Python standard library (`urllib`, `json`, `ssl`)
-- **Firecrawl JS Rendering** - Calls Firecrawl `/v2/scrape` API with `waitFor: 15000ms` and `proxy: "basic"` to render Ctrip's React-based flight search pages, then parses the resulting markdown
+- **Firecrawl JS Rendering** - Calls Firecrawl `/v2/scrape` API with v2 features: `maxAge` (5-min cache for price freshness), `location` (geo-targeted: CN for domestic, US for international), `actions` (explicit wait for JS rendering), 60s timeout for v2 JS pipeline, then parses the resulting markdown
 - **Dual-Source Ctrip** - PC page (`flights.ctrip.com`) for per-flight details; mobile H5 (`m.ctrip.com`) for price calendar fallback
 - **12306 Endpoints** - Uses `leftTicket/queryZ` for schedules + `queryTicketPrice` for actual fares, no login required
 - **City Name Mapping** - Built-in 200+ Chinese city/station name to IATA/telegraph code mapping

@@ -1,43 +1,52 @@
-## Description: <br>
-Audit the project's audio layer as UX feedback: UI sounds, success/failure signals, danger cues, layering, and semantic sound priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit the project's audio layer as UX feedback: UI sounds, success/failure signals, danger cues, layering, and semantic sound priorities.
 
-## Publisher: <br>
-[mike007jd](https://clawhub.ai/user/mike007jd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mike007jd](https://clawhub.ai/user/mike007jd)
 
-## Use Case: <br>
-Game developers and designers use this skill to audit whether UI sounds, reward cues, failure cues, danger signals, and audio layering improve player understanding rather than adding noise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended to read relevant game code and assets and write or update audit files. <br>
-Mitigation: Run it only in projects where that read/write access is acceptable, and review generated audit files before relying on them. <br>
-Risk: Findings may be inferred when runtime behavior is unclear. <br>
-Mitigation: Keep confidence and evidence labels with each important finding so weak evidence is visible to reviewers. <br>
+## Use Case:
 
+Developers and game teams use this skill to audit an existing game's audio as part of the UX feedback system, including confirmation sounds, reward cues, danger signals, layering conflicts, and evidence quality.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mike007jd/game-audio-feedback-audit) <br>
-- [Audio Feedback Audit Checklist](artifact/shared/checklists/audio-feedback-audit-checklist.md) <br>
-- [Audit Confidence and Evidence](artifact/shared/reference/audit-confidence-and-evidence.md) <br>
-- [Usage Examples](artifact/examples/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown audit notes and JSON scorecard updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs are project audit files under docs/game-studio/audit/ when write access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated audit documentation can be incomplete or inaccurate when runtime audio behavior is not inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated audit files before committing them, and grant shell or build access only when runtime evidence is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike007jd/skills/game-audio-feedback-audit)
+- [Audio Feedback Audit Checklist](artifact/shared/checklists/audio-feedback-audit-checklist.md)
+- [Audit Confidence and Evidence](artifact/shared/reference/audit-confidence-and-evidence.md)
+- [Usage Examples](artifact/examples/usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, guidance]
+
+**Output Format:** [Markdown audit findings and JSON scorecard updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-based findings should include confidence levels and evidence categories.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact bundle metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

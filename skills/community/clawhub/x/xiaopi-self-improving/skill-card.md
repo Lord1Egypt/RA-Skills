@@ -1,41 +1,58 @@
-## Description: <br>
-An agent memory skill that records command errors, user corrections, and best practices so future sessions can check and reuse those local memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaopi Self Improving helps agents record command failures, user corrections, best practices, and knowledge gaps as persistent local memory.
 
-## Publisher: <br>
-[a-din](https://clawhub.ai/user/a-din) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-din](https://clawhub.ai/user/a-din)
 
-## Use Case: <br>
-Developers and agent users use this skill to persist local memories about failed commands, user corrections, and preferred practices, then check those memories before repeating similar work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to persist conversation-derived memories that can influence future agent behavior. <br>
-Mitigation: Require explicit approval before writing to AGENTS.md, MEMORY.md, .learnings, or git-tracked files, and periodically review stored memories. <br>
-Risk: Memory entries may accidentally capture sensitive information or unsafe system-changing guidance. <br>
-Mitigation: Avoid storing secrets, redact sensitive values, and require fresh confirmation before applying remembered fixes involving sudo, global installs, or other system-changing commands. <br>
+## Use Case:
 
+Developers and agent users can use this skill to preserve recurring failures, user corrections, and preferred practices so future agent sessions can check relevant memory before acting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a-din/xiaopi-self-improving) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/a-din) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local JSONL memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local memory records under ~/.openclaw/memory/self-improving when its scripts are invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill metadata) <br>
+Risk: Persistent memory may capture commands, errors, corrections, or project context that contain secrets or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid logging tokens, passwords, private URLs, customer data, or project secrets; review memory entries before retaining or sharing them.
+
+Risk: Automatic persistence to project instruction or memory files can carry incorrect guidance into later sessions.
+
+Mitigation: Require review before writing to AGENTS.md, MEMORY.md, project learnings, or Git-backed backups.
+
+Risk: Stored recommendations may include privileged command guidance such as sudo usage.
+
+Mitigation: Require explicit approval before reusing privileged commands or applying stored fixes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a-din/skills/xiaopi-self-improving)
+- [Publisher profile](https://clawhub.ai/user/a-din)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSONL memory records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent local memory files when its helper scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

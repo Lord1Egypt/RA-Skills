@@ -1,40 +1,60 @@
-## Description: <br>
-Generate furry art generator ai images with AI via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate furry art images from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to request furry-style image generation from text prompts through the Neta/TalesOfAI API and receive a generated image URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta/TalesOfAI API token are sent to api.talesofai.com. <br>
-Mitigation: Use restricted or short-lived tokens, avoid sensitive prompts, and avoid exposing long-lived tokens in shell history or shared terminal logs. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to generate furry art images from text prompts, optionally selecting image size or referencing an existing image for style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/furry-art-skill) <br>
-- [Neta AI API access](https://www.neta.art/open/) <br>
-- [Neta/TalesOfAI image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, Guidance] <br>
-**Output Format:** [Plain text URL with progress messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and sends the prompt, optional reference image UUID, and token to api.talesofai.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.4 (source: server release metadata and package.json) <br>
+Risk: The skill handles the Neta/Tales of AI token through command-line arguments, which can expose secrets in shell history, logs, or process telemetry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass tokens through protected environment handling where possible, avoid placing real tokens directly on command lines, and rotate any token that may already have been exposed.
+
+Risk: The install instructions use mutable package installation paths, so a future install may not resolve to the reviewed release.
+
+Mitigation: Prefer a version-pinned install path or verify the installed artifact hash against the reviewed release before use.
+
+Risk: Prompts and API tokens are sent to api.talesofai.com for image generation.
+
+Mitigation: Install and run only when that external service interaction is acceptable for the prompts, tokens, and usage environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/furry-art-skill)
+- [Neta AI token and API access](https://www.neta.art/open/)
+- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image)
+- [Neta task polling endpoint](https://api.talesofai.com/v1/artifact/task/${taskUuid})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands; the runtime script prints an image URL to stdout and progress or errors to stderr.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and network access to api.talesofai.com; supports square, portrait, landscape, and tall image sizes.]
+
+## Skill Version(s):
+
+1.6.4 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

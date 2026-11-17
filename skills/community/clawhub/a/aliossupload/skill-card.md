@@ -1,42 +1,60 @@
-## Description: <br>
-阿里云 OSS 文件上传工具。支持单文件上传，适用于将本地文件上传到阿里云 OSS 并获取访问链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+阿里云 OSS 文件上传工具。支持单文件上传，适用于将本地文件上传到阿里云 OSS 并获取访问链接。
 
-## Publisher: <br>
-[JerryXn](https://clawhub.ai/user/JerryXn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to upload selected local files to an Alibaba Cloud OSS bucket and receive an access URL for the uploaded object. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local files are uploaded to cloud storage and may expose sensitive data if the wrong path or bucket policy is used. <br>
-Mitigation: Verify the exact local path before upload, keep the bucket private unless public URLs are intended, and use a dedicated RAM user limited to the intended bucket. <br>
-Risk: Alibaba Cloud OSS credentials are required and could create unnecessary access if they are overprivileged. <br>
-Mitigation: Store credentials securely, rotate them when needed, and grant only the OSS permissions required for the target bucket. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to upload explicitly named local files to an Alibaba Cloud OSS bucket and receive the resulting object URL.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JerryXn/aliossupload) <br>
-- [Alibaba Cloud OSS documentation](https://help.aliyun.com/product/31815.html) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration] <br>
-**Output Format:** [Text and JSON-style upload result with URL, object name, file size, elapsed time, and transfer speed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads selected local file contents to the configured Alibaba Cloud OSS bucket.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, package.json, clawhub.yaml) <br>
+Risk: The skill can upload local files to Alibaba Cloud OSS using configured credentials, which may expose secrets or regulated data if file paths or bucket access are not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a RAM access key limited to the intended bucket and actions, review each file path before upload, and avoid uploading secrets or regulated data.
+
+Risk: Returned object URLs may be inaccessible or unintentionally public depending on bucket ACL and object policy.
+
+Mitigation: Verify bucket ACLs, object policies, and URL exposure before sharing returned links.
+
+Risk: Running the Python script directly with credentials can create or upload a test object.
+
+Mitigation: Run direct script tests only against a controlled bucket and remove generated test objects after validation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jerryxn/skills/aliossupload)
+- [jerryxn ClawHub Publisher Profile](https://clawhub.ai/user/jerryxn)
+- [Alibaba Cloud OSS Documentation](https://help.aliyun.com/product/31815.html)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime upload calls return JSON-like dictionaries containing status, URL, object name, size, elapsed time, and speed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Alibaba Cloud OSS credentials and bucket configuration through environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, clawhub.yaml, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

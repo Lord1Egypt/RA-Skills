@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn75q5p7wpr68hmqar9ywtejsx84cw1x",
+  "name": "🇺🇸 美国最新关税政策查询",
   "slug": "us-tariff-query",
+  "description": "查美国对XX产品的最新关税政策/税率变化/豁免。无需API Key，安装即用。",
   "version": "1.1.0",
-  "publishedAt": 1777617316526
+  "author": "Huimai AI",
+  "license": "MIT",
+  "tags": [
+    "us-trade",
+    "tariff",
+    "policy",
+    "huimai",
+    "calibration"
+  ],
+  "lastUpdated": "2026-05-01",
+  "calibration": {
+    "levels": [
+      "quick",
+      "standard"
+    ],
+    "interval": 1800000,
+    "trustedMode": true
+  },
+  "warmMode": "default"
 }

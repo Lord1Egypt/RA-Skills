@@ -10,6 +10,8 @@
 - 不直接触发自我纠错，由映射层决定是否触发
 - 集成错误智慧库：评估结果自动记录认知性错误
 """
+__version__ = "1.0.0"
+
 
 import re
 import sys
@@ -18,6 +20,7 @@ import time
 import logging
 from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
+from interfaces import TraceContext, TraceContext, create_trace_context
 
 # 添加脚本目录到路径
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

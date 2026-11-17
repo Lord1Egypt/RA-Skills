@@ -1,0 +1,41 @@
+# 补丁文件顶层是「单个数组」，不是对象，也不要写两个顶层值。
+# 每一行都必须有全局唯一的 id。⚠️ 0.1.6-alpha.1 起加载器不再拦截重复 id：同 id 两行会**互相覆盖（后者胜）**，
+# 不再报错 —— 也就是说，写错 id 的后果从「启动即崩」变成了「静默生效的是别人」。详见 references/05-pitfalls.md 坑 P3。
+- insert:
+    # 示例：把一个 MCP server 挂进来（真实范本见 Q00/ouroboros 的 dsh-plugin）
+    - id: mcp-my-capability
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: my-capability
+        transport: stdio
+        command: npx
+        args:
+          - -y
+          # ⚠️ 版本号必须写「精确版本」。npx 会去 registry 取包并直接执行，
+          #    写成浮动规格（省略版本 / latest / ^1 / ~1.x）意味着**每次启动执行的
+          #    都是当时的线上最新版** —— 这份配置被审阅之后，实际跑的代码仍然会变。
+          #    上游被攻陷、发布恶意新版本、形近包抢注，都会直接落到本机。
+          #    要升级，必须显式改这一行并重新审阅；`1.2.3` 是占位，换成真实版本。
+          - my-mcp-server@1.2.3
+        env:
+          # 子进程环境会被清洗：凡是 /KEY|PASSWORD|SECRET|TOKEN/i 形状的名字
+          # 以及所有 DSH_* 变量都会被删掉。要传的凭据必须在这里显式列出。
+          #
+          # ⚠️ 这里列出的每一个凭据，**那个被下载下来的子进程都能读到**，且它与
+          #    DSH 同权限运行（可读写文件、可发网络请求）。只列这一个集成真正需要的
+          #    那一把，并优先用**低配额、可随时撤销**的专用 key，别用通用主 key。
+          MY_API_KEY: !!js process.env.MY_API_KEY ?? ''
+        toolCallTimeoutMs: 600000
+        # 软失败：依赖没装好时不让整个 DSH 起不来
+        failOnStartupError: false
+
+    # 示例：按平台启用 / 禁用（官方就是这么处理 bash / pwsh 差异的）
+    - id: bash-sandbox
+      name: '@deepseek-ai/dsh-bash-sandbox'
+      disabled: !!js process.platform === 'win32'
+      config:
+        timeoutMs: 60000
+
+    - id: pwsh-sandbox
+      name: '@deepseek-ai/dsh-pwsh-sandbox'
+      disabled: !!js process.platform !== 'win32'

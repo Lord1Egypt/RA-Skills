@@ -1,45 +1,64 @@
-## Description: <br>
-Qwen Tts helps agents convert text into natural speech with Alibaba Cloud Qwen TTS, including voice selection and optional Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qwen Tts helps agents convert text to natural speech through Alibaba Cloud DashScope Qwen TTS, with multiple Chinese, English, Cantonese, and dialect voices plus optional streaming examples.
 
-## Publisher: <br>
-[lanlan314](https://clawhub.ai/user/lanlan314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanlan314](https://clawhub.ai/user/lanlan314)
 
-## Use Case: <br>
-Developers and agents use this skill to synthesize text into audio with Qwen TTS, choose supported voices and languages, and optionally send generated audio to a configured Feishu recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis is sent to Alibaba DashScope. <br>
-Mitigation: Avoid sending sensitive text unless that data sharing is acceptable for the intended use case. <br>
-Risk: The Feishu helper uploads and sends generated audio to the configured Feishu user. <br>
-Mitigation: Use the Feishu send script only when delivery is intentional, keep credentials scoped, and verify FEISHU_USER_ID before use. <br>
-Risk: Voice cloning or custom voice workflows can reproduce a person's voice. <br>
-Mitigation: Use voice cloning only with clear permission from the voice owner. <br>
+## Use Case:
 
+Developers and external users use this skill to synthesize spoken audio from text with Qwen TTS voices, generate local audio files, and optionally send generated audio through Feishu when explicitly configured.
 
-## Reference(s): <br>
-- [Qwen Tts ClawHub release](https://clawhub.ai/lanlan314/qwen-tts-lan) <br>
-- [Qwen TTS API Reference](references/api.md) <br>
-- [Qwen TTS Voice List](references/voices.md) <br>
-- [Alibaba Cloud DashScope Console](https://dashscope.console.aliyun.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python usage examples; scripts can produce local OGG audio files or Feishu send results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY for synthesis; Feishu delivery also requires FEISHU_APP_ID, FEISHU_APP_SECRET, and FEISHU_USER_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Text submitted for speech synthesis is sent to Alibaba DashScope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive text unless provider agreements allow it, and review DashScope data-handling terms before production use.
+
+Risk: The optional Feishu sender can upload generated audio and send it to a configured user.
+
+Mitigation: Configure FEISHU_* credentials only when message sending is intended, restrict Feishu app permissions, and verify the recipient user ID.
+
+Risk: Security guidance identifies temporary-file hardening risks.
+
+Mitigation: Run the scripts in a trusted environment and prefer a release that fixes temporary-file races before shared or multi-user deployment.
+
+Risk: Voice cloning and message sending can create consent and misuse concerns.
+
+Mitigation: Use cloned voices only with appropriate consent and review generated audio before sending it to others.
+
+## Reference(s):
+
+- [Qwen Tts on ClawHub](https://clawhub.ai/lanlan314/skills/qwen-tts-lan)
+- [Qwen TTS API Reference](references/api.md)
+- [Qwen TTS Voice List](references/voices.md)
+- [DashScope Console](https://dashscope.console.aliyun.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, and Python examples; scripts return local OGG audio file paths or Feishu send results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated audio URLs expire after 24 hours; the optional Feishu path uploads and sends audio using configured Feishu credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

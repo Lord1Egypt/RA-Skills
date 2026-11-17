@@ -1,38 +1,57 @@
-## Description: <br>
-Predicts CPU spikes using Random Forest regressor, monitors system resources, saves metrics, and generates Excel reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts CPU spikes using Random Forest regressor, monitors system resources, saves metrics, and generates Excel reports.
 
-## Publisher: <br>
-[ningtoba](https://clawhub.ai/user/ningtoba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ningtoba](https://clawhub.ai/user/ningtoba)
 
-## Use Case: <br>
-Developers and operators use this skill to collect local CPU and memory metrics, predict CPU behavior for the next 24 hours, save alerts, and generate spreadsheet reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local monitoring data can reveal process names, hostname, CPU and memory usage, timestamps, predictions, and alerts. <br>
-Mitigation: Keep monitoring.db and system_report.xlsx private, delete old data when it is no longer needed, and review or pin Python dependencies before use. <br>
+## Use Case:
 
+Developers and operators use this skill to collect local CPU and memory process metrics, predict potential CPU spikes, persist alerts, and generate system usage reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ningtoba/event-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce local SQLite monitoring data, CPU prediction alerts, and Excel reports when the agent runs the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill records host and running-process telemetry to local files, including monitoring.db and system_report.xlsx, without documented retention or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments approved for local process telemetry, review the generated files, and apply local data-retention and deletion procedures.
+
+Risk: The install metadata understates the skill's file-write behavior.
+
+Mitigation: Confirm file-write permissions and storage paths before deployment, and prefer a release that explicitly declares generated database and report files.
+
+Risk: Runtime dependencies are listed without pinned versions.
+
+Mitigation: Review and pin dependencies in the deployment environment before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ningtoba/skills/event-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Terminal text plus local SQLite and XLSX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes monitoring.db, system_report.xlsx, and CPU alert records when prediction is enabled.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

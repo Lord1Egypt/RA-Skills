@@ -1,43 +1,59 @@
-## Description: <br>
-Search Gumtree UK for football-related goods with bb-browser, returning structured listing data and first-image Markdown for searches and listing details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Gumtree UK for football-related goods and ticket-style listings with bb-browser, returning structured listing data and first-image Markdown.
 
-## Publisher: <br>
-[salamankakit](https://clawhub.ai/user/salamankakit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[salamankakit](https://clawhub.ai/user/salamankakit)
 
-## Use Case: <br>
-External users and agents use this skill to search Gumtree UK for football shirts, boots, memorabilia, trading cards, football games, and ticket-style listings, then inspect listing details and images. Ticket and seller claims should be treated as unverified until the user checks identity, resale rules, and payment safety. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with searches targeting Gumtree UK listings. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticket listings and seller claims may be fraudulent or unverifiable. <br>
-Mitigation: Verify seller identity, resale rules, and listing evidence; do not arrange off-platform payments through an agent. <br>
-Risk: Local bb-browser adapters fetch and parse Gumtree pages and may break if Gumtree markup changes. <br>
-Mitigation: Review the copied scripts before installation, use them only with Gumtree URLs, and update the adapters when Gumtree markup changes. <br>
+## Use Case:
 
+External buyers, sellers, and agent operators use this skill to search Gumtree UK for football shirts, boots, memorabilia, trading cards, football games, and ticket-style listings, then inspect listing details and images before making commerce decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/salamankakit/gumtree-uk-football) <br>
-- [Publisher profile](https://clawhub.ai/user/salamankakit) <br>
-- [Gumtree UK](https://www.gumtree.com/) <br>
-- [bb-browser package](https://www.npmjs.com/package/bb-browser) <br>
+### Deployment Geography for Use:
 
+Global, focused on Gumtree UK listings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON bb-browser results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Gumtree search and listing helpers return listing URLs, prices, locations, image URLs, and first-image Markdown when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The listing helper can fetch arbitrary HTTP URLs instead of only Gumtree listing URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only run listing lookups with real Gumtree listing paths or https://www.gumtree.com URLs, and review prompts before execution.
+
+Risk: Ticket-style listings may involve fraud, resale restrictions, or off-platform payment pressure.
+
+Mitigation: Verify seller identity, face-value and resale rules, and avoid encouraging off-platform payments to strangers.
+
+Risk: Copied bb-browser site scripts remain installed after the skill is no longer needed.
+
+Mitigation: Remove the copied ~/.bb-browser/sites/gumtree scripts when retiring the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/salamankakit/skills/gumtree-uk-football)
+- [Gumtree UK](https://www.gumtree.com/)
+- [bb-browser package](https://www.npmjs.com/package/bb-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-capable bb-browser outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Gumtree search and listing helpers; listing output may include image URLs and first-image Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

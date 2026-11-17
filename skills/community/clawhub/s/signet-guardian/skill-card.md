@@ -1,46 +1,66 @@
-## Description: <br>
-Payment guard middleware for AI agents that checks payment requests against user policy and records successful payments through Signet commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Signet Guardian is payment guard middleware for AI agents that checks policy before payment attempts, records completed payments, reports spending, and supports policy configuration.
 
-## Publisher: <br>
-[rafalzacher1](https://clawhub.ai/user/rafalzacher1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rafalzacher1](https://clawhub.ai/user/rafalzacher1)
 
-## Use Case: <br>
-Developers and operators of payment-capable AI agent skills use Signet Guardian to preflight payment attempts, enforce configured limits, request confirmation when policy requires it, and record completed payments for audit. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled fallback policy enables small payments before the user has necessarily opted in. <br>
-Mitigation: Review and replace the bundled policy before connecting payment-capable skills, and set paymentsEnabled to false until the user intentionally opts in. <br>
-Risk: Payment-capable skills could bypass protection if they do not honor Signet Guardian decisions. <br>
-Mitigation: Confirm integrating skills always call signet-preflight, respect DENY and CONFIRM_REQUIRED, and call signet-record after successful payments. <br>
-Risk: The local ledger may contain sensitive payment history. <br>
-Mitigation: Keep the ledger private and restrict policy editing or migration commands to trusted, user-directed sessions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rafalzacher1/signet-guardian) <br>
-- [Signet Homepage](https://getsignet.xyz) <br>
-- [Skill Contract](SKILL.md) <br>
-- [README](README.md) <br>
-- [OpenClaw Extension README](openclaw-extension/README.md) <br>
-- [Default Policy Reference](references/policy.json) <br>
+## Use Case:
 
+Developers and agent operators use this skill to route payment-capable agent actions through policy checks, user confirmation thresholds, spending caps, and audit logging before and after payments.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON command results and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preflight returns ALLOW, DENY, or CONFIRM_REQUIRED; record and report commands update or summarize the local payment ledger.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can permit payments when the configured policy enables them, so default or unreviewed limits may allow unintended spending.
+
+Mitigation: Review and change the policy before relying on the skill; set paymentsEnabled to false until limits, currency, merchant rules, and confirmation thresholds are explicitly configured.
+
+Risk: Preflight is advisory and does not reserve budget, so concurrent payment flows near the monthly cap can receive an allow decision before record-time enforcement.
+
+Mitigation: Avoid concurrent payment flows near the cap, require explicit confirmation for uncertain payments, and treat signet-record under its file lock as the authoritative monthly-cap check.
+
+Risk: The ledger is a local JSONL file and may be altered outside the skill if the workspace is not protected.
+
+Mitigation: Protect the ledger path from local modification, monitor ledger changes, and run payment-capable agents in a controlled workspace.
+
+Risk: Usage examples rely on npx and tsx command execution, which may use unpinned or externally resolved tooling.
+
+Mitigation: Prefer pinned dependencies and locally installed tooling before using the skill in payment workflows.
+
+## Reference(s):
+
+- [Signet Guardian ClawHub skill page](https://clawhub.ai/rafalzacher1/skills/signet-guardian)
+- [Signet homepage](https://getsignet.xyz)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [OpenClaw extension README](openclaw-extension/README.md)
+- [Dashboard manual test](docs/DASHBOARD_TEST.md)
+- [Default policy example](references/policy.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON policy decisions, JSONL ledger records, text reports, and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preflight decisions use ALLOW, DENY, or CONFIRM_REQUIRED; successful payments should be recorded with the same amount, currency, payee, purpose, and idempotency key when available.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

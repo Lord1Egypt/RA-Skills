@@ -1,41 +1,54 @@
-## Description: <br>
-基于20年全国办公选址经验的办公室面积测算工具，帮助用户按人数、工位规格和功能区面积估算建议租赁面积及分项面积。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+办公室面积计算器 estimates recommended office rental area and a detailed area breakdown from staff count, workstation size, finance staff, manager office, and functional-zone inputs.
 
-## Publisher: <br>
-[deanw0529-ctrl](https://clawhub.ai/user/deanw0529-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deanw0529-ctrl](https://clawhub.ai/user/deanw0529-ctrl)
 
-## Use Case: <br>
-Administrative staff, founders, and office managers use this skill to estimate how much office space to rent and to prepare a practical area breakdown before lease negotiation or design handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Office area results are planning estimates and may not match local leasing, design, code, or building-specific requirements. <br>
-Mitigation: Use the output as an early planning aid, then confirm final rental and layout decisions with the property owner, designer, or other qualified professionals. <br>
-Risk: Broad office-planning language may activate the skill during related conversations where a precise area estimate is not requested. <br>
-Mitigation: Confirm the user's intended planning task and required inputs before relying on the calculator output. <br>
+## Use Case:
 
+Administrative staff, office planners, and business operators use this skill to estimate how much office space to rent and to produce a practical breakdown for negotiation or design handoff. It supports natural-language planning requests and command-style parameter inputs for staff counts, workstation dimensions, meeting rooms, reception space, pantry areas, finance rooms, and manager offices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deanw0529-ctrl/office-calculator) <br>
-- [Project homepage](https://github.com/office-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with optional JSON calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces area estimates in square meters with a recommended total, optional buffer, and functional-area breakdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Office area results are planning estimates and may not match final rental-area terms, building efficiency, or local design requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify rental-area assumptions, usable-area ratios, and layout constraints before lease commitments or design decisions.
+
+Risk: Broad office-planning trigger language may cause the skill to appear in conversations where the user has not asked for a calculator-style estimate.
+
+Mitigation: Confirm the user wants an office area calculation and collect the required planning inputs before presenting results.
+
+## Reference(s):
+
+- [Office Calculator homepage](https://github.com/office-calculator)
+- [ClawHub skill page](https://clawhub.ai/deanw0529-ctrl/skills/office-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown-style planning guidance with optional plain-text or JSON calculator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces estimated total area, a 10% buffer recommendation, and area breakdowns for workstations and functional zones.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

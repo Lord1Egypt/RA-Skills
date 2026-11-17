@@ -1,45 +1,56 @@
-## Description: <br>
-Process, convert, edit, and extract data from PDF files using the ComPDF Cloud API, including format conversion, page manipulation, watermarking, OCR, and structured document extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Markdown convert processes, converts, edits, and extracts data from PDF files using the ComPDF Cloud API, including format conversion, page manipulation, watermarking, compression, OCR, and document extraction.
 
-## Publisher: <br>
-[compdf-youna](https://clawhub.ai/user/compdf-youna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[compdf-youna](https://clawhub.ai/user/compdf-youna)
 
-## Use Case: <br>
-External users and developers use this skill to send PDFs, images, and office documents to ComPDF Cloud for conversion, OCR, compression, page editing, watermarking, comparison, and structured extraction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Files and optional document passwords may be sent to ComPDF Cloud for processing. <br>
-Mitigation: The skill requires explicit user confirmation before upload and advises users to avoid highly sensitive or confidential documents unless they accept the provider's privacy and retention terms. <br>
-Risk: A ComPDF API key may be stored locally if the user chooses to save it. <br>
-Mitigation: The skill only stores the key after opt-in, uses it from the local configuration for future sessions, and tells users they can delete the key file to revoke local storage. <br>
-Risk: Processing may fail because of unsupported formats, encrypted PDFs, quota limits, or cloud task errors. <br>
-Mitigation: The skill checks response body status, looks up failure codes in its error reference, and tells users when to provide a password, retry, split tasks, or address quota exhaustion. <br>
+## Use Case:
 
+Developers and external users use this skill to route PDF conversion, page editing, compression, watermarking, OCR, and document extraction tasks through ComPDF Cloud after confirming upload consent.
 
-## Reference(s): <br>
-- [ComPDF API Reference](https://www.compdf.com/guides/api-reference/v2/overview?utm_source=clawhub&utm_medium=skillhub&utm_campaign=pdf_skill_md_convert&ref_platform_id=clawhub_skills) <br>
-- [ComPDF Tool List](references/tool-list.md) <br>
-- [ComPDF Parameter Details](references/parameters.md) <br>
-- [ComPDF Error Code Reference](references/error-codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown status messages with file metadata, download links, error codes, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include expiring ComPDF download URLs and task status details returned by the cloud API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Selected documents are uploaded to ComPDF's servers for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before upload and avoid highly sensitive PDFs unless the user's organization accepts that handling.
+
+Risk: The API public key can be stored locally in a plaintext config file when the user opts in.
+
+Mitigation: Prefer session-only API-key use for sensitive environments; if saved, the user can delete config/public_key.txt to remove local storage.
+
+## Reference(s):
+
+- [ComPDF API Reference](https://www.compdf.com/guides/api-reference/v2/overview?utm_source=clawhub&utm_medium=skillhub&utm_campaign=pdf_skill_md_convert&ref_platform_id=clawhub_skills)
+- [ComPDF API Complete Tool Type Reference](references/tool-list.md)
+- [ComPDF API Tool Parameter Details](references/parameters.md)
+- [ComPDF API Error Code Reference](references/error-codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown status messages with API parameters, troubleshooting guidance, and download links for processed files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads selected files to ComPDF Cloud only after explicit user confirmation; download links expire at 24:00 the next day.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

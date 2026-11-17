@@ -1,37 +1,52 @@
-## Description: <br>
-Check if your email, phone or password has been in data breaches and produce a security response workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check if your email, phone or password has been in data breaches. Full security response workflow.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and security-conscious developers use this skill to check whether emails, phone numbers, or passwords appear in breach data and to produce prioritized response guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive identifiers may be transmitted to external breach-check services if lookup endpoints are not reviewed.
+
+Mitigation: Use only explicitly approved HTTPS endpoints, require consent before sending plaintext identifiers or hashes, and avoid periodic monitoring unless data destinations and disablement are clear.
+
+Risk: Password checking can expose credential material if raw passwords or full hashes are sent.
+
+Mitigation: Use the Pwned Passwords range API pattern and send only the first five SHA-1 hexadecimal characters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Individuals, security reviewers, and support agents use this skill to check authorized emails, phone numbers, or passwords against breach sources and produce a prioritized response plan. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal security data such as account identifiers and password checks. <br>
-Mitigation: Use it only for accounts or credentials the user is authorized to check, prefer privacy-preserving password checks, avoid returning raw credentials, and review optional monitoring before enabling it. <br>
+**Output Format:** [Markdown or JSON-style report text with command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include breach status, breach names, exposed data categories, severity, occurrence counts for password checks, timelines, and prioritized action items.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report or JSON-style breach summary with prioritized action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include breach names, exposed data types, severity labels, occurrence counts, and remediation steps; raw passwords and plaintext credentials should not be returned.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

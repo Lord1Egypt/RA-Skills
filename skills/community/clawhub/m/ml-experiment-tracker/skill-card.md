@@ -1,39 +1,57 @@
-## Description: <br>
-Plan reproducible ML experiment runs with explicit parameters, metrics, and artifacts. Use before model training to standardize tracking-ready experiment definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan reproducible ML experiment runs with explicit parameters, metrics, and artifacts.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Developers and ML practitioners use this skill before model training to create tracking-ready experiment plans with explicit datasets, parameters, metrics, thresholds, and expected artifacts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled script reads a caller-supplied JSON file and writes to a caller-supplied output path, so unintended paths could expose or overwrite project files. <br>
-Mitigation: Use only intended input files and choose output paths inside the project or artifact directory; review generated files before relying on them. <br>
-Risk: The --dry-run option records dry_run in the generated plan but does not prevent file output. <br>
-Mitigation: Do not treat --dry-run as a no-write safety control; point --output at a disposable or intended artifact path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Tracking Guide](references/tracking-guide.md) <br>
+## Use Case:
 
+Developers and ML engineers use this skill before model training to define tracking-ready experiment plans with datasets, parameters, metrics, thresholds, and expected artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance plus generated JSON, Markdown, or CSV run-plan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script reads an optional JSON payload up to 1 MiB and writes the selected output format to a caller-provided path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CSV exports can carry attacker-controlled values that may be opened in spreadsheet software.
+
+Mitigation: Review or sanitize untrusted experiment values before exporting to CSV or opening generated CSV files in spreadsheets.
+
+Risk: The script creates output directories before checking the dry-run flag, so dry-run execution can still affect the filesystem.
+
+Mitigation: Treat --dry-run as a planning marker in output, not as a guarantee of no filesystem changes, until the script behavior is fixed.
+
+Risk: Experiment plans may contain incorrect metrics, thresholds, parameters, or artifact expectations.
+
+Mitigation: Review generated plans against the training objective and tracking policy before using them for model runs.
+
+## Reference(s):
+
+- [Tracking Guide](references/tracking-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/0x-professor/skills/ml-experiment-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON, Markdown, or CSV experiment-plan files produced by the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script reads an optional JSON experiment definition and writes a local output artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-根据项目属性（如Competency、名称、描述、EP、公司类型等），从预定义的解决方案列表中为其标注最合适的Solution标签。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据项目属性自动匹配最合适的Solution标签，支持字段校验、优先级匹配和特殊规则验证。
 
-## Publisher: <br>
-[luorixin](https://clawhub.ai/user/luorixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luorixin](https://clawhub.ai/user/luorixin)
 
-## Use Case: <br>
-Employees and project teams use this skill to classify project records into the most appropriate Solution label using required project fields, competency mappings, matching rules, and validation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project records may contain sensitive project descriptions, company types, or partner names. <br>
-Mitigation: Confirm the provided records are appropriate to process in the agent environment before using the skill. <br>
-Risk: Classification may be incorrect when a record lacks required fields or only matches broad semantic rules. <br>
-Mitigation: Review low-confidence, validation-failed, downgraded, or unclassified outputs before using them in reporting or operational workflows. <br>
+## Use Case:
 
+Consultants and project teams use this skill to classify project records into the most appropriate Solution label from a predefined competency-to-solution mapping. It accepts CSV or JSON project data and returns matched labels with confidence, validation status, and processing notes.
 
-## Reference(s): <br>
-- [Competency Solution Mapping CSV](artifact/assets/Competency的Solution清单.csv) <br>
-- [ClawHub Skill Page](https://clawhub.ai/luorixin/solution-tag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown table or structured records with matched Solution labels, confidence, validation status, and processing notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adds Matched_Solution, Match_Confidence, Validation_Status, and Processing_Notes fields to each project record.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Users may provide sensitive project metadata such as project names, descriptions, company type, and partner names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the workflow is appropriate for the team and avoid submitting confidential records unless the deployment environment is approved for that data.
+
+Risk: Malformed frontmatter may affect reliable installation or metadata parsing.
+
+Mitigation: Correct the skill frontmatter before publishing or installing in environments that depend on strict metadata parsing.
+
+Risk: Automated classification can assign an incorrect Solution when inputs are incomplete or ambiguous.
+
+Mitigation: Review low-confidence, validation-failed, or manually flagged records before relying on the classification.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luorixin/skills/solution-tag)
+- [Competency的Solution清单.csv](artifact/assets/Competency的Solution清单.csv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown table or structured text with matched Solution labels, confidence, validation status, and processing notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs add Matched_Solution, Match_Confidence, Validation_Status, and Processing_Notes fields to each project record.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

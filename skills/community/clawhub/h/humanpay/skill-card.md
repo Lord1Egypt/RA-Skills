@@ -1,41 +1,59 @@
-## Description: <br>
-Talentir HumanPay helps agents create and inspect Talentir payouts and webhooks through documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talentir HumanPay helps agents create and inspect Talentir payouts to creators by email address or supported social media handle.
 
-## Publisher: <br>
-[johanneskares](https://clawhub.ai/user/johanneskares) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johanneskares](https://clawhub.ai/user/johanneskares)
 
-## Use Case: <br>
-External users and developers use this skill to prepare Talentir API calls for creator payouts, payout lookup, team information, and webhook management from an OpenClaw shell environment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables money-moving Talentir payout operations and webhook changes from an agent shell environment. <br>
-Mitigation: Use a dedicated low-limit Talentir API key, confirm every payout and webhook change manually, and avoid auto-approval permissions unless they are explicitly required. <br>
-Risk: Unexpected behavior could create unauthorized payouts or send webhook data to an unintended endpoint. <br>
-Mitigation: Verify webhook URLs before use, monitor Talentir activity, and revoke or rotate the API key if behavior is unexpected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Talentir API](https://www.talentir.com/api/v1) <br>
-- [Talentir Business Account Setup](https://www.talentir.com/start/business) <br>
-- [ClawHub Skill Page](https://clawhub.ai/johanneskares/humanpay) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to prepare Talentir payment, payout lookup, team, and webhook API commands from an agent shell. It is intended for workflows where an agent may request or administer creator payouts under the Talentir account's configured controls.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with curl and jq shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TALENTIR_API_KEY plus curl and jq.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents can initiate high-impact payment actions through Talentir payouts.
+
+Mitigation: Use narrowly scoped API keys, keep daily limits low, and require human review for every payout before execution.
+
+Risk: Webhook creation or deletion can affect payment operations and downstream systems.
+
+Mitigation: Require human review for webhook changes and store returned signing secrets securely.
+
+Risk: Auto-approval can bypass expected payout review.
+
+Mitigation: Disable payout auto-approval unless explicitly needed and authorized for the workflow.
+
+## Reference(s):
+
+- [Talentir API](https://www.talentir.com/api/v1)
+- [Talentir Business Signup](https://www.talentir.com/start/business)
+- [ClawHub Skill Page](https://clawhub.ai/johanneskares/skills/humanpay)
+- [Publisher Profile](https://clawhub.ai/user/johanneskares)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON API payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and TALENTIR_API_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

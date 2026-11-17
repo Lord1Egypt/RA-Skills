@@ -1,0 +1,126 @@
+# Per-stack commands
+
+Run instrumentation and mutations only in an isolated scratch copy for read-only
+audits. Preserve the user's current source and relevant local changes in that copy.
+The commands below support the semantic review in `SKILL.md`; they do not replace it.
+
+Tool names and flags below were current when written. Confirm each with `--help` or the
+tool's docs before running it, and prefer the repository's pinned wrapper over a global
+binary. Install audit-only tools ad hoc, for example with `uvx`, `npx`, or a scratch
+Composer project. Never add them as project dependencies without approval.
+
+Each section covers three things:
+- **junit**: how to get the report `junit_census.py` reads. Produce it with the gate's
+  own command plus the reporter flag, so the census reflects gate conditions.
+- **reach**: how to see which guard actually refused.
+- **mutation**: a tool for confirming one candidate. Scope it to the candidate's
+  file; whole-suite runs are too slow to be routine.
+
+For the Python, PHP, and JavaScript reporter commands below, create a fresh
+report directory for each gate invocation with
+`audit_report_dir=$(mktemp -d)`. Keep the gate and census in the same shell and
+pass `"$audit_report_dir/gate.xml"` to both the reporter and
+`python3 <this skill's directory>/scripts/junit_census.py`.
+Record the gate's exit status separately. Read only the report produced by that
+invocation; a missing report means incomplete audit input, never a fallback to
+an earlier report. Use separate directories for concurrent packages and retries.
+
+## Python
+
+- **junit:** `pytest --junitxml="$audit_report_dir/gate.xml"`, appended to the gate's pytest command.
+- **reach, CLI-driven suites:** in the scratch copy, allocate a fresh directory for
+  each invocation with `reach_probe_dir=$(mktemp -d);`. In the same shell, run
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<this skill's directory>/scripts REACH_PROBE_OUT="$reach_probe_dir/reach.jsonl"
+  pytest -p pytest_reach_probe <tests>`, then
+  `python3 <this skill's directory>/scripts/pytest_reach_probe.py "$reach_probe_dir/reach.jsonl"`.
+  Share that invocation's path among its xdist workers; use a new directory for
+  each concurrent invocation or retry.
+  The probe runs the suite and patches only `subprocess.Popen.communicate`, so it sees
+  `subprocess.run` and wrappers built on `run` or `communicate`. It does not observe
+  `subprocess.call`, `check_call`, a bare `Popen(...).wait()`, `os.system`, or asyncio
+  subprocesses; silence from the probe is not evidence that no call failed.
+- **reach, in-process code:** temporarily replace `pytest.raises(X)` with
+  `pytest.raises(X) as e` and print `e.value`. For a web client, print
+  `response.json()` next to the status assertion.
+- **mutation:** `mutmut`, scoped to one module.
+
+## Rust
+
+- **junit:** `cargo nextest` writes junit when the selected profile sets
+  `[profile.<name>.junit] path = "junit.xml"` in the nextest config; with
+  `--profile ci` the report lands in `target/nextest/ci/junit.xml`. Plain
+  `cargo test` has no junit output. Use `cargo test -- --list` against
+  `cargo test -- --list --ignored` to find `#[ignore]` tests. Also check whether the
+  gate enables the features that `#[cfg(feature = "...")]` test modules need.
+- **reach:** replace `assert!(r.is_err())` with a `println!` of `r.unwrap_err()` and run
+  with `-- --nocapture`. For binaries driven by a Python or shell harness, use that
+  harness's reach probe.
+- **mutation:** `cargo mutants`, restricted to the file under suspicion. Its test command
+  can be the repository's process-test runner.
+
+## PHP (PHPUnit, Pest, Laravel)
+
+- **junit:** `vendor/bin/phpunit --log-junit "$audit_report_dir/gate.xml"`; Pest accepts the same
+  flag. PHPUnit's junit carries an `assertions` count per test, so `junit_census.py`
+  also reports executed tests with zero assertions.
+- **uncollected files:** tests outside the `<testsuite>` directories in `phpunit.xml`,
+  or classes whose file name lacks the configured suffix (default `Test.php`), never
+  run. Pass `--test-files 'tests/**/*.php'` to the census.
+- **reach:** in a copy of the candidate test, add `$this->withoutExceptionHandling()`
+  before the request, so the real exception class and message surface instead of a
+  rendered 403, 404, 409, or 422. A 403 can come from a policy, a gate, middleware,
+  or a form request's `authorize()`. A 422 can come from any rule. Assert the
+  validation key (`assertJsonValidationErrors(['field'])`) or the message.
+- **mutation:** Infection, filtered to the candidate's source file.
+
+## JavaScript and TypeScript (Vitest, Jest, Playwright)
+
+- **junit:** `vitest run --reporter=junit --outputFile="$audit_report_dir/gate.xml"`. Jest needs the
+  `jest-junit` reporter. Playwright's `--reporter=junit` prints to stdout
+  unless `PLAYWRIGHT_JUNIT_OUTPUT_FILE="$audit_report_dir/gate.xml"` (or the reporter's `outputFile`
+  config option) names a file. In a pnpm or other
+  workspace, run the census per package, or pass several reports.
+- **uncollected files:** Vitest and Jest `include`/`testMatch` globs, and workspace
+  packages whose `test` script is missing or ends in `|| true`, silently drop tests.
+- **type assertions:** Vitest's `expectTypeOf` and `assertType` are [compile-time checks](https://vitest.dev/guide/testing-types.html).
+  A green runtime-only run does not prove them. Verify that a blocking gate enables
+  Vitest typechecking or runs a compiler that includes the assertion files. Inspect
+  the applicable tsconfig and, for Vitest typechecking, `typecheck.include`.
+  In the isolated audit copy, change one expected type to an incompatible type.
+  Require that same gate to fail on the type mismatch.
+- **reach:** change a bare `.toThrow()` to `.toThrow(/expected message/)`, or
+  `console.log` the rejected error. For request tests, log the response body beside
+  the status assertion.
+- **skips:** `it.skip`, `describe.skip`, `test.todo`, and `it.skipIf(...)`/`it.runIf(...)`
+  whose condition is constant in CI all appear as skipped in junit.
+- **mutation:** StrykerJS, with its mutate glob set to the candidate file.
+
+## Guard-message extraction hints for `guard_pins.py`
+
+| Stack | Useful `--src` | Useful `--exclude` |
+|---|---|---|
+| Rust | `'src/**/*.rs'` (in-file `#[cfg(test)]` code is counted as tests) | `'^[a-z_]+$'` for identifier-like literals |
+| Python | `--src 'src/**/*.py' --src 'app/**/*.py'` | log-format strings |
+| PHP/Laravel | `'app/**/*.php'` | `'^[\w.]+$'` for translation keys and config paths |
+| JS/TS | `--src 'src/**/*.ts' --src 'apps/*/src/**/*.ts'` | i18n keys |
+
+In Laravel, validation messages mostly come from language files rather than
+`app/**`. For those rules, a key assertion such as `assertJsonValidationErrors` is the
+pin, not the message text.
+
+## What `duplicate_tests.py` resolves per stack
+
+| Stack | Resolved | Not resolved |
+|---|---|---|
+| Python | fixture parameters, `parametrize` cases (a plain test can match one case), module constants, same-module helper defaults, observation bindings | conftest fixture bodies, imported helpers and constants, `setUp` state |
+| Rust | `let` locals; `#[rstest]`/`#[test_case]` attributes as the data source | helper bodies; each parametrized fn is one unit |
+| PHP | `$variables`; `->assert*` chains split from the request; data provider name and parameters as the data source | `setUp`, `$this->` properties (a stateful body pairs only within its own file), provider rows |
+| JS/TS | `const`/`let`/`var` locals; `it.each` tables as the data source | `beforeEach`, module-level mocks, reordered statements |
+
+The status, polarity, harness, and clique gates apply to every stack. Two refinements are
+Python only: literals that select what to read are not counted as signal, and a test whose
+only calls load fixtures counts as observation-only.
+
+Pairs stay within one file by default. `--cross-file` hunts copy-pasted tests, but a
+copied body usually tests a different copy of the code, so it is not redundant with the
+original.

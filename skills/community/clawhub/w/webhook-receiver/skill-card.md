@@ -1,44 +1,58 @@
-## Description: <br>
-Receive external webhooks and callbacks in real time by exposing a local HTTP endpoint via an aitun tunnel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Receive external webhooks and callbacks in real time by exposing a local HTTP endpoint via aitun tunnel.
 
-## Publisher: <br>
-[ctz168](https://clawhub.ai/user/ctz168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctz168](https://clawhub.ai/user/ctz168)
 
-## Use Case: <br>
-Developers and agents use this skill to receive GitHub webhooks, payment notifications, OAuth callbacks, form submissions, and other third-party HTTP callbacks while working from a local environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Full webhook headers and bodies can expose OAuth secrets, payment data, or personal data in logs. <br>
-Mitigation: Redact sensitive fields, limit log retention, and avoid full request logging for OAuth, payment, production, or personal-data webhooks. <br>
-Risk: Remote install scripts can execute code outside the package manager review path. <br>
-Mitigation: Install aitun with pip or uv from a trusted package source and verify the package before use. <br>
-Risk: A public tunnel can expose a local webhook handler to untrusted traffic. <br>
-Mitigation: Use the skill for controlled webhook testing unless the handler adds request verification, authentication, and response hardening. <br>
+## Use Case:
 
+Developers and engineers use this skill to receive third-party webhooks, OAuth callbacks, payment notifications, form submissions, and other HTTP callbacks in local workflows without deploying a public server.
 
-## Reference(s): <br>
-- [AiTun homepage](https://aitun.cc) <br>
-- [ClawHub skill page](https://clawhub.ai/ctz168/skills/webhook-receiver) <br>
-- [ClawHub package link](https://clawhub.ai/ctz168/webhook-receiver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides the agent through installing aitun, starting a local webhook handler, exposing it through a tunnel, registering callback URLs, processing requests, and cleaning up processes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: frontmatter and server release evidence) <br>
+Risk: Installer commands may execute remote scripts or unpinned packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned package or verified release, and avoid pipe-to-shell installers unless the installation path has been reviewed.
+
+Risk: Public webhook examples can expose local handlers to untrusted requests.
+
+Mitigation: Bind local handlers narrowly where possible, verify webhook signatures, and return responses quickly.
+
+Risk: Webhook logs may capture sensitive payloads, headers, signatures, cookies, personal data, or payment details.
+
+Mitigation: Redact sensitive data from logs before storing or sharing them.
+
+## Reference(s):
+
+- [AiTun Homepage](https://aitun.cc)
+- [ClawHub Skill Page](https://clawhub.ai/ctz168/skills/webhook-receiver)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, Python code examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include public tunnel URLs and local webhook handler examples that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

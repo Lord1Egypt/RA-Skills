@@ -1,44 +1,66 @@
-## Description: <br>
-React Orchestrator routes agent tasks between fast ReAct execution and deeper Reflexion-style reasoning, with tool registration, execution history, structured LLM prompts, Code Mode, and human approval support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React Orchestrator is a Node.js ReAct and Reflexion orchestration library that routes tasks between a fast System 1 path and a deeper reflective System 2 path while coordinating registered tools.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add a dual-mode ReAct orchestrator that routes simple tasks to a fast path and complex tasks to a reflective planning path. It is suited for registering tools, executing agent workflows, reviewing execution histories, and adding Code Mode or human approval controls around higher-risk actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Code Mode snippets can run with the user's normal system permissions. <br>
-Mitigation: Review before installing, run in an isolated workspace or container, and treat Code Mode as arbitrary code execution rather than a sandbox. <br>
-Risk: Registered tools can perform sensitive actions such as file writes, network calls, shell commands, PowerShell execution, or generated-code execution. <br>
-Mitigation: Use explicit tool allowlists, least-privilege environment variables, and separate human confirmation for network calls, file writes, PowerShell, and generated code. <br>
+## Use Case:
 
+Developers and agent builders use this skill to build agents that select fast or reflective reasoning paths, register external tools, and return auditable task execution results. It is suited to multi-step search, retrieval, file, code, and planning workflows where task complexity determines the execution mode.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/react-orchestrator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Usage Guide](artifact/USAGE-GUIDE.md) <br>
-- [ReAct Paper](https://arxiv.org/abs/2210.03629) <br>
-- [Reflexion Paper](https://arxiv.org/abs/2303.11366) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JavaScript API results, JSON execution history, and Markdown with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tool-call results, reasoning histories, approval requests, and generated JavaScript or PowerShell snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version, package.json) <br>
+Risk: The skill can execute generated JavaScript and PowerShell code and includes file read/write templates, creating host-level code and file access risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or isolate Code Mode before using real data; if enabled, run it in a least-privileged sandbox with an approved workspace and no inherited secrets.
+
+Risk: PowerShell execution uses an execution-policy bypass path.
+
+Mitigation: Remove or disable PowerShell execution unless explicitly required, and require review before any PowerShell-backed tool is registered or invoked.
+
+Risk: Human approval is implemented as a helper and may not be enforced before every sensitive tool call.
+
+Mitigation: Enforce HITL centrally around all file-write, command-execution, deletion, network, and other sensitive tools with timeout rejection and a narrow auto-approve list.
+
+Risk: Reasoning mode selection, semantic tool matching, and parameter extraction rely on heuristics or simplified implementations in this version.
+
+Mitigation: Validate tool parameters with schemas, review high-impact actions, keep execution timeouts enabled, and inspect execution history before relying on results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/react-orchestrator)
+- [README](artifact/README.md)
+- [Usage Guide](artifact/USAGE-GUIDE.md)
+- [Quick Reference](artifact/QUICK-REFERENCE.md)
+- [ReAct Paper](https://arxiv.org/abs/2210.03629)
+- [Reflexion Paper](https://arxiv.org/abs/2303.11366)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JavaScript snippets, shell commands, configuration examples, and JSON-like execution result objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primary results include an answer, execution history, selected mode, iteration count, duration, and optional reflections or command output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

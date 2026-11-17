@@ -1,48 +1,70 @@
-## Description: <br>
-Gate Alpha token market skill for browsing, trading, and checking Alpha market tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate Exchange Alpha helps agents browse Gate Alpha tokens, view market and account data, and prepare quote-based buy or sell orders with explicit confirmation.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and trading agents use this skill to discover Gate Alpha tokens, view Alpha market data, review account and order information, and prepare quote-based buy or sell orders through Gate MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can place live Gate Alpha trades when connected to an authenticated Gate MCP setup. <br>
-Mitigation: Use the narrowest available Gate authorization, do not paste API secrets into chat, and verify token, amount, slippage, quote, and sell-all confirmations before execution. <br>
-Risk: The security review flags broad triggers and an external runtime dependency as requiring review before installation. <br>
-Mitigation: Install only in trusted Gate MCP environments and review the linked runtime rules and security summary before granting Alpha trading access. <br>
+## Use Case:
 
+External users and agents use this skill to browse Gate Alpha markets, inspect holdings and order history, and run quote-confirmed Alpha token trading workflows through Gate MCP tools.
 
-## Reference(s): <br>
-- [Gate Alpha MCP Specification](references/mcp.md) <br>
-- [Token Discovery & Browsing](references/token-discovery.md) <br>
-- [Market Viewing](references/market-viewing.md) <br>
-- [Trading (Buy)](references/trading-buy.md) <br>
-- [Trading (Sell)](references/trading-sell.md) <br>
-- [Account & Holdings](references/account-holdings.md) <br>
-- [Account Book (Transaction History)](references/account-book.md) <br>
-- [Order Management](references/order-management.md) <br>
-- [Gate API Key Management](https://www.gate.io/myaccount/profile/api-key/manage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown responses with structured trade drafts, execution results, market data summaries, account summaries, and order status reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use authenticated Gate MCP tools for account, quote, order, and trading operations; trading flows require a fresh quote and explicit user confirmation before order placement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can access account data and help place Alpha token trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, prefer read-only access for market or history tasks, and enable write access only when trading is intended.
+
+Risk: Trading actions can execute real buy, sell, or sell-all orders.
+
+Mitigation: Require a fresh quote and explicit immediate confirmation before every order placement, including each token in a batch sell flow.
+
+Risk: Quotes are time-sensitive and market prices can change quickly.
+
+Mitigation: Re-quote when confirmation is delayed or quote/order details no longer match.
+
+Risk: Evidence reports reliance on mutable or unpinned external instructions and installers.
+
+Mitigation: Verify installer provenance manually before deployment and review the skill before enabling account or trading permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/skills/gate-exchange-alpha)
+- [Gate Alpha MCP Specification](references/mcp.md)
+- [Token Discovery & Browsing](references/token-discovery.md)
+- [Market Viewing](references/market-viewing.md)
+- [Trading (Buy)](references/trading-buy.md)
+- [Trading (Sell)](references/trading-sell.md)
+- [Account & Holdings](references/account-holdings.md)
+- [Account Book (Transaction History)](references/account-book.md)
+- [Order Management](references/order-management.md)
+- [Gate API Key Management](https://www.gate.io/myaccount/profile/api-key/manage)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown tables, confirmation prompts, and structured trade or order summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write workflows require Gate MCP access, a fresh quote, and explicit user confirmation before order placement.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

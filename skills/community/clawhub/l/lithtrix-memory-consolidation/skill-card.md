@@ -1,43 +1,61 @@
-## Description: <br>
-Persistent cross-session memory and verifiable agent identity via the Lithtrix MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent cross-session memory and verifiable agent identity via the Lithtrix MCP server.
 
-## Publisher: <br>
-[learningloons-hash](https://clawhub.ai/user/learningloons-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[learningloons-hash](https://clawhub.ai/user/learningloons-hash)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an OpenClaw agent to Lithtrix for persistent memory, semantic recall across sessions, and agent passport checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected conversation context and user preferences may be sent to Lithtrix for persistent storage. <br>
-Mitigation: Set clear agent rules to store only non-sensitive summaries, avoid secrets and regulated data, and request user consent before saving persistent memory. <br>
-Risk: The evidence does not define memory review, deletion, retention, or sensitivity controls. <br>
-Mitigation: Confirm review, deletion, and retention processes with Lithtrix or the publisher before production use. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to connect an agent to Lithtrix for storing, retrieving, and searching cross-session memory, and for checking Lithtrix agent passports when interacting with registered agents.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/learningloons-hash/lithtrix-memory) <br>
-- [Lithtrix documentation](https://docs.lithtrix.ai) <br>
-- [Lithtrix MCP on npm](https://www.npmjs.com/package/lithtrix-mcp) <br>
-- [Lithtrix trust overview](https://lithtrix.ai/trust.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown with shell, JSON, and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LITHTRIX_API_KEY and may call Lithtrix API or MCP tools for persistent memory and passport lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send memory contents, search queries, task summaries, and user preferences to an external Lithtrix service for persistence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or sensitive personal, financial, legal, health, proprietary, or credential data, and make stored memories reviewable and deletable.
+
+Risk: The setup recommends installing the MCP server with an unpinned npx package command.
+
+Mitigation: Use a pinned and reviewed lithtrix-mcp package version before deployment.
+
+Risk: Persistent memory can affect future sessions without restating the original user context.
+
+Mitigation: Require user approval for meaningful memory writes and review retrieved memories before relying on them.
+
+## Reference(s):
+
+- [Lithtrix documentation](https://docs.lithtrix.ai)
+- [Lithtrix homepage](https://lithtrix.ai)
+- [Lithtrix MCP package](https://www.npmjs.com/package/lithtrix-mcp)
+- [Lithtrix trust overview](https://lithtrix.ai/trust.html)
+- [ClawHub skill page](https://clawhub.ai/learningloons-hash/skills/lithtrix-memory)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with API examples, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LITHTRIX_API_KEY and use of the Lithtrix MCP server or Lithtrix HTTP API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

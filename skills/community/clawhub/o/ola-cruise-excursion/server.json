@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/ola-cruise-excursion",
+  "description": "Explore excursion options available for cruise travelers at various ports, enhancing your travel experience.",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/mcp/81131dd2-578d-439a-8fc0-24bda2bede8e"
+    }
+  ]
+}

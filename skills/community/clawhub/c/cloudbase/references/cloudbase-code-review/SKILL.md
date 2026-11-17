@@ -1,22 +1,20 @@
 ---
 name: cloudbase-code-review
 description: "Code review and validation for CloudBase projects. After writing code for Web / miniprogram / CloudRun / cloud-function projects, call this skill to check for known pitfalls — auth guard misuse, missing database tables, RLS misconfiguration, storage domain setup, and SDK API misuse. Supports automated lint scripts (regex-based) + LLM semantic review."
-version: 2.23.6
+version: 2.36.0
+license: MIT
 alwaysApply: false
 ---
 
-## Standalone Install Note
+## Sibling skills (local only)
 
-If this environment only installed the current skill, start from the CloudBase main entry and use the published `cloudbase/references/...` paths for sibling skills.
+Sibling CloudBase skills ship beside this skill. Use local relative paths such as `../auth-tool-cloudbase/SKILL.md`.
 
-- CloudBase main entry: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md`
-- Current skill raw source: `https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/cloudbase-code-review/SKILL.md`
-
-Keep local `references/...` paths for files that ship with the current skill directory. When this file points to a sibling skill, use the standalone fallback URL shown next to that reference.
+If a referenced sibling skill file is missing from this environment, ask the user to install the full CloudBase plugin (or the missing skill). Do **not** HTTP-fetch remote skill or protocol markdown into the agent context.
 
 # CloudBase Code Review
 
-> **One-liner**: After implementing CloudBase features, call this skill to catch common mistakes before the grader does.
+> **One-liner**: After implementing CloudBase features, call this skill to catch common mistakes before users do.
 
 ## When to use
 
@@ -27,6 +25,7 @@ Call this skill **after** completing a CloudBase implementation task, before dec
 - You set up CloudBase Storage (file upload, hosting)
 - You configured security rules or RLS policies
 - You wrote MCP-dependent code
+- You wrote Cloud Function or CloudRun HTTP handlers (check for credential / header echo leaks)
 
 ## How it works
 
@@ -50,6 +49,7 @@ Do not promote a single failed run or case-specific workaround into a hard rule.
 ```bash
 # Step 1: Read relevant rules for identified modules
 #   references/rules/cross-cutting/AUTH001.md
+#   references/rules/cross-cutting/SEC001.md
 #   references/rules/postgresql/PG-CR001.md
 #   ...
 
@@ -84,3 +84,19 @@ Semantic review prompt for human or LLM to evaluate.
 
 How to fix the issue.
 ```
+
+## Reference index
+
+All packaged reference files (required for skill lint reachability):
+
+- [RULES_INDEX.md](references/RULES_INDEX.md)
+- [lint-rules/README.md](references/lint-rules/README.md)
+- [rules/cross-cutting/AUTH001.md](references/rules/cross-cutting/AUTH001.md)
+- [rules/cross-cutting/SEC001.md](references/rules/cross-cutting/SEC001.md)
+- [rules/cross-cutting/SKILL001.md](references/rules/cross-cutting/SKILL001.md)
+- [rules/postgresql/PG-CR001.md](references/rules/postgresql/PG-CR001.md)
+- [rules/postgresql/PG-CR002.md](references/rules/postgresql/PG-CR002.md)
+- [rules/postgresql/PG-CR003.md](references/rules/postgresql/PG-CR003.md)
+- [rules/postgresql/PG-CR004.md](references/rules/postgresql/PG-CR004.md)
+- [rules/postgresql/PG-CR005.md](references/rules/postgresql/PG-CR005.md)
+- [rules/storage/STORAGE001.md](references/rules/storage/STORAGE001.md)

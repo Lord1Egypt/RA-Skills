@@ -1,42 +1,54 @@
-## Description: <br>
-Dockerps helps agents view and manage Docker container processes, stats, logs, and metadata when Docker is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View and manage Docker container processes and stats. Use when monitoring containers. Requires docker.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and operators use Dockerps to ask an agent to inspect local Docker containers, review process status, stats, logs, and metadata, and run Docker cleanup when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup command can immediately remove stopped containers and pruned images from the local Docker environment. <br>
-Mitigation: Use cleanup only in controlled Docker environments after reviewing the expected resources; prefer list, stats, top, logs, and inspect for read-only inspection. <br>
-Risk: The skill requires Docker inspection access on the host where the agent runs. <br>
-Mitigation: Install only where the agent is permitted to inspect local Docker containers and logs. <br>
+## Use Case:
 
+Developers and operators use Dockerps to inspect Docker container lists, status, stats, processes, logs, and basic container state while monitoring Docker hosts.
 
-## Reference(s): <br>
-- [Dockerps on ClawHub](https://clawhub.ai/bytesagain1/dockerps) <br>
-- [bytesagain1 publisher profile](https://clawhub.ai/user/bytesagain1) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text command output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker access; cleanup can prune stopped containers and images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill requires access to the Docker daemon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments where the agent is permitted to inspect and manage Docker resources.
+
+Risk: The cleanup command can remove stopped containers and dangling images without warning.
+
+Mitigation: Review the cleanup behavior before installation and require explicit confirmation or scoping before using it on shared or important Docker hosts.
+
+## Reference(s):
+
+- [Dockerps on ClawHub](https://clawhub.ai/bytesagain1/skills/dockerps)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker daemon access; cleanup can prune Docker resources outside the skill's own files.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

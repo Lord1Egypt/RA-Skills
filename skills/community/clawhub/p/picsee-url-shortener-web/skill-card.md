@@ -1,43 +1,53 @@
-## Description: <br>
-Quickly shorten URLs and generate QR codes via PicSee (picsee.io), with access to analytics and history after login. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shorten URLs and optionally generate QR codes through PicSee (picsee.io), with logged-in access to analytics and history.
 
-## Publisher: <br>
-[PicSeeInc](https://clawhub.ai/user/PicSeeInc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[picseeinc](https://clawhub.ai/user/picseeinc)
 
-## Use Case: <br>
-External users and teams use this skill to shorten long URLs through PicSee and optionally create QR codes for sharing. Logged-in PicSee users can also use it to inspect link analytics and history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: URLs submitted for shortening are sent to PicSee. <br>
-Mitigation: Use the skill only for links you are comfortable processing through PicSee. <br>
-Risk: If the browser profile is logged into PicSee, shortened links may be associated with that account. <br>
-Mitigation: Use a separate browser profile or log out when account association is not desired. <br>
-Risk: Optional QR-code generation creates a local Python virtual environment and installs qrcode and pillow. <br>
-Mitigation: Request QR codes only when local package installation is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PicSee website](https://picsee.io/) <br>
-- [ClawHub skill page](https://clawhub.ai/PicSeeInc/picsee-url-shortener-web) <br>
-- [Publisher profile](https://clawhub.ai/user/PicSeeInc) <br>
+## Use Case:
 
+External users and developers use this skill to shorten long links with PicSee, return the shortened URL, and optionally generate a QR code when requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown text with an optional generated PNG QR-code file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a shortened URL by default; QR-code generation is opt-in and may create /tmp/picsee_qr.png.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: URLs submitted for shortening are sent to PicSee.
+
+Mitigation: Use only links that are appropriate to share with PicSee; avoid internal, private, authenticated, or tokenized URLs.
+
+Risk: Optional QR code generation installs unpinned Python packages into a persistent local virtual environment.
+
+Mitigation: Review before use; prefer pinned dependencies with hashes or a constrained built-in QR generator.
+
+## Reference(s):
+
+- [PicSee web app](https://picsee.io/?url=)
+- [ClawHub skill page](https://clawhub.ai/picseeinc/skills/picsee-url-shortener-web)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown response with a short URL and optional QR image file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional QR generation creates /tmp/picsee_qr.png only after explicit user request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

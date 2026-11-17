@@ -1,0 +1,220 @@
+{
+  "name": "sciverse-paper-schema",
+  "slug": "paper-schema",
+  "version": "0.1.1",
+  "description": "Structured Paper, Entity, Relation, Evidence, provenance, and Citation Graph access for the parsed 1M+ AI conference-paper corpus.",
+  "runtime": "node>=18",
+  "license": "MIT-0",
+  "homepage": "https://sciverse.space/docs/sciverse/api/paper-schema",
+  "env": [
+    {
+      "name": "SCIVERSE_API_TOKEN",
+      "required": true,
+      "description": "Sciverse API Token obtained from https://sciverse.space."
+    },
+    {
+      "name": "SCIVERSE_BASE_URL",
+      "required": false,
+      "default": "https://api.sciverse.space",
+      "description": "Optional Sciverse gateway override; only HTTPS sciverse.space hosts are accepted."
+    }
+  ],
+  "tools": [
+    {
+      "name": "paper_schema_capabilities",
+      "description": "Read the Paper Schema public contract, Entity taxonomy, Evidence groups, Relation types, and capacity limits. Use before guessing an enum or limit; do not use as a health check.",
+      "script": "scripts/paper_schema_capabilities.mjs",
+      "input_schema": { "type": "object", "properties": {}, "additionalProperties": false }
+    },
+    {
+      "name": "search_paper_schemas",
+      "description": "Find papers in the parsed Paper Schema corpus by academic keywords and metadata filters such as DOI, author, venue, year, code, data, and OA status. Results are papers, not semantic answer chunks.",
+      "script": "scripts/search_paper_schemas.mjs",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "minLength": 1, "maxLength": 500, "description": "Two to six academic keywords; not a long natural-language question." },
+          "filters": {
+            "type": "object",
+            "properties": {
+              "schema_ids": { "type": "array", "maxItems": 100, "items": { "type": "string" } },
+              "dois": { "type": "array", "maxItems": 100, "items": { "type": "string" } },
+              "authors": { "type": "array", "maxItems": 20, "items": { "type": "string" } },
+              "venues": { "type": "array", "maxItems": 50, "items": { "type": "string" } },
+              "published_year_gte": { "type": "integer", "minimum": 1800, "maximum": 2200 },
+              "published_year_lte": { "type": "integer", "minimum": 1800, "maximum": 2200 },
+              "has_code": { "type": "boolean" },
+              "has_data": { "type": "boolean" },
+              "is_oa": { "type": "boolean" },
+              "metadata_status": { "type": "array", "items": { "type": "string", "enum": ["matched", "unresolved"] } }
+            },
+            "additionalProperties": false
+          },
+          "sort": { "type": "array", "maxItems": 2, "items": { "type": "object" } },
+          "size": { "type": "integer", "minimum": 1, "maximum": 100, "default": 20 },
+          "cursor": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "discover_related_papers",
+      "description": "Expand related papers either from a fuzzy Entity description or from a known seed schema. Entity mode does not claim canonical identity; seed mode combines selected entity, term, and citation signals.",
+      "script": "scripts/discover_related_papers.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["action"],
+        "properties": {
+          "action": { "type": "string", "enum": ["entity", "seed"] },
+          "query": { "type": "string", "maxLength": 500 },
+          "schema_id": { "type": "string" },
+          "entity_types": { "type": "array", "maxItems": 30, "items": { "type": "string" } },
+          "entity_subtypes": { "type": "array", "maxItems": 50, "items": { "type": "string" } },
+          "exclude_schema_ids": { "type": "array", "maxItems": 100, "items": { "type": "string" } },
+          "signals": { "type": "array", "maxItems": 3, "items": { "type": "string", "enum": ["term", "entity", "citation"] } },
+          "exclude_same_work": { "type": "boolean" },
+          "size": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "cursor": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "query_paper_entities",
+      "description": "Search structured Entities across papers, list all or filtered Entities in one paper, or read one Entity node for Relation and Evidence drill-down. entity_id is only contextual to schema_id.",
+      "script": "scripts/query_paper_entities.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["action"],
+        "properties": {
+          "action": { "type": "string", "enum": ["search", "list", "get"] },
+          "query": { "type": "string", "maxLength": 500 },
+          "filters": { "type": "object" },
+          "hydrate_schema_papers": { "type": "boolean" },
+          "schema_id": { "type": "string" },
+          "entity_id": { "type": "string" },
+          "entity_types": { "type": "array", "maxItems": 30, "items": { "type": "string" } },
+          "entity_subtypes": { "type": "array", "maxItems": 50, "items": { "type": "string" } },
+          "sections": { "type": "array", "maxItems": 50, "items": { "type": "string" } },
+          "include_relations": { "type": "boolean" },
+          "relation_limit": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "size": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "cursor": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "query_paper_relations",
+      "description": "Search or read public within-paper Entity relations for known schema or Entity scopes. Relation is internal paper structure and must not be represented as a paper-to-paper citation.",
+      "script": "scripts/query_paper_relations.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["action"],
+        "properties": {
+          "action": { "type": "string", "enum": ["search", "get"] },
+          "filters": { "type": "object" },
+          "evidence_query": { "type": "string", "maxLength": 500 },
+          "include_context": {},
+          "schema_id": { "type": "string" },
+          "relation_id": { "type": "string" },
+          "size": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "cursor": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "query_paper_citations",
+      "description": "Read a paper citation summary, paginate the complete resolved and unresolved citation list, or expand only resolved schema-to-schema citation graph edges.",
+      "script": "scripts/query_paper_citations.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["action", "schema_id"],
+        "properties": {
+          "action": { "type": "string", "enum": ["summary", "list", "graph"] },
+          "schema_id": { "type": "string" },
+          "size": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "cursor": { "type": "string" },
+          "direction": { "type": "string", "enum": ["outbound", "inbound"] },
+          "depth": { "type": "integer", "minimum": 1, "maximum": 3 },
+          "max_nodes": { "type": "integer", "minimum": 2, "maximum": 500 },
+          "max_edges": { "type": "integer", "minimum": 1, "maximum": 500 }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "query_paper_evidence",
+      "description": "Search high-value structured Evidence such as formulas, tables, results, resources, comparisons, and citation semantics, or read one Evidence item with provenance and no Raw payload.",
+      "script": "scripts/query_paper_evidence.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["action"],
+        "properties": {
+          "action": { "type": "string", "enum": ["search", "get"] },
+          "groups": { "type": "array", "minItems": 1, "maxItems": 5, "items": { "type": "string" } },
+          "group_operator": { "type": "string", "enum": ["any", "all"] },
+          "schema_ids": { "type": "array", "maxItems": 100, "items": { "type": "string" } },
+          "query": { "type": "string", "maxLength": 500 },
+          "key": { "type": "string", "maxLength": 300 },
+          "path_bucket": { "type": "string", "maxLength": 500 },
+          "value_number_min": { "type": "number" },
+          "value_number_max": { "type": "number" },
+          "value_bool": { "type": "boolean" },
+          "hydrate_schema_papers": { "type": "boolean" },
+          "schema_id": { "type": "string" },
+          "evidence_id": { "type": "string" },
+          "size": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "cursor": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "resolve_paper_context",
+      "description": "Resolve Evidence provenance by paragraph or marker, perform fallback text search inside one paper, or batch-hydrate bounded source context for up to 50 items.",
+      "script": "scripts/resolve_paper_context.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["action"],
+        "properties": {
+          "action": { "type": "string", "enum": ["provenance", "search", "hydrate"] },
+          "schema_id": { "type": "string" },
+          "marker_nums": { "type": "array", "maxItems": 100, "items": { "type": "integer" } },
+          "paragraph_ids": { "type": "array", "maxItems": 100, "items": { "type": "string" } },
+          "query": { "type": "string", "maxLength": 500 },
+          "section_hint": { "type": "string", "maxLength": 300 },
+          "prefer_url": { "type": "boolean" },
+          "prefer_code": { "type": "boolean" },
+          "top_k": { "type": "integer", "minimum": 1, "maximum": 20 },
+          "items": { "type": "array", "minItems": 1, "maxItems": 50, "items": { "type": "object" } },
+          "window": { "type": "integer", "minimum": 0, "maximum": 5 },
+          "max_segments": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "max_segments_per_item": { "type": "integer", "minimum": 1, "maximum": 20 },
+          "prefer_url_or_code": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "build_paper_materials",
+      "description": "Build a bounded overview, survey, benchmark, method, or reproduction material pack for up to 20 known schemas. Always inspect returned, total, and truncated counts.",
+      "script": "scripts/build_paper_materials.mjs",
+      "input_schema": {
+        "type": "object",
+        "required": ["schema_ids"],
+        "properties": {
+          "schema_ids": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "type": "string" } },
+          "goal": { "type": "string", "enum": ["overview", "benchmark", "method", "reproduction", "survey"], "default": "overview" },
+          "include_relation_context": { "type": "boolean" },
+          "per_schema_entity_limit": { "type": "integer", "minimum": 0, "maximum": 150 },
+          "per_schema_relation_limit": { "type": "integer", "minimum": 0, "maximum": 150 },
+          "per_schema_attribute_limit": { "type": "integer", "minimum": 0, "maximum": 200 },
+          "per_schema_term_limit": { "type": "integer", "minimum": 0, "maximum": 100 }
+        },
+        "additionalProperties": false
+      }
+    }
+  ]
+}

@@ -66,40 +66,42 @@ If Stellar C-wallet: the Rozo response will include `receiverAddressContract` an
 
 ```bash
 # Standard: pay $10 USDC on Base to an EVM address
-npx tsx skills/send-payment/run.ts \
+./node_modules/.bin/tsx skills/send-payment/run.ts \
   --to 0xAbCdEf1234567890AbCdEf1234567890AbCdEf12 \
   --chain base \
   --token USDC \
   --amount 10.00
 
 # USDT on Arbitrum
-npx tsx skills/send-payment/run.ts \
+./node_modules/.bin/tsx skills/send-payment/run.ts \
   --to 0x... --chain arbitrum --token USDT --amount 25.00
 
 # To a Stellar G-wallet with trustline
-npx tsx skills/send-payment/run.ts \
+./node_modules/.bin/tsx skills/send-payment/run.ts \
   --to GC56BX... --chain stellar --token USDC --amount 5.00
 
 # With custom title/description shown in Rozo receipt
-npx tsx skills/send-payment/run.ts \
+./node_modules/.bin/tsx skills/send-payment/run.ts \
   --to 0x... --chain base --amount 1.00 \
   --title "Invoice #123" --description "Monthly subscription"
 
-# Skip confirmation (use with care — large-amount gate still fires)
-npx tsx skills/send-payment/run.ts --to ... --chain base --amount 0.50 --yes
+# There is deliberately no --yes example: Rozo runs on mainnet only, so every
+# send is real money and the prompt is the last look before it moves. --yes
+# exists for automation that has already verified the transaction; the
+# large-amount gate still fires even then.
 
 # Idempotent retry with custom orderId
-npx tsx skills/send-payment/run.ts --to ... --chain base --amount 10 --order-id my-unique-id
+./node_modules/.bin/tsx skills/send-payment/run.ts --to ... --chain base --amount 10 --order-id my-unique-id
 ```
 
 ## Check status
 
 ```bash
 # One-shot
-npx tsx skills/send-payment/status.ts <payment-id>
+./node_modules/.bin/tsx skills/send-payment/status.ts <payment-id>
 
 # Watch mode — polls every 5s until terminal
-npx tsx skills/send-payment/status.ts <payment-id> --watch
+./node_modules/.bin/tsx skills/send-payment/status.ts <payment-id> --watch
 ```
 
 Terminal statuses:
@@ -119,7 +121,7 @@ Terminal statuses:
 
 ## API reference
 
-From `/Users/happyfish/workspace/agenttools/rozo-intents-skills/references/api-reference.md`:
+From `~/workspace/agenttools/rozo-intents-skills/references/api-reference.md`:
 
 - **Base URL**: `https://intentapiv4.rozo.ai/functions/v1/payment-api`
 - **Auth**: none (public, rate-limited)

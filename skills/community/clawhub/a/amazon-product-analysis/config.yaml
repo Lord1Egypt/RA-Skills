@@ -1,0 +1,13 @@
+name: amazon-product-analysis
+version: 1.0.0
+description: Turn an Amazon product link into an evidence-based short-form video script — extract listing selling points, mine real buyer language from reviews, and produce a shot-by-shot script backed by cited evidence once you pick a content direction.
+category: marketing
+requires_api_key: false
+triggers:
+  - amazon product video script
+  - turn amazon listing into video
+  - product review video script
+  - ugc video script from reviews
+  - amazon dropshipping video ad
+  - shot list from amazon listing
+  - write a video script for this product

@@ -1,42 +1,58 @@
-## Description: <br>
-Connects agents to REST APIs with web_fetch, authentication headers, JSON payload handling, error parsing, and retry guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to REST APIs with the agent's built-in web_fetch, including authentication headers, JSON payloads, error parsing, retries, and response summarization.
 
-## Publisher: <br>
-[tommot2](https://clawhub.ai/user/tommot2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommot2](https://clawhub.ai/user/tommot2)
 
-## Use Case: <br>
-Developers and API users use this skill to query REST endpoints, test API health, send authenticated requests, parse responses, and troubleshoot common HTTP errors from an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to make external API requests with user-provided parameters. <br>
-Mitigation: Review the URL, HTTP method, request body, and redacted headers before execution, especially for write operations. <br>
-Risk: API credentials may be exposed if handled carelessly during request setup. <br>
-Mitigation: Use scoped test keys when possible, keep keys session-only, prefer environment variables, and avoid persisting credentials to files. <br>
-Risk: The curl fallback can execute network commands outside the built-in web_fetch path. <br>
-Mitigation: Allow curl only when the exact command is visible, expected, and necessary for the user's request. <br>
+## Use Case:
 
+Developers and external users use this skill to query, test, and automate REST API calls from an agent while receiving parsed responses and error guidance.
 
-## Reference(s): <br>
-- [Smart API Connector on ClawHub](https://clawhub.ai/tommot2/smart-api-connector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with parsed API response summaries and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include redacted request summaries, parsed JSON fields, HTTP status explanations, and retry guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and skill heading) <br>
+Risk: The skill can make outbound API calls to user-provided hosts and may send user-provided credentials to those endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the exact hostname before authenticated requests, use scoped or test credentials, and avoid production secrets.
+
+Risk: The skill includes an exec/curl fallback that can run shell commands when web_fetch is insufficient.
+
+Mitigation: Use web_fetch first and allow the exec/curl fallback only when explicitly needed and after reviewing the command.
+
+Risk: Credential handling depends on session-only use and user discipline.
+
+Mitigation: Keep API keys out of files, prefer environment variables when shell fallback is required, and avoid exposing key values when showing requests.
+
+## Reference(s):
+
+- [Smart API Connector on ClawHub](https://clawhub.ai/tommot2/skills/smart-api-connector)
+- [tommot2 Publisher Profile](https://clawhub.ai/user/tommot2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with API request examples, shell command fallbacks, and parsed response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include web_fetch requests, curl fallback commands, retry guidance, and parsed API response excerpts.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

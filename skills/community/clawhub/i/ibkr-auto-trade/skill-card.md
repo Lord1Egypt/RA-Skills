@@ -1,44 +1,62 @@
-## Description: <br>
-Autonomous paper trading research agent for Interactive Brokers that helps agents connect to IBKR, generate trading signals, validate risk, execute bracket orders, monitor positions, and evaluate strategy performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous paper trading research agent for Interactive Brokers that helps an agent connect to IBKR, generate technical and news-aware trade decisions, manage positions, log performance, and tune strategy parameters.
 
-## Publisher: <br>
-[player-1101](https://clawhub.ai/user/player-1101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[player-1101](https://clawhub.ai/user/player-1101)
 
-## Use Case: <br>
-Developers and trading-system operators use this skill to run IBKR paper-trading workflows with TWS or IB Gateway, including market-data retrieval, technical and news-aware signal evaluation, risk validation, bracket-order execution, position monitoring, and performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect real brokerage positions if live trading or order placement is enabled. <br>
-Mitigation: Install only when an autonomous IBKR trading agent is intended; keep the workflow in paper trading and keep IBKR read-only unless deliberately testing orders. <br>
-Risk: Automatic shutdown liquidation and automatic strategy-parameter application can change account exposure or trading behavior. <br>
-Mitigation: Review or remove automatic shutdown liquidation and automatic strategy-parameter application before any live use. <br>
+## Use Case:
 
+External developers and trading-system builders use this skill to run or adapt an IBKR paper trading workflow with strategy signals, brokerage execution, risk checks, news sentiment, and performance logging. It is appropriate only when the operator has reviewed brokerage access, paper/live account separation, and automated trading controls.
 
-## Reference(s): <br>
-- [IBKR Connection and Authentication Reference](references/ibkr_connection.md) <br>
-- [Order Types Reference](references/order_types.md) <br>
-- [Self-Improvement Algorithm Reference](references/self_improvement.md) <br>
-- [Interactive Brokers](https://www.interactivebrokers.com) <br>
-- [Google News RSS Query Source](https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide or run IBKR paper-trading workflows when the required local IBKR environment is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can place brokerage orders through IBKR.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with an isolated paper trading account until brokerage permissions, live-mode gating, and final risk checks have been reviewed and approved.
+
+Risk: The shutdown path can automatically close every visible position.
+
+Mitigation: Require operator confirmation or disable automated shutdown liquidation before connecting the skill to any live or mixed-use brokerage account.
+
+Risk: Strategy and news weights can be tuned from runtime performance history.
+
+Mitigation: Review proposed parameter and weight changes before allowing them to affect live execution, and keep a rollback path through versioned strategy memory.
+
+## Reference(s):
+
+- [IBKR Connection & Authentication Reference](references/ibkr_connection.md)
+- [Order Types Reference](references/order_types.md)
+- [Self-Improvement Algorithm Reference](references/self_improvement.md)
+- [Interactive Brokers](https://www.interactivebrokers.com)
+- [Google News RSS Search](https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en)
+- [ClawHub Skill Page](https://clawhub.ai/player-1101/skills/ibkr-auto-trade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code, shell commands, YAML configuration, and JSON memory records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce brokerage workflow guidance, trade decision records, execution instructions, risk-check explanations, logs, and configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

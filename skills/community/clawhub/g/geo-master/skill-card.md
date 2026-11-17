@@ -1,45 +1,59 @@
-## Description: <br>
-品牌AI可见性监控Skill，自动搜索Kimi、讯飞星火、文心一言、智谱等AI平台，检测品牌关键词可见性，生成0-100 GEM评分，分析未被推荐的原因，并支持飞书推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+品牌AI可见性监控Skill。自动搜索Kimi/讯飞星火/文心一言/智谱等AI平台，检测品牌关键词可见性，生成0-100 GEM评分，AI分析"为什么没被推荐"，支持飞书推送。
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-Marketing, growth, and GEO teams use this skill to check whether target brands appear across AI answer platforms, compare visibility signals, and generate a concise report with scoring and optimization guidance. Developers can also configure quota behavior, API keys, and optional Feishu delivery for operational use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Brand keywords, search results, and reports may be sent to third-party AI platforms, Tavily, or Feishu when configured. <br>
-Mitigation: Use the skill only for data approved for those services, leave the Feishu webhook empty or run with --no-push unless delivery is intended, and review external data-sharing requirements before deployment. <br>
-Risk: The artifact includes a hardcoded Tavily credential fallback. <br>
-Mitigation: Remove the bundled fallback and require TAVILY_API_KEY to be supplied through a secret manager or environment variable before real deployment. <br>
-Risk: The bundled API service pattern could expose brand-search functionality if deployed publicly. <br>
-Mitigation: Keep the API service private, require strong authentication, and avoid exposing it directly to the public internet. <br>
+## Use Case:
 
+Marketing, brand, and growth teams use this skill to check whether selected brand names appear in AI search or assistant responses, compare coverage across supported platforms, calculate a GEM visibility score, and receive concise optimization guidance.
 
-## Reference(s): <br>
-- [GEO Master ClawHub Listing](https://clawhub.ai/qiji0802/geo-master) <br>
-- [Publisher Profile](https://clawhub.ai/user/qiji0802) <br>
-- [YK-Global Website](https://yk-global.com) <br>
-- [Tavily Search API Endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown reports, terminal status text, configuration guidance, and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include a 0-100 GEM visibility score, per-platform findings, excerpts when available, and optimization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Brand and competitor terms may be sent to third-party AI or search services and to a configured Feishu webhook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs where possible, review configured endpoints before running scans, and avoid enabling Feishu delivery for confidential reports.
+
+Risk: The included API service contains shared placeholder credentials and an embedded Tavily key fallback.
+
+Mitigation: Do not deploy the API service as-is; remove embedded credentials, rotate any exposed keys, and configure secrets through managed environment variables.
+
+Risk: Paid/API platform coverage and entitlement behavior may be overstated relative to the included checks.
+
+Mitigation: Confirm platform coverage, entitlement checks, and rate limits before relying on paid-tier reports or exposing the service to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiji0802/skills/geo-master)
+- [Publisher profile](https://clawhub.ai/user/qiji0802)
+- [YK-Global website](https://yk-global.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown reports, and optional Feishu notification cards]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include per-platform visibility findings, GEM score details, and short optimization recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

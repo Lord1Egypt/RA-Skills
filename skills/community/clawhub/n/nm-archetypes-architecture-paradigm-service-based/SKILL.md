@@ -1,7 +1,7 @@
 ---
 name: architecture-paradigm-service-based
 description: Applies coarse-grained service architecture for deployment independence
-version: 1.9.8
+version: 1.10.3
 triggers:
   - architecture
   - service-based
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: archetypes
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/archetypes](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # The Service-Based Architecture Paradigm
@@ -51,17 +51,26 @@ source_plugin: archetypes
 - **Coupling Through a Shared Database**:
   - **Mitigation**: Changes to a shared database can have cascading effects across services. Mitigate this by using database views, replication, or a formal schema deprecation schedule to manage change.
 - **Architectural Degradation**:
-  - **Mitigation**: Without strong governance, this architecture can degrade into a "distributed monolith"—a monolith with the added complexity of network hops. Track coupling metrics closely and enforce strict ownership of services and data to prevent this.
+  - **Mitigation**: Without strong governance, this architecture can degrade into a "distributed monolith": a monolith with the added complexity of network hops. Track coupling metrics closely and enforce strict ownership of services and data to prevent this.
 
 ## Concrete Components
 
-These vocabulary items name the concrete tools and abstractions
-that show up when the paradigm is implemented. They are not
-required dependencies and they are not part of the skill's
-``tools:`` frontmatter (which is reserved for Claude Code tool
-restrictions). Use this list to disambiguate during architecture
-discussions.
+Vocabulary for the tools and abstractions an implementation of this
+paradigm tends to carry. Not dependencies, and not ``tools:`` frontmatter.
 
-- ``api-gateway`` -- single ingress that routes to coarse-grained services and centralizes cross-cutting concerns
-- ``service-registry`` -- directory of available services with health status and contracts
-- ``schema-management`` -- shared schema repo for types crossing service boundaries
+- ``api-gateway``: single ingress that routes to coarse-grained services and centralizes cross-cutting concerns
+- ``service-registry``: directory of available services with health status and contracts
+- ``schema-management``: shared schema repo for types crossing service boundaries
+
+## Exit Criteria
+
+- [ ] An ADR outlines service boundaries, explicit data ownership per schema or table, and the
+  coordination mechanism (service registry or API gateway) before any service is deployed
+  independently.
+- [ ] Formal service contracts (OpenAPI or AsyncAPI) with versioning and SLA statements exist
+  for every inter-service interaction point.
+- [ ] Consumer-driven contract tests exist for each service and pass in CI before a service
+  owner merges breaking interface changes.
+- [ ] Shared-database coupling hotspots are documented with a schema deprecation schedule;
+  any service reading another service's tables without a view or replication layer is flagged
+  as an architectural violation.

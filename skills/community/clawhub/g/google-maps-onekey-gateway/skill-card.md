@@ -1,46 +1,61 @@
-## Description: <br>
-Google Maps tools via OneKey Gateway for geocoding, reverse geocoding, place search, place details, distance matrix, elevation, and directions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Maps tools via OneKey Gateway (geocode, places, distance matrix, elevation, directions).
 
-## Publisher: <br>
-[AI-Hub-Admin](https://clawhub.ai/user/AI-Hub-Admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to call Google Maps capabilities through OneKey Gateway for address lookup, place search, routing, travel-time estimates, and elevation queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a fallback access key when DEEPNLP_ONEKEY_ROUTER_ACCESS is not set. <br>
-Mitigation: Require users to provide their own scoped OneKey Gateway credential and remove or disable fallback credential use before production deployment. <br>
-Risk: Addresses, coordinates, routes, place searches, and place identifiers may be sent through OneKey Gateway to mapping providers. <br>
-Mitigation: Avoid sending sensitive location data unless necessary, disclose external processing to users, and document privacy handling for location inputs and responses. <br>
-Risk: The security verdict is suspicious because of credential and location-data handling concerns. <br>
-Mitigation: Review the skill before installation, scan the package before deployment, and approve it only after the credential and data-handling concerns are acceptable for the intended use case. <br>
+## Use Case:
 
+Developers and external users can use this skill to call Google Maps geocoding, reverse geocoding, place search, place details, distance matrix, elevation, and directions workflows through OneKey Gateway from CLI commands or Python scripts.
 
-## Reference(s): <br>
-- [ClawHub Google Maps skill page](https://clawhub.ai/AI-Hub-Admin/google-maps-onekey-gateway) <br>
-- [AI-Hub-Admin publisher profile](https://clawhub.ai/user/AI-Hub-Admin) <br>
-- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys) <br>
-- [OneKey MCP Router documentation](https://www.deepnlp.org/doc/onekey_mcp_router) <br>
-- [OneKey Gateway documentation](https://deepnlp.org/doc/onekey_agent_router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON tool responses with Markdown usage guidance and shell or Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a OneKey Gateway access key; scripts print JSON responses from the requested maps operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill sends location, place, route, and travel queries to external OneKey/Google-backed services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting highly sensitive home, workplace, or travel locations unless the user is comfortable with that external data flow.
+
+Risk: Scripts fall back to a bundled shared demo gateway key when DEEPNLP_ONEKEY_ROUTER_ACCESS is unset.
+
+Mitigation: Set a scoped OneKey Gateway API key in DEEPNLP_ONEKEY_ROUTER_ACCESS and avoid relying on the demo key for normal use.
+
+Risk: The skill uses unpinned npm and Python dependency installs.
+
+Mitigation: Review and pin @aiagenta2z/onekey-gateway and ai-agent-marketplace versions before deployment.
+
+## Reference(s):
+
+- [ClawHub Google Maps Skill](https://clawhub.ai/ai-hub-admin/skills/google-maps-onekey-gateway)
+- [OneKey Gateway Keys](https://www.deepnlp.org/workspace/keys)
+- [OneKey MCP Router Documentation](https://www.deepnlp.org/doc/onekey_mcp_router)
+- [OneKey Gateway Documentation](https://deepnlp.org/doc/onekey_agent_router)
+- [AI Agent Marketplace GitHub](https://github.com/aiagenta2z/ai-agent-marketplace)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [JSON responses with Markdown usage examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on external Google Maps access through OneKey Gateway and the configured API key.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

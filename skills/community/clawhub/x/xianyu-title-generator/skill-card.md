@@ -1,38 +1,49 @@
-## Description: <br>
-闲鱼店铺爆款标题与运营话术生成工具。当用户提到闲鱼标题、闲鱼商品描述、闲鱼话术、闲鱼客服回复、闲鱼Q&A、闲鱼怎么写、闲鱼文案、闲鱼副业、AI简历闲鱼、扣子定制闲鱼等与闲鱼运营相关需求时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+闲鱼店铺爆款标题与运营话术生成工具。当用户提到闲鱼标题、闲鱼商品描述、闲鱼话术、闲鱼客服回复、闲鱼Q&A、闲鱼怎么写、闲鱼文案、闲鱼副业、AI简历闲鱼、扣子定制闲鱼等与闲鱼运营相关需求时使用此技能。
 
-## Publisher: <br>
-[joeyoung310](https://clawhub.ai/user/joeyoung310) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyoung310](https://clawhub.ai/user/joeyoung310)
 
-## Use Case: <br>
-Xianyu sellers and service operators use this skill to draft high-click titles, product descriptions, customer-service replies, and competitor-comparison talking points for AI resume customization and Coze customization offers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sales claims about guarantees, refunds, pricing, or delivery times may not match the seller's actual service terms. <br>
-Mitigation: Review and edit generated copy before publishing so promises, prices, and timelines are accurate. <br>
+## Use Case:
 
+External sellers and operators use this skill to draft Chinese-language Xianyu listing titles, product descriptions, customer-service replies, and competitor-comparison scripts for AI resume and 扣子 customization services.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/joeyoung310/xianyu-title-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with reusable title and customer-reply templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language sales copy and customer-service scripts for Xianyu listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated sales copy may include refund, delivery-time, guarantee, or outcome claims that do not match the seller's actual offer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust generated titles, descriptions, and replies before posting them on Xianyu.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeyoung310/skills/xianyu-title-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated claims about refunds, delivery times, guarantees, and service outcomes should be reviewed before posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

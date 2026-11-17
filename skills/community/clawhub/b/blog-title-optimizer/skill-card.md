@@ -1,40 +1,61 @@
-## Description: <br>
-AI-powered blog title optimizer. Generate SEO-friendly, click-worthy headlines that drive traffic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered blog title optimizer. Generate SEO-friendly, click-worthy headlines that drive traffic.
 
-## Publisher: <br>
-[icepopma](https://clawhub.ai/user/icepopma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[icepopma](https://clawhub.ai/user/icepopma)
 
-## Use Case: <br>
-External content marketers, writers, and developers use this skill to generate seven SEO-oriented blog title options for a supplied topic, optionally constrained by target keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release may perform payment or billing behavior that users do not clearly approve before title generation. <br>
-Mitigation: Review the source before installation and require explicit charge confirmation with a visible amount before any billing action. <br>
-Risk: Payment credentials or dependency sources may need review before deployment. <br>
-Mitigation: Confirm that payment credentials are user-supplied and rotated if exposed, and use trusted HTTPS package registries. <br>
+## Use Case:
 
+External users and content creators use this skill to generate SEO-oriented blog title options for a supplied topic and optional target keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icepopma/blog-title-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text numbered list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns seven title suggestions; optional keywords can steer the generated titles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can attempt automatic SkillPay billing before title generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the paid workflow before installation and require explicit user confirmation through a safer payment flow before routine use.
+
+Risk: The package embeds a merchant key and may pass topic text to a local OpenClaw agent.
+
+Mitigation: Remove or rotate the embedded key and avoid submitting sensitive topics unless the local agent and payment flow are trusted.
+
+Risk: The security guidance reports dependency and install paths that should be pinned and moved to trusted HTTPS sources.
+
+Mitigation: Pin dependencies and use trusted HTTPS package sources before deploying the skill.
+
+Risk: The inspected JavaScript failed Node syntax checking and may not run as published.
+
+Mitigation: Run syntax and functional checks in a controlled environment before enabling the skill for users.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/icepopma/skills/blog-title-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain text numbered list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Seven title variations; optional keyword constraint.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

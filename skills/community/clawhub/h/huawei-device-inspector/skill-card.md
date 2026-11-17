@@ -1,41 +1,56 @@
-## Description: <br>
-Inspects Huawei switches and routers over SSH, collects status, alarm, resource, and security-risk data, and generates a Markdown health report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to Huawei switches and routers over SSH to run health, alarm, security, and resource checks and produce inspection reports.
 
-## Publisher: <br>
-[v585](https://clawhub.ai/user/v585) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[v585](https://clawhub.ai/user/v585)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Network administrators and engineers use this skill for routine health checks, troubleshooting, and security audits of Huawei switches and routers. It is intended for authorized inspection of managed infrastructure devices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact includes plaintext SSH credentials for infrastructure devices.
+
+Mitigation: Treat the credentials as exposed, rotate them if they correspond to real devices, and replace embedded credentials with a secret manager or user-supplied credentials.
+
+Risk: The SSH example disables host key verification.
+
+Mitigation: Enable verified SSH host keys before use to reduce impersonation and man-in-the-middle risk.
+
+Risk: The skill performs administrative inspection against network devices.
+
+Mitigation: Run inspections only against devices the operator is authorized to administer and review commands before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and network operations engineers use this skill for routine inspections, troubleshooting, and security audit checks of Huawei network devices. It helps collect device state, resource usage, active alarms, and issue summaries for operational reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports live-looking router and switch login details in the skill artifact. <br>
-Mitigation: Remove hardcoded device details, rotate any credential that may have been real, and require operators to provide secrets through an approved secure channel. <br>
-Risk: The security evidence reports unsafe SSH guidance, including disabled host-key checking. <br>
-Mitigation: Verify SSH host keys before connecting and only run inspections against devices the operator is explicitly authorized to assess. <br>
+**Output Format:** [Markdown guidance with Python and shell command examples; generated inspection reports are Markdown.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/v585/huawei-device-inspector) <br>
-- [Publisher profile](https://clawhub.ai/user/v585) <br>
+**Other Properties Related to Output:** [Requires Python 3 and pexpect; optional sshpass is mentioned for simple commands. Output depends on Huawei CLI responses and the supplied device access details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables and inline command or code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include device diagnostics, alarm summaries, and recommendations; credentials and host details should be supplied securely by the operator.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

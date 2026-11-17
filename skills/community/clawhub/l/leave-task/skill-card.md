@@ -1,38 +1,57 @@
-## Description: <br>
-Helps an agent guide a user through leaving or unassigning from an accepted OpenAnt task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leave or unassign from an accepted OpenAnt task and return it to the marketplace after the assigned worker confirms they want to abandon the assignment.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-External OpenAnt users and their agents use this skill when they need to leave an accepted task, confirm the task state, and understand the reputation consequences before unassigning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unassigning from a task can reopen it for others and count against the user's OpenAnt reputation. <br>
-Mitigation: Before approving an unassign action, verify the task ID, title, reward, and status, then confirm the user understands the reputation impact. <br>
+## Use Case:
 
+Agents and external OpenAnt workers use this skill when they need to leave an assigned task, confirm the task state, and return the task to OPEN status without confusing worker unassignment with creator cancellation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ant-1984/leave-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline bash commands and confirmation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses structured JSON output from the OpenAnt CLI where commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill performs authenticated task changes through an unpinned npm CLI package that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer replacing @latest with a pinned, reviewed @openant-ai/cli version when operational control matters.
+
+Risk: Unassigning a task is consequential because it reopens the task, affects the worker's reputation, and may prevent re-accepting the same task.
+
+Mitigation: Confirm the task title, reward, assigned status, and user intent before running the unassign command.
+
+Risk: Using the wrong workflow on a submitted task could disrupt payment or review.
+
+Mitigation: Do not unassign submitted tasks; use the documented withdraw workflow only within the allowed revision window.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ant-1984/skills/leave-task)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash command snippets and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated OpenAnt CLI session and a task ID; the workflow requires --json output and explicit user confirmation before unassigning.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

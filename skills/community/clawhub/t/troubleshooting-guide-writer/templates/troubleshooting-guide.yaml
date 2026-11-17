@@ -1,0 +1,27 @@
+# Troubleshooting Guide Writer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+guide_title: ""
+unit_model: ""
+unit_family: ""
+manual_revision: ""
+service_bulletin_refs:
+  - ""
+fault_paths:
+  - path_name: ""
+    symptom: ""
+    safety_limits:
+      - ""
+    diagnostic_steps:
+      - check: ""
+        expected_reading: ""
+    fix_steps:
+      - action: ""
+        verification: ""
+    parts_allowed:
+      - ""
+    escalation_trigger: ""
+    warranty_note: ""
+claim_flags:
+  - ""
+open_items:
+  - ""

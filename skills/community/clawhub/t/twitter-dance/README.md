@@ -36,7 +36,7 @@ export APIDANCE_API_KEY="your-key-from-t.me/shingle"
 export TWITTER_AUTH_TOKEN="your-token-from-x.com"
 
 # Kimi API Key（可选，推荐）
-export KIMI_API_KEY="sk-JM5Ji1efm1IH0iUYAmm3Mn0pWDutMtaHlq5VMKO0taZ4OYW9"
+export KIMI_API_KEY="REDACTED-SECRET"
 ```
 
 ### 2. 生成推文（安全模式）

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn70nm3r06jtatrvqzqxzzzmms83fez8",
   "slug": "iclawd-email",
+  "name": "iClawd Email",
   "version": "1.0.0",
-  "publishedAt": 1774599110995
+  "description": "Give your AI agent a real email address at @iclawd.email. Send, receive, and manage email via HTTP API with DKIM authentication, PGP encryption, and prompt injection scanning.",
+  "author": "karimibadr",
+  "homepage": "https://iclawd.email",
+  "skill_file": "SKILL.md",
+  "tags": ["email", "mcp", "ai-agent", "communication", "security"],
+  "compatibility": ["claude-code", "openclaw", "cursor", "codex", "copilot", "windsurf"]
 }

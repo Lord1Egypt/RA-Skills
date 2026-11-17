@@ -1,43 +1,62 @@
-## Description: <br>
-Team Tasks.Skip coordinates multi-agent development workflows through shared JSON task files, including linear pipelines, DAG dependency workflows, and debate-style cross-review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multi-agent development pipelines through shared JSON task files for project initialization, task assignment, status tracking, session-based dispatch, and result collection.
 
-## Publisher: <br>
-[zdp1117](https://clawhub.ai/user/zdp1117) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zdp1117](https://clawhub.ai/user/zdp1117)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate work across code, test, documentation, and monitoring agents while tracking assignments, status, logs, dependency outputs, and collected results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions, logs, dependency outputs, or result summaries may expose secrets, customer data, private paths, or proprietary project details. <br>
-Mitigation: Use the skill only with trusted agents, redact sensitive inputs before dispatch, and keep the task data directory private. <br>
-Risk: Hardcoded Telegram-backed session and group identifiers may route project context or agent results to unintended destinations. <br>
-Mitigation: Verify or replace the Telegram session and group IDs before use, and disable relay behavior when the destination cannot be confirmed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate code, test, documentation, and review agents across sequential, dependency-based, or debate workflows while recording task status and outputs for handoff.
 
-## Reference(s): <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Claude Code Agent Teams documentation](https://docs.anthropic.com/en/docs/claude-code/agent-teams) <br>
-- [Agent Teams Official Docs](docs/AGENT_TEAMS_OFFICIAL_DOCS.md) <br>
-- [Gap Analysis](docs/GAP_ANALYSIS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON task data, and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local JSON task files; may include project context, task descriptions, logs, dependency outputs, and result summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Hard-coded external Telegram destinations may route agent communications to unintended destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when you control those destinations, or remove or replace them before use.
+
+Risk: Unsafe project-file path construction can read or overwrite JSON files outside the task directory.
+
+Mitigation: Use simple project slugs and avoid confidential project data until project-name validation is fixed.
+
+Risk: Concurrent multi-agent writes can lose or corrupt task state.
+
+Mitigation: Use one coordinator for state updates or add locking before relying on concurrent writers.
+
+## Reference(s):
+
+- [README](README.md)
+- [Agent Teams Enhancement Spec](SPEC.md)
+- [Claude Code Agent Teams Reference Notes](docs/AGENT_TEAMS_OFFICIAL_DOCS.md)
+- [Agent Teams Gap Analysis](docs/GAP_ANALYSIS.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Claude Code Agent Teams Documentation](https://docs.anthropic.com/en/docs/claude-code/agent-teams)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists project coordination state as local JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

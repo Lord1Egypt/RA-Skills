@@ -1,46 +1,60 @@
-## Description: <br>
-Generates MiniMax images, videos, text-to-speech audio, and music through an OpenClaw plugin with interactive model and voice selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax media generation plugin for images, video, text-to-speech, and music with interactive model and voice selection.
 
-## Publisher: <br>
-[rockytian-top](https://clawhub.ai/user/rockytian-top) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockytian-top](https://clawhub.ai/user/rockytian-top)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure MiniMax credentials and generate images, videos, speech, and music from prompts through shell-driven plugin commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is flagged suspicious because an extra generate.sh script ships with a hardcoded MiniMax API key and weak credential handling. <br>
-Mitigation: Do not run generate.sh as shipped; remove the embedded key, rotate any exposed key, and use a dedicated MiniMax API key. <br>
-Risk: MiniMax credentials are stored in ~/.openclaw/openclaw.json or read from MINIMAX_API_KEY. <br>
-Mitigation: Protect the OpenClaw config file as sensitive, restrict file permissions, and avoid committing or sharing it. <br>
-Risk: Prompts, media text, and generation requests are sent to MiniMax APIs. <br>
-Mitigation: Avoid sending confidential prompts or sensitive media text unless approved for that service. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure MiniMax access and invoke media generation workflows for images, videos, TTS audio, and music from an agent environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rockytian-top/rocky-minimax-media) <br>
-- [MiniMax platform](https://platform.minimaxi.com/) <br>
-- [MiniMax API base URL](https://api.minimaxi.com) <br>
-- [MiniMax Anthropic provider endpoint](https://api.minimaxi.com/anthropic) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown documentation and bash commands; runtime output is generated image, video, MP3 speech, or music files saved to a local output directory.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, bash, and a MiniMax API key; MINIMAX_OUTPUT_DIR can override the default output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.3.0) <br>
+Risk: Bundled executable scripts expose a hardcoded MiniMax API key and may mishandle user-entered credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install until hardcoded credentials are removed, heredocs are quoted safely, and any exposed MiniMax key is rotated.
+
+Risk: Installation writes MiniMax credentials into local OpenClaw configuration.
+
+Mitigation: Use only a user-owned API key, review local config changes before running the skill, and document where secrets are stored.
+
+Risk: The bundled generate.sh script is specifically called out as unsafe in server security guidance.
+
+Mitigation: Avoid using generate.sh unless it has been reviewed and fixed.
+
+## Reference(s):
+
+- [MiniMax developer platform](https://platform.minimaxi.com/)
+- [MiniMax API base URL](https://api.minimaxi.com)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/rockytian-top/skills/rocky-minimax-media)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown instructions with bash and JSON snippets; generated outputs may include image, video, TTS audio, or music files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, bash, OpenClaw configuration, and a user-provided MiniMax API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and manifest report 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Uses ChanLun Theory to analyze A-share, Hong Kong, and U.S. stocks and generate visual technical-analysis outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses ChanLun Theory to analyze stocks and generate technical analysis visualizations.
 
-## Publisher: <br>
-[silverfoxchina-gif](https://clawhub.ai/user/silverfoxchina-gif) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silverfoxchina-gif](https://clawhub.ai/user/silverfoxchina-gif)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch public stock market data, apply ChanLun technical-analysis concepts, and produce reports and charts for research-oriented review. It supports A-share, Hong Kong, and U.S. stocks, excluding markets not covered by the underlying data source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public stock-data endpoints during analysis. <br>
-Mitigation: Run it only in environments where outbound market-data requests are acceptable. <br>
-Risk: Generated ChanLun analysis may be incomplete, subjective, or mistaken if treated as investment advice. <br>
-Mitigation: Use the output for research, validate conclusions independently, and combine it with other analysis before making decisions. <br>
-Risk: The skill writes Markdown and PNG outputs locally. <br>
-Mitigation: Use a dedicated output directory and review generated files before sharing or relying on them. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to run ChanLun technical analysis on supported A-share, Hong Kong, and U.S. stocks, producing reports and charts for review. The analysis is educational and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page: chuanlun-analysis](https://clawhub.ai/silverfoxchina-gif/chuanlun-analysis) <br>
-- [Original ClawHub skill referenced by artifact](https://clawhub.ai/laigen/chanlun-technical-analysis) <br>
-- [Indicator stroke-recognition reference](https://github.com/neuks/Indicator) <br>
-- [czsc_in_practise segment-recognition reference](https://github.com/jiapengwei/czsc_in_practise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown report, PNG visualization chart, optional JSON summary, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes outputs to a local directory and may contact public stock-data endpoints during analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Stock names or codes submitted for analysis may be sent to external market-data services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill with non-sensitive ticker queries, disclose external data access to users, and run it only when network access to the market-data services is acceptable.
+
+Risk: Generated market reports can be mistaken for investment advice.
+
+Mitigation: Present outputs as educational technical analysis, retain the not-investment-advice disclaimer, and require human review before any trading decision.
+
+Risk: The skill installs and runs Python dependencies and writes local report/chart files.
+
+Mitigation: Install dependencies in a dedicated virtual environment, avoid elevated privileges, and direct outputs to an expected workspace path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silverfoxchina-gif/skills/chuanlun-analysis)
+- [Referenced original ClawHub ChanLun skill](https://clawhub.ai/laigen/chanlun-technical-analysis)
+- [Indicator reference for stroke recognition](https://github.com/neuks/Indicator)
+- [czsc_in_practise reference for segment recognition](https://github.com/jiapengwei/czsc_in_practise)
+- [Tencent A-share K-line API endpoint](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get)
+- [Tencent Hong Kong stock K-line API endpoint](https://web.ifzq.gtimg.cn/appstock/app/hkfqkline/get)
+- [Tencent U.S. stock K-line API endpoint](https://web.ifzq.gtimg.cn/appstock/app/usfqkline/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON summaries, PNG charts, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local report and chart files; optional JSON can be printed to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

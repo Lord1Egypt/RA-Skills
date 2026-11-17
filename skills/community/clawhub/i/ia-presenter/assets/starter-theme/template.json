@@ -1,0 +1,21 @@
+{
+  "Name": "Starter",
+  "Version": "1.0.0",
+  "Author": "Your Name",
+  "ShortDescription": "A clean starting point",
+  "LongDescription": "A clean starting point for custom iA Presenter themes.\n- Variable headline sizes\n- Light and dark presets\n- System font",
+  "Css": "starter.css",
+  "TitleFont": "System",
+  "BodyFont": "System",
+  "CssClasses": "variable-size-headings",
+  "Layouts": [
+    { "Name": "Cover", "Classes": "" },
+    { "Name": "Section", "Classes": "dark" }
+  ],
+  "LayoutExamples": [
+    {
+      "Name": "Title with Background",
+      "Markdown": "/Theme/background.jpg\nBackground: true\nfilter: darken\nopacity: 60%\n\n# TITLE\n#### with background"
+    }
+  ]
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Get UK (London Stock Exchange, LSE) market data via FinanceAgent on OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get UK (London Stock Exchange, LSE) market data via FinanceAgent on OneKey Gateway.
 
-## Publisher: <br>
-[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to query UK London Stock Exchange symbols through the OneKey Gateway and receive stock market data from the FinanceAgent endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and selected stock symbols are sent to the external OneKey/DeepNLP gateway and its npm package dependency. <br>
-Mitigation: Install only if the gateway and npm package are trusted, and send only symbols suitable for that external provider. <br>
-Risk: The required OneKey Gateway API key could be exposed in logs, shell history, or shared chats. <br>
-Mitigation: Use a revocable API key and avoid printing or pasting it into shared contexts. <br>
+## Use Case:
 
+Developers and agents use this skill to query London Stock Exchange market data for one or more LSE ticker symbols through the OneKey Gateway.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ai-hub-admin/uk-stock-market-lse) <br>
-- [DeepNLP OneKey Agent Router endpoint](https://agent.deepnlp.org/agent_router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON responses with CLI and HTTP usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a OneKey Gateway API key and a symbol_list array of LSE ticker strings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: The install and example commands create supply-chain risk through the OneKey Gateway package and command resolution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the OneKey Gateway and @aiagenta2z npm package publisher are trusted; prefer a pinned, local install over global npm installation or npx auto-resolution.
+
+Risk: The example HTTP command can expose the OneKey Gateway API key in verbose curl output, logs, or shell history.
+
+Mitigation: Remove curl verbose mode before using a real key, avoid logging secrets, and rotate the key if it may have been captured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-hub-admin/skills/uk-stock-market-lse)
+- [OneKey Gateway agent router endpoint](https://agent.deepnlp.org/agent_router)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with shell commands and JSON request/response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a OneKey Gateway API key; returned market data fields depend on the upstream data source.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

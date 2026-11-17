@@ -1,0 +1,351 @@
+{
+  "version": "2.4.0",
+  "source_id": "literacy-db",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:12.904Z",
+  "entry": {
+    "url": "https://xxsuyang.com/",
+    "final_url": "https://xxsuyang.com/",
+    "title": "高校信息素养教育数据库",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:12.904Z",
+    "identity": {
+      "declared_name": "高校信息素养教育数据库",
+      "hostname": "xxsuyang.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "检索技术",
+        "href": "javascript:void(0);",
+        "target": ""
+      },
+      {
+        "text": "信息资源",
+        "href": "javascript:void(0);",
+        "target": ""
+      },
+      {
+        "text": "检索系统",
+        "href": "javascript:void(0);",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "课程搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "课程搜索",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"课程搜索\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"课程搜索\"]"
+      },
+      "observed_url": "https://xxsuyang.com/",
+      "observed_at": "2026-10-09T09:01:12.773Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://xxsuyang.com/",
+      "observed_at": "2026-10-09T09:01:12.773Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "登录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "登录",
+        "exact": true
+      },
+      "observed_url": "https://xxsuyang.com/",
+      "observed_at": "2026-10-09T09:01:12.773Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://xxsuyang.com/",
+      "observed_at": "2026-10-09T09:01:12.773Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Close",
+      "label": "",
+      "aria_label": "Close",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Close",
+        "exact": true
+      },
+      "observed_url": "https://xxsuyang.com/",
+      "observed_at": "2026-10-09T09:01:12.773Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "注册",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "注册",
+        "exact": true
+      },
+      "observed_url": "https://xxsuyang.com/",
+      "observed_at": "2026-10-09T09:01:12.773Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "登录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "登录",
+        "exact": true
+      },
+      "observed_url": "https://xxsuyang.com/",
+      "observed_at": "2026-10-09T09:01:12.773Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "literacy-db:course-video",
+      "source_id": "literacy-db",
+      "task_kind": "course-video",
+      "status": "entry_observed",
+      "parameters": [
+        "title",
+        "institution",
+        "instructor_or_speaker",
+        "chapter_or_timestamp",
+        "target_field"
+      ],
+      "instructions": [
+        "根据本题课程或视频名称、机构和讲者匹配记录；打开目标章节或时间点读取课程字段或播放信息。"
+      ],
+      "transitions": {},
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "课程搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "课程搜索",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"课程搜索\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"课程搜索\"]"
+          },
+          "observed_url": "https://xxsuyang.com/",
+          "observed_at": "2026-10-09T09:01:12.773Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "登录",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "登录",
+            "exact": true
+          },
+          "observed_url": "https://xxsuyang.com/",
+          "observed_at": "2026-10-09T09:01:12.773Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Close",
+          "label": "",
+          "aria_label": "Close",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Close",
+            "exact": true
+          },
+          "observed_url": "https://xxsuyang.com/",
+          "observed_at": "2026-10-09T09:01:12.773Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "注册",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "注册",
+            "exact": true
+          },
+          "observed_url": "https://xxsuyang.com/",
+          "observed_at": "2026-10-09T09:01:12.773Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "登录",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "登录",
+            "exact": true
+          },
+          "observed_url": "https://xxsuyang.com/",
+          "observed_at": "2026-10-09T09:01:12.773Z"
+        }
+      ],
+      "entry_url": "https://xxsuyang.com/",
+      "pending": [
+        "入口控件已有观察；本任务的查询与结果容器仍需真实确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "literacy-db",
+    "quiz_entries": [],
+    "example_ids": [
+      "2025-M18-Q1",
+      "2026-M18-Q1"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:12.904Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/literacy-db-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/literacy-db-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

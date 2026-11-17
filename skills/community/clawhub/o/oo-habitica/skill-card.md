@@ -1,46 +1,60 @@
-## Description: <br>
-Habitica (habitica.com) support for reading, creating, updating, deleting, and scoring Habitica user data through the OOMOL Habitica connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habitica (habitica.com). Use this skill for ANY Habitica request — reading, creating, updating, and deleting data. Whenever a task involves Habitica, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate their connected Habitica account for profile, task, tag, scoring, and task-management workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Habitica account and depends on OOMOL-mediated account access. <br>
-Mitigation: Install it only when the user wants an agent to operate that Habitica account through OOMOL and trusts the account connection. <br>
-Risk: Write actions can create, update, or score Habitica tasks and tags. <br>
-Mitigation: Confirm the exact action, payload, and expected account effect with the user before running write actions. <br>
-Risk: Destructive actions can delete Habitica tasks or tags. <br>
-Mitigation: Require explicit approval for the target task or tag before deletion. <br>
+## Use Case:
 
+Habitica users use the skill to read and manage their tasks and tags through the OOMOL-connected Habitica service, using the oo CLI. Developers and operators can use it to check the supported action schemas before submitting requests.
 
-## Reference(s): <br>
-- [ClawHub Habitica skill page](https://clawhub.ai/oomol/oo-habitica) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Habitica homepage](https://habitica.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Habitica connector action names, payload descriptions, and returned JSON summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: First-time setup instructs users to run an installer downloaded from the internet without checking it first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer source and its installation behavior through a separate process before running it.
+
+Risk: The safety text treats task scoring as read-only even though scoring changes Habitica task state.
+
+Mitigation: Treat scoring as a write and get approval for the specific task, direction, and effect before executing it.
+
+Risk: The OOMOL-mediated Habitica connection may access account credentials and may involve OOMOL billing; the connector implementation is unverified.
+
+Mitigation: Check the connector's permissions and billing implications before connecting or using it.
+
+## Reference(s):
+
+- [Habitica API Usage Guidelines](https://github.com/HabitRPG/habitica/wiki/API-Usage-Guidelines)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Habitica](https://habitica.com)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

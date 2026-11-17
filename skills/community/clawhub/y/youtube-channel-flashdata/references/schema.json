@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "handle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "video_limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 20
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "realtime",
+        "async"
+      ],
+      "default": "realtime"
+    }
+  },
+  "required": [
+    "handle"
+  ]
+}

@@ -1,40 +1,54 @@
-## Description: <br>
-Logs into TGA (hortorgames), parses projectId and dashboardId from panel URL, downloads report zip via API, unzips to tga-downloads/, and analyzes all xlsx files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs into TGA, parses projectId and dashboardId from a dashboard URL, downloads report ZIP files, unpacks them, and analyzes XLSX reports.
 
-## Publisher: <br>
-[xifengxi](https://clawhub.ai/user/xifengxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xifengxi](https://clawhub.ai/user/xifengxi)
 
-## Use Case: <br>
-Developers and analysts use this skill to download authorized TGA dashboard reports, extract the report archive, and summarize metrics from the resulting xlsx files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires TGA credentials and browser cookies in local configuration and stores a reusable token in plaintext. <br>
-Mitigation: Use only authorized TGA accounts, keep the skill directory private, never commit .env or .tga-token, and delete or rotate stored tokens after use. <br>
-Risk: Downloaded TGA reports may contain sensitive business data. <br>
-Mitigation: Store downloaded reports in controlled locations, limit access to authorized users, and remove report archives and extracted files when no longer needed. <br>
+## Use Case:
 
+Developers, analysts, and operators with authorized TGA access use this skill to export reports from a TGA dashboard URL, unpack the downloaded ZIP, and produce structured XLSX summaries.
 
-## Reference(s): <br>
-- [TGA web application](https://tga-web.hortorgames.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a token cache, downloaded zip archive, extracted report directory, and structured analysis of xlsx files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses TGA credentials, browser cookies, and a cached token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a trusted agent environment, keep .env and .tga-token out of source control and shared folders, restrict their file permissions, and delete the cached token when finished.
+
+Risk: Downloaded TGA report data may be sensitive.
+
+Mitigation: Run download commands only for reports you intend to export and store downloaded ZIP files, extracted reports, and summaries in access-controlled locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xifengxi/skills/tga-analyze)
+- [TGA web application](https://tga-web.hortorgames.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Analysis]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a cached token file, downloaded ZIP files, extracted report directories, and XLSX-derived summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

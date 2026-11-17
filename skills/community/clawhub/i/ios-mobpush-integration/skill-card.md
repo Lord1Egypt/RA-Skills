@@ -1,51 +1,68 @@
-## Description: <br>
-面向 iOS 工程的 MobTech MobPush 集成 skill。默认先扫描工程，优先使用 CocoaPods，以最小改动完成推送依赖接入、APNs 配置、隐私合规、回调接线和项目内说明文档落地。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through MobTech MobPush integration for iOS projects, including project scanning, CocoaPods setup, APNs configuration, privacy compliance, callback wiring, and project documentation.
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-Developers and iOS engineers use this skill to integrate or troubleshoot MobTech MobPush in existing iOS apps with minimal project changes. It guides project scanning, CocoaPods setup, APNs configuration, privacy consent wiring, notification callbacks, and project documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read iOS project files and propose or apply changes to build settings, dependencies, source code, and plist configuration. <br>
-Mitigation: Review the proposed change plan before approval, keep the work in version control, and inspect generated diffs before relying on the integration. <br>
-Risk: MobPush appKey and appSecret are project secrets that may be written into configuration files during integration. <br>
-Mitigation: Treat these values as secrets, avoid sharing them in prompts or logs, and confirm the target plist and repository policy before approving changes. <br>
-Risk: Dependency installation through CocoaPods can modify dependency state and project workspace files. <br>
-Mitigation: Approve CocoaPods installation only when ready for dependency changes, then review Podfile and Podfile.lock updates. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate or troubleshoot MobTech MobPush in existing iOS applications with minimal project changes. It helps plan CocoaPods dependency setup, APNs readiness, privacy-consent wiring, notification callbacks, optional Live Activity support, and project-local documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mobsupport/ios-mobpush-integration) <br>
-- [MobTech documentation center](https://www.mob.com/wiki/list) <br>
-- [MobPush product page](https://www.mob.com/mobService/mobpush) <br>
-- [MobTech SDK download center](https://www.mob.com/download) <br>
-- [MobPush app creation guide](https://www.mob.com/wiki/detailed?wiki=494&id=136) <br>
-- [MobPush compliance guide](https://www.mob.com/wiki/detailed?wiki=501&id=136) <br>
-- [MobPush integration guide](https://www.mob.com/wiki/detailed?wiki=502&id=136) <br>
-- [MobPush SDK API documentation](https://www.mob.com/wiki/detailed?wiki=503&id=136) <br>
-- [MobPush certificate configuration](https://www.mob.com/wiki/detailed?wiki=504&id=136) <br>
-- [MobPush extension feature setup](https://www.mob.com/wiki/detailed?wiki=665&id=136) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, shell commands, configuration snippets, and generated project documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate an Excel configuration template and a project-level MobPush_README.md when used in an iOS project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The workflow collects a MobPush app secret and may place it in project configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MobPush_iOS_Config.xlsx out of source control, delete or move the populated workbook after use, and treat MOBAppSecret in Info.plist as client-extractable.
+
+Risk: Dependency changes can alter the iOS project build state.
+
+Mitigation: Pin and review the mob_pushsdk version, then run pod install or pod update only after checking the proposed file changes and target selection.
+
+Risk: Incorrect target or privacy-consent placement can break integration or compliance behavior.
+
+Mitigation: Review the workflow before installation and confirm target selection and privacy-consent callback placement before modifying project files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mobsupport/skills/ios-mobpush-integration)
+- [MobTech Documentation Center](https://www.mob.com/wiki/list)
+- [MobPush Product Page](https://www.mob.com/mobService/mobpush)
+- [SDK Download Center](https://www.mob.com/download)
+- [Create Application Workflow](https://www.mob.com/wiki/detailed?wiki=494&id=136)
+- [MobPush Compliance Guide](https://www.mob.com/wiki/detailed?wiki=501&id=136)
+- [MobPush Integration Guide](https://www.mob.com/wiki/detailed?wiki=502&id=136)
+- [MobPush SDK API Documentation](https://www.mob.com/wiki/detailed?wiki=503&id=136)
+- [APNs Certificate Configuration](https://www.mob.com/wiki/detailed?wiki=504&id=136)
+- [App Store Connect Privacy Data Configuration](https://www.mob.com/wiki/detailed?wiki=570&id=136)
+- [MobPush Extended Feature Settings](https://www.mob.com/wiki/detailed?wiki=665&id=136)
+- [Extended Data Collection Controller Configuration](https://www.mob.com/wiki/detailed?wiki=675&id=714)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, configuration snippets, and proposed shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create project files such as an Excel configuration workbook and MobPush_README.md after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

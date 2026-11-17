@@ -1,38 +1,50 @@
-## Description: <br>
-A comprehensive skill about IU (Lee Ji-eun), one of South Korea's most iconic singer-songwriters and actresses, covering her career, discography, filmography, and achievements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive skill about IU (Lee Ji-eun), one of South Korea's most iconic singer-songwriters and actresses, covering her career, discography, filmography, and achievements.
 
-## Publisher: <br>
-[wscats](https://clawhub.ai/user/wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-Fans, music enthusiasts, and entertainment researchers use this skill to get concise reference information about IU's career, discography, filmography, awards, philanthropy, and related activities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference information about recent albums, awards, tours, or activities may become outdated. <br>
-Mitigation: Treat the skill as static reference material and verify recent or changing facts from current sources before relying on them. <br>
+## Use Case:
 
+External users and entertainment researchers use this skill to ask an agent for concise reference information about IU's music, acting career, awards, philanthropy, and fan-facing background.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wscats/iu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference material; verify recent or changing facts from current sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Time-sensitive claims about IU's latest albums, tours, awards, or activities may become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current entertainment facts against up-to-date sources before relying on or republishing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wscats/skills/iu)
+- [ClawHub publisher profile](https://clawhub.ai/user/wscats)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text reference responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static entertainment reference content; no executable code, persistence, credentials, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

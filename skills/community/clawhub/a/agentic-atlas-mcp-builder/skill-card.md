@@ -1,41 +1,49 @@
-## Description: <br>
-Bootstraps new Model Context Protocol (MCP) servers from a natural language description. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstraps new Model Context Protocol (MCP) servers from a natural language description.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asimons81](https://clawhub.ai/user/asimons81)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold MCP servers and tools from natural language requirements, including project files, tool definitions, configuration snippets, and test examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project files and MCP configuration may not match the user's target runtime or security expectations until reviewed. <br>
-Mitigation: Use the skill in a new or clearly chosen project directory, then review generated package files, tool schemas, and MCP configuration before running them. <br>
-Risk: A generated MCP server may require credentials or environment-specific access after scaffolding. <br>
-Mitigation: Provide credentials only after reviewing the generated server behavior and only when the target integration explicitly requires them. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold TypeScript or Python MCP servers, tool definitions, test harnesses, and MCP client configuration snippets from a natural-language integration request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asimons81/agentic-atlas-mcp-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/asimons81) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scaffolded TypeScript or Python MCP server files, tool schemas, test harness examples, and agent configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated project files, dependencies, or MCP client configuration could expose internal APIs or credentials if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files, dependencies, and client configuration before installing or using the scaffold, especially for servers that access internal systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asimons81/skills/agentic-atlas-mcp-builder)
+
+## Skill Output:
+
+**Output Type(s):** [code, files, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with code blocks and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include TypeScript or Python MCP server scaffolds, JSON schemas, test harnesses, and MCP client configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

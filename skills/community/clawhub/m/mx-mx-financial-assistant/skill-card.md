@@ -1,43 +1,50 @@
-## Description: <br>
-Mx Financial Assistant answers financial questions in Chinese using Eastmoney financial data, market news, macroeconomic data, screening workflows, financial knowledge, and cited source references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mx Financial Assistant answers Chinese-language financial questions by calling Eastmoney's financial data service for market data, financial news, macroeconomic data, screening, encyclopedia answers, market analysis, and cited references.
 
-## Publisher: <br>
-[akiry09](https://clawhub.ai/user/akiry09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akiry09](https://clawhub.ai/user/akiry09)
 
-## Use Case: <br>
-External users and financial research workflows use this skill to ask natural-language questions about markets, securities, funds, bonds, macroeconomic indicators, financial news, and financial concepts. It is intended for informational research support and should not be treated as personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad financial-question triggers may route sensitive financial questions to the skill unexpectedly. <br>
-Mitigation: Use the skill only for clearly financial questions that are appropriate for the Eastmoney-backed service. <br>
-Risk: Questions are forwarded to a third-party financial service and may contain private portfolio, client, unpublished research, or trading-plan information. <br>
-Mitigation: Avoid submitting sensitive financial details unless the user has approved that provider and its data handling. <br>
-Risk: Financial answers may be interpreted as personalized investment advice. <br>
-Mitigation: Treat outputs as informational research support and require qualified human review before making investment decisions. <br>
+## Use Case:
 
+External users and financial research workflows use this skill to ask natural-language questions about market data, financial news, macroeconomic indicators, asset screening, and financial concepts. It returns Chinese Markdown answers with structured source references when the Eastmoney service provides them.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/akiry09/mx-mx-financial-assistant) <br>
-- [Eastmoney financial assistant API endpoint](https://ai-saas.eastmoney.com/proxy/app-robo-advisor-api/assistant/ask) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [JSON containing a Markdown answer and reference metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language responses; cited references may include data tables, news, announcements, and research reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Financial questions, investment interests, holdings typed by the user, and the Eastmoney API key are sent to Eastmoney's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that data sharing is acceptable, and avoid including personal identifiers or confidential portfolio details.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/akiry09/skills/mx-mx-financial-assistant)
+- [Eastmoney financial Q&A API endpoint](https://ai-saas.eastmoney.com/proxy/app-robo-advisor-api/assistant/ask)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [JSON containing a Markdown answer and structured references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY and the httpx Python package; supports standard and deep-think modes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

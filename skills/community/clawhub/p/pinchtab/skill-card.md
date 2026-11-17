@@ -1,48 +1,70 @@
-## Description: <br>
-Use this skill when a task needs browser automation through PinchTab: open a website, inspect interactive elements, click through flows, fill out forms, scrape page text, reuse a dedicated automation profile with user approval, export screenshots or PDFs, manage multiple browser instances, or fall back to the HTTP API when the CLI is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PinchTab helps agents control browsers, inspect interactive elements, complete web flows, scrape page text, export browser artifacts, manage browser instances, and use the HTTP API when the CLI is unavailable.
 
-## Publisher: <br>
-[pinchtab](https://clawhub.ai/user/pinchtab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinchtab](https://clawhub.ai/user/pinchtab)
 
-## Use Case: <br>
-Developers and agents use PinchTab to drive local browser sessions for navigation, page inspection, form interaction, data extraction, screenshots, PDFs, and HTTP API based automation. It is useful when browser work should be token-efficient and grounded in fresh accessibility references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can operate in authenticated sessions and may perform sensitive account, payment, or data-changing actions. <br>
-Mitigation: Use a dedicated low-privilege browser profile and require user confirmation before account changes, payments, deletions, permission changes, or other critical actions. <br>
-Risk: Eval, cookie access, network export, downloads, uploads, and guards-down behavior can expose private data or broaden the agent's authority. <br>
-Mitigation: Keep these controls disabled unless the current task requires them, use the narrowest configuration possible, and redact or delete sensitive exports after use. <br>
-Risk: Challenge solving, stealth, and fingerprint features can create authorization and policy risk on third-party sites. <br>
-Mitigation: Use these features only with explicit authorization for the current site and task, and leave them disabled for normal browsing automation. <br>
+## Use Case:
 
+Developers and automation agents use PinchTab to navigate websites, inspect page state, fill forms, run site reviews, and produce browser-derived outputs while keeping sensitive actions under user approval.
 
-## Reference(s): <br>
-- [PinchTab GitHub repository](https://github.com/pinchtab/pinchtab) <br>
-- [Full API](references/api.md) <br>
-- [Minimal env vars](references/env.md) <br>
-- [Agent optimization](references/agent-optimization.md) <br>
-- [Profiles](references/profiles.md) <br>
-- [MCP](references/mcp.md) <br>
-- [Security model](TRUST.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Browser observations may include compact accessibility snapshots, text extracts, diffs, screenshots, PDFs, network exports, and API responses depending on the selected PinchTab command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.13.2 (source: server release evidence) <br>
+Risk: Browser and session control can affect authenticated accounts or expose sensitive page content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege browser profile, start with read-only inspection, and require explicit approval before account-changing or destructive actions.
+
+Risk: Cookies, browser state, downloads, uploads, network exports, screenshots, PDFs, and recordings can contain credentials or personal data.
+
+Mitigation: Keep gated capabilities disabled unless the task requires them, preserve redaction, store artifacts only in approved paths, and remove temporary sensitive artifacts when finished.
+
+Risk: Remote plaintext HTTP targets can expose PINCHTAB_TOKEN or PINCHTAB_SESSION values.
+
+Mitigation: Do not send PinchTab tokens or sessions to remote plaintext HTTP servers; prefer local or trusted secured endpoints.
+
+Risk: Page-derived content can contain hostile or irrelevant instructions.
+
+Mitigation: Treat browser output as untrusted data and follow it only when it independently matches the user's request.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pinchtab/skills/pinchtab)
+- [Publisher Profile](https://clawhub.ai/user/pinchtab)
+- [PinchTab Homepage](https://github.com/pinchtab/pinchtab)
+- [PinchTab Documentation](https://pinchtab.com)
+- [Security and Trust](TRUST.md)
+- [Sensitive Operations](references/safety.md)
+- [CLI Commands Reference](references/commands.md)
+- [API Reference](references/api.md)
+- [MCP Server Reference](references/mcp.md)
+- [Site Review Reference](references/site-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON/API examples, and browser-derived text or files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include compact accessibility snapshots, page text, screenshots, PDFs, recordings, site-audit reports, comparison artifacts, scrape results, and configuration guidance depending on the approved workflow.]
+
+## Skill Version(s):
+
+0.15.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

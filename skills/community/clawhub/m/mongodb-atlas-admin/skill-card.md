@@ -1,43 +1,61 @@
-## Description: <br>
-Browse MongoDB Atlas Admin API specifications and execute operations when Atlas credentials are provided. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse MongoDB Atlas Admin API specifications and execute operations when credentials are provided.
 
-## Publisher: <br>
-[finishy1995](https://clawhub.ai/user/finishy1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[finishy1995](https://clawhub.ai/user/finishy1995)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect MongoDB Atlas Admin API categories, endpoint definitions, and schemas, and to run Atlas API calls when service account credentials are configured. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate the MongoDB Atlas Admin API when service account credentials are present. <br>
-Mitigation: Use a least-privilege Atlas service account and install only where Atlas administration through an agent is intended. <br>
-Risk: POST, PUT, PATCH, and DELETE requests can change or delete Atlas resources. <br>
-Mitigation: Require dry-run previews for state-changing calls and approve --yes only after checking the exact method, endpoint, and JSON body. <br>
-Risk: A custom ATLAS_API_BASE_URL changes the endpoint receiving credentials and API requests. <br>
-Mitigation: Leave ATLAS_API_BASE_URL unset unless the endpoint is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MongoDB Atlas Admin API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/) <br>
-- [ClawHub skill page](https://clawhub.ai/finishy1995/mongodb-atlas-admin) <br>
-- [Publisher profile](https://clawhub.ai/user/finishy1995) <br>
+## Use Case:
 
+Developers and operators use this skill to browse MongoDB Atlas Admin API operations, inspect schemas, and prepare or execute Atlas API calls with configured service account credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown or JSON returned through command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute live MongoDB Atlas API requests when ATLAS_CLIENT_ID and ATLAS_CLIENT_SECRET are set.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use Atlas Admin API authority from configured service account credentials.
+
+Mitigation: Use a least-privilege Atlas service account and review requested operations before enabling live API calls.
+
+Risk: ATLAS_API_BASE_URL can redirect credential and API requests to a configurable host.
+
+Mitigation: Leave ATLAS_API_BASE_URL unset or set it only to https://cloud.mongodb.com.
+
+Risk: Access tokens are cached locally in plaintext.
+
+Mitigation: Treat the local token cache as sensitive credential material and clear it when no longer needed.
+
+Risk: State-changing Atlas operations can modify or delete resources.
+
+Mitigation: Use dry-run previews first and execute state-changing calls only after explicit user approval.
+
+## Reference(s):
+
+- [MongoDB Atlas Admin API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/)
+- [MongoDB Atlas skill release](https://clawhub.ai/finishy1995/skills/mongodb-atlas-admin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce dry-run previews and JSON API responses when live Atlas calls are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

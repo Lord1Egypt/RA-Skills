@@ -1,39 +1,58 @@
-## Description: <br>
-Evaluates spending, hiring, fundraising, and expansion decisions through the lens of sustainable, profitable growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides business decisions through a sustainable, profitable-growth lens, especially around spending, hiring, fundraising, and expansion.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-External founders, operators, and startup advisors use this skill to evaluate business decisions around cost control, hiring, financing, and expansion. It frames recommendations around profitability, reversibility, customer demand, cheaper alternatives, and default-alive versus default-dead survival. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business strategy guidance may not reflect the user's full financial, legal, operational, or market context. <br>
-Mitigation: Use the output as decision support and validate major spending, hiring, financing, and legal decisions with current business data and qualified advisors. <br>
-Risk: The supplied security review found no concrete artifact-backed concern, but it was limited to the available scan context. <br>
-Mitigation: Review the installed skill files and requested permissions before using it with sensitive data or broad local access. <br>
+## Use Case:
 
+External users and business operators use this skill to evaluate growth decisions against profitability, reversibility, customer demand, cheaper alternatives, and default-alive versus default-dead posture.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Text] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory business decision support focused on profitability, cost impact, reversibility, customer demand, simpler alternatives, and sustainability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: Users could treat the skill's business-planning guidance as financial, legal, hiring, or fundraising advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as decision support and have qualified professionals review high-impact financial, legal, hiring, or fundraising decisions.
+
+Risk: The skill presents a strong bootstrapped-profitability viewpoint that may not fit every business context.
+
+Mitigation: Compare its recommendations against the user's market, cash position, obligations, and risk tolerance before acting.
+
+Risk: The guidance is written in Chinese and may be misread by users who are not fluent in Chinese.
+
+Mitigation: Confirm key recommendations in the user's working language before relying on them.
+
+## Reference(s):
+
+- [Grow Sustainably Skill Page](https://clawhub.ai/ethan-china/skills/miniest-grow)
+- [Publisher Profile](https://clawhub.ai/user/ethan-china)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown or plain text business decision guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language decision support; does not execute code or request system access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

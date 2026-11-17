@@ -1,45 +1,56 @@
-## Description: <br>
-Scrapes Douyin creator videos, downloads audio with Playwright and ffmpeg with yt-dlp fallback, and transcribes the audio with Whisper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes Douyin creator videos, downloads audio (Playwright+ffmpeg with yt-dlp fallback), and transcribes with Whisper.
 
-## Publisher: <br>
-[GPTtang](https://clawhub.ai/user/GPTtang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gpttang](https://clawhub.ai/user/gpttang)
 
-## Use Case: <br>
-Developers and content operations users use this skill to track Douyin creator accounts, collect recent video metadata, download audio, and generate Chinese transcript Markdown for review or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles authenticated Douyin session cookies. <br>
-Mitigation: Use a dedicated Douyin account and virtual environment, keep .douyin_cookies.json private and out of source control, and delete or rotate cookies after use. <br>
-Risk: The skill installs and runs external scraping and media-processing tooling. <br>
-Mitigation: Review and pin dependencies, review MediaCrawler before use, and run the workflow in an isolated environment. <br>
-Risk: Browser-cookie fallback can expose broader browser session data. <br>
-Mitigation: Avoid browser-cookie fallback unless necessary and prefer a dedicated browser profile for collection work. <br>
+## Use Case:
 
+Developers and content operations users use this skill to track Douyin creator accounts, collect recent video metadata, extract audio, and generate Whisper transcripts for review or downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/GPTtang/douyin-content-tracker) <br>
-- [Pipeline Reference](references/pipeline.md) <br>
-- [Troubleshooting Reference](references/troubleshooting.md) <br>
-- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated CSV, audio, and transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written under OUTPUT_BASE_DIR; transcript outputs are Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles live Douyin session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk Douyin account, keep .douyin_cookies.json out of repositories and backups, and avoid --cookies-from-browser unless the account risk is understood.
+
+Risk: The workflow executes external tools and mutable dependencies.
+
+Mitigation: Run the skill in an isolated environment and pin or review MediaCrawler and Python dependencies before using it on important machines.
+
+## Reference(s):
+
+- [Pipeline Reference](references/pipeline.md)
+- [Troubleshooting Reference](references/troubleshooting.md)
+- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)
+- [ClawHub skill page](https://clawhub.ai/gpttang/skills/douyin-content-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local data outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CSV metadata, M4A audio files, Markdown transcript files, and progress report text under OUTPUT_BASE_DIR.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

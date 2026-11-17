@@ -1,41 +1,54 @@
-## Description: <br>
-Checks whether provided URLs are accessible and helps verify online information by comparing it against multiple sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether a supplied URL is reachable and returns a brief verification-style summary for link status and claimed facts.
 
-## Publisher: <br>
-[wumingyu1688-sudo](https://clawhub.ai/user/wumingyu1688-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wumingyu1688-sudo](https://clawhub.ai/user/wumingyu1688-sudo)
 
-## Use Case: <br>
-External users and developers use this skill to check link availability and produce concise verification summaries for online content. It is most useful for public URLs and factual claims that can be compared against cited sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checking private, internal, localhost, cloud-metadata, or sensitive document links may expose information or create unintended network access. <br>
-Mitigation: Use only public URLs and avoid submitting private, internal, localhost, cloud-metadata, or sensitive document links. <br>
-Risk: The artifact reports fact checks as pending and the security summary notes that fact-checking is incomplete. <br>
-Mitigation: Treat factual conclusions as advisory unless the agent provides independent cited source comparisons. <br>
+## Use Case:
 
+External users and developers use this skill for preliminary checks of public links and lightweight review of online claims. It is best suited for link accessibility triage rather than authoritative fact-checking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wumingyu1688-sudo/link-fact-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/wumingyu1688-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style verification summary or JSON-like run result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes URL status information when a URL is provided; fact checking may require independent cited source comparison.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may overstate fact-checking capability because the security summary identifies it as a simple URL checker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for preliminary public URL checks only, and require independent source review before relying on factual conclusions.
+
+Risk: The security guidance notes unrestricted network requests to user-supplied URLs.
+
+Mitigation: Use only non-sensitive public URLs, and add URL allowlisting, private-network blocking, request timeouts, response-size limits, and privacy disclosure before broader deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wumingyu1688-sudo/skills/link-fact-checker)
+- [Publisher profile](https://clawhub.ai/user/wumingyu1688-sudo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style verification summary or JSON result object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports URL accessibility, status code, page title when available, and pending cross-verification status for submitted facts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

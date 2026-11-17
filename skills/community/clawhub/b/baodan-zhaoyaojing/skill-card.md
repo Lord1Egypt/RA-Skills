@@ -1,47 +1,60 @@
-## Description: <br>
-保单照妖镜 compares accident insurance policy documents by extracting policy terms, scoring seven coverage dimensions, checking claim-reputation signals, and generating a visual comparison report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares accident insurance policy documents by extracting policy details, scoring seven coverage and claims dimensions, and producing a visual comparison report.
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-Insurance shoppers, advisors, or reviewers use this skill to compare two or more accident insurance policies from images or PDFs, identify coverage gaps, and produce a readable report. It is designed for comparison support and should not be treated as final investment, legal, or insurance advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes insurance policy documents that may contain personal or sensitive policyholder information. <br>
-Mitigation: Redact personal identifiers and unnecessary policyholder details before using the skill. <br>
-Risk: Claim-reputation checks may trigger live searches against external social, complaint, or regulatory sites. <br>
-Mitigation: Approve external searches explicitly and avoid sending sensitive policy contents to third-party services. <br>
-Risk: Generated HTML reports may load third-party charting scripts and contain real policy data. <br>
-Mitigation: Open generated reports only in a trusted local environment and avoid third-party scripts for reports containing sensitive data. <br>
-Risk: OCR and LLM extraction can misread policy clauses, limits, exclusions, or low-confidence fields. <br>
-Mitigation: Review extracted terms against the original insurance contract before relying on the comparison. <br>
+## Use Case:
 
+External users and insurance shoppers use this skill to compare two or more accident insurance policies, understand coverage differences, and receive plain-language cautions before making a purchase decision. The generated comparison is informational and should be checked against the original insurance contract.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/baodan-zhaoyaojing) <br>
-- [Publisher profile](https://clawhub.ai/user/wwbwin) <br>
-- [Policy extraction schema](references/schema.md) <br>
-- [Seven-dimension scoring rules](references/dimension_config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON policy structures, shell commands, and generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a local HTML report using a bundled template and charting script; users should review extracted fields and low-confidence values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter states 1.0.0) <br>
+Risk: The skill handles sensitive insurance policy documents and may send insurer or product names to external searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before OCR, LLM extraction, or external searches, and minimize the policy data shared outside the local environment.
+
+Risk: The skill may create a persistent local HTML report and open it automatically.
+
+Mitigation: Ask before writing or opening reports, store them only where the user approves, and avoid auto-open behavior by default.
+
+Risk: The report uses templated HTML and remote chart JavaScript.
+
+Mitigation: Escape all report content before insertion and bundle or integrity-pin the chart library before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/baodan-zhaoyaojing)
+- [Publisher profile](https://clawhub.ai/user/wwbwin)
+- [Policy JSON schema](references/schema.md)
+- [Seven-dimension scoring rules](references/dimension_config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON comparison data, and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a persistent local HTML report and may open it in a browser.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

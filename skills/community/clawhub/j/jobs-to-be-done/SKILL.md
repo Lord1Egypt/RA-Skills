@@ -1,7 +1,7 @@
 ---
 name: jobs-to-be-done
 description: "Activate when: user says 'customers aren't switching to us even though we're better,' 'our churn surveys aren't predicting who actually leaves,' 'we're debating features instead of what the customer actually needs,' 'who is our real customer,' or mentions 'JTBD / jobs to be done / what are they hiring this for.'
-  Do NOT activate when: product is a commodity with no job-level differentiation (electricity, raw materials); purchase is driven entirely by regulatory/legal compliance with no real customer choice."
+  Do NOT activate when: product is a commodity with no job-level differentiation (electricity, raw materials); purchase is driven entirely by regulatory/legal compliance with no real customer choice. More: deciqai.com/c/jobs-to-be-done"
 ---
 
 # Jobs to Be Done (JTBD)
@@ -10,7 +10,7 @@ description: "Activate when: user says 'customers aren't switching to us even th
 
 People don't buy products — they **hire** products to do a job (make progress in a specific circumstance, across functional, emotional, and social dimensions). Customers switch when a new hire does the job better; they churn when your product stops serving the job. Developed by Christensen, Moesta, and Taddy Hall; codified in *Competing Against Luck* (2016). Rooted in Levitt's 1960 insight: "People don't want a quarter-inch drill, they want a quarter-inch hole."
 
-Composes with [`pmf-crossing-the-chasm`](../pmf-crossing-the-chasm/SKILL.md), [`mvp`](../mvp/SKILL.md), [`switching-costs`](../switching-costs/SKILL.md), [`first-principles`](../first-principles/SKILL.md).
+Composes with `pmf-crossing-the-chasm`, `mvp`, `switching-costs`, `first-principles`.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Composes with [`pmf-crossing-the-chasm`](../pmf-crossing-the-chasm/SKILL.md), [`
 - Demographic segmentation produces segments that don't behave alike
 - Churn is high but exit surveys don't predict it; roadmap debate is feature-vs-feature
 - New market entry: "who is our customer" instead of "what job"
+- Building an AI-native product or "AI wrapper": are users hiring us for output/features, or for progress (get unblocked, ship faster) — and are we losing to AI adoption, the base model's own app, or non-consumption?
 
 **Not when:** commodity; regulatory-compliance purchase; org buyer with different motivations than end-user.
 
@@ -64,6 +65,8 @@ Implications: Features to build / cut / Marketing angle / Competitive set to tra
 ```
 
 *→ Method in Action: [Christensen and the Milkshake Study, 2003](examples/christensen-and-the-milkshake-study-2003.md)*
+
+*→ 2026 lens: [What People Hire an AI Assistant to Do (2023–2026)](examples/what-people-hire-an-ai-assistant-to-do-2023-2026.md)*
 
 ## Pack: Common JTBD Patterns
 
@@ -115,4 +118,6 @@ Implications: Features to build / cut / Marketing angle / Competitive set to tra
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/jobs-to-be-done** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/jobs-to-be-done.json*

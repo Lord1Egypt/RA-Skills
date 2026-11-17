@@ -1,0 +1,29 @@
+{
+  "name": "fitness-daily",
+  "displayName": "Fitness Daily — 30 岁青年健身自律打卡",
+  "version": "1.0.0",
+  "description": "🏋️ 30 岁青年健身自律打卡 — 普通人共享的好习惯。四组 15 项（身体活动/营养与恢复/心理与习惯/纪律底线），勾选即出完成率与下周重点建议。非认证众包 · 不构成专业建议",
+  "icon": "🏋️",
+  "categories": [
+    "Lifestyle",
+    "Health",
+    "Productivity"
+  ],
+  "topics": [
+    "fitness-daily",
+    "健身打卡",
+    "每日健身",
+    "自律",
+    "habit",
+    "好习惯",
+    "健康习惯"
+  ],
+  "author": "共享者（非认证众包）",
+  "license": "MIT",
+  "scripts": {
+    "check": "python3 scripts/fitness.py check",
+    "report": "python3 scripts/fitness.py report",
+    "trend": "python3 scripts/fitness.py trend",
+    "summary": "python3 scripts/fitness.py summary"
+  }
+}

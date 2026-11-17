@@ -2,20 +2,22 @@
 jurisdiction: "New Hampshire"
 slug: new-hampshire
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-02"
-canonicalUrl: https://openagreements.org/legal/non-compete/new-hampshire
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-02"
+human_reviewed_at: null
+next_review_due: "2026-11-29"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/new-hampshire
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/new-hampshire · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/new-hampshire · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in New Hampshire[^about]
 
@@ -36,13 +38,13 @@ New Hampshire enforces reasonable non-competes under a common-law test, but RSA 
 | **Restriction extended during a breach?** | Unsettled — no controlling authority |
 | **Maximum length set by law** | No statutory limit |
 
-## Are employee non-compete agreements enforceable in New Hampshire? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in New Hampshire? {#employee-non-compete-enforceability}
 
 **Short answer.** Yes, if the restraint is reasonable and no statute makes it unenforceable. New Hampshire uses a three-part reasonableness test: the restriction must protect a legitimate employer interest, avoid undue hardship on the employee, and avoid injury to the public interest [^foster-three-part-test][^hobert-reasonable-enforceable].
 
 The practical starting point is common law plus statutory gates. Even a reasonable covenant can fail if it was not disclosed before the employee accepted the offer, if the employee is covered by the low-wage ban, or if a profession-specific healthcare statute voids the restriction.
 
-New Hampshire also construes restraints narrowly. The court starts with the employer interest being protected, then asks whether the chosen time, geography, customer, and activity limits are broader than that interest requires [^foster-three-part-test].
+New Hampshire also construes restraints narrowly. The court starts with the employer interest being protected, then asks whether the chosen time, geography, customer, and activity limits are broader than that interest requires [^foster-three-part-test]. For a clause-by-clause pass over a specific agreement, the [New Hampshire non-compete reviewer checklist](/checklists/non-compete/us/new-hampshire) walks the full covenant suite item by item with each requirement's force level.
 
 > [!NOTE]
 > **Practice note.**
@@ -58,7 +60,7 @@ That consideration rule does not cure statutory notice problems. If the worker i
 > [!CAUTION]
 > **Drafting note.**
 >
-> Separate consideration from timing. Continued employment may support the covenant, but late delivery can still make the noncompete unenforceable under RSA 275:70 [^foster-continued-employment][^rsa-275-70-notice-gate].
+> Consideration and timing are independent in New Hampshire. Continued employment after signing supplies consideration for the covenant, but a noncompete required of a new hire as a condition of employment is unenforceable if it was not delivered before the employee accepted the offer, and consideration does not cure that late delivery [^foster-continued-employment][^rsa-275-70-notice-gate].
 
 ## What is a legitimate protectable interest for a New Hampshire non-compete? {#legitimate-interests}
 
@@ -71,7 +73,12 @@ Goodwill is often the practical center of the analysis. New Hampshire cases allo
 >
 > Before enforcing, identify the employer asset at risk. A covenant based only on the cost of hiring or training workers is unlikely to satisfy the first prong of the New Hampshire test [^olsten-recruiting-costs].
 
-## How narrow must a New Hampshire non-compete's duration, geography, and customer scope be? {#scope-duration-geography}
+> [!CAUTION]
+> **Drafting note.**
+>
+> A New Hampshire covenant carries only where it protects one of the interests the state recognizes — trade secrets, confidential information beyond trade secrets, an employee's special influence over the employer's customers, contacts developed during the employment, and the employer's goodwill and positive image [^hobert-legitimate-interests]. The mere cost of recruiting and hiring employees is not among them, so a covenant — including an employee anti-raiding clause — resting on training or replacement cost rather than a named employer asset fails the first prong, and the restraint falls with it [^olsten-recruiting-costs]. A recital reciting the interests protected is not self-proving; the covenant stands only where a concrete Protected Interest sits behind it and the restraint reaches no further than that interest requires.
+
+## How narrow must a New Hampshire non-compete's duration, geography, and customer scope be? {#duration-limits}
 
 **Short answer.** Narrow enough to match the protected interest. Customer and geography limits generally should track the employee's actual sphere of customer influence, and duration should last no longer than needed to protect the employer's goodwill or confidential information [^near-customer-sphere][^forbes-duration-geography].
 
@@ -79,7 +86,12 @@ New Hampshire courts are especially skeptical of all-customer restrictions. In *
 
 The same principle applies to geography. A territory is not reasonable merely because it is named. It should correspond to the market where the employee had customer or patient contact, or to another concrete employer interest.
 
-## Will a New Hampshire court reform an overbroad non-compete? {#court-reformation}
+> [!CAUTION]
+> **Drafting note.**
+>
+> Customer, territory, and duration limits are measured against the employee's actual sphere of customer goodwill, not the employer's full customer base or market footprint. A restraint reaching customers beyond the employee's own contacts goes far beyond that sphere and is more restrictive than necessary to protect the employer's legitimate interest [^near-customer-sphere], and geography and duration must be narrowly tailored to the goodwill interest and the worker's actual customer or patient contact rather than to a named region or a round number carried forward [^forbes-duration-geography]. A covenant drawn to the customers the employee actually served, in the market where that contact occurred, for no longer than the interest survives, is the one that holds; anything broader invites a court to treat the whole restraint as overbroad.
+
+## Will a New Hampshire court reform an overbroad non-compete? {#court-narrowing}
 
 **Short answer.** Yes, but only if the employer proves good faith in the execution of the agreement. New Hampshire courts have power to reform overbroad covenants, but bad-faith presentation can defeat that remedy [^near-good-faith-reformation][^syncom-bad-faith-reformation].
 
@@ -90,7 +102,7 @@ Reformation is a narrowing remedy. It is not a license to draft an overbroad all
 > [!CAUTION]
 > **Drafting note.**
 >
-> Draft for enforceability at signing. If the agreement is presented late, under pressure, or without a fair chance to understand it, New Hampshire courts may refuse to reform even if a narrower covenant might have been valid [^near-good-faith-reformation][^syncom-bad-faith-reformation].
+> Reformation is available in New Hampshire only where the employer shows good faith in the execution of the agreement, and bad-faith execution facts — presentation after the job starts, first-day pressure, no advance discussion, no meaningful chance to understand the restriction — can foreclose reformation before enforceability is even reached [^near-good-faith-reformation][^syncom-bad-faith-reformation]. A covenant drawn within its enforceable scope at signing, delivered with time to review, does not depend on that remedy; one that banks on a court narrowing an overbroad all-customer restraint later can lose the remedy on the execution facts alone.
 
 ## What is New Hampshire's RSA 275:70 pre-acceptance notice requirement? {#pre-acceptance-notice}
 
@@ -101,7 +113,7 @@ The statute preserves other provisions in the same agreement. A notice failure d
 > [!CAUTION]
 > **Drafting note.**
 >
-> Give the actual noncompete with the offer materials, not during onboarding. The statutory consequence is unenforceability of the noncompete itself, even though other agreement provisions may survive [^rsa-275-70-preacceptance].
+> A noncompete that reaches a new hire only during onboarding or later amendment paperwork, rather than with the offer materials, has missed the RSA 275:70 pre-acceptance delivery window. The statutory consequence is unenforceability of the noncompete itself, while the agreement's other provisions may survive [^rsa-275-70-preacceptance].
 
 ## What is New Hampshire's low-wage employee non-compete ban? {#low-wage-employees}
 
@@ -112,7 +124,7 @@ The statute defines a low-wage employee by hourly rate, not job title. The thres
 > [!CAUTION]
 > **Drafting note.**
 >
-> Check wage coverage before drafting any New Hampshire noncompete for hourly or lower-paid roles. If RSA 275:70-a applies, narrower wording does not save a noncompete agreement with that low-wage employee [^rsa-275-70-a-ban][^rsa-275-70-a-void].
+> The RSA 275:70-a exclusion turns on the worker's hourly rate against 200 percent of the federal minimum wage, not on job title, so the wage facts govern whether any New Hampshire noncompete can reach an hourly or lower-paid worker at all. Where the exclusion applies, the noncompete is void and unenforceable, and narrower wording does not save it [^rsa-275-70-a-ban][^rsa-275-70-a-void].
 
 ## What special non-compete rules apply to New Hampshire healthcare practitioners? {#healthcare-practitioners}
 
@@ -123,7 +135,7 @@ These statutes target geographic practice restrictions in professional relations
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not use a geographic practice ban for covered New Hampshire clinicians. Draft separate confidentiality and trade-secret provisions if the real concern is information protection rather than practice location [^rsa-329-31-a-physicians][^rsa-326-b-45-a-nurses][^rsa-326-b-45-b-aprns][^rsa-315-18-podiatrists].
+> A geographic practice ban directed at a covered New Hampshire clinician is void as to that restriction. Separate statutes reach physicians, nurses, advanced practice registered nurses, and podiatrists — the advanced-practice-registered-nurse statute effective August 23, 2025 — and each voids the geographic restriction while preserving the remaining provisions of the contract; licensure, not job title, is the test, so the covered class is wider than any single worker-category label [^rsa-329-31-a-physicians][^rsa-326-b-45-a-nurses][^rsa-326-b-45-b-aprns][^rsa-315-18-podiatrists]. Where the real concern is information protection rather than practice location, a separate confidentiality and trade-secret provision reaches that concern, and these statutes leave it intact.
 
 ## Are sale-of-business non-competes enforceable in New Hampshire? {#sale-of-business}
 
@@ -132,6 +144,17 @@ These statutes target geographic practice restrictions in professional relations
 Asset-purchase standing can also matter. In *Atronix*, the New Hampshire Supreme Court held that the buyer received the employee noncompete under the asset purchase agreement's transfer language, reversing dismissal for lack of standing [^atronix-assigned-covenant].
 
 That does not make sale covenants unlimited. The agreement still should tie the restraint to the goodwill or business assets being sold, and the written duration still matters.
+
+> [!CAUTION]
+> **Drafting note.**
+>
+> Whether an employee noncompete travels to an asset-purchase buyer turns on the transfer language of the deal, not on a general assumption that covenants follow the business. New Hampshire read a noncompete as conveyed to the buyer under the plain terms of the asset purchase agreement's transfer provision [^atronix-assigned-covenant], so an assignment clause that expressly conveys the restrictive covenants leaves the buyer's standing to enforce resting on the contract rather than open to a threshold challenge.
+
+## How does New Hampshire treat employee non-solicitation covenants? {#employee-non-solicitation}
+
+**Short answer.** With no New Hampshire decision squarely on employee anti-raiding in our review, such a covenant would be judged under the same three-part *Foster* reasonableness test as a non-compete — no greater than necessary to protect a legitimate interest, no undue hardship, and no injury to the public [^nh-ens-foster] — and *Olsten* cautions that the mere cost of recruiting and hiring employees is not itself a protectable interest [^nh-ens-olsten].
+
+RSA 275:70-a's low-wage ban does not reach an anti-raiding clause, because its noncompete-agreement definition is limited to restraints on the low-wage employee's own work for another employer [^nh-ens-rsa-definition].
 
 ## Can New Hampshire independent contractors be bound by non-competes? {#independent-contractors}
 
@@ -146,6 +169,11 @@ Because the available appellate source set does not squarely address independent
 >
 > Do not assume the contractor label expands enforceability. If the worker was engaged as an independent business and lacked concrete access to protectable goodwill or confidential information, the restraint may look like ordinary competition control rather than protection of an employer asset [^hobert-legitimate-interests-contractors].
 
+> [!CAUTION]
+> **Drafting note.**
+>
+> An acknowledgment that breach causes irreparable harm is a recital, not proof. A court applying New Hampshire law may decline to enjoin a noncompete for want of irreparable injury or a favorable balance of the equities while still granting the narrower nondisclosure injunction the record supports [^hcc-persuasive-limits][^hcc-nondisclosure-granted]. The equities are established on the evidence at the hearing, so an injunctive-relief clause secures the ability to ask for relief, not the relief itself.
+
 ## What trade-secret alternatives remain when a New Hampshire non-compete fails? {#trade-secrets}
 
 **Short answer.** RSA chapter 350-B remains an important alternative. New Hampshire's trade-secret statute defines trade secrets by independent economic value and reasonable secrecy efforts, authorizes injunctions for actual or threatened misappropriation, and preserves contractual remedies [^rsa-350-b-1-definition][^rsa-350-b-2-injunction][^rsa-350-b-7-contracts].
@@ -157,7 +185,7 @@ Trade-secret relief is not a substitute for an overbroad noncompete. It protects
 >
 > If the business concern is information misuse, build the record for trade-secret protection: identify the information, document economic value from secrecy, and maintain reasonable secrecy measures. RSA chapter 350-B is strongest when the facts support secrecy, not merely competition [^rsa-350-b-1-definition][^rsa-350-b-2-injunction].
 
-## Does a New Hampshire non-compete period pause or extend during breach or litigation? {#tolling-during-breach}
+## Does a New Hampshire non-compete period pause or extend during breach or litigation? {#extended-for-breach}
 
 **Short answer.** This is unsettled for employment noncompetes. New Hampshire appellate law in this source set does not squarely decide whether a restricted period pauses during breach, extends while litigation is pending, or whether a contractual extension-during-breach clause is enforceable [^gosselin-no-extension].
 
@@ -168,9 +196,9 @@ In the sale-of-business setting, *Gosselin* rejected a court-ordered extension o
 > [!CAUTION]
 > **Drafting note.**
 >
-> A tolling or extension-during-breach clause is a drafting choice of uncertain enforceability in New Hampshire. If you include one, tie it to the protected interest and the covenant's overall duration, and do not assume a court will extend the period beyond the contract's fair and natural meaning [^gosselin-no-extension][^near-reformation-narrowing].
+> A tolling or extension-during-breach clause is a drafting choice of uncertain enforceability in New Hampshire, where no appellate authority settles whether a restricted period extends during a breach and the court has refused to extend a written covenant's duration absent ambiguity or evidence of intent to extend it [^gosselin-no-extension][^near-reformation-narrowing]. A clause tied to the protected interest and the covenant's overall duration reads within that fair and natural meaning; one that assumes a court will carry the period beyond it rests on a rule New Hampshire has not adopted.
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-02. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not New Hampshire. This article synthesizes New Hampshire primary law and is not legal advice from a New Hampshire-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-02. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not New Hampshire. This article synthesizes New Hampshire primary law and is not legal advice from a New Hampshire-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in New Hampshire*, OpenAgreements (last updated June 2, 2026), https://openagreements.org/practice-guides/non-compete/us/new-hampshire.
 
 [^foster-three-part-test]: **Smith, Batchelder & Rugg v. Foster** — "In scrutinizing restrictive covenants, this court employs the following three-pronged test: ‘[a] restraint on employment is reasonable only if it is no greater than necessary for the protection of the employer’s legitimate interest, does not impose undue hardship on the employee and is not injurious to the public interest.’" *Smith, Batchelder & Rugg v. Foster, 119 N.H. 679 (1979).* <https://www.courtlistener.com/opinion/2375592/smith-batchelder-rugg-v-foster/#:~:text=In%20scrutinizing%20restrictive%20covenants%2C%20this,injurious%20to%20the%20public%20interest.%E2%80%9D>
 
@@ -213,6 +241,12 @@ In the sale-of-business setting, *Gosselin* rejected a court-ordered extension o
 [^gosselin-sale-covenant]: **Gosselin v. Archibald** — "The terms of the agreement, as set forth in the purchase and sale contract, are reasonable and enforceable." *Gosselin v. Archibald, 121 N.H. 1016 (1981).* <https://www.courtlistener.com/opinion/2059042/gosselin-v-archibald/#:~:text=The%20terms%20of%20the%20agreement%2C,contract%2C%20are%20reasonable%20and%20enforceable.>
 
 [^atronix-assigned-covenant]: **Atronix, Inc. v. Morris** — "Because we conclude that Morris’s non-compete agreement was conveyed to the plaintiff under the plain language of section 2.02(a)(xii), we need not address either the plaintiff’s additional arguments or the defendants’ argument" *Atronix, Inc. v. Morris, 197 A.3d 79 (N.H. 2018).* <https://www.courtlistener.com/opinion/4546183/atronix-inc-v-kenneth-morris-a/#:~:text=Because%20we%20conclude%20that%20Morris%E2%80%99s,arguments%20or%20the%20defendants%E2%80%99%20argument>
+
+[^nh-ens-foster]: **Smith, Batchelder & Rugg v. Foster** — "In scrutinizing restrictive covenants, this court employs the following three-pronged test: ‘[a] restraint on employment is reasonable only if it is no greater than necessary for the protection of the employer’s legitimate interest, does not impose undue hardship on the employee and is not injurious to the public interest.’" *Smith, Batchelder & Rugg v. Foster, 119 N.H. 679 (1979).* <https://www.courtlistener.com/opinion/2375592/smith-batchelder-rugg-v-foster/#:~:text=In%20scrutinizing%20restrictive%20covenants%2C%20this,injurious%20to%20the%20public%20interest.%E2%80%9D>
+
+[^nh-ens-olsten]: **National Employment Service Corp. v. Olsten Staffing Service, Inc.** — "Thus, we hold that although there may be valid reasons for restrictive covenants, the mere cost associated with recruiting and hiring employees is not a legitimate interest protectable by a restrictive covenant in an employment contract." *National Employment Service Corp. v. Olsten Staffing Service, Inc., 145 N.H. 158 (2000).* <https://www.courtlistener.com/opinion/8092147/national-employment-service-corp-v-olsten-staffing-service-inc/#:~:text=Thus%2C%20we%20hold%20that%20although,covenant%20in%20an%20employment%20contract.>
+
+[^nh-ens-rsa-definition]: **RSA 275:70-a** — "‘Noncompete agreement’ means an agreement between an employer and a low-wage employee that restricts such low-wage employee from performing: (1) Work for another employer for a specified period of time; (2) Work in a specified geographical area; or (3) Work for another employer that is similar to such low-wage employee’s work for the employer who is a party to the agreement." *RSA 275:70-a, I(c).* <https://gc.nh.gov/rsa/html/XXIII/275/275-70-a.htm>
 
 [^hobert-legitimate-interests-contractors]: **ACAS Acquisitions (Precitech) Inc. v. Hobert** — "The first step in determining the reasonableness of a given restraint is to determine whether the restraint was narrowly tailored to protect the employer’s legitimate interests." *ACAS Acquisitions (Precitech) Inc. v. Hobert, 155 N.H. 381 (2007).* <https://www.courtlistener.com/opinion/2320967/acas-acquisitions-precitech-inc-v-hobert/#:~:text=The%20first%20step%20in%20determining,protect%20the%20employer%E2%80%99s%20legitimate%20interests.>
 

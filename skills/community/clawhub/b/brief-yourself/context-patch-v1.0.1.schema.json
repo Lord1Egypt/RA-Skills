@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://brief-yourself.local/schemas/context-patch-v1.0.1.schema.json",
+  "title": "Brief Yourself Context Patch v1.0.1",
+  "description": "User-reviewed return path for Personal Context. New patches never encode promote or demote.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "patch_id",
+    "subject",
+    "principal",
+    "purpose",
+    "source_task",
+    "source_revision",
+    "created_at",
+    "status",
+    "proposals",
+    "task_strategies_not_for_merge"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.1"},
+    "patch_id": {"$ref": "#/$defs/id"},
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id"],
+      "properties": {
+        "type": {"const": "person"},
+        "id": {"$ref": "#/$defs/id"}
+      }
+    },
+    "principal": {"$ref": "#/$defs/entity"},
+    "purpose": {"$ref": "#/$defs/nonEmptyString"},
+    "source_task": {"$ref": "#/$defs/nonEmptyString"},
+    "source_revision": {"type": "integer", "minimum": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["pending", "applied", "rejected"]},
+    "proposals": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/proposal"}
+    },
+    "task_strategies_not_for_merge": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id"],
+      "properties": {
+        "type": {"const": "agent"},
+        "id": {"$ref": "#/$defs/id"}
+      }
+    },
+    "disclosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audiences", "purposes", "allow_downstream_persistence"],
+      "properties": {
+        "audiences": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}, "uniqueItems": true},
+        "purposes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmptyString"}, "uniqueItems": true},
+        "allow_downstream_persistence": {"type": "boolean"}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "statement", "domains", "kind", "scope", "durability", "confidence",
+        "user_status", "status", "sensitivity", "disclosure", "evidence_refs",
+        "counterevidence_refs", "observed_at", "valid_from", "last_confirmed_at",
+        "review_after", "expires_at", "supersedes", "notes"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "statement": {"$ref": "#/$defs/nonEmptyString"},
+        "domains": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}, "uniqueItems": true},
+        "kind": {"enum": ["fact", "self_report", "observation", "inference"]},
+        "scope": {"enum": ["cross-context", "domain", "situation"]},
+        "durability": {"enum": ["stable", "evolving", "situational"]},
+        "confidence": {"enum": ["high", "medium", "low"]},
+        "user_status": {"enum": ["confirmed", "corrected", "rejected", "unreviewed", "unresolved"]},
+        "status": {"enum": ["active", "challenged", "retired"]},
+        "sensitivity": {"enum": ["public", "private", "restricted"]},
+        "disclosure": {"$ref": "#/$defs/disclosure"},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}, "uniqueItems": true},
+        "counterevidence_refs": {"type": "array", "items": {"$ref": "#/$defs/nonEmptyString"}, "uniqueItems": true},
+        "observed_at": {"type": ["string", "null"]},
+        "valid_from": {"type": ["string", "null"]},
+        "last_confirmed_at": {"type": ["string", "null"]},
+        "review_after": {"type": ["string", "null"]},
+        "expires_at": {"type": ["string", "null"]},
+        "supersedes": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true},
+        "notes": {"type": "string"}
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "target_claim_id", "candidate_claim", "evidence_refs", "reason", "user_decision"],
+      "properties": {
+        "action": {"enum": ["add", "update", "challenge", "retire"]},
+        "target_claim_id": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+        "candidate_claim": {"type": ["object", "null"]},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonEmptyString"},
+          "uniqueItems": true
+        },
+        "reason": {"$ref": "#/$defs/nonEmptyString"},
+        "user_decision": {"enum": ["pending", "confirmed", "corrected", "rejected", "unresolved"]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"action": {"enum": ["add", "update"]}}},
+          "then": {"properties": {"candidate_claim": {"$ref": "#/$defs/claim"}}}
+        },
+        {
+          "if": {"properties": {"action": {"enum": ["challenge", "retire"]}}},
+          "then": {"properties": {"target_claim_id": {"type": "string"}, "candidate_claim": {"type": "null"}}}
+        }
+      ]
+    }
+  }
+}

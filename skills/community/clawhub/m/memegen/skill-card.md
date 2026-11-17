@@ -1,48 +1,67 @@
-## Description: <br>
-Generate meme images through memegen.link URLs, with guidance for selecting templates, formatting captions, and optionally using custom or trending image sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate meme images using the memegen.link API, with guidance for choosing meme templates, formatting captions, and producing meme URLs or downloaded image files.
 
-## Publisher: <br>
-[artemiopadilla](https://clawhub.ai/user/artemiopadilla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artemiopadilla](https://clawhub.ai/user/artemiopadilla)
 
-## Use Case: <br>
-Developers and agent users use this skill to help an AI agent choose meme templates, create caption text, construct meme image URLs, and download or deliver generated meme images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meme captions, search terms, and custom background image URLs may be sent to third-party services. <br>
-Mitigation: Avoid sensitive text in generated meme URLs and use third-party integrations only when the user accepts that data sharing. <br>
-Risk: Optional Reddit and Giphy workflows use third-party credentials and can download files locally. <br>
-Mitigation: Skip or isolate those optional scripts unless needed, review scripts before execution, and avoid using a personal Reddit password. <br>
-Risk: Automatic humor or cultural targeting can produce inappropriate or unwanted content. <br>
-Mitigation: Prefer explicit humor, audience, and regional settings, and review generated captions before sharing. <br>
+## Use Case:
 
+Developers and agent builders use Memegen to teach an agent to choose meme templates, format captions, and create meme image URLs or downloaded image files for user-requested memes and reaction images.
 
-## Reference(s): <br>
-- [Memegen Skill README](README.md) <br>
-- [memegen.link API Reference](references/api.md) <br>
-- [Template Index](references/template-index.md) <br>
-- [Complete Template Guide](references/templates-complete.md) <br>
-- [Trending Template Sources](references/templates-trending.md) <br>
-- [Humor Profiles](humor-profiles.md) <br>
-- [memegen.link API](https://api.memegen.link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with meme URLs, shell commands, and optional code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce URLs or local image download commands; optional scripts can write meme image files under temporary paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Optional scripts and examples contact third-party services and may write image files locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only the needed optional scripts, review their network destinations and output paths, and use a constrained working directory for production agents.
+
+Risk: Security evidence reports unsafe command/code injection paths in optional JavaScript and Giphy examples.
+
+Mitigation: Harden or skip those examples for untrusted input; avoid shell interpolation and validate template, caption, URL, and output path values.
+
+Risk: The Reddit OAuth script handles raw Reddit passwords.
+
+Mitigation: Avoid the Reddit OAuth script unless it is rewritten to use safer authentication and secret handling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/artemiopadilla/skills/memegen)
+- [memegen.link API](https://api.memegen.link)
+- [memegen.link API Reference](references/api.md)
+- [Template Quick-Reference Index](references/template-index.md)
+- [Complete Template Catalog](references/templates-complete.md)
+- [Classic Template Fallbacks](references/templates-classic.md)
+- [Trending Template Sources](references/templates-trending.md)
+- [Humor Profiles](humor-profiles.md)
+- [Generic Integration Guide](integrations/generic.md)
+- [LangChain Integration Guide](integrations/langchain.md)
+- [OpenClaw Integration Guide](integrations/openclaw.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with URLs, code snippets, shell commands, and optional downloaded image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Core meme generation uses memegen.link without an API key; optional integrations may call Imgflip, Reddit, or Giphy and may write local image files.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

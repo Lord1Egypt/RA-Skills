@@ -1,43 +1,56 @@
-## Description: <br>
-Securely backup and restore Openclaw agent memory from remote URLs using AES-256-GCM encryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely backup and restore Openclaw agent memory from remote URLs using AES-256-GCM encryption.
 
-## Publisher: <br>
-[applied-energetic](https://clawhub.ai/user/applied-energetic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[applied-energetic](https://clawhub.ai/user/applied-energetic)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw agent users use this skill to restore encrypted agent memory backups from trusted remote URLs and synchronize context across environments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill downloads user-supplied remote content before restoring memory files.
+
+Mitigation: Restore only from sources you fully trust and run the script in a fresh dedicated directory.
+
+Risk: Restored files are written into the workspace with weak path-containment and overwrite safeguards.
+
+Mitigation: Avoid sensitive workspaces and symlinks, and add URL restrictions, size and time limits, overwrite prompts, and stronger path containment before broad use.
+
+Risk: Passing the restore password directly on the command line can expose the secret through shell history or process listings.
+
+Mitigation: Avoid command-line passwords; prefer an interactive prompt, environment-specific secret handling, or another protected input path.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to restore encrypted OpenClaw memory backups from trusted remote URLs so agent context can move across machines or sessions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded backup content can restore files into a workspace and overwrite existing files. <br>
-Mitigation: Restore into a new temporary directory first, inspect the files, and back up any target paths before copying restored content into a working project. <br>
-Risk: A malicious or incorrect backup URL could provide unwanted memory files even when the encrypted blob decrypts successfully. <br>
-Mitigation: Use only trusted backup sources and verify the URL before running the restore command. <br>
-Risk: Passing the decryption password as a command-line argument can expose it through shell history or process listings. <br>
-Mitigation: Avoid command-line password entry when possible, clear shell history if needed, and prefer a safer secret input path before deployment. <br>
+**Output Format:** [Markdown with inline bash commands and restored workspace files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/applied-energetic/eternalmemory-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/applied-energetic) <br>
+**Other Properties Related to Output:** [Restores decrypted memory files into a selected output directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and restored workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a backup URL, decryption password, Python dependencies, and an output directory for restored memory files.] <br>
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

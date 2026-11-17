@@ -1,43 +1,62 @@
-## Description: <br>
-Provides Wojiayun equipment management and work-order API access for device lookup, repair, inspection, maintenance, file upload, project switching, and multi-project work-order reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Wojiayun device management and work-order API access for querying devices, repairs, inspections, maintenance tasks, and multi-project work-order statistics.
 
-## Publisher: <br>
-[mumuxilele](https://clawhub.ai/user/mumuxilele) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mumuxilele](https://clawhub.ai/user/mumuxilele)
 
-## Use Case: <br>
-Developers and operations teams with a scoped Wojiayun API key use this skill to query equipment, create and manage work orders, inspect maintenance data, switch projects, upload files, and aggregate multi-project work-order statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth-style token handling and sensitive Wojiayun credentials. <br>
-Mitigation: Install only if the publisher is trusted, use a scoped API key, and treat local key, token, and config files as sensitive business data. <br>
-Risk: A bundled default-key helper is present in the artifact. <br>
-Mitigation: Do not use the default-key helper; provision and rotate a user-controlled scoped API key instead. <br>
-Risk: The skill can create work orders, upload files, switch projects, export inventory data, and change the API base URL. <br>
-Mitigation: Review these actions before execution, avoid changing the base URL, and protect generated SQL exports as sensitive operational data. <br>
+## Use Case:
 
+Developers and operations teams use this skill to connect agents to Wojiayun APIs for equipment inventory, repair, inspection, maintenance, project switching, work-order creation, file upload, and reporting workflows. Use requires a valid Wojiayun API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mumuxilele/wojiayun) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and API response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scoped Wojiayun API key; may read or write local encrypted key, token, config, and SQL export files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: Unsafe credential handling, including an embedded default API key and local credential files, can expose Wojiayun access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only revocable, least-privilege API keys, rotate any exposed key, remove the embedded default key, and store secrets in a managed secret store.
+
+Risk: Mutable API host configuration can redirect requests or expose business data if the base URL is changed unexpectedly.
+
+Mitigation: Pin the Wojiayun API host, review any base_url changes before use, and run the skill in an isolated environment.
+
+Risk: Work-order creation, file uploads, local exports, and bulk project queries can modify or expose operational data.
+
+Mitigation: Grant only the endpoint permissions required for the task, require operator review for write and upload actions, and limit export locations and retention.
+
+Risk: The production obfuscation build path can perform hidden high-impact local file operations.
+
+Mitigation: Separate build tooling from runtime use, avoid running production build helpers in agent workflows, and review generated files before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mumuxilele/skills/wojiayun)
+- [ClawHub publisher profile](https://clawhub.ai/user/mumuxilele)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime calls return JSON-like API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a valid API key and network access to the configured Wojiayun API host.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

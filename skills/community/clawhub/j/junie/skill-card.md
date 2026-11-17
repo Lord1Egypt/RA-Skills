@@ -1,47 +1,61 @@
-## Description: <br>
-Installs, updates, authenticates, configures, and directs JetBrains Junie CLI on macOS or Linux while preserving Junie-native project and user configuration patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, update, authenticate, configure, and direct JetBrains Junie CLI in Junie-native ways on macOS or Linux shells.
 
-## Publisher: <br>
-[inertia186](https://clawhub.ai/user/inertia186) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[inertia186](https://clawhub.ai/user/inertia186)
 
-## Use Case: <br>
-Developers and host agents use this skill to set up JetBrains Junie CLI, manage Junie configuration and authentication, bootstrap a .junie project layout, and hand focused implementation or review work to Junie with clear constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote installer scripts download and execute code locally. <br>
-Mitigation: Prefer package-manager installs where practical, review installer use in sensitive environments, and pin versions when repeatability matters. <br>
-Risk: Junie tokens and provider API keys can be exposed if persisted carelessly. <br>
-Mitigation: Keep credentials in environment variables when possible and ask before writing secrets to durable Junie configuration files. <br>
-Risk: Persistent .junie and ~/.junie configuration changes can alter future Junie behavior. <br>
-Mitigation: Review config changes before relying on them and merge existing JSON instead of replacing user or project configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to install or configure JetBrains Junie CLI, bootstrap Junie-native project layout, and brief Junie as a focused implementation or review partner under host-agent oversight.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/inertia186/junie) <br>
-- [JetBrains Junie CLI](https://junie.jetbrains.com/cli) <br>
-- [Junie doc notes](references/junie-doc-notes.md) <br>
-- [When Junie setup needs headless-terminal](references/headless-terminal-fit.md) <br>
-- [Junie macOS/Linux installer](https://junie.jetbrains.com/install.sh) <br>
-- [Junie Windows installer](https://junie.jetbrains.com/install.ps1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local .junie configuration files, bootstrap directories, and Junie task briefs when setup or orchestration work is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and changelog) <br>
+Risk: Installation can download and execute external JetBrains Junie installer or package-manager code as the current user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when JetBrains Junie is trusted, prefer a reviewed or pinned package-manager path where available, and review the installer path before execution.
+
+Risk: The skill can persist Junie settings in user or project configuration files, including provider choices and optional credentials.
+
+Mitigation: Inspect config changes before writing them and keep API keys in environment variables unless durable storage is explicitly desired.
+
+Risk: Launching Junie tasks may share repository context with the selected model or provider.
+
+Mitigation: Confirm the effective model and provider before launch, and scope prompts or read-only checks to the minimum repository context needed.
+
+## Reference(s):
+
+- [Headless Terminal Fit](references/headless-terminal-fit.md)
+- [Junie Doc Notes](references/junie-doc-notes.md)
+- [Junie CLI Account and Token Page](https://junie.jetbrains.com/cli)
+- [Junie macOS/Linux Installer](https://junie.jetbrains.com/install.sh)
+- [Junie Windows Installer](https://junie.jetbrains.com/install.ps1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and helper-script guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or merge Junie configuration files and may run local installation, bootstrap, or usage-summary helper scripts when directed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

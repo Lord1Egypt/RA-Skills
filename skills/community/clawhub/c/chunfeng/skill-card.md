@@ -1,44 +1,56 @@
-## Description: <br>
-Chunfeng is a Chinese-language reasoning skill that applies Mao Zedong methodology, Charlie Munger mental models, and first-principles thinking to complex decisions, strategic planning, contradiction analysis, and risk review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chunfeng is a decision-analysis skill that combines contradiction analysis, practice-based validation, Munger-style mental models, and first-principles reasoning to structure complex decisions and strategic problems.
 
-## Publisher: <br>
-[BraisedPork2019](https://clawhub.ai/user/BraisedPork2019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[braisedpork2019](https://clawhub.ai/user/braisedpork2019)
 
-## Use Case: <br>
-External users and developers use this skill to generate structured thinking reports for complex decisions, strategic planning, problem diagnosis, innovation work, contradiction analysis, and validation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks to save analysis notes and feedback locally for future optimization without clear opt-in, retention, or deletion controls. <br>
-Mitigation: Use it only when local memory files can be reviewed, disabled, or deleted, and avoid sensitive personal, legal, financial, business, or strategic information unless that behavior is acceptable. <br>
-Risk: Structured recommendations may be incorrect, incomplete, or overconfident for high-impact decisions. <br>
-Mitigation: Treat outputs as analysis support, verify key assumptions independently, and require human review before acting on consequential recommendations. <br>
+## Use Case:
 
+External users and agents use this skill to produce structured analysis for complex decisions, strategic planning, contradiction diagnosis, risk review, and innovation framing.
 
-## Reference(s): <br>
-- [Chunfeng Skill Page](https://clawhub.ai/BraisedPork2019/chunfeng) <br>
-- [Integration Framework](artifact/references/integration-framework.md) <br>
-- [Mao Methodology](artifact/references/mao-methodology.md) <br>
-- [Munger Models](artifact/references/munger-models.md) <br>
-- [Musk First Principles](artifact/references/musk-first-principles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include action recommendations, risk lists, validation plans, and locally saved analysis or feedback notes when memory behavior is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill directs the agent to retain summaries of analysis interactions and user feedback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or constrain memory logging for sensitive topics, and require explicit user consent before writing analysis logs.
+
+Risk: The skill describes updating its own content from accumulated interactions.
+
+Mitigation: Review and approve proposed skill updates before adoption, especially when analysis involves business, legal, financial, or strategic matters.
+
+## Reference(s):
+
+- [Integration Framework V1.1.0](references/integration-framework.md)
+- [Mao Methodology](references/mao-methodology.md)
+- [Munger Mental Models](references/munger-models.md)
+- [Musk First Principles](references/musk-first-principles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured analysis report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include action recommendations, a risk checklist, and a validation plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact text describes V1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

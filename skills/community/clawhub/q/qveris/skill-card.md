@@ -1,42 +1,59 @@
-## Description: <br>
-Search and execute dynamic tools via QVeris API. Use when needing to find and call external APIs/tools dynamically (weather, search, data retrieval, stock trading analysis, etc.). Requires QVERIS_API_KEY environment variable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and execute dynamic tools via QVeris API. Use when needing to find and call external APIs/tools dynamically (weather, search, data retrieval, stock trading analysis, etc.). Requires QVERIS_API_KEY environment variable.
 
-## Publisher: <br>
-[hqman](https://clawhub.ai/user/hqman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hqman](https://clawhub.ai/user/hqman)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to discover QVeris-hosted API tools by capability and execute selected tools for weather, market data, search, currency, geolocation, translation, and similar data-retrieval tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act as a broad remote tool gateway and may auto-invoke QVeris tool discovery or execution without clear confirmation boundaries. <br>
-Mitigation: Review the selected tool ID, search ID, and parameters before execution, especially for financial, account-related, or other high-impact tasks. <br>
-Risk: Queries and execution parameters may be sent to QVeris or downstream tools, which can expose sensitive personal or business data. <br>
-Mitigation: Use a dedicated QVeris API key and avoid sending secrets, credentials, confidential records, or sensitive personal data through tool searches or parameters. <br>
+## Use Case:
 
+Developers and external users use this skill to discover and execute QVeris-hosted API tools for tasks such as weather lookup, market data retrieval, web search, currency data, and other dynamic API-backed workflows.
 
-## Reference(s): <br>
-- [QVeris](https://qveris.ai) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
-- [Qveris on ClawHub](https://clawhub.ai/hqman/qveris) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text, JSON, Configuration] <br>
-**Output Format:** [Formatted terminal text or JSON returned from QVeris tool search and execution commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QVERIS_API_KEY and uv; remote responses are capped by the script's max response size option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: pyproject.toml and server release metadata) <br>
+Risk: Search queries and execution parameters are sent to QVeris and may be relayed to downstream tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with secrets, regulated data, or sensitive account details unless QVeris and the selected downstream tool are explicitly trusted.
+
+Risk: Discovered tools may perform broad third-party API actions, including actions that could mutate accounts.
+
+Mitigation: Review each selected tool, its parameters, and the intended action before execution, especially for account-changing or trading-related workflows.
+
+Risk: The documentation includes remote installer commands for uv.
+
+Mitigation: Prefer safer uv installation methods or verify installer integrity before running remote installation commands.
+
+## Reference(s):
+
+- [QVeris](https://qveris.ai)
+- [uv Installation Guide](https://docs.astral.sh/uv/getting-started/installation/)
+- [ClawHub Skill Page](https://clawhub.ai/hqman/skills/qveris)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QVERIS_API_KEY and can limit execution responses with --max-size.]
+
+## Skill Version(s):
+
+0.1.0 (source: pyproject.toml and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

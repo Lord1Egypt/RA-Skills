@@ -1,42 +1,50 @@
-## Description: <br>
-Helps an agent search and read Linux DO content through OOMOL's linux_do connector and oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Linux DO to search and read public forum content.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to discover and read Linux DO topics, posts, category feeds, tag feeds, group activity, badge grants, and user activity through read-only CLI actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party OOMOL oo CLI and includes installer commands for first-time setup. <br>
-Mitigation: Install or authenticate the CLI only when needed, and use the installer only after deciding to trust OOMOL's distribution path. <br>
-Risk: Linux DO feeds can return rate limits or 404 responses for private or anonymously inaccessible resources. <br>
-Mitigation: Treat 404 responses as access ambiguity, retry rate-limited requests later, and avoid over-interpreting unavailable feed data. <br>
+## Use Case:
 
+Developers and agents can search public Linux DO topics, posts, categories, tags, groups, and badge grants through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Linux DO Skill](https://clawhub.ai/oomol/oo-linux-do) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Linux DO](https://linux.do) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions are documented as read-only; the skill directs agents to inspect the live connector schema before sending JSON payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Setup permits unverified remote code execution and changes to installed agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, choose and verify a fixed release, review its skill changes, and disable automatic skill synchronization if unwanted.
+
+## Reference(s):
+
+- [Linux DO](https://linux.do)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON connector responses and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results vary by requested Linux DO feed or item.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

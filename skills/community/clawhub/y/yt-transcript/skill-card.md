@@ -1,41 +1,57 @@
-## Description: <br>
-Extracts clean, plain-text transcripts from YouTube links or video IDs for research, summarization, and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts plain-text transcripts from YouTube videos for review, analysis, and summarization.
 
-## Publisher: <br>
-[Alti-Systems](https://clawhub.ai/user/Alti-Systems) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[alti-systems](https://clawhub.ai/user/alti-systems)
 
-## Use Case: <br>
-Developers, researchers, and content analysts use this skill to fetch YouTube transcripts so agents can summarize videos, extract quotes, and support content analysis without manual viewing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive private or internal video URLs may disclose the video ID and request metadata to YouTube or a configured transcript provider. <br>
-Mitigation: Use only video links that are appropriate to share with external transcript services, and avoid sensitive URLs unless that exposure is acceptable. <br>
-Risk: Documentation mentions Supadata and yt-dlp, while the artifact includes bundled YouTube scripts and package dependencies. <br>
-Mitigation: Verify the command path and provider configuration before relying on a specific extraction or fallback method. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve transcript text from a YouTube URL or video ID so video content can be summarized, quoted, or analyzed without manual viewing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Alti-Systems/yt-transcript) <br>
-- [Publisher profile](https://clawhub.ai/user/Alti-Systems) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript, optionally with timestamped lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a YouTube URL or video ID; bundled scripts also support an optional language parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and package.json) <br>
+Risk: Documented behavior and wrapper paths may not fully match the shipped scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed package and confirm the wrapper path and selected transcript method before use.
+
+Risk: The lockfile contains scanner-flagged vulnerable dependencies.
+
+Mitigation: Review and update dependency versions before installing in a trusted or production environment.
+
+Risk: YouTube URLs, video IDs, or API keys may be sent to YouTube, Supadata, or third-party transcript libraries.
+
+Mitigation: Avoid sensitive or private video references and keep API keys only in trusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alti-systems/skills/yt-transcript)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text transcript, optionally with timestamped lines and brief video metadata depending on the script path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a YouTube URL or video ID and optional language code; transcript retrieval may contact YouTube, Supadata, or third-party transcript libraries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

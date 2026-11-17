@@ -1,45 +1,60 @@
-## Description: <br>
-Deeptutor is a personalized, content-driven deep reading tutor that reads EPUB chapters, writes original-text-first deep dives, can generate comprehension checks, and saves notes to Obsidian. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personalized content-driven deep reading tutor. Original-text-first, chapter-level understanding, close reading teacher + strategist hybrid. Auto-saves to Obsidian.
 
-## Publisher: <br>
-[tanjinlimkelvin-dot](https://clawhub.ai/user/tanjinlimkelvin-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanjinlimkelvin-dot](https://clawhub.ai/user/tanjinlimkelvin-dot)
 
-## Use Case: <br>
-Readers and agents use this skill to study books chapter by chapter from local EPUB files, producing close-reading Markdown deep dives, comprehension questions, and Obsidian reading notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes generated reading notes and navigation files into the configured Obsidian vault path. <br>
-Mitigation: Review the hard-coded vault path before use and keep backups for important notes. <br>
-Risk: Rerunning a chapter can overwrite that chapter note and refresh index or navigation files. <br>
-Mitigation: Review generated content before saving and preserve previous notes when edits must be retained. <br>
+## Use Case:
 
+External users and developers use Deeptutor to guide chapter-by-chapter EPUB reading, produce original-text-first interpretive deepdives, and save reusable study notes to Obsidian.
 
-## Reference(s): <br>
-- [Chapter-by-Chapter Book Deep Study Prompt](references/chapter-by-chapter.md) <br>
-- [How Jin should invoke deeptutor](references/invocation-prompts.md) <br>
-- [Patterns for Book Deep Study](references/patterns.md) <br>
-- [Quiz Templates for Book Deep Study](references/quiz-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tanjinlimkelvin-dot/deeptutor) <br>
-- [Publisher profile](https://clawhub.ai/user/tanjinlimkelvin-dot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with optional shell commands and saved Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write chapter notes, an index, and navigation links under the configured Obsidian vault path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill reads local EPUB files and extracts book text for agent analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted EPUB files and confirm paths before extraction.
+
+Risk: The skill can create and update Markdown notes automatically in the Obsidian vault.
+
+Mitigation: Review generated notes and keep the vault protected from untrusted writers.
+
+Risk: Book text may contain instruction-like or adversarial content.
+
+Mitigation: Treat extracted book text as reading material, not as commands for the agent.
+
+## Reference(s):
+
+- [Chapter-by-Chapter Book Deep Study Prompt](references/chapter-by-chapter.md)
+- [How Jin should invoke deeptutor](references/invocation-prompts.md)
+- [Patterns for Book Deep Study](references/patterns.md)
+- [Quiz Templates for Book Deep Study](references/quiz-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown deepdive notes with optional quiz questions and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Markdown files, indexes, and navigation links under /data/workspace/obsidian-vault/Books.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

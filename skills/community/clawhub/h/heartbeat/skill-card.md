@@ -1,45 +1,64 @@
-## Description: <br>
-Design better OpenClaw HEARTBEAT.md files with adaptive cadence, safe checks, and cron handoffs for precise schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design better OpenClaw HEARTBEAT.md files with adaptive cadence, safe checks, and cron handoffs for precise schedules.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to design HEARTBEAT.md behavior for adaptive monitoring, proactive check-ins, and cron handoffs for exact-time tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated heartbeat or cron guidance could create unwanted proactive checks, noisy alerts, or schedule changes if enabled without review. <br>
-Mitigation: Manually confirm generated cron and heartbeat changes before enabling them, and use the included QA checklist, cooldown rules, quiet hours, and rollback snapshot guidance. <br>
-Risk: Heartbeat preferences, drafts, and snapshots stored under ~/heartbeat/ could expose sensitive workflow details if secrets are added there. <br>
-Mitigation: Avoid storing secrets in ~/heartbeat/ and keep heartbeat memory limited to cadence preferences, scope, and tuning decisions. <br>
-Risk: Ungated paid API or expensive checks could increase cost if added to a heartbeat cycle. <br>
-Mitigation: Place expensive checks behind cheap prechecks and require explicit user acceptance before paid APIs run on heartbeat cycles. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Heartbeat on ClawHub](https://clawhub.ai/ivangdavila/heartbeat) <br>
-- [Heartbeat homepage](https://clawic.com/skills/heartbeat) <br>
-- [OpenClaw Docs - Heartbeats](https://docs.openclaw.ai/advanced/heartbeats) <br>
-- [OpenClaw Docs - Cron vs Heartbeat](https://docs.openclaw.ai/advanced/cron-vs-heartbeat) <br>
-- [OpenClaw CLI System Skill](https://docs.openclaw.ai/openclaw-cli/system-skill) <br>
+## Use Case:
 
+Developers and OpenClaw users use Heartbeat to draft and tune HEARTBEAT.md files for adaptive monitoring, proactive check-ins, and cron handoffs for exact-time jobs.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration instructions, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with heartbeat templates, checklists, and inline configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local files under ~/heartbeat/ and cron handoff guidance for user review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can lead an agent to create or update heartbeat preferences, drafts, and snapshots under ~/heartbeat/.
+
+Mitigation: Review the local file locations before use and keep generated heartbeat files scoped to the heartbeat workflow.
+
+Risk: Example timezone and active-hour values may be copied into a live heartbeat file unchanged.
+
+Mitigation: Replace the example Europe/Madrid timezone and sample active hours with the user's actual operating window before enabling proactive checks.
+
+Risk: Cron handoff proposals can create scheduled jobs that run at exact times.
+
+Mitigation: Review and explicitly approve any cron entries before allowing scheduled execution.
+
+Risk: Overly broad monitors or ungated expensive checks can increase noise, token use, or paid API cost.
+
+Mitigation: Use the documented cheap precheck gates, cooldowns, and scope limits before enabling expensive or frequent checks.
+
+## Reference(s):
+
+- [Heartbeat on ClawHub](https://clawhub.ai/ivangdavila/skills/heartbeat)
+- [Heartbeat Homepage](https://clawic.com/skills/heartbeat)
+- [OpenClaw Docs - Heartbeats](https://docs.openclaw.ai/advanced/heartbeats)
+- [OpenClaw Docs - Cron vs Heartbeat](https://docs.openclaw.ai/advanced/cron-vs-heartbeat)
+- [OpenClaw CLI System Skill](https://docs.openclaw.ai/openclaw-cli/system-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with heartbeat templates, checklists, and inline configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local heartbeat memory, draft, snapshot, and cron handoff files for user review.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

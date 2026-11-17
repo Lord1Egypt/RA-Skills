@@ -1,39 +1,57 @@
-## Description: <br>
-Drafts AIAG-VDA-aligned Process FMEA packages with Severity, Occurrence, Detection, Action Priority ratings, optimisation actions, reanalysis triggers, and review sign-off material for responsible engineers and cross-functional quality teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps quality, manufacturing, and APQP/PPAP leads draft AIAG-VDA-aligned Process FMEAs, including draft worksheets, Action Priority ratings, optimisation action plans, reanalysis triggers, and sign-off blocks for cross-functional review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Quality engineers, manufacturing engineers, APQP / PPAP leads, and supplier-quality teams use this skill to draft and update PFMEA worksheets before control-plan, PPAP, audit, or customer-review activities. It supports AIAG-VDA seven-step analysis while keeping final scoring, acceptance, and sign-off with the responsible engineer and cross-functional team. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The draft may include incomplete or incorrect PFMEA scoring, action priority assignments, or manufacturing-risk guidance if supplied programme, customer, supplier, process, or control inputs are incomplete. <br>
-Mitigation: Use it only for draft PFMEA preparation and require responsible-engineer and cross-functional-team review before any PPAP, control-plan, production, customer, safety, or regulatory decision. <br>
+## Use Case:
 
+External quality, manufacturing, supplier-quality, and APQP/PPAP engineers use this skill to prepare draft PFMEA packages for new processes, process changes, customer complaints, audit findings, or re-baselining from RPN to AIAG-VDA Action Priority. The output is intended for cross-functional team review before control-plan updates, PPAP packages, source inspection, or audit use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/pfmea-process-fmea-drafter) <br>
-- [Open-Skill-Hub issues](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft PFMEA package with worksheet tables, action lists, review blocks, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft quality-engineering content for human review; it does not run code or transfer data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence release metadata and changelog, released 2026-05-28) <br>
+Risk: Draft PFMEA content could be mistaken for approved engineering or regulatory sign-off.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the output marked as draft and require cross-functional team and responsible engineer review before control-plan, PPAP, production-authorisation, or audit use.
+
+Risk: Users may provide proprietary customer, supplier, programme, or process information.
+
+Mitigation: Avoid sharing sensitive process data unless the execution environment is appropriate for that information.
+
+Risk: Incorrect Severity, Occurrence, Detection, or Action Priority ratings could mislead risk treatment.
+
+Mitigation: Review scoring against customer requirements, AIAG-VDA guidance, and the responsible engineer's judgement before relying on the draft.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/pfmea-process-fmea-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown PFMEA package with structured worksheet tables, action lists, reanalysis triggers, open questions, and sign-off block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft output; requires cross-functional team and responsible engineer review before operational use]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

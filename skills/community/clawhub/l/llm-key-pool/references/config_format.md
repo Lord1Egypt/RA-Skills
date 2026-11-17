@@ -123,8 +123,8 @@ providers:
     tier: primary
     model: "qwen-max"
     api_keys:
-      - "sk-xxxxxxxxxxxxxxxxxxxxxxxx"
-      - "sk-yyyyyyyyyyyyyyyyyyyyyyyy"
+      - "REDACTED-SECRET"
+      - "REDACTED-SECRET"
     base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
 
   # 主力层：智谱AI
@@ -157,7 +157,7 @@ providers:
     tier: fallback
     model: "Qwen/Qwen2.5-7B-Instruct"
     api_keys:
-      - "sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+      - "REDACTED-SECRET"
     base_url: "https://api.siliconflow.cn/v1"
 
   # 兜底层：OpenRouter
@@ -165,7 +165,7 @@ providers:
     tier: fallback
     model: "meta-llama/llama-3.1-8b-instruct:free"
     api_keys:
-      - "sk-or-xxxxxxxxxxxxxxxxxxxxxxxx"
+      - "REDACTED-SECRET"
     base_url: "https://openrouter.ai/api/v1"
 
 # 全局配置

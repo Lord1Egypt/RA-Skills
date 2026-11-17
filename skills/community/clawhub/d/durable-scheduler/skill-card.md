@@ -1,40 +1,53 @@
-## Description: <br>
-Use when the user needs durable, audited job scheduling beyond OpenClaw's built-in cron -- SQLite-backed scheduler with shell + agent steps, retries, approvals, and full run history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides durable, SQLite-backed scheduling guidance for OpenClaw shell and agent workflows with retries, approvals, run history, and gateway-aware dispatch.
 
-## Publisher: <br>
-[amittell](https://clawhub.ai/user/amittell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amittell](https://clawhub.ai/user/amittell)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and manage persistent OpenClaw job scheduling, audited shell and agent workflows, retries, approvals, and run history on hosts that need more durability than built-in cron. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports a persistent host-side scheduler that can keep running jobs outside the OpenClaw gateway lifecycle. <br>
-Mitigation: Install it only when persistent host-side scheduling is intended, pin a trusted package version, and review the package/source before use. <br>
-Risk: Shell workflows can execute privileged or destructive host commands. <br>
-Mitigation: Run jobs with the least privilege possible, test workflows non-destructively, and keep cleanup or remediation commands narrow and reversible. <br>
+## Use Case:
 
+Developers and operators use this skill to decide when and how to install and operate openclaw-scheduler for durable OpenClaw job scheduling, multi-step workflows, approvals, and CLI-based run auditing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/amittell/durable-scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scheduler setup steps, job definitions, workflow commands, and operational cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned third-party global package and registers a persistent background service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the package version, review the generated plist before bootstrapping it, and document pause, removal, and audit procedures before enabling unattended jobs.
+
+Risk: Scheduled workflows can run shell and agent jobs, including privileged commands.
+
+Mitigation: Avoid running jobs as root, restrict shell commands to reviewed operations, and require approval steps before remediation actions.
+
+## Reference(s):
+
+- [Durable Scheduler ClawHub listing](https://clawhub.ai/amittell/skills/durable-scheduler)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include launchd setup commands, scheduler CLI examples, workflow definitions, and operational cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

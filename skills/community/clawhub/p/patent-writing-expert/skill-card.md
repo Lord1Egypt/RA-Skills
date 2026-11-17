@@ -1,42 +1,54 @@
-## Description: <br>
-Helps draft, revise, review, and respond to patent application materials for Chinese and international patent workflows across mechanical, civil, control, AI, and related fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patent Writing Expert supports patent application drafting, revision, office-action responses, prior-art novelty searches, and Chinese and international patent drafting workflows.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Patent practitioners, inventors, and technical teams use this skill to turn invention disclosures or existing application materials into patent claims, specifications, office-action responses, prior-art comparison tables, and filing strategy guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated patent drafting or legal strategy may be incorrect or incomplete. <br>
-Mitigation: Have a qualified patent professional verify legal conclusions, filing strategy, and final application text before use. <br>
-Risk: Prior-art citations, authorization probabilities, or experimental claims may be unverifiable or misleading. <br>
-Mitigation: Check cited prior art, technical effects, experimental data, and sworn statements against official sources and supporting records. <br>
-Risk: Invention disclosures can contain confidential information. <br>
-Mitigation: Avoid sharing confidential details unless the runtime and data handling are trusted. <br>
+## Use Case:
 
+External users and patent practitioners use this skill to turn technical disclosures into patent application drafts, review existing claims and specifications, prepare office-action responses, and structure novelty or inventive-step searches. Outputs should be reviewed by a qualified patent professional before formal filing or jurisdiction-specific legal reliance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jirboy/patent-writing-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports, patent-drafting text, tables, and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include patent claims, specification sections, abstracts, prior-art comparison tables, office-action responses, and risk assessments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Patent drafting and office-action guidance may be incomplete or unsuitable for a specific jurisdiction or filing strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target jurisdiction and have a qualified patent professional review outputs before relying on them for legal filing decisions.
+
+Risk: Prior-art search summaries and patentability assessments may miss relevant references or overstate novelty, inventive step, or authorization probability.
+
+Mitigation: Validate search results against authoritative patent databases and preserve human review for final patentability and filing decisions.
+
+## Reference(s):
+
+- [Patent Writing Expert on ClawHub](https://clawhub.ai/jirboy/skills/patent-writing-expert)
+- [Publisher profile: jirboy](https://clawhub.ai/user/jirboy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured tables, checklists, patent-document drafts, and analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain Markdown guidance; no executable code or credential handling is present in the artifact.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

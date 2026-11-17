@@ -1,42 +1,56 @@
-## Description: <br>
-Populate missing contact company name fields from associated company records using a HubSpot workflow with optional API backfill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Populate missing contact company name fields from associated company records using a HubSpot workflow with optional API backfill for CRM segmentation, personalization, and ICP classification.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tomgranot](https://clawhub.ai/user/tomgranot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+CRM operators, marketing operations teams, and developers use this skill to audit HubSpot contacts missing company names, copy associated company names into contact records, and verify enrichment results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can enable ongoing and bulk HubSpot CRM changes that may affect contact records at scale.
+
+Mitigation: Use a least-privilege HubSpot token, test on a sandbox or small segment first, export affected contact and company fields before bulk changes, and define rollback or cleanup steps before enrolling the full backlog.
+
+Risk: Audit scripts can retrieve contact PII fields while measuring enrichment coverage.
+
+Mitigation: Remove unnecessary contact PII fields from the audit scripts and retain only the fields needed for before and after validation.
+
+Risk: Duplicate or incorrect company associations can copy the wrong primary company name to a contact.
+
+Mitigation: Confirm duplicate and auto-association settings before activation, then spot-check enriched contacts and workflow history after processing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-CRM operators, marketing operations teams, and developers use this skill to populate missing HubSpot contact company-name fields from associated company records and verify enrichment coverage. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow or optional API backfill can update HubSpot contact records incorrectly if filters, copy actions, or company associations are wrong. <br>
-Mitigation: Review workflow filters and copy-property settings before activation, preserve a rollback path for affected contacts, and spot-check enriched records against associated companies. <br>
-Risk: HubSpot credentials used by the audit scripts can expose or modify CRM data if over-privileged. <br>
-Mitigation: Use a least-privilege HubSpot token, store it in the local environment file, and avoid sharing generated audit files outside approved CRM operations workflows. <br>
-Risk: Large backfills may take hours, hit API limits, or leave recently associated contacts incomplete. <br>
-Mitigation: Respect HubSpot rate limits, segment large API runs by created-date ranges, and monitor the after-state audit plus workflow history after activation. <br>
+**Output Format:** [Markdown guidance with Python audit scripts and HubSpot workflow configuration steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomgranot/enrich-company-name) <br>
+**Other Properties Related to Output:** [May produce CSV audit files when the included before and after scripts are run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code] <br>
-**Output Format:** [Markdown guidance with Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CRM audit CSV outputs when the bundled before and after scripts are run.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

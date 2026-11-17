@@ -1,40 +1,53 @@
-## Description: <br>
-Async Command guides agents on starting, polling, logging, and stopping long-running shell commands without blocking other work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Async Command gives OpenClaw agents guidance for running long shell commands asynchronously, polling progress, and stopping background jobs when needed.
 
-## Publisher: <br>
-[guytogay](https://clawhub.ai/user/guytogay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guytogay](https://clawhub.ai/user/guytogay)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decide when to run shell commands asynchronously and how to monitor or stop background jobs during long builds, tests, installs, migrations, or log watches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-running shell commands can keep working in the background after the agent moves on. <br>
-Mitigation: Track session IDs, poll or log background jobs periodically, and stop jobs that are no longer needed. <br>
-Risk: Shell execution can be destructive or privileged if commands are not scoped to the task. <br>
-Mitigation: Keep commands task-scoped, use confirmation for destructive operations, and avoid privileged commands unless explicitly required. <br>
+## Use Case:
 
+Developers and agent operators use this skill to decide when to run long shell commands asynchronously, how to poll their progress, and how to stop them when interruption is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guytogay/async-command) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline shell-command patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden install behavior or data access reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Stopping a long-running command can interrupt migrations, installs, deployments, or data-processing jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before stopping a background command, consider whether interruption is safe and whether the operation needs cleanup, rollback, or a status check.
+
+Risk: Forgetting a background job can waste resources or leave work incomplete.
+
+Mitigation: Track session IDs and poll background jobs periodically until they complete or are intentionally stopped.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guytogay/skills/async-command)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code]
+
+**Output Format:** [Markdown with inline command and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code or generated files; output is instructional guidance for agent command workflow decisions.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

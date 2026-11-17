@@ -1,40 +1,53 @@
-## Description: <br>
-Audit and harden an OpenClaw workspace setup with concise, enforceable rules, safety boundaries, and low-bloat instruction design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and harden an OpenClaw workspace setup (AGENTS/SOUL/USER/HEARTBEAT/memory) with concise, enforceable rules, safety boundaries, and low-bloat instruction design.
 
-## Publisher: <br>
-[cwheeler67](https://clawhub.ai/user/cwheeler67) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cwheeler67](https://clawhub.ai/user/cwheeler67)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit and tighten OpenClaw workspace bootstrap and memory files while preserving user preferences and safety boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changes to bootstrap or memory files can alter how future agents follow instructions. <br>
-Mitigation: Require a visible diff and rationale before edits are applied. <br>
-Risk: Overbroad hardening edits can accidentally weaken privacy or approval boundaries. <br>
-Mitigation: Keep edits targeted, preserve explicit user preferences, and ask before applying broad policy changes. <br>
+## Use Case:
 
+Developers and agent users use this skill to audit and improve workspace instruction and memory files for clearer behavior, tighter safety boundaries, and lower instruction bloat.
 
-## Reference(s): <br>
-- [Workspace Hardening Rubric](references/rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summary with optional file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a hardening summary, files changed, and one highest-leverage next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Edits to workspace instruction or memory files can change future agent behavior in unintended ways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed diffs carefully before accepting changes, especially changes to privacy, approval, or destructive-action boundaries.
+
+Risk: Overbroad hardening edits could remove user preferences or useful platform-specific norms.
+
+Mitigation: Keep changes small and targeted, preserve explicit user preferences, and ask before applying broad policy changes.
+
+## Reference(s):
+
+- [Workspace Hardening Rubric](references/rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown summary with file-change list and one recommended next step]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected summary is 3-8 bullets, plus changed files and a single highest-leverage follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

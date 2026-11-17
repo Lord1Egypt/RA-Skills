@@ -1,48 +1,58 @@
-## Description: <br>
-Build Next.js 15 apps with App Router, server components, caching, auth, and production patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Next.js apps with App Router, including server components, caching, Server Actions, authentication, deployment, routing, and data-fetching guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill for practical Next.js 15 guidance across App Router routing, server and client component boundaries, data fetching, caching, authentication, and deployment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep local notes about a user's Next.js stack, conventions, and deployment target. <br>
-Mitigation: Do not store secrets in those notes, and review local memory files for sensitive project details. <br>
-Risk: The skill includes package-install, deployment, Docker, PM2, Vercel, and CI/CD command examples that can affect a project or production environment. <br>
-Mitigation: Review commands and configuration changes before allowing an agent to run or apply them. <br>
-Risk: Incorrect Next.js caching, authentication, or environment-variable guidance can expose data or produce stale behavior. <br>
-Mitigation: Validate generated changes against the target application's security model, cache requirements, and deployment environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, debug, harden, and deploy Next.js App Router applications. It helps with common routing, rendering, caching, authentication, Server Actions, and deployment decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/nextjs) <br>
-- [Skill homepage](https://clawic.com/skills/nextjs) <br>
-- [Setup](setup.md) <br>
-- [Routing](routing.md) <br>
-- [Data Fetching](data-fetching.md) <br>
-- [Caching](caching.md) <br>
-- [Authentication](auth.md) <br>
-- [Deployment](deployment.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project-specific recommendations and local memory notes when the user opts in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may store local Next.js project context under ~/Clawic/data/nextjs/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what the agent writes to local memory and avoid storing secrets or sensitive project details there.
+
+Risk: Authentication setup guidance includes a beta NextAuth/Auth.js dependency path.
+
+Mitigation: Pin and review authentication package versions before applying generated install or setup commands.
+
+Risk: Middleware-only authorization can leave protected data paths exposed.
+
+Mitigation: Enforce authorization in Server Actions, route handlers, and data-access functions, not only in middleware.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/nextjs)
+- [Clawic NextJS skill page](https://clawic.com/skills/nextjs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local project memory under ~/Clawic/data/nextjs/ when used by an agent.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

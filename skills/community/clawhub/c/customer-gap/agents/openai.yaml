@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 消费者预期差距"
+  short_description: "核对商品承诺与真实使用体验"
+  default_prompt: "使用 $amazon-customer-expectation-gap 检查一个 Amazon 商品页承诺与真实评论体验之间的差距。"

@@ -1,0 +1,5 @@
+# Markdown/Vault uses the standard library; Pillow supports QA and image inspection.
+Pillow>=10,<13
+tzdata>=2025.1
+python-docx>=1.1,<2
+requests>=2.32,<3

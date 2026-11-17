@@ -1,42 +1,54 @@
-## Description: <br>
-Deploy a SuperRare Sovereign ERC-721 collection on Ethereum or Base via Bankr. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a SuperRare Sovereign ERC-721 collection on Ethereum or Base via Bankr. Uses the official RARE factory createSovereignBatchMint path, dry-runs by default, and records auditable deploy receipts.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare, dry-run, and optionally broadcast SuperRare Sovereign ERC-721 collection deployments through Bankr on Ethereum or Base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broadcast mode can submit a real blockchain deployment transaction. <br>
-Mitigation: Run the default dry-run first and verify the chain, factory address, calldata, collection name, and symbol before using --broadcast. <br>
-Risk: The skill may use an existing Bankr credential from the environment or local Bankr config. <br>
-Mitigation: Install and run it only in an environment where using that Bankr credential is intended. <br>
-Risk: Deployment receipt files may include RPC URLs or deployment metadata. <br>
-Mitigation: Review receipt JSON files before sharing them outside the deployment team. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare and run SuperRare Sovereign ERC-721 collection deployments on Ethereum mainnet, Sepolia, Base, or Base Sepolia through Bankr signing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaigotchi/superrare-deploy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON receipt files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Broadcast deployments can write receipt JSON files containing transaction, RPC, and deployment metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: A Bankr API key can be sent to a locally configurable, unvalidated API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect Bankr config files that can set apiUrl and prefer the official Bankr endpoint before using real credentials.
+
+Risk: Broadcast deployment actions are irreversible on-chain and may spend funds or deploy a live collection.
+
+Mitigation: Use dry-run first and enable --broadcast or DRY_RUN=0 only after checking the chain, factory address, calldata, and configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaigotchi/skills/superrare-deploy)
+- [Publisher profile](https://clawhub.ai/user/aaigotchi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON receipt files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires cast, jq, curl, and BANKR_API_KEY; dry-run is the default.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

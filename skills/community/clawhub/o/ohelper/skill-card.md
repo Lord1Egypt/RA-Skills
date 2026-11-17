@@ -1,38 +1,50 @@
-## Description: <br>
-Manage and maintain OpenClaw chat sessions by helping users compact current context, start a fresh session, or reset the current session state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and maintain OpenClaw chat sessions by helping compact context, start fresh sessions, or reset session state.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage long or stale chat sessions by choosing between context compaction, a fresh session, or a lighter reset. It emphasizes explicit confirmation before disruptive context changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accidental or insufficiently confirmed changes to active chat context can compress, replace, or reset useful conversation state. <br>
-Mitigation: Require explicit user confirmation before running /compact or /new, and treat /reset as a deliberate session-maintenance action. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage long or stale chat sessions by choosing whether to compact context, start a new session, or reset current session state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/ohelper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands affect OpenClaw session state and should be run only after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reset actions can disrupt the current session context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm what context may be cleared before using /reset, and reserve /compact or /new for cases where the user explicitly accepts the session change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/ohelper)
+- [ClawHub publisher profile](https://clawhub.ai/user/goog)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces session-maintenance recommendations and confirmation-gated commands for OpenClaw sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

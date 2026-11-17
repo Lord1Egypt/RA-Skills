@@ -1,41 +1,54 @@
-## Description: <br>
-Creates polished pediatric dental clinic client education handouts with visuals, FAQs, and clear next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished pediatric dental clinic explainer handout with visuals, FAQs, and clear next steps.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Pediatric dentists and dental office managers use this skill to draft patient-facing education handouts for pediatric dental clinic topics, then review and refine them before distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Healthcare-adjacent education drafts may include inaccurate, outdated, or regulated dental claims. <br>
-Mitigation: Have a qualified dental professional review and approve patient-facing content before distribution. <br>
-Risk: Chat or image-generation enrichment may disclose submitted prompts or assets to external providers. <br>
-Mitigation: Avoid entering protected patient information unless the environment is approved for that use and provider data handling has been confirmed. <br>
+## Use Case:
 
+External pediatric dentists and dental office managers use this skill to draft patient-facing client education handouts with FAQs, visuals, and clear next steps for families before clinical review and distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-generate-pediatric-dental-clinic-client-education-handout) <br>
-- [SkillBoss homepage](https://www.skillboss.co/skills/generate-pediatric-dental-clinic-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown handout draft with FAQs, visual suggestions, and clear next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include chat-assisted text and image-generation guidance; outputs require human review before patient-facing use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Patient-facing handouts may contain inaccurate, incomplete, or overly broad pediatric dental or medical claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified clinic reviewer check clinical claims, local practice requirements, and patient-facing wording before distribution.
+
+Risk: Broad trigger wording may lead users to apply the skill beyond pediatric dental client education handouts.
+
+Mitigation: Keep use scoped to drafting education content and require human review before relying on the output for clinical, regulatory, or operational decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/modestyrichards/skills/modesty-generate-pediatric-dental-clinic-client-education-handout)
+- [SkillBoss Skill Homepage](https://www.skillboss.co/skills/generate-pediatric-dental-clinic-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handout content with FAQs, visual suggestions, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human review for pediatric dental or medical claims before patient-facing use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

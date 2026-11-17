@@ -1,41 +1,54 @@
-## Description: <br>
-CrawSecure is a documentation-only skill that explains how to assess security risks in ClawHub/OpenClaw skills and how to use the separate CrawSecure CLI safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CrawSecure is a documentation-first security skill that explains the separately installed CrawSecure CLI and its local, offline checks for ClawHub and OpenClaw skills.
 
-## Publisher: <br>
-[diogopaesdev](https://clawhub.ai/user/diogopaesdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[diogopaesdev](https://clawhub.ai/user/diogopaesdev)
 
-## Use Case: <br>
-Developers and skill reviewers use this skill to understand CrawSecure risk signals, trust boundaries, and safe evaluation practices before choosing whether to install and run the separate CrawSecure CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the separately distributed CrawSecure CLI as covered by this skill's clean security verdict. <br>
-Mitigation: Review the CLI repository, installation commands, and requested local file access independently before installing or running it. <br>
-Risk: The skill does not perform scans or enforce security decisions by itself. <br>
-Mitigation: Use it as guidance only, and run separately trusted tools or manual review before relying on a third-party skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CrawSecure ClawHub page](https://clawhub.ai/diogopaesdev/crawsecure) <br>
-- [CrawSecure CLI source and releases](https://github.com/diogopaesdev/crawsecure) <br>
-- [CrawSecure website](https://crawsecure.com) <br>
+## Use Case:
 
+Users and developers use this skill to understand CrawSecure risk signals, security boundaries, and safe handling of the external CrawSecure CLI before deciding whether to install or run it.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown documentation and explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; the skill provides guidance only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may confuse this documentation-only skill with the external CrawSecure CLI scanner.
+
+Mitigation: Treat the CLI as a separate optional tool and review its source, releases, permissions, and commands before installing or running it.
+
+Risk: Security guidance and risk classifications may be incomplete or become outdated.
+
+Mitigation: Use the skill as educational guidance and verify current scanner behavior, risk signals, and trusted distribution sources before relying on results.
+
+## Reference(s):
+
+- [CrawSecure ClawHub skill page](https://clawhub.ai/diogopaesdev/skills/crawsecure)
+- [CrawSecure CLI source and releases](https://github.com/diogopaesdev/crawsecure)
+- [CrawSecure official website](https://crawsecure.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown documentation and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable code, scanner, software installation, network access, or file modification is bundled with the skill.]
+
+## Skill Version(s):
+
+2.0.1 (source: release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

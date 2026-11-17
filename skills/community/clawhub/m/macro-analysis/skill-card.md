@@ -1,42 +1,53 @@
-## Description: <br>
-A Chinese-language macroeconomic analysis framework for assessing A-share market direction and asset allocation using GDP, CPI, PMI, liquidity, and policy signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language macroeconomic analysis framework for assessing A-share market direction and asset-allocation posture from GDP, CPI, PPI, PMI, liquidity, and policy signals.
 
-## Publisher: <br>
-[danpian1](https://clawhub.ai/user/danpian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danpian1](https://clawhub.ai/user/danpian1)
 
-## Use Case: <br>
-External users and analysts use this skill for Chinese-language macro and A-share market analysis, including evaluating economic indicators, liquidity, policy signals, currency effects, and asset-allocation posture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Macro and asset-allocation guidance may be mistaken for personalized investment advice. <br>
-Mitigation: Treat outputs as general educational analysis and review them against current market data and professional judgment before acting. <br>
-Risk: Users may disclose brokerage credentials, account details, or private financial data while asking for analysis. <br>
-Mitigation: Do not provide credentials, account identifiers, holdings, or other private financial data to the skill. <br>
+## Use Case:
 
+External users and market analysts use this skill to structure Chinese macroeconomic and A-share market analysis around growth, inflation, liquidity, policy, exchange-rate, and cycle signals. Its guidance should be treated as educational market framing rather than personalized financial advice.
 
-## Reference(s): <br>
-- [Macro Indicators Quick Reference](references/macro-indicators.md) <br>
-- [ClawHub skill page](https://clawhub.ai/danpian1/macro-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/danpian1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution, credential access, network behavior, or persistence reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Market-cycle and allocation suggestions could be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as educational macro-analysis framing and consult qualified financial advice before making investment decisions.
+
+Risk: Static macro thresholds and policy examples can become stale or conflict with current market conditions.
+
+Mitigation: Verify current GDP, CPI, PPI, PMI, M2, interest-rate, liquidity, exchange-rate, and policy data before applying the framework.
+
+## Reference(s):
+
+- [Macro Indicators Quick Reference](references/macro-indicators.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-cycle and allocation framing; users should verify current economic data before acting on it.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

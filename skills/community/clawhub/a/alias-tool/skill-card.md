@@ -1,40 +1,49 @@
-## Description: <br>
-Create and manage shell command aliases for frequently used commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage command aliases in shell environments. Define shortcuts for frequently used commands.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and shell users use this skill to create, list, retrieve, and persist local aliases for frequently used shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A saved alias can run any command the user supplied when later invoked. <br>
-Mitigation: Only create aliases from trusted text and review command values before saving or using them. <br>
-Risk: Persistent aliases stored in ~/.aliasrc may affect future shell behavior. <br>
-Mitigation: Review ~/.aliasrc and remove aliases that are no longer needed or were added by mistake. <br>
+## Use Case:
 
+Developers and shell users use this skill to create, list, and remove shortcuts for frequently used shell commands, including persistent alias configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/alias-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write user-provided aliases to ~/.aliasrc when the helper script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent aliases can change how shell commands behave in a real environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review alias names and command values before using or persisting them.
+
+## Reference(s):
+
+- [Alias Tool on ClawHub](https://clawhub.ai/dinghaibin/skills/alias-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe or produce persistent shell alias configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

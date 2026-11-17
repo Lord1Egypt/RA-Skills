@@ -1,41 +1,56 @@
-## Description: <br>
-Automatically archives key conversation information to daily memory files and loads recent memory context at session start for cross-session recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Chatlog helps an agent persist important conversation context to daily Markdown memory files and reload recent memory before responses.
 
-## Publisher: <br>
-[hahaerer](https://clawhub.ai/user/hahaerer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hahaerer](https://clawhub.ai/user/hahaerer)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents and users who want cross-session continuity use this skill to keep daily conversation notes, long-term preferences, task outcomes, configuration changes, and todos in Markdown memory files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatic memory can persist sensitive or unwanted conversation details across sessions.
+
+Mitigation: Install only when cross-session memory is intended, keep secrets out of MEMORY.md and daily files, and review stored memory regularly.
+
+Risk: The artifact includes unsafe credential-storage guidance for long-term Markdown memory.
+
+Mitigation: Remove or rewrite credential-storage instructions before use and store only non-sensitive references to credentials.
+
+Risk: Scheduled execution can update memory files without interactive review.
+
+Mitigation: Enable scheduled execution only when the command and workspace path are fixed, reviewed, and trusted.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to persist conversation notes, preferences, task results, configuration changes, and todos across sessions through MEMORY.md and daily memory files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically persists and reloads conversation history, which can retain sensitive personal or business details. <br>
-Mitigation: Install only when persistent chat memory is intended, avoid sharing confidential details while active, and regularly inspect or delete MEMORY.md and memory/YYYY-MM-DD.md files. <br>
-Risk: The release evidence flags unsafe credential-memory instructions. <br>
-Mitigation: Do not store passwords, API keys, tokens, session cookies, or credential values in memory files; fix credential-retention language before sensitive use. <br>
+**Output Format:** [Markdown notes and concise text with optional shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hahaerer/auto-chatlog) <br>
-- [Publisher profile](https://clawhub.ai/user/hahaerer) <br>
+**Other Properties Related to Output:** [May create or update MEMORY.md and memory/YYYY-MM-DD.md in the configured workspace.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown memory files with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates MEMORY.md and memory/YYYY-MM-DD.md in the configured workspace.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

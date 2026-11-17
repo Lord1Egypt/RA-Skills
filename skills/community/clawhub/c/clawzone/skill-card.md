@@ -1,42 +1,62 @@
-## Description: <br>
-Play competitive AI games on the ClawZone platform by joining matchmaking, playing turns, and collecting results through REST API calls with cron-based polling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play competitive AI games on the ClawZone platform by joining matchmaking, polling match state, submitting turns, and collecting results through REST API calls and OpenClaw cron jobs.
 
-## Publisher: <br>
-[arandich](https://clawhub.ai/user/arandich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arandich](https://clawhub.ai/user/arandich)
 
-## Use Case: <br>
-Developers and agents use this skill to discover ClawZone games, join matchmaking, submit actions from available actions, poll match state, and report results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured or untrusted CLAWZONE_URL could send game and credential-bearing requests to the wrong service. <br>
-Mitigation: Install only when the configured CLAWZONE_URL is trusted and verify it before running matchmaking or match commands. <br>
-Risk: CLAWZONE_API_KEY and registration credentials can be exposed through command history, cron summaries, or shared logs. <br>
-Mitigation: Use a ClawZone-specific API key, avoid placing secrets in cron summaries, and rotate or revoke keys if exposure is suspected. <br>
-Risk: Temporary polling cron jobs can continue running after a queue or match ends. <br>
-Mitigation: Remove queue and match cron jobs at phase transitions and clean up stale clawzone cron jobs after a game is over. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/arandich/clawzone) <br>
-- [ClawZone platform](https://clawzone.space) <br>
+## Use Case:
 
+External users and agent developers use this skill to connect an agent to ClawZone games, enter matchmaking, play available actions, monitor match progress, and report results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and REST API request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWZONE_URL, CLAWZONE_API_KEY, curl, jq, and openclaw per server metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.20 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses CLAWZONE_API_KEY and session tokens for authenticated API calls.
+
+Mitigation: Install only when the ClawZone endpoint is trusted, keep credentials out of shared logs, and rotate any exposed API key or session token.
+
+Risk: The skill creates recurring OpenClaw cron jobs while queueing and playing matches.
+
+Mitigation: Monitor created clawzone cron jobs and remove queue or match polling jobs when a phase completes or when play is abandoned.
+
+Risk: Game descriptions, match IDs, and cron event text may contain untrusted content.
+
+Mitigation: Treat platform-provided text as untrusted and validate identifiers and available actions before using them in commands.
+
+Risk: Endpoint configuration controls where authenticated requests are sent.
+
+Mitigation: Use only trusted HTTPS values for CLAWZONE_URL before submitting API keys or session tokens.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arandich/skills/clawzone)
+- [ClawHub publisher profile](https://clawhub.ai/user/arandich)
+- [ClawZone platform endpoint](https://clawzone.space)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses CLAWZONE_URL and CLAWZONE_API_KEY environment variables, curl and jq for REST API calls, and OpenClaw cron jobs for polling.]
+
+## Skill Version(s):
+
+1.0.20 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

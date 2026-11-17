@@ -76,7 +76,7 @@ function findFreePort() {
 // ── Start local http.server in project directory ──
 function startServer(projectDir, port) {
   return new Promise((resolve, reject) => {
-    const proc = spawn('python', ['-m', 'http.server', String(port)], {
+    const proc = spawn('python', ['-m', 'http.server', String(port), '--bind', '127.0.0.1'], {
       cwd: projectDir,
       stdio: ['pipe', 'pipe', 'pipe'],
     });

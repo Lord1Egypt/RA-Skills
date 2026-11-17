@@ -1,0 +1,33 @@
+# Break-Even Analysis - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+offer: ""
+prepared_by: ""
+prepared_on: ""
+period: ""
+basis: cash
+price_per_unit: 0
+units_planned: 0
+variable_costs:
+  - item: materials
+    amount_per_unit: 0
+  - item: packaging
+    amount_per_unit: 0
+  - item: freight
+    amount_per_unit: 0
+  - item: payment processing fee
+    amount_per_unit: 0
+  - item: commission
+    amount_per_unit: 0
+fixed_costs:
+  - item: rent
+    amount: 0
+  - item: salaried staff
+    amount: 0
+  - item: software subscriptions
+    amount: 0
+  - item: insurance
+    amount: 0
+excluded_from_fixed:
+  - ""
+assumptions:
+  - ""

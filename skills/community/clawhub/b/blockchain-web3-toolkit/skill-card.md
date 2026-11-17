@@ -1,42 +1,57 @@
-## Description: <br>
-Comprehensive blockchain toolkit for Ethereum wallet management, smart contract interaction, NFT minting, token balance checks, and gas fee monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive blockchain toolkit for Ethereum wallet management, smart contract interaction, NFT minting, token balance checks, and gas fee monitoring.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and Web3 operators use this skill to create or import Ethereum wallets, check balances, deploy and call smart contracts, mint or transfer NFTs, and monitor gas fees. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The toolkit handles wallet private keys that could be exposed through prompts, generated output, logs, or unsafe storage. <br>
-Mitigation: Use testnets or empty wallets first, never paste or print a real mainnet private key in agent output, and keep secrets outside the agent context. <br>
-Risk: The toolkit can sign and broadcast irreversible blockchain transactions. <br>
-Mitigation: Manually verify every network, contract address, function, argument, recipient, and gas cost before any transaction is sent. <br>
-Risk: Dependency or RPC-provider behavior can affect transaction safety and results. <br>
-Mitigation: Pin and review dependencies, use trusted RPC/API keys, and test flows on a non-production network before using funded wallets. <br>
+## Use Case:
 
+Developers and agents use this skill to work with Ethereum wallets, balances, smart contracts, NFT operations, and gas fee data from a ClawHub skill release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/blockchain-web3-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require wallet private keys, RPC/API keys, Ethereum network names, contract addresses, function arguments, and gas settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+Risk: Wallet secrets may be exposed through private-key printing or default serialization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use secret-storage protections, remove private-key printing and default private-key serialization, and avoid funded wallets unless these protections are added.
+
+Risk: Deploy, mint, transfer, and other state-changing transactions can trigger irreversible on-chain actions.
+
+Mitigation: Require explicit user confirmation before every state-changing transaction and avoid production mainnet accounts unless reviewed safeguards are in place.
+
+Risk: Unpinned dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin dependencies before use in sensitive or production environments.
+
+## Reference(s):
+
+- [Blockchain Web3 Toolkit on ClawHub](https://clawhub.ai/kaiyuelv/skills/blockchain-web3-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce wallet addresses, transaction hashes, gas price data, contract addresses, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

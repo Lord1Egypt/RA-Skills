@@ -1,14 +1,12 @@
 ---
 name: hekouwang-stock-data-reader-skill
-description: >
-  会勇禾口王 · 个股公开数据速读 Skill。输入一个 A 股代码，自动用 akshare 拉取「资金流 /
-  龙虎榜 / 估值band / 财务三表 / 主营构成 / 北向 / 日K」等公开数据，算出固定指标体系
-  （价格轨迹·主力进出·席位结构·利润质量·利润结构·估值·风险线索），并产出「中立事后复盘」
-  形态的财经贴图 / 公众号长文 / 头条三件套（V2 米白或 V3 财经风）。内置金融合规护栏：
-  不荐股、不预测涨跌、不给买卖点，自动套风险提示条。
-  触发词：个股数据速读 / 扒公司公开数据 / 资金面复盘 / 出个股报告 / 3天一只 /
-  stock-data-reader / 给我一只股的数据体检 / 用 akshare 拉某股数据。
-  ⚠️ 个股报告只走财经账号公众号/头条，绝不上小红书主账号。
+slug: hekouwang-stock-data-reader-skill
+displayName: 个股公开数据速读（A股 · akshare）
+summary: A-share stock data reader / akshare pipeline — fund flow, LHB seats, financials to compliance-safe recap charts. Not investment advice.
+license: MIT-0
+homepage: https://github.com/huiyonghkw/hekouwang-stock-data-reader-skill
+version: 1.2.7
+description: "A 股个股公开数据速读：akshare 拉资金流/估值/财务并出中立复盘图文，守不荐股合规护栏；贴图仅用本地字体与系统字体"
 allowed-tools:
   - Bash
   - Read
@@ -17,6 +15,26 @@ allowed-tools:
   - Glob
   - Grep
   - AskUserQuestion
+metadata:
+  openclaw:
+    homepage: https://github.com/huiyonghkw/hekouwang-stock-data-reader-skill
+    requires:
+      bins:
+        - python3
+        - node
+    envVars:
+      - name: STOCK_REPORT_BRAND
+        required: false
+        description: 贴图页脚署名；留空则不渲染品牌行
+      - name: STOCK_REPORT_HANDLE
+        required: false
+        description: 贴图页脚账号；留空则不渲染账号行
+      - name: CHROME_PATH
+        required: false
+        description: 覆盖默认 Chrome/Chromium 可执行文件路径
+      - name: STOCK_REPORT_THEME
+        required: false
+        description: 贴图主题 v2 或 v3
 ---
 
 # 个股公开数据速读 · Skill
@@ -27,16 +45,23 @@ allowed-tools:
 
 ## 0. 合规第一（必先读 `references/compliance.md`）
 - **不荐股、不预测、不给买卖点**；每份报告文末固定风险提示条。
-- 个股内容**只走公众号/头条**，**不上小红书**（小红书只发零金融词的纯方法科普）。
+- 个股内容主走**公众号/头条**；**小红书可发"中立复盘/算账/名词科普"形态**（守合规护栏、零站外导流、别用资金流/席位当钩子），详见 `references/compliance.md`。
 - 命中红线（买入/卖出/目标价/翻倍/上车…）→ 停下改写。
 
 ## 1. 三步工作流
+
+**先确认再跑**：取数会联网访问第三方行情源（akshare → 东方财富 / 新浪 / 乐咕），并在输出目录写 CSV/JSON/HTML/PNG。开跑前向用户确认「股票代码 + 输出目录」，输出目录只用本 skill 的 `out/` 或用户指定的专用目录。
+
+首次或换机：`bash scripts/bootstrap.sh` → `python3 scripts/fetch.py --probe` 确认 akshare 可连。
+
 ```
 python3 scripts/fetch.py <代码> [out目录]     # 取数 → out/<代码>/*.csv + _report.json
-python3 scripts/analyze.py out/<代码>          # 算指标 → out/<代码>/analysis.json
-python3 scripts/build_report.py out/<代码>     # 据 analysis.json 出贴图初稿（数字已对）
-node templates/screenshot.js <贴图目录>        # 截图 output/，出图即删 HTML
+python3 scripts/analyze.py out/<代码>          # 算指标 → out/<代码>/analysis.json（含龙虎榜买卖对称度）
+python3 scripts/build_report.py out/<代码> [--brand 署名 --handle @账号]   # 出贴图初稿（数字已对）
+node templates/screenshot.js <贴图目录> [--clean]   # 截图到 output/；默认保留 HTML，--clean 才删
 ```
+- 页脚署名默认关闭；用 `--brand/--handle` 或 `STOCK_REPORT_BRAND/STOCK_REPORT_HANDLE` 才渲染。
+- 截图器用参数数组调 Chrome（不拼 shell），不关沙箱；Chrome 路径可用 `CHROME_PATH` 覆盖。
 `build_report.py` 出的是**数字正确的初稿**；中立复盘文案由人/LLM 按 `references/report-structure.md` 润色后再截图交付。
 
 ## 2. 指标体系（栏目固定，见 report-structure.md）
@@ -50,9 +75,8 @@ node templates/screenshot.js <贴图目录>        # 截图 output/，出图即�
 
 ## 4. 视觉与产出
 - 默认 **V2 米白**（黏土主色），财经可选 V3 Google 财经风。字体统一黑体。
-- 贴图复用「会勇禾口王内容工厂」流水线（`_build.py` + `screenshot.js`，出图即删）。
-- 字体依赖 `hekouwang-content-factory/assets/fonts/`（Anthropic Sans/Mono + 思源黑体 CDN）。
-  对外发布版需把字体路径改成相对内嵌（见 templates 注释）。
+- 贴图复用「会勇禾口王内容工厂」流水线（`_build.py` + `screenshot.js`）。
+- 字体优先用本机 `hekouwang-content-factory/assets/fonts/`（Anthropic Sans/Mono + 思源黑体）；截图 HTML 只走本地 `@font-face` / 系统字体，不拉第三方字体资源。
 
 ## 5. 加一只新股（3 天一期）
 1. `python3 scripts/fetch.py <新代码>`
@@ -61,13 +85,16 @@ node templates/screenshot.js <贴图目录>        # 截图 output/，出图即�
 4. 套合规框架，发公众号 + 头条；建 `发布记录.md` 回填数据。
 
 ## 6. 文件
-- `scripts/fetch.py` — 取数引擎（任意代码）
-- `scripts/analyze.py` — 指标计算 → analysis.json
+- `scripts/bootstrap.sh` — 一键 venv + 装依赖
+- `scripts/fetch.py` — 取数引擎（`--probe` 探针）
+- `scripts/analyze.py` — 指标计算 → analysis.json（含龙虎榜对称度）
 - `scripts/build_report.py` — 据指标出 8 贴图初稿（V2 米白）
-- `templates/screenshot.js` — 1080×1350 @2x 截图，出图即删
+- `templates/screenshot.js` — 1080×1350 @2x 截图（`--clean` 才删 HTML）
 - `references/compliance.md` — 金融合规护栏（先读）
+- `references/lhb-symmetry.md` — 龙虎榜买卖对称度解读护栏
+- `references/title-checklist.md` — 标题/封面合规自检
 - `references/report-structure.md` — 栏目固定报告结构
-- `requirements.txt` — akshare + pandas
+- `requirements.txt` — akshare + pandas（精确版本 pin）
 
 ## 7. 案例
 首版样例：利通电子 603629（`Pi.dev/利通电子/litong-0619/`，公众号长文+8贴图、头条三件套）。

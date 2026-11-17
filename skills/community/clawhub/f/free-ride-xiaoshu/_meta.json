@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7chnxm92e2m8b70w6j8pk52d82tpwz",
-  "slug": "free-ride-xiaoshu",
-  "version": "1.0.0",
-  "publishedAt": 1775375708507
+  "owner": "shaivpidadi",
+  "slug": "free-ride",
+  "displayName": "Free Ride - Unlimited free AI",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1771429600089,
+    "commit": "https://github.com/openclaw/skills/commit/1a94fef86b72d8e1f2e16f48c3778793b0791e97"
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1771095341291,
+      "commit": "https://github.com/openclaw/skills/commit/d0ba5a0044f72d7e3ad9a91a3e95f4259ae85040"
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1770314038059,
+      "commit": "https://github.com/openclaw/skills/commit/2fffd8e6b48182c089a890ee1c7bcea85842b6b8"
+    }
+  ]
 }

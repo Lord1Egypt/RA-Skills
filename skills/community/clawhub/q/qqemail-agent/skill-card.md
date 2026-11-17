@@ -1,43 +1,58 @@
-## Description: <br>
-QQ邮箱接收与发送skill - 读取QQ邮箱中的邮件和发送邮件到其他账号 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QQemail-agent helps agents read recent QQ Mail messages through IMAP and send QQ Mail messages through SMTP.
 
-## Publisher: <br>
-[Cynic-Joe](https://clawhub.ai/user/Cynic-Joe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cynic-joe](https://clawhub.ai/user/cynic-joe)
 
-## Use Case: <br>
-Developers and users configure an agent to read recent QQ Mail inbox messages and send messages through QQ Mail using local IMAP and SMTP credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for mailbox authorization credentials and may store them in a local .env file. <br>
-Mitigation: Use QQ Mail authorization codes rather than account passwords, store the .env file locally with restricted access, and revoke or rotate credentials after use. <br>
-Risk: The skill can read mailbox contents and send email from the configured account. <br>
-Mitigation: Install only when mailbox read/send access is intended, review messages and recipients before sending, and avoid using high-privilege or shared mailboxes. <br>
-Risk: Dependency versions are not pinned to exact patched releases. <br>
-Mitigation: Review and lock dependency versions in the deployment environment before production use. <br>
+## Use Case:
 
+External users and developers use this skill to configure QQ Mail access, fetch recent mailbox messages for agent-assisted review, and send outbound messages from a QQ Mail account.
 
-## Reference(s): <br>
-- [QQ Mail](https://mail.qq.com) <br>
-- [ClawHub skill page](https://clawhub.ai/Cynic-Joe/qqemail-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update a local .env configuration file when the user consents to credential setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0) <br>
+Risk: Reusable QQ Mail authorization codes may be stored in plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials outside the project or with strict permissions, ensure .env is ignored by version control, and rotate or revoke the authorization code after testing or suspected exposure.
+
+Risk: The fetch script can read recent mailbox content broadly from the configured account.
+
+Mitigation: Use a dedicated mailbox or folder when possible and only install the skill when recent QQ Mail read access is acceptable.
+
+Risk: The send script can send outbound email from the configured QQ Mail account.
+
+Mitigation: Use a dedicated account for testing and review recipient, subject, and body values before running send commands.
+
+## Reference(s):
+
+- [QQ Mail](https://mail.qq.com)
+- [ClawHub skill page](https://clawhub.ai/cynic-joe/skills/qqemail-agent)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local .env file and run Python scripts that read or send email.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

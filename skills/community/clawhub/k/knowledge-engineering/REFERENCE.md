@@ -200,6 +200,168 @@ Agent 分析 10~30s → 确认计划（>10 片暂停确认）→ 逐批生成（
 | 检索死了重切 | "重构 embedding_hint，重新切片 C:\a.md" |
 | 从 docx 开始 | "把 D:\spec.docx 转成 md 然后切片" |
 
+### 完整实操案例：从源文件到检索就绪切片
+
+以一个虚构的 Python 库技术文档 `user-auth.md` 为例，演示完整流程中每个环节的实际输入和输出。
+
+**源文件内容摘要**（篇幅限制仅示开头）：
+```markdown
+# UserAuth 用户认证库 v2.1
+
+## API 参考
+### auth.login()
+用户登录接口，返回 JWT Token。
+- 参数：username (str, 必填), password (str, 必填), timeout (int, 默认 30)
+- 返回：{ token: str, expires_in: int }
+- 错误码：ERR_AUTH_FAILED, ERR_TIMEOUT
+
+### auth.logout()
+用户登出，使当前 Token 失效。
+- 参数：token (str, 必填)
+- 返回：{ success: bool }
+- 注意：v2.0 起废弃的 invalidate_all_sessions() 已被此方法替代
+
+## 配置指南
+### 数据库连接
+[内容省略...]
+
+## 部署指南
+### Docker 部署
+[内容省略...]
+```
+
+**第一步：发出指令**
+> 用户："把 user-auth.md 切片，输出到 D:\kb\"
+
+**第二步：分析阶段（Agent 输出）**
+Agent 在 `<analysis>` 中完成 10 步推理后输出确认摘要：
+```
+分析结果摘要：
+├─ 结构扫描：1 个 H1，3 个 H2，5 个 H3
+├─ 预估切片数：9 个
+├─ 原子单元：2 个代码块，1 个表格
+├─ 目录结构：api/ (3片), config/ (2片), guide/ (2片), misc/ (2片)
+├─ 检测到废弃内容：invalidate_all_sessions() → 将标记 deprecated
+└─ 总 Token 估算：约 4200（未触发分批）
+> 是否继续生成切片？
+```
+
+**第三步：生成阶段**
+Agent 逐批生成切片文件。以 `api/api_001-auth-login.md` 为例，生成内容：
+````markdown
+---
+title: "UserAuth API > auth.login()"
+source_id: "user-auth"
+category: "api"
+index: 001
+version: "2.1"
+status: "active"
+tags: ["user-auth", "api", "authentication", "login"]
+embedding_hint: "auth.login() 用户登录接口，参数 username/str, password/str, timeout/int 默认30，返回 JWT token 和 expires_in，错误码 ERR_AUTH_FAILED 和 ERR_TIMEOUT"
+structural_context: "API 参考 → auth.login() → 登录接口 :: 前置"
+hybrid_keywords: ["auth.login", "JWT Token", "ERR_AUTH_FAILED", "ERR_TIMEOUT", "expires_in"]
+cross_refs:
+  depends_on: []
+  related_to: ["api_002-auth-logout.md"]
+qa_pairs:
+  - q: "auth.login() 需要哪些参数？"
+    a: "需传 username（字符串）、password（字符串），可选 timeout（整型，默认 30 秒）。"
+    type: "what-is"
+  - q: "auth.login() 可能返回什么错误码？"
+    a: "可能返回 ERR_AUTH_FAILED（认证失败）和 ERR_TIMEOUT（超时）。"
+    type: "troubleshooting"
+multimodal_refs: []
+human_review_required: false
+---
+
+# UserAuth API > auth.login()
+
+> [!INFO] 📄 来源：user-auth.md | 🏷️ 分类：api | 📅 更新：2026-06-01
+
+## 概念定义
+`auth.login()` 是 UserAuth 库（v2.1）的用户登录接口，验证凭据后返回 JWT Token。
+
+## 使用场景
+需要获取用户访问令牌时调用，适用于所有需要身份认证的 API 请求前置步骤。
+
+## 核心内容
+```python
+# 需要导入：from userauth import auth
+# 输入：用户名和密码
+result = auth.login(username="admin", password="pass123", timeout=30)
+# 输出：{ "token": "eyJ...", "expires_in": 3600 }
+```
+
+## 注意事项
+- timeout 参数默认为 30 秒，网络不稳定时建议调大到 60
+- 连续 5 次 ERR_AUTH_FAILED 后账户将被临时锁定（原文未明确锁定时长）
+- [!WARNING] 原文未明确说明限制条件，需人工补充
+
+## 相关链接
+- 登出接口见 [api_002-auth-logout.md](api_002-auth-logout.md)
+
+> 📎 续接切片：api_002-auth-logout.md
+````
+
+**第四步：校验阶段**
+每片写入后自动运行 `validate_slice.py --fix`，输出：
+```
+PASS: api_001-auth-logout.md (14/14 fields, 0 fatal)
+```
+若命中致命项则自动重生成。
+
+**第五步：审计阶段**
+全部完成后运行 `batch_audit.py`，输出：
+```
+Audit Summary:
+  total_slices: 9
+  index_continuity: OK (1-9)
+  dead_links: 0
+  orphan_slices: 0
+  deprecated_commands: 1 → api_002-auth-logout.md (invalidate_all_sessions)
+```
+
+**第六步：检索终检**
+运行 `evaluate_retrieval.py --fix`，输出：
+```
+Retrieval Report:
+  R@1: 0.78  (7/9 切片首位命中)
+  R@5: 0.94  (8/9 切片前五位命中)
+  MRR:  0.82
+  Dead slices: 0
+  Weak slices: 1 → config_001-db.md (R@1=0.25, hint 已自动修复)
+```
+
+**第七步：验收**
+最终产出物清单：
+```
+D:\kb\user-auth\
+├── api\
+│   ├── api_001-auth-login.md
+│   ├── api_002-auth-logout.md       ← 含 deprecated 标记
+│   └── api_003-token-refresh.md
+├── config\
+│   ├── config_001-db-connection.md
+│   └── config_002-secrets.md
+├── guide\
+│   ├── guide_001-docker-deploy.md
+│   └── guide_002-nginx-proxy.md
+└── misc\
+    ├── misc_001-changelog.md
+    └── misc_002-version-matrix.md
+```
+
+### 实操中常见问题与处理
+
+| 问题 | 表现 | 原因 | 解决方式 |
+|:---|:---|:---|:---|
+| 计划只有 1 片 | 分析后确认窗口只显示 1 个切片 | 源文件太短（<500 字）或只有一个语义单元 | 正常，单一语义单元不需要强制拆分。`batch_audit.py` 会标记为"单切片模式" |
+| 单切片内容莫名其妙变少 | 生成出来的切片少了某些段落 | 字数软上限触发后 Agent 回溯时把整段移到了下一切片 | 查看当前切片末尾是否有 `[!NOTE] 完整{代码/表格}见 {next_slice}`，下一片开头是否有承接链接。内容没丢，只是分开了 |
+| 检索评分全员低于 0.3 | `evaluate_retrieval.py` 报告 R@1 很低 | embedding_hint 写得过于宽泛，用词和正文不匹配 | 告诉 Agent "重构所有 embedding_hint，加入正文精确关键词" |
+| 死片列表有内容但自检注释说全通过 | 死片检出数与预期不符 | 可能是同一 Source-ID 下使用了相同 hint 导致的检索同质化 | 告诉 Agent "检查是否有多个切片用了相同的 embedding_hint" |
+| 生成到一半我点了取消 | 想重新切但提示目录已存在 | 输出目录中有之前未完成的残留文件 | 告诉 Agent "清理 D:\kb\ 下的旧切片然后重新切" |
+| 已经切好的源文件更新了 | 想追加新内容但不想动已有的切片 | 增量模式需要明确告知哪些是新增内容 | 说"把 v2.2 新增的 API 追加切片到已有的 D:\kb\user-auth\api\" |
+
 ---
 
 ## 8. 反模式（完整）与 FAQ
@@ -224,24 +386,62 @@ Agent 分析 10~30s → 确认计划（>10 片暂停确认）→ 逐批生成（
 
 ### FAQ
 
-| 问题 | 解答 |
-|:---|:---|
-| 源文件是 .docx/.pptx | 先用 markitdown 提取为 .md 再切片 |
-| 同步和异步版本 API 怎么切 | 各切一片，hint 标注差异化，keywords 加消歧前缀 |
-| 大段注释代码要不要切片 | 不切。注释中说明性文字提取为废弃标记 |
-| 切片内容高度重叠 | 合并语义重叠切片，保留信息更完整者 |
-| 检索大量死片 | 检查 hint 是否包含精确实体名，--fix 验证 |
-| 追加切片到已有知识库 | 传新内容源文件，输出到已有目录，自动延续索引 |
-| 源文件编码非 UTF-8 | python_executor 先转 UTF-8 |
-| 中断后恢复 | 重新说原指令，自动跳过已校验切片 |
-| validate_slice.py 报 FAIL | 加 --json 获取详细原因 |
-| batch_audit.py 报告死链 | 运行 --fix 自动模糊匹配修正 |
+| # | 问题 | 解答 |
+|:--|:---|:---|
+| 1 | 源文件是 .docx/.pptx | 先用 markitdown 提取为 .md 再切片 |
+| 2 | 同步和异步版本 API 怎么切 | 各切一片，hint 标注差异化，keywords 加消歧前缀 |
+| 3 | 大段注释代码要不要切片 | 不切。注释中说明性文字提取为废弃标记 |
+| 4 | 切片内容高度重叠 | 合并语义重叠切片，保留信息更完整者 |
+| 5 | 检索大量死片 | 检查 hint 是否包含精确实体名，--fix 验证 |
+| 6 | 追加切片到已有知识库 | 传新内容源文件，输出到已有目录，自动延续索引 |
+| 7 | 源文件编码非 UTF-8 | python_executor 先转 UTF-8 |
+| 8 | 中断后恢复 | 重新说原指令，自动跳过已校验切片 |
+| 9 | validate_slice.py 报 FAIL | 加 --json 获取详细原因 |
+| 10 | batch_audit.py 报告死链 | 运行 --fix 自动模糊匹配修正 |
+| 11 | 切片生成到一半中断了怎么恢复 | 重新说原指令（如"把 xxx.md 切片"），Agent 会自动调用 `slice_generator.py --resume` 跳过已完成切片，从断点继续。无需手动清理。 |
+| 12 | 生成后发现某个切片内容不对，怎么单独重切 | 告诉 Agent "重新生成 xxx 切片"并指出具体文件名。Agent 会重新走 §0-§4 流程单独重切该片，完成后自动 renumber 全局索引 |
+| 13 | 源文件更新后怎么增量更新已有切片 | 分两种情况：① 小改——说"把 v2.2 新增的 API 追加切片到 D:\kb\api\"；② 大改——建议全量重切 |
+| 14 | 输出目录已有旧切片会被覆盖吗 | 会覆盖同名文件（slice_generator.py 按 index 编号，同编号=覆盖）。不同 Source-ID 的切片互不影响。建议增量追加时指定子目录 |
+| 15 | 为什么我的切片在知识库中搜不到 | 三步排查：① 跑 `evaluate_retrieval.py` 看 R@1 分数；② R@1=0 的切片，embedding_hint 大概率用了泛化词而非正文精确关键词；③ 检查 hybrid_keywords 是否全是泛化词（配置/方法/使用等） |
+| 16 | 怎么判断生成的切片质量是否合格 | 三个信号：① `validate_slice.py` 全部 PASS（无致命项）；② `batch_audit.py` 索引连续、死链=0；③ `evaluate_retrieval.py` R@1≥0.3（合格）。三个全绿=生产就绪 |
+| 17 | 切片太多（50+），管理起来麻烦 | 有三种精简方式：① 对字数少（<300字）且 semantic_context 标记为"补充"的切片考虑合并到父切片；② 对检索评分持续 <0.2 的弱片考虑合并或重写；③ 告诉 Agent "精简一下切片目录结构" |
+| 18 | 默认字数上限 700 字太短/太长怎么办 | 这是经过测试的平衡值——太短（<500）切片过多碎片化检索，太长（>1000）检索精度下降。如需调整，告诉 Agent "切片字数上限调到 1000 字"重切即可
 
 ---
 
 ## 9. 能力边界
 
-### 支持
+### 9.1 新手友好边界速览
+
+> 无需理解技术术语，以下是通俗的语言回答"能做什么 / 不能做什么"。
+
+| 你想做的事 | 能直接做吗 | 说明 |
+|:---|:---|:---|
+| 把 Markdown 文档切成知识库切片 | ✅ 核心能力 | 直接说"把 xxx.md 切片" |
+| 把 Word (.docx) 或 PPT (.pptx) 切片 | ✅ 两步完成 | 先自动转为 .md 再切。说"把 D:\spec.docx 转 md 后切片" |
+| 把网页内容切片 | ✅ 需要先抓取 | 说"抓取这个网页内容然后切片" |
+| 把 PDF 切片 | ✅ 需要先提取 | 说"把 D:\doc.pdf 转成 md 再切片" |
+| 给已有知识库追加新内容 | ✅ 增量模式 | 说"把新增的 API 追加到 D:\kb\api\" |
+| 验证切片质量 | ✅ 自动完成 | 生成后会跑三个自动检查 |
+| 处理超长文档（>100 页） | ✅ 分批自动 | 自动检测并在 >10 片时暂停确认 |
+| 直接把图片切进知识库 | ❌ 不支持 | 图片里的文字需要先 OCR 提取。说"提取图片中的文字再切片" |
+| 多个文档一起切，自动关联 | ❌ 不支持 | 需分别切片后手工建立 cross_refs 关联。告诉 Agent "把 A 的切片和 B 的切片建立关联" |
+| 动态网页（需登录才能看的内容）| ❌ 不支持 | 先用浏览器登录抓取内容保存为 .md，再切片 |
+| 数据库里的数据 | ❌ 不支持 | 需要先导出为 JSON/CSV 再切片 |
+
+### 9.2 模糊地带的明确答案
+
+| 场景 | 明确行为 |
+|:---|:---|
+| 源文件里有一个 500 行的代码块 | 不会被拆分，整体保留在一个切片中。Agent 会在 `<analysis>` 中标记"此代码块不可再拆分"。若代码块导致该切片超 1500 字，代码块前后各加简要摘要，完整代码保持原子性 |
+| 源文件完全没有任何标题 | 不会报错。Agent 按自然段落边界切分，每个切片标题使用 `{源文件名}_段落{N}` 作为兜底命名 |
+| 输出目录已存在同名 Source-ID 的旧切片 | 覆盖写入。Agent 会先列出被覆盖的文件清单等你确认。不会跨 Source-ID 覆盖 |
+| 切到一半用户点了取消 | 残留文件保留在输出目录中。重新发起指令时 Agent 自动跳过已通过的切片（`--resume`），不会重复生成 |
+| 跨文件关联——A 文档引用了 B 文档的函数 | 分别切片后，告诉 Agent "把 A 里的 auth_001 和 B 里的 core_003 建立 cross_refs 关联"，Agent 会更新这两个切片的 YAML 和正文"相关链接"段 |
+| 全文件只有一个知识点 | 生成 1 个切片，batch_audit 中标记为"单切片模式"。不影响检索——单切片知识库在大多数 RAG 系统中完全可用。若该单切片 >1500 字，按语义边界强制拆分 |
+| 代码块中包含已废弃命令 | 代码块上方自动添加 `> [!CAUTION]` 废弃警告，YAML 标记 `status: deprecated`。正文中保留原始代码以辅助版本迁移参考 |
+
+### 9.3 支持
 
 | 输入格式 | 限制 |
 |:---|:---|

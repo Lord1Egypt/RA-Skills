@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7aez5fa2jr8jtkm8rbba285982qw0y",
-  "slug": "kse-dev",
-  "version": "1.0.1",
-  "publishedAt": 1773801217951
+  "version": "1.0.0",
+  "author": "song",
+  "description": "基于 kiro-spec-engine (kse) 的 CLI 开发工作流"
 }

@@ -159,8 +159,8 @@ Commit per category.
 Apply the language-specific anti-pattern modules. For
 Rust, see `pensive:rust-review` (this scribe skill
 delegates code idiom checks to that plugin). For Python,
-see `parseltongue:python-pro`. For shell, see
-`pensive:shell-review`.
+see `parseltongue:python-pro`. For shell, see the
+shell module of `pensive:unified-review`.
 
 Calibrate by model: per the 2025-26 cross-evaluation
 research, GPT-family-generated code has more concurrency
@@ -238,9 +238,9 @@ The cleanup is incomplete without preventing the slop
 from coming back. Add:
 
 - A `CONSTITUTION.md` (or equivalent project rules file)
-  with immutable rules the AI and contributors must
-  respect (see `evidence-backed-claims.md` for the
-  pattern).
+  with rules the AI and contributors must respect, each
+  paired with what checks it (see
+  `evidence-backed-claims.md` for the pattern).
 - Strict linter configuration in the build config
   (e.g. `[lints.clippy]` block in `Cargo.toml`).
 - A CI step running the slop-detector on changed prose

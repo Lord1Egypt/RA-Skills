@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "io.github.309441738/ola-cruise-skill-pack",
+  "description": "A comprehensive skill pack for cruise enthusiasts, offering tools for searching, filtering, and exploring cruise products.",
+  "version": "0.1.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cruise-mcp.olavacations.com/api/gw/mcp/2b585d6a-f15c-4526-a204-27ff81ec92fd"
+    }
+  ]
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Security-first skill vetting for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vets AI skills for security by checking source, code for red flags, permissions, and risks before installation to ensure safe usage.
 
-## Publisher: <br>
-[xavi296](https://clawhub.ai/user/xavi296) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xavi296](https://clawhub.ai/user/xavi296)
 
-## Use Case: <br>
-Developers and agent users use this skill to review third-party AI agent skills before installation by checking source, file contents, permissions, red flags, and risk level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example commands in the skill may contact GitHub when used during review. <br>
-Mitigation: Run network commands only when the reviewed source is expected to be GitHub-hosted and the network destination is acceptable. <br>
-Risk: Reviewing an unknown skill can require reading files from that skill. <br>
-Mitigation: Limit file access to the skill being reviewed and avoid granting credential or broader local access unless the review specifically requires it. <br>
+## Use Case:
 
+Developers and agents use this skill before installing or running third-party skills to review source, permissions, suspicious patterns, and risk level.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xavi296/test-skill-vetter2) <br>
-- [Publisher profile](https://clawhub.ai/user/xavi296) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with checklist items and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a skill vetting report that records source, author, reviewed files, red flags, permissions, risk level, verdict, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The checklist could be applied too rigidly and reject benign inspection behavior such as decoding encoded content solely for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the checklist as conservative guidance and confirm findings against the skill's actual behavior before making the final install decision.
+
+Risk: A vetting report may miss issues if only part of a skill is reviewed.
+
+Mitigation: Review all files in the skill and use the server security summary as the authoritative release risk source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xavi296/skills/test-skill-vetter2)
+- [Publisher profile](https://clawhub.ai/user/xavi296)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with checklist sections and optional bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a security vetting report with source, metrics, red flags, permissions, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

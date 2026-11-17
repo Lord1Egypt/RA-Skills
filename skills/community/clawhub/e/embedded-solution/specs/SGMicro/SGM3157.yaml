@@ -1,0 +1,62 @@
+part: SGM3157
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "SG Micro SGM3157 \u2014 SPDT analog switch"
+main_page: https://www.sg-micro.com/product/sgm3157
+datasheet_path_expected: datasheets/SGM315.pdf
+datasheet_source_url: https://www.sg-micro.com/rect/assets/a22623ad-a59a-4732-b010-4b667f6b9a7c/SGM315.pdf
+datasheet_source_note: "sg-micro.com official datasheet (Rev. C.3, Jan 2023, 13 pages, 668 KB). 6\u03A9 SPDT analog switch,\
+  \ 1.8-5.5V single supply, 300 MHz bandwidth, SC70-6 package."
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  package: SC70-6
+  function: Single-pole double-throw (SPDT) analog switch
+  marketing_tagline: "6\u03A9 Low Voltage SPDT Analog Switch in 6-Pin SC70"
+  performance:
+    supply_voltage_v_min: 1.8
+    supply_voltage_v_max: 5.5
+    ron_ohm_typ: 6.0
+    ron_ohm_test_condition: V+ = 4.5V
+    t_on_ns_typ: 20
+    t_off_ns_typ: 15
+    bandwidth_mhz: 300
+  operating_temp_c_min: -40
+  operating_temp_c_max: 85
+  use_cases:
+  - Portable equipment
+  - Audio and video signal routing
+  - Sensor MUX / signal multiplexing
+  - Sample-and-hold circuits
+  compliance:
+    Pd-Free: true
+    RoHS: true
+    REACH: true
+    Green: true
+    MSL: MSL1
+  pricing_usd_volume_tiers:
+  - '1-24 units: $0.21/unit'
+  - '25-99 units: $0.18/unit'
+  - '100-249 units: $0.15/unit'
+  - '250-499 units: $0.12/unit'
+  - '500-999 units: $0.105/unit'
+  - '1000-9999 units: $0.078/unit'
+  lead_time_days:
+  - '3K-9K units: 14 days'
+  - '10K-99K units: 28 days'
+  - '100K-999K units: 66 days'
+  - '1000K+: 84 days'
+unverified: []
+notes:
+- Promoted from placeholder to verified on 2026-06-28 (datasheet). Enriched on 2026-06-30 with marketing-level data (use cases,
+  compliance, pricing, lead time) from sg-micro.com product page via Firecrawl.
+- "SGM3157 \u2014 popular SG Micro analog switch. Used for signal routing in audio / sensor MUX."
+- 'Family differentiator vs SGM6601: signal-level switch vs load-level high-side switch.'
+- 'Cross-reference: comparable to TI TS5A3157 / ADG819 in same tier.'
+- 'Verified 2026-07-01 via pdfplumber against SGM315.pdf: 12/12 spec fields matched (100%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T09:49:00+08:00'
+extracted_from_pages:
+- 1
+extraction_method: pdfplumber Key Features + Firecrawl product page enrichment
+extraction_source: references/semiconductor-vendor/SGMicro/firecrawl-snapshots/SGM3157_clean.md
+extraction_source_raw: references/semiconductor-vendor/SGMicro/firecrawl-snapshots/SGM3157_raw.md
+extraction_credits_used: 1

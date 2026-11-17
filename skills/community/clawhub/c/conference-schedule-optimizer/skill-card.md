@@ -1,41 +1,53 @@
-## Description: <br>
-Use when planning conference schedules, optimizing session selection at scientific meetings, managing time between presentations, or maximizing networking at academic conferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when planning conference schedules, optimizing session selection at scientific meetings, managing time between presentations, or maximizing networking at academic conferences.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Conference attendees, researchers, clinicians, and professional teams use this skill to choose sessions, resolve schedule conflicts, plan networking, and prepare conference follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact documentation includes examples that reference scripts/schedule_optimizer.py, but the release contains scripts/main.py. <br>
-Mitigation: Use the included scripts/main.py entry point, or confirm the publisher supplies the referenced schedule_optimizer.py module before execution. <br>
-Risk: The CLI reads conference files supplied by the user and can write schedule outputs to a requested path. <br>
-Mitigation: Run it only on conference files intended for scheduling and review proposed output paths before writing files. <br>
-Risk: The schedule recommendations depend on the completeness and accuracy of user-provided session data and interests. <br>
-Mitigation: Review the generated schedule against the official conference program before relying on it for attendance decisions. <br>
+## Use Case:
 
+External users and developers use this skill to plan scientific or medical conference attendance by ranking sessions against interests, selecting a non-conflicting schedule, and preserving must-attend items.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and Bash examples; the included CLI prints text and can write optimized schedule JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided conference schedule JSON files and optionally writes a selected output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and tile.json) <br>
+Risk: Documentation describes features such as PDF program input, calendar export, real-time updates, and networking target export that are not implemented in the bundled script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test the installed artifact against the actual JSON-based CLI before relying on advertised workflow features.
+
+Risk: Schedule selection is a lightweight heuristic based on keyword matching, same-start conflict handling, and must-attend flags.
+
+Mitigation: Manually review the generated schedule against the official conference program, room changes, travel time, breaks, and personal priorities.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aipoch-ai/skills/conference-schedule-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; bundled CLI prints text and can write JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script operates locally on schedule JSON input and optional JSON output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and tile.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

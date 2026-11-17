@@ -1,45 +1,60 @@
-## Description: <br>
-Trades ETH price markets on Kalshi using a post-merge deflation thesis, with Simmer credentials and simmer-sdk required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades ETH price markets on Kalshi using a post-merge deflation thesis based on EIP-1559 ETH burn assumptions, with SIMMER_API_KEY and simmer-sdk required.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and traders can use this skill to run a configurable dry-run or live ETH price-market strategy on Kalshi through Simmer. It discovers ETH markets, estimates fair probability from a deflation thesis, and proposes or executes bounded trades when configured for live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can execute real trades and spend USDC using trading and wallet credentials. <br>
-Mitigation: Run dry-run first, keep scheduled automation disabled until intentionally configured, and use --live only after reviewing position, trade-count, slippage, and liquidity limits. <br>
-Risk: The skill requires high-value SIMMER_API_KEY and SOLANA_PRIVATE_KEY credentials. <br>
-Mitigation: Use a scoped API key and a limited funded wallet, avoid main wallets or broad credentials, and rotate secrets if exposure is suspected. <br>
-Risk: Trading behavior depends on simmer-sdk and external market data. <br>
-Mitigation: Review or pin simmer-sdk before enabling live mode and verify market context, liquidity, and slippage settings before funding trades. <br>
+## Use Case:
 
+External users and developers use this skill to evaluate and optionally trade Kalshi ETH price markets from a deflation-adjusted post-merge Ethereum thesis. It supports dry-run review, position checks, configuration inspection, and live execution when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-eth-merge-momentum-trader) <br>
-- [Simmer skills](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [Console text with optional JSON automaton reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is the default; live trading requires an explicit --live flag and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: The skill can place and close real Kalshi trades when live mode is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode first, keep position and trade limits conservative, and treat --live as explicit authority for real financial execution.
+
+Risk: The release asks for a Solana private key even though server security evidence flags that requirement for review.
+
+Mitigation: Do not provide a wallet private key until the publisher documents exactly why it is needed; use narrowly scoped, revocable credentials.
+
+Risk: Trading behavior depends on the external simmer-sdk package and live market API responses.
+
+Mitigation: Pin or review the simmer-sdk version before installation and monitor behavior in dry-run mode before allowing live trades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-eth-merge-momentum-trader)
+- [Simmer skills homepage](https://simmer.markets/skills)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+- [simmer-sdk PyPI package](https://pypi.org/project/simmer-sdk/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with optional JSON automaton reports and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run mode is the default; live trading requires the explicit --live flag.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

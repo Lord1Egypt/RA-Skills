@@ -1,47 +1,61 @@
-## Description: <br>
-Bouncer helps agents verify emails and domains, manage Bouncer batch verification and toxicity-list jobs, and check Bouncer credits through the OOMOL oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bouncer (usebouncer.com). Use this skill for ANY Bouncer request — reading, creating, updating, and deleting data. Whenever a task involves Bouncer, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to run Bouncer email verification, domain verification, batch verification, toxicity-list, and credit-check workflows through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-time setup may require installing the oo CLI with a remote shell or PowerShell installer. <br>
-Mitigation: Review the official OOMOL CLI installer or install guide before running it, and only install from the documented OOMOL URLs. <br>
-Risk: The skill connects to a Bouncer API-key-backed OOMOL account. <br>
-Mitigation: Install only when the user trusts OOMOL and has intentionally connected Bouncer with the required account permissions. <br>
-Risk: Batch creation, toxicity-list creation, and batch-sync verification can change Bouncer state or consume account credits. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: Delete actions can remove stored Bouncer batch or toxicity-list results. <br>
-Mitigation: Confirm the target identifier and get explicit approval before running destructive actions. <br>
+## Use Case:
 
+Developers and operations teams use this skill to verify email addresses and domains, submit and manage batch or toxicity checks, and retrieve status and results through a connected Bouncer account.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/oomol/oo-bouncer) <br>
-- [Bouncer homepage](https://www.usebouncer.com/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns oo CLI command guidance, connector schemas, JSON responses, setup steps, and confirmation prompts for write or destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server metadata and SKILL.md frontmatter) <br>
+Risk: CLI setup runs remote installation code that is not pinned to a reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately and use a reviewed release before running the skill.
+
+Risk: Startup skill synchronization may make broader persistent changes to agent skills whose exact behavior was not inspected.
+
+Mitigation: Consider setting OO_SKILLS_SYNC_DISABLED=1 before running the CLI, and review skill changes before accepting them.
+
+Risk: Email verification submits email addresses to OOMOL and Bouncer.
+
+Mitigation: Only submit email addresses you are authorized to share with those services.
+
+## Reference(s):
+
+- [Bouncer API documentation](https://docs.usebouncer.com/)
+- [Bouncer homepage](https://www.usebouncer.com/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI command and environment controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use action names and JSON inputs; inspect the live action schema before submitting a payload.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

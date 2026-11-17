@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn75ddhs7qybty4hbva0fcangd83z028",
-  "slug": "oaisr",
-  "version": "1.1.2",
-  "publishedAt": 1775036033719
+  "name": "oaisr",
+  "version": "1.1.0",
+  "description": "OAISR - Occupational AI Displacement Risk. 职业AI替代风险评估工作流，基于Anthropic报告方法论对任意职业进行暴露度分析。",
+  "author": "silverash"
 }

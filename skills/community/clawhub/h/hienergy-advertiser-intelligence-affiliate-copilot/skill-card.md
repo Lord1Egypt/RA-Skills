@@ -1,43 +1,60 @@
-## Description: <br>
-HiEnergy Advertiser Intelligence Affiliate Copilot helps agents query HiEnergy API v1 for affiliate advertiser discovery, deal and program research, transaction and commission analysis, status changes, publisher details, and partner contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HiEnergy Advertiser Intelligence Affiliate Copilot helps agents use HiEnergy API v1 to research affiliate advertisers, programs, deals, commissions, transactions, contacts, status changes, agencies, tags, categories, and publisher details.
 
-## Publisher: <br>
-[flyptkarsh](https://clawhub.ai/user/flyptkarsh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyptkarsh](https://clawhub.ai/user/flyptkarsh)
 
-## Use Case: <br>
-Affiliate marketing operators, partner marketing teams, and agent developers use this skill to search HiEnergy advertiser, program, deal, transaction, commission, publisher, and contact data. It is intended for workflows where an authenticated HiEnergy API key grants access to the same business data the user can see in the HiEnergy web app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive HiEnergy affiliate business data, including contacts and transaction or commission information. <br>
-Mitigation: Install only for agents that need this data, use a least-privilege HiEnergy API key, and avoid running debug scripts in shared logs or CI. <br>
-Risk: The skill includes remote write actions such as contact creation, contact reassignment, or publisher updates. <br>
-Mitigation: Require explicit human approval before any contact creation, contact reassignment, or publisher update. <br>
+## Use Case:
 
+External affiliate marketers, partner marketing operators, and developers use this skill to search HiEnergy data for advertiser intelligence, affiliate program research, deal discovery, transaction reporting, and partner contact lookup.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/flyptkarsh/hienergy-advertiser-intelligence-affiliate-copilot) <br>
-- [HiEnergy homepage](https://www.hienergy.ai) <br>
-- [HiEnergy API documentation](https://app.hienergy.ai/api_documentation) <br>
-- [Endpoint reference](references/endpoints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown summaries with optional Python or shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HIENERGY_API_KEY or HI_ENERGY_API_KEY and accesses https://app.hienergy.ai API data visible to that user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill can change account data through contact creation, contact replacement, or publisher update capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege HiEnergy API keys when available and require human confirmation before any contact creation, reassignment, or publisher update.
+
+Risk: The skill can expose contacts or transaction data available to the configured HiEnergy account.
+
+Mitigation: Review outputs before sharing them and run the skill only in environments appropriate for the account's advertiser, contact, and transaction data.
+
+Risk: Debug scripts may reveal sensitive request or account context in logged environments.
+
+Mitigation: Avoid running debug scripts in shared or retained logs, and do not pass API keys on the command line.
+
+## Reference(s):
+
+- [HiEnergy homepage](https://www.hienergy.ai)
+- [HiEnergy API documentation](https://app.hienergy.ai/api_documentation)
+- [HiEnergy API key documentation](https://app.hienergy.ai/api_documentation/api_key)
+- [Endpoint reference](references/endpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with structured result sections and optional Python or shell snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a HiEnergy API key; returned data depends on the user's HiEnergy account access.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Completes customer onboarding for the Famulor AI phone platform by gathering business requirements, creating prompts and knowledge bases, and deploying AI phone assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent operate an authorized Famulor workspace through its hosted MCP server, from assistants and conversation history to campaigns, telephony, automations, billing, and settings.
 
-## Publisher: <br>
-[bekservice](https://clawhub.ai/user/bekservice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bekservice](https://clawhub.ai/user/bekservice)
 
-## Use Case: <br>
-Developers, operators, and onboarding specialists use this skill to configure and deploy Famulor phone assistants for business customers, including industry-specific intake, prompt drafting, knowledge base setup, and API-based assistant creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Famulor API key with broad account authority. <br>
-Mitigation: Install it only for trusted publishers and use a restricted API key if Famulor supports one. <br>
-Risk: The skill can change account resources and trigger outbound communication workflows beyond basic assistant setup. <br>
-Mitigation: Confirm destructive, outbound, campaign, SMS, WhatsApp, and phone-number actions before executing them. <br>
-Risk: Assistant setup may involve customer documents, call recordings, webhooks, or other regulated business data. <br>
-Mitigation: Confirm before sending documents or customer data, and review recording, webhook, and privacy obligations before deployment. <br>
+## Use Case:
 
+Famulor workspace users and administrators use this skill to inspect workspace data and perform authorized assistant, customer communication, telephony, automation, and account-management tasks.
 
-## Reference(s): <br>
-- [Famulor Skill on ClawHub](https://clawhub.ai/bekservice/famulor-skill) <br>
-- [Famulor Skill homepage](https://github.com/bekservice/Famulor-Skill) <br>
-- [Niche intelligence reference](references/niche_intelligence.md) <br>
-- [Famulor application](https://app.famulor.de) <br>
-- [Famulor API base](https://app.famulor.de/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with code snippets, configuration values, and API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FAMULOR_API_KEY for authenticated Famulor API actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Broad workspace permissions could permit consequential changes to messages, calls, campaigns, billing, and account settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit OAuth scopes and workspace roles; require explicit confirmation of the target and action before high-impact operations.
+
+Risk: Exports and conversation history can contain sensitive customer information.
+
+Mitigation: Confirm workspace authorization and purpose, retrieve only necessary data, and share exports only with the authorized user.
+
+Risk: Unattended routines and credit-consuming actions may continue or incur charges after initiation.
+
+Mitigation: Review schedule, scope, and costs with the user, obtain explicit approval, and check the returned task status.
+
+## Reference(s):
+
+- [Famulor skill release on ClawHub](https://clawhub.ai/bekservice/skills/famulor-skill)
+- [Project homepage listed in skill metadata (not verified as release provenance)](https://github.com/bekservice/Famulor-Skill)
+- [Assistant design and onboarding](references/assistant-design.md)
+- [Messaging toolset](references/toolsets/messaging.md)
+- [Billing toolset](references/toolsets/billing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language summaries, action confirmations, and guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report workspace resource IDs, links, and asynchronous task status when relevant and authorized.]
+
+## Skill Version(s):
+
+2.1.3 (source: ClawHub release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

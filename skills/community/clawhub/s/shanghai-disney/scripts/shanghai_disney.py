@@ -12,7 +12,7 @@ import urllib.error
 from datetime import datetime, timedelta
 
 GAODE_PROXY_URL = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
-GAODE_PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+GAODE_PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
 
 PARK_ID = "ddc4357c-c148-4b36-9888-07894fe75e83"
 PARK_CENTER_LAT = 31.1440

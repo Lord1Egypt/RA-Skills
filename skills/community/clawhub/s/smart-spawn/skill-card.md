@@ -1,40 +1,58 @@
-## Description: <br>
-Pick the best AI model for any task using the Smart Spawn API; no plugin is needed, only HTTP requests to ss.deeflect.com/api. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pick the best AI model for any task using the Smart Spawn API. No plugin needed - just HTTP requests to ss.deeflect.com/api.
 
-## Publisher: <br>
-[deeflect](https://clawhub.ai/user/deeflect) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deeflect](https://clawhub.ai/user/deeflect)
 
-## Use Case: <br>
-Developers and agents use this skill to select model IDs for sub-agent spawning, model comparison, and task decomposition through the Smart Spawn HTTP API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task summaries can be sent to the third-party ss.deeflect.com service. <br>
-Mitigation: Use non-sensitive task summaries only; do not send credentials, private code, customer data, internal plans, or hidden/system instructions. <br>
-Risk: Model selection depends on the availability and behavior of the external Smart Spawn API. <br>
-Mitigation: Use the documented fallback path of spawning without a model or using a default/local model selection path for confidential or unavailable-service scenarios. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Smart Spawn ClawHub listing](https://clawhub.ai/deeflect/smart-spawn) <br>
-- [Smart Spawn API status endpoint](https://ss.deeflect.com/api/status) <br>
+## Use Case:
 
+Developers and agents use this skill to select model IDs for task-specific sub-agent spawning, compare models, request multiple recommendations, or decompose complex work into model-assigned subtasks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on third-party API availability and the freshness of the external model data source.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Task descriptions are sent to a third-party API.
+
+Mitigation: Use broad categories or sanitized summaries, and do not send secrets, private customer data, or full confidential prompts.
+
+Risk: Returned model IDs, subtasks, or swarm plans may drive follow-on agent spawning and cost.
+
+Mitigation: Review the returned model choices and plans before spawning agents or starting paid work.
+
+Risk: The API can be unavailable, rate limited, or return unsuitable recommendations.
+
+Mitigation: Use the documented fallback behavior, retry only when appropriate, and check the status endpoint when reliability matters.
+
+## Reference(s):
+
+- [Smart Spawn on ClawHub](https://clawhub.ai/deeflect/skills/smart-spawn)
+- [deeflect publisher profile](https://clawhub.ai/user/deeflect)
+- [Smart Spawn API status](https://ss.deeflect.com/api/status)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON API response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce model IDs, pricing and score context, model comparisons, recommended subtasks, or parallel task graphs depending on the endpoint used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

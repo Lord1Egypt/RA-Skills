@@ -1,41 +1,54 @@
-## Description: <br>
-Provides A-share fund data from market.ft.tech, including fund basic information, NAV history, cumulative returns, fund overviews, and supported fund symbols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基金数据技能集（market.ft.tech）。覆盖基金基本信息、净值历史、累计收益率、基金概览列表、支持基金标的列表。用户询问基金详情、基金净值、基金收益、基金列表时使用。
 
-## Publisher: <br>
-[shawn92](https://clawhub.ai/user/shawn92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn92](https://clawhub.ai/user/shawn92)
 
-## Use Case: <br>
-External users and agents use this skill to look up A-share fund details, NAV history, cumulative returns, fund overviews, and supported fund symbols, then present the returned data in concise tables or summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fund lookup parameters are sent to market.ft.tech. <br>
-Mitigation: Use only fund identifiers and query parameters needed for the lookup; do not enter private, account, or unrelated personal information. <br>
-Risk: The skill runs included Python scripts to retrieve fund data. <br>
-Mitigation: Review and scan the artifact before deployment, and run it only in an environment where outbound access to market.ft.tech is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill to look up A-share fund basic information, NAV history, cumulative return time series, fund overviews, and supported fund symbols from market.ft.tech. It is suited for answering fund detail, return, NAV, and fund list questions when a fund code or resolvable fund name is available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shawn92/ftshare-fund-data) <br>
-- [market.ft.tech data service](https://market.ft.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [JSON from Python handlers, typically summarized by the agent as tables or concise text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fund lookup parameters include institution code, return period, page, and page size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill runs bundled Python scripts and sends fund codes, pagination values, and selected return periods to market.ft.tech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that execution and outbound access to market.ft.tech are permitted.
+
+Risk: Users with strict governance requirements may need tighter execution and network controls.
+
+Mitigation: Apply a permission policy that limits execution to run.py and network access to market.ft.tech.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawn92/skills/ftshare-fund-data)
+- [market.ft.tech API base URL](https://market.ft.tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands]
+
+**Output Format:** [JSON data from bundled Python handlers, typically summarized by the agent as Markdown tables or bullet points.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses fund codes, page values, page sizes, and return-period selectors as query inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

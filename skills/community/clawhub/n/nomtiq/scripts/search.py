@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
-小饭卡 - 大众点评搜索（使用 search-hub）
+小饭卡 - 大众点评公开页面搜索（直接使用 Serper API）
 用法:
   python3 search.py "三里屯 创意菜"
   python3 search.py "国贸 日料 人均 500" --city 北京
@@ -11,50 +12,26 @@ import sys
 import json
 import argparse
 import re
-import os
-import subprocess
+from serper_client import search_web
+from safe_http import is_allowed_https_url, quoted_search_term
 
 def search_dianping(query: str, city: str = '', max_results: int = 50) -> list:
-    """搜索大众点评上的餐厅信息（使用 search-hub）
+    """搜索大众点评公开页面（直接使用 Serper API）。
     
     Args:
         query: 搜索关键词
         city: 城市名
         max_results: 最大结果数（默认 50 家）
     """
-    city_str = f' {city}' if city else ''
-    search_query = f'site:dianping.com {query}{city_str} 餐厅'
+    city_str = f' {quoted_search_term(city)}' if city else ''
+    search_query = f'site:dianping.com {quoted_search_term(query)}{city_str} 餐厅'
     
-    try:
-        # 调用 search-hub（用 python3.13 避免版本问题）
-        result = subprocess.run(
-            ['python3.13', 'skills/search-hub/scripts/hub.py', 'search', search_query, '-t', 'text', '-l', str(max_results)],
-            cwd='/Users/mac/.openclaw/workspace',
-            capture_output=True,
-            text=True,
-            timeout=30
-        )
-        
-        if result.returncode != 0:
-            print(f"search-hub 出错：{result.stderr}", file=sys.stderr)
-            return []
-        
-        # 解析 JSON 输出
-        data = json.loads(result.stdout)
-        results = data.get('results', [])
-        
-        # 解析餐厅信息
-        restaurants = []
-        for r in results:
-            parsed = parse_result(r)
-            if parsed:
-                restaurants.append(parsed)
-        
-        return restaurants
-        
-    except Exception as e:
-        print(f"搜索出错：{e}", file=sys.stderr)
-        return []
+    restaurants = []
+    for result in search_web(search_query, max_results, country='cn', language='zh-cn'):
+        parsed = parse_result(result)
+        if parsed:
+            restaurants.append(parsed)
+    return restaurants
 
 
 def parse_result(result):
@@ -65,7 +42,7 @@ def parse_result(result):
     combined = f"{title} {snippet}"
 
     # 过滤非大众点评链接
-    if 'dianping.com' not in url:
+    if not is_allowed_https_url(url, ('dianping.com',)):
         return None
 
     # 判断是否餐厅相关

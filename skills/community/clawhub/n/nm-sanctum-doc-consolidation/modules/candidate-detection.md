@@ -114,11 +114,9 @@ def detect_candidates(repo_path: str) -> list[CandidateFile]:
 
         # Threshold: score >= 2
         if score >= 2:
-            candidates.append(CandidateFile(
-                path=file_path,
-                score=score,
-                reasons=reasons
-            ))
+            candidates.append(
+                CandidateFile(path=file_path, score=score, reasons=reasons)
+            )
 
     return sorted(candidates, key=lambda c: c.score, reverse=True)
 ```
@@ -153,7 +151,7 @@ done
 Files that are partially staged (`MM` or `AM` status) should be flagged for user attention - they may contain mixed committed/uncommitted content.
 
 ### Renamed/moved files
-If git shows a rename (`R` status), check if the destination is a standard location. If moving TO a standard location, not a candidate.
+If git shows a rename (`R` status), check if the destination is a standard location. If moving TO a standard location, skip it.
 
 ## Validation
 

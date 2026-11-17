@@ -1,45 +1,59 @@
-## Description: <br>
-Guides an agent through researching a topic, planning a long-form manual, writing modular HTML fragments, and building a 100+ page book-style PDF with Playwright. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+深度调研一个主题，生成100页+书籍级PDF手册，使用模块化HTML片段、语义化版本管理、多Agent并行写作和Playwright渲染PDF。
 
-## Publisher: <br>
-[shixiangyu2](https://clawhub.ai/user/shixiangyu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shixiangyu2](https://clawhub.ai/user/shixiangyu2)
 
-## Use Case: <br>
-Developers, documentation teams, and agents use this skill to create complete PDF manuals, e-books, orange papers, and reference guides from an initial topic. It covers topic clarification, research organization, outline planning, parallel HTML-fragment writing, versioning, and PDF generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Node.js and Playwright scripts that create, update, and render project files. <br>
-Mitigation: Use a dedicated project directory, review generated HTML and shell commands before running them, and install Playwright only in an environment where local rendering is acceptable. <br>
-Risk: Default cover and back-page templates include author, social, and branding text that may be unsuitable for client-facing or sensitive documents. <br>
-Mitigation: Replace the default branding and social links before publishing or delivering generated manuals. <br>
-Risk: The bundled design system references Google Fonts, which may be undesirable in restricted or confidential environments. <br>
-Mitigation: Vendor fonts locally or remove external font loading when network access or third-party font requests are not acceptable. <br>
+## Use Case:
 
+Developers, writers, and documentation teams use this skill to plan, research, write, build, and version long-form PDF manuals, ebooks, orange papers, and reference guides from a topic brief.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shixiangyu2/huashu-book-pdf) <br>
-- [Publisher profile](https://clawhub.ai/user/shixiangyu2) <br>
-- [Design system reference](references/design-system.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands, HTML fragments, JavaScript/CSS templates, and project file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated projects can produce merged HTML and A4 PDF files through local Node.js and Playwright scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence says the skill forces third-party branding into generated documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove default branding before generating or distributing documents.
+
+Risk: The security evidence says the build and update scripts are local code execution tools.
+
+Mitigation: Use the scripts only in a project directory you control, review them before execution, and avoid untrusted titles, changelog messages, or HTML fragments.
+
+Risk: PDF rendering may process local HTML, images, fonts, JavaScript, and network-loaded resources.
+
+Mitigation: Prefer pinned dependencies plus network and JavaScript restrictions during PDF rendering.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shixiangyu2/skills/huashu-book-pdf)
+- [Design system reference](artifact/references/design-system.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, HTML/CSS/JavaScript templates, and project files for PDF generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local project scaffolds, HTML fragments, version metadata, changelog entries, merged HTML, PDF output, and archived PDF versions when the workflow is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

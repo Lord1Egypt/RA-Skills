@@ -1,0 +1,17 @@
+# 论衡流程真源 · 第二部分：节点 current_draft_sync（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: current_draft_sync   # 别名：文档层「Phase 3.6 前置」（非独立 Phase 标签，主控呈现时归入 Phase 3.6）
+  phase: "Phase 3.6 前置"
+  phase_seq: 11
+  kind: mechanical_checkpoint
+  verdict_scale: four_tier   # v2.12.40：结论落四档（本节点最常见失败 = 上游稿不存在 → 路径或参数错误档）
+  rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 上游最新稿已在磁盘；上游改写后必须重刷
+  owner: 主控
+  write_authority: owner
+  output: drafts/current_draft.md
+  note: 主控亲为（不 spawn）：同步当前权威稿至 drafts/current_draft.md，保留 draft_id / draft_version；下游默认只取指针与增量清单
+  draft_ref_contract: {path: drafts/current_draft.md, required: [draft_id, draft_version, sha256, section_manifest, changed_sections], sha256_status: verified | unavailable, section_manifest_fields: [section, chars_or_bytes, locator], changed_sections_source: previous_synced_version, hash_mismatch: stop_and_request_resync, full_read_exceptions: [final_assembly, cross_section_audit, owner_explicit_request, incremental_validation_failed]}
+  context_metrics: {required: [raw_input_bytes, structured_output_bytes, context_reduction_ratio, critical_evidence_preserved, locator_preserved, false_negative_count], compression_is_not_evidence: true}
+  precondition: 上游最新稿（drafts/初稿-vN.md 或修订稿）+ Phase 3.5 洞察记录已在磁盘
+  next: t6_critique

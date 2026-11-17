@@ -1,40 +1,52 @@
-## Description: <br>
-Stabilize no-approval node execution in OpenClaw. Use when approval timeout, noisy failure events, or node run drift appears. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stabilize no-approval node execution in OpenClaw when approval timeouts, noisy failure events, or node run drift appear.
 
-## Publisher: <br>
-[xyezir](https://clawhub.ai/user/xyezir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xyezir](https://clawhub.ai/user/xyezir)
 
-## Use Case: <br>
-Developers and operators use this skill to stabilize OpenClaw no-approval node execution by checking approval policy, standardizing node runs, handling noisy failure events, and validating outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Documented command names, file input, and options may not work without additional packaging or code changes. <br>
-Mitigation: Validate the minimal command set and status checks in the target OpenClaw environment before relying on the workflow. <br>
-Risk: High-risk operations could be attempted while troubleshooting approval-free execution. <br>
-Mitigation: Keep explicit chat confirmation in place for high-risk actions and treat approval exceptions as requiring human review. <br>
-Risk: Troubleshooting output could expose credentials or identifying infrastructure details. <br>
-Mitigation: Redact credentials and identifying infrastructure details from policy snapshots, validation results, and exception notes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and OpenClaw node administrators use this skill to stabilize approval-free node runs, reduce noisy failure reporting, and preserve explicit confirmation for high-risk operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with concise status summaries and command recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a policy snapshot, validation results, and exceptions that still need human approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Approval-free runs can accidentally normalize operations that should remain high-risk.
+
+Mitigation: Keep high-risk actions under explicit chat confirmation, matching the artifact guardrail and security guidance.
+
+Risk: Troubleshooting output can expose credentials or identifying infrastructure details if copied directly from node environments.
+
+Mitigation: Redact credentials and identifying infrastructure details before sharing policy snapshots, validation results, or exceptions.
+
+## Reference(s):
+
+- [OC Approval-Free Node Stabilizer on ClawHub](https://clawhub.ai/xyezir/skills/oc-approval-free-node-stabilizer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists and status-oriented outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces policy snapshots, validation results, and exceptions that still need human approval.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

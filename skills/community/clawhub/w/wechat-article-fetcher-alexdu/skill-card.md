@@ -1,40 +1,54 @@
-## Description: <br>
-微信公众号文章抓取工具。当用户发送 mp.weixin.qq.com 链接时自动触发，将文章内容提取为 Markdown/文本，无需 API 密钥。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat public account article links and returns the article as Markdown or text through a public third-party service, without requiring an API key.
 
-## Publisher: <br>
-[alexduming](https://clawhub.ai/user/alexduming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexduming](https://clawhub.ai/user/alexduming)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to fetch public WeChat article content from mp.weixin.qq.com links and return it as Markdown or text without configuring an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat article links are sent to the public third-party service down.mptext.top. <br>
-Mitigation: Use only with public, non-confidential, non-access-restricted links and avoid tracking-sensitive URLs. <br>
+## Use Case:
 
+External users and developers use this skill to convert WeChat public account article URLs into Markdown or plain text for downstream reading, summarization, or archiving workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexduming/wechat-article-fetcher-alexdu) <br>
-- [Publisher profile](https://clawhub.ai/user/alexduming) <br>
-- [mptext public service](https://down.mptext.top) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown, text, JSON, or HTML returned from a public HTTP endpoint, with shell and Python usage examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a URL-encoded mp.weixin.qq.com article link; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: WeChat article URLs are sent to the public down.mptext.top service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for public or non-sensitive links unless the user has reviewed and accepts that service's handling of request data.
+
+Risk: Some articles may be blocked, truncated, or unavailable due to anti-scraping controls, repost restrictions, or temporary image links.
+
+Mitigation: Check fetched output for completeness and retry with text format or save referenced images promptly when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexduming/skills/wechat-article-fetcher-alexdu)
+- [mptext.top public download service](https://down.mptext.top)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown or plain text returned from the public article download API, with optional shell or Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a WeChat article URL and sends it to down.mptext.top; no API key is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

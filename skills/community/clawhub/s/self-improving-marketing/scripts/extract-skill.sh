@@ -1,7 +1,8 @@
 #!/bin/bash
 # Marketing Skill Extraction Helper
 # Creates a new skill from a marketing learning entry
-# Usage: ./extract-skill.sh <skill-name> [--dry-run]
+# Dry-run by default. Writes only with --write after an explicit user request.
+# Usage: ./extract-skill.sh <skill-name> [--write]
 
 set -e
 
@@ -22,7 +23,8 @@ Arguments:
   skill-name     Name of the skill (lowercase, hyphens for spaces)
 
 Options:
-  --dry-run      Show what would be created without creating files
+  --dry-run      Show what would be created without creating files (default)
+  --write        Write the scaffold only after an explicit user request
   --output-dir   Relative output directory under current path (default: ./skills)
   -h, --help     Show this help message
 
@@ -48,12 +50,16 @@ log_error() {
 }
 
 SKILL_NAME=""
-DRY_RUN=false
+DRY_RUN=true
 
 while [[ $# -gt 0 ]]; do
     case $1 in
         --dry-run)
             DRY_RUN=true
+            shift
+            ;;
+        --write)
+            DRY_RUN=false
             shift
             ;;
         --output-dir)
@@ -114,6 +120,37 @@ SKILLS_DIR="./$SKILLS_DIR"
 
 SKILL_PATH="$SKILLS_DIR/$SKILL_NAME"
 
+
+python3 - "$SKILLS_DIR" "$SKILL_NAME" << 'PYCHK'
+import os, sys
+base = os.path.realpath(os.getcwd())
+rel = sys.argv[1].lstrip("./")
+name = sys.argv[2]
+cur = base
+for part in [p for p in rel.split("/") if p and p != "."]:
+    nxt = os.path.join(cur, part)
+    if os.path.islink(nxt):
+        sys.exit(2)
+    if os.path.lexists(nxt):
+        resolved = os.path.realpath(nxt)
+        if os.path.commonpath([base, resolved]) != base:
+            sys.exit(3)
+        cur = resolved
+    else:
+        cur = os.path.normpath(nxt)
+final = os.path.join(cur, name)
+if os.path.islink(final):
+    sys.exit(4)
+if os.path.lexists(final):
+    resolved = os.path.realpath(final)
+    if os.path.commonpath([base, resolved]) != base:
+        sys.exit(4)
+PYCHK
+if [ $? -ne 0 ]; then
+    log_error "Output path escapes the current directory or uses a symlink."
+    exit 1
+fi
+
 if [ -d "$SKILL_PATH" ] && [ "$DRY_RUN" = false ]; then
     log_error "Skill already exists: $SKILL_PATH"
     log_error "Use a different name or remove the existing skill first."
@@ -129,7 +166,7 @@ if [ "$DRY_RUN" = true ]; then
     echo "---"
     cat << TEMPLATE
 name: $SKILL_NAME
-description: "[TODO: Describe the marketing pattern, campaign insight, or playbook this skill addresses]"
+description: "[TODO: Describe the marketing pattern, campaign insight, or playbook this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')
@@ -186,7 +223,7 @@ mkdir -p "$SKILL_PATH"
 cat > "$SKILL_PATH/SKILL.md" << TEMPLATE
 ---
 name: $SKILL_NAME
-description: "[TODO: Describe the marketing pattern, campaign insight, or playbook this skill addresses]"
+description: "[TODO: Describe the marketing pattern, campaign insight, or playbook this skill addresses. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers).]"
 ---
 
 # $(echo "$SKILL_NAME" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) tolower(substr($i,2))}1')

@@ -1,44 +1,60 @@
-## Description: <br>
-AI Animation Studio helps an agent turn a user story into an animated video workflow with storyboarding, Doubao-backed image and video generation, voiceover, subtitles, BGM selection, and FFmpeg composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Animation Studio turns user stories into storyboarded AI animation videos with selectable visual styles, voiceover, subtitles, and background music.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and creative operators use this skill to guide an agent through short animated video production from a written story, including style selection, scene planning, media generation, audio selection, and final video assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Story prompts and image references may be sent to Doubao/Volcengine-backed media generation services. <br>
-Mitigation: Use the skill only with content approved for that provider and avoid entering sensitive or confidential story details unless the deployment policy permits it. <br>
-Risk: Media generation and text-to-video calls may consume API quota or create provider costs. <br>
-Mitigation: Confirm ARK_API_KEY configuration, quota limits, and expected cost before running full multi-scene workflows. <br>
-Risk: The workflow depends on local paths for doubao-media and D:\AI视频资源 media assets. <br>
-Mitigation: Verify those paths point to trusted local resources and keep the media folder limited to assets intended for the workflow. <br>
+## Use Case:
 
+Creators and developers use this skill to convert story prompts into short animated videos, including scene breakdowns, image and video generation prompts, voice assignments, subtitle planning, BGM selection, and local MP4 composition.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/systiger/ai-animation-studio) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [BGM_LIBRARY.md](artifact/BGM_LIBRARY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with command examples, JSON planning artifacts, and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MP4 video outputs, subtitles, voiceover audio, selected BGM, and intermediate image or video assets when required tools and local media resources are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and SKILL.md) <br>
+Risk: External media-generation and TTS services may process submitted stories, private images, dialogue, or other sensitive creative inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential stories, private images, personal dialogue, and unauthorized voice-like content unless the operator has permission to submit that material to the configured services.
+
+Risk: The workflow depends on Windows-specific local paths and a hardcoded doubao-media script location.
+
+Mitigation: Review and update local paths, resource directories, and the doubao-media script path before running the skill in a new environment.
+
+Risk: The workflow invokes ffmpeg and local media files during video composition.
+
+Mitigation: Run it in a controlled workspace and review input and output paths before processing media files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/systiger/skills/ai-animation-studio)
+- [Skill Documentation](artifact/SKILL.md)
+- [BGM Library](artifact/BGM_LIBRARY.md)
+- [Volcengine ARK Console](https://console.volcengine.com/ark)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance, JSON production scripts, shell commands, and MP4 video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Doubao/ARK media generation, Edge TTS, ffmpeg, and local media resources; final videos are described as MP4 H.264/AAC with burned-in subtitles when synthesis succeeds.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata and artifact/SKILL.md changelog, released 2026-03-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

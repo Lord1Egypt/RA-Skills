@@ -1,46 +1,63 @@
-## Description: <br>
-Agent Defender provides static scanning, runtime protection, and DLP checks for AI agent skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Defender is an AI agent security protection skill for static scanning, runtime protection, and DLP checks.
 
-## Publisher: <br>
-[caidongyun](https://clawhub.ai/user/caidongyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caidongyun](https://clawhub.ai/user/caidongyun)
 
-## Use Case: <br>
-Developers and security reviewers use Agent Defender to scan AI agent skills, inspect rule matches, run DLP checks, and optionally monitor runtime behavior before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous rule-development, rule-sync, backup/restore, and cross-project execution features can repeatedly run or modify local rules. <br>
-Mitigation: Review the control scripts, imported rules, and sync sources before use; run in an isolated workspace and avoid starting background daemons unless required. <br>
-Risk: Runtime-protection claims may be limited until independently tested. <br>
-Mitigation: Treat scan and runtime results as advisory, validate them against representative samples, and keep human review in the deployment workflow. <br>
-Risk: Cross-project sync can import rules or behavior from sibling projects that may not be trusted. <br>
-Mitigation: Use only trusted sync sources, inspect imported rule changes, and keep backups before applying updates. <br>
+## Use Case:
 
+Developers and security engineers use this skill to scan AI skills or source files, monitor local agent behavior, and check or mask sensitive data before execution or deployment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/caidongyun/agent-defender) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [README_SIGMA_YARA.md](artifact/README_SIGMA_YARA.md) <br>
-- [QUICK_REFERENCE.md](artifact/QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation, shell commands, JSON/YAML rules, and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local rule files, backups, sync reports, and scan reports when helper scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes background automation that can perform recurring code execution or rule mutation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and do not enable daemon, cron, or systemd workflows unless their behavior is understood.
+
+Risk: Maintenance workflows and backup restoration can be risky when fed untrusted archives.
+
+Mitigation: Avoid restoring backup archives from untrusted sources and review backup contents before use.
+
+Risk: Scanner whitelist logic can mark malicious content as safe.
+
+Mitigation: Use this scanner as one defensive control and manually review findings before relying on deployment decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/caidongyun/skills/agent-defender)
+- [Artifact README](artifact/README.md)
+- [Quick Reference](artifact/QUICK_REFERENCE.md)
+- [Security Capabilities Analysis](artifact/SECURITY_CAPABILITIES_ANALYSIS_20260407.md)
+- [Sigma Specification](https://github.com/SigmaHQ/sigma)
+- [YARA Documentation](https://virustotal.github.io/yara/)
+- [MITRE ATT&CK](https://attack.mitre.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON scan results, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local security findings and suggested actions; runtime and daemon behavior should be reviewed before enabling.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

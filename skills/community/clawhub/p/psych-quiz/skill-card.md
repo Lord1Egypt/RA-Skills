@@ -1,37 +1,53 @@
-## Description: <br>
-Provide short, low-risk self-check quizzes for common mental wellness themes such as stress, sleep, and emotional overload. Results are for self-observation only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide short, low-risk self-check quizzes for common mental wellness themes such as stress, sleep, and emotional overload. Results are for self-observation only.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for quick, non-diagnostic stress, sleep, burnout, and emotional-strain self-checks. It guides short quizzes, light scoring, practical next steps, and professional-support reminders when distress may need more help. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/psych-quiz) <br>
+External users use this skill for concise, non-diagnostic self-check quizzes about stress, sleep quality, burnout, emotional overload, and general mental wellness. The skill helps turn vague unease into structured reflection, simple scoring bands, practical next steps, and reminders to seek professional support when appropriate.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown with short quiz questions, scored result bands, brief interpretation, and practical next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are for self-reflection only; users should seek licensed or emergency support for severe distress, self-harm thoughts, worsening hopelessness, or major daily-function decline.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users may treat informal self-check results as diagnosis, treatment advice, or a substitute for professional care.
+
+Mitigation: Frame outputs as self-observation only, avoid diagnostic certainty, and recommend licensed professional support for persistent or severe distress.
+
+Risk: A normal quiz flow may be inappropriate when a user expresses self-harm thoughts, inability to stay safe, or immediate safety concerns.
+
+Mitigation: Stop the quiz flow and direct the user toward trusted people, local emergency care, crisis resources, hospitals, or licensed professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/psych-quiz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with quiz questions, scoring bands, interpretations, practical suggestions, and safety guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short self-check interactions; no code execution, network access, persistence, or hidden system behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

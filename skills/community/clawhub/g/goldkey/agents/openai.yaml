@@ -1,0 +1,4 @@
+interface:
+  display_name: "GoldKey Action Gate & Guard Beta"
+  short_description: "Preflight and enforce MCP, HTTPS, and Base-wallet actions"
+  default_prompt: "Use $goldkey-agent-utilities to preflight a proposed action or enforce a real MCP, HTTPS, or Base-wallet call."

@@ -8,5 +8,8 @@
 - Rotate photos only when preview/orientation shows it is needed.
 - Use ASCII-safe text if live rendering shows mojibake.
 - Verify live seller-view as source of truth.
-- Keep the flow understandable for simpler models like GPT-4.5 simple.
-- One step, one verification, then next step.
+- Keep the flow understandable for light/mini models such as GPT-4.5 mini or the local mini route: one command, one proof, one next step.
+- Prefer background-safe probes before visible UI: `--browser-fetch --url ...` or `--browser --open-background ...`.
+- Do not activate Safari, move windows, or use coordinate clicks unless a foreground UI check is truly required.
+- Select Safari tabs/documents by Marktplaats URL or ad id, never by screen position.
+- Register update only after successful live verification, unless explicitly tracking a draft with `--allow-unverified`.

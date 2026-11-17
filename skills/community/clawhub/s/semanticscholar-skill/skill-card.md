@@ -1,42 +1,60 @@
-## Description: <br>
-Search academic papers, look up citations, find authors, and get paper recommendations using the Semantic Scholar API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when searching academic papers, looking up citations, finding authors, or getting paper recommendations using the Semantic Scholar API.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to search Semantic Scholar, traverse citation graphs, find authors, get related-paper recommendations, and export literature results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Academic search queries, paper identifiers, and author lookups are sent to Semantic Scholar. <br>
-Mitigation: Use an appropriate S2_API_KEY, avoid confidential research topics without approval, and review queries before execution. <br>
-Risk: Export functions can save BibTeX, Markdown, or JSON result files locally. <br>
-Mitigation: Export only when local files are intended, and review saved results before sharing or relying on them. <br>
+## Use Case:
 
+Developers and research users use this skill to search the Semantic Scholar corpus, inspect citations and references, find authors, request related-paper recommendations, and export literature results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agents365-ai/semanticscholar-skill) <br>
-- [Semantic Scholar API documentation](https://api.semanticscholar.org/api-docs/) <br>
-- [Semantic Scholar API key information](https://www.semanticscholar.org/product/api#api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, tables, Python scripts, shell commands, and optional BibTeX, Markdown, or JSON exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a single-script workflow with built-in rate limiting and retries; S2_API_KEY is optional for higher rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence and skill metadata) <br>
+Risk: Paper queries may disclose sensitive or unpublished research interests to Semantic Scholar.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive unpublished queries and use the skill only when external API submission is acceptable.
+
+Risk: The skill handles the Semantic Scholar API key and raw request helpers broadly.
+
+Mitigation: Review before installing, run in a sandbox, and restrict authenticated requests to official Semantic Scholar hosts.
+
+Risk: Default temporary export paths may be predictable.
+
+Mitigation: Use securely generated temporary file paths or explicit project paths for exported Markdown and JSON results.
+
+## Reference(s):
+
+- [Semantic Scholar API Docs](https://api.semanticscholar.org/api-docs/)
+- [Semantic Scholar API Key](https://www.semanticscholar.org/product/api#api-key)
+- [Agent Skills Format](https://agentskills.io)
+- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/skills/semanticscholar-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries, result tables, Python snippets, shell commands, BibTeX, and JSON or Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use the Semantic Scholar API and optional S2_API_KEY; exports may be written as Markdown or JSON files.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-TencentCloud IDCard OCR calls Tencent Cloud's IDCardOCR API to extract fields from mainland China resident identity card images using Base64 or image URL input, with optional cropping and warning detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tencent Cloud IDCardOCR to extract fields from images of mainland China resident ID cards, with support for Base64 or URL image input, card-side detection, photo cropping, and warning signals.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and agents use this skill to send authorized Chinese ID card images to Tencent Cloud OCR and receive structured identity fields, crop outputs, and warning indicators for document-processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive government identity document images and extracted identity fields through Tencent Cloud OCR. <br>
-Mitigation: Use only with consent and a legal basis, avoid public image URLs when possible, protect OCR results from logs and shared chats, and follow the server security guidance. <br>
-Risk: Tencent Cloud API credentials are required to run the skill. <br>
-Mitigation: Use a dedicated least-privilege Tencent Cloud key and keep TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY out of source files, logs, and prompts. <br>
+## Use Case:
 
+Developers and agents use this skill to submit authorized ID-card images to Tencent Cloud OCR and receive structured identity fields and warning details. It is intended for workflows that need machine-readable OCR output for the front or back side of a mainland China resident ID card.
 
-## Reference(s): <br>
-- [Tencent Cloud IDCardOCR API documentation](https://cloud.tencent.com/document/api/866/33524) <br>
-- [ClawHub skill page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr-idcard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, JSON] <br>
-**Output Format:** [JSON response from Tencent Cloud OCR, with command-line usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials and either an image URL or Base64 image input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill processes highly sensitive ID-card images and OCR results through Tencent Cloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with images the operator is authorized to process, and confirm the data-handling requirements for Tencent Cloud before submitting images.
+
+Risk: Tencent Cloud credentials are required for API access.
+
+Mitigation: Store TENCENTCLOUD_SECRET_ID and TENCENTCLOUD_SECRET_KEY in a protected secret store and avoid writing them into prompts, scripts, logs, or shell history.
+
+Risk: A readable local path passed as Base64 input may cause a non-image file to be uploaded.
+
+Mitigation: Pass only intended image files, avoid arbitrary local paths, and run the skill in a restricted environment until file-type validation is added.
+
+## Reference(s):
+
+- [Tencent Cloud IDCardOCR API Documentation](https://cloud.tencent.com/document/api/866/33524)
+- [ClawHub Skill Page](https://clawhub.ai/zt1314p-design/skills/tencentcloud-ocr-idcard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON emitted by a Python command-line script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes recognized ID-card fields, request ID, AdvancedInfo, and parsed warning codes when returned by Tencent Cloud.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "cto",
-  "version": "1.0.4",
-  "publishedAt": 1771526077145
+  "displayName": "CTO / Chief Technology Officer",
+  "latest": {
+    "version": "1.0.6",
+    "publishedAt": 1784846532397
+  },
+  "history": [
+    {
+      "version": "1.0.5",
+      "publishedAt": 1784815754121
+    },
+    {
+      "version": "1.0.4",
+      "publishedAt": 1771526077145
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1770991523727
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770672217929
+    }
+  ]
 }

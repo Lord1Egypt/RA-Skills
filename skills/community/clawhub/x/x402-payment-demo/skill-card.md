@@ -1,42 +1,51 @@
-## Description: <br>
-Demo of x402 payment protocol by fetching a protected image. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Demonstrates the x402 payment protocol on TRON by fetching a protected image.
 
-## Publisher: <br>
-[Hades-Ye](https://clawhub.ai/user/Hades-Ye) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hades-ye](https://clawhub.ai/user/hades-ye)
 
-## Use Case: <br>
-Developers and external evaluators use this skill to exercise an x402 payment flow on TRON by requesting a protected image, handling the payment requirement, and displaying the retrieved image. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically trigger blockchain payment or permit-signing flows without clear spend limits or confirmation. <br>
-Mitigation: Use the default testnet unless deliberately choosing otherwise, and require the agent to show the exact network, recipient, asset, amount, and signature request before any payment or permit signing. <br>
-Risk: Using a mainnet endpoint may create real payment exposure. <br>
-Mitigation: Keep Nile as the default network for routine testing and use mainnet only after explicit review and approval of the transaction details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/Hades-Ye/x402-payment-demo) <br>
-- [TRON Nile protected demo endpoint](https://x402-tron-demo.aibank.io/protected-nile) <br>
-- [TRON Shasta protected demo endpoint](https://x402-tron-demo.aibank.io/protected-shasta) <br>
-- [TRON Mainnet protected demo endpoint](https://x402-tron-demo.aibank.io/protected-mainnet) <br>
+## Use Case:
 
+Developers and external users can use this skill to exercise an x402 payment flow on TRON and retrieve a protected image resource.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, files] <br>
-**Output Format:** [Agent workflow guidance that may retrieve and display an image] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a network argument with Nile as the default; retrieved image files are temporary and should be deleted after display.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically sign and pay for a protected resource, including on TRON mainnet, without clear user confirmation or payment limits.
+
+Mitigation: Use test networks by default, require deliberate mainnet opt-in, and show the network, token, amount, recipient, fees, and signature scope before any payment or permit is signed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hades-ye/skills/x402-payment-demo)
+- [TRON Nile protected demo endpoint](https://x402-tron-demo.aibank.io/protected-nile)
+- [TRON Shasta protected demo endpoint](https://x402-tron-demo.aibank.io/protected-shasta)
+- [TRON Mainnet protected demo endpoint](https://x402-tron-demo.aibank.io/protected-mainnet)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Files]
+
+**Output Format:** [Markdown guidance with retrieved image display]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Temporary local image files should be deleted after display.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

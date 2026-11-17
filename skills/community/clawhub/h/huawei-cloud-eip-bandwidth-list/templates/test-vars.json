@@ -1,0 +1,35 @@
+{
+  "skill_name": "huawei-cloud-eip-bandwidth-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "EIP ListBandwidths 只读查询",
+      "command": "hcloud EIP ListBandwidths --cli-region={region} --limit=1",
+      "expected": "Returns JSON with bandwidths array (GET /v3/{project_id}/eip/bandwidths)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "脚本参数帮助（含 --bandwidth-id / --share-type / --format）",
+      "command": "python3 scripts/list_bandwidths.py --help",
+      "expected": "argparse help printed including --bandwidth-id, --share-type, --format and -o/--output, exit 0",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "离线单元测试",
+      "command": "python3 scripts/run_tests.py",
+      "expected": "All offline unit tests pass (mocked hcloud): guard / commands / parsing / marker paging / filters / render / Markdown export / SDK fallback / main modes",
+      "type": "unit",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": [
+    "HUAWEI_ACCESS_KEY",
+    "HUAWEI_SECRET_KEY"
+  ],
+  "notes": "只读操作（EIP ListBandwidths / ShowBandwidth，GET /v3/{project_id}/eip/bandwidths[/*]），无创建/修改/删除带宽、变更计费模式、绑定/解绑公网 IP 的写风险。Markdown 导出只写本地文件（临时文件 + 原子重命名），不产生云资源。写意图守卫拦截变更操作，行为由离线单元测试覆盖。真实只读成功路径需要 IAM 授予 eip:bandwidths:list / eip:bandwidths:get。"
+}

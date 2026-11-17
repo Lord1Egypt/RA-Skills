@@ -1,44 +1,64 @@
-## Description: <br>
-AI content writer that researches, outlines, drafts, publishes, and manages engagement for LinkedIn and X using the user's voice and style guidelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hum is an AI content writing skill for X and LinkedIn that crawls feed sources, sends digests, researches ideas, drafts posts in the user's voice, and supports approved publishing and engagement actions.
 
-## Publisher: <br>
-[jyek](https://clawhub.ai/user/jyek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jyek](https://clawhub.ai/user/jyek)
 
-## Use Case: <br>
-Creators, developers, and operators use Hum to turn user-owned voice, audience, channel, and knowledge files into researched social posts, daily feed digests, and publication workflows for X and LinkedIn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use sensitive social credentials and X session cookies. <br>
-Mitigation: Store tokens and cookies securely, grant only the access needed, and review configured credential files or environment variables before running connected workflows. <br>
-Risk: Publishing, following, digest sending, analytics scraping, and image generation can create external side effects. <br>
-Mitigation: Confirm the target account, recipient, content, platform, and image provider before running publish, engage, digest, analytics, or image generation commands. <br>
-Risk: The server security guidance warns that the loop dry-run mode is unreliable until fixed. <br>
-Mitigation: Do not rely on dry-run alone for the daily loop; review each planned action before allowing the loop to post, send, follow, or publish. <br>
-Risk: The dashboard may be unsafe around untrusted web browsing. <br>
-Mitigation: Run the dashboard only in a trusted local context and avoid combining it with untrusted browsing sessions. <br>
+## Use Case:
 
+External users, creators, and marketing or developer advocates use Hum to monitor content sources, brainstorm and research ideas, draft X and LinkedIn content in their own voice, and manage publishing or engagement after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jyek/hum-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with JSON files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local content, feed, and configuration files, and can prepare or execute publishing and engagement actions when connected credentials are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and artifact/version.txt) <br>
+Risk: The skill handles social-account credentials, browser sessions, feed history, drafts, and generated images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, keep credentials scoped, store credential files with restrictive permissions such as chmod 600, and avoid sharing the configured data directory.
+
+Risk: Publishing, following, commenting, and replying can affect live X or LinkedIn accounts.
+
+Mitigation: Review every publish, follow, comment, and reply action before execution, and require explicit user approval for outbound account actions.
+
+Risk: The security evidence reports file, network, dashboard, environment-forwarding, and dependency-pinning weaknesses.
+
+Mitigation: Keep any dashboard limited to localhost, treat crawled knowledge sources as untrusted, review source configuration before crawling, and address the reported weaknesses before broader deployment.
+
+Risk: The skill can make outbound calls to feed, social, Telegram, and image-generation providers.
+
+Mitigation: Configure only the provider credentials that are needed, disable scheduled digest delivery unless desired, and review outbound destinations before enabling automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jyek/skills/hum-writer)
+- [SKILL.md](artifact/SKILL.md)
+- [COMMANDS.md](artifact/COMMANDS.md)
+- [LOOP.md](artifact/LOOP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, plain-text digests, JSON files, generated drafts, generated image assets, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can publish posts and comments through configured X and LinkedIn credentials after user approval; can call configured feed, social, and image-generation providers.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata and artifact/version.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

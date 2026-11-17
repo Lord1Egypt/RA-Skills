@@ -1,0 +1,36 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "medical-device-iomt-compliance",
+  "version": "1.0.0",
+  "author": "注册老炮 (MedXpert)",
+  "year": "2026",
+  "timestamp_utc": "2026-09-05T09:36:42.664139+00:00",
+  "timestamp_local": "2026-09-05T17:36:42.664153",
+  "package_fingerprint_sha256": "3df80ed9cb283d131aa47e208652b31212409d51ec20e5d33d634a1e90e76d12",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "4be6a7ff9a6ab9dce3eb0dc73213ecc995b5ea37bd574190e66e3d69b4a4f4ad"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "f60ba35f4d650d73cc90c7165588db2b622bab1cdb148326a0adabaf5af9b61b"
+    },
+    {
+      "path": "references/01-SaMD与SiMD注册路径.md",
+      "sha256": "ecbe0174392b923e925adf0671e8b5b6a323a0303934d299171523ab36cf6492"
+    },
+    {
+      "path": "references/02-医疗器械网络安全IEC81001-5-1.md",
+      "sha256": "6b157a69241723749d06e9e23c6a0e95c9c66f9f7c22144ed983a3cf2ee39b1b"
+    },
+    {
+      "path": "references/03-UDI追溯与供应链物联网.md",
+      "sha256": "8eff2d347995f515f8dca3067c75d0a9a040a622ecc2969792d1ce8e435245b9"
+    },
+    {
+      "path": "references/04-RPM远程监测合规.md",
+      "sha256": "33b9dbe038e280a2f7176d250e40a9b3c26ab8e712d1e928084ecfff9efab370"
+    }
+  ]
+}

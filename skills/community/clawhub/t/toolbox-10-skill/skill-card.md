@@ -1,44 +1,54 @@
-## Description: <br>
-集合四大高频实用图像工具：去水印/OCR文字识别/图片压缩/标准证件照生成。一站式解决日常图片处理需求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+集合四大高频实用图像工具：去水印/OCR文字识别/图片压缩/标准证件照生成。一站式解决日常图片处理需求。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and developers use this skill to run local image utilities for watermark removal, OCR text extraction, image compression, and standard ID photo generation from user-provided image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python image-processing scripts and writes derived files to user-selected or default output paths. <br>
-Mitigation: Review input and output paths before execution and inspect generated files before relying on them. <br>
-Risk: Dependencies are installed with unpinned package names and OCR/background-removal model files may download on first use. <br>
-Mitigation: Use an isolated virtual environment and allow network access only when dependency or model download behavior is expected. <br>
-Risk: Watermark removal can be misused on content the user is not authorized to modify. <br>
-Mitigation: Use the watermark-removal workflow only for images where removal is lawful and authorized. <br>
+## Use Case:
 
+Developers and external users use this skill to process images through four local Python tools: watermark removal, OCR text extraction, image compression, and standard ID photo generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/toolbox-10-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; Python scripts return JSON status, text OCR output, and processed image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local image paths and writes derived image or text files; OCR and ID-photo features may download model files on first use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can install unpinned Python packages and download OCR or background-removal model files, changing the user's Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin dependencies before use, run the tools in a virtual environment or container, and require explicit approval before package installation or model downloads.
+
+Risk: The watermark-removal workflow can be used on images the user is not authorized to modify.
+
+Mitigation: Use watermark removal only for images where the user has the rights or permission to edit the content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/toolbox-10-skill)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-producing Python script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scripts can write processed image files and OCR text or JSON files to user-selected output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -56,7 +56,7 @@ python3 scripts/run.py --input input.json --output output.json --appkey YOUR_KEY
 
 ## 模型配置
 
-- `https://maas-api.hivoice.cn/v1/chat/completions` · `u1-insuremed`
+- `https://maas-api.hivoice.cn/v1/chat/completions` · `u2-med`
 
 ## 边界
 

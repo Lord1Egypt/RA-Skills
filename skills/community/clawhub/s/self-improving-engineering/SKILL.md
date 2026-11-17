@@ -102,6 +102,8 @@ When learnings prove broadly applicable, promote them to workspace files:
 
 ### Optional: Enable Hook
 
+Opt-in and project-scoped. Enabling a hook persists across future sessions; skip this unless you need reminders.
+
 For lightweight reminders at session start (recommended: activator only):
 
 ```bash
@@ -308,8 +310,9 @@ When a learning is broadly applicable (not a one-off fix), promote it to permane
 ### How to Promote
 
 1. **Distill** the learning into a concise rule, ADR, or standard
-2. **Add** to appropriate section in target file (create file if needed)
-3. **Update** original entry:
+2. **Prepare** a minimal patch for the appropriate section in the target file (create file if needed)
+3. **Show a reviewed diff and apply only after explicit user approval**
+4. **Update** original entry:
    - Change `**Status**: pending` → `**Status**: promoted`
    - Add `**Promoted**: docs/decisions/ADR-007.md` or target file
 
@@ -488,7 +491,7 @@ Use to filter learnings by engineering concern:
 4. **Link the PR or commit** — makes root cause traceable
 5. **Suggest concrete fixes** — not just "investigate" but "add index on users.email"
 6. **Categorize precisely** — enables filtering by architecture_debt vs code_smell vs testing_gap
-7. **Promote aggressively** — if it broke the build twice, it belongs in coding standards
+7. **Promote after review when recurrence appears** — if it broke the build twice, it belongs in coding standards
 8. **Track recurrence** — third time is a systemic issue, not a one-off
 
 ## Gitignore Options
@@ -501,7 +504,7 @@ Use to filter learnings by engineering concern:
 This is the default to avoid committing sensitive or noisy local logs by accident.
 
 **Track learnings in repo** (team-wide):
-Don't add to .gitignore — learnings become shared engineering knowledge.
+Only track `.learnings/` after a human has reviewed entries for secrets, PII, and privileged content.
 
 **Hybrid** (track templates, ignore entries):
 ```gitignore
@@ -512,6 +515,8 @@ Don't add to .gitignore — learnings become shared engineering knowledge.
 ## Hook Integration
 
 Enable reminders through agent hooks only when needed. This is **opt-in** — you must explicitly configure hooks.
+
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
 
 ### Conservative Mode (Recommended)
 
@@ -526,7 +531,7 @@ Create `.claude/settings.json` in your project:
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "build|test|deploy|fix|debug|error|ci|cd|rollback",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-engineering/scripts/activator.sh"
@@ -536,7 +541,7 @@ Create `.claude/settings.json` in your project:
 }
 ```
 
-This injects a lightweight engineering learning reminder after each prompt (~50-100 tokens overhead).
+This injects a lightweight engineering learning reminder after matching prompts (~50-100 tokens overhead).
 
 For advanced setup with `PostToolUse` error detection, see `references/hooks-setup.md`. Keep it disabled unless you explicitly want tool-output pattern checks.
 
@@ -546,6 +551,8 @@ For advanced setup with `PostToolUse` error detection, see `references/hooks-set
 | `scripts/error-detector.sh` | PostToolUse (Bash) | Triggers on build errors, test failures, dep vulnerabilities |
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When a learning is valuable enough to become a reusable skill, extract it using the provided helper.
 
@@ -638,3 +645,7 @@ When guidance conflicts, apply:
 ### Ownership Rules
 - This skill writes only to `.learnings/engineering/` in stackable mode.
 - It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

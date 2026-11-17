@@ -1,47 +1,56 @@
-## Description: <br>
-帮助 AI 从业者检索、深读和归纳机器之心 AI 行业资讯，支持按主题、公司和时间窗口追踪热点事件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks AI industry news by querying Jiqizhixin article search and detail sources, expanding related keywords, and summarizing events, trends, and recommendations with traceable article identifiers.
 
-## Publisher: <br>
-[jiqizhixin](https://clawhub.ai/user/jiqizhixin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiqizhixin](https://clawhub.ai/user/jiqizhixin)
 
-## Use Case: <br>
-AI practitioners, analysts, developers, and industry teams use this skill to track current AI news, expand topic keywords, inspect article details, and produce traceable summaries with source article IDs or titles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords and article IDs are sent to the Jiqizhixin API. <br>
-Mitigation: Avoid confidential company names, research topics, or other sensitive search terms unless sharing them with that API is acceptable. <br>
-Risk: The skill requires an API token for article search and detail requests. <br>
-Mitigation: Store JQZX_API_TOKEN as a secret environment variable and avoid committing, logging, or printing it. <br>
-Risk: Changing BASE_URL could redirect requests to an untrusted endpoint. <br>
-Mitigation: Keep BASE_URL pointed at the trusted Jiqizhixin endpoint unless the replacement endpoint has been reviewed. <br>
-Risk: Conclusions based only on search-result summaries may be incomplete or misleading. <br>
-Mitigation: Fetch article details for representative results and clearly mark uncertainty when sample depth is limited. <br>
+## Use Case:
 
+AI practitioners, analysts, and developers use this skill to search recent AI industry coverage, inspect article details, broaden topic keywords, and produce source-grounded summaries for monitoring companies, themes, and market trends.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiqizhixin/ai-news-radar) <br>
-- [Jiqizhixin Data Service](https://www.jiqizhixin.com/data-service) <br>
-- [API v1 Articles Reference](references/api-v1-articles.md) <br>
-- [Keyword Reference](references/keyword_reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with article IDs, titles, date-window notes, and optional shell/API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and JQZX_API_TOKEN; sends search keywords and article IDs to the Jiqizhixin API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and server release evidence) <br>
+Risk: API tokens or search topics may be exposed to an unintended endpoint if the service host is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect JQZX_API_TOKEN like a password and validate or pin the Jiqizhixin API host before running the scripts.
+
+Risk: The skill over-directs agents toward one external AI-news service, which can narrow source coverage or conflict with user source preferences.
+
+Mitigation: Treat service results as evidence, honor user privacy and source requirements, and supplement with public sources when coverage is insufficient.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiqizhixin/skills/ai-news-radar)
+- [Jiqizhixin Data Service](https://www.jiqizhixin.com/data-service)
+- [/api/v1 Article API Strategy](references/api-v1-articles.md)
+- [Keyword Reference](references/keyword_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with source article titles or IDs and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JQZX_API_TOKEN and network access to the Jiqizhixin article service.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

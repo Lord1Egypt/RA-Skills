@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-save_config.py — 持久化临时 Key 配置到本地文件
+save_config.py — 持久化 Key 配置到本地文件
 
 用法:
-    python save_config.py <phone> <key> <expire_time>
+    python save_config.py <phone> <key> <expire_time> [is_existing]
 
-    expire_time 格式: "2026-06-25 19:54:54" 或 "2026-06-25"
+    expire_time 格式: "2027-07-17 19:59:59" 或 "2027-07-17"
+    is_existing: "true" / "false"（可选，默认 false）
 
 成功输出:
     {"is_new": true, "write_success": true}
@@ -13,6 +14,8 @@ save_config.py — 持久化临时 Key 配置到本地文件
 
 失败输出 (文件写入异常):
     {"is_new": true/false, "write_success": false, "msg": "<原因>"}
+
+兼容旧记录: 读取旧版记录（无 is_existing 字段）时不报错，正常覆盖更新。
 """
 
 import sys
@@ -20,39 +23,6 @@ import json
 import os
 import platform
 from datetime import datetime
-
-APIS = [
-    {"id": 1,   "name": "坐标转换"},
-    {"id": 2,   "name": "行政区划列表"},
-    {"id": 3,   "name": "子级查询"},
-    {"id": 4,   "name": "逆地址解析"},
-    {"id": 5,   "name": "IP定位"},
-    {"id": 6,   "name": "地点搜索"},
-    {"id": 7,   "name": "关键词输入提示"},
-    {"id": 10,  "name": "静态图"},
-    {"id": 11,  "name": "场景点吸附"},
-    {"id": 38,  "name": "行政区划搜索"},
-    {"id": 78,  "name": "驾车路线规划"},
-    {"id": 79,  "name": "步行路线规划"},
-    {"id": 80,  "name": "公交路线规划"},
-    {"id": 83,  "name": "地址解析"},
-    {"id": 84,  "name": "步行距离计算"},
-    {"id": 85,  "name": "驾车距离计算"},
-    {"id": 93,  "name": "POI详情"},
-    {"id": 96,  "name": "距离矩阵驾车"},
-    {"id": 100, "name": "骑行路线规划"},
-    {"id": 118, "name": "距离矩阵骑行"},
-    {"id": 123, "name": "沿途搜索"},
-    {"id": 124, "name": "周边POI推荐"},
-    {"id": 132, "name": "步行距离矩阵"},
-    {"id": 204, "name": "电动车路线规划"},
-    {"id": 238, "name": "智能硬件定位"},
-    {"id": 264, "name": "危险区域查询"},
-    {"id": 275, "name": "多边形区域搜索"},
-    {"id": 290, "name": "未来驾车ETA"},
-    {"id": 303, "name": "天气"},
-    {"id": 323, "name": "直线距离矩阵"},
-]
 
 
 def get_config_path() -> str:
@@ -63,11 +33,11 @@ def get_config_path() -> str:
     return os.path.join(base, ".tencentmap", "tempkey.json")
 
 
-def save_config(phone: str, key: str, expire_time: str) -> dict:
+def save_config(phone: str, key: str, expire_time: str, is_existing: bool = False) -> dict:
     config_path = get_config_path()
     config_dir = os.path.dirname(config_path)
 
-    # 读取现有记录
+    # 读取现有记录（兼容旧版无 is_existing 字段的记录）
     records = {}
     if os.path.exists(config_path):
         try:
@@ -86,12 +56,11 @@ def save_config(phone: str, key: str, expire_time: str) -> dict:
         "expire_time": expire_time,
         "applied_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "status": "active",
+        "is_existing": is_existing,
         "quota": {
             "pv_per_day": 5000,
             "qps": 5,
-            "valid_days": 14,
         },
-        "apis": APIS,
     }
 
     # 写入文件
@@ -132,21 +101,24 @@ def mark_expired(phone: str) -> dict:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 4:
-        # 正常写入模式
-        result = save_config(sys.argv[1], sys.argv[2], sys.argv[3])
+    # 正常写入模式: phone key expire_time [is_existing]
+    if len(sys.argv) >= 4 and sys.argv[2] != "--mark-expired":
+        is_existing = False
+        if len(sys.argv) >= 5:
+            is_existing = sys.argv[4].lower() == "true"
+        result = save_config(sys.argv[1], sys.argv[2], sys.argv[3], is_existing)
         print(json.dumps(result, ensure_ascii=False))
         sys.exit(0 if result["write_success"] else 1)
 
+    # 标记过期模式
     elif len(sys.argv) == 3 and sys.argv[2] == "--mark-expired":
-        # 标记过期模式
         result = mark_expired(sys.argv[1])
         print(json.dumps(result, ensure_ascii=False))
         sys.exit(0)
 
     else:
         print(json.dumps(
-            {"error": -1, "msg": "用法: save_config.py <phone> <key> <expire_time>  |  save_config.py <phone> --mark-expired"},
+            {"error": -1, "msg": "用法: save_config.py <phone> <key> <expire_time> [is_existing]  |  save_config.py <phone> --mark-expired"},
             ensure_ascii=False
         ))
         sys.exit(1)

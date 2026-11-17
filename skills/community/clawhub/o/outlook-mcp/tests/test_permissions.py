@@ -9,11 +9,13 @@ from outlook_mcp.permissions import (
     CATEGORY_CONTACTS_WRITE,
     CATEGORY_MAIL_DRAFTS,
     CATEGORY_MAIL_FOLDERS,
+    CATEGORY_MAIL_RULES,
     CATEGORY_MAIL_SEND,
     CATEGORY_MAIL_TRIAGE,
     CATEGORY_TODO_WRITE,
     VALID_CATEGORIES,
     check_permission,
+    check_sends_mail,
 )
 
 # ---------------------------------------------------------------------------
@@ -39,18 +41,19 @@ def test_category_constants_are_snake_case_strings():
         assert cat
 
 
-def test_valid_categories_contains_all_7():
+def test_valid_categories_contains_all_8():
     """VALID_CATEGORIES includes every declared category constant."""
     assert VALID_CATEGORIES == {
         CATEGORY_MAIL_SEND,
         CATEGORY_MAIL_DRAFTS,
         CATEGORY_MAIL_TRIAGE,
         CATEGORY_MAIL_FOLDERS,
+        CATEGORY_MAIL_RULES,
         CATEGORY_CALENDAR_WRITE,
         CATEGORY_CONTACTS_WRITE,
         CATEGORY_TODO_WRITE,
     }
-    assert len(VALID_CATEGORIES) == 7
+    assert len(VALID_CATEGORIES) == 8
 
 
 def test_category_values_are_expected_names():
@@ -213,3 +216,38 @@ def test_config_rejects_empty_string_category():
 
     with pytest.raises(ValidationError):
         Config(allow_categories=[""])
+
+
+# ---------------------------------------------------------------------------
+# Writes in another category that also send email
+# ---------------------------------------------------------------------------
+# A meeting invitation and an RSVP comment are email: caller-written text,
+# delivered to an address the call names. `calendar_write` alone used to cover
+# them, so a policy that withheld `mail_send` still had a way to send.
+
+
+def test_an_emailing_write_needs_mail_send_when_categories_are_restricted():
+    config = Config(read_only=False, allow_categories=[CATEGORY_CALENDAR_WRITE])
+    with pytest.raises(PermissionDeniedError) as exc_info:
+        check_sends_mail(config, "outlook_create_event", "invite attendees")
+    err = exc_info.value
+    assert CATEGORY_MAIL_SEND in err.message
+    assert "outlook_create_event" in err.message
+    assert "invite attendees" in err.message
+    assert CATEGORY_MAIL_SEND in err.action
+
+
+def test_an_emailing_write_passes_when_mail_send_is_listed():
+    config = Config(read_only=False, allow_categories=[CATEGORY_CALENDAR_WRITE, CATEGORY_MAIL_SEND])
+    assert check_sends_mail(config, "outlook_create_event", "invite attendees") is None
+
+
+def test_an_emailing_write_passes_when_nothing_is_restricted():
+    """An empty allow_categories is fully open, here as everywhere else."""
+    assert check_sends_mail(Config(), "outlook_create_event", "invite attendees") is None
+
+
+def test_an_emailing_write_is_refused_as_read_only_first():
+    config = Config(read_only=True, allow_categories=[CATEGORY_CALENDAR_WRITE])
+    with pytest.raises(ReadOnlyError):
+        check_sends_mail(config, "outlook_create_event", "invite attendees")

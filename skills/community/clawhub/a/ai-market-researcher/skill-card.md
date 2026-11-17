@@ -1,43 +1,49 @@
-## Description: <br>
-AI赋能的市场调研与竞品分析助手，专为科研人员和学术创业者设计。当用户需要进行技术市场分析、竞品调研、技术趋势预测、目标用户画像分析或行业数据收集时触发。支持多维度市场评估，帮助学术成果找到最佳商业化路径。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI赋能的市场调研与竞品分析助手，专为科研人员和学术创业者设计。当用户需要进行技术市场分析、竞品调研、技术趋势预测、目标用户画像分析或行业数据收集时触发。支持多维度市场评估，帮助学术成果找到最佳商业化路径。
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-External researchers, academic founders, and technical entrepreneurs use this skill to scope market research, compare competitors, assess technology trends, and prepare commercialization recommendations for technical products or research outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad market-research prompts can produce outdated or weakly sourced claims. <br>
-Mitigation: Require citations, source dates, scope boundaries, and cross-checks before using findings for business decisions. <br>
-Risk: Users may share confidential business plans, unpublished research, or sensitive competitive information during analysis. <br>
-Mitigation: Provide only the minimum necessary context and avoid sharing confidential material unless the deployment environment is approved for it. <br>
-Risk: The workflow references paid or restricted industry, patent, investment, and academic databases. <br>
-Mitigation: Use only lawful access paths and respect database licensing, subscription, and redistribution terms. <br>
+## Use Case:
 
+Researchers, academic entrepreneurs, and technical founders use this skill to evaluate market opportunities, competitors, technology trends, user segments, and commercialization paths for research-driven products.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/ai-market-researcher) <br>
-- [Publisher profile](https://clawhub.ai/user/earthwalking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, comparison matrices, structured research plans, and recommendation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market and competitor findings should include citations, dates, scope boundaries, and source caveats when the agent can access external sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad market or industry analysis can become misleading when market size, investment, or technology trend claims are stale or unsourced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research synthesis, cite sources and dates for factual claims, and cross-check important findings before using them in commercialization decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/ai-market-researcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with tables, analysis matrices, summaries, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market, competitor, and trend claims should include source names and dates when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

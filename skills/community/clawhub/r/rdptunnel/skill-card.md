@@ -1,42 +1,59 @@
-## Description: <br>
-Rdptunnel provides instructions for exposing local RDP servers over an aitun TCP tunnel using the AITUN/1 plain-TCP handshake. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rdptunnel helps agents expose local RDP servers to the public internet through an aitun TCP tunnel using the AITUN/1 plain-TCP handshake.
 
-## Publisher: <br>
-[ctz168](https://clawhub.ai/user/ctz168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ctz168](https://clawhub.ai/user/ctz168)
 
-## Use Case: <br>
-Developers, support teams, and operators use this skill to make a Windows RDP server, Linux xrdp host, or GUI server reachable when it is behind NAT, a firewall, or a private network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a powerful remote desktop service to the public internet through a tunnel. <br>
-Mitigation: Use it only for deliberate, temporary access to machines you control; prefer VPN, bastion, or IP-restricted access when possible; require strong unique credentials, Network Level Authentication, restricted users, monitoring, and disable the tunnel and RDP or xrdp when finished. <br>
-Risk: The documented curl-to-bash and PowerShell irm-to-iex installation shortcuts execute remote installer content. <br>
-Mitigation: Prefer package-manager installation or independently verify the installer before using those shortcuts. <br>
+## Use Case:
 
+Developers, support engineers, and AI agents use this skill to make Windows RDP, xrdp, or VDI desktops reachable from outside a private network for remote access, support, training, or GUI application management.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ctz168/skills/rdptunnel) <br>
-- [AiTun Homepage](https://aitun.cc) <br>
-- [ClawHub Package Metadata](https://clawhub.ai/ctz168/rdptunnel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, RDP service setup, tunnel creation, remote connection, cleanup, and security guidance for aitun-based RDP access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.9.23 (source: frontmatter and server release evidence) <br>
+Risk: Exposing RDP to the public internet can increase unauthorized-access risk if the desktop service is weakly configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use strong credentials, enable Network Level Authentication, restrict permitted users, monitor RDP logs, and disable RDP or stop the tunnel when access is no longer needed.
+
+Risk: One-line installer commands can execute remote code without an opportunity to inspect or pin the package.
+
+Mitigation: Prefer pinned and verified aitun installation paths before deployment.
+
+Risk: Background or daemonized tunnel processes may leave remote access available longer than intended.
+
+Mitigation: Run tunnels in visible foreground sessions for temporary access when possible, then confirm tunnel processes, ports, and tokens are stopped or revoked afterward.
+
+## Reference(s):
+
+- [Aitun homepage](https://aitun.cc)
+- [ClawHub skill page](https://clawhub.ai/ctz168/skills/rdptunnel)
+- [ClawHub listing](https://clawhub.ai/ctz168/rdptunnel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, PowerShell, and configuration commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands for installing aitun, checking RDP availability, opening TCP tunnels, connecting through a local bridge, and cleaning up tunnel processes.]
+
+## Skill Version(s):
+
+4.9.23 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

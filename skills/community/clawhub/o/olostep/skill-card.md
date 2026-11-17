@@ -1,42 +1,56 @@
-## Description: <br>
-Helps an agent scrape webpages, search Google, crawl and map sites, batch-scrape URLs, and request AI-powered answers with citations through the Olostep Web Data API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape webpages, search Google, crawl sites, batch-scrape up to 10k URLs, map site structure, and get AI-powered answers with citations using the Olostep Web Data API.
 
-## Publisher: <br>
-[zeeshanadilbutt](https://clawhub.ai/user/zeeshanadilbutt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeeshanadilbutt](https://clawhub.ai/user/zeeshanadilbutt)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need live web data for research, documentation ingestion, competitor analysis, data extraction, error debugging, or structured web intelligence. It guides the agent to call Olostep endpoints for scraping, Google search parsing, crawls, batches, site maps, retrieval, and cited answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a third-party web data provider, so submitted URLs, queries, and tasks may be shared with Olostep. <br>
-Mitigation: Avoid private, authenticated, regulated, proprietary, or personal-data-heavy targets unless the user has permission and is comfortable sharing them with Olostep. <br>
-Risk: Crawls and batch scrapes can collect large volumes of web content, including up to 10,000 URLs per batch. <br>
-Mitigation: Keep crawls and batches tightly scoped, confirm target-site rules and organizational approval, and fetch only what the current task needs. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve live web content for research, documentation ingestion, competitor analysis, data extraction, error debugging, fact-checking, and structured web intelligence.
 
-## Reference(s): <br>
-- [Olostep API Docs](https://docs.olostep.com) <br>
-- [Olostep Homepage](https://olostep.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zeeshanadilbutt/olostep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands, JSON request examples, and response-field notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OLOSTEP_API_KEY and sends requested URLs, queries, or tasks to the third-party Olostep API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: artifact/SKILL.md frontmatter and server release evidence) <br>
+Risk: Requested URLs, search queries, crawl targets, batch URL lists, schemas, and answer prompts are sent to Olostep.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data can be shared with Olostep, and avoid secrets, private internal systems, customer data, and confidential investigations without explicit approval.
+
+Risk: Crawling and batch scraping can collect more web content than intended.
+
+Mitigation: Keep crawl and batch scopes small, intentional, and limited to sites and data the user is authorized to access.
+
+## Reference(s):
+
+- [Olostep API Docs](https://docs.olostep.com)
+- [Olostep](https://olostep.com)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/zeeshanadilbutt/skills/olostep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides Olostep API calls that can return markdown, HTML, text, JSON, screenshots, retrieved crawl or batch content, and cited answer sources.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

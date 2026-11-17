@@ -1,38 +1,54 @@
-## Description: <br>
-Analyze social media sentiment related to stocks, providing sentiment scores, trend changes, discussion heat, and bot detection. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Analyzes stock-related social media sentiment signals and returns sentiment scores, trend indicators, discussion heat, and bot-detection style metrics.
 
-## Publisher: <br>
-[GBABYZS](https://clawhub.ai/user/GBABYZS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbabyzs](https://clawhub.ai/user/gbabyzs)
 
-## Use Case: <br>
-Developers and finance-oriented agents can use this skill as a demonstration of stock-related social-media sentiment analysis for comments from Guba and Xueqiu. The supplied implementation returns mock random sentiment values and should not be treated as an investment, trading, or operational signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims to analyze real stock sentiment while the implementation returns random mock results. <br>
-Mitigation: Label outputs as demonstration data and do not use them for investment, trading, or operational decisions unless real data collection and sentiment analysis are implemented and verified. <br>
+## Use Case:
 
+Developers and finance-focused agents can use this skill to produce stock social-sentiment summaries from Chinese investor-community sources. Current outputs should be treated as test or illustrative sentiment data unless the implementation is replaced with real data collection and NLP analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBABYZS/gbabyzs-sentiment-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and bash code blocks; Python functions return dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sentiment values in the artifact are mock randomized values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill.json) <br>
+Risk: The implementation advertises stock sentiment analysis while currently returning random simulated financial metrics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as test data only; do not use them for trading or financial decisions until real data-source handling, NLP analysis, dependency pinning, and output validation are added and reviewed.
+
+Risk: The artifact lists data and NLP dependencies without pinned versions.
+
+Mitigation: Install in an isolated environment and pin reviewed dependency versions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gbabyzs/skills/gbabyzs-sentiment-analysis)
+- [Publisher profile](https://clawhub.ai/user/gbabyzs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance and Python dictionary-style sentiment results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns simulated stock sentiment fields such as sentiment_score, sentiment_level, bull_ratio, bear_ratio, hotness, updated timestamp, and note.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

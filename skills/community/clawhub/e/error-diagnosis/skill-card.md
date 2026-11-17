@@ -1,39 +1,53 @@
-## Description: <br>
-Analyze error messages and logs to identify likely root causes of crashes, build failures, or runtime errors and suggest actionable fixes with code examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze error messages and logs to identify root causes of crashes, build failures, or runtime errors and suggest actionable fixes with code examples.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to triage pasted errors, stack traces, logs, and build failures, then receive a concise diagnosis with likely root cause, fix steps, and prevention guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted logs and stack traces may contain secrets, customer data, internal hostnames, or other sensitive values. <br>
-Mitigation: Redact tokens, passwords, customer data, internal hostnames, and other sensitive details before using the skill or parser. <br>
-Risk: Suggested fix commands or code snippets may be incorrect for the local environment if applied without review. <br>
-Mitigation: Review proposed commands and code changes before execution, then test them in the target project or a safe environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze pasted errors, stack traces, build logs, and runtime failures, identify likely root causes, and receive actionable fixes with code snippets or commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown diagnosis with code snippets and optional JSON from the stack-trace parser] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured fields such as error type, message, frames, and suggested search queries when the bundled parser is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Pasted logs can contain secrets or sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact logs before sharing them with any agent or running the local parser.
+
+Risk: Diagnosis output can suggest an incorrect fix or command for the user's environment.
+
+Mitigation: Review proposed changes and test them in a controlled environment before applying them to production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/error-diagnosis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code snippets, shell commands, and optional JSON from the parser script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured stack trace fields such as error type, message, frames, and suggested search queries when using the parser script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

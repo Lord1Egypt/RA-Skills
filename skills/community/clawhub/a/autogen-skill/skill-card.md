@@ -1,40 +1,54 @@
-## Description: <br>
-Microsoft AutoGen - 多智能体协同框架，用于构建复杂游戏设计工作流 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft AutoGen multi-agent framework wrapper for building complex game design workflows.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers use this skill as a concise AutoGen helper for creating multi-agent workflows, especially game design workflows that coordinate assistant and user-proxy agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced AutoGen package or documented path may be unavailable in the runtime. <br>
-Mitigation: Verify the package and path before relying on the skill in an agent workflow. <br>
-Risk: AutoGen agents can become autonomous LLM workflows when tools, code execution, external APIs, or paid model access are enabled. <br>
-Mitigation: Use a controlled environment and review configuration before enabling those capabilities. <br>
+## Use Case:
 
+Developers and game design teams use this skill for guidance on using Microsoft AutoGen agents to coordinate multi-agent game design workflows.
 
-## Reference(s): <br>
-- [AutoGen project homepage](https://github.com/microsoft/autogen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only helper; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing an unpinned AutoGen dependency can introduce unreviewed behavior changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated Python environment and pin pyautogen to a reviewed version.
+
+Risk: AutoGen agents may be configured with more autonomy or code-execution access than intended.
+
+Mitigation: Review agent autonomy, human-input mode, and code-execution permissions before use.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/kaiyuelv/skills/autogen-skill)
+- [Microsoft AutoGen homepage](https://github.com/microsoft/autogen)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable payload; examples may require installing and configuring pyautogen.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

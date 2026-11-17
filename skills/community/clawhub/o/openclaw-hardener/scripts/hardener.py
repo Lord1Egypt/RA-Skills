@@ -32,7 +32,7 @@ REDACT_PATTERNS: List[Tuple[re.Pattern, str]] = [
     (re.compile(r"\beyJ[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\b"), "***REDACTED_JWT***"),
     # Private keys
     (re.compile(r"-----BEGIN [A-Z ]+PRIVATE KEY-----[\s\S]*?-----END [A-Z ]+PRIVATE KEY-----"),
-     "-----BEGIN PRIVATE KEY-----\n***REDACTED***\n-----END PRIVATE KEY-----"),
+     "REDACTED-SECRET"),
 ]
 
 

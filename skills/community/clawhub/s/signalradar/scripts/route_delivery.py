@@ -10,13 +10,349 @@ v0.8.0 note:
 from __future__ import annotations
 
 import argparse
+import hashlib
+import http.client
+import ipaddress
 import json
+import os
+import socket
+import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 from error_utils import emit_error
+
+
+# ---------------------------------------------------------------------------
+# Secret hygiene
+#
+# A webhook URL IS a bearer credential (Telegram bot token, Slack webhook
+# path, Discord webhook id+token). It must never appear in full in stdout,
+# in --output json (which flows into an AI agent's context) or in the cron
+# log (~/.signalradar/cache/cron.log). Every delivery result therefore
+# reports a masked form plus a stable short fingerprint so a user can still
+# tell two webhooks apart. Set SIGNALRADAR_REVEAL_SECRETS=1 to opt out.
+# ---------------------------------------------------------------------------
+
+def _reveal_secrets() -> bool:
+    return os.environ.get("SIGNALRADAR_REVEAL_SECRETS", "").strip() in {"1", "true", "yes"}
+
+
+def mask_target(target: str) -> str:
+    """Return a log-safe form of a delivery target.
+
+    Webhook URLs collapse to scheme://host/*** plus an 8-char fingerprint of
+    the full URL. Non-http targets (file paths, openclaw routes) pass through.
+    """
+    if not target:
+        return target
+    if _reveal_secrets():
+        return target
+    if not target.lower().startswith(("http://", "https://")):
+        return target
+    fp = hashlib.sha256(target.encode("utf-8", "replace")).hexdigest()[:8]
+    try:
+        parts = urllib.parse.urlsplit(target)
+        host = parts.hostname or "?"
+        port = f":{parts.port}" if parts.port else ""
+        return f"{parts.scheme}://{host}{port}/*** (id:{fp})"
+    except ValueError:
+        return f"<webhook id:{fp}>"
+
+
+def mask_route(route: str) -> str:
+    """Mask the target half of a 'channel:target' route string."""
+    if ":" not in route:
+        return route
+    channel, target = route.split(":", 1)
+    return f"{channel}:{mask_target(target.strip())}"
+
+
+def _scrub(text: str, target: str) -> str:
+    """Remove a secret target from free-form text (e.g. exception messages)."""
+    if not text or not target or _reveal_secrets():
+        return text
+    return text.replace(target, mask_target(target))
+
+
+# ---------------------------------------------------------------------------
+# Webhook destination guard (SSRF)
+#
+# Delivery targets are user-supplied and are POSTed to unattended from cron.
+# Refuse loopback / private / link-local destinations (169.254.169.254 is the
+# cloud metadata endpoint) unless explicitly allowed.
+# ---------------------------------------------------------------------------
+
+def _is_public_ip(ip: "ipaddress._BaseAddress") -> bool:
+    return not (ip.is_loopback or ip.is_private or ip.is_link_local
+                or ip.is_reserved or ip.is_multicast or ip.is_unspecified)
+
+
+def _resolve_public_addresses(host: str) -> tuple[list[tuple[int, str, int]], str]:
+    """Resolve a host and keep only public addresses.
+
+    Returns (addresses, error). Each address is (family, ip, port-from-getaddrinfo).
+    """
+    try:
+        infos = socket.getaddrinfo(host, None, proto=socket.IPPROTO_TCP)
+    except OSError as exc:
+        return [], f"cannot resolve webhook host {host!r}: {exc}"
+    public: list[tuple[int, str, int]] = []
+    for info in infos:
+        family, _, _, _, sockaddr = info
+        try:
+            ip = ipaddress.ip_address(sockaddr[0])
+        except ValueError:
+            continue
+        if _is_public_ip(ip):
+            public.append((family, sockaddr[0], 0))
+    if not public:
+        # Every answer was loopback/private/link-local/reserved — including the
+        # cloud metadata range. Mixed answers are not fatal because the
+        # connection is pinned to one of the public addresses below, so a
+        # private entry in the set is never dialled.
+        return [], (
+            f"webhook host {host!r} resolves only to non-public addresses; refused. "
+            "Set SIGNALRADAR_ALLOW_PRIVATE_WEBHOOK=1 to allow."
+        )
+    return public, ""
+
+
+class _PinnedHTTPSConnection(http.client.HTTPSConnection):
+    """HTTPS connection that dials a pre-validated IP, not a fresh DNS answer.
+
+    Validating a hostname and then handing that hostname to the socket layer
+    lets the second lookup return a different answer than the one that passed
+    (DNS rebinding). The address that passed validation is therefore carried
+    here and dialled directly, while `Host` and the TLS handshake keep using
+    the original hostname so certificate verification is unchanged.
+    """
+
+    def __init__(self, host, pinned_ip, **kw):
+        super().__init__(host, **kw)
+        self._pinned_ip = pinned_ip
+
+    def connect(self):
+        self.sock = socket.create_connection(
+            (self._pinned_ip, self.port), self.timeout, self.source_address
+        )
+        # Re-check what we are actually attached to: the pin is only as good as
+        # the socket that came back.
+        peer = self.sock.getpeername()[0]
+        try:
+            if not _is_public_ip(ipaddress.ip_address(peer)):
+                self.sock.close()
+                raise OSError(f"peer address {peer} is not public; refused")
+        except ValueError:
+            pass
+        if self._tunnel_host:
+            self._tunnel()
+        server_hostname = self._tunnel_host or self.host
+        self.sock = self._context.wrap_socket(self.sock, server_hostname=server_hostname)
+
+
+class _PinnedHTTPConnection(http.client.HTTPConnection):
+    """Plain-HTTP counterpart of _PinnedHTTPSConnection."""
+
+    def __init__(self, host, pinned_ip, **kw):
+        super().__init__(host, **kw)
+        self._pinned_ip = pinned_ip
+
+    def connect(self):
+        self.sock = socket.create_connection(
+            (self._pinned_ip, self.port), self.timeout, self.source_address
+        )
+        peer = self.sock.getpeername()[0]
+        try:
+            if not _is_public_ip(ipaddress.ip_address(peer)):
+                self.sock.close()
+                raise OSError(f"peer address {peer} is not public; refused")
+        except ValueError:
+            pass
+
+
+def _proxy_in_play(req) -> bool:
+    """True when urllib will route this request through a proxy.
+
+    With a proxy configured, the socket peer is the proxy by design — usually
+    on loopback — and pinning the destination address is both wrong and fatal
+    to delivery. The webhook URL's own hostname is still checked up front, and
+    every redirect hop is still revalidated; what cannot be enforced behind a
+    proxy is the address the PROXY finally dials. That boundary is stated in
+    SKILL.md rather than papered over.
+    """
+    if getattr(req, "host", None) is None:
+        return False
+    # ProxyHandler rewrites req.host to the proxy while req.full_url keeps the
+    # original destination, so a mismatch is the proxy. Asking getproxies() and
+    # proxy_bypass() instead does not work: by the time this handler runs the
+    # host has already been rewritten, and proxy_bypass("127.0.0.1") is true for
+    # a loopback proxy, which reads as "no proxy" and refuses every delivery.
+    try:
+        origin = urllib.parse.urlsplit(req.full_url).hostname or ""
+    except ValueError:
+        return False
+    current = req.host.split(":")[0].strip("[]")
+    return bool(origin) and origin.lower() != current.lower()
+
+
+class _PinnedHTTPSHandler(urllib.request.HTTPSHandler):
+    def https_open(self, req):
+        host = req.host.split(":")[0].strip("[]")
+        if _allow_private_webhook() or _proxy_in_play(req):
+            return super().https_open(req)
+        addrs, err = _resolve_public_addresses(host)
+        if err:
+            raise urllib.error.URLError(err)
+        pinned = addrs[0][1]
+        return self.do_open(
+            lambda h, **kw: _PinnedHTTPSConnection(
+                h, pinned, context=self._context, **kw
+            ),
+            req,
+        )
+
+
+class _PinnedHTTPHandler(urllib.request.HTTPHandler):
+    def http_open(self, req):
+        host = req.host.split(":")[0].strip("[]")
+        if _allow_private_webhook() or _proxy_in_play(req):
+            return super().http_open(req)
+        addrs, err = _resolve_public_addresses(host)
+        if err:
+            raise urllib.error.URLError(err)
+        pinned = addrs[0][1]
+        return self.do_open(
+            lambda h, **kw: _PinnedHTTPConnection(h, pinned, **kw), req
+        )
+
+
+def _allow_private_webhook() -> bool:
+    return os.environ.get("SIGNALRADAR_ALLOW_PRIVATE_WEBHOOK", "").strip() in {"1", "true", "yes"}
+
+
+def _allow_insecure_webhook() -> bool:
+    return os.environ.get("SIGNALRADAR_ALLOW_INSECURE_WEBHOOK", "").strip() in {"1", "true", "yes"}
+
+
+def _webhook_target_error(target: str) -> str:
+    """Return an error string if the webhook target is unsafe, else ''."""
+    lowered = target.lower()
+    if not lowered.startswith(("http://", "https://")):
+        return "invalid webhook url (must start with https://)"
+    if lowered.startswith("http://") and not _allow_insecure_webhook():
+        # A webhook URL is itself a bearer credential, and the alert body carries
+        # the monitored questions and probabilities. Over plain HTTP both are
+        # readable by anything on the path, so http:// is opt-in rather than
+        # accepted silently.
+        return (
+            "refusing to deliver over plain HTTP: the webhook URL is a credential "
+            "and the alert body would travel in the clear. Use https://, or set "
+            "SIGNALRADAR_ALLOW_INSECURE_WEBHOOK=1 if you accept that."
+        )
+    if _allow_private_webhook():
+        return ""
+    try:
+        host = urllib.parse.urlsplit(target).hostname
+    except ValueError:
+        return "invalid webhook url"
+    if not host:
+        return "invalid webhook url (no host)"
+    # Fail closed on resolution failure: a name that will not resolve cannot
+    # receive a delivery anyway, so refusing costs nothing — whereas allowing it
+    # means the guard yields on exactly the input it cannot evaluate.
+    _addrs, err = _resolve_public_addresses(host)
+    return err
+
+
+class _GuardedRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Re-apply the destination guard to every redirect hop.
+
+    urllib follows 30x by default and turns POST into GET on 301/302/303, so a
+    public endpoint answering `302 Location: http://127.0.0.1/...` walks the
+    request straight past a guard that only inspected the original host.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        guard = _webhook_target_error(newurl)
+        if guard:
+            raise urllib.error.HTTPError(
+                newurl, code, f"redirect refused: {guard}", headers, fp
+            )
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def _guarded_opener() -> urllib.request.OpenerDirector:
+    # Address pinning and per-hop revalidation are installed together: the
+    # redirect handler re-runs the name check, the pinned handlers make sure the
+    # socket goes to the address that check approved.
+    return urllib.request.build_opener(
+        _GuardedRedirectHandler(), _PinnedHTTPHandler(), _PinnedHTTPSHandler()
+    )
+
+
+# ---------------------------------------------------------------------------
+# File adapter guard
+#
+# The file adapter is an append primitive on a user-supplied path. Refuse the
+# targets that turn it into a code-execution primitive (shell rc files, SSH
+# authorized_keys, agent config) rather than trying to enumerate safe ones.
+# ---------------------------------------------------------------------------
+
+_FILE_ALLOWED_SUFFIXES = {".jsonl", ".ndjson", ".json", ".log", ".txt"}
+
+
+def _file_adapter_root() -> Path:
+    env = os.environ.get("SIGNALRADAR_DATA_DIR", "").strip()
+    return (Path(env) if env else Path.home() / ".signalradar").expanduser()
+
+
+def _allow_outside_data_dir() -> bool:
+    return os.environ.get("SIGNALRADAR_ALLOW_ANY_FILE_TARGET", "").strip() in {"1", "true", "yes"}
+
+
+def _file_target_error(out: Path) -> tuple[str, Path | None]:
+    """Validate a file target. Returns (error, resolved_path).
+
+    The resolved path is handed back so the caller writes to exactly what was
+    checked; validating `out` and then opening `out` leaves a window in which
+    a symlink component can be swapped between the two.
+    """
+    try:
+        resolved = out.expanduser().resolve()
+    except OSError:
+        return "cannot resolve file target", None
+    if resolved.suffix.lower() not in _FILE_ALLOWED_SUFFIXES:
+        return (
+            f"file target must end in one of {sorted(_FILE_ALLOWED_SUFFIXES)}; "
+            f"got '{resolved.suffix or '(none)'}'"
+        ), None
+    if resolved.name.startswith("."):
+        return "file target must not be a dotfile", None
+    home = Path.home().resolve()
+    for blocked in (".ssh", ".claude", ".config/openclaw", "Library/LaunchAgents"):
+        try:
+            resolved.relative_to(home / blocked)
+        except ValueError:
+            continue
+        return f"file target must not be inside ~/{blocked}", None
+
+    # Default-deny outside the skill's own data directory. Enumerating unsafe
+    # directories is a blocklist, and a blocklist misses whatever is not on it;
+    # an append primitive pointed anywhere on disk is the actual capability an
+    # alerting skill should not have.
+    if not _allow_outside_data_dir():
+        try:
+            resolved.relative_to(_file_adapter_root().resolve())
+        except (ValueError, OSError):
+            return (
+                f"file target must be inside {_file_adapter_root()} "
+                "(set SIGNALRADAR_ALLOW_ANY_FILE_TARGET=1 to write elsewhere)"
+            ), None
+    return "", resolved
 
 
 def utc_now() -> datetime:
@@ -33,7 +369,13 @@ def _format_event_time(ts_raw: str, config: dict[str, Any] | None = None) -> str
         return ts_raw
     tz_name = "UTC"
     if config:
-        tz_name = str(config.get("profile", {}).get("timezone", "UTC") or "UTC")
+        tz_name = str(config.get("profile", {}).get("timezone", "") or "").strip()
+        if not tz_name:
+            try:
+                link = os.path.realpath("/etc/localtime")
+                tz_name = link.split("/zoneinfo/", 1)[1] if "/zoneinfo/" in link else "UTC"
+            except OSError:
+                tz_name = "UTC"
     try:
         from zoneinfo import ZoneInfo
         local_dt = dt.astimezone(ZoneInfo(tz_name))
@@ -302,6 +644,22 @@ def _route_parts(route: str) -> tuple[str, str]:
     return left.strip().lower(), right.strip()
 
 
+def envelope_route_block(primary: str, fallback: list[str]) -> dict[str, Any]:
+    """Build the envelope's `route` block — always masked.
+
+    Every envelope is a dual-role object: it is returned to the caller (so it
+    reaches --output json and cron.log) AND it is the body POSTed to the
+    webhook. An unmasked fallback route therefore ships the fallback
+    endpoint's credential to the primary endpoint.
+
+    This exists as a function because masking the two builders in this module
+    individually was an enumeration, and it missed a third construction site
+    in signalradar.py (the multi-HIT branch). Construct the block here or the
+    next builder someone adds will leak too.
+    """
+    return {"primary": mask_route(primary), "fallback": [mask_route(r) for r in fallback]}
+
+
 def deliver_envelope(envelope: dict[str, Any], route: str, timeout_sec: int) -> dict[str, Any]:
     channel, target = _route_parts(route)
     if channel == "openclaw":
@@ -315,14 +673,22 @@ def deliver_envelope(envelope: dict[str, Any], route: str, timeout_sec: int) -> 
     if channel == "file":
         if not target:
             return {"ok": False, "status": "error", "adapter": "file", "error": "missing file target"}
-        out = Path(target)
+        guard, resolved = _file_target_error(Path(target).expanduser())
+        if guard or resolved is None:
+            return {"ok": False, "status": "error", "adapter": "file", "target": target, "error": guard}
+        out = resolved
         out.parent.mkdir(parents=True, exist_ok=True)
         with out.open("a", encoding="utf-8") as f:
             f.write(json.dumps(envelope, ensure_ascii=False) + "\n")
+        try:
+            os.chmod(out, 0o600)
+        except OSError:
+            pass
         return {"ok": True, "status": "delivered", "adapter": "file", "target": str(out)}
     if channel == "webhook":
-        if not target.startswith("http://") and not target.startswith("https://"):
-            return {"ok": False, "status": "error", "adapter": "webhook", "target": target, "error": "invalid webhook url"}
+        guard = _webhook_target_error(target)
+        if guard:
+            return {"ok": False, "status": "error", "adapter": "webhook", "target": mask_target(target), "error": guard}
         # Add platform-specific fields for broad webhook compatibility.
         # Slack/Telegram require "text", Discord requires "content".
         # The full envelope is preserved for structured consumers.
@@ -338,23 +704,23 @@ def deliver_envelope(envelope: dict[str, Any], route: str, timeout_sec: int) -> 
         body = json.dumps(webhook_payload, ensure_ascii=False).encode("utf-8")
         req = urllib.request.Request(target, data=body, method="POST", headers={"Content-Type": "application/json", "User-Agent": "signalradar/1.0"})
         try:
-            with urllib.request.urlopen(req, timeout=timeout_sec) as resp:
+            with _guarded_opener().open(req, timeout=timeout_sec) as resp:
                 code = int(getattr(resp, "status", 200))
-            return {"ok": 200 <= code < 300, "status": "delivered" if 200 <= code < 300 else "error", "adapter": "webhook", "target": target, "http_status": code}
+            return {"ok": 200 <= code < 300, "status": "delivered" if 200 <= code < 300 else "error", "adapter": "webhook", "target": mask_target(target), "http_status": code}
         except Exception as exc:  # noqa: BLE001
-            return {"ok": False, "status": "error", "adapter": "webhook", "target": target, "error": str(exc)}
-    return {"ok": False, "status": "error", "adapter": channel, "target": target, "error": f"unsupported adapter: {channel}"}
+            return {"ok": False, "status": "error", "adapter": "webhook", "target": mask_target(target), "error": _scrub(str(exc), target)}
+    return {"ok": False, "status": "error", "adapter": channel, "target": mask_target(target), "error": f"unsupported adapter: {channel}"}
 
 
 def attempt_delivery(envelope: dict[str, Any], routes: list[str], timeout_sec: int) -> dict[str, Any]:
     attempts: list[dict[str, Any]] = []
     for route in routes:
         result = deliver_envelope(envelope, route, timeout_sec)
-        result["route"] = route
+        result["route"] = mask_route(route)
         attempts.append(result)
         if result.get("ok"):
-            return {"ok": True, "status": result.get("status", "delivered"), "route": route, "attempts": attempts}
-    return {"ok": False, "status": "error", "route": routes[0] if routes else "", "attempts": attempts}
+            return {"ok": True, "status": result.get("status", "delivered"), "route": mask_route(route), "attempts": attempts}
+    return {"ok": False, "status": "error", "route": mask_route(routes[0]) if routes else "", "attempts": attempts}
 
 
 # ---------------------------------------------------------------------------
@@ -399,7 +765,7 @@ def deliver_hit(
         "request_id": event.get("request_id"),
         "idempotency_key": f"sr:{event.get('entry_id')}:{event.get('ts')}",
         "severity": sev,
-        "route": {"primary": route_primary, "fallback": fallback_routes},
+        "route": envelope_route_block(route_primary, fallback_routes),
         "human_text": human_text(event, route_primary, config, threshold=threshold, recent_hit=recent_hit),
         "machine_payload": {"signal_event": event},
         "ts": now,
@@ -448,7 +814,7 @@ def deliver_digest(
         "request_id": report_key,
         "idempotency_key": f"sr:digest:{report_key}",
         "severity": "P2",
-        "route": {"primary": route_primary, "fallback": fallback_routes},
+        "route": envelope_route_block(route_primary, fallback_routes),
         "human_text": str(report.get("human_text", "")),
         "machine_payload": {"digest_report": report.get("machine_payload", report)},
         "ts": now,
@@ -508,7 +874,7 @@ def main() -> int:
                 "request_id": event.get("request_id"),
                 "idempotency_key": f"sr:{event.get('entry_id')}:{event.get('ts')}",
                 "severity": sev,
-                "route": {"primary": args.route_primary, "fallback": args.route_fallback},
+                "route": envelope_route_block(args.route_primary, list(args.route_fallback)),
                 "human_text": human_text(event, args.route_primary),
                 "machine_payload": {"signal_event": event},
                 "ts": now,
@@ -516,7 +882,7 @@ def main() -> int:
             envelopes.append(envelope)
 
             if args.dry_run:
-                results.append({"request_id": envelope.get("request_id"), "ok": True, "status": "dry_run", "route": args.route_primary, "attempts": []})
+                results.append({"request_id": envelope.get("request_id"), "ok": True, "status": "dry_run", "route": mask_route(args.route_primary), "attempts": []})
             else:
                 outcome = attempt_delivery(envelope, [args.route_primary] + list(args.route_fallback), timeout_sec=args.timeout_sec)
                 results.append({"request_id": envelope.get("request_id"), **outcome})

@@ -1,39 +1,48 @@
-## Description: <br>
-Manage Obsidian tasks via obsidian-cli. List, toggle, create, and update tasks from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Obsidian tasks via obsidian-cli to list, toggle, create, and update tasks from the terminal.
 
-## Publisher: <br>
-[boyd4y](https://clawhub.ai/user/boyd4y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[boyd4y](https://clawhub.ai/user/boyd4y)
 
-## Use Case: <br>
-Developers, note-takers, and Obsidian users use this skill to list, create, and update tasks in an Obsidian vault from an agent-assisted terminal workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task toggle, done, todo, and append actions can modify notes in the user's Obsidian vault. <br>
-Mitigation: Ask for a preview or confirmation before executing write actions, especially on important notes or bulk task lists. <br>
-Risk: The skill depends on the local obsidian CLI and an enabled Obsidian command line interface. <br>
-Mitigation: Verify Obsidian 1.12+, Catalyst CLI access, and `obsidian version` before relying on task operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boyd4y/obsidian-task) <br>
+## Use Case:
 
+External users and developers use this skill to manage task notes in an Obsidian vault from an agent-assisted terminal workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that read or edit Obsidian vault tasks; write actions should be confirmed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can make user-directed edits to task files in an Obsidian vault.
+
+Mitigation: Review file, line, and content arguments before approving update or append commands, and keep vault backups or sync history available for undo.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boyd4y/skills/obsidian-task)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local obsidian command, Obsidian 1.12 or later, a Catalyst license, CLI registration, and a running Obsidian app.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

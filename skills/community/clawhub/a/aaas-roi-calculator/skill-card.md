@@ -1,39 +1,53 @@
-## Description: <br>
-Calculates ROI for managed AI agents by estimating cost savings, efficiency gains, and payback period across business operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate ROI for AI-as-a-Service (managed AI agents). Estimates cost savings, efficiency gains, and payback period for deploying AI agents across business operations. Use when evaluating whether managed AI agents make financial sense for a company.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, consultants, and sales teams use this skill to estimate whether managed AI agents make financial sense for a company. It gathers industry, headcount, revenue, and pain-point inputs to produce a business-case ROI analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The ROI estimates, competitor comparisons, and purchase links may reflect vendor-specific promotional assumptions. <br>
-Mitigation: Treat the analysis as a starting point, verify assumptions against independent financial data, and review any purchase or consultation links before acting. <br>
-Risk: The skill asks for company size, revenue, and operational pain points that may be sensitive business information. <br>
-Mitigation: Use approximate or non-sensitive values unless the user is comfortable sharing those details in the calculation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/aaas-roi-calculator) <br>
+## Use Case:
 
+Business operators, consultants, and sales teams use this skill to estimate whether managed AI agents may reduce manual work costs, improve efficiency, and justify deployment. It gathers company inputs, applies industry benchmarks, and produces an ROI summary with payback and savings estimates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown ROI analysis with cost, savings, payback, and next-step sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided business inputs and embedded benchmark assumptions; outputs promotional next-step links when following the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: ROI outputs include vendor booking and payment links as part of normal responses, which may steer users toward a commercial provider.
+
+Mitigation: Review generated analyses before sharing them and remove or clearly label vendor-specific links unless the user explicitly asked for provider next steps.
+
+Risk: Financial estimates rely on fixed industry benchmarks and automation assumptions that may not match a specific company.
+
+Mitigation: Treat results as preliminary planning guidance and replace default assumptions with verified labor costs, task volumes, error rates, and implementation costs before making procurement decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/aaas-roi-calculator)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown ROI analysis with calculations, recommendations, and next-step links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided company inputs and fixed industry assumptions to estimate annual manual costs, savings, payback period, and three-year ROI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

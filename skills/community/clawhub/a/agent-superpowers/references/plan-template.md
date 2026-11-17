@@ -1,10 +1,16 @@
 # Plan Template
 
-Save to: `docs/plans/YYYY-MM-DD-<feature>.md`
+<scope>
+Use this when writing an implementation plan that will be handed to one or more sub-agents. Save to `docs/plans/YYYY-MM-DD-<feature>.md`.
+</scope>
+
+<why_this_matters>
+Each task in a plan becomes a sub-agent prompt. Vague steps ("add validation") let the sub-agent invent something you didn't intend. Concrete steps with full code, exact commands, and expected output make the work mechanical and the result reviewable.
+</why_this_matters>
 
 ## Template
 
-```markdown
+````markdown
 # Plan: [Feature Name]
 
 **Date:** YYYY-MM-DD
@@ -27,10 +33,13 @@ Save to: `docs/plans/YYYY-MM-DD-<feature>.md`
 **Depends on:** none
 
 Steps:
+
 1. Write failing test in `[test file path]`:
    ```typescript
    [complete test code]
    ```
+````
+
 2. Run: `pnpm test -- [test file]` → expect 1 failure
 3. Implement in `[source file path]`:
    ```typescript
@@ -55,6 +64,7 @@ Steps:
 ### Task N: Integration & Final Verification
 
 Steps:
+
 1. Run full test suite: `pnpm test` → expect 0 failures
 2. Run build: `pnpm build` → expect exit 0
 3. Run lint: `pnpm check` → expect 0 errors
@@ -62,13 +72,15 @@ Steps:
 5. Commit: `git commit -m "feat: [summary]"`
 
 **Verification:** All commands above pass with evidence.
+
 ```
 
-## Guidelines
-
-- Each task = 2-5 minutes of work
-- Include COMPLETE code, not "add validation here"
-- Include EXACT commands with EXPECTED output
-- Tests come BEFORE implementation in every task
-- Dependencies between tasks must be explicit
-- Final task always includes full verification suite
+<guidelines>
+- Each task is 2-5 minutes of work.
+- Include complete code rather than placeholders like "add validation here".
+- Include exact commands and the expected output.
+- Tests come before implementation in every task.
+- Make dependencies between tasks explicit.
+- The final task always runs the full verification suite.
+</guidelines>
+```

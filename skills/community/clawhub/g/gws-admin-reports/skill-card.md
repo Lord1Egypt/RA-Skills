@@ -1,42 +1,54 @@
-## Description: <br>
-Google Workspace Admin SDK: Audit logs and usage reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workspace Admin SDK: Audit logs and usage reports.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Workspace administrators and developers use this skill to inspect and prepare gws CLI commands for Google Workspace Admin SDK Reports API audit logs, usage reports, notification channels, and watch management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands may access sensitive Google Workspace audit and usage report data. <br>
-Mitigation: Use the least-privileged Google Workspace admin account available and confirm report parameters before running commands. <br>
-Risk: Watch channels can continue sending notifications after they are no longer needed. <br>
-Mitigation: Stop watch channels when reporting workflows are complete. <br>
-Risk: The skill depends on the local gws CLI and generated shared Google Workspace instructions for authentication and security behavior. <br>
-Mitigation: Verify that the local gws CLI and generated gws-shared instructions come from a trusted source before installing or using the skill. <br>
+## Use Case:
 
+Google Workspace administrators and operators use this skill to guide agent use of the gws CLI for Admin SDK audit logs, usage reports, activity watches, and report discovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/gws-admin-reports) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gws CLI and generated gws-shared instructions for authentication, global flags, and security rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release metadata; artifact metadata.version: 0.22.5) <br>
+Risk: Privileged gws credentials can expose sensitive Google Workspace audit logs and usage reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only with intended Google Workspace admin credentials and review the shared gws authentication and security rules before use.
+
+Risk: Activity watch channels can subscribe to sensitive tenant activity notifications.
+
+Mitigation: Inspect gws schema output and confirm watch parameters before starting or stopping report notification channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-admin-reports)
+- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured gws CLI and appropriate Google Workspace admin permissions.]
+
+## Skill Version(s):
+
+1.0.13 (source: ClawHub release evidence; skill metadata version: 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

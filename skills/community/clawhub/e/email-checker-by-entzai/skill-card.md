@@ -1,43 +1,62 @@
-## Description: <br>
-Automated email assistant for Apple Mail that scores unread messages, drafts AI replies, sends scheduled reports, and supports reply sending through Mail.app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated email assistant for Apple Mail that checks unread inbox messages, scores priority, drafts replies with an optional LLM, and sends scheduled email reports.
 
-## Publisher: <br>
-[entzclaw](https://clawhub.ai/user/entzclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[entzclaw](https://clawhub.ai/user/entzclaw)
 
-## Use Case: <br>
-OpenClaw users and macOS automation users use this skill to monitor a Mail.app inbox, prioritize unread messages, receive digest reports, and prepare or send replies after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mail automation and scheduled execution can read messages, send reports or replies, and mark messages as read. <br>
-Mitigation: Install on a dedicated bot mailbox or VM, grant Mail automation only where intended, and review the generated crontab before enabling scheduled runs. <br>
-Risk: Email content and thread context may be sent to a configured LLM provider. <br>
-Mitigation: Use a local LLM or set the provider to none for sensitive mail, and verify provider settings before running checks. <br>
-Risk: The security guidance identifies unsafe or incomplete AppleScript handling and plaintext API-key storage. <br>
-Mitigation: Inspect or supply the missing get_unread_emails.scpt, verify the report recipient, and avoid important personal or business inboxes until those issues are fixed. <br>
+## Use Case:
 
+External users and developers on macOS use this skill to monitor a Mail.app inbox, prioritize unread messages, receive digest reports, and prepare replies for review through OpenClaw or direct scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/entzclaw/email-checker-by-entzai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/entzclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces email priority summaries, draft reply text, setup guidance, and Mail.app automation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill reads Mail.app inbox content and may send email content to a configured LLM or report destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated bot mailbox when possible, prefer local-only LLM mode for sensitive mail, and review destination and LLM settings before enabling scheduled runs.
+
+Risk: Scheduled execution can mark unread messages as read and change mailbox state without active supervision.
+
+Mitigation: Run manually first, inspect generated reports and logs, and enable cron only after confirming the selected account and behavior.
+
+Risk: Generated replies may be incomplete, incorrect, or inappropriate for the thread context.
+
+Mitigation: Treat drafts as review material and manually approve every reply before sending.
+
+Risk: AppleScript automation and Mail.app permissions broaden local access to mailbox data.
+
+Mitigation: Grant only the permissions needed for Mail automation and avoid Full Disk Access unless reviewed and required for the deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/entzclaw/skills/email-checker-by-entzai)
+- [Publisher Profile](https://clawhub.ai/user/entzclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated email report text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Python 3, osascript, Mail.app, and optional OpenAI-compatible LLM configuration.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

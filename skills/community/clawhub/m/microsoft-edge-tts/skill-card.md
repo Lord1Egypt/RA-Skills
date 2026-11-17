@@ -1,40 +1,58 @@
-## Description: <br>
-Use Microsoft Edge online TTS service to convert text to speech. Supports command line and module invocation, no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Microsoft Edge online TTS service to convert text to speech. Supports command line and module invocation, no API key required.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and agents use this skill to generate speech audio and subtitle files from text with Microsoft Edge's online TTS service, including voice, language, output format, rate, pitch, volume, proxy, and timeout configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text converted with this skill is sent to Microsoft Edge's online TTS service. <br>
-Mitigation: Do not use it for passwords, secrets, regulated data, or confidential documents unless the data handling has been reviewed and accepted. <br>
-Risk: The skill examples execute the referenced npm package with npx. <br>
-Mitigation: Review and trust the package before execution, and pin or manage versions according to local dependency policy. <br>
+## Use Case:
 
+Developers and agents use this skill to convert text into speech, generate audio files, produce subtitle JSON, and configure Microsoft Edge online TTS voices and speech options.
 
-## Reference(s): <br>
-- [Microsoft Voice Support Documentation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of MP3 audio files and JSON subtitle files through the referenced npm package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The examples run an unpinned npm package, so behavior can change when the package updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed node-edge-tts version through a lockfile or sandbox before deployment.
+
+Risk: Text submitted for synthesis is sent to Microsoft Edge's online TTS service.
+
+Mitigation: Use the skill only with text that is acceptable to send to that online service.
+
+Risk: Speech generation depends on network access and may be affected by service availability or rate limiting.
+
+Mitigation: Control call frequency and plan for network or service failures in automated workflows.
+
+## Reference(s):
+
+- [Microsoft Voice Support Documentation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=tts)
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/microsoft-edge-tts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands, JavaScript examples, parameter tables, and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced TTS tool can produce audio files and subtitle JSON when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

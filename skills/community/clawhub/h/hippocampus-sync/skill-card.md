@@ -1,44 +1,55 @@
-## Description: <br>
-Daily incremental update of HIPPOCAMPUS.md - domain-filtered 14-day rolling context for all agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily incremental update of HIPPOCAMPUS.md with domain-filtered 14-day rolling context for all agents.
 
-## Publisher: <br>
-[comicsansbestfont](https://clawhub.ai/user/comicsansbestfont) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[comicsansbestfont](https://clawhub.ai/user/comicsansbestfont)
 
-## Use Case: <br>
-Agent operators use this skill to refresh an agent-specific HIPPOCAMPUS.md from local OpenClaw memory, event, registry, and workspace sources. It keeps rolling context, open threads, commitments, and domain-specific sections current while enforcing each agent's domain boundary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and updates local OpenClaw context files for agent memory sync, including persistent HIPPOCAMPUS.md, memory entries, and .learnings archives. <br>
-Mitigation: Run it only in intended workspaces and periodically review HIPPOCAMPUS.md, dated memory entries, and .learnings archives for sensitive, stale, or inaccurate content. <br>
-Risk: Registry paths and domain sources control which local context is read and carried forward. <br>
-Mitigation: Review registry paths before use and keep each agent's track and exclude lists scoped to the intended domain. <br>
+## Use Case:
 
+Agent operators and workspace agents use this skill to refresh HIPPOCAMPUS.md with recent, domain-filtered context, open threads, commitments, and domain sections. It is intended for OpenClaw-style workspaces where agent memory, activity feeds, peer context, and selected operational files are available to the agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/comicsansbestfont/hippocampus-sync) <br>
-- [Publisher Profile](https://clawhub.ai/user/comicsansbestfont) <br>
-- [Agent Domain Registry](references/agent-registry.md) <br>
-- [Domain-Specific Section Definitions](references/domain-sections.md) <br>
-- [Hippocampus Entry Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates HIPPOCAMPUS.md and may append local memory entries when material changes are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can gather and persist operational context across listed OpenClaw workspaces, including CRM, family conversation-derived data, journals, cron logs, and peer context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where those reads and summaries are intended and acceptable, and review the configured source lists before deployment.
+
+Risk: The decay step can change learning files beyond HIPPOCAMPUS.md by marking pending entries stale and archiving older stale entries.
+
+Mitigation: Review scripts/decay.py before use and run the skill in a version-controlled or otherwise recoverable workspace.
+
+## Reference(s):
+
+- [Agent Domain Registry](references/agent-registry.md)
+- [Domain-Specific Section Definitions](references/domain-sections.md)
+- [Hippocampus Entry Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown file and concise Markdown delivery message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a 14-day rolling, domain-filtered context summary and may run a decay check that updates learning status or archive files.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-A prompt-based Kobe Bryant knowledge skill that provides detailed information about his career, achievements, legacy, and Mamba Mentality philosophy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kobe is a prompt-based knowledge skill that activates on Kobe Bryant, Black Mamba, jersey-number, or Mamba Mentality references to provide detailed information about Kobe Bryant's career, achievements, legacy, and philosophy.
 
-## Publisher: <br>
-[Wscats](https://clawhub.ai/user/Wscats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wscats](https://clawhub.ai/user/wscats)
 
-## Use Case: <br>
-External users and agents use this skill to answer natural-language questions about Kobe Bryant's basketball career, statistics, championships, signature moments, post-retirement work, and cultural legacy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may trigger on vague basketball or jersey-number references. <br>
-Mitigation: Tighten activation criteria or disable the skill when Kobe Bryant context is not desired. <br>
+## Use Case:
 
+External users use this skill to ask natural-language questions about Kobe Bryant's NBA career, statistics, iconic moments, Mamba Mentality, post-retirement work, and cultural legacy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Wscats/kobe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose and tables in conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-based activation on Kobe Bryant, Black Mamba, #8, #24, Mamba Mentality, and related basketball topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Broad activation terms such as #8, #24, and general basketball references could trigger the skill when the user did not intend a Kobe Bryant-specific response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower activation rules that require Kobe Bryant, Black Mamba, Mamba Mentality, Lakers context, or another explicit Kobe-related signal.
+
+Risk: The skill is a read-only knowledge source with no code, persistence, data access, or hidden behavior, so no security-sensitive execution risk was identified in the server scan.
+
+Mitigation: Review and scan the artifact before deployment, and keep the skill limited to answering Kobe Bryant-related prompts.
+
+## Reference(s):
+
+- [ClawHub Kobe skill page](https://clawhub.ai/wscats/skills/kobe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses to natural-language prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, file writes, shell commands, API calls, data access, persistence, or credential handling are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Trello API integration with managed OAuth for managing boards, lists, cards, checklists, labels, and members through Maton. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Trello boards, lists, cards, labels, and members through a user-authorized Maton connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent read and update Trello project-management data through a Maton-managed OAuth connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected Trello OAuth account can be used to read and modify boards, lists, cards, labels, and checklists. <br>
-Mitigation: Install only if the user trusts Maton to broker Trello OAuth access, and confirm the target resource and intended effect before any create, update, archive, or delete action. <br>
-Risk: When multiple Trello connections exist, a request may affect the wrong connected account if the connection is not specified. <br>
-Mitigation: Specify the intended Maton connection ID for Trello requests whenever more than one connection is available. <br>
+## Use Case:
 
+People and teams using Trello can ask an agent to inspect and manage project boards, lists, cards, labels, and members. With separate user approval, they can also set up Maton-hosted functions and triggers for automation.
 
-## Reference(s): <br>
-- [ClawHub Trello Skill](https://clawhub.ai/byungkyu/skills/trello-api) <br>
-- [Trello API Overview](https://developer.atlassian.com/cloud/trello/rest/api-group-actions/) <br>
-- [Trello Boards API](https://developer.atlassian.com/cloud/trello/rest/api-group-boards/) <br>
-- [Trello Cards API](https://developer.atlassian.com/cloud/trello/rest/api-group-cards/) <br>
-- [Maton CLI Manual](https://cli.maton.ai/manual) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, JSON, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and an active Trello OAuth connection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Trello writes or new connections could change data or grant unintended access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each write and new connection with the user; review OAuth scopes and use the least privilege needed.
+
+Risk: Long-lived API keys or exposed credentials could permit unauthorized access.
+
+Mitigation: Prefer the Maton CLI OAuth flow and avoid exposing or storing credentials in commands, files, or trigger destinations.
+
+Risk: Hosted functions and persistent triggers can keep acting or forwarding event data after setup.
+
+Mitigation: Review and confirm automations and destinations before enabling them; remove unused functions and triggers.
+
+## Reference(s):
+
+- [Trello skill on ClawHub](https://clawhub.ai/byungkyu/skills/trello-api)
+- [Maton](https://maton.ai)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Trello REST API: boards](https://developer.atlassian.com/cloud/trello/rest/api-group-boards/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Maton account, network access, and user authorization for Trello access.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release; skill frontmatter states 1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

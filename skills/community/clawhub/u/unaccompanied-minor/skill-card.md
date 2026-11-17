@@ -1,46 +1,62 @@
-## Description: <br>
-Searches for flights with unaccompanied minor service for children traveling alone and formats live booking options from flyai results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for flights with unaccompanied minor service for children traveling alone, plus related travel booking tasks, powered by Fliggy.
 
-## Publisher: <br>
-[liquanyu123](https://clawhub.ai/user/liquanyu123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liquanyu123](https://clawhub.ai/user/liquanyu123)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to collect route and date details, run flyai flight searches, and present unaccompanied-minor flight options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run a persistent global third-party flyai CLI package. <br>
-Mitigation: Install @fly-ai/flyai-cli only with explicit user approval, verify the package source first, and prefer an already trusted local installation. <br>
-Risk: Broad travel triggers could activate the skill for tasks beyond unaccompanied-minor flight search. <br>
-Mitigation: Confirm the requested travel task and required route parameters before running commands, and keep execution scoped to the relevant flyai search command. <br>
-Risk: Flight results depend on live CLI and network responses, so failures or empty responses can lead to incomplete guidance. <br>
-Mitigation: Do not fabricate travel results; retry according to the fallback guidance and tell the user when CLI or network output is unavailable. <br>
+## Use Case:
 
+External users and travel-booking agents use this skill to collect route details, run Flyai/Fliggy flight searches, and present unaccompanied-minor flight options with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liquanyu123/unaccompanied-minor) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown flight-search summary with comparison tables, booking links, and inline shell commands when setup or execution is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the source of flight data and should not emit raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill directs agents to install and run an unpinned global Flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, prefer a pinned audited package version, and run the CLI in a sandbox or project-local environment.
+
+Risk: User-derived route, date, and price inputs are passed into shell commands.
+
+Mitigation: Validate city, airport, date, and price values before execution and avoid adding parameters not listed by the skill.
+
+Risk: Flight booking links may send users to external booking pages.
+
+Mitigation: Check returned URLs before presenting booking links and clearly attribute results to Flyai/Fliggy CLI output.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/liquanyu123/skills/unaccompanied-minor)
+- [Parameter collection and output templates](artifact/references/templates.md)
+- [Scenario playbooks](artifact/references/playbooks.md)
+- [Failure recovery](artifact/references/fallbacks.md)
+- [Execution runbook](artifact/references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Flight results must come from Flyai CLI output and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

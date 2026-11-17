@@ -1,44 +1,57 @@
-## Description: <br>
-Manage YouTube search by helping an agent search videos, channels, playlists, and other YouTube resources through the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube search by helping agents use the yutu CLI to search videos, channels, playlists, and other resources.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-External users, developers, and content workflows use this skill to let an agent run YouTube searches, filter results, and return video, channel, playlist, or resource listings through yutu. It is useful when an agent needs YouTube search results with controllable CLI flags and output formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on Google OAuth credential and cached token files that can grant YouTube API access if exposed. <br>
-Mitigation: Store client_secret.json and youtube.token.json privately, do not commit or share them, and revoke or rotate the Google OAuth credentials if either file is exposed. <br>
-Risk: The yutu CLI package and repository are third-party dependencies. <br>
-Mitigation: Install only after trusting the yutu package publisher and repository, and prefer pinned or reviewed package versions in controlled environments. <br>
+## Use Case:
 
+Developers and agents use this skill to search YouTube resources through the yutu CLI after configuring YouTube API OAuth credentials.
 
-## Reference(s): <br>
-- [YouTube Search on ClawHub](https://clawhub.ai/OpenWaygate/youtube-search-yutu) <br>
-- [yutu GitHub repository](https://github.com/eat-pray-ai/yutu) <br>
-- [Search List](references/search-list.md) <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; yutu search results may be returned as table, JSON, or YAML depending on the CLI flags used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the yutu binary plus Google OAuth credential and cached token files before YouTube API searches can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server-resolved release metadata) <br>
+Risk: The skill relies on installing and running a mutable third-party yutu CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the yutu publisher and install source before use, and prefer a pinned and verified version.
+
+Risk: The skill requires YouTube OAuth client secrets and cached tokens.
+
+Mitigation: Grant only the minimum YouTube API scopes needed for search, store credential and token files outside repositories with restrictive permissions, and revoke or rotate tokens if exposed.
+
+## Reference(s):
+
+- [Search List](references/search-list.md)
+- [Yutu Setup Guide](references/setup.md)
+- [yutu Project Homepage](https://github.com/eat-pray-ai/yutu)
+- [yutu Releases](https://github.com/eat-pray-ai/yutu/releases/latest)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and CLI flag guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include yutu command examples, OAuth setup steps, and output format guidance for table, JSON, or YAML results.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

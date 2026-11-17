@@ -1,0 +1,50 @@
+{
+  "skill_name": "task-planner",
+  "skill_version": "1.2.0",
+  "eval_version": "2.0.0",
+  "eval_date": "2026-08-13",
+  "purpose": "task-planner 最小自测集（skill-standard-evaluator D6-04 自测用例；格式 v2：每条用例含 priority 标注，p0_count/p1_count 为逐条统计值，可脚本核验）。完整评测集见 eval/trails/p0-04-task/ 与 TRAIL-EVAL-SPEC。",
+  "test_cases": {
+    "trigger_positive": [
+      {"id": "TP-01", "input": "把架构拆成任务", "expect_trigger": true, "assertion": "应触发 task-planner", "priority": "P0"},
+      {"id": "TP-02", "input": "拆任务", "expect_trigger": true, "assertion": "应触发 task-planner", "priority": "P0"},
+      {"id": "TP-03", "input": "任务规划", "expect_trigger": true, "assertion": "应触发 task-planner", "priority": "P0"},
+      {"id": "TP-04", "input": "出任务清单", "expect_trigger": true, "assertion": "应触发 task-planner", "priority": "P0"},
+      {"id": "TP-05", "input": "规划执行顺序，识别可并行任务", "expect_trigger": true, "assertion": "应触发 task-planner（何时使用场景）", "priority": "P0"},
+      {"id": "TP-06", "input": "生成 Out-of-Scope 清单，界定开发范围", "expect_trigger": true, "assertion": "应触发 task-planner（何时使用场景）", "priority": "P1"},
+      {"id": "TP-07", "input": "评估任务依赖关系", "expect_trigger": true, "assertion": "应触发 task-planner（依赖识别步骤）", "priority": "P1"},
+      {"id": "TP-08", "input": "制定迭代计划", "expect_trigger": true, "assertion": "应触发 task-planner（按阶段分组规划）", "priority": "P1"},
+      {"id": "TP-09", "input": "排任务优先级", "expect_trigger": true, "assertion": "应触发 task-planner（任务调整/优先级能力）", "priority": "P1"},
+      {"id": "TP-10", "input": "任务粒度拆分建议", "expect_trigger": true, "assertion": "应触发 task-planner（粒度标准能力）", "priority": "P1"}
+    ],
+    "trigger_negative": [
+      {"id": "TN-01", "input": "根据 PRD 生成 Spec", "expect_trigger": false, "assertion": "不应触发 task-planner（属 spec-writer 边界）", "priority": "P0"},
+      {"id": "TN-02", "input": "根据 Spec 做架构设计", "expect_trigger": false, "assertion": "不应触发 task-planner（属 arch-designer 边界）", "priority": "P0"},
+      {"id": "TN-03", "input": "审计需求完成情况", "expect_trigger": false, "assertion": "不应触发 task-planner（属 audit-trace 边界）", "priority": "P0"},
+      {"id": "TN-04", "input": "生成实现指导", "expect_trigger": false, "assertion": "不应触发 task-planner（属 impl-guide 边界）", "priority": "P0"},
+      {"id": "TN-05", "input": "直接写业务代码", "expect_trigger": false, "assertion": "不应触发 task-planner（属 impl-guide 边界）", "priority": "P0"},
+      {"id": "TN-06", "input": "解析需求文档", "expect_trigger": false, "assertion": "不应触发 task-planner（属 spec-writer 边界）", "priority": "P0"},
+      {"id": "TN-07", "input": "检查代码质量", "expect_trigger": false, "assertion": "不应触发 task-planner（代码评审类）", "priority": "P1"},
+      {"id": "TN-08", "input": "设计模块接口", "expect_trigger": false, "assertion": "不应触发 task-planner（属 arch-designer 边界）", "priority": "P1"},
+      {"id": "TN-09", "input": "写测试用例", "expect_trigger": false, "assertion": "不应触发 task-planner（测试骨架属 impl-guide）", "priority": "P1"},
+      {"id": "TN-10", "input": "部署上线", "expect_trigger": false, "assertion": "不应触发 task-planner（部署类）", "priority": "P1"}
+    ],
+    "process_checks": [
+      {"id": "PC-01", "check": "前置依赖：无架构方案时提示先使用 arch-designer，不跳过架构直接生成任务", "priority": "P0"},
+      {"id": "PC-02", "check": "三种分解策略：Sequential/Parallel/Hybrid 按项目特点选择", "priority": "P1"},
+      {"id": "PC-03", "check": "粒度标准：任务 1-4 小时，超 4h 拆解，不足 30 分钟合并", "priority": "P1"},
+      {"id": "PC-04", "check": "依赖识别：被依赖模块排入早期任务，链深 >3 显式标注接受及理由", "priority": "P1"},
+      {"id": "PC-05", "check": "INVEST 六维校验：不达标时重新拆解或合并", "priority": "P0"},
+      {"id": "PC-06", "check": "验收条件可客观验证（如'返回 201 且密码已加密'，非'功能正常'）", "priority": "P0"},
+      {"id": "PC-07", "check": "Out-of-Scope 清单：来源（Spec 边界/架构排除/隐含假设）逐项标注", "priority": "P1"},
+      {"id": "PC-08", "check": "输出末尾附加 CONTEXT-CHECK 标记（T/M/P 计数）", "priority": "P0"}
+    ],
+    "safety_checks": [
+      {"id": "SC-01", "check": "无架构方案时禁止直接生成任务（明确提示用户）", "priority": "P0"},
+      {"id": "SC-02", "check": "验收条件不可客观验证时禁止输出（自检门禁）", "priority": "P0"},
+      {"id": "SC-03", "check": "不生成 Spec、不做架构设计、不编写代码实现（边界互斥）", "priority": "P0"}
+    ]
+  },
+  "p0_count": 18,
+  "p1_count": 13
+}

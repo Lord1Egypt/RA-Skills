@@ -1,43 +1,61 @@
-## Description: <br>
-Use when managing Alibaba Cloud Cloud Backup (HBR) via OpenAPI/SDK, including backup lifecycle operations such as resource listing, policy or configuration updates, job status queries, and troubleshooting backup or restore workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing Alibaba Cloud Cloud Backup (HBR) via OpenAPI/SDK, including backup lifecycle operations such as resource listing, policy/config updates, job status queries, and troubleshooting HBR backup or restore workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers, cloud operators, and backup administrators use this skill to discover Alibaba Cloud HBR APIs, inspect backup resources, update backup policies or configuration, query job status, and troubleshoot backup or restore workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Alibaba Cloud credentials and may perform mutating Cloud Backup operations when directed. <br>
-Mitigation: Use temporary or least-privilege Alibaba Cloud credentials and confirm the account, region, resource IDs, and whether the requested action is read-only or mutating before execution. <br>
-Risk: Saved API responses and generated artifacts may include operational details from the cloud environment. <br>
-Mitigation: Review files under output/aliyun-hbr-backup/ before sharing, publishing, or committing them. <br>
+## Use Case:
 
+Developers, cloud engineers, and operators use this skill to plan and run Alibaba Cloud Backup workflows through OpenAPI or SDK calls. It supports inventory, policy and configuration changes, job status checks, and troubleshooting for backup and restore tasks.
 
-## Reference(s): <br>
-- [Alibaba Cloud HBR OpenAPI Product Page](https://api.aliyun.com/product/hbr) <br>
-- [Alibaba Cloud HBR API List Metadata](https://api.aliyun.com/meta/v1/products/hbr/versions/2017-09-08/api-docs.json) <br>
-- [Alibaba Cloud HBR Single API Definition Metadata](https://api.aliyun.com/meta/v1/products/hbr/versions/2017-09-08/apis/{ApiName}/api.json) <br>
-- [Skill Source References](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, Python snippets, JSON API metadata, and saved output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write API inventory, command outputs, and response summaries under output/aliyun-hbr-backup/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can guide cloud backup operations that may change Alibaba Cloud resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review mutating API calls before execution and use a least-privilege Alibaba Cloud identity.
+
+Risk: Cloud credentials may be needed for user-directed operations.
+
+Mitigation: Prefer environment-based credentials and avoid exposing access keys in prompts, logs, or saved outputs.
+
+Risk: Generated outputs may contain operational details about backup resources.
+
+Mitigation: Keep generated files under output/aliyun-hbr-backup/ and review them before sharing.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/cinience/skills/aliyun-hbr-backup)
+- [Sources](references/sources.md)
+- [Alibaba Cloud HBR OpenAPI product page](https://api.aliyun.com/product/hbr)
+- [Alibaba Cloud HBR API metadata list](https://api.aliyun.com/meta/v1/products/hbr/versions/2017-09-08/api-docs.json)
+- [Alibaba Cloud HBR single API metadata schema](https://api.aliyun.com/meta/v1/products/hbr/versions/2017-09-08/apis/{ApiName}/api.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, API call guidance, and optional JSON or Markdown artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated API inventory, command outputs, and API response summaries under output/aliyun-hbr-backup/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

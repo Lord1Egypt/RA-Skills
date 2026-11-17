@@ -1,41 +1,49 @@
-## Description: <br>
-Guides agents in using OpenClaw's multi-layered memory format with long-term, daily, and session memory records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OpenClaw's multi-layered memory system with structured, searchable markdown files for long-term, daily, and session memories.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-Developers and agents use this skill to structure local OpenClaw memory files so important decisions, summaries, follow-up items, and technical notes remain searchable across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files may retain secrets, credentials, or sensitive personal data if users store them there. <br>
-Mitigation: Avoid writing sensitive data to MEMORY.md or daily memory files, and periodically review or delete memory files in private workspaces. <br>
-Risk: Daily memory records can become excessive or stale if they are never cleaned up. <br>
-Mitigation: Distill durable information into MEMORY.md and periodically remove or archive daily entries that are no longer useful. <br>
+## Use Case:
 
+Developers and agents use this skill as a reference for creating, organizing, searching, and safely maintaining OpenClaw memory files across long-term, daily, and session layers.
 
-## Reference(s): <br>
-- [OpenClaw Memory Format on ClawHub](https://clawhub.ai/hanxiao-bot/openclaw-memory-format) <br>
-- [hanxiao-bot publisher profile](https://clawhub.ai/user/hanxiao-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with structured file path and section examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes MEMORY.md, daily memory files, session memory, search usage, flush triggers, and cleanup practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Persistent memory files can retain secrets, credentials, personal data, confidential prompts, or other sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive content in memory files, and periodically review or delete retained memory that is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanxiao-bot/skills/openclaw-memory-format)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with examples and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

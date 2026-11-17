@@ -1,45 +1,54 @@
-## Description: <br>
-Universal game architecture DSL with six primitives (LOOP, TILEGRID, CONTROLBLOCK, POOL, EVENT, DISPATCHER) for designing portable game and simulation loops, translating between architectures, explaining engine structure to AI agents, and refactoring systems into explicit state and flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal Game Primitives helps agents design, translate, and explain portable game and simulation architectures using six DSL primitives: LOOP, TILEGRID, CONTROLBLOCK, POOL, EVENT, and DISPATCHER.
 
-## Publisher: <br>
-[stusatwork-oss](https://clawhub.ai/user/stusatwork-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stusatwork-oss](https://clawhub.ai/user/stusatwork-oss)
 
-## Use Case: <br>
-Developers and engineers use this skill to map game or simulation systems into six reusable primitives, produce portable architecture sketches, and compare implementations across 68K, Cell, CUDA, and ECS-style designs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes code snippets and architecture examples that may omit production hardening or full engine integration details. <br>
-Mitigation: Treat snippets as reference patterns and review, adapt, and test any implementation before using it in production. <br>
-Risk: Architecture mappings can oversimplify differences between legacy loops, heterogeneous compute, GPU kernels, and ECS scheduling. <br>
-Mitigation: Validate the proposed Primitive Map, Dataflow Sketch, and Portability Notes against the target runtime's memory, timing, and concurrency constraints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Universal Game Primitives release page](https://clawhub.ai/stusatwork-oss/primitives-dsl) <br>
-- [Quick Card](assets/quick_card.md) <br>
-- [Architecture Mapping](references/architecture_mapping.md) <br>
-- [Classic Shooter Worked Example](references/example_shooter.md) <br>
-- [Mall Simulation Tick Worked Example](references/example_mall_tick.md) <br>
-- [NPC One Step Worked Example](references/example_npc_step.md) <br>
-- [Anthropic Skills Repository](https://github.com/anthropics/skills) <br>
+## Use Case:
 
+Developers, engineers, and agent builders use this skill to convert game or simulation ideas into a stable primitive map, dataflow sketch, worked example, and portability notes across 68K, Cell, CUDA, and ECS-style architectures.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with tables, text diagrams, and concise pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs include a Primitive Map, Dataflow Sketch, one Worked Example, and Portability Notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Illustrative code snippets may be copied into a project with mistakes or mismatched assumptions.
+
+Mitigation: Review and adapt example code before use, with particular attention to the NPC wattitude threshold example noted by the security guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/stusatwork-oss/skills/primitives-dsl)
+- [Quick Card](assets/quick_card.md)
+- [Architecture Mapping](references/architecture_mapping.md)
+- [Worked Example: Classic Shooter Loop](references/example_shooter.md)
+- [Worked Example: Mall Simulation Tick](references/example_mall_tick.md)
+- [Worked Example: NPC One Step](references/example_npc_step.md)
+- [Anthropic Skills Repository](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with tables, text diagrams, and pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to include a Primitive Map, Dataflow Sketch, one Worked Example, and Portability Notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

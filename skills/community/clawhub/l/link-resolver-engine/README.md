@@ -85,6 +85,7 @@ python scripts/video_snapper.py -u "https://v.douyin.com/ezOqxZPY3kc/" -d "F:/�
 # 3. 指定文件名前缀 + 下载目录
 python scripts/video_snapper.py -u "https://v.douyin.com/ezOqxZPY3kc/" -p "测试" -d "F:/命理学"
 
+
 ### **在 OpenClaw 聊天中**
 
 你可以直接对你的 Agent 说：

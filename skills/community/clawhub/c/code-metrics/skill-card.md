@@ -1,40 +1,48 @@
-## Description: <br>
-Code Metrics analyzes code quality metrics including lines of code by language, Python cyclomatic complexity, function and class counts, comment ratios, and largest file rankings across supported source languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze code quality metrics across source code, including lines of code by language, comment ratios, function and class counts, largest files, and Python cyclomatic complexity.
 
-## Publisher: <br>
-[johnnywang2001](https://clawhub.ai/user/johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect codebases for size, documentation density, function and class counts, largest files, and Python complexity hotspots.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The analyzer reads source files under the project path supplied by the user and may include project structure and code-derived metrics in its output.
+
+Mitigation: Run it only on repositories intended for inspection, and avoid broad home or system directories when those files should not be included in metrics output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a codebase for size, language mix, documentation density, function and class counts, and Python complexity hotspots. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, json, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Metrics reports can expose repository file paths, function names, and project structure. <br>
-Mitigation: Run the skill only on projects intended for inspection, and review reports before sharing them. <br>
-Risk: Broad activation wording may cause the skill to run for general code overview requests. <br>
-Mitigation: Confirm the target directory and requested metrics before running repository-wide analysis. <br>
+**Output Format:** [Plain-text report or JSON metrics data, with shell command examples for running the analyzer.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Code Metrics on ClawHub](https://clawhub.ai/johnnywang2001/code-metrics) <br>
+**Other Properties Related to Output:** [Reports per-language line counts, comment ratio, function and class counts, largest files, and optional Python cyclomatic complexity warnings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Human-readable terminal report or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports file paths, function names, line counts, comment ratios, largest files, and Python complexity metrics.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

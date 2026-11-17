@@ -1,45 +1,60 @@
-## Description: <br>
-Kim msg account setup helper for configuring the Kim Channel plugin so OpenClaw can exchange messages through Kim, the Kuaishou/Kwai IM channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kim Msg Account Skill helps OpenClaw users install and configure the Kim Channel plugin for Kuaishou/Kwai IM message interactions.
 
-## Publisher: <br>
-[LeeGoDamn](https://clawhub.ai/user/LeeGoDamn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leegodamn](https://clawhub.ai/user/leegodamn)
 
-## Use Case: <br>
-Developers and operators use this skill to install, configure, diagnose, and verify the Kim Channel integration for OpenClaw. It provides guided setup steps and shell commands for plugin installation, Kim application credentials, webhook configuration, gateway restart, and troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow asks for appKey, secretKey, and verificationToken values that could expose real messaging credentials if pasted into chat or stored insecurely. <br>
-Mitigation: Use the skill only on a trusted workstation, avoid pasting credentials into chat, and prefer a secure secret store or local masked input. <br>
-Risk: The setup scripts modify OpenClaw Kim channel configuration and can restart the gateway. <br>
-Mitigation: Review the configuration changes before confirming setup and run the skill during an approved maintenance window when gateway restart is acceptable. <br>
-Risk: The plugin installation step depends on the @ks-openclaw/kim package and an internal npm registry. <br>
-Mitigation: Check the package source and version before installation and confirm the expected registry is configured. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kim Msg Account Skill page](https://clawhub.ai/LeeGoDamn/kim-msg-account) <br>
-- [Publisher profile](https://clawhub.ai/user/LeeGoDamn) <br>
-- [Kim open platform](https://kim.kuaishou.com/) <br>
-- [OpenApi service platform](https://open.kuaishou.com/) <br>
-- [Full Kim Channel configuration guide](https://docs.corp.kuaishou.com/d/home/fcAA_W4zGstwslCQxlwehh1d2) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to create or connect a Kim application, configure Kim credentials and webhook settings, restart the OpenClaw gateway, and verify message delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include masked credential summaries and diagnostic status text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles appKey, secretKey, and verificationToken values during setup and troubleshooting.
+
+Mitigation: Use a secure local secret store or masked input path, avoid pasting secrets into shared chats or recorded terminals, and rotate credentials if exposure is suspected.
+
+Risk: The setup flow installs the mutable @ks-openclaw/kim plugin package.
+
+Mitigation: Install only from a trusted package source, verify the intended package version before use, and review the installed plugin before deployment.
+
+Risk: Webhook and gateway configuration can fail because of network isolation, incorrect paths, missing permissions, or token mismatches.
+
+Mitigation: Run the diagnostic script, verify Kim event callback settings, confirm /openapi/v2/message/send permission, and check gateway status and logs after configuration changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leegodamn/skills/kim-msg-account)
+- [Kim Open Platform](https://kim.kuaishou.com/)
+- [OpenApi Service Platform](https://open.kuaishou.com/)
+- [Full internal Kim setup document](https://docs.corp.kuaishou.com/d/home/fcAA_W4zGstwslCQxlwehh1d2)
+- [AccessProxy IDC request guidance](https://wiki.corp.kuaishou.com/pages/viewpage.action?pageId=xxxxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local shell scripts that install the Kim plugin, write OpenClaw channel configuration, restart the gateway, and diagnose webhook reachability.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

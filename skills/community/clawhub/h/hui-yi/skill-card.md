@@ -1,47 +1,62 @@
-## Description: <br>
-Hui-Yi manages a file-based cold-memory archive under memory/cold/ and supports an optional opt-in local hook for recall-related session signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for low-frequency archival recall when primary memory is insufficient, authorized cold-memory maintenance, or setting up and repairing automatic user-memory detection and recall.
 
-## Publisher: <br>
-[fuetsui](https://clawhub.ai/user/fuetsui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuetsui](https://clawhub.ai/user/fuetsui)
 
-## Use Case: <br>
-Developers and agent operators use Hui-Yi to create, search, review, resurface, and maintain durable low-frequency memory notes without promoting every historical detail into primary memory. It is suited to explicit requests for historical continuity, cold-memory recall, cooling, rebuild, and repetition-driven reinforcement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a persistent local cold-memory tool that creates or modifies files under memory/cold/ and memory/heartbeat-state.json. <br>
-Mitigation: Install and run it only when a persistent local archive is desired, and review changes to cold-memory notes, tags, indexes, and heartbeat state. <br>
-Risk: The optional hook can persist recall-related activation metadata from real conversations once installed and enabled. <br>
-Mitigation: Review the hook template before running scripts/install_hook.py --enable, keep HUI_YI_HOOK_DEBUG unset except during brief troubleshooting, and disable the hook in openclaw.json when signal updates are not wanted. <br>
-Risk: Enabling the hook changes OpenClaw hook configuration. <br>
-Mitigation: Use the installer's dry-run and disclosure path first; the installer is expected to refuse creating a missing openclaw.json. <br>
+## Use Case:
 
+Developers and agent operators use Hui-Yi to retrieve, maintain, and reinforce low-frequency cold-memory context when current conversation, primary memory, and recent notes are insufficient. It also supports explicitly authorized setup or repair of local recall integrations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fuetsui/hui-yi) <br>
-- [Cold Memory Schema Reference](artifact/references/cold-memory-schema.md) <br>
-- [Cold Memory Examples](artifact/references/examples.md) <br>
-- [Heartbeat Cooling Playbook](artifact/references/heartbeat-cooling-playbook.md) <br>
-- [Trigger Modes + Integration Patterns](artifact/references/integration-patterns.md) <br>
-- [Real Session Signals Integration Design](artifact/references/real-session-signals-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local cold-memory files and optional hook configuration when the user runs the provided scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.11 (source: server release evidence and artifact manifest.yaml) <br>
+Risk: The skill maintains a persistent local memory archive that can retain sensitive or outdated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted workspace, avoid storing secrets, and verify persisted evidence before treating a memory as current or reliable.
+
+Risk: Explicit apply or enable operations can modify local memory files, hook files, or an existing OpenClaw configuration that may contain credentials.
+
+Mitigation: Review dry-runs first, keep configuration backups private, and apply changes only within an authorized maintenance task.
+
+Risk: Optional native recall integration may use host-configured model or embedding services and is scoped to the reviewed runtime and channels.
+
+Mitigation: Confirm the runtime, channel scope, and cost expectations before enabling integration; re-audit after host upgrades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fuetsui/skills/hui-yi)
+- [Cold Memory Schema Reference](references/cold-memory-schema.md)
+- [Trigger Modes + Integration Patterns](references/integration-patterns.md)
+- [Automatic Recognition and Recall](references/native-memory.md)
+- [Hui-Yi 1.2.13 Release Notes](references/release-1.2.13.md)
+- [Hui-Yi 1.2.12 Security Upgrade and Validation](references/security-upgrade-1.2.12.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, and local configuration or file-change instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local cold-memory files, hook files, and OpenClaw configuration only when explicitly authorized by the user.]
+
+## Skill Version(s):
+
+1.2.13 (source: server release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Routes mid-session work to deterministic spawned-model plans for coding, architecture, math, algorithms, web development, brainstorming, research, long-context reading, quick scripts, formatting, tradeoff evaluation, and build pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes mid-session work to deterministic spawned-model choices for coding, architecture, math, web development, research, quick scripts, tradeoff evaluation, and build pipelines while defaulting away from Claude unless `--force-claude` appears.
 
-## Publisher: <br>
-[omaression](https://clawhub.ai/user/omaression) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omaression](https://clawhub.ai/user/omaression)
 
-## Use Case: <br>
-Developers and engineers use this skill to route in-progress agent work to selected spawned models while keeping the main session fixed. It supports standard task routing, multi-model tradeoff evaluation, and buildq/build/buildx delivery pipelines with test and review stages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task content may be routed to different spawned model providers, and some OpenAI routes use long cache retention. <br>
-Mitigation: Use explicit prompts for build or tradeoff workflows and avoid sending secrets unless the selected provider and retention behavior are acceptable. <br>
-Risk: Build pipelines can produce code changes that may be incorrect or broader than intended. <br>
-Mitigation: Review generated diffs before merging and require the skill's automated test and review stages to pass before treating work as ready. <br>
+## Use Case:
 
+Developers and engineers use this skill to classify work during an active agent session, choose an appropriate spawned model, and structure tradeoff reviews or build pipelines without changing the fixed main session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/omaression/advanced-dispatcher-skill) <br>
-- [Advanced Dispatcher README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured route-plan text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include selected model routes, cache-retention rationale, tradeoff judge guidance, or build pipeline steps depending on the prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1-alpha (source: server release evidence) <br>
+Risk: The security assessment reports that flag-like text in a prompt can be interpreted as Claude authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts containing `--force-claude` before dispatch and avoid treating untrusted pasted text as provider authorization.
+
+Risk: The skill routes prompts among multiple model providers.
+
+Mitigation: Install and use it only where those providers and prompt-routing policies are acceptable for the intended work.
+
+## Reference(s):
+
+- [Advanced Dispatcher ClawHub page](https://clawhub.ai/omaression/skills/advanced-dispatcher-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with structured route plans and pipeline steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes model choice, cache retention, rationale, and pipeline step ordering when applicable.]
+
+## Skill Version(s):
+
+1.0.1-alpha (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

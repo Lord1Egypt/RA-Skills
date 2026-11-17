@@ -1,0 +1,43 @@
+[
+  {
+    "word": "New Zealand",
+    "ipa_uk": "njuː ˈziːlənd",
+    "ipa_us": "nuː ˈziːlənd",
+    "pos": "n.",
+    "level": "C1",
+    "cn": "新西兰",
+    "en": "An island country in the southwestern Pacific Ocean.",
+    "coll": ["New Zealanders", "North Island", "Maori culture"],
+    "examples": [
+      ["I visited New Zealand last summer.", "我去年夏天去了新西兰。"],
+      ["New Zealand is famous for its rugby team.", "新西兰以橄榄球队闻名。"]
+    ],
+    "note": "位于南太平洋的岛国，毛利文化是其独特标识。",
+    "baike_url": "https://baike.baidu.com/item/新西兰",
+    "side": {
+      "category": "Geography",
+      "info": "毛利语 Aotearoa，意为「长白云之乡」。",
+      "related": ["Auckland", "Wellington", "Kiwi"],
+      "expressions": ["Kia ora — 毛利语问候"],
+      "culture": "毛利文化与英式文化交融。",
+      "tip": "aotearoa → 长白云之地，记住白云即新西兰。"
+    }
+  },
+  {
+    "word": "serendipity",
+    "ipa_uk": "ˌserənˈdɪpəti",
+    "ipa_us": "ˌserənˈdɪpəti",
+    "pos": "n.",
+    "level": "C2",
+    "cn": "意外发现美好事物的运气；机缘巧合",
+    "en": "The occurrence of events by chance in a happy or beneficial way.",
+    "coll": ["pure serendipity", "happy serendipity"],
+    "examples": [
+      ["Meeting her was pure serendipity.", "遇见她纯属机缘巧合。"]
+    ],
+    "note": "源自波斯童话《三个锡兰王子》，主角们总能意外发现珍宝。"
+  },
+  {
+    "word": "极简示例词"
+  }
+]

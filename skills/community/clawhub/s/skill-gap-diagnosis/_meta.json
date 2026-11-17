@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn795cny1fg5nndp9pzzwt6r7188p6mz",
-  "slug": "skill-gap-diagnosis",
+  "name": "skill_gap_diagnosis",
+  "displayName": "業務缺口診斷",
   "version": "1.0.0",
-  "publishedAt": 1781578821010
+  "description": "整合多維數據，計算缺口金額、需成交件數、緊急度/容易度標籤，輸出多維度診斷結論",
+  "author": "OnePartner AI Team",
+  "license": "MIT",
+  "language": "zh-Hant",
+  "entryPoint": "SKILL.md",
+  "schema": {
+    "input": "schema/input.json",
+    "output": "schema/output.json"
+  },
+  "scripts": ["scripts/compute_gaps.py"],
+  "references": ["references/diagnosis.md"],
+  "tests": ["tests/test_compute_gaps.py"],
+  "tags": ["diagnosis", "gap", "performance", "insurance"],
+  "dependencies": []
 }

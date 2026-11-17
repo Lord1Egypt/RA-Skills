@@ -1,46 +1,58 @@
-## Description: <br>
-Provides personalized workout plans, nutrition guidance, exercise alternatives, and progress tracking with motivational, safety-focused coaching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides personalized workout plans, nutrition guidance, exercise alternatives, and fitness progress tracking through a conversational fitness coach.
 
-## Publisher: <br>
-[johwiltb](https://clawhub.ai/user/johwiltb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johwiltb](https://clawhub.ai/user/johwiltb)
 
-## Use Case: <br>
-Users interact with the SweatSensei fitness coach to plan workouts, estimate nutrition targets, adapt exercises for limitations, and track progress over time. The skill is intended for general fitness support and motivation, not diagnosis or replacement of licensed medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated fitness or nutrition guidance as medical advice. <br>
-Mitigation: Present outputs as general fitness guidance, avoid diagnosis, stop programming when acute pain or injury symptoms are reported, and advise seeking licensed care. <br>
-Risk: Users may disclose sensitive health or medical details during coaching conversations. <br>
-Mitigation: Ask only for details needed for the task and remind users to avoid sharing sensitive medical information unless they trust the hosting agent's privacy practices. <br>
-Risk: The persona includes sarcastic and potentially insulting language. <br>
-Mitigation: Adjust tone for the user and avoid demeaning language when motivation or safety could be affected. <br>
-Risk: The artifact metadata includes purchase/payment capability tags. <br>
-Mitigation: Require explicit user confirmation before submitting any payment, form, or purchase-related action. <br>
+## Use Case:
 
+External users use this skill to plan workouts, estimate nutrition targets, find exercise alternatives, and track fitness progress through natural-language coaching.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johwiltb/fitness-agent) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/SOUL.md](artifact/SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational responses with bullet lists for workout plans, nutrition breakdowns, check-ins, and summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include calculated TDEE and macronutrient targets, exercise alternatives, progress notes, and concise motivational check-ins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/SKILL.md) <br>
+Risk: Users may share sensitive fitness, weight, injury, or nutrition information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide privacy guidance before collecting sensitive details and avoid retaining or exposing personal fitness data beyond the active task.
+
+Risk: Fitness and nutrition guidance could be mistaken for medical advice.
+
+Mitigation: Keep guidance general, do not diagnose conditions, and direct users to licensed care for acute pain, injury symptoms, or medical concerns.
+
+Risk: The persona contains disrespectful body-related language.
+
+Mitigation: Revise the persona to remove body-shaming phrasing and keep motivational language respectful and user-centered.
+
+## Reference(s):
+
+- [Fitness Agent on ClawHub](https://clawhub.ai/johwiltb/skills/fitness-agent)
+- [Publisher profile: johwiltb](https://clawhub.ai/user/johwiltb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text conversational responses with bullet lists for plans and nutrition breakdowns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workout plans, calorie and macronutrient estimates, progress summaries, check-ins, and safety guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

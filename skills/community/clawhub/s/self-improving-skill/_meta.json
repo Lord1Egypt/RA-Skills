@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn77zzg9p845zanvy6vrf76k7d81mcnm",
+  "ownerId": "ou_1cda33ed7b11a18a47a76e34b82a6486",
   "slug": "self-improving-skill",
-  "version": "1.1.0",
-  "publishedAt": 1781664242175
+  "version": "1.0.0",
+  "publishedAt": 1773081780000,
+  "tags": ["self-improvement", "skills", "learning", "productivity", "chinese"],
+  "compatibility": {
+    "openclaw": ">=1.0.0"
+  },
+  "dependencies": ["self-improving-agent"],
+  "partOfSuite": "self-improving-suite"
 }

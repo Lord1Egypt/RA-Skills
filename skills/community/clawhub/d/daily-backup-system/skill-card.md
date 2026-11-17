@@ -1,40 +1,57 @@
-## Description: <br>
-Automates daily compressed backups of OpenClaw configuration, workspaces, environment files, scripts, and related data with seven-day rotation and restore guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates daily compressed backups of OpenClaw configurations, agent workspaces, environment files, scripts, and related data with seven-day rotation and restore guidance.
 
-## Publisher: <br>
-[Harvnk](https://clawhub.ai/user/Harvnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harvnk](https://clawhub.ai/user/harvnk)
 
-## Use Case: <br>
-Developers and operators use this skill to plan recurring OpenClaw backups, retain recent archives, and recover an environment after a server or workspace failure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring full backups may include API keys, private agent memory, environment files, and other sensitive operational data. <br>
-Mitigation: Store backups only in a private location, encrypt archives, restrict file permissions, and rotate credentials if a backup is exposed. <br>
-Risk: The release describes a daily_backup.sh workflow, but the script is not included in the artifact for review. <br>
-Mitigation: Obtain and review the actual backup script before scheduling it, document how to disable the cron job, and test restore steps in a controlled environment. <br>
+## Use Case:
 
+Developers and operators use this skill to set up daily OpenClaw backups, retention, and restore procedures for disaster recovery. It is especially relevant for installations with agent configs, workspaces, scripts, API keys, and environment files that need recoverable backups.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Harvnk/daily-backup-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes backup setup, cron scheduling, rotation, and restore instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Backups may contain sensitive files such as API keys, environment files, workspaces, and operational configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add encryption at rest, restrict backup and log permissions, and exclude or separately encrypt `.env` files before operational use.
+
+Risk: Restore commands can overwrite system state or expose restored secrets if run directly on a live host.
+
+Mitigation: Extract restores into a staging directory first, validate contents and ownership, and rotate secrets after a restore or suspected exposure.
+
+Risk: The restore flow references a remote installer command that should be trusted before execution.
+
+Mitigation: Verify or replace the remote installer flow before using it in recovery procedures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harvnk/skills/daily-backup-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and cron configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes restore guidance and backup rotation instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

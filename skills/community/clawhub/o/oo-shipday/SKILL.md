@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Shipday"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["shipday"]
   icon: "https://static.oomol.com/logo/third-party/shipday.png"
 ---
@@ -40,8 +40,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_order` — Insert a Shipday delivery order. [write]
 - `delete_order` — Delete a Shipday delivery order by order ID. [destructive]
 - `edit_order` — Edit an existing Shipday delivery order. [write]
-- `get_order` — Retrieve one Shipday delivery order by order number. [write]
-- `get_order_progress` — Retrieve real-time delivery progress and ETA for a Shipday order. [write]
+- `get_order` — Retrieve one Shipday delivery order by order number.
+- `get_order_progress` — Retrieve real-time delivery progress and ETA for a Shipday order.
 - `list_active_orders` — Retrieve active delivery orders from Shipday.
 - `list_carriers` — Retrieve carriers configured in Shipday.
 
@@ -74,11 +74,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Shipday is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=shipday
+  https://console.oomol.com/connections/shipday
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Shipday homepage: https://www.shipday.com/
+- API documentation: https://docs.shipday.com/reference

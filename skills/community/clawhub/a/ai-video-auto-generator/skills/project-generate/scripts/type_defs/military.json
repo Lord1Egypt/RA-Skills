@@ -1,0 +1,23 @@
+{
+  "name": "军事题材",
+  "description": "军事/战争类短视频（16:9 横屏）",
+  "defaults": {
+    "aspect_ratio": "16:9",
+    "max_shots": 20,
+    "min_shots": 4
+  },
+  "shot_rules": {
+    "camera_patterns": [
+      "航拍视角缓慢推进",
+      "地面跟随拍摄",
+      "战术瞄准视角",
+      "稳定横移",
+      "特写装备细节",
+      "全景战场"
+    ],
+    "emotion_arcs": [
+      "平静", "紧张", "激烈", "紧张", "激烈", "压抑", "激昂", "平静"
+    ],
+    "verify_style": "写实"
+  }
+}

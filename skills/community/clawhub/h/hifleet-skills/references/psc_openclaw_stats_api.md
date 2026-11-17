@@ -45,7 +45,7 @@
 | 现象 | 常见原因 |
 |------|-----------|
 | `4001` / 权限错误 | `api_key` **未开通** `/pscapi/openclaw/stats/*`（仅开了 `anomalies` 或 `pscapi/get` 不够）；需在 HiFleet 网关/权限中放行上述路径。 |
-| `404` | **线上未部署**含 `openclaw/stats` 的 `hifleet.data.api` 版本。 |
+| `404` | 当前环境未开放该宏观统计接口（可改查异常列表或单船 PSC）。 |
 | `rows` 为空或很少 | `authorityContains` 与库内 `psc.authority` **写法不一致**（可换子串重试）；或 **`psc.port` 大量为空**被 SQL 过滤（`port` 非空的行才会进 `PORT`/`AUTHORITY_PORT` 分组）。 |
 | Agent 仍答「技术故障」 | 多为 **未按技能调用接口**或 **臆测**；应以实际 HTTP 响应为准。 |
 

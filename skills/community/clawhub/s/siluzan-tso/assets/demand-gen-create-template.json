@@ -1,0 +1,21 @@
+{
+  "_comment": "Demand Gen 创建模板。金额填主币种元，CLI 写入前 ×100。创建固定暂停，不要写 statusV2=Enabled。channelStrategy 与 selectedChannels 二选一；audienceResourceName 与 audienceKeywords 二选一。",
+  "name": "DG-US-Parts",
+  "budget": 5,
+  "finalUrls": ["https://example.com/parts"],
+  "businessName": "Test Brand",
+  "headlines": ["CNC parts for buyers", "Custom CNC machining"],
+  "longHeadlines": ["CNC parts for industrial buyers"],
+  "descriptions": ["Request a quote for CNC parts"],
+  "youtubeVideoId": "11位YouTube视频ID或网址",
+  "imagePaths": {
+    "marketing": "./marketing.png",
+    "square": "./square.png",
+    "logo": "./logo.png"
+  },
+  "targetedLocations": [{ "id": 2840 }],
+  "targetedLanguages": [{ "id": 1000 }],
+  "audienceKeywords": ["cnc machining"],
+  "biddingStrategyTypeV2": "TARGET_SPEND",
+  "channelStrategy": "ALL_OWNED_AND_OPERATED_CHANNELS"
+}

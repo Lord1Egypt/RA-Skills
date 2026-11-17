@@ -1,39 +1,52 @@
-## Description: <br>
-Track and log AI API usage across providers, calculate costs, and generate daily, weekly, or monthly reports filtered by model and task type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and log AI API usage across providers, calculate costs, and generate daily, weekly, monthly, or real-time usage reports.
 
-## Publisher: <br>
-[punkaze](https://clawhub.ai/user/punkaze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[punkaze](https://clawhub.ai/user/punkaze)
 
-## Use Case: <br>
-Developers and teams use this skill to record AI API calls, estimate provider costs, and review usage by day, week, month, model, or task type. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local usage logs can expose provider, model, token-count, and task-type history if retained too long or shared unintentionally. <br>
-Mitigation: Avoid sensitive task labels, restrict access to the log file, and periodically delete or rotate usage-logs/api-cells.jsonl when retention matters. <br>
-Risk: Telegram usage reports may disclose usage and cost details to chat participants. <br>
-Mitigation: Use Telegram reporting only in trusted chats and review report content before sharing it more broadly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Usage Tracker on ClawHub](https://clawhub.ai/punkaze/usage-tracker) <br>
+## Use Case:
 
+Developers and agent operators use this skill to record AI API token usage across common providers, estimate costs, and generate filtered usage reports by period, model, or task type.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style usage and cost reports with tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Logs usage records to usage-logs/api-cells.jsonl; reports can be filtered by period, model, and task type.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local usage logs may expose model names, task types, usage volume, or cost patterns on shared machines.
+
+Mitigation: Install only where local usage metadata is acceptable, and periodically review or delete usage-logs/api-cells.jsonl when the data is no longer needed.
+
+Risk: Cost estimates can become inaccurate if provider pricing changes after the skill release.
+
+Mitigation: Confirm current provider pricing before relying on generated cost reports for budgeting or billing decisions.
+
+## Reference(s):
+
+- [Usage Tracker on ClawHub](https://clawhub.ai/punkaze/skills/usage-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Plain text or Markdown reports with local JSONL usage-log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports support period, model, and task-type filters; usage logs persist locally at usage-logs/api-cells.jsonl.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

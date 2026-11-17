@@ -1,39 +1,51 @@
-## Description: <br>
-Fully automated SEO content freshness engine that monitors keyword research reports, generates landing pages and blog posts, runs SEO audits, and pushes updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO Autopilot Pro automates SEO content freshness by monitoring keyword research reports, generating landing pages and blog posts, running SEO audits, and pushing site updates for Next.js, Astro, Nuxt, and static site projects.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-Developers and site operators use this skill to convert recurring keyword research reports into deployed SEO landing pages or blog posts for web projects. It is intended for projects where automated content generation, SEO checks, git commits, and deployment-triggering pushes are an accepted workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a website repository and push changes that may deploy to production without a clear human approval step. <br>
-Mitigation: Use a staging branch or pull requests, review generated diffs and SEO content before deployment, restrict git credentials or bot accounts, and document how to disable the hook and undo changes. <br>
+## Use Case:
 
+Developers, site operators, and SEO teams use this skill to convert keyword research reports into deployed landing pages and blog posts. It is intended for projects that want automated content freshness across supported web frameworks while preserving project style, sitemap registration, and basic SEO checks.
 
-## Reference(s): <br>
-- [Setup Checklist](references/setup-checklist.md) <br>
-- [Steering Template](references/steering-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON configuration snippets, generated website files, git commands, and SEO audit guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces up to three new pages per keyword report and updates project state tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can automatically edit content, commit changes, push to main, and trigger production deployment from newly created report files without a clear review gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated branch or isolated clone, disable direct push to main, require diff review before commit, push, and deploy, stage only an explicit allowlist of generated files, and treat incoming report Markdown as untrusted data.
+
+## Reference(s):
+
+- [SEO Autopilot Pro on ClawHub](https://clawhub.ai/kennyzir/skills/seo-autopilot-pro)
+- [Setup Checklist](references/setup-checklist.md)
+- [Steering Template](references/steering-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets, code changes, and shell command proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update project files, state tracking, navigation, sitemap entries, and git commits when run in an appropriately configured repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

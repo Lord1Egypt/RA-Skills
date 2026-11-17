@@ -1,42 +1,50 @@
-## Description: <br>
-Reference helper for Terraform-related devtools workflows, covering introductory concepts, quickstart guidance, common patterns, debugging, performance, security, migration, and cheatsheet material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics for Terraform Helper.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick local reference for Terraform Helper topics, including setup, common practices, troubleshooting, performance, security, and migration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generic Terraform guidance as authoritative for their environment. <br>
-Mitigation: Review the guidance against project-specific Terraform modules, provider documentation, and internal infrastructure standards before applying it. <br>
-Risk: The skill is a reference helper and does not inspect infrastructure, secrets, or live Terraform state. <br>
-Mitigation: Use separate validation, planning, and security review steps for any real Terraform changes. <br>
+## Use Case:
 
+Developers and engineers use this skill for quick local reference material about Terraform Helper concepts, workflows, troubleshooting, security, migration, and operational best practices.
 
-## Reference(s): <br>
-- [Terraform Helper ClawHub page](https://clawhub.ai/ckchzh/terraform-helper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [BytesAgain publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text and Markdown reference documentation printed by command-line help topics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference content; no credentials, network access, infrastructure inspection, or infrastructure changes are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Generic Terraform guidance may be incomplete, outdated, or unsuitable for a specific infrastructure decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm operational decisions against current Terraform documentation and review proposed changes before applying them.
+
+## Reference(s):
+
+- [Terraform Helper on ClawHub](https://clawhub.ai/ckchzh/skills/terraform-helper)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys, credentials, network access, or persistent state are required.]
+
+## Skill Version(s):
+
+3.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

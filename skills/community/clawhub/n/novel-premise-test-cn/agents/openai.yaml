@@ -1,0 +1,8 @@
+interface:
+  display_name: "小说梗概可写性测试"
+  short_description: "用灵感、类型和读者定位测试小说命题，并给出冲突赌注主题与三条展开路径"
+  default_prompt: "使用 $novel-premise-test-cn 评估我提供的一句灵感、小说类型和目标读者，输出命题判断、核心要素和三条建议；缺料或目标不明时明确指出。"
+  icon_small: "assets/icon-512.png"
+  icon_large: "assets/icon-512.png"
+policy:
+  allow_implicit_invocation: true

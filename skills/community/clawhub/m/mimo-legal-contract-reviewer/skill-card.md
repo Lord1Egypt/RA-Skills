@@ -1,38 +1,58 @@
-## Description: <br>
-中文合同审查助手，用于初步扫描合同全文、标出风险条款、给出风险等级、修改建议和签署参考。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+合同审查助手 reviews Chinese-law contract text, identifies risky clauses, grades risks, and suggests edits while reminding users that major contracts should be reviewed by a qualified lawyer.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-中文用户可用它在签署前对劳动合同、租赁合同、采购合同、合作协议、保密协议、服务合同等常见合同做初步风险审查，获得风险汇总、条款修改建议和后续行动清单。其输出仅供参考，重大、跨境或有争议的合同应咨询合格律师。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-legal-contract-reviewer) <br>
-- [details.md](artifact/references/details.md) <br>
+External users can use this skill to review employment, lease, commercial cooperation, service, sales, confidentiality, authorization, procurement, and loan contracts for clause-level risks and practical revision suggestions. It is an assistant for contract-risk triage and does not replace professional legal advice.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown contract review report with risk tables, clause comparisons, signing recommendation, and action checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preliminary legal-risk guidance only; users should avoid sharing sensitive contracts unless they intend the agent to analyze them and should seek qualified legal advice for important contracts.] <br>
+Global
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and skill frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users may mistake contract-risk guidance for formal legal advice.
+
+Mitigation: State that the review is for reference only and recommend a qualified lawyer for high-value, cross-border, or complex contracts.
+
+Risk: Contracts may contain unnecessary sensitive personal, employment, financial, or business information.
+
+Mitigation: Ask users to share only the contract text needed for review and omit unnecessary sensitive details.
+
+Risk: Legal guidance can become outdated as laws and regulations change.
+
+Mitigation: Remind users to verify current law and seek professional advice before relying on recommendations.
+
+## Reference(s):
+
+- [legal-contract-reviewer detailed reference](references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-legal-contract-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown contract review report with risk tables, revision comparisons, signing recommendation, and action checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default legal frame is Chinese law; cross-border contracts require the applicable jurisdiction to be stated.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

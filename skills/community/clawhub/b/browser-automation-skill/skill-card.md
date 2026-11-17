@@ -1,44 +1,58 @@
-## Description: <br>
-Browser Automation helps an agent control a real signed-in Chrome or Chromium browser through browser-relay-cli and the Browser Relay extension for tab, page, click, typing, scroll, screenshot, and visible-content workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser Automation helps agents control a real signed-in Chrome or Chromium browser through the published browser-relay-cli package and unpacked Browser Relay extension for tab, DOM, screenshot, and visible-content workflows.
 
-## Publisher: <br>
-[jasoncodespace](https://clawhub.ai/user/jasoncodespace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasoncodespace](https://clawhub.ai/user/jasoncodespace)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a task needs local browser control in a real Chrome or Chromium session, including signed-in pages, tab reuse, DOM-first actions, and screenshot-guided fallback when selectors are unreliable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate inside a signed-in Chrome session. <br>
-Mitigation: Use a separate Chrome profile or test account when practical, avoid sensitive pages unless necessary, and confirm purchases, posts, deletions, and account changes before they happen. <br>
-Risk: The Browser Relay workflow exposes broad browser-control and raw passthrough commands. <br>
-Mitigation: Review commands before execution, prefer DOM-first actions, and use raw passthrough only when it is necessary for the task. <br>
-Risk: The workflow depends on the browser-relay-cli package and an unpacked browser extension. <br>
-Mitigation: Install only if the package and extension are trusted, then disable the extension and stop the relay after use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to control a local, signed-in Chrome or Chromium session for page navigation, tab reuse, DOM-first actions, screenshots, visible-content inspection, and screenshot-guided fallback when selectors are unreliable.
 
-## Reference(s): <br>
-- [Browser Relay Commands](references/commands.md) <br>
-- [Browser Relay GitHub Repository](https://github.com/jasonCodeSpace/browser-relay) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jasoncodespace/browser-automation-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Browser Relay CLI commands that operate on local Chrome tabs and visible page state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad authenticated browser-control capability can expose sensitive browser state, personal data, or enterprise accounts to automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with browser profiles and sites the user is comfortable exposing to automation, and avoid sensitive personal or enterprise accounts.
+
+Risk: Floating npx usage can execute a changed remote browser-relay-cli package.
+
+Mitigation: Prefer a pinned, reviewed browser-relay-cli version rather than floating npx commands.
+
+Risk: The browser-control workflow could be misused for CAPTCHA bypass, stealth scraping, or anti-bot evasion.
+
+Mitigation: Follow the documented safety rules and decline requests for CAPTCHA bypass, stealth automation, or anti-bot circumvention.
+
+## Reference(s):
+
+- [Browser Relay Commands](references/commands.md)
+- [Browser Automation Skill Page](https://clawhub.ai/jasoncodespace/skills/browser-automation-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Browser Relay CLI commands that operate on a local signed-in Chrome or Chromium session.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

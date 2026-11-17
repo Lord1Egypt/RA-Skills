@@ -1,46 +1,58 @@
-## Description: <br>
-CardZero is a payment wallet skill for AI agents that can create USDC wallets on Base L2, make payments, pay x402 paywalls, check balances, view transactions, and run A2A jobs with on-chain escrow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw helps agents use CardZero wallets to create and manage USDC payments, x402 paywalls, payment history, and A2A escrow jobs on Base within owner-defined limits.
 
-## Publisher: <br>
-[mrocker](https://clawhub.ai/user/mrocker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrocker](https://clawhub.ai/user/mrocker)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent manage a CardZero USDC wallet, pay supported services, send payments to other agents, and coordinate A2A job escrow while staying within owner-set spending rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use CardZero credentials to send USDC and initiate payment or escrow flows. <br>
-Mitigation: Install only when payment capability is intended, use a dedicated low-balance wallet, and set strict per-transaction and daily limits. <br>
-Risk: An incorrect or malicious payment request could transfer funds to the wrong recipient or pay unexpected fees. <br>
-Mitigation: Require explicit review of the amount, recipient address, fees, and reason before each payment. <br>
-Risk: The CARDZERO_API_KEY is sensitive and can authorize wallet actions. <br>
-Mitigation: Keep the API key out of ordinary chat when possible and revoke or rotate it if exposure is suspected. <br>
-Risk: The artifact states the smart contract audit is in progress and recommends keeping the wallet balance below 100 USDC. <br>
-Mitigation: Use low balances, owner spending rules, and conservative limits until the audit status is acceptable for the deployment. <br>
+## Use Case:
 
+External users and developers use Openclaw to let an agent operate a CardZero USDC wallet for API payments, wallet checks, x402 purchases, and agent-to-agent escrow jobs, with human confirmation and owner-defined spending limits.
 
-## Reference(s): <br>
-- [CardZero homepage](https://cardzero.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/mrocker/cardzero) <br>
-- [Publisher profile](https://clawhub.ai/user/mrocker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes payment API requests, wallet configuration values, transaction status guidance, and user-confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill gives an agent authority to spend USDC from a configured wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance wallet, strict per-transaction and daily limits, and require confirmation before sending payments.
+
+Risk: API keys, claim keys, and configurable API endpoints can expose wallet access if mishandled.
+
+Mitigation: Treat keys as secrets, use only the official CardZero API endpoint, and revoke or rotate credentials if they are exposed or sent to an untrusted API URL.
+
+Risk: The artifact states the smart contract audit is still in progress.
+
+Mitigation: Keep wallet balances low and follow the artifact's recommendation to limit balances to less than 100 USDC while audit status remains unresolved.
+
+## Reference(s):
+
+- [CardZero homepage](https://cardzero.ai)
+- [ClawHub skill page](https://clawhub.ai/mrocker/skills/cardzero)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces wallet setup, payment, balance, transaction-history, x402, and A2A job instructions for an agent.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

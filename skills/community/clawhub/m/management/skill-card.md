@@ -1,38 +1,49 @@
-## Description: <br>
-Management principles, team leadership, and organizational effectiveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Management principles, team leadership, and organizational effectiveness.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, managers, students, researchers, educators, and HR or organizational development professionals use this skill for management coaching, leadership analysis, academic framing, and organizational effectiveness guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Management, HR, and legal-adjacent guidance may be incomplete or unsuitable for employment law, investigations, terminations, accommodations, harassment, discrimination, or retaliation issues. <br>
-Mitigation: Use the skill for coaching and drafting support only; have qualified HR or legal professionals review sensitive decisions before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/management) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Employees, students, managers, researchers, educators, and HR or OD professionals use this skill for management coaching, leadership communication, organizational analysis, and compliance-sensitive preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only responses; no code execution or system access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may provide guidance on discipline, termination, harassment, accommodations, discrimination, or investigations.
+
+Mitigation: Use that guidance for preparation only and route sensitive employment matters through qualified HR or legal review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/management)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tool calls, credential access, persistence, or hidden execution behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

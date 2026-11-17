@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-page-node-id="a92mmDShfsGWo696B7etGF" lang="zh-CN"><head data-page-node-id="EEXzCsMgxc8DisTBeVWhbw">
+<script data-page-node-id="naXgNSxqbqV936MsZxgrLa" src="/page/page_comm/inject.js"></script><meta data-page-node-id="Q8MHudXIxzSf1atUl3jpIU" charset="utf-8"><style data-page-node-id="WFbiZTv3sQ4cut0xK1P0lg" data-pnid-children="lQFw9L43nT88jnHFyFdRzJ">
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #1f6b46;
+  padding: 26px 22px 30px;
+  display: inline-block;
+}
+.title {
+  color: rgba(255,255,255,.92); font-size: 15px; letter-spacing: .08em;
+  margin-bottom: 14px; font-weight: 600;
+}
+.row { display: flex; gap: 8px; align-items: flex-end; flex-wrap: nowrap; }
+.tile {
+  position: relative;
+  width: 62px; height: 86px;
+  background: linear-gradient(#fffdf7, #f3ecdc);
+  border-radius: 7px;
+  box-shadow: 0 2px 0 #d8cfbb, 0 5px 10px rgba(0,0,0,.28);
+  border: 1px solid #e2d9c6;
+  overflow: hidden;
+}
+.tile.drawn { margin-left: 16px; }
+.tile.gap { margin-left: 10px; }
+.face { width: 100%; height: 100%; position: relative; }
+/* 筒 */
+.dots { position: absolute; inset: 9% 12%; }
+.dot {
+  position: absolute; width: 21%; aspect-ratio: 1; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 32% 30%, #7fb0e0, #2b5f9e 65%, #1d4373);
+  box-shadow: inset 0 0 2px rgba(0,0,0,.25);
+}
+/* 条 */
+.bars { position: absolute; inset: 10% 12%; }
+.bar {
+  position: absolute; width: 13%; border-radius: 3px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(90deg, #3d9a67, #276b45 60%, #1c5234);
+  box-shadow: inset 0 0 2px rgba(0,0,0,.3);
+  min-height: 12%;
+}
+/* 万 */
+.wan-num {
+  position: absolute; top: 4%; left: 0; right: 0; text-align: center;
+  font-size: 26px; font-weight: 700; color: #b23a2e; line-height: 1.1;
+  font-family: Georgia, "Times New Roman", serif;
+}
+.wan-char {
+  position: absolute; bottom: 6%; left: 0; right: 0; text-align: center;
+  font-size: 28px; font-weight: 700; color: #b23a2e;
+  font-family: "Songti SC", "STSong", serif;
+}
+/* 字牌 */
+.honor { display: flex; align-items: center; justify-content: center; }
+.honor-char {
+  font-size: 34px; font-weight: 700; color: #2a2a2a;
+  font-family: "Songti SC", "STSong", "PingFang SC", serif;
+}
+.honor-red .honor-char { color: #b23a2e; }
+.honor-green .honor-char { color: #1f7a4a; }
+.honor-white .honor-char {
+  color: transparent;
+  border: 2px solid #9aa7b5; border-radius: 3px;
+  width: 56%; height: 56%; display: block;
+}
+.honor-flower .honor-char { color: #6b5a3e; font-size: 28px; }
+.legend {
+  margin-top: 14px; color: rgba(255,255,255,.62); font-size: 12px; letter-spacing: .04em;
+}
+</style></head>
+<body data-page-node-id="2vij7XWrrGRf2h8sZy6Hus">
+<div data-page-node-id="j0eUwqBLcptlKoIOloI4ig" class="title"><!--pnid:Fy9e14IblKArLUsSQWfG8K-->示例 · 你的手牌</div>
+<div data-page-node-id="kFDpS3zgNQBaxObv3GyWF3" class="row"><div data-page-node-id="cKjUF7WkL54aREFHowJiw6" class="tile"><div data-page-node-id="aIB6KUrAENjsJH9EakPDgO" class="face face-万"><div data-page-node-id="MUTnzLiafIbW5Rj8XbhpIa" class="wan-num"><!--pnid:zSsMdB5zfrD3pB5QZaOH2u-->1</div><div data-page-node-id="EMtik5rgySzIuj9VDZGZrt" class="wan-char"><!--pnid:M3YL704iTfwv6EfmpGBoS1-->萬</div></div></div><div data-page-node-id="ivNT2KP2uu3R0wOet8TrCV" class="tile"><div data-page-node-id="5zLJB98swyNT7AhlhWPXPk" class="face face-万"><div data-page-node-id="J0OxtD6ohop6dcCRkD76MY" class="wan-num"><!--pnid:o2lApCOf3MmtAeBqlOUYtW-->2</div><div data-page-node-id="cCQZzT4kJWyRLXipu4CFfB" class="wan-char"><!--pnid:Mq1sBymKh1wOT70a8fw3ql-->萬</div></div></div><div data-page-node-id="k8vkJRmvoduD4OYwXYKuzS" class="tile"><div data-page-node-id="u6PuBNFolgIDRjrTyL5SBH" class="face face-万"><div data-page-node-id="5WfewqaJHyczjTBkCLjnu3" class="wan-num"><!--pnid:cGVcuXJQLdYB5CIfdnuQ2e-->3</div><div data-page-node-id="vVrhyiRyD92Mg5e9lCnnTk" class="wan-char"><!--pnid:FGo9x0vnnfOwbNDBbgPkaf-->萬</div></div></div><div data-page-node-id="rEXk6aekxBMOIX744d3NdB" class="tile"><div data-page-node-id="FfpQIMAIbke91jLatfHfJ6" class="face face-万"><div data-page-node-id="QNn7yeMJgz9AW4YupIRc14" class="wan-num"><!--pnid:MIhzTrlEjYRF6VNMAkvzaF-->5</div><div data-page-node-id="ZcWK9uqqOF9iRQD6cYat5W" class="wan-char"><!--pnid:UCCknKmZVOjtz9nTmaGUCI-->萬</div></div></div><div data-page-node-id="Va8I5vGAjVEAUqnu2gxBjZ" class="tile"><div data-page-node-id="5pL52UsKuCMnAOszMLbRdv" class="face face-万"><div data-page-node-id="XoyKpGlAxN7XgZdLghKPWJ" class="wan-num"><!--pnid:kTk2oRseAURv0U3jJ2RyKy-->6</div><div data-page-node-id="Finvmmll9KhHyJaSvUolQ2" class="wan-char"><!--pnid:XFvGTgdl5fYYHAYFaKfGW2-->萬</div></div></div><div data-page-node-id="TANCsLIdFbnEMFRN0zkNkx" class="tile"><div data-page-node-id="kHJOcxZNjDefiq6sTJZ5PE" class="face face-条"><div data-page-node-id="e6LzpBQ3OO6zMxxJBx4fMe" class="bars"><span data-page-node-id="mWVMr1DN4VSNtYvHayLUkl" class="bar" style="left:25.0%; top:12.5%; height:15.5%"></span><span data-page-node-id="Sh52MLbfaonnoswCFMnPeA" class="bar" style="left:75.0%; top:12.5%; height:15.5%"></span><span data-page-node-id="qftQWoPcB7SlKJTbzNiHVL" class="bar" style="left:25.0%; top:37.5%; height:15.5%"></span><span data-page-node-id="BVpdUuKIQl8ioPFI6BxyYW" class="bar" style="left:75.0%; top:37.5%; height:15.5%"></span><span data-page-node-id="feeN0MPR00kNxSgJs3PeHn" class="bar" style="left:25.0%; top:62.5%; height:15.5%"></span><span data-page-node-id="BTCd4AuW9a3fWgjpB1TDJM" class="bar" style="left:75.0%; top:62.5%; height:15.5%"></span><span data-page-node-id="VRTqjknpLzd8PGonfQy1xV" class="bar" style="left:25.0%; top:87.5%; height:15.5%"></span><span data-page-node-id="gk7FNBxbVj86BHvBFpewZV" class="bar" style="left:75.0%; top:87.5%; height:15.5%"></span></div></div></div><div data-page-node-id="08WiMmvgV215Fej4WkToyP" class="tile"><div data-page-node-id="4P5skImLbbQKZ1bYfB1feL" class="face honor"><span data-page-node-id="in4Eghty5Ra2Z0HGMN6EIa" class="honor-char"><!--pnid:fTguBQwfpx2lVPgo1cq8Vp-->東</span></div></div><div data-page-node-id="NRBowoc12YOyiy3lmaEZsV" class="tile"><div data-page-node-id="1ra2iTdva3gfbVTO5xKX5a" class="face honor"><span data-page-node-id="tBWLoNWjHWo5ocxsFdg0lY" class="honor-char"><!--pnid:W2qbelJHG858PkUlQLfrwO-->東</span></div></div><div data-page-node-id="11xGWQfiXs18A2WD5olb8b" class="tile"><div data-page-node-id="0EDtEoF5OzKs5FLlwCkiTY" class="face honor"><span data-page-node-id="mKQ29vCIOcIrkSw220KJyx" class="honor-char"><!--pnid:1PFctNMELtCwt4fm4YveWJ-->東</span></div></div><div data-page-node-id="DeAbUKNGSZFrXNZpyiOc9k" class="tile"><div data-page-node-id="6gYHAddq4eIHUNXFncIeJN" class="face honor honor-white"><span data-page-node-id="povPItZIC3DWsKYmKUQjvD" class="honor-char"><!--pnid:RU2NcgGLuYIMVgAdfpd3dV-->白</span></div></div><div data-page-node-id="0D4YjKR4s27t1FR4LMEQJg" class="tile"><div data-page-node-id="uBcPnL1WrnUus0C2ZOX9r0" class="face honor honor-white"><span data-page-node-id="4rph0hk45deWF0L6zrYBcG" class="honor-char"><!--pnid:v919eSBnZ4T4yMOOFSN9X0-->白</span></div></div><div data-page-node-id="qDSATMFaw2oGsOLYa1SvdK" class="tile"><div data-page-node-id="ivKi05l8LSixsMObG7uA8n" class="face honor honor-white"><span data-page-node-id="mR9jJCQPPHZ9dUq3lS185T" class="honor-char"><!--pnid:4hD2wLipKWeyIAwOwo7a93-->白</span></div></div><div data-page-node-id="7GS4SQPgUMSW44ioqd3GHU" class="tile drawn"><div data-page-node-id="NaxVRFvHRDLAfxznzN8aSA" class="face face-万"><div data-page-node-id="PwxUt0QMSlcFEASJwzMwE1" class="wan-num"><!--pnid:1su1wYWiN1NLBnjefgDSiK-->4</div><div data-page-node-id="FwE0XHB4YY9kElXxLqKBOU" class="wan-char"><!--pnid:cw9aJqR5DUovPQ71FLdybX-->萬</div></div></div></div>
+<div data-page-node-id="CEViA7UQu6e1Ac5PwJZnar" class="legend"><!--pnid:fxMewoJTVMwuW506kigfap-->示例 · 你的手牌 · 共 13 张（最右一张是新摸的）</div>
+</body></html>

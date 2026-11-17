@@ -1,43 +1,54 @@
-## Description: <br>
-X Interact helps agents search X.com (Twitter) content, inspect linked URLs, and monitor accounts or topics through Tavily web search and extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with X.com (Twitter) via Tavily web search and extraction to search tweets, extract content from linked URLs, and monitor accounts and topics.
 
-## Publisher: <br>
-[0x-wzw](https://clawhub.ai/user/0x-wzw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0x-wzw](https://clawhub.ai/user/0x-wzw)
 
-## Use Case: <br>
-Developers and agents use this skill to research X.com (Twitter) posts, accounts, topics, and linked articles through Tavily and mcporter when direct X.com extraction is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tavily API keys can be exposed if real keys are pasted into shared terminals, chats, screenshots, or logs. <br>
-Mitigation: Use a dedicated Tavily API key, avoid sharing command lines that contain real keys, and rotate the key if it is exposed. <br>
-Risk: Search queries and extracted URLs may contain sensitive information that is sent to Tavily. <br>
-Mitigation: Avoid submitting sensitive private queries or URLs unless that disclosure is acceptable for the use case. <br>
-Risk: X.com direct extraction is blocked, so search-index results may be incomplete, stale, or missing context. <br>
-Mitigation: Verify important findings against accessible source material and use linked-article extraction for supporting context. <br>
+## Use Case:
 
+Developers and agents use this skill to search X.com content through Tavily, inspect linked pages, and gather social context for account, topic, or thread research.
 
-## Reference(s): <br>
-- [X Interact ClawHub Page](https://clawhub.ai/0x-wzw/x-interact) <br>
-- [Tavily](https://tavily.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Tavily API key and mcporter; Tavily service limits may apply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Search queries and linked-page URLs may be sent to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content you are comfortable processing through Tavily, and avoid submitting sensitive or private URLs or queries.
+
+Risk: Putting a live Tavily API key directly in a command-line URL can expose it through shell history, logs, or shared terminal output.
+
+Mitigation: Configure the API key through a secret store, environment variable, or other mcporter-supported protected mechanism, and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [X Interact ClawHub release](https://clawhub.ai/0x-wzw/skills/x-interact)
+- [Tavily](https://tavily.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tavily API key and mcporter-compatible MCP tool access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

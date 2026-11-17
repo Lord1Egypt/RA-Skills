@@ -1,42 +1,53 @@
-## Description: <br>
-Attio CRM integration for managing companies, people, deals, notes, tasks, and custom objects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Attio CRM integration for managing companies, people, deals, notes, tasks, and custom objects.
 
-## Publisher: <br>
-[capt-marbles](https://clawhub.ai/user/capt-marbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[capt-marbles](https://clawhub.ai/user/capt-marbles)
 
-## Use Case: <br>
-Developers and sales operations teams use this skill to work with Attio CRM data, including searching contacts and companies, managing pipeline entries, creating notes, and creating or completing tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Attio API key that could expose CRM data if mishandled. <br>
-Mitigation: Use a least-privilege Attio token and avoid committing or sharing `~/.env`. <br>
-Risk: Suggested commands can create or update records, pipeline entries, notes, or tasks. <br>
-Mitigation: Require explicit approval before running CRM write actions. <br>
-Risk: Running an unexpected `attio` CLI could send CRM data to the wrong tool or environment. <br>
-Mitigation: Verify the `attio` CLI before executing commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Attio API Documentation](https://docs.attio.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/capt-marbles/attio) <br>
+## Use Case:
 
+Sales, operations, and support teams can use this skill to have an agent search and update Attio CRM records, manage pipeline entries, add notes, and create or complete follow-up tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CRM workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Attio CLI commands that read or write CRM records, notes, tasks, and pipeline entries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent toward CRM write actions such as creating or updating records, adding notes, adding pipeline entries, creating tasks, or marking tasks complete.
+
+Mitigation: Use a least-privilege Attio token and review or confirm write commands before execution.
+
+Risk: Broad production Attio tokens could expose or modify more CRM data than intended.
+
+Mitigation: Avoid placing broad production tokens in shared environments and scope credentials to the workflow being automated.
+
+## Reference(s):
+
+- [Attio API Docs](https://docs.attio.com/)
+- [ClawHub Skill Page](https://clawhub.ai/capt-marbles/skills/attio)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ATTIO_API_KEY for Attio CRM access; review proposed create, update, note, pipeline, and task-completion actions before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

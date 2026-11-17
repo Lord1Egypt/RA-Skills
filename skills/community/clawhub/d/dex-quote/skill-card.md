@@ -1,39 +1,58 @@
-## Description: <br>
-Fetches optimal swap quotes from the OKX DEX Aggregator API v6 and helps generate authenticated quote requests with token decimal handling, HMAC-SHA256 signing, and error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch optimal swap quotes from the OKX DEX Aggregator API v6 and generate authenticated quote calls with token amount formatting, routing details, price-impact checks, and error handling.
 
-## Publisher: <br>
-[AaronLLee](https://clawhub.ai/user/AaronLLee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aaronllee](https://clawhub.ai/user/aaronllee)
 
-## Use Case: <br>
-Developers and DeFi integrators use this skill to query OKX DEX Aggregator quotes, compare routing and price impact, and build scripts or applications that fetch read-only swap pricing across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AaronLLee/dex-quote) <br>
-- [Publisher profile](https://clawhub.ai/user/AaronLLee) <br>
-- [OKX DEX Aggregator quote endpoint](https://web3.okx.com/api/v6/dex/aggregator/quote) <br>
+Developers and engineers use this skill to query real-time DEX aggregator pricing, compare swap routes, and generate code or commands for quote-only OKX Web3 API integrations.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python or JavaScript code examples and CLI usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OKX Web3 API credentials for authenticated, read-only quote requests; keep API keys, secret keys, and passphrases out of generated source and logs.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill requires OKX Web3 API credentials and sends quote parameters to OKX.
+
+Mitigation: Use environment variables or a trusted secrets manager, avoid logging credentials or signatures, and install only when sharing quote details with OKX is acceptable.
+
+Risk: Precision-sensitive trades can be affected by human-readable amount conversion and Python float handling.
+
+Mitigation: Pass raw token amounts when possible, verify token decimals, and review or adjust amount conversion before relying on results for financial decisions.
+
+Risk: Dependency installation can introduce supply-chain exposure.
+
+Mitigation: Install dependencies such as requests from trusted package sources and review the environment before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaronllee/skills/dex-quote)
+- [OKX DEX Aggregator quote endpoint](https://web3.okx.com/api/v6/dex/aggregator/quote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code snippets, CLI examples, and quote summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, environment-variable setup guidance, parsed quote summaries, route details, price-impact warnings, and honeypot or token-tax warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

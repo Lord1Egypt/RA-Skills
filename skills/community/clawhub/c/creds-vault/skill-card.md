@@ -1,43 +1,58 @@
-## Description: <br>
-A local credential-management skill for adding, listing, retrieving, deleting, auditing, generating, and backing up API tokens, account passwords, SSH keys, and related secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+令牌管理中心 helps agents manage third-party API tokens, account passwords, and SSH keys with categorization, expiry reminders, password generation, encrypted backups, usage statistics, audit logs, and explicit-confirmation credential capture.
 
-## Publisher: <br>
-[luis1213899](https://clawhub.ai/user/luis1213899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luis1213899](https://clawhub.ai/user/luis1213899)
 
-## Use Case: <br>
-Developers and operators use this skill to manage local third-party service credentials, generate passwords, track credential reads, create encrypted backups, and inspect audit history from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores API keys, passwords, SSH keys, and similar secrets in ~/.openclaw/workspace/secrets.json and can reveal full values through local command output. <br>
-Mitigation: Install only when local secret storage is acceptable, keep terminals and CI logs private, and avoid raw listing or retrieval in logged sessions. <br>
-Risk: Autocapture handles credential-like text and could persist sensitive values if explicitly saved. <br>
-Mitigation: Treat autocapture as opt-in only and require explicit user confirmation before saving detected credentials. <br>
-Risk: The release evidence warns not to rely on the secure-delete wording for forensic erasure. <br>
-Mitigation: Use deletion for application-level removal and apply separate device, filesystem, or backup-retention controls when forensic erasure is required. <br>
+## Use Case:
 
+Developers and agents use this skill to store, retrieve, list, migrate, back up, and audit local API tokens, passwords, and keys during ClawHub/OpenClaw workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luis1213899/creds-vault) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/luis1213899) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with local command examples and JSON-backed credential data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reveal full secret values through get, raw listing, export, restore, or backup-related workflows; outputs should be handled as sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence and artifact metadata) <br>
+Risk: Sensitive credentials saved by this skill may be readable by code running as the same local user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for low-risk local notes or temporary credentials, and rotate any deleted or exposed credentials at the provider.
+
+Risk: The skill presents vault-like security features, but the security evidence says it should not be treated as a hardened password manager.
+
+Mitigation: Use a managed secret store or dedicated password manager for high-value or production credentials.
+
+Risk: Credential-like text can be detected from conversation content and saved after confirmation.
+
+Mitigation: Review detected values before saving and avoid pasting credentials that do not need to be stored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luis1213899/skills/creds-vault)
+- [Publisher profile](https://clawhub.ai/user/luis1213899)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python command examples and local JSON-backed credential records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local secrets.json, secrets.audit.log, encrypted backups, and lock files under the user's OpenClaw workspace.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

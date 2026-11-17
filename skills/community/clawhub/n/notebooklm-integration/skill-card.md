@@ -1,40 +1,57 @@
-## Description: <br>
-Integrates Google NotebookLM workflows through the unofficial notebooklm-py library so agents can manage notebooks, import sources, query content, generate NotebookLM artifacts, and download outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Google NotebookLM capabilities into agent workflows through the unofficial notebooklm-py library for notebook management, source import, research queries, generated overviews, exports, and artifact downloads.
 
-## Publisher: <br>
-[oki3505F](https://clawhub.ai/user/oki3505F) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oki3505f](https://clawhub.ai/user/oki3505f)
 
-## Use Case: <br>
-Developers and research teams use this skill to have an agent create and manage NotebookLM notebooks, import sources, ask questions, and generate or download NotebookLM artifacts through notebooklm-py. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide broad Google-account actions, including deletion, sharing, Drive import, export, and permission-changing workflows. <br>
-Mitigation: Use a dedicated or low-sensitivity Google account, avoid secrets or regulated documents, and require explicit confirmation before destructive, sharing, Drive, export, or permission-changing actions. <br>
-Risk: The skill depends on an unofficial NotebookLM library and undocumented Google APIs that may change or behave unexpectedly. <br>
-Mitigation: Review and pin the package before use, retest workflows after NotebookLM or library updates, and keep fallback and retry behavior explicit. <br>
+## Use Case:
 
+Developers and research-oriented users use this skill to automate NotebookLM notebook management, source imports, research workflows, and generated content exports from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oki3505F/notebooklm-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to create notebooks, import sources, change sharing permissions, export content, and download generated files through Google-account-backed NotebookLM workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill relies on mutable unofficial notebooklm-py code and undocumented Google APIs for NotebookLM operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use a dedicated Python environment, and pin and verify the notebooklm-py dependency where possible.
+
+Risk: The skill can affect Google account data through Drive import, sharing, export, local-file processing, and notebook deletion workflows.
+
+Mitigation: Use a least-privilege Google account and require explicit approval before importing Drive files, processing sensitive local files, sharing, exporting, or deleting notebooks.
+
+Risk: NotebookLM API behavior, quotas, and permissions may change unexpectedly.
+
+Mitigation: Add retry and fallback handling, monitor rate-limit failures, and validate generated outputs before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oki3505f/skills/notebooklm-integration)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, markdown, files]
+
+**Output Format:** [Markdown with Python and bash code blocks; may direct NotebookLM artifact outputs such as MP3, MP4, PDF, PPTX, PNG, JSON, Markdown, and HTML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires notebooklm-py and an authenticated Google account.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

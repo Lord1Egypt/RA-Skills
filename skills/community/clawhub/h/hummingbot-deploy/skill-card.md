@@ -1,46 +1,69 @@
-## Description: <br>
-Deploy Hummingbot trading infrastructure including API server, MCP server, and Condor Telegram bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy Hummingbot trading infrastructure including the Hummingbot API server, optional MCP server, and optional Condor Telegram bot.
 
-## Publisher: <br>
-[fengtality](https://clawhub.ai/user/fengtality) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengtality](https://clawhub.ai/user/fengtality)
 
-## Use Case: <br>
-Developers and trading infrastructure operators use this skill to install and configure Hummingbot API, optional agent MCP integration, and optional Condor access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation uses remote scripts, Docker images, and persistent MCP configuration that require review before use. <br>
-Mitigation: Install in an isolated test environment first and review remote scripts and container behavior before connecting live accounts. <br>
-Risk: Default or command-line credentials can expose Hummingbot API or trading account access. <br>
-Mitigation: Replace all default credentials, avoid passing real exchange or trading credentials on command lines, and confirm where MCP registration stores secrets. <br>
-Risk: Trading services may be reachable outside the intended local environment if deployed or networked incorrectly. <br>
-Mitigation: Avoid exposing services beyond localhost unless deliberately configured and protected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hummingbot Deploy on ClawHub](https://clawhub.ai/fengtality/hummingbot-deploy) <br>
-- [Hummingbot API Docs](https://hummingbot.org/hummingbot-api/) <br>
-- [Hummingbot MCP Docs](https://hummingbot.org/mcp/) <br>
-- [Hummingbot API Repository](https://github.com/hummingbot/hummingbot-api) <br>
-- [Hummingbot MCP Repository](https://github.com/hummingbot/mcp) <br>
-- [Condor Repository](https://github.com/hummingbot/condor) <br>
+## Use Case:
 
+Developers and operators use this skill to install, configure, verify, and troubleshoot Hummingbot trading infrastructure across local and containerized environments.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, verification, upgrade, and troubleshooting instructions for Docker-based services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run mutable remote shell code during installation.
+
+Mitigation: Use only pinned and reviewed scripts and container images before installing.
+
+Risk: The skill uses weak plaintext default credentials for trading-related services.
+
+Mitigation: Replace all default credentials with strong unique values before deployment.
+
+Risk: The Hummingbot API could be exposed beyond trusted hosts.
+
+Mitigation: Restrict API access to trusted hosts and networks.
+
+Risk: The container setup path includes a sudo shim.
+
+Mitigation: Avoid creating the sudo shim and use an environment with the required privileges configured explicitly.
+
+Risk: Agent MCP configuration may store Hummingbot API credentials.
+
+Mitigation: Verify where the agent stores MCP credentials and protect or rotate them as needed.
+
+## Reference(s):
+
+- [Hummingbot API Repository](https://github.com/hummingbot/hummingbot-api)
+- [Hummingbot MCP Repository](https://github.com/hummingbot/mcp)
+- [Condor Repository](https://github.com/hummingbot/condor)
+- [Hummingbot API Docs](https://hummingbot.org/hummingbot-api/)
+- [Hummingbot MCP Docs](https://hummingbot.org/mcp/)
+- [ClawHub Skill Page](https://clawhub.ai/fengtality/skills/hummingbot-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, configuration, verification, upgrade, and troubleshooting guidance for an agent to present or execute with user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

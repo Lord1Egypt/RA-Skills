@@ -1,46 +1,58 @@
-## Description: <br>
-Generates complete Chinese-language proposal documents from a short request, with automatic matching for government, business, and technical scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete Chinese-language proposal documents from a short request, automatically selecting government, business, or technical plan structures.
 
-## Publisher: <br>
-[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to turn a brief Chinese-language requirement into a structured Markdown proposal for government, business, or technical planning work. The optional CLI can generate the same proposal from the command line and save it as a Markdown file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may cause the skill to activate for general planning or writing requests. <br>
-Mitigation: Install it only when broad proposal-writing behavior is desired, or require explicit invocation in environments where accidental activation would be disruptive. <br>
-Risk: Generated proposals may include default metrics, budgets, timelines, or organizational assumptions that are not validated for the user's actual context. <br>
-Mitigation: Review generated proposal content before use and replace template defaults with verified project, budget, policy, and stakeholder information. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to draft structured Chinese proposal documents for government, business, or technical scenarios from a brief prompt.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leslietong2046-ship-it/yijuhuachufangan-skill) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [CLI proposal generator](references/yijuhua.py) <br>
-- [Government proposal template](templates/gov.md) <br>
-- [Business proposal template](templates/biz.md) <br>
-- [Technical proposal template](templates/tech.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown proposal document; optional CLI output can be printed to stdout or saved as a Markdown file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language proposal content with scenario-specific templates and optional command-line generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: frontmatter and server release metadata) <br>
+Risk: Broad trigger phrases such as requests to write a plan can cause the skill to produce a full structured proposal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill where automatic proposal drafting is intended, and review the generated document before relying on it.
+
+Risk: Generated government, sensor, data-sharing, budget, KPI, or timeline claims may be inaccurate or unsuitable for a real project.
+
+Mitigation: Have a qualified reviewer validate claims, numbers, responsibilities, and compliance-sensitive content before using the proposal in real work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leslietong2046-ship-it/skills/yijuhuachufangan-skill)
+- [README](README.md)
+- [CLI proposal generator](references/yijuhua.py)
+- [Government proposal template](templates/gov.md)
+- [Business proposal template](templates/biz.md)
+- [Technical proposal template](templates/tech.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown proposal documents with optional CLI output and file generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language proposal drafts may include generated budgets, timelines, KPIs, and implementation steps that require human review.]
+
+## Skill Version(s):
+
+2.0.4 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

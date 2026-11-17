@@ -1,38 +1,58 @@
-## Description: <br>
-Generates narration for silent screen-recording videos by extracting key frames, drafting a presentation-style voiceover script, synthesizing speech with Microsoft Edge neural TTS, and merging the audio into the original video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate narration for silent screen-recording videos by extracting key frames, writing a presentation-style voiceover script, synthesizing speech with Microsoft Edge neural TTS, and merging the audio onto the original video.
 
-## Publisher: <br>
-[ryanzhang-oss](https://clawhub.ai/user/ryanzhang-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanzhang-oss](https://clawhub.ai/user/ryanzhang-oss)
 
-## Use Case: <br>
-Developers, demo creators, and product teams use this skill to turn silent screen-recording demos into narrated videos with a companion voiceover script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated narration text may contain sensitive information from screen recordings and is sent to Microsoft Edge TTS during speech synthesis. <br>
-Mitigation: Review and redact recordings and generated scripts before TTS; avoid secrets, regulated data, private customer information, and confidential dashboards unless approved for this processing. <br>
+## Use Case:
 
+Developers, product teams, and technical presenters use this skill to turn silent demo or screen-recording videos into narrated walkthroughs with a companion voiceover script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanzhang-oss/video-auto-narration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands plus generated video, audio, frame, and script files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates extracted frame images, MP3 narration segments, a merged narrated video, and a companion voiceover Markdown file; requires ffmpeg, ffprobe, python3, and edge-tts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled TTS step has a command/code injection risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the TTS script before use, and only run it with trusted local inputs in a controlled environment.
+
+Risk: Narration text is sent to an external TTS service.
+
+Mitigation: Avoid using sensitive screen-recording content or narration text unless external disclosure is acceptable.
+
+Risk: Generated outputs may overwrite files when output paths collide.
+
+Mitigation: Use a dedicated output directory and avoid paths where silent overwrite would matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryanzhang-oss/skills/video-auto-narration)
+- [ClawHub publisher profile](https://clawhub.ai/user/ryanzhang-oss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown voiceover script, shell command guidance, generated audio files, and a narrated video file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include a narrated video and a companion timestamped voiceover script; timing should be checked against the input video duration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

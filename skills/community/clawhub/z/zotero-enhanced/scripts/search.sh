@@ -25,7 +25,7 @@ EOF
         exit 0
         ;;
     --version)
-        echo "zotero-enhanced search.sh v1.3.8"
+        echo "zotero-enhanced search.sh v1.3.14"
         exit 0
         ;;
 esac

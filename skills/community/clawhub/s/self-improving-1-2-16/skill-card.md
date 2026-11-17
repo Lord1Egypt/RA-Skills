@@ -1,50 +1,62 @@
-## Description: <br>
-Self-reflection, self-criticism, self-learning, and self-organizing memory for agents to evaluate their own work, catch mistakes, and improve permanently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection, self-criticism, self-learning, and self-organizing memory for agents that evaluate their work, catch mistakes, and improve future behavior.
 
-## Publisher: <br>
-[taron-ai](https://clawhub.ai/user/taron-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taron-ai](https://clawhub.ai/user/taron-ai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local self-reflection, correction logging, and preference memory workflows to an agent. It is intended for situations where an agent should learn from explicit corrections, repeated patterns, failed operations, or post-task reflection while keeping the memory files visible to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent local memory of user corrections, preferences, and work patterns. <br>
-Mitigation: Install it only when persistent local memory is desired, inspect ~/self-improving/ periodically, and avoid storing sensitive information there. <br>
-Risk: Workspace steering files such as AGENTS.md, SOUL.md, and HEARTBEAT.md may be edited during setup. <br>
-Mitigation: Review proposed edits to workspace steering files before accepting them. <br>
-Risk: The documented forget-everything flow may export memory before wiping it. <br>
-Mitigation: Treat full-memory deletion carefully and confirm whether an export should be created before removing stored data. <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain local self-improvement memory for corrections, preferences, workflow lessons, and scoped project or domain patterns. It is intended for agents that should review significant work, learn from explicit feedback, and cite stored memory when behavior is affected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taron-ai/self-improving-1-2-16) <br>
-- [Skill homepage](https://clawic.com/skills/self-improving) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Security boundaries](artifact/boundaries.md) <br>
-- [Learning mechanics](artifact/learning.md) <br>
-- [Memory operations](artifact/operations.md) <br>
-- [Heartbeat rules](artifact/heartbeat-rules.md) <br>
-- [Scaling patterns](artifact/scaling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory file structures, workspace steering snippets, maintenance guidance, and user-facing memory summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.16 (source: artifact/SKILL.md frontmatter); release package 1.0.0 (source: evidence.release.version) <br>
+Risk: Persistent local memory can shape future agent behavior in ways the user may not expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent behavior-changing memory is desired, review memory-driven actions, and inspect ~/self-improving/ regularly.
+
+Risk: Workspace steering files such as AGENTS.md, SOUL.md, and HEARTBEAT.md can affect future agent behavior.
+
+Mitigation: Review and approve proposed changes to workspace steering files before adopting them, and consider Strict mode for higher confirmation requirements.
+
+Risk: Sensitive, third-party, or high-risk personal information could be stored if memory rules are applied carelessly.
+
+Mitigation: Avoid storing credentials, health data, financial data, third-party information, location patterns, access patterns, and other sensitive information.
+
+Risk: The optional Proactivity companion install may introduce separate behavior and requirements.
+
+Mitigation: Treat the optional companion as a separate package and review it before following its setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taron-ai/skills/self-improving-1-2-16)
+- [Skill homepage](https://clawic.com/skills/self-improving)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local memory files under ~/self-improving/ and optionally guide changes to workspace steering files after review.]
+
+## Skill Version(s):
+
+1.2.16 (source: frontmatter); release package version 1.0.0 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

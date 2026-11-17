@@ -1,43 +1,56 @@
-## Description: <br>
-Crosscomply Check helps agents answer cross-border e-commerce product compliance questions by mapping a product category and destination market to certification, labeling, packaging, testing, restriction, scoring, and next-action guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crosscomply Check helps agents look up cross-border e-commerce product compliance requirements for 8 product categories across 8 destination markets.
 
-## Publisher: <br>
-[sheyuy](https://clawhub.ai/user/sheyuy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheyuy](https://clawhub.ai/user/sheyuy)
 
-## Use Case: <br>
-External sellers, marketplace operators, and support agents use this skill to triage export and marketplace compliance requirements for supported products and destination markets. It is a quick reference aid and should not replace current official requirements or professional legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance guidance can be incomplete or outdated for shipment, certification, customs, or marketplace decisions. <br>
-Mitigation: Confirm the product category, destination market, and current official requirements before acting; consult qualified compliance or legal professionals for high-risk decisions. <br>
-Risk: The skill covers a defined matrix of eight product categories and eight markets, so unsupported or edge-case products may receive overly broad guidance. <br>
-Mitigation: Check that the request fits the documented coverage and treat unsupported categories or markets as requiring separate research and human review. <br>
+## Use Case:
 
+External sellers, marketplace operators, and compliance-focused agents use this skill to identify certification, labeling, packaging, testing, restriction, and platform requirements for supported cross-border product exports. It can also compare markets, account for existing compliance assets, and propose next actions, but it is a reference aid rather than legal or customs advice.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/Sheyuy/compliance-skills/tree/main/crosscomply_check) <br>
-- [ClawHub skill page](https://clawhub.ai/sheyuy/crosscomply-check) <br>
-- [Compliance data matrix](references/compliance-data.md) <br>
-- [SkillHub online experience](https://skillhub.cn/skills/crosscomply-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured tables and optional JSON-style next-action fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses product category, destination country, optional existing compliances, brand status, and product value to produce compliance checklists, scores, warnings, and next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Compliance guidance may become outdated or may not fit a specific product, customs scenario, or legal decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the product category, destination market, and current official regulations before acting, and consult qualified legal or customs advisors for high-risk decisions.
+
+Risk: Coverage is limited to the bundled 8 product categories and 8 destination markets, with primarily Chinese-language content.
+
+Mitigation: Use the skill only for covered categories and markets, and supplement unsupported products, jurisdictions, or special cases with authoritative current sources.
+
+## Reference(s):
+
+- [Server-resolved GitHub source](https://github.com/Sheyuy/compliance-skills/tree/main/crosscomply_check)
+- [ClawHub skill page](https://clawhub.ai/sheyuy/skills/crosscomply-check)
+- [Compliance data matrix](artifact/references/compliance-data.md)
+- [SkillHub online experience](https://skillhub.cn/skills/crosscomply-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown compliance checklists and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes compliance scores, requirement tables, platform requirements, warnings, and nextActions when sufficient inputs are available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

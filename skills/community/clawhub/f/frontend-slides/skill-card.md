@@ -1,50 +1,65 @@
-## Description: <br>
-Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files.
 
-## Publisher: <br>
-[ken0122](https://clawhub.ai/user/ken0122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ken0122](https://clawhub.ai/user/ken0122)
 
-## Use Case: <br>
-Sales, presales, and presentation authors use this skill to create solution decks, client presentations, bid proposals, pitch decks, tutorials, conference talks, and internal presentations as browser-based HTML slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PowerPoint conversion extracts slide text, images, and notes into local output files that may include confidential presentation content. <br>
-Mitigation: Review generated files and asset folders before sharing, publishing, or committing them. <br>
-Risk: Generated presentations run local JavaScript in the browser. <br>
-Mitigation: Inspect generated HTML before distributing it and open it in an appropriate local or sandboxed browser context when handling sensitive material. <br>
-Risk: Optional browser edit mode may leave draft slide content in localStorage on the machine where it was used. <br>
-Mitigation: Avoid edit mode on shared machines and clear browser storage after working with confidential decks. <br>
+## Use Case:
 
+Sales, presales, teaching, conference, and internal presentation authors use this skill to create browser-run slide decks from prompts, notes, images, or PowerPoint files. It helps non-designers choose a visual direction through style previews and then generate responsive HTML presentations with navigation and animations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ken0122/frontend-slides) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai/) <br>
-- [STYLE_PRESETS.md](STYLE_PRESETS.md) <br>
-- [HTML Architecture](reference/html-architecture.md) <br>
-- [Viewport and Base CSS](reference/viewport-and-base.css) <br>
-- [PPT Extraction](reference/ppt-extract.py) <br>
-- [Image Processing](reference/image-processing.py) <br>
-- [Animation Patterns](reference/animation-patterns.md) <br>
-- [Edit Button Implementation](reference/edit-button-implementation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces self-contained HTML slide decks and optional local asset folders when converting PowerPoint files or processing images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: Presentation files and speaker notes can contain sensitive customer, sales, or internal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only convert or generate decks whose contents the agent is allowed to read, and review generated output before sharing.
+
+Risk: PowerPoint conversion and image processing depend on local Python libraries.
+
+Mitigation: Install python-pptx and Pillow in a virtual environment with pinned versions before using those optional workflows.
+
+Risk: Optional browser editing can retain deck text in the browser profile through auto-save.
+
+Mitigation: Clear saved browser data for the generated deck when editing sensitive material, or skip inline editing for sensitive presentations.
+
+## Reference(s):
+
+- [Frontend Slides README](README.md)
+- [Style Presets](STYLE_PRESETS.md)
+- [HTML Architecture for Presentations](reference/html-architecture.md)
+- [Viewport and Base CSS](reference/viewport-and-base.css)
+- [Animation Patterns Reference](reference/animation-patterns.md)
+- [PowerPoint Extraction Helper](reference/ppt-extract.py)
+- [Image Processing Helpers](reference/image-processing.py)
+- [Inline Editing Implementation](reference/edit-button-implementation.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus generated self-contained HTML/CSS/JavaScript presentation files and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce presentation assets, extracted PowerPoint images, processed images, style preview HTML files, and optional browser-editing JavaScript.]
+
+## Skill Version(s):
+
+2.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

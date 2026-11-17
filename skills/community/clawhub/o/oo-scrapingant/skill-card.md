@@ -1,44 +1,55 @@
-## Description: <br>
-ScrapingAnt helps agents use an OOMOL-connected ScrapingAnt account to scrape pages, convert content to Markdown, extract structured fields, and check API credit usage through the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ScrapingAnt (scrapingant.com). Use this skill for ANY ScrapingAnt request — searching and reading data. Whenever a task involves ScrapingAnt, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill when they want an agent to retrieve, transform, or extract webpage data through ScrapingAnt without directly handling raw API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected ScrapingAnt account and may depend on sensitive account credentials managed outside the skill. <br>
-Mitigation: Install only when the user intends the agent to use that connected account, and sign in or connect ScrapingAnt only after an auth or connection error requires setup. <br>
-Risk: Scraping actions may return webpage HTML, text, headers, cookies, XHRs, and iframe data from URLs the user provides. <br>
-Mitigation: Review target URLs and returned data before sharing or storing results, especially when pages may contain sensitive or third-party content. <br>
-Risk: The first-time setup path includes remote installer commands for the oo CLI. <br>
-Mitigation: Verify the oo CLI installation path and installer source before running setup commands. <br>
+## Use Case:
 
+External users and developers use the skill to search and read web data through ScrapingAnt, including Markdown conversion, structured extraction, and extended page scraping.
 
-## Reference(s): <br>
-- [ScrapingAnt homepage](https://scrapingant.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-scrapingant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return scraped page HTML, text, cookies, headers, XHRs, iframe data, extracted JSON fields, Markdown content, API credit status, and connector execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Setup instructions can execute unverified software and introduce broader agent changes without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI and installer before use, require confirmation for setup changes, and consider disabling automatic skill synchronization.
+
+Risk: Scraping requests pass through OOMOL and ScrapingAnt and may consume account credits.
+
+Mitigation: Keep requests within the user's intended scope and check credit usage before large scraping jobs.
+
+## Reference(s):
+
+- [ScrapingAnt](https://scrapingant.com)
+- [ScrapingAnt API documentation](https://docs.scrapingant.com/api-basics)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Text]
+
+**Output Format:** [Markdown, JSON, or text returned from a scraping action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available fields vary by action; extended scraping can include HTML, text, cookies, headers, XHRs, and iframes.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

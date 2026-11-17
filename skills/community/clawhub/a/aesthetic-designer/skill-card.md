@@ -1,42 +1,61 @@
-## Description: <br>
-A Chinese-first aesthetic design assistant that helps agents create design concepts, style matrices, palettes, visual AI prompts, and design critiques using art and design movements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive aesthetic design system that synthesizes major art and design movements into a unified framework for visual identities, design critique, creative briefs, aesthetic fusion, and visual AI prompt drafting.
 
-## Publisher: <br>
-[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka)
 
-## Use Case: <br>
-Designers, developers, and creative agents use this skill to turn visual design requests into structured concepts, aesthetic direction, color palettes, material notes, and prompts for visual AI tools. It is also useful for lightweight design critique and art-direction brainstorming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The critique helper can produce generic critique rather than grounded analysis of the supplied design. <br>
-Mitigation: Treat critique output as brainstorming support and have a human reviewer validate design-specific feedback before relying on it. <br>
-Risk: Broad activation triggers and Chinese-first behavior may route visual design requests to this skill when a different language or narrower design workflow is desired. <br>
-Mitigation: Use activation or language preference rules when installing the skill in environments that need narrower routing. <br>
+## Use Case:
 
+External users and creative practitioners use this skill to structure visual design concepts, compare aesthetic movements, generate palettes, critique draft designs, and draft prompts for visual AI tools.
 
-## Reference(s): <br>
-- [Aesthetic Matrix](references/aesthetic-matrix.md) <br>
-- [Color Theory](references/color-theory.md) <br>
-- [Prompt Engineering](references/prompt-engineering.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured design sections, tables, palettes, prompts, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are primarily Chinese-first design guidance; helper scripts can emit markdown design skeletons, palettes, and critiques.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger wording may activate the skill for general visual design requests where specialized aesthetic framing is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the trigger wording or activation policy before deployment in environments that require precise tool selection.
+
+Risk: The skill is primarily Chinese-language, so users expecting English output may receive less suitable default responses.
+
+Mitigation: State the required output language in the user prompt or adapt the skill text for the deployment audience.
+
+Risk: Helper scripts generate draft palettes, design skeletons, and critique text that may not account for brand, accessibility, or production constraints.
+
+Mitigation: Treat generated outputs as creative drafts and review contrast, brand fit, medium constraints, and factual references before use.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/xuyucheneureka/skills/aesthetic-designer)
+- [Publisher profile](https://clawhub.ai/user/xuyucheneureka)
+- [Aesthetic Matrix](references/aesthetic-matrix.md)
+- [Color Theory](references/color-theory.md)
+- [Prompt Engineering](references/prompt-engineering.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text guidance, with optional local script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language design guidance; helper scripts generate draft composition skeletons, palettes, and critique text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

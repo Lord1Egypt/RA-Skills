@@ -1,44 +1,61 @@
-## Description: <br>
-Track and display an agent's betting reputation by computing win rate, ROI, volume, streaks, max drawdown, and a Sharpe proxy from local bet history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and display your agent's betting reputation. Computes win rate, ROI, volume, streaks, max drawdown, and Sharpe proxy from local bet history. Formats output for Moltbook profiles or plaintext reputation cards. Use when asked about agent stats, performance, win rate, ROI, reputation, or track record.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External agents and developers use this skill to compute betting performance metrics from a local SQLite bet log and prepare reputation summaries or Moltbook profile payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reputation profiles can reveal sensitive betting activity, including wager volume, profit/loss, ROI, platforms used, and activity dates. <br>
-Mitigation: Review and redact generated summaries before sharing; publish only when the user intends to disclose those derived stats. <br>
-Risk: Optional Moltbook publishing sends derived profile data to an external service when an API key is configured. <br>
-Mitigation: Set MOLTBOOK_API_KEY only for intentional publishing, inspect the JSON payload first, and avoid publishing private betting logs or unnecessary details. <br>
+## Use Case:
 
+External users and agent developers use this skill to summarize betting-agent performance from a local bet history, including win rate, ROI, volume, streaks, drawdown, and risk-adjusted return. It can format the results as shareable reputation text or Moltbook profile JSON, with optional publishing when the user provides an API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rsquaredsolutions2026/agentbets-reputation-tracker) <br>
-- [Moltbook](https://moltbook.com) <br>
-- [AgentBets OpenClaw Agent Reputation Tracker guide](https://agentbets.ai/guides/openclaw-agent-reputation-tracker-skill/) <br>
-- [AgentBets OpenClaw Skills series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack guide](https://agentbets.ai/guides/agent-betting-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, JSON, Markdown, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local SQLite betting history and can optionally publish derived profile stats to Moltbook when MOLTBOOK_API_KEY is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill reads a local betting log that may contain sensitive betting history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where reading the local betting log is acceptable, and restrict access to the database.
+
+Risk: Publishing to Moltbook can share aggregate betting volume, profit, ROI, platforms, and activity dates.
+
+Mitigation: Review the generated profile JSON before publishing and publish only with explicit user intent.
+
+Risk: The documented temporary profile file path may expose generated profile data on shared systems.
+
+Mitigation: Prefer a unique restricted temporary file or streamed upload, and remove temporary files after use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rsquaredsolutions2026/skills/agentbets-reputation-tracker)
+- [Moltbook](https://moltbook.com)
+- [AgentBets OpenClaw Agent Reputation Tracker Guide](https://agentbets.ai/guides/openclaw-agent-reputation-tracker-skill/)
+- [OpenClaw Skills Series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks; generated outputs may be JSON metrics or plaintext reputation cards.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite betting log and can optionally publish reviewed aggregate profile JSON to Moltbook with MOLTBOOK_API_KEY.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

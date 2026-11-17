@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "default_account": "simnow-004117",
+  "accounts": {
+    "simnow-004117": {
+      "display_name": "SimNow 004117",
+      "path": "accounts/simnow-004117",
+      "enabled": true,
+      "daemon_port": 17771
+    }
+  }
+}

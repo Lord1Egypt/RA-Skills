@@ -1,39 +1,53 @@
-## Description: <br>
-Plan and execute dark launches with feature flags, performance monitoring, and gradual exposure rollouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and execute dark launches with feature flags, performance monitoring, and gradual exposure rollouts.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, release engineers, and SREs use this skill to plan dark launches, inspect feature flag integration points, monitor hidden production code paths, and prepare controlled promotion or rollback steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated kubectl, rollout, or rollback snippets could affect production traffic if applied to the wrong cluster, namespace, or feature key. <br>
-Mitigation: Treat commands as drafts and confirm cluster context, namespace, feature key, rollback behavior, and release-owner approval before applying them. <br>
-Risk: Promotion decisions can be misleading if feature-specific monitoring is missing or not comparable to a baseline. <br>
-Mitigation: Confirm the required dashboards, alerts, feature labels, and success gates before promoting a dark-launched feature. <br>
+## Use Case:
 
+Developers and release engineers use this skill to plan dark launches, monitor hidden production code paths, and promote feature-flagged releases through controlled exposure phases.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, Kubernetes YAML, JSON, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafts for human review before any production rollout, promotion, or rollback action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A shell/Python heredoc snippet can turn a crafted feature name into code execution in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass feature names through environment variables or argv, quote heredoc delimiters, validate feature names against a narrow safe pattern, and require human approval before applying rollout, rollback, or restart commands.
+
+Risk: Generated Kubernetes rollout, rollback, and restart commands can affect production systems if run with broad credentials.
+
+Mitigation: Use read-only, namespace-scoped Kubernetes credentials for planning and monitoring, and require explicit human approval before executing changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/dark-launch-controller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, YAML, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are operator-facing plans, monitoring reports, rollout commands, rollback commands, and feature-flag configuration examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

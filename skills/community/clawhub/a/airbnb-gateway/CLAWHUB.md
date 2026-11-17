@@ -9,6 +9,9 @@ It standardizes how agents:
 - draft guest replies
 - send messages safely
 - verify whether a send actually appeared in the live Airbnb thread
+- make operator-approved calendar changes (block/open dates, nightly price) — one
+  operation per explicit approval, always fresh-load verified after (listing
+  edits, accept/decline, and refunds remain out of scope)
 
 The skill teaches a strict operating model:
 - prefer Airbnb-native endpoints before generic browser automation

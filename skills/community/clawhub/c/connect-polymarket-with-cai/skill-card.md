@@ -1,44 +1,60 @@
-## Description: <br>
-Connect Polymarket to your CAI account using platforms_supported_list and platform_one_click_register when F-16 applies; wallet derivation via catalog driver. Requires platform or full API scope. Powered by CAI.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect Polymarket to a CAI account using CAI platform discovery, one-click registration when available, and wallet derivation through the catalog driver.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-Agents and developers use this skill to link a user's Polymarket account with CAI so the agent can register, retrieve profile or balance data, and use vault-backed credential metadata without exposing secrets in chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive CAI API keys, wallet derivation flows, private-key fallback paths, and platform vault credentials. <br>
-Mitigation: Treat these credentials as sensitive, confirm platform identity and requested scopes, and avoid echoing secrets in chat. <br>
-Risk: Polymarket registration or linking may require human steps such as CAPTCHA or regional gate checks. <br>
-Mitigation: Use a human verification link when needed and do not present registration as fully automatic when external checks are required. <br>
+## Use Case:
 
+External users, agent developers, and trading or research agents use this skill to link a CAI account with Polymarket and retrieve platform account data after registration. It supports CAI platform credential setup while reminding users that CAPTCHA, regional gates, or other human verification may still be required.
 
-## Reference(s): <br>
-- [CAI skill reference](https://cai.com/skill.md) <br>
-- [CAI onboarding reference](https://cai.com/skill-references/onboarding.md) <br>
-- [CAI developers](https://cai.com/developers.html) <br>
-- [ClawHub skill page](https://clawhub.ai/bernardtai/connect-polymarket-with-cai) <br>
-- [Publisher profile](https://clawhub.ai/user/bernardtai) <br>
+### Deployment Geography for Use:
 
+Global, subject to Polymarket regional availability and verification requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell command and ordered tool-call steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAI_API_KEY and may involve wallet or platform vault credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: server release evidence) <br>
+Risk: The skill may require broad CAI API access or platform credentials to connect the user's CAI account to Polymarket.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest platform-specific CAI credential that supports the task, and avoid full API scope unless CAI clearly requires it for this exact connection flow.
+
+Risk: The wallet setup path includes a raw private-key fallback that could expose funds if pasted into chat or generic tool fields.
+
+Mitigation: Use a website or wallet-controlled flow when possible, and do not paste wallet private keys or seed phrases into chat.
+
+Risk: Registration can be blocked by CAPTCHA, regional gates, or other human verification requirements.
+
+Mitigation: Pause automated registration when verification is required and use the skill's human verification handoff guidance.
+
+## Reference(s):
+
+- [CAI skill reference](https://cai.com/skill.md)
+- [CAI onboarding reference](https://cai.com/skill-references/onboarding.md)
+- [CAI developers](https://cai.com/developers.html)
+- [ClawHub skill page](https://clawhub.ai/bernardtai/skills/connect-polymarket-with-cai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and ordered platform tool-flow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CAI platform tool names, credential setup guidance, and human verification handoff guidance.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

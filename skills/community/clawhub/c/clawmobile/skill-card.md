@@ -1,47 +1,64 @@
-## Description: <br>
-ClawMobile helps agents operate Android automation workflows through AutoX.js, including workflow management, task recording, AI-assisted recovery, membership-gated features, and HTTP API interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawMobile helps agents configure and drive Android automation workflows through AutoX.js, including workflow execution, task recording, API calls, and membership-aware feature checks.
 
-## Publisher: <br>
-[miyan1221](https://clawhub.ai/user/miyan1221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miyan1221](https://clawhub.ai/user/miyan1221)
 
-## Use Case: <br>
-Developers, test engineers, and automation operators use this skill to control Android devices, run or record workflows, validate connectivity, and generate automation guidance for mobile testing and RPA tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can remotely control an Android device. <br>
-Mitigation: Install and run it only for intended Android automation use cases, and review each workflow before execution. <br>
-Risk: Weak default authentication and broad network binding can expose device-control APIs. <br>
-Mitigation: Replace default tokens, bind services to localhost or a trusted network, and avoid public API exposure. <br>
-Risk: Recording and automation may capture screenshots, UI trees, logs, task files, or API responses from sensitive apps. <br>
-Mitigation: Avoid recording or automating sensitive apps unless data storage and retention locations are understood and controlled. <br>
-Risk: Persisting real tokens in shell startup files can leak credentials. <br>
-Mitigation: Use a secret manager or scoped runtime environment variables instead of storing production tokens in ~/.bashrc. <br>
+## Use Case:
 
+Developers, QA engineers, and RPA operators use this skill to automate Android app interactions, record repeatable workflows, and invoke an AutoX.js HTTP API from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/miyan1221/clawmobile) <br>
-- [ClawMobile Documentation](https://docs.clawmobile.com) <br>
-- [AutoX.js Documentation](https://autoxjs.com/) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python, shell, JSON, and YAML snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AutoX.js API requests, Android automation workflow parameters, setup steps, and configuration examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The device-control API uses weak public defaults and may be exposed broadly on port 8765.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the default token, bind the service to localhost where possible, and avoid exposing port 8765 beyond localhost or an encrypted tunnel.
+
+Risk: Remote access over plaintext HTTP can expose automation commands and device state.
+
+Mitigation: Do not use plaintext HTTP for remote access; use a protected local connection or encrypted tunnel.
+
+Risk: Recording screenshots and UI trees may capture sensitive app or user data.
+
+Mitigation: Use recording only on Android devices and apps you control, review captured artifacts, and avoid recording sensitive screens.
+
+Risk: Android automation can execute unintended interactions if workflows are wrong or run against the wrong app or device.
+
+Mitigation: Review workflows before installation and execution, confirm the target device and app, and run validation checks before deployment.
+
+## Reference(s):
+
+- [ClawMobile ClawHub release](https://clawhub.ai/miyan1221/skills/clawmobile)
+- [Publisher profile](https://clawhub.ai/user/miyan1221)
+- [ClawMobile documentation](https://docs.clawmobile.com)
+- [AutoX.js documentation](https://autoxjs.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, shell, JSON, and YAML snippets; may also propose API calls and task definitions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on local Android device state, AutoX.js availability, ADB connectivity, and configured API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, CHANGELOG, README, and skill module)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

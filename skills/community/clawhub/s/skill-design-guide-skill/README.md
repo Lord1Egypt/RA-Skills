@@ -1,4 +1,3 @@
-# Skill Design Guide
 
 > **Before you write a single line of SKILL.md code — know which architecture you're building.**
 

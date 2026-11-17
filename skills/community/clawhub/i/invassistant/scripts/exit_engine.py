@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 InvAssistant — 退出引擎 (Exit Engine)
 减仓与清仓信号检查，包含多种退出条件。

@@ -1,38 +1,53 @@
-## Description: <br>
-Read and write Google Forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and write Google Forms.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Google Forms commands and generate gws CLI calls for reading forms, creating forms, updating form content and publish settings, and managing responses or watches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide read and write actions against Google Forms, including batch updates, publish settings, response access, and watches. <br>
-Mitigation: Install the gws CLI from a trusted source, use the intended Google account, and review generated write actions before execution. <br>
+## Use Case:
 
+Employees, external collaborators, and developers use this skill to inspect and issue Google Forms commands through the gws CLI for form creation, retrieval, updates, publish settings, responses, and watches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-forms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI and the shared gws authentication setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release metadata); skill metadata 0.22.5 <br>
+Risk: The skill can guide an agent to use configured Google Workspace credentials for Google Forms read and write operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is intended and review generated gws commands before execution.
+
+Risk: Write operations such as batchUpdate or publish setting changes can alter business or sensitive forms.
+
+Mitigation: Require human review before executing write commands against important forms.
+
+## Reference(s):
+
+- [Gws Forms on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/gws-forms)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown command guidance with inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws binary and configured Google Workspace credentials.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; skill frontmatter metadata reports 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

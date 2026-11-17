@@ -1,42 +1,58 @@
-## Description: <br>
-SystemTemp helps agents monitor system temperature, CPU status, sensor readings, alerts, and temperature reports through a local Node.js CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SystemTemp monitors system temperature, CPU status, fan-related sensor data, temperature history, alerts, and reports.
 
-## Publisher: <br>
-[ofather](https://clawhub.ai/user/ofather) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ofather](https://clawhub.ai/user/ofather)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent for current hardware temperature status, review recent temperature history, configure threshold alerts, and generate local temperature reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI creates and updates local temperature history, alert configuration, and report files under ~/openclaw_workspace. <br>
-Mitigation: Install and run it with normal user permissions, and review the configured workspace paths before relying on the stored files. <br>
-Risk: The documented cron example can run monitoring commands repeatedly on a schedule. <br>
-Mitigation: Add scheduled execution only when continuous monitoring is intended, and verify the cron command path matches the installed workspace. <br>
-Risk: Temperature readings depend on the target machine's exposed thermal sensor files. <br>
-Mitigation: Validate sensor availability and expected readings on the target hardware before using alerts or reports for operational decisions. <br>
+## Use Case:
 
+Developers, operators, and end users can use this skill to inspect local thermal sensor readings, track recent temperature history, configure threshold alerts, and generate simple temperature reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ofather/systemtemp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown or plain text responses with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local thermal sensor files and writes local history, alert configuration, and reports under ~/openclaw_workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, README) <br>
+Risk: The Node package install path may fetch unpinned code that is not clearly tied to the reviewed artifact files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed local install or a pinned package version, and verify that the installed temp executable matches the reviewed temp.js before use.
+
+Risk: The skill creates temperature logs, reports, and alert configuration under the user's openclaw_workspace.
+
+Mitigation: Run it under the intended local user account and review generated files before sharing diagnostic output.
+
+Risk: Copying the command into /usr/local/bin makes the tool available system-wide on shared or managed machines.
+
+Mitigation: Avoid system-wide installation unless that exposure is intended and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ofather/skills/systemtemp)
+- [Skill homepage](https://clawhub.ai/skills/systemtemp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text and Markdown-style status, history, alert, and report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local thermal sensor files and writes logs, alert configuration, and reports under the user's openclaw_workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

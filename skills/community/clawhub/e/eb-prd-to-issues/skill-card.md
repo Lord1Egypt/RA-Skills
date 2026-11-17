@@ -1,37 +1,53 @@
-## Description: <br>
-Break a PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Breaks a PRD into independently grabbable GitHub issues using tracer-bullet vertical slices.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to convert a PRD issue into a reviewed, dependency-ordered set of GitHub implementation issues based on vertical slices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real GitHub issues in the active repository after approval. <br>
-Mitigation: Confirm the repository and GitHub account before use, then review issue titles, dependencies, and bodies before approving creation. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn a PRD GitHub issue into reviewed, dependency-ordered implementation issues that deliver thin vertical slices.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown issue breakdowns and GitHub issue bodies, with GitHub CLI commands when creating approved issues.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Issue creation depends on the agent being in the intended GitHub repository and authenticated as the intended account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill may read GitHub issue contents from private or sensitive repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the repository and PRD issue before fetching issue content.
+
+Risk: The skill may create GitHub issues with incorrect scope, dependencies, or sensitive text.
+
+Mitigation: Review the proposed breakdown and drafted issue text before allowing issue creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emersonbraun/skills/eb-prd-to-issues)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown issue breakdowns and GitHub issue bodies with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user review of the proposed issue breakdown before issue creation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

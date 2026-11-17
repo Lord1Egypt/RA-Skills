@@ -1,41 +1,54 @@
-## Description: <br>
-Helps an agent use notesmd-cli to search, create, edit, move, delete, and manage frontmatter in an Obsidian vault without running Obsidian. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 notesmd-cli 操作 Obsidian 知识库 — 搜索、创建、编辑、移动、删除笔记及管理 frontmatter，无需 Obsidian 运行。
 
-## Publisher: <br>
-[kxindot](https://clawhub.ai/user/kxindot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kxindot](https://clawhub.ai/user/kxindot)
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to manage Obsidian vault content from Linux, WSL2, headless, or terminal-first environments. It supports vault setup, note search, note creation and editing, moves, deletion, daily notes, and frontmatter updates through notesmd-cli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Note-editing, overwrite, move, and delete operations can change or remove Obsidian vault content. <br>
-Mitigation: Confirm the exact target notes before executing destructive or overwriting actions, and keep a backup or version control enabled for the vault. <br>
-Risk: Direct filesystem renames or moves may not update Obsidian wikilinks. <br>
-Mitigation: Use notesmd-cli move when renaming or moving notes that may be linked from other vault files. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to operate Obsidian vaults from Linux, WSL, or headless terminal environments through notesmd-cli. It helps agents search, read, create, edit, move, delete, and manage frontmatter in Markdown notes without requiring Obsidian to be running.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kxindot/obsidian-wsl) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/kxindot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose note edits, moves, deletes, overwrites, or direct filesystem operations against Obsidian vault files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill depends on an unpinned third-party Homebrew tap for notesmd-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the notesmd-cli Homebrew tap is trusted and review the installed CLI before using it with sensitive vaults.
+
+Risk: Overwrite, move, frontmatter delete, and note delete commands can change or remove vault content.
+
+Mitigation: Review destructive commands before execution and keep backups or version control for important vaults.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kxindot/skills/obsidian-wsl)
+- [kxindot publisher profile](https://clawhub.ai/user/kxindot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires notesmd-cli and access to the user's configured Obsidian vaults.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

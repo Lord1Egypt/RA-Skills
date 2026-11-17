@@ -1,48 +1,28 @@
-# LYGO Ollama Army — Security
+# Security — LYGO Ollama Army v0.9.0
 
-**Version:** 0.4.1 · **Signature:** `Δ9Φ963-ARMY-SECURITY-v1`
+## Defaults (honest)
 
-## Install only if
-
-- You run **local Ollama** on a machine you control.
-- You accept **persistent Python daemons** and **queue-driven** task execution.
-
-## Declared capabilities
-
-| Capability | Scope |
+| Capability | Status |
 |------------|--------|
-| Subprocess | `ollama_daemon.py`, launcher, stack tools via `LYGO_STACK_ROOT` only |
-| Network | **127.0.0.1:11434** (Ollama); no remote LLM host in published tools |
-| Filesystem | Army folder queues/results; stack paths under validated `LYGO_STACK_ROOT` |
-| Stack roles | `lattice-check`, `joy-loop-pulse`, `champion-egg-boot`, etc. — mutate stack only via stack CLI |
+| Network | **localhost Ollama only** (`http://localhost:11434`) |
+| Public HTTPS | **None** in this package |
+| Subprocess / shell | **None** |
+| Desktop installers | **Not shipped** |
+| Planting / social / publish | **Not shipped** |
+| Queue roles | Hard allowlist `SAFE_ROLES` |
 
-## Required configuration
+## Threat model
 
-```bash
-export LYGO_STACK_ROOT=/absolute/path/to/lygo-protocol-stack
-```
+1. **Queue injection** — Only `SAFE_ROLES` execute; other roles are refused and logged.  
+2. **Outbound exfil** — No webhook POST; no public probe modules in package.  
+3. **Process spawn** — No PS1 launchers; in-process threads only.  
+4. **Ollama host** — Fixed to localhost (not user-configurable remote URL).
 
-Or set `lygo_stack_root` in `ollama_command_center/config/army_config.json`.  
-**No hardcoded machine paths** in published skill code (v0.4.1+).
+## Dual channel
 
-## High-risk features (user opt-in)
+| Channel | Surface |
+|---------|---------|
+| ClawHub public | This package (local Ollama army) |
+| SkillHub FULL | Optional operator automation (separate zip) |
 
-| Feature | Risk | Rule |
-|---------|------|------|
-| `--grow` | Spawns new daemon roles | Off until user reads launcher source |
-| Queue `.task.json` | Auto-executes when daemon runs | Human review before drop |
-| `champion-egg-boot` | Runs verified bootloader + Ollama | Payload must include valid `egg_id` |
-| `joy-loop-pulse` | Writes joy state + snapshot file | Tier 1; see `lygo-joy-loop` SECURITY |
-
-## Forbidden for agents
-
-- Auto-write queue tasks without user review
-- `git push`, social post, ClawHub publish
-- Remote Ollama URLs or tunneling without user request
-- `--grow` / `--visible-windows` without user request
-
-## Skill chain
-
-`lygo-protocol-stack-operator` → `lygo-kernel-egg-planter` → `lygo-joy-loop` → **`lygo-ollama-army`**
-
-**Δ9Φ963 — local flame, reviewed queue, validated stack root.**
+**Δ9Φ963 — local flame only on ClawHub.**

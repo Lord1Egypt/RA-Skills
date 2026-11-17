@@ -1,41 +1,54 @@
-## Description: <br>
-Provides summaries and data analysis of public videos, short dramas, and topics on Pipixia without downloading or bulk scraping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes and analyzes public Pipixia video, short drama, and topic pages without downloading content or bypassing platform controls.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and analysts use this skill to organize public Pipixia video, short-drama, and topic pages into concise performance summaries, update notes, and directory-style overviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use outside the stated boundaries could lead to media downloading, API reverse engineering, bypassing platform protections, or bulk collection. <br>
-Mitigation: Keep use to lightweight summaries of public pages; do not download media, bypass human verification or risk controls, reverse-engineer APIs, or run bulk collection. <br>
-Risk: Dynamic pages and human-verification prompts may produce incomplete or stale summaries. <br>
-Mitigation: Open pages manually when needed, trigger parsing only after content is visible, and verify important summaries against the source page. <br>
+## Use Case:
 
+External users and analysts use this skill to summarize public Pipixia search results, short-drama directories, topic pages, and visible engagement fields for lightweight analysis and reminders.
 
-## Reference(s): <br>
-- [Pipixia homepage](https://www.pipix.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/pipixia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries may include titles, authors, durations, publish times, engagement counts, update status, episode directories, topic statistics, and source links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may attempt to use the skill for bulk scraping, downloads, API reverse engineering, or platform-rule bypassing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for manually triggered analysis of public pages, keep request rates controlled, and avoid downloads, hidden access, API calls, or bypassing platform protections.
+
+Risk: Dynamic rendering and human verification on Pipixia pages may make automated extraction incomplete or inconsistent.
+
+Mitigation: Open pages manually when needed and review extracted summaries against the visible public page before relying on them.
+
+## Reference(s):
+
+- [Pipixia homepage](https://www.pipix.com/)
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/pipixia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and structured text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on public page data such as titles, authors, durations, publish times, engagement counts, directory status, and source links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Python-based LiveVideoStore client with voice interaction, GUI, volume control, session management, and encrypted audio transmission for live streaming. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Python-based LiveVideoStore client with voice interaction, GUI, volume control, session management, and encrypted audio transmission for live streaming.
 
-## Publisher: <br>
-[robertlee-lab](https://clawhub.ai/user/robertlee-lab) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robertlee-lab](https://clawhub.ai/user/robertlee-lab)
 
-## Use Case: <br>
-Developers and researchers use LiveVideoStore to run a Python Xiaoyou voice client for live-streaming voice interaction, including push-to-talk recording, session management, and encrypted audio transport. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Microphone audio and device identifiers may be transmitted to remote Xiaoyou/Tenclass service endpoints after a voice session starts. <br>
-Mitigation: Run only in trusted environments, disclose remote voice processing to users, avoid sensitive audio, and review endpoint trust before installation. <br>
-Risk: The Windows setup path asks users to copy an unverified opus.dll into C:\Windows\System32. <br>
-Mitigation: Prefer a verified, pinned, app-local Opus dependency and avoid modifying system directories. <br>
-Risk: The artifact contains or creates persistent device identifiers and MAC-like values for service registration. <br>
-Mitigation: Treat local device configuration as environment-specific data and avoid publishing reused identifiers. <br>
+## Use Case:
 
+Developers and researchers can use this skill to run a Python voice client for live-streaming style interaction, including microphone input, audio playback, session handling, and encrypted audio transport. The artifact states it is for learning and research only and not for commercial use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/robertlee-lab/ult-xiaoyou) <br>
-- [Xiaozhi device console referenced by the client](https://xiaozhi.me/console/devices) <br>
-- [Opus dependency source referenced by the client](https://github.com/QiKeO/py-xiaozhi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes runtime guidance for a Python voice client that uses microphone input, MQTT, UDP audio transport, and local device configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill connects to external services and sends device and audio data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in controlled research environments, review the configured endpoints before use, and avoid using it around sensitive conversations.
+
+Risk: Microphone audio may continue transmitting after the user believes push-to-talk recording has stopped.
+
+Mitigation: Test and fix stop-recording behavior before real use, and terminate the process or network connection if recording state is uncertain.
+
+Risk: Connection credentials may be printed to the console.
+
+Mitigation: Do not share console output or logs, and remove credential-printing behavior before broader testing.
+
+Risk: The skill listens for global keyboard events.
+
+Mitigation: Grant keyboard-listener permissions only on systems where that behavior is expected and acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robertlee-lab/skills/ult-xiaoyou)
+- [Publisher profile](https://clawhub.ai/user/robertlee-lab)
+- [Artifact documentation](artifact/skill.md)
+- [Dependency list](artifact/script/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets plus Python and JSON artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8 or newer, audio input and output devices, network access, and the listed Python dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

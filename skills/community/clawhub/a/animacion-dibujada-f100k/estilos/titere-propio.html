@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tu personaje en acción</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+// El personaje que TRAE la persona (su mascota, el dibujo de su marca, o su foto recortada), en PNG transparente.
+// Prepáralo: node scripts/preparar-foto.mjs personaje.png fotos --sin-recorte   (foto normal: sin --sin-recorte)
+// Si es un dibujo, Vision no le halla cara: mira el PNG y escribe en CARA dónde están los ojos y la boca.
+const PERSONAJE = 'fotos/muffin-de-la-alumna-recorte.png';
+const CARA = 'fotos/muffin-de-la-alumna-cara.json';   // ruta al JSON, el objeto pegado aquí, o '' (sin parpadeo ni boca)
+// Lo que hace, en orden. accion: caminar (entra desde un lado) | saludar | saltar | hablar | festejar | pensar | señalar | sorpresa | quieto
+// dice: lo que aparece en el globo desde ese paso (≤ 60 letras, la frase literal del guion)
+// Los gestos se leen SIN audio: saludar = mitón que agita · señalar = flecha (hacia: 'der' | 'izq' | 'arriba' | 'abajo')
+// pensar = nube con puntitos · festejar = destellos · hablar = rayitas de voz · sorpresa = «!» · caminar = polvito
+const PASOS = [
+  { accion: 'caminar', seg: 1.3 },
+  { accion: 'saludar', seg: 1.2 },
+  { accion: 'hablar', seg: 2.2, dice: 'la pregunta que más te llega: para cuántos da' },
+  { accion: 'señalar', seg: 1.4, hacia: 'der' },
+  { accion: 'festejar', seg: 1.1, dice: 'el de quince centímetros, para cuántos da de verdad' },
+];
+const ESTILO = 'foto';                                // 'foto' (tal cual) | 'sticker' (borde blanco) | 'recorte-papel' (papel recortado, 12 cps)
+// OPCIONAL: si su dibujo trae bracitos separados del cuerpo, marca su contorno y el hombro (pixeles del PNG) y se mueven de verdad:
+// { brazoIzq: { poligono: [[x,y], …], hombro: [x,y] }, brazoDer: { … } }   ·   null = sin brazos (los gestos se dibujan alrededor)
+const PARTES = null;
+const ALTO_PERSONAJE = 700;                           // alto en pixeles del video (máx. ~760)
+const SE_VE_DE_LADO = false;                          // true = lo pone en espejo (si en su dibujo mira al otro lado)
+const COLORES = {
+  pared: '#fde7ef', patron: '#fbd6e3',   // la pared con rayas suaves
+  piso: '#f6c1d3', linea: '#e79ab6',
+  luz: '255,255,255',                    // el círculo de luz detrás del personaje (r,g,b)
+  gestoTinta: '#2a1a24', gestoAcento: '#ffd84d', gestoMano: '#ffffff',   // los gestos dibujados
+  globo: '#ffffff', tinta: '#2a1a24',
+  confeti: ['#ff6f91', '#ffd84d', '#7bdff2', '#b8f2a6'],
+};
+// ===================================================================
+const W = 1080, H = 1920, FPS = 30;
+const INICIOS = []; { let a = .2; for (const p of PASOS) { INICIOS.push(a); a += p.seg; } }
+const T_FIN = INICIOS[INICIOS.length - 1] + PASOS[PASOS.length - 1].seg;
+const DUR = +(T_FIN + .9).toFixed(2);                 // el último tramo, quieto
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script src="../nucleo/titere.js"></script>
+<script>
+// ANATOMIA: estilizada — el personaje es el PNG real que manda la persona, no se dibuja anatomía nueva
+cargarFotos([PERSONAJE]);
+let P = null;
+window.LISTO = Promise.all([window.LISTO, cargarCara(CARA)]).then(([[im], cara]) => {
+  const op = { cara, estilo: ESTILO, partes: PARTES, colores: { tinta: COLORES.gestoTinta, acento: COLORES.gestoAcento, mano: COLORES.gestoMano } };
+  P = crearTitere(im, { ...op, ancho: Math.min(820, ALTO_PERSONAJE * im.width / im.height) });
+  // un busto (selfie cortado) va como presentadora: más grande y apoyado en el borde de abajo, sin piso
+  if (P.cortado) P = crearTitere(im, { ...op, ancho: Math.min(980, 1120 * im.width / im.height) });
+});
+
+const PISO_Y = 1440;                                  // la base del personaje (arriba de la zona del caption)
+const ESCENARIO = (() => {
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  g.fillStyle = COLORES.pared; g.fillRect(0, 0, W, H);
+  g.fillStyle = COLORES.patron; for (let x = 0; x < W; x += 90) g.fillRect(x, 0, 45, PISO_Y - 40);
+  const luz = g.createRadialGradient(W / 2, PISO_Y - 360, 40, W / 2, PISO_Y - 360, 560);
+  luz.addColorStop(0, `rgba(${COLORES.luz},.85)`); luz.addColorStop(1, `rgba(${COLORES.luz},0)`); g.fillStyle = luz; g.fillRect(0, 0, W, H);
+  return c;
+})();
+const PISO = (() => {                                 // el piso va aparte: un busto no lo lleva
+  const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  g.fillStyle = COLORES.piso; g.fillRect(0, PISO_Y - 40, W, H);
+  g.strokeStyle = COLORES.linea; g.lineWidth = 4;
+  for (let i = -8; i <= 8; i++) { g.beginPath(); g.moveTo(W / 2 + i * 60, PISO_Y - 40); g.lineTo(W / 2 + i * 260, H); g.stroke(); }
+  g.fillStyle = COLORES.linea; g.fillRect(0, PISO_Y - 44, W, 8);
+  return c;
+})();
+const baseY = () => P && P.cortado ? H + 6 : PISO_Y;
+
+function pasoEn(t) {                                   // qué paso toca y cuánto lleva
+  let i = 0; while (i + 1 < PASOS.length && t >= INICIOS[i + 1]) i++;
+  return { i, p: PASOS[i], tl: Math.max(0, t - INICIOS[i]) };
+}
+
+function globo(t) {
+  // el último «dice» ya empezado queda en pantalla
+  let texto = '', t0 = 0;
+  PASOS.forEach((p, i) => { if (p.dice && t >= INICIOS[i]) { texto = p.dice; t0 = INICIOS[i]; } });
+  if (!texto || !P) return;
+  const k = back(prog(t, t0, t0 + .35));
+  const aj = autoajuste(texto, LETRA_LIMPIA, 800, 760, 3, 74, 44);
+  const alto = aj.rs.length * aj.size * 1.2 + 80, ancho = Math.max(...aj.rs.map(r => medir(r, aj.font))) + 110;
+  const cabeza = baseY() - P.alto;
+  const by = Math.max(290, Math.min(cabeza - alto - 90, 560)), bx = W / 2 - ancho / 2;
+  ctx.save(); ctx.translate(W / 2, by + alto); ctx.scale(k, k); ctx.translate(-W / 2, -(by + alto));
+  ctx.fillStyle = 'rgba(40,20,40,.12)'; ctx.beginPath(); ctx.roundRect(bx + 10, by + 14, ancho, alto, 40); ctx.fill();
+  ctx.fillStyle = COLORES.globo; ctx.strokeStyle = COLORES.tinta; ctx.lineWidth = 7;
+  ctx.beginPath(); ctx.roundRect(bx, by, ancho, alto, 40); ctx.fill(); ctx.stroke();
+  // colita hacia la cabeza
+  ctx.beginPath(); ctx.moveTo(W / 2 - 34, by + alto - 4); ctx.lineTo(W / 2 + 6, by + alto + 58); ctx.lineTo(W / 2 + 30, by + alto - 4); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(W / 2 - 34, by + alto); ctx.lineTo(W / 2 + 6, by + alto + 58); ctx.lineTo(W / 2 + 30, by + alto); ctx.stroke();
+  ctx.font = aj.font; ctx.fillStyle = COLORES.tinta; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  aj.rs.forEach((r, i) => ctx.fillText(r, W / 2, by + 40 + aj.size * .62 + i * aj.size * 1.2));
+  ctx.restore();
+}
+
+function confeti(t) {                                 // solo mientras festeja; cae y se va antes del final
+  PASOS.forEach((p, i) => {
+    if (p.accion !== 'festejar') return;
+    const t0 = INICIOS[i];
+    for (let n = 0; n < 46; n++) {
+      const tt = t - t0 - hash2(n, 3) * .4; if (tt < 0 || tt > 1.6) continue;
+      const x = hash2(n, 1) * W, y = 240 + tt * (700 + hash2(n, 2) * 500), r = tt * (4 + hash2(n, 4) * 6);
+      ctx.save(); ctx.globalAlpha = clamp(1.6 - tt); ctx.translate(x + Math.sin(tt * 6 + n) * 30, y); ctx.rotate(r);
+      ctx.fillStyle = COLORES.confeti[n % COLORES.confeti.length]; ctx.fillRect(-10, -5, 20, 10); ctx.restore();
+    }
+  });
+}
+
+arrancar(frame => {
+  let t = frame / FPS;
+  const quieto = t > T_FIN;                              // el final queda quieto
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(ESCENARIO, 0, 0);
+  if (!P || !P.cortado) ctx.drawImage(PISO, 0, 0);
+  if (P) {
+    const tt = quieto ? T_FIN - .001 : t;
+    const { i, p, tl } = pasoEn(tt);
+    let x = W / 2;
+    if (p.accion === 'caminar' && !quieto) x = lerp(-P.ancho / 2, W / 2, ease(tl / p.seg));
+    const mira = SE_VE_DE_LADO ? -1 : 1;
+    if (tt < INICIOS[0] && p.accion === 'caminar') x = -P.ancho;   // antes de entrar, fuera de cuadro
+    P.dibujar(ctx, x, baseY(), { accion: quieto ? 'quieto' : (tt < INICIOS[0] ? 'quieto' : p.accion), t: quieto ? 0 : tl, mira, sombra: !P.cortado, hacia: p.hacia });
+  }
+  if (!quieto) confeti(t);
+  globo(t);
+});
+</script>
+</body>
+</html>

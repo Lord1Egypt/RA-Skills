@@ -1,41 +1,58 @@
-## Description: <br>
-Generate images with xAI Grok Imagine models, including batch generation, aspect ratios, base64 output, and concurrent requests through the xAI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with xAI Grok Imagine models, including batch generation, aspect ratios, base64 output, and concurrent requests via the xAI API.
 
-## Publisher: <br>
-[maliot100x](https://clawhub.ai/user/maliot100x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maliot100x](https://clawhub.ai/user/maliot100x)
 
-## Use Case: <br>
-Developers, creators, and content teams use this skill to generate AI images from text prompts with xAI Grok Imagine models, including single images, variations, and base64 outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to an xAI API key and sends image prompts to xAI. <br>
-Mitigation: Provide the key only in a controlled environment, monitor API usage and costs, and avoid submitting prompts that contain sensitive information. <br>
-Risk: Generated image URLs may be temporary. <br>
-Mitigation: Download needed outputs promptly or request base64 output when embedding or retaining generated images. <br>
+## Use Case:
 
+Developers and external users use this skill to generate AI images, batches of image variations, and URL or base64 image outputs with xAI Grok Imagine models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maliot100x/grok-imagine-image) <br>
-- [xAI image generation documentation](https://docs.x.ai/developers/model-capabilities/images/generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with curl, JSON, and SDK code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses XAI_API_KEY and may return temporary image URLs or base64 image data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Image prompts and generation requests are sent to xAI as part of the skill's stated purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when xAI is the intended provider, and avoid sending sensitive prompts or confidential material.
+
+Risk: The skill requires an XAI_API_KEY credential for API calls.
+
+Mitigation: Provide the API key through the environment and avoid placing credentials directly in prompts, files, or shared command history.
+
+Risk: The trigger wording is broad enough that general image-generation requests may use xAI by default.
+
+Mitigation: Direct the agent to use another provider or disable the skill when xAI should not handle a request.
+
+## Reference(s):
+
+- [xAI Image Generation Documentation](https://docs.x.ai/developers/model-capabilities/images/generation)
+- [ClawHub Skill Page](https://clawhub.ai/maliot100x/skills/grok-imagine-image)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, API calls, Configuration]
+
+**Output Format:** [Markdown with curl, Python, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XAI_API_KEY and may produce temporary image URLs or base64 image data when the generated API calls are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

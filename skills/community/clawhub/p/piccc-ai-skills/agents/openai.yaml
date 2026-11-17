@@ -1,0 +1,4 @@
+interface:
+  display_name: "Piccc AI (皮可AI)"
+  short_description: "Generate and download images, videos, and audio"
+  default_prompt: "Use $piccc-ai to authorize my account and report my available credits."

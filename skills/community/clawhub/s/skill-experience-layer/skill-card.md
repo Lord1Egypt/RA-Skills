@@ -1,41 +1,54 @@
-## Description: <br>
-Provides pre-call experience checks, error-driven learning, and layered per-skill experience storage so agents can avoid repeated mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds pre-call experience checking, error-driven learning, and layered per-skill memory so agents can avoid repeated mistakes and improve over time.
 
-## Publisher: <br>
-[jilanfang](https://clawhub.ai/user/jilanfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jilanfang](https://clawhub.ai/user/jilanfang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add per-skill experience memory, pre-call mistake checks, and error-driven updates to an agent's learning workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad automatic persistent memory updates, which can preserve stale, sensitive, or incorrect lessons. <br>
-Mitigation: Use explicit rules for when experience files may be created or updated, require approval for long-term memory writes, and periodically review memory/experiences/ for stale or sensitive content. <br>
-Risk: The skill may cause agents to treat past mistakes or best practices as authoritative in contexts where they no longer apply. <br>
-Mitigation: Keep experience entries scoped with context, timestamps, and prevention notes, and prune or revise lessons during regular reviews. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent, per-skill experience memory that checks prior lessons before skill use and records new mistakes after failures.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jilanfang/skill-experience-layer) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/jilanfang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON experience-file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to create or update persistent per-skill experience files under memory/experiences/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Automatic changes to persistent agent memory may introduce incorrect, stale, or unwanted guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review and approval before writing corrections, updating best practices, or applying any long-term memory change.
+
+Risk: Repeated-error automation may invoke capability-evolver or propose broader memory updates without enough oversight.
+
+Mitigation: Treat capability-evolver use and MEMORY.md changes as reviewed proposals, not automatic edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jilanfang/skills/skill-experience-layer)
+- [Publisher profile](https://clawhub.ai/user/jilanfang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent memory guidance and experience-file structures for agent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

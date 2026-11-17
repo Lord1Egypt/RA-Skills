@@ -1,42 +1,61 @@
-## Description: <br>
-Convert one or multiple documents to PDF by uploading them to Cross-Service-Solutions, polling until completion, then returning download URL(s) for the converted PDF(s) (or a ZIP if multiple). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert one or multiple documents to PDF by uploading them to Cross-Service-Solutions, polling until completion, then returning download URL(s) for the converted PDF(s) or a ZIP if multiple files are converted.
 
-## Publisher: <br>
-[CrossServiceSolutions](https://clawhub.ai/user/CrossServiceSolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[crossservicesolutions](https://clawhub.ai/user/crossservicesolutions)
 
-## Use Case: <br>
-Developers and agents use this skill to convert one or more user-selected documents into PDFs through the Cross-Service-Solutions API and return download URLs for the converted files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are uploaded to an external PDF conversion service. <br>
-Mitigation: Use non-sensitive test files first and avoid confidential or regulated documents unless the provider's privacy and retention terms meet the deployment requirements. <br>
-Risk: The skill requires a Cross-Service-Solutions API key. <br>
-Mitigation: Protect the API key, never echo or log it, and prefer a scoped or disposable key where possible. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert one or more documents into PDF output through the Cross-Service-Solutions API and return download URLs for the resulting PDFs or ZIP archive.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CrossServiceSolutions/convert-to-pdf) <br>
-- [Cross-Service-Solutions API registration](https://login.cross-service-solutions.com/register) <br>
-- [Solutions API convert endpoint](https://api.xss-cross-service-solutions.com/solutions/solutions/api/31) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files] <br>
-**Output Format:** [JSON object with job status, output file metadata, and download URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return one PDF URL, multiple PDF URLs, or a ZIP URL depending on input count and service response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uploads user documents and an API key to a remote conversion service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for documents approved for Cross-Service-Solutions processing, protect the API key, and avoid passing the key through shell history.
+
+Risk: The helper script can be redirected with SOLUTIONS_BASE_URL or --base-url.
+
+Mitigation: Leave the default endpoint in place unless the alternate destination is fully trusted and controlled.
+
+Risk: Sensitive, regulated, or confidential files may require additional approval before third-party processing.
+
+Mitigation: Confirm privacy, retention, and compliance requirements before converting those files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crossservicesolutions/skills/convert-to-pdf)
+- [Cross-Service-Solutions API key registration](https://login.cross-service-solutions.com/register)
+- [Solutions API base URL](https://api.xss-cross-service-solutions.com/solutions/solutions)
+- [Local skill definition](artifact/SKILL.md)
+- [Local README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON result examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script prints structured JSON containing job status, output file metadata, download URL fields, input file names, and error details when conversion fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

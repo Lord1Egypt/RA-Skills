@@ -1,41 +1,50 @@
-## Description: <br>
-Lightpanda browser is a drop-in replacement for Chrome and the Openclaw default browser that is faster and lighter for tasks without graphical rendering, such as data retrieval with CDP clients like Playwright or Puppeteer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightpanda browser is a drop-in replacement for Chrome and the OpenClaw default browser for faster, lighter CDP-based web automation tasks that do not need graphical rendering.
 
-## Publisher: <br>
-[krichprollsch](https://clawhub.ai/user/krichprollsch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[krichprollsch](https://clawhub.ai/user/krichprollsch)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to install and run Lightpanda as a lightweight CDP-compatible browser for data retrieval and web automation when graphical rendering is not needed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The install script downloads a nightly Lightpanda binary from GitHub, so users depend on that release channel and its availability. <br>
-Mitigation: Install only when the Lightpanda nightly release channel is trusted, and rely on the script's checksum verification before executing the binary. <br>
-Risk: A CDP browser server can control and inspect browser sessions. <br>
-Mitigation: Keep the server bound to 127.0.0.1, close it when finished, and avoid sensitive logged-in sessions or untrusted automation scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krichprollsch/lightpanda-browser) <br>
-- [Lightpanda agent skill source](https://github.com/lightpanda-io/agent-skill) <br>
-- [Lightpanda browser issues](https://github.com/lightpanda-io/browser/issues) <br>
+## Use Case:
 
+Developers and automation engineers use this skill to install and run Lightpanda as a lightweight CDP browser for data extraction, web automation, and controlled browsing tasks with Playwright or Puppeteer.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides install commands, CDP server startup guidance, and Playwright/Puppeteer connection examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer downloads and immediately tests a mutable nightly native browser binary.
+
+Mitigation: Install only after reviewing the ClawHub security guidance; prefer a pinned release with independently verified checksum or signature, and avoid elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krichprollsch/skills/lightpanda-browser)
+- [Lightpanda agent skill repository](https://github.com/lightpanda-io/agent-skill)
+- [Lightpanda browser issues](https://github.com/lightpanda-io/browser/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers installation, local browser server startup, CDP connection details, and Playwright or Puppeteer usage.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

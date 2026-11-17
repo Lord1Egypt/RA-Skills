@@ -1,0 +1,209 @@
+{
+  "card_id": "WQ-SCI-011",
+  "source_type": "paper",
+  "source_file": "7 Machine learning-assisted rapid determination for traditional Chinese Medicine Constitution.pdf",
+  "title": "Machine learning assisted rapid determination for traditional Chinese Medicine Constitution",
+  "authors": [
+    "Wen Sun"
+  ],
+  "year": 2024,
+  "journal": "Chinese Medicine",
+  "language": "en",
+  "abstract": "The aim of this study was to develop a machine learning-assisted rapid determination methodology for traditional Chinese Medicine Constitution. Based on the Constitution in Chinese Medicine Questionnaire (CCMQ), the most applied diagnostic instrument for assessing individuals’ constitutions, we employed automated supervised machine learning algorithms (i.e., Tree-based Pipeline Optimization Tool; TPOT) on all the possible item combinations for each subscale and an unsupervised machine learning algorithm (i.e., variable clustering; varclus) on the whole scale to select items that can best predict body constitution (BC) classifications or BC scores. By utilizing subsets of items selected based on TPOT and corresponding machine learning algorithms, the accuracies of BC classifications predic- tion ranged from 0.819 to 0.936, with the root mean square errors of BC scores prediction stabilizing between 6.241 and 9.877. Overall, the results suggested that the automated machine learning algorithms performed better than the varclus algorithm for item selection. Additionally, based on an automated machine learning item selection procedure, we provided the top three ranked item combinations with each possible subscale length, along with their corresponding algorithms for predicting BC classification and severity. This approach could accommodate the needs of different practitioners in traditional Chinese medicine for rapid constitution determination.",
+  "keywords": [
+    "Automated machine learning (AutoML)",
+    "Unsupervised machine learning",
+    "Constitution in Chinese Medicine Questionnaire (CCMQ)",
+    "Tree-based Pipeline Optimization Tool (TPOT)",
+    "Variable clustering (varclus)"
+  ],
+  "doi": "10.1186/s13020-024-00992-0",
+  "research_focus": {
+    "constitution_type": [
+      "气虚质",
+      "阳虚质",
+      "阴虚质",
+      "痰湿质",
+      "湿热质",
+      "血瘀质",
+      "气郁质",
+      "特禀质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "methods": {
+    "sample_size": 1932
+  },
+  "results": {},
+  "conclusions": "The items in the CCMQ were shown to have varying information weights. The use of highly important items may assist in the rapid determination of BCs. The use of supervised machine learning algorithms with all the possible item combinations for predicting BC classifi- cations or scores achieved acceptable and stable predic- tive performance. The top item combinations obtained by supervised machine learning algorithms for predict- ing BC classifications or scores were identified so that other researchers can make selections according to their needs.",
+  "knowledge_points": [
+    {
+      "category": "method",
+      "content": "Overall, the results suggested that the automated machine learning algorithms performed better than the varclus algorithm for item selection",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The items in the CCMQ were shown to have varying information weights",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "The use of highly important items may assist in the rapid determination of BCs",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "method",
+      "content": "The use of supervised machine learning algorithms with all the possible item combinations for predicting BC classifi- cations or scores achieved acceptable and stable predic- tive performance",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "method",
+      "content": "The top item combinations obtained by supervised machine learning algorithms for predict- ing BC classifications or scores were identified so that other researchers can make selections according to their needs",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "method",
+      "content": "The aim of this study was to develop a machine learning-assisted rapid determination methodology for traditional Chinese Medicine Constitution",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "method",
+      "content": "Additionally, based on an automated machine learning item selection procedure, we provided the top three ranked item combinations with each possible subscale length, along with their corresponding algorithms for predicting BC classification and severity",
+      "importance": "high",
+      "evidence_level": "B"
+    },
+    {
+      "category": "finding",
+      "content": "This approach could accommodate the needs of different practitioners in traditional Chinese medicine for rapid constitution determination",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "气虚质",
+    "阳虚质",
+    "阴虚质",
+    "痰湿质",
+    "湿热质",
+    "血瘀质",
+    "气郁质",
+    "特禀质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [
+    {
+      "sentence": "Overall, the results suggested that the automated machine learning algorithms performed better than the varclus algorithm for item selection",
+      "section": "abstract",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "page_info": {
+    "total_pages": 14,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "introduction": {
+        "start": 1,
+        "end": 1
+      },
+      "methods": {
+        "start": 3,
+        "end": 3
+      },
+      "results": {
+        "start": 5,
+        "end": 5
+      },
+      "discussion": {
+        "start": 11,
+        "end": 11
+      },
+      "conclusion": {
+        "start": 13,
+        "end": 13
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:12.499889",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.452890",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.452897"
+  }
+}

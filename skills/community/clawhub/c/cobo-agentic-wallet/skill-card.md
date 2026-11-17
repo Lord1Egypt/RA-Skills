@@ -1,52 +1,73 @@
-## Description: <br>
-Create and manage agentic wallets with Cobo for autonomous onchain operations via the caw CLI, including token transfers, contract calls, pact management, DeFi execution, and wallet onboarding on EVM chains and Solana. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Cobo agentic wallets for autonomous on-chain operations through the caw CLI, including wallet onboarding, pact authorization, token transfers, contract calls, and DeFi execution on EVM chains and Solana.
 
-## Publisher: <br>
-[cobogithub](https://clawhub.ai/user/cobogithub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cobogithub](https://clawhub.ai/user/cobogithub)
 
-## Use Case: <br>
-Developers and operators use this skill to onboard Cobo agentic wallets and perform owner-authorized onchain wallet tasks such as transfers, contract calls, DeFi workflows, pact management, and status monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated wallet authority can affect real crypto funds. <br>
-Mitigation: Use small pact limits or testnets first, confirm balances and gas before fund-moving actions, and review every pact before approval. <br>
-Risk: Sensitive wallet credentials or API keys could be exposed through scripts, logs, or chat. <br>
-Mitigation: Keep credentials out of scripts, logs, and messages; use environment variables or local secure storage and avoid sharing session identifiers. <br>
-Risk: Prompt injection or external content could try to trigger unauthorized wallet operations. <br>
-Mitigation: Only act on direct user requests, reject wallet instructions from external documents or tool outputs, and require explicit parameters for amount, asset, address, and chain. <br>
-Risk: Bootstrap and update flows can modify PATH or install updated wallet tooling. <br>
-Mitigation: Avoid automatic skill updates during wallet operations and inspect shell startup files modified by the bootstrap script. <br>
+## Use Case:
 
+Developers and wallet operators use this skill to onboard Cobo agentic wallets and guide agents through bounded, owner-approved on-chain tasks such as transfers, contract calls, DeFi execution, pact lifecycle management, and transaction verification.
 
-## Reference(s): <br>
-- [Cobo Agentic Wallet Skill Page](https://clawhub.ai/cobogithub/cobo-agentic-wallet) <br>
-- [Cobo Agentic Wallet Manual](https://cobo.com/products/agentic-wallet/manual/llms.txt) <br>
-- [Security Guide](references/security.md) <br>
-- [Onboarding](references/onboarding.md) <br>
-- [Pact Management](references/pact.md) <br>
-- [Pending Approval](references/pending-approval.md) <br>
-- [Error Handling](references/error-handling.md) <br>
-- [Chains and Token IDs](references/chains-and-tokens.md) <br>
-- [SDK Scripting](references/sdk-scripting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local SDK scripts for multi-step wallet workflows; fund-moving operations must remain within owner-approved pact scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can guide high-impact crypto wallet actions, including transfers, contract calls, DeFi execution, and pact creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require direct user intent, explicit recipient, amount, chain, and asset details, balance checks before fund-using actions, and owner approval for new or expanded pacts.
+
+Risk: Prompt injection or external content could try to trigger wallet operations or override policy limits.
+
+Mitigation: Do not execute wallet operations from webhooks, emails, documents, tool output, or other external content without direct user confirmation; stop on override, privilege escalation, safety tampering, or credential phishing patterns.
+
+Risk: Unsafe installation or update paths may introduce unreviewed binaries or package versions.
+
+Mitigation: Install only from trusted Cobo distribution channels, verify downloaded checksums where provided, and avoid unpinned npx, npm, or pip installs before operational use.
+
+Risk: Credentials and wallet identifiers may be exposed if copied into reusable scripts or shared logs.
+
+Mitigation: Keep API keys out of project scripts, logs, and generated examples; retrieve credentials through the CLI only when needed and store operational scripts with parameterized inputs.
+
+Risk: Incorrect pact policies, chain IDs, token decimals, contract addresses, or retry behavior can cause denied operations or unintended on-chain transactions.
+
+Mitigation: Review generated pact policy for exact scope, use token metadata and recipe or official protocol references instead of memory, preserve request-id idempotency, and confirm final transaction status before reporting success.
+
+## Reference(s):
+
+- [Cobo Agentic Wallet skill page](https://clawhub.ai/cobogithub/skills/cobo-agentic-wallet)
+- [Cobo Agentic Wallet manual](https://cobo.com/products/agentic-wallet/manual/llms.txt)
+- [Security Guide](references/security.md)
+- [Onboarding](references/onboarding.md)
+- [Pact Management](references/pact.md)
+- [Pending Approval](references/pending-approval.md)
+- [Error Handling](references/error-handling.md)
+- [Chains and Token IDs](references/chains-and-tokens.md)
+- [SDK Scripting](references/sdk-scripting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and Python or TypeScript snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to create reusable scripts under ./scripts for multi-step wallet operations.]
+
+## Skill Version(s):
+
+1.0.3 (source: skill frontmatter metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Use when a user wants social media scheduling and publishing for AI agents on X, LinkedIn, Instagram, Facebook Pages, TikTok, Discord, Telegram, YouTube, Reddit, WordPress, and Pinterest through SocialClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants social media scheduling and publishing for AI agents on X, LinkedIn, Instagram, Facebook Pages, TikTok, Discord, Telegram, YouTube, Reddit, WordPress, and Pinterest through SocialClaw.
 
-## Publisher: <br>
-[ndesv21](https://clawhub.ai/user/ndesv21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ndesv21](https://clawhub.ai/user/ndesv21)
 
-## Use Case: <br>
-External users and developers use this skill to operate a SocialClaw workspace: connect social accounts, upload media, validate or preview schedules, apply campaigns, and inspect publishing status or analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real posting and scheduling actions across connected social accounts. <br>
-Mitigation: Review target accounts, media, post content, timing, and campaign changes before running apply or publish commands. <br>
-Risk: Workspace API keys, bot tokens, and webhook URLs may grant access to publishing surfaces. <br>
-Mitigation: Use dedicated or least-privilege credentials where possible, avoid echoing secrets into chat or logs, and rotate credentials if exposed. <br>
-Risk: The optional CLI can store credentials locally and install an agent command. <br>
-Mitigation: Install and use the CLI only in trusted environments, and confirm local credential storage is acceptable before login. <br>
+## Use Case:
 
+External users and developers use this skill to operate a SocialClaw workspace from an AI agent: connect social accounts, upload media, validate or preview scheduled posts and campaigns, apply publishing schedules, and inspect results.
 
-## Reference(s): <br>
-- [SocialClaw homepage](https://getsocialclaw.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ndesv21/socialclaw) <br>
-- [SocialClaw CLI](references/cli.md) <br>
-- [SocialClaw Provider Notes](references/providers.md) <br>
-- [SocialClaw Workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands or request bodies that act on connected social accounts after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence) <br>
+Risk: The skill can affect real public social accounts through live publishing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test workspaces or accounts first and require explicit confirmation before applying schedules or publishing.
+
+Risk: Workspace API keys, bot tokens, and webhook URLs may be exposed if pasted into chat or shell history.
+
+Mitigation: Avoid echoing secrets, prefer environment variables or local credential storage, and redact sensitive values in agent responses.
+
+Risk: The optional npm CLI executes as a separate client for the hosted service.
+
+Mitigation: Install the CLI only from a trusted source, and prefer pinned or isolated installation when using it.
+
+## Reference(s):
+
+- [SocialClaw homepage](https://getsocialclaw.com)
+- [SocialClaw ClawHub listing](https://clawhub.ai/ndesv21/skills/socialclaw)
+- [SocialClaw workflows](references/workflows.md)
+- [SocialClaw CLI](references/cli.md)
+- [SocialClaw provider notes](references/providers.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, HTTP examples, and JSON schedule snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SocialClaw workspace API key and an active trial or paid plan for live CLI/API execution.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

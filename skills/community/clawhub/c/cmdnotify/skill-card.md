@@ -1,43 +1,58 @@
-## Description: <br>
-Lightweight command monitoring tool that periodically executes local commands/scripts in batches, detects output changes, and triggers alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight command monitoring tool that periodically executes local commands/scripts in batches, detects output changes, and triggers alerts.
 
-## Publisher: <br>
-[mengyun8](https://clawhub.ai/user/mengyun8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengyun8](https://clawhub.ai/user/mengyun8)
 
-## Use Case: <br>
-Developers and operations engineers use Cmdnotify to monitor recurring local commands or scripts, detect output or exit-code changes, and trigger alerts for system health, configuration drift, logs, and service checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured commands may repeatedly execute local programs or scripts. <br>
-Mitigation: Review every command, use trusted configuration files, set appropriate intervals and timeouts, and avoid running with elevated privileges unless required. <br>
-Risk: Notification commands can send alert content or host details to external services. <br>
-Mitigation: Review each notify_cmd endpoint and payload, avoid sending secrets or sensitive host details, and use only trusted webhook destinations. <br>
-Risk: The packaged artifact describes Go build steps but does not include the referenced Go source files. <br>
-Mitigation: Review any external source before building or running the tool. <br>
+## Use Case:
 
+Developers and operators use Cmdnotify to configure periodic local command checks, detect command output or exit-code changes, and route alerts through stderr or a configured notification command.
 
-## Reference(s): <br>
-- [Cmdnotify ClawHub release](https://clawhub.ai/mengyun8/cmdnotify) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command-monitoring configuration examples, build and run commands, and notification setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: Configured monitoring commands may capture sensitive local command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each monitored command before use and avoid collecting secrets or unnecessarily broad command output.
+
+Risk: Custom notification commands can send monitored output to external services or persistent logs.
+
+Mitigation: Review every notify_cmd, limit alert payload content, and avoid webhooks or logs that retain sensitive data.
+
+Risk: The skill repeatedly runs local commands at configured intervals.
+
+Mitigation: Install and use it only when recurring local command execution is intended, and set conservative intervals and timeouts.
+
+## Reference(s):
+
+- [Cmdnotify ClawHub skill page](https://clawhub.ai/mengyun8/skills/cmdnotify)
+- [Publisher profile](https://clawhub.ai/user/mengyun8)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with JSON configuration examples and bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

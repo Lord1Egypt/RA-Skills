@@ -1,40 +1,53 @@
-## Description: <br>
-An on-demand reasoning partner that identifies cognitive biases and improves decision-making clarity when requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An on-demand reasoning partner that identifies cognitive biases and improves decision-making clarity when explicitly requested.
 
-## Publisher: <br>
-[daibinthink](https://clawhub.ai/user/daibinthink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daibinthink](https://clawhub.ai/user/daibinthink)
 
-## Use Case: <br>
-People using ClawHub agents can invoke this skill to make analytical responses stricter by labeling uncertainty, challenging assumptions, separating deterministic tasks from strategy work, and adding blind-spot checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The protocol can make analytical answers more rigid or adversarial than users expect. <br>
-Mitigation: Use it for reasoning or strategy work where challenge and uncertainty labeling are desired; avoid it for warm conversational tasks or exact-format deliverables. <br>
-Risk: Its response rules can interfere with tasks needing minimal output, predictable localization, or strict formatting. <br>
-Mitigation: Use standby behavior for deterministic tasks such as translation, code implementation, math, factual lookup, and formatting, or disable the skill for those workflows. <br>
+## Use Case:
 
+External users and developers use this prompt-only skill to request a stricter analytical response style for strategy, planning, decision-making, and blind-spot review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daibinthink/ai-control-protocol-standard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with protocol labels and audit-style sections when activated] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, tool calls, credential access, or file writes are described in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.4.4 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can forcefully change answer style when invoked, including labels, counterarguments, and psychological framing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that reasoning-coach posture is desired, and avoid it for exact-format output, translations, machine-readable responses, or sensitive advice.
+
+Risk: Analytical responses may include speculative motivation analysis or adversarial counter-narratives that are inappropriate for some contexts.
+
+Mitigation: Review outputs before relying on them for high-stakes decisions and ask for direct, evidence-only output when speculation would be harmful.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daibinthink/skills/ai-control-protocol-standard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain-text analytical responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only behavior; security evidence reports no code execution, data access, persistence, or privilege requests.]
+
+## Skill Version(s):
+
+4.4.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

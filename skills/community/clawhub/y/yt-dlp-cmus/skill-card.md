@@ -1,43 +1,54 @@
-## Description: <br>
-AI skill to analyze song requests, verify local workspace files, and download missing tracks directly from YouTube bypassing API limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI skill to analyze song requests, verify local workspace files, and download missing tracks directly from YouTube bypassing API limits.
 
-## Publisher: <br>
-[nhathuynguyen19](https://clawhub.ai/user/nhathuynguyen19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhathuynguyen19](https://clawhub.ai/user/nhathuynguyen19)
 
-## Use Case: <br>
-External users and developers use this skill to satisfy music requests by identifying a requested track, checking the OpenClaw workspace for an existing file, and downloading a missing MP3 with yt-dlp for playback through cmus. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact YouTube and save requested audio files locally. <br>
-Mitigation: Keep downloads user-directed and store files under ~/.openclaw/workspace/music/. <br>
-Risk: User text may be incorporated into yt-dlp shell command arguments. <br>
-Mitigation: Quote search strings and avoid letting untrusted text control command structure. <br>
-Risk: The workflow depends on external yt-dlp and ffmpeg binaries. <br>
-Mitigation: Install yt-dlp and ffmpeg only from trusted package sources. <br>
+## Use Case:
 
+External users and developers use this skill to identify requested music tracks, check the OpenClaw workspace for existing files, and download missing audio for local playback through cmus.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nhathuynguyen19/yt-dlp-cmus) <br>
-- [yt-dlp project homepage](https://github.com/yt-dlp/yt-dlp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local file paths under ~/.openclaw/workspace/music/ and yt-dlp/ffmpeg command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: A crafted song title or artist string could cause unintended local shell command behavior when used in find or yt-dlp commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat song titles and artists as untrusted input, ask before downloading, and execute commands with safely separated arguments or robust escaping.
+
+Risk: Downloads depend on externally installed yt-dlp and ffmpeg tools.
+
+Mitigation: Install dependencies from controlled sources and pin or otherwise control the yt-dlp package source when reproducible installs are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nhathuynguyen19/skills/yt-dlp-cmus)
+- [yt-dlp project homepage](https://github.com/yt-dlp/yt-dlp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local MP3 audio files in ~/.openclaw/workspace/music/ when the agent executes the recommended workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

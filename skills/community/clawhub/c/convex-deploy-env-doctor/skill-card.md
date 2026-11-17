@@ -1,42 +1,54 @@
-## Description: <br>
-Validate and fix Convex deployment configuration for skills/apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and fix Convex deployment configuration for skills/apps.
 
-## Publisher: <br>
-[okikesolutions](https://clawhub.ai/user/okikesolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[okikesolutions](https://clawhub.ai/user/okikesolutions)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose Convex deployment URL, callback, environment variable, and backend connectivity problems before publishing or deploying a skill or app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local environment, configuration, documentation, and source files while diagnosing Convex deployment issues. <br>
-Mitigation: Use it in a trusted workspace, keep secret values out of shared output, and review evidence snippets before sharing results. <br>
-Risk: The skill may perform safe reachability checks against configured deployment or callback URLs. <br>
-Mitigation: Limit checks to the configured endpoints, disclose touched domains, and avoid sending sensitive data externally. <br>
-Risk: Suggested fixes may change deployment routing, OAuth callbacks, or runtime environment behavior. <br>
-Mitigation: Review proposed file-level patches and run the listed post-fix verification commands before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to debug Convex deployment URL, callback, environment variable, and backend connectivity issues before publishing or deploying a skill or app.
 
-## Reference(s): <br>
-- [Convex Env Doctor Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with pass/fail findings, file-level evidence, exact fixes, data-routing disclosure, and verification commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Must avoid printing secrets and should disclose any files read or endpoints touched.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may inspect environment files that contain secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect only needed Convex-related environment keys and redact values in all outputs.
+
+Risk: Connectivity checks may contact configured backend URLs.
+
+Mitigation: Contact only HTTPS backend URLs the user recognizes or controls, and disclose external endpoints touched.
+
+## Reference(s):
+
+- [Convex Env Doctor Output Template](artifact/references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/okikesolutions/skills/convex-deploy-env-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with pass/fail findings, file-level evidence, required fixes, data-routing disclosure, and verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Secrets must be redacted; failing checks include file and line evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

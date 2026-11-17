@@ -1,43 +1,59 @@
-## Description: <br>
-AliMerce 商城 AI 助手技能 - 客服、销售、商品管理、订单处理 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AliMerce 商城助手 supports e-commerce customer service, sales assistance, product management, and order handling.
 
-## Publisher: <br>
-[alimerce](https://clawhub.ai/user/alimerce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alimerce](https://clawhub.ai/user/alimerce)
 
-## Use Case: <br>
-External customer-service and ecommerce operators use this skill to answer product questions, check orders, recommend products, assist checkout, and maintain customer preferences across Chinese, English, and Mongolian interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect products, orders, users, and customer-preference data through connected AliMerce tools. <br>
-Mitigation: Install only against trusted AliMerce MCP/API servers, enforce server-side permissions, and use least-privilege API tokens. <br>
-Risk: Business-impacting product, order, and user changes may occur without fully defined safeguards. <br>
-Mitigation: Require human approval for product deletion, shipped or delivered order updates, administrator role changes, and other material store changes. <br>
-Risk: Customer preferences and contact details may include personal data. <br>
-Mitigation: Collect clear customer consent and define retention and deletion rules before storing or updating customer memory. <br>
+## Use Case:
 
+Customer-facing commerce agents use this skill to answer product questions, retrieve order information, recommend products, assist with checkout, and manage customer preferences when authorized.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alimerce/alimerce) <br>
-- [AliMerce MCP Tools](artifact/alimerce-mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration] <br>
-**Output Format:** [Markdown and structured tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes customer-facing response patterns and high-risk operation approval guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad user, account, and customer preference tools can expose or change sensitive commerce data without sufficient boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use backend-enforced authorization, tenant and object scoping, least-privilege API tokens, and audit logging for all tool access.
+
+Risk: Customer contact details and preferences may be stored or updated without clear consent.
+
+Mitigation: Require clear customer consent before writing preferences or contact details, and limit stored data to the current commerce use case.
+
+Risk: High-risk actions such as product deletion, shipment or delivery status changes, and administrator role changes can materially affect the store.
+
+Mitigation: Enforce explicit approval or denial rules for product_delete, order_update to shipped or delivered, and user_update role changes.
+
+## Reference(s):
+
+- [AliMerce skill page](https://clawhub.ai/alimerce/skills/alimerce)
+- [Skill definition](artifact/SKILL.md)
+- [AliMerce MCP tools](artifact/alimerce-mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, API Calls]
+
+**Output Format:** [Natural-language responses with structured tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [High-risk product, order, and role changes require approval before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

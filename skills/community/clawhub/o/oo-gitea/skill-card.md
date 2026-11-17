@@ -1,43 +1,55 @@
-## Description: <br>
-This skill lets agents operate Gitea through an OOMOL-connected account for repository discovery, issue workflows, and approved issue or comment creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gitea (about.gitea.com). Use this skill for ANY Gitea request — reading, creating, updating, and deleting data. Whenever a task involves Gitea, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and teams use this skill to inspect Gitea account, repository, issue, and comment data through an OOMOL-connected Gitea account. With explicit confirmation, it can also create issues and issue comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Gitea account and repository information through the connected OOMOL account. <br>
-Mitigation: Connect only a Gitea account whose repositories you are comfortable exposing to this connector. <br>
-Risk: The skill can create Gitea issues and issue comments when write actions are approved. <br>
-Mitigation: Review the exact payload and expected effect before allowing any write action. <br>
+## Use Case:
 
+Developers and repository maintainers use this agent skill to inspect and manage Gitea repositories, issues, pull requests, releases, and related resources through their connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-gitea) <br>
-- [Gitea product page](https://about.gitea.com/products/gitea/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return JSON data from Gitea connector actions when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Fallback setup may run downloaded CLI code and install additional agent skills that have not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and explicitly approve a fixed, verified CLI release and any additional skills before installation.
+
+Risk: Gitea write and destructive actions can change or delete account data.
+
+Mitigation: Limit the connected account's permissions and retain confirmations for changes and deletions.
+
+## Reference(s):
+
+- [Gitea](https://about.gitea.com/products/gitea/)
+- [Gitea API usage documentation](https://docs.gitea.com/development/api-usage)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Text]
+
+**Output Format:** [Shell command examples with JSON action payloads and structured Gitea results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs the agent to inspect each action's schema and confirm state-changing or destructive actions with the user.]
+
+## Skill Version(s):
+
+1.0.7 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

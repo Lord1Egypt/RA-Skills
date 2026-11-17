@@ -1,0 +1,15 @@
+{
+  "signature": "Delta9Phi963-LIVING-MESH-BADGE-v1",
+  "layer": "D",
+  "node_id": "LF_HOME",
+  "status": "ALIGNED",
+  "living_mesh": {
+    "local_status": "ALIGNED",
+    "roots_digest": "833e6a87eb4406935d626480ae116db51ab3790921840f81fe7c53bc7c3b90c1",
+    "protection": {
+      "local_is_authority": true,
+      "gossip_summaries_only": true,
+      "no_egg_payloads_on_wire": true
+    }
+  }
+}

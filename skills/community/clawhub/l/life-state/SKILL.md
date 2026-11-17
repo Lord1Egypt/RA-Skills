@@ -2,7 +2,8 @@
 name: life-state
 description: Daily mood / energy / soreness / sleep capture primitive. Other lifekit skills read this to make state-aware suggestions instead of generic templates.
 author: Denys Sychov
-version: 0.1.0
+version: 0.2.0
+metadata: {"openclaw":{"requires":{"bins":["life-state"]}}}
 triggers:
   - "how am I feeling"
   - "mood check"
@@ -72,6 +73,8 @@ Returns avg energy, mood histogram, top soreness areas, and per-day rollup.
 ## Data location
 
 `~/.life/state/<date>.json` — one JSON file per day. Stable, known location every other lifekit skill should read from.
+
+Set `LIFE_STATE_DIR` to relocate the store (containers, shared vaults) — the CLI reads it at startup.
 
 Schema:
 ```json

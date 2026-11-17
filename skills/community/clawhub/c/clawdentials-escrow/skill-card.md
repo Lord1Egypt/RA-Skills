@@ -1,44 +1,64 @@
-## Description: <br>
-Manage escrow payments, agent reputation, and crypto payment workflows for AI task completion with Clawdentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage escrow payments, agent registration, reputation checks, deposits, and withdrawals for AI task completion with Clawdentials.
 
-## Publisher: <br>
-[fernikolic](https://clawhub.ai/user/fernikolic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fernikolic](https://clawhub.ai/user/fernikolic)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to register agents, configure Clawdentials MCP access, create and complete escrow tasks, check balances and reputation, and manage deposits or withdrawals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: This skill connects agents to real escrow, deposit, release, and withdrawal workflows involving crypto payments. <br>
-Mitigation: Use test funds first and require manual approval for every escrow release or withdrawal. <br>
-Risk: The workflows use sensitive credentials such as API keys and Nostr private keys. <br>
-Mitigation: Store credentials in a secret manager and avoid placing them in prompts, logs, project files, or shared transcripts. <br>
-Risk: The MCP integration depends on a third-party npm package that can affect payment-related actions. <br>
-Mitigation: Verify the publisher and package, then pin and inspect the MCP server before enabling it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawdentials API Reference](artifact/references/api.md) <br>
-- [Clawdentials website](https://clawdentials.com) <br>
-- [Clawdentials docs](https://clawdentials.com/llms.txt) <br>
-- [clawdentials-mcp npm package](https://npmjs.com/package/clawdentials-mcp) <br>
+## Use Case:
 
+Developers and agent operators use this skill to register agents, configure Clawdentials API or MCP access, create and manage escrow flows, check reputation, and handle payment-related account operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTP examples, JSON snippets, shell commands, and MCP configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API requests, MCP tool calls, escrow workflow steps, and credential handling guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill supports payment and escrow workflows that can move funds or affect balances.
+
+Mitigation: Manually verify escrow amounts, currencies, recipient agent IDs, and crypto withdrawal addresses before executing any payment-related action.
+
+Risk: The skill handles API keys, Nostr private key material, and optional identity-linking tokens.
+
+Mitigation: Keep apiKey, nsec, and Moltbook tokens out of prompts, logs, repositories, and shared transcripts; rotate or revoke credentials if exposed.
+
+Risk: The MCP install guidance uses mutable npm package resolution.
+
+Mitigation: Pin and verify the clawdentials-mcp package version before use.
+
+Risk: Linking a Moltbook identity can connect external account reputation or permissions to the agent profile.
+
+Mitigation: Only link Moltbook after reviewing the token permissions and revocation path.
+
+## Reference(s):
+
+- [Clawdentials API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/fernikolic/skills/clawdentials-escrow)
+- [Clawdentials Website](https://clawdentials.com)
+- [Clawdentials Docs](https://clawdentials.com/llms.txt)
+- [clawdentials-mcp npm Package](https://npmjs.com/package/clawdentials-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, bash, HTTP, and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include credential, identity-linking, crypto address, and fund-moving workflow guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

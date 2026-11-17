@@ -1,44 +1,60 @@
-## Description: <br>
-clawxpay helps agents make user-approved pay-per-call API requests through x402 using a Base USDC wallet for market data, on-chain data, funding intelligence, China A-share data, and AI inference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawxpay is a pay-per-call API gateway that lets agents access market data, on-chain data, Web3 funding intelligence, China A-share data, and AI inference providers through x402 payments using a Base USDC wallet.
 
-## Publisher: <br>
-[biggggtreee-rgb](https://clawhub.ai/user/biggggtreee-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biggggtreee-rgb](https://clawhub.ai/user/biggggtreee-rgb)
 
-## Use Case: <br>
-External developers and agents use clawxpay to access paid data and AI inference endpoints without managing separate provider accounts or API keys. The skill is intended for tasks such as market lookups, technical indicators, on-chain signals, Web3 funding research, China A-share data, and model inference where the user approves spending before each paid call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend USDC from the configured Base wallet across external paid services. <br>
-Mitigation: Use a dedicated low-balance wallet, require explicit user approval before paid calls, and configure per-transaction caps, daily caps, and recipient allowlists before use. <br>
-Risk: Requests may send prompts, files, URLs, or private data to paid external services. <br>
-Mitigation: Avoid sending sensitive data unless the user intends to share it with the selected external service. <br>
-Risk: The local wallet private key is sensitive and stored on disk. <br>
-Mitigation: Do not print, log, transmit, or request the private key; use the wallet address for user-facing wallet information. <br>
+## Use Case:
 
+Developers and external agent users use this skill when they need paid per-call access to professional market, on-chain, funding, A-share, and AI inference APIs without managing separate provider accounts or API keys. Agents should use it only after confirming the endpoint, estimated cost, wallet balance, and per-task budget with the user.
 
-## Reference(s): <br>
-- [clawxpay homepage](https://clawxpay.com) <br>
-- [clawxpay documentation](https://clawxpay.com/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/biggggtreee-rgb/clawxpay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on user-approved paid API calls, wallet balance checks, spending caps, and safe handling of the local wallet key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill depends on an unpinned npm package that creates a wallet during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the npm package provenance and exact version before installing or running examples.
+
+Risk: The generated wallet private key is stored locally as plaintext.
+
+Mitigation: Use a dedicated low-balance wallet, keep the key out of backups and logs, and do not let agents read or display ~/.clawxpay/wallet.key.
+
+Risk: Paid API calls can spend USDC from the configured Base wallet.
+
+Mitigation: Require explicit user approval before each paid call, check wallet balance first, set a per-task budget cap, and report spending after the task.
+
+## Reference(s):
+
+- [clawxpay homepage](https://clawxpay.com)
+- [clawxpay API documentation](https://clawxpay.com/docs)
+- [Base bridge](https://bridge.base.org)
+- [BaseScan address lookup](https://basescan.org/address/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include paid API call plans, wallet balance checks, budget settings, and endpoint usage examples.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Matches reported bug symptoms against a bundled case library to suggest likely debugging directions, verification checks, and follow-up diagnostics without treating prior cases as automatic answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers match reported intermittent, environment-specific, or unusual bug symptoms against a curated case library, then produce verification-first diagnostic guidance and optional new case notes.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to structure reports of intermittent, environment-specific, or confusing bugs, compare symptoms with prior case notes, and choose concrete checks before changing code or infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest kubectl, curl, tcpdump, EMQX, or cluster repair commands during debugging. <br>
-Mitigation: Run operational commands only with proper authorization, scoped environments, and change-control awareness. <br>
-Risk: New BUGxx.md case notes may capture sensitive logs, infrastructure details, or customer-specific incident information. <br>
-Mitigation: Review and sanitize new case notes before sharing, publishing, or committing them. <br>
-Risk: Prior bug cases can resemble a new issue without sharing the same root cause. <br>
-Mitigation: Use the case library as hypothesis support and require independent verification before applying code or infrastructure changes. <br>
+## Use Case:
 
+Developers and site reliability engineers use this Chinese-language skill to structure bug symptoms, compare them with prior diagnostic cases, and choose quick checks before changing code or infrastructure. It is especially suited to intermittent failures, multi-instance behavior differences, strange logs, Kubernetes and EMQX incidents, and cases that may need to be captured for future reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/bug-pattern-diagnosis) <br>
-- [SKILL.md](SKILL.md) <br>
-- [BUG01: multi-replica intermittent NPE](experience/BUG01.md) <br>
-- [BUG02: intermittent Netty eventLoop termination](experience/BUG02.md) <br>
-- [BUG03: EMQX cluster route-table desynchronization](experience/BUG03.md) <br>
-- [BUG04: MQTT ClientID takeover disconnects](experience/BUG04.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured diagnostic notes, checklists, and inline code or shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose creating or updating BUGxx.md case notes after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: A similar prior case could be overmatched and lead to incorrect debugging advice or unnecessary code changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to restate uncertainty, run current-environment checks first, and treat case files as diagnostic evidence rather than final answers.
+
+Risk: Suggested Kubernetes, EMQX, curl, or cluster leave/join commands could affect live services if copied without review.
+
+Mitigation: Review commands before execution, confirm namespace, node, broker, credentials, and maintenance window, and verify the faulty target before applying remediation.
+
+Risk: Artifact examples include environment-specific paths, service names, ports, and logs that may not match the user's system.
+
+Mitigation: Adapt all paths, hostnames, ports, topics, and code references to the active project before running checks or proposing fixes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/skills/bug-pattern-diagnosis)
+- [Skill definition](artifact/SKILL.md)
+- [BUG01 multi-replica identity context case](artifact/experience/BUG01.md)
+- [BUG02 Netty event loop and heap case](artifact/experience/BUG02.md)
+- [BUG03 EMQX route table synchronization case](artifact/experience/BUG03.md)
+- [BUG04 MQTT ClientID takeover case](artifact/experience/BUG04.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown diagnostic guidance with structured checks and optional inline code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should frame prior cases as evidence and require independent verification before applying fixes.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence, released 2026-04-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

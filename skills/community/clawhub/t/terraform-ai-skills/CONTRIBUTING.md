@@ -132,7 +132,7 @@ fi
 ```bash
 # In config:
 NOTIFY_ON_COMPLETE=true
-SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK"
+SLACK_WEBHOOK_URL="REDACTED-SECRET"
 
 # In scripts:
 send_slack_notification() {

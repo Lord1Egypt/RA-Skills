@@ -1,41 +1,52 @@
-## Description: <br>
-Graceful rate limit handling with Ollama fallback that notifies on rate limits and offers a local model switch with confirmation for code tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Graceful rate limit handling with Ollama fallback. Notifies on rate limits, offers local model switch with confirmation for code tasks.
 
-## Publisher: <br>
-[dhardie](https://clawhub.ai/user/dhardie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[dhardie](https://clawhub.ai/user/dhardie)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineering teams use this skill to keep OpenClaw agents responsive when cloud LLM providers hit rate limits, while surfacing model-routing changes and requiring confirmation before local-model code work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can alter which model handles agent work, including switching from a cloud model to local Ollama after rate-limit errors.
+
+Mitigation: Review the active LLM mode with `/llm status`, keep strict model-routing requirements in deployment policy, and switch back with `/llm switch cloud` when cloud access is required.
+
+Risk: The advertised confirmation gate for local code work is not reliably enforced.
+
+Mitigation: Review local-model code changes before applying them and require explicit human approval for sensitive or production code tasks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to keep OpenClaw agents responsive when cloud LLM providers hit rate limits by switching to a local Ollama model while requiring confirmation before local code-generation tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reroute agents between cloud and local LLM providers with unclear consent or persistence behavior. <br>
-Mitigation: Review the configured cloud and local profiles before installing, define an explicit confirmationPhrase, and use /llm status after rate-limit events to confirm the active provider. <br>
-Risk: Local LLM fallback may reduce code-generation quality in sensitive or production codebases. <br>
-Mitigation: Keep confirmation required for local code tasks and proceed only after the user provides the configured confirmation phrase. <br>
+**Output Format:** [Markdown responses, notifications, command replies, and LLM routing configuration]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [ClawHub listing](https://clawhub.ai/dhardie/llm-supervisor) <br>
+**Other Properties Related to Output:** [Session state tracks cloud or local mode, last rate-limit error, and Ollama model selection.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown command responses, user notifications, confirmation prompts, and LLM profile configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configurable localModel and confirmationPhrase values; default local model is qwen2.5:7b.] <br>
+0.3.0 (source: ClawHub release metadata and skill.json)
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and skill.json; package.json lists 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

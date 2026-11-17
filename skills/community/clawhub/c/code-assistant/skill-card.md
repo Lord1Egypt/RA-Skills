@@ -1,41 +1,57 @@
-## Description: <br>
-Specialized programming assistant that analyzes code, finds bugs, suggests optimizations, refactors, and automatically generates documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Asistente de programación especializado. Analiza código, encuentra bugs, sugiere optimizaciones, refactoriza y genera documentación automáticamente.
 
-## Publisher: <br>
-[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo)
 
-## Use Case: <br>
-Developers use this skill to inspect selected code files or directories for bugs, complexity, security patterns, performance issues, and style concerns. It also helps produce documentation, tests, refactoring suggestions, command examples, and code-review guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the files or directories selected for analysis, which may include private code or secrets if broad paths are provided. <br>
-Mitigation: Run it only on intended project paths, avoid unrelated private directories, and exclude files that may contain secrets. <br>
-Risk: The skill advertises refactoring, formatting, and self-repair behavior that could change code incorrectly if accepted without review. <br>
-Mitigation: Keep automatic fixes disabled unless deliberate, review diffs before accepting edits, and test changed code before relying on it. <br>
-Risk: Pattern-based code findings can miss issues or report false positives. <br>
-Mitigation: Treat results as review guidance and confirm important security, correctness, or performance findings with human review and project tests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miguelguerra200022-sudo/code-assistant) <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect local source files for heuristic bug, security, complexity, documentation, and optimization signals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and console-style text with code snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-selected files or directories and emits findings, suggestions, generated documentation, and recommended next steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documentation claims broad refactoring, testing, agent delegation, and self-repair capabilities that are broader than the local analyzer behavior evidenced in the artifact.
+
+Mitigation: Review supported commands and treat unsupported automation claims as unverified before relying on them.
+
+Risk: The analyzer reports heuristic bug and security findings that may be incomplete or false positive.
+
+Mitigation: Use findings as review leads and validate them against the source code before making changes.
+
+Risk: Future auto-fix or refactor behavior could change files if added later.
+
+Mitigation: Run the skill on projects under version control and require explicit review before accepting generated changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miguelguerra200022-sudo/skills/code-assistant)
+- [Publisher Profile](https://clawhub.ai/user/miguelguerra200022-sudo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and console-style text with code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces heuristic analysis and generated documentation text; findings should be reviewed before acting on them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Manage OzBargain daily-deal automation in OpenClaw via cron. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OzBargain daily-deal automation in OpenClaw via cron. Use when creating/updating schedules, customizing topic priorities, enabling no-noise filtering, manual-triggering catch-up runs, routing delivery to chat groups, or troubleshooting failed delivery.
 
-## Publisher: <br>
-[laofangxose](https://clawhub.ai/user/laofangxose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laofangxose](https://clawhub.ai/user/laofangxose)
 
-## Use Case: <br>
-External users and developers use this skill to create, update, manually run, and troubleshoot OpenClaw cron jobs that filter OzBargain deals, deduplicate previously sent links, and deliver concise deal summaries to a selected chat destination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled cron jobs may send deal summaries to an unintended chat destination if the channel or destination ID is wrong. <br>
-Mitigation: Use only chat or group IDs you control, review the destination before enabling scheduled delivery, and verify delivery with OpenClaw run history. <br>
-Risk: The workflow stores a local sent-link history file for deduplication. <br>
-Mitigation: Choose a user-specific dedupe state path and confirm that the local file location is acceptable before scheduled runs. <br>
-Risk: The cron prompt controls filtering, delivery, and deal-quality behavior. <br>
-Mitigation: Review the cron prompt before enabling scheduled delivery and keep user-specific schedule, topic, language, and destination values configurable. <br>
+## Use Case:
 
+External users and developers use this skill to configure and operate recurring OzBargain deal monitoring in OpenClaw, including scheduling, topic priority tuning, deduplication, delivery routing, manual catch-up runs, and delivery troubleshooting.
 
-## Reference(s): <br>
-- [Prompt template](references/prompt-template.txt) <br>
-- [ClawHub release page](https://clawhub.ai/laofangxose/ozbargain-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configurable prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw and user-provided schedule, destination, topic priority, language, and dedupe state path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Recurring cron jobs can repeatedly send deal summaries to an unintended chat or group if the destination or schedule is configured incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the cron expression, timezone, channel, and destination before enabling or editing the job.
+
+Risk: Troubleshooting probes can send a live message to the configured destination.
+
+Mitigation: Verify the target chat or group before sending any probe message.
+
+Risk: The skill keeps a local dedupe file of sent OzBargain links.
+
+Mitigation: Use a user-specific state path and review local retention expectations before deployment.
+
+## Reference(s):
+
+- [Prompt template](references/prompt-template.txt)
+- [ClawHub skill page](https://clawhub.ai/laofangxose/skills/ozbargain-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw and user-provided cron schedule, delivery destination, topic priorities, language, and dedupe state path.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

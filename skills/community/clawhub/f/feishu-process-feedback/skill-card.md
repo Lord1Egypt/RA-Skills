@@ -1,45 +1,65 @@
-## Description: <br>
-Monitors Feishu task messages, starts isolated processing jobs, and sends task confirmation, progress, completion, and failure feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Feishu task-message handling with a background listener that starts per-task Node.js processing and sends acknowledgement, progress, completion, and failure feedback.
 
-## Publisher: <br>
-[carlzhao007](https://clawhub.ai/user/carlzhao007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carlzhao007](https://clawhub.ai/user/carlzhao007)
 
-## Use Case: <br>
-Developers and operators use this skill to run a Feishu background listener that recognizes task-like chat messages and returns progress updates while independent Node.js worker processes handle each task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat message text can reach shell commands and background workers with weak scoping. <br>
-Mitigation: Install only after review; avoid sensitive machines or production Feishu workspaces until shell-based feedback sending is replaced with argument-array execution or direct API calls and message sources are allowlisted. <br>
-Risk: The listener and workers write local log and state files that may contain task text or operational details. <br>
-Mitigation: Avoid placing secrets in task messages, and review or rotate .listener.log, .tasks.log, and .listener_state.json during operation. <br>
-Risk: A background polling process can continue processing messages until it is stopped. <br>
-Mitigation: Run the listener under supervision with a clear stop procedure and keep the process easy to terminate during review or incident response. <br>
+## Use Case:
 
+Developers and workspace automation maintainers can use this skill to route Feishu task messages into automated processing flows with visible status updates. It is intended for Feishu automation workflows, task progress tracking, batch task handling, and scenarios where users need real-time feedback.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/carlzhao007/feishu-process-feedback) <br>
-- [Feishu message API](https://open.feishu.cn/open-apis/im/v1/messages) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Configuration] <br>
-**Output Format:** [Feishu chat feedback messages, local log/state files, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a background Node.js listener with configurable polling interval, retry count, concurrency, timeout, and verbosity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact package.json reports 1.0.0) <br>
+Risk: The authoritative security scan reports that task text can be passed into shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install in a real Feishu workspace until shell-command construction is replaced with shell-free argument passing and command inputs are strictly validated.
+
+Risk: The security scan reports that raw task content can be retained in logs.
+
+Mitigation: Redact or remove task text from listener and task logs before use with confidential workspace data.
+
+Risk: The security scan recommends limiting when the listener can process messages.
+
+Mitigation: Restrict triggers to explicit authorized invocations and review workspace permissions before enabling the listener.
+
+Risk: The security guidance says the documentation should distinguish implemented features from placeholders.
+
+Mitigation: Review the artifact documentation and clearly mark placeholder Feishu API and business-logic integrations before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carlzhao007/skills/feishu-process-feedback)
+- [Skill documentation](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands and environment-variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu feedback messages, console output, local listener/task logs, and a local listener state file.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,58 @@
-## Description: <br>
-Fetches daily news recommendations, personalizes ordering from user interests or query keywords, and generates a responsive H5 report page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches daily news recommendations from a fixed API, lets an agent sort items by user interests or query terms, and generates a responsive H5 daily report page.
 
-## Publisher: <br>
-[yxcoder1997](https://clawhub.ai/user/yxcoder1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yxcoder1997](https://clawhub.ai/user/yxcoder1997)
 
-## Use Case: <br>
-External users and agents use this skill to fetch a daily news feed, sort it according to stated interests or available user profile context, and create a local HTML report for reading or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personalized sorting can use conversation context or stored profile memory, and generated local files may retain profile-derived interests or report contents. <br>
-Mitigation: Ask the agent to use only preferences stated in the current request when appropriate, and review or delete data/sorted_ids.json and output/daily_report.html after use. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Chinese-language daily news recommendations, personalize their order from explicit preferences or consented context, and generate a local H5 report for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yxcoder1997/jt-daily-report) <br>
-- [News recommendation API endpoint](https://jiutian.10086.cn/jiujiuassist/proactive/get_user_news_recommend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON sorting data and a local HTML daily report, with shell commands and guidance for agent execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces data/sorted_ids.json and output/daily_report.html after fetching and sorting news data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release evidence) <br>
+Risk: The skill can use profile or memory data for news personalization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use profile or long-term memory data only with explicit user consent, and avoid storing inferred traits unless they are needed for the requested report.
+
+Risk: The generated HTML uses untrusted news titles, summaries, images, and URLs.
+
+Mitigation: Escape news fields and validate links before opening or sharing the generated H5 report.
+
+Risk: The skill depends on a fixed external news API and local report files.
+
+Mitigation: Review the API endpoint and generated local files before installation or deployment in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yxcoder1997/skills/jt-daily-report)
+- [Daily news recommendation API](https://jiutian.10086.cn/jiujiuassist/proactive/get_user_news_recommend)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON sorted ID data, and a generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local report data under data/ and output/daily_report.html.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

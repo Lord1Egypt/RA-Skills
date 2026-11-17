@@ -1,41 +1,59 @@
-## Description: <br>
-Gestiona cambios contractuales en AWS Glue workflows y triggers mediante diagnostico, planificacion, propuesta y verificacion sin ejecutar cambios reales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze, plan, propose, and verify contractual AWS Glue workflow and trigger changes without performing live AWS execution.
 
-## Publisher: <br>
-[kansodata](https://clawhub.ai/user/kansodata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kansodata](https://clawhub.ai/user/kansodata)
 
-## Use Case: <br>
-Developers and data platform engineers use this skill to review, plan, and document conceptual changes to AWS Glue workflows and triggers. It helps produce structured diagnostics, reversible plans, contractual change proposals, and evidence-based verification without using AWS credentials or executing changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake contractual apply-change output for a completed AWS change. <br>
-Mitigation: Treat outputs as planning artifacts and require separate authorized AWS execution plus verification evidence before claiming a change occurred. <br>
-Risk: Requests may include credentials, secrets, jobs, crawlers, or live AWS execution that the skill is not designed to handle. <br>
-Mitigation: Reject those requests fail-closed and reformulate work within workflows and triggers using non-secret evidence. <br>
+## Use Case:
 
+Cloud platform engineers and developers use this skill to manage conceptual AWS Glue workflow and trigger changes through structured diagnosis, reversible planning, contractual change proposals, and evidence-based verification without exposing credentials or executing against AWS.
 
-## Reference(s): <br>
-- [Skill scope](docs/scope.md) <br>
-- [Operational examples](docs/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured Markdown with YAML-style response blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No runtime AWS execution; responses must report ok, degraded, or rejected status and include validation, rollback, evidence, and next-step fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Users may expect the skill to apply AWS Glue changes directly or accept AWS credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for contractual planning and verification; do not provide credentials or request SDK/runtime AWS execution.
+
+Risk: Plans can be incomplete when current state, acceptance criteria, or rollback details are missing.
+
+Mitigation: Require explicit scope, evidence, acceptance criteria, and rollback details; return degraded or rejected when inputs are insufficient.
+
+Risk: Requests involving Glue jobs, crawlers, plugins, persistence, or external APIs are outside the stated scope.
+
+Mitigation: Reject mixed or out-of-scope requests fail-closed and limit actions to workflows and triggers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kansodata/skills/kansodata-glue-operator)
+- [Skill scope](artifact/docs/scope.md)
+- [Operational examples](artifact/docs/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Structured YAML-like Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contractual outputs only; no live AWS execution, credential handling, persistence, plugins, SDK runtime, or external API calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

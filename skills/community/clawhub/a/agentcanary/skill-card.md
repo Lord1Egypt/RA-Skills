@@ -1,47 +1,61 @@
-## Description: <br>
-AgentCanary helps agents retrieve cross-asset market intelligence, including macro regimes, risk scores, trading signals, whale alerts, derivatives data, DeFi intelligence, options flow, and AI market briefs through an external API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentCanary provides API-based cross-asset market intelligence for AI agents, including macro regime context, risk signals, derivatives data, DeFi metrics, sentiment, and scheduled market briefs.
 
-## Publisher: <br>
-[mrcerq](https://clawhub.ai/user/mrcerq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrcerq](https://clawhub.ai/user/mrcerq)
 
-## Use Case: <br>
-Developers and external agent builders use this skill when an agent needs market-regime context, risk assessment, position-sizing guidance, market-structure data, derivatives positioning, whale monitoring, news sentiment, DeFi intelligence, options flow, or institutional positioning. The skill guides API-only access to AgentCanary data and does not provide financial advice, place orders, or replace execution logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires external AgentCanary market-data calls and may consume paid API credits. <br>
-Mitigation: Install and use it only when paid AgentCanary API access is intended, and monitor tier limits, credit usage, and endpoint access before broad agent deployment. <br>
-Risk: Wallet-based setup and stablecoin deposits can expose users to payment mistakes. <br>
-Mitigation: Keep API keys out of chat and logs where possible, and manually verify every wallet address, token, and chain before sending funds. <br>
-Risk: Market intelligence and signals may be mistaken for investment advice or execution authority. <br>
-Mitigation: Treat responses as informational risk context only; require separate trading logic, human review where appropriate, and independent validation before financial decisions. <br>
+## Use Case:
 
+External developers and agents use AgentCanary to fetch read-only market intelligence for risk assessment, market structure monitoring, signal confirmation, and informational portfolio context before deciding on strategy execution.
 
-## Reference(s): <br>
-- [AgentCanary ClawHub listing](https://clawhub.ai/mrcerq/agentcanary) <br>
-- [AgentCanary API base URL](https://api.agentcanary.ai/api) <br>
-- [AgentCanary API docs](https://api.agentcanary.ai/api/docs) <br>
-- [AgentCanary app](https://app.agentcanary.ai) <br>
-- [AgentCanary website](https://agentcanary.ai) <br>
-- [AgentCanary prediction track record data](https://agentcanary.ai/record/data/predictions.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API usage may require wallet-based authentication, deposited credits, tier-specific rate limits, and manual verification of wallet addresses, tokens, and chains before payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: API keys may appear in prompts, visible URLs, logs, or transcripts if users paste funded keys or URL examples containing keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the AgentCanary API key as a secret, avoid pasting funded keys into prompts or visible URLs when possible, monitor usage, and rotate the key if exposure is suspected.
+
+Risk: The skill relies on an external market-intelligence API, so responses depend on service availability, tier limits, billing status, and endpoint freshness.
+
+Mitigation: Install only if external AgentCanary API usage is acceptable, monitor rate limits and billing status, and design agents to handle unavailable or stale responses.
+
+Risk: Market signals and briefs may be mistaken for financial advice or deterministic predictions.
+
+Mitigation: Use AgentCanary results as informational risk context only, and keep trading or portfolio decisions under user-approved strategy and review.
+
+## Reference(s):
+
+- [AgentCanary ClawHub skill page](https://clawhub.ai/mrcerq/skills/agentcanary)
+- [AgentCanary API documentation](https://api.agentcanary.ai/api/docs)
+- [AgentCanary application](https://app.agentcanary.ai)
+- [AgentCanary website](https://agentcanary.ai)
+- [AgentCanary public prediction track record data](https://agentcanary.ai/record/data/predictions.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON API responses and concise text guidance derived from API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only external API output may include market data, risk signals, sentiment, briefs, and informational intelligence; it does not execute trades.]
+
+## Skill Version(s):
+
+1.0.7 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

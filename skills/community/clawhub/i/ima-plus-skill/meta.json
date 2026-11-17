@@ -1,0 +1,15 @@
+{
+  "version": "1.0.11",
+  "required_binaries": [
+    {
+      "name": "node",
+      "min_version": "18.0.0",
+      "reason": "Runs all .cjs scripts (knowledge-base / notes) and inline node -e JSON parsing"
+    },
+    {
+      "name": "python3",
+      "min_version": "3.8.0",
+      "reason": "video module: video/scripts/video_to_html.py (mp4 -> embedded single-file HTML) and video/scripts/video_batch.py (batch wrap + upload)"
+    }
+  ]
+}

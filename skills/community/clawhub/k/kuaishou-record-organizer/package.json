@@ -1,0 +1,31 @@
+{
+  "name": "kuaishou-record-organizer",
+  "version": "1.1.1",
+  "description": "实时获取快手平台的记录及数据整理为结构化的成果：作品描述、发布时间、点赞数、评论数、分享数、收藏数、评论内容等互动数据，可根据数据获取时间进行横向对比分析，帮助用户记录快手社媒平台作品的表现，便于后续分析和决策。",
+  "keywords": [
+    "快手",
+    "爆款视频",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长"
+  ],
+  "homepage": "https://github.com/um-why/kuaishou-skill",
+  "bugs": {
+    "url": "https://github.com/um-why/kuaishou-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/kuaishou-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "main": "scripts/kuaishou/search-cli.js",
+  "scripts": {
+    "search": "node scripts/kuaishou/search-cli.js",
+    "post": "node scripts/kuaishou/post-cli.js",
+    "comment": "node scripts/kuaishou/comment-cli.js"
+  }
+}

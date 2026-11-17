@@ -1,44 +1,51 @@
-## Description: <br>
-Accurately identifies cat and dog breeds and supports distinguishing between different individuals in multi-pet households; an essential assistant for intelligent pet butlers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies cat and dog breeds and distinguishes individual pets in images or videos, with analysis results and report lookup.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and developers use this skill to submit pet images or videos for cat and dog breed recognition, individual pet distinction, and retrieval of prior pet analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet images or videos and a username or phone-based open-id are sent to remote LifeEmergence/Open API services for analysis. <br>
-Mitigation: Use the skill only when the user is comfortable sending that media and identifier to the remote service, and avoid submitting sensitive or unrelated media. <br>
-Risk: History lookup accesses cloud account report data tied to the provided open-id. <br>
-Mitigation: Treat history-list requests as account data access and confirm the open-id with the user before querying prior reports. <br>
-Risk: The security evidence notes that the skill may create or log into an account and store returned tokens locally in the workspace data area. <br>
-Mitigation: Run the skill in a trusted workspace, restrict workspace access, and remove local token/account data when it is no longer needed. <br>
+## Use Case:
 
+Pet owners use the skill to identify cat and dog breeds, distinguish pets in multi-pet households, and retrieve prior analysis reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/smyx-pet-breed-individual-recognition-analysis) <br>
-- [Pet Breed Individual Recognition API Documentation](artifact/references/api_doc.md) <br>
-- [Common Analysis API Documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report text, JSON-style structured results, history report tables, and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analysis requires a user-provided open-id and a local media path or public media URL; results can be printed or written to an output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release metadata) <br>
+Risk: The security assessment reports unclear account registration, credential storage, data uploads, and broader video-analysis actions, and says export-only behavior needs clarification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Consider avoiding installation until the provider explains how accounts and credentials are handled, what data is uploaded, what analysis actions run, and how export-only mode behaves.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-pet-breed-individual-recognition-analysis)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [API documentation](references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Text]
+
+**Output Format:** [Structured pet analysis results and report lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional result file output; report lists can include links to exported reports.]
+
+## Skill Version(s):
+
+1.0.19 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,56 @@
-## Description: <br>
-Download Organizer helps organize files in a chosen local folder by categorizing common file extensions into documents, images, videos, audio, installers, archives, code, and other folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download Organizer helps agents organize a downloads folder by classifying files by extension, previewing the plan, and running an undo flow.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers and general users can use this skill to plan or run local download-folder cleanup workflows, preview file categorization, and undo a prior organization pass when the local backup mapping is still available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Running file organization against the wrong directory or output path can copy files into an unintended folder structure. <br>
-Mitigation: Use preview mode first, run the tool against a narrow folder such as Downloads, and verify the output path before confirming. <br>
-Risk: Undo depends on the local backup mapping and may not reverse later manual changes or missing backup data. <br>
-Mitigation: Keep separate backups for important files and confirm the backup mapping remains available before relying on undo. <br>
+## Use Case:
 
+External users and developers use this skill to generate commands and guidance for organizing downloads into category folders such as documents, images, videos, audio, installers, archives, code, and others. The bundled script can preview planned copies, copy files into an organized output directory, and undo previous organization using a backup mapping file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/utopiabenben/download-organizer) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, preview output, and undo guidance for the selected folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog, released 2026-03-06) <br>
+Risk: The undo flow trusts .download-organizer-backup.json and can copy or delete unintended files if that file was modified or created by someone else.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run undo only with a backup file created by this tool that has not been edited, and keep input and output paths limited to a non-sensitive downloads area.
+
+Risk: The script can read, copy, and delete files under the user's account.
+
+Mitigation: Use preview mode first, review the planned source and destination paths, and operate only on the intended downloads directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utopiabenben/skills/download-organizer)
+- [Publisher profile](https://clawhub.ai/user/utopiabenben)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, files]
+
+**Output Format:** [Markdown guidance with shell commands; the Python script copies files into categorized folders when executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports preview mode before file operations and stores undo mappings in .download-organizer-backup.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-03-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,86 @@
+meta:
+  generated_by: ontology-agent/init.py
+  pack_id: ecommerce
+  pack_display: 电商 (E-commerce)
+  team_name: xinghe·本体论智能体数字公司
+  team_slug: xinghe
+  template_ref: references/semantic.yaml
+  action_specs_total: 141
+profile:
+  short_name: xinghe
+  company: 星河优选（示例电商，虚构）
+  enterprise_type: 电商
+  legal_form: 有限责任公司（示例）
+  region: 浙江省杭州市（示例）
+  industry: 日用百货零售（电商）
+  scale: 8人（示例）
+  credit_code: （示例）91330100MA1DEMO1234
+  departments:
+  - lead
+  - admin
+  - hr
+  - finance
+  - legal
+  - rnd
+  - mkt_content
+  - mkt_dist
+  - mkt_seo
+  - sales
+  - data
+  - strategy
+  workflow:
+  - 上架
+  - 接单
+  - 发货
+  - 评价
+  - 复购
+  - 复盘
+  owner_profile:
+    name: 示例创始人
+    title: 创始人
+    address_as: 王总（示例）
+    decision_style: 数据支撑
+    risk_appetite: 平衡
+    comm_style: 口语、简洁
+    auth_boundary: 大额退款与定项须本人确认
+    background: 零售
+    value_priority: 增长与合规并重
+    availability: 工作时段
+    taboo: 不涉及政治
+    language: 中文
+  culture:
+    mission: 用高性价比好物服务家庭用户
+    voice: 亲切、实在
+    taboo_topics: 政治
+  context:
+    stage: 成长期
+    products: 家居日用
+    customers: ToC
+    quarterly_goal: 提升复购率
+    tool_stack: 钉钉（示例）/待接资料库
+departments:
+- lead
+- admin
+- hr
+- finance
+- legal
+- rnd
+- mkt_content
+- mkt_dist
+- mkt_seo
+- sales
+- data
+- strategy
+workflow:
+- 上架
+- 接单
+- 发货
+- 评价
+- 复购
+- 复盘
+policy_hooks:
+  region: 全国
+  redline_refs:
+  - compliance_redlines.ecommerce_law
+  - compliance_redlines.tax
+  local_services: []

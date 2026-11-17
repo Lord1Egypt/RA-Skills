@@ -1,45 +1,53 @@
-## Description: <br>
-Create visual designs with AI tools. Covers prompting for UI/graphics, Midjourney techniques, Figma AI workflow, and iteration patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create visual designs with AI tools. Covers prompting for UI/graphics, Midjourney techniques, Figma AI workflow, and iteration patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to prompt AI design tools, explore UI and visual directions, compare tool choices, and turn generated concepts into production-ready design references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External AI or design services recommended by the skill may process uploaded prompts, images, or design assets. <br>
-Mitigation: Review each service's privacy terms and avoid uploading confidential assets unless that handling is acceptable. <br>
-Risk: AI-generated concepts may contain inaccurate text, malformed details, or assets that are not ready for production handoff. <br>
-Mitigation: Use generated outputs as references, then rebuild final designs with approved tokens, real content, responsive behavior, and manual review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/vibe-design) <br>
-- [Vibe Design overview](artifact/SKILL.md) <br>
-- [Prompting for Visual Design](artifact/prompting.md) <br>
-- [UI/UX Design with AI](artifact/ui-design.md) <br>
-- [Image Generation Tips](artifact/image-gen.md) <br>
-- [Figma AI Workflow](artifact/figma.md) <br>
-- [Vibe Design Tools](artifact/tools.md) <br>
+## Use Case:
 
+Designers, developers, and product teams use this skill to prompt, evaluate, and iterate on AI-generated UI concepts, images, and Figma workflows before refining production-ready designs in their own design systems.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with prompt templates, workflow checklists, and tool recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code installation, credentials, or automated actions are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may send proprietary designs, brand assets, or customer content to third-party AI or design services mentioned by the guide.
+
+Mitigation: Review service terms and privacy posture before sharing sensitive assets; sanitize or replace proprietary or customer content during exploration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/vibe-design)
+- [Prompting for Visual Design](prompting.md)
+- [UI/UX Design with AI](ui-design.md)
+- [Image Generation Tips](image-gen.md)
+- [Figma AI Workflow](figma.md)
+- [Vibe Design Tools](tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with prompt templates, tool comparisons, and workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only design-reference skill; no binaries or runtime access required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

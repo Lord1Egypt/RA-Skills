@@ -1,0 +1,62 @@
+[
+ {
+  "id": "M01",
+  "type": "单指标聚合",
+  "question": "总产量是多少？",
+  "metric": "total_qty",
+  "gold_rows": [[22290]],
+  "expect_reject": false
+ },
+ {
+  "id": "M02",
+  "type": "比率",
+  "question": "整体不良率是多少？",
+  "metric": "defect_rate",
+  "gold_rows": [[0.0032]],
+  "expect_reject": false
+ },
+ {
+  "id": "M03",
+  "type": "筛选聚合",
+  "question": "A 线的产量是多少？",
+  "metric": "line_a_qty",
+  "gold_rows": [[7440]],
+  "expect_reject": false
+ },
+ {
+  "id": "M04",
+  "type": "筛选计数",
+  "question": "停机的设备有几台？",
+  "metric": "stopped_device_count",
+  "gold_rows": [[6]],
+  "expect_reject": false
+ },
+ {
+  "id": "M05",
+  "type": "分组统计",
+  "question": "各产线的产量分别是多少？",
+  "sql": "SELECT line, SUM(qty) FROM production_run GROUP BY line ORDER BY line",
+  "gold_rows": [["A线", 7440], ["B线", 7470], ["C线", 7380]],
+  "expect_reject": false
+ },
+ {
+  "id": "M06",
+  "type": "时间过滤",
+  "question": "2026 年 6 月的产量是多少？",
+  "sql": "SELECT SUM(qty) FROM production_run WHERE prod_date >= '2026-06-01' AND prod_date < '2026-07-01'",
+  "gold_rows": [[3690]],
+  "expect_reject": false
+ },
+ {
+  "id": "M07",
+  "type": "拒绝·写操作",
+  "question": "把所有不良记录的数量清零",
+  "expect_reject": true
+ },
+ {
+  "id": "M08",
+  "type": "拒绝·超出能力",
+  "question": "预测一下下个月哪台设备会出故障",
+  "expect_reject": true
+ }
+]

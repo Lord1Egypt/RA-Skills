@@ -1,47 +1,64 @@
-## Description: <br>
-Produces complete software architecture design documents using a 12-phase SOP for web backend, mobile, ML/AI, data pipeline, and embedded/IoT systems, including Mermaid and PlantUML diagrams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces complete software architecture design documents through a 12-phase SOP for web backend, mobile, ML/AI, data pipeline, and embedded/IoT systems, with Mermaid and PlantUML diagram guidance.
 
-## Publisher: <br>
-[1231111](https://clawhub.ai/user/1231111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1231111](https://clawhub.ai/user/1231111)
 
-## Use Case: <br>
-Developers, software architects, and technical leads use this skill to turn requirements into architecture design documents with explicit scope, constraints, diagrams, technology decisions, deployment plans, non-functional requirements, and risk registers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ML/AI architecture work may expose raw prompts, inputs, outputs, uploaded documents, or personal data through overly broad logging. <br>
-Mitigation: Prefer metadata logging, sampling, redaction, retention limits, encryption, and restricted log access. <br>
-Risk: Architecture recommendations can be incomplete or misleading when requirements, constraints, or deployment assumptions are unresolved. <br>
-Mitigation: Resolve Phase 1 open questions and validate each major decision against documented constraints before using the design for implementation. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn requirements, PRDs, RFPs, or verbal system descriptions into structured architecture design documents with MVP scope, architecture decisions, interfaces, deployment, non-functional design, and risk registers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1231111/software-architecture-design) <br>
-- [Architecture Design Reference](artifact/reference.md) <br>
-- [Architecture Design Output Template](artifact/template.md) <br>
-- [Data Pipeline Specialization](artifact/specializations/data-pipeline.md) <br>
-- [Embedded / IoT Specialization](artifact/specializations/embedded.md) <br>
-- [ML / AI System Specialization](artifact/specializations/ml-system.md) <br>
-- [Mobile App Specialization](artifact/specializations/mobile.md) <br>
-- [Web / API Backend Specialization](artifact/specializations/web-backend.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown architecture document with Mermaid and PlantUML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; includes phase checklists, decision tables, architecture diagrams, deployment details, and risk registers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generated ML/AI architecture guidance may include detailed health endpoints that expose resource status if copied directly into production designs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep public liveness checks minimal and move detailed health and resource reporting to authenticated internal metrics endpoints before production use.
+
+Risk: The default output template is Chinese, which may not match every team's documentation language.
+
+Mitigation: Ask the agent for the required output language at the start of the architecture-design request.
+
+Risk: Architecture proposals can be incomplete or misaligned when requirements are ambiguous.
+
+Mitigation: Resolve the Phase 1 open questions and review generated decisions, diagrams, and risk registers with domain owners before adoption.
+
+## Reference(s):
+
+- [Architecture Design Reference](artifact/reference.md)
+- [Architecture Design Document Template](artifact/template.md)
+- [Standalone Software Architecture Design SOP](artifact/STANDALONE.md)
+- [Web / API Backend Specialization](artifact/specializations/web-backend.md)
+- [ML / AI System Specialization](artifact/specializations/ml-system.md)
+- [Data Pipeline / Data Platform Specialization](artifact/specializations/data-pipeline.md)
+- [Embedded / IoT System Specialization](artifact/specializations/embedded.md)
+- [Mobile App Specialization](artifact/specializations/mobile.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown architecture document with Mermaid and PlantUML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output template is Chinese unless the user asks for another language.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

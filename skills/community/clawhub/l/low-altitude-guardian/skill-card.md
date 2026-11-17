@@ -1,44 +1,54 @@
-## Description: <br>
-Low Altitude Guardian is an advisory emergency decision engine for low-altitude unmanned devices that classifies UAV and eVTOL crisis scenarios and drafts response recommendations using a P0-P4 loss-priority model and weighted scoring. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Low Altitude Guardian analyzes low-altitude drone and eVTOL emergency scenarios, ranks crises and response options with a P0-P4 safety priority model, and returns advisory decision recommendations without connecting to flight-control systems.
 
-## Publisher: <br>
-[aaalenwow](https://clawhub.ai/user/aaalenwow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaalenwow](https://clawhub.ai/user/aaalenwow)
 
-## Use Case: <br>
-Developers, operators, and safety reviewers use this skill for offline analysis, training, and drafting advisory procedures for low-altitude drone, eVTOL, delivery vehicle, and robotic-device incidents. It supports scenario classification, response-plan comparison, incident reporting, knowledge-base management, and fleet analytics, but does not replace certified flight safety systems or licensed operator decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides flight-emergency procedure recommendations and includes autonomous-action language that could be mistaken for operational control guidance. <br>
-Mitigation: Use only for offline analysis, training, or drafting procedures, and require certified safety engineering plus explicit human approval before any operational use. <br>
-Risk: Persistent .guardian data and learned templates can preserve incident details or propagate unreviewed procedural changes. <br>
-Mitigation: Review stored .guardian data, generated reports, and learned template changes before reuse, sharing, or deployment. <br>
-Risk: Security evidence marks the release suspicious because advice-only safety claims are mixed with autonomous flight-procedure content. <br>
-Mitigation: Do not connect outputs to live drones, eVTOLs, autopilots, dispatch systems, or automated emergency workflows without independent review controls. <br>
+## Use Case:
 
+External developers, operators, and safety reviewers use this skill to analyze unmanned-device emergency scenarios, compare response options, and generate incident or enterprise emergency-planning outputs for training and offline advisory review.
 
-## Reference(s): <br>
-- [Crisis Taxonomy](artifact/references/crisis_taxonomy.md) <br>
-- [Decision Priority Matrix](artifact/references/decision_priority_matrix.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/aaalenwow/low-altitude-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON decision structures, generated report files, configuration templates, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory only; outputs must not be connected to live drones, eVTOLs, autopilots, dispatch systems, or automated emergency workflows without certified safety engineering and explicit human approval gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and SKILL.md openclaw metadata) <br>
+Risk: Advisory emergency guidance for drones or eVTOL systems could be mistaken for certified flight-control or dispatch automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for simulation, training, or offline advisory review; keep certified systems and qualified human operators responsible for real-world flight decisions.
+
+Risk: Autonomous-execution language and persistent learning or ingestion workflows lack strong controls.
+
+Mitigation: Do not connect outputs to flight controllers, dispatch automation, or actuator-capable systems, and avoid untrusted learning or ingestion files until path validation, approval gates, template integrity checks, and explicit human-review controls are added.
+
+## Reference(s):
+
+- [Crisis Taxonomy](references/crisis_taxonomy.md)
+- [Decision Priority Matrix](references/decision_priority_matrix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Natural-language guidance with optional JSON structures, Markdown reports, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory only; does not produce actuator commands or connect to flight-control systems.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Autonomous GitHub and multi-platform bounty hunter that scans for high-value issues, filters by skills and ROI, drafts proposals and PRs, and tracks payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous GitHub and multi-platform bounty hunter that scans for high-value issues, filters by skills and ROI, submits proposals, and tracks payments.
 
-## Publisher: <br>
-[aaronmda](https://clawhub.ai/user/aaronmda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronmda](https://clawhub.ai/user/aaronmda)
 
-## Use Case: <br>
-Developers and external agents use Julia Bounty Scout to find bounty opportunities, prioritize them by reward and skill fit, draft proposals or PRs, and track submissions and payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended bounty submissions or PRs can create inaccurate, spammy, or unauthorized platform activity. <br>
-Mitigation: Require explicit approval for every outbound proposal, PR, or platform interaction before submission. <br>
-Risk: Wallets and sensitive account credentials can expose payment or account access if connected without clear boundaries. <br>
-Mitigation: Use least-privilege credentials and do not connect wallets or sensitive accounts unless the skill clearly documents what it can read and write. <br>
-Risk: Background runs can create repeated outbound activity without enough user oversight. <br>
-Mitigation: Avoid unattended operation unless strict rate limits, activity logs, and stop controls are configured. <br>
+## Use Case:
 
+External developers and agent operators use this skill to identify bounty opportunities, draft proposals or pull requests, and track bounty-related submissions and payments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronmda/julia-bounty-scout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with proposal drafts, issue analysis, PR or code suggestions, and tracking notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve outbound platform interactions and wallet or payment tracking when connected to accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may operate repeatedly in the background and interact with GitHub or bounty platforms on the user's behalf.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with monitoring and a documented disable path; avoid cron or heartbeat operation unless those controls are in place.
+
+Risk: Generated proposals or pull requests may be submitted without clear user approval or limits.
+
+Mitigation: Require explicit approval before any submission or pull request is sent.
+
+Risk: Bounty and payment workflows may expose account, token, or wallet access.
+
+Mitigation: Use narrowly scoped tokens and keep financial or wallet access read-only where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaronmda/skills/julia-bounty-scout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with generated proposal, pull request, tracking, and operational guidance content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve repeated platform interactions and user-approved submissions.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

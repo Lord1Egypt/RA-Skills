@@ -1,48 +1,65 @@
-## Description: <br>
-A 12-agent academic writing pipeline for planning, drafting, revising, citation checking, bilingual abstracts, disclosure statements, and format conversion for academic papers. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Academic Paper is a multi-agent academic writing workflow for planning, drafting, revising, citation checking, bilingual abstracts, AI-use disclosure, and manuscript formatting.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC 4.0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-External users, students, researchers, and academic authors use this skill to structure, draft, review, revise, cite, disclose AI usage, and format academic manuscripts with guided multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Manuscript text, reviewer comments, references, or figures may be processed by delegated AI workflows or optional outside-model verification paths. <br>
-Mitigation: Use only with material suitable for AI processing, avoid confidential or regulated unpublished work unless provider exposure is understood, and keep work in a dedicated project folder. <br>
-Risk: Citation, disclosure, formatting, and venue-policy outputs may be incomplete, stale, or inappropriate for the target submission. <br>
-Mitigation: Authors should manually review citations, DOI checks, AI disclosure text, venue policy alignment, and final formatting before submission. <br>
-Risk: Optional workflows may require credentials or provider access. <br>
-Mitigation: Avoid storing API keys in persistent shell profiles on shared machines and provide credentials only for the specific workflow that needs them. <br>
+## Use Case:
 
+Researchers, students, and academic writers use this skill to structure and produce scholarly manuscripts, literature reviews, reviewer responses, citation audits, bilingual abstracts, and journal-ready formatting outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/academic-paper) <br>
-- [Publisher profile](https://clawhub.ai/user/andyrenxu7255) <br>
-- [Original Academic Research Skills project](https://github.com/Imbad0202/academic-research-skills) <br>
-- [Mode selection guide](references/mode_selection_guide.md) <br>
-- [Paper structure patterns](references/paper_structure_patterns.md) <br>
-- [Disclosure mode protocol](references/disclosure_mode_protocol.md) <br>
-- [Writing quality check](references/writing_quality_check.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown academic drafts, outlines, review reports, citation checks, disclosure statements, and formatting artifacts such as LaTeX, DOCX, or PDF when supported by the host agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by the author before academic submission, especially citations, venue policies, formatting, and generated disclosure text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.4 (source: server release metadata) <br>
+Risk: Manuscript or reference content may be processed by delegated agents or sent to third-party AI providers when optional cross-model verification is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content appropriate for AI-provider processing, and leave ARS_CROSS_MODEL disabled unless the user explicitly accepts third-party API processing and costs.
+
+Risk: Provider API keys may be exposed or retained if stored in shell profile files for optional cross-model checks.
+
+Mitigation: Avoid storing provider API keys in shell profiles; prefer temporary session-scoped environment variables and remove them after use.
+
+Risk: Generated drafts may contain hidden citation comments, automatic citation edits, or unsupported academic claims.
+
+Mitigation: Review drafts, citation changes, DOI checks, and disclosure statements before sharing or submitting manuscripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/skills/academic-paper)
+- [Original repository metadata](https://github.com/Imbad0202/academic-research-skills)
+- [Attribution notice](ATTRIBUTION.md)
+- [Mode selection guide](references/mode_selection_guide.md)
+- [Paper structure patterns](references/paper_structure_patterns.md)
+- [Citation format switcher](references/citation_format_switcher.md)
+- [Journal submission guide](references/journal_submission_guide.md)
+- [Disclosure mode protocol](references/disclosure_mode_protocol.md)
+- [Cross-model verification](shared/cross_model_verification.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown manuscript sections, academic tables, citation reports, disclosure statements, LaTeX snippets, reviewer-response plans, and formatting guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce bilingual English and Traditional Chinese abstracts, journal-format templates, and citation-integrity checklists.]
+
+## Skill Version(s):
+
+3.1.4 (source: server release metadata; artifact frontmatter reports 3.1.1-hermes-1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

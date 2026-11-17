@@ -1,40 +1,58 @@
-## Description: <br>
-Analyze Xcode build logs — timing, warnings, errors, slow compiles, and build history from DerivedData. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Xcode build logs for timing, warnings, errors, slow compiles, and build history from DerivedData.
 
-## Publisher: <br>
-[alexissan](https://clawhub.ai/user/alexissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexissan](https://clawhub.ai/user/alexissan)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Xcode DerivedData build history, summarize warnings and errors, identify slow build steps, and understand IDE or CLI build activity without modifying project files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose local Xcode project paths, compiler messages, app metadata, branch names, and worktree locations from DerivedData. <br>
-Mitigation: Use it only when that local build metadata is acceptable to show in the agent session, and review outputs before sharing them outside the development context. <br>
-Risk: DerivedData cleanup commands delete local build caches and force a future full rebuild. <br>
-Mitigation: Review the printed path and size first, and run deletion only after intentionally deciding to remove that cache. <br>
+## Use Case:
 
+Developers and engineers use this skill on macOS to inspect Xcode DerivedData build records, summarize build history, find warnings and errors, identify slow build steps, and compare IDE and CLI build activity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexissan/xcode-build-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only analysis guidance for local Xcode DerivedData; cleanup commands are presented separately for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Security evidence reports that two documented all-project summary command recipes can execute attacker-controlled Python if a crafted DerivedData directory exists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those command recipes before use, avoid running them on systems where untrusted users or tools can create DerivedData entries, and pass directory names to Python as data through argv or environment variables instead of embedding them in Python source.
+
+Risk: The skill reads Xcode DerivedData and may require broader file access depending on the agent process.
+
+Mitigation: Grant Full Disk Access only when needed and prefer the narrowest local permissions that allow the requested build-log inspection.
+
+Risk: The skill includes a DerivedData cleanup recipe that deletes build cache contents when explicitly requested.
+
+Mitigation: Confirm the target path and printed disk usage with the user before running any deletion command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexissan/skills/xcode-build-analyzer)
+- [Publisher profile](https://clawhub.ai/user/alexissan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and terminal-oriented summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only analysis guidance for local Xcode DerivedData; some commands require macOS, Xcode build data, plutil, gunzip, and sqlite3.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

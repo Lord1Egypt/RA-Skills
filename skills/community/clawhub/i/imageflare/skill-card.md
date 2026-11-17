@@ -1,44 +1,55 @@
-## Description: <br>
-ImageFlare helps agents generate and edit images through the imageflare CLI using Cloudflare Workers AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images using Cloudflare Workers AI via the `imageflare` CLI.
 
-## Publisher: <br>
-[Sallytion](https://clawhub.ai/user/Sallytion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sallytion](https://clawhub.ai/user/sallytion)
 
-## Use Case: <br>
-Developers and agents use ImageFlare to configure Cloudflare Workers AI credentials, generate images from text prompts, and edit existing images from the command line. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unintended or untrusted pip package could execute unwanted code. <br>
-Mitigation: Verify that the imageflare pip package is the intended package before installation. <br>
-Risk: Cloudflare credentials stored in local configuration could grant unwanted access if exposed. <br>
-Mitigation: Use a Cloudflare token limited to Workers AI, avoid putting tokens in shell history, and protect the local config file. <br>
-Risk: Prompts and uploaded images are processed by Cloudflare Workers AI. <br>
-Mitigation: Do not submit confidential prompts or sensitive images unless Cloudflare processing is acceptable for the use case. <br>
+## Use Case:
 
+Developers and agents use this skill to generate new images, edit existing images, and configure Cloudflare Workers AI image model settings through the `imageflare` CLI.
 
-## Reference(s): <br>
-- [ImageFlare ClawHub page](https://clawhub.ai/Sallytion/imageflare) <br>
-- [Cloudflare Workers AI documentation](https://developers.cloudflare.com/workers-ai/) <br>
-- [ImageFlare project homepage](https://github.com/Sallytion/Imageflare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with shell command examples and PNG image file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the imageflare CLI, Cloudflare Workers AI credentials, and external Cloudflare processing; generated images are saved as PNG files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill depends on an unpinned external PyPI CLI that handles a Cloudflare API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the `imageflare` package before installation, use the interactive config flow, and use a narrowly scoped Cloudflare Workers AI token.
+
+Risk: Cloudflare account credentials may be exposed if tokens are pasted into shared commands or transcripts.
+
+Mitigation: Avoid putting real tokens in command lines or shared logs; configure credentials interactively and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sallytion/skills/imageflare)
+- [Cloudflare Workers AI Documentation](https://developers.cloudflare.com/workers-ai/)
+- [ImageFlare Homepage](https://github.com/Sallytion/Imageflare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides the agent to produce PNG image files through the external `imageflare` CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

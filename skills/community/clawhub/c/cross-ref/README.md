@@ -31,7 +31,7 @@ fetch → analyze in parallel → cluster → verify → report → act
 
 **Phase 4**: A structured report groups findings by cluster, sorted by score. Each cluster shows its theme, the items involved, evidence, and suggested actions.
 
-**Phase 5-6**: If you choose to act, the skill builds a comment queue and posts with organic-looking rate limiting — jittered intervals, breathing pauses, exponential backoff. Everything is designed to not trigger GitHub's abuse detection.
+**Phase 5-6**: If you choose to act, the skill builds a reviewed comment queue. Posting requires both an approval marker in that queue and an explicit `--execute` flag. Labels and closes are never automated.
 
 ## Design principles
 
@@ -43,14 +43,13 @@ The skill follows five hard rules (documented in `references/principles.md`):
 - **Conservative defaults** — Better to miss a link than create a false one
 - **Reversibility** — Every comment includes a correction path
 
-## Rate limiting
+## Safe posting
 
-The posting script avoids fixed-interval patterns (which is what GitHub's abuse detection targets). Instead:
-
-- **Jitter**: Random 75-135s between comments (~40/hour)
-- **Breathing pauses**: 8-15 min break every 30-50 comments
-- **Exponential backoff**: 2→4→8→16min on failures, with rate-limit vs permanent error differentiation
-- **Daily budget**: 60 comments/day cap with UTC-midnight reset and resume support
+- Dry-run unless `--execute` is supplied
+- Requires a reviewed file containing `"approved": true`
+- Posts serially with a pause between mutations
+- Stops on GitHub errors instead of trying to work around platform protections
+- Uses a daily cap and resumable progress
 
 ## Installation
 
@@ -87,7 +86,7 @@ Or more casually:
 Find duplicate PRs and missing issue links in owner/repo
 ```
 
-The skill activates automatically when Claude detects the intent.
+Use the skill only for an explicit cross-reference request naming the repository.
 
 ### What happens step by step
 
@@ -110,19 +109,17 @@ The skill **always starts in `plan` mode** (dry-run). Nothing is posted until yo
 │ Strategy    │ Rate              │ Daily    │ Comments  │ Est. Time    │
 │             │                   │ Max      │ to Post   │              │
 ├─────────────┼───────────────────┼──────────┼───────────┼──────────────┤
-│ Conservative│ 1/75-135s (jitter)│ 60       │ {high}    │ ~90 min      │
-│ Moderate    │ 1/75-135s (jitter)│ 60       │ {h+m}     │ ~90 min      │
+│ Approved    │ Serial, ≥1s pause │ 20       │ {approved}│ depends      │
+│ Review more │ —                 │ —        │ 0         │ manual       │
 │ Dry Run     │ —                 │ —        │ 0         │ Instant      │
-│ Manual Pick │ 1/75-135s (jitter)│ 60       │ {custom}  │ depends      │
+│ Manual Pick │ outside script    │ —        │ {custom}  │ depends      │
 └─────────────┴───────────────────┴──────────┴───────────┴──────────────┘
 ```
 
 For each cluster you choose:
 - **Comment only** — link the items with a helpful comment
-- **Comment + label** — link and add labels (e.g., `duplicate`)
-- **Comment + close** — link and close duplicate PRs (high confidence only)
+- **Manual** — perform any label or close yourself after per-item review
 - **Skip** — ignore this cluster
-- **Manual** — handle it yourself
 
 ### Resume support
 
@@ -161,10 +158,10 @@ cross-ref/
 ├── README.md                    # This file
 ├── references/
 │   ├── principles.md            # Hard decision rules for subagents
-│   └── commenting-strategy.md   # Rate-limit tiers and daily budget math
+│   └── commenting-strategy.md   # Approval gates and GitHub API safety
 └── scripts/
     ├── fetch-data.sh            # GitHub API data fetcher with pagination
-    ├── post-comments.sh         # Rate-limited comment poster with jitter/backoff
+    ├── post-comments.sh         # Approval-gated serial comment poster
     └── test-helpers.sh          # Smoke tests for helper functions
 ```
 

@@ -1,40 +1,49 @@
-## Description: <br>
-Converts Chinese text or text files into MP3 audio using Microsoft Edge neural text-to-speech voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Chinese text or text files into MP3 audio using Microsoft Edge neural voices with configurable Chinese voice options.
 
-## Publisher: <br>
-[effeceee](https://clawhub.ai/user/effeceee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effeceee](https://clawhub.ai/user/effeceee)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate Chinese narration, announcements, story readings, or other spoken audio from provided text or a selected text file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text may be sent to the Edge TTS service for speech generation. <br>
-Mitigation: Do not use confidential or sensitive text unless the service use is approved for that content. <br>
-Risk: The skill depends on the edge_tts Python package. <br>
-Mitigation: Install edge_tts only from a trusted package source and review dependency provenance before deployment. <br>
+## Use Case:
 
+Developers and agent users can use this skill to turn Chinese articles, stories, notices, or other Chinese text into spoken MP3 files. It supports direct text input, file input, and interactive stdin workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/effeceee/edge-tts-chinese) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an MP3 file at the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Text submitted for speech synthesis may be processed by an external Edge TTS-based service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential articles or private documents unless the Edge TTS data handling expectations have been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/effeceee/skills/edge-tts-chinese)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides generation of MP3 audio files through an Edge TTS-based Python helper.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

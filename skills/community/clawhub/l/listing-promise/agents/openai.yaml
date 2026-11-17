@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Listing 承诺核查"
+  short_description: "核对页面承诺与评论体验是否一致"
+  default_prompt: "使用 $amazon-listing-promise-check 核对 Amazon Listing 承诺与评论中的真实体验是否一致。"

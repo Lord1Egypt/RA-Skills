@@ -1,40 +1,58 @@
-## Description: <br>
-Offloads finalized coding plans to Codex CLI for automated execution while Claude Code supervises and reviews the loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offload finalized coding plans to Codex CLI for automated execution, with Claude Code supervising and judging the results.
 
-## Publisher: <br>
-[philipbankier](https://clawhub.ai/user/philipbankier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipbankier](https://clawhub.ai/user/philipbankier)
 
-## Use Case: <br>
-Developers use this skill to hand a confirmed coding plan to Codex CLI, then have Claude Code supervise execution, review diffs and tests, and request corrections until the plan is complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Codex CLI can make automated repository edits when the handoff proceeds. <br>
-Mitigation: Use the skill only from an intended clean branch or worktree, and confirm the summarized plan before execution. <br>
-Risk: Automated changes may be incomplete or fail tests. <br>
-Mitigation: Review the final diff and test results after execution, and use the correction loop for remaining plan items. <br>
+## Use Case:
 
+Developers and engineers use this skill to hand a finalized coding plan to Codex CLI, supervise iterative execution, review diffs and tests, and decide whether additional correction loops are needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/philipbankier/codex-handoff-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status updates with shell commands and review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger Codex CLI to make repository edits after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Codex CLI may modify the current repository automatically in full-auto workspace-write mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted repositories, review the resulting diff before keeping changes, and run the relevant tests before finalizing.
+
+Risk: Project context included in the handoff may be exposed to the Codex provider.
+
+Mitigation: Avoid handing off sensitive repository contents or secrets, and review prompts for unnecessary private context before execution.
+
+Risk: Untrusted or weakly reviewed model arguments could change execution behavior.
+
+Mitigation: Use only trusted model selections and avoid passing model values supplied by untrusted sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philipbankier/skills/codex-handoff-skill)
+- [Publisher profile](https://clawhub.ai/user/philipbankier)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include completion summaries, remaining work, test results, and correction prompts for Codex CLI.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

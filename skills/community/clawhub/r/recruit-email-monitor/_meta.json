@@ -1,6 +1,33 @@
 {
-  "ownerId": "kn75xh362jxbdc500bsbc1zt7n82h9xj",
-  "slug": "recruit-email-monitor",
-  "version": "1.0.0",
-  "publishedAt": 1773854554224
+  "name": "recruit-email-monitor",
+  "version": "1.3.2",
+  "description": "招聘邮件监控系统 - Agent 智能判定招聘邮件（邮件内容视为不可信输入），自动记录到合并表格（邮件列表+投递进度双 sheet）、飞书通知、每日简报",
+  "author": "牛浩先",
+  "homepage": "https://github.com/haoxianniu528-bit/recruit-email-monitor",
+  "license": "MIT",
+  "tags": ["email", "recruitment", "monitor", "feishu", "automation", "agent", "excel"],
+  "requirements": {
+    "python": ">=3.8",
+    "pip": ["openpyxl==3.1.5"]
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "INSTALL.md",
+    "RELEASE_NOTES.md",
+    "cron-jobs.json",
+    "scripts/fetch-emails.py",
+    "scripts/record-emails.py",
+    "scripts/email-daily-briefing.py",
+    "scripts/apply-progress-updates.py",
+    "scripts/build-progress-table.py",
+    "scripts/company_extract.py",
+    "scripts/excel_styles.py",
+    "scripts/config.example.json"
+  ],
+  "config": {
+    "config_json": "scripts/config.json（本地创建，含 email_accounts 与 feishu_target，参考 config.example.json）",
+    "excel_path": "/home/erhao/shared/招聘邮件汇总.xlsx（合并总表：sheet1 招聘邮件汇总 + sheet2 投递记录进度表，路径集中在 scripts/excel_styles.py）",
+    "briefing_path": "/home/erhao/shared/招聘邮件每日简报.txt"
+  }
 }

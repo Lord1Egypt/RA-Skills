@@ -1,44 +1,58 @@
-## Description: <br>
-Automation Tool helps agents generate articles, reports, scripts, and batches of content from user requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates batches of articles, reports, scripts, translations, rewrites, summaries, and platform-ready content through a structured content automation workflow.
 
-## Publisher: <br>
-[muyanshouji](https://clawhub.ai/user/muyanshouji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[muyanshouji](https://clawhub.ai/user/muyanshouji)
 
-## Use Case: <br>
-External users and content teams use this skill to plan, draft, optimize, and batch-produce SEO articles, market reports, scripts, translations, summaries, and platform-specific content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated content may be inaccurate, copied too closely from sources, or unsuitable for publication without review. <br>
-Mitigation: Review generated articles, reports, and scripts for accuracy, originality, tone, and copyright compliance before sending or publishing. <br>
-Risk: Generated automation scripts, bulk file operations, messages, or scheduled posting can make broad changes if executed without oversight. <br>
-Mitigation: Require explicit confirmation for script execution, bulk file changes, outbound messages, and scheduled publishing; do not run generated scripts unless their behavior is understood. <br>
-Risk: Prompts and research inputs may expose API keys, private data, or confidential business information. <br>
-Mitigation: Keep API keys, credentials, private data, and confidential material out of prompts and generated content workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/muyanshouji/automation-tool) <br>
-- [Project homepage](https://github.com/openclaw/openclaw) <br>
-- [SEO article example](artifact/examples/seo-article-example.md) <br>
-- [Market report example](artifact/examples/market-report-example.md) <br>
+## Use Case:
 
+Content creators, marketers, developers, and business users use this skill to plan, draft, optimize, translate, rewrite, summarize, and batch-produce articles, reports, scripts, and publishing-ready content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown drafts, outlines, reports, scripts, content variants, and automation instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated script snippets and suggested batch workflows that require user review before execution or publication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may run scripts or perform batch file reads and writes.
+
+Mitigation: Require explicit review of the exact commands and file paths before executing scripts or changing files.
+
+Risk: The skill may send generated content or configure scheduled publishing.
+
+Mitigation: Review destinations, content previews, timing, and publishing settings before sending or scheduling any content.
+
+Risk: Generated articles, reports, or scripts may contain misleading, unoriginal, or non-compliant content.
+
+Mitigation: Apply human review for factual accuracy, originality, SEO quality, copyright compliance, and platform suitability before publication.
+
+## Reference(s):
+
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Automation Tool ClawHub page](https://clawhub.ai/muyanshouji/skills/automation-tool)
+- [Publisher profile](https://clawhub.ai/user/muyanshouji)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, prose, outlines, tables, scripts, and file-oriented content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose batch file operations, scripts, messaging, or scheduled publishing workflows that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

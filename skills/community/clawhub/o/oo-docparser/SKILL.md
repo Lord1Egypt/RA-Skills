@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Docparser"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["docparser"]
   icon: "https://static.oomol.com/logo/third-party/Docparser.svg"
 ---
@@ -44,8 +44,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_parser_models` — List all model layouts for a specific Docparser parser.
 - `list_parsers` — List all Document Parsers linked to the current Docparser account.
 - `ping` — Ping the Docparser API to verify that the provided API key is valid.
-- `reintegrate_documents` — Schedule one or more Docparser documents for the integration queue using their document IDs.
-- `reparse_documents` — Schedule one or more Docparser documents for re-parsing using their document IDs.
+- `reintegrate_documents` — Schedule one or more Docparser documents for the integration queue using their document IDs. [write]
+- `reparse_documents` — Schedule one or more Docparser documents for re-parsing using their document IDs. [write]
 - `upload_document_by_content` — Upload a document to a Docparser parser by sending base64-encoded file content and an optional file name. [write]
 
 ## Safety
@@ -77,11 +77,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Docparser is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=docparser
+  https://console.oomol.com/connections/docparser
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Docparser homepage: https://docparser.com
+- API documentation: https://docparser.com/api/

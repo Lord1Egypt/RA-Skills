@@ -1,48 +1,70 @@
-## Description: <br>
-Local retrieval-augmented generation system for AI agents using ChromaDB and sentence-transformers, supporting multi-agent shared memory and privacy controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local retrieval-augmented memory for AI agents using ChromaDB and sentence-transformers, with shared-memory controls, multi-agent mesh search, and OpenClaw integration.
 
-## Publisher: <br>
-[emberDesire](https://clawhub.ai/user/emberDesire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emberdesire](https://clawhub.ai/user/emberdesire)
 
-## Use Case: <br>
-Developers and agents use Jasper Recall to index local memory files and session digests, then retrieve relevant prior context through CLI commands, JSON output, or an optional local recall server. It also supports public-only shared memory workflows for sandboxed or lower-trust agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Stored memories may contain private or sensitive local data that can be surfaced in responses. <br>
-Mitigation: Keep autoRecall disabled unless automatic memory insertion is intended, review memories before sharing, and use publicOnly for sandboxed or lower-trust agents. <br>
-Risk: The local recall server can expose memory search over HTTP if it is bound beyond localhost or private queries are enabled. <br>
-Mitigation: Keep the server on localhost, avoid enabling private HTTP queries on shared hosts, and do not expose the service externally without additional controls. <br>
-Risk: The ChromaDB database, legacy collection, session digests, and shared learnings are sensitive local data stores. <br>
-Mitigation: Treat these files as sensitive, restrict file permissions, and review retention or sharing workflows before deployment. <br>
-Risk: Security evidence reports that some query paths invoke shell commands unsafely. <br>
-Mitigation: Review the implementation before installation, constrain input sources, and run the skill in a sandboxed or dedicated account when possible. <br>
+## Use Case:
 
+Developers and agent operators use Jasper Recall to index local memory files and session digests, retrieve relevant prior context, and share selected public memories across sandboxed or multi-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/emberDesire/jasper-recall) <br>
-- [Jasper Recall README](artifact/README.md) <br>
-- [Multi-Agent Mesh Documentation](artifact/docs/MULTI-AGENT-MESH.md) <br>
-- [Shared Memory Specification](artifact/docs/SHARED-MEMORY-SPEC.md) <br>
-- [npm Package](https://www.npmjs.com/package/jasper-recall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus text or JSON recall results from the tool.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write local markdown digests, ChromaDB indexes, shared-memory files, plugin configuration, and local server responses depending on the command used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: evidence.release.version and artifact/package.json) <br>
+Risk: Installation and runtime paths may execute shell commands or setup steps that need review before deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix shell execution paths before installation, and run setup only in an isolated user account or container until reviewed.
+
+Risk: Unpinned or heavy local dependencies can change behavior or expand the installation footprint.
+
+Mitigation: Pin dependencies, verify package sources, and test the installation in a clean environment before enabling it for regular agent use.
+
+Risk: Private memories can be exposed if the recall server is bound externally or RECALL_ALLOW_PRIVATE is enabled on a shared host.
+
+Mitigation: Keep the recall server bound to localhost, avoid RECALL_ALLOW_PRIVATE on shared systems, and require publicOnly for untrusted or sandboxed agents.
+
+Risk: Existing ChromaDB data may retain old privacy boundaries after fixes or configuration changes.
+
+Mitigation: Rebuild or purge ChromaDB data after privacy-boundary fixes, then re-index only content intended for the target collections.
+
+Risk: Automatic recall can inject irrelevant or sensitive memory into an agent context.
+
+Mitigation: Use publicOnly for sandboxed agents, set a meaningful minScore threshold, and review which collections are searched before enabling autoRecall.
+
+## Reference(s):
+
+- [Jasper Recall ClawHub Listing](https://clawhub.ai/emberdesire/skills/jasper-recall)
+- [Jasper Recall GitHub Repository](https://github.com/E-x-O-Entertainment-Studios-Inc/jasper-recall)
+- [Jasper Recall npm Package](https://www.npmjs.com/package/jasper-recall)
+- [Jasper Recall Product Documentation](https://exohaven.online/products/jasper-recall)
+- [Multi-Agent Mesh Documentation](docs/MULTI-AGENT-MESH.md)
+- [Shared Memory Specification](docs/SHARED-MEMORY-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell command guidance for local memory search, indexing, server use, and plugin configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include retrieved memory snippets, similarity scores, file paths, public-only search results, setup commands, and OpenClaw configuration.]
+
+## Skill Version(s):
+
+0.4.0 (source: ClawHub release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Analyze and optimize Aptos Move contracts for gas efficiency, identifying expensive operations and suggesting optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and optimize Aptos Move contracts for gas efficiency, identifying expensive operations and suggesting optimizations.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Aptos Move contracts before deployment or high-frequency use, identify gas-heavy storage and computation patterns, and generate optimization recommendations and measurement guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optimization advice could introduce functional or security regressions if applied mechanically. <br>
-Mitigation: Review suggested contract changes, preserve access control and input validation, and rerun tests and security review before deployment. <br>
-Risk: Aptos CLI simulation commands may be adapted incorrectly for real projects. <br>
-Mitigation: Inspect command arguments and use simulation or test environments before applying changes to production workflows. <br>
-Risk: The publisher is third party and server-resolved source provenance is unavailable. <br>
-Mitigation: Verify the publisher profile and release source before relying on the advice for production contracts. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Aptos Move contracts for gas-heavy storage, computation, reference, event, and collection patterns before deployment or high-frequency use. It helps produce optimization recommendations, measurement steps, and report-ready findings.
 
-## Reference(s): <br>
-- [Aptos Gas Schedule](https://github.com/aptos-labs/aptos-core/blob/main/aptos-move/aptos-gas-schedule) <br>
-- [Move VM Gas Metering](https://github.com/aptos-labs/aptos-core/tree/main/aptos-move/aptos-vm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Move and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides recommendations, checklists, report templates, and Aptos CLI simulation commands; does not execute code itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; SKILL.md metadata version 1.0) <br>
+Risk: Gas optimization recommendations could weaken a contract if security checks or validation paths are removed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes carefully and keep access control, input validation, and other security checks intact.
+
+Risk: Suggested optimizations may not produce the expected cost reduction or may change behavior without measurement.
+
+Mitigation: Profile before and after each change, run tests, and document gas costs for public functions before deployment.
+
+Risk: Gas analysis could expose sensitive local Aptos configuration if private-key or profile files are read unnecessarily.
+
+Mitigation: Avoid using local private-key files or Aptos profile files during analysis unless a separate trusted workflow explicitly requires them.
+
+## Reference(s):
+
+- [Aptos Gas Schedule](https://github.com/aptos-labs/aptos-core/blob/main/aptos-move/aptos-gas-schedule)
+- [Move VM Gas Metering](https://github.com/aptos-labs/aptos-core/tree/main/aptos-move/aptos-vm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with Move and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optimization checklists, before-and-after examples, gas measurement steps, and report-style recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

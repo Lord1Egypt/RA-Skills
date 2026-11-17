@@ -1,40 +1,58 @@
-## Description: <br>
-Interact with the Fibek B2B collections platform API to manage invoices, clients, payment agreements, campaigns, and financial metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Fibek B2B collections platform API to manage invoices, clients, payment agreements, campaigns, and financial metrics.
 
-## Publisher: <br>
-[fibekdev](https://clawhub.ai/user/fibekdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fibekdev](https://clawhub.ai/user/fibekdev)
 
-## Use Case: <br>
-External collections and finance users use this skill to authenticate to a Fibek environment, review receivables, monitor client risk, manage payment agreements, send account statements or reminders, and inspect collections metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send customer communications and execute collections campaigns. <br>
-Mitigation: Require human review before any reminder, account statement, WhatsApp or email message, or campaign execution. <br>
-Risk: The skill depends on a trusted Fibek API environment and stores an authentication token for reuse. <br>
-Mitigation: Set FIBEK_BASE_URL only to a trusted Fibek server and treat the stored token as a long-lived credential. <br>
+## Use Case:
 
+Collections, finance, and operations teams use this skill to authenticate to Fibek, review receivables, inspect client and invoice status, create payment agreements, send reminders or statements, and monitor portfolio KPIs.
 
-## Reference(s): <br>
-- [Fibek Cleo on ClawHub](https://clawhub.ai/fibekdev/fibek-cleo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, markdown] <br>
-**Output Format:** [Markdown responses with numbered Spanish-language summaries and structured API-driven workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses per-user authentication and the configured FIBEK_BASE_URL environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles credentials and long-lived bearer tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require secure token storage and clearing, and re-authenticate users when authorization fails.
+
+Risk: The skill accesses sensitive financial, client, and contact data.
+
+Mitigation: Deploy only with the legitimate HTTPS Fibek API pinned in FIBEK_BASE_URL and restrict network egress.
+
+Risk: The skill can initiate outbound reminders, account statements, and campaign communications.
+
+Mitigation: Require user review of recipients, channels, and campaign audiences before any message or campaign is sent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fibekdev/skills/fibek-cleo)
+- [Publisher profile](https://clawhub.ai/user/fibekdev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Spanish natural-language responses with numbered Markdown blocks, API request guidance, and occasional shell commands for endpoint discovery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FIBEK_BASE_URL and per-user authentication; should not expose raw JSON, internal IDs, or infrastructure details to end users.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Secure environment variable and secret management with AES-256 encryption, auto-redaction, permission controls, and credential leak prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages environment variables and secrets for agents with encryption, redaction, listing, deletion, retrieval, and environment import actions.
 
-## Publisher: <br>
-[Ayalili](https://clawhub.ai/user/Ayalili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayalili](https://clawhub.ai/user/ayalili)
 
-## Use Case: <br>
-Developers and agent operators use this skill to store, retrieve, redact, list, delete, and bulk-load environment variables and credentials while reducing accidental secret exposure in logs or agent output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weak secret protections could expose credentials if the skill is invoked too broadly or trusted without review. <br>
-Mitigation: Review the skill before installing and allow invocation only in tightly controlled agent contexts. <br>
-Risk: Broad loadFromEnv prefixes can import more environment variables than intended. <br>
-Mitigation: Use narrow prefixes and verify which variables will be loaded before enabling bulk import. <br>
-Risk: allowSecret and showSecrets are request flags, not durable authorization controls. <br>
-Mitigation: Do not rely on these flags as the sole access control for sensitive values. <br>
-Risk: Generated encryption keys may appear in logs if a secure key is not supplied. <br>
-Mitigation: Provide encryption keys through a secure channel and avoid logging generated keys. <br>
+## Use Case:
 
+Developers and agent operators can store, retrieve, list, delete, redact, and bulk-load environment variables or API keys during agent workflows. Because the security review flags possible exposure of protected values, use only in tightly controlled environments until key handling and retrieval authorization are addressed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ayalili/env-secure-manager) <br>
-- [Deno zod dependency](https://deno.land/x/zod@v3.22.4/mod.ts) <br>
-- [Deno crypto dependency](https://deno.land/std@0.214.0/crypto/mod.ts) <br>
-- [Deno hex encoding dependency](https://deno.land/std@0.214.0/encoding/hex.ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [JSON-like structured action results and redacted text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions include init, set, get, list, delete, redact, and loadFromEnv.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The encryption key can be exposed, which can compromise stored secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not print or persist generated keys in logs; inject keys through a managed secret channel and rotate any key that was exposed.
+
+Risk: A broad environment import can collect more sensitive variables than intended.
+
+Mitigation: Use narrowly scoped prefixes and review allowed variable names before loading process environment values.
+
+Risk: Stored secrets can be returned when documented retrieval flags are set.
+
+Mitigation: Restrict secret retrieval to trusted callers and add real authorization checks before enabling secret-returning actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ayalili/skills/env-secure-manager)
+- [Deno zod module](https://deno.land/x/zod@v3.22.4/mod.ts)
+- [Deno standard crypto module](https://deno.land/std@0.214.0/crypto/mod.ts)
+- [Deno standard hex encoding module](https://deno.land/std@0.214.0/encoding/hex.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration]
+
+**Output Format:** [JSON-compatible objects containing status fields, strings, redacted text, or environment-variable maps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return stored secret values when documented retrieval flags are enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

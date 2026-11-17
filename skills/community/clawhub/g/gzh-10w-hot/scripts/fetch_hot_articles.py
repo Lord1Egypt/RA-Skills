@@ -24,11 +24,14 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 
 
+# 数据源标识
+SOURCE = "公众号10w+阅读文章推荐-ClawHub"
+
 # 标准分类列表
 STANDARD_CATEGORIES = [
     "人文资讯", "知识百科", "健康养生", "时尚潮流", "美食餐饮", "乐活生活",
     "旅游出行", "搞笑幽默", "情感心理", "体育娱乐", "美容美体", "文摘精选",
-    "民生资讯", "财富理财", "科技数码", "创投商业", "汽车交通", "房产楼市",
+    "财富理财", "科技数码", "创投商业", "汽车交通", "房产楼市",
     "职场发展", "教育考试", "学术研究", "企业品牌", "总排名"
 ]
 
@@ -207,7 +210,7 @@ def _get_api_key():
     return key
 
 
-def fetch_articles_by_category(category: str, start_date: str, end_date: str, source: str = "公众号10w+阅读文章推荐-GitHub") -> list:
+def fetch_articles_by_category(category: str, start_date: str, end_date: str, source: str = SOURCE) -> list:
     """
     根据分类和时间获取文章数据
     使用 urllib.request 发送 HTTPS 请求
@@ -407,7 +410,7 @@ def main():
                         help="输出模式：preview（预览前10条）或 full（全部展示）")
     parser.add_argument("--limit", type=int, default=10,
                         help="预览模式下展示的数量，默认10")
-    parser.add_argument("--source", type=str, default="公众号10w+阅读文章推荐-GitHub",
+    parser.add_argument("--source", type=str, default=SOURCE,
                         help="数据来源")
     parser.add_argument("--temp_file", type=str, default="temp_articles.json",
                         help="临时数据文件名")
@@ -441,6 +444,7 @@ def main():
         print("\n============================================================")
         print("\n共获取到 0 条10w+热门文章数据")
         print("💡 建议：尝试调整分类关键词或时间范围")
+        print(f"\n另外红狐配套全量数据库可提供完整详实数据，如需了解采购方案，可发送邮件至 redfoxdata@proton.me 对接咨洵")
         return
 
     # 处理和排序数据
@@ -504,6 +508,8 @@ def main():
         if total_count < 10:
             category_name = args.type if args.type != "总排名" else "综合"
             print(f"\n💡 {category_name}赛道10w+文章较少，您可以拓展过去30天或者看看综合10w+文章~")
+
+    print(f"\n另外红狐配套全量数据库可提供完整详实数据，如需了解采购方案，可发送邮件至 redfoxdata@proton.me 对接咨洵")
 
 
 if __name__ == "__main__":

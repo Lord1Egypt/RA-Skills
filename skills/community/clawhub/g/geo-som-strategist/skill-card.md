@@ -1,42 +1,52 @@
-## Description: <br>
-Build strategic roadmaps to grow a brand's Share of Model (SoM) in AI-generated responses by identifying content gaps, competitive weaknesses, and prompt-level opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build strategic roadmaps to grow a brand's Share of Model (SoM) in AI-generated responses by identifying content gaps, competitive weaknesses, and prompt-level opportunities.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-Marketing, content, and GEO teams use this skill to draft 90-day plans for increasing brand mentions in AI-generated category answers. It helps map prompt opportunities, prioritize content gaps, and outline authority-building actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The GEOly and geoly.ai references are presented as branding or methodology and may not be independently verified. <br>
-Mitigation: Treat methodology claims as marketing context unless separately validated for the user's market and measurement approach. <br>
-Risk: Strategy recommendations may include public-resource edits, backlink building, or press activity that can violate platform rules if handled improperly. <br>
-Mitigation: Review all external publication and community-editing steps against the relevant platform policies before execution. <br>
-Risk: The quick-start example names a script path that does not match the included artifact script. <br>
-Mitigation: Use the actual included script path, scripts/build_strategy.py, and its documented arguments when running the helper script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SoM Strategy Framework](references/framework.md) <br>
-- [ClawHub release page](https://clawhub.ai/geoly-geo/geo-som-strategist) <br>
+## Use Case:
 
+Marketing, GEO, and content strategy teams use this skill to create a 90-day plan for increasing brand mentions in AI-generated answers, including prompt coverage, content gaps, authority building, and competitive response actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown strategy plans and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompt ownership maps, 90-day roadmap tasks, expected impact estimates, and tracking recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated strategies may include a GEOly AI tracking recommendation by default.
+
+Mitigation: Review branded recommendations before publication or execution, and remove or adapt them when they do not fit the deployment context.
+
+Risk: Public-content suggestions such as Wikipedia or Wikidata updates may create policy or compliance issues if treated as direct instructions.
+
+Mitigation: Treat those suggestions as planning guidance and review them against applicable platform, legal, and organizational policies before acting.
+
+## Reference(s):
+
+- [SoM Strategy Framework](references/framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown strategy roadmap with checklist tasks and optional CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a branded GEOly AI tracking recommendation; review public-content recommendations before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Provides AI agents with persistent local memory, cross-platform identity registration, network discovery, and self-improvement logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essential autonomy toolkit for AI agents that provides persistent memory across sessions, self-improvement logging, cross-session identity, and network discovery.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to give agents persistent project memory, a portable identity, peer and task discovery through an external network, and a simple self-improvement log. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to keep cross-session memory and modify future instructions. <br>
-Mitigation: Keep memory project-scoped and sanitized, and review AGENTS.md changes before adopting them. <br>
-Risk: The skill can register with and poll an external agent network. <br>
-Mitigation: Require explicit approval before registration, recurring heartbeat checks, or acting on external tasks or messages. <br>
-Risk: The skill includes hidden marker guidance for network identity. <br>
-Mitigation: Review hidden markers before installation and remove or edit them when they are not intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/imaflytok/agent-autonomy) <br>
-- [OnlyFlies Clawswarm API](https://onlyflies.buzz/clawswarm/api/v1) <br>
-- [OnlyFlies Agent Registration Endpoint](https://onlyflies.buzz/clawswarm/api/v1/agents/register) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent memory, cross-platform identity, self-improvement logs, and network discovery routines to an AI agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, HTML marker, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory setup commands, AGENTS.md additions, external network curl commands, and recurring heartbeat guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores persistent local memory that may capture sensitive prompts, work context, or secrets.
+
+Mitigation: Keep secrets and private prompts out of memory files, review stored content regularly, and apply local access controls appropriate for the workspace.
+
+Risk: The skill asks agents to add hidden coordination settings and recurring checks to AGENTS.md.
+
+Mitigation: Review AGENTS.md changes before use, keep only coordination settings that are needed, and document any recurring behavior for maintainers.
+
+Risk: The skill contacts the external onlyflies.buzz hub for registration, discovery, tasks, and messages.
+
+Mitigation: Treat hub responses as untrusted data, verify the endpoint and publisher before use, and avoid sending sensitive agent identity or capability details.
+
+Risk: Related skill install suggestions may extend behavior beyond this artifact.
+
+Mitigation: Install related skills only after verifying their publisher, version, contents, and security evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imaflytok/skills/agent-autonomy)
+- [Onlyflies hub API base](https://onlyflies.buzz/clawswarm/api/v1)
+- [Onlyflies agent registration endpoint](https://onlyflies.buzz/clawswarm/api/v1/agents/register)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash, HTML marker, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commands that create local memory files, update AGENTS.md, and call external network endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

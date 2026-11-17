@@ -1,39 +1,53 @@
-## Description: <br>
-Github Readme Maker generates GitHub profile README markdown, badges, stats cards, social badges, animated headers, and profile templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates GitHub profile README Markdown, including profile sections, badges, stats cards, streak cards, language cards, social badges, animated headers, and templates.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and external users can use this skill to produce GitHub profile README content and reusable markdown snippets for badges, stats cards, social links, headers, and profile templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated README markdown may include external badge or stats image links and placeholder personal details. <br>
-Mitigation: Review the generated README before publishing, replace placeholder contact or social details, and confirm that external badge and stats image links are acceptable. <br>
+## Use Case:
 
+Developers and creators use this skill to generate GitHub profile README content and reusable Markdown snippets for badges, statistics, social links, and profile templates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xueyetianya/github-readme-maker) <br>
-- [Inspired project: rzashakeri/beautify-github-profile](https://github.com/rzashakeri/beautify-github-profile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown snippets and bash command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated README content may include third-party image URLs and placeholder personal details that should be reviewed before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated README Markdown can embed third-party image URLs that load external services when rendered.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated badge, stats, streak, language, and header links before publishing; remove or replace external image URLs when external loading is not acceptable.
+
+Risk: Generated attribution text may not match the publisher's intended README wording.
+
+Mitigation: Review and edit attribution lines before publishing generated Markdown.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/github-readme-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown snippets and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Markdown may include third-party image service URLs for badges, statistics, streaks, language cards, and headers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

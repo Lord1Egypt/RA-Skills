@@ -1,47 +1,63 @@
-## Description: <br>
-Manage Paystack customers, transactions, payment pages, transfers, and payment operations via the Paystack API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Paystack customers, transactions, payment pages, transfers, and payment operations via the Paystack API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to manage Paystack payment workflows from an OpenClaw agent, including transaction lookup, payment verification, customer management, payment page creation, and transfer-related operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paystack write, transfer, payment-page, delete, and cancellation operations can affect real payment resources or real money. <br>
-Mitigation: Preview and confirm the exact target resource, amount, recipient, and intended effect before executing any write or payment operation. <br>
-Risk: The skill requires Paystack access through ClawLink and therefore depends on sensitive account credentials managed outside the chat. <br>
-Mitigation: Install only when the user trusts ClawLink with Paystack API access, avoid asking for API keys in chat, and revoke the Paystack or ClawLink connection when it is no longer needed. <br>
-Risk: Available Paystack tools may vary by the live ClawLink catalog or connection state. <br>
-Mitigation: List integrations and describe or search Paystack tools before execution instead of guessing unavailable capabilities. <br>
+## Use Case:
 
+External users and developers use this skill to connect an OpenClaw agent to Paystack through ClawLink, inspect payment data, verify transactions, manage customers, create payment pages, and perform guarded payment operations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/paystack-payments) <br>
-- [Paystack API Documentation](https://paystack.com/docs/api/) <br>
-- [Paystack Transaction API](https://paystack.com/docs/api/transaction/) <br>
-- [Paystack Customer API](https://paystack.com/docs/api/customer/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live Paystack tool catalog through ClawLink; write, destructive, transfer, and payment operations require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill depends on installing and trusting an unpinned third-party ClawLink plugin that stores Paystack credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the ClawLink plugin provenance before installation, use a dedicated least-privilege Paystack credential where possible, and revoke the Paystack key if the skill is no longer used.
+
+Risk: Payment, transfer, create, update, or delete operations may affect production Paystack data or real money.
+
+Mitigation: Preview and confirm every write or transfer, including target resource, recipient, currency, and amount, before execution.
+
+Risk: Connected Paystack accounts may contain sensitive customer or transaction data.
+
+Mitigation: Review the skill before installing against production accounts and restrict the connected credential to the minimum access needed for the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hith3sh/skills/paystack-payments)
+- [Publisher profile](https://clawhub.ai/user/hith3sh)
+- [Paystack API Documentation](https://paystack.com/docs/api/)
+- [Paystack Transaction API](https://paystack.com/docs/api/transaction/)
+- [Paystack Customer API](https://paystack.com/docs/api/customer/)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide tool calls that access Paystack account data or initiate payment operations through a connected ClawLink integration.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

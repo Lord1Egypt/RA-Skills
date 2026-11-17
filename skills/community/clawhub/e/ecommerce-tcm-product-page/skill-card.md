@@ -1,42 +1,56 @@
-## Description: <br>
-Helps agents design mobile-first ecommerce product detail pages for TCM supplements, including HTML layout, compliance copy review, image preparation, and 3000x4000 slice export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电商滋补品详情页全流程 skill。适用于淘宝/天猫等平台的滋补品（虫草、灵芝、桑黄等）详情页设计。触发词：做详情页、详情页设计、产品详情页、export slices、3000x4000、保障功效板块等。当用户要求创建电商产品详情页特别是滋补大健康品类时，使用此 skill。
 
-## Publisher: <br>
-[zangchanliangpin](https://clawhub.ai/user/zangchanliangpin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zangchanliangpin](https://clawhub.ai/user/zangchanliangpin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External ecommerce operators and designers use this skill to draft mobile-first product detail pages for TCM-style supplement products on platforms such as Taobao and Tmall. It guides product-information collection, compliant copy review, HTML page construction, image handling, and 3000x4000 slice export.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow includes watermark-removal instructions for commercial product images.
+
+Mitigation: Use image-modification steps only on product images the user owns or is authorized to modify.
+
+Risk: Broad activation criteria could apply TCM health-claims guidance to ordinary ecommerce page requests outside the intended supplement niche.
+
+Mitigation: Confirm the product category before applying supplement-specific sections, health-claims guidance, or related compliance language.
+
+Risk: Supplement detail-page copy can create legal or platform-policy risk if it implies medical treatment, guaranteed outcomes, or exaggerated authority.
+
+Mitigation: Review final copy against the skill's prohibited-claims checklist and applicable marketplace advertising rules before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External sellers, designers, and agents use this skill to assemble supplement product-detail pages, review marketplace copy for compliance-sensitive wording, and prepare image slices for ecommerce listings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes watermark removal or image-repair steps that could modify assets without confirming usage rights. <br>
-Mitigation: Use watermark removal or image repair only on assets the user owns or is licensed to modify. <br>
-Risk: Ambiguous triggers could apply the workflow to ecommerce pages outside the intended TCM or supplement product-page scope. <br>
-Mitigation: Confirm the task is for a TCM or supplement product detail page when the user request is unclear. <br>
-Risk: Generated supplement copy could include misleading or noncompliant health claims if not reviewed. <br>
-Mitigation: Review all generated claims before use and replace medical, absolute, or exaggerated wording with compliance-sensitive alternatives. <br>
+**Output Format:** [Markdown guidance with HTML/CSS snippets, shell commands, and file-output instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zangchanliangpin/skills/ecommerce-tcm-product-page) <br>
+**Other Properties Related to Output:** [May produce HTML detail-page files and 3000x4000 JPG slice-export workflows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, Python, and shell command snippets; may guide creation of HTML and JPG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets 750px mobile-first detail pages and 3000x4000 JPG slice exports when the workflow is executed by an agent.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

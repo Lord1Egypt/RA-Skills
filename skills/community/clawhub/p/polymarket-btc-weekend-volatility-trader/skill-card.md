@@ -1,42 +1,63 @@
-## Description: <br>
-Trades BTC weekend price threshold markets on Polymarket by comparing first-passage and terminal probability signals, then scaling conviction by entry timing and BTC halving-cycle volatility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades BTC weekend price threshold markets on Polymarket by exploiting the systematic gap between first-passage probability and terminal probability, with conviction scaled by entry timing and BTC halving-cycle volatility regime.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading-focused agents use this skill to discover BTC weekend threshold markets, calculate conviction from market probabilities and strategy constraints, and run the trader in paper mode or explicitly enabled live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can operate on real funds when live trading is enabled. <br>
-Mitigation: Use paper mode first, provide exchange credentials with minimum permissions, disable withdrawals, and enable live mode only after verifying confirmation, risk limits, and logging. <br>
-Risk: The security review found live-trading safeguards were not documented consistently enough for automatic approval. <br>
-Mitigation: Review the skill before installation and keep position size, spread, volume, and maximum-open-position settings conservative until behavior is validated. <br>
+## Use Case:
 
+External users and trading developers use this skill to run a paper-by-default Polymarket strategy for BTC weekend threshold markets. It helps an agent discover matching markets, compute signal conviction, apply position limits, and optionally place live trades when explicitly enabled.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-btc-weekend-volatility-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python trading script behavior, configuration values, and console logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper trading unless live mode is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: ClawHub release metadata) <br>
+Risk: Live mode can place real Polymarket trades with financial exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless live trading is intentional, and use conservative position and open-position limits before enabling --live.
+
+Risk: SIMMER_API_KEY grants trading authority and is a high-value credential.
+
+Mitigation: Scope and rotate the key where possible, store it only in the runtime secret manager, and remove it from environments that do not need trading access.
+
+Risk: Documented market-window and volume checks may be missing or ineffective.
+
+Mitigation: Review and fix those safeguards before trusting live execution.
+
+Risk: The skill depends on simmer-sdk for market discovery and trade execution.
+
+Mitigation: Pin simmer-sdk to a reviewed version and re-run security review before dependency upgrades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-btc-weekend-volatility-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Console text, Python execution commands, environment configuration, and trade API calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trading requires the explicit --live flag and SIMMER_API_KEY.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

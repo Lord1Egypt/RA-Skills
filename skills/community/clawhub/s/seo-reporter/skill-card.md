@@ -1,41 +1,50 @@
-## Description: <br>
-Audit a URL for SEO factors and generate an actionable markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a URL for SEO factors and generate an actionable markdown report covering title, meta description, heading structure, canonical tags, robots.txt, and sitemap.xml.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers, site owners, marketers, and SEO practitioners use this skill to audit a single public webpage for core on-page SEO signals and receive a scored markdown report with recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit fetches the supplied page, follows redirects, and requests related SEO files on the same host. <br>
-Mitigation: Run it only on public or intended URLs, and avoid localhost, private intranet services, cloud metadata addresses, and token-bearing links. <br>
-Risk: The generated SEO findings may be incomplete for full technical SEO, page speed, backlink, keyword, SSL, or site-wide crawl analysis. <br>
-Mitigation: Use the report as a single-page on-page SEO check and rely on dedicated SEO, performance, backlink, keyword, or security tools for those areas. <br>
+## Use Case:
 
+External users, developers, and SEO practitioners use this skill to audit a single webpage URL and receive a scored markdown report with specific optimization recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/seo-reporter) <br>
-- [Publisher profile](https://clawhub.ai/user/kryzl19) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown SEO audit report with scored findings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and performs read-only HTTP requests for the supplied URL plus related SEO files on the same host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can make unrestricted live HTTP requests to arbitrary user-supplied URLs from the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted public URLs; avoid attacker-supplied, internal, or sensitive network targets; apply URL validation or network egress controls in sensitive environments.
+
+## Reference(s):
+
+- [Seo Reporter ClawHub Skill Page](https://clawhub.ai/kryzl19/skills/seo-reporter)
+- [Publisher Profile](https://clawhub.ai/user/kryzl19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown SEO audit report with scored findings and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and makes live HTTP requests to the provided URL, robots.txt, and sitemap.xml.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

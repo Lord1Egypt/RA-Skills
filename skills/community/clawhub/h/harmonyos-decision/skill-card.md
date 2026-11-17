@@ -1,40 +1,57 @@
-## Description: <br>
-Helps developers and product teams assess HarmonyOS native app ideas by researching market, competitor, user, promotion, and development factors and generating a multidimensional HTML feasibility report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps developers evaluate HarmonyOS native app ideas by gathering market, competitor, user, monetization, promotion, and development signals and generating a multidimensional HTML feasibility report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers, founders, and product teams use this skill to evaluate whether a proposed HarmonyOS native application is worth building, including market opportunity, AppGallery competition, monetization, promotion, ArkTS/ArkUI development cost, and launch risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports can include unsafe injected content when report fields come from web results or other untrusted text. <br>
-Mitigation: Review generated HTML before opening or sharing it, use a fixed invocation phrase, and HTML-escape report fields before shared or browser-previewed workflows. <br>
-Risk: HarmonyOS market, policy, incentive, and AppGallery data can become stale quickly. <br>
-Mitigation: Verify current public sources and Huawei developer announcements before relying on the final feasibility recommendation. <br>
+## Use Case:
 
+Developers, product teams, and founders use this skill to assess whether a HarmonyOS native application idea is worth pursuing. It supports feasibility decisions with market research, ecosystem-specific development considerations, weighted scoring, and an HTML report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/harmonyos-decision) <br>
+### Deployment Geography for Use:
 
+China-focused
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell or Python invocation examples and a generated HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a six-dimension weighted score and user-provided research data to produce a feasibility recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML may include unsanitized user-provided or web-sourced text that can run unwanted browser code when opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as untrusted until inserted text is escaped and a restrictive Content Security Policy is added; review reports before sharing or opening them in sensitive browser contexts.
+
+Risk: The skill relies on web search and user-provided product ideas, which may expose sensitive concepts to external search or retrieval tools.
+
+Mitigation: Use only product ideas and supporting details that are acceptable to send through web search workflows.
+
+Risk: The report generator writes to a user-selected output path.
+
+Mitigation: Choose report output paths deliberately and avoid overwriting important local files.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/bettermen/skills/harmonyos-decision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, html]
+
+**Output Format:** [Markdown guidance with JSON parameters and a generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses web search inputs and report-generator data; generated HTML should be treated as untrusted according to the release security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

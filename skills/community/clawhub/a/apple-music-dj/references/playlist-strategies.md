@@ -158,6 +158,74 @@ Stick with it — the best discoveries are toward the end."
 
 ---
 
+## Strategy 6: Similar ("songs like X")
+
+### Philosophy
+
+A starting point, not a guess. The user names one artist or song; everything else is
+measured against it *and* against their own taste so the result isn't just generic "similar artists".
+
+### Algorithm
+
+1. Resolve the seed (`auto` searches artists and songs together: exact artist-name match wins,
+   then a song title match, then the top artist hit)
+2. Candidates: the seed artist's top songs; other tracks from a seed song's album;
+   top songs of up to 8 similar artists (falls back to a genre search if none are returned)
+3. Score = base (seed 0.5, album 0.55, similar 0.3) + 0.6 × genre match to the seed
+   + 0.3 × genre match to the user's top genres + 0.1 if the user already loves the artist
+   (top artists or recently added)
+4. Exclude the seed song, disliked songs, and library songs (unless `--include-library`)
+5. Max 3 tracks per artist, then sequence
+
+### Naming
+
+- "Like Radiohead · Oct 2026"
+
+---
+
+## Strategy 7: Era Throwback
+
+### Philosophy
+
+A decade, seen through this listener's ears. Prefer the user's own artists in that decade
+over a generic "best of the 90s".
+
+### Algorithm
+
+1. Normalize the decade (`90s`, `'90s`, `1994` → `1990s`); default to the top entry of `era_distribution`
+2. Albums by the top 15 artists released in the decade (no singles, max 3 albums each)
+3. Charts filtered by release year (mostly useful for the current decade)
+4. If still short: search "`<genre> <decade>`" for the top 3 genres, filtered by release year
+5. Exclude disliked and library songs (unless `--include-library`); max 3 per artist; sequence
+
+### Naming
+
+- "1990s Throwback · Oct 2026"
+
+---
+
+## Strategy 8: Blend
+
+### Philosophy
+
+A playlist neither listener has to apologize for. Shared favorites anchor it; each person
+contributes only what plausibly fits the other's taste.
+
+### Algorithm
+
+1. Compare the two profiles with the compatibility scorer (shared artists, genre overlap)
+2. Shared artists' top songs (`source: shared`, highest weight)
+3. Each listener's other top artists: keep songs whose genres are exact or family matches for
+   the *other* listener's top genres (`source: a` or `b`)
+4. A few loved tracks from each profile
+5. Cap each listener at 60% of the playlist; drop anything either listener disliked; max 3 per artist
+
+### Naming
+
+- "Blend · Oct 2026" — output also carries the compatibility score and verdict
+
+---
+
 ## Sequencing Guide (All Strategies)
 
 ### The Arc
@@ -170,6 +238,16 @@ Tracks 16–22: SUSTAIN — Maintain interest, introduce textures.
 Tracks 23–28: WIND DOWN — Energy gradually decreases.
 Tracks 29–30: CLOSER — Memorable, leaves listener satisfied.
 ```
+
+### Energy arcs in code
+
+Each track's `energy` (0–1) is the mean of its genres' values in `GENRE_ENERGY` (`_common.py`).
+`sequence_tracks(arc=...)` orders by it before applying the hard rules:
+
+- `wave` (default) — medium opener, build, peak in the middle, wind-down
+- `ascending` — workout, anger moods
+- `descending` — sleep, focus, sad moods
+- `none` — keep the incoming order
 
 ### Hard Rules
 

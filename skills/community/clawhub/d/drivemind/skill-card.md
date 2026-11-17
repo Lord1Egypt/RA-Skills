@@ -1,48 +1,68 @@
-## Description: <br>
-Apply DriveMind, the calm reliability layer for AI agents. Use when a task needs steady follow-through, clearer progress, stronger persistence without recklessness, explicit safety boundaries, human-in-the-loop collaboration, post-task review, reusable memory, or when the user says things like 'keep pushing', 'don’t stop too early', 'be steady', 'if risk is unclear ask me', 'review this after', or 'write down the lesson'. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DriveMind helps AI agents sustain structured follow-through, clear progress updates, explicit safety boundaries, human-in-the-loop escalation, and reusable post-task lessons.
 
-## Publisher: <br>
-[Yuzc-001](https://clawhub.ai/user/Yuzc-001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzc-001](https://clawhub.ai/user/yuzc-001)
 
-## Use Case: <br>
-External users and agent operators use DriveMind to make AI agents more persistent, structured, safety-aware, and review-oriented during important or blocked tasks. It is suited for workflows that need bounded follow-through, clearer progress updates, explicit escalation boundaries, and reusable post-task lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language may make ordinary agent tasks more persistent, structured, or review-oriented than an operator expects. <br>
-Mitigation: Use explicit invocation or disable broad auto-activation when default agent behavior is preferred. <br>
-Risk: Some safety and boundary reference files are written in Chinese, which may limit operator auditability for non-Chinese readers. <br>
-Mitigation: Review the Chinese reference files directly or translate them before relying on the skill's safety rules in audited workflows. <br>
+## Use Case:
 
+Agent operators and developers use DriveMind to guide AI assistants through meaningful work with steadier persistence, clearer status reporting, safer escalation, and concise retrospectives.
 
-## Reference(s): <br>
-- [DriveMind ClawHub Page](https://clawhub.ai/Yuzc-001/drivemind) <br>
-- [DriveMind Skill Definition](artifact/SKILL.md) <br>
-- [Decision Gates](artifact/references/decision-gates.md) <br>
-- [Escalation Rules](artifact/references/escalation-rules.md) <br>
-- [Mode Guide](artifact/references/mode-guide.md) <br>
-- [Persistence Protocol](artifact/references/persistence-protocol.md) <br>
-- [Review Style Guide](artifact/references/review-style-guide.md) <br>
-- [Stuck Resolution](artifact/references/stuck-resolution.md) <br>
-- [Task Typing](artifact/references/task-typing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, concise progress updates, escalation summaries, retrospectives, diary entries, and reusable lesson templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only workflow guidance; it changes collaboration style and does not provide tools, scripts, API calls, or direct system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: Persistent memory or note-saving behavior could retain unnecessary task details if an agent has a memory mechanism enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Persist only stable lessons or next-time rules, and review memory-related behavior before installation in environments with persistent notes.
+
+Risk: Broad trigger phrases may activate DriveMind when a lighter response would be enough.
+
+Mitigation: Use the compression rule and mode guide to keep simple responses brief and reserve structured behavior for non-trivial tasks.
+
+Risk: Stronger persistence could be misapplied as pressure to continue through unclear authority or high-impact actions.
+
+Mitigation: Apply decision gates and escalation rules before destructive, production, external, or permission-changing actions.
+
+## Reference(s):
+
+- [DriveMind Skill Page](https://clawhub.ai/yuzc-001/skills/drivemind)
+- [DriveMind Skill Definition](artifact/SKILL.md)
+- [Decision Gates](artifact/references/decision-gates.md)
+- [Escalation Rules](artifact/references/escalation-rules.md)
+- [Mode Guide](artifact/references/mode-guide.md)
+- [Persistence Protocol](artifact/references/persistence-protocol.md)
+- [Review Style Guide](artifact/references/review-style-guide.md)
+- [Stuck Resolution](artifact/references/stuck-resolution.md)
+- [Task Typing](artifact/references/task-typing.md)
+- [Review Template](artifact/templates/review-template.md)
+- [Distillation Template](artifact/templates/distill-template.md)
+- [Daily Diary Template](artifact/templates/diary-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language responses and structured Markdown reviews or lesson notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts structure to task complexity; no fixed token cap specified.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

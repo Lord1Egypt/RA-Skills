@@ -1,45 +1,68 @@
-## Description: <br>
-iautopay helps agents and developers purchase and manage iAutoPay Fact API keys using USDC payments on Base Sepolia. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Purchase API keys from the iAutoPay Fact API using USDC on Base Sepolia, then check account, usage, pricing, and API key information.
 
-## Publisher: <br>
-[newblock](https://clawhub.ai/user/newblock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[newblock](https://clawhub.ai/user/newblock)
 
-## Use Case: <br>
-Developers and external agents use this skill to inspect iAutoPay pricing, create EIP-3009 payment signatures, buy API keys for 1, 7, or 30 days, and check account or key status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill documents broad payment actions, including stablecoin transfers and API-key purchases that require wallet signatures. <br>
-Mitigation: Use a dedicated test wallet and verify every recipient, amount, token contract, chain, and signature expiry before signing. <br>
-Risk: The security summary notes bearer API keys are sent to plain HTTP user-management URLs. <br>
-Mitigation: Do not send real API keys to the documented HTTP user-management URLs unless the publisher provides a trusted secure transport. <br>
-Risk: The security guidance flags the generic transfer endpoint as sensitive because it can move funds. <br>
-Mitigation: Avoid the generic transfer endpoint unless the user explicitly intends to transfer funds and has confirmed all payment details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newblock/iautopay) <br>
-- [newblock publisher profile](https://clawhub.ai/user/newblock) <br>
-- [iAutoPay Fact API server information](https://apipaymcp.okart.fun/info) <br>
-- [iAutoPay API key purchase endpoint](https://apipaymcp.okart.fun/v1/buy-apikey) <br>
-- [iAutoPay user account endpoint](http://ipaynapi.gpuart.cn/user/me) <br>
+## Use Case:
 
+Developers and agents use this skill to buy time-limited API keys with Base Sepolia USDC payments and inspect related user account, API key, pricing, and usage data.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, Python, and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet payments and API keys are handled by the workflow, and the security verdict flags the release as suspicious.
+
+Mitigation: Review carefully before installation and use only a dedicated low-balance testnet wallet.
+
+Risk: Authenticated user-management examples send bearer API keys to an HTTP endpoint.
+
+Mitigation: Do not send bearer API keys over HTTP; verify HTTPS support before using authenticated endpoints.
+
+Risk: Payment signing can transfer funds to the wrong recipient, token contract, chain, amount, or expiry if values are not checked.
+
+Mitigation: Confirm the exact chain, token contract, recipient, amount, and signature expiry before signing.
+
+Risk: The documented transfer endpoint can send stablecoin to arbitrary addresses.
+
+Mitigation: Avoid the arbitrary transfer endpoint unless it is intentionally required and all transfer details have been independently confirmed.
+
+Risk: Wallet-signing examples install runtime dependencies before execution.
+
+Mitigation: Pin dependencies before running the Python or TypeScript wallet-signing examples.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/newblock/skills/iautopay)
+- [iAutoPay Fact API](https://apipaymcp.okart.fun)
+- [iAutoPay Fact API Info Endpoint](https://apipaymcp.okart.fun/info)
+- [iAutoPay User Management API](http://ipaynapi.gpuart.cn)
+- [Base Sepolia RPC](https://sepolia.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with bash, Python, TypeScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet-signing steps, API request examples, endpoint responses, and environment-variable guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

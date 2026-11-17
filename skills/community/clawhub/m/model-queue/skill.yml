@@ -1,4 +1,4 @@
-name: task-queue-by-model-source
+name: taREDACTED-SECRET
 display_name: "Task Queue by Model Source"
 description: >
   Multi-queue task orchestration system. Tasks are routed to queues by model source,

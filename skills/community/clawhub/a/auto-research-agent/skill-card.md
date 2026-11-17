@@ -1,41 +1,58 @@
-## Description: <br>
-Guides an agent through fixed-budget machine-learning experiment cycles by editing training code, running experiments, evaluating metrics, and recording results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Research Agent provides an autonomous AI research workflow for iteratively designing experiments, editing training code, running training, evaluating metrics, and retaining better results under a fixed budget.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and ML practitioners use this skill to let an agent run structured local research iterations against a training script, compare results under a fixed budget, and keep an experiment log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks an agent to edit and run local ML training code, which can consume CPU or GPU resources and change experiment files. <br>
-Mitigation: Use a dedicated project or sandbox, set practical time and GPU limits, and review train.py changes before running them. <br>
-Risk: Research goals, prompts, or experiment logs may expose sensitive information if users place secrets or private data in them. <br>
-Mitigation: Keep secrets and private data out of program.md and experiment logs, and use sanitized data for experiments. <br>
+## Use Case:
 
+Developers and engineers use this skill to run structured model-training experiments, tune architectures and hyperparameters, compare validation metrics, and record iteration decisions.
 
-## Reference(s): <br>
-- [Research Program Baseline](artifact/program.md) <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/auto-research-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code changes and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify train.py and produce experiment notes or logs when the workflow is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The workflow directs an agent to iteratively edit and run local training code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use version control or a disposable project copy before starting the research loop.
+
+Risk: Training experiments can consume CPU or GPU time.
+
+Mitigation: Set and monitor fixed experiment budgets before running training commands.
+
+Risk: The included training script is a demo-style transformer experiment over generated data.
+
+Mitigation: Review the dataset, metrics, and experiment logs before treating results as meaningful for a real model or task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/auto-research-agent)
+- [Research Program Baseline](program.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code edits and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update train.py and experiment notes during iterative research runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

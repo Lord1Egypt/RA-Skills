@@ -1,40 +1,51 @@
-## Description: <br>
-Helps users plan, write, optimize, repurpose, and prepare monetizable Medium articles for target audiences and publications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft, optimize, repurpose, and prepare monetizable Medium articles for target audiences and publications.
 
-## Publisher: <br>
-[devhoangkien](https://clawhub.ai/user/devhoangkien) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[devhoangkien](https://clawhub.ai/user/devhoangkien)
 
-## Use Case: <br>
-Writers, marketers, and content creators use this skill to draft Medium articles, improve SEO, select tags and publication targets, repurpose existing content, and review performance ideas before publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated article, SEO, monetization, or publication guidance may be inaccurate, outdated, or inconsistent with Medium policies. <br>
-Mitigation: Review articles, sources, publication guidelines, and Medium policy compliance before submitting or publishing under an account. <br>
-Risk: Publishing content may involve rights, attribution, affiliate disclosure, or audience-trust obligations. <br>
-Mitigation: Verify image rights, source attribution, affiliate disclosures, and editorial claims before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Medium Writer on ClawHub](https://clawhub.ai/devhoangkien/medium-writer) <br>
-- [Publisher profile: devhoangkien](https://clawhub.ai/user/devhoangkien) <br>
+## Use Case:
+
+Writers, marketers, and content-focused agents use this skill to create Medium articles, improve headlines and SEO, submit to publications, repurpose existing content, and plan engagement strategies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Platform rules, monetization requirements, and earnings figures may become outdated.
+
+Mitigation: Confirm the current Medium Partner Program, Stripe, affiliate disclosure, and publication rules before publishing or monetizing content.
+
+Risk: Revenue and growth advice may be mistaken for guaranteed results.
+
+Mitigation: Treat the skill output as directional writing and publishing guidance, and review factual or financial claims before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain-language writing guidance with article drafts, outlines, headline options, tag suggestions, publication pitches, and editorial recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review all generated articles, sources, image rights, affiliate disclosures, publication requirements, and Medium policy compliance before publishing.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and plain-language writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include article outlines, headline candidates, tag suggestions, publication pitches, CTAs, and performance-improvement guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

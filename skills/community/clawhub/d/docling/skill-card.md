@@ -1,41 +1,58 @@
-## Description: <br>
-Docling extracts and parses content from web pages, PDFs, DOCX, PPTX, and images into clean structured text through the docling CLI with optional GPU acceleration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured text and Markdown from web pages, PDFs, office documents, and images using the Docling CLI, with optional GPU-accelerated OCR.
 
-## Publisher: <br>
-[Er3mit4](https://clawhub.ai/user/Er3mit4) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[er3mit4](https://clawhub.ai/user/er3mit4)
 
-## Use Case: <br>
-Developers and agents use this skill when they already have a URL or local document and need Docling to produce clean text, Markdown, JSON, YAML, or HTML output instead of performing general web search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote-service options can send document contents to external endpoints. <br>
-Mitigation: Avoid remote-service flags for private documents unless the endpoint and data handling are deliberately approved. <br>
-Risk: External plugins can load third-party code during document processing. <br>
-Mitigation: Use external plugin flags only with plugins from trusted sources and after reviewing their behavior. <br>
-Risk: Docling writes output files to the current directory by default. <br>
-Mitigation: Use a controlled temporary output directory and clean it up after reading the extracted content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Docling CLI Reference](references/cli-reference.md) <br>
+## Use Case:
 
+Developers and agents use this skill to extract clean, structured content from known URLs, PDFs, office documents, images, and scanned material before analysis or summarization.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Docling output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the docling CLI; outputs are written to the current directory by default or to a controlled output directory when specified.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can fetch arbitrary URLs, including destinations reachable from the local network.
+
+Mitigation: Use only trusted URLs and run extraction in a sandbox or environment with restricted network egress, especially on shared agents, servers, CI runners, or machines with private-network access.
+
+Risk: Remote services and external plugins can send content to remote endpoints or load third-party code.
+
+Mitigation: Avoid enabling remote services or external plugins unless they have been reviewed and approved for the documents being processed.
+
+Risk: Unpinned Docling installations can change parsing behavior or dependency exposure over time.
+
+Mitigation: Pin the Docling package version for deployed agents and re-review security guidance when upgrading.
+
+## Reference(s):
+
+- [Docling CLI Reference](references/cli-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/er3mit4/skills/docling)
+- [Publisher Profile](https://clawhub.ai/user/er3mit4)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and file-output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for running the docling CLI and reading generated extraction files from controlled output directories.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

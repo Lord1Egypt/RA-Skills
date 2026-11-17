@@ -1,45 +1,49 @@
-## Description: <br>
-Ppt Agent guides an agent through a style-confirmation, outline, planning, and SVG design workflow to create editable Bento Grid slide pages for PowerPoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ppt Agent helps users turn a presentation topic into an outline, planning draft, and editable Bento Grid SVG slides that can be imported into PowerPoint.
 
-## Publisher: <br>
-[tianchangNorth](https://clawhub.ai/user/tianchangNorth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianchangnorth](https://clawhub.ai/user/tianchangnorth)
 
-## Use Case: <br>
-Employees, external users, and presentation creators use this skill to turn a topic and audience context into a PPT outline, page-by-page planning notes, and editable SVG slide artwork. It is suited for reports, proposals, courses, and executive presentations that need structured content before visual design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated slide content can contain incorrect or misleading facts. <br>
-Mitigation: Review and fact-check generated outlines, planning notes, and slide text before using them in a presentation. <br>
-Risk: The optional Python SVG script can create or overwrite page_XX.svg files in the selected output directory. <br>
-Mitigation: Run the script only with trusted inputs and an output directory where creating or overwriting those files is acceptable. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to draft Chinese-focused presentations from a topic through a guided workflow: confirm style, generate an outline, prepare a page plan, and produce editable SVG slide pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianchangNorth/ppt-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/tianchangNorth) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Outline prompt](artifact/prompts/outline.md) <br>
-- [Planning prompt](artifact/prompts/planning.md) <br>
-- [SVG design prompt](artifact/prompts/design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [JSON outline, markdown planning notes, and SVG code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final SVG pages use a 1280 by 720 viewBox and are intended to be editable after import into PowerPoint 2016 or later.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The optional JSON-to-SVG script can turn untrusted JSON into active SVG files without sanitizing content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted input JSON with the optional generator, review generated SVG before opening it in active viewers, and avoid SVG content from unknown sources.
+
+## Reference(s):
+
+- [Ppt Agent on ClawHub](https://clawhub.ai/tianchangnorth/skills/ppt-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON outline blocks, planning text, and SVG code output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final SVG pages target a 1280 by 720 viewBox and PowerPoint-importable vector output.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

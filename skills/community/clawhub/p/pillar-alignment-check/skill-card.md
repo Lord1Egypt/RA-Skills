@@ -1,39 +1,53 @@
-## Description: <br>
-Checks draft or pre-publication Redditech Labs content against six content pillars and returns a primary pillar, optional secondary pillar, alignment score, and pass/flag/reject verdict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify that a blog post, tweet, thread, or LinkedIn post aligns to at least one of the 6 Redditech Labs content pillars before drafting or publishing content for @redditech or Redditech Labs, returning a primary pillar, optional secondary pillar, alignment score, and pass/flag/reject verdict.
 
-## Publisher: <br>
-[nissan](https://clawhub.ai/user/nissan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissan](https://clawhub.ai/user/nissan)
 
-## Use Case: <br>
-Agents producing or reviewing Redditech Labs content use this skill before drafting or publishing blog posts, tweets, threads, or LinkedIn posts to check pillar alignment and brand voice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Outsider Perspective pillar can introduce personal, Caribbean, or Australian framing that is not present in the source content. <br>
-Mitigation: Use that pillar only when the framing is user-approved and factually supported by the content being reviewed. <br>
-Risk: The skill may reject or escalate content under Redditech-specific editorial rules, including DeFi/Web3 scope checks and forbidden phrasing. <br>
-Mitigation: Treat verdicts as editorial guidance and route reject, DeFi/Web3, or recent Outsider Perspective cases to the responsible reviewer before publishing. <br>
+## Use Case:
 
+Content and growth agents or reviewers use this skill to check Redditech Labs draft posts against six content pillars, brand voice rules, and escalation criteria before publishing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown verdict block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes primary pillar, optional secondary pillar, verdict, reason, and action when rejected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The rubric encodes Redditech Labs-specific content pillars, AEST timing, and Nissan escalation assumptions that may not fit another publishing team.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the pillars, timezone, escalation owner, and publishing process before deployment.
+
+Risk: A pass, flag, or reject verdict could approve or block content based on brand-fit criteria without replacing factual, legal, or final editorial review.
+
+Mitigation: Keep human review for final publishing decisions, especially rejected content, DeFi/Web3 topics, and claims that require evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nissan/skills/pillar-alignment-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown assessment block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes primary pillar, optional secondary pillar, alignment score, pass/flag/reject verdict, reason, and action when escalation or redrafting is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

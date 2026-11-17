@@ -1,44 +1,57 @@
-## Description: <br>
-Connects to Jushuitan ERP data and helps merchants configure local access, confirm consent, and analyze shops, products, inventory, orders, purchasing, daily reports, and replenishment reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+连接和分析聚水潭 ERP 数据，帮助商家保存本地连接资料，并按自然语言编排店铺授权、商品、库存、订单、采购、日报和补货提醒等经营分析场景。
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External merchants and operations teams use this skill to connect merchant-provided Jushuitan ERP credentials, record data consent, and ask natural-language questions about authorization, catalog quality, inventory, orders, purchasing, alerts, and recurring business reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Jushuitan ERP credentials locally in plaintext. <br>
-Mitigation: Use the skill only when local plaintext storage is acceptable, save credentials only after explicit user authorization, keep the files private, and avoid logging or echoing secrets. <br>
-Risk: The skill can issue broad raw ERP API calls without strong scoping or per-use confirmation. <br>
-Mitigation: Confirm the active profile, API path, and data domain before use, and grant only the specific read-only API permissions needed for the workflow. <br>
+## Use Case:
 
+Merchants and operations teams use this skill to connect Jushuitan ERP credentials, confirm data consent, query ERP data, and turn shop authorization, product, inventory, order, return, purchasing, replenishment, and daily reporting questions into business-facing analysis or rules.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1688aiinfra/1688-shop-jushuitan-erp) <br>
-- [Jushuitan ERP API Map](references/api-map.md) <br>
-- [Jushuitan ERP Scenarios](references/scenarios.md) <br>
-- [Jushuitan Open Platform](https://openweb.jushuitan.com/) <br>
-- [Jushuitan Application Management](https://openweb.jushuitan.com/management/apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls, Files] <br>
-**Output Format:** [Markdown guidance with JSON or shell command snippets, local configuration updates, and ERP API response summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local profiles.json and consent.json files when the user explicitly authorizes credential storage and data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill stores sensitive Jushuitan ERP credentials locally and uses them for authenticated API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged, read-only ERP tokens where possible, avoid passing secrets in shell commands or logs, restrict file permissions for local credential profiles, and rotate credentials if exposure is suspected.
+
+Risk: The scanner notes that consent and endpoint limits are not enforced in code.
+
+Mitigation: Confirm user consent before each real data access, request only the ERP permissions needed for the current workflow, review profiles.json handling before deployment, and prefer or add an endpoint allowlist for production use.
+
+## Reference(s):
+
+- [聚水潭 ERP 接口使用方法](references/api-map.md)
+- [聚水潭 ERP 场景手册](references/scenarios.md)
+- [聚水潭开放平台](https://openweb.jushuitan.com/)
+- [聚水潭开放平台应用管理](https://openweb.jushuitan.com/management/apps)
+- [ClawHub skill page](https://clawhub.ai/1688aiinfra/skills/1688-shop-jushuitan-erp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON snippets with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local profiles.json and consent.json files, and may call Jushuitan ERP APIs when credentials, permissions, and consent are present.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

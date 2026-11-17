@@ -1,49 +1,60 @@
-## Description: <br>
-Generates 5-second videos from text prompts using the Tomoviee Text-to-Video API through the Wondershare OpenAPI gateway, with controls for resolution, aspect ratio, and camera movement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 5-second videos from text prompts through the Tomoviee Text-to-Video API with controls for resolution, aspect ratio, and camera movement.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and creators use this skill to generate short text-to-video clips through Tomoviee/Wondershare OpenAPI, including establishing shots, B-roll, and rapid video concept prototypes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses third-party Tomoviee/Wondershare API services and may consume provider quota or incur billing when generating videos. <br>
-Mitigation: Use a dedicated API key, monitor provider quota or billing, and run only when Tomoviee/Wondershare OpenAPI use is intended. <br>
-Risk: Prompts and optional callback URLs may be sent to the third-party API provider. <br>
-Mitigation: Avoid sensitive prompts, confidential media concepts, and internal callback URLs unless they are approved for third-party processing. <br>
-Risk: The auth helper prints a Basic token to terminal output. <br>
-Mitigation: Do not share logs or terminal output containing generated tokens, and rotate credentials if a token is exposed. <br>
+## Use Case:
 
+Developers and creative automation users use this skill to generate short text-to-video assets via the Tomoviee/Wondershare API, tune resolution, aspect ratio, and camera movement, and retrieve generated video URLs from asynchronous tasks.
 
-## Reference(s): <br>
-- [Tomoviee Video Generation APIs](artifact/references/video_apis.md) <br>
-- [Camera Movement Types Reference](artifact/references/camera_movements.md) <br>
-- [Tomoviee Prompt Engineering Guide](artifact/references/prompt_guide.md) <br>
-- [Tomoviee Developer Portal (Global)](https://www.tomoviee.ai/developers.html) <br>
-- [Tomoviee API Docs (Global)](https://www.tomoviee.ai/doc/) <br>
-- [Tomoviee Developer Portal (Mainland)](https://www.tomoviee.cn/developers.html) <br>
-- [Tomoviee API Docs (Mainland)](https://www.tomoviee.cn/doc/) <br>
-- [Wondershare OpenAPI Gateway](https://openapi.wondershare.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python code examples, shell commands, and API usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API task identifiers and JSON result handling guidance for 5-second generated video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: API credentials can be exposed if app keys, app secrets, or generated Basic tokens are entered directly in shell commands or printed to logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use secure prompts, environment injection configured not to log values, or a secret manager; rotate credentials if they were exposed.
+
+Risk: Prompts and generation requests are sent to the Tomoviee/Wondershare OpenAPI gateway.
+
+Mitigation: Review prompts for sensitive or regulated content before submission and apply organizational data-sharing controls.
+
+## Reference(s):
+
+- [Tomoviee Video Generation APIs](references/video_apis.md)
+- [Camera Movement Types Reference](references/camera_movements.md)
+- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md)
+- [Tomoviee Developer Portal (Global)](https://www.tomoviee.ai/developers.html)
+- [Tomoviee API Docs (Global)](https://www.tomoviee.ai/doc/)
+- [Tomoviee Developer Portal (Mainland)](https://www.tomoviee.cn/developers.html)
+- [Tomoviee API Docs (Mainland)](https://www.tomoviee.cn/doc/)
+- [Wondershare OpenAPI Gateway](https://openapi.wondershare.cc)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task IDs and video URLs returned by Tomoviee API; generated videos are limited to 5 seconds.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

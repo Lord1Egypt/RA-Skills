@@ -104,6 +104,7 @@ function queryString(query) {
 function compactTaskRow(row) {
   return {
     task_id: row.taskId ?? row.task_id,
+    task_subject: row.taskSubject ?? row.task_subject ?? '',
     status: row.status || null,
     total: row.totalCount ?? row.total ?? null,
     sent: row.sentCount ?? row.sent ?? null,
@@ -144,6 +145,7 @@ function compactTaskDetail(body) {
   });
   return {
     task_id: body.taskId ?? body.task_id,
+    task_subject: body.taskSubject ?? body.task_subject ?? '',
     status: body.status || null,
     total: body.totalCount ?? body.total ?? mails.length,
     sent: body.sentCount ?? body.sent ?? null,

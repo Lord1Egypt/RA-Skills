@@ -1,41 +1,55 @@
-## Description: <br>
-Helps agents prepare, format, publish, and manage WeChat Official Account articles, materials, statistics, and comments through a Python command-line tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A WeChat Official Account publishing and administration skill for drafting, publishing, formatting, asset management, analytics, and comment moderation using the WeChat publishing APIs.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers, operators, and content teams use this skill to automate WeChat Official Account article workflows, including HTML rendering, draft creation, media upload, publishing, statistics retrieval, and comment management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delete and publish actions can remove or expose WeChat Official Account content. <br>
-Mitigation: Require the agent to show exact target IDs, titles, and intended action before draft, published article, material, or comment deletion and before publishing. <br>
-Risk: Drafts, media, article content, and credentials may be sensitive account data. <br>
-Mitigation: Use the skill only with content intended for WeChat, keep credentials in environment variables, and avoid sending sensitive drafts or media unless publication or upload is intended. <br>
+## Use Case:
 
+Content operators and developers use this skill to manage WeChat Official Account article workflows, including draft creation, publication, uploaded media, reader statistics, and comment moderation. It is suited for agents that need to prepare commands, configuration, or operational guidance for a live WeChat account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/skills/wechat-article-publisher-pro) <br>
-- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/subscription/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON payload examples, and Python CLI usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WECHAT_APP_ID and WECHAT_APP_SECRET. Commands can call WeChat APIs and return JSON responses, media IDs, publish IDs, URLs, status text, or rendered HTML.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata; artifact frontmatter reports 1.0.7) <br>
+Risk: The skill can publish and delete live WeChat account content and comments without built-in confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every publish, delete, and moderation command before execution, and require an external approval step for destructive or public-facing actions.
+
+Risk: The skill requires WeChat application credentials for account operations.
+
+Mitigation: Use restricted credentials where possible and install the skill only for agents intended to operate a live WeChat official account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/wechat-article-publisher-pro)
+- [WeChat Official Account API documentation](https://developers.weixin.qq.com/doc/subscription/api/)
+- [Publisher profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and Python command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that operate on a live WeChat Official Account when credentials are configured.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

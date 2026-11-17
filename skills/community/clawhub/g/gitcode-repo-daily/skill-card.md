@@ -1,47 +1,61 @@
-## Description: <br>
-Generate daily operations reports for GitCode repositories with key metrics, AI summaries, and Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate daily operations reports for GitCode repositories with key metrics, AI summaries, and Markdown output.
 
-## Publisher: <br>
-[autoxj](https://clawhub.ai/user/autoxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[autoxj](https://clawhub.ai/user/autoxj)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to turn GitCode repository activity into daily operational reports. It collects repository metrics, supports AI-written summaries from report data, and renders a structured Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GitCode token to call GitCode APIs. <br>
-Mitigation: Use a least-privilege token and avoid installing the skill where that token should not be exposed. <br>
-Risk: Repository metrics, PR titles or bodies used for summaries, and generated summaries may be retained in local skill files. <br>
-Mitigation: Review saved default repositories on shared machines and delete temp_dir or resources/report.db when local report history should not be retained. <br>
-Risk: Generated reports depend on GitCode API availability, token validity, and configured repositories. <br>
-Mitigation: Check script error output for missing tokens, empty repository lists, API timeouts, and per-repository fetch errors before relying on a report. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to collect GitCode repository activity for a selected day, summarize PR and issue activity, and render a daily operations report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/autoxj/gitcode-repo-daily) <br>
-- [Publisher profile](https://clawhub.ai/user/autoxj) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Design and usage documentation](artifact/README.md) <br>
-- [Daily report template](artifact/resources/daily_report.md) <br>
-- [GitCode API base](https://api.gitcode.com/api/v5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON intermediate data, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitCode token and repository list; generated report history and summaries may be stored locally by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: The skill requires a GitCode token to call repository APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged GitCode token and avoid sharing generated reports or logs that could expose sensitive repository activity.
+
+Risk: The skill persists repository lists, metrics, and summaries under the skill directory.
+
+Mitigation: Review the configured repositories and generated local files before retaining, sharing, or committing the skill directory.
+
+Risk: PR and issue text from repositories is untrusted content that can appear in generated Markdown.
+
+Mitigation: Review generated Markdown before publishing or opening it in rich renderers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/autoxj/skills/gitcode-repo-daily)
+- [README](README.md)
+- [Usage examples](examples.md)
+- [Daily report template](resources/daily_report.md)
+- [GitCode API endpoint](https://api.gitcode.com/api/v5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with JSON status and summary inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITCODE_TOKEN, reads configured repositories, writes report artifacts under the skill directory, and stores report metrics and summaries in SQLite.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

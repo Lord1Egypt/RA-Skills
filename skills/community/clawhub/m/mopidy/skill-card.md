@@ -1,43 +1,55 @@
-## Description: <br>
-Control a Mopidy music system via Mopidy JSON-RPC for everyday listening, queue management, and playback control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a Mopidy music system through Mopidy JSON-RPC for everyday listening, queue management, playback control, and matching ranked music requests against the local library.
 
-## Publisher: <br>
-[grantmacnamara](https://clawhub.ai/user/grantmacnamara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grantmacnamara](https://clawhub.ai/user/grantmacnamara)
 
-## Use Case: <br>
-People who operate a Mopidy music system use this skill to inspect playback, search local libraries, manage queues and playlists, and control playback through JSON-RPC. It also helps match ranked or canonical music requests against locally available tracks before queueing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change playback state or clear the queue. <br>
-Mitigation: Confirm destructive queue actions and default to adding to the queue unless the user explicitly asks to clear or play immediately. <br>
-Risk: MOPIDY_URL directs the agent to a network service that can receive control requests. <br>
-Mitigation: Set MOPIDY_URL only to a Mopidy endpoint the user controls. <br>
-Risk: Ranked or canonical requests may use external web searches that disclose music preferences or query text. <br>
-Mitigation: Tell the agent to use only the local library when external ranking lookups are not desired, and report unmatched items instead of substituting. <br>
+## Use Case:
 
+External users and developers use this skill to search a Mopidy library, inspect playback state and queue contents, add tracks, albums, or playlists, and control playback. It also supports ranked or canonical music requests by matching externally identified songs or albums against the local Mopidy library before queueing confirmed matches.
 
-## Reference(s): <br>
-- [Mopidy API Notes](references/api-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/grantmacnamara/mopidy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with shell commands and JSON-RPC responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, python3, and MOPIDY_URL; ranked music requests may use external web search before matching results against the local library.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Some helper commands may bypass certificate checks when connecting to MOPIDY_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted Mopidy server, preferably local or served over properly certificate-validated HTTPS.
+
+Risk: The play-track and clear actions can replace or clear the current queue.
+
+Mitigation: Confirm user intent before queue-replacing actions and prefer queue-add behavior unless the user explicitly requests immediate playback or clearing.
+
+## Reference(s):
+
+- [Mopidy API Notes](references/api-notes.md)
+- [ClawHub skill page](https://clawhub.ai/grantmacnamara/skills/mopidy)
+- [Publisher profile](https://clawhub.ai/user/grantmacnamara)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON-RPC-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, python3, and MOPIDY_URL for helper-script workflows.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

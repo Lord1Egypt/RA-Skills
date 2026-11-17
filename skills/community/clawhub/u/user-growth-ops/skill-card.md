@@ -1,44 +1,57 @@
-## Description: <br>
-A growth operations and strategy assistant for user acquisition, retention improvement, campaign planning, channel and funnel analysis, visual journey diagrams, and mobile prototype generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language growth operations assistant for acquisition, retention, campaign planning, funnel and channel analysis, Mermaid flow diagrams, and mobile prototype generation.
 
-## Publisher: <br>
-[yogiwang1874](https://clawhub.ai/user/yogiwang1874) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yogiwang1874](https://clawhub.ai/user/yogiwang1874)
 
-## Use Case: <br>
-Growth, product, marketing, and operations teams use this skill to turn provided business context and metrics into structured acquisition, retention, campaign, funnel-analysis, and review-ready prototype outputs. It is designed to ask for missing context and use placeholders when data is not supplied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Growth plans and prototypes may include confidential customer data, private screenshots, credentials, or unreleased business metrics if the user provides them. <br>
-Mitigation: Provide only data intended for analysis or prototype generation, and remove credentials or sensitive customer details before use. <br>
-Risk: Recommendations can be misleading when baseline metrics, goals, or constraints are incomplete. <br>
-Mitigation: Supply current metrics and constraints when available, keep generated placeholders for missing values, and review recommendations before acting on them. <br>
+## Use Case:
 
+External growth, product, and operations teams use this skill to design growth plans, analyze acquisition and retention funnels, and prepare visual journey diagrams or mobile prototype screens. It requires user-provided business context and metrics before producing recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yogiwang1874/user-growth-ops) <br>
-- [Solution Framework](references/solution-framework.md) <br>
-- [Data Analysis Guide](references/data-analysis-guide.md) <br>
-- [Examples Digest](references/examples-digest.md) <br>
-- [Screen Flow Template](assets/screen-flow-template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Mermaid diagrams and optional HTML prototype code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided data where available and placeholder text for missing metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may ask users to provide business metrics or screenshots for funnel analysis and prototype work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review sensitive company data before sharing it with any agent.
+
+Risk: Growth recommendations can be misleading when baseline metrics, user paths, goals, or constraints are missing.
+
+Mitigation: Provide the requested business context and verify outputs against supplied data before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yogiwang1874/skills/user-growth-ops)
+- [Solution Framework](references/solution-framework.md)
+- [Data Analysis Guide](references/data-analysis-guide.md)
+- [Examples Digest](references/examples-digest.md)
+- [Mobile Screen Flow Template](assets/screen-flow-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, Mermaid diagrams, and HTML prototype templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses placeholders for missing business metrics and asks for required context before making recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

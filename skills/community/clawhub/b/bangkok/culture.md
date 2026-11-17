@@ -1,311 +1,65 @@
 # Thai Culture & Customs
 
-## Core Concepts
+The operating system: **hierarchy + face + indirectness**. Most foreigner friction comes from applying Western directness to a system where the visible "yes" and the real answer are different things. What follows is what changes your behavior, not a glossary.
 
-### Sanuk (Fun)
+## The Four Concepts That Predict Behavior
 
-Thai culture values enjoyment in everything — work, relationships, daily life. If it's not sanuk, why do it?
+| Concept | What it makes a Thai *do* | Your countermove |
+|---------|--------------------------|------------------|
+| **Kreng jai** | Won't impose, won't deliver bad news, won't say no outright | Give explicit permission ("tell me honestly, it's fine"); read a hesitant yes as a soft no |
+| **Face (naa)** | Avoids anything that exposes error publicly | Correct in private, praise in public; never make someone wrong in front of others |
+| **Sanuk** | Weaves lightness/fun into work and errands | Match it — heavy seriousness reads as coldness and closes doors |
+| **Mai pen rai** | Lets things go, absorbs friction, moves on | Don't escalate small problems; the person who stays calm wins the exchange |
 
-**What This Means**:
-- Thais prefer light-hearted interactions
-- Heavy seriousness is avoided
-- Work should have fun elements
-- Celebrations are important
+Decoding indirectness: **"maybe" / "up to you" / "difficult" ≈ no**. Silence after a request ≈ disagreement. A problem you weren't told about was hidden to spare you (kreng jai), not out of dishonesty.
 
-### Face (Sia Naa)
+## The One Non-Negotiable: the Monarchy
 
-Losing face = public embarrassment. Causing someone to lose face is a serious offense.
+- **Lèse-majesté** (Criminal Code §112): 3-15 years *per count*, actively prosecuted — including likes and shares of others' posts. No irony, no "private conversation" exception.
+- Stand for the royal anthem (cinemas before the film, some BTS platforms 8 AM / 6 PM). Everyone does; not standing is conspicuous.
+- The King's image is on all currency — never step on a dropped banknote to stop it blowing away.
+- This is the single rule where "when in doubt, say nothing" is the whole policy.
 
-**What This Means**:
-- Never criticize publicly
-- Don't argue aggressively
-- Avoid confrontation
-- Praise privately
-- Errors are addressed indirectly
+## Temples & Monks (observable rules)
 
-### Greng Jai
+- Shoes off at the threshold; shoulders **and** knees covered (sarongs lent at major wats).
+- Never point your feet at a Buddha image; don't climb on or pose irreverently with statues.
+- **Women do not touch monks or hand them anything directly** — place the object down or pass via a man/cloth. Monks board buses/BTS front rows; give way.
+- Sit with feet tucked behind you, not soles-out, when on temple floors.
 
-Reluctance to impose on others or cause inconvenience.
+## The Body Map
 
-**What This Means**:
-- Thais may not tell you the truth to avoid confrontation
-- "Yes" doesn't always mean yes
-- Problems may be hidden to not burden you
-- Offers may be declined initially out of politeness
+- **Head = highest/sacred**: don't touch anyone's head, including children; don't reach over someone's head.
+- **Feet = lowest/unclean**: don't point with feet, don't step over people or food, remove shoes entering homes.
 
-### Mai Pen Rai
+## The Wai (get the direction right)
 
-"It doesn't matter" / "no worries" / "let it go"
+The error foreigners make is *initiating* it down the hierarchy.
+- **Return** any wai you receive — always.
+- **Don't initiate** to children or service staff; they wai first, you nod or wai back. Initiating down embarrasses them.
+- Height signals rank: fingertips at chest (peers), chin (elders/seniors), forehead + slight bow (monks, Buddha). Holding bags? A nod is fine.
 
-**What This Means**:
-- Don't stress over small things
-- Flexibility over rigid rules
-- Patience is valued
-- Accept what can't be changed
+## Table & Home Conduct
 
----
+- **Spoon is the main utensil** (in the right hand), fork pushes onto it; chopsticks are for noodle *soups* only, not rice.
+- Dishes are shared and centred; take small amounts, return for more; leaving a little signals you're satisfied.
+- Shoes off entering any home; you may be handed slippers.
 
-## Monarchy & Religion
+## The Face System at Work (advise, for those managing/employing Thais)
 
-### The Royal Family
+- **Relationship precedes transaction**: meals and small talk are the deal-making, not a preamble to it. Trust is slow; skipping it reads as cold.
+- Decisions flow top-down; identify the actual decider — junior staff will rarely contradict a senior in the room even when they know better.
+- Feedback: **private, indirect, framed as a shared fix**, never a public callout. A public correction can cost you the person, not just the moment.
+- "Thai time" is real for social/informal settings; meetings may start late. Impatience visibly loses face for you.
 
-**Critical Rule**: Never disrespect the monarchy.
+## Traps
 
-- **Lèse-majesté law**: 3-15 years prison per offense
-- **Actively enforced**: People have been jailed for social media posts
-- **Stand for anthem**: Before movies, at train stations
-- **Don't step on money**: King's image is on currency
-- **Respect images**: King's photos are everywhere
+| Trap | Why it fails | Do instead |
+|------|--------------|------------|
+| Reading "yes"/"up to you" as agreement | Kreng jai produces polite yeses that mean no | Confirm with a concrete step ("so we ship Friday?"); watch for hedging |
+| Raising your voice to get action | Anger = total loss of face; the room shuts down | Stay calm, smile, restate — calm gets problems fixed, heat gets stonewalled (`safety.md` on confrontation) |
+| Public correction of a mistake | Costs the person face; damages the relationship | Take them aside; frame as "let's adjust this together" |
+| Initiating a wai to a waiter/child | Inverts the hierarchy, embarrasses them | Let them wai first; nod or return |
+| Debating the monarchy "just philosophically" | §112 has no private-speech carve-out | Don't engage the topic at all |
 
-**What To Do**:
-- Stand when anthem plays
-- Never criticize (even in private conversations)
-- Show respect at royal-related sites
-
-### Buddhism
-
-Thailand is 95% Buddhist. It permeates daily life.
-
-**Monks**:
-- Highly respected
-- Women cannot touch monks
-- Don't hand things directly to monks
-- Give way to monks on sidewalks
-- Morning alms giving is important ritual
-
-**Temples**:
-- Remove shoes before entering
-- Dress modestly (shoulders and knees covered)
-- Don't point feet at Buddha images
-- Don't climb on Buddha statues
-- Photography restrictions in some areas
-
----
-
-## Body Language & Etiquette
-
-### The Head
-
-**Sacred**: The head is the most sacred part of the body.
-
-- Don't touch anyone's head (including children)
-- Don't pass objects over someone's head
-- Lower your head when passing in front of elders/monks
-
-### The Feet
-
-**Lowest/unclean**: Feet are the lowest part of the body.
-
-- Never point feet at people, Buddha images, or temples
-- Don't step over people
-- Don't use feet to point or move things
-- Remove shoes when entering homes and temples
-
-### The Wai
-
-The traditional Thai greeting — palms pressed together, slight bow.
-
-**When to Wai**:
-- Return a wai when given (always)
-- Greeting elders/superiors
-- Saying thank you
-- At temples
-
-**When NOT to Wai**:
-- To children (they wai first)
-- To service staff (they wai first)
-- While holding things (nod instead)
-
-**How High**:
-- Equals: Fingers at chest
-- Elders/superiors: Fingers at chin
-- Monks: Fingers at forehead
-- Buddha: Fingers at forehead + bow
-
-### Physical Contact
-
-- Public displays of affection: Keep minimal
-- Handshakes: Acceptable in business, wai more traditional
-- Same-sex friends: Hand holding/linking arms common (not romantic)
-- Hugging: Not traditional, more accepted now in cities
-
----
-
-## Social Hierarchy
-
-Thai society has clear hierarchies based on:
-- **Age**: Elders respected
-- **Status**: Wealth, position, education
-- **Profession**: Some roles carry automatic respect
-
-**What This Means**:
-- Use proper titles and pronouns
-- Defer to elders in conversations
-- Senior people served first
-- Don't contradict superiors publicly
-
----
-
-## Communication Style
-
-### Indirect Communication
-
-Thais avoid direct confrontation.
-
-- "Maybe" often means "no"
-- "Difficult" may mean "impossible"
-- Silence can indicate disagreement
-- Problems addressed through hints
-
-### Saving Face
-
-- Don't publicly embarrass anyone
-- Praise in public, criticize in private
-- Accept that some "yes" responses are politeness
-- Don't force confrontations
-
-### Tone
-
-- Keep voice calm
-- Anger is loss of face
-- Shouting = serious loss of control
-- Smile even when uncomfortable
-
----
-
-## Daily Life Customs
-
-### Entering Homes
-
-- Remove shoes (always)
-- May be offered slippers
-- Lower body when passing elders
-
-### Eating
-
-- Shared dishes are normal
-- Use spoon (main utensil) and fork
-- Chopsticks for noodle soups only
-- Take small portions, go back for more
-- Don't finish everything (shows you're full)
-
-### Gift Giving
-
-- Wrap nicely
-- Gifts often not opened in front of giver
-- Quality over quantity
-- Avoid black wrapping paper
-
-### Dress
-
-- Modest in temples and government buildings
-- Business: Conservative, formal
-- Casual: Acceptable in most places
-- Beach/resort: More relaxed
-
----
-
-## Thai Holidays & Observances
-
-### Major Holidays
-
-| Holiday | When | What |
-|---------|------|------|
-| **Songkran** | April 13-15 | Thai New Year, water festival |
-| **Loy Krathong** | November (full moon) | Floating lanterns/offerings |
-| **King's Birthday** | July 28 | National holiday |
-| **Queen's Birthday** | June 3 | Mother's Day equivalent |
-| **Chakri Day** | April 6 | Dynasty founding |
-| **Coronation Day** | May 4 | Current king's coronation |
-
-### Buddhist Holidays
-
-- **Makha Bucha**: February full moon
-- **Visakha Bucha**: May full moon (most important)
-- **Asahna Bucha**: July full moon
-- **Khao Phansa**: Buddhist Lent begins
-
-**During Buddhist holidays**: No alcohol sales, clubs may close
-
----
-
-## Common Mistakes to Avoid
-
-### Serious Offenses
-- Criticizing the monarchy
-- Disrespecting Buddha/monks
-- Public anger displays
-- Touching people's heads
-- Pointing feet at temples/people
-
-### Minor Faux Pas
-- Not removing shoes
-- Touching monks (if female)
-- Overly direct communication
-- Not returning a wai
-- Finishing all food on plate
-
-### Business Context
-- Pressing for immediate answers
-- Direct confrontation
-- Skipping small talk
-- Ignoring seniority
-- Impatience
-
----
-
-## Working with Thais
-
-### Business Culture
-
-**Relationship First**:
-- Build relationship before business
-- Small talk matters
-- Meals and socializing important
-- Trust takes time
-
-**Hierarchy**:
-- Know who decides
-- Address seniors appropriately
-- Decisions flow top-down
-- Junior staff rarely contradict
-
-**Time**:
-- Flexibility expected
-- "Thai time" is real
-- Don't show impatience
-- Meetings may start late
-
-**Face**:
-- Don't put people on the spot
-- Allow face-saving outs
-- Praise publicly
-- Correct privately
-
-### Managing Thai Employees
-
-- Clear expectations help
-- Feedback in private
-- Celebrate achievements
-- Understand family obligations
-- Adapt Western management styles
-
----
-
-## Adapting Successfully
-
-### Do
-- Learn some Thai (shows respect)
-- Embrace sanuk
-- Practice patience (mai pen rai)
-- Respect all hierarchies
-- Smile often
-- Show interest in Thai culture
-
-### Don't
-- Lose your temper
-- Rush relationships
-- Expect Western directness
-- Dismiss hierarchy as outdated
-- Force confrontations
-- Criticize Thailand publicly
+Festival etiquette, alcohol-ban days, and Songkran conduct: `festivals.md`. Business hierarchy in depth: `business.md`.

@@ -1,41 +1,53 @@
-## Description: <br>
-Case helps people navigating legal cases understand their situation, organize evidence and deadlines, work with counsel, evaluate decisions, and plan for resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Case helps people navigating legal cases understand the process, organize evidence and deadlines, work with counsel, and make informed decisions.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users involved in civil, criminal, family, administrative, or regulatory matters use this skill for educational case orientation, evidence organization, deadline awareness, attorney collaboration, and structured decision support. It should be used as a checklist and thinking aid, not as legal advice or a substitute for licensed counsel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake educational legal guidance for legal advice or rely on it as their only deadline tracker. <br>
-Mitigation: Verify deadlines, jurisdiction-specific rules, filing requirements, and case strategy with official court materials and a licensed attorney before acting. <br>
-Risk: Legal cases can involve privileged or highly sensitive facts. <br>
-Mitigation: Avoid entering privileged or highly sensitive case details unless the user is comfortable with the agent environment handling them. <br>
+## Use Case:
 
+External users use this skill as an educational organizer for legal case planning, including case categorization, evidence preservation, deadline awareness, attorney collaboration, decision framing, recalibration, and post-resolution obligations.
 
-## Reference(s): <br>
-- [Case ClawHub release](https://clawhub.ai/AGIstack/case) <br>
-- [AGIstack publisher profile](https://clawhub.ai/user/AGIstack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, checklists, questions, and structured case-planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only legal case guidance; no code, install scripts, account access, or hidden behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may produce legal guidance that is incomplete, jurisdiction-specific, or unsuitable for a user's facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as an educational organizer and question generator; verify advice with a licensed attorney before acting.
+
+Risk: Legal deadlines and calendar dates can have serious consequences if calculated or interpreted incorrectly.
+
+Mitigation: Confirm all deadlines, filing dates, and strategy decisions against jurisdiction-specific rules and professional counsel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agistack/skills/case)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational legal guidance only; verify jurisdiction-specific advice and calendar dates with a licensed attorney before acting.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

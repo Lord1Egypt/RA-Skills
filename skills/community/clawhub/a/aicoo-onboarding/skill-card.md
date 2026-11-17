@@ -1,44 +1,59 @@
-## Description: <br>
-Guides first-time Aicoo users through API key setup, workspace initialization, local context collection, people discovery, share-link creation, and an Aicoo Square post. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides first-time Aicoo users through obtaining an API key, initializing a workspace, syncing selected context, discovering people, creating an agent share link, and posting to Aicoo Square.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-External users and developers use this skill to set up Aicoo for the first time, initialize their workspace, sync selected local context, discover people, create a shareable agent link, and publish a Square post. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan broad local context and upload selected content to Aicoo during onboarding. <br>
-Mitigation: Limit which files are scanned, inspect upload payloads, and exclude secrets or confidential repositories before running API calls. <br>
-Risk: The setup flow uses sensitive API credentials and suggests persisting them in shell startup files. <br>
-Mitigation: Store API keys only where the user accepts persistence risk, avoid committing credentials, and rotate keys if exposure is suspected. <br>
-Risk: Share links, notes access, network connections, and public Square posts can expose user information to others. <br>
-Mitigation: Confirm share scope, notes permissions, expiration, sign-in requirement, connection target, and post content before execution. <br>
+## Use Case:
 
+External users and developers use this skill to complete first-time Aicoo setup and become discoverable through an agent link and Square post. It helps an agent guide onboarding, propose API calls, create local identity files, and draft sharing or posting actions.
 
-## Reference(s): <br>
-- [Aicoo skill page](https://clawhub.ai/xisen-w/aicoo-onboarding) <br>
-- [Aicoo API keys](https://www.aicoo.io/settings/api-keys) <br>
-- [First-time setup example](examples/first-time-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce user-specific onboarding notes, share-link settings, discovery prompts, and public post drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata; artifact metadata lists 3.0.0) <br>
+Risk: The onboarding flow can upload selected local project and profile information to Aicoo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact files and notes before sync, exclude secrets, customer data, private notes, broad folders, Git history, and memory files unless the user explicitly approves them.
+
+Risk: The sharing flow can create broad read-access agent links and make the user discoverable through public or social actions.
+
+Mitigation: Prefer narrow folder-scoped links, require sign-in when appropriate, avoid all-scope sharing unless intentional, and review the generated Square post before publishing.
+
+Risk: The setup guidance shows API keys in shell commands and mentions shell startup persistence.
+
+Mitigation: Use a secret store or scoped environment injection where possible, avoid committing keys to files, and rotate any exposed key.
+
+## Reference(s):
+
+- [Aicoo Onboarding Skill Page](https://clawhub.ai/xisen-w/skills/aicoo-onboarding)
+- [Aicoo API Key Settings](https://www.aicoo.io/settings/api-keys)
+- [First-Time Setup Example](examples/first-time-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown with inline bash and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce curl commands, suggested local files, share links, Square post drafts, and onboarding summaries.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence; artifact frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

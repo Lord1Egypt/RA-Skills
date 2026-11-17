@@ -1,43 +1,54 @@
-## Description: <br>
-Extracts and checks factual claims with web sources, scores baseline confidence around 50-70%, and flags claims that need higher verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts factual claims from user input, checks them against web sources, and returns a baseline confidence score with source-aware guidance.
 
-## Publisher: <br>
-[crftsmnd](https://clawhub.ai/user/crftsmnd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crftsmnd](https://clawhub.ai/user/crftsmnd)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to fact-check claims from prompts by searching web sources, comparing supporting and rejecting evidence, and returning a confidence-scored recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidence scores are heuristic and may be mistaken for statistically rigorous verification. <br>
-Mitigation: Treat scores as rough guidance, review cited sources, and avoid relying on the skill as the sole authority for high-stakes claims. <br>
-Risk: The skill can activate on broad verification wording and may process sensitive claims through web search or an external endpoint. <br>
-Mitigation: Use it for non-sensitive claims, review the external endpoint before use, and avoid sending private or regulated information. <br>
-Risk: External verification or upsell links may steer users outside the skill. <br>
-Mitigation: Review external services and pricing before following links or sharing information. <br>
+## Use Case:
 
+Developers and agents use this skill for initial claim verification, source comparison, and confidence-scored fact-checking when a user asks to verify or confirm a factual claim.
 
-## Reference(s): <br>
-- [ClawHub Baseline-RAG listing](https://clawhub.ai/crftsmnd/baseline-rag) <br>
-- [Baseline-RAG endpoint](https://omni-skills.cvapi.workers.dev/skill/baseline-rag) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with source list, confidence table, and recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes heuristic confidence ranges and source citations; scores are not rigorous statistical measurements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may frame heuristic baseline confidence as more definitive than the evidence supports, especially for sensitive or high-impact claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for low-stakes initial review, preserve uncertainty language, cite both supporting and rejecting sources, and require independent review for sensitive claims.
+
+Risk: The skill includes broad auto-triggers and repeated promotion of an external paid verification service.
+
+Mitigation: Review prompts before deployment, disclose any external service handling, and remove or revise upsell language when neutral fact-checking is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crftsmnd/skills/baseline-rag)
+- [Skill endpoint](https://omni-skills.cvapi.workers.dev/skill/baseline-rag)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown fact-check report with confidence score, source list, recommendation, and next-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses heuristic baseline confidence scoring with wide uncertainty bounds.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

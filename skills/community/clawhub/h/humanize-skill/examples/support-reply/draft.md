@@ -1,0 +1,1 @@
+Great question! We sincerely apologize for any inconvenience this may have caused. Our system is designed to seamlessly synchronize your writing profile across every channel, and your data is always safe. In order to resolve the issue, please reconnect your account and let us know if the problem persists.

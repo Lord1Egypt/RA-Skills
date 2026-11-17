@@ -1,39 +1,49 @@
-## Description: <br>
-Generate social media content, including event posters, speaker announcements, and partnership posts, using AI synthesis recipes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate social media content, including event posters, speaker announcements, and partnership posts, using AI synthesis recipes.
 
-## Publisher: <br>
-[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba)
 
-## Use Case: <br>
-Marketing, community, and go-to-market teams use this skill to create event posters, speaker announcement cards, captions, and LinkedIn partnership posts from supplied campaign details and asset URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends provided text, image URLs, logo URLs, and template URLs to the external DeepContent synthesis service. <br>
-Mitigation: Use it for non-sensitive marketing content and avoid submitting confidential event details, private speaker photos, proprietary templates, unreleased partnership information, or internal asset URLs. <br>
-Risk: Generated marketing copy or images may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Review all generated captions and image outputs before publishing or sharing them externally. <br>
+## Use Case:
 
+External teams and content operators use this skill to collect required campaign details and generate social media poster assets, speaker announcement cards, captions, or partnership announcement copy.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Image URLs, API calls] <br>
-**Output Format:** [Brief natural-language responses with generated captions and direct image URLs when image recipes are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied campaign details and, for image recipes, public asset URLs; outputs are returned by the DeepContent synthesis service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided event details, company names, logos, photos, templates, captions, and related URLs are sent to an external DeepContent API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content that is appropriate to share with that external service, and review generated assets and copy before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thierrypdamiba/skills/turbo-poster-9000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, guidance]
+
+**Output Format:** [Markdown responses with generated text and image URLs when the selected recipe produces an image]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return image and caption blocks from the disclosed DeepContent synthesis API.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

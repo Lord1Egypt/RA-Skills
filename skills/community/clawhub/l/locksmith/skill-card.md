@@ -1,41 +1,54 @@
-## Description: <br>
-提供公安备案开锁、智能锁安装升级及紧急求援预约指引。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供公安备案开锁、智能锁安装升级及紧急求援预约指引。
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-People seeking locksmith help use this skill to compare registered unlocking, lock replacement, smart-lock installation, and urgent appointment options by service scope, urgency, qualifications, insurance, pricing, and follow-up coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The user may rely on an unverified locksmith or service quote for real-world property access. <br>
-Mitigation: Verify the locksmith's identity, police registration or local licensing where applicable, quoted pricing, and insurance coverage before authorizing service. <br>
-Risk: On-site locksmith work can expose valuables or create unauthorized access risk. <br>
-Mitigation: Confirm the user's authority over the property, secure valuables in advance, and supervise the service visit. <br>
+## Use Case:
 
+External users can use this skill to frame locksmith service requests, compare service scope, urgency, pricing models, personnel qualifications, insurance coverage, tools, consumables, and follow-up support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/locksmith) <br>
-- [Publisher profile](https://clawhub.ai/user/mikeclaw007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or installation output; responses focus on service-selection criteria, returned service fields, examples, update cadence, and precautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Real-world locksmith service guidance can affect property access, service cost, and user safety if the provider is not legitimate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the locksmith's licensing, identity, pricing, and insurance directly before using the advice in a real appointment.
+
+Risk: Service availability, response urgency, and discounts may change as regional demand and provider capacity change.
+
+Mitigation: Confirm current availability, timing, pricing, and promotional terms with the service provider before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/locksmith)
+- [Publisher profile](https://clawhub.ai/user/mikeclaw007)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static service-selection guidance; no executable code, persistence, credential access, or hidden authority.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

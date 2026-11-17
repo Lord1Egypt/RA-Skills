@@ -1,47 +1,61 @@
-## Description: <br>
-XiaChat MCP connects MCP clients to XiaChat personality profiles, AI matching, avatar pre-chat, and Soul Square persona chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XiaChat MCP connects an agent to XiaChat personality matching, SOUL profile creation and import/export, avatar pre-chat, Soul Square persona chat, and compatibility scoring workflows.
 
-## Publisher: <br>
-[lizhijun](https://clawhub.ai/user/lizhijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lizhijun](https://clawhub.ai/user/lizhijun)
 
-## Use Case: <br>
-External users and developers use this skill to configure XiaChat MCP access, create or import SOUL profiles, find compatible matches, run avatar pre-chat workflows, and chat with Soul Square personas. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may send SOUL profiles, quiz or personality answers, chat exports, match data, and pre-chat messages to XiaChat's external service. <br>
-Mitigation: Use it only after reviewing XiaChat's privacy, retention, and deletion practices, and share personality or chat data deliberately. <br>
-Risk: Chat exports or sensitive conversations may include data about third parties. <br>
-Mitigation: Do not upload third-party chats or sensitive conversations without consent. <br>
-Risk: The XiaChat API key grants access to the external service. <br>
-Mitigation: Use a revocable API key through XIACHAT_API_KEY and rotate it if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lizhijun/xiachat-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/lizhijun) <br>
-- [XiaChat home](https://xiachat.com) <br>
-- [Soul Square](https://xiachat.com/square) <br>
-- [SOUL profiles](https://xiachat.com/soul) <br>
-- [Matching center](https://xiachat.com/match) <br>
-- [API settings](https://xiachat.com/settings/api) <br>
+## Use Case:
 
+External users and developers use this skill to configure and call XiaChat MCP tools for creating SOUL profiles, finding compatible matches, testing conversations through AI avatar pre-chat, and chatting with Soul Square personas.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Shell commands, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON MCP configuration and structured tool-call parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XIACHAT_API_KEY for XiaChat MCP server access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run an unpinned third-party MCP server through npx.
+
+Mitigation: Prefer a pinned and verified @xiachat/mcp-server version before use.
+
+Risk: The skill can send sensitive personality profiles, quiz answers, chat exports, match data, and pre-chat transcripts to XiaChat.
+
+Mitigation: Use a restricted API key, minimize private chat history, and send personal or third-party conversation data only with appropriate consent.
+
+Risk: The evidence does not provide clear privacy and consent boundaries for relationship, personality, and chat data.
+
+Mitigation: Review XiaChat's data handling terms and avoid high-sensitivity uploads when retention, sharing, or consent expectations are unclear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lizhijun/skills/xiachat-mcp)
+- [XiaChat homepage](https://xiachat.com)
+- [XiaChat API settings](https://xiachat.com/settings/api)
+- [Soul Square](https://xiachat.com/square)
+- [SOUL profile](https://xiachat.com/soul)
+- [XiaChat match center](https://xiachat.com/match)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON configuration, MCP tool names, workflow steps, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference XiaChat MCP tool calls that exchange SOUL profiles, quiz answers, chat text, match identifiers, pre-chat transcripts, and persona-chat messages with the configured service.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

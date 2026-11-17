@@ -1,39 +1,50 @@
-## Description: <br>
-Use when starting development work or when deciding which Superpowers workflow skill to use as an entry point to the OpenClaw Superpowers skill suite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when starting any development work or when unsure which superpowers development skill to use - provides entry point and navigation to the full superpowers skill suite for OpenClaw agents.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and coding agents use this skill to choose an appropriate structured development workflow before starting implementation, debugging, verification, code review, or branch finishing work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The overview points agents toward companion workflow skills that may involve branch changes, command execution, or subagent delegation. <br>
-Mitigation: Review the referenced companion skills separately before allowing those higher-impact workflows in an environment. <br>
+## Use Case:
 
+Developers and engineers use this skill as an entry point for selecting the appropriate Superpowers workflow skill when planning, implementing, debugging, verifying, reviewing, or finishing OpenClaw agent development work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/superpowers-overview) <br>
-- [Publisher profile](https://clawhub.ai/user/axelhu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with workflow tables and decision paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only overview; it does not run code or collect data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: Skill-count and companion-skill slug inconsistencies may cause an agent or reviewer to route work to the wrong related skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm companion skill names and ClawHub slugs against the ClawHub release page before routing work to a related skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page: Superpowers Overview](https://clawhub.ai/axelhu/skills/superpowers-overview)
+- [Publisher Profile: axelhu](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with workflow tables and decision paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only workflow overview; no executable code, persistence, credential handling, or hidden data access identified in security evidence.]
+
+## Skill Version(s):
+
+1.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

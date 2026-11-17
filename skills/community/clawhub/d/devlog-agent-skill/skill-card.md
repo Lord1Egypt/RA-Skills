@@ -1,40 +1,54 @@
-## Description: <br>
-Allows agents to log, list, search, and manage developer journal entries for projects using dev-log-cli in a structured SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Allows agents to log, list, search, and manage developer journal entries for projects using dev-log-cli in a structured SQLite database.
 
-## Publisher: <br>
-[CrimsonDevil333333](https://clawhub.ai/user/CrimsonDevil333333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crimsondevil333333](https://clawhub.ai/user/crimsondevil333333)
 
-## Use Case: <br>
-Developers and coding agents use this skill to maintain project journals, record milestones and blockers, and retrieve recent or searchable development context across work sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores persistent project journal entries that may be reused as project memory. <br>
-Mitigation: Do not log secrets, credentials, customer data, private security details, or sensitive internal reasoning; periodically review and remove entries that should not persist. <br>
-Risk: The setup flow installs dev-log-cli from an external package source. <br>
-Mitigation: Install only when the dev-log-cli package source is trusted and review the installed package according to local supply-chain policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CrimsonDevil333333/devlog-agent-skill) <br>
-- [dev-log-cli on PyPI](https://pypi.org/project/dev-log-cli/) <br>
+## Use Case:
 
+Developers and agent operators use this skill to maintain project journals, record milestones and blockers, and retrieve prior project context through dev-log-cli.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents to create and query local SQLite-backed developer journal entries through dev-log-cli.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup script installs dev-log-cli from PyPI through pipx, which introduces a user-level external dependency.
+
+Mitigation: Review or pin the dev-log-cli package before running setup.sh in sensitive environments.
+
+Risk: Developer journal entries are stored persistently and may include project details.
+
+Mitigation: Keep secrets, tokens, customer information, and highly sensitive internal notes out of log entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crimsondevil333333/skills/devlog-agent-skill)
+- [dev-log-cli GitHub repository](https://github.com/CrimsonDevil333333/dev-log-cli)
+- [dev-log-cli PyPI package](https://pypi.org/project/dev-log-cli/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local devlog CLI commands to create, list, search, view, edit, and summarize persistent project log entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

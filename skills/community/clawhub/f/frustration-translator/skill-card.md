@@ -1,40 +1,54 @@
-## Description: <br>
-Detects user frustration in prompts and translates charged or vague language into clear, actionable instructions for an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect user frustration in prompts and translate charged or emotional language into clear, actionable instructions.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dodge1218](https://clawhub.ai/user/dodge1218)
 
-## Use Case: <br>
-External users and developers use this skill to help agents recognize emotionally charged task requests, restate the likely actionable need, and proceed with focused execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage agents to persist raw frustrated user messages, which may retain sensitive user content. <br>
-Mitigation: Remove or disable the raw quote log unless users have approved that persistence and the log is reviewed under the deployment's data handling rules. <br>
-Risk: The skill can encourage agents to act on inferred intent too aggressively. <br>
-Mitigation: Keep normal clarification, confirmation, and safety checks for sensitive, costly, public, or irreversible actions even when frustration is detected. <br>
+## Use Case:
 
+Developers and agent operators use this skill to recognize emotionally charged user messages, infer the underlying task from nearby conversation context, and respond with direct action. It is intended to reduce wasted context and misinterpretation when urgency or frustration obscures the actual request.
 
-## Reference(s): <br>
-- [Frustration Log](references/frustration-log.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and concise natural-language responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API, shell, or configuration output is produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can encourage retaining conversation-derived details in a local frustration log, including sensitive user text or business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or sanitize log entries, avoid verbatim user text and business details, and require explicit consent before retaining conversation-derived records.
+
+Risk: The skill tells agents to move quickly and avoid extra caveats when users sound urgent, which could suppress normal clarification or safety checks.
+
+Mitigation: Preserve required safety, privacy, and clarification behavior even when using the frustration score to prioritize concise action.
+
+## Reference(s):
+
+- [Frustration Log](references/frustration-log.md)
+- [ClawHub Skill Page](https://clawhub.ai/dodge1218/skills/frustration-translator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance and concise natural-language response patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local frustration-log entries when retention is enabled by the operating environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

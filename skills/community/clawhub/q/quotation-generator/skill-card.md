@@ -1,40 +1,53 @@
-## Description: <br>
-Auto-generate professional PDF proforma invoices with company letterhead, multi-language support, and post-quote tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+报价单生成可根据用户上传的物料价格表和 Excel 报价模板，分析模板结构、匹配产品价格、计算总价，并生成填充完成的报价单 Excel 文件。
 
-## Publisher: <br>
-[ipythoning](https://clawhub.ai/user/ipythoning) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaolongcai](https://clawhub.ai/user/shaolongcai)
 
-## Use Case: <br>
-Sales and export teams use this skill to draft multilingual proforma invoices for B2B deals, route quote drafts for owner approval, and track post-quote follow-up and CRM status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact customers through WhatsApp or update CRM records without clearly bounded confirmation steps. <br>
-Mitigation: Require human approval before any message is sent or CRM record is updated, and confirm the customer, quote contents, recipient, and CRM status each time. <br>
-Risk: Generated quotes may depend on customer, pricing, WhatsApp, and CRM data that requires appropriate access controls. <br>
-Mitigation: Install only where the agent is permitted to access those workflows, and review product terms, pricing, and customer details before approval. <br>
+## Use Case:
 
+External users and business teams use this skill to turn uploaded price lists and Excel quotation templates into completed customer quotation workbooks. It is useful when product pricing, model selection, template column mapping, formula preservation, and customer fields must be handled consistently.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ipythoning/quotation-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [PDF proforma invoice content, WhatsApp message drafts, and CRM update guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses customer conversation context and product catalog data to prepare quotes, follow-ups, and quote references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Spreadsheet formula injection can occur if user-controlled text from product names, customer fields, or uploaded price lists is written directly into Excel cells.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all user and price-list text as untrusted, write text fields as literal strings, and permit formulas only in trusted template-controlled cells.
+
+Risk: Incorrect model matching or ambiguous product selection can produce inaccurate customer quotations.
+
+Mitigation: Require clarification when a product has multiple models, do not invent missing products, and review product, quantity, price, and total fields before sending generated files externally.
+
+## Reference(s):
+
+- [报价数据规范](references/data-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, configuration, guidance]
+
+**Output Format:** [Excel workbook with Markdown or JSON-style operational summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workbooks are based on user-supplied price lists and Excel templates; product text, pricing, model selection, and formulas should be reviewed before customer use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

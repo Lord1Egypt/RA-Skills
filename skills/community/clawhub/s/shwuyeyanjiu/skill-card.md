@@ -1,43 +1,58 @@
-## Description: <br>
-Researches Shanghai property bidding, award, and evaluation announcements, extracts project details from public PDFs with OCR, and calculates saturated property-management income. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches Shanghai residential property bidding, award, and evaluation-result announcements with OCR extraction to summarize project details and calculate saturated income.
 
-## Publisher: <br>
-[misbah-boop](https://clawhub.ai/user/misbah-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[misbah-boop](https://clawhub.ai/user/misbah-boop)
 
-## Use Case: <br>
-Developers and analysts researching Shanghai property-management projects use this skill to find public announcements, OCR PDFs, extract fee and project fields, and calculate saturated income or contract dates for named projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads public Shanghai property announcement PDFs and stores temporary PDF files locally. <br>
-Mitigation: Run it in a working directory you control, review downloaded files, and clean up temporary PDFs after use. <br>
-Risk: Batch scripts may write CSV output to a hard-coded local path. <br>
-Mitigation: Change the CSV output path before running batch scripts so results are written only to an intended location. <br>
-Risk: OCR can misread scanned announcement values used in fee and income calculations. <br>
-Mitigation: Verify OCR-extracted dates, areas, fee standards, and calculated income against the source PDFs before relying on results. <br>
+## Use Case:
 
+Developers, analysts, and property researchers use this skill to retrieve and analyze project-level announcements from Shanghai's residential property bidding site, extract project area, fee, parking, award, and contract date details from PDFs, and calculate saturated monthly or annual income.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/misbah-boop/shwuyeyanjiu) <br>
-- [Shanghai property announcement list](https://962121.fgj.sh.gov.cn/wyweb/web/front/common/greenmorelist.jsp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks, plus calculated project fields and summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on public PDF availability, local OCR tools, and manual review of OCR-derived numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan verdict is suspicious because the release includes extra batch scripts and unsafe local PDF handling beyond the stated project-level research workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it only in an isolated workspace, and avoid batch or /tmp-scanning scripts unless they are explicitly needed.
+
+Risk: The included behavior can download PDFs and write local outputs such as OCR text or CSV summaries.
+
+Mitigation: Use a private temporary directory, sanitize output paths, clean up downloaded files, and restrict workspace access before running scripts.
+
+Risk: OCR extraction can misread project amounts, dates, fee standards, or cross-line values.
+
+Mitigation: Manually verify extracted values against the source announcements and relevant property service contracts before relying on calculations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/misbah-boop/skills/shwuyeyanjiu)
+- [Shanghai residential property announcement list](https://962121.fgj.sh.gov.cn/wyweb/web/front/common/greenmorelist.jsp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks, plus command-line text summaries of extracted project fields and income calculations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce downloaded PDF files, OCR text, and CSV summaries when the included scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

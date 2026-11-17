@@ -1,43 +1,54 @@
-## Description: <br>
-Run creator brand-deal operations from inbound brief to delivery and payment tracking. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Run creator brand-deal operations from inbound brief to delivery and payment tracking.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, managers, and creator operations teams use this skill to structure sponsorship deals, check terms and redlines, plan deliverables, and track payment follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deal terms, rates, invoices, and payment status may contain sensitive business information. <br>
-Mitigation: Treat those details as confidential and confirm permissions before exporting deal materials into shared workspaces. <br>
-Risk: Payment reminders or sponsor-facing follow-ups may be sent with incomplete context or the wrong tone. <br>
-Mitigation: Review reminders and follow-up messages before sending, especially when payments are overdue. <br>
-Risk: Commercial use may require separate licensing because the artifact text states non-commercial CC BY-NC-SA 4.0 terms. <br>
-Mitigation: Review licensing separately before commercial deployment or reuse. <br>
+## Use Case:
 
+External creators, creator teams, and agency operators use this skill to turn inbound sponsorship briefs into scoped delivery plans, redline checks, revision controls, and payment follow-up trackers.
 
-## Reference(s): <br>
-- [Deal Scorecard (Lightweight)](references/deal-scorecard.md) <br>
-- [Creator Deal Ops on ClawHub](https://clawhub.ai/Leooooooow/creator-deal-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured checklists and tracker rows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deal scorecards, redline lists, delivery checklists, payment tracker rows, and follow-up cadence guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: Generated deal plans or reminders may include incorrect rates, payment terms, client names, invoice details, or delivery status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated outputs before sending them externally or copying them into operational systems.
+
+Risk: Operational guidance may miss deal-specific requirements for usage rights, exclusivity, disclosures, revisions, or payment obligations.
+
+Mitigation: Confirm the final terms against the written agreement and use qualified review for legal or compliance-sensitive decisions.
+
+## Reference(s):
+
+- [Deal Scorecard](references/deal-scorecard.md)
+- [Creator Deal Ops Skill Page](https://clawhub.ai/leooooooow/skills/creator-deal-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured deal scorecard, redline list, delivery checklist, and payment tracker row]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise follow-up cadence and reminder language for overdue payments]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

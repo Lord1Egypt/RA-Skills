@@ -1,47 +1,60 @@
-## Description: <br>
-Guide an installing agent through a staged PPT or slide workflow without constraining its implementation choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an installing agent through a staged presentation workflow for clarifying a brief, gathering facts when needed, building an outline, creating page-level planning, producing reviewable intermediate artifacts, and handling limited capabilities honestly.
 
-## Publisher: <br>
-[textboy](https://clawhub.ai/user/textboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[textboy](https://clawhub.ai/user/textboy)
 
-## Use Case: <br>
-Developers, presentation authors, and agents use this skill to turn a topic, source material, existing outline, or partial draft into a staged presentation workflow with clarification, optional fact-finding, outline, planning draft, review gates, and final deck-plan handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation tasks can involve confidential reports, internal URLs, transcripts, or business plans. <br>
-Mitigation: Use approved source material, avoid unnecessary sensitive inputs, and review generated briefs or deck plans before sharing them outside the intended audience. <br>
-Risk: Fact-dependent decks can contain stale, incomplete, or misleading claims if external research is unavailable or weak. <br>
-Mitigation: Require the agent to label source limitations, distinguish confirmed facts from open questions, and use review gates before expanding high-stakes decks. <br>
-Risk: Saved markdown deck plans may persist sensitive presentation content in the local workspace. <br>
-Mitigation: Choose an appropriate workspace for confidential work and manage generated ./output files according to local data-handling rules. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to plan presentation decks from topics, briefs, source materials, or partial outlines. It helps an agent produce research briefs, outlines, planning drafts, sample artifacts, full deck plans, and review notes with explicit checkpoints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/textboy/present-workflow) <br>
-- [README](README.md) <br>
-- [PPT Agent Workflow Method](references/method.md) <br>
-- [Agent Integration Guide](references/agent-integration.md) <br>
-- [Reusable Prompts](references/prompts.md) <br>
-- [Presentation scenario and style gallery](https://next-slide-jet.vercel.app/gallery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown, structured outlines, planning drafts, research briefs, review notes, and optional local markdown deck-plan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save the final approved deck plan or delivered output layer to ./output/<name>.md when the environment supports file output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Sensitive or private source material may appear in generated research briefs, planning drafts, or Markdown output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid providing secrets or private content unless it is acceptable for that content to appear in generated deck-planning artifacts; review outputs before sharing.
+
+Risk: The workflow may save a final approved plan under ./output/ and could overwrite an existing file if the agent reuses a path.
+
+Mitigation: Check the target file path before writing and ask for confirmation before overwriting an existing output file.
+
+Risk: Presentation topics that depend on current or uncertain facts can produce weak or unsupported claims if the agent skips verification.
+
+Mitigation: Use the research and review gates for evidence-sensitive decks, label source-limited outputs, and verify key claims before final delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/textboy/skills/present-workflow)
+- [PPT Agent Workflow Method](references/method.md)
+- [Agent Integration Guide](references/agent-integration.md)
+- [Reusable Prompts](references/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, guidance]
+
+**Output Format:** [Markdown, structured text, optional outline JSON, and optional HTML or SVG page representations when the environment supports them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The final approved deck plan, or the delivered output layer, may be saved as ./output/<name>.md for downstream presentation generation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

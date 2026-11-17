@@ -1,45 +1,58 @@
-## Description: <br>
-Demonstrates and teaches the KlickAnalytics CLI (`ka`) for financial markets intelligence, including command discovery, setup, automation examples, and agent or LLM integration patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Demonstrates and teaches the KlickAnalytics CLI, including market analytics commands, JSON-oriented agent integration patterns, and examples for financial research workflows.
 
-## Publisher: <br>
-[klickanalytics](https://clawhub.ai/user/klickanalytics) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[klickanalytics](https://clawhub.ai/user/klickanalytics)
 
-## Use Case: <br>
-External developers, analysts, quants, and agent builders use this skill to learn and apply KlickAnalytics CLI commands for market research, JSON-oriented automation, and LLM tool integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The KlickAnalytics CLI API key is sensitive and could be exposed through shell configuration, logs, shared terminals, or synced dotfiles. <br>
-Mitigation: Treat `KLICKANALYTICS_CLI_API_KEY` like a password, prefer a local secret manager or private environment configuration, and avoid placing it in shared or synced files. <br>
-Risk: `ka ai-chat` prompts may contain confidential financial research, credentials, account details, or regulated information. <br>
-Mitigation: Avoid sending confidential or regulated information to `ka ai-chat` unless the user is comfortable with KlickAnalytics or its providers processing that content. <br>
+## Use Case:
 
+External users, developers, analysts, and agent builders use this skill to learn how to install and call the KlickAnalytics CLI for financial markets research, automation, and JSON-based tool integration.
 
-## Reference(s): <br>
-- [KlickAnalytics CLI command reference](references/commands.md) <br>
-- [KlickAnalytics CLI intro](https://www.klickanalytics.com/cli_intro) <br>
-- [KlickAnalytics CLI documentation](https://www.klickanalytics.com/cli_documentation) <br>
-- [KlickAnalytics CLI playground](https://www.klickanalytics.com/cli_playground) <br>
-- [OpenClaw integration guide](https://www.klickanalytics.com/cli_integration) <br>
-- [KlickAnalytics CLI changelog](https://www.klickanalytics.com/cli_changelog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python examples, and JSON-oriented instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include exact `ka` commands and API-key setup guidance; the skill itself provides instructions and does not execute the CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill asks users to install an external Python package that may change outside the skill artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when KlickAnalytics is trusted, prefer a dedicated virtual environment, and pin a reviewed package version where possible.
+
+Risk: The setup instructions persist an API key in shell startup files, which can expose secrets on shared, synced, backed-up, or source-controlled machines.
+
+Mitigation: Use a secret manager or tightly scoped environment injection rather than storing the API key directly in shell startup files.
+
+## Reference(s):
+
+- [KlickAnalytics CLI intro](https://www.klickanalytics.com/cli_intro)
+- [KlickAnalytics CLI documentation](https://www.klickanalytics.com/cli_documentation)
+- [KlickAnalytics CLI playground](https://www.klickanalytics.com/cli_playground)
+- [OpenClaw integration guide](https://www.klickanalytics.com/cli_integration)
+- [KlickAnalytics CLI changelog](https://www.klickanalytics.com/cli_changelog)
+- [KlickAnalytics CLI command reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, command examples, and JSON-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on the KLICKANALYTICS_CLI_API_KEY environment variable and CLI commands that commonly return JSON.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

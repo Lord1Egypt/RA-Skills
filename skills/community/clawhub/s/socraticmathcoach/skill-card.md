@@ -1,38 +1,53 @@
-## Description: <br>
-Guides students through math problems with stepwise hints, answer checking, concept explanations, and short learning summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language math coaching skill that guides students through problems with step-by-step hints, answer checks, and brief learning summaries.
 
-## Publisher: <br>
-[xyz-123a](https://clawhub.ai/user/xyz-123a) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xyz-123a](https://clawhub.ai/user/xyz-123a)
 
-## Use Case: <br>
-Students and tutors use this skill during math-help conversations to receive graduated hints, answer checks, concept explanations, and brief summaries without immediately revealing final answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Math tutoring conversations may include sensitive student information. <br>
-Mitigation: Avoid sharing sensitive student information unless the host environment is approved to handle it. <br>
+## Use Case:
 
+Students and tutors use this skill during math-help conversations to work through problems gradually, check proposed answers, identify common error types, and summarize next practice steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xyz-123a/socraticmathcoach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text tutoring responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses graduated hint levels, error categories, and concise end-of-session summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill may activate broadly on math tutoring requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger and locale settings before deployment when a narrower scope or non-Chinese tutoring behavior is required.
+
+Risk: Tutoring guidance may be incorrect or more direct than intended for a student's learning goal.
+
+Mitigation: Review generated explanations before relying on them for instruction, especially when answer correctness or hint level matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xyz-123a/skills/socraticmathcoach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text tutoring responses with step-by-step hints, answer checks, and brief summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language tutoring posture with graduated hint levels from guiding questions to direct answers]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

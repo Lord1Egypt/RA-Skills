@@ -40,10 +40,10 @@ Add these **Bot Token Scopes**:
 
 ```bash
 # Basic setup
-agent-slackbot auth set xoxb-your-bot-token
+agent-slackbot auth set REDACTED-SECRET
 
 # With a custom bot identifier (for multi-bot setups)
-agent-slackbot auth set xoxb-your-bot-token --bot deploy --name "Deploy Bot"
+agent-slackbot auth set REDACTED-SECRET --bot deploy --name "Deploy Bot"
 ```
 
 This command:
@@ -77,7 +77,7 @@ This command:
         "deploy": {
           "bot_id": "deploy",
           "bot_name": "Deploy Bot",
-          "token": "xoxb-1234567890-1234567890-abcdef..."
+          "token": "REDACTED-SECRET..."
         }
       }
     }
@@ -96,7 +96,7 @@ This command:
 For automated environments, use environment variables instead of file-based credentials:
 
 ```bash
-export E2E_SLACKBOT_TOKEN=xoxb-your-bot-token
+export E2E_SLACKBOT_TOKEN=REDACTED-SECRET
 export E2E_SLACKBOT_WORKSPACE_ID=T123456
 export E2E_SLACKBOT_WORKSPACE_NAME="My Workspace"
 ```
@@ -109,8 +109,8 @@ Store and switch between multiple bot tokens:
 
 ```bash
 # Add multiple bots
-agent-slackbot auth set xoxb-deploy-token --bot deploy --name "Deploy Bot"
-agent-slackbot auth set xoxb-alert-token --bot alert --name "Alert Bot"
+agent-slackbot auth set REDACTED-SECRET --bot deploy --name "Deploy Bot"
+agent-slackbot auth set REDACTED-SECRET --bot alert --name "Alert Bot"
 
 # List all stored bots
 agent-slackbot auth list
@@ -179,7 +179,7 @@ Bot tokens can be invalidated when:
 
 ```bash
 # Get a new token from api.slack.com/apps > OAuth & Permissions
-agent-slackbot auth set xoxb-new-bot-token
+agent-slackbot auth set REDACTED-SECRET
 
 # Verify
 agent-slackbot auth status

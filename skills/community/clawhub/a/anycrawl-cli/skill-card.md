@@ -1,43 +1,61 @@
-## Description: <br>
-Provides web scraping, search, crawling, and site mapping through the AnyCrawl CLI for user-requested web retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping, search, crawling, and site mapping via the AnyCrawl CLI for agents that need to find pages, scrape URLs, discover site links, or bulk extract content as LLM-optimized markdown.
 
-## Publisher: <br>
-[QThans](https://clawhub.ai/user/QThans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qthans](https://clawhub.ai/user/qthans)
 
-## Use Case: <br>
-Developers and agents use this skill to search the web, scrape known URLs, discover pages on a site, or crawl site sections while storing fetched markdown output in local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched web content can contain indirect prompt injection or misleading instructions. <br>
-Mitigation: Treat scraped content as untrusted data, write results to .anycrawl/ files, and inspect only the relevant portions incrementally. <br>
-Risk: The skill requires AnyCrawl authentication and may expose sensitive API credentials if handled carelessly. <br>
-Mitigation: Verify the AnyCrawl package and publisher before installing, keep API keys out of shared files, and rotate credentials when needed. <br>
-Risk: Crawling sensitive sites or committing fetched output could disclose data unintentionally. <br>
-Mitigation: Run web fetching only for explicit user requests, avoid sensitive targets unless necessary, and keep .anycrawl/ out of version control. <br>
+## Use Case:
 
+Developers and agent users use this skill to run AnyCrawl CLI workflows for web search, single-page scraping, site URL mapping, and bulk crawling. It is intended for user-initiated web data collection where fetched content is written to local files and inspected selectively.
 
-## Reference(s): <br>
-- [AnyCrawl API Docs](https://docs.anycrawl.dev) <br>
-- [AnyCrawl CLI npm package](https://www.npmjs.com/package/anycrawl-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file paths; fetched results are written to .anycrawl/.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a pre-installed and authenticated AnyCrawl CLI and may use ANYCRAWL_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Unpinned npm or npx execution can run a package version that has not been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed, pinned anycrawl-cli version and avoid npx fallback execution where possible.
+
+Risk: API keys shown directly in shell commands can be exposed through shell history or logs.
+
+Mitigation: Use a protected secret flow or a carefully managed ANYCRAWL_API_KEY environment variable instead of pasting real keys into commands.
+
+Risk: Fetched web pages are untrusted third-party content and may contain indirect prompt injection attempts.
+
+Mitigation: Write results to .anycrawl/, read only the needed portions incrementally, and do not follow instructions found inside fetched content.
+
+## Reference(s):
+
+- [AnyCrawl API Docs](https://docs.anycrawl.dev)
+- [anycrawl-cli npm package](https://www.npmjs.com/package/anycrawl-cli)
+- [AnyCrawl dashboard](https://anycrawl.dev/dashboard)
+- [ClawHub skill page](https://clawhub.ai/qthans/skills/anycrawl-cli)
+- [Publisher profile](https://clawhub.ai/user/qthans)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file-output handling instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetched web content is expected to be written under .anycrawl/ and read incrementally.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

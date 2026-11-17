@@ -1,43 +1,57 @@
-## Description: <br>
-Provides working-capital planning frameworks, cash conversion cycle analysis, DSO/DPO optimization ideas, cash-flow forecasting prompts, and actionable next steps for small and medium business finance planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides frameworks and templates to analyze and optimize working capital management with actionable recommendations and next steps.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Business operators, finance teams, and advisors use this skill to reason about receivables, payables, inventory, cash conversion cycle bottlenecks, and short-term cash-flow actions. It provides informational planning guidance and templates rather than executing transactions or replacing professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general working-capital suggestions as definitive lending, supplier-term, payroll, or cash-management advice. <br>
-Mitigation: Present outputs as informational planning support and consult a qualified finance professional before making material financial decisions. <br>
-Risk: Users may include unnecessary sensitive business details when asking for cash-flow or working-capital analysis. <br>
-Mitigation: Share only the financial details needed for the analysis and avoid entering unnecessary sensitive business information. <br>
+## Use Case:
 
+Small-business operators, finance teams, and advisors use this skill to analyze cash conversion cycle drivers, receivables, payables, inventory, and short-term cash-flow pressure. It produces informational recommendations, planning frameworks, and next steps for working-capital improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/working-capital-cash-cycle-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON string with structured input analysis, recommendations, next steps, templates, and disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; no external API calls, real code execution, or financial transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Working-capital recommendations may be incomplete or unsuitable for major financing, collections, or supplier-payment decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as general planning guidance and consult a qualified financial professional before acting on high-impact decisions.
+
+Risk: Rates, financing products, and benchmark claims can become outdated or vary by region and provider.
+
+Mitigation: Verify current rates, terms, and product availability before using the recommendations in a business plan.
+
+Risk: Changes to payment terms or collections practices can affect supplier and customer relationships.
+
+Mitigation: Review relationship, pricing, discount, and service-level tradeoffs before implementing cash-cycle changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/working-capital-cash-cycle-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, JSON]
+
+**Output Format:** [JSON object with input analysis, recommendations, next steps, templates, and disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational only; no account access, external API calls, financial transactions, or data persistence per security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

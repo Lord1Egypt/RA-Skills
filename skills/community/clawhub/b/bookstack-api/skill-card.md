@@ -1,45 +1,61 @@
-## Description: <br>
-BookStack API lets agents manage a BookStack wiki through REST API commands for searching, reading, creating, updating, and deleting books, chapters, pages, and shelves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BookStack Wiki & Documentation API integration for creating, reading, updating, deleting, organizing, and searching books, chapters, pages, and shelves on a BookStack instance.
 
-## Publisher: <br>
-[f-liva](https://clawhub.ai/user/f-liva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[f-liva](https://clawhub.ai/user/f-liva)
 
-## Use Case: <br>
-External users, developers, and documentation agents use this skill to search, read, publish, update, organize, and delete content in a configured BookStack knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can update or delete live BookStack content. <br>
-Mitigation: Use a dedicated least-privilege API token and require explicit confirmation before updates or deletions. <br>
-Risk: Broad activation wording can cause an agent to act on vague requests about docs or a wiki. <br>
-Mitigation: Confirm the target BookStack instance, resource type, and resource ID before making changes. <br>
-Risk: Delete commands do not include built-in confirmation prompts. <br>
-Mitigation: Restrict delete permissions unless they are needed and review proposed delete commands before execution. <br>
+## Use Case:
 
+Developers, documentation maintainers, and operations teams use this skill to let an agent search, read, create, update, and organize BookStack knowledge-base content through the BookStack API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/f-liva/bookstack-api) <br>
-- [Publisher profile](https://clawhub.ai/user/f-liva) <br>
-- [BookStack API commands reference](artifact/references/api-commands.md) <br>
-- [BookStack project site](https://www.bookstackapp.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands, BookStack resource summaries, API results, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BOOKSTACK_URL, BOOKSTACK_TOKEN_ID, and BOOKSTACK_TOKEN_SECRET for API access; page content may be read or written as HTML or Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can give an agent broad write and delete access to a live BookStack wiki.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege BookStack API token, prefer read-only permissions unless writes are required, and require explicit confirmation before delete or bulk update requests.
+
+Risk: BookStack credentials are configured through local environment values or a local credential file.
+
+Mitigation: Keep the local credential file private, keep it out of synced folders and source control, and rotate the BookStack API token if exposure is suspected.
+
+Risk: Requests can send sensitive wiki content or credentials to a configured BookStack URL.
+
+Mitigation: Configure only an HTTPS BookStack URL and verify the target instance before allowing the agent to read or modify content.
+
+## Reference(s):
+
+- [BookStack API Commands Reference](references/api-commands.md)
+- [BookStack](https://www.bookstackapp.com/)
+- [ClawHub Skill Page](https://clawhub.ai/f-liva/skills/bookstack-api)
+- [Project Homepage](https://github.com/f-liva/skill-bookstack)
+- [Source URL](https://github.com/f-liva/skill-bookstack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and BookStack API command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include BookStack content in HTML or Markdown depending on command options.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

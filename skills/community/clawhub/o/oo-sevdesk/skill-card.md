@@ -1,45 +1,55 @@
-## Description: <br>
-sevdesk (sevdesk.com). Use this skill for ANY sevdesk request: reading, creating, updating, and deleting data through the OOMOL sevdesk connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, or delete sevdesk data through the connected sevdesk account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage sevdesk contacts through an OOMOL-connected sevdesk account. It supports reading contact records and, after confirmation, creating, updating, or deleting contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a connected sevdesk account and may access sensitive contact data. <br>
-Mitigation: Install it only when you intend to let the agent use your OOMOL-connected sevdesk account. <br>
-Risk: Write and delete actions can change or remove sevdesk contact records. <br>
-Mitigation: Review confirmations carefully, especially contact identifiers and payload details, before allowing state-changing actions. <br>
-Risk: First-time setup may require installing the oo CLI. <br>
-Mitigation: Install the oo CLI only from the documented OOMOL source if prompted by an auth or connection failure. <br>
+## Use Case:
 
+People working with sevdesk use this skill to list and retrieve contacts, or create, update, and delete them through a connected account.
 
-## Reference(s): <br>
-- [sevdesk homepage](https://sevdesk.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-sevdesk) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action payload construction; state-changing actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Setup uses a remote CLI installer, and synchronization may affect broader agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin a verified CLI before installation; review the CLI command reference and decide whether to opt out of synchronization.
+
+Risk: Creating, updating, or deleting contacts changes sevdesk data.
+
+Mitigation: Connect only the intended sevdesk account, verify the target and exact change, and retain user approval before execution.
+
+## Reference(s):
+
+- [sevdesk](https://sevdesk.com)
+- [sevdesk API documentation](https://api.sevdesk.de/)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [Structured JSON results and concise natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contact changes and deletions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

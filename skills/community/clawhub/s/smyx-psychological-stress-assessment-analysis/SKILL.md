@@ -1,7 +1,7 @@
 ---
 name: "psychological-stress-assessment-analysis"
 description: "Combines facial blood flow and emotional characteristics to analyze stress index, anxiety tendency, and depression tendency, suitable for mental health monitoring scenarios. | 心理压力评估技能，结合面部血流与情绪特征，分析压力指数、焦虑倾向、抑郁倾向，适用于心理健康监测场景"
-version: "1.0.7"
+version: "1.0.25"
 license: "MIT-0"
 ---
 

@@ -1,43 +1,59 @@
-## Description: <br>
-Lip-sync an existing HTTPS video to a separate audio URL via WeryAI (video-lips-change). Use when the user wants lip sync to new audio, not text-to-video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lip-sync an existing HTTPS video to a separate audio URL via WeryAI (video-lips-change). Use when the user wants lip sync to new audio, not text-to-video.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Developers and agents use this skill to run WeryAI lips-change jobs that sync an existing public HTTPS video to a separate public HTTPS audio URL. It is intended for URL-based lip-sync workflows, not local file uploads, text-to-video generation, or face replacement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends user-provided video and audio URLs to WeryAI for processing. <br>
-Mitigation: Use only public HTTPS media URLs the user is comfortable sharing with WeryAI, avoid signed or credential-bearing URLs when possible, and run in a trusted environment. <br>
-Risk: Paid WeryAI runs may be submitted when the agent executes submit or wait. <br>
-Mitigation: Use dry-run first and require explicit user confirmation of both URLs before starting a paid job. <br>
-Risk: The WERYAI_API_KEY credential is required at runtime. <br>
-Mitigation: Provide WERYAI_API_KEY only through the runtime environment and do not write it into files or prompts. <br>
+## Use Case:
 
+External users and developers use this skill to run WeryAI lip sync on an existing public HTTPS video with a separate public HTTPS audio track. It is intended for changing lip movement to match new audio, not for text-to-video, image-to-video, face replacement, or local upload workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-lips-change) <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON request payloads, and final result links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, public HTTPS media URLs, and user confirmation before paid submit or wait runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends the selected video URL, audio URL, and authenticated request to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public HTTPS media URLs that are appropriate to share with WeryAI, and install the skill only if that data flow is acceptable.
+
+Risk: Paid submissions are not idempotent and may consume credits.
+
+Mitigation: Run a dry-run first and require explicit user confirmation of both URLs before submit or wait.
+
+Risk: Extra JSON fields are not stripped before submission.
+
+Mitigation: Provide only the documented video_url and audio_url fields unless the skill is updated and reviewed.
+
+## Reference(s):
+
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-lips-change)
+- [Publisher profile](https://clawhub.ai/user/zoucdr)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include dry-run request previews, task IDs, status results, and final video links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

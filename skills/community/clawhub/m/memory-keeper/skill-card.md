@@ -1,40 +1,62 @@
-## Description: <br>
-Copy and snapshot all important agent context (MEMORY.md, memory/*.md, AGENTS.md, SOUL.md, etc.) into a dedicated archive directory or repo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Copy and snapshot all important agent context (MEMORY.md, memory/*.md, AGENTS.md, SOUL.md, etc.) into a dedicated archive directory or repo.
 
-## Publisher: <br>
-[CrimsonDevil333333](https://clawhub.ai/user/CrimsonDevil333333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[crimsondevil333333](https://clawhub.ai/user/crimsondevil333333)
 
-## Use Case: <br>
-Developers and agent operators use Memory Keeper to back up agent memory, context, and configuration files before maintenance, migrations, or recovery work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can archive sensitive agent memory, context, and extra workspace files to a local path or Git remote. <br>
-Mitigation: Install only when memory backup is intended, prefer a local target or private repository, and review files before committing or pushing. <br>
-Risk: Broad extra-file patterns or remote URLs could expose unintended data or credentials. <br>
-Mitigation: Avoid broad --allow-extra patterns, never place tokens in remote URLs or commands, and redact memory log entries if a remote URL contained credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Usage Reference](references/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CrimsonDevil333333/memory-keeper) <br>
+## Use Case:
 
+External users and developers use Memory Keeper to create durable snapshots of OpenClaw agent memory and context files before maintenance, risky changes, recovery, or migration. It can keep archives local or prepare them for a user-controlled git repository.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can copy selected workspace files, append memory log entries, and optionally run git commit or push commands when invoked.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Memory archives may contain sensitive agent context, private notes, configuration, or secrets.
+
+Mitigation: Review and redact memory files before archiving or sharing, and prefer local-only archives unless the destination is trusted.
+
+Risk: The optional push workflow can send sensitive archive contents to a remote git repository.
+
+Mitigation: Use --push only with a private repository you own, verify the remote URL and branch first, and avoid using the documented example remote for personal memories.
+
+Risk: Embedding tokens in git URLs or shell commands can expose credentials.
+
+Mitigation: Use SSH keys or a credential helper instead of placing tokens directly in commands or remote URLs.
+
+Risk: Broad --allow-extra patterns can copy files beyond the intended memory set.
+
+Mitigation: Keep extra patterns narrow and inspect the matched files before syncing.
+
+## Reference(s):
+
+- [Memory Keeper usage reference](references/usage.md)
+- [ClawHub skill page](https://clawhub.ai/crimsondevil333333/skills/memory-keeper)
+- [Publisher profile](https://clawhub.ai/user/crimsondevil333333)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local archive files and optional git commits or pushes when the generated commands are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

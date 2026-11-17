@@ -1,46 +1,61 @@
-## Description: <br>
-Generates professional advertisement posters across automotive, tourism, fragrance, tea, and related industries using AI-backed backgrounds, product compositing, typography layouts, and platform-specific export presets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional advertisement posters across industries using AI-generated or PIL backgrounds, product compositing, typography guidance, and platform-specific formats.
 
-## Publisher: <br>
-[snakeruru](https://clawhub.ai/user/snakeruru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snakeruru](https://clawhub.ai/user/snakeruru)
 
-## Use Case: <br>
-Marketing teams, designers, and agents can use this skill to generate product advertisement poster concepts, compose product imagery with backgrounds and typography, and adapt layouts for channels such as WeChat, Xiaohongshu, airport displays, and lightboxes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or selected product assets may be sent to third-party image services. <br>
-Mitigation: Use approved services only, avoid confidential assets unless the service is authorized for them, and review backend selection before generation. <br>
-Risk: The advertised local PIL path may still attempt an OpenAI/DALL-E call before falling back locally. <br>
-Mitigation: Disable or remove the API-first call path when an offline-only workflow is required. <br>
-Risk: The Dreamina setup path uses a curl-to-bash installer and can consume paid service credits. <br>
-Mitigation: Review the installer before execution and confirm expected credit usage with the service account owner. <br>
+## Use Case:
 
+Marketing creators and agents use this skill to generate product advertisement poster workflows for automotive, tourism, fragrance, tea, recruiting, and public-welfare campaigns. It helps prepare layouts, prompts, compositing steps, and platform-specific outputs for WeChat, Xiaohongshu, airport displays, and lightboxes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snakeruru/auto-ad-generator) <br>
-- [Color palettes reference](references/color_palettes.json) <br>
-- [Li Auto advertisement examples](references/li_auto_examples.md) <br>
-- [Typography guide](references/typography_guide.md) <br>
-- [Dreamina CLI installer](https://jimeng.jianying.com/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Generated image files with Markdown-style usage guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require external API credentials and service credits depending on the selected backend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The documented Dreamina installer uses a remote shell pipeline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify and trust the Dreamina source before running the installer; prefer reviewed installation steps in controlled environments.
+
+Risk: The skill can use paid or networked image-generation and background-removal services.
+
+Mitigation: Run it with only the API keys and image files needed for the task, and confirm service cost and data-handling expectations before use.
+
+Risk: Generated advertising assets may be misleading, off-brand, or unsuitable for regulated campaigns.
+
+Mitigation: Review final posters, claims, logos, and celebrity or brand references before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snakeruru/skills/auto-ad-generator)
+- [Dreamina CLI](https://jimeng.jianying.com/cli)
+- [Li Auto Examples](references/li_auto_examples.md)
+- [Color Palettes](references/color_palettes.json)
+- [Typography Guide](references/typography_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, image files]
+
+**Output Format:** [Markdown guidance with inline bash commands and generated poster image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports PIL and Dreamina backends, multiple platform aspect ratios, product-image compositing, and optional background removal.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

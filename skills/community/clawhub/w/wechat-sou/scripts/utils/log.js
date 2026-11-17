@@ -2,8 +2,26 @@ const fs = require("fs");
 const path = require("path");
 const utils = require("./utils");
 
-async function taskWrite(filename, content) {
-  const safeFilename = filename.replace(/[\\/:*?"<>|]/g, "_");
+async function writeResultLog(filename, content) {
+  if (!filename || typeof filename !== "string") {
+    utils.printError("日志文件名必须是非空字符串");
+    return;
+  }
+  if (!content || typeof content !== "string") {
+    utils.printError("日志内容必须是非空字符串");
+    return;
+  }
+  let safeFilename = `${process.pid}_${filename}`
+    .replace(/[\\/:*?"<>|]/g, "_")
+    .replace(/\.\.+/g, "_")
+    .replace(/^\.+|\.+$/g, "");
+
+  if (safeFilename.length > 200) {
+    safeFilename = safeFilename.slice(0, 200);
+  }
+  if (!safeFilename) {
+    safeFilename = `log_${Date.now()}`;
+  }
   const outputFilename = path.join(
     path.dirname(__filename),
     "..",
@@ -22,5 +40,5 @@ async function taskWrite(filename, content) {
 }
 
 module.exports = {
-  taskWrite,
+  writeResultLog,
 };

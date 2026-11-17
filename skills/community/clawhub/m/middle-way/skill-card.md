@@ -1,44 +1,56 @@
-## Description: <br>
-Helps an agent analyze binary-framed decisions by identifying each pole's failure modes and choosing a situation-dependent position that avoids both false balance and ideological extremes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents assess decisions framed as opposing extremes and identify a situation-specific position that avoids each side’s failure modes.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, developers, and decision-makers use this skill when a decision or debate is framed as a binary but needs a principled middle position based on context, constraints, and failure-mode analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bias responses toward seeking a middle position even when evidence clearly favors one side. <br>
-Mitigation: Apply the documented fit check first and decline the middle-way lens when the choice is genuinely binary or one side is clearly correct on the evidence. <br>
-Risk: A middle-way framing can be misused as split-the-difference reasoning or false balance. <br>
-Mitigation: Require explicit failure-mode analysis for both poles and state why the selected position fits the specific situation. <br>
-Risk: The lens can be used to avoid timely commitment when urgency requires choosing a side and iterating. <br>
-Mitigation: Use the skill's not-when guardrail for urgent decisions and name a review trigger when a middle position is appropriate. <br>
+## Use Case:
 
+Employees and external users can use this skill to analyze debates that appear binary, compare the failure modes at each extreme, and choose a context-specific position with clear review triggers.
 
-## Reference(s): <br>
-- [Primary Sources - middle-way](references/sources.md) <br>
-- [Method in Action: Zhongyong and the Third Way Debate](examples/zisi-zhongyong-third-way-debate.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/deciqai/skills/middle-way) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a structured analysis template and optional coaching questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; output depends on the user's decision context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Saved examples or failure patterns could expose sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or anonymize sensitive information before saving examples or failure patterns.
+
+Risk: Applying a middle-way lens when evidence clearly favors one side can create false balance.
+
+Mitigation: Check whether the choice is genuinely a spectrum and whether the evidence favors one side before applying the lens.
+
+## Reference(s):
+
+- [Primary Sources](artifact/references/sources.md)
+- [Middle Way overview](https://www.deciqai.com/c/middle-way)
+- [Skill metadata](https://www.deciqai.com/s/middle-way.json)
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/middle-way)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Structured Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May identify the opposing poles, their failure modes, situation constraints, a reasoned position, counterarguments, and a review trigger.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

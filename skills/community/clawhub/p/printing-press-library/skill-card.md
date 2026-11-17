@@ -1,43 +1,58 @@
-## Description: <br>
-Use when looking for a CLI, API wrapper, scraper, data-source tool, automation tool, or focused agent skill for a task; searches the Printing Press Library and installs matching tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when looking for a CLI, API wrapper, scraper, data-source tool, automation tool, or focused agent skill for a task; searches the Printing Press Library and installs matching tools.
 
-## Publisher: <br>
-[tmchow](https://clawhub.ai/user/tmchow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tmchow](https://clawhub.ai/user/tmchow)
 
-## Use Case: <br>
-Developers and agents use this skill to find purpose-built Printing Press CLIs or focused skills, choose an appropriate match for a task, and install or refresh only the selected tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to install third-party Printing Press CLIs or skills. <br>
-Mitigation: Install only when the selected tool is useful for the user's task, review each proposed tool before installation, and verify with a harmless command before claiming success. <br>
-Risk: Some discovered tools may require credentials, scrape websites, mutate accounts, or perform paid or public-facing actions. <br>
-Mitigation: Check requirements before installation or use, avoid printing secrets, and require explicit user approval before any external side effect. <br>
-Risk: Recurring update jobs are durable side effects. <br>
-Mitigation: Offer consolidated low-frequency updates only after a successful install or refresh, and create scheduled jobs only with explicit user approval. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover focused CLIs, API wrappers, scrapers, automation tools, data-source tools, and matching agent skills in the Printing Press Library. It helps select and install a narrow tool for a specific task while preserving approval and verification checkpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tmchow/skills/printing-press-library) <br>
-- [Project Homepage](https://github.com/mvanhorn/printing-press-library) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install, update, reload, verification, and credential-check guidance; external side effects require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: frontmatter and server release metadata) <br>
+Risk: Mutable package-manager commands can install or overwrite local CLIs and future agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected catalog entry before installation, prefer pinned or reviewed versions where possible, and require explicit approval before install, overwrite, or bulk update commands.
+
+Risk: Recurring update jobs create durable side effects that may refresh third-party code later without immediate operator attention.
+
+Mitigation: Create scheduled update jobs only after explicit approval, use a low-frequency consolidated update policy, and summarize failures or changes without printing secrets.
+
+Risk: Installed focused skills may not be visible to the running agent until the session or gateway reloads.
+
+Mitigation: Verify the CLI with a harmless command and reload or restart the relevant agent harness before relying on the installed skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tmchow/skills/printing-press-library)
+- [Printing Press Library homepage](https://github.com/mvanhorn/printing-press-library)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include catalog selection rationale, install or update commands, PATH or reload guidance, and credential-presence checks without printing secrets.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-从钉钉闪记提取听记数据，包括列表、转写文本、摘要、待办等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts DingTalk Shanji meeting records, transcripts, AI summaries, todos, and keywords using the dws CLI.
 
-## Publisher: <br>
-[156554395](https://clawhub.ai/user/156554395) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[156554395](https://clawhub.ai/user/156554395)
 
-## Use Case: <br>
-Employees and developers use this skill to guide agents through DingTalk Shanji meeting-minute workflows, including listing accessible recordings, retrieving transcripts, summaries, todos, keywords, and exporting structured results with the dws CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may access sensitive DingTalk meeting transcripts, summaries, todos, and participant information. <br>
-Mitigation: Use it only with authorized DingTalk accounts and confirm that requested records are appropriate to access or export. <br>
-Risk: The artifact documents remote code installation through npm and shell installer commands. <br>
-Mitigation: Prefer npm installation, review installer sources before execution, and run installation commands only after explicit user approval. <br>
-Risk: The documented dws commands include mutating actions such as updating titles, summaries, replacing text, uploading recordings, and creating mind maps. <br>
-Mitigation: Require explicit confirmation before any command that changes DingTalk records or uploads files. <br>
+## Use Case:
 
+Developers, operators, and DingTalk users use this skill to find and extract authorized DingTalk Shanji meeting data for review, export, and follow-up workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/156554395/dingtalk-shanji) <br>
-- [DingTalk Workspace CLI repository](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli) <br>
-- [DingTalk Workspace CLI command documentation](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/docs/command-index.md) <br>
-- [DingTalk Workspace CLI Chinese documentation](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/README_zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the dws CLI, DingTalk OAuth login, and permission to access the requested meeting records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs installation of external CLI software, including pipe-to-shell or Invoke-Expression installer paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned and verified dingtalk-workspace-cli version outside the skill workflow, and avoid pipe-to-shell or Invoke-Expression installers.
+
+Risk: Documented dws commands can update meeting titles, summaries, transcript text, mind maps, or upload recordings.
+
+Mitigation: Require explicit user confirmation before running any update, replace-text, mind-graph, or upload command.
+
+Risk: Retrieved meeting transcripts, summaries, todos, and participant metadata may contain confidential business or personal information.
+
+Mitigation: Limit access to authorized DingTalk records and handle extracted content according to confidentiality and data retention requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/156554395/skills/dingtalk-shanji)
+- [DingTalk Workspace CLI GitHub repository](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli)
+- [DingTalk Workspace CLI command documentation](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/docs/command-index.md)
+- [DingTalk Workspace CLI Chinese documentation](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli/blob/main/README_zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that retrieve confidential meeting transcripts, summaries, todos, and metadata from DingTalk.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

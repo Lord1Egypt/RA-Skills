@@ -1,41 +1,49 @@
-## Description: <br>
-Email Helper generates formal and informal email drafts, reply suggestions, templates, and email organization guidance in Chinese and English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate email drafts, reply suggestions, templates, subject suggestions, and lightweight email organization guidance in Chinese and English.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-People writing workplace, business, job-search, finance, and personal email use this skill to draft messages, adjust tone, suggest subjects, and organize email records. It is intended for normal email-writing assistance rather than direct email sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording means ordinary requests to write or reply to email may invoke the skill and cause the agent to process email text. <br>
-Mitigation: Use the skill only where processing email content is acceptable, and prefer explicit activation wording or user confirmation when handling sensitive messages. <br>
-Risk: Generated email drafts may include placeholders, tone choices, or priority suggestions that are incomplete or unsuitable for the recipient. <br>
-Mitigation: Review and edit drafts, placeholders, recipients, dates, and tone before relying on or sending the email. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to draft common workplace, business, personal, and job-search emails, then adjust tone, subject, and placeholders before sending.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/cp3d1455926-svg-email-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style email drafts, reply suggestions, subject lines, template text, and short guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholders for names, dates, recipients, companies, contact details, and handoff notes that users should review and replace before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Generated email drafts may contain placeholders, inaccurate wording, or sensitive content if users include private details in optional saved-record workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review drafts before sending, replace placeholders, and avoid storing sensitive email content unless the local sent_emails.json storage location is understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/cp3d1455926-svg-email-helper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted email drafts and suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts include placeholders for user review before sending.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

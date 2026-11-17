@@ -1,39 +1,52 @@
-## Description: <br>
-Generates OSOP session logs by creating .osop workflow definitions and .osoplog.yaml execution records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate OSOP session logs by creating .osop workflow definitions and .osoplog.yaml execution records.
 
-## Publisher: <br>
-[archie0125](https://clawhub.ai/user/archie0125) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archie0125](https://clawhub.ai/user/archie0125)
 
-## Use Case: <br>
-Developers and agent users use this skill after completing a task to record what happened as a structured workflow and execution log for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated session logs may capture secrets, private project details, command output, or sensitive reasoning. <br>
-Mitigation: Review generated .osop and .osoplog.yaml files before committing, sharing, or uploading them to a viewer. <br>
+## Use Case:
 
+Developers and agent users use this skill after completing a task to produce structured OSOP workflow and execution-log records for the session.
 
-## Reference(s): <br>
-- [OSOP](https://osop.ai) <br>
-- [OSOP log viewer](https://osop-editor.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with YAML file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local .osop and .osoplog.yaml session records under a sessions directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Local session records may include task outputs, decision summaries, private prompts, credentials, or other sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store logs outside version control for sensitive work and redact secrets, credentials, private prompts, and sensitive output details before sharing.
+
+## Reference(s):
+
+- [OSOP](https://osop.ai)
+- [OSOP Editor](https://osop-editor.vercel.app)
+- [ClawHub skill page](https://clawhub.ai/archie0125/skills/osop-log)
+- [Publisher profile](https://clawhub.ai/user/archie0125)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown guidance with YAML file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a workflow definition and execution record under sessions/.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

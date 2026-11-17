@@ -1,11 +1,14 @@
 ---
 name: rotifer-guide
 description: >-
-  Unified user-facing entry point for Rotifer Protocol: interactive onboarding, natural-language
-  scaffolding, diagnostics, ecosystem search, and fidelity upgrade.
-  Use when the user mentions "how to use Rotifer", "getting started", "tutorial", "beginner",
-  "create gene", "make a", "init", "score is 0", "publish failed", "diagnose", "check",
-  "find a gene", "recommend", "search", "upgrade", "Wrapped to Native", "fidelity", "evolve".
+  Entry point for Rotifer Protocol. Onboards a user to Rotifer Genes, scaffolds a Gene from a
+  description, diagnoses a Gene's F(g) score or compile failure, searches the Rotifer Gene
+  registry, upgrades a Gene's fidelity from Wrapped to Native, and submits a Gene to the Arena
+  and follows its ranking. It works by proposing `rotifer` CLI commands; the ones that install
+  software, send work to Rotifer's servers, publish a Gene or overwrite files wait for the
+  user's approval. Meant to be invoked explicitly when working with Rotifer, or when unsure
+  which Rotifer capability fits. Its scope is Rotifer Genes and the Rotifer CLI; onboarding,
+  tutorials, troubleshooting or search for anything else are outside it.
 ---
 
 # Rotifer Guide — User Entry Point
@@ -14,11 +17,23 @@ description: >-
 
 ## Prerequisites
 
-Before using this Skill, ensure the Rotifer CLI is available:
+Before using this Skill, check that the Rotifer CLI is installed; this downloads
+nothing:
 
 ```bash
-npx @rotifer/playground --version
+rotifer --version
 ```
+
+If `rotifer` is not found, propose an install and wait for the user's approval
+before running it. Each option downloads `@rotifer/playground@0.38.0` from npm:
+`npm i -g @rotifer/playground@0.38.0` puts the `rotifer` binary in npm's global
+prefix, `npm install --save-dev --save-exact @rotifer/playground@0.38.0` keeps it
+in the project (run it as `npm exec -- rotifer`), and
+`npx --yes @rotifer/playground@0.38.0 <command>` runs it from npm's cache without
+installing it. `--yes` only skips npx's own "Ok to proceed?" prompt, which npx
+also skips by itself when its input is not a terminal, as in most assistant
+shells. It is not the approval: the user's approval is the reply to your
+proposal, and it comes before the command runs.
 
 If you prefer MCP integration instead of CLI, add this to your MCP config:
 
@@ -27,36 +42,85 @@ If you prefer MCP integration instead of CLI, add this to your MCP config:
   "mcpServers": {
     "rotifer": {
       "command": "npx",
-      "args": ["@rotifer/mcp-server"]
+      "args": ["@rotifer/mcp-server@0.20.2"]
     }
   }
 }
 ```
 
-No version pinning needed — both packages resolve to the latest release automatically.
+Your MCP host runs this `npx` command when it starts the server, and nothing asks
+first: npx does not prompt when its input is not a terminal, so the first start
+downloads `@rotifer/mcp-server@0.20.2` from npm and runs it. To review it before it ever
+runs, install that version with `npm i -g @rotifer/mcp-server@0.20.2` and use
+`rotifer-mcp-server` as the command, with no `args`.
+
+The install commands and the MCP config name an exact version on purpose. An unversioned `npx` resolves to whatever the
+registry serves at that moment, so the code you run would not be the code that was reviewed. The
+`@rotifer/mcp-server` pin is the one this repository agrees on everywhere; move it in one deliberate
+step, not per file. Stronger than pinning the `npx` call: install the CLI into the project and run
+the local binary. That is an install too: propose it and run it only after the user approves.
+
+```bash
+npm install --save-dev --save-exact @rotifer/playground@0.38.0
+npm exec -- rotifer --version
+```
+
+Commit the lockfile and use `npm ci` in automation. Before moving a pin to a newer release, review
+what changed and record what you are accepting: `npm view @rotifer/playground@<version> dist.integrity`.
 
 ---
 
 ## Intent Router
 
-| User signal | Sub-capability | Action |
-|-------------|---------------|--------|
-| How to / getting started / tutorial / beginner / what is a Gene | **onboarding** | Interactive walkthrough |
-| Create / make a XX / new / init / I want a | **scaffold** | Natural-language scaffolding |
-| Score is 0 / publish failed / something's wrong / why / diagnose / check | **doctor** | Diagnostics & repair |
-| Any gene for / recommend / search / find one that does XX | **explorer** | Ecosystem search |
-| Upgrade / Wrapped to Native / fidelity / evolve / rewrite | **upgrade** | Fidelity evolution |
+**Every row assumes the user is already asking about Rotifer.** The signals below
+route *within* this Skill; they are not reasons to invoke it. A user asking "how
+do I get started" or "why is my score 0" without Rotifer in view is asking
+someone else.
 
-When intent is unclear, list all five sub-capabilities and let the user choose.
+| User signal (in a Rotifer context) | Sub-capability | Action |
+|-------------|---------------|--------|
+| What is a Gene / how does Rotifer work / new to Rotifer | **onboarding** | Interactive walkthrough, or `rotifer hello` |
+| Create a Gene / scaffold a Gene / wrap this as a Gene | **scaffold** | Natural-language scaffolding |
+| F(g) is 0 / `rotifer compile` fails / `rotifer publish` fails | **doctor** | `rotifer doctor` first, then the Gene |
+| Find a Gene that / any Gene for / search the registry | **explorer** | `rotifer search` |
+| Wrapped to Native / upgrade fidelity / rewrite this Gene | **upgrade** | Fidelity evolution |
+
+When the request is about Rotifer but the sub-capability is unclear, list all
+five and let the user choose. When the request is **not** about Rotifer, say so
+and stop — do not map it onto the nearest row.
 
 ## Related Skills
 
 | Skill | Relationship | When to route |
 |-------|-------------|---------------|
-| `gene-dev/SKILL.md` | Deep technical manual for scaffold / onboarding | User needs full development workflow details |
-| `gene-migration/SKILL.md` | Deep migration manual for upgrade | After user confirms migration plan |
-| `rotifer-arena/SKILL.md` | Comparison & evaluation entry | User wants to compare Genes / run Arena |
-| `genome/SKILL.md` | Gene composition | User wants to combine multiple Genes into an Agent |
+| [`rotifer-gene`](https://clawhub.ai/skill/rotifer-gene), development manual | Deep technical manual for scaffold / onboarding | User needs full development workflow details |
+| [`rotifer-gene`](https://clawhub.ai/skill/rotifer-gene), migration manual | Deep migration manual for upgrade | After user confirms migration plan |
+| [`rotifer-arena`](https://clawhub.ai/skill/rotifer-arena) | Comparison & evaluation entry | User wants to compare Genes / run Arena |
+| [`rotifer-agent`](https://clawhub.ai/skill/rotifer-agent) | Gene composition | User wants to combine multiple Genes into an Agent |
+
+Each is a separate Skill, installed on its own. When one is not installed, say
+so and continue with the commands in this file.
+
+---
+
+## What this Skill does on your machine
+
+It has no code of its own — it tells your assistant which `rotifer` commands to
+run. That is why its manifest declares process execution, filesystem read/write
+and outbound network access: every one of those is the CLI acting, not this
+Skill.
+
+| | |
+|---|---|
+| **Runs** | The `rotifer` CLI, pinned to `@rotifer/playground@0.38.0`. If it is not installed, an install is proposed and waits for your approval: `npx` fetches that exact version into npm's cache, `npm i -g` puts it in npm's global prefix, and `npm install --save-dev` keeps it inside the project. |
+| **Reads** | Genes and Agent definitions in the current project workspace. |
+| **Writes in the project** | Genes into `genes/` (with their compiled output and score caches), and Agent definitions into `.rotifer/agents/`. |
+| **Writes outside the project** | The CLI's own state in your home directory: `~/.rotifer/` (a local database, an audit log, a run log, the telemetry setting, and your session token if you run `rotifer login`) and `~/.config/rotifer/` (a daily update-check cache), plus, when `rotifer compile` runs, the caches the javy toolchain it calls writes in your user cache folder. Installing the CLI writes to npm's cache, or to npm's global prefix with `npm i -g`. |
+| **Sends** | Registry and Arena queries to the public Rotifer API, one version check per day to `registry.npmjs.org` (skipped under `npx`, in CI, or with `ROTIFER_NO_UPDATE_CHECK` set), and a package download from ClawHub for `rotifer wrap --from-clawhub`. When you are signed in, running a Gene installed from Cloud also records that invocation (the Gene id and your Agent) against your account. The CLI also sends an anonymous heartbeat each time it runs a Gene: a random machine id, the channel it ran from and the CLI version, nothing about the Gene or your files. `rotifer telemetry off`, `ROTIFER_TELEMETRY=0` or `DO_NOT_TRACK=1` turns it off, and each of the three also stops the signed-in record. Three steps send your work, and each runs only when the user asks for it: the Web Studio scaffold path sends the description and the generated source to rotifer.ai (§2, Path A); `rotifer publish` uploads a Gene's metadata, `phenotype.json`, `README.md`, changelog, content hash and compiled WASM (not its TypeScript source) to the Rotifer Cloud Registry and makes them public; `rotifer arena submit --cloud` sends a published Gene's scores, and the measurements from each run, to the Cloud Arena's public record. Without those, your code stays on this machine. |
+
+Commands that install software, send work off the machine (Path A, `rotifer publish`,
+`rotifer arena submit --cloud`) or overwrite files are proposed for your approval
+first, never run silently.
 
 ---
 
@@ -65,12 +129,22 @@ When intent is unclear, list all five sub-capabilities and let the user choose.
 ### Phase 1: Environment Check
 
 ```bash
-cd rotifer-playground
-node dist/index.js --version
-node dist/index.js list
+rotifer --version
+rotifer doctor
+rotifer list
 ```
 
-If not installed, guide: `git clone` → `npm install` → `npm run build`.
+If the CLI is missing, propose an install and wait for approval. `npm install
+--save-dev --save-exact @rotifer/playground@0.38.0` keeps it in the project (run it
+as `npm exec -- rotifer`); `npm i -g @rotifer/playground@0.38.0` installs the
+`rotifer` binary at that exact version into npm's global prefix, outside the project;
+`npx --yes @rotifer/playground@0.38.0 <command>` runs it from npm's cache without
+installing it. Whichever the user picks, it runs only after they approve it.
+
+`rotifer doctor` checks the TypeScript→WASM toolchain (esbuild / javy). Run it
+first: without that toolchain `rotifer compile` fails at the WASM step, and the
+error looks like a code problem rather than a missing tool. It exits non-zero
+and prints the install line when something is absent.
 
 ### Phase 2: Core Concepts
 
@@ -85,13 +159,33 @@ If not installed, guide: `git clone` → `npm install` → `npm run build`.
 
 ### Phase 3: Hands-on Experience
 
-Walk the user through a Gene's complete lifecycle:
+Two paths — pick by what the user wants first, a result or an understanding.
+
+**Fastest result — `rotifer hello`:**
 
 ```bash
-rotifer init hello-world --domain content.greeting --fidelity Wrapped
+rotifer hello
+```
+
+An interactive builder: pick a template, and it selects Genes, composes them,
+creates the Agent and runs it. Use this when the user wants to *see* Rotifer
+work before learning what a Gene is. In a new workspace, start with
+`rotifer hello --template quality-advisor`, the one template whose Genes come
+with `rotifer init`. `rotifer hello --list-templates` shows which templates can
+run here. The others (uiux-diagnosis, content-analysis, code-security, doc-qa,
+web3-toolkit) need Genes first: running one exits 1 and says, Gene by Gene,
+whether it can be installed or is not available. `hello` never installs
+anything itself. `--template <id>`, `--input <json>`, `--file <path>` and
+`--dir <path>` skip the prompts; `--json` puts one JSON document on stdout.
+
+**Full lifecycle — one command per concept:**
+
+```bash
+rotifer init hello-world --domain content.greeting   # a workspace with an example hello-world Gene
+cd hello-world
 rotifer test hello-world
 rotifer compile hello-world
-rotifer arena submit hello-world
+rotifer arena submit hello-world                     # scored on this machine; your code and results stay here
 rotifer arena list --domain content.greeting
 ```
 
@@ -102,11 +196,16 @@ After each step, explain the output and confirm the user understands before proc
 Recommend based on user background:
 - Has an existing SKILL.md → scaffold (`rotifer wrap`)
 - Wants to browse the ecosystem → explorer
-- Wants to dive deeper → route to `gene-dev/SKILL.md`
+- Wants to dive deeper → route to the `rotifer-gene` Skill (its development manual)
 
 ---
 
 ## 2. scaffold — Natural-Language Scaffolding
+
+> This sub-capability has two paths. The local CLI path (Path B) is the default and
+> needs no network. When the user chooses it, the Web Studio path (Path A) uses the
+> `/api/playground/*` endpoints on rotifer.ai for LLM-assisted Gene generation, V(g)
+> scanning, and Cloud publish.
 
 ### Phase 1: Intent Extraction
 
@@ -124,11 +223,43 @@ Present inferred results to the user, wait for confirmation before executing.
 
 ### Phase 3: Scaffold Generation
 
-**From scratch:**
+Start with Path B. Offer Path A when the user wants LLM-assisted generation, and
+use it only after they agree to send their description to rotifer.ai.
+
+**Path A — Web Studio (sends text to rotifer.ai; only when the user chooses it):**
+
+Use the rotifer.ai Playground API for LLM-assisted generation. `publish` is a
+separate step that makes the Gene public, so ask again before calling it:
+
+```
+1. POST /api/playground/generate  { prompt, domain }  → { source, phenotype }
+2. POST /api/playground/scan      { source }           → { grade, findings }
+3. POST /api/playground/publish   { source, phenotype } → { published, grade }
+```
+
+The Web Studio UI at `https://rotifer.ai/studio/` provides a visual 3-step flow
+(Describe → Create → Publish) that calls these same endpoints.
+
+> **This path sends the user's text to rotifer.ai.** `generate` transmits the
+> description they wrote; `scan` transmits the generated source; `publish`
+> transmits source and phenotype and makes the Gene public. Say so before
+> using it, and offer Path B when the description contains anything the user
+> would not post publicly — Path B is entirely local and produces the same
+> scaffold without a network call.
+
+**Path B — CLI (local, the default):**
 
 ```bash
-rotifer init <name> --domain <domain> --fidelity <fidelity>
+rotifer init <workspace>        # once: an Agent workspace, not a Gene
+cd <workspace>
+mkdir -p genes/<name>           # then write genes/<name>/index.ts
+rotifer wrap <name> --domain <domain> --fidelity <fidelity>
 ```
+
+`wrap` writes `phenotype.json` with empty schemas; fill in the real
+`inputSchema` and `outputSchema` before Phase 4. If `genes/<name>/phenotype.json`
+already exists, `wrap` rewrites it (setting the domain), and `--from-skill` or
+`--from-clawhub` replaces it: say so and wait for the user's approval first.
 
 **From an existing SKILL.md:**
 
@@ -138,6 +269,10 @@ rotifer wrap <name> --from-skill <path>
 ```
 
 **From ClawHub:**
+
+This downloads the package from ClawHub and writes its files into
+`genes/<name>`, so it is an install: propose it and run it only after the user
+approves.
 
 ```bash
 rotifer wrap <name> --from-clawhub <slug>
@@ -150,9 +285,30 @@ rotifer test <name>
 rotifer compile <name>
 ```
 
-After compilation passes, prompt: publish to Cloud (`rotifer publish`) or submit to Arena (`rotifer arena submit`).
+A Gene wrapped from a SKILL.md has no source file (one from ClawHub has one
+only if the package shipped it), so `rotifer test` fails on it with `No gene
+source file found`. Run `rotifer compile <name>` and `rotifer vg genes/<name>`
+for it instead.
 
-For deeper development details (inputSchema design, express function implementation) → route to `gene-dev/SKILL.md`.
+After compilation passes, offer the next step and wait for the user's choice:
+`rotifer arena submit <name>` scores the Gene on this machine; `rotifer publish
+<name>` uploads its metadata, `phenotype.json`, `README.md` and compiled WASM
+(not its TypeScript source) to the Rotifer Cloud Registry and makes them public.
+
+Run in a terminal while the user is signed in, `rotifer wrap` can end by asking
+`Publish '<name>' to Rotifer Cloud? [Y/n]`, and Enter means yes. It does not ask
+when its input is not a terminal. `rotifer config set default-publish false` or
+`ROTIFER_AUTO_PUBLISH=false` turns the question off.
+
+### Offline Fallback
+
+If the Playground API is unreachable, display:
+
+> Network unavailable. Use `rotifer init` for local-only Gene creation.
+
+Then follow Path B (CLI).
+
+For deeper development details (inputSchema design, express function implementation) → route to the `rotifer-gene` Skill (its development manual).
 
 ---
 
@@ -172,11 +328,14 @@ User reports a problem
  |
  +-- Publish failed
  |   +-- Does rotifer compile <name> succeed?
- |   |   +-- Fails → Check for syntax errors, missing dependencies
- |   |   +-- Succeeds → Check network connection, Cloud credentials
+ |   |   +-- Fails → rotifer doctor first, then syntax errors / missing dependencies
+ |   |   +-- Succeeds → rotifer whoami — signed in at all, and as whom?
+ |   |                  Then check network connectivity
  |   +-- Is phenotype.json format valid?
  |
  +-- Compilation failed
+ |   +-- FIRST: rotifer doctor — is the TS→WASM toolchain even installed?
+ |   |   +-- Reports esbuild / javy missing → install those; the code is not the problem
  |   +-- Check the exported express function signature in index.ts
  |   +-- Check inputSchema / outputSchema in phenotype.json
  |   +-- Check if fidelity declaration matches actual code
@@ -191,10 +350,18 @@ User reports a problem
 ### Common Diagnostic Commands
 
 ```bash
+rotifer doctor                       # TS→WASM toolchain — run this before blaming the code
 rotifer test <name>
+rotifer vg <path>                    # V(g) security scan — grade A–D, or ? for a code-free Skill
 rotifer list
 rotifer arena list --domain <domain>
+rotifer arena watch <domain>         # live ranking movement (Ctrl+C to stop)
 ```
+
+`rotifer doctor` takes no arguments and checks one thing: whether esbuild and
+javy are present and reachable on `PATH`. A missing toolchain surfaces as a
+compile failure that reads like a code error, so it is the cheapest first move
+on any "compilation failed" report.
 
 ### Quick Reference
 
@@ -202,9 +369,10 @@ rotifer arena list --domain <domain>
 |---------|-----------|-----|
 | F(g) = 0 | express() returns empty or format mismatch | Fix return value to match outputSchema |
 | Compilation failed | TypeScript type error | Check express function signature |
-| Publish timeout | Cloud credentials expired | Refresh Cloud credentials |
-| Arena ranking dropped | Stronger competitor appeared in same domain | Optimize algorithm or upgrade fidelity |
+| Publish timeout | Cloud credentials expired | `rotifer whoami` to check, then `rotifer login` |
+| Arena ranking dropped | Stronger competitor appeared in same domain | `rotifer arena watch <domain>` to see who moved, then optimize or upgrade fidelity |
 | Fidelity mismatch | Native declared but has fetch calls | Remove network calls or change declaration to Hybrid |
+| `compile` fails but the code looks fine | esbuild / javy missing from the toolchain | `rotifer doctor`, then install what it names |
 
 ---
 
@@ -216,11 +384,30 @@ Extract from user description: functionality keywords, target domain, fidelity p
 
 ### Phase 2: Search
 
+`rotifer search` is the ecosystem search — it queries the Cloud registry, which
+is where Genes published by other people live. `arena list` ranks what is
+already in the Arena and `list` shows what is on this machine; all three answer
+different questions, so pick by what the user asked for.
+
 ```bash
-rotifer arena list
-rotifer arena list --domain <domain>
-rotifer list
+rotifer search <query>                        # the ecosystem — Cloud registry
+rotifer search <query> --domain <domain> --fidelity Native --sort downloads
+rotifer arena list --domain <domain>          # ranked competitors in one domain
+rotifer list                                  # what is already installed here
 ```
+
+Follow up on a specific result:
+
+```bash
+rotifer info <gene-ref>               # full details, local or Cloud
+rotifer reputation <gene-ref>         # R(g) — the reputation column below
+rotifer stats <gene-ref>              # downloads: 7d / 30d / 90d / all time
+rotifer versions @owner/<name>        # version history chain
+rotifer compare <ref-a> <ref-b>       # 2–5 published Genes, side by side
+```
+
+`rotifer reputation @username` scores a creator instead of a Gene, and
+`--leaderboard` ranks creators.
 
 ### Phase 3: Result Analysis
 
@@ -236,8 +423,10 @@ Display search results in a table:
 
 ### Phase 4: Recommendation
 
-- Found a matching Gene → suggest install: `rotifer install <name>`
-- Found a partial match → suggest fork and modify, or submit an Arena challenge (route to `rotifer-arena/SKILL.md`)
+- Found a matching Gene → propose `rotifer install <name>` and run it only after
+  the user approves: it downloads the Gene and its WASM from the Cloud registry
+  into this project and records one download
+- Found a partial match → suggest fork and modify, or submit an Arena challenge (route to the `rotifer-arena` Skill)
 - Nothing found → suggest creating a new Gene (route to scaffold)
 
 ---
@@ -262,14 +451,20 @@ Check the target Gene's phenotype.json — confirm current fidelity and express(
 
 ### Phase 3: Execute Migration
 
-After confirming the migration plan, route to `gene-migration/SKILL.md` for the full migration workflow.
+After confirming the migration plan, route to the `rotifer-gene` Skill (its migration manual) for the full migration workflow.
 
 ### Phase 4: Verification
 
 ```bash
 rotifer test <name>
+rotifer vg <path-to-gene>
 rotifer compile <name>
-rotifer arena submit <name>
+rotifer arena submit <name>        # scored on this machine; your code and results stay here
+rotifer arena watch <domain>
 ```
 
-Compare F(g) scores before and after migration to confirm ranking continuity.
+A fidelity upgrade rewrites the Gene's code, so the V(g) security grade it
+earned before the rewrite no longer describes it — `rotifer vg` re-scans and
+returns A–D (or `?` when there is no `src/`). Compare F(g) before and after to
+confirm ranking continuity; `arena watch` shows the move happening rather than
+requiring a second `arena list`.

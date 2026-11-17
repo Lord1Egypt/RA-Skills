@@ -1,46 +1,61 @@
-## Description: <br>
-自动生成微信公众号文章、插入配图、执行格式、敏感词和重复检查，并将通过检查的内容发布到微信公众号草稿箱。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公众号内容发布自动化技能。整合用户自有工具，实现内容生成、配图、三步预检、草稿箱发布的全流程自动化。
 
-## Publisher: <br>
-[taoj2025](https://clawhub.ai/user/taoj2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taoj2025](https://clawhub.ai/user/taoj2025)
 
-## Use Case: <br>
-Content operators and developers can use this skill to assemble WeChat public-account drafts from a topic, generate or attach images, run pre-publication checks, and submit passing drafts for review or publishing. The workflow is best used with manual review before enabling scheduled or credentialed publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires content-generation and WeChat or Tencent publishing credentials. <br>
-Mitigation: Use least-privilege credentials, keep secrets outside source files, and confirm exactly which account permissions are needed before running publish steps. <br>
-Risk: The security evidence says publishing authority and safety checks are not clearly controlled enough for a public-account workflow. <br>
-Mitigation: Require manual review before publishing, verify the external WeChat publisher dependency, and replace placeholder sensitive-word and duplication checks with real policy checks. <br>
-Risk: Scheduled execution can generate and publish drafts automatically. <br>
-Mitigation: Do not enable cron or unattended publishing until review gates, logging, and rollback procedures are in place. <br>
+## Use Case:
 
+External content creators and operators use this skill to generate WeChat public-account article drafts, add images, run publication checks, and prepare draft-box publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taoj2025/wechat-content-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/taoj2025) <br>
-- [Configuration reference](artifact/references/config.md) <br>
-- [MiniMax image generation endpoint](https://api.minimaxi.com/v1/image_generation) <br>
-- [Picsum image source](https://picsum.photos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown articles with image references, command-line output, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create article directories, image files, draft content, and publishing notifications when configured with credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence; artifact frontmatter lists 1.1.0) <br>
+Risk: Publication workflows may proceed before safety checks and human confirmation are reliable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require successful prechecks plus an explicit dry-run or confirmation step before connecting real WeChat credentials or publishing drafts.
+
+Risk: Article rewriting and fixed attribution can alter existing content or apply unwanted branding.
+
+Mitigation: Preview diffs, back up articles before modification, and make attribution and publishing labels configurable.
+
+Risk: Scheduled runs can repeatedly execute the workflow with live API or WeChat credentials.
+
+Mitigation: Do not install cron jobs until the workflow has been reviewed with test credentials, scoped permissions, and failure alerts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taoj2025/skills/wechat-content-pipeline)
+- [Publisher profile](https://clawhub.ai/user/taoj2025)
+- [Configuration reference](artifact/references/config.md)
+- [MiniMax image generation endpoint](https://api.minimaxi.com/v1/image_generation)
+- [Picsum image source](https://picsum.photos/800/600)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown articles, generated image files, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WeChat draft preparation workflows with article text, image references, precheck results, and publishing guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

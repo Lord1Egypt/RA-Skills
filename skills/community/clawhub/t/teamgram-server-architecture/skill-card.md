@@ -1,45 +1,56 @@
-## Description: <br>
-Teamgram Server architecture guide for designing Telegram-compatible backends, service topology, MTProto services, self-hosted deployment, data flow, and development workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teamgram Server architecture guide for building Telegram-compatible backends, covering service decomposition, data flow, deployment patterns, and development workflows based on teamgram/teamgram-server.
 
-## Publisher: <br>
-[zhihang9978](https://clawhub.ai/user/zhihang9978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhihang9978](https://clawhub.ai/user/zhihang9978)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand Teamgram Server architecture, plan service topology and refactoring, and draft deployment or service-development steps for Telegram-compatible backends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample deployment credentials or weak defaults may be copied into production. <br>
-Mitigation: Replace sample passwords and inject secrets through a managed secret store or environment-specific secret mechanism before deployment. <br>
-Risk: Example service ports or database access patterns may expose infrastructure if used unchanged. <br>
-Mitigation: Restrict exposed ports, avoid root database credentials where possible, and review the final network and database configuration before use. <br>
-Risk: Unpinned container image versions and unsecured backups can make deployments harder to audit or recover safely. <br>
-Mitigation: Pin container image versions, secure backups, and validate the deployment against official Teamgram and infrastructure security guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand Teamgram Server topology, MTProto service responsibilities, data flows, deployment options, and service development patterns before designing or self-hosting a Telegram-compatible backend.
 
-## Reference(s): <br>
-- [Teamgram Server repository](https://github.com/teamgram/teamgram-server) <br>
-- [Teamgram Server DeepWiki](https://deepwiki.com/teamgram/teamgram-server) <br>
-- [Deployment Guide](references/deployment.md) <br>
-- [Service Development Guide](references/service-development.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with architecture diagrams, tables, YAML examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; does not execute commands or modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Copyable deployment examples include weak placeholder credentials and exposed internal service ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace all example credentials, use Kubernetes Secrets or an external secrets manager, remove public mappings for internal services, and apply network access controls before deployment.
+
+Risk: Deployment snippets are architecture notes rather than production-ready manifests.
+
+Mitigation: Pin container images by version or digest, use least-privileged database accounts, configure encrypted backups to owned storage, and complete security review before production use.
+
+## Reference(s):
+
+- [Teamgram Server Repository](https://github.com/teamgram/teamgram-server)
+- [Architecture DeepWiki](https://deepwiki.com/teamgram/teamgram-server)
+- [Deployment Guide](artifact/references/deployment.md)
+- [Service Development Guide](artifact/references/service-development.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with architecture notes, command examples, Go snippets, YAML snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; deployment examples require review before production use.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-AI-optimized web search via the Tavily API that returns concise, relevant results for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.
 
-## Publisher: <br>
-[wetor](https://clawhub.ai/user/wetor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wetor](https://clawhub.ai/user/wetor)
 
-## Use Case: <br>
-Agents and developers use this skill to search the web with Tavily, tune result count, depth, and topic, and extract clean page content from URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, and extracted page content are sent to Tavily. <br>
-Mitigation: Use the skill only when a Tavily API key is intended and avoid private, confidential, or access-controlled URLs unless sharing that data with Tavily is acceptable. <br>
-Risk: Returned web snippets or extracted content can be incomplete, stale, or misleading. <br>
-Mitigation: Review source links and corroborate important information before relying on it. <br>
+## Use Case:
 
+Developers and AI agents use this skill to run Tavily web searches, news searches, and URL extraction when they need concise source-backed web context.
 
-## Reference(s): <br>
-- [Tavily](https://tavily.com) <br>
-- [ClawHub skill page](https://clawhub.ai/wetor/baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style terminal output with answers, source links, snippets, extracted content, and failure notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; search results are capped between 1 and 20.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search queries, requested URLs, and the user's Tavily API key are sent to Tavily's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for information that Tavily is approved to process, and avoid confidential prompts, private internal URLs, or sensitive data unless Tavily is an approved provider.
+
+Risk: Web search and extracted page content can be incomplete, outdated, or misleading.
+
+Mitigation: Review returned sources and extracted content before relying on the output for decisions.
+
+## Reference(s):
+
+- [Tavily homepage](https://tavily.com)
+- [ClawHub skill page](https://clawhub.ai/wetor/skills/baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with answers, source lists, relevance scores, and extracted page content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and TAVILY_API_KEY. Sends search queries and requested URLs to Tavily's API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

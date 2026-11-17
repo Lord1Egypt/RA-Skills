@@ -1,44 +1,59 @@
-## Description: <br>
-Provides read-only Telegram access through the tg MTProto CLI to list chats, fetch messages, download media, and manage local accounts or sessions without modifying Telegram data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only Telegram CLI via MTProto that lists chats, fetches messages, downloads media, and manages local Telegram accounts and sessions without sending messages or modifying Telegram data.
 
-## Publisher: <br>
-[cyberash-dev](https://clawhub.ai/user/cyberash-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cyberash-dev](https://clawhub.ai/user/cyberash-dev)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill when they need read-only access to Telegram chats for message retrieval, media download, account listing, or data extraction workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram API credentials and local session databases can grant access to account data if exposed. <br>
-Mitigation: Keep the session directory private, do not share session files, and do not log or display api_id or api_hash values. <br>
-Risk: Using the CLI gives the local agent or runtime access to Telegram messages and media available to the authenticated account. <br>
-Mitigation: Use the skill only on machines where the user trusts the local runtime with Telegram message access. <br>
-Risk: Media downloads write files to the selected output directory or current working directory. <br>
-Mitigation: Direct downloads to an explicit output directory and review downloaded files before sharing or processing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cyberash-dev/tg-mtproto-cli) <br>
-- [tg-mtproto-cli npm package](https://www.npmjs.com/package/tg-mtproto-cli) <br>
-- [Telegram API app registration](https://my.telegram.org/apps) <br>
-- [tg-mtproto-cli source repository listed in artifact](https://github.com/cyberash-dev/tg-mtproto-cli) <br>
+## Use Case:
 
+Developers and operators use this skill to read Telegram chats, fetch message history, download message media, and automate Telegram data extraction through a local MTProto CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Telegram operations; may produce local media downloads when the user invokes tg download.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an unpinned global third-party CLI that handles Telegram credentials, session keys, private messages, and downloaded media.
+
+Mitigation: Before installing, verify the package and source, prefer a pinned or isolated install, and use an account and environment where exposure of Telegram data would have acceptable impact.
+
+Risk: Telegram session files and API credentials are sensitive local authentication material.
+
+Mitigation: Do not read, copy, log, or expose session files or api_id/api_hash values; keep keychain and session storage protected.
+
+Risk: Downloaded Telegram media can contain private or sensitive content.
+
+Mitigation: Download only to an intended output directory and review local access, retention, and sharing controls for the saved files.
+
+## Reference(s):
+
+- [tg-mtproto-cli npm package](https://www.npmjs.com/package/tg-mtproto-cli)
+- [tg-mtproto-cli source repository](https://github.com/cyberash-dev/tg-mtproto-cli)
+- [Telegram API application credentials](https://my.telegram.org/apps)
+- [ClawHub skill page](https://clawhub.ai/cyberash-dev/skills/tg-mtproto-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce JSON output or downloaded media when run with the tg CLI.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

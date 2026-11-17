@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.safe_update.kova_evidence.v1.schema.json",
+  "title": "OpenClaw Safe Update Kova Evidence",
+  "description": "Public-safe output contains only identifiers, statuses, and SHA-256 hashes; it never contains logs, paths, configuration, messages, or secrets.",
+  "type": "object",
+  "required": ["schema", "generated_at", "effect", "runtime_effect", "external_effect", "external_write_effect", "production_apply_allowed", "operator_approval", "status", "evidence_content", "evidence_digest", "run_envelope"],
+  "properties": {
+    "schema": {"const": "openclaw.safe_update.kova_evidence.v1"},
+    "generated_at": {"type": "string", "minLength": 1},
+    "effect": {"const": "read_only_kova_evidence_import"},
+    "runtime_effect": {"const": "none"},
+    "external_effect": {"const": "none"},
+    "external_write_effect": {"const": "none"},
+    "production_apply_allowed": {"const": false},
+    "operator_approval": {"const": false},
+    "status": {"enum": ["accepted", "incomplete", "rejected"]},
+    "evidence_content": {
+      "description": "Canonical timestamp-free content hashed by evidence_digest.",
+      "type": "object",
+      "required": ["policy_id", "candidate_binding", "source", "scenarios", "eligible_gates", "missing_requirements", "error_codes", "canonical_status_effect", "post_activation_e2e"],
+      "properties": {
+        "policy_id": {"type": "string", "minLength": 1},
+        "candidate_binding": {
+          "type": "object",
+          "required": ["status", "target_candidate_root", "identity_kind", "identity_digest"],
+          "properties": {
+            "scope": {"const": "core_npm_artifact_only"},
+            "status": {"enum": ["exact", "version_only", "missing", "mismatch"]},
+            "target_candidate_root": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+            "identity_kind": {"type": ["string", "null"], "enum": ["npm_integrity", "git_sha", "build_digest", null]},
+            "identity_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+          },
+          "additionalProperties": false
+        },
+        "source": {
+          "type": "object",
+          "required": ["receipt_schema", "receipt_sha256", "report_schema", "report_sha256", "bundle_sha256", "artifact_index_sha256", "run_id", "mode"],
+          "properties": {
+            "receipt_schema": {"type": "string", "minLength": 1},
+            "receipt_sha256": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+            "report_schema": {"type": ["string", "null"], "minLength": 1},
+            "report_sha256": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+            "bundle_sha256": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+            "artifact_index_sha256": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+            "run_id": {"type": ["string", "null"], "minLength": 1},
+            "mode": {"type": ["string", "null"], "minLength": 1}
+          },
+          "additionalProperties": false
+        },
+        "scenarios": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "status", "evidence_ledger_status", "evidence_ledger_digest"],
+            "properties": {
+              "id": {"type": "string", "minLength": 1},
+              "status": {"type": "string", "minLength": 1},
+              "evidence_ledger_status": {"type": ["string", "null"], "minLength": 1},
+              "evidence_ledger_digest": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "eligible_gates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "evidence_digest"],
+            "properties": {
+              "id": {"enum": ["lifecycle-download-evidence", "state-migration-rehearsal", "rollback-evidence", "plugin-sdk-contract", "launcher-service-contract", "permissions-contract", "protocol-contract", "channel-crypto-contract", "environment-matched-rehearsal"]},
+              "evidence_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+            },
+            "additionalProperties": false
+          }
+        },
+        "missing_requirements": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "error_codes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "canonical_status_effect": {"const": "evidence_for_named_gate_only"},
+        "post_activation_e2e": {"const": "not_run"}
+      },
+      "additionalProperties": false
+    },
+    "evidence_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "run_envelope": {
+      "type": "object",
+      "required": ["generated_at"],
+      "properties": {"generated_at": {"type": "string", "minLength": 1}},
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

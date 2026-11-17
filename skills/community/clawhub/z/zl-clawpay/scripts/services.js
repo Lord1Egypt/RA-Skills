@@ -199,6 +199,20 @@ class QueryService {
     return client.secureRequest('POST', '/post/claw/query-pay-status', 'C00005', reqBody);
   }
 
+  async queryBalance(apiKey, body) {
+    const subWalletId = this.memory.recallWallet();
+    if (!subWalletId) {
+      throw new Error('subWalletId not found. Bind wallet first via C00003.');
+    }
+
+    const reqBody = {
+      subWalletId: subWalletId
+    };
+
+    const client = new SecureClient(apiKey, this.memory);
+    return client.secureRequest('POST', '/post/claw/query-balance', 'C00006', reqBody);
+  }
+
   async queryTransactions(apiKey, body) {
     const subWalletId = this.memory.recallWallet();
     if (!subWalletId) {
@@ -284,6 +298,11 @@ class SkillOrchestrator {
     const apiKey = this._requireApiKey();
     this._attachSubWalletId(body);
     return this._query.queryOrder(apiKey, body);
+  }
+
+  async queryBalance(body) {
+    const apiKey = this._requireApiKey();
+    return this._query.queryBalance(apiKey, body);
   }
 
   async queryTransactions(body) {

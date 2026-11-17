@@ -1,0 +1,22 @@
+{
+  "name": "code-ownership-audit",
+  "version": "1.3.3",
+  "description": "判定 Python 代码是原创还是演绎作品 — 纯本地 AST 分析，零依赖不联网",
+  "commands": [
+    {
+      "command": "audit-code",
+      "description": "对目标代码目录执行代码所有权审计，对比上游参考版",
+      "args": ["<target>", "--reference", "<upstream>", "--out-dir", "./out"]
+    }
+  ],
+  "pricing": {
+    "preview": "free",
+    "full_report": "0.2 CNY per invocation"
+  },
+  "privacy": {
+    "data": "all local, no network calls"
+  },
+  "license": "MIT",
+  "homepage": "https://xiaping.coze.com",
+  "repository": "https://github.com/ffseika0304/code-ownership-audit"
+}

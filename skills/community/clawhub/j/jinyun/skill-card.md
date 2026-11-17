@@ -1,42 +1,51 @@
-## Description: <br>
-Helps design backend business solutions and technical implementation plans, including project analysis, architecture design, Mermaid diagrams, Go-style gRPC/HTTP API contracts, and MySQL schema drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+backend-api-designer helps agents provide Chinese-language backend architecture, business solution, workflow diagram, Go-style API, and MySQL schema design guidance.
 
-## Publisher: <br>
-[jjjypink1211](https://clawhub.ai/user/jjjypink1211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjjypink1211](https://clawhub.ai/user/jjjypink1211)
 
-## Use Case: <br>
-Developers and backend engineers use this skill to turn business requirements or scoped existing projects into architecture notes, business process diagrams, interface contracts, and database table designs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Engineering-analysis mode may read project files that include secrets or unrelated private data if the user provides an overly broad path. <br>
-Mitigation: Use a scoped project directory and exclude secrets or unrelated private files before asking the agent to analyze an existing codebase. <br>
-Risk: Architecture, API, and database designs are generated guidance and may be incomplete or mismatched to production constraints. <br>
-Mitigation: Review generated designs with project owners before implementation and validate security, reliability, and data-model choices against the target system. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze existing backend projects and produce business solution documents, architecture plans, Mermaid diagrams, Go-style gRPC/HTTP interfaces, and MySQL table designs.
 
-## Reference(s): <br>
-- [Common Business Scenario Design Patterns](references/patterns.md) <br>
-- [Architecture Design Patterns](references/architecture-patterns.md) <br>
-- [Mermaid Diagram Syntax Quick Reference](references/mermaid-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with Mermaid diagrams, protobuf-style API definitions, SQL snippets, and occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read scoped project files when the user requests engineering analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The engineering-analysis mode may inspect project files such as proto, SQL, Go, and service code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only project paths that the agent is intended to inspect, and review generated architecture or schema recommendations before implementation.
+
+## Reference(s):
+
+- [Common Business Scenario Design Patterns](references/patterns.md)
+- [Architecture Design Patterns](references/architecture-patterns.md)
+- [Mermaid Diagram Syntax Quick Reference](references/mermaid-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Mermaid, protobuf, SQL, and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language design guidance; repository analysis mode may read user-provided project files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

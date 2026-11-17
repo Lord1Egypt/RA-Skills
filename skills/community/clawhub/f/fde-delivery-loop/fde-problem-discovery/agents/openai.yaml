@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE Problem Discovery"
+  short_description: "Find the customer problem worth testing from field evidence"
+  default_prompt: "Use $fde-problem-discovery to analyze these customer materials and produce an evidence-backed problem-discovery package."

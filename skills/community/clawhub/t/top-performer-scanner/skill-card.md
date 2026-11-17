@@ -1,45 +1,59 @@
-## Description: <br>
-Finds the true top-performing US stocks per year by downloading US-listed symbols, filtering by liquidity, and ranking annual returns without relying only on surviving or well-known names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds the true top-performing US stocks per year by downloading NASDAQ-listed symbols, filtering by Top 500 daily dollar volume, and ranking annual returns without survivorship bias.
 
-## Publisher: <br>
-[tltby12341](https://clawhub.ai/user/tltby12341) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tltby12341](https://clawhub.ai/user/tltby12341)
 
-## Use Case: <br>
-External users, developers, and financial research workflows can use this skill to identify high-return US stocks within a liquidity-filtered universe and test whether scanner filters would have caught historical top performers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts install and use third-party Python packages and contact public market-data services. <br>
-Mitigation: Run in a virtual environment, consider pinning dependency versions, and use only in environments where outbound access to those services is acceptable. <br>
-Risk: Market-data downloads may contain gaps, adjusted prices, or service-specific inaccuracies. <br>
-Mitigation: Cross-check important results with another market-data source before using them for research conclusions or trading decisions. <br>
-Risk: The generated analysis identifies historical performers and can be mistaken for investment advice. <br>
-Mitigation: Treat outputs as research artifacts only and independently verify any financial conclusions before relying on them. <br>
+## Use Case:
 
+External users, developers, and quantitative researchers use this skill to identify historical liquid-stock top performers and test whether stock-selection filters would have captured major movers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tltby12341/top-performer-scanner) <br>
-- [Publisher Profile](https://clawhub.ai/user/tltby12341) <br>
-- [NASDAQ Trader Symbol Directory](ftp://ftp.nasdaqtrader.com/symboldirectory/nasdaqtraded.txt) <br>
-- [Yahoo Finance Python Package](https://pypi.org/project/yfinance/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; Python scripts produce console tables and CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3, pip3, pandas, yfinance, and internet access to public market-data services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Historical market-data results may be incomplete or misleading because the skill depends on NASDAQ FTP and Yahoo Finance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Cross-check important findings with an independent market-data source before using them for research conclusions or strategy design.
+
+Risk: Users may mistake historical top-performer analysis for trading advice.
+
+Mitigation: Treat outputs as research only and do not use them to make real trading decisions without independent verification.
+
+Risk: Runtime dependencies and network downloads run in the user's Python environment.
+
+Mitigation: Install and run the skill in a non-privileged virtual environment, and consider pinning dependency versions before use.
+
+## Reference(s):
+
+- [Top Performer Scanner release page](https://clawhub.ai/tltby12341/skills/top-performer-scanner)
+- [Publisher profile](https://clawhub.ai/user/tltby12341)
+- [NASDAQ Trader symbol directory](ftp://ftp.nasdaqtrader.com/symboldirectory/nasdaqtraded.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated CSV output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires internet access for NASDAQ FTP and Yahoo Finance data; get_true_top_500.py writes a CSV file at the configured output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

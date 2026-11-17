@@ -1,42 +1,52 @@
-## Description: <br>
-Xiao Fei Liberal Arts Tutor helps learners connect Chinese poetry, essay writing, English learning, textbook review, exam points, and knowledge-network study. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiao Fei Liberal Arts Tutor guides learners through Chinese poetry, essay writing, English study, textbook-aligned exam preparation, and cross-module knowledge transfer.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-Students, parents, and educators use this skill as a liberal arts tutoring companion for Chinese poetry, essay writing, English learning, textbook-aligned review, and exam preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flagged AI-detection evasion language in the polishing feature. <br>
-Mitigation: Use polishing only for transparent editing support, and do not use it to conceal AI-generated schoolwork. <br>
-Risk: The security review flagged broad automatic or persistent learning-profile behavior that may retain student progress or emotional-profile context. <br>
-Mitigation: Review the OpenClaw setup before installation and disable broad triggers, reminders, long-term memory, or parent-report sharing when they are not appropriate. <br>
+## Use Case:
 
+External learners, educators, and families use this skill for Chinese poetry appreciation, essay coaching, English learning, textbook-aligned review, and exam-focused humanities study.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/simonstang/xiaofei-liberal-arts) <br>
-- [Knowledge Base](references/knowledge_base.md) <br>
-- [Output Templates](references/templates/output_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown tutoring responses, study guidance, writing feedback, and learning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual Chinese and English explanations, study plans, examples, and review prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.0 (source: frontmatter, changelog, server evidence) <br>
+Risk: The education-focused skill explicitly includes an AIGC detection-reduction feature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or disable that feature when academic integrity, disclosure, or school policy compliance matters, and review the skill carefully before educational deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonstang/skills/xiaofei-liberal-arts)
+- [Publisher profile](https://clawhub.ai/user/simonstang)
+- [Knowledge base](references/knowledge_base.md)
+- [Output templates](references/templates/output_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tutoring responses, study templates, explanations, and writing feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English educational guidance with structured templates]
+
+## Skill Version(s):
+
+3.5.0 (source: server release metadata, skill frontmatter, _meta.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

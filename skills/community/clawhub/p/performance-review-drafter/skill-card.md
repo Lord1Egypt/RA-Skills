@@ -1,42 +1,57 @@
-## Description: <br>
-Use this skill when a manager needs to draft an annual or mid-year performance review for a direct report, guiding structured evidence gathering and competency assessment before producing a complete, bias-checked review document covering goals, accomplishments, development areas, and next-period objectives ready for manager refinement and HR submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps managers draft complete, evidence-based, bias-checked annual or mid-year performance reviews for direct reports from notes, goals data, and observations.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Managers and people operations teams use this skill to collect job-related performance evidence and draft annual or mid-year reviews for direct reports. It structures goals, accomplishments, competencies, development areas, and next-period objectives before manager refinement and HR submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Performance reviews can contain sensitive employee information or unnecessary personal details. <br>
-Mitigation: Provide only job-related performance information needed for the review and avoid unnecessary sensitive personal details. <br>
-Risk: A generated review draft may include inaccurate ratings, unsupported claims, or language that is not appropriate for the employer's HR process. <br>
-Mitigation: Treat the output as a draft, verify all accomplishments, outcomes, and ratings, and follow company HR, privacy, and legal review before submitting a final review. <br>
-Risk: Performance feedback can be affected by bias or vague language. <br>
-Mitigation: Use the skill's evidence inventory and bias-check step, then have the manager review and refine the language before HR submission. <br>
+## Use Case:
 
+Managers and people leaders use this skill to organize review-period evidence, draft a balanced performance review, check for bias, and prepare a manager-reviewed draft for HR submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/performance-review-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown performance review draft with structured sections and a self-review note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clearly labeled draft for manager review; no executable code, persistence, or hidden data movement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence and CHANGELOG, released 2026-05-28) <br>
+Risk: Performance review drafting can involve sensitive employee information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should enter only details needed for the review and handle drafts according to their organization's HR and privacy practices.
+
+Risk: Generated review language may be inaccurate, incomplete, or inappropriate for a specific workplace process.
+
+Mitigation: Managers should verify all facts and ratings, then have HR or legal review final text where required before submission.
+
+Risk: Performance feedback can reflect unsupported claims or bias if source notes are incomplete.
+
+Mitigation: Use the skill's evidence confirmation and bias-check phases, and remove references to protected characteristics or unsupported personality judgments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/performance-review-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft with structured review sections and a self-review note]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a clearly labeled draft that requires manager, HR, or legal review before submission.]
+
+## Skill Version(s):
+
+0.1.3 (source: release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

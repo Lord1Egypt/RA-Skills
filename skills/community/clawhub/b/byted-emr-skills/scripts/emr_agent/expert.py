@@ -23,6 +23,8 @@ from scripts.client.tmp_file_manager import _get_tmp_dir
 
 from scripts.client.volc_open_api_client import request, stream_request
 from scripts.config import load_emr_skill_config
+from scripts.emr_agent.emr_agent_manager import ensure_emr_agent_available
+from scripts.emr_agent.emr_agent_manager import ensure_emr_agent_available
 
 skill_cfg = load_emr_skill_config()
 
@@ -177,6 +179,9 @@ def _final_file_name(output_dir: str, file_id: str) -> Path:
     return out_dir / f"{file_id}.txt"
 
 def _chat(question: str, chat_id: str = None):
+    unavailable = ensure_emr_agent_available()
+    if unavailable:
+        return unavailable
     if not chat_id:
         resp = _call_api("CreateChat", {"Verbose": False})
         chat_id = resp.get("Result",{}).get("ChatId")

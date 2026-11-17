@@ -1,39 +1,57 @@
-## Description: <br>
-Atomic node skill to read a specific email via Gmail using the gog CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to read a specific email via Gmail using the gog CLI.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents use this skill when they need to retrieve the headers, body, and metadata for a specific Gmail message by message ID through the configured gog CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retrieved Gmail messages can contain sensitive headers, body text, authentication links, financial details, or other private content. <br>
-Mitigation: Use the skill only for intentional retrieval of a specific email, trust the configured gog CLI and Gmail account, and avoid unnecessary sharing or logging of full message contents. <br>
+## Use Case:
 
+Developers and authorized workspace users use this skill when an agent needs to retrieve the full contents, headers, and metadata of a specific Gmail message by message ID.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/gmail-retrieve-email) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zvirb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON returned by the gog CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Retrieves a single Gmail message identified by message ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can expose the full contents and metadata of a Gmail message through configured gog access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized messages and confirm the requested message ID before retrieval.
+
+Risk: Retrieved email bodies and headers may contain sensitive information.
+
+Mitigation: Avoid unnecessary logging of raw email content, and redact or summarize sensitive details where practical.
+
+Risk: The skill depends on the local gog CLI and its configured Gmail access.
+
+Mitigation: Install and configure gog with the minimum Gmail access needed for the intended authorized workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/gmail-retrieve-email)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with an inline shell command and JSON output expectation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog CLI and returns Gmail message headers, body, and metadata for the requested message.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

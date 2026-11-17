@@ -1,44 +1,50 @@
-## Description: <br>
-Helps agents answer current weather and forecast questions for a location using wttr.in or Open-Meteo, without API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts via wttr.in or Open-Meteo for user-specified locations, with no API key required.
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-External users and agents use this skill to check current conditions, rain chances, temperatures, and short forecasts for cities, regions, or airport codes during everyday or travel-planning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries are sent to a public weather service. <br>
-Mitigation: Use coarse locations such as a city or airport code, and avoid exact private addresses or sensitive travel details unless needed. <br>
-Risk: The skill depends on curl and remote weather service availability. <br>
-Mitigation: Confirm curl is available before use and treat service errors, rate limits, or unavailable forecasts as non-authoritative results. <br>
-Risk: The artifact does not support severe weather alerts, historical weather, or specialized aviation and marine weather. <br>
-Mitigation: Use official or specialized weather sources for alerts, historical analysis, aviation, marine, or other high-stakes forecasts. <br>
+## Use Case:
 
+Agents use this skill to answer weather, temperature, rain, and forecast questions for cities, regions, or airport codes. It is intended for routine current-condition and forecast lookups, not historical weather, severe weather alerts, climate analysis, aviation, or marine weather.
 
-## Reference(s): <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [ClawHub Weather skill](https://clawhub.ai/utromaya-code/weather-forecast-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/utromaya-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and weather query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return wttr.in text, JSON, or PNG weather responses depending on the command format selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Weather location queries may be sent to wttr.in over unencrypted HTTP in the artifact examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer HTTPS endpoints and avoid sending sensitive private location or travel details in weather lookups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/utromaya-code/skills/weather-forecast-ai)
+- [wttr.in help](https://wttr.in/:help)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and weather lookup examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl command examples that request text, JSON, or PNG weather formats from wttr.in.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

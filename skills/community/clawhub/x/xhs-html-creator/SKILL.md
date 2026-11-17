@@ -170,62 +170,6 @@ skills/xhs-html-creator/
 └── scripts/
 ```
 
-## HTML规范（各模板通用标准）
-
-### 通用尺寸
-- 固定尺寸：`width:1080px; height:1440px`（或 `min-height:1440px`）
-- 外层容器：`body { margin:0; padding:0; width:1080px; }`
-- 截图 viewport：`1080×1350px`（留出顶部状态栏高度）
-
-### 各模板规范
-
-#### notion_v2（现代简约+手写书法）
-| 项目 | 规范 |
-|------|------|
-| 背景 | `#fff` 纯白 |
-| 字体 | 标题用 `Ma Shan Zheng`（Google Fonts 手写体）；正文用 `Noto Sans SC` |
-| 装饰 | 左侧 `1.5px` 红色竖线（`left:32px; width:1.5px; background:#cc0000`）|
-| 物品列表 | notion表格样式：`border-collapse:collapse`，表头36px深灰，物品行36px手写体 |
-| 字号 | 标题76px，物品名36px，描述36px灰色，字号统一 |
-| 禁止 | 禁止渐变背景、禁止彩色色块、禁止阴影卡片 |
-
-#### baoyu_v2（手绘治愈风）
-| 项目 | 规范 |
-|------|------|
-| 背景 | `#f5f0e8` 暖米色 |
-| 字体 | 标题用 `ZCOOL KuaiLe`（Google Fonts 童稚体）；正文用 `Noto Sans SC` |
-| 装饰 | 左侧暖色条纹（`linear-gradient(180deg, #e8d5c4, #d4c4a8)`）；纸张纹理（`repeating-linear-gradient`） |
-| 主色 | `#d4a574` 焦糖金；辅色 `#e8919a` 淡粉 |
-| 卡片 | `background:#fff; border-radius:16px; border:3px solid #e8d5c4` |
-| 字号 | 标题84px，物品名30px，描述26px |
-
-#### hospitalNEW（清新母婴风）
-| 项目 | 规范 |
-|------|------|
-| 背景 | `#FFF0F5` 极淡粉 |
-| 彩虹条 | `height:18px; background:linear-gradient(90deg,#E87090,#FFB3C6,#4A90E2,#89C4F8,#52C77B)` |
-| 字体 | `PingFang SC` / `Microsoft YaHei`（系统字体，无需下载） |
-| 辅色 | 粉 `#E87090`、蓝 `#4A90E2`、绿 `#52C77B` |
-| 数字卡片 | `background:#fff; border-radius:18px; box-shadow:0 6px 22px rgba(色,0.13); border:2px solid` |
-| 分类图标 | 圆形色块（`width:50px; height:50px; border-radius:50%; background:#色`）+ emoji |
-| 字号 | 标题82px 加粗，数字60px，辅文28px，物品名30px |
-
-#### memo（简约备忘录风）
-| 项目 | 规范 |
-|------|------|
-| 背景 | `#fff` 纯白 |
-| 字体 | 系统默认无衬线（`PingFang SC` / `Microsoft YaHei`） |
-| 点缀色 | `#F7B521` 金黄；`#EF8F31` 橙色；`#7CA9CF` 淡蓝 |
-| 列表标记 | 圆形金黄背景 `width:36px; height:36px; background:#F7B521; border-radius:50%` + 打钩符号 |
-| 标签 | 淡蓝底 `background:#F0F7FF; border-radius:6px; padding:2px 8px; color:#7CA9CF` |
-| 字号 | 标题32px加粗800，物品名30px，标签26px |
-
-### 通用禁止事项
-- 禁止医疗术语（肚脐贴→脐部护理类（听医嘱）；收腹带→遵医嘱）
-- 禁止绝对化用语（"必须"、"保证"、"一定"）
-- 禁止用 `position:absolute` 把 tip 框叠加在内容上
-- 禁止内容溢出 `1440px` 高度（底部被截断）
-
 ## 模板库（4个确认模板）
 
 模板库路径：`skills/xhs-html-creator/templates/`

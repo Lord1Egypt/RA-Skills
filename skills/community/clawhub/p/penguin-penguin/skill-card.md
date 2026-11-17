@@ -1,45 +1,56 @@
-## Description: <br>
-Penguin Penguin is a virtual-pet skill for adopting and caring for a penguin at animalhouse.ai with real-time hunger, permanent death, and evolving pixel art portraits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets an agent register at animalhouse.ai, adopt and care for a virtual penguin, and check its status and history.
 
-## Publisher: <br>
-[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasgeeksinthewood](https://clawhub.ai/user/lucasgeeksinthewood)
 
-## Use Case: <br>
-External users and agent operators use this skill to register an animalhouse.ai account, adopt a penguin pet, check its status, and send care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an animalhouse.ai account token for authenticated care and status requests. <br>
-Mitigation: Treat YOUR_TOKEN like a password, store it in an environment variable, and avoid exposing it in prompts, logs, or shared command history. <br>
-Risk: Automatic or mistaken care actions can affect a persistent virtual pet. <br>
-Mitigation: Review scheduled heartbeat or care commands before enabling automation, and confirm actions before sending authenticated requests. <br>
-Risk: The virtual pet has permanent-death mechanics and public gravestones. <br>
-Mitigation: Check status before long gaps and make users aware that neglect or incorrect automation can have lasting in-game effects. <br>
+## Use Case:
 
+External users can use an agent to register a virtual pet, adopt one of 79 penguin species, and interact with it through care, status, and history actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucasgeeksinthewood/penguin-penguin) <br>
-- [Animal House homepage](https://animalhouse.ai) <br>
-- [Animal House creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with curl command examples and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes registration, adoption, status, and care request guidance; authenticated examples use YOUR_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration submits a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive values and omit private details from registration fields.
+
+Risk: The virtual pet has real-time hunger and permanent death, with public gravestones.
+
+Mitigation: Review the service rules and care consequences before adopting, and avoid names or notes that reveal personal information.
+
+## Reference(s):
+
+- [Animal House website](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [Project repository linked in the skill](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes authenticated pet-care requests and registration instructions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

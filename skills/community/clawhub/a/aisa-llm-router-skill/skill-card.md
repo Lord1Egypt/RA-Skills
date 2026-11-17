@@ -1,45 +1,55 @@
-## Description: <br>
-Unified LLM Gateway - One API for 70+ AI models. Route to GPT, Claude, Gemini, Qwen, Deepseek, Grok and more with a single API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified LLM Gateway - One API for 70+ AI models. Route to GPT, Claude, Gemini, Qwen, Deepseek, Grok and more with a single API key.
 
-## Publisher: <br>
-[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom)
 
-## Use Case: <br>
-Developers and agent builders use this skill to call multiple hosted LLM providers through AISA's OpenAI-compatible gateway, including chat, streaming, vision, model comparison, and fallback routing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, system messages, image URLs, and image data are sent to AISA and routed model providers. <br>
-Mitigation: Use the skill only with providers you trust, avoid regulated or sensitive data unless approved, and review provider handling terms before production use. <br>
-Risk: The AISA API key can be exposed through shell history, logs, screenshots, or shared scripts. <br>
-Mitigation: Use a dedicated API key, store it in the environment or a secret manager, monitor usage and billing, and rotate it if exposure is suspected. <br>
-Risk: Routed model availability, pricing, output quality, and downstream provider behavior can vary. <br>
-Mitigation: Check current model availability and pricing, set token limits, monitor usage costs, and implement fallback handling for production workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bowen-dotcom/aisa-llm-router-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/bowen-dotcom) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [AISA API Reference](https://aisa.mintlify.app/api-reference/introduction) <br>
-- [AISA Marketplace Pricing](https://marketplace.aisa.one/pricing) <br>
+## Use Case:
 
+Developers and agents use this skill to call AIsa's OpenAI-compatible LLM gateway for chat, streaming responses, vision analysis, function calling, model comparison, and model listing through one API key.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with bash, Python, HTTP request examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and network access to the AISA API; routed prompts, system messages, image URLs, and image data are transmitted to AISA and downstream model providers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, message histories, image URLs or base64 images, and tool/function schemas are sent to AIsa and may be routed to downstream model providers.
+
+Mitigation: Use the skill only for data approved for that sharing path; avoid secrets, regulated data, internal signed URLs, and confidential documents unless approval is documented.
+
+Risk: The skill requires an AISA_API_KEY for API calls.
+
+Mitigation: Provide the key through the environment and do not paste it into prompts, committed files, or shared command transcripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bowen-dotcom/skills/aisa-llm-router-skill)
+- [OpenClaw](https://openclaw.ai)
+- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction)
+- [AIsa Pricing](https://marketplace.aisa.one/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python code, and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; supports chat, streaming, vision, model listing, and model comparison workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

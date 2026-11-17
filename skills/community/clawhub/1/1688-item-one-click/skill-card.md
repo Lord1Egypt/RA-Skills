@@ -1,48 +1,60 @@
-## Description: <br>
-1688 Item One Click lets an agent check and, after user confirmation, update 1688 item titles, main images, limited-time discounts, and member posts through signed CLI calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688 Item One Click helps agents modify 1688 product titles, replace main images, set limited-time discounts, and publish member-feed posts through a two-step pre-check and confirmed execution workflow.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External commerce operators and their agents use this skill to apply approved changes to 1688 listings and member posts after a pre-check and explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured 1688 AccessKey can authorize merchant write operations, including listing changes, member posts, and potential discounts. <br>
-Mitigation: Use the narrowest available key scope, store it only in the intended OpenClaw configuration path, and rotate it if exposure is suspected. <br>
-Risk: The execute command can directly modify product data or pricing-related settings. <br>
-Mitigation: Run before_check first, present the proposed item ID, spi_code, and parameters to the user, and call execute only after explicit confirmation. <br>
-Risk: Incorrect item IDs, image URLs, discount values, or member-post content could publish unintended merchant changes. <br>
-Mitigation: Validate each item ID and parameter against the user's request before approval, especially discountRate and activityDay values. <br>
-Risk: A misdirected gateway URL could send credentials or signed requests to an unintended service. <br>
-Mitigation: Keep OPENCLAW_GATEWAY_URL trusted and local unless the deployment explicitly requires a different trusted endpoint. <br>
+## Use Case:
 
+External 1688 merchants and their agents use this skill to apply confirmed product listing, promotion, and member-feed updates from a CLI-backed workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1688aiinfra/1688-item-one-click) <br>
-- [Publisher profile](https://clawhub.ai/user/1688aiinfra) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Pre-check capability guide](artifact/capabilities/before_check.md) <br>
-- [Execution capability guide](artifact/capabilities/execute.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output with human-facing Markdown status messages and CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and a configured 1688 AccessKey before authenticated operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can change 1688 merchant listings, promotions, and member-feed content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require before_check to pass and obtain explicit user confirmation before every execute call.
+
+Risk: The configured AK grants authority to perform gateway-backed merchant operations.
+
+Mitigation: Verify the gateway destination, avoid exposing secrets in shared shells or logs, and restrict permissions on OpenClaw configuration files.
+
+Risk: Server security evidence marks the release verdict as suspicious because write scope and credential handling need review.
+
+Mitigation: Review the skill before installation or use, and grant only the permissions needed for the intended merchant workflow.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/1688aiinfra/skills/1688-item-one-click)
+- [Configuration capability](artifact/capabilities/configure.md)
+- [Before-check capability](artifact/capabilities/before_check.md)
+- [Execute capability](artifact/capabilities/execute.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses with human-facing Markdown summaries and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured 1688 AK; write operations use execute only after before_check and explicit user confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,13 +11,13 @@
 
 用法：
   # 查询指定任务
-  python3 mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a
+  python3 mps_get_video_task.py --task-id 1234567890-WorkflowTaREDACTED-SECRET
 
   # 查询并输出完整 JSON 响应
-  python3 mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --verbose
+  python3 mps_get_video_task.py --task-id 1234567890-WorkflowTaREDACTED-SECRET --verbose
 
   # 仅输出原始 JSON（方便管道处理）
-  python3 mps_get_video_task.py --task-id 1234567890-WorkflowTask-80108cc3380155d98b2e3573a48a --json
+  python3 mps_get_video_task.py --task-id 1234567890-WorkflowTaREDACTED-SECRET --json
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   - 腾讯云 SecretId
@@ -28,6 +28,11 @@ import argparse
 import json
 import os
 import sys
+
+# 同目录模块解析：保证被当作模块 import 时也能找到 mps_auto_upgrade
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if _SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPT_DIR)
 from mps_auto_upgrade import check_sdk_version
 
 check_sdk_version()
@@ -120,11 +125,11 @@ TASK_TYPE_MAP = {
 
 
 def get_credentials():
-    """从环境变量获取腾讯云凭证。若缺失则尝试从系统文件自动加载后重试。"""
+    """从环境变量获取腾讯云凭证。若缺失则尝试从 dotenv 文件自动加载后重试。"""
     secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID", "")
     secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
     if not secret_id or not secret_key:
-        # 尝试从系统环境变量文件自动加载
+        # 凭证可能写在 ~/.env 等 dotenv 文件中而未导出，先尝试加载再重试
         if _LOAD_ENV_AVAILABLE:
             print("[load_env] 环境变量未设置，尝试从系统文件自动加载...", file=sys.stderr)
             _ensure_env_loaded(verbose=True)
@@ -132,12 +137,12 @@ def get_credentials():
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY", "")
         if not secret_id or not secret_key:
             if _LOAD_ENV_AVAILABLE:
-                from mps_load_env import _print_setup_hint, _TARGET_VARS
+                from mps_load_env import _print_setup_hint
                 _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
             else:
                 print(
                     "\n错误：TENCENTCLOUD_SECRET_ID / TENCENTCLOUD_SECRET_KEY 未设置。\n"
-                    "请在 /etc/environment、~/.profile 等文件中添加这些变量。\n",
+                    "请在 ~/.env、~/.bashrc、~/.profile 或 <SKILL_DIR>/.env 中添加这些变量。\n",
                     file=sys.stderr,
                 )
             sys.exit(1)
@@ -1385,13 +1390,13 @@ def main():
         epilog="""
 示例：
   # 查询指定任务
-  python3 mps_get_video_task.py --task-id 235303-WorkflowTask-80108cc3380155d98b2e3573a48a
+  python3 mps_get_video_task.py --task-id 235303-WorkflowTaREDACTED-SECRET
 
   # 查询并输出完整 JSON 响应
-  python3 mps_get_video_task.py --task-id 235303-WorkflowTask-80108cc3380155d98b2e3573a48a --verbose
+  python3 mps_get_video_task.py --task-id 235303-WorkflowTaREDACTED-SECRET --verbose
 
   # 仅输出原始 JSON（方便管道处理）
-  python3 mps_get_video_task.py --task-id 235303-WorkflowTask-80108cc3380155d98b2e3573a48a --json
+  python3 mps_get_video_task.py --task-id 235303-WorkflowTaREDACTED-SECRET --json
 
 环境变量：
   TENCENTCLOUD_SECRET_ID   腾讯云 SecretId

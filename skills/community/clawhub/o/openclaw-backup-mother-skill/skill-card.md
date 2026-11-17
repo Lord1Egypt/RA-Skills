@@ -1,44 +1,59 @@
-## Description: <br>
-Performs a complete OpenClaw backup, fresh installation, and restore cycle with verification and troubleshooting for reliable disaster recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through backing up OpenClaw configuration and skills, reinstalling OpenClaw, restoring backups, and verifying the result.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to back up configuration and skill files, reinstall OpenClaw, restore saved state, and verify the result before upgrades, migrations, or disaster recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reinstall commands can remove an existing OpenClaw installation before recovery is proven. <br>
-Mitigation: Verify backup archives can be listed or extracted before removing OpenClaw, and run the workflow only in the intended environment. <br>
-Risk: The installer command pipes a remote script directly into a shell. <br>
-Mitigation: Download and inspect or verify the installer before running it when possible. <br>
-Risk: Restoring untrusted backups can reintroduce unsafe configuration or skills. <br>
-Mitigation: Restore only OpenClaw configuration and skills from backups you trust, then verify the restored files and OpenClaw behavior. <br>
+## Use Case:
 
+Developers, operators, and administrators use this skill to plan and execute an OpenClaw backup, fresh installation, restore, and validation workflow for upgrades, migrations, or disaster recovery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stefanferreira/openclaw-backup-mother-skill) <br>
-- [OpenClaw Backup Quick Reference](references/quick-reference.md) <br>
-- [Backup verification script](scripts/verify-backup.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks and a verification shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes backup, reinstall, restore, and verification steps that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The workflow includes a one-line remote installer that can execute downloaded code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a verified official installer, prefer pinned packages or checksum/signature validation, and inspect downloaded scripts before running them.
+
+Risk: Wildcard restore commands can extract an unintended backup archive or overwrite existing OpenClaw files.
+
+Mitigation: Specify exact backup filenames, verify archive integrity first, and restore into a temporary staging directory before copying files into ~/.openclaw.
+
+Risk: Fresh install and restore commands can remove or replace a working OpenClaw installation.
+
+Mitigation: Create and verify dual backups, keep originals until restore validation is complete, and test the restore process on a non-production system when possible.
+
+## Reference(s):
+
+- [OpenClaw Backup Quick Reference](references/quick-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/stefanferreira/skills/openclaw-backup-mother-skill)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/stefanferreira)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and a verification shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes backup, reinstall, restore, troubleshooting, and verification steps.]
+
+## Skill Version(s):
+
+2.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

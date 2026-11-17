@@ -1,43 +1,58 @@
-## Description: <br>
-Generates dish concept images or videos and recipe guidance from fridge photos using Alibaba DashScope Wan models and a bundled recipe database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates cooking inspiration from a refrigerator photo by using Wan/DashScope vision and generation models to identify ingredients, create a polished dish image or video, and produce a detailed recipe.
 
-## Publisher: <br>
-[laojun509](https://clawhub.ai/user/laojun509) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laojun509](https://clawhub.ai/user/laojun509)
 
-## Use Case: <br>
-External users and developers use this skill to turn refrigerator photos into cuisine-specific meal ideas, generated food media, and practical recipe steps. It supports command-line and Python usage for selecting cuisine, difficulty, cooking time, model, and optional custom requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fridge photos and prompts may contain private items or location clues and are sent to Alibaba DashScope or the configured WAN_API_URL for processing. <br>
-Mitigation: Crop or redact private items, medications, labels, faces, and location clues before use. <br>
-Risk: The skill requires an API key for the external image or video generation service. <br>
-Mitigation: Use a limited API key, keep it in environment variables, and run the skill in a virtual environment. <br>
+## Use Case:
 
+External users and developers use this skill to turn fridge photos into meal ideas, generated food media, and Chinese recipe guidance across many cuisine styles, difficulty levels, and cooking-time targets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laojun509/pure-wan-fridge-gourmet) <br>
-- [Publisher profile](https://clawhub.ai/user/laojun509) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Usage examples](artifact/scripts/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, optional JSON result files, and Python dictionary results containing media URLs and recipe details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a WAN_API_KEY and may use WAN_API_URL for the configured DashScope-compatible endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill uploads private refrigerator photos and prompts to cloud AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive photos and avoid images that show medications, identifying labels, or other private household details.
+
+Risk: API credentials and image data are sent to configurable cloud endpoints.
+
+Mitigation: Use a dedicated DashScope API key with limited quota and do not set WAN_API_URL to an untrusted or unknown host.
+
+Risk: The security review flags insufficient scoping and privacy disclosure.
+
+Mitigation: Review the skill before installing, run it in a clean virtual environment, and confirm that its cloud-service behavior is acceptable for the intended users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laojun509/skills/pure-wan-fridge-gourmet)
+- [Publisher profile](https://clawhub.ai/user/laojun509)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text and Markdown-style recipe output, with optional JSON result files and generated image or video URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include a media URL, task ID, cuisine, difficulty, cooking-time metadata, recipe source, ingredients, cooking steps, and tips.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

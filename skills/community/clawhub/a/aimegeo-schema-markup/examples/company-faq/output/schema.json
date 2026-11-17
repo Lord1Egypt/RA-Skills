@@ -1,0 +1,59 @@
+{
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://example.org/#organization",
+      "name": "青禾资料库（演示）",
+      "url": "https://example.org/",
+      "description": "提供企业资料整理与检索服务。"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://example.org/faq#faq",
+      "url": "https://example.org/faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "公司提供什么服务？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "提供企业资料整理与检索服务。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "资料可以导出吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "支持导出 UTF-8 编码的 JSON 文件。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何更新公司简介？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "由资料管理员提交新版本并保留修改记录。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "可以在离线环境使用吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "已导出的资料可在离线环境读取。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "价格和服务评分在哪里查看？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "当前资料未公开价格和服务评分，请联系资料管理员确认。"
+          }
+        }
+      ]
+    }
+  ],
+  "@context": "https://schema.org"
+}

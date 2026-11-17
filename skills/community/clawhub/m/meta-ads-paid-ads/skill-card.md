@@ -1,39 +1,52 @@
-## Description: <br>
-Guides setup, optimization, and management of Meta (Facebook and Instagram) Ads, including campaign structure, audience targeting, creative optimization, tracking, and pre-launch checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Meta (Facebook/Instagram) Ads setup, campaign structure, audience targeting, creative optimization, tracking, and optimization.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing teams, advertisers, and consultants use this skill to plan, set up, optimize, and manage Meta (Facebook/Instagram) ad campaigns, including campaign structure, targeting, creative testing, tracking, and pre-launch checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Campaign, budget, account, or platform recommendations may be unsuitable for a specific Meta Ads account or current platform policy.
+
+Mitigation: Confirm Meta platform rules, budget changes, and account actions before applying recommendations.
+
+Risk: Tracking guidance involving Meta Pixel, Conversions API, and conversion events can affect privacy and compliance obligations.
+
+Mitigation: Validate tracking, consent, and privacy requirements with the appropriate internal or legal owner before launch.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, marketers, and operators use this skill to plan and improve Meta Ads campaigns across Facebook and Instagram. It provides practical guidance for objectives, campaign structure, targeting, creative testing, tracking, and launch readiness. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags the bundle as suspicious and reports helper behavior that may run nested agents with broad access or send diffs to external reviewers. <br>
-Mitigation: Install only in trusted ClawHub maintenance environments; for routine code review prefer autoreview with --no-yolo or AUTOREVIEW_YOLO=0, disable fallback reviewers for sensitive private diffs, and verify moderation targets and effects before use. <br>
-Risk: Advertising guidance can become inaccurate as platform features, attribution behavior, and policy requirements change. <br>
-Mitigation: Review recommendations against current Meta Ads Manager settings, account policy status, and verified campaign performance data before applying them. <br>
+**Output Format:** [Markdown guidance with tables, checklists, and concise recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include campaign structure, audience targeting, creative testing, optimization, and tracking recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown text with tables, examples, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include campaign naming patterns, audience recommendations, creative best practices, tracking guidance, and pre-launch checklist items.] <br>
+1.1.1 (source: SKILL.md metadata and release evidence)
 
-## Skill Version(s): <br>
-1.1.1 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

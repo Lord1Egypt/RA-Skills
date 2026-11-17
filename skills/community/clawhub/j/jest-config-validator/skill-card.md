@@ -1,42 +1,53 @@
-## Description: <br>
-Validates Jest configuration files and package.json Jest settings for deprecated options, transform conflicts, coverage misconfigurations, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate jest.config.ts/js/json and Jest configuration in package.json for deprecated options, transform conflicts, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Jest test runner configuration, migration readiness, transform setup, coverage settings, and CI-friendly validation results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strict mode converts warnings into errors and may block CI on findings that require project-specific review. <br>
-Mitigation: Run non-strict validation first, review the reported findings, and enable strict mode only after the team accepts the resulting CI gate. <br>
-Risk: The bundled checker is intended for Jest config files and package.json Jest settings; applying it outside that scope can produce irrelevant findings. <br>
-Mitigation: Use it only on intended Jest configuration inputs and review results before acting on them. <br>
+## Use Case:
 
+Developers, QA engineers, and DevOps engineers use this skill to audit Jest configuration files, catch deprecated options and transform conflicts, and produce CI-friendly validation output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/jest-config-validator) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Validator script](artifact/scripts/jest_config_validator.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, or one-line summary output from local validation commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text, json, and summary output formats with exit codes for CI use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The validator reads the config path supplied by the user and may inspect same-directory Jest or package configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended project directories and review reported findings before making configuration changes.
+
+Risk: Static lint-style findings may be incomplete or conservative for complex JavaScript or TypeScript configuration patterns.
+
+Mitigation: Treat results as review guidance and confirm important changes with the project test suite.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/jest-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and validator output in text, JSON, or summary form]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CI-friendly exit codes: 0 for no errors, 1 for validation errors, and 2 for missing file or parse errors.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-High-performance audio library with text-to-speech (TTS) and speech-to-text (STT). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance audio library with text-to-speech (TTS) and speech-to-text (STT).
 
-## Publisher: <br>
-[DarkNoah](https://clawhub.ai/user/DarkNoah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[darknoah](https://clawhub.ai/user/darknoah)
 
-## Use Case: <br>
-Developers and agents use Qwen Audio to create reusable voice profiles, synthesize speech, clone voices with supplied reference audio, and transcribe audio into text or subtitle files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can install dependencies during use and may download models or packages. <br>
-Mitigation: Review before installing, use an isolated Python or uv environment, and avoid running it where automatic package changes are unacceptable. <br>
-Risk: Voice cloning can be misused when reference recordings are used without consent. <br>
-Mitigation: Only use voice cloning with recordings you own or have explicit permission to use. <br>
-Risk: Stored voice profiles can contain sensitive local audio and transcript data. <br>
-Mitigation: Treat saved voice profiles as sensitive local data and restrict access to the skill directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Environment checklist](references/env-check-list.md) <br>
+## Use Case:
 
+Developers and agents use Qwen Audio to generate speech, create and list reusable voice profiles, clone voices from reference audio and transcripts, and transcribe audio to text or subtitle files.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Audio files, Subtitle files, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON command results plus WAV audio, plain text transcripts, and ASS/SRT subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Voice profiles are stored as local files and generated outputs are written to user-specified paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.6 (source: release evidence; artifact frontmatter 0.0.4 and pyproject.toml 0.1.0 differ) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can download models and uses a third-party model mirror by default.
+
+Mitigation: Use an explicit trusted model endpoint, review downloaded model sources, and prefer pinned dependencies before deployment.
+
+Risk: The skill may modify its Python environment on macOS by installing mlx-audio automatically.
+
+Mitigation: Run it in an isolated environment and approve dependency changes before executing audio commands.
+
+Risk: Voice profiles persist reference audio, transcripts, and voice style instructions.
+
+Mitigation: Store only voice samples with clear permission, limit access to the voices directory, and remove profiles that are no longer needed.
+
+Risk: Custom voice IDs have unsafe path-handling concerns in the security evidence.
+
+Mitigation: Review or patch voice ID handling before using custom IDs, and restrict IDs to simple safe names.
+
+## Reference(s):
+
+- [Environment Check List](references/env-check-list.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; command results are JSON, WAV audio, text, ASS, or SRT files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Voice profiles may persist reference audio, transcript text, and style instructions under the skill's voices directory.]
+
+## Skill Version(s):
+
+0.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

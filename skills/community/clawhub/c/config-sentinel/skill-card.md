@@ -1,39 +1,57 @@
-## Description: <br>
-A strict guardrail for OpenClaw config changes that snapshots before editing, validates after editing, and rolls back immediately when config health fails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Config-Sentinel helps agents make OpenClaw configuration changes safer by creating snapshots, validating config health, and rolling back when validation fails.
 
-## Publisher: <br>
-[mike-alford](https://clawhub.ai/user/mike-alford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike-alford](https://clawhub.ai/user/mike-alford)
 
-## Use Case: <br>
-Developers and operators use this skill when modifying OpenClaw configuration to create recoverable snapshots, validate JSON structure and bindings, and roll back unsafe changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local OpenClaw config backups may contain tokens or account details. <br>
-Mitigation: Keep the sentinel backup directory private, preserve owner-only permissions, and avoid sharing backup or log files. <br>
-Risk: Unapproved or unvalidated config edits can break agent routing, bindings, startup behavior, or multi-agent setups. <br>
-Mitigation: Get explicit user approval, run pre-change before editing, validate after editing, and roll back immediately if validation fails. <br>
+## Use Case:
 
+Developers and engineers use this skill when changing OpenClaw configuration files, especially to snapshot state before edits, validate JSON and binding health after edits, and recover from broken config changes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; the helper can create local backup and log files under the sentinel state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Backups, logs, or Git history may preserve sensitive OpenClaw configuration contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted, clean config repo, review where backups are stored, and avoid using it on configs that contain secrets unless that storage is acceptable.
+
+Risk: Rollback may not fully restore a working state in every failure mode.
+
+Mitigation: Test the recovery path before relying on it, and treat rollback as a guardrail rather than a complete automatic recovery system.
+
+Risk: Automatic Git commits can change local repository history for the config directory.
+
+Mitigation: Review before installing when the OpenClaw config directory is a Git repository and confirm that automated snapshots fit the user's workflow.
+
+## Reference(s):
+
+- [Config-Sentinel ClawHub Skill Page](https://clawhub.ai/mike-alford/skills/config-sentinel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and local validation status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local OpenClaw config backups, sentinel logs, and optional git snapshots when the helper script is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

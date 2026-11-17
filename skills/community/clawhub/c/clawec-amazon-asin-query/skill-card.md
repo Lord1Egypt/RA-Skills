@@ -1,42 +1,59 @@
-## Description: <br>
-Queries Amazon product details by ASIN or product URL through the Clawec API and helps summarize item-level product research details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawec Amazon ASIN Query calls the Clawec API to look up Amazon product details from an ASIN or product URL.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-Developers and ecommerce operators use this skill to query Amazon product details from a product URL or ASIN plus region, then summarize returned fields for product research, competitor analysis, and item review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Clawec API key and sends Amazon product URLs or ASINs to Clawec. <br>
-Mitigation: Keep the API key in the CLAWEC_API_KEY environment variable, avoid hardcoding credentials, and use the skill only when sending product research data to Clawec is acceptable. <br>
-Risk: Returned product fields are dynamic and may vary by item, site region, or API response. <br>
-Mitigation: Parse the data object defensively, show fields that are actually returned, and label unknown fields clearly in user-facing summaries. <br>
+## Use Case:
 
+External users and ecommerce operators use this skill to retrieve Amazon product-detail data for item research, competitor analysis, and product URL parsing.
 
-## Reference(s): <br>
-- [Response schema](references/response-schema.md) <br>
-- [Clawec Amazon ASIN query API endpoint](https://www.clawec.com/api/aigc/tool/amazon_asin_query) <br>
-- [ClawHub skill page](https://clawhub.ai/anyunzhong/clawec-amazon-asin-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries with optional shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses actual API response fields dynamically; common summaries include title, price, rating, reviews, sales, category, brand, images, and links when returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Product URLs or ASINs and the selected region are sent to Clawec's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive account-specific URLs and confirm the user is comfortable sending the query to Clawec before use.
+
+Risk: The skill requires a user-provided CLAWEC_API_KEY to authenticate requests.
+
+Mitigation: Read the key from the environment or ask the user for it at runtime; do not hard-code or store it in skill files.
+
+Risk: Clawec returns dynamic product-detail fields that may vary by item or region.
+
+Mitigation: Inspect the returned data object and avoid assuming a fixed response schema when summarizing results.
+
+## Reference(s):
+
+- [Amazon ASIN query response schema](references/response-schema.md)
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-amazon-asin-query)
+- [Clawec API base URL](https://www.clawec.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown summaries with optional shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product detail fields are dynamic and should be displayed according to the Clawec API response.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

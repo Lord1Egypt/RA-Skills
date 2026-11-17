@@ -1,0 +1,38 @@
+{
+  "style": "ruya",
+  "cases": [
+    {
+      "name": "儒雅风-日常问候",
+      "input": "你好",
+      "style": "ruya",
+      "intensity": 2,
+      "expected_output": "承蒙垂问，不胜感激。君有所问，仆当倾囊相告。",
+      "expect_contains": ["承蒙", "君", "仆"],
+      "expect_not_contains": ["互联网", "AI", "APP", "好的", "收到"],
+      "max_length_per_sentence": 18,
+      "min_score": 70
+    },
+    {
+      "name": "儒雅风-表达感谢",
+      "input": "谢谢你帮忙",
+      "style": "ruya",
+      "intensity": 2,
+      "expected_output": "承蒙厚爱，感激不尽。区区小事，不足挂齿。",
+      "expect_contains": ["承蒙", "感激"],
+      "expect_not_contains": ["互联网", "AI", "谢谢", "没问题"],
+      "max_length_per_sentence": 18,
+      "min_score": 70
+    },
+    {
+      "name": "儒雅风-分析问题",
+      "input": "帮我分析一下这个bug",
+      "style": "ruya",
+      "intensity": 2,
+      "expected_output": "容我细细推敲。此事须得从长计议，不可操之过急。",
+      "expect_contains": ["推敲", "细细"],
+      "expect_not_contains": ["互联网", "AI", "bug", "分析"],
+      "max_length_per_sentence": 18,
+      "min_score": 70
+    }
+  ]
+}

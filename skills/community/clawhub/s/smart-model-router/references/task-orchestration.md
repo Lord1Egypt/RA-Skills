@@ -13,12 +13,14 @@ Think → Act → Observe → Repeat. The model decides next steps, not a hard-c
 ### When to Decompose
 
 Decompose when:
+
 - Task takes >5 minutes of reasoning
 - Task touches >3 files or domains
 - Task has independent sub-parts that could run in parallel
 - Task requires different expertise (research vs coding vs writing)
 
 Don't decompose when:
+
 - Task is a single focused action
 - Context sharing between parts is heavy (coordination cost > parallelism gain)
 - Task requires tight feedback loops (visual/creative work)
@@ -46,7 +48,7 @@ Output of stage N feeds stage N+1. Each stage uses the model best suited to its 
 ### The Parallel Fan-Out Pattern
 
 ```
-Task → Classifier (flash) → Route to N workers simultaneously
+Task → Tier chosen in context (SKILL.md Fast Route Table) → Route to N workers simultaneously
                            → Collect results
                            → Merge (mid/strong)
 ```
@@ -58,6 +60,7 @@ Best when sub-tasks are independent. Claude Code's Agent Teams uses this: separa
 **The #1 mistake:** Doing research + planning + execution in one context window.
 
 Each sub-agent should get:
+
 - The specific sub-task description
 - Relevant context only (not the full conversation)
 - Output format specification
@@ -68,6 +71,7 @@ This prevents "Context Collapse" — when the window fills up, the model starts 
 ## Claude Code's Architecture Lessons (Reverse-Engineered)
 
 ### 5 Design Pillars
+
 1. **Model-Driven Autonomy** — model decides next steps, not hard-coded DAG
 2. **Context as Scarce Resource** — auto-compaction, sub-agents, semantic search
 3. **Layered Memory** — 6 layers load at session start (org → project → personal → auto-learned)
@@ -75,6 +79,7 @@ This prevents "Context Collapse" — when the window fills up, the model starts 
 5. **Composable Permissions** — tool-level allow/deny/ask with glob patterns
 
 ### 8 Failure Modes to Solve
+
 1. Runaway loops (no kill switch)
 2. Context collapse (stuffs everything in one window)
 3. Permission roulette (asks about everything OR trusts blindly)
@@ -85,6 +90,7 @@ This prevents "Context Collapse" — when the window fills up, the model starts 
 8. Single-threaded (no delegation)
 
 ### Agent Teams Internals
+
 - Each teammate = separate CLI process in tmux split
 - Coordination via JSON files in `~/.claude/teams/<team>/inboxes/` with fcntl locks
 - Tasks = numbered JSON files in `~/.claude/tasks/<team>/`
@@ -92,14 +98,16 @@ This prevents "Context Collapse" — when the window fills up, the model starts 
 - Task dependencies with cycle detection, atomic config writes
 
 ### Primitive Tools > Many Integrations
+
 Claude Code uses Read, Write, Execute, Connect — not 100 specialized plugins. Bash acts as the universal adapter. This is why it outperforms agents with hundreds of integrations.
 
 ## Applying to OpenClaw Sub-Agents
 
 ### Big Task Workflow
+
 ```
 1. Receive task
-2. Classify complexity (flash tier classifier)
+2. Classify complexity in context (SKILL.md Fast Route Table; no external classifier call)
 3. If simple → single agent, appropriate tier
 4. If complex → decompose:
    a. Identify independent sub-tasks
@@ -111,14 +119,16 @@ Claude Code uses Read, Write, Execute, Connect — not 100 specialized plugins. 
 ```
 
 ### Model Assignment Per Role
-| Role in orchestration | Recommended tier |
-|---|---|
-| Supervisor / decomposer | strong (needs judgment) |
-| Research / data gathering | mid + gemini (large context) |
-| Implementation / coding | mid (sonnet) |
-| Review / QA | mid (gpt — different perspective) |
-| Formatting / output | fast/flash |
-| Monitoring | free/local (qwen3) |
+
+| Role in orchestration     | Recommended tier                  |
+| ------------------------- | --------------------------------- |
+| Supervisor / decomposer   | strong (needs judgment)           |
+| Research / data gathering | mid + gemini (large context)      |
+| Implementation / coding   | mid (sonnet)                      |
+| Review / QA               | mid (gpt — different perspective) |
+| Formatting / output       | fast/flash                        |
+| Monitoring                | free/local (qwen3)                |
 
 ### The Cross-Model Review Pattern
+
 Always review output with a DIFFERENT model than the one that produced it. Different models have different blind spots. GPT reviewing Claude's output (or vice versa) catches errors that self-review misses.

@@ -1,49 +1,64 @@
-## Description: <br>
-Local AI image generation using Fooocus (Stable Diffusion XL). Use when users want to generate images locally without relying on cloud APIs. Supports text-to-image, image variations, upscaling, inpainting, outpainting, face swap, and style transfer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images locally with Fooocus (Stable Diffusion XL), including text-to-image, image variations, upscaling, inpainting, outpainting, face swap, and style transfer.
 
-## Publisher: <br>
-[wszhhx](https://clawhub.ai/user/wszhhx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wszhhx](https://clawhub.ai/user/wszhhx)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to run local Fooocus-based SDXL image generation workflows, including text-to-image, variations, upscaling, inpainting, outpainting, face swap, and style transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup and startup scripts download third-party code, install Python packages, and can run local services. <br>
-Mitigation: Install in a virtual environment, review commands before execution, and use only verified Fooocus installation paths. <br>
-Risk: The local Fooocus service can create exposure if bound beyond localhost or shared externally. <br>
-Mitigation: Keep Fooocus bound to localhost and avoid --listen or --share unless the user understands the network exposure. <br>
-Risk: The --force reinstall path can delete an existing Fooocus directory. <br>
-Mitigation: Use --force only after confirming the target path is the intended Fooocus install directory. <br>
-Risk: Untrusted path or preset values can affect local script behavior. <br>
-Mitigation: Use trusted local paths and known presets; do not pass unreviewed values from untrusted sources. <br>
+## Use Case:
 
+Developers and external users use this skill to set up and operate local Fooocus image generation workflows without relying on cloud image APIs. It helps agents choose prompts, styles, presets, API calls, and shell commands for local generation and image-editing tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wszhhx/fooocus-image-gen) <br>
-- [Fooocus project](https://github.com/lllyasviel/Fooocus) <br>
-- [Fooocus wiki](https://github.com/lllyasviel/Fooocus/wiki) <br>
-- [Fooocus API reference](references/fooocus_api.md) <br>
-- [Fooocus parameters guide](references/parameters_guide.md) <br>
-- [Fooocus presets reference](references/presets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local image files through Fooocus when the local service and dependencies are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install software, clone remote code, modify files under the user's home directory, and start a local Fooocus service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, install into a verified directory, avoid --force unless the target path is confirmed, and keep the service bound to localhost.
+
+Risk: Prompts or selected images may be sent to a configured API endpoint if the user points the skill at a non-local Fooocus service.
+
+Mitigation: Use local endpoints for sensitive prompts or personal images, and only use remote endpoints after explicitly accepting that data transfer.
+
+Risk: The scanner verdict is suspicious because the installer and runtime guidance create host-safety and privacy concerns.
+
+Mitigation: Review and scan the skill before deployment, then monitor generated commands and configuration changes before execution.
+
+## Reference(s):
+
+- [Fooocus Gradio API Reference](artifact/references/fooocus_api.md)
+- [Fooocus Parameters Guide](artifact/references/parameters_guide.md)
+- [Fooocus Presets](artifact/references/presets.md)
+- [Fooocus GitHub](https://github.com/lllyasviel/Fooocus)
+- [Fooocus Wiki](https://github.com/lllyasviel/Fooocus/wiki)
+- [Fooocus Troubleshoot Guide](https://github.com/lllyasviel/Fooocus/blob/main/troubleshoot.md)
+- [Hugging Face Fooocus Models](https://huggingface.co/lllyasviel)
+- [SDXL Prompt Guide](https://stable-diffusion-art.com/sdxl-prompt/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, image files]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration values, API parameters, and generated local image file paths when generation succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a local Fooocus service, Python dependencies, model downloads, GPU resources, and optional user-selected input images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

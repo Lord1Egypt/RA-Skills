@@ -1,42 +1,59 @@
-## Description: <br>
-Provides structured code review for pull requests and code changes, including code quality, security, performance, maintainability, tests, and CI status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured code review support for pull requests and code changes, including CI status checks, code quality review, security inspection, performance analysis, and maintainability feedback.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers and engineers use this skill to review pull requests or local code changes, check CI failures, and produce prioritized feedback with concrete remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move from review into editing, committing, and pushing repository changes without a clear confirmation step. <br>
-Mitigation: Require explicit user approval before applying edits, creating commits, or pushing changes, and review all generated changes before relying on them. <br>
-Risk: GitHub CLI commands may use the user's authenticated GitHub session and access pull request or CI information. <br>
-Mitigation: Use the skill only in repositories and accounts where the agent is authorized, and confirm the intended PR, branch, and command scope before running GitHub CLI commands. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review pull requests and local code changes, check CI status, identify security and quality issues, and produce prioritized review feedback.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/terrycarter1985/terry-code-review) <br>
-- [Detailed review criteria](artifact/reference.md) <br>
-- [Review examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown review findings with code snippets and shell commands when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CI status summaries, prioritized findings, remediation suggestions, and commands for checking pull requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill can ask an agent to modify, broadly stage, commit, and push repository code while resolving CI failures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the exact diff, exclude secrets and unrelated files, and require explicit approval before staging, committing, or pushing changes.
+
+Risk: The skill depends on GitHub CLI access and may read CI logs or PR metadata.
+
+Mitigation: Use it only in repositories where that access is acceptable and keep GitHub authentication scoped to the work being reviewed.
+
+Risk: The skill references a global agent configuration file as review policy.
+
+Mitigation: Use that policy only when the global configuration is trusted, or provide explicit project-local review criteria.
+
+## Reference(s):
+
+- [Code Review Reference Guide](artifact/reference.md)
+- [Code Review Examples](artifact/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/skills/terry-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized findings, CI status summaries, concrete remediation suggestions, and optional commands for local verification.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

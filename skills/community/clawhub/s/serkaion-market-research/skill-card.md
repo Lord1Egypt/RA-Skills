@@ -1,39 +1,52 @@
-## Description: <br>
-Generates market-research briefs covering competitive landscape analysis, market sizing, go-to-market input, and positioning strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitive landscape analysis, market sizing, and positioning research. Use for "who are the competitors", TAM/SAM/SOM sizing, go-to-market input, or positioning strategy. Produces competitive profiles, market opportunity sizing, and a defensible positioning statement.
 
-## Publisher: <br>
-[serkaion](https://clawhub.ai/user/serkaion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[serkaion](https://clawhub.ai/user/serkaion)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business teams use this skill to create market research briefs covering competitors, TAM/SAM/SOM sizing, go-to-market inputs, risk, KPIs, and defensible positioning.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Market-size, pricing, competitor, or customer-signal claims may be inaccurate or outdated.
+
+Mitigation: Verify important market-size and pricing claims against current public sources before business use.
+
+Risk: Prompts may include confidential customer or strategy information during market research.
+
+Mitigation: Avoid putting confidential customer or strategy data into prompts unless the operating environment permits it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, founders, and go-to-market teams use this skill to prompt an agent for structured market-research briefs that compare competitors, size TAM/SAM/SOM, identify gaps and risks, and produce a defensible positioning statement. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Market sizing, competitor pricing, customer quotes, or market signals may be outdated, incomplete, or unsupported. <br>
-Mitigation: Verify assumptions and current data against primary sources before using the brief for business decisions. <br>
-Risk: The generated positioning recommendation may overstate differentiation or miss regulatory, trust, delivery, or pricing constraints. <br>
-Mitigation: Review the risk and positioning sections with domain stakeholders before acting on go-to-market recommendations. <br>
+**Output Format:** [Markdown market research brief with tables, bullets, and a positioning statement]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Prompts the agent to support claims with market, pricing, review, search, and customer-signal evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown market-research brief with tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires users to verify market-size assumptions, pricing data, customer quotes, and current competitor information before business use.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

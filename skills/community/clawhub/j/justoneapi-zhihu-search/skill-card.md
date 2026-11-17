@@ -1,43 +1,51 @@
-## Description: <br>
-Call GET /api/zhihu/search/v1 for Zhihu Keyword Search through JustOneAPI with keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/zhihu/search/v1 for Zhihu Keyword Search through JustOneAPI with keyword.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and agents use this skill to query JustOneAPI's Zhihu keyword search endpoint for topic discovery and content research using a keyword, with an optional offset for paging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is passed as a command-line argument and sent in the request URL, which can expose it through local process inspection, shell history, logs, monitoring, or error reports. <br>
-Mitigation: Install only where that exposure is acceptable, avoid logging command lines or request URLs, and rotate the token if exposure is suspected. <br>
-Risk: Credential handling depends on a token-bearing query parameter for the documented endpoint. <br>
-Mitigation: Prefer a revised version that reads the token directly from the environment and uses an authorization header if the service supports it. <br>
+## Use Case:
 
+Developers and agents use this skill to call JustOneAPI's Zhihu keyword search endpoint for topic discovery and content research. It accepts a keyword and optional offset, then returns Zhihu search result data, metadata, and ranking signals.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_search&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_search&utm_content=project_link) <br>
-- [ClawHub release page](https://clawhub.ai/justoneapi/justoneapi-zhihu-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with a Node.js command example and JSON API response output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a keyword; optional offset defaults to 0.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends Zhihu search terms and a JustOneAPI token to JustOneAPI, and the token may be exposed through command-line arguments or query-string logging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or disposable token where possible, avoid sharing command logs or process listings, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_search&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_search&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Endpoint-specific summary followed by raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a keyword query parameter; offset is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

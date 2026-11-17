@@ -1,42 +1,61 @@
-## Description: <br>
-Fetch any URL and convert it to Markdown using Chrome CDP, saving rendered HTML snapshots, extracting page metadata, supporting wait mode for login-required pages, and falling back through Defuddle, legacy conversion, or the hosted defuddle.md API when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch any URL and convert it to Markdown using Chrome CDP, with rendered HTML snapshots, a Defuddle-first conversion path, a legacy fallback, optional YouTube transcript capture, wait mode for login-required pages, optional media localization, and a hosted defuddle.md fallback if local browser capture fails.
 
-## Publisher: <br>
-[nengnengZ](https://clawhub.ai/user/nengnengZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nengnengz](https://clawhub.ai/user/nengnengz)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to capture web pages as Markdown files for notes, archives, research workflows, or downstream content processing. It is especially useful when JavaScript rendering, login-assisted capture, media localization, or YouTube transcript extraction is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send a target URL to the hosted defuddle.md fallback when local browser capture fails. <br>
-Mitigation: Use it only on URLs appropriate for third-party processing, or configure and monitor usage so sensitive private, internal, or token-bearing URLs are not sent to the fallback service. <br>
-Risk: Rendered HTML snapshots, Markdown output, a dedicated Chrome profile, and downloaded media can persist private page content locally. <br>
-Mitigation: Avoid capturing highly sensitive pages, keep media downloads on ask or never for untrusted pages, and periodically review or clear the output directory and Chrome profile. <br>
+## Use Case:
 
+Developers, researchers, and content operators use this skill to capture web pages as Markdown files for archiving, note-taking, content migration, or agent-readable context. It is most useful when pages need JavaScript rendering, a saved HTML snapshot, or a wait mode for user-prepared browser state.
 
-## Reference(s): <br>
-- [Baoyu URL to Markdown homepage](https://github.com/JimLiu/baoyu-skills#baoyu-url-to-markdown) <br>
-- [First-time setup reference](references/config/first-time-setup.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nengnengZ/baoyu-url-to-markdown-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files with YAML front matter, optional sibling HTML snapshots, optional localized media files, and console status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include captured page HTML, downloaded image and video directories, conversion method logs, and fallback status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: A failed local capture can send the target URL to the hosted defuddle.md fallback service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private, signed, token-bearing, intranet, or authenticated URLs unless the user explicitly accepts that fallback behavior.
+
+Risk: Media localization can make the local machine fetch arbitrary image or video URLs found in page content.
+
+Mitigation: Keep media handling set to ask or never for untrusted pages, and review the page source before enabling automatic downloads.
+
+Risk: Runtime dependencies are resolved through Bun or npx and the artifact does not include a lockfile.
+
+Mitigation: Use a trusted preinstalled Bun runtime and pinned or reviewed dependencies before running the skill in a sensitive environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nengnengz/skills/baoyu-url-to-markdown-2)
+- [Publisher profile](https://clawhub.ai/user/nengnengz)
+- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-url-to-markdown)
+- [First-time setup reference](references/config/first-time-setup.md)
+- [defuddle.md fallback service](https://defuddle.md/stephango.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files with YAML front matter, sibling captured HTML snapshots when local capture succeeds, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Markdown, HTML, image, and video files; may call a hosted fallback service when local browser capture fails.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.58.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

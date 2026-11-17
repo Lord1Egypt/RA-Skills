@@ -1,39 +1,57 @@
-## Description: <br>
-Safepaste checks OpenClaw prompts, configuration snippets, and tips against a user's actual setup before applying them, with auto-detection, compatibility analysis, exact modification previews, safe apply, and rollback support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check any OpenClaw prompt, config snippet, or tip against the user's actual setup before applying it, with compatibility analysis, exact modifications, backups, and rollback support.
 
-## Publisher: <br>
-[rocanome](https://clawhub.ai/user/rocanome) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rocanome](https://clawhub.ai/user/rocanome)
 
-## Use Case: <br>
-OpenClaw users and developers use Safepaste to review proposed prompt, skill, cron, model-routing, and configuration changes against their local setup before adding them. It helps identify conflicts, redundant guidance, cost implications, permission expansions, and safer modified versions before any apply action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and can modify sensitive OpenClaw setup files. <br>
-Mitigation: Review the exact diff and confirm the backup path before approving any apply action. <br>
-Risk: The skill makes broad local/privacy claims while analysis may use the configured LLM provider and local usage state may be stored. <br>
-Mitigation: Install only if that data flow is acceptable for the workspace, and treat privacy claims as dependent on the active agent and provider configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Safepaste homepage](https://clawmentor.ai/safepaste) <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to review prompts, configuration snippets, skill recommendations, model-routing changes, and workflow tips against their current local setup before deciding whether to apply them.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose exact changes, show diffs, create backups, apply approved changes, and provide rollback guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.3.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to read broad local OpenClaw workspace, memory, identity, security, tool, model/config, and project context.
+
+Mitigation: Install only if that local context access is acceptable for your environment, and avoid using the skill in workspaces containing secrets or sensitive material that the agent should not inspect.
+
+Risk: Apply and rollback flows can change local OpenClaw configuration and may not cover every possible failure or partial-change scenario.
+
+Mitigation: Review the exact diff before applying changes, confirm that a fresh backup exists, and verify the workspace after any rollback.
+
+Risk: The skill maintains local usage state and may occasionally include Claw Mentor promotional messaging.
+
+Mitigation: Review or disable the tracking and upsell behavior if persistent local state or promotional output is not acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rocanome/skills/safepaste)
+- [SafePaste Homepage](https://clawmentor.ai/safepaste)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with optional diffs, code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose exact changes, create local backups before applying changes, and provide rollback guidance.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

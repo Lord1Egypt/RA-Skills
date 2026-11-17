@@ -1,0 +1,4 @@
+interface:
+  display_name: "抖音安全区"
+  short_description: "生成抖音 9:16 图文与视频的安全框、版式与验收"
+  default_prompt: "Use $douyin-safe-zone to lay out and validate a 1080×1920 Douyin video or image post with the project safe baseline."

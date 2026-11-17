@@ -1,44 +1,57 @@
-## Description: <br>
-Automates macOS GUI tasks by capturing screenshots, reading on-screen text with OCR, controlling mouse and keyboard input, managing windows, and launching apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates macOS GUI tasks through screen capture, OCR text reading, mouse and keyboard control, window management, and app launching.
 
-## Publisher: <br>
-[DHDragon](https://clawhub.ai/user/DHDragon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dhdragon](https://clawhub.ai/user/dhdragon)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent interact with macOS applications through screen reading, mouse and keyboard control, and window automation when direct API or command-line control is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read screen contents and control mouse and keyboard input across macOS applications. <br>
-Mitigation: Use it only under supervision, keep sensitive windows and passwords out of view, and revoke Accessibility or Screen Recording permissions when the skill is no longer needed. <br>
-Risk: Screenshots used for OCR may capture private information and are written to /tmp/gui-auto by the helper script. <br>
-Mitigation: Prefer small region captures and delete /tmp/gui-auto screenshots after use. <br>
-Risk: Absolute-coordinate automation can click or type in the wrong place if the screen layout changes. <br>
-Mitigation: Confirm the target window and coordinates before executing actions that click, type, submit forms, or change data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent inspect visible macOS UI state and issue bounded mouse, keyboard, window, and app-control commands during desktop automation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DHDragon/macos-gui-automation) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference local screenshots under /tmp/gui-auto during agent-guided use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Screen reading and GUI input control can expose sensitive content or trigger unintended actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on bounded, non-sensitive tasks; avoid passwords, messages, financial pages, and admin prompts; review each request before allowing clicks, typing, or app control.
+
+Risk: Temporary screenshots used for OCR can persist on disk after the task.
+
+Mitigation: Delete temporary screenshots after use and avoid capturing sensitive screens.
+
+Risk: Absolute coordinates and OCR limitations can target the wrong UI element.
+
+Mitigation: Verify screen state and coordinates before actions, prefer limited screenshot regions, and use small reversible steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dhdragon/skills/macos-gui-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include coordinate-based GUI actions, OCR output, and temporary screenshot paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

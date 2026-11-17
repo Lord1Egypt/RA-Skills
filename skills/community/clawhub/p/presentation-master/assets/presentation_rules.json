@@ -1,0 +1,6 @@
+{
+  "_comment": "演示大纲内容规范配置 —— scripts/check_presentation.py 的规则来源。以 _ 开头的键为注释/元信息，脚本加载时跳过。团队可调整字数红线与标题层级。",
+  "max_chars_per_slide": 120,
+  "title_level": 1,
+  "forbid_duplicate_titles": true
+}

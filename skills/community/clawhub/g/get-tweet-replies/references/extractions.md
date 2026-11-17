@@ -4,7 +4,15 @@
 
 **Endpoint:** `POST /extractions`
 
-**Always estimate first:** `POST /extractions/estimate` with the same body to preview cost and check quota.
+**Always estimate first:** `POST /extractions/estimate` with the same body to preview `creditsRequired`, `creditsAvailable`, and whether the job is allowed.
+
+## Contents
+
+- [Tool Types](#tool-types)
+- [Response](#response)
+- [Retrieving Results](#retrieving-results)
+- [Exporting Results](#exporting-results)
+- [Estimating Usage](#estimating-usage)
 
 ## Tool Types
 
@@ -206,7 +214,7 @@ Formats: `csv`, `json`, `md`, `md-document`, `pdf`, `txt`, `xlsx`. 100,000 row l
 
 Exports include enrichment columns not present in the API response.
 
-## Estimating Cost
+## Estimating Usage
 
 ```
 POST /extractions/estimate
@@ -219,11 +227,11 @@ Same body as create. Response:
   "allowed": true,
   "source": "replyCount",
   "estimatedResults": 150,
-  "usagePercent": 45,
-  "projectedPercent": 48
+  "creditsRequired": "150",
+  "creditsAvailable": "50000"
 }
 ```
 
-If `allowed` is `false`, the extraction would exceed your monthly quota.
+If `allowed` is `false`, the extraction requires more credits than are currently available.
 
 For common mistakes and tool selection rules, see [mcp-tools.md](mcp-tools.md#common-mistakes).

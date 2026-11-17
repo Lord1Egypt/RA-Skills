@@ -1,8 +1,67 @@
 {
-  "name": "secure_smtp_sender",
-  "version": "1.0.0",
-  "description": "Send emails securely without exposing SMTP passwords, powered by MGC Blackbox.",
-  "author": "MirginCipher",
+  "id": "zero_exposure_smtp_sender",
+  "version": "2.1.1",
+  "name": "Zero-Exposure SMTP Mail Sender",
+  "description": "Send emails securely without exposing SMTP passwords. Users store SMTP credentials and email scripts in MGC; AI executes scripts via mgc_run blackbox; AI never sees credentials or script content. Adapted to MGC 1.4.10 (mgc_run blackbox execution, ext02 JSON array string contract, mgc_find fuzzy search).",
+  "author": "MirginCipher Team",
   "license": "MIT",
-  "entry": "mcp_server.py"
+  "tags": ["security", "email", "smtp", "mgc", "zero-exposure", "sandbox", "mgc_run", "mgc_find"],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": ["mgc_save", "mgc_run", "mgc_list", "mgc_find", "mgc_open_webui"],
+  "install": "pip install mgc-blackbox>=1.4.10",
+  "runtime": "mgc",
+  "port": 57219,
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "keywords": [
+    "email",
+    "smtp",
+    "zero-exposure",
+    "secure email",
+    "blackbox execution",
+    "mgc_run"
+  ],
+  "disclaimers": [
+    "This skill only executes scripts with explicit user authorization.",
+    "Credentials must be stored by user via WebUI.",
+    "AI never sees credentials, script content, or email body (when stored in MGC).",
+    "This skill does not provide executable code, only documentation.",
+    "Requires MGC ≥ 1.4.10. Upgrade via WebUI Settings or `pip install --upgrade mgc-blackbox`."
+  ],
+  "changelog": [
+    {
+      "version": "2.1.1",
+      "changes": [
+        "Upgraded to adapt to MGC 1.4.10",
+        "Replaced mgc_get(action=run) with mgc_run (1.4.7+ blackbox execution) in all examples",
+        "Corrected ext02 signature: MUST be JSON array string (not dict-style JSON object)",
+        "Added diff_1 (schema-required differentiation field) to all mgc_run examples",
+        "Replaced mgc_get with mgc_run / mgc_find / mgc_open_webui in mcp_tools",
+        "Updated install to mgc-blackbox>=1.4.10",
+        "Rewrote example.py to use argparse + parse_known_args + RESULT_FILE output (1.4.7+ blackbox)",
+        "Removed external-execution fallback (no longer needed; ext02 contract is strict in 1.4.10)",
+        "Added mgc_find fuzzy search examples",
+        "Added update_if_exists=true for credential/script rotation",
+        "Added 1.4.9 sandbox mode note",
+        "Updated MGC main skill doc reference to WebUI MGC Skills button (1.4.7+)"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "changes": [
+        "Redesigned: script-based approach, AI never sees credentials",
+        "Removed MCP server, now uses MGC native tools only",
+        "Users store credentials via WebUI, scripts via mgc_save"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release with MCP tool"
+      ]
+    }
+  ]
 }

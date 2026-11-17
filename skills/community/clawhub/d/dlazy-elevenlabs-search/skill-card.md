@@ -1,47 +1,60 @@
-## Description: <br>
-Search the ElevenLabs voice library by keyword, source, and category, returning playable previews for matched voices before TTS use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the ElevenLabs voice library by keyword, source, and category, returning playable previews to help choose a voice for text-to-speech.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and agents use this skill to search ElevenLabs voices through the dLazy CLI, filter by source and category, and choose a playable preview before running text-to-speech work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and stores credentials locally or reads them from the DLAZY_API_KEY environment variable. <br>
-Mitigation: Use a scoped organization key, store it only in the documented CLI config or environment variable, and rotate or revoke it from the dLazy dashboard when access changes. <br>
-Risk: Search prompts and parameters are sent to dLazy cloud endpoints, and artifact evidence lists api.dlazy.com and files.dlazy.com as service endpoints. <br>
-Mitigation: Do not submit sensitive voice-search prompts or files unless the deployment has approved dLazy for that data. <br>
-Risk: The install metadata uses @latest, which can change the CLI behavior after review. <br>
-Mitigation: Pin and review a specific @dlazy/cli version before production deployment. <br>
-Risk: Security evidence notes a mismatch between the voice-search purpose and an image-style documented output schema. <br>
-Mitigation: Validate actual CLI output in a test environment before wiring downstream automation to the documented JSON fields. <br>
+## Use Case:
 
+External users and developers can search ElevenLabs voices by descriptor, source, and category, then review playable previews before choosing a voice for text-to-speech.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-elevenlabs-search) <br>
-- [dLazy CLI homepage](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy service homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI instructions and JSON command results with voice search outputs, preview URLs, or async task status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx and a dLazy API key; the documented output schema should be reviewed because evidence notes a voice-preview versus image-output mismatch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server evidence) <br>
+Risk: The release scan was partial and reported unresolved local references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill documentation and CLI installation details before use.
+
+Risk: The skill requires a dLazy API key for requests.
+
+Mitigation: Use the documented device-code login and rotate or revoke the key from the dLazy dashboard if it is exposed.
+
+Risk: Search prompts and parameters are sent to the dLazy hosted API.
+
+Mitigation: Avoid including confidential information in search prompts or parameters.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/dlazyai/skills/dlazy-elevenlabs-search)
+- [CLI homepage listed in release metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured voice search results with playable preview links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can be filtered by search prompt, voice source, category, and page size.]
+
+## Skill Version(s):
+
+1.3.42 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

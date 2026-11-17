@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "modules": [
+    {
+      "id": "sd-decoupling",
+      "strategy": "pin-satellites",
+      "anchorRef": "CARD1",
+      "members": [
+        {
+          "ref": "CARD1",
+          "fixedAxes": [
+            "x",
+            "y",
+            "rotation"
+          ],
+          "allowedRotationsDeg": [
+            90
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C19",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "C18",
+          "allowedRotationsDeg": [
+            0,
+            90,
+            180,
+            270
+          ],
+          "side": "top"
+        }
+      ],
+      "search": {
+        "gapsMil": [
+          8,
+          20,
+          40
+        ]
+      },
+      "pinAssignments": [
+        {
+          "memberRef": "C19",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "f1f4c59c4b9ce94ce15",
+          "ownerRef": "CARD1",
+          "ownerPad": "4",
+          "ownerPadPrimitiveId": "8f0d8c17bcc1fd07e24",
+          "side": "left",
+          "source": "原理图.pdf 第1页：C19 100nF服务CARD1.4 VDD，作为近端小电容"
+        },
+        {
+          "memberRef": "C18",
+          "memberPad": "1",
+          "memberPadPrimitiveId": "fe31ac9d4df6d5b9e16",
+          "ownerRef": "C19",
+          "ownerPad": "1",
+          "ownerPadPrimitiveId": "f1f4c59c4b9ce94ce15",
+          "side": "bottom",
+          "source": "考试说明.pdf 第4页：C18 10uF位于C19外侧，保持先大后小的供电布局次序"
+        }
+      ],
+      "copperPolicy": "ignore"
+    }
+  ]
+}

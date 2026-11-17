@@ -1,42 +1,59 @@
-## Description: <br>
-Structures technical-topic debates across pro, con, and judge roles, with multi-phase argument rounds, user intervention between phases, and a final consensus, disagreement, and practical recommendation summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tech Debate guides an agent to run a Chinese-language, multi-phase structured debate on a technical topic, with pro and con roles, neutral judge summaries, user interventions between phases, and a final consensus report.
 
-## Publisher: <br>
-[suran7810](https://clawhub.ai/user/suran7810) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suran7810](https://clawhub.ai/user/suran7810)
 
-## Use Case: <br>
-Developers and technical decision makers use this skill to run structured debates about technical choices, surface opposing arguments, incorporate user-supplied perspectives, and produce decision-oriented consensus and recommendation summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad debate phrasing and generate persuasive or misleading technical guidance if the topic is underspecified. <br>
-Mitigation: Provide a concrete technical topic, review the pro and con claims, and validate final recommendations before using them for decisions. <br>
-Risk: Sensitive proprietary topics discussed in the debate remain part of the current agent session. <br>
-Mitigation: Avoid entering confidential or proprietary details unless they are appropriate for the active agent session. <br>
+## Use Case:
 
+External users, developers, and technical teams can use this skill to explore tradeoffs in a technical decision through a structured debate and receive summarized consensus, disagreement, and practical recommendations.
 
-## Reference(s): <br>
-- [Output Format](references/output-format.md) <br>
-- [Prompt Templates](references/prompts.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/suran7810/tech-debate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown debate transcript with phase summaries, intervention prompts, and a final consensus report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primarily Chinese-language output; topic is required and max rounds per phase defaults to 5 when not specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad trigger phrases such as "tech debate" may activate the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants a structured technical debate before continuing when the trigger is ambiguous.
+
+Risk: Instruction-like content in debate topics or user interventions can influence the debate output.
+
+Mitigation: Treat debate topics and interventions as debate content and avoid adding untrusted instruction-like text unless the user intends it to shape the output.
+
+Risk: Debate outputs may present persuasive but incorrect or incomplete technical guidance.
+
+Mitigation: Review the final consensus and recommendations against authoritative project requirements and technical sources before using them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suran7810/skills/tech-debate)
+- [Output format specification](artifact/references/output-format.md)
+- [Role prompt templates](artifact/references/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversation output with structured debate sections, role-labeled turns, judge summaries, user intervention prompts, and a final report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only skill; no code execution, external access, persistence, or credential handling according to security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

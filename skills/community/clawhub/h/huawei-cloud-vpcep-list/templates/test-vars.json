@@ -1,0 +1,46 @@
+{
+  "skill_name": "huawei-cloud-vpcep-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "VPCEP ListEndpoints — terminal endpoint list (read-only GET /v1/{project_id}/vpc-endpoints)",
+      "command": "hcloud VPCEP ListEndpoints --cli-region={region} --limit=1 --offset=0",
+      "expected": "JSON with endpoints[] + total_count (or a common.01010013 authorization envelope when the credential lacks vpcep:endpoints:list)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "VPCEP ListEndpointService — endpoint services owned by the account (read-only GET /v1/{project_id}/vpc-endpoint-services)",
+      "command": "hcloud VPCEP ListEndpointService --cli-region={region} --limit=1 --offset=0",
+      "expected": "JSON with endpoint_services[] + total_count (or an authorization envelope)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "VPCEP ListServicePublicDetails — public endpoint services (read-only GET /v1/{project_id}/vpc-endpoint-services/public)",
+      "command": "hcloud VPCEP ListServicePublicDetails --cli-region={region} --limit=1 --offset=0",
+      "expected": "JSON with endpoint_services[] + total_count (or an authorization envelope)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "VPCEP ListEndpointService — server-side status filter",
+      "command": "hcloud VPCEP ListEndpointService --cli-region={region} --status=failed --limit=1 --offset=0",
+      "expected": "failed endpoint services or an empty endpoint_services[] array",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "VPCEP ListEndpoints — server-side endpoint_service_name fuzzy query",
+      "command": "hcloud VPCEP ListEndpoints --cli-region={region} --endpoint_service_name=obs --limit=1 --offset=0",
+      "expected": "matching endpoints or an empty endpoints[] array",
+      "type": "readonly",
+      "executor": "cli"
+    }
+  ]
+}

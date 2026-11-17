@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon A+ 内容规划"
+  short_description: "用商品与评论证据规划 A+ 内容重点"
+  default_prompt: "使用 $amazon-aplus-content-writer 根据商品详情和评论证据规划 Amazon A+ 内容。"

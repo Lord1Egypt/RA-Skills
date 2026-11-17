@@ -1,0 +1,7 @@
+interface:
+  display_name: "Swimmer Custodial Stock Orders"
+  short_description: "Safely submit Solana custodial order memos"
+  default_prompt: "Use $swimmer-stock-trading to discover a trusted Solana stock-token route and explain the custodial transfer before I authorize it."
+
+policy:
+  allow_implicit_invocation: true

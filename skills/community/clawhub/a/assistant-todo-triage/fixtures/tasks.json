@@ -1,0 +1,30 @@
+[
+  {
+    "id": "atlas-slides",
+    "title": "Prepare fictional Atlas slides",
+    "dueDate": "2026-11-16",
+    "priority": 2,
+    "status": "open"
+  },
+  {
+    "id": "atlas-review",
+    "title": "Review fictional Atlas notes",
+    "dueDate": "2026-11-15",
+    "priority": 1,
+    "status": "open"
+  },
+  {
+    "id": "atlas-reading",
+    "title": "Read fictional reference",
+    "dueDate": null,
+    "priority": 3,
+    "status": "open"
+  },
+  {
+    "id": "atlas-done",
+    "title": "Completed synthetic outline",
+    "dueDate": "2026-11-14",
+    "priority": 1,
+    "status": "completed"
+  }
+]

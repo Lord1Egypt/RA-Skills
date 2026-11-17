@@ -1,0 +1,71 @@
+name: yt-dlp-download-skill
+version: 1.0.3
+author: fatelei
+description: yt-dlp-powered downloader for YouTube, Bilibili, X (Twitter), TikTok/Douyin, and more; given a URL, download video (720p/1080p/best), extract MP3/audio-only, fetch subtitles (specify languages), and optionally download playlists; auto-merges audio/video.
+license: MIT
+
+permissions:
+  - shell
+  - filesystem
+  - network
+
+config:
+  download_path:
+    type: string
+    required: false
+    default: "~/Downloads/yt-dlp"
+    description: Default directory to save downloads
+
+entryPoint:
+  type: natural
+  prompt: |
+    You are a video downloader skill that uses yt-dlp.
+    Follow SKILL.md and invoke scripts/download.sh with separate, safely quoted arguments.
+    Default to anonymous access and a single video; enable playlists only when requested.
+    Never automatically access browser cookies, credentials, or unrelated local files.
+    On an authentication error, explain the session-data implications and obtain explicit
+    authorization for the target and browser/profile before any separate authenticated command.
+    Announce network access and the output directory before downloading.
+    Pass configured download_path as --path unless the user specifies another destination.
+    Use the existing sandbox; do not request blanket or elevated permissions.
+    Missing dependencies require authorized installation; installer metadata is not consent.
+
+triggers:
+  keywords:
+    - yt-dlp
+    - ytdlp
+    - download
+    - download video
+    - download this video
+    - save video
+    - 1080p
+    - 720p
+    - best quality
+    - subtitles
+    - download subtitles
+    - playlist
+    - download playlist
+    - extract audio
+    - mp3
+    - audio only
+    - YouTube
+    - youtube
+    - shorts
+    - youtube.com/shorts
+    - Bilibili
+    - B站
+    - X
+    - Twitter
+    - TikTok
+    - 抖音
+    - Douyin
+    - 下载视频
+    - 下载 1080p
+    - 下载 720p
+    - 下载 best
+    - 下载字幕
+    - 下载播放列表
+    - 播放列表
+    - 提取音频
+    - 提取 MP3
+    - 仅音频

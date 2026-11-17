@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn77e8vx1e8trkb9db9tp316k584cjcs",
-  "slug": "human-google-manager",
+  "name": "human-google-manager",
   "version": "2.0.0",
-  "publishedAt": 1775551666822
+  "author": "Nipuna Jayasekara",
+  "description": "Manages full Google Workspace (Gmail, Calendar, Sheets, Docs, Drive, Contacts, Tasks) with human touch, mandatory confirmation, and automatic to-do detection",
+  "tags": ["google", "workspace", "human", "email", "calendar", "tasks", "assistant", "automation"],
+  "license": "MIT",
+  "capabilities": [
+    "human-friendly-emails",
+    "confirmation-protocol",
+    "calendar-management",
+    "sheets-management",
+    "google-docs",
+    "drive-management",
+    "contact-management",
+    "task-management",
+    "automatic-todo-detection",
+    "priority-detection",
+    "date-extraction",
+    "safety-warnings"
+  ],
+  "created": "2026-04-06",
+  "updated": "2026-04-07"
 }

@@ -1,0 +1,21 @@
+name: freelance-proposal-gen
+version: 1.0.0
+description: "自由职业者接单提案生成器：一句话 brief → 单页 HTML 提案书（封面/痛点/方案/交付/报价/案例/CTA）。离线可用，无需 API。"
+category: productivity
+author: dashun
+homepage: ""
+triggers:
+  - 帮我写个接单提案
+  - 给客户做个报价单
+  - 生成服务方案书
+  - 做个能发给甲方的方案页
+  - freelance proposal
+  - 接单报价
+tags:
+  - 接单
+  - 提案
+  - 报价单
+  - 自由职业
+  - 单页HTML
+  - 副业
+requires_api_key: false

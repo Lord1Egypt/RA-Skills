@@ -1,40 +1,52 @@
-## Description: <br>
-自动学习技能从对话中提取可复用知识，并帮助创建或更新持久化技能供 Agent 后续使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动学习技能从对话中提取可复用知识模式，并帮助代理创建或更新持久化技能。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[534422530](https://clawhub.ai/user/534422530)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to identify repeated conversation patterns, extract reusable knowledge, and create or update agent skills for future workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically convert conversation content into persistent skills without clear approval, which may save sensitive or incorrect information.
+
+Mitigation: Require explicit approval, visible diff review, sensitive-data filtering, and rollback before any generated or updated skill is saved.
+
+Risk: Conversation-derived patterns may encode wrong or misleading procedures.
+
+Mitigation: Review, test, and scan generated skills before deployment or sharing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent users and skill authors use this skill to identify repeated conversation patterns, capture useful workflows, and turn recurring solutions into reusable skills. It is intended for teams that want an agent to accumulate knowledge across interactions while preserving human review over learned content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read recent conversations and generate persistent skills, which may capture sensitive information or unsafe instructions. <br>
-Mitigation: Require manual approval before scanning history or writing files, and review generated skill content before installing or sharing it. <br>
-Risk: Automatically learned skills may preserve incorrect, outdated, or over-generalized guidance. <br>
-Mitigation: Keep learned skills in a bounded location with an easy rollback path, and validate generated guidance against the original task context. <br>
+**Output Format:** [Markdown guidance and skill file content]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/auto-learn-skill) <br>
+**Other Properties Related to Output:** [May propose or create persistent skill files from conversation-derived patterns.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown skill content and file creation or update guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated skills should be reviewed for sensitive data, unsafe instructions, and accuracy before use.] <br>
+1.0.0 (source: release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Return Policy Generator. Use when you need return policy capabilities. Triggers on: return policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Return Policy generates return and refund policy templates for ecommerce, physical retail, international returns, refund workflows, template libraries, and FAQs.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, merchants, and developers use this skill to draft return and refund policy text, HTML policy pages, Chinese-language policy variants, and industry comparison output for review before publication.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated return policies may not match a user's legal, regional, or business requirements.
+
+Mitigation: Review and adapt all generated policy text with appropriate business and legal stakeholders before publication.
+
+Risk: Local utility commands can log customer, account, or operational data under the skill's data directory.
+
+Mitigation: Avoid entering sensitive data, restrict access to the data directory, and clear local logs when they are no longer needed.
+
+Risk: Generated output may include BytesAgain branding.
+
+Mitigation: Remove or disclose third-party branding before using generated policy content in a public customer workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to generate return and refund policy text, HTML policy pages, Chinese-language policy text, and industry comparison output for stores or automation workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated return and refund policy text may not match a business's actual obligations, jurisdictions, or product categories. <br>
-Mitigation: Have a qualified reviewer check generated policy content before publishing or using it with customers. <br>
-Risk: The helper may store entries and command history locally under ~/.local/share/return-policy when RETURN_POLICY_DIR is not set. <br>
-Mitigation: Set RETURN_POLICY_DIR to an approved local path and avoid passing sensitive customer or order data into helper commands. <br>
-Risk: The skill requires a shell and python3 to run its generator scripts. <br>
-Mitigation: Install only in environments where shell execution and python3 are expected and review commands before execution. <br>
+**Output Format:** [Plain text, HTML, and shell stdout]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/return-policy) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [Source repository declared by artifact](https://github.com/bytesagain/ai-skills) <br>
-- [Homepage declared by artifact](https://bytesagain.com) <br>
+**Other Properties Related to Output:** [Generated policies should be reviewed before publication; some commands write local history or data logs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or HTML printed to stdout, with command examples in Markdown documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script may write local history and data under RETURN_POLICY_DIR or ~/.local/share/return-policy.] <br>
+2.3.6 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.3.6 (source: server release evidence; artifact frontmatter and scripts declare 2.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

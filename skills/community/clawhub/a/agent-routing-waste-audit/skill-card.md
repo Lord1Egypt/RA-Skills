@@ -1,43 +1,56 @@
-## Description: <br>
-Paste an agent job, cron, routing, or run summary and get an immediate read-only audit of possible routing, retry, fallback, or model-assignment waste. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paste an agent job, cron, routing, or run summary and get an immediate read-only audit of possible routing, retry, fallback, or model-assignment waste.
 
-## Publisher: <br>
-[choosenobody](https://clawhub.ai/user/choosenobody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[choosenobody](https://clawhub.ai/user/choosenobody)
 
-## Use Case: <br>
-Developers and operators use this skill to review pasted agent job, cron, routing, or run evidence for routing and model-assignment waste before making manual production changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted logs, prompt previews, or run summaries may contain secrets or private payloads. <br>
-Mitigation: Redact secrets and private payloads before giving evidence to the skill. <br>
-Risk: Routing waste recommendations could be incorrect or incomplete when model, provider, token usage, or prompt evidence is missing. <br>
-Mitigation: Treat findings as review guidance and manually verify evidence before changing production jobs or routing policies. <br>
+## Use Case:
 
+Developers and operators use this skill to review agent routing, cron, retry, fallback, and model-assignment evidence for avoidable token or cost waste before making manual production changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/choosenobody/agent-routing-waste-audit) <br>
-- [Hermes Cron List Examples](references/hermes-cron-examples.md) <br>
-- [Hermes Cron List Basic Example](references/hermes-cron-list-basic-example.md) <br>
-- [Hermes Cron List Basic Example Output](examples/hermes-cron-list-basic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with ranked findings, evidence used, missing evidence, manual verification steps, and a safe copy-paste prompt.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only recommendations; no job, schedule, routing, or model changes are applied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Users may paste operational routing logs, cron evidence, or run summaries that contain secrets or sensitive payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and sensitive payloads before using the skill; the release security guidance explicitly calls for redaction before installation or use.
+
+Risk: Routing or cost-saving recommendations could be applied too quickly and disrupt production jobs.
+
+Mitigation: Keep the audit read-only and require manual verification before modifying, disabling, rescheduling, or changing model routing policies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/choosenobody/skills/agent-routing-waste-audit)
+- [Hermes Cron List Examples](artifact/references/hermes-cron-examples.md)
+- [Hermes Cron List Basic Example](artifact/references/hermes-cron-list-basic-example.md)
+- [Hermes Cron List Basic Example Output](artifact/examples/hermes-cron-list-basic.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown audit with ranked findings, evidence used, missing evidence, manual verification steps, and a safe copy-paste prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; asks for the single most useful missing input when evidence is insufficient.]
+
+## Skill Version(s):
+
+1.2.2 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

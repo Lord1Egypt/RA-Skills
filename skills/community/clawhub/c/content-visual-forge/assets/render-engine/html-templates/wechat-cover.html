@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WeChat Cover</title>
+  <link rel="stylesheet" href="../css/wechat-cover.css" />
+</head>
+<body>
+  <main
+    class="cover"
+    data-background-asset="{{background_asset.asset_id}}"
+    style="--cover-bg-image: url('{{background_asset.url}}'); --cover-bg-position: {{background_asset.object_position}};"
+  >
+    <div class="overlay">
+      <p class="kicker">{{kicker}}</p>
+      <h1>{{title}}</h1>
+      <p class="subtitle">{{subtitle}}</p>
+      <p class="asset-note">{{background_asset.caption}}</p>
+    </div>
+  </main>
+</body>
+</html>

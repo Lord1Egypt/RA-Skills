@@ -1,42 +1,59 @@
-## Description: <br>
-Add password protection and encryption to a PDF. Supports AES-256, AES-128, RC4-128 encryption and granular permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add password protection and encryption to a PDF. Supports AES-256, AES-128, RC4-128 encryption and granular permissions.
 
-## Publisher: <br>
-[rishabhdugar](https://clawhub.ai/user/rishabhdugar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rishabhdugar](https://clawhub.ai/user/rishabhdugar)
 
-## Use Case: <br>
-Developers and external users can use this skill to call PDF API Hub to encrypt PDFs, set open and owner passwords, and control permissions such as printing, copying, modifying, annotating, form filling, extraction, and assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF content, protection passwords, and the API key are sent to pdfapihub.com for processing. <br>
-Mitigation: Use only documents and credentials appropriate for that provider, and verify privacy, retention, deletion, and compliance terms before processing regulated or highly confidential PDFs. <br>
-Risk: The skill requires sensitive credentials through the CLIENT-API-KEY header. <br>
-Mitigation: Store the API key in a secret manager or protected environment variable and avoid embedding real credentials in prompts, examples, logs, or committed files. <br>
+## Use Case:
 
+External users and developers use this skill to call the PDF API Hub service to password-protect PDFs, choose an encryption mode, and set document permissions before sharing or storing files.
 
-## Reference(s): <br>
-- [PDF API Hub](https://pdfapihub.com) <br>
-- [PDF API Hub Documentation](https://pdfapihub.com/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rishabhdugar/lock-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON request guidance and PDF output as file, URL, or base64] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a CLIENT-API-KEY header and sends PDF content, passwords, and options to pdfapihub.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive PDFs and passwords are sent to a third-party processor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when pdfapihub.com is approved for the relevant document class and its retention, access, and processing controls meet the user's requirements.
+
+Risk: The skill supports legacy RC4 encryption.
+
+Mitigation: Prefer AES-256 for normal use and avoid RC4 unless a documented compatibility requirement justifies it.
+
+Risk: Private, regulated, or high-value PDFs may require additional review before external processing.
+
+Mitigation: Review the provider and workflow before using the skill with regulated or sensitive documents.
+
+## Reference(s):
+
+- [PDF API Hub documentation](https://pdfapihub.com/docs)
+- [PDF API Hub](https://pdfapihub.com)
+- [ClawHub skill page](https://clawhub.ai/rishabhdugar/skills/lock-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and API response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The API can return a locked PDF as a file, URL, or base64 payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

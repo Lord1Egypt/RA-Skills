@@ -1,0 +1,33 @@
+{
+ "note": "EXAMPLE ONLY: a made-up WoopSocial reply with invented ids and numbers",
+ "accounts": [
+  {
+   "socialAccountId": "example-acct-orbit-instagram",
+   "platform": "INSTAGRAM",
+   "days": [
+    {
+     "date": "2026-10-01",
+     "followers": 1840
+    },
+    {
+     "date": "2026-10-31",
+     "followers": 2215
+    }
+   ]
+  },
+  {
+   "socialAccountId": "example-acct-orbit-youtube",
+   "platform": "YOUTUBE",
+   "days": [
+    {
+     "date": "2026-10-01",
+     "subscribers": 960
+    },
+    {
+     "date": "2026-10-31",
+     "subscribers": 1104
+    }
+   ]
+  }
+ ]
+}

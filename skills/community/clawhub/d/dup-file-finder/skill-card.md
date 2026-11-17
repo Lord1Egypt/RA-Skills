@@ -1,37 +1,50 @@
-## Description: <br>
-Quickly identify and list duplicate files in a specified directory to help manage and free up disk space efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quickly identifies and lists duplicate files in a specified local directory to help users manage disk space.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and users run this skill to scan a chosen local directory and list files with matching SHA-256 hashes so duplicate copies can be reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scan reads every file under the selected directory and prints full paths and hashes. <br>
-Mitigation: Run it only on directories intended for duplicate-file review, avoid broad system directories unless intentional, and do not run it as root. <br>
+## Use Case:
 
+External users and developers use this skill to scan a chosen local directory for duplicate files and review the duplicate paths before deciding what to remove.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output with file paths and hashes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads files under the user-specified directory and prints duplicate groups; it does not delete files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The tool opens and hashes every file under the directory supplied by the user, which may include sensitive local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point it only at directories whose contents you are comfortable reading locally, and review the printed duplicate list before taking any cleanup action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/dup-file-finder)
+- [Publisher profile](https://clawhub.ai/user/albionaiinc-del)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text duplicate-file listings with optional markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports SHA-256 hashes and local file paths for duplicate groups; it does not delete files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

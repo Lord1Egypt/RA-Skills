@@ -1,0 +1,47 @@
+{
+  "pipeline_name": "测试流水线 v3.0",
+  "version": "3.0",
+  "description": "包含人工审批节点的测试 DAG",
+  "agents": [
+    {
+      "id": "step1",
+      "name": "准备数据",
+      "role": "读取输入文件并准备数据",
+      "type": "task",
+      "inputs": ["input_file"],
+      "outputs": ["prepared_data"],
+      "depends_on": [],
+      "retry": 2,
+      "timeout": 30,
+      "fallback": "abort"
+    },
+    {
+      "id": "approve1",
+      "name": "人工确认",
+      "role": "请确认数据准备结果是否符合预期",
+      "type": "approval",
+      "inputs": ["prepared_data"],
+      "outputs": ["confirmed"],
+      "depends_on": ["step1"],
+      "retry": 0,
+      "timeout": 0,
+      "fallback": "abort"
+    },
+    {
+      "id": "step2",
+      "name": "处理数据",
+      "role": "对确认后的数据进行处理",
+      "type": "task",
+      "inputs": ["confirmed"],
+      "outputs": ["result"],
+      "depends_on": ["approve1"],
+      "retry": 1,
+      "timeout": 60,
+      "fallback": "abort"
+    }
+  ],
+  "state_store": {
+    "type": "json",
+    "path": "./pipeline_state.json"
+  }
+}

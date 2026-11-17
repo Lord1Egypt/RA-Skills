@@ -1,40 +1,54 @@
-## Description: <br>
-从剪贴板读取聊天内容，生成尊重边界、自然不油腻的高情商回复建议，适用于微信、QQ等聊天场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads chat content from the clipboard and helps draft respectful, natural reply suggestions for WeChat, QQ, and similar conversations.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-People using OpenClaw can use this skill to read copied chat text from the macOS clipboard and receive respectful, natural reply suggestions. It is aimed at social chat scenarios such as WeChat, QQ, daily conversation, icebreakers, and maintaining a conversation without sending messages automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the current macOS clipboard when invoked, which may include passwords, private notes, or unrelated copied content. <br>
-Mitigation: Before using it, confirm the clipboard contains only the chat text intended for analysis. <br>
-Risk: Reply suggestions could be inappropriate for the relationship context or recipient boundaries. <br>
-Mitigation: Review and edit the generated suggestions before sending any message manually. <br>
+## Use Case:
 
+OpenClaw users use this skill to analyze copied social chat messages and prepare three bounded reply options, including safer phrasing and guidance on when to reduce frequency or end the exchange.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/reply-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with copied chat text delimited for agent analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and macOS pbpaste; does not automatically send messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and changelog) <br>
+Risk: The skill reads the current clipboard, which may contain sensitive content unrelated to the intended chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Copy only the chat text intended for analysis, avoid copying passwords or confidential material first, and invoke the skill explicitly for reply suggestions.
+
+Risk: Reply suggestions for personal conversations can become inappropriate if used to pressure, manipulate, or harass someone.
+
+Mitigation: Use the skill's bounded guidance for respectful replies and avoid automatic sending or coercive messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/reply-coach)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command output for clipboard text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill reads the current macOS clipboard with pbpaste and does not automatically send messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

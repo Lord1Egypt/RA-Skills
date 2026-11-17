@@ -1,0 +1,24 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:金字塔三层(顶层 triangle + 两层 trapezoid + 层内叠字)—— 原型 26
+  参数:
+    {{T1_BG}}..{{T3_BG}}    层底色(深→浅单向;底层用浅主色预算混合色如 var(--brand-dark-pale)——勿用与页面同底色,会隐形)
+    {{T1_NAME}}..           层名(≤6 字)   {{T1_SUB}}..  层说明(一行)
+  坐标定死:顶三角 w500 x710 / 中梯 w1000 x460 / 底梯 w1500 x210;h180 gap16,顶 340
+  变体:4 层 → w 400/800/1200/1600,h140,y=330/486/642/798(底层 x160)
+  纪律: 层间 16px 缝比无缝干净;文字区域比层宽内收(三角尖角/梯形斜边避让)
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" data-shape="triangle" style="position:absolute;left:710px;top:340px;width:500px;height:180px;background:{{T1_BG}};"></div>
+<div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:460px;top:536px;width:1000px;height:180px;background:{{T2_BG}};"></div>
+<div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:210px;top:732px;width:1500px;height:180px;background:{{T3_BG}};border:1px solid var(--border-medium);"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:760px;top:392px;width:400px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--white);line-height:1.3;">{{T1_NAME}}</div>
+  <div style="font-size:22px;color:var(--brand-dark-tint);margin-top:8px;line-height:1.4;">{{T1_SUB}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:560px;top:576px;width:800px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--white);line-height:1.3;">{{T2_NAME}}</div>
+  <div style="font-size:22px;color:var(--brand-dark-tint);margin-top:8px;line-height:1.4;">{{T2_SUB}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:460px;top:772px;width:1000px;text-align:center;">
+  <div style="font-size:26px;font-weight:700;color:var(--charcoal);line-height:1.3;">{{T3_NAME}}</div>
+  <div style="font-size:22px;color:var(--text-secondary);margin-top:8px;line-height:1.4;">{{T3_SUB}}</div>
+</div>

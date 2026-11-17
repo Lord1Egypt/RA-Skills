@@ -1,44 +1,59 @@
-## Description: <br>
-通过 Gangtise Agent OpenAPI 拉取可直接引用的 Markdown 投研文本、热点话题报告和投研线索，适用于研究速览、纪要整理和 Agent 编排中的事实与观点补充。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gangtise Agent调用 retrieves Markdown investment-research content from Gangtise Agent OpenAPI endpoints for company summaries, investment logic, peer comparisons, earnings reviews, viewpoint debates, theme tracking, hot-topic reports, and research-clue tables.
 
-## Publisher: <br>
-[gangtisegts](https://clawhub.ai/user/gangtisegts) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gangtisegts](https://clawhub.ai/user/gangtisegts)
 
-## Use Case: <br>
-External developers, analysts, and agent builders use this skill to call Gangtise OpenAPI endpoints for company summaries, investment logic, peer comparisons, earnings reviews, viewpoint debate, theme tracking, hot-topic reports, and research clues. It is suited to workflows that need fast Markdown research context for notes, briefings, or agent orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Gangtise access credentials and can read them from environment variables or a local scripts/.authorization file. <br>
-Mitigation: Prefer environment-provided secrets, restrict local credential-file permissions, and do not commit scripts/.authorization. <br>
-Risk: Authorization headers are sent to the configured Gangtise OpenAI endpoint. <br>
-Mitigation: Use the default trusted Gangtise endpoint and avoid setting GANGTISE_OPENAI_ROOT to an untrusted URL. <br>
-Risk: The skill returns investment-research summaries, viewpoints, and structured clues that may be incomplete or time-sensitive. <br>
-Mitigation: Review returned content against authoritative source material before using it for financial analysis or decisions. <br>
+## Use Case:
 
+External users and agents use this skill to call Gangtise research APIs and convert returned investment-research data into readable Markdown for briefings, research assistance, and agent orchestration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gangtisegts/gangtise-agent) <br>
-- [Gangtise OpenAI API root](https://open.gangtise.com/application/open-ai) <br>
-- [Gangtise authorization endpoint](https://open.gangtise.com/application/auth/oauth/open/loginV2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown text with optional saved Markdown or JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some calls poll asynchronous Gangtise content for up to 600 seconds; security-clue results may include usage-cost messaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: server release metadata; artifact frontmatter reports 1.4.4) <br>
+Risk: The security review says two scripts can send a Gangtise authorization token to an unvalidated API root if the runtime environment or direct function call is influenced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep API roots at the Gangtise defaults, do not set GANGTISE_OPENAI_ROOT to non-Gangtise URLs, and control the runtime environment.
+
+Risk: Credential material may be supplied through environment variables or an optional scripts/.authorization file.
+
+Mitigation: Prefer credentials injected from a secret manager and avoid the optional authorization file when possible.
+
+Risk: Saved output and usage files may contain sensitive research workflow details.
+
+Mitigation: Review and control files written under the Gangtise workspace before sharing or retaining them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gangtisegts/skills/gangtise-agent)
+- [Gangtise OpenAI API root](https://open.gangtise.com/application/open-ai)
+- [Gangtise Agent OpenAPI endpoint root](https://open.gangtise.com/application/open-ai/agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown text, Markdown tables, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some calls require Gangtise credentials; earnings-review and viewpoint-debate can poll for up to 600 seconds.]
+
+## Skill Version(s):
+
+1.4.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

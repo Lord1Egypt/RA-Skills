@@ -1,39 +1,53 @@
-## Description: <br>
-AOI Council — multi-perspective decision synthesis templates (public-safe). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AOI Council provides multi-perspective decision synthesis templates for stress-testing plans and decisions.
 
-## Publisher: <br>
-[edmonddantesj](https://clawhub.ai/user/edmonddantesj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[edmonddantesj](https://clawhub.ai/user/edmonddantesj)
 
-## Use Case: <br>
-External users, developers, and teams use this skill to stress-test plans or decisions through bundled council perspectives and produce a concise synthesis, concerns, recommendations, open questions, and next actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Decision-review output may be incomplete or misleading if treated as authoritative for security, operations, or business decisions. <br>
-Mitigation: Treat council output as advisory and have the relevant human owner review recommendations before acting on them. <br>
-Risk: Release hygiene includes a minor version mismatch between SKILL.md frontmatter and the server-resolved 0.1.2 release metadata. <br>
-Mitigation: Confirm the intended release version before strict compliance review or downstream packaging. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to send a plan or topic through a structured council of perspectives for decision review, risk identification, recommendations, open questions, and next actions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown synthesis with per-perspective findings and next actions; JSON template data when the bundled helper script is invoked.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled persona files for Devil's Advocate, Architect, Engineer, Security Reviewer, Operator, and Writer perspectives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence, _meta.json, package.json; SKILL.md frontmatter lists 0.1.0) <br>
+Risk: Future additions under agents/ can change the perspectives included in the council output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review new or modified Markdown files under agents/ before installing or releasing an updated package.
+
+Risk: Council output is decision-support guidance and may surface incomplete or incorrect recommendations.
+
+Mitigation: Review synthesized recommendations before using them for operational, security, or product decisions.
+
+## Reference(s):
+
+- [AOI Council on ClawHub](https://clawhub.ai/edmonddantesj/skills/aoi-council)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style decision synthesis with per-perspective findings and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script emits JSON containing the council template and discovered perspective files.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release, _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

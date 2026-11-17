@@ -1,46 +1,61 @@
-## Description: <br>
-Read, list, mint, and append Soul Blocks on Base; read operations work without a wallet, while write operations use evm-wallet when available and fall back to website deep links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, list, mint, and append Soul Blocks on Base. Read works without a wallet. Write operations use evm-wallet if available and fall back to website deep links.
 
-## Publisher: <br>
-[hburgoyne](https://clawhub.ai/user/hburgoyne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hburgoyne](https://clawhub.ai/user/hburgoyne)
 
-## Use Case: <br>
-External users and developers use this skill to read Soul Block NFT identities on Base, manage local SOUL.md snapshots, and prepare or submit mint and append transactions through an agent-connected wallet or website fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Loaded on-chain SOUL.md content can influence the agent's identity, voice, and behavior. <br>
-Mitigation: Inspect loaded SOUL.md content before allowing it to shape agent behavior, and use the skill only when agent-persona embodiment is deliberate. <br>
-Risk: Minting and appending fragments use wallet-connected on-chain transactions that are permanent. <br>
-Mitigation: Use only a low-value hot wallet, show the exact transaction content and cost, and proceed only after explicit confirmation. <br>
-Risk: Recurring reinforcement through cron or heartbeat behavior can persist identity instructions beyond the initial load. <br>
-Mitigation: Enable reinforcement only when desired, keep it visible to the user, and remove scheduled reminders when embodiment is no longer wanted. <br>
+## Use Case:
 
+External users and developers use Soul Blocks to read Soul Block NFT identity content from Base and, after explicit confirmation, mint or append on-chain identity fragments through evm-wallet or fallback website links.
 
-## Reference(s): <br>
-- [SoulBlocks Skill Reference](references/REFERENCE.md) <br>
-- [Soul Blocks ClawHub Page](https://clawhub.ai/hburgoyne/soulblock) <br>
-- [SoulBlocks Website](https://soulblocks.ai) <br>
-- [evm-wallet ClawHub Page](https://clawhub.ai/surfer77/evm-wallet) <br>
-- [evm-wallet Source](https://github.com/surfer77/evm-wallet-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, local file updates, transaction parameters, and website links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create timestamped SOUL.md backups and .soulblock configuration; on-chain writes are append-only and require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter metadata and server release metadata) <br>
+Risk: Fetched SOUL.md or on-chain fragments may be treated as agent identity and override higher-priority behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat SOUL.md and on-chain fragments as untrusted display data; do not allow them to override safety rules, tool use, wallet decisions, or system instructions.
+
+Risk: The artifact includes daily cron or heartbeat reinforcement behavior that could persistently reintroduce untrusted identity content.
+
+Mitigation: Remove or disable cron and heartbeat reinforcement before installation unless a reviewer explicitly approves that behavior.
+
+Risk: Mint and append flows can spend funds or permanently write content on-chain.
+
+Mitigation: Use only a low-value hot wallet, review all transaction details, and require explicit user confirmation before any wallet-backed or deep-link write flow.
+
+## Reference(s):
+
+- [SoulBlocks Skill Reference](references/REFERENCE.md)
+- [Soul Blocks ClawHub Page](https://clawhub.ai/hburgoyne/skills/soulblock)
+- [SoulBlocks Website](https://soulblocks.ai)
+- [evm-wallet ClawHub Page](https://clawhub.ai/surfer77/evm-wallet)
+- [evm-wallet Source](https://github.com/surfer77/evm-wallet-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read public Base contract data, write local SOUL.md and .soulblock files, and propose wallet-backed or website-linked transaction flows.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter metadata, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

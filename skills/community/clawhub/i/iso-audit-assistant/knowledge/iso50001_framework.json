@@ -1,0 +1,41 @@
+{
+  "standard": "ISO 50001:2018 能源管理体系",
+  "clause_keywords": {
+    "4": ["组织环境", "能源"],
+    "5": ["领导作用", "能源方针"],
+    "6": ["能源目标", "能源指标", "能源评审", "策划"],
+    "7": ["能力", "培训", "能源信息", "成文信息"],
+    "8": ["运行控制", "设计", "采购", "能源"],
+    "9": ["能源绩效", "监视测量", "内部审核", "管理评审"],
+    "10": ["不符合", "纠正措施", "持续改进"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-en-policy", "name_zh": "能源方针与承诺", "name_en": "Energy policy",
+     "keywords_zh": ["能源方针", "节能承诺"], "keywords_en": ["energy policy"],
+     "description_zh": "最高管理者须制定能源方针，承诺持续改进能源绩效。",
+     "compliance_statement": ["已发布经批准的能源方针", "方针传达到员工与相关方"]},
+    {"id": "hv-en-review", "name_zh": "能源评审实施", "name_en": "Energy review",
+     "keywords_zh": ["能源评审", "主要能源使用", "SEU", "能源基准"], "keywords_en": ["energy review", "significant energy use"],
+     "description_zh": "须开展能源评审，识别主要能源使用(SEU)与改进机会，建立能源基准。",
+     "compliance_statement": ["已完成能源评审并确定主要能源使用", "建立了能源基准与标杆"]},
+    {"id": "hv-en-perf", "name_zh": "能源绩效参数(EnPI)监视", "name_en": "Energy performance monitoring",
+     "keywords_zh": ["能源绩效", "EnPI", "能源指标", "绩效参数"], "keywords_en": ["energy performance", "EnPI"],
+     "description_zh": "须确定能源绩效参数并持续监视测量，评价改进效果。",
+     "compliance_statement": ["已确定关键EnPI并定期统计", "能源绩效改进有数据支撑"]},
+    {"id": "hv-en-design", "name_zh": "设计与采购考虑能源绩效", "name_en": "Design & procurement",
+     "keywords_zh": ["能源设计", "节能采购", "能效"], "keywords_en": ["energy efficiency", "procurement"],
+     "description_zh": "在设施/设备设计与采购时须考虑能源绩效。",
+     "compliance_statement": ["设计阶段考虑能效要求", "采购优先选用高能效设备"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-RA", "name": "风险与机遇管理程序", "clause": "6.1", "match_keywords": ["风险管理"], "priority": "medium"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-EN-001", "name": "能源评审程序", "clause": "6.4", "match_keywords": ["能源评审", "主要能源使用"], "priority": "high"},
+    {"id": "SP-EN-002", "name": "能源目标指标与能源管理实施方案程序", "clause": "6.2", "match_keywords": ["能源目标", "能源指标"], "priority": "high"},
+    {"id": "SP-EN-003", "name": "运行控制程序（主要能源使用）", "clause": "8.1", "match_keywords": ["运行控制", "节能运行"], "priority": "high"}
+  ]
+}

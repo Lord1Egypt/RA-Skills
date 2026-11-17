@@ -1,45 +1,59 @@
-## Description: <br>
-Generates a structured Chinese AI news report from the past 24 hours and saves it to GetNote. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured Markdown AI news daily report from recent AI topics and saves it to GetNote.
 
-## Publisher: <br>
-[happyzengfen](https://clawhub.ai/user/happyzengfen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happyzengfen](https://clawhub.ai/user/happyzengfen)
 
-## Use Case: <br>
-Content creators and operators use this skill to collect recent AI news, filter for higher-value items, and publish a Markdown daily report to GetNote. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GetNote credentials are required for uploads and could be exposed if stored carelessly. <br>
-Mitigation: Store GETNOTE_API_KEY and GETNOTE_CLIENT_ID locally with restricted file permissions and keep the .env file out of version control and logs. <br>
-Risk: Generated reports may be uploaded to GetNote automatically, including when a cron schedule is enabled. <br>
-Mitigation: Enable the cron job only when unattended daily network access and uploads are intended, and review the generated report workflow before scheduling it. <br>
-Risk: AI news summaries can be incomplete, stale, or misleading if source search results are poor. <br>
-Mitigation: Review source links and generated summaries before relying on or republishing the report. <br>
+## Use Case:
 
+External users and operators use this skill to collect recent AI news signals, shape them into a concise daily Markdown report, and save the result to a GetNote account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happyzengfen/fengxinzi-ai-news) <br>
-- [Publisher profile](https://clawhub.ai/user/happyzengfen) <br>
-- [GetNote developer center](https://open.getnote.cn/) <br>
-- [GetNote note save API endpoint](https://openapi.biji.com/open/api/v1/resource/note/save) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with shell setup and execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated reports to GetNote and may be scheduled by cron when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill uploads report content and credentials to a separately named GetNote API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that openapi.biji.com is the official endpoint for credentials issued by open.getnote.cn, and prefer scoped or disposable API credentials.
+
+Risk: The skill offers recurring unattended execution through cron.
+
+Mitigation: Run the script manually first, review the generated report and logs, and enable the cron job only after documenting how to remove or disable it.
+
+Risk: The current script uploads a template rather than a complete AI-news analysis.
+
+Mitigation: Inspect the generated Markdown before upload or automation, and complete the AI analysis step before relying on the saved report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happyzengfen/skills/fengxinzi-ai-news)
+- [Publisher profile](https://clawhub.ai/user/happyzengfen)
+- [GetNote developer center](https://open.getnote.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown report and terminal status text; saved to GetNote through an API call]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GetNote API credentials and external search tools; the bundled script writes a template report for later AI completion.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

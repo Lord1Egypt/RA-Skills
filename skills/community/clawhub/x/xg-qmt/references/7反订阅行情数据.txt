@@ -1,0 +1,38 @@
+'''
+7反订阅行情数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.unsubscribe_quote - 反订阅行情数据
+原型
+
+内置python
+
+ContextInfo.unsubscribe_quote(subId)
+释义
+
+反订阅行情数据，配合ContextInfo.subscribe_quote()或ContextInfo.subscribe_whole_quote()使用
+
+参数
+
+字段名	数据类型	解释
+subId	int	行情订阅返回的订阅号
+示例
+
+示例
+
+# conding = gbk
+def call_back(data):
+	print(data)
+def init(C):
+	C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	C.subID = C.subscribe_whole_quote(C.stock_list,callback=call_back)
+
+def handlebar(C):
+	print("============================")
+	print("C.subID: ",C.subID)
+	if C.subID > 0:
+		C.unsubscribe_quote(C.subID) # 取消行情订阅
+'''
+运行结果
+
+'''

@@ -1,42 +1,57 @@
-## Description: <br>
-Email processing for Greek accounting. Connects via IMAP to scan for financial documents, AADE notices, and invoices. Routes to local pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email processing for Greek accounting. Connects via IMAP to scan for financial documents, AADE notices, and invoices. Routes to local pipelines.
 
-## Publisher: <br>
-[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto)
 
-## Use Case: <br>
-Greek accounting teams use this skill to process business email, identify invoices, bank statements, AADE and EFKA notices, and client payment inquiries, then route documents and draft responses for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive accounting emails and local documents, including invoices, tax notices, bank statements, and client records. <br>
-Mitigation: Use a dedicated mailbox or app password, keep IMAP permissions as narrow as possible, and protect the configured local data directory. <br>
-Risk: Optional outbound email, calendar, and notification integrations can disclose information or send messages unintentionally if enabled without review. <br>
-Mitigation: Enable only required integrations, keep SMTP and Mail.Send disabled unless needed, and require human approval before any outbound response. <br>
-Risk: The security review marked the release suspicious because it handles sensitive email workflows and has inconsistent integration and approval guidance. <br>
-Mitigation: Review configuration before installation, verify external integrations are intentionally configured, and inspect generated drafts and routing actions before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/greek-email-processor) <br>
-- [Project homepage from artifact metadata](https://github.com/satoshistackalotto/openclaw-greek-accounting) <br>
+## Use Case:
 
+Developers and operators supporting Greek accounting workflows use this skill to configure and guide email scanning, document classification, and routing for invoices, bank statements, AADE/EFKA notices, and client inquiries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML-style configuration examples, response templates, and processing workflow summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq, curl, OPENCLAW_DATA_DIR, IMAP_HOST, IMAP_USER, and IMAP_PASSWORD; SMTP, Gmail API, Microsoft Graph, Google Calendar, and Slack settings are optional.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access sensitive accounting email and related attachments.
+
+Mitigation: Confirm mailbox scopes and account boundaries before installation, use a dedicated service mailbox, prefer read-only IMAP for monitoring, and document where email content or summaries may leave the environment.
+
+Risk: Outbound messages or forwarded attachments could expose sensitive information if enabled without controls.
+
+Mitigation: Disable SMTP, Mail.Send, and Mail.ReadWrite unless explicitly needed, and require human review before any email is sent or attachment is forwarded.
+
+Risk: Automatic reply behavior needs careful review because the security summary flags inconsistent guidance.
+
+Mitigation: Treat all auto-responses as draft-only until a human approves the exact recipient, content, and attachments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/skills/greek-email-processor)
+- [Publisher profile](https://clawhub.ai/user/satoshistackalotto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, YAML, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Greek email templates, processing workflows, and configuration guidance; outbound email actions require human approval.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Send X5 protocol API requests from the terminal, parse .x5 files, generate X5 cURL commands, and debug X5 service endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send X5 protocol API requests from the terminal, parse .x5 multi-request files, generate X5-compliant cURL commands, and debug X5 service endpoints.
 
-## Publisher: <br>
-[growingppp](https://clawhub.ai/user/growingppp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[growingppp](https://clawhub.ai/user/growingppp)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, inspect, and send X5 protocol API requests from .x5 files or inline parameters during endpoint testing and debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: .x5 files and inline parameters can direct the client to arbitrary URLs with custom headers and bodies. <br>
-Mitigation: Review the target URL, headers, body, method, appid, and appkey before sending a request. <br>
-Risk: Credentials or encoded request details may appear in terminal history, logs, dry-run output, or generated cURL commands. <br>
-Mitigation: Use short-lived credentials where possible and avoid sharing terminals, logs, dry-run output, or generated cURL commands that contain secrets. <br>
-Risk: Requests to non-local endpoints over plaintext HTTP can expose request data and credentials. <br>
-Mitigation: Prefer HTTPS for non-local services and reserve localhost HTTP examples for local testing. <br>
+## Use Case:
 
+Developers and engineers use this skill to send, inspect, and debug X5 protocol API requests from inline parameters or .x5 request files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/growingppp/x5-protocol) <br>
-- [Publisher profile](https://clawhub.ai/user/growingppp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON results, and generated cURL commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read .x5 request files or inline parameters and may emit encoded request details during dry runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles X5 app IDs, app keys, request bodies, and arbitrary target URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid putting real app keys on the command line or in shared .x5 files, and verify each destination URL before sending a request.
+
+Risk: Listing, dry-run, JSON, and generated cURL output can expose request data or secrets from .x5 files.
+
+Mitigation: Do not run listing or debug modes on files containing secrets, and manually review generated cURL output from untrusted .x5 files before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/growingppp/skills/x5-protocol)
+- [Publisher profile](https://clawhub.ai/user/growingppp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and generated command text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include encoded request previews, parsed request listings, cURL commands, and JSON response summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user-provided changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

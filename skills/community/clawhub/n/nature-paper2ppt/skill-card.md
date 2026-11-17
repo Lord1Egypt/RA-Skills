@@ -1,40 +1,54 @@
-## Description: <br>
-Convert a scientific paper into a presentation deck (PPTX). Generates structured Chinese or bilingual slides for journal clubs, group meetings, or conference talks. Trigger when user wants to make slides from a paper or present research findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a scientific paper into a presentation deck (PPTX). Generates structured Chinese or bilingual slides for journal clubs, group meetings, or conference talks. Trigger when user wants to make slides from a paper or present research findings.
 
-## Publisher: <br>
-[yang1bai](https://clawhub.ai/user/yang1bai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1bai](https://clawhub.ai/user/yang1bai)
 
-## Use Case: <br>
-Researchers, students, and presenters use this skill to turn scientific papers into slide outlines, presenter notes, and optional PPTX decks for journal clubs, group meetings, or conference talks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents, supplied URLs, or presentation topics may be processed by AiPPT.cn according to the security evidence. <br>
-Mitigation: Use the skill only with documents approved for that third-party processing path and avoid sensitive material unless organizational policy allows it. <br>
-Risk: The skill may activate on broad presentation-related requests and produce slides that overstate or misread a paper. <br>
-Mitigation: Confirm the source paper and requested language before generation, then review the outline, presenter notes, figures, and claims before presenting. <br>
+## Use Case:
 
+Researchers, presenters, and students use this skill to turn scientific papers into structured slide outlines, optional PPTX decks, presenter notes, and discussion questions for journal clubs, group meetings, or conference talks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1bai/nature-paper2ppt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown slide outline with presenter notes; optional PPTX file when requested and python-pptx is available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default language is Chinese, with bilingual or English options; PPTX export depends on python-pptx and the referenced export script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generic presentation requests may invoke this skill when the user does not intend paper-to-slide conversion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is working from a scientific paper or research findings before applying the skill.
+
+Risk: Optional PPTX export relies on a local script path referenced by the artifact.
+
+Mitigation: Use the default Markdown outline unless the local export script is present, reviewed, and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1bai/skills/nature-paper2ppt)
+- [Publisher profile](https://clawhub.ai/user/yang1bai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown slide outline with presenter notes; optional PPTX file when requested and dependencies are available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is a slide-by-slide outline; optional PPTX export depends on python-pptx and a trusted local export script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

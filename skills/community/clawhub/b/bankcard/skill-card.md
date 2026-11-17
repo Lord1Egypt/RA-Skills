@@ -1,42 +1,56 @@
-## Description: <br>
-根据银行卡号查发卡行与归属地，可做卡号格式校验。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up a bank card number's issuing bank, province or city of origin, card type, and validation status using JisuAPI.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to query the issuing bank, region, card type, and format-check result for a bank card number through JisuAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank card numbers submitted to the skill are sent to JisuAPI. <br>
-Mitigation: Use BIN prefixes or test numbers when possible, avoid real customer card data unless there is a proper basis to share it with the provider, and disclose the external API dependency to users. <br>
-Risk: The JISU_API_KEY credential is required for API access. <br>
-Mitigation: Keep JISU_API_KEY private, provide it through the environment, and avoid logging or sharing the key. <br>
+## Use Case:
 
+External users and developers use this skill to answer bank-card origin and validity questions by passing a card number to a Python CLI backed by JisuAPI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/bankcard) <br>
-- [JisuAPI bank card API documentation](https://www.jisuapi.com/api/bankcard) <br>
-- [JisuAPI service site](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON returned by the local Python command, with agent-facing guidance for setup and result interpretation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY. Queries are sent to JisuAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Full bank card numbers and the JISU_API_KEY are sent to a third-party service in URL query parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege JisuAPI key, avoid submitting real card numbers unless the user explicitly agrees, and account for possible provider or network query logging.
+
+Risk: Security evidence marks the release suspicious because the artifact lacks a clear privacy warning for card-number handling.
+
+Mitigation: Review the skill before installation and add user-facing consent and privacy guidance before using it with real card numbers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/bankcard)
+- [JisuAPI](https://www.jisuapi.com/)
+- [JisuAPI Bank Card API Documentation](https://www.jisuapi.com/api/bankcard)
+- [JisuAPI Bank Card Query Endpoint](https://api.jisuapi.com/bankcard/query)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON from a Python CLI, with agent-facing text summaries when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends the requested bank card number to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

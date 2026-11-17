@@ -1,38 +1,54 @@
-## Description: <br>
-Runs warm, adaptive personal check-ins for habits, mood, sleep, meals, focus, daily progress, and recap summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run warm, adaptive personal check-ins for habits, mood, sleep, meals, focus, and daily progress.
 
-## Publisher: <br>
-[sqizzo](https://clawhub.ai/user/sqizzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sqizzo](https://clawhub.ai/user/sqizzo)
 
-## Use Case: <br>
-External users and agents use this skill to run companion-style daily wellness check-ins, log answers, and generate short recaps that surface patterns across mood, sleep, meals, energy, focus, and daily progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private wellness check-in answers are saved locally in data/checkins.jsonl. <br>
-Mitigation: Install only if local retention is acceptable; review folder access, backups, and delete or protect the file when long-term retention is not desired. <br>
+## Use Case:
 
+External users and agents use this skill to run daily wellness and habit check-ins, log personal responses, and generate short recap summaries from repeated entries.
 
-## Reference(s): <br>
-- [Companion Check-In Data Schema](references/data-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local check-in entries to data/checkins.jsonl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can save mood, sleep, meals, stress, and freeform wellness notes in a local plaintext JSONL file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat data/checkins.jsonl as private, avoid shared machines unless file permissions are restricted, and delete or protect the log when history should not be retained.
+
+Risk: Check-in recaps depend on self-reported local history and may reflect incomplete or stale entries.
+
+Mitigation: Use recaps as lightweight personal summaries, and review the underlying entries before relying on patterns or trends.
+
+## Reference(s):
+
+- [Companion Check-In Data Schema](references/data-schema.md)
+- [ClawHub skill page](https://clawhub.ai/sqizzo/skills/companion-checkin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from helper commands plus human-facing check-in prompts and recap prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads local JSONL check-in history at data/checkins.jsonl when logging or summarizing.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

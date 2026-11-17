@@ -1,12 +1,12 @@
 ---
-name: risk-assessment
-description: Framework-directable information security risk assessment. Identifies threats, evaluates likelihood/impact via a 3x3 matrix, maps findings to any compliance framework, and recommends risk treatment options with prioritization guidance.
-argument-hint: Describe the system or environment to assess, optionally append a framework appendix (e.g., frameworks/nist-csf-2.0-controls.md)
-allowed-tools: Read, Glob, Grep, WebFetch
-version: 2.0
-default_framework: NIST CSF 2.0
-author: Rote Compliance
-license: Apache-2.0
+name: "risk-assessment"
+description: "Framework-directable information security risk assessment. Identifies threats, evaluates likelihood/impact via a 3x3 matrix, maps findings to any compliance framework, and recommends risk treatment options with prioritization guidance."
+argument-hint: "Describe the system or environment to assess, optionally append a framework appendix (e.g., frameworks/nist-csf-2.0-controls.md)"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "2.1"
+default_framework: "NIST CSF 2.0"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Information Security Risk Assessment Skill
@@ -119,7 +119,7 @@ For each identified risk, produce a structured finding matching the following JS
   "risk_id": "RSK-001",
   "asset_or_system": "Remote Access Portal / EHR Database",
   "asset_classification": "regulated_data",
-  "threat_event": "Compromise of remote access credentials via phishing, credential stuffing, or brute force.",
+  "threat_event": "Unauthorized remote access via phishing, password spraying, or brute-force login attempts.",
   "vulnerability": "Absence of Multi-Factor Authentication (MFA) for remote access to systems containing sensitive regulated data.",
   "framework_control_mapping": {
     "framework": "NIST CSF 2.0",
@@ -214,4 +214,4 @@ For each identified risk, produce a structured finding matching the following JS
 
 ## Active Framework
 
-<!-- This section is populated at runtime by the Rote platform with the target framework's controls. When empty, the LLM should default to NIST CSF 2.0 from training knowledge. -->
+*Populated at runtime by the Rote platform with the target framework's controls. If this section is empty, default to NIST CSF 2.0 from training knowledge.*

@@ -1,43 +1,64 @@
-## Description: <br>
-Queries AgentPMT-hosted digital economy and connectivity data for countries and regions, including internet access, mobile subscriptions, broadband, ICT trade, infrastructure, trends, comparisons, and digital divide analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries global digital economy and connectivity indicators, including internet penetration, mobile subscriptions, broadband access, ICT trade metrics, infrastructure data, trend analysis, and digital divide comparisons through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers, analysts, and policy researchers use this skill to query country or regional digital economy indicators, compare connectivity trends, and assess digital divide or SDG 9.c progress through AgentPMT-hosted remote tool calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to AgentPMT-hosted services and may consume AgentPMT credits. <br>
-Mitigation: Avoid sending confidential investigation context in country or region queries, and confirm account, authorization, and credit expectations before production use. <br>
-Risk: The e-government option is limited because World Bank data does not include EGDI directly. <br>
-Mitigation: Fetch live schema or instructions before relying on e-government readiness fields, and treat empty or unsupported e-government results as a data limitation. <br>
+## Use Case:
 
+Developers, researchers, analysts, and policy teams use this skill to request country or regional digital economy indicators, compare connectivity trends, and assess digital divide signals from World Bank World Development Indicators data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-digital-economy-connectivity-data) <br>
-- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/digital-economy-technology) <br>
-- [Generated action schema](artifact/schema.md) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request and response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote AgentPMT calls use the query_digital_data action with country_or_region plus optional digital_aspect, time_period, trend, comparison, and digital-divide parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on AgentPMT's hosted, paid digital-economy data tool and related setup skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that hosted tool is intended, review setup skills before use, and prefer pinned or trusted installation routes where available.
+
+Risk: Endpoints, schemas, setup steps, and examples may become stale after the artifact's last updated date.
+
+Mitigation: Reinstall from ClawHub or skills.sh before relying on production integrations when freshness is important.
+
+Risk: The marketing text mentions e-government readiness, but the security guidance and artifact notes state EGDI is not available from the World Bank data used here.
+
+Mitigation: Do not rely on this skill for actual EGDI or e-government readiness scores; use it only for the listed World Bank digital economy indicators.
+
+Risk: The inspected artifacts contain quality and supply-chain cautions even though no hidden execution, persistence, or destructive behavior was found.
+
+Mitigation: Review and scan the skill before deployment, keep tool inputs scoped to the task, and avoid placing secrets, wallet keys, mnemonics, signatures, or payment headers in prompts or logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-digital-economy-connectivity-data)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/digital-economy-technology)
+- [Generated Action Schema](artifact/schema.md)
+- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance, API Calls]
+
+**Output Format:** [Markdown guidance with JSON request examples and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hosted AgentPMT calls may require enabled account access and credits; returned data can include indicator values, units, source years, trends, comparisons, insights, and warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

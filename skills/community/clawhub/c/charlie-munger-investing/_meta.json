@@ -1,6 +1,47 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "charlie-munger-investing",
+  "name": "charlie-munger",
   "version": "1.0.0",
-  "publishedAt": 1776482282983
+  "description": "Charlie Munger's multidisciplinary thinking and mental models — vice chairman of Berkshire Hathaway, architect of modern Berkshire philosophy, author of Poor Charlie's Almanack",
+  "author": "Leo Li",
+  "tags": [
+    "investing",
+    "charlie-munger",
+    "berkshire-hathaway",
+    "mental-models",
+    "lollapalooza",
+    "multidisciplinary-thinking",
+    "poor-charles-almanack",
+    "value-investing",
+    "inversion",
+    "buffett-partner"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Talentedleo/celebrity_skills",
+  "issues": "https://github.com/Talentedleo/celebrity_skills/issues",
+  "minimumOpenClawVersion": "1.0.0",
+  "skillSpecVersion": "1.0.0",
+  "triggers": [
+    "Charlie Munger",
+    "Munger",
+    "Berkshire Hathaway",
+    "Poor Charlie's Almanack",
+    "lollapalooza effect",
+    "mental models",
+    "multidisciplinary thinking",
+    "inversion",
+    "Buffett partner",
+    "Daily Journal"
+  ],
+  "sources": [
+    {
+      "name": "Wikipedia - Charlie Munger",
+      "url": "https://en.wikipedia.org/wiki/Charlie_Munger"
+    },
+    {
+      "name": "Poor Charlie's Almanack",
+      "url": "https://www.poorcharliesalmanack.com"
+    }
+  ],
+  "lastUpdated": "2026-04-17",
+  "language": "en"
 }

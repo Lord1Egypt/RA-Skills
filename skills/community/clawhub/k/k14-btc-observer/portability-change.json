@@ -1,0 +1,6 @@
+{
+  "file": "backend/src/pm_predict/runtime/live.py",
+  "original_sha256": "71f71a5333aab37e1b369cf6b63125fb530a817cf88bac22c465912f6c29b3bf",
+  "packaged_sha256": "840f8bfa6fc0779f1f9c2a7b84d2645b1cd650b5de223c1970a7673cc12f3b5c",
+  "change": "Conditional Windows msvcrt import only. Paper runtime uses its own Windows/POSIX lock. Strategy formulas unchanged."
+}

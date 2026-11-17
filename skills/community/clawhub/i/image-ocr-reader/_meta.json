@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn74jw5ycfsjk7m0jfvx4qvwhs81tc8d",
-  "slug": "image-ocr-reader",
+  "name": "image-ocr-reader",
   "version": "1.0.0",
-  "publishedAt": 1772504577638
+  "description": "从图片中提取文字内容，支持中文和英文识别",
+  "author": "OpenClaw",
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/image-ocr-reader",
+  "tags": ["ocr", "image", "text-extraction", "chinese"],
+  "keywords": ["ocr", "image", "text", "recognition"],
+  "platform": "all",
+  "dependencies": {
+    "python": ">=3.7",
+    "pytesseract": ">=0.3.0",
+    "Pillow": ">=8.0.0"
+  },
+  "requires": {
+    "bins": ["tesseract"],
+    "packages": ["pytesseract", "Pillow"]
+  }
 }

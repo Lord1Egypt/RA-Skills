@@ -1,41 +1,59 @@
-## Description: <br>
-FortiOS VDOM segmentation audit with UTM profile binding validation, FortiGuard service health assessment, SD-WAN security evaluation, and HA cluster posture check for FortiGate appliances and FortiGate-VM instances. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FortiOS VDOM segmentation audit with UTM profile binding validation, FortiGuard service health assessment, SD-WAN security evaluation, and HA cluster posture check for FortiGate appliances and FortiGate-VM instances.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Network security engineers and firewall administrators use this skill to audit FortiGate/FortiOS deployments for VDOM segmentation, UTM profile coverage, FortiGuard health, SD-WAN fail-open behavior, and HA posture during post-change, compliance, or baseline reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FortiGate audit output can expose sensitive configuration, topology, license, and security posture details. <br>
-Mitigation: Run the skill only when authorized, use a least-privilege FortiOS account, and handle raw CLI output as sensitive security data. <br>
-Risk: Some diagnostics, including ping and FortiGuard rating checks, are operational checks rather than purely passive reads. <br>
-Mitigation: Review commands before execution, avoid unattended command execution, and get approval before running active diagnostics. <br>
+## Use Case:
 
+Network security engineers, firewall administrators, and compliance reviewers use this skill to perform systematic FortiGate policy audits across VDOM segmentation, UTM coverage, FortiGuard health, SD-WAN steering, and HA posture.
 
-## Reference(s): <br>
-- [FortiOS Policy Evaluation and VDOM Architecture](references/policy-model.md) <br>
-- [FortiOS CLI Reference - Audit Commands](references/cli-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with FortiOS CLI command blocks and audit report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires authorized read-only SSH access to FortiOS devices; raw CLI output can contain sensitive security data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The audit may collect sensitive firewall configuration, policy, log, license, or topology information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only within an authorized audit scope and avoid sharing collected configs or logs outside that scope.
+
+Risk: Some FortiOS commands used for runtime inspection or connectivity checks are operational rather than strictly passive.
+
+Mitigation: Use least-privilege read-only or diagnose-level accounts and confirm before running log filters, pings, diagnostic filters, or REST API exports.
+
+Risk: Audit conclusions depend on current FortiGate state and operator-provided topology expectations.
+
+Mitigation: Validate findings against the active configuration, intended VDOM design, expected UTM policy, and approved SD-WAN or HA architecture.
+
+## Reference(s):
+
+- [FortiOS CLI Reference - Audit Commands](references/cli-reference.md)
+- [FortiOS Policy Evaluation and VDOM Architecture](references/policy-model.md)
+- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/skills/fortigate-firewall-audit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with FortiOS CLI command blocks and audit report structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only audit procedures, finding criteria, remediation guidance, and report sections; does not include executable scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

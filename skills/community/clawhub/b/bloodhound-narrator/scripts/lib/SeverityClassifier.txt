@@ -2,68 +2,151 @@
 .SYNOPSIS
     Classifies BloodHound attack paths by severity based on edge types,
     target nodes, and path characteristics.
+
+.NOTES
+    v1.0.2 — edge scoring is now table-driven. Every edge label the scorer
+    understands lives in $Script:EdgeWeights. Labels that are neither weighted
+    nor explicitly ignored are collected in $Script:UnknownEdgeLabels so that
+    BloodHound schema drift surfaces as a warning instead of a silent zero.
 #>
 
-# Edge types that indicate critical privilege escalation
-$Script:CriticalEdges = @(
-    'DCSync'
-    'GetChanges'
-    'GetChangesAll'
-    'WriteDacl'   # Critical when target is Tier 0
-    'GenericAll'  # Critical when target is Tier 0
-    'Owns'        # Critical when target is Tier 0
-)
+#region ── Tier 0 definitions ──
 
-$Script:DangerousEdges = @(
-    'AdminTo'
-    'HasSession'
-    'ForceChangePassword'
-    'AddMember'
-    'GenericWrite'
-    'WriteOwner'
-    'AllExtendedRights'
-    'AddSelf'
-    'ReadLAPSPassword'
-    'ReadGMSAPassword'
-    'GpLink'
-    'Contains'
-)
-
-# Group names that represent Tier 0 / crown jewels
-$Script:Tier0Groups = @(
+# Full domain compromise if reached.
+$Script:Tier0CoreGroups = @(
     'DOMAIN ADMINS'
     'ENTERPRISE ADMINS'
     'ADMINISTRATORS'
     'DOMAIN CONTROLLERS'
+    'ENTERPRISE DOMAIN CONTROLLERS'
     'SCHEMA ADMINS'
+    'KEY ADMINS'
+    'ENTERPRISE KEY ADMINS'
+)
+
+# Privileged, but not automatically equivalent to domain compromise.
+# Scored lower than core: reaching Backup Operators is a serious finding,
+# it is not the same finding as reaching Domain Admins.
+$Script:Tier0OperatorGroups = @(
     'ACCOUNT OPERATORS'
     'BACKUP OPERATORS'
     'SERVER OPERATORS'
     'PRINT OPERATORS'
+    'DNSADMINS'
 )
 
-function Test-IsTier0Target {
-    <#
-    .SYNOPSIS
-        Determines if a node represents a Tier 0 asset.
-    #>
-    param(
-        [Parameter(Mandatory)]$Node
-    )
+# Retained for backward compatibility with callers referencing the flat list.
+$Script:Tier0Groups = $Script:Tier0CoreGroups + $Script:Tier0OperatorGroups
 
-    $name = ((Get-SafeProp $Node.props 'name') -split '@')[0].ToUpper()
+#endregion
 
-    # Check against known Tier 0 groups
-    if ($name -in $Script:Tier0Groups) { return $true }
+#region ── Edge weight table ──
 
-    # Domain Controllers
-    if ((Get-SafeProp $Node.props 'isDC') -eq $true) { return $true }
+# Base       : points added when the edge is present.
+# Tier0Bonus : additional points when the edge target is a Tier 0 object.
+# Factor     : key used to look up remediation guidance in NarrativeTemplates.
+$Script:EdgeWeights = @{
 
-    # Objects with admincount set
-    if ((Get-SafeProp $Node.props 'admincount') -eq $true -and $Node.label -eq 'Group') { return $true }
+    # ── Directory replication ──
+    'DCSync'                   = @{ Base = 30; Tier0Bonus = 0;  Factor = 'DCSync' }
+    'GetChanges'               = @{ Base = 20; Tier0Bonus = 0;  Factor = 'DCSync' }
+    'GetChangesAll'            = @{ Base = 25; Tier0Bonus = 0;  Factor = 'DCSync' }
 
-    return $false
+    # ── Object control ──
+    'GenericAll'               = @{ Base = 15; Tier0Bonus = 15; Factor = 'GenericAll' }
+    'WriteDacl'                = @{ Base = 15; Tier0Bonus = 15; Factor = 'WriteDacl' }
+    'Owns'                     = @{ Base = 15; Tier0Bonus = 15; Factor = 'Owns' }
+    'WriteOwner'               = @{ Base = 12; Tier0Bonus = 18; Factor = 'WriteOwner' }
+    'GenericWrite'             = @{ Base = 10; Tier0Bonus = 15; Factor = 'GenericWrite' }
+    'AllExtendedRights'        = @{ Base = 12; Tier0Bonus = 18; Factor = 'AllExtendedRights' }
+    'ForceChangePassword'      = @{ Base = 10; Tier0Bonus = 10; Factor = 'ForceChangePassword' }
+    'AddMember'                = @{ Base = 10; Tier0Bonus = 15; Factor = 'AddMember' }
+    'AddSelf'                  = @{ Base = 5;  Tier0Bonus = 5;  Factor = 'AddSelf' }
+    'WriteAccountRestrictions' = @{ Base = 10; Tier0Bonus = 10; Factor = 'WriteAccountRestrictions' }
+    'WriteSPN'                 = @{ Base = 8;  Tier0Bonus = 8;  Factor = 'WriteSPN' }
+
+    # ── Credential material ──
+    'AddKeyCredentialLink'     = @{ Base = 20; Tier0Bonus = 10; Factor = 'ShadowCredentials' }
+    'ReadGMSAPassword'         = @{ Base = 15; Tier0Bonus = 0;  Factor = 'ReadGMSAPassword' }
+    'DumpSMSAPassword'         = @{ Base = 12; Tier0Bonus = 0;  Factor = 'ReadGMSAPassword' }
+    'ReadLAPSPassword'         = @{ Base = 15; Tier0Bonus = 0;  Factor = 'ReadLAPSPassword' }
+    'SyncLAPSPassword'         = @{ Base = 15; Tier0Bonus = 0;  Factor = 'ReadLAPSPassword' }
+
+    # ── Delegation ──
+    'AllowedToAct'             = @{ Base = 20; Tier0Bonus = 10; Factor = 'RBCD' }
+    'AddAllowedToAct'          = @{ Base = 20; Tier0Bonus = 10; Factor = 'RBCD' }
+    'AllowedToDelegate'        = @{ Base = 10; Tier0Bonus = 10; Factor = 'ConstrainedDelegation' }
+
+    # ── AD CS composite edges (BloodHound CE) ──
+    'ADCSESC1'                 = @{ Base = 35; Tier0Bonus = 0;  Factor = 'ADCSESC1' }
+    'ADCSESC3'                 = @{ Base = 35; Tier0Bonus = 0;  Factor = 'ADCSESC3' }
+    'ADCSESC4'                 = @{ Base = 35; Tier0Bonus = 0;  Factor = 'ADCSESC4' }
+    'ADCSESC6a'                = @{ Base = 35; Tier0Bonus = 0;  Factor = 'ADCSESC6' }
+    'ADCSESC6b'                = @{ Base = 35; Tier0Bonus = 0;  Factor = 'ADCSESC6' }
+    'ADCSESC7'                 = @{ Base = 35; Tier0Bonus = 0;  Factor = 'ADCSESC7' }
+    'ADCSESC9a'                = @{ Base = 30; Tier0Bonus = 0;  Factor = 'ADCSESC9' }
+    'ADCSESC9b'                = @{ Base = 30; Tier0Bonus = 0;  Factor = 'ADCSESC9' }
+    'ADCSESC10a'               = @{ Base = 30; Tier0Bonus = 0;  Factor = 'ADCSESC10' }
+    'ADCSESC10b'               = @{ Base = 30; Tier0Bonus = 0;  Factor = 'ADCSESC10' }
+    'ADCSESC13'                = @{ Base = 30; Tier0Bonus = 0;  Factor = 'ADCSESC13' }
+    'GoldenCert'               = @{ Base = 40; Tier0Bonus = 0;  Factor = 'GoldenCert' }
+
+    # ── AD CS primitives (present without a composite edge) ──
+    'ManageCA'                 = @{ Base = 25; Tier0Bonus = 0;  Factor = 'ManageCA' }
+    'ManageCertificates'       = @{ Base = 20; Tier0Bonus = 0;  Factor = 'ManageCA' }
+    'WritePKIEnrollmentFlag'   = @{ Base = 20; Tier0Bonus = 0;  Factor = 'PKITemplateAbuse' }
+    'WritePKINameFlag'         = @{ Base = 20; Tier0Bonus = 0;  Factor = 'PKITemplateAbuse' }
+    'DelegatedEnrollmentAgent' = @{ Base = 20; Tier0Bonus = 0;  Factor = 'EnrollmentAgent' }
+    'Enroll'                   = @{ Base = 5;  Tier0Bonus = 0;  Factor = 'Enroll' }
+    'AutoEnroll'               = @{ Base = 5;  Tier0Bonus = 0;  Factor = 'Enroll' }
+
+    # ── Lateral movement ──
+    'AdminTo'                  = @{ Base = 3;  Tier0Bonus = 0;  Factor = 'AdminTo' }
+    'HasSession'               = @{ Base = 3;  Tier0Bonus = 0;  Factor = 'HasSession' }
+    'CanRDP'                   = @{ Base = 3;  Tier0Bonus = 0;  Factor = 'LateralAccess' }
+    'CanPSRemote'              = @{ Base = 5;  Tier0Bonus = 0;  Factor = 'LateralAccess' }
+    'ExecuteDCOM'              = @{ Base = 5;  Tier0Bonus = 0;  Factor = 'LateralAccess' }
+    'SQLAdmin'                 = @{ Base = 8;  Tier0Bonus = 0;  Factor = 'LateralAccess' }
+
+    # ── Policy ──
+    'GpLink'                   = @{ Base = 5;  Tier0Bonus = 5;  Factor = 'GpLink' }
 }
+
+# Structural edges that legitimately carry no score.
+# The AD CS entries describe PKI topology rather than an abuse primitive;
+# the composite ADCSESC* edges carry the risk.
+$Script:IgnoredEdges = @(
+    'MemberOf'
+    'Contains'
+    'HasSIDHistory'
+    'TrustedBy'
+    'PublishedTo'
+    'IssuedSignedBy'
+    'EnterpriseCAFor'
+    'RootCAFor'
+    'NTAuthStoreFor'
+    'TrustedForNTAuth'
+    'HostsCAService'
+)
+
+# Populated at classification time; surfaced by Get-UnknownEdgeLabels.
+$Script:UnknownEdgeLabels = [System.Collections.Generic.HashSet[string]]::new()
+
+#endregion
+
+#region ── Thresholds ──
+
+$Script:ScoreCeiling = 100
+
+$Script:SeverityThresholds = @{
+    Critical = 50
+    High     = 30
+    Medium   = 15
+}
+
+#endregion
+
+#region ── Helpers ──
 
 function Get-SafeProp {
     <#
@@ -75,6 +158,40 @@ function Get-SafeProp {
         return $Obj.$Name
     }
     return $null
+}
+
+function Get-Tier0Class {
+    <#
+    .SYNOPSIS
+        Returns 'Core', 'Operator', or $null for a node.
+    #>
+    param($Node)
+
+    if ($null -eq $Node) { return $null }
+
+    $name = ((Get-SafeProp $Node.props 'name') -split '@')[0].ToUpper()
+
+    if ($name -in $Script:Tier0CoreGroups)     { return 'Core' }
+    if ($name -in $Script:Tier0OperatorGroups) { return 'Operator' }
+
+    if ((Get-SafeProp $Node.props 'isDC') -eq $true) { return 'Core' }
+
+    if ((Get-SafeProp $Node.props 'admincount') -eq $true -and $Node.label -eq 'Group') {
+        return 'Operator'
+    }
+
+    return $null
+}
+
+function Test-IsTier0Target {
+    <#
+    .SYNOPSIS
+        Determines if a node represents a Tier 0 asset.
+    #>
+    param(
+        [Parameter(Mandatory)]$Node
+    )
+    return ($null -ne (Get-Tier0Class -Node $Node))
 }
 
 function Test-HasUnconstrainedDelegation {
@@ -95,6 +212,8 @@ function Test-HasKerberoastable {
     <#
     .SYNOPSIS
         Checks if the path starts from a kerberoastable account.
+        Retained for backward compatibility; scoring now also considers
+        kerberoastable accounts appearing mid-path.
     #>
     param(
         [Parameter(Mandatory)][array]$Nodes
@@ -102,6 +221,47 @@ function Test-HasKerberoastable {
     $source = $Nodes[0]
     return ((Get-SafeProp $source.props 'hasspn') -eq $true -and $source.label -eq 'User')
 }
+
+function Get-KerberoastableNodes {
+    <#
+    .SYNOPSIS
+        Returns every kerberoastable user node in the path, in path order.
+    #>
+    param(
+        [Parameter(Mandatory)][array]$Nodes
+    )
+    return @($Nodes | Where-Object {
+        (Get-SafeProp $_.props 'hasspn') -eq $true -and $_.label -eq 'User'
+    })
+}
+
+function ConvertTo-DateTimeOrNull {
+    <#
+    .SYNOPSIS
+        Parses a value to [datetime], returning $null instead of throwing.
+        A malformed pwdlastset in one node must not abort the whole run.
+    #>
+    param($Value)
+
+    if ($null -eq $Value -or "$Value" -eq '') { return $null }
+
+    $parsed = [datetime]::MinValue
+    $styles = [System.Globalization.DateTimeStyles]::AdjustToUniversal -bor `
+              [System.Globalization.DateTimeStyles]::AssumeUniversal
+
+    if ([datetime]::TryParse(
+            [string]$Value,
+            [System.Globalization.CultureInfo]::InvariantCulture,
+            $styles,
+            [ref]$parsed)) {
+        return $parsed
+    }
+    return $null
+}
+
+#endregion
+
+#region ── Core classification ──
 
 function Get-PathSeverity {
     <#
@@ -114,128 +274,175 @@ function Get-PathSeverity {
         [Parameter(Mandatory)][PSCustomObject]$Path
     )
 
-    $reasons  = [System.Collections.Generic.List[string]]::new()
-    $factors  = [System.Collections.Generic.List[string]]::new()
-    $score    = 0
+    $reasons = [System.Collections.Generic.List[string]]::new()
+    $factors = [System.Collections.Generic.List[string]]::new()
+    $score   = 0
 
-    $nodes = $Path.nodes
-    $edges = $Path.edges
+    $nodes = @($Path.nodes)
+    $edges = @($Path.edges)
 
-    # Convert nodes to hashtable for lookup
-    $nodeMap = @{}
-    foreach ($n in $nodes) {
-        $nodeMap[$n.id] = $n
+    if ($nodes.Count -eq 0) {
+        throw "Path '$(Get-SafeProp $Path 'id')' contains no nodes."
     }
 
-    $terminalNode = $nodes[-1]
-    $edgeLabels   = $edges | ForEach-Object { $_.label }
+    $nodeMap = @{}
+    foreach ($n in $nodes) { $nodeMap[$n.id] = $n }
 
-    # --- Factor: Target is Tier 0 ---
-    if (Test-IsTier0Target -Node $terminalNode) {
+    $terminalNode = $nodes[-1]
+    $edgeLabels   = @($edges | ForEach-Object { $_.label })
+
+    # ── Factor: terminal node is Tier 0 ──
+    $terminalTier = Get-Tier0Class -Node $terminalNode
+    if ($terminalTier -eq 'Core') {
         $score += 40
-        $reasons.Add("Path terminates at Tier 0 asset: $($terminalNode.props.name)")
+        $reasons.Add("Path terminates at Tier 0 asset: $(Get-SafeProp $terminalNode.props 'name')")
+        $factors.Add('Tier0Target')
+    }
+    elseif ($terminalTier -eq 'Operator') {
+        $score += 30
+        $reasons.Add("Path terminates at a privileged operator group: $(Get-SafeProp $terminalNode.props 'name') - privileged, but not automatically domain-equivalent")
         $factors.Add('Tier0Target')
     }
 
-    # --- Factor: Critical edge types present ---
-    foreach ($edge in $edges) {
-        if ($edge.label -in $Script:CriticalEdges) {
-            $srcName = $nodeMap[$edge.source].props.name
-            $tgtName = $nodeMap[$edge.target].props.name
-            $isTier0Edge = (Test-IsTier0Target -Node $nodeMap[$edge.target])
+    # ── Factor: weighted edges ──
+    # Deduplicated on label+target so a repeated edge to the same object is not
+    # counted twice, while the same edge type to distinct targets still is.
+    $seenEdges = [System.Collections.Generic.HashSet[string]]::new()
 
-            if ($edge.label -eq 'DCSync') {
-                $score += 30
-                $reasons.Add("DCSync capability: $srcName can replicate directory from $tgtName")
-                $factors.Add('DCSync')
-            }
-            elseif ($edge.label -in @('GenericAll','WriteDacl','Owns') -and $isTier0Edge) {
-                $score += 30
-                $reasons.Add("$($edge.label) on Tier 0 object: $srcName -> $tgtName")
-                $factors.Add("$($edge.label)OnTier0")
-            }
-            elseif ($edge.label -in @('GenericAll','WriteDacl','Owns')) {
-                $score += 15
-                $reasons.Add("$($edge.label) permission: $srcName -> $tgtName")
-                $factors.Add($edge.label)
-            }
+    foreach ($edge in $edges) {
+        $label = $edge.label
+
+        if ($Script:IgnoredEdges -contains $label) { continue }
+
+        $weight = $Script:EdgeWeights[$label]
+        if (-not $weight) {
+            [void]$Script:UnknownEdgeLabels.Add($label)
+            continue
         }
+
+        $dedupKey = "$label|$(Get-SafeProp $edge 'target')"
+        if (-not $seenEdges.Add($dedupKey)) { continue }
+
+        $srcNode = $nodeMap[$edge.source]
+        $tgtNode = $nodeMap[$edge.target]
+
+        # Guard: a truncated export can reference an endpoint absent from nodes.
+        $srcName = if ($srcNode) { Get-SafeProp $srcNode.props 'name' } else { "<unresolved:$($edge.source)>" }
+        $tgtName = if ($tgtNode) { Get-SafeProp $tgtNode.props 'name' } else { "<unresolved:$($edge.target)>" }
+
+        $targetIsTier0 = ($null -ne (Get-Tier0Class -Node $tgtNode))
+        $points        = $weight.Base
+        $factorName    = $weight.Factor
+
+        if ($targetIsTier0 -and $weight.Tier0Bonus -gt 0) {
+            $points    += $weight.Tier0Bonus
+            $factorName = "$($weight.Factor)OnTier0"
+            $reasons.Add("$label on Tier 0 object: $srcName -> $tgtName")
+        }
+        elseif ($weight.Factor -eq 'DCSync') {
+            $reasons.Add("Directory replication capability: $srcName can replicate from $tgtName")
+        }
+        elseif ($weight.Factor -like 'ADCSESC*' -or $weight.Factor -eq 'GoldenCert') {
+            $reasons.Add("AD CS escalation ($label): $srcName -> $tgtName")
+        }
+        elseif ($weight.Base -ge 10) {
+            $reasons.Add("$label permission: $srcName -> $tgtName")
+        }
+
+        $score += $points
+        $factors.Add($factorName)
     }
 
-    # --- Factor: Unconstrained delegation in path ---
+    # ── Factor: unconstrained delegation anywhere in the path ──
     if (Test-HasUnconstrainedDelegation -Nodes $nodes) {
         $score += 20
-        $delegHost = ($nodes | Where-Object { (Get-SafeProp $_.props 'unconstraineddelegation') -eq $true }).props.name
-        $reasons.Add("Unconstrained delegation host in path: $delegHost")
+        $delegHost = @($nodes | Where-Object {
+            (Get-SafeProp $_.props 'unconstraineddelegation') -eq $true
+        })[0]
+        $reasons.Add("Unconstrained delegation host in path: $(Get-SafeProp $delegHost.props 'name')")
         $factors.Add('UnconstrainedDelegation')
     }
 
-    # --- Factor: Kerberoastable source account ---
-    if (Test-HasKerberoastable -Nodes $nodes) {
-        $score += 10
-        $reasons.Add("Source account is Kerberoastable: $($nodes[0].props.name)")
+    # ── Factor: kerberoastable account (source weighted higher than mid-path) ──
+    $roastable = Get-KerberoastableNodes -Nodes $nodes
+    if ($roastable.Count -gt 0) {
+        $isSource = ($roastable[0].id -eq $nodes[0].id)
+        if ($isSource) {
+            $score += 10
+            $reasons.Add("Source account is Kerberoastable: $(Get-SafeProp $roastable[0].props 'name')")
+        }
+        else {
+            $score += 6
+            $reasons.Add("Account in path is Kerberoastable: $(Get-SafeProp $roastable[0].props 'name')")
+        }
         $factors.Add('Kerberoastable')
     }
 
-    # --- Factor: Path length (shorter = more exploitable) ---
+    # ── Factor: path length (shorter = more exploitable) ──
     $hopCount = $edges.Count
-    if ($hopCount -le 2) {
-        $score += 10
-        $factors.Add('ShortPath')
-    }
-    elseif ($hopCount -le 3) {
+    if ($hopCount -le 2)     { $score += 10; $factors.Add('ShortPath') }
+    elseif ($hopCount -le 3) { $score += 5;  $factors.Add('MediumPath') }
+
+    # ── Factor: lateral movement chain ──
+    if (('AdminTo' -in $edgeLabels) -and ('HasSession' -in $edgeLabels)) {
         $score += 5
-        $factors.Add('MediumPath')
+        $reasons.Add('Lateral movement chain: local admin + session hijack enables credential theft')
+        $factors.Add('LateralChain')
     }
 
-    # --- Factor: Lateral movement chain (AdminTo + HasSession combo) ---
-    $hasAdminTo   = 'AdminTo'   -in $edgeLabels
-    $hasSession   = 'HasSession' -in $edgeLabels
-    if ($hasAdminTo -and $hasSession) {
-        $score += 10
-        $reasons.Add("Lateral movement chain: local admin + session hijack enables credential theft")
-        $factors.Add('HasSession')
-        $factors.Add('AdminTo')
-    }
-
-    # --- Factor: Sensitive data exposure (description keywords) ---
+    # ── Factor: sensitive data exposure ──
     foreach ($n in $nodes) {
         $desc = "$(Get-SafeProp $n.props 'description')".ToLower()
         if ($desc -match 'pii|financial|payment|credential|secret|sensitive') {
             $score += 15
-            $reasons.Add("Sensitive asset in path: $($n.props.name) ($(Get-SafeProp $n.props 'description'))")
+            $reasons.Add("Sensitive asset in path: $(Get-SafeProp $n.props 'name') ($(Get-SafeProp $n.props 'description'))")
             $factors.Add('SensitiveData')
             break
         }
     }
 
-    # --- Factor: Stale password on source ---
-    $pwdlastset = Get-SafeProp $nodes[0].props 'pwdlastset'
-    if ($pwdlastset) {
-        $pwdAge = (Get-Date) - [datetime]$pwdlastset
-        if ($pwdAge.TotalDays -gt 365) {
+    # ── Factor: stale password on source ──
+    $rawPwdLastSet = Get-SafeProp $nodes[0].props 'pwdlastset'
+    $pwdSetDate    = ConvertTo-DateTimeOrNull -Value $rawPwdLastSet
+    if ($null -ne $pwdSetDate) {
+        $pwdAgeDays = [int]((Get-Date).ToUniversalTime() - $pwdSetDate).TotalDays
+        if ($pwdAgeDays -gt 365) {
             $score += 5
-            $reasons.Add("Source account password is $([int]$pwdAge.TotalDays) days old")
+            $reasons.Add("Source account password is ${pwdAgeDays} days old")
             $factors.Add('StalePassword')
         }
     }
+    elseif ($null -ne $rawPwdLastSet -and "$rawPwdLastSet" -ne '') {
+        $reasons.Add('Source account pwdlastset could not be parsed; password age not assessed')
+        $factors.Add('UnparseablePwdLastSet')
+    }
 
-    # --- Classify ---
+    # ── Cap and classify ──
+    $rawScore = $score
+    $capped   = $false
+    if ($score -gt $Script:ScoreCeiling) {
+        $score  = $Script:ScoreCeiling
+        $capped = $true
+    }
+
     $severity = switch ($true) {
-        ($score -ge 50) { 'Critical'; break }
-        ($score -ge 30) { 'High';     break }
-        ($score -ge 15) { 'Medium';   break }
-        default         { 'Low' }
+        ($score -ge $Script:SeverityThresholds.Critical) { 'Critical'; break }
+        ($score -ge $Script:SeverityThresholds.High)     { 'High';     break }
+        ($score -ge $Script:SeverityThresholds.Medium)   { 'Medium';   break }
+        default                                          { 'Low' }
     }
 
     [PSCustomObject]@{
-        PathId      = $Path.id
-        Description = $Path.description
+        PathId      = Get-SafeProp $Path 'id'
+        Description = Get-SafeProp $Path 'description'
         Severity    = $severity
         Score       = $score
+        RawScore    = $rawScore
+        ScoreCapped = $capped
+        MaxScore    = $Script:ScoreCeiling
         HopCount    = $hopCount
-        SourceNode  = $nodes[0].props.name
-        TargetNode  = $terminalNode.props.name
+        SourceNode  = Get-SafeProp $nodes[0].props 'name'
+        TargetNode  = Get-SafeProp $terminalNode.props 'name'
         EdgeChain   = ($edgeLabels -join ' -> ')
         Reasons     = $reasons.ToArray()
         Factors     = $factors.ToArray()
@@ -251,10 +458,29 @@ function Invoke-SeverityClassification {
         [Parameter(Mandatory)][array]$Paths
     )
 
+    $Script:UnknownEdgeLabels.Clear()
+
     $results = foreach ($path in $Paths) {
         Get-PathSeverity -Path $path
     }
 
-    # Sort by score descending
+    if ($Script:UnknownEdgeLabels.Count -gt 0) {
+        $labelList = (($Script:UnknownEdgeLabels | Sort-Object) -join ', ')
+        Write-Warning ("Unrecognised edge label(s) scored as zero: $labelList. " +
+            'This usually means the export came from a BloodHound version with a newer edge schema. ' +
+            'Severity may be understated for the affected paths.')
+    }
+
     $results | Sort-Object -Property Score -Descending
 }
+
+function Get-UnknownEdgeLabels {
+    <#
+    .SYNOPSIS
+        Returns edge labels seen during the last classification run that
+        carried no weight and were not explicitly ignored.
+    #>
+    return @($Script:UnknownEdgeLabels | Sort-Object)
+}
+
+#endregion

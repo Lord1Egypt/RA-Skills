@@ -1,42 +1,62 @@
-## Description: <br>
-根据手术相关病历素材生成规范的手术记录。输入术前小结、术中记录、术后记录等，调用内部医疗大模型，输出结构化手术记录（含手术日期、时间、地点、医生、手术名称、指征、诊断、经过、异常情况、术后情况、签名等 14 个字段）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates standardized surgical operation records from preoperative, intraoperative, and postoperative clinical materials using an internal medical large language model.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Clinical documentation teams and developers use this skill to turn de-identified surgical source materials into a standardized 14-field surgical record draft for physician review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive medical text and may send it to the configured LLM endpoint. <br>
-Mitigation: Use only de-identified records and verify that the configured endpoint is approved for medical data before use. <br>
-Risk: The required app key can grant access to the medical model endpoint. <br>
-Mitigation: Protect the app key as a secret, limit access to authorized operators, and rotate it if exposure is suspected. <br>
-Risk: Prepared text and generated output can be written to local paths when save options are used. <br>
-Mitigation: Avoid save options unless local retention of patient-derived text is permitted and the destination is appropriately protected. <br>
+## Use Case:
 
+Developers and clinical documentation teams use this skill to turn de-identified surgical source materials into standardized operation-record drafts for medical record workflows. Generated records require clinician review before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-operation-record) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files] <br>
-**Output Format:** [UTF-8 text surgical record with 14 ordered fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints to stdout by default and can write the generated record to a requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Sensitive clinical text may be exposed if records are not de-identified before model calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified records and review the skill before installing it in healthcare or PHI-adjacent workflows.
+
+Risk: The remote model endpoint is configurable and could send clinical content to an unapproved service.
+
+Mitigation: Keep --base pinned to an approved internal HTTPS endpoint.
+
+Risk: The appkey credential can be exposed through command history or process handling.
+
+Mitigation: Protect the appkey outside command history wherever possible.
+
+Risk: Generated operation records may be incomplete or clinically inaccurate.
+
+Mitigation: Require clinician review of generated records before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-operation-record)
+- [Internal medical LLM API endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [UTF-8 surgical operation record text, with optional JSON or text file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires de-identified clinical input and an appkey for the configured medical LLM endpoint.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact _meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

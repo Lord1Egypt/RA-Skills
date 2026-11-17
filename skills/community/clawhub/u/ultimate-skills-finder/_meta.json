@@ -2,5 +2,11 @@
   "ownerId": "kn7b72aym67gcmwkp05van1d8s800a7m",
   "slug": "ultimate-skills-finder",
   "version": "1.0.0",
-  "publishedAt": 1777804159857
+  "publishedAt": 1777804159857,
+  "publishedVersionIsLive": true,
+  "pendingVersion": "1.2.2",
+  "pendingVersionId": "k97ehkfc8y66gcg3fmh69pzxp98gdqa6",
+  "pendingArtifactSha256": "f8538ad668e77248e7ae296a7391324a1d9c83f45da90fbb6ec57337d335976f",
+  "pendingStatus": "publicationStatus=pending; gate=review.llm_review / scanner.llm.review",
+  "note": "version/publishedAt record what the registry still serves. 1.2.2 is submitted but not yet live, so `version` is deliberately NOT 1.2.2. Hand-edited by Steward on 2026-10-16; `clawhub publish` does not rewrite this file."
 }

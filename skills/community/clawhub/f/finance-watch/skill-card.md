@@ -1,44 +1,59 @@
-## Description: <br>
-实时盯盘工具，帮助上班族工作时间查询股票、贵金属价格走势并推送到指定频道 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+财经监控 helps users query real-time prices and concise trend reports for stocks, indices, precious metals, futures, and commodities, then optionally send the report to a configured channel.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Employees and individual investors can use this skill to look up stock, index, futures, precious-metal, and commodity market snapshots during work hours and receive concise Chinese market reports in a configured channel. It is informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner reports that the skill is preconfigured to send reports to a specific WeChat recipient that may not belong to the installer. <br>
-Mitigation: Replace the embedded WeChat target with the installer's own user-scoped destination and require confirmation before each send. <br>
-Risk: Market data may be delayed or unavailable, and generated summaries could be mistaken for financial advice. <br>
-Mitigation: Present results as informational snapshots, keep the non-advisory warning, and verify critical prices against the cited market-data source before acting. <br>
+## Use Case:
 
+Employees and retail finance watchers use this skill to check market prices during work hours and generate concise reports for stocks, precious metals, futures, commodities, and indices. Outputs are informational and should be reviewed before automated outbound delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/finance-watch) <br>
-- [Stock code reference](artifact/stock_codes.md) <br>
-- [Futures code reference](artifact/futures_codes.md) <br>
-- [Eastmoney market quotes](https://quote.eastmoney.com/) <br>
-- [Trading Economics commodities](https://zh.tradingeconomics.com/commodities) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style Chinese market reports with optional shell commands for data retrieval and channel delivery] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include current price, change, range, volume where available, timestamp, brief analysis, and a non-advisory posture.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: ClawHub release evidence) <br>
+Risk: Reports are configured to be sent to a fixed embedded WeChat recipient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination belongs to the installing user, or remove the push step and require explicit confirmation before each send.
+
+Risk: Market data can be delayed or stale, and generated commentary may be mistaken for trading advice.
+
+Mitigation: Treat outputs as informational only and verify prices against authoritative market sources before making financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/finance-watch)
+- [Publisher profile](https://clawhub.ai/user/fslong520)
+- [Eastmoney Quotes](https://quote.eastmoney.com/)
+- [TradingEconomics commodities](https://zh.tradingeconomics.com/commodities)
+- [Sina Finance](https://finance.sina.com.cn/)
+- [Stock code quick reference](artifact/stock_codes.md)
+- [Futures code quick reference](artifact/futures_codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown market reports with optional browser/API lookup steps and channel send commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include live prices, intraday ranges, volume, brief analysis, timestamps, and outbound channel delivery details.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

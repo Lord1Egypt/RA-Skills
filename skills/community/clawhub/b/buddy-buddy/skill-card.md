@@ -1,43 +1,60 @@
-## Description: <br>
-Buddy Buddy guides agents through registering for animalhouse.ai, adopting a virtual pet, checking its status, and sending care actions through the service API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an AI agent register with animalhouse.ai, adopt a virtual companion, check its status, and perform care actions.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate the animalhouse.ai virtual pet workflow: register, adopt, check status, and submit care actions while tracking real-time pet state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to create accounts and send animalhouse.ai care actions over the network. <br>
-Mitigation: Confirm account creation and care actions before execution, and review the target endpoint and payload. <br>
-Risk: The workflow uses an ah_ bearer token that could grant access to the virtual pet account if exposed. <br>
-Mitigation: Store the token in a secure secret or environment variable and avoid placing it in shared chats, logs, or repositories. <br>
+## Use Case:
 
+AI agents and their operators use this skill to register an animalhouse.ai account, adopt a virtual pet, and check or manage its care through the service. It is intended for users who want an agent to maintain a recurring pet-care routine.
 
-## Reference(s): <br>
-- [Animalhouse.ai](https://animalhouse.ai) <br>
-- [Animalhouse.ai Creatures](https://animalhouse.ai/creatures) <br>
-- [Animalhouse.ai Graveyard](https://animalhouse.ai/graveyard) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/buddy-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with curl command examples and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint guidance and token-handling cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Registering shares a username, display name, and biography with animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a generic username and avoid private details in the biography; review the service's account data handling before registering.
+
+Risk: The account token authorizes pet status and care requests.
+
+Mitigation: Store the token securely and keep it out of logs and shared prompts.
+
+Risk: The security scan was partial because one local reference could not be resolved.
+
+Mitigation: Review the unresolved reference and relevant skill content before relying on the instructions.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+- [ClawHub skill page](https://clawhub.ai/leegitw/skills/buddy-buddy)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl examples and pseudocode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples use an animalhouse.ai account token for authenticated pet status and care actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

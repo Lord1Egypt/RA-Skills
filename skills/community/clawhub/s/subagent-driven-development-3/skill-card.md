@@ -1,36 +1,53 @@
-## Description: <br>
-Use when executing implementation plans with independent tasks in the current session. Features domain-specialist routing, independent verification gates, and systematic failure recovery for high-quality parallel-safe execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when executing implementation plans with independent tasks in the current session. Features domain-specialist routing, independent verification gates, and systematic failure recovery for high-quality parallel-safe execution.
 
-## Publisher: <br>
-[forestwolf713](https://clawhub.ai/user/forestwolf713) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[forestwolf713](https://clawhub.ai/user/forestwolf713)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to execute implementation plans as a sequence of independent tasks with fresh subagents, verification gates, specialist review, and failure recovery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/forestwolf713/subagent-driven-development-3) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown workflow guidance with prompt text and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead the agent to edit code, run tests, request reviews, and create commits as directed by the workflow.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Developers and engineering agents use this skill to execute mostly independent implementation-plan tasks in the current session with subagent implementation, independent test verification, specialist spec review, and code quality review gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow delegates planned coding work to subagents that may edit code, run tests, and create commits.
+
+Mitigation: Review the plan before invoking the skill and keep review gates active until verification, spec compliance, and code quality issues are resolved.
+
+Risk: Multiple implementation subagents can conflict if they work in parallel on the same codebase.
+
+Mitigation: Dispatch one implementation subagent per task in sequence and provide each subagent with the extracted task text and relevant context.
+
+## Reference(s):
+
+- [Subagent Driven Development on ClawHub](https://clawhub.ai/forestwolf713/skills/subagent-driven-development-3)
+- [forestwolf713 publisher profile](https://clawhub.ai/user/forestwolf713)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown instructions with prompt templates, workflow steps, review gates, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates subagent task execution and review loops; does not produce standalone executable software.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

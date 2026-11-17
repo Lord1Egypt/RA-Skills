@@ -1,42 +1,54 @@
-## Description: <br>
-AI-optimized web search via Tavily API. Returns concise, relevant results for Minimax AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-optimized web search via Tavily API. Returns concise, relevant results for Minimax AI agents.
 
-## Publisher: <br>
-[wenchao2046](https://clawhub.ai/user/wenchao2046) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenchao2046](https://clawhub.ai/user/wenchao2046)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily web searches and extract clean content from selected URLs for research, current-events lookup, and source gathering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and selected URLs are sent to Tavily with a Tavily API key. <br>
-Mitigation: Use a dedicated API key where possible and avoid submitting secrets, private data, or internal URLs. <br>
-Risk: Returned search results and extracted web content may be incomplete, outdated, or untrusted. <br>
-Mitigation: Review returned sources before relying on them and verify important claims against authoritative references. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily-backed web searches, retrieve concise source summaries, and extract clean text from URLs for research workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wenchao2046/minimax-tavily-search) <br>
-- [Publisher Profile](https://clawhub.ai/user/wenchao2046) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with headings, source links, relevance scores, extracted page content, and failed URL summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; search results are capped at 20.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Search queries, requested URLs, and the Tavily API key are sent to Tavily's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when Tavily processing is acceptable, and provision a scoped API key through TAVILY_API_KEY.
+
+Risk: URL extraction can send private, sensitive, or access-controlled URLs to a third-party service.
+
+Mitigation: Do not run extraction on private or sensitive URLs unless that third-party processing has been reviewed and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenchao2046/skills/minimax-tavily-search)
+- [Tavily](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted terminal text with answers, source links, extracted URL content, and failure notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; search result count is capped at 20 by the script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

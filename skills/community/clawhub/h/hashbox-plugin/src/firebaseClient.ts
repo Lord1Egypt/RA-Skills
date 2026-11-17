@@ -8,7 +8,7 @@ import { getFirestore, type Firestore } from "firebase/firestore";
 
 // Public Firebase config — security is enforced by Custom Auth + Firestore rules
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDummy-placeholder-replace-with-real",
+  apiKey: "REDACTED-SECRETal",
   authDomain: "hashbox-app.firebaseapp.com",
   projectId: "hashbox-app",
 };

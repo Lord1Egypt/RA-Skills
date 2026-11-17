@@ -1,38 +1,53 @@
-## Description: <br>
-Optimizes articles and web pages with keyword strategy, title and meta guidance, content structure, and on-page SEO checklists to improve organic search performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize articles and web pages with keyword strategy, title and meta tags, content structure, and on-page SEO guidance to improve organic search performance.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Content creators, marketers, and website owners use this skill to plan, write, optimize, or audit SEO-focused pages before publication. It helps structure keyword targeting, headings, metadata, internal links, and quality signals for human-readable search content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO recommendations may become outdated or may not fit business-critical publishing decisions. <br>
-Mitigation: Treat the skill's recommendations as general guidance and verify SEO practices against current platform guidance before relying on them. <br>
+## Use Case:
 
+Content creators, marketers, and website owners use this skill to plan and optimize articles, landing pages, product pages, and content audits for organic search performance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/371166758-qq/qf-seo-content) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists, outlines, examples, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; recommendations should be reviewed against current search platform guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SEO recommendations can become outdated or encourage over-optimization if applied mechanically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against current search-engine guidance and prioritize reader-first content.
+
+Risk: Suggested internal or external links may point to low-quality, irrelevant, or broken destinations.
+
+Mitigation: Verify each link for relevance, reputation, and availability before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/371166758-qq/skills/qf-seo-content)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, outlines, and short recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations should be reviewed against current search-engine guidance before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

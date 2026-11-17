@@ -1,46 +1,67 @@
-## Description: <br>
-Automates X/Twitter posting and account workflows with apidance.pro scripts, optional Kimi-generated tweet drafts, account statistics, notifications, replies, and engagement analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter Dance helps agents generate, preview, publish, and manage X/Twitter posts and interactions through apidance.pro and optional Kimi-generated tweet drafts.
 
-## Publisher: <br>
-[Evan-y25](https://clawhub.ai/user/Evan-y25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evan-y25](https://clawhub.ai/user/evan-y25)
 
-## Use Case: <br>
-Developers and social media operators use this skill to generate drafts, publish or batch publish posts, inspect account activity, and automate replies or engagement workflows for an X/Twitter account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform live actions on an X/Twitter account, including posting, replying, following, unfollowing, deletion, and bulk engagement. <br>
-Mitigation: Use a test or low-risk account first, prefer draft or dry-run modes, and add a human confirmation step before any live account-changing action. <br>
-Risk: The artifact includes unsafe credential examples and behavior that may print sensitive token-related data in terminal output. <br>
-Mitigation: Rotate any credentials copied from documentation, avoid shared terminals and CI logs, and review output before sharing logs. <br>
-Risk: The server security verdict is suspicious and recommends manual review before use. <br>
-Mitigation: Review and scan the scripts before deployment, then restrict credentials to the minimum account and API permissions needed. <br>
+## Use Case:
 
+Social media operators and developers use this skill to draft, preview, publish, schedule, and monitor Twitter/X posts and account interactions from command-line workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Evan-y25/twitter-dance) <br>
-- [apidance.pro documentation](https://doc.apidance.pro) <br>
-- [QUICK_START.md](QUICK_START.md) <br>
-- [AUTO-REPLY-GUIDE.md](AUTO-REPLY-GUIDE.md) <br>
-- [GRAPHQL_API_GUIDE.md](GRAPHQL_API_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands and generated post content that can trigger live X/Twitter account actions when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Exposed or mishandled credentials may allow unauthorized account or API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove exposed credentials, rotate affected keys and tokens, and keep secrets in scoped environment variables or a managed secret store.
+
+Risk: Browser-token scraping can create fragile and over-privileged authentication flows.
+
+Mitigation: Replace browser-token extraction guidance with a scoped official authorization flow before installation or use.
+
+Risk: Logs, examples, or diagnostic commands may reveal API keys, auth tokens, or account data.
+
+Mitigation: Redact logs and examples, avoid printing secret values, and remove broad node -e execution permission.
+
+Risk: Automated posting, replies, likes, retweets, follows, or scheduled jobs can perform account actions without adequate review.
+
+Mitigation: Use draft or dry-run modes first, disable scheduled posting by default, and approve account action limits before enabling automation.
+
+## Reference(s):
+
+- [Twitter Dance on ClawHub](https://clawhub.ai/evan-y25/skills/twitter-dance)
+- [apidance.pro Documentation](https://doc.apidance.pro)
+- [Moonshot Platform](https://platform.moonshot.cn)
+- [Twitter API v2 Documentation](https://developer.twitter.com/en/docs/twitter-api)
+- [Auto Reply Guide](AUTO-REPLY-GUIDE.md)
+- [GraphQL API Guide](GRAPHQL_API_GUIDE.md)
+- [Advanced Features](ADVANCED_FEATURES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce tweet drafts, runnable Node.js commands, environment variable configuration, and operational review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

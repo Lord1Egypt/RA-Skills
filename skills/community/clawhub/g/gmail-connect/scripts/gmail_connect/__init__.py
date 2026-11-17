@@ -1,0 +1,1 @@
+"""Gmail Connect local adapter."""

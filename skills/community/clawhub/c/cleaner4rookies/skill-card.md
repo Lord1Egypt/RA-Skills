@@ -1,43 +1,57 @@
-## Description: <br>
-openclaw-cleaner helps OpenClaw users preview, archive, or delete temporary workspace files using configurable rules, dry-run behavior, archives, and whitelist protections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw temporary file cleanup tool that scans ~/.openclaw/workspace/ and previews, archives, or deletes matching files according to configurable rules.
 
-## Publisher: <br>
-[beforesun](https://clawhub.ai/user/beforesun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beforesun](https://clawhub.ai/user/beforesun)
 
-## Use Case: <br>
-External ClawHub and OpenClaw users use this skill to keep ~/.openclaw/workspace from growing by previewing cleanup candidates, archiving retained files, and deleting configured temporary files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can archive or delete local workspace files when --force or scheduled execution is enabled. <br>
-Mitigation: Run dry-run first and inspect the listed files before using --force or enabling cron. <br>
-Risk: Overbroad cleanup rules or archive paths can move or remove files the user intended to keep. <br>
-Mitigation: Review delete patterns carefully, keep archive_dir inside ~/.openclaw/workspace unless another location is intentional, and test whitelist behavior before relying on it. <br>
+## Use Case:
 
+External OpenClaw users use this skill to manage temporary workspace files with a dry-run preview, archival rules, deletion rules, and optional scheduled cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beforesun/cleaner4rookies) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [config.yaml](config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local cleanup preview, archiving, deletion, whitelist configuration, and optional scheduled execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact changelog) <br>
+Risk: The cleanup behavior can delete or move workspace files when --force or scheduled execution is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cleaner.yaml before use, keep dry_run enabled, and run a manual preview before using --force or cron.
+
+Risk: The documented whitelist should not be relied on until fixed.
+
+Mitigation: Avoid force execution for important workspaces and confirm protected files are outside the matching cleanup rules.
+
+Risk: Archived files may still be needed later.
+
+Mitigation: Inspect cleaner-archive before deleting it or changing archive retention practices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beforesun/skills/cleaner4rookies)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default dry-run preview with optional --force execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

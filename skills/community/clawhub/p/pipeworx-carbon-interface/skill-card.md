@@ -1,39 +1,50 @@
-## Description: <br>
-Estimate CO2 emissions from electricity use, flights, or vehicle travel using the Pipeworx Carbon Interface API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Estimate CO2 emissions from electricity use, flights, or vehicle travel using the Pipeworx Carbon Interface API.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers and agent users use this skill to configure access to a Pipeworx-hosted Carbon Interface MCP gateway for emissions estimates from electricity use, flights, and vehicle travel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Emissions-estimation inputs are sent to the Pipeworx-hosted Carbon Interface MCP gateway. <br>
-Mitigation: Avoid entering sensitive personal or business itinerary data unless you trust that gateway and its data handling terms. <br>
+## Use Case:
 
+Developers and agents use this skill to estimate carbon emissions for electricity consumption, passenger flights, and vehicle travel through a disclosed Carbon Interface MCP gateway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-carbon-interface) <br>
-- [Pipeworx Carbon Interface MCP gateway](https://gateway.pipeworx.io/carbon-interface/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippet] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Configures an external MCP endpoint for carbon-emissions estimation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends electricity, flight, vehicle, and distance details to an external MCP gateway for emissions estimates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including personal identifiers or confidential business data unless the gateway operator and its data practices are trusted.
+
+## Reference(s):
+
+- [Pipeworx Carbon Interface MCP gateway](https://gateway.pipeworx.io/carbon-interface/mcp)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-carbon-interface)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, API calls]
+
+**Output Format:** [Markdown and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces carbon-emissions estimates in grams, kilograms, and metric tons when used with the disclosed MCP gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

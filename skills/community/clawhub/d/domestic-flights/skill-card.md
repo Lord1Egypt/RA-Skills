@@ -1,38 +1,48 @@
-## Description: <br>
-Helps agents search domestic flights within China, covering major cities and regional airports while comparing advertised prices and availability across Chinese airlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Domestic Flights is listed as a skill for searching domestic flights within China, but the submitted artifact files do not contain executable instructions or reference content.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users would use this skill to ask an agent for domestic flight search guidance in China. The submitted version appears to provide no actionable skill instructions, so users should confirm functionality before relying on it.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The submitted instruction and reference files are empty, so the skill may not provide the flight-search behavior described in the listing.
+
+Mitigation: Verify the installed artifact contains usable instructions before deploying or depending on the skill for travel planning.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to request domestic flight-search guidance for routes within China. Users should verify the installed package before relying on it because the submitted artifact appears empty or mispackaged. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global, with advertised flight-search scope limited to domestic routes within China. <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted skill contains only empty Markdown files and may not deliver the advertised domestic flight-search assistance. <br>
-Mitigation: Inspect the installed skill before use and confirm functional instructions or references are present before relying on it for travel planning. <br>
+**Output Format:** [Markdown or plain text agent responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/domestic-flights) <br>
+**Other Properties Related to Output:** [No executable behavior is evidenced in the submitted artifact files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text flight-search guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Artifact files are empty; server security evidence indicates the advertised functionality may not be delivered.] <br>
+3.2.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

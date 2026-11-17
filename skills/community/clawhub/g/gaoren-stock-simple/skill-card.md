@@ -1,48 +1,60 @@
-## Description: <br>
-股票简单分析 - A股/港股/美股实时行情快速查询 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+股票简单分析 - A股/港股/美股实时行情快速查询
 
-## Publisher: <br>
-[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoren36-arch](https://clawhub.ai/user/gaoren36-arch)
 
-## Use Case: <br>
-External OpenClaw users use this skill to query current A-share, Hong Kong, and US stock quotes from stock codes or natural-language stock requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock symbols entered by users are sent to Tencent Finance or Finnhub to retrieve quote data. <br>
-Mitigation: Use the skill only when remote quote lookup is acceptable, and avoid entering sensitive watchlists or confidential trading context. <br>
-Risk: The artifact includes an embedded Finnhub API token for US stock quote requests. <br>
-Mitigation: Prefer a release that moves service credentials into user-controlled configuration before production use. <br>
-Risk: Broad natural-language triggers such as stock price questions may activate the skill more often than intended. <br>
-Mitigation: Confirm the user wants a remote stock lookup before sending a symbol to an external quote service. <br>
-Risk: The Python requests dependency is required but not pinned in the artifact documentation. <br>
-Mitigation: Install dependencies in a managed environment and pin or review package versions before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to quickly query A-share, Hong Kong, and U.S. stock quotes from a Python command-line helper.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaoren36-arch/gaoren-stock-simple) <br>
-- [Publisher profile](https://clawhub.ai/user/gaoren36-arch) <br>
-- [Tencent Finance quote endpoint](https://qt.gtimg.cn/q=) <br>
-- [Finnhub quote API](https://finnhub.io/api/v1/quote) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text stock quote summaries and Markdown guidance with example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and the requests package; quote freshness and availability depend on Tencent Finance and Finnhub responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The skill makes outbound requests to third-party finance APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve network access before installation or execution.
+
+Risk: The artifact includes a reusable Finnhub API key.
+
+Mitigation: Remove the bundled key and require users to provide their own API token through a secret or environment variable.
+
+Risk: Broad natural-language triggers may activate the skill during unrelated conversations.
+
+Mitigation: Narrow trigger phrases or require explicit user invocation before running stock lookup behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaoren36-arch/skills/gaoren-stock-simple)
+- [ClawHub publisher profile](https://clawhub.ai/user/gaoren36-arch)
+- [Tencent Finance quote API endpoint](https://qt.gtimg.cn/)
+- [Finnhub quote API endpoint](https://finnhub.io/api/v1/quote)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text stock quote output and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and outbound network access to third-party finance APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

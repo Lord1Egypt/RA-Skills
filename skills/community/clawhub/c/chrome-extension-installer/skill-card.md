@@ -1,41 +1,53 @@
-## Description: <br>
-Install a Chrome extension by ID or Chrome Web Store URL on this Mac. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install a Chrome extension by ID or Chrome Web Store URL on this Mac.
 
-## Publisher: <br>
-[ryanpwelliver-oss](https://clawhub.ai/user/ryanpwelliver-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanpwelliver-oss](https://clawhub.ai/user/ryanpwelliver-oss)
 
-## Use Case: <br>
-Developers and operators use this skill to open Chrome Web Store installation pages, force-install trusted Chrome extensions through macOS Chrome policy, or load unpacked extensions for local development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chrome force-install policy can silently and persistently install extensions through managed policy. <br>
-Mitigation: Prefer the Chrome Web Store method so Chrome shows extension details and permissions; use force-install only for trusted extension IDs and document how to remove the policy entry. <br>
-Risk: Policy installation requires sudo and modifies the local Chrome managed preferences. <br>
-Mitigation: Review the exact extension ID and command before execution, and apply it only on the intended macOS Chrome profile. <br>
+## Use Case:
 
+Developers and operators use this skill to install Chrome extensions by opening a Chrome Web Store page, applying a managed macOS Chrome policy, or loading an unpacked local extension during development.
 
-## Reference(s): <br>
-- [Chrome Web Store extension page template](https://chromewebstore.google.com/detail/<extension-id>) <br>
-- [Chrome extension update service endpoint](https://clients2.google.com/service/update2/crx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes macOS-specific Chrome policy commands that may require sudo and affect the user's Chrome profile.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A managed-policy force install can add a Chrome extension without a user click and can persist until the policy is removed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the Chrome Web Store method with user approval; use force install only for intentional administration and document how to remove the policy afterward.
+
+Risk: Installing the wrong extension ID could grant browser permissions to an unintended extension.
+
+Mitigation: Verify the exact extension ID, publisher, and requested permissions before running policy-based installation commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryanpwelliver-oss/skills/chrome-extension-installer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides Chrome Web Store, macOS managed policy, and unpacked-extension installation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

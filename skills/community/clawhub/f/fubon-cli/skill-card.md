@@ -1,40 +1,52 @@
-## Description: <br>
-AI-agent skill for Taiwan stock, futures, and options operations via fubon-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-agent skill for Taiwan stock, futures, and options operations via fubon-cli.
 
-## Publisher: <br>
-[Mofesto](https://clawhub.ai/user/Mofesto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mofesto](https://clawhub.ai/user/mofesto)
 
-## Use Case: <br>
-Developers and trading operators use this skill to run Fubon Neo authentication, account queries, market data retrieval, realtime subscriptions, conditional orders, and order lifecycle workflows through fubon-cli. It is intended to produce parseable command output and execution guidance for downstream automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide live brokerage orders, cancellations, modifications, conditional orders, and retries. <br>
-Mitigation: Require explicit human confirmation for each trading action and verify symbol, quantity, price, account index, and resulting order state. <br>
-Risk: Credentials, certificate paths, certificate passwords, and API keys are required for Fubon Neo workflows. <br>
-Mitigation: Keep secrets out of chat and logs, avoid echoing raw credentials, and use secure local secret handling before running commands. <br>
-Risk: The workflow depends on installing fubon-cli and a platform wheel for fubon_neo. <br>
-Mitigation: Verify package and wheel sources before installation and start with read-only quote or account-query commands before enabling order actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and trading workflow operators use this skill to run Fubon Neo authentication, account queries, market data retrieval, order management, realtime subscriptions, conditional orders, and fubon-cli natural-language command flows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON or JSONL command output contracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-streaming commands return success/data or success/error JSON objects; streaming commands emit JSONL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles brokerage credentials and API keys.
+
+Mitigation: Use an isolated non-admin environment, pin and verify the exact fubon-cli version, and avoid placing brokerage passwords or API keys directly in chat or command-line arguments.
+
+Risk: The skill can assist with live trading actions while safety controls are under-scoped.
+
+Mitigation: Require explicit confirmation of account, symbol, quantity, price, and action before submitting any live order, then verify order state after submission.
+
+## Reference(s):
+
+- [Fubon Cli ClawHub skill page](https://clawhub.ai/mofesto/skills/fubon-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON or JSONL command output contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-streaming commands return JSON with success and error fields; streaming commands return JSONL.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

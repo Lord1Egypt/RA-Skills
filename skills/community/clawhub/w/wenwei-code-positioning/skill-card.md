@@ -1,37 +1,52 @@
-## Description: <br>
-Helps an agent trace a described requirement or defect from a specified code entry point to the key implementation files, call chain, and focused code snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent locate the key implementation code for a described requirement or issue by tracing from a specified code entry point through components, calls, interfaces, and routes.
 
-## Publisher: <br>
-[wed840313](https://clawhub.ai/user/wed840313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wed840313](https://clawhub.ai/user/wed840313)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to answer where a specific behavior, bug, API path, UI element, or business rule is implemented in a codebase. It is intended for focused code-navigation tasks that produce a concise conclusion, short call chain, and relevant code excerpts with paths and line numbers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may summarize or quote source code from the current workspace back into chat.
+
+Mitigation: Use it only on repositories where sharing relevant implementation snippets in the agent conversation is acceptable.
+
+Risk: Vague requests or missing entry points can lead to incomplete or incorrect code-location conclusions.
+
+Mitigation: Provide a concrete problem, behavior, API path, UI text, or field name together with a specific entry file or symbol.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and code-review agents use this skill when they know a requirement, bug, API, UI element, or entry file and need to narrow a workspace to the most relevant implementation location instead of producing broad module documentation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to inspect workspace files and surface small code snippets with paths and line numbers, which can expose proprietary or sensitive code in the conversation. <br>
-Mitigation: Use it only in workspaces where code sharing is appropriate, and review snippets before forwarding or publishing the conversation. <br>
+**Output Format:** [Markdown with code excerpts, file paths, line numbers, and concise call-chain notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Outputs are expected to be grounded in files available in the current workspace and to stop when the key implementation location is found.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with file paths, line numbers, call-chain summaries, and focused code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concise snippets and unresolved-path notes when code is outside the workspace.] <br>
+1.0.0 (source: server-resolved release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,31 @@
+{
+  "schema_version": "2.0",
+  "policy_id": "omni-ecom-behavior-monitor",
+  "revision": "candidate-1",
+  "threshold_status": "provisional_for_review",
+  "baseline_days": 14,
+  "current_days": 7,
+  "baseline_samples": 28,
+  "current_samples": 5,
+  "thresholds": {
+    "structure_error_rate": 0.15,
+    "handoff_rejection_rate": 0.15,
+    "host_failure_rate": 0.15,
+    "human_correction_rate": 0.15,
+    "disagreement_rate": 0.15,
+    "latency_ms": 30000,
+    "cost": 1.0
+  },
+  "automatic_model_override": false,
+  "live_calibration": {
+    "eligible_evidence_kinds": ["native_workbuddy_runtime_observation", "native_codex_runtime_observation"],
+    "minimum_baseline_days": 14,
+    "minimum_baseline_samples": 28,
+    "minimum_current_samples": 5,
+    "required_metrics": ["structure_error_rate", "handoff_rejection_rate", "host_failure_rate"],
+    "required_threshold_status": "validated_live",
+    "manual_approval_required": true,
+    "automatic_model_override": false
+  },
+  "note": "初始观察阈值，不代表已采集两周真实基线或验证生产阈值；成本仅同币种且样本量足够时比较。"
+}

@@ -1,45 +1,62 @@
-## Description: <br>
-Discover new ideas, sources, opportunities, and angles with durable watchlists, novelty rules, and heartbeat-backed finding logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover new ideas, sources, opportunities, and angles with durable watchlists, novelty rules, and heartbeat-backed finding logs.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to maintain durable discovery topics, apply novelty filters, and log only new findings that may change a decision, risk assessment, opportunity search, or next action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent discovery memory may retain sensitive interests, plans, or personal context in ~/discover/. <br>
-Mitigation: Store only durable discovery preferences and findings; avoid secrets and sensitive personal details in local discovery files. <br>
-Risk: Broad activation language could make discovery behavior appear in more conversations than intended. <br>
-Mitigation: Keep AGENTS.md routing narrow, review any proposed routing changes, and activate durable discovery only for topics with a clear decision, risk, or opportunity. <br>
-Risk: Heartbeat checks can create recurring monitoring noise or scope drift if enabled too broadly. <br>
-Mitigation: Enable heartbeat only for specific approved topics with a clear novelty bar and use HEARTBEAT_OK when nothing materially changed. <br>
-Risk: External lookups may send topic keywords or query variants to public search and source services. <br>
-Mitigation: Keep lookup scope narrow, tied to active watchlist topics, and ask before using paid tools, contacting third parties, or taking actions beyond research and logging. <br>
+## Use Case:
 
+External users and developers use Discover to maintain durable discovery watchlists for topics where novelty over time matters, then log only findings that change a decision, risk, opportunity, or next step.
 
-## Reference(s): <br>
-- [ClawHub Discover listing](https://clawhub.ai/ivangdavila/discover) <br>
-- [Discover homepage](https://clawic.com/skills/discover) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update local discovery memory, watchlists, heartbeat state, and findings when approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Setup instructions include a permission-command typo that targets ~/discover.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Correct the chmod target to ~/Clawic/data/discover before running setup.
+
+Risk: Recurring discovery can create unwanted monitoring noise or scope drift if enabled too broadly.
+
+Mitigation: Enable heartbeat only for explicitly approved watchlist topics with a clear novelty bar, and return HEARTBEAT_OK when nothing materially new appears.
+
+Risk: Public lookups may send topic names, query variants, and source lookups to external search, news, community, or topic-specific sources.
+
+Mitigation: Keep lookup scope narrow, avoid secrets or sensitive private details in watchlist topics, and require approval before broader tools or external actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/discover)
+- [Discover homepage](https://clawic.com/skills/discover)
+- [Discovery loop](artifact/discovery-loop.md)
+- [Novelty test](artifact/novelty-test.md)
+- [Heartbeat rules](artifact/heartbeat-rules.md)
+- [Setup](artifact/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and local configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local discovery state under ~/Clawic/data/discover/ when the user approves setup or recurring checks.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

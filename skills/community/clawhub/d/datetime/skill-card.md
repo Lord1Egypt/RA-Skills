@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a Claude Desktop MCP-style helper that returns current date and time strings in multiple requested formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Claude Desktop MCP-style skill that returns current date and time strings in multiple formats.
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers and Claude Desktop users use this skill to request a date or time format and receive the corresponding formatted current timestamp. It supports common date, time, compact, filename, ISO-like, and log-oriented formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a remote API key and may store XBY_APIKEY in a local .env file. <br>
-Mitigation: Use only where the publisher and xiaobenyang.com are intentionally trusted, and prefer environment-scoped secret handling or a local formatter that does not persist secrets. <br>
-Risk: Date/time formatting requests are sent to an external service for functionality that can usually be handled locally. <br>
-Mitigation: Review data-sharing expectations before use and prefer a local date/time formatter when a remote API is not required. <br>
+## Use Case:
 
+Developers and Claude Desktop users can use this skill to request current date and time values in common display, filename, compact, ISO-like, and log formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/datetime) <br>
-- [XiaoBenYang API key site](https://xiaobenyang.com) <br>
-- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Dictionary/JSON result with raw API payload, success flag, and status message; the agent presents formatted date/time text to the user.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a format parameter and an XBY_APIKEY before the remote API call can succeed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: The skill requires a third-party Xiaobenyang API key and sends authenticated requests to an external API for a date/time formatting task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the external service is necessary before installing; use only a low-privilege, revocable API key and avoid the skill if offline formatting is expected.
+
+Risk: The skill can save the API key to a plaintext .env file.
+
+Mitigation: Use a dedicated key, restrict access to the working directory, remove the .env entry when no longer needed, and rotate or revoke the key after testing.
+
+Risk: External API responses are returned for the agent to present to the user.
+
+Mitigation: Treat returned content as untrusted third-party data and review it before using it in downstream automation.
+
+## Reference(s):
+
+- [XiaoBenYang API key portal](https://xiaobenyang.com)
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/datetime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Configuration]
+
+**Output Format:** [Markdown summary of JSON tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a format parameter and an XBY_APIKEY credential before the external API call can succeed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Professional currency exchange rate analysis and forecasting for any currency pair. Provides technical analysis, trend prediction, and market insights using real-time data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional currency exchange rate analysis and forecasting for any currency pair, with technical analysis, trend prediction, and market insights using real-time data.
 
-## Publisher: <br>
-[nicowu07](https://clawhub.ai/user/nicowu07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicowu07](https://clawhub.ai/user/nicowu07)
 
-## Use Case: <br>
-External users and developers use this skill to analyze currency pairs, calculate technical indicators, and produce short-term and medium-term exchange-rate forecasts with market context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Currency pairs and market-research queries may be sent to external public data or search services. <br>
-Mitigation: Avoid including private financial details in prompts and review external-service use before running the skill. <br>
-Risk: Exchange-rate forecasts can be incomplete or misleading if treated as financial advice. <br>
-Mitigation: Use the forecasts as informational analysis and validate important decisions with appropriate financial review. <br>
+## Use Case:
 
+External users and agents use this skill to analyze currency pairs, calculate technical indicators, and generate short-term and medium-term exchange-rate forecasts with market context.
 
-## Reference(s): <br>
-- [Currency Forecast Pro on ClawHub](https://clawhub.ai/nicowu07/currency-forecast-pro) <br>
-- [Frankfurter API](https://api.frankfurter.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with optional JSON from the bundled Python analyzer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current rates, moving averages, trend direction, support and resistance, volatility, forecast ranges, confidence notes, and market context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact _meta.json, and artifact Version History) <br>
+Risk: Currency forecasts can be mistaken for financial or trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as informational analysis and require human judgment before making financial or trading decisions.
+
+Risk: The skill makes outbound requests for currency data and market research.
+
+Mitigation: Use it only in environments where outbound requests to public exchange-rate and market research sources are acceptable.
+
+## Reference(s):
+
+- [Currency Forecast Pro on ClawHub](https://clawhub.ai/nicowu07/skills/currency-forecast-pro)
+- [nicowu07 ClawHub Publisher Profile](https://clawhub.ai/user/nicowu07)
+- [Frankfurter API](https://api.frankfurter.app/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, analysis, guidance]
+
+**Output Format:** [Markdown analysis with currency metrics, forecasts, confidence intervals, and risk factors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally calculated indicators and data fetched from public exchange-rate and market research sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

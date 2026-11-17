@@ -1,38 +1,51 @@
-## Description: <br>
-Helps an agent write Swedish that sounds human instead of formal, robotic, or AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes Swedish that sounds human, casual, and not robotic or AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and content authors use this skill to have an agent draft or revise Swedish text in a casual, native-sounding register with particles, fillers, short replies, and idiomatic expressions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill deliberately pushes Swedish output toward informal phrasing and slang that may be inappropriate in formal, professional, legal, or academic contexts. <br>
-Mitigation: Review generated Swedish for audience, setting, and required register before using it in those contexts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/swedish) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+Writers, translators, and agents use this skill to draft or revise Swedish text so it sounds natural, casual, and native rather than overly formal.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may make Swedish output too casual for formal, legal, business, or official contexts.
+
+Mitigation: Specify the desired formal register when needed and review the final Swedish text before use.
+
+Risk: Casual slang, fillers, and English mixing may not match every audience or regional preference.
+
+Mitigation: Ask for audience, region, and tone constraints when the Swedish needs to fit a specific context.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls, credential access, code execution, or persistence are requested by the skill.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May intentionally use casual Swedish, slang, fillers, understatement, and English mixing when appropriate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

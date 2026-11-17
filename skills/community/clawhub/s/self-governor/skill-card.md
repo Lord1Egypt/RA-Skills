@@ -1,41 +1,57 @@
-## Description: <br>
-Self-Governor adds a lightweight decision layer that asks an agent to choose one next action at branching points, before costly or irreversible steps, or after stalled progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Governor is a Chinese-language meta-decision skill that prompts an agent to choose one next action at branching points, before costly or irreversible actions, or when progress has stalled.
 
-## Publisher: <br>
-[z1one0415](https://clawhub.ai/user/z1one0415) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z1one0415](https://clawhub.ai/user/z1one0415)
 
-## Use Case: <br>
-Developers and agent builders use this skill to help an agent choose a single next action from a fixed action set during multi-step strategy, research, coding, search, and workflow tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent to continue around costly or irreversible actions without requiring user confirmation. <br>
-Mitigation: Require explicit user confirmation before any tool call that publishes, deletes, overwrites, modifies accounts, or spends credits. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add a lightweight self-governance step to multi-step agent workflows. It helps the agent pick a single next action when choices branch, a costly action is about to run, or recent steps have not improved progress.
 
-## Reference(s): <br>
-- [Actions Reference](references/actions.md) <br>
-- [Examples Reference](references/examples.md) <br>
-- [Input-Output Reference](references/input-output.md) <br>
-- [Triggers Reference](references/triggers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Structured JSON-like fields with one next_action, a short reason, and an optional fallback_if_fail] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns exactly one action selected from anchor, time_bind, search, clean, synthesize, or degrade_continue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The degrade_continue action can encourage progress through imperfect conditions before irreversible or public actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this behavior before deployment and require human confirmation where the host workflow treats publishing, deletion, or external side effects as approval-gated.
+
+Risk: A meta-decision helper can introduce incorrect or misleading next-step guidance into an agent workflow.
+
+Mitigation: Review and scan the Markdown-only skill before deployment, and keep the host agent responsible for final task execution.
+
+## Reference(s):
+
+- [Self-Governor ClawHub Skill Page](https://clawhub.ai/z1one0415/skills/self-governor)
+- [Actions Reference](references/actions.md)
+- [Input-Output Reference](references/input-output.md)
+- [Triggers Reference](references/triggers.md)
+- [Examples Reference](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Text]
+
+**Output Format:** [Structured text or JSON-like decision output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs one next_action, one short reason, and an optional fallback_if_fail.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

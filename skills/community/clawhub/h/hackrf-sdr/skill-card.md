@@ -1,43 +1,53 @@
-## Description: <br>
-Use HackRF One SDR for frequency scanning, IQ capture, signal analysis, waterfall generation, and demodulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use HackRF One SDR for frequency scanning, IQ capture, signal analysis, waterfall generation, and demodulation.
 
-## Publisher: <br>
-[arsatyants](https://clawhub.ai/user/arsatyants) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arsatyants](https://clawhub.ai/user/arsatyants)
 
-## Use Case: <br>
-Developers, radio engineers, and authorized SDR operators use this skill to operate a HackRF One, discover radio signals, capture IQ samples, generate spectrum and waterfall plots, analyze modulation characteristics, and demodulate captured signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad radio scanning, capture, and demodulation, which can create legal, privacy, or authorization concerns. <br>
-Mitigation: Use it only on frequencies and signals the operator is legally authorized to monitor, and review proposed commands before running captures or demodulation. <br>
-Risk: IQ capture files can be large and may contain sensitive radio-derived content. <br>
-Mitigation: Store captures locally only as needed for analysis and delete temporary IQ files after use. <br>
-Risk: Incorrect gain, bandwidth, or frequency choices can produce misleading signal analysis or saturated captures. <br>
-Mitigation: Start with conservative gain settings, verify HackRF parameters, and treat modulation and signal classifications as analysis aids rather than definitive conclusions. <br>
+## Use Case:
 
+Developers, RF engineers, and authorized radio analysts use this skill to operate HackRF One workflows for lawful scanning, IQ capture, signal analysis, waterfall or spectrum visualization, and FM/AM/SSB demodulation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arsatyants/hackrf-sdr) <br>
-- [Frequency Band Reference](references/frequency_bands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and references to generated analysis files such as PNG plots, raw IQ captures, and WAV audio.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may involve local HackRF command execution and large local capture files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release evidence) <br>
+Risk: The skill can support radio monitoring, capture, and demodulation workflows that may be unlawful or privacy-invasive without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for lawful, authorized SDR work, and do not demodulate or record third-party communications without permission.
+
+Risk: Fixed shared temporary capture paths can expose IQ or demodulated data in multi-user environments.
+
+Mitigation: Run in a controlled single-user environment and replace fixed /tmp capture paths with private temporary directories before broader deployment.
+
+## Reference(s):
+
+- [Frequency Band Reference](references/frequency_bands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation of IQ captures, PNG spectrum/waterfall plots, signal analysis reports, and WAV demodulation outputs through local HackRF and Python tooling.]
+
+## Skill Version(s):
+
+2.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

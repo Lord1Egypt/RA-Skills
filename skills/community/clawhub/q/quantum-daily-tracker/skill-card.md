@@ -1,43 +1,60 @@
-## Description: <br>
-量子科技论文追踪与速览生成。用于每日追踪量子计算、量子网络、量子纠错等领域最新论文，生成中文笔记和每日速览。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese quantum technology paper tracking notes and daily briefings from RSS sources covering quantum computing, quantum networks, quantum error correction, and related fields.
 
-## Publisher: <br>
-[QingquanYao](https://clawhub.ai/user/QingquanYao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qingquanyao](https://clawhub.ai/user/qingquanyao)
 
-## Use Case: <br>
-Researchers, engineers, and developers use this skill to track quantum computing, quantum networking, quantum error correction, and related papers from public RSS feeds, then generate Chinese Markdown paper notes and daily digests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Daily or catch-up runs may write tracker output or state to an unexpected local path. <br>
-Mitigation: Confirm the quantum-tracker output paths and memory/last-run.txt location before enabling scheduled runs. <br>
-Risk: An incorrect last-run state can cause the tracker to process the wrong date range. <br>
-Mitigation: Reset memory/last-run.txt when the tracker needs to restart from a known date range. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QingquanYao/quantum-daily-tracker) <br>
-- [arXiv Quantum Physics RSS](http://export.arxiv.org/rss/quant-ph) <br>
-- [Nature npj Quantum Information RSS](https://www.nature.com/npjqi.rss) <br>
-- [Science RSS feed](https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=science) <br>
-- [PRX Quantum RSS](http://feeds.aps.org/rss/recent/prxquantum.xml) <br>
+## Use Case:
 
+External researchers and developers use this skill to monitor quantum research feeds, identify relevant papers, and maintain Chinese-language paper notes, daily summaries, and dashboard updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown paper notes, daily digests, and dashboard summaries in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local tracker state in memory/last-run.txt and writes Markdown under quantum-tracker paths when executed by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Scheduled backfill and RSS fetching can create more notes than expected.
+
+Mitigation: Set clear limits for backfill runs and review generated file changes before relying on them.
+
+Risk: Some configured RSS sources use plaintext HTTP endpoints.
+
+Mitigation: Prefer HTTPS feed endpoints where available.
+
+Risk: Generated paper links and summaries may be incomplete or misleading.
+
+Mitigation: Review generated links, paper metadata, and summaries before using them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qingquanyao/skills/quantum-daily-tracker)
+- [arXiv Quantum Physics RSS](http://export.arxiv.org/rss/quant-ph)
+- [npj Quantum Information RSS](https://www.nature.com/npjqi.rss)
+- [Science RSS](https://www.science.org/action/showFeed?type=etoc&feed=rss&jc=science)
+- [PRX Quantum RSS](http://feeds.aps.org/rss/recent/prxquantum.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown files and Chinese text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces dated paper notes, daily briefings, dashboard updates, and last-run state under quantum-tracker.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

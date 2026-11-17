@@ -1,39 +1,52 @@
-## Description: <br>
-查询永东直通巴士（eebus）班次、票价和余座，支持中文自然语言输入并解析日期、上车点和下车点。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询永东直通巴士（eebus）班次、票价和余座，支持中文自然语言输入并自动解析日期、上车点和下车点。
 
-## Publisher: <br>
-[porridgec](https://clawhub.ai/user/porridgec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[porridgec](https://clawhub.ai/user/porridgec)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to check Yongdong cross-border bus schedules, fares, and remaining seats between Hong Kong and Shenzhen from Chinese travel requests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill sends queried dates and station names to www.myeebus.com.
+
+Mitigation: Use it only for eebus-specific Hong Kong/Shenzhen bus lookups and avoid entering sensitive personal information.
+
+Risk: The skill relies on embedded API signing logic for the external bus service.
+
+Mitigation: Review behavior before deployment and re-check functionality if the bus service changes its API.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to look up Yongdong/eebus cross-border bus schedules, fares, and remaining seats for Hong Kong and Shenzhen routes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Queries contact www.myeebus.com and disclose the requested route, date, stops, and the user's IP address to that service. <br>
-Mitigation: Use the skill only when an eebus lookup is intended, and avoid submitting sensitive or unnecessary travel details. <br>
-Risk: Broad trigger wording may activate the skill for general Hong Kong or Shenzhen travel questions. <br>
-Mitigation: Confirm that the user wants an eebus bus lookup before running the query script. <br>
+**Output Format:** [Markdown text with a route summary and tabular schedule details]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Runs a Node.js query script against www.myeebus.com and summarizes all returned bus departures, fares, and remaining seats.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary of queried route, date, fares, departure and arrival times, and remaining seats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local Node.js script that queries www.myeebus.com for bus availability.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

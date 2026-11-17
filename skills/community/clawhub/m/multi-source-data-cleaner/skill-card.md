@@ -1,47 +1,59 @@
-## Description: <br>
-Cleans, deduplicates, normalizes, classifies, merges, and exports multi-format tabular datasets, with optional AI-assisted field identification and Feishu outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans multi-source tabular data by parsing spreadsheets, CSV/TSV, JSON, and pasted text, identifying fields, deduplicating and normalizing records, merging sources, and producing cleaned files or quality reports.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-Operations, CRM, ecommerce, finance, and support teams use this skill to turn messy Excel, CSV, TSV, JSON, or pasted tabular data into cleaned files, joined datasets, tags, and quality reports. Developers and agents can call the Python or CLI entry points to automate data-cleaning workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive datasets or samples can be sent to external AI providers when ai_model or AI classification is enabled. <br>
-Mitigation: Use local-only operation for sensitive data by leaving ai_model unset, setting classify to false unless needed, and avoiding DATA_CLEANER_API_KEY for AI features. <br>
-Risk: Cleaned records and quality reports can be uploaded to Feishu when Bitable or document output is enabled. <br>
-Mitigation: Enable bitable_output, Feishu document creation, folder tokens, and report generation only when the destination workspace is approved for the dataset. <br>
-Risk: DATA_CLEANER_API_KEY and Feishu tokens are sensitive credentials. <br>
-Mitigation: Store credentials in managed environment variables, restrict access to the runtime, and rotate keys if logs, reports, or shared workspaces may expose them. <br>
-Risk: The README claims local-only processing, but release security evidence says external data flows are understated. <br>
-Mitigation: Review the configured features before deployment and document which external services are allowed for each workflow. <br>
+## Use Case:
 
+Business users and developers use this skill to turn messy operational data into cleaned datasets, joined multi-source tables, and data-quality reports for CRM, ecommerce, finance, operations, and customer-support workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiji0802/multi-source-data-cleaner) <br>
-- [Publisher profile](https://clawhub.ai/user/qiji0802) <br>
-- [MiniMax platform](https://platform.minimax.chat/) <br>
-- [DeepSeek platform](https://platform.deepseek.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Excel, CSV, Markdown reports, Python dictionaries, CLI output, and optional Feishu Bitable or document links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process sensitive tabular data locally or send samples, cleaned records, reports, tokens, or API keys to configured external AI, license-validation, and Feishu services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact documentation lists 1.0.0) <br>
+Risk: The security scan reports under-disclosed paths that can send spreadsheet data and credentials to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid AI mode, automatic report publishing, and Feishu export for sensitive customer, banking, ID, HR, or regulated records unless external transfer is approved.
+
+Risk: Provider and license credentials may be used by optional AI, token validation, or export paths.
+
+Mitigation: Use separate provider and license credentials, prefer an explicit local-only tier setting, and rotate credentials if unintended external calls occur.
+
+Risk: Exported spreadsheets created from untrusted inputs may preserve values that spreadsheet software interprets as formulas.
+
+Mitigation: Treat generated spreadsheets from untrusted data as potentially formula-injection unsafe and review cells before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiji0802/skills/multi-source-data-cleaner)
+- [MiniMax platform](https://platform.minimax.chat/)
+- [DeepSeek platform](https://platform.deepseek.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Text, Configuration]
+
+**Output Format:** [Excel or CSV files, Markdown quality reports, Feishu Bitable or document links, and Python dictionary results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by tier and configuration; optional AI classification and Feishu export require credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact docs list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

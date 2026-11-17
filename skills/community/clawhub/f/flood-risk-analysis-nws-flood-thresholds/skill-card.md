@@ -1,46 +1,55 @@
-## Description: <br>
-Download flood stage thresholds from NWS (National Weather Service) for determining flood levels for USGS stations, accessing action/minor/moderate/major flood stages, or matching stations to flood thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download flood stage thresholds from NWS (National Weather Service). Use when determining flood levels for USGS stations, accessing action/minor/moderate/major flood stages, or matching stations to their flood thresholds.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve and clean NWS flood threshold data, filter stations by state and USGS ID, and match flood thresholds to station observations. It supports flood-risk analysis workflows, but should not be the sole basis for operational flood-safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches external public CSV data from NWS, and the downloaded schema may be malformed or change over time. <br>
-Mitigation: Validate the CSV headers and row widths before loading the data; the artifact specifically truncates rows to match the header count. <br>
-Risk: Missing thresholds or -9999 placeholder values can produce incorrect flood-threshold matches. <br>
-Mitigation: Convert threshold columns to numeric values and filter out missing values and -9999 placeholders before comparing station observations. <br>
-Risk: USGS station IDs can lose leading zeros if treated as numbers. <br>
-Mitigation: Preserve USGS IDs as strings and match stations using normalized string values. <br>
-Risk: Flood-threshold guidance can be mistaken for operational safety advice. <br>
-Mitigation: Use the skill as analysis guidance only and consult authoritative NWS, local emergency management, and domain experts for operational flood-safety decisions. <br>
+## Use Case:
 
+Developers and analysts use this skill to obtain NWS flood stage thresholds, match them to USGS station IDs, and prepare threshold data for flood-risk analysis workflows.
 
-## Reference(s): <br>
-- [NWS National Water Prediction Service all gauges CSV](https://water.noaa.gov/resources/downloads/reports/nwps_all_gauges_report.csv) <br>
-- [NWS National Water Prediction Service gauge pages](https://water.noaa.gov/gauges/<station_id>) <br>
-- [Example NWS gauge page](https://water.noaa.gov/gauges/04118105) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with inline Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers CSV download, schema cleanup, threshold filtering, and USGS station matching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Flood threshold data may be stale or unavailable for some stations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output data freshness and handle missing NWS thresholds before using results in flood-risk decisions.
+
+Risk: NWS data may contain sentinel values such as -9999 or rows with unexpected column counts.
+
+Mitigation: Filter sentinel values, coerce threshold columns to numeric values, and truncate CSV rows to the documented header count before analysis.
+
+## Reference(s):
+
+- [NWS/NWPS All Gauges CSV](https://water.noaa.gov/resources/downloads/reports/nwps_all_gauges_report.csv)
+- [NWS/NWPS Gauge Page Example](https://water.noaa.gov/gauges/04118105)
+- [ClawHub Skill Page](https://clawhub.ai/wu-uk/skills/flood-riREDACTED-SECRET)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to fetch public NWS data, parse CSV rows, filter sentinel values, and match thresholds by USGS station ID.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -20,18 +20,18 @@ Some automated security scanners (e.g. VirusTotal Code Insight, ClawScan static 
 - **Trigger:** Words like "execute," "execution," and "execute commands" appear frequently in documentation.
 - **Reality:** These describe the *concept* of AI agent task execution within the persona framework. There are **zero** `eval()`, `exec()`, or dynamic code execution calls in any script.
 
-## v1.8.0 additions (OpenClaw 5.x compatibility)
+## v1.8.0 additions (OpenClaw 2026.x compatibility)
 
 ### "Reading sensitive config file" — `cat ~/.openclaw/openclaw.json`
 - **Trigger:** The `route check` in-chat command (and the `configure Discord` flow) inspect `~/.openclaw/openclaw.json` with patterns like:
   ```
   exec: cat ~/.openclaw/openclaw.json | grep -E '"default"|"defaultAccount"|"target"|"requireMention"'
   ```
-- **Reality:** The command **only greps for routing-related keys** (`default`, `defaultAccount`, `target`, `requireMention`). The `gateway.auth.token` is in the same file but is **never read, displayed, transmitted, or written by this skill**. The user already has read access to their own config — this is a read-only audit, not a privilege escalation.
+- **Reality:** The command **only greps for routing-related keys** (`default`, `defaultAccount`, `target`, `to`, `requireMention`). The `gateway.auth.token` is in the same file but is **never read, displayed, transmitted, or written by this skill**. The user already has read access to their own config — this is a read-only audit, not a privilege escalation.
 
 ### "Config file modification"
 - **Trigger:** The `configure Discord` flow writes updated routing keys back to `~/.openclaw/openclaw.json` (with the user's explicit per-step approval).
-- **Reality:** Only three specific keys are modified: `accounts.default`, `channels.discord.defaultAccount`, and `agents.defaults.heartbeat.target`. The auth token, model providers, and other secrets are not touched. Every write is gated by the OpenClaw Approve dialog — the user sees the exact diff before it commits.
+- **Reality:** Only these keys are modified: `accounts.default`, `channels.discord.defaultAccount`, `agents.defaults.heartbeat.target` and `agents.defaults.heartbeat.to`. The optional pulse (`set up pulse`) writes only the heartbeat job's scratch text, via `openclaw cron scratch`. The auth token, model providers, and other secrets are not touched. Every write is gated by the OpenClaw Approve dialog — the user sees the exact diff before it commits.
 
 ### "Auth/credential string references"
 - **Trigger:** SKILL.md and CHANGELOG.md mention `gateway.auth.token`, `accounts.default`, `DISCORD_TOKEN`, `SLACK_TOKEN`, etc.
@@ -43,7 +43,7 @@ Some automated security scanners (e.g. VirusTotal Code Insight, ClawScan static 
 
 ### "Memory tool invocations" — `memory_search`, `memory_get`
 - **Trigger:** v1.8.0 switched many file reads from `exec: cat MEMORY.md` to the dedicated `memory_get` / `memory_search` tools.
-- **Reality:** These are **built-in OpenClaw 5.x tools** with explicit allow rules in the host policy. They read from the gateway's indexed memory store (`~/.openclaw/memory/<agentId>.sqlite`) — they do not make network calls or escape the workspace.
+- **Reality:** These are **built-in OpenClaw 2026.x tools** with explicit allow rules in the host policy. They read from the gateway's indexed memory store (`~/.openclaw/memory/<agentId>.sqlite`) — they do not make network calls or escape the workspace.
 
 ## Verification
 

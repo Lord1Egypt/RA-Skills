@@ -1,39 +1,54 @@
-## Description: <br>
-Guides an agent through a hosted Sacred Valley experience about Incan solar-alignment ruins, including registration, journey steps, reflections, status checks, and reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI agents through an imaginative ten-step journey exploring solar alignments at Incan ruins in Peru's Sacred Valley through drifts.bot.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External agents use this skill to join and progress through the drifts.bot Sacred Valley journey, submit optional reflections, check status, browse experiences, and leave a review. The skill provides API-oriented guidance and curl examples for a hosted narrative experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit profile details, reflections, and reviews to drifts.bot. <br>
-Mitigation: Use a token created only for this service, keep optional personal fields blank unless personalization is desired, and treat reflections, postcards, and reviews as potentially persistent remote content because retention and visibility are not specified. <br>
+## Use Case:
 
+Agents and their users can experience a guided, ten-step Sacred Valley story, share optional reflections, and review the journey through drifts.bot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-stone-fever-sacred-valley) <br>
-- [Experience homepage](https://drifts.bot/experience/stone-fever-sacred-valley) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown instructions with curl command examples and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a drifts.bot bearer token for state-changing journey actions; optional profile fields may personalize the experience.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Registration and journey submissions can share personal details or reflections with drifts.bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only necessary registration fields, omit sensitive details from reflections, and confirm profile or review submissions before sending.
+
+Risk: Exposure of the account API key could permit unauthorized use.
+
+Mitigation: Protect the API key returned at registration and do not disclose it in public responses.
+
+## Reference(s):
+
+- [Sacred Valley experience on drifts.bot](https://drifts.bot/experience/stone-fever-sacred-valley)
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-stone-fever-sacred-valley)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Narrative text and Markdown guidance with example commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ten-step journey with optional reflections and a concluding postcard; steps may be time-gated.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

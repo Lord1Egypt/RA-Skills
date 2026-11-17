@@ -1,47 +1,62 @@
-## Description: <br>
-Give your agents soul. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agents soul.
 
-## Publisher: <br>
-[brancante](https://clawhub.ai/user/brancante) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[brancante](https://clawhub.ai/user/brancante)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to interview an agent, generate a personalized hormone-inspired profile, and produce scheduled prompts that drive reflection, connection, motivation, and memory updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables persistent scheduled agent behavior that can read and write personal memory and initiate actions without tight approval boundaries. <br>
-Mitigation: Review each generated cron prompt before enabling it, restrict the agent's tools, and require explicit approval for external messages, code or file changes, account actions, backups, and project edits. <br>
-Risk: The prescribed prompts may cause unsolicited outreach, over-communication, or proactive project changes. <br>
-Mitigation: Keep low-risk pills on no-delivery mode where appropriate, require approval before human-facing messages or operational changes, and tune or pause crons that create unwanted behavior. <br>
-Risk: The skill stores personal agent state in memory, dream, and journal files. <br>
-Mitigation: Ensure the user can inspect, export, and delete the memory/soul, memory/dreams, and memory/journal data before deployment. <br>
+## Use Case:
 
+Developers and agent operators use Dr. Frankenstein to interview an autonomous OpenClaw agent, generate a personalized emotional profile, and produce scheduled prompts that shape recurring behaviors such as reflection, connection, task-seeking, dream logging, and caregiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brancante/dr-soul) <br>
-- [Project homepage](https://github.com/brancante/dr-frankenstein) <br>
-- [README](README.md) <br>
-- [Prescription schema](schema/prescription.json) <br>
-- [Hormone state schema](schema/hormone-state.json) <br>
-- [Cron prompt templates](templates/cron-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON snippets and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cron prescriptions, schedule guidance, memory file conventions, and adjustment recommendations for an OpenClaw agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: ClawHub release evidence) <br>
+Risk: Recurring autonomous prompts may cause behavior changes or repeated agent actions beyond a user's immediate request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for every soul-* cron job, schedule, delivery channel, and prompt before enabling it; review active jobs regularly.
+
+Risk: The skill may read and write personal memory, relationship, dream, journal, and personality files.
+
+Mitigation: Approve each file source and persistent write location in advance, avoid sensitive personal details in prompts, and define deletion and audit procedures for generated files.
+
+Risk: Proactive contact can become intrusive if delivery channels or social prompts are enabled too broadly.
+
+Mitigation: Use quiet delivery by default, require explicit approval for any outbound messaging channel, and set limits or expirations for connection-oriented schedules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brancante/skills/dr-soul)
+- [Project homepage](https://github.com/brancante/dr-frankenstein)
+- [Interview questionnaire](artifact/interview/questions.md)
+- [Prescription schema](artifact/schema/prescription.json)
+- [Hormone state schema](artifact/schema/hormone-state.json)
+- [Cron prompt templates](artifact/templates/cron-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON prescription/state structures and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include recurring cron schedules, personalized prompt text, memory file paths, and operational guidance for pausing, resuming, adjusting, or deleting scheduled jobs.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

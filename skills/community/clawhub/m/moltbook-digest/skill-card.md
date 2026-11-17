@@ -1,44 +1,60 @@
-## Description: <br>
-Collect Moltbook posts and comments, build an evidence pack, and interpret it through either the calling agent or LiteLLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Moltbook posts and comments, build an evidence pack, and interpret it through either the calling agent or LiteLLM.
 
-## Publisher: <br>
-[mtics](https://clawhub.ai/user/mtics) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtics](https://clawhub.ai/user/mtics)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to collect Moltbook posts and comments for topic research, feed digests, or monitoring, then turn the evidence pack into a structured report through the calling agent or a configured LiteLLM provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: LiteLLM or another configured provider may receive the query and collected evidence during interpreted runs. <br>
-Mitigation: Use collection-only or agent mode to keep analysis local; when provider mode is required, use a user-specific config and protect API keys. <br>
-Risk: Unpinned dependency ranges can reduce reproducibility across installs. <br>
-Mitigation: Review or pin dependencies before deploying in workflows that require reproducible installs. <br>
-Risk: Public Moltbook endpoint behavior, rate limits, or per-item availability can change. <br>
-Mitigation: Check diagnostics and warnings, treat collection errors as data limits, and avoid claiming exhaustive coverage unless the collected sample supports it. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to collect Moltbook posts and comments for topic research, feed digests, monitoring, and evidence-grounded reports.
 
-## Reference(s): <br>
-- [Moltbook API Notes](references/api.md) <br>
-- [Moltbook](https://www.moltbook.com) <br>
-- [MoltBook Digest on ClawHub](https://clawhub.ai/mtics/moltbook-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports plus JSON evidence files and shell commands/configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces fixed local filenames including digest.md, evidence.json, analysis_input.md, agent_handoff.md, and analysis_report.md; LiteLLM mode may call a configured external provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: release metadata) <br>
+Risk: A weak Moltbook URL check may expose a bearer token if the API base URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill without a Moltbook API key unless authentication is required, and keep MOLTBOOK_API_BASE or --base-url set only to the real Moltbook API origin.
+
+Risk: Dependency installation is not reproducible from the provided artifact.
+
+Mitigation: Run the skill in an isolated environment and prefer a reviewed lock file before enabling LiteLLM or provider credentials.
+
+Risk: Provider credentials can be used during LiteLLM interpretation.
+
+Mitigation: Grant only the required provider credentials and run with limited filesystem and environment access.
+
+## Reference(s):
+
+- [Moltbook](https://www.moltbook.com)
+- [Moltbook API Notes](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/mtics/skills/moltbook-digest)
+- [Publisher profile](https://clawhub.ai/user/mtics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON evidence packs, configuration guidance, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes fixed output filenames including digest.md, evidence.json, analysis_input.md, agent_handoff.md, and analysis_report.md depending on analysis mode.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

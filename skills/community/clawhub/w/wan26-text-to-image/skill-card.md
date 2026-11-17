@@ -1,44 +1,59 @@
-## Description: <br>
-使用阿里云万相 2.6 模型生成微信公众号封面图、技术架构设计图和文章配图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates WeChat public account cover images, technical architecture diagrams, and article illustrations with Alibaba Cloud Wan 2.6.
 
-## Publisher: <br>
-[love254443233](https://clawhub.ai/user/love254443233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[love254443233](https://clawhub.ai/user/love254443233)
 
-## Use Case: <br>
-External creators and developers use this skill to generate WeChat public account cover images, technical architecture diagrams, and article illustrations from text prompts with Alibaba DashScope Wan 2.6. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and article text are sent to Alibaba DashScope. <br>
-Mitigation: Avoid sensitive or regulated content in prompts and article text. <br>
-Risk: API key misuse or unexpected usage costs may occur if credentials are exposed or unlimited. <br>
-Mitigation: Use a dedicated, quota-limited API key and keep .env files private. <br>
-Risk: Local dependency installation may affect the user's Python environment. <br>
-Mitigation: Prefer an isolated Python environment for tighter dependency control. <br>
+## Use Case:
 
+Content creators, editors, and technical writers use this skill to generate WeChat cover images, architecture diagrams, and article illustrations from titles, summaries, component lists, or paragraph content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/love254443233/wan26-text-to-image) <br>
-- [Alibaba Cloud Wan image generation API reference](https://help.aliyun.com/zh/model-studio/wan-image-generation-api-reference) <br>
-- [Alibaba Cloud Model Studio API key documentation](https://help.aliyun.com/zh/model-studio/get-api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [PNG image files with optional JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image URLs are downloaded to a local output directory when available; json-only mode writes machine-readable JSON to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.1) <br>
+Risk: The skill handles API keys and may load shared environment files that contain other secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only the DashScope API key through the environment or --api-key, and review shared ~/.openclaw/.env or ~/.workbuddy/.env files before installing.
+
+Risk: Setup helpers collect and save an API key locally, which can expose secrets during shared terminal sessions.
+
+Mitigation: Avoid running setup helpers while screen sharing and confirm repository-local .env files remain excluded from version control.
+
+Risk: Image generation is billed per generated image.
+
+Mitigation: Review requested image counts and sizes before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/love254443233/skills/wan26-text-to-image)
+- [Alibaba Cloud Wan image generation API reference](https://help.aliyun.com/zh/model-studio/wan-image-generation-api-reference)
+- [Alibaba Cloud Model Studio API key guide](https://help.aliyun.com/zh/model-studio/get-api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [PNG image files with optional JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads generated images to a local output directory; generated image URLs may expire after 24 hours.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

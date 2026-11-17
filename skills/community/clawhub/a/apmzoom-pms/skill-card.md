@@ -1,42 +1,59 @@
-## Description: <br>
-APM 플랫폼의 메시지 푸시 서비스 API 모음. 헬스 체크, 관리자/사용자 푸시 메시지 목록·상세·읽음 상태 업데이트, 커스텀 정보 업로드 등 8개 엔드포인트를 포함. authcode 헤더(HH + access_token)로 호출. 서비스명: ApmZoomPushMessageService. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APM 플랫폼의 메시지 푸시 서비스 API 모음으로, 헬스 체크, 관리자/사용자 푸시 메시지 목록·상세·읽음 상태 업데이트, 커스텀 정보 업로드 등 8개 엔드포인트를 다룹니다.
 
-## Publisher: <br>
-[apmzoom](https://clawhub.ai/user/apmzoom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apmzoom](https://clawhub.ai/user/apmzoom)
 
-## Use Case: <br>
-Developers and operators use this skill to call APM platform push-message service endpoints for health checks, seller and user message lookup, read-status updates, and custom information upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents authenticated non-public API endpoints and includes static signing salts. <br>
-Mitigation: Install only when the APM service owner is trusted, keep tokens private, and have the publisher remove or rotate exposed signing salts. <br>
-Risk: Write-capable endpoints can update read status or upload custom information. <br>
-Mitigation: Require manual approval before POST, read-status update, or upload actions, and use a least-privilege APM_USER_TOKEN. <br>
+## Use Case:
 
+Developers and operators use this skill to understand and call APM push-message service endpoints, including message listing, message detail retrieval, read-status updates, custom information upload, and service health checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/apmzoom/apmzoom-pms) <br>
-- [Publisher profile](https://clawhub.ai/user/apmzoom) <br>
-- [Project homepage](https://github.com/apmzoom-ai/apm-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration] <br>
-**Output Format:** [Markdown API reference with request headers, endpoints, and signing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an APM_USER_TOKEN environment variable for authenticated endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Authenticated write-capable endpoints can mark messages as read or upload custom information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before performing write actions and use a narrowly scoped APM_USER_TOKEN.
+
+Risk: APM_USER_TOKEN values and generated request signatures are sensitive.
+
+Mitigation: Avoid logging tokens or signatures and treat all authenticated request material as secret.
+
+Risk: The documented signing scheme uses reusable salts with MD5.
+
+Mitigation: Review the skill before installation and prefer a stronger signing scheme if maintaining the API documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/apmzoom/skills/apmzoom-pms)
+- [APM skills source homepage](https://github.com/apmzoom-ai/apm-skills)
+- [APM push message service endpoint](https://44k2t5n59e.execute-api.ap-northeast-2.amazonaws.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with API endpoint details and example request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an APM_USER_TOKEN environment variable for authenticated endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

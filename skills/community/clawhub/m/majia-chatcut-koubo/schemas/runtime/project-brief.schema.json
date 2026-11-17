@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/project-brief.schema.json",
+  "title": "Majia Koubo project brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "mode", "goal", "platform", "targetDurationSec", "pacing", "automationLevel", "treatments", "contentProtections", "createdAt"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/project-brief.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.brief.v1"},
+    "mode": {"enum": ["stable", "fast", "pro"]},
+    "goal": {"enum": ["daily-publish", "short-draft", "trust-longform", "screen-demo", "internal-material"]},
+    "platform": {"type": "string", "minLength": 1, "maxLength": 64},
+    "targetDurationSec": {"type": ["integer", "null"], "minimum": 1, "maximum": 21600},
+    "pacing": {"enum": ["natural", "balanced", "tight"]},
+    "automationLevel": {"enum": ["audit", "assist", "auto"]},
+    "treatments": {"$ref": "#/$defs/treatments"},
+    "textEdit": {"$ref": "#/$defs/textEdit"},
+    "contentProtections": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {"enum": ["do-not-invent", "protect-numbers", "protect-proper-nouns", "protect-negation", "preserve-user-baseline", "privacy-first"]}
+    },
+    "intake": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asked", "missingFields"],
+      "properties": {
+        "asked": {"type": "boolean"},
+        "missingFields": {
+          "type": "array",
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {"enum": ["goal", "pacing", "output", "captions", "enhancements"]}
+        }
+      }
+    },
+    "createdAt": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [{"if": {"required": ["textEdit"], "properties": {"textEdit": {"properties": {"target": {"enum": ["caption-display", "transcript-repair", "spoken-replacement", "clarify"]}}, "type": "object"}}}, "then": {"properties": {"treatments": {"properties": {"arollCleanup": {"const": false}, "smoothAudio": {"const": false}}, "type": "object"}}}}],
+  "$defs": {
+    "textEdit": {"type": "object", "additionalProperties": false, "required": ["target", "changesSpokenAudio", "preservesTiming", "requiresExplicitApproval"], "properties": {"target": {"type": "string"}, "changesSpokenAudio": {"type": "boolean"}, "preservesTiming": {"type": "boolean"}, "requiresExplicitApproval": {"type": "boolean"}}, "oneOf": [{"properties": {"target": {"const": "caption-display"}, "changesSpokenAudio": {"const": false}, "preservesTiming": {"const": true}, "requiresExplicitApproval": {"const": false}}}, {"properties": {"target": {"const": "transcript-repair"}, "changesSpokenAudio": {"const": false}, "preservesTiming": {"const": true}, "requiresExplicitApproval": {"const": false}}}, {"properties": {"target": {"const": "speech-cut"}, "changesSpokenAudio": {"const": true}, "preservesTiming": {"const": false}, "requiresExplicitApproval": {"const": false}}}, {"properties": {"target": {"const": "spoken-replacement"}, "changesSpokenAudio": {"const": true}, "preservesTiming": {"const": true}, "requiresExplicitApproval": {"const": true}}}, {"properties": {"target": {"const": "clarify"}, "changesSpokenAudio": {"const": false}, "preservesTiming": {"const": true}, "requiresExplicitApproval": {"const": false}}}]},
+    "treatments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arollCleanup", "smoothAudio", "captions", "restructure", "broll", "motionGraphics", "music", "generatedMedia", "export"],
+      "properties": {
+        "arollCleanup": {"type": "boolean"},
+        "smoothAudio": {"type": "boolean"},
+        "captions": {"type": "boolean"},
+        "restructure": {"type": "boolean"},
+        "broll": {"type": "boolean"},
+        "motionGraphics": {"type": "boolean"},
+        "music": {"type": "boolean"},
+        "generatedMedia": {"type": "boolean"},
+        "export": {"type": "boolean"}
+      }
+    }
+  }
+}

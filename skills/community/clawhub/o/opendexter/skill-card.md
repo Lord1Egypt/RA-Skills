@@ -1,40 +1,53 @@
-## Description: <br>
-OpenDexter helps agents search, price-check, and pay for x402 APIs across Solana and EVM chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OpenDexter to search, price-check, and pay for any x402 API.
 
-## Publisher: <br>
-[branchmanager69](https://clawhub.ai/user/branchmanager69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[branchmanager69](https://clawhub.ai/user/branchmanager69)
 
-## Use Case: <br>
-External developers and agents use OpenDexter to discover paid x402 marketplace APIs, preview prices, check wallet setup, and make authorized USDC API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid x402 API calls can spend USDC from a configured wallet. <br>
-Mitigation: Review the endpoint, price, chain, and wallet setup before any paid fetch; prefer a dedicated low-balance wallet or strict per-call spending limit. <br>
-Risk: Marketplace endpoint quality and reliability can vary. <br>
-Mitigation: Prefer verified endpoints and review quality score, seller, price, network, and call count before calling an endpoint. <br>
+## Use Case:
 
+External users and developers use OpenDexter to find paid x402 APIs, inspect pricing, check wallet setup, and call selected endpoints with USDC payment from a configured wallet.
 
-## Reference(s): <br>
-- [OpenDexter ClawHub listing](https://clawhub.ai/branchmanager69/opendexter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Markdown or structured tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketplace search results, x402 prices, chain options, wallet status, API response data, and payment receipts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can make paid x402 API calls using USDC from a configured wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before each paid call, require the agent to show the endpoint, exact price, chain, and whether the action repeats, then get explicit approval.
+
+Risk: Payment may proceed without a clear final confirmation for each call.
+
+Mitigation: Use the pricing check first and approve only one clearly described paid action at a time.
+
+## Reference(s):
+
+- [OpenDexter ClawHub skill page](https://clawhub.ai/branchmanager69/skills/opendexter)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, guidance]
+
+**Output Format:** [Agent-facing text and JSON-like API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include marketplace search results, endpoint prices, wallet status, API response data, and payment receipt details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

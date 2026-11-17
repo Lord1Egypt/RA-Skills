@@ -1,45 +1,66 @@
-## Description: <br>
-Supports Chinese-language recruiting teams in screening resumes against a job description, ranking candidate batches, identifying red flags, and generating follow-up interview questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese-language resumes against a job description, ranks candidate batches, flags risks, and generates follow-up interview questions.
 
-## Publisher: <br>
-[soulzhong](https://clawhub.ai/user/soulzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soulzhong](https://clawhub.ai/user/soulzhong)
 
-## Use Case: <br>
-Recruiters, hiring managers, and recruiting operations teams use this skill to evaluate Chinese-language resumes against a JD, triage batches, produce candidate assessment cards, compare rankings, flag risks, and prepare interview follow-up questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead an agent to look through prior conversations, notes, Downloads, or cache folders for older resumes or job descriptions without a clear approval step. <br>
-Mitigation: Provide exact files for each screening task, require confirmation before opening any recovered historical file, and keep each batch in a dedicated temporary directory. <br>
-Risk: Resume screening handles sensitive candidate data and can leave extracted text, summaries, or reports on local storage. <br>
-Mitigation: Delete local extracted text, summary, index, and report files when the hiring review is complete. <br>
+## Use Case:
 
+Recruiters, hiring managers, and recruiting operations teams use this skill to screen Chinese-language resumes against a JD, compare candidates in batches, identify evidence-backed concerns, and prepare interview follow-up questions.
 
-## Reference(s): <br>
-- [Recruiting Resume Screening Skill](https://clawhub.ai/soulzhong/recruiting-resume-screening) <br>
-- [Five-Dimension Rubric](five-dimension-rubric.md) <br>
-- [Red Flags Catalog](red-flags-catalog.md) <br>
-- [Output Templates](output-templates.md) <br>
-- [Batch Screening](batch-screening.md) <br>
-- [PDF Extraction](pdf-extraction.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Chinese Markdown reports, ranking tables, interview questions, and optional command snippets for resume text extraction] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local extracted text, summary JSON, and Markdown index artifacts during PDF triage; final reports should omit internal extraction logs unless requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release evidence) <br>
+Risk: Searching historical local folders or attachment caches can expose unrelated private resumes or job materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained workspace and process only files explicitly provided or confirmed for the current screening task.
+
+Risk: Plaintext resume extraction outputs can retain sensitive candidate data after screening.
+
+Mitigation: Write extraction outputs to a task-specific temporary directory and delete plaintext resume files after use.
+
+Risk: Feedback-driven changes to screening rules can alter future evaluations without review.
+
+Mitigation: Treat proposed rule changes as maintainer-reviewed updates rather than automatic persistent edits.
+
+Risk: PDF parsing dependencies expand the runtime surface for untrusted resume files.
+
+Mitigation: Install PDF dependencies in an isolated, pinned environment and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/soulzhong/skills/recruiting-resume-screening)
+- [Five-Dimension Rubric](artifact/five-dimension-rubric.md)
+- [Red Flags Catalog](artifact/red-flags-catalog.md)
+- [Output Templates](artifact/output-templates.md)
+- [Batch Screening Guidance](artifact/batch-screening.md)
+- [PDF Extraction Guidance](artifact/pdf-extraction.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown reports with candidate assessment cards, ranking tables, risk notes, and interview questions; optional JSON and Markdown extraction summaries when processing PDFs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local extracted resume text and summary files during PDF triage; final reports omit extraction logs unless requested.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

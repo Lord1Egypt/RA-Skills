@@ -1,40 +1,58 @@
-## Description: <br>
-Execute Oz CLI tasks and user-directed bash commands on a configured remote node through Oz mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute commands or tasks on the Oz Build Node through the Oz CLI, with mode-based control and direct bash command support on a remote node.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-Developers and operators use this skill to route Oz agent runs and explicit shell commands to a trusted remote node where oz-cli is installed. It also guides first-time setup, profile selection, and run tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run user-directed Oz tasks and explicit shell commands on a configured remote node. <br>
-Mitigation: Install only for trusted remote nodes, keep Oz mode off when not needed, and treat commands prefixed with ! as real remote shell commands. <br>
-Risk: Run tracking files may contain sensitive prompts, metadata, and Oz URLs. <br>
-Mitigation: Avoid sending secrets in prompts and periodically review or remove saved node/profile state and oz_run files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route Oz prompts and explicit shell commands to a configured remote node where oz-cli is installed. It supports remote task execution, profile selection, shared-session flags, and local tracking records for Oz runs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eladrave/oz-cli-remote-node) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with inline command examples and run-tracking file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local oz_run.<id>.md tracking files containing run metadata, prompts, and Oz URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence and package.json) <br>
+Risk: The skill can execute arbitrary shell commands on a named remote node.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when remote command execution is intended, grant node access narrowly, and review commands before sending them to the remote node.
+
+Risk: Oz prompts, run IDs, and Oz URLs may be persisted in local tracking files.
+
+Mitigation: Avoid including secrets in prompts, restrict workspace access, and review generated tracking files before sharing or committing them.
+
+Risk: The --share flag can expose an Oz session to teammates.
+
+Mitigation: Use --share only when collaboration is intended and the session contents are appropriate for the receiving audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eladrave/skills/oz-cli-remote-node)
+- [ClawHub publisher profile](https://clawhub.ai/user/eladrave)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and run-tracking file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local oz_run.<id>.md tracking files containing run metadata, prompts, and Oz URLs.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

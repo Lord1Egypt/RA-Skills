@@ -1,40 +1,54 @@
-## Description: <br>
-Run a Correction of Error root-cause analysis for recurring failures, false success, missed work, data loss, and brittle automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a Correction of Error root-cause analysis for recurring failures, false success, missed work, data loss, and brittle automation.
 
-## Publisher: <br>
-[ghitafilali](https://clawhub.ai/user/ghitafilali) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghitafilali](https://clawhub.ai/user/ghitafilali)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to produce a formal Correction of Error after recurring failures, false success, missed work, data loss, brittle automation, or user-visible misses. It guides incident analysis through classification, evidence collection, 5 Whys, corrective actions, verification, and closeout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: COE reports may include sensitive failure evidence such as logs, screenshots, customer details, secrets, or private workspace information. <br>
-Mitigation: Review and redact sensitive details before sharing generated reports outside the intended audience. <br>
-Risk: Root-cause conclusions and corrective actions may be misleading if evidence is incomplete or verification is skipped. <br>
-Mitigation: Preserve concrete evidence, state uncertainty plainly, and require verification evidence for each corrective action. <br>
+## Use Case:
 
+Developers, engineers, and operators use this skill to produce structured Correction of Error reports after recurring failures, false success, missed work, data loss, or brittle automation incidents. It guides impact, timeline, evidence, root-cause analysis, corrective actions, and verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghitafilali/coe-root-cause) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with structured incident analysis sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include timelines, evidence summaries, root-cause statements, corrective-action tables, verification notes, and residual-risk summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated postmortems may include sensitive logs, customer data, tokens, or private workspace details if source evidence is copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reports before sharing and redact secrets, personally identifying information, customer data, and private workspace details.
+
+Risk: A generated COE may overstate the root cause or corrective action if evidence is incomplete.
+
+Mitigation: Require concrete evidence, state uncertainty plainly, and include verification evidence for every corrective action.
+
+## Reference(s):
+
+- [COE Root Cause on ClawHub](https://clawhub.ai/ghitafilali/skills/coe-root-cause)
+- [ghitafilali ClawHub profile](https://clawhub.ai/user/ghitafilali)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown report with structured sections and optional tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include evidence summaries, 5 Whys analysis, corrective actions, verification evidence, and residual risk.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

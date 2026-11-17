@@ -1,43 +1,60 @@
-## Description: <br>
-Diagnoses conversion bottlenecks in product pages and checkout flows and prescribes specific, data-driven fixes prioritized by expected revenue impact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose conversion bottlenecks in product pages and checkout flows, then prescribe specific, data-driven fixes prioritized by expected revenue impact.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce teams, developers, and growth practitioners use this skill to audit full funnels or targeted product and checkout pages, benchmark stage performance, diagnose root causes, and prioritize fixes by expected revenue impact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses user-provided business metrics, screenshots, URLs, and customer-feedback summaries that may contain sensitive commercial or customer information. <br>
-Mitigation: Provide only information the user is comfortable sharing, minimize sensitive details, and avoid including unnecessary personal or proprietary data. <br>
-Risk: Benchmark-based revenue and conversion impact estimates can be mistaken for guaranteed outcomes. <br>
-Mitigation: Treat estimates as hypotheses, preserve the skill's evidence-tier labels, and validate recommendations with measurement plans or A/B tests before relying on them. <br>
+## Use Case:
 
+External ecommerce, growth, product, UX, and marketing teams use this skill to audit product pages and checkout funnels, compare metrics with category benchmarks, and prioritize conversion fixes by expected revenue impact.
 
-## Reference(s): <br>
-- [Output Templates](references/output-template.md) <br>
-- [Conversion Benchmarks Reference](references/conversion-benchmarks.md) <br>
-- [Conversion Psychology Principles Reference](references/psychology-principles.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with tables, findings, prioritized roadmap, and A/B test recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided ecommerce metrics, URLs, screenshots, and summaries; labels evidence tiers and frames benchmark-based estimates as hypotheses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Audit inputs may contain personal customer data from analytics, feedback, screenshots, or session summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the data needed for the conversion audit and avoid sharing raw personal customer data unless necessary and authorized.
+
+Risk: Heuristic or correlational findings may be mistaken for proven causes of conversion loss.
+
+Mitigation: Label findings by evidence tier, avoid guaranteed outcomes, and validate T2 and T3 recommendations with measurement plans or A/B tests.
+
+Risk: Recommendations may overfit generic ecommerce benchmarks when product category, device mix, seasonality, or traffic quality differs.
+
+Mitigation: Use category- and device-specific benchmark ranges, state data gaps, and account for seasonality, traffic source mix, and sample size.
+
+## Reference(s):
+
+- [Output Templates](references/output-template.md)
+- [Conversion Benchmarks Reference](references/conversion-benchmarks.md)
+- [Conversion Psychology Principles Reference](references/psychology-principles.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables, prioritized findings, implementation roadmap, and A/B test recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should include evidence tiers, benchmark context, psychology principle mapping, impact ranges, effort ratings, and measurement plans.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

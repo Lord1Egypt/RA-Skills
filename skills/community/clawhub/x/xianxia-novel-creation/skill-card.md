@@ -1,50 +1,59 @@
-## Description: <br>
-Guides writers through a staged process for creating long-form xianxia novels, from worldbuilding and character design to outlines, volume plans, chapter drafts, and review checklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language creative writing skill that guides users through staged xianxia novel planning, from worldbuilding and character design to outlines, volume plans, chapter structure, and quality review.
 
-## Publisher: <br>
-[zuoanco](https://clawhub.ai/user/zuoanco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoanco](https://clawhub.ai/user/zuoanco)
 
-## Use Case: <br>
-External writers and creative-writing agents use this skill to plan and draft xianxia novels through guided questions, Markdown templates, character frameworks, chapter planning, and quality review checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, character notes, or proprietary story material may be placed into external document or cloud-storage services when following the Feishu workflow. <br>
-Mitigation: Use external services only when their privacy and sharing settings are acceptable; keep sensitive story material local or anonymized when needed. <br>
-Risk: Generated plans, character arcs, and review feedback can introduce inconsistencies or creative choices that do not match the author's intended canon. <br>
-Mitigation: Keep the author in control of worldbuilding, plot decisions, and final edits; review outputs against the included outline, review, and text-quality checklists. <br>
+## Use Case:
 
+Writers and creative-writing agents use this skill to structure long-form xianxia fiction through guided worldbuilding, plot planning, character design, volume and chapter templates, and review checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuoanco/xianxia-novel-creation) <br>
-- [Worldbuilding template](references/01-worldbuilding-template.md) <br>
-- [Outline template](references/02-outline-template.md) <br>
-- [Volume design template](references/03-volume-template.md) <br>
-- [Minimal volume template](references/03a-volume-minimal.md) <br>
-- [Chapter template](references/04-chapter-template.md) <br>
-- [Minimal chapter template](references/04a-chapter-minimal.md) <br>
-- [Character design template](references/05-role-design.md) <br>
-- [Feishu document guide](references/06-feishu-guide.md) <br>
-- [Review workflow](references/07-review-flow.md) <br>
-- [Text quality checklist](references/08-text-quality.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown prose, tables, templates, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; may guide users to organize drafts in external document tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Creative notes may be manually placed into Feishu cloud documents when following the documented organization workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only material the user is comfortable syncing to Feishu and follow the user's workspace data handling policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuoanco/skills/xianxia-novel-creation)
+- [Worldbuilding template](references/01-worldbuilding-template.md)
+- [Outline template](references/02-outline-template.md)
+- [Volume design template](references/03-volume-template.md)
+- [Minimal volume template](references/03a-volume-minimal.md)
+- [Chapter template](references/04-chapter-template.md)
+- [Minimal chapter template](references/04a-chapter-minimal.md)
+- [Character design template](references/05-role-design.md)
+- [Feishu guide](references/06-feishu-guide.md)
+- [Review flow](references/07-review-flow.md)
+- [Text quality checklist](references/08-text-quality.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown templates, outlines, checklists, and guided prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language creative writing framework with optional Feishu document organization guidance]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

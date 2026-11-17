@@ -1,44 +1,58 @@
-## Description: <br>
-Jiajiaoy Morning coordinates Chinese-language morning and evening briefing workflows, including news, technology, finance, weather, wellness, language learning, and next-day fortune prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiajiaoy Morning builds scheduled Chinese morning briefings and evening fortune prompts by orchestrating news, finance, weather, wellness, language, and fortune modules for a configured user.
 
-## Publisher: <br>
-[cosmofang](https://clawhub.ai/user/cosmofang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cosmofang](https://clawhub.ai/user/cosmofang)
 
-## Use Case: <br>
-External users and agent operators use this skill to configure scheduled Chinese-language daily briefings and generate prompts for morning modules and evening fortune updates. It is intended for personal notification workflows that save per-user settings and register scheduled OpenClaw jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes a real bundled user profile and defaults to that user ID in one script. <br>
-Mitigation: Remove bundled user data before installation and require an explicit userId for each setup or execution. <br>
-Risk: The skill registers persistent scheduled messages to personal communication channels. <br>
-Mitigation: Confirm recipients, channels, schedule, timezone, and deletion process before registering cron jobs. <br>
-Risk: The workflow depends on 11 other ClawHub skills that can affect the generated briefing content. <br>
-Mitigation: Inspect and approve each dependency skill before enabling scheduled execution. <br>
+## Use Case:
 
+External users and agent operators use this skill to configure daily Chinese morning briefings and optional evening fortune pushes delivered through scheduled OpenClaw tasks. It is intended for recurring personal briefing workflows that combine multiple installed ClawHub skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cosmofang/jiajiaoy-morning) <br>
-- [Publisher profile](https://clawhub.ai/user/cosmofang) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON arrays, Markdown prompts, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >=18 and 11 dependent ClawHub skills; scheduled outputs are sent to configured Telegram or Feishu recipients.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: The release ships a concrete subscriber configuration with personal identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled subscriber file and keep only the blank template before installing or redistributing the skill.
+
+Risk: The setup flow can generate scheduled-task commands from user-supplied channel and recipient fields.
+
+Mitigation: Require explicit user confirmation and validate channel and recipient values before registering cron jobs.
+
+Risk: The skill depends on multiple sibling skills, including a fortune module that may read bazi profile data.
+
+Mitigation: Install only reviewed or pinned dependency skills and make users aware that evening fortune generation may use data from the yunshi skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cosmofang/skills/jiajiaoy-morning)
+- [ClawHub publisher profile](https://clawhub.ai/user/cosmofang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown prompts, JSON module lists, and shell commands for scheduled task setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or newer and 11 dependent ClawHub skills; several briefing modules may require web search or external skill execution.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

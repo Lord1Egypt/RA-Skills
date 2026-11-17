@@ -1,45 +1,55 @@
-## Description: <br>
-Integrates with the PingCode research and development management API to query work items, test libraries, project progress, organization data, wiki content, DevOps data, weekly reports, and dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with PingCode R&D management APIs to query work items, test libraries, project progress, organization data, wiki content, DevOps records, weekly reports, and dashboards.
 
-## Publisher: <br>
-[geji](https://clawhub.ai/user/geji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geji](https://clawhub.ai/user/geji)
 
-## Use Case: <br>
-Development teams and project managers use this skill to let an agent retrieve PingCode project, work item, test, wiki, user, and DevOps information, update work-item fields, and produce status summaries or weekly reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive PingCode company data across projects, users, wiki content, test records, DevOps records, and work history. <br>
-Mitigation: Install it only with a dedicated least-privilege PingCode app, preferably read-only, and avoid broad queries in terminals or transcripts that may be logged. <br>
-Risk: The skill includes commands that can update work-item fields such as assignee, dates, priority, and status. <br>
-Mitigation: Grant write scopes only when they are needed and require explicit human confirmation before running update commands. <br>
-Risk: Generated reports may contain sensitive project information if written to shared or synced paths. <br>
-Mitigation: Write reports to controlled private locations and review them before sharing. <br>
-Risk: Security evidence says most included Python files currently contain syntax errors. <br>
-Mitigation: Verify and fix the scripts before relying on operational output. <br>
+## Use Case:
 
+Developers and project teams use this skill to inspect and update PingCode project-management data, summarize weekly work, and generate operational views from their own PingCode workspace.
 
-## Reference(s): <br>
-- [PingCode Open API Documentation](references/api_docs.md) <br>
-- [PingCode Open API](https://open.pingcode.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text, with optional JSON output from scripts and Markdown weekly report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PINGCODE_CLIENT_ID and PINGCODE_CLIENT_SECRET; scripts may call PingCode APIs and may write report files to a user-provided path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill handles PingCode credentials and may expose token-request details through logs or command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with narrowly scoped PingCode credentials, prefer read-only permissions, avoid sharing logs that may include token-request URLs, and rotate credentials if exposure is suspected.
+
+Risk: The documented update workflow can modify live work items without strong safeguards.
+
+Mitigation: Avoid the update command unless updates are intentional, the work-item ID is fully verified, and the operator has confirmed the target record and requested changes.
+
+## Reference(s):
+
+- [PingCode Open API reference](references/api_docs.md)
+- [PingCode Open API endpoint](https://open.pingcode.com)
+- [ClawHub skill page](https://clawhub.ai/geji/skills/pingcode-enhanced)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls]
+
+**Output Format:** [Console text, JSON output, and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PINGCODE_CLIENT_ID and PINGCODE_CLIENT_SECRET environment variables.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

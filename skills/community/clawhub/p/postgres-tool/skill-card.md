@@ -1,51 +1,65 @@
-## Description: <br>
-PostgreSQL database management tool for querying databases, exporting results, inspecting schemas, and safely performing UPDATE/DELETE operations with automatic backup and recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PostgreSQL database management tool for querying databases, exporting results, inspecting schemas, and performing UPDATE/DELETE operations with backup and recovery workflows.
 
-## Publisher: <br>
-[liuzongwen](https://clawhub.ai/user/liuzongwen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuzongwen](https://clawhub.ai/user/liuzongwen)
 
-## Use Case: <br>
-Developers, database administrators, and operations teams use this skill to inspect PostgreSQL databases, run SELECT queries, export results, and perform controlled UPDATE, DELETE, and restore workflows with backups and confirmations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete PostgreSQL data. <br>
-Mitigation: Review every SQL statement manually, use a least-privilege database account, keep confirmation prompts enabled, and verify backups before executing UPDATE or DELETE operations. <br>
-Risk: Bundled database configuration contains placeholder credentials that may be unsafe if reused. <br>
-Mitigation: Replace the bundled database config before use and store real credentials according to the deployment environment's secrets policy. <br>
-Risk: Backup and export files may contain sensitive database records. <br>
-Mitigation: Treat generated backup, metadata, CSV, and Excel files as sensitive data and apply access controls, retention limits, and secure deletion procedures. <br>
-Risk: The security scan warns not to rely on --dry-run for UPDATE or DELETE unless the implementation is fixed. <br>
-Mitigation: Use --dry-run only for restore preview workflows, and validate UPDATE or DELETE behavior in a non-production database before automation. <br>
-Risk: The --force option skips interactive confirmation. <br>
-Mitigation: Avoid --force except for intentionally automated, tested operations with separate backup and rollback controls. <br>
+## Use Case:
 
+Developers, database operators, and support engineers use this skill to inspect PostgreSQL schemas, run bounded SELECT queries, export query results, and prepare database maintenance commands. It also provides guidance for backup, confirmation, and recovery steps around UPDATE and DELETE workflows.
 
-## Reference(s): <br>
-- [postgres-tool release page](https://clawhub.ai/liuzongwen/postgres-tool) <br>
-- [EXAMPLES.md](references/EXAMPLES.md) <br>
-- [SAFETY_GUIDE.md](references/SAFETY_GUIDE.md) <br>
-- [OFFLINE_DEPLOYMENT_GUIDE.md](references/OFFLINE_DEPLOYMENT_GUIDE.md) <br>
-- [QUICK_REFERENCE.md](references/QUICK_REFERENCE.md) <br>
-- [scripts README](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, tabular query output, and CSV or Excel export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create PostgreSQL backup, metadata, CSV, and Excel files during database administration workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Database-change safeguards, including backup, restore, force, and dry-run protections, may not be reliable enough for production data without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test the code in a controlled environment before installation, use SELECT previews, keep independent backups, and avoid production UPDATE or DELETE workflows until fixes are validated.
+
+Risk: Bundled database configuration includes default postgres/postgres credentials.
+
+Mitigation: Remove the bundled config before use and provide environment-specific credentials for a dedicated least-privilege PostgreSQL role.
+
+Risk: Generated backups may contain sensitive database rows and are written by the skill workflow.
+
+Mitigation: Store backups outside the skill package with restricted permissions, retention controls, and appropriate handling for sensitive data.
+
+Risk: Dependency installation guidance can introduce unverified packages or elevated-permission installation practices.
+
+Mitigation: Pin and verify dependencies, prefer user or virtual environment installs, and avoid sudo or administrator installation unless separately approved.
+
+## Reference(s):
+
+- [Quick Reference](references/QUICK_REFERENCE.md)
+- [Safety Guide](references/SAFETY_GUIDE.md)
+- [Examples](references/EXAMPLES.md)
+- [Offline Deployment Guide](references/OFFLINE_DEPLOYMENT_GUIDE.md)
+- [Scripts README](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated CSV, Excel, JSON, or terminal table output depending on the workflow.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create query exports and database backup metadata files when the script workflows are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

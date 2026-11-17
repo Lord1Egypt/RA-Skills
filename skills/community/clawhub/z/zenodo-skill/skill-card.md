@@ -1,46 +1,66 @@
-## Description: <br>
-Helps agents deposit, publish, version, and search research artifacts on Zenodo through the Zenodo REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent deposit, publish, version, and search research artifacts on Zenodo through the REST API, including DOI-minting workflows.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill to create Zenodo deposits, upload files, set required metadata, publish citable DOI records, create new versions, and search published records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A production Zenodo publish or new-version publish is irreversible for files and records. <br>
-Mitigation: Use the Zenodo sandbox for testing and require a final human review of files and metadata before any production publish action. <br>
-Risk: The skill requires a Zenodo token with deposit permissions, which can create or modify records. <br>
-Mitigation: Use the minimum required token scopes, prefer sandbox tokens during setup, pass tokens through environment variables, and keep tokens out of chat transcripts and files. <br>
-Risk: Incorrect files or metadata could be attached to a citable DOI. <br>
-Mitigation: Retrieve and review the draft deposition contents before publishing, especially title, creators, upload type, license, related identifiers, and uploaded filenames. <br>
+## Use Case:
 
+Developers, researchers, and research operations teams use this skill to create Zenodo depositions, upload files, set metadata, publish records, mint DOIs, create new versions, discard drafts, and search public Zenodo records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/zenodo-skill) <br>
-- [Zenodo REST API Documentation](https://developers.zenodo.org) <br>
-- [Zenodo Deposition Metadata Reference](references/metadata.md) <br>
-- [Zenodo Search Reference](references/search.md) <br>
-- [End-to-End Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include curl commands for Zenodo API calls, metadata JSON examples, search queries, DOI values, and record URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill can use a Zenodo personal access token to create deposits, upload files, publish records, create versions, or discard drafts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when Zenodo account automation is intended, keep production tokens limited to required scopes, and avoid exposing tokens in commands or files.
+
+Risk: Publishing to production Zenodo is irreversible for uploaded files and records.
+
+Mitigation: Use sandbox tokens for first-time workflows and require explicit user confirmation before production publish actions.
+
+Risk: Incorrect files or metadata could be published with a DOI.
+
+Mitigation: Review deposition files and metadata with the user before publish, and correct Zenodo validation errors before continuing.
+
+Risk: Draft file deletion during versioning can remove intended inherited files from the new draft.
+
+Mitigation: Require explicit confirmation before draft file deletion and inspect the draft state after changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/skills/zenodo-skill)
+- [Zenodo REST API Documentation](https://developers.zenodo.org)
+- [Zenodo Deposition Metadata Reference](references/metadata.md)
+- [Zenodo Search Reference](references/search.md)
+- [End-to-end examples](references/examples.md)
+- [GitHub archiving and citation documentation](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, JSON request bodies, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Zenodo REST API endpoints, curl commands, metadata JSON, confirmation prompts, DOI values, and record URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

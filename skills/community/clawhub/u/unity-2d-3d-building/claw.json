@@ -1,0 +1,58 @@
+{
+  "name": "unity-2d-3d-building",
+  "displayName": "Unity 2D-3D Building",
+  "version": "1.1.4",
+  "description": "Use when an agent must build, wire or ship a Unity game - 2D, 3D, or 2D art over a real 3D stage: installing the engine, creating a project from a template, driving the editor through Unity's own CLI bridge or a free MCP server, sourcing licence-cleared CC0 assets, and building to WebGL that you verify in a browser. Carries the Battle TV painted-broadcast style as a worked reference and a living art log. Do not invoke for a quick 2D page game (canvas/JS wins), a downloadable Unreal title, store submission or certification work, or retuning a shipped game's fight balance - those are named out of scope in the entry document and belong to other tools or the game that owns them.",
+  "slug": "unity-2d-3d-building",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://chatagent.ca/",
+  "clawhub": "https://clawhub.ai/deepseekoracle/unity-2d-3d-building",
+  "tags": [
+    "unity",
+    "unity-6",
+    "webgl",
+    "unity-cli",
+    "mcp",
+    "2d",
+    "3d",
+    "sprites",
+    "shaders",
+    "game-assets",
+    "cc0",
+    "asset-sourcing",
+    "build-verification",
+    "battle-tv",
+    "openclaw",
+    "hermes"
+  ],
+  "entry": "SKILL.md",
+  "openclaw": {
+    "emoji": "\ud83c\udfae",
+    "homepage": "https://chatagent.ca/",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ]
+  },
+  "permissions": {
+    "network": {
+      "https_get": false,
+      "http_post": false,
+      "note": "No code in this package fetches anything. The guide names CC0 asset hosts for the user's own agent to fetch from, under the licence gate in references/assets-and-licences.md."
+    },
+    "filesystem": {
+      "read": "its own folder (scripts/check_skill.py, stdlib only)",
+      "write": "append references/techniques.md only, after a watched build confirms a method",
+      "shell": false,
+      "subprocess": false
+    },
+    "publish": {
+      "git_push": false,
+      "huggingface": false,
+      "clawhub": false,
+      "social": false
+    }
+  }
+}

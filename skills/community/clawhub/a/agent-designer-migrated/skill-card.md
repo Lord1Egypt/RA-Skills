@@ -1,41 +1,49 @@
-## Description: <br>
-Skill migrada desde examples - agent-designer con capacidades completas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill migrada desde examples - agent-designer con capacidades completas.
 
-## Publisher: <br>
-[jacr6](https://clawhub.ai/user/jacr6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacr6](https://clawhub.ai/user/jacr6)
 
-## Use Case: <br>
-Developers and agent builders use this skill as guidance for designing or integrating an agent-designer workflow migrated from examples, including usage, integration, and quota-optimization patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact references local skills that are not bundled with this release. <br>
-Mitigation: Review and validate any referenced local skills before relying on examples that import or call them. <br>
-Risk: The release is documentation-only, so examples may not represent executable behavior in the target environment. <br>
-Mitigation: Treat examples as integration guidance and test the referenced workflow in the agent runtime before operational use. <br>
+## Use Case:
 
+Developers and engineers use this migrated skill as an agent-design helper for OpenCode/Qwen Code workflows, including integration examples and quota-conscious execution patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jacr6/agent-designer-migrated) <br>
-- [Publisher profile](https://clawhub.ai/user/jacr6) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact with usage, integration, and optimization guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill references separately installed OpenCode skills or Exa integration that are not included in this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm those external skills or integrations are trusted and approved before using them with this skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jacr6/skills/agent-designer-migrated)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload is bundled; output is guidance and examples for agent-skill use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

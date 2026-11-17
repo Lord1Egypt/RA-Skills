@@ -1,38 +1,53 @@
-## Description: <br>
-Learns your career context. Guides decisions on paths, transitions, negotiations, and growth based on what it discovers about you. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advises on career decisions including offer evaluation, salary and equity negotiation, promotions, pivots, and layoff response.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and job seekers use this skill to reason through career decisions, role transitions, negotiations, growth plans, and networking with guidance adapted to approved career context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can maintain a local career profile containing compensation, constraints, goals, employment context, or other sensitive career details. <br>
-Mitigation: Approve only details that should be retained, and periodically review or delete ~/career/memory.md when it is outdated or too sensitive. <br>
+## Use Case:
 
+Employees and career changers use this skill to evaluate offers, negotiate compensation, compare equity packages, pursue promotions, decide whether to stay or leave, and respond to layoffs, PIPs, firings, or rescinded offers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/career) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose updates to a local career profile only after explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill can retain sensitive compensation, visa, family, offer, and career preference details in local plaintext files under ~/Clawic/data/career/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if local career-record persistence is acceptable; periodically review or delete the directory and avoid sharing details that should not be retained.
+
+## Reference(s):
+
+- [ClawHub Career Skill Page](https://clawhub.ai/ivangdavila/skills/career)
+- [Clawic Career Skill Page](https://clawic.com/skills/career)
+- [Career Skill Definition](artifact/SKILL.md)
+- [Setup and Local Memory Behavior](artifact/setup.md)
+- [Career Memory Template](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with structured checklists, negotiation scripts, and optional local memory updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist user career facts, preferences, and observed patterns under ~/Clawic/data/career/ when the user reveals relevant information.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

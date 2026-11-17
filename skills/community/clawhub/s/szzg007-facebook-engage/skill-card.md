@@ -1,41 +1,53 @@
-## Description: <br>
-Automates opening a specified Facebook page, following it, and posting a comment on the latest post. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates visiting a specified Facebook page, following it, and posting a friendly comment on its latest post.
 
-## Publisher: <br>
-[szzg007](https://clawhub.ai/user/szzg007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzg007](https://clawhub.ai/user/szzg007)
 
-## Use Case: <br>
-Social media operators or brand teams use this skill to direct an agent operating a logged-in browser session to follow specified Facebook pages and post reviewed comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a logged-in Facebook browser session to follow pages and publish public comments. <br>
-Mitigation: Require manual review of the target page and exact comment before each action. <br>
-Risk: The skill includes loose social-engagement automation guidance that could enable unsolicited, repeated, or platform-policy-violating activity. <br>
-Mitigation: Limit use to authorized engagement and avoid repeated or unsolicited actions that violate platform rules. <br>
+## Use Case:
 
+External users and social media operators can use this skill to perform a Facebook follow and leave a positive comment on a selected public page. The user supplies the Facebook URL and may supply the exact comment text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szzg007/szzg007-facebook-engage) <br>
-- [Publisher profile](https://clawhub.ai/user/szzg007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, browser actions, guidance] <br>
-**Output Format:** [Markdown status report with browser action guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target Facebook page URL, optional comment text, and a logged-in browser session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publicly follow pages and post comments from the user's logged-in Facebook account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact Facebook URL and final comment text before each run, and only proceed when the account owner approves the public action.
+
+Risk: Repeated follows or similar comments may look like spam or violate platform rules.
+
+Mitigation: Use the skill only for limited, intentional engagement and avoid bulk activity or repeated comment text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szzg007/skills/szzg007-facebook-engage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status report summarizing follow status, target post, submitted comment, and completion state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use browser actions in a logged-in Facebook session and can publicly submit a comment from the user's account.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

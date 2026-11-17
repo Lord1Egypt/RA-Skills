@@ -1,44 +1,59 @@
-## Description: <br>
-Scans submitted code for security issues such as hardcoded secrets and dangerous functions, then returns a confidence score and detailed findings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans submitted code for security issues such as hardcoded secrets and dangerous functions, then returns a confidence score and detailed findings.
 
-## Publisher: <br>
-[crftsmnd](https://clawhub.ai/user/crftsmnd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crftsmnd](https://clawhub.ai/user/crftsmnd)
 
-## Use Case: <br>
-Agents, developers, and CI/CD workflows use this skill to request a paid pre-deploy code security scan and receive issue details with a confidence score. It is suited for quick static checks before shipping code, especially where local security tooling is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted code is sent to the service operator and may contain secrets or proprietary material. <br>
-Mitigation: Redact secrets before use and avoid regulated or proprietary code unless approved. <br>
-Risk: The service uses a paid scan flow and security evidence calls out payment verification concerns for self-hosted production use. <br>
-Mitigation: Require explicit confirmation for paid scans and fix payment verification before relying on a self-hosted deployment in production. <br>
-Risk: Temporary-file handling in the self-hosted scanner may leave sensitive submitted code exposed if failures occur. <br>
-Mitigation: Harden temporary-file cleanup before production self-hosting and keep submitted code scoped to approved environments. <br>
+## Use Case:
 
+Developers, agents, and CI/CD pipelines use this skill to run a quick pre-deployment security scan on code and receive issue details for triage.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/crftsmnd/agentkilox-code-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/crftsmnd) <br>
-- [A2A Code Audit endpoint](https://a2a-code-audit.cvapi.workers.dev/audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON API responses with confidence scores, issue lists, severities, and scan statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid scan flow; maximum submitted code size is 500KB; expected response time is under 5 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Submitted source code is sent to an external paid audit endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only code you are authorized to share, remove secrets before scanning, and avoid private repositories unless the service privacy terms are acceptable.
+
+Risk: A clean confidence score is not a strong security gate.
+
+Mitigation: Treat results as triage guidance and review important code with established local or CI security tools before release.
+
+Risk: Payment and scanner reliability safeguards may be incomplete.
+
+Mitigation: Confirm payment handling, dependency behavior, scanner failure handling, and temporary-file cleanup before relying on the service in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crftsmnd/skills/agentkilox-code-audit)
+- [Publisher profile](https://clawhub.ai/user/crftsmnd)
+- [A2A Code Audit API endpoint](https://a2a-code-audit.cvapi.workers.dev/audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces issue details with severity, confidence, line number, scan timing, price, and a confidence score.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

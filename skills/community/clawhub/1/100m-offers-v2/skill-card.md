@@ -1,49 +1,59 @@
-## Description: <br>
-This skill helps agents apply Alex Hormozi's $100M Offers framework to pricing, offer construction, value equation analysis, guarantees, bonuses, and market selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides business-offer guidance based on Alex Hormozi's "$100M Offers," including Grand Slam Offer construction, pricing strategy, value-equation work, offer enhancements, and market selection.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users and business builders use this skill to get structured guidance for creating premium, differentiated offers, improving pricing strategy, and diagnosing offer-related sales problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat aggressive premium-pricing, guarantee, or advertising advice as universally applicable. <br>
-Mitigation: Treat the guidance as opinionated business advice and validate pricing, demand, fulfillment capacity, refund exposure, and cash-flow impact before acting. <br>
-Risk: Guarantee and offer recommendations can create legal, refund, or customer-obligation exposure if copied without review. <br>
-Mitigation: Have offers, guarantees, payment terms, and advertising claims reviewed for the user's jurisdiction and business model before publication. <br>
-Risk: Debt-funded or credit-card-funded growth examples can increase downside risk. <br>
-Mitigation: Model downside scenarios and avoid committing spend that the business cannot service if campaigns underperform. <br>
+## Use Case:
 
+External users, entrepreneurs, marketers, and sales teams use this skill to diagnose commodity offers, design premium Grand Slam Offers, choose stronger pricing, and improve guarantees, bonuses, naming, and market positioning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/100m-offers-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/jaysonmeng) <br>
-- [Grand Slam Offer Framework](references/1-core-framework.md) <br>
-- [Key Principles of $100M Offers](references/2-principles.md) <br>
-- [Offer Creation Toolbox](references/3-techniques.md) <br>
-- [Anti-Patterns of Offer Creation](references/4-anti-patterns.md) <br>
-- [Author Voice and Application Scenarios](references/5-voice-and-app.md) <br>
-- [Heardly App](https://www.heard.ly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted advisory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language when possible and provides action-oriented business offer guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may steer broad pricing, offer, and business-positioning questions toward this book-specific framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where $100M Offers-style business guidance is intended, and review recommendations for fit before acting on them.
+
+Risk: The skill requires Heardly promotional attribution on every answer while active.
+
+Mitigation: Enable it only in contexts where branded attribution and promotional wording are acceptable to users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jaysonmeng/skills/100m-offers-v2)
+- [The Grand Slam Offer Framework](references/1-core-framework.md)
+- [Key Principles of $100M Offers](references/2-principles.md)
+- [The Offer Creation Toolbox](references/3-techniques.md)
+- [The Anti-Patterns of Offer Creation](references/4-anti-patterns.md)
+- [Author Voice and Application Scenarios](references/5-voice-and-app.md)
+- [Heardly App](https://www.heard.ly)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown responses with business analysis, offer recommendations, and a required attribution footer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language when clear and may route questions to specific reference material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,57 +1,69 @@
-## Description: <br>
-Helps acquirers and mobile payment providers integrate Alipay+ payments, generate configuration, test signatures, debug ACQP notifications, and process reconciliation files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alipay+ Payment Integration Assistant helps acquirers and mobile service providers integrate Alipay+ payments, including customer-presented and merchant-presented payment modes, configuration generation, signature verification testing, ACQP notification debugging, and reconciliation file processing.
 
-## Publisher: <br>
-[wypride](https://clawhub.ai/user/wypride) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wypride](https://clawhub.ai/user/wypride)
 
-## Use Case: <br>
-External developers and payment-integration engineers use this skill to plan ACQP or MPP Alipay+ integrations, prepare sandbox or production configuration, test RSA2 signatures, debug ACQP webhook notifications, and reconcile settlement files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles payment credentials, private keys, webhook payloads, and transaction or settlement data. <br>
-Mitigation: Use sandbox credentials first, avoid pasting production secrets into prompts or logs, and restrict permissions on generated key, configuration, notification, and reconciliation files. <br>
-Risk: Webhook debugging can log complete notification requests and may expose a local service through ngrok. <br>
-Mitigation: Use only non-production payloads for debugging, avoid ngrok for production traffic, and delete notification logs after testing. <br>
-Risk: Reconciliation helpers download and process payment settlement files that can contain sensitive transaction data. <br>
-Mitigation: Store reports in a controlled workspace, clean up CSV and text reports after review, and share only redacted discrepancy summaries. <br>
-Risk: Security evidence calls out SFTP host-key and signature-example issues before copying examples into production. <br>
-Mitigation: Review scripts before execution, pin and verify SFTP host keys, and validate signature examples against current official Alipay+ documentation before production use. <br>
+## Use Case:
 
+Developers and integration engineers use this skill to plan and troubleshoot Alipay+ ACQP and MPP payment integrations. It helps generate configuration, test signatures, debug ACQP webhooks, process reconciliation files, and identify when official Alipay+ documentation is required for detailed API fields.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/wypride/skill-alipayplus-integration) <br>
-- [Alipay+ ACQP API Overview](https://docs.alipayplus.com/alipayplus/alipayplus/api_acq_tile/) <br>
-- [Alipay+ MPP API Overview](https://docs.alipayplus.com/alipayplus/alipayplus/api_mpp/) <br>
-- [Alipay+ ACQP Customer-Presented Mode](https://docs.alipayplus.com/alipayplus/alipayplus/integration_user_mode_acq/accept_payment) <br>
-- [Alipay+ ACQP Merchant-Presented Order Code](https://docs.alipayplus.com/alipayplus/alipayplus/integration_merchant_mode_acq/accept_payment_order_code) <br>
-- [Alipay+ ACQP Merchant-Presented Entry Code](https://docs.alipayplus.com/alipayplus/alipayplus/integration_merchant_mode_acq/accept_payment_entry_code) <br>
-- [Alipay+ MPP Customer-Presented Mode](https://docs.alipayplus.com/alipayplus/alipayplus/integration_user_mode_mpp/accept_payments) <br>
-- [Alipay+ MPP Merchant-Presented Mode](https://docs.alipayplus.com/alipayplus/alipayplus/integration_merchant_mode_mpp/accept_payments) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Integration Flows](references/flows.md) <br>
-- [Signature Guide](references/signature-guide.md) <br>
-- [Webhook Guide](references/webhook-guide.md) <br>
-- [Reconciliation Guide](references/reconciliation-guide.md) <br>
-- [Configuration Template](references/config-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration, key, notification log, reconciliation CSV, and reconciliation report files under the user's workspace when helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill handles payment credentials, private keys, webhook payloads, and reconciliation data that may expose secrets or financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use sandbox or test data by default, redact logs, restrict file permissions, and avoid pasting or printing real private keys.
+
+Risk: Webhook debugging and replay behavior can expose local services or send test notifications to inappropriate endpoints.
+
+Mitigation: Use access controls for any tunnel, avoid exposing local services unnecessarily, and do not replay webhook data to production endpoints.
+
+Risk: SFTP and signature examples may be copied into production without hardening.
+
+Mitigation: Treat scripts as starting points, validate the SFTP and signature examples against official Alipay+ requirements, and harden them before production use.
+
+## Reference(s):
+
+- [Alipay+ Integration Flows](references/flows.md)
+- [Alipay+ API Reference](references/api-reference.md)
+- [Alipay+ Signature Guide](references/signature-guide.md)
+- [Alipay+ Webhook Configuration Guide](references/webhook-guide.md)
+- [Reconciliation File Download Guide](references/reconciliation-guide.md)
+- [ACQP Integration Checklist](references/acqp-checklist.md)
+- [MPP Integration Checklist](references/mpp-checklist.md)
+- [Configuration Template](references/config-template.json)
+- [ACQP API Overview Documentation](https://docs.alipayplus.com/alipayplus/alipayplus/api_acq_tile/)
+- [MPP API Overview Documentation](https://docs.alipayplus.com/alipayplus/alipayplus/api_mpp/)
+- [MPP Android Client SDK Quick Start Documentation](https://docs.alipayplus.com/alipayplus/alipayplus/sdk_mpp/android_quick)
+- [MPP iOS Client SDK Quick Start Documentation](https://docs.alipayplus.com/alipayplus/alipayplus/sdk_mpp/ios_quick)
+- [MPP Server SDK Quick Start Documentation](https://docs.alipayplus.com/alipayplus/alipayplus/sdk_mpp/server_quick)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, and JSON configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration, signature-test, webhook-debug, and reconciliation-processing artifacts when the user runs bundled scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

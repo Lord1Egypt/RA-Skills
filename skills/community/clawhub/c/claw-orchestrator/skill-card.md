@@ -1,40 +1,62 @@
-## Description: <br>
-CC Agent 分析 + WBClaw 执行协作编排器。将任务发送给 Claude Code Agent 做前置分析设计，再由 WorkBuddy Claw 执行落地，自动生成执行报告。适用于需要深度分析+工程执行的多步骤任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates CC Agent analysis and file generation with WBClaw execution, preview, reporting, and memory updates for multi-step engineering tasks.
 
-## Publisher: <br>
-[zenyang-x](https://clawhub.ai/user/zenyang-x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zenyang-x](https://clawhub.ai/user/zenyang-x)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate a Claude Code analysis and file-generation step with a WorkBuddy Claw execution, preview, reporting, and memory-update step for multi-stage implementation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run a write-capable agent with bypassed permissions in a configured local workspace. <br>
-Mitigation: Review and change the configured paths before use, run it only in a disposable or version-controlled directory, and inspect generated or modified files before relying on them. <br>
-Risk: Task text may influence generated commands or file writes. <br>
-Mitigation: Avoid untrusted task text and treat bypassPermissions as elevated access that can change local files without normal prompts. <br>
+## Use Case:
 
+Developers and engineers use this skill to split complex implementation work between a Claude Code analysis and generation step and a WBClaw execution step that validates outputs, previews HTML, writes a task report, and updates memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zenyang-x/claw-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown reports, command-line status text, and generated task files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write task_report.md, MEMORY.md entries, daily log entries, and task-specific HTML, Python, or Markdown files in the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill delegates user tasks to an external Claude CLI with broad read and write access in the configured WorkBuddy directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a sandboxed workspace with limited files and review generated files before using or sharing them.
+
+Risk: The documented workflow uses bypassed permission checks for file writing.
+
+Mitigation: Prefer a version that removes bypassPermissions or requires explicit approval before file writes.
+
+Risk: The script invokes a shell command around user-provided task text.
+
+Mitigation: Prefer a version that avoids shell=True and passes command arguments without shell interpolation.
+
+Risk: The skill depends on locally configured Node and Claude CLI paths.
+
+Mitigation: Pin and verify the CLI or binary version before use, and treat missing or unexpected local paths as deployment blockers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zenyang-x/skills/claw-orchestrator)
+- [ClawHub publisher profile](https://clawhub.ai/user/zenyang-x)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown summaries, shell command examples, generated files, and task reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write deliverable files, task_report.md, and memory log entries in the configured WorkBuddy directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

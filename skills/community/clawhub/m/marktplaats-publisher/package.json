@@ -1,6 +1,6 @@
 {
   "name": "marktplaats-publisher",
-  "version": "0.6.0",
+  "version": "0.6.3",
   "description": "Maak en controleer Marktplaats-advertenties met scriptmatige preflight, live-verificatie en register-update.",
   "type": "module",
   "bin": {
@@ -17,6 +17,7 @@
     "bin",
     "src",
     "scripts",
+    "references",
     "README.md",
     "LICENSE",
     "SKILL.md"

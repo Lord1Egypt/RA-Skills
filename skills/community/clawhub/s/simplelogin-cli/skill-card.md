@@ -1,44 +1,60 @@
-## Description: <br>
-Create and manage SimpleLogin email aliases from the command line. Protect your real email with secure, private aliases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage SimpleLogin email aliases from the command line. Protect your real email with secure, private aliases.
 
-## Publisher: <br>
-[mcclawd](https://clawhub.ai/user/mcclawd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcclawd](https://clawhub.ai/user/mcclawd)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to create, list, enable, disable, and delete SimpleLogin email aliases, and to create contacts for reverse-alias replies while keeping a real mailbox private. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a SimpleLogin API key to manage aliases and contacts. <br>
-Mitigation: Provide the key only through SIMPLELOGIN_API_KEY or the declared secrets file, and avoid exposing command output that contains account or alias details. <br>
-Risk: Disable and delete commands can stop mail forwarding or affect accounts tied to an alias. <br>
-Mitigation: Review the target alias before running destructive or delivery-changing commands. <br>
-Risk: Reverse-alias contact creation changes how replies are routed through an alias identity. <br>
-Mitigation: Create contacts only for intended recipients and confirm the alias and contact email before sending mail through the returned reverse alias. <br>
+## Use Case:
 
+External users and developers use this skill to create, list, enable, disable, and delete SimpleLogin aliases, and to create contacts or reverse aliases for private email workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mcclawd/simplelogin-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/mcclawd) <br>
-- [SimpleLogin](https://simplelogin.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SimpleLogin API key supplied through SIMPLELOGIN_API_KEY or the declared OpenClaw secrets file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill gives an agent SimpleLogin API-key access that can create contacts and enable, disable, or delete aliases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to trusted agents and sessions, review proposed account-changing actions, and prefer disabling aliases before deletion.
+
+Risk: The included reverse-alias test script is flagged as unsafe for untrusted alias or contact values.
+
+Mitigation: Run the test script only with trusted alias and contact inputs until its jq and JSON handling are hardened.
+
+Risk: A leaked SimpleLogin API key could allow account-changing actions.
+
+Mitigation: Store the API key in a password manager or session-scoped environment variable and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcclawd/skills/simplelogin-cli)
+- [SimpleLogin](https://simplelogin.io)
+- [SimpleLogin open source project](https://github.com/simple-login)
+- [SimpleLogin aliases API endpoint](https://app.simplelogin.io/api/aliases?page_id=0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, a SimpleLogin account, and SIMPLELOGIN_API_KEY or ~/.openclaw/secrets/simplelogin.json.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

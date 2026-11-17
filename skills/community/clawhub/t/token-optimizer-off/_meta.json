@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn771xhz6zwskdx040mka4g0fx81ybpq",
-  "slug": "token-optimizer-off",
-  "version": "1.0.0",
-  "publishedAt": 1773820296559
+  "name": "token-optimizer",
+  "version": "1.1.0",
+  "description": "会话Token极致压缩技能：三层索引+会话摘要压缩+任务隔离会话，将输入token从10万+压缩至8000以内",
+  "author": "xiekc",
+  "tags": ["token", "memory", "session", "optimization", "context"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "guard":      "python3 scripts/session_guard.py check",
+    "reset":      "python3 scripts/session_guard.py reset",
+    "compress":   "python3 scripts/compress_session.py",
+    "preview":    "python3 scripts/compress_session.py --dry-run",
+    "new-session":"python3 scripts/new_session.py",
+    "status":     "python3 scripts/status.py"
+  }
 }

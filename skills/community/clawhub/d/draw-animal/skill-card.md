@@ -1,40 +1,53 @@
-## Description: <br>
-Generate a text description of an animal picture via Python script <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a text description of an animal picture via Python script.
 
-## Publisher: <br>
-[kning32](https://clawhub.ai/user/kning32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kning32](https://clawhub.ai/user/kning32)
 
-## Use Case: <br>
-Agent users and developers use this skill to generate a short English or Chinese text description for a requested animal picture. It runs a local Python script with an animal argument, defaulting to pig when no animal is specified. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad animal-picture activation wording may trigger the skill when the user did not intend to run it. <br>
-Mitigation: Confirm the user wants an animal picture description before invoking the script when intent is ambiguous. <br>
-Risk: Constructing a shell command from raw animal or language values could create command-injection exposure in the calling agent. <br>
-Mitigation: Pass animal and language as normal process arguments to python3 rather than interpolating them into an unsafe shell command. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for a short English or Chinese text description of a requested animal picture, with pig as the default when no animal is supplied.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kning32/draw-animal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text printed to stdout, with Markdown instruction text for the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Animal defaults to pig; language supports en or zh. Requires python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: The skill instructions pass user-controlled text into a shell command without quoting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the Python script with an argument array, or quote and validate all user-controlled values before execution.
+
+Risk: The security verdict is suspicious even though the evidence describes no network or persistence behavior.
+
+Mitigation: Review the skill before installing and run it only in environments where the local python3 dependency and command invocation path are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kning32/skills/draw-animal)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Plain text string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports animal and language inputs; language is limited to English or Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

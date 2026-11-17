@@ -1,0 +1,105 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_survey_create_item",
+    "description": "创建问卷调查定义（包含字段、提交策略、鉴权等完整配置）。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "description": "Survey module ID（所属问卷调查模块ID）"
+        },
+        "name": {
+          "type": "string",
+          "description": "问卷名称"
+        },
+		"remark": {
+		  "type": "string",
+		  "description": "描述"
+		},
+        "tableId": {
+          "type": "string",
+          "description": "数据表ID,不能自己臆测，而是需要通过查询应用定义_query_app_define_designer或数据表列表_query_table_list_designer获取"
+        },
+        "fieldList": {
+          "type": "array",
+          "description": "数据表字段列表",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Field ID (unique), must be obtained from the _query_table_define_designer tool to get real field IDs from the data table configuration"
+              },
+              "name": {
+                "type": "string",
+                "description": "字段名称（题目标题）"
+              },
+              "type": {
+                "type": "string",
+                "description": "字段类型。【强约束】只能使用以下列出的值，严禁使用任何未列出的类型，否则为严重错误。\n\n【允许的字段类型值（必须严格按此拼写）】：\nSingleText（单行文本）、MultiText（多行文本）、RichText（富文本）、Integer（整数）、Double（小数）、Date（日期）、ListSelect（下拉选择）、Attachment（附件）、Checkbox（复选框）、User（用户）、Department（部门）、Coordinate（坐标)、RelationRecord（外键字段）、Children（树形结构）、ID（业务编号）、\n- RelationRecord：外键字段，在当前表中引用另一张表的一条记录（存储目标记录ID）。\n- Children：【结构型字段】仅用于在【同一张表内】构建树形/层级结构，不可跨表。\n- PageBreak:分页符（不是数据表字段）"
+              },
+              "icon": {
+                "type": "string",
+                "description": "字段图标,只能填写以下值之一：text、time、user、checkbox-circle、page-separator、star"
+              },
+              "group": {
+                "type": "string",
+                "description": "字段分组：\n- TableField：所有数据表字段\n- SurveyField：仅用于 PageBreak"
+              },
+              "setting": {
+                "type": "object",
+                "description": "字段配置可以从数据表字段的setting复制过来(nullable,optionList,multiple,max,min,enableRange,editable,placeholder等属性)，可以额外修改的字段有editable-是否可以编辑",
+                "additionalProperties": true
+              }
+            },
+            "required": ["id", "name", "type"]
+          }
+        },
+        "finishText": {
+          "type": "string",
+          "description": "提交完成提示文案"
+        },
+
+        "authType": {
+          "type": "string",
+          "description": "鉴权方式",
+          "enum": ["noAuth", "systemLogin"]
+        },
+		"allowEditSubmit": {
+		  "type": "boolean",
+		  "description": "提交后是否允许编辑（仅在鉴权方式为systemLogin时有效）",
+		  "default": false
+		},
+		"allowResubmit": {
+		  "type": "boolean",
+		  "description": "是否允许重复提交（仅在鉴权方式为systemLogin时有效）",
+		  "default": false
+		},
+        "callAutomaticIdOnOpen": {
+          "type": "string",
+          "description": "打开问卷时触发的自动化ID"
+        },
+        "callAutomaticIdOnSubmit": {
+          "type": "string",
+          "description": "提交问卷时触发的自动化ID"
+        },
+        "surveyFieldId": {
+          "type": "string",
+          "description": "存储问卷实例ID的字段"
+        },
+        "systemLoginStoreFieldId": {
+          "type": "string",
+          "description": "存储提交人信息的字段（仅在鉴权方式为systemLogin时有效）"
+        },
+        "language": {
+          "type": "string",
+          "description": "语言（zh-CN / en-US）",
+          "default": "zh-CN"
+        }
+      },
+      "required": ["scope", "name", "tableId", "fieldList","authType"]
+    }
+  }
+}

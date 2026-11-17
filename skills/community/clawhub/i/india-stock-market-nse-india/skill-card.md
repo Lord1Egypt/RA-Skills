@@ -1,43 +1,54 @@
-## Description: <br>
-Get India NSE stock market data via FinanceAgent on OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get India NSE stock market data via FinanceAgent on OneKey Gateway.
 
-## Publisher: <br>
-[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and analysts use this skill to query India NSE stock symbols through the FinanceAgent on OneKey Gateway and receive quote data from the upstream source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a OneKey Gateway API key and uses it in CLI and HTTP requests. <br>
-Mitigation: Store DEEPNLP_ONEKEY_ROUTER_ACCESS as a secret, prefer a scoped or low-privilege key when available, and avoid exposing it in logs or shared shell history. <br>
-Risk: The connector depends on a third-party gateway and npm package. <br>
-Mitigation: Install and run it only in environments where the OneKey/DeepNLP gateway and @aiagenta2z/onekey-gateway package are trusted. <br>
-Risk: The curl example uses verbose mode, which can reveal request details in captured logs. <br>
-Mitigation: Remove -v when running the HTTP example in environments with retained or shared logs. <br>
+## Use Case:
 
+Developers and agents use this skill to query India NSE stock market data through OneKey Gateway by providing one or more NSE stock symbols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-hub-admin/india-stock-market-nse-india) <br>
-- [DeepNLP OneKey Agent Router endpoint](https://agent.deepnlp.org/agent_router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS and a symbol_list array; returned quote fields depend on the upstream data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks users to install and run an unpinned external npm gateway package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package before use, pin a reviewed version, and avoid global installation when possible.
+
+Risk: The curl example uses verbose mode with an API key header, which can expose the key in logs or screenshots.
+
+Mitigation: Remove verbose mode, keep the OneKey API key out of logs and screenshots, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-hub-admin/skills/india-stock-market-nse-india)
+- [DeepNLP OneKey Agent Router endpoint](https://agent.deepnlp.org/agent_router)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with shell and curl examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS and a symbol_list array of NSE stock symbols.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

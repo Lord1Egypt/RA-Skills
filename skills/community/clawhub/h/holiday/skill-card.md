@@ -1,41 +1,55 @@
-## Description: <br>
-Research public holidays, bank holidays, observed days, school breaks, and make-up workdays for any country or region. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches public holidays, bank holidays, observed days, school breaks, and make-up workdays for a specified country, region, year, and holiday type.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to answer holiday date, observed-day, and closure-status questions by resolving jurisdiction, year, holiday type, and authoritative sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Holiday rules can be time-sensitive or jurisdiction-specific, which can lead to outdated or overbroad answers. <br>
-Mitigation: Verify current official sources and state the exact jurisdiction, year, holiday status, and observed-date details. <br>
-Risk: Users may confuse cultural observances, regional holidays, or institution closures with nationwide legal holidays. <br>
-Mitigation: Distinguish official public holidays from cultural observances and bank, school, market, employer, or regional closures. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to answer holiday and closure questions by resolving the jurisdiction, year, and holiday type before checking authoritative sources.
 
-## Reference(s): <br>
-- [Holiday Query Patterns](references/query-patterns.md) <br>
-- [Holiday Source Guidelines](references/source-guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or plain text; the bundled checklist script can emit text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill structures holiday lookup scope and source selection; it does not perform calendar event CRUD, reminders, or personal leave planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Holiday answers can be wrong or misleading when the country, region, year, or closure type is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the jurisdiction, year, and whether the user means a public holiday, bank holiday, school break, market closure, or company-specific closure before answering.
+
+Risk: Holiday schedules are time-sensitive and may differ between official holidays, observed substitute days, and institution-specific closures.
+
+Mitigation: Use authoritative government, official gazette, central bank, education, or institution calendars, and state the exact date, scope, and source basis in the answer.
+
+## Reference(s):
+
+- [Holiday Query Patterns](references/query-patterns.md)
+- [Holiday Source Guidelines](references/source-guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/jvy/skills/holiday)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with optional shell commands and JSON checklist output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jurisdiction, year, and holiday type to produce reliable answers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

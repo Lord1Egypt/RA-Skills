@@ -1,43 +1,54 @@
-## Description: <br>
-Build or review a safety-gated Google Colab workflow that installs Hermes Agent and uses it for read-only Unitree Robotics repository analysis, simulation runbooks, log triage, and contribution planning; do not use for live robot control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build or review a safety-gated Google Colab workflow that installs Hermes Agent and uses it for read-only Unitree Robotics repository analysis, simulation runbooks, log triage, and contribution planning.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to create or review a Google Colab workflow for read-only Unitree repository analysis, simulation planning, log triage, and contribution scouting. It is intended to keep robot-control actions outside Colab and make Hermes Agent execution opt-in. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated notebooks or runbooks could include unsafe robot-control, DDS, ROS, SSH, SCP, tunneling, or robot-LAN actions if reviewed carelessly. <br>
-Mitigation: Keep Colab outputs read-only, put risky local-host commands in quoted human-run runbooks, and run the provided artifact checker against unitree-hermes-review.json. <br>
-Risk: Provider-backed Hermes execution may use optional API credentials. <br>
-Mitigation: Provide OPENAI_API_KEY, OPENROUTER_API_KEY, or NOUS_API_KEY only when model-backed analysis is intended, and keep Hermes one-shot execution opt-in. <br>
-Risk: The workflow may be mistaken for physical robot validation. <br>
-Mitigation: Do not claim hardware validation unless the user provides external evidence, and frame live robot-control usefulness as low. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to create or review Colab workflows for read-only Unitree repository analysis, simulation planning, log triage, contribution scouting, and IK evidence review. It is not for live robot control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/unitree-hermes-colab) <br>
-- [Project homepage](https://github.com/zack-dev-cm/unitree-g1-colab-ik) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON review gates, notebook or runner code, safety files, and validation commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated workflows should save unitree-hermes-report.md, unitree-hermes-review.json, AGENTS.md, and a flow visualization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The security evidence marks the release suspicious because automatic activation and an incomplete safety checker require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a read-only Unitree/Hermes Colab review helper is intended; enforce the no-live-robot boundary and manually review generated reports and runbooks before following robotics or network instructions.
+
+Risk: The artifact can produce robotics runbooks and command-oriented guidance that could be misapplied outside the intended read-only Colab workflow.
+
+Mitigation: Keep robot-control, DDS, ROS, SSH, SCP, tunneling, and robot-LAN actions out of Colab execution paths; treat risky local-host commands as quoted human-reviewed runbook text only.
+
+## Reference(s):
+
+- [Unitree G1 Colab IK](https://github.com/zack-dev-cm/unitree-g1-colab-ik)
+- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skills/unitree-hermes-colab)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports, JSON review artifacts, notebook or runner code, and quoted shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected outputs include unitree-hermes-report.md, unitree-hermes-review.json, AGENTS.md, and a flow visualization.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

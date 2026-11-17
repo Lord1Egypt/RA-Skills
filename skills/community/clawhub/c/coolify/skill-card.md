@@ -1,42 +1,59 @@
-## Description: <br>
-Manage Coolify deployments, applications, databases, and services via the Coolify API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Coolify deployments, applications, databases, and services via the Coolify API.
 
-## Publisher: <br>
-[visiongeist](https://clawhub.ai/user/visiongeist) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[visiongeist](https://clawhub.ai/user/visiongeist)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Coolify-hosted applications, databases, services, deployments, servers, projects, teams, backups, environment variables, SSH keys, and GitHub App integrations through API-backed commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate high-impact Coolify infrastructure resources, including deployments, databases, services, servers, projects, teams, backups, environment variables, SSH keys, and GitHub App integrations. <br>
-Mitigation: Use a least-privilege Coolify token and require explicit human confirmation before delete, stop, restart, deploy, backup, key, or environment-variable changes are executed. <br>
-Risk: The evidence security summary warns that the artifact encourages unsafe handling of private keys and secrets. <br>
-Mitigation: Avoid pasting secrets or private keys into commands; do not allow the agent to read private key files unless the user explicitly requests that exact operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Coolify skill page](https://clawhub.ai/visiongeist/coolify) <br>
-- [Coolify website](https://coolify.io) <br>
-- [Coolify documentation](https://coolify.io/docs/) <br>
-- [Coolify GitHub repository](https://github.com/coollabsio/coolify) <br>
+## Use Case:
 
+Developers and operations engineers use this skill to manage Coolify-hosted applications, databases, services, deployments, servers, projects, teams, SSH keys, GitHub Apps, and environment variables through the Coolify API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate against Coolify API resources and require COOLIFY_TOKEN.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.1.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can perform destructive production actions such as deletes, stops, restarts, deployment cancellation, and environment-variable changes.
+
+Mitigation: Use narrowly scoped Coolify tokens and require manual confirmation before delete, stop, restart, cancellation, or environment-variable mutation commands are executed.
+
+Risk: The skill can handle sensitive values such as API tokens, environment variables, SSH private keys, and GitHub App private keys.
+
+Mitigation: Avoid placing private keys or passwords directly in command arguments; prefer secure environment or configuration storage and review command logs for accidental secret exposure.
+
+Risk: A misconfigured API URL could send authorization tokens or management requests to an untrusted endpoint.
+
+Mitigation: Set COOLIFY_API_URL only to a trusted HTTPS Coolify Cloud or self-hosted Coolify endpoint.
+
+## Reference(s):
+
+- [Coolify Homepage](https://coolify.io)
+- [Coolify Documentation](https://coolify.io/docs/)
+- [Coolify GitHub Repository](https://github.com/coollabsio/coolify)
+- [ClawHub Coolify Skill](https://clawhub.ai/visiongeist/skills/coolify)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and structured JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires COOLIFY_TOKEN and a trusted Coolify API endpoint.]
+
+## Skill Version(s):
+
+2.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

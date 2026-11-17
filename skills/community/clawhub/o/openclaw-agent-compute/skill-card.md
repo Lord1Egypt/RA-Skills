@@ -1,44 +1,61 @@
-## Description: <br>
-Public HTTP client skill exposing compute.* tools by calling a private Compute Gateway over HTTPS. Includes a starter kit to run OpenClaw preconfigured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public HTTP client skill exposing compute.* tools by calling a private Compute Gateway over HTTPS. Includes a starter kit to run OpenClaw preconfigured.
 
-## Publisher: <br>
-[aleksandrkrivolap](https://clawhub.ai/user/aleksandrkrivolap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aleksandrkrivolap](https://clawhub.ai/user/aleksandrkrivolap)
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent call a private Compute Gateway for session management, command execution, usage lookup, and artifact operations over HTTPS. The bundled starter kit helps configure OpenClaw to use the compute gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad remote command execution through a private Compute Gateway. <br>
-Mitigation: Install only against a trusted, controlled gateway and require explicit approval for exec operations. <br>
-Risk: Artifact and session controls can upload, download, delete artifacts, or destroy compute sessions. <br>
-Mitigation: Use gateway-side path restrictions, command restrictions, least-privilege revocable API keys, logging, and usage limits. <br>
-Risk: The starter kit uses an overrideable OpenClaw image and draft configuration that are not fully pinned. <br>
-Mitigation: Pin the container image and confirm the OpenClaw config schema before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to let agents call a configured private Compute Gateway for session management, command execution, usage lookup, and artifact helper operations over HTTPS.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aleksandrkrivolap/openclaw-agent-compute) <br>
-- [README](README.md) <br>
-- [Starter kit README](starter-kit/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JavaScript code references, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MCP_COMPUTE_URL and MCP_COMPUTE_API_KEY for gateway access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: package.json and server release metadata) <br>
+Risk: The skill can trigger remote command execution through the configured Compute Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a trusted gateway, use a narrowly scoped and revocable API key, and require human confirmation or gateway-side policy for command execution.
+
+Risk: Artifact deletion and session destruction operations can remove remote state.
+
+Mitigation: Apply gateway-side authorization and confirmation policies for destructive operations.
+
+Risk: The starter kit uses an overrideable, unpinned OpenClaw image while the official image and startup command remain unconfirmed.
+
+Mitigation: Avoid the draft Docker starter kit in production until the image and command are pinned and verified.
+
+Risk: The configured gateway URL and API token control access to private compute resources.
+
+Mitigation: Use HTTPS-only gateway URLs and keep MCP_COMPUTE_API_KEY out of source control and logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aleksandrkrivolap/skills/openclaw-agent-compute)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript client code, shell commands, and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MCP_COMPUTE_URL and MCP_COMPUTE_API_KEY to call a trusted private Compute Gateway.]
+
+## Skill Version(s):
+
+0.1.7 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Build complete, modern multi-page React websites for local businesses (landscapers, restaurants, salons, plumbers, gyms, etc.). Use when a user asks to build or design a website for a local/small business using React. Handles project scaffolding (Vite + React + Tailwind CSS v3 + Framer Motion + React Router v6 + Lucide React), full design system, all 5 standard pages, image strategy, responsive layout, animations, and production build - all generated directly without requiring a coding agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds complete, modern multi-page React websites for local businesses using Vite, React, Tailwind CSS, React Router, Framer Motion, and Lucide React.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers, designers, and business operators use this skill to scaffold and customize a polished five-page React marketing website for a local or small business. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated projects may include npm dependencies and external image or font links that affect supply-chain and privacy posture. <br>
-Mitigation: Review dependencies and external links before publishing or deploying the generated site. <br>
-Risk: Demo business names, contact details, service descriptions, and images may be inappropriate for a real business site if left unchanged. <br>
-Mitigation: Replace all placeholder business content, contact information, and imagery before release. <br>
-Risk: The Vite preview server can remain running after local testing. <br>
-Mitigation: Stop the preview server when verification is complete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Business Types: Color Palettes & Image Packs](references/business-types.md) <br>
-- [Design System Reference](references/design-system.md) <br>
-- [Page Templates Reference](references/page-templates.md) <br>
+## Use Case:
 
+Developers and agents use this skill to scaffold and generate polished five-page React websites for local or small businesses. It supports common business categories with page templates, design guidance, image selection guidance, and production build verification.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated React, JSX, CSS, HTML, and configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Vite React project structure with five standard pages, reusable components, Tailwind configuration, styling, and build verification steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated local-business sites can include placeholder or unverified claims such as awards, reviews, statistics, licenses, contact details, and response-time promises.
+
+Mitigation: Before publishing, replace placeholder business details and verify all reviews, licenses, awards, statistics, and service claims against authoritative business records.
+
+Risk: The setup flow installs npm dependencies and includes a preview-server command that may bind beyond localhost if copied directly.
+
+Mitigation: Install in an isolated project environment, review and pin npm dependencies before running setup, and bind the development server to localhost unless remote access is intentional.
+
+Risk: The sample contact form can display success and privacy messaging without evidence of a connected backend or operational privacy process.
+
+Mitigation: Connect the contact form to a real backend and privacy process before launch, or remove success and privacy claims that the deployed site cannot support.
+
+## Reference(s):
+
+- [React Local Business Website Skill Page](https://clawhub.ai/maverick-software/skills/react-local-biz)
+- [Business Types: Color Palettes & Image Packs](artifact/references/business-types.md)
+- [Design System Reference](artifact/references/design-system.md)
+- [Page Templates Reference](artifact/references/page-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline bash commands and React/Tailwind file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a five-page Vite React site structure with reusable components, route configuration, responsive page templates, image guidance, and build verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

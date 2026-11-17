@@ -67,7 +67,7 @@ def generate_signature(access_key: str, secret_key: str) -> str:
     content = f"{access_key}|{uuid.uuid4()}|{int(time.time() * 1000)}"
     cipher = AES.new(sk_bytes, AES.MODE_CBC, iv=ak_bytes)
     encrypted = cipher.encrypt(pad(content.encode("utf-8"), AES.block_size))
-    return binascii.b2a_base64(encrypted, newline=False).decode("ascii")
+    return base64.b64encode(encrypted).decode("utf-8")
 
 
 def _post(

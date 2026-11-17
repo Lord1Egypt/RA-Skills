@@ -1,42 +1,57 @@
-## Description: <br>
-Analyze OpenClaw agent configuration and API usage patterns to identify cost-saving opportunities, diagnose inefficient heartbeat settings, estimate API spend, and generate recommendations to reduce LLM API costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Api Cost Optimizer helps OpenClaw operators estimate LLM API spend, diagnose heartbeat-driven waste, and generate cost-saving recommendations from local agent configuration and usage assumptions.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review OpenClaw configuration, estimate daily, weekly, and monthly API costs, diagnose heartbeat waste, and prioritize practical cost-saving changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts inspect local OpenClaw configuration and installed skill files to estimate API costs. <br>
-Mitigation: Run the scripts only in environments where local configuration inspection is acceptable, and review generated reports before sharing them. <br>
-Risk: Cost reports are estimates and may differ from actual provider billing. <br>
-Mitigation: Compare recommendations against provider cost logs before making billing or operational decisions. <br>
-Risk: The security guidance notes required tools such as python3 and bc, and flags that analyze.sh may need a small fix for an undefined tool-overhead variable. <br>
-Mitigation: Confirm required local tools are installed and test analyze.sh before relying on its full report output. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to estimate daily, weekly, monthly, and yearly LLM API costs, identify inefficient heartbeat settings, and prioritize model or configuration changes that may reduce spend.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kryzl19/api-cost-optimizer-kryzl19) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost estimates are based on local configuration analysis and user-supplied parameters, not live provider billing data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shell scripts handle user-controlled inputs and environment values in ways the security evidence flags as unsafe for untrusted use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the scripts before installation and run them only as a trusted local operator with normal numeric inputs.
+
+Risk: Cost reports are estimates based on configuration analysis and assumed usage patterns rather than actual provider billing records.
+
+Mitigation: Treat generated reports as planning guidance and compare them with provider billing logs before making financial decisions.
+
+Risk: Hostile environment or path values may affect script behavior.
+
+Mitigation: Avoid exposing the skill to untrusted parameters or hostile local environment/path values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/api-cost-optimizer-kryzl19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and terminal text with cost estimates, heartbeat diagnostics, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Estimates are based on configuration and assumed usage patterns, not live provider billing data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Huo15 Knowledge Base Enterprise helps agents ingest source materials, compile them into Markdown wiki entries, search and lint the knowledge base, and sync selected wiki articles to Odoo Knowledge with visibility controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Knowledge Base Enterprise helps agents build a Markdown knowledge base, compile raw materials into wiki articles, search and lint the wiki, and synchronize selected articles to Odoo Knowledge with visibility controls.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers and enterprise knowledge administrators use this skill to maintain a human-readable Markdown knowledge base and publish curated wiki articles into Odoo Knowledge with workspace, private, or department-level visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can synchronize local wiki content into a configured Odoo Knowledge instance, which may expose enterprise content if configuration or visibility settings are wrong. <br>
-Mitigation: Review the target Odoo URL, database, user ID, and visibility rules before export; run the Odoo export with dry-run first. <br>
-Risk: The bundled enterprise configuration contains credential-like fields and the skill documentation discusses storing credentials in Odoo Knowledge. <br>
-Mitigation: Replace bundled configuration before use, use a least-privilege Odoo account, and do not store passwords or API tokens in Odoo Knowledge unless the organization has approved that system for secrets. <br>
-Risk: The install-all-agents script initializes knowledge-base directories across every local OpenClaw agent. <br>
-Mitigation: Avoid running install-all-agents.sh unless broad local agent modification is intentional and reviewed. <br>
+## Use Case:
 
+Developers and enterprise knowledge-base maintainers use this skill to ingest source documents, ask an LLM to compile human-readable Markdown wiki entries, search or health-check the resulting wiki, and export reviewed articles to Odoo Knowledge with workspace, private, or department visibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/huo15-knowledge-base-enterprise) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jobzhao15) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON configuration, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local knowledge-base files and synchronize wiki content to a configured Odoo Knowledge instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The release includes a default Odoo credential in enterprise configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the bundled credential before use, rotate any matching credential in Odoo, and keep secrets out of ordinary knowledge-base articles.
+
+Risk: Odoo export can expose or overwrite knowledge-base articles.
+
+Mitigation: Run exports against a known Odoo target with --dry-run first, review the selected articles, and confirm visibility and department mappings before writing.
+
+Risk: LLM-generated wiki output may contain incorrect filenames, paths, or article content.
+
+Mitigation: Review generated Markdown, source links, and article bodies before indexing, exporting, or using the content as operational knowledge.
+
+Risk: Bulk activation across agents can spread configuration or knowledge-base state more broadly than intended.
+
+Mitigation: Activate only the intended agent environments and review per-agent data directories and configuration before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-knowledge-base-enterprise)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Markdown wiki files, prompt files, index files, health reports, and Odoo Knowledge articles when the corresponding scripts are run.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

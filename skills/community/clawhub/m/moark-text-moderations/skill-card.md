@@ -1,43 +1,59 @@
-## Description: <br>
-Perform text review on user-specified input text that may be inappropriate or offensive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform text review on user-specified input text that may be inappropriate or offensive.
 
-## Publisher: <br>
-[fchange](https://clawhub.ai/user/fchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fchange](https://clawhub.ai/user/fchange)
 
-## Use Case: <br>
-Developers and agent users use this skill to submit text for moderation with the Gitee AI moark-text-moderation model, then receive the moderation result and a brief markdown summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Moderated text is sent to the external Gitee AI service. <br>
-Mitigation: Avoid submitting secrets or regulated data unless Gitee AI's terms and data handling fit the intended use. <br>
-Risk: Passing the API key on the command line can expose it through shell history or process listings. <br>
-Mitigation: Prefer setting GITEEAI_API_KEY in the environment instead of using the --api-key argument. <br>
-Risk: The skill depends on the Python openai package at runtime. <br>
-Mitigation: Install dependencies in a trusted environment before running the bundled script. <br>
+## Use Case:
 
+Developers and agents use this skill to moderate user-provided text with the Gitee AI moderation API and present the moderation result with a brief summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fchange/moark-text-moderations) <br>
-- [Gitee AI API endpoint](https://ai.gitee.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with moderation result text or JSON extracted from command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GITEEAI_API_KEY and sends submitted text to Gitee AI for moderation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: User-provided text is sent to Gitee AI for moderation, which can expose sensitive or regulated content to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets or sensitive personal data unless authorized, and apply the organization's data handling policy before moderation.
+
+Risk: The API key can be provided on the command line, where it may be captured in shell history or process listings.
+
+Mitigation: Prefer GITEEAI_API_KEY from a protected environment or secret manager instead of passing --api-key.
+
+Risk: The artifact declares an unpinned openai dependency, which can change behavior in controlled environments.
+
+Mitigation: Pin and review the openai package version when deploying in production or regulated environments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/fchange/skills/moark-text-moderations)
+- [Publisher profile](https://clawhub.ai/user/fchange)
+- [Gitee AI API endpoint](https://ai.gitee.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with extracted moderation JSON from command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITEEAI_API_KEY or an --api-key argument and sends submitted text to Gitee AI for moderation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Read, write, append, and list local files in the session's working directory for agents that need to persist output, read inputs, or manage text, JSON, CSV, and Markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local File Manager reads, writes, appends, lists, creates, and deletes local files in a session working directory for text, JSON, CSV, and Markdown workflows.
 
-## Publisher: <br>
-[000sonic](https://clawhub.ai/user/000sonic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[000sonic](https://clawhub.ai/user/000sonic)
 
-## Use Case: <br>
-Developers, researchers, and automation agents use this skill to read local input files, save generated outputs, append logs, create directories, list workspace files, and perform basic local file operations within the session workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe shell execution and argument handling can make local file operations risky without review. <br>
-Mitigation: Install only in a disposable or tightly sandboxed workspace and replace the shell wrapper with safe argument handling and path validation before trusted use. <br>
-Risk: File-boundary claims are inconsistent, including logging behavior outside the workspace. <br>
-Mitigation: Keep logging inside the workspace or make it explicit opt-in, and require clear confirmation for destructive actions. <br>
+## Use Case:
 
+Developers and automation roles use this skill to persist generated outputs, read local inputs, append logs or results, and create Markdown, JSON, CSV, or text files within a session workspace.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/000sonic/local-file-manager-1-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration] <br>
-**Output Format:** [Plain text file contents, directory listings, and operation status or error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read, write, append, list, create directories, and delete files; supports dry-run behavior and file-size configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: The implementation can run unintended shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use only in a disposable or tightly sandboxed workspace until shell-string execution is replaced with argument-safe execution.
+
+Risk: Paths can break the promised workspace boundary.
+
+Mitigation: Require package-relative script resolution and real cwd containment before use in a trusted workspace.
+
+Risk: Home-directory logging and destructive file actions may create operational exposure.
+
+Mitigation: Document or remove home-directory logging, review delete behavior, and prefer dry-run validation before allowing destructive actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/000sonic/skills/local-file-manager-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Code, Shell commands, Configuration]
+
+**Output Format:** [Plain text command results and local file contents; written files may be text, Markdown, JSON, CSV, code, shell commands, or configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write, append, list, create directories, delete files, and return operation status or errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

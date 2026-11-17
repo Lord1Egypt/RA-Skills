@@ -1,40 +1,57 @@
-## Description: <br>
-Send immediate voice call reminders or schedule future calls via DoNotify. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send immediate voice call reminders or schedule future calls via DoNotify.
 
-## Publisher: <br>
-[MicahelE](https://clawhub.ai/user/MicahelE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[micahele](https://clawhub.ai/user/micahele)
 
-## Use Case: <br>
-External users and agents use this skill to check DoNotify usage, place immediate voice-call reminders, and schedule future reminder calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends reminder text and call scheduling details to DoNotify, and those details may be spoken aloud in a phone call. <br>
-Mitigation: Confirm the date, time, timezone, title, and spoken description with the user before placing or scheduling a call. <br>
-Risk: The skill requires a DoNotify API token and endpoint URL. <br>
-Mitigation: Keep DONOTIFY_API_TOKEN private and set DONOTIFY_URL only to the intended DoNotify endpoint. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MicahelE/donotify-voice-call-reminder) <br>
-- [DoNotify OpenClaw homepage](https://donotifys.com/openclaw) <br>
+## Use Case:
 
+External users and agents use this skill to check DoNotify usage, place immediate reminder calls, or schedule future voice call reminders through the DoNotify API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with HTTP request details and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DONOTIFY_API_TOKEN and DONOTIFY_URL; reminder title and description may be spoken in voice calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place real phone calls, including immediate calls.
+
+Mitigation: Confirm call requests before execution, especially immediate calls, and check usage and phone-number status before placing a call.
+
+Risk: Reminder titles and descriptions are sent to DoNotify and may be spoken aloud during calls.
+
+Mitigation: Avoid sending sensitive content in reminder text and keep call titles concise.
+
+Risk: A configurable API origin receives the bearer token and reminder content.
+
+Mitigation: Use only a trusted DoNotify API URL, prefer the official HTTPS service URL, and use a narrowly scoped revocable token.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/micahele/skills/donotify-voice-call-reminder)
+- [DoNotify OpenClaw Page](https://donotifys.com/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses DONOTIFY_API_TOKEN and DONOTIFY_URL environment variables; reminder title and description may be sent to DoNotify and spoken aloud.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

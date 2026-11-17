@@ -1,43 +1,54 @@
-## Description: <br>
-Remove or replace a video background with a solid color via WeryAI for an existing public HTTPS video URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove or replace a video background with a solid color via WeryAI (video-background-remove). Use when the user wants background removal or a flat-color backdrop on an HTTPS video, not text-to-video.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Developers and content operators use this skill to validate, submit, and poll a WeryAI background-removal job for an existing public HTTPS video, optionally choosing a flat background color. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ClawScan reports a suspicious verdict for the release context because a review helper can run tests, inspect repository diffs, and share diffs with fallback reviewer tools. <br>
-Mitigation: Install only after review; avoid full-access review mode and disable automatic fallback reviewers when working with private code or secrets. <br>
-Risk: Paid WeryAI processing is not idempotent, so repeated submit or wait calls may consume credits. <br>
-Mitigation: Use dry-run first and require explicit user confirmation for the video URL and any non-default background color before submitting. <br>
-Risk: The workflow requires WERYAI_API_KEY and sends a public HTTPS video URL to WeryAI. <br>
-Mitigation: Keep the API key only in the runtime environment, never write it to files, and use only public HTTPS media URLs intended for this external processing. <br>
+## Use Case:
 
+Developers and content automation users use this skill to remove or replace the background of an existing public HTTPS video through WeryAI. It is scoped to the background-remove workflow and requires confirmation before paid processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-background-remove) <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Markdown] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON CLI responses; completed videos are shared as Markdown links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access to WeryAI, and a public https:// video_url; paid submit and wait calls require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Paid live runs send the request body and video URL to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the HTTPS video URL and selected background color before running submit or wait, and avoid including secrets or private metadata in the JSON payload.
+
+Risk: Undeclared JSON fields may be forwarded to the external API.
+
+Mitigation: Inspect payloads before live runs and include only the documented video_url and background_color fields.
+
+## Reference(s):
+
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-background-remove)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and final video links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, and a public HTTPS video URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,45 @@
+{
+  "name": "skills-summarize-audit-skill",
+  "version": "9.2.2",
+  "description": "DeepSeek Harness bundle that registers the skills-summarize-audit skill pack on ctx.skills.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "SKILL.md",
+    "references",
+    "scripts/*.py",
+    "agents",
+    "platforms",
+    "config.yaml",
+    "requirements.txt",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "VERSION"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/gtbwpkwjnb-alt/skills-summarize-audit-skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtbwpkwjnb-alt/skills-summarize-audit-skill.git"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "skills-summarize-audit",
+    "agent-skills",
+    "audit",
+    "skill-manager"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

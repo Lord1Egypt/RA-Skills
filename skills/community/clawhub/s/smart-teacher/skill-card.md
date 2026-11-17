@@ -1,40 +1,54 @@
-## Description: <br>
-Expert education planning tool. Generate lesson plans, curriculum maps, study schedules, assessments, and learning objectives aligned to Bloom's taxonomy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert education planning tool. Generate lesson plans, curriculum maps, study schedules, assessments, and learning objectives aligned to Bloom's taxonomy.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-Educators, tutors, and agents supporting education workflows use this skill to draft lesson plans, curriculum maps, study schedules, rubrics, assessments, and Bloom's taxonomy learning objectives for K-12 topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive student information while generating classroom materials. <br>
-Mitigation: Avoid entering sensitive student data unless it is appropriate under local privacy requirements. <br>
-Risk: Common education phrases may invoke the skill in broad classroom-planning conversations. <br>
-Mitigation: Review generated lesson plans, schedules, rubrics, and assessments before using them with learners. <br>
+## Use Case:
 
+Educators, tutors, curriculum planners, and learning-support agents use this skill to draft lesson plans, curriculum maps, study schedules, learning objectives, rubrics, and assessments for K-12 topics.
 
-## Reference(s): <br>
-- [Education Planning Reference](references/education_methods.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style text printed by a Python CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline generation with no API keys or external service dependencies indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad education trigger phrases may activate the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants education-planning output before running the local planner or presenting generated materials.
+
+Risk: Generated lesson plans, assessments, rubrics, and schedules may be generic, incomplete, or misaligned with local standards or learner needs.
+
+Mitigation: Have a qualified educator review and adapt generated materials before classroom or learner-facing use.
+
+## Reference(s):
+
+- [Education Planning Reference](references/education_methods.md)
+- [ClawHub Skill Page](https://clawhub.ai/raychanpmp/skills/smart-teacher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style educational planning text and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local CLI output for education-planning templates; no observed network, credential, persistence, or destructive behavior in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

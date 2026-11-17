@@ -1,6 +1,8 @@
 """Testes de integração (requerem conexão com a API real)."""
-import pytest
+
 from datetime import date, timedelta
+
+import pytest
 
 from camara_client import get_camara_client
 
@@ -15,15 +17,15 @@ class TestCamaraIntegration:
         client = get_camara_client()
         try:
             deputados = await client.lista_deputados()
-            
+
             assert isinstance(deputados, list)
             assert len(deputados) > 400  # Brasil tem 513 deputados
-            
+
             # Verifica estrutura
             deputado = deputados[0]
-            assert 'id' in deputado
-            assert 'nome' in deputado
-            assert 'siglaPartido' in deputado
+            assert "id" in deputado
+            assert "nome" in deputado
+            assert "siglaPartido" in deputado
         finally:
             await client.close()
 
@@ -32,17 +34,13 @@ class TestCamaraIntegration:
         client = get_camara_client()
         try:
             # Busca específica para evitar paginação excessiva
-            proposicoes = await client.pesquisar_proposicoes(
-                sigla_tipo="PL",
-                ano=2024,
-                numero="1"
-            )
+            proposicoes = await client.pesquisar_proposicoes(sigla_tipo="PL", ano=2024, numero="1")
 
             assert isinstance(proposicoes, list)
             if len(proposicoes) > 0:
                 prop = proposicoes[0]
-                assert 'siglaTipo' in prop
-                assert prop['siglaTipo'] == "PL"
+                assert "siglaTipo" in prop
+                assert prop["siglaTipo"] == "PL"
         finally:
             await client.close()
 
@@ -51,7 +49,7 @@ class TestCamaraIntegration:
         client = get_camara_client()
         try:
             eventos = await client.get_eventos_dia()
-            
+
             assert isinstance(eventos, list)
             # Lista pode estar vazia em dias sem eventos
         finally:
@@ -63,9 +61,9 @@ class TestCamaraIntegration:
         try:
             fim = date.today()
             inicio = fim - timedelta(days=30)
-            
+
             votacoes = await client.get_votacoes_periodo(inicio, fim)
-            
+
             assert isinstance(votacoes, list)
             # Pode estar vazio se não houver votações no período
         finally:
@@ -76,10 +74,24 @@ class TestCamaraIntegration:
         client = get_camara_client()
         try:
             resultado = await client.buscar_deputado_por_nome("Lula")
-            
+
             assert isinstance(resultado, list)
             # Verifica se encontrou algo
             if len(resultado) > 0:
-                assert any("lula" in dep['nome'].lower() for dep in resultado)
+                assert any("lula" in dep["nome"].lower() for dep in resultado)
+        finally:
+            await client.close()
+
+    async def test_reference_and_group_contracts_real(self):
+        """Cobre rotas que já divergiram da documentação do skill."""
+        client = get_camara_client()
+        try:
+            situacoes = await client.get_referencias_situacao_proposicao()
+            temas = await client.get_referencias_temas()
+            grupos = await client.lista_grupos()
+
+            assert situacoes and "cod" in situacoes[0]
+            assert temas and "cod" in temas[0]
+            assert isinstance(grupos, list)
         finally:
             await client.close()

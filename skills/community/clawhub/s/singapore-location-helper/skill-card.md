@@ -1,43 +1,57 @@
-## Description: <br>
-新加坡租房选址专家：精确到楼栋的推荐、通勤分析、避坑指南，帮你找到最适合的居住区域。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Singapore Location Helper provides Singapore housing-area recommendations, commute analysis, viewing checklists, and location-specific rental guidance.
 
-## Publisher: <br>
-[gisellekokkok](https://clawhub.ai/user/gisellekokkok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gisellekokkok](https://clawhub.ai/user/gisellekokkok)
 
-## Use Case: <br>
-External users such as people relocating to Singapore, students, families, and current residents use this skill to compare housing areas, commute tradeoffs, amenities, viewing checklists, and building-level rental options. <br>
-
-### Deployment Geography for Use: <br>
-Singapore <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rental prices, commute times, and neighborhood conditions may change after publication. <br>
-Mitigation: Verify recommendations against current local listings, transport data, and in-person checks before making housing decisions. <br>
-Risk: The README mentions a paid premium consultation while metadata lists the skill pricing as free. <br>
-Mitigation: Confirm any paid service terms separately before relying on pricing claims. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/gisellekokkok/singapore-location-helper) <br>
-- [Project homepage](https://github.com/gisellekokkok/WhereToLeave_SG) <br>
-- [PropertyGuru](https://www.propertyguru.com.sg) <br>
-- [99.co](https://www.99.co) <br>
-- [Urban Redevelopment Authority](https://www.ura.gov.sg) <br>
+## Use Case:
 
+External users, including students, relocating workers, families, and Singapore residents, use this skill to compare neighborhoods and buildings for rental decisions. It helps evaluate budget fit, commute convenience, amenities, viewing risks, and practical tradeoffs before choosing a place to live.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides informational housing recommendations, commute and amenity comparisons, and viewing checklists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Singapore
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Rental, commute, amenity, and development-planning information can become stale or vary by listing and time of day.
+
+Mitigation: Check recommendations against current rental sites, official transport information, and relevant planning sources before relying on them for a housing decision.
+
+Risk: The skill is written primarily for Chinese-speaking users, which may limit accessibility for other users or reviewers.
+
+Mitigation: Use a bilingual review or translation step when deploying it for non-Chinese-speaking audiences.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gisellekokkok/skills/singapore-location-helper)
+- [Project homepage](https://github.com/gisellekokkok/WhereToLeave_SG)
+- [PropertyGuru Singapore](https://www.propertyguru.com.sg)
+- [99.co Singapore](https://www.99.co)
+- [EdgeProp Singapore](https://www.edgeprop.sg)
+- [Urban Redevelopment Authority](https://www.ura.gov.sg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, checklists, comparison tables, and recommendation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include location comparisons, commute notes, rental caveats, and viewing checklists; figures should be checked against current market and transport sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

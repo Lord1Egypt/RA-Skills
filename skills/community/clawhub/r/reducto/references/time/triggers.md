@@ -1,0 +1,26 @@
+# Time Trigger Reference
+
+> This is a Maton platform event-source reference, shared verbatim by every Maton skill. It describes the events the `time` source (schedules) can emit and how to scope them; it does not describe, and does not widen, the app this skill is about, and this skill configures no trigger from this source on its own. The trigger this skill documents for its own use is the one in its Triggers section. Use this file only when the user has connected that source and asks, by name, to act on its events.
+
+## Event Types
+
+- [`schedule.elapsed`](#scheduleelapsed)
+
+---
+
+## `schedule.elapsed`
+
+### Parameters
+
+- `cron_expression` (string, required): A standard 5-field cron expression (`minute hour day-of-month month day-of-week`). For example `0 9 * * *` fires daily at 9:00, `*/15 * * * *` every 15 minutes, and `0 9 * * 1-5` at 9:00 on weekdays.
+- `timezone` (string, required): IANA timezone name the cron expression is evaluated in (e.g. `America/Los_Angeles`, `UTC`).
+
+### Sample Payload
+
+```json
+{
+  "scheduled_for": "2026-06-19T16:00:00Z",
+  "cron_expression": "0 9 * * *",
+  "timezone": "America/Los_Angeles"
+}
+```

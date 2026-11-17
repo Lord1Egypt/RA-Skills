@@ -1,42 +1,61 @@
-## Description: <br>
-Interact with the user's Ledgi personal finance data. Use when the user asks about their accounts, balances, net worth, holdings, investments, ISA allowances, pensions, snapshots, or wants to add/update financial data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with a user's Ledgi personal finance data for accounts, balances, net worth, holdings, investments, ISA allowances, pensions, snapshots, and financial record updates.
 
-## Publisher: <br>
-[nelsongallardo](https://clawhub.ai/user/nelsongallardo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nelsongallardo](https://clawhub.ai/user/nelsongallardo)
 
-## Use Case: <br>
-Individuals and agents use this skill to query Ledgi personal finance records, summarize accounts, holdings, net worth, ISA usage, and snapshots, and prepare account, holding, snapshot, or ISA deposit updates through the Ledgi CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change sensitive personal finance records. <br>
-Mitigation: Use a limited-scope API key when available, and require the agent to summarize and obtain explicit approval before running any write command. <br>
-Risk: The documented installation path runs a remote installer script. <br>
-Mitigation: Review the installer source and install only from a trusted Ledgi source before using the skill. <br>
+## Use Case:
 
+External users use this skill to let an agent read and maintain their Ledgi personal finance records, including accounts, holdings, net worth snapshots, and ISA deposits.
 
-## Reference(s): <br>
-- [Ledgi skill page](https://clawhub.ai/nelsongallardo/ledgi) <br>
-- [Ledgi CLI command reference](artifact/commands.md) <br>
-- [Ledgi bulk operation schemas](artifact/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary JSON files for bulk account or holding updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill documents a remote curl-to-bash installation flow for the Ledgi CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the Ledgi CLI through a pinned, verifiable release instead of running the remote installation script directly.
+
+Risk: API keys and personal financial data could be exposed through command lines or shared logs.
+
+Mitigation: Use the narrowest available API scopes, prefer environment or login-based credentials, and avoid placing API keys in command arguments or shared logs.
+
+Risk: Write commands can create or update persistent financial records such as accounts, holdings, snapshots, and ISA deposits.
+
+Mitigation: Require confirmation of the exact write action and target data before running modification commands, and use external identifiers for idempotent account and holding upserts.
+
+## Reference(s):
+
+- [Ledgi Skill Page](https://clawhub.ai/nelsongallardo/skills/ledgi)
+- [Ledgi Publisher Profile](https://clawhub.ai/user/nelsongallardo)
+- [Ledgi CLI Command Reference](artifact/commands.md)
+- [JSON Schemas for Bulk Operations](artifact/schemas.md)
+- [Ledgi CLI Install Script](https://raw.githubusercontent.com/LedgiApp/ledgi-cli/main/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text summaries with Ledgi CLI commands and JSON configuration files for bulk operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands return JSON by default; table output is recommended when presenting results to users.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

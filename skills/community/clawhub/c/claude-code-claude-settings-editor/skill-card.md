@@ -1,38 +1,53 @@
-## Description: <br>
-Use when the user wants to update Claude settings, hooks, permissions, MCP server toggles, or other JSON config safely and with scope awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to update Claude settings, hooks, permissions, MCP server toggles, or other JSON config safely and with scope awareness.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to make targeted edits to Claude settings, local overrides, hooks, permissions, plugins, and MCP server configuration while preserving valid JSON and respecting settings scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Settings, hooks, permissions, plugins, and MCP server changes can persist and alter future Claude behavior. <br>
-Mitigation: Review the exact JSON diff, use the narrowest settings scope that solves the problem, and treat broad permission or automation-hook changes as sensitive. <br>
+## Use Case:
 
+Developers and agent users use this skill to make scoped Claude settings, permission, hook, and MCP configuration changes while preserving valid JSON and unrelated settings.
 
-## Reference(s): <br>
-- [Claude Settings Editor on ClawHub](https://clawhub.ai/wimi321/claude-code-claude-settings-editor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code] <br>
-**Output Format:** [Markdown guidance with JSON configuration edits or shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on minimal, scope-aware settings changes and asks the agent to explain risky configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Permission widening or hook automation can persist and affect future agent runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed permission and hook changes before applying them, especially broad automation or access changes.
+
+Risk: Incorrect settings edits can break Claude configuration or change behavior at the wrong scope.
+
+Mitigation: Read the current settings file first, apply the smallest valid JSON change, and verify the intended user, project, or local scope.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wimi321/skills/claude-code-claude-settings-editor)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code]
+
+**Output Format:** [Markdown with JSON snippets and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include explanations of settings scope, precedence, and risky configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1350 @@
+snapshot_date: 2026-11-02 06:21
+base_url: https://yce-api-01.makeupar.com
+credit:
+  balance_path: /s2s/v1.0/client/credit
+  history_path: /s2s/v1.0/client/credit/history
+  feature_cost_path: /s2s/v2.0/credit/feature-cost
+  api_spendable_prefix: Api
+features:
+  face-attr-analysis:
+    api_name: AI Face Attributes & Ratio Analyzer
+    version: v2.0
+    task_path: /s2s/v2.0/task/face-attr-analysis
+    doc: https://docs.perfectcorp.com/reference/ai_face_analyzer.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      required:
+      - features
+      properties:
+        face_angle_strictness_level:
+          type: string
+          description: "The strictness level of face angle detection (pitch, yaw, roll).\nA stricter level ensures more accurate face attribute results.\nDefault is 'high'.\noptoins:\n  - strict: pitch <= 4 degrees, yaw <= 6 degrees, roll <= 4 degrees\n  - high: pitch, yaw, roll <= 10 degrees\n  - medium: pitch, yaw, roll <= 15 degrees\n  - low: pitch, yaw, roll <= 20 degrees\n  - flexible: pitch, yaw, roll <= 30 degrees\n"
+          enum:
+          - strict
+          - high
+          - medium
+          - low
+          - flexible
+          example: high
+        features:
+          description: "AI Face Analysis categories\n* Face Analysis\n  - FACE: faceShape\n  - EYES: eyeShape eyeSize eyeAngle eyeDistance eyelid\n  - BROWS: eyebrowShape eyebrowThickness eyebrowDistance eyebrowShortness\n  - LIPS: lipShape\n  - NOSE: noseWidth noseLength\n  - CHEEKBONES: cheekbones\n  - AGE & GENDER: age gender\n  - COLORS: eyeColor hairColor eyebrowColor lipColor\n\n* Facial Ratios\n  - horizontalThird\n  - verticalFifth\n  - faceAspectRatio\n  - eyeAspectRatio\n  - eyebrowPosition\n  - eyebrowArch\n  - eyeHeightToEyebrowDistance\n  - noseAspectRatio\n  - noseWidthToMouthWidth\n  - noseToLipToChin\n  - upperLipToLowerLip\n"
+          type: array
+          items:
+            type: string
+            enum:
+            - eyeShape
+            - eyeSize
+            - eyeAngle
+            - eyeDistance
+            - eyelid
+            - eyebrowShape
+            - eyebrowThickness
+            - eyebrowDistance
+            - eyebrowShortness
+            - cheekbones
+            - faceShape
+            - lipShape
+            - noseWidth
+            - noseLength
+            - age
+            - gender
+            - eyeColor
+            - lipColor
+            - eyebrowColor
+            - hairColor
+            - horizontalThird
+            - verticalFifth
+            - faceAspectRatio
+            - eyeAspectRatio
+            - eyebrowPosition
+            - eyebrowArch
+            - eyeHeightToEyebrowDistance
+            - noseAspectRatio
+            - noseWidthToMouthWidth
+            - noseToLipToChin
+            - upperLipToLowerLip
+  skin-tone-analysis:
+    api_name: AI Facial Color Tones Analyzer
+    version: v2.0
+    task_path: /s2s/v2.0/task/skin-tone-analysis
+    doc: https://docs.perfectcorp.com/reference/ai_skin_tone_analysis.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      properties:
+        face_angle_strictness_level:
+          type: string
+          description: "The strictness level of face angle detection (pitch, yaw, roll).\nA stricter level ensures more accurate face attribute results.\nDefault is 'high'.\noptoins:\n  - strict: pitch <= 4 degrees, yaw <= 6 degrees, roll <= 4 degrees\n  - high: pitch, yaw, roll <= 10 degrees\n  - medium: pitch, yaw, roll <= 15 degrees\n  - low: pitch, yaw, roll <= 20 degrees\n  - flexible: pitch, yaw, roll <= 30 degrees\n"
+          enum:
+          - strict
+          - high
+          - medium
+          - low
+          - flexible
+          example: high
+  makeup-vto:
+    api_name: AI Makeup Virtual Try-On
+    version: v2.0
+    task_path: /s2s/v2.0/task/makeup-vto
+    doc: https://docs.perfectcorp.com/reference/makeup_vto.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      required:
+      - effects
+      properties:
+        version:
+          type: string
+          description: 'Version of the makeup effect specification. Defaults to `"1.0"` unless otherwise specified.
+
+            '
+          default: '1.0'
+          example: '1.0'
+        effects:
+          type: array
+          description: 'Array of makeup effects to apply. Each effect object MUST specify a `category` and match the schema for that makeup type.
+
+            '
+          example:
+          - category: skin_smooth
+            skinSmoothStrength: 55
+            skinSmoothColorIntensity: 45
+          - category: blush
+            pattern:
+              name: 2colors1
+            palettes:
+            - color: '#e19f9f'
+              texture: matte
+              colorIntensity: 60
+            - color: '#c98a8a'
+              texture: satin
+              glowStrength: 40
+              colorIntensity: 70
+          - category: lip_color
+            shape:
+              name: plump
+            morphology:
+              fullness: 30
+              wrinkless: 25
+            style:
+              type: full
+            palettes:
+            - color: '#e11c43'
+              texture: gloss
+              colorIntensity: 80
+              gloss: 75
+          items:
+            anyOf:
+            - type: object
+              description: 'Controls the AI-generated smoothing applied to the skin. If no skin_smooth effect is provided, the system will automatically apply a smoothing strength of 50 for realistic blending.
+
+                '
+              required:
+              - category
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - skin_smooth
+                  description: 'Identifies this effect as a skin smoothing effect. Must always be "skin_smooth".
+
+                    '
+                skinSmoothStrength:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                  default: 50
+                  description: 'Strength of smoothing applied to overall skin texture. Higher values result in softer, more airbrushed skin appearance.
+
+                    '
+                skinSmoothColorIntensity:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                  default: 50
+                  description: 'Intensity of color blending applied during smoothing. Helps unify skin tones and reduce color inconsistency.
+
+                    '
+              example:
+                category: skin_smooth
+                skinSmoothStrength: 50
+                skinSmoothColorIntensity: 50
+            - type: object
+              description: 'Applies blush to the cheeks using predefined patterns and customizable color palettes. Pattern names must correspond to labels from the official blush.json pattern catalog.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - blush
+                  description: 'Identifies this effect as a blush effect. Must always be "blush".
+
+                    '
+                pattern:
+                  type: object
+                  description: 'Defines how the blush is placed on the face. Each pattern corresponds to a face shape and layout from blush.json.
+
+                    '
+                  required:
+                  - name
+                  properties:
+                    name:
+                      type: string
+                      description: 'Name of the blush pattern. Must be equal to a `label` from the blush.json pattern catalog.
+
+                        '
+                      example: 1color1
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'List of color palette entries. The number of palettes required depends on the `colorNum` field defined in the selected blush pattern.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - texture
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Primary blush color in hex format (#RRGGBB). Used as the dominant pigment for the blush application.
+
+                          '
+                        pattern: ^#?[0-9A-Fa-f]{6}$
+                      texture:
+                        type: string
+                        enum:
+                        - matte
+                        - satin
+                        - shimmer
+                        description: "Texture of the blush:\n  - matte: pure pigment, no shine\n  - satin: soft glow, requires glowStrength\n  - shimmer: sparkly or luminous, requires shimmer parameters\n"
+                      glowStrength:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Glow intensity for satin blush textures. Required when texture = "satin" or "shimmer".
+
+                          '
+                      shimmerColor:
+                        type: string
+                        description: 'Color of shimmer particles. Required when texture = "shimmer".
+
+                          '
+                      shimmerDensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Density of shimmer particles in the blush application. Required when texture = "shimmer".
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Strength of the blush color relative to the base pigment.
+
+                          '
+              example:
+                category: blush
+                pattern:
+                  name: 1color1
+                palettes:
+                - color: '#ff7777'
+                  texture: matte
+                  colorIntensity: 60
+            - type: object
+              description: 'Applies bronzer to warm up skin tone and add sun-kissed contours. Pattern names must match bronzer.json entries.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - bronzer
+                  description: 'Identifies this effect as a bronzer effect. Must always be "bronzer".
+
+                    '
+                pattern:
+                  type: object
+                  required:
+                  - name
+                  description: 'Defines the bronzer application layout. Pattern name must match a `label` in bronzer.json.
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      example: Bronzer1
+                      description: 'Name of the bronzer pattern from the bronzer.json catalog.
+
+                        '
+                palettes:
+                  type: array
+                  description: 'The bronzer palette contains pigment color and intensity controls.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Bronzer color in hex format (#RRGGBB).
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Intensity of bronzer pigmentation.
+
+                          '
+              example:
+                category: bronzer
+                pattern:
+                  name: Bronzer1
+                palettes:
+                - color: '#c08050'
+                  colorIntensity: 50
+            - type: object
+              description: 'Adds concealer for neutralizing blemishes, evening skin tone, and brightening under-eye regions. Concealer does not use a pattern — only pigment and intensity controls. All palette fields are required to ensure consistent behavior across face zones.
+
+                '
+              required:
+              - category
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - concealer
+                  description: 'Identifies this effect as a concealer effect. Must always be "concealer".
+
+                    '
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'One or more concealer palettes defining color and intensity properties. The same palette is applied to relevant facial areas, such as under-eye, forehead, and chin correction zones.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - colorIntensity
+                    - colorUnderEyeIntensity
+                    - coverageLevel
+                    properties:
+                      color:
+                        type: string
+                        description: 'Concealer shade in hex RGB format (#RRGGBB). Should typically match or slightly brighten the skin tone.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'General concealer pigmentation strength applied across the face.
+
+                          '
+                      colorUnderEyeIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Specific pigmentation control for the under-eye region. Helps brighten dark circles without over-applying to other zones.
+
+                          '
+                      coverageLevel:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Determines opacity of concealer coverage. Higher values hide more discoloration or blemishes.
+
+                          '
+              example:
+                category: concealer
+                palettes:
+                - color: '#e6c7a8'
+                  colorIntensity: 50
+                  colorUnderEyeIntensity: 50
+                  coverageLevel: 60
+            - type: object
+              description: 'Defines contouring for facial sculpting using patterns tailored to specific face shapes. Contour patterns determine highlight/shadow placement, while palettes control the contour shade.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - contour
+                  description: 'Identifies this effect as a contour effect. Must always be "contour".
+
+                    '
+                pattern:
+                  type: object
+                  required:
+                  - name
+                  description: 'Defines where contour shadowing is applied on the face. Must use a pattern name defined in contour.json (e.g., HeartFace2, OvalFace6).
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      description: 'Name of the contour pattern. Must be equal to a `label` from contour.json.
+
+                        '
+                      example: OvalFace6
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Defines the pigment used for contouring. Usually a cool-tone or neutral shade darker than foundation.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Contour pigment color in #RRGGBB hex format.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Strength of contour pigmentation. Higher values result in deeper shadows.
+
+                          '
+              example:
+                category: contour
+                pattern:
+                  name: OvalFace6
+                palettes:
+                - color: '#8a5b3e'
+                  colorIntensity: 55
+            - type: object
+              description: 'Shapes and colors the eyebrows using customizable geometry and color palettes. When `pattern.type = shape`, the pattern defines the brow geometry (arch, curvature, thickness). When `pattern.type = color`, only pigment changes are applied.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - eyebrows
+                  description: 'Identifies this effect as an eyebrow styling effect. Must always be "eyebrows".
+
+                    '
+                pattern:
+                  type: object
+                  description: 'This setting defines the eyebrow pattern mode, which can either adjust the shape or apply color only. Pattern names must match the labels in eyebrows.json when required.
+
+                    '
+                  required:
+                  - type
+                  oneOf:
+                  - title: ShapePattern
+                    description: Shape-based eyebrow styling (geometry + optional color).
+                    required:
+                    - name
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - shape
+                        description: Use customized eyebrow pattern shape
+                      name:
+                        type: string
+                        description: 'Name of the eyebrow shape pattern. Must match a `label` from eyebrows.json.
+
+                          '
+                        example: SoftArch1
+                      curvature:
+                        type: integer
+                        minimum: -100
+                        maximum: 100
+                        description: 'Adjusts how curved the brow is. Negative = flatter / straighter, positive = more curved.
+
+                          '
+                      thickness:
+                        type: integer
+                        minimum: -100
+                        maximum: 100
+                        description: 'Controls eyebrow thickness adjustment relative to the detected brow. Positive = thicker, negative = thinner.
+
+                          '
+                      definition:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Sharpness and clarity of the brows. Higher values increase brow edge definition for a cleaner look.
+
+                          '
+                  - title: ColorPattern
+                    description: Color-only eyebrow styling (no geometry change).
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - color
+                        description: Use user's original eyebrow shape
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Eyebrow color palettes. Each palette controls pigment and optional shimmer effects (for shimmer textures only).
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - colorIntensity
+                    - texture
+                    properties:
+                      color:
+                        type: string
+                        description: 'Eyebrow pigment color in #RRGGBB format.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Pigmentation strength used when applying eyebrow color.
+
+                          '
+                      texture:
+                        type: string
+                        enum:
+                        - matte
+                        - shimmer
+                        description: 'Brow pigment texture style. Shimmer adds reflective highlights to brow hairs.
+
+                          '
+                      shimmerColor:
+                        type: string
+                        description: 'Shimmer color applied when texture = shimmer.
+
+                          '
+                      shimmerIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Strength of shimmer glow. Required only if texture = shimmer.
+
+                          '
+                      shimmerSize:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Size of shimmer particles. Required for shimmer textures.
+
+                          '
+                      shimmerDensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Density of shimmer particles in the brow. Required for shimmer textures.
+
+                          '
+              example:
+                category: eyebrows
+                pattern:
+                  type: shape
+                  name: SoftArch1
+                  curvature: 10
+                  thickness: 5
+                  definition: 50
+                palettes:
+                - color: '#3b2f2f'
+                  colorIntensity: 70
+                  texture: matte
+            - type: object
+              description: 'Applies eyeliner using customizable patterns and pigment settings. Patterns define the eyeliner layout (e.g., Arabic shapes, winged styles), while palettes specify color, texture, shimmer/metallic effects, and intensity.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - eye_liner
+                  description: 'Identifies this effect as an eyeliner effect. Must always be "eye_liner".
+
+                    '
+                pattern:
+                  type: object
+                  required:
+                  - name
+                  description: 'Defines the eyeliner shape and placement. Pattern names must match labels from eyeliner.json.
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      description: 'Name of the eyeliner pattern. Must be equal to a label from eyeliner.json.
+
+                        '
+                      example: Arabic3
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Eyeliner color palette entries. Each palette controls pigment color, shimmer/metallic effects, and overall intensity. More palettes are used when the selected eyeliner pattern requires multiple colors.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - texture
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Eyeliner pigment color in #RRGGBB format.
+
+                          '
+                      texture:
+                        type: string
+                        enum:
+                        - matte
+                        - shimmer
+                        - metallic
+                        description: 'Eyeliner texture finish specifies the look of the liner, whether it''s matte for a flat opaque effect, shimmer for a sparkling reflective finish (with shimmer fields), or metallic for a glossy metallic sheen (requiring shimmer fields and metallic intensity).
+
+                          '
+                      shimmerColor:
+                        type: string
+                        description: 'Color used for shimmer or metallic reflective particles. Required if texture is shimmer or metallic.
+
+                          '
+                      shimmerIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Strength of reflective sparkle. Required when texture is shimmer or metallic.
+
+                          '
+                      metallicIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Metallic reflectivity level. Required when texture = metallic.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Pigmentation strength for the eyeliner color.
+
+                          '
+              example:
+                category: eye_liner
+                pattern:
+                  name: Arabic3
+                palettes:
+                - color: '#000000'
+                  texture: matte
+                  colorIntensity: 80
+            - type: object
+              description: 'Applies eyeshadow with customizable multi-color palettes and textures. Eyeshadow patterns define layout (e.g., 1 to 5 colors), while palettes specify pigmentation and shimmer/metallic properties.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - eye_shadow
+                  description: 'Identifies this effect as an eyeshadow effect. Must always be "eye_shadow".
+
+                    '
+                pattern:
+                  type: object
+                  required:
+                  - name
+                  description: 'Defines the eyeshadow placement pattern. Must match a `label` in eyeshadow.json (e.g., 1color1, 2colors1, etc.).
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      description: 'Pattern name from eyeshadow.json determining number of colors and shadow placement zones.
+
+                        '
+                      example: 2colors1
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'One or more pigment palette entries. The number of palettes required depends on the pattern''s `colorNum`. Each palette defines a specific layer/color in the eyeshadow pattern.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - texture
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Eyeshadow pigment color in HEX format (#RRGGBB).
+
+                          '
+                      texture:
+                        type: string
+                        enum:
+                        - matte
+                        - shimmer
+                        - metallic
+                        description: 'Eyeshadow surface appearance determines whether the finish is matte for a smooth flat look, shimmer for a sparkling effect (requiring shimmer parameters), or metallic for a bold metallic sheen (requiring shimmer parameters and metallic intensity).
+
+                          '
+                      shimmerColor:
+                        type: string
+                        description: 'Color of shimmer particles. Required if texture = shimmer or metallic.
+
+                          '
+                      shimmerIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Reflective sparkle strength for shimmer or metallic textures.
+
+                          '
+                      metallicIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Metallic reflectivity level; required for metallic textures.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Overall pigmentation level of each shadow color.
+
+                          '
+              example:
+                category: eye_shadow
+                pattern:
+                  name: 2colors1
+                palettes:
+                - color: '#b07baf'
+                  texture: shimmer
+                  shimmerColor: '#f2d3f5'
+                  shimmerIntensity: 60
+                  colorIntensity: 70
+                - color: '#8e5c9c'
+                  texture: matte
+                  colorIntensity: 65
+            - type: object
+              description: 'Enhances eyelashes by applying pigment to detected lash strands. Lash extensions or density enhancements depend on the selected pattern, while the palette controls lash color and intensity.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - eyelashes
+                  description: 'Identifies this effect as an eyelashes effect. Must always be "eyelashes".
+
+                    '
+                pattern:
+                  type: object
+                  required:
+                  - name
+                  description: 'Defines which eyelash style is applied (natural, artistic, winged, upper/lower, etc.). Must match a `label` from eyelashes.json.
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      description: 'Name of the eyelash pattern from eyelashes.json.
+
+                        '
+                      example: Upper1
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Eyelash color palettes. Eyelashes do not support shimmer/metallic effects — only color and intensity.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Eyelash color in HEX format (#RRGGBB).
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Darkness/pigment strength applied to the lashes.
+
+                          '
+              example:
+                category: eyelashes
+                pattern:
+                  name: Upper1
+                palettes:
+                - color: '#000000'
+                  colorIntensity: 80
+            - type: object
+              description: 'Applies foundation to even skin tone using pigment, coverage, and glow controls. Unlike blush/contour, foundation has no pattern — it is applied globally based on skin segmentation.
+
+                '
+              required:
+              - category
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - foundation
+                  description: 'Identifies this effect as a foundation effect. Must always be "foundation".
+
+                    '
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Foundation palette entries controlling tone, coverage, glow, and color intensity.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - colorIntensity
+                    - glowIntensity
+                    - coverageIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Foundation shade in #RRGGBB format. Typically close to natural skin tone.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Intensity of foundation coloration.
+
+                          '
+                      glowIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Adds luminosity to the skin finish. Higher values produce a radiant or dewy effect.
+
+                          '
+                      coverageIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Controls opacity of foundation coverage. Higher values hide more imperfections.
+
+                          '
+              example:
+                category: foundation
+                palettes:
+                - color: '#eac595'
+                  colorIntensity: 50
+                  glowIntensity: 10
+                  coverageIntensity: 50
+            - type: object
+              description: 'Adds reflective highlights to the high points of the face (cheekbones, cupid''s bow, nose bridge, etc.). Patterns determine highlight placement based on face shape. Palettes control shimmer, glow, density, particle size, and coloration.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - highlighter
+                  description: 'Identifies this effect as a highlighter effect. Must always be "highlighter".
+
+                    '
+                pattern:
+                  type: object
+                  required:
+                  - name
+                  description: 'Highlight placement pattern. Must match a `label` from highlighter.json (e.g., HeartFace4, Oblong11, OvalFace2).
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      description: 'Name of the highlight pattern from the highlighter.json catalog.
+
+                        '
+                      example: SquareFace3
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Highlighter palette entries defining shimmer, glow, density, and color.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - glowIntensity
+                    - shimmerIntensity
+                    - shimmerDensity
+                    - shimmerSize
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Highlighter pigment color in #RRGGBB HEX format. Usually white, champagne, gold, or pink tones.
+
+                          '
+                      glowIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Amount of non-shimmer glow added to the skin. Higher values result in a more luminous, radiant finish.
+
+                          '
+                      shimmerIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Strength of shimmer reflections. Higher values = more sparkle.
+
+                          '
+                      shimmerDensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Number of shimmer particles per area. Higher density creates a more glittery effect.
+
+                          '
+                      shimmerSize:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Size of shimmer particles. Larger particles create a glitter-like effect; small = fine shimmer.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Strength of the highlighter color pigment.
+
+                          '
+              example:
+                category: highlighter
+                pattern:
+                  name: SquareFace3
+                palettes:
+                - color: '#FFF7F8'
+                  glowIntensity: 60
+                  shimmerIntensity: 50
+                  shimmerDensity: 40
+                  shimmerSize: 50
+                  colorIntensity: 50
+            - type: object
+              description: 'Applies lipstick in a variety of shapes, finishes, and artistic styles. Includes control over lip morphology (fullness, wrinkles), texture (matte, gloss, metallic, shimmer, sheer, etc.), shimmer/gloss parameters, multi-color patterns, and ombre/two-tone styles.
+
+                '
+              required:
+              - category
+              - shape
+              - palettes
+              - style
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - lip_color
+                  description: 'Identifies this effect as a lipstick/lip color effect. Must always be "lip_color".
+
+                    '
+                shape:
+                  type: object
+                  description: 'Defines the lip boundary and shape modification. Pattern names must match lipshape.json (e.g., plump, original, pouty).
+
+                    '
+                  required:
+                  - name
+                  properties:
+                    name:
+                      type: string
+                      description: 'Lip shape style used to modify the lip edges and silhouette. Must be equal to a `label` from lipshape.json.
+
+                        '
+                      example: plump
+                morphology:
+                  type: object
+                  description: 'Optional morphological adjustments to lips. Enhances fullness and reduces lip wrinkles.
+
+                    '
+                  properties:
+                    fullness:
+                      type: integer
+                      default: 0
+                      minimum: 0
+                      maximum: 100
+                      description: 'Controls how plump or full the lips appear. Higher values = larger, more voluminous lips.
+
+                        '
+                    wrinkless:
+                      type: integer
+                      default: 0
+                      minimum: 0
+                      maximum: 100
+                      description: 'Smooths wrinkles and texture on the lips. Higher values result in smoother lip appearance.
+
+                        '
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Lip color palette entries controlling pigment, texture, shimmer, and gloss. Multiple palettes can be used for ombre or two-tone styles.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - texture
+                    - colorIntensity
+                    properties:
+                      color:
+                        type: string
+                        description: 'Lipstick color in HEX format (#RRGGBB).
+
+                          '
+                      texture:
+                        type: string
+                        enum:
+                        - matte
+                        - gloss
+                        - holographic
+                        - metallic
+                        - satin
+                        - sheer
+                        - shimmer
+                        description: 'This setting tells you the texture of lip finish. If you choose gloss, make sure to include gloss properties. For shimmer, metallic or holographic finishes, add the shimmer-related fields. And if you go for sheer, shimmer or gloss, don''t forget to include transparency intensity.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Intensity of lipstick pigmentation.
+
+                          '
+                      gloss:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Glossiness level for gloss/holographic/metallic/sheer/shimmer textures.
+
+                          '
+                      shimmerColor:
+                        type: string
+                        description: 'Color of shimmer particles for shimmer, metallic, or holographic textures.
+
+                          '
+                      shimmerIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Strength of shimmer reflectivity.
+
+                          '
+                      shimmerDensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Density of shimmer particles.
+
+                          '
+                      shimmerSize:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Size of shimmer particles.
+
+                          '
+                      transparencyIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Transparency effect strength. Used for sheer, shimmer, or gloss textures.
+
+                          '
+                style:
+                  type: object
+                  description: 'Styles describe the artistic look of lip colour, whether it''s a full uniform shade, an ombre gradient blending tones, or a two-tone effect with contrasting colors on different parts of the lips.
+
+                    '
+                  required:
+                  - type
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - full
+                      - ombre
+                      - twoTone
+                      description: 'Style of lip coloration.
+
+                        '
+                    innerColorRatio:
+                      type: integer
+                      minimum: 0
+                      maximum: 100
+                      description: 'Determines how far inward the secondary color extends (ombre only). Required if type = ombre.
+
+                        '
+                    blendStrength:
+                      type: integer
+                      minimum: 0
+                      maximum: 100
+                      description: 'Blending softness between colors. Required if type = ombre.
+
+                        '
+              example:
+                category: lip_color
+                shape:
+                  name: plump
+                morphology:
+                  fullness: 20
+                  wrinkless: 10
+                style:
+                  type: full
+                palettes:
+                - color: '#C2185B'
+                  texture: gloss
+                  colorIntensity: 80
+                  gloss: 70
+                  transparencyIntensity: 30
+            - type: object
+              description: 'Applies lip liner around the edges of the lips, enhancing shape definition. Useful for refining lip borders, adjusting symmetry, and supporting ombre/two-tone looks.
+
+                '
+              required:
+              - category
+              - pattern
+              - palettes
+              properties:
+                category:
+                  type: string
+                  enum:
+                  - lip_liner
+                  description: 'Identifies this effect as a lip liner effect. Must always be "lip_liner".
+
+                    '
+                pattern:
+                  type: object
+                  required:
+                  - name
+                  description: 'Defines lip liner placement based on pattern from lipliner.json.
+
+                    '
+                  properties:
+                    name:
+                      type: string
+                      description: 'Name of lip liner pattern (e.g., Natural1, LargerUpper1).
+
+                        '
+                      example: Natural1
+                palettes:
+                  type: array
+                  minItems: 1
+                  description: 'Lip liner palette entries defining color, thickness, and smoothness.
+
+                    '
+                  items:
+                    type: object
+                    required:
+                    - color
+                    - texture
+                    - colorIntensity
+                    - thickness
+                    - smoothness
+                    properties:
+                      color:
+                        type: string
+                        description: 'Lip liner pigment color in HEX format.
+
+                          '
+                      texture:
+                        type: string
+                        enum:
+                        - matte
+                        - satin
+                        description: 'Lip liner finish type.
+
+                          '
+                      colorIntensity:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Intensity of lip liner pigmentation.
+
+                          '
+                      thickness:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Thickness of the lip liner stroke — higher values create bolder outlines.
+
+                          '
+                      smoothness:
+                        type: integer
+                        minimum: 0
+                        maximum: 100
+                        description: 'Smoothness of the stroke edges. Higher values produce softer, blended lines.
+
+                          '
+              example:
+                category: lip_liner
+                pattern:
+                  name: Natural1
+                palettes:
+                - color: '#A63A50'
+                  texture: matte
+                  colorIntensity: 70
+                  thickness: 40
+                  smoothness: 50
+  look-vto:
+    api_name: AI Look Virtual Try-On
+    version: v2.0
+    task_path: /s2s/v2.0/task/look-vto
+    template_list: /s2s/v2.0/task/template/look-vto
+    doc: https://docs.perfectcorp.com/reference/ai_look_vto.md
+    body_schema:
+      title: RunWithSingleTemplateAndSrcUrl
+      type: object
+      required:
+      - template_id
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      properties:
+        template_id:
+          type: string
+          description: ID of the template. List predefined templates first, and use the id of a template.
+          example: good_template_001

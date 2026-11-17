@@ -1,47 +1,60 @@
-## Description: <br>
-Use OpenMarlin from OpenClaw to answer questions, run tasks, and manage OpenMarlin account setup and billing flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OpenMarlin from OpenClaw to answer questions, run tasks, and manage OpenMarlin account setup and billing flows.
 
-## Publisher: <br>
-[emcraig51](https://clawhub.ai/user/emcraig51) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emcraig51](https://clawhub.ai/user/emcraig51)
 
-## Use Case: <br>
-External users and OpenClaw operators use this skill to register or connect an OpenMarlin account, submit routed executions, run asynchronous video tasks, and manage prepaid billing recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles persistent OpenMarlin platform API keys. <br>
-Mitigation: Use OpenClaw auth-profile storage where available, avoid exposing raw secrets in chat or logs, and rotate any API key that may have been printed or captured. <br>
-Risk: The skill can trigger remote executions, video tasks, top-ups, referral lookups, and checkout flows. <br>
-Mitigation: Require explicit user approval before those actions and keep external browser use limited to identity or Stripe checkout steps. <br>
-Risk: A misconfigured OpenMarlin server URL could send registration, execution, billing, or credential flows to the wrong endpoint. <br>
-Mitigation: Verify that OPENMARLIN_SERVER_URL is the intended bare API origin before registration or authenticated requests. <br>
-Risk: Server-resolved GitHub import provenance is unavailable for this release. <br>
-Mitigation: Install only if the user intends to use OpenMarlin and trusts the server-resolved publisher and release source. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to register or connect OpenMarlin accounts, submit execution and long-running task requests, and manage billing recovery from inside OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/emcraig51/web-research-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/emcraig51) <br>
-- [OpenMarlin API Origin](https://api.openmarlin.ai) <br>
-- [OpenMarlin Website](https://openmarlin.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate OpenMarlin API calls, registration polling, task polling, and billing recovery flows when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Platform API keys may be exposed through ordinary configuration or logged terminal output during bootstrap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use OpenClaw auth-profile storage for steady-state credentials and avoid running bootstrap in logged terminals unless the key will be rotated afterward.
+
+Risk: Custom server URLs can send platform API keys to insufficiently constrained origins.
+
+Mitigation: Use the default https://api.openmarlin.ai origin or only a trusted HTTPS deployment, and keep OPENMARLIN_SERVER_URL as a bare origin.
+
+Risk: Custom --agent-id values may be unsafe until path validation is added.
+
+Mitigation: Avoid custom --agent-id values and use the default OpenClaw agent profile unless the environment has reviewed the path behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/emcraig51/skills/web-research-agent)
+- [Publisher Profile](https://clawhub.ai/user/emcraig51)
+- [OpenMarlin API Origin](https://api.openmarlin.ai)
+- [OpenMarlin Website](https://openmarlin.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API responses, task status, billing summaries, and setup guidance from OpenMarlin helper scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

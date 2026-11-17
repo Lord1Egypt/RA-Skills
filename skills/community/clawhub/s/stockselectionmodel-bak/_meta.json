@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn70b9s2aa49q0zvaptdk7t0ex82ept2",
-  "slug": "stockselectionmodel-bak",
-  "version": "1.0.0",
-  "publishedAt": 1776072877386
+  "owner": "harveyzzzz",
+  "slug": "stockselectionmodel",
+  "displayName": "Sun Yuchen's stock selection model",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772890619982,
+    "commit": "https://github.com/openclaw/skills/commit/ac0e8b3148cbb8ced3274985c14c7be5f6c7656b"
+  },
+  "history": []
 }

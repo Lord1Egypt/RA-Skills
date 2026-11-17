@@ -1,0 +1,4 @@
+interface:
+  display_name: Hyperliquid Analysis
+  short_description: Assess Hyperliquid markets with live evidence
+  default_prompt: Use $hyperliquid-analyze to assess this market or trading claim with current, sourced evidence.

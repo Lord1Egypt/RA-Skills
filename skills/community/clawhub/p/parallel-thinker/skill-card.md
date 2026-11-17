@@ -1,41 +1,53 @@
-## Description: <br>
-Parallel Thinker sends a user query to multiple specialized agents and synthesizes their responses into one combined answer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parallelize queries across multiple specialized agents and synthesize their responses into a unified answer.
 
-## Publisher: <br>
-[liyico](https://clawhub.ai/user/liyico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyico](https://clawhub.ai/user/liyico)
 
-## Use Case: <br>
-Developers and agent users use this skill when a complex question benefits from several specialized perspectives before a synthesized answer is returned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runner can start unbounded agent calls without the documented limits or timeouts. <br>
-Mitigation: Review before installing and prefer a version that enforces an agent allowlist, a maximum agent count, and real per-call timeouts. <br>
-Risk: Queries and synthesized prompts may expose sensitive or private data to multiple configured agents. <br>
-Mitigation: Use only with trusted agents and avoid secrets or private data in prompts. <br>
+## Use Case:
 
+Developers and agents use this skill to get faster, multi-perspective analysis for complex questions by consulting several specialized local agents and consolidating their responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyico/parallel-thinker) <br>
-- [Publisher profile](https://clawhub.ai/user/liyico) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [JSON containing a synthesized response and per-agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include error strings for agents that fail or return unparsable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill can invoke caller-selected local agents without the limits its documentation claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with trusted callers and non-privileged local agents; add an allowlist, timeouts, output limits, and enforced concurrency limits before shared or sensitive deployment.
+
+Risk: Queries and intermediate expert responses may expose sensitive context across multiple agents.
+
+Mitigation: Avoid sending secrets or regulated data, and review synthesized answers before relying on them for consequential decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liyico/skills/parallel-thinker)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON containing a synthesized response and per-agent responses, typically returned to the agent as text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes available expert responses and error messages for failed agent calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

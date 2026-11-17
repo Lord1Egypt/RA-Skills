@@ -1,0 +1,12 @@
+{
+  "mcp": {
+    "servers": {
+      "grift-world": {
+        "url": "https://www.grift.world/mcp",
+        "transport": "streamable-http",
+        "connectionTimeoutMs": 10000,
+        "requestTimeoutMs": 30000
+      }
+    }
+  }
+}

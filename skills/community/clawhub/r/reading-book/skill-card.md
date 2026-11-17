@@ -1,44 +1,62 @@
-## Description: <br>
-Coordinates a book-learning workflow that extracts chapters, generates Markdown study notes, builds Neo4j Cypher, imports graph data, tracks progress, and produces a final summary report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates a book-learning workflow that extracts chapters, generates Markdown study notes, builds Neo4j Cypher batches, imports them into Neo4j, tracks progress, and produces a final summary.
 
-## Publisher: <br>
-[buruqinshouburu](https://clawhub.ai/user/buruqinshouburu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buruqinshouburu](https://clawhub.ai/user/buruqinshouburu)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to process a local book file into chapter notes, extracted concepts, Neo4j graph import batches, progress tracking, and a learning summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes embedded Neo4j credentials. <br>
-Mitigation: Replace the hardcoded password before installation and use credentials scoped to a least-privilege test database. <br>
-Risk: The workflow can write full book contents into local notes and graph data. <br>
-Mitigation: Confirm the source material may be stored locally and review output paths before running the workflow. <br>
-Risk: Generated Cypher can change a Neo4j database. <br>
-Mitigation: Review generated Cypher before execution and run imports against a test database before using production data. <br>
-Risk: Importer success messages may be unreliable until real writes and verification are confirmed. <br>
-Mitigation: Validate database state independently after import and do not rely only on importer success messages. <br>
+## Use Case:
 
+Developers and knowledge workers can use this skill to turn Word or PDF books into structured study notes and a Neo4j-backed concept graph. It is intended for chapter-by-chapter learning workflows that need progress tracking, generated Markdown outputs, and graph import summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buruqinshouburu/reading-book) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, JSON-like structured data, Cypher statements, PowerShell commands, Python snippets, progress files, and summary reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chapter-by-chapter workflow output may include local note files and Neo4j import batches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports an embedded Neo4j credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or remove the embedded credential and require runtime secrets before installation or execution.
+
+Risk: The release evidence reports under-scoped database and file writes.
+
+Mitigation: Run in preview or dry-run mode first, review target Obsidian paths, and restrict filesystem and database permissions to the minimum needed.
+
+Risk: Generated Cypher can mutate a Neo4j database.
+
+Mitigation: Validate and parameterize Cypher inputs, review generated batches before execution, and use a least-privileged Neo4j account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/buruqinshouburu/skills/reading-book)
+- [Book Learning Coordinator documentation](artifact/SKILL.md)
+- [Book Chapter Extractor documentation](artifact/book-extractor.md)
+- [Note Generator documentation](artifact/note-generator.md)
+- [Neo4j Cypher Generator documentation](artifact/neo4j-cypher-generator.md)
+- [Neo4j Importer documentation](artifact/neo4j-importer.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes and reports, JSON-like workflow summaries, Python and PowerShell command examples, and Cypher statements.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes Obsidian Markdown files and may execute batched Neo4j database mutations when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

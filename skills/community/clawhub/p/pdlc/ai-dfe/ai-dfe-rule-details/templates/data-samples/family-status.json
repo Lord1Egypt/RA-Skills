@@ -1,0 +1,25 @@
+{
+  "$schema": "pdlc-ws/data/family-status.schema.json",
+  "$schemaVersion": "1.0.0",
+  "$generatedBy": "AI-DFE",
+  "$generatedOn": "2026-06-22T12:00:00Z",
+  "$family": "pdlc",
+  "$package": "AI-DFE",
+  "consumer": "family-status",
+  "data": {
+    "family": "pdlc",
+    "counts": {
+      "ideas": 1,
+      "projects": 1,
+      "activeProjects": 1,
+      "workspacesGenerated": 1
+    },
+    "health": {
+      "projectsWithOpenRisks": 1,
+      "avgComplianceScore": 82,
+      "avgTestCoverage": 83,
+      "stalledProjects": 0
+    },
+    "lastRefreshed": "2026-06-22T12:00:00Z"
+  }
+}

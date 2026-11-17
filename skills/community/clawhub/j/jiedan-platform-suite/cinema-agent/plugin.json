@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "packageType": "jiedan-platform-suite-skill",
+  "packageId": "bagbot.jiedan-platform-suite",
+  "pluginId": "bagbot.jiedan-platform-suite",
+  "version": "1.2.7",
+  "mode": "jiedan_platform_suite",
+  "hostApiVersion": "1",
+  "displayName": "接单平台套件",
+  "description": "接单平台 Skill 套件指定应用（机器可读成员清单；影院列表随各平台包分发）。",
+  "gene": {
+    "file": "gene.json",
+    "sha256": "d1791224ee0c733a0282bf688a2b2d17d8d35f4777b7ddb7d27025aeb63e17b1"
+  },
+  "permissions": {
+    "networkDomains": []
+  }
+}

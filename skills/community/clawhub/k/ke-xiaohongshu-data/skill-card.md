@@ -1,46 +1,57 @@
-## Description: <br>
-Collects Xiaohongshu public-data examples for note metrics, creator analysis, search monitoring, and competitive content analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects and reports Xiaohongshu profile, note, search, and trend data for marketing analysis, while the reviewed artifact currently produces demo Markdown reports rather than verified live data.
 
-## Publisher: <br>
-[xiaoheizp](https://clawhub.ai/user/xiaoheizp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoheizp](https://clawhub.ai/user/xiaoheizp)
 
-## Use Case: <br>
-External analysts, brand teams, MCN operators, and creators can use this skill to prepare Xiaohongshu public-data reports for note performance, creator profile review, trend monitoring, and competitor analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests a Xiaohongshu session cookie, which may expose account access if shared with an untrusted release. <br>
-Mitigation: Use a low-privilege account where possible, avoid providing a main account cookie, rotate the cookie after use, and install only after verifying the publisher and credential handling. <br>
-Risk: The included script appears to produce demo output rather than a fully auditable real scraper. <br>
-Mitigation: Treat generated reports as sample or unverified data until the implementation is reviewed against real collection behavior. <br>
-Risk: Exported creator profile or contact information may create platform, privacy, or downstream sharing obligations. <br>
-Mitigation: Limit exports to necessary public fields and review Xiaohongshu platform rules and applicable privacy requirements before sharing or commercial use. <br>
-Risk: Automated collection can create account or platform risk if used with high request volume. <br>
-Mitigation: Use conservative limits and delays, avoid high-frequency collection, and stop collection if the platform signals rate limiting or access restrictions. <br>
+## Use Case:
 
+Developers, analysts, and marketing teams use this skill to prepare Xiaohongshu profile, note, search, and trend reports for content and competitive analysis. Review security guidance before providing credentials because the inspected artifact is reported to generate demo outputs rather than authenticated live data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoheizp/ke-xiaohongshu-data) <br>
-- [Publisher profile](https://clawhub.ai/user/xiaoheizp) <br>
-- [Xiaohongshu website](https://www.xiaohongshu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, Markdown tables, shell command examples, and environment-variable configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires or benefits from XIAOHONGSHU_COOKIE for authenticated collection; included artifact behavior produces demo data and Markdown exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill asks for a live Xiaohongshu session cookie while release security evidence says the inspected code does not use the credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide a Xiaohongshu cookie until the skill clearly implements authenticated scraping, documents credential handling, and protects the credential appropriately.
+
+Risk: The skill advertises real Xiaohongshu scraping while security evidence says the current artifact should be expected to produce demo reports.
+
+Mitigation: Treat generated reports as demo outputs unless the installed artifact is updated and independently verified against live data sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaoheizp/skills/ke-xiaohongshu-data)
+- [Publisher Profile](https://clawhub.ai/user/xiaoheizp)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+- [Example Notes Export](artifact/xiaohongshu-notes.md)
+- [Example Analysis Report](artifact/xiaohongshu-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review before credentialed use; release evidence identifies XIAOHONGSHU_COOKIE as the primary environment variable.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,83 @@
+{
+  "profile_type": "style",
+  "id": "blue-lavender-watercolor",
+  "version": "1.0.0",
+  "reference_status": "approved-bundled",
+  "references": [
+    {
+      "id": "watercolor-no-73-blue-and-lavender",
+      "image": "assets/style-packs/blue-lavender-watercolor/reference.webp",
+      "source_metadata": "assets/style-packs/blue-lavender-watercolor/source.json",
+      "technique_roles": [
+        "transparent watercolor wash and material handling",
+        "soft-to-controlled edge transitions",
+        "cool blue and lavender value grouping",
+        "selective dark anchors that preserve open paper"
+      ],
+      "subject_exclusions": [
+        "seascape",
+        "shoreline",
+        "water horizon",
+        "landscape subject",
+        "reference composition"
+      ]
+    }
+  ],
+  "positive_prompt": "Transparent watercolor washes with restrained cool blue and lavender value groups; soft blooms and graded transitions balanced by a few controlled edges; selective dark anchors; generous unpainted paper; translate only the photographed subject through the reference's material handling.",
+  "negative_prompt": "Do not copy the reference seascape, shoreline, water horizon, landscape, or composition. No invented water, photographic background, opaque gouache mass, oil-paint impasto, hard digital vector edge, generated text, decorative frame, route line, marker, watermark, collage seam, or rectangular plate edge.",
+  "line": {
+    "weight": "minimal-to-fine",
+    "character": "subordinate to wash edges",
+    "color": "cool charcoal-blue"
+  },
+  "color": {
+    "saturation": "restrained",
+    "transparency": "high",
+    "temperature": "cool-neutral"
+  },
+  "edges": {
+    "subject": "soft wash transitions with selective controlled anchors",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "use the reference only for watercolor behavior, edge control, value grouping, and dark-anchor placement",
+    "preserve paper-white breathing room",
+    "keep pale washes translucent and avoid a full-field tint",
+    "derive no seascape, water, shoreline, horizon, or landscape content from the reference"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "transparent wash blooms and graded watercolor transitions",
+      "soft edges balanced by a few controlled dark anchors"
+    ],
+    "negative_space_rules": [
+      "preserve generous unpainted paper around and within the subject",
+      "do not turn the reference's open water or sky into subject matter"
+    ],
+    "fill_tonal_rules": [
+      "group values in restrained cool blue and lavender washes",
+      "use selective dark accents rather than continuous heavy outlines"
+    ],
+    "background_cleanliness": [
+      "empty areas match the shared paper master",
+      "no watercolor haze, rectangular backing patch, or random speckle field"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "selective watercolor simplification that preserves the source photo's identity and imports no reference subject",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 10,
+    "alpha_feather_distance": 30,
+    "preserve_luminance_below": 225,
+    "preserve_saturation_above": 24,
+    "minimum_component_area_px": 3,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.004,
+    "max_corner_alpha_mean": 10
+  }
+}

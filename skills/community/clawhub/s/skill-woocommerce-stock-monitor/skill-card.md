@@ -1,42 +1,55 @@
-## Description: <br>
-Monitor WooCommerce products for out-of-stock changes and send Telegram alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor WooCommerce products for out-of-stock changes and send Telegram alerts. Run daily via cron.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-Developers and store operators use this skill to monitor WooCommerce product inventory, detect newly out-of-stock items, and send Telegram notifications to a configured chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product names, SKUs, and out-of-stock details are sent to the configured Telegram chat. <br>
-Mitigation: Use the skill only when that disclosure is acceptable, confirm the chat ID before scheduling, and restrict Telegram bot token access. <br>
-Risk: WooCommerce credentials are required to fetch product inventory. <br>
-Mitigation: Use a read-only WooCommerce API key, store credentials outside the skill files, and keep the WooCommerce URL on HTTPS. <br>
-Risk: Scheduled monitoring may continue after it is no longer needed. <br>
-Mitigation: Review cron entries periodically and remove the scheduled job when inventory monitoring is retired. <br>
+## Use Case:
 
+Store operators and developers use this skill to run scheduled inventory checks against WooCommerce, detect products newly out of stock, and send Telegram alerts to an operations chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zero2Ai-hub/skill-woocommerce-stock-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JavaScript console output, Telegram alert messages, and JSON state file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, WooCommerce REST API credentials, and optional Telegram bot configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter and _meta.json report 1.0.0) <br>
+Risk: WooCommerce API credentials can be sent over plaintext HTTP if the store URL is configured with an insecure URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an HTTPS WooCommerce store URL and avoid scheduling the cron job until HTTPS enforcement is added.
+
+Risk: The skill depends on WooCommerce and Telegram credentials for automated execution.
+
+Mitigation: Use a read-only WooCommerce API key, protect the credentials file, and keep Telegram token and chat ID outside source-controlled files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-woocommerce-stock-monitor)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, WooCommerce read-only API credentials, Telegram bot credentials, and a local state file for prior stock status.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact files report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

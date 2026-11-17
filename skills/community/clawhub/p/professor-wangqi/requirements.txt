@@ -1,0 +1,21 @@
+# PDF解析
+pymupdf>=1.23.0
+pdfplumber>=0.10.0
+
+# 向量数据库
+chromadb>=0.4.0
+
+# LLM调用
+openai>=1.0.0
+
+# 环境变量
+python-dotenv>=1.0.0
+
+# 中文处理（可选）
+jieba>=0.42.0
+
+# Milvus（可选，如果使用Milvus）
+# pymilvus>=2.3.0
+
+# Weaviate（可选，如果使用Weaviate）
+# weaviate-client>=3.25.0

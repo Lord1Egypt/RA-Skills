@@ -1,44 +1,56 @@
-## Description: <br>
-Helps students log study time, analyze focus and distraction patterns, run Pomodoro-style focus sessions, and build a personal focus archive from consented long-term records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助学生记录学习时间、使用番茄钟保持专注，并识别个人的高效时段和分心规律。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and learning coaches use this skill to turn study-time reports into structured logs, identify productive time windows, and adjust task plans from observed focus data. It is intended for study coaching and self-management, not professional diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-term study-session and distraction tracking may expose personal routines or learning behavior, especially for minors. <br>
-Mitigation: Before enabling ongoing tracking, confirm what data is stored, where it is stored, how it can be viewed or deleted, and whether summaries may be shared with learning-plan or reminder skills. <br>
-Risk: Timed Pomodoro behavior can be misunderstood as autonomous precise timing by the language model. <br>
-Mitigation: Use platform timer or workflow support for scheduled wakeups and make clear that the skill itself does not provide millisecond-level timing. <br>
-Risk: Focus coaching could be mistaken for a professional attention or learning assessment. <br>
-Mitigation: For persistent, severe, or lifelong attention difficulties, recommend professional evaluation while treating the skill's records as supporting observations only. <br>
+## Use Case:
 
+学生使用此技能记录学习时长、安排并复盘专注时段，以及在积累足够数据后查看自己的高效时段和分心规律。长期保存、提醒和跨技能共享均需分别明确同意。
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qizhitang/xiaozhi-time-focus-coach) <br>
-- [Focus archives template](references/focus-archives-template.md) <br>
-- [Pomodoro state machine](references/pomodoro-statemachine.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with structured coaching prompts, study-time summaries, and focus archive entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on host-platform reminder, workflow, and persistence capabilities for timed sessions and long-term records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Persistent profiles and cross-skill sharing involve student data, and the security evidence flags consent as a concern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep profile storage, reminders, and cross-skill sharing disabled until each has separate affirmative consent; follow the documented guardian-consent requirement for younger students and confirm each proposed profile write.
+
+Risk: Security analysis is partial because three local path-like references could not be resolved.
+
+Mitigation: Check that the referenced materials are present and review them before relying on behavior that depends on them.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/qizhitang/skills/xiaozhi-time-focus-coach)
+- [Publisher profile: qizhitang](https://clawhub.ai/user/qizhitang)
+- [Pomodoro state machine](references/pomodoro-statemachine.md)
+- [Focus archive template](references/focus-archives-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text and Markdown summaries, time plans, and focus recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persistent profile entries, reminders, and cross-skill sharing are optional and require separate consent.]
+
+## Skill Version(s):
+
+2.12.7 (source: SKILL.md frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

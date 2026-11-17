@@ -1,0 +1,14 @@
+# Constructed policy shared by offline fixtures; not retrieved from a live site.
+User-agent: *
+Disallow: /internal/
+
+User-agent: GPTBot
+User-agent: ClaudeBot
+Disallow: /products/
+Allow: /products/crm$
+
+User-agent: PerplexityBot
+Disallow: /private/
+
+User-agent: Google-Extended
+Disallow: /

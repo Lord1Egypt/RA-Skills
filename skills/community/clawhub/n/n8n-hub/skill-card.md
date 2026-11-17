@@ -1,41 +1,53 @@
-## Description: <br>
-Centralized n8n hub for designing reliable flows (idempotency, retries, HITL) and operating them via the public REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Centralized n8n hub for designing reliable flows (idempotency, retries, HITL) and operating them via the public REST API.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Developers and operators use this skill to design dependable n8n workflows and operate workflows or executions through the public REST API. It supports workflow planning, importable JSON generation on request, runbook creation, and lifecycle actions such as listing, activating, deactivating, debugging, and retrying workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API actions can change live n8n workflows, executions, credentials, variables, and related automation resources. <br>
-Mitigation: Use least-privilege n8n API keys, confirm whether the target is production or a sandbox before activating or deactivating workflows, and review failed executions before retrying them. <br>
-Risk: Webhook calls and workflow imports can process real data or trigger external side effects. <br>
-Mitigation: Review generated workflow JSON and runbook steps before use, avoid embedding secrets, and reference environment variables or credential names instead. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [n8n Hub Release Page](https://clawhub.ai/codedao12/n8n-hub) <br>
-- [n8n Public API Endpoint Index](assets/endpoints-api.md) <br>
-- [n8n Workflow Operations Runbook Template](assets/workflow-lab.md) <br>
+## Use Case:
 
+Developers and operators use this skill to design reliable n8n workflows with idempotency, retries, logging, and review queues, and to operate workflows and executions through the n8n public REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workflow design specs, importable workflow.json, workflow-lab.md runbooks, and n8n REST API command examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent through live n8n API operations using a powerful API key.
+
+Mitigation: Use a least-privilege API key, provide it through environment injection or a secret manager, and review the skill before deployment.
+
+Risk: Webhook tests, retries, deletes, role changes, credential updates, activations, deactivations, source-control actions, and bulk data operations can have real side effects.
+
+Mitigation: Require explicit confirmation for high-impact actions and avoid production tests unless the side effects are understood.
+
+## Reference(s):
+
+- [n8n Public API Endpoint Index](assets/endpoints-api.md)
+- [n8n Workflow Operations](assets/workflow-lab.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workflow design specs by default and workflow.json plus a runbook on request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Learn to enhance LLM performance using test-time compute with parallel sampling, sequential revision, and process reward models for better reasoning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and users through test-time compute and chain-of-thought reasoning techniques for improving LLM responses with parallel sampling, sequential revision, process reward models, and self-consistency.
 
-## Publisher: <br>
-[robinyves](https://clawhub.ai/user/robinyves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinyves](https://clawhub.ai/user/robinyves)
 
-## Use Case: <br>
-Developers and AI practitioners use this skill to choose and explain test-time compute techniques for LLM reasoning tasks, including chain-of-thought prompting, best-of-N sampling, sequential revision, process reward models, and self-consistency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may be implemented with third-party model providers, Transformers packages, or custom reward models that are outside the skill artifact. <br>
-Mitigation: Review those separate dependencies and provider terms before use. <br>
-Risk: Prompts or evaluation data sent to untrusted services may expose sensitive information. <br>
-Mitigation: Avoid sending sensitive prompts or data to untrusted model services. <br>
+## Use Case:
 
+Developers, AI practitioners, and agent builders use this guide to choose and explain test-time compute strategies for LLM reasoning tasks. It is most useful when an agent needs to provide educational guidance, implementation sketches, or practical tradeoffs for chain-of-thought prompting, sampling, revision, and process-reward-guided search.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guide; does not execute code automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Reasoning examples could be applied in a way that asks a model to reveal hidden internal reasoning where that is not allowed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use reasoning formats permitted by the organization or platform, such as concise reasoning summaries, and avoid requests for hidden chain-of-thought disclosure.
+
+Risk: The included code examples are educational sketches and may be mistaken for production-ready scoring or search implementations.
+
+Mitigation: Review and adapt the examples before operational use, especially scorer choice, process reward model behavior, and evaluation criteria.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robinyves/skills/test-time-compute-guide)
+- [artifact/SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational content only; the skill does not perform hidden execution, persistence, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

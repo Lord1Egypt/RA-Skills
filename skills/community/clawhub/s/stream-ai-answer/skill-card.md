@@ -1,43 +1,60 @@
-## Description: <br>
-Provides a reusable Chinese-language pattern for building streaming AI retrieval-and-answer interfaces with visible analysis steps, source display, and domain prompt templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a reusable four-step streaming AI retrieval Q&A interaction pattern for knowledge-base products, including intent understanding, content retrieval, streamed generation, and source marking.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-Developers use this skill to add a streaming RAG-style answer experience to React, H5/WebApp, enterprise knowledge base, customer support, consulting, or domain education products. It is especially suited to interfaces that need visible intent analysis, retrieval progress, generated answers, source links, and clear disclaimers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The examples include streaming LLM API usage that requires sensitive provider credentials. <br>
-Mitigation: Keep API keys on the server and call the provider through an application backend rather than exposing credentials in client code. <br>
-Risk: The skill targets medical, legal, financial, government, and other high-stakes knowledge-base scenarios where generated answers can be misleading or jurisdiction-sensitive. <br>
-Mitigation: Review prompts, disclaimers, citation rules, and domain policy requirements before production use, and require qualified human review for high-stakes advice. <br>
+## Use Case:
 
+Developers and product engineers use this skill to add transparent, streaming AI Q&A flows to knowledge-base, customer-support, education, healthcare, legal, finance, government, and enterprise assistant products. It helps structure UI states, prompts, source attribution, and React implementation patterns for retrieval-augmented answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/stream-ai-answer) <br>
-- [Frontend implementation pattern](references/frontend-pattern.md) <br>
-- [Streaming AI prompt templates](references/prompts.md) <br>
-- [React analysis card component](assets/AIAnalysisCard.tsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript/TSX component code, prompt templates, and streaming API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source parsing, disclaimer display, streaming response handling examples, and step-status UI patterns. Provider API keys should stay server-side.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Frontend streaming examples can expose provider API keys and user messages if copied directly into browser code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a backend or serverless route for provider credentials, restrict upstream endpoints, and avoid sending unnecessary sensitive content.
+
+Risk: Medical, legal, financial, or internal business deployments may produce high-impact answers or process sensitive prompts.
+
+Mitigation: Review before production use, add domain-appropriate disclaimers, redact sensitive prompts where possible, and disclose third-party AI processing to users.
+
+Risk: The UI and prompt examples are primarily Chinese-language and may not fit all deployment audiences.
+
+Mitigation: Localize prompts, labels, source formats, and disclaimers before using the pattern in non-Chinese-language deployments.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zmy1006-sudo/skills/stream-ai-answer)
+- [Frontend implementation reference](artifact/references/frontend-pattern.md)
+- [Streaming AI prompt templates](artifact/references/prompts.md)
+- [AIAnalysisCard React component](artifact/assets/AIAnalysisCard.tsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript/TSX code examples and prompt/configuration templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be adapted by developers for their own LLM provider, retrieval source, UI framework, and domain-specific disclaimer requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

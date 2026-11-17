@@ -1,40 +1,54 @@
-## Description: <br>
-SEO keyword research tool for finding high-value keywords with search intent analysis, difficulty assessment, and content opportunity mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO Keyword Research Tool fur high-value Keywords mit Search Intent Analysis, Difficulty Assessment und Content Opportunity Mapping.
 
-## Publisher: <br>
-[akkualle](https://clawhub.ai/user/akkualle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akkualle](https://clawhub.ai/user/akkualle)
 
-## Use Case: <br>
-Content marketers, SEO practitioners, and site owners use this skill to identify keyword opportunities, classify search intent, estimate ranking difficulty, and plan topic clusters for organic content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact shows keyword-research CLI examples, but the security review does not identify an included executable. <br>
-Mitigation: Treat those commands as illustrative and do not run them unless the user has separately installed and trusts the command provider. <br>
+## Use Case:
 
+External SEO and content teams use this skill to research keywords, classify search intent, estimate ranking difficulty, and map content opportunities for organic search planning.
 
-## Reference(s): <br>
-- [Keyword Intent Taxonomy](references/keyword-intent-taxonomy.md) <br>
-- [Topic Cluster Templates](references/topic-cluster-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/akkualle/akkualle-keyword-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with example shell commands and planning tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or credential handling is present in the artifact; CLI examples should be treated as illustrative unless the user has installed and trusts the separate command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The workflow is German-oriented and may not match every market or language context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated keyword and content guidance against the target locale, audience, and search market before use.
+
+Risk: SEO keyword, volume, and difficulty guidance can become stale or differ from live search-tool data.
+
+Mitigation: Validate important recommendations with current SEO data sources before making commercial content decisions.
+
+## Reference(s):
+
+- [Keyword Intent Taxonomy](artifact/references/keyword-intent-taxonomy.md)
+- [Topic Cluster Templates](artifact/references/topic-cluster-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static SEO planning guidance; no executable code or credential handling is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

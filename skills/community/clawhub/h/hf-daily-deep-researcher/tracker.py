@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-HF Daily Deep Researcher - 编排器入口 (v4.0)
+HF Daily Deep Researcher - 编排器入口 (v5.2.9)
 
-注意：v4.0 采用多Agent编排架构，此脚本不再直接执行搜索和分析。
+注意：v5.2.8 采用多Agent编排架构，此脚本不再直接执行搜索和分析。
 它的职责是：
 1. 读取配置，准备执行环境
 2. 提供辅助功能（报告保存、版本控制、历史记录）
@@ -50,14 +50,19 @@ class HFDeepResearcher:
     def show_status(self):
         """显示当前状态"""
         print("=" * 60)
-        print("📊 HF Daily Deep Researcher v4.1.2")
+        print("📊 HF Daily Deep Researcher v5.2.8")
         print("=" * 60)
         
         # 用户配置
         profile = self.config.get("user_profile", {})
         print(f"\n👤 用户: {profile.get('name', '未配置')}")
         print(f"   机构: {profile.get('institution', '未配置')}")
-        print(f"   研究方向: {', '.join(profile.get('research_focus', ['未配置']))}")
+        focus_list = profile.get("research_focus", ["未配置"])
+        if focus_list and isinstance(focus_list[0], dict):
+            focus_names = [f.get("name", str(f)) for f in focus_list]
+        else:
+            focus_names = focus_list
+        print(f"   研究方向: {', '.join(focus_names)}")
         
         # 关键词
         keywords = self.adaptive.keywords.get("keywords", [])
@@ -80,7 +85,7 @@ class HFDeepResearcher:
         print(f"\n📈 扫描历史: {len(history)} 次")
         
         # 版本信息
-        print(f"\n⚙️  版本: v4.1.2 (Searcher本地执行版)")
+        print(f"\n⚙️  版本: v5.2.8 (并行互补搜索版)")
         print("=" * 60)
     
     def prepare_run(self, days: int = None) -> dict:
@@ -159,12 +164,12 @@ class HFDeepResearcher:
         """显示工作流说明"""
         print("""
 ╔═══════════════════════════════════════════════════════════════╗
-║           HF Daily Deep Researcher v4.0 - 工作流               ║
+║        HF Daily Deep Researcher v5.2.8 - 工作流               ║
 ╠═══════════════════════════════════════════════════════════════╣
 ║                                                               ║
 ║  此 Skill 采用多Agent编排架构，需要在主Agent对话中执行。        ║
 ║                                                               ║
-║  Phase 1: Searcher Agent                                      ║
+║  Phase 1: Searcher (主Agent直接执行)                          ║
 ║    → 搜索 arXiv + HF Daily Papers                             ║
 ║    → 输出: .tmp/papers_raw.json                               ║
 ║                                                               ║
@@ -197,7 +202,7 @@ class HFDeepResearcher:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="HF Daily Deep Researcher v4.0")
+    parser = argparse.ArgumentParser(description="HF Daily Deep Researcher v5.2.8")
     parser.add_argument("--status", action="store_true", help="显示当前状态")
     parser.add_argument("--workflow", action="store_true", help="显示工作流说明")
     parser.add_argument("--list-reports", action="store_true", help="列出所有报告")

@@ -1,37 +1,52 @@
-## Description: <br>
-Daily Briefing Hub produces a prioritized daily briefing that combines calendar events, email highlights, weather, GitHub activity, tasks, and news for delivery through configured channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one daily briefing skill that combines calendar events, email highlights, weather, GitHub activity, tasks, and news into a prioritized summary delivered through the user's chosen channel.
 
-## Publisher: <br>
-[ariktulcha](https://clawhub.ai/user/ariktulcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ariktulcha](https://clawhub.ai/user/ariktulcha)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to collect schedule, inbox, task, development, weather, and news signals into a concise morning briefing or evening recap. It is also used to configure recurring briefings delivered through channels such as Telegram, Slack, WhatsApp, or Discord. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally reads sensitive connected-account data such as calendars, email, tasks, development activity, location, feeds, delivery channels, and briefing preferences. <br>
-Mitigation: Use least-privilege account permissions, choose private delivery channels, confirm any recurring cron schedule, and periodically review stored briefing preferences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Daily Briefing Hub on ClawHub](https://clawhub.ai/ariktulcha/daily-briefing-hub) <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to generate morning briefings, daily digests, schedule overviews, inbox summaries, task recaps, developer activity summaries, and end-of-day recaps from configured personal or work sources.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefing with optional JSON cron configuration and channel delivery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sections are adapted to available connected tools and omit empty sources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Briefings may expose privacy-sensitive calendar, email, task, GitHub, and news context in shared delivery channels.
+
+Mitigation: Configure only intended sources and choose the destination channel deliberately, especially for Slack, Discord, Telegram, or WhatsApp spaces with multiple participants.
+
+Risk: Recurring delivery can repeatedly distribute aggregated personal or work information without manual review.
+
+Mitigation: Review source selections, destination membership, and the first generated briefing before enabling or changing scheduled delivery.
+
+## Reference(s):
+
+- [Daily Briefing Hub on ClawHub](https://clawhub.ai/ariktulcha/skills/daily-briefing-hub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text briefing with optional JSON cron configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts sections to available connected sources, omits empty sections, and can include recurring delivery setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

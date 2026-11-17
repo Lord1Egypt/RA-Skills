@@ -1,41 +1,59 @@
-## Description: <br>
-Sends GET, POST, PUT, and DELETE HTTP requests with Python requests when curl quoting or escaping would be error-prone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send HTTP requests with Python requests instead of curl when quoting and escaping would be error-prone.
 
-## Publisher: <br>
-[pumpkinttl](https://clawhub.ai/user/pumpkinttl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pumpkinttl](https://clawhub.ai/user/pumpkinttl)
 
-## Use Case: <br>
-Developers and agents use this skill to make API calls, test webhooks, and inspect HTTP responses without hand-crafting fragile curl commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send requests to arbitrary URLs and supports mutating HTTP methods. <br>
-Mitigation: Double-check destination URLs, methods, headers, and bodies before execution, especially for POST, PUT, and DELETE requests. <br>
-Risk: Secrets can be exposed if placed in query strings, inline examples, or local request summaries. <br>
-Mitigation: Use least-privilege tokens, avoid secrets in URLs or shared command examples, and use --no-log for sensitive requests. <br>
+## Use Case:
 
+Developers and engineers use this skill to make GET, POST, PUT, and DELETE HTTP requests with headers, query parameters, JSON bodies, form data, timeout control, and concise response inspection when curl quoting would be fragile.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/pumpkinttl/httprequests) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text terminal output with HTTP method, final URL, status, elapsed time, optional headers, and response body.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Response bodies can be truncated with --max-body; daily JSONL request summaries are written unless --no-log is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and artifact metadata) <br>
+Risk: The skill can make outbound HTTP requests to arbitrary network targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only in environments where agent-initiated outbound HTTP requests are acceptable.
+
+Risk: Full request URLs are kept in local logs by default.
+
+Mitigation: Avoid credential-bearing query strings, signed URLs, production secrets, and use --no-log when requests may include sensitive data.
+
+Risk: Requests to internal services or metadata endpoints can expose sensitive environment data.
+
+Mitigation: Do not use the skill for internal services or metadata endpoints unless the runtime network boundary and target are explicitly approved.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/pumpkinttl/skills/httprequests)
+- [Publisher profile](https://clawhub.ai/user/pumpkinttl)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown summaries of request commands, status, headers when requested, response body excerpts, and errors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Response body output is truncated by the script's max-body setting unless changed by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

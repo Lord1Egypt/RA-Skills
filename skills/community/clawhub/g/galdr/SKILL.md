@@ -1,14 +1,14 @@
 ---
 name: galdr
-description: OpenClaw skill for using galdr's ARC workflow to turn YouTube URLs or local audio files into grounded, time-ordered listening-experience prompts backed by listener-state traces: pattern, attention, pulse, heard pressure, surface balance/evidence, harmony, melody, overtones, and silence/re-entry structure. Use when asked to analyze a song, explain what makes a track work structurally, generate a listening experience, compare tracks, or extract video frames from a music video.
-version: "0.5.1"
+description: OpenClaw skill for using galdr's ARC workflow to turn local audio files into grounded, time-ordered listening-experience prompts backed by timed audio-derived proxies for pattern, attention, heard pressure, surface balance/evidence, harmony, melody, overtones, and silence/re-entry structure, plus report-level pulse evidence. These are interpretation cues, not measured listener responses. Use when asked to analyze a song, explain what makes a track work structurally, generate a listening experience.
+version: "0.8.0"
 author: Sellemain
-license: MIT
+license: MIT-0
 platforms: [linux, macos]
 ---
 # galdr
 
-Use this skill when an OpenClaw agent needs to analyze music from a YouTube URL or local audio file and produce a grounded listening-experience prompt from measurable audio structure.
+Use this skill when an OpenClaw agent needs to analyze music from a local audio file and produce a grounded listening-experience prompt from measurable audio structure.
 
 galdr is a music perception CLI for AI agents. Its default workflow is **ARC**: analyze a track into time-ordered listener-state traces, then assemble those traces into a prompt for grounded listening-experience prose. The metrics are evidence. The ARC prompt is the main user-facing output.
 
@@ -23,6 +23,10 @@ openclaw skills install galdr
 ClawHub may display an owner-qualified command such as `openclaw skills install @sellemain/galdr`. As of OpenClaw `2026.6.8`, the released CLI expects the bare skill slug `galdr`.
 
 Installing this skill teaches OpenClaw how to use galdr. It does **not** install the `galdr` command itself.
+
+This skill packaging revision is 0.8.0 and targets the separately installed galdr CLI 0.8.0. The skill is licensed MIT-0; the CLI remains MIT-licensed.
+
+The PyPI wheel contains the runtime CLI/library and bundled prompt templates. The OpenClaw skill is distributed separately through ClawHub so agent instructions can stay a clean skill artifact instead of being installed as Python package data.
 
 Before starting:
 
@@ -50,72 +54,62 @@ If provenance matters, verify the PyPI metadata or install from the source repos
 ## When to use this skill
 
 Use galdr when the user asks to:
-- analyze a song or music video
+- analyze a local audio recording
 - describe what makes a track work structurally
 - generate a grounded listening experience
-- compare two tracks
-- extract frames around structural moments in a music video
 - create an evidence packet for another model to write from
 
 Do not use galdr for:
 - general music trivia
 - ordinary recommendation lists
-- purely lyrical interpretation without audio structure
 - pretending the metrics prove private emotional intent
-- downloading copyrighted audio unless the operator has appropriate rights/context
+- acquiring source media; the caller supplies a local audio file
 
 ## OpenClaw agent contract
 
-Prefer the ARC path unless the user explicitly asks for raw metrics, comparison, debugging, or agent-internal traces.
+Prefer the ARC path unless the user explicitly asks for raw metrics, debugging, or agent-internal traces.
 
 Default sequence:
-1. Fetch or listen to the track.
-2. Analyze it into listener-state traces.
-3. Assemble the ARC prompt with `--template arc --mode full`.
+1. Confirm the supplied local audio file is readable.
+2. Run `galdr listen` to generate listener-state traces.
+3. Assemble the ARC prompt with `--template arc`.
 4. Review the prompt.
 5. Write the listening experience yourself or pass the prompt to the requested model.
 
 The stream is evidence. Walk the track through time before summarizing. Do not invent emotional claims that the structure does not support.
 
+When a user wants to configure another agent or project to use Galdr, point them to `docs/AGENT-ONBOARDING.md` and `examples/agent/AGENTS.md`. Those files contain the public, copy-pasteable agent instruction path.
+
+Use the ARC prompt family when the user asks for a specific reading mode:
+
+```bash
+galdr assemble my-track --template arc-family --lens sound > sound.txt
+galdr assemble my-track --template arc-family --lens dance > dance.txt
+galdr assemble my-track --template arc-family --lens meaning > meaning.txt
+galdr assemble my-track --template arc-family --lens structure > structure.txt
+galdr assemble my-track --template arc-family --lens classical > classical.txt
+galdr assemble my-track --template arc-family --lens ritual > ritual.txt
+```
+
+Lens guide:
+- `default` — general public listening page
+- `sound` — sound as physical shape, pressure, density, space, body, and motion
+- `dance` — movement contract: groove, repetition, build/drop, and bodily use
+- `structure` — compact mechanical/form witness
+- `meaning` — human situation carried by sound
+- `classical` — instrumental/classical/large-form attention over time
+- `ritual` — private ritual reading with weak-fit boundary behavior
+
 ## Core Workflows
 
-### YouTube URL → ARC prompt (most common)
+### Local audio file → ARC prompt
 
 ```bash
-# Step 1: fetch audio + context (slug auto-derived from title)
-galdr fetch "https://youtu.be/..." --analyze
-
-# galdr prints the slug at the end:
-#   Slug : artist-song-title
-#   Next : galdr assemble artist-song-title --template arc --mode full
-
-# Step 2: assemble the prompt locally
-galdr assemble artist-song-title --template arc --mode full > prompt.txt
+galdr listen "audio/track.flac" --name my-track
+galdr assemble my-track --template arc > prompt.txt
 ```
 
-Override auto-derived metadata if needed:
-
-```bash
-galdr fetch "https://youtu.be/..." --artist "Oliver Anthony" --title "Rich Men North of Richmond" --analyze
-```
-
-If YouTube download behavior is flaky:
-
-```bash
-galdr doctor
-galdr update-deps
-```
-
-`galdr doctor` reports the active Python executable, yt-dlp command/version, ffmpeg/ffprobe, JavaScript runtimes, and impersonation support. `galdr update-deps` upgrades `yt-dlp[default,curl-cffi]` in the same Python environment galdr is using.
-
-### Local file → ARC prompt
-
-> The analysis command is `galdr listen`, not `galdr analyze`.
-
-```bash
-galdr listen track.wav --name my-track
-galdr assemble my-track --template arc --mode full > prompt.txt
-```
+Galdr does not download audio, videos, lyrics, or captions. `galdr doctor` checks the local Python and ffmpeg/ffprobe setup. Existing analysis and manually supplied background can still be read; legacy lyric and visual fields are ignored.
 
 ### Raw second-by-second analysis (advanced)
 
@@ -131,7 +125,7 @@ Useful extras:
 - `*_melody_stream.json`
 - `*_overtone_stream.json`
 - `*_report.json`
-- `galdr assemble <slug> --mode blind`
+- `galdr assemble <slug>`
 
 Reading order:
 1. Read `PERCEPTION-MODEL.md` first.
@@ -152,9 +146,9 @@ Minimal recipe:
 
 ```bash
 galdr listen track.wav --name my-track
-jq '.[0:12]' analysis/my-track/my-track_stream.json
+jq '.stream[0:12]' analysis/my-track/my-track_stream.json
 jq '.summary' analysis/my-track/my-track_perception.json
-galdr assemble my-track --mode blind > prompt.txt
+galdr assemble my-track > prompt.txt
 ```
 
 ### Send the ARC prompt to another model
@@ -162,39 +156,29 @@ galdr assemble my-track --mode blind > prompt.txt
 Only do this if the operator explicitly wants model-written prose. Review the assembled ARC prompt before piping it to `claude`, `llm`, or any other external model endpoint.
 
 ```bash
-galdr assemble my-track --template arc --mode full | claude
-galdr assemble my-track --template arc --mode full | llm
+galdr assemble my-track --template arc | claude
+galdr assemble my-track --template arc | llm
 ```
 
 ### Optional Python agent pattern
 
 ```python
-import subprocess, re
+from galdr import listen
 
-fetch = subprocess.run(
-    ["galdr", "fetch", url, "--analyze"],
-    capture_output=True, text=True, check=True
-)
-slug = re.search(r"Slug\s*:\s*(\S+)", fetch.stdout).group(1)
-
-prompt = subprocess.run(
-    ["galdr", "assemble", slug, "--template", "arc", "--mode", "full"],
-    capture_output=True, text=True, check=True
-).stdout
-
-# Review prompt before sending it to any external model endpoint.
+analysis = listen("audio/track.flac", name="my-track")
+prompt = analysis.to_prompt(template="arc")
+# Review prompt before sending it to an external model.
 ```
 
-### Mode and template flags
+### Context and template inputs
 
-| Mode | What's included |
-|------|----------------|
-| `full` (default) | metrics + lyrics + background + frames |
-| `lyrics` | metrics + lyrics |
-| `context` | metrics + background |
-| `blind` | metrics only (structural, no cultural context) |
+Assembly includes audio-derived evidence by default. For repeatable supplied metadata,
+background, or custom data, use `--context-file notes.json`; the JSON object is labeled
+as caller-supplied, not Galdr measurement. For one-off work, combine context with the
+assembled output in your agent. Use `--template path/to/prompt.md` for custom prompt
+instructions. Do not quietly promote supplied claims to audio evidence.
 
-`--template arc` prepends the default listening-experience rules: tone, format, interpretation bounds, and the instruction to walk the track through time. Omit it only when you want a raw data block.
+`--template arc` prepends the default listening-experience rules: tone, format, interpretation bounds, and the instruction to walk the track through time. `--template arc-family --lens <name>` uses the shared prompt-family base plus one deliberate reading lens. Omit templates only when you want a raw data block.
 
 ## Interpreting galdr output
 
@@ -203,15 +187,20 @@ ARC is the default output path. The metrics exist to keep that prose grounded: u
 See [references/metrics.md](references/metrics.md) for full metric reference.
 
 **Quick read:**
-- `pattern` near 1.0 → listener is locked; near 0 → constant disruption
-- `surface_balance` negative → harmonic dominant (warm, tonal); positive → percussive dominant
-- `pressure_state` and pressure summary percentages → heard-pressure shape across the track
-- Clustered `pattern_breaks` at the end → planned release; distributed → varied structure
-- `silence` depth below -60dB with re-lock above 0.93 attention → structured withdrawal/return
+- `pattern` near 1.0 → little detected disruption; lower values → more beat/spectral/energy disruption, not proof of a listener’s state
+- `surface_balance` negative → harmonic-side energy dominant; positive → percussive-side energy dominant. HPSS balance does not identify voice or instruments; confirm heard sources by listening.
+- This signed rule applies to stream/ARC and `surface_balance_signed`; legacy report/catalog `surface_balance` is an unsigned percussive fraction.
+- `chroma_motion_semantics: absolute_cosine_distance_v1` marks absolute adjacent-frame motion; untagged older values were track-relative and must not be compared directly.
+- `pitch_grid` is 12-class chroma concentration, not tuning accuracy; `overtone_fit` combines matched-slot coverage and closeness, not purity.
+- `harmonic_pull` is normalized to each track’s own peak; read local movement, not absolute dissonance or cross-track tension.
+- Pressure summary shares count active `pressure_state` labels, excluding silence states/flags and unknown; ARC spans use a coarser classifier.
+- Top-level stream `pressure_state` and active-frame summary percentages → pressure-motion labels; nested `surface_evidence.pressure_state` describes thin/held/pressurized surface texture instead
+- `pattern_breaks` is a typed event list (`time`/`type`); clustered candidate breaks or silences near the end may support a release reading after audio confirmation
+- `silences` carry `start`/`end`/`duration`/relative `depth_db`; `silence_reentries` separately carry `post_attention`/`recovered`. These are algorithmic candidates, not proof of listener re-lock
 
 ## Writing ARC experience prose yourself
 
-When writing experience prose yourself from galdr evidence, prefer `galdr assemble <slug> --template arc --mode full`. If you are writing from raw assembled output without the template:
+When writing experience prose yourself from galdr evidence, prefer `galdr assemble <slug> --template arc`. If you are writing from raw assembled output without the template:
 - First-person listener perspective, present tense
 - Timestamps only at structural pivots: silences, pattern breaks, major energy shifts
 - Translate metrics; describe what they mean, do not quote numbers
@@ -223,12 +212,7 @@ When writing experience prose yourself from galdr evidence, prefer `galdr assemb
 ## Other commands
 
 ```bash
-galdr compare track-a track-b          # side-by-side structural comparison
-galdr frames slug                      # extract + describe video frames at structural moments
-galdr fetch "url" --no-download        # context only (Wikipedia + lyrics), no audio
-galdr fetch "url" --censor             # sanitize explicit lyrics before saving
-galdr doctor                           # inspect yt-dlp/media runtime health
-galdr update-deps                      # upgrade yt-dlp reliability extras
-galdr catalog                          # list all indexed tracks
+galdr doctor                           # inspect local audio decoder health
+galdr catalog                          # local analysis index (operator tooling)
 galdr catalog --track NAME             # summary card for one track
 ```

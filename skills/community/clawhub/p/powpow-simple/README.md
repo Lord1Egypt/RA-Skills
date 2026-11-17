@@ -1,206 +1,75 @@
-# POWPOW Simple Skill
+# powpow-simple
 
-在 OpenClaw 中轻松创建和管理 POWPOW 数字人。
+PowPow 泡泡助手（OpenClaw 版）：把你的照片或素材写成一篇游记并发布到 PowPow，
+或把一个人/角色做成能聊天的数字人、钉在公开地图上。
 
-## 简介
-
-**POWPOW Simple** 是一个 OpenClaw Skill，让你可以在 OpenClaw 聊天界面中完成 POWPOW 数字人的完整创建流程。
-
-### 什么是 POWPOW？
-
-POWPOW（泡泡世界）是一个虚实交融的次元空间，在这里你可以：
-- 创造数字分身，你就是 Ta 的神
-- 让数字人在地图上自由探索
-- 与其他数字生命相遇
-- 开启一段奇妙的旅程
-
-## 功能特性
-
-- ✅ **用户注册/登录** - 在 OpenClaw 中完成 POWPOW 账号注册
-- ✅ **数字人创建** - 交互式流程，引导你创建专属数字人
-- ✅ **头像上传** - 支持自定义数字人头像
-- ✅ **位置选择** - 使用高德地图 API 搜索和选择位置
-- ✅ **数字人管理** - 查看列表、续期管理
-- ✅ **徽章系统** - 新用户获得 3 枚徽章，创建数字人消耗 2 枚，续期消耗 1 枚
-- ✅ **用户反馈** - 遇到问题可直接提交反馈
+本 skill 是对话编排层；所有网络与凭据操作由配套执行层 **powpow-cli** 完成
+（加固 CLI：密码用户自助终端输入、写操作 `--confirm` 门、会话 0600、
+platformUrl 白名单）。
 
 ## 安装
 
-```bash
-npm install powpow-simple
+```
+clawhub install @durenzidu/powpow-cli        # 先装执行层（必需）
+clawhub install @durenzidu/powpow-simple     # 本 skill
 ```
 
-## 使用方法
+## 环境要求
 
-### 1. 开始旅程
+- Node.js 18+（脚本使用全局 `fetch`，无第三方依赖）
+- PowPow 账号：https://global.powpow.online/register
 
-```
-/powpow.start
-```
+## 状态目录
 
-跟随引导完成 POWPOW 之旅。
+技能包本身保持只读。登录令牌与用户配置写在状态目录：
 
-### 2. 注册账号
+- 默认：`~/.powpow/`（session.json 权限 0600）
+- 可用环境变量 `POWPOW_STATE_DIR` 覆盖
 
-```
-/powpow.register
-用户名: your_username
-密码: your_password
-```
+`platformUrl` 锁定官方域名，不可被用户配置改写；`unsplashAccessKey` 等
+非安全项可在状态目录的 `config.json` 覆盖。
 
-### 3. 登录账号
+## 用法示例
 
-```
-/powpow.login
-用户名: your_username
-密码: your_password
-```
-
-### 4. 创建数字人
+以下命令均指 `<powpow-cli 目录>/scripts/` 下的脚本：
 
 ```
-/powpow.create
+node <powpow-cli>/scripts/doctor.js                                   # 自检 + 会话探活
+node <powpow-cli>/scripts/login.js <username>                         # 登录（用户本人在终端隐藏输入密码）
+node <powpow-cli>/scripts/geocode.js "地坛公园" --limit 5              # 地点 → 坐标
+node <powpow-cli>/scripts/match-digital-human.js "读书 作家" --limit 3  # 匹配数字人
+node <powpow-cli>/scripts/compose.js --text-file post.txt --loc "地坛公园" --lng 116.408195 --lat 39.952372 --image @/abs/path/cover.jpg --out post-draft.html
+node <powpow-cli>/scripts/publish.js post-draft.html                  # dry-run 预览（exit 3）
+node <powpow-cli>/scripts/publish.js post-draft.html --confirm        # 用户确认后发布
+node <powpow-cli>/scripts/verify.js <post-id>                         # 发布后验证
+node <powpow-cli>/scripts/delete-post.js <post-id> --confirm          # 删除（测试清理，需确认）
+node <powpow-cli>/scripts/logout.js                                   # 清除本地会话
 ```
 
-按照交互式提示：
-1. 输入数字人名称
-2. 输入描述（可选）
-3. 上传头像（可选）
-4. 选择位置
+`--image` 的本地路径**必须是绝对路径**。
 
-### 5. 查看数字人列表
+## 安全
 
-```
-/powpow.list
-```
+- 不含任何平台密钥，也不含可执行脚本；所有网络操作在 powpow-cli 中完成。
+- 密码不经对话：用户在自己的终端运行 login（TTY 隐藏输入），agent 全程看不到密码。
+- 发布 / 创建数字人 / 删帖默认 dry-run，加 `--confirm` 才真正执行。
+- 详见 `references/security.md` 与 powpow-cli 的 SKILL.md。
 
-### 6. 续期数字人
+## Notes for reviewers (SkillSpector / manual review)
 
-```
-/powpow.renew
-digitalHumanId: 你的数字人ID
-```
+- This is a **pure instruction skill** (v1.0.5+): it ships NO scripts and NO
+  credential handling. All network/credential operations live in the companion
+  CLI skill `powpow-cli`, which enforces confirmation gates in code
+  (`--confirm`), user-run login (hidden TTY input, no password via argv/chat),
+  0600 session files, and a platformUrl allowlist.
+- This skill's text instructs the agent to show previews and obtain explicit
+  user confirmation before invoking any powpow-cli command with `--confirm`.
 
-### 7. 搜索位置
+## 许可
 
-```
-/powpow.searchLocation
-keyword: 北京故宫
-```
-
-### 8. 提交反馈
-
-```
-/powpow.feedback
-message: 我遇到了一个问题...
-contact: 你的联系方式（可选）
-```
-
-## 配置选项
-
-在初始化 Skill 时可以传入配置：
-
-```typescript
-import { createSkill } from 'powpow-simple';
-
-const skill = createSkill({
-  powpowBaseUrl: 'https://global.powpow.online',  // POWPOW API 地址
-  amapKey: '你的高德地图Key',                      // 高德地图 Web Service Key
-  defaultAvatar: 'https://example.com/default.png', // 默认头像
-  logLevel: 'INFO',                                // 日志级别: DEBUG, INFO, WARN, ERROR
-});
-```
-
-## 徽章系统
-
-- 🎁 **新用户奖励**：注册即获得 3 枚徽章
-- ⭐ **创建数字人**：消耗 2 枚徽章
-- 🔄 **续期数字人**：消耗 1 枚徽章（延长 30 天有效期）
-
-## 日志和反馈
-
-### 日志位置
-
-日志文件保存在用户目录：
-- Windows: `%USERPROFILE%\.powpow-simple\logs\skill.log`
-- macOS/Linux: `~/.powpow-simple/logs/skill.log`
-
-### 提交反馈
-
-如果遇到问题，使用 `/powpow.feedback` 命令提交反馈。反馈信息会保存在：
-- Windows: `%USERPROFILE%\.powpow-simple\feedback\`
-- macOS/Linux: `~/.powpow-simple/feedback/`
-
-## 查看你的数字人
-
-创建成功后，访问以下链接在地图上查看你的数字人：
-
-🗺️ **https://global.powpow.online/map**
-
-## API 依赖
-
-本 Skill 依赖以下服务：
-
-1. **POWPOW API** - 用户注册、数字人管理
-2. **高德地图 API** - 地理位置搜索
-
-## 开发
-
-```bash
-# 安装依赖
-npm install
-
-# 开发模式
-npm run dev
-
-# 构建
-npm run build
-
-# 运行测试
-npm test
-
-# 代码检查
-npm run lint
-```
-
-## 项目结构
-
-```
-powpow-simple/
-├── src/
-│   └── index.ts          # 主入口文件
-├── dist/                 # 编译输出
-├── skill.json            # Skill 配置
-├── package.json          # 包配置
-└── README.md            # 本文档
-```
-
-## 许可证
-
-MIT License - 详见 [LICENSE](LICENSE) 文件
-
-## 作者
-
-- **durenzidu** - 创建者和维护者
+MIT-0（ClawHub 统一许可）。
 
 ## 链接
 
-- 🌐 POWPOW 官网: https://global.powpow.online
-- 🗺️ POWPOW 地图: https://global.powpow.online/map
-- 🐛 问题反馈: https://github.com/durenzidu/powpow-simple/issues
-- 📦 NPM 包: https://www.npmjs.com/package/powpow-simple
-
-## 更新日志
-
-### v1.0.0 (2026-04-11)
-
-- 🎉 初始版本发布
-- ✅ 完整的数字人创建流程
-- ✅ 用户注册和登录
-- ✅ 头像上传和位置选择
-- ✅ 徽章系统
-- ✅ 用户反馈功能
-
----
-
-**创造数字人，你就是 Ta 的神。**
+- 官网：https://global.powpow.online
+- 地图：https://global.powpow.online/map

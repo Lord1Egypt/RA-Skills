@@ -1,41 +1,58 @@
-## Description: <br>
-Check for OpenClaw updates and self-update the installation when the user asks to update OpenClaw, check for updates, upgrade the bot, install a new version, or use a newly available release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check for OpenClaw updates and self-update the installation. Use when the user asks to update OpenClaw, check for updates, upgrade the bot, install a new version, or says a new release is available.
 
-## Publisher: <br>
-[spideystreet](https://clawhub.ai/user/spideystreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spideystreet](https://clawhub.ai/user/spideystreet)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to check the globally installed OpenClaw package, compare it with npm's latest release, and apply a selected update channel after confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change the globally installed OpenClaw package. <br>
-Mitigation: Confirm the user's intended update channel before installation and prefer the stable channel unless the user intentionally requests beta or dev. <br>
-Risk: An update does not take effect until the OpenClaw gateway restarts. <br>
-Mitigation: After a successful install, tell the user that a manual gateway restart is required and do not restart it automatically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spideystreet/oc-self-update) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to check the installed OpenClaw npm package version, compare it with the latest published version, and apply a user-confirmed update channel.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm and user confirmation before changing the global OpenClaw package; a manual gateway restart is required after update.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and CHANGELOG.md) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install or switch the globally installed OpenClaw npm package after confirmation.
+
+Mitigation: Confirm the requested update channel before installation and prefer the stable channel unless beta or dev is intentionally requested.
+
+Risk: An update does not take effect until the OpenClaw gateway is restarted.
+
+Mitigation: After a successful install, restart the gateway manually with the documented OpenClaw restart flow.
+
+Risk: Update checks and installs depend on npm availability and network or npm registry configuration.
+
+Mitigation: Ensure npm is installed and review any npm error output before retrying or changing channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spideystreet/skills/oc-self-update)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command snippets and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports installed and latest OpenClaw versions, asks for confirmation before installing updates, and reminds the user to restart the gateway manually.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Query your Telegram chat history using a LifeQuery instance to search past conversations, find shared links, or ask about specific people and events from Telegram messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query your Telegram chat history using a LifeQuery instance. Use when the user wants to search past conversations, find shared links, or ask about specific people/events from their Telegram messages.
 
-## Publisher: <br>
-[ngtwolf](https://clawhub.ai/user/ngtwolf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ngtwolf](https://clawhub.ai/user/ngtwolf)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent query their Telegram chat history through a configured LifeQuery instance and return relevant answers with citations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram history queries and results may contain private message data that could be exposed to or logged by the configured LifeQuery service. <br>
-Mitigation: Use a LifeQuery endpoint you control and trust, prefer localhost, and treat all query inputs and outputs as private Telegram data. <br>
-Risk: A remote or untrusted LifeQuery endpoint could receive the user's API key and Telegram search queries. <br>
-Mitigation: Use HTTPS and authentication for remote servers, and avoid setting LIFEQUERY_API_KEY for any endpoint you do not trust. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ngtwolf/lifequery) <br>
-- [LifeQuery project](https://github.com/nikira-studio/lifequery) <br>
+## Use Case:
 
+External users and agents use this skill to search Telegram chat history, retrieve old conversation context, and find links, files, people, events, or topics from messages through a configured LifeQuery instance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration] <br>
-**Output Format:** [Plain text or Markdown answers with citations from Telegram history] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LIFEQUERY_BASE_URL and can optionally use LIFEQUERY_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: skill.yaml and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can query an entire private Telegram history.
+
+Mitigation: Ask the user to narrow the chat, topic, or time range before use, and treat each query as disclosure of private Telegram context.
+
+Risk: Sensitive queries and bearer tokens can be sent to unvalidated or plaintext remote endpoints.
+
+Mitigation: Use only a LifeQuery instance the user controls, prefer localhost or HTTPS, avoid remote HTTP endpoints, and do not set LIFEQUERY_API_KEY where it could be sent over plaintext.
+
+## Reference(s):
+
+- [LifeQuery](https://github.com/nikira-studio/lifequery)
+- [ClawHub skill page](https://clawhub.ai/ngtwolf/skills/lifequery)
+- [Publisher profile](https://clawhub.ai/user/ngtwolf)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Plain text or Markdown answers with citations returned by LifeQuery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LIFEQUERY_BASE_URL and optionally LIFEQUERY_API_KEY; queries may disclose private Telegram context to the configured LifeQuery endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: skill.yaml and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

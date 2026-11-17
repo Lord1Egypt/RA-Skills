@@ -1,43 +1,56 @@
-## Description: <br>
-A comprehensive pregnancy care assistant that tracks gestational age, manages medical checklists, provides weekly updates, and offers personalized advice for multiple users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive pregnancy care assistant that tracks gestational age, manages medical checklists, provides weekly updates, and offers personalized advice for multiple users.
 
-## Publisher: <br>
-[GinWu](https://clawhub.ai/user/GinWu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ginwu](https://clawhub.ai/user/ginwu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and their support network use this skill through an agent to track pregnancy timing, manage prenatal milestone reminders, and receive role-aware pregnancy care guidance. Agents use the bundled scripts to calculate gestational age, maintain checklist state, and summarize current pregnancy context.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive pregnancy-related information may be stored locally in plaintext.
+
+Mitigation: Use only in environments where local plaintext storage is acceptable, restrict file access, and prefer secure storage before handling real personal data.
+
+Risk: Pregnancy records may be retained after tracking stops.
+
+Mitigation: Confirm storage and deletion behavior with the user, and delete or archive data only with explicit consent.
+
+Risk: Multi-user tracking can expose data if user identifiers are reused or weakly isolated.
+
+Mitigation: Use stable, per-user identifiers and review isolation behavior before deployment in shared agent environments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and assisting agents use this skill to track gestational age from an LMP date, manage prenatal checklist tasks, and present weekly pregnancy updates and reminders. It provides supportive tracking and guidance, not a replacement for clinician advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill saves sensitive pregnancy details in local plaintext. <br>
-Mitigation: Use it only in a private workspace, avoid entering unnecessary medical details, and review or remove stored data when tracking is no longer needed. <br>
-Risk: The skill asks the agent to create lasting memory about pregnancy completion. <br>
-Mitigation: Confirm consent before creating any persistent memory and delete that memory when the user no longer wants it retained. <br>
-Risk: Pregnancy guidance may be mistaken for medical advice. <br>
-Mitigation: Use the skill for tracking and reminders, and direct users to consult a qualified clinician for symptoms, diagnosis, or treatment decisions. <br>
+**Output Format:** [Markdown guidance with inline shell command examples and JSON returned by helper scripts.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/GinWu/pregnancy-care) <br>
-- [GinWu Publisher Profile](https://clawhub.ai/user/GinWu) <br>
+**Other Properties Related to Output:** [The helper scripts read and write local JSON state for pregnancy tracking and milestone reminders.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with JSON helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save pregnancy tracking details in local plaintext data files.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

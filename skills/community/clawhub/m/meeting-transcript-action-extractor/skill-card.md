@@ -1,40 +1,48 @@
-## Description: <br>
-Extract decisions, action items, and follow-ups from meeting transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract decisions, action items, and follow-ups from meeting transcripts.
 
-## Publisher: <br>
-[yvette1226](https://clawhub.ai/user/yvette1226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yvette1226](https://clawhub.ai/user/yvette1226)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external collaborators, and project teams use this skill to turn meeting transcripts into concise outcomes, decisions, action items, owners, deadlines, follow-up tasks, and clean notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Meeting transcripts can contain sensitive personal, legal, financial, or confidential business information.
+
+Mitigation: Avoid providing sensitive transcripts unless processing them in the agent environment is acceptable for the user's privacy and confidentiality requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, team leads, project managers, and operations staff use this skill to turn meeting, call, and project transcripts into concise outcomes, decisions, action items, follow-up tasks, and clean notes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts can contain personal data, customer details, legal, financial, or confidential business information. <br>
-Mitigation: Use the skill only when authorized to process the transcript and redact unnecessary sensitive information before analysis. <br>
-Risk: Ambiguous transcript language can lead to incorrect owners, deadlines, or decisions in the extracted notes. <br>
-Mitigation: Review the generated outcomes against the transcript and keep unclear owners or deadlines marked as Unspecified or uncertain. <br>
+**Output Format:** [Markdown with structured sections, bullet points, and an action-item table]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yvette1226/meeting-transcript-action-extractor) <br>
+**Other Properties Related to Output:** [Marks unclear owners, deadlines, or details as unspecified or uncertain rather than inventing information.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown with summary sections, bullet lists, and an action-item table.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marks unclear owners or deadlines as Unspecified or uncertain and avoids inventing missing details.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

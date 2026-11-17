@@ -1,39 +1,53 @@
-## Description: <br>
-Guides an agent through hypothesis-driven debugging: observe, hypothesize, isolate, verify, and fix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hypothesis-driven debugging: observe, hypothesize, isolate, verify, and fix.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide agents through structured debugging, root-cause analysis, minimal reproduction, and targeted fixes with regression tests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging recommendations may lead an agent to change code based on incomplete evidence. <br>
-Mitigation: Require a clear hypothesis, minimal reproducer, and regression test before applying fixes. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide debugging sessions through observation, hypothesis generation, isolation, verification, and targeted fixes with regression tests.
 
-## Reference(s): <br>
-- [Codeblocks Debug Tutorial](https://www.bilibili.com/video/BV1oz4y1677N) <br>
-- [VSCode Debug Visualizer](https://www.bilibili.com/video/BV1M8411V7gZ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with optional code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools or credentials are required by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation around generic debugging terms may trigger the skill when a narrower workflow is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow trigger wording before deployment if the environment needs systematic-debugging activation only.
+
+Risk: Unrelated Bilibili learning-history references may distract users from the debugging workflow.
+
+Mitigation: Remove or ignore unrelated reference clutter during review and rely on the core observe, hypothesize, isolate, verify, and fix workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/systematic-debug)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with ordered debugging steps and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

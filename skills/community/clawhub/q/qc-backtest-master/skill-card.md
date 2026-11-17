@@ -1,42 +1,62 @@
-## Description: <br>
-QuantConnect automated backtest pipeline - submit local strategies, compile, execute, monitor with early-stop, and download results in one command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates QuantConnect backtest submission, compilation, monitoring with optional early-stop, and result download from local strategy files.
 
-## Publisher: <br>
-[tltby12341](https://clawhub.ai/user/tltby12341) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tltby12341](https://clawhub.ai/user/tltby12341)
 
-## Use Case: <br>
-Developers and quantitative researchers use this skill to submit local QuantConnect strategy files, run cloud backtests, monitor execution, stop runs that exceed drawdown thresholds, and retrieve statistics and order records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload local strategy and auxiliary files to a QuantConnect project, replacing cloud project files such as main.py. <br>
-Mitigation: Use a dedicated QuantConnect project, inspect the strategy folder before running, and keep secrets out of adjacent .json, .txt, and .csv files. <br>
-Risk: The skill can delete cloud files or early-stopped backtests, and those deleted assets may not be recoverable. <br>
-Mitigation: Confirm the target project and drawdown threshold before execution, keep independent backups of project files, and treat early-stop deletion as permanent. <br>
+## Use Case:
 
+Developers and quantitative researchers use this skill to run QuantConnect backtests from local strategy files, monitor progress, stop runs that breach drawdown thresholds, and retrieve JSON/CSV results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tltby12341/qc-backtest-master) <br>
-- [Publisher Profile](https://clawhub.ai/user/tltby12341) <br>
-- [QuantConnect REST API v2](https://www.quantconnect.com/api/v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated JSON/CSV result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses QC_USER_ID, QC_API_TOKEN, and QC_PROJECT_ID environment variables; downloaded backtest statistics are JSON and order records are CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill has QuantConnect project mutation authority and uploads local strategy content to a cloud project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against the intended QuantConnect project, review the strategy file before submission, and confirm QC_PROJECT_ID before execution.
+
+Risk: Auxiliary .json, .txt, and .csv files in the strategy directory may be uploaded along with the main file.
+
+Mitigation: Place strategy files in a clean directory and remove unrelated data files before running the submission or full workflow.
+
+Risk: Credentials may be read from environment variables, a parent .env file, or ~/.lean/credentials.
+
+Mitigation: Set QC_USER_ID, QC_API_TOKEN, and QC_PROJECT_ID explicitly for the intended account and check for fallback credential files before use.
+
+Risk: Early-stop behavior can permanently delete a backtest when the drawdown threshold is exceeded.
+
+Mitigation: Use conservative thresholds, omit --max-dd when result retention matters, and treat deleted early-stop runs as unrecoverable.
+
+## Reference(s):
+
+- [QuantConnect REST API v2](https://www.quantconnect.com/api/v2)
+- [ClawHub skill page](https://clawhub.ai/tltby12341/skills/qc-backtest-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts may include JSON result files and CSV order files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QC_USER_ID, QC_API_TOKEN, QC_PROJECT_ID, python3, and requests; may mutate QuantConnect project files and delete early-stopped backtests.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

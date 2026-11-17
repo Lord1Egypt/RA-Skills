@@ -1,48 +1,67 @@
-## Description: <br>
-Dual-purpose news intelligence system that searches recent news, extracts strategic patterns for an agent knowledge base, and generates CORE-analyzed personalized news briefings by category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Insight Radar scans recent news, applies CORE analysis, generates personalized strategic briefings, and records selected events, concepts, and patterns into an agent knowledge base.
 
-## Publisher: <br>
-[kedoupi](https://clawhub.ai/user/kedoupi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kedoupi](https://clawhub.ai/user/kedoupi)
 
-## Use Case: <br>
-External users and agent operators use this skill to run scheduled or ad hoc news scans, receive strategic Markdown briefings, and maintain local news logs plus selective concept and pattern notes. The skill is suited for personalized market, technology, policy, and business intelligence workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personalized briefings can expose sensitive context from USER.md in local briefing content or logs. <br>
-Mitigation: Keep USER.md limited to information appropriate for briefings and local logs, and periodically inspect or prune memory/news-log and memory/knowledge-base. <br>
-Risk: Separate heartbeat, cron, Feishu, or other delivery integrations may introduce external-output or credential risks outside this skill. <br>
-Mitigation: Review those integrations separately before enabling automated delivery, because this skill declares no direct external outputs or credentials. <br>
-Risk: The skill depends on two other skills that shape analysis and news-source configuration. <br>
-Mitigation: Review core-prism and news-source-manager before installation or production use. <br>
+## Use Case:
 
+External users and agent operators use this skill to produce daily or on-demand strategic news briefings, personalize execution guidance from user context, and preserve selected news-derived concepts or patterns for later agent reasoning.
 
-## Reference(s): <br>
-- [ClawHub release: Insight Radar](https://clawhub.ai/kedoupi/insight-radar) <br>
-- [Publisher profile: kedoupi](https://clawhub.ai/user/kedoupi) <br>
-- [Category Configuration Guide](references/category-config.md) <br>
-- [Category Recommendations](references/category-recommendations.md) <br>
-- [Example Output Format](references/example-output.md) <br>
-- [Dependency: core-prism](https://clawhub.ai/kedoupi/core-prism) <br>
-- [Dependency: news-source-manager](https://clawhub.ai/kedoupi/news-source-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown briefing with category labels, source links, CORE analysis, cognitive digest entries, blind-spot questions, and optional local knowledge-base file updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses built-in WebSearch and WebFetch, reads local user and news-source configuration, and writes local news logs and high-bar knowledge-base notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill stores daily web-derived news analysis under memory/news-log and may promote selected ideas into knowledge-base files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review retention expectations before installation and periodically inspect generated memory/news-log and knowledge-base content.
+
+Risk: The skill depends on external skills that may not be pinned or independently audited.
+
+Mitigation: Pin or audit core-prism and news-source-manager before using this skill in a controlled workflow.
+
+Risk: Scheduled runs can repeatedly collect and preserve personalized news analysis without direct per-run review.
+
+Mitigation: Review or disable scheduled triggers unless the workspace owner expects recurring news ingestion.
+
+Risk: Optional Feishu or Bitable export paths may send personalized briefing content to a third-party service.
+
+Mitigation: Confirm the export destination and data policy before enabling any external delivery workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kedoupi/skills/insight-radar)
+- [README](README.md)
+- [Example Output Format](references/example-output.md)
+- [Category Configuration Guide](references/category-config.md)
+- [Category Recommendations](references/category-recommendations.md)
+- [core-prism dependency](https://clawhub.ai/kedoupi/core-prism)
+- [news-source-manager dependency](https://clawhub.ai/kedoupi/news-source-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown briefing with links, CORE analysis, cognitive digest entries, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local news-log and knowledge-base Markdown files when run by an agent with the configured filesystem permissions.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

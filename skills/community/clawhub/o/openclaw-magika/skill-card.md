@@ -1,41 +1,52 @@
-## Description: <br>
-Detects local file content types using the Google Magika CLI and deep learning model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects local file content types using the Google Magika deep learning model and magika CLI.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[axelhu](https://clawhub.ai/user/axelhu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to identify single files, MIME types, batch uploads, or directories by content using local Magika inference.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The install instructions include a command that downloads a remote script and runs it immediately.
+
+Mitigation: Prefer an isolated package-manager install such as pipx install magika from a trusted source, and review commands before execution.
+
+Risk: Recursive scans may classify more files than intended.
+
+Mitigation: Run recursive Magika scans only on directories selected for classification.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to choose and run Magika commands for identifying single files, MIME types, directories, batches, and confidence-scored classifications. It is useful when inspecting uploaded or workspace files by content rather than filename extension. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Recursive or batch scans read local file contents in the selected path to classify them. <br>
-Mitigation: Run scans only on files and folders the user intends to inspect, especially when using recursive options. <br>
-Risk: The documented curl install option runs a remote install script. <br>
-Mitigation: Prefer pipx, pip, or brew installation when possible, and inspect any remote script before executing it. <br>
+**Output Format:** [Markdown with inline bash commands and CLI output guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Openclaw Magika on ClawHub](https://clawhub.ai/axelhu/openclaw-magika) <br>
-- [Google Magika install script](https://securityresearch.google/magika/install.sh) <br>
+**Other Properties Related to Output:** [May include labels, MIME types, JSON output, JSONL output, and confidence scores from Magika.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Magika JSON or JSONL command examples; actual file classification output is produced locally by the magika CLI.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

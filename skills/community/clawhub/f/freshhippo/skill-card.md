@@ -1,41 +1,54 @@
-## Description: <br>
-Organizes public Freshippo/盒马 pages for merchant cooperation, service rules, promotion information, and help content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+整理盒马公开页面的商家合作、服务规则、活动信息及帮助说明，提供本地化服务内容汇总。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill to summarize public Freshippo/盒马 information such as merchant onboarding conditions, service coverage, promotion rules, membership benefits, delivery notes, after-sales rules, and help-page content. It is scoped to public information and excludes order handling, merchant backend actions, dispatch operations, account takeover, and private or sensitive data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for public Freshippo/盒马 information and may be misused with private account, order, customer, merchant-backend, or credential data. <br>
-Mitigation: Use only public pages and do not provide private account details, order records, customer information, merchant-backend data, or credentials. <br>
-Risk: Local service coverage, delivery rules, fees, promotions, and refund timelines can vary by city or change over time. <br>
-Mitigation: Label the applicable city or region in outputs and prioritize current official rules pages when summarizing operational details. <br>
+## Use Case:
 
+External users and operators use this skill to summarize public Freshippo/Hema merchant cooperation, service coverage, activity, membership, delivery, after-sales, and help information. It is scoped to public pages and should include the applicable city or region when local service rules matter.
 
-## Reference(s): <br>
-- [Freshhema official website](https://www.freshhema.com/) <br>
-- [ClawHub Freshhippo listing](https://clawhub.ai/CodeKungfu/freshhippo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, checklists, and tables with source links where available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should identify the applicable city or region and prioritize official rules pages when service details or fees may change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may summarize regional service, delivery, refund, membership, or campaign details that change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer official public rules pages, include the applicable city or region, and ask for fresh verification when rules affect decisions.
+
+Risk: Users may ask for order handling, account operations, merchant backend details, or private user data outside the skill's scope.
+
+Mitigation: Keep usage limited to public Freshippo/Hema pages and avoid account, order, dispatch, private merchant, or sensitive user information.
+
+## Reference(s):
+
+- [Freshhema homepage](https://www.freshhema.com/)
+- [ClawHub Freshhippo skill page](https://clawhub.ai/codekungfu/skills/freshhippo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, checklists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Should cite official public pages where possible and label region-specific rules.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

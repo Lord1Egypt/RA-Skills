@@ -1,40 +1,53 @@
-## Description: <br>
-X/Twitter CLI for reading, searching, and posting via cookies or Sweetistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X/Twitter CLI for reading, searching, and posting via cookies or Sweetistics.
 
-## Publisher: <br>
-[SoanAI](https://clawhub.ai/user/SoanAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[soanai](https://clawhub.ai/user/soanai)
 
-## Use Case: <br>
-External users and developers use this skill to operate the bird CLI for reading X/Twitter content, searching posts, inspecting threads, and drafting tweets or replies with explicit review before posting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The external bird CLI may access an authenticated X/Twitter account through browser cookies. <br>
-Mitigation: Install only from a trusted Homebrew source and prefer a dedicated browser profile or Sweetistics API key to limit account exposure. <br>
-Risk: Tweet and reply commands can publish content from the user's account. <br>
-Mitigation: Require explicit user review and confirmation before running any posting command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SoanAI/xbio) <br>
-- [Bird homepage](https://bird.fast) <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent in reading, searching, and posting on X/Twitter through the bird CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the external bird CLI and X/Twitter authentication through browser cookies or a Sweetistics API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bird executable may receive access to X/Twitter authentication material and posting authority.
+
+Mitigation: Use a dedicated, revocable API key or isolated browser profile, run `bird check` before use, and review account actions before posting.
+
+Risk: The external CLI provenance is not resolved by the server evidence.
+
+Mitigation: Review the upstream CLI source and install path before authorizing account access.
+
+## Reference(s):
+
+- [bird homepage](https://bird.fast)
+- [ClawHub skill page](https://clawhub.ai/soanai/skills/xbio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may reference the bird executable, browser cookies, and SWEETISTICS_API_KEY authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

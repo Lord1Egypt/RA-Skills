@@ -2,7 +2,7 @@
 """Manage Elementor page content via REST API"""
 import argparse, json, os, sys, urllib.request
 from base64 import b64encode
-from security import warn_insecure_wp_url
+from security import require_secure_wp_url, urlopen_authenticated
 
 def get_elementor_data(url, username, password, post_id):
     """Get Elementor data for a page"""
@@ -14,7 +14,7 @@ def get_elementor_data(url, username, password, post_id):
     request.add_header('Authorization', f'Basic {auth_header}')
     
     try:
-        with urllib.request.urlopen(request) as response:
+        with urlopen_authenticated(request) as response:
             result = json.loads(response.read().decode('utf-8'))
             
             # Extract _elementor_data from meta
@@ -51,7 +51,7 @@ def update_elementor_data(url, username, password, post_id, elementor_data):
     request.add_header('Content-Type', 'application/json')
     
     try:
-        with urllib.request.urlopen(request) as response:
+        with urlopen_authenticated(request) as response:
             result = json.loads(response.read().decode('utf-8'))
             return result
     except Exception as e:
@@ -128,7 +128,7 @@ args = parser.parse_args()
 if not all([args.url, args.username, args.app_password]):
     print(json.dumps({"error": "Missing credentials"}), file=sys.stderr)
     sys.exit(1)
-warn_insecure_wp_url(args.url)
+require_secure_wp_url(args.url)
 
 if args.action == 'get':
     result = get_elementor_data(args.url, args.username, args.app_password, args.post_id)

@@ -1,38 +1,54 @@
-## Description: <br>
-Adds freshness warnings to OpenClaw memory search results and guides agents to verify older memory entries before relying on them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds memory freshness warnings for OpenClaw 4.2 so agents verify older memory results before relying on them.
 
-## Publisher: <br>
-[nicshliu](https://clawhub.ai/user/nicshliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicshliu](https://clawhub.ai/user/nicshliu)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add memory freshness checks and verification guidance to agent workflows. It helps agents treat older memory entries cautiously and confirm file, function, or configuration references before acting on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may rely on outdated memory content or verify memory claims against local files referenced by those memories. <br>
-Mitigation: Review the proposed system prompt before adding it to OpenClaw configuration, and keep verification focused on intended project files before using memory-derived claims. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add memory freshness reminders and verification steps when an agent relies on stored memories that may be stale.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicshliu/openclaw-memory-freshness) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with configuration snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external services or credentials are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Suggested edits to ~/.openclaw/openclaw.json can persistently change how OpenClaw treats memory in later sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration changes before applying them and confirm they match the intended memory freshness policy.
+
+Risk: Stored memory can become stale and lead an agent to use outdated file, function, or configuration details.
+
+Mitigation: Verify memory-backed claims against current workspace files with grep, rg, or direct file reads before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicshliu/skills/openclaw-memory-freshness)
+- [Publisher profile](https://clawhub.ai/user/nicshliu)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no executable code in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

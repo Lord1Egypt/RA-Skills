@@ -1,0 +1,33 @@
+# YAML Spec — 章节规格
+
+```yaml
+chapter: 1
+title: "章节标题"
+summary: "200字以内摘要"
+
+before_state:
+  characters:
+    - {name: "角色名", state: "当前状态", location: "当前位置"}
+  plot_hooks:
+    - "待回收伏笔"
+
+after_state:
+  characters:
+    - {name: "角色名", state: "新状态", location: "新位置"}
+  plot_advances:
+    - "伏笔回收/新伏笔"
+
+must_happen:
+  - "关键事件1"
+
+tension_curve:
+  - {position: 0, value: 3, note: "铺垫"}
+  - {position: 50, value: 8, note: "高潮"}
+  - {position: 100, value: 5, note: "收尾"}
+
+key_scenes:
+  - "场景1"
+
+new_hooks:
+  - "章末钩子"
+```

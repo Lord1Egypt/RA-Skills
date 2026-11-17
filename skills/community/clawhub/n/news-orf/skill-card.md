@@ -1,45 +1,56 @@
-## Description: <br>
-Fetches ORF.at news, sport, and science RSS feeds and formats verified headlines into sectioned Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats ORF.at news, sport, and science RSS headlines into source-separated Markdown sections with exact article links.
 
-## Publisher: <br>
-[maximedogawa](https://clawhub.ai/user/maximedogawa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maximedogawa](https://clawhub.ai/user/maximedogawa)
 
-## Use Case: <br>
-Readers and agents use this skill to answer ORF-related news requests by fetching public ORF RSS feeds and presenting Nachrichten, Sport, and Science headlines with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Austria-news prompts may select this ORF-specific source when the user expects source-neutral coverage. <br>
-Mitigation: State that results are from ORF feeds and confirm the intended source when source neutrality matters. <br>
-Risk: Live RSS feeds may be empty, unavailable, or only partially fetched. <br>
-Mitigation: Report affected sections as unavailable and do not invent missing headlines or links. <br>
-Risk: Headlines can be misclassified if news, sport, and science feed boundaries are ignored. <br>
-Mitigation: Fetch each needed feed separately and place items only under the section matching their source feed and hostname. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve and format ORF headlines from news, sport, and science RSS feeds, with source-separated sections and exact article links.
 
-## Reference(s): <br>
-- [ORF RSS Overview](https://rss.orf.at/) <br>
-- [ORF Nachrichten Feed](https://rss.orf.at/news.xml) <br>
-- [ORF Sport Feed](https://rss.orf.at/sport.xml) <br>
-- [ORF Science Feed](https://rss.orf.at/science.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with section headings and linked headline lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live fetches of ORF RSS feeds; uses feed item titles and links without inventing stories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Broad Austria-news prompts may cause the agent to use ORF when the user intended another source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask users to name the desired source explicitly when they want a specific non-ORF news provider.
+
+Risk: ORF headline responses depend on the availability and current contents of public ORF RSS feeds.
+
+Mitigation: Report feed failures or missing sections clearly and do not invent headlines when a feed cannot be loaded.
+
+## Reference(s):
+
+- [ORF RSS overview](https://rss.orf.at/)
+- [ORF news RSS feed](https://rss.orf.at/news.xml)
+- [ORF sport RSS feed](https://rss.orf.at/sport.xml)
+- [ORF science RSS feed](https://rss.orf.at/science.xml)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with section headings, numbered headlines, and inline article links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public ORF RSS feed items and preserves source-specific news, sport, and science sections.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

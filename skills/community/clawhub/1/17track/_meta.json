@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7d4t1phjfs3v8m6ec3t61bxd80b8yx",
+  "owner": "f-liva",
   "slug": "17track",
-  "version": "1.0.3",
-  "publishedAt": 1772803810470
+  "displayName": "17TRACK",
+  "homepage": "https://github.com/f-liva/skill-17track",
+  "source": "https://github.com/f-liva/skill-17track",
+  "latest": {
+    "version": "1.0.2"
+  }
 }

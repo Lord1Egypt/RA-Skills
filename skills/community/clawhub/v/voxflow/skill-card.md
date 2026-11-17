@@ -1,48 +1,64 @@
-## Description: <br>
-VoxFlow voice and AI-video CLI supports text-to-speech, podcasts, transcription, subtitle translation, dubbing, video translation, Slice card videos, and short-form AI clips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slice helps agents use the VoxFlow CLI to create narrated media workflows, including text-to-speech audio, multi-speaker podcasts, transcripts, subtitle translation, dubbing, vertical Slice card videos, and short AI clips.
 
-## Publisher: <br>
-[chicogong](https://clawhub.ai/user/chicogong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chicogong](https://clawhub.ai/user/chicogong)
 
-## Use Case: <br>
-External users and developers use this skill to run VoxFlow CLI workflows for speech synthesis, podcasts, transcription, translation, dubbing, video localization, and short-form media generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a VoxFlow account, quota-based cloud media processing, and locally stored authentication tokens. <br>
-Mitigation: Confirm account use and quota-consuming commands before execution, check quota with voxflow status, and keep VOXFLOW_TOKEN out of logs and committed configuration. <br>
-Risk: The artifact instructs agents to upgrade installed tooling and perform bulk skill installation without clear user confirmation. <br>
-Mitigation: Require explicit user confirmation before upgrades, avoid unpinned latest installs, and prefer the pinned package from the ClawHub install metadata. <br>
-Risk: The artifact can guide agents to submit GitHub issues that may include system details or user-provided content. <br>
-Mitigation: Review issue text and any included environment details with the user before submitting. <br>
+## Use Case:
 
+External users, developers, and content creators use this skill to route an agent through VoxFlow media tasks such as reading text aloud, generating podcasts, transcribing or translating audio and video, dubbing subtitles, and preparing Slice card-video decks or renders.
 
-## Reference(s): <br>
-- [VoxFlow homepage](https://voxflow.studio) <br>
-- [VoxFlow CLI docs](https://voxflow.studio/docs/cli) <br>
-- [VoxFlow skills docs](https://voxflow.studio/docs/skills) <br>
-- [ClawHub Voxflow release](https://clawhub.ai/chicogong/voxflow) <br>
-- [Deck Schema](references/deck-schema.md) <br>
-- [Example Decks](references/example-decks.md) <br>
-- [Slice Themes](references/themes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus CLI-produced media or structured files depending on the workflow.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The VoxFlow CLI can produce audio, video, subtitles, transcripts, JSON decks, PPTX, PNG, and HTML artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: User media, transcripts, subtitles, and generated content may be processed through VoxFlow cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input data before sending it through the CLI and avoid sensitive or private media unless cloud processing is acceptable.
+
+Risk: The skill includes global CLI installation and upgrade behavior.
+
+Mitigation: Review and approve the exact install or upgrade command before execution; do not auto-upgrade, install voxflow@latest, or run broad skill installs without approval.
+
+Risk: Diagnostic or issue-reporting workflows may submit information externally.
+
+Mitigation: Review diagnostics and issue content before submission and remove secrets, personal data, or proprietary media details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chicogong/skills/voxflow)
+- [VoxFlow Homepage](https://voxflow.studio)
+- [VoxFlow CLI Docs](https://voxflow.studio/docs/cli)
+- [VoxFlow Skills Overview](https://voxflow.studio/docs/skills)
+- [Slice App](https://voxflow.studio/apps/slice)
+- [Slice Deck Schema](artifact/references/deck-schema.md)
+- [Slice Themes](artifact/references/themes.md)
+- [Slice Example Decks](artifact/references/example-decks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON deck snippets, and file path instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in generated audio, video, transcript, subtitle, deck JSON, or image files when the agent runs approved VoxFlow CLI commands.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

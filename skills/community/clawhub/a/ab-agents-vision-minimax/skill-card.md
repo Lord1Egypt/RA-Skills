@@ -1,42 +1,64 @@
-## Description: <br>
-Image analysis via the MiniMax VL API for describing images, extracting text from screenshots, and analyzing photos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image analysis via the MiniMax VL API for describing images, extracting text from screenshots, and analyzing photos.
 
-## Publisher: <br>
-[alexburrstudio](https://clawhub.ai/user/alexburrstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexburrstudio](https://clawhub.ai/user/alexburrstudio)
 
-## Use Case: <br>
-Developers and external users use this skill to send a local image path or image URL with an optional prompt to MiniMax for visual description, OCR-style text extraction, and photo analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images may include private screenshots, documents, corporate files, or personal photos that are sent to MiniMax for processing. <br>
-Mitigation: Review image sensitivity before use and avoid submitting sensitive images unless MiniMax processing is acceptable for the deployment context. <br>
-Risk: The launcher may use a fallback API key file if MINIMAX_API_KEY is not set explicitly. <br>
-Mitigation: Set MINIMAX_API_KEY explicitly and verify credential sourcing before running the skill. <br>
+## Use Case:
 
+Developers and external users can use this skill to send local or URL-based images to MiniMax for visual description, screenshot text extraction, and photo analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexburrstudio/ab-agents-vision-minimax) <br>
-- [Project homepage](https://github.com/alexburrstudio/ab-agents-vision) <br>
-- [MiniMax platform](https://platform.minimax.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text returned by the MiniMax vision tool, with shell usage examples in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and sends submitted images or image URLs to MiniMax for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill sends images and prompts to MiniMax for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images and prompts you are allowed to share with MiniMax.
+
+Risk: The skill relies on unsafe unpinned remote execution.
+
+Mitigation: Review or pin the minimax-coding-plan-mcp dependency before use.
+
+Risk: The skill can silently read a root-local API-key file.
+
+Mitigation: Prefer an explicitly exported, low-scope MINIMAX_API_KEY.
+
+Risk: The documented setup includes a curl-to-shell installer.
+
+Mitigation: Avoid running the installer as root and review installation scripts before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexburrstudio/skills/ab-agents-vision-minimax)
+- [AB Agents Vision repository](https://github.com/alexburrstudio/ab-agents-vision)
+- [MiniMax platform](https://platform.minimax.io)
+- [uv installer](https://astral.sh/uv/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown returned from an image-analysis command-line workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MiniMax API key and sends supplied images and prompts to the MiniMax API.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

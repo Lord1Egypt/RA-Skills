@@ -1,40 +1,56 @@
-## Description: <br>
-Guides agents through a structured root-cause debugging workflow before proposing or implementing fixes for broken behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taku Debug guides agents through a four-phase, evidence-first root-cause investigation workflow before implementing fixes for broken behavior.
 
-## Publisher: <br>
-[kkenny0](https://clawhub.ai/user/kkenny0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kkenny0](https://clawhub.ai/user/kkenny0)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering agents use this skill when debugging failed checks, crashes, regressions, intermittent failures, and other broken behavior. It structures investigation, hypothesis testing, implementation, and verification so fixes address root cause rather than symptoms.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can slow down simple fixes because it requires evidence gathering, reproduction, and hypothesis testing before code changes.
+
+Mitigation: Use it for broken behavior, failed checks, regressions, crashes, and intermittent issues where disciplined root-cause analysis is valuable.
+
+Risk: Debugging may involve inspecting code history, logs, and test output that could contain sensitive project data.
+
+Mitigation: Review gathered evidence before sharing it externally and sanitize hostnames, IPs, file paths, customer data, secrets, and other sensitive details.
+
+Risk: Incorrect root-cause hypotheses can lead to misleading fixes if the agent skips verification.
+
+Mitigation: Require a failing reproduction or test before the fix and a passing verification run after the fix.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill when a bug, crash, failed check, regression, or unexpected behavior needs systematic investigation. It helps reproduce the issue, gather evidence, identify the root cause, test hypotheses, and verify a focused fix. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Debug reports, web searches, or persistent learning notes may expose sensitive logs, secrets, customer data, hostnames, IP addresses, or file paths. <br>
-Mitigation: Sanitize sensitive values before sharing, searching, or storing investigation evidence. <br>
-Risk: The evidence-first workflow can slow urgent bug fixes because it requires reproduction and root-cause investigation before implementation. <br>
-Mitigation: Use the skill's timebox guidance to pause and present findings when investigation exceeds the stated budget without convergence. <br>
+**Output Format:** [Markdown guidance with diagnostic reports and inline shell commands or code references when needed]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kkenny0/taku-debug) <br>
+**Other Properties Related to Output:** [Produces concise debug reports with symptom, root cause, hypotheses, fix, evidence, regression test, and status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown debug report with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow; produces investigation notes, hypotheses, verification evidence, and fix status.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

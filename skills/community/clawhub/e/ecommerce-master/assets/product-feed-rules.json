@@ -1,0 +1,37 @@
+{
+  "_comment": "Product feed validation rules consumed by scripts/validate_product_feed.py. Keys starting with '_' are human annotations and are SKIPPED by the script — never treat them as fields or rules.",
+  "_note": "Edit required_fields / missing_tokens to match your catalog. Run: python3 scripts/validate_product_feed.py --feed your_feed.csv",
+  "version": "1.0.0",
+  "description": "Required-field + value-quality contract for an ecommerce product feed (CSV or JSON).",
+  "feed_format": {
+    "csv": "first row is the header; one product per data row",
+    "json": "either a JSON array of objects, or an object with a 'products' array"
+  },
+  "missing_tokens": [
+    "N/A",
+    "NA",
+    "null",
+    "NULL",
+    "TBD",
+    "none",
+    "NONE",
+    "-",
+    "待补",
+    "—"
+  ],
+  "required_fields": [
+    { "name": "sku", "type": "string" },
+    { "name": "title", "type": "string" },
+    { "name": "price", "type": "number" },
+    {
+      "name": "currency",
+      "type": "enum",
+      "allowed": ["USD", "EUR", "GBP", "CAD", "AUD", "JPY"]
+    },
+    {
+      "name": "availability",
+      "type": "enum",
+      "allowed": ["in stock", "out of stock", "preorder"]
+    }
+  ]
+}

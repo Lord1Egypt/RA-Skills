@@ -1,51 +1,65 @@
-## Description: <br>
-Guide for modifying and reviewing USD ASCII (.usda) files, including prims, properties, composition arcs, variants, and transforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for modifying USD ASCII (.usda) files, including prims, properties, composition arcs, variants, and transforms. Use when editing or reviewing .usda files by hand.
 
-## Publisher: <br>
-[tomkrikorian](https://clawhub.ai/user/tomkrikorian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomkrikorian](https://clawhub.ai/user/tomkrikorian)
 
-## Use Case: <br>
-Developers and technical artists use this skill to make targeted .usda edits and review USD structure while preserving composition, paths, formatting, transforms, and property types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Following editing guidance or commands can change USD assets in ways that are difficult to undo. <br>
-Mitigation: Keep important assets in version control or backups before applying changes, and use usdedit --noeffect when only inspecting a file. <br>
-Risk: Incorrect paths, specifiers, composition arcs, transform order, or property types can break USD composition or downstream asset behavior. <br>
-Mitigation: Inspect the stage before editing, make the smallest targeted change, preserve unrelated structure, and validate touched files with USD tools such as usdchecker. <br>
+## Use Case:
 
+Developers and technical artists use this skill to make focused edits to USD ASCII scene files while preserving composition, formatting, paths, transforms, and property types.
 
-## Reference(s): <br>
-- [USD Syntax Essentials](references/usd-syntax.md) <br>
-- [Prims and Properties](references/prims-properties.md) <br>
-- [Composition Arcs and Variants](references/composition-variants.md) <br>
-- [Transforms and Units](references/transforms-units.md) <br>
-- [Time Samples](references/time-samples.md) <br>
-- [USD Command-Line Tools](references/command-line-tools.md) <br>
-- [usdcat](references/usdcat.md) <br>
-- [usdchecker](references/usdchecker.md) <br>
-- [usdedit](references/usdedit.md) <br>
-- [usdrecord](references/usdrecord.md) <br>
-- [usdtree](references/usdtree.md) <br>
-- [usdzip](references/usdzip.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with USD snippets and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include minimal .usda edits, validation steps, and USD command-line tool suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Suggested edits or commands could modify USD assets or write derived files unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm target files and output paths before running commands, keep backups or version control, and use inspection-only options such as usdedit --noeffect when changes are not intended.
+
+Risk: Incorrect USD paths, property types, transforms, or composition edits could break scene behavior.
+
+Mitigation: Inspect the stage structure first, preserve existing authoring style, validate touched paths and connections, and run USD validation tools such as usdchecker when appropriate.
+
+## Reference(s):
+
+- [USD Editor on ClawHub](https://clawhub.ai/tomkrikorian/skills/usd-editor)
+- [USD Syntax Essentials](references/usd-syntax.md)
+- [Prims and Properties](references/prims-properties.md)
+- [Composition Arcs and Variants](references/composition-variants.md)
+- [Transforms and Units](references/transforms-units.md)
+- [Time Samples](references/time-samples.md)
+- [USD Command-Line Tools](references/command-line-tools.md)
+- [usdcat](references/usdcat.md)
+- [usdchecker](references/usdchecker.md)
+- [usdedit](references/usdedit.md)
+- [usdrecord](references/usdrecord.md)
+- [usdtree](references/usdtree.md)
+- [usdzip](references/usdzip.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with inline USD ASCII and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces editing guidance and command suggestions; it does not execute tools itself.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "快手博主作品 - 命令行入参",
+    "description": "获取博主信息或作品列表。limit 为 0 时只取博主信息和互动数据。非法排序或越界数量会直接失败。",
+    "required": ["url"],
+    "properties": {
+        "url": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "博主主页 https://www.kuaishou.com/profile/{id}，或纯数字 user_id。不接受裸的 3x 视频 id，也不接受 v.kuaishou.com"
+        },
+        "sort": {
+            "type": "number",
+            "description": "排序。0 最新，1 最热。与搜索命令的 sort 含义不同",
+            "default": 1,
+            "enum": [0, 1]
+        },
+        "limit": {
+            "type": "number",
+            "description": "0 只取博主信息和互动数据；大于 0 取作品列表。技能硬上限 10000（按量）；包月 Token 实际最多 50，超限返回 PLAN_LIMIT",
+            "minimum": 0,
+            "maximum": 10000,
+            "default": 10
+        }
+    },
+    "additionalProperties": false
+}

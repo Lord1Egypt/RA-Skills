@@ -1,47 +1,55 @@
-## Description: <br>
-Manage Neon serverless Postgres databases, including projects, branches, databases, connection strings, and SQL queries for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Neon serverless Postgres databases, including projects, branches, databases, connection strings, and SQL queries through the Neon CLI.
 
-## Publisher: <br>
-[clawbot-ved](https://clawhub.ai/user/clawbot-ved) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawbot-ved](https://clawhub.ai/user/clawbot-ved)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Neon serverless Postgres projects, branches, databases, connection strings, and SQL workflows from command-line guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Neon API keys and database connection strings can grant access to managed Postgres resources if exposed. <br>
-Mitigation: Use limited-scope credentials where possible, avoid pasting keys or connection strings into logs or chats, and rotate any exposed secrets. <br>
-Risk: Database-management commands can delete or reset projects, branches, or databases. <br>
-Mitigation: Review project, branch, and database IDs before destructive commands, and prefer isolated development branches for experiments. <br>
-Risk: The bundled setup script provisions a Neon project, creates standard tables, and prints a pooled connection string. <br>
-Mitigation: Run the script only when database provisioning is intended, store resulting credentials in secure configuration, and avoid exposing terminal output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Neon](https://neon.tech) <br>
-- [Neon Console](https://console.neon.tech) <br>
-- [Neon API Docs](https://api-docs.neon.tech) <br>
-- [Neon CLI Reference](https://neon.tech/docs/reference/neon-cli) <br>
-- [neonctl GitHub Repository](https://github.com/neondatabase/neonctl) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawbot-ved/neondb-skill) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/clawbot-ved) <br>
+## Use Case:
 
+Developers and agents use this skill to provision and manage Neon serverless Postgres projects, create database branches for development or experiments, retrieve connection strings, and run SQL workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and SQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Neon CLI commands, psql examples, environment-variable guidance, and a setup script for standard organization tables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can handle real Neon credentials and may expose database connection strings in terminal output or logs.
+
+Mitigation: Use test projects where possible, avoid logged environments for setup, and rotate any exposed connection string or API key.
+
+Risk: The documented workflows include destructive database operations such as project, branch, database, reset, export, and import commands.
+
+Mitigation: Require explicit approval before destructive operations and confirm project, branch, and database targets before execution.
+
+## Reference(s):
+
+- [Neon homepage](https://neon.tech)
+- [Neon Console](https://console.neon.tech)
+- [Neon API documentation](https://api-docs.neon.tech)
+- [Neon CLI reference](https://neon.tech/docs/reference/neon-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, SQL, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Neon project identifiers, connection strings, CLI output format choices, and database setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

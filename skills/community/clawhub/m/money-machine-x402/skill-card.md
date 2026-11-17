@@ -1,42 +1,56 @@
-## Description: <br>
-Money Machine x402 API provides paid x402 endpoints for trading signals, crypto analytics, token safety checks, arbitrage scans, sentiment, and sports picks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instant-download trader's toolkit with 12 Excel/PDF tools available through a $9.99 x402 micropayment on Base.
 
-## Publisher: <br>
-[ssidharhubble](https://clawhub.ai/user/ssidharhubble) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssidharhubble](https://clawhub.ai/user/ssidharhubble)
 
-## Use Case: <br>
-External developers and agents use this skill to discover and call paid x402 API endpoints for crypto market signals, token safety checks, arbitrage scans, sentiment data, and sports picks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate paid API access from a wallet for broad everyday requests without a documented default spending cap or required per-call confirmation. <br>
-Mitigation: Use a dedicated low-balance wallet, configure strict per-call and daily caps, allowlist recipients, and require explicit confirmation before each paid call. <br>
-Risk: Trading, crypto, betting, and financial-analysis outputs may be mistaken for investment or wagering advice. <br>
-Mitigation: Treat paid API responses as informational signals only and require human review before financial, trading, or betting decisions. <br>
+## Use Case:
 
+External users and agents use this skill to purchase and download a paid trading-toolkit package through an x402 payment flow. The package is described as Excel/PDF templates for trading journals, options P&L, backtesting, portfolio tracking, tax-loss harvesting, and related trading workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ssidharhubble/money-machine-x402) <br>
-- [Money Machine API ping endpoint](https://money-machine-api-ssyopros.zocomputer.io/api/ping) <br>
-- [Money Machine BTC signal endpoint example](https://money-machine-api-ssyopros.zocomputer.io/api/signals/BTC) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with endpoint tables and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid endpoint responses are accessed through x402 micropayments; callers should apply spending controls before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Calling the trader-toolkit endpoint with an x402-capable client may lead to a $9.99 USDC payment on Base.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the buyer trusts the seller and intends to purchase the toolkit before authorizing payment; use the free health check endpoint first when verifying service availability.
+
+Risk: Previously listed signal and analysis endpoints were removed after audit because they returned placeholder or hardcoded data.
+
+Mitigation: Use only the currently disclosed trader-toolkit download flow and do not rely on removed signal, audit, whale-flow, arbitrage, or sports-pick endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssidharhubble/skills/money-machine-x402)
+- [Publisher profile](https://clawhub.ai/user/ssidharhubble)
+- [Health check endpoint](https://money-machine-api-ssyopros.zocomputer.io/api/ping)
+- [Trader toolkit purchase endpoint](https://money-machine-api-ssyopros.zocomputer.io/api/trader-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Files]
+
+**Output Format:** [Markdown with inline bash commands and downloaded Excel/PDF files after payment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The paid endpoint uses x402 and can require a $9.99 USDC payment on Base before returning the toolkit zip.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

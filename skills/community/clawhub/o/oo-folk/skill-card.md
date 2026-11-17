@@ -1,45 +1,60 @@
-## Description: <br>
-folk (folk.app). Use this skill for any folk request: reading, creating, updating, and deleting data through the OOMOL oo CLI connector instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+folk (folk.app). Use this skill for ANY folk request — reading, creating, updating, and deleting data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent read, create, update, and delete folk CRM people, companies, groups, users, and related custom-field data through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify folk CRM data through an OOMOL-connected account. <br>
-Mitigation: Install it only when the agent should operate folk data through OOMOL, and review create or update payloads before approval. <br>
-Risk: Delete actions can remove folk people or companies. <br>
-Mitigation: Require explicit user confirmation of the target record and intended effect before running destructive actions. <br>
-Risk: The optional oo CLI installer runs a remote installation script. <br>
-Mitigation: Run the installer only when the CLI is needed and the user trusts OOMOL's installer. <br>
+## Use Case:
 
+People managing Folk workspaces can use this agent skill to retrieve and maintain contacts, companies, groups, custom fields, and workspace users through Folk's connected account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-folk) <br>
-- [folk homepage](https://folk.app) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include oo CLI connector commands, schema inspection guidance, JSON action payloads, and confirmation prompts for write or delete actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and SKILL.md metadata) <br>
+Risk: Setup depends on an external installer payload, and the exact installed CLI release is unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a fixed CLI version yourself before use.
+
+Risk: The CLI may synchronize additional agent skills during startup.
+
+Mitigation: Verify that OO_SKILLS_SYNC_DISABLED=1 is supported by the selected release and use it to disable startup synchronization when appropriate.
+
+Risk: Connected Folk actions can access or change workspace records.
+
+Mitigation: Connect only the intended Folk account and keep the required confirmations for record changes.
+
+## Reference(s):
+
+- [Folk](https://folk.app)
+- [Folk API documentation](https://developer.folk.app/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI commands and environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON action results and shell command instructions in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions include retrieval, creation, updates, and deletion; write actions require confirmation and destructive actions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

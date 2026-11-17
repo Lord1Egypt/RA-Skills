@@ -1,41 +1,50 @@
-## Description: <br>
-Generates a world model representation from state inputs using discrete wavelet transforms (DWT) to capture multi-resolution temporal and spatial features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a world model representation from state inputs using discrete wavelet transforms (DWT) to capture multi-resolution temporal and spatial features.
 
-## Publisher: <br>
-[AadiPapp](https://clawhub.ai/user/AadiPapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aadipapp](https://clawhub.ai/user/aadipapp)
 
-## Use Case: <br>
-Developers and robotics or reinforcement-learning engineers can use this skill to transform high-dimensional sequential state data into a compact multi-resolution representation for downstream control, tracking, or predictive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The helper depends on PyWavelets for local wavelet processing. <br>
-Mitigation: Install PyWavelets from a trusted package index and pin dependency versions when reproducibility or supply-chain control matters. <br>
-Risk: The compressed state vector may be unsuitable for a downstream model or control task without validation on representative state history. <br>
-Mitigation: Validate output shape, reconstruction behavior, and task performance before using the representation in control, tracking, or prediction workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill with OpenClaw agents to generate compact multi-resolution representations of high-dimensional sequential state data for robotic control, continuous state tracking, or downstream predictive models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AadiPapp/wavelet-worldmodel-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/AadiPapp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and Python command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a compressed state vector from local wavelet processing when the Python helper is run with sufficient state history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned NumPy and PyWavelets dependencies can create supply-chain or reproducibility risk when running the helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the helper in a virtual environment and pin trusted NumPy and PyWavelets versions before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aadipapp/skills/wavelet-worldmodel-skill)
+- [Publisher profile](https://clawhub.ai/user/aadipapp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with command names and Python script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a compressed temporal state representation; helper execution depends on local NumPy and PyWavelets installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Access Web3 email via EtherMail using WalletConnect. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ethermail helps agents access Web3 email through EtherMail with WalletConnect for wallet-address inboxes, Web3 notifications, and decentralized agent communication.
 
-## Publisher: <br>
-[daaab](https://clawhub.ai/user/daaab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-Developers and agents use this skill to access an EtherMail inbox through an Ethereum wallet address, read and send Web3 email, and receive decentralized service notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can expose a wallet private key to an external signing process. <br>
-Mitigation: Use a disposable wallet instead of a primary or funded wallet, and prefer manual or hardware-backed signing when possible. <br>
-Risk: The skill depends on a separate WalletConnect agent and browser automation workflow. <br>
-Mitigation: Inspect the WalletConnect agent before use and run browser automation in an isolated environment. <br>
+## Use Case:
 
+Developers and external agents use Ethermail to access EtherMail accounts tied to EVM wallet addresses, extract WalletConnect login URIs, and read or send Web3 email through browser or Telegram workflows.
 
-## Reference(s): <br>
-- [EtherMail website](https://ethermail.io) <br>
-- [EtherMail wallet login](https://ethermail.io/accounts/login) <br>
-- [EtherMail Telegram app](https://t.me/ethermailappbot/app?startapp=afid_6986e9a5c5a97b905a78c390) <br>
-- [ClawHub skill page](https://clawhub.ai/daaab/ethermail) <br>
-- [Publisher profile](https://clawhub.ai/user/daaab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes browser automation guidance and a script that prints a WalletConnect URI to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: Wallet authentication may be routed through raw private-key signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet, avoid giving raw private keys to third-party scripts, and prefer a pinned, reviewed connector or hardware or isolated signer.
+
+Risk: WalletConnect signing requests could be unsafe if accepted without review.
+
+Mitigation: Verify each WalletConnect request before signing and use only reviewed WalletConnect tooling.
+
+Risk: The extraction script accepts a URL and uses browser automation.
+
+Mitigation: Do not run the extraction script against arbitrary URLs, and review browser automation behavior before installation or use.
+
+## Reference(s):
+
+- [ClawHub Ethermail Skill](https://clawhub.ai/daaab/skills/ethermail)
+- [EtherMail Website](https://ethermail.io)
+- [EtherMail Wallet Login](https://ethermail.io/accounts/login)
+- [EtherMail Telegram Mini App](https://t.me/ethermailappbot/app?startapp=afid_6986e9a5c5a97b905a78c390)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline JavaScript and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WalletConnect URI extraction steps and browser automation guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-AI-powered ingestion of CSV, JSON, and XLSX files with automatic schema generation and Supabase database integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered ingestion of CSV, JSON, and XLSX files with automatic schema generation and Supabase database integration.
 
-## Publisher: <br>
-[sschepis](https://clawhub.ai/user/sschepis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sschepis](https://clawhub.ai/user/sschepis)
 
-## Use Case: <br>
-Developers and data engineers use this skill to import CSV, JSON, and XLSX datasets into Supabase while automatically generating schemas, mapping fields, and batching uploads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The importer can use powerful Supabase credentials to create schema and upload data. <br>
-Mitigation: Use a test or staging Supabase project first, avoid production service-role keys where possible, and back up data before importing. <br>
-Risk: Local files, samples, or records may be sent to an LLM provider and Supabase during import. <br>
-Mitigation: Do not import confidential or regulated files unless that data flow is acceptable for the project. <br>
-Risk: The installed npm package and publisher should be trusted before execution. <br>
-Mitigation: Verify the package identity, publisher, and release contents before installing or running the importer. <br>
-Risk: API keys and database credentials are required for normal use. <br>
-Mitigation: Keep credentials in environment variables or secret storage and out of source control. <br>
+## Use Case:
 
+Developers and data engineers use this skill to import CSV, JSON, and XLSX datasets into Supabase while generating schema and mapping guidance with LLM assistance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sschepis/flexible-data-importer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [SQL schema, Database records, Shell commands, Configuration] <br>
-**Output Format:** [CLI or API execution that generates relational schema mappings and uploads records to Supabase] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a file path plus Supabase and LLM credentials supplied by the user or runtime environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md metadata, package.json) <br>
+Risk: Install and npx examples may resolve a package identity that differs from the scoped package metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the intended package identity, prefer a pinned scoped package version, and avoid bare npx execution until the package name is corrected and confirmed.
+
+Risk: The skill requests Supabase and OpenAI credentials, including guidance that mentions a Supabase service role key.
+
+Mitigation: Use least-privilege credentials where possible, store secrets outside prompts and source files, and rotate any credentials exposed during testing.
+
+Risk: The artifact contains documentation and package metadata but no implementation files to inspect.
+
+Mitigation: Require the missing source or built implementation files before installation or execution, then review and scan them.
+
+Risk: Data imports may include sensitive datasets that are uploaded to Supabase.
+
+Mitigation: Redact or minimize sensitive fields before import and confirm the target Supabase project, tables, and access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sschepis/skills/flexible-data-importer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, TypeScript examples, environment configuration, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe file ingestion, schema generation, type mapping, batching, and Supabase upload steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, package-lock.json, SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

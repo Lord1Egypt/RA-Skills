@@ -1,41 +1,49 @@
-## Description: <br>
-Generate color schemes from a base color, including complementary, triadic, and analogous palettes, using the Python standard library without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate color schemes from a base color, including complementary, triadic, and analogous palettes, using only the Python standard library.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers, designers, and brand teams use this skill to generate complementary, triadic, and analogous color palettes from a supplied base hex color for UI, branding, and data visualization work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistakenly provide API keys, passwords, or account access even though the skill does not need credentials. <br>
-Mitigation: Do not provide secrets or account credentials when using this local color-palette helper. <br>
-Risk: Invalid base color input can cause the script to fail instead of returning a palette. <br>
-Mitigation: Provide a valid six-digit hex color such as #ff5733. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to generate simple color palettes for UI/UX design, brand color exploration, and data visualization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-color-scheme-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints JSON containing the base color and generated palette schemes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The documentation includes an unrelated promotional external website link that is not needed for palette generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the link as optional documentation content; installing or running the local palette generator does not require visiting it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-color-scheme-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON emitted by a Python command-line script, with supporting Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces complementary, triadic, and analogous color schemes from a required base hex color.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

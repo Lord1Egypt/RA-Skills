@@ -1,6 +1,6 @@
 {
   "id": "fec-code-review",
-  "name": "前端代码审查",
+  "name": "Front-end code review",
   "category": "review-quality",
   "tags": [
     "code-review",
@@ -8,8 +8,8 @@
     "quality",
     "best-practices"
   ],
-  "summary": "Frontend Craft skill for 前端代码审查.",
-  "version": "2.5.0",
+  "summary": "Review frontend changes for correctness, maintainability, types, rendering, and verification gaps.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -30,7 +30,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when the user asks for general frontend code review, PR review, merge-readiness assessment, architecture maintainability, type-safety, rendering/state risks, style consistency, testability gaps, or a cross-cutting review summary. Delegate deep security, accessibility, E2E, or performance investigations to their specialized skills; Chinese triggers include 代码审查, 代码评审, review.",
+  "description": "Use when the user asks for general frontend code review, PR review, merge-readiness assessment, architecture maintainability, type-safety, rendering/state risks, style consistency, testability gaps, or a cross-cutting review summary. Delegate deep security, accessibility, E2E, or performance investigations to their specialized skills; Chinese triggers include code review, code review, review.",
   "source": "skills/fec-code-review",
   "references": [
     "references/report-template.md"
@@ -42,7 +42,7 @@
       "fec-e2e-testing",
       "fec-validation-fix",
       "fec-performance-optimization",
-      "fec-typescript-type-safety",
+      "fec-typescript-project-standard",
       "fec-state-management",
       "fec-source-driven-development",
       "fec-dependency-upgrade",

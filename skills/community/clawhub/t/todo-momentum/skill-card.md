@@ -1,41 +1,58 @@
-## Description: <br>
-Todo Momentum - 3 分钟启动器 helps agents turn procrastinated todos, stuck tasks, fuzzy goals, projects, chores, and habits into physical next actions, 3-minute starts, 5-minute extensions, done-for-today standards, and recovery scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+3 分钟启动器：把拖延待办、卡住任务、模糊目标、项目/家务/习惯拆成下一步物理动作、3 分钟启动、5 分钟扩展、今日算赢标准和断了以后的回归脚本。适合反拖延、每日执行、任务拆解、低能量启动和轻量 check-in。
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agent workflows use this skill to rescue messy todo lists, start stuck tasks, make lightweight daily momentum plans, recover after interruptions, and debug procrastination with small concrete actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may answer in Chinese-first templates when that is not the user's preferred working language. <br>
-Mitigation: Ask the agent to mirror the user's language or explicitly request English, Chinese, or bilingual output. <br>
-Risk: Plans are lightweight guidance and may be mistaken for durable task tracking or scheduled reminders. <br>
-Mitigation: Use a todo, reminder, calendar, or automation tool when the user asks for persistence, recurring reminders, scheduled follow-ups, or channel delivery. <br>
+## Use Case:
 
+External users and general agent users use this skill to turn overwhelming or delayed todos into immediate next physical actions, 3-minute starts, daily momentum plans, and low-shame recovery scripts.
 
-## Reference(s): <br>
-- [Three-Minute Starts](references/three-minute-starts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/todo-momentum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text with compact tables and short action scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first when the user writes in Chinese; no tool use is required unless the user asks for reminders, calendar blocks, or durable task tracking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: SKILL.md frontmatter, skill.json, and server release evidence) <br>
+Risk: The skill may produce productivity plans that are too broad if the user's todo list is vague or overloaded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask at most one clarifying question when needed, choose no more than seven candidate items for today, and convert each item into a visible next physical action.
+
+Risk: Users may treat generated starts as durable reminders or task storage.
+
+Mitigation: Use reminder, calendar, automation, or durable todo tools only when the user explicitly asks for tracking, scheduling, or recurring follow-up.
+
+Risk: Chinese-first behavior may surprise users who expect another response language.
+
+Mitigation: Default to Chinese only when the user writes in Chinese and otherwise follow the user's language.
+
+## Reference(s):
+
+- [Three-Minute Starts](references/three-minute-starts.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/todo-momentum)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain text with compact tables and action-plan templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first responses when the user writes in Chinese; no code execution or durable tracking unless the user asks for an available external tool.]
+
+## Skill Version(s):
+
+0.2.0 (source: SKILL.md frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

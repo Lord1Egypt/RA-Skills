@@ -1,40 +1,53 @@
-## Description: <br>
-Creates a new Google contact from JSON input and retries internally until the operation succeeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a new Google contact and retries internally until the operation succeeds.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents and users use this skill to add a contact to a configured Google account through the required `gog` tool and Composio credential. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create contacts in the configured Google account. <br>
-Mitigation: Require explicit user approval and check for duplicate contacts before each creation. <br>
-Risk: The skill depends on a local `gog` binary and a Composio API credential. <br>
-Mitigation: Use a trusted `gog` binary and keep the Composio credential least-privilege where possible. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to create a Google contact through Composio-backed Google access from structured input.
 
-## Reference(s): <br>
-- [Google Contacts Create on ClawHub](https://clawhub.ai/zvirb/google-contacts-create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls] <br>
-**Output Format:** [JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a single operation result for the requested contact creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can change a user's Google Contacts account by creating a contact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with intended Composio-backed Google access, apply least-privileged credentials where possible, and confirm contact details before invocation.
+
+Risk: A retried or partially successful run may create duplicate contacts.
+
+Mitigation: Check for duplicate contacts after retries or partial failures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-contacts-create)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API Calls, Guidance]
+
+**Output Format:** [JSON object representing the result of the contact creation operation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog binary and COMPOSIO_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

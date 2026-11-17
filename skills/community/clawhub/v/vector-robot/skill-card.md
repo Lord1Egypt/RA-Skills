@@ -1,45 +1,58 @@
-## Description: <br>
-Control Anki Vector robot via wire-pod. Speak through Vector, see through its camera, move head/lift/wheels, change eye colors, trigger animations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Anki Vector robot via wire-pod. Speak through Vector, see through its camera, move head/lift/wheels, change eye colors, trigger animations. Use when user mentions Vector robot, wants to speak through a robot, control a physical robot, or interact with wire-pod.
 
-## Publisher: <br>
-[bogorman](https://clawhub.ai/user/bogorman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bogorman](https://clawhub.ai/user/bogorman)
 
-## Use Case: <br>
-Developers and robot operators use this skill to control an Anki Vector robot through wire-pod for speech, camera snapshots, movement, settings, animations, and optional OpenClaw voice input. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper scripts include unsafe input handling when speech text is passed from untrusted sources. <br>
-Mitigation: Review and patch vector-say.sh before passing untrusted text. <br>
-Risk: The local proxy is unauthenticated and the optional LaunchAgent can keep it running persistently. <br>
-Mitigation: Avoid the LaunchAgent unless an always-on proxy is required, bind the proxy to localhost, and add authentication before broader exposure. <br>
-Risk: Proxy request and response files, logs, and camera snapshots can contain private data. <br>
-Mitigation: Treat request.json, response.json, proxy logs, and camera snapshots as private data and clean them up when no longer needed. <br>
-Risk: Robot behavior control disables cliff sensors during movement. <br>
-Mitigation: Supervise wheel movement and keep the robot away from edges or unsafe surfaces. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [wire-pod SDK API Reference](references/api.md) <br>
-- [wire-pod](https://github.com/kercre123/wire-pod) <br>
-- [Vector-Robot on ClawHub](https://clawhub.ai/bogorman/vector-robot) <br>
+## Use Case:
 
+Developers and operators use this skill to control an Anki Vector robot running wire-pod, including speech, camera snapshots, movement, settings, and built-in actions. It also provides optional OpenClaw integration guidance for receiving voice commands through a local proxy.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local request, response, log, and camera snapshot files when the proxy or helper scripts are used.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can control a physical robot and camera.
+
+Mitigation: Use it only when robot and camera control are intended, supervise movement, and keep the robot on a safe surface.
+
+Risk: The optional proxy and LaunchAgent can introduce unauthenticated local service exposure and login persistence.
+
+Mitigation: Restrict the proxy to loopback, add authentication before broader exposure, and enable auto-start only with a documented uninstall path.
+
+Risk: Speech text and snapshot paths are treated as unsafe inputs by the security evidence.
+
+Mitigation: Validate and quote inputs before unattended use, and write camera snapshots only to expected local paths.
+
+## Reference(s):
+
+- [wire-pod SDK API Reference](references/api.md)
+- [wire-pod project](https://github.com/kercre123/wire-pod)
+- [Vector-Robot ClawHub release page](https://clawhub.ai/bogorman/skills/vector-robot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with bash, JSON, and HTTP API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that operate a physical robot, access its camera stream, or configure a local proxy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

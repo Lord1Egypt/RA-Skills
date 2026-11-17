@@ -1,0 +1,155 @@
+{
+  "tiktok_task_video_download": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/task/video/download",
+    "summary": "任务-视频下载",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "video_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_monitor_metrics": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/monitor/metrics",
+    "summary": "用户监控指标",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_task_video_download": {
+    "method": "GET",
+    "path": "/api/v1/instagram/task/video/download",
+    "summary": "任务-视频下载",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "video_code"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_user_monitor_metrics": {
+    "method": "GET",
+    "path": "/api/v1/instagram/user/monitor/metrics",
+    "summary": "用户监控指标",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_task_video_download": {
+    "method": "GET",
+    "path": "/api/v1/youtube/task/video/download",
+    "summary": "任务-视频下载",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [
+      "video_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_user_monitor_metrics": {
+    "method": "GET",
+    "path": "/api/v1/youtube/user/monitor/metrics",
+    "summary": "用户监控指标",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "create_monitor_task": {
+    "method": "POST",
+    "path": "/api/v1/monitor/video/tasks/create",
+    "summary": "创建视频监测任务",
+    "tags": [
+      "视频监测"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [
+      "platform",
+      "video_id"
+    ],
+    "default_headers": {}
+  },
+  "list_monitor_tasks": {
+    "method": "GET",
+    "path": "/api/v1/monitor/video/tasks/list",
+    "summary": "获取视频监测任务列表",
+    "tags": [
+      "视频监测"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "get_monitor_task_detail": {
+    "method": "GET",
+    "path": "/api/v1/monitor/video/tasks/detail",
+    "summary": "获取视频监测任务详情",
+    "tags": [
+      "视频监测"
+    ],
+    "required_query": [
+      "monitor_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "stop_monitor_task": {
+    "method": "GET",
+    "path": "/api/v1/monitor/video/tasks/stop",
+    "summary": "停止视频监测任务",
+    "tags": [
+      "视频监测"
+    ],
+    "required_query": [
+      "monitor_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "refresh_monitor_task": {
+    "method": "POST",
+    "path": "/api/v1/monitor/video/tasks/refresh",
+    "summary": "手动刷新视频监测数据",
+    "tags": [
+      "视频监测"
+    ],
+    "required_query": [
+      "monitor_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  }
+}

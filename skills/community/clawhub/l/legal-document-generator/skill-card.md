@@ -1,44 +1,59 @@
-## Description: <br>
-Generates Chinese legal-document templates for debt, marriage and family, labor, business, property, and court-filing scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese legal document templates for debt, family, labor, civil and commercial, real estate, and litigation scenarios from user-provided case details.
 
-## Publisher: <br>
-[hjfl888](https://clawhub.ai/user/hjfl888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjfl888](https://clawhub.ai/user/hjfl888)
 
-## Use Case: <br>
-External users provide case details to draft template legal documents such as contracts, agreements, demand letters, and court applications. Generated documents should be reviewed against local law by qualified legal counsel before signing, filing, or relying on them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated legal templates may be inaccurate, incomplete, outdated, or unsuitable for a user's jurisdiction or facts. <br>
-Mitigation: Treat outputs as drafts only and require qualified legal review before signing, submitting, or relying on any document. <br>
-Risk: The artifact makes broad safety and compliance claims that are not validated by malware or static scanning results. <br>
-Mitigation: Do not present scanner status as legal-quality validation; communicate that scans reduce malware concern but do not verify legal correctness. <br>
-Risk: High-stakes documents involving divorce, debt, labor, court, or property matters can create legal or financial harm if used directly. <br>
-Mitigation: Add workflow checks requiring local-law review, factual verification, and user confirmation before final use. <br>
+## Use Case:
 
+External users use this skill to draft Chinese legal document templates such as agreements, contracts, letters, and court filing drafts from case facts. Outputs should be treated as drafts and reviewed against the applicable jurisdiction, facts, and legal requirements before signing, filing, or relying on them.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/hjfl888/legal-document-generator) <br>
-- [Publisher profile: hjfl888](https://clawhub.ai/user/hjfl888) <br>
-- [Publisher website](https://flzwcz.cn) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text legal-document templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are template drafts based on user-provided case details; they are not legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.1 (source: server release evidence and artifact/skill.json) <br>
+Risk: Generated legal documents may be incomplete, incorrect, or unsuitable for the user's facts or applicable jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as draft templates only and obtain qualified legal review before signing, filing, or relying on them.
+
+Risk: Artifact text overstates compliance and review status relative to the server security assessment.
+
+Mitigation: Rely on server security evidence for risk posture and independently review the skill before installation or use.
+
+Risk: High-stakes legal use can create adverse consequences if document facts, filing format, or legal claims are wrong.
+
+Mitigation: Confirm all factual inputs, court or agency formatting requirements, deadlines, and procedural rules with a qualified professional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjfl888/skills/legal-document-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/hjfl888)
+- [Publisher website](https://flzwcz.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown legal document drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft legal templates require user-supplied facts, jurisdiction checks, and qualified legal review before use.]
+
+## Skill Version(s):
+
+6.0.1 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Vector Memory provides smart memory search for agents, using semantic embeddings when available and falling back to keyword search otherwise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart memory search with automatic vector fallback. Uses semantic embeddings when available, falls back to built-in search otherwise. Zero configuration - works immediately after ClawHub install. No setup required - just install and memory_search works immediately, gets better after optional sync.
 
-## Publisher: <br>
-[BluePointDigital](https://clawhub.ai/user/BluePointDigital) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bluepointdigital](https://clawhub.ai/user/bluepointdigital)
 
-## Use Case: <br>
-Developers and agent users use Vector Memory to search prior work, preferences, decisions, and memory notes with automatic fallback between semantic vector search and keyword search. It is intended for OpenClaw-style agent memory workflows that need immediate search plus optional local indexing for better recall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted inputs may execute shell commands. <br>
-Mitigation: Review and fix command construction before use in sensitive workspaces; restrict inputs to trusted values until fixed. <br>
-Risk: memory_get may read files outside the intended memory area. <br>
-Mitigation: Validate and normalize requested paths, then restrict reads to approved memory files or directories. <br>
-Risk: The installer runs downloaded code. <br>
-Mitigation: Prefer the ClawHub install path or manually review installation steps before running downloaded scripts. <br>
-Risk: Sync reads local memory files and stores searchable chunks locally. <br>
-Mitigation: Run sync only on intended memory directories and avoid indexing sensitive workspaces until the deployment has been reviewed. <br>
+## Use Case:
 
+Developers and agent users use this skill to search local memory files through a smart wrapper that uses semantic vector search after sync and keyword fallback before sync or when vector search fails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BluePointDigital/vector-memory) <br>
-- [Integration Guide](vector-memory/references/integration.md) <br>
-- [pgvector Version](vector-memory/references/pgvector.md) <br>
-- [Memory Structure](MEMORY_STRUCTURE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON results and Markdown/plain-text memory snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include file paths, line ranges, scores, and snippets; sync can create a local searchable index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports unsafe command execution that could run unintended commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix command construction before installing or using the skill in a workspace with secrets or sensitive files.
+
+Risk: The security evidence reports file-reading flaws that could expose local files.
+
+Mitigation: Restrict memory file access to the intended workspace paths and review path handling before deployment.
+
+Risk: The security guidance advises against installing through a curl-to-shell path.
+
+Mitigation: Install only from a trusted, pinned ClawHub release or reviewed source archive.
+
+## Reference(s):
+
+- [Integration Guide](artifact/vector-memory/references/integration.md)
+- [pgvector Version](artifact/vector-memory/references/pgvector.md)
+- [ClawHub skill page](https://clawhub.ai/bluepointdigital/skills/vector-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [JSON search results, Markdown guidance, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output includes matching file paths, line ranges, scores, and snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

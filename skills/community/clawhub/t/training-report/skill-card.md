@@ -1,42 +1,62 @@
-## Description: <br>
-Produces a structured training or workshop report as a reviewed Markdown draft and final .docx document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces structured training and workshop reports by interviewing the trainer, drafting a canonical Markdown report, and generating a final .docx after approval.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Trainers, facilitators, and consultants use this skill to interview for session details, draft a professional training report, iterate the Markdown with the user, and generate the final Word document after approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can include names, contact details, identifiable participant feedback, or sensitive observations. <br>
-Mitigation: Use anonymized or aggregated inputs when possible, confirm who will receive the report, and include personal observations only with clear consent and purpose. <br>
+## Use Case:
 
+Trainers, learning and development teams, consultants, and managers use this skill to document training sessions, workshops, onboarding events, participant observations, recommendations, annexes, and follow-up actions.
 
-## Reference(s): <br>
-- [Markdown Draft Reference](artifact/references/markdown-draft.md) <br>
-- [DOCX Generation Reference](artifact/references/docx-generation.md) <br>
-- [Tone of Voice Reference](artifact/references/tone-of-voice.md) <br>
-- [Project Homepage](https://github.com/samber/cc-skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/training-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown draft plus final .docx file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Markdown draft is treated as the canonical editable artifact; the .docx is generated after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Training reports may include named participant observations, survey summaries, annexes, and trainer contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect and include personal or sensitive information only when authorized, use diplomatic group-level wording when appropriate, and review the report before sharing.
+
+Risk: The workflow overwrites a single canonical Markdown draft during iteration.
+
+Mitigation: Keep a separate copy when draft history is required and review the current Markdown before generating the Word document.
+
+Risk: The final .docx is a derivative generated after approval and may need regeneration if content changes.
+
+Mitigation: Approve the Markdown source first, then regenerate the .docx from the updated Markdown instead of editing the Word file directly.
+
+## Reference(s):
+
+- [Training Report Skill Page](https://clawhub.ai/samber/skills/training-report)
+- [Publisher Profile](https://clawhub.ai/user/samber)
+- [Project Homepage from ClawHub Metadata](https://github.com/samber/cc-skills)
+- [Tone of Voice Reference](artifact/references/tone-of-voice.md)
+- [Markdown Draft Reference](artifact/references/markdown-draft.md)
+- [DOCX Generation Reference](artifact/references/docx-generation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown draft plus final .docx file after user approval]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The Markdown draft is the canonical editable artifact; the .docx is generated once after approval.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

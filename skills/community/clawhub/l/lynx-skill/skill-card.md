@@ -1,45 +1,58 @@
-## Description: <br>
-Stateless Go CLI for agents to search files, retrieve itineraries, upload attachments, and manage documents in the Lynx Reservations travel agency system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stateless Go CLI for the Lynx Reservations travel agency system that lets an agent search files, retrieve itineraries, upload attachments, and manage documents with valid Lynx credentials.
 
-## Publisher: <br>
-[fredguile](https://clawhub.ai/user/fredguile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredguile](https://clawhub.ai/user/fredguile)
 
-## Use Case: <br>
-Travel operations agents and developers use this skill to run standalone Lynx CLI commands for reservation file lookup, itinerary retrieval, attachment upload, and document updates with valid Lynx credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify live Lynx reservation documents and upload selected local files to Lynx. <br>
-Mitigation: Review file search, upload, and document-save commands carefully before running them against production reservation records. <br>
-Risk: Debug mode can leave sensitive reservation data in temporary output. <br>
-Mitigation: Avoid enabling LYNX_DEBUG unless temporary output can be protected and cleaned after use. <br>
-Risk: Lynx credentials are sensitive and are required for use. <br>
-Mitigation: Do not paste raw LYNX_* values into logs, prompts, or support chats. <br>
+## Use Case:
 
+Travel operations staff and agents use this skill to run Lynx Reservations CLI commands for file search, itinerary retrieval, document lookup, attachment upload, and file or transaction document updates.
 
-## Reference(s): <br>
-- [ClawHub Lynx Skill](https://clawhub.ai/fredguile/lynx-skill) <br>
-- [Lynx Reservations](https://www.lynx-reservations.com/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require valid LYNX_USERNAME, LYNX_PASSWORD, and LYNX_COMPANY_CODE credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill handles live Lynx credentials and account-scoped travel data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted publishers, use least-privilege Lynx account access, avoid plaintext .env files, and keep credentials out of logs and shared terminals.
+
+Risk: Document save and attachment upload commands can mutate travel records.
+
+Mitigation: Review command arguments before execution and confirm the target file, transaction, document type, and attachment path match the intended record.
+
+Risk: Debug or environment inspection can expose credentials or sensitive request data.
+
+Mitigation: Do not run broad environment dumps such as env | grep LYNX, and leave LYNX_DEBUG unset unless using a private machine with a plan to securely remove debug files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fredguile/skills/lynx-skill)
+- [Lynx Reservations](https://www.lynx-reservations.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require Lynx credentials in LYNX_USERNAME, LYNX_PASSWORD, and LYNX_COMPANY_CODE.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

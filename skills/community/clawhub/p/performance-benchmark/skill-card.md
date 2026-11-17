@@ -1,44 +1,59 @@
-## Description: <br>
-Measure performance baselines, detect regressions, and compare stack alternatives before and after changes across page performance, API latency, build speed, and before/after comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures performance baselines, detects regressions, and compares stack alternatives before and after changes across page, API, build, and comparison workflows.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to establish performance baselines, compare before/after changes, and catch regressions in web pages, APIs, builds, and CI workflows before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Load tests or repeated benchmark requests could disrupt production systems or systems the user is not authorized to test. <br>
-Mitigation: Run benchmarks only against local, staging, or explicitly authorized targets, and obtain team approval before testing shared or production services. <br>
-Risk: Benchmark reports may include URLs, endpoint names, response details, or performance data that should not be committed or shared broadly. <br>
-Mitigation: Review .benchmarks/ contents before committing, uploading artifacts, or sharing reports outside the project team. <br>
-Risk: The skill does not provide its own benchmark executable, so results depend on the selected external tools and their configuration. <br>
-Mitigation: Choose appropriate tools such as k6, autocannon, or hyperfine, pin versions where repeatability matters, and document the command options used for each baseline. <br>
+## Use Case:
 
+Developers and engineers use this skill to establish performance baselines, compare metrics before and after code changes, and catch regressions in web pages, APIs, build pipelines, and development feedback loops.
 
-## Reference(s): <br>
-- [Benchmark Integration & Best Practices](references/integration.md) <br>
-- [Benchmark Modes Detailed Reference](references/modes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/performance-benchmark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, benchmark report examples, and CI configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create or review .benchmarks/ baselines and reports; benchmark tools are selected and installed by the user or agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Benchmark and load-test commands can disrupt production or third-party systems if run without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run benchmarks only against systems you are authorized to test, preferably local or staging environments.
+
+Risk: Benchmark output stored in .benchmarks/ may reveal internal URLs, service names, latency data, or operational metrics.
+
+Mitigation: Review .benchmarks/ before committing or sharing benchmark artifacts.
+
+Risk: The skill depends on user-supplied tools, so measurements can be inconsistent across environments or tool choices.
+
+Mitigation: Document the selected benchmark tool, versions, target environment, and workload when recording baselines.
+
+## Reference(s):
+
+- [Benchmark Integration and Best Practices](references/integration.md)
+- [Benchmark Modes Detailed Reference](references/modes.md)
+- [ClawHub skill page](https://clawhub.ai/djc00p/skills/performance-benchmark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with inline shell commands and benchmark report summaries; baseline artifacts may be JSON under .benchmarks/.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided benchmark tools such as k6, autocannon, hyperfine, or browser performance tooling; no benchmark runner is bundled.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Run multi-model AI synthesis inquiries via QuorumAI. Four AI models (Claude, GPT, Gemini, Grok) compete to answer your question from specialized perspectives, get scored by an arbiter, and the best elements are synthesized into one ultimate answer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run multi-model AI synthesis inquiries via QuorumAI. Four AI models (Claude, GPT, Gemini, Grok) compete to answer your question from specialized perspectives, get scored by an arbiter, and the best elements are synthesized into one ultimate answer.
 
-## Publisher: <br>
-[shokatma-oss](https://clawhub.ai/user/shokatma-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shokatma-oss](https://clawhub.ai/user/shokatma-oss)
 
-## Use Case: <br>
-External users and developers use this skill to send selected questions to QuorumAI, choose inquiry depth and academy, and present the synthesized answer, top voice, scores, and share URL. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected questions are sent to the external QuorumAI service and may produce a public result link. <br>
-Mitigation: Avoid submitting secrets, credentials, private documents, regulated data, or sensitive personal information unless that external data flow is acceptable. <br>
-Risk: The skill depends on a bearer API key for QuorumAI access. <br>
-Mitigation: Store QUORUMAI_API_KEY only in the agent environment or approved secret storage and do not expose it in user-facing messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QuorumAI homepage](https://quorumai.io) <br>
-- [QuorumAI account and API keys](https://quorumai.io/account) <br>
-- [QuorumAI inquiry API endpoint](https://quorumai.io/api/v1/inquiry) <br>
-- [ClawHub skill page](https://clawhub.ai/shokatma-oss/quorumai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/shokatma-oss) <br>
+## Use Case:
 
+External users and developers use this skill to ask QuorumAI a question once and receive a synthesized answer from multiple model perspectives, with optional domain academies for clinical, business, technical, investment, or general inquiries.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with curl examples and JSON response fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QUORUMAI_API_KEY and curl; sends user-selected questions to an external QuorumAI API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-supplied question text may be inserted into shell-based curl examples unsafely, allowing crafted input to affect local command execution.
+
+Mitigation: Review generated commands before execution and prefer a structured HTTP client or JSON serializer for request bodies before using arbitrary user text.
+
+Risk: Questions and results are sent to QuorumAI and may produce a public result link.
+
+Mitigation: Use the skill only for questions the user is willing to send to QuorumAI and share through the returned link.
+
+Risk: The skill requires a bearer API key.
+
+Mitigation: Keep QUORUMAI_API_KEY in the agent environment or configuration and never echo or include it in user-facing responses.
+
+## Reference(s):
+
+- [ClawHub QuorumAI Skill](https://clawhub.ai/shokatma-oss/skills/quorumai)
+- [QuorumAI Homepage](https://quorumai.io)
+- [QuorumAI API Endpoint](https://quorumai.io/api/v1/inquiry)
+- [QuorumAI Account and API Keys](https://quorumai.io/account)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash curl examples and JSON API response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QUORUMAI_API_KEY and curl; QuorumAI responses may include a public share_url.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

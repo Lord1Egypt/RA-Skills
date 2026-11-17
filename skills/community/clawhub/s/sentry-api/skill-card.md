@@ -1,52 +1,61 @@
-## Description: <br>
-Sentry API integration with managed authentication for monitoring errors, retrieving events, and managing Sentry issues, projects, teams, and releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents access Sentry issues, events, projects, teams, and releases through a managed connection.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-Developers and operations teams use this skill to inspect Sentry organizations, projects, issues, events, teams, and releases through Maton-managed authentication. It can also guide connection setup and Sentry API request construction when the user has a valid MATON_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Maton mediates access to the connected Sentry account. <br>
-Mitigation: Install only when you trust Maton with that access and review the connected account before use. <br>
-Risk: The MATON_API_KEY is a sensitive credential. <br>
-Mitigation: Store MATON_API_KEY privately, avoid printing it in logs, and rotate it if exposure is suspected. <br>
-Risk: Requests may target the wrong Sentry account when multiple connections exist. <br>
-Mitigation: Use the Maton-Connection header to select the intended connection. <br>
-Risk: Create, update, and delete operations can change Sentry organizations, projects, teams, issues, releases, or connections. <br>
-Mitigation: Require explicit user approval after confirming the exact target resource and intended effect. <br>
+## Use Case:
 
+Developers and operations teams use this skill to inspect Sentry errors and events and, with approval, manage projects, issues, teams, releases, and related automation.
 
-## Reference(s): <br>
-- [ClawHub Sentry Skill](https://clawhub.ai/byungkyu/sentry-api) <br>
-- [Maton](https://maton.ai) <br>
-- [Sentry API Documentation](https://docs.sentry.io/api/) <br>
-- [Sentry API Authentication](https://docs.sentry.io/api/auth/) <br>
-- [Sentry Events API](https://docs.sentry.io/api/events/) <br>
-- [Sentry Projects API](https://docs.sentry.io/api/projects/) <br>
-- [Sentry Organizations API](https://docs.sentry.io/api/organizations/) <br>
-- [Sentry Teams API](https://docs.sentry.io/api/teams/) <br>
-- [Sentry Releases API](https://docs.sentry.io/api/releases/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell, Python, JavaScript, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and a connected Sentry account through Maton.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Sentry access is routed through Maton, with authentication stored in the operating system's credential store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this access path before installation and do not expose stored credentials.
+
+Risk: Broad Sentry permissions or unintended changes may affect connected resources.
+
+Mitigation: Use the narrowest available scopes, prefer read-only actions, and explicitly approve each write or delete.
+
+Risk: Hosted functions, triggers, and destinations can run actions or forward data automatically.
+
+Mitigation: Separately approve each automation or forwarding rule and review its target and effect.
+
+## Reference(s):
+
+- [Sentry skill release](https://clawhub.ai/byungkyu/skills/sentry-api)
+- [Maton homepage](https://maton.ai)
+- [Sentry API documentation](https://docs.sentry.io/api/)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Time trigger reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with command and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only access by default; changes and automation require user approval.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

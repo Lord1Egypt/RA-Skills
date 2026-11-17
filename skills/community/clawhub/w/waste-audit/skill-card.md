@@ -1,40 +1,58 @@
-## Description: <br>
-Find recurring OpenClaw jobs that may be wasting tokens before the waste compounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find recurring OpenClaw jobs that may be wasting tokens before the waste compounds.
 
-## Publisher: <br>
-[choosenobody](https://clawhub.ai/user/choosenobody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[choosenobody](https://clawhub.ai/user/choosenobody)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect recurring OpenClaw jobs for likely token waste, review evidence, and prepare safe manual verification before making changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit evidence may include private job names, logs, paths, delivery details, or operational context. <br>
-Mitigation: Inspect metadata locally and redact secrets, private payloads, credentials, and identifying details before sharing examples externally. <br>
-Risk: A recurring job flagged as waste may still be useful in its operating context. <br>
-Mitigation: Use the generated manual verification prompt and review the evidence before editing, disabling, deleting, or rescheduling any job. <br>
+## Use Case:
 
+Developers and operators use this skill to audit recurring OpenClaw jobs for likely token waste, review evidence, and prepare a safe manual verification prompt before changing schedules, prompts, or configuration.
 
-## Reference(s): <br>
-- [OpenClaw Waste Audit reference patterns](references/openclaw-waste-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with evidence summaries, ranked findings, inline shell commands, and a manual verification prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only guidance; recommendations require manual verification before changing jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.12 (source: release evidence and frontmatter) <br>
+Risk: The skill includes guidance to share uncertain audit findings with a hard-coded X account, which could expose operational details if followed without reviewing the exact payload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep audit results local unless the user explicitly reviews and approves the exact information to share; remove or ignore the hard-coded contact instruction before installation.
+
+Risk: Audit evidence can include private job names, summaries, logs, paths, credentials, or other sensitive operational context.
+
+Mitigation: Redact secrets and private payload details before displaying or sharing findings, and use placeholders for credentials, tokens, wallet data, private logs, and production configuration.
+
+Risk: A recurring job may be useful even when it looks wasteful from run count, delivery, error, or summary-length signals.
+
+Mitigation: Require manual verification before changing a job schedule, prompt, model policy, or configuration, and present confidence and evidence with each recommendation.
+
+## Reference(s):
+
+- [OpenClaw Waste Audit reference bank](artifact/references/openclaw-waste-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/choosenobody/skills/waste-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown audit report with evidence summaries, ranked candidates, diagnostic commands, and a copy-paste manual verification prompt.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only recommendations; no automatic job edits, disabling, deletion, uploads, or fixes.]
+
+## Skill Version(s):
+
+1.8.12 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

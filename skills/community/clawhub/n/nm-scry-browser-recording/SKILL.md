@@ -1,7 +1,8 @@
 ---
 name: browser-recording
-description: Records browser sessions via Playwright and converts video to GIF
-version: 1.9.8
+description: |
+  Records browser sessions with Playwright and converts them to GIF. Use for web UI demos and tutorials
+version: 1.10.3
 triggers:
   - playwright
   - browser
@@ -9,30 +10,12 @@ triggers:
   - video
   - web
   - tutorial
-  - creating web UI tutorials or demos showing browser interactions
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scry", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.scry:gif-generation"]}}}
 source: claude-night-market
 source_plugin: scry
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scry](https://github.com/athola/claude-night-market/tree/master/plugins/scry). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Process](#process)
-- [Step 1: Validate Playwright Installation](#step-1:-validate-playwright-installation)
-- [Step 2: Check Spec File](#step-2:-check-spec-file)
-- [Step 3: Execute Recording](#step-3:-execute-recording)
-- [Step 4: Convert to GIF](#step-4:-convert-to-gif)
-- [Example Playwright Spec](#example-playwright-spec)
-- [Playwright Configuration](#playwright-configuration)
-- [Exit Criteria](#exit-criteria)
-- [Error Handling](#error-handling)
-- [Output Locations](#output-locations)
-- [See Also](#see-also)
+> **Night Market Skill**: ported from [claude-night-market/scry](https://github.com/athola/claude-night-market/tree/master/plugins/scry). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Browser Recording Skill
@@ -61,7 +44,7 @@ This skill uses Playwright's built-in video recording to capture browser interac
 
 > **💡 Note**: Claude Code 2.0.72+ includes native Chrome integration for interactive browser control. This skill (Playwright) is designed for **automated recording workflows, CI/CD, and cross-browser support**. For interactive debugging and live testing, consider using native Chrome integration. Both approaches complement each other - develop interactively with Chrome, then automate with Playwright specs.
 
-## Required TodoWrite Items
+## Required Progress Items
 
 When invoking this skill, create todos for:
 
@@ -177,10 +160,10 @@ export default defineConfig({
 
 ## Exit Criteria
 
-- Playwright spec executed successfully (exit code 0)
-- Video file exists in output directory
-- Video has non-zero file size
-- GIF conversion completed (if requested)
+- [ ] Playwright spec executed successfully (exit code 0)
+- [ ] Video file exists in output directory
+- [ ] Video has non-zero file size
+- [ ] GIF conversion completed (if requested)
 
 ## Error Handling
 

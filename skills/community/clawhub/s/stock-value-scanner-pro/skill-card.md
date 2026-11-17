@@ -1,41 +1,53 @@
-## Description: <br>
-A paid U.S. stock value-scanning skill that describes 40+ ticker discovery, valuation analysis, macro-linked signals, excess-return attribution, and rolling backtest output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Value Scanner Pro is a paid U.S. equities value-scanning skill that evaluates 40+ tickers with multi-factor discovery scoring, valuation analysis, macro signals, attribution, and seven-day rolling backtests.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-External users use this skill to request U.S. equity screening guidance, valuation context, macro signal framing, and watch/buy/hold-style output for covered tickers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes stock-trading signals and example buy, hold, and watch actions that could be mistaken for verified investment advice. <br>
-Mitigation: Treat outputs as informational screening guidance and independently verify market data, valuation assumptions, and investment decisions before acting. <br>
-Risk: The release describes an off-platform paid subscription using USDT or USDC. <br>
-Mitigation: Verify the publisher, subscription terms, payment address, and refund policy before paying. <br>
+## Use Case:
 
+External users, analysts, and trading researchers use this skill to generate informational U.S. stock screening signals, action labels, scores, valuation context, and backtest examples. Its outputs should support research and review rather than be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sg345662365-oss/stock-value-scanner-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/sg345662365-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON signal examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Described outputs include ticker symbols, action labels, scores, prices, entry levels, PnL percentages, and rolling backtest win rates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Users may treat scores, action labels, or backtest examples as trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational research only and require users to verify methodology, data freshness, and risk assumptions before making trading decisions.
+
+Risk: Users may pay for the subscription without understanding the Chinese documentation or payment terms.
+
+Mitigation: Review the documentation, subscription price, payment method, and cancellation or support expectations before paying.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sg345662365-oss/skills/stock-value-scanner-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown and JSON examples containing ticker symbols, action labels, scores, prices, PnL, and win-rate fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid subscription output; financial screening results are informational research signals and require independent review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

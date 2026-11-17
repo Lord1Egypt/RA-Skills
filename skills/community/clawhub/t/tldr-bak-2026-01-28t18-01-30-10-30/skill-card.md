@@ -1,40 +1,53 @@
-## Description: <br>
-Simplified man pages from tldr-pages. Use this to quickly understand CLI tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simplified man pages from tldr-pages. Use this to quickly understand CLI tools.
 
-## Publisher: <br>
-[nicoataiza](https://clawhub.ai/user/nicoataiza) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nicoataiza](https://clawhub.ai/user/nicoataiza)
 
-## Use Case: <br>
-Developers and CLI users use this skill to get concise command examples from the local tldr command before falling back to fuller manuals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the local tldr binary available on the user's system. <br>
-Mitigation: Install only if you trust the local tldr binary on your system. <br>
-Risk: tldr pages are concise summaries and may omit details needed for safety-critical, destructive, or privileged commands. <br>
-Mitigation: Use man or --help for safety-critical, destructive, or privileged commands where complete official details matter. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicoataiza/tldr-bak-2026-01-28t18-01-30-10-30) <br>
-- [tldr-pages](https://github.com/tldr-pages/tldr) <br>
+## Use Case:
 
+Developers, engineers, and agents use this skill to get concise command-line examples before falling back to longer manuals or help output.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local tldr binary.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on the local tldr executable being available.
+
+Mitigation: Confirm the tldr command-line tool is installed before relying on the skill for command usage lookup.
+
+Risk: Running tldr cache updates may fetch and store community-maintained pages locally.
+
+Mitigation: Use cache updates in environments where fetching community documentation is acceptable, and review examples before executing commands.
+
+## Reference(s):
+
+- [tldr-pages project](https://github.com/tldr-pages/tldr)
+- [ClawHub skill page](https://clawhub.ai/nicoataiza/skills/tldr-bak-2026-01-28t18-01-30-10-30)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the tldr command-line tool to be installed; cache updates may fetch and store community tldr pages locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

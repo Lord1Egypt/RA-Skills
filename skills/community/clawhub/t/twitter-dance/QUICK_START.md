@@ -25,7 +25,7 @@
 
 ### 第三步：配置 Kimi API（可选，提高推文质量）
 ```bash
-export KIMI_API_KEY="sk-JM5Ji1efm1IH0iUYAmm3Mn0pWDutMtaHlq5VMKO0taZ4OYW9"
+export KIMI_API_KEY="REDACTED-SECRET"
 ```
 
 ## 2️⃣ 快速使用

@@ -1,46 +1,61 @@
-## Description: <br>
-Provides standardized Node.js and TypeScript REST API development guidance using a layered Route, Controller, Service, Repository architecture with validation, DTO mapping, Prisma data access, and centralized error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized backend REST API development following layered architecture patterns for building new REST APIs, implementing features, fixing bugs, and refactoring backend code.
 
-## Publisher: <br>
-[bayudsatriyo](https://clawhub.ai/user/bayudsatriyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bayudsatriyo](https://clawhub.ai/user/bayudsatriyo)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, refactor, and review backend REST API features with consistent layered architecture, validation, error handling, DTO mapping, and Prisma repository patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or copied route code could omit authorization checks or apply them at the wrong layer. <br>
-Mitigation: Review authorization on every route and ensure service-level access rules match the product's security model before merging. <br>
-Risk: Template hard-delete helpers and incomplete validation schemas could create destructive or under-validated API behavior if copied directly into production. <br>
-Mitigation: Prefer soft-delete behavior where appropriate, tightly control destructive operations, and complete request validation schemas for each feature. <br>
-Risk: The AppError and status handling contract may be inconsistent if the template is adapted mechanically. <br>
-Mitigation: Verify the AppError, error-code, and centralized middleware contract in the target codebase before relying on generated error paths. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, fix, or refactor Node.js and TypeScript REST APIs using a layered Express and Prisma architecture. It guides agents toward consistent route, controller, service, repository, DTO, mapper, validation, and error-handling patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bayudsatriyo/backend-developer) <br>
-- [Error Handling Pattern](references/error-handling.md) <br>
-- [Senior Backend Engineer Mindset](references/senior-engineer-mindset.md) <br>
-- [Utilities](references/utilities.md) <br>
-- [Validation Pattern](references/validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript code examples and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing implementation patterns and code templates; generated application code should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security-sensitive examples could lead agents to generate insecure user or list endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated backend code before use, especially endpoints derived from the user-creation and list route patterns.
+
+Risk: Public clients may be able to set roles or activation state if generated validation schemas follow the insecure example pattern.
+
+Mitigation: Remove client-controlled role and activation-state fields from public create or update schemas, and enforce those values in trusted service logic.
+
+Risk: Unbounded list queries can create performance and abuse risks.
+
+Mitigation: Add bounded query validation for pagination, filtering, and limits before relying on generated route templates.
+
+## Reference(s):
+
+- [Error Handling Pattern](artifact/references/error-handling.md)
+- [Senior Backend Engineer Mindset](artifact/references/senior-engineer-mindset.md)
+- [Utilities & Helper Functions](artifact/references/utilities.md)
+- [Input Validation Pattern](artifact/references/validation.md)
+- [ClawHub Skill Page](https://clawhub.ai/bayudsatriyo/skills/backend-developer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes layered API module templates and backend implementation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

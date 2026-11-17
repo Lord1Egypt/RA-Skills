@@ -1,44 +1,58 @@
-## Description: <br>
-A self-contained OpenClaw skill for creating, querying, updating, and removing scheduled daily news and hotspot subscriptions with timezone handling, OpenClaw cron scheduling, and QQBot-oriented delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-contained OpenClaw skill for creating, listing, updating, testing, and removing scheduled daily news and hotspot subscriptions with timezone-aware QQBot delivery.
 
-## Publisher: <br>
-[zykkk-power](https://clawhub.ai/user/zykkk-power) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zykkk-power](https://clawhub.ai/user/zykkk-power)
 
-## Use Case: <br>
-External OpenClaw and QQBot users use this skill to schedule recurring or test news briefings, manage delivery time and topics, and keep subscription state aligned with OpenClaw cron jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring cron jobs can continue sending news briefings after the user no longer wants them. <br>
-Mitigation: Review created cron jobs and remove subscriptions that are no longer needed. <br>
-Risk: Subscription topics, destination identifiers, and timezone settings are stored locally for delivery. <br>
-Mitigation: Avoid sensitive topics or destination identifiers when that local storage or delivery-channel use is not acceptable. <br>
-Risk: News content is fetched at execution time and may reflect source quality, recency, or duplication issues. <br>
-Mitigation: Prefer reliable sources, filter repeated items, and keep each pushed briefing concise as described by the skill behavior. <br>
+## Use Case:
 
+External users and OpenClaw operators use this skill to manage recurring or test news brief subscriptions for QQBot delivery. It is intended for scheduled pushes, not one-time ad hoc news summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zykkk-power/daily-hotspot-push) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise Chinese news briefings at execution time and stores subscription and timezone state locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill creates, updates, and deletes persistent OpenClaw cron jobs that can send future prompts to QQ targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted callers and confirm the target, time, timezone, and topics before creating or changing a scheduled job.
+
+Risk: Weak controls around job ownership and prompt content may allow incorrect scheduled deliveries or user-supplied topics to shape future agent prompts.
+
+Mitigation: Restrict use in shared environments, validate job ownership and topics, and periodically review active subscriptions and cron jobs.
+
+Risk: The skill stores QQ target timezone and subscription data for scheduled delivery.
+
+Mitigation: Treat stored subscription and timezone records as user data, limit access to the skill state files, and delete records when subscriptions are removed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zykkk-power/skills/daily-hotspot-push)
+- [Publisher profile](https://clawhub.ai/user/zykkk-power)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Concise text or Markdown responses with inline shell commands and JSON command results from the bundled management script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled deliveries produce concise Chinese news briefs grouped by topic, with each item containing a title, source, and short takeaway.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

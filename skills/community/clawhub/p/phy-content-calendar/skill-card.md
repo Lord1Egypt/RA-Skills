@@ -1,42 +1,55 @@
-## Description: <br>
-Auto content calendar generator for social media that takes topic pillars and a target platform, then produces a 2-4 week posting calendar with style rotation, platform-aware scheduling, and draft outlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phy Content Calendar generates 2-4 week social media posting calendars from topic pillars and a target platform, with rotating content styles, platform-specific scheduling, and optional content-library atom hints.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to plan social posts across LinkedIn, Reddit, Twitter/X, and Hacker News from topic pillars, schedule preferences, and optional local content atoms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional library mode can load and run a local phy-content-compound companion module from the user's machine. <br>
-Mitigation: Use --library only with trusted content folders and only when the local companion skill is trusted. <br>
-Risk: Generated calendars and draft outlines may not match a brand's approval process or current platform rules. <br>
-Mitigation: Review planned posts before publishing and run any available platform or brand checks in the user's workflow. <br>
+## Use Case:
 
+Content strategists, founders, marketers, and developer advocates use this skill to plan platform-specific social media calendars from topic pillars. It helps agents produce posting schedules, draft outlines, and optional links to local content atoms for LinkedIn, Reddit, Twitter/X, and Hacker News workflows.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-content-calendar) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Plain text calendar, Markdown table, or JSON records generated from command-line options] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include draft outlines, recommended posting days and times, platform format tips, and optional local content atom hints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill metadata) <br>
+Risk: The optional --library mode can execute local Python code from predictable user-writable phy-content-compound paths without verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --library only when the local phy-content-compound file and its directory are trusted and have not been modified by another package or user.
+
+Risk: Generated calendars and draft outlines may not match current platform rules, audience expectations, or brand policy.
+
+Mitigation: Review scheduled posts and outlines before publishing, especially for regulated topics or brand-sensitive channels.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-content-calendar)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Plain text calendar, Markdown table, or JSON entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs scheduled post entries with date, weekday, platform, content style, topic pillar, outline, and optional local content atom hints.]
+
+## Skill Version(s):
+
+1.0.3 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

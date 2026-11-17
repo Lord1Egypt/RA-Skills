@@ -1,40 +1,57 @@
-## Description: <br>
-Implements semantic search using local vector embeddings for knowledge base indexing and similarity matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements semantic search using local vector embeddings for knowledge base indexing and similarity matching.
 
-## Publisher: <br>
-[jackfeng0614-prog](https://clawhub.ai/user/jackfeng0614-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackfeng0614-prog](https://clawhub.ai/user/jackfeng0614-prog)
 
-## Use Case: <br>
-Developers and agents use this skill to create a local, file-backed semantic search index for documents and retrieve matches by meaning rather than keyword overlap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local file write and delete behavior is loosely scoped to the configured store path. <br>
-Mitigation: Review before installing, use only a dedicated private STORE_PATH, avoid untrusted document IDs, and avoid clear() on shared or important directories until scoped path validation is added. <br>
-Risk: Indexed documents are persisted locally and may expose sensitive content if secrets or private data are indexed. <br>
-Mitigation: Do not index secrets, restrict access to the store directory, and remove the dedicated store when it is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to maintain a local searchable document index and retrieve documents by similarity without calling external APIs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jackfeng0614-prog/local-vector-store) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Files] <br>
-**Output Format:** [JSON-compatible JavaScript objects and local JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configurable VECTOR_DIMENSION, STORE_PATH, and SIMILARITY_THRESHOLD environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: Crafted document IDs could write or delete JSON files outside the configured storage folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted document IDs, run the skill with an isolated STORE_PATH, and limit filesystem permissions until path validation is fixed.
+
+Risk: Search behavior may be misleading because the embedding implementation is not a true semantic embedding model.
+
+Mitigation: Do not rely on results for true semantic search unless the embedding implementation is replaced and validated for the intended corpus.
+
+Risk: Indexed content may persist locally with unclear deletion behavior.
+
+Mitigation: Avoid indexing sensitive documents until persistence and deletion behavior are documented and verified.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackfeng0614-prog/skills/local-vector-store)
+
+## Skill Output:
+
+**Output Type(s):** [code, JSON, configuration]
+
+**Output Format:** [JavaScript API calls returning JSON-like objects for indexing, search results, deletion, and store statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local filesystem storage configured by VECTOR_DIMENSION, STORE_PATH, and SIMILARITY_THRESHOLD.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

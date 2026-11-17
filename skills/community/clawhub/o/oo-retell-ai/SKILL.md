@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Retell AI"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.5"
   services: ["retell_ai"]
   icon: "https://static.oomol.com/logo/third-party/retell_ai.svg"
 ---
@@ -43,7 +43,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_voice_agent` — Retrieve details for a specific Retell AI voice agent.
 - `list_calls` — List Retell AI calls with pagination and optional simple filters.
 - `list_phone_numbers` — List Retell AI phone numbers with cursor pagination.
-- `list_voice_agents` — List Retell AI voice agents with optional pagination filters.
+- `list_voice_agents` — List unique Retell AI voice agents with cursor pagination. Use get_voice_agent for version details.
 - `list_voices` — List all Retell AI voices available to the authenticated workspace.
 
 ## Safety
@@ -75,11 +75,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Retell AI is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=retell_ai
+  https://console.oomol.com/connections/retell_ai
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Retell AI homepage: https://www.retellai.com/
+- API documentation: https://docs.retellai.com/

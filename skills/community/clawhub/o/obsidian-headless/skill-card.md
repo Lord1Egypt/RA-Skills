@@ -1,41 +1,60 @@
-## Description: <br>
-Obsidian Headless lets an agent manage an Obsidian Markdown vault from a headless, SSH, or non-GUI environment by creating, viewing, searching, listing, appending to daily notes, and deleting notes with confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages an Obsidian notes vault from headless or SSH environments with commands for creating, viewing, deleting, searching, listing, and appending daily notes.
 
-## Publisher: <br>
-[imakid](https://clawhub.ai/user/imakid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imakid](https://clawhub.ai/user/imakid)
 
-## Use Case: <br>
-Developers, automation users, and note-taking workflows use this skill to manage Obsidian vault notes from command-line or headless environments without launching the Obsidian desktop app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, create, append, search, and delete Markdown files in the configured Obsidian vault. <br>
-Mitigation: Configure the vault path deliberately, keep backups of important notes, and review delete confirmations before approving removal. <br>
-Risk: The installer changes local shell convenience setup through aliases or symlinks. <br>
-Mitigation: Review install.sh before running it and use direct script invocation if shell integration is not desired. <br>
+## Use Case:
 
+Developers, operators, and note-taking users use this skill to manage Markdown notes in an Obsidian vault on headless servers, SSH sessions, containers, or other environments without the Obsidian desktop GUI.
 
-## Reference(s): <br>
-- [Obsidian Headless usage manual](USAGE.md) <br>
-- [Obsidian](https://obsidian.md/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Natural-language command guidance, shell command examples, and Markdown note content or search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on Markdown files in the configured local Obsidian vault and may create, append, search, view, list, or delete notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can read, create, append, and delete Markdown files in the configured Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or backed-up vault until the operator has reviewed the shell scripts and confirmed the target vault path.
+
+Risk: Search command handling is flagged by security evidence as vulnerable to rg/grep option injection with untrusted natural-language input.
+
+Mitigation: Avoid untrusted search terms and review or patch search argument handling before installing in shared or automated environments.
+
+Risk: Installation and configuration can persist shell profile/PATH changes and store a world-readable vault path.
+
+Mitigation: Review installer changes before use, prefer the OBSIDIAN_VAULT environment variable for temporary configuration, and restrict config file permissions if the vault path is sensitive.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/imakid/skills/obsidian-headless)
+- [Obsidian](https://obsidian.md/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Artifact-declared repository](https://github.com/imakid/obsidian-headless)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown notes and terminal text from shell command execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes, reads, searches, lists, and deletes Markdown files inside the configured Obsidian vault.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

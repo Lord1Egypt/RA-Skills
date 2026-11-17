@@ -1,38 +1,54 @@
-## Description: <br>
-Design clinical trial CRFs with proper validation rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design clinical trial CRFs with proper validation rules.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinical data managers, trial builders, and developers use this skill to generate electronic case report form specifications, validation rules, logic skip patterns, and data dictionaries for clinical trial workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes a user-named CRF JSON file in the local workspace. <br>
-Mitigation: Run it in a controlled workspace, avoid sensitive or system output paths, and review generated CRF specifications before regulated clinical use. <br>
+## Use Case:
 
+Clinical data managers, trial builders, and developers use this skill to create electronic case report form specifications, validation rules, skip logic patterns, and data dictionaries for clinical trial data collection.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aipoch-ai/ecrf-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON files and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates predefined CRF templates and writes a user-named JSON output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The script can write to any user-supplied output file path accessible to the running account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandboxed workspace and provide explicit workspace-relative output paths; avoid directories where overwriting files would matter until path validation or overwrite protection is added.
+
+Risk: Generated CRF specifications may need study-specific and regulatory review before operational use.
+
+Mitigation: Review generated forms, validation rules, skip logic, and data dictionaries against the study protocol, CDISC SDTM expectations, and EDC configuration requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/ecrf-designer)
+- [AIPOCH publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Console text and JSON file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a CRF JSON file to the requested output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

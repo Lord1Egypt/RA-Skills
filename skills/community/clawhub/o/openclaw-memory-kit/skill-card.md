@@ -1,44 +1,60 @@
-## Description: <br>
-OpenClaw Memory Kit helps agents scaffold, sanitize, and share an OpenClaw multi-agent memory workspace with reusable configuration, role prompts, task-board conventions, and startup commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffold, sanitize, or share an OpenClaw multi-agent memory system with a reusable workspace, memory-lancedb-pro configuration, role prompts, task-board conventions, and startup scripts.
 
-## Publisher: <br>
-[sora-mury](https://clawhub.ai/user/sora-mury) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sora-mury](https://clawhub.ai/user/sora-mury)
 
-## Use Case: <br>
-Developers and operators use this skill to package an existing OpenClaw memory setup for teammates, remove private details from a live configuration, or bootstrap a fresh memory-focused OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A persistent memory workspace can accumulate sensitive information in generated memory and task files. <br>
-Mitigation: Use an isolated target directory, keep real tokens and .env files out of shared kits, and periodically inspect or delete generated memory and task files. <br>
-Risk: Bootstrapping or adapting a live setup can accidentally carry private paths, app IDs, channel bindings, or personal scope names into a shared kit. <br>
-Mitigation: Replace private values with placeholders, target-root-relative paths, generic role IDs, and loopback endpoints before sharing. <br>
-Risk: Startup or bootstrap commands may change the local OpenClaw state if pointed at an existing directory. <br>
-Mitigation: Default to a separate target root, review bootstrap scripts before running them, and use overwrite flags only when explicitly intended. <br>
+## Use Case:
 
+Developers and operators use this skill to scaffold an isolated OpenClaw memory workspace, sanitize an existing setup for sharing, and generate role prompts, task-board conventions, memory configuration, and launcher guidance.
 
-## Reference(s): <br>
-- [Architecture](references/architecture.md) <br>
-- [Generated Files](references/generated-files.md) <br>
-- [Sanitization Rules](references/sanitization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell commands, configuration descriptions, and generated workspace file expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve placeholders for secrets and use isolated target directories for generated memory workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The skill enables automatic invocation while working with a persistent OpenClaw memory workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit invocation, use an isolated target directory, and review generated workspace files before use.
+
+Risk: The skill references installing local npm dependencies without pinned versions in the reviewed artifact.
+
+Mitigation: Pin and verify package versions before installing dependencies.
+
+Risk: The referenced bootstrap workflow is not included for review in the artifact.
+
+Mitigation: Do not run the bootstrap workflow until the actual script and dependency commands have been inspected.
+
+## Reference(s):
+
+- [OpenClaw Memory Kit on ClawHub](https://clawhub.ai/sora-mury/skills/openclaw-memory-kit)
+- [OpenClaw Memory Kit Architecture](references/architecture.md)
+- [Generated Files](references/generated-files.md)
+- [Sanitization Rules](references/sanitization.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell commands, generated file descriptions, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or guide creation of OpenClaw workspace files, launch scripts, memory directories, and placeholder environment files.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

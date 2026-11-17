@@ -1,45 +1,56 @@
-## Description: <br>
-cjpkg helps agents search, download, configure, and develop Cangjie packages from the Cangjie Central Repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents find, download, configure, and develop packages for the Cangjie language ecosystem.
 
-## Publisher: <br>
-[l3gi0nxxxx](https://clawhub.ai/user/l3gi0nxxxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l3gi0nxxxx](https://clawhub.ai/user/l3gi0nxxxx)
 
-## Use Case: <br>
-Developers and engineers use this skill to find Cangjie packages, download package artifacts, update Cangjie project configuration, and follow cjpm-based build or package-development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead agents to modify Cangjie project files such as cjpm.toml. <br>
-Mitigation: Require the agent to show exact commands and diffs, and back up project configuration before applying changes. <br>
-Risk: The skill includes setup guidance that can change persistent shell or PATH configuration. <br>
-Mitigation: Avoid persistent shell-profile changes unless explicitly approved, and review any environment changes before execution. <br>
-Risk: The skill can download package artifacts from the Cangjie package registry. <br>
-Mitigation: Use it when package management is intended, and confirm package name, organization, version, and destination before download. <br>
+## Use Case:
 
+Developers and engineers use this skill to discover Cangjie packages, download selected package artifacts, configure Cangjie project dependencies, and follow package development or publishing workflows.
 
-## Reference(s): <br>
-- [cjpkg on ClawHub](https://clawhub.ai/l3gi0nxxxx/cjpkg) <br>
-- [Cangjie Central Repository](https://pkg.cangjie-lang.cn/index) <br>
-- [Cangjie SDK Download](https://cangjie-lang.cn/download) <br>
-- [Cangjie Developer Guide](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/summary_cjnative_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose package-search, download, cjpm, and TOML-editing commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may propose broad local changes, including project mutations, builds, package downloads, and TOML writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed command and file edit before execution, especially commands that alter project configuration or download package artifacts.
+
+Risk: The skill may suggest editing shell startup files or sourcing SDK setup scripts.
+
+Mitigation: Require explicit user confirmation for shell profile changes and verify all paths are quoted and point to the intended Cangjie SDK location.
+
+## Reference(s):
+
+- [ClawHub cjpkg Release Page](https://clawhub.ai/l3gi0nxxxx/skills/cjpkg)
+- [Cangjie Central Repository](https://pkg.cangjie-lang.cn/index)
+- [Cangjie SDK Download](https://cangjie-lang.cn/download)
+- [Cangjie Native Development Guide](https://gitcode.com/Cangjie/cangjie_docs/blob/main/docs/dev-guide/summary_cjnative_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local project edits, package downloads, builds, and TOML dependency updates for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Bank Health & FDIC Data helps agents check US bank financial health, FDIC-active status, assets, and deposits using FDIC institution data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bank Health & FDIC Data lets agents check a US bank's financial health, assets, deposits, and active status from FDIC institution data.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-External agents, fintech teams, treasury workflows, and risk analysts use this skill to check FDIC-active status and financial health signals for US banks before transacting or screening banking partners. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes agents to a paid external API call using x402 USDC payment. <br>
-Mitigation: Confirm the bank query and expected charge before allowing wallet auto-payment or repeated calls. <br>
-Risk: Bank health outputs may be used for financial or counterparty-risk decisions. <br>
-Mitigation: Treat the returned FDIC data as one input to due diligence and verify material decisions against authoritative banking and compliance sources. <br>
+## Use Case:
 
+External developers, fintech teams, treasury agents, and due-diligence workflows use this skill to assess bank or counterparty risk, verify FDIC-active institutions, and screen banking partners before transacting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/colinhughes2121/bank-health-fdic-data) <br>
-- [GoCreative bank risk API endpoint](https://api.gocreativeai.com/v1/risk/bank/{name}) <br>
-- [GoCreative Agent Compliance & Data API](https://api.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON] <br>
-**Output Format:** [Markdown guidance describing an HTTPS GET endpoint and the expected JSON API response.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The endpoint uses x402 USDC payment on Base through an OpenClaw wallet and does not require an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence) <br>
+Risk: Each lookup sends the requested bank name to GoCreative's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the bank name needed for the lookup and avoid including sensitive internal notes, customer information, or unrelated confidential context.
+
+Risk: Requests may trigger a small USDC x402 payment through an OpenClaw wallet.
+
+Mitigation: Confirm wallet funding, payment policy, and expected per-call cost before enabling automated or repeated lookups.
+
+## Reference(s):
+
+- [Bank Health & FDIC Data on ClawHub](https://clawhub.ai/colinhughes2121/skills/bank-health-fdic-data)
+- [Publisher profile](https://clawhub.ai/user/colinhughes2121)
+- [GoCreative Bank Risk API](https://api.gocreativeai.com/v1/risk/bank/{name})
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, JSON]
+
+**Output Format:** [Markdown guidance with HTTPS GET endpoint details and JSON API response expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lookup requests submit the requested bank name to an external paid API and may trigger an x402 USDC payment through an OpenClaw wallet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

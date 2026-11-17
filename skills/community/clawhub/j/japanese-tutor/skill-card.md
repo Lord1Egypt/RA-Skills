@@ -1,46 +1,58 @@
-## Description: <br>
-Interactive Japanese learning assistant. Supports vocabulary, grammar, quizzes, roleplay, PDF/DOCX material parsing for study/homework help, and OCR translation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive Japanese learning assistant. Supports vocabulary, grammar, quizzes, roleplay, PDF/DOCX material parsing for study/homework help, and OCR translation.
 
-## Publisher: <br>
-[chndranndr](https://clawhub.ai/user/chndranndr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chndranndr](https://clawhub.ai/user/chndranndr)
 
-## Use Case: <br>
-Learners and tutors use this skill for Japanese vocabulary practice, grammar explanations, quizzes, conversation roleplay, translation, and guided study or homework support from PDF, DOCX, image, or text materials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PDF parsing sends uploaded PDF content to Gemini for OCR and layout analysis. <br>
-Mitigation: Avoid parsing confidential PDFs, school records, or personal documents unless third-party processing is acceptable. <br>
-Risk: Extracted study material may be saved into local reference markdown files and reused later. <br>
-Mitigation: Review or delete saved reference files when extracted lesson material should not persist. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Japanese Tutor Skill Definition](SKILL.md) <br>
-- [Japanese Grammar - Beginner Level](references/grammar.md) <br>
-- [Lesson 2 Grammar](references/grammar_lesson2.md) <br>
-- [Pelajaran 1: Kalimat Dasar & Kosakata Profesi](references/lesson_1.md) <br>
-- [Japanese Vocabulary - Beginner Level (N5)](references/vocab.md) <br>
-- [Lesson 2 Vocabulary](references/vocab_lesson2.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chndranndr/japanese-tutor) <br>
-- [Publisher Profile](https://clawhub.ai/user/chndranndr) <br>
+## Use Case:
 
+External learners and instructors use this skill for beginner Japanese vocabulary, grammar explanations, quizzes, conversation practice, translation, and guided study or homework help from PDF/DOCX course materials.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, code, shell commands] <br>
-**Output Format:** [Markdown and text responses with optional shell commands for parsing files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local markdown reference files with extracted vocabulary, grammar, and lesson material.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: PDF parsing may send private schoolwork, IDs, grades, copyrighted course packets, or other sensitive documents to Google Gemini.
+
+Mitigation: Use the PDF parser only after explicit user consent, avoid sensitive documents, and review materials before upload.
+
+Risk: The skill can save extracted study content into local reference files without clear consent controls.
+
+Mitigation: Require the agent to ask before saving extracted content and review reference-file changes before relying on or redistributing them.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/chndranndr/skills/japanese-tutor)
+- [Publisher profile](https://clawhub.ai/user/chndranndr)
+- [Japanese Grammar - Beginner Level](references/grammar.md)
+- [Lesson 2 Grammar](references/grammar_lesson2.md)
+- [Pelajaran 1: Kalimat Dasar & Kosakata Profesi](references/lesson_1.md)
+- [Japanese Vocabulary - Beginner Level](references/vocab.md)
+- [Lesson 2 Vocabulary](references/vocab_lesson2.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown conversational responses with optional code or shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append extracted vocabulary, grammar, and lesson notes to local reference files when study materials are ingested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

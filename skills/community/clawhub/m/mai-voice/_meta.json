@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn71vj2bggm64jqt6rtpx73z3x84a5ak",
+  "title": "MAI Voice",
   "slug": "mai-voice",
-  "version": "0.1.1",
-  "publishedAt": 1775513894742
+  "version": "0.1.0",
+  "summary": "Synthesize speech with Microsoft's MAI-Voice-1 voices via Azure AI Speech.",
+  "license": "MIT",
+  "keywords": [
+    "azure",
+    "speech",
+    "tts",
+    "voice",
+    "mai"
+  ]
 }

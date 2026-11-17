@@ -1,12 +1,12 @@
 # AIScan — AI Readiness Scanner
 
-[![Version](https://img.shields.io/badge/version-1.4.0-brightgreen.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-brightgreen.svg)](CHANGELOG.md)
 [![MissionDeck](https://img.shields.io/badge/MissionDeck-ai-blueviolet)](https://missiondeck.ai)
 [![ClawHub](https://img.shields.io/badge/ClawHub-aiscan--ai--readiness--scanner-orange)](https://clawhub.ai/asif2bd/skills/aiscan-ai-readiness-scanner)
 [![License](https://img.shields.io/badge/license-MIT--0-green.svg)](LICENSE)
 [![ProSkills](https://img.shields.io/badge/ProSkills-MD-orange)](https://proskills.md)
 
-Built by [MissionDeck.ai](https://missiondeck.ai) · [Live Scanner](https://aiscan.site) · [REST API](https://aiscan.site/api/public/scan) · [MCP Endpoint](https://aiscan.site/api/mcp) · [Changelog](https://aiscan.site/changelog)
+Built by [MissionDeck.ai](https://missiondeck.ai) · [Live Scanner](https://aiscan.site) · [Developer Guide](https://aiscan.site/developers) · [OpenAPI](https://aiscan.site/openapi.json) · [MCP Endpoint](https://aiscan.site/api/mcp) · [Changelog](https://aiscan.site/changelog)
 
 > Scan any website for AI-agent readiness, then give agents concrete platform-aware fixes.
 
@@ -33,18 +33,15 @@ The scanner returns a 0-100 score, maturity level, detected platform, dimension 
 
 ## What's New In This Skill Release
 
-This ClawHub skill now reflects the current AIScan product surface through **AIScan v1.4.0**:
+Version 2.0.0 catches the ClawHub package up with **AIScan v3.1.0**:
 
-- Browser-friendly REST API docs at `/api/public/scan`
-- Try-it form and example curl commands
-- Public changelog at `/changelog`
-- Better framework detection, including Astro, Next.js, Nuxt, SvelteKit, Remix, Gatsby, Angular, Vue, and React
-- Server-side report storage with short share URLs such as `https://aiscan.site/r/abc12345`
-- Per-report Open Graph metadata for cleaner sharing
-- Public MCP endpoint with `scan_website`, `get_fixes`, and `get_grade`
-- Agent Skill manifest and Claude Code instructions
-- Fix-with-AI prompts for ChatGPT and Claude
-- Embeddable badge endpoint at `/api/public/badge.svg`
+- Stable additive-only v1 REST API, report endpoint, OpenAPI 3.1, RFC 9727 discovery, and RFC 9457 errors
+- Rubric-versioned scores and monitoring alerts that distinguish scoring-rule changes from site regressions
+- Evidence, standards citations, check tiers, N/A reasons, and expanded E1–E5 quality checks
+- `aiscan-cli` for local scans, CI score gates, Markdown summaries, and fix prompts
+- Full-site and Pro single-page scans, cache bypass, API keys, plan metering, and private scan controls
+- Monitoring/history plus email, Telegram and webhook alerts
+- Chrome extension, Telegram bot, shareable reports, badges, and machine-readable agent surfaces
 
 ## Setup Modes
 
@@ -52,7 +49,7 @@ This ClawHub skill now reflects the current AIScan product surface through **AIS
 |------|-------------|
 | MissionDeck Cloud | [missiondeck.ai](https://missiondeck.ai) — hosted agent command center |
 | Hosted Scanner | Use [aiscan.site](https://aiscan.site) directly |
-| REST API | Call `https://aiscan.site/api/public/scan` |
+| REST API | Call stable v1 at `https://aiscan.site/api/public/v1/scan` |
 | MCP Server | Connect `https://aiscan.site/api/mcp` as a streamable HTTP MCP endpoint |
 | OpenClaw Agent | Install this skill into any OpenClaw agent |
 
@@ -71,7 +68,7 @@ Run AIScan on https://example.com and tell me the score, top issues, and exact f
 Or call the API directly:
 
 ```bash
-curl -sS -X POST https://aiscan.site/api/public/scan \
+curl -sS -X POST https://aiscan.site/api/public/v1/scan \
   -H 'Content-Type: application/json' \
   -d '{"url":"https://example.com"}'
 ```
@@ -79,7 +76,7 @@ curl -sS -X POST https://aiscan.site/api/public/scan \
 Browser docs:
 
 ```text
-https://aiscan.site/api/public/scan
+https://aiscan.site/developers
 ```
 
 ## MCP Endpoint
@@ -95,8 +92,18 @@ Tools:
 - `get_grade`
 
 Transport: `streamable-http`  
-Auth: none  
-Rate limit: 5 scans/minute/IP
+Auth: optional AIScan API key  
+Anonymous limit: 5 requests/minute/IP; authenticated usage follows plan allowances
+
+## CLI and CI
+
+```bash
+npx aiscan-cli example.com
+npx aiscan-cli example.com --fix
+npx aiscan-cli example.com --min-score 85 --md
+```
+
+See [CLI documentation](https://aiscan.site/docs/cli) and the [developer guide](https://aiscan.site/developers).
 
 ## What Agents Should Do
 

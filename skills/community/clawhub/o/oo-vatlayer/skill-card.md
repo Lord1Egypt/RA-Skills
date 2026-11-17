@@ -1,43 +1,56 @@
-## Description: <br>
-VATlayer helps agents validate VAT numbers, retrieve EU VAT rates, list reduced-rate types, and calculate VAT-inclusive or VAT-exclusive prices through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VATlayer (vatlayer.com). Use this skill for ANY VATlayer request — searching and reading data. Whenever a task involves VATlayer, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for VAT validation, EU rate lookup, reduced-rate type lists, and VAT price calculations through their connected VATlayer account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected VATlayer API key brokered through OOMOL. <br>
-Mitigation: Confirm trust in OOMOL as the credential broker and connect only the intended VATlayer account before use. <br>
-Risk: One-time CLI install, login, or connection steps may be needed when authentication or connection errors occur. <br>
-Mitigation: Run setup commands only when the corresponding command failure occurs, and avoid repeating authentication or connection steps unnecessarily. <br>
+## Use Case:
 
+External users can retrieve VAT rates, calculate VAT inclusive or exclusive prices, list reduced rate types, and validate VAT numbers through their connected VATlayer account.
 
-## Reference(s): <br>
-- [ClawHub VATlayer Skill](https://clawhub.ai/oomol/oo-vatlayer) <br>
-- [VATlayer Homepage](https://vatlayer.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated oo CLI plus an OOMOL-connected VATlayer API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The setup instructions direct users to run remote CLI installers without integrity checks or a separate approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified CLI release yourself and require approval before any downloaded installer runs.
+
+Risk: OOMOL brokers VATlayer requests and manages the connected credential.
+
+Mitigation: Review whether you trust OOMOL to handle the connection and its credential.
+
+## Reference(s):
+
+- [VATlayer](https://vatlayer.com)
+- [VATlayer API documentation](https://docs.apilayer.com/vatlayer/docs/api-documentation)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [VATlayer ClawHub release](https://clawhub.ai/oomol/skills/oo-vatlayer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Text or JSON results from VAT lookup, validation, and price calculation actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected VATlayer action and the connected account.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

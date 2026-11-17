@@ -1,42 +1,60 @@
-## Description: <br>
-Integrates ZoomEye network-space search so agents can query user quota, discover host assets, search web applications, and summarize resource statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates the ZoomEye cyberspace search API for asset search, host discovery, web application detection, resource statistics, and threat-intelligence analysis.
 
-## Publisher: <br>
-[Moxin1044](https://clawhub.ai/user/Moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxin1044](https://clawhub.ai/user/moxin1044)
 
-## Use Case: <br>
-Developers, security analysts, and authorized operations teams use this skill to run ZoomEye-backed asset discovery, web application search, quota checks, and aggregate resource analysis for approved security or threat-intelligence work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ZoomEye searches are external, account-linked reconnaissance activity that can expose sensitive investigation intent through query terms. <br>
-Mitigation: Use the skill only for authorized assets or investigations, keep queries scoped, and avoid submitting confidential data as search terms. <br>
-Risk: The skill requires a ZoomEye API key and can consume account quota while making requests. <br>
-Mitigation: Use a dedicated or revocable API key, monitor quota usage, and rotate or revoke the key when access is no longer needed. <br>
+## Use Case:
 
+Developers, security engineers, and threat-intelligence analysts use this skill to query ZoomEye for internet-exposed hosts, web applications, service fingerprints, and aggregate resource statistics during authorized asset discovery and security assessment work.
 
-## Reference(s): <br>
-- [ZoomEye Query Syntax Reference](references/query_syntax.md) <br>
-- [ZoomEye API](https://api.zoomeye.org) <br>
-- [ZoomEye API Key Setup](https://www.zoomeye.org/pricing?aff=INVITE-4KZ6-640E) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZOOMEYE_API_KEY and sends user-provided queries to ZoomEye.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Searches and target identifiers may be sent to ZoomEye as third-party reconnaissance activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized asset discovery or threat-intelligence work, and avoid querying third-party targets without permission.
+
+Risk: ZoomEye API credentials are required for the skill to function.
+
+Mitigation: Store ZOOMEYE_API_KEY in the agent environment and do not include secrets or private internal details in search parameters.
+
+Risk: API quota and rate limits can affect result completeness or availability.
+
+Mitigation: Check user quota before large searches and use precise queries or pagination to control request volume.
+
+## Reference(s):
+
+- [ZoomEye Query Syntax Reference](references/query_syntax.md)
+- [ZoomEye API Endpoint](https://api.zoomeye.org)
+- [ZoomEye API Key Registration](https://www.zoomeye.org/pricing?aff=INVITE-4KZ6-640E)
+- [ClawHub Skill Page](https://clawhub.ai/moxin1044/skills/zoomeye-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZOOMEYE_API_KEY and sends search queries to ZoomEye.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

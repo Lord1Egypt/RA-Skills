@@ -1,41 +1,52 @@
-## Description: <br>
-Classify medical messages (emails, iMessages) as critical, urgent, or routine based on medical urgency indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify medical messages (emails, iMessages) as critical, urgent, or routine based on medical urgency indicators.
 
-## Publisher: <br>
-[binubmuse](https://clawhub.ai/user/binubmuse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[binubmuse](https://clawhub.ai/user/binubmuse)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and clinical operations teams can use this skill as human-reviewed decision support to classify incoming patient messages by apparent urgency. It helps prioritize review queues, but should not autonomously route, delay, close, or decide care for patient messages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill classifies medical messages in a high-stakes workflow without documented clinical guardrails.
+
+Mitigation: Use it only as human-reviewed decision support and require clinician or trained staff review before any triage, routing, closure, delay, or care decision.
+
+Risk: Critical messages could be under-prioritized if the classification is wrong or incomplete.
+
+Mitigation: Add explicit emergency-care escalation rules, conservative fallback handling, and monitoring for missed critical symptoms before operational use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External healthcare support teams and developers can use this skill to prioritize inbound patient messages into critical, urgent, or routine categories for qualified human review. It should be used as non-authoritative triage support, not as a replacement for emergency services, clinical assessment, or licensed medical judgment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Medical urgency classifications may be incorrect or incomplete in a high-stakes healthcare context. <br>
-Mitigation: Use the skill only as non-authoritative triage support and require qualified human review before acting on classifications. <br>
-Risk: Safety boundaries are under-disclosed for emergency or clinical use. <br>
-Mitigation: Deployments should add clear emergency escalation language and direct users to emergency services for life-threatening symptoms. <br>
+**Output Format:** [JSON array of triage result objects containing message id, category, reason, and confidence.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binubmuse/medical-triage) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/binubmuse) <br>
+**Other Properties Related to Output:** [Categories are critical, urgent, or routine; outputs require human review before use in medical workflows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [JSON array of triage results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each result includes the message id, triage category, reason, and confidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

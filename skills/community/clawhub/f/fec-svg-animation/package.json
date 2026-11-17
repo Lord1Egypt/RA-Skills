@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-svg-animation",
-  "version": "2.5.0",
-  "description": "Use when implementing or reviewing SVG animation, path drawing, icon motion, logo animation, illustration motion, micro-interactions, CSS/SMIL/Framer Motion/GSAP choices, motion accessibility, or fallback behavior; Chinese triggers include SVG 动画, 路径描边, 动效.",
+  "version": "2.9.0",
+  "description": "Use when implementing or reviewing SVG animation, path drawing, icon motion, logo animation, illustration motion, micro-interactions, CSS/SMIL/Framer Motion/GSAP choices, motion accessibility, or fallback behavior; Chinese triggers include SVG animation, path stroke, animation.",
   "type": "module",
   "license": "MIT",
   "author": {

@@ -1,0 +1,837 @@
+{
+  "_module": "body",
+  "_version": "2.6.0",
+  "_description": "SKILL.md 正文章节结构规范（v2.6.0 三层体系 + classification_hints 供 LLM Phase 2 精筛）",
+  "section_tiers": {
+    "_description": "三层章节体系。must_have 永远留在 SKILL.md；whitelist 可选拆到 references/（always_progressive 强制在 references/）；nonstandard 不在列表中的 H2 章节。",
+    "must_have": [
+      "H1",
+      "约束",
+      "触发条件",
+      "核心能力",
+      "工作流程"
+    ],
+    "whitelist": {
+      "_description": "白名单章节分两类：optional_progressive（超 230 行时优先拆）、always_progressive（强制渐进式，SKILL.md 只保留引用）",
+      "optional_progressive": [
+        "快速开始",
+        "强制约束",
+        "铁律",
+        "规范",
+        "反模式",
+        "常见错误",
+        "FAQ",
+        "常见问题",
+        "配置",
+        "API",
+        "接口",
+        "参考",
+        "示例",
+        "限制",
+        "已知问题",
+        "临时文件与备份管理",
+        "数据目录说明",
+        "注意事项"
+      ],
+      "always_progressive": [
+        "版本日志",
+        "更新日志",
+        "更新记录",
+        "Changelog"
+      ]
+    }
+  },
+  "progressive_index_table": {
+    "_description": "渐进式索引表定义，放在 ## 核心能力 章节末尾，列出所有 references/ 文件及其用途",
+    "location": "## 核心能力 章节末尾",
+    "heading": "### 渐进式文件索引",
+    "columns": [
+      "文件名",
+      "位置",
+      "说明"
+    ],
+    "example": "| 文件名 | 位置 | 说明 |\n|--------|------|------|\n| references/guide.md | 使用指南 | 完整参数与使用教程 |\n| references/faq.md | FAQ | 用户常见问题解答 |",
+    "rules": [
+      "所有 references/ 下的 .md 文件必须在索引表中列出",
+      "always_progressive 章节必须有对应表项",
+      "索引表位置固定：## 核心能力 之后、下一个 ## 章节之前"
+    ]
+  },
+  "section_order": [
+    "H1",
+    "约束",
+    "触发条件",
+    "核心能力",
+    "能力与限制",
+    "快速开始",
+    "工作流程",
+    "强制约束",
+    "反模式",
+    "FAQ",
+    "配置",
+    "API/参考",
+    "示例",
+    "限制/已知问题",
+    "铁律/规范",
+    "版本日志/更新记录",
+    "数据目录说明",
+    "权限说明",
+    "临时文件与备份管理"
+  ],
+  "allowed_sections": [
+    "约束",
+    "触发条件",
+    "触发场景",
+    "适用场景",
+    "触发",
+    "否定条件",
+    "核心功能",
+    "核心能力",
+    "概述",
+    "核心概念",
+    "Overview",
+    "技能概述",
+    "快速开始",
+    "Quick Start",
+    "快速上手",
+    "安装",
+    "Installation",
+    "工作流程",
+    "使用方式",
+    "Workflow",
+    "完整执行流程",
+    "核心指令",
+    "执行流程",
+    "操作步骤",
+    "强制约束",
+    "铁律",
+    "规范",
+    "Conventions",
+    "反模式",
+    "常见错误",
+    "FAQ",
+    "常见问题",
+    "Troubleshooting",
+    "问题排查",
+    "配置",
+    "Config",
+    "Settings",
+    "安装后配置",
+    "API",
+    "接口",
+    "参考",
+    "Reference",
+    "子命令",
+    "示例",
+    "Examples",
+    "用例",
+    "Use Cases",
+    "版本日志",
+    "更新日志",
+    "更新记录",
+    "Changelog",
+    "限制",
+    "已知问题",
+    "Limitations",
+    "Known Issues",
+    "临时文件与备份管理",
+    "数据目录说明",
+    "权限说明",
+    "注意事项"
+  ],
+  "required_sections": [
+    {
+      "heading_level": 1,
+      "pattern": "# <技能名>",
+      "description": "一级标题：技能名称，可加 — 简短副标题，不得含版本号",
+      "example": "# git-sync — 三端同步技能",
+      "constraint": "全文必须有且仅有一个 # 标题；R-25 C-01 (ERROR)",
+      "tier": "must_have",
+      "content_format": {
+        "type": "plain",
+        "template": "# <技能名> [— 简短副标题]",
+        "guidelines": "仅含技能名和可选的副标题，不得含版本号（版本号由 frontmatter version 管理）"
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "触发条件",
+        "触发场景",
+        "适用场景",
+        "触发"
+      ],
+      "alias_pattern": "## 触发条件 / ## 触发场景 / ## 适用场景 等",
+      "description": "描述何时应调用此技能，可含 ## 否定条件 子章节",
+      "constraint": "必须存在，可用同义词变体",
+      "tier": "must_have",
+      "content_format": {
+        "type": "mixed",
+        "template": "**正向触发：**\n- 条件1\n- 条件2\n\n**否定条件：**\n- 条件1\n- 条件2",
+        "guidelines": "分正向触发和否定条件两个子列表。正向触发用无序列表列出触发此技能的明确场景；否定条件用无序列表列出不应触发此技能的场景。每项用短语描述即可。",
+        "classification_hints": {
+          "preferred_name": "触发条件",
+          "content_patterns": [
+            "触发",
+            "调用",
+            "否定",
+            "不触发"
+          ],
+          "format_clues": [
+            "正向触发",
+            "否定条件"
+          ],
+          "llm_guidance": "描述何时调用、何时不调用。如发现内容属于条件描述但章节名是其他名称，建议合并到此章节。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "核心功能",
+        "核心能力",
+        "概述",
+        "核心概念",
+        "Overview",
+        "技能概述"
+      ],
+      "alias_pattern": "## 核心功能 / ## 概述 / ## Overview 等",
+      "description": "列出技能的核心能力（用表格），末尾放置渐进式索引表",
+      "constraint": "必须存在，可用同义词变体",
+      "tier": "must_have",
+      "content_format": {
+        "type": "table",
+        "table_columns": [
+          "#",
+          "能力",
+          "说明"
+        ],
+        "guidelines": "必须用表格，三列：#编号、能力名（加粗）、说明。每行一个独立能力。表格前应有渐进式加载模板句（R-21 要求）。章节末尾放置渐进式索引表（### 渐进式文件索引），列出所有 references/ 文件。",
+        "example": "| # | 能力 | 说明 |\n|---|------|------|\n| 1 | **能力一** | 能力一描述 |\n| 2 | **能力二** | 能力二描述 |",
+        "classification_hints": {
+          "preferred_name": "核心能力",
+          "content_patterns": [
+            "能力",
+            "功能",
+            "支持"
+          ],
+          "format_clues": [
+            "表格",
+            "加粗"
+          ],
+          "llm_guidance": "列出技能的核心能力表格。如发现内容属于功能列表但未用表格，需转换为表格格式。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "约束"
+      ],
+      "alias_pattern": "## 约束",
+      "description": "本技能的特定操作约束，必须阅读后再使用",
+      "constraint": "must_have，永远留在 SKILL.md",
+      "tier": "must_have",
+      "content_format": {
+        "type": "unordered_list",
+        "guidelines": "用无序列表，每条约束一句话，最多 5 条。每条必须简练、可执行，不能有模糊表述。长段规则说明应放在 references/ 或归入强制约束章节。",
+        "example": "- 技能文件修改必须通过 Python 脚本原子写入\n- 更新后必须运行 audit 自审\n- 版本号三端一致",
+        "classification_hints": {
+          "preferred_name": "约束",
+          "content_patterns": [
+            "必须",
+            "禁止",
+            "不得",
+            "只能",
+            "约束",
+            "铁律"
+          ],
+          "format_clues": [
+            "简短列表",
+            "一行一条"
+          ],
+          "llm_guidance": "本技能特有的简短操作约束，每条一句话。如发现内容属于操作规则但章节名不同，建议合并到约束。与强制约束的区别：约束是简短清单（≤5条），强制约束是详细表格。"
+        }
+      }
+    }
+  ],
+  "recommended_sections": [
+    {
+      "heading_level": 2,
+      "keywords": [
+        "快速开始",
+        "Quick Start",
+        "快速上手",
+        "安装",
+        "Installation"
+      ],
+      "alias_pattern": "## 快速开始 / ## Quick Start 等",
+      "description": "最简使用示例，让用户 30 秒内跑起来",
+      "priority": "high",
+      "tier": "must_have",
+      "content_format": {
+        "type": "code",
+        "guidelines": "提供可复制的命令示例，用 ```bash 代码块包裹。如果是多步，用有序列表引导。",
+        "example": "```bash\npython script.py --option value\n```",
+        "classification_hints": {
+          "preferred_name": "快速开始",
+          "content_patterns": [
+            "快速",
+            "开始",
+            "安装",
+            "示例"
+          ],
+          "format_clues": [
+            "代码块",
+            "命令"
+          ],
+          "llm_guidance": "最简使用示例，30秒跑起来。如发现内容属于详细教程而非快速示例，建议拆到 references/ 或将多余内容移至工作流程。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "工作流程",
+        "使用方式",
+        "Workflow",
+        "完整执行流程",
+        "核心指令",
+        "执行流程",
+        "操作步骤"
+      ],
+      "alias_pattern": "## 工作流程 / ## Workflow 等",
+      "description": "详细的步骤化执行流程",
+      "priority": "high",
+      "tier": "must_have",
+      "content_format": {
+        "type": "unordered_list",
+        "subtypes": [
+          "流程图",
+          "步骤详解"
+        ],
+        "guidelines": "用 ASCII 流程图或编号列表展示完整流程。每步应标注关键输入输出。复杂流程拆到 references/，SKILL.md 保留摘要和 → 详见引用。",
+        "example": "```\n用户输入\n  ↓\n步骤1 → 输出\n  ↓\n步骤2 → 输出\n```",
+        "classification_hints": {
+          "preferred_name": "工作流程",
+          "content_patterns": [
+            "流程",
+            "步骤",
+            "阶段",
+            "phase"
+          ],
+          "format_clues": [
+            "流程图",
+            "编号列表"
+          ],
+          "llm_guidance": "步骤化执行流程。如发现内容属于步骤说明但章节名不同，建议合并。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "常见问题",
+        "FAQ",
+        "Troubleshooting",
+        "问题排查"
+      ],
+      "alias_pattern": "## 常见问题 / ## FAQ 等",
+      "description": "用户可能遇到的问题及解决方案",
+      "priority": "medium",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "mixed",
+        "guidelines": "Q:/A: 格式或 ### 问题标题格式。每个问题 ≥10 字，答案 ≥15 字。至少 3 个有实质内容的 Q&A 对。复杂 FAQ 拆到 references/faq.md。",
+        "example": "Q: 什么时候用 create，什么时候用 update？\nA: 技能尚未存在时用 create；已存在需增量检查时用 update。",
+        "classification_hints": {
+          "preferred_name": "FAQ",
+          "content_patterns": [
+            "Q:",
+            "A:",
+            "常见问题",
+            "问题"
+          ],
+          "format_clues": [
+            "Q/A 对"
+          ],
+          "llm_guidance": "问答格式。如发现内容属于问题解答但章节名不同，建议合并到 FAQ。"
+        }
+      }
+    }
+  ],
+  "optional_sections": [
+    {
+      "heading_level": 2,
+      "keywords": [
+        "配置",
+        "Config",
+        "Settings",
+        "安装后配置"
+      ],
+      "description": "安装后的配置说明",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "table",
+        "table_columns": [
+          "参数",
+          "类型",
+          "默认值",
+          "说明"
+        ],
+        "guidelines": "用四列表格展示配置项，每行一个参数。",
+        "classification_hints": {
+          "preferred_name": "配置",
+          "content_patterns": [
+            "配置",
+            "设置",
+            "config"
+          ],
+          "format_clues": [
+            "参数表"
+          ],
+          "llm_guidance": "安装后的配置说明。如发现内容属于配置项列表但章节名不同，建议合并。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "API",
+        "接口",
+        "参考",
+        "Reference",
+        "子命令"
+      ],
+      "description": "详细 API/子命令/参数参考",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "mixed",
+        "guidelines": "用表格展示参数列表（列：参数/必填/类型/说明），用代码块展示命令示例。超长 API 文档拆到 references/reference.md。",
+        "classification_hints": {
+          "preferred_name": "API/参考",
+          "content_patterns": [
+            "参数",
+            "命令",
+            "选项",
+            "--"
+          ],
+          "format_clues": [
+            "参数表格",
+            "命令参考"
+          ],
+          "llm_guidance": "API/命令/参数参考。如发现内容属于参数说明但章节名不同，建议合并到参考章节。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "示例",
+        "Examples",
+        "用例",
+        "Use Cases"
+      ],
+      "description": "更多使用示例",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "code",
+        "guidelines": "每个示例用 ```bash 代码块，前加简短说明。多示例用编号列表区分。",
+        "classification_hints": {
+          "preferred_name": "示例",
+          "content_patterns": [
+            "示例",
+            "例子",
+            "用例"
+          ],
+          "format_clues": [
+            "代码块"
+          ],
+          "llm_guidance": "更多使用示例。如发现内容属于使用教程而非独立示例，建议归入工作流程或快速开始。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "版本日志",
+        "Changelog",
+        "更新记录",
+        "更新日志"
+      ],
+      "description": "版本历史变更记录（强制渐进式）",
+      "tier": "whitelist_always_progressive",
+      "content_format": {
+        "type": "plain",
+        "guidelines": "强制放在 references/changelog.md，SKILL.md 仅保留 → 详见 references/changelog.md 引用（R-24 要求）。SKILL.md 不得存放版本日志正文。必须在渐进式索引表中注册。",
+        "classification_hints": {
+          "preferred_name": "版本日志",
+          "content_patterns": [
+            "版本",
+            "v\\d+\\.",
+            "更新",
+            "变更"
+          ],
+          "format_clues": [
+            "版本号",
+            "日期"
+          ],
+          "llm_guidance": "版本历史记录。强制在 references/changelog.md，SKILL.md 只能有引用。如发现版本日志在 SKILL.md 正文中，需拆分。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "限制",
+        "Limitations",
+        "已知问题",
+        "Known Issues"
+      ],
+      "description": "已知限制和待解决问题",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "unordered_list",
+        "guidelines": "无序列表，每项描述一个限制或已知问题，含影响范围和当前状态（如：已规划/排查中/无解）。",
+        "classification_hints": {
+          "preferred_name": "限制/已知问题",
+          "content_patterns": [
+            "限制",
+            "局限",
+            "已知问题",
+            "TODO"
+          ],
+          "format_clues": [
+            "列表"
+          ],
+          "llm_guidance": "已知限制和待解决问题。如发现内容属于未完成的功能标记，建议归入此章节。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "铁律",
+        "规范",
+        "约定",
+        "Conventions",
+        "注意事项"
+      ],
+      "description": "必须遵守的编码/操作规范",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "bulleted_table",
+        "guidelines": "用表格展示（列：序号/约束内容/说明），或用编号列表。每条铁律必须具体可操作，避免模糊表述。",
+        "example": "| 序号 | 约束内容 | 触发时机 |\n|------|---------|---------|\n| 1 | **规则名** | 触发条件 |",
+        "classification_hints": {
+          "preferred_name": "铁律/规范",
+          "content_patterns": [
+            "必须",
+            "不得",
+            "禁止",
+            "铁律",
+            "约定"
+          ],
+          "format_clues": [
+            "表格",
+            "列表"
+          ],
+          "llm_guidance": "必须遵守的编码/操作规范。不是运行时的约束条件（那是强制约束），而是开发者的行为规范。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "强制约束"
+      ],
+      "description": "必须遵守的执行规则和约束条件",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "table",
+        "table_columns": [
+          "序号",
+          "约束内容",
+          "说明"
+        ],
+        "guidelines": "用表格展示，每行一条强制约束。序号列用编号，约束内容用 **加粗**，说明列描述触发时机或违规后果。",
+        "classification_hints": {
+          "preferred_name": "强制约束",
+          "content_patterns": [
+            "必须",
+            "不得",
+            "禁止",
+            "强制",
+            "MANDATORY",
+            "约束"
+          ],
+          "format_clues": [
+            "表格",
+            "序号",
+            "约束内容"
+          ],
+          "llm_guidance": "包含具体可操作的规则，每条规则有触发条件和违规后果。如发现内容属于此类型但章节名不同，建议合并到强制约束。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "反模式",
+        "常见错误"
+      ],
+      "alias_pattern": "## 反模式 / ## 常见错误 等",
+      "description": "常见错误做法及正确做法对比",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "mixed",
+        "guidelines": "每条反模式含错误做法描述和正确做法建议。超过3条拆到 references/antipatterns.md。",
+        "classification_hints": {
+          "preferred_name": "反模式",
+          "content_patterns": [
+            "错误做法",
+            "反模式",
+            "正确做法",
+            "不要"
+          ],
+          "format_clues": [
+            "错误",
+            "警告",
+            "不建议"
+          ],
+          "llm_guidance": "内容是\"不应该怎么做\"而非\"应该怎么做\"。如发现内容属于错误做法的总结但章节名不同，建议合并到反模式。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "临时文件与备份管理"
+      ],
+      "description": "临时文件的产生、追踪、清理规范",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "table",
+        "table_columns": [
+          "文件类型",
+          "路径模式",
+          "保留时长",
+          "清理时机"
+        ],
+        "guidelines": "用四列表格展示各类临时文件的清理规则。过长的规范说明拆到 references/。",
+        "classification_hints": {
+          "preferred_name": "临时文件与备份管理",
+          "content_patterns": [
+            "临时文件",
+            "备份",
+            "清理",
+            "temp",
+            "backup",
+            "manifest"
+          ],
+          "format_clues": [
+            "表格",
+            "保留时长",
+            "清理时机"
+          ],
+          "llm_guidance": "内容是文件清理规范，包含哪些文件保留多久、何时清理。不是具体的操作指令。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "数据目录说明"
+      ],
+      "description": "技能的数据目录位置和结构说明",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "code",
+        "guidelines": "用代码块展示数据目录结构树。说明其与安装目录的关系。",
+        "classification_hints": {
+          "preferred_name": "数据目录说明",
+          "content_patterns": [
+            "数据目录",
+            "data_dir",
+            "standardization",
+            "安装目录"
+          ],
+          "format_clues": [
+            "目录树",
+            "路径结构"
+          ],
+          "llm_guidance": "内容是说明文件存放在哪，不是操作指令。如发现内容属于路径规范但章节名不同，建议合并到数据目录说明。"
+        }
+      }
+    },
+    {
+      "heading_level": 2,
+      "keywords": [
+        "权限说明"
+      ],
+      "description": "技能的操作权限和访问级别说明（R-13~R-17 安全规则要求）",
+      "tier": "whitelist_optional",
+      "content_format": {
+        "type": "table",
+        "table_columns": [
+          "工具/操作",
+          "访问级别",
+          "用途"
+        ],
+        "guidelines": "用表格展示各工具/操作的访问级别和用途。含安全声明（如不会访问敏感信息、不会发送网络数据等）。",
+        "classification_hints": {
+          "preferred_name": "权限说明",
+          "content_patterns": [
+            "权限",
+            "访问",
+            "安全",
+            "敏感",
+            "写入",
+            "授权"
+          ],
+          "format_clues": [
+            "表格",
+            "访问级别"
+          ],
+          "llm_guidance": "R-13~R-17 安全规则强制要求的章节，展示技能操作的权限声明。不得被拆分或改名。如发现内容不属于权限说明，才建议归并到其他章节。"
+        }
+      }
+    }
+  ],
+  "section_synonyms": {
+    "_description": "章节同义词映射，用于 C-11/C-12 章节顺位和格式检查。key 为标准章节名，value 为可接受的同义词列表。",
+    "约束": [
+      "约束",
+      "限制",
+      "已知问题",
+      "注意事项",
+      "强制约束",
+      "Limitations",
+      "Known Issues",
+      "能力边界",
+      "能力边界与限制",
+      "能力与边界"
+    ],
+    "触发条件": [
+      "触发条件",
+      "触发场景",
+      "适用场景",
+      "触发",
+      "否定条件"
+    ],
+    "核心能力": [
+      "核心能力",
+      "核心功能",
+      "核心概念",
+      "概述",
+      "技能概述",
+      "Overview",
+      "核心指令"
+    ],
+    "快速开始": [
+      "快速开始",
+      "Quick Start",
+      "快速上手",
+      "安装",
+      "Installation"
+    ],
+    "工作流程": [
+      "工作流程",
+      "工作流",
+      "使用方式",
+      "Workflow",
+      "完整执行流程",
+      "执行流程",
+      "操作步骤",
+      "用法"
+    ],
+    "铁律": [
+      "铁律",
+      "规范",
+      "Conventions",
+      "强制约束"
+    ],
+    "反模式": [
+      "反模式",
+      "常见错误"
+    ],
+    "FAQ": [
+      "FAQ",
+      "常见问题",
+      "Troubleshooting",
+      "问题排查"
+    ],
+    "配置": [
+      "配置",
+      "Config",
+      "Settings",
+      "安装后配置"
+    ],
+    "API": [
+      "API",
+      "接口"
+    ],
+    "参考": [
+      "参考",
+      "Reference",
+      "子命令"
+    ],
+    "示例": [
+      "示例",
+      "Examples",
+      "用例",
+      "Use Cases"
+    ],
+    "版本日志": [
+      "版本日志",
+      "更新日志",
+      "更新记录",
+      "Changelog"
+    ],
+    "数据目录说明": [
+      "数据目录说明",
+      "临时文件与备份管理"
+    ],
+    "权限说明": [
+      "权限说明"
+    ]
+  },
+  "section_format_guidelines": {
+    "table_formats": {
+      "required_sections_map": {
+        "核心能力": {
+          "columns": [
+            "#",
+            "能力",
+            "说明"
+          ],
+          "style": "编号列 + 加粗能力名 + 描述"
+        },
+        "配置": {
+          "columns": [
+            "参数",
+            "类型",
+            "默认值",
+            "说明"
+          ],
+          "style": "参数名 + 类型 + 默认值 + 说明"
+        },
+        "强制约束": {
+          "columns": [
+            "序号",
+            "约束内容",
+            "说明"
+          ],
+          "style": "编号 + 约束 + 触发时机"
+        }
+      }
+    },
+    "general_rules": [
+      "表格必须有表头行和分隔行（|---|）",
+      "有序列表用于步骤流程，无序列表用于选项列举",
+      "每个代码块必须有语言标识（如 ```bash、```python、```json）",
+      "引用块 > 用于提示/注意/警告，不用于正文内容",
+      "加粗 **用于关键术语、约束名、规则编号"
+    ]
+  }
+}

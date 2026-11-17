@@ -1,42 +1,66 @@
-## Description: <br>
-Installs, repairs, or manually configures the GrowthCircle.id gc-provider for OpenClaw and Hermes while guiding safe GrowthCircle AI key and model discovery practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, repair, or manually configure the GrowthCircle.id gc-provider for OpenClaw and Hermes.
 
-## Publisher: <br>
-[ramaaditya49](https://clawhub.ai/user/ramaaditya49) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramaaditya49](https://clawhub.ai/user/ramaaditya49)
 
-## Use Case: <br>
-Developers and operators use this skill to install or repair the GrowthCircle provider, configure GrowthCircle as an OpenAI-compatible provider, migrate Hermes setups to OpenClaw, and verify model access with the same key used for requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [GC Provider Install on ClawHub](https://clawhub.ai/ramaaditya49/gc-provider-install) <br>
-- [GrowthCircle AI Console Docs](https://d.growc.id/llms/ai-console.md) <br>
-- [GrowthCircle Member Dashboard](https://growthcircle.id/app/ai) <br>
-- [GrowthCircle Inference API](https://ai.growthcircle.id/v1) <br>
-- [gc-provider Plugin Source](https://github.com/Growth-Circle/gc-provider) <br>
-- [Install Guide](artifact/references/install-guide.md) <br>
+Developers and operators use this skill to install or repair the GrowthCircle provider in OpenClaw, configure GrowthCircle manually in Hermes, migrate Hermes configuration to OpenClaw, and verify model access with the same key used for inference.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with shell and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires handling GrowthCircle API keys as private secrets; review plugin install, migration, gateway restart, and allowlist commands before execution.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can install or replace executable provider code and change local OpenClaw or Hermes configuration.
+
+Mitigation: Use it only when provider installation or repair is intended, review the publisher and provider source first, and back up configuration before migration or repair.
+
+Risk: Unpinned or forced plugin installation can replace reviewed code with a newer or unexpected package.
+
+Mitigation: Prefer a pinned, reviewed plugin version or digest, and reserve `--force` for repairing a known problem.
+
+Risk: GrowthCircle API keys could be exposed through chat, logs, repositories, screenshots, or frontend code.
+
+Mitigation: Keep `GROWTHCIRCLE_API_KEY` in a private credential store or environment variable and redact secret values in examples and troubleshooting output.
+
+Risk: Using a model ID not returned for the active key can route requests incorrectly or fail for Free, Paid, or Team access.
+
+Mitigation: Discover models with `/v1/models` using the same key that will make requests, then use returned model IDs exactly.
+
+## Reference(s):
+
+- [GC Provider Install Guide](references/install-guide.md)
+- [GrowthCircle AI Console Docs](https://d.growc.id/llms/ai-console.md)
+- [GrowthCircle Member AI Console](https://growthcircle.id/app/ai)
+- [GrowthCircle OpenAI-Compatible Endpoint](https://ai.growthcircle.id/v1)
+- [gc-provider Plugin Source](https://github.com/Growth-Circle/gc-provider)
+- [ClawHub Skill Page](https://clawhub.ai/ramaaditya49/skills/gc-provider-install)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Redacts secret values in examples and includes verification steps for OpenClaw and Hermes paths.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

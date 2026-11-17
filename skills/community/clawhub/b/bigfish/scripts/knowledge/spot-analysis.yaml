@@ -1,0 +1,154 @@
+# 🗺️ BigFish 钓点分析知识库
+# 环境特征→鱼种推断逻辑、标点选择原则
+
+terrain_analysis:
+  - terrain: 草区/水草边
+    fish_likely: [黑鱼, 鲫鱼, 鲈鱼, 草鱼]
+    structure_type: 障碍物
+    approach: |
+      如果在草区边缘——路亚用雷蛙/不挂草软虫。
+      如果在草洞——黑鱼可能性大。
+      如果在草区明水面——可能有鲈鱼或翘嘴。
+    season_note: 夏季草区产卵，黑鱼必在附近。
+
+  - terrain: 乱石底/陡坡
+    fish_likely: [鳜鱼, 鲶鱼]
+    structure_type: 结构障碍
+    approach: |
+      鳜鱼经典标点。
+      用铅头钩+卷尾跳底。
+      打到石头边缘停顿，鳜鱼会在停顿瞬间攻击。
+    season_note: 夏季退到深水乱石，春秋在浅水乱石。
+
+  - terrain: 桥墩/水闸/涵洞
+    fish_likely: [鳜鱼, 鲶鱼, 翘嘴]
+    structure_type: 人工结构
+    approach: |
+      桥墩下方阴凉，夏天藏鱼。
+      水闸口急流下方回水区是标点。
+      涵洞出口是鲶鱼老窝。
+    season_note: 夏季酷暑时桥墩是黄金标点。
+
+  - terrain: 水库大坝/水泥坡
+    fish_likely: [翘嘴, 鳜鱼, 鲈鱼]
+    structure_type: 深水陡坡
+    approach: |
+      大坝前有深水区，翘嘴常在此巡游。
+      用VIB或铁板搜索全水层。
+      黄昏时大坝附近是翘嘴窗口期。
+    season_note: 冬季大坝深水区是最佳标点。
+
+  - terrain: 树桩/倒树/沉木
+    fish_likely: [鲈鱼, 黑鱼, 鳜鱼]
+    structure_type: 隐蔽障碍
+    approach: |
+      树桩周围是鲈鱼伏击点。
+      用德州钓组或青蛙打过去。
+      要准备挂底。
+    season_note: 全年有效。
+
+  - terrain: 沙石底浅滩
+    fish_likely: [马口, 白条, 罗非]
+    structure_type: 浅水亮水区
+    approach: |
+      马口溪流经典标点。
+      小型亮片或飞蝇。
+      罗非在这个区域筑巢。
+    season_note: 春季马口浅滩产卵。
+
+  - terrain: 回水湾/洄水区
+    fish_likely: [鲤鱼, 草鱼, 鲫鱼]
+    structure_type: 缓流聚集区
+    approach: |
+      回水区食物丰富，是各种鱼聚集地。
+      台钓首选标点。
+      打窝守大鱼的好位置。
+    season_note: 全年有效，不同季节不同水深。
+
+  - terrain: 出水口/入水口
+    fish_likely: [翘嘴, 鳜鱼, 鲶鱼]
+    structure_type: 溶氧富集区
+    approach: |
+      出水口溶氧高，鱼喜欢聚集。
+      入水口带来食物。
+      急流下回水区是黄金标点。
+    season_note: 夏季雨后效果最佳。
+
+  - terrain: 岛屿/半岛尖
+    fish_likely: [翘嘴, 鳡鱼]
+    structure_type: 洄游路线
+    approach: |
+      半岛尖是鱼洄游必经之路。
+      远投搜索深水与浅水交界。
+    season_note: 春秋洄游期时效果最佳。
+
+water_quality_analysis:
+  - quality: 清澈见底
+    fish_activity: 鱼非常警惕，容易看到人
+    approach: 用细线、自然色饵、远投
+    likely_catch: 谨慎的鱼不靠近
+
+  - quality: 轻度浑浊
+    fish_activity: 鱼最有安全感
+    approach: 用常规装备即可
+    likely_catch: 最佳水色，鱼活性高
+
+  - quality: 严重浑浊
+    fish_activity: 鱼主要靠侧线感知
+    approach: 用亮色/发声饵，慢收
+    likely_catch: [鲶鱼, 黄颡鱼]
+
+  - quality: 绿藻水色
+    fish_activity: 水肥，食物丰富但溶氧低
+    approach: 选溶氧高的入水口附近
+    likely_catch: [罗非, 白鲢]
+
+weather_to_fish:
+  - condition: 气压骤降（>5hPa/小时）
+    score: 1/5
+    advice: 鱼上浮不开口，不建议出钓
+  - condition: 气压缓慢下降
+    score: 2/5
+    advice: 鱼情一般，深水可能好一点
+  - condition: 气压稳定
+    score: 3/5
+    advice: 正常出钓
+  - condition: 气压缓慢上升
+    score: 4/5
+    advice: 鱼活跃，好时机
+  - condition: 小雨/阵雨天
+    score: 4/5
+    advice: 含氧高+安全感，很好
+  - condition: 大雨过后水微浑
+    score: 5/5
+    advice: 黄金时间，鱼疯狂进食
+  - condition: 连续阴天
+    score: 4/5
+    advice: 全天可钓，鱼全天活跃
+  - condition: 大晴天中午
+    score: 2/5
+    advice: 鱼退深水，找阴凉处
+  - condition: 北风/东北风降温
+    score: 3/5
+    advice: 降温前鱼要屯食，好时机
+  - condition: 南风/东南风闷热
+    score: 2/5
+    advice: 水中含氧低，鱼不活跃
+
+season_fish_map:
+  spring:
+    description: 鱼产卵期，浅滩活跃
+    fish: [鲫鱼(浅滩), 鲈鱼(产卵床), 翘嘴(浅水), 马口(溪流产卵)]
+    tips: "春钓浅滩，找向阳有水草的区域"
+  summer:
+    description: 高温，鱼退深水或早晚活动
+    fish: [黑鱼(草区), 罗非(浅水窝), 草鱼(全天), 翘嘴(夜), 鳜鱼(深水)]
+    tips: "夏钓早晚，夜钓是王道，找树荫/桥墩"
+  autumn:
+    description: 贴秋膘期，全天活跃
+    fish: [鲤鱼(深水), 翘嘴(全天), 鳜鱼(浅水), 鳡鱼(水面)]
+    tips: "秋钓深浅交接，鱼大量进食准备过冬"
+  winter:
+    description: 低温，鱼聚集深水区
+    fish: [鲫鱼(深水草区), 翘嘴(深潭)]
+    tips: "冬钓深水向阳，小钩细线守鲫鱼"

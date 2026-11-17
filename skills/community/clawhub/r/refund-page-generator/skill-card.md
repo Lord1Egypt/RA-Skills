@@ -1,38 +1,49 @@
-## Description: <br>
-Guides refund and return policy page content for e-commerce and digital products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides creation or optimization of refund and return policy page content for e-commerce and digital products.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External users, site operators, and commerce teams use this skill to draft or optimize refund and return policy page content for physical products, digital products, subscriptions, or mixed catalogs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated refund or return policy language may be incomplete or misaligned with a business model, product type, or applicable consumer-protection laws. <br>
-Mitigation: Use the output as a draft and have it reviewed for the specific business model, jurisdiction, and customer obligations before publishing. <br>
+## Use Case:
 
+External business operators, ecommerce teams, and content teams use this skill to draft or improve refund and return policy page outlines, key sections, and review-ready policy guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/refund-page-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with policy outlines, section guidance, and review disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content is intended as draft policy language for review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Refund or return policy language may be incomplete or unsuitable for a specific product type or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill output as drafting guidance and have final policy language reviewed for the relevant product type and jurisdiction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kostja94/skills/refund-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown outline and section guidance with a legal-review disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution or external access; final policy language should be reviewed for product type and jurisdiction.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

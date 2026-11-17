@@ -1,39 +1,53 @@
-## Description: <br>
-Help users do a gentle burnout risk check-in by reflecting on exhaustion, detachment, overload, and recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users complete a gentle burnout self-check by reflecting on exhaustion, detachment, overload, and recovery, with results framed for reflection rather than diagnosis.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for a short, structured burnout self-check that reflects on exhaustion, detachment, overload, and recovery over recent weeks. The skill supports self-observation and practical next steps, not diagnosis, psychotherapy, or medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake burnout reflection results for a medical or mental health diagnosis. <br>
-Mitigation: Present results as general self-reflection only and state that the skill does not provide diagnosis, psychotherapy, psychiatric evaluation, or medical advice. <br>
-Risk: Serious distress, self-harm thoughts, or inability to stay safe may be inappropriate for a normal burnout check-in. <br>
-Mitigation: Stop the normal check-in flow and direct the user toward trusted people, emergency care, crisis lines, hospitals, licensed professionals, or other local emergency support. <br>
+## Use Case:
 
+External users use this skill for a structured burnout reflection when they feel drained, emotionally flat, chronically tired, unable to recover, or close to burnout. The skill asks short recent-weeks check-in questions, summarizes the pattern in plain language, and offers practical next steps while avoiding diagnosis or medical advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown text with questions, scoring guidance, brief interpretation, practical suggestions, and support reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [For reflection only; includes escalation guidance for self-harm, inability to stay safe, severe distress, or impaired daily functioning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact _meta.json lists 1.1.0) <br>
+Risk: Users could mistake the burnout check-in for clinical diagnosis or treatment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Frame results as self-reflection only, keep language non-diagnostic, and repeat that the skill is not psychotherapy, psychiatric evaluation, or medical advice.
+
+Risk: Users in severe distress or with self-harm concerns may need immediate human support rather than a normal check-in.
+
+Mitigation: Stop the normal flow when safety concerns appear and direct the user to trusted people, emergency care, crisis support, a hospital, or a licensed professional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/burnout-checkin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational text with short questions, scored interpretation, practical suggestions, disclaimers, and support reminders when appropriate.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or external data access is described in the inspected artifacts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

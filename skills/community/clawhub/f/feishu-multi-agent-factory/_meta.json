@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn700zcgppwpf26c1vhxdmyvwh81krya",
   "slug": "feishu-multi-agent-factory",
-  "version": "1.0.5",
-  "publishedAt": 1774609312400
+  "version": "1.0.0",
+  "description": "批量配置 OpenClaw 多 agent + 飞书 channel，通过对话引导一键完成",
+  "author": "Cchenwei",
+  "createdAt": "2026-03-26"
 }

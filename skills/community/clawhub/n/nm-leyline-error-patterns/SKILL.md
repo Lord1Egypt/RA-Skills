@@ -1,7 +1,7 @@
 ---
 name: error-patterns
 description: Provides error classification, recovery, and graceful-degradation patterns
-version: 1.9.8
+version: 1.10.3
 triggers:
   - errors
   - error-handling
@@ -9,32 +9,12 @@ triggers:
   - resilience
   - debugging
   - implementing error handling or debugging resilience failures in any skill
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.usage-logging"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/leyline", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.service-registry"]}}}
 source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [When to Use](#when-to-use)
-- [Error Classification](#error-classification)
-- [By Severity](#by-severity)
-- [By Recoverability](#by-recoverability)
-- [Quick Start](#quick-start)
-- [Standard Error Handler](#standard-error-handler)
-- [Error Result](#error-result)
-- [Common Patterns](#common-patterns)
-- [Authentication Errors (401/403)](#authentication-errors-(401-403))
-- [Rate Limit Errors (429)](#rate-limit-errors-(429))
-- [Timeout Errors](#timeout-errors)
-- [Context Too Large (400)](#context-too-large-(400))
-- [Integration Pattern](#integration-pattern)
-- [Detailed Resources](#detailed-resources)
-- [Exit Criteria](#exit-criteria)
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Error Patterns
@@ -70,10 +50,10 @@ Standardized error handling patterns for consistent, production-grade behavior a
 
 ```python
 class ErrorCategory(Enum):
-    TRANSIENT = "transient"      # Retry likely to succeed
-    PERMANENT = "permanent"       # Retry won't help
-    CONFIGURATION = "config"      # User action needed
-    RESOURCE = "resource"         # Quota/limit issue
+    TRANSIENT = "transient"  # Retry likely to succeed
+    PERMANENT = "permanent"  # Retry won't help
+    CONFIGURATION = "config"  # User action needed
+    RESOURCE = "resource"  # Quota/limit issue
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
@@ -81,19 +61,19 @@ class ErrorCategory(Enum):
 
 ### Standard Error Handler
 ```python
-from leyline.error_patterns import handle_error, ErrorCategory
+# Sketch: implement handle_error and ErrorCategory in your plugin.
+# leyline ships no error_patterns module.
 
 try:
     result = service.execute(prompt)
 except RateLimitError as e:
-    return handle_error(e, ErrorCategory.RESOURCE, {
-        "retry_after": e.retry_after,
-        "service": "gemini"
-    })
+    return handle_error(
+        e, ErrorCategory.RESOURCE, {"retry_after": e.retry_after, "service": "gemini"}
+    )
 except AuthError as e:
-    return handle_error(e, ErrorCategory.CONFIGURATION, {
-        "action": "Run 'gemini auth login'"
-    })
+    return handle_error(
+        e, ErrorCategory.CONFIGURATION, {"action": "Run 'gemini auth login'"}
+    )
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
@@ -151,7 +131,7 @@ dependencies: [leyline:error-patterns]
 
 ## Exit Criteria
 
-- Error classified correctly
-- Appropriate recovery attempted
-- User-actionable message provided
-- Error logged for debugging
+- [ ] Error classified correctly
+- [ ] Appropriate recovery attempted
+- [ ] User-actionable message provided
+- [ ] Error logged for debugging

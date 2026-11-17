@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn707wvthdn8bfv6sdrr774qzh81tndn",
-  "slug": "polymarket-trader-1-0-0",
-  "version": "1.0.1",
-  "publishedAt": 1777187989119
+  "name": "polymarket-trader",
+  "type": "skill",
+  "version": "1.0.0",
+  "description": "Binance BTC analysis for Polymarket",
+  "entrypoint": "scripts/binance_regime.py",
+  "tools": [
+    {
+      "name": "check_market_regime",
+      "description": "Analyze BTC volatility and market regime using Binance data",
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
 }

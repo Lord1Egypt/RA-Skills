@@ -1,43 +1,59 @@
-## Description: <br>
-Persistent memory for AI agents to store facts, learn from actions, recall information, and track entities across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory for AI agents to store facts, learn from actions, recall information, and track entities across sessions.
 
-## Publisher: <br>
-[Dennis-Da-Menace](https://clawhub.ai/user/Dennis-Da-Menace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dennis-da-menace](https://clawhub.ai/user/dennis-da-menace)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give AI agents local cross-session memory for durable facts, lessons, entity context, and recall during future work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive or unnecessary personal information in a local SQLite database. <br>
-Mitigation: Do not store API keys, passwords, financial details, confidential business data, or unnecessary personal information; periodically review or delete the database. <br>
-Risk: Cross-session memory may mix context across projects or users when the default database path is shared. <br>
-Mitigation: Use a separate custom database path for different projects or users. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give AI agents local cross-session memory for durable facts, lessons learned, and entity context. It supports recall, cleanup, entity tracking, and JSON export through a Python library and CLI helpers.
 
-## Reference(s): <br>
-- [Agent Memory ClawHub Release](https://clawhub.ai/Dennis-Da-Menace/agent-memory) <br>
-- [Publisher Profile](https://clawhub.ai/user/Dennis-Da-Menace) <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Python API calls, shell commands, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and retrieves local SQLite-backed memory records; default database path is ~/.agent-memory/memory.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is designed to keep local cross-session memory, so stored facts, entities, SQLite database files, and JSON exports may contain private or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store secrets, credentials, regulated data, or sensitive personal information unless the storage path and local filesystem protections have been reviewed.
+
+Risk: JSON exports and the SQLite database can expose accumulated agent memory if shared or checked into another location.
+
+Mitigation: Treat exports and database files as private data and restrict access to the configured memory path.
+
+Risk: Forget and cleanup operations permanently delete memory records.
+
+Mitigation: Review deletion commands and cleanup settings before use, especially when operating on a shared or long-lived memory database.
+
+## Reference(s):
+
+- [ClawHub Agent Memory skill page](https://clawhub.ai/dennis-da-menace/skills/agent-memory)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Clawdbot](https://github.com/clawdbot/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Python code examples, CLI commands, and JSON export data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local SQLite data by default at ~/.agent-memory/memory.db and can export memory records as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/src/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

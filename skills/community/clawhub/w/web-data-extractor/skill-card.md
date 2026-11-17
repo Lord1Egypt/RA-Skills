@@ -1,43 +1,58 @@
-## Description: <br>
-网页数据采集器，支持 CSS 选择器/XPath 提取、批量抓取、自动分页、数据导出（CSV/JSON/Markdown）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured data from web pages with CSS selectors or XPath, supports batch scraping and automatic pagination, and exports results as CSV, JSON, or Markdown.
 
-## Publisher: <br>
-[careytian-ai](https://clawhub.ai/user/careytian-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[careytian-ai](https://clawhub.ai/user/careytian-ai)
 
-## Use Case: <br>
-Developers, analysts, and research teams use this skill to extract structured data from public web pages with CSS or XPath selectors, handle pagination and batches, and export results for market research, competitive analysis, content aggregation, SEO analysis, and monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports unexplained local command execution access. <br>
-Mitigation: Review before installing and prefer deployment only when exec access can be denied, removed, or clearly justified by the publisher. <br>
-Risk: Web scraping can violate site rules, overload targets, or collect data the user is not authorized to scrape. <br>
-Mitigation: Use only on sites where scraping is authorized, respect robots.txt and site terms, and keep page counts, concurrency, and request rate conservative. <br>
-Risk: Export behavior can write scraped data to local files. <br>
-Mitigation: Review output filenames and destination paths before writing CSV, JSON, or Markdown exports. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to collect public web data for market research, competitor analysis, content aggregation, data analysis, sentiment monitoring, and SEO analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/careytian-ai/web-data-extractor) <br>
-- [Publisher profile](https://clawhub.ai/user/careytian-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Configuration, Guidance] <br>
-**Output Format:** [Structured extraction guidance and exported CSV, JSON, or Markdown table files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports CSS selectors, XPath selectors, batch URLs, automatic pagination, configurable concurrency, and configurable export format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: changelog, config.json, metadata.json, and server release evidence; released 2026-03-29) <br>
+Risk: Security evidence reports undocumented local command-execution authority beyond the documented scraping and export workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested permissions before installation and prefer a version that removes exec unless command execution is explicitly needed.
+
+Risk: Bulk scraping and automatic pagination can create unwanted site load or collect data outside the intended scope.
+
+Mitigation: Limit collection to public data, respect robots.txt, use conservative concurrency and delays, and confirm target URLs before running.
+
+Risk: Exported CSV, JSON, or Markdown files may contain sensitive or unwanted scraped content.
+
+Mitigation: Review extracted fields before sharing and write outputs only to expected user-approved locations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/careytian-ai/skills/web-data-extractor)
+- [Publisher profile](https://clawhub.ai/user/careytian-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration]
+
+**Output Format:** [CSV, JSON, Markdown tables, and concise extraction guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write exported datasets to user-approved paths; batch fetching should respect robots.txt and conservative rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: CHANGELOG.md, config.json, metadata.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

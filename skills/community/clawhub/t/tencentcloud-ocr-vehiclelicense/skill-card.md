@@ -1,42 +1,62 @@
-## Description: <br>
-Calls Tencent Cloud VehicleLicenseOCR to extract structured vehicle-license fields from front, back, double-sided, electronic, and tractor vehicle-license images supplied by URL or Base64 input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tencent Cloud VehicleLicenseOCR to extract vehicle-license front, back, double-sided, electronic, and tractor-license fields from image URL, Base64, or local file inputs, including recognition warnings.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and agents use this skill to submit vehicle-license images to Tencent Cloud OCR and receive normalized vehicle-registration fields, warning codes, and request metadata as JSON. It is suited for workflows that are authorized to process vehicle-license images through Tencent Cloud. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vehicle-license images can contain sensitive personal and vehicle data, and this skill sends those images to Tencent Cloud OCR. <br>
-Mitigation: Use only with authorization, avoid third-party documents without consent, and ensure the deployment is approved for Tencent Cloud processing. <br>
-Risk: Cloud OCR usage depends on Tencent Cloud credentials, billing state, regional service availability, and SDK behavior. <br>
-Mitigation: Use dedicated Tencent Cloud credentials with appropriate permission and billing controls, and review or pin the Tencent Cloud SDK dependency in the runtime environment. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to submit vehicle-license images to Tencent Cloud OCR and receive structured vehicle-license fields, warning codes, and request identifiers. It is suited for workflows that need front-side, back-side, double-sided, electronic, or tractor vehicle-license recognition.
 
-## Reference(s): <br>
-- [Tencent Cloud VehicleLicenseOCR API documentation](https://cloud.tencent.com/document/api/866/36209) <br>
-- [ClawHub skill page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr-vehiclelicense) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zt1314p-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON from the OCR script, with Markdown usage guidance in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tencent Cloud credentials and either an image URL or Base64 image input; image content is sent to Tencent Cloud OCR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The file-path upload path can send any readable local file to Tencent Cloud if misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a restricted environment, pass only intended vehicle-license image files or trusted image URLs, and avoid broad filesystem access during agent-driven invocations.
+
+Risk: Tencent Cloud credentials are required for execution.
+
+Mitigation: Set Tencent Cloud credentials only for this skill's run and avoid sharing them with unrelated tools or broader agent sessions.
+
+Risk: Vehicle-license images and extracted fields can contain personal or sensitive information.
+
+Mitigation: Use explicit privacy notice or consent, validate the intended image content before submission, and handle OCR results according to the applicable data policy.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin the Tencent Cloud SDK dependency in deployment environments and review dependency updates before use.
+
+## Reference(s):
+
+- [Tencent Cloud VehicleLicenseOCR API Documentation](https://cloud.tencent.com/document/api/866/36209)
+- [ClawHub Skill Page](https://clawhub.ai/zt1314p-design/skills/tencentcloud-ocr-vehiclelicense)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Guidance]
+
+**Output Format:** [JSON recognition result with optional command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud OCR credentials and sends image URL or Base64/file-derived image content to Tencent Cloud.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

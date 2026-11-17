@@ -1,40 +1,53 @@
-## Description: <br>
-Generates weekly Xiaohongshu content packages for MCNs, brands, and individual operators, including topics, post copy, image prompts, hashtags, and publishing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu content packages for matrix account operations, including weekly topic plans, post copy, image prompts, tags, posting windows, and publishing checklists.
 
-## Publisher: <br>
-[rockywang0910-ux](https://clawhub.ai/user/rockywang0910-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockywang0910-ux](https://clawhub.ai/user/rockywang0910-ux)
 
-## Use Case: <br>
-External creators, MCN teams, brand operators, and agencies use this skill to draft a week of Xiaohongshu content for one or more account positions. It helps assemble content calendars, post drafts, tags, publishing times, and image-generation prompts for review before posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may contain inaccurate claims, insufficient advertising disclosure, platform-policy issues, or intellectual-property concerns. <br>
-Mitigation: Review all generated content before publication for factual accuracy, required disclosures, Xiaohongshu policy compliance, and rights to text or images. <br>
-Risk: If paired with browser automation, the agent may act on a social account selected by the user. <br>
-Mitigation: Use publishing automation only when intended, confirm the active account before posting, and keep human approval in the publishing workflow. <br>
+## Use Case:
 
+External marketers, MCN teams, brand operators, agencies, and individual creators use this skill to generate Xiaohongshu content calendars, post drafts, hashtags, image prompts, and posting checklists for one or more accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rockywang0910-ux/xiaohongshu-matrix-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with tables, lists, post drafts, hashtags, and image prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces weekly content calendars, individual post drafts, recommended publishing times, tags, and image-generation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Generated marketing copy may contain inaccurate claims, inadequate sponsorship disclosure, or content that does not satisfy Xiaohongshu platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review claims, disclosures, and platform-rule compliance before posting.
+
+Risk: Separate browser automation could publish generated content before a human review is complete.
+
+Mitigation: Require explicit confirmation before using any external automation to publish content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rockywang0910-ux/skills/xiaohongshu-matrix-factory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables, structured post drafts, hashtag lists, image-generation prompts, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces weekly content packages and per-post assets; it does not directly connect to Xiaohongshu APIs or publish posts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

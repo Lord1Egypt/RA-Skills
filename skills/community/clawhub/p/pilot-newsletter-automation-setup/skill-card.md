@@ -1,43 +1,58 @@
-## Description: <br>
-Deploy an automated newsletter pipeline with three agents that curate content, write newsletter copy, and dispatch emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy an automated newsletter pipeline with three agents that curate content, write newsletter copy, and dispatch emails.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to configure a three-agent newsletter automation workflow for content curation, drafting, and email delivery. It guides setup of role-specific skills, hostnames, trust handshakes, and message flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email dispatch can expose subscriber data or send messages to unintended recipients if configured against production lists too early. <br>
-Mitigation: Test the workflow with sandbox or non-production recipient lists before enabling live delivery. <br>
-Risk: The setup depends on downstream pilot-* skills and trusted host relationships. <br>
-Mitigation: Review the downstream skills before installation and initiate handshakes only with trusted hosts. <br>
-Risk: Newsletter delivery may involve consent, unsubscribe handling, credentials, and retention obligations. <br>
-Mitigation: Confirm email-provider credentials, consent records, unsubscribe behavior, and retention rules before dispatching to subscribers. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a three-agent newsletter workflow for content curation, newsletter writing, and email dispatch.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub release page](https://clawhub.ai/teoslayer/pilot-newsletter-automation-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, json, guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup guidance for role selection, skill installation, host naming, trust handshakes, manifests, subscriptions, and publish commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can lead to real bulk email dispatch to subscriber segments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test recipients first and verify the mailer cannot contact real subscriber lists until the deployment is approved.
+
+Risk: The setup installs and runs unpinned components.
+
+Mitigation: Pin and verify every dependency before installing skills or running setup commands.
+
+Risk: Loose hostname input and local setup files can create operational or cleanup issues.
+
+Mitigation: Use a simple hostname prefix containing only letters, numbers, underscores, or hyphens, and review ~/.pilot setup file permissions and cleanup procedures.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-newsletter-automation-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes role-specific setup steps for hostnames, skill installation, handshakes, subscriptions, and setup manifests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

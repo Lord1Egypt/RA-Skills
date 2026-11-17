@@ -1,0 +1,39 @@
+{
+  "standard": "ISO/IEC 17025:2017 检测和校准实验室能力认可",
+  "clause_keywords": {
+    "4": ["通用要求", "公正性", "保密性"],
+    "5": ["结构要求", "实验室法律实体"],
+    "6": ["资源要求", "人员", "设施环境", "设备", "计量溯源", "外部供应"],
+    "7": ["过程要求", "方法确认", "样品", "报告", "质量管控"],
+    "8": ["管理体系要求", "文件控制", "风险", "改进", "内部审核", "管理评审"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-lab-person", "name_zh": "人员能力与授权", "name_en": "Personnel competence",
+     "keywords_zh": ["人员能力", "授权", "检测员", "上岗"], "keywords_en": ["personnel", "competence"],
+     "description_zh": "关键检测/校准人员须具备能力并经授权，保留技术档案。",
+     "compliance_statement": ["已建立人员能力矩阵", "关键岗位经授权上岗"]},
+    {"id": "hv-lab-equip", "name_zh": "设备与计量溯源", "name_en": "Equipment & metrological traceability",
+     "keywords_zh": ["设备", "计量", "校准", "溯源", "期间核查"], "keywords_en": ["equipment", "calibration", "traceability"],
+     "description_zh": "设备须校准并在有效期内，量值溯源至国家或国际基准。",
+     "compliance_statement": ["设备校准状态受控", "量值可溯源"]},
+    {"id": "hv-lab-method", "name_zh": "方法确认与验证", "name_en": "Method validation",
+     "keywords_zh": ["方法确认", "方法验证", "非标方法", "作业指导书"], "keywords_en": ["method validation", "non-standard method"],
+     "description_zh": "采用的方法须有效确认（尤其非标/自制方法），并转化为作业指导书。",
+     "compliance_statement": ["方法已确认/验证", "有现行有效方法文件"]},
+    {"id": "hv-lab-qc", "name_zh": "结果质量保证(质控)", "name_en": "Quality control of results",
+     "keywords_zh": ["质量控制", "质控", "能力验证", "盲样"], "keywords_en": ["quality control", "proficiency testing"],
+     "description_zh": "须通过盲样、留样再测、能力验证等手段监控结果有效性。",
+     "compliance_statement": ["已制定质控计划", "参加能力验证/比对"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "8.3", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "8.4", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-CAP", "name": "不符合工作控制与纠正措施程序", "clause": "8.7/8.8", "match_keywords": ["纠正措施", "不符合工作"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "8.9", "match_keywords": ["内部审核"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "8.10", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-LB-001", "name": "人员管理与授权程序", "clause": "6.2", "match_keywords": ["人员能力", "授权", "上岗"], "priority": "high"},
+    {"id": "SP-LB-002", "name": "设备管理与量值溯源程序", "clause": "6.4/6.5", "match_keywords": ["设备", "校准", "计量"], "priority": "high"},
+    {"id": "SP-LB-003", "name": "方法确认与验证程序", "clause": "7.2", "match_keywords": ["方法确认", "方法验证"], "priority": "high"},
+    {"id": "SP-LB-004", "name": "检测结果质量保证程序", "clause": "7.7", "match_keywords": ["质量控制", "质控"], "priority": "high"}
+  ]
+}

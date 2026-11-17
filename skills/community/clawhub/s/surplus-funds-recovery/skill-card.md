@@ -1,45 +1,53 @@
-## Description: <br>
-Turn unclaimed government funds into passive income with automated scanning, skip-tracing, SMS outreach, e-signature capture, and claim filing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn unclaimed government funds into passive income. Automated scanning, skip-tracing, SMS outreach, e-signature capture, and claim filing.
 
-## Publisher: <br>
-[wizelements](https://clawhub.ai/user/wizelements) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wizelements](https://clawhub.ai/user/wizelements)
 
-## Use Case: <br>
-External business users use this skill to identify surplus-fund opportunities, locate potential claimants, prepare outreach, collect signatures, and support claim filing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports sensitive skip-tracing, SMS outreach, e-signature collection, and claim filing. <br>
-Mitigation: Use only with documented legal authority, privacy review, verified claimant authorization, and manual approval before each skip-tracing action, message, e-signature request, or filing. <br>
-Risk: Outreach workflows can create privacy, consent, or messaging-compliance exposure. <br>
-Mitigation: Apply SMS compliance controls, suppression lists, audit logging, and reviewer approval before any campaign is sent. <br>
-Risk: Automated case processing can create unexpected cost or operational exposure. <br>
-Mitigation: Set budget limits and keep audit logs for scanning, skip-tracing, messaging, signature, and filing steps. <br>
+## Use Case:
 
+External business users use this skill to identify surplus funds cases, trace prior owners, prepare outreach, capture signatures, generate claim forms, and track recovery fees.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wizelements/surplus-funds-recovery) <br>
-- [Publisher Profile](https://clawhub.ai/user/wizelements) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Fulton County, Georgia, United States
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow guidance for county-record scanning, skip-tracing, SMS outreach, e-signature collection, claim form generation, payment tracking, and audit trails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill directs users toward skip tracing, SMS outreach, e-signatures, and claim filing without enough consent, privacy, or legal-compliance safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after confirming the legality of owner information collection, skip-tracing services, SMS contact, e-signatures, and claim filing in the relevant jurisdiction.
+
+Risk: Real-person data and outreach workflows may create privacy, retention, consent, opt-out, and auditability risks.
+
+Mitigation: Add manual review, consent and opt-out handling, data minimization, retention limits, and audit records before using it with real people.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wizelements/skills/surplus-funds-recovery)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe workflows involving county record scanning, skip tracing, SMS outreach, e-signature capture, claim form generation, payment tracking, and audit trails.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

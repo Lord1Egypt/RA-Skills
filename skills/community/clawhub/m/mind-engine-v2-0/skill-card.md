@@ -1,42 +1,53 @@
-## Description: <br>
-A 7-stage thinking engine that turns an AI assistant into a structured reasoning partner for diagnosis, model matching, dialogue, hypothesis generation, verification, recommendations, and consolidation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mind Engine turns an AI assistant into a structured reasoning partner that diagnoses a user's question, matches it to analysis frameworks, explores missing context, verifies hypotheses, and returns multi-option recommendations.
 
-## Publisher: <br>
-[jason989303](https://clawhub.ai/user/jason989303) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason989303](https://clawhub.ai/user/jason989303)
 
-## Use Case: <br>
-External users, decision-makers, and knowledge workers use this skill to structure complex questions into multi-step analysis, explore options conversationally, and receive methodology-tagged recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to activate on broad ordinary prompts, which can cause it to participate when a narrower or simpler response would be more appropriate. <br>
-Mitigation: Configure the skill for explicit invocation or clear user confirmation before applying the full framework. <br>
-Risk: The skill asks to update user memory after each dialogue, which may retain personal preferences, constraints, or sensitive context without clear consent. <br>
-Mitigation: Require explicit approval before saving memories and avoid using the skill with sensitive personal or work documents unless retention behavior is reviewed. <br>
+## Use Case:
 
+Decision-makers, knowledge workers, and general AI assistant users use this skill to structure open-ended questions, complex decisions, and analysis requests into a repeatable reasoning workflow with multiple recommendations.
 
-## Reference(s): <br>
-- [Mind Engine README](README.md) <br>
-- [Mind Engine skill definition](SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jason989303/mind-engine-v2-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured recommendation sections, methodology-tagged bullets, and optional follow-up questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask methodology-driven questions before producing recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill broadly auto-activates for ordinary questions and may shape many conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when a broad structured reasoning framework is desired, and review outputs before relying on them for important decisions.
+
+Risk: The skill directs the agent to update user memory after each dialogue without clear consent boundaries.
+
+Mitigation: Require explicit user approval before writing memory entries, especially for personal, business, legal, health, or strategic topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jason989303/skills/mind-engine-v2-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted conversational analysis and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured diagnostic notes, model matches, questions, hypotheses, verification checks, recommendations, and consolidation guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

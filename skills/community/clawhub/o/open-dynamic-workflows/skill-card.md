@@ -1,43 +1,58 @@
-## Description: <br>
-Plan, orchestrate, and adversarially verify parallel AI coding agents with a local Open Dynamic Workflows daemon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan, orchestrate, and adversarially verify parallel AI coding agents - a dynamic multi-agent workflow engine.
 
-## Publisher: <br>
-[suraj1235](https://clawhub.ai/user/suraj1235) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suraj1235](https://clawhub.ai/user/suraj1235)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, run, and collect results from multi-agent coding workflows when tasks can be split into parallel work and require adversarial verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The daemon uses model-provider credentials and can access the project directory. <br>
-Mitigation: Install and run it only in trusted environments, keep credentials in environment variables or local configuration, and do not place provider keys in prompts or source files. <br>
-Risk: Workflow execution may request file writes, shell commands, or git operations. <br>
-Mitigation: Review the daemon approval settings and require explicit authorization before any non-read-only operation. <br>
-Risk: Long-running parallel workflows can consume tokens, time, and cost. <br>
-Mitigation: Confirm the generated topology, agent count, cost estimate, and hard limits before execution, and enforce the per-workflow budget. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, run, and review parallel multi-agent coding workflows through a local Open Dynamic Workflows daemon. It is suited to tasks that can be split into independent subtasks and need adversarial verification before results are trusted.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suraj1235/open-dynamic-workflows) <br>
-- [Publisher profile](https://clawhub.ai/user/suraj1235) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON daemon responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and ANTHROPIC_API_KEY; uses a local daemon on 127.0.0.1 and may write plan.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill asks users to install and run a mutable external daemon with model credentials and local workspace authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed ODW commit or release, install in a restricted environment, and run the daemon only for repositories where that authority is acceptable.
+
+Risk: Provider API keys may be exposed if handled carelessly during setup or daemon execution.
+
+Mitigation: Keep provider API keys in the environment or local ODW configuration and avoid exposing them during dependency installation.
+
+Risk: The daemon bridge writes plan.json in the working directory during planning.
+
+Mitigation: Check for existing plan.json files before planning and review generated plans before execution.
+
+## Reference(s):
+
+- [Open Dynamic Workflows GitHub repository](https://github.com/Suraj1235/open-dynamic-workflows)
+- [ClawHub skill page](https://clawhub.ai/suraj1235/skills/open-dynamic-workflows)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON workflow results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or overwrite plan.json when planning through the daemon bridge.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

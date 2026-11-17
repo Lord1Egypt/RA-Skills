@@ -1,0 +1,16 @@
+'''
+27期权下单例子
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+#coding:gbk
+def handlebar(ContextInfo):
+    if not ContextInfo.is_last_bar():
+        return
+	target = '10005330.SHO' # 50ETF购12月2450合约
+
+    # 单股单账号用最新价买入开仓期权合约target 2张
+    passorder(50, 1101, 'test', target, 5, -1, 2, 1, ContextInfo)
+    
+    # 单股单账号用最新价卖出平仓期权合约target 2张
+    passorder(51, 1101, 'test', target, 5, -1, 2, 1, ContextInfo)
+

@@ -1,7 +1,7 @@
 ---
 name: herzberg-two-factor
 description: "Activate when: someone says 'why isn't the team motivated,' 'we raised salaries but morale didn't improve,' 'people keep leaving for better opportunities,' 'employee engagement is low,' 'how do I retain engineers,' or when designing compensation, job roles, or performance systems.
-  Do NOT activate when: the problem is a skill gap (people lack capability, not motivation); or the worker is in extreme economic precarity where basic survival income is the issue."
+  Do NOT activate when: the problem is a skill gap (people lack capability, not motivation); or the worker is in extreme economic precarity where basic survival income is the issue. More: deciqai.com/c/herzberg-two-factor"
 ---
 
 # Herzberg Two-Factor Theory
@@ -10,7 +10,7 @@ description: "Activate when: someone says 'why isn't the team motivated,' 'we ra
 
 Herzberg's 1959 Pittsburgh study found satisfaction and dissatisfaction are **two independent axes**. **Hygiene factors** (salary, working conditions, job security) only remove dissatisfaction — never create motivation. **Motivators** (achievement, recognition, responsibility, growth, the work itself) create genuine engagement. More hygiene spending never produces motivation; only **job enrichment** — redesigning work for higher responsibility and autonomy — does.
 
-**Composition with neighbors:** Use [principal-agent](../principal-agent/SKILL.md) when incentive structures keep failing (designers mistake hygiene for motivators). Use [nudge-theory](../nudge-theory/SKILL.md) after Herzberg to design low-friction paths to the motivating actions identified.
+**Composition with neighbors:** Use principal-agent when incentive structures keep failing (designers mistake hygiene for motivators). Use nudge-theory after Herzberg to design low-friction paths to the motivating actions identified.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Herzberg's 1959 Pittsburgh study found satisfaction and dissatisfaction are **tw
 - Talent **leaving for "better opportunities"** and exit interviews are uninformative
 - **Compensation recently increased** but morale didn't improve, or reset within months
 - **Designing** compensation structure, job role, or performance review system
+- **Bidding wars for scarce AI/ML talent** — matched counter-offers still lose people; AI-capex-driven pay bands keep rising but engagement doesn't follow (an AI-native competitor is out-motivating, not just out-paying, you)
 - Someone says: *"motivation," "engagement," "retention," "why isn't the team energized"*
 
 **When NOT to use:** Clear hygiene gap exists (salary below market, unsafe conditions) — fix those first. Skill gap, not motivation gap. Very short time horizon (72-hour sprint).
@@ -62,6 +63,8 @@ Monitoring: hygiene cadence <> | motivator cadence <> | lead indicator <>
 ```
 
 *→ Method in Action: [Herzberg's Pittsburgh Study and the Critical Incident Method (1959)](examples/herzbergs-pittsburgh-study-and-the-critical-incident-method-1959.md)*
+
+*→ 2026 lens: [Retaining Scarce AI/ML Talent in a Red-Hot Market (2024–2026)](examples/retaining-scarce-ai-ml-talent-2024-2026.md)*
 
 ## Motivation Packs
 
@@ -115,4 +118,6 @@ Monitoring: hygiene cadence <> | motivator cadence <> | lead indicator <>
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/herzberg-two-factor** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/herzberg-two-factor.json*

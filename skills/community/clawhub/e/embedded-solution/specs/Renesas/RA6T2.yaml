@@ -1,0 +1,124 @@
+part: RA6T2
+link_status: verified_2026-07-01 (datasheet-html-extracted)
+expected_family: "Renesas RA6T2 \u2014 Cortex-M33 240 MHz Motor Control ASSP"
+main_page: https://www.renesas.com/en/products/ra6t2
+datasheet_path_expected: references/semiconductor-vendor/Renesas/datasheet-html/RA6T2_group-datasheet.html
+created_at: '2026-06-30T09:43:00+08:00'
+specs:
+  family: RA6T2 (second RA ASSP for motor/inverter control)
+  cores:
+  - Arm Cortex-M33 @ 240 MHz with TrustZone
+  - Hardware accelerator for motor control
+  performance:
+    operating_freq_max_mhz: 240
+  memory:
+    flash_kb_options:
+    - 256
+    - 512
+    sram_kb: 64
+  power:
+    voltage_v_min: 2.7
+    voltage_v_max: 3.6
+  temperature: "-40 to +105 \xB0C (Ta)"
+  peripherals:
+    uart_sci: 6
+    spi: 2
+    i2c: 2
+    can: 1
+    can_fd: 0 or 1
+    sdhi: 0
+    timer_32bit: 10
+    async_gpt: 2
+    standby_timer: false
+    high_resolution_output_timer: true
+    pwm_output_pins_options:
+    - 16
+    - 18
+    - 20
+    adc_12bit_channels_options:
+    - 10
+    - 18
+    - 29
+    adc_16bit_channels_options:
+    - 0
+    - 10
+    - 18
+    - 29
+    adc_24bit_sigma_delta: 0
+    adc_14bit: 0
+    dac_12bit_channels_options:
+    - 2
+    - 4
+    dac_8bit: 0
+    capacitive_touch: 0
+    segment_lcd: 0
+    image_codec: 0
+    drdif: 0
+  io_ports:
+    counts:
+    - 35
+    - 51
+    - 84
+  communication_excluded:
+  - ethernet (no)
+  - ethercat (0 ch)
+  - usb_fs (0/0)
+  - usb_hs (0/0)
+  - usb_ss (0/0)
+  - wireless (no)
+  security:
+    unique_id: true
+    trng: true
+    aes:
+    - 128
+    - 256
+    ghash: true
+    trustzone: yes (Arm)
+  package_options:
+  - type: HWQFN
+    dim_mm: 7x7x0.8
+    pins: 48
+    pitch_mm: 0.5
+  - type: HWQFN
+    dim_mm: 8x8x0.8
+    pins: 64
+    pitch_mm: 0.4
+  - type: LQFP
+    dim_mm: 7x7x1.7
+    pins: 48
+    pitch_mm: 0.5
+  - type: LQFP
+    dim_mm: 10x10x1.7
+    pins: 64
+    pitch_mm: 0.5
+  - type: LQFP
+    dim_mm: 14x14x1.7
+    pins: 100
+    pitch_mm: 0.5
+  variants_total:
+    notes: 20 different part names across 5 package types
+  software:
+    fsp: Flexible Software Package
+    partner_ecosystem: Arm Partner Ecosystem
+unverified:
+- exact DAC speed/slew rate
+- exact ADC sample rate per channel
+- exact PWM channels count per pinout
+- exact motor-control accelerator (PEF/CORDIC/FFT) firmware
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from renesas.com RA6T2 product page via Firecrawl (26,691 bytes raw). Renesas\
+  \ reorganized the URL pattern in 2026-05 from /products/microcontrollers-microprocessors/... to /en/products/<part>; the\
+  \ old `/en/products/microcontrollers-microprocessors/ra/ra6t` URL returns 404, but /en/products/ra6t2 works."
+- 'Family differentiator vs RA6T1: RA6T2 is the second RA ASSP, adds HW accelerator for motor control, higher clock (240 vs
+  120 MHz).'
+- 'Family differentiator vs other RA Family (RA4M, RA6M): RA6T is ASSP for motor/inverter; RA4M/RA6M are general-purpose MCU
+  with Ethernet.'
+- 'Use case: motor control (BLDC/PMSM), inverter control, industrial drives, robotics (3-phase motor FOC).'
+- 'Verified 2026-07-01 via firecrawl-html-extract against RA6T2_group-datasheet.html: 41/53 spec fields matched (77%). Source:
+  https://www.renesas.com/en/document/dst/ra6t2-group-datasheet (vendor product page scraped as HTML; no separate PDF available).'
+extracted_at: '2026-06-30T09:43:00+08:00'
+extraction_method: firecrawl-extract (keyed) of renesas.com RA6T2 product page
+extraction_source: references/semiconductor-vendor/Renesas/firecrawl-snapshots/RA6T2-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Renesas/firecrawl-snapshots/RA6T2-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.renesas.com/en/document/dst/ra6t2-group-datasheet

@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0",
+  "description": "Code Factory 失败模式记录 —— 结构化格式，供工具链解析和自学习",
+  "patterns": []
+}

@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn709hy2xh2f6vw3sgsde6803h80nwce",
   "slug": "youtube-lecture-analyzer",
+  "name": "YouTube 讲座字幕分析器",
+  "description": "提取YouTube讲座字幕并生成结构化分析报告，包含中英文摘要",
   "version": "1.0.0",
-  "publishedAt": 1772194648972
+  "homepage": "https://github.com/openclaw/skills",
+  "author": "Bradford",
+  "tags": ["youtube", "transcript", "analysis", "learning"],
+  "runtime": "python3",
+  "dependencies": ["youtube-transcript-api", "requests"],
+  "proxy": "http://127.0.0.1:26739"
 }

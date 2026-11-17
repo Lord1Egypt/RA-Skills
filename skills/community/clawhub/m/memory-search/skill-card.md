@@ -1,37 +1,53 @@
-## Description: <br>
-Search and retrieve relevant information from indexed memory files using semantic queries and direct file reads for context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve relevant information from indexed memory files using semantic queries and direct file reads for context.
 
-## Publisher: <br>
-[aigentic-net](https://clawhub.ai/user/aigentic-net) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aigentic-net](https://clawhub.ai/user/aigentic-net)
 
-## Use Case: <br>
-Agents use this skill to search indexed memory and retrieve source sections when answering questions that depend on prior conversations, user preferences, dates, project history, todos, commitments, or other personal context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stored memories and enabled transcripts may include private personal context that can resurface in normal answers. <br>
-Mitigation: Install only when memory-backed answers are desired, review indexed memory content, and avoid keeping highly sensitive notes in memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aigentic-net/memory-search) <br>
+## Use Case:
 
+Agents use this skill to check remembered conversations, preferences, dates, project history, todos, and other personal context before answering questions that depend on prior interactions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Tool call results and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include snippets, relative paths, line ranges, relevance scores, and citations; direct reads return selected memory file sections.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may retrieve personal stored context from memory files, daily notes, raw logs, and enabled transcripts.
+
+Mitigation: Enable it only where that access is acceptable, and avoid transcript indexing for highly sensitive chats.
+
+Risk: Search snippets can omit surrounding context or fail to find relevant memories.
+
+Mitigation: Use direct memory reads for promising results and state when a memory search finds no supporting information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aigentic-net/skills/memory-search)
+- [Publisher profile](https://clawhub.ai/user/aigentic-net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples and structured memory search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include snippets, relative paths, line ranges, relevance scores, and citations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+    "smtp_server": "smtp.163.com",
+    "smtp_port": 465,
+    "sender": "XXX@163.com",
+    "password": " ",
+    "receiver": " ",
+    "subject": " ",
+    "body": " ",
+    "attachment_path": " ",
+    "attachment_name":" "
+}

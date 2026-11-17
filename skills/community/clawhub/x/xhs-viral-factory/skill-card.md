@@ -1,43 +1,55 @@
-## Description: <br>
-小红书爆款图文全自动生产工厂。支持从 PDF、Markdown 或文件夹提取内容，自动匹配治愈、干货、反直觉、视觉流 4 大模式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XHS Viral Content Factory turns local source materials into Chinese Xiaohongshu draft posts, image prompt ideas, and tags using an OpenAI-compatible LLM.
 
-## Publisher: <br>
-[less1001](https://clawhub.ai/user/less1001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[less1001](https://clawhub.ai/user/less1001)
 
-## Use Case: <br>
-External creators, marketers, and agent users use this skill to turn local notes, documents, or folders into draft Xiaohongshu posts with titles, body copy, image prompts, and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local source files and any optional history file are sent to the configured LLM provider for content generation. <br>
-Mitigation: Avoid sensitive private documents, verify the provider endpoint and API key scope, and review generated drafts before publishing. <br>
-Risk: The documentation describes PDF input, but security guidance says native PDF extraction is not implemented. <br>
-Mitigation: Convert PDFs to text or Markdown before using them as source material. <br>
+## Use Case:
 
+External creators, marketers, and agents use this skill to analyze local notes or document folders and produce Xiaohongshu post drafts with style selection, image prompts, and tags.
 
-## Reference(s): <br>
-- [XHS Viral Factory Detailed Workflow](references/workflow.md) <br>
-- [XHS Viral Factory Patterns](references/prompt_patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/less1001/xhs-viral-factory) <br>
-- [Publisher Profile](https://clawhub.ai/user/less1001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text draft file with title, body, image prompts, and tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LLM_API_KEY and can optionally use LLM_BASE_URL, LLM_MODEL, and a history file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter and server release evidence) <br>
+Risk: Selected local files and optional posting history may be sent to the configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pointing the source or history arguments at sensitive folders or files.
+
+Risk: The LLM endpoint is configurable and the artifact does not enforce HTTPS or a trusted provider.
+
+Mitigation: Set LLM_BASE_URL only to a trusted HTTPS provider endpoint before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/less1001/skills/xhs-viral-factory)
+- [XHS Viral Factory Patterns](references/prompt_patterns.md)
+- [XHS Viral Factory Detailed Installation and Usage](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text draft saved to a timestamped .txt file, plus terminal status messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft content includes a title, body copy, image prompts, and tags.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

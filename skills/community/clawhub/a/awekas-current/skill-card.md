@@ -1,39 +1,53 @@
-## Description: <br>
-Fetches and normalizes current weather data from the AWEKAS API with caching, retries, timeouts, and structured error handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and normalizes current weather data from the AWEKAS API with caching, retries, timeout protection, and structured error handling.
 
-## Publisher: <br>
-[michik1712](https://clawhub.ai/user/michik1712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michik1712](https://clawhub.ai/user/michik1712)
 
-## Use Case: <br>
-Developers and weather automation users can call this skill from an OpenClaw agent to retrieve current AWEKAS station weather and receive a normalized JSON response for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AWEKAS API key, and mishandled credentials could expose access to the weather service account. <br>
-Mitigation: Use a dedicated or easily revocable API key, pass it through an environment variable when possible, and avoid sharing logs or error traces that may include request details. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current weather observations from AWEKAS, optionally for a specific station, and receive normalized JSON suitable for automation or downstream reporting.
 
-## Reference(s): <br>
-- [AWEKAS Wetter API on ClawHub](https://clawhub.ai/michik1712/awekas-current) <br>
-- [AWEKAS current weather API endpoint](https://api.awekas.at/current.php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text] <br>
-**Output Format:** [JSON object with normalized weather fields and structured error objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AWEKAS API key through the key argument or AWEKAS_KEY environment variable; accepts an optional station argument; caches responses for 60 seconds and uses request retries with an 8-second timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires network access to AWEKAS and sends the provided AWEKAS API key to that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with an intended AWEKAS account and provide the key through an environment variable or secret manager.
+
+Risk: The package declares a semver-ranged node-fetch dependency and no lockfile is present in the artifact.
+
+Mitigation: Pin dependencies or install from a reviewed lockfile before deploying in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michik1712/skills/awekas-current)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object or structured error]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source, station, cached status, normalized weather fields, and raw provider payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact files state 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

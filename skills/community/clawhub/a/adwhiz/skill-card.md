@@ -1,45 +1,57 @@
-## Description: <br>
-Manage Google Ads & Meta (Facebook) Ads from your AI coding tool with MCP tools for auditing, creating, and optimizing ad accounts using natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Ads & Meta (Facebook) Ads from your AI coding tool with MCP tools for auditing, creating, and optimizing ad accounts using natural language.
 
-## Publisher: <br>
-[iamzifei](https://clawhub.ai/user/iamzifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamzifei](https://clawhub.ai/user/iamzifei)
 
-## Use Case: <br>
-External developers, marketing operators, and agencies use this skill to audit and manage connected Google Ads and Meta Ads accounts through an authenticated hosted MCP service. It supports read-only reporting, campaign optimization, and account mutations that can affect budgets, statuses, ads, audiences, conversion tracking, and customer lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform powerful Google Ads and Meta Ads account changes, including budget, status, ad, audience, conversion tracking, and customer list operations. <br>
-Mitigation: Protect the ADWHIZ_API_KEY, connect only necessary ad accounts, start with read-only audits where possible, and carefully review agent approvals before any write operation. <br>
-Risk: Connected advertising accounts and API keys grant access to sensitive campaign and performance data. <br>
-Mitigation: Use account-level scoping, revoke access when no longer needed, and avoid exposing the API key in logs, prompts, or shared configuration. <br>
+## Use Case:
 
+Developers, marketing operators, and agencies use AdWhiz to connect an AI coding tool to Google Ads and Meta Ads accounts for campaign audits, reporting, optimization, and account changes through a hosted MCP or REST interface.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iamzifei/adwhiz) <br>
-- [Publisher Profile](https://clawhub.ai/user/iamzifei) <br>
-- [AdWhiz Homepage](https://adwhiz.ai) <br>
-- [AdWhiz Documentation](https://adwhiz.ai/docs) <br>
-- [AdWhiz OpenAPI Specification](https://mcp.adwhiz.ai/api/v1/openapi.json) <br>
-- [AdWhiz Tool Listing](https://mcp.adwhiz.ai/api/v1/tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Natural-language responses, MCP tool calls, REST API JSON responses, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ADWHIZ_API_KEY and connected Google or Meta ad accounts] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata) <br>
+Risk: The hosted connector can read and change connected Google Ads and Meta Ads accounts, including budget changes, activation or removal actions, and customer list uploads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Connect only intended ad accounts, review each write confirmation carefully, and revoke AdWhiz access when it is no longer needed.
+
+Risk: The skill depends on an ADWHIZ_API_KEY that authorizes access to the user's connected ad accounts.
+
+Mitigation: Store the API key only in the agent's secret or environment configuration and rotate it if it may have been exposed.
+
+## Reference(s):
+
+- [AdWhiz Homepage](https://adwhiz.ai)
+- [AdWhiz Documentation](https://adwhiz.ai/docs)
+- [AdWhiz OpenAPI Specification](https://mcp.adwhiz.ai/api/v1/openapi.json)
+- [AdWhiz Tool Listing](https://mcp.adwhiz.ai/api/v1/tools)
+- [ClawHub Skill Page](https://clawhub.ai/iamzifei/skills/adwhiz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger hosted MCP or REST calls that read or change connected Google Ads and Meta Ads accounts after user authorization.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

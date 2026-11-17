@@ -1,43 +1,56 @@
-## Description: <br>
-Scene Analysis helps agents evaluate commercial scenarios through Gate0 strategic screening, Gate1 weighted scoring, and independent blue-force review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scene Analysis helps agents evaluate commercial scenarios through Gate0 strategic screening, Gate1 quantitative scoring, and independent blue-force review.
 
-## Publisher: <br>
-[yyf1986](https://clawhub.ai/user/yyf1986) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyf1986](https://clawhub.ai/user/yyf1986)
 
-## Use Case: <br>
-Business reviewers, product leaders, and investment reviewers use this skill to assess a scenario's strategic dependency, core-process embedding, commercial score, risks, and final S/A+/A/B/C rating from user-provided evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be misleading when scenario evidence is incomplete or inferred. <br>
-Mitigation: Treat results as advisory decision support and review the evidence basis before using ratings for business decisions. <br>
-Risk: Scenario descriptions may contain confidential contracts, customer information, or internal process details. <br>
-Mitigation: Avoid supplying sensitive business information unless the agent runtime is approved for that data. <br>
+## Use Case:
 
+Business strategy reviewers, product evaluators, and agents use this Chinese-language skill to screen commercial scenarios, produce evidence-based Gate0 and Gate1 ratings, and run a stricter blue-force audit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yyf1986/scene-analysis) <br>
-- [Gate0 strategic screening standards](references/gate0-standards.md) <br>
-- [Gate1 scoring rules](references/gate1-scoring-rules.md) <br>
-- [Blue-force review process](references/blue-force-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured assessment report with scores, risk deductions, evidence notes, and a final rating.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Evidence-constrained advisory decision support; no code execution or external tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may produce advisory business ratings from incomplete scenario evidence because its rules allow marked logic-based deductions when hard evidence is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cited user evidence and any deduction marked as lacking proof before using the rating for business decisions.
+
+Risk: The broad trigger can apply the workflow to requests that are not intended for Chinese-language Gate0/Gate1 commercial scenario scoring.
+
+Mitigation: Install and invoke the skill only when that evaluation workflow is the intended task.
+
+## Reference(s):
+
+- [Gate0 Strategic Screening Standards](references/gate0-standards.md)
+- [Gate1 Scoring Rules](references/gate1-scoring-rules.md)
+- [Blue-Force Review Rules](references/blue-force-review.md)
+- [ClawHub release page](https://clawhub.ai/yyf1986/skills/scene-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown evaluation reports in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evidence-dependent Gate0/Gate1 ratings, score calculations, risk deductions, and blue-force review findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

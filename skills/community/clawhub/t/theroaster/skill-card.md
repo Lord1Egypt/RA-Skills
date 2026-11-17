@@ -1,47 +1,59 @@
-## Description: <br>
-TheRoaster helps agents generate short, safety-filtered humorous roasts for social bot replies, with free limited usage and optional paid on-chain entitlement for higher quotas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate short, safety-filtered roasts for social bots through TheRoaster API, with optional on-chain paid entitlements for higher quotas.
 
-## Publisher: <br>
-[bazinshine](https://clawhub.ai/user/bazinshine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bazinshine](https://clawhub.ai/user/bazinshine)
 
-## Use Case: <br>
-Developers and bot operators use TheRoaster to turn social posts or replies into short banter-style roast comments. The skill is also used to inspect plans, check entitlement, and prepare paid quota purchase flows when a human explicitly requests wallet-based credits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Paid quota flows involve wallet signing and on-chain USDC transactions on Base. <br>
-Mitigation: Before any paid action, verify the Base chain, contract address, USDC amount, tier, duration, and transaction purpose, then require explicit human approval before signing or sending anything. <br>
-Risk: Messages sent for roasting are shared with a third-party API service. <br>
-Mitigation: Avoid submitting confidential messages or sensitive personal data for roasting. <br>
-Risk: Issued API keys can grant paid quota and are shown only once. <br>
-Mitigation: Store API keys securely, avoid committing keys or environment files, and rotate or reclaim keys when entitlement or access changes. <br>
-Risk: Roast output may become harmful or harassing if used outside the stated banter context. <br>
-Mitigation: Apply the documented safety rules: skip tragedy, health, self-harm, protected-class, or non-consensual targeting contexts, and keep outputs short and clearly humorous. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bazinshine/theroaster) <br>
-- [TheRoaster API Base URL](https://theroaster.app) <br>
-- [Health Endpoint](https://theroaster.app/health) <br>
-- [Contract Metadata Endpoint](https://theroaster.app/api/v1/contract) <br>
-- [Plans Endpoint](https://theroaster.app/api/v1/plans) <br>
+## Use Case:
 
+Developers and bot operators use TheRoaster to generate short humorous replies for Moltbook-style social interactions while respecting safety and rate-limit rules.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON, Text] <br>
-**Output Format:** [Markdown guidance with HTTP examples; API responses are JSON and generated roasts are plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roasts should be short, humorous, and avoid protected-class attacks, violence, self-harm, and harassment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent through wallet-controlled on-chain purchase steps for paid API access.
+
+Mitigation: Keep wallet tools disabled unless a human explicitly approves each approve, purchase, signing, and claim action in-session.
+
+Risk: Generated roasts may be posted publicly and could create social or moderation risk.
+
+Mitigation: Review generated roast text before public posting and skip use in sensitive contexts such as tragedy, health, self-harm, or protected-class topics.
+
+Risk: The skill calls an external roast API and may use API keys for paid access.
+
+Mitigation: Use the free tier when possible, store API keys only in approved secrets handling, and avoid committing keys or environment files.
+
+## Reference(s):
+
+- [TheRoaster ClawHub Skill Page](https://clawhub.ai/bazinshine/skills/theroaster)
+- [TheRoaster API](https://theroaster.app)
+- [Contract Metadata Endpoint](https://theroaster.app/api/v1/contract)
+- [Plans Endpoint](https://theroaster.app/api/v1/plans)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples, curl commands, and generated roast text from API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free use is rate-limited; paid use requires API-key authentication and human-approved wallet actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Tencent Cloud Object Storage (COS) and Cloud Infinite (CI) integration skill for uploading, downloading, and managing cloud storage files, image processing, intelligent image search, document-to-PDF conversion, and video smart-cover generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Cloud Object Storage (COS) and Data Wanxiang (CI) integration skill for managing cloud storage files, image processing, intelligent image search, document-to-PDF conversion, and video smart cover generation.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Developers and operators use this skill to configure Tencent Cloud COS access, manage bucket objects, and call COS and CI capabilities through MCP, Node.js SDK, or COSCMD fallback commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can persist powerful Tencent Cloud credentials in shell startup files, mcporter configuration, and COSCMD configuration. <br>
-Mitigation: Use a dedicated least-privilege CAM key, prefer session-only environment variables or a secret manager, avoid shared machines for persistent setup, and rotate any key already written to local configuration files. <br>
-Risk: The skill documents delete, recursive delete, copy, and move operations that can alter or remove bucket data. <br>
-Mitigation: List the target prefix before destructive actions, require explicit confirmation for delete or recursive delete, and avoid delete-capable credentials unless the workflow needs them. <br>
-Risk: Signed object URLs can grant temporary access to COS objects. <br>
-Mitigation: Use short expirations, share signed URLs only with intended recipients, and avoid generating links for sensitive objects unless access is required. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to configure Tencent Cloud COS access, perform object storage operations, and invoke COS/CI media-processing workflows from an agent.
 
-## Reference(s): <br>
-- [Tencent Cloud COS operation reference](artifact/references/api_reference.md) <br>
-- [Tencent Cloud COS MCP configuration template](artifact/references/config_template.json) <br>
-- [cos-mcp GitHub repository](https://github.com/Tencent/cos-mcp) <br>
-- [Tencent Cloud COS Node.js SDK documentation](https://www.tencentcloud.com/zh/document/product/436/8629) <br>
-- [Tencent Cloud COSCMD documentation](https://www.tencentcloud.com/zh/document/product/436/10976) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Setup can create or update local MCP, shell environment, and COSCMD configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The setup process handles Tencent Cloud credentials and may persist long-lived secrets in local shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Tencent CAM key, avoid pasting broad credentials into chat, and prefer environment or secret-manager handling that does not store long-lived secrets in shell profile files.
+
+Risk: Setup installs and runs local Node/Python tooling, including packages used for MCP, SDK, and optional COSCMD workflows.
+
+Mitigation: Review the setup script before running it, pin or vet package versions where possible, and install only in an environment appropriate for cloud credential use.
+
+Risk: Custom service domains or disabling HTTPS can change the trust boundary for COS API requests.
+
+Mitigation: Keep HTTPS enabled and avoid custom service domains unless they are required and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/skills/tencent-cos-chen)
+- [cos-mcp GitHub repository](https://github.com/Tencent/cos-mcp)
+- [COS Node.js SDK documentation](https://www.tencentcloud.com/zh/document/product/436/8629)
+- [COSCMD documentation](https://www.tencentcloud.com/zh/document/product/436/10976)
+- [API reference](artifact/references/api_reference.md)
+- [MCP configuration template](artifact/references/config_template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration, code, JSON results]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce signed object URLs and local configuration changes when the user runs setup or storage commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

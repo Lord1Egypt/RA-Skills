@@ -1,42 +1,55 @@
-## Description: <br>
-Send SMTP email notifications after Codex completes a task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send SMTP email notifications after Codex completes a task. Use when one Codex or Claude run is finished, or when you need to notify on task completion with device name, project name, status, and summary via email.
 
-## Publisher: <br>
-[caopulan](https://clawhub.ai/user/caopulan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caopulan](https://clawhub.ai/user/caopulan)
 
-## Use Case: <br>
-Developers and agent users use this skill to send task-completion notifications with device name, project name, status, and summary through their configured SMTP provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task summaries, device names, project names, status, and task titles are sent through the configured SMTP provider to the configured recipients. <br>
-Mitigation: Use only approved recipients and keep summaries free of secrets or sensitive details. <br>
-Risk: SMTP credentials and recipient settings are provided through environment variables and could be misconfigured. <br>
-Mitigation: Use app-specific SMTP credentials when possible, configure TLS or SSL appropriately, and run the helper with --dry-run before sending. <br>
+## Use Case:
 
+Developers and agent users use this skill to send task-completion notifications by SMTP after Codex or Claude runs, including the device name, project name, status, and summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caopulan/email-notify) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [send_email_notification.py](artifact/scripts/send_email_notification.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with environment variable examples and a Python helper invocation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper can send SMTP email or print a dry-run preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Task titles, project names, machine names, statuses, and summaries may be sent to configured email recipients and the SMTP provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets and sensitive client details in summaries, and use manual invocation instead of auto-notification instructions when per-run control is needed.
+
+Risk: SMTP credentials are configured through environment variables for the notification script.
+
+Mitigation: Use an app-specific SMTP password where possible and configure TLS or SSL consistently for the selected SMTP service.
+
+## Reference(s):
+
+- [Email Notify ClawHub Skill Page](https://clawhub.ai/caopulan/skills/email-notify)
+- [Publisher Profile](https://clawhub.ai/user/caopulan)
+- [send_email_notification.py](artifact/scripts/send_email_notification.py)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send an SMTP email containing task title, project name, machine name, status, and summary when the helper script is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

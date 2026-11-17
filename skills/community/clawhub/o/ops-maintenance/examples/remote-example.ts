@@ -1,36 +1,35 @@
 /**
  * 远程运维使用示例
  * 
- * 使用前先在 ~/.config/ops-maintenance/servers.json 中配置服务器
+ * 使用前先在 ~/.ssh/config 中配置服务器
  */
 
-import { 
-  executeRemoteOp, 
+import {
+  loadSSHConfig,
+  executeRemoteOp,
   checkRemoteHealth,
   checkRemotePort,
   checkRemoteProcess,
   checkRemoteDisk,
-  uploadFile,
-  downloadFile,
-  listRemoteDirectory,
-  type SSHConfig 
+  type SSHConfig
 } from '../src/index.ts'
 
 /**
- * 示例: 使用配置文件中的服务器
+ * 示例: 使用 SSH config 中配置的服务器
  */
-export async function exampleWithConfig() {
-  const { loadServers } = await import('../src/index.ts')
-  const configs = await loadServers()
-  
+export async function exampleWithSSHConfig() {
+  // 从 ~/.ssh/config 加载配置
+  const configs = await loadSSHConfig()
+
   for (const config of configs) {
     console.log(`\n=== 检查服务器: ${config.host} ===`)
-    
+
     // 执行各种检查
     console.log(await checkRemoteHealth(config))
     console.log(await checkRemotePort(config, 80))
     console.log(await checkRemoteProcess(config, 'nginx'))
     console.log(await checkRemoteDisk(config))
+    // 密码过期检查请使用: /ops-maintenance password
   }
 }
 
@@ -44,31 +43,10 @@ export async function exampleManualConfig() {
     user: 'root',
     keyFile: '~/.ssh/id_rsa'
   }
-  
+
   console.log(await executeRemoteOp('health', server))
   console.log(await executeRemoteOp('ports', server, '8080'))
   console.log(await executeRemoteOp('disk', server))
-}
-
-/**
- * 示例: 文件传输
- */
-export async function exampleFileTransfer() {
-  const server: SSHConfig = {
-    host: 'your-server.com',
-    port: 22,
-    user: 'root',
-    keyFile: '~/.ssh/id_rsa'
-  }
-  
-  // 上传文件
-  console.log(await uploadFile(server, './local-file.txt', '/tmp/remote-file.txt'))
-  
-  // 下载文件
-  console.log(await downloadFile(server, '/tmp/remote-file.txt', './downloaded-file.txt'))
-  
-  // 列出目录
-  console.log(await listRemoteDirectory(server, '/tmp'))
 }
 
 /**

@@ -1,41 +1,50 @@
-## Description: <br>
-Processes inbound audio files, transcribes them, and answers to resulting texts. Converts non-WAV inputs to WAV before transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes inbound audio files by converting non-WAV inputs to WAV, transcribing them, and answering the resulting text.
 
-## Publisher: <br>
-[sirkovz](https://clawhub.ai/user/sirkovz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sirkovz](https://clawhub.ai/user/sirkovz)
 
-## Use Case: <br>
-Developers and operators use this skill to process inbound audio files, convert them to WAV when needed, transcribe German speech, and handle the resulting text as a normal chat request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local audio conversion and transcription tools on inbound file paths. <br>
-Mitigation: Install only for trusted inbound audio directories, validate that paths remain inside the expected directory, and use safe argv-style command execution. <br>
-Risk: Audio-derived instructions are treated like normal chat requests and could include sensitive or unintended commands. <br>
-Mitigation: Ask for confirmation before acting on sensitive spoken instructions and restrict expected audio file types before processing. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to turn trusted local inbound audio into German text instructions or questions that the agent can answer like normal chat input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sirkovz/audio-command-executor) <br>
-- [Publisher profile](https://clawhub.ai/user/sirkovz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [German natural-language response with error messages when audio conversion or transcription fails] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local ffmpeg and whisper.cpp commands against an inbound audio file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Inbound audio can influence agent behavior after transcription, and unsafe local command templates may mishandle untrusted file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only trusted audio from the specified inbound directory, validate and canonicalize filenames, use safe argument-array execution for ffmpeg and whisper, write conversions to a controlled temporary location, and require user confirmation before broader agent actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sirkovz/skills/audio-command-executor)
+- [Publisher profile](https://clawhub.ai/user/sirkovz)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with shell command snippets and clear error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [German-language responses; audio paths should be trusted and validated before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

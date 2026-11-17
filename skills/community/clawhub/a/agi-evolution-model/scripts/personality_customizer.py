@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+
+# 日志记录
+__version__ = "1.0.0"
+
+import logging
+logger = logging.getLogger(__name__)
 """
 人格自定义模式脚本
 
@@ -21,6 +27,7 @@ import argparse
 import shutil
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime, timezone
+from interfaces import TraceContext, create_trace_context
 
 
 class PersonalityCustomizer:

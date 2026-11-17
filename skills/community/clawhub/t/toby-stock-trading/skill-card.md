@@ -1,45 +1,64 @@
-## Description: <br>
-Provides China A-share market data retrieval, individual stock analysis, market sentiment review, sector hotspot tracking, price alerts, and trading strategy suggestions using public finance sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time mainland China A-share quotes, stock and index analysis, sector monitoring, trading strategy suggestions, and price-alert support using market data sources such as Eastmoney and Sina Finance.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve China mainland A-share market data, summarize technical and fundamental signals, assess broad market sentiment, identify active sectors, and draft risk-aware trading guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading suggestions may be incomplete, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as analytical assistance, include risk notes, and avoid presenting suggestions as guaranteed investment advice. <br>
-Risk: The skill makes outbound requests to public finance data providers. <br>
-Mitigation: Use it only where those network requests are acceptable and verify market data against trusted sources before acting. <br>
-Risk: Price alert workflows may write local watchlist notes. <br>
-Mitigation: Do not store brokerage credentials or sensitive account data in watchlist files. <br>
+## Use Case:
 
+External users and analysts use this skill to ask an agent for mainland China A-share quotes, market sentiment, technical and fundamental stock analysis, sector trends, and risk-aware trading strategy suggestions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobeyrebecca/toby-stock-trading) <br>
-- [Data Sources API Reference](references/data-sources.md) <br>
-- [Stock Analysis Method Reference](references/analysis.md) <br>
-- [Complete setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global, for analysis of mainland China A-share markets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with concise tables, bullet points, risk notes, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite data source and retrieval time when market data is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trading guidance may be based on unauthenticated HTTP market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for educational analysis and verify prices with a trusted HTTPS broker or data provider before making trades.
+
+Risk: The skill can provide trading suggestions that may be incorrect or misleading.
+
+Mitigation: Require human review of recommendations, keep risk notes attached to price advice, and avoid treating outputs as guaranteed financial advice.
+
+Risk: Local watchlist entries may record user alert targets or trading interests.
+
+Mitigation: Avoid storing sensitive information in watchlists and periodically review or delete local alert entries.
+
+Risk: Some referenced data sources may require session cookies.
+
+Mitigation: Avoid providing session cookies unless they can be stored and handled securely.
+
+## Reference(s):
+
+- [A Stock Trading Assistant on ClawHub](https://clawhub.ai/tobeyrebecca/skills/toby-stock-trading)
+- [Stock Analysis Methods](references/analysis.md)
+- [Market Data Source APIs](references/data-sources.md)
+- [Complete Setup Guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose and tables, with optional JSON emitted by the market-data helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market outputs should include data source and fetch time; price suggestions should include risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

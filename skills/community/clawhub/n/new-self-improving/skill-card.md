@@ -1,44 +1,57 @@
-## Description: <br>
-Log corrections, errors, feature requests, and recurring patterns into structured workspace learning files, then promote stable patterns into tiered memory and OpenClaw workspace files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs corrections, errors, feature requests, and recurring patterns into structured workspace learning files, then promotes stable patterns into tiered memory and OpenClaw workspace files.
 
-## Publisher: <br>
-[muhamadbasim](https://clawhub.ai/user/muhamadbasim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muhamadbasim](https://clawhub.ai/user/muhamadbasim)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to capture corrections, command failures, feature requests, and recurring work patterns into local learning files, then review and promote stable patterns into workspace memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps durable local memory about user preferences, errors, and work patterns. <br>
-Mitigation: Install it only in workspaces where durable memory is desired, review .learnings and .self-improving periodically, and avoid storing secrets, health data, or private third-party data. <br>
-Risk: Promoted entries can influence future agent behavior through workspace memory files. <br>
-Mitigation: Require manual review before promoting entries into AGENTS.md, SOUL.md, TOOLS.md, or MEMORY.md, and use the documented recurrence and review rules before promotion. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to capture feedback, command failures, feature requests, and recurring work patterns as local workspace memory. They can review and promote validated lessons into persistent agent guidance files.
 
-## Reference(s): <br>
-- [OpenClaw homepage](https://github.com/muhamadbasim/oktoclaw) <br>
-- [logging-format.md](references/logging-format.md) <br>
-- [promotion-rules.md](references/promotion-rules.md) <br>
-- [heartbeat-review.md](references/heartbeat-review.md) <br>
-- [workspace-layout.md](references/workspace-layout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and maintains local workspace learning and memory files when activated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill can turn conversation-derived patterns into persistent local agent behavior without clear owner approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit .learnings, .self-improving/HOT.md, AGENTS.md, SOUL.md, TOOLS.md, and MEMORY.md before relying on promoted behavior.
+
+Risk: Persistent memory may retain sensitive or inappropriate context if used in shared or untrusted conversations.
+
+Mitigation: Use the skill only in private local workspaces, add an approval step before promotion, and sanitize logged context beyond credentials and secrets.
+
+## Reference(s):
+
+- [Logging Format](references/logging-format.md)
+- [Promotion and Demotion Rules](references/promotion-rules.md)
+- [Heartbeat Review Procedure](references/heartbeat-review.md)
+- [Workspace Layout](references/workspace-layout.md)
+- [OpenClaw Homepage](https://github.com/muhamadbasim/oktoclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and workspace file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates persistent local workspace memory files when the agent applies the workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

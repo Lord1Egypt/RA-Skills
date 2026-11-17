@@ -1,45 +1,59 @@
-## Description: <br>
-Create professional, consultant-grade PowerPoint presentations from scratch using python-pptx with McKinsey-style design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates consultant-grade PowerPoint presentations from scratch with python-pptx, using a McKinsey-style design system with layout patterns, typography, and file-compatibility guidance.
 
-## Publisher: <br>
-[likaku](https://clawhub.ai/user/likaku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[likaku](https://clawhub.ai/user/likaku)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to generate professional PPTX decks for pitch decks, strategy presentations, quarterly reviews, board meetings, proposals, and other business presentations. It provides layout patterns, typography, color guidance, and python-pptx examples for consistent flat-design slide generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts can write or overwrite local PPTX files. <br>
-Mitigation: Use an explicit output path and review generated file-writing code before running it. <br>
-Risk: The workflow may require installing Python packages with pip. <br>
-Mitigation: Install in a project or virtual environment and review package installation commands before execution. <br>
-Risk: Unpinned dependencies can change behavior across environments. <br>
-Mitigation: For sensitive or repeatable work, pin python-pptx and lxml to reviewed versions and keep lxml patched. <br>
+## Use Case:
 
+Developers, analysts, consultants, and business teams use this skill to generate professional PPTX decks and reusable python-pptx code patterns for strategy decks, board presentations, dashboards, timelines, and other business presentations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/likaku/mck-skill-repo) <br>
-- [Publisher profile](https://clawhub.ai/user/likaku) <br>
-- [Color palette reference](references/color-palette.md) <br>
-- [Layout catalog reference](references/layout-catalog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to write local PPTX files with python-pptx and lxml cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: ClawHub release evidence) <br>
+Risk: Dependency installation may introduce supply-chain or reproducibility risk when python-pptx, lxml, or mutable @latest commands are used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or low-privilege workspace, pin dependency versions, and review packages before use.
+
+Risk: The skill can create or modify local PPTX files during normal use.
+
+Mitigation: Run it in a workspace where generated presentation files are expected, and review outputs before distributing them.
+
+Risk: Generated presentations apply a Chinese/English typography style by default.
+
+Mitigation: Customize fonts and style settings when the default KaiTi, Georgia, and Arial treatment is not appropriate for the audience or environment.
+
+## Reference(s):
+
+- [Color Palette Quick Reference](references/color-palette.md)
+- [Layout Catalog - 36 Slide Types](references/layout-catalog.md)
+- [Project Homepage](https://github.com/likaku/Mck-ppt-design-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with python-pptx code snippets and shell commands; generated artifacts are PPTX files when the agent executes the code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, pip, python-pptx, and lxml; examples save local PPTX files.]
+
+## Skill Version(s):
+
+1.6.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

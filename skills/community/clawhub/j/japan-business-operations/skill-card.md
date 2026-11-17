@@ -1,43 +1,60 @@
-## Description: <br>
-Japan Operations OS for AI agents operating in the Japanese market, covering regulations, protocols, calendar, regional context, foreign entry, travel, entertainment, and persistent memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Japan Operations OS — Verified knowledge across 10 domains for AI agents operating in the Japanese market. Regulations, protocols, calendar, regional, foreign entry, travel, entertainment, and persistent memory.
 
-## Publisher: <br>
-[hiroshic9-png](https://clawhub.ai/user/hiroshic9-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hiroshic9-png](https://clawhub.ai/user/hiroshic9-png)
 
-## Use Case: <br>
-External agents, developers, and business operators use this skill for Japan market-entry, compliance, etiquette, travel, regional, calendar, and entertainment lookups, plus optional persistent memory for notes and context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote persistent memory may store personal or business notes without clear privacy, deletion, retention, isolation, or access-control boundaries. <br>
-Mitigation: Avoid submitting confidential business plans, client notes, employee information, passport or visa details, itineraries, and contact preferences unless the publisher documents acceptable controls. <br>
-Risk: The skill references a remote service and an npm MCP package that should be trusted separately before use. <br>
-Mitigation: Review the remote API behavior and verify the npm MCP package before running it in an agent environment. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to query Japan business operations knowledge for market entry, compliance, business etiquette, travel, calendar timing, regional strategy, and memory-assisted context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hiroshic9-png/japan-business-operations) <br>
-- [EDITION API documentation](https://api.edition.sh/docs) <br>
-- [EDITION landing page](https://edition.sh) <br>
-- [edition-mcp-server npm package](https://www.npmjs.com/package/edition-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a remote API and MCP server; persistent memory features can store user-provided notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Unpinned external MCP server execution can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the npm package before enabling the MCP server.
+
+Risk: API and memory features may send or retain sensitive business, personal, regulated, or secret data externally.
+
+Mitigation: Avoid submitting confidential data unless retention, deletion, and access controls have been reviewed.
+
+Risk: Business, regulatory, and etiquette guidance can be incorrect, stale, or incomplete for a specific situation.
+
+Mitigation: Review outputs before using them for operational, legal, compliance, travel, or financial decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/hiroshic9-png/skills/japan-business-operations)
+- [EDITION API docs](https://api.edition.sh/docs)
+- [EDITION landing page](https://edition.sh)
+- [edition-mcp-server npm package](https://www.npmjs.com/package/edition-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with REST API examples, curl commands, and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a third-party API and optional MCP server; memory endpoints may retain submitted context externally.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

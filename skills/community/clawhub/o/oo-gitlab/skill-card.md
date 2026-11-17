@@ -1,44 +1,51 @@
-## Description: <br>
-GitLab (gitlab.com) skill for reading, creating, and updating GitLab data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitLab (gitlab.com). Use this skill for ANY GitLab request — reading, creating, updating, and deleting data. Whenever a task involves GitLab, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and teams use this skill to inspect GitLab user, project, and issue data and to create project issues through their connected OOMOL GitLab account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OOMOL-connected GitLab account and can access GitLab data through that connection. <br>
-Mitigation: Confirm the connected account and OOMOL CLI trust boundary before use, and review returned data according to the user's access expectations. <br>
-Risk: Issue creation changes GitLab project state. <br>
-Mitigation: Fetch the live connector schema, show the exact payload and intended effect, and get explicit user confirmation before running write actions. <br>
-Risk: First-time setup may require running an external OOMOL CLI installation command. <br>
-Mitigation: Run installation only when the CLI is missing and only after the user confirms they trust the OOMOL CLI source. <br>
+## Use Case:
 
+Developers use this skill to read and manage GitLab projects, issues, merge requests, and comments through their connected GitLab account.
 
-## Reference(s): <br>
-- [GitLab](https://gitlab.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution; write actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill metadata) <br>
+Risk: Automatic setup may execute unverified downloads and change other agents’ installed skills without disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a verified CLI yourself, review its automatic skill synchronization, use narrowly scoped GitLab permissions, and require approval for writes and deletions.
+
+## Reference(s):
+
+- [oo CLI project (linked from the skill)](https://github.com/oomol-lab/oo-cli)
+- [GitLab](https://gitlab.com)
+- [GitLab REST API authentication documentation](https://docs.gitlab.com/api/rest/authentication/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON action results and concise natural-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write and deletion actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

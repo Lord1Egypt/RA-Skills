@@ -1,39 +1,49 @@
-## Description: <br>
-Guides an agent to produce Python code that prints a classic Doge ASCII meme with short meme phrases and aligned text layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draw Doge ASCII helps an agent produce Python code that prints a classic Doge ASCII meme with representative phrases and aligned text.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and agents use this skill to generate a small Python example that prints Doge-style ASCII art and representative meme phrases in a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future edits or optional extensions could add input handling, file access, network access, or external dependencies. <br>
-Mitigation: Review and rescan future versions before running or publishing them. <br>
+## Use Case:
 
+Developers and agent users can use this skill when they want concise guidance or sample Python code for rendering a simple Doge ASCII meme in a terminal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/doge) <br>
-- [Publisher profile](https://clawhub.ai/user/DuanC-Chao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code blocks and explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces terminal-oriented ASCII art guidance and a self-contained Python example.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The source instructions are written in Chinese, which can make review harder for non-Chinese-speaking installers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use translated or bilingual review before deployment and verify that the sample code only prints static console text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/doge)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, markdown]
+
+**Output Format:** [Markdown with inline Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated code prints static console text and does not require credentials, network access, local indexing, or persistent changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

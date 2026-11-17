@@ -1,0 +1,1084 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "power_plan",
+      "patterns": [
+        "配电平面图",
+        "动力平面图",
+        "强电平面图",
+        "电气平面图",
+        "照明平面图",
+        "插座平面图",
+        "POWER PLAN",
+        "LIGHTING PLAN",
+        "ELECTRICAL PLAN"
+      ]
+    },
+    {
+      "type": "system",
+      "patterns": [
+        "系统图",
+        "原理图",
+        "配电系统图",
+        "SYSTEM DIAGRAM",
+        "SCH"
+      ]
+    },
+    {
+      "type": "fire_alarm_plan",
+      "patterns": [
+        "消防平面图",
+        "火灾报警平面图",
+        "消防报警平面图",
+        "自动报警",
+        "FIRE ALARM PLAN",
+        "FIRE PROTECTION PLAN"
+      ]
+    },
+    {
+      "type": "weak_current_plan",
+      "patterns": [
+        "弱电平面图",
+        "安防平面图",
+        "智能化平面图",
+        "综合布线平面",
+        "门禁平面",
+        "楼宇自控",
+        "BA平面",
+        "WEAK CURRENT PLAN",
+        "SECURITY PLAN"
+      ]
+    },
+    {
+      "type": "fire_system",
+      "patterns": [
+        "消防系统图",
+        "报警系统图",
+        "喷淋系统图",
+        "消火栓系统图",
+        "气体灭火系统图"
+      ]
+    },
+    {
+      "type": "bas_system",
+      "patterns": [
+        "楼宇自控",
+        "智能系统图",
+        "BA系统",
+        "BAS",
+        "楼控",
+        "监控系统图"
+      ]
+    },
+    {
+      "type": "trunk",
+      "patterns": [
+        "干线图",
+        "桥架平面",
+        "母线干线",
+        "竖井图",
+        "管井图",
+        "RISER DIAGRAM",
+        "TRUNK"
+      ]
+    },
+    {
+      "type": "detail",
+      "patterns": [
+        "详图",
+        "大样",
+        "节点图",
+        "DETAIL",
+        "安装图"
+      ]
+    },
+    {
+      "type": "schedule",
+      "patterns": [
+        "材料表",
+        "设备表",
+        "图例",
+        "配电箱系统图",
+        "回路表",
+        "SCHEDULE",
+        "LEGEND"
+      ]
+    },
+    {
+      "type": "lightning",
+      "patterns": [
+        "防雷",
+        "接地",
+        "等电位",
+        "接闪",
+        "LIGHTNING",
+        "GROUNDING"
+      ]
+    },
+    {
+      "type": "fire_water_plan",
+      "patterns": [
+        "消防水",
+        "喷淋平面",
+        "喷洒平面",
+        "消火栓平面",
+        "消防泵房",
+        "消防水池",
+        "泵房平面",
+        "FIRE WATER PLAN",
+        "SPRINKLER PLAN"
+      ]
+    },
+    {
+      "type": "fire_linking_plan",
+      "patterns": [
+        "消防联动",
+        "防火卷帘",
+        "防火门",
+        "消防电源",
+        "消防电气",
+        "联动控制",
+        "FIRE LINKAGE"
+      ]
+    },
+    {
+      "type": "smoke_control_plan",
+      "patterns": [
+        "防排烟",
+        "排烟平面",
+        "正压送风",
+        "机械排烟",
+        "SMOKE CONTROL"
+      ]
+    },
+    {
+      "type": "gas_suppression_plan",
+      "patterns": [
+        "气体灭火",
+        "气灭",
+        "七氟丙烷",
+        "INERGEN",
+        "GAS SUPPRESSION"
+      ]
+    },
+    {
+      "type": "intelligent_plan",
+      "patterns": [
+        "智能化",
+        "智能建筑",
+        "智慧园区",
+        "IBMS",
+        "系统集成",
+        "BAS平面",
+        "楼宇自控平面"
+      ]
+    },
+    {
+      "type": "pds_plan",
+      "patterns": [
+        "综合布线",
+        "信息网络",
+        "机房平面",
+        "机房图",
+        "ODF",
+        "配线架",
+        "PDS",
+        "NETWORK"
+      ]
+    },
+    {
+      "type": "cctv_plan",
+      "patterns": [
+        "视频监控",
+        "安防平面",
+        "摄像机",
+        "CCTV",
+        "SECURITY"
+      ]
+    },
+    {
+      "type": "broadcast_plan",
+      "patterns": [
+        "广播",
+        "会议",
+        "扩声",
+        "背景音乐",
+        "PA",
+        "AV",
+        "音视频"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "power_distribution",
+      "patterns": [
+        "变配电",
+        "配电",
+        "低压柜",
+        "高压柜",
+        "变压器",
+        "母线"
+      ]
+    },
+    {
+      "system": "lighting",
+      "patterns": [
+        "照明",
+        "LIGHTING",
+        "LIGHT"
+      ]
+    },
+    {
+      "system": "power",
+      "patterns": [
+        "动力",
+        "POWER"
+      ]
+    },
+    {
+      "system": "emergency",
+      "patterns": [
+        "应急照明",
+        "疏散指示",
+        "安全出口",
+        "EMERGENCY",
+        "EVAC"
+      ]
+    },
+    {
+      "system": "fire_alarm",
+      "patterns": [
+        "火灾报警",
+        "消防报警",
+        "报警",
+        "FIRE ALARM",
+        "FA",
+        "联动",
+        "FAS",
+        "火灾自动报警",
+        "报警控制器",
+        "CRT"
+      ]
+    },
+    {
+      "system": "security",
+      "patterns": [
+        "安防",
+        "监控",
+        "门禁",
+        "入侵报警"
+      ]
+    },
+    {
+      "system": "weak_current",
+      "patterns": [
+        "弱电",
+        "智能化",
+        "综合布线",
+        "信息",
+        "通信",
+        "广播",
+        "电视",
+        "WEAK CURRENT"
+      ]
+    },
+    {
+      "system": "lightning_protection",
+      "patterns": [
+        "防雷",
+        "接地",
+        "等电位",
+        "接闪",
+        "LIGHTNING"
+      ]
+    },
+    {
+      "system": "fire_water",
+      "patterns": [
+        "消火栓",
+        "室内消火栓",
+        "室外消火栓",
+        "消防给水",
+        "消防泵"
+      ]
+    },
+    {
+      "system": "sprinkler",
+      "patterns": [
+        "喷淋",
+        "自动喷水",
+        "SA",
+        "SPRINKLER"
+      ]
+    },
+    {
+      "system": "gas_suppression",
+      "patterns": [
+        "气体灭火",
+        "气灭",
+        "七氟丙烷",
+        "CO2灭火",
+        "INERGEN"
+      ]
+    },
+    {
+      "system": "smoke_control",
+      "patterns": [
+        "防排烟",
+        "排烟",
+        "正压送风",
+        "排烟阀",
+        "挡烟垂壁",
+        "SMOKE"
+      ]
+    },
+    {
+      "system": "fire_evacuation",
+      "patterns": [
+        "疏散照明",
+        "疏散指示",
+        "出口指示",
+        "EVAC",
+        "疏散"
+      ]
+    },
+    {
+      "system": "information_network",
+      "patterns": [
+        "综合布线",
+        "信息网络",
+        "数据点",
+        "网络",
+        "配线架",
+        "信息插座",
+        "DATA",
+        "NETWORK",
+        "PDS",
+        "GCS"
+      ]
+    },
+    {
+      "system": "building_automation",
+      "patterns": [
+        "楼宇自控",
+        "楼控",
+        "BAS",
+        "BA系统",
+        "DDC",
+        "自控"
+      ]
+    },
+    {
+      "system": "access_control",
+      "patterns": [
+        "门禁",
+        "门禁系统",
+        "刷卡",
+        "人脸识别门禁",
+        "ACS"
+      ]
+    },
+    {
+      "system": "intercom_audio",
+      "patterns": [
+        "广播",
+        "会议系统",
+        "对讲",
+        "背景音乐",
+        "音视频",
+        "PA",
+        "AV"
+      ]
+    },
+    {
+      "system": "weak_current_other",
+      "patterns": [
+        "弱电",
+        "智能化",
+        "WEAK CURRENT",
+        "IBMS",
+        "IBMS 集成"
+      ]
+    },
+    {
+      "system": "fire_linking",
+      "patterns": [
+        "消防联动",
+        "防火卷帘",
+        "防火门",
+        "消防电源",
+        "消防电气",
+        "联动控制",
+        "FIRE LINKING",
+        "FIRE POWER"
+      ]
+    },
+    {
+      "system": "fire_pump",
+      "patterns": [
+        "消防泵",
+        "消防水泵",
+        "稳压泵",
+        "水泵接合器",
+        "消防水池",
+        "消防水箱",
+        "FIRE PUMP"
+      ]
+    },
+    {
+      "system": "pds",
+      "patterns": [
+        "综合布线",
+        "信息网络",
+        "机房",
+        "ODF",
+        "配线架",
+        "数据点",
+        "光缆",
+        "PDS",
+        "GCS",
+        "NETWORK"
+      ]
+    },
+    {
+      "system": "cctv",
+      "patterns": [
+        "视频监控",
+        "摄像机",
+        "摄像头",
+        "安防",
+        "CCTV",
+        "VIDEO"
+      ]
+    },
+    {
+      "system": "public_address",
+      "patterns": [
+        "广播",
+        "会议系统",
+        "扩声",
+        "背景音乐",
+        "音视频",
+        "显示",
+        "PA",
+        "AV"
+      ]
+    },
+    {
+      "system": "parking",
+      "patterns": [
+        "停车",
+        "道闸",
+        "车牌",
+        "充电桩",
+        "车位",
+        "PARKING"
+      ]
+    },
+    {
+      "system": "energy_metering",
+      "patterns": [
+        "能耗计量",
+        "能源管理",
+        "电表",
+        "水表",
+        "热量表",
+        "冷量表",
+        "计量",
+        "ENERGY"
+      ]
+    },
+    {
+      "system": "smart_lighting",
+      "patterns": [
+        "智能照明",
+        "调光",
+        "DALI",
+        "KNX",
+        "智能开关"
+      ]
+    },
+    {
+      "system": "ibms",
+      "patterns": [
+        "IBMS",
+        "集成管理",
+        "系统集成",
+        "运维管理",
+        "智能管理平台"
+      ]
+    }
+  ],
+  "route_rules": [
+    {
+      "route_class": "conduit",
+      "system": "",
+      "patterns": [
+        "SC",
+        "PC",
+        "JDG",
+        "KBG",
+        "RC",
+        "导管",
+        "线管",
+        "配管",
+        "CONDUIT"
+      ]
+    },
+    {
+      "route_class": "cable",
+      "system": "",
+      "patterns": [
+        "电缆",
+        "YJV",
+        "YJY",
+        "WDZ",
+        "WDZN",
+        "NH",
+        "CABLE"
+      ]
+    },
+    {
+      "route_class": "wire",
+      "system": "",
+      "patterns": [
+        "导线",
+        "电线",
+        "BV",
+        "BYJ",
+        "BVR",
+        "WIRE"
+      ]
+    },
+    {
+      "route_class": "cable_tray",
+      "system": "",
+      "patterns": [
+        "桥架",
+        "线槽",
+        "梯架",
+        "金属线槽",
+        "CABLE TRAY",
+        "TRAY"
+      ]
+    },
+    {
+      "route_class": "busway",
+      "system": "",
+      "patterns": [
+        "母线槽",
+        "母线",
+        "BUSBAR",
+        "BUSWAY"
+      ]
+    },
+    {
+      "route_class": "fire_loop",
+      "system": "fire_alarm",
+      "patterns": [
+        "火警总线",
+        "报警总线",
+        "消防总线",
+        "联动总线",
+        "FAS",
+        "FAL",
+        "FIRE LOOP",
+        "ALARM LOOP"
+      ]
+    },
+    {
+      "route_class": "signal_bus",
+      "system": "weak_current",
+      "patterns": [
+        "通信",
+        "信号",
+        "总线",
+        "广播",
+        "信息",
+        "综合布线",
+        "光纤",
+        "光缆",
+        "CCTV",
+        "CATV",
+        "SDI",
+        "RS485",
+        "KNX",
+        "DALI",
+        "SIGNAL",
+        "NET",
+        "FIBER"
+      ]
+    }
+  ],
+  "equipment_rules": [
+    {
+      "category": "distribution_box",
+      "system": "power_distribution",
+      "patterns": [
+        "配电箱",
+        "配电柜",
+        "配电屏",
+        "控制箱",
+        "电源箱",
+        "照明箱",
+        "动力箱",
+        "AL",
+        "AP",
+        "AE",
+        "AT",
+        "AW",
+        "XAL",
+        "XAP",
+        "电表箱"
+      ]
+    },
+    {
+      "category": "emergency_device",
+      "system": "emergency",
+      "patterns": [
+        "应急灯",
+        "疏散指示灯",
+        "安全出口灯",
+        "应急照明",
+        "EMERGENCY LIGHT",
+        "EXIT SIGN"
+      ]
+    },
+    {
+      "category": "lighting",
+      "system": "lighting",
+      "patterns": [
+        "灯具",
+        "灯",
+        "吸顶灯",
+        "筒灯",
+        "格栅灯",
+        "LED",
+        "LUMINAIRE",
+        "LAMP"
+      ]
+    },
+    {
+      "category": "switch_socket",
+      "system": "lighting",
+      "patterns": [
+        "开关",
+        "插座",
+        "三联",
+        "双联",
+        "单联",
+        "SOCKET",
+        "SWITCH"
+      ]
+    },
+    {
+      "category": "detector",
+      "system": "fire_alarm",
+      "patterns": [
+        "感烟",
+        "感温",
+        "烟感",
+        "温感",
+        "探测器",
+        "DETECTOR"
+      ]
+    },
+    {
+      "category": "alarm_device",
+      "system": "fire_alarm",
+      "patterns": [
+        "手报",
+        "声光",
+        "报警按钮",
+        "警铃",
+        "模块",
+        "消防广播",
+        "消防电话"
+      ]
+    },
+    {
+      "category": "panel",
+      "system": "power_distribution",
+      "patterns": [
+        "进线柜",
+        "出线柜",
+        "计量柜",
+        "补偿柜",
+        "双电源",
+        "ATS",
+        "控制柜"
+      ]
+    },
+    {
+      "category": "lightning_device",
+      "system": "lightning_protection",
+      "patterns": [
+        "接闪带",
+        "接闪杆",
+        "引下线",
+        "测试卡",
+        "均压环",
+        "等电位联结",
+        "SPD",
+        "电涌"
+      ]
+    },
+    {
+      "category": "camera",
+      "system": "security",
+      "patterns": [
+        "摄像机",
+        "摄像头",
+        "半球",
+        "枪机",
+        "CAMERA"
+      ]
+    },
+    {
+      "category": "fire_hydrant",
+      "system": "fire_water",
+      "patterns": [
+        "消火栓",
+        "消防栓",
+        "水泵接合器",
+        "HYDRANT",
+        "消防卷盘"
+      ]
+    },
+    {
+      "category": "sprinkler_head",
+      "system": "sprinkler",
+      "patterns": [
+        "喷头",
+        "喷淋头",
+        "SPRINKLER HEAD",
+        "上喷",
+        "下喷",
+        "ERS"
+      ]
+    },
+    {
+      "category": "gas_suppression_device",
+      "system": "gas_suppression",
+      "patterns": [
+        "气瓶",
+        "灭火控制器",
+        "气体灭火",
+        "七氟丙烷",
+        "无管网"
+      ]
+    },
+    {
+      "category": "fire_alarm_control",
+      "system": "fire_alarm",
+      "patterns": [
+        "报警控制器",
+        "联动控制器",
+        "CRT",
+        "火灾显示盘",
+        "消防应急电源",
+        "集中控制器",
+        "FACP"
+      ]
+    },
+    {
+      "category": "smoke_exhaust_device",
+      "system": "smoke_control",
+      "patterns": [
+        "排烟口",
+        "排烟阀",
+        "送风口",
+        "正压送风阀",
+        "挡烟垂壁",
+        "排烟风机",
+        "加压风机"
+      ]
+    },
+    {
+      "category": "it_outlet",
+      "system": "information_network",
+      "patterns": [
+        "信息插座",
+        "数据插座",
+        "语音插座",
+        "网络插座",
+        "TV插座",
+        "电话插座",
+        "DATA OUTLET",
+        "信息点"
+      ]
+    },
+    {
+      "category": "cabinet_patch",
+      "system": "information_network",
+      "patterns": [
+        "机柜",
+        "配线架",
+        "弱电箱",
+        "信息箱",
+        "网络机柜",
+        "ODF",
+        "MDF",
+        "IDF"
+      ]
+    },
+    {
+      "category": "access_control_device",
+      "system": "access_control",
+      "patterns": [
+        "门禁",
+        "读卡器",
+        "电磁锁",
+        "磁力锁",
+        "门禁控制器",
+        "人脸识别",
+        "刷卡器"
+      ]
+    },
+    {
+      "category": "audio_device",
+      "system": "intercom_audio",
+      "patterns": [
+        "广播音箱",
+        "扬声器",
+        "喇叭",
+        "会议话筒",
+        "投影",
+        "音频处理器",
+        "音箱",
+        "PANEL"
+      ]
+    },
+    {
+      "category": "ba_sensor",
+      "system": "building_automation",
+      "patterns": [
+        "DDC",
+        "温度传感器",
+        "湿度传感器",
+        "CO2传感器",
+        "压差传感器",
+        "风阀执行器",
+        "水阀执行器",
+        "BMS 网关"
+      ]
+    },
+    {
+      "category": "ap_device",
+      "system": "information_network",
+      "patterns": [
+        "AP",
+        "无线AP",
+        "射器AP",
+        "无线接入点",
+        "全向天线",
+        "定向天线"
+      ]
+    },
+    {
+      "category": "fire_shutter",
+      "system": "fire_linking",
+      "patterns": [
+        "防火卷帘",
+        "防火门",
+        "防火窗",
+        "卷帘门",
+        "挡烟垂壁",
+        "FIRE SHUTTER",
+        "FIRE DOOR"
+      ]
+    },
+    {
+      "category": "fire_pump",
+      "system": "fire_pump",
+      "patterns": [
+        "消防泵",
+        "消防水泵",
+        "稳压泵",
+        "水泵接合器",
+        "消防水池",
+        "FIRE PUMP"
+      ]
+    },
+    {
+      "category": "fire_control_panel",
+      "system": "fire_alarm",
+      "patterns": [
+        "火灾报警控制器",
+        "联动控制器",
+        "CRT",
+        "消防控制室",
+        "集中控制器",
+        "FACP",
+        "火灾显示盘"
+      ]
+    },
+    {
+      "category": "smoke_exhaust",
+      "system": "smoke_control",
+      "patterns": [
+        "排烟口",
+        "排烟阀",
+        "送风口",
+        "加压送风",
+        "排烟风机",
+        "加压风机",
+        "挡烟垂壁",
+        "SMOKE"
+      ]
+    },
+    {
+      "category": "network_device",
+      "system": "pds",
+      "patterns": [
+        "交换机",
+        "路由器",
+        "光端机",
+        "ONU",
+        "ODF",
+        "配线架",
+        "网络机柜",
+        "服务器",
+        "机柜",
+        "SWITCH",
+        "ROUTER"
+      ]
+    },
+    {
+      "category": "camera_device",
+      "system": "cctv",
+      "patterns": [
+        "摄像机",
+        "摄像头",
+        "半球",
+        "枪机",
+        "球机",
+        "CCTV",
+        "CAMERA"
+      ]
+    },
+    {
+      "category": "door_station",
+      "system": "access_control",
+      "patterns": [
+        "门口机",
+        "室内机",
+        "可视对讲",
+        "访客机",
+        "读卡器",
+        "电磁锁",
+        "门禁控制器",
+        "DOOR STATION",
+        "INTERCOM"
+      ]
+    },
+    {
+      "category": "broadcast_speaker",
+      "system": "public_address",
+      "patterns": [
+        "广播音箱",
+        "扩声音箱",
+        "扬声器",
+        "喇叭",
+        "会议话筒",
+        "音频处理器",
+        "音箱",
+        "SPEAKER"
+      ]
+    },
+    {
+      "category": "energy_meter",
+      "system": "energy_metering",
+      "patterns": [
+        "电表",
+        "水表",
+        "热量表",
+        "冷量表",
+        "计量表",
+        "远传表",
+        "ENERGY METER"
+      ]
+    },
+    {
+      "category": "smart_lighting_panel",
+      "system": "smart_lighting",
+      "patterns": [
+        "智能面板",
+        "调光模块",
+        "场景控制",
+        "DALI",
+        "KNX",
+        "智能照明"
+      ]
+    },
+    {
+      "category": "ddc_controller",
+      "system": "building_automation",
+      "patterns": [
+        "DDC",
+        "控制器",
+        "直接数字控制",
+        "BMS",
+        "BA控制器"
+      ]
+    }
+  ],
+  "circuit_pattern": "(?<![A-Za-z0-9])((?:WL|WP|WE|WPM|WPL|WPE|EM|L|M|FAS|FA|FBF|FB|FBN|XE|X|XFB|XS|XQ|CCTV|PDS|ACS|PA|AV|IBMS|BMS|AO|DI|DO|AI|MS|HY|SP)[-_ ]?\\d{1,4})(?![A-Za-z0-9])",
+  "equipment_tag_pattern": "(?<![A-Za-z0-9])([A-Z]{1,4}[-_]?\\d{1,4})(?![A-Za-z0-9])",
+  "spec_pattern": "(?<![A-Za-z0-9])((?:WDZ|WDZC|WDZN|BYJ|BV|BVR|YJV|YJY|NH|RVS|RVB|KVV|RVV|RVSP|JDG|KBG|SC|PC|UTP|STP|CAT5E|CAT6|CAT6A|GYXTW|GYTA|FIBER)[A-Z0-9+./×xX-]*(?:\\d+\\s*[xX×]\\s*\\d+(?:\\.\\d+)?(?:\\+\\d+\\s*[xX×]\\s*\\d+(?:\\.\\d+)?)*)(?:[-–][A-Z0-9/.]+)*)",
+  "floor_pattern": "^(?:B\\d{1,2}|F\\d{1,2}|[1-9]\\d?F|ROOF|RF|屋面|屋顶|首层|一层|二层|三层|四层|五层|六层|七层|八层|九层|十层)$",
+  "scale_pattern": "(?:1\\s*[:：]\\s*\\d{1,4})",
+  "unit_patterns": {
+    "mm": [
+      "毫米",
+      "MM",
+      "mm"
+    ],
+    "m": [
+      "米",
+      "M",
+      "m"
+    ]
+  },
+  "domain_rules": {
+    "fire_protection": [
+      "fire_alarm",
+      "fire_water",
+      "sprinkler",
+      "gas_suppression",
+      "smoke_control",
+      "fire_evacuation",
+      "emergency",
+      "fire_linking",
+      "fire_pump",
+      "fire_shutter"
+    ],
+    "weak_current": [
+      "security",
+      "weak_current",
+      "information_network",
+      "access_control",
+      "intercom_audio",
+      "weak_current_other",
+      "pds",
+      "cctv",
+      "public_address",
+      "parking"
+    ],
+    "intelligent_building": [
+      "building_automation",
+      "energy_metering",
+      "smart_lighting",
+      "ibms",
+      "weak_current_other"
+    ]
+  }
+}

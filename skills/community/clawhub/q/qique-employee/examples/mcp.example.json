@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "qique_employee": {
+      "command": "REPLACE_WITH_INSTALLED_NODE_EXECUTABLE",
+      "args": [
+        "REPLACE_WITH_OFFICIAL_RUNTIME_DIRECTORY/mcp/server.cjs"
+      ]
+    }
+  }
+}

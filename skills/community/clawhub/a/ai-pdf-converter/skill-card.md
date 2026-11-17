@@ -1,41 +1,52 @@
-## Description: <br>
-AI PDF Converter helps an agent convert PDFs to Markdown, HTML, LaTeX, DOCX, or JSON using the MinerU API with layout analysis, table recognition, formula detection, OCR, and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI PDF Converter helps agents convert PDFs to Markdown, HTML, LaTeX, DOCX, or JSON using the MinerU API and mineru-open-api CLI with layout analysis, table recognition, formula detection, and OCR.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and document-processing teams use this skill to guide PDF conversion workflows for scanned documents, academic papers, reports, contracts, and multilingual documents. It selects MinerU CLI commands for quick Markdown extraction, multi-format conversion, AI-enhanced layout handling, and batch processing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs users to install an unpinned global third-party CLI.
+
+Mitigation: Review and pin the mineru-open-api version where possible, install it locally or in a sandbox, and scan it before use.
+
+Risk: PDF contents may be processed through MinerU without artifact-level privacy or retention guidance.
+
+Mitigation: Avoid confidential, legal, financial, medical, or proprietary PDFs unless MinerU data-handling terms and required approvals are confirmed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and other external users use this skill to guide an agent through installing and running mineru-open-api for single-file or batch PDF conversion. It is suited for converting scanned documents, academic papers, reports, contracts, and multilingual PDFs into editable or structured formats. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: PDF contents may be processed by MinerU or its API, which can expose confidential, regulated, legal, or financial documents to an external service. <br>
-Mitigation: Use only documents approved for external processing and avoid confidential or regulated PDFs unless policy permits MinerU processing. <br>
-Risk: The skill depends on the third-party mineru-open-api CLI and MinerU service. <br>
-Mitigation: Install and run it only in environments where the package and service are trusted. <br>
-Risk: Converted files are written locally and may include sensitive document content. <br>
-Mitigation: Choose explicit input files and output folders, then review generated files before sharing or using them downstream. <br>
+**Output Format:** [Markdown with inline bash code blocks and file-format guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Can direct generation of Markdown, HTML, LaTeX, DOCX, or JSON files through mineru-open-api.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands; converted files may be Markdown, HTML, LaTeX, DOCX, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes converted files to user-selected or default local output folders.] <br>
+0.2.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

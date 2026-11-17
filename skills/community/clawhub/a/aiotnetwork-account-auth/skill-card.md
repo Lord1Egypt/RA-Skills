@@ -1,43 +1,52 @@
-## Description: <br>
-Account signup, login via email/OTP/wallet/biometric, token refresh, password reset, and session management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Account signup, login via email/OTP/wallet/biometric, token refresh, password reset, and session management.
 
-## Publisher: <br>
-[D9m1n1c](https://clawhub.ai/user/D9m1n1c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[d9m1n1c](https://clawhub.ai/user/d9m1n1c)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to guide account signup, authentication, session management, password recovery, and wallet-linking flows for the AIOT account API.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive authentication material, including passwords, OTPs, bearer tokens, refresh tokens, and wallet-linking actions.
+
+Mitigation: Keep credentials scoped to user-initiated requests, avoid logging or persisting secrets, and verify the configured AIOT_API_BASE_URL before use.
+
+Risk: Account operations can fail or lock accounts when authentication flows are skipped or repeated incorrectly.
+
+Mitigation: Follow the documented OTP, login, token refresh, password reset, and unlock flow order before retrying account actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to guide account signup, login, token refresh, password reset, wallet linking, and session management flows against an AIOT authentication API. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, API Calls, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Credentials, OTPs, wallet signatures, tokens, or PINs could be exposed during account actions. <br>
-Mitigation: Use secrets transiently, never log or store them, and request them only for account actions the user explicitly requested. <br>
-Risk: Sensitive data could be sent to an unintended AIOT environment. <br>
-Mitigation: Set AIOT_API_BASE_URL to the trusted AIOT environment before use and verify the endpoint before submitting credentials. <br>
-Risk: Sensitive account changes such as password reset, wallet changes, or logout-all could be performed unintentionally. <br>
-Mitigation: Confirm user intent before executing sensitive account operations and follow the documented OTP and authentication flow order. <br>
+**Output Format:** [Markdown with endpoint descriptions and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/D9m1n1c/aiotnetwork-account-auth) <br>
-- [Default AIOT API base URL](https://payment-api-dev.aiotnetwork.io) <br>
+**Other Properties Related to Output:** [Requires AIOT_API_BASE_URL for API base URL configuration; handles passwords, OTPs, bearer tokens, refresh tokens, and wallet-linking inputs transiently.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline API endpoints and bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted AIOT_API_BASE_URL when overriding the default API base URL.] <br>
+1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence; artifact frontmatter states 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

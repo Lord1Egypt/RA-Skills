@@ -1,38 +1,48 @@
-## Description: <br>
-Magyar nyelvű API dokumentációk, fejlesztői útmutatók, technikai szakkifejezések és példakódok keresését és magyarázatát segíti. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Magyar nyelvű API dokumentációk, fejlesztői útmutatók, technikai szakkifejezések és példakódok keresése és magyarázata.
 
-## Publisher: <br>
-[Izsook](https://clawhub.ai/user/Izsook) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[izsook](https://clawhub.ai/user/izsook)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to work with Hungarian-language API documentation, endpoint descriptions, technical terminology, example code, and troubleshooting notes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The package references documentation files that are not included in the artifact, so it may be a guidance template rather than a complete API documentation library.
+
+Mitigation: Verify answers against the source API documentation and provide any required reference files before relying on it for implementation decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to work with Hungarian API documentation, endpoint descriptions, technical terminology, localized code examples, and Hungarian error-message analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced documentation files are not included in the package, so responses may depend on documentation supplied separately by the user or workspace. <br>
-Mitigation: Provide or verify the relevant Hungarian API reference material before relying on generated explanations. <br>
+**Output Format:** [Markdown or plain text with optional code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Izsook/magyar-api-docs) <br>
+**Other Properties Related to Output:** [Hungarian-language explanations should preserve original English technical terms when useful.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text with optional code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only documentation helper; referenced documentation files are not included in the release artifact.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

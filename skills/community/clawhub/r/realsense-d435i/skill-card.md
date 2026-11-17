@@ -1,42 +1,59 @@
-## Description: <br>
-Intel RealSense D435i depth camera skill for capturing depth photos, 3D point clouds, IMU data, and RGBD videos with date-organized local storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intel RealSense D435i depth camera operation skill for depth photos, 3D point clouds, IMU data, and RGBD video recording with automatic date-based output organization.
 
-## Publisher: <br>
-[zh1fen](https://clawhub.ai/user/zh1fen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zh1fen](https://clawhub.ai/user/zh1fen)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to operate a local Intel RealSense D435i camera for depth images, point-cloud capture, IMU recordings, and synchronized RGBD video collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Captured camera, depth, point-cloud, video, and IMU files may contain private physical-environment data. <br>
-Mitigation: Keep the output path under user control, use short intentional recordings, and handle saved files according to the user's data-retention and privacy requirements. <br>
-Risk: The skill requires local hardware access and external runtime dependencies such as pyrealsense2, OpenCV, NumPy, and ffmpeg. <br>
-Mitigation: Install dependencies only from trusted sources and run the capture commands only on systems intended to operate the RealSense device. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate an Intel RealSense D435i camera from an agent workflow and capture local RGB, depth, point-cloud, video, and IMU data for robotics, perception, or sensor-data collection tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zh1fen/realsense-d435i) <br>
-- [MeshLab](https://www.meshlab.net/downloads) <br>
-- [3D Viewer](https://3dviewer.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; camera runs produce JPG, PNG, MP4, PLY, and CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Captured outputs are written to a local output directory organized by content type and date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can access a RealSense camera and save potentially sensitive RGB, depth, point-cloud, video, and IMU data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in trusted capture environments, choose an approved local output directory, and review collected data before sharing or retaining it.
+
+Risk: The security summary flags unsafe FFmpeg path handling for RGBD recording workflows.
+
+Mitigation: Use a simple trusted output path without quotes or newlines, avoid shared or untrusted workflows until reviewed, and patch the FFmpeg manifest handling before broader use.
+
+Risk: The capture script interacts with camera hardware and writes files to disk.
+
+Mitigation: Use a virtual environment, avoid administrative privileges, and review the script and dependencies before installation.
+
+## Reference(s):
+
+- [MeshLab](https://www.meshlab.net/downloads)
+- [CloudCompare](https://www.dashcamviewer.com/)
+- [Online 3D Viewer](https://3dviewer.net/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python script usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance can lead to local capture files including JPEG, PNG, MP4, PLY, and CSV outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

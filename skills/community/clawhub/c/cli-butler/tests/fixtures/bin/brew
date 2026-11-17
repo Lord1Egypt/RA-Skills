@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# fake brew — serves fixture data; unknown invocations exit 64 (misuse).
+set -u
+DATA="$(cd "$(dirname "$0")/../data" && pwd)"
+case "$*" in
+  "list --versions") cat "$DATA/brew-formula-versions.txt" ;;
+  "list --cask --versions") cat "$DATA/brew-cask-versions.txt" ;;
+  "desc"*) n="${2:-}"; d=$(awk -F': ' -v x="$n" '$1==x{print $2}' "$DATA/brew-desc.txt")
+    [ -n "$d" ] && printf '%s: %s\n' "$n" "$d" || exit 1 ;;
+  "outdated --versions") cat "$DATA/brew-outdated.txt" ;;
+  "upgrade"*) [ -n "${BUTLER_FAKE_INSTALL_LOG:-}" ] && printf 'brew %s\n' "$*" >> "$BUTLER_FAKE_INSTALL_LOG"; exit 0 ;;
+  "uninstall"*) [ -n "${BUTLER_FAKE_INSTALL_LOG:-}" ] && printf 'brew %s\n' "$*" >> "$BUTLER_FAKE_INSTALL_LOG"; exit 0 ;;
+  "install"*) [ -n "${BUTLER_FAKE_INSTALL_LOG:-}" ] && printf 'brew %s proxy=%s\n' "$*" "${HTTPS_PROXY:-none}" >> "$BUTLER_FAKE_INSTALL_LOG"; exit 0 ;;
+  *) exit 64 ;;
+esac

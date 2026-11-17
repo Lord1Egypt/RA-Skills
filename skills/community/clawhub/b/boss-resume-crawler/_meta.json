@@ -1,0 +1,7 @@
+{
+  "name": "boss-resume-crawler",
+  "version": "1.0.0",
+  "description": "从 Boss 直聘批量爬取职位详情（含 security_id、职位描述），支持 PUA 薪资解码和增量去重",
+  "author": "iichaner",
+  "license": "MIT"
+}

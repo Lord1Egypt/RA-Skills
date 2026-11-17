@@ -1,43 +1,57 @@
-## Description: <br>
-Provides Bilibili CLI guidance for retrieving video details, subtitles, AI summaries, comments, related videos, audio segments, user data, search results, rankings, feeds, collections, history, and account interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing Bilibili CLI workflows for retrieving video, subtitle, AI summary, comment, related-video, audio, user, search, ranking, feed, favorites, history, and account interaction data.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Developers and external users can use this skill to ask an agent for Bilibili data retrieval, audio extraction, structured YAML or JSON outputs, and authenticated account actions through bilibili-cli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use saved or browser login sessions, which may expose private account data without the user noticing. <br>
-Mitigation: Prefer QR login, review credential handling before installation, and require explicit user approval before reading private account areas such as favorites, watch-later, history, feeds, or following lists. <br>
-Risk: The skill includes account-changing actions such as like, coin, triple, and unfollow. <br>
-Mitigation: Require the agent to ask for explicit confirmation before any account-changing command and show the target video or user identifier before execution. <br>
-Risk: The skill depends on bilibili-cli behavior and package integrity. <br>
-Mitigation: Verify the bilibili-cli package source and version before installation or execution. <br>
+## Use Case:
 
+Developers and agents use this skill to operate the bilibili-cli tool for Bilibili content lookup, audio extraction, structured YAML or JSON output, authenticated library access, and explicit account interactions such as likes, coins, triples, and unfollows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-bilibili-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/tianheihei002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and references to YAML or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to create audio files or structured YAML/JSON results when bilibili-cli is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill can reuse saved Bilibili credentials or browser cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use QR login or a dedicated browser/profile where possible, and install only when the agent is allowed to access that Bilibili login state.
+
+Risk: The skill includes account-changing actions such as likes, coins, triples, and unfollows.
+
+Mitigation: Require explicit user confirmation before any authenticated or account-changing command is executed.
+
+Risk: Ambiguous user requests could trigger unintended authenticated actions.
+
+Mitigation: Clarify the intended operation and target video or user before running commands that modify account state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-bilibili-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline shell commands and YAML/JSON output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide commands that produce subtitles, SRT files, segmented WAV audio, full m4a audio, YAML, or JSON through bilibili-cli.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Create new skills, modify and improve existing skills, and measure skill performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and improves agent skills, including drafting skill content, setting up evaluations, benchmarking performance, optimizing trigger descriptions, and packaging releasable skill files.
 
-## Publisher: <br>
-[limoxt](https://clawhub.ai/user/limoxt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[limoxt](https://clawhub.ai/user/limoxt)
 
-## Use Case: <br>
-Developers and skill authors use this skill to draft, revise, evaluate, benchmark, validate, and package agent skills. It supports iterative skill creation workflows from initial intent capture through testing and release preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or modified skill instructions could introduce incorrect, misleading, or overly broad agent behavior. <br>
-Mitigation: Review and scan generated or changed SKILL.md files before enabling or distributing them. <br>
-Risk: Evaluation prompts, workspaces, or packaged folders could accidentally include sensitive information. <br>
-Mitigation: Use a dedicated workspace and avoid placing secrets in eval prompts, skill folders, or packaged artifacts. <br>
-Risk: Local evaluation or helper scripts may execute commands as part of skill testing and packaging workflows. <br>
-Mitigation: Verify external local scripts before allowing an agent to run them. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create or refine agent skills, run human-reviewed evaluation loops, benchmark behavior, optimize trigger descriptions, and package finished skill releases.
 
-## Reference(s): <br>
-- [Skill Creator on ClawHub](https://clawhub.ai/limoxt/rex-skill-creator) <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [Workflow Patterns](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, JSON evaluation files, shell commands, and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify skill directories, evaluation artifacts, review HTML, packaged skill archives, and validation outputs when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide broad creation, editing, testing, and packaging workflows for agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skill changes and scan the final skill before installation or release.
+
+Risk: Packaged skill archives could unintentionally include private data, secrets, or symlinks from a skill folder.
+
+Mitigation: Inspect archive contents before sharing, keep sensitive files out of skill directories, and avoid symlinks inside packaged skills.
+
+Risk: Evaluation and review workflows can involve local helper scripts, subagents, and local review servers.
+
+Mitigation: Approve local commands before execution, inspect outputs before using them, and stop any local review server after the review is complete.
+
+## Reference(s):
+
+- [Workflow Patterns](artifact/references/workflows.md)
+- [Output Patterns](artifact/references/output-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/limoxt/skills/rex-skill-creator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with inline JSON and shell command examples; may also produce skill source files and packaged .skill archives through bundled scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write SKILL.md content, eval metadata, benchmark outputs, review artifacts, and packaged .skill files when directed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

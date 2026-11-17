@@ -1,41 +1,53 @@
-## Description: <br>
-System resource monitoring (CPU, memory, disk, network). Use when user asks "system status", "CPU usage", "memory usage", "disk space", or wants to monitor system resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System resource monitoring (CPU, memory, disk, network). Use when user asks "system status", "CPU usage", "memory usage", "disk space", or wants to monitor system resources.
 
-## Publisher: <br>
-[yushimohuang](https://clawhub.ai/user/yushimohuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yushimohuang](https://clawhub.ai/user/yushimohuang)
 
-## Use Case: <br>
-Developers, operators, and users can ask an agent to inspect local CPU, memory, disk, network, uptime, process, and temperature information when troubleshooting or checking machine health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local diagnostic output can reveal private system details such as process command lines, IP addresses, folder names, disk usage, and project paths. <br>
-Mitigation: Review and redact process, disk, and network output before sharing it outside the local environment. <br>
-Risk: Watch mode continuously runs foreground monitoring and repeatedly refreshes terminal output. <br>
-Mitigation: Use watch mode only when continuous monitoring is intended, and stop it when the diagnostic session is complete. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to ask an agent for local system status, CPU, memory, disk, network, process, uptime, and temperature summaries.
 
-## Reference(s): <br>
-- [System Monitor README](README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yushimohuang/system-monitor-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style terminal output with local system resource summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local diagnostic shell commands; watch mode can refresh continuously until stopped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-controlled process count or monitoring interval values may trigger unintended command execution through argument handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix argument validation before allowing user-controlled values; accept only bounded numeric values for counts and intervals.
+
+Risk: The skill can expose local host telemetry, process details, network status, disk usage, and home directory size summaries.
+
+Mitigation: Use only in environments where exposing local system details is acceptable, and avoid running it on sensitive shared hosts without review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yushimohuang/skills/system-monitor-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May expose local host telemetry, process details, network status, and disk usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

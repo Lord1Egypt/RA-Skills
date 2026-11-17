@@ -1,42 +1,60 @@
-## Description: <br>
-QG Car helps an agent use the local qg CLI to list Qiguan campus bus schedules, choose Zhuhai, South Campus, or East Campus routes, and generate WeChat order-entry links without submitting passenger information, creating orders, or paying. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants help with Qiguan campus bus tickets using the local qg CLI, including listing schedules, choosing Zhuhai/South/East campus routes, generating WeChat order-entry links, copying links, or troubleshooting qg/qg-list commands.
 
-## Publisher: <br>
-[qybaihe](https://clawhub.ai/user/qybaihe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qybaihe](https://clawhub.ai/user/qybaihe)
 
-## Use Case: <br>
-External users and agents use this skill to query Qiguan campus bus schedules and prepare WeChat order-entry links for supported Zhuhai, South Campus, and East Campus routes. The user completes passenger selection, order confirmation, and payment in WeChat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help generate links that lead to ticket purchase flows. <br>
-Mitigation: Keep the boundary at schedule lookup and WeChat order-entry link generation; the user must complete passenger selection, order confirmation, and payment manually. <br>
-Risk: The installer replaces local skill directories and installs a global CLI. <br>
-Mitigation: Inspect the installer and package source before running it, and install only when the qg-skill package or repository is trusted. <br>
+## Use Case:
 
+External users and agents use this skill to list Qiguan campus bus schedules and prepare WeChat order-entry links for supported Zhuhai, South Campus, and East Campus routes. The skill is intended to support schedule lookup and link generation, not passenger submission, order completion, or payment.
 
-## Reference(s): <br>
-- [QG CLI Reference](references/qg-cli.md) <br>
-- [ClawHub QG Car skill page](https://clawhub.ai/qybaihe/qgcar-skill) <br>
-- [qg-skill npm package](https://www.npmjs.com/package/qg-skill) <br>
+### Deployment Geography for Use:
 
+Global; functional use is specific to supported Qiguan campus bus routes serving Zhuhai, South Campus, and East Campus.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with CLI commands, schedule summaries, and plain copyable WeChat order-entry links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state that generated links are order-entry links and do not represent completed bookings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version, package.json) <br>
+Risk: The installer uses mutable remote code, global npm installation, and replacement of local Codex/OpenClaw skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the publisher, reviewing the installer, and preferring an audited pinned release with checksum verification and an explicit destination.
+
+Risk: Generated WeChat links are order-entry links and could be mistaken for completed bookings.
+
+Mitigation: Tell users that passenger selection, order confirmation, and payment must be completed manually in WeChat.
+
+Risk: Requests to automate passenger submission, identity data handling, order saving, or payment exceed the skill's safe boundary.
+
+Mitigation: Limit use to schedule lookup and link generation, and refuse automation that would submit passenger information or trigger payment.
+
+## Reference(s):
+
+- [QG CLI Reference](references/qg-cli.md)
+- [ClawHub Skill Page](https://clawhub.ai/qybaihe/skills/qgcar-skill)
+- [qg-skill npm Package](https://www.npmjs.com/package/qg-skill)
+- [Qiguan bus API endpoint](https://ebk.17u.cn/cxyopenapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands, schedule summaries, and plain copyable WeChat order-entry links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include qg/qg-list commands, route options, troubleshooting guidance, and order-entry links that require the user to complete passenger selection and payment in WeChat.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

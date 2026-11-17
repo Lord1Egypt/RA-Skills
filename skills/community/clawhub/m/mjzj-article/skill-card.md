@@ -1,42 +1,56 @@
-## Description: <br>
-卖家之家(跨境电商)资讯搜索与发布 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理搜索卖家之家跨境电商资讯，并在授权后发布 HTML 资讯文章和图片。
 
-## Publisher: <br>
-[mjzj-tec](https://clawhub.ai/user/mjzj-tec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjzj-tec](https://clawhub.ai/user/mjzj-tec)
 
-## Use Case: <br>
-External MJZJ users and content teams use this skill to search cross-border e-commerce articles and prepare or publish MJZJ articles through the service APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated endpoints can manage or publish content for the MJZJ account associated with MJZJ_API_KEY. <br>
-Mitigation: Keep MJZJ_API_KEY private and review author identity, tags, article HTML, images, and publish time before publishing. <br>
-Risk: Untrusted HTML or remote media could introduce unwanted content into published articles. <br>
-Mitigation: Avoid importing HTML or media from untrusted sources and verify image transfer results before submitting the article. <br>
+## Use Case:
 
+External users and content operators use this skill to search MJZJ cross-border e-commerce articles, inspect their own author and article records, and publish authorized HTML articles through MJZJ APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mjzj-tec/mjzj-article) <br>
-- [MJZJ homepage](https://mjzj.com) <br>
-- [MJZJ agent API key page](https://mjzj.com/user/agentapikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with API endpoint and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated management and publishing flows require MJZJ_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The publishing flow can fetch and re-upload external images and publish articles or media under the user's MJZJ account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted content and image sources, require explicit confirmation before publishing or re-hosting images, and validate image URL, network, size, redirect, and MIME properties before download or upload.
+
+Risk: Private and publishing endpoints send the user's MJZJ_API_KEY to MJZJ APIs.
+
+Mitigation: Store the key only in the configured skill environment, rotate it if exposed, and replace it from the MJZJ user center when authorization fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjzj-tec/skills/mjzj-article)
+- [MJZJ homepage](https://mjzj.com)
+- [MJZJ API key settings](https://mjzj.com/user/agentapikey)
+- [MJZJ author application](https://mjzj.com/user/authorapplication)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with MJZJ API request examples and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Private and publishing operations require MJZJ_API_KEY; public article search can run without a token.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

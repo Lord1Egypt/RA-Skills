@@ -1,42 +1,58 @@
-## Description: <br>
-Connect to Supabase for database operations, vector search, and storage, including SQL queries, CRUD operations, pgvector similarity search, and table management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to Supabase for database operations, vector search, storage-related workflows, SQL queries, pgvector similarity search, and table management.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and agents use this skill to administer Supabase-backed applications, inspect schemas, run SQL and REST-style table operations, call RPC functions, and perform vector similarity search with pgvector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete Supabase data and run raw SQL or RPC operations when supplied privileged credentials. <br>
-Mitigation: Use a test project or least-privilege credentials where possible, avoid production service-role keys, and review each SQL, update, delete, upsert, and RPC action before execution. <br>
-Risk: Vector-search text is sent to a third-party embedding provider through the SkillBoss API Hub. <br>
-Mitigation: Do not submit sensitive vector-search text unless the embedding provider is trusted for that data. <br>
-Risk: Supabase service-role keys can bypass Row Level Security and give the agent broad database access. <br>
-Mitigation: Prefer scoped or restricted credentials for routine operations and reserve service-role keys for reviewed administrative tasks. <br>
+## Use Case:
 
+Developers and engineers use this skill to let an agent run Supabase queries, CRUD operations, table inspection, RPC calls, and pgvector similarity search from documented shell commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/godfery-database) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and SQL command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Supabase credentials and a SkillBoss API key for vector embedding generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill requires a Supabase service-role key, which can bypass Row Level Security and enable admin-level database access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege or non-production credentials where possible, keep credentials out of logs and shared prompts, and verify SUPABASE_URL before running commands.
+
+Risk: Raw SQL, update, delete, upsert, and RPC commands can modify or remove data broadly if used with unsafe inputs or filters.
+
+Mitigation: Manually review each mutating command and prefer narrow filters, backups, and staging environments before production use.
+
+Risk: Vector-search queries are sent to the embedding provider through SkillBoss API Hub.
+
+Mitigation: Avoid sending sensitive query text for embedding unless the data-sharing path is approved for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/godfery-database)
+- [ClawHub publisher profile](https://clawhub.ai/user/tobeyrebecca)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may call Supabase REST or RPC endpoints and return JSON-formatted API responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

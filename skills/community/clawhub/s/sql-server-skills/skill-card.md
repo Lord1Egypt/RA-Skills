@@ -1,48 +1,64 @@
-## Description: <br>
-Comprehensive SQL Server performance diagnostics, index analysis, execution plan interpretation, query optimization, schema management, backup/restore, and monitoring using sqlcmd and T-SQL DMVs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive SQL Server performance diagnostics, index analysis, execution plan interpretation, query optimization, schema management, backup/restore, and monitoring using sqlcmd and T-SQL DMVs. Use when analyzing slow queries, investigating wait stats, finding missing indexes, reading execution plans, optimizing stored procedures or views, managing migrations, monitoring SQL Agent jobs, or diagnosing blocking/deadlocks on Microsoft SQL Server. Triggers on: SQL Server, MSSQL, sqlcmd, T-SQL performance, slow query, execution plan, DMV, missing index, wait stats, blocking, deadlock, stored procedure optimization, view tuning.
 
-## Publisher: <br>
-[vince-winkintel](https://clawhub.ai/user/vince-winkintel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vince-winkintel](https://clawhub.ai/user/vince-winkintel)
 
-## Use Case: <br>
-Developers, DBAs, and operations teams use this skill to diagnose SQL Server performance issues, analyze execution plans and indexes, guide query and schema changes, and plan backup, restore, and monitoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide privileged SQL Server operations such as restore, schema changes, index changes, KILL, and DBCC commands. <br>
-Mitigation: Use least-privilege SQL Server accounts and require human DBA approval before any restore, schema or index change, KILL command, or DBCC command. <br>
-Risk: Some guidance can affect production availability or performance, including instance-wide cache clearing and restore workflows. <br>
-Mitigation: Prefer testing restores and performance fixes in non-production environments before applying them to production systems. <br>
-Risk: Diagnostic output can expose operational details such as job history, errors, object names, file paths, IP addresses, or partial credentials. <br>
-Mitigation: Review outputs before logging, exporting, or sharing them, and avoid storing SQL credentials or connection strings in skill files. <br>
+## Use Case:
 
+Developers, database administrators, and engineers use this skill to investigate SQL Server performance and operational issues, interpret diagnostic results, and prepare SQL or shell workflows for review. Production changes require DBA review.
 
-## Reference(s): <br>
-- [SQL Server skill README](artifact/README.md) <br>
-- [Security considerations](artifact/SECURITY.md) <br>
-- [Index strategies](artifact/sqlserver-indexes/references/index-strategies.md) <br>
-- [Execution plan operators](artifact/sqlserver-execution-plans/references/plan-operators.md) <br>
-- [Optimization patterns](artifact/sqlserver-query-optimization/references/optimization-patterns.md) <br>
-- [Microsoft sqlcmd utility documentation](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility) <br>
-- [SentryOne Plan Explorer](https://www.sentryone.com/plan-explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, SQL code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline T-SQL and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQL Server diagnostic interpretations, sqlcmd invocations, generated T-SQL examples, and review-before-execution database operation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Powerful database operations can disrupt services or alter production data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a minimally privileged diagnostic identity and have a DBA review production changes before execution.
+
+Risk: Diagnostic reports and backups may contain sensitive information.
+
+Mitigation: Protect reports and backups with access controls and the operator's data handling policy.
+
+Risk: Some workflows may refer to scripts that are not present.
+
+Mitigation: Resolve missing script references before following those workflows.
+
+## Reference(s):
+
+- [SQL Server Skills on ClawHub](https://clawhub.ai/vince-winkintel/skills/sql-server-skills)
+- [sqlcmd utility](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility)
+- [sqlcmd output options](https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility#format-options)
+- [SentryOne Plan Explorer](https://www.sentryone.com/plan-explorer)
+- [UPDATE STATISTICS (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/update-statistics-transact-sql)
+- [sp_updatestats](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-updatestats-transact-sql)
+- [XML invalid characters and escape rules](https://learn.microsoft.com/en-us/sql/relational-databases/xml/invalid-characters-and-escape-rules)
+- [Disable foreign key constraints](https://learn.microsoft.com/en-us/sql/relational-databases/tables/disable-foreign-key-constraints-with-insert-and-update-statements)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, SQL code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with T-SQL and Bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides diagnostic guidance and review-only change proposals; production changes require DBA review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

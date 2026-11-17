@@ -1,93 +1,54 @@
 ---
 name: indexnow
-description: |
-  通过 IndexNow 协议向搜索引擎（Bing、Yandex、Naver 等）提交 URL，加速页面收录。使用场景：
-  (1) 用户想要提交新页面或更新的页面给搜索引擎
-  (2) 用户说"提交收录"、"indexnow"、"提交给 Bing"、"加速收录"
-  (3) 用户需要从 sitemap 批量提交所有 URL
-  (4) 用户需要生成 IndexNow API key 或部署验证文件
-  触发词：indexnow、提交收录、submit url、bing 收录、加速收录、搜索引擎提交、submit to search engine
+description: Submit changed public URLs through IndexNow, or set up the site's IndexNow verification file. Use when the user explicitly requests an IndexNow submission or verification setup for a site they manage.
+allowed-tools: Bash(bash */scripts/indexnow.sh *)
+metadata: {"openclaw":{"requires":{"bins":["bash","curl","python3"]}}}
 ---
 
 # IndexNow
 
-通过 IndexNow 协议向 Bing、Yandex、Naver、Seznam 等搜索引擎提交 URL，加速页面收录。提交到 `api.indexnow.org` 会自动分发给所有支持的搜索引擎。
+Notify participating search engines about added, updated, or deleted public URLs. Use the bundled `scripts/indexnow.sh` from the site's project directory. Replace `<skill-dir>` in the examples with the installed skill's path.
 
-## 前置条件
+## Tool scope and data sent
 
-- 网站已部署上线（搜索引擎需要访问验证文件）
-- 系统有 `curl`（macOS/Linux 内置）
-- 项目有 `public/` 目录
+Use the bundled script for the requested operation. Discussing indexing or troubleshooting a sitemap alone does not authorize a submission, key generation, or deployment.
 
-## 工作流程
+Submitting sends the public URL list and the site's IndexNow verification key to the official endpoint at `https://api.indexnow.org/indexnow`. Batch requests also include the site hostname and verification-file URL. Participating search engines can share the submitted URLs. Use only public URLs on a site the user manages. Exclude drafts, staging and private URLs, and links containing credentials, personal data, or access tokens.
 
-### Step 1: 检查 API Key
+Generating a key writes `.indexnow-key` and a verification text file in the current project's `public/` directory, or in the current directory if `public/` is absent. Only run key setup or rotation when requested.
 
-检查项目根目录是否存在 `.indexnow-key` 文件：
+## Verify the site
 
-- **存在**: 读取 key 值，继续下一步
-- **不存在**: 执行脚本生成 key：
-  ```bash
-  ${CLAUDE_SKILL_ROOT}/scripts/indexnow.sh generate-key
-  ```
-  脚本会生成随机 key，保存到 `.indexnow-key`，并在 `public/` 目录创建 `{key}.txt` 验证文件。
-
-### Step 2: 确认验证文件
-
-检查 `public/{key}.txt` 是否存在且内容正确。提醒用户：验证文件需要随项目部署后，搜索引擎才能验证 key。
-
-### Step 3: 提交 URL
-
-根据用户需求选择提交方式：
-
-**提交单个或多个 URL:**
 ```bash
-${CLAUDE_SKILL_ROOT}/scripts/indexnow.sh submit https://example.com/page1 https://example.com/page2
+bash "<skill-dir>/scripts/indexnow.sh" status
+bash "<skill-dir>/scripts/indexnow.sh" generate-key
 ```
 
-**从本地 sitemap.xml 提取并提交:**
+Serve the verification file at `https://www.example.com/{key}.txt` before submitting. Keep the same key for subsequent submissions. Key generation does not deploy the file.
+
+## Submit URLs
+
 ```bash
-${CLAUDE_SKILL_ROOT}/scripts/indexnow.sh submit-sitemap [path]
-```
-默认读取 `public/sitemap.xml`。
-
-**从远程 sitemap URL 提取并提交:**
-```bash
-${CLAUDE_SKILL_ROOT}/scripts/indexnow.sh submit-sitemap-url https://example.com/sitemap.xml
+bash "<skill-dir>/scripts/indexnow.sh" submit https://www.example.com/page
+bash "<skill-dir>/scripts/indexnow.sh" submit-sitemap public/sitemap.xml
+bash "<skill-dir>/scripts/indexnow.sh" submit-sitemap-url https://www.example.com/sitemap.xml
 ```
 
-### Step 4: 验证结果
+Pass multiple URLs to `submit` only if they share one hostname. `submit-sitemap` defaults to `public/sitemap.xml` and expects a sitemap containing page URLs. For a sitemap index, select the intended child sitemap explicitly.
 
-脚本会输出每个 URL 的提交结果。响应码含义：
+For `submit-sitemap-url`, use the site's final public HTTPS sitemap URL on port 443. The script checks the resolved addresses, pins the connection to those addresses, rejects redirects, and submits only when every page URL matches the sitemap hostname. The sitemap host receives only a normal HTTPS download request. Review the submission scope before using a sitemap, since the command sends the listed page URLs to IndexNow.
 
-| 响应码 | 含义 | 处理方式 |
-|--------|------|----------|
-| 200 | 提交成功 | 无需操作 |
-| 202 | 已接收，待验证 | 确认验证文件已部署 |
-| 400 | 格式错误 | 检查 URL 格式 |
-| 403 | key 无效 | 重新生成 key 并部署 |
-| 422 | URL 不匹配 | 确认 URL 域名正确 |
-| 429 | 请求过多 | 等待后重试 |
+## Interpret the response
 
-## 脚本命令参考
+| HTTP status | Meaning |
+| --- | --- |
+| 200 | IndexNow received the URLs. |
+| 202 | IndexNow received the URLs and is verifying the key. |
+| 400 | Check the request format. |
+| 403 | Check the key and its publicly hosted verification file. |
+| 422 | Check that the submitted URLs and key belong to the same site. |
+| 429 | The endpoint is rate-limiting submissions. |
 
-脚本位置: `${CLAUDE_SKILL_ROOT}/scripts/indexnow.sh`
+The script splits submissions into batches of up to 10,000 URLs. An accepted submission does not establish that a URL has been crawled or indexed.
 
-| 命令 | 说明 |
-|------|------|
-| `generate-key` | 生成 API key 和验证文件 |
-| `submit <url1> [url2...]` | 提交一个或多个 URL |
-| `submit-sitemap [path]` | 从本地 sitemap 提取并提交 |
-| `submit-sitemap-url <url>` | 从远程 sitemap 提取并提交 |
-| `status` | 显示当前配置状态 |
-
-## 注意事项
-
-- 单次批量提交最多 10,000 个 URL，超过自动分批
-- `.indexnow-key` 文件建议加入 `.gitignore`
-- `public/{key}.txt` 验证文件需提交到版本控制并部署
-- 提交不保证被收录，但会通知搜索引擎尽快爬取
-
-## 更多信息
-
-更多 AI SEO 技能详见：https://domainrank.app/ai-seo-skills
+[Official IndexNow documentation](https://www.indexnow.org/documentation)

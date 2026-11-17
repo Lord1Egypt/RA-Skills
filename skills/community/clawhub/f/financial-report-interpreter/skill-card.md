@@ -1,40 +1,54 @@
-## Description: <br>
-Interprets income statements, balance sheets, and cash flows into plain-language insights, ratio analysis, and management questions for financial review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interprets income statements, balance sheets, and cash flow statements into plain-language insights, ratio commentary, recommendations, and management follow-up questions.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Founders, managers, investors, and financial reviewers use this skill to translate financial statements into plain-language observations, ratio commentary, and follow-up questions for financial review. Its guidance is informational and should be reviewed before business, accounting, tax, legal, or investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial ratios, thresholds, and stock-screening guidance may be misunderstood as personalized investment, tax, accounting, or legal advice. <br>
-Mitigation: Treat outputs as informational review aids, verify source financial data, and consult qualified professionals before acting on business, tax, legal, accounting, or investment decisions. <br>
-Risk: Sensitive personal or company financial details may be echoed in the generated output. <br>
-Mitigation: Avoid entering sensitive financial details unless you are comfortable with them appearing in the response. <br>
+## Use Case:
 
+External users, founders, retail investors, and managers use this skill to translate financial statements into plain-language business signals, ratio commentary, next-step checklists, and CFO-ready questions. It is a descriptive financial review aid and should not be treated as professional accounting, tax, lending, or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/financial-report-interpreter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON with plain-language recommendations and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational finance guidance only; no network access, persistence, or transaction authority according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat descriptive financial interpretation as professional accounting, tax, lending, or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational guidance, preserve the built-in disclaimer, and require qualified professional review before acting on financial, tax, lending, or investment decisions.
+
+Risk: Broad finance triggers may cause the skill to appear for general finance questions outside financial-statement interpretation.
+
+Mitigation: Use the skill when the user asks about income statements, balance sheets, cash flow statements, financial ratios, or management review questions, and narrow or disable broader triggers when deploying.
+
+## Reference(s):
+
+- [Financial Report Interpreter on ClawHub](https://clawhub.ai/harrylabsj/skills/financial-report-interpreter)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Structured JSON and human-readable guidance with recommendations, templates, checklists, and disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Descriptive output only; no external API calls, network requests, financial transactions, or execution against accounting systems.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

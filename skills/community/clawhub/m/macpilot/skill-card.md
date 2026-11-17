@@ -1,44 +1,60 @@
-## Description: <br>
-Control macOS via CLI using MacPilot for automating UI actions, managing windows, handling file dialogs, capturing screenshots, and system tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control macOS via CLI using MacPilot for automating UI actions, managing windows, handling file dialogs, capturing screenshots, OCR, and system tasks.
 
-## Publisher: <br>
-[adhikjoshi](https://clawhub.ai/user/adhikjoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adhikjoshi](https://clawhub.ai/user/adhikjoshi)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to operate macOS applications through MacPilot CLI commands for UI automation, dialogs, window management, screenshots, OCR, clipboard workflows, and shell-driven desktop tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad desktop-level macOS control across apps, dialogs, screen capture, clipboard history, and shell commands. <br>
-Mitigation: Install only when this level of desktop control is intended, use explicit approvals for sensitive actions, and revoke macOS permissions when no longer needed. <br>
-Risk: Automated shell commands, file writes or overwrites, permission prompts, screenshots, recordings, and clicks in sensitive apps can cause unintended disclosure or changes. <br>
-Mitigation: Require user confirmation for those actions, review proposed commands before execution, and avoid running the skill in sensitive apps without a clear task need. <br>
-Risk: Clipboard history can retain sensitive content after automation completes. <br>
-Mitigation: Stop and clear clipboard history when finished. <br>
+## Use Case:
 
+Developers and agent users use this skill to let AI coding agents operate macOS through MacPilot CLI commands for app control, UI inspection, file dialogs, screenshots, OCR, window management, shell tasks, and system workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adhikjoshi/macpilot) <br>
-- [MacPilot project](https://github.com/adhikjoshi/macpilot) <br>
-- [Vercel Labs skills CLI](https://github.com/vercel-labs/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing operational guidance for MacPilot CLI usage; command outputs may include JSON when the documented --json flag is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release evidence) <br>
+Risk: Broad macOS automation can control visible apps, run shell commands, read screen contents, and access clipboard history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer manual or version-pinned installation, keep installation project-scoped when possible, and grant Accessibility or Screen Recording only when that level of control is intended.
+
+Risk: Dialog automation can click sensitive actions such as Allow, Confirm, or Replace.
+
+Mitigation: Avoid auto-clicking sensitive dialog actions unless the requested task explicitly requires it and the dialog contents have been verified.
+
+Risk: Screenshot, OCR, and screen recording features may expose visible private or sensitive information.
+
+Mitigation: Grant Screen Recording only for workflows that require visual capture, and limit use to screens and applications appropriate for agent access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adhikjoshi/skills/macpilot)
+- [MacPilot repository](https://github.com/adhikjoshi/macpilot)
+- [MacPilot releases](https://github.com/adhikjoshi/macpilot/releases)
+- [Skills CLI repository](https://github.com/vercel-labs/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MacPilot commands commonly support --json for structured command output.]
+
+## Skill Version(s):
+
+0.7.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

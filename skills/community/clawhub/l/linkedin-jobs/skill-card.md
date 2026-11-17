@@ -1,44 +1,63 @@
-## Description: <br>
-Search and monitor LinkedIn job listings with city-based filters, hourly cron support, and smart deduplication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and monitor LinkedIn job listings with city-based filters, hourly cron support, and smart deduplication across 100+ global tech hubs.
 
-## Publisher: <br>
-[yashsuman15](https://clawhub.ai/user/yashsuman15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yashsuman15](https://clawhub.ai/user/yashsuman15)
 
-## Use Case: <br>
-Job seekers and their agents use this skill to search LinkedIn job listings, manage recurring search profiles, and receive deduplicated job results for selected roles, filters, and cities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs LinkedIn job scraping and can make repeated network checks when monitoring is enabled. <br>
-Mitigation: Run only user-requested searches, keep page counts and delays conservative, and confirm before enabling recurring monitoring. <br>
-Risk: Saved searches and seen job IDs are stored in local files. <br>
-Mitigation: Avoid storing sensitive search terms and review or remove local profile and history files when they are no longer needed. <br>
-Risk: Profile removal, history clearing, and schedule creation can change the user's monitoring state. <br>
-Mitigation: Confirm with the user before creating schedules, removing profiles, or clearing job history. <br>
+## Use Case:
 
+External users and developers use this skill to search LinkedIn job listings, manage recurring search profiles, and receive deduplicated job results for configured roles and locations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yashsuman15/linkedin-jobs) <br>
-- [ClawHub skill homepage](https://clawhub.ai/skills/linkedin-jobs) <br>
-- [LinkedIn Jobs](https://linkedin.com/jobs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON job listings and Markdown-formatted job notifications, with shell commands for search setup and monitoring.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local search profile and seen-job tracking files when monitoring is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and skill metadata) <br>
+Risk: The skill makes web requests to LinkedIn job pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when LinkedIn web requests are acceptable for the environment, and keep scraper rate and timeout settings conservative.
+
+Risk: Search profiles and seen-job history are stored locally.
+
+Mitigation: Review saved search terms and delete local profile or history files when they are no longer needed.
+
+Risk: Recurring monitoring can continue after setup if the schedule is not understood.
+
+Mitigation: Confirm the exact cron or OpenClaw schedule before enabling monitoring, and document how to disable it.
+
+Risk: Job listing text and links come from external pages.
+
+Mitigation: Treat listing content as untrusted and review links, requirements, and summaries before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yashsuman15/skills/linkedin-jobs)
+- [ClawHub homepage metadata](https://clawhub.ai/skills/linkedin-jobs)
+- [LinkedIn Jobs](https://linkedin.com/jobs)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration]
+
+**Output Format:** [JSON job listings and Markdown-style job notifications with CLI commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local search profiles and seen-job history for recurring monitoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

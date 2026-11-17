@@ -1,46 +1,59 @@
-## Description: <br>
-SuperDev is a full-stack development workflow suite for requirements discovery, architecture planning, TDD implementation, UI/UX review, supply-chain security checks, and persistent project memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SuperDev is a full-stack development skill suite for coordinating requirements analysis, architecture guidance, test-driven implementation, UI/UX review, supply-chain security checks, persistent memory, and workflow reflection.
 
-## Publisher: <br>
-[weedfire](https://clawhub.ai/user/weedfire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weedfire](https://clawhub.ai/user/weedfire)
 
-## Use Case: <br>
-Developers use SuperDev to coordinate a multi-role agent workflow across requirements, architecture, implementation, review, security checks, and post-task learning. It is intended for development tasks where an agent should produce plans, code-oriented guidance, review findings, shell commands, configuration, and persistent memory updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The suite auto-activates broadly and may influence many development tasks, which can make unwanted workflow changes harder to notice. <br>
-Mitigation: Review trigger behavior before installation and narrow or disable always-on catch-all activation where it is not needed. <br>
-Risk: The memory workflow can preserve project context, user preferences, and past task details across sessions. <br>
-Mitigation: Prefer project-scoped memory, inspect and clear .memory regularly, and avoid use in repositories containing secrets or highly confidential information until persistence behavior is reviewed. <br>
-Risk: The skill may ask the host agent to generate code, shell commands, configuration, and security guidance that can affect a project. <br>
-Mitigation: Review generated changes and commands before execution, then run the project's normal build, test, and security checks. <br>
+## Use Case:
 
+Developers and engineering teams use this skill suite to run a structured agent workflow from requirements through implementation, quality checks, security review, and memory-backed follow-up.
 
-## Reference(s): <br>
-- [SuperDev on ClawHub](https://clawhub.ai/weedfire/super-dev-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/weedfire) <br>
-- [README](README.md) <br>
-- [OpenClaw plugin manifest](openclaw.plugin.json) <br>
-- [agent-skills reference](https://github.com/addyosmani/agent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and structured checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update project memory files and task artifacts when the host agent grants file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and package.json) <br>
+Risk: Always-on development workflows may read and write persistent memory across tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured memory path, scope or disable persistence when possible, and require confirmation before memory writes.
+
+Risk: Security gate workflows may run external scanner tools, including npx-based tooling.
+
+Mitigation: Pin or sandbox external scanner tools before use and require confirmation before scanner execution.
+
+Risk: The server security verdict is suspicious because the suite combines broad auto-activation, global memory, and unpinned scanner behavior.
+
+Mitigation: Review and scan the skill before deployment, with special attention to memory persistence and scanner invocation behavior.
+
+## Reference(s):
+
+- [SuperDev ClawHub skill page](https://clawhub.ai/weedfire/skills/super-dev-skills)
+- [ClawHub publisher profile](https://clawhub.ai/user/weedfire)
+- [agent-skills reference](https://github.com/addyosmani/agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request persistent memory writes and security scanner execution depending on host configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

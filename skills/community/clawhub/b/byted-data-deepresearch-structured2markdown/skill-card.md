@@ -1,43 +1,62 @@
-## Description: <br>
-Uploads Excel and CSV files to Volcengine DataAgent and converts the cloud-generated analysis into structured Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads Excel and CSV files to Volcengine DataAgent and converts them into structured Markdown reports with table-aware formatting.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and business users use this skill to upload spreadsheet data for remote analysis and receive a formatted Markdown report for documentation, reporting, or downstream agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected spreadsheets are sent to Volcengine DataAgent for remote analysis and report generation. <br>
-Mitigation: Install and run only when the user is comfortable sending those files to Volcengine DataAgent. <br>
-Risk: The skill requires Volcengine cloud credentials and may expose risk if long-lived keys are pasted into chat or reused broadly. <br>
-Mitigation: Use least-privilege or temporary credentials through environment variables or a secret manager, and clear them after use. <br>
-Risk: A custom PUBLIC_INSIGHT_API_URL can redirect processing to a destination the user may not fully trust. <br>
-Mitigation: Avoid setting PUBLIC_INSIGHT_API_URL unless the destination is explicitly trusted. <br>
+## Use Case:
 
+Developers and workflow agents use this skill to analyze Excel or CSV files and turn spreadsheet content into Markdown documents or reports. It is suitable when tabular data needs to be uploaded to DataAgent for structured document generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/byted-data-deepresearch-structured2markdown) <br>
-- [Volcengine DataAgent product page](https://www.volcengine.com/product/DataAgent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown file generated from cloud-processed spreadsheet analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Excel or CSV file paths and Volcengine credentials; selected files are uploaded to Volcengine DataAgent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Spreadsheet contents are uploaded to Volcengine DataAgent for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with files approved for that service and avoid sending sensitive spreadsheets unless the deployment policy permits it.
+
+Risk: The skill requires Volcengine access keys and can also accept credentials as command-line arguments.
+
+Mitigation: Provide narrowly scoped credentials through protected environment variables and avoid pasting long-lived AK/SK values into chat or shell history.
+
+Risk: A configurable API endpoint can redirect processing away from the intended service if PUBLIC_INSIGHT_API_URL is changed.
+
+Mitigation: Keep PUBLIC_INSIGHT_API_URL unset or locked to the intended HTTPS Volcengine endpoint before execution.
+
+Risk: The artifact suppresses detailed setup and error output during normal runs.
+
+Mitigation: Review installation, dependency, and runtime behavior before deployment and monitor executions through approved operational logging.
+
+## Reference(s):
+
+- [Volcengine DataAgent](https://www.volcengine.com/product/DataAgent)
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-data-deepresearch-structured2markdown)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report written to a local file, with concise user-facing status or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts Excel (.xls, .xlsx) and CSV (.csv) file paths and requires Volcengine access credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

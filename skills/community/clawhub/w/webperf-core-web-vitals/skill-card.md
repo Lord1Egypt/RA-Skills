@@ -1,43 +1,56 @@
-## Description: <br>
-Provides Chrome DevTools MCP workflows and JavaScript snippets for measuring and debugging LCP, CLS, and INP Core Web Vitals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent Core Web Vitals analysis for measuring and debugging LCP, CLS, and INP with Chrome DevTools workflows.
 
-## Publisher: <br>
-[nucliweb](https://clawhub.ai/user/nucliweb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nucliweb](https://clawhub.ai/user/nucliweb)
 
-## Use Case: <br>
-Developers and web performance engineers use this skill with Chrome DevTools MCP to audit Core Web Vitals, run targeted snippets, and follow decision trees for LCP, CLS, and INP debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Page-context DevTools snippets can inspect the active page and visually highlight DOM elements during analysis. <br>
-Mitigation: Run snippets only on pages you trust and intend to analyze; avoid sensitive logged-in, financial, internal, or personal-data pages unless the snippet has been reviewed. <br>
-Risk: Core Web Vitals measurements can vary by page state, user interaction, timing, and browser support. <br>
-Mitigation: Treat results as diagnostic signals, repeat measurements across representative scenarios, and review error or unsupported statuses before making optimization decisions. <br>
+## Use Case:
 
+Developers and performance engineers use this skill to audit Core Web Vitals in Chrome DevTools, diagnose slow LCP, layout instability, and interaction latency, and choose follow-up performance investigations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nucliweb/webperf-core-web-vitals) <br>
-- [webperf-snippets repository](https://github.com/nucliweb/webperf-snippets) <br>
-- [Script return value schema](references/schema.md) <br>
-- [Core Web Vitals snippet descriptions and thresholds](references/snippets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript snippets and structured JSON script results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs page-context Chrome DevTools snippets that may return ok, tracking, error, or unsupported statuses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill runs page-local JavaScript diagnostics that can inspect page performance data and element metadata on pages being debugged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on pages you are authorized to inspect and review the snippets before execution.
+
+Risk: Some diagnostics may temporarily add visual outlines to page elements while highlighting LCP candidates.
+
+Mitigation: Run diagnostics in a debugging session and refresh the page or clear temporary styling after inspection.
+
+## Reference(s):
+
+- [Snippets and thresholds](references/snippets.md)
+- [Script return value schema](references/schema.md)
+- [Webperf snippets repository](https://github.com/nucliweb/webperf-snippets)
+- [ClawHub skill release page](https://clawhub.ai/nucliweb/skills/webperf-core-web-vitals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript snippets and structured JSON return-value expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active Chrome DevTools MCP page context; tracking snippets may expose follow-up functions for later reads.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

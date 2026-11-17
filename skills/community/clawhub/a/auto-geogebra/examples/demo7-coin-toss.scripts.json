@@ -1,0 +1,4 @@
+[
+  {"label": "btnFlip", "event": "onClick", "script": "UpdateConstruction()"},
+  {"label": "btnResetC", "event": "onClick", "script": "SetValue(nMax, 500)\nUpdateConstruction()"}
+]

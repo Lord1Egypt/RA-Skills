@@ -1,45 +1,57 @@
-## Description: <br>
-Navigate Miami as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, beaches, costs, safety, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Miami as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, beaches, costs, safety, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to get practical Miami guidance for visits, relocation, local living, studying, tech work, and entrepreneurship. It helps agents answer questions about neighborhoods, transportation, costs, weather, safety, food, lodging, attractions, and local services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contains time-sensitive guidance about rent, transportation, weather, venues, neighborhoods, and safety. <br>
-Mitigation: Verify current conditions with official sources, local authorities, venue operators, or recent local information before making travel, housing, or personal-safety decisions. <br>
-Risk: Informational city guidance may not reflect a user's exact location, budget, accessibility needs, or risk tolerance. <br>
-Mitigation: Ask clarifying questions and present guidance as planning support rather than a substitute for professional, legal, emergency, or official advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Miami Skill Page](https://clawhub.ai/ivangdavila/miami) <br>
-- [Miami Skill Definition](artifact/SKILL.md) <br>
-- [Miami Safety Guide](artifact/safety.md) <br>
-- [Miami Cost of Living](artifact/cost.md) <br>
-- [Miami Transport Guide](artifact/transport.md) <br>
-- [Miami Climate and Weather](artifact/climate.md) <br>
-- [Miami Visitor Attractions](artifact/visitor-attractions.md) <br>
+## Use Case:
 
+External users ask an agent for practical Miami guidance for visiting, moving, studying, working in tech, or starting a business. The skill helps tailor concise local guidance by user role, timeline, neighborhood, safety, weather, cost, food, transit, and lodging needs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational city guidance; outputs should be checked against current official or local sources for time-sensitive decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local prices, venue details, transit options, weather, and safety conditions may become outdated or vary by neighborhood.
+
+Mitigation: Verify time-sensitive details against current authoritative sources before making travel, housing, safety, or financial decisions.
+
+Risk: Neighborhood and cultural descriptions may be subjective or overgeneralized.
+
+Mitigation: Use the guidance as a starting point and compare it with current local sources and the user's specific constraints.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/ivangdavila/skills/miami)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Miami-Dade Emergency Management](https://www.miamidade.gov/emergency)
+- [National Hurricane Center](https://www.nhc.noaa.gov)
+- [HealthCare.gov](https://www.healthcare.gov)
+- [GreatSchools](https://www.greatschools.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance with tables, checklists, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static markdown-only local guide; no tool calls, shell commands, credential access, or generated files are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

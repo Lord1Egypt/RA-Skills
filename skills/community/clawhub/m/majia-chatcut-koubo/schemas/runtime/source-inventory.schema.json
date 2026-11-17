@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/source-inventory.schema.json",
+  "title": "Privacy-safe source inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "runId", "projectRef", "timelineRef", "mainSourceRef", "assets", "capturedAt"],
+  "properties": {
+    "$schema": {"const": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/source-inventory.schema.json"},
+    "schemaVersion": {"const": "majia.koubo.sources.v1"},
+    "runId": {"type": "string", "pattern": "^run-[a-z0-9-]+$"},
+    "projectRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"},
+    "timelineRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"},
+    "mainSourceRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"},
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["logicalRef", "role", "mediaType", "durationSec", "alreadyImported", "transcriptStatus"],
+        "properties": {
+          "logicalRef": {"type": "string", "pattern": "^logical:[a-z0-9-]+$"},
+          "role": {"enum": ["aroll", "screen", "broll", "primary-audio", "unknown"]},
+          "mediaType": {"enum": ["video", "audio", "image"]},
+          "durationSec": {"type": ["number", "null"], "minimum": 0},
+          "alreadyImported": {"type": "boolean"},
+          "transcriptStatus": {"enum": ["not-requested", "pending", "ready", "failed", "not-applicable"]}
+        }
+      }
+    },
+    "capturedAt": {"type": "string", "format": "date-time"}
+  }
+}

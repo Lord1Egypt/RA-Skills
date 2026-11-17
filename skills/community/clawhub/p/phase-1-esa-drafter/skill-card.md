@@ -1,40 +1,57 @@
-## Description: <br>
-Use this skill when an environmental consultant or due-diligence professional needs to draft an ASTM E1527-21 Phase I Environmental Site Assessment for a subject property. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an environmental consultant or due-diligence professional needs to draft an ASTM E1527-21 Phase I Environmental Site Assessment for a subject property.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Environmental consultants, due-diligence professionals, and supervised report-production teams use this skill to draft an ASTM E1527-21 Phase I ESA for one subject property, including records review, site reconnaissance, interviews, REC / CREC / HREC classification, significant data gaps, and EP-opinion sections for qualified Environmental Professional review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake draft ESA language for a final report or AAI compliance determination. <br>
-Mitigation: Treat generated reports as draft work product and require a qualified Environmental Professional to verify source records, site observations, interviews, photos, data gaps, and current ASTM/EPA requirements before signing or relying on the report. <br>
-Risk: Environmental due-diligence conclusions can be wrong if required records, observations, interviews, or component dates are missing or stale. <br>
-Mitigation: Use the skill's data-gap, photo-log, component-date, and professional-review checks before delivery. <br>
+## Use Case:
 
+Environmental consultants, due-diligence professionals, and EP-supervised report-production teams use this skill to draft ASTM E1527-21 Phase I ESA reports for a single subject property. It supports scoping, records review, site reconnaissance, interviews, findings classification, data-gap discussion, and draft EP-opinion and conclusions sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/phase-1-esa-drafter) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Draft Markdown report with structured tables, sections, findings, opinions, conclusions, references, and appendix index] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft only; requires qualified Environmental Professional verification, signature, and seal before reliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and changelog, released 2026-05-28) <br>
+Risk: Draft ESA content could be mistaken for a final signed professional report or AAI compliance determination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the output labeled as draft, require qualified Environmental Professional review and signature, and reserve final reliance and AAI compliance conclusions for the EP.
+
+Risk: The workflow asks for confidential property, transaction, interview, and environmental-record information.
+
+Mitigation: Provide only information appropriate for the ESA, keep client identifiers and records confidential, and avoid unauthorized external lookups or disclosure.
+
+Risk: Missing records, interviews, photos, or component dates can make REC classification and conclusions unreliable.
+
+Mitigation: Log missing or incomplete inputs as significant data gaps, track 180-day and 1-year component timing, and have the EP verify every finding, citation, opinion, and conclusion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/phase-1-esa-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Draft Markdown report with structured tables, findings, opinions, conclusions, unsigned signature block, and appendix index]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always labeled draft for qualified Environmental Professional review and signature]
+
+## Skill Version(s):
+
+0.1.1 (source: server evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

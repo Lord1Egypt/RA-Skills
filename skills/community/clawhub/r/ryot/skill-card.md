@@ -1,40 +1,58 @@
-## Description: <br>
-Complete Ryot media tracker with progress tracking, reviews, collections, analytics, calendar, and automated daily/weekly reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Ryot media tracker with progress tracking, reviews, collections, analytics, calendar, and automated daily/weekly reports.
 
-## Publisher: <br>
-[f-liva](https://clawhub.ai/user/f-liva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[f-liva](https://clawhub.ai/user/f-liva)
 
-## Use Case: <br>
-External users and developers use this skill to manage a Ryot media tracker from an agent, including media search, progress updates, reviews, collections, analytics, calendars, and report automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Ryot API token and can update tracker data, including bulk episode progress. <br>
-Mitigation: Protect the Ryot config file and confirm media IDs, ratings, collection IDs, and episode ranges before running update commands. <br>
-Risk: The optional automation setup can create recurring reports sent to a WhatsApp number. <br>
-Mitigation: Run the automation setup only when recurring reports are desired, and verify the destination number and schedule before enabling it. <br>
+## Use Case:
 
+External users and developers use this skill to manage a self-hosted Ryot media tracker from an agent, including search, progress updates, reviews, collections, analytics, calendars, and optional reports.
 
-## Reference(s): <br>
-- [ClawHub Ryot release](https://clawhub.ai/f-liva/ryot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Ryot instance URL and API token; some commands update tracker data or configure recurring reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release, CHANGELOG, package.json) <br>
+Risk: The skill requires a Ryot API token stored in /home/node/clawd/config/ryot.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted HTTPS Ryot URL, restrict file permissions on the config file, and rotate the token if it may have been exposed.
+
+Risk: Completion, review, collection, and bulk episode commands can modify Ryot account data.
+
+Mitigation: Search first, verify the metadata ID and title details, and confirm the intended change before running write operations.
+
+Risk: Optional cron and WhatsApp automation can continue sending report output after setup.
+
+Mitigation: Review the scheduled jobs before enabling them, use dry-run mode when available, and remove jobs that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Ryot skill page](https://clawhub.ai/f-liva/skills/ryot)
+- [Publisher profile](https://clawhub.ai/user/f-liva)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Ryot API operations and optional scheduled notification setup when the user provides credentials and confirms changes.]
+
+## Skill Version(s):
+
+1.2.0 (source: package.json, CHANGELOG, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

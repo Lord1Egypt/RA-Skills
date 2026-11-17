@@ -1,10 +1,29 @@
-# 搜广推领域模型 Scaling Up 日报生成技能 v2.0
+---
+name: scalingup-daily
+description: "搜广推领域模型 Scaling Up 日报生成技能。触发词：搜广推日报、ScalingUp 日报、scaling up 日报、搜广推 Scaling 日报、推荐系统日报、生成式推荐日报、搜广推技术日报、搜广推 Scaling Law 日报、推荐系统大模型日报。用于每日自动/手动追踪搜索、广告、推荐（搜广推）领域的最新论文、技术文章、开源项目与行业会议动态，产出结构化 Markdown 日报并同步至 IMA 知识库与腾讯文档。"
+---
 
-## 适用场景
+# 搜广推领域模型 Scaling Up 日报生成技能 v3.0
 
-- 用户说"生成今天的搜广推日报"或"跑一下 ScalingUp 日报"
+## 适用场景（触发条件）
+
+### 触发词（命中即触发）
+
+- 搜广推日报 / ScalingUp 日报 / scaling up 日报 / 搜广推 Scaling 日报
+- 推荐系统日报 / 推荐系统 Scaling Law 日报 / 生成式推荐日报 / 搜广推技术日报
+- 「生成今天的搜广推日报」「跑一下 ScalingUp 日报」等主动指令
+
+### 触发场景
+
+- 用户主动要求生成某日/当日的搜广推日报
 - 自动化任务每周一 08:00 触发（任务 ID: scaling-up-2）
-- 需要系统性追踪搜广推领域最新论文、技术文章、开源项目动态
+- 需要系统性追踪搜广推领域最新论文、技术文章、开源项目、行业会议动态
+
+### 不触发（排除场景）
+
+- 用户仅咨询单篇论文/单一技术点（如"什么是 Scaling Law"、"讲讲 RankMixer"），应走普通问答，不生成日报
+- 用户要求的是周报（走 `ai-recsys-weekly-report`）或深度调研报告（走 `deep-research` / `tech-report-generator`）
+- 与搜广推领域无关的日报需求
 
 ## 信息源（6 类优先级）
 
@@ -18,6 +37,14 @@
 - `"arxiv recommendation foundation model {year}"`
 - `"arxiv scaling law recommendation {year}"`
 - `"arxiv ads ranking model {year}"`
+- `"arxiv OneTrans HyFormer MixFormer recommendation {year}"`
+- `"arxiv Mamba state space model recommendation {year}"`
+- `"arxiv Mixture of Experts recommendation ranking {year}"`
+- `"arxiv sparse attention recommendation {year}"`
+- `"arxiv LLM4Rec large language model recommendation {year}"`
+- `"arxiv multi-task learning recommendation {year}"`
+- `"arxiv FLOPs MFU training efficiency recommendation {year}"`
+- `"arxiv InterFormer Kunlun recommendation Meta {year}"`
 每个搜索取前 5 条结果。
 对每篇论文记录：标题、arXiv ID、作者/机构、核心贡献、链接。
 
@@ -28,6 +55,12 @@
 - `"序列建模 推荐"`
 - `"生成式推荐"`
 - `"TokenMixer 排序"`
+- `"OneTrans 排序"`
+- `"MixFormer 推荐"`
+- `"Mamba 推荐系统"`
+- `"MoE 稀疏 推荐"`
+- `"LLM4Rec 大模型推荐"`
+- `"训练效率 MFU 推荐"`
 每个关键词搜索 3-5 条。
 对每篇文章记录：标题、公众号名、链接、发布日期、核心内容。
 
@@ -45,8 +78,9 @@ cd {skill_dir} && NODE_PATH={skill_dir}/node_modules {node_path} scripts/search_
 - `"site:zhuanlan.zhihu.com 搜广推 序列建模 {year}"`
 - `"site:zhuanlan.zhihu.com OneRec OneRanker GR4AD"`
 - `"site:zhuanlan.zhihu.com 推荐系统 大模型 {year}"`
-- `"site:zhuanlan.zhihu.com UniMixer 推荐 {year}"`
+- `"site:zhuanlan.zhihu.com OneTrans MixFormer 推荐 {year}"`
 - `"site:zhuanlan.zhihu.com 推荐系统 MoE 稀疏 {year}"`
+- `"site:zhuanlan.zhihu.com Mamba LLM4Rec 推荐 {year}"`
 每个搜索取前 5 条结果。
 
 ### 优先级 4：技术博客 — 大厂团队博客
@@ -58,6 +92,7 @@ cd {skill_dir} && NODE_PATH={skill_dir}/node_modules {node_path} scripts/search_
 - `"阿里巴巴技术 推荐系统 {year}"`
 - `"快手技术博客 生成式推荐 {year}"`
 - `"腾讯技术 推荐系统 {year}"`
+- `"字节跳动 推荐 Mamba MoE 架构 {year}"`
 
 ### 优先级 5：GitHub Trending — 热门开源项目
 使用 `web_search` 搜索以下关键词：
@@ -67,6 +102,8 @@ cd {skill_dir} && NODE_PATH={skill_dir}/node_modules {node_path} scripts/search_
 - `"GitHub Meta HSTU recommendation"`
 - `"GitHub Kuaishou OneRec OpenOneRec"`
 - `"github.com/trending 机器学习 推荐系统"`
+- `"GitHub Mamba recommendation ranking open source"`
+- `"GitHub LLM4Rec recommendation open source"`
 
 ### 优先级 6：行业会议 — KDD/WWW/ICML/NeurIPS/SIGIR 等
 使用 `web_search` 搜索以下关键词：
@@ -81,11 +118,13 @@ cd {skill_dir} && NODE_PATH={skill_dir}/node_modules {node_path} scripts/search_
 
 ## 重点关注的技术方向
 
-- Scaling Law 在搜广推领域的验证与落地（Wukong/SUAN/EST/TokenMixer-Large 路线）
-- TokenMixer 架构演进（RankMixer → TokenMixer-Large → UniMixer）
-- 生成式端到端统一建模（OneRec/OneRanker/GR4AD）
-- 稀疏注意力与 MoE 高效扩展（ULTRA-HSTU/LightSUAN）
-- 多行为序列推荐与基础模型
+- **判别式建模三大 Scaling 方向**：Dense Scaling / Seq Scaling / Co-Scaling
+- **字节精排系列**：RankMixer → TokenMixer-Large → OneTrans / HyFormer / MixFormer / MDL / LONGER
+- **生成式推荐新范式**：OneRec / OneRanker / GR4AD / GenRec / RecGPT-V2
+- **Meta 大规模推荐**：Kunlun / InterFormer / ULTRA-HSTU / Wukong
+- **高效扩展架构**：MoE / 稀疏注意力 / SSM(Mamba) / 长序列建模
+- **跨域与协同建模**：LLM4Rec / 多任务学习 MTL / GNN与超图
+- **训练效率**：FLOPs 计算 / MFU 指标
 
 ## 已知核心论文（去重用，不需要重复列出）
 

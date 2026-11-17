@@ -1,44 +1,58 @@
-## Description: <br>
-Send files and web articles to a reMarkable e-ink tablet via the reMarkable Cloud, including PDF or EPUB uploads, article conversion, and cloud file management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send files and web articles to a reMarkable e-ink tablet via the reMarkable Cloud, including PDF and EPUB upload, article conversion, and cloud file browsing or management.
 
-## Publisher: <br>
-[nickian](https://clawhub.ai/user/nickian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickian](https://clawhub.ai/user/nickian)
 
-## Use Case: <br>
-External users and agents use this skill to send local documents or converted web articles to a reMarkable e-ink tablet and manage files and folders in reMarkable Cloud through rmapi. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends documents and converted articles to a reMarkable Cloud account through a third-party rmapi tool with cached account access. <br>
-Mitigation: Install a reviewed or pinned rmapi release, connect only the intended account, and protect or clear ~/.rmapi when needed. <br>
-Risk: An incorrect URL, local file, or destination folder could send unintended content to the cloud. <br>
-Mitigation: Confirm the source URL or file path and target folder before running upload or send-article commands. <br>
-Risk: Web article conversion may fail or produce incomplete output when sites block scraping or alter page structure. <br>
-Mitigation: Review the generated EPUB or PDF before upload when content fidelity matters, and use another source URL if extraction fails. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nickian/remarkable) <br>
-- [Publisher profile](https://clawhub.ai/user/nickian) <br>
-- [rmapi](https://github.com/ddvk/rmapi) <br>
-- [reMarkable device login](https://my.remarkable.com/device/browser?showOtp=true) <br>
+## Use Case:
 
+External users and developers use this skill to send documents or readable web-article ebooks to a reMarkable tablet and to list, search, create folders, and upload files through the reMarkable Cloud.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, file paths, and generated EPUB or PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses rmapi for cloud operations and caches account access in ~/.rmapi.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent reMarkable Cloud credentials are cached locally at ~/.rmapi.
+
+Mitigation: Treat ~/.rmapi as sensitive account access and restrict local account, filesystem, and backup exposure.
+
+Risk: The skill fetches arbitrary web URLs and uploads local documents or converted articles to reMarkable Cloud.
+
+Mitigation: Avoid private URLs or documents unless the user is comfortable with local fetching and cloud upload.
+
+Risk: The setup path builds rmapi from an unpinned source and installs it as a system-wide helper.
+
+Mitigation: Use a trusted, pinned rmapi build and avoid running the skill or installer with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickian/skills/remarkable)
+- [rmapi](https://github.com/ddvk/rmapi)
+- [reMarkable browser device code](https://my.remarkable.com/device/browser?showOtp=true)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and generated EPUB, PDF, or HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses rmapi for cloud operations and can fetch web URLs locally before upload.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

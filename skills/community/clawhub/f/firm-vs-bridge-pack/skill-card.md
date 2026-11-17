@@ -1,41 +1,52 @@
-## Description: <br>
-VS Code bridge pack for context push/pull and session linking between VS Code and OpenClaw Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VS Code bridge pack for context push/pull and session linking between VS Code and OpenClaw Gateway.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to synchronize selected VS Code context, file contents, diagnostics, and editor session state with OpenClaw Gateway.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may send selected VS Code context, file contents, diagnostics, and session metadata through OpenClaw Gateway.
+
+Mitigation: Avoid syncing secrets, proprietary code, or regulated data unless that use is approved for the deployment environment.
+
+Risk: Context synchronization can expose editor state beyond the local workspace.
+
+Mitigation: Review the selected context before pushing it and keep the VS Code OpenClaw extension configured according to local policy.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to share VS Code editor context with OpenClaw Gateway, retrieve context back into the agent workflow, and link or check editor sessions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Editor selections, file content, diagnostics, or session details may be shared with OpenClaw Gateway. <br>
-Mitigation: Use the skill only in workspaces where that sharing is intended, and avoid pushing secrets or proprietary code unless sharing is approved. <br>
-Risk: The skill depends on a connected OpenClaw Gateway, the OpenClaw extension, and the external mcp-openclaw-extensions package. <br>
-Mitigation: Install it only when those connected components and packages are trusted. <br>
+**Output Format:** [Markdown with inline tool commands and YAML configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/romainsantoli-web/firm-vs-bridge-pack) <br>
-- [Publisher profile](https://clawhub.ai/user/romainsantoli-web) <br>
+**Other Properties Related to Output:** [Produces bridge-tool usage guidance for VS Code context sync and session status workflows.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline tool-call and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve VS Code selections, file content, diagnostics, and session status from the connected OpenClaw Gateway.] <br>
+1.0.0 (source: frontmatter and ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Google Calendar CLI helps agents manage Google Calendar events through the gog command-line tool, including listing, creating, updating, deleting, color support, OAuth setup, and scripting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Calendar management via the gog CLI tool. Create, list, update, and delete calendar events with color support, OAuth authentication, and scripting capabilities. Use when working with Google Calendar events, scheduling meetings, checking availability, or managing calendar entries from the command line.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, operators, and calendar power users use this skill to manage Google Calendar events from an agent-assisted command-line workflow. It helps with listing events, creating or updating calendar entries, checking availability, using event colors, and scripting repeated calendar operations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow installs and uses a third-party Google Calendar CLI with OAuth access.
+
+Mitigation: Verify that steipete/tap/gogcli is the intended CLI source and grant only the Google Calendar access needed for the task.
+
+Risk: Automated create, update, or bulk-loop commands can modify real calendar data.
+
+Mitigation: Test scripts on a non-critical calendar before using --no-input or bulk operations on important calendars.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and calendar users use this skill to generate gog CLI commands for checking availability, scheduling meetings, and maintaining Google Calendar events from the command line. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Authorized commands can read or change real Google Calendar data. <br>
-Mitigation: Use a test or non-critical calendar while experimenting, review create/update/delete and looped commands before running them, and revoke Google Calendar access when it is no longer needed. <br>
-Risk: OAuth client secrets and tokens grant calendar access if exposed. <br>
-Mitigation: Protect OAuth client secrets and tokens, and install only if you trust the gog CLI and Homebrew tap. <br>
+**Output Format:** [Markdown with inline bash code blocks and command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include commands that install a third-party CLI, configure OAuth credentials, and create, update, list, or delete Google Calendar events.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-output command options for scripting.] <br>
+1.0.0 (source: server-resolved release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

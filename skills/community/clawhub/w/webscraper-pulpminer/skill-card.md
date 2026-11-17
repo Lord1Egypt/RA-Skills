@@ -1,43 +1,59 @@
-## Description: <br>
-Converts webpages into structured JSON through PulpMiner's AI scraping API, with support for saved APIs, custom schemas, dynamic URLs, and automation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert any webpage into structured JSON data using AI. Scrape websites, extract data into custom JSON schemas, and call saved APIs programmatically.
 
-## Publisher: <br>
-[melvin2016](https://clawhub.ai/user/melvin2016) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[melvin2016](https://clawhub.ai/user/melvin2016)
 
-## Use Case: <br>
-Developers, data teams, and automation builders use this skill to configure and call PulpMiner saved APIs that extract structured JSON from webpages for scraping, monitoring, lead generation, price tracking, and data pipelines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Target webpage content, extraction parameters, and results are sent to PulpMiner as part of the scraping workflow. <br>
-Mitigation: Use the skill only for pages and data you are authorized to process, and avoid submitting confidential or sensitive content unless your organization has approved that use. <br>
-Risk: The skill requires a PulpMiner API key and API calls consume credits. <br>
-Mitigation: Store the API key securely, avoid exposing it in prompts or logs, and monitor credit usage for saved APIs. <br>
-Risk: Zapier callback integrations can forward scraped results to external workflows. <br>
-Mitigation: Use callback URLs only for workflows and destinations you trust. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/melvin2016/webscraper-pulpminer) <br>
-- [PulpMiner website](https://pulpminer.com) <br>
-- [PulpMiner API dashboard](https://pulpminer.com/api) <br>
+## Use Case:
 
+Developers, data teams, and automation builders use this skill to configure PulpMiner saved APIs, call them with an API key, and retrieve structured JSON from webpages for scraping, extraction, monitoring, lead generation, price tracking, and data pipelines.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PULPMINER_API_KEY; API responses return JSON with data and errors fields.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Webpage URLs, scraped content, and extracted results may be processed by PulpMiner as a third-party scraping and LLM-processing service.
+
+Mitigation: Do not submit private or internal URLs, authenticated pages, secrets, regulated data, or sensitive personal information unless approved for that service.
+
+Risk: Zapier callback integrations can send scraped data to an external destination.
+
+Mitigation: Use only approved callback URLs and confirm the destination is authorized to receive the extracted data.
+
+Risk: The PULPMINER_API_KEY grants access to the configured PulpMiner API usage.
+
+Mitigation: Store the API key in an environment variable or approved secret store, avoid logging it, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [PulpMiner Website](https://pulpminer.com)
+- [PulpMiner API Dashboard](https://pulpminer.com/api)
+- [ClawHub Skill Page](https://clawhub.ai/melvin2016/skills/webscraper-pulpminer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/melvin2016)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PULPMINER_API_KEY; saved API responses return JSON with data and errors fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

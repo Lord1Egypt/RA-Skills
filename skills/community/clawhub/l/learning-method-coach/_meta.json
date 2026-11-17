@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn77zzg9p845zanvy6vrf76k7d81mcnm",
-  "slug": "learning-method-coach",
-  "version": "1.0.0",
-  "publishedAt": 1774495918478
+  "name": "learning-method-coach",
+  "version": "0.1.0",
+  "status": "draft",
+  "entry": "SKILL.md",
+  "created": "2026-03-25",
+  "updated": "2026-03-25",
+  "publishable": true,
+  "published": false,
+  "author": "Claude Code",
+  "source": [
+    "书评/认知天性：让学习轻而易举的心理学规律.md",
+    "高价值内容总榜_Top20_2026-03-25.md",
+    "5个核心Skill定义_2026-03-25.md"
+  ]
 }

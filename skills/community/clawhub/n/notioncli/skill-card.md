@@ -1,42 +1,57 @@
-## Description: <br>
-Notion API for creating and managing pages, databases, blocks, relations, rollups, and multi-workspace profiles via the notioncli CLI tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion API for creating and managing pages, databases, blocks, relations, rollups, and multi-workspace profiles via the notioncli CLI tool.
 
-## Publisher: <br>
-[JordanCoin](https://clawhub.ai/user/JordanCoin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jordancoin](https://clawhub.ai/user/jordancoin)
 
-## Use Case: <br>
-Developers, employees, and agents use this skill to query, create, update, move, delete, and inspect Notion workspace content through the notioncli command-line tool. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify, move, archive, or delete Notion pages, blocks, and database schema. <br>
-Mitigation: Require explicit approval before delete, move, schema update, block delete, or other destructive operations. <br>
-Risk: The skill depends on a Notion API key and can access any pages or databases shared with that integration. <br>
-Mitigation: Use a least-privilege Notion integration, share only required workspace resources, and verify where the API key is stored. <br>
-Risk: The skill can upload local files to Notion pages. <br>
-Mitigation: Require explicit approval before file uploads and verify both the local file path and destination page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Notion skill page](https://clawhub.ai/JordanCoin/notioncli) <br>
-- [notioncli project homepage](https://github.com/JordanCoin/notioncli) <br>
+## Use Case:
 
+Developers, operators, and AI agents use this skill to interact with Notion workspaces from the terminal, including querying databases, managing pages and blocks, updating relations and rollups, uploading files, and working across multiple workspace profiles.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output formats such as table, CSV, JSON, and YAML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTION_API_KEY and a Notion integration shared with the target pages or databases.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify or delete Notion workspace content.
+
+Mitigation: Use a least-privilege Notion integration shared only with intended pages and databases, and confirm uniquely identified targets before destructive commands.
+
+Risk: The install path uses an unpinned global npm package with inconsistent package naming in the artifact.
+
+Mitigation: Verify the npm package identity and version manually before installing or executing the CLI.
+
+Risk: The skill persists and uses a Notion API credential.
+
+Mitigation: Protect NOTION_API_KEY, avoid exposing it through shell history or process logs, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jordancoin/skills/notioncli)
+- [Notion CLI Homepage](https://github.com/JordanCoin/notioncli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to install and invoke notioncli, configure NOTION_API_KEY, and request JSON, CSV, YAML, or table output from the CLI.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

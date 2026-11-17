@@ -1,48 +1,67 @@
-## Description: <br>
-新股申购助手 - A 股 IPO 申购必备工具。提供新股申购日历、基本面分析、中签率预测、上市溢价预测、申购建议。适用于 A 股新股投资者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+新股申购助手 helps A-share IPO investors review subscription calendars, basic issuer analysis, win-rate estimates, first-day premium estimates, comparisons, statistics, and reminders.
 
-## Publisher: <br>
-[zhaoteng-qd](https://clawhub.ai/user/zhaoteng-qd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoteng-qd](https://clawhub.ai/user/zhaoteng-qd)
 
-## Use Case: <br>
-External A-share IPO investors use this skill to inspect IPO subscription calendars, compare IPO fundamentals, estimate lottery win rates and listing premiums, and get reminder-oriented IPO guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public financial-data services and may receive stale, unavailable, or inaccurate IPO data. <br>
-Mitigation: Verify IPO dates, prices, and eligibility requirements against official exchange announcements before acting. <br>
-Risk: The skill writes local cache and reminder configuration files, and can optionally read a Tushare token from the environment or data/tushare_token.txt. <br>
-Mitigation: Review local files and credential handling before installation, and avoid storing sensitive tokens in shared workspaces. <br>
-Risk: Win-rate, premium, and subscription suggestions are informational estimates rather than financial advice. <br>
-Mitigation: Use the output as one input to independent investment review and do not rely on it as a guarantee of return. <br>
+## Use Case:
 
+External A-share IPO investors use this skill to check upcoming subscriptions, compare IPO candidates, and receive educational IPO analysis and reminders. Outputs should be treated as decision support, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaoteng-qd/ipo-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhaoteng-qd) <br>
-- [API Reference](references/API.md) <br>
-- [User Guide](references/USER_GUIDE.md) <br>
-- [东方财富新股数据](http://data.eastmoney.com/xg/xg/default.html) <br>
-- [上海证券交易所](http://www.sse.com.cn/) <br>
-- [深圳证券交易所](http://www.szse.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text with command examples, tabular IPO data, and investment guidance summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational and may depend on public financial-data services, local cache files, and optional Tushare credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Investment-style recommendations and predictions may rely on mock or weakly verified data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational decision support and verify IPO details against official exchange, broker, or issuer sources before acting.
+
+Risk: The Tushare integration can read a token from an environment variable or local file.
+
+Mitigation: Prefer managed secrets or environment variables and avoid storing tokens in data/tushare_token.txt.
+
+Risk: The skill uses network data sources and Python dependencies that may change or fail.
+
+Mitigation: Install in an isolated environment, pin dependency versions, and confirm each data source is reachable before relying on results.
+
+Risk: Reminder behavior can schedule weekday notifications and forward IPO messages to configured channels.
+
+Mitigation: Enable reminders only after reviewing the schedule, timezone, payload, and destination channel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoteng-qd/skills/ipo-assistant)
+- [User Guide](references/USER_GUIDE.md)
+- [Data Source API Guide](references/API.md)
+- [Eastmoney IPO data API](http://datacenter-web.eastmoney.com/api/data/v1/get)
+- [China Securities Information](http://www.cninfo.com.cn/)
+- [Shanghai Stock Exchange](http://www.sse.com.cn/)
+- [Shenzhen Stock Exchange](http://www.szse.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown-style command-line output in Chinese, with command examples and optional reminder configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include IPO calendars, analysis summaries, win-rate and premium estimates, comparison tables, statistics, and reminder messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; also listed in target metadata, README, and SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

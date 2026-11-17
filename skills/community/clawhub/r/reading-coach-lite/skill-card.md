@@ -1,41 +1,54 @@
-## Description: <br>
-Generate reading comprehension questions from a passage and analyze answers for a single learning session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate reading comprehension questions from a passage and analyze answers for a single learning session.
 
-## Publisher: <br>
-[Wei-EVA](https://clawhub.ai/user/Wei-EVA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wei-eva](https://clawhub.ai/user/wei-eva)
 
-## Use Case: <br>
-External learners, parents, tutors, and educators use this skill for a single reading practice session: generating 3-5 comprehension questions from a passage and analyzing a student's answer when the passage, question, and answer are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student reading passages, answers, or identifiers may be shared with optional connected education tools. <br>
-Mitigation: Avoid real student identifiers and sensitive child data unless the connected tool and companion plugin have been reviewed and trusted. <br>
-Risk: Users may ask for long-term family records, trend analysis, weekly plans, or private workspace features that this lite skill does not provide. <br>
-Mitigation: Keep responses limited to a single reading practice session and clearly state when requested private or long-term capabilities are unsupported. <br>
+## Use Case:
 
+External learners, parents, and educators use this skill for a single reading-practice session: generating short comprehension questions from a passage and reviewing a student's answer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wei-EVA/reading-coach-lite) <br>
-- [Publisher profile](https://clawhub.ai/user/Wei-EVA) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with reading questions, answer feedback, and concise next-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single-session reading exercise or answer analysis; it does not claim long-term memory, family profiles, weekly plans, or historical trend analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The fallback path may recommend installing a companion plugin or private workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat that recommendation as promotional and verify any separate plugin or workspace before installing it.
+
+Risk: The skill is limited to a single reading-practice session and does not provide persistent family records or long-term trends.
+
+Mitigation: Use it only for current-session question generation and answer feedback; do not rely on it for history, profiles, weekly plans, or progress tracking.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/wei-eva/skills/reading-coach-lite)
+- [Publisher profile](https://clawhub.ai/user/wei-eva)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational guidance with generated questions, answer feedback, and next-step suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces single-session reading practice only; it should not claim long-term memory, family profiles, history, weekly plans, or private workspace capabilities.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

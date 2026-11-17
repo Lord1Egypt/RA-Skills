@@ -1,41 +1,58 @@
-## Description: <br>
-Scans recent GitHub issues labeled as bounties, filters and tracks new opportunities, and can export results for agent review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans recent GitHub bounty-labeled issues for new bounty opportunities with filtering, local seen-history tracking, and optional JSON export; broader multi-platform support is described as planned rather than currently implemented.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers, security researchers, and agents use this skill to run a local bounty scan, review newly found GitHub bounty-labeled issues, and optionally save results as JSON. It is useful for recurring discovery workflows where local configuration controls filters such as technology stack and minimum reward. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact claims broad multi-platform scanning and Telegram notifications, but the authoritative security summary notes that the current behavior is a local GitHub bounty-label scanner. <br>
-Mitigation: Treat GitHub scanning as the implemented capability, verify any advertised platform or notification support before relying on it, and avoid presenting empty platform stubs as completed coverage. <br>
-Risk: The scanner runs the GitHub CLI under the user's local GitHub profile and can be scheduled as a recurring cron task. <br>
-Mitigation: Run it only in an account and workspace intended for bounty discovery, review any cron entry before enabling recurring scans, and remove scheduled runs when no longer needed. <br>
+## Use Case:
 
+Developers, security researchers, and bounty hunters use this skill to automate discovery of recent GitHub issues labeled as bounties, filter results by technology or reward threshold, and export new findings for follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/multi-bounty-scanner) <br>
-- [Publisher profile](https://clawhub.ai/user/dagangtj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text or JSON file output, with Markdown documentation containing shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and the GitHub CLI for implemented scanning; stores seen bounty IDs under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The package metadata can cause npm to install an unrelated package named `gh`, while the scanner expects the official GitHub CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and authenticate the official GitHub CLI separately, and remove or ignore the npm `gh` peer dependency before deployment.
+
+Risk: The release describes broad multi-platform scanning, but the reviewed implementation currently supports GitHub scanning only.
+
+Mitigation: Scope operational use and validation to GitHub bounty-labeled issues unless additional platform scanners are implemented and reviewed.
+
+Risk: The scanner stores local configuration and seen-bounty history under `~/.bounty-scanner`.
+
+Mitigation: Review local retention expectations and filesystem permissions before running it in shared or managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/multi-bounty-scanner)
+- [Publisher profile](https://clawhub.ai/user/dagangtj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text summaries or JSON scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tracks seen bounties under ~/.bounty-scanner and can write scan results to a user-specified JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

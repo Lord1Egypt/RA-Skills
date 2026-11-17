@@ -1,40 +1,53 @@
-## Description: <br>
-Agent Ping discovers OADP agent-discovery signals on a target domain across HTTP headers, well-known metadata, robots.txt, DNS TXT records, HTML metadata, and hub ping responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover other AI agents across the internet using OADP (Open Agent Discovery Protocol). Scan any domain for agent signals across 6 layers. Find coordination hubs, register your presence, join the network.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and agent operators use Agent Ping to scan domains they own or are authorized to test for OADP agent-discovery signals, then review suggested registration or install commands when a hub is found. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scanning domains without authorization can create policy, privacy, or abuse-reporting risk because the skill makes outbound HTTP and DNS requests. <br>
-Mitigation: Use the skill only on domains you own or are authorized to test, and expect network traffic to the target domain. <br>
-Risk: A discovered hub may receive a ping request and the skill may print registration, AGENTS.md append, or follow-on install commands. <br>
-Mitigation: Review discovered hub URLs and any generated registration, file-append, or install commands before running them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Ping on ClawHub](https://clawhub.ai/imaflytok/agent-ping) <br>
-- [OADP Protocol](https://onlyflies.buzz/clawswarm/PROTOCOL.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to scan domains for OADP agent-discovery signals, identify coordination hubs, and understand optional registration or beaconing steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text with suggested shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a domain input; results depend on live network responses from the target domain and discovered hub endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A scanned site can influence where the scanner sends its automatic OADP ping request.
+
+Mitigation: Scan only domains you trust and review discovered hub URLs before relying on their responses.
+
+Risk: Registration, beacon, and follow-on install commands can disclose agent presence or install additional third-party behavior.
+
+Mitigation: Treat registration and beaconing as public disclosure actions, and inspect recommended follow-on skills before installing them.
+
+## Reference(s):
+
+- [Agent Ping on ClawHub](https://clawhub.ai/imaflytok/skills/agent-ping)
+- [OADP Protocol](https://onlyflies.buzz/clawswarm/PROTOCOL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text with markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports discovered signal layers and may print registration commands when a hub is found.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Provides Explore, Plan, and Verify agent modes plus feature flags for dynamically controlling agent behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides three agent working modes: Explore for read-only analysis, Plan for thinking before acting, and Verify for checking results, with feature flags for toggling additional capabilities.
 
-## Publisher: <br>
-[mayiv-ai](https://clawhub.ai/user/mayiv-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayiv-ai](https://clawhub.ai/user/mayiv-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to switch an agent between read-only exploration, plan-first work, and post-action verification, and to toggle advanced behavior flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional memory persistence can scan, update, or archive notes without enough scope clarity. <br>
-Mitigation: Keep auto_memory disabled unless it is explicitly needed, and require confirmation before any memory scan, long-term memory update, or note archive. <br>
-Risk: Optional background tasks and sub-agent runs can operate with limited user oversight. <br>
-Mitigation: Keep autonomous_crons disabled unless it is explicitly needed, and require confirmation before any scheduled task or spawned sub-agent run. <br>
+## Use Case:
 
+Developers and agent operators use this skill to switch an agent between exploration, planning, and verification behaviors, and to manage optional feature flags for memory, coordination, and background work.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/mayiv-ai/enhanced-modes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with slash-command examples and JSON feature-state configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Feature flags control optional memory consolidation, coordination, verification, and background task behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent memory and logging behavior may retain information without enough scoping or retention detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep auto_memory disabled unless persistent memory processing is required, and inspect any memory or state files the skill creates.
+
+Risk: Background automation can initiate agent work on a timer when enabled.
+
+Mitigation: Keep autonomous_crons disabled unless explicitly needed, and review scheduled behavior before enabling it.
+
+Risk: Installing through an unpinned installer can make the installed behavior harder to reproduce.
+
+Mitigation: Use a pinned and trusted ClawHub installer version when installing the skill.
+
+## Reference(s):
+
+- [Enhanced Agent Modes on ClawHub](https://clawhub.ai/mayiv-ai/skills/enhanced-modes)
+- [Mayiv-Ai Publisher Profile](https://clawhub.ai/user/mayiv-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with slash commands and feature-flag settings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes mode commands and feature defaults; optional persistent memory and background automation features are disabled by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

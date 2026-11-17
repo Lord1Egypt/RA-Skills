@@ -27,6 +27,8 @@ const PAD_MODEL = {
  * @param {number} dominance - 支配度 (-10 到 10)
  * @returns {object} PAD状态对象
  */
+// [REFACTOR] TODO: calculatePADState (1389行) — 建议拆分为独立子函数
+
 function calculatePADState(pleasure, arousal, dominance) {
   const clamp = (v) => Math.max(PAD_MODEL.min, Math.min(PAD_MODEL.max, v));
   
@@ -93,6 +95,25 @@ function getEmotionFromPAD(p, a, d) {
 function detectPADFromText(text) {
   const lower = text.toLowerCase();
  
+  // === [v5.9.13] 叙事体检测：第三人称长文无第一人称情绪信号 → 标记 outOfScope ===
+  const firstPersonSignals = /我[很非常觉得认为想]|我[不没]|帮我|给我|我想|我该|我该不该|我是否/;
+  const isLongText = text.length > 30;
+  const hasThirdPersonNarrative = isLongText && (
+    /他[们]?[被把将让]|她[被把将让]|受害者|凶手|嫌疑人|当事人|被告|原告/.test(text) ||
+    (/\d+年|\d+岁|案发|事发|当时|之后|后来|此前/.test(text) && !firstPersonSignals.test(text))
+  );
+  if (hasThirdPersonNarrative && !firstPersonSignals.test(text)) {
+    // 叙事文本，无第一人称情绪信号 → 诚实返回 outOfScope
+    return {
+      pleasure: 0, arousal: 0, dominance: 0,
+      emotion: 'outOfScope',
+      emotionZh: '叙事文本-超出检测范围',
+      outOfScope: true,
+      outOfScopeReason: '第三人称叙事文本，无第一人称情绪信号，PAD检测不适用。建议用LLM做人物情绪建模。',
+      suggestion: 'narrative_emotion_modeling'
+    };
+  }
+
   let pleasure = 0;
   let arousal = 0;
   let dominance = 0;
@@ -618,8 +639,8 @@ function detectDINKFears(text) {
  */
 function analyzePsychology(input, context = {}) {
   const text = String(input || '');
-  // [P1] 输入长度限制 - 防止内存耗尽和ReDoS
-  const MAX_INPUT_LENGTH = 50000; // 50KB
+  // [P1] 输入长度限制 - 1M 上下文适配
+  const MAX_INPUT_LENGTH = 200000; // 20% of 1M context
   if (text.length > MAX_INPUT_LENGTH) {
     return { error: 'Input too large', maxLength: MAX_INPUT_LENGTH };
   }
@@ -980,7 +1001,7 @@ let _topicScopeManager = null;
 function _getTopicScope() {
   if (!_topicScopeInstance) {
     try {
-      const TopicScope = require('../identity/topic-scope.js');
+      const TopicScope = require('../memory/topic-scope.js');
       _topicScopeInstance = new TopicScope();
     } catch (e) {
       return null;

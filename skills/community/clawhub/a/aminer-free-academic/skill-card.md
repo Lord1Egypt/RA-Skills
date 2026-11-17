@@ -1,43 +1,56 @@
-## Description: <br>
-Free-tier AMiner academic search for lightweight paper triage, scholar identification, institution and venue normalization, patent trend scanning, and basic metadata enrichment using seven AMiner APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AMiner Free Search helps agents use AMiner free-tier APIs for lightweight academic paper, scholar, institution, venue, and patent lookups.
 
-## Publisher: <br>
-[canxiangcc](https://clawhub.ai/user/canxiangcc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canxiangcc](https://clawhub.ai/user/canxiangcc)
 
-## Use Case: <br>
-External users and developers use this skill for lightweight AMiner academic discovery when they need free-tier paper, scholar, institution, venue, or patent lookups before deciding whether deeper paid APIs are warranted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AMiner API tokens or confidential research queries could be exposed if pasted into chat or sent without review. <br>
-Mitigation: Keep AMINER_API_KEY in an environment variable, avoid printing tokens, and avoid submitting confidential topics or private names unless external AMiner lookup is acceptable. <br>
-Risk: The routing language is broad and could steer academic questions to this free-tier skill even when the requested task needs deeper paid APIs. <br>
-Mitigation: State free-tier limits in the answer and route to paid AMiner APIs only when the free endpoints cannot answer the user's request. <br>
+## Use Case:
 
+Developers and external users can use this skill to run low-cost academic discovery workflows, including paper triage, scholar identification, institution and venue normalization, patent trend scans, and deciding whether a paid AMiner API path is needed.
 
-## Reference(s): <br>
-- [AMiner Free Search API Catalog](references/api-catalog.md) <br>
-- [AMiner Open Platform Documentation](https://open.aminer.cn/open/docs) <br>
-- [AMiner Console](https://open.aminer.cn/open/board?tab=control) <br>
-- [ClawHub Skill Page](https://clawhub.ai/canxiangcc/aminer-free-academic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, API Calls] <br>
-**Output Format:** [Markdown with curl command examples and concise result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AMINER_API_KEY and stays within documented free-tier AMiner endpoints unless the user explicitly asks to upgrade.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: Broad academic activation may route ordinary academic queries to AMiner without clear user intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants AMiner free-tier lookup before sending query terms to the provider, especially for private, unpublished, or sensitive research topics.
+
+Risk: The skill requires an AMiner API key and examples include token handling.
+
+Mitigation: Store AMINER_API_KEY as an environment variable, verify only whether it exists, and avoid printing or pasting real tokens into chat.
+
+## Reference(s):
+
+- [AMiner Free Search API Catalog](references/api-catalog.md)
+- [AMiner Console](https://open.aminer.cn/open/board?tab=control)
+- [AMiner Open Platform Documentation](https://open.aminer.cn/open/docs)
+- [ClawHub Skill Page](https://clawhub.ai/canxiangcc/skills/aminer-free-academic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline curl commands and concise result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should stay within AMiner free-tier capabilities, include AMiner entity URLs when IDs are available, and clearly state when a paid API is required.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

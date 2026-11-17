@@ -1,42 +1,56 @@
-## Description: <br>
-Optimize vendor payment timing to maximize cash flow and capture early payment discounts by analyzing open AP, scoring discount opportunities, calculating annualized ROI, generating payment priority queues, and flagging late payment risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize vendor payment timing to maximize cash flow and capture early payment discounts.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Finance operators and business owners use this skill to review AP aging, evaluate early payment discounts, rank invoices by priority, and model cash flow impact before making payment decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Vendor invoices and pricing can contain sensitive finance and supplier information.
+
+Mitigation: Keep AP data private and avoid sharing invoice-level details outside approved finance workflows.
+
+Risk: Payment timing, extension, or discount-negotiation recommendations may affect vendor relationships and cash obligations.
+
+Mitigation: Have a finance owner review recommendations and any vendor-facing language before acting.
+
+Risk: The skill is intended for decision support and could be misused as an instruction to pay invoices directly.
+
+Mitigation: Use accounting, banking, or QBO workflows for actual payments; do not grant this skill payment execution authority.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Finance, accounting, and procurement users use this skill to review AP aging, decide which invoices to pay early, compare early payment discounts against cash costs, and build a cash-aware payment priority list. It is decision support only and does not send payments or sync to bank accounts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: AP aging data can include sensitive vendor relationships, pricing, invoice amounts, and payment timing information. <br>
-Mitigation: Use the skill only in appropriate business contexts and avoid sharing AP data outside approved finance or procurement workflows. <br>
-Risk: Payment timing recommendations can be wrong if invoice terms, due dates, discount windows, cash availability, or cost-of-capital assumptions are inaccurate. <br>
-Mitigation: Verify invoice terms and cash assumptions before acting on payment queues or discount recommendations. <br>
-Risk: The skill may generate payment priorities or vendor-message suggestions that affect cash flow or supplier relationships. <br>
-Mitigation: Require normal finance or procurement approval before sending vendor messages, importing payment CSVs, or making payments. <br>
+**Output Format:** [Markdown decision briefs, analysis reports, and CSV-style payment queues]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/vendor-payment-optimizer) <br>
+**Other Properties Related to Output:** [Decision-support output only; it does not execute payments or synchronize with banking systems.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, CSV, Guidance] <br>
-**Output Format:** [Markdown decision brief, full AP analysis report, or CSV payment queue] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision support only; does not execute payments, access accounts, or send vendor messages.] <br>
+1.0.0 (source: server release evidence and skill frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

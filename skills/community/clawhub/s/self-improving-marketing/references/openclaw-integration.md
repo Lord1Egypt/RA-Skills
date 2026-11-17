@@ -43,8 +43,8 @@ cp -r self-improving-marketing ~/.openclaw/skills/
 ### 2. Install the Hook (Optional)
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-marketing
-openclaw hooks enable self-improving-marketing
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-marketing
 ```
 
 ### 3. Create Learning Files
@@ -94,23 +94,9 @@ Is the learning campaign-specific?
 | Attribution broken | Log learning | LEARNINGS.md (attribution_gap) |
 | Content traffic declining | Log learning | LEARNINGS.md (content_decay) |
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session communication. Use only when cross-session sharing is explicitly needed.
-
-### sessions_send
-
-Share a marketing insight with another session:
-```
-sessions_send(sessionKey="session-id", message="Attribution gap: Cloudflare redirect strips UTMs, use $1?$query_string in redirect rule")
-```
-
-### sessions_spawn
-
-Spawn a background agent to analyze campaign patterns:
-```
-sessions_spawn(task="Analyze .learnings/CAMPAIGN_ISSUES.md for promotion candidates", label="campaign-review")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## Available Hook Events
 

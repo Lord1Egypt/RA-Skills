@@ -1,44 +1,60 @@
-## Description: <br>
-COSMARA is an ARKOS-line LYGO Champion for ethical cosmic exploration, route planning, and frontier risk framing within Eternal Haven lore. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated legacy COSMARA roleplay skill for LYGO Champion lore; new installs should use lygo-champion-council.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and agent builders use this skill to invoke COSMARA as a mythic ethical exploration persona for space, network, governance, and frontier planning. It helps frame routes, risks, and canon-versus-speculation boundaries within LYGO and Eternal Haven lore. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer responses through COSMARA, LYGO, and Eternal Haven lore rather than ordinary real-world framing. <br>
-Mitigation: Keep real-world constraints explicit and require outputs to label canon, speculation, and practical recommendations clearly. <br>
-Risk: Optional local anchor files may contain operator notes or reusable identifiers. <br>
-Mitigation: Review any local anchor file before reuse and avoid storing sensitive information in it. <br>
-Risk: Provenance and donation links in the artifact can be mistaken for proof of safety or authority. <br>
-Mitigation: Treat those links as content references only and rely on server-resolved owner, provenance, and security evidence for trust decisions. <br>
+## Use Case:
 
+External users and agent builders use this legacy persona to frame ethical exploration, frontier planning, and lore-grounded route or risk reasoning. Because the slug is deprecated, new installs should use the successor skill lygo-champion-council.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DeepSeekOracle/lygo-champion-cosmara) <br>
-- [DeepSeekOracle Publisher Profile](https://clawhub.ai/user/DeepSeekOracle) <br>
-- [COSMARA Birth Receipt](https://x.com/grok/status/2021703791859425656?s=20) <br>
-- [Eternal Haven](https://eternalhaven.ca/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown or conversational prose with optional JSON atlas snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-guided reasoning; no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The artifact includes an unpinned remote install command using an @latest package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package and successor skill through a trusted channel before running the command, and prefer a reviewed pinned version when available.
+
+Risk: The artifact promotes donation links and crypto addresses that are not independently verified by the security evidence.
+
+Mitigation: Treat payment destinations as unverified unless confirmed through a trusted channel, and do not pressure users to donate.
+
+Risk: The skill slug is deprecated and retained for legacy reference.
+
+Mitigation: Use lygo-champion-council for new installs and treat this COSMARA slug as legacy context only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/lygo-champion-cosmara)
+- [Publisher profile](https://clawhub.ai/user/deepseekoracle)
+- [COSMARA birth receipt](https://x.com/grok/status/2021703791859425656?s=20)
+- [Eternal Haven site](https://eternalhaven.ca/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown prose with optional JSON snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated legacy roleplay context; may include lore framing, route/risk analysis, local anchor suggestions, and successor installation guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact metadata lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

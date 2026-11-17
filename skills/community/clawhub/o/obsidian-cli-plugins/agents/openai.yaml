@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian CLI Plugins"
+  short_description: "Obsidian vault records, tasks, projects, plugins, sync"
+  default_prompt: "Use $obsidian-cli-plugins for configured Obsidian vault work such as obsidian-2026 status/doctor, host Git sync/status, journal records, Tasks todos, QuickAdd/file/attachment records, project files under 01_project (项目记录, 创建项目文件, 记到<项目>, 功能需求/非功能需求/决策/任务/问题), plugin/native commands, safe vault reads/searches, and OpenClaw sync. Git operations prefer host git commands; fall back to obsidian-git plugin commands only when host git is not found, not when host git returns an error. Require Obsidian/vault context for generic words like 记录, 任务, 项目, Markdown, 同步, 附件, 搜索. Do not use for unrelated records, media recording, generic Markdown/Git, or generic project management."

@@ -1,38 +1,53 @@
-## Description: <br>
-Provides an actionable guide and SOP for improving repeat purchases, including operational steps, metrics, compliance checks, and reusable reporting resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an actionable guide and SOP for repeat-purchase improvement.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Business, marketing, and operations teams use this skill to plan repeat-purchase improvement work, define owners and timelines, run pilots, track metrics, and standardize learnings into templates and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repeat-purchase dashboards, reports, or templates may involve customer or campaign data. <br>
-Mitigation: Apply the evidence security guidance: follow applicable privacy rules and platform requirements, use data minimization, and confirm compliance before using real customer data. <br>
+## Use Case:
 
+Employees and operators use this skill to plan repeat-purchase improvement work, define metrics, run pilots, and turn the resulting SOPs into reusable operating materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/purchase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Templates, Checklists] <br>
-**Output Format:** [Markdown guidance with SOP steps, metric definitions, templates, checklists, report structures, and meeting-note structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, API calls, or hidden system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The broad trigger may cause the skill to be used outside the intended retention or KPI workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger and scope before deployment so it is invoked only for repeat-purchase, retention, or related metric-improvement planning.
+
+Risk: Repeat-purchase workflows can involve personal information and local compliance obligations.
+
+Mitigation: Apply data minimization and review proposed workflows against applicable platform rules and privacy requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/purchase)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with SOP steps, checklists, metric definitions, and reporting structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only output; no code execution, credential handling, hidden persistence, or privileged access is requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

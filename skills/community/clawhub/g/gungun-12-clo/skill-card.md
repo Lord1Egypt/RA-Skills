@@ -1,40 +1,57 @@
-## Description: <br>
-Records agent learning events, detects errors, promotes recurring lessons into knowledge files, and reports learning statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI agent self-improvement skill that records learnings, detects errors, promotes knowledge, and reports learning statistics.
 
-## Publisher: <br>
-[alsoforever](https://clawhub.ai/user/alsoforever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alsoforever](https://clawhub.ai/user/alsoforever)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture conversation learnings, error observations, feature requests, and recurring patterns so an agent can maintain local improvement records. It is suited for workflows that intentionally keep persistent learning notes and periodically promote reviewed lessons into agent knowledge files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently records conversation and error context. <br>
-Mitigation: Use it only for intentional local learning workflows, avoid private or regulated data, and add opt-in, redaction, and retention controls before broader deployment. <br>
-Risk: The promotion workflow can modify long-lived agent knowledge files such as AGENTS.md, SOUL.md, TOOLS.md, and MEMORY.md. <br>
-Mitigation: Require manual review before promotion and limit or remove the generic promote command in automated agent workflows. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture conversation-derived lessons, error context, feature requests, and recurring patterns, then promote reviewed lessons into persistent agent knowledge files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alsoforever/gungun-12-clo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown records and command-line text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local learning, error, feature request, statistics, and promoted knowledge Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The skill records interaction-derived content to persistent workspace files, which may retain conversation, customer, error, or command context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply redaction and retention rules before deployment, and review stored learning records for sensitive content.
+
+Risk: Promotion commands can change long-lived agent knowledge files such as SOUL.md, AGENTS.md, TOOLS.md, and MEMORY.md.
+
+Mitigation: Require explicit human review before promoting lessons into persistent agent behavior or knowledge files.
+
+Risk: A generic promotion path can write promoted content to broader destination files than intended.
+
+Mitigation: Restrict promotion to approved destination files or disable the generic promote command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alsoforever/skills/gungun-12-clo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown records, command-line reports, and guidance for updating agent knowledge files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent learning, error, feature-request, statistics, and promoted-knowledge content in workspace Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

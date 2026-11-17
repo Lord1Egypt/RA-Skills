@@ -315,7 +315,7 @@ classDiagram
   "models": {
     "providers": {
       "custom-api-deepseek-com": {
-        "apiKey": "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "apiKey": "REDACTED-SECRET",
         "baseUrl": "https://api.deepseek.com/v1",
         "models": [
           {"id": "deepseek-chat"},

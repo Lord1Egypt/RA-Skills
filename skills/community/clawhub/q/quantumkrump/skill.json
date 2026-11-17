@@ -1,0 +1,21 @@
+{
+  "name": "quantumkrump",
+  "displayName": "Quantum Krump",
+  "version": "1.0.0",
+  "description": "Master OpenClaw skill for Quantum Krump — synthesizing authentic Krump street dance culture, Laban Effort Analysis, Bloch sphere geometry, DisCoPy categorical string diagrams, Quantinuum Guppy v1.0 / Selene trapped-ion circuit simulation, QUBO stage scheduling, biophysical motor-unit grounding, and Physical AI humanoid robotics.",
+  "author": "arunnadarasa",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/arunnadarasa/quantumworkshop",
+  "homepage": "https://clawhub.ai/arunnadarasa/skills/quantumkrump",
+  "keywords": [
+    "quantum",
+    "krump",
+    "quantinuum",
+    "guppy",
+    "selene",
+    "discopy",
+    "qubo",
+    "category-theory",
+    "openclaw"
+  ]
+}

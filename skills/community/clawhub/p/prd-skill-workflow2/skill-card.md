@@ -1,44 +1,56 @@
-## Description: <br>
-A Chinese-first PRD collaboration workflow that helps an agent guide product discovery and produce complete PRD documentation for product, design, engineering, testing, operations, and project management teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prd Skill Workflow2 guides users through a 10-step collaborative workflow to produce complete PRD documentation for product, design, engineering, testing, operations, and project planning.
 
-## Publisher: <br>
-[shixiangyu2](https://clawhub.ai/user/shixiangyu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shixiangyu2](https://clawhub.ai/user/shixiangyu2)
 
-## Use Case: <br>
-Product managers, designers, engineers, QA teams, operations teams, and project managers use this skill to turn a product idea into a structured PRD through a 10-step dialog workflow. The workflow produces requirements, market analysis, user flows, prototypes, UI guidance, functional specifications, data models, technical plans, testing plans, analytics events, operations plans, and project milestones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow scaffolds local files and can run npm, Playwright, build, update, and rollback commands. <br>
-Mitigation: Run those commands only inside a dedicated PRD project directory and review generated changes before reusing them. <br>
-Risk: Generated analytics, authentication, and security defaults are templates rather than production-ready security guidance. <br>
-Mitigation: Treat these sections as review-required drafts and validate them against project security, privacy, and compliance requirements. <br>
-Risk: The PDF workflow depends on Playwright browser tooling. <br>
-Mitigation: Update or lock Playwright before use and install browser dependencies in a controlled environment. <br>
+## Use Case:
 
+Product managers, designers, developers, testers, operations teams, and project managers use this skill to turn an initial product idea into a structured PRD with market analysis, requirements, user flows, UI guidance, technical architecture, testing, analytics, operations, and project planning sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shixiangyu2/prd-skill-workflow2) <br>
-- [README](README.md) <br>
-- [PRD design system reference](references/design-system.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, HTML/PDF-oriented content templates, Mermaid diagrams, JSON configuration, and shell or npm commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can scaffold local PRD project files and generate HTML/PDF outputs when its Node.js and Playwright tooling is run in a project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, and package.json) <br>
+Risk: Unsafe local automation may execute injected JavaScript or otherwise run untrusted generated content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it in a dedicated project directory, and do not pass untrusted changelog text to the shell updater.
+
+Risk: Generated reports may load unpinned remote code or assets.
+
+Mitigation: Pin or vendor dependencies and report assets before relying on generated outputs in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shixiangyu2/skills/prd-skill-workflow2)
+- [README](artifact/README.md)
+- [FullStack PRD workflow design](artifact/FULLSTACK_PRD.md)
+- [Design system reference](artifact/references/design-system.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational guidance, Markdown PRD sections, Mermaid diagrams, HTML/PDF artifacts, JSON configuration, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PRDs can be long and may include local reports or automation outputs; review artifacts before business, engineering, or sensitive-environment use.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

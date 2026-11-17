@@ -1,40 +1,49 @@
-## Description: <br>
-Help users cook with recipes, technique explanations, and ingredient substitutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users cook with recipes, technique explanations, and ingredient substitutions.
 
-## Publisher: <br>
-[Carl32](https://clawhub.ai/user/Carl32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carl32](https://clawhub.ai/user/carl32)
 
-## Use Case: <br>
-External users and cooking assistants use this skill to provide recipe guidance, technique explanations, ingredient substitutions, dietary adaptations, meal planning, troubleshooting, and kitchen-safety reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cooking and dietary guidance can be unsafe if allergies, restrictions, food handling, or protein temperatures are not considered. <br>
-Mitigation: The skill instructs the agent to ask about allergies and restrictions, mention cross-contact where relevant, provide kitchen-safety reminders, and include safe storage guidance when asked. <br>
-Risk: The registry entry and artifact metadata use different display names or slugs, which can confuse package provenance review. <br>
-Mitigation: Use the server-resolved publisher, release page, and version evidence for card identity, and keep the naming mismatch visible for reviewer confirmation. <br>
+## Use Case:
 
+External users use this skill to get cooking support, including recipe guidance, technique explanations, ingredient substitutions, dietary adaptations, measurement help, troubleshooting, kitchen safety reminders, meal planning, and skill-building advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Carl32/nongshet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text culinary guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include recipes, numbered cooking steps, substitutions, measurements, troubleshooting advice, meal plans, and safety reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Cooking, allergy, food-safety, and medical-diet guidance may be incomplete or inappropriate for a user's specific health needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill's answers as general cooking guidance, verify food safety and allergen handling, and seek qualified advice for severe allergies, medical diets, or suspected foodborne illness.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carl32/skills/nongshet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text cooking guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recipes, numbered cooking steps, substitutions, measurements, troubleshooting notes, and safety reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

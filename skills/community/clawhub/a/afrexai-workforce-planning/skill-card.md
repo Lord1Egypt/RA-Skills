@@ -1,42 +1,59 @@
-## Description: <br>
-Build a data-driven workforce plan that aligns headcount, skills, and costs with business goals using demand forecasting, gap analysis, succession planning, and contingent workforce strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a data-driven workforce plan that aligns headcount, skills, and costs with business goals.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Operations leaders and HR teams use this skill to create annual or quarterly workforce plans, forecast headcount demand, score skills gaps, plan succession coverage, and choose supply strategies such as hiring, contracting, upskilling, outsourcing, or automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Workforce plans may include sensitive employee, compensation, performance, succession, or retention-risk data. <br>
-Mitigation: Use only HR data approved for agent chats, prefer aggregate or anonymized inputs, avoid unnecessary employee identifiers, and store generated plans in approved systems with appropriate access controls. <br>
-Risk: Generated headcount, contractor, or compliance guidance may be incomplete for a specific jurisdiction or employment arrangement. <br>
-Mitigation: Have HR, finance, and legal reviewers validate assumptions before using the plan for staffing, budget, classification, or compliance decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-workforce-planning) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [AI Agent Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Operations leaders and HR teams use this skill to create workforce plans for headcount, skills, succession planning, contingent labor, and cost alignment with business goals.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with tables, formulas, checklists, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; plans may contain sensitive HR, compensation, staffing, succession, and workforce-risk information.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workforce plans may involve confidential employee-level compensation, performance, engagement, flight-risk, or diversity data.
+
+Mitigation: Use aggregated data where possible, minimize sensitive fields, and restrict use to authorized HR or workforce-planning users.
+
+Risk: Outputs may influence employment decisions such as staffing, succession, retention, or workforce mix changes.
+
+Mitigation: Require HR, legal, and business review before using outputs for employment decisions.
+
+Risk: The skill provides benchmark figures and compliance flags that may not reflect the user's current jurisdiction or company context.
+
+Mitigation: Validate benchmarks and jurisdiction-specific requirements with current internal data and qualified HR or legal reviewers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-workforce-planning)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [AI Agent Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with formulas, tables, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workforce calculations and recommendations based on user-provided business inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

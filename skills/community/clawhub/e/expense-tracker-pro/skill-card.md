@@ -1,38 +1,48 @@
-## Description: <br>
-Expense Tracker Pro tracks expenses via natural language, provides spending summaries, and helps users set budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track expenses via natural language, get spending summaries, set budgets.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to log local expenses in natural language, automatically categorize spending, check budgets, and request spending summaries or CSV exports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Expense and budget details may persist in local Clawd memory. <br>
-Mitigation: Avoid recording highly sensitive financial details unless the user is comfortable managing that local data. <br>
-Risk: CSV exports may create local files containing spending data. <br>
-Mitigation: Review where exported files are stored and remove or protect them according to the user's privacy needs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users use this skill to log personal expenses in natural language, categorize spending, manage monthly category budgets, request summaries, and export reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Natural-language responses, spending summaries, budget status reports, and optional CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores expense and budget details locally in Clawd memory according to the artifact and security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Expense records and CSV exports may contain sensitive financial details retained on the local machine.
+
+Mitigation: Avoid entering information that should not be retained, and store or delete exported CSV files according to the user's sensitivity requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jhillin8/skills/expense-tracker-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Files]
+
+**Output Format:** [Markdown responses with local memory updates and optional CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores expense records locally in Clawd memory and may export CSV files containing sensitive spending data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

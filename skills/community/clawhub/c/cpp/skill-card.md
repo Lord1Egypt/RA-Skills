@@ -1,37 +1,60 @@
-## Description: <br>
-Write safe C++ avoiding memory leaks, dangling pointers, undefined behavior, and ownership confusion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write safe C++ avoiding memory leaks, dangling pointers, undefined behavior, and ownership confusion.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as C++ reference guidance for safer coding around ownership, memory, pointers, classes, templates, STL usage, concurrency, modern language features, and undefined behavior traps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated compile or run commands for C++ projects could execute untrusted code. <br>
-Mitigation: Review commands and source files before execution, and use an isolated environment for untrusted projects. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cpp) <br>
+## Use Case:
 
+Developers and engineers use this skill as a C++ safety reference when reviewing or drafting code that involves ownership, memory management, class design, STL usage, templates, concurrency, modern C++ features, and undefined behavior traps.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline C++ examples and command suggestions when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference skill; requires g++ when compiling or testing C++ examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may inform generated C++ that still contains memory-management or ownership mistakes.
+
+Mitigation: Review generated changes manually and validate them with compiler warnings, sanitizers, static analysis, and tests before use.
+
+Risk: Concurrency guidance may be applied incorrectly, leaving data races, deadlocks, or undefined behavior.
+
+Mitigation: Require project-specific concurrency review and runtime testing for code involving threads, mutexes, atomics, or condition variables.
+
+## Reference(s):
+
+- [Memory Traps](artifact/memory.md)
+- [Pointer Traps](artifact/pointers.md)
+- [Class Traps](artifact/classes.md)
+- [STL Traps](artifact/stl.md)
+- [Template Traps](artifact/templates.md)
+- [Concurrency Traps](artifact/concurrency.md)
+- [Modern C++ Traps](artifact/modern.md)
+- [Undefined Behavior Traps](artifact/ub.md)
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/cpp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with C++ examples and review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory reference output; users should review generated C++ changes with compiler diagnostics, sanitizers, and project-specific tests.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

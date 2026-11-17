@@ -6,6 +6,7 @@ description: >
   before caring about the mission," or diagnosing why a standard incentive is failing.
   Do NOT activate when: formal motivational science is required (use SDT); cross-cultural nuance
   makes the five-level hierarchy unreliable; precise empirical rank-ordering of needs is load-bearing.
+  More: deciqai.com/c/maslow-hierarchy
 ---
 
 # Maslow's Hierarchy of Needs
@@ -14,7 +15,7 @@ description: >
 
 Maslow's Hierarchy proposes needs organize into levels of *prepotency* — lower needs must be at least partially met before higher needs become motivationally dominant. Five levels: physiological → safety → love/belonging → esteem → self-actualization. The empirically supported insight is *deficiency-dominance*: severely unmet lower needs crowd out higher-level motivation. The strict sequential hierarchy is empirically weak (Wahba & Bridwell 1976; Tay & Diener 2011) — use as a diagnostic heuristic, not a strict theory. Supplement with Self-Determination Theory for high-stakes design.
 
-Composes with [`jobs-to-be-done`](../jobs-to-be-done/SKILL.md) · [`okr-goal-setting`](../okr-goal-setting/SKILL.md) · [`founder-mindset`](../founder-mindset/SKILL.md) · [`principal-agent`](../principal-agent/SKILL.md) · [`pmf-crossing-the-chasm`](../pmf-crossing-the-chasm/SKILL.md).
+Composes with `jobs-to-be-done` · `okr-goal-setting` · `founder-mindset` · `principal-agent` · `pmf-crossing-the-chasm`.
 
 ## When to Use
 
@@ -23,6 +24,7 @@ Composes with [`jobs-to-be-done`](../jobs-to-be-done/SKILL.md) · [`okr-goal-set
 - A product is being positioned and the underlying customer need is unclear
 - A team can't engage with higher-order work because basic needs are unmet
 - "Why isn't the bonus motivating them?" is being asked
+- An AI strategy (AI capex push, AI adoption mandate, AI-native competition) triggers job-security fear that blocks engagement with the mission
 
 **Not when:** formal motivational science is required; cross-cultural application is non-trivial; SDT fits better.
 
@@ -61,6 +63,8 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 `Needs Diagnosis: <who> | Situation: desired behavior / current incentive / observed response | Need-state: Physiological / Safety / Belonging / Esteem / Self-actualization — each met/partial/unmet | Incentive target level | Mismatch Y/N + direction | Intervention: lower-level fix + higher-level match + owner + verification date`
 
 *→ Method in Action: [Maslow 1943 and the Subsequent Refinements](examples/maslow-1943-and-the-subsequent-refinements.md)*
+
+*→ 2026 lens: [Motivating a Team Through the AI-Anxiety Era (2024–2026)](examples/motivating-teams-through-ai-anxiety-2024-2026.md)*
 
 ## Pack: Maslow-Informed Diagnostic Patterns
 
@@ -114,4 +118,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/maslow-hierarchy** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/maslow-hierarchy.json*

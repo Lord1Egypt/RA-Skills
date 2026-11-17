@@ -1,52 +1,69 @@
-## Description: <br>
-Helps agents operate Resend through the official CLI for installation, authentication, email sending, domains, webhooks, inbound mail, contacts, broadcasts, templates, profiles, and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents operate Resend through the official CLI for installation, authentication, email sending, domains, webhooks, inbound mail, contacts, broadcasts, templates, API keys, and troubleshooting.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to plan and execute Resend CLI workflows for live email and account operations, with guidance for deterministic subprocess use, verification, and fallback when the CLI does not cover a task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands can perform real email sends or account mutations in a live Resend account. <br>
-Mitigation: Use a test or staging profile first, prefer scoped API keys and explicit profiles, and review every send, delete, update, broadcast, and API-key command before execution. <br>
-Risk: Message bodies, attachments, webhook payloads, API keys, and signing secrets can be exposed through logs or command handling. <br>
-Mitigation: Keep sensitive content out of logs, prefer environment variables or stored profiles over command-line secrets, and avoid pipe-to-shell installs in sensitive CI. <br>
-Risk: Known CLI coverage gaps and output quirks can cause incorrect automation if an agent assumes every Resend workflow is fully covered by the CLI. <br>
-Mitigation: Run diagnostic checks early, parse both stdout and stderr for JSON responses, inspect local CLI help for gap-prone flows, and fall back to MCP or API only when the CLI surface is unavailable or incomplete. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and execute Resend CLI workflows from agents, terminals, or CI. It supports deterministic command selection, file scaffolding, diagnostics, subprocess handling, and fallback guidance when the CLI does not cover a task cleanly.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tristanmanchester/resending-emails) <br>
-- [Agent operating model](references/agent-operating-model.md) <br>
-- [Command selection](references/command-selection.md) <br>
-- [Diagnostics and fallbacks](references/diagnostics-and-fallbacks.md) <br>
-- [Sources and refresh notes](references/sources.md) <br>
-- [Coverage gaps](assets/coverage-gaps.json) <br>
-- [Resend CLI changelog](https://resend.com/changelog/cli) <br>
-- [Official Resend CLI repository](https://github.com/resend/resend-cli) <br>
-- [Resend API documentation](https://resend.com/docs/api-reference/introduction) <br>
-- [Resend webhook verification](https://resend.com/docs/webhooks/verify-webhooks-requests) <br>
-- [Resend MCP server](https://resend.com/docs/mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, JSON examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include verification steps, generated file scaffolds, diagnostic interpretations, and fallback paths for unsupported CLI flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; source skill metadata reports 3.0.0) <br>
+Risk: Remote installer commands can execute unpinned code, and CI examples may expose an email API key during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned and verified CLI installation methods, separate install steps from authenticated send steps, and inject RESEND_API_KEY only where it is needed.
+
+Risk: Live Resend operations can send email, batch send, forward inbound mail, create broadcasts, modify webhooks or domains, and create or delete API keys.
+
+Mitigation: Require explicit confirmation before state-changing operations and verify results with read, list, or get commands after each mutation.
+
+Risk: Over-broad credentials can expand the impact of a mistaken command or exposed CI secret.
+
+Mitigation: Use least-privilege, domain-scoped keys and prefer environment variables or stored profiles over command-line API key arguments.
+
+Risk: Known CLI coverage gaps can lead an agent to overpromise template sending, domain receiving toggles, or streaming command behavior.
+
+Mitigation: Check the documented coverage gaps, inspect local CLI help for the installed version, and fall back to MCP or API only when the CLI surface is insufficient.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tristanmanchester/skills/resending-emails)
+- [Agent Operating Model](artifact/references/agent-operating-model.md)
+- [Command Selection](artifact/references/command-selection.md)
+- [Install, Auth, and Profiles](artifact/references/install-auth-and-profiles.md)
+- [Subprocess Contract](artifact/references/subprocess-contract.md)
+- [Templates and Coverage Gaps](artifact/references/templates-and-coverage-gaps.md)
+- [Source Manifest](artifact/assets/source-manifest.json)
+- [Resend CLI Repository](https://github.com/resend/resend-cli)
+- [Resend CLI Changelog](https://resend.com/changelog/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and generated file scaffolds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit JSON from the bundled helper and may materialize scaffold files when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

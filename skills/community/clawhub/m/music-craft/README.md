@@ -2,13 +2,27 @@
 
 Generate songs, instrumentals, and lyrics-driven tracks through a disciplined OpenClaw-native workflow.
 
-Current release: v1.5.0.
+Current release: v1.8.2.
 
 This skill is **provider-agnostic**. It works with any music backend the OpenClaw runtime exposes via the `music_generate` tool — no special CLI, API, or library required.
 
 ## Data and consent
 
 Depending on the chosen backend, prompts, lyrics, reference URLs, or generated/derived music instructions may be sent to a cloud provider. Local backends may download models and write temporary/generated audio files on the user's machine. Ask before installing/downloading large dependencies, uploading user-owned media, or overwriting existing outputs.
+
+## Licensing and commercial use
+
+ClawHub publishes this skill bundle under MIT-0, so the skill instructions
+and bundled helper code may be used, modified, and redistributed commercially
+without attribution. MIT-0 does not grant rights to third-party models,
+software, source material, or generated music. The operator must accept the
+selected backend's current terms on their own computer and use their own
+provider account. ACE-Step 1.5
+is currently documented by its project as MIT/commercial-ready. MusicGen's
+code is MIT, but its model weights are CC-BY-NC 4.0 and must not be used for
+commercial output. For any other backend, identify and verify its model,
+account tier, and output terms before commercial use. Source audio, lyrics,
+samples, and voices must also be owned or properly licensed.
 
 ## Platform support
 
@@ -30,14 +44,14 @@ Use this skill for any music generation task that does not require:
 - emotion analysis or two-song mashup
 - separate `--avoid`, `--bpm`, `--key`, or `--structure` flags
 
-For those, see [`music-craft-minimax`](../music-craft-minimax/) (requires MiniMax Token Plan). Audio input must be a local file path. URLs are not accepted in v1.5.0+; if you want to fetch audio by title from the internet, use the private `music-source-fetch` skill first (not published on ClawHub).
+Covers and style transfer run here through local ACE-Step (slower, experimental). MiniMax music generation is no longer available, so [`music-craft-minimax`](../music-craft-minimax/) is end of life. Audio input must be a local file path. URLs are not accepted in v1.5.0+; if you want to fetch audio by title from the internet, use the private `music-source-fetch` skill first (not published on ClawHub).
 
 If the request is a standard song, instrumental, jingle, or lyrics-driven track, stay here and infer defaults first.
 
 For exact-duration vocal tracks, prefer the local ACE-Step path documented in
 [`references/acestep-generation.md`](references/acestep-generation.md). The
 2026-06-12 field run verified 18/18 local ACE-Step jobs at exact requested
-duration; MiniMax cloud is faster but approximate.
+duration.
 
 ## Quickstart
 

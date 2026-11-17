@@ -1,41 +1,62 @@
-## Description: <br>
-Guides agents using the npx corp CLI to manage corporate formation, governance, cap tables, finance, documents, tax, compliance, agents, and work items on TheCorporation platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using the npx corp CLI to manage corporate entities, governance, cap tables, finance, agents, and compliance for TheCorporation platform.
 
-## Publisher: <br>
-[hansonkd](https://clawhub.ai/user/hansonkd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hansonkd](https://clawhub.ai/user/hansonkd)
 
-## Use Case: <br>
-Developers, founders, and operator agents use this skill to set up and operate corporate entities through TheCorporation CLI, including formation, governance approvals, equity workflows, finance tasks, document handling, compliance tracking, and agent work loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide legally or financially significant corporate actions, including formation, signing, equity, payroll, payment, tax, and autonomous-agent operations. <br>
-Mitigation: Review every proposed command before execution, use dry-run where available, and get legal or financial review before taking binding or high-impact actions. <br>
-Risk: Commands may affect the wrong workspace or entity, or expose sensitive local corporate data. <br>
-Mitigation: Verify the active workspace, entity, and hosting mode with context commands before writes, and protect the local ~/.corp/data directory. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to form and operate business entities through TheCorporation's CLI, including governance workflows, equity issuance, finance tasks, document signing, tax filings, and agent work-item loops.
 
-## Reference(s): <br>
-- [TheCorporation.ai Form and Operate on ClawHub](https://clawhub.ai/hansonkd/thecorporation-form-and-operate) <br>
-- [TheCorporation mono repository](https://github.com/thecorporationai/thecorporation-mono) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI command sequences, flags, setup modes, context checks, and review guidance before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on a third-party CLI for legal, financial, identity, signing, tax, payment, payroll, equity, and agent workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the CLI package, and prefer a pinned, reviewed version.
+
+Risk: CLI actions can materially affect company formation, governance, equity records, payments, filings, and signed documents.
+
+Mitigation: Require human review before signing documents, issuing equity, filing taxes, sending payments, changing API URLs, or activating agents.
+
+Risk: The CLI can run in local, cloud, or self-hosted modes with different data and network exposure.
+
+Mitigation: Verify the active hosting mode and workspace context before use, and run in a least-privileged or isolated environment.
+
+Risk: Command argument details such as cents-based monetary values, active entity context, and shell interpolation can cause incorrect operations.
+
+Mitigation: Use dry-run or JSON verification where available, confirm active entity context, validate monetary units, and escape shell-sensitive characters before executing write operations.
+
+## Reference(s):
+
+- [TheCorporation.ai repository](https://github.com/thecorporationai/thecorporation-mono)
+- [ClawHub skill page](https://clawhub.ai/hansonkd/skills/thecorporation-form-and-operate)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and CLI workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup instructions, command sequences, and operational cautions; many CLI examples request JSON output with --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-Guides an agent through publishing a long-form note on Xiaohongshu using the web creator platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书长文发布。用于在网页版小红书创作服务平台发布长文笔记。当用户说"发小红书"、"发小红书长文"、"写一篇小红书"时使用此技能。
 
-## Publisher: <br>
-[qinthqod](https://clawhub.ai/user/qinthqod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinthqod](https://clawhub.ai/user/qinthqod)
 
-## Use Case: <br>
-External users who manage Xiaohongshu content use this skill to guide an agent through creating, formatting, templating, and publishing a long-form note in Xiaohongshu's web creator platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can proceed to publish a live Xiaohongshu post without a clearly required final user confirmation. <br>
-Mitigation: Before publishing, require the agent to show the title, body, target account, and visibility, then wait for an explicit confirmation such as "publish now". <br>
+## Use Case:
 
+External users use this skill to draft and publish long-form Xiaohongshu notes through the web creator platform. It guides title and body entry, formatting, template selection, and publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qinthqod/fox-xiaohongshu-publish) <br>
-- [Xiaohongshu creator publishing page](https://creator.xiaohongshu.com/publish/publish?source=official) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides browser actions and may lead to a live public post.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can move from drafting into a live Xiaohongshu publishing workflow without clear final confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact title and body, then obtain explicit user confirmation before clicking Publish.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qinthqod/skills/fox-xiaohongshu-publish)
+- [Xiaohongshu Creator Publish Page](https://creator.xiaohongshu.com/publish/publish?source=official)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance for browser-based publishing steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead an agent to interact with a live publishing workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

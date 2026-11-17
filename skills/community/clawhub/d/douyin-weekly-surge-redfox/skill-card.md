@@ -1,43 +1,61 @@
-## Description: <br>
-抖音七日点赞飙升榜查询工具，使用 RedFox API 输出全平台抖音作品七日新增点赞 TOP50 榜单，并支持赛道分类查询和最多 30 天历史回溯。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音七日点赞飙升榜查询工具，按全平台或赛道输出七日新增点赞 TOP50，并支持最多 30 天历史回溯。
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-Content operators, short-video creators, MCN agencies, and data analysts use this skill to monitor Douyin works with strong seven-day like growth, compare category trends, review recent history, and receive opt-in ranking updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key. <br>
-Mitigation: Create and store the key only if you trust the RedFox service, keep it in REDFOX_API_KEY or the agent environment, and avoid hardcoding or exposing it in prompts, logs, or output files. <br>
-Risk: Subscription or push-delivery behavior could create ongoing notifications or data access after a one-time query. <br>
-Mitigation: Enable subscriptions only after explicit user opt-in, and confirm storage, schedule, and cancellation behavior before activation. <br>
+## Use Case:
 
+Content operators, short-video creators, MCN teams, and data analysts use this skill to discover weekly Douyin content surges, compare category trends, review recent history, and request daily ranking pushes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuanyi-github/douyin-weekly-surge-redfox) <br>
-- [API Configuration](references/api-config.md) <br>
-- [Interaction Guide](references/interaction-guide.md) <br>
-- [RedFox API Key Settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown ranking tables with clickable Douyin work links and concise natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to TOP20 results; can output up to TOP50 per category; requires REDFOX_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill sends API-key-backed ranking queries to RedFoxHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped, revocable API key and install the skill only when you trust RedFoxHub with those queries.
+
+Risk: Remote API content is rendered as clickable Markdown links.
+
+Mitigation: Review links before opening them and avoid using the skill where unvalidated external links are unsuitable.
+
+Risk: Subscription or daily push behavior is described without clear consent, storage, cancellation, or delivery controls.
+
+Mitigation: Do not enable scheduled delivery until those controls are documented and acceptable for the deployment.
+
+## Reference(s):
+
+- [API 配置说明](references/api-config.md)
+- [交互逻辑与示例](references/interaction-guide.md)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFoxHub hot content rank endpoint](https://redfox.hk/story/api/dy/search/hotContentRank)
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/douyin-weekly-surge-redfox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown ranking tables with clickable video links and concise status or error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to TOP20 results and can present up to TOP50 results per category; requires REDFOX_API_KEY for live API queries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-AI writing partner for solopreneurs and content creators that drafts, edits, and improves emails, blog posts, newsletters, social captions, and reports while adapting to the user's voice, format, and audience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI writing partner for solopreneurs and content creators that drafts, edits, and improves emails, blog posts, newsletters, social captions, and reports while maintaining the user's voice, adapting to format and audience, and integrating with content-calendar, inbox-triage, and solopreneur-assistant skills.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-External creators, solopreneurs, and agent users use this skill to draft, edit, revise, repurpose, and quality-check written content while preserving a user-defined voice profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Writing drafts may include client names, business details, or other sensitive content. <br>
-Mitigation: Keep drafts and writing-state.md in the local workspace, exclude them from public repositories, and review content before sharing. <br>
-Risk: Generated drafts, edits, or calls to action may be inaccurate, off-brand, or unsuitable for the intended audience. <br>
-Mitigation: Use the skill's review workflow and style quality checklist before publishing, sending, or scheduling any output. <br>
-Risk: The security evidence recommends normal caution before granting broader permissions. <br>
-Mitigation: Review the installed skill files before granting file, network, account, credential, or spending permissions. <br>
+## Use Case:
 
+Solopreneurs, content creators, and developers use this skill to have an agent draft, edit, repurpose, and improve written content while matching a local voice profile and target audience.
 
-## Reference(s): <br>
-- [Writing Assistant Advanced Patterns](references/advanced-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Clawdssen/agentledger-writing-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/Clawdssen) <br>
-- [The Agent Ledger](https://theagentledger.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with reusable prompt and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce drafts, edits, style notes, subject lines, captions, calls to action, revision logs, and content planning guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Persistent AGENTS.md and HEARTBEAT.md snippets can change future agent writing behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review those snippets before installation and keep only the standing behavior the user explicitly wants.
+
+Risk: writing-state.md and generated drafts may contain client names, business details, proprietary style preferences, or other sensitive information.
+
+Mitigation: Store writing-state.md and drafts locally and keep them out of public repositories.
+
+Risk: Generated emails, posts, newsletters, and reports may contain inaccurate, unsuitable, or unapproved content.
+
+Mitigation: Require human review before any draft is sent or published.
+
+## Reference(s):
+
+- [Writing Assistant Advanced Patterns](artifact/references/advanced-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/clawdssen/skills/agentledger-writing-assistant)
+- [The Agent Ledger](https://theagentledger.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, prose drafts, editing notes, and setup snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on local writing-state.md preferences and user-supplied draft content.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

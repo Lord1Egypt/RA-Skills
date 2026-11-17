@@ -1,41 +1,53 @@
-## Description: <br>
-Self-improving AI skill optimizer that learns from feedback, auto-tunes prompts, optimizes tool usage patterns, and evolves based on success/failure analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improving AI skill optimizer that learns from feedback, auto-tunes prompts, optimizes tool usage patterns, and evolves based on success/failure analysis.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Developers and agent builders use this skill to record execution outcomes, learn from failures and successes, tune prompts, select tools, assess capability gaps, and export learned optimization knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optimizer can keep a persistent local history of prompts, task context, errors, outcomes, and tool parameters. <br>
-Mitigation: Avoid recording sensitive work unless redaction, retention limits, inspection and deletion workflows, and an explicit storage path are in place. <br>
-Risk: Optimization recommendations may become misleading if low-quality or stale execution records dominate the knowledge base. <br>
-Mitigation: Review learned records periodically, remove bad examples, and validate optimized prompts, tool choices, and parameters before applying them to important workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to record execution outcomes, learn from successes and failures, tune prompts, recommend tools, and export learned optimization patterns for future agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/meta-skill-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/jason-aka-chen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, and JSON-like optimization records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist learned execution records to a local JSON knowledge base when used through the included Python optimizer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The optimizer can persist prompts, task context, errors, tool parameters, and results as local plaintext learning records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, credentials, private file contents, customer data, or sensitive prompts; add redaction, retention limits, restricted file permissions, and a clear or disable path before use with sensitive workflows.
+
+Risk: The installation instructions include an unpinned pip command.
+
+Mitigation: Review dependencies and pin approved package versions before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/skills/meta-skill-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell examples plus JSON-like result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist learned task, prompt, tool, error, and outcome records to local JSON storage when the optimizer is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

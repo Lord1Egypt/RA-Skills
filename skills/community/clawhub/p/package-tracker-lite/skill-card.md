@@ -1,38 +1,48 @@
-## Description: <br>
-Track your packages and deliveries worldwide. 支持顺丰、圆通、中通、申通、韵达、邮政EMS、UPS、FedEx、DHL等国内外快递实时查询，快递单号一键查询物流轨迹。Express tracking, parcel delivery status, logistics查询。 <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides package tracking-style status output for common carriers using local simulated delivery events.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[darbling](https://clawhub.ai/user/darbling)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers can use this skill to format parcel tracking lookups and display carrier-style status timelines. Its outputs should be treated as simulated examples unless the publisher replaces the mock tracker with live carrier integrations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat simulated package statuses as real-time carrier results.
+
+Mitigation: Label outputs as demo or mock data and avoid using them for delivery decisions, customer notifications, refunds, or operational workflows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents can run local package-tracking lookups for common couriers and inspect a generated delivery timeline. Results should be treated as simulated demo output unless the skill is changed to use official carrier APIs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can present simulated package statuses, timelines, and estimated delivery dates as if they were live carrier data. <br>
-Mitigation: Treat results as demo output only and verify shipment status through official carrier APIs or carrier websites before acting on it. <br>
+**Output Format:** [Plain text tracking summary with timeline-style lines]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darbling/package-tracker-lite) <br>
+**Other Properties Related to Output:** [Simulated delivery events; no live carrier API is used.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text tracking summary with timeline entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses simulated status and estimated delivery data; supports single tracking numbers and comma-separated multi-package input.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

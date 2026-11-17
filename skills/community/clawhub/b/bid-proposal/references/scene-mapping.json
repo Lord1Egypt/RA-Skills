@@ -1,0 +1,55 @@
+{
+  "scenes": {
+    "安全服务类": {
+      "keywords": ["渗透测试", "重保", "应急响应", "安全运营", "MSS", "安全服务", "驻场", "安全巡检", "攻防演练", "红蓝对抗", "威胁狩猎", "安全托管"],
+      "recommended_chapters": [
+        {"id": "background", "name": "项目背景与目标", "required": true, "prompt_guide": "阐述项目立项背景、客户安全现状、项目建设目标。突出对客户业务的理解深度。"},
+        {"id": "requirement", "name": "需求分析", "required": true, "prompt_guide": "结合招标文件需求说明，分析客户当前面临的安全风险和痛点，梳理核心安全需求。需求描述需具体、可量化。"},
+        {"id": "service_solution", "name": "服务方案", "required": true, "prompt_guide": "详细阐述每项服务的内容、方法、工具、流程和交付物。包含：服务范围、服务流程、使用的工具平台、输出成果、服务团队配置。"},
+        {"id": "implementation", "name": "实施方案", "required": true, "prompt_guide": "制定实施计划、人员配置、进度安排。包含：实施阶段划分、各阶段时间节点、人员投入、风险应对措施。"},
+        {"id": "sla", "name": "服务保障与SLA", "required": false, "prompt_guide": "明确服务水平承诺、响应时间、服务质量保障措施、投诉处理机制。"}
+      ]
+    },
+    "产品交付类": {
+      "keywords": ["分类分级", "脱敏", "DLP", "防火墙", "WAF", "堡垒机", "审计", "IDS", "IPS", "态势感知", "SOC", "蜜罐", "沙箱", "EDR", "NDR", "CWPP", "容器安全", "API安全"],
+      "recommended_chapters": [
+        {"id": "background", "name": "项目背景与目标", "required": true, "prompt_guide": "阐述项目建设背景、客户信息化现状、安全建设目标。说明项目建设必要性和紧迫性。"},
+        {"id": "requirement", "name": "需求分析", "required": true, "prompt_guide": "结合招标文件技术规格书，分析客户功能需求、性能需求、合规需求。对标等级保护、关键信息基础设施保护等政策要求。"},
+        {"id": "overall_design", "name": "总体设计方案", "required": true, "prompt_guide": "从整体架构角度设计解决方案。包含：设计原则、总体架构图（文字描述）、技术路线选择、关键设计要点、系统逻辑架构。"},
+        {"id": "tech_solution", "name": "分项技术方案", "required": true, "prompt_guide": "逐个产品/子系统详细说明技术方案。每项包含：产品概述、功能特性、部署架构、关键技术指标、与现有系统集成方案。"},
+        {"id": "implementation", "name": "实施方案", "required": true, "prompt_guide": "制定部署实施计划。包含：实施准备、安装部署、联调测试、试运行、正式上线各阶段安排及风险应对。"},
+        {"id": "training", "name": "培训方案", "required": false, "prompt_guide": "制定培训计划，包含培训对象、培训内容、培训方式、培训时长、培训效果评估。"},
+        {"id": "after_sales", "name": "售后服务方案", "required": false, "prompt_guide": "明确售后服务体系。包含：服务组织架构、技术支持方式、响应时效、巡检维保计划、备件保障。"}
+      ]
+    },
+    "等保测评类": {
+      "keywords": ["等保", "等级保护", "测评", "备案", "整改", "定级", "差距评估", "合规", "等保2.0", "三级等保", "二级等保"],
+      "recommended_chapters": [
+        {"id": "background", "name": "项目背景与目标", "required": true, "prompt_guide": "阐述等保合规背景、客户信息系统现状、等保建设/测评目标、政策依据（《网络安全法》《等级保护条例》等）。"},
+        {"id": "requirement", "name": "需求分析", "required": true, "prompt_guide": "分析客户信息系统定级情况、当前安全防护差距、等级保护标准要求的具体条款。"},
+        {"id": "gap_analysis", "name": "差距分析与整改方案", "required": true, "prompt_guide": "逐项对照等保标准要求，进行差距分析。制定整改措施，包含：安全技术整改、安全管理整改、整改优先级和计划。"},
+        {"id": "implementation", "name": "实施方案", "required": true, "prompt_guide": "制定测评/整改实施计划。包含：项目组织、进度安排、各阶段工作内容、交付物清单。"},
+        {"id": "assurance", "name": "测评保障", "required": false, "prompt_guide": "说明测评团队资质、测评方法、质量保障措施。包含：测评工具、测评流程、风险控制、配合要求。"}
+      ]
+    },
+    "综合类": {
+      "keywords": ["安全建设", "整体安全", "安全体系", "安全规划", "安全咨询", "安全治理", "纵深防御", "零信任", "安全运营中心"],
+      "recommended_chapters": [
+        {"id": "background", "name": "项目背景与目标", "required": true, "prompt_guide": "阐述项目背景、客户战略目标、安全建设愿景。结合行业发展趋势和政策环境。"},
+        {"id": "requirement", "name": "需求分析", "required": true, "prompt_guide": "从业务、技术、合规、管理等多个维度全面分析安全需求。对标行业最佳实践。"},
+        {"id": "overall_design", "name": "总体设计方案", "required": true, "prompt_guide": "设计整体安全架构。包含：安全体系框架、技术架构、管理架构、运营架构。阐述各层面协同关系。"},
+        {"id": "tech_solution", "name": "分项技术方案", "required": true, "prompt_guide": "针对各安全域详细说明技术方案。覆盖网络安全、数据安全、应用安全、终端安全、身份安全等。"},
+        {"id": "implementation", "name": "实施方案", "required": true, "prompt_guide": "制定分阶段实施计划。结合投资规模和建设复杂度建议分期策略。"},
+        {"id": "training", "name": "培训方案", "required": false, "prompt_guide": "制定分层次培训计划（管理层、技术层、操作层）。"},
+        {"id": "after_sales", "name": "售后服务方案", "required": false, "prompt_guide": "制定长期服务保障方案，包含运维、优化、应急等。"},
+        {"id": "assurance", "name": "项目保障", "required": false, "prompt_guide": "说明项目管理机制、质量保障措施、风险管理、沟通机制。"}
+      ]
+    }
+  },
+  "default_scene": "综合类",
+  "matching_rules": {
+    "strategy": "keyword_score",
+    "threshold": 2,
+    "description": "统计每个场景中匹配到的关键词数量，选择最高分场景。如果最高分低于阈值则使用默认场景（综合类），提示用户手动确认。"
+  }
+}

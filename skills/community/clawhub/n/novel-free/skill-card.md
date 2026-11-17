@@ -1,47 +1,66 @@
-## Description: <br>
-Novel Free coordinates a Chinese long-form fiction workflow for project setup, worldbuilding, character design, outlining, chapter drafting, auto-advance writing, reader feedback, and maintenance revisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Free is a Chinese long-form fiction workflow that coordinates a main agent and specialized sub-agents for project setup, worldbuilding, character design, outlining, chapter drafting, consistency review, summaries, reader feedback, and maintenance.
 
-## Publisher: <br>
-[228998098](https://clawhub.ai/user/228998098) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[228998098](https://clawhub.ai/user/228998098)
 
-## Use Case: <br>
-Writers and agent operators use this skill to create and manage Chinese long-form novel projects, including project files, compressed fixed context, chapter drafts, summaries, OOC checks, and revision workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, overwrite, and back up local novel project files. <br>
-Mitigation: Use it only on intended project directories, keep separate backups for important writing projects, and review generated changes before treating them as final. <br>
-Risk: Model auto-configuration may read local OpenClaw model configuration and update project configuration files. <br>
-Mitigation: Review configuration changes before continuing a project, especially when using shared or production writing environments. <br>
+## Use Case:
 
+Writers and agents use this skill to create and continue Chinese long-form novel projects through structured phases for setup, planning, drafting, review, and revision. It is intended for long-form fiction workflows rather than short stories, poetry, prose essays, translation, or non-fiction writing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/228998098/novel-free) <br>
-- [Phase 0 initialization workflow](artifact/references/lifecycle-phase0.md) <br>
-- [Phase 1 worldbuilding workflow](artifact/references/lifecycle-phase1.md) <br>
-- [Normal chapter workflow](artifact/references/lifecycle-phase2-normal.md) <br>
-- [Auto-advance workflow](artifact/references/lifecycle-phase2-auto-advance.md) <br>
-- [Resume protocol](artifact/references/resume-protocol.md) <br>
-- [Fixed-context strategy](artifact/references/context-feeding-strategy.md) <br>
-- [Model configuration](artifact/references/model-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated or updated local project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, updates, backs up, and manages local novel project files such as chapters, metadata, trackers, configuration, and fixed-context summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact documentation mentions v1.0.1) <br>
+Risk: Local shell project-management scripts can generate or overwrite files in project directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before installation or execution and run them only in intended project directories.
+
+Risk: Project names and generated environment files may be unsafe when sourced from untrusted or unusual directories.
+
+Mitigation: Use only project names containing letters, numbers, underscores, or hyphens, and do not source generated environment files from untrusted directories.
+
+Risk: Generated shell values may not be fully validated or escaped.
+
+Mitigation: Validate and shell-escape generated values in project-manager.sh before using the scripts in shared or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/228998098/skills/novel-free)
+- [Skill definition](artifact/SKILL.md)
+- [Release metadata](artifact/_meta.json)
+- [Phase 0 project initialization workflow](artifact/references/lifecycle-phase0.md)
+- [Phase 1 planning workflow](artifact/references/lifecycle-phase1.md)
+- [Normal chapter workflow](artifact/references/lifecycle-phase2-normal.md)
+- [Resume protocol](artifact/references/resume-protocol.md)
+- [Context feeding strategy](artifact/references/context-feeding-strategy.md)
+- [Session cache rules](artifact/references/session-cache.md)
+- [Summarizer and OOC guardian combo](artifact/references/agent-summarizer-guardian-combo.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown project files, Chinese prose, shell command guidance, and configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local novel project files through phased writing workflows; no network behavior is reported in the skill evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact metadata and SKILL.md describe 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://skills.tencentcloud.com/tencentcloud-cos/query-spec.schema.json",
+  "title": "QuerySpec",
+  "description": "数据集信息查询（describeDatasets / describeDatasetFields）的决策产物。由 SKILL 把用户自然语言收敛成本结构，经 invokeClient 下发给宿主页面执行。字段 key 只能取自 references/dataset-catalog.md。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "action"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Spec 版本，当前固定 \"1\"。",
+      "const": "1"
+    },
+    "action": {
+      "type": "string",
+      "description": "查询动作。describeDatasets=列出/查询数据集信息；describeDatasetFields=查询某数据集的字段。",
+      "enum": ["describeDatasets", "describeDatasetFields"]
+    },
+    "scope": {
+      "type": "object",
+      "description": "查询范围。",
+      "additionalProperties": false,
+      "properties": {
+        "datasetType": {
+          "type": "string",
+          "description": "数据集类型过滤。all=全部；MetaInsight=元数据洞察类。",
+          "enum": ["all", "MetaInsight"]
+        },
+        "datasetName": {
+          "type": "string",
+          "description": "数据集名称。describeDatasetFields 必填；值来自用户输入、环境默认值或数据集查询结果。"
+        }
+      }
+    },
+    "columns": {
+      "type": "array",
+      "description": "要返回的列（field key），取值必须来自 references/dataset-catalog.md。未指定时用默认基础信息列。",
+      "items": {
+        "type": "string",
+        "enum": [
+          "datasetName",
+          "datasetId",
+          "datasetType",
+          "createdAt",
+          "status",
+          "description",
+          "bindingBucket",
+          "templateId",
+          "fieldName",
+          "fieldType",
+          "fieldRequired",
+          "fieldSource"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "format": {
+      "type": "string",
+      "description": "输出格式，默认 json。",
+      "enum": ["json"],
+      "default": "json"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "action": { "const": "describeDatasetFields" } }
+      },
+      "then": {
+        "required": ["scope"],
+        "properties": {
+          "scope": { "required": ["datasetName"] }
+        }
+      }
+    }
+  ]
+}

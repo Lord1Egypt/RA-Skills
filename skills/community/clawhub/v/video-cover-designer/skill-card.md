@@ -1,40 +1,55 @@
-## Description: <br>
-Helps video creators generate thumbnail copy, layout ideas, color palettes, and platform-specific cover recommendations for Chinese short-form video platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists Chinese-language short-video creators with cover copy, layout ideas, color palettes, popular-cover element analysis, and platform-specific sizing and style suggestions.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-External creators, social media operators, and marketing teams use this skill to turn a video topic, target platform, and style constraints into cover text and design guidance. It is most useful for Douyin, Kuaishou, WeChat Channels, Bilibili, Xiaohongshu, and similar video publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill should not require credentials, account access, network access, or broad filesystem permissions for normal use. <br>
-Mitigation: Run it locally with only the topic, platform, and style details needed for the cover design task. <br>
-Risk: Generated cover copy and visual recommendations may be inaccurate, exaggerated, or unsuitable for a platform's publishing rules. <br>
-Mitigation: Review and edit titles, claims, color choices, and layout recommendations before publishing. <br>
+## Use Case:
 
+Content creators and social media operators use this skill to turn a video topic or script into Chinese cover-title ideas, layout guidance, color palettes, and platform-specific cover recommendations for Douyin, Kuaishou, WeChat Channels, Bilibili, and similar channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/video-cover-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, code] <br>
-**Output Format:** [Markdown design brief with headings, lists, color values, and a cover-element table.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a video topic, video type, target platform, and whether a person appears in the cover; some recommendations are randomized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled Python helper may fail when generating composition suggestions because it references platform configuration outside the helper function's local scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and test the helper before relying on scripted output; pass platform sizing data into the composition helper or otherwise fix the undefined reference.
+
+Risk: Outputs are oriented to Chinese-language short-video cover ideation and may not satisfy non-Chinese localization needs.
+
+Mitigation: Confirm the target language and platform requirements before use, and add explicit localization controls if the skill is adapted for other markets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huajianjiu000/skills/video-cover-designer)
+- [Source skill documentation](artifact/SKILL.md)
+- [Bundled cover designer helper](artifact/scripts/cover_designer.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language cover design recommendations, including titles, subtitles, tags, color palettes, layout suggestions, element priorities, and platform sizing notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

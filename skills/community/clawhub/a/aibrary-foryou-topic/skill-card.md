@@ -1,36 +1,51 @@
-## Description: <br>
-[Aibrary] Generate personalized 'For You' book topic recommendations based on the user's profile, interests, career stage, and recent learning activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[Aibrary] Generates personalized "For You" book topic recommendations from the user's profile, interests, career stage, and recent learning activity.
 
-## Publisher: <br>
-[asoiso](https://clawhub.ai/user/asoiso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asoiso](https://clawhub.ai/user/asoiso)
 
-## Use Case: <br>
-External users use this skill to turn their interests, recent focus, career or life stage, goals, and avoided topics into personalized book-topic recommendations with curated reading suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recommendations may be based on personal context such as career, goals, interests, and recent learning activity. <br>
-Mitigation: Users should share only personal context they are comfortable using for recommendation generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users use this skill to receive personalized book-topic recommendations, curated book suggestions, "why now" rationale, and a top pick when deciding what to read or learn next.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may ask for personal context such as interests, career stage, goals, and recent learning activity.
+
+Mitigation: Use it only when comfortable sharing that context, and avoid providing sensitive personal information that is not needed for book-topic recommendations.
+
+Risk: Broad trigger wording may cause the skill to activate for general learning-inspiration requests.
+
+Mitigation: Confirm that personalized book-topic recommendations are desired before relying on its output.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's input language; asks 2-3 clarifying questions when context is too sparse.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown recommendations with topic sections, book lists, rationale, and a top pick]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's input language and asks clarifying questions when user context is insufficient.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

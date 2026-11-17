@@ -1,0 +1,4 @@
+interface:
+  display_name: "Trading Bot AI Agent"
+  short_description: "Offline grid-strategy simulation and safety review"
+  default_prompt: "Use $trading-bot-ai-agent to simulate a BTC grid strategy without connecting an account."

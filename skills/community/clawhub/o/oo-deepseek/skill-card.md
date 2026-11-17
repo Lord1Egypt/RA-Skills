@@ -1,43 +1,55 @@
-## Description: <br>
-DeepSeek lets an agent use OOMOL's oo CLI to call DeepSeek chat and message APIs, inspect models, and check account balance through a connected OOMOL account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses an OOMOL-connected DeepSeek account to create model responses, search or fetch web pages, list models, and check account balance.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to invoke DeepSeek chat completions or messages, list models, or check balance through an OOMOL-connected DeepSeek account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup may rely on remote shell installer commands for the oo CLI. <br>
-Mitigation: Review the installer first or manually install the oo CLI from official documentation before running setup commands. <br>
-Risk: DeepSeek requests and credentials are mediated by OOMOL. <br>
-Mitigation: Install only when that intermediary model is acceptable, and confirm prompts or payloads before sending them. <br>
-Risk: The oo CLI authority can be broader than the listed DeepSeek actions. <br>
-Mitigation: Inspect the live action schema before each payload and require explicit confirmation for write or destructive actions. <br>
+## Use Case:
 
+People with a connected DeepSeek account can use this skill to generate responses, search and fetch web content, inspect available models, and check account balance.
 
-## Reference(s): <br>
-- [DeepSeek Platform](https://platform.deepseek.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses oo CLI connector actions; write actions require user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: Setup runs downloaded installers that have not been verified, and the CLI can make persistent changes to agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the specific CLI release before installation; set OO_SKILLS_SYNC_DISABLED=1 before invoking it to disable automatic agent-skill changes.
+
+Risk: Requests may use shared prompt content and account spending.
+
+Mitigation: Limit shared prompts and spending to your intended request.
+
+## Reference(s):
+
+- [DeepSeek API documentation](https://api-docs.deepseek.com/)
+- [DeepSeek platform](https://platform.deepseek.com)
+- [oo CLI repository (tool reference)](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Text or JSON responses, including Markdown page content where requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The response format and content depend on the selected action.]
+
+## Skill Version(s):
+
+1.0.7 (source: SKILL.md frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

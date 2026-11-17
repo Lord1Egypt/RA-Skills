@@ -1,44 +1,56 @@
-## Description: <br>
-A protocol risk analyst and yield reality checker for decentralized finance that evaluates protocol safety before deposit, calculates real yield after costs and market drag, identifies common rug-risk patterns, and stays advisory-only with no wallet access, private key handling, transaction signing, or on-chain execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeFi helps agents assess decentralized finance protocol risk, estimate realistic yield, flag rug-risk indicators, and organize user-provided transaction records without wallet access or transaction execution.
 
-## Publisher: <br>
-[AGIsearch](https://clawhub.ai/user/AGIsearch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agisearch](https://clawhub.ai/user/agisearch)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and DeFi participants use this skill to get advisory protocol-risk, yield-sustainability, rug-risk, bridge-risk, staking-risk, and tax-event summaries before acting on decentralized finance opportunities.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat advisory DeFi output as a guarantee of protocol safety or expected return.
+
+Mitigation: Use the output as a risk review only and independently verify audits, admin controls, liquidity, oracle design, and yield sources before depositing.
+
+Risk: Users may expose wallet secrets or fund-control credentials while asking for help.
+
+Mitigation: Do not paste seed phrases, private keys, wallet credentials, or signing material; use separate local wallet tooling for any transaction.
+
+Risk: Tax-event categorization may be incomplete or jurisdiction-dependent.
+
+Mitigation: Provide only records you are comfortable sharing and have a qualified tax professional review filing decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External DeFi users use this skill to review protocol, yield, liquidity, governance, oracle, and rug-risk signals before committing capital. It can also organize user-provided DeFi transaction records into likely tax-event categories for professional review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat DeFi, investment, or tax analysis as professional advice. <br>
-Mitigation: Present outputs as risk-analysis and organization support only, and direct users to qualified financial, legal, or tax professionals for decisions and filings. <br>
-Risk: Users may disclose seed phrases, private keys, wallet passwords, or unnecessary personal financial records. <br>
-Mitigation: Do not request wallet secrets or unnecessary sensitive records; keep any chain or protocol context read-only and based on user-provided information. <br>
-Risk: Protocol reviews and rug-risk screens can miss unknown vulnerabilities or changing market conditions. <br>
-Mitigation: Include explicit verification steps before deposit and avoid guarantees of protocol safety or fraud detection. <br>
+**Output Format:** [Markdown structured diagnoses, checklists, yield estimates, red-flag summaries, and tax-event categorizations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [DeFi ClawHub release](https://clawhub.ai/AGIsearch/defi) <br>
-- [README](artifact/README.md) <br>
-- [Examples](artifact/examples.md) <br>
+**Other Properties Related to Output:** [Advisory only; no wallet access, private-key handling, signing, transaction broadcasting, on-chain execution, or real-time chain indexing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured risk diagnosis, yield estimate, red flags, verification steps, and transaction-event summaries when records are supplied] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory-only output; no wallet access, transaction signing, transaction broadcasting, live chain indexing, or professional financial, legal, or tax advice.] <br>
+2.0.0 (source: server release metadata, skill frontmatter, skill.json)
 
-## Skill Version(s): <br>
-2.0.0 (source: skill frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

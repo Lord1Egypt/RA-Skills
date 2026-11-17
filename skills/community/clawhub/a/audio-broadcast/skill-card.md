@@ -1,46 +1,63 @@
-## Description: <br>
-Audio Broadcast controls Xiaoboshu broadcast devices for audio playback, volume changes, scheduled tasks, file management, and text-to-speech announcements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Xiaoboshu broadcast systems for audio playback, announcements, volume control, scheduled broadcast tasks, device status checks, and text-to-speech broadcasts.
 
-## Publisher: <br>
-[oxiaom](https://clawhub.ai/user/oxiaom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oxiaom](https://clawhub.ai/user/oxiaom)
 
-## Use Case: <br>
-Operators and developers use this skill to manage Xiaoboshu audio broadcast systems, including checking device status, playing or stopping audio, adjusting volume, managing scheduled broadcasts, uploading audio, and sending text-to-speech messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release ships a populated config.json credential file. <br>
-Mitigation: Delete the bundled config.json token before use and log in with credentials for the intended Xiaoboshu account. <br>
-Risk: Device, schedule, file, and volume operations use plain HTTP and can affect broadcast equipment. <br>
-Mitigation: Use only a trusted Xiaoboshu server on a trusted LAN/VPN or behind HTTPS, and avoid exposing the server to untrusted networks. <br>
-Risk: Commands can broadcast to all devices, change volume broadly, delete files, and modify or delete scheduled tasks. <br>
-Mitigation: Require explicit user confirmation for broad playback, volume changes, file deletion, task deletion, and scheduled-broadcast changes. <br>
-Risk: TTS text and uploaded audio may contain sensitive information that is sent to services and broadcast devices. <br>
-Mitigation: Review message content and target devices before upload or broadcast, and avoid sending sensitive audio or TTS text unless the deployment is approved for it. <br>
+## Use Case:
 
+External users, operators, and developers use this skill to control Xiaoboshu broadcast devices, play local or URL audio, manage scheduled announcements, adjust volume, inspect devices and files, and generate Chinese TTS broadcasts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oxiaom/audio-broadcast) <br>
-- [Xiaoboshu API Reference](references/api.md) <br>
-- [Xiaoboshu Postman API Collection](references/postman2.1.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local configuration, cached TTS audio, and uploaded audio files when the user runs the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The release includes a concrete admin token in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the bundled token; revoke or replace it, delete config.json, and authenticate only against a trusted Xiaoboshu server.
+
+Risk: Credentials and control requests may be handled over cleartext HTTP or stored in plaintext files.
+
+Mitigation: Use the skill only with HTTPS, a secure tunnel, or a trusted local network, and restrict access to the configuration file.
+
+Risk: Text-to-speech content may be sent to an external provider or uploaded to the broadcast server.
+
+Mitigation: Avoid sensitive announcement text unless the external TTS path and server handling are acceptable for the deployment.
+
+Risk: Scheduled cleanup can automatically delete server-side TTS files.
+
+Mitigation: Enable cleanup only after confirming that its file-name rules and task-reference checks match the operating environment.
+
+## Reference(s):
+
+- [Xiaoboshu API Reference](artifact/references/api.md)
+- [Xiaoboshu Postman API Collection](artifact/references/postman2.1.json)
+- [Audio Broadcast on ClawHub](https://clawhub.ai/oxiaom/skills/audio-broadcast)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to run bundled Python scripts that call the Xiaoboshu HTTP API and update local configuration.]
+
+## Skill Version(s):
+
+1.1.4 (source: frontmatter and server release, released 2026-03-21)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

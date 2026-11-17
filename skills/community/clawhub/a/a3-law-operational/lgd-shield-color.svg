@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="LGD-aligned: Shield of Three Laws">
+  <defs>
+    <mask id="knock-c">
+      <rect width="512" height="512" fill="#fff"/>
+      <circle cx="256" cy="158" r="27" fill="#000"/>
+      <path d="M242 177 L270 177 L282 218 L230 218 Z" fill="#000"/>
+    </mask>
+  </defs>
+  <path d="M96 76 H416 V232 C416 336 352 424 256 460 C160 424 96 336 96 232 Z" fill="#0B1F3A" stroke="#0B1F3A" stroke-width="16" stroke-linejoin="round" mask="url(#knock-c)"/>
+  <g fill="#14B8A6">
+    <rect x="158" y="238" width="196" height="34" rx="17"/>
+    <rect x="158" y="294" width="196" height="34" rx="17"/>
+    <rect x="158" y="350" width="196" height="34" rx="17"/>
+  </g>
+</svg>

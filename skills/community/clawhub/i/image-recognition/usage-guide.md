@@ -48,7 +48,7 @@ def recognize_image_in_session(image_path):
         img_data = base64.b64encode(f.read()).decode()
     
     # 调用 API
-    api_key = "sk-sp-e20dc070c4724e909f4b0be4d1d386e0"
+    api_key = "REDACTED-SECRET"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"

@@ -1,0 +1,3176 @@
+{
+  "records": [
+    {
+      "period": "2026090",
+      "date": "2026-08-06",
+      "actual_front": [
+        2,
+        4,
+        15,
+        23,
+        25,
+        27
+      ],
+      "actual_back": [
+        3
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            6,
+            14,
+            16,
+            19,
+            24,
+            25
+          ],
+          "pred_back": [
+            2,
+            4,
+            9
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            6,
+            10,
+            16,
+            17,
+            33
+          ],
+          "pred_back": [
+            3,
+            4,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            3,
+            6,
+            16,
+            21,
+            29
+          ],
+          "pred_back": [
+            2,
+            13,
+            14
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "遗漏优选",
+          "strategy": "遗漏值最大组合(无专家数据替代ECI) 后验采样",
+          "pred_front": [
+            3,
+            9,
+            15,
+            26,
+            28,
+            30
+          ],
+          "pred_back": [
+            7,
+            8,
+            15
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            2,
+            4,
+            5,
+            6,
+            26,
+            31
+          ],
+          "pred_back": [
+            9,
+            13,
+            15
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            10
+          ],
+          "tuo": [
+            5,
+            6,
+            22,
+            26,
+            29,
+            33
+          ],
+          "back": [
+            1,
+            2,
+            7,
+            9,
+            10,
+            14,
+            15,
+            16
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 0,
+          "front_hits": 0,
+          "back_hits": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026091",
+      "date": "2026-08-09",
+      "actual_front": [
+        2,
+        13,
+        14,
+        16,
+        20,
+        24
+      ],
+      "actual_back": [
+        5
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            7,
+            14,
+            19,
+            22,
+            24,
+            26
+          ],
+          "pred_back": [
+            1,
+            6,
+            7
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            7,
+            12,
+            14,
+            24,
+            27
+          ],
+          "pred_back": [
+            1,
+            8,
+            11
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            6,
+            12,
+            13,
+            17,
+            24
+          ],
+          "pred_back": [
+            10,
+            12,
+            15
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "遗漏优选",
+          "strategy": "遗漏值最大组合(无专家数据替代ECI) 后验采样",
+          "pred_front": [
+            1,
+            5,
+            9,
+            16,
+            21,
+            26
+          ],
+          "pred_back": [
+            4,
+            9,
+            13
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            1,
+            9,
+            12,
+            15,
+            23,
+            24
+          ],
+          "pred_back": [
+            4,
+            6,
+            11
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            18
+          ],
+          "tuo": [
+            5,
+            8,
+            13,
+            14,
+            22,
+            25,
+            29
+          ],
+          "back": [
+            9,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 2,
+          "front_hits": 2,
+          "back_hits": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026092",
+      "date": "2026-08-12 17:42",
+      "actual_front": [
+        9,
+        11,
+        12,
+        25,
+        30,
+        33
+      ],
+      "actual_back": [
+        11
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            2,
+            8,
+            11,
+            24,
+            27,
+            28
+          ],
+          "pred_back": [
+            5,
+            13,
+            14
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            14,
+            17,
+            20,
+            21,
+            33
+          ],
+          "pred_back": [
+            2,
+            3,
+            10
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            15,
+            17,
+            26,
+            27,
+            28
+          ],
+          "pred_back": [
+            5,
+            10,
+            11
+          ],
+          "front_hits": 0,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 1,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开46位专家热门 后验采样",
+          "pred_front": [
+            5,
+            9,
+            14,
+            22,
+            30,
+            32
+          ],
+          "pred_back": [
+            2,
+            11,
+            16
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            5,
+            8,
+            19,
+            21,
+            22,
+            30
+          ],
+          "pred_back": [
+            8,
+            9,
+            12
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            8
+          ],
+          "tuo": [
+            2,
+            6,
+            15,
+            19,
+            25,
+            28
+          ],
+          "back": [
+            6,
+            7,
+            8,
+            9,
+            12,
+            13,
+            14,
+            15
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 1,
+          "front_hits": 1,
+          "back_hits": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026093",
+      "date": "2026-08-15 18:06",
+      "actual_front": [
+        5,
+        8,
+        15,
+        20,
+        21,
+        24
+      ],
+      "actual_back": [
+        9
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            12,
+            16,
+            27,
+            32,
+            33
+          ],
+          "pred_back": [
+            2,
+            5,
+            7
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            6,
+            10,
+            12,
+            19,
+            32
+          ],
+          "pred_back": [
+            3,
+            12,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            16,
+            17,
+            20,
+            26,
+            29
+          ],
+          "pred_back": [
+            7,
+            12,
+            13
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开46位专家热门 后验采样",
+          "pred_front": [
+            3,
+            11,
+            16,
+            18,
+            22,
+            33
+          ],
+          "pred_back": [
+            4,
+            9,
+            15
+          ],
+          "front_hits": 0,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 1,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            5,
+            6,
+            10,
+            15,
+            26,
+            31
+          ],
+          "pred_back": [
+            1,
+            5,
+            16
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            11
+          ],
+          "tuo": [
+            5,
+            16,
+            24,
+            25,
+            26,
+            27
+          ],
+          "back": [
+            2,
+            6,
+            7,
+            8,
+            10,
+            12,
+            14,
+            16
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 2,
+          "front_hits": 2,
+          "back_hits": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026094",
+      "date": "2026-08-28 12:25",
+      "actual_front": [
+        6,
+        13,
+        15,
+        17,
+        24,
+        25
+      ],
+      "actual_back": [
+        1
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            2,
+            8,
+            16,
+            21,
+            31
+          ],
+          "pred_back": [
+            6,
+            14,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            6,
+            11,
+            13,
+            21,
+            25,
+            28
+          ],
+          "pred_back": [
+            5,
+            11,
+            12
+          ],
+          "front_hits": 3,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 3,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            2,
+            7,
+            10,
+            26,
+            29,
+            33
+          ],
+          "pred_back": [
+            2,
+            10,
+            14
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开5位专家热门 后验采样",
+          "pred_front": [
+            11,
+            12,
+            18,
+            25,
+            27,
+            32
+          ],
+          "pred_back": [
+            5,
+            7,
+            8
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            5,
+            6,
+            15,
+            23,
+            28,
+            33
+          ],
+          "pred_back": [
+            8,
+            15,
+            16
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            31
+          ],
+          "tuo": [
+            2,
+            4,
+            9,
+            14,
+            23,
+            24,
+            27
+          ],
+          "back": [
+            10,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 1,
+          "front_hits": 1,
+          "back_hits": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026095",
+      "date": "2026-08-25 20:13",
+      "actual_front": [
+        4,
+        6,
+        14,
+        21,
+        22,
+        33
+      ],
+      "actual_back": [
+        16
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            11,
+            24,
+            28,
+            31,
+            32
+          ],
+          "pred_back": [
+            8,
+            12,
+            15
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            7,
+            15,
+            16,
+            20,
+            23,
+            32
+          ],
+          "pred_back": [
+            1,
+            4,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 1,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            2,
+            5,
+            6,
+            16,
+            27,
+            30
+          ],
+          "pred_back": [
+            3,
+            13,
+            14
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            1,
+            2,
+            3,
+            15,
+            22,
+            32
+          ],
+          "pred_back": [
+            1,
+            3,
+            6
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            4,
+            10,
+            22,
+            27,
+            31,
+            32
+          ],
+          "pred_back": [
+            2,
+            8,
+            13
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            11
+          ],
+          "tuo": [
+            12,
+            13,
+            16,
+            22,
+            27,
+            30,
+            33
+          ],
+          "back": [
+            7,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 2,
+          "front_hits": 2,
+          "back_hits": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026096",
+      "date": "2026-08-23 14:44",
+      "actual_front": [
+        1,
+        4,
+        16,
+        22,
+        26,
+        31
+      ],
+      "actual_back": [
+        4
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            10,
+            12,
+            19,
+            29,
+            32
+          ],
+          "pred_back": [
+            13,
+            14,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            12,
+            20,
+            21,
+            23,
+            25
+          ],
+          "pred_back": [
+            4,
+            11,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            8,
+            18,
+            19,
+            26,
+            29
+          ],
+          "pred_back": [
+            2,
+            6,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            5,
+            9,
+            12,
+            13,
+            24,
+            29
+          ],
+          "pred_back": [
+            1,
+            7,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            6,
+            8,
+            15,
+            19,
+            28,
+            32
+          ],
+          "pred_back": [
+            10,
+            12,
+            13
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            2
+          ],
+          "tuo": [
+            9,
+            13,
+            15,
+            22,
+            24,
+            25,
+            32
+          ],
+          "back": [
+            10,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 1,
+          "front_hits": 1,
+          "back_hits": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026097",
+      "date": "2026-08-25 10:16",
+      "actual_front": [
+        5,
+        16,
+        24,
+        26,
+        29,
+        30
+      ],
+      "actual_back": [
+        2
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            7,
+            8,
+            9,
+            15,
+            29,
+            32
+          ],
+          "pred_back": [
+            2,
+            11,
+            14
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            14,
+            16,
+            27,
+            28,
+            29
+          ],
+          "pred_back": [
+            4,
+            7,
+            11
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            10,
+            18,
+            29,
+            32,
+            33
+          ],
+          "pred_back": [
+            8,
+            10,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开10位专家热门 后验采样",
+          "pred_front": [
+            3,
+            6,
+            8,
+            13,
+            20,
+            32
+          ],
+          "pred_back": [
+            3,
+            4,
+            12
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            4,
+            6,
+            8,
+            11,
+            32,
+            33
+          ],
+          "pred_back": [
+            3,
+            7,
+            15
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            10
+          ],
+          "tuo": [
+            3,
+            11,
+            12,
+            25,
+            29,
+            32
+          ],
+          "back": [
+            1,
+            2,
+            5,
+            7,
+            9,
+            10,
+            14,
+            16
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 1,
+          "front_hits": 1,
+          "back_hits": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        }
+      ]
+    },
+    {
+      "period": "2026098",
+      "date": "2026-08-27 09:35",
+      "actual_front": [
+        8,
+        16,
+        18,
+        22,
+        25,
+        26
+      ],
+      "actual_back": [
+        7
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            14,
+            17,
+            19,
+            20,
+            22
+          ],
+          "pred_back": [
+            8,
+            9,
+            10
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            13,
+            16,
+            18,
+            20,
+            25
+          ],
+          "pred_back": [
+            2,
+            12,
+            14
+          ],
+          "front_hits": 3,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 3,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            8,
+            19,
+            21,
+            22,
+            32
+          ],
+          "pred_back": [
+            7,
+            10,
+            14
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开14位专家热门 后验采样",
+          "pred_front": [
+            2,
+            6,
+            7,
+            8,
+            27,
+            30
+          ],
+          "pred_back": [
+            1,
+            7,
+            11
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            2,
+            7,
+            14,
+            24,
+            31,
+            33
+          ],
+          "pred_back": [
+            4,
+            8,
+            15
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            27
+          ],
+          "tuo": [
+            2,
+            5,
+            8,
+            10,
+            22,
+            25,
+            29
+          ],
+          "back": [
+            10,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 3,
+          "front_hits": 3,
+          "back_hits": 0,
+          "total_hits": 3,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026099",
+      "date": "2026-08-29 13:58",
+      "actual_front": [
+        1,
+        12,
+        14,
+        18,
+        30,
+        31
+      ],
+      "actual_back": [
+        2
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            6,
+            9,
+            28,
+            29,
+            30
+          ],
+          "pred_back": [
+            11,
+            13,
+            16
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            12,
+            19,
+            24,
+            25,
+            29
+          ],
+          "pred_back": [
+            7,
+            15,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            7,
+            8,
+            23,
+            28,
+            33
+          ],
+          "pred_back": [
+            12,
+            14,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开7位专家热门 后验采样",
+          "pred_front": [
+            5,
+            8,
+            11,
+            12,
+            27,
+            31
+          ],
+          "pred_back": [
+            1,
+            5,
+            14
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            2,
+            12,
+            17,
+            18,
+            25,
+            28
+          ],
+          "pred_back": [
+            2,
+            3,
+            5
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            16
+          ],
+          "tuo": [
+            3,
+            6,
+            13,
+            17,
+            21,
+            26,
+            32
+          ],
+          "back": [
+            10,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 0,
+          "front_hits": 0,
+          "back_hits": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026100",
+      "date": "2026-08-30",
+      "actual_front": [
+        3,
+        4,
+        9,
+        13,
+        22,
+        31
+      ],
+      "actual_back": [
+        4
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            6,
+            8,
+            14,
+            27,
+            31
+          ],
+          "pred_back": [
+            3,
+            4,
+            13
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            13,
+            16,
+            21,
+            24,
+            26
+          ],
+          "pred_back": [
+            5,
+            6,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            9,
+            11,
+            19,
+            22,
+            27,
+            28
+          ],
+          "pred_back": [
+            2,
+            4,
+            5
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开6位专家热门 后验采样",
+          "pred_front": [
+            7,
+            9,
+            10,
+            18,
+            23,
+            28
+          ],
+          "pred_back": [
+            8,
+            15,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            10,
+            12,
+            13,
+            17,
+            23,
+            27
+          ],
+          "pred_back": [
+            5,
+            8,
+            10
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            11
+          ],
+          "tuo": [
+            2,
+            7,
+            16,
+            18,
+            24,
+            25,
+            33
+          ],
+          "back": [
+            10,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 0,
+          "front_hits": 0,
+          "back_hits": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026101",
+      "date": "2026-09-01 21:15",
+      "actual_front": [
+        5,
+        6,
+        8,
+        9,
+        24,
+        25
+      ],
+      "actual_back": [
+        12
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            8,
+            10,
+            13,
+            21,
+            25
+          ],
+          "pred_back": [
+            1,
+            14,
+            15
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            13,
+            20,
+            24,
+            25,
+            26
+          ],
+          "pred_back": [
+            7,
+            13,
+            14
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            2,
+            10,
+            11,
+            12,
+            17,
+            25
+          ],
+          "pred_back": [
+            5,
+            6,
+            10
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开46位专家热门 后验采样",
+          "pred_front": [
+            12,
+            15,
+            23,
+            27,
+            28,
+            33
+          ],
+          "pred_back": [
+            10,
+            11,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            5,
+            7,
+            10,
+            12,
+            18,
+            30
+          ],
+          "pred_back": [
+            1,
+            4,
+            8
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            21
+          ],
+          "tuo": [
+            7,
+            13,
+            14,
+            19,
+            24,
+            32
+          ],
+          "back": [
+            5,
+            6,
+            7,
+            8,
+            10,
+            13,
+            14,
+            15
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 1,
+          "front_hits": 1,
+          "back_hits": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026105",
+      "date": "2026-09-13 19:40",
+      "actual_front": [
+        2,
+        4,
+        13,
+        14,
+        15,
+        30
+      ],
+      "actual_back": [
+        8
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            10,
+            12,
+            16,
+            17,
+            33
+          ],
+          "pred_back": [
+            3,
+            9,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            6,
+            8,
+            12,
+            25,
+            31
+          ],
+          "pred_back": [
+            1,
+            5,
+            12
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            7,
+            10,
+            18,
+            29,
+            32,
+            33
+          ],
+          "pred_back": [
+            5,
+            9,
+            10
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            2,
+            15,
+            17,
+            21,
+            25,
+            28
+          ],
+          "pred_back": [
+            6,
+            7,
+            13
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            3,
+            16,
+            19,
+            24,
+            32,
+            33
+          ],
+          "pred_back": [
+            10,
+            14,
+            15
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            16
+          ],
+          "tuo": [
+            3,
+            6,
+            14,
+            23,
+            24,
+            29,
+            33
+          ],
+          "back": [
+            13,
+            14
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 1,
+          "front_hits": 1,
+          "back_hits": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026104",
+      "date": "2026-09-13 20:14",
+      "actual_front": [
+        11,
+        12,
+        13,
+        19,
+        20,
+        31
+      ],
+      "actual_back": [
+        3
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            8,
+            10,
+            17,
+            30,
+            31,
+            32
+          ],
+          "pred_back": [
+            3,
+            7,
+            13
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            5,
+            12,
+            18,
+            21,
+            28
+          ],
+          "pred_back": [
+            3,
+            4,
+            14
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            2,
+            7,
+            19,
+            20,
+            21,
+            32
+          ],
+          "pred_back": [
+            1,
+            6,
+            8
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            2,
+            5,
+            16,
+            21,
+            23,
+            30
+          ],
+          "pred_back": [
+            2,
+            5,
+            15
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            2,
+            12,
+            14,
+            17,
+            28,
+            33
+          ],
+          "pred_back": [
+            3,
+            12,
+            15
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            20
+          ],
+          "tuo": [
+            2,
+            7,
+            13,
+            14,
+            24,
+            27
+          ],
+          "back": [
+            1,
+            2,
+            7,
+            8,
+            10,
+            11,
+            13,
+            14
+          ],
+          "dan_hits": 1,
+          "tuo_hits": 1,
+          "front_hits": 2,
+          "back_hits": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026106",
+      "date": "2026-09-15 18:10",
+      "actual_front": [
+        6,
+        11,
+        13,
+        14,
+        22,
+        30
+      ],
+      "actual_back": [
+        14
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            6,
+            14,
+            17,
+            19,
+            28
+          ],
+          "pred_back": [
+            6,
+            10,
+            14
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            6,
+            7,
+            20,
+            24,
+            33
+          ],
+          "pred_back": [
+            3,
+            7,
+            11
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            2,
+            7,
+            20,
+            24,
+            32,
+            33
+          ],
+          "pred_back": [
+            7,
+            13,
+            14
+          ],
+          "front_hits": 0,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 1,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            12,
+            15,
+            21,
+            22,
+            23,
+            32
+          ],
+          "pred_back": [
+            10,
+            11,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            4,
+            5,
+            12,
+            23,
+            25,
+            30
+          ],
+          "pred_back": [
+            1,
+            2,
+            8
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            3,
+            11
+          ],
+          "tuo": [
+            7,
+            10,
+            18,
+            24,
+            26,
+            28
+          ],
+          "back": [
+            1,
+            2,
+            5,
+            7,
+            9,
+            10,
+            13,
+            14
+          ],
+          "dan_hits": 1,
+          "tuo_hits": 0,
+          "front_hits": 1,
+          "back_hits": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        }
+      ]
+    },
+    {
+      "period": "2026107",
+      "date": "2026-09-17 12:26",
+      "actual_front": [
+        1,
+        5,
+        9,
+        17,
+        24,
+        33
+      ],
+      "actual_back": [
+        4
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            5,
+            8,
+            15,
+            22,
+            26
+          ],
+          "pred_back": [
+            7,
+            9,
+            14
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            6,
+            9,
+            11,
+            17,
+            26
+          ],
+          "pred_back": [
+            2,
+            12,
+            15
+          ],
+          "front_hits": 3,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 3,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            9,
+            23,
+            24,
+            29,
+            32
+          ],
+          "pred_back": [
+            1,
+            10,
+            13
+          ],
+          "front_hits": 3,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 3,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            6,
+            15,
+            17,
+            24,
+            28,
+            30
+          ],
+          "pred_back": [
+            5,
+            6,
+            7
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            2,
+            9,
+            11,
+            22,
+            26,
+            29
+          ],
+          "pred_back": [
+            4,
+            14,
+            15
+          ],
+          "front_hits": 1,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 2,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            7
+          ],
+          "tuo": [
+            6,
+            8,
+            15,
+            18,
+            23,
+            29,
+            32
+          ],
+          "back": [
+            5,
+            6
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 0,
+          "front_hits": 0,
+          "back_hits": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026108",
+      "date": "2026-09-20 18:39",
+      "actual_front": [
+        6,
+        11,
+        13,
+        14,
+        20,
+        28
+      ],
+      "actual_back": [
+        16
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            15,
+            17,
+            29,
+            30,
+            33
+          ],
+          "pred_back": [
+            10,
+            11,
+            12
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            6,
+            10,
+            15,
+            17,
+            27
+          ],
+          "pred_back": [
+            4,
+            10,
+            13
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            7,
+            8,
+            12,
+            23,
+            26,
+            29
+          ],
+          "pred_back": [
+            8,
+            10,
+            16
+          ],
+          "front_hits": 0,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 1,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            3,
+            10,
+            18,
+            19,
+            20,
+            28
+          ],
+          "pred_back": [
+            9,
+            10,
+            14
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            6,
+            8,
+            10,
+            11,
+            17,
+            23
+          ],
+          "pred_back": [
+            2,
+            6,
+            16
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            8
+          ],
+          "tuo": [
+            1,
+            6,
+            12,
+            19,
+            24,
+            29,
+            31
+          ],
+          "back": [
+            6,
+            10
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 1,
+          "front_hits": 1,
+          "back_hits": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        }
+      ]
+    },
+    {
+      "period": "2026109",
+      "date": "2026-09-29 20:12",
+      "actual_front": [
+        9,
+        12,
+        15,
+        26,
+        30,
+        33
+      ],
+      "actual_back": [
+        6
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            5,
+            6,
+            10,
+            17,
+            27,
+            32
+          ],
+          "pred_back": [
+            5,
+            13,
+            14
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            7,
+            11,
+            13,
+            22,
+            27
+          ],
+          "pred_back": [
+            2,
+            7,
+            15
+          ],
+          "front_hits": 0,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 0,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            4,
+            6,
+            7,
+            16,
+            23,
+            30
+          ],
+          "pred_back": [
+            1,
+            11,
+            13
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            6,
+            7,
+            9,
+            11,
+            17,
+            24
+          ],
+          "pred_back": [
+            5,
+            10,
+            12
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            3,
+            4,
+            13,
+            15,
+            20,
+            22
+          ],
+          "pred_back": [
+            9,
+            12,
+            14
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            20
+          ],
+          "tuo": [
+            3,
+            5,
+            10,
+            28,
+            30,
+            33
+          ],
+          "back": [
+            6,
+            10,
+            12,
+            13
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 2,
+          "front_hits": 2,
+          "back_hits": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        }
+      ]
+    },
+    {
+      "period": "2026113",
+      "date": "2026-10-14 11:57",
+      "actual_front": [
+        3,
+        4,
+        20,
+        24,
+        29,
+        30
+      ],
+      "actual_back": [
+        11
+      ],
+      "results": [
+        {
+          "group": 1,
+          "name": "综合共识",
+          "strategy": "CDM+马尔可夫+频率+遗漏加权[0.40,0.25,0.20,0.15] 后验采样(期号扰动)",
+          "pred_front": [
+            3,
+            10,
+            12,
+            19,
+            26,
+            29
+          ],
+          "pred_back": [
+            1,
+            5,
+            10
+          ],
+          "front_hits": 2,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 2,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 2,
+          "name": "热号追踪",
+          "strategy": "近30期高频热号 后验采样(期号扰动)",
+          "pred_front": [
+            9,
+            12,
+            14,
+            24,
+            28,
+            31
+          ],
+          "pred_back": [
+            1,
+            3,
+            16
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 3,
+          "name": "冷号回补",
+          "strategy": "遗漏值最大(冷号) 后验采样(期号扰动)",
+          "pred_front": [
+            1,
+            8,
+            10,
+            18,
+            23,
+            30
+          ],
+          "pred_back": [
+            10,
+            13,
+            14
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": 4,
+          "name": "ECI逆向(真实专家)",
+          "strategy": "避开8位专家热门 后验采样",
+          "pred_front": [
+            3,
+            4,
+            8,
+            11,
+            25,
+            32
+          ],
+          "pred_back": [
+            3,
+            7,
+            11
+          ],
+          "front_hits": 2,
+          "back_hits": 1,
+          "back_hits_raw": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        },
+        {
+          "group": 5,
+          "name": "熵均衡",
+          "strategy": "无偏均匀(最大多样性/随机基准) 后验采样",
+          "pred_front": [
+            5,
+            7,
+            10,
+            15,
+            24,
+            27
+          ],
+          "pred_back": [
+            1,
+            7,
+            13
+          ],
+          "front_hits": 1,
+          "back_hits": 0,
+          "back_hits_raw": 0,
+          "total_hits": 1,
+          "prize": "未中奖",
+          "prize_money": "0元"
+        },
+        {
+          "group": "胆拖",
+          "name": "标准胆拖",
+          "dan": [
+            15
+          ],
+          "tuo": [
+            1,
+            8,
+            20,
+            26,
+            29,
+            31
+          ],
+          "back": [
+            1,
+            2,
+            3,
+            10,
+            11,
+            12,
+            13,
+            16
+          ],
+          "dan_hits": 0,
+          "tuo_hits": 2,
+          "front_hits": 2,
+          "back_hits": 1,
+          "total_hits": 3,
+          "prize": "六等奖",
+          "prize_money": "5元"
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "total_verified": 19,
+    "total_predictions": 95,
+    "avg_front_hits": 1.084,
+    "avg_back_hits": 0.221,
+    "avg_total_hits": 1.305,
+    "max_front_hits": 3,
+    "max_total_hits": 3,
+    "prize_distribution": {
+      "未中奖": 74,
+      "六等奖": 21
+    },
+    "last_updated": "2026-10-14 11:57"
+  }
+}

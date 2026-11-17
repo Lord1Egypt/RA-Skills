@@ -264,9 +264,7 @@ Vault file structure:
 ---
 vault_eva_password: "y8UGHR1qH"
 vault_deploy_ssh_key: |
-  -----BEGIN OPENSSH PRIVATE KEY-----
-  ...
-  -----END OPENSSH PRIVATE KEY-----
+  REDACTED-SECRET
 ```
 
 ## Common Modules

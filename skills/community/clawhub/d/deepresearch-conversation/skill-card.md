@@ -1,42 +1,62 @@
-## Description: <br>
-Qianfan DeepResearch automates Baidu Qianfan DeepResearch report generation, including conversation creation, research execution, clarification skipping, outline confirmation, and Markdown and HTML report link retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates deep research reports through the Baidu Qianfan DeepResearch Agent API, automating conversation creation, research execution, clarification skipping, outline confirmation, and Markdown/HTML report link retrieval.
 
-## Publisher: <br>
-[ide-rea](https://clawhub.ai/user/ide-rea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ide-rea](https://clawhub.ai/user/ide-rea)
 
-## Use Case: <br>
-Developers, agents, and research analysts use this skill to run Qianfan DeepResearch workflows for structured long-form research reports, such as market research, competitive analysis, technical overviews, policy interpretation, and decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends research topics, generated outlines, and API key-authorized usage to Baidu Qianfan. <br>
-Mitigation: Use QIANFAN_API_KEY from a secure environment, avoid pasting keys into chat or command history, and run only when sending the research topic to Qianfan is acceptable. <br>
-Risk: The workflow automatically skips clarification and confirms the generated outline, so vague or incorrect queries can produce low-quality or unintended reports. <br>
-Mitigation: Review and refine the query and depth selection before execution, and ask for clarification when the research topic is ambiguous. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to turn scoped research questions into long-form Baidu Qianfan DeepResearch reports for industry research, market analysis, competitive analysis, technical reviews, policy interpretation, and decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ide-rea/deepresearch-conversation) <br>
-- [DeepResearch API reference](references/api.md) <br>
-- [DeepResearch workflow reference](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown response with report outline text and Markdown and HTML download links from stdout JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Qianfan API key and may run for 10 to 30 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata) <br>
+Risk: Research prompts, generated outlines, and report contents are sent to Baidu Qianfan and remote download links are returned.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved, non-confidential inputs unless third-party processing has been reviewed and accepted.
+
+Risk: API keys can be supplied on the command line.
+
+Mitigation: Prefer QIANFAN_API_KEY from a protected environment or credential store and avoid exposing credentials in shell history or logs.
+
+Risk: Long-running report generation can consume API quota and cost.
+
+Mitigation: Monitor Qianfan quota and cost before and during extended runs.
+
+Risk: The workflow automatically skips clarification and confirms the generated outline.
+
+Mitigation: Clarify vague research requests before execution and review the final report before using it for decisions.
+
+## Reference(s):
+
+- [DeepResearch Agent API documentation](references/api.md)
+- [DeepResearch workflow documentation](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown response with report download links; helper script stdout is JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces remote Markdown and HTML report download links after a long-running API workflow.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

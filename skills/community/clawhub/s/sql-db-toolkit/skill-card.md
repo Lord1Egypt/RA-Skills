@@ -1,42 +1,57 @@
-## Description: <br>
-Comprehensive SQL database toolkit for querying, schema inspection, data export, and migration management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Database Toolkit helps agents query SQL databases, inspect schemas, export data, analyze query plans, and create backups for SQLite, PostgreSQL, and MySQL workflows.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and database operators use this skill to run SQL queries, inspect schemas, export data, and create backups for SQLite, PostgreSQL, and MySQL databases they specify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run write, migration, restore, or backup operations against databases the user provides. <br>
-Mitigation: Use read-only or least-privilege credentials where possible and review every write, migration, restore, and backup command before execution. <br>
-Risk: Connection strings may contain passwords and can appear in transcripts, logs, or schema output. <br>
-Mitigation: Avoid password-bearing connection strings in shared conversations or logs and prefer secret handling outside the prompt when available. <br>
-Risk: Exports and backups can contain sensitive database contents. <br>
-Mitigation: Write exports and backups only to approved locations and keep them out of shared folders and source control. <br>
+## Use Case:
 
+Developers and engineers use this skill to query and inspect SQL databases, export results, and create backups during application development, maintenance, and data review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/sql-db-toolkit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline SQL, shell commands, and formatted query results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce database exports or backups when invoked through the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Database queries can modify or delete data when mutating SQL is executed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only or least-privilege database credentials where possible and run mutating SQL only after explicit confirmation.
+
+Risk: Connection strings and command examples can expose database credentials.
+
+Mitigation: Avoid placing real passwords in command lines or chats; prefer safer credential handling outside shared transcripts.
+
+Risk: Exported CSV, JSON, SQL dump, and backup files can contain sensitive database records.
+
+Mitigation: Treat generated exports and backups as sensitive untrusted artifacts and store, share, or delete them according to data-handling policy.
+
+## Reference(s):
+
+- [ClawHub SQL Database Toolkit release page](https://clawhub.ai/ericlooi504/skills/sql-db-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, SQL snippets, tabular text, JSON/CSV data, and generated export or backup files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce database exports, SQL dumps, and backup files that should be handled as sensitive artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

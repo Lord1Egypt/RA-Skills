@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "brand": "青禾",
+  "as_of": "2026-10-19",
+  "mode": "illustrative",
+  "baseline_summary": {
+    "actual_ai_answers": 0,
+    "status_counts": {
+      "simulated": 1
+    },
+    "native_citations": null,
+    "citation_coverage": "no_actual_answers"
+  },
+  "baseline_observations": [
+    {
+      "id": "O1",
+      "kind": "customer_question",
+      "status": "simulated",
+      "text": "青禾是不是偷偷收费？",
+      "question": null,
+      "platform": null,
+      "observed_at": null,
+      "native_citations": null,
+      "citation_capture": "not_available",
+      "error": null
+    }
+  ],
+  "questions": [
+    {
+      "id": "R1",
+      "claim_ids": [
+        "C1"
+      ],
+      "kind": "follow_up",
+      "baseline_observation_id": "O1",
+      "question": "青禾当前有哪些收费项目，各自适用什么条件？",
+      "expected_checks": [
+        "有当前政策或账单证据再判断，不将未知写为没有收费",
+        "明确待确认的收费条件，不预设品牌无问题"
+      ],
+      "status": "not_run",
+      "answer": null,
+      "native_citations": null
+    }
+  ]
+}

@@ -1,43 +1,60 @@
-## Description: <br>
-Lead security with infrastructure audits, vulnerability triage, compliance tracking, vendor assessment, and incident response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead security with infrastructure audits, vulnerability triage, compliance tracking, vendor assessment, and incident response.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Security leaders, engineers, and operators use this skill for CISO-level guidance on infrastructure audits, vulnerability triage, compliance tracking, vendor assessment, incident response, and security operations planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security recommendations may affect accounts, cloud resources, networks, backups, or production systems. <br>
-Mitigation: Require explicit approval, scoped access, rollback planning, and human review before applying operational changes. <br>
-Risk: Users may disclose live secrets while discussing credential rotation or incident response. <br>
-Mitigation: Do not paste live secrets into chat; rotate credentials through approved secret-management processes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/ciso) <br>
-- [Infrastructure Security Audits](artifact/audits.md) <br>
-- [Compliance Frameworks](artifact/compliance.md) <br>
-- [Incident Response](artifact/incidents.md) <br>
-- [Vendor Security Assessment](artifact/vendors.md) <br>
+## Use Case:
 
+Security leaders, founders, engineering teams, and compliance owners use this skill for CISO-level guidance on security audits, vulnerability triage, compliance evidence collection, vendor risk, and incident response.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, risk registers, incident templates, and remediation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only advisory output; no built-in tool or API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share live credentials, incident details, or other sensitive security data while seeking help.
+
+Mitigation: Do not paste live secrets into chat; redact sensitive identifiers and use approved secret-management workflows for rotation and response.
+
+Risk: Security operations advice may lead to high-impact actions such as disabling accounts, rotating production credentials, taking systems offline, wiping hosts, notifying customers, or accepting vendor risk.
+
+Mitigation: Require explicit human approval from the accountable security, legal, or business owner before real-world destructive, customer-facing, or risk-acceptance actions.
+
+Risk: Broad CISO guidance can be incomplete without organization-specific context such as company stage, technology stack, compliance obligations, team size, and security maturity.
+
+Mitigation: Collect the relevant operating context before applying recommendations and review outputs against internal policies, regulatory duties, and current incident facts.
+
+## Reference(s):
+
+- [Chief Information Security Officer skill page](https://clawhub.ai/ivangdavila/skills/ciso)
+- [Infrastructure Security Audits](artifact/audits.md)
+- [Compliance Frameworks](artifact/compliance.md)
+- [Incident Response](artifact/incidents.md)
+- [Vendor Security Assessment](artifact/vendors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance, checklists, templates, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include risk rankings, remediation steps, compliance evidence lists, incident communications, and vendor assessment checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

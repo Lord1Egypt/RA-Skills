@@ -1,0 +1,6 @@
+Step,Action,Source sheet,Key point
+1,Fill in/confirm character anchors and image version,Character Anchors,Look up posture by temperament tag in the Posture-Emotion Mapping table (no free-hand writing)
+2,Configure composition / camera / lighting / layers / posture,Composition & Shots,Select composition type from the reference table and apply the sentence template
+3,Determine the model's reference-image method and consistency strategy,Reference Image Capability Matrix,DALL-E 3 has no reference image and is marked deprecated; domestic API reference-image capabilities per official docs
+4,Assemble the final prompt in the model's syntax,Natural Language Prompt Template,Natural-language / conversational / MJ / SD / domestic API syntaxes all differ
+5,Generate → validate → log the iteration,Checklist / Generation Iteration Log,P0 failure must be regenerated

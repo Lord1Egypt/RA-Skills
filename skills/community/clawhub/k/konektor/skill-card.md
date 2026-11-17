@@ -1,43 +1,59 @@
-## Description: <br>
-Access and manage marketing leads, update lead details, and retrieve analytics for lead performance and conversion tracking via the Konektor API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access and manage marketing leads, update lead details, and retrieve analytics for lead performance and conversion tracking via the Konektor API.
 
-## Publisher: <br>
-[RamaAditya49](https://clawhub.ai/user/RamaAditya49) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramaaditya49](https://clawhub.ai/user/ramaaditya49)
 
-## Use Case: <br>
-Marketing, sales, and operations teams use this skill through agents to retrieve and manage Konektor leads, review campaign and conversion analytics, inspect workspace information, and create support tickets through the Konektor API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Konektor lead, workspace, analytics, and conversion data through an external API. <br>
-Mitigation: Install it only where that data access is intended, use a dedicated least-privilege API key, and prefer read-only scopes unless write operations are required. <br>
-Risk: Lead creation, lead updates, and support ticket creation can submit personal or sensitive business information. <br>
-Mitigation: Require user confirmation before write operations and review payloads before sending them to Konektor. <br>
-Risk: API keys are bearer tokens and can grant scoped access to workspace data. <br>
-Mitigation: Store KONEKTOR_API_KEY in the agent environment, avoid exposing it in prompts or logs, and rotate or revoke keys that are no longer needed. <br>
+## Use Case:
 
+Developers and automation agents use this skill to work with Konektor CRM workflows, including reading and updating leads, retrieving analytics, checking conversion sync status, reading workspace details, and creating support tickets.
 
-## Reference(s): <br>
-- [Konektor Agent API Documentation](https://konektor.id/docs/api/agent-api) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/RamaAditya49/konektor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON, Configuration] <br>
-**Output Format:** [Markdown with endpoint tables, JSON examples, and bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses HTTPS JSON requests authenticated with a scoped KONEKTOR_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: The skill can guide creation or update of CRM leads and support tickets through remote Konektor API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only Konektor workspaces you control, require explicit user approval before write actions, and grant API keys the narrowest scopes needed.
+
+Risk: Lead, analytics, conversion, and workspace operations may involve personal or business data.
+
+Mitigation: Avoid sending unnecessary personal or business data and verify request details before calling Konektor endpoints.
+
+Risk: Support ticket priority and status values contain unresolved placeholders in the artifact.
+
+Mitigation: Check Konektor's current API documentation before creating support tickets or relying on ticket status or priority values.
+
+## Reference(s):
+
+- [Konektor Agent API documentation](https://konektor.id/docs/api/agent-api)
+- [ClawHub skill page](https://clawhub.ai/ramaaditya49/skills/konektor)
+- [ClawHub publisher profile](https://clawhub.ai/user/ramaaditya49)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown API reference with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a KONEKTOR_API_KEY bearer token and endpoint-specific API scopes.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

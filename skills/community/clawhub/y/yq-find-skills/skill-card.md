@@ -1,40 +1,53 @@
-## Description: <br>
-Yq Find Skills helps agent teams discover, match, recommend, and manage skills based on task requirements, current team capabilities, compatibility, and permission constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yq Find Skills helps agent teams identify missing capabilities, search and match skills, recommend suitable additions, and manage skill lifecycle actions.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-Developers and agent-team operators use this skill to identify missing skills, search for relevant skills, produce recommendation reports, and plan skill mounting, unmounting, updates, and priority changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill lifecycle recommendations may affect shared agent-team capabilities if mount, unmount, update, or priority changes are accepted without review. <br>
-Mitigation: Review recommendations and confirm permissions before approving changes, especially in shared team environments. <br>
-Risk: Broad activation wording may cause the skill to propose discovery or management actions for loosely related requests. <br>
-Mitigation: Confirm the user's intended task scope before acting on skill recommendations. <br>
+## Use Case:
 
+Developers and agent team operators use this skill to assess task requirements, find capability gaps, recommend matching skills, and guide skill mounting, unmounting, updates, and prioritization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-find-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, JSON, Configuration] <br>
-**Output Format:** [Markdown reports and structured JSON-like recommendation data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill search results, missing-skill analysis, compatibility notes, permission guidance, and lifecycle recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Skill recommendations may lead to unintended mount, unmount, update, or priority-change actions in a shared team environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as advisory and require explicit user or administrator approval before changing mounted skills or priorities.
+
+Risk: Recommended skills may duplicate or conflict with capabilities already mounted by the team.
+
+Mitigation: Run compatibility checks and review conflict notes before approving a recommended skill change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/yq-find-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports and structured JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include skill match scores, missing-skill lists, compatibility notes, permission checks, update reminders, and action recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

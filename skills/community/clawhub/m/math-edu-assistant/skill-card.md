@@ -1,46 +1,62 @@
-## Description: <br>
-数学教材同步教育助手，支持小学至高中数学的知识点讲解、智能出题、作业批改和解题答疑，并按教材章节范围控制内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数学教材同步教育助手，用于在数学学习请求中提供知识点讲解、智能出题、作业批改和解题答疑，覆盖小学至高中数学并按教材章节范围输出。
 
-## Publisher: <br>
-[gzybt](https://clawhub.ai/user/gzybt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gzybt](https://clawhub.ai/user/gzybt)
 
-## Use Case: <br>
-External learners, parents, and educators use this skill for K12 math tutoring in Chinese, including lesson-aligned explanations, practice generation, homework review, and step-by-step problem solving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Homework images or prompts may contain unnecessary personal information. <br>
-Mitigation: Ask users to omit or redact personal details before sharing homework content. <br>
-Risk: Generated math explanations, answers, or grading feedback may be incorrect. <br>
-Mitigation: Encourage users to verify important answers and review step-by-step reasoning before relying on the result. <br>
-Risk: The skill is scoped to math tutoring and may not handle unrelated subjects or visual extraction reliably. <br>
-Mitigation: Keep requests within K12 math and prefer typed problem statements when image recognition is unavailable or uncertain. <br>
+## Use Case:
 
+External learners, parents, and educators use this skill for Simplified Chinese K12 math tutoring, practice generation, homework review, and step-by-step problem explanation. It is intended to keep responses within the relevant grade, chapter, problem type, and difficulty.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gzybt/math-edu-assistant) <br>
-- [课程知识图谱](references/curriculum_map.md) <br>
-- [各学段知识点库](references/knowledge_points.md) <br>
-- [题目模板与规范](references/question_templates.md) <br>
-- [批改评分标准](references/grading_rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with LaTeX math notation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese K12 math tutoring responses; may include explanations, generated exercises, grading feedback, and study suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/store_listing.md) <br>
+Risk: Broad math-help activation examples may cause the skill to be selected for loosely worded mathematics requests in environments with many skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation examples and keep routing constrained to K12 mathematics tutoring, practice generation, homework review, and problem explanation.
+
+Risk: Generated tutoring, grading, or practice content can be incorrect or exceed the learner's intended curriculum level.
+
+Mitigation: Check grade, chapter, difficulty, and final math results before relying on outputs for teaching, assessment, or study plans.
+
+Risk: Image-based homework review depends on the host platform's visual understanding and may misread handwritten or low-quality inputs.
+
+Mitigation: Prefer text input for critical grading and ask the learner to clarify ambiguous symbols, diagrams, or answer steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gzybt/skills/math-edu-assistant)
+- [Publisher profile](https://clawhub.ai/user/gzybt)
+- [课程知识图谱 — K12 数学教材同步](references/curriculum_map.md)
+- [核心知识点速查库](references/knowledge_points.md)
+- [题目模板与出题规范](references/question_templates.md)
+- [批改评分标准](references/grading_rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with LaTeX math notation and structured tutoring sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include explanations, original practice questions, answer keys, grading feedback, and study suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

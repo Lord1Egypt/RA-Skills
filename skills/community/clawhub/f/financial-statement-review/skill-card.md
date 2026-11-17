@@ -1,46 +1,59 @@
-## Description: <br>
-专业财务报表审查 Skill，基于中国《会计法》《企业会计准则》和《税法》体系，对企业财务报表进行全面合规性审查、风险识别和分析，支持可扩展的策略库，包含税款比对分析、收入确认审查、成本操纵识别等多种专业策略，适用于年报审计、税务稽查准备、投资尽调、内部控制等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于中国《会计法》《企业会计准则》和《税法》体系，对企业财务报表进行合规性审查、风险识别和分析，并支持文件解析、税款比对、收入确认审查、成本操纵识别等策略。
 
-## Publisher: <br>
-[weiliang911](https://clawhub.ai/user/weiliang911) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weiliang911](https://clawhub.ai/user/weiliang911)
 
-## Use Case: <br>
-External finance, audit, tax, and due-diligence users can use this skill to parse financial statement files, run rule-based review strategies, identify accounting or tax risks, and produce review summaries for professional follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive financial files and can scan directories, which may expose confidential business or taxpayer data if used outside a controlled environment. <br>
-Mitigation: Run it only in an approved secure environment, restrict input paths to the intended review set, and avoid broad directory scans unless access controls and data-handling procedures are in place. <br>
-Risk: Document parsing dependencies and PDF handling can be risky when files are untrusted or dependencies are not pinned to reviewed versions. <br>
-Mitigation: Pin and review parser dependencies, sandbox or resource-limit parsing execution, and avoid untrusted PDFs until those controls are applied. <br>
-Risk: Generated accounting and tax findings may be incomplete, outdated, or unsuitable for a specific entity without professional judgment. <br>
-Mitigation: Require review by qualified accounting or tax professionals before using outputs for audit, tax, investment, or management decisions. <br>
+## Use Case:
 
+Auditors, accountants, tax professionals, enterprise finance teams, investors, and analysts use this skill to review Chinese financial statements, identify tax and accounting risks, and generate draft review reports for professional validation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/weiliang911/financial-statement-review) <br>
-- [会计法及会计准则要点](references/accounting_law.md) <br>
-- [中国税法要点摘要](references/tax_law_summary.md) <br>
-- [财务报表审查方法论](references/review_methodology.md) <br>
-- [策略开发指南](strategies/STRATEGY_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, CLI commands, and generated review report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk findings, estimated tax exposure, regulatory references, remediation suggestions, and saved report files when an output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill processes sensitive financial files in bulk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a controlled environment, and limit inputs to selected financial files or small directories.
+
+Risk: Generated reports may overstate completed checks or appear like final audit or tax opinions.
+
+Mitigation: Treat outputs as draft analysis requiring review by an accountant, tax professional, or other qualified reviewer.
+
+Risk: Large or untrusted PDF and Office inputs may create parser reliability or resource-use concerns.
+
+Mitigation: Use pinned dependencies and avoid untrusted large documents until parser resource limits are added.
+
+## Reference(s):
+
+- [会计法及会计准则要点](references/accounting_law.md)
+- [财务报表审查方法论](references/review_methodology.md)
+- [中国税法要点摘要](references/tax_law_summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports, structured findings, Python examples, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated financial and tax review reports should be treated as draft professional analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and setup.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

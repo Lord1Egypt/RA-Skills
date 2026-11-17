@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn75r15e0yk4r9p0rznnfjekws82nqdz",
-  "slug": "china-stock-screener",
   "version": "1.0.0",
-  "publishedAt": 1773330108575
+  "author": "OpenClaw",
+  "tags": ["投资", "选股", "A股", "港股", "筛选"],
+  "triggers": [
+    "选股",
+    "筛选股票",
+    "条件选股",
+    "帮我找",
+    "股票筛选"
+  ],
+  "examples": [
+    "筛选PE<20的银行股",
+    "MACD金叉的科技股",
+    "北向资金连续买入的股票",
+    "用强势股模板筛选",
+    "帮我找低估值的港股"
+  ]
 }

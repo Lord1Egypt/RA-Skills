@@ -1,44 +1,53 @@
-## Description: <br>
-Builds concept, process, and case-application supervision datasets from markdown books or long markdown documents, with full chunk coverage, resumable batch processing, status tracking, validation, and coverage auditing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds concept, process, and case-application supervision datasets from markdown books or long markdown documents.
 
-## Publisher: <br>
-[technomad-ds](https://clawhub.ai/user/technomad-ds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[technomad-ds](https://clawhub.ai/user/technomad-ds)
 
-## Use Case: <br>
-Developers and data builders use this skill to turn markdown books or long markdown documents into structured supervision data for book-to-SFT workflows. It is suited to pipelines that need reusable knowledge extraction, grounded reasoning examples, case-application samples, and auditable chunk coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated manifests, chunks, and supervision files can include source text and absolute local paths. <br>
-Mitigation: Use a narrow input folder and review generated manifest, chunk, and supervision files before sharing or publishing them. <br>
-Risk: Input documents may contain secrets or material that should not be reused in training data. <br>
-Mitigation: Exclude sensitive or unauthorized documents before processing and review outputs for retained sensitive content. <br>
-Risk: Incomplete status tracking can make a dataset appear complete while chunks remain unprocessed or mismatched. <br>
-Mitigation: Run the bundled validation and coverage checks and only treat the run as complete when unprocessed chunks and mismatch previews are empty. <br>
+## Use Case:
 
+Developers and dataset builders use this skill to convert markdown books or long documents into structured supervision data for concept QA, process QA, and case-application training. It is suited to book-to-SFT pipelines that need resumable batch work, chunk status tracking, validation, and coverage auditing.
 
-## Reference(s): <br>
-- [Data Construction Skill page](https://clawhub.ai/technomad-ds/data-construction-skill) <br>
-- [README](artifact/README.md) <br>
-- [Quality rubric and supervision schema](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSONL supervision files and JSON validation reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces manifest, chunk, status, batch supervision, merged supervision, validation, and coverage files for local dataset-preparation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill reads and transforms local markdown corpora, so pointing it at private or unrelated folders can expose or mix unintended content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only for corpora intended for transformation, and use a dedicated work directory.
+
+Risk: Merge or coverage mistakes can leave supervision records without matching chunk status or can include merge output as one of the merge inputs.
+
+Mitigation: Keep merge outputs separate from merge inputs, then inspect validation and coverage JSON reports for unprocessed chunks and mismatch previews.
+
+## Reference(s):
+
+- [Quality rubric](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/JSONL file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces JSONL supervision batches, chunk status records, merged JSONL datasets, and validation/coverage JSON reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,55 @@
-## Description: <br>
-LinkedIn (linkedin.com). Use this skill for LinkedIn requests including reading, creating, updating, and deleting data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use LinkedIn to retrieve the connected member profile and create, reshare, or delete posts.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate LinkedIn through the OOMOL `oo` CLI after the user has connected a LinkedIn account. It supports schema-first execution for profile lookup, post creation, reshares, and post deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create posts, reshares, and delete LinkedIn posts through a connected account. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before write actions, and require explicit approval before destructive deletion. <br>
-Risk: The skill depends on OOMOL account connectivity and server-side credential handling. <br>
-Mitigation: Install and use it only when the user trusts OOMOL and intends to let an agent operate the connected LinkedIn account. <br>
-Risk: First-time setup includes CLI installation commands that fetch remote install scripts. <br>
-Mitigation: Prefer official or verified installation steps and review installation commands before running them. <br>
+## Use Case:
 
+External users can use the skill to retrieve their connected LinkedIn member profile and manage posts by creating, resharing, or deleting them.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-linkedin) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [LinkedIn](https://www.linkedin.com) <br>
-- [Skill Icon](https://static.oomol.com/logo/third-party/linkedin.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before execution; `oo connector run` responses include `data` and `meta.executionId`.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence.release.version and skill metadata) <br>
+Risk: CLI setup runs remote installer scripts, and their behavior was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, use a verified fixed release, and disable unwanted skill synchronization.
+
+Risk: LinkedIn actions can create or delete posts, while OOMOL mediates account access.
+
+Mitigation: Grant only the permissions needed and retain confirmation of the exact effect before posting or deleting.
+
+## Reference(s):
+
+- [LinkedIn API documentation](https://learn.microsoft.com/en-us/linkedin/shared/api-guide/concepts)
+- [LinkedIn](https://www.linkedin.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON action results with profile or post data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected action and connected LinkedIn account.]
+
+## Skill Version(s):
+
+1.0.6 (source: artifact frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

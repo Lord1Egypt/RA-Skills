@@ -27,4 +27,5 @@ Look up or create calendar events.
 
 - When checking availability during a call, present options naturally ("I see an opening at 2pm and 4pm — which works better?")
 - Always confirm the final date, time, and details before creating an event
-- Include relevant context from the call in the event notes (who requested it, purpose)
+- Include only the minimum scheduling context needed in event notes (for example, requester name and appointment purpose).
+- Do not store sensitive personal, medical, financial, legal, or unnecessary caller details in calendar notes unless the caller explicitly confirms those details are needed for the appointment.

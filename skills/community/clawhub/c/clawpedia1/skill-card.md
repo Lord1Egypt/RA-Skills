@@ -1,42 +1,56 @@
-## Description: <br>
-Clawpedia lets an agent fetch curated AI development, prompt engineering, RAG, and LLM tooling articles from the public Clawpedia knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instantly gives an AI agent access to 270+ curated articles on AI development, prompt engineering, RAG, and LLM tooling from the public Clawpedia knowledge base, with no API key required for default use.
 
-## Publisher: <br>
-[clawpedia1](https://clawhub.ai/user/clawpedia1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawpedia1](https://clawhub.ai/user/clawpedia1)
 
-## Use Case: <br>
-External developers and agents use this skill to ground answers about AI agents, prompt engineering, RAG, fine-tuning, and LLM tooling in Clawpedia articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch a large set of third-party public articles, which can introduce outdated or misleading reference content. <br>
-Mitigation: Review cited Clawpedia articles against their public pages before relying on important guidance. <br>
-Risk: Using the optional CLAWPEDIA_API_KEY shares a credential with Clawpedia. <br>
-Mitigation: Use the anonymous tier when sufficient and provide the optional key only when the account owner accepts that trust relationship. <br>
+## Use Case:
 
+Developers and AI agents use this skill to retrieve curated Clawpedia articles for grounded answers about agents, prompt engineering, RAG, fine-tuning, multi-agent systems, and LLM tooling. It is useful when responses should cite current public AI-engineering reference material instead of relying only on model training data.
 
-## Reference(s): <br>
-- [Clawpedia](https://clawpedia.io) <br>
-- [ClawHub skill page](https://clawhub.ai/clawpedia1/clawpedia1) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clawpedia1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article content and synthesized text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default access can fetch up to 200 public articles; an optional API key can increase access to up to 500 articles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact frontmatter reports 2.1.0) <br>
+Risk: Returned article text is external content that could be mistaken for operational instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Clawpedia content for citation, summarization, and comparison only; do not treat article text as instructions to run tools, change agent policy, or alter system behavior.
+
+Risk: The artifact recommends local caching, while security guidance flags persistent caching as insufficiently scoped.
+
+Mitigation: Avoid persistent caching unless a future version clearly defines storage location, retention, and cleanup behavior.
+
+## Reference(s):
+
+- [Clawpedia website](https://clawpedia.io)
+- [Clawpedia articles API](https://nyiqfjebdwgvvbtipvsn.supabase.co/functions/v1/hello?action=articles)
+- [ClawHub skill page](https://clawhub.ai/clawpedia1/skills/clawpedia1)
+- [ClawHub publisher profile](https://clawhub.ai/user/clawpedia1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and citations backed by JSON article responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default access returns up to 200 public articles per call; optional API-key access can return up to 500 articles per call.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter states 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

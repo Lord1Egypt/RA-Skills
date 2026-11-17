@@ -1,46 +1,63 @@
-## Description: <br>
-Analyzes Bilibili academic/educational videos to extract knowledge points and generate clean-style study notes with screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Bilibili academic/educational videos to extract knowledge points and generate clean-style study notes with screenshots.
 
-## Publisher: <br>
-[railgun9983](https://clawhub.ai/user/railgun9983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[railgun9983](https://clawhub.ai/user/railgun9983)
 
-## Use Case: <br>
-External learners, educators, and developers use this skill to analyze Bilibili educational videos, extract structured knowledge points, and generate Markdown learning notes with screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a local-code-execution bug in frame-rate parsing. <br>
-Mitigation: Use the skill only in an isolated environment and fix the eval-based frame-rate parsing issue before routine use. <br>
-Risk: Bilibili login or session use can expose account credentials or cookies. <br>
-Mitigation: Use a dedicated session, protect cookies as secrets, and avoid sharing or committing login artifacts. <br>
-Risk: Downloaded videos and transcripts may contain private, sensitive, or unauthorized content. <br>
-Mitigation: Analyze only videos the user is allowed to download and share, and review or redact transcripts before sending them to any LLM. <br>
+## Use Case:
 
+External users, developers, and education-focused analysts use this skill to turn Bilibili academic or educational videos into structured study notes. It supports download, transcription, LLM-based knowledge extraction, screenshot capture, and Markdown report generation.
 
-## Reference(s): <br>
-- [Best Practices Guide](references/BEST_PRACTICES.md) <br>
-- [Quick Quality Checklist](references/QUICK_QUALITY_CHECKLIST.md) <br>
-- [References Index](references/README.md) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/railgun9983/bilibili-video-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with JSON analysis structures, command examples, and generated screenshot file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local video, subtitle, screenshot, JSON, and Markdown report files during the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles Bilibili login credentials and downloaded video data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in an isolated environment, avoid using a high-value Bilibili account, and process only videos whose local storage is acceptable.
+
+Risk: Transcript content may be sent to an external LLM during analysis.
+
+Mitigation: Do not process private, confidential, or sensitive videos unless sharing transcript content with the chosen LLM provider is acceptable.
+
+Risk: Security evidence reports unsafe parsing, dependency, and disclosure gaps, including an eval-based parsing issue.
+
+Mitigation: Review dependency versions and fix the eval parsing path before using untrusted media or deploying the skill broadly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/railgun9983/skills/bilibili-video-analyzer)
+- [Best Practices Guide](references/BEST_PRACTICES.md)
+- [Quick Quality Checklist](references/QUICK_QUALITY_CHECKLIST.md)
+- [References Index](references/README.md)
+- [bilibili-dl](https://github.com/railgun9983/bilibili-download)
+- [FFmpeg](https://ffmpeg.org/)
+- [Whisper](https://github.com/openai/whisper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown study report with JSON analysis data, generated screenshots, subtitles, and inline shell/Python workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected outputs may include local video files, SRT subtitles, transcripts, analysis JSON, screenshots, and a structured learning-notes Markdown file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

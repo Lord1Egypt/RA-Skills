@@ -1,43 +1,51 @@
-## Description: <br>
-Agent project directory structure specification that guides agents to organize project files, logs, temporary files, configuration, data, scripts, and documentation into separate standard directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to check, create, or adjust a standardized project directory structure that separates project files, logs, temporary files, configuration, data, scripts, and documentation.
 
-## Publisher: <br>
-[songxf1024](https://clawhub.ai/user/songxf1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songxf1024](https://clawhub.ai/user/songxf1024)
 
-## Use Case: <br>
-Developers and agent builders use this skill to check whether an existing workspace follows a standard project directory layout or to create that layout for a new project. It is useful when logs, temporary screenshots or caches, configuration, data, scripts, and documentation need to stay separated from project source files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The create script can add directories and write small template files under the selected target path. <br>
-Mitigation: Run it only on a new or reviewed target path, and inspect the path before confirming execution inside an existing project. <br>
-Risk: The directory convention may not match a project's existing layout or team-specific organization rules. <br>
-Mitigation: Use the structure as a default convention and adjust when the user or project documentation specifies a different layout. <br>
+## Use Case:
 
+Developers and agent operators use this skill when creating a new project, checking whether an existing project follows the expected layout, or reorganizing project files into conventional directories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songxf1024/agent-project-structure) <br>
-- [QUICK_START.md](QUICK_START.md) <br>
-- [PROJECT_STRUCTURE.md](references/PROJECT_STRUCTURE.md) <br>
-- [GITIGNORE.md](references/GITIGNORE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create directories and small template files when the create script is run against a target path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The create script can overwrite placeholder files in an existing path and may follow symlinks outside the selected project directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the create script only in a new empty directory, or inspect existing files and symlinks before accepting the prompt to continue.
+
+## Reference(s):
+
+- [Quick Start](QUICK_START.md)
+- [Project Structure Reference](references/PROJECT_STRUCTURE.md)
+- [Gitignore Template](references/GITIGNORE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and directory structure examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create directories and placeholder files when the bundled create script is run.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

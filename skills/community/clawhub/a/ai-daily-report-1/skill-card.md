@@ -1,42 +1,63 @@
-## Description: <br>
-AI领域日报生成工具，支持飞书机器人消息格式；当用户需要生成AI行业日报、整理AI动态或分析AI资讯时使用 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI industry daily reports as Feishu-ready message content from recent, source-linked AI news.
 
-## Publisher: <br>
-[c1028874817-beep](https://clawhub.ai/user/c1028874817-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c1028874817-beep](https://clawhub.ai/user/c1028874817-beep)
 
-## Use Case: <br>
-External users and team operators use this skill to collect, verify, and summarize AI industry updates from the past 24 hours into a concise daily report suitable for Feishu bot messages or Markdown chat output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated daily reports may include unverified or outdated AI news if sources are not checked carefully. <br>
-Mitigation: Use authoritative sources, cross-check important claims across multiple sources, cite source links, and mark sections with no major activity as unavailable rather than guessing. <br>
-Risk: Deploying the skill as a Feishu bot can expose chat content, API keys, or webhook endpoints to external services. <br>
-Mitigation: Confirm what data is sent to Coze, Dify, OpenAI, Claude, or other providers; protect API keys; implement Feishu signature verification; avoid ngrok in production; and add rate limits and logging controls. <br>
+## Use Case:
 
+Teams and operators use this skill to collect recent AI news, organize it across defined categories, and output a Feishu-ready daily report directly in chat.
 
-## Reference(s): <br>
-- [AI日报信息来源清单](references/sources.md) <br>
-- [AI日报Skill部署指南](deploy-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/c1028874817-beep/ai-daily-report-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or Feishu rich-text-ready message content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Direct chat output only; the skill instructs the agent not to create report files and suggests a 3000-4000 character message length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The self-hosted Feishu webhook example may expose a public endpoint without effective request authentication, allowing outsiders to trigger paid AI calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add Feishu signature verification, timestamp and nonce replay checks, schema validation, and rate limits before using the webhook in a shared or enterprise bot.
+
+Risk: Chat data used to generate reports may be sent to external AI providers during deployment.
+
+Mitigation: Define clear data handling rules, configure approved AI providers, and avoid sending sensitive group-chat content unless the deployment policy permits it.
+
+Risk: Unpinned dependencies in the deployment example can make runtime behavior harder to reproduce or audit.
+
+Mitigation: Pin and review dependencies for any self-hosted deployment before installation.
+
+## Reference(s):
+
+- [AI Daily Report Source List](artifact/references/sources.md)
+- [AI Daily Report Deployment Guide](artifact/deploy-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/c1028874817-beep/skills/ai-daily-report-1)
+- [OpenAI Blog](https://openai.com/blog)
+- [Google AI Blog](https://ai.googleblog.com)
+- [Microsoft AI Blog](https://blogs.microsoft.com/ai)
+- [Feishu Open Platform Documentation](https://open.feishu.cn/document)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or Feishu rich_text-ready message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Direct conversation output; no documents or disk files are produced by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

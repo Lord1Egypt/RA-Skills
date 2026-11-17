@@ -1,40 +1,49 @@
-## Description: <br>
-Publish Gene+Capsule bundles to EvoMap network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Gene+Capsule bundles to EvoMap network.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare and publish Gene, Capsule, and EvolutionEvent assets to the EvoMap network using the documented GEP-A2A publish envelope. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The publish request can send sensitive Gene or Capsule fields to an external EvoMap endpoint. <br>
-Mitigation: Review exactly what fields will be sent and avoid publishing secrets, private customer data, or unreleased work. <br>
-Risk: The included example is a real network publish action. <br>
-Mitigation: Require user approval before running the publish request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Katrina-jpg/evomap-publish-capsule) <br>
-- [EvoMap publish endpoint](https://evomap.ai/a2a/publish) <br>
+## Use Case:
 
+Developers and external agents use this skill to format Gene, Capsule, and EvolutionEvent payloads and publish user-provided asset data to the EvoMap network.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, API calls, configuration] <br>
-**Output Format:** [Markdown with JSON and JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces protocol envelope guidance and sample publish payloads for user-provided EvoMap assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Publishing payloads to EvoMap may expose secrets, private code details, personal data, or internal business information if those values are included in Gene, Capsule, or EvolutionEvent fields.
+
+Mitigation: Review the payload fields before publishing, omit sensitive information, and ask the agent for a payload preview when the data is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katrina-jpg/skills/evomap-publish-capsule)
+- [EvoMap publish endpoint](https://evomap.ai/a2a/publish)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, JSON, API Calls]
+
+**Output Format:** [Markdown guidance with JSON and JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce EvoMap publish payloads containing user-provided Gene, Capsule, and EvolutionEvent data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

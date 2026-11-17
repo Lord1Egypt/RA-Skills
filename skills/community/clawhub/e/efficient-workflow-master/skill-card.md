@@ -1,38 +1,54 @@
-## Description: <br>
-Provides Chinese-language productivity and time-management coaching for task planning, time blocking, energy management, focus, and procrastination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language productivity and time-management coaching for task planning, time blocking, focus, energy management, and procrastination.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Individuals use this skill to diagnose productivity issues, organize tasks, plan time blocks, manage energy, improve focus, and get practical guidance for overcoming procrastination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad productivity, planning, focus, or procrastination questions and provide Chinese-language advice. <br>
-Mitigation: Use it when Chinese-language productivity coaching is desired, and review the generated advice before relying on it for important planning decisions. <br>
+## Use Case:
 
+External users use this skill for practical productivity coaching, including diagnosing workflow issues, organizing tasks, designing time blocks, improving focus, managing energy, and starting delayed work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yesong-hue/efficient-workflow-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language static productivity guidance selected from the user's topic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad productivity, planning, busyness, focus, and procrastination phrases may activate the skill in adjacent conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior during deployment and enable the skill only where productivity coaching is desired.
+
+Risk: General productivity advice may not fit every user's schedule, workload, or wellbeing constraints.
+
+Mitigation: Treat recommendations as coaching suggestions and adapt plans to the user's context and applicable workplace policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/efficient-workflow-master)
+- [Publisher profile](https://clawhub.ai/user/yesong-hue)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown coaching responses with headings, bullet lists, questions, and occasional inline examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language productivity guidance selected from keyword-triggered topics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Nationalize MCP provides nationality prediction from a first name through nationalize.io, with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nationalize MCP provides nationality prediction from a first name using nationalize.io without requiring an API key.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to a Pipeworx-hosted MCP server for predicting likely nationalities from first names, either one at a time or in batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Names submitted for nationality prediction may be sent to Pipeworx's gateway and the underlying prediction service. <br>
-Mitigation: Avoid submitting sensitive, regulated, or bulk personal data unless that external processing is acceptable for the use case. <br>
+## Use Case:
 
+Developers and agent users connect this MCP skill when they need an agent to estimate likely nationalities from one name or a batch of names.
 
-## Reference(s): <br>
-- [Pipeworx Nationalize Pack](https://pipeworx.io/packs/nationalize) <br>
-- [Pipeworx](https://pipeworx.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration] <br>
-**Output Format:** [Markdown with JSON configuration and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote Pipeworx MCP gateway; no API key is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, frontmatter) <br>
+Risk: Name queries are sent to an external Pipeworx/nationalize service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive personal data unless the external service is approved for the intended use.
+
+Risk: The documented setup runs mcp-remote@latest through npx.
+
+Mitigation: Prefer a pinned and reviewed mcp-remote version, and run the MCP bridge with least privilege or in a sandbox.
+
+## Reference(s):
+
+- [Pipeworx Nationalize pack](https://pipeworx.io/packs/nationalize)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-nationalize)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, API calls]
+
+**Output Format:** [MCP tool responses and JSON connection configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key is documented; queries are sent to an external Pipeworx nationalize gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

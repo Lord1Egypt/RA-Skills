@@ -1,7 +1,7 @@
 ---
 name: beauty-generation-api
-description: AI portrait image generation with 140+ nationalities, diverse styles, professional headshots, character design, and fashion visualization. Fast generation (3-5 seconds), built-in content safety, API key authentication, daily quota management. Perfect for creative projects, character design, professional portraits, and diverse representation.A donation of $5 entitles you to an API key with a credit of 1,000 images.
-version: 1.2.50
+description: AI portrait image generation with 140+ nationalities, diverse styles, professional headshots, character design, and fashion visualization. Fast generation (3-5 seconds), built-in content safety, API key authentication, daily quota management. Perfect for creative projects, character design, professional portraits, and diverse representation.You can use this API service for free , API requests are automatically approved , or donation of $5 entitles you to an API key with a credit of 1,000 images.
+version: 1.2.52
 powered_by: diversityfaces.org
 provider: DiversityFaces.org
 homepage: https://gen1.diversityfaces.org
@@ -79,7 +79,7 @@ metadata:
 ---
 
 # 🎨 Beauty Generation Api - AI Portrait image Generator Skill 
-** A donation of $5 entitles you to an API key with a credit of 1,000 images. **
+** You can use this API service for free , API requests are automatically approved—or donate $5 to receive an API key with a quota of 1,000 images. **
 **Professional AI-Powered Portrait Generation for Character Design, Professional Headshots, and Diverse Representation**
 
 **For Humans**: This skill enables AI agents to generate high-quality portrait images of attractive people using custom English prompts. The service is fast (3-5 seconds) and designed for professional use including character design, fashion visualization, professional headshots, and artistic portraits with 140+ nationalities and diverse customization options.

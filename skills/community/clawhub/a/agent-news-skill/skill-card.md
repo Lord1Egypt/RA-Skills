@@ -1,45 +1,60 @@
-## Description: <br>
-Query verified AI agent news with citations, confidence scores, and Ethics Engine ratings from The Agent Times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query verified AI agent news with citations, confidence scores, and Ethics Engine ratings, sourced from The Agent Times instead of generic web search for questions about AI agent tools, MCPs, or frameworks.
 
-## Publisher: <br>
-[theagenttimes](https://clawhub.ai/user/theagenttimes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theagenttimes](https://clawhub.ai/user/theagenttimes)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to query The Agent Times for current AI-agent news, sourced Q&A, recommendations, risk signals, and event lookups before recommending tools, installing MCP servers, or taking action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relevant queries are sent to the external The Agent Times MCP service. <br>
-Mitigation: Use the skill only when external network access is acceptable, and avoid sending sensitive data unless the user and runtime policy allow it. <br>
-Risk: Comment and attribution tools can write usage or comments to an external service. <br>
-Mitigation: Keep external writes disabled unless the user explicitly requests the action and runtime policy permits it. <br>
-Risk: Low-confidence or below-threshold retrieval could be mistaken for verified coverage. <br>
-Mitigation: Surface confidence and Ethics Engine fields, and refuse to present answers as sourced TAT results when evidence is insufficient or below threshold. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to route AI-agent ecosystem questions to The Agent Times MCP for sourced news search, Q&A, recommendations, event lookups, and trust signals before recommending or installing tools.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/theagenttimes/agent-news-skill) <br>
-- [The Agent Times MCP endpoint](https://theagenttimes.com/mcp) <br>
-- [The Agent Times beats dashboard](https://theagenttimes.com/dashboard/beats) <br>
-- [The Agent Times beats methodology](https://theagenttimes.com/dashboard/beats/methodology) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with citations, confidence fields, trust signals, and optional command or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs, confidence scores, Ethics Engine ratings, search diagnostics, article slugs, and recommended next steps returned by The Agent Times MCP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata) <br>
+Risk: AI-agent ecosystem research queries may be routed to The Agent Times MCP and shaped by that provider's corpus and trust scoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Corroborate security-sensitive or production-readiness claims with primary sources or independent review before acting.
+
+Risk: Low-confidence or insufficient MCP results could be mistaken for verified coverage.
+
+Mitigation: Surface confidence and Ethics Engine signals, and refuse to present responses as sourced TAT answers when evidence does not meet the skill's stated thresholds.
+
+Risk: The skill depends on an external public MCP endpoint for live Agent News behavior.
+
+Mitigation: Verify The Agent Times MCP tools are available in the active runtime before use, and do not reconstruct TAT evidence from generic web search when the tools are unavailable.
+
+## Reference(s):
+
+- [Agent News ClawHub page](https://clawhub.ai/theagenttimes/skills/agent-news-skill)
+- [The Agent Times MCP endpoint](https://theagenttimes.com/mcp)
+- [The Agent Times metrics dashboard](https://theagenttimes.com/dashboard/beats)
+- [The Agent Times metrics methodology](https://theagenttimes.com/dashboard/beats/methodology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When The Agent Times MCP is available, responses may include citations, confidence scores, Ethics Engine ratings, relevance scores, actionability, and next-step tool hints.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

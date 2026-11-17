@@ -1,40 +1,53 @@
-## Description: <br>
-Checks bid documents against tender requirements, flags qualification, disqualification, scoring, formatting, and packaging gaps, and produces a risk summary with an action list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bid Compliance Check reviews tender documents and finished bid files, extracts tender requirements, checks bid responses against disqualification, qualification, scoring, packaging, and submission requirements, and returns a risk summary and action list.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Bid, sales, and proposal teams use this skill to compare draft bid submissions with tender documents, identify missing or questionable requirements, and prepare a submission-ready action list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bid and tender documents may contain confidential procurement or business information. <br>
-Mitigation: Use the skill only for intended bid review and attach sensitive files only when that review is intended. <br>
-Risk: Compliance findings may be incomplete or incorrect if source documents are missing, ambiguous, or not reviewed by the responsible team. <br>
-Mitigation: Require human review for missing, questionable, and high-impact items before relying on the report for submission decisions. <br>
+## Use Case:
 
+External proposal, sales, and bid teams use this skill to compare tender requirements with a completed bid package, identify missing or questionable items, and prepare a prioritized remediation checklist before submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/bid-compliance-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown tables in chat; multi-sheet spreadsheet files when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes requirement locations, pass/question/missing status, risk summaries, and recommended actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter and clawhub.yaml list 1.0.0) <br>
+Risk: Tender and bid files may contain confidential business, financial, and qualification information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only documents appropriate for analysis in the current workspace and follow the organization's confidentiality controls.
+
+Risk: Compliance findings can be incorrect or incomplete if source documents are missing, outdated, or ambiguous.
+
+Mitigation: Require human review of missing, questionable, and high-risk disqualification items before bid submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andyrenxu7255/skills/bid-compliance-check)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown tables by default; optional multi-sheet spreadsheet file when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes requirement-by-requirement status, source locations, missing or questionable items, risk summary, and action list.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

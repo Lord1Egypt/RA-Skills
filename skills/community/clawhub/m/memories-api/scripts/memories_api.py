@@ -23,7 +23,7 @@ def get_api_key():
     if os.environ.get("MEMORIES_API_KEY"):
         return os.environ["MEMORIES_API_KEY"]
     # Default key from TOOLS.md
-    return "sk-mavi-mjLNMGVXHt52ZPvEIkx5QrsQEv6Z52GjvXa0MISOgAP5ckMGBzybxfMH9B-1tvUNFhbmDlI8juoFtJjoQJQMhwno9qDBidAblsfJMwL1NTiAqtSYgXnZKrD-uWxHFWkZ"
+    return "REDACTED-SECRET"
 
 HEADERS = {
     "Authorization": get_api_key(),

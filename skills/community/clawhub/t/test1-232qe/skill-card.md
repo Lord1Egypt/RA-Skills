@@ -1,39 +1,48 @@
-## Description: <br>
-Generates a fixed-format, three-line playful Chinese poem for non-technical sandbox or skill-test prompts without using tools. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Creates a three-line Chinese playful poem that summarizes a user-provided non-technical topic without calling tools.
 
-## Publisher: <br>
-[a6191187](https://clawhub.ai/user/a6191187) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[a6191187](https://clawhub.ai/user/a6191187)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Users can test that the skill is loaded or turn a non-technical, non-business topic into a short Chinese playful poem. The skill is not intended for charging-business, order, device, transaction, private-data, or technical troubleshooting tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill could be applied outside its narrow sandbox purpose, such as business, charging-order, private-data, or technical troubleshooting tasks.
+
+Mitigation: Use it only for Chinese three-line playful summaries of non-technical topics and route business or troubleshooting requests to an appropriate skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use this skill to respond to sandbox tests, skill-loading checks, or explicitly non-business playful prompts with a short three-line Chinese poem. It is not intended for charging orders, device issues, transactions, or operational troubleshooting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may apply a sandbox poem response to charging-business troubleshooting or operational conclusions. <br>
-Mitigation: Use the skill only for non-technical sandbox, demo, or playful prompts and route charging orders, device issues, and transaction questions to the appropriate business skill. <br>
-Risk: Prompts could include real company data, user privacy data, or business-sensitive details even though the skill is playful. <br>
-Mitigation: Avoid including real company data, user privacy data, or charging-business conclusions in the generated poem. <br>
+**Output Format:** [Markdown with a topic line and a numbered three-line poem]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No tool, file, network, or persistence requests are described by the release evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with a fixed Chinese three-line poem structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The response includes the topic, exactly three poem lines, and a note that the output has no business meaning.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

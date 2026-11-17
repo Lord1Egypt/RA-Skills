@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 文本语气精修"
+  short_description: "保留事实、文体与作者声音，精修中文文本中的模板化 AI 语气"
+  default_prompt: "Use $refining-the-tone-of-ai to refine this Chinese draft while preserving its facts, register, constraints, fixed formulations, qualifiers, and author voice. Do not invent facts, cases, quotations, or experiences. Ask before restructuring. Return only the revision."

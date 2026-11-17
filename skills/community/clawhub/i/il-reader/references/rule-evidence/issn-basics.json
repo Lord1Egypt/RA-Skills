@@ -1,0 +1,48 @@
+{
+  "url": "https://www.issn.org/understanding-the-issn/what-is-an-issn/",
+  "title": "What is an ISSN? | ISSN",
+  "observed_at": "2026-10-09T13:10:59.081Z",
+  "method": "Playwright JavaScript library / visible Google Chrome",
+  "excerpts": [
+    "identifies all continuing resources",
+    "this eighth control digit may be an “X”",
+    "it does not guarantee the quality or validity of the contents."
+  ],
+  "sections": [
+    {
+      "section": null,
+      "locator": "p filtered by /^An ISSN \\(International Standard Serial Number\\)/",
+      "excerpt": "identifies all continuing resources",
+      "screenshot": "issn-basics-identity.png",
+      "visible": true
+    },
+    {
+      "section": null,
+      "locator": "p filtered by /^The ISSN takes the form/",
+      "excerpt": "this eighth control digit may be an “X”",
+      "screenshot": "issn-basics-format.png",
+      "visible": true
+    },
+    {
+      "section": null,
+      "locator": "li filtered by /^it does not guarantee the quality or validity/",
+      "excerpt": "it does not guarantee the quality or validity of the contents.",
+      "screenshot": "issn-basics-quality.png",
+      "visible": true
+    }
+  ],
+  "claims_basis": {
+    "identity": {
+      "summary": "ISSN 是 International Standard Serial Number，即国际标准连续出版物号，用于识别连续出版资源，不限纸质媒介。",
+      "kind": "paraphrase of observed definition"
+    },
+    "format": {
+      "summary": "ISSN 由八位组成，通常写为两组四位并以连字符分开；最后一位是校验位，可以为 X。",
+      "kind": "paraphrase of observed definition"
+    },
+    "quality": {
+      "summary": "ISSN 本身不编码出版物来源或内容信息，也不保证内容质量或有效性。",
+      "kind": "paraphrase of observed definition"
+    }
+  }
+}

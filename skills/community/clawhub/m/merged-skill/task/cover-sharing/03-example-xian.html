@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="forest-ink">
+<head>
+  <meta charset="utf-8">
+  <title>第一张：西安旅游笔记</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    :root, [data-theme="forest-ink"] {
+      --paper: #f5f1e8; --paper-2: #e8dfcf; --ink: #16251b; --muted: #5d665d;
+      --line: rgba(22,37,27,.22); --accent: #2e6b4f; --accent-soft: #d4dfd2;
+      --ink-rgb: 22,37,27; --paper-rgb: 245,241,232; --accent-rgb: 46,107,79;
+    }
+    :root {
+      --serif-zh: "Noto Serif SC", "Songti SC", serif;
+      --serif-en: "Playfair Display", serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+      --sans-en: "Inter", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1a1a1a; font-family: var(--sans-zh); padding: 0; display: flex; flex-direction: column; align-items: center; }
+    .poster { position: relative; width: 1080px; height: 1440px; overflow: hidden; isolation: isolate; background: var(--paper); }
+    .content { position: relative; width: 100%; height: 100%; padding: 96px 88px; display: flex; flex-direction: column; z-index: 2; }
+
+    .label-tag {
+      display: inline-block; font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--accent); border: 1px solid var(--line);
+      padding: 6px 14px; margin-bottom: 28px; align-self: flex-start;
+    }
+    .hero-title {
+      font-family: var(--serif-zh); font-size: 88px; font-weight: 900;
+      line-height: 1.1; color: var(--ink); margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-family: var(--serif-en); font-size: 24px; font-weight: 400;
+      font-style: italic; color: var(--muted); margin-bottom: 48px;
+    }
+    .hero-image {
+      width: calc(100% + 144px); margin-left: -72px; height: 480px;
+      overflow: hidden; margin-bottom: 48px; position: relative;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .body-text {
+      font-family: var(--sans-zh); font-size: 28px; line-height: 1.8; color: var(--ink);
+    }
+    .divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+    .pull-quote {
+      font-family: var(--serif-zh); font-size: 32px; font-weight: 700;
+      line-height: 1.5; color: var(--ink); border-left: 3px solid var(--accent);
+      padding-left: 28px; margin-top: auto;
+    }
+    .tag-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      padding: 6px 14px; border: 1px solid var(--accent); color: var(--accent);
+    }
+    .footer-band {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 88px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--line); background: var(--paper); z-index: 10;
+    }
+    .footer-text { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- 示例一：西安旅游 -->
+  <div class="poster" id="poster-3">
+    <div class="content">
+      <div class="label-tag">示例 · 森林墨主题</div>
+      <h1 class="hero-title">西安</h1>
+      <div class="hero-sub">XI'AN TRAVEL NOTE</div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1080&h=480&fit=crop" alt="Forest landscape" />
+      </div>
+
+      <div class="section-label">生成过程</div>
+      <div class="body-text">
+        跟它说"做一个西安文旅的杂志风海报，森林墨主题"。<br><br>
+        出来的图我直接存了当封面用。深绿色调，文字和图片分区很干净，没有多余的东西。
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="pull-quote">
+        「之前自己做这种图，光调字体大小就要调半天。<br>
+        这个 skill 直接帮你处理好了，<br>
+        静区检测什么的它都做了。」
+      </div>
+
+      <div class="tag-row">
+        <div class="tag">森林墨</div>
+        <div class="tag">杂志风</div>
+        <div class="tag">西安文旅</div>
+      </div>
+    </div>
+
+    <div class="footer-band">
+      <div class="footer-text">工具分享 · 封面设计救星</div>
+      <div class="footer-text">03 / 05</div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,40 +1,55 @@
-## Description: <br>
-Pad Mode helps an agent turn complex requests into structured Plan, Act, Deliver workflows with task breakdowns, approval gates, execution tracking, and completion review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pad Mode turns messy or complex requests into structured, trackable execution plans with task breakdown, approval gates, progress tracking, and delivery review.
 
-## Publisher: <br>
-[yipxiyi](https://clawhub.ai/user/yipxiyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yipxiyi](https://clawhub.ai/user/yipxiyi)
 
-## Use Case: <br>
-Developers and other agent users use Pad Mode to plan and track non-trivial work before execution. It is most useful for multi-step requests that need explicit scope, approval, verification, and completion review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plan files may contain sensitive information from user requests because they are saved locally. <br>
-Mitigation: Avoid putting secrets or sensitive data in requests and review generated plan files before approving execution. <br>
-Risk: High-impact work such as deployments, payments, databases, or account changes can cause unwanted changes if approved without review. <br>
-Mitigation: Use foreground mode for high-impact work and review each plan before allowing execution. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to plan and execute non-trivial work through explicit planning, discussion, approval, tracked execution, and final review.
 
-## Reference(s): <br>
-- [Pad Mode on ClawHub](https://clawhub.ai/yipxiyi/pad-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plans, status updates, and concise execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local plan documents and requires user approval gates before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Plan files may retain secrets or sensitive business details provided in user requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets or sensitive details in plan requests unless those details are appropriate to save in OpenClaw plan files.
+
+Risk: Background or sub-agent execution can carry out approved plans with less continuous user attention.
+
+Mitigation: Use background or sub-agent execution only after reviewing and approving the plan and execution mode.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yipxiyi/skills/pad-mode)
+- [README](artifact/README.md)
+- [Plan Template](artifact/assets/plan-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plan documents, progress updates, execution summaries, and task-specific guidance or commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates resumable plan files and may coordinate foreground or background execution after user approval.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

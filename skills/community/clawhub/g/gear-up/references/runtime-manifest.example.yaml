@@ -1,0 +1,39 @@
+schema_version: "1"
+run_id: run-2026-001
+status: active # planned | staged | active | failed | deactivated | cleaned
+
+capability_gap:
+  objective_at_risk: Preserve exact requirement identity during normalization.
+  why_existing_is_insufficient: Sampled generic paths lose stable IDs.
+  why_not_knowledge_gap: Inputs and rules are already available.
+  academy_search: no-match
+
+artifact:
+  id: requirement-normalizer
+  type: tool
+  path: tools/normalize-requirement.ts
+  permissions: [read-task-files]
+  dependencies: []
+
+value_test:
+  before: "4/80 validation rows lose or collide on source identity"
+  target: "80/80 preserve document + original requirement ID; zero collisions"
+
+validation:
+  structure: pass
+  syntax: pass
+  permissions_review: pass
+  smoke_test: pass
+
+activation:
+  runtime: pi
+  status: active
+  evidence: "Runtime confirmed tool is available in current session"
+
+outcome:
+  status: pending # ineffective | useful-once | reusable-signal
+  evidence: null
+
+cleanup:
+  policy: delete-unless-nominated
+  academy_candidate: false

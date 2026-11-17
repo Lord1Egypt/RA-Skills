@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Google Ad Library Research"
+  short_description: "Collect and analyze public Google Ad Library data"
+  default_prompt: "Use $socq-google-ad-library-research to collect and analyze this public Google Ad Library research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Google Ad Library data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=google-ad-library"

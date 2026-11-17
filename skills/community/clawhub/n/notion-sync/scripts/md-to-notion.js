@@ -14,6 +14,7 @@ const {
   appendBlocksBatched,
   stripTokenArg,
   hasJsonFlag,
+  hasHelpFlag,
   log,
   resolveSafePath,
 } = require('./notion-utils.js');
@@ -22,13 +23,25 @@ checkApiKey();
 
 async function main() {
   const args = stripTokenArg(process.argv.slice(2));
+  const isHelp = hasHelpFlag();
 
-  if (args.length < 3 || args[0] === '--help') {
-    console.log('Usage: md-to-notion.js <markdown-file> <parent-page-id> <page-title> [--json] [--allow-unsafe-paths]');
+  if (isHelp || args.length < 3) {
+    console.log('Usage: md-to-notion.js <markdown-file> <parent-page-id> <page-title> [--json] [--allow-read-path <exact-path>]');
     console.log('');
     console.log('Example:');
     console.log('  md-to-notion.js draft.md "abc123..." "Newsletter Draft" --json');
-    process.exit(args[0] === '--help' ? 0 : 1);
+    process.exit(isHelp ? 0 : 1);
+  }
+
+  const unknownOption = args.find(arg => arg.startsWith('-'));
+  const invalidArgument = unknownOption || args[3];
+  if (invalidArgument) {
+    const message = unknownOption
+      ? `Unknown option: ${unknownOption}`
+      : `Unexpected argument: ${invalidArgument}`;
+    if (hasJsonFlag()) console.log(JSON.stringify({ error: message }, null, 2));
+    else log(`Error: ${message}`);
+    process.exit(1);
   }
 
   const [mdFile, parentId, pageTitle] = args;

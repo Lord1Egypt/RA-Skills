@@ -1,41 +1,52 @@
-## Description: <br>
-Codebase onboarding assistant that maps project architecture, identifies patterns, generates guides, and helps new developers understand any repository in minutes instead of days. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codebase onboarding assistant that maps project architecture, identifies patterns, generates guides, and helps new developers understand any repository in minutes instead of days.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers, tech leads, open source contributors, and AI agents use this skill to analyze unfamiliar repositories, map architecture, identify patterns and key files, and generate onboarding guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad repository inspection may surface private source details, credentials, deployment configuration, or proprietary material in generated onboarding artifacts. <br>
-Mitigation: Before running on private code, exclude .env files, secrets, credentials, keys, sensitive deployment configs, and proprietary material that should not be summarized. <br>
-Risk: Generated architecture maps and onboarding guidance can be incomplete or outdated if the repository evidence is missing, stale, or too broad to inspect fully. <br>
-Mitigation: Have a project maintainer review generated guides before using them for onboarding, audits, or implementation decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ryudi84/sovereign-codebase-onboarding) <br>
-- [Skill README](artifact/README.md) <br>
-- [Usage examples](artifact/EXAMPLES.md) <br>
+## Use Case:
 
+Developers, technical leads, open source contributors, and AI agents use this skill to analyze unfamiliar repositories and produce onboarding guides with architecture maps, key files, patterns, gotchas, and Day 1 checklists.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with ASCII diagrams, tables, checklists, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content depends on repository access and should be reviewed for accuracy before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The assistant may inspect repository contents, including sensitive files if the user gives it broad access.
+
+Mitigation: Run the skill only on repositories you are authorized to analyze and exclude secrets or sensitive directories where possible.
+
+Risk: Generated setup commands may include package installs, Docker, ngrok, npx, or curl-to-shell style commands that change the local environment.
+
+Mitigation: Review generated commands before running them and adapt them to the target repository's trusted setup process.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ryudi84/skills/sovereign-codebase-onboarding)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with diagrams, tables, checklists, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository-specific setup commands and file references that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,61 @@
-## Description: <br>
-Plan your Dubai experience - Burj Khalifa views, desert safari adventures, Dubai Mall shopping, Palm Jumeirah resorts, and gold souk bargaining, with support for flights, hotels, tickets, itinerary planning, visa information, insurance, car rental, and more through Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Dubai travel using flyai CLI results for flights, hotels, attractions, itinerary support, visa information, insurance, car rental, and related booking options.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search Dubai flights, hotels, attractions, tickets, and itineraries through the flyai CLI and return booking-oriented recommendations with links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require installing a global FlyAI CLI package for travel searches. <br>
-Mitigation: Install only from a trusted package source and review the FlyAI CLI before allowing the agent to execute it. <br>
-Risk: Travel queries may be logged locally, including raw user inputs and itinerary details. <br>
-Mitigation: Avoid entering passport, payment, contact, or other highly sensitive details unless logging is disabled or otherwise controlled. <br>
-Risk: Travel prices and booking links may change or be incorrect by the time a user purchases. <br>
-Mitigation: Verify booking links, prices, and availability independently before purchase. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to search and compare Dubai flights, hotels, attractions, and itinerary options while keeping booking links attached to returned results.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for travel data; raw JSON is not intended for user-facing responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may install an unpinned third-party npm CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package and install a pinned, trusted version in an isolated environment before use.
+
+Risk: The skill can persist raw travel-query details to a local execution log.
+
+Mitigation: Disable or remove raw-query logging where privacy requirements do not allow storing itinerary or booking-search details.
+
+Risk: Travel searches and booking links are routed through flyai CLI output and may include flyai branding.
+
+Mitigation: Use the skill only when that routing and branding are acceptable for the user and deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/dubai-travel)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands when retries or setup are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include booking links for listed travel options.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

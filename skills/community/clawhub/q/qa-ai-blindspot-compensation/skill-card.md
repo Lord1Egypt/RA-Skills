@@ -1,38 +1,58 @@
-## Description: <br>
-Helps QA reviewers compensate for common AI-generated test-case blind spots by expanding coverage across sequencing, concurrency, resource contention, state accumulation, data consistency, and third-party integration risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews AI-generated test cases against six common blind-spot categories and proposes traceable additional test scenarios.
 
-## Publisher: <br>
-[kokxi](https://clawhub.ai/user/kokxi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokxi](https://clawhub.ai/user/kokxi)
 
-## Use Case: <br>
-QA engineers, test leads, and developers use this skill after reviewing AI-generated test cases to identify missed scenarios and add supplemental blindspot coverage. It focuses on six recurring gaps: operation sequencing, concurrent use, resource exhaustion, long-running state, distributed data consistency, and real third-party integration behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad coverage-review prompts and produce many supplemental test cases. <br>
-Mitigation: Use it when expanded QA blindspot planning is desired, then review generated cases for relevance, feasibility, and duplication before adding them to the test plan. <br>
+## Use Case:
 
+QA engineers and developers use this Chinese-language checklist after reviewing AI-generated test cases to identify missing timing, concurrency, resource, state, data-consistency, and third-party integration scenarios. The skill suggests risk-ranked supplemental cases linked to requirements and original tests.
 
-## Reference(s): <br>
-- [Six Blindspot Details](references/blindspot-details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown report with coverage tables and supplemental test-case lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces blindspot IDs, links supplemental cases to requirement and original test-case IDs, and includes risk, difficulty, and suggested test-depth labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release metadata) <br>
+Risk: Reviewing unintended local files may expose unrelated or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit file reads to the requirements and test cases selected for review.
+
+Risk: The optional command to install a companion skill would add code from a separately sourced package.
+
+Mitigation: Do not run the optional installation command unless its package and source have been independently trusted.
+
+Risk: A checklist-based coverage report can overstate completeness when requirements or test inputs are missing.
+
+Mitigation: State the coverage basis, mark missing modules as uncovered with reasons, and avoid claims of full or 100% coverage.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kokxi/skills/qa-ai-blindspot-compensation)
+- [Six blind-spot categories and checklists](artifact/references/blindspot-details.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown blind-spot report with coverage and supplemental test-case tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supplemental cases include blind-spot category, risk level, and links to requirement and original test IDs; coverage is scoped to supplied materials.]
+
+## Skill Version(s):
+
+1.8.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

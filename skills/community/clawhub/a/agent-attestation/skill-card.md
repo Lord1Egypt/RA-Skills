@@ -1,39 +1,61 @@
-## Description: <br>
-Agent Attestation is a portable reputation system for agents with Ed25519 signatures, input validation, and handoff key-value storage. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Portable reputation system for agents v3 with Ed25519 signatures, input validation, and handoff KV storage.
 
-## Publisher: <br>
-[nantes](https://clawhub.ai/user/nantes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nantes](https://clawhub.ai/user/nantes)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and inspect experimental signed reputation attestations, trust scores, and persisted identity handoffs for agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags the trust claims and local key storage as materially unsafe for security-sensitive decisions. <br>
-Mitigation: Use only as experimental identity or reputation tooling until the publisher documents the trust model, fixes verification concerns, and protects keys and identity records. <br>
-Risk: Private keys and identity records are stored on the local filesystem. <br>
-Mitigation: Use secure storage locations, restrict filesystem permissions, and encrypt identity or key material at rest before production-like use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nantes/agent-attestation) <br>
+## Use Case:
 
+Developers and agent operators use this skill to create and verify signed agent attestations, compute reputation-style trust scores, and persist identity or reputation data across handoffs.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, JSON, Guidance, Configuration] <br>
-**Output Format:** [Python modules with JSON attestation, verification, score, and key-value handoff records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the cryptography library, and filesystem access; stores local key and identity records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata; artifact frontmatter says 3.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local file writes may place keys, attestations, and KV data in unsafe or shared directories.
+
+Mitigation: Use protected absolute storage paths with restrictive permissions before running the system outside a test environment.
+
+Risk: Private keys and identity data may be stored without encryption at rest.
+
+Mitigation: Encrypt sensitive key and identity material at rest and avoid storing it in shared workspace or credential directories.
+
+Risk: Agent reputation and trust claims may be treated as authoritative even though enforcement is inconsistent.
+
+Mitigation: Require human review before using attestations for real trust decisions, and constrain agent identifiers to safe, expected values.
+
+Risk: Legacy v1 and v2 modules remain in the artifact alongside the v3 implementation.
+
+Mitigation: Remove or clearly disable legacy modules before release use so operators do not rely on weaker or outdated behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nantes/skills/agent-attestation)
+- [Publisher profile](https://clawhub.ai/user/nantes)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Guidance]
+
+**Output Format:** [Python modules that produce JSON-compatible attestation, verification, trust score, and KV data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the cryptography library, and filesystem access; writes local key and KV files.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata; artifact frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

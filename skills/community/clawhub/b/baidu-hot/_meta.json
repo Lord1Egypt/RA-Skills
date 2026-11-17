@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn70b5vtk5jhahjt0r4h1sytgd8315ve",
-  "slug": "baidu-hot",
+  "name": "baidu-hot",
   "version": "0.1.1",
-  "publishedAt": 1773707342533
+  "description": "百度热榜监控 | Baidu Hot Topics Monitor. 获取百度热搜榜、搜索趋势、关键词热度 | Get Baidu trending searches, trends, keyword popularity. 触发词：百度、热搜、baidu.",
+  "author": "xiaobai",
+  "homepage": "https://github.com/yourusername/baidu-hot",
+  "license": "MIT",
+  "emoji": "🔥",
+  "requires": {
+    "bins": ["curl"]
+  }
 }

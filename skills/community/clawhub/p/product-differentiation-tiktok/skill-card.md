@@ -1,43 +1,55 @@
-## Description: <br>
-TikTok Shop product differentiation strategy tool that analyzes viral product trends, competitor affiliate strategies, content performance, and differentiation opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps e-commerce sellers generate product differentiation reports from local product, competitor, and review inputs, while the release evidence notes that the bundled analyzer is generic rather than a full TikTok Shop viral, content, or creator analytics tool.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-E-commerce sellers and marketers use this skill to compare TikTok Shop products, identify competitor weaknesses, mine review and comment pain points, and develop differentiated positioning, creator, pricing, and action-plan recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Third-party global npx installation can execute package code on the local machine. <br>
-Mitigation: Install only after confirming trust in the publisher and source, and use an isolated environment when evaluating the release. <br>
-Risk: Product, review, competitor, or sales data may include sensitive business information. <br>
-Mitigation: Run the analyzer only on data that is acceptable to process locally, and remove confidential customer or sales details before use. <br>
-Risk: Differentiation, pricing, creator, and marketing recommendations may be incomplete or inaccurate for a live TikTok Shop campaign. <br>
-Mitigation: Review outputs against current platform policies, margins, inventory constraints, and market data before acting on recommendations. <br>
+## Use Case:
 
+E-commerce sellers and operators use this skill to draft competitor comparison, pain-point, positioning, and action-plan reports from provided product and review data. Reviewers should validate any TikTok-specific strategy claims against actual marketplace and campaign evidence.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/phheng/product-differentiation-tiktok) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis report with comparison tables and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English or Chinese report text and progressive L1-L4 analysis based on available product, competitor, review, and market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Advertised TikTok Shop viral, content, and creator analytics may exceed what the bundled generic analyzer implements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat TikTok-specific recommendations as draft strategy guidance and validate them against current marketplace, creator, and campaign data before use.
+
+Risk: The install command pulls a mutable global installer or source.
+
+Mitigation: Prefer a pinned, verified source and avoid global installation unless the installer and repository maintainers are trusted.
+
+## Reference(s):
+
+- [Product Differentiation Tiktok on ClawHub](https://clawhub.ai/phheng/skills/product-differentiation-tiktok)
+- [phheng publisher profile](https://clawhub.ai/user/phheng)
+- [Nexscope AI website referenced by artifact](https://www.nexscope.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands]
+
+**Output Format:** [Markdown report with comparison tables, differentiation opportunities, positioning notes, and action items.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact supports interactive execution and JSON input; no API key is required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

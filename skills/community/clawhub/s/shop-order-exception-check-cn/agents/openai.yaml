@@ -1,0 +1,8 @@
+interface:
+  display_name: 订单异常处理待办
+  short_description: 将脱敏订单状态整理为超时、缺项和矛盾状态的人工处理待办清单
+  default_prompt: 请提供脱敏订单状态表、正常流程、时效规则和当前核对时间。我会输出异常订单清单及人工处理顺序，不会调用订单接口或执行订单操作。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: true

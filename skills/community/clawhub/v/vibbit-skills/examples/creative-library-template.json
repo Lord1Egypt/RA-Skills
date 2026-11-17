@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "id": "template-feature-demo",
+  "kind": "script_template",
+  "revision": 1,
+  "name": "Show a useful feature through an everyday action",
+  "tags": [
+    "product-demo",
+    "reusable-structure"
+  ],
+  "status": "draft",
+  "sources": [],
+  "assets": [],
+  "payload": {
+    "original_script": "",
+    "categories": [
+      "home-products"
+    ],
+    "variables": {
+      "product_name": {
+        "required": true,
+        "source": "current product facts"
+      },
+      "demonstrated_feature": {
+        "required": true,
+        "source": "current product facts and images"
+      },
+      "demonstration_action": {
+        "required": true,
+        "source": "an action supported by the current product"
+      },
+      "language": {
+        "required": true,
+        "source": "the current user brief"
+      }
+    },
+    "segments": [
+      {
+        "id": "opening",
+        "purpose": "Introduce the everyday situation",
+        "speech_pattern": "Introduce {{product_name}} in the current use case."
+      },
+      {
+        "id": "demonstration",
+        "purpose": "Show an actual feature",
+        "action_pattern": "Perform {{demonstration_action}} to reveal {{demonstrated_feature}}."
+      },
+      {
+        "id": "ending",
+        "purpose": "Show the resulting usable state",
+        "speech_pattern": "Explain the visible result without adding unsupported claims."
+      }
+    ],
+    "fixed_choices": [
+      "Keep the feature readable and the product consistent."
+    ],
+    "applicability": [
+      "The product has a real feature that can be demonstrated clearly."
+    ],
+    "adaptation_rules": [
+      "Replace all variables from the new product; redesign an incompatible action or mark the pairing unsuitable."
+    ],
+    "production": {
+      "preservation_scope": "structure",
+      "reference_times_are_output_timing": false
+    }
+  }
+}

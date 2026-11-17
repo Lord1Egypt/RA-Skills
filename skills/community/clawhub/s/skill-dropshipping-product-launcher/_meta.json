@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dj907h1ps8kt92wbdspr01d820vzf",
-  "slug": "skill-dropshipping-product-launcher",
+  "name": "skill-dropshipping-product-launcher",
   "version": "1.0.0",
-  "publishedAt": 1772403177624
+  "description": "Launch a CJ Dropshipping product to WooCommerce in one command. Fetches details, uploads images, creates listing.",
+  "author": "Zero2Ai-hub",
+  "license": "MIT"
 }

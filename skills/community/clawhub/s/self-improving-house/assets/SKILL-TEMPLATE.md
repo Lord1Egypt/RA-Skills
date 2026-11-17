@@ -9,7 +9,7 @@ Template for creating domotics skills extracted from recurring learnings or issu
 ```markdown
 ---
 name: skill-name-here
-description: "Domotics pattern this skill solves and when to use it."
+description: "Domotics pattern this skill solves and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name

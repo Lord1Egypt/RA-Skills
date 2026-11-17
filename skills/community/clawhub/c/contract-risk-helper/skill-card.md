@@ -1,43 +1,54 @@
-## Description: <br>
-Contract risk helper. Input Chinese or English contract text; identify common risky clauses, classify severity, and suggest negotiation or revision points. Boundary: preliminary risk spotting only, not a lawyer and not formal legal advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contract Risk Helper scans Chinese or English contract text for common risky clauses, classifies severity, and suggests negotiation or revision points for preliminary risk spotting only.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to screen Chinese or English contract text for common risky clauses, grouped by severity with negotiation or revision suggestions. It supports preliminary risk spotting only and is not a substitute for advice from a qualified lawyer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake preliminary pattern-based risk spotting for formal legal advice. <br>
-Mitigation: Keep the legal boundary visible and require qualified legal review for important contracts, jurisdiction-specific questions, or final negotiation decisions. <br>
-Risk: Contract text can contain private business, customer, billing, or credential information. <br>
-Mitigation: Redact unnecessary sensitive information before use and avoid sharing full transcripts or private exports unless explicitly needed. <br>
-Risk: Pattern matching can miss uncommon clauses or produce incomplete context for complex agreements. <br>
-Mitigation: Use the output as a triage aid and review the full agreement manually, especially for high-value, regulated, or cross-border contracts. <br>
+## Use Case:
 
+External users and developers use this skill to perform local, preliminary contract-risk spotting on Chinese or English contract text before seeking formal legal review.
 
-## Reference(s): <br>
-- [Common Contract Risk Patterns](artifact/references/common-risks.md) <br>
-- [Contract Risk Helper on ClawHub](https://clawhub.ai/harrylabsj/contract-risk-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, text] <br>
-**Output Format:** [Markdown-style bilingual risk report with severity sections and summary statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports matched clause categories, severity levels, short descriptions, and suggested negotiation or revision points.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill.json) <br>
+Risk: Users may mistake preliminary contract risk spotting for legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as common-pattern flags only and consult a qualified lawyer for important contracts, full factual review, and current local rules.
+
+Risk: General contract-review prompts may invoke this skill.
+
+Mitigation: Confirm that contract-risk scanning is intended before relying on the result, especially when handling sensitive contract text.
+
+## Reference(s):
+
+- [Common Contract Risk Patterns](references/common-risks.md)
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/contract-risk-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Bilingual Markdown report with severity-grouped findings, clause categories, and suggested negotiation or revision points]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a result string and summary counts for total, critical, warning, and advisory findings]
+
+## Skill Version(s):
+
+1.2.0 (source: skill.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

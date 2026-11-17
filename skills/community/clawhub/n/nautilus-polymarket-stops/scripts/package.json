@@ -1,0 +1,9 @@
+{
+  "name": "nautilus-polymarket-stops-scripts",
+  "version": "1.0.6",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypelens/hypelens-agent-guard": "0.1.18"
+  }
+}

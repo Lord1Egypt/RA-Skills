@@ -1,42 +1,57 @@
-## Description: <br>
-Habitica is a CLI skill for listing, creating, updating, and completing Habitica tasks, rewards, quests, party chat, inventory, and user stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habitica integrates an agent with Habitica's gamified task manager to list, create, update, score, and review tasks, account state, collections, party activity, class skills, quests, and history.
 
-## Publisher: <br>
-[TONYUNTURN](https://clawhub.ai/user/TONYUNTURN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tonyunturn](https://clawhub.ai/user/tonyunturn)
 
-## Use Case: <br>
-Habitica users and agents use this skill to inspect and manage Habitica tasks, stats, party activity, quests, and batch habit-tracking actions from a shell-backed workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Habitica API token that can read and modify the user's Habitica account. <br>
-Mitigation: Keep ~/.habitica private, do not commit or share it, and install the skill only when that account access is acceptable. <br>
-Risk: State-changing commands can delete or update tasks, score habits, send party chat, accept quests, cast skills, or force a new day. <br>
-Mitigation: Require explicit user confirmation before running delete, party-send, quest-accept, cast, cron, or bulk scoring actions. <br>
-Risk: Batch operations or repeated API calls can unintentionally modify multiple tasks or trigger service rate limits. <br>
-Mitigation: Review the full batch plan before execution and respect the documented 30-second interval between automated calls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Habitica Skill](https://clawhub.ai/TONYUNTURN/habitica-skill) <br>
-- [Habitica API](https://habitica.com/api/v3) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent operate a Habitica account through a CLI, including task management, user and inventory review, party chat, quest acceptance, class-skill casting, history lookup, and daily cron execution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration guidance, API calls] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Habitica user ID and API token; commands may read or modify Habitica account state.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent broad control over a Habitica account, including task deletion, scoring, updates, quest acceptance, class-skill casting, cron execution, and party chat posting.
+
+Mitigation: Require explicit user confirmation before destructive, social, batch, cron, quest, or class-skill actions.
+
+Risk: Habitica API tokens provide account access and may be loaded from the user's configuration file.
+
+Mitigation: Keep the API token private, restrict access to the Habitica configuration file, and avoid exposing credentials in prompts, logs, or shared outputs.
+
+Risk: Automated or repeated API calls can affect live Habitica game state and party interactions.
+
+Mitigation: Respect the documented 30-second spacing for automated calls and review planned batch operations before execution.
+
+## Reference(s):
+
+- [ClawHub Habitica skill](https://clawhub.ai/tonyunturn/skills/habitica-skill)
+- [Habitica API v3](https://habitica.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Habitica user ID and API token credentials; CLI responses depend on Habitica API state.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

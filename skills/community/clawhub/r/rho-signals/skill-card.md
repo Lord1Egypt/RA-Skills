@@ -1,41 +1,49 @@
-## Description: <br>
-Real-time crypto TA signals for BTC, ETH, SOL, XRP. RSI, MACD, EMA, Bollinger Bands, OBV divergence, StochRSI — combined into a single directional score (-10 to +10) with Polymarket edge detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time crypto technical-analysis signals for BTC, ETH, SOL, and XRP by combining RSI, MACD, EMA, Bollinger Bands, OBV divergence, StochRSI, and Polymarket edge detection into directional market guidance.
 
-## Publisher: <br>
-[JamieRossouw](https://clawhub.ai/user/JamieRossouw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jamierossouw](https://clawhub.ai/user/jamierossouw)
 
-## Use Case: <br>
-External users and developers use this skill to request crypto technical-analysis signals, directional bias, and Polymarket hourly market edge analysis for BTC, ETH, SOL, and XRP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crypto market-analysis scores may be mistaken for financial advice. <br>
-Mitigation: Treat buy/sell-style scores as informational only and apply independent review before acting on market guidance. <br>
-Risk: A future live endpoint or x402 payment flow could send request data or charge a payment. <br>
-Mitigation: Confirm the destination service, price, and request data before using any live API or payment flow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JamieRossouw/rho-signals) <br>
-- [RHO Signals live API endpoint](https://rho-signals.clawpay.bot) <br>
-- [Publisher profile](https://clawhub.ai/user/JamieRossouw) <br>
+## Use Case:
 
+External users and developers use this skill to request live crypto technical-analysis signals, directional bias, and Polymarket edge analysis for BTC, ETH, SOL, and XRP.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, guidance, markdown, API calls] <br>
-**Output Format:** [Markdown text with signal scores and market-analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Signals are described as informational crypto market analysis and may include future HTTP/x402 payment flow guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crypto trading signals and financial performance claims can be wrong or time-sensitive.
+
+Mitigation: Review the financial claims carefully and treat outputs as informational signals, not guaranteed investment advice.
+
+## Reference(s):
+
+- [RHO Signals ClawHub skill page](https://clawhub.ai/jamierossouw/skills/rho-signals)
+- [RHO Signals HTTP endpoint](https://rho-signals.clawpay.bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or text with directional scores, indicator summaries, and market-edge notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include time-sensitive crypto trading signals and Polymarket edge analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

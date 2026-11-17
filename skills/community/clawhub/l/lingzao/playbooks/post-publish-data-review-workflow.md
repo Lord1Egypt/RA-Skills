@@ -45,7 +45,8 @@ what is missing.
 
 When the user sends backend screenshots, it is fine if they blur unrelated
 private data such as account phone, order info, private messages, or unrelated
-notes. Do not ask for passwords, cookies, private tokens, or platform internals.
+notes. Do not ask for passwords, cookies, private tokens, or private platform
+account access.
 
 If the runtime cannot read image screenshots, ask the user to type the key
 metrics from the screenshot.
@@ -81,7 +82,7 @@ shown, but do not overstate precision.
 
 | Backend field seen in screenshot | What it may suggest | Content-side checks | Next revision direction |
 | --- | --- | --- | --- |
-| Exposure / impressions are low | The note may not have entered enough initial distribution, or topic/keyword/account fit is weak | Check title keyword, cover keyword, topic demand, account stage, publish timing | Tighten title/cover keyword, test a clearer topic angle, or search same-stage references after confirming credits |
+| Exposure / impressions are low | The note may not have entered enough initial distribution, or topic/keyword/account fit is weak | Check title keyword, cover keyword, topic demand, account stage, publish timing | Tighten title/cover keyword, test a clearer topic angle, or search same-stage references after confirming scope |
 | Exposure is fine but click/read/play is low | People saw it but did not feel a reason to open or continue | Check cover promise, first frame, title pain point, whether the cover looks useful or just ordinary life sharing | Rewrite cover copy, make the promise concrete, show result/proof earlier |
 | 3-second retention is low | Users left almost immediately | Check whether the first frame is attractive, whether the person state is good, whether background is messy, whether the opening says the user's pain/demand immediately | Replace first 3 seconds, start with result/pain/conflict, improve first frame, face state, background, and opening line |
 | 5-second retention / 5-second completion is low | The opening did not hold attention after the first glance | Check whether the first few seconds have a clear hook, whether speech is slow, whether the topic promise appears too late | Put the strongest sentence first, cut preamble, add subtitle emphasis, show the result or key screenshot earlier |
@@ -176,7 +177,7 @@ Next action:
 
 - revise title/cover keyword
 - create 2-3 next-note angles from the same topic
-- optionally search same-stage references after confirming credits
+- optionally search same-stage references after confirming scope
 
 ### Exposure Is Fine But Click/Read Is Low
 

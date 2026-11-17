@@ -3,18 +3,14 @@
 functions:
   _SUPER_TOKEN_LOGIC():                                       0xcbf927b3
   castrate():                                                 0x9903ad38
-  computeCanonicalERC20WrapperAddress(address):               0xbab74c89
-  createCanonicalERC20Wrapper(address):                       0x151188dc
   createERC20Wrapper(address,uint8,string,string):            0x431f1481
   createERC20Wrapper(address,uint8,string,string,address):    0x6c684bb0
   createERC20Wrapper(address,uint8,uint8,string,string):      0xa6d0c534
   createERC20Wrapper(address,uint8,uint8,string,string,address): 0xe094be24
-  getCanonicalERC20Wrapper(address):                          0xeff0a89d
   getCodeAddress():                                           0x50d75d25
   getHost():                                                  0x20bc4425
   getSuperTokenLogic():                                       0x9470a5b2
   initialize():                                               0x8129fc1c
-  initializeCanonicalWrapperSuperTokens((address,address)[]): 0x97e011ed
   initializeCustomSuperToken(address):                        0xd412d344
   POOL_ADMIN_NFT_LOGIC():                                     0x5928afaa
   POOL_MEMBER_NFT_LOGIC():                                    0x975c5396
@@ -29,10 +25,6 @@ events:
   SuperTokenLogicCreated(address):  0xc13fb19d60857980e565bf5dae406b8802d3c1cec50c6156b30b12b874029783
 
 errors:
-  SUPER_TOKEN_FACTORY_ALREADY_EXISTS():                0x91d67972
-  SUPER_TOKEN_FACTORY_DOES_NOT_EXIST():                0x872cac48
   SUPER_TOKEN_FACTORY_NON_UPGRADEABLE_IS_DEPRECATED(): 0xc4901a43
-  SUPER_TOKEN_FACTORY_ONLY_GOVERNANCE_OWNER():         0xafca98cc
   SUPER_TOKEN_FACTORY_ONLY_HOST():                     0x478b8e83
-  SUPER_TOKEN_FACTORY_UNINITIALIZED():                 0x1b39b9b4
   SUPER_TOKEN_FACTORY_ZERO_ADDRESS():                  0x305c9e82

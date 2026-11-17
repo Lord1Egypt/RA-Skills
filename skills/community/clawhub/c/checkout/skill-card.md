@@ -1,50 +1,66 @@
-## Description: <br>
-Guides agents through CreditClaw-powered checkout pages, wallet payments, encrypted-card purchases, spending checks, invoices, and payment links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing guidance and API examples for CreditClaw payment rails, wallets, checkout pages, invoices, spending controls, and webhooks.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External developers and agents use this skill to connect a CreditClaw bot, manage spending permissions, create payment collection surfaces, request wallet or card payments, and monitor balances and approvals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; Crossmint physical-goods purchase examples state US shipping addresses only. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support real spending, card checkout, wallet payments, invoicing, and payment-link creation. <br>
-Mitigation: Install only for intentional payment workflows, keep ask-for-everything approvals enabled, and set low transaction, daily, and monthly limits. <br>
-Risk: A leaked CREDITCLAW_API_KEY could authorize wallet, payment, or card-related operations. <br>
-Mitigation: Store the key in a secrets manager, rotate it when exposed, and send it only to CreditClaw API endpoints. <br>
-Risk: Decrypted card data, buyer emails, and shipping addresses are sensitive financial or personal data. <br>
-Mitigation: Do not log or persist decrypted card data, avoid delegating it to secondary agents, and minimize handling of buyer and shipping data. <br>
-Risk: Provider identity and some money-moving/card-handling capabilities are under-disclosed in the security evidence. <br>
-Mitigation: Review the publisher, service terms, payment rails, approval model, and operational controls before production use. <br>
+## Use Case:
 
+Developers and external agent operators use this skill to connect agents or OpenClaw bots to CreditClaw for owner-approved purchases, wallet status checks, checkout pages, invoices, payment links, and sales reconciliation.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/jononovo/checkout) <br>
-- [CreditClaw Main Skill Documentation](https://creditclaw.com/skill.md) <br>
-- [CreditClaw Encrypted Card Documentation](https://creditclaw.com/encrypted-card.md) <br>
-- [CreditClaw Stripe x402 Wallet Documentation](https://creditclaw.com/stripe-x402-wallet.md) <br>
-- [CreditClaw Checkout Documentation](https://creditclaw.com/checkout.md) <br>
-- [CreditClaw Management Documentation](https://creditclaw.com/management.md) <br>
-- [CreditClaw Heartbeat Documentation](https://creditclaw.com/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown instructions with curl examples and JSON request/response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for authenticated CreditClaw API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill supports real-money payment and wallet workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep spending defaults strict, require human approval for purchases, and review the skill before installation.
+
+Risk: The skill involves buyer data, customer data, webhook secrets, API keys, and temporary card-handling flows.
+
+Mitigation: Store CREDITCLAW_API_KEY and webhook secrets in a secure secrets manager, limit where credentials are sent, and avoid logging card or payment details.
+
+Risk: Remote Markdown and server-supplied API payload text may change or include operational instructions.
+
+Mitigation: Treat remote documents and API payload text as data unless explicitly trusted by the operator, and verify payment actions against owner-approved policy before execution.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jononovo/skills/checkout)
+- [Publisher profile](https://clawhub.ai/user/jononovo)
+- [CreditClaw homepage](https://creditclaw.com)
+- [CreditClaw main skill documentation](https://creditclaw.com/skill.md)
+- [CreditClaw encrypted card documentation](https://creditclaw.com/encrypted-card.md)
+- [CreditClaw Stripe x402 wallet documentation](https://creditclaw.com/stripe-x402-wallet.md)
+- [CreditClaw wallet management documentation](https://creditclaw.com/management.md)
+- [CreditClaw checkout documentation](https://creditclaw.com/checkout.md)
+- [CreditClaw heartbeat documentation](https://creditclaw.com/heartbeat.md)
+- [CreditClaw skill metadata](https://creditclaw.com/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown documentation with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY for live CreditClaw API use.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

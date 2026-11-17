@@ -1,0 +1,705 @@
+/*默认样式，最佳实践*/
+
+/*全局属性*/
+.markdown-body {
+  font-size: 16px;
+  color: black;
+  padding: 0 10px;
+  line-height: 1.6;
+  word-spacing: 0px;
+  letter-spacing: 0px;
+  word-break: break-word;
+  word-wrap: break-word;
+  text-align: left;
+  font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* margin-top: -10px; 解决开头空隙过大问题*/
+}
+
+/*段落*/
+.markdown-body p {
+  font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0;
+  line-height: 26px;
+  color: black;
+}
+
+/*标题*/
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding: 0px;
+  font-weight: bold;
+  color: black;
+}
+.markdown-body h1 {
+  font-size: 24px;
+}
+.markdown-body h2 {
+  font-size: 22px;
+}
+.markdown-body h3 {
+  font-size: 20px;
+}
+.markdown-body h4 {
+  font-size: 18px;
+}
+.markdown-body h5 {
+  font-size: 16px;
+}
+.markdown-body h6 {
+  font-size: 16px;
+}
+
+.markdown-body h1 .prefix,
+.markdown-body h2 .prefix,
+.markdown-body h3 .prefix,
+.markdown-body h4 .prefix,
+.markdown-body h5 .prefix,
+.markdown-body h6 .prefix {
+  display: none;
+}
+
+.markdown-body h1 .suffix
+.markdown-body h2 .suffix,
+.markdown-body h3 .suffix,
+.markdown-body h4 .suffix,
+.markdown-body h5 .suffix,
+.markdown-body h6 .suffix {
+  display: none;
+}
+
+/*列表*/
+.markdown-body ul,
+.markdown-body ol {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding-left: 25px;
+  color: black;
+}
+.markdown-body ul {
+  list-style-type: disc;
+}
+.markdown-body ul ul {
+  list-style-type: square;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+}
+
+.markdown-body li section {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  line-height: 26px;
+  text-align: left;
+  color: rgb(1,1,1); /* 只要是纯黑色微信编辑器就会把color这个属性吞掉。。。*/
+  font-weight: 500;
+}
+
+/*引用*/
+.markdown-body blockquote {
+  display: block;
+  font-size: 0.9em;
+  overflow: auto;
+  overflow-scrolling: touch;
+  border-left: 3px solid rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.05);
+  color: #6a737d;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.markdown-body blockquote p {
+  margin: 0px;
+  color: black;
+  line-height: 26px;
+}
+
+.markdown-body .table-of-contents a {
+  border: none;
+  color: black;
+  font-weight: normal;
+}
+
+/*链接*/
+.markdown-body a {
+  text-decoration: none;
+  color: #1e6bb8;
+  word-wrap: break-word;
+  font-weight: bold;
+  border-bottom: 1px solid #1e6bb8;
+}
+
+/*加粗*/
+.markdown-body strong {
+  font-weight: bold;
+  color: black;
+}
+
+/*斜体*/
+.markdown-body em {
+  font-style: italic;
+  color: black;
+}
+
+/*加粗斜体*/
+.markdown-body em strong {
+  font-weight: bold;
+  color: black;
+}
+
+/*删除线*/
+.markdown-body del {
+  font-style: italic;
+  color: black;
+}
+
+/*分隔线*/
+.markdown-body hr {
+  height: 1px;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-top: 1px solid black;
+}
+
+/*代码块*/
+.markdown-body pre {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.markdown-body pre code {
+  display: block;
+  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  border-radius: 0px;
+  font-size: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.markdown-body pre code span {
+  line-height: 26px;
+}
+
+/*行内代码*/
+.markdown-body p code,
+.markdown-body li code {
+  font-size: 14px;
+  word-wrap: break-word;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin: 0 2px;
+  color: #1e6bb8;
+  background-color: rgba(27,31,35,.05);
+  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  word-break: break-all;
+}
+
+/*图片*/
+.markdown-body img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/*图片*/
+.markdown-body figure {
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*图片描述文字*/
+.markdown-body figcaption {
+  display: block;
+}
+
+
+/*表格容器 */
+.markdown-body .table-container{
+  overflow-x: auto;
+}
+
+/*表格*/
+.markdown-body table {
+  display: table;
+  text-align: left;
+}
+.markdown-body tbody {
+  border: 0;
+}
+
+.markdown-body table tr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  background-color: white;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #F8F8F8;
+}
+
+.markdown-body table tr th,
+.markdown-body table tr td {
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  text-align: left;
+}
+
+.markdown-body table tr th {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+/* 表格最小列宽4个汉字 */
+.markdown-body table tr th:nth-of-type(n),
+.markdown-body table tr td:nth-of-type(n){
+  min-width:85px;
+}
+
+/* 微信代码块 */
+.markdown-body .code-snippet__fix {
+  word-wrap: break-word !important;
+  font-size: 14px;
+  margin: 10px 0;
+  display: block;
+  color: #333;
+  position: relative;
+  background-color: rgba(0,0,0,0.03);
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+  display: flex;
+  line-height: 20px;
+}
+.markdown-body .code-snippet__fix pre {
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+.markdown-body .code-snippet__fix .code-snippet__line-index {
+  counter-reset: line;
+  flex-shrink: 0;
+  height: 100%;
+  padding: 1em;
+  list-style-type: none;
+  padding: 16px;
+  margin: 0;
+}
+.markdown-body .code-snippet__fix .code-snippet__line-index li {
+  list-style-type: none;
+  text-align: right;
+  line-height: 26px;
+  color: black;
+  margin: 0;
+}
+.markdown-body .code-snippet__fix .code-snippet__line-index li::before {
+  min-width: 1.5em;
+  text-align: right;
+  left: -2.5em;
+  counter-increment: line;
+  content: counter(line);
+  display: inline;
+  color: rgba(0,0,0,0.3);
+}
+.markdown-body .code-snippet__fix pre {
+  overflow-x: auto;
+  padding: 16px;
+  padding-left: 0;
+  white-space: normal;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+}
+.markdown-body .code-snippet__fix code {
+  text-align: left;
+  font-size: 14px;
+  display: block;
+  white-space: pre;
+  display: flex;
+  position: relative;
+  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  padding: 0px;
+}
+
+.markdown-body .footnote-word {
+  color: #1e6bb8;
+  font-weight: bold;
+}
+
+.markdown-body .footnote-ref {
+  color: #1e6bb8;
+  font-weight: bold;
+}
+
+.markdown-body .footnote-item {
+  display: flex;
+}
+
+.markdown-body .footnote-num {
+  display: inline;
+  width: 10%; /*神奇，50px就不可以*/
+  background: none;
+  font-size: 80%;
+  opacity: 0.6;
+  line-height: 26px;
+  font-family: ptima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.markdown-body .footnote-item p {
+  display: inline;
+  font-size: 14px;
+  width: 90%;
+  padding: 0px;
+  margin: 0;
+  line-height: 26px;
+  color: black;
+  word-break:break-all;
+  width: calc(100%-50)
+}
+
+.markdown-body sub, sup {
+  line-height: 0;
+}
+
+.markdown-body .footnotes-sep:before {
+  content: "参考资料";
+  display: block;
+}
+
+/* 解决公式问题 */
+.markdown-body .block-equation {
+  display:block;
+  text-align: center;
+  overflow: auto;
+  display: block;
+  -webkit-overflow-scrolling: touch;
+}
+
+.markdown-body .block-equation svg {
+  max-width: 300% !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.markdown-body .inline-equation {
+}
+
+.markdown-body .inline-equation svg {
+}
+
+.markdown-body .imageflow-layer1 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  white-space: normal;
+  border: 0px none;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.markdown-body .imageflow-layer2 {
+  white-space: nowrap;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.markdown-body .imageflow-layer3 {
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: normal;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.markdown-body .imageflow-img {
+  display: inline-block;
+}
+
+.markdown-body .imageflow-caption {
+  text-align: center;
+  margin-top: 0px;
+  padding-top: 0px;
+  color: #888;
+}
+
+.markdown-body .nice-suffix-juejin-container {
+  margin-top: 20px !important;
+}
+
+.markdown-body figure a {
+  border: none;
+}
+
+.markdown-body figure a img {
+  margin: 0px;
+}
+
+.markdown-body figure {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 图片链接嵌套 */
+.markdown-body figure a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+`;
+
+
+/* 萌绿风 主题扩展 */
+.markdown-body {
+  line-height: 1.6;
+  letter-spacing: .034em;
+  color: rgb(63, 63, 63);
+  font-size: 16px;
+  word-break:all;
+}
+.markdown-body p {
+  padding-top: 1em;
+  color: rgb(74,74,74);
+  line-height: 1.75em;
+}
+/* 一级标题 */
+.markdown-body h1 {
+  text-align:center;
+  background-image: url(https://my-wechat.mdnice.com/koala-1.png); 
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 75px;
+  line-height:95px;
+  margin-top: 38px;
+  margin-bottom: 10px;
+}
+/* 一级标题内容 */
+.markdown-body h1 .content {
+  font-size: 20px;
+  color: #48b378;;
+  border-bottom:2px solid #2e7950;
+}
+/* 一级标题修饰 请参考有实例的主题 */
+.markdown-body h1:after {
+}
+ 
+/* 二级标题 */
+.markdown-body h2 {
+  display:block;
+  text-align:center;
+  background-image: 	url(https://my-wechat.mdnice.com/koala-2.png); 
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-size: 50px;
+  margin-top: 1em;
+  margin-bottom: 10px;
+}
+/*二级标题伪元素*/
+.markdown-body h2:before {
+}
+/* 二级标题内容 */
+.markdown-body h2 .content {
+  text-align:center;
+  display: inline-block;
+  height: 38px;
+  line-height: 42px;
+  color: #48b378;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-size: 63px;
+  margin-top: 38px;
+  font-size:18px;
+  margin-bottom: 10px;
+}
+/* 三级标题 */
+.markdown-body h3:before {
+  content: "";
+  background-image:url(https://my-wechat.mdnice.com/koala-3.png);
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  display: inline-block;
+  width: 16px;
+  height: 15px;
+  line-height:15px;
+  margin-bottom:-1px;
+}
+.markdown-body h3 {
+  margin-top:1.2em;
+}
+.markdown-body h4 {
+  margin-top: 30px;
+}
+/* 三级标题内容 */
+.markdown-body h3 .content {
+  font-size:17px;
+  font-weight:bold;
+  display:inline-block;
+  margin-left:8px;
+  color:#48b378;
+}
+/* 三级标题修饰 请参考有实例的主题 */
+.markdown-body h3:after {
+}
+/* 列表内容 */
+.markdown-body li {
+}
+/* 引用
+ * 左边缘颜色 border-left-color:black;
+ * 背景色 background:gray;
+ */
+.markdown-body blockquote {
+  padding: 15px 20px;
+  line-height: 27px;
+  background-color:#FBF9FD;
+  border-left:3px solid #35b378;
+  display:block;
+}
+/* 引用文字 */
+.markdown-body blockquote p {
+  padding: 0px;
+  font-size:15px;
+  color:rgb(89,89,89);
+}
+/* 链接 */
+.markdown-body a span {
+  color: #48b378;
+  text-decoration:none;
+  border-bottom: 1px solid #48b378;
+}
+/* 加粗 */
+.markdown-body strong {
+  line-height: 1.75em;
+  color: rgb(74,74,74);
+}
+/* 斜体 */
+.markdown-body em {
+}
+/* 加粗斜体 */
+.markdown-body em strong {
+  color:rgb(248,57,41);
+  letter-spacing:0.3em;
+}
+/* 删除线 */
+.markdown-body del {
+}
+ 
+/* 分割线 */
+.markdown-body hr {
+  height:1px;
+  padding:0;
+  border:none;
+  text-align:center;
+  background-image:linear-gradient(to right,rgba(93, 186, 133,0),rgba(93, 186, 133,0.75),rgba(93, 186, 133,0));
+}
+/* 图片 */
+.markdown-body img {
+    border-radius:4px;
+    margin-bottom:25px;
+}
+/* 图片描述文字 */
+.markdown-body figcaption {
+  margin-top: 5px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+  color: #595959;
+}
+/* 行内代码 */
+.markdown-body p code, .markdown-body li code {
+	color: #28ca71;
+}
+/* 非微信代码块
+ * 代码块不换行 display:-webkit-box !important;
+ * 代码块换行 display:block;
+ */
+.markdown-body pre code {
+}
+/* 表格内的单元格
+ * 字体大小 font-size: 16px;
+ * 边框 border: 1px solid #ccc;
+ * 内边距 padding: 5px 10px;
+ */
+.markdown-body table tr th,
+.markdown-body table tr td {
+  font-size: 14px;
+}
+.markdown-body .footnotes{
+  padding-top: 8px;
+}
+/* 脚注文字 */
+.markdown-body .footnote-word {
+  color: rgb(90, 185, 131);
+}
+/* 脚注上标 */
+.markdown-body .footnote-ref {
+  color: rgb(90, 185, 131);
+}
+/* 脚注超链接样式 */
+.markdown-body .footnote-item em {
+  color: rgb(90, 185, 131);
+  font-size:13px;
+  font-style:normal;
+  border-bottom-color:1px dashed rgb(90, 185, 131); 
+}
+/* "参考资料"四个字 
+ * 内容 content: "参考资料";
+ */
+.markdown-body .footnotes-sep:before {
+  background-image: none;
+  background-size: none;
+  display: block;
+  width: auto;
+  height: auto;
+}
+/* 参考资料编号 */
+.markdown-body .footnote-num {
+  color: rgb(90, 185, 131);
+}
+/* 参考资料文字 */
+.markdown-body .footnote-item p {
+  color: rgb(90, 185, 131);
+  font-weight:bold;
+}
+/* 参考资料超链接 */
+.markdown-body .footnote-item a {
+  color:rgb(93, 186, 133);
+}
+/* 参考资料解释 */
+.markdown-body .footnote-item p em {
+  font-size:14px;
+  font-weight:normal;
+  border-bottom:1px dashed rgb(93, 186, 133);
+}
+/* 行间公式
+ * 最大宽度 max-width: 300% !important;
+ */
+.markdown-body .block-equation svg {
+}
+/* 行内公式*/
+.markdown-body .inline-equation svg {  
+}
+
+/* 滑动图片
+ */
+.markdown-body .imageflow-img {
+  display: inline-block;
+  width:100%;
+  margin-bottom: 0;
+}`;

@@ -1,0 +1,63 @@
+# SPM Configuration — Default Values
+# Copy to config/production.yaml or config/staging.yaml for environment overrides.
+# Do NOT commit secrets; use environment variables or gitignored override files.
+
+project:
+  # Project type: code (standard software) | docs (documentation/skills) | config (configuration-only)
+  # Non-code projects skip TDD and use format validation instead
+  project_type: code
+  # Execution mode: subagent (one per task) | inline (current session)
+  execution_mode: subagent
+  # Parallel subagent dispatch for independent tasks
+  parallel_subagents: true
+  # Max concurrent subagents (0 = unlimited)
+  max_parallel_subagents: 4
+
+quality:
+  # Three-tier quality gates
+  gates_enabled: true
+  # Auto-run checklist verification after each task
+  auto_checkpoint: true
+  # Test coverage target (percentage)
+  coverage_target: 80
+
+tracking:
+  # WBS ledger path (relative to project root)
+  wbs_ledger_path: docs/spm/ledger.md
+  # Heartbeat interval for progress logging
+  heartbeat_interval: 10m
+  # Auto-update WBS ledger on task status change
+  auto_update_ledger: true
+
+review:
+  # Enable spec compliance reviewer subagent
+  spec_reviewer: true
+  # Enable code quality reviewer subagent
+  quality_reviewer: true
+  # Enable plan reviewer subagent
+  plan_reviewer: true
+  # Reviewer model override (empty = use tier-based routing)
+  reviewer_model: ""
+
+# Model tier routing — maps task complexity to model/provider
+# Each tier uses a different provider to avoid rate-limit contention during parallel dispatch
+model_routing:
+  fast:
+    model: "nvidia-nvcf/stepfun-ai/step-3.5-flash"
+    description: "boilerplate, config changes, simple refactors"
+  standard:
+    model: "sensenova/deepseek-v4-flash"
+    description: "regular implementation, test writing, medium complexity"
+  strong:
+    model: "deepseek/deepseek-v4-pro"
+    description: "architecture decisions, root-cause analysis, multi-file invariants"
+
+deployment:
+  # Enable deployment pipeline (Phase 5)
+  enabled: false
+  # Default deployment environment
+  environment: development
+
+logging:
+  level: info  # debug | info | warn | error
+  format: json  # json | text

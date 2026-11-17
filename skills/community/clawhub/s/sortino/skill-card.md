@@ -1,39 +1,50 @@
-## Description: <br>
-Sortino reference tool. Use when working with sortino in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sortino reference tool for finance contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Finance practitioners, analysts, and agents use this skill to retrieve static Sortino-themed reference material, including formulas, risk categories, regulatory prompts, strategies, glossary terms, and checklist items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static finance and regulatory reference text may be incomplete, outdated, or unsuitable for a specific investment, jurisdiction, or date. <br>
-Mitigation: Verify formulas, regulatory claims, and investment-related guidance against authoritative financial and regulatory sources before relying on them. <br>
+## Use Case:
 
+External users and finance practitioners use this skill to request quick Sortino-oriented reference material, formulas, risk notes, glossary entries, and due diligence checklists.
 
-## Reference(s): <br>
-- [Sortino on ClawHub](https://clawhub.ai/bytesagain3/sortino) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-formatted terminal text from Bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no API calls or credential inputs detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Generic finance reference content may mislead users who expect accurate Sortino ratio guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as starting-point reference material and verify formulas, calculations, and compliance claims against independent finance sources before use.
+
+## Reference(s):
+
+- [Sortino ClawHub listing](https://clawhub.ai/bytesagain3/skills/sortino)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are static reference-style finance guidance and should be independently verified before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,23 @@
+v1.4.0
+- 修复主页作品抓取 0 条的 bug：登录态下首次 aweme/post 响应延迟 ~9s，原首屏仅等 3.5s + 连续 3 轮无新增即退出，
+  导致漏抓；改为「等待捕获首条作品或 15s 上限」+ 连续 5 轮无新增才停。
+- 真实环境验证：扫码登录后成功抓取「老爸评测」200 条作品（标题+时间），并定位到游客态 aweme/post 空体风控。
+
+v1.3.0
+- fetch_posts.py 新增 --analyze：按天聚合作品数（daily_distribution），配 --output 时写到 <output>.analyze.json，
+  输出 post_count / first_publish_time / last_publish_time / daily_distribution。
+- 新增统一入口 douyin.py：薄路由层，douyin comments / douyin posts 一键路由评论与作品，
+  延迟导入子模块（没装 playwright 不影响评论功能），子命令后加 -h 查看各自完整参数。
+- 同步更新 SKILL.md / self_check.py（新增 douyin 入口检查项）；纯逻辑冒烟测试通过（时间分布聚合 + 统一入口路由）。
+
+v1.2.0
+在评论采集基础上新增「账号主页作品抓取」能力（fetch_posts.py）：
+- 输入账号主页 URL / 短链 / 纯 sec_uid，抓取该账号发布的作品标题（desc）与发布时间（create_time）。
+- 支持 --since / --until 本地时间区间过滤（主页接口本身不支持时间参数，靠 create_time 本地过滤）。
+- 复用评论浏览器方案：真实 Chromium 拦截 aweme/post 接口，签名/指纹/风控全交给浏览器，不新增逆向。
+- 复用 login_helper.py 生成的 cookie（--cookie-file 自动读取），可越游客风控拿更早/更全的作品。
+- 输出 JSON/CSV，字段：aweme_id/desc/create_time/publish_time/type/video_url，--with-stats 附互动数据。
+- 纯逻辑冒烟测试通过（时间解析/时区换算/字段扁平化/接口拦截去重/时间窗口过滤）。
+
+v1.1.1
+本次升级补充技能图标，提升在 SkillHub 技能市场的辨识度与专业展示；版本号同步递增。

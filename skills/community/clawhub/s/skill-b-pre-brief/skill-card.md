@@ -1,45 +1,60 @@
-## Description: <br>
-Every 15 minutes, this OpenClaw cron skill scans for meetings scheduled 15 minutes to 6 hours ahead, coordinates Gitea activity reporting, prepares pre-meeting brief content, commits status updates, and returns email payloads for attendee distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs as an OpenClaw cron workflow every 15 minutes to find meetings scheduled 15 minutes to 6 hours ahead, generate pre-meeting progress briefs, commit briefing artifacts to Gitea, update meeting status, and return email content for attendees.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[myd2002](https://clawhub.ai/user/myd2002)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations teams use this skill to automate pre-meeting briefing workflows across managed Gitea repositories. It scans scheduled meeting metadata, prepares report parameters, stores brief records, updates meeting state, logs activity, and hands back email-ready HTML for delivery by a separate mail skill.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad automated Gitea access can expose meeting data or update repositories unexpectedly.
+
+Mitigation: Install with a dedicated least-privilege Gitea bot token and restrict execution to explicit repositories.
+
+Risk: HTTP Gitea configuration can expose tokens or meeting content in transit.
+
+Mitigation: Use an HTTPS Gitea base URL before production use.
+
+Risk: Automatic email sending can disclose sensitive meeting briefs to unintended recipients.
+
+Mitigation: Avoid automatic sending for sensitive meetings and validate recipient lists before commit output is passed to the mail skill.
+
+Risk: Commit mode accepts local HTML files and recipient lists that may be unsafe if supplied from an untrusted source.
+
+Mitigation: Do not pass arbitrary local files or unvalidated recipient lists into commit.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operations teams use this skill to automate pre-meeting progress briefs for Gitea-managed projects. It scans eligible scheduled meetings, gathers repository activity, guides AI brief generation, stores meeting artifacts, updates meeting status, and prepares email content for attendees. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unattended and scan or modify Gitea repositories. <br>
-Mitigation: Install it with a dedicated least-privilege Gitea token and an explicit repository allowlist. <br>
-Risk: The workflow can collect attendee emails and trigger automatic pre-meeting email distribution. <br>
-Mitigation: Confirm organizational approval for attendee email use and automatic sending before enabling the cron workflow. <br>
-Risk: Meeting identifiers and workflow logs may be written to a remote meta repository. <br>
-Mitigation: Review data handling requirements and restrict log access before deployment. <br>
-Risk: Gitea access over non-HTTPS configuration can expose repository data or credentials. <br>
-Mitigation: Use HTTPS-only Gitea configuration and do not deploy with the sample HTTP endpoint. <br>
+**Output Format:** [JSON command output with Markdown and HTML briefing artifacts generated or referenced by the workflow]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/skill-b-pre-brief) <br>
-- [Publisher profile](https://clawhub.ai/user/myd2002) <br>
+**Other Properties Related to Output:** [Scan output includes meeting records and report parameters; commit output includes status fields and email-ready recipient, subject, and HTML body values.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON command responses with Markdown instructions, shell command examples, and HTML email payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cron-oriented workflow; scan output includes meeting metadata and commit output includes brief_email fields for downstream email delivery.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

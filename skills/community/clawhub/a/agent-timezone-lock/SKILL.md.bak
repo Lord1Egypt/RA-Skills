@@ -1,0 +1,76 @@
+---
+name: timezone
+description: "Enforces timezone accuracy for any OpenClaw agent. Prevents LLMs from confusing UTC with local time and reporting wrong times to users. Use when (1) you need the agent to always report times in the user's local timezone, (2) the agent is making scheduled calls, cron jobs, or heartbeats and needs correct local time context, (3) a user asks 'what time is it?', (4) the agent just reported a time that seemed wrong, (5) the user mentions a timezone setting or asks to configure timezone awareness. Triggers on: 'what time is it', 'wrong timezone', 'wrong time', 'timezone', 'set my timezone', 'UTC', 'local time', or any heartbeat where time accuracy matters."
+---
+
+# Timezone Enforcement Skill
+
+Enforces correct local-time awareness for this agent. Prevents the classic UTC-as-local mistake.
+
+## What This Skill Does
+
+When installed, this skill:
+1. Reads the user's timezone from USER.md (`Timezone:` field)
+2. Injects that timezone into every time-related response
+3. Provides `/timezone` command for users to check/set timezone
+4. Validates that the agent never reports UTC time as local time
+5. Patches AGENTS.md with standing timezone instructions
+
+## Startup — Run Once on Install
+
+On first use (or when explicitly asked to "set up timezone"), run:
+
+```bash
+python3 /opt/openclaw/workspace/skills/timezone/scripts/timezone_setup.py
+```
+
+This script:
+- Detects timezone from USER.md → system `timedatectl` → prompts user
+- Writes `TZ_CONFIG` to `/opt/openclaw/workspace/skills/timezone/tz_config.json`
+- Patches AGENTS.md with timezone standing order
+
+## Answering "What Time Is It?"
+
+Always run:
+
+```bash
+python3 /opt/openclaw/workspace/skills/timezone/scripts/now.py
+```
+
+Report the output verbatim. Never guess time from internal knowledge.
+
+## Heartbeat Integration
+
+On every heartbeat where time is mentioned:
+1. Call `now.py` to get current local time
+2. If any prior message in context contains a UTC time presented as local time, flag it
+3. If drift > 30 minutes between what agent said and actual time, self-correct and note it
+
+## UTC Trap Detection
+
+If the agent is about to output a time, ask: *"Is this UTC or local?"*
+
+- UTC ends in `Z` or `+00:00` → convert before reporting
+- Times from APIs (cron, heartbeat, system) are usually UTC → always convert
+- Times in USER.md or user messages are usually local → use as-is
+
+Reference: See `references/timezone_rules.md` for conversion patterns and DST edge cases.
+
+## /timezone Command
+
+When user types `/timezone`:
+1. Show current configured timezone and current local time
+2. Offer to change: "Your timezone is set to **US/Eastern (UTC-4)**. Want to change it?"
+3. If changing: run `timezone_setup.py --set "America/New_York"` with their input
+4. Confirm: "Done. I'll always report times in [timezone] from now on."
+
+## Standing Rules (patch into AGENTS.md)
+
+```
+## Timezone Standing Order
+- User timezone: [TZ from tz_config.json]
+- NEVER report UTC time as local time
+- All time output must be in user's local timezone
+- When in doubt: run scripts/timezone/now.py before reporting any time
+- API/cron/system timestamps are UTC — always convert before displaying
+```

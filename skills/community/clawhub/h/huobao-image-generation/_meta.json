@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7594mapthsgr3rqget71a5r181s5gt",
-  "slug": "huobao-image-generation",
+  "name": "huobao-image-generation",
   "version": "1.0.2",
-  "publishedAt": 1771915269452
+  "description": "AI 火宝 - 火山引擎 AI 生图 Skill，支持多模型",
+  "metadata": {
+    "openclaw": {
+      "emoji": "🔥",
+      "category": "ai",
+      "tags": ["image", "generation", "ai", "volcengine", "huobao", "fire", "gemini", "nano-banana", "doubao"]
+    }
+  }
 }

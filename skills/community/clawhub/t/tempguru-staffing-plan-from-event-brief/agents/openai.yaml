@@ -1,0 +1,11 @@
+interface:
+  display_name: "Staffing Plan From Event Brief"
+  short_description: "Extract staffing plans from event documents"
+  default_prompt: "Use $staffing-plan-from-event-brief to extract, price, and present the staffing plan in this event document."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "tempguru-event-staffing"
+      description: "Live TempGuru planning, pricing, and quote tools"
+      transport: "streamable_http"
+      url: "https://mcp.tempguru.co/mcp?source=openai-codex"

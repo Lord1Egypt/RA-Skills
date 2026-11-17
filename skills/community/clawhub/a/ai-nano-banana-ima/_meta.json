@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7ac9knfd0gdwhn8ktjvqqgj181thkt",
+  "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ai-nano-banana-ima",
-  "version": "1.0.9",
-  "publishedAt": 1774597249212
+  "name": "IMA Nano Banana Image Generator",
+  "description": "Nano Banana 图像生成：gemini-3.1-flash-image (预算) / gemini-3-pro-image (高质量)，文生图/图生图。Nano Banana image gen via IMA Open API.",
+  "version": "1.1.0"
 }

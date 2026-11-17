@@ -1,41 +1,55 @@
-## Description: <br>
-Expense Tracker Daily helps an agent record, query, delete, and summarize local expense entries from natural-language spending requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expense Tracker Daily helps an OpenClaw agent record natural-language expense entries, categorize them, and summarize daily, weekly, or monthly spending using a local JSON ledger.
 
-## Publisher: <br>
-[glorysunshine](https://clawhub.ai/user/glorysunshine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glorysunshine](https://clawhub.ai/user/glorysunshine)
 
-## Use Case: <br>
-People using OpenClaw can ask an agent to record daily spending, classify expenses, list recent entries, delete confirmed records, and summarize spending by day, week, or month. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Expense descriptions and spending records may contain sensitive personal financial information. <br>
-Mitigation: Keep records local, avoid sharing the data file unnecessarily, and review outputs before exposing them to other tools or people. <br>
-Risk: Deleting an expense entry removes it from the local JSON record store. <br>
-Mitigation: List entries and confirm the target id with the user before running a delete command. <br>
+## Use Case:
 
+OpenClaw users use this skill to track expenses from conversational input without opening a separate finance app. The agent extracts amount, category, description, and date, then calls the local CLI to add, list, delete, or summarize expense records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/glorysunshine/expense-tracker-daily) <br>
-- [Category keyword reference](artifact/references/categories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON] <br>
-**Output Format:** [Markdown responses with local Python CLI commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expense records are stored locally under ~/.qclaw/workspace/expense-tracker-data/expenses.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: User-provided expense descriptions may be placed into shell commands unsafely when an agent follows the current command-invocation guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass dynamic values as separate process arguments, avoid shell interpolation, and reject descriptions containing shell syntax until command construction is hardened.
+
+Risk: The skill stores personal expense data in a local JSON ledger in the user's home directory.
+
+Mitigation: Install only when local ledger storage is acceptable and avoid recording sensitive details that are not needed for expense tracking.
+
+## Reference(s):
+
+- [Expense category keyword map](references/categories.md)
+- [OpenClaw project](https://github.com/nicepkg/openclaw)
+- [ClawHub skill page](https://clawhub.ai/glorysunshine/skills/expense-tracker-daily)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores expense records in a local JSON ledger under the user's home directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

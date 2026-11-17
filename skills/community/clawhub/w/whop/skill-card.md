@@ -1,46 +1,65 @@
-## Description: <br>
-Run and grow a Whop business with better offers, checkout flows, promo strategy, affiliates, ads, tracking, analytics, support operations, and advanced API workflows when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run and grow a Whop business with better offers, checkout flows, promo strategy, affiliates, ads, tracking, analytics, support operations, and advanced API workflows when needed.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External Whop operators, marketers, support teams, and developers use this skill to improve offers, checkout paths, attribution, affiliate programs, analytics, member operations, and advanced API or webhook workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Whop API keys, webhook secrets, payment details, customer data, or other sensitive business information could be saved into local notes. <br>
-Mitigation: Keep secret values and customer or payment details out of ~/whop/; store credentials in environment variables or a normal secret manager and save only non-sensitive metadata. <br>
-Risk: Advanced API, webhook, payment, or embedded app changes can affect production memberships, payments, or customer operations. <br>
-Mitigation: Prefer sandbox credentials and separate sandbox notes for technical tests, verify webhook deliveries before side effects, and keep sandbox and production assets distinct. <br>
-Risk: Using the wrong Whop authentication surface or missing permissions can produce incorrect access decisions or failed automation. <br>
-Mitigation: Choose the narrowest valid credential for the task, keep Whop IDs and environments explicit, and re-check required permissions and approvals before production use. <br>
+## Use Case:
 
+External operators, marketers, and developers use this skill to plan and run Whop offers, checkout flows, promo codes, affiliates, ads, analytics, support operations, and optional API workflows.
 
-## Reference(s): <br>
-- [Whop Skill Release](https://clawhub.ai/ivangdavila/whop) <br>
-- [Whop API](https://api.whop.com/api/v1) <br>
-- [Whop Documentation](https://docs.whop.com/*) <br>
-- [Whop Sandbox](https://sandbox.whop.com/*) <br>
-- [Whop App Install Flow](https://whop.com/apps/*/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local notes under ~/whop/ and optional Whop environment variables for advanced API, webhook, and embedded app workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server-resolved release evidence) <br>
+Risk: Advanced workflows can send Whop business, customer, payment, webhook, and growth data to Whop APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use API workflows only when they are needed, keep credentials in environment variables, and install only when Whop is trusted with the relevant business data.
+
+Risk: Local memory under ~/whop/ can retain Whop business notes.
+
+Mitigation: Store only non-secret business metadata in local notes and keep API keys, webhook secrets, and other secret values out of memory and project files.
+
+Risk: Payment, trial, or webhook changes tested directly in production can affect real customers or money movement.
+
+Mitigation: Use Whop sandbox with separate keys, webhook configuration, and test cards before moving payment or webhook workflows to production.
+
+Risk: The optional Whop development proxy adds a local package dependency for embedded app testing.
+
+Mitigation: Pin and review @whop-apps/dev-proxy before installation, and use it only when local embedded app behavior needs to be tested.
+
+## Reference(s):
+
+- [ClawHub Whop Skill Release](https://clawhub.ai/ivangdavila/skills/whop)
+- [Whop Skill Homepage](https://clawic.com/skills/whop)
+- [Whop API](https://api.whop.com/api/v1)
+- [Whop Documentation](https://docs.whop.com/)
+- [Whop Sandbox](https://sandbox.whop.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with optional code blocks, shell commands, and JSON or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose dashboard workflows, local note structures, API calls, webhook checks, sandbox testing steps, and proxy setup guidance; does not require API credentials for dashboard-only use.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

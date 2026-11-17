@@ -1,17 +1,17 @@
-# Vite 项目规范
+# Vite project specifications
 
-Frontend Craft skill for Vite 项目规范.
+Configure and review Vite plugins, environment variables, dev server behavior, and builds.
 
 ## Skill
 
 - ID: `fec-vite-project-standard`
 - Category: `project-standard`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-vite-project-standard/SKILL.md`
 
 ## Description
 
-Use when creating, configuring, reviewing, or debugging Vite-based frontend projects, vite.config.ts, env variables, dev server proxy, HMR, plugin ordering, library mode, dependency pre-bundling, bundle splitting, or Vite build performance. Use framework-specific skills for React/Vue component architecture; Chinese triggers include Vite 配置, vite.config, Vite 构建, Vite 性能.
+Use when creating, configuring, reviewing, or debugging Vite-based frontend projects, vite.config.ts, env variables, dev server proxy, HMR, plugin ordering, library mode, dependency pre-bundling, bundle splitting, or Vite build performance. Use framework-specific skills for React/Vue component architecture; Chinese triggers include Vite configuration, vite.config, Vite build, Vite performance.
 
 ## Usage
 

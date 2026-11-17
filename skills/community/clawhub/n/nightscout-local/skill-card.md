@@ -1,42 +1,56 @@
-## Description: <br>
-Read glucose data from a Nightscout site for current CGM readings, trends, recent readings, or basic Nightscout status while staying read-only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read glucose data from a Nightscout site. Use when the user asks for the current CGM reading, trend, recent readings, or Nightscout status. This skill is read-only and should not be used for portal login automation or write actions.
 
-## Publisher: <br>
-[xeusoc](https://clawhub.ai/user/xeusoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xeusoc](https://clawhub.ai/user/xeusoc)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to read current glucose, recent readings, and basic status from a configured Nightscout site. It supports read-only reporting of CGM values, trends, timestamps, and site status without modifying Nightscout settings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads health-related CGM data from a Nightscout site, which can expose sensitive personal health information in URLs, command output, or logs.
+
+Mitigation: Set NIGHTSCOUT_BASE_URL only to the user's own HTTPS Nightscout site and avoid sharing URLs or output in logs or untrusted environments.
+
+Risk: The source documentation mentions an external current_bg.py shortcut that is not included in the validated artifact.
+
+Mitigation: Use only the bundled scripts/nightscout_read.py helper unless the external shortcut is separately trusted and inspected.
+
+Risk: Glucose readings may be misunderstood as treatment guidance.
+
+Mitigation: Report readings plainly, keep medical wording careful, and avoid treatment recommendations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to retrieve read-only glucose readings and Nightscout site status from a user-configured Nightscout base URL. It is intended for reporting readings clearly, not for modifying Nightscout settings or providing medical advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Glucose readings are sensitive health data and may appear in the agent conversation. <br>
-Mitigation: Treat readings as private health information and avoid sharing conversation output beyond the intended user and authorized systems. <br>
-Risk: The skill depends on the user-configured Nightscout site and may return stale, unavailable, or incomplete data if the endpoint is misconfigured or down. <br>
-Mitigation: Configure NIGHTSCOUT_BASE_URL or pass --url for the intended Nightscout site, and report endpoint failures plainly. <br>
-Risk: A separate current_bg.py helper is referenced but was not part of the inspected release evidence. <br>
-Mitigation: Inspect that local helper before use or prefer the bundled scripts/nightscout_read.py command. <br>
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Nightscout-Local release page](https://clawhub.ai/xeusoc/nightscout-local) <br>
+**Other Properties Related to Output:** [Reports glucose in mg/dL with trend and timestamp when available; does not provide medical advice.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown or plain text response summarizing JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports glucose in mg/dL with trend and timestamp when available; requires a configured Nightscout base URL.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

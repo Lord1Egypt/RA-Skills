@@ -1,43 +1,60 @@
-## Description: <br>
-Helps agents guide Baidu-specific SEO work, including Baidu Webmaster Tools setup, ICP filing considerations, sitemap submission, Baidu metadata, Smart Mini Program SEO, and penalty avoidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize websites for Baidu search with workflows for Webmaster Tools setup, ICP filing, Baidu-specific metadata, Smart Mini Program SEO, and algorithm compliance.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers, marketers, and SEO practitioners use this skill to guide Baidu-specific SEO workflows for China-facing websites. It focuses on practical agent guidance for webmaster verification, ICP filing considerations, Baidu-oriented page metadata, Smart Mini Program integration, and ranking penalty checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for China-facing SEO use cases <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent through account, API-token, webmaster, or upload actions involving Baidu services. <br>
-Mitigation: Require explicit approval before account or API actions, verify current Baidu documentation, and keep tokens out of prompts, logs, and shared files. <br>
-Risk: SEO or compliance guidance may become stale or differ by hosting location, Baidu policy, or ICP filing requirements. <br>
-Mitigation: Confirm current Baidu and ICP filing requirements before applying recommendations to a production website. <br>
+## Use Case:
 
+External users, marketers, and developers use this skill to guide Baidu-oriented SEO implementation for websites targeting China search visibility. It covers setup, metadata, indexing, mini program adaptation, and penalty-avoidance guidance.
 
-## Reference(s): <br>
-- [China SEO Baidu release page](https://clawhub.ai/lm203688/china-seo-baidu) <br>
-- [Baidu Webmaster Tools](https://ziyuan.baidu.com) <br>
-- [Baidu URL Submission](https://ziyuan.baidu.com/linksubmit/url) <br>
-- [Baidu Smart Program](https://smartprogram.baidu.com) <br>
+### Deployment Geography for Use:
 
+Global, with China-specific SEO and compliance context.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline HTML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include account, API-token, site-verification, hosting, and search-console action steps that require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Plaintext Baidu URL submission commands can expose tokens when run with real credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Baidu's secure web interface or an HTTPS-supported official endpoint, verify network constraints before submission, and rotate any token sent over HTTP.
+
+Risk: A global unpinned SmartApp CLI install can introduce supply-chain or environment drift risk.
+
+Mitigation: Prefer a pinned, project-local install or run the CLI in an isolated environment.
+
+Risk: Using the skill outside Baidu and China SEO work can produce irrelevant or misleading recommendations.
+
+Mitigation: Apply it only to Baidu and China SEO workflows and review outputs against current business, legal, and search-platform requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/china-seo-baidu)
+- [Baidu Webmaster Tools](https://ziyuan.baidu.com)
+- [Baidu link submit](https://ziyuan.baidu.com/linksubmit/url)
+- [Baidu Cambrian JSON-LD context](https://ziyuan.baidu.com/contexts/cambrian.jsonld)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline HTML, JSON, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SEO checklists, Baidu metadata snippets, sitemap submission commands, and configuration steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

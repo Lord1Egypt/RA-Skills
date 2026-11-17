@@ -1,38 +1,53 @@
-## Description: <br>
-Helps agents plan, create, distribute, market, and optimize podcasts with strategy, SEO, launch, discovery, partnership, and repurposing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides podcast strategy, content creation, distribution, marketing, and SEO.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External podcast creators, marketers, and content teams use this skill to shape podcast strategy, improve discoverability, prepare launch assets, and repurpose episodes across channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advice may be tailored from local project context files if `.claude/project-context.md` or `.cursor/project-context.md` exists. <br>
-Mitigation: Review those files before use and avoid storing sensitive or incorrect positioning in them. <br>
+## Use Case:
 
+Podcast creators, marketers, and content teams use this skill to plan podcast strategy, improve distribution and discoverability, prepare launch tasks, and repurpose episodes across channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/podcast-marketing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy, checklist, and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill may read existing project-context files to tailor podcast recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project context before use and avoid storing sensitive business or audience details that should not inform generated guidance.
+
+Risk: Broad podcast-related mentions may invoke the skill more often than necessary.
+
+Mitigation: Confirm the user wants podcast planning, marketing, SEO, distribution, or repurposing guidance before applying the skill in ambiguous requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/podcast-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with strategy sections and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

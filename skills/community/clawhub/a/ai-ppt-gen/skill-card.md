@@ -1,41 +1,50 @@
-## Description: <br>
-AI presentation generator that creates professional slides from outlines using Tree of Thoughts for content organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI presentation generator that creates professional slides from outlines using Tree of Thoughts for content organization.
 
-## Publisher: <br>
-[banxian87](https://clawhub.ai/user/banxian87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banxian87](https://clawhub.ai/user/banxian87)
 
-## Use Case: <br>
-External users and creators use this skill to turn outlines or ideas into structured presentation content with suggested slide organization, layouts, color schemes, and concise messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release may be instruction-only or a placeholder and may not actually generate or export slide decks. <br>
-Mitigation: Verify slide generation and export behavior in the target agent before relying on it, and review any future added code before deployment. <br>
-Risk: Generated presentation structure, layouts, or messaging may be incomplete or unsuitable for the intended audience. <br>
-Mitigation: Have a human review generated slides for factual accuracy, clarity, branding, and audience fit before external use. <br>
+## Use Case:
 
+External users and developers use this skill to turn presentation outlines into structured slide deck content with layout, color, and export guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banxian87/ai-ppt-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/banxian87) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Presentation outline and slide content; claimed exports include PPTX, PDF, and Google Slides.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No implementation files are included in the artifact, so generation and export behavior should be verified in the target agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json, SKILL.md) <br>
+Risk: The package may provide prompt guidance rather than working presentation export functionality because no implementation files are included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated deck content and verify any claimed PPTX, PDF, or Google Slides export workflow in the target agent environment before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banxian87/skills/ai-ppt-gen)
+- [Publisher profile](https://clawhub.ai/user/banxian87)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text describing slide content, design suggestions, and export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe PPTX, PDF, and Google Slides export options, but the release evidence indicates no bundled implementation files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

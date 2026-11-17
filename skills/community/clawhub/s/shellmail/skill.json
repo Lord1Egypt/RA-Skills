@@ -1,19 +1,19 @@
 {
   "name": "shellmail",
-  "version": "1.2.2",
-  "description": "Email API for AI agents. Send emails, check inbox, read messages, extract OTP codes, search, and reply via ShellMail.",
+  "version": "1.3.3",
+  "description": "Full email client for AI agents via the ShellMail API. Read inbox, extract OTP codes, and search messages; also send and reply to email, mark/archive/permanently delete messages, and create, recover, or delete the ShellMail address itself. Destructive commands require --confirm and explicit user approval. Network access is limited to the ShellMail API.",
   "homepage": "https://shellmail.ai",
   "source": "https://github.com/aaronbatchelder/shellmail",
   "env": {
     "SHELLMAIL_TOKEN": {
       "required": true,
       "sensitive": true,
-      "description": "Bearer token for ShellMail API authentication"
+      "description": "Bearer token for ShellMail API authentication (grants full access to inbox contents, OTPs, sending, deletion, and address management)"
     },
     "SHELLMAIL_API_URL": {
       "required": false,
       "default": "https://shellmail.ai",
-      "description": "API base URL (only change for self-hosted instances)"
+      "description": "API base URL. Non-default values require https and SHELLMAIL_ALLOW_CUSTOM_API=1 (only change for self-hosted instances)"
     }
   }
 }

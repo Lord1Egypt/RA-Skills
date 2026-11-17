@@ -1,43 +1,58 @@
-## Description: <br>
-Work with Baserow tables/rows over the REST API for reads, inserts, and updates. Use when user asks to view or modify Baserow CRM/pipeline data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Baserow tables/rows over the REST API for reads, inserts, and updates. Use when user asks to view or modify Baserow CRM/pipeline data.
 
-## Publisher: <br>
-[ericjbone](https://clawhub.ai/user/ericjbone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ericjbone](https://clawhub.ai/user/ericjbone)
 
-## Use Case: <br>
-Developers and operators use this skill to read, insert, and update Baserow CRM or pipeline records through the REST API. It is intended for workflows that need table-specific guidance for Renpho sales pipeline data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a live-looking static API token in the skill text. <br>
-Mitigation: Do not use the embedded token value; rotate it if it belongs to you and replace it with your own least-privilege Baserow token stored outside committed skill text. <br>
-Risk: The skill enables authenticated writes to CRM data. <br>
-Mitigation: Before any write operation, manually verify the exact table, row ID, and fields being changed. <br>
-Risk: Bulk or broad updates can affect source-of-truth sales records. <br>
-Mitigation: Prefer small scoped updates and echo changed fields for review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Baserow API documentation for database 265](https://baserow.ericbone.me/api-docs/database/265) <br>
-- [ClawHub skill page](https://clawhub.ai/ericjbone/baserow) <br>
-- [Publisher profile](https://clawhub.ai/user/ericjbone) <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and update Baserow-backed CRM or pipeline tables through REST API reads, inserts, and updates.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash, Python, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Baserow base URL and API token supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill artifact exposes a live-looking static Baserow API token.
+
+Mitigation: Revoke and rotate the token, remove it from the skill and package history, and replace examples with placeholders before use.
+
+Risk: The skill describes reading or sourcing a shared credential file, which can disclose secrets or load unintended values.
+
+Mitigation: Avoid printing or sourcing shared credential files; load secrets through a controlled environment or secret manager.
+
+Risk: POST and PATCH examples can modify live CRM rows that are treated as source-of-truth data.
+
+Mitigation: Require explicit confirmation of table, row, and changed fields before writes, and prefer small scoped updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericjbone/skills/baserow)
+- [Baserow API documentation for database 265](https://baserow.ericbone.me/api-docs/database/265)
+- [Baserow instance](https://baserow.ericbone.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, curl, and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus BASEROW_BASE_URL and BASEROW_TOKEN environment variables; write examples may modify live Baserow rows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+  "mode": "search_planner",
+  "sample": {
+    "query": "Ubuntu runtime requirements",
+    "sites": [
+      "docs.openclaw.ai"
+    ],
+    "exact": "Node.js"
+  },
+  "expected": {
+    "liveSearchPerformed": false
+  },
+  "invalid": {
+    "query": "",
+    "sites": []
+  }
+}

@@ -1,38 +1,53 @@
-## Description: <br>
-Guides users through registering for Uber, booking rides, choosing vehicle types, using trip safety features, managing payments, and resolving common ride issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users in Chinese through registering for Uber, booking rides, selecting vehicle options, using trip safety features, managing payments, and resolving common ride issues.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-External users and agent operators use this skill to provide practical Uber ride guidance, including account setup, destination entry, vehicle selection, trip safety checks, payment handling, and post-trip support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expose phone numbers, payment details, trip destinations, or account information while asking for ride guidance. <br>
-Mitigation: Advise users to enter sensitive information only in the official Uber app or website and share only limited details with an assistant when needed for advice. <br>
+## Use Case:
 
+External users use this agent skill for Chinese-language guidance on everyday or travel-related Uber rides, including account setup, ride requests, vehicle selection, safety checks, payments, and support follow-up.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/DuanC-Chao/uber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Natural-language guidance, typically Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or account access; users should enter sensitive ride and payment details only in official Uber channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Uber availability, payment options, and safety features vary by region and may change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current local Uber availability, payment methods, and safety features in the user's region before relying on the guidance.
+
+Risk: The skill provides guidance only in Chinese.
+
+Mitigation: Use it for Chinese-language support or provide translation before serving users who need another language.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/duanc-chao/skills/uber)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language Uber usage guidance; no executable code or hidden actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,59 @@
-## Description: <br>
-Generate professional AI product photography and commercial images using inference.sh image models for product shots, lifestyle images, mockups, e-commerce photos, marketing, and advertising. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional AI product photography and commercial images using inference.sh image models for product shots, lifestyle scenes, mockups, e-commerce listings, and advertising.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-External creators, marketers, e-commerce operators, and developers use this skill to generate product photography prompts and inference.sh CLI commands for product images, listing assets, lifestyle scenes, and post-processing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on installing and logging in to the inference.sh CLI and service. <br>
-Mitigation: Install only if inference.sh is trusted, prefer the documented checksum-verification path, and use an account with appropriate spending limits. <br>
-Risk: Product prompts, image URLs, customer data, or confidential marketing assets may be sent to an external image-generation service. <br>
-Mitigation: Avoid submitting unreleased products, private image URLs, customer data, or confidential marketing assets unless organizational approval covers that service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+External users, developers, and marketing teams use this skill to generate product photography prompts and inference.sh commands for e-commerce, Shopify, Amazon listings, advertising images, product mockups, and post-processing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline bash commands and JSON input examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompts, model selections, CLI examples, batch workflows, and post-processing guidance for image generation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quick-start setup uses a live remote installer.
+
+Mitigation: Manually download a version-pinned infsh release and verify its checksum or signature before installation.
+
+Risk: Related-skill examples use unpinned npx skills add commands.
+
+Mitigation: Pin related skill versions and install them only from trusted publishers and registries.
+
+Risk: The workflow may require logging into an external image-generation service.
+
+Mitigation: Use a least-privileged environment and avoid production credentials unless the service's data handling is acceptable for the product content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/okaris/skills/ai-product-photography)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI installer](https://cli.inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with bash code blocks and prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes model suggestions, product photography prompt patterns, batch generation examples, and post-processing command examples.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

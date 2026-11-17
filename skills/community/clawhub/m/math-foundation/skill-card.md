@@ -1,37 +1,48 @@
-## Description: <br>
-Math Foundation provides a contemporary mathematics knowledge base spanning six core areas, grand unified programs, milestone results, financial mathematics, and support for complex problem solving, financial engineering, and algorithm design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contemporary mathematics core knowledge system - 6 dimensions + Grand Unified Programs + milestone achievements. For complex math problem solving, financial engineering, algorithm design.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smseow001](https://clawhub.ai/user/smseow001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and advanced AI users use this skill as a compact reference for logic, algebra, geometry, analysis, probability, discrete mathematics, financial mathematics, and major mathematical programs or milestones.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill provides brief mathematical and financial summaries that may be incomplete or unsuitable for high-stakes decisions.
+
+Mitigation: Use the content as a study aid and verify results against authoritative mathematical, financial, or domain-specific sources before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill as a compact mathematics reference for advanced problem solving, financial engineering prompts, and algorithm design context. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Finance and advanced mathematics notes may be incomplete or unsuitable for high-stakes decisions. <br>
-Mitigation: Treat outputs as prompts or summaries and have qualified reviewers verify results before financial, engineering, academic, or other high-impact use. <br>
+**Output Format:** [Markdown reference guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Markdown-only skill with no code execution, network behavior, credential handling, or persistence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no code execution, network access, credentials, persistence, or installer behavior.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

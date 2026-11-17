@@ -1,44 +1,59 @@
-## Description: <br>
-Visualize coding sessions as a real-time strategy game with automatic deploy and event reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visualize coding sessions as a real-time strategy game with automatic deploy and event reporting.
 
-## Publisher: <br>
-[idosal](https://clawhub.ai/user/idosal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[idosal](https://clawhub.ai/user/idosal)
 
-## Use Case: <br>
-Developers and agent operators use AgentCraft to visualize coding sessions in a real-time dashboard and report activity such as prompts, file access, shell commands, and idle state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session telemetry can include sensitive prompts, file paths, commands, and workspace context. <br>
-Mitigation: Use only in workspaces where that activity can be shared, and disable or redact reporting before handling secrets or sensitive repositories. <br>
-Risk: The local AgentCraft service may be exposed beyond localhost when remote sharing is enabled. <br>
-Mitigation: Keep the service local by default; do not expose it publicly without authentication and a clear shutdown process. <br>
-Risk: Automatic startup through npx can run the currently resolved package version. <br>
-Mitigation: Review the package before installation and pin an approved version when using the skill in controlled environments. <br>
+## Use Case:
 
+Developers and coding agents use AgentCraft to visualize coding sessions, start a local AgentCraft service when needed, and report session, prompt, file access, command, and idle events to a local dashboard.
 
-## Reference(s): <br>
-- [AgentCraft homepage](https://getagentcraft.com) <br>
-- [AgentCraft on ClawHub](https://clawhub.ai/idosal/agentcraft) <br>
-- [idosal publisher profile](https://clawhub.ai/user/idosal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON event examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Starts or checks a local service and emits fire-and-forget session activity events when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can report sensitive prompts, file paths, and shell commands to the local AgentCraft service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in non-sensitive workspaces unless telemetry is reduced or disabled, and redact prompts, paths, and commands before reporting.
+
+Risk: The skill can start third-party code through npx.
+
+Mitigation: Review the package before installation and prefer a pinned, reviewed AgentCraft version with explicit user consent.
+
+Risk: Sharing the local service through a public tunnel can expose session telemetry.
+
+Mitigation: Do not expose the local service through a public tunnel without authentication.
+
+## Reference(s):
+
+- [AgentCraft homepage](https://getagentcraft.com)
+- [ClawHub AgentCraft skill page](https://clawhub.ai/idosal/skills/agentcraft)
+- [ClawHub idosal publisher profile](https://clawhub.ai/user/idosal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON event payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to run local health checks, start AgentCraft through npx, create a session identifier, and post event reports with curl.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

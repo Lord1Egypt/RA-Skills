@@ -1,12 +1,12 @@
 {
   "id": "session-summarize",
   "name": "会话总结",
-  "version": "6.6.2",
-  "description": "Compresses long AI coding sessions into glanceable summaries with progress tracking, error harvesting, and layered memory writing. Supports 5-dimension error classification, dual-track self-evolution (success + error), 4-tier layered writing (project/global/skill/pending), and 5-level graceful degradation. Triggered only by standalone word '总结' or 'summarize' — not in sentences, no auto-reminder. 将长AI编程会话精炼为一眼可读的摘要，含进度追踪、错误收割与分层记忆写入。支持5维错误分类、双轨自进化（成功+错误）、4层分级写入（项目/全局/技能/待确认）、5级降级链。仅独立词'总结'或'summarize'触发——句中不触发、无自动提醒。",
+  "version": "11.0.0",
+  "description": "Evidence-first Codex summaries with separate scan, compact-context, and handoff outputs. Reports preserve verified state, decisions, unknowns, blockers, next actions, and evidence-backed recommendations; persistence remains explicit and project-local.",
   "author": "gtbwpkwjnb-alt",
   "type": "prompt",
-  "triggers": ["总结", "summarize"],
-  "tags": ["会话管理", "总结", "进度追踪", "错误收割", "记忆管理", "session", "summary", "error-harvest", "memory"],
+  "triggers": ["总结", "总结一下", "总结进度", "复盘", "总结 精简", "压缩上下文", "compact", "总结 交接", "总结 交接 分层", "handoff", "总结 checkpoint", "总结 诊断", "总结 诊断 历史", "总结 保存", "总结 恢复", "summarize", "summarize save"],
+  "tags": ["会话管理", "总结", "进度追踪", "交接", "复盘", "行动建议", "session", "summary", "handoff", "evidence-first", "codex"],
   "license": "MIT",
   "repository": "https://github.com/gtbwpkwjnb-alt/summarize-skill"
 }

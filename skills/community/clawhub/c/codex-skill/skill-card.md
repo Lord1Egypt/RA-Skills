@@ -1,39 +1,52 @@
-## Description: <br>
-Use when user asks to leverage Codex, GPT-5, or GPT-5.1 to implement coding tasks with non-interactive automation and hands-off execution without approval prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Codex CLI with GPT-5-family models to run coding tasks non-interactively, including hands-off execution, worktree setup, monitoring, review, and PR workflows.
 
-## Publisher: <br>
-[feiskyer](https://clawhub.ai/user/feiskyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[feiskyer](https://clawhub.ai/user/feiskyer)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide Codex CLI through coding tasks, isolated worktree setup, long-running agent monitoring, pull request creation, and review workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill normalizes unattended Codex workflows that may edit code, push branches, open pull requests, post comments, or run for long periods. <br>
-Mitigation: Run it in a disposable container or isolated worktree, keep sandboxing and approvals enabled on sensitive machines, and review diffs before commit or push. <br>
-Risk: Repository credentials and notification tools could be used by an unattended workflow. <br>
-Mitigation: Require explicit confirmation before pull request creation, comments, notifications, cleanup, or any action using repository credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/feiskyer/codex-skill) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to delegate coding tasks to Codex CLI, run long-lived implementation sessions, monitor outputs, and manage pull-request workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational guidance for running, monitoring, retrying, and reviewing Codex CLI agent workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan reports suspicious guidance because the skill recommends unsandboxed no-approval Codex runs.
+
+Mitigation: Use the skill only in a disposable, isolated environment with no production credentials; prefer read-only or workspace-write modes and avoid the dangerous bypass flag unless isolation is in place.
+
+Risk: The security scan reports unsafe shell examples that could execute unintended commands or push repository changes.
+
+Mitigation: Review prompts, quoted strings, paths, and command arguments before automation, and require manual review before commits, pushes, PR comments, or cleanup.
+
+## Reference(s):
+
+- [ClawHub Codex Skill release](https://clawhub.ai/feiskyer/skills/codex-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task prompts, CLI flags, tmux workflow steps, monitoring commands, and review checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

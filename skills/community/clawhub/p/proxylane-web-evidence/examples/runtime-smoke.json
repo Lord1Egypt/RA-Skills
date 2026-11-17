@@ -1,0 +1,124 @@
+{
+  "checks": [
+    {
+      "exit_code": 0,
+      "mode": "youtube-transcript",
+      "observations": 2,
+      "proof_mode": "fixture",
+      "status": "ok"
+    },
+    {
+      "exit_code": 0,
+      "mode": "youtube-comments",
+      "observations": 2,
+      "proof_mode": "fixture",
+      "status": "partial"
+    },
+    {
+      "exit_code": 0,
+      "mode": "google-citations",
+      "observations": 1,
+      "proof_mode": "fixture",
+      "status": "partial"
+    },
+    {
+      "exit_code": 0,
+      "mode": "xiaohongshu",
+      "observations": 1,
+      "proof_mode": "fixture",
+      "status": "partial"
+    },
+    {
+      "exit_code": 0,
+      "mode": "price",
+      "observations": 1,
+      "proof_mode": "fixture",
+      "status": "partial"
+    },
+    {
+      "exit_code": 0,
+      "mode": "node-bridge-demo",
+      "status": "fixture_demo"
+    },
+    {
+      "exit_code": 2,
+      "mode": "xhs-missing-input",
+      "network_called": false,
+      "status": "missing_input"
+    },
+    {
+      "exit_code": 0,
+      "mode": "python-syntax"
+    }
+  ],
+  "clean_install_proven": false,
+  "cross_modal_authoritative_pass": false,
+  "dependencies": {
+    "beautifulsoup4": "4.14.2",
+    "playwright": "1.58.0",
+    "requests": "2.32.5",
+    "youtube-transcript-api": "1.2.4"
+  },
+  "final_fixture_refresh": {
+    "exit_code": 0,
+    "fixture_output_sha256": "c5edebaf691c185ee871cafab393214e39e6289e1d482a19559afd673104d2b6",
+    "mode_count": 5,
+    "proof_mode": "fixture",
+    "status": "fixture_demo"
+  },
+  "live_attempt_summary": {
+    "fresh_connection_sources": [
+      {
+        "missing_or_unverified_typed_fields": [],
+        "mode": "youtube-transcript",
+        "observations_count": 3,
+        "observed_at": "2026-10-07T07:18:54.475527Z",
+        "status": "partial",
+        "target": "https://www.youtube.com/watch?v=aircAruvnKk"
+      },
+      {
+        "missing_or_unverified_typed_fields": [],
+        "mode": "youtube-comments",
+        "observations_count": 3,
+        "observed_at": "2026-10-07T07:19:08.452679Z",
+        "status": "partial",
+        "target": "https://www.youtube.com/watch?v=aircAruvnKk"
+      },
+      {
+        "missing_or_unverified_typed_fields": [
+          "price",
+          "currency"
+        ],
+        "mode": "price",
+        "observations_count": 1,
+        "observed_at": "2026-10-07T07:19:51.370651Z",
+        "status": "partial",
+        "target": "https://www.amazon.com/dp/B09B8V1LZ3"
+      }
+    ],
+    "no_region_or_aggregate_auth_claim": true,
+    "prior_connection_rejection": "An earlier connection failed proxy CONNECT407 before source extraction; fresh operator-supplied connection was used for the successful bounded collections",
+    "raw_live_evidence": "Privately stored outside the package"
+  },
+  "live_extraction_scope": [
+    "youtube-transcript",
+    "youtube-comments",
+    "price"
+  ],
+  "live_source_extraction_proven": true,
+  "observed_on": "2026-10-07",
+  "optional_comments_runtime": {
+    "clean_install_proven": false,
+    "installation_scope": "Only this candidate .runtime venv; official PyPI index",
+    "yt_dlp": "2026.8.19",
+    "yt_dlp_ejs": "0.8.0"
+  },
+  "original_global_yt_dlp_version": "2025.08.20",
+  "provider_wide_reliability_proven": false,
+  "proxy_configuration_used_in_bounded_live_calls": true,
+  "python": "3.12.0",
+  "runtime": "local .runtime venv with system-site-packages; not a clean dependency install proof",
+  "scope": "Executed local fixture/Node smoke and unit/local integration/routing/package tests. Separately bounded actual live source collections are summarized without raw content; cross-modal authoritative PASS is not claimed.",
+  "target_request_exit_ip_verified": false,
+  "yt_dlp_version": "2026.8.19"
+}

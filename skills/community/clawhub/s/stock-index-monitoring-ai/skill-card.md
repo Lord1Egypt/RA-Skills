@@ -1,39 +1,50 @@
-## Description: <br>
-Returns a Hello World greeting to the user and supports an optional custom name. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Returns a Hello World greeting and can personalize the greeting when a name is supplied.
 
-## Publisher: <br>
-[quant520](https://clawhub.ai/user/quant520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quant520](https://clawhub.ai/user/quant520)
 
-## Use Case: <br>
-External users can invoke this skill to generate a simple Hello World greeting, optionally personalized with a supplied name. The listing name suggests stock-index monitoring, but the artifact evidence only supports greeting behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public listing name suggests stock-index monitoring, but the artifact only implements Hello World greeting behavior. <br>
-Mitigation: Confirm the publisher and package identity before use, and rely on this release only for greeting output unless a future artifact provides stock-index monitoring behavior. <br>
+## Use Case:
 
+Users invoke this skill to receive a basic Hello World response or a personalized greeting for a supplied name.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/quant520/stock-index-monitoring-ai) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/quant520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text greeting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external dependencies or required binaries are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may activate on generic greeting requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger wording during deployment so it is available only in contexts where simple greeting behavior is expected.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/quant520/skills/stock-index-monitoring-ai)
+- [Publisher profile](https://clawhub.ai/user/quant520)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text greeting response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, dependencies, persistence, or sensitive access identified in release security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

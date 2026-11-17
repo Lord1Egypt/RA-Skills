@@ -1,46 +1,61 @@
-## Description: <br>
-Personal tracker framework that scaffolds habit, workout, mood, reminder, diary, and task trackers from natural language with a local dashboard and optional scheduled prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal tracker framework. Scaffold new habit/workout/mood/reminder trackers from natural language. Dashboard, cron, all in one skill.
 
-## Publisher: <br>
-[junjieyu95](https://clawhub.ai/user/junjieyu95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junjieyu95](https://clawhub.ai/user/junjieyu95)
 
-## Use Case: <br>
-End users and agent operators use Glancely to create and operate personal trackers for habits, mood, reminders, diary logging, and most-important-task check-ins. The skill helps an agent propose tracker schemas, run scaffold commands after confirmation, log entries, build a dashboard, and optionally register scheduled prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal tracker data locally, including potentially sensitive mood, diary, task, and reminder details. <br>
-Mitigation: Use a trusted local machine, limit what sensitive details are logged, and protect the Glancely data directory with normal device and filesystem access controls. <br>
-Risk: Diary logging can require Google Calendar OAuth credentials and token storage. <br>
-Mitigation: Use a user-owned OAuth client, store credentials only in the expected Glancely credentials directory, and revoke Google access if the tracker is no longer used. <br>
-Risk: Generated or discovered components under the local components directory can affect dashboard output, local storage, and scheduled prompts. <br>
-Mitigation: Review generated components before use and avoid installing or running untrusted component files under ~/.glancely/components. <br>
-Risk: Scheduled OpenClaw prompts may create recurring agent activity. <br>
-Mitigation: Review cron schedules and notification text before enabling them, and disable unwanted schedules in the OpenClaw configuration. <br>
+## Use Case:
 
+Developers and end users use Glancely to create and operate local personal trackers for habits, mood, reminders, diary entries, and Most Important Task workflows. The skill guides an agent to scaffold tracker components, run setup and logging commands, schedule prompts, and build a local dashboard.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/junjieyu95/glancely) <br>
-- [Component Contract](docs/component-contract.md) <br>
-- [Dashboard Date-Grid Overhaul Plan](docs/superpowers/plans/2026-05-10-dashboard-date-grid-overhaul.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated tracker files/configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local tracker components, SQLite migrations, dashboard files, and OpenClaw cron configuration under the user's Glancely data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: SKILL.md frontmatter, pyproject.toml, release evidence) <br>
+Risk: The skill can run discovered local tracker component code under the Glancely home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review component SKILL.md files and scripts before allowing the agent to execute logging, stats, dashboard, or scaffold workflows.
+
+Risk: The skill may register persistent OpenClaw cron prompts and reminders.
+
+Mitigation: Confirm cron schedules and notification text before registration, and periodically inspect or remove entries that are no longer needed.
+
+Risk: Diary logging can access a user's Google Calendar through locally stored OAuth credentials.
+
+Mitigation: Use a dedicated OAuth client where practical, keep credential files local, and revoke or remove tokens when the diary feature is no longer used.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/junjieyu95/skills/glancely)
+- [README](artifact/README.md)
+- [Component Contract](artifact/docs/component-contract.md)
+- [End-to-End Test Plan](artifact/E2E_TEST_PLAN.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated tracker files, local configuration, and text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local tracker components, SQLite-backed data, dashboard output, and optional OpenClaw cron registrations under the user's Glancely home directory.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter, pyproject.toml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

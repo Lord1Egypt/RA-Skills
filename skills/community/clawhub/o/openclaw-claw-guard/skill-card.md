@@ -1,41 +1,57 @@
-## Description: <br>
-System-level watchdog for OpenClaw gateway restarts and sub-agent task PIDs. Monitors registered PIDs and optional log or directory freshness, auto-reverts config on failed gateway restarts, and requires explicit registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System-level watchdog for OpenClaw gateway restarts and sub-agent task PIDs that monitors registered PIDs and optional log or directory freshness, auto-reverts config on failed gateway restarts, and requires explicit registration.
 
-## Publisher: <br>
-[camopel](https://clawhub.ai/user/camopel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[camopel](https://clawhub.ai/user/camopel)
 
-## Use Case: <br>
-Developers and operators use ClawGuard to monitor explicitly registered OpenClaw background tasks and gateway restarts. It helps surface stopped or stale work, backs up gateway configuration before restarts, and attempts rollback when a restart fails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an always-running user-level watchdog service. <br>
-Mitigation: Install only when continuous OpenClaw background monitoring is desired, and disable the user service when monitoring is no longer needed. <br>
-Risk: Failed gateway restarts can trigger automatic rollback of OpenClaw configuration from stored backups. <br>
-Mitigation: Review the installer and keep an independent known-good OpenClaw configuration backup before relying on automated rollback. <br>
-Risk: Notifications may include diagnostic details about tasks, logs, gateway status, or restart failures. <br>
-Mitigation: Choose notification targets carefully and avoid routing alerts to channels that should not receive operational diagnostics. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawGuard release page](https://clawhub.ai/camopel/openclaw-claw-guard) <br>
+## Use Case:
 
+Developers and operators use ClawGuard to monitor long-running OpenClaw tasks and gateway restarts, receive alerts when registered work stalls or exits, and recover from failed gateway restarts by restoring saved OpenClaw configuration backups.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces installation, service setup, task registration, status, and operational guidance for OpenClaw watchdog use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs an always-on watchdog in the user's session.
+
+Mitigation: Review the generated systemd or launchd service files before enabling the service and keep the disable or unload command available before installation.
+
+Risk: The watchdog can automatically rewrite OpenClaw configuration when recovering from a failed gateway restart.
+
+Mitigation: Review the config backup and rollback behavior before use, and verify restored configuration after any recovery event.
+
+Risk: Alerts may include local service diagnostics sent through OpenClaw notification targets.
+
+Mitigation: Use trusted notification targets and avoid registering tasks where diagnostic excerpts could expose sensitive operational details.
+
+## Reference(s):
+
+- [ClawGuard on ClawHub](https://clawhub.ai/camopel/skills/openclaw-claw-guard)
+- [camopel publisher profile](https://clawhub.ai/user/camopel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and bundled Python and shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes an installer, a CLI, and a persistent watchdog service for Linux systemd user services and macOS launchd agents.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, created 2026-03-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

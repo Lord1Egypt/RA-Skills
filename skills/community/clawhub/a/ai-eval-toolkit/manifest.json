@@ -1,0 +1,76 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "LLM评测工具链",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T17:38:03.280943+00:00",
+  "timestamp_local": "2026-08-28T01:38:03.280954",
+  "package_fingerprint_sha256": "cb2404ebc82aead5e3676941c6ad7a67d1ff8b0d3560555c4876377cce2b0ebd",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "585752e1b119e0e0d97de34e6fc650e488f27f21ee021ecac019d04bb0a087f4"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "d1413a2418ae418bdd00ec3de520b61e3357756a3bf86530babd87b0e516d9ec"
+    },
+    {
+      "path": "references/01-工具链全景.md",
+      "sha256": "e611e6e313ebc607c5b3d7ad64b62f6c6dbfb34ebcbd95c6141f9c2e83881a70"
+    },
+    {
+      "path": "references/02-评测集管理.md",
+      "sha256": "f07e57ed27274bfa2abcab5ae02b62bc9485fcb39ae2fc8c0022ebe1ea0bbb45"
+    },
+    {
+      "path": "references/03-幻觉检测引擎.md",
+      "sha256": "25e7a63108133e1026fe324c88764ce9bec5d0e388d1f52149f0f0b6376601cd"
+    },
+    {
+      "path": "references/04-RAG指标计算.md",
+      "sha256": "876e4ce72a59aab4ef6772e37770f2159c02c3e097c72ea5719fbabbbe93448f"
+    },
+    {
+      "path": "references/05-回归对比.md",
+      "sha256": "6f14251c3a931915aa48e5ba1d572b3ea4d6b1af5265dcde6bcaff34788e5b2d"
+    },
+    {
+      "path": "references/06-报告与门禁.md",
+      "sha256": "a0db7ca04110e34895306185e55739abc2f36ac6af27843e72a949549fff29d3"
+    },
+    {
+      "path": "references/07-与平台工具衔接.md",
+      "sha256": "feed31caa860782bb4e461d9d367c69fd054e58eb2737b368df034e18e98752e"
+    },
+    {
+      "path": "references/08-FAQ.md",
+      "sha256": "7a09abeff7bd497cc2d845be58944ce76eb00beef398382df989054774ea1ef1"
+    },
+    {
+      "path": "tools/eval_toolkit.py",
+      "sha256": "8a4ab20a3899fc9b4fa1dc2fee900bb9cb3a5905fe0a8e6a5374c06d17395982"
+    },
+    {
+      "path": "verify/eval_toolkit_quality_test.py",
+      "sha256": "206e927e15a9829a99bf1397b096f2abae977d7e553f5d68ebd8ea8d1e2eb8af"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "3fe0f0d98346c4b31fb2fb2a902fd25e1f1d1140ac583bb2f13bc92505d79311"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "eb9024c3d9787478d2c0f917b1dc1ca0f18d8e3d6d50b118409b956206eef1f5"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "0220f94417a0d20a4f1aadf65401aa3a06365fde98fdce4a5e6b75dadd38a801"
+    }
+  ]
+}

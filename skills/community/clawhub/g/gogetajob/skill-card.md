@@ -1,41 +1,58 @@
-## Description: <br>
-Open-source contribution workflow: find GitHub issues, implement fixes, submit PRs, track results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open-source contribution workflow - find GitHub issues, implement fixes, submit PRs, track results.
 
-## Publisher: <br>
-[kagura-agent](https://clawhub.ai/user/kagura-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagura-agent](https://clawhub.ai/user/kagura-agent)
 
-## Use Case: <br>
-Developers and open-source contributors use this skill to run a structured contribution loop: scan repositories for issues, study candidate work, delegate implementation, submit pull requests, sync review status, and record lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can operate with broad authority over code changes and GitHub publishing under the user's account. <br>
-Mitigation: Use a dedicated worktree, least-privilege GitHub token, and require human review before pushes, pull requests, issue filing, cron setup, or reviewer replies. <br>
-Risk: The skill describes `--approve-all` execution for delegated code work. <br>
-Mitigation: Avoid broad approval mode unless the user explicitly accepts that risk and independently reviews generated changes and test results. <br>
+## Use Case:
 
+Developers and external contributors use this skill to run a structured open-source contribution loop: find suitable GitHub issues, implement changes through delegated coding agents, submit pull requests, and track follow-up work.
 
-## Reference(s): <br>
-- [Workloop Overview](references/workloop-overview.md) <br>
-- [Gogetajob ClawHub Release](https://clawhub.ai/kagura-agent/gogetajob) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide GitHub CLI, git, FlowForge, Claude Code, cron setup, and PR follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Delegated agents can modify local repositories, run commands, push branches, and create pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated diffs, test results, branch pushes, and pull request content before accepting or reusing the work.
+
+Risk: `gogetajob watch` can create automatic sync behavior through cron.
+
+Mitigation: Use watch mode only when you understand the scheduled job and know how to remove it.
+
+Risk: The workflow stores follow-up notes and lessons for future use.
+
+Mitigation: Review persistent memory or field-note updates before they are reused in later contribution work.
+
+## Reference(s):
+
+- [Workloop Overview](references/workloop-overview.md)
+- [ClawHub Skill Page](https://clawhub.ai/kagura-agent/skills/gogetajob)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to modify local repositories, run commands, push branches, create pull requests, and update persistent project notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

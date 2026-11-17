@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>COS 检索结果 · 单行</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --panel:#ffffff;
+    --panel-2:#f5f7fa;
+    --border:#e4e7ed;
+    --border-strong:#d5d9e0;
+    --text:#1f2329;
+    --muted:#8a94a6;
+    --accent:#2f6cff;
+    --accent-hover:#1e57e0;
+    --accent-soft:#eaf0ff;
+    --success:#12b76a;
+    --success-soft:#e6f7ef;
+    --chip:#f0f2f5;
+    --shadow:0 1px 3px rgba(15,23,42,.04), 0 1px 2px rgba(15,23,42,.06);
+    --radius:8px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+    font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+  /* 横向滚动条统一放在 body 上：说明行与缩略图带都不换行、整体一起横向滚动 */
+  body{overflow-x:auto;overflow-y:hidden;
+    scrollbar-width:thin;scrollbar-color:var(--border-strong) transparent}
+  body::-webkit-scrollbar{height:8px}
+  body::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:4px}
+  body::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+  body::-webkit-scrollbar-track{background:transparent}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-hover);text-decoration:underline}
+
+  /* 内容按需撑宽，不被视口压缩 */
+  .wrap{padding:16px;display:inline-block;min-width:100%}
+
+  /* 顶部说明行：标题 + 数据集 / 存储桶 / 检索条件 —— 强制单行不换行 */
+  .head{display:flex;align-items:baseline;gap:14px;flex-wrap:nowrap;white-space:nowrap;
+    padding:0 2px 10px;margin-bottom:10px;border-bottom:1px solid var(--border)}
+  .head .h-title{font-size:15px;font-weight:600;color:var(--text);white-space:nowrap;flex:0 0 auto}
+  .head .h-count{font-size:12px;color:var(--muted);font-weight:400}
+  .head .h-meta{display:flex;align-items:baseline;gap:14px;flex-wrap:nowrap;flex:0 0 auto}
+  .head .h-item{font-size:12px;color:var(--muted);white-space:nowrap;flex:0 0 auto}
+  .head .h-item b{font-weight:400;color:var(--muted)}
+  .head .h-item span{color:var(--text);font-weight:500}
+  .head .h-item.query span{color:var(--accent)}
+
+  /* 单行结果卡片 —— iframe 内嵌，无边框 / 无阴影 */
+  .row{background:transparent;border:0;border-radius:0;
+    padding:0;display:block;box-shadow:none}
+
+  .row .main{min-width:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .row .title{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+  .row .chips{display:flex;gap:6px;flex-wrap:nowrap}
+  .chip{font-size:11px;padding:2px 8px;background:var(--chip);color:var(--muted);
+    border-radius:10px;white-space:nowrap;border:1px solid transparent}
+  .chip.hot{background:var(--accent-soft);color:var(--accent);border-color:#dbe6ff}
+  .chip.time{background:var(--success-soft);color:var(--success);border-color:#c8ebd8}
+
+  .row .snippet{font-size:12px;color:#4e5969;line-height:1.6;
+    max-height:3.2em;overflow:hidden;background:var(--panel-2);
+    padding:6px 10px;border-radius:6px;border-left:2px solid var(--accent)}
+
+  /* 缩略图横向排列 —— 不自带滚动条，跟随 body 整体横向滚动 */
+  .thumbs{display:flex;gap:8px;flex-wrap:nowrap;padding:6px 0 4px}
+  /* 每格 = 图 + 文件名 */
+  .thumb-cell{flex:0 0 auto;width:120px;display:flex;flex-direction:column;gap:4px;
+    text-decoration:none}
+  .thumb-cell:hover{text-decoration:none}
+  .thumb{width:120px;height:80px;border-radius:6px;overflow:hidden;
+    background:var(--panel-2);position:relative;
+    border:1px solid var(--border);transition:.15s;cursor:pointer;display:block}
+  .thumb-cell:hover .thumb{border-color:var(--accent);transform:translateY(-1px);
+    box-shadow:0 4px 10px rgba(47,108,255,.12)}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb .badge{position:absolute;left:4px;bottom:4px;font-size:10px;
+    background:rgba(0,0,0,.65);color:#fff;padding:1px 5px;border-radius:3px}
+  .thumb .badge.play{left:auto;right:4px;bottom:auto;top:4px;
+    background:rgba(0,0,0,.75)}
+  .thumb .badge.play::before{content:"▶ ";color:#12b76a}
+  .thumb .fallback{display:flex;align-items:center;justify-content:center;
+    height:100%;font-size:11px;color:var(--muted);flex-direction:column;gap:4px}
+  .thumb .fallback .ico{font-size:22px}
+  /* 图下文件名：单行省略 */
+  .thumb-name{width:120px;font-size:11px;line-height:1.4;color:var(--muted);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+  .thumb-cell:hover .thumb-name{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div id="head-slot"></div>
+  <div id="row-slot"></div>
+</div>
+
+<!--
+  ============================================================
+    数据源（替换时只改这一段 <script id="result-data"> 的内容）
+
+    ⚠️ 点击缩略图会「新标签直接打开源文件」，因此 signedUrl / downloadUrl
+       必须填 **带签名的 COS 下载地址**（预签名 URL），形如：
+       https://<bucket>.cos.<region>.myqcloud.com/<key>?q-sign-algorithm=sha1&q-ak=...&q-sign-time=...&q-key-time=...&q-header-list=...&q-url-param-list=...&q-signature=...
+       生成方式：COS SDK getObjectUrl({ Sign:true, Expires:3600 }) 或 cos-tools 的预签名命令。
+       私有读桶如果只填不带签名的地址，点击会 403；公有读桶可不带签名。
+
+    单条结果结构：
+    {
+      "tool":   "image-search",                    // 可选：image-search / video-search / doc-search / face-search / face-clip-search
+      "region": "ap-guangzhou",                    // 可选：用于 cos:// → https 兜底（兜底地址不含签名）
+      "uri":    "cos://bucket/path/file.jpg",      // 必填：命中文件 URI
+      "datasetName": "photos-ds",                  // 可选：说明行展示的数据集名
+      "bucket": "carsonxu-1250000000",             // 可选：说明行展示的存储桶（缺省时从 uri 解析）
+      "query":  "海边日落",                         // 可选：检索条件（自然语言 / 表达式）
+      "total":  1,                                 // 可选：命中总数，展示在标题后
+      "signedUrl": "https://...?q-signature=...",  // 建议：主文件带签名下载地址（等价旧字段 downloadUrl）
+      "thumbs": [                                  // 缩略图列表（横向排列，图下显示文件名，过长省略）
+        { "url": "https://.../a.jpg?q-signature=...",  // 缩略图展示地址（私有读同样需要签名才能显示）
+          "label": "0:12", "type": "image|video",
+          "name": "a.jpg",                         // 可选：图下文件名；缺省则取 uri / signedUrl 文件名
+          "uri": "cos://bucket/path/a.jpg",        // 可选：该缩略图对应源文件
+          "signedUrl": "https://...?q-signature=..." }  // 点击后新标签打开的带签名源文件地址
+      ],
+      "extra": {                                   // 类型特定字段（按需填写）
+        "text":  "文档命中片段…",                  // doc-search: 命中文本
+        "textPage": 3,                             // doc-search: 页码
+        "from": 12.5, "to": 18.2,                  // video-search: 片段起止秒
+        "faceId": "face_20260206_0001"             // face-*
+      }
+    }
+  ============================================================
+-->
+<script id="result-data" type="application/json">
+{
+  "tool": "image-search",
+  "region": "ap-guangzhou",
+  "uri": "cos://carsonxu-1250000000/photos/sunset_beach_01.jpg",
+  "datasetName": "photos-dataset",
+  "bucket": "carsonxu-1250000000",
+  "query": "海边日落",
+  "total": 7,
+  "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01.jpg?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000001",
+  "thumbs": [
+    { "url": "https://picsum.photos/seed/sunset01/240/160",  "label": "原图",  "type": "image",
+      "name": "sunset_beach_01.jpg",
+      "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01.jpg?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000001" },
+    { "url": "https://picsum.photos/seed/sunset02/240/160",  "label": "缩略",  "type": "image",
+      "name": "sunset_beach_01_thumb_240x160.jpg",
+      "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01_thumb_240x160.jpg?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000002" },
+    { "url": "https://picsum.photos/seed/sunset03/240/160",  "label": "裁切",  "type": "image",
+      "name": "sunset_beach_01_crop_center_square.jpg",
+      "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01_crop_center_square.jpg?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000003" },
+    { "url": "https://picsum.photos/seed/sunset04/240/160",  "label": "灰度",  "type": "image",
+      "name": "sunset_beach_01_grayscale.jpg",
+      "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01_grayscale.jpg?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000004" },
+    { "url": "https://picsum.photos/seed/sunset05/240/160",  "label": "增强",  "type": "image",
+      "name": "sunset_beach_01_enhanced_hdr_v2_final.jpg",
+      "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01_enhanced_hdr_v2_final.jpg?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000005" },
+    { "url": "https://picsum.photos/seed/sunset06/240/160",  "label": "水印",  "type": "image",
+      "name": "sunset_beach_01_watermark.jpg",
+      "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01_watermark.jpg?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000006" },
+    { "url": "https://picsum.photos/seed/sunset07/240/160",  "label": "AVIF",  "type": "image",
+      "name": "sunset_beach_01.avif",
+      "signedUrl": "https://carsonxu-1250000000.cos.ap-guangzhou.myqcloud.com/photos/sunset_beach_01.avif?q-sign-algorithm=sha1&q-ak=AKIDEXAMPLE&q-sign-time=1785000000;1785003600&q-key-time=1785000000;1785003600&q-header-list=host&q-url-param-list=&q-signature=EXAMPLESIGNATURE0000000000000007" }
+  ],
+  "extra": {}
+}
+</script>
+
+<script>
+(function(){
+  function el(tag, props, children){
+    const n = document.createElement(tag);
+    if (props) for (const k in props){
+      if (k === 'class') n.className = props[k];
+      else if (k.startsWith('on') && typeof props[k] === 'function') n.addEventListener(k.slice(2), props[k]);
+      else if (props[k] != null) n.setAttribute(k, props[k]);
+    }
+    (children||[]).forEach(c => c && n.appendChild(typeof c==='string' ? document.createTextNode(c) : c));
+    return n;
+  }
+
+  function fmtTime(sec){
+    if (sec == null || isNaN(sec)) return '';
+    const s = Math.floor(sec % 60).toString().padStart(2,'0');
+    const m = Math.floor(sec / 60);
+    return m + ':' + s;
+  }
+
+  function fileNameOf(uri){
+    if (!uri) return '';
+    const s = uri.replace(/^cos:\/\/[^/]+\//,'').replace(/^https?:\/\/[^/]+\//,'');
+    const parts = s.split('?')[0].split('/');
+    return parts[parts.length - 1] || s;
+  }
+
+  function bucketOf(item){
+    if (item.bucket) return item.bucket;
+    const m = /^cos:\/\/([^/]+)\//.exec(item.uri || '');
+    return m ? m[1] : '';
+  }
+
+  // 取「带签名的下载地址」：signedUrl 优先，兼容旧字段 downloadUrl，
+  // 都没有时才由 cos:// + region 拼出未签名地址（私有读桶会 403）
+  function signedUrlOf(item, region){
+    if (item.signedUrl) return item.signedUrl;
+    if (item.downloadUrl) return item.downloadUrl;
+    const m = /^cos:\/\/([^/]+)\/(.+)$/.exec(item.uri || '');
+    if (m && region) return `https://${m[1]}.cos.${region}.myqcloud.com/${m[2]}`;
+    return item.uri || '';
+  }
+
+  // 是否已带 COS 签名参数
+  function isSigned(url){
+    return /[?&]q-signature=/.test(url || '');
+  }
+
+  // 顶部说明行：检索结果 / 数据集 / 存储桶 / 检索条件
+  function renderHead(item){
+    const bucket = bucketOf(item);
+    const total = item.total != null ? item.total
+                : (item.thumbs || []).length || 1;
+
+    const metaItems = [];
+    function push(label, value, cls){
+      if (!value) return;
+      metaItems.push(el('span', { class: 'h-item ' + (cls||''), title: label + '：' + value }, [
+        el('b', {}, [label + '：']),
+        el('span', {}, [String(value)])
+      ]));
+    }
+    push('数据集', item.datasetName);
+    push('存储桶', bucket);
+    push('检索条件', item.query || (item.tool ? item.tool : ''), 'query');
+
+    return el('div', { class: 'head' }, [
+      el('span', { class: 'h-title' }, [
+        '检索结果',
+        el('span', { class: 'h-count' }, [` 共 ${total} 个文件`])
+      ]),
+      el('div', { class: 'h-meta' }, metaItems)
+    ]);
+  }
+
+  // 类型 → 占位图标 / 文案（缩略图取不到时兜底）
+  var TYPE_ICON = { image:'🖼️', video:'🎬', doc:'📄', audio:'🎵', other:'📦' };
+  var TYPE_TEXT = { image:'图片', video:'视频', doc:'文档', audio:'音频', other:'文件' };
+
+  function renderThumb(t, region, fallbackName, parent){
+    // 点击图片 → 新标签直接打开带签名的源文件 URL
+    // 优先级：thumbs[].signedUrl / downloadUrl → 该缩略图 uri 兜底 → 主文件签名地址
+    let href = signedUrlOf(t, region);
+    if (!href && parent) href = signedUrlOf(parent, region);
+    const name = t.name || fileNameOf(t.uri || t.signedUrl || t.downloadUrl || '') || fallbackName || '';
+    const type = t.type || 'image';
+    const badgeType = type === 'video' ? 'play' : '';
+    const children = [];
+    if (t.url){
+      // 视频封面来自数据万象截帧、文档来自 doc-preview 首页图；
+      // 取图失败（未开通 / 无权限）时降级为类型占位图标
+      children.push(el('img', { src: t.url, alt: t.label || name, loading: 'lazy',
+        onerror: function(){
+          const box = this.parentNode;
+          this.remove();
+          box.classList.add('err');
+          if (!box.querySelector('.fallback')){
+            const fb = document.createElement('div');
+            fb.className = 'fallback';
+            fb.innerHTML = '<span class="ico">' + (TYPE_ICON[type] || TYPE_ICON.other) + '</span>'
+                         + '<span>' + (TYPE_TEXT[type] || TYPE_TEXT.other) + '</span>';
+            box.appendChild(fb);
+          }
+        }
+      }));
+    } else {
+      children.push(el('div', { class: 'fallback' }, [
+        el('span', { class: 'ico' }, [TYPE_ICON[type] || TYPE_ICON.other]),
+        el('span', {}, [t.label || TYPE_TEXT[type] || TYPE_TEXT.other])
+      ]));
+    }
+    if (t.label) children.push(el('span', { class: 'badge ' + badgeType }, [t.label]));
+
+    const tip = (name ? name + ' · ' : '')
+      + (isSigned(href) ? '点击新标签打开（已签名）'
+                        : '点击新标签打开（未带签名，私有读桶可能 403）');
+
+    return el('a', {
+      class: 'thumb-cell',
+      href: href || '#', target: '_blank', rel: 'noopener',
+      title: tip
+    }, [
+      el('div', { class: 'thumb' }, children),
+      el('div', { class: 'thumb-name', title: name }, [name || '(未命名)'])
+    ]);
+  }
+
+  function renderRow(item){
+    const region = item.region;
+    const ex = item.extra || {};
+    const mainName = fileNameOf(item.uri);
+
+    // Chips
+    const chips = [];
+    if (ex.from != null && ex.to != null){
+      chips.push(el('span', { class: 'chip time' }, [`⏱ ${fmtTime(ex.from)} - ${fmtTime(ex.to)}`]));
+    }
+    if (ex.textPage != null){
+      chips.push(el('span', { class: 'chip hot' }, [`P.${ex.textPage}`]));
+    }
+    if (ex.faceId){
+      chips.push(el('span', { class: 'chip hot' }, [`FaceId: ${ex.faceId}`]));
+    }
+
+    const mainChildren = [];
+    if (chips.length){
+      mainChildren.push(el('div', { class: 'title' }, [
+        el('div', { class: 'chips' }, chips)
+      ]));
+    }
+
+    if (ex.text){
+      mainChildren.push(el('div', { class: 'snippet' }, [ex.text]));
+    }
+
+    // 缩略图横向排列（图下带文件名，点击打开带签名 URL）
+    const thumbs = (item.thumbs || []).map(t => renderThumb(t, region, mainName, item));
+    if (thumbs.length){
+      mainChildren.push(el('div', { class: 'thumbs' }, thumbs));
+    }
+
+    return el('div', { class: 'row' }, [
+      el('div', { class: 'main' }, mainChildren)
+    ]);
+  }
+
+  function boot(){
+    let data;
+    try {
+      data = JSON.parse(document.getElementById('result-data').textContent.trim());
+    } catch(e){
+      document.getElementById('row-slot').innerHTML =
+        '<pre style="color:#e5484d;padding:12px;background:#fff5f5;border:1px solid #ffd6d6;border-radius:6px">数据解析失败：'+ e.message +'</pre>';
+      return;
+    }
+    document.getElementById('head-slot').appendChild(renderHead(data));
+    document.getElementById('row-slot').appendChild(renderRow(data));
+  }
+
+  document.addEventListener('DOMContentLoaded', boot);
+})();
+</script>
+</body>
+</html>

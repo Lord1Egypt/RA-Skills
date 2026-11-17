@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Massive (Polygon.io)"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["polygon_io"]
   icon: "https://static.oomol.com/logo/third-party/polygon_io.svg"
 ---
@@ -38,12 +38,45 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `get_aggregate_bars` — Get historical OHLC aggregate bars for a stock ticker over a custom range.
+- `get_daily_open_close` — Get a stock ticker's open, close, and extended-hours prices for one date.
+- `get_ema` — Get the EMA technical indicator for a Massive ticker.
+- `get_last_stock_quote` — Get the latest national best bid and offer for a stock ticker.
+- `get_last_stock_trade` — Get the latest available trade for a stock ticker.
+- `get_macd` — Get the MACD technical indicator for a Massive ticker.
 - `get_market_status` — Get the current Polygon.io market status for stocks, currencies, and indices.
+- `get_option_chain_snapshot` — Get an options chain with prices, Greeks, implied volatility, and open interest.
+- `get_option_contract` — Get reference details for one Massive options contract.
+- `get_option_contract_snapshot` — Get prices, Greeks, implied volatility, and open interest for one options contract.
 - `get_previous_day_bar` — Get the previous trading day's OHLC aggregate bar for a stock ticker.
+- `get_rsi` — Get the RSI technical indicator for a Massive ticker.
+- `get_sma` — Get the SMA technical indicator for a Massive ticker.
+- `get_stock_movers` — Get the current top gaining or losing U.S. stocks.
+- `get_stock_snapshot` — Get the latest trade, quote, minute, day, and previous-day data for one stock.
 - `get_ticker_details` — Get comprehensive details for a single Polygon.io ticker.
+- `get_unified_snapshot` — Get current snapshots for an explicit list of Massive tickers across asset classes.
+- `list_balance_sheets` — List company balance sheets from Massive.
+- `list_cash_flow_statements` — List company cash flow statements from Massive.
+- `list_condition_codes` — List trade and quote condition codes known by Massive.
+- `list_dividends` — List current-version stock dividend events and adjustment factors.
 - `list_exchanges` — List known exchanges available through Polygon.io.
+- `list_financial_ratios` — List company financial ratios from Massive.
+- `list_funding_conditions` — List U.S. funding conditions observations from Massive.
+- `list_income_statements` — List company income statements from Massive.
+- `list_inflation` — List U.S. inflation observations from Massive.
+- `list_inflation_expectations` — List U.S. inflation expectations observations from Massive.
+- `list_labor_market` — List U.S. labor market observations from Massive.
+- `list_market_holidays` — List upcoming market holidays and their trading hours.
+- `list_option_contracts` — List Massive options contracts with contract-specific filters.
+- `list_quotes` — List historical quotes for a stock or options ticker.
+- `list_related_tickers` — List companies related to a Massive stock ticker.
+- `list_short_interest` — List reported short interest for U.S. stocks.
+- `list_short_volume` — List daily short-sale volume for U.S. stocks.
+- `list_splits` — List current-version stock split events and adjustment factors.
+- `list_ticker_news` — List recent financial news and sentiment associated with tickers.
 - `list_ticker_types` — List ticker type codes supported by Polygon.io.
 - `list_tickers` — List ticker symbols supported by Polygon.io with optional filters.
+- `list_trades` — List historical trades for a stock or options ticker.
+- `list_treasury_yields` — List U.S. treasury yields observations from Massive.
 
 ## Safety
 
@@ -74,11 +107,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Massive (Polygon.io) is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=polygon_io
+  https://console.oomol.com/connections/polygon_io
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Massive (Polygon.io) homepage: https://massive.com/
+- API documentation: https://massive.com/docs

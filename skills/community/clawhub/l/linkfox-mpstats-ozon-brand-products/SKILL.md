@@ -1,7 +1,5 @@
 ---
 name: linkfox-mpstats-ozon-brand-products
-version: 1.0.0
-category: product-sourcing
 description: MPSTATS Ozon 俄罗斯站按品牌下钻商品列表。按 Ozon 品牌展示名（俄语/拉丁）返回该品牌下全部商品的销量、销售额、价格、评分、库存、周转、损失销售额等完整指标，支持多维数值筛选、排序、货币换算。用于品牌对标、竞品分析、品牌商品结构研究、ASIN 级（productId 级）爆款拆解。当用户提到 Ozon 品牌下钻、Ozon 品牌商品、Ozon 竞品品牌分析、品牌结构、品牌 SKU、品牌爆款、Ozon 品牌销售、MPSTATS brand, Ozon brand products, brand drill-down, brand competitor analysis, Russian marketplace brand SKUs, brand revenue share 时触发此技能。即使用户未明确说"MPSTATS"，只要意图是按 Ozon 品牌看该品牌下所有商品及其销量/价格/评分表现，也应触发此技能。
 ---
 
@@ -43,9 +41,27 @@ Each `filters` entry: `{"field": "<snake_case>", "op": "<OP>", "value": <num>, "
 
 **Operators**: `GTE`, `LTE`, `GT`, `LT`, `EQ`, `NOT_EQ`, `BETWEEN` (requires `value2` as the upper bound).
 
-## API Usage
+## 调用方式
 
-This tool calls the LinkFox tool gateway API. See `references/api.md` for calling conventions, request parameters, response structure, and error codes. You can also execute `scripts/mpstats_ozon_brand_products.py` directly for ad-hoc queries.
+- **API 端点**：`POST /mpstats/ozon/brandProducts`（完整参数/响应/错误码见 `references/api.md`）
+- **Python 脚本**：`python scripts/mpstats_ozon_brand_products.py '<JSON 参数>' [--inline]`
+- **成本约束**：本工具会消耗算力；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+
+**输出策略（脚本默认行为）**：
+- **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-mpstats-ozon-brand-products-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
+- 响应体 ≤ 8 KB：落盘后把完整 JSON 打印到 stdout
+- 响应体 > 8 KB：落盘后 stdout 只输出摘要（顶层字段、常见计数如 `total`/`costToken`、最大列表字段的长度 + 前 3 条样本）
+- 加 `--inline` 强制全量打印到 stdout（同样落盘）
+
+**读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## Usage Examples
 
@@ -138,6 +154,12 @@ This tool calls the LinkFox tool gateway API. See `references/api.md` for callin
 - Wildberries / other Russian marketplaces → not covered
 
 **Boundary judgment**: Use this skill when the question centers on **one brand** and you want the per-SKU rollup under it. For "which brand dominates category X" use category drill-down and compare brand rows server-side.
+
+## 算力消耗规则
+
+按动态规则计费：消耗算力 = 12。列表为空返回 0
+
+> **重要**：本技能的服务按倍数动态计算，可能一次性消耗大量算力，必须提醒用户，由用户决定是否继续。
 
 **Feedback:**
 

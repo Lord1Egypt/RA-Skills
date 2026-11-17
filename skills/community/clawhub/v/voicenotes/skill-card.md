@@ -1,44 +1,55 @@
-## Description: <br>
-Voicenotes syncs voice recordings, transcripts, tags, and AI summaries from Voicenotes.com into an agent workspace and can export notes as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync and access voice notes from Voicenotes.com, including recordings, transcripts, AI summaries, markdown sync, and transcript search.
 
-## Publisher: <br>
-[shawnhansen](https://clawhub.ai/user/shawnhansen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shawnhansen](https://clawhub.ai/user/shawnhansen)
 
-## Use Case: <br>
-Developers and knowledge workers who use Voicenotes use this skill to retrieve recordings, transcripts, tags, summaries, and action items from their account and sync them into local Markdown files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Voicenotes access token. <br>
-Mitigation: Keep VOICENOTES_TOKEN out of commits, logs, screenshots, and shared shell setup files. <br>
-Risk: Synced Markdown files can contain private voice-note transcripts and AI summaries. <br>
-Mitigation: Sync notes into a private directory and exclude that directory from public repositories or broad backups when appropriate. <br>
-Risk: Large syncs can run into the Voicenotes API rate limit described by the artifact. <br>
-Mitigation: Use incremental syncs with --since and avoid repeatedly fetching the full note history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Voicenotes release](https://clawhub.ai/shawnhansen/voicenotes) <br>
-- [Voicenotes](https://voicenotes.com) <br>
-- [Voicenotes token settings](https://voicenotes.com/app?obsidian=true#settings) <br>
-- [Voicenotes Obsidian sync API base](https://api.voicenotes.com/api/integrations/obsidian-sync) <br>
+## Use Case:
 
+Developers and other Voicenotes users use this skill to verify their Voicenotes connection, fetch recordings as JSON, and sync transcripts, summaries, tags, and note metadata into local markdown files.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts return JSON and write Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOICENOTES_TOKEN; markdown sync also requires jq and may write local copies of transcripts and summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Voicenotes API token can grant access to private voice notes and account data if exposed.
+
+Mitigation: Keep VOICENOTES_TOKEN out of logs, dotfiles, and shared command history, and rotate the token if it is exposed.
+
+Risk: Synced markdown files may contain private transcripts, summaries, tags, and note metadata.
+
+Mitigation: Write synced notes only to a private output directory and avoid syncing them into shared or untrusted folders.
+
+## Reference(s):
+
+- [Voicenotes](https://voicenotes.com)
+- [Voicenotes Obsidian Sync Settings](https://voicenotes.com/app?obsidian=true#settings)
+- [Voicenotes Obsidian Sync API](https://api.voicenotes.com/api/integrations/obsidian-sync)
+- [ClawHub Skill Page](https://clawhub.ai/shawnhansen/skills/voicenotes)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated JSON or markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a VOICENOTES_TOKEN environment variable; markdown sync writes local files to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

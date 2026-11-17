@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-editorial-strategy-review",
+  "displayName": "ZM 选题策略与内容审核",
   "version": "0.1.0",
-  "publishedAt": 1782235879925
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "自媒体内容选题、观点、结构、初稿审查、改稿方向、用户目标匹配和发布风险审核 Skill。"
 }

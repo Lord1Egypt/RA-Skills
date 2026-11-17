@@ -72,7 +72,7 @@ npx clawhub publish <skill-name>
 - 敌退我追（趋势加仓）
 
 **配置：**
-- DeepSeek API Key: `sk-5aa202974f284ecc9a82c95d9c7ca23e`
+- DeepSeek API Key: `REDACTED-SECRET`
 - 50% 加密货币（趋势+杠杆）
 - 30% A股ETF（波段操作）
 - 20% 现金（抄底备用）

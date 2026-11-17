@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dj907h1ps8kt92wbdspr01d820vzf",
-  "slug": "skill-agent-broadcast",
-  "version": "1.0.1",
-  "publishedAt": 1772406437148
+  "name": "skill-agent-broadcast",
+  "version": "1.0.0",
+  "description": "Broadcast a message to multiple OpenClaw group sessions simultaneously. Use for cross-agent coordination, alerts, and announcements.",
+  "author": "Zero2Ai-hub",
+  "license": "MIT"
 }

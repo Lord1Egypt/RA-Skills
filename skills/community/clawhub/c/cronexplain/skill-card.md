@@ -1,38 +1,50 @@
-## Description: <br>
-Explain cron expressions in plain English and calculate next run times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain cron expressions in plain English and calculate next run times.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers, operators, and other external users use this skill to decode standard five-field cron expressions, translate schedules into plain English, and estimate upcoming run times. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Next-run output can be approximate and may not match every production cron implementation or edge case. <br>
-Mitigation: Use the skill for casual explanation, and verify production scheduling, audits, and maintenance windows against the actual cron implementation before acting. <br>
+## Use Case:
 
+Developers, engineers, and operators use this skill to decode standard five-field cron schedules, explain supported cron syntax, and check upcoming run times.
 
-## Reference(s): <br>
-- [Cronexplain ClawHub page](https://clawhub.ai/rogue-agent1/cronexplain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs cron explanations and optional next-run timestamps for standard five-field cron expressions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Malformed cron input can make the parser fail or consume excessive resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use for manual cron-expression explanation, and add bounded range and step validation before exposing it to untrusted users or automated public inputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rogue-agent1/skills/cronexplain)
+- [ClawHub publisher profile](https://clawhub.ai/user/rogue-agent1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and plain text explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable cron explanations and optional next-run time lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

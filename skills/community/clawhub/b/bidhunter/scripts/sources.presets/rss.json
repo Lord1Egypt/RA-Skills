@@ -1,0 +1,14 @@
+{
+  "_note": "RSS 订阅型平台适配模板。RSS 是最省事的接入方式：只要平台提供 RSS，填一个 url 就能跑。",
+  "_when": "适用于提供 RSS / Atom 输出的平台",
+  "_steps": [
+    "1. 在目标平台找「RSS 订阅」「订阅源」入口，或在页面源码搜 <link type=\"application/rss+xml\">",
+    "2. 复制 RSS 地址填到下面的 url",
+    "3. 本 skill 会自动读取 item 的 title / link / pubDate，无需再配字段映射"
+  ],
+  "_compliance": "同 json_api.json —— 确认 robots 与版权，控制频率。",
+
+  "name": "my_platform_rss",
+  "mode": "rss",
+  "url": "https://YOUR-DOMAIN/bid/rss.xml"
+}

@@ -1,36 +1,49 @@
-## Description: <br>
-Patterns and practices that help developers accelerate delivery through parallel execution, automation, fast feedback loops, workflow optimization, and anti-pattern avoidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patterns and practices that dramatically accelerate development velocity. Covers parallel execution, automation, feedback loops, workflow optimization, and anti-pattern avoidance. Use when starting projects, planning sprints, optimizing workflows, or onboarding developers.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers, engineering leads, and teams use this skill to plan projects, optimize sprints and daily workflows, onboard developers, identify bottlenecks, and apply practical velocity patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes example install commands, shell aliases, and copy commands that may modify persistent agent or shell environments if run without review. <br>
-Mitigation: Review each command before execution, prefer project-scoped installation where possible, and adapt paths or aliases to the local environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan projects, optimize workflows, reduce delivery bottlenecks, and onboard developers into high-velocity practices.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, workflow templates, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance skill; users should review command examples before running them.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable npx or GitHub installer sources can weaken supply-chain assurance.
+
+Mitigation: Review and pin the installer source before installing, avoid elevated privileges, and prefer per-project installation unless global activation is intended.
+
+## Reference(s):
+
+- [10x Patterns on ClawHub](https://clawhub.ai/wpank/skills/10x-patterns)
+- [wpank publisher profile](https://clawhub.ai/user/wpank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only development-practices guidance with no hidden execution behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

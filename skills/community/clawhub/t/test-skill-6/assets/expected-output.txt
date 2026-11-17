@@ -1,0 +1,1 @@
+OpenClaw test skill fixture is valid.

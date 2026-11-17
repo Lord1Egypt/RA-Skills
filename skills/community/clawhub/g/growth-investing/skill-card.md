@@ -1,40 +1,50 @@
-## Description: <br>
-成长股投资框架 — 聚焦净利润增速、营收增速、渗透率提升的高成长公司。当用户说「成长股」「高成长」「渗透率」「营收增速」「净利润增速」「第二曲线」时激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language growth-stock investing framework for evaluating high-growth companies using profit growth, revenue growth, penetration-rate signals, PEG, catalysts, and exit rules.
 
-## Publisher: <br>
-[danpian1](https://clawhub.ai/user/danpian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danpian1](https://clawhub.ai/user/danpian1)
 
-## Use Case: <br>
-Investors and analysts use this skill as an educational checklist for reviewing growth-stock candidates, focusing on revenue growth, net income growth, PEG, market penetration, catalysts, and common growth traps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides investing criteria that could be mistaken for personalized financial advice. <br>
-Mitigation: Use it as an educational checklist only, verify financial data from trusted sources, and apply independent judgment before making investment decisions. <br>
-Risk: Future versions could materially change the risk profile if they add brokerage integrations, credentials, paid data APIs, or automated trading actions. <br>
-Mitigation: Re-review security and behavior before using any version that adds integrations, credentials, data-provider access, or trading automation. <br>
+## Use Case:
 
+External users and agents use this skill to structure growth-stock analysis, screen companies by growth and quality metrics, and frame valuation, catalysts, buy, hold, sell, and stop-loss considerations. It is educational guidance and not personalized financial advice.
 
-## Reference(s): <br>
-- [Growth Metrics Reference](references/growth-metrics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance and checklist-style analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, installs, credentials, brokerage integrations, or automated trading actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat growth-stock thresholds or buy and sell rules as personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the framework as educational guidance only, verify decisions with current market data and personal risk tolerance, and consult a qualified professional when appropriate.
+
+## Reference(s):
+
+- [Growth Metrics Reference](references/growth-metrics.md)
+- [ClawHub Skill Page](https://clawhub.ai/danpian1/skills/growth-investing)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with metric tables and rule snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, or data access; financial rules are educational heuristics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

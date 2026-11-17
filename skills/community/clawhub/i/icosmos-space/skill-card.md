@@ -1,45 +1,60 @@
-## Description: <br>
-Shopify operations and diagnostics skill that retrieves store domains and tokens from Supabase, audits themes, products, checkout, and metrics, and can publish a blog post only with explicit confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Shopify store operations and diagnostics using Supabase-synced store domains and tokens, with read-only checks for themes, products, checkout, and metrics plus confirmed blog publishing as the only write action.
 
-## Publisher: <br>
-[TaceyWong](https://clawhub.ai/user/TaceyWong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taceywong](https://clawhub.ai/user/taceywong)
 
-## Use Case: <br>
-External developers and Shopify operators use this skill to inspect store data, run store health diagnostics, check checkout and metrics behavior, and publish marketing blog content when explicitly confirmed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Shopify credentials, locally cached tokens, and order data. <br>
-Mitigation: Install only when the separate icosmos-shopify CLI and its Supabase account are trusted; confirm token cache location, deletion steps, and Shopify Admin API scopes before setup. <br>
-Risk: The skill can publish Shopify blog articles when --confirm is provided. <br>
-Mitigation: Review the target store, blog ID, title, and article body before using --confirm; otherwise keep the command in dry-run behavior. <br>
-Risk: The security review notes insufficient detail about token scoping and sensitive data handling in the artifact. <br>
-Mitigation: Review the security guidance before installation and avoid exposing order fields, credentials, or token values in shared logs. <br>
+## Use Case:
 
+External developers and Shopify store operators use this skill to retrieve store data, run operational audits, troubleshoot checkout and metrics issues, and publish a blog post only after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TaceyWong/icosmos-space) <br>
-- [Shopify GraphQL Admin API reference](https://shopify.dev/docs/api/admin-graphql/latest) <br>
-- [Shopify REST Admin API reference](https://shopify.dev/docs/api/admin-rest/latest) <br>
-- [Shopify Storefront API reference](https://shopify.dev/docs/api/storefront/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only diagnostics by default; Shopify blog publishing requires explicit --confirm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: The skill caches high-privilege Shopify store tokens locally without evidence describing the cache location or protection model.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the token cache path, file permissions, deletion process, and token rotation process before use.
+
+Risk: Environment credentials and cached Shopify tokens may expose sensitive store access if mishandled.
+
+Mitigation: Treat ICOSMOS_USER_EMAIL, ICOSMOS_USER_PASSWORD, and cached tokens as secrets, and use Shopify app scopes with the least privilege needed.
+
+Risk: The blog publishing command is a write action that can modify a Shopify store.
+
+Mitigation: Use --confirm only when the operator intends to publish and has reviewed the target store, blog ID, title, and body file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taceywong/skills/icosmos-space)
+- [Shopify GraphQL Admin API reference](https://shopify.dev/docs/api/admin-graphql/latest)
+- [Shopify REST Admin API reference](https://shopify.dev/docs/api/admin-rest/latest)
+- [Shopify Storefront API reference](https://shopify.dev/docs/api/storefront/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON-oriented command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Most operations are read-only; blog publishing requires an explicit --confirm flag.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

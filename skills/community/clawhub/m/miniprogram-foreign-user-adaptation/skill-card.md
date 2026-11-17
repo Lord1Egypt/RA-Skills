@@ -1,47 +1,62 @@
-## Description: <br>
-帮助开发者扫描并修复微信小程序面向境外用户时的账号登录、表单国际化、英文搜索触达、多语言服务和翻译后排版溢出问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助微信小程序开发者扫描并修复境外用户在账号登录、表单填写、英文搜索、多语言服务和翻译后排版方面的国际化适配问题。
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit WeChat Mini Program projects for overseas user blockers and receive prioritized remediation guidance for login, forms, search, language routing, and translated UI overflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanner reports may include details from the target Mini Program project. <br>
-Mitigation: Run the scanner only against the intended project in a normal development sandbox and review generated reports before sharing them. <br>
-Risk: Login and verification examples touch phone numbers, email addresses, SMS providers, and user-facing authentication flows. <br>
-Mitigation: Remove example phone-number logging, keep provider keys server-side, add rate limits, use generic error handling, and protect stored user information. <br>
-Risk: Language-based UI differences can confuse users if hidden features or changed flows are not clear. <br>
-Mitigation: Make language-based UI differences transparent and verify the international experience with end-to-end testing. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate WeChat Mini Program projects for overseas user readiness, prioritize internationalization blockers, and generate practical remediation guidance before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tencent-adm/miniprogram-foreign-user-adaptation) <br>
-- [reference.md](reference.md) <br>
-- [WeChat Mini Program phone number verification component](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html) <br>
-- [WeChat Mini Program translation capability](https://developers.weixin.qq.com/community/minihome/article/doc/000222bddd4e70130844a1db66b413) <br>
-- [wx.getAppBaseInfo API](https://developers.weixin.qq.com/miniprogram/dev/api/base/system/wx.getAppBaseInfo.html) <br>
-- [WeChat Mini Program overseas community](https://developers.weixin.qq.com/community/minihome/mixflow/3721056300659130376) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and optional JSON or Markdown scan reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When the scanner is run, it can create validation/reports/scan-report.md and validation/reports/scan-result.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Installing scanner dependencies in an uncontrolled environment can create normal supply-chain or privilege exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a least-privilege project environment and pin or review npm dependencies with a lockfile before operational use.
+
+Risk: Authentication, phone, email, and locale-routing examples may touch sensitive user data or service credentials when adapted for production.
+
+Mitigation: Apply production privacy controls, encrypt sensitive data, avoid logging personal data, rate-limit verification flows, and keep provider API keys out of frontend code and public repositories.
+
+Risk: Static scanning and overflow prediction can miss project-specific behavior or produce findings that need context.
+
+Mitigation: Review scan-report.md and scan-result.json, validate fixes in the target Mini Program, and complete end-to-end testing before release.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tencent-adm/skills/miniprogram-foreign-user-adaptation)
+- [WeChat Mini Program phone number quick verification](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html)
+- [WeChat Mini Program translation capability](https://developers.weixin.qq.com/community/minihome/article/doc/000222bddd4e70130844a1db66b413)
+- [wx.getAppBaseInfo API](https://developers.weixin.qq.com/miniprogram/dev/api/base/system/wx.getAppBaseInfo.html)
+- [WeChat Mini Program overseas community](https://developers.weixin.qq.com/community/minihome/mixflow/3721056300659130376)
+- [Reference examples](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and optional scan report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled scanner can produce scan-report.md for human review and scan-result.json for structured follow-up.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

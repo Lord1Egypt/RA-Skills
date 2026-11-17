@@ -1,39 +1,56 @@
-## Description: <br>
-Deploy an agent token with a Uniswap V4 pool — handles pool creation with configurable hooks (anti-snipe, dynamic fees, revenue share), initial liquidity bootstrapping, LP locking, and post-deployment monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys an agent token with a Uniswap V4 pool, configurable hooks, initial liquidity bootstrapping, optional LP locking, and post-deployment monitoring.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External developers and teams launching agent tokens use this skill to configure a Uniswap V4 pool, bootstrap initial liquidity, lock LP positions, and monitor launch activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates irreversible crypto transactions for Uniswap pool creation and liquidity operations. <br>
-Mitigation: Use a wallet that requires manual signing and verify every contract address, hook, approval, amount, slippage setting, recipient, and LP lock duration before any transaction. <br>
-Risk: User approval and wallet-signing boundaries are not clearly defined in the skill documentation. <br>
-Mitigation: Do not grant the agent unattended authority over funds; require explicit user confirmation before broadcasts or approvals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wpank/deploy-agent-token) <br>
+## Use Case:
 
+Developers and token launch teams use this skill to prepare and execute an agent-token launch on Uniswap V4 with configured hooks, initial liquidity, LP locking, and early monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown deployment report with pool, liquidity, LP lock, and early monitoring details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review and wallet signing before irreversible transaction execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automate irreversible on-chain financial deployment actions.
+
+Mitigation: Use a dedicated low-privilege wallet and verify pool, hook, liquidity, price, and LP-lock parameters before signing any transaction.
+
+Risk: Mutable remote installation sources can change after review.
+
+Mitigation: Install only from a pinned, reviewed source before use.
+
+Risk: Transaction broadcast without review can create or fund an unintended pool.
+
+Mitigation: Require explicit confirmation before allowing any transaction to be broadcast.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/deploy-agent-token)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown deployment report with pool details, hook configuration, liquidity, LP lock status, monitoring results, and next steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided token, chain, pricing, liquidity, hook, and lock-duration parameters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

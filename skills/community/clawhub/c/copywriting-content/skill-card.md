@@ -1,38 +1,52 @@
-## Description: <br>
-Guides short-form marketing copy such as headlines, CTAs, ads, landing pages, and email using conversion frameworks including PAS, AIDA, BAB, FAB, and the 4 U's. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides short-form marketing copy for headlines, CTAs, ad copy, landing page copy, email copy, sales copy, conversion copy, and differentiation using frameworks such as PAS, AIDA, and BAB.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing, growth, and content teams use this skill to draft and optimize concise conversion-focused copy for ads, landing pages, email, headlines, and CTAs. It helps structure copy around audience, funnel goal, and proven frameworks while preserving project positioning and brand voice when context files are available.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated marketing copy may include claims, positioning, or conversion advice that is inaccurate, non-compliant, or inconsistent with the brand.
+
+Mitigation: Review outputs against product facts, brand standards, legal requirements, and campaign goals before publication.
+
+Risk: When project context files are present, the skill may rely on stale or incomplete positioning, value proposition, or voice guidance.
+
+Mitigation: Keep project context files current and verify generated copy against the latest approved messaging.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing, product, and growth teams use this skill to create or improve short-form conversion copy for ads, landing pages, email, CTAs, and headlines. It helps choose an appropriate copywriting framework and produce concise variants, body structure, CTA options, and A/B test suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may contain brand, positioning, or voice details that are used in generated marketing copy. <br>
-Mitigation: Keep .claude/project-context.md and .cursor/project-context.md limited to information that is acceptable for use in marketing output. <br>
+**Output Format:** [Markdown prose with copy variants, framework recommendations, CTA options, and A/B test suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/copywriting-content) <br>
+**Other Properties Related to Output:** [May use project context files for positioning, value proposition, and brand voice when present.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured copy recommendations and variant lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local project context files for brand positioning and voice when present.] <br>
+1.2.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence release and skill metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

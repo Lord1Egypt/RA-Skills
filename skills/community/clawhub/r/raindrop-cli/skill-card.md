@@ -1,39 +1,55 @@
-## Description: <br>
-Manage Raindrop.io bookmarks from the command line using the Raindrop REST API and a personal RAINDROP_TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Raindrop.io bookmarks from the command line using the Raindrop REST API for search, existence checks, add, update, and remove workflows.
 
-## Publisher: <br>
-[adorostkar](https://clawhub.ai/user/adorostkar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adorostkar](https://clawhub.ai/user/adorostkar)
 
-## Use Case: <br>
-Developers and agents use this skill to search, add, update, and remove Raindrop.io bookmarks from shell workflows while using a personal Raindrop.io token. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The submitted bundle references a raindrop command script that is not included. <br>
-Mitigation: Before installing, verify which raindrop command will run in the environment and use only a trusted implementation. <br>
-Risk: The skill can change or remove bookmarks using a personal RAINDROP_TOKEN. <br>
-Mitigation: Store RAINDROP_TOKEN securely, keep it out of logs and shell history, and review update or remove actions before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adorostkar/raindrop-cli) <br>
+## Use Case:
+
+Developers and automation-focused users use this skill to manage Raindrop.io bookmarks from an agent-assisted command line, including checking for existing URLs and applying collection, search, add, update, and remove operations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A Raindrop.io token can enable bookmark automation and may expose account data if stored insecurely.
+
+Mitigation: Store RAINDROP_TOKEN only in a private local env file with restrictive permissions and avoid sharing logs or configs that contain it.
+
+Risk: Update and remove commands can change or delete Raindrop.io account data.
+
+Mitigation: Review target IDs before update or remove operations and test behavior on noncritical bookmarks before broader use.
+
+Risk: The reviewed artifact describes a scripts/raindrop CLI but does not include the script itself, so runtime safeguards could not be verified from package code.
+
+Mitigation: Inspect the installed CLI script and confirm its behavior before relying on it for bulk bookmark workflows.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Raindrop.io bookmark identifiers and requires RAINDROP_TOKEN for authenticated operations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a personal RAINDROP_TOKEN for live Raindrop.io API operations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

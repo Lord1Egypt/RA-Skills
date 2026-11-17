@@ -1,0 +1,73 @@
+{
+ "engine_version": "5.7.0",
+ "length_chars": 7418,
+ "checks_run": [
+  "fullwidth",
+  "numbers",
+  "abbrev",
+  "units",
+  "consistency",
+  "llm_jargon"
+ ],
+ "finding_count": 5,
+ "findings": [
+  {
+   "check": "numbers",
+   "severity": "inconsistent",
+   "count": 5,
+   "examples": [
+    "二次",
+    "一次",
+    "二次",
+    "72周",
+    "96例"
+   ],
+   "advice": "量词数字两种写法并存（汉字「五例」vs 阿拉伯「5例」）。统计与计量数字按 GB/T 15835 建议统一用阿拉伯数字（5 例、3 组）；习用语（「进一步」「三甲」等）可保留汉字。"
+  },
+  {
+   "check": "consistency",
+   "severity": "suggest",
+   "count": 2,
+   "examples": [
+    "发病率×1",
+    "患病率×1"
+   ],
+   "advice": "同概念异写混用（组：发病率）：全文统一为其中一种（建议「发病率」，占比最高；流行病学严格区分 incidence/prevalence——混用视为术语错误而非风格）"
+  },
+  {
+   "check": "consistency",
+   "severity": "suggest",
+   "count": 2,
+   "examples": [
+    "~×1",
+    "约×1"
+   ],
+   "advice": "同概念异写混用（组：about）：全文统一为其中一种（建议「~」，占比最高；英文学术惯用 approximately；~仅限表格）"
+  },
+  {
+   "check": "llm_jargon",
+   "severity": "inconsistent",
+   "count": 13,
+   "examples": [
+    "对齐",
+    "讲透",
+    "闭环"
+   ],
+   "advice": "L1 隐喻滥用词（LLM 中文输出高频特征，命中即改）：对齐、讲透、闭环。策略：隐喻改直陈——保留医学事实，去掉拟人/战争/工厂/旅程类比喻。"
+  },
+  {
+   "check": "llm_jargon",
+   "severity": "suggest",
+   "count": 3,
+   "examples": [
+    "主线",
+    "锚定",
+    "陷阱"
+   ],
+   "advice": "L2 语气词（语境敏感，逐处评审）：底线是别用空泛强调替代证据——「至关重要/毋庸置疑/众所周知」类改为给出具体依据或直接删除；「范式/重塑/生态」类仅在术语本义使用。医学语体推荐句式（白名单）：其机制在于／提示／表明／证实／与…相关／应。"
+  }
+ ],
+ "notice": "本检查为机械体例核对：不评分、无风险带，建议均需结合语境人工确认；与 AI 率检测相互独立。",
+ "short_sample": false,
+ "integrity_notice": "学术诚信：本检查为机械体例核对（格式一致性建议），不评分、不构成任何质量或合规判定；请按所在机构政策规范披露 AI 使用。"
+}

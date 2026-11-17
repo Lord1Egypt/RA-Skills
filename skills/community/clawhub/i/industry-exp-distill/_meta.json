@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76v1erfdwe7gsw5s477f0dm583es5h",
-  "slug": "industry-exp-distill",
-  "version": "1.0.0",
-  "publishedAt": 1781567212611
+  "id": 380170639315813,
+  "name": "industry-exp-distill",
+  "platform": "minimax",
+  "updated_at": 1718515663000,
+  "version": "1.0.0"
 }

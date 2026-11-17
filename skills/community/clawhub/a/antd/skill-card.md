@@ -1,45 +1,57 @@
-## Description: <br>
-Provides Ant Design 5 component guidance so an agent can generate React UI with buttons, forms, tables, modals, layouts, theming, internationalization, and examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI assistants with Ant Design 5 component guidance for building React 18+ user interfaces, including buttons, forms, tables, modals, layouts, theming, internationalization, and examples.
 
-## Publisher: <br>
-[batype](https://clawhub.ai/user/batype) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[batype](https://clawhub.ai/user/batype)
 
-## Use Case: <br>
-Developers and AI-assisted frontend workflows use this skill to produce Ant Design-based React interfaces, including forms, data tables, dialogs, admin layouts, and enterprise application examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: When enabled, the skill may bias relevant UI requests toward Ant Design even when another design system is preferred. <br>
-Mitigation: Use it for projects that intentionally target Ant Design, and review generated UI choices against the project's selected component library. <br>
-Risk: The package declares autoUpdate, so future releases may change the guidance an agent receives. <br>
-Mitigation: Review updates before applying them in controlled environments, or pin the installed version when repeatable behavior is required. <br>
+## Use Case:
 
+Developers and frontend-focused AI assistants use this skill to generate Ant Design-based React UI code, setup commands, component examples, and implementation guidance for application screens and enterprise interfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/batype/antd) <br>
-- [Publisher profile](https://clawhub.ai/user/batype) <br>
-- [Ant Design documentation](https://ant.design) <br>
-- [Ant Design components overview](https://ant.design/components/overview) <br>
-- [Ant Design icons](https://ant.design/components/icon) <br>
-- [Ant Design GitHub repository](https://github.com/ant-design/ant-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with React, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Ant Design-oriented UI guidance and code snippets for React 18+ projects using Ant Design 5.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can be selected for broad React UI requests and may affect generated interface code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated UI code for project requirements, accessibility, security, and current Ant Design compatibility before deployment.
+
+Risk: Auto-update is enabled for the ClawHub release.
+
+Mitigation: Subject future versions to the same review and scan process before use in production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/batype/skills/antd)
+- [Ant Design Official Docs](https://ant.design)
+- [Ant Design Components Overview](https://ant.design/components/overview)
+- [Ant Design Icons](https://ant.design/components/icon)
+- [Ant Design GitHub Repository](https://github.com/ant-design/ant-design)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with React and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces documentation-backed UI implementation guidance and examples; no executable payload is included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact package.json and SKILL.md list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

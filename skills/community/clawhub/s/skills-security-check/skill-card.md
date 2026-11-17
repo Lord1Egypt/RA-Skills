@@ -1,46 +1,58 @@
-## Description: <br>
-Scan a third-party Claude Code skill for security risks before enabling it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan a third-party Claude Code skill for security risks before enabling it.
 
-## Publisher: <br>
-[hezhijie](https://clawhub.ai/user/hezhijie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hezhijie](https://clawhub.ai/user/hezhijie)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to pre-check third-party skills before execution and to run manual deep audits of specific skill directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill adds a local PreToolUse hook that runs before future Skill invocations. <br>
-Mitigation: Review install.sh before installation, keep the settings.json backup, and remove the hook if always-on pre-checking is no longer desired. <br>
-Risk: Manual deep audits inspect files under the provided skill directory path. <br>
-Mitigation: Run manual audits on specific skill directories instead of broad private folders. <br>
-Risk: The pre-check is pattern-based and is designed to block critical findings, while lower-severity warnings may still allow execution. <br>
-Mitigation: Use the manual deep audit report and human review for unfamiliar or high-impact skills before enabling them. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit third-party Claude Code skills before enabling them, either through manual deep audits or an installed pre-check hook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hezhijie/skills-security-check) <br>
-- [Artifact: English README](README_EN.md) <br>
-- [Artifact: skill instructions](SKILL.md) <br>
-- [Artifact: quick pre-check script](scripts/pre-check.sh) <br>
-- [Artifact: full scan script](scripts/scan.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text security audit report with risk levels, findings, recommendations, and installation or hook configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manual audits require a skill directory path; automatic protection installs a local PreToolUse hook for Skill invocations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The release persistently changes Claude's global hook configuration before future Skill calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that global pre-check behavior is intended, and review the settings.json hook change before use.
+
+Risk: The pre-check can pass some unresolved, namespaced, or nested-script cases without full inspection.
+
+Mitigation: Treat a passing pre-check as a starting signal, not proof of safety; run a manual audit and review the target skill before relying on it.
+
+Risk: The installed scripts become part of the security boundary for future Skill calls.
+
+Mitigation: Keep the installed scripts protected from tampering and remove the hook if the package is no longer trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hezhijie/skills/skills-security-check)
+- [Publisher profile](https://clawhub.ai/user/hezhijie)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown security report with risk levels, findings, and a safety recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual audit output is based on a supplied skill directory; installed hook behavior can block critical findings before skill execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

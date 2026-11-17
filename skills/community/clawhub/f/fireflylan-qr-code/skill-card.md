@@ -1,38 +1,52 @@
-## Description: <br>
-生成包含文本、URL 或 WiFi 信息的二维码图片，支持自定义尺寸、颜色和保存路径。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates QR code images containing text, URLs, or WiFi details, with configurable size, color, and save path.
 
-## Publisher: <br>
-[lanxianghua](https://clawhub.ai/user/lanxianghua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lanxianghua](https://clawhub.ai/user/lanxianghua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents use this skill when a user asks to convert text, URLs, or WiFi details into a QR code image and save it to a specified path or the desktop by default.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill automatically installs unpinned Python packages.
+
+Mitigation: Use an isolated or managed Python environment and preinstall reviewed dependencies before enabling the skill.
+
+Risk: The skill can write to a user-selected save path and may overwrite an existing writable file.
+
+Mitigation: Review requested save locations before execution and avoid letting untrusted instructions choose output paths.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users can use this skill to convert text, URLs, or WiFi configuration strings into QR-code image files and save them to a chosen local path. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically install qrcode and Pillow and can write files to user-provided paths. <br>
-Mitigation: Review before installing, prefer pinned dependencies outside the skill runtime, and choose non-sensitive save paths that can be overwritten safely. <br>
+**Output Format:** [Plain text status response plus a PNG image file written to disk]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanxianghua/fireflylan-qr-code) <br>
+**Other Properties Related to Output:** [The output path is user-controllable and may create directories or replace an existing writable file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [Text status message and generated image file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a QR-code PNG file and reports the save path or an error message.] <br>
+1.0.0 (source: release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

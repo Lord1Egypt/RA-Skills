@@ -1,35 +1,61 @@
-## Description: <br>
-Indexbind is a ClawHub agent skill release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent install and use indexbind from Node, browsers, Web Workers, or Cloudflare Workers by choosing the right package, CLI, artifact, and entrypoint.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-ClawHub users can install this agent skill for the workflow documented by its release. The available workspace evidence did not include skill-specific usage documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and engineers use this skill to add or operate indexbind-based local search for documentation or knowledge-base content across Node, browser, Web Worker, and Cloudflare Worker environments.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No additional output constraints were available from the supplied evidence.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: target metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Unpinned npm install and npx examples can expose users to supply-chain changes in the indexbind package.
+
+Mitigation: Prefer a pinned indexbind version or a project-local dependency with a lockfile, and avoid global installs unless they are required.
+
+Risk: Indexing unintended directories can make private or irrelevant content searchable.
+
+Mitigation: Run indexing only on directories intended for search and review index-scoped configuration before publishing artifacts or bundles.
+
+## Reference(s):
+
+- [Indexbind ClawHub Skill Page](https://clawhub.ai/jolestar/skills/indexbind)
+- [Getting Started](https://indexbind.jolestar.workers.dev/guides/getting-started.md)
+- [Packaging Reference](https://indexbind.jolestar.workers.dev/reference/packaging.md)
+- [API Reference](https://indexbind.jolestar.workers.dev/reference/api.md)
+- [CLI Reference](https://indexbind.jolestar.workers.dev/reference/cli.md)
+- [Runtime Model](https://indexbind.jolestar.workers.dev/concepts/runtime-model.md)
+- [Canonical Bundles](https://indexbind.jolestar.workers.dev/concepts/canonical-bundles.md)
+- [Adoption Examples](https://indexbind.jolestar.workers.dev/guides/adoption-examples.md)
+- [Web and Cloudflare Guide](https://indexbind.jolestar.workers.dev/guides/web-and-cloudflare.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

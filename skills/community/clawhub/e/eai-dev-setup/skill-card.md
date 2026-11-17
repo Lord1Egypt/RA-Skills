@@ -1,48 +1,56 @@
-## Description: <br>
-Automates setup of an Ubuntu algorithm development environment with China-optimized network mirrors, guided tool installation, environment configuration, and optional GPU development setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates guided Ubuntu workstation setup for algorithm and deep learning development, including system checks, development tool installation, Docker, Conda, CUDA/cuDNN, shell configuration, and China-optimized network mirrors.
 
-## Publisher: <br>
-[jessy-huang](https://clawhub.ai/user/jessy-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessy-huang](https://clawhub.ai/user/jessy-huang)
 
-## Use Case: <br>
-Developers and engineers use this skill to initialize or reset Ubuntu machines for algorithm and deep learning development. It guides system checks, optional proxy and mirror configuration, package installation, Docker, conda, CUDA/cuDNN, and terminal setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad persistent system changes to apt, Docker, shell, conda, CUDA, and network configuration. <br>
-Mitigation: Install only on a personal Ubuntu machine where these changes are intended, review each step before execution, and back up relevant configuration files first. <br>
-Risk: Global Git and HuggingFace proxy or mirror settings can route private repositories, models, or tokens through third-party services. <br>
-Mitigation: Avoid global proxy settings for private code or credentials, prefer temporary per-session settings when possible, and remove proxy configuration after setup if it is no longer needed. <br>
-Risk: Sudo operations, CUDA driver changes, and Docker group membership can have long-term security or system stability effects. <br>
-Mitigation: Approve sudo commands only after reading them, skip CUDA removal or Docker group changes unless they are intentional, and plan for reboot and rollback before GPU driver installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize or reset Ubuntu algorithm development workstations and install common deep learning, container, GPU, editor, browser, and terminal tooling through step-by-step guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jessy-huang/eai-dev-setup) <br>
-- [Publisher Profile](https://clawhub.ai/user/jessy-huang) <br>
-- [Tools Guide](references/tools_guide.md) <br>
-- [CUDA Guide](references/cuda_guide.md) <br>
-- [Configuration Templates](references/config_templates.md) <br>
-- [CUDA Toolkit Downloads](https://developer.nvidia.com/cuda-downloads) <br>
-- [CUDA Compatibility Documentation](https://docs.nvidia.com/deploy/cuda-compatibility/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed and run step by step with explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Persistent system, package, shell, Docker, CUDA, and global Git or environment changes can affect the workstation beyond a single project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each step before execution, run on a backed-up or disposable workstation when possible, and prefer per-project configuration for proxy and environment settings.
+
+Risk: Installer patterns and externally supplied package, mirror, or environment URLs can introduce untrusted code or packages.
+
+Mitigation: Use official signed repositories, pinned versions, and trusted URLs; avoid HTTP installers, direct curl-to-shell patterns, and untrusted DEB, mirror, or environment JSON inputs.
+
+## Reference(s):
+
+- [Configuration Templates](references/config_templates.md)
+- [CUDA and cuDNN Installation Guide](references/cuda_guide.md)
+- [Ubuntu Development Tools Guide](references/tools_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/jessy-huang/skills/eai-dev-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and script invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent output should prompt for confirmation before sudo, persistent configuration, package installation, or reboot-related actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,14 +1,22 @@
 ---
 
 name: verified-task
-description: Enforce correctness before execution. Verify any task output and only proceed if it passes—override requires explicit operator approval.
+description: Legacy verification-guided task discipline. Helps structure task claims so they can be checked against evidence, receipts, or review criteria. Does not itself emit receipts, verify signatures, perform cryptographic checks, prove task completion, or approve execution.
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Verified Task
 
-Enforce correctness before execution.
+Verified Task is a legacy verification-guided task discipline skill.
 
-Verify any agent output and only proceed if it passes. Override requires explicit operator approval.
+It helps structure task claims so they can be checked against evidence, receipts, or review criteria. It does not itself emit receipts, verify signatures, perform cryptographic checks, or prove task completion.
+
+For actual SAR receipt verification, use SettlementWitness or DefaultVerifier MCP verify_receipt.
+
+Status: legacy / claim-corrected.
+
+Category: verifiability-guided workflow skill.
+
+Boundary: Verified Task helps frame task evidence; it does not certify completion, approve execution, or prove settlement finality.
 
 ---
 
@@ -210,6 +218,10 @@ Agents and operators can:
 * ensure important actions do not proceed without verification
 
 ---
+
+## Claim precision note
+
+This version clarifies that the skill is a verifiability-guided workflow aid. It does not itself perform cryptographic verification, emit Settlement Attestation Receipts, verify receipts, verify signatures, prove task completion, approve execution, or prove settlement finality. For receipt verification, use SettlementWitness or DefaultVerifier MCP verify_receipt.
 
 ## Keywords
 

@@ -183,7 +183,7 @@ In `~/.youmind/config.yaml`:
 
 ```yaml
 youmind:
-  api_key: "sk-ym-xxxxxxxxxxxxxxxxxxxx"   # Required for all YouMind features
+  api_key: "REDACTED-SECRET"   # Required for all YouMind features
   base_url: "https://youmind.com"     # Optional, defaults to this
 ```
 
@@ -201,8 +201,8 @@ youmind:
 
 All requests require an API key via either header:
 
-- `x-api-key: sk-ym-xxxxxxxxxxxxxxxxxxxx` (recommended)
-- `Authorization: Bearer sk-ym-xxxxxxxxxxxxxxxxxxxx`
+- `x-api-key: REDACTED-SECRET` (recommended)
+- `Authorization: Bearer REDACTED-SECRET`
 
 Base URL: `https://youmind.com/openapi/v1/`
 

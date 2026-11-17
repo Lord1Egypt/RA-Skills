@@ -1,45 +1,56 @@
-## Description: <br>
-Download purchased tracks from Beatport using the openclaw headless browser tool (CDP). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download purchased tracks from Beatport using the openclaw headless browser tool (CDP).
 
-## Publisher: <br>
-[esanle](https://clawhub.ai/user/esanle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[esanle](https://clawhub.ai/user/esanle)
 
-## Use Case: <br>
-External users and agent operators use this skill to automate downloading already-purchased Beatport tracks through a Beatport-authenticated browser session. It helps manage Beatport library downloads, download queues, and local file saving through CDP-based browser control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle Beatport credentials, session cookies, access tokens, and browser downloads. <br>
-Mitigation: Use a dedicated browser profile with no unrelated logged-in accounts, and avoid exposing or logging cookies, tokens, or passwords. <br>
-Risk: The skill can perform bulk account actions against a Beatport-authenticated session. <br>
-Mitigation: Confirm the exact tracks, queue state, and download folder before running bulk download actions. <br>
-Risk: Security review marked the release suspicious because credential handling, browser downloads, and account actions have weak scoping. <br>
-Mitigation: Install only after reviewing the skill behavior and run it only in a controlled browser session. <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent through downloading purchased Beatport tracks with an authenticated OpenClaw-controlled browser session, including login, download setup, queue handling, and local file cleanup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/esanle/beatport-dl-with-browser-tool) <br>
-- [Beatport account login](https://account.beatport.com/) <br>
-- [Beatport library](https://www.beatport.com/library) <br>
-- [Beatport library downloads](https://www.beatport.com/library/downloads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser automation guidance and helper commands for a local Beatport-authenticated CDP session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires access to an authenticated Beatport browser session and may expose account cookies or credentials if reused in a shared browser profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated temporary Chrome profile for Beatport, avoid profiles with other logged-in sites, and do not paste cookies into shell history or logs.
+
+Risk: The skill enables local browser downloads and includes cleanup commands that remove files matching download patterns.
+
+Mitigation: Use a dedicated download directory and review cleanup commands before running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/esanle/skills/beatport-dl-with-browser-tool)
+- [Beatport](https://www.beatport.com/)
+- [Beatport account login](https://account.beatport.com/)
+- [Beatport library downloads](https://www.beatport.com/library/downloads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces browser automation guidance and local download handling steps for authenticated Beatport sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

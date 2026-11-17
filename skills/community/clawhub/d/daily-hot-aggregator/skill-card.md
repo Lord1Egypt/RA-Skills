@@ -1,44 +1,57 @@
-## Description: <br>
-Aggregates trending topics from multiple Chinese content platforms, analyzes hot-list data, recommends content ideas, detects alerts, and can push reports to WeCom groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Hot Aggregator collects cross-platform trending topics from Bilibili, Douyin, Weibo, and Toutiao, then helps agents summarize, analyze, alert on, and push daily hot-list reports.
 
-## Publisher: <br>
-[qq853632587](https://clawhub.ai/user/qq853632587) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkt-agents](https://clawhub.ai/user/mkt-agents)
 
-## Use Case: <br>
-External users, developers, and content operators use this skill to collect platform hot lists, summarize trends, generate reports, recommend content topics, and configure alert or WeCom push workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release ships credential-like values, including an enabled WeCom webhook configuration. <br>
-Mitigation: Remove bundled webhook values before use, replace them with private user-managed secrets, and keep webhook keys out of shared artifacts. <br>
-Risk: Automated collection and push workflows can write local report files and send hot-list content outside the user's environment. <br>
-Mitigation: Review the enabled configuration, output paths, and scheduled push settings before installing or running recurring jobs. <br>
-Risk: The security verdict is suspicious due to bundled credential-like values. <br>
-Mitigation: Review the skill before installing and follow the server security guidance before enabling collection or push behavior. <br>
+## Use Case:
 
+External creators, marketers, and operators use this skill to collect daily hot-list data across Chinese content platforms, generate reports and topic recommendations, and send configured hot-topic alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qq853632587/daily-hot-aggregator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with shell commands, plus generated JSON and HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write hot_reports files and send configured WeCom webhook messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.1.0 (source: server release metadata; artifact package.json reports 7.0.0) <br>
+Risk: The release ships credential-like secrets and an enabled external messaging configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation or execution, remove and rotate the bundled Weibo cookie and WeCom webhook key, and replace the push configuration with a disabled-by-default template using user-owned credentials.
+
+Risk: Generated HTML reports can contain platform-sourced content.
+
+Mitigation: Treat generated HTML reports as untrusted content and review them before opening in privileged contexts or sharing externally.
+
+Risk: Installing with a moving package tag can change installer behavior over time.
+
+Mitigation: Pin the ClawHub installer version when deploying this skill in repeatable or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mkt-agents/skills/daily-hot-aggregator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, HTML]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration and reports, and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; generated reports may include platform-sourced content.]
+
+## Skill Version(s):
+
+7.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

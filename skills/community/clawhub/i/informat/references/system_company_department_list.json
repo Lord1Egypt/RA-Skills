@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_department_list",
+    "description": "Get team department list.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+
+      }
+    }
+  }
+}

@@ -1,42 +1,59 @@
-## Description: <br>
-Cognitive memory engine that gives an AI persistent work tracking, proactive risk alerts, and cross-conversation continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive memory engine that gives an AI assistant persistent work tracking, proactive risk alerts, and cross-conversation continuity.
 
-## Publisher: <br>
-[jeff0052](https://clawhub.ai/user/jeff0052) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeff0052](https://clawhub.ai/user/jeff0052)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and configure FPMS as a local memory and work-tracking MCP server for project status, decisions, and risk alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically create and update persistent memory from ordinary conversations, which may store sensitive project details without clear per-entry confirmation. <br>
-Mitigation: Before enabling it, verify where the local SQLite database is stored, how memories can be reviewed and deleted, and whether automatic logging can be disabled or made confirmation-based. <br>
-Risk: The artifact describes GitHub sync, and server security guidance notes that external sync boundaries are unclear. <br>
-Mitigation: Keep sync features disabled until the exact data flows are reviewed, and confirm whether GitHub or Notion sync can send memory data outside the local machine. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add local project memory, task tracking, decision logs, and risk alerts across conversations.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/jeff0052/founderOSclaudecode) <br>
-- [PyPI package](https://pypi.org/project/fpms/) <br>
-- [Full documentation](https://github.com/jeff0052/founderOSclaudecode/blob/main/docs/USAGE-GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and YAML blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to call FPMS MCP tools that create or update local memory records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can broadly persist conversation-derived project, task, and decision data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where automatic project memory is acceptable, and avoid discussing secrets or highly sensitive information while it is active.
+
+Risk: The setup installs an unpinned focalpoint MCP server package.
+
+Mitigation: Verify the focalpoint package source and version before installation, and pin an approved version where operational policy requires reproducible installs.
+
+Risk: Optional GitHub sync may expand the data and permission surface.
+
+Mitigation: Require narrow GitHub permissions if sync is enabled, and review which repositories or issues are allowed to synchronize.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/jeff0052/founderOSclaudecode)
+- [Full documentation](https://github.com/jeff0052/founderOSclaudecode/blob/main/docs/USAGE-GUIDE.md)
+- [PyPI package](https://pypi.org/project/fpms/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist conversation-derived project, task, and decision data through a local MCP memory service.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

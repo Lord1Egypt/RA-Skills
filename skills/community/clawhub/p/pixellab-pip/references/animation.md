@@ -1,0 +1,121 @@
+# Animation
+
+Read this for raw animation, managed character/object animation, interpolation, skeleton animation, outfit transfer, rotation, frame anchors, or animation preview verification.
+
+For an attack, skill, or signature move built from key poses, read `key-pose-animation.md`.
+
+## Route Choice
+
+Honor an explicitly requested engine, preset/template clip, or skeleton/keypoint workflow. Otherwise choose by the requested motion and output constraints:
+
+- For a standard walk/run/idle on a managed character, use a matching available template when its actual motion and fixed count satisfy the request; read `preset-skeleton-template-animation.md` and verify the ID against the character's catalog. A word such as “attack” does not establish a suitable weapon template.
+- For free-form motion, use v3 (`animate_character(mode="v3")`, raw `animate_image`, or REST `animate-with-text-v3`) when its canvas/count limits fit. This matches the documented service default without claiming a universal quality win.
+- Choose PixMiniMax for its longer clips, fitting cost advantage, requested engine, or an approved alternative after a poor result; use managed `mode="pixminimax"` or raw `animate_image_pixminimax` / `POST /animate-pixminimax`. Compare its count/canvas limits below; never change a requested count to fit an engine.
+
+Send the selected mode explicitly. The service auto-detects template when a template ID is supplied, otherwise v3; character creation mode does not select the animation engine. No engine guarantees good motion. Verify the action, contact/strike poses and continuity before expanding directions. The official escalation advice to delete an earlier animation before retrying does not authorize deletion; retain it unless the user approves removal.
+
+For an explicit **Skeleton v3** request on a managed humanoid, default to custom motion without `template_animation_id`, even for a single direction. Retain a named preset when the user requests that clip, and use raw Skeleton v3 for supplied per-frame keypoints. Managed authored `poses` and per-pose `scale` use `frame_count` 3–15 on the humanoid path. MCP `move` also supports the move names documented for dog, cat, horse, bear, and lion templates; these use the connected tool description's body-specific allowlist and controls, not authored poses. Do not invent other quadruped moves. For an incompatible frame count, unsupported body plan, or raw image without keypoints, explain the constraint and establish a supported workflow before spending. Do not silently import an image as a managed character, pick a preset, or switch engines. The surface-specific procedure is in `preset-skeleton-template-animation.md` → Skeleton v3 Custom Motion (Managed).
+
+For incompatible explicit engines/counts, explain the conflict before spending. Use `cost-routing.md` when cost drives selection; engine changes or extra attempts outside an approved plan need approval.
+
+Managed objects are an exception: MCP `animate_object` currently exposes only v3 and Pro; use explicit `mode="v3"` for stored object animations. Do not invent a PixMiniMax object mode. If the user requests PixMiniMax for a managed object, fetch the chosen direction frame with `get_object` and animate it through the raw PixMiniMax route; explain that this returns a separate clip, not a stored object animation.
+
+The v3 idle-loop, atlas, and pixel-budget risks below were characterized against the REST v3 endpoint; PixMiniMax has separate frame, cost, and prompt rules in the next section. Use REST `estimate-skeleton` for a one-pose estimate and legacy `/animate-with-skeleton` only for its exact older schema; use MCP `transfer_outfit` when visible, otherwise REST v2 for outfit transfer, raw frame editing, or rotation (`edit-animation-v2`, `transfer-outfit-v2`, `rotate`). For 8 rotations from an image, distinguish output structure and identity — `create_8_direction_object(reference_image_base64=…)` for objects, `create_character(mode="v3", reference_image_base64=…)` for characters (identity transfer is unreliable on `create_8_direction_object` for humanoid subjects); use REST `generate-8-rotations-v2/v3` for raw rotations rather than a managed asset. v3 reference creation preserves the supplied view; new directions remain generated and must be inspected.
+
+REST `enhance-animation-v3-prompt` accepts `engine="skeleton-v3"` for action prep; MCP `animate_character` has no inline enhancer. Detailed managed custom/preset and raw keypoint contracts live in `preset-skeleton-template-animation.md`.
+
+Classify supplied frame images (first frame vs last frame vs style/edit reference vs managed asset ID) per the Goal Router in `image-input-roles.md`; ask before a credit-spending call when the role would change the endpoint, field, or output.
+
+When a supplied raw sprite's requested motion needs room beyond its canvas, plan transparent padding before pose edits or animation. Pad a copy without scaling or changing source pixels; add room where the motion needs it, and keep start/end anchors on matching canvases without changing their intended relative alignment. Honor fixed requested dimensions; explain a conflict rather than silently expanding them. Recheck the selected routes' size/frame-count limits and cost after padding. Record the source's placement offset for later alignment or requested export, without assuming a stationary footline; `assets/pad_sprite.py` pads and prints that offset (see `local-asset-assembly.md`). Inspect returned frames for clipping; padding does not guarantee containment.
+
+Frame-numbered prose or serialized JSON inside either raw text-animation route's motion field is descriptive text, not a documented per-frame control. Do not promise precise pacing or loop closure from it. For caller-supplied per-frame keypoints, use raw Skeleton v3; read `preset-skeleton-template-animation.md` for its input and body-plan requirements.
+
+## PixMiniMax and raw MiniMax H3
+
+Raw-image PixMiniMax is MCP `animate_image_pixminimax` and REST `POST /animate-pixminimax`; it is beta, and both raw-route docs no longer state a Tier 1 requirement. Its motion-only `description` accompanies a required `first_frame`, optional same-size `last_frame`, `frame_count` 4–40 in multiples of four, optional `seed`, `no_background`, REST `drift_threshold`, `enhance_prompt`, and caption fields `subject_description`, `initial_pose`, `view` (`low top-down`, `high top-down`, or `side`), and `direction`. PixMiniMax defaults `no_background` to true and cuts out an opaque input backdrop; set it to false when animating an opaque scene whose backdrop must remain. `direction` is a facing caption field, independent of enhancement. MCP exposes the caption fields and preferred URL frame inputs, but not REST's `drift_threshold`. The input canvas is capped at 256×256. Poll the background job and expect `frame_count + 1` images, with the input frame intended at index 0.
+
+For an existing managed character, MCP `animate_character` and REST `/animate-character`/`/characters/animations` also accept `mode="pixminimax"`. This is a separate stored-character route: `frame_count` is 4–40 in multiples of four (default 8), while v3 remains 4–16 even (default 8). The optional `subject_description` and `initial_pose` fields apply only to PixMiniMax; see `prompt-limits.md` for their surface-specific length contract. Managed character frame anchors require one direction and matching dimensions; REST uses `custom_start_frame`/`end_frame`, while MCP uses `custom_start_frame_url` or `custom_start_frame_base64` plus the corresponding end-frame field. `keep_first_frame` applies to v3 and PixMiniMax. REST `enhance_prompt` remains v3-only; the current MCP `animate_character` descriptor does not expose it. REST retains managed `mode="pro"`, now labeled legacy (prefer v3 or PixMiniMax); the current MCP mode list does not include it. The managed route is beta; MCP explicitly describes PixMiniMax as available on every tier, and REST states no Tier 1 gate. Handle an actual plan/tool refusal through `job-lifecycle.md`. Check returned usage for the charge. The managed-mode public docs do not identify its provider. REST OpenAPI identifies raw `POST /animate-pixminimax` as powered by MiniMax H3; the public API catalog lists that operation with plugin label “Animate with text (PixMiniMax)” and the same provider attribution. The current MCP guide names `animate_image_pixminimax` without a provider attribution, although a dated live MCP metadata capture also showed an H3 label. For a current route-level H3 requirement, use the REST operation. Version 0.4.123 also lists PixMiniMax in Character Creator, Creator, Aseprite, and Pixelorama; those are human product surfaces, not private transports to reproduce in a request.
+
+For raw REST `POST /animate-pixminimax`, adapt MiniMax H3's official timeline-oriented prompting to the route's smaller wrapper: start the motion on the first frame, name the action phases in order, describe the visible transition toward the result, and state “in place” when locomotion must not translate the subject. Put appearance, initial pose, camera view, and facing in the dedicated raw-route caption fields when they matter; preserve identity, palette, outline, scale, canvas placement, and transparency in positive wording. Keep `description` concise and about motion, not appearance or audio. MiniMax's raw H3 prompt guides also cover audiovisual fields, reference labels, shots, and soundscape/music; those fields are not part of PixelLab's PixMiniMax schema and must not be copied into a PixelLab request.
+
+Useful shape for the motion-only description: `Start moving on the first frame: [phase 1], then [phase 2], then [result]. Keep the subject in place when needed.` Put identity and appearance in `subject_description` or the source image; use the dedicated pose/view/facing fields when they matter. Use `enhance_prompt=true` when a short motion description needs model expansion and the extra ~0.05 generation is approved. Set `direction`, `view`, `subject_description`, and `initial_pose` directly when the image does not communicate those captions reliably; otherwise omit them and let the service infer from the image. For an end-state transition, supply a genuinely distinct `last_frame`; for a loop, matching anchors can over-constrain low-motion clips, so inspect the middle frames and endpoint rather than assuming the loop is clean.
+
+## Idle Loop Risk
+
+Do not assume `animate-with-text-v3` or PixMiniMax with an identical or near-identical `last_frame` is safe for tiny or low-motion idle loops. The endpoint frames can still match while middle frames add detached puffs, arcs, symbols, trails, or other external marks; verify the returned middle frames for each route.
+
+Use `last_frame` when the user needs interpolation between distinct poses, the action has clear internal body motion, or external motion marks are acceptable and will be inspected.
+
+For a strict tween between two distinct frames, use the raw-animation engine selected under Route Choice with matching first/last-frame URL or base64 inputs and the matching `description` (PixMiniMax) / `action` (v3) field. A supplied end frame is guidance, not a guarantee of exact arrival; verify the returned endpoint. Use `interpolation-v2` (Pro; 128×128 cap; no frame-count control) only if the user explicitly asks for it — `animate_image` partially covers it at v3 tier.
+
+For REST v3 color flicker, `drift_threshold` controls how often de-flicker correction runs: `0` corrects every frame; higher values correct only larger color drift. Omit it unless color drift is a stated or observed problem. REST `generate-8-rotations-v3.description` is an optional extra hint when the supplied frame alone does not convey the intended subject or styling.
+
+Treat `last_frame` as high-risk when:
+
+- The first and last frames are identical or nearly identical.
+- The prompt is idle, stand, breathing, subtle bob, weight shift, neutral stance, or another low-motion loop.
+- The user requires no effects, particles, marks, symbols, trails, or artifacts.
+
+For clean idle loops, prefer one candidate first — first-frame-only generation with careful prompt wording — unless the user provides or asks for a last-frame anchor. If they supply a near-identical `last_frame`, explain the artifact risk and ask whether to use it or try first-frame-only. Do not spend retries on only frame-count or tiny last-frame changes unless the user asks for that experiment.
+
+Exception: a 360° rotation turntable sends the one frame as both `first_frame` and `last_frame` with a rigid-object trajectory `action`, so the identical anchor closes the loop instead of freezing.
+
+Managed character animation accepts custom frame anchors in v3 and PixMiniMax modes: MCP `animate_character` `custom_start_frame_url`/`custom_start_frame_base64` plus `end_frame_url`/`end_frame_base64` (prefer URL forms because MCP clients can truncate large inline base64), or REST `/animate-character` / `/characters/animations` `custom_start_frame`/`end_frame`. They require exactly one direction and matching start/end dimensions; the end frame guides interpolation toward a target pose. MCP treats `end_frame` as a target pose, never as a stored or pasted frame: `keep_first_frame=true` stores `frame_count+1`, and `false` stores exactly `frame_count`, with or without an end frame. For a loop, aim the target pose at the pose just before the start and inspect the seam. Do not use these anchors in template mode; follow the live schema for other mode restrictions. Use them only when the user asks for a custom start pose, target pose, or managed-character interpolation; otherwise let the character's stored direction frame be the start.
+
+Managed v3 and PixMiniMax character animation stores the input reference frame as frame 0 by default, so `frame_count=8` stores and reports 9 frames. Set `keep_first_frame=false` when the user needs exactly `frame_count` generated frames; this field is available for v3 and PixMiniMax, not template mode. Otherwise expect and report the extra frame instead of treating it as a frame-count mismatch.
+
+For template animations with identical controls, batch already-approved facings in one `directions` array; after a required preview, batch the remaining approved facings. Inspect each returned direction. When appending directions to an existing managed animation group, pass its existing `animation_group_id` and `animation_name` on either MCP or REST; PixelLab does not inherit the name from the group. Reuse the ID returned by the creation response or current getter, omit it to start a new group, and do not submit a duplicate direction (REST returns 409).
+
+For managed deletion, `delete_animation` maps to the legacy selector route and the ID-specific group/direction routes. Prefer obtaining the group ID and using an ID-specific route: a legacy name selector can be ambiguous (`409`), while a typo can return `200` with zero deletions. Group deletion returns `DeleteAnimationGroupResponse` with required `animation_group_id`, `deleted_directions`, and `label`, plus optional `usage`; direction deletion leaves the other directions in the group. `delete_character` removes one character state at a time, and `DeleteCharacterResponse` adds nullable `group_id` and `next_state_id` so callers can continue through a multi-state group or detect that the group was removed.
+
+When the user does not specify `frame_count`, use the endpoint default or documented animation/template default. For REST `animate-with-text-v3`, current OpenAPI documents `frame_count` as 4-16, must be even, default 8, plus a **total pixel budget: `width × height × frame_count ≤ 524,288`**. Size and frame count are therefore coupled — a 256×256 canvas allows only 8 frames, and 16 frames need `width × height ≤ 32,768` (a square up to ~181×181; 128×128 is a safe common choice). Exceeding the budget is rejected; refresh the schema before choosing a non-default value when exact current behavior matters. MCP `animate_image` caps the first frame at 256×256 and requires the same even `frame_count` (4-16, default 8); its live tool schema states the identical pixel budget. PixMiniMax instead accepts 4-40 generated frames in multiples of four at any input size up to 256×256; do not apply v3's total-pixel-budget rule to it without current evidence.
+
+Raw `animate-with-text-v3` and PixMiniMax return `frame_count`+1 images: image 0 is the supplied `first_frame` intended as frame 0, followed by the `frame_count` generated frames, so `frame_count=16` yields 17 images and PixMiniMax `frame_count=40` yields 41. Count and report accordingly; do not read the extra image as a frame-count mismatch. Verify the echo at the pixel and visible-content levels: v3 may normalize RGB values in transparent pixels, and small inputs can return a materially changed first image despite the documented echo convention. For chaining, image 0 counts as the handoff duplicate when it is pixel-exact, or when its size and alpha match and the only differences are RGB values stored in fully transparent pixels. A change to size, alpha, or any visible pixel is not a duplicate. Keep the raw frame and report any mismatch instead of silently replacing it; drop image 0 from the stitched playback only after this check. The first frame that has actually moved is image 1. `first_frame` and `last_frame` are Base64Image objects (`{"type":"base64","base64":"…","format":"png"}`), not bare base64 strings.
+
+## Async Polling
+
+`animate-with-text-v3`, PixMiniMax, and the other generation endpoints are async: `POST` returns a `background_job_id`; poll `GET /background-jobs/{job_id}` until the job `status` is `completed` (results at `last_response.images`) or `failed`. Two robustness notes from live runs: under heavy load the top-level `status` can briefly lag the ready result, so the completed/`done` status inside `last_response` is the earliest reliable signal — but do not treat the mere first appearance of an image as done, since some endpoints stream partial progress images. Prefer per-call `usage.generations` when present; if only `usage.usd` is exposed, report that as USD and do not convert it into generations without a documented formula. Make the poll loop tolerant of transient timeouts and 5xx: re-poll the same saved `background_job_id`, and never resubmit a paid job on a transient poll error — that double-charges (see `job-lifecycle.md`). Persist each paid response as it arrives so a poller crash cannot orphan a charged job.
+
+For `animate-with-text-v3`, with `enhance_prompt=true`, null `enhanced_prompt` means the enhancer was unavailable: the animation still runs with the original `action`, and `enhance_usage` is null because enhancement was not charged. Null `enhance_usage` also means enhancement was skipped and not charged. Do not treat null enhancement fields as a failed animation.
+
+## Atlas Animation Risk
+
+`animate-with-text-v3` treats a spritesheet as one image rather than isolated cells. Prompt wording cannot reliably enforce cell boundaries or preserve each cell independently; motion may deform cells or cross between them. Animate one selected cell as the default. If the user explicitly approves animating several cells independently, use one job per cell and disclose the multi-job cost first.
+
+If the user insists on animating an atlas in one job, explain that the result is experimental. `animate-with-text-v2` / Pro may honor per-cell variation better but at lower pixel quality; offer it as an optional paid candidate, not a quality upgrade, warn about palette and color drift, and verify every cell.
+
+For a palette-constrained animation, choose the route from `create-image-pro.md` (Exact Palette Control); `color_image` is a reference, not a strict palette constraint.
+
+## Walk Loops From Idle Stances
+
+Seamless walk loops generated from a single idle or neutral stance frame are high-risk:
+
+- First-frame-only attempts can produce motion but did not reliably close the loop; identical first/last idle anchors add loop pressure but become constrained or unpredictable — varying prompt length, negative prompting, or frame count did not fix it — with palette shifts near the interpolation endpoint.
+- Prefer mid-walk start/end anchors over idle anchors — more reliable, but not a proven complete fix.
+- Findings on the legacy skeleton/template routes: they improved loopability and pose consistency but looked stiff, robotic, and prone to hard limb shadows. These results predate Skeleton v3.
+- Common idle-derived failures: idle collapse, mouth/talking motion, exaggerated arms, weak foot contacts, and breathing/wind/smoke artifacts near the head (the model reads the request as idle-like motion).
+
+If this route fails or the agent needs more detail, read `../../docs/pixellab/pixellab-idle-animation-artifact-research.md`.
+
+## Verification
+
+For offline decoded-frame measurements, see [Local Image Inspection](local-asset-assembly.md#local-image-inspection).
+
+Before calling an animation final, verify:
+
+- Frame count and frame order.
+- Canvas dimensions and transparency.
+- Whether `first_frame` and `last_frame` were used.
+- Whether endpoint frames match when loop closure matters.
+- For PixMiniMax, whether `enhanced_prompt` was returned, whether the caption fields matched the source frame, and whether the facing/view/pose read correctly.
+- Middle-frame visual quality, especially detached artifacts, palette shifts, body drift, or unexpected gestures.
+- For atlas inputs, whether cells contain genuinely different animation phases rather than synchronized copies or superficial pixel noise.
+- Preview GIF or spritesheet output faithfully represents the source frames.
+
+Report whether the result technically loops and whether it is visually acceptable. These are different claims.
+
+## Outfit And Edit Animation
+
+MCP `transfer_outfit` and REST `transfer-outfit-v2` return composited frames, not reusable paperdoll layers. The MCP tool uses the announced 10/15/25 generation bands by image size, billed by the whole frame grid, accepts two or more `frame_urls` or `frames_base64`, and expects a same-character `reference_image_url` or `reference_image_base64`; a different character is unreliable. MCP `frame_urls` accepts documented HTTPS/data URLs or `upload:<id>` references. Optional `additional_instructions` can clarify the transfer, such as a behind-facing frame set or a held item to preserve. Optional `width`/`height` pad smaller inputs with transparency without scaling, and `no_background` follows the frames unless explicitly flattened. Preserve frame count, order, size, direction labels, and transparency; if source and target counts, dimensions, or direction sets differ, ask how to align them before spending credits. `edit-animation-v2` remains REST-only.
+
+For paperdoll or layer requests, read `paperdolling.md` before using animation edit or outfit transfer.

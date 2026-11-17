@@ -1,6 +1,6 @@
 # 马基雅维利分身 / Machiavelli Digital Twin
 
-> **v1.7.0** — 让马基雅维利的思维方式和分析能力成为你的日常工具。
+> **v1.8.3** — 让马基雅维利的思维方式和分析能力成为你的日常工具。
 > Turn Machiavelli's way of thinking into your everyday tool.
 
 ---
@@ -11,11 +11,13 @@
 
 ### 核心特性
 
-- **三种工作模式**：对话模式（完整人格）、分析模式（纯分析）、写作模式（专注公文）
+- **四种工作模式**：对话模式（完整人格）、分析模式（纯分析）、写作模式（专注公文）、东方对话（东西方策略碰撞）
 - **17条核心信条**：从实效真理到"我是新的喀戎",每条附原文引用和含义解释
-- **14个历史镜鉴**：切萨雷·博尔贾、卡泰丽娜·斯福尔扎等真实案例（含正反面）
-- **5个可执行框架**：局势研判、公文建议、角色扮演分析、写作表达、谈判准备——每个配有马基雅维利原文示例
+- **17个历史镜鉴**：14 个真实案例 + 3 个反面教材（切萨雷·博尔贾、卡泰丽娜·斯福尔扎等，含正反面）
+- **8个可执行框架**：局势研判、公文建议、角色扮演分析、写作表达、谈判准备等——每个配有马基雅维利原文示例
 - **四重人格刻画**：共和 vs 君主、行动 vs 书斋、冷眼 vs 怀古、政论 vs 喜剧
+- **9个场景化记忆**：第一人称叙事覆盖 1499-1527 关键转折点（弗利谈判、西尼加利亚、吊刑、临终之梦等）
+- **3个深夜独白 + 交叉引用索引**：长夜沉思 + 场景↔信条↔来源↔框架↔案例双向映射
 
 ### 安装
 
@@ -35,17 +37,17 @@ npx clawhub install machiavelli-skill --workdir ~ --dir .workbuddy/skills
 cp -r machiavelli-skill ~/.codebuddy/skills/马基雅维利
 ```
 
-#### OpenClaw / Hermes
+#### OpenClaw / QClaw
 
 ```bash
 # 方法一：通过 OpenClaw ClawHub 安装
 npx clawhub install machiavelli-skill
 
 # 方法二：手动复制到 skills 目录
-cp -r machiavelli-skill ~/.clawdbot/skills/马基雅维利
+cp -r machiavelli-skill ~/.qclaw/skills/马基雅维利
 
-# 方法三：Hermes (兼容目录)
-cp -r machiavelli-skill ~/.hermes/skills/马基雅维利
+# 方法三：OpenClaw (兼容目录)
+cp -r machiavelli-skill ~/.openclaw/skills/马基雅维利
 ```
 
 直接复制到对应平台的 skills 目录即可，系统会自动识别。
@@ -77,11 +79,13 @@ An AI Skill distilled from the complete works of Niccolò Machiavelli (The Princ
 
 ### Features
 
-- **Three Working Modes**: Dialogue (full persona), Analysis (pure reasoning, no stories), Writing (document strategy focus)
+- **Four Working Modes**: Dialogue (full persona), Analysis (pure reasoning, no stories), Writing (document strategy focus), Eastern (East-West strategic dialogue)
 - **17 Core Tenets**: From *verità effettuale* (effectual truth) to "I Am the New Chiron", each with original quotes and explanations
-- **14 Historical Mirrors**: Real cases drawn from Cesare Borgia, Caterina Sforza, Roman history, and Machiavelli's own diplomatic missions (successes and failures)
-- **5 Executable Frameworks**: Situation Analysis, Policy Proposal, Role-Playing Analysis, Writing Expression, Negotiation Prep — each illustrated with Machiavelli's original dispatches
+- **17 Historical Mirrors**: 14 real cases + 3 reverse examples (Cesare Borgia, Caterina Sforza, Roman history, Machiavelli's own missions)
+- **8 Executable Frameworks**: Situation Analysis, Policy Proposal, Role-Playing Analysis, Writing Expression, Negotiation Prep — each illustrated with Machiavelli's original dispatches
 - **Four Layers of Persona**: Republican vs Monarchist, Man of Action vs Forced Scholar, Cynic vs Nostalgic, Political Analyst vs Comedy Playwright
+- **9 Scene Memories**: first-person narratives of key turning points 1499-1527 (Forlì, Sinigaglia, strappado, deathbed dream)
+- **3 Monologues + Cross-Reference Index**: nocturnal reflections + bidirectional scene↔credo↔source↔framework↔case mapping
 
 ### Installation
 
@@ -101,17 +105,17 @@ npx clawhub install machiavelli-skill --workdir ~ --dir .workbuddy/skills
 cp -r machiavelli-skill ~/.codebuddy/skills/马基雅维利
 ```
 
-#### OpenClaw / Hermes
+#### OpenClaw / QClaw
 
 ```bash
 # Option 1: install via ClawHub
 npx clawhub install machiavelli-skill
 
 # Option 2: manual copy to skills directory
-cp -r machiavelli-skill ~/.clawdbot/skills/马基雅维利
+cp -r machiavelli-skill ~/.qclaw/skills/马基雅维利
 
-# Option 3: Hermes (compatible directory)
-cp -r machiavelli-skill ~/.hermes/skills/马基雅维利
+# Option 3: OpenClaw (compatible directory)
+cp -r machiavelli-skill ~/.openclaw/skills/马基雅维利
 ```
 
 Simply copy the folder into your platform's skills directory. The system will auto-detect it.
@@ -146,6 +150,14 @@ machiavelli-skill/
 ├── CHANGELOG.md                     # Full version history
 ├── LICENSE                          # MIT
 ├── test-prompts.json                # 28 trigger-condition test cases (v1.6.3, merged)
+├── cross-reference-index.md         # 交叉引用索引：场景↔信条↔来源↔框架↔案例双向映射
+├── cases/                           # 14 historical cases + 3 reverse examples
+│   ├── 01-cesare-borgia.md                  # 切萨雷·博尔贾：果断行动
+│   ├── ... (14 case files)
+│   ├── _blind-spots.md                     # 盲点自省
+│   └── reverse/                             # 3 个反面教材
+│       ├── reverse-01-prato-rout.md        # 普拉托溃败
+│       └── ... (3 reverse files)
 ├── frameworks/                      # 8 conceptual framework cards
 │   ├── 01-verita-effettuale.md             # Effectual Truth
 │   ├── 02-virtu-vs-fortuna.md              # Virtù vs Fortuna
@@ -178,9 +190,24 @@ machiavelli-skill/
 │   └── eastern/                            # 东方典籍蒸馏
 │       └── guiguzi.md                      # 鬼谷子
 ├── readings/                        # Machiavelli's reading journals
-│   └── on-guiguzi.md                       # 读《鬼谷子》札记
+│   ├── on-guiguzi.md                       # 读《鬼谷子》札记
+│   └── art-of-war-notes.md                 # 兵法阅读笔记
 ├── personality/
-│   └── machiavelli-bio-distilled.md        # Biography-based persona distillation
+│   ├── machiavelli-bio-distilled.md        # Biography-based persona distillation
+│   ├── defects/                            # 6 personality defects
+│   ├── emotions/                           # 8 emotion spectra
+│   └── voice/                              # 5 voice samples
+├── scenes/                          # 9 first-person scene memories (1499-1527)
+│   ├── forli-1499.md                       # 弗利谈判
+│   ├── sinigaglia-1502.md                  # 西尼加利亚：美丽的骗局
+│   ├── torture-1513.md                     # 牢房吊刑
+│   ├── study-1513.md                       # 书房换装
+│   ├── deathbed-1527.md                    # 临终之梦
+│   └── ... (9 scene files)
+├── monologues/                      # 3 first-person monologues
+│   ├── 3am-loyalty.md                      # 凌晨的忠诚与忤合
+│   ├── 4am-unsent-letter.md                # 凌晨四点被遗忘的急件
+│   └── rejected-1527.md                    # 被共和国拒绝那一天
 ├── scripts/                         # Build & validation pipeline
 │   ├── build-publish.js                    # Generate publish/SKILL.md from root
 │   ├── build-frameworks.js                 # Generate publish/frameworks/

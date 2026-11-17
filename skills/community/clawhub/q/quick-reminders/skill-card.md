@@ -1,40 +1,52 @@
-## Description: <br>
-Zero-LLM one-shot reminders (<48h) via nohup sleep + openclaw message send, operated via {baseDir}/scripts/nohup-reminder.sh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick Reminders schedules one-shot reminders under 48 hours and delivers the prewritten message through OpenClaw when the timer fires.
 
-## Publisher: <br>
-[lstpsche](https://clawhub.ai/user/lstpsche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lstpsche](https://clawhub.ai/user/lstpsche)
 
-## Use Case: <br>
-External users and personal-assistant agents use this skill to create, list, and cancel short-horizon reminders that are delivered through a configured OpenClaw messaging channel. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reminder text, timing metadata, and delivery targets are stored locally and sent through the configured OpenClaw messaging account. <br>
-Mitigation: Avoid sensitive reminder contents, verify the channel and target before creating reminders, and use list or remove commands to review or cancel pending reminders. <br>
-Risk: Short-horizon background reminders may not survive machine restarts or gateway downtime. <br>
-Mitigation: Use calendar reminders or a durable scheduler for reminders two or more days away or when delivery reliability is critical. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quick Reminders ClawHub listing](https://clawhub.ai/lstpsche/quick-reminders) <br>
-- [Artifact README](artifact/README.md) <br>
+## Use Case:
 
+External users and personal-assistant agents use this skill to schedule, list, and cancel short-horizon reminders delivered to a configured messaging channel.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local reminder state and schedules delivery through the user's configured OpenClaw messaging account.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Delayed background delivery jobs may send reminder text later through a configured messaging target.
+
+Mitigation: Use the skill only for non-sensitive reminders and verify the saved delivery target before relying on delivery.
+
+Risk: Stored reminder text and runtime files can expose local reminder contents if file handling is weak.
+
+Mitigation: Prefer a private 0700 runtime directory, mktemp-created message files, and 0600 permissions for reminders.json.
+
+## Reference(s):
+
+- [Quick Reminders on ClawHub](https://clawhub.ai/lstpsche/skills/quick-reminders)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with inline shell commands and short confirmation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local reminder state and delayed background delivery jobs; pending reminders do not survive machine reboot.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,63 @@
-## Description: <br>
-Investment portfolio management assistant that can query and update holdings, cash, diary entries, equity curves, and import holdings from screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment Tracker App helps an agent query and update portfolio holdings, cash balances, diary entries, equity curve data, benchmark comparisons, and screenshot-based holding imports through a local backend.
 
-## Publisher: <br>
-[20czy](https://clawhub.ai/user/20czy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[20czy](https://clawhub.ai/user/20czy)
 
-## Use Case: <br>
-External users and personal investors use this skill to manage a local investment tracker through API calls, including holdings review, cash and diary updates, equity-curve tracking, benchmark comparison, and screenshot-assisted portfolio import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Investment Tracker API quick reference](references/api-docs.md) <br>
-- [ClawHub skill page](https://clawhub.ai/20czy/investment-tracker) <br>
+External users and agent operators use this skill to manage a local personal investment tracker: reviewing holdings and cash, recording diary and equity curve updates, comparing performance with HS300 data, and importing brokerage screenshots after confirmation.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with curl commands and structured summaries of API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, a local service at http://localhost:8000, and DASHSCOPE_API_KEY for screenshot analysis. Review every proposed write, rollback, or deletion before execution; protect API keys and redact account identifiers from screenshots.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Sensitive portfolio data and brokerage screenshots may be handled by the local backend and configured AI vision provider.
+
+Mitigation: Use only trusted AI provider settings, redact screenshots when possible, and avoid uploading unnecessary account identifiers.
+
+Risk: The backend exposes financial data APIs on port 8000 when running.
+
+Mitigation: Bind the backend to 127.0.0.1 or protect it with authentication and firewall controls; do not expose it directly to a network.
+
+Risk: Write, rollback, delete, and reset operations can alter or remove investment records.
+
+Mitigation: Require explicit user confirmation for write operations and keep independent backups of the local SQLite database.
+
+Risk: The skill depends on an external backend that is not included in the artifact.
+
+Mitigation: Install only a pinned, reviewed backend version from a trusted source before using the skill with real portfolio data.
+
+## Reference(s):
+
+- [Investment Tracker API Quick Reference](references/api-docs.md)
+- [ClawHub Skill Page](https://clawhub.ai/20czy/skills/investment-tracker)
+- [Publisher Profile](https://clawhub.ai/user/20czy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and structured API-response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, a running local backend, and DASHSCOPE_API_KEY for screenshot analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

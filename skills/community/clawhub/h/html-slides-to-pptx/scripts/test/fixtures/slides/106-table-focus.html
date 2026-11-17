@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>样张 · 表格主角</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<!-- 原型 19:表格主角(表头深色、行线细分、数字右对齐)
+     2026-08-06 第四轮 P5 重排:原版表格止于 y≈620、读表要点在 y850,中间空 250px(墨迹行 52%)。
+     现加大行高与字号(22→24px)把表撑到 y≈780,读表要点改为浅底色块承载 —— 断层消除。 -->
+<div class="slide-container" style="background:var(--off-white);">
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">10 / 12</div>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:56px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      三套机制的成本都很低:最贵的不是钱,是坚持
+    </div>
+  </div>
+
+  <div data-object="true" data-object-type="table" style="position:absolute;left:100px;top:320px;width:1720px;">
+    <table style="width:100%;border-collapse:collapse;font-size:24px;">
+      <tr style="background:var(--deep-navy);color:#FFF;">
+        <th style="padding:26px 24px;text-align:left;font-weight:700;">机制</th>
+        <th style="padding:26px 24px;text-align:left;font-weight:700;">一次性成本</th>
+        <th style="padding:26px 24px;text-align:left;font-weight:700;">持续成本</th>
+        <th style="padding:26px 24px;text-align:right;font-weight:700;">年成本估算</th>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:30px 24px;line-height:1.45;">写入带语境</td>
+        <td style="padding:30px 24px;line-height:1.45;">模板改造 2 天</td>
+        <td style="padding:30px 24px;line-height:1.45;">每篇多写 40 字</td>
+        <td class="num" style="padding:30px 24px;text-align:right;line-height:1.45;">≈ 0 元</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);background:var(--card-bg);">
+        <td style="padding:30px 24px;line-height:1.45;">流转有 owner</td>
+        <td style="padding:30px 24px;line-height:1.45;">认领流程配置 5 天</td>
+        <td style="padding:30px 24px;line-height:1.45;">owner 每月 11 分钟</td>
+        <td class="num" style="padding:30px 24px;text-align:right;line-height:1.45;">≈ 0 元</td>
+      </tr>
+      <tr style="background:var(--card-bg);">
+        <td style="padding:30px 24px;line-height:1.45;">检索见时效</td>
+        <td style="padding:30px 24px;line-height:1.45;">检索页改版 10 天</td>
+        <td style="padding:30px 24px;line-height:1.45;">降权规则季度 review</td>
+        <td class="num" style="padding:30px 24px;text-align:right;line-height:1.45;">开发 2 人月</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 读表要点:浅底色块承载(结构色面),左侧红色竖条做锚点 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:800px;width:1720px;height:120px;background:#EEF2F7;z-index:1;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:800px;width:8px;height:120px;background:var(--lenovo-red);z-index:2;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:828px;width:1640px;z-index:10;">
+    <div style="font-size:24px;line-height:1.6;color:var(--text-primary);">
+      <span style="font-weight:700;color:var(--charcoal);">读表要点:</span>两套机制零预算,最贵的一套是一次性开发投入;真正的成本是 owner 制度的长期坚持——这是推广期要盯的指标。
+    </div>
+  </div>
+</div>
+
+<template data-slide-notes>【核心逻辑】把"要不要投入"的疑问前置拆掉:成本表比口号有用。</template>
+</body>
+</html>

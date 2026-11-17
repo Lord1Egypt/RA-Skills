@@ -1,46 +1,64 @@
-## Description: <br>
-Automated lead generation pipeline that finds local businesses with weak/no websites, AI-generates custom demo sites, deploys to Vercel, and runs a 5-email cold outreach drip sequence via AgentMail. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated lead generation pipeline that finds local businesses with weak/no websites, AI-generates custom demo sites, deploys to Vercel, and runs a 5-email cold outreach drip sequence via AgentMail.
 
-## Publisher: <br>
-[RazzleDazzleI](https://clawhub.ai/user/RazzleDazzleI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[razzledazzlei](https://clawhub.ai/user/razzledazzlei)
 
-## Use Case: <br>
-Sales operators, agencies, and developers use this skill to discover local business leads, generate custom demo websites, deploy them, and coordinate cold email follow-up after configuration and approval checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run continuously, deploy public demo websites, and send cold outreach from user-controlled accounts. <br>
-Mitigation: Run dry-runs first, keep manual approval checkpoints before sends and deployments, and monitor rate limits and run logs. <br>
-Risk: The workflow requires API keys and a Google service-account key with access to lead data. <br>
-Mitigation: Use dedicated least-privilege accounts, store credentials securely, and rotate keys if they are exposed or no longer needed. <br>
-Risk: Cold outreach and lead processing can create email, privacy, and consent obligations. <br>
-Mitigation: Confirm the campaign complies with applicable email and privacy rules before enabling automated sending. <br>
+## Use Case:
 
+Developers, sales operators, and automation builders use this skill to set up a local-business lead generation workflow that discovers prospects, queues them for approval, creates demo websites, deploys them, and sends outreach.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/RazzleDazzleI/skill-package) <br>
-- [Project homepage declared by artifact](https://github.com/RazzleDazzleI/lead-gen-pipeline) <br>
-- [Environment Variables Reference](references/env-example.md) <br>
-- [Google Sheet Setup](references/google-sheet-setup.md) <br>
-- [5-Email Drip Sequence](references/drip-sequence.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands plus generated JSON, HTML, email text, screenshots, and status files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and external API credentials; per-lead runs may deploy public websites and send outreach email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill asks users to run mutable external code while handling API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed source version in an isolated environment, then configure least-privilege API keys only after review.
+
+Risk: Google service-account credentials and lead data may expose business or contact information if mishandled.
+
+Mitigation: Protect service-account keys, restrict sheet access, and document how to delete lead records and generated-site data.
+
+Risk: Automated public deployments can publish inaccurate or unwanted demo sites.
+
+Mitigation: Require manual approval before public deployment and keep daily deployment limits enabled.
+
+Risk: Scheduled cold email automation can send unwanted or excessive outreach.
+
+Mitigation: Require approval before each email batch, use dry runs first, set strict sending limits, and document how to disable cron or systemd jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/razzledazzlei/skills/skill-package)
+- [Google Sheet Setup](references/google-sheet-setup.md)
+- [Environment Variables Reference](references/env-example.md)
+- [5-Email Drip Sequence](references/drip-sequence.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration examples, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operating guidance for a pipeline that may create JSON run artifacts, HTML demo sites, screenshots, QA reports, deployment metadata, and outreach email content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

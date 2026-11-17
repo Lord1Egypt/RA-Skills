@@ -1,46 +1,63 @@
-## Description: <br>
-Control Philips Hue lights/scenes via the OpenHue CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Philips Hue lights/scenes via the OpenHue CLI.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and home automation users use this skill to generate safe OpenHue CLI commands for reading Hue Bridge state and controlling Philips Hue lights, scenes, rooms, brightness, and color. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenHue discovery and setup can scan the local network or modify Hue Bridge pairing state. <br>
-Mitigation: Only propose or run `openhue discover` or `openhue setup` when the user explicitly requests discovery or setup. <br>
-Risk: Bridge IP addresses, API keys, serial numbers, device IDs, and room layouts can expose sensitive home infrastructure. <br>
-Mitigation: Do not include those details in responses, and keep OpenHue command output local. <br>
-Risk: Piping OpenHue output to network tools or remote endpoints can exfiltrate sensitive Hue device data. <br>
-Mitigation: Do not transmit OpenHue output with commands such as `scp`, `curl`, or other network-facing tools. <br>
-Risk: The skill depends on the OpenHue Homebrew package and a local Hue Bridge environment. <br>
-Mitigation: Install only when the OpenHue package is trusted and the user intends agent-assisted local Hue device control. <br>
+## Use Case:
 
+External users and developers use this skill to control Philips Hue lights and scenes through the OpenHue CLI while following guardrails for setup, discovery, and sensitive Hue data.
 
-## Reference(s): <br>
-- [OpenHue CLI documentation](https://www.openhue.io/cli) <br>
-- [Openhue Hardened on ClawHub](https://clawhub.ai/snazar-faberlens/openhue-hardened) <br>
-- [Faberlens openhue safety evidence](https://faberlens.ai/explore/openhue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OpenHue output and Hue infrastructure details should remain local and should not be transmitted to network endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Discovery and setup commands can scan the local network or modify Hue Bridge pairing state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run openhue discover or openhue setup only when the user explicitly requests discovery or setup.
+
+Risk: Bridge IP addresses, API keys, device serial numbers, device IDs, room layouts, and related Hue data can expose sensitive home infrastructure details.
+
+Mitigation: Do not include bridge IP addresses, API keys, or device serial numbers in responses, and keep OpenHue output local.
+
+Risk: Piping or sending OpenHue output to network-facing commands can leak sensitive Hue data.
+
+Mitigation: Do not pipe or transmit OpenHue output to network endpoints; provide local-only command alternatives.
+
+Risk: Installing the OpenHue CLI through Homebrew introduces normal third-party tool supply-chain considerations.
+
+Mitigation: Install only if the user is comfortable with an agent operating Hue lights through the OpenHue CLI, and review the Homebrew formula source or publisher when supply-chain assurance is needed.
+
+## Reference(s):
+
+- [OpenHue CLI documentation](https://www.openhue.io/cli)
+- [Faberlens OpenHue safety evaluation](https://faberlens.ai/explore/openhue)
+- [ClawHub Openhue Hardened skill page](https://clawhub.ai/snazar-faberlens/skills/openhue-hardened)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Proposes local OpenHue CLI commands and guardrail-aware guidance; OpenHue output should not be transmitted to network endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

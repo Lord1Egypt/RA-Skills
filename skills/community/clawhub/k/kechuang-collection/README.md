@@ -1,33 +1,19 @@
-# 🔬 kechuang-collection
+# kechuang-collection
 
-**科创线索采集 Skill for Claude Code**
+从固定的政府网站白名单检索科创公告，按 KPI 分类并输出可人工复核的线索摘要。
 
-7×24自动监控全网科创公开信息，基于公司KPI智能筛选有效线索，替代人工筛取的低效工作。
+## 使用
 
-## 安装
+将此目录作为技能安装后，可使用：
 
-```bash
-# 通过 npm 安装
-npm install -g kechuang-collection
+```text
+/kechuang-collection scan 高新技术企业 认定 --days=30
+/kechuang-collection report
+/kechuang-collection list-sources
+/kechuang-collection scan 科技奖 --mock
 ```
 
-然后在 Claude Code 中使用 `/kechuang-collection` 命令。
-
-## 使用方式
-
-| 命令 | 功能 |
-|------|------|
-| `/kechuang-collection scan <关键词>` | 实时扫描科创线索 |
-| `/kechuang-collection monitor` | 启动定时监控 |
-| `/kechuang-collection report` | 生成汇总报告 |
-| `/kechuang-collection list-sources` | 查看监控渠道 |
-| `/kechuang-collection add-source <url>` | 添加监控源 |
-
-## 采集范围
-
-- 科技厅、工信厅、发改委、高新区等政府平台
-- 科技项目申报、奖项评选、补贴公告、科研课题立项
-- 行业科创动态、重点企业合作、技术攻关项目
+此版本不接受自定义来源，不启动后台循环，也不默认写入本地文件。联网模式会把检索词发送给搜索服务；不要把未公开项目名、个人信息或秘密放入查询。
 
 ## License
 

@@ -1,0 +1,75 @@
+{
+  "contract": "TIME_WEEKLY",
+  "source": "<原刊.pdf 绝对路径，占位；运行时由 build.example.py 的 SRC 决定>",
+  "canvas": [567.03, 756.0],
+  "_note": "字段与 scripts/build_slot_demo.py 真实结构一致：text/chart 用 spans[]（Span 八字段），image 用 bbox[]；align/max_width/uniform_font/extra_width 为 ExactEditor.apply_text_slot 的可选控制字段，design 为固定设计参数快照（注入时只读不改）。本文件 spans 的 bbox/text 均为【占位示例数值】，正式使用必须用 build_page_models(doc) 的实测 span 替换，并用 collision_report 预检，否则会误删非槽位文字。",
+  "slots": [
+    {
+      "id": "P08.quote",
+      "type": "text",
+      "page": 8,
+      "archetype": "FEATURE / pull-quote",
+      "_pick_hint": "选 size>20 且 color=#ED1C24 的 span，按 y0 升序；槽位从 y0>150 起选，避开 P08 首字下沉大 W（bbox 30,90.4-86.7,147.7）。",
+      "spans": [
+        {"x0": 178.0, "y0": 160.0, "x1": 388.0, "y1": 192.0, "font": "HaffnerTIMEDisplay-Black", "size": 26.9, "color": "#ED1C24", "text": "‘A layout is a "},
+        {"x0": 178.0, "y0": 192.0, "x1": 388.0, "y1": 224.0, "font": "HaffnerTIMEDisplay-Black", "size": 26.9, "color": "#ED1C24", "text": "promise readers "},
+        {"x0": 178.0, "y0": 224.0, "x1": 388.0, "y1": 256.0, "font": "HaffnerTIMEDisplay-Black", "size": 26.9, "color": "#ED1C24", "text": "keep on every "},
+        {"x0": 178.0, "y0": 256.0, "x1": 388.0, "y1": 288.0, "font": "HaffnerTIMEDisplay-Black", "size": 26.9, "color": "#ED1C24", "text": "page, while grids "},
+        {"x0": 178.0, "y0": 288.0, "x1": 388.0, "y1": 320.0, "font": "HaffnerTIMEDisplay-Black", "size": 26.9, "color": "#ED1C24", "text": "quietly hold.’"}
+      ],
+      "original": ["‘A layout is a ", "promise readers ", "keep on every ", "page, while grids ", "quietly hold.’"],
+      "align": "center",
+      "max_width": 210.0,
+      "uniform_font": true,
+      "design": {"font_family": "HaffnerTIMEDisplay-Black", "size": 26.9, "color": "#ED1C24", "align": "center", "lines": 5}
+    },
+    {
+      "id": "P08.body",
+      "type": "text",
+      "page": 8,
+      "archetype": "FEATURE / body column",
+      "_pick_hint": "选 9<size<11 且 x0<300 且 150<y0<295 的正文 span，dedup 后按 y0 升序取前 12 行（本示例精简为 4 行）。",
+      "spans": [
+        {"x0": 30.0, "y0": 340.0, "x1": 280.0, "y1": 352.0, "font": "HaffnerTIME-Regular", "size": 10.0, "color": "#231F20", "text": "The architecture of a weekly is built long before any story arrives,"},
+        {"x0": 30.0, "y0": 354.0, "x1": 280.0, "y1": 366.0, "font": "HaffnerTIME-Regular", "size": 10.0, "color": "#231F20", "text": "and its discipline shows up in the parts nobody is asked to notice."},
+        {"x0": 30.0, "y0": 368.0, "x1": 280.0, "y1": 380.0, "font": "HaffnerTIME-Regular", "size": 10.0, "color": "#231F20", "text": "Margins stay where the designer put them, columns keep their measure,"},
+        {"x0": 30.0, "y0": 382.0, "x1": 280.0, "y1": 394.0, "font": "HaffnerTIME-Regular", "size": 10.0, "color": "#231F20", "text": "and the folio returns to the same corner on every single page."}
+      ],
+      "original": ["The architecture of a weekly is built long before any story arrives,", "and its discipline shows up in the parts nobody is asked to notice.", "Margins stay where the designer put them, columns keep their measure,", "and the folio returns to the same corner on every single page."],
+      "align": "left",
+      "max_width": 250.0,
+      "uniform_font": true,
+      "extra_width": 0.0,
+      "design": {"font_family": "HaffnerTIME-Regular", "size": 10.0, "color": "#231F20", "align": "justify", "lines": 4}
+    },
+    {
+      "id": "P09.photo",
+      "type": "image",
+      "page": 9,
+      "archetype": "FEATURE / lead photo",
+      "bbox": [25.0, 25.0, 542.0, 400.0],
+      "original": "原刊 P09 顶部主图（bbox 必须取 build_page_models 的 images[0].bbox 实测值）",
+      "_note": "新图用同 bbox 覆盖，keep_proportion=False；素材比例不同时先在素材侧按 bbox 比例裁好，不改 bbox。"
+    },
+    {
+      "id": "P12.rankings",
+      "type": "chart",
+      "page": 12,
+      "archetype": "INFOGRAPHIC / ranked table",
+      "_pick_hint": "选 325<x0<465 且 195<y0<365 的排行榜数据文字 span，dedup 后按 (y0,x0) 排序；仅换数据文字，表格色带/行框/序号块等矢量图形全部保留。",
+      "spans": [
+        {"x0": 330.0, "y0": 200.0, "x1": 388.0, "y1": 210.0, "font": "ITCFranklinGothicStd-Boo", "size": 7.8, "color": "#000000", "text": "Novartis"},
+        {"x0": 392.0, "y0": 200.0, "x1": 420.0, "y1": 210.0, "font": "ITCFranklinGothicStd-Boo", "size": 7.8, "color": "#000000", "text": "U.S."},
+        {"x0": 424.0, "y0": 200.0, "x1": 452.0, "y1": 210.0, "font": "ITCFranklinGothicStd-Boo", "size": 7.8, "color": "#000000", "text": "97.51"},
+        {"x0": 330.0, "y0": 226.0, "x1": 388.0, "y1": 236.0, "font": "ITCFranklinGothicStd-Boo", "size": 7.8, "color": "#000000", "text": "Siemens"},
+        {"x0": 392.0, "y0": 226.0, "x1": 420.0, "y1": 236.0, "font": "ITCFranklinGothicStd-Boo", "size": 7.8, "color": "#000000", "text": "U.K."},
+        {"x0": 424.0, "y0": 226.0, "x1": 452.0, "y1": 236.0, "font": "ITCFranklinGothicStd-Boo", "size": 7.8, "color": "#000000", "text": "95.20"}
+      ],
+      "original": ["Novartis", "U.S.", "97.51", "Siemens", "U.K.", "95.20"],
+      "align": "left",
+      "max_width": 58.0,
+      "uniform_font": true,
+      "design": {"font_family": "ITCFranklinGothicStd", "size": 7.8, "color": "#000000", "note": "仅数据文字替换，表格色带/行框/序号块等矢量图形全部保留"}
+    }
+  ]
+}

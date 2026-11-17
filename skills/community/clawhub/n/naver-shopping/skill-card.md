@@ -1,39 +1,53 @@
-## Description: <br>
-Search for products on Naver Shopping. Use when the user wants to find product prices, links, or compare items in the Korean market. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for products on Naver Shopping. Use when the user wants to find product prices, links, or compare items in the Korean market.
 
-## Publisher: <br>
-[dryoo](https://clawhub.ai/user/dryoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dryoo](https://clawhub.ai/user/dryoo)
 
-## Use Case: <br>
-External users and shopping agents use this skill to search Naver Shopping for Korean-market products, prices, and product links, then compare results by relevance, date, or price. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Naver's API and may reveal product interests or shopping intent. <br>
-Mitigation: Use only queries appropriate to share with Naver and avoid including sensitive personal or confidential information. <br>
-Risk: The skill requires Naver Search API credentials in environment variables. <br>
-Mitigation: Keep credentials out of logs and version control, use the narrowest available API scope, and rotate credentials if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Naver Shopping Search API endpoint](https://openapi.naver.com/v1/search/shop.json) <br>
+## Use Case:
 
+External users, shopping researchers, and agents use this skill to query Naver Shopping for product listings, prices, links, and Korean-market comparisons through the Naver Search API.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON] <br>
-**Output Format:** [JSON search results or Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NAVER_Client_ID and NAVER_Client_Secret environment variables; result count and sort order are configurable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Naver Search API credentials are required in the agent environment.
+
+Mitigation: Install only where providing NAVER_Client_ID and NAVER_Client_Secret is acceptable, and keep credentials in environment configuration rather than prompts or shared output.
+
+Risk: The documented command path is user-specific and may not match the installed skill location.
+
+Mitigation: Adjust commands to the installed skill path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dryoo/skills/naver-shopping)
+- [Naver Shopping Search API endpoint](https://openapi.naver.com/v1/search/shop.json)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON search results printed to stdout, with concise command and environment-variable guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NAVER_Client_ID and NAVER_Client_Secret environment variables; display and sort options control result count and ordering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

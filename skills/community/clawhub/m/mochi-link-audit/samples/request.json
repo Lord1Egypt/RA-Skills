@@ -1,0 +1,5 @@
+{
+  "action": "crawl",
+  "url": "https://example.com/",
+  "maxPages": 1
+}

@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically records and saves user-assistant text conversations as daily Markdown memory files and OpenClaw memory entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically records user and assistant text conversations to daily Markdown files and OpenClaw memory storage.
 
-## Publisher: <br>
-[tao-articism](https://clawhub.ai/user/tao-articism) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tao-articism](https://clawhub.ai/user/tao-articism)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to persist text conversations automatically for later recall. It listens to inbound and outbound text messages, appends timestamped entries to daily Markdown files, and stores text memory records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically saves every text conversation to disk and memory with limited user controls. <br>
-Mitigation: Install only when this behavior is explicitly desired, and add opt-in, redaction, retention, and deletion controls before using it with sensitive conversations. <br>
-Risk: Conversation content may include passwords, tokens, personal data, or confidential business information. <br>
-Mitigation: Avoid using the skill around sensitive content unless storage is controlled and sensitive text is redacted before persistence. <br>
-Risk: The artifact writes Markdown memory files to a fixed local path, which may not match every deployment environment. <br>
-Mitigation: Review and configure the storage location before deployment, and restrict filesystem permissions to the intended memory directory. <br>
+## Use Case:
 
+OpenClaw users can use this skill to keep a persistent daily Markdown and memory-store record of user-assistant conversations. It is intended for users who explicitly want conversation text retained long term for later recall or search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tao-articism/memory-auto-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/tao-articism) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Daily Markdown files and OpenClaw memory-store text entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends timestamped conversation entries and stores sender/date metadata for later recall.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package.json lists 2.0.0) <br>
+Risk: Automatic long-term retention of all user and assistant text can capture sensitive, regulated, or credential-like content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only in environments where persistent conversation recording is intentional, and avoid sharing passwords, tokens, private documents, or regulated data while it is active.
+
+Risk: Conversation records are written to both local Markdown files and OpenClaw memory storage with limited user-facing controls described in the evidence.
+
+Mitigation: Before deployment, verify the storage locations, retention expectations, access permissions, and deletion process for both Markdown files and OpenClaw memory records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tao-articism/skills/memory-auto-sync)
+- [Publisher profile](https://clawhub.ai/user/tao-articism)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown memory entries and OpenClaw memory records, with explanatory Markdown guidance for users.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records text conversations persistently and automatically when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact package.json declares 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

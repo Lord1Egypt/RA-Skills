@@ -1,6 +1,6 @@
 {
   "id": "fec-e2e-testing",
-  "name": "E2E 测试规范",
+  "name": "E2E Test Specification",
   "category": "testing",
   "tags": [
     "playwright",
@@ -10,8 +10,8 @@
     "ci",
     "pom"
   ],
-  "summary": "Frontend Craft skill for E2E 测试规范.",
-  "version": "2.7.0",
+  "summary": "Create and maintain real-browser journeys, selectors, traces, and CI artifacts with Playwright or Cypress.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -34,7 +34,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when creating, maintaining, debugging, or reviewing real-browser end-to-end tests with Playwright or Cypress, including Page Object models, CI artifacts, traces, flaky tests, cross-page visual regression, and critical user journeys such as login, payment, permissions, or CRUD. For layer planning or tests close to UI components, choose the matching testing workflow first; Chinese triggers include E2E, 端到端测试, Playwright, Cypress.",
+  "description": "Use when creating, maintaining, debugging, or reviewing real-browser end-to-end tests with Playwright or Cypress, including Page Object models, CI artifacts, traces, flaky tests, cross-page visual regression, and critical user journeys such as login, payment, permissions, or CRUD. For layer planning or tests close to UI components, choose the matching testing workflow first; Chinese triggers include E2E, end-to-end testing, Playwright, Cypress.",
   "source": "skills/fec-e2e-testing",
   "references": [
     "references/e2e-ci-reporting.md",

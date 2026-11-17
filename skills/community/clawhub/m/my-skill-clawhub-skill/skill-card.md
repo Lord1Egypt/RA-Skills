@@ -1,40 +1,52 @@
-## Description: <br>
-Standardizes ClawHub skill publishing with required versions and changelogs, and supports searched installation with optional version selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes ClawHub publishing with required versions and changelogs, and supports searching and installing ClawHub skills with optional version selection.
 
-## Publisher: <br>
-[canonxu](https://clawhub.ai/user/canonxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[canonxu](https://clawhub.ai/user/canonxu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and skill publishers use this skill to standardize ClawHub publish and install workflows, including required version and changelog inputs for releases.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Installing the latest remote skill by slug can select an unexpected version or publisher if the slug is not checked carefully.
+
+Mitigation: Specify an exact version when installing and confirm the slug and publisher profile in ClawHub before use.
+
+Risk: The helper searches before install but does not independently verify signatures or digests.
+
+Mitigation: Treat search results as discovery only and rely on ClawHub publisher, version, and security evidence review before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to publish ClawHub skills with consistent version and changelog metadata, and to search for and install skills by slug with an optional explicit version. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can publish or install skills through the local clawhub CLI when invoked. <br>
-Mitigation: Install and run it only when the local clawhub CLI is trusted, and review the target path, slug, version, and changelog before publishing. <br>
-Risk: Installing without a version requests the latest matching skill, which may change over time. <br>
-Mitigation: Prefer an explicit version when reproducibility matters, and review search results before installation. <br>
+**Output Format:** [Markdown with inline bash code blocks and shell command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/canonxu/my-skill-clawhub-skill) <br>
+**Other Properties Related to Output:** [Produces ClawHub publish, search, and install commands; install supports an optional explicit version.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local clawhub CLI; install supports an optional version argument.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

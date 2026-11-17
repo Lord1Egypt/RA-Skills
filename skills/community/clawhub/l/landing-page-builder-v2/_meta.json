@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75bsmkkefrrdmzdjpqp0c9zn84t310",
-  "slug": "landing-page-builder-v2",
+  "id": 378680790331456,
   "version": "1.0.0",
-  "publishedAt": 1776157508295
+  "name": "landing-page-builder",
+  "updated_at": 1774004164840,
+  "platform": "minimax"
 }

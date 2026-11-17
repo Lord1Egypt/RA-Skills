@@ -1,39 +1,50 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills for specialized tasks or capability gaps.
 
-## Publisher: <br>
-[hanxueda](https://clawhub.ai/user/hanxueda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxueda](https://clawhub.ai/user/hanxueda)
 
-## Use Case: <br>
-Developers and agent users use this skill to find installable skills for specialized tasks, present matching options, and offer installation commands when the user wants to extend agent capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A suggested global install could add a third-party skill the user did not intend to trust. <br>
-Mitigation: Confirm the package name, source, and maintainer before installation, review the skill before deployment, and omit automatic confirmation flags when manual approval is preferred. <br>
+## Use Case:
 
+Developers and agent users use this skill to search for relevant installable skills, present candidate options, and guide installation when a user needs a specialized capability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanxueda/find-skills-0) <br>
-- [Skills directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose skill search and installation commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may recommend unpinned remote CLI execution and global installs that affect future agent sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted sources, prefer pinned CLI and immutable skill references, inspect candidate skills before adding them, avoid global installs unless needed, and keep confirmation prompts enabled for persistent changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hanxueda/skills/find-skills-0)
+- [Skills Directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include candidate skill names, install commands, and links to skill pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

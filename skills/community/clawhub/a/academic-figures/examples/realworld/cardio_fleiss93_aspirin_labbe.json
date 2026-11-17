@@ -1,0 +1,57 @@
+{
+  "_chart_type": "labbe",
+  "_command": "python3 scripts/gen_figure.py -t labbe -d examples/realworld/cardio_fleiss93_aspirin_labbe.json -o cardio_fleiss93_aspirin_labbe.png --cjk",
+  "_note": "真实数据：Fleiss JL et al. 1993（Controlled Clinical Trials 14:207-225）表 1——阿司匹林预防心肌梗死后死亡 7 项 RCT 合并（同 R meta 包 Fleiss93）。合并 RR=0.87（DL 随机效应）与独立实现逐位互拍；MH 固定效应 OR=0.89 复现文献值 ≈0.90。事件=心梗后死亡，trt=阿司匹林组。",
+  "est_measure": "RR",
+  "studies": [
+    {
+      "name": "MRC-1 1974",
+      "events_t": 49,
+      "n_t": 615,
+      "events_c": 67,
+      "n_c": 624
+    },
+    {
+      "name": "CDP 1976",
+      "events_t": 44,
+      "n_t": 758,
+      "events_c": 64,
+      "n_c": 771
+    },
+    {
+      "name": "MRC-2 1979",
+      "events_t": 102,
+      "n_t": 832,
+      "events_c": 126,
+      "n_c": 850
+    },
+    {
+      "name": "GASP 1979",
+      "events_t": 32,
+      "n_t": 317,
+      "events_c": 38,
+      "n_c": 309
+    },
+    {
+      "name": "PARIS-1 1980",
+      "events_t": 85,
+      "n_t": 810,
+      "events_c": 52,
+      "n_c": 406
+    },
+    {
+      "name": "UK-1 1979",
+      "events_t": 246,
+      "n_t": 2267,
+      "events_c": 219,
+      "n_c": 2257
+    },
+    {
+      "name": "PARIS-2 1980",
+      "events_t": 157,
+      "n_t": 858,
+      "events_c": 179,
+      "n_c": 862
+    }
+  ]
+}

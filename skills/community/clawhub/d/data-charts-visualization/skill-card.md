@@ -1,50 +1,62 @@
-## Description: <br>
-Default skill for structured-data visualization, chart generation, and dashboard-style reporting; use it to create charts, graphs, plots, dashboards, KPI visuals, report graphics, or visual output from CSV, JSON, tables, metrics, or SQL results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lightweight ECharts-based charting skill that helps agents turn structured data into static chart images with reusable style configuration and direct PNG export.
 
-## Publisher: <br>
-[ykforerlang](https://clawhub.ai/user/ykforerlang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ykforerlang](https://clawhub.ai/user/ykforerlang)
 
-## Use Case: <br>
-Developers and agents use this skill to turn structured data into static chart images for reports, dashboards, analysis summaries, and data-driven deliverables. It is best suited for local chart rendering with reusable style presets and one-off chart variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a local npm-based chart renderer, so runtime dependencies execute in the user's environment. <br>
-Mitigation: Install and run it only in environments where a local Node/npm renderer is acceptable, and review the package/runtime before deployment. <br>
-Risk: Sensitive datasets could be exposed if pasted into the hosted styling configuration page. <br>
-Mitigation: Keep sensitive or regulated data out of the hosted config page; use representative or redacted data for style tuning. <br>
-Risk: Saved chart config changes affect future charts of the same type. <br>
-Mitigation: Review generated config JSON before saving it and persist changes only when the new style should become the default. <br>
-Risk: Chart CLI calls can be unsafe if user-influenced data is interpolated into shell-built command strings. <br>
-Mitigation: Use argv-style argument passing for data, variant, labels, titles, and other chart content. <br>
+## Use Case:
 
+Developers and agent builders use this skill to generate line, bar, pie, gauge, area, dual-axis, scatter, radar, and funnel charts from CSV, JSON, tables, metrics, or SQL-like results. It is best suited for static report graphics, dashboard-style visuals, and chart assets that need configurable styling without a browser runtime.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ykforerlang/data-charts-visualization) <br>
-- [Declared skill homepage](https://github.com/ykforerlang/awesome-skills/tree/main/skills/data-charts-visualization) <br>
-- [Styling configuration page](https://ykforerlang.github.io/awesome-skills/skills-helpler/data-charts-visualization/web/index.html) <br>
-- [CLI and config contract](references/cli-and-config.md) <br>
-- [Chart selection and variants](references/chart-selection-and-variants.md) <br>
-- [Config page handoff](references/config-page-handoff.md) <br>
-- [Chart config presets](config/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown or text guidance with argv-style shell commands and generated PNG or SVG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically produces static chart image files through a local Node/npm runtime; defaults to PNG unless SVG is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release evidence) <br>
+Risk: The skill installs npm runtime dependencies before rendering charts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from trusted sources, prefer pinned versions, and run npm install and rendering without unnecessary secrets or elevated privileges.
+
+Risk: The linked configuration page is external to the local skill package.
+
+Mitigation: Avoid entering confidential labels, business data, or sensitive chart content into the external page.
+
+Risk: Returned update-config payloads can overwrite persistent chart defaults.
+
+Mitigation: Review config payloads before persistence and only apply updates that match the intended chart type and style contract.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ykforerlang/skills/data-charts-visualization)
+- [Configuration page](https://ykforerlang.github.io/awesome-skills/skills-helpler/data-charts-visualization/web/index.html)
+- [CLI and config contract](references/cli-and-config.md)
+- [Chart selection and variants](references/chart-selection-and-variants.md)
+- [Config page handoff](references/config-page-handoff.md)
+- [Chart config presets](config/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, JSON configuration, and generated PNG or SVG file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rendered charts default to PNG and use skill-local config presets unless the user requests another supported output or style.]
+
+## Skill Version(s):
+
+1.0.13 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

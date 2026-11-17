@@ -1,0 +1,91 @@
+{
+  "skill": "lgd-audit",
+  "scanned_at": "2026-11-02T22:48:17+08:00",
+  "skills_root": "skills/ (local install root)",
+  "total": 10,
+  "live": 6,
+  "ecosystem": 4,
+  "error": 0,
+  "nodes": [
+    {
+      "slug": "lgd-badge-issuer",
+      "status": "LIVE",
+      "rc": 0,
+      "when": "三律全过签发 lgd-certified 徽章证书（SHA-256 指纹 + 签发台账）",
+      "out": "徽章证书 + 指纹",
+      "note": "rc=0"
+    },
+    {
+      "slug": "lgd-badge-verify",
+      "status": "LIVE",
+      "rc": 0,
+      "when": "核验他人徽章指纹与台账，依赖前先验证",
+      "out": "验真 pass/fail + 理由",
+      "note": "rc=0"
+    },
+    {
+      "slug": "lgd-three-laws-auditor",
+      "status": "LIVE",
+      "rc": 0,
+      "when": "审计包是否符合三律（有籍/有证/有门禁）",
+      "out": "三律审计判定 + 每律证据",
+      "note": "rc=0"
+    },
+    {
+      "slug": "agent-trace-audit",
+      "status": "LIVE",
+      "rc": 0,
+      "when": "重建智能体行为追溯日志（事后审计）",
+      "out": "行为追溯日志 + 异常标记",
+      "note": "rc=0"
+    },
+    {
+      "slug": "bias-auditor",
+      "status": "LIVE",
+      "rc": 0,
+      "when": "发布前对输出/决策做偏见审计",
+      "out": "偏见审计报告 + 标记维度",
+      "note": "rc=0"
+    },
+    {
+      "slug": "env-var-audit",
+      "status": "LIVE",
+      "rc": 0,
+      "when": "部署前环境变量/密钥暴露审计",
+      "out": "密钥暴露报告 + 命中项",
+      "note": "rc=0"
+    },
+    {
+      "slug": "ai-governance-audit-chain",
+      "status": "ECOSYSTEM",
+      "rc": null,
+      "when": "跨生命周期构建治理审计链",
+      "out": "串联各门禁/证据的审计链文档",
+      "note": "活动工作集无目录 → openclaw plugins install clawhub:ai-governance-audit-chain"
+    },
+    {
+      "slug": "audit-trail-keeper",
+      "status": "ECOSYSTEM",
+      "rc": null,
+      "when": "维护不可变审计留痕台账（append-only）",
+      "out": "审计留痕台账",
+      "note": "活动工作集无目录 → openclaw plugins install clawhub:audit-trail-keeper"
+    },
+    {
+      "slug": "expert-package-compliance-audit",
+      "status": "ECOSYSTEM",
+      "rc": null,
+      "when": "专家/包发布前合规审计",
+      "out": "合规审计判定 + 阻断项",
+      "note": "活动工作集无目录 → openclaw plugins install clawhub:expert-package-compliance-audit"
+    },
+    {
+      "slug": "traceability-audit-team",
+      "status": "ECOSYSTEM",
+      "rc": null,
+      "when": "跨交付物跑可追溯性审计团",
+      "out": "可追溯性矩阵 + 覆盖缺口",
+      "note": "活动工作集无目录 → openclaw plugins install clawhub:traceability-audit-team"
+    }
+  ]
+}

@@ -1,38 +1,54 @@
-## Description: <br>
-Build, debug, and integrate Mapbox apps and APIs, including Mapbox GL JS map setup, styles, sources/layers, markers/popups, geocoding, directions, static images, and token-safe frontend patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build, debug, and integrate Mapbox apps and APIs, including GL JS map setup, styles, sources and layers, markers and popups, geocoding, directions, static images, and token-safe frontend patterns.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, debug, and explain Mapbox integrations for web apps and API-backed mapping workflows. It supports GL JS setup, sources and layers, styles, geocoding, directions, static images, and token-safe configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mapbox access tokens or private Mapbox resources could be exposed through generated examples or copied chat content. <br>
-Mitigation: Use scoped tokens, restrict browser tokens by allowed URLs when possible, keep secret tokens server-side, and avoid reprinting private tokens. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement, debug, and explain Mapbox web maps and API integrations while keeping access tokens configurable and scoped.
 
-## Reference(s): <br>
-- [Mapbox Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Token-safe examples and implementation guidance for Mapbox web and API integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated Mapbox examples may expose or hardcode access tokens if users paste real credentials or request local-only demos.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep tokens in environment or runtime configuration, restrict public tokens by allowed URLs where possible, and avoid reprinting secret tokens.
+
+Risk: Incorrect Mapbox setup guidance can lead to blank maps, invisible layers, wrong locations, or unnecessary API calls.
+
+Mitigation: Start with a minimal working map, confirm container sizing, token scopes, style and source IDs, coordinate order, layer order, rate limits, and request parameters.
+
+## Reference(s):
+
+- [Mapbox Patterns](references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/jvy/skills/mapbox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Mapbox GL JS snippets, API integration guidance, troubleshooting checks, and token-handling recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

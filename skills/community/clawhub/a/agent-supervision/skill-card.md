@@ -1,43 +1,62 @@
-## Description: <br>
-Supervise another OpenClaw agent with fixed-interval check-ins or ETA-based follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supervise another OpenClaw agent with fixed-interval or ETA-based check-ins, progress classification, escalation, and delivery verification.
 
-## Publisher: <br>
-[z157181773](https://clawhub.ai/user/z157181773) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z157181773](https://clawhub.ai/user/z157181773)
 
-## Use Case: <br>
-Developers and operators use this skill to supervise another OpenClaw agent through recurring or ETA-based check-ins, progress classification, and concise escalation messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A target sessionKey can expose or affect another agent session. <br>
-Mitigation: Treat the sessionKey as sensitive and confirm it with the user before enabling supervision. <br>
-Risk: Recurring supervision can create unwanted noise or excessive pressure if cadence and escalation are unclear. <br>
-Mitigation: Verify the cron interval, progress definition, and escalation rule before scheduling recurring checks. <br>
-Risk: Supervision automation may use cross-session messaging tools. <br>
-Mitigation: Keep the tool allowlist limited to session history and session sending as documented. <br>
+## Use Case:
 
+Developers and agent operators use this skill to supervise another OpenClaw agent with recurring progress checks, ETA follow-up, stagnation detection, and concise escalation messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/z157181773/agent-supervision) <br>
-- [Release notes](references/release-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown with JSON snippets and short supervision messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supervision messages use compact status codes and should stay short enough for recurring agent check-ins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence and release notes) <br>
+Risk: Session history and target session keys may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target sessionKey, authorization to supervise that session, and sensitivity handling before reading or sending session messages.
+
+Risk: Poorly scoped supervision can create noisy or misdirected check-ins.
+
+Mitigation: Confirm the frequency or ETA policy, what counts as progress, the escalation threshold, and when the supervision cron should stop.
+
+Risk: A synchronous send timeout could be mistaken for delivery failure.
+
+Mitigation: Read the target session after a timeout and inspect recent messages before deciding whether the supervision message failed to land.
+
+Risk: Publishing workflow commands may install global packages from an unverified source or with excessive privileges.
+
+Mitigation: Verify the official clawhub package source and avoid running global npm installs with elevated privileges.
+
+## Reference(s):
+
+- [Release Notes](references/release-notes.md)
+- [ClawHub Publish Notes](references/clawhub-publish.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with concise supervision messages and JSON cron configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses fixed-format status codes; requires a target sessionKey, supervision cadence or ETA policy, progress criteria, and escalation threshold.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and release-notes.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

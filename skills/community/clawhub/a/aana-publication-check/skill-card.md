@@ -1,47 +1,58 @@
-## Description: <br>
-Checks public-facing content for approval, evidence, privacy, asset permissions, quality, and publication risk before an agent publishes or shares it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures content for public release is authorized, accurate, privacy-safe, permissioned, scoped, and quality-checked before publishing or sharing.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent users apply this skill before publishing posts, reports, documentation, release notes, marketplace copy, or other external content. It helps the agent decide whether to publish, revise, retrieve evidence, ask for approval, route to review, or block publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could treat draft approval as permission to publish external content. <br>
-Mitigation: Require explicit publication approval and route unclear or high-impact cases to review before publishing. <br>
-Risk: Sensitive data, private records, secrets, or unapproved third-party material could be included in public content. <br>
-Mitigation: Use redacted summaries, check privacy and asset permissions, and block publication when sensitive or unapproved material remains. <br>
-Risk: Unsupported claims about products, benchmarks, safety, compliance, medical, legal, or financial topics could mislead readers. <br>
-Mitigation: Require evidence for material claims and revise, retrieve sources, or route to domain review when support is missing or stale. <br>
-Risk: Connecting the checklist to real publishing tools could create accidental external actions. <br>
-Mitigation: Keep final publishing actions explicitly user-approved and send only minimal redacted payloads to trusted configured review systems. <br>
+## Use Case:
 
+Developers and content-publishing agents use this skill to review posts, documentation, reports, website updates, and other external content before release. It helps identify missing approval, unsupported claims, private data, third-party permission issues, and quality blockers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-publication-check) <br>
-- [Publisher profile](https://clawhub.ai/user/mindbomber) <br>
-- [Publication check schema](artifact/schemas/publication-check.schema.json) <br>
-- [Redacted publication check example](artifact/examples/redacted-publication-check.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text publication review with structured status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute code, call services, write files, or approve publication by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Publication review can expose private or sensitive material if raw content is sent to an optional checker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted host tools or connectors only, and send minimal redacted summaries instead of raw private records, secrets, full logs, full transcripts, or account data.
+
+Risk: Unsupported, deceptive, or unapproved public claims may be published if the review is skipped or incomplete.
+
+Mitigation: Require publication approval, evidence checks for material claims, and routing to legal, compliance, brand, domain, or owner review for high-impact content.
+
+Risk: Third-party assets, quotes, customer examples, or screenshots may lack publication permission.
+
+Mitigation: Check asset and quote permissions before publication and block or revise content when rights are unclear.
+
+## Reference(s):
+
+- [AANA Publication Check Skill on ClawHub](https://clawhub.ai/mindbomber/skills/aana-publication-check)
+- [Publisher profile: mindbomber](https://clawhub.ai/user/mindbomber)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown or JSON publication-check summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses minimal redacted summaries; does not require raw private records, secrets, full logs, or full transcripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

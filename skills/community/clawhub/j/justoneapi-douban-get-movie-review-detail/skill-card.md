@@ -1,43 +1,55 @@
-## Description: <br>
-Call GET /api/douban/get-movie-review-detail/v1 for Douban Movie Review Details through JustOneAPI with reviewId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douban/get-movie-review-detail/v1 for Douban Movie Review Details through JustOneAPI with reviewId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch detailed Douban movie review data by reviewId through JustOneAPI, including review metadata, content fields, and engagement signals for archiving or detailed opinion analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a query parameter and may appear in URLs, logs, shell history, screenshots, proxies, or error reports. <br>
-Mitigation: Use a limited-scope token when available, avoid sharing request URLs or command output, and rotate the token if exposure is suspected. <br>
-Risk: The skill sends requests to a third-party API service operated by JustOneAPI. <br>
-Mitigation: Install and run it only when you trust JustOneAPI with the API token and the requested Douban review lookup. <br>
+## Use Case:
 
+Developers and agents use this skill to look up detailed Douban movie review data by reviewId through JustOneAPI, including metadata, content fields, and engagement signals for review archiving and opinion analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douban-get-movie-review-detail) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_movie_review_detail&utm_content=project_link) <br>
-- [Douban Movie Review Details operations](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON when results are returned] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and a JUST_ONE_API_TOKEN; the non-token lookup parameter is reviewId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The JustOneAPI token can be exposed through command arguments or request URLs during normal invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or restricted token, avoid sharing command logs or URLs, and rotate the token if exposure is suspected.
+
+Risk: The API token may have billing, quota, or account-level impact.
+
+Mitigation: Review token scope and account limits before installation or use.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douban_get_movie_review_detail&utm_content=project_link)
+- [Douban Movie Review Details API on ClawHub](https://clawhub.ai/justoneapi/skills/justoneapi-douban-get-movie-review-detail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands]
+
+**Output Format:** [Markdown summary followed by raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, JUST_ONE_API_TOKEN, and a reviewId query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

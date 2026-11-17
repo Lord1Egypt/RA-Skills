@@ -1,41 +1,58 @@
-## Description: <br>
-Generate cryptographically secure passwords, passphrases, and API keys. Supports multiple formats and entropy calculation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate passwords, passphrases, API keys, PINs, hex strings, and base64 tokens with optional entropy display.
 
-## Publisher: <br>
-[hostilespider](https://clawhub.ai/user/hostilespider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hostilespider](https://clawhub.ai/user/hostilespider)
 
-## Use Case: <br>
-Developers and other users can use this skill to generate local passwords, passphrases, API keys, PINs, hex strings, and base64 strings with optional entropy display. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated passwords and API keys are sensitive and are printed to standard output. <br>
-Mitigation: Avoid capturing generated values in logs, transcripts, shared terminals, or shell history; transfer them directly into an appropriate secret manager. <br>
-Risk: Clipboard handling can expose secrets to other local software if added or used in a future version. <br>
-Mitigation: Use clipboard features only in trusted local environments and clear clipboard contents after moving the secret into its intended store. <br>
+## Use Case:
 
+Developers and operators use this skill to generate local credentials such as passwords, passphrases, API keys, PINs, and token strings from a command-line script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hostilespider/secure-passgen) <br>
-- [Publisher profile](https://clawhub.ai/user/hostilespider) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text generated secrets and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated values are written to standard output; optional entropy display appends an estimated bit count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Entropy display and passphrase strength claims may be misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct strength calculations before relying on generated values for real credentials.
+
+Risk: Zero, negative, or very large numeric arguments can produce empty secrets or impractical output.
+
+Mitigation: Use positive, bounded values for length, word count, and output count, and add input validation before production use.
+
+Risk: Clipboard use may expose generated credentials to local clipboard history or other local processes.
+
+Mitigation: Avoid clipboard mode for sensitive credentials unless the local clipboard environment is trusted and cleared after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hostilespider/skills/secure-passgen)
+- [Publisher profile](https://clawhub.ai/user/hostilespider)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text generated credentials and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with python3; optional clipboard behavior requires a platform clipboard utility.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

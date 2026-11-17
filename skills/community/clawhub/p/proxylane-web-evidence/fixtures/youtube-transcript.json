@@ -1,0 +1,11 @@
+{
+  "fixture_notice": "Synthetic input for the adapter. This video identity and captions are not live YouTube observations.",
+  "video_id": "fixture0001",
+  "language": "English",
+  "language_code": "en",
+  "is_generated": false,
+  "segments": [
+    {"text": "Synthetic fixture: preserve timing for verifiable retrieval.", "start": 0.0, "duration": 3.5},
+    {"text": "Synthetic fixture: missing captions require an explicit no_data outcome.", "start": 3.5, "duration": 4.0}
+  ]
+}

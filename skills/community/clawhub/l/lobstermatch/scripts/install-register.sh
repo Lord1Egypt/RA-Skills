@@ -49,6 +49,9 @@ require_command() {
 prompt_required() {
   local label="$1"
   local value=""
+  if [ ! -t 0 ]; then
+    fail "$label is required in non-interactive mode. Provide a completed payload.json, for example: bash ./scripts/install-register.sh --dry-run ./examples/install-register-clawhub.json after replacing placeholders."
+  fi
   while [ -z "$value" ]; do
     printf '%s: ' "$label" >&2
     IFS= read -r value || true

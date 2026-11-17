@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超级股票操盘 Skill — 总览</title>
+<style>
+:root{--bg:#0a0e1a;--card:#1a2035;--hover:#242b3d;--text:#e2e8f0;--muted:#64748b;--blue:#3b82f6;--green:#10b981;--cyan:#06b6d4;--purple:#8b5cf6;--yellow:#f59e0b;--red:#ef4444;--orange:#f97316;--border:#2d3748}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14px}
+.container{max-width:1300px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,#0a0e1a,#1a2035 40%,#0d1525 70%,#0a0e1a);padding:60px 20px 40px;border-bottom:1px solid var(--border);text-align:center}
+header h1{font-size:2.5em;background:linear-gradient(135deg,#f59e0b,#ef4444,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+header .sub{color:var(--muted);font-size:1.1em}
+header .badges{margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.badge{padding:4px 14px;border-radius:20px;font-size:.82em;font-weight:600}
+.b-blue{background:rgba(59,130,246,.2);color:#60a5fa}
+.b-green{background:rgba(16,185,129,.2);color:#34d399}
+.b-purple{background:rgba(139,92,246,.2);color:#a78bfa}
+.b-orange{background:rgba(249,115,22,.2);color:#fb923c}
+section{padding:30px 0}
+section h2{font-size:1.6em;margin-bottom:20px;padding-bottom:8px;border-bottom:2px solid var(--orange);display:inline-block}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center}
+.stat .num{font-size:2.2em;font-weight:700;background:linear-gradient(135deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .label{color:var(--muted);font-size:.85em;margin-top:4px}
+.file-tree{background:#0d1117;border:1px solid var(--border);border-radius:10px;padding:20px;font-family:'Fira Code',monospace;font-size:.85em;overflow-x:auto;margin:16px 0}
+.file-tree .dir{color:var(--cyan);font-weight:600}
+.file-tree .file{color:var(--green)}
+.file-tree .desc{color:var(--muted)}
+.file-tree .indent{padding-left:20px}
+.file-tree .indent2{padding-left:40px}
+.file-tree .indent3{padding-left:60px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:14px}
+.card:hover{border-color:var(--orange)}
+.card h3{color:var(--cyan);font-size:1.1em;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;font-size:.88em;margin-bottom:16px}
+th{padding:10px;text-align:left;color:var(--cyan);border-bottom:2px solid var(--border);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:hover{background:var(--hover)}
+pre{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:10px 0;font-size:.82em}
+code{background:var(--hover);padding:1px 5px;border-radius:3px;font-size:.88em;color:var(--green)}
+.cmd-box{background:linear-gradient(135deg,rgba(249,115,22,.1),rgba(239,68,68,.1));border:1px solid rgba(249,115,22,.3);border-radius:10px;padding:20px;margin:16px 0}
+.cmd-box h3{color:var(--orange);margin-bottom:10px}
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:12px 0}
+.flow-node{background:var(--hover);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:.82em;text-align:center}
+.flow-node.green{border-color:var(--green);color:#34d399}
+.flow-node.blue{border-color:var(--blue);color:#60a5fa}
+.flow-node.purple{border-color:var(--purple);color:#a78bfa}
+.flow-node.orange{border-color:var(--orange);color:#fb923c}
+.flow-arrow{color:var(--muted)}
+.timeline{position:relative;padding-left:30px;margin:20px 0}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-item::before{content:'';position:absolute;left:-24px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--orange)}
+.tl-time{color:var(--orange);font-weight:600;font-size:.9em}
+.tl-title{font-weight:600;margin:2px 0}
+.tl-desc{color:var(--muted);font-size:.85em}
+</style>
+</head>
+<body>
+
+<header>
+<h1>超级股票操盘 Skill</h1>
+<p class="sub">117 Skills + 26 位数字人专家 → 日常操盘自动化 Pipeline</p>
+<div class="badges">
+<span class="badge b-orange">v1.0.0</span>
+<span class="badge b-blue">agentskills.io 标准</span>
+<span class="badge b-green">3 份全球财富报告</span>
+<span class="badge b-purple">MCP 协议兼容</span>
+</div>
+</header>
+
+<div class="container">
+
+<!-- 统计 -->
+<div class="stats">
+<div class="stat"><div class="num">117</div><div class="label">分析 Skills</div></div>
+<div class="stat"><div class="num">26</div><div class="label">专家数字人</div></div>
+<div class="stat"><div class="num">26</div><div class="label">文件总数</div></div>
+<div class="stat"><div class="num">4</div><div class="label">自动化脚本</div></div>
+<div class="stat"><div class="num">5</div><div class="label">报告模板</div></div>
+<div class="stat"><div class="num">7</div><div class="label">风控规则</div></div>
+<div class="stat"><div class="num">3</div><div class="label">全球财富报告</div></div>
+</div>
+
+<!-- 目录结构 -->
+<section>
+<h2>一、Skill 包目录结构</h2>
+<div class="file-tree">
+<div class="dir">super-stock-trading-skill/</div>
+<div class="indent"><span class="file">SKILL.md</span> <span class="desc">— Skill 入口核心文件（四层架构 + 时间表 + 事件触发 + 专家调度 + 风控）</span></div>
+<div class="indent"><span class="file">README.md</span> <span class="desc">— 说明文档（安装/使用/配置）</span></div>
+<div class="indent"><span class="file">config.json</span> <span class="desc">— 配置文件（数据源/API Key/自选股/风控参数/发布配置）</span></div>
+<div class="indent"><span class="file">skill_overview.html</span> <span class="desc">— 本页面</span></div>
+<div class="indent"><span class="dir">references/</span></div>
+<div class="indent2"><span class="file">skills_registry.json</span> <span class="desc">— 117 个 Skills 注册表（名称/分类/优先级/数据源/触发条件）</span></div>
+<div class="indent2"><span class="file">experts_registry.json</span> <span class="desc">— 26 位数字人专家注册表</span></div>
+<div class="indent2"><span class="file">daily_workflow.md</span> <span class="desc">— 日常工作流详细文档（六阶段）</span></div>
+<div class="indent2"><span class="file">risk_rules.md</span> <span class="desc">— 7 条风控规则详表</span></div>
+<div class="indent2"><span class="dir">wealth_reports/</span> <span class="desc">— 3 份 2026 全球权威财富报告</span></div>
+<div class="indent3"><span class="file">莱坊2026财富报告_中文版.html</span> <span class="desc">— 超高净值/地产/奢侈品</span></div>
+<div class="indent3"><span class="file">瑞银2026全球财富报告_中文版.html</span> <span class="desc">— 全球财富分布/不平等/传承</span></div>
+<div class="indent3"><span class="file">BCG_2026全球财富报告_中文版.html</span> <span class="desc">— 大重构/333万亿/AI财富管理</span></div>
+<div class="indent3"><span class="file">README.md</span> <span class="desc">— 财富报告索引与使用指南</span></div>
+<div class="indent"><span class="dir">scripts/</span></div>
+<div class="indent2"><span class="file">install.sh</span> <span class="desc">— 一键安装（16 GitHub Skills + Wind Skills + 依赖 + API Key）</span></div>
+<div class="indent2"><span class="file">daily_pipeline.py</span> <span class="desc">— 日常 Pipeline 运行器（自动判断阶段 + 数据 + 报告 + 风控）</span></div>
+<div class="indent2"><span class="file">data_fetcher.py</span> <span class="desc">— 数据获取层（Wind/tushare/akshare 三源降级 + 缓存）</span></div>
+<div class="indent2"><span class="file">risk_manager.py</span> <span class="desc">— 风险管理引擎（7 条规则 + 综合检查 + 告警输出）</span></div>
+<div class="indent"><span class="dir">templates/</span></div>
+<div class="indent2"><span class="file">morning_report.md</span> <span class="desc">— 盘前报告模板</span></div>
+<div class="indent2"><span class="file">evening_review.md</span> <span class="desc">— 盘后复盘模板</span></div>
+<div class="indent2"><span class="file">weekly_report.md</span> <span class="desc">— 周报模板</span></div>
+<div class="indent2"><span class="file">monthly_report.md</span> <span class="desc">— 月报模板</span></div>
+<div class="indent2"><span class="file">trade_log.md</span> <span class="desc">— 交易日志模板</span></div>
+<div class="indent2"><span class="file">daily_report.md</span> <span class="desc">— 通用日报模板</span></div>
+<div class="indent"><span class="dir">assets/</span></div>
+<div class="indent2"><span class="file">config_template.env</span> <span class="desc">— 环境变量配置模板</span></div>
+<div class="indent2"><span class="file">watchlist_template.json</span> <span class="desc">— 自选股模板</span></div>
+<div class="indent2"><span class="file">portfolio_template.json</span> <span class="desc">— 持仓组合模板</span></div>
+</div>
+</section>
+
+<!-- 快速开始 -->
+<section>
+<h2>二、快速开始（3 步上线）</h2>
+<div class="cmd-box">
+<h3>第 1 步：一键安装</h3>
+<pre><code># 进入 Skill 目录
+cd super-stock-trading-skill
+
+# 运行安装脚本（自动安装 16 个 GitHub Skills + Wind Skills + Python 依赖）
+./scripts/install.sh
+
+# 或非交互模式
+./scripts/install.sh --non-interactive</code></pre>
+</div>
+
+<div class="cmd-box">
+<h3>第 2 步：配置 API Key</h3>
+<pre><code># 复制配置模板
+cp assets/config_template.env ~/.stock_skill.env
+
+# 编辑填入你的 Key
+vi ~/.stock_skill.env
+# WIND_API_KEY=ak_xxx        → https://aifinmarket.wind.com.cn 获取
+# TUSHARE_TOKEN=xxx          → https://tushare.pro 获取
+# GITHUB_TOKEN=ghp_xxx       → https://github.com/settings/tokens 获取
+# CLAWHUB_TOKEN=xxx          → clawhub login 获取
+
+# 加载配置
+source ~/.stock_skill.env</code></pre>
+</div>
+
+<div class="cmd-box">
+<h3>第 3 步：开始操盘</h3>
+<pre><code># 盘前分析（7:00-9:15）
+python3 scripts/daily_pipeline.py --phase morning
+
+# 盘后复盘（15:00 后）
+python3 scripts/daily_pipeline.py --phase evening
+
+# 分析特定股票
+python3 scripts/daily_pipeline.py --phase morning --stock 600519
+
+# 周末深度研究
+python3 scripts/daily_pipeline.py --phase weekly
+
+# 月度组合管理
+python3 scripts/daily_pipeline.py --phase monthly</code></pre>
+
+<h3 style="margin-top:16px">定时自动化（crontab）</h3>
+<pre><code># 盘前简报（每个交易日 7:30）
+30 7 * * 1-5  cd ~/super-stock-trading-skill && python3 scripts/daily_pipeline.py --phase morning >> reports/morning.log 2>&1
+
+# 盘后复盘（每个交易日 15:30）
+30 15 * * 1-5  cd ~/super-stock-trading-skill && python3 scripts/daily_pipeline.py --phase evening >> reports/evening.log 2>&1
+
+# 周末深度研究（每周六 9:00）
+0 9 * * 6  cd ~/super-stock-trading-skill && python3 scripts/daily_pipeline.py --phase weekly >> reports/weekly.log 2>&1</code></pre>
+</div>
+</section>
+
+<!-- 日常操盘时间线 -->
+<section>
+<h2>三、日常操盘时间线</h2>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-time">07:00 — 09:15 | 盘前准备</div>
+<div class="tl-title">隔夜信息 → 宏观扫描 → 市场状态 → 资金面 → 盘前执行单</div>
+<div class="tl-desc">每日投研简报 · 政策头条解读 · 市场状态判档 · 情绪温度计 · 北向资金风向 · 盘前执行单</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">09:30 — 15:00 | 盘中监控</div>
+<div class="tl-title">异动快判 → 关键位预警 → 止损纪律 → 决策支持</div>
+<div class="tl-desc">盘中异动快判 · 放量异动归因 · 关键位预警 · 止损纪律 · 假突破撤退 · 板块轮动雷达</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">15:00 — 22:00 | 盘后复盘</div>
+<div class="tl-title">收盘复盘 → 资金面复盘 → 交易日志 → 次日预判</div>
+<div class="tl-desc">收盘自选复盘 · 盘后复盘 · 北向资金行为 · 机构持仓分析 · 市场风险雷达</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">周六 09:00 — 12:00 | 深度研究</div>
+<div class="tl-title">行业分析 → 选股扫描 → 候选深度 → 持仓体检 → 周报</div>
+<div class="tl-desc">Serenity行业分析 · 产业链映射 · 突破候选 · 护城河评估 · 多空论证 · 持仓体检</div>
+</div>
+<div class="tl-item">
+<div class="tl-time">月末周末 | 组合管理</div>
+<div class="tl-title">全面体检 → 绩效评估 → 再平衡 → 下月计划</div>
+<div class="tl-desc">持仓体检风险管理 · 风格轮动 · 仓位决策 · 分批止盈 · 周期股景气拐点</div>
+</div>
+</div>
+</section>
+
+<!-- 事件驱动 -->
+<section>
+<h2>四、事件驱动自动触发</h2>
+<div class="card">
+<div class="flow">
+<div class="flow-node green">财报发布</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node blue">财报前瞻 → 财后反应 → 财后强势</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node purple">交易决策</div>
+</div>
+<div class="flow">
+<div class="flow-node green">重大政策</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node blue">政策解读 → 受益映射 → 传导分析</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node purple">受益标的清单</div>
+</div>
+<div class="flow">
+<div class="flow-node green">个股公告</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node blue">公告影响 → 回购评审 → 分红评估</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node orange">操作建议</div>
+</div>
+<div class="flow">
+<div class="flow-node green">题材爆发</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node blue">热度追踪 → 龙头识别 → 持续性判断</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node orange">泡沫检测</div>
+</div>
+</div>
+</section>
+
+<!-- 全球财富报告 -->
+<section>
+<h2>五、全球财富报告资源（3 份）</h2>
+<p style="color:var(--muted);margin-bottom:16px">内置 3 份权威机构 2026 年财富报告，为宏观资产配置和"年度 10 亿收入跃迁"目标提供顶层视野。Agent 在用户询问全球财富、资产配置方向等问题时自动引用。</p>
+
+<div class="card" style="border-left:4px solid var(--green)">
+<h3 style="color:var(--green)">1. 莱坊 2026 财富报告（Knight Frank）</h3>
+<p><strong>核心主题</strong>：财富增长 · 全球地产投资 · 奢侈品收藏</p>
+<p style="font-size:.88em;color:var(--muted)">全球超高净值人群（UHNWI）分布与增长趋势、优质地产投资前景、奢侈品投资品指数（名表/艺术品/红酒/老爷车）、财富态度调查。</p>
+<p style="font-size:.85em;color:var(--cyan)"><strong>操盘指导</strong>：地产与股市跷跷板效应 · 奢侈品/消费板块选股 · 高净值客户行为对市场风格的影响</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--blue)">
+<h3 style="color:var(--blue)">2. 瑞银 2026 全球财富报告（UBS）</h3>
+<p><strong>核心主题</strong>：全球财富分布 · 财富不平等 · 代际传承</p>
+<p style="font-size:.88em;color:var(--muted)">全球家庭财富总量与分布（按地区/收入分层）、成年人均财富变化趋势、财富中位数与均值差距、财富不平等指数演变、未来 5 年展望。</p>
+<p style="font-size:.85em;color:var(--cyan)"><strong>操盘指导</strong>：全球财富增长引擎识别 · 财富分配变化对消费结构的影响 · 代际传承对家族办公室配置偏好启示</p>
+</div>
+
+<div class="card" style="border-left:4px solid var(--purple)">
+<h3 style="color:var(--purple)">3. BCG 2026 全球财富报告 — 大重构（第 26 版）</h3>
+<p><strong>核心主题</strong>：金融财富大洗牌 · 新兴市场 · 代际传承 · AI 与财富管理</p>
+<p style="font-size:.88em;color:var(--muted)">2025 年全球金融财富达 <strong>333 万亿美元</strong>（增长 10.7%）、净财富 550 万亿美元、股票资产飙升 13.2%、黄金涨幅约 44%。预计到 2030 年以 7% CAGR 增长。四大维度：地理集中化、新兴市场（印度/巴西/墨西哥）、代际传承、AI 重塑财富管理。</p>
+<p style="font-size:.85em;color:var(--cyan)"><strong>操盘指导</strong>：大类资产配置方向 · 黄金避险配置 · 出海链/新兴市场投资 · 金融科技板块逻辑 · 家族办公室长期价值偏好</p>
+</div>
+
+<div class="cmd-box">
+<h3>查阅方式</h3>
+<pre><code># 直接在浏览器中打开
+open references/wealth_reports/莱坊2026财富报告_中文版.html
+open references/wealth_reports/瑞银2026全球财富报告_中文版.html
+open references/wealth_reports/BCG_2026全球财富报告_中文版.html
+
+# 或查看索引文件了解详细内容
+cat references/wealth_reports/README.md</code></pre>
+</div>
+</section>
+
+<!-- 风控规则 -->
+<section>
+<h2>六、7 条内嵌风控规则</h2>
+<table>
+<tr><th>规则</th><th>触发条件</th><th>执行动作</th><th>级别</th></tr>
+<tr><td>单只止损</td><td>个股亏损 ≥ -5%</td><td>自动提醒止损 + 撤退方案</td><td><span class="badge b-orange">WARN</span></td></tr>
+<tr><td>组合止损</td><td>组合总回撤 ≥ -8%</td><td>强制减仓 + 暂停新建仓</td><td><span class="badge" style="background:rgba(239,68,68,.2);color:#f87171">BLOCK</span></td></tr>
+<tr><td>仓位上限</td><td>单只仓位 > 30%</td><td>提醒减仓</td><td><span class="badge b-orange">WARN</span></td></tr>
+<tr><td>行业集中</td><td>单行业 > 40%</td><td>提醒分散</td><td><span class="badge b-orange">WARN</span></td></tr>
+<tr><td>情绪极端</td><td>温度计 ≥ 90 或 ≤ 10</td><td>逆向操作提醒</td><td><span class="badge b-orange">WARN</span></td></tr>
+<tr><td>连续亏损</td><td>连续亏损 3 次</td><td>暂停交易 1 周</td><td><span class="badge" style="background:rgba(239,68,68,.2);color:#f87171">BLOCK</span></td></tr>
+<tr><td>杠杆禁用</td><td>检测到杠杆意图</td><td>拒绝执行 + 警告</td><td><span class="badge" style="background:rgba(239,68,68,.2);color:#f87171">BLOCK</span></td></tr>
+</table>
+</section>
+
+<!-- 技术架构 -->
+<section>
+<h2>七、四层技术架构</h2>
+<div class="card" style="border-left:4px solid var(--green)">
+<h3 style="color:var(--green)">📊 数据层 — 三源降级</h3>
+<p>Wind AIFin Market (MCP协议, 每日1000免费积分) → tushare Pro (免费120次/分) → akshare (完全免费)</p>
+<p style="color:var(--muted);font-size:.85em">自动降级 + 文件缓存，确保数据获取稳定性</p>
+</div>
+<div class="card" style="border-left:4px solid var(--blue)">
+<h3 style="color:var(--blue)">🔧 Skill 层 — 117 个分析技能（4 级优先）</h3>
+<table>
+<tr><th>优先级</th><th>数量</th><th>频率</th><th>代表 Skills</th></tr>
+<tr><td>T1 核心</td><td>~15</td><td>每日自动</td><td>每日投研简报、市场状态判档、情绪温度计、交易计划、止损纪律</td></tr>
+<tr><td>T2 高频</td><td>~25</td><td>每周</td><td>Serenity行业分析、产业链映射、突破候选、持仓体检、多空论证</td></tr>
+<tr><td>T3 场景</td><td>~40</td><td>按需触发</td><td>财报前瞻、公告影响、政策解读、估值快照、个股研究</td></tr>
+<tr><td>T4 工具</td><td>~37</td><td>辅助</td><td>量化回测、社区论坛、自选股管理、ETF筛选</td></tr>
+</table>
+</div>
+<div class="card" style="border-left:4px solid var(--purple)">
+<h3 style="color:var(--purple)">👥 专家层 — 26 位数字人（按需调度）</h3>
+<p>策略分析师(市场) · 海榕君(资金) · 宏观经济学家/陶川(政策) · 巴菲特/芒格(价值) · Serenity(产业链) · 塔勒布(风险) · 刘高畅(科技) · 赵哲(量化) · 魏亚妮(配置) · i小万(总调度) ...</p>
+</div>
+<div class="card" style="border-left:4px solid var(--orange)">
+<h3 style="color:var(--orange)">🎯 编排层 — i小万·智能财富管家</h3>
+<p>时间触发器(盘前/盘中/盘后/周末/月末) + 事件触发器(财报/政策/公告/异动) + 专家路由引擎 + 报告聚合器 + 告警系统</p>
+</div>
+</section>
+
+<!-- 使用示例 -->
+<section>
+<h2>八、日常使用示例</h2>
+<table>
+<tr><th>场景</th><th>命令 / 对 Agent 说</th><th>自动调度</th></tr>
+<tr><td>每日盘前</td><td><code>python3 scripts/daily_pipeline.py --phase morning</code></td><td>投研简报 + 市场状态 + 情绪温度 + 盘前执行单</td></tr>
+<tr><td>盘中查询</td><td><code>python3 scripts/daily_pipeline.py --phase intraday --stock 600519</code></td><td>异动快判 + 放量归因 + 盘面透视</td></tr>
+<tr><td>盘后复盘</td><td><code>python3 scripts/daily_pipeline.py --phase evening</code></td><td>收盘复盘 + 资金面 + 交易日志 + 次日预判</td></tr>
+<tr><td>周末研究</td><td><code>python3 scripts/daily_pipeline.py --phase weekly</code></td><td>行业分析 + 选股扫描 + 持仓体检 + 周报</td></tr>
+<tr><td>月度管理</td><td><code>python3 scripts/daily_pipeline.py --phase monthly</code></td><td>全面体检 + 绩效评估 + 再平衡 + 月报</td></tr>
+</table>
+</section>
+
+</div>
+
+<footer style="text-align:center;padding:40px 20px;border-top:1px solid var(--border);color:var(--muted);font-size:.85em">
+<p>超级股票操盘 Skill v1.0.0 | 生成日期：2026-07-04</p>
+<p>遵循 agentskills.io 开放标准 | 兼容 Claude Code / TRAE / OpenClaw / Cursor</p>
+<p style="margin-top:8px;color:var(--red)">⚠️ 本 Skill 仅供研究参考，不构成投资建议。股市有风险，投资需谨慎。</p>
+</footer>
+
+</body>
+</html>

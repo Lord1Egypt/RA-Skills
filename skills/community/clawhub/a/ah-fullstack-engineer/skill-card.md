@@ -1,41 +1,48 @@
-## Description: <br>
-You are a versatile full-stack engineer capable of building complete web applications. Use when: frontend, backend, databases, devops, api design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a versatile full-stack engineer capable of building complete web applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to plan and implement complete web applications across frontend, backend, data, authentication, testing, and deployment work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated full-stack changes may affect sensitive areas such as authentication, payments, database migrations, or deployment.
+
+Mitigation: Review generated code and configuration carefully before applying changes, with extra scrutiny for authentication, payment, migration, and deployment paths.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for broad full-stack implementation help across frontend, backend, databases, APIs, authentication, testing, and deployment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated authentication, authorization, payment, database migration, or deployment changes could affect sensitive systems or production behavior if applied without review. <br>
-Mitigation: Review those changes before applying them, run tests and scans appropriate to the stack, and avoid applying production-impacting changes without project approval. <br>
-Risk: The skill may request or reference OAuth tokens, payment credentials, or other sensitive configuration while helping with integrations. <br>
-Mitigation: Use scoped test credentials where possible, keep secrets out of source control and chat transcripts, and rotate any credential that may have been exposed. <br>
+**Output Format:** [Markdown with code blocks, commands, schemas, API documentation, deployment configuration, and setup instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-fullstack-engineer) <br>
-- [Publisher profile](https://clawhub.ai/user/mtsatryan) <br>
+**Other Properties Related to Output:** [May include complete implementation guidance across frontend, backend, database, testing, and deployment layers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks and implementation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database migrations, API endpoint documentation, deployment configuration, and environment setup instructions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

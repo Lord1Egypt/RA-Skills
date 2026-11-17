@@ -1,0 +1,6 @@
+interface:
+  display_name: "LP Execution"
+  short_description: "Execute explicit LP actions with receipt checks"
+  default_prompt: "Use $lp-execute to execute this reviewed LP action through my current wallet with exact confirmation and receipt reconciliation."
+policy:
+  allow_implicit_invocation: false

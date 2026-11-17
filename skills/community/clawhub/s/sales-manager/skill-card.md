@@ -1,40 +1,52 @@
-## Description: <br>
-销售团队全流程管理技能，帮助用户设定和跟踪销售目标、监督销售过程、设计利润导向激励方案，并管理招聘和离职交接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+销售团队全流程管理技能。适用于：1) 设定和跟踪销售目标（日/周/月/季度/年） 2) 过程管理（每日打卡、客户跟进监督、复盘） 3) 提成与激励方案设计（利润导向+合伙人机制） 4) 招聘流程管理 5) 离职交接管理。侧重目标管理和过程管理。
 
-## Publisher: <br>
-[xnhkdz](https://clawhub.ai/user/xnhkdz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xnhkdz](https://clawhub.ai/user/xnhkdz)
 
-## Use Case: <br>
-Sales managers, business owners, and team leads use this skill to create sales goals, track customer follow-up, review performance, calculate profit-based commissions, and structure hiring or offboarding workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Compensation deductions, incentive terms, hiring criteria, and offboarding steps may conflict with local labor laws or company policy. <br>
-Mitigation: Have HR, legal, or finance reviewers approve compensation and employment workflows before using them operationally. <br>
-Risk: Customer follow-up records, commission calculations, and recruitment trackers may contain sensitive business or personal data. <br>
-Mitigation: Create Feishu tables or other trackers only when there is an approved data-handling process and access is limited to authorized staff. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xnhkdz/sales-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/xnhkdz) <br>
+## Use Case:
 
+Sales managers and business operators use this skill to set sales goals, supervise follow-up work, design profit-oriented incentive plans, manage recruiting workflows, and support offboarding handovers. It is written for Chinese-language sales team management scenarios.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with tables, checklists, process steps, and calculation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sales target structures, customer follow-up templates, incentive-plan recommendations, interview prompts, and Feishu table setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: HR, commission, penalty, and partnership recommendations may require legal, payroll, or regional compliance review before business use.
+
+Mitigation: Have qualified legal, HR, payroll, or regional compliance reviewers approve incentive, penalty, partnership, recruiting, and offboarding plans before implementation.
+
+Risk: The skill is primarily Chinese-language guidance, which may limit usability or accuracy for teams operating in other languages.
+
+Mitigation: Use it for Chinese-language sales management workflows or review translated outputs before applying them in another language context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xnhkdz/skills/sales-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, structured checklists, tables, and scenario-specific recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language sales management guidance; may suggest Feishu spreadsheet structures for dashboards, customer follow-up, commission calculations, and recruiting tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,159 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/visual-decision-plan.schema.json",
+  "schemaVersion": "1.0.0",
+  "planId": "visual_plan_001",
+  "projectId": "project_demo_001",
+  "timelineId": "timeline_demo_001",
+  "timelineRevision": "rev_demo",
+  "policy": {
+    "automaticSelectionMinimum": 7,
+    "generatedEvidenceSubstitutionAllowed": false,
+    "fixedIntervalSwitchingAllowed": false,
+    "onePrimaryTaskPerSegment": true
+  },
+  "segments": [
+    {
+      "segmentId": "segment_evidence_001",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 180
+      },
+      "primaryTask": "evidence",
+      "semanticReason": "Show the cited report while the speaker states its finding.",
+      "evidenceRefs": [
+        "evidence_claim_001"
+      ],
+      "candidates": [
+        {
+          "candidateId": "candidate_report_001",
+          "assetId": "asset_report_001",
+          "assetKind": "original-document",
+          "semanticRefs": [
+            "evidence_claim_001"
+          ],
+          "sourceEvidenceRefs": [
+            "evidence_source_001"
+          ],
+          "rightsEvidenceRefs": [
+            "evidence_rights_001"
+          ],
+          "sourceVerified": true,
+          "scores": {
+            "semanticMatch": 3,
+            "authenticity": 2,
+            "timingMatch": 2,
+            "visualClarity": 1,
+            "rightsConfidence": 1,
+            "notRecentlyRepeated": 1
+          },
+          "total": 10,
+          "decision": "eligible"
+        },
+        {
+          "candidateId": "candidate_generic_001",
+          "assetId": "asset_stock_001",
+          "assetKind": "licensed-stock",
+          "semanticRefs": [
+            "evidence_claim_001"
+          ],
+          "sourceEvidenceRefs": [
+            "evidence_source_002"
+          ],
+          "rightsEvidenceRefs": [
+            "evidence_rights_002"
+          ],
+          "sourceVerified": true,
+          "scores": {
+            "semanticMatch": 1,
+            "authenticity": 1,
+            "timingMatch": 1,
+            "visualClarity": 1,
+            "rightsConfidence": 1,
+            "notRecentlyRepeated": 1
+          },
+          "total": 6,
+          "decision": "rejected"
+        }
+      ],
+      "selection": {
+        "mode": "automatic",
+        "selectedCandidateId": "candidate_report_001",
+        "reasonCodes": [
+          "SOURCE_EVIDENCE_MATCH",
+          "SCORE_THRESHOLD_PASSED"
+        ],
+        "approval": {
+          "required": true,
+          "status": "approved",
+          "approvalId": "approval_visual_001"
+        }
+      },
+      "detectedAntiPatterns": [],
+      "fallback": "speaker-stable"
+    },
+    {
+      "segmentId": "segment_speaker_001",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 180,
+        "end": 360
+      },
+      "primaryTask": "speaker",
+      "semanticReason": "Keep the speaker visible for the personal conclusion.",
+      "evidenceRefs": [
+        "evidence_speaker_001"
+      ],
+      "candidates": [
+        {
+          "candidateId": "candidate_speaker_001",
+          "assetId": "asset_speaker_001",
+          "assetKind": "speaker",
+          "semanticRefs": [
+            "evidence_speaker_001"
+          ],
+          "sourceEvidenceRefs": [
+            "evidence_source_003"
+          ],
+          "rightsEvidenceRefs": [
+            "evidence_rights_003"
+          ],
+          "sourceVerified": true,
+          "scores": {
+            "semanticMatch": 3,
+            "authenticity": 2,
+            "timingMatch": 2,
+            "visualClarity": 1,
+            "rightsConfidence": 1,
+            "notRecentlyRepeated": 0
+          },
+          "total": 9,
+          "decision": "eligible"
+        }
+      ],
+      "selection": {
+        "mode": "automatic",
+        "selectedCandidateId": "candidate_speaker_001",
+        "reasonCodes": [
+          "SPEAKER_PRIORITY",
+          "SCORE_THRESHOLD_PASSED"
+        ],
+        "approval": {
+          "required": true,
+          "status": "approved",
+          "approvalId": "approval_visual_002"
+        }
+      },
+      "detectedAntiPatterns": [],
+      "fallback": "speaker-stable"
+    }
+  ]
+}

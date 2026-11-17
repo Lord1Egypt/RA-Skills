@@ -1,0 +1,11 @@
+{
+  "ok": false,
+  "error": "agent-lob-transfer-retired",
+  "message": "Agent-to-agent LOB transfer is retired while canonical economy spending policy is not active.",
+  "legacyHistoryReadable": true,
+  "notes": [
+    "No new debit, credit, transfer, idempotency, or balance projection records are written.",
+    "Historical accounting remains readable.",
+    "No canonical spending policy is active."
+  ]
+}

@@ -1,44 +1,64 @@
-## Description: <br>
-Use when users ask for 老黄历/黄历/择日/宜忌/冲煞/干支/节气 explanations, or need a reproducible engineering workflow to compute calendar fields and derive traditional almanac recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users ask for Lao Huangli, Huangli, date selection, auspicious and inauspicious activities, clashes, sexagenary calendar fields, solar terms, or need a reproducible workflow to compute traditional Chinese almanac recommendations.
 
-## Publisher: <br>
-[cikichen](https://clawhub.ai/user/cikichen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cikichen](https://clawhub.ai/user/cikichen)
 
-## Use Case: <br>
-External users and developers use this skill to compute and explain Lao Huangli calendar fields, solar terms, sexagenary-cycle values, auspicious and inauspicious activities, and rule-derived almanac recommendations. It is intended for cultural and calendar reference with explicit rule-version and boundary disclosures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First use may install Python dependencies and download a JPL ephemeris file into a local cache for astronomical calculations. <br>
-Mitigation: Review dependency installation and cache behavior before deployment, especially in restricted or offline environments. <br>
-Risk: Almanac recommendations may be mistaken for authoritative legal, medical, financial, or safety advice. <br>
-Mitigation: Present results as cultural and calendar reference only, and keep explicit disclaimers that they do not replace professional or safety-critical decisions. <br>
-Risk: Different Huangli rule profiles can produce different recommendations for the same date because of year-boundary, day-boundary, and ruleset choices. <br>
-Mitigation: Include the selected profile, timezone, year boundary, day boundary, ruleset version, and source references in outputs. <br>
+## Use Case:
 
+Developers and users consulting traditional Chinese almanac data use this skill to calculate lunar calendar fields, sexagenary cycle values, solar terms, daily recommendations, and explain which results are deterministic versus ruleset-derived.
 
-## Reference(s): <br>
-- [Calculation Pipeline](references/calculation-pipeline.md) <br>
-- [Rules and Variants](references/rules-and-variants.md) <br>
-- [Qinding Xiejibianfangshu on Wikisource](https://zh.wikisource.org/wiki/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON-style structured explanations, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should distinguish deterministic calendar calculations from rule-derived almanac judgments and include timezone, boundary, ruleset, and source-reference context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Dependency installation and astronomy data caching may download Python packages or a JPL ephemeris file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted package sources, pin hashes or a lockfile, and pre-provision and verify de440s.bsp in stricter environments.
+
+Risk: Almanac recommendations may be mistaken for legal, medical, financial, safety, or other high-stakes advice.
+
+Mitigation: Treat outputs as cultural reference only and include disclaimers when presenting recommendations.
+
+Risk: Different almanac profiles, year boundaries, day boundaries, and ruleset variants can produce different results.
+
+Mitigation: State the selected profile, timezone, year boundary, day boundary, ruleset version, and source references in user-facing output.
+
+## Reference(s):
+
+- [Lao Huangli ClawHub Skill](https://clawhub.ai/cikichen/skills/lao-huangli)
+- [Calculation Pipeline](artifact/references/calculation-pipeline.md)
+- [Rules and Variants](artifact/references/rules-and-variants.md)
+- [Qinding Xieji Bianfangshu, Volume 1](https://zh.wikisource.org/zh-hans/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B701)
+- [Qinding Xieji Bianfangshu, Volume 4](https://zh.wikisource.org/zh-hans/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B704)
+- [Qinding Xieji Bianfangshu, Volume 7](https://zh.wikisource.org/wiki/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B707)
+- [Qinding Xieji Bianfangshu, Volume 10](https://zh.wikisource.org/zh-hans/%E6%AC%BD%E5%AE%9A%E5%8D%94%E7%B4%80%E8%BE%A8%E6%96%B9%E6%9B%B8_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B710)
+- [6tail lunar-javascript](https://github.com/6tail/lunar-javascript)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown, JSON, and plain text calendar output with explanatory prose.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include the date, timezone, year and day boundary settings, selected ruleset or profile, provenance/source references for rule-derived fields, and cultural-reference disclaimers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

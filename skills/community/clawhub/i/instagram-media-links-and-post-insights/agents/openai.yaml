@@ -1,0 +1,10 @@
+interface:
+  display_name: "Instagram Media Links & Post Insights"
+  short_description: "Return media links and verified Instagram post fields"
+  icon_small: "./assets/instagram-media-links-and-post-insights-icon.svg"
+  icon_large: "./assets/instagram-media-links-and-post-insights-icon.svg"
+  brand_color: "#8B5CF6"
+  default_prompt: "Use $instagram-media-links-and-post-insights to return media links or organize actual fields from these public Instagram video post or Reel URLs: [URLS]"
+
+policy:
+  allow_implicit_invocation: true

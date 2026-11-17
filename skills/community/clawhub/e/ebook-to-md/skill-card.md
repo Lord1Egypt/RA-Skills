@@ -1,44 +1,53 @@
-## Description: <br>
-Converts PDF, PNG, JPEG, MOBI, and EPUB files to Markdown using Baidu OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PDF/PNG/JPEG/MOBI/EPUB to Markdown using Baidu OCR.
 
-## Publisher: <br>
-[whille](https://clawhub.ai/user/whille) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whille](https://clawhub.ai/user/whille)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to convert scanned PDFs, images, and ebooks into Markdown when Baidu OCR credentials and any required Calibre dependency are available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Documents and images may be sent to Baidu OCR, exposing confidential, regulated, or business-sensitive content. <br>
-Mitigation: Use only with files that are approved for Baidu processing and avoid sensitive documents unless the deployment has explicit approval. <br>
-Risk: Baidu OCR credentials are required for operation. <br>
-Mitigation: Keep BAIDU_OCR_API_KEY and BAIDU_OCR_SECRET_KEY scoped, rotated, and unavailable to unrelated tools or users. <br>
-Risk: Parser-returned image URLs may be fetched automatically when inline image handling is enabled. <br>
-Mitigation: Review this behavior for untrusted documents and disable inline image handling when automatic image fetching is not acceptable. <br>
-Risk: MOBI and EPUB conversion depends on a local Calibre installation. <br>
-Mitigation: Install Calibre from a trusted source and keep it updated before processing ebook files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whille/ebook-to-md) <br>
-- [Baidu OCR documentation](https://cloud.baidu.com/doc/OCR/s/7mh8u7ruk) <br>
+## Use Case:
 
+Developers, analysts, and content migration teams use this skill to convert scanned PDFs, images, MOBI, and EPUB files into Markdown for agent-readable document processing and reuse.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files] <br>
-**Output Format:** [Markdown content returned as text, with optional .md file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inline images as base64 or write local image references depending on the inline_images setting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Documents and images may be uploaded to Baidu OCR during conversion.
+
+Mitigation: Use the skill only with documents approved for that provider, and avoid sensitive, regulated, or confidential files unless the deployment has appropriate privacy controls.
+
+Risk: The skill may fetch URLs returned in OCR parsing output when processing Markdown images.
+
+Mitigation: Run it in a network-restricted environment or patch URL fetching to allow only trusted hosts before processing untrusted documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whille/skills/ebook-to-md)
+- [Baidu OCR API endpoint](https://aip.baidubce.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown content, optional .md file output, and concise success or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inline extracted images as base64 or write referenced image files next to the Markdown output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "KYA Regulated Agent Human Gate"
+  short_description: "Bind high-risk agent approvals to exact actions."
+  default_prompt: "Use $regulated-agent-human-gate to design and test a KYA control boundary with cumulative controls, action-bound delegation receipts, MCP enforcement, and audit evidence."

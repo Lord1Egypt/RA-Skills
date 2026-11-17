@@ -1,42 +1,54 @@
-## Description: <br>
-Audits installed skills for quality, duplicates, structural issues, and best-practice compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit all installed skills for quality, duplicates, structural issues, and best-practice compliance.
 
-## Publisher: <br>
-[bill492](https://clawhub.ai/user/bill492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bill492](https://clawhub.ai/user/bill492)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit installed OpenClaw skills for structural quality, duplicates, stale files, and category coverage before publishing or maintaining a skill set. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated audit report may include local skill names and filesystem paths. <br>
-Mitigation: Review the report before sharing, publishing, or committing it. <br>
-Risk: The skill runs a local shell script to inspect configured skill directories. <br>
-Mitigation: Run it only in environments where installed skill metadata may be inspected. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit installed OpenClaw skills for quality, duplicate functionality, structural gaps, stale files, and best-practice compliance before publishing or maintaining skill collections.
 
-## Reference(s): <br>
-- [Skill Audit on ClawHub](https://clawhub.ai/bill492/unblocklabs-skill-audit) <br>
-- [Anthropic: Lessons from Building Claude Code Skills](https://x.com/trq212/status/2033949937936085378) <br>
-- [Ole Lehmann: Auto-improve Skills](https://x.com/itsolelehmann/status/2033919415771713715) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report and chat summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes .sub-agent-results/skill-audit-report.md; the report may include local skill names and filesystem paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated audit report may include local paths, skill names, and metadata about the user's setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review .sub-agent-results/skill-audit-report.md before sharing it outside the local environment.
+
+Risk: The audit reads local OpenClaw skill directories and summarizes discovered skill metadata.
+
+Mitigation: Run it only in workspaces where local skill discovery is intended and where the resulting report can be handled appropriately.
+
+## Reference(s):
+
+- [Anthropic: Lessons from Building Claude Code Skills](https://x.com/trq212/status/2033949937936085378)
+- [Ole Lehmann: Auto-improve Skills](https://x.com/itsolelehmann/status/2033919415771713715)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with chat summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audit results to .sub-agent-results/skill-audit-report.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

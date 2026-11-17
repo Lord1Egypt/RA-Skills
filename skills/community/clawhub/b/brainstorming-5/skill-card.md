@@ -1,41 +1,59 @@
-## Description: <br>
-Guides agents through project context review, clarifying questions, design alternatives, approval gates, and written specifications before implementation begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.
 
-## Publisher: <br>
-[lovemymobilewebsite-dotcom](https://clawhub.ai/user/lovemymobilewebsite-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovemymobilewebsite-dotcom](https://clawhub.ai/user/lovemymobilewebsite-dotcom)
 
-## Use Case: <br>
-Developers and project teams use this skill to turn new feature, component, or behavior-change ideas into reviewed design specifications before implementation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional visual companion can start a local browser server and record interaction events. <br>
-Mitigation: Keep the companion bound to localhost, avoid 0.0.0.0 on shared or remote networks, and review generated event and brainstorm files before committing. <br>
-Risk: The workflow can ask the agent to write specifications and make git commits. <br>
-Mitigation: Require explicit user approval before writing specs or committing files. <br>
+## Use Case:
 
+Developers and coding agents use this skill to turn creative or implementation requests into approved designs before writing code. It supports context review, clarifying questions, approach comparison, design documentation, spec review, and transition into implementation planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lovemymobilewebsite-dotcom/brainstorming-5) <br>
-- [Publisher profile](https://clawhub.ai/user/lovemymobilewebsite-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Conversational text and Markdown design documents with optional local browser companion interactions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce specification files under docs/superpowers/specs and may suggest local shell commands for the optional visual companion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill enforces a strict design-first workflow that can alter normal agent behavior and block implementation until approvals are complete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when the workspace wants mandatory design approval before coding, and confirm the approval gates fit the team's workflow.
+
+Risk: The optional browser companion runs a local web server with persistent session files and unauthenticated event handling.
+
+Mitigation: Keep the companion bound to 127.0.0.1, avoid 0.0.0.0 unless network access is contained, add .superpowers/ to .gitignore, and clean up session files when finished.
+
+Risk: The workflow can create design documents, start long-running local server processes, and request commits as part of the design process.
+
+Mitigation: Require explicit user approval before commits or long-running server use, and review generated documents before moving to implementation planning.
+
+## Reference(s):
+
+- [ClawHub Brainstorming skill release](https://clawhub.ai/lovemymobilewebsite-dotcom/skills/brainstorming-5)
+- [Visual Companion Guide](artifact/visual-companion.md)
+- [Spec Document Reviewer Prompt Template](artifact/spec-document-reviewer-prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown conversation, design documents, review prompts, and occasional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create project design documents and use a local browser companion when visual brainstorming is approved.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

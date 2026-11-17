@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 产品质量问题线索"
+  short_description: "从差评与低星体验定位质量改进线索"
+  default_prompt: "使用 $amazon-quality-issue-detector 从 Amazon 低星评论定位产品质量改进线索。"

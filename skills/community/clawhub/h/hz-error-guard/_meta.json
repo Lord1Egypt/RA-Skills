@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77zwtv797nj9c22mts1tg9x581mrc2",
-  "slug": "hz-error-guard",
-  "version": "1.0.0",
-  "publishedAt": 1771755098055
+  "name": "hz-error-guard",
+  "displayName": "Huizai Error Guard",
+  "description": "OpenClaw错误守卫 - 自动恢复、异常处理、故障自愈",
+  "author": {
+    "name": "lidekahdjdhdhsjjs-lang",
+    "url": "https://github.com/lidekahdjdhdhsjjs-lang"
+  },
+  "tags": ["error", "recovery", "autofix", "openclaw", "huizai"],
+  "homepage": "https://github.com/lidekahdjdhdhsjjs-lang/Huizai-openclaw"
 }

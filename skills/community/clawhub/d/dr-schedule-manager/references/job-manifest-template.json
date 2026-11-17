@@ -6,7 +6,7 @@
   "schedule": {
     "kind": "cron",
     "expr": "0 8 * * *",
-    "tz": "Australia/Brisbane"
+    "tz": "Etc/UTC"
   },
   "runtimeMode": "fresh-isolated",
   "triggerMode": "wake-only",
@@ -17,8 +17,8 @@
   ],
   "delivery": {
     "channel": "discord",
-    "target": "user:270548320366100480",
-    "accountId": "default",
+    "target": "user:<approved-recipient-id>",
+    "accountId": "<approved-account-id>",
     "mode": "runtime-send"
   },
   "modelPolicy": {

@@ -1,43 +1,58 @@
-## Description: <br>
-GSwitch coordinates seven OpenClaw engineering roles through a shared workflow for planning, building, reviewing, testing, securing, releasing, and reflecting on software work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GSwitch coordinates a seven-role OpenClaw engineering workflow for problem framing, planning, implementation, review, testing, release, and retrospective documentation.
 
-## Publisher: <br>
-[garysze77](https://clawhub.ai/user/garysze77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[garysze77](https://clawhub.ai/user/garysze77)
 
-## Use Case: <br>
-Developers and engineering teams use GSwitch to coordinate OpenClaw subagents across product framing, architecture, implementation, design review, code review, QA, security audit, release, and retrospective work. It is intended for multi-agent engineering workflows that need explicit role boundaries and an append-only shared project log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent shared-memory logging may capture secrets, sensitive findings, or project data. <br>
-Mitigation: Keep shared memory in a dedicated project directory, restrict access, and do not store secrets or sensitive findings in shared logs. <br>
-Risk: The workflow includes production deployment steps and can proceed from QA to release. <br>
-Mitigation: Require explicit human approval before production deployment, destructive changes, or rollback actions. <br>
-Risk: Recommended settings allow deep, concurrent, and unbounded agent execution. <br>
-Mitigation: Set practical run limits, constrain concurrent subagents, and monitor spawned agent activity for the target environment. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate specialized agents across product strategy, architecture, design, code review, QA, security, deployment, and shared-memory handoff. It is intended for OpenClaw workflows where work should pass through explicit review and testing gates before release.
 
-## Reference(s): <br>
-- [GSwitch on ClawHub](https://clawhub.ai/garysze77/gswitch) <br>
-- [Publisher profile](https://clawhub.ai/user/garysze77) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown role instructions, design documents, review reports, test notes, deployment checklists, code changes, shell commands, and JSON configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agents append structured status notes to a shared daily Markdown log and may hand work to other configured roles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Release guidance can lead agents toward production deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require fresh user approval before any production action and use scoped deployment credentials that can be revoked.
+
+Risk: Recommended spawning and timeout settings allow broad or long-running agent activity.
+
+Mitigation: Set finite timeouts and conservative spawn, child, and concurrency budgets before enabling the workflow.
+
+Risk: Shared-memory logs may retain sensitive project details.
+
+Mitigation: Disable shared-memory logging for sensitive projects or apply redaction, access controls, and retention limits.
+
+## Reference(s):
+
+- [GSwitch ClawHub skill page](https://clawhub.ai/garysze77/skills/gswitch)
+- [garysze77 ClawHub publisher profile](https://clawhub.ai/user/garysze77)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, role handoff notes, configuration JSON, code changes, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses shared append-only daily memory logs and role-specific agent handoffs.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

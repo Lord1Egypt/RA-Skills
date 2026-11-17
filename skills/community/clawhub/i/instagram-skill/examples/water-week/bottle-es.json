@@ -1,0 +1,58 @@
+{
+ "theme": {
+  "preset": "editorial",
+  "mode": "dark",
+  "headline_font": "sans",
+  "accent": "#4FD1E8",
+  "name": "La Tierra en Números",
+  "handle": "@latierraennumeros"
+ },
+ "slides": [
+  {
+   "type": "cover",
+   "title": "Toda el agua del planeta en *1 litro*",
+   "kicker": "¿Cuánta sería de río?",
+   "image": "media/earth.jpg",
+   "alt": "Portada sobre una foto de la Tierra de la NASA: toda el agua de la Tierra en una botella de 1 litro. ¿Cuánta sería de río?"
+  },
+  {
+   "type": "stat",
+   "number": "35 ml",
+   "body": "es lo que queda de una botella de 1 litro con toda el agua de la Tierra al *vaciar los océanos*",
+   "source": "USGS, Water Science School",
+   "alt": "Toda el agua de la Tierra en una botella de 1 litro: al vaciar los océanos quedan 35 ml. Fuente: USGS."
+  },
+  {
+   "type": "list",
+   "title": "Dónde están esos 35 ml",
+   "marker": "number",
+   "items": [
+    "Casquetes y glaciares: 17,4 ml",
+    "Aguas subterráneas: 16,9 ml, más de la mitad salada",
+    "Hielo del suelo y permafrost: 0,22 ml",
+    "Lagos: 0,13 ml",
+    "Suelo, aire, pantanos, ríos y seres vivos: 0,03 ml"
+   ],
+   "alt": "Dónde están esos 35 ml: casquetes y glaciares 17,4 ml, aguas subterráneas 16,9 ml (más de la mitad salada), hielo del suelo y permafrost 0,22 ml, lagos 0,13 ml, suelo, aire, pantanos, ríos y seres vivos 0,03 ml."
+  },
+  {
+   "type": "stat",
+   "number": "25 ml",
+   "body": "de la botella son agua dulce: *17,4 ml* son hielo y 7,6 ml están bajo tierra",
+   "source": "USGS, Water Science School",
+   "alt": "25 ml de la botella son agua dulce: 17,4 ml son hielo y 7,6 ml están bajo tierra. Fuente: USGS."
+  },
+  {
+   "type": "stat",
+   "number": "0,002 ml",
+   "body": "para todos los ríos del planeta: menos de *una décima de gota*",
+   "source": "USGS, Water Science School",
+   "alt": "0,002 ml para todos los ríos del planeta: menos de una décima de gota. Fuente: USGS."
+  },
+  {
+   "type": "cta",
+   "title": "Guárdalo para tu próximo trivial",
+   "alt": "Guárdalo para tu próximo trivial."
+  }
+ ]
+}

@@ -1,40 +1,48 @@
-## Description: <br>
-TS5 is a TypeScript full-stack starter skill for monorepo templates with shared types, CI/CD pipelines, and deployment helper commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TS5 namespace for Netsnek e.U. TypeScript full-stack starter kit. Monorepo template with shared types, CI/CD pipelines, and one-click deployment.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and engineers use this skill to bootstrap and manage a TypeScript full-stack monorepo with shared types, frontend, backend, CI/CD, and deployment commands.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can ask an agent to run a local shell script, and its deploy command is documented more broadly than the current stub implementation.
+
+Mitigation: Review proposed shell commands before execution and confirm deployment targets if a future version adds real deployment behavior.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to bootstrap or inspect a TypeScript full-stack monorepo structure and run helper commands for packages and deployment. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests shell execution permission and exposes deployment-oriented arguments. <br>
-Mitigation: Review the disclosed shell script before use and re-check future versions before running --deploy. <br>
-Risk: Future releases could replace the current echo-only script with commands that modify files, deploy services, or access the network. <br>
-Mitigation: Treat updates as new executable code and review the security scan, changelog, and script behavior before installation or execution. <br>
+**Output Format:** [Markdown with inline bash commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/ts5) <br>
+**Other Properties Related to Output:** [May propose running the included local shell script for monorepo setup, package checks, or deployment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell helper currently prints status messages for init, package, and deploy arguments.] <br>
+0.1.0 (source: SKILL.md frontmatter and artifact/claw.json)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, claw.json, server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

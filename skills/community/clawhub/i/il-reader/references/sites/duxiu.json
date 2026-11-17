@@ -1,0 +1,219 @@
+{
+  "version": "2.4.0",
+  "source_id": "duxiu",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T08:59:19.796Z",
+  "entry": {
+    "url": "https://www.duxiu.com/",
+    "final_url": "https://www.duxiu.com/login.jsp",
+    "title": "读秀学术搜索",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T08:59:19.796Z",
+    "identity": {
+      "declared_name": "读秀学术搜索",
+      "hostname": "www.duxiu.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "使用帮助",
+        "href": "https://www.duxiu.com/views/newduxiu/bottom/help_login.html",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": null,
+      "text": "账号",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "账号",
+      "name": "UserName",
+      "id": "UserName",
+      "css": "#UserName",
+      "role": null,
+      "form_action": "https://www.duxiu.com/loginhl.jsp",
+      "locator": {
+        "css": "#UserName"
+      },
+      "observed_url": "https://www.duxiu.com/login.jsp",
+      "observed_at": "2026-10-09T08:59:19.431Z"
+    },
+    {
+      "tag": "input",
+      "type": "password",
+      "text": "密码",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "密码",
+      "name": "PassWord",
+      "id": "PassWord",
+      "css": "#PassWord",
+      "role": null,
+      "form_action": "https://www.duxiu.com/loginhl.jsp",
+      "locator": {
+        "css": "#PassWord"
+      },
+      "observed_url": "https://www.duxiu.com/login.jsp",
+      "observed_at": "2026-10-09T08:59:19.431Z"
+    },
+    {
+      "tag": "input",
+      "type": "button",
+      "text": "登 录",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "submit0",
+      "id": "searchinp0",
+      "css": "#searchinp0",
+      "role": null,
+      "form_action": "https://www.duxiu.com/loginhl.jsp",
+      "locator": {
+        "css": "#searchinp0"
+      },
+      "observed_url": "https://www.duxiu.com/login.jsp",
+      "observed_at": "2026-10-09T08:59:19.431Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "duxiu:record-lookup",
+      "source_id": "duxiu",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.duxiu.com/login.jsp",
+      "controls": [
+        {
+          "tag": "input",
+          "type": null,
+          "text": "账号",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "账号",
+          "name": "UserName",
+          "id": "UserName",
+          "css": "#UserName",
+          "role": null,
+          "form_action": "https://www.duxiu.com/loginhl.jsp",
+          "locator": {
+            "css": "#UserName"
+          },
+          "observed_url": "https://www.duxiu.com/login.jsp",
+          "observed_at": "2026-10-09T08:59:19.431Z"
+        },
+        {
+          "tag": "input",
+          "type": "password",
+          "text": "密码",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "密码",
+          "name": "PassWord",
+          "id": "PassWord",
+          "css": "#PassWord",
+          "role": null,
+          "form_action": "https://www.duxiu.com/loginhl.jsp",
+          "locator": {
+            "css": "#PassWord"
+          },
+          "observed_url": "https://www.duxiu.com/login.jsp",
+          "observed_at": "2026-10-09T08:59:19.431Z"
+        },
+        {
+          "tag": "input",
+          "type": "button",
+          "text": "登 录",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "submit0",
+          "id": "searchinp0",
+          "css": "#searchinp0",
+          "role": null,
+          "form_action": "https://www.duxiu.com/loginhl.jsp",
+          "locator": {
+            "css": "#searchinp0"
+          },
+          "observed_url": "https://www.duxiu.com/login.jsp",
+          "observed_at": "2026-10-09T08:59:19.431Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "duxiu",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T08:59:19.796Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/duxiu-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/duxiu-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

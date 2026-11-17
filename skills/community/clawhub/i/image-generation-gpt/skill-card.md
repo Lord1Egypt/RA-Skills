@@ -1,51 +1,63 @@
-## Description: <br>
-High quality AI image generation via the WellAPI gpt-image-2 model. Supports text-to-image and image editing (image-to-image). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High quality AI image generation via the WellAPI gpt-image-2 model. Supports text-to-image and image editing (image-to-image).
 
-## Publisher: <br>
-[laolujava](https://clawhub.ai/user/laolujava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laolujava](https://clawhub.ai/user/laolujava)
 
-## Use Case: <br>
-External users and developers use this skill to let an OpenClaw-compatible agent generate new images from prompts or edit local images through WellAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, the WellAPI API key, and selected image or mask files are sent to a third-party API. <br>
-Mitigation: Use the skill only for content approved for WellAPI processing, and avoid confidential, regulated, or proprietary inputs unless that transfer is authorized. <br>
-Risk: High-quality or large image renders may consume paid WellAPI quota. <br>
-Mitigation: Start with lower quality or smaller draft renders, then request high-quality or 4K output only for final images. <br>
-Risk: Generated image files are written to local storage and announced through MEDIA path lines. <br>
-Mitigation: Review output paths and apply local retention or cleanup controls appropriate for the workspace. <br>
-Risk: Unsanitized output filenames could be unsafe if passed to shell commands. <br>
-Mitigation: Use the documented filename sanitization and extension whitelist before shell interpolation. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to generate images from text prompts and edit local images through WellAPI's OpenAI-compatible image endpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laolujava/image-generation-gpt) <br>
-- [Publisher Profile](https://clawhub.ai/user/laolujava) <br>
-- [WellAPI](https://wellapi.ai) <br>
-- [Skill Manifest](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Python Reference Implementation](artifact/references/python.md) <br>
-- [PowerShell Reference Implementation](artifact/references/powershell.md) <br>
-- [curl and Bash Reference Implementation](artifact/references/curl_heredoc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, API Calls] <br>
-**Output Format:** [Generated PNG, JPEG, or WebP image files plus MEDIA:<absolute_path> text lines.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Images are decoded from base64 responses and saved locally with sanitized wellapi-<timestamp> filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog list 1.0.2) <br>
+Risk: The skill sends user prompts, selected local images, masks, and the WellAPI API key to WellAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after reviewing WellAPI privacy, retention, and pricing terms, and avoid sensitive or regulated images unless that review is complete.
+
+Risk: The fallback onboarding flow asks users to paste an API key and includes a registration link with channel tracking.
+
+Mitigation: Prefer setting WELLAPI_API_KEY through an environment variable or secret mechanism, and review the tracked registration link before relying on the fallback prompt.
+
+Risk: Generated images are saved locally and auto-attached to the conversation.
+
+Mitigation: Confirm the output path and attachment behavior before generating sensitive images or sharing the conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laolujava/skills/image-generation-gpt)
+- [WellAPI provider](https://wellapi.ai)
+- [Python reference implementation](references/python.md)
+- [PowerShell reference implementation](references/powershell.md)
+- [curl and bash reference implementation](references/curl_heredoc.md)
+- [Basic text-to-image example](examples/basic.md)
+- [Advanced image editing example](examples/advanced.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [PNG, JPEG, or WebP image files with MEDIA:<absolute_path> text lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decodes synchronous base64 image responses, saves sanitized local filenames, and can return up to 10 images per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog list 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

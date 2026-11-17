@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn76a8b2a38yhm1h65qq78nvdx83jhfz",
-  "slug": "newmedia-operations",
-  "version": "1.0.2",
-  "publishedAt": 1775202475310
+  "name": "newmedia-operations",
+  "version": "1.0.0",
+  "description": "全链路新媒体运营技能：行业分析→竞品分析→账号养号→爆款内容创作→互动钩子设计",
+  "platforms": ["douyin", "xiaohongshu", "wechat_video"],
+  "created_at": "2026-03-25",
+  "scripts": {
+    "fetch_douyin.py": "抖音内容抓取",
+    "fetch_xiaohongshu.py": "小红书内容抓取",
+    "fetch_weibo.py": "微博内容抓取",
+    "fetch_wechat_video.py": "视频号内容抓取",
+    "fetch_ecommerce_reviews.py": "电商评价抓取",
+    "clean_data.py": "数据清洗",
+    "extract_demands.py": "需求提取",
+    "demand_type_classifier.py": "需求类型分类",
+    "prioritize_demands.py": "需求优先级排序",
+    "validate_data.py": "数据验证",
+    "generate_report.py": "报告生成",
+    "analyze_industry.py": "行业大盘分析，整合多平台数据",
+    "detect_forbidden_words.py": "违禁词检测与替换建议",
+    "monitor_competitors.py": "竞品账号实时监测",
+    "generate_hook_templates.py": "互动钩子话术生成"
+  },
+  "dependencies": {
+    "python_packages": ["requests", "json", "re", "pathlib"]
+  }
 }

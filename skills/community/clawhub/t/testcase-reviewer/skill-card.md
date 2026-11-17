@@ -1,44 +1,54 @@
-## Description: <br>
-Provides structured, quantifiable functional test case review across completeness, accuracy, effectiveness, executability, standards compliance, and maintainability, with reports, missing-scenario suggestions, dependency analysis, and improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Testcase Reviewer provides a Chinese-language, structured review of functional test cases against requirements, covering completeness, accuracy, validity, executability, standards compliance, and maintainability.
 
-## Publisher: <br>
-[zxpfreesky](https://clawhub.ai/user/zxpfreesky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxpfreesky](https://clawhub.ai/user/zxpfreesky)
 
-## Use Case: <br>
-QA engineers, test leads, and development teams use this skill to review functional test cases against requirements, quantify quality gaps, and produce actionable Markdown review reports before execution or automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review output can be incomplete or unreliable when the user omits the requirements document or test cases. <br>
-Mitigation: Require both inputs before starting the review and ask the user to supply any missing artifact. <br>
-Risk: The skill may produce incorrect or misleading quality guidance if requirement interpretation or business context is wrong. <br>
-Mitigation: Have QA or product reviewers confirm high-severity findings, coverage gaps, and scoring before using the report as a quality gate. <br>
-Risk: Security evidence reports no hidden malware or exfiltration, but installation should still be deliberate. <br>
-Mitigation: Review the skill artifacts and only install from the server-resolved ClawHub release and publisher profile. <br>
+## Use Case:
 
+QA engineers, testers, and development teams use this skill to review functional test cases against requirements, quantify quality across six dimensions, and receive missing-scenario, dependency, and improvement recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zxpfreesky/testcase-reviewer) <br>
-- [Publisher Profile](https://clawhub.ai/user/zxpfreesky) <br>
-- [Test Case Review Report Template](artifact/report/测试用例评审报告模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review report with scoring tables, issue lists, traceability matrix, missing-scenario suggestions, dependency analysis, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires both a requirements document and test cases before review begins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: A generated report may overwrite an existing report if the project or module name resolves to the same output filename.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended report path before running the skill in a shared repository.
+
+Risk: Review results are unreliable if either the requirements document or the test cases are missing.
+
+Mitigation: Provide both required inputs before starting the review.
+
+## Reference(s):
+
+- [Test Case Review Report Template](artifact/report/测试用例评审报告模板.md)
+- [ClawHub skill page](https://clawhub.ai/zxpfreesky/skills/testcase-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review report with scoring tables, traceability matrix, issue lists, missing-scenario suggestions, dependency analysis, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill expects both requirements and test cases as inputs before review; generated reports should be written to the configured report location without overwriting existing reports.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

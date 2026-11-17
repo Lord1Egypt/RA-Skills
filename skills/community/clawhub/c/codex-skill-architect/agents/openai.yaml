@@ -1,0 +1,3 @@
+interface:
+  display_name: "Skill Architect"
+  short_description: "Audit, externalize, route, validate, and roll back large SKILL.md files"

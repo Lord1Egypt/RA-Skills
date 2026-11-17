@@ -1,41 +1,55 @@
-## Description: <br>
-Thesis Helper supports thesis outline generation, literature review framing, abstract drafting, citation formatting, style checks, and defense preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thesis Helper provides thesis-outline, literature-review, abstract-writing, citation-formatting, style-checking, and defense-preparation guidance.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Students, researchers, and writing assistants use this skill to generate thesis planning templates, citation-format examples, abstract structures, formatting checklists, and defense-preparation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes local shell scripts and local storage behavior, so generic add or run commands may write user-provided text to local logs. <br>
-Mitigation: Use the thesis-specific template commands for generated guidance, avoid entering sensitive unpublished text into generic storage commands, and set THESIS_HELPER_DIR to a sandbox directory when cleanup or isolation is needed. <br>
-Risk: The package documentation and available command scripts do not fully match, which may confuse users about which commands produce thesis-specific output. <br>
-Mitigation: Prefer the thesis-specific commands shown by the thesis script help, and review command output before relying on it in academic work. <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to generate thesis structures, literature-review frameworks, abstract templates, citation-format examples, formatting checklists, and defense-preparation prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/thesis-helper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys are required; outputs are template-based writing and formatting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The release includes an under-disclosed local data/history logging script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local logging behavior before installation, set THESIS_HELPER_DIR to an approved directory, or avoid data-management commands when logging is not desired.
+
+Risk: The defense-preparation command has a shell-input weakness around duration calculations.
+
+Mitigation: Use only trusted numeric duration values, or validate/replace the bc-based calculation before exposing the command to untrusted input.
+
+## Reference(s):
+
+- [Thesis Helper Tips](artifact/tips.md)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Thesis Helper on ClawHub](https://clawhub.ai/bytesagain3/skills/thesis-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys are required; bundled shell scripts may write local data and history logs when invoked.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

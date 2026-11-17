@@ -1,0 +1,11 @@
+{
+  "deterministic": {
+    "findings": [], "no_certain_findings": true, "compromise_hints": [], "min_deferrals": 0, "min_claims": 1,
+    "unsupported": ["flask"], "lang": "zh"
+  },
+  "graph": {"nodes": ["app.py"], "entries": ["app.py"], "externals": ["ext:sqlite"], "edges": [["app.py", "ext:sqlite"]]},
+  "explain": [{"path": "app.py", "label": "stores notes in SQLite", "text_any": ["sqlite", "数据库", "database", "note", "笔记"]}],
+  "must_find": [],
+  "must_find_compromises": [],
+  "clean": null
+}

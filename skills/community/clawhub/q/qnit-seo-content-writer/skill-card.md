@@ -1,40 +1,58 @@
-## Description: <br>
-提供符合CORE-EEAT标准的完整SEO内容写作解决方案，提升网站内容质量与搜索引擎排名。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language SEO content writing suite for producing content aligned with CORE-EEAT quality standards.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Content marketers, SEO specialists, and site operators use this skill to draft SEO-oriented content guided by CORE-EEAT quality standards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SEO copy may contain inaccurate, non-original, poorly localized, or non-compliant publishing claims. <br>
-Mitigation: Review generated content for accuracy, originality, language fit, and publishing compliance before use. <br>
+## Use Case:
 
+Content marketers, SEO practitioners, and content-focused developers use this skill to draft and improve Chinese-language SEO content intended to improve content quality and search visibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesong-hue/qnit-seo-content-writer) <br>
-- [Packaged skill definition](artifact/skill.md) <br>
-- [Packaged README](artifact/readme.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text content-writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content should be reviewed for accuracy, originality, language fit, and publishing compliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.md frontmatter) <br>
+Risk: Broad trigger wording may cause the skill to activate on loosely related SEO writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the request is specifically for SEO content writing before relying on the skill output.
+
+Risk: Generated SEO content may be inaccurate, low quality, or unsuitable for publication without review.
+
+Mitigation: Review and edit generated content before publishing.
+
+Risk: Prompts may include sensitive business data that the agent will process.
+
+Mitigation: Avoid providing sensitive business data unless the processing environment is approved for that data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yesong-hue/skills/qnit-seo-content-writer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yesong-hue)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text Chinese-language SEO writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review generated content before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

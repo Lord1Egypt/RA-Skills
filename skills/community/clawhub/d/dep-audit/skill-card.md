@@ -1,47 +1,62 @@
-## Description: <br>
-Audit project dependencies for known vulnerabilities across npm, pip, Cargo, and Go, with report-only defaults and confirmation before fix commands run. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit project dependencies for known vulnerabilities across npm, pip, Cargo, and Go, with report-only defaults and confirmation before fix commands.
 
-## Publisher: <br>
-[tkuehnl](https://clawhub.ai/user/tkuehnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tkuehnl](https://clawhub.ai/user/tkuehnl)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan project dependency lockfiles, summarize known CVE findings by severity, identify skipped ecosystems, and optionally generate an SBOM on request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit tools may read dependency metadata and, for Go projects, package or source structure beyond lockfiles. <br>
-Mitigation: Run the skill only in projects where that local inspection is acceptable, and review tool scope before scanning sensitive repositories. <br>
-Risk: Aggregation and SBOM workflows can create or overwrite unified.json, report.md, or sbom.cdx.json in the target project. <br>
-Mitigation: Run scans from a clean working tree or dedicated output location, and confirm SBOM generation before allowing file writes. <br>
-Risk: Suggested remediation commands may change dependency versions or install packages if executed without review. <br>
-Mitigation: Review every generated command, create a branch first, and require explicit confirmation before running fixes. <br>
+## Use Case:
 
+Developers and security engineers use this skill to inspect dependency lockfiles, run ecosystem audit tools, aggregate vulnerability findings, and optionally generate a CycloneDX SBOM.
 
-## Reference(s): <br>
-- [npm audit documentation](https://docs.npmjs.com/cli/commands/npm-audit) <br>
-- [pip-audit](https://github.com/pypa/pip-audit) <br>
-- [cargo-audit](https://github.com/rustsec/rustsec/tree/main/cargo-audit) <br>
-- [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck) <br>
-- [Syft SBOM generator](https://github.com/anchore/syft) <br>
-- [OSV vulnerability database](https://osv.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with normalized JSON reports, shell commands, and optional CycloneDX JSON SBOM files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces report.md and unified.json during aggregation; may write sbom.cdx.json only when SBOM generation is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The skill recommends a remote Syft installer pattern that can execute unpinned code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Syft through a trusted package manager or a pinned, verified release instead of using curl piped to a shell.
+
+Risk: Go and SBOM workflows may traverse project contents and expose local dependency metadata or file paths.
+
+Mitigation: Run audits only on directories the user intends to inspect and review reports before sharing them outside the local environment.
+
+Risk: SBOM generation writes sbom.cdx.json into the target directory and may be affected by symlink-resolved output paths.
+
+Mitigation: Generate SBOMs only for trusted directories until symlink-safe output handling is reviewed.
+
+## Reference(s):
+
+- [ClawHub dep-audit release page](https://clawhub.ai/tkuehnl/skills/dep-audit)
+- [npm audit documentation](https://docs.npmjs.com/cli/commands/npm-audit)
+- [pip-audit](https://github.com/pypa/pip-audit)
+- [cargo-audit](https://github.com/rustsec/rustsec/tree/main/cargo-audit)
+- [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck)
+- [Syft](https://github.com/anchore/syft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown vulnerability report, normalized JSON audit results, optional CycloneDX JSON SBOM, and shell command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report-only by default; fix commands require explicit user confirmation; SBOM generation writes sbom.cdx.json only when requested.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

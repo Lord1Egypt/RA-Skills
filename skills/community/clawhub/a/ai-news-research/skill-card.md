@@ -1,38 +1,47 @@
-## Description: <br>
-当需要梳理某段时间内AI行业重要新闻时，可以调用使用这个技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+当需要梳理某段时间内AI行业重要新闻时，可以调用使用这个技能。
 
-## Publisher: <br>
-[Gyifei](https://clawhub.ai/user/Gyifei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gyifei](https://clawhub.ai/user/gyifei)
 
-## Use Case: <br>
-External users and analysts use this skill to collect and summarize important AI industry news for a specified time range and subfield, such as models, compute, hardware, or AI applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI news summaries may be incomplete or inaccurate when web sources are unreliable, stale, or conflicting. <br>
-Mitigation: Review cited source material and prefer authoritative, recent sources before using the summary for decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Gyifei/ai-news-research) <br>
-- [Publisher profile](https://clawhub.ai/user/Gyifei) <br>
+## Use Case:
+
+Users invoke this skill to collect and organize important AI industry news for a specified date range and subfield, such as models, compute, hardware, or AI applications. It returns a concise Chinese summary of key companies or areas, events, and expected impact.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill browses current web sources for AI news, so summaries may reflect incomplete, outdated, or source-dependent reporting.
+
+Mitigation: State the desired date range, AI subfield, language, and source constraints explicitly, then review the summarized events before relying on them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary organized by AI subfield, date range, companies or domains, events, and expected impact.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses web sources for current AI news; answer quality depends on source reliability and recency.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Chinese Markdown-style news summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the requested date range and AI subfield to organize company or domain, event details, and expected impact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

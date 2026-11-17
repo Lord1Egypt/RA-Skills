@@ -1,0 +1,27 @@
+#coding:gbk
+
+
+def after_init(C):
+	stock_list = C.get_stock_list_in_sector('沪深A股')
+	#stock_list = C.get_stock_list_in_sector('SW1银行')
+	print(f"stock_list {len(stock_list)}")
+	ratio_list = []
+	for stock in stock_list:
+		data = C.get_divid_factors(stock, '')
+		if data:
+			last_k = max(data.keys())
+			date = timetag_to_datetime(last_k, '%Y%m%d')
+			if date < '20230101':
+				continue
+			div = data[last_k][0]
+			song =  data[last_k][1]
+			pei =  data[last_k][2]
+			if not div:
+				continue
+			if song or pei:
+				continue
+			ratio = data[last_k][-1]
+			ratio_list.append([ratio, stock])
+	ratio_list.sort(reverse = True)
+	for ratio, stock in ratio_list[:20]:
+		print(C.get_stock_name(stock), ratio)

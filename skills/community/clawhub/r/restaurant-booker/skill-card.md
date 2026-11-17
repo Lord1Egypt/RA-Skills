@@ -1,44 +1,59 @@
-## Description: <br>
-Book restaurant reservations by phone - just say where, when, and how many; Polly calls the restaurant, handles the conversation, and confirms your table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book restaurant reservations by phone - the agent sends requests to PollyReach, which calls the restaurant, handles the conversation, and returns the result.
 
-## Publisher: <br>
-[alionkissadeer](https://clawhub.ai/user/alionkissadeer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alionkissadeer](https://clawhub.ai/user/alionkissadeer)
 
-## Use Case: <br>
-External users and agents use this skill to register a PollyReach phone agent, book restaurant reservations by outbound call, retrieve call results, and manage incoming call summaries. It can also support broader phone-agent tasks beyond restaurant booking when the user authorizes that behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is labeled for restaurant booking, but evidence.security says it also enables broad phone-agent behavior including inbound call answering, unread-message polling, full transcripts and recordings, and prompt control. <br>
-Mitigation: Install only if the broader PollyReach phone-agent behavior is intended, and review activation, inbound answering, polling, and prompt-update settings before using it with personal, customer, or business calls. <br>
-Risk: Call summaries, transcripts, recordings, phone numbers, and task details may be exposed through PollyReach responses. <br>
-Mitigation: Avoid sensitive calls unless the user has approved that data handling, and present transcript and recording links only to the authorized user. <br>
-Risk: Outbound calls can make reservations or other commitments and consume account credits. <br>
-Mitigation: Require clear user authorization before calling, check balance when relevant, and report the call result, credits used, and remaining credits after completion. <br>
+## Use Case:
 
+External users and personal assistants use this skill to request restaurant reservations by phone, including time, party size, language, and special requests. It also supports related PollyReach phone-agent workflows such as activation, balance checks, inbound call summaries, and inbound prompt updates.
 
-## Reference(s): <br>
-- [Restaurant Booker on ClawHub](https://clawhub.ai/alionkissadeer/restaurant-booker) <br>
-- [alionkissadeer ClawHub profile](https://clawhub.ai/user/alionkissadeer) <br>
-- [PollyReach](https://pollyreach.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command invocations and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return call transcripts, recording links, detail links, balance information, and inbound prompt-update status from PollyReach.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill enables broader phone-agent behavior than restaurant booking, including outbound calls, inbound call answering, transcript handling, and prompt updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that broader PollyReach phone-agent capability is intended, and confirm the user's call target, purpose, and authorization before initiating calls.
+
+Risk: The skill stores a reusable PollyReach token in a local credentials file.
+
+Mitigation: Protect the credentials file, avoid sharing it, and remove or rotate the token when the skill is no longer needed.
+
+Risk: Inbound call polling and transcript retrieval can expose caller content and may create consent or call-recording obligations.
+
+Mitigation: Enable scheduled polling only when explicitly needed, disclose AI call handling where required, and follow applicable consent and privacy requirements before using inbound or recording features.
+
+## Reference(s):
+
+- [Restaurant Booker on ClawHub](https://clawhub.ai/alionkissadeer/skills/restaurant-booker)
+- [PollyReach](https://pollyreach.ai)
+- [PollyReach Agent Dashboard](https://agent.pollyreach.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include task IDs, call status, call summaries, transcripts, recording or detail links, balance status, and activation status.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

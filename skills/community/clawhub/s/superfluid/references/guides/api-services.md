@@ -84,6 +84,41 @@ SUP points campaigns (Stack.so replacement). Same repo as CMS.
 [API docs](https://cms.superfluid.pro/points/api-docs) ·
 [OpenAPI](https://cms.superfluid.pro/points/openapi.json)
 
+Query endpoints are public (no auth, CORS-enabled); `POST /points/push` needs a
+campaign-scoped `X-API-Key` (server-side only). Pass the numeric `campaignId`;
+`campaign` is a deprecated alias.
+
+- `GET /points/balance?campaignId&account` → `points`, `cappedPoints`
+- `POST /points/balance` (≤100 accounts) and `/points/balance-batch` (one
+  account, ≤50 `campaignIds`; missing campaigns return 0 plus `warnings`)
+- `GET /points/signed-balance?campaignId&account` → signed `points`, `uncappedPoints`
+- `POST /points/signed-balance-batch` — one signature over ≤50 `campaignIds`
+  (for batch `FluidLocker.claim`)
+
+Per-campaign cap: a capped account gets `cappedPoints: 1` (unsigned `points`
+stays the true balance) and signed `points: 1` (`uncappedPoints` is the true
+balance). A claim sets locker units to the signed `points`.
+
+GOTCHA: before prompting a claim, compare `cappedPoints` (or signed `points`)
+with the locker's current pool units, not the unsigned `points`. Claiming a
+lower signed balance lowers units. Negative points clamp at 0 and never force
+a re-claim; the on-chain claim is permissionless, so anyone can submit a
+signed balance for any account.
+
+## SUP Metrics
+
+Read-only SUP token metrics. [Swagger](https://sup-metrics-api.superfluid.dev/docs)
+
+- `GET /v1/circulating` — circulating supply
+- `GET /v1/dao_members_count` — DAO members (accounts connected to a SUP pool)
+- `GET /v1/dao_members?min_vp&include_all_delegates` — members by voting power, with delegation
+- `GET /v1/user_score?address` — Snapshot score (locked + unlocked + staked SUP)
+- `GET /v1/user_delegate?address` — delegate address or null
+- `GET /v1/total_delegated_score` — summed delegate scores, per-delegate breakdown
+- `GET /v1/distribution_metrics` — SUP split: reserves, staked, LP, streaming out, etc.
+- `GET /v1/distribution_metrics_history` — daily snapshots since TGE (2025-02-17)
+- `GET /v1/config` — token, locker factory, Snapshot space
+
 ## Accounting
 
 Splits per-second streams into chunked granularity (e.g. streamed per day).
@@ -120,8 +155,9 @@ Endpoint: `GET /v1/{canonical-network-name}/{token-address}`
 
 Returns all SUP reward programs across seasons. Each entry has `appId`,
 `name`, `season`, `category`, `url`, and a nested `program.onchainInfo` with
-`poolAddress`, `fundingFlowRate`, `totalAllocated`, `totalClaimed`,
-`totalMembers`, and funding timestamps.
+`poolAddress`, `fundingFlowRate`, `subsidyFlowRate`, `programDuration`,
+`totalAllocated`, `totalClaimed`, `totalMembers`, and funding timestamps.
 
 The response uses tRPC's `superjson` format (top-level `json` + `meta` keys).
 Filter by `program.onchainInfo.isFundingFinished` to find active campaigns.
+CORS-open (`Access-Control-Allow-Origin: *`); callable from browser dapps.

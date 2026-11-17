@@ -1,40 +1,57 @@
-## Description: <br>
-Generate images from text descriptions using DALL-E 3 while following usage-policy limits and avoiding realistic human faces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates DALL-E 3 images from user-provided text prompts and returns the generated image URL.
 
-## Publisher: <br>
-[Binkosun](https://clawhub.ai/user/Binkosun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binkosun](https://clawhub.ai/user/binkosun)
 
-## Use Case: <br>
-External users and developers use this skill to turn short text prompts into generated image URLs through DALL-E 3. It is suited for agent workflows that need image generation responses from user-provided descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JavaScript helper handles API keys less safely than necessary. <br>
-Mitigation: Use a dedicated OpenAI API key, avoid sensitive prompts, and review API-key handling before installation. <br>
-Risk: The JavaScript helper disables TLS certificate verification while allowing custom API endpoints. <br>
-Mitigation: Fix or avoid the JavaScript helper until TLS verification is restored and custom endpoint use is clearly controlled. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to create a 1024x1024 image from a short text description using DALL-E 3. It is intended for prompt-driven image generation while avoiding realistic human faces and following DALL-E usage policies.
 
-## Reference(s): <br>
-- [ClawHub Img2img Release Page](https://clawhub.ai/Binkosun/img2img) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and generated image URL text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user prompts as image-generation input and returns a single 1024x1024 DALL-E 3 image URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JavaScript path disables TLS certificate verification and allows BASE_URL or API_BASE_URL to redirect API traffic, which could expose API keys and prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the Python path, or require the JavaScript code to enforce TLS verification and restrict endpoint overrides before using a real API key.
+
+Risk: Image prompts may contain sensitive personal or confidential details that are sent to the image-generation API.
+
+Mitigation: Avoid sensitive prompt content and use environment or secret-manager credentials instead of command-line API keys.
+
+Risk: The skill can generate realistic imagery and its documentation calls out avoiding realistic human faces and following DALL-E policies.
+
+Mitigation: Review prompts and outputs for policy compliance before sharing generated images.
+
+## Reference(s):
+
+- [ClawHub skill page for img2img](https://clawhub.ai/binkosun/skills/img2img)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates one 1024x1024 standard-quality DALL-E 3 image per prompt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

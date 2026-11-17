@@ -17,9 +17,12 @@ Do not use the full rebuild flow for a small isolated request. In that case, kee
 3. `life_schedule.day_schedule.required_events` defines required life anchors, not guaranteed sends.
 4. `companion-build-day-schedule` must explicitly call web search before ordinary event generation and must consume those public materials inside normal character behavior events.
 5. `companion-presence` is the only default user-facing proactive cron.
-6. `companion-presence` runs in an isolated cron session and only calls the deterministic wrapper; the wrapper starts the stable companion session only after a matched event.
-7. Media events are complete after the text presence story is visibly sent and committed; async media success is a follow-up enhancement, not the event completion gate.
-8. Do not claim setup or upgrade is complete before a user-visible verification passes.
+6. On OpenClaw versions with command automations, `companion-presence` runs the deterministic wrapper through an isolated exact argv command payload; the wrapper derives a fresh dispatch-scoped companion session only after a matched event.
+7. `companion-build-day-schedule` remains model-backed but uses lightweight bootstrap context because its payload explicitly names the complete project input set.
+8. Media events are complete after the text presence story is visibly sent and committed; async media success is a follow-up enhancement, not the event completion gate.
+9. Before any write, public-web search, recurring-job mutation, or controlled real send, preview the scope and wait for explicit user confirmation.
+10. Pausing disables the exact jobs and preserves local config/state; permanent job removal requires separate explicit authorization.
+11. Do not claim setup or upgrade is complete before a user-visible verification passes.
 
 ## Required Reading By Task
 
@@ -85,7 +88,13 @@ For each anchor, capture:
 
 Store these in `life_schedule.day_schedule.required_events`. The daily builder writes them into `day-schedule.md` as `必定发生：是`.
 
-### 4. Write and validate `config.local.json`
+### 4. Preview the setup and get authorization
+
+Before mutating the install, show the exact files to write, both job names/schedules/payload types, a masked delivery route, public-search use, and the one controlled visible verification send. Also state that pause uses `openclaw cron disable <JOB_ID>` without deleting config/state, while permanent removal is separate and requires an explicit request.
+
+Wait for explicit user confirmation before continuing. One confirmation may cover the previewed setup, but not later scope expansion.
+
+### 5. Write and validate `config.local.json`
 
 Write:
 - `character_profile_path`
@@ -103,7 +112,7 @@ Rules:
 - no secrets in prompt-facing files
 - no full cron prompt prose in config
 
-### 5. Generate current day context immediately
+### 6. Generate current day context immediately
 
 When private life is enabled:
 
@@ -113,7 +122,7 @@ When private life is enabled:
 
 `day-schedule.md` must have 3-5 ordinary events marked `必定发生：否`. Required event anchors are additional `必定发生：是` events and do not count toward that quota. Before ordinary events are generated, the builder must search 4-5 public, non-sensitive keywords extracted from the character profile: one city/weather keyword, one local area/school/workplace/community keyword, one identity/occupation keyword, and one or two interest keywords. Each searched category must be consumed by at least one event through the event scene, action, natural mention, or avoid rule. Every event also keeps a `媒体信息` field; leave it empty unless the event should produce a photo, audio, video, or similar media artifact. Ordinary events must not duplicate each other or duplicate configured required events by type/content.
 
-### 6. Create or update cron jobs
+### 7. Create or update cron jobs
 
 Recommended creation order:
 
@@ -122,16 +131,17 @@ Recommended creation order:
 
 `companion-presence` contract:
 
-1. cron 运行在 isolated session 中
-2. 第一个也是唯一业务动作是触发 `companion_presence_tick.py --config <CONFIG>`
-3. 脚本输出任何已处理状态后只回复 `NO_REPLY`
-4. cron payload 不直接读取 `day-schedule.md`，不直接判断事件，也不自己处理消息发送或媒体生成
-5. wrapper 内部 fresh prepare；只有命中事件时才启动稳定 companion session
-6. 稳定 companion session 负责写文本、按 `delivery_contract` 投递；文本可见投递成功后立即提交状态，媒体事件随后启动异步媒体，wrapper 后台 `--watch-recent-media-task` 负责补发媒体
+1. automation 使用 isolated exact argv command payload，并固定 `PYTHONUNBUFFERED=1`；OpenClaw 2026.8.1 CLI 迁移时不要省略该 command env
+2. argv 只包含固定的 `python3`、`companion_presence_tick.py`、`--config` 和本地配置路径，不经过 shell，也不拼接用户/模型/配置内容
+3. command 设置有界 timeout/output，`delivery.mode = none`
+4. wrapper 内部 fresh prepare；只有命中事件时才按 run id 启动本轮专用 dispatch session
+5. dispatch session 负责写文本、按 `delivery_contract` 投递；文本可见投递成功后立即提交状态，媒体事件随后启动异步媒体，wrapper 后台 `--watch-recent-media-task` 负责补发媒体
+
+旧 OpenClaw 如果不支持 command payload，才使用兼容用的 thin isolated `agentTurn`：启用 `lightContext`，只执行 wrapper，并对已处理状态回复 `NO_REPLY`。
 
 Do not pass `--event-time`. Presence cron reads the current real local time.
 
-### 7. Run a real verification
+### 8. Run a real verification
 
 Check:
 - the user can actually see the message
@@ -164,7 +174,11 @@ List what changed:
 - private-life model changes
 - legacy render-chain removal
 
-### 3. Preserve user intent
+### 3. Preview the migration and get authorization
+
+Before changing anything, show the user the exact files and jobs that will change, the jobs that will be disabled or enabled, the masked delivery route, whether public-web search will run, and whether one controlled visible send is required. Preserve the current job definitions so payload changes can be rolled back. Wait for explicit confirmation before migration writes or cron mutations.
+
+### 4. Preserve user intent
 
 Do not lose:
 - character/persona
@@ -176,7 +190,7 @@ Do not lose:
 
 Old `morning` / `afternoon` / `evening` / `night` content cron tasks should be converted to required event anchors when they represent "something she should be doing". If they represent a real external task, preserve the task intent in a clearly documented custom integration outside `companion_run.py`.
 
-### 4. Migrate each concern to the correct layer
+### 5. Migrate each concern to the correct layer
 
 Keep ownership clean:
 - stable settings -> config
@@ -185,7 +199,7 @@ Keep ownership clean:
 - fixed life anchors -> `life_schedule.day_schedule.required_events`
 - delivery behavior -> `companion-presence`
 
-### 5. Fill in new required layers
+### 6. Fill in new required layers
 
 Config field migration checklist:
 - `version`: set to `2`
@@ -207,17 +221,18 @@ python3 scripts/migrate_config.py --config <CONFIG> --owner-source user_md --wri
 
 If the install has old `persona`, `month-plan.json`, or `day-context.json`, migrate only the stable character facts and today's usable day context; do not recreate a weekly plan layer.
 
-### 6. Upgrade cron payloads carefully
+### 7. Upgrade cron payloads carefully
 
 For current architecture:
 
 1. disable deprecated visible content cron jobs unless the user explicitly keeps them as custom jobs
 2. create or update `companion-build-day-schedule`
-3. create or update `companion-presence` as an isolated cron session that calls `companion_presence_tick.py`
-4. ensure the wrapper uses prepare with `--no-record-pending` and starts the stable companion session only on `status = "ok"`
-5. ensure `companion-build-day-schedule` explicitly requires web search and category-level search consumption before writing `day-schedule.md`
-6. ensure the final message is delivered through `companion_presence_tick.py --send-story`, which uses the saved delivery contract and commits state only after send succeeds
-7. ensure media events start async media only after `--send-story` succeeds, then use the wrapper-launched `--watch-recent-media-task` so generated media is sent with the saved delivery contract; native media completion is only a fallback and must not rely on current chat
+3. enable `lightContext` and a bounded timeout on the model-backed `companion-build-day-schedule`
+4. create or update `companion-presence` as an isolated exact argv command automation that calls `companion_presence_tick.py`, with fixed `PYTHONUNBUFFERED=1` command env for OpenClaw 2026.8.1 edit compatibility
+5. ensure the wrapper uses prepare with `--no-record-pending` and derives a fresh dispatch session only on `status = "ok"`; do not reuse an archived session from an earlier event
+6. ensure `companion-build-day-schedule` explicitly requires web search and category-level search consumption before writing `day-schedule.md`
+7. ensure the final message is delivered through `companion_presence_tick.py --send-story`, which uses the saved delivery contract and commits state only after send succeeds
+8. ensure media events start async media only after `--send-story` succeeds, then use the wrapper-launched `--watch-recent-media-task` so generated media is sent with the saved delivery contract; native media completion is only a fallback and must not rely on current chat
 
 Remove old references to:
 - `--event-time`
@@ -228,7 +243,7 @@ Remove old references to:
 - native heartbeat transcript reconciliation
 - old multi-script life prompt/render helpers
 
-### 7. Completion Checklist
+### 8. Completion Checklist
 
 Do not declare success without checking:
 - config valid
@@ -236,10 +251,11 @@ Do not declare success without checking:
 - `character-profile.md` valid
 - `day-schedule.md` valid when enabled
 - required planner jobs exist when enabled
-- `companion-presence` follows the current runner contract
+- `companion-presence` uses exact argv `payload.kind = command`, bounded timeout/output, isolated target, and no delivery
+- `companion-build-day-schedule` uses `lightContext = true` and remains model-backed
 - prepare output has `life_context`, `delivery_contract`, and `state_commit`, not `render_spec` or top-level `primary_goal`
 - media contracts do not expose local runbook paths
-- native media completion can return to the stable companion session, but correct-channel media delivery is handled by the wrapper watcher after the presence turn has ended
+- native media completion can return to the same dispatch session, but correct-channel media delivery is handled by the wrapper watcher after the presence turn has ended
 - at least one visible delivery test passed
 - user customization was preserved
 

@@ -1,38 +1,53 @@
-## Description: <br>
-Self-improving conversational skill. Gets better at talking with every use. Saves what works to memory, evolves identity over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ralph Talker is a conversational persona skill that adapts over time by saving user-approved conversation takeaways and refining its persona file.
 
-## Publisher: <br>
-[dandysuper](https://clawhub.ai/user/dandysuper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dandysuper](https://clawhub.ai/user/dandysuper)
 
-## Use Case: <br>
-External users install this skill when they want an agent to adopt the RalphTalk conversational persona, adapt its tone over time, and maintain local memory of conversation techniques and user interests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation context in local memory files and may reference it in later chats. <br>
-Mitigation: Avoid saving sensitive personal details and periodically review or delete SOUL.md and memory files. <br>
-Risk: The skill may update SOUL.md or daily memory files as part of its conversational loop. <br>
-Mitigation: Only allow memory or soul updates after explicit user consent and inspect proposed file changes when privacy matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External ClawHub users can use this skill to run a persistent conversational persona that opens with tailored prompts, adapts to engagement, and remembers user-approved conversation takeaways across sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Conversational text with optional Markdown memory and SOUL.md file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local memory and, with user consent, write daily memory files or update SOUL.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent persona and memory files can shape future conversations without fine-grained scoping or user controls.
+
+Mitigation: Review SOUL.md and memory entries periodically, avoid saving sensitive personal information, and remove or edit those files if behavior drifts.
+
+Risk: Saved conversation takeaways may retain sensitive personal context if a user approves broad memory entries.
+
+Mitigation: Ask before saving memory and keep entries limited to non-sensitive topics, conversational techniques, and follow-up references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dandysuper/skills/ralph-talk)
+- [Publisher profile](https://clawhub.ai/user/dandysuper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational text with optional Markdown memory and persona file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update SOUL.md and memory/YYYY-MM-DD.md when the user agrees.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

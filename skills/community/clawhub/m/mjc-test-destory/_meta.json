@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn77r2vst0yn44kwc81rt8hz9s839z8m",
-  "slug": "mjc-test-destory",
+  "name": "valuescan-skill-beta",
+  "description": "ValueScan 加密货币主力资金流分析工具。支持资金异动监控、主力动向追踪、鲸鱼地址分析、板块轮动、机会/风险代币识别、大户成本分析。",
   "version": "1.0.7",
-  "publishedAt": 1774351099957
+  "user-invocable": true,
+  "homepage": "https://beta.valuescan.io",
+  "credentials": {
+    "api_key": {
+      "description": "用于认证的 API 密钥",
+      "required": true
+    },
+    "secret_key": {
+      "description": "用于认证的 Secret 密钥",
+      "required": true
+    }
+  },
+  "auth": {
+    "type": "custom",
+    "headers": {
+      "X-API-KEY": "valuescanApiKey",
+      "X-TIMESTAMP": "timestamp",
+      "X-SIGN": "signature"
+    }
+  },
+  "api": {
+    "base_url": "https://api-beta.valuescan.io/api/open/v1",
+    "content_type": "application/json"
+  },
+  "signing": {
+    "type": "hmac-sha256",
+    "message": "timestamp+body_json",
+    "secret": "valuescanSecretKey",
+    "output": "hex"
+  }
 }

@@ -1,50 +1,62 @@
-## Description: <br>
-AI光通信产业链投资分析框架，用于分析光模块、光芯片、PCB、CPO/NPO/OCS相关股票，判断技术路线、供应链位置、标的质量和知识更新需求。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill for analyzing optical-communications investment themes, related equities, technology routes, supply-chain positioning, and curated reference updates.
 
-## Publisher: <br>
-[pcchris1995](https://clawhub.ai/user/pcchris1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcchris1995](https://clawhub.ai/user/pcchris1995)
 
-## Use Case: <br>
-External users and analysts use this skill to structure optical-communications investment analysis, compare CPO/NPO/XPO, InP/silicon photonics/TFLN and OCS routes, map companies to the supply chain, and assess thesis quality. The optional update workflow can help refresh local reference notes from specified Xueqiu sources when the user explicitly requests it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional update workflow can use a logged-in Xueqiu/browser session. <br>
-Mitigation: Run updates only after explicit user request, confirm the target URLs, and avoid exposing private browser data or credentials. <br>
-Risk: The update workflow can modify local reference files. <br>
-Mitigation: Review proposed file edits before deployment and keep updates limited to the skill's documented reference files. <br>
-Risk: Investment analysis content is time-sensitive opinion and may be incomplete or misleading. <br>
-Mitigation: Treat outputs as analytical guidance, verify current market and company data independently, and do not present outputs as financial advice. <br>
+## Use Case:
 
+External users and agents can use this skill to structure Chinese-language optical-communications investment research, compare CPO/NPO/XPO/OCS and InP/silicon-photonics/TFLN routes, map suppliers and stocks, and produce cautious reference-backed analysis. Optional update workflows help incorporate user-reviewed new Xueqiu article content into the skill's reference notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pcchris1995/optical-comm-cn) <br>
-- [Core framework](references/core-framework.md) <br>
-- [Methodology](references/methodology.md) <br>
-- [Supply chain](references/supply-chain.md) <br>
-- [Technology landscape](references/tech-landscape.md) <br>
-- [Update log](references/update-log.md) <br>
-- [Xueqiu profile: 闷得而蜜](https://xueqiu.com/u/5672579962) <br>
-- [Xueqiu profile: 查尔斯大风车](https://xueqiu.com/u/8755156034) <br>
-- [Xueqiu article: 查尔斯大风车 2026-04-21](https://xueqiu.com/8755156034/384873103) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with structured analysis steps and optional shell/browser workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to local reference files during user-triggered knowledge updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional update workflow may use a logged-in Xueqiu browser profile and can modify local reference notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manually supplied article text or an isolated browser profile, run updates only when explicitly requested, and review note changes before relying on them.
+
+Risk: Investment and market judgments in the references are time-sensitive and may become outdated.
+
+Mitigation: Treat outputs as research structure rather than financial advice, verify current market data and company disclosures, and preserve uncertainty labels for unconfirmed claims.
+
+## Reference(s):
+
+- [光通信投资分析框架](artifact/SKILL.md)
+- [闷得而蜜光通信投资框架（精炼版）](artifact/references/core-framework.md)
+- [光通信技术路线全景](artifact/references/tech-landscape.md)
+- [光通信产业链与标的分析](artifact/references/supply-chain.md)
+- [光通信投资方法论](artifact/references/methodology.md)
+- [更新日志](artifact/references/update-log.md)
+- [闷得而蜜 Xueqiu profile](https://xueqiu.com/u/5672579962)
+- [查尔斯大风车 Xueqiu profile](https://xueqiu.com/u/8755156034)
+- [2026-04-21 查尔斯大风车 Xueqiu article](https://xueqiu.com/8755156034/384873103)
+- [ClawHub skill page](https://clawhub.ai/pcchris1995/skills/optical-comm-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Chinese-language Markdown analysis and reference-update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock-analysis structure, route comparisons, supplier mapping, risk caveats, and optional instructions for updating local reference notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

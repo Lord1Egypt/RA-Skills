@@ -1,41 +1,58 @@
-## Description: <br>
-Extract clean readable text from PDF files into agent-ready markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract clean readable text from PDF files into agent-ready markdown. Multi-page, tables, headers. No external services.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agents use this skill to extract readable text, page-level content, headings, metadata, and markdown from local PDF files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: PDF contents can expose sensitive document text to the agent or include untrusted prompt-like content. <br>
-Mitigation: Process only PDFs the user is comfortable exposing to the agent, and treat extracted text as untrusted input before using it in downstream workflows. <br>
-Risk: Optional PDF parsers can affect extraction quality and local execution behavior. <br>
-Mitigation: Install optional tools such as pdf-parse or pdftotext only from trusted sources and keep them updated. <br>
+## Use Case:
 
+Developers and agents use this skill to extract readable text, page content, metadata, headings, and markdown from local PDF files for downstream analysis or documentation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/pdf-extract-sr) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code] <br>
-**Output Format:** [Plain text, markdown, or JavaScript object data with extracted pages, metadata, headings, and method details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from local PDF files and may vary by available parser: pdf-parse, pdftotext, or basic extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill can read any local PDF path the agent is asked to process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide intended PDF paths and avoid running it over directories or files outside the task scope.
+
+Risk: Extracted PDF contents may be exposed to the active agent conversation.
+
+Mitigation: Use caution with sensitive PDFs and redact or avoid documents that should not enter the agent context.
+
+Risk: The fallback path may invoke local PDF tooling.
+
+Mitigation: Review the local environment and installed PDF tools before deployment in controlled systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/pdf-extract-sr)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and JavaScript usage examples with extracted text or structured result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local PDF processing; structured extraction can include page text, metadata, headings, method, and per-file batch results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

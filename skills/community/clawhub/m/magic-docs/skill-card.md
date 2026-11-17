@@ -1,41 +1,53 @@
-## Description: <br>
-Magic Docs helps agents maintain Markdown files marked with `<!-- MAGIC DOC -->` by detecting relevant conversation updates and appending or correcting durable project information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Magic Docs helps an agent keep marked Markdown documents current by detecting relevant new information after each conversation and updating those files.
 
-## Publisher: <br>
-[wavmson](https://clawhub.ai/user/wavmson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wavmson](https://clawhub.ai/user/wavmson)
 
-## Use Case: <br>
-Developers and project teams use Magic Docs to keep selected Markdown documents current with durable decisions, configuration changes, and project facts captured during agent conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may scan workspace content and write conversation-derived information to Markdown files beyond the intended scope. <br>
-Mitigation: Define exactly which files and scopes it may manage before use, and review diffs before accepting generated updates. <br>
-Risk: Conversation context can include sensitive secrets or infrastructure details that should not be persisted into documentation. <br>
-Mitigation: Keep memory, tooling, secret, and infrastructure files out of scope; redact credentials and reference approved secret locations instead. <br>
+## Use Case:
 
+Developers and agents use this skill to create or maintain living project documentation by marking Markdown files with a Magic Doc comment and updating them when conversations contain durable new facts, decisions, or corrections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wavmson/magic-docs) <br>
-- [Publisher profile](https://clawhub.ai/user/wavmson) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown edits with optional inline shell commands and changelog entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May scan workspace Markdown files marked with `<!-- MAGIC DOC -->` and update them when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic workspace scanning and Markdown updates can persist sensitive workspace or operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only where automatic Markdown edits are acceptable, mark specific non-sensitive documents, and avoid using it for passwords, credentials, internal network inventories, device access details, MEMORY.md, TOOLS.md, or other private state.
+
+Risk: Realtime updates can add information before a user has reviewed whether it belongs in long-lived documentation.
+
+Mitigation: Prefer scoped Magic Doc markers and daily or manual update modes for higher-risk documents, then review document diffs before relying on the updated content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wavmson/skills/magic-docs)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown files and concise Markdown update notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates are scoped by MAGIC DOC markers, optional scope keywords, and update frequency settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

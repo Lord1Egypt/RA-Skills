@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn713038fbwbmf0q5wjnyv7k6n82473d",
-  "slug": "feishu-img-msg",
+  "name": "feishu-img-msg",
   "version": "1.0.0",
-  "publishedAt": 1772507203609
+  "description": "飞书图片消息操作技能",
+  "author": "Jesse",
+  "created": "2026-03-03"
 }

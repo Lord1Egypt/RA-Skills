@@ -1,45 +1,56 @@
-## Description: <br>
-Design memorable unboxing experiences including insert cards, packaging materials, and social sharing prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design memorable unboxing experiences including insert cards, packaging materials, and social sharing prompts.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce, brand, marketing, and operations teams use this skill to design production-ready unboxing experiences with packaging layers, insert cards, social sharing prompts, sensory elements, sustainability checks, and cost/ROI planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UGC upload, social posting, QR tracking, and incentive flows can create privacy, consent, rights-management, or platform-policy issues in a real campaign. <br>
-Mitigation: Add clear consent language, disclose tracking and incentives, get permission before repurposing customer content, honor platform rules, and define opt-out, deletion, retention, and moderation processes. <br>
-Risk: The release evidence includes broad capability tags that do not match the markdown-only behavior. <br>
-Mitigation: Review capability tags during installation and treat the skill as guidance-only unless separate tooling is added and reviewed. <br>
+## Use Case:
 
+External ecommerce brand, marketing, operations, and fulfillment teams use this skill to design production-ready unboxing blueprints with packaging layers, insert cards, social sharing prompts, sensory choices, cost modeling, and measurement plans.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/unboxing-experience) <br>
-- [Publisher Profile](https://clawhub.ai/user/leooooooow) <br>
-- [Output Template](references/output-template.md) <br>
-- [Unboxing Design Guide](references/unboxing-design-guide.md) <br>
-- [Materials & Cost Reference](references/materials-cost-reference.md) <br>
-- [Unboxing Experience Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown blueprint, checklists, tables, copy recommendations, cost models, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include QR-code destination guidance, UGC prompt copy, packaging specifications, sustainability checks, and ROI assumptions for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: UGC prompts may lead teams to collect, reuse, or retain identifiable customer posts without adequate permission or process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell customers how their content and engagement data may be used, obtain permission before repurposing identifiable posts, follow platform rules, and define removal, opt-out, and retention practices.
+
+Risk: Packaging plans may overstate business impact or increase cost without measurement.
+
+Mitigation: Use the blueprint and checklist to document baseline metrics, target KPIs, A/B tests, per-unit costs, and review cadence before full rollout.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [Unboxing Design Guide](artifact/references/unboxing-design-guide.md)
+- [Materials & Cost Reference](artifact/references/materials-cost-reference.md)
+- [Unboxing Experience Quality Checklist](artifact/assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown planning guidance and structured blueprint templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include packaging specifications, insert card copy, UGC prompts, cost tables, implementation timelines, and quality checklists.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

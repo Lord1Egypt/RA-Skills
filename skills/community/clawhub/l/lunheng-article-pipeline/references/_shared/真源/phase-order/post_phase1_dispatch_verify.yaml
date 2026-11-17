@@ -1,0 +1,32 @@
+# 论衡流程真源 · 第二部分：节点 post_phase1_dispatch_verify（v2.15.7 新增）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: post_phase1_dispatch_verify
+  phase: "Phase 1 后置（派发硬验证闸门）"
+  phase_seq: 3
+  # v2.15.7 新增：T1/T2/T3 全部 spawn 完成后，主控亲完成「派发清单硬验证」
+  # 阻止「主控口头说已派发但实际无 sessions_spawn 返回值」的静默推进（ECS 2026-10-02 反馈）
+  input: status.md 派发清单段（含 T1 / T2 / T3 三行 spawn 记录）
+  kind: mechanical_checkpoint
+  role: 主控
+  owner: 主控
+  write_authority: owner
+  verification_authority: 主控
+  check:
+    - 必须存在 3 条派发行（对应 T1 / T2 / T3，每个一行）
+    - 每行必含 runId + childSessionKey + resolvedModel 三字段（判据真源 = 00-主控-扩展职责.md §十六点五；字段名经 2026-10-02 实测校准）
+    - 三条 runId 必须互不相同（防重复派发同一 session）
+    - 三条 childSessionKey 必须互不相同且可解析为 sessions_history 可见记录
+  verdict_scale: four_tier   # 与 v2.12.40 一致：通过 / 不通过 / 无法判定 / 路径或参数错误
+  rerun_after_report: true   # v2.12.40「报告后激活」+ v2.15.8 债务补标：前提 = status.md 派发清单段已落盘；不得用预跑/上轮记录
+  # 失败处置（不走 on_fail 路由键；两个失败档位都是 halt，不路由到其它节点）：
+  #   路径或参数错误（派发清单缺失/字段空）⇒ halt + 报 post_dispatch_verify_path_error + 主控亲补 spawn
+  #   不通过（runId/childSessionKey 重复或不可解析）⇒ halt + 报 post_dispatch_verify_conflict + 主人拍板
+  output: status.md（追加「post_phase1_dispatch_verify 验证记录」段；行格式见 00-主控-扩展职责.md §十六点五）
+  terminal_state_rules: {allowed: [passed, path_error, conflict, pending_owner], empty_output_is_success: false, halt_on_fail: true}
+  recheck_record: status.md
+  note: |
+    v2.15.7 ECS 反馈：主控 spawn 后立即 yield，子代理实际从未启动 ⇒ 主控以「已派发」措辞回报，主人误判。
+    本节点不 spawn；主控用 read 工具自检 status.md 派发清单段，符合所有 check ⇒ 写通过；任意 check 失败 ⇒ halt。
+    与 00-主控-扩展职责.md §十六点五「派发硬验证」配对：那是 spawn 当次的判定；本节点是 yield 前的批量再确认。
+  next: phase1_5_targeted_review

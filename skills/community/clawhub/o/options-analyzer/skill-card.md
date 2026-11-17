@@ -1,41 +1,57 @@
-## Description: <br>
-Options Analyzer helps agents retrieve options-chain data, calculate Greeks, analyze implied volatility, evaluate multi-leg options strategies, and recommend strategies from a market outlook and risk posture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Options Analyzer helps agents fetch option chains, calculate Greeks, analyze implied volatility, evaluate option strategy payoff and break-even points, and recommend options strategies using yfinance data and Black-Scholes calculations.
 
-## Publisher: <br>
-[BENZEMA216](https://clawhub.ai/user/BENZEMA216) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[benzema216](https://clawhub.ai/user/benzema216)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to inspect public options data, compute option sensitivities, compare volatility metrics, and draft options-strategy analyses or recommendations. It is best suited for decision-support workflows where a human reviews market assumptions before acting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Options data and strategy recommendations may be incomplete, delayed, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as decision support only, verify market data and assumptions independently, and require human review before any real-money options trade. <br>
-Risk: Dependency installation may fail or use unexpected package versions because scipy is required by the scripts but is not listed in the quick-start install command. <br>
-Mitigation: Install the skill in an isolated virtual environment, pin and verify dependencies, and include scipy before running the analysis scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Options Analyzer ClawHub Release](https://clawhub.ai/BENZEMA216/options-analyzer) <br>
-- [strategies.md](references/strategies.md) <br>
-- [greeks_guide.md](references/greeks_guide.md) <br>
+## Use Case:
 
+External users and developers use this skill to perform educational options analysis, including option-chain lookup, Greeks calculation, IV comparison, payoff analysis, and strategy selection support.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON from command-line Python scripts, with example shell commands and strategy guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public market data through yfinance; outputs should be reviewed before financial decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Market data requests may disclose ticker symbols to Yahoo Finance through yfinance.
+
+Mitigation: Use the skill only when that data flow is acceptable and avoid entering sensitive proprietary watchlists in shared environments.
+
+Risk: Options analysis and strategy rankings may be mistaken for personalized financial advice.
+
+Mitigation: Treat outputs as educational calculations, verify market data and assumptions independently, and make trading decisions outside the skill.
+
+Risk: Unreviewed or floating Python dependencies can change behavior over time.
+
+Mitigation: Install and run the skill in an isolated Python environment with reviewed, pinned dependencies.
+
+## Reference(s):
+
+- [Options strategies guide](references/strategies.md)
+- [Greeks guide](references/greeks_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON analysis with CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on live Yahoo Finance data retrieved through yfinance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

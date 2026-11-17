@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn717kkp8t0vjxjzxyhprr82d181kje1",
-  "slug": "invest-analyzer",
-  "version": "1.0.1",
-  "publishedAt": 1773487698529
+  "name": "invest-analyzer",
+  "displayName": "Invest Analyzer - 个股分析工具",
+  "description": "基于四流派投资体系的个股深度分析工具，支持快速初筛、FCF估值、决策建议。整合自 sunheyi6/investTemplate V5.5.6",
+  "version": "0.1.0",
+  "author": "蒜香小咸鱼",
+  "tags": [
+    "invest",
+    "stock",
+    "analysis",
+    "fcf",
+    "valuation",
+    "港股",
+    "A股",
+    "投资分析"
+  ],
+  "keywords": [
+    "个股分析",
+    "FCF估值",
+    "烟蒂股",
+    "价值投资",
+    "股息",
+    "投资模板"
+  ],
+  "dependencies": [],
+  "platform": "openclaw",
+  "runtime": "agent"
 }

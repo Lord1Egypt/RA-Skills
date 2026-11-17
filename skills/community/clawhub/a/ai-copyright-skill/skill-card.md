@@ -1,44 +1,56 @@
-## Description: <br>
-AI-native IP skill: generate patent applications, software copyright materials, or technical disclosures from AI project code/papers/docs, with direct Word and PPT output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native IP skill: generate patent applications, software copyright materials, or technical disclosures from AI project code/papers/docs, with direct Word and PPT output.
 
-## Publisher: <br>
-[jaccen](https://clawhub.ai/user/jaccen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaccen](https://clawhub.ai/user/jaccen)
 
-## Use Case: <br>
-Developers, inventors, and IP teams use this skill to turn AI project code, papers, and design notes into patent drafts, software copyright registration materials, or technical disclosure reports for Chinese IP workflows. Generated legal/IP materials should be reviewed by a qualified professional before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create local legal/IP documents and intermediate files from confidential invention materials. <br>
-Mitigation: Confirm output locations and retention behavior before use, keep sensitive inputs in an approved local workspace, and delete intermediates when they are no longer needed. <br>
-Risk: Patent claims, CNIPA-format documents, and software copyright materials may be legally incomplete, inaccurate, or unsuitable for filing. <br>
-Mitigation: Have a qualified patent or IP professional review generated materials before relying on them or submitting them. <br>
-Risk: Generated drafts may retain confidential details from code, papers, datasets, infrastructure, or user-provided invention notes. <br>
-Mitigation: Apply the skill's desensitization workflow and perform a separate confidentiality review before sharing generated documents. <br>
+## Use Case:
 
+External developers, technical teams, and IP practitioners use this skill to turn AI project code, papers, and design documents into Chinese patent application drafts, software copyright registration materials, or technical disclosure reports.
 
-## Reference(s): <br>
-- [AI Patent Claims Drafting Guide](references/ai-patent-claims-guide.md) <br>
-- [AI Patent Drafting Special Guide](references/ai-patent-special.md) <br>
-- [AI Software Copyright Registration Guide](references/ai-software-copyright-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with generated DOCX/PPTX workflow artifacts and local output files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces patent, software-copyright, or disclosure deliverables with intermediate Markdown, self-check reports, and optional Word or PowerPoint files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can process sensitive project materials and retain them in local Markdown, DOCX, PPTX, self-check, and temporary script artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with authorized materials, avoid confidential code or personal data unless retention is acceptable, and review or remove generated local artifacts after use.
+
+Risk: The generated IP drafts may be used for Chinese patent or software copyright workflows and can affect filing quality if project details are incomplete or inaccurate.
+
+Mitigation: Have qualified IP reviewers confirm applicant details, invention scope, desensitization, prior-art assumptions, and generated claims before filing or sharing externally.
+
+## Reference(s):
+
+- [AI Copyright Skill on ClawHub](https://clawhub.ai/jaccen/skills/ai-copyright-skill)
+- [AI Patent Drafting Special Guide](references/ai-patent-special.md)
+- [AI Patent Claims Drafting Guide](references/ai-patent-claims-guide.md)
+- [AI Software Copyright Registration Guide](references/ai-software-copyright-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated DOCX and PPTX deliverables when requested by the workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May retain Markdown intermediates, DOCX/PPTX files, self-check reports, and temporary generation scripts in local output directories.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

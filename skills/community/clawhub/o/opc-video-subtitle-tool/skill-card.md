@@ -1,44 +1,57 @@
-## Description: <br>
-Adds voice-over and styled subtitles to videos by collecting video, transcript, voice, speed, and subtitle style inputs and calling a Coze workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds voiceover and styled subtitles to videos through a Coze workflow, with preset or custom subtitle styles, voice selection, and speech speed controls.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External creators and developers use this skill to add dubbing and readable subtitles to videos, choose preset or custom subtitle styling, adjust speech speed, and receive a processed video URL. It is suited to public or non-sensitive video workflows where sending a video URL and transcript to Coze is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user video URLs and subtitle text to a third-party Coze workflow. <br>
-Mitigation: Use only public or non-sensitive videos and provide a clear privacy notice before processing. <br>
-Risk: The evidence security summary reports an embedded Coze bearer token. <br>
-Mitigation: Remove and rotate the embedded token, then require credentials from secure configuration before deployment. <br>
+## Use Case:
 
+External users and content creators use this skill to add Chinese voiceover and subtitles to videos, select one of eight subtitle presets, or customize subtitle colors and speech speed.
 
-## Reference(s): <br>
-- [Subtitle style configuration](references/subtitle-styles.md) <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-video-subtitle-tool) <br>
-- [Coze platform](https://coze.cn) <br>
-- [Voice ID reference](https://x2hx0ilo74.feishu.cn/wiki/QJCVwnbr1iBOkzkllk6cS6tCnZe) <br>
-- [Custom subtitle parameter reference](https://my.feishu.cn/wiki/TumOwWKFNiTr19ky36Vc7bXZnLc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a processed video URL from the Coze workflow when execution succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The package ships an exposed Coze API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or rotate the embedded credential and require runtime credentials from a secure environment variable before installation or execution.
+
+Risk: Video URLs and subtitle text are sent to a third-party Coze workflow.
+
+Mitigation: Document the data flow clearly and obtain user consent before sending video or text data to external processing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-video-subtitle-tool)
+- [Subtitle styles configuration](references/subtitle-styles.md)
+- [Coze platform](https://coze.cn)
+- [Voice options reference](https://x2hx0ilo74.feishu.cn/wiki/QJCVwnbr1iBOkzkllk6cS6tCnZe)
+- [Subtitle field details](https://my.feishu.cn/wiki/TumOwWKFNiTr19ky36Vc7bXZnLc)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a processed video URL when the Coze workflow succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

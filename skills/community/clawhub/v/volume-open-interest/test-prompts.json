@@ -1,0 +1,52 @@
+{
+  "skill": "volume-open-interest",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "股价突破前高但成交量没跟上，这个突破可靠吗？",
+      "expected_behavior": "激活 volume-open-interest，提示量价背离是趋势衰竭警告、突破需量配合",
+      "notes": "量价背离"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "持仓兴趣一直在增加，是不是说明大家越来越看好？",
+      "expected_behavior": "激活 volume-open-interest，用四条规则分辨是'新多'还是'空头回补'，并提示异常高持仓是危险",
+      "notes": "持仓兴趣解读"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "价格暴涨伴随天量，这是不是胀爆、快到顶了？",
+      "expected_behavior": "激活 volume-open-interest，解释胀爆/抛售高潮作为反转警告",
+      "notes": "胀爆"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "RSI 到了 80，是不是超买了该卖？",
+      "expected_behavior": "不应激活本 skill（摆动指数），应激活 oscillators-contrarian",
+      "notes": "跨 skill 混淆：应触发 oscillators-contrarian"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这条趋势线被跌破了，趋势坏了吗？",
+      "expected_behavior": "不应激活本 skill（价格线），应激活 trend-tools",
+      "notes": "诱饵：趋势线"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我看的是期货，成交量分析和股票一样看吗，持仓兴趣又该怎么用？",
+      "expected_behavior": "激活本 skill 并提示期货量能不如股市（结算延迟/涨跌停失真 OBV），权重应下调",
+      "notes": "边界：期货量能局限"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 oscillators-contrarian；should-not-trigger-02 指向 trend-tools。"
+}

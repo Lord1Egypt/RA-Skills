@@ -1,40 +1,53 @@
-## Description: <br>
-Reviews and revises thesis, dissertation, proposal, or chapter drafts from supplied text or files, creates a prioritized modification plan, saves a revised copy, and explains the changes while preserving factual academic content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review, revise, and save a complete thesis, dissertation, undergraduate paper, graduation thesis, proposal, or chapter draft from a user's full text or file path.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to review and revise thesis-length academic work, generate prioritized modification lists, save revised drafts, and receive concise explanations of major changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or unpublished thesis material may be read by the agent and written into a revised file. <br>
-Mitigation: Provide only the material intended for revision, specify the output path, keep a backup of the original, and review the revised copy before submission. <br>
-Risk: Academic revisions could accidentally change meaning, introduce unsupported claims, or leave factual gaps unresolved. <br>
-Mitigation: Review the modification list and change log, verify data and citations, and supply missing research details instead of allowing the agent to invent them. <br>
+## Use Case:
 
+External users and academic writers use this skill to review, revise, and save thesis, dissertation, proposal, undergraduate paper, or chapter drafts while preserving the user's research design, data, findings, and voice.
 
-## Reference(s): <br>
-- [Thesis Revision and Quality Checklist Guide](references/thesis-revision-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown text with saved revised files when file access is available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a prioritized modification list, revision strategy, saved file path, change log, revised thesis text or chapter summary, and unresolved issues requiring user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may create revised copies of sensitive academic drafts on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination path before use and request preview-only output if no revised file should be created.
+
+Risk: Academic revisions can become misleading if missing data, citations, methods, or findings are filled in without evidence.
+
+Mitigation: Preserve supplied research content, avoid invented data or citations, and flag unresolved factual gaps for user confirmation.
+
+## Reference(s):
+
+- [Thesis Revision and Quality Checklist Guide](references/thesis-revision-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown response with prioritized revision lists, change logs, saved file paths, summaries, and revised thesis text when size permits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a revised copy next to the original file or as a Markdown file in the current working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Deep system design workflow for requirements, capacity, APIs, data, consistency, failure modes, trade-offs, and evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep system design workflow covering requirements, capacity, APIs, data, consistency, failure modes, trade-offs, and evolution for interviews, RFCs, greenfield systems, and major redesigns.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineers, and technical interview candidates use this skill to structure system design discussions from requirements through capacity planning, architecture, data modeling, APIs, reliability, trade-offs, and evolution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill provides broad system design guidance that could be applied to architecture decisions without project-specific validation.
+
+Mitigation: Review recommendations against the target system's requirements, constraints, SLOs, security needs, and operational context before implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineers, and interview candidates use this skill to structure system design discussions for interviews, RFCs, greenfield services, major redesigns, and scale planning. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential architecture, scale, reliability, or business constraints while seeking design guidance. <br>
-Mitigation: Avoid providing confidential project details unless they are intended to be used in the design discussion. <br>
+**Output Format:** [Markdown guidance with structured checklists and design prompts]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeclaw007/system-design) <br>
+**Other Properties Related to Output:** [Advisory markdown only; the reviewed artifact contains no commands, data access, persistence, or hidden behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, architecture prompts, API examples, and trade-off analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, file access, credentials, network access, persistence, or account authority requested.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

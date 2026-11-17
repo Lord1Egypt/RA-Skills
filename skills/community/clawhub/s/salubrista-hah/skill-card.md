@@ -1,51 +1,64 @@
-## Description: <br>
-Supports analysis, design, implementation, evaluation, dashboards, decision scenarios, and normative guidance for integrated hospitalization systems, with emphasis on hospital-at-home and hospital-to-home continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user needs analysis, design, implementation, evaluation, dashboards, decision scenarios, or normative guidance for integrated hospitalization systems with emphasis on hospital-at-home and hospital-to-home continuity, especially bed capacity, discharge, re-admissions, transition risk, Director Tecnico HD, or Chilean HD regulation.
 
-## Publisher: <br>
-[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felix-antonio-sl](https://clawhub.ai/user/felix-antonio-sl)
 
-## Use Case: <br>
-Healthcare operations, public-health, and hospital leadership teams use this skill to reason about integrated hospitalization, hospital-at-home operations, continuity risks, Chilean HD regulation, implementation planning, audits, dashboards, and decision scenarios. It supports system analysis and planning, not individual diagnosis, prescribing, or replacement of human clinical leadership. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An embedded authenticated webhook token could allow unintended or unauthorized external calls. <br>
-Mitigation: Remove the token from the skill package, rotate the credential, and require deployment-time secret injection instead of storing credentials in artifact files. <br>
-Risk: Inter-agent delegation could send sensitive healthcare case context outside the skill boundary. <br>
-Mitigation: Disable delegation by default or document exact destinations, data sent, consent requirements, and redaction rules before use. <br>
-Risk: Declared runtime capabilities may not match the tool instructions included in the artifact. <br>
-Mitigation: Align the manifest/runtime capability declaration with the documented tool behavior and review the resulting permission boundary before installation. <br>
-Risk: The skill covers healthcare operations and regulation, where stale or unsupported guidance can affect safety and compliance. <br>
-Mitigation: Treat bundled material as a baseline, externally verify current legal validity and recent policy changes, and keep human clinical and operational leadership accountable for decisions. <br>
+## Use Case:
 
+External healthcare leaders, hospital operations teams, Hospitalizacion Domiciliaria directors, quality teams, and public health planners use this skill to analyze integrated hospitalization and hospital-to-home continuity problems, design operating models, evaluate risks, and produce dashboards, briefs, or decision scenarios. It supports human clinical and operational leadership; it does not replace individual diagnosis, prescribing, or local regulatory review.
 
-## Reference(s): <br>
-- [Salubrista HaH ClawHub release page](https://clawhub.ai/felix-antonio-sl/salubrista-hah) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Agent workflow and routing](artifact/references/agent/AGENTS.md) <br>
-- [Agent tool map](artifact/references/agent/TOOLS.md) <br>
-- [Chilean HD regulation baseline](artifact/references/knowledge/hodom/normativa/01-reglamento-hodom-ds1-2022.md) <br>
-- [Chilean HD technical norm 2024](artifact/references/knowledge/hodom/normativa/03-norma-tecnica-hodom-2024.md) <br>
-- [Hospital-at-home operating model](artifact/references/knowledge/hodom/director/02-manual-alta-complejidad.md) <br>
-- [Chile hospital-at-home context 2024-2026](artifact/references/knowledge/hodom/director/03-situacion-chile-2026.md) <br>
+### Deployment Geography for Use:
 
+Chile for Hospitalizacion Domiciliaria regulatory guidance; adaptable globally for integrated hospitalization system analysis when local context is provided.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown analysis, recommendations, tables, reports, dashboards, maps, briefs, and decision scenarios] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include synthesis, scale, dominant modality, assumptions, local data gaps, continuity and safety risks, monitoring path, and normative or evidence trace when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The packaged agent tooling exposes a bearer token and describes internal plaintext HTTP delegation that can share healthcare case context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or disable the delegation mechanism before installation, rotate the exposed token, and require explicit user authorization plus data minimization before any case context is shared.
+
+Risk: Medical advisory guidance may be applied beyond the packaged corpus or local legal validity.
+
+Mitigation: Use the bundled corpus as a baseline only, verify current regulatory status and local policy before relying on time-sensitive claims, and keep final decisions under accountable human clinical and operational leadership.
+
+## Reference(s):
+
+- [Salubrista HaH Skill Definition](SKILL.md)
+- [Agent User Profile and Output Preferences](references/agent/USER.md)
+- [Agent Tooling and Routing Notes](references/agent/TOOLS.md)
+- [Hospital at Home Evidence Corpus](references/knowledge/hodom/corpus-hah-completo.md)
+- [Direccion Tecnica en Hospitalizacion Domiciliaria](references/knowledge/hodom/director/01-manual-direccion-tecnica.md)
+- [Manual de Hospitalizacion Domiciliaria de Alta Complejidad](references/knowledge/hodom/director/02-manual-alta-complejidad.md)
+- [Situacion de la Hospitalizacion Domiciliaria en Chile 2024-2026](references/knowledge/hodom/director/03-situacion-chile-2026.md)
+- [Reglamento de Establecimientos que Otorgan Prestaciones de Hospitalizacion Domiciliaria](references/knowledge/hodom/normativa/01-reglamento-hodom-ds1-2022.md)
+- [Decreto Exento 31/2024](references/knowledge/hodom/normativa/02-decreto-exento-31-2024-aprueba-norma-tecnica.md)
+- [Norma Tecnica para Establecimientos de Hospitalizacion Domiciliaria](references/knowledge/hodom/normativa/03-norma-tecnica-hodom-2024.md)
+- [LeyChile - Norma 1181901](https://www.leychile.cl/Navegar?idNorma=1181901)
+- [MINSAL](https://www.minsal.cl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Structured Markdown with optional KPI tables, risk maps, policy briefs, dashboards, and decision scenarios]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spanish technical-professional style; synthesis first; explicit scale, modality, assumptions, data gaps, continuity risks, safety risks, and normative or evidence trace when relevant.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

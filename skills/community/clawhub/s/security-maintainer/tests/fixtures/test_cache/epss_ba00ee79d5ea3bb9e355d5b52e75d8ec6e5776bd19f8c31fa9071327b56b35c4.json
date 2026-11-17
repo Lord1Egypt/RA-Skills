@@ -1,0 +1,9 @@
+{
+  "source": "epss",
+  "query": "CVE-2024-30078",
+  "timestamp": 1792049584.1394923,
+  "data": {
+    "epss": 0.05201,
+    "percentile": 0.92352
+  }
+}

@@ -1,46 +1,61 @@
-## Description: <br>
-Web Insight helps agents run filtered public web and social-media monitoring searches, parse time and area filters, and return concise summaries with structured JSON exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web Insight helps agents run Feedax-powered public web content monitoring searches with keyword, sentiment, time, platform, domain, scene, and region filters, then summarize results and save normalized JSON.
 
-## Publisher: <br>
-[longgggggg](https://clawhub.ai/user/longgggggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longgggggg](https://clawhub.ai/user/longgggggg)
 
-## Use Case: <br>
-External agents and analysts use this skill to monitor public online content for brand management, market analysis, competitor tracking, and risk awareness. It supports keyword, sentiment, time, platform, geography, domain, and engagement filters for public-content investigation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured search endpoint sends API keys and search terms over plain HTTP. <br>
-Mitigation: Use the skill only with non-sensitive searches until the endpoint is changed to HTTPS or routed through an approved secure service. <br>
-Risk: Full search results are saved locally by default. <br>
-Mitigation: Set an explicit output directory, review local retention needs, and remove saved result files that contain sensitive investigation context. <br>
-Risk: API-key checks can expose the configured key when users inspect the .env file directly. <br>
-Mitigation: Avoid displaying or sharing .env contents; validate the presence of FEEDAX_SEARCH_API_KEY without printing the secret value. <br>
+## Use Case:
 
+Developers and agents use this skill to monitor public web, news, social, and information sources for brand management, market analysis, competitor tracking, and risk awareness. It supports filtered searches and produces concise result previews plus complete JSON exports for follow-up analysis.
 
-## Reference(s): <br>
-- [Feedax API key and service](https://www.feedax.cn) <br>
-- [Domain taxonomy](references/domains.json) <br>
-- [Scene taxonomy](references/scenes.json) <br>
-- [Media platform list](references/media_names.json) <br>
-- [Area code data](assets/area_codes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON files, guidance] <br>
-**Output Format:** [Markdown or plain-text search summaries plus saved JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full normalized search results are saved to a configurable output directory; the default is ~/Desktop/舆情搜索结果/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill sends API keys and search queries to a Feedax HTTP endpoint, which can expose sensitive credentials or query contents in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege or disposable Feedax API key, avoid sensitive searches unless approved, and treat the HTTP endpoint as a serious issue until it is replaced with HTTPS.
+
+Risk: The skill documentation includes commands that can print `.env` contents during API key checks.
+
+Mitigation: Do not run commands that print `.env` contents; verify key presence without displaying secret values.
+
+Risk: Complete search results are saved locally, defaulting to a Desktop output directory.
+
+Mitigation: Choose an approved output directory for sensitive work and review saved JSON files before sharing or retaining them.
+
+## Reference(s):
+
+- [Feedax](https://www.feedax.cn)
+- [ClawHub Skill Page](https://clawhub.ai/longgggggg/skills/web-insight)
+- [domains.json](references/domains.json)
+- [media_names.json](references/media_names.json)
+- [scenes.json](references/scenes.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, terminal result summaries, and normalized JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FEEDAX_SEARCH_API_KEY; complete search results are saved to a local output directory, defaulting to the user's Desktop.]
+
+## Skill Version(s):
+
+1.0.4 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

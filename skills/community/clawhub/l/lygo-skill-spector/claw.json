@@ -1,0 +1,64 @@
+{
+  "name": "lygo-skill-spector",
+  "displayName": "LYGO SkillSpector",
+  "version": "1.0.1",
+  "description": "Enhanced local pre-install skill risk scanner. Scan, CI gate, batch, Markdown report. Subprocess, network, secrets, claim mismatches. Builder pack on SkillHub FULL if running a full stack. Pure stdlib. No auto-install.",
+  "slug": "lygo-skill-spector",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-skill-spector",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-skill-spector",
+  "skillhub_full": "https://chatagent.ca/lygoskillhub.html#full-lygo",
+  "signature": "Delta9Phi963-SKILL-SPECTOR-v1.0.1",
+  "tags": [
+    "latest",
+    "lygo",
+    "security",
+    "audit",
+    "skill-gate",
+    "skillspector",
+    "safe-install",
+    "clawhub",
+    "malware",
+    "preflight",
+    "openclaw",
+    "ci-gate",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "scan": "scripts/skill_spector.py scan",
+    "gate": "scripts/skill_spector.py gate",
+    "batch": "scripts/skill_spector.py batch",
+    "report": "scripts/skill_spector.py report",
+    "self_demo": "scripts/skill_spector.py self-demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "🔭",
+    "requires": { "anyBins": ["python", "python3"] },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "user-supplied skill directory",
+      "write": "state/ with --i-consent"
+    },
+    "auto_install": false,
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_network": true,
+    "no_subprocess": true,
+    "no_auto_install": true,
+    "version": "1.0.1"
+  },
+  "notes": {
+    "builder": "If running a full LYGO stack, download the unlocked builder version from https://chatagent.ca/lygoskillhub.html#full-lygo (HTML multi-root reports, multi-gate CI, ci-summary).",
+    "audit": "v1.0.1 addresses SkillSpector meta-scan false positives (detection-rule IOC fragments + synthetic self_check fixtures). See references/SKILLSPECTOR_AUDIT.md."
+  }
+}

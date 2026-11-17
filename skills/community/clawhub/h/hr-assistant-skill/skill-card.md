@@ -1,43 +1,65 @@
-## Description: <br>
-人力助手（HR Assistant）协助完成招聘需求澄清、JD生成、简历筛选、面试支持、入职材料、劳动合同初审、培训计划和员工制度问答等HR工作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HR Assistant helps HR teams and managers draft, review, and structure outputs for recruiting, resume screening, interviews, onboarding, labor contract review, training, and employee policy Q&A workflows.
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-HR staff and team managers use this skill to draft HR materials, analyze resumes, interviews, and contracts, generate training plans, and produce structured risk, gap, action, human-review, and archive records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes and archives sensitive HR records without clear retention or access limits. <br>
-Mitigation: Confirm access, storage, retention, deletion, and redaction controls before installation; use role-based access and masking by default. <br>
-Risk: Outputs may influence employment decisions, compensation, contract conclusions, or external submissions. <br>
-Mitigation: Require human approval before acting on hiring, rejection, compensation, contract, or outbound communication recommendations. <br>
-Risk: Raw resumes, contracts, onboarding documents, scores, logs, and archives may expose personal or employment-sensitive data. <br>
-Mitigation: Limit retention for raw documents and logs, restrict archive access, and redact sensitive fields in routine outputs. <br>
+## Use Case:
 
+HR staff, recruiting leads, department managers, interviewers, and management use this skill to prepare structured HR drafts, risk notes, review materials, checklists, and archive records across common HR workflows. Human approval remains required for final hiring, compensation, contract, sensitive-data, and external-offer actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afeicn/hr-assistant-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/afeicn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Structured Markdown and text reports with checklists, tables, and review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default sections include conclusion, key facts, risks or gaps, suggested actions, human-confirmation items, and archive records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and README) <br>
+Risk: The skill handles candidate and employee data, including potentially sensitive HR, compensation, and contract information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict access to authorized users, mask sensitive details in outputs, and review permissions before deployment.
+
+Risk: The skill creates archive and audit records that may retain sensitive HR material.
+
+Mitigation: Define archive retention, deletion, and audit-log handling before production use.
+
+Risk: Employee policy Q&A may provide unsupported answers if it does not use approved policy sources.
+
+Mitigation: Require approved policy knowledge sources and citations for policy answers.
+
+Risk: The skill may draft recommendations related to hiring, compensation, labor contracts, or external offers.
+
+Mitigation: Require human approval for final hiring, compensation, contract, sensitive-data, and external-offer actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/afeicn/skills/hr-assistant-skill)
+- [HR Assistant README](artifact/README.md)
+- [HR Assistant Workflows](artifact/workflows.md)
+- [HR Skill Catalog](artifact/skills/hr_skills.yaml)
+- [Knowledge Base Guidance](artifact/knowledge/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Structured Markdown and text templates with tables, checklists, risk notes, review notes, and archive records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are designed to include conclusions, key facts, risks or gaps, suggested actions, required human confirmations, and archive metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and artifact README/employee.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

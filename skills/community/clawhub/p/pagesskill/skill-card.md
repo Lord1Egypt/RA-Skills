@@ -1,40 +1,58 @@
-## Description: <br>
-Guides AI agents to build NocoBase pages, including menus, tables, forms, popups, KPIs, JS blocks, outlines, and event flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to build NocoBase pages, including menus, tables, forms, popups, KPIs, JavaScript blocks, outlines, and event flows.
 
-## Publisher: <br>
-[Alexander-lq](https://clawhub.ai/user/Alexander-lq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexander-lq](https://clawhub.ai/user/alexander-lq)
 
-## Use Case: <br>
-Developers and NocoBase operators use this skill to guide an agent through creating or modifying pages with FlowModel tools, including CRUD pages, menu structure, forms, tables, filters, popups, KPIs, and page debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently modify or delete NocoBase pages, routes, fields, columns, JavaScript, and event-flow code. <br>
-Mitigation: Require the agent to inspect the target page, identify the exact route, page, tab, collection, and proposed change, and obtain confirmation before cleanup, deletion, field or column removal, or JavaScript and event-flow changes. <br>
-Risk: Full-replace FlowModel updates can overwrite existing layout or configuration when changes are poorly scoped. <br>
-Mitigation: Inspect the target page first and apply changes through the documented read, merge, and update workflow or higher-level page-building tools that preserve existing state. <br>
+## Use Case:
 
+Developers and agents use this skill to create and maintain NocoBase page structures from user requests. It supports CRUD pages, menus, layouts, filters, tables, forms, detail popups, KPI blocks, JavaScript blocks, outlines, event flows, and inspection or debugging commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Alexander-lq/pagesskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline tool-call examples, code blocks, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing instructions for NocoBase page-building tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide agents to change NocoBase UI structure through page, menu, layout, field, column, JavaScript, and event-flow tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for agents that are expected to build or maintain NocoBase pages, and scope activation to NocoBase page-building requests.
+
+Risk: Some supported tools can delete routes, clean or rebuild layouts, remove fields or columns, or add JavaScript and event-flow behavior.
+
+Mitigation: Require explicit user confirmation before destructive changes or before adding JavaScript and event-flow behavior.
+
+Risk: Broad page-building triggers may activate the skill for generic page or form requests.
+
+Mitigation: Narrow triggers or routing rules so the skill is selected only for NocoBase-specific page-building work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexander-lq/skills/pagesskill)
+- [Publisher profile](https://clawhub.ai/user/alexander-lq)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline tool-call examples and JSON or JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to guide NocoBase page-building tool calls and related page configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

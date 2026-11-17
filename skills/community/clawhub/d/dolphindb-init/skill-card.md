@@ -1,43 +1,57 @@
-## Description: <br>
-Initializes a DolphinDB Python environment by finding an existing DolphinDB SDK installation or installing the SDK into an available Python environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initializes a DolphinDB Python environment by detecting an installed DolphinDB SDK across Conda, Anaconda, Miniconda, or system Python and installing it when none is found.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and agents use this skill before DolphinDB operations to locate or prepare a Python interpreter with the DolphinDB SDK, then call DolphinDB scripts through a consistent shell interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install an unpinned DolphinDB Python package. <br>
-Mitigation: Run it in a dedicated virtual or conda environment and pin the DolphinDB package version when reproducibility or supply-chain control is required. <br>
-Risk: The loader evaluates generated shell exports while selecting a Python interpreter. <br>
-Mitigation: Review the target interpreter and generated environment values before sourcing the loader in sensitive environments. <br>
+## Use Case:
 
+Developers and engineers use this skill before DolphinDB-related work to locate or prepare a Python environment with the DolphinDB SDK and expose consistent dolphin_python and dolphin_pip commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ugpoor/dolphindb-init) <br>
-- [Source skill definition](artifact/SKILL.md) <br>
-- [Environment loader script](artifact/scripts/load_dolphindb_env.sh) <br>
-- [Environment detection script](artifact/scripts/detect_dolphindb_env.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides shell functions and environment variables for selecting the DolphinDB Python interpreter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may automatically install an unpinned DolphinDB package into a local Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, approve the target interpreter explicitly, and prefer a pinned DolphinDB SDK in a dedicated virtual environment.
+
+Risk: The environment loader uses eval-based loading of shell output.
+
+Mitigation: Review generated exports before loading and prefer a detection-only flow or a loader that avoids eval.
+
+Risk: Example connection code includes hardcoded database credentials.
+
+Mitigation: Replace example credentials with user-provided secrets from an approved secret-management path before connecting to DolphinDB.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ugpoor/skills/dolphindb-init)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit shell environment exports and helper command guidance for the selected Python environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

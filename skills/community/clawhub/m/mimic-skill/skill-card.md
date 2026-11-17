@@ -1,49 +1,67 @@
-## Description: <br>
-Helps agents generate SQL and Python query templates for extracting vital signs, laboratory results, diagnoses, comorbidities, and related ICU data from MIMIC-IV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mimic Skill helps agents generate SQL and Python templates for extracting MIMIC-IV ICU data such as vital signs, labs, diagnoses, and comorbidities from a user-managed PostgreSQL database.
 
-## Publisher: <br>
-[yongfanbeta](https://clawhub.ai/user/yongfanbeta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yongfanbeta](https://clawhub.ai/user/yongfanbeta)
 
-## Use Case: <br>
-Developers, data analysts, and clinical researchers use this skill to draft MIMIC-IV PostgreSQL queries and Python extraction snippets for ICU cohort analysis. Users run generated queries against their own authorized MIMIC-IV database instance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: MIMIC-IV access is restricted and generated queries may expose sensitive clinical research data. <br>
-Mitigation: Use the skill only with authorized MIMIC-IV access, treat query outputs as sensitive data, and scope extracts to the minimum patients, columns, and time ranges needed. <br>
-Risk: Generated Python examples may require database credentials to run. <br>
-Mitigation: Use read-only or least-privilege database accounts where practical and avoid hardcoding real passwords in generated scripts. <br>
-Risk: Generated SQL or Python templates may need adaptation for a local MIMIC-IV deployment or study design. <br>
-Mitigation: Review table names, item IDs, filters, time windows, and cohort logic before running queries or using outputs in analysis. <br>
+## Use Case:
 
+Developers, data analysts, and clinical researchers use this skill to draft MIMIC-IV data extraction queries and Python snippets for authorized PostgreSQL database instances. It is intended to speed up retrieval of ICU vitals, labs, diagnoses, comorbidities, and common cohort concepts while leaving database access and execution under the user's control.
 
-## Reference(s): <br>
-- [MIMIC-IV Database Schema Reference](references/schema.md) <br>
-- [MIMIC-IV Vital Signs Queries](references/vital_signs.md) <br>
-- [MIMIC-IV Laboratory Queries](references/labs.md) <br>
-- [MIMIC-IV Diagnoses and Comorbidities Queries](references/diagnoses.md) <br>
-- [MIMIC-IV Common Query Templates](references/common_queries.md) <br>
-- [MIMIC-IV Official Documentation](https://mimic.mit.edu/docs/IV/) <br>
-- [MIMIC-IV on PhysioNet](https://physionet.org/content/mimiciv/3.1/) <br>
-- [MIMIC Code Repository](https://github.com/MIT-LCP/mimic-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, SQL, Python, Guidance] <br>
-**Output Format:** [Markdown with SQL and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated queries are templates that require authorized database access, user-provided connection details, and review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Generated queries can support broad extraction of sensitive clinical data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with authorized MIMIC-IV access, avoid broad all-patient extraction, review each query before execution, and store exported results securely.
+
+Risk: Generated Python examples or database snippets can expose credentials if users paste real secrets into shared code.
+
+Mitigation: Use read-only database credentials where possible and avoid hardcoding real passwords in shared scripts, notebooks, or prompts.
+
+Risk: Database optimization suggestions such as CREATE INDEX can modify shared database state.
+
+Mitigation: Treat CREATE INDEX and similar database administration changes as administrator-only operations and review them before use.
+
+## Reference(s):
+
+- [MIMIC-IV Documentation](https://mimic.mit.edu/docs/IV/)
+- [MIMIC-IV on PhysioNet](https://physionet.org/content/mimiciv/3.1/)
+- [MIMIC-IV ED on PhysioNet](https://physionet.org/content/mimic-iv-ed/2.0/)
+- [MIMIC-IV Note on PhysioNet](https://physionet.org/content/mimic-iv-note/2.0/)
+- [MIMIC-CXR on PhysioNet](https://physionet.org/content/mimic-cxr/2.1/)
+- [MIMIC Code Repository](https://github.com/MIT-LCP/mimic-code)
+- [Schema Reference](references/schema.md)
+- [Vital Signs Reference](references/vital_signs.md)
+- [Laboratory Tests Reference](references/labs.md)
+- [Diagnoses Reference](references/diagnoses.md)
+- [Common Query Templates](references/common_queries.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SQL and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are query and script templates for user-run MIMIC-IV PostgreSQL environments; the skill itself does not connect to a database.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

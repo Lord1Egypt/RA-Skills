@@ -1,45 +1,63 @@
-## Description: <br>
-End-to-end LoRA training pipeline for collecting reference photos, verifying faces, scraping image datasets, applying quality checks, captioning with WD14, and training on RunPod. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end LoRA training pipeline covering reference photo collection, face verification, dataset scraping, quality checks, WD14 captioning, and RunPod-based training.
 
-## Publisher: <br>
-[iskWang](https://clawhub.ai/user/iskWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskwang](https://clawhub.ai/user/iskwang)
 
-## Use Case: <br>
-Developers and creators use this skill to prepare face-image datasets, caption them, and train LoRA model outputs through a staged workflow. It is suited for agent-assisted dataset preparation and training orchestration when the user has rights and consent for the images involved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow handles face-image datasets that may include personal or sensitive images. <br>
-Mitigation: Confirm rights and consent for all images before collection, verification, captioning, or training. <br>
-Risk: The workflow references login-bypassing mirror sites for image scraping. <br>
-Mitigation: Avoid login-bypassing sources and use only permitted, rights-cleared image sources. <br>
-Risk: The workflow uploads training data to RunPod for remote training. <br>
-Mitigation: Use the workflow only when cloud processing is acceptable, verify RunPod account and cost settings, and manually confirm remote datasets and pods are deleted after training. <br>
-Risk: ZIP extraction and captioning can overwrite or alter local dataset files. <br>
-Mitigation: Review ZIP contents before extraction and back up existing captions or datasets before running captioning and training steps. <br>
+## Use Case:
 
+Developers and creators use this skill to assemble LoRA-ready subject image datasets, verify and clean face images, generate captions, and train model outputs. It should be used only for datasets the user has rights and consent to process.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iskWang/lora-pipeline) <br>
-- [Publisher profile](https://clawhub.ai/user/iskWang) <br>
+### Deployment Geography for Use:
 
+Global; the RunPod training phase recommends EU zones and avoids Canada.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces phase status messages, dataset paths, training commands, configuration defaults, and local LoRA output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The workflow handles face datasets through scraping and biometric matching without enough consent and provenance safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only datasets the user has rights and consent to process, keep source records, and avoid login bypass, mirror scraping, or other collection methods that evade site access controls.
+
+Risk: RunPod training uploads the prepared dataset to a third-party compute environment.
+
+Mitigation: Treat RunPod upload as disclosure of the full dataset, obtain user confirmation before upload, use secure cloud settings where available, and delete remote pods and temporary data after retrieving outputs.
+
+Risk: ZIP extraction, broad file operations, and generated training commands can modify or expose local workspace data.
+
+Mitigation: Inspect ZIP inputs in a sandbox, validate the expected dataset folder structure before training, keep image and caption contents opaque to the agent, and review file-moving or deletion commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iskwang/skills/lora-pipeline)
+- [Skill definition](artifact/SKILL.md)
+- [Reference collection and verification phase](artifact/phases/01-reference.md)
+- [Dataset scraping phase](artifact/phases/02-scraping.md)
+- [Verify and clean dataset phase](artifact/phases/03-verify.md)
+- [WD14 captioning phase](artifact/phases/04-caption.md)
+- [RunPod LoRA training phase](artifact/phases/05-training.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown phase instructions with inline Python, JavaScript, and shell command blocks; helper scripts produce caption files, TOML configuration, and LoRA model files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local dataset folders, caption text files, RunPod training commands, and downloaded .safetensors outputs when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

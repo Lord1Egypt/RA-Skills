@@ -1,0 +1,1444 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "西南",
+ "city": "重庆",
+ "zone": "06-区",
+ "zone_climate": "VI中亚热带常绿、落叶阔叶林区",
+ "cities": [
+  "上海",
+  "长沙",
+  "桂林",
+  "杭州",
+  "重庆",
+  "贵阳",
+  "昆明"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#06-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "锦松",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "五针松(日本五针松)",
+   "aliases": [
+    "日本五针松"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本金松(金松)",
+   "aliases": [
+    "金松"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "北美圆柏",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "福建柏",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刺柏",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南方红豆杉",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香榧",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "竹柏",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶罗汉松",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "乐东拟单性木兰",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "乐昌含笑",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "火力楠",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "深山含笑",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山玉兰",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶冬青",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "冬青",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杜英",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蚊母(蚊母树)",
+   "aliases": [
+    "蚊母树"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石栎(柯)",
+   "aliases": [
+    "柯"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苦槠",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "米槠",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杨梅",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柑桔(柑橘)",
+   "aliases": [
+    "柑橘"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "橙(甜橙)",
+   "aliases": [
+    "甜橙"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金桔(金橘)",
+   "aliases": [
+    "金橘"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花榈木",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香樟(樟)",
+   "aliases": [
+    "樟"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄樟",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "天竺桂",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫楠",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "楠木",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "月桂",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红楠",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶楠(薄叶润楠)",
+   "aliases": [
+    "薄叶润楠"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "交让木",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶茶(茶)",
+   "aliases": [
+    "茶"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "云南山茶(滇山茶)",
+   "aliases": [
+    "滇山茶"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木荷",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "厚皮香",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "珊蝴树",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "银桦",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蓝桉",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "浙江楠",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红茴香",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "墨杉(墨西哥落羽杉)",
+   "aliases": [
+    "墨西哥落羽杉"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国鹅掌楸（北美鹅掌楸）",
+   "aliases": [
+    "北美鹅掌楸"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "薄壳山核桃（美国山核桃）",
+   "aliases": [
+    "美国山核桃"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶栎",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "板栗(栗)",
+   "aliases": [
+    "栗"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "河柳(腺柳)",
+   "aliases": [
+    "腺柳"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "江南桤木",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水冬瓜",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶朴(黑弹树)",
+   "aliases": [
+    "黑弹树"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "光叶榉(榉树)",
+   "aliases": [
+    "榉树"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "榉树(大叶榉树)",
+   "aliases": [
+    "大叶榉树"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶榉(大果榉)",
+   "aliases": [
+    "大果榉"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "苦楝(楝)",
+   "aliases": [
+    "楝"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "川楝",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三角枫（三角槭）",
+   "aliases": [
+    "三角槭"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "三峡槭",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "翅荚香槐",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "江南槐（红花刺槐）",
+   "aliases": [
+    "红花刺槐"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桑树(桑)",
+   "aliases": [
+    "桑"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柘树(柘)",
+   "aliases": [
+    "柘"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "全缘栾树(复羽叶栾树)",
+   "aliases": [
+    "复羽叶栾树"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "梅花（梅）",
+   "aliases": [
+    "梅"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "丝绵木(桃叶卫矛)",
+   "aliases": [
+    "桃叶卫矛"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枣树(枣)",
+   "aliases": [
+    "枣"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南京椴",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木姜子",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金缕梅",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蜡瓣花",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大果冬青",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "瓶兰花",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白蜡(白蜡树)",
+   "aliases": [
+    "白蜡树"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶柳",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "喜树",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白栎",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "含笑",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "九里香",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "石斑木",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "狭叶火棘(窄叶火棘)",
+   "aliases": [
+    "窄叶火棘"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "檵木",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "日本桃叶珊瑚(青木)",
+   "aliases": [
+    "青木"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龟甲冬青",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山茶花(山茶)",
+   "aliases": [
+    "山茶"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红花油茶",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "瑞香",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "赤楠",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香桃木",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹅掌柴",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桃金娘",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "栀子花",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "六月雪",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "玉叶金花",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "云南黄馨(野迎春)",
+   "aliases": [
+    "野迎春"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "洒金珊瑚(花叶青木)",
+   "aliases": [
+    "花叶青木"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "线柏",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛白杜鹃(白花杜鹃)",
+   "aliases": [
+    "白花杜鹃"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "星花玉兰(星花木兰)",
+   "aliases": [
+    "星花木兰"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "银芽柳",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羽毛枫（羽毛槭）",
+   "aliases": [
+    "羽毛槭"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "枸桔(枳)",
+   "aliases": [
+    "枳"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小檗(日本小檗)",
+   "aliases": [
+    "日本小檗"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金花小檗",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "木本绣球(绣球荚蒾)",
+   "aliases": [
+    "绣球荚蒾"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "贴梗海棠(皱皮木瓜)",
+   "aliases": [
+    "皱皮木瓜"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "笑靥花(李叶绣线菊)",
+   "aliases": [
+    "李叶绣线菊"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "腊梅(蜡梅)",
+   "aliases": [
+    "蜡梅"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山痲杆(山麻杆)",
+   "aliases": [
+    "山麻杆"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "老鸭柿(老鸦柿)",
+   "aliases": [
+    "老鸦柿"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大叶醉鱼草",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "密蒙花",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "荷包花(赪桐)",
+   "aliases": [
+    "赪桐"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金银木(金银忍冬)",
+   "aliases": [
+    "金银忍冬"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南紫薇",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄薇",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杜鹃",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "凤尾竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "慈竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "罗汉竹(人面竹)",
+   "aliases": [
+    "人面竹"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花孝顺竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "绿皮黄金竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄皮黄金竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粉绿竹(淡竹)",
+   "aliases": [
+    "淡竹"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龟甲竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "茶杆竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "方竹",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国凌霄(厚萼凌霄)",
+   "aliases": [
+    "厚萼凌霄"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "贯叶忍冬(贯月忍冬)",
+   "aliases": [
+    "贯月忍冬"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金银花(忍冬)",
+   "aliases": [
+    "忍冬"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "美国地锦(五叶地锦)",
+   "aliases": [
+    "五叶地锦"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "胶东卫矛(胶州卫矛)",
+   "aliases": [
+    "胶州卫矛"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大血藤",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "多花蔷薇(野蔷薇)",
+   "aliases": [
+    "野蔷薇"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鸡血藤(网络崖豆藤)",
+   "aliases": [
+    "网络崖豆藤"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "二月兰(诸葛菜)",
+   "aliases": [
+    "诸葛菜"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "葱兰",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水仙",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蝴蝶花",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "韭兰（红花葱兰）",
+   "aliases": [
+    "红花葱兰"
+   ],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鹿葱",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "换锦花",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大吴风草",
+   "aliases": [],
+   "region": "西南",
+   "city": "重庆",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#06-区",
+   "confidence": "medium"
+  }
+ ]
+}

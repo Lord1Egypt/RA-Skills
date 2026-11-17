@@ -1,51 +1,78 @@
-## Description: <br>
-A comprehensive Chinese metaphysics skill that routes questions across Xiao Liu Ren, Liu Yao Na Jia, Mei Hua Yi Shu, and Da Liu Ren, then uses reference material and Python scripts to produce time-calibrated divination results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive Chinese divination skill that routes questions across Xiao Liu Ren, Da Liu Ren, Liu Yao Na Jia, and Mei Hua Yi Shu, then uses reference material and Python scripts for time-calibrated casting and interpretation.
 
-## Publisher: <br>
-[sprint-yy](https://clawhub.ai/user/sprint-yy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprint-yy](https://clawhub.ai/user/sprint-yy)
 
-## Use Case: <br>
-External users and developers use this skill to select and run one of four traditional Chinese divination methods, generate structured oracle outputs and readings, and include timing, method rationale, and disclaimers. It is intended for cultural, educational, and entertainment contexts rather than medical, legal, financial, or other major decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unknown city names may be sent to Open-Meteo and cached locally. <br>
-Mitigation: Use an explicit longitude or a known built-in city for maximum privacy, and inspect or delete scripts/_geo_cache.json if local coordinate caching is a concern. <br>
-Risk: Divination outputs can be mistaken for advice on major decisions. <br>
-Mitigation: Treat outputs as cultural, educational, or entertainment reference only, include the skill's disclaimers, and do not rely on results for medical, legal, financial, or other major decisions. <br>
-Risk: Broad trigger words may activate a divination workflow unexpectedly. <br>
-Mitigation: Confirm that the user wants a divination flow and confirm the method before running calculation scripts. <br>
+## Use Case:
 
+External users and agent developers use this skill for culturally framed Chinese divination consultations, including method selection, location-based time calibration, structured casting, and interpretive guidance with disclaimers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sprint-yy/comprehensive-divination-skill) <br>
-- [README](README.md) <br>
-- [Comprehensive divination skill pitfalls](references/comprehensive-divination-skill-pitfalls.md) <br>
-- [Router matching matrix](references/router/matching-matrix.md) <br>
-- [Xiao Liu Ren method](references/xiao-liuren/method.md) <br>
-- [Liu Yao method](references/liuyao/method.md) <br>
-- [Mei Hua Yi Shu method](references/meihua-yishu/method.md) <br>
-- [Da Liu Ren method](references/da-liuren/method.md) <br>
-- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search) <br>
-- [agentskills.io standard](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown narrative with JSON blocks, inline shell commands, and optional Python script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local Python scripts for deterministic calculations; unknown city lookup may query Open-Meteo and cache resolved coordinates locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Unknown city names may be sent to Open-Meteo and cached locally during geocoding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a manual longitude or a known local city entry when location privacy matters, and review or clear the local geocoding cache as needed.
+
+Risk: Broad fortune-telling trigger words may activate the skill for ambiguous requests.
+
+Mitigation: Confirm the user's intent, selected divination method, and location before casting.
+
+Risk: Divination interpretations could be mistaken for reliable decision advice.
+
+Mitigation: Present outputs as cultural, educational, and entertainment guidance, include the disclaimer, and avoid using results as the sole basis for financial, medical, legal, or other important decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sprint-yy/skills/comprehensive-divination-skill)
+- [Publisher profile](https://clawhub.ai/user/sprint-yy)
+- [Skill workflow](SKILL.md)
+- [User documentation](README.md)
+- [Pitfalls and implementation notes](references/comprehensive-divination-skill-pitfalls.md)
+- [Routing matrix](references/router/matching-matrix.md)
+- [Xiao Liu Ren method](references/xiao-liuren/method.md)
+- [Xiao Liu Ren six palaces](references/xiao-liuren/liugong.md)
+- [Liu Yao method](references/liuyao/method.md)
+- [Liu Yao Na Jia](references/liuyao/najia.md)
+- [Liu Yao interpretation](references/liuyao/duangua.md)
+- [Mei Hua Yi Shu method](references/meihua-yishu/method.md)
+- [Da Liu Ren method](references/da-liuren/method.md)
+- [Da Liu Ren three transmissions](references/da-liuren/sanzhuan-faze.md)
+- [Da Liu Ren twelve heavenly generals](references/da-liuren/shier-tianjiang.md)
+- [Core theory: bagua](references/core/bagua.md)
+- [Core theory: heavenly stems and earthly branches](references/core/tiangan-dizhi.md)
+- [Core theory: yin-yang and five phases](references/core/yinyang-wuxing.md)
+- [Core theory: six kinships](references/core/liuqin.md)
+- [International user example](examples/international-user.md)
+- [Open-Meteo Geocoding API](https://geocoding-api.open-meteo.com/v1/search)
+- [Agent skills standard](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON-like script outputs and shell or Python command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include the selected method, time and location calibration, cast data, interpretation, timing guidance, and a disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

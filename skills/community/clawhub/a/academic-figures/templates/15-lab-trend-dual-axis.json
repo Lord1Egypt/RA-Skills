@@ -1,0 +1,33 @@
+{
+ "_scene": "双轴实验室指标趋势（血红蛋白 vs CRP）",
+ "_description": "双轴实验室指标趋势（血红蛋白 vs CRP）（dual_axis）。用模板自带 _command 一键渲染示例。",
+ "_chart_type": "dual_axis",
+ "_command": "python3 scripts/gen_figure.py -t dual_axis -d templates/15-lab-trend-dual-axis.json -o dual_axis.pdf --theme glm --verify",
+ "_caption_template": "图X | 治疗期间血红蛋白（左轴）回升与 CRP（右轴）下降呈镜像趋势。",
+ "_note": "示例数字仅示意；left/right 各系列长度须与 labels 一致",
+ "labels": [
+  "Wk 0",
+  "Wk 2",
+  "Wk 4",
+  "Wk 8",
+  "Wk 12"
+ ],
+ "left": {
+  "Hemoglobin (g/dL)": [
+   9.2,
+   9.8,
+   10.6,
+   11.4,
+   11.9
+  ]
+ },
+ "right": {
+  "CRP (mg/L)": [
+   48,
+   33,
+   21,
+   12,
+   8
+  ]
+ }
+}

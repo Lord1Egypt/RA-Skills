@@ -1,44 +1,54 @@
-## Description: <br>
-Domain expertise for Ai2 Asta MCP tools (Semantic Scholar corpus). Intent-to-tool routing, safe defaults, workflow patterns, and pitfall warnings for academic paper search, citation traversal, and author discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides domain expertise for Ai2 Asta MCP tools over the Semantic Scholar corpus, including intent-to-tool routing, safe defaults, workflow patterns, and pitfall warnings for academic paper search, citation traversal, and author discovery.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Developers and agent users use this skill to route academic literature questions to Ai2 Asta MCP tools for paper search, citation traversal, author discovery, and evidence retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes academic-paper queries to an external Asta MCP service using a user-provided API key. <br>
-Mitigation: Configure ASTA_API_KEY only in a trusted host and avoid sending private or sensitive research queries unless the user accepts sharing them with the external service. <br>
-Risk: Large citation or reference fields can exceed an agent context window or trigger rate limits. <br>
-Mitigation: Use safe default fields, prefer the paginated citations tool for citation traversal, batch lookups when possible, and stop expanding graphs beyond the requested scope. <br>
-Risk: Academic corpus metadata can be missing, ambiguous, or best-effort for external identifiers. <br>
-Mitigation: Disambiguate authors and papers before lookup, report missing abstract or venue fields plainly, and degrade gracefully when external identifiers are unavailable. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to route academic search, paper lookup, citation traversal, author discovery, and snippet retrieval requests through an Asta MCP server connected to the Semantic Scholar corpus.
 
-## Reference(s): <br>
-- [ClawHub listing for Asta Skill](https://clawhub.ai/agents365-ai/asta-skill) <br>
-- [Asta MCP endpoint](https://asta-tools.allen.ai/mcp/v1) <br>
-- [Asta API key request](https://share.hsforms.com/1L4hUh20oT3mu8iXJQMV77w3ioxm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tool-routing tables and workflow patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an MCP-capable host configured with ASTA_API_KEY for Asta MCP access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Asta MCP calls use ASTA_API_KEY with an external academic-search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key securely and install the skill only when the agent is expected to query the Asta MCP endpoint.
+
+Risk: Broad paper fields such as citations or references can return very large responses.
+
+Mitigation: Use the skill's safe default fields and paginated citation workflow before requesting larger paper metadata.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/skills/asta-skill)
+- [Asta MCP Endpoint](https://asta-tools.allen.ai/mcp/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with tool names, workflow steps, tables, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an MCP-capable host with the Asta MCP server registered and ASTA_API_KEY available.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

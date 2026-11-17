@@ -1,45 +1,54 @@
-## Description: <br>
-AI agentic video editor: send a prompt, the autonomous editor plans, uses internal tools, exports, and returns the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compile and execute multi-step video editing plans with automated timeline verification.
 
-## Publisher: <br>
-[brajendrak00068](https://clawhub.ai/user/brajendrak00068) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brajendrak00068](https://clawhub.ai/user/brajendrak00068)
 
-## Use Case: <br>
-External users and developers use this skill to request natural-language video edits, preview planned changes, manage asynchronous editing jobs, and export finished MP4 or ZIP video deliverables through the Levea/Livecore service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends video prompts, project or scene data, asset URLs, and related media metadata to the Levea/Livecore cloud service. <br>
-Mitigation: Install and use it only when that data sharing is acceptable, and avoid submitting sensitive media unless the service handling is approved for that content. <br>
-Risk: Mutating edits, auto-export behavior, or approval prompts can result in real changes to user media workflows. <br>
-Mitigation: Use plan approval for risky or destructive edits, require explicit confirmation before execution, and preview all exports before publishing or sharing. <br>
+## Use Case:
 
+Video creators and developers use the skill to turn natural-language briefs into multi-step timeline edits, preview plans for approval, verify edits, and export MP4 video.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/brajendrak00068/ai-agentic-video-editor) <br>
-- [Publisher Profile](https://clawhub.ai/user/brajendrak00068) <br>
-- [OpenClaw AI Video Editor README](https://github.com/brajendrak00068/openclaw-ai-video-editor#readme) <br>
-- [Levea MCP Server](https://www.npmjs.com/package/levea-mcp-server) <br>
-- [Livecore API](https://api.livecore.ai) <br>
-- [Livecore Studio](https://studio.livecore.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request or response examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce video export URLs, async job IDs, project or scene data, and ZIP package links from the remote editing service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.21 (source: ClawHub release metadata) <br>
+Risk: The editing service processes submitted media and requires an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the API key and submit only media you are comfortable having Levea process.
+
+Risk: The separately installed plugin or MCP server is outside this skill artifact.
+
+Mitigation: Review the installed plugin or MCP server before connecting it to projects.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/brajendrak00068/skills/ai-agentic-video-editor)
+- [Levea editing service](https://livecore.ai/?openclaw=1&utm_source=clawhub&utm_medium=skill&utm_campaign=ai-agentic-video-editor)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Video URL]
+
+**Output Format:** [Structured JSON tool response with an optional MP4 export URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project status, timeline verification results, quality notes, and asynchronous job details.]
+
+## Skill Version(s):
+
+1.0.29 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

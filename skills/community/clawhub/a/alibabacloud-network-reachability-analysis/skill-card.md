@@ -1,44 +1,62 @@
-## Description: <br>
-Perform Alibaba Cloud NIS network path reachability analysis with forward and reverse path diagnosis, topology visualization, and resource monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform Alibaba Cloud NIS (Network Intelligence Service) network path reachability analysis with forward and reverse path diagnosis, topology visualization, and resource monitoring.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud and network engineers use this skill to diagnose Alibaba Cloud connectivity issues, confirm bidirectional reachability, inspect security group or route-table blockers, and summarize path health with Mermaid topology diagrams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud credentials could be exposed if access keys are pasted, echoed, or configured directly in the agent conversation. <br>
-Mitigation: Use a least-privilege RAM user or temporary credentials, configure secrets outside the chat session, and only verify credential status with safe configuration-list commands. <br>
-Risk: The skill creates temporary NIS analysis tasks and reads CloudMonitor data for selected Alibaba Cloud resources. <br>
-Mitigation: Confirm all analysis parameters before execution, keep RAM permissions limited to the documented NIS and CloudMonitor read actions, and pace CloudMonitor queries within documented rate limits. <br>
+## Use Case:
 
+Developers and cloud network engineers use this skill to diagnose Alibaba Cloud connectivity issues, confirm bidirectional reachability, inspect security group or route-table causes, visualize topology, and query monitoring data for resources on the analyzed path.
 
-## Reference(s): <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Verification Method](references/verification-method.md) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/sdk-team/alibabacloud-network-reachability-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown with Aliyun CLI command examples, analysis summaries, and Mermaid topology diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation for cloud region, resource identifiers, protocol, and port values before any command is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The server security summary flags unsafe cloud-credential guidance in the setup material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege RAM roles or temporary credentials, keep access keys out of agent sessions and command lines, and verify credential setup outside the conversation.
+
+Risk: The server security summary says the read-only framing understates that NIS analysis tasks are created.
+
+Mitigation: Confirm with the user before starting each analysis task, and check whether NIS tasks persist, appear in audit logs, or count against quotas.
+
+Risk: The server security guidance flags privileged or unverified CLI installation paths.
+
+Mitigation: Prefer a trusted package manager or a verified pinned CLI download before enabling automatic plugin installation.
+
+## Reference(s):
+
+- [RAM Policies](references/ram-policies.md)
+- [Verification Method](references/verification-method.md)
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md)
+- [Alibaba Cloud CLI documentation](https://help.aliyun.com/zh/cli/)
+- [Aliyun CLI plugin repository](https://github.com/aliyun/aliyun-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CLI commands, parameter prompts, diagnostic summaries, and Mermaid topology diagrams.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Alibaba Cloud NIS and CloudMonitor command sequences plus topologyData.positive-derived Mermaid output.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

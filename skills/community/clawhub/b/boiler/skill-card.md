@@ -1,43 +1,62 @@
-## Description: <br>
-Boiler is advertised as a boiler efficiency and sizing tool, but release security evidence says it behaves as a simple local record keeper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boiler efficiency and sizing tool
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operators can use this skill to run a local CLI for recording, listing, searching, deleting, exporting, and summarizing entries under BOILER_DIR or ~/.boiler. Review security guidance before using it for real boiler sizing because release evidence says it behaves as a local record keeper rather than a boiler calculator. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as a boiler efficiency and sizing tool, but security evidence says it behaves as a local note keeper. <br>
-Mitigation: Install only when that record-keeping behavior is intended; do not rely on it for boiler sizing or efficiency calculations without independent validation. <br>
-Risk: Entries are stored locally in JSONL under BOILER_DIR or ~/.boiler and can contain arbitrary user-provided text. <br>
-Mitigation: Do not store secrets, sensitive facility information, or regulated operational data in the local data directory. <br>
-Risk: Remove and export commands directly mutate or copy local files with limited safeguards. <br>
-Mitigation: Review command arguments before execution and back up any local data that must be preserved. <br>
+## Use Case:
 
+External developers and operators can use this skill to run a boiler-labeled local CLI for status, entry management, search, export, statistics, and configuration. Security evidence notes it behaves like a persistent local record manager rather than a boiler efficiency or sizing calculator.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/boiler) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown instructions with shell command examples; script output is plain text with JSONL or CSV data files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSONL data under BOILER_DIR or ~/.boiler and may export boiler-export.json or boiler-export.csv in the current directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill is branded as a boiler efficiency and sizing tool, but security evidence says it behaves like a persistent local record manager.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a local generic record manager is intended, and review the skill behavior before using it for boiler-related decisions.
+
+Risk: Stored entries and exports are persistent local files.
+
+Mitigation: Treat BOILER_DIR or ~/.boiler/ and generated exports as local records that may need retention, access, and cleanup controls.
+
+Risk: CSV exports may be unsafe when populated with untrusted data and opened in spreadsheet software.
+
+Mitigation: Avoid opening CSV exports from untrusted data in spreadsheets.
+
+Risk: Security guidance warns against untrusted users or agents passing arbitrary config arguments to the script.
+
+Mitigation: Restrict who can invoke config commands and review config key/value arguments before execution.
+
+## Reference(s):
+
+- [Boiler on ClawHub](https://clawhub.ai/bytesagain3/skills/boiler)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Plain text CLI output, JSONL records, and JSON or CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent local data under BOILER_DIR or ~/.boiler/ and can export boiler-export.json or boiler-export.csv.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Connect to Windsor.ai MCP for natural language access to 325+ data sources including Facebook Ads, GA4, HubSpot, Shopify, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to Windsor.ai MCP for natural language access to 325+ data sources including Facebook Ads, GA4, HubSpot, Shopify, and more.
 
-## Publisher: <br>
-[carlosarturoleon](https://clawhub.ai/user/carlosarturoleon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[carlosarturoleon](https://clawhub.ai/user/carlosarturoleon)
 
-## Use Case: <br>
-Marketing, analytics, and revenue operations users use this skill to query connected Windsor.ai business data, inspect available sources, compare campaign and sales performance, and generate reports from natural language prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries may involve external business-data access through Windsor.ai. <br>
-Mitigation: Install only when the agent should use Windsor.ai for analytics questions, review connected business systems, and avoid broad analytics prompts unless that external access is intended. <br>
-Risk: The skill requires WINDSOR_API_KEY to access connected Windsor.ai data. <br>
-Mitigation: Use a scoped API key where possible and store it in a secrets manager or restricted-permission environment file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/carlosarturoleon/windsor-ai) <br>
-- [Windsor.ai](https://windsor.ai) <br>
-- [Windsor.ai MCP Endpoint](https://mcp.windsor.ai/sse) <br>
+## Use Case:
 
+External users and operators use this skill to query connected Windsor.ai marketing, analytics, CRM, and e-commerce data in natural language and produce performance analysis or reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Windsor.ai MCP with WINDSOR_API_KEY and the user's connected account data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup uses an unpinned package execution path.
+
+Mitigation: Use a pinned or locally reviewed mcporter binary before connecting the Windsor.ai MCP service.
+
+Risk: A troubleshooting command can expose more local secrets than necessary.
+
+Mitigation: Prefer a keychain or secrets manager and avoid bulk exporting values from environment files.
+
+Risk: The skill connects Windsor.ai business data to an external MCP service.
+
+Mitigation: Install only after confirming that this data connection is acceptable for the user's business data and access policies.
+
+## Reference(s):
+
+- [Windsor.ai](https://windsor.ai)
+- [ClawHub Skill Page](https://clawhub.ai/carlosarturoleon/skills/windsor-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include analytics summaries, report outlines, query guidance, setup commands, and mcporter configuration snippets.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

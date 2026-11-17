@@ -1,49 +1,58 @@
-## Description: <br>
-Otterline provides free sample NBA and NHL moneyline pick predictions from Otterline's AI consensus model, with confidence tiers and no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free Sports Betting Predictions and Picks for NBA and NHL: high win rate daily moneyline winners from Otterline's AI consensus model. Confidence-tiered (Elite -> Strong). No API key needed.
 
-## Publisher: <br>
-[ChrisLyonsHFX](https://clawhub.ai/user/ChrisLyonsHFX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chrislyonshfx](https://clawhub.ai/user/chrislyonshfx)
 
-## Use Case: <br>
-External sports fans and agent users use this skill to fetch and present current free sample NBA and NHL betting-pick predictions, grouped by confidence tier. It is intended for entertainment-oriented pick discovery with responsible-betting disclaimers, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Otterline/Supabase endpoints to fetch free sports-betting pick samples. <br>
-Mitigation: Install only if external requests to those disclosed services are acceptable for the user's environment. <br>
-Risk: Sports-betting picks may be mistaken for financial advice or guaranteed outcomes. <br>
-Mitigation: Present picks as entertainment only, include the responsible-betting disclaimer, and avoid language that guarantees results. <br>
-Risk: Betting-related prompts can expose personal preferences or sensitive information. <br>
-Mitigation: Do not share personal, financial, or sensitive information when asking for betting-related guidance. <br>
-Risk: Free sample responses include a premium upsell. <br>
-Mitigation: Keep the upsell transparent and attribute it to Otterline rather than presenting it as neutral advice. <br>
+## Use Case:
 
+External users use this skill to fetch free sample NBA and NHL moneyline picks from Otterline and present them as tiered, dated picks with an entertainment-only disclaimer and premium upgrade link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChrisLyonsHFX/otterline) <br>
-- [Otterline website](https://otterline.club) <br>
-- [Otterline premium picks](https://otterline.club/premium) <br>
-- [Free NBA picks endpoint](https://gvwawacjgghesljfzbph.supabase.co/functions/v1/free-nba-picks) <br>
-- [Free NHL picks endpoint](https://gvwawacjgghesljfzbph.supabase.co/functions/v1/free-nhl-picks) <br>
-- [Otterline on X](https://twitter.com/TheOtterline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries of fetched JSON pick data, including tiered picks, sample notices, upgrade links, credit, and responsible-betting disclaimers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches fresh NBA and NHL sample-pick data from disclosed public endpoints; optional date parameters use YYYY-MM-DD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata and artifact/claw.json) <br>
+Risk: Returned picks and promotional text are third-party sports-betting content and may be inaccurate, outdated, or unsuitable as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the picks as entertainment-only sample information, include the responsible-betting disclaimer, and avoid encouraging users to rely on them for financial decisions.
+
+Risk: The skill fetches live public data from Otterline endpoints and includes premium upgrade messaging.
+
+Mitigation: Install only when the user accepts this third-party network behavior and promotional content, preferably through a pinned or verified ClawHub installer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrislyonshfx/skills/otterline)
+- [Otterline website](https://otterline.club)
+- [Otterline Premium](https://otterline.club/premium)
+- [NBA free picks endpoint](https://gvwawacjgghesljfzbph.supabase.co/functions/v1/free-nba-picks)
+- [NHL free picks endpoint](https://gvwawacjgghesljfzbph.supabase.co/functions/v1/free-nhl-picks)
+- [Otterline on X](https://twitter.com/TheOtterline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text summarizing fetched JSON pick data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public NBA and NHL sample picks without an API key; appends Otterline credit, responsible-betting disclaimer, and premium upgrade messaging.]
+
+## Skill Version(s):
+
+1.0.7 (source: claw.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

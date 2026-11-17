@@ -1,44 +1,59 @@
-## Description: <br>
-Rokusei calculates a Six Star Astrology profile from a birth date, including star type, polarity, life-cycle phase, destiny star, compatibility, and sakkai warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rokusei calculates a Six Star Astrology profile from a birth date, including star type, polarity, 12-year life cycle, destiny star, personality themes, compatibility, and sakkai warnings.
 
-## Publisher: <br>
-[ikplpeter](https://clawhub.ai/user/ikplpeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ikplpeter](https://clawhub.ai/user/ikplpeter)
 
-## Use Case: <br>
-Developers and agent users can use this skill to answer birthday-based Japanese astrology prompts and generate entertainment-oriented Rokusei profiles in multiple languages. It is not intended for professional, medical, legal, financial, or other consequential advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat astrology outputs as professional or consequential advice. <br>
-Mitigation: Present Rokusei results as entertainment and avoid relying on them for medical, legal, financial, employment, or relationship decisions. <br>
-Risk: The skill processes birth dates and depends on an external npm package for lunar calendar calculations. <br>
-Mitigation: Avoid collecting unnecessary personal data and review the npm dependency before deployment in stricter environments. <br>
-Risk: Broad birthday-fortune or Japanese-astrology prompts may activate this skill unexpectedly. <br>
-Mitigation: Use clear invocation criteria and confirm the user wants an entertainment astrology reading before generating a profile. <br>
+## Use Case:
 
+External users and developers use this skill to generate entertainment-oriented Six Star Astrology readings from a birthday without requiring birth time. It can return human-readable profile guidance and optional JSON for agents that need structured astrology output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ikplpeter/rokusei) <br>
-- [Publisher Profile](https://clawhub.ai/user/ikplpeter) <br>
-- [Online Rokusei Tool](https://halfct.ltd/rokusei?lang=en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON birthday-based astrology profile, with optional CLI shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a birth date only; supports multiple output languages and entertainment-oriented interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill produces fortune, health, career, and relationship statements that could be mistaken for professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as entertainment only and avoid using them for medical, legal, financial, employment, or relationship decisions.
+
+Risk: The CLI runs local Node.js code and installs an npm dependency.
+
+Mitigation: Review the package files, install dependencies in a controlled environment, and run only from trusted release artifacts.
+
+Risk: The skill asks for a birth date, which some users may treat as personal information.
+
+Mitigation: Provide only the minimum date needed for the calculation and avoid sharing unnecessary identifying details.
+
+## Reference(s):
+
+- [ClawHub Rokusei Skill Page](https://clawhub.ai/ikplpeter/skills/rokusei)
+- [Rokusei Online App](https://halfct.ltd/rokusei?lang=en)
+- [lunar-typescript npm package tarball](https://registry.npmjs.org/lunar-typescript/-/lunar-typescript-1.8.6.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text with optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses birthday input only; local CLI examples support language selection and a --json flag.]
+
+## Skill Version(s):
+
+3.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

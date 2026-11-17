@@ -4,21 +4,18 @@
 
 ## 🛠️ Installation
 
-### 1. Ask OpenClaw (Recommended)
-Tell OpenClaw: *"Install the skill-trust-auditor skill."* The agent will handle the installation and configuration automatically.
-
-### 2. Manual Installation (CLI)
-If you prefer the terminal, run:
+Install the owner-qualified release:
 ```bash
-clawhub install skill-trust-auditor
+openclaw skills install @jonathanjing/skill-trust-auditor
 ```
 
 ## What it does
 
-1. Fetches the target skill's `SKILL.md` + all referenced scripts
-2. Runs 52 regex-based pattern checks against known attack vectors
-3. Calculates a **Trust Score (0-100)** with detailed findings
-4. Optionally uses **LLM-as-judge** (Claude Haiku) for ambiguous curl intent
+1. Requests OpenClaw's registry verification envelope for the exact owner-qualified release
+2. Optionally fetches the target skill's `SKILL.md` and bounded referenced files for local review
+3. Runs regex-based heuristic checks against known attack vectors
+4. Calculates a **Trust Score (0-100)** with detailed findings
+5. Optionally uses **LLM-as-judge** for ambiguous intent
 
 ## Trust Score
 
@@ -41,18 +38,18 @@ Just tell your agent:
 
 > "Audit steipete/some-skill before I install it"
 
-Or integrate into your install flow:
+First verify the exact release, then optionally run the deeper local audit:
 
 ```bash
-bash scripts/audit.sh steipete/some-skill
-bash scripts/audit.sh steipete/some-skill --llm    # with LLM analysis
-bash scripts/audit.sh steipete/some-skill --json-only  # machine-readable
+openclaw skills verify @owner/skill --json
+bash "{baseDir}/scripts/audit.sh" steipete/some-skill
+bash "{baseDir}/scripts/audit.sh" steipete/some-skill --llm
+bash "{baseDir}/scripts/audit.sh" steipete/some-skill --json-only
 ```
 
 ## Requirements
 
 - Python 3.10+
-- `clawhub` CLI (optional, for fetching skill content)
 - Anthropic API key (optional, for `--llm` mode)
 
 ## Philosophy
@@ -61,6 +58,7 @@ bash scripts/audit.sh steipete/some-skill --json-only  # machine-readable
 - **Explainable** — every deduction shows exact file, line, and match
 - **White Box** — no black-box scoring; all rules are in `patterns.json`
 - **ClawHavoc-aware** — patterns specifically target known Feb 2026 attack vectors
+- **Heuristic, not proof** — a high score never authorizes installation or replaces exact-version review
 
 ## License
 

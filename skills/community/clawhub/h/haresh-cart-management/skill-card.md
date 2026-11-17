@@ -1,39 +1,51 @@
-## Description: <br>
-Manage shopping cart operations via n8n webhook integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage shopping cart operations via n8n webhook integration.
 
-## Publisher: <br>
-[haresh-sai06](https://clawhub.ai/user/haresh-sai06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haresh-sai06](https://clawhub.ai/user/haresh-sai06)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to add items, remove items, and update quantities in a shopping cart through a trusted local n8n workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change cart contents through local n8n webhooks when invoked. <br>
-Mitigation: Install only when the localhost n8n workflow is trusted, and require user confirmation before removing items. <br>
-Risk: Invalid product IDs or quantities could cause unintended cart updates. <br>
-Mitigation: Validate product IDs and allow only positive integer quantities before calling cart webhooks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Haresh Cart Management on ClawHub](https://clawhub.ai/haresh-sai06/haresh-cart-management) <br>
+## Use Case:
+
+External users and commerce automation agents use this skill to manage shopping cart actions, including adding products, removing products with confirmation, and updating quantities through configured local n8n webhooks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Invoking the skill may change shopping cart state through local n8n webhooks.
+
+Mitigation: Install only when the intended local webhook implementation is configured, and confirm destructive cart actions before execution.
+
+Risk: The skill describes calls to localhost webhooks but does not define the server-side webhook behavior.
+
+Mitigation: Review the local n8n webhook implementation separately before deployment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Natural-language confirmations and local HTTP webhook requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses localhost n8n webhook endpoints for add, remove, and update cart operations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+**Output Type(s):** [text, API calls, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Text guidance with local webhook endpoints and user confirmation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires intended local n8n webhook endpoints; cart-changing actions should be confirmed as described by the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

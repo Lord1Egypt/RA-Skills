@@ -1,0 +1,1664 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "RegMapper API",
+    "version": "1.1.0",
+    "description": "API for regulations, rules, projects, and comments."
+  },
+  "servers": [
+    {
+      "url": "https://regmapper.net/api/v1",
+      "description": "Production"
+    }
+  ],
+  "security": [
+    {
+      "TokenAuth": []
+    }
+  ],
+  "paths": {
+    "/projects/": {
+      "get": {
+        "summary": "List accessible projects",
+        "description": "Returns projects that the authenticated user may access via guardian object permissions.",
+        "operationId": "listProjects",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated project list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedUserProjectList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/projects/{pk}/": {
+      "get": {
+        "summary": "Get one project with category and status values",
+        "description": "Returns one project with project-specific category/status values and auth level.",
+        "operationId": "getProjectDetail",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Project id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/{pk}/regulations/": {
+      "get": {
+        "summary": "List regulations linked to a project",
+        "description": "Returns regulations linked to one project.",
+        "operationId": "listProjectRegulations",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Project id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project regulations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectRegulation"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/{pk}/statuses/": {
+      "get": {
+        "summary": "List statuses linked to a project",
+        "description": "Returns statuses linked to one project.",
+        "operationId": "listProjectStatuses",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Project id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project statuses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StatusValue"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/projects/{pk}/categories/": {
+      "get": {
+        "summary": "List categories linked to a project",
+        "description": "Returns categories linked to one project.",
+        "operationId": "listProjectCategories",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Project id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryValue"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/regulations/": {
+      "get": {
+        "summary": "Search regulations",
+        "description": "Search regulations by metadata. Returns all statuses when status is omitted.",
+        "operationId": "listRegulations",
+        "tags": [
+          "Regulations"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Case-insensitive contains match on title"
+          },
+          {
+            "name": "shortname",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Case-insensitive contains match on shortname"
+          },
+          {
+            "name": "versdate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Case-insensitive contains match on version date"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "current",
+                "obsolete",
+                "draft"
+              ]
+            },
+            "description": "Filter by status. Omit to return all statuses."
+          },
+          {
+            "name": "regulator",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated regulation list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedRegulationList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/regulations/{regid}/rules/overview/": {
+      "get": {
+        "summary": "Get rule overview for regulation",
+        "description": "Returns chapter groups and available rule identifiers for one regulation.",
+        "operationId": "getRegulationRulesOverview",
+        "tags": [
+          "Rules"
+        ],
+        "parameters": [
+          {
+            "name": "regid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rule overview",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RuleOverview"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/regulations/{regid}/rules/": {
+      "get": {
+        "summary": "Get detailed rules for regulation",
+        "description": "Returns detailed rules for one regulation, optionally filtered by chapter and rule value.",
+        "operationId": "listRegulationRules",
+        "tags": [
+          "Rules"
+        ],
+        "parameters": [
+          {
+            "name": "regid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "chapter",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rule",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated rule list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedRuleDetailList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/comments/": {
+      "get": {
+        "summary": "List comments for a project",
+        "description": "Returns comments for one project with optional filters. Query parameter project is required.",
+        "operationId": "listProjectComments",
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "project",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Project id"
+          },
+          {
+            "name": "regulation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Regulation id. May be repeated."
+          },
+          {
+            "name": "regulations",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated regulation ids."
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Category id. May be repeated."
+          },
+          {
+            "name": "categories",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated category ids."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Status id. May be repeated."
+          },
+          {
+            "name": "statuses",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Comma-separated status ids."
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Free-text contains filter on comment note"
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Alias for q"
+          },
+          {
+            "name": "include_note",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include full note in list/search results when true"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated comment list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedCommentSummaryList"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create comment",
+        "description": "Creates a comment. Requires change permission on project.",
+        "operationId": "createComment",
+        "tags": [
+          "Comments"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Comment created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentCreateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        }
+      }
+    },
+    "/comments/{pk}/": {
+      "get": {
+        "summary": "Get one comment with full content",
+        "description": "Returns one comment including full note and rule content.",
+        "operationId": "getCommentDetail",
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Comment id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comment detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update comment",
+        "description": "Partially updates note/status/category of a comment. Requires change permission on comment project.",
+        "operationId": "updateComment",
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "pk",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Comment id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentUpdateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Comment updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentUpdateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/regulations/compare/{obs}/{new}/overview/": {
+      "get": {
+        "summary": "Compare regulations overview",
+        "description": "Returns high-level summary of changes between two regulation versions, grouped by chapter and rule. Use each merge row's rule+chapter as input to the detailed endpoint.",
+        "operationId": "compareRegulationsOverview",
+        "tags": [
+          "Regulations"
+        ],
+        "parameters": [
+          {
+            "name": "obs",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Older regulation id (regid)"
+          },
+          {
+            "name": "new",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Newer regulation id (regid)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Regulation comparison overview",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegulationCompareOverview"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/regulations/compare/{obs}/{new}/rules/{rule}/{chapter}/": {
+      "get": {
+        "summary": "Compare regulations detailed changes",
+        "description": "Returns detailed rule-by-rule diff for one rule/chapter pair. In changes_html, <ins> marks inserted text and <del> marks deleted text; style/color attributes are visual only.",
+        "operationId": "compareRegulationsDetailed",
+        "tags": [
+          "Regulations"
+        ],
+        "parameters": [
+          {
+            "name": "obs",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Older regulation id (regid)"
+          },
+          {
+            "name": "new",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Newer regulation id (regid)"
+          },
+          {
+            "name": "rule",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Rule number or identifier"
+          },
+          {
+            "name": "chapter",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Chapter identifier"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed rule changes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegulationCompareDetailed"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "TokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Use format: Token <your_token>"
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Authentication required or token invalid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Authenticated but not authorized for requested project",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "additionalProperties": true,
+        "example": {
+          "detail": "Not found."
+        }
+      },
+      "PaginationBase": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri"
+          }
+        },
+        "required": [
+          "count",
+          "next",
+          "previous"
+        ]
+      },
+      "UserProject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "auth": {
+            "type": "string",
+            "enum": [
+              "read",
+              "write"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "auth"
+        ]
+      },
+      "CategoryValue": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "category": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "category"
+        ]
+      },
+      "StatusValue": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status"
+        ]
+      },
+      "ProjectDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "auth": {
+            "type": "string",
+            "enum": [
+              "read",
+              "write"
+            ]
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryValue"
+            }
+          },
+          "statuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StatusValue"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "reference",
+          "auth",
+          "categories",
+          "statuses"
+        ]
+      },
+      "ProjectRegulation": {
+        "type": "object",
+        "properties": {
+          "regid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortname": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "regid",
+          "shortname"
+        ]
+      },
+      "Regulation": {
+        "type": "object",
+        "properties": {
+          "regid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "shortname": {
+            "type": "string"
+          },
+          "nr": {
+            "type": "string"
+          },
+          "versdate": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "current",
+              "obsolete",
+              "draft"
+            ]
+          },
+          "regulator": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "regid",
+          "shortname",
+          "nr",
+          "versdate",
+          "status",
+          "regulator",
+          "language"
+        ]
+      },
+      "RuleOverview": {
+        "type": "object",
+        "properties": {
+          "chapter": {
+            "type": "string",
+            "nullable": true
+          },
+          "chaptertit": {
+            "type": "string",
+            "nullable": true
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "chapter",
+          "chaptertit",
+          "rules"
+        ]
+      },
+      "RuleDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "regulation": {
+            "type": "string"
+          },
+          "chapter": {
+            "type": "string",
+            "nullable": true
+          },
+          "chaptertit": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule": {
+            "type": "string"
+          },
+          "ruletit": {
+            "type": "string"
+          },
+          "abs": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "regulation",
+          "rule",
+          "ruletit",
+          "abs"
+        ]
+      },
+      "CommentSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "project": {
+            "type": "integer"
+          },
+          "regulation": {
+            "type": "string"
+          },
+          "chapter": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule": {
+            "type": "string"
+          },
+          "abs": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "note_preview": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true,
+            "description": "Included only when include_note=true"
+          }
+        },
+        "required": [
+          "id",
+          "project",
+          "regulation",
+          "rule",
+          "status",
+          "abs",
+          "categories",
+          "note_preview"
+        ]
+      },
+      "CommentDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "project": {
+            "type": "integer"
+          },
+          "regulation": {
+            "type": "string"
+          },
+          "chapter": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule": {
+            "type": "string"
+          },
+          "abs": {
+            "type": "string"
+          },
+          "rule_content": {
+            "type": "string",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "project",
+          "regulation",
+          "rule",
+          "abs",
+          "categories"
+        ]
+      },
+      "CommentCreateRequest": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "integer"
+          },
+          "rule": {
+            "type": "integer"
+          },
+          "note": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "nullable": true
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "project",
+          "rule"
+        ]
+      },
+      "CommentCreateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "project": {
+            "type": "integer"
+          },
+          "rule": {
+            "type": "integer"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "nullable": true
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "project",
+          "rule"
+        ]
+      },
+      "CommentUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "nullable": true
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "CommentUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "nullable": true
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "PaginatedUserProjectList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserProject"
+                }
+              }
+            },
+            "required": [
+              "results"
+            ]
+          }
+        ]
+      },
+      "PaginatedRegulationList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Regulation"
+                }
+              }
+            },
+            "required": [
+              "results"
+            ]
+          }
+        ]
+      },
+      "PaginatedRuleDetailList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/RuleDetail"
+                }
+              }
+            },
+            "required": [
+              "results"
+            ]
+          }
+        ]
+      },
+      "PaginatedCommentSummaryList": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PaginationBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "results": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CommentSummary"
+                }
+              }
+            },
+            "required": [
+              "results"
+            ]
+          }
+        ]
+      },
+      "CompareRuleSnapshot": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "chapter": {
+            "type": "string",
+            "nullable": true
+          },
+          "chaptertit": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule": {
+            "type": "string",
+            "nullable": true
+          },
+          "ruletit": {
+            "type": "string",
+            "nullable": true
+          },
+          "abs": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "RegulationCompareOverviewRow": {
+        "type": "object",
+        "properties": {
+          "counter": {
+            "type": "integer"
+          },
+          "chapter": {
+            "type": "string",
+            "nullable": true
+          },
+          "chaptertit": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule": {
+            "type": "string",
+            "nullable": true
+          },
+          "ruletit": {
+            "type": "string",
+            "nullable": true
+          },
+          "rule_id": {
+            "type": "integer"
+          },
+          "diff": {
+            "type": "string",
+            "description": "same, diff, new, or del"
+          },
+          "agg": {
+            "type": "integer",
+            "description": "Aggregated similarity for rule+chapter"
+          }
+        },
+        "required": [
+          "counter",
+          "diff",
+          "agg",
+          "rule_id"
+        ]
+      },
+      "RegulationCompareDetailedRow": {
+        "type": "object",
+        "properties": {
+          "counter": {
+            "type": "integer"
+          },
+          "rule": {
+            "type": "string",
+            "nullable": true
+          },
+          "ruletit": {
+            "type": "string",
+            "nullable": true
+          },
+          "diff": {
+            "type": "string",
+            "description": "same, diff, new, or del"
+          },
+          "sim": {
+            "type": "string",
+            "description": "Similarity percentage as formatted string"
+          },
+          "changes_html": {
+            "type": "string",
+            "nullable": true,
+            "description": "HTML diff snippet: <ins> is added text, <del> is removed text. Colors/styles are optional presentation details."
+          },
+          "obs": {
+            "$ref": "#/components/schemas/CompareRuleSnapshot",
+            "nullable": true
+          },
+          "new": {
+            "$ref": "#/components/schemas/CompareRuleSnapshot",
+            "nullable": true
+          }
+        },
+        "required": [
+          "counter",
+          "diff",
+          "sim"
+        ]
+      },
+      "RegulationCompareOverview": {
+        "type": "object",
+        "properties": {
+          "reg_obs": {
+            "$ref": "#/components/schemas/Regulation"
+          },
+          "reg_new": {
+            "$ref": "#/components/schemas/Regulation"
+          },
+          "orig_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL to original regulation document"
+          },
+          "copyright_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL to copyright information"
+          },
+          "chapters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "chapter": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "chaptertit": {
+                  "type": "string",
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "rules_any": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Rules with comments on any accessible project"
+          },
+          "rules_current": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Rules with comments on current user project"
+          },
+          "merge": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegulationCompareOverviewRow"
+            }
+          }
+        },
+        "required": [
+          "reg_obs",
+          "reg_new",
+          "chapters",
+          "rules_any",
+          "rules_current",
+          "merge"
+        ]
+      },
+      "RegulationCompareDetailed": {
+        "type": "object",
+        "x-ai-notes": [
+          "Extraction recipe: iterate over merge[] and focus on rows where diff is not 'same'.",
+          "For semantic changes, parse changes_html and extract text in <ins> as additions and <del> as deletions.",
+          "Ignore HTML style/color attributes; they are presentation only.",
+          "Use obs.content and new.content as canonical plain-text fallback when changes_html is null or parsing fails."
+        ],
+        "properties": {
+          "reg_obs": {
+            "$ref": "#/components/schemas/Regulation"
+          },
+          "reg_new": {
+            "$ref": "#/components/schemas/Regulation"
+          },
+          "rule": {
+            "type": "string"
+          },
+          "chapter": {
+            "type": "string"
+          },
+          "orig_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL to original regulation document"
+          },
+          "copyright_url": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL to copyright information"
+          },
+          "merge": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegulationCompareDetailedRow"
+            }
+          },
+          "comment_refs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "project_id": {
+                  "type": "integer"
+                },
+                "rule_id": {
+                  "type": "integer"
+                },
+                "status_id": {
+                  "type": "integer",
+                  "nullable": true
+                }
+              }
+            },
+            "description": "References to related comments"
+          }
+        },
+        "required": [
+          "reg_obs",
+          "reg_new",
+          "rule",
+          "chapter",
+          "merge",
+          "comment_refs"
+        ]
+      }
+    }
+  }
+}

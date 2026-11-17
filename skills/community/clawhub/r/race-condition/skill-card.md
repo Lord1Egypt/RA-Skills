@@ -1,38 +1,53 @@
-## Description: <br>
-Shared mutable state is accessed from concurrent contexts without synchronization, producing nondeterministic behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared mutable state is accessed from concurrent contexts without synchronization, producing nondeterministic behavior.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and engineers use this skill to recognize race-condition symptoms and guide fixes for shared mutable state in concurrent code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested concurrency fixes such as locks, atomic operations, or stress tests can change behavior or performance if applied incorrectly. <br>
-Mitigation: Review proposed changes and test them under realistic concurrent load before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to recognize race conditions in concurrent code and choose safer synchronization, atomicity, immutability, message-passing, and testing approaches.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mvogt99/race-condition) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis] <br>
-**Output Format:** [Markdown or text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference guidance that may propose concurrency fixes or tests for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Concurrency guidance may be applied to the wrong shared state boundary or synchronization primitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the affected code path, identify all readers and writers, and validate the chosen fix with concurrency-focused tests.
+
+Risk: A suggested lock or atomic operation could reduce throughput or leave a check-then-act sequence partially protected.
+
+Mitigation: Keep critical sections narrow, document protected state, and prefer database or platform-provided atomic operations where applicable.
+
+## Reference(s):
+
+- [Race Condition on ClawHub](https://clawhub.ai/mvogt99/skills/race-condition)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown guidance with optional inline code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable reference guidance]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

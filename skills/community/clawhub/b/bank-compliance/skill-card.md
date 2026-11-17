@@ -1,40 +1,53 @@
-## Description: <br>
-AI-assisted bank compliance review for screening marketing materials, KYC, AML alerts, and CBIRC/NFRA regulatory checks per 2024-2026 China banking rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-assisted bank compliance review for screening marketing materials, KYC documents, AML alerts, and CBIRC/NFRA regulatory checks under China-focused 2024-2026 banking rules.
 
-## Publisher: <br>
-[gechengling](https://clawhub.ai/user/gechengling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gechengling](https://clawhub.ai/user/gechengling)
 
-## Use Case: <br>
-Bank compliance officers, legal counsel, KYC/AML analysts, and product managers use this skill to draft reviews for marketing material compliance, customer due diligence, AML alert investigation, regulatory checklist review, and regulatory reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generated compliance opinions as final legal or regulatory advice. <br>
-Mitigation: Use outputs as drafting support only and require review by qualified compliance officers, legal counsel, and appropriate internal approval authorities. <br>
-Risk: Broad regulated-topic triggers may lead users to share sensitive customer, account, or compliance material unnecessarily. <br>
-Mitigation: Confirm the skill is relevant before use and limit prompts to the minimum information needed for the review. <br>
+## Use Case:
 
+Bank compliance officers, legal counsel, KYC/AML analysts, and product managers use this skill to draft and screen compliance reviews for marketing materials, customer due diligence, AML alerts, agreements, and regulatory reporting workflows. Its outputs are workflow assistance and should be reviewed by qualified compliance staff before decisions or filings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gechengling/bank-compliance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style compliance review text with checklists, risk ratings, findings, and suggested remediation language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafting support and require qualified compliance or legal review before use in decisions, filings, or customer-facing materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: AI-generated regulatory or compliance analysis could be incomplete, outdated, or unsuitable for a specific institution's controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting and screening support only, and require review by qualified compliance officers, legal counsel, or approved internal authorities before decisions or filings.
+
+Risk: Compliance prompts may include customer personal data or sensitive transaction details.
+
+Mitigation: Avoid entering unnecessary personal data unless the deployment environment and internal policies are approved for that use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/bank-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style compliance review reports, checklists, risk ratings, and revision suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversational output for drafting and screening; no artifact-backed code execution or external tool calls were identified.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

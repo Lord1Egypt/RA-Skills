@@ -1,0 +1,35 @@
+{
+  "ts": "2026-04-29T03:15:02.923238+00:00",
+  "session": {
+    "incident_name": null,
+    "scope": null,
+    "rules": null,
+    "severity": null,
+    "phase": "triage",
+    "start_time": null,
+    "last_progress_time": null,
+    "stakeholders": [],
+    "assets": [],
+    "notes": [],
+    "evidence": [],
+    "artifacts": [],
+    "attempts": [],
+    "actions": [],
+    "timeline": [],
+    "iocs": {
+      "ip": [],
+      "domain": [],
+      "url": [],
+      "hash": [],
+      "process": [],
+      "file": [],
+      "registry": [],
+      "user": []
+    },
+    "containment": [],
+    "eradication": [],
+    "recovery": [],
+    "lessons_learned": [],
+    "next_steps": []
+  }
+}

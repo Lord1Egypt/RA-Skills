@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn71qbmfxyaxeze4pst562bwfd833q9v",
-  "slug": "lann-booking-skill",
-  "version": "1.0.4",
-  "publishedAt": 1775812282600
+  "slug": "lann-booking",
+  "version": "2.0.0",
+  "description": "蘭(Lann)泰式按摩预约技能 - 支持 MCP 和直连 API 模式"
 }

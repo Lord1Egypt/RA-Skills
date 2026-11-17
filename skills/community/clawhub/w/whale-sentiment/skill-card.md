@@ -1,42 +1,52 @@
-## Description: <br>
-Whale leaderboard sentiment derived from Hyperliquid top traders <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns whale leaderboard sentiment derived from Hyperliquid top traders.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill to request paid whale-sentiment data for crypto trade context, especially before large directional positions or as a confirming modifier for entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically spend USDC from the configured EVM wallet when the agent calls the paid endpoint. <br>
-Mitigation: Use a dedicated low-balance wallet and require confirmation before allowing paid calls. <br>
-Risk: The skill requires access to an EVM private key. <br>
-Mitigation: Avoid primary wallet keys and restrict the environment variable to the agent runtime that needs it. <br>
+## Use Case:
 
+Trading agents can request whale leaderboard sentiment as one input when assessing market positioning or considering a trade entry.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/whale-sentiment) <br>
-- [Whale Sentiment Endpoint](https://apexrunner.ai/signals/whale-sentiment) <br>
-- [Pricing Tier Check](https://apexrunner.ai/signals/my-pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON sentiment response with fields such as sentiment, score, and top_traders_long_pct] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY and can spend USDC from the configured wallet per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Repeated endpoint requests incur USDC charges and can accumulate costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set an explicit maximum payment amount in the x402 client and review the charge before making repeated requests.
+
+## Reference(s):
+
+- [Whale Sentiment endpoint](https://apexrunner.ai/signals/whale-sentiment)
+- [ClawHub release page](https://clawhub.ai/kynto2001-ctrl/skills/whale-sentiment)
+- [Related signal: liquidation pressure](https://apexrunner.ai/signals/liquidation-pressure)
+- [Related signal: agent conviction score](https://apexrunner.ai/signals/agent-conviction-score)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Market sentiment data]
+
+**Output Format:** [JSON response containing sentiment, score, and top-trader long percentage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One paid endpoint response per request; requests use x402 payment in USDC on Base.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

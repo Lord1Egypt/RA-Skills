@@ -1,0 +1,73 @@
+/* F100K UI — Design tokens compartidos */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* COLOR */
+  --bg-cream:        #F5EFE6;
+  --bg-cream-soft:   #FAF6EF;
+  --coral:           #E89B7F;
+  --coral-dark:      #D87A55;
+  --coral-soft:      #F4C5B0;
+  --ink:             #2B2B2B;
+  --ink-soft:        #555555;
+  --gray-soft:       #E8E4DC;
+  --gray-line:       #D8D3C9;
+
+  --terminal-bg:     #1E1E1E;
+  --terminal-chrome: #2C2C2C;
+  --terminal-text:   #E8E4DC;
+  --terminal-prompt: #E89B7F;
+  --terminal-dim:    #888888;
+
+  --success:         #4A9D5F;
+  --success-bg:      #EFF7F0;
+  --warning:         #E0A23A;
+  --warning-bg:      #FDF6E8;
+  --error:           #C95757;
+  --error-bg:        #FAEDED;
+  --info:            #6B8FAD;
+  --info-bg:         #F0F4F8;
+
+  /* TYPOGRAPHY */
+  --font-display: 'DM Serif Display', 'Georgia', serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+
+  /* RADIUS */
+  --r-card:        20px;
+  --r-terminal:    14px;
+  --r-callout:     12px;
+  --r-key:         8px;
+  --r-pill:        999px;
+
+  /* SHADOW */
+  --shadow-soft:   0 8px 24px rgba(43, 43, 43, 0.08);
+  --shadow-card:   0 6px 18px rgba(216, 122, 85, 0.18);
+  --shadow-key:    0 2px 0 rgba(43, 43, 43, 0.15), 0 3px 6px rgba(43, 43, 43, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Stage = el viewport del PNG. Configurable por data attrs en <body>. */
+.stage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+}
+
+.stage[data-bg="cream"]       { background: var(--bg-cream); }
+.stage[data-bg="cream-soft"]  { background: var(--bg-cream-soft); }
+.stage[data-bg="transparent"] { background: transparent; }
+
+/* Cuando se renderiza con fondo transparente, body también */
+body[data-bg="transparent"] { background: transparent; }

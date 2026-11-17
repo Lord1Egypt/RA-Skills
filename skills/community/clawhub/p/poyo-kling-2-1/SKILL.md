@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-2-1
 description: Kling 2.1 image-to-video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-2.1/standard`, `kling-2.1/pro`, start-frame guided video, optional Pro end-frame guidance, duration, negative prompt, task submission, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-2-1","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-2-1","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling 2.1 Image-to-Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-2-1>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-2-1>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling 2.1 image-to-video jobs on PoYo. It helps agents prepare Standard and Pro payloads, submit async tasks, and explain polling or webhook follow-up.
 

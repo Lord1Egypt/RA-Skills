@@ -1,44 +1,59 @@
-## Description: <br>
-Print text, images, and QR codes to a wireless Bluetooth thermal printer from a MacOS device. Use `inkjet print` for output, `inkjet scan` to discover printers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Print text, images, and QR codes to a wireless Bluetooth thermal printer from a MacOS device. Use `inkjet print` for output, `inkjet scan` to discover printers.
 
-## Publisher: <br>
-[aaronchartier](https://clawhub.ai/user/aaronchartier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronchartier](https://clawhub.ai/user/aaronchartier)
 
-## Use Case: <br>
-Developers and operators use this skill to print receipts, labels, worksheets, images, QR codes, and logs through the InkJet CLI on macOS with Bluetooth thermal printers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the external InkJet CLI introduces dependency trust risk. <br>
-Mitigation: Verify that the `inkjet` pip package or Homebrew tap is trusted before installation. <br>
-Risk: Printed text, files, images, QR codes, and streamed content may expose private information physically. <br>
-Mitigation: Print only content that is acceptable to disclose on paper and review QR code payloads before printing. <br>
-Risk: Saved printer configuration can route output to the wrong printer or use unintended formatting. <br>
-Mitigation: Review local and global InkJet configuration files before printing in shared or multi-printer environments. <br>
+## Use Case:
 
+External users and developers use this skill to discover Bluetooth thermal printers, print text or Markdown, print files and images, generate QR code printouts, and manage printer configuration from macOS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaronchartier/inkjet) <br>
-- [Publisher profile](https://clawhub.ai/user/aaronchartier) <br>
-- [InkJet homepage](https://github.com/AaronChartier/inkjet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for an installed `inkjet` CLI connected to Bluetooth thermal printer hardware.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Installing the inkjet package or Homebrew tap requires trusting third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the package or tap is the intended source, use an unprivileged environment when possible, and avoid sudo.
+
+Risk: Printed output is physical and may expose secrets, credentials, tokens, or personal data.
+
+Mitigation: Do not print sensitive content unless the printer location and paper handling are trusted.
+
+Risk: Printer configuration or aliases can route output to the wrong physical device.
+
+Mitigation: Run `inkjet whoami` or specify `--address` before printing when device routing matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaronchartier/skills/inkjet)
+- [InkJet GitHub Homepage](https://github.com/AaronChartier/inkjet)
+- [Publisher Profile](https://clawhub.ai/user/aaronchartier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that install or invoke `inkjet`, printer discovery steps, print commands, and configuration values for Bluetooth thermal printer setup.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

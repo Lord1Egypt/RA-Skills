@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes financial content with Shenlan AI features for sentiment, summaries, keywords, deeper interpretation, AI editorial content discovery, and article text-to-speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Shenlan News public APIs to analyze financial content for sentiment, summaries, keywords, interpretation, fact checks, market impact, AI editorial feeds, and article text-to-speech.
 
-## Publisher: <br>
-[shenlannews](https://clawhub.ai/user/shenlannews) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenlannews](https://clawhub.ai/user/shenlannews)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve AI-assisted financial content analysis, browse Shenlan AI editor content, and obtain article audio links. The outputs are informational and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance queries and article identifiers are sent to Shenlan's external API. <br>
-Mitigation: Avoid submitting private financial documents, personal trading details, or other sensitive information. <br>
-Risk: AI-generated financial summaries, sentiment labels, and interpretations may be incomplete or misleading. <br>
-Mitigation: Treat outputs as informational, cite them as Shenlan AI analysis, and do not rely on them as investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve AI-generated financial-news analysis, browse Shenlan AI editor content, and request audio versions of articles through Shenlan News public HTTPS APIs. Outputs should be treated as informational financial content, not investment advice.
 
-## Reference(s): <br>
-- [API Reference](references/api-reference.md) <br>
-- [Shenlan News](https://www.shenlannews.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shenlannews/shenlan-ai-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API results and audio resource links when available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public Shenlan API endpoints and does not require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill makes HTTPS requests to Shenlan News public APIs for financial-news analysis, AI editor feeds, and text-to-speech.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this expected network behavior is acceptable for the deployment environment.
+
+Risk: Financial analysis outputs may be mistaken for investment advice.
+
+Mitigation: Present results as informational content and preserve the skill's guidance that AI analysis does not constitute investment advice.
+
+Risk: Text-to-speech requests may generate or return remote audio links.
+
+Mitigation: Ask explicitly before generating TTS audio and disclose returned audio links to the user.
+
+## Reference(s):
+
+- [深蓝 AI 分析师 API 参考文档](references/api-reference.md)
+- [Shenlan News Homepage](https://www.shenlannews.com)
+- [ClawHub Skill Page](https://clawhub.ai/shenlannews/skills/shenlan-ai-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and JSON-backed API response summaries, with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remote article audio links returned by the Shenlan News TTS API.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

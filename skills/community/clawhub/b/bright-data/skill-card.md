@@ -1,41 +1,54 @@
-## Description: <br>
-Provides web scraping and Google search through Bright Data APIs, returning scraped pages as Markdown and search results as structured JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web scraping and search via Bright Data API.
 
-## Publisher: <br>
-[MeirKaD](https://clawhub.ai/user/MeirKaD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[meirkad](https://clawhub.ai/user/meirkad)
 
-## Use Case: <br>
-Developers and agents use this skill to search Google and retrieve webpage content through Bright Data when they need structured search results or Markdown page extracts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys, target URLs, and search queries may expose sensitive information or create unintended Bright Data usage costs. <br>
-Mitigation: Use a scoped Bright Data API key and zone, avoid confidential URLs or queries, and monitor usage and billing. <br>
-Risk: Web scraping and search activity may violate applicable law or target-site rules if used outside approved policies. <br>
-Mitigation: Confirm that each use complies with applicable law, Bright Data terms, and the target site's rules before running the scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bright Data Dashboard](https://brightdata.com/cp) <br>
-- [Bright Data Request API Endpoint](https://api.brightdata.com/request) <br>
-- [ClawHub Skill Page](https://clawhub.ai/MeirKaD/bright-data) <br>
+## Use Case:
 
+Developers and agent operators use this skill to search Google with structured JSON results or scrape web pages into markdown through Bright Data APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Configuration] <br>
-**Output Format:** [JSON search results or Markdown scraped page content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRIGHTDATA_API_KEY and BRIGHTDATA_UNLOCKER_ZONE; accepts either a search query with optional cursor or a webpage URL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The search script accepts the pagination cursor in shell arithmetic without validating that it is a bounded non-negative decimal integer.
+
+Mitigation: Validate the cursor before arithmetic use and reject non-decimal, negative, or excessive values before running scripts/search.sh.
+
+Risk: Search queries, target URLs, and API credentials are sent to Bright Data.
+
+Mitigation: Use a limited, rotatable Bright Data API key and avoid submitting sensitive searches or URLs unless that data sharing is acceptable.
+
+## Reference(s):
+
+- [Bright Data Dashboard](https://brightdata.com/cp)
+- [Bright Data Request API endpoint](https://api.brightdata.com/request)
+- [ClawHub Skill Page](https://clawhub.ai/meirkad/skills/bright-data)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown for scraped pages, JSON for search results, and shell command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BRIGHTDATA_API_KEY and BRIGHTDATA_UNLOCKER_ZONE environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

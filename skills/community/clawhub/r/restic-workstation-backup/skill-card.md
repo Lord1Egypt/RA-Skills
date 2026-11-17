@@ -1,44 +1,50 @@
-## Description: <br>
-Design, implement, and operate encrypted restic backups for Linux home directories with encryption, deduplication, automated scheduling, and restore testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, implement, and operate encrypted restic backups for Linux home directories with encryption, deduplication, automated scheduling, and restore testing.
 
-## Publisher: <br>
-[Kiris-z](https://clawhub.ai/user/Kiris-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiris-z](https://clawhub.ai/user/kiris-z)
 
-## Use Case: <br>
-Developers, workstation operators, and infrastructure teams use this skill to plan, install, validate, and operate encrypted restic backups for Linux home directories. It supports system-level and user-level scheduling, restore drills, retention policy setup, logging, alerting, and operational runbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can configure ongoing backup, prune, check, and restore-audit jobs with broad access to a Linux home directory. <br>
-Mitigation: Review plan output before using --apply, use only repositories and alert email addresses under the operator's control, and confirm timers and retention policy before enabling scheduled jobs. <br>
-Risk: Backup credentials and restored files may expose sensitive home-directory data if mishandled. <br>
-Mitigation: Keep generated restic passwords in a separate secrets vault, preserve 0600 permissions on credential files, and avoid printing secrets in chat, logs, or scripts. <br>
-Risk: Retention and prune operations can remove backup snapshots when run live. <br>
-Mitigation: Review dry-run prune output and require explicit user confirmation before deleting snapshots or repository data. <br>
+## Use Case:
 
+Developers, operators, and workstation administrators use this skill to plan, install, validate, and operate encrypted restic backups for Linux home directories across system-level and user-level deployments.
 
-## Reference(s): <br>
-- [Operator Runbook](references/runbook.md) <br>
-- [Ops Checklist](references/ops-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Kiris-z/restic-workstation-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated shell/configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plan-only output is available before apply mode; operational output can include installed scripts, systemd units, logs, validation evidence, and corrective guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Configuration handling can allow command execution through repository, hostname, email, path, retention, or timezone values when generated environment files are sourced by root-level or persistent timer jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only trusted literal values, inspect existing environment files before enabling timers, and prefer a fixed version that validates and escapes every generated configuration value.
+
+## Reference(s):
+
+- [Operator Runbook](references/runbook.md)
+- [Ops Checklist](references/ops-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and file-path guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose privileged system changes, user-level systemd timers, restic repository operations, validation checks, and operational runbook steps.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, artifact metadata, and SKILL.md contract)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,21 @@
+name: bid-policy-checker
+slug: bid-policy-checker
+display_name: 政采政策红利自检助手
+emoji: "🧪"
+version: 1.1.0
+version_stage: GA
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: '参与政府采购的投标人自判中小企业等资格、正确填写《中小企业声明函》、识别专门面向项目并避开虚假声明骗标风险的辅助自检工具。'
+changelog:
+  - "1.0.0 初版：资格自检 + 双小认定 + 声明函指引 + 虚假声明红线 + 19号时效性校验 + 联合体份额 + 双法交叉显式判定 + 降级策略"
+  - "1.1.0 迭代：①新增文档完整性预检（需求书缺政策章节≠项目无政策）②强化专门面向+货物类「双小」对软件/服务化货物的适用性提示③KB随机三文件回归测试6/6通过"
+feedback:
+  channel: wechat
+  account: 一线评标专家
+  note: "使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流"
+feedback_schema:
+  - 误判类型
+  - 正确法条
+  - 附件

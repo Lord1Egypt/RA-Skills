@@ -1,42 +1,57 @@
-## Description: <br>
-Generate and read QR codes. Use when the user wants to create a QR code from text/URL, or decode/read a QR code from an image file. Supports PNG/JPG output and can read QR codes from screenshots or image files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and read QR codes from text, URLs, screenshots, or image files, with support for PNG/JPG images and configurable generation options.
 
-## Publisher: <br>
-[Omar-Khaleel](https://clawhub.ai/user/Omar-Khaleel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[omar-khaleel](https://clawhub.ai/user/omar-khaleel)
 
-## Use Case: <br>
-Developers and external users can use this skill to create QR codes from text or URLs and decode QR codes from image files or screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing dependencies from untrusted sources could introduce package risk. <br>
-Mitigation: Install dependencies from trusted package repositories, preferably in a virtual environment. <br>
-Risk: Generated QR output paths may overwrite existing files. <br>
-Mitigation: Choose output paths carefully before running QR generation. <br>
-Risk: Decoded QR payloads may contain links or text that should not be trusted automatically. <br>
-Mitigation: Verify decoded QR links or text before opening or acting on them. <br>
+## Use Case:
 
+Developers and automation users use this skill to generate QR code image files from supplied text or URLs and to decode QR payloads from user-provided images or screenshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Omar-Khaleel/qr-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated image files or decoded text/JSON when scripts run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated QR codes are saved as image files; decoded QR results can be plain text or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Dependency versions may drift across environments, which can affect reproducibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the Python dependencies in a virtual environment and pin versions for controlled deployments.
+
+Risk: Packaged script locations may differ from the documented command paths.
+
+Mitigation: Adjust command paths to the artifact root or provide wrappers before using the documented examples.
+
+Risk: Decoded QR payloads can contain untrusted text or URLs.
+
+Mitigation: Review decoded content before opening links or passing payloads into other systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omar-khaleel/skills/qr-code)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from the QR reader]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create PNG image files for generated QR codes and may return decoded QR payloads as text or JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

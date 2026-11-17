@@ -1,0 +1,42 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/compatibility.schema.json",
+  "schemaVersion": "1.0.0",
+  "host": "chatcut",
+  "status": "validated",
+  "observedAt": "2026-07-24T08:00:00Z",
+  "toolSchemaHash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "capabilities": {
+    "maskCoordinateOriginY": "bottom",
+    "circleRadiusSemantic": "diameter-over-min-dimension",
+    "propertyOverridesMode": "replace",
+    "fxLaneExecutionOrder": "ascending",
+    "exportFpsBehavior": "host-dependent"
+  },
+  "requiredProbes": [
+    {
+      "id": "mask-origin",
+      "status": "passed",
+      "evidence": ""
+    },
+    {
+      "id": "circle-radius",
+      "status": "passed",
+      "evidence": "fixture:circle-radius"
+    },
+    {
+      "id": "effect-order",
+      "status": "passed",
+      "evidence": "fixture:effect-order"
+    },
+    {
+      "id": "property-override-mode",
+      "status": "passed",
+      "evidence": "fixture:property-override-mode"
+    },
+    {
+      "id": "export-fps",
+      "status": "passed",
+      "evidence": "fixture:export-fps"
+    }
+  ]
+}

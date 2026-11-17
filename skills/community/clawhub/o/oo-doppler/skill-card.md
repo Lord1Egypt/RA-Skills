@@ -1,43 +1,59 @@
-## Description: <br>
-Doppler (doppler.com). Use this skill for ANY Doppler request - reading, creating, updating, and deleting data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doppler (doppler.com). Use this skill for ANY Doppler request — reading, creating, updating, and deleting data. Whenever a task involves Doppler, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Doppler connector schemas and run Doppler project, environment, config, secret, service token, sync, and change request actions through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose Doppler secret values and perform major account changes when requested. <br>
-Mitigation: Use a least-privilege Doppler connection and review exact targets before approving write, token, sync, or delete operations. <br>
-Risk: Write and destructive actions can change or remove Doppler projects, configs, environments, secrets, service tokens, syncs, and dynamic secret leases. <br>
-Mitigation: Confirm the exact payload and target before running write actions, and require explicit approval before destructive actions. <br>
+## Use Case:
 
+Developers and operators use the skill to manage Doppler projects, environments, configs, secrets, integrations, and change requests through their connected account.
 
-## Reference(s): <br>
-- [Doppler homepage](https://www.doppler.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Doppler connection settings](https://console.oomol.com/app-connections?provider=doppler) <br>
-- [Doppler skill on ClawHub](https://clawhub.ai/oomol/oo-doppler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Doppler connector JSON responses when actions are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: CLI setup may execute unverified downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve a fixed CLI release before installation.
+
+Risk: The CLI may synchronize additional agent skills during startup.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 before use, or review synchronized skills before relying on them.
+
+Risk: Doppler actions can access and return secrets.
+
+Mitigation: Connect a narrowly scoped Doppler key and handle returned secrets carefully.
+
+## Reference(s):
+
+- [Doppler](https://www.doppler.com)
+- [Doppler API documentation](https://docs.doppler.com/reference/api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON action results and concise text, with shell commands shown in Markdown code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action inputs follow the live action schema. Results may include secret values.]
+
+## Skill Version(s):
+
+1.0.6 (source: release evidence metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

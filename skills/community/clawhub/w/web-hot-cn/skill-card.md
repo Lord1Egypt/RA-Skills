@@ -1,42 +1,55 @@
-## Description: <br>
-Fetches live Chinese hot search, music chart, entertainment ranking, App Store ranking, and People's Daily newspaper data through Node.js scripts and returns unified JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hot China helps agents fetch live Chinese trend, music, entertainment, app chart, and People's Daily newspaper data as JSON using local Node.js crawler scripts.
 
-## Publisher: <br>
-[gfhe](https://clawhub.ai/user/gfhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gfhe](https://clawhub.ai/user/gfhe)
 
-## Use Case: <br>
-External users and developers use this skill to answer questions about current Chinese trends, rankings, entertainment data, app charts, music charts, and People's Daily newspaper pages by running the relevant crawler script and summarizing its JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts third-party public websites at use time, so results may fail, change, or be incomplete when upstream pages or network access change. <br>
-Mitigation: Show users when a source fails or returns empty data, and avoid treating live scraped rankings as guaranteed complete or authoritative. <br>
-Risk: Broad recommendation questions may be answered from scraped rankings rather than from a curated editorial response. <br>
-Mitigation: Frame rankings as current public signals and add context or caveats before presenting them as recommendations. <br>
+## Use Case:
 
+Developers and external users use this skill when an agent needs current Chinese hot-search rankings, music charts, entertainment rankings, App Store charts, or People's Daily newspaper page metadata. The skill selects the relevant crawler command and returns live public data in a consistent JSON structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gfhe/web-hot-cn) <br>
-- [Script parameter reference](references/api-endpoints.md) <br>
-- [Data format reference](references/data-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON from Node.js scripts, with optional Markdown summaries or rendered newspaper images in the agent response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and network access to third-party public web sources; no API key or server is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger examples may cause the agent to run a crawler for vague news or recommendation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the requested platform, category, or date before execution when the user's intent is ambiguous.
+
+Risk: Live public platform data may be incomplete, unavailable, or change between runs.
+
+Mitigation: Report the source platform and retrieval time when available, and clearly surface empty or failed crawler results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gfhe/skills/web-hot-cn)
+- [API endpoints and command parameters](references/api-endpoints.md)
+- [Crawler data formats](references/data-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with Node.js shell commands and JSON crawler output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and live network access; no API key, credentials, persistence, or local data access are reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

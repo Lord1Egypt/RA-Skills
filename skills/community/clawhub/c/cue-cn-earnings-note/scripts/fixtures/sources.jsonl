@@ -1,0 +1,6 @@
+{"id":"S1","kind":"fr_fact_index","ref":"巨潮公告索引 2026-0830-001·合并利润表","claim":"营业收入及同比增速、毛利率","confidence":"L1","asof":"2026-08-30"}
+{"id":"S2","kind":"disclosure_cn","ref":"巨潮公告索引 2026-0830-001·主要财务指标表","claim":"归母净利润与扣非归母净利润","confidence":"L1","asof":"2026-08-30"}
+{"id":"S3","kind":"fr_fact_index","ref":"巨潮公告索引 2026-0830-001·合并现金流量表","claim":"经营活动现金流净额","confidence":"L1","asof":"2026-08-30"}
+{"id":"S4","kind":"omni","ref":"https://example.org/ir-note-conference-2026H1.pdf","claim":"分部收入归因与全年指引原句","confidence":"L2","asof":"2026-09-02"}
+{"id":"S5","kind":"fr_footnote","ref":"巨潮公告索引 2026-0830-001·附注五/附注十","claim":"关联方应收余额、受限货币资金","confidence":"L1","asof":"2026-08-30"}
+{"id":"S6","kind":"research","ref":"https://example.org/peer-comparison-snapshot-2026H1.md","claim":"可比公司平均收入增速","confidence":"L3","asof":"2026-09-05"}

@@ -1,0 +1,30 @@
+# Market Research Brief - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+project: ""
+prepared_by: ""
+research_dates: ""
+market_definition: ""
+market_notes: ""
+respondents:
+  interviews: 0
+  survey_responses: 0
+segments:
+  - name: ""
+    count: 0
+findings:
+  - finding: ""
+    source: ""
+    respondent_count: 0
+    confidence: ""
+price_expectations:
+  - segment: ""
+    stated_range: ""
+    source: ""
+buyer_constraints:
+  - ""
+data_sources:
+  - name: ""
+    release_date: ""
+    table_or_page: ""
+open_questions:
+  - ""

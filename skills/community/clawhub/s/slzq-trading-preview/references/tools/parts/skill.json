@@ -1,0 +1,43 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "health_check",
+      "description": "检查服务是否正常并探测服务端能力。无需鉴权，新老版本都可调。返回 authLoginSupported（true 才支持免密钥登录领钥）、skillName、skillVersion、apiBase（服务端实际路径前缀）。判断服务端是否支持免密钥登录只能依据本接口，不要拿 /open/v1/auth/* 的 10411 去推断。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "check_skill_version",
+      "description": "检查当前 skill 是否需要更新，将客户端版本与服务端最新版本做 semver 比较。无需鉴权。若 updateAvailable=true，向用户展示升级步骤。传入 VERSION 文件中的版本号。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "clientVersion": {
+            "type": "string",
+            "description": "当前 skill 版本号，如 '1.1.0'。服务端用此值与最新版做 semver 比较。"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_skill_upgrade",
+      "description": "获取 skill 的分步升级说明，包含 ClawHub 命令和自托管 zip 下载路径。无需鉴权。当用户询问如何升级 skill 时调用。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  }
+]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊差评预警 · 评论舆情监控提醒"
+  short_description: "订阅 ASIN 后自动监控差评突增，会话内直接读预警"
+  default_prompt: "使用 $amazon-review-alerts 查看我的店铺情感预警，有差评突增马上告诉我。"

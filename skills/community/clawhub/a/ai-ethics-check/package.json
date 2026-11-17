@@ -1,0 +1,41 @@
+{
+  "name": "ai-ethics-check",
+  "version": "1.0.0",
+  "type": "skill",
+  "description": "AI 科技伦理审查合规检查。仅在用户明确要求AI 科技伦理审查合规检查时激活；基于《人工智能科技伦理审查与服务办法(试行)》（工信部等十部门，工信部联科〔2026〕75号，2026-03-20 施行）。免费 检查（云端真实评分），10 项核心检查；无 Key 自动匿名试用（5 次），额度用尽后一键注册引导。",
+  "author": "complianceHub",
+  "license": "MIT",
+  "homepage": "https://compliancehub.cn/account.html?skill=ai-ethics-check",
+  "permissions": {
+    "network": [
+      "https://compliancehub.cn"
+    ],
+    "filesystem": {
+      "write": [
+        "~/.config/compliancehub"
+      ]
+    },
+    "env": [
+      "COMPLIANCEHUB_API_KEY"
+    ]
+  },
+  "openclaw": {
+    "displayName": "AI 科技伦理审查合规检查",
+    "category": "compliance",
+    "pricing": "free",
+    "points": 1,
+    "permissions": {
+      "network": [
+        "https://compliancehub.cn"
+      ],
+      "filesystem": {
+        "write": [
+          "~/.config/compliancehub"
+        ]
+      },
+      "env": [
+        "COMPLIANCEHUB_API_KEY"
+      ]
+    }
+  }
+}

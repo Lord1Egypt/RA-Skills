@@ -4,7 +4,7 @@ set -o pipefail
 
 # Zotero note deletion script
 # Deletes notes with confirmation and optional backup
-# Version: 1.3.6
+# Version: 1.3.14
 # Safety: Only calls Zotero API. No eval, no obfuscation.
 
 # Argument handling
@@ -41,7 +41,7 @@ EOF
             exit 0
             ;;
         --version)
-            echo "zotero-enhanced delete_note.sh v1.3.8"
+            echo "zotero-enhanced delete_note.sh v1.3.14"
             exit 0
             ;;
         --dry-run)
@@ -121,14 +121,15 @@ fi
 
 # Backup note content if requested
 if [ "$BACKUP" = true ] && [ "$DRY_RUN" = false ]; then
-    BACKUP_DIR="${HOME}/.zotero-backup"
-    mkdir -p "$BACKUP_DIR"
-
     # Validate NOTE_KEY: Zotero keys are 8 alphanumeric chars; reject path traversal
     if ! echo "$NOTE_KEY" | grep -qE '^[A-Za-z0-9]{8}$'; then
         echo "Error: Invalid NOTE_KEY format (must be 8 alphanumeric characters)." >&2
         exit 1
     fi
+
+    BACKUP_DIR="${HOME}/.zotero-backup"
+    # 0700: backups contain full note text, keep them owner-only
+    mkdir -p -m 700 "$BACKUP_DIR"
 
     BACKUP_FILE="$BACKUP_DIR/note_${NOTE_KEY}_$(date +%Y%m%d_%H%M%S).txt"
     
@@ -170,7 +171,10 @@ if [ "$BACKUP" = true ] && [ "$DRY_RUN" = false ]; then
     echo "" >> "$BACKUP_FILE"
     echo "Plain Text:" >> "$BACKUP_FILE"
     echo "$NOTE_FULL_TEXT" >> "$BACKUP_FILE"
-    
+
+    # Owner-only permissions: backup contains full note text
+    chmod 600 "$BACKUP_FILE"
+
     echo "Backup saved to: $BACKUP_FILE"
 fi
 

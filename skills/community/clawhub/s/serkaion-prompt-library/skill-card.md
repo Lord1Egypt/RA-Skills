@@ -1,37 +1,49 @@
-## Description: <br>
-Ready-to-use, KPI-driven prompt templates for market research, due diligence, competitive analysis, investor pitches, and business strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ready-to-use, KPI-driven prompt templates for market research, due diligence, competitive analysis, investor pitches, and business strategy.
 
-## Publisher: <br>
-[serkaion](https://clawhub.ai/user/serkaion) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[serkaion](https://clawhub.ai/user/serkaion)
 
-## Use Case: <br>
-External business users, founders, operators, and analysts use this skill to create structured prompts for market research, due diligence, competitive analysis, investor pitch validation, deal assessment, positioning, and go-to-market planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive business, investor, or deal information into prompts. <br>
-Mitigation: Review and minimize sensitive inputs before sending prompt content to any model or external service. <br>
+## Use Case:
 
+Business users, strategists, founders, analysts, and advisors use this skill to select structured prompt templates for market research, due diligence, competitive analysis, investor pitches, deal review, and go-to-market planning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prompt templates with structured task instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained inline templates with bracketed placeholders for user-supplied context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated market claims, assumptions, and recommendations may be inaccurate, outdated, or insufficiently sourced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated business research for sourcing quality and require current evidence for market data, competitive claims, and go/no-go recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/serkaion/skills/serkaion-prompt-library)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompt templates and structured business-analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-contained prompt library; no code execution, persistence, credential use, or external tool requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,166 +1,207 @@
 ---
 name: qa-test-skills
-description: 48个专家级测试技能集合，覆盖测试全生命周期。从需求分析到测试设计、AI协作、执行监控、质量度量，让初级测试人员输出专家级测试用例。
-when_to_use: 用户说"软件测试"、"测试用例"、"测试设计"、"AI测试"、需要完整的测试设计能力时
-allowed-tools: Read Grep Glob
-related_skills:
-  all_skills:
-    - qa-test-workflow           # 主工作流编排
-    - qa-requirement-review      # 需求评审
-    - qa-req-deconstruction      # 需求解构
-    - qa-scenario-tree           # 场景树构建
-    - qa-boundary-deep-dive      # 边界深度分析
-    - qa-test-case-design        # 测试用例设计
-    - qa-ai-context-engineering  # 上下文工程
-    - qa-ai-output-critique      # 输出评审
-    - qa-api-testing             # 接口测试
-    - qa-agent-testing           # Agent测试
-    - qa-mobile-testing          # 移动端测试
-    - qa-specialized-testing     # 专项测试
-    - qa-test-strategy-design    # 测试策略
-    - qa-quality-metrics         # 质量度量
-    - qa-test-reporting          # 测试报告
-input_format: 用户需求描述或需求文档
-output_format: 完整的测试用例集 + 测试报告
+description: >-
+  从需求文档自动生成结构化测试用例，覆盖功能测试、边界分析、组合测试和回归测试全流程。自动串联48个专家级子技能，按12步工作流编排执行。适用于：上传需求文档（PRD/Word/PDF/URL）需要完整测试用例时、不知道如何设计测试场景或担心遗漏边界条件时、需要AI评审测试输出并补充测试盲区时。每个步骤都有独立技能支撑，输出格式统一、需求可追溯、覆盖率可量化。 触发场景：生成测试用例、帮我测试、设计测试、上传需求、开始测试、获取安装指引时。 Use when the user asks about: generating structured test cases from a PRD, Word, PDF, or URL through an orchestrated workflow covering functional, boundary, combination, and regression testing.
+license: MIT
+allowed-tools: Read Grep Glob WebFetch Bash
+metadata:
+  display-name: "QA Test Skills"
+  version: "1.8.0"
+  disable-model-invocation: "false"
+  when-to-use: "用户说\"生成测试用例\"、\"帮我测试\"、\"设计测试\"、\"上传需求\"、\"开始测试\"、上传需求文档/URL时自动激活， 需要完整测试流程时，想浏览技能集目录、了解QA Test Skills包含哪些技能、查看技能分类说明、获取安装指引时"
+  related-skills: "{\"all_skills\":[\"qa-input-validation\",\"qa-requirement-review\",\"qa-req-deconstruction\",\"qa-risk-intuition\",\"qa-heuristic-checklist\",\"qa-scenario-tree\",\"qa-boundary-deep-dive\",\"qa-combination-strategy\",\"qa-state-transition\",\"qa-domain-modeling\",\"qa-regression-testing\",\"qa-ai-context-engineering\",\"qa-ai-prompt-strategy\",\"qa-ai-output-critique\",\"qa-ai-blindspot-compensation\",\"qa-output-validation\",\"qa-test-reporting\",\"qa-agent-testing\",\"qa-expert-review\",\"qa-api-testing\",\"qa-mobile-testing\",\"qa-specialized-testing\",\"qa-exploratory-testing\",\"qa-tech-debt-management\",\"qa-test-estimation\",\"qa-bug-lifecycle\",\"qa-bug-reporting\",\"qa-bug-root-cause-analysis\",\"qa-execution-observation\",\"qa-ci-cd-testing\",\"qa-code-review-for-test\",\"qa-critical-thinking\",\"qa-question-framework\",\"qa-test-case-design\",\"qa-test-strategy-design\",\"qa-release-risk-governance\",\"qa-quality-metrics\",\"qa-test-automation-arch\",\"qa-tech-selection\",\"qa-testability-advocacy\",\"qa-test-data-engineering\",\"qa-test-env-data\",\"qa-shift-left\",\"qa-shift-right\",\"qa-test-leadership\",\"qa-stakeholder-communication\",\"qa-team-coaching\",\"qa-retrospective\"]}"
+  references: "[\"references/depth-benchmarks.md\",\"references/enforcement.md\",\"references/format.md\",\"references/routing.md\",\"references/workflow-detail.md\"]"
+  input-format: "{\"required\":[{\"name\":\"用户需求\",\"type\":\"string\",\"description\":\"用户的需求描述，可以是文字、文件路径或URL\"}],\"optional\":[{\"name\":\"附件\",\"type\":\"file\",\"description\":\"上传的需求文档\"},{\"name\":\"URL\",\"type\":\"string\",\"description\":\"需求文档链接\"}]}"
+  output-format: "{\"structure\":[{\"test_cases\":\"测试用例列表\"},{\"coverage_report\":\"覆盖率报告\"},{\"risk_areas\":\"风险区域\"},{\"test_report\":\"测试报告\"}],\"traceability\":[\"每个测试用例带唯一ID（TC_{模块缩写}_{功能缩写}_{序号}，如 TC_API_LOGIN_001）\",\"关联需求ID（REQ-XXXX）\",\"关联场景ID（SC-XXXX）\"]}"
 ---
 
-# QA Test Skills - 软件测试技能集
+# QA Test Skills — 测试工作流编排引擎
 
-## 技能集概述
+> ⚠️ **本技能集共 49 个技能（本入口 + 48 个子技能）**。
+> 本入口技能安装后，请补充安装其余 48 个子技能以获得完整 12 步工作流体验：
+>
+> ```bash
+> # 推荐：一次安装全套（skills.sh）
+> npx skills add Kokxi/qa-test-skills
+>
+> # 或手动：复制 skills/ 目录下 49 个子目录到 Agent 的 skills 目录
+> cp -r qa-test-skills/skills/* ~/.claude/skills/   # Claude Code
+> ```
+>
+> 仅安装本入口时，12 步工作流中的子技能（需求评审/场景树/用例设计等）将不可用。
 
-这是一个包含48个专家级测试技能的完整集合，覆盖测试全生命周期。
+你是一位资深测试架构师，负责编排整个测试设计流程。初级人员只需提供需求，你自动串联所有子技能，输出专家级测试用例。
 
-## 核心价值
+## 核心原则
 
-- **零学习成本**：用户无需改变现有习惯
-- **专家级输出**：资深测试经验编码为可加载技能
-- **完整追溯链**：需求→场景→用例→评审，全程可追溯
-- **防止AI泛化**：限制AI读取代码，确保测试用例基于需求文档
+**输入的每一条需求，经过 12 步标准化工作流 + 48 个专家级子技能，最终输出可追溯、结构化的测试用例集。**
 
-## 技能分类
+> ⚠️ **必须直接输出完整内容，不得只承诺生成**：
+> 必须在本次响应中直接输出完整内容，不得只输出"我将生成"等承诺性表述。
+> 询问确认不得替代直接输出——用户请求即默示授权，询问只能在输出末尾的"是否补充"环节。
+> 若数据不足，先输出已有数据的分析，再标注缺什么。
 
-### AI协作（6个）
-- **qa-ai-context-engineering**：构建AI测试上下文
-- **qa-ai-prompt-strategy**：AI测试提示词策略
-- **qa-ai-output-critique**：AI输出评审与补全
-- **qa-ai-blindspot-compensation**：AI盲区补偿
-- **qa-input-validation**：输入验证
-- **qa-output-validation**：输出验证
+> ⚠️ **N 个维度全必输出硬约束**：
+> 需要编号/分类输出的内容必须按编号逐条输出，未发现问题的也要输出占位行。
+> 不适用的也要输出标注"不适用+原因"的占位项，而非省略。
+> 末尾的"维度覆盖统计"必须确认 N/N 全覆盖，缺一项即格式校验失败。
 
-### 需求分析（4个）
-- **qa-requirement-review**：需求评审
-- **qa-req-deconstruction**：需求解构与显隐式挖掘
-- **qa-scenario-tree**：场景树构建
-- **qa-domain-modeling**：领域建模
+> 强制执行规则详见 [`references/enforcement.md`](references/enforcement.md)。
 
-### 深度设计（4个）
-- **qa-boundary-deep-dive**：边界深度分析
-- **qa-combination-strategy**：组合测试策略
-- **qa-state-transition**：状态转换测试
-- **qa-heuristic-checklist**：启发式检查清单
+> 各 skill 深度量化基准（`metadata.depth-requirement`）的乘数档位来源与判定指引详见 [`references/depth-benchmarks.md`](references/depth-benchmarks.md)。
 
-### 执行洞察（4个）
-- **qa-execution-observation**：执行观察力
-- **qa-bug-root-cause-analysis**：Bug根因分析
-- **qa-bug-reporting**：Bug报告编写
-- **qa-expert-review**：专家评审与元学习
+> 输入识别、路由规则和可选增强流程详见 [`references/routing.md`](references/routing.md)。
 
-### 策略架构（13个）
-- **qa-test-strategy-design**：测试策略制定
-- **qa-release-risk-governance**：发布风险管理
-- **qa-quality-metrics**：质量度量体系
-- **qa-ci-cd-testing**：持续测试实践
-- **qa-test-automation-arch**：测试自动化架构
-- **qa-tech-selection**：测试技术选型
-- **qa-test-env-data**：测试环境与数据管理
-- **qa-test-data-engineering**：测试数据工程
-- **qa-testability-advocacy**：可测试性推动
-- **qa-shift-left**：测试左移实践
-- **qa-shift-right**：测试右移实践
-- **qa-test-leadership**：测试领导力
-- **qa-test-reporting**：测试报告编写
+## 加载时机
 
-### 沟通传承（4个）
-- **qa-stakeholder-communication**：干系人沟通
-- **qa-code-review-for-test**：测试视角的代码评审
-- **qa-team-coaching**：团队赋能
-- **qa-retrospective**：复盘与经验沉淀
+**需要时才读，不要一上来全读**：
 
-### 专项测试（8个）
-- **qa-api-testing**：接口测试专项
-- **qa-mobile-testing**：移动端测试
-- **qa-agent-testing**：AI Agent测试
-- **qa-specialized-testing**：专项测试能力
-- **qa-exploratory-testing**：探索式测试
-- **qa-tech-debt-management**：技术债务管理
-- **qa-test-estimation**：测试工作量估算
-- **qa-defect-lifecycle**：缺陷生命周期管理
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 判断这次该激活哪个技能 | [`references/routing.md`](references/routing.md)（输入识别与路由规则） |
+| 某一步不知做什么 / 被跳过 | [`references/workflow-detail.md`](references/workflow-detail.md)（12 步每步的执行格式与伪代码） |
+| 出现"可以跳过吗"的争议 | [`references/enforcement.md`](references/enforcement.md)（强制执行规则） |
+| 输出格式、编号、CSV 规范 | [`references/format.md`](references/format.md) |
+| 某技能的深度乘数该取几档 | [`references/depth-benchmarks.md`](references/depth-benchmarks.md) |
 
-### 测试设计（4个）
-- **qa-test-case-design**：测试用例设计
-- **qa-critical-thinking**：测试批判性思维
-- **qa-question-framework**：提问框架
-- **qa-risk-intuition**：风险直觉与优先级判断
 
-### 主工作流（1个）
-- **qa-test-workflow**：测试工作流编排，自动串联所有技能
+---
+
+## 标准化工作流
+
+**⚠️ 强制要求：每个步骤必须产出输出文件，不得跳过任何步骤。详细伪代码见 [`references/workflow-detail.md`](references/workflow-detail.md)。**
+
+| 步骤 | 调用的技能 | 输出文件 | 说明 |
+|------|-----------|---------|------|
+| 第0步 | 需求文档解析 | 需求文档集合.md | 支持 .md/.docx/.pdf，自动追踪索引引用 |
+| 第1步 | qa-requirement-review | 需求评审报告.md | 完整性/清晰性/一致性/可测试性/可实现性 |
+| 第2步 | qa-req-deconstruction | 需求解构表.md | 显性+隐性+衍生需求 + 五维拆解（简单×2/中等×3/复杂×4） |
+| 第3步 | 并行：qa-risk-intuition, qa-heuristic-checklist, qa-scenario-tree | 风险评估.md、启发式清单.md、场景树.md | 场景深度：简单×3/中等×5/复杂×7 |
+| 第4步 | 并行：qa-boundary-deep-dive, qa-combination-strategy, qa-state-transition, qa-domain-modeling | 边界清单.md、组合矩阵.md、状态转换图.md、领域模型.md | 边界深度：简单×1.5/中等×2/复杂×2.5 |
+| 第5步 | qa-regression-testing | 回归策略.md | 分级策略 + 用例清单 + 执行计划 |
+| 第6步 | qa-ai-context-engineering | AI上下文包.md | 打包所有分析结果 |
+| 第7步 | qa-ai-prompt-strategy | AI提示词.md ⚠️不得跳过 | 生成优化后的提示词 |
+| → | [AI生成测试用例] | 测试用例_初版.csv | |
+| 第8步 | qa-ai-output-critique + qa-ai-blindspot-compensation | 用例评审报告.md、盲区补偿用例.md ⚠️不得跳过 | 六维评审 + 六大盲区补盲 |
+| 第9步 | qa-test-reporting | 测试报告.md、测试用例.csv | 最终测试用例 + 覆盖率分析 |
+| 第10步 | qa-output-validation | 输出验证报告.md | 防幻觉：事实核查/一致性/可执行性/来源追溯 |
+| 第11步 | qa-expert-review（可选） | 专家评审报告.md | 需要质量把关时执行 |
+
+**关键检查点**：
+- 每个步骤完成后检查输出文件是否存在，不存在则重新执行该步骤
+- 不得跳过步骤7（提示词生成）和步骤8（输出评审与补盲）
+- **第9步产出 `测试用例.csv` 后必须跑校验器**，9 列齐全/编号唯一/P0-P3 占比/覆盖率口径都是确定性规则：
+  ```bash
+  python scripts/validate_testcase_table.py test-output/测试用例.csv
+  ```
+  报错先修再交付。用例数少于 10 条时 P0≤20% 之类配额在数学上无法成立，加 `--no-quota` 并在报告里说明口径，不要为凑比例编造用例。
+
+**覆盖率与缺口诚实性硬约束**（第9步测试报告 + 第10步输出验证必查）：
+> ⚠️ **覆盖率必须标注口径**：若需求文档本身不完整（存在缺失模块/未定义流程），
+> 覆盖率报告必须注明"基于现有需求文档的覆盖率"，
+> 不得使用"全覆盖""100%"等绝对化表述——覆盖的是现有需求，不是完整业务闭环。
+>
+> ⚠️ **缺口必须同步标注**：需求评审发现缺失模块后，
+> 测试报告、覆盖率报告、输出验证报告三处必须同步列出缺口清单，
+> 不得只在一处提及、其余报告声称"全覆盖"掩盖缺口。
+> 缺失模块不得编造需求或用例，只能标注"未覆盖+原因+建议补充"。
+
+**测试用例.csv 格式硬约束**（第7步初版 + 第9步最终必查，交付用户直接可用）：
+> ⚠️ **必须输出标准 CSV，不得用 `|` 竖线或制表符分隔**：
+> 分隔符用半角逗号 `,`；字段内含逗号/双引号/换行时必须用双引号包裹并转义（RFC 4180）；
+> 编码用 UTF-8 含 BOM（Excel 打开中文不乱码、正确分列）。
+> 列结构固定 9 列：`用例编号,测试类型,功能模块,测试标题,用例级别,预置条件,测试步骤,预期结果,风险等级`。
+> 表头必须存在，每条用例一行，不得用 Markdown 表格语法。
+
+## 可选增强流程
+
+根据用户需求和识别结果，可选择性调用：
+
+### 按用例类型
+
+```
+├─ 接口测试：qa-api-testing（识别到"接口/API"关键词）
+├─ Agent测试：qa-agent-testing（识别到"Agent/智能体"关键词）
+├─ 性能测试：qa-specialized-testing（识别到"性能/压力"关键词）
+└─ 安全测试：qa-specialized-testing（识别到"安全/渗透"关键词）
+```
+
+### 按平台类型
+
+> 以下文件属于 `qa-mobile-testing`，不在本技能目录下。按路径加载，不要在 skills/qa-test-skills/references/ 下找。
+
+```
+├─ 移动端App：加载 qa-mobile-testing/references/platform-mobile-app.md
+├─ 小程序：加载 qa-mobile-testing/references/platform-mini-program.md
+├─ 移动Web/H5：加载 qa-mobile-testing/references/platform-mobile-web.md
+├─ 桌面应用：加载 qa-mobile-testing/references/platform-desktop.md
+└─ PC Web：加载 qa-mobile-testing/references/platform-pc-web.md
+```
+
+### 按用户需求
+
+```
+├─ qa-test-estimation：工作量估算（用户需要排期时）
+├─ qa-exploratory-testing：探索式测试（需要深度探索时）
+├─ qa-expert-review：专家评审（需要质量把关时）
+└─ qa-tech-debt-management：技术债务评估（需要评估债务时）
+```
+
+> 标准化输出模板和检查清单详见 [`references/format.md`](references/format.md)。
+
+## 验收清单
+
+工作流执行完成后检查：
+- [ ] 用例类型是否识别正确？
+- [ ] 平台专项是否加载？
+- [ ] 需求评审是否完成？
+- [ ] 需求解构是否完整？
+- [ ] 风险评估是否识别？
+- [ ] 启发式清单是否应用？
+- [ ] 场景树是否覆盖全面？
+- [ ] 边界分析是否深入？
+- [ ] 组合策略是否合理？
+- [ ] 状态转换是否清晰？
+- [ ] 领域模型是否构建？
+- [ ] 上下文包是否结构化？
+- [ ] 提示词是否优化？
+- [ ] 输出评审是否完成？
+- [ ] 盲区补盲是否执行？
+- [ ] 检查清单是否执行？
+- [ ] 输出格式是否标准？
+- [ ] 测试报告是否生成？
+- [ ] 最终用例是否专家级？
+
+---
+
+## 技能集概览
+
+**QA Test Skills** 是一个包含 48 个专家级子技能 + 1 个入口工作流的完整测试框架，覆盖从需求分析到测试设计、AI协作、执行监控、质量度量的完整测试生命周期。
+
+### 技能分类
+
+| 类别 | 数量 | 技能 |
+|------|------|------|
+| **AI协作** | 6个 | qa-input-validation, qa-ai-context-engineering, qa-ai-prompt-strategy, qa-ai-output-critique, qa-ai-blindspot-compensation, qa-output-validation |
+| **需求分析** | 4个 | qa-requirement-review, qa-req-deconstruction, qa-scenario-tree, qa-domain-modeling |
+| **深度设计** | 4个 | qa-boundary-deep-dive, qa-combination-strategy, qa-state-transition, qa-heuristic-checklist |
+| **测试设计** | 4个 | qa-test-case-design, qa-critical-thinking, qa-question-framework, qa-risk-intuition |
+| **执行洞察** | 4个 | qa-execution-observation, qa-bug-root-cause-analysis, qa-bug-reporting, qa-expert-review |
+| **专项测试** | 8个 | qa-api-testing, qa-mobile-testing, qa-agent-testing, qa-specialized-testing, qa-exploratory-testing, qa-tech-debt-management, qa-test-estimation, qa-bug-lifecycle |
+| **策略架构** | 14个 | qa-test-strategy-design, qa-release-risk-governance, qa-quality-metrics, qa-ci-cd-testing, qa-test-automation-arch, qa-tech-selection, qa-testability-advocacy, qa-test-data-engineering, qa-test-env-data, qa-shift-left, qa-shift-right, qa-test-leadership, qa-test-reporting, qa-regression-testing |
+| **沟通传承** | 4个 | qa-stakeholder-communication, qa-code-review-for-test, qa-team-coaching, qa-retrospective |
 
 ## 使用方式
 
-### 方式1：使用主工作流（推荐）
+直接输入测试需求，AI 自动执行工作流：
+
 ```
-请帮我测试这个项目：[需求文档路径]
+请帮我测试这个项目：examples/ecommerce-project/docs/prd.md
 ```
 
-### 方式2：单独使用技能
+也可单独触发某个子技能：
+
 ```
 帮我分析这个场景的边界：[场景描述]
 帮我设计测试用例：[需求描述]
 ```
-
-### 方式3：批量安装所有技能
-```bash
-# 使用安装脚本
-./install-skills.sh
-```
-
-## 安装说明
-
-### 从GitHub安装
-```bash
-git clone https://github.com/Kokxi/qa-test-skills.git
-/plugin dir ./qa-test-skills
-```
-
-### 从ClawHub安装
-```bash
-# 安装主工作流
-clawhub install @kokxi/qa-test-workflow
-
-# 安装其他技能
-clawhub install @kokxi/qa-requirement-review
-clawhub install @kokxi/qa-req-deconstruction
-# ... 其他技能
-```
-
-### 一键安装所有技能
-```bash
-# 运行批量安装脚本
-./install-all-skills.sh
-```
-
-## 技能协作关系
-
-```
-用户输入 → 输入验证 → 需求评审 → 需求解构 → 场景构建 → 深度设计 → 上下文工程 → 提示词生成 → AI生成 → 输出评审 → 盲区补盲 → 测试报告
-```
-
-## 示例项目
-
-详见 `examples/ecommerce-project/` 目录下的完整示例。
-
-## 联系方式
-
-- **GitHub**: https://github.com/Kokxi/qa-test-skills
-- **Issues**: https://github.com/Kokxi/qa-test-skills/issues
-- **Email**: no19@foxmail.com

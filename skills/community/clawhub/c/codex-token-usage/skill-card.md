@@ -1,40 +1,49 @@
-## Description: <br>
-Summarizes Codex token usage from local Codex Desktop or CLI session JSONL logs for a requested reporting period. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize Codex token usage from local Codex Desktop or CLI session JSONL logs.
 
-## Publisher: <br>
-[helenalhq](https://clawhub.ai/user/helenalhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helenalhq](https://clawhub.ai/user/helenalhq)
 
-## Use Case: <br>
-Developers and operators use this skill to audit local Codex token usage over a defined period, including totals, cached input, output, reasoning output, peak day, and busiest week. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script reads local Codex session logs, which may contain sensitive workflow metadata. <br>
-Mitigation: Run it only against logs you intend to analyze, and use --codex-home to limit the log directory when needed. <br>
-Risk: Reports are computed from local JSONL token_count events and may be incomplete if the selected Codex log directory is missing, partial, or outside the requested date range. <br>
-Mitigation: Choose an explicit date range and Codex home path for audits that need reproducible totals. <br>
+## Use Case:
 
+Developers and operators use this skill to audit Codex token usage over requested time windows and report totals, input, cached input, output, reasoning output, net usage, cache hit rate, daily averages, peak day, and busiest week.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/helenalhq/codex-token-usage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown table or structured JSON, with shell commands for invoking the bundled report script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports aggregate token metrics for a selected local date range and can localize Markdown labels in English or Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill reads local Codex session logs, and its reports may expose sensitive usage volumes, dates, or activity patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against intended local Codex log directories and avoid sharing report output when usage counts, dates, or volumes are sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/helenalhq/skills/codex-token-usage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown table or JSON report, with concise explanatory text and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports token totals, calls, sessions, cache hit rate, daily average, peak day, and busiest week for a selected date range.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Control and check a BYD vehicle using portable Python helper scripts built on pyBYD. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and check a BYD vehicle using portable Python helper scripts built on pyBYD for battery checks, battery alerts, locking, light or horn flashing, and climate control.
 
-## Publisher: <br>
-[hiimivantang](https://clawhub.ai/user/hiimivantang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hiimivantang](https://clawhub.ai/user/hiimivantang)
 
-## Use Case: <br>
-Developers and vehicle owners use this skill to run repeatable BYD account actions from local scripts, including checking battery state, locking the vehicle, flashing lights or horn, and starting or stopping climate control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote lock, horn/lights, and climate commands can trigger real vehicle actions using stored BYD credentials. <br>
-Mitigation: Run only with authorization, protect the .env file like a password, and require explicit confirmation or approval before command scripts execute. <br>
-Risk: If no BYD_VIN or BYD_VEHICLE_ALIAS is configured, scripts use the first vehicle returned by the account. <br>
-Mitigation: Set BYD_VIN or BYD_VEHICLE_ALIAS before running control scripts so actions target the intended vehicle. <br>
-Risk: Battery monitoring output can be connected to unattended automation. <br>
-Mitigation: Review threshold and delivery automation, and add confirmation before any vehicle action is triggered from a low-battery alert. <br>
+## Use Case:
 
+External users and developers use this skill to operate reusable local scripts for BYD vehicle status checks and selected remote-control actions. It is suited to battery monitoring, explicit vehicle targeting, and controlled execution of lock, lights, horn, and climate commands.
 
-## Reference(s): <br>
-- [Setup](references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or status output from Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts read BYD credentials and vehicle selection from environment variables and can print JSON battery snapshots or command status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can access BYD account credentials, control PINs, VINs, telemetry, and remote controls for a real vehicle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, protect the scripts/.env file, avoid committing credentials, and confirm state-changing actions before execution.
+
+Risk: If BYD_VIN or BYD_VEHICLE_ALIAS is unset, scripts use the first vehicle returned by the account.
+
+Mitigation: Set BYD_VIN or BYD_VEHICLE_ALIAS explicitly before running scripts that change vehicle state.
+
+Risk: The climate-control scripts may continue after command-access verification fails.
+
+Mitigation: Review or patch start_ac.py and stop_ac.py so failed command-access verification stops execution before using those scripts.
+
+## Reference(s):
+
+- [Setup](references/setup.md)
+- [ClawHub Skill Page](https://clawhub.ai/hiimivantang/skills/byd-remote-control)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Text]
+
+**Output Format:** [Markdown guidance with shell commands and JSON or text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include live vehicle telemetry, selected VIN values, command responses, and battery alert payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

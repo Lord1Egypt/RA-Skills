@@ -1,42 +1,55 @@
-## Description: <br>
-Agenty lets an agent operate Agenty through an OOMOL-connected account for reading, creating, updating, and deleting Agenty data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Agenty through an OOMOL-connected account to manage data and run Agenty actions.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to manage Agenty agents, jobs, lists, and web utility actions through the OOMOL oo CLI after connecting their Agenty account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform meaningful account-level actions in Agenty, including write and destructive operations. <br>
-Mitigation: Review the exact payload and effect before approving write actions, and require explicit approval before destructive actions such as clearing lists, deleting rows, or deleting agents. <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected Agenty account. <br>
-Mitigation: Install only when the user intends to let Codex operate that Agenty account through OOMOL, and avoid exposing raw tokens in prompts or files. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and manage Agenty agents, jobs, and lists, and to retrieve page content, exports, and files through a connected Agenty account.
 
-## Reference(s): <br>
-- [Agenty homepage](https://agenty.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-agenty) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; command responses may include Agenty data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter metadata) <br>
+Risk: Setup may run downloads that were unavailable for inspection and add agent skills without clearly disclosing those changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected installer and release before setup, and inspect the CLI's skill synchronization behavior. Use OO_SKILLS_SYNC_DISABLED to disable startup synchronization when appropriate.
+
+Risk: Agenty access is mediated through OOMOL, which injects credentials server-side.
+
+Mitigation: Review the OOMOL connection and its granted access before using the skill.
+
+## Reference(s):
+
+- [Agenty API documentation](https://agenty.com/docs/api)
+- [Agenty](https://agenty.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Guidance]
+
+**Output Format:** [Agenty action results as JSON or text, with downloadable files where applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available data and file formats depend on the selected Agenty action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Professional career roadmap platform that generates personalized learning paths and specialization guidance for veterinary science professionals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career roadmap platform that generates personalized learning paths and specialization guidance for veterinary science professionals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, veterinary students, recent graduates, practicing veterinarians, mentors, and education teams use this skill to generate personalized veterinary career roadmaps, specialization options, and learning paths from assessment inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends veterinary career assessment inputs and session metadata to an external API. <br>
-Mitigation: Avoid entering sensitive personal details unless needed, and use explicit prompts for veterinary career roadmaps or specialization plans. <br>
-Risk: The artifact describes paid usage tiers and the release is tagged as able to make purchases. <br>
-Mitigation: Confirm plan limits, costs, and authorization before using paid API capacity. <br>
-Risk: Career roadmap guidance may not reflect a user's local licensing, credentialing, or institutional requirements. <br>
-Mitigation: Review generated roadmaps with qualified educational or professional advisors before making career decisions. <br>
+## Use Case:
 
+External users, veterinary students, graduates, practicing veterinarians, career mentors, educational institutions, and professional development organizations use this skill to request veterinary career roadmaps, specialization options, and learning-path guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-veterinary-science) <br>
-- [API documentation](https://api.mkkpro.com:8189/docs) <br>
-- [Veterinary Science API route](https://api.mkkpro.com/career/veterinary-science) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, JSON] <br>
-**Output Format:** [JSON responses with career roadmap, specialization, and learning-path guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roadmap requests may include experience, skills, goals, session identifiers, optional user identifiers, and timestamps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenAPI metadata) <br>
+Risk: The skill sends veterinary career assessment details, goals, session identifiers, timestamps, and any supplied userId to an external API without clear privacy or retention disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only the minimum necessary information and avoid unnecessary personal details until the provider documents privacy, retention, deletion, and data-sharing practices.
+
+Risk: Generated career guidance may be incomplete or unsuitable for a user's jurisdiction, school, credentialing path, or professional circumstances.
+
+Mitigation: Review roadmap outputs with qualified academic, career, or veterinary credentialing advisors before relying on them for education or career decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-veterinary-science)
+- [Veterinary Science API route](https://api.mkkpro.com/career/veterinary-science)
+- [Veterinary Science API docs](https://api.mkkpro.com:8189/docs)
+- [OpenAPI specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API calls]
+
+**Output Format:** [Markdown or JSON-like structured guidance summarizing veterinary career roadmaps, specialization options, competencies, timelines, and learning resources.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include roadmap identifiers, session identifiers, timelines, competencies, learning resources, and estimated time to goal.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

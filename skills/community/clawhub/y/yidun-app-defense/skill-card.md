@@ -1,47 +1,66 @@
-## Description: <br>
-YiDunAppDefense helps agents configure and run YiDun app hardening for Android, iOS, and HarmonyOS packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YiDunAppDefense helps agents configure and run YiDun application protection for Android, iOS, and HarmonyOS app packages.
 
-## Publisher: <br>
-[xautzbl](https://clawhub.ai/user/xautzbl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xautzbl](https://clawhub.ai/user/xautzbl)
 
-## Use Case: <br>
-Developers and release engineers use this skill to configure YiDun AppKey credentials and harden Android, iOS, and HarmonyOS mobile app packages through guided shell workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs an external YiDun hardening tool. <br>
-Mitigation: Install only when you trust YiDun, verify the tool through a trusted vendor channel where possible, and pin or disable updates for reproducible release builds. <br>
-Risk: The workflow handles sensitive app packages and YiDun AppKey or signing credentials. <br>
-Mitigation: Use it only for packages you are authorized to submit, avoid sharing secrets in chat or shell history, and review permissions on ~/.yidun-defense/config.ini after configuration. <br>
-Risk: Automated hardening can change release artifacts in ways that affect signing, size, installability, or store acceptance. <br>
-Mitigation: Test protected artifacts before release and keep original packages, logs, and configuration for audit and rollback. <br>
+## Use Case:
 
+Developers and release engineers use this skill to configure YiDun AppKey credentials and protect Android APK/AAB, iOS IPA/xcarchive, and HarmonyOS HAP/APP packages through agent-guided commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xautzbl/yidun-app-defense) <br>
-- [YiDun official documentation](https://support.dun.163.com/) <br>
-- [YiDun console](https://dun.163.com/dashboard) <br>
-- [Usage guide](docs/GUIDE.md) <br>
-- [Platform support](docs/PLATFORM_SUPPORT.md) <br>
-- [Command reference](docs/YIDUN_COMMAND.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated protected app package files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Java and curl; uses local configuration under ~/.yidun-defense and may produce logs under /tmp or ~/.yidun-defense/Log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The setup flow downloads and runs remote YiDun Java tooling that is not pinned by hash or signature verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, run it in a constrained environment, and pin or independently verify the downloaded vendor tool when possible.
+
+Risk: Application packages and related metadata may be sent to YiDun during protection.
+
+Mitigation: Use the skill only for applications approved for third-party processing and confirm that the YiDun service terms match the intended release workflow.
+
+Risk: AppKey and optional signing credentials are stored in ~/.yidun-defense/config.ini and may be exposed through command history or CI logs.
+
+Mitigation: Prefer hidden interactive AppKey entry, keep the config file restricted to the owner, avoid storing signing passwords unless necessary, and rotate any AppKey that may have been logged.
+
+Risk: Local logs and temporary files can contain operational details about protected builds.
+
+Mitigation: Review and clean local YiDun logs and temporary files before sharing build environments or diagnostic output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xautzbl/skills/yidun-app-defense)
+- [YiDun official documentation](https://support.dun.163.com/)
+- [YiDun application protection command documentation](https://support.dun.163.com/documents/15588074449563648?docId=989347548106215424)
+- [YiDun console](https://dun.163.com/dashboard)
+- [Platform support guide](docs/PLATFORM_SUPPORT.md)
+- [Skill API documentation](docs/API.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown responses with shell commands, configuration snippets, status text, output paths, and troubleshooting guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The invoked YiDun tooling may produce protected application package files and local logs outside the skill directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

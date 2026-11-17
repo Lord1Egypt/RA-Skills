@@ -1,70 +1,294 @@
-# EasyEDA Action Reference
+# CLI 与 Action 使用参考
 
-Run `easyeda actions` for the authoritative machine-readable list.
+`easyeda <command> --help` 是命令签名，`easyeda actions` 是机器可读 typed action 目录。
+目录中的 `access.schemaVersion:1` 进一步声明作用范围、副作用、确认和回读要求；`mutates:false` 不能单独证明可按纯读取开放。新动作应在 CLI 同一条注册中声明权限，未知版本/类别停止调用，文档生命周期、库资产写入、导出和脚本仍走专用流程。权限描述不是用户确认或现场验收证据。
 
-## Navigation
+本文件只保留调用边界；不复制全部命令和历史修复。原理图主流程见
+[schematic-data.md](schematic-data.md) 与 [auto-layout-sop.md](auto-layout-sop.md)。
 
-- `system.health` — daemon + connector 可用性，已连接窗口列表
-- `project.current` — 当前工程 uuid / name / teamUuid
-- `document.current` — 当前激活文档 uuid / tabId / documentType
-- `document.open` — 按 UUID 打开任意文档（原理图或 PCB）
-- `schematic.pages.list` — 工程内全部原理图及页面
-- `schematic.page.open` — 切换到指定原理图页（兼容旧用法）
+## 1.4 原理图入口
 
-## Sheet / 图页管理 + 明细表（title block）
+| 目的 | CLI |
+|---|---|
+| 获取 canonical 图 | `sch connectivity`；全工程用 `--all-pages` 逐页读取 |
+| 离线比较连接 | `sch connectivity-diff <before.json> <after.json>` |
+| 修复功能式位号 | `sch designators allocate` → `plan` → `sch apply` |
+| 完整本地版本比较 | `sch design-diff expected.json actual.json --exit-code`；检查 coverage/unverified |
+| 由测量计算 Lib 内部 | `sch lib-layout --from layout-input.json --out composition.json`；纯离线 |
+| 核心相对移动/单脚标签修复 | `sch layout-edit --source zones.json --page page.json --snapshot fresh.json (--move-core ID --to X,Y \| --repair-pin ID:PIN) --out target.json [--report report.json] [--playbook repair.json]`；纯离线生成，修复 playbook 使用作用域 action |
+| 合并已设计的 Lib 几何 | `sch compose --from … --out … --before … --playbook …` |
+| 放置固定 IR 中的器件 | `sch materialize <connectivity.json> --out …`；不是完整布局/布线器 |
+| 少量显式标记连接增量 | `sch plan <before.json> <after.json>`；不支持任意器件或导线 diff |
+| 转换/核验模块方框与标题 | `sch frame apply/check --from …` |
+| 执行计划 | `sch apply <playbook.json>` |
 
-均映射 `eda.dmt_Schematic.*`。**注意：EasyEDA Pro 无设置纸张尺寸(A4/A3)的公开 API**；可编辑的「图纸」属性就是明细表(title block)。CLI：`easyeda sch …`。
+生成器的输入、支持范围与位号/身份规则集中在 [schematic-data.md](schematic-data.md)。
+数据层校验用于发现结构问题，执行时的实时回读用于证明变更确已生效。
 
-- `schematic.titleblock.get` — 读当前（或指定 `pageUuid`）图页的明细表：`showTitleBlock` + 各字段 `titleBlockData`。**改前先 get 拿到字段 key** → `easyeda sch titleblock-get`
-- `schematic.titleblock.modify` — 调整明细表：显隐 + 字段值（只传要改的项，未知 key 被忽略）→ `easyeda sch titleblock --show` / `--data '{"Title":{"value":"电源模块"}}'`
-- `schematic.page.create` — 新建图页（`schematicUuid`）→ `easyeda sch page-new --schematic <uuid>`
-- `schematic.page.rename` — 重命名图页 → `easyeda sch page-rename --page <uuid> --name ...`
-- `schematic.page.delete` — 删除图页（**需确认**，无 undo）→ `easyeda sch page-delete --page <uuid>`
-- `schematic.rename` — 重命名整张原理图文档（非单页；可能联动复用模块符号 + PCB）→ `easyeda sch rename --schematic <uuid> --name ...`
+Web 原始文档源码使用 `doc source get/roundtrip`，实验比较规则、原文证据与停止条件见
+[文档源码探针](document-source.md)。它只回写 fresh 宿主原文，不接受新的设计内容。
 
-## View（画布视图快捷键，原理图 + PCB 通用）
+compose 生成的全工程位号唯一性步骤使用 `schematic.components.list` 的
+`allPages:true,tagPages:true` 最小清单，只检查位号冲突、既有 primitiveId 和待建位号不存在；
+它不请求慢速 device identity、bbox 或 pins。紧随其后的目标页守卫仍读取完整
+device identity、bbox、pins、wires 与连接摘要，不能用前者替代后者。
+整页 `--replace` 的源快照还要用 `sch list --include-page-primitives` 读取清页涉及的全部
+图元身份与原生状态（标记/端口、导线、总线、文本及其他图形）；`verify-source-before-reset`
+检查完整场景，生成队列的 `sch clear --expect-page-primitives-b64` 在删除前再次核对
+（编码可保留属性中的字面 `${...}`）。缺测或变化时重新采集，
+旧队列不能继续执行。sheet 自动更新时间不参与此比较。普通 clear 遇到孤儿属性或嵌入对象
+会拒绝；官方属性全局枚举漏掉逐父可见对象、嵌入文件内容不可读时也拒绝，不报告为零对象。
+重载后若官方 `getAll` 和 `get(id)` 的属性可见性 getter 都为 `undefined`，连接器只在
+官方当前工程 `.epro2` 源的目标 `SCH_PAGE` 中找到同 ID、同 key、同 parent、同 value 的
+`ATTR`，且源明确含 `keyVisible`/`valueVisible` 时补齐这两个字段。先后核对工程、文档和
+标签身份；源缺失、字段缺失或状态不符仍拒绝完整快照和清页，不把 `undefined` 猜成 `null`。
+宿主可能暴露未写入工程源的自动生成属性；其字段全由 SDK 正常读取时继续保留在 SDK 清单中，
+不要求这些可读属性出现在 `.epro2` 源里。
 
-作用于当前聚焦的画布，等价于编辑器工具栏/快捷键。CLI：`easyeda view …`。
+## SCH Apply
 
-- `view.fit` — 适应全部（`K` 快捷键）；缩放至显示全部图元 → `easyeda view fit`
-- `view.fit_selection` — 适应选中；先 `schematic.select` 再缩放至选中图元 → `easyeda view fit-selection`
-- `view.zoom` — 缩放到坐标/比例（x/y/scale，scale 为百分比，省略则保持当前值）→ `easyeda view zoom --scale 200`
-- `view.region` — 缩放到矩形区域（left/right/top/bottom，单位：原理图 0.01inch、PCB mil）→ `easyeda view region --left 0 --right 1000 --top 1000 --bottom 0`
+```bash
+easyeda sch apply steps.json --dry-run
+easyeda sch apply steps.json --yes
+```
 
-## Inspect Schematic
+`--dry-run` 只预检并打印，不执行步骤；`--yes` 对当前任务已授权的计划跳过交互提示。
+不以文档中的示例替代用户授权，也不为已经授权的每个步骤重复请求确认。
 
-- `schematic.components.list` — 当前页（或全页）所有元件，可含 pins
-- `schematic.select` — 按 primitiveId 选中图元
-- `schematic.snapshot` — 截取当前渲染区域为 PNG artifact。**默认先「适应全部」再截**（整张图入画，无需另调 `view.fit`）；`easyeda sch snapshot --no-fit` 保留当前视口。**局部截图**：先 `easyeda view region --left --right --top --bottom`（或 `view zoom --x --y --scale`）框住目标区域，再 `easyeda sch snapshot --no-fit` 截该视口
+Playbook 使用 `version:1`、`meta` 和有序 `steps`。每步只选一种执行方式：
 
-## Mutate Schematic
+- `action` + `payload`：typed action；输入按目录 schema 校验。
+- `run` + `flags`/`args`：Cobra 子命令，例如 `sch frame apply`。
+- `notify`：编辑器提示。
 
-- `schematic.component.place` — 从库放置元件（libraryUuid + uuid + x/y）
-- `schematic.component.modify` — 修改位置、位号、BOM 属性等
-- `schematic.component.delete` — 删除元件（需确认）
-- `schematic.wire.create` — 创建导线折线
-- `schematic.netflag.create` — 创建电源/地/网络端口/短路 flag
-- `schematic.power.connect_pin` — 复合操作：从 pin 拉导线 + 在末端放 flag（防止 flag-on-pin DRC fatal）
-- `schematic.pin.set_no_connect` — 给引脚打/清「非连接标识」(NC, X 标记)，告诉 DRC 该脚是故意悬空。按 `--designator` + `--pin`（可多个）定位；`--clear` 清除。CLI：`easyeda sch no-connect --designator U1 --pin 23,24`
-- `schematic.save` — 保存原理图（需确认）
+`capture:{"part":"$.primitiveId"}` 捕获新实例 ID，后续 payload 用 `${part}`；
+不要把旧文件中的 primitive ID 当作新建结果。`assert` 的路径相对 action 的 `result`，
+支持 `exists`、`true/false`、`==/!=`、数值比较及 `len` 比较。内部 run 继承目标工程/页。
 
-## Library
+执行默认失败即停，只读步骤可重试；变更超时不自动重发。`partial:true` 或非空
+`notApplied` 会使 typed 步骤失败。成功回执不等于保存；计划应包含读回与显式 save。
+可选 `verify` 是失败后的落地检查，不是事务回滚。已生效的前序步骤保留在画布和 journal。
 
-- `schematic.library.search` — 自由文本搜索立创/EasyEDA 器件库，返回 libraryUuid + uuid
+CLI 完整读取单次 action 的 HTTP 响应，最多 32 MiB；health 清单另限 1 MiB。
+超限必须报错且不输出截断内容。整页含属性、pins、bbox 与 wires 的快照可能超过 1 MiB；
+旧 CLI 会静默截断并导致 JSON 解析失败，不能据此判断宿主对象缺失。遇回读失败先停止依赖写入，
+保留 journal、输入和原始输出；已写入状态可 typed save/原生导出冻结，但不算验证通过。
+修复读取后重新采集完整快照、核对已生效步骤，并从当前状态重算受保护队列；不要盲重放或删减必要字段。
 
-## Verify & Export
+**生成的保护计划**（如 compose、designators、connectivity plan）禁止改目标、
+`--resume` 和 `--from/--to`。失败后重新读取当前图，修正输入，再完整编译/执行。
+普通手写 playbook 支持这些选项，但恢复依赖原文件 SHA 和有效的捕获变量；修改文件后
+不能继续使用旧 journal。只有明确验证过的独立片段才适合区间执行。
 
-- `schematic.drc.check` — 调官方 `eda.sch_Drc.check` 作为 SDK DRC 门。当前 EasyEDA build 可能只返回 boolean/聚合结果,即使 `includeVerboseError=true` 也不保证有逐条 UI warning；CLI: `easyeda sch drc [--json]`。**不要单靠它宣称“官方 UI DRC 干净”**。
-- `schematic.check` — 我们的逐条重建检查:从 primitives + 官方 `sch_ManufactureData.getNetlistFile()` 交叉校验,报告 net-marker/wire-name mismatch、multi-net wire、floating-pin、wire-crossing、wire-over-pin。CLI: `easyeda sch check [--json] [--strict]`。
-- `schematic.export.netlist` — 导出网表为 artifact
-- `schematic.export.bom` — 导出 BOM（csv 或 xlsx）为 artifact。CLI `easyeda bom export --type csv` **默认在导出后就地补全 LCSC C 号**（按 Manufacturer Part 关联 `standard-parts.json`，把 `Supplier Part` 从 `<MPN>.1` 改写为可下单的 C 号）；`--enrich=false` 关闭，xlsx 不补全（二进制）。补全是 best-effort（缺 python3/脚本只告警、导出仍成功）。脚本自动解析顺序：`--script` > `$EASYEDA_SKILLS_DIR/easyeda-agent/scripts/bom-enrich.py` > 二进制/工作目录向上找 `skills/` > PATH；安装版二进制在 `/usr/local/bin` 时设 `EASYEDA_SKILLS_DIR` 最稳。
+`audit export --playbook` 可从审计生成复现用队列；它可能包含 clear/delete 等操作，
+也可能引用在录制区间外创建的 ID。先检查生成内容和 raw-id 警告，不能将录制物当作幂等模板。
 
-## PCB（Phase 2，只读）
+## 显式保存与自动保存
+
+保存和 `doc reload` 要求布尔 `saved:true`；`saved:false`、缺失或其他类型均失败，
+reload 在关闭前停止。显式保存、真实重载和新回读才构成持久化证据。
+后台 autosave 只接受 `mutationContextAvailable:true` 的独立身份；响应 `context` 仅供诊断。
+已知 typed `document.source.roundtrip` 按认证文档类型选择保存；dry-run 不 arm，其他泛域动作不推断目标。
+connector 在 handler 前后核对 project/doc/type 和可选 tab；漂移、缺测或旧版本缺少认证时
+不启用自动保存，并保留 warning、`health.autosave` 与审计原因。前后两次采样不覆盖 ABA 切页。
+显式保存只按认证归属取消旧 timer，不取消请求之后的新编辑；探针仍须显式保存。
+
+## 常用原理图适配器边界
+
+| CLI / action | 必要边界 |
+|---|---|
+| `doc ls/switch/open/reload`，`document.current/open/close` | 使用工程和页面目标；同名页用 UUID。工程仍在线但没有活动标签时，`doc ls --project` 继续读取工程级原理图页/PCB 清单，`doc open <uuid> --project` 用 typed `document.open` 恢复并以 fresh `document.current` 确认；其他 current/清单错误仍失败关闭。`doc reload` 保存后把 fresh current 的 UUID + tabId 一起交给 typed `document.close`，由官方 API 在关闭前回读身份和 splitScreenId，再用 `document.open` 恢复；禁止以 `debug.exec_js` 关闭标签。CLI 同时核对活动 UUID 与对象枚举 settle；只出现目标标签、但对象仍不可读时失败并要求停止写入、修复 typed reload/open 后复测 |
+| `web reload`，`system.page_reload` | 仅在用户明确要求刷新整个 Web 编辑器时使用。传精确 `--project <UUID> --doc <UUID>`；CLI 先保存并记录目标页组件 ID 基线，连接器在回执后刷新顶层页面。新 windowId 必须属于同工程；若宿主恢复另一文档，CLI 最多一次 typed `document.open` 恢复原文档。成功要求连续同 context 的 fresh 组件清单与基线 ID 一致、对象状态稳定、末次 `document.current` 核对；空基线需额外稳定采样，仅证明空页路由可读。超时、再次漂移或读失败均不能称重载完成。其他打开的文档须事先保存；不能用它自动兜底对象读取故障 |
+| `sch list`，`schematic.components.list` | `includeDeviceIdentity` 为重放解析真正库 UUID；`includePins/BBox/Wires` 取得几何基线。V4 `pins[].otherProperty` 保留引脚文本属性；字段缺失不能当空对象。非激活页可能是浅数据 |
+| `sch attribute-inspect --id <primitiveId>`，`schematic.attribute.inspect` | 只读诊断当前页指定属性的 `KeyVisible`/`ValueVisible`：分别记录全量枚举、按 ID 读取、按 ID 读取后 `toAsync().reset()` 的原值与类型，并核对前后文档身份及图元 ID。`undefined` 为不可读；诊断结果不补默认值，不放宽整页快照或清页守卫。仅调用官方读取接口，不调用 `done`/`modify`。|
+| `sch place`，`schematic.component.place` | 使用库 UUID；自动回填可确定的 C 号与空属性是 best-effort，须检查警告。没有 place 自定义属性输入契约；V4 复数 symbol/device/footprint association 在 canonical selector 完成前写前拒绝，不能取第一项 |
+| `sch modify`，`schematic.component.modify` | `otherProperty`/`customAttributes` 二选一，合并保留原属性。`verified:false` 需要再回读，不能当已验证 |
+| `sch prim-delete/clear` | 删除后按 ID 或完整图元清单验证；默认保护 sheet。未知枚举或幸存图元不能报告清空 |
+| `sch connect/autoconnect`，`schematic.power.connect_pin` | 必须生成非零短线，flag 不能与 pin 重叠；connect 非幂等，autoconnect 可跳过已连接目标网 |
+| `sch disconnect`，`schematic.pin.disconnect` | 检查共享树的 `alsoDisconnectedPins` 和删除残留；逐个恢复受影响引脚 |
+| `sch no-connect` | 显式设置/清除 NC，不创建零长线，不推断缺失数据为 NC |
+| `sch replace/rebind-symbol/rebind-footprint` | rebind 先回读 Device association，再创建并回读候选，之后才删除原件；恢复后逐字段核对设备/符号或封装绑定、`uniqueId`、位姿和属性。失败回执含 phase、原件/候选存在性和 rollback 事实。超时后禁止盲重试及 `pcb import-changes`，先新鲜回读。换器件另查看 pinDiff，按引脚差异重连和验收 |
+| `sch export-image` | 文档渲染 SVG/PNG/PDF；`--ids` 导局部，不依赖视口截图 |
+| `sch image create/list/modify`，`schematic.image.create/list/modify` | 非电气 PNG/JPEG/SVG；raw 单位、y-UP、源左上角 anchor；list 只读几何，modify 不替换内容，删除走 `schematic.primitives.delete`。历史现场验证仅参考图片，见 [原理图](schematic.md) |
+| `sch read/check/bridge-check/drc/gate` | 用法与判读见 [schematic.md](schematic.md)；SDK DRC 聚合值不代表 UI 所有警告消失 |
+| `sch save` | 稳定检查点显式保存并确认布尔 `saved:true`；失败时也可保存已知状态，但不等于验证通过 |
+
+`replace` 保留 sch↔PCB 的 `uniqueId`，器件型号/供应商字段随新 device；`--keep-properties`
+才保留旧自定义属性。`rebind` 对不可写系统库可克隆到个人库；失败恢复仍需看实际回读。
+修改属性时不要整包带入库的 `Designator` 等投影键。回放 `propertiesBefore` 只能恢复旧值，
+无法通过 merge 删除新加的键。网络文件用 `sch_ManufactureData.getNetlistFile()`，
+不用已废弃的 `sch_Netlist.getNetlist()`。
+
+产物路径从 `artifacts[].path` 获取。`sch read/list` 本身直接输出 JSON；
+`sch check --json` 使用 `{ok,result}` 信封，问题在 `result.findings`。
+`bom export --type csv` 默认 best-effort 补 LCSC C 号，`--enrich=false` 可关闭，xlsx 不补。
+需显式指定脚本时用 `--script`，安装态也可设置 `EASYEDA_SKILLS_DIR` 指向 Skill 的父目录。
+补号解释器按 `python3` → `python` → `py -3` 依次探测（Windows 上会真正运行一次候选，
+所以微软商店那个只会退出 9009 的 `python3.exe` 假入口会被跳过），需要钉死某个解释器
+（venv、指定小版本）时设 `EASYEDA_PYTHON=/abs/path/to/python`；设了但不可执行直接报错，
+不会退回其它解释器。找不到任何 Python 3 时只是补号失败并打 warning，导出的 BOM 仍然成立。
+
+## 图纸与明细表
+
+`project export-source --uuid <current-project-uuid> [--window <window-id>] [--out project.epro2]`
+经官方 `sys_FileManager.getProjectFile(..., 'epro2')` 导出当前工程原包。`--uuid` 必须等于
+导出前后的活动工程 UUID；CLI 核对官方大小、daemon 落盘大小及 SHA-256。超过 8 MiB、
+权限不足、工程切换或超时均失败。此命令只保存原始证据；`epro2` 中是否含当前图框 `SYMBOL`
+及可区分红色内框与图签的图元，须逐份验证，不能直接当成几何实测。
+
+`lib symbol export-source --uuid <sheet.symbol.uuid> --library <sheet.symbol.libraryUuid>
+[--out source.elibz2]` 经官方 `sys_FileManager.getSymbolFileBySymbolUuid` 导出原始符号包。
+从 `sch list` 的 `componentType:"sheet"` 记录取 **symbol** UUID，不要误用 `component`
+中的器件 UUID。CLI 对导出物大小、落盘路径及 SHA-256 做核对；超过 8 MiB 或权限不足即失败。
+此命令只保留未改写的原始证据，尚无已验证的 `.elibz2` 图框解析器，不能把符号包、纸张
+外 bbox 或图签比例估计称为红色绘图区内框实测。下载库权限和当前宿主是否能导出内置图框
+符号须现场只读验证。
+
+`sch titleblock-get` 先取得实际字段名；`sch titleblock --data` 只传要改的明细项，按
+`--doc` 钉住聚焦页。不要把 get 返回的整包字段写回，尤其 Device/Symbol、几何与 `@` 投影项。
+连接器按字段回读：unknownKeys 应修正键名，partial/notApplied 应检查实际状态，不能盲重试。
+只更新文本时保留字段已知的 `showTitle`/`showValue`；任一显隐未知、缺失或 null 时，
+必须在该字段显式给出对应布尔值，否则 CLI 在首次写入前拒绝并列出缺失项，不猜宿主默认值。
+只改显隐而不改 `value` 时，仍需已知或显式的 `showTitle` 才能安全初始化字段；
+未请求且未知的 `showValue` 可以省略。Compose 通过同一 CLI 执行，遇拒绝先修源参数再重算。
+需要改变属性显隐时在对应字段显式给布尔值，例如
+`{"Name":{"value":"电源页","showTitle":false,"showValue":false}}`；字段属性显隐与图签整体显示是两回事。
+显示字段名可能生成图签表格以外的属性文字；写后必须用官方整页导出核对，不能仅凭值已写入验收图面。
+失败后的幂等回读要同时核对请求的文本、字段显隐及同次整体 `--show/--hide`，不能以相同文本掩盖未生效的可见性。
+空的 `--data` 拒绝执行；整体显示未知时不自动打开，只有明确 false 才沿用文本更新时打开图签的行为。
+明细表接口不能设置纸张尺寸；换图框是独立的器件替换工作，不能用 Width/Height 伪装。
+
+`page-new/rename/delete` 管单页，`sch rename` 管原理图文档。compose 不隐式删除源页；
+删页应先确认目标器件/网络已经迁移，平台无程序化 undo。
+
+## 器件库与自建资产
+
+用户指定左侧「常用库」时，先用 `lib common list --category "安装器件"` 读取对应分组，
+再 `lib device get` 核对明确型号；这条目录路径独立于立创搜索。
+当前 Web 目录与 M3 放置链路的现场验证尚未完成，见
+[常用库器件](part-selection.md#common-library-devices-常用库)。
+
+优先标准器件或 `lib by-lcsc` 的精确 C 号匹配。搜索结果须核对型号与封装，不能默认取第一条。
+`sch resolve-lcsc` 只在型号和封装精确匹配时写回，unresolved 必须继续处理。
+
+需要自建时按 `lib libraries` 找目标库，再用 `lib device build --spec device.json`
+编排 Symbol、Footprint、可选 3D Model 与 Device；也可分步 create/build/get。
+完整规格先运行 `lib device validate --spec device.json`，它离线核对 PDF 证据、几何字段、
+重复编号以及 symbol pin ↔ footprint pad 集合；`device build` 会再次执行同一输入校验，防止写入非法资产。
+PDF 通读、封装变体消歧和规格格式见 [library-authoring.md](library-authoring.md)。
+资产使用可复用的 `EA_AGENT__<ASSET>` 命名，项目来源写属性或描述。create/build 的
+`verified/partial/rollback` 必须核对；删除要求 UUID、library 和 expected-name 精确匹配。
+Symbol/Footprint build 仅允许写入可证明为空的刚创建资产：Connector 在任何 create 前回读
+目标 editor 的完整受支持图元 inventory，非空或读取不完整都以 `PRECONDITION_REFUSED`
+零写入拒绝。build 不是追加或替换接口，不要重放同一 UUID；当前没有 `--replace`。
+
+- Footprint JSON 的单位是 mil，pad/hole 使用官方 tuple；复杂弧线/区域优先用
+  `lib footprint copy` 保留几何。层与制造规则见 [pcb.md](pcb.md)。
+- `lib symbol build` 从轮廓、引脚与可选圆形生成符号；引脚编号、Pin-1 和极性需验证。
+- 当前没有 Device rename typed action；实测官方 `lib_Device.modify` 改名返回 false 且不落地，
+  不要用 `debug exec` 反复试探。需要新名称时新建并重新绑定 Device。
+- `lib model3d search/copy/create` 获取模型；`lib device model3d` 绑定或清除，须回读
+  模型 UUID 与 library UUID。`device create` 也支持模型绑定参数。
+- 库 API 有 beta 能力；错误或结果不明时先 get，不能因即时读回缺失重复创建。
+
+需要底层方法时先 `easyeda api search <query>`。typed action 尚缺的行为可临时探测，
+验证后再实现 CLI；不把重复 debug 脚本积累成生产流程。
+
+`debug exec` 的脚本编译失败返回 `PRECONDITION_REFUSED`，说明代码未执行：修正语法与
+命令行转义后再提交，不原样重试。执行阶段抛错仍按 `EDA_CALL_FAILED` 处理，即使异常名为
+SyntaxError；执行可能已经产生修改，必须回读。语法拒绝不计入连接器健康度。
+
+队列拒绝只有在入队探针仍未返回、且近期旁路 `document.current` 成功时才使用
+`CONNECTOR_QUEUE_BLOCKED`，CLI 可有界等待。旁路结果未知、过期或失败时返回
+`CONNECTOR_HEALTH_UNVERIFIED`，停止自动等待，先切前台并检查旁路读取；持续不响应时
+按恢复流程重启并回读。两种拒绝均未派发当前动作，不代表此前超时的写入没有落地。
+
+布局路径的 `connect_pin` 与 `sch connect/autoconnect` 共用 35 秒请求预算，包含 daemon 的
+2 秒回执余量。该预算不保证宿主一定完成；超时仍须回读，不能自动认定创建失败并重发。
+
+`sch place` 为 daemon 等待连接器保留 8 秒，另外预留 2 秒传回结构化错误（请求共10秒）。
+超时提示同时覆盖 HTTP 超时和 daemon 返回的 deadline 错误；先回读是否已经放置，再检查
+库 UUID、窗口状态。超时不能单独证明 UUID 错误，也不能作为再次放置的依据。
+
+## 外部工程导入边界
+
+Altium Designer `.SchDoc` / `.PcbDoc` 当前没有可用的 typed action。官方 beta
+`sys_FileManager.importProjectByProjectFile` 在已报告的 3.2.149 本地工作区会静默返回
+`undefined` 且不产生工程副作用，不能包装后当成功。`sys_FormatConversion` 的 Altium
+入口只适用于 `.SchLib` / `.PcbLib` 库转换。工程迁移当前标为 `unsupported`；不得通过
+EasyEDA 交互界面兜底。能力边界与未来 typed 验收见 [project-import.md](project-import.md)。
+
+## PCB 基础上下文（非穷举）
+
+- `pcb.config.get` / `pcb.config.set` — 当前 PCB 的配置读取与参数化局部修改。CLI 为
+  `pcb config get/clearance/track/via/bind`；参数、mil/mm、dry-run、部分成功及回读契约见
+  [pcb-config.md](pcb-config.md)。`get` 导出可交给 `pcb drc-rules-set --from` 完整恢复。
 
 - `pcb.documents.list` — 工程内所有 PCB 文档（uuid + name）
-- `pcb.components.list` — PCB 上的封装/器件（可含 pads）
-- `pcb.layers.list` — PCB 层列表 + 当前层 + 铜层数
+- `pcb.document.delete` — 删除一份**未绑定**的 PCB 文档（**需确认**，无 undo）：按精确 `--uuid` + `--expected-name` 预检，仍被 Board 绑定则拒绝（改用 `board.delete`，或 `--keep-documents` 先解绑），删后回读确认不再列出；复用模块 PCB 连带删除的文档列在 `alsoDeleted`。CLI：`easyeda pcb doc-delete --uuid <pcbUuid> --expected-name <名称> [--dry-run] [--no-tree-refresh]`；工程树刷新同 `board.delete`。
+- `pcb.components.list` — PCB 上的封装/器件；`includePads:true` 回传 pad 的原始
+  `shape` / `rotation` / `specialPad`，支持形状另带旋转后 bbox `width/height`
+- `pcb.line.list` — 铜线与圆弧；`arcsAvailable:true` 才能证明空 `arcs` 确实表示没有圆弧
+- `pcb net-path` — 用 fresh pads/tracks/arcs/vias 证明有序焊盘拓扑、层与过孔；长度累计实际
+  经过的 track 子段和 arc 子弧，分叉落在图元中段时不把整图元或圆弧弦长计入结果。
+- `pcb.layers.list` — PCB 层列表 + 当前层 + 铜层数（会先激活 PCB tab 保证 `currentLayer` 可读回；无当前层时附带 `visibleLayers` 作为显示状态证据）→ `easyeda pcb layers`
+- `pcb.layers.set_current` — 切换当前编辑层（`--layer` 接受 id|层名|top|bottom|inner1）→ `easyeda pcb layer-set --layer bottom`
+- `pcb.layers.visibility` — 显示/隐藏/聚焦层做视觉 QA：`--preset top-only|bottom-only|copper-only|silk-only`，或 `--show/--hide`（可加 `--exclusive` 只留所选）→ `easyeda pcb layer-visibility --preset bottom-only`
+- `pcb.view.side` — 切到顶面/底面视图（选该面铜层为当前层 + 聚焦该面铜+丝印），随后 `pcb snapshot` 即反映该面。注意：EasyEDA 无原生画布翻面 API，这是「层聚焦」近似而非物理翻板 → `easyeda pcb view-side --side bottom`
+- `pcb.view.filter.get` — 只读返回当前 PCB 画布过滤配置 → `easyeda pcb view-filter`。当前官方 SDK 只有 getter，没有“元件属性”显隐 setter；因此自动隐藏/恢复保持 `unsupported`，不能用 `pcb_PrimitiveAttribute.modify` 改持久属性，也不能点击 GUI 兜底。
+- `pcb.snapshot` — `--fit-mode board|all|none`；默认 `board` 先执行公开 `zoomToBoardOutline()` 再抓取当前渲染区，返回实际 `fitModeApplied` / `fitApi` / `captureKind`。它是 board-fitted viewport PNG，`objectLevelExport=false`；不能冒充编辑器菜单的对象级“复制为 SVG/PNG”，后者当前没有公开 `eda.*` 包装。旧 `--fit=true|false` 仅兼容映射为 `all|none`。
 - `pcb.nets.list` — PCB 全部网络
+- `pcb.image.create/list/modify/delete` — PNG/JPEG/SVG 参考图片，只支持 DOCUMENT 13；
+  mil、y-UP、源左上角 anchor；create 须给宽或高，list 返回实际层和 bbox，不返回 binary。
+  modify/delete 拒绝非 DOCUMENT 对象，部分写入保留 ID 并失败；保存重载后重新回读。
+- `pcb.silk.import_svg` — `pcb silk-import-svg` 的既有 SVG 填充轮廓 action，创建
+  `pcb_PrimitiveImage`；与嵌入参考图片的 `pcb_PrimitiveObject` 分开。
+  PNG/JPEG 转制造丝印需要人工调节图稿，不提供自动转换命令；参考图片的回读不证明制造几何。
+- `pcb dump --include-copper --out board.json` — 生成自包含快照；焊盘保留原始 shape、旋转和
+  specialPad，铜按 routing/vias/pours/poured/regions/fills 分别标记 available/unknown，
+  `semanticSha256` 排除采集时间与自身哈希后用于执行前 stale 检查。
+- `pcb.poured.list` / `pcb poured-list` — 读取 `pour-rebuild` 后的实际铜岛，不等同于
+  `pcb.pour.list` 的可编辑边界；complex polygon 的孔洞与已验证 ARC 原样保留，任一 fill
+  几何读取失败则整个 action 失败。宿主 poured fill 的坐标和 `lineWidth` 为 0.1mil，typed
+  action 按 polygon 命令角色归一化到 mil；`ARC/CARC` sweep 和 `R` rotation 保持 degree，
+  nested contours 递归保留。每个 fill 返回单位字段和 `geometryKind`；`fill:false` 保留为带
+  线宽的 `stroked-thermal-spoke-path`，不能按填充面解释。只有完整 inventory 返回真实 `[]` 才是 known-empty；fill、
+  boundary、net、layer、polygon 或关联 ID 任一缺测均为 unknown/error。
+- `pcb layout-plan` — schemaVersion 1 做纯布局；schemaVersion 2 保留历史模块；schemaVersion 3 的 `crystal-guard` 要求 `groundImplementation=tracks-vias`，在局部坐标完成器件、OSC、GND 护环/导线、双层 no-pours 和接地孔后整体平移，输出 `candidate-XX.svg`（整板）、`.local.svg`（局部组装）和
+  `.compare.svg`（前后对比），三者与 apply 共用候选几何。`crystal-guard` 的 no-pours 包络
+  包含最终 signal-main 的“线宽一半 + live 净距”stroke bbox，并保留 owner 侧信号入口；
+  `replacePrimitiveIds` 必须精确覆盖 fresh baseline 两条 OSC 网的全部 track/arc ID。
+- `pcb module-check` — 离线比较 before/after fresh dump、候选与 apply journal；检查遗漏/
+  额外对象、非目标变化、no-pours 内实际铺铜与静态 fill、OSC ordered path、fresh pad 几何、
+  capture PID 一一对应，以及 polygon/holes/ARC 等价。schema-v2 的 `affectedBaselinePours` 把
+  可局部重建的既有材料化铺铜绑定到 boundary/materialized ID 和 `impactEnvelope`：只允许声明
+  对象在包络内变化，区外及未声明对象严格保持。晶振 GND 会逐段证明 `role=guard` 实际 track
+  经列出铜连接到 ground anchor，并逐个验证每个 fence/anchor via 在
+  TOP/BOTTOM 实际 GND 铜上与 ground-anchor 同岛，而不是只验任意 via 或两条入口。官方 DRC
+  仍须单独运行并按对象/错误类型保存证据。
+
+### 长度约束：差分对 / 等长网络组（#176）
+
+**布线前（P7 之前）声明,布线后用 `pcb report` 量。** 约束是让 DRC 与布线器知道「这两条是一对 /
+这组必须等长」的唯一途径,也是 `pcb report` 的 `skew`(|lenP−lenN|)与 `spread`(max−min)有意义的前提 ——
+不建约束,那两个数组永远是空的,报告里的测量能力等于空转。
+
+- `pcb.constraint.list` — 读回本板的**约束清单**(差分对 + 等长组)。注意与 `pcb.report` 分工:
+  这条给「有哪些约束」,`pcb.report` 给「量出来多少」→ `easyeda pcb diff-pair list` / `eq-group list`
+- `pcb.differential_pair.create|delete|rename` → `easyeda pcb diff-pair create --name USB0 --positive USB_DP --negative USB_DM`
+- `pcb.equal_length_group.create|add_nets|delete` → `easyeda pcb eq-group create --name DDR_ADDR --nets A0,A1,A2`
+
+四条行为约定(都已真机验过):
+
+1. **网名前置校验**:约束指向板上没有的网,平台照收不误但等于没建 —— 我方在动手前比对
+   `pcb nets`,对不上就**一个字节都不写**地拒绝并点名缺失网(网名大小写敏感,来自原理图);
+2. **写后回读**:回执的 `verified` 是连接器自己重读 `getAll` 比对出来的,平台返回的 boolean 不算数;
+3. **幂等**:同名同内容重建 = `alreadyExists`(可重放);同名**不同**内容 = 明确拒绝并给下一步
+   (改名 / 先删 / 用 `eq-group add` 扩展),绝不静默覆盖;
+4. **改绑定要删了重建**:平台对差分对只暴露「改名」,没有「改绑哪两条网」。
+
+这些是 `Mutates` 动作。即时读取可能带 `staleRisk`，可用于诊断；最终约束证据使用
+`pcb save → doc reload → list/report`。
 
 ## Board（板子/组合 — 原理图↔PCB 绑定）
 
@@ -72,15 +296,43 @@ Run `easyeda actions` for the authoritative machine-readable list.
 
 - `board.list` / `board.current` — 列出全部组合（名称 + 原理图 + PCB）/ 当前组合
 - `board.create` — 把原理图和/或 PCB 绑成新组合（`--schematic` / `--pcb`）；游离 PCB 在 `import_changes` 前的修复手段
-- `board.rename` — 重命名组合（`--name` → `--new`）
+- `board.new` — **空工程起步**：在当前工程新建一个组合，内含新原理图（至少一页）和新 PCB。`--project` 必须是当前工程的精确 UUID，可不传 `--doc`；`--name` 可选（重名拒绝；宿主拒绝或谎报改名时以回读名字为准，组合保留默认名，结果 `partial` 并带 `notApplied:["name"]`，CLI 非零退出——先 `board list` 看实际名字再决定改名或删除）。任一步失败按逆序删除本次已建部分并报告回滚；成功以新回读 `board.list` + 文档列表为准（`verified`），返回 `boardName`、`schematicUuid`、`schematicPageUuid`、`pcbUuid`。CLI：`easyeda board new --project <uuid> [--name <名称>]`
+- `board.rename` — 重命名组合（`--name` → `--new`）。结果以新回读为准：组合列表出现新名且旧名消失才 `ok:true`，否则非零退出（`hostReturned` 记录宿主原始回答）。Web 4.1.78 现场对新建组合改名既返回过 false，也返回过 true 而名字未变，改名能力待查。
 - `board.copy` — 复制组合（连同原理图 + PCB）
-- `board.delete` — 删除组合（**需确认**，无 undo）
+- `board.delete` — 删除组合**及其绑定的 PCB 与原理图（全部图页）**（**需确认**，无 undo）。平台 `deleteBoard` 只解绑，文档由 `deletePcb` / `deleteSchematic` 显式删除；先 `--dry-run` 列出将删文档，结果以新回读为准：`deleted[]` 已证实消失，`residual[]` 仍在（`partial` → 非零退出，先查再重试）。`--keep-documents` 只解绑。删除经回读验证后，CLI 会刷新官方工程树：SDK 没有工程树刷新接口，所以保存当前前台文档 → **重载整个 Web 编辑器页面** → 恢复原前台文档并回读核对（同 `easyeda web reload`），会打断正在看编辑器的人，其他打开的文档须已保存。结果附 `treeRefreshed` / `treeRefresh`，刷新失败单独报告、不把删除判为失败；dry-run、`--keep-documents`、partial 不刷新，`--no-tree-refresh` 关闭。
 
-## Confirmation Required
 
-- `schematic.component.delete`
-- `schematic.page.delete`（删除图页，无 undo）
-- `board.delete`（删除组合/板子，无 undo）
-- `schematic.save`（未明确要求保存时）
-- 生成的多步 mutation 计划
-- `debug.exec_js`（任何情况）
+## 编辑器界面（不改工程）
+
+- `editor.panels` — 收起/展开左右侧栏（官方 `sys_PanelControl`）：`--left` / `--right` 取 `open|closed`。只改界面，不算写入。SDK 没有读取侧栏开合状态的接口，结果只报告调用了哪个方法及事先读到的锁定（固定）状态（`stateReadable:false`）；侧栏被锁定时写入 warnings，不擅自解锁。收起后接 `easyeda view fit` 居中展示。CLI：`easyeda editor panels --left closed --right closed && easyeda view fit`
+
+## PCB 属性同步（现有契约）
+
+- `pcb.component.attrs_backfill` — **PCB 器件属性回填（器件标准化 PCB 侧）**。**代价**：回填值只在 PCB 侧，原生 DRC 随即报 `Netlist Error`（原理图与 PCB 网表不一致），故 `pcb import-changes` 默认不再回填（`--sync-attrs` 显式开启），DRC 门禁前不要跑。平台 sch→PCB 导入把 otherProperty 建成**键在值空**（Value/耐压/精度/Datasheet 全 ""），且原理图实例属性值 save/reload 后同样为空（不可作源）——唯一稳定源是 **device 库记录**：按实例 C 号 `getByLcscIds` 解析，只填 PCB 侧空值键（手改值优先，`--overwrite` 强制），全程 PCB 前台。无 C 号器件跳过并报告。`pcb import-changes` 成功后**自动跑**（`--no-sync-attrs` 关）。⚠️ **平台投影键绝不参与 merge**（`Designator`/`Unique ID`/`Name`/`Add into BOM`/`Manufacturer*`/`Supplier*`——它们存在顶层图元状态；库记录的 `Designator:"C?"` 占位键灌进实例会被平台同步成图元位号,一板位号全灭 = 166/166 U? 事故真因,2026-08-09 根治）。CLI：`easyeda pcb sync-attrs [--overwrite]`
+- `pcb sync-designators`（`pcb.components.list` + `pcb.component.modify` 编排,无新 action）— **修占位位号**（`U?`/`C?`）：按 `uniqueId`（平台首次导入铸造、跨文档同一命名空间）从原理图回填。只动占位符（手设真实位号绝不覆盖）；每笔回读验证；修完立落 `pcb.save` 检查点；原理图侧同为占位符的件归类「先标注原理图」。`--dry-run`/`--json`（Failed>0 非零退出）。`import-changes` 后自动**殿后**跑（在 attrs 之后,`--no-sync-designators` 关）。CLI：`easyeda pcb sync-designators`
+
+3D 模型导入的 `/action` 请求体上限为 **32 MiB**（#199），计算的是包含 base64、
+文件名和其他字段的整个 JSON，不是原始模型大小。base64 约膨胀 4/3，
+因此原始模型必须小于约 24 MiB，并给 JSON 字段留出余量。超过上限会在 daemon
+入口拒绝，不会交给连接器；请压缩/简化模型或使用库中已有模型。
+### `schematic.pin.repair_marker`
+
+受保护的单脚标记支路替换。输入含页面身份、稳定组件/脚、旧 wire+marker 的完整坐标/ID、
+目标 kind/net/direction/offset 和源快照哈希。daemon 在同一互斥区间内读取基线、验证旧对象，
+删除旧支路、创建新支路并回读；目标 finding 必须消失，范围外对象与旧 finding 必须不变。
+部分写入如实返回，不能重试或声称回滚。只由 `sch layout-edit --playbook` 生成；普通修线不手写。
+
+## 工程打开与原生导出
+
+| Action | 输入 | 结果与约束 |
+|---|---|---|
+| `project.open` | `projectUuid`、`allowDiscardUnsaved:true`，可选 `pageUuid` | 官方打开后核对工程；指定原理图页时等待树就绪并核对页面；先保存所有文档 |
+| `project.export` | `projectUuid` | 仅导出当前匹配工程，前后核对身份；返回 `uuid/format/size/base64`，最大 16 MiB |
+| `project.import` | `fileName`、`base64`、`friendlyName`，可选 `teamUuid`、`importOption` | 官方 @beta 导入为**新工程**；`.epro2` 往返已现场验证；宿主可能切走活动工程并断开连接器；空返回、断开或超时为结果未知，先 `project find`；内容须打开后回读对账 |
+
+CLI `project open --project-uuid` 与 `project export` 封装上述 action；导出 CLI 负责 ZIP/CRC 校验、禁止覆盖与 SHA-256。MCP 使用 `easyeda_project_transfer`。需要包含 handler 的连接器，无调试脚本回退；具体参数与恢复验证边界见 [project-import.md](project-import.md)。
+
+## 原生原理图 DRC 的判定与覆盖
+
+`schematic.drc.check` 的 `passed` / `nativePassed` 采用宿主布尔重载在指定 `strict` 下的判定。详细模式另取统计，两次 SDK 读取不是原子快照；检查期间不要并发修改工程。非严格通过并不代表零告警。
+`countsAvailable` / `detailsAvailable` 区分统计和逐项明细；仅布尔结果的 `summary` / `fatal` 为 null，不能把未知填成零。聚合 count/type 不能用来猜规则或对象，`schematic.check` 不替代原生规则。调用失败不能作为通过。

@@ -1,38 +1,48 @@
-## Description: <br>
-Organizes English and Chinese session content by topic or user-specified keywords and outputs a standardized Markdown document with second-level timestamps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multilingual English & Chinese session organizer, auto sort chat by topic or keywords, output standard markdown with second-level precise timestamp.
 
-## Publisher: <br>
-[jhonemingyoung](https://clawhub.ai/user/jhonemingyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jhonemingyoung](https://clawhub.ai/user/jhonemingyoung)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and productivity-focused teams use this skill to organize the current conversation into Markdown by automatically grouping topics or filtering content with user-specified English or Chinese keywords.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may summarize or reproduce sensitive content from the current conversation in a Markdown document.
+
+Mitigation: Avoid invoking it on conversations containing sensitive personal, business, or credential information unless that Markdown output is intended.
+
+## Reference(s):
 
 
-## Use Case: <br>
-People who need to review or share a conversation use this skill to reorganize the current session into a Markdown record, either by automatically detected topics or by user-specified keywords. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generated document may resurface sensitive details and timestamps already present in the current conversation. <br>
-Mitigation: Review the Markdown output before sharing it and avoid using the skill on sessions that contain information unsuitable for redistribution. <br>
+**Output Format:** [Markdown document with categorized conversation entries and second-level timestamps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhonemingyoung/session-content-classification-assistant) <br>
+**Other Properties Related to Output:** [Preserves original conversation content while classifying and typesetting it.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes organization mode, filter keywords, valid conversation count, categorized conversation items, timestamps, miscellaneous content, and an organization summary.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

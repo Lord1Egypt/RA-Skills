@@ -1,47 +1,59 @@
-## Description: <br>
-Agent Call enables AI agents to place Twilio-powered outbound calls, send SMS notifications, and check call status from shell workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to initiate Twilio phone calls, send SMS notifications, and inspect call status using shell scripts and Twilio credentials.
 
-## Publisher: <br>
-[kieferhuan](https://clawhub.ai/user/kieferhuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pe-evolver](https://clawhub.ai/user/pe-evolver)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add phone-call and SMS workflows to an agent, including appointment reminders, urgent notifications, lead follow-up, call-status checks, and optional call recording or transcription through Twilio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact real people by phone or SMS and can spend Twilio funds. <br>
-Mitigation: Require explicit confirmation for every outbound call, SMS, or batch; use recipient allowlists where possible and enforce Twilio spend and rate limits. <br>
-Risk: Twilio Account SID, Auth Token, phone numbers, call details, recordings, and transcripts are sensitive operational or personal data. <br>
-Mitigation: Store credentials in an approved secret manager or tightly permissioned environment, use a restricted Twilio subaccount, avoid committing config files, and limit access to call artifacts. <br>
-Risk: Recording or transcribing calls can create consent, retention, and privacy obligations. <br>
-Mitigation: Keep recording and transcription disabled unless the caller consent, jurisdictional requirements, retention policy, and access controls are approved for the use case. <br>
-Risk: Server security guidance identifies an unsafe message-handling bug in make-call.sh. <br>
-Mitigation: Do not pass untrusted message text to make-call.sh until command construction is fixed; sanitize inputs and prefer safe API parameter construction before enabling untrusted or automated message sources. <br>
+## Use Case:
 
+Developers and agent builders use this skill to let an agent prepare and run Twilio-based outbound call, SMS, and call-status workflows for operational communications such as appointment reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kieferhuan/agent-call) <br>
-- [Publisher profile](https://clawhub.ai/user/kieferhuan) <br>
-- [Twilio Voice documentation](https://www.twilio.com/docs/voice) <br>
-- [Artifact documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented guidance with shell commands, JSON credential configuration examples, and Twilio API-backed call or message status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Twilio credentials and a Twilio phone number; outbound calls, SMS, recording, and transcription can incur provider charges and expose sensitive call data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence and target metadata) <br>
+Risk: The skill can initiate high-impact phone and SMS actions, including recording or transcription, if credentials and inputs are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before calls, SMS, recording, or transcription; test only with owned numbers; and restrict use to authorized operators.
+
+Risk: Unsafe shell input handling can expose call, SMS, TwiML, callback, or form-encoding inputs to misuse.
+
+Mitigation: Avoid untrusted inputs until the shell, Python, TwiML, and form-encoding issues identified by security evidence are fixed.
+
+Risk: Twilio credentials and callback URLs can expose account privileges or route sensitive call data.
+
+Mitigation: Use environment-injected or protected credentials and restrict callbacks to HTTPS endpoints under the user's control.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/pe-evolver/skills/agent-call)
+- [Twilio Voice documentation](https://www.twilio.com/docs/voice)
+- [Twilio documentation](https://www.twilio.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can result in Twilio phone calls, SMS messages, recording, transcription, and call-status requests when the generated or referenced scripts are executed.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

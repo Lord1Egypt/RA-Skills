@@ -1,43 +1,56 @@
-## Description: <br>
-Manage Coder workspaces and AI coding agent tasks via CLI. List, create, start, stop, and delete workspaces. SSH into workspaces to run commands. Create and monitor AI coding tasks with Claude Code, Aider, or other agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Coder workspaces and AI coding agent tasks via CLI. List, create, start, stop, and delete workspaces. SSH into workspaces to run commands. Create and monitor AI coding tasks with Claude Code, Aider, or other agents.
 
-## Publisher: <br>
-[DevelopmentCats](https://clawhub.ai/user/DevelopmentCats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[developmentcats](https://clawhub.ai/user/developmentcats)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Coder workspaces and Coder Tasks from an OpenClaw agent, including workspace lifecycle actions, remote command execution, and AI coding task management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A Coder session token can grant access to workspace and task operations if exposed. <br>
-Mitigation: Keep CODER_SESSION_TOKEN out of commits, logs, screenshots, and shared prompts; prefer least-privilege or short-lived tokens where available and rotate or revoke the token if it is exposed. <br>
-Risk: Workspace deletion, task deletion, restarts, or broad remote commands can disrupt active development work. <br>
-Mitigation: Require explicit confirmation before destructive workspace or task operations and before broad remote command execution. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to manage Coder workspaces, run remote workspace commands, and create or monitor Coder AI coding tasks from an agent session.
 
-## Reference(s): <br>
-- [Coder Docs](https://coder.com/docs) <br>
-- [Coder CLI Docs](https://coder.com/docs/install/cli) <br>
-- [Coder Tasks Docs](https://coder.com/docs/ai-coder) <br>
-- [ClawHub Skill Page](https://clawhub.ai/DevelopmentCats/coder-workspaces) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the coder CLI plus CODER_URL and CODER_SESSION_TOKEN in the agent environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.5 (source: changelog and server release metadata, released 2026-02-06) <br>
+Risk: The skill can guide an agent to use a Coder session token and connect to a configured Coder deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted Coder deployments and provide session tokens through the expected agent environment rather than embedding them in prompts or files.
+
+Risk: Delete, restart, and remote SSH commands can change or remove workspace state.
+
+Mitigation: Review workspace and task names before destructive operations and treat remote commands as capable of modifying files or services inside the target workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/developmentcats/skills/coder-workspaces)
+- [Coder Docs](https://coder.com/docs)
+- [Coder CLI Docs](https://coder.com/docs/install/cli)
+- [Coder Tasks](https://coder.com/docs/ai-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Coder CLI plus CODER_URL and CODER_SESSION_TOKEN in the agent environment.]
+
+## Skill Version(s):
+
+1.5.5 (source: server release metadata and changelog, released 2026-02-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,260 +1,314 @@
 ---
 name: modellix
-description: Integrate Modellix's unified API for AI image and video generation into applications. Use this skill whenever the user wants to generate images from text, create videos from text or images, edit images, do virtual try-on, or call any Modellix model API. Also trigger when the user mentions Modellix, model-as-a-service for media generation, or needs to work with providers like Qwen, Wan, Seedream, Seedance, Kling, Hailuo, or MiniMax through a unified API.
-primaryCredential: MODELLIX_API_KEY
-primaryEnv: MODELLIX_API_KEY
-requiredEnv:
-  - MODELLIX_API_KEY
+description: Integrate Modellix's unified API for AI image, video, and audio workflows. Use this skill whenever the user wants to generate or edit images, create or transform videos, synthesize speech, transcribe audio, clone a voice, do virtual try-on, or call any Modellix model API. Also trigger when the user mentions Modellix, model-as-a-service for media generation, or providers such as Qwen, Wan, Seedream, Seedance, Kling, Hailuo, MiniMax, Whisper, or CosyVoice through a unified API, or when they ask for a Modellix model's request schema, OpenAPI contract, or required input fields. Prefer modellix-cli (model get-schema, model run --wait, task download, doctor, model list) over hand-rolled REST polling whenever the CLI is available.
+license: MIT
+compatibility: Requires network access and Node.js 18.17+; Python 3.10+ enables automatic CLI updates and bundled helpers.
+metadata:
+  author: Modellix
+  version: "3.10.0"
+  modellix-primary-credential: MODELLIX_API_KEY
+  modellix-hermes-tags: creative,image-generation,video-generation,audio-generation,speech-to-text,modellix,cli,api
 ---
 
 # Modellix Skill
 
-Modellix is a Model-as-a-Service (MaaS) platform with async image/video generation APIs. The invariant flow is: submit task -> get `task_id` -> poll until `success` or `failed`.
+Modellix is a Model-as-a-Service (MaaS) platform for asynchronous image, video, and audio workflows. Prefer the official CLI (`modellix-cli`) so submit, wait, and download stay one coherent workflow. Host-specific persistent session guardrails also ship under `rules/*.mdc`.
 
 ## Official Docs
 
-- AI Onboarding (agent quick start): https://docs.modellix.ai/get-started.md
-- API: https://docs.modellix.ai/ways-to-use/api.md
-- CLI: https://docs.modellix.ai/ways-to-use/cli.md
-- Full Models Docs Index: https://docs.modellix.ai/llms.txt (or use `references/REFERENCE.md` locally to query specific model invocation methods)
+- AI Onboarding: https://docs.modellix.ai/get-started.md
+- REST API: https://docs.modellix.ai/ways-to-use/api.md
+- Full Models Index: https://docs.modellix.ai/llms.txt
+- Docs MCP (search / read docs): https://docs.modellix.ai/mcp
+- CLI package (source of truth for CLI behavior): https://www.npmjs.com/package/modellix-cli
+
+### Documentation lookup policy
+
+This plugin may expose the **Modellix Docs MCP** (`.mcp.json` → `https://docs.modellix.ai/mcp`). It is a **read-only documentation** server (`search_modellix`, docs filesystem query, optional feedback). It does **not** submit generation tasks, poll, download, or handle API keys.
+
+When looking up product/API/install docs vs request-body schema:
+
+1. For **request/response schema**, use `modellix-cli model get-schema <slug>` (JSON is the default; the endpoint is public and needs no API key). If CLI is unavailable, use Docs MCP, then `docs_url` from `model describe` or https://docs.modellix.ai/llms.txt.
+2. For **product/install narrative**, prefer Docs MCP when the host has it connected (search, then read the matching page). Else use `model describe <slug> --json` → `docs_url`, or browse `llms.txt` and fetch the model `.md`.
+3. For **CLI command syntax and flags**, prefer this skill, `references/cli-playbook.md`, the npm README, or `modellix-cli --help` — do **not** trust website CLI pages over the CLI package (docs can lag).
+
+If the Docs MCP exposes a skill resource, treat **this** `SKILL.md` as the execution policy source of truth (CLI-first, defaults, paid-submit safety).
+
+Do not rely on the website CLI guide page for command syntax.
 
 ## Execution Policy (CLI-first)
 
-Always choose execution path in this order:
+Choose the path in this order:
 
-1. Use **CLI** when `modellix-cli` is available and authenticated.
-2. Fall back to **REST** when CLI is not installed, unsuitable, or missing capability.
-3. Prefer machine-readable outputs (`--json`) in CLI flows.
+1. **CLI** after `scripts/preflight.py --json` resolves it. Preflight checks public npm `latest`, installs only a newer exact version before execution, and keeps an existing CLI when update infrastructure is unavailable.
+2. **REST** only when CLI is not installed, unsuitable, or missing a needed capability.
+3. Prefer machine-readable output (`--json` or `--quiet`) for automation.
 
-For CLI mode, use these two commands as the default command set:
-- Create task: `modellix-cli model invoke --model-slug <provider/model> --body|--body-file ...`
-- Get result: `modellix-cli task get <task_id>`
+Canonical single-task flow:
 
-Do not guess or invent deprecated flags (for example `--model-type`). Use `--help` only as an assistive fallback when command behavior is unclear.
-
-## API Key Lifecycle Policy
-
-Always handle `MODELLIX_API_KEY` with this lifecycle: `discover -> request -> use-session -> (optional) persist-user-env`.
-
-### 1) Discover existing key first
-
-Before asking the user for credentials, check in this order:
-
-1. Current session environment variable `MODELLIX_API_KEY`.
-2. Existing user-level environment variable `MODELLIX_API_KEY` if already configured.
-3. If both are unavailable, treat as first-use and request key from user.
-
-Never ask for a key again when a valid key is already discoverable.
-
-### 2) Request key only when missing
-
-If no usable key is found:
-
-- Ask user to provide a Modellix API key.
-- Do not print or echo key values in logs/output.
-- Use the key for current authentication flow in session scope by default.
-
-### 3) Optional persistence for future sessions
-
-Default behavior: do not persist automatically.
-
-If and only if the user explicitly asks for persistence, write to user-level environment settings:
-
-1. Preferred and allowed persistent target: user-level `MODELLIX_API_KEY`.
-2. Do not write system-level environment variables by default.
-3. Do not write credentials into other coding agents' local config files.
-
-### 4) Replace key when user provides a new one
-
-If the user provides a new API key, treat it as a key rotation event:
-
-1. Replace current session value first.
-2. Only if the user explicitly requested persistence, also replace the user-level env value.
-3. Do not keep old and new keys active in parallel in this skill workflow.
-4. Re-run `scripts/preflight.py --json` after replacement and continue only if the new key is valid.
-
-When replacement fails validation, keep the flow blocked, report the validation failure, and request a corrected key.
-
-## Preflight and Deterministic Execution
-
-Default execution path is the CLI command pair (`model invoke` -> `task get`).
-
-Bundled scripts are optional helpers for automation:
-
-1. `scripts/preflight.py`
-   - Validates CLI availability and API key presence.
-   - Returns recommended mode (`cli` or `rest`).
-2. `scripts/invoke_and_poll.py`
-   - Executes CLI-first with REST fallback support.
-   - Handles exponential backoff polling and retryable submit errors.
-   - Emits normalized JSON result output.
-
-When preflight reports missing credentials, apply the lifecycle policy above:
-
-1. Try discover flow (session env -> existing user env).
-2. Request key from user only if still missing.
-3. Use session value and retry.
-4. Persist only when explicitly requested by the user.
-
-When preflight reports `cli_available=false`:
-
-1. Proceed directly with REST fallback (supported path).
-2. After the task completes, recommend CLI installation to the user:
-   "For faster workflows in future sessions, consider installing the Modellix CLI: `npm i -g modellix-cli@latest`"
-
-Quick commands:
-
-```powershell
-python scripts/preflight.py --json
-python scripts/invoke_and_poll.py --model-slug bytedance/seedream-5.0-lite --body '{"prompt":"A cinematic portrait of a fox in a misty forest at sunrise"}'
+```bash
+python3 scripts/preflight.py --json
+modellix-cli doctor --json
+modellix-cli model get-schema <provider/model>
+modellix-cli model run \
+  --model-slug <provider/model> \
+  --body '<json>' \
+  --wait --timeout 5m --json
+modellix-cli task download <task_id> --output-dir ./outputs --json
 ```
 
-## Core Workflow
+Skip `get-schema` when the skill default plus the example below already lists the required fields, or the user supplied a complete body.
 
-### 1) Discover or request API key
+`model invoke` is a compatibility alias of `model run`. New commands should use `model run`.
 
-- Run key discovery first (session env, then existing user-level env).
-- If not found, ask user for key created in [Modellix Console](https://modellix.ai/console/api-key).
-- Use key in session scope by default (no automatic persistence).
-- Persist only on explicit user consent:
-  - Allowed persistent target: user-level `MODELLIX_API_KEY`.
-  - Not allowed by default: system-level env writes or other agent config writes.
-- If user provides a new key later, replace the existing stored key and re-run preflight validation.
-- Retry preflight and continue only after key is discoverable.
+Do not reinvent polling loops when CLI wait is available. Do not invent deprecated flags (for example `--model-type`). Use `--help` only when behavior is unclear.
 
-### 2) Select model
+## Default Models
 
-Use either `references/REFERENCE.md` or `https://docs.modellix.ai/llms.txt` as the model index to select a model. If the user does not specify a model, use the default model for the task type.
-
-After finding the target model in the index, you MUST fetch its `.md` documentation URL (e.g., via WebFetch) to understand its specific request schema, parameters, and invocation method before proceeding.
-
-**CRITICAL**: Do NOT guess the model slug from the `.md` filename (e.g. `hailuo-2-3-t2v.md`). You MUST read the OpenAPI spec inside the fetched documentation to find the actual API path (e.g. `/hailuo-2.3-t2v/async`) or `model_id` field to determine the exact slug (which often preserves decimals, e.g. `minimax/hailuo-2.3-t2v`).
-
-#### Default Models
+When the user does **not** name a model, use these defaults immediately (do not scan the catalog first):
 
 | Task Type | Default Model Slug |
 |---|---|
-| Text-to-image (T2I) | `bytedance/seedream-5.0-lite` |
-| Image editing / I2I | `bytedance/seedream-5.0-lite-edit` |
-| Text-to-video / I2V | `bytedance/seedance-2.0-fast-i2v` |
-| Video-to-video (V2V) | `bytedance/seedance-2.0-v2v` |
+| Text-to-image (T2I) | `google/nano-banana-2-lite` |
+| Text-to-video (T2V) | `bytedance/seedance-2.0-mini-t2v` |
+| Image editing / I2I | `google/nano-banana-2-lite-edit` |
+| Image-to-video / I2V | `bytedance/seedance-2.0-fast-i2v` |
+| Video-to-video (V2V) | `bytedance/seedance-2.0-fast-v2v` |
+| Text-to-speech (TTS) | `alibaba/qwen-audio-3.0-tts-flash` |
+| Speech-to-text (STT) | `openai/whisper-1` |
+| Speech-to-speech (STS) | `alibaba/cosyvoice-clone` |
 
-#### Quick Examples
+## API Key Lifecycle Policy
 
-**T2I** — only `prompt` is required:
+Handle credentials as: `discover -> request -> use-session -> (optional) persist`.
+
+### 1) Discover existing key first
+
+Before asking the user:
+
+1. Session / process env `MODELLIX_API_KEY`
+2. Saved CLI profile (`modellix-cli auth status` / `doctor` — key via `--profile` or `MODELLIX_PROFILE` or `currentProfile`)
+3. If still missing, request a key from the user
+
+Never ask again when a usable key is already discoverable. CLI key resolution order is: `--api-key` → `MODELLIX_API_KEY` → selected saved profile.
+
+### 2) Request key only when missing
+
+- Ask for a key from [Modellix Console](https://modellix.ai/console/api-key).
+- Do not print or echo key values.
+- Prefer session env for the current run.
+
+### 3) Optional persistence
+
+Default: do not persist automatically.
+
+When the user explicitly asks to persist:
+
+1. Preferred: `modellix-cli auth login` or `modellix-cli init` (CLI validates and stores the profile securely).
+2. Alternative: user-level `MODELLIX_API_KEY` only if they insist on env persistence.
+3. Do not write system-level env or other agents' config files.
+
+### 4) Key rotation
+
+If the user provides a new key: update session first; if they requested persistence, replace via `auth login`/`init` (or user-level env). Re-check with `modellix-cli doctor --json` (or `scripts/preflight.py --json`) before continuing.
+
+## Preflight and Deterministic Execution
+
+Required first-workflow check when Python 3 is available:
 
 ```bash
-modellix-cli model invoke \
-  --model-slug bytedance/seedream-5.0-lite \
-  --body '{"prompt":"A cinematic sunset over a futuristic city skyline"}'
+python3 scripts/preflight.py --json
 ```
 
-**I2I** — `prompt` + `image` array required:
+Bundled helpers:
+
+1. `scripts/preflight.py` — checks public npm `latest`, safely updates a missing/older global CLI before paid work, pins newer local installs instead of downgrading, wraps `doctor`, and recommends `cli`, `rest`, or `none`.
+2. `scripts/invoke_and_poll.py` — performs the same resolution before submission, pins the resolved executable for the workflow, uses `model run --wait` on CLI, and otherwise keeps the REST submit+poll fallback.
+
+Set `MODELLIX_CLI_AUTO_UPDATE=0` (also accepts `false` or `off`) only when the environment must keep its installed CLI version. A registry/install failure is non-destructive: use the existing CLI if it still passes doctor, or REST when no CLI is usable and a session API key exists. Never update or swap the CLI after a paid submission has started.
+
+When preflight/doctor reports missing credentials, apply the lifecycle above.
+
+When CLI is unavailable:
+
+1. Use REST (`references/rest-playbook.md`).
+2. Report the preflight update warning; do not repeatedly attempt installation inside the same paid workflow.
+
+## Core Workflow
+
+### 1) Ready the environment
+
+- Discover or request API key (lifecycle above).
+- Run `scripts/preflight.py --json`; continue only with the CLI path whose doctor check passed, or with an authenticated REST fallback.
+- Continue only when auth and connectivity look healthy (or REST key is set).
+
+### 2) Select model
+
+1. If the user did not specify a model: use the **Default Models** table (do not scan the catalog first).
+2. If they named a model or need discovery: `modellix-cli model list` / `modellix-cli model describe <slug>` (catalog metadata; describe returns `docs_url`).
+3. For request body schema: `modellix-cli model get-schema <slug>` (JSON default; public, no API key). Call this when the user named a non-default slug, when the body needs fields beyond the documented examples, after HTTP `400`, or when reporting required fields. Skip when the skill default plus the example already lists required fields, or the user supplied a complete body.
+4. If CLI is unavailable for schema or discovery: use Docs MCP or browse `llms.txt`, then fetch the target model `.md`. Do **not** invent slugs from filenames (decimals often matter, e.g. `bytedance/seedance-2.0-mini-t2v`).
+
+### 3) Run and wait
+
+Default (single task):
 
 ```bash
-modellix-cli model invoke \
-  --model-slug bytedance/seedream-5.0-lite-edit \
-  --body '{"prompt":"Convert to watercolor style","image":["https://example.com/input.jpg"]}'
+modellix-cli model run \
+  --model-slug google/nano-banana-2-lite \
+  --body '{"prompt":"A cinematic sunset over a futuristic city skyline"}' \
+  --wait --timeout 5m --json
 ```
 
-**I2V** — at least one image param (`first_frame_image`, `last_frame_image`, or `reference_images`) required:
+Split flow when useful (pipelines, concurrency):
 
 ```bash
-modellix-cli model invoke \
-  --model-slug bytedance/seedance-2.0-fast-i2v \
-  --body '{"prompt":"A cat playing in the garden","first_frame_image":"https://example.com/frame.jpg"}'
+TASK_ID=$(modellix-cli model run --model-slug ... --body '...' --output task-id)
+modellix-cli task wait "$TASK_ID" --timeout 10m --json
 ```
 
-**V2V** — `video_urls` array required:
+Batch (paid guard required): `modellix-cli model batch tasks.jsonl --max-tasks N [--wait]`.
+
+Manual REST: `references/rest-playbook.md`. Optional helper: `scripts/invoke_and_poll.py`.
+
+### 4) Download results
 
 ```bash
-modellix-cli model invoke \
-  --model-slug bytedance/seedance-2.0-v2v \
-  --body '{"video_urls":["https://example.com/source.mp4"]}'
+modellix-cli task download <task_id> --output-dir ./outputs --json
 ```
 
-### 3) Run invocation and poll
+If download fails with `Resource host resolves to a private or reserved network address` (common when a local proxy/VPN maps CDN hosts like `file.modellix.ai` into `198.18.0.0/15`), retry with `--allow-private-network` for trusted Modellix CDN hosts, or fall back to downloading the `result.resources[].url` with `curl`/`wget`.
 
-- Preferred default: CLI command pair from `references/cli-playbook.md`
-  - `modellix-cli model invoke ...`
-  - `modellix-cli task get <task_id>`
-- Manual REST flow: `references/rest-playbook.md`
-- Optional helper: `scripts/invoke_and_poll.py` for auto polling/normalized output
-
-### 4) Consume resources
-
-Output media URLs are under `result.resources`. Persist assets promptly; results expire in 24 hours.
-
-#### Output File Naming
-
-When downloading generated artifacts (images, videos, audio, etc.), name files with the `modellix-` prefix followed by the model slug (with `/` replaced by `-`) and a timestamp:
+Resource URLs expire in about 7 days — persist promptly. If downloading manually (REST path), name files:
 
 ```
 modellix-{model_slug}-{timestamp}.{ext}
 ```
 
+(replace `/` in the slug with `-`).
+
 Examples:
-- `modellix-bytedance-seedream-5.0-lite-20260430-113000.png`
-- `modellix-bytedance-seedance-2.0-fast-i2v-20260430-113500.mp4`
-- `modellix-google-nano-banana-pro-20260430-114000.png`
+
+- `modellix-google-nano-banana-2-lite-20260430-113000.png`
+- `modellix-bytedance-seedance-2.0-mini-t2v-20260430-113500.mp4`
+
+### Quick Examples
+
+**T2I** (default model) — `prompt` required:
+
+```bash
+modellix-cli model run \
+  --model-slug google/nano-banana-2-lite \
+  --body '{"prompt":"A cinematic sunset over a futuristic city skyline"}' \
+  --wait --timeout 5m --json
+```
+
+**T2V** (default model) — `prompt` required:
+
+```bash
+modellix-cli model run \
+  --model-slug bytedance/seedance-2.0-mini-t2v \
+  --body '{"prompt":"A cat playing in a sunny garden"}' \
+  --wait --timeout 10m --json
+```
+
+**I2I** — `prompt` + `image` array:
+
+```bash
+modellix-cli model run \
+  --model-slug google/nano-banana-2-lite-edit \
+  --body '{"prompt":"Convert to watercolor style","image":["https://example.com/input.jpg"]}' \
+  --wait --timeout 5m --json
+```
+
+**I2V** — at least one image param (`first_frame_image`, `last_frame_image`, or `reference_images`):
+
+```bash
+modellix-cli model run \
+  --model-slug bytedance/seedance-2.0-fast-i2v \
+  --body '{"prompt":"A cat playing in the garden","first_frame_image":"https://example.com/frame.jpg"}' \
+  --wait --timeout 10m --json
+```
+
+**V2V** — `video_urls` array:
+
+```bash
+modellix-cli model run \
+  --model-slug bytedance/seedance-2.0-fast-v2v \
+  --body '{"video_urls":["https://example.com/source.mp4"]}' \
+  --wait --timeout 10m --json
+```
+
+**TTS** (default model) — `text` + `voice` required (verify voice with `model get-schema` or the model doc; Flash voices only):
+
+```bash
+modellix-cli model run \
+  --model-slug alibaba/qwen-audio-3.0-tts-flash \
+  --body '{"text":"There is a large garden behind my house.","voice":"longanhuan_v3.6"}' \
+  --wait --timeout 5m --json
+```
+
+**STT** (default model) — public audio `url` required:
+
+```bash
+modellix-cli model run \
+  --model-slug openai/whisper-1 \
+  --body '{"url":"https://example.com/meeting.mp3"}' \
+  --wait --timeout 5m --json
+```
+
+**STS** (default model) — clone reference `url` + synthesis `text` + target CosyVoice `model`:
+
+```bash
+modellix-cli model run \
+  --model-slug alibaba/cosyvoice-clone \
+  --body '{"model":"cosyvoice-v3.5-plus","url":"https://example.com/reference.wav","text":"There is a large garden behind my house."}' \
+  --wait --timeout 5m --json
+```
 
 ### 5) Post-task CLI recommendation
 
-If CLI was not available during this session and REST was used instead, suggest installation after the task completes:
-
-> Tip: You can install the Modellix CLI for a faster workflow: `npm i -g modellix-cli@latest`
-> Docs: https://docs.modellix.ai/ways-to-use/cli.md
+If this session used REST because CLI was missing, suggest installing the CLI afterward.
 
 ## Progressive Reference Routing
 
 Read only what the task needs:
 
-- `references/cli-playbook.md`
-  - CLI install/auth/command flow and retry guidance
-- `references/rest-playbook.md`
-  - REST endpoints, headers, status model, retry policy
-- `references/capability-matrix.md`
-  - CLI command <-> REST endpoint mapping and fallback rules
+- `references/cli-playbook.md` — install, auth, run/wait/download, batch, recovery
+- `references/rest-playbook.md` — REST submit/poll when CLI is unavailable
+- `references/capability-matrix.md` — CLI ↔ REST mapping and fallback rules
 
 ## Bundled Assets
 
-- Output schema:
-  - `assets/output/task-result.schema.json`
+- `assets/output/task-result.schema.json`
 
 ## Credential and Data Egress
 
-- Primary credential: `MODELLIX_API_KEY`.
-- Required env vars: `MODELLIX_API_KEY`.
-- This skill does not require any other secret.
-- Network egress: sends requests to `https://api.modellix.ai`.
-- User payload handling: prompts and user-provided inputs (including media URLs or file-derived content) may be sent to Modellix endpoints during invocation.
-- Result handling: generated resource URLs come from Modellix response payloads and should be downloaded before expiry (about 24 hours).
-- Secret hygiene:
-  - Advise the user to use a scoped or revocable API key when possible, and to prefer session-only environment variables over persistent storage.
-  - Never expose API keys in terminal output, logs, screenshots, transcripts, or commit content.
-  - Mask sensitive values when showing command examples.
-  - Default to session-only credential usage.
-  - Any persistent write requires explicit user approval and must be user-level env only.
-  - Do not write system-level env or other agent config files as part of this skill.
+- Primary credential: `MODELLIX_API_KEY` (also via CLI profiles).
+- Network egress: `https://api.modellix.ai` (override only with trusted `--base-url` / `MODELLIX_BASE_URL`).
+- User prompts and media inputs may be sent to Modellix during invocation.
+- Never expose API keys in logs, screenshots, transcripts, or commits.
+- Default to session-only credentials; persistent writes need explicit user approval.
 
-## Error/Retry Policy
+## Error / Retry Policy
 
-| Code | Action |
+| Situation | Action |
 |------|--------|
-| 400 | Do not retry. Fix parameters or request body format. |
-| 401 | Do not retry. Verify API key. |
-| 402 | Do not retry. Insufficient balance. |
-| 404 | Do not retry. Verify task_id or model-slug. |
-| 429 | Retry with exponential backoff. |
-| 500/503 | Retry with exponential backoff (max 3 times). |
+| HTTP/API `400` | Do not retry. Fix parameters or body (`model get-schema` when the contract is unclear). |
+| `401` | Do not retry. Fix key (`doctor`, `auth login`). |
+| `402` | Do not retry. Insufficient balance. |
+| `404` | Do not retry. Verify `task_id` or model slug. |
+| `429` / read-only `5xx` | CLI already retries safe GETs within deadline; do not blindly re-POST paid submits. |
+| Paid submit outcome **unknown** | Do **not** immediately re-run the same `model run`. Check `task history`, console activity, and any printed task ID first. |
+| Exit `124` | Local wait timeout; remote task may still run — recover with `task wait` / `task get`, then `task download`. |
+| Exit `2` | Argument or safety guard (e.g. batch cost limit) — fix flags. |
 
 ## Verification Checklist
 
-- [ ] Preflight executed and mode selected (`cli` or `rest`)
-- [ ] API key configured (`MODELLIX_API_KEY` or CLI `--api-key`)
-- [ ] Model parameters verified against model doc from `references/REFERENCE.md`
-- [ ] Task submit returns `task_id` with success code
-- [ ] Polling handles `pending`, `processing`, `success`, `failed`
-- [ ] Retry behavior implemented for `429/500/503`
-- [ ] Result URLs persisted before 24-hour expiration
-- [ ] REST fallback validated when CLI path is unavailable
+- [ ] Doctor/preflight passed or REST key ready
+- [ ] Model chosen (default table or user/catalog)
+- [ ] Body schema checked via `model get-schema` when non-trivial (or model doc when CLI is unavailable)
+- [ ] Used `model run --wait` (or `task wait`) instead of hand-rolled poll loops
+- [ ] Results downloaded (`task download` or manual persist before 7-day expiry)
+- [ ] No blind retry after unknown paid submission
+- [ ] REST used only when CLI path unavailable

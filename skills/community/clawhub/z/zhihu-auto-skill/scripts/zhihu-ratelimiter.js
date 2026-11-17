@@ -7,14 +7,18 @@
  * 3. 限流恢复: 指数退避
  *
  * I12 | I20 (Plan B 降级速率)
+ *
+ * @module zhihu-ratelimiter
  */
 
 import { sleep } from './zhihu-core.js';
+import { ratelimiterLog } from './zhihu-logger.js';
 
 // ──────────────────────────────────────────
 // 速率配置
 // ──────────────────────────────────────────
 
+/** @type {Record<string,{name:string, minInterval:number, maxInterval:number, description:string}>} 层级配置 */
 const TIERS = {
   http: {
     name: 'http',
@@ -40,6 +44,7 @@ const TIERS = {
 // 指数退避
 // ──────────────────────────────────────────
 
+/** @type {{initial:number, multiplier:number, maxDelay:number}} 退避配置 */
 const BACKOFF = {
   initial: 30_000,     // 30s
   multiplier: 2,        // 翻倍
@@ -50,22 +55,34 @@ const BACKOFF = {
 // RateLimiter 类
 // ──────────────────────────────────────────
 
+/**
+ * 分层速率控制器
+ */
 class RateLimiter {
+  /**
+   * @param {string} [tier='http'] - 初始层级
+   */
   constructor(tier = 'http') {
+    /** @type {string} 当前层级 */
     this.tier = tier;
+    /** @type {number} 上次调用时间戳 */
     this._lastCallTime = 0;
+    /** @type {number} 退避步数 */
     this._backoffStep = 0;
+    /** @type {number} 退避结束时间戳 */
     this._backoffUntil = 0;
+    /** @type {number} 总调用次数 */
     this._totalCalls = 0;
   }
 
   /**
    * 获取当前层级的配置
+   * @returns {{name:string, minInterval:number, maxInterval:number}} 层级配置
    */
   _getConfig() {
     let config = TIERS[this.tier];
     if (!config) {
-      console.warn(`[ratelimiter] 未知层级 ${this.tier}，回退到 http`);
+      ratelimiterLog.warn(`未知层级 ${this.tier}，回退到 http`);
       config = TIERS.http;
     }
     return config;
@@ -73,22 +90,25 @@ class RateLimiter {
 
   /**
    * 切换到指定层级
+   * @param {string} tier - 层级名称
+   * @returns {void}
    */
   setTier(tier) {
     if (TIERS[tier]) {
       this.tier = tier;
-      console.log(`[ratelimiter] 切换到 ${TIERS[tier].name} 层级`);
+      ratelimiterLog.info(`切换到 ${TIERS[tier].name} 层级`);
     }
   }
 
   /**
    * 等待（阻塞直到允许下一次调用）
+   * @returns {Promise<void>}
    */
   async wait() {
     // 检查是否在退避期
     if (this._backoffUntil > Date.now()) {
       const remaining = this._backoffUntil - Date.now();
-      console.log(`[ratelimiter] 限流退避中，剩余 ${Math.round(remaining / 1000)}s`);
+      ratelimiterLog.info(`限流退避中，剩余 ${Math.round(remaining / 1000)}s`);
       await sleep(remaining);
     }
 
@@ -111,6 +131,7 @@ class RateLimiter {
   /**
    * 触发限流退避
    * 当收到 429 状态码时调用
+   * @returns {void}
    */
   triggerBackoff() {
     this._backoffStep = Math.min(this._backoffStep + 1, 10);
@@ -119,24 +140,26 @@ class RateLimiter {
       BACKOFF.maxDelay
     );
     this._backoffUntil = Date.now() + delay;
-    console.log(
-      `[ratelimiter] 🚨 触发退避 (step ${this._backoffStep})，等待 ${Math.round(delay / 1000)}s`
+    ratelimiterLog.warn(
+      `🚨 触发退避 (step ${this._backoffStep})，等待 ${Math.round(delay / 1000)}s`
     );
   }
 
   /**
    * 重置退避（成功调用后）
+   * @returns {void}
    */
   resetBackoff() {
     if (this._backoffStep > 0) {
       this._backoffStep = 0;
       this._backoffUntil = 0;
-      console.log('[ratelimiter] 退避已重置');
+      ratelimiterLog.info('退避已重置');
     }
   }
 
   /**
    * 获取统计信息
+   * @returns {{ tier: string, totalCalls: number, backoffStep: number, isBackingOff: boolean }}
    */
   getStats() {
     return {
@@ -152,7 +175,9 @@ class RateLimiter {
 // 预配置实例
 // ──────────────────────────────────────────
 
+/** @type {RateLimiter} HTTP 速率限制器 */
 const httpRateLimiter = new RateLimiter('http');
+/** @type {RateLimiter} 浏览器速率限制器 */
 const browserRateLimiter = new RateLimiter('browser');
 
 // ──────────────────────────────────────────

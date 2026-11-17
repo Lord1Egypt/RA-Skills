@@ -1,41 +1,53 @@
-## Description: <br>
-Guides respectful, beginner-friendly Quran verse explanations in clear English with citations, context, and safety boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides respectful, beginner-friendly Quran verse explanations in clear English with citations, context, and safety boundaries.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users and educators use this skill to prepare respectful English study notes, lesson outlines, handouts, or reflection drafts for Quran verses and short passages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may contain incorrect Quran wording, verse references, translation details, or tafsir claims if source text is missing or uncertain. <br>
-Mitigation: Verify exact wording and interpretive claims against trusted Quran and tafsir sources, and ask the user for the verse text or preferred translation when precision matters. <br>
-Risk: Users may rely on educational explanations for legal, creed, medical, family, inheritance, or other high-stakes religious decisions. <br>
-Mitigation: Keep outputs educational, avoid fatwas or definitive rulings, and direct users to a qualified scholar for high-stakes or disputed questions. <br>
-Risk: The skill includes an optional external PayPal donation link. <br>
-Mitigation: Treat the donation link as external and optional; review it under organizational policy before distributing the skill. <br>
+## Use Case:
 
+External users use this skill to draft respectful English explanations, study notes, lesson outlines, handouts, khutbah preparation notes, or personal reflections for Quran verses and short passages.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text study explanations using the requested template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or installation behavior; outputs should separate translation, explanation, reflection, and caution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, metadata, server release evidence) <br>
+Risk: The skill may produce incorrect Quran wording, verse references, translations, or unsupported tafsir details if source text is missing or unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for verse text or a reliable Quran source when exact wording matters, cite known sources, state uncertainty, and avoid inventing religious claims.
+
+Risk: Users may treat educational explanations as fatwas or definitive legal rulings.
+
+Mitigation: Clearly separate explanation from religious rulings and direct users to qualified scholars for fiqh, creed disputes, family law, inheritance, medical, or other high-stakes religious matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/quran-explanation-english-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text structured as a reference, simple meaning, key words, context, lessons, reflection, and caution note.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include citations, translation notes, audience-specific tone, and cautions for scholarly consultation.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

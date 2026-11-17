@@ -1,40 +1,52 @@
-## Description: <br>
-Validates Vitest config and workspace files for syntax, deprecated options, plugin conflicts, and best-practice issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate vitest.config.ts/js and vitest workspace configurations for syntax, deprecated options, plugin conflicts, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect Vitest and Vite test configuration files for syntax issues, deprecated options, conflicting settings, and practical test setup improvements.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The local validator reads the Vitest or Vite configuration files supplied to it.
+
+Mitigation: Run it only against intended project configuration files in workspaces where local file reads are acceptable.
+
+Risk: Regex-based static checks can miss dynamic configuration behavior or report issues that require human review.
+
+Mitigation: Treat findings as advisory and confirm important changes with project tests or Vitest documentation before applying them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to check Vitest and Vite test configuration files before committing or auditing test setup changes. It reports syntax, compatibility, performance, and best-practice findings without executing JavaScript. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Regex-based static validation can miss dynamic Vitest config behavior or complex TypeScript patterns. <br>
-Mitigation: Treat findings as best-effort guidance and manually review important config changes. <br>
-Risk: The validator reads local config paths supplied by the user. <br>
-Mitigation: Run it only against intended Vitest or Vite config files in the workspace; scanner evidence reports no network, credential, persistence, or file-mutation behavior. <br>
+**Output Format:** [Markdown with inline shell commands and optional text, JSON, or summary validator output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/vitest-config-validator) <br>
+**Other Properties Related to Output:** [The bundled validator can return human-readable findings, machine-readable JSON, or a PASS/WARN/FAIL summary.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Human-readable text, JSON, or one-line PASS/WARN/FAIL summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes indicate pass, validation failure, or file/read/parse errors; strict mode treats warnings as errors.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

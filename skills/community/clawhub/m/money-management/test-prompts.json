@@ -1,0 +1,52 @@
+{
+  "skill": "money-management",
+  "version": "0.1.0",
+  "source_book": "期货市场技术分析 — 约翰·墨菲",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我这笔交易止损设多少合适、仓位怎么定？",
+      "expected_behavior": "激活 money-management，讲单市场亏损≤5%倒推仓位与止损距离、始终设止损",
+      "notes": "仓位与止损"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "报偿风险比 3:1 到底是什么意思，怎么算？",
+      "expected_behavior": "激活 money-management，解释≥3:1门槛及用目标位/止损位计算(c26)",
+      "notes": "报偿风险比"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "亏损头寸上我能不能补点保证金摊平成本？",
+      "expected_behavior": "激活 money-management，明确禁止：绝不加保证金、别把活钱扔进死头寸(ce42/p73)",
+      "notes": "禁止加保证金"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "突破的时候应该预先进还是等回踩确认再进？",
+      "expected_behavior": "不应激活本 skill（择时），应激活 trading-tactics-checklist",
+      "notes": "跨 skill 混淆：应触发 trading-tactics-checklist"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "RSI 到 78 了是不是超买该卖了？",
+      "expected_behavior": "不应激活本 skill（摆动指数），应激活 oscillators-contrarian",
+      "notes": "诱饵：摆动指数"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "最近连赚好几笔，我想把投入市场的本金加大两倍，行不行？",
+      "expected_behavior": "激活本 skill 并提示顶峰扩注(ce44)：盈利后膨胀加注时机最糟，应在低潮期而非资本顶峰扩注",
+      "notes": "边界：顶峰扩注"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "should-not-trigger-01 指向 trading-tactics-checklist；should-not-trigger-02 指向 oscillators-contrarian。"
+}

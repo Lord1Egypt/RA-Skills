@@ -30,7 +30,7 @@ The Agent should:
 
 1. **Read the monitor output** (terminal log, JSON summary, dashboard link + status scrape — whatever the backend provides).
 2. **Act on the result** — do not consider the task "done" until the terminal state is confirmed:
-   - ✅ success → proceed (e.g. merge PR, deploy, tag)
+   - ✅ success → proceed to the next already authorized step (e.g. merge PR, deploy, tag)
    - ❌ failure / cancelled → surface failure, pull logs, propose fix
 3. **Never assume success** — "monitor started" ≠ "job succeeded".
 
@@ -53,7 +53,7 @@ The Agent should:
 2. **Vendor-native CLI/API** — e.g. poll build ID until `finished` / `errored` when there is **no** CI wrapper and the vendor is authoritative.
 3. **Dashboard + explicit handoff** — Acceptable when automation is impossible; still require a **named status** from the user or a single checked URL — not vibes.
 
-**Step C — Run the monitor in the background** unless the user asked to block the session.
+**Step C — Monitor through the active task or a supported background process.** Keep the task open until the requested terminal condition is verified; starting a monitor is not delivery. Use a scheduled automation only for a separately requested recurring report, not to abandon a single run.
 
 **Step D — After completion, fetch failure detail** from that same system of record (failed step logs, EAS error page, deploy logs).
 
@@ -63,7 +63,9 @@ Do **not** default to "must be GitHub Actions" at Step A. Default to: **whatever
 
 ## Reference adapter: GitHub Actions via Wander
 
-When the authoritative run **is** a GitHub Actions workflow (push, `workflow_run`, `workflow_dispatch`, etc.), use the Wander scripts as the monitor:
+When the authoritative run **is** a GitHub Actions workflow, resolve its exact run ID. The scripts select a unique candidate for repository, workflow, branch and expected head SHA (local HEAD by default), then pin that ID. Set `WANDER_HEAD_SHA` for a different verified head. Multiple candidates fail closed; inspect event/dispatch identity and pass `WANDER_RUN_ID` explicitly. A previous run at the same head is not proof of a new dispatch. After a new push, resolve its run again. Workflow success is evidence, not automatic permission to merge or deploy.
+
+Read the verified run's result:
 
 ```bash
 # After Wander background process exits, check result:
@@ -98,8 +100,8 @@ Scope details: [v1 scope: GitHub Actions today](https://github.com/ERerGB/wander
 
 **If** the triggered work is clearly **GitHub Actions** (or is wrapped entirely in a GHA workflow the Agent just started):
 
-1. Check `.workflows.yml` if present → pick workflow + timing.
-2. If absent but `.github/workflows/` exists → identify the workflow (registry scan or ask), then start monitoring.
+1. Identify the workflow and expected head SHA; use `.workflows.yml` only as optional metadata.
+2. Verify the repository, branch and event/dispatch identity before monitoring.
 3. Use `watch-workflow-bg.sh <workflow.yml>` — background unless the user wants to block.
 4. After ~8s, peek terminal output / run id and report initial status.
 5. Tell the user: "Watching `<workflow>` on GitHub Actions; I'll notify when it finishes — you can keep working."
@@ -134,8 +136,8 @@ If `.github/workflows/` does not exist: **do not** auto-start Wander; choose ano
 ## Prerequisites (GitHub Actions adapter path)
 
 - `gh` CLI installed and authenticated
-- `jq` installed
-- Wander on disk: `WANDER_HOME` (default `~/code/wander`)
+- `jq` installed; Python 3 for optional registry tooling/tests
+- Wander checkout on disk: set `WANDER_HOME` explicitly; `~/code/wander` is an example install path
 - macOS for notification center; Linux/headless: output-only mode still works
 
 ## Install (Wander / GHA adapter)
@@ -171,7 +173,7 @@ alias wfdt='watch-workflow-detached.sh'
 
 ## Workflow registry (`.workflows.yml`, GHA)
 
-Each workflow has different timing. The registry tells the GHA adapter what to expect:
+The optional registry records descriptive timing hints. Current monitors use `WANDER_MAX_POLLS` and `WANDER_POLL_SECONDS` for their finite wait budget; registry hints do not override it:
 
 ```yaml
 workflows:
@@ -194,7 +196,7 @@ workflows:
     category: "deploy"
 ```
 
-**`check_window`** = if the workflow already finished before monitoring starts, how far back we still accept the run as "ours". Often ~**6×** `expected_duration`.
+**`check_window`** is retained metadata from the earlier recent-run adapter; current exact-head discovery does not use it. It never establishes that a run belongs to this request. Match repository, workflow, event, branch and exact `headSha` (plus dispatch identity when available), then pin the `databaseId`. A matching recent timestamp alone is insufficient.
 
 **Auto-generate** for a repo:
 
@@ -203,7 +205,7 @@ cd /path/to/repo
 "$WANDER_HOME/scripts-registry.sh" scan-workflows --auto-scope
 ```
 
-Default `check_window` when unconfigured: 300s.
+Default metadata `check_window`: 300s. Registry parsing supports the documented block/scalar subset, not YAML anchors or flow mappings. Scanning refuses existing output; choose a new path to review before replacement.
 
 ---
 
@@ -239,8 +241,9 @@ If EAS is **only** CLI-triggered: monitor via **EAS/Expo**-native signals; optio
 ### Manual workflow dispatch
 
 ```bash
-gh workflow run deploy.yml --ref main
-"$WANDER_HOME/watch-workflow-bg.sh" deploy.yml main
+# After an authorized dispatch, resolve and inspect its exact run ID/head first:
+GH_REPO=owner/repo WANDER_RUN_ID="$RUN_ID" WANDER_HEAD_SHA="$HEAD_SHA" \
+  "$WANDER_HOME/watch-workflow-bg.sh" deploy.yml main
 ```
 
 ---
@@ -249,10 +252,10 @@ gh workflow run deploy.yml --ref main
 
 | Scenario | Behavior |
 |----------|----------|
-| Workflow finishes before monitor starts | `check_window` may catch it; notify quickly |
+| Workflow finishes before monitor starts | A unique exact-head candidate can still be inspected |
 | Run not appearing after ~30s | Wander waits, then exits with guidance |
 | Wrong branch filter on workflow | No run found; report and stop |
-| Very short workflow | Often caught immediately via `check_window` |
+| Multiple candidate runs | Stop and resolve event/dispatch identity; do not choose newest blindly |
 | Very long workflow | Prefer detached; logs survive terminal close |
 
 ---
@@ -270,9 +273,7 @@ For non-GHA tasks, use the **same meta rule**: pull **that platform's** primary 
 
 ## WANDER_HOME resolution
 
-1. `$WANDER_HOME` env var
-2. Sibling of current repo: `$(dirname "$REPO_ROOT")/wander`
-3. Default: `~/code/wander`
+Set `$WANDER_HOME` to the maintained checkout. The project wrapper above uses a sibling only as its own explicit fallback; there is no universal runtime search order.
 
 ---
 
@@ -292,3 +293,9 @@ Until an adapter exists, prefer **CI-as-facade** or **vendor-native poll** — n
 - [Wander README](https://github.com/ERerGB/wander)
 - [EDGE_CASES.md](https://github.com/ERerGB/wander/blob/main/EDGE_CASES.md)
 - [COFFEE_BREAK.md](https://github.com/ERerGB/wander/blob/main/COFFEE_BREAK.md)
+
+## Monitoring limits and tests
+
+Foreground exits 0 only for verified remote success, 1 for a non-success/error, and 124 after its poll budget with the remote outcome still unknown. Background/detached exit 0 means launch only. Default budget is 120 polls at 10 seconds, excluding API latency; configure positive integers through `WANDER_MAX_POLLS` and `WANDER_POLL_SECONDS`. `nohup` survives terminal close, not computer shutdown/sleep. Detached logs can be directed to `WANDER_LOG_DIR`.
+
+`./test-all-scripts.sh` runs shell syntax and synthetic offline fixtures. It does not dispatch, push, invoke models or send real notifications.

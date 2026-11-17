@@ -1,47 +1,61 @@
-## Description: <br>
-Yunlv Email Writer helps draft professional multilingual B2B trade emails, including inquiry replies, quotations, follow-ups, and customer development sequences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user needs to draft professional business emails in multiple languages for foreign trade scenarios such as inquiry replies, quotations, follow-ups, and B2B outreach.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Sales, export, and customer-development teams use this skill to create multilingual business email drafts for international B2B outreach, inquiry response, quotation, negotiation, follow-up, and customer maintenance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated emails can include incorrect pricing, payment terms, trade terms, certificates, legal claims, or anti-spam assumptions. <br>
-Mitigation: Treat outputs as drafts and review prices, Incoterms, payment terms, certificates, legal or compliance issues, and anti-spam obligations before sending. <br>
-Risk: Drafts, logs, and templates may contain customer or commercial data when saved locally. <br>
-Mitigation: Use the disclosed local storage only when acceptable for the environment, and avoid storing sensitive customer data unless appropriate controls are in place. <br>
-Risk: The manifest has inconsistent author and homepage metadata. <br>
-Mitigation: Verify the publisher identity and source links before installing or relying on the skill. <br>
+## Use Case:
 
+External business users and sales teams use this skill to draft, adapt, and review cross-border trade emails, including inquiry replies, quotations, follow-up sequences, payment reminders, and sample or shipment messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/yunlv-email-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [Yunlv homepage](https://yunlvai.com) <br>
-- [Email type templates](references/email_type_templates.md) <br>
-- [Multi-language guide](references/multi_language_guide.md) <br>
-- [Email sequence templates](references/email_sequence_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with email subject, body, signature, attachment suggestions, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multilingual drafts, tone adjustments, trade-term wording, follow-up sequences, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: release metadata) <br>
+Risk: Generated outreach may be inaccurate, overstate commercial claims, or omit required recipient consent and opt-out language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every draft for factual accuracy, recipient consent, unsubscribe or opt-out needs, and applicable regional marketing rules before sending.
+
+Risk: Business email context can include customer names, contact details, pricing, payment terms, or other sensitive commercial information.
+
+Mitigation: Install and use the skill only in agent environments where sharing that business context is acceptable, and minimize sensitive inputs where possible.
+
+Risk: Some non-English selections may produce English drafts for later translation rather than final localized copy.
+
+Mitigation: Verify all non-English output with a fluent reviewer or trusted localization process before sending.
+
+## Reference(s):
+
+- [Yunlv Email Writer on ClawHub](https://clawhub.ai/wangm-a3/skills/yunlv-email-writer)
+- [Yunlv Homepage](https://yunlvai.com)
+- [Email Type Templates](references/email_type_templates.md)
+- [Multi-Language Email Guide](references/multi_language_guide.md)
+- [Email Sequence Templates](references/email_sequence_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text email drafts, with optional JSON output from the bundled generator script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include subjects, body copy, signatures, attachment checklists, sequence steps, review guidance, and trade-email recommendations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence; artifact frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

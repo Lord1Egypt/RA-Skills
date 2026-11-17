@@ -1,46 +1,60 @@
-## Description: <br>
-Generate and edit images, create videos, produce icons and audio, search stock content, and run AI utilities through Freepik's API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images, videos, icons, audio, and more using Freepik's AI API.
 
-## Publisher: <br>
-[cohnen](https://clawhub.ai/user/cohnen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cohnen](https://clawhub.ai/user/cohnen)
 
-## Use Case: <br>
-Developers and external users use this OpenClaw skill to have an agent call Freepik's API for media generation, editing, stock search, and related AI utilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The agent needs access to a Freepik API key and sends prompts, selected media URLs or files, and related request metadata to Freepik. <br>
-Mitigation: Install only when Freepik API use is acceptable, scope the FREEPIK_API_KEY appropriately, and avoid submitting sensitive prompts or media. <br>
-Risk: Freepik API calls may consume account credits. <br>
-Mitigation: Review requested operations before execution and monitor usage in the Freepik developer account. <br>
-Risk: Generated media may be retained locally in session output folders. <br>
-Mitigation: Review and remove saved outputs under ~/.freepik/sessions/ when local retention is not desired. <br>
+## Use Case:
 
+Developers and external users use this skill to have an OpenClaw agent call Freepik's API for image generation, video generation, image editing, icon creation, audio generation, stock search, and related AI utilities.
 
-## Reference(s): <br>
-- [Freepik API Documentation](https://docs.freepik.com) <br>
-- [Freepik Developers Dashboard](https://www.freepik.com/developers/dashboard) <br>
-- [Freepik OpenClaw Skill Repository](https://github.com/SqaaSSL/freepik-openclaw-skill) <br>
-- [Freepik ClawHub Listing](https://clawhub.ai/cohnen/freepik) <br>
-- [Models Reference](models-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API responses, result URLs, and locally saved media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FREEPIK_API_KEY; generated media is saved under ~/.freepik/sessions/ when downloaded.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release metadata) <br>
+Risk: Broad curl permission could expose the Freepik API key if command matching is not strict.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, prefer the ClawHub package or a pinned reviewed commit, and use a restricted or low-quota Freepik API key until the curl allowlist is tightened.
+
+Risk: Prompts or private media URLs sent through the skill may be sensitive.
+
+Mitigation: Avoid sending sensitive prompts or private media URLs unless the user has approved that use.
+
+Risk: Generated media may remain in local session folders.
+
+Mitigation: Periodically clean ~/.freepik/sessions when generated files no longer need to be retained.
+
+## Reference(s):
+
+- [Freepik API Docs](https://docs.freepik.com)
+- [Freepik Developers Dashboard](https://www.freepik.com/developers/dashboard)
+- [Freepik OpenClaw Skill Homepage](https://github.com/SqaaSSL/freepik-openclaw-skill)
+- [Freepik API Models Reference](models-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, API request examples, result URLs, and local generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FREEPIK_API_KEY and may save generated media under ~/.freepik/sessions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, _meta.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

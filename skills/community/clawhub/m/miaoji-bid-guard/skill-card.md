@@ -1,41 +1,56 @@
-## Description: <br>
-Miaoji Bid Guard helps Amazon sellers set ACoS and TACoS guardrails, calculate bid ranges, plan manual budget controls, and draft video ad scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miaoji Bid Guard helps Amazon sellers set ACoS guardrails, calculate bid and budget recommendations, plan pause or reduction thresholds, and draft short video ad scripts.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon sellers and ecommerce operators use this skill to convert product, ad-stage, ACoS/TACoS, CPC, conversion, and margin inputs into bid guardrails, fuse-style review thresholds, budget scenarios, and ad script guidance. It is intended as a planning aid for manual advertising decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bid-planning advice or benchmark assumptions could be inaccurate for a seller's live Amazon Ads account. <br>
-Mitigation: Verify calculations and assumptions against current Amazon Ads data before manually changing bids, pausing keywords, or reallocating budget. <br>
-Risk: Users may provide unnecessary sensitive advertising or account information while seeking analysis. <br>
-Mitigation: Do not provide credentials or unnecessary sensitive account data when using the skill. <br>
+## Use Case:
 
+External Amazon marketplace sellers and ecommerce operators use this skill to turn product, campaign stage, ACoS or TACoS targets, and financial assumptions into bid guardrails, budget simulations, and manual action recommendations.
 
-## Reference(s): <br>
-- [Guardrail framework](references/guardrail-framework.md) <br>
-- [Miaoji Bid Guard ClawHub listing](https://clawhub.ai/wangm-a3/miaoji-bid-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Natural-language guidance, Markdown-style reports, and optional JSON calculator output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes manual bid guardrails, budget simulations, ACoS/TACoS thresholds, and video ad script outlines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Bid, budget, or pause recommendations may be incorrect if ACoS benchmarks, conversion rates, margins, or account data are stale or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all benchmarks and financial assumptions against current account data before using the recommendations.
+
+Risk: Users may treat advisory outputs as live Amazon Ads automation.
+
+Mitigation: Manually review every bid, budget, or pause recommendation before applying it in an ad account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/miaoji-bid-guard)
+- [Publisher profile](https://clawhub.ai/user/wangm-a3)
+- [Guardrail framework](references/guardrail-framework.md)
+- [Miaoji skill homepage](https://xiaping.coze.site/skill/miaoji-bid-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON reports and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are advisory and require manual review before applying changes in an advertising account.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

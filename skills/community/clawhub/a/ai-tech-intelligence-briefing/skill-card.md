@@ -1,43 +1,57 @@
-## Description: <br>
-Automatically curates and summarizes daily AI and tech news worldwide, delivering concise, time-zone aware briefings for quick updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise English or Chinese AI and technology briefing text and saved Markdown files, with demo-style story content.
 
-## Publisher: <br>
-[greatworks](https://clawhub.ai/user/greatworks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greatworks](https://clawhub.ai/user/greatworks)
 
-## Use Case: <br>
-Professionals, teams, and community maintainers use this skill to generate short AI and technology briefings for daily scanning, sharing, or saved local updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad natural-language trigger may create local briefing files in the configured output directory. <br>
-Mitigation: Set BRIEFING_OUTPUT_DIR to an intended location and review generated files before sharing or relying on them. <br>
-Risk: Fetch commands that are not date-like may target unintended local Markdown filenames. <br>
-Mitigation: Use explicit YYYY-MM-DD dates when fetching saved briefings. <br>
-Risk: Documentation advertises live news fetching, while reviewed runtime behavior currently uses built-in demo content. <br>
-Mitigation: Treat generated briefings as sample or locally generated summaries unless live-source fetching is independently verified. <br>
+## Use Case:
 
+Readers, teams, and community managers use this skill to create quick AI and technology update briefings in English or Chinese and save or share the result as Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/greatworks/ai-tech-intelligence-briefing) <br>
-- [Publisher profile](https://clawhub.ai/user/greatworks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Plain text briefing or Markdown file saved under briefings/YYYY-MM-DD.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Environment variables configure language, region, story count, and output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and package.json) <br>
+Risk: The package needs review before installation in shared or sensitive workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact contents and security notes before deployment, especially in workspaces with sensitive files.
+
+Risk: Generated briefings may be demo-style content and may include an embedded donation footer.
+
+Mitigation: Confirm the output meets the intended use case and remove or modify the donation/footer text before organizational use.
+
+Risk: The fetch command may read unexpected Markdown files if given untrusted date values.
+
+Mitigation: Use trusted date values only until date validation and path containment are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/greatworks/skills/ai-tech-intelligence-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown briefing text and local .md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports English or Chinese output, configurable region, configurable story count, and a local briefing output directory.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

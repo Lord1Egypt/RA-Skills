@@ -1,42 +1,51 @@
-## Description: <br>
-Expert system for building and managing crypto-native communities across Discord, Telegram, and Twitter/X. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert system for building and managing crypto-native communities across Discord, Telegram, and Twitter/X.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-Protocol marketing leads, DAO contributors, Web3 founders, and community managers use this skill to plan community architecture, growth, engagement, onboarding, developer activation, and reporting for blockchain projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Community operations may involve bots, token-gating, analytics tools, DMs, or social posting workflows that request sensitive permissions. <br>
-Mitigation: Review third-party tool permissions before use and avoid sharing private keys, seed phrases, owner credentials, or unnecessary admin access. <br>
-Risk: Marketing guidance can be applied in ways that overstate project claims or encourage unsafe community behavior. <br>
-Mitigation: Review generated plans against project policies, legal requirements, and community safety standards before publishing or executing them. <br>
+## Use Case:
 
+Protocol marketers, DAO contributors, Web3 founders, and community managers use this skill to plan community architecture, growth, engagement, onboarding, developer activation, and reporting for blockchain projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renehdzgtz/web3-community-marketing) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, playbooks, templates, and scorecards] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces strategy and operational recommendations; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Marketing, moderation, bot workflow, analytics, or token-gating recommendations could be applied in ways that are inappropriate for a real community or account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested public posts, direct messages, bot workflows, analytics tools, and token-gating steps before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/renehdzgtz/skills/web3-community-marketing)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with playbooks, templates, checklists, and reporting structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory marketing guidance only; suggested posts, DMs, bot workflows, analytics tools, and token-gating steps should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

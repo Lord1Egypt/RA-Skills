@@ -1,42 +1,55 @@
-## Description: <br>
-Searches, browses, and discovers OpenClaw skills from the ClawHub platform with filtering and discovery commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, browse, and discover OpenClaw skills from the ClawHub platform with filtering, sorting, recommendations, and detailed skill metadata.
 
-## Publisher: <br>
-[zhenstaff](https://clawhub.ai/user/zhenstaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers and agent users use this skill to find OpenClaw skills on ClawHub, filter results by tags or status, and view installation or metadata before choosing a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unexpected npm package or using an unexpected repository could run code outside the intended release. <br>
-Mitigation: Verify the npm package name and project homepage before installation, and pin a specific version for reproducible installs. <br>
-Risk: Personalized recommendations may reveal information about a user's installed-skill inventory. <br>
-Mitigation: Avoid personalized recommendation workflows when installed-skill inventory is sensitive. <br>
+## Use Case:
 
+Developers and agents use this skill to find OpenClaw skills on ClawHub, compare metadata and requirements, and retrieve installation guidance for relevant skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhenstaff/openclaw-skill-finder) <br>
-- [Project homepage](https://github.com/ZhenRobotics/openclaw-skill-finder#readme) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-skill-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and optional JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference public ClawHub search results, skill metadata, package installation commands, and local configuration settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The reviewed artifact installs an unpinned global npm package whose package contents were not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an exact audited package version, avoid elevated privileges, and review the npm package source and install scripts before global installation.
+
+Risk: Search queries and skill lookup terms may be sent to ClawHub when the CLI uses the public ClawHub service.
+
+Mitigation: Avoid sensitive query terms and review the current package network behavior before use in restricted environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhenstaff/skills/openclaw-skill-finder)
+- [Project Homepage](https://github.com/ZhenRobotics/openclaw-skill-finder#readme)
+- [npm Package](https://www.npmjs.com/package/openclaw-skill-finder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys were detected in the reviewed evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and readme, released 2026-03-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

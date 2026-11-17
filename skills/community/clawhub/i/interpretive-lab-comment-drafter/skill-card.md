@@ -1,42 +1,59 @@
-## Description: <br>
-Drafts interpretive comments for complex laboratory panel results, including delta-check flags, critical-value notation, pattern recognition, and clinical-correlation language for pathologist or licensed-provider review before result release. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts interpretive comments for complex clinical laboratory panel results, including critical-value notation, delta-check comparison, specimen-quality notes, pattern recognition, and clinical-correlation language for licensed review before release.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Clinical laboratory scientists, pathologists, lab directors, residents, and fellows use this skill to draft reviewed interpretive comments for complex laboratory panels. It supports abnormal-result summaries, critical-value notation, delta-check language, specimen-quality notes, pattern interpretation, and clinical-correlation recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the bundle suspicious because an included autoreview helper defaults to nested review tooling with full sandbox bypass. <br>
-Mitigation: Manually review the bundle before installation and disable full-access autoreview defaults, for example by using --no-yolo where applicable. <br>
-Risk: Fallback review workflows may expose private code or secrets if diffs contain sensitive material. <br>
-Mitigation: Avoid fallback reviewers for sensitive diffs and use scoped credentials for any moderation workflow. <br>
-Risk: Draft clinical language could be incorrect, incomplete, or inappropriate for local laboratory policy. <br>
-Mitigation: Require licensed pathologist or authorized-provider review, confirm institutional reference ranges and critical thresholds, and do not release or transmit results from the draft. <br>
+## Use Case:
 
+Clinical laboratory scientists, pathologists, lab directors, and laboratory medicine trainees use this skill to draft interpretive comments for supported lab panels before licensed review, sign-out, or release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/interpretive-lab-comment-drafter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft interpretive comment with review block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft output only; licensed pathologist or authorized provider review is required before release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and changelog, released 2026-05-29) <br>
+Risk: Sensitive patient identifiers could be exposed if users paste full names, medical record numbers, or dates of birth into the agent conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accession or case references and avoid direct identifiers.
+
+Risk: Generic reference ranges or critical-value thresholds may not match local laboratory policy.
+
+Mitigation: Confirm all draft comments against institutional reference intervals, critical-value rules, and laboratory policy before use.
+
+Risk: Drafted interpretive comments could be mistaken for final clinical guidance or released without appropriate review.
+
+Mitigation: Require licensed pathologist or authorized-provider review and approval before sign-out, result release, or provider notification.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/interpretive-lab-comment-drafter)
+- [README](artifact/README.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft interpretive comment with review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft only; must be reviewed by a licensed pathologist or authorized provider before release.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact changelog, released 2026-05-29)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

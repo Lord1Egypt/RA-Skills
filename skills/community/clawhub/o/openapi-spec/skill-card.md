@@ -1,36 +1,50 @@
-## Description: <br>
-Deep OpenAPI workflow—design-first vs code-first, reusable schemas, security schemes, errors, examples, linting, compatibility, and codegen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep OpenAPI workflow-design-first vs code-first, reusable schemas, security schemes, errors, examples, linting, compatibility, and codegen.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers and API teams use this skill to plan, review, and maintain REST API contracts with OpenAPI 3.x, including schema reuse, security schemes, error models, examples, linting, compatibility checks, and publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and engineers use this skill to plan, document, review, lint, and publish REST API contracts using OpenAPI 3.x. It helps teams align workflow ownership, versioning, reusable schemas, security schemes, error patterns, examples, compatibility checks, and code generation expectations.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with staged workflow steps and checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users should review generated API specs and examples for private endpoints, internal implementation details, or credentials before publishing.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated or revised OpenAPI specifications may be incomplete, inconsistent with the implementation, or unsafe to publish without review.
+
+Mitigation: Review generated specs before publication or client/server code generation, and use linting plus compatibility checks to confirm schemas, security schemes, errors, and examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/openapi-spec)
+- [Publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, OpenAPI examples, and implementation review notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

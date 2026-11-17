@@ -1,43 +1,59 @@
-## Description: <br>
-Uses the Stove Protocol Public API to query read-only public market data, including platform statistics, orderbooks, ticker statistics, and ticker heatmaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents query Stove Protocol public market data, including platform statistics, ticker statistics, ticker heatmaps, and orderbook reference data.
 
-## Publisher: <br>
-[zschen211](https://clawhub.ai/user/zschen211) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zschen211](https://clawhub.ai/user/zschen211)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve Stove Protocol public market data through a standard-library Python helper and summarize the returned JSON for platform, ticker, orderbook, and heatmap queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A custom base URL can direct the helper to an arbitrary or untrusted host. <br>
-Mitigation: Use the default production endpoint or documented QA endpoint unless intentionally testing a trusted endpoint. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve and summarize read-only Stove Protocol public market data through the bundled Python command-line helper and reference documentation.
 
-## Reference(s): <br>
-- [Stove Public API Skill Page](https://clawhub.ai/zschen211/stove-public-api) <br>
-- [Public API](references/Public API.md) <br>
-- [Query Platform Statistics](references/Query Platform Statistics.md) <br>
-- [Query Ticker Information and Statistics](references/Query Ticker Information and Statistics.md) <br>
-- [Query Ticker Orderbook](references/Query Ticker Orderbook.md) <br>
-- [Query Ticker Heatmap](references/Query Ticker Heatmap.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON API results and command-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public API helper; no credential environment variables detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill can make network requests to a custom base URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented production or test Stove endpoints, and do not accept custom base URLs from untrusted prompts or point them at private/internal services.
+
+Risk: Returned market data may be incomplete, unavailable, or misunderstood if API errors are not checked.
+
+Mitigation: Check the Stove response code and error fields before summarizing data, and make clear when an API call failed or returned no usable data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zschen211/skills/stove-public-api)
+- [Publisher profile](https://clawhub.ai/user/zschen211)
+- [Public API](references/Public API.md)
+- [Query Platform Statistics](references/Query Platform Statistics.md)
+- [Query Ticker Heatmap](references/Query Ticker Heatmap.md)
+- [Query Ticker Information and Statistics](references/Query Ticker Information and Statistics.md)
+- [Query Ticker Orderbook](references/Query Ticker Orderbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled helper prints Stove API JSON responses to stdout for the agent to parse and summarize.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Generates realistic human-portrait images from text descriptions of pets using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a realistic human portrait URL from a pet description by calling the Neta/Tales of AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and agents use this skill to generate pet-to-human portrait images for creative portraits, gifts, and social media content from text prompts and optional style references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and optional reference identifiers are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Avoid sensitive personal details in prompts or references, and confirm the agent asks before making external requests. <br>
-Risk: The Neta API token can be exposed through command-line history, process listings, or logs when passed as a flag. <br>
-Mitigation: Prefer an environment variable or secret manager in wrappers and avoid logging commands that include tokens. <br>
+## Use Case:
 
+External users and developers use this skill to generate pet-to-human portrait images from text prompts and optional reference IDs for creative portraits, gifts, and social media content.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/omactiengartelle/pet-to-human-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
-- [Artifact README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text] <br>
-**Output Format:** [Plain text URL on stdout, with errors printed to stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and may poll the image-generation task until a result URL is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Prompts, optional reference UUIDs, generation settings, and the API token are sent to the Neta/Tales of AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or temporary token, avoid sensitive prompts or private reference identifiers, and avoid exposing tokens in shell history or shared logs.
+
+Risk: The external image-generation task may be moderated, fail, time out, or return output that needs review before use.
+
+Mitigation: Check command failures, retry or adjust prompts when needed, and review generated image URLs before publishing or using them downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/pet-to-human-generator)
+- [Neta AI token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text URL printed to stdout, with command-line flags documented in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; optional size and reference UUID settings affect the generated image request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+{
+  "package": "fomo-app-data-api",
+  "publication_gate": "blocked_until_live_capability_payment_modes_exactly_prepaid_credit",
+  "published": false,
+  "readback": null,
+  "version": "2.0.1"
+}

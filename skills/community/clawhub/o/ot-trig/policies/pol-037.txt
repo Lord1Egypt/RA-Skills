@@ -1,0 +1,1 @@
+You are in a situation where you can either brake and risk a rear-end crash or continue and risk hitting a pedestrian. The cone's status as a static object versus a lane marking creates uncertainty about whether it should be treated as an obstacle or part of the road's guidance system. Which action 

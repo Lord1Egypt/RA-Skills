@@ -1,45 +1,57 @@
-## Description: <br>
-Book flights for camping and glamping trips to outdoor destinations, with additional travel support for hotels, trains, attraction tickets, itineraries, visa information, travel insurance, and car rental powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for camping and glamping trips to outdoor destinations, with support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and related travel planning powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel assistants use this skill to search and compare camping or glamping flight options through flyai CLI results, then present bookable Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to globally install and run the external @fly-ai/flyai-cli package. <br>
-Mitigation: Approve installation manually, verify or pin the package before use, and review generated commands before execution. <br>
-Risk: Broad travel-query triggers may run flight search commands for ambiguous or non-camping requests. <br>
-Mitigation: Confirm origin, destination, and travel intent before command execution, especially for non-camping or ambiguous travel requests. <br>
+## Use Case:
 
+External travelers use this skill through compatible agents to search flight options for camping or glamping trips, compare route choices by recommended, cheapest, fastest, or direct preferences, and receive CLI-backed booking results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/camping-flight) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown flight search results with comparison tables, booking links, and inline CLI commands when setup or recovery is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results must be based on flyai CLI output and include booking links when flight options are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install and run a third-party FlyAI/Fliggy CLI globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI from a trusted source yourself, pin or review the package version, and confirm consent before use.
+
+Risk: Unvalidated user travel text could be passed into shell commands.
+
+Mitigation: Map user input only to documented parameters, quote command arguments, and avoid passing raw user text directly to the shell.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown comparison tables and recommendations with booking links, supported by inline shell command execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLI-derived results and detailUrl booking links; raw JSON output is not intended for users.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

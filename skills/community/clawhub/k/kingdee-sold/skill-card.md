@@ -1,41 +1,59 @@
-## Description: <br>
-金蝶EAS Cloud ERP系统数据库SQL查询技能，支持采购、销售、库存、财务等模块的单据查询和数据分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+金蝶EAS Cloud ERP系统数据库SQL查询技能，支持采购、销售、库存、财务等模块的单据查询和数据分析。
 
-## Publisher: <br>
-[fxy-99](https://clawhub.ai/user/fxy-99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fxy-99](https://clawhub.ai/user/fxy-99)
 
-## Use Case: <br>
-ERP analysts, developers, and operations staff use this skill to draft and run read-oriented PostgreSQL queries for Kingdee EAS Cloud ERP documents, including sales orders, purchase orders, inventory, accounts payable, accounts receivable, and finance records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports embedded reusable database credentials. <br>
-Mitigation: Do not install or use the skill until the publisher removes the credentials, the exposed account is rotated, and database access logs are reviewed. <br>
-Risk: The security review reports broad discovery queries against ERP data. <br>
-Mitigation: Limit use to approved business queries with read-only credentials, explicit date filters, and row limits before running against production data. <br>
+## Use Case:
 
+Authorized analysts, operators, and developers use this skill to inspect Kingdee EAS Cloud ERP PostgreSQL tables and draft SQL for sales orders, purchasing, inventory, accounts payable, accounts receivable, and finance reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fxy-99/kingdee-sold) <br>
-- [Kingdee ERP common table list](references/tables.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database query results serialized as JSON when using the bundled query helper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The artifact exposes direct credentials and connection details for a specific ERP database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or use the skill only with explicit authorization, and rotate or replace the exposed credential with a managed secret before any deployment.
+
+Risk: Arbitrary SQL and schema-enumeration queries could expose confidential ERP data or affect production database performance.
+
+Mitigation: Use a strictly read-only, allowlisted database role; limit execution to approved audit or reporting workflows; and keep date filters and row limits on large-table queries.
+
+Risk: ERP query results may be misread if table mappings, status codes, or business rules differ from the documented examples.
+
+Mitigation: Validate table and field mappings with the system owner before relying on outputs for operational or financial decisions.
+
+## Reference(s):
+
+- [金蝶ERP常用表清单](artifact/references/tables.md)
+- [ClawHub skill page](https://clawhub.ai/fxy-99/skills/kingdee-sold)
+- [Publisher profile](https://clawhub.ai/user/fxy-99)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, Python, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include database query examples, table descriptions, troubleshooting guidance, and JSON-formatted query results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

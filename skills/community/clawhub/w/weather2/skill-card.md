@@ -1,42 +1,56 @@
-## Description: <br>
-按城市与日期查询历史天气（温湿度、风、气压、AQI 等），用于回答类似“去年今天北京多少度”或“2023 年 7 月上海历史天气”这类问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按城市与日期查询历史天气（温湿度、风、气压、AQI 等）。当用户说：去年今天北京多少度？查一下 2023 年 7 月上海历史天气，或类似历史气温问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and developers use this skill to look up historical weather by city or city ID and date, then summarize temperature, humidity, wind, pressure, AQI, and related fields for natural-language answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JisuAPI app key and sends city/date weather queries to JisuAPI. <br>
-Mitigation: Use a dedicated key with quota limits and avoid including unnecessary sensitive context in queries. <br>
-Risk: The Python script depends on the local requests package. <br>
-Mitigation: Install dependencies from a trusted package source and run the skill in a controlled environment. <br>
+## Use Case:
 
+External users and developers use this skill to query JisuAPI historical weather by city name or city ID and date, then summarize weather, temperature, humidity, pressure, wind, sunrise/sunset, and AQI fields for end users.
 
-## Reference(s): <br>
-- [Historical Weather API](https://www.jisuapi.com/api/weather2/) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/weather2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends city/date weather queries to JisuAPI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: City/date queries and the JISU_API_KEY are sent to JisuAPI over HTTPS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that data sharing is acceptable, keep the API key scoped to JisuAPI, and rotate it if exposed.
+
+Risk: The skill depends on a user-provided JisuAPI credential for successful operation.
+
+Mitigation: Configure JISU_API_KEY as an environment variable and avoid embedding the key in prompts, source files, or shared command history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/weather2)
+- [JisuAPI historical weather API](https://www.jisuapi.com/api/weather2/)
+- [JisuAPI provider site](https://www.jisuapi.com/)
+- [JisuAPI weather2 endpoint](https://api.jisuapi.com/weather2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command examples; runtime script output is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

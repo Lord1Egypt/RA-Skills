@@ -1,41 +1,52 @@
-## Description: <br>
-Launch Doubao desktop application and configure real-time translation window. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch Doubao desktop application and configure real-time translation window.
 
-## Publisher: <br>
-[banner90](https://clawhub.ai/user/banner90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[banner90](https://clawhub.ai/user/banner90)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and automation operators use this skill to launch the Doubao desktop application, configure a real-time translation window, and return launch status for a larger YouTube translation workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The reviewed package points to an unbundled Python file at an absolute host path, so installation alone does not prove which code will run.
+
+Mitigation: Require the Doubao automation script to be bundled with the release and invoked through a package-relative entry point, or pin and verify the external script before execution.
+
+Risk: Windows GUI automation requires a visible desktop session and may fail or act on the wrong desktop state when the session is disconnected.
+
+Mitigation: Run the skill only in a dedicated visible Windows desktop session and verify the target Doubao window before using downstream translation or capture steps.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and workflow operators use this skill to launch the Doubao desktop translation window as part of a YouTube translation workflow. It is intended for environments that can run Windows GUI automation from WSL. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, configuration, json, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill executes an unbundled hardcoded Python script, so the release artifact does not let users verify the actual automation code. <br>
-Mitigation: Install only after inspecting and controlling the configured local Python file at the /mnt/h/AI/... path. <br>
-Risk: The skill automates a visible Windows desktop session and may be machine-specific or unreliable on systems without the expected GUI state. <br>
-Mitigation: Run it only in a controlled Windows desktop environment where Doubao, WSL path mapping, and the target workflow are configured and observable. <br>
+**Output Format:** [Markdown usage guidance with JSON command results]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/banner90/doubao-launch) <br>
-- [Publisher profile](https://clawhub.ai/user/banner90) <br>
+**Other Properties Related to Output:** [Accepts an optional mode parameter of dual or single and returns a success flag, window handle, window title, mode, and error fields when applicable.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON status response with markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success status, window handle, window title, mode, or error fields; requires a visible Windows desktop session and a configured local Python entry path.] <br>
+1.0.6 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact package.json and openclaw.plugin.json report 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

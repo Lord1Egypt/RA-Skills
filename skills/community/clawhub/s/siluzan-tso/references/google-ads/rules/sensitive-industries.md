@@ -1,7 +1,5 @@
-# 敏感行业 Google 广告合规细则
+﻿# 敏感行业 Google 广告合规细则
 
-> 所属 skill：`siluzan-tso`。
->
 > 本文件仅在行业属于 Tier 2（受限）或 Tier 3（高度管制）时加载。
 > Tier 分级见 `references/google-ads-compliance.md` 第一章。
 

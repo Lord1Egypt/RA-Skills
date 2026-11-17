@@ -1,44 +1,56 @@
-## Description: <br>
-Act as a Grafana-first product and business data analysis partner for an app team. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Act as a Grafana-first product and business data analysis partner for an app team.
 
-## Publisher: <br>
-[qwqcode](https://clawhub.ai/user/qwqcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwqcode](https://clawhub.ai/user/qwqcode)
 
-## Use Case: <br>
-Product, content, operations, and analytics teammates use this skill to interpret existing Grafana dashboards, request metric splits, prepare short daily reports, clarify new dashboard requirements, and escalate to datasource or ClickHouse queries only when existing dashboards are insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may expose or analyze sensitive internal business data if used outside an authorized analytics context. <br>
-Mitigation: Use only with agent permissions that are allowed to view the relevant Grafana, datasource, or ClickHouse data. <br>
-Risk: Direct SQL or datasource-query steps can affect sensitive production datasets or produce misleading results if run without review. <br>
-Mitigation: Review datasource and direct ClickHouse query steps before execution, and prefer existing Grafana dashboards whenever they answer the question. <br>
-Risk: Unclear metric definitions, incomplete variables, or small samples can lead to overconfident interpretations. <br>
-Mitigation: Name the data source path used, state caveats, and avoid claiming causation from correlation. <br>
+## Use Case:
 
+Product, content, and operations teams use this skill to interpret Grafana dashboard metrics, request dimensional splits, plan SQL-backed follow-up analysis, draft daily reports, and clarify new dashboard requirements before implementation.
 
-## Reference(s): <br>
-- [Data Analyst Partner release page](https://clawhub.ai/qwqcode/data-analyst-partner) <br>
-- [Daily Report Template](references/daily-report-template.md) <br>
-- [New Dashboard Confirmation Checklist](references/dashboard-confirmation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown analysis with concise conclusions, source notes, caveats, follow-up recommendations, and occasional datasource or SQL query guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill prioritizes existing Grafana dashboards and panels before datasource queries or direct ClickHouse queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may surface sensitive dashboard or ClickHouse-backed business metrics if used outside approved analytics contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only where the agent already has approved access to the relevant Grafana dashboards, ClickHouse data, and business metrics.
+
+Risk: Ambiguous metric definitions or premature direct SQL use could produce misleading analysis.
+
+Mitigation: Prefer existing Grafana dashboards and panels first, name the data source path used, and call out unclear definitions or caveats before recommending follow-up.
+
+## Reference(s):
+
+- [Daily Report Template](references/daily-report-template.md)
+- [New Dashboard Confirmation Checklist](references/dashboard-confirmation.md)
+- [Data Analyst Partner on ClawHub](https://clawhub.ai/qwqcode/skills/data-analyst-partner)
+- [qwqcode Publisher Profile](https://clawhub.ai/user/qwqcode)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown text with concise conclusions, evidence, observations, caveats, and recommended next checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dashboard requirement summaries, daily report sections, and source-path attribution for dashboard, panel, datasource query, or direct ClickHouse evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

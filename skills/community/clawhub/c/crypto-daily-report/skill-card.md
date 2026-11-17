@@ -1,47 +1,63 @@
-## Description: <br>
-Generates a daily cryptocurrency report from news, market, DeFi yield, meme trend, funding, and policy sources, then formats it as three Telegram messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured Chinese daily cryptocurrency report from news, price, DeFi yield, meme trend, funding, and market data sources, then formats it for Telegram delivery.
 
-## Publisher: <br>
-[blockpunk2077](https://clawhub.ai/user/blockpunk2077) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockpunk2077](https://clawhub.ai/user/blockpunk2077)
 
-## Use Case: <br>
-Crypto content operators and analysts use this skill to assemble a structured daily market report from live news, price, DeFi, meme, funding, and policy sources and publish it to a Telegram topic. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently publish reports to a fixed Telegram chat and topic. <br>
-Mitigation: Verify the destination before use and require preview or confirmation before any report is sent. <br>
-Risk: Broad trigger phrases can start publishing behavior when the user only intended to discuss a report. <br>
-Mitigation: Narrow activation phrases to explicit publish commands and require confirmation for ambiguous requests. <br>
-Risk: The skill reads a local API token and calls external crypto data services. <br>
-Mitigation: Use an explicit scoped secret for the required APIs, limit token permissions, and rotate credentials if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blockpunk2077/crypto-daily-report) <br>
-- [BlockBeats newsflash](https://www.theblockbeats.info/newsflash) <br>
-- [Odaily newsflash](https://www.odaily.news/zh-CN/newsflash) <br>
-- [CoinDesk latest crypto news](https://www.coindesk.com/latest-crypto-news) <br>
-- [DeFiLlama yields](https://defillama.com/yields) <br>
-- [GeckoTerminal Solana pools](https://www.geckoterminal.com/solana/pools) <br>
-- [DEXScreener Solana fallback](https://dexscreener.com/solana) <br>
+## Use Case:
 
+External users and crypto market operators use this skill to collect current cryptocurrency news and market signals and produce a daily Chinese report formatted for Telegram publication.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls] <br>
-**Output Format:** [Telegram Markdown split into three messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Messages are designed to stay under Telegram length limits and may be sent silently to a configured chat and topic.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill silently posts generated reports to a hardcoded Telegram chat and thread.
+
+Mitigation: Replace the destination with trusted local configuration and require explicit confirmation before any message is sent.
+
+Risk: The workflow reads an OpenNews token from ~/.openclaw/.env.
+
+Mitigation: Use a scoped secret mechanism and avoid direct reads from broad local environment files where possible.
+
+Risk: The news fetch helper writes fetched pages to predictable /tmp filenames.
+
+Mitigation: Use unique temporary files or a restricted temporary directory and clean up fetched content after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockpunk2077/skills/crypto-daily-report)
+- [BlockBeats newsflash](https://www.theblockbeats.info/newsflash)
+- [Odaily newsflash](https://www.odaily.news/zh-CN/newsflash)
+- [PANews newsflash](https://www.panewslab.com/zh/newsflash)
+- [CoinDesk latest crypto news](https://www.coindesk.com/latest-crypto-news)
+- [DeFiLlama yields](https://defillama.com/yields)
+- [GeckoTerminal Solana pools](https://www.geckoterminal.com/solana/pools/{pool_id})
+- [DEXScreener Solana token fallback](https://dexscreener.com/solana/{addr})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Three Telegram-ready Markdown messages plus a final NO_REPLY marker]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese report output is structured into headline, funding, updates, alpha, on-chain DeFi, viewpoint, trading data, and macro policy sections with per-message character limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: _meta.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

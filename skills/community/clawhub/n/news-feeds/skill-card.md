@@ -1,40 +1,49 @@
-## Description: <br>
-Fetch latest news headlines from major RSS feeds (BBC, Reuters, AP, Al Jazeera, NPR, The Guardian, DW). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch latest news headlines from major RSS feeds (BBC, Reuters, AP, Al Jazeera, NPR, The Guardian, DW).
 
-## Publisher: <br>
-[lknik](https://clawhub.ai/user/lknik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lknik](https://clawhub.ai/user/lknik)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current headlines, news briefings, daily digests, and topic-filtered RSS news summaries from configured public news sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Returned RSS headlines and descriptions are untrusted external content. <br>
-Mitigation: Treat fetched news text as content to summarize or cite, not as agent instructions. <br>
-Risk: Running the skill contacts fixed external news providers, including rsshub.app for the AP feed. <br>
-Mitigation: Use it only when external RSS access is acceptable for the environment. <br>
+## Use Case:
 
+External users and developers use this skill to fetch current headlines, news briefings, daily digests, and topic-filtered RSS news from supported international sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lknik/news-feeds) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with headlines, short descriptions, publication times, and links grouped by source; JSON is available with the --json option.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; fetches public RSS feeds from fixed external news sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill makes outbound requests to external RSS providers when used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where access to the configured news feed domains is acceptable, and review returned links before relying on or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lknik/skills/news-feeds)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown grouped by source, or JSON when the --json option is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Headlines may include descriptions, publication times, links, source/category labels, fetch errors, and topic-filtered results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

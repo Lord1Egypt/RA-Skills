@@ -1,0 +1,57 @@
+# Jurisdiction rule differences — declarative, machine-readable.
+# GateEngine routes ctx["jurisdiction"] to the matching branch.
+# Sources are public regulatory references; exact clause text should be
+# cross-checked against the official CFR / NMPA 办法 before external use.
+
+jurisdictions:
+  FDA:
+    label: "U.S. FDA"
+    legal_basis:
+      - "21 CFR 807.81(a) — memorandum establishing 'special 510(k)' / decision on equivalence; significant change in specifications, design, materials, energy source, or performance requires a new 510(k)."
+      - "21 CFR Part 820 — QS Regulation (design controls, change control, CAPA)."
+      - "21 CFR Part 803 — Medical Device Reporting (MDR) adverse-event reporting."
+      - "21 CFR 806 — Corrections and Removals (recall reporting)."
+    change_threshold: "conservative"
+    notes: >
+      Material/spec/supplier change is presumptively significant; even with
+      equivalence data, expect a new 510(k) submission. Class 1 recall =
+      immediate field safety notice.
+
+  NMPA:
+    label: "China NMPA"
+    legal_basis:
+      - "《医疗器械注册与备案管理办法》(国家市场监督管理总局令第47号, 2021) — 变更注册 vs 备案/登记事项变更 二分。"
+      - "《医疗器械监督管理条例》(国务院令第752号, 2021修订) — 上市后监管与召回。"
+      - "医疗器械召回管理办法 — 一级/二级/三级召回分级。"
+    change_threshold: "narrower_than_fda"
+    notes: >
+      Changes affecting safety/effectiveness require 变更注册; administrative
+      (登记事项) changes with equivalence evidence may be self-declared.
+      Supplier substitution with equivalent-material validation may fall under
+      登记事项变更 (no 变更注册). Exact clause numbers: verify against the
+      official 办法 text before external citation.
+
+  EU_MDR:
+    label: "EU MDR 2017/745"
+    legal_basis:
+      - "MDR Article 10 — manufacturer obligations; Article 11 — notified body."
+      - "MDR Article 120 — transitional; Article 52 — conformity assessment."
+      - "MDR Article 87/88 — post-market surveillance and vigilance reporting."
+    change_threshold: "route_dependent"
+    status: "roadmap"
+    notes: >
+      Substantial changes trigger re-assessment by Notified Body; non-substantial
+      changes remain under PMS. Not implemented in MVP; slated for P1.
+
+  IMDRF:
+    label: "IMDRF guidance"
+    legal_basis:
+      - "IMDRF SaMD Working Group — risk categorization (N/A to IVDR)."
+      - "IMDRF Good Regulatory Review Practice."
+    change_threshold: "harmonization_reference"
+    status: "roadmap_reference_only"
+
+  PMDA: {label: "Japan PMDA", status: "roadmap"}
+  MFDS: {label: "Korea MFDS", status: "roadmap"}
+  MHRA: {label: "UK MHRA", status: "roadmap"}
+  HealthCanada: {label: "Health Canada", status: "roadmap"}

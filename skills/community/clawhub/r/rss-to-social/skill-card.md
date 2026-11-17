@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically monitor RSS feeds and post to social media. Schedule content, generate posts with AI, and publish to Twitter/LinkedIn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically monitor RSS feeds and post to social media. Schedule content, generate posts with AI, and publish to Twitter/LinkedIn.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-External users and developers use this skill to monitor RSS feeds, draft platform-specific social posts, and manage feed-based content sharing workflows for Twitter and LinkedIn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says the documentation overstates automatic social publishing while the script only prints drafts. <br>
-Mitigation: Treat generated posts as drafts and verify any publishing workflow separately before relying on automatic posting. <br>
-Risk: The security guidance warns against providing social-media credentials or scheduling unattended runs before controls are corrected. <br>
-Mitigation: Do not provide production social-media credentials or run unattended schedules until approval controls, rate limits, and the publishing path are reviewed. <br>
-Risk: The bundled script can mark feed items as handled after preparing drafts. <br>
-Mitigation: Review local history behavior and keep backups or use a test data directory before running against important feeds. <br>
+## Use Case:
 
+External users and developers use this skill to monitor configured RSS feeds, generate draft social posts for Twitter or LinkedIn, and manage posting cadence and deduplication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fly3094/rss-to-social) <br>
-- [Publisher Profile](https://clawhub.ai/user/fly3094) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with configuration examples and generated social post drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated posts are intended for review before publishing; local history may be updated by the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The release overstates automatic social posting relative to the artifact behavior and may mark items as posted after draft generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated posts as drafts until explicit publication controls and successful posting confirmation are reviewed.
+
+Risk: The skill requests high-impact Twitter or LinkedIn account credentials without clearly scoped direct-posting safeguards.
+
+Mitigation: Do not provide social account credentials unless the skill is updated to clearly implement and scope direct posting.
+
+Risk: Configured feeds cause outbound network access to user-provided URLs.
+
+Mitigation: Use only trusted public feed URLs and run the skill with restricted network access where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fly3094/skills/rss-to-social)
+- [Publisher profile](https://clawhub.ai/user/fly3094)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated social post text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces RSS monitoring status, generated Twitter and LinkedIn post drafts, and configuration guidance based on environment variables.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

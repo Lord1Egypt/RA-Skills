@@ -1,47 +1,64 @@
-## Description: <br>
-Stress-tests ideas with multiple LLMs in adversarial roles to generate counterarguments, cross-check reasoning, and expose hidden risks and failure modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stress-test ideas using multiple LLMs in adversarial roles to generate counterarguments, cross-check reasoning, and expose hidden risks and failure modes.
 
-## Publisher: <br>
-[mikehankk](https://clawhub.ai/user/mikehankk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikehankk](https://clawhub.ai/user/mikehankk)
 
-## Use Case: <br>
-Developers, analysts, and decision makers use this skill to adversarially test product, investment, strategy, technical, social, scientific, and creative ideas before relying on them. It is designed for risk analysis and decision validation, not consensus seeking or brainstorming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted ideas and generated critiques are sent to configured external LLM providers. <br>
-Mitigation: Use only approved provider configurations for sensitive work and avoid submitting confidential content unless the provider and account controls are appropriate. <br>
-Risk: The skill requires sensitive provider credentials such as OpenRouter, DashScope, or Bailian API keys. <br>
-Mitigation: Store keys in environment variables or a secured .env file, rotate exposed credentials, and avoid committing secrets to shared repositories. <br>
-Risk: Intermediate model responses and final reports may be saved locally in plaintext. <br>
-Mitigation: Delete or secure generated intermediate and report files after sensitive analyses. <br>
-Risk: Adversarial model outputs can still be incomplete, incorrect, or overly confident. <br>
-Mitigation: Treat the report as decision-support material and require human review before using it for high-stakes business, financial, technical, or safety decisions. <br>
+## Use Case:
 
+Developers, product teams, strategists, and analysts use this skill to stress-test decisions, product ideas, technical plans, investment theses, and prompts by generating adversarial counterarguments, failure scenarios, and a judge evaluation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikehankk/wei-devils-advocate) <br>
-- [Bun runtime](https://bun.sh) <br>
-- [Bun environment variables documentation](https://bun.sh/docs/runtime/env) <br>
-- [Devil's Advocate preview](https://www.bigbigai.com/agent/devils-advocate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown/text report with thesis, hidden assumptions, counterarguments, failure scenarios, survivability, verdict, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured LLM provider API keys and may save plaintext intermediate outputs and reports locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: The documented setup includes a curl-to-bash install path for Bun.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup path before installation and prefer a package-manager or otherwise verified Bun install source.
+
+Risk: Prompts, raw model outputs, judge results, reports, and debug responses can be saved locally in plaintext.
+
+Mitigation: Avoid submitting secrets, personal data, regulated data, or confidential business material, and review or delete intermediate/ and reports/ after use.
+
+Risk: Inputs and outputs are sent to configured external LLM providers.
+
+Mitigation: Use only provider configurations approved for the data being analyzed and confirm API-key handling before running the skill.
+
+Risk: Package metadata version differs from the release and frontmatter version.
+
+Mitigation: Wait for the publisher to align package metadata if strict provenance or release traceability matters to the deployment environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikehankk/skills/wei-devils-advocate)
+- [Bun runtime](https://bun.sh)
+- [Bun environment variable documentation](https://bun.sh/docs/runtime/env)
+- [Devil's Advocate simulation preview](https://www.bigbigai.com/agent/devils-advocate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured text or JSON containing the thesis, hidden assumptions, counterarguments, failure scenarios, survivability, verdict, and recommendation; local report and intermediate text files may also be written.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured external LLM providers and may retain prompts, model responses, judge output, reports, and debug responses in local plaintext files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

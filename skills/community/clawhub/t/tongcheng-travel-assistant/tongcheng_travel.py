@@ -5,14 +5,13 @@
 数据源：同程旅行程心API v2.0（结构化API）
 """
 
+import os
 import json
 import urllib.request
 import urllib.error
 
 PROXY_URL = 'https://1439498936-7vqpkiipef.ap-guangzhou.tencentscf.com'
-PROXY_TOKEN = 'tp_8k2mX9vQ4z'
-
-
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 def _call_proxy(route, arguments):
     """调用同程SCF代理"""
     url = PROXY_URL.rstrip('/')

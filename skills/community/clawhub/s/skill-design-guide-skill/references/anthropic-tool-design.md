@@ -1,4 +1,3 @@
-# Anthropic Tool Design Guide — Key Takeaways
 
 > Source: Anthropic Engineering Blog — "Writing effective tools for agents — with agents" (2025.09)
 > Original: https://www.anthropic.com/engineering/writing-tools-for-agents

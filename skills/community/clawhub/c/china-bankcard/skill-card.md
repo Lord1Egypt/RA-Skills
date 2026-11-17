@@ -1,40 +1,58 @@
-## Description: <br>
-Parses and validates Chinese bank card numbers offline to identify issuing bank, card type, card organization, card length, and Luhn checksum status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses and validates Chinese bank card numbers offline, identifying likely issuer, card type, card network, card length, and Luhn checksum status for common Chinese bank BINs.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Chinese bank card numbers in chat or validation workflows, including issuer lookup, card network classification, debit or credit identification, length checks, and Luhn validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bank card numbers are sensitive financial data. <br>
-Mitigation: Mask card numbers in responses and do not request or include CVV, PIN, expiry date, passwords, identity documents, or banking login details. <br>
-Risk: BIN and Luhn results can be mistaken for proof that a bank account exists. <br>
-Mitigation: Present issuer and checksum results as informational only and direct users to official bank channels when account existence or current card status matters. <br>
+## Use Case:
 
+External users, support teams, and developers use this skill to inspect a provided Chinese bank card number, validate its format, and return masked issuer, network, type, length, and checksum guidance without network access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ToBeWin/china-bankcard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with masked bank card numbers and validation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fully offline output; masks card numbers by retaining only the first four and last four digits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release metadata) <br>
+Risk: The skill processes bank card numbers supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mask card numbers in responses, retaining only limited leading and trailing digits, and do not ask for CVV, PIN, passwords, or other payment secrets.
+
+Risk: Luhn validation can confirm only checksum format, not whether an account exists or can be used.
+
+Mitigation: State that a passing Luhn result is not proof of account validity and direct users to official bank channels for authoritative confirmation.
+
+Risk: The embedded BIN list covers common Chinese banks and may miss or misclassify newer, regional, or uncommon card ranges.
+
+Mitigation: Describe unknown BINs as not covered by the local database and recommend verification through official banking sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/china-bankcard)
+- [Publisher Profile](https://clawhub.ai/user/tobewin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text analysis with masked card-number examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fully offline; should mask card numbers and avoid requesting CVV, PIN, passwords, or other payment secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

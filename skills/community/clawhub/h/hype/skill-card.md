@@ -1,39 +1,52 @@
-## Description: <br>
-Assist with Hyperliquid perpetuals trading, deposits, withdrawals, and L1 features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assist with Hyperliquid perpetuals trading, deposits, withdrawals, and L1 features.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and trading-focused agents use this skill as a reference for Hyperliquid perpetuals, deposits, withdrawals, account behavior, L1 features, API use, and risk-management considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crypto trading, transfer limits, fees, rules, and official URLs can change or be targeted by phishing. <br>
-Mitigation: Independently verify current Hyperliquid URLs, limits, fees, and rules before acting. <br>
-Risk: Wallet signatures, deposits, withdrawals, or trades can move funds when approved unintentionally. <br>
-Mitigation: Never share seed phrases or private keys, and approve only wallet actions intentionally initiated and verified by the user. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/hype) <br>
+## Use Case:
 
+External users use this skill as a concise reference for Hyperliquid deposits, withdrawals, perpetuals trading, account behavior, risk management, and API automation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; plain reference guidance for agent responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global, subject to applicable Hyperliquid service restrictions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Trading reference material can become stale or misleading as Hyperliquid limits, rules, and market conditions change.
+
+Mitigation: Verify current Hyperliquid limits and rules from official sources before relying on the guidance.
+
+Risk: The skill discusses real trades, deposits, withdrawals, wallet signatures, and API-key use.
+
+Mitigation: Require explicit user confirmation before any real trade, deposit, withdrawal, wallet signature, or API-key use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/hype)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference material with no executable code, hidden actions, persistence, or credential handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

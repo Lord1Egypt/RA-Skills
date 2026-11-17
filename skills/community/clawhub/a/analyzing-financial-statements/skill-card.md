@@ -1,43 +1,56 @@
-## Description: <br>
-This skill calculates key financial ratios and metrics from financial statement data for investment analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill calculates key financial ratios and metrics from financial statement data for investment analysis.
 
-## Publisher: <br>
-[jackhua6](https://clawhub.ai/user/jackhua6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jackhua6](https://clawhub.ai/user/jackhua6)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, analysts, and agent workflows use this skill to calculate profitability, liquidity, leverage, efficiency, valuation, and per-share metrics from financial statement data. It helps summarize ratio values, benchmark comparisons, trends, and interpretation notes for investment analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Investment-oriented ratio interpretations or recommendations may be incorrect, incomplete, or unsuitable for a user's situation.
+
+Mitigation: Treat outputs as educational analysis, verify source data and assumptions, and consult qualified financial, investment, tax, or legal professionals before acting.
+
+Risk: The skill's calculations and reports depend on accurate and complete user-provided financial statement and market data.
+
+Mitigation: Validate inputs, check missing values, and review calculation results before relying on summaries or comparisons.
+
+Risk: Industry benchmark comparisons are general guidelines and may not apply to every sector, geography, accounting framework, or company stage.
+
+Mitigation: Compare results against appropriate peer groups and current domain-specific benchmarks when using the analysis.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Financial analysts, investors, and business users can use this skill to calculate profitability, liquidity, leverage, efficiency, valuation, and per-share metrics from provided financial statements. It supports ratio interpretation, benchmark comparison, and trend analysis when sufficient source data is available. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [analysis, markdown, code]
 
-## Known Risks and Mitigations: <br>
-Risk: Financial statements may contain confidential business or investment data. <br>
-Mitigation: Treat all supplied statements and derived analysis as confidential and avoid exposing them outside the intended local workflow. <br>
-Risk: Incorrect, incomplete, or stale financial inputs can produce misleading ratios and interpretations. <br>
-Mitigation: Validate source data, review calculations, and confirm interpretations before using results for investment, lending, accounting, or business decisions. <br>
-Risk: Industry benchmarks are general guidelines and may not apply to every company or sector. <br>
-Mitigation: Use industry context, peer comparisons, and human financial judgment before relying on benchmark-based conclusions. <br>
+**Output Format:** [Markdown or structured text with calculated ratios, interpretations, trend summaries, and optional report-style analysis.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackhua6/analyzing-financial-statements) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jackhua6) <br>
+**Other Properties Related to Output:** [Outputs depend on user-provided financial statement and market data; benchmark comparisons are general guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text analysis with calculated ratio values, interpretations, benchmark comparisons, and optional report-style summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the completeness and accuracy of the provided financial statement data.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

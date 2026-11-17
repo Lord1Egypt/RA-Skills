@@ -1,38 +1,54 @@
-## Description: <br>
-Quick macOS display snapshot that captures the current screen without opening a browser and saves it to /tmp or a custom path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screengrab captures the current macOS screen without opening a browser, saving images to /tmp or a custom path with support for multiple displays and periodic watch mode.
 
-## Publisher: <br>
-[wrentheai](https://clawhub.ai/user/wrentheai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wrentheai](https://clawhub.ai/user/wrentheai)
 
-## Use Case: <br>
-Developers and engineers use Screengrab to capture the visible state of a macOS desktop for visual debugging, app state checks, output verification, and remote awareness without launching a browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots can capture anything visible on the user's Mac screen, including sensitive windows or data. <br>
-Mitigation: Close or hide sensitive windows before capture, prefer targeting a specific display when possible, limit watch mode with --count, and delete saved screenshots from /tmp or custom output folders when no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to capture the visible state of a macOS desktop for debugging, visual verification, app-state checks, or remote awareness. It is also useful for listing connected displays and capturing a selected display.
 
-## Reference(s): <br>
-- [Screengrab on ClawHub](https://clawhub.ai/wrentheai/screengrab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and local PNG screenshot file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PNG screenshots on macOS, usually under /tmp unless a custom path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can capture sensitive information visible on the current Mac screen.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when screen capture is intentional, and close or hide sensitive windows before running it.
+
+Risk: Watch mode can keep saving screenshots to disk over time.
+
+Mitigation: Prefer one-shot captures, or set an explicit count and output directory when periodic capture is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wrentheai/skills/screengrab)
+- [Publisher profile](https://clawhub.ai/user/wrentheai)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and screenshot file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PNG screenshot files on macOS and can print the saved path for downstream image analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

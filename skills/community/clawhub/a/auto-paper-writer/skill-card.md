@@ -1,46 +1,56 @@
-## Description: <br>
-Auto Paper Writer guides an agent through searching recent arXiv papers, drafting an IEEEtran LaTeX research paper with figures, compiling a PDF, and saving the project files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Paper Writer guides an agent through an end-to-end academic paper drafting workflow that searches ArXiv, summarizes prior-work limitations, proposes a model, drafts IEEEtran LaTeX, generates matplotlib figures, and compiles a PDF draft for user review.
 
-## Publisher: <br>
-[myjackcat](https://clawhub.ai/user/myjackcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myjackcat](https://clawhub.ai/user/myjackcat)
 
-## Use Case: <br>
-Researchers, students, and technical writers use this skill to create a research-paper scaffold with references, figures, LaTeX source, and a PDF draft for later review and completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup step can delete unrelated PowerShell, Python, or presentation files from a user's Desktop. <br>
-Mitigation: Run the skill only in a dedicated project or temporary folder, change cleanup commands to target exact files created by the current run, and require user confirmation before deletion. <br>
-Risk: The workflow uses hard-coded Windows and TeX Live paths that may not match the user's environment. <br>
-Mitigation: Confirm local paths, output folders, and LaTeX tooling before running commands. <br>
-Risk: Generated academic claims, methods, and experiment sections may be incomplete, inaccurate, or unsupported. <br>
-Mitigation: Treat drafts as scaffolding and require human review, citation checks, and real experiment results before submission or distribution. <br>
+## Use Case:
 
+External users and developers can use this skill to draft an academic paper package from a research direction, including literature notes, LaTeX source, figures, and a compiled PDF draft. The generated research claims, novelty framing, and experiment details require user review and completion before use.
 
-## Reference(s): <br>
-- [Auto Paper Writer on ClawHub](https://clawhub.ai/myjackcat/auto-paper-writer) <br>
-- [IEEEtran paper template](references/ieee_template.md) <br>
-- [LaTeX academic writing guide](references/latex_guide.md) <br>
-- [Scientific figure guide](references/figure_guide.md) <br>
-- [arXiv API query endpoint](https://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell, Python, and LaTeX code blocks plus generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a paper project containing LaTeX source, figures, reference notes, downloaded PDFs, and an optional compiled PDF.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The cleanup commands can delete unrelated PowerShell, Python, and presentation files from the user's Desktop.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run cleanup only inside a dedicated paper workspace after showing the exact files to be deleted and obtaining user confirmation.
+
+Risk: The generated paper may include unverified novelty claims, method details, or experiment results.
+
+Mitigation: Require expert review, source checking, and replacement or completion of experiment details before publication or submission.
+
+## Reference(s):
+
+- [Auto Paper Writer ClawHub Page](https://clawhub.ai/myjackcat/skills/auto-paper-writer)
+- [IEEEtran Paper Template](references/ieee_template.md)
+- [LaTeX Academic Writing Guide](references/latex_guide.md)
+- [Scientific Figure Guide](references/figure_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with PowerShell, Python, and LaTeX code blocks plus generated LaTeX, PDF, PNG, and reference files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected paper package includes paper.tex, paper.pdf, generated figures, a literature list, and downloaded source PDFs; generated academic content requires user verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

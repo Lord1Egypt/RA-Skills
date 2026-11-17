@@ -1,41 +1,52 @@
-## Description: <br>
-Void Atlas Protocol is a four-axis ethical navigation map for evaluating systems, communities, policies, and planned changes across power, truth, sovereignty, and care. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Void Atlas Protocol - a four-axis ethical navigation map (power, truth, sovereignty, care) with waypoints, routes, and routing rules for evaluating systems, communities, and policies.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to evaluate systems, communities, policies, or planned changes against power, truth, sovereignty, and care, then map routes, beacons, and review thresholds for alignment-aware decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Unbuffered disclosure through Nebula_Insight_Veil could surface sensitive or harmful truths without enough context. <br>
-Mitigation: Check care and sovereignty, use phased disclosure, and involve oversight when stakes are high. <br>
-Risk: Accord enforcement through Void_Accord_Sentinel could become over-enforcement or control. <br>
-Mitigation: Balance enforcement via Eternal_Balance_Nexus, log enforcement events, and ensure affected parties have representation in accord updates. <br>
-Risk: Ethical scoring can be misleading if treated as an authority rather than a review aid. <br>
-Mitigation: Use the framework as decision support, review outputs before action, and escalate low scores, sharp axis drops, or beacon divergence to human or stakeholder review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeepSeekOracle/void-atlas-protocol) <br>
+## Use Case:
 
+Developers, evaluators, and agent operators use this skill to assess systems, communities, policies, or planned changes against power, truth, sovereignty, and care. It helps agents produce coordinates, route declarations, beacon-style commitments, and review guidance for alignment-aware planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, JSON] <br>
-**Output Format:** [Markdown guidance with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no tool, credential, persistence, or data-access behavior requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional implementations of logging, beacons, or review processes could become broader than the task requires.
+
+Mitigation: Keep any implementation user-controlled, visible, and scoped to the specific evaluation or planning task.
+
+Risk: High-stakes disclosure or accord-enforcement use could affect user autonomy if applied without context.
+
+Mitigation: Use human review for high-stakes cases, preserve care and sovereignty checks, and ensure affected parties have representation in updates.
+
+## Reference(s):
+
+- [Void Atlas Protocol on ClawHub](https://clawhub.ai/deepseekoracle/skills/void-atlas-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, JSON, Text]
+
+**Output Format:** [Markdown guidance with optional JSON coordinate, route, and beacon objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conceptual framework only; no tools, credentials, or external calls are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

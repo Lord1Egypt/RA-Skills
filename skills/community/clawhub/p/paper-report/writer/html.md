@@ -121,7 +121,9 @@ formula = "$\\\\mathcal{L} = \\\\sum_i$"
 
 ## 9. 已知陷阱
 
-- **公式中禁用 HTML 特殊字符**：`<`、`>`、`&` 同时对 HTML 解析器和 MathJax 有特殊含义，直接使用或转义为 `&lt;`/`&gt;` 都可能导致公式渲染失败。必须用 LaTeX 命令替代：`<` → `\lt`，`>` → `\gt`，尖括号标记如 `<token>` → `\langle\texttt{token}\rangle`。
+- **尖括号与 HTML 特殊字符**：`<`、`>`、`&` 同时对 HTML 解析器和 MathJax 有特殊含义，需根据上下文分别处理：
+  - **数学公式内**（`$...$` / `$$...$$`）：比较运算符用 `\lt`、`\gt`；尖括号标记（如 `<token>`）用 `\langle\texttt{token}\rangle`——注意 `\langle`/`\rangle` 必须在 `\texttt{}` **外部**，写成 `\texttt{\lt token\gt}` 会导致 `\lt`/`\gt` 被当作等宽文本原样显示而非渲染为符号。
+  - **非数学上下文**（`<code>`、`<p>` 等 HTML 标签内）：用 HTML 实体 `&lt;`/`&gt;`，如 `<code>&lt;silent&gt;</code>`。绝不要在非数学上下文中使用 `\lt`/`\gt` 等 LaTeX 命令。
 - **MathJax 误报**：校验"无外部 src"时，注意 `<script src="https://...mathjax...">` 是允许的，只需确认 `<img>` 标签全部使用 base64。
 - **HTML 体积**：高分辨率图过多时文件可能超过 5 MB，建议先在 figures 目录预压缩或限制 max-width。
 - **占位符冲突**：模板中 `{{PLACEHOLDER}}` 与 LaTeX 的 `{...}` 形式相似，替换时使用精确字符串匹配，避免误伤。

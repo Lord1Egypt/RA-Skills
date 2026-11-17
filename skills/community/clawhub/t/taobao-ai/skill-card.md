@@ -1,51 +1,58 @@
-## Description: <br>
-淘宝官方门户导航，正版官方入口，能够正确跳转到淘宝相关频道，杜绝虚假宣传。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+淘宝官方门户导航，正版官方入口，能够正确跳转到淘宝相关频道，杜绝虚假宣传。
 
-## Publisher: <br>
-[gaodong0537xx](https://clawhub.ai/user/gaodong0537xx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaodong0537xx](https://clawhub.ai/user/gaodong0537xx)
 
-## Use Case: <br>
-外部用户和购物、商家运营相关人员可用此技能快速查找淘宝及阿里生态常用入口，并输出对应网址以减少误入仿冒页面的风险。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill claims official Taobao and Alibaba destinations, but provenance evidence for the listed links is unavailable. <br>
-Mitigation: Before signing in, paying, or managing a merchant account, independently verify the destination through trusted browser bookmarks or the service provider's known channels. <br>
+## Use Case:
 
+External users and shopping or commerce assistants use this skill to retrieve official Taobao, Tmall, Xianyu, Alipay, seller, marketing, API, and related Alibaba ecosystem URLs for safer navigation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaodong0537xx/taobao-ai) <br>
-- [淘宝网](https://www.taobao.com) <br>
-- [淘宝移动端网页版](https://h5.taobao.com) <br>
-- [我的淘宝](https://i.taobao.com) <br>
-- [天猫](https://www.tmall.com) <br>
-- [聚划算](https://ju.taobao.com) <br>
-- [闲鱼](https://www.goofish.com) <br>
-- [一淘网](https://www.etao.com) <br>
-- [千牛工作台](https://qn.taobao.com) <br>
-- [卖家中心](https://sell.taobao.com) <br>
-- [淘宝开放平台](https://open.taobao.com) <br>
-- [支付宝](https://www.alipay.com) <br>
-- [1688.com](https://www.1688.com) <br>
-- [飞猪旅行](https://www.fliggy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text containing a selected service name and URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces link directory guidance only; no code, credentials, or permissions are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may rely on a listed destination for login, payment, or account actions without checking the final browser destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a convenience directory and verify the destination domain in the browser before entering credentials, payment details, or account information.
+
+Risk: The skill does not document explicit trigger conditions, so an agent could use it for requests that are only loosely related to Taobao navigation.
+
+Mitigation: Invoke it only when the user asks for official Taobao, Alibaba commerce, seller, payment, marketing, or developer portal links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaodong0537xx/skills/taobao-ai)
+- [Publisher profile](https://clawhub.ai/user/gaodong0537xx)
+- [淘宝网](https://www.taobao.com)
+- [天猫](https://www.tmall.com)
+- [淘宝开放平台](https://open.taobao.com)
+- [支付宝](https://www.alipay.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text listing requested official service names and URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces navigation links only; it does not request credentials, execute code, or access local data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

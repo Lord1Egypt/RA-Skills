@@ -1,41 +1,59 @@
-## Description: <br>
-Automatically queries domestic and international gold prices hourly and reports current price matches from a public gold-price page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically queries and reports domestic and international gold prices every hour.
 
-## Publisher: <br>
-[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hongjiahao371-pixel](https://clawhub.ai/user/hongjiahao371-pixel)
 
-## Use Case: <br>
-External users and developers use this skill to run or schedule a gold-price report that fetches a public price page and prints matched gold price values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an adjacent playwright-scraper-skill and a public website that may be unavailable, untrusted, or structurally changed. <br>
-Mitigation: Confirm the dependency is installed and trusted before use, and verify reported prices against the source page when accuracy matters. <br>
-Risk: Enabling the documented cron entry creates recurring hourly network requests and recurring reports. <br>
-Mitigation: Enable the schedule only when hourly reporting is intended, and remove the cron entry when automation should stop. <br>
+## Use Case:
 
+Users who monitor gold prices can run this skill manually or schedule it hourly to report Gold 9999, major brand gold, and bank gold bar prices from huangjinjiage.cn. Its output is informational and should be independently verified before financial decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hongjiahao371-pixel/gold-price-auto) <br>
-- [Gold price data source](http://www.huangjinjiage.cn/jinrijinjia.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions] <br>
-**Output Format:** [Plain text console output with optional cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prints up to 20 matched price values and the cited data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The reported prices come from a single website over HTTP and may be incorrect, stale, or modified in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify prices against independent trusted sources before using them for financial decisions, and prefer an HTTPS or authenticated data source when adapting the skill.
+
+Risk: Scheduled execution depends on a sibling Playwright scraper and an unchecked directory change, which can cause silent failures or unexpected script execution if the path is wrong.
+
+Mitigation: Review the sibling scraper before installation, add an explicit directory-change failure check, and run scheduled jobs with least-privilege permissions.
+
+Risk: The parser extracts matching price text from page output, so website layout changes can produce incomplete or misleading reports.
+
+Mitigation: Monitor scheduled output, alert on empty or malformed reports, and validate extracted prices before sharing them downstream.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/hongjiahao371-pixel/skills/gold-price-auto)
+- [Publisher profile](https://clawhub.ai/user/hongjiahao371-pixel)
+- [Gold price data source](http://www.huangjinjiage.cn/jinrijinjia.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text report with optional shell and cron commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports extracted price strings in yuan per gram; no structured output contract is documented.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

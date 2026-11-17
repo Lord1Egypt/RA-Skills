@@ -1,42 +1,53 @@
-## Description: <br>
-Token-efficient command execution patterns for AI agents using vx-managed tools such as `vx rg` and `vx jq` to filter verbose build, test, lint, GitHub, and version-control output across platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI agents to reduce verbose command output using vx-managed filters, compact modes, and focused GitHub and CI queries.
 
-## Publisher: <br>
-[loonghao](https://clawhub.ai/user/loonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loonghao](https://clawhub.ai/user/loonghao)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to choose compact, cross-platform command patterns for builds, tests, linting, GitHub workflows, CI logs, and repository inspection. It helps agents preserve context by filtering command output before returning it to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub CLI and API examples may read authenticated repository, pull request, issue, or CI information. <br>
-Mitigation: Run the examples only in the intended project context and review filtered output before sharing or storing it. <br>
-Risk: Log-saving examples can write full command output to local files that may contain sensitive project details. <br>
-Mitigation: Use temporary or ignored log paths, inspect and redact sensitive content when needed, and delete logs after debugging. <br>
-Risk: Command recipes are examples and may not match every project or shell environment exactly. <br>
-Mitigation: Review each command before execution and adapt paths, flags, and filters to the current toolchain. <br>
+## Use Case:
 
+Developers use this skill to guide AI agents through builds, tests, linting, and GitHub or CI work while keeping command output concise.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/loonghao/vx-agent-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples should be reviewed before execution in the user's environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Posting issue or PR updates without authorization or exposing sensitive internal details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit authorization before posting and omit internal IDs, paths, hostnames, and other sensitive details.
+
+Risk: Aggressive output filtering can omit details needed to diagnose failed commands.
+
+Mitigation: Retain full logs when troubleshooting and inspect them if filtered summaries are insufficient.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/loonghao/skills/vx-agent-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused output filters and token-savings suggestions]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

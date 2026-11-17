@@ -1,37 +1,48 @@
-## Description: <br>
-Convert a workflow, skill, or capability into a sellable micro-offer with positioning, pricing, packaging, and launch assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a workflow, skill, or capability into a sellable micro-offer with positioning, pricing, packaging, and launch assets.
 
-## Publisher: <br>
-[xammarie](https://clawhub.ai/user/xammarie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xammarie](https://clawhub.ai/user/xammarie)
 
-## Use Case: <br>
-External creators, consultants, and developers use this skill to turn a narrowly scoped capability or workflow into a paid micro-offer with positioning, pricing, deliverables, risk reducers, and launch assets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated pricing, outreach, and launch copy may be commercially weak, inaccurate for the target audience, or unsuitable for public use without review. <br>
-Mitigation: Review and adapt all generated offer, pricing, and launch materials before publishing or sending them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xammarie/micro-offer-forge) <br>
+## Use Case:
 
+External creators, consultants, and developers use this skill to package a small workflow or capability into a concise paid offer with positioning, pricing, deliverables, objection handling, and launch copy.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an offer one-liner, buyer rationale, deliverables list, pricing table, objection handling bullets, and a 7-day launch checklist.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated sales, landing, or outreach copy may be inaccurate, overstated, or unsuitable for public use.
+
+Mitigation: Review and edit generated positioning and outreach text before publication or sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xammarie/skills/micro-offer-forge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces offer positioning, deliverables, pricing, objection handling, and a 7-day launch checklist.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

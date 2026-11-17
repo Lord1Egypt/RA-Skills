@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7dmrn1y242s1hnqabmhx80ed833ac5",
   "slug": "interactive-infographic",
-  "version": "0.1.8",
-  "publishedAt": 1774409610144
+  "version": "0.1.0",
+  "openclaw": {
+    "emoji": "🧠",
+    "requires": {
+      "bins": ["node"]
+    },
+    "primaryEnv": "CONTEXTWEAVE_MCP_API_KEY"
+  }
 }

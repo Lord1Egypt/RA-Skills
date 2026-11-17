@@ -1,40 +1,53 @@
-## Description: <br>
-Deep audit for installed ClawHub skills - usage analysis, permission review, conflict detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep audit for installed ClawHub skills — usage analysis, permission review, conflict detection.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and workspace maintainers use Skill Auditor to audit installed ClawHub or OpenClaw skills, review permissions and usage history, detect conflicts, score skill health, and prepare cleanup recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local skill metadata and usage or session history during audits. <br>
-Mitigation: Review which logs and directories it reads, and limit the audit time window where possible. <br>
-Risk: Generated cleanup scripts could disable, archive, or remove skills if executed without review. <br>
-Mitigation: Prefer dry-run output first, keep backups, and inspect any generated cleanup script before execution. <br>
+## Use Case:
 
+Developers and maintainers use Skill Auditor to review installed OpenClaw and ClawHub skills for usage, permissions, conflicts, and health, then plan cleanup or permission changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Auditor release](https://clawhub.ai/harrylabsj/audit-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional shell cleanup script and HTML export.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include health scores, conflict matrix, per-skill flags, optimization suggestions, and dry-run cleanup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may inspect local skill metadata and session or usage history, which can expose sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with a narrow time window and use aggregate usage data only when possible.
+
+Risk: Generated cleanup scripts can uninstall, disable, or archive skills if executed without review.
+
+Mitigation: Use dry-run cleanup first and review any generated shell script before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/audit-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown report with optional shell cleanup script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include health scores, flags, conflict matrices, and dry-run cleanup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -13,36 +13,58 @@ Use this file when maintaining the skill or adding registered workflows. Runtime
 
 ## Adding a Workflow
 
-1. Place the exported ComfyUI workflow JSON in `assets/workflows/`.
-2. Generate a review template:
+This repo supports two paths:
+
+- User path: import a workflow you already validated in ComfyUI, then register it as a capability.
+- Maintainer path: same mechanics, but you also update docs/tests and keep the shipped workflow registry consistent.
+
+### User Path (Recommended)
+
+1. Export a working workflow from ComfyUI as API-format JSON.
+2. Import it (writes the workflow JSON + a reviewed template):
 
    ```bash
-   uv run --no-sync python scripts/analyze_workflow.py assets/workflows/new_workflow.json
+   uv run --no-sync python -m comfyui import-workflow path/to/new_workflow.json --id new_workflow
    ```
 
-3. Review `assets/workflows/new_workflow.config.template.json`.
-4. Fill in `capability`, `description`, `node_mapping`, `output_kind`, and optional size metadata.
-5. Remove `_discovered_nodes`; it is for review only.
-6. Rename the reviewed template to `new_workflow.config.json`.
-7. Run preflight:
+3. Review the generated template under the per-user registry:
+
+   ```text
+   <user_data_root>/custom_workflows/new_workflow/workflow.config.template.json
+   ```
+
+   - Confirm the minimal required fields: `description`, `capability`, `output_kind`, and exposed inputs in `node_mapping`.
+   - Optional: add selection metadata (`intent_categories`, `priority`, `keywords_any`, `selection_guidance`) so Agents can prefer your workflow.
+4. Rename the reviewed template to activate it:
+
+   ```text
+   workflow.config.json
+   ```
+
+5. Optional preflight:
 
    ```bash
    uv run --no-sync python -m comfyui generate --workflow new_workflow --preflight
    ```
 
-8. Add/update tests if executor, CLI validation, config loading, or output handling changed.
+### Maintainer Path
 
-The workflow becomes available only after a reviewed `*.config.json` exists under `assets/workflows/`.
+- Maintainers may import into the built-in workflow registry (packaged assets) explicitly:
+
+  ```bash
+  uv run --no-sync python -m comfyui import-workflow path/to/new_workflow.json --id new_workflow --into-project
+  ```
+
+- After activating a workflow registration, also update docs and tests when needed (executor, CLI validation, config loading, output handling).
+
+The workflow becomes available only after a reviewed config exists:
+
+- User registry: `<user_data_root>/custom_workflows/<id>/workflow.config.json`
+- Built-in registry (maintainer): `assets/workflows/<id>.config.json`
 
 ## Analyzer Safety
 
-`scripts/analyze_workflow.py` is a maintainer helper, not an activation tool. By default it writes:
-
-```text
-assets/workflows/<workflow>.config.template.json
-```
-
-This avoids auto-registering heuristic analyzer output. Use `--force` only when you intentionally want to overwrite or activate a `*.config.json` directly.
+The import/analyze step generates a template. The template is not an activation artifact.
 
 Never treat analyzer output as reviewed. It guesses node roles from workflow structure and names; human review is required before activation.
 
@@ -53,16 +75,20 @@ Common top-level fields:
 | Field | Purpose |
 |-------|---------|
 | `workflow_id` | Stable id used by `--workflow` |
-| `workflow_file` | Workflow JSON path/name under `assets/workflows/` |
+| `workflow_file` | Workflow JSON path/name under the workflow registry root |
 | `capability` | Agent-facing capability such as `text_to_image`, `image_to_video`, `text_to_speech` |
 | `description` | Short human/Agent summary |
 | `node_mapping` | Role-to-node mapping used by executor |
 | `size_strategy` | Optional. `workflow_managed` means executor/CLI should not apply mapped width/height |
-| `output_kind` | `image`, `audio`, or `video` |
+| `output_kind` | `image`, `audio`, `video`, or `3d` |
 | `resolution_presets` | Optional Agent-facing named `{width,height,label}` choices |
 | `default_resolution` | Optional key into `resolution_presets` |
 
 `output_kind: "video"` should be used for video workflows even when Comfy history exposes files under `gifs`; the executor checks `images`, `gifs`, and `videos`.
+
+`output_kind: "3d"` should be used for 3D workflows. Core ComfyUI's `SaveGLB`, `Save3DAdvanced`, and `Preview3DAdvanced` all report their files under a `"3d"` key in history (via `UI.Saved3DModels`), with entries shaped like image outputs (`filename` / `subfolder` / `type`). The executor fetches those entries through `/view` exactly like the other kinds. Set `output_node_title` to the node's display name — `"Save 3D Model"` for `SaveGLB`, `"Save 3D (Advanced)"` for `Save3DAdvanced`, `"Preview 3D (Advanced)"` for `Preview3DAdvanced`.
+
+`Save3DAdvanced` emits nothing when its `viewport_state` input is empty: the job succeeds but history carries no `"3d"` entry, so the executor reports `NO_OUTPUT`. Export the graph from the ComfyUI UI (Save → Export (API Format)) so `viewport_state` keeps its camera block, rather than hand-writing the API JSON. `SaveGLB` has no such dependency.
 
 ## node_mapping Schema
 

@@ -1,0 +1,7 @@
+# 片段类型：结构
+## 原文片段
+Development of the Dataset. To understand the prevalence of the business (vs. fairness) case in the diversity cases that organizations make, two research assistants (blind to the study's hypotheses) were recruited to collect any text relevant to the question of why an organization values diversity from each of the Fortune 500 companies' websites. Research assistants searched for and collected each company's organizational diversity case on the company's D&I webpage. If the company did not have a dedicated D&I webpage, or if its D&I page did not contain any organizational diversity case, the research assistants were instructed to search for the company's diversity case on its Careers page, then in corporate articles published on its website, and as a last resort, on the company's blog (if any), in this order. At each step of the process, if the research assistants found the company's diversity case, they collected it, and stopped their search there for the company at hand. Each research assistant collected text for 250 companies, and then verified that all relevant information had been collected for the 250 companies that their colleague had collected.
+## 来源文献
+Georgeac, O. A. M., & Rattan, A. (2022). The business case for diversity won't convince everyone. Journal of Personality and Social Psychology. https://doi.org/10.1037/pspi0000394
+## 适配诊断点
+语料构建目的从句开头 + 双盲收集者 + 搜索降级顺序（D&I→Careers→articles→blog）与停止规则逐条可复现 + 交叉核对分工，是文本语料构建的结构样板。

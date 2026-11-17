@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Wine Info Search Script v1.6
+Wine Info Search Script v1.7
 Searches for wine and other alcohol detailed information, ratings, and prices across major platforms.
 
 Data Sources:
@@ -71,6 +71,7 @@ Optional dependencies:
 import json
 import os
 import re
+import socket
 import ssl
 import sys
 import time
@@ -103,6 +104,45 @@ def _enable_insecure_mode():
     setattr(_ssl_ctx, "check_hostname", False)
     setattr(_ssl_ctx, "verify_mode", getattr(ssl, "CERT_NONE"))
     return True
+
+def _urlopen_firecrawl(req, timeout=45):
+    """Open URL for Firecrawl API with SSL verification and automatic insecure retry.
+    
+    Firecrawl API requests use HTTPS to api.firecrawl.dev. First attempt uses
+    the default secure SSL context. If SSL handshake fails (common in some
+    network environments with proxy/firewall interference), a single retry
+    is made with certificate verification disabled.
+    
+    This is safe because:
+    1. The Firecrawl API endpoint (api.firecrawl.dev) is a known service
+    2. The request already uses HTTPS encryption
+    3. The retry only applies to Firecrawl API calls, not arbitrary URLs
+    4. The bearer token is already transmitted over the same HTTPS connection
+    """
+    try:
+        return urllib.request.urlopen(req, context=_ssl_ctx, timeout=timeout)
+    except (ssl.SSLCertVerificationError, urllib.error.URLError, TimeoutError, OSError) as e:
+        # Check if it's an SSL verification error or a timeout that might be
+        # caused by SSL handshake issues (common in restricted network environments)
+        is_ssl_err = isinstance(e, ssl.SSLCertVerificationError) or \
+                     (isinstance(e, urllib.error.URLError) and isinstance(getattr(e, 'reason', None), ssl.SSLCertVerificationError))
+        is_timeout = isinstance(e, (TimeoutError,)) or \
+                     (isinstance(e, urllib.error.URLError) and isinstance(getattr(e, 'reason', None), (TimeoutError, socket.timeout)))
+        
+        if not (is_ssl_err or is_timeout):
+            raise
+        
+        # Retry once with insecure context for Firecrawl API only
+        if _firecrawl_api_key:
+            insecure_ctx = ssl.create_default_context()
+            setattr(insecure_ctx, "check_hostname", False)
+            setattr(insecure_ctx, "verify_mode", getattr(ssl, "CERT_NONE"))
+            try:
+                return urllib.request.urlopen(req, context=insecure_ctx, timeout=timeout)
+            except Exception:
+                pass  # Fall through to raise original error
+        
+        raise
 
 def _urlopen_secure(req, timeout=30):
     """Open URL with SSL verification — no automatic fallback.
@@ -150,8 +190,8 @@ OFF_PRODUCT_URL = "https://world.openfoodfacts.org/api/v0/product"
 # Firecrawl bypasses Vivino's China IP blockade by using US-based proxy IPs.
 # Requires API key (free tier: 500 requests/month).
 # Set via FIRECRAWL_API_KEY env var or --firecrawl-key argument.
-FIRECRAWL_API_URL = "https://api.firecrawl.dev/v1/scrape"
-FIRECRAWL_SEARCH_API_URL = "https://api.firecrawl.dev/v1/search"
+FIRECRAWL_API_URL = "https://api.firecrawl.dev/v2/scrape"
+FIRECRAWL_SEARCH_API_URL = "https://api.firecrawl.dev/v2/search"
 _firecrawl_api_key = os.environ.get("FIRECRAWL_API_KEY", "")
 
 # Wikipedia API (tertiary - wine & winery background information)
@@ -179,16 +219,16 @@ WINESPECTATOR_URL = "https://www.winespectator.com/search"
 # Firecrawl API Functions (Vivino Access Restored)
 # ============================================================
 
-def firecrawl_scrape(url, formats=None, wait_for=3000, timeout=25):
+def firecrawl_scrape(url, formats=None, wait_for=3000, timeout=60):
     """
-    Scrape a URL using Firecrawl API. Supports JS rendering and US proxy IP.
+    Scrape a URL using Firecrawl API (v2). Supports JS rendering and US proxy IP.
     Returns the scraped content as markdown string, or None on failure.
     
     Args:
         url: The URL to scrape
         formats: List of formats to return (default: ['markdown'])
         wait_for: Milliseconds to wait for JS rendering (default: 3000)
-        timeout: Request timeout in seconds (default: 25)
+        timeout: Request timeout in seconds (default: 60, increased for v2 JS rendering)
     """
     if not _firecrawl_api_key:
         return None
@@ -212,7 +252,7 @@ def firecrawl_scrape(url, formats=None, wait_for=3000, timeout=25):
     
     req = urllib.request.Request(FIRECRAWL_API_URL, data=data, headers=headers, method='POST')
     try:
-        with _urlopen_secure(req, timeout=timeout) as resp:
+        with _urlopen_firecrawl(req, timeout=timeout) as resp:
             result = json.loads(resp.read().decode('utf-8'))
             if result.get('success'):
                 return result.get('data', {}).get('markdown', '')
@@ -248,10 +288,18 @@ def firecrawl_search(query, limit=5, timeout=20):
     
     req = urllib.request.Request(FIRECRAWL_SEARCH_API_URL, data=data, headers=headers, method='POST')
     try:
-        with _urlopen_secure(req, timeout=timeout) as resp:
+        with _urlopen_firecrawl(req, timeout=timeout) as resp:
             result = json.loads(resp.read().decode('utf-8'))
             if result.get('success'):
-                return result.get('data', [])
+                # Firecrawl v2 nests results under data.web; v1 returned data
+                # as a flat list. Handle both formats for forward compatibility.
+                data_field = result.get('data', [])
+                if isinstance(data_field, dict):
+                    return data_field.get('web', [])
+                if isinstance(data_field, list):
+                    return data_field
+                return []
+            print(f"  🔥 Firecrawl search returned success=false: {result.get('error', 'unknown')}")
             return []
     except Exception:
         return []

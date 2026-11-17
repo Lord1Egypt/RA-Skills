@@ -1,41 +1,55 @@
-## Description: <br>
-AI pair programming powered by CellCog Desktop for code, debugging, refactoring, and local development workflows on the user's machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI pair programming powered by CellCog Desktop. Code, debug, refactor, and build directly on the user's machine. Terminal access, file operations, full development workflows — auto-approved for agents.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate coding, debugging, refactoring, DevOps, data pipeline, and documentation tasks to CellCog agents working within a local project directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud agents can receive auto-approved terminal and file-operation access on the user's machine. <br>
-Mitigation: Install only for intentional local co-work use, scope each session to a dedicated project directory, keep work under version control, and narrow or disable auto-approval when autonomous writes or commands are not acceptable. <br>
-Risk: The skill requires CELLCOG_API_KEY and CellCog Desktop, which can expose local development workflows to a remote coding service. <br>
-Mitigation: Verify how the desktop app stores the API key, avoid sensitive folders, review generated changes before relying on them, and stop or disconnect CellCog Desktop when co-work access is no longer needed. <br>
+## Use Case:
 
+Developers use CellCog Desktop with cloud agents to work on local projects, including writing and changing code, debugging, refactoring, and development tasks. The agent can run local commands and access files in its working directory.
 
-## Reference(s): <br>
-- [Cowork Cog on ClawHub](https://clawhub.ai/nitishgargiitd/cowork-cog) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; CellCog responses may include JSON and task results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the cellcog dependency, CELLCOG_API_KEY, and CellCog Desktop for local co-work sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: Cloud agents can run local commands with automatic approval, while the limits on destructive actions are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated project with backups and confirm how consequential commands are restricted before execution.
+
+Risk: Co-work can expose local project data to cloud agents, and Browse can use the user's real browser.
+
+Mitigation: Use a dedicated browser profile without sensitive accounts, and review the dependency and desktop installer separately.
+
+## Reference(s):
+
+- [Pair Programming on ClawHub](https://clawhub.ai/cellcog/skills/pair-programming-cellcog)
+- [CellCog](https://cellcog.ai)
+- [CellCog Co-work](https://cellcog.ai/cowork)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Code and file changes, shell commands, and text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and modify files and run commands within the configured project working directory.]
+
+## Skill Version(s):
+
+1.0.16 (source: server-resolved ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

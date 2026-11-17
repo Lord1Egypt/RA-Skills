@@ -1,38 +1,48 @@
-## Description: <br>
-Pre-delivery acceptance checklist and reusable mini-prompts for common tasks before marking software work delivered, reviewing a PR, or verifying implementation completeness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-delivery acceptance checklist and reusable mini-prompts for common tasks.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[urbantech](https://clawhub.ai/user/urbantech)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to prepare stories and pull requests for delivery by checking implementation completeness, test evidence, review findings, and release readiness. It also provides reusable prompt templates for story classification, TDD kickoff, refactoring review, and PR composition.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can make matching delivery-review workflows produce a longer fixed-format response.
+
+Mitigation: Use it for story delivery and PR readiness reviews, or narrow the trigger text if flexible response formatting is preferred.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure delivery readiness checks, PR review evidence, test verification, rollout notes, and reusable prompts for common software delivery tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Checklist output can shape how an agent formats delivery and PR-review responses, and may omit or overstate verification evidence. <br>
-Mitigation: Independently verify tests, CI status, PR contents, security and accessibility checks, deployment evidence, and rollback plans before relying on the checklist output. <br>
+**Output Format:** [Markdown with checklists, review findings, code diffs, test summaries, and PR description text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Delivery Checklist on ClawHub](https://clawhub.ai/urbantech/delivery-checklist) <br>
+**Other Properties Related to Output:** [May produce a structured multi-section response for delivery and review workflows]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown checklists, review sections, unified diffs, test notes, PR descriptions, and mini-prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or access requests; outputs are checklist and prompt guidance for human review.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

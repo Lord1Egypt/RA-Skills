@@ -1,40 +1,53 @@
-## Description: <br>
-Applies an explicitly invoked response style that makes agent replies terse, blunt, and profane while preserving technical substance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies an opt-in terse, profane response style while preserving technical substance, code, commands, quoted errors, safety warnings, and user constraints.
 
-## Publisher: <br>
-[uncmatteth](https://clawhub.ai/user/uncmatteth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncmatteth](https://clawhub.ai/user/uncmatteth)
 
-## Use Case: <br>
-Developers and agent users can invoke this skill when they intentionally want compact, caveman-style replies with blunt profanity while retaining exact technical content, code, commands, quoted errors, proof, safety warnings, and user constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent profanity can be unsuitable for professional, educational, compliance, sensitive, shared, or age-unknown settings. <br>
-Mitigation: Install only when this response style is intentional; use reset phrases such as "stop caveman", "stop cursing", or "normal mode" before sensitive conversations. <br>
-Risk: Compressed, blunt phrasing can reduce clarity for high-stakes warnings or multi-step instructions. <br>
-Mitigation: Ask for clarification or normal mode when precision matters; the artifact directs the agent to drop the style temporarily for security warnings, irreversible confirmations, and sequences where fragments could be misread. <br>
+## Use Case:
 
+External ClawHub users invoke this skill when they want an agent to answer in a compressed, blunt, profanity-permitted style while keeping technical content and safety warnings intact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/uncle-matts-caveman-curse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Natural-language and Markdown responses with code blocks, shell commands, and quoted errors preserved when present.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Style-only behavior; no runtime actions or external system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.420.70 (source: server release evidence) <br>
+Risk: The skill intentionally makes responses profane and blunt, which may be inappropriate in workplace, client-facing, educational, or sensitive conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke it only where that tone is acceptable, and use the documented stop phrases to return to normal mode.
+
+Risk: The style persists across responses once triggered, so tone may continue longer than intended.
+
+Mitigation: Use explicit stop phrases such as "stop caveman", "stop cursing", or "normal mode" when the terse profane style is no longer wanted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/uncle-matts-caveman-curse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown responses, preserving code blocks and exact quoted errors when present.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-style transformation only; no runtime actions.]
+
+## Skill Version(s):
+
+4.420.70 (source: ClawHub release metadata; artifact frontmatter lists 4.420.69)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

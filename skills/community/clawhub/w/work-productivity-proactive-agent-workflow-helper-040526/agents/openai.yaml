@@ -1,0 +1,7 @@
+interface:
+  display_name: "Proactive Agent Workflow Helper"
+  short_description: "Design proactive agent workflows that notice recurring needs, propose timely actions, and stay bounded by p..."
+  default_prompt: "Use $work-productivity-proactive-agent-workflow-helper to design a proactive follow-up agent."
+
+policy:
+  allow_implicit_invocation: true

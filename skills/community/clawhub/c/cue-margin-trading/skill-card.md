@@ -1,47 +1,56 @@
-## Description: <br>
-Runs Cue deep research for margin trading scenarios using cross-source public data and returns conclusions with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用 Cue 跑融资融券场景的深度研究，横向比对主要券商的两融政策，识别竞对抢客与风险收缩信号，并支持券商经纪业务的客户持仓沟通与展业。
 
-## Publisher: <br>
-[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaoxu](https://clawhub.ai/user/wangxiaoxu)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to run Cue research for margin-trading questions, including broker policy comparisons, ETF and technology security financing comparisons, and risk-contraction alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch or update unpinned remote runner code under ~/.cue that may run with access to local Cue account credentials. <br>
-Mitigation: Review the runner source before installation, prefer a trusted pinned runner version, and confirm what will be installed or updated before first use. <br>
-Risk: Running deep research consumes Cue credits. <br>
-Mitigation: Ask the user for explicit confirmation before starting any research run that consumes credits. <br>
-Risk: Research is based on public data and is not a substitute for due diligence, legal review, or underwriting. <br>
-Mitigation: Present results as research support, preserve source links, and avoid treating outputs as final professional advice. <br>
-Risk: The live Cue scene or runner may return no content. <br>
-Mitigation: Report unavailable or empty results clearly and offer retry options instead of inventing findings. <br>
+## Use Case:
 
+External analysts, brokerage teams, and developers use this skill to run Cue-powered public-data research on margin trading policies, broker comparisons, ETF and technology margin terms, and risk-contraction signals. It helps produce sourced reports for customer communication and competitive monitoring, but it does not replace due diligence, legal review, or underwriting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-margin-trading) <br>
-- [Cue playbook API](https://cuecue.cn/api/playbook) <br>
-- [cue-skills runner repository](https://github.com/sensedeal/cue-skills) <br>
-- [cue-skills runner mirror](https://gitee.com/sensedeal/cue-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and final research reports with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit credit confirmation before running; final reports preserve source links and should not fabricate missing results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and auto changelog) <br>
+Risk: The skill may download or update the Cue runner and execute mutable external code locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the runner version before use and install only when local execution of the Cue runner is acceptable.
+
+Risk: The runner can access a local Cue API key and spend credits.
+
+Mitigation: Confirm the credit-spending prompt carefully before running research and use an appropriately scoped Cue account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangxiaoxu/skills/cue-margin-trading)
+- [Cue playbook source](https://cuecue.cn/playbook)
+- [Cue playbook API](https://cuecue.cn/api/playbook)
+- [Cue API key page](https://cuecue.cn/hub/api-key)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown research report with source links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Cue API key and credits; may fetch or update the external Cue runner before execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

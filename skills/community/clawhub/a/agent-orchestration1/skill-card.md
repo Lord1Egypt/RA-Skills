@@ -1,38 +1,54 @@
-## Description: <br>
-Master the art of spawning and managing sub-agents, writing prompts that work, tracking running agents, and learning from outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master the art of spawning and managing sub-agents. Write prompts that actually work, track running agents, and learn from every outcome.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to structure prompts as contracts, coordinate spawned sub-agents, track active work, and capture reusable learnings. It includes optional SkillBoss API Hub examples for routing model calls by task priority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/agent-orchestration1) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot) <br>
+Developers and agent operators use this skill to design structured prompts, coordinate sub-agent work, track active agents, and capture lessons from agent outcomes.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, tracking-file examples, and inline code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires careful handling of SKILLBOSS_API_KEY and local tracking files; evidence.security advises using limited API keys and avoiding secrets or sensitive content in example API calls and logs.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill describes sending selected prompt content to a third-party LLM endpoint.
+
+Mitigation: Use the SkillBoss API portion only with approved data, and avoid sending secrets, proprietary code, credentials, personal data, or broad conversation context.
+
+Risk: The skill recommends persistent local tracking notes for agent activity and learnings.
+
+Mitigation: Configure tracking files deliberately so operational notes do not pollute repositories or persist sensitive workspace details unintentionally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abeltennyson/skills/agent-orchestration1)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, tracking-table examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SKILLBOSS_API_KEY when applying the optional SkillBoss API Hub example.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

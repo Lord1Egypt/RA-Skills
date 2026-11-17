@@ -1,45 +1,58 @@
-## Description: <br>
-Send and receive emails via API. Get a working email address instantly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive emails via API. Get a working email address instantly.
 
-## Publisher: <br>
-[dommholland](https://clawhub.ai/user/dommholland) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dommholland](https://clawhub.ai/user/dommholland)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create an email address, send messages, read inbox contents, register addresses, configure custom-domain email, and set up received-email webhooks through the GetPost API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer API keys can authorize email actions if exposed or mishandled. <br>
-Mitigation: Treat the GetPost bearer API key like a password and avoid placing it in shared logs, prompts, or public artifacts. <br>
-Risk: Email sending can disclose unintended recipients or message contents. <br>
-Mitigation: Confirm recipients, subjects, and message bodies before sending email through the skill. <br>
-Risk: Webhook endpoints may receive sensitive inbound email data. <br>
-Mitigation: Use trusted webhook endpoints and avoid routing sensitive mail to untrusted services. <br>
-Risk: Address, custom-domain, and webhook changes may persist in the GetPost account. <br>
-Mitigation: Review account-level changes before applying them and remove unused addresses, domains, or webhooks when no longer needed. <br>
+## Use Case:
 
+Developers and external agents use this skill to send and receive email through the GetPost API without operating an email server. It covers API key creation, inbox retrieval, sending email, dedicated addresses, custom domains, and webhooks.
 
-## Reference(s): <br>
-- [GetPost Email API documentation](https://getpost.dev/docs/api-reference#email) <br>
-- [ClawHub skill page](https://clawhub.ai/dommholland/getpost-email) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authenticated requests to GetPost endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Email content, inbound messages, and attachments may contain sensitive or untrusted data routed through GetPost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets or regulated data unless the use is approved, and treat inbound bodies and attachments as untrusted.
+
+Risk: A GetPost API key can authorize email actions if exposed.
+
+Mitigation: Store the API key in a proper secret store and avoid hardcoding it in prompts, code, or shared logs.
+
+Risk: Automated sending can deliver email to the wrong recipient or with incorrect content.
+
+Mitigation: Confirm recipients, subject lines, and message bodies before sending email.
+
+## Reference(s):
+
+- [GetPost Email API documentation](https://getpost.dev/docs/api-reference#email)
+- [ClawHub skill page](https://clawhub.ai/dommholland/skills/getpost-email)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with curl command examples and API endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GetPost API key; inbound email bodies and attachments should be treated as untrusted.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

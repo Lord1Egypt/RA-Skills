@@ -1,45 +1,57 @@
-## Description: <br>
-Personal Context Manager helps users record daily reflections, integrate external information, refine a minimal personal knowledge core, generate cognitive maps, and request optional idea-sprouting or diary-feedback prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal Context Manager helps an agent capture personal reflections, imported information, knowledge connections, minimal-kernel summaries, cognitive maps, sprouts, and observer-style diary feedback.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agent operators use this skill to maintain a local personal knowledge base: journal meaningful events, attach personal judgments to imported content, build connections, and periodically refine a concise core context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores personal reflections and imported content in local files, which can expose sensitive or third-party information if users save it indiscriminately. <br>
-Mitigation: Avoid recording secrets or private work material without permission, and review stored notes before sharing or syncing the workspace. <br>
-Risk: The entropy cleanup workflow can delete notes when run with force deletion. <br>
-Mitigation: Run cleanup in dry-run mode first, review the generated deletion report, and back up notes before using --force. <br>
-Risk: External content may be sorted or reused with incomplete source quality signals. <br>
-Mitigation: Use the skill's source-level labels as triage cues and verify important external claims before relying on them. <br>
+## Use Case:
 
+Individuals and productivity-focused users use this skill with an agent to record daily reflections, connect external information to personal judgments, and periodically refine a compact personal context kernel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/personal-context-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/lj22503) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, structured Markdown files, concise guidance, shell commands, and local configuration or script updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local personal context files under journal, external, core, and connections directories; the entropy cleanup script supports dry-run and force deletion modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can create long-lived local records of sensitive personal reflections and imported conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact secrets and third-party private information before saving content, and review where generated notes are stored and who can access them.
+
+Risk: The entropy reduction script can delete user notes when run with force.
+
+Mitigation: Run entropy reduction in dry-run mode first, review deletion candidates manually, keep backups, and use force only when deletion is intentional.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/lj22503/skills/personal-context-manager)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Entropy reduction script](artifact/scripts/entropy_reduce.py)
+- [Round 1 evaluation summary](artifact/evolve-test/round-1/summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown notes, structured local files, reports, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local data directories for journal, external information, core summaries, and connections; the entropy reduction script can update or delete local Markdown notes when explicitly run with force.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release, skill frontmatter, and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

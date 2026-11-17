@@ -1,41 +1,50 @@
-## Description: <br>
-Data and text alignment reference for sequence alignment, text formatting, memory alignment, and CSS/layout alignment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data and text alignment reference - sequence alignment, text formatting, memory alignment, and CSS/layout alignment.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use this skill as a quick reference for aligning text, columns, CSS layouts, memory structures, biological sequences, and data fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may copy alignment examples into shell, code, CSS, or systems workflows without adapting them to the target environment. <br>
-Mitigation: Review and test examples before using them in a shell, codebase, layout, memory-sensitive program, or bioinformatics workflow. <br>
-Risk: The skill provides educational reference guidance rather than validating the correctness of a user's alignment task. <br>
-Mitigation: Verify results with domain-appropriate tests, compiler checks, layout inspection, or sequence-analysis tools before relying on the guidance. <br>
+## Use Case:
 
+Developers and engineers use this skill as an offline reference for alignment concepts, including terminal column formatting, CSS layout alignment, memory alignment, and sequence alignment.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Align release page](https://clawhub.ai/bytesagain3/align) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text guidance with Markdown shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Script subcommands select the alignment topic; no network access, private data access, or persistent system changes are described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Users may expect ALIGN_DIR to control data storage, but this release's script only prints static reference text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ALIGN_DIR as unused for this release and do not rely on the skill to create, read, or manage a data directory.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/align)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text reference output with command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline static reference; no API keys, MCP tools, or network calls are identified in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

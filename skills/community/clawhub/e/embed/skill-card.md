@@ -1,41 +1,54 @@
-## Description: <br>
-Provides local Embed reference documentation for devtools workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Embed outputs plain-text reference documentation for embed-related development topics.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Embed reference material, including introductory, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script banner reports version 2.0.1 while the release metadata and skill frontmatter report 2.0.2, which can confuse release verification. <br>
-Mitigation: Treat the server release metadata and skill frontmatter as the release version, and reconcile the script banner before relying on command-line version output. <br>
-Risk: The skill provides generic reference text rather than a functional Embed integration. <br>
-Mitigation: Use it as local guidance and verify implementation details against authoritative project documentation before applying changes. <br>
+## Use Case:
 
+Developers and engineers can use this skill to ask an agent for static reference guidance about embed concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Reference(s): <br>
-- [Embed skill page](https://clawhub.ai/bytesagain3/embed) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local heredoc output; no credentials, network access, or external API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill is generic and may be invoked by broad commands such as intro or security.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the requested topic is the Embed reference skill before relying on the generated guidance.
+
+Risk: The artifact outputs static, generic documentation that may not match a user's specific implementation or production environment.
+
+Mitigation: Review the guidance against project-specific requirements and authoritative product documentation before applying it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/embed)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text Markdown reference documentation emitted by shell command handlers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc output; no credentials, network access, or environment modification are indicated by the evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release evidence and SKILL.md frontmatter; artifact script declares 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

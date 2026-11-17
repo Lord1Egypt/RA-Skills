@@ -1,44 +1,65 @@
-## Description: <br>
-Finskills provides a real-time financial data API for systematic stock analysis and quantitative investment research across quotes, historical OHLCV, fundamentals, earnings, analyst recommendations, options, institutional holders, macro indicators, commodities, SEC filings, financial news, and crypto. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finskills gives agents real-time financial data API access for stock quotes, OHLCV history, fundamentals, macro indicators, commodities, SEC filings, and financial news used in systematic investment research.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to retrieve Finskills market data and produce factual stock, macro, options, commodity, crypto, SEC filing, and financial-news analysis for systematic investment research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finskills API keys are required for authenticated requests. <br>
-Mitigation: Provide the key through an environment variable or approved secret mechanism, avoid pasting it into ordinary chat, and rotate it if exposed. <br>
-Risk: Market-data outputs can be mistaken for financial advice or trade instructions. <br>
-Mitigation: Use outputs for planning and education, present data factually with freshness and units, and require human review before trading. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to the Finskills API for factual financial research, including stock screening, factor analysis, macro overlays, filings research, and market risk review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/finskills/finskills) <br>
-- [Finskills homepage](https://finskills.net) <br>
-- [Finskills API documentation](https://finskills.net/documentation) <br>
-- [Finskills skill page](https://finskills.net/skill) <br>
-- [Anthropic Skills specification](https://github.com/anthropics/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with market-data summaries, endpoint guidance, and optional shell command blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include units, data freshness, and factual framing; they should not be treated as financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: Installer examples can fetch mutable remote instructions into persistent agent rule files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the packaged SKILL.md before installation and prefer the packaged local file over curl-based installation from a mutable URL.
+
+Risk: The skill requires a Finskills API key for requests.
+
+Mitigation: Use a revocable API key, avoid hardcoding it in shared files, and rotate it if it is exposed.
+
+Risk: Financial prompts may include confidential holdings, proprietary trading ideas, or regulated investment data.
+
+Mitigation: Do not send sensitive financial information to the external Finskills service unless approved for that data flow.
+
+Risk: Financial data and derived metrics can be mistaken for investment advice.
+
+Mitigation: Present data factually, include units and freshness, and avoid buy or sell recommendations.
+
+## Reference(s):
+
+- [Finskills homepage](https://finskills.net)
+- [Finskills API documentation](https://finskills.net/documentation)
+- [Finskills skill page](https://finskills.net/skill)
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/finskills)
+- [ClawHub publisher profile](https://clawhub.ai/user/finskills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or text responses with API request paths, JSON-derived financial summaries, and occasional shell commands for installation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include units, data freshness, and factual presentation rather than investment advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

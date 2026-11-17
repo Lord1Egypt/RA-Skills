@@ -1,40 +1,55 @@
-## Description: <br>
-Persistent memory system for AI agents to remember facts, learn from experiences, recall memories, and track entities across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory system for AI agents to remember facts, learn from experiences, recall memories, and track entities across sessions.
 
-## Publisher: <br>
-[Sieyer](https://clawhub.ai/user/Sieyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sieyer](https://clawhub.ai/user/sieyer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give agents local, persistent memory for facts, lessons, and entity context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Saved memories and exported data can contain private, sensitive, or regulated information. <br>
-Mitigation: Avoid storing secrets, credentials, regulated data, or third-party personal details without consent; review or delete the local database periodically and treat exports as sensitive private files. <br>
+## Use Case:
 
+Developers and agent builders use Agent Memory to add local, persistent recall to AI agents, including stored facts, lessons from prior actions, and tracked entities across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sieyer/agent-memory-1-0-0) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Clawdbot](https://github.com/clawdbot/clawdbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples; runtime data is stored in a local SQLite database and can be exported as JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores facts, lessons, and entity records locally at the configured database path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill persistently stores potentially sensitive conversation facts in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a custom database path with restrictive filesystem permissions, avoid storing secrets or regulated data, and periodically inspect, export, or purge stored memory.
+
+Risk: Deletion guarantees are weak because the current forget() behavior may not fully clean full-text search data.
+
+Mitigation: Do not rely on forget() for complete removal until the FTS cleanup issue is fixed; purge or replace the database when complete removal is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sieyer/skills/agent-memory-1-0-0)
+- [Artifact README](artifact/README.md)
+- [Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime APIs return Python objects, dictionaries, and text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores memory in a local SQLite database by default, with a configurable database path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/src/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

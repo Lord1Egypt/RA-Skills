@@ -1,41 +1,53 @@
-## Description: <br>
-Chess.com player profiles, game stats, match archives, and leaderboards from the public API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chess.com player profiles, game stats, match archives, and leaderboards from the public API
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers, chess coaches, and community-tool builders use this skill to look up public Chess.com player profiles, ratings, game archives, and leaderboards. It supports public-data analysis and comparison without requiring Chess.com authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup requests are sent to Pipeworx's gateway. <br>
-Mitigation: Use the skill for public Chess.com lookup data and avoid including private or unnecessary information in requests. <br>
-Risk: The optional MCP setup downloads the current mcp-remote package unless a version is pinned. <br>
-Mitigation: Pin the mcp-remote package version in MCP client configuration when repeatability or package supply-chain control is required. <br>
+## Use Case:
 
+Developers, coaches, and chess community tool builders use this skill to retrieve public Chess.com player profiles, ratings, monthly game archives, and leaderboards without authentication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-chess) <br>
-- [Pipeworx Chess pack](https://pipeworx.io/packs/chess) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON API responses, bash examples, and MCP client configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns public Chess.com profile, ratings, archive, and leaderboard data through the Pipeworx gateway; no Chess.com authentication is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence and artifact frontmatter) <br>
+Risk: The setup uses a remote MCP gateway and downloads mcp-remote at runtime with an unpinned latest version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the remote MCP gateway and npm package; prefer pinning mcp-remote to a reviewed version.
+
+Risk: The MCP client may have access to local files, environment variables, or credentials depending on how it is run.
+
+Mitigation: Run the MCP client with least-privilege access and avoid exposing unnecessary local files, environment variables, or credentials.
+
+## Reference(s):
+
+- [Pipeworx Chess homepage](https://pipeworx.io/packs/chess)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON snippets; tool responses contain public Chess.com data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No authentication is required for the Chess.com public API data described by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

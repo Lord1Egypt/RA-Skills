@@ -1,42 +1,54 @@
-## Description: <br>
-Diagnose and fix the 4 most common OpenClaw agent failures: heartbeat spam, API rate limit cascades, channel death loops, and memory/embedding errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses common OpenClaw agent failures including heartbeat spam, API rate limit cascades, channel death loops, and memory or embedding errors.
 
-## Publisher: <br>
-[agenthyjack](https://clawhub.ai/user/agenthyjack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenthyjack](https://clawhub.ai/user/agenthyjack)
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose common OpenClaw agent health failures and apply practical remediation steps for logs, schedules, channels, memory files, and gateway configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested diagnostics and configuration changes can affect a live OpenClaw deployment if run directly on production systems. <br>
-Mitigation: Review commands before execution, back up ~/.openclaw/openclaw.json before edits, and avoid unattended gateway restarts. <br>
-Risk: External reference scripts are linked but not bundled with this skill. <br>
-Mitigation: Inspect the external repository scripts separately before using them. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose misbehaving OpenClaw agents, inspect service logs and configuration, and choose fixes for common health failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenthyjack/agent-health-diagnostics) <br>
-- [agenthyjack publisher profile](https://clawhub.ai/user/agenthyjack) <br>
-- [Collective Skills reference scripts](https://github.com/Bobalouie44/collective-skills/tree/main/references) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only troubleshooting output; no bundled scripts or generated files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Operational commands may change OpenClaw configuration or restart services if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, back up OpenClaw configuration first, and apply changes only to agents and services the operator administers.
+
+Risk: The linked external scripts are outside the inspected artifact.
+
+Mitigation: Review and scan any downloaded scripts separately before use.
+
+## Reference(s):
+
+- [Agent Health Diagnostics on ClawHub](https://clawhub.ai/agenthyjack/skills/agent-health-diagnostics)
+- [Collective Skills references](https://github.com/Bobalouie44/collective-skills/tree/main/references)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are diagnostic and operational; review them before running against administered OpenClaw services.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter and _meta.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

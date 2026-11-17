@@ -1,43 +1,60 @@
-## Description: <br>
-Deploy OpenClaw health monitoring on macOS with automatic Gateway recovery, a 180-second restart cooldown, and a five-restarts-per-hour limit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors OpenClaw Gateway on macOS and automatically restarts it with a 180-second cooldown and a five-restarts-per-hour limit.
 
-## Publisher: <br>
-[zhilshi](https://clawhub.ai/user/zhilshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[zhilshi](https://clawhub.ai/user/zhilshi)
 
-## Use Case: <br>
-Developers and OpenClaw users on macOS use this skill to install and operate a LaunchAgent that checks local Gateway health, attempts automatic recovery, and records operational logs and restart state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a macOS LaunchAgent that runs every five minutes and can automatically run OpenClaw repair, start, or restart commands. <br>
-Mitigation: Install it only when recurring automatic Gateway recovery is desired, and review the launchctl and doctor --fix paths before enabling the service. <br>
-Risk: Uninstall and reset workflows can delete OpenClaw health-check logs and restart state. <br>
-Mitigation: Back up logs or state before using uninstall or reset commands when operational history matters. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install and operate a macOS LaunchAgent that checks OpenClaw Gateway health, repairs issues, and restarts the gateway when local checks fail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhilshi/openclaw-health-guardian) <br>
-- [Technical implementation details](artifact/references/technical-details.md) <br>
-- [Troubleshooting guide](artifact/references/troubleshooting.md) <br>
-- [Safety and security information](artifact/SAFETY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes macOS LaunchAgent setup, log inspection commands, uninstall/reset commands, and operational troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Persistent background monitoring can automatically repair and restart OpenClaw Gateway, which may mask repeated local failures.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent recovery is desired, review the scripts first, and monitor ~/.openclaw/logs/health-check.log for repeated restart patterns.
+
+Risk: Reset and uninstall workflows can remove local health state and log files.
+
+Mitigation: Back up ~/.openclaw/logs and ~/.openclaw/state before using deletion commands documented by the skill.
+
+Risk: User-writable service and script files can be changed by anything with access to the same account.
+
+Mitigation: Protect ~/.openclaw and ~/Library/LaunchAgents from unwanted edits and install only in trusted user accounts.
+
+## Reference(s):
+
+- [Openclaw Health Guardian on ClawHub](https://clawhub.ai/zhilshi/skills/openclaw-health-guardian)
+- [Technical Implementation Details](artifact/references/technical-details.md)
+- [Troubleshooting Guide](artifact/references/troubleshooting.md)
+- [Safety and Security Information](artifact/SAFETY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS with OpenClaw installed; installs a user-level LaunchAgent and writes under ~/.openclaw and ~/Library/LaunchAgents.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

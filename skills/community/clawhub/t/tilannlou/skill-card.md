@@ -1,43 +1,58 @@
-## Description: <br>
-Checks a local development or AI workstation for hardware status, system tools, Python packages, Docker state, network ports, and related Ollama/OpenClaw environment details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+環境偵測 helps an agent produce local environment checking and management material for system tools, hardware, Python packages, Docker, networking, GPU monitoring, and Ollama/OpenClaw workflows.
 
-## Publisher: <br>
-[Tilannlou](https://clawhub.ai/user/Tilannlou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tilannlou](https://clawhub.ai/user/tilannlou)
 
-## Use Case: <br>
-Developers and local AI workstation operators use this skill to inspect system readiness, identify missing tools or packages, and generate environment reports. It also provides copyable guidance for managing Ollama, Docker, GPU monitoring, and OpenClaw environment snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included management script can append Ollama variables to ~/.bashrc, creating persistent shell changes. <br>
-Mitigation: Inspect the script before use, back up ~/.bashrc, and apply the environment-variable changes manually if persistent modification is not desired. <br>
-Risk: Docker and Ollama helper actions can stop, start, or recreate an ollama container and change model directory mounts. <br>
-Mitigation: Run Docker actions only on systems where modifying the ollama container is intended, and verify current container state and mount paths before confirming changes. <br>
-Risk: Snapshot and memory-indexing guidance may expose local environment details to downstream indexing. <br>
-Mitigation: Review any generated environment snapshot for sensitive paths, hostnames, or configuration values before running OpenClaw memory indexing. <br>
+## Use Case:
 
+Developers and engineers use this skill to recreate or generate local environment diagnostics and management scripts for AI development machines. It is most relevant when checking hardware, Python packages, Docker status, network ports, GPU state, and Ollama/OpenClaw setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tilannlou/tilannlou) <br>
-- [Publisher profile](https://clawhub.ai/user/Tilannlou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and Bash code blocks; generated reports can be human-readable text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file layouts, commands, local report outputs, and configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The generated management script can persistently append Ollama environment variables to ~/.bashrc.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shell changes before running them and remove the added ~/.bashrc lines if the configuration is no longer wanted.
+
+Risk: The Docker maintenance flow can run an Ollama container with port 11434 exposed beyond localhost.
+
+Mitigation: Bind the service to localhost when remote access is unnecessary and review firewall exposure before starting the container.
+
+Risk: The Docker flow uses an unpinned Ollama image and a restartable container.
+
+Mitigation: Pin the image to a reviewed version or digest and confirm the restart policy fits the host before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tilannlou/skills/tilannlou)
+- [Publisher profile](https://clawhub.ai/user/tilannlou)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and Bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated project structure, local scripts, command examples, and environment report formats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

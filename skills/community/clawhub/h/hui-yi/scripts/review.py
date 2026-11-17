@@ -38,8 +38,10 @@ from core.common import (
 )
 from core.feedback_core import DORMANT_INTERVAL_DAYS, write_note_feedback
 from core.scoring import resurfacing_priority
+from core.matching import STRONG_FIELDS, note_is_retrievable
 from core.signal_detect import load_context_text
 from core.signal_pipeline import apply_candidates
+from core.safe_fs import preflight_files, read_text, safe_exists
 
 
 def load_tags(memory_root: Path) -> dict:
@@ -58,6 +60,8 @@ def cmd_due(args: argparse.Namespace) -> int:
     today = date.today()
     due = []
     for note in notes:
+        if not note_is_retrievable(note):
+            continue
         next_review = parse_date(note.get("next_review"))
         repeat_value = repetition_signal(note, today)
         if (next_review and next_review <= today) or repeat_value >= 0.35:
@@ -88,13 +92,14 @@ def cmd_resurface(args: argparse.Namespace) -> int:
     candidates = []
 
     for note in notes:
+        if not note_is_retrievable(note):
+            continue
         score, meta = resurfacing_priority(note, today, query_text)
         if query_text:
-            if meta["relevance_value"] < args.min_relevance and meta.get("repetition_signal", 0.0) < 0.35:
+            if meta["relevance_value"] < args.min_relevance or not meta.get("match_eligible"):
                 continue
-            strong_fields = {"title", "summary", "tags", "triggers"}
             matched_fields = set(meta.get("matched_fields", []))
-            if not (strong_fields & matched_fields) and meta.get("repetition_signal", 0.0) < 0.35:
+            if not (STRONG_FIELDS & matched_fields):
                 continue
         else:
             next_review = parse_date(note.get("next_review"))
@@ -110,20 +115,20 @@ def cmd_resurface(args: argparse.Namespace) -> int:
 
     print("Resurfacing candidates:")
     surfaced = candidates[: args.limit]
-    if args.write_signals and args.session_key:
+    if args.write_signals and args.session_key and query_text:
         signal_candidates = [
             {
                 "title": note.get("title"),
                 "path": note.get("path"),
                 "relevance": meta.get("relevance_value", 0.0),
-                "confidence": "high" if meta.get("relevance_value", 0.0) >= 0.60 else "medium",
+                "confidence": meta.get("confidence", "none"),
                 "matched_fields": meta.get("matched_fields", []),
                 "overlap_terms": meta.get("overlap_terms", []),
                 "raw_score": meta.get("raw_relevance", 0.0),
                 "repetition_signal": meta.get("repetition_signal", 0.0),
             }
             for _, meta, note in surfaced
-            if meta.get("relevance_value", 0.0) >= max(args.min_relevance, 0.30) or meta.get("repetition_signal", 0.0) >= 0.35
+            if query_text and meta.get("match_eligible") and meta.get("relevance_value", 0.0) >= max(args.min_relevance, 0.30)
         ]
         apply_candidates(
             memory_root,
@@ -147,10 +152,7 @@ def cmd_resurface(args: argparse.Namespace) -> int:
             f"state={note.get('state')} strength={meta.get('memory_strength')}"
         )
         if query_text:
-            overlap = ", ".join(meta.get("overlap_terms", [])) or "n/a"
             fields = ", ".join(meta.get("matched_fields", [])) or "n/a"
-            print(f"  context_query={query_text[:200].replace(chr(10), ' ')}")
-            print(f"  overlap_terms={overlap}")
             print(f"  matched_fields={fields}")
         print(f"  prompt: {prompt}")
         print(f"  path: {note.get('path')}")
@@ -234,11 +236,12 @@ def cmd_feedback(args: argparse.Namespace) -> int:
         return 1
 
     note_path = note_file_path(memory_root, matched)
-    if not note_path.exists():
+    if not safe_exists(note_path):
         print(f"Backing note file missing: {note_path}")
         return 1
 
-    text = note_path.read_text(encoding="utf-8")
+    preflight_files(note_path, memory_root / "tags.json", memory_root / "retrieval-log.md")
+    text = read_text(note_path)
     state, interval_days, next_review = write_note_feedback(
         note_path,
         matched,
@@ -255,8 +258,8 @@ def cmd_feedback(args: argparse.Namespace) -> int:
     refreshed = next((n for n in notes if (n.get("path") == matched.get("path"))), matched)
 
     note_path = note_file_path(memory_root, refreshed)
-    if note_path.exists():
-        refreshed_text = note_path.read_text(encoding="utf-8")
+    if safe_exists(note_path):
+        refreshed_text = read_text(note_path)
         refreshed["strength"] = memory_strength(refreshed)
         refreshed["state"] = parse_heading_value(refreshed_text, "Memory state") or refreshed.get("state")
         refreshed["next_review"] = parse_heading_value(refreshed_text, "Next review") or refreshed.get("next_review")
@@ -290,6 +293,8 @@ def cmd_session(args: argparse.Namespace) -> int:
 
     due: list[tuple[float, dict, dict]] = []
     for note in notes:
+        if not note_is_retrievable(note):
+            continue
         next_review = parse_date(note.get("next_review"))
         repeat_value = repetition_signal(note, today)
         if (next_review and next_review <= today) or repeat_value >= 0.35:
@@ -302,6 +307,8 @@ def cmd_session(args: argparse.Namespace) -> int:
         return 0
 
     total = len(due)
+    preflight_files(memory_root / "tags.json", memory_root / "retrieval-log.md",
+                    *(note_file_path(memory_root, note) for _, _, note in due))
     print(f"\n{'─' * 60}")
     print(f"  Review session — {total} note(s) due or repeatedly activated")
     print(f"  Commands:  y = useful   n = not useful   s = skip   q = quit")
@@ -313,12 +320,12 @@ def cmd_session(args: argparse.Namespace) -> int:
 
     for idx, (score, meta, note) in enumerate(due, 1):
         note_path = note_file_path(memory_root, note)
-        if not note_path.exists():
+        if not safe_exists(note_path):
             print(f"[{idx}/{total}] SKIP — file missing: {note.get('title')}\n")
             skipped += 1
             continue
 
-        text = note_path.read_text(encoding="utf-8")
+        text = read_text(note_path)
         tldr: list[str] = []
         in_section = False
         for line in text.splitlines():

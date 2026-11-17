@@ -1,41 +1,52 @@
-## Description: <br>
-LLM chat interface using OpenAI-compatible APIs with streaming support and session management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for using the pywayne.llm.chat_bot module to create OpenAI-compatible LLM chat clients with streaming, conversation history, and session management.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill when working with the pywayne.llm.chat_bot module to create OpenAI-compatible chat clients, manage streaming responses, configure model parameters, and maintain independent chat sessions with history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys can be exposed if copied into shared code or chat transcripts. <br>
-Mitigation: Store provider credentials in a secret manager or environment variables and avoid committing real keys in examples or configuration. <br>
-Risk: Chat prompts and session history may contain sensitive user or business data. <br>
-Mitigation: Treat prompts, system messages, and history as sensitive data; avoid sending confidential content to unapproved providers. <br>
-Risk: Misconfigured base URLs can send requests to untrusted or unintended model endpoints. <br>
-Mitigation: Use only approved OpenAI-compatible endpoints and verify the pywayne package source before using the skill with real data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/chat-bot) <br>
+## Use Case:
 
+Developers and engineers use this skill when implementing synchronous LLM chat flows against OpenAI-compatible APIs, including streaming responses, multi-turn history, custom model settings, and independent chat sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python code examples and parameter tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers OpenAI-compatible endpoints, streaming and non-streaming calls, session history, and chat configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chat prompts and responses may be sent to an external OpenAI-compatible provider.
+
+Mitigation: Use only trusted and approved provider endpoints, and avoid sending secrets or sensitive data unless the provider is approved for that data.
+
+Risk: Conversation history may retain sensitive context across turns or sessions.
+
+Mitigation: Clear history when it is no longer needed and configure a finite session timeout when retained chat history is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyendt/skills/chat-bot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example base URLs, API key configuration, model parameters, streaming usage, and session timeout settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

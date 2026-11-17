@@ -1,41 +1,58 @@
-## Description: <br>
-Search and compare flight tickets on Ctrip by departure, arrival, date, and cabin class, returning structured flight and price information in JSON format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and compare flight tickets on Ctrip by departure, arrival, date, and cabin class, returning structured flight and price information in JSON format.
 
-## Publisher: <br>
-[andrew-707](https://clawhub.ai/user/andrew-707) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andrew-707](https://clawhub.ai/user/andrew-707)
 
-## Use Case: <br>
-Developers and travel-operations users can invoke this skill to search Ctrip routes, compare dates, identify direct or connecting flights, and export structured flight and price data for downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill bundles and automatically sends a preset browser cookie, and its documentation tells users how to copy a logged-in Ctrip cookie into source code. <br>
-Mitigation: Remove the bundled FVP cookie before use. Provide any Ctrip cookie only through a local secret or environment variable, and do not paste personal browser cookies into shared source files. <br>
-Risk: Using a Ctrip cookie for flight searches may expose account-linked search activity and route/date preferences to the service. <br>
-Mitigation: Use only an account and cookie intended for this workflow, review the account and privacy implications before running searches, and rotate or revoke the cookie when it is no longer needed. <br>
+## Use Case:
 
+Developers and travel workflow builders can use this skill to search Ctrip flight listings, compare prices across dates, and collect structured flight data for downstream analysis or display.
 
-## Reference(s): <br>
-- [Ctrip Flights](https://flights.ctrip.com) <br>
-- [ClawHub release page](https://clawhub.ai/andrew-707/ctrip-flight-sunrise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash examples and structured JSON flight-search results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write JSON to a user-specified output path; requires network access to Ctrip and may require a Ctrip FVP cookie.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security evidence reports that the skill ships and automatically sends a hardcoded Ctrip FVP cookie.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the bundled cookie; replace it with a disposable runtime secret mechanism before execution.
+
+Risk: The security evidence reports that users are instructed to paste personal browser cookies into source code.
+
+Mitigation: Do not paste personal cookies into tracked files, and avoid committing or sharing any modified script that contains a cookie.
+
+Risk: The security guidance calls for confirming Ctrip terms and privacy implications before use.
+
+Mitigation: Review Ctrip terms, privacy requirements, and organizational policy before installing or running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andrew-707/skills/ctrip-flight-sunrise)
+- [Ctrip flights](https://flights.ctrip.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included scripts produce structured JSON flight search results and statistics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

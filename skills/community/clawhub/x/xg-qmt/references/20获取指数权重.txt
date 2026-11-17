@@ -1,0 +1,39 @@
+'''
+20获取指数权重
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.get_weight_in_index - 获取某只股票在某指数中的绝对权重
+原型
+
+内置python
+
+ContextInfo.get_weight_in_index(indexcode, stockcode)
+释义
+
+获取某只股票在某指数中的绝对权重
+
+参数
+
+字段名	数据类型	解释
+indexcode	string	指数代码，格式为 'stockcode.market'，例如 '000300.SH'
+stockcode	string	股票代码，格式为 'stockcode.market'，例如 '600004.SH'
+返回值
+
+float：返回的数值单位是 %，如 1.6134 表示权重是 1.6134%
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_weight_in_index('000300.SH', '000002.SZ')
+	print(data)
+'''
+结果
+0.438
+
+'''

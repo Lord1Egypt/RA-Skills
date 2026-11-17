@@ -1,47 +1,61 @@
-## Description: <br>
-Transforms AI agents from task-followers into proactive partners with patterns for memory, reverse prompting, security checks, verification, and self-improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve, with WAL Protocol, Working Buffer, Autonomous Crons, and battle-tested patterns.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add proactive behavior, durable memory practices, onboarding flows, periodic self-review, and security-aware operating habits to an AI agent workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage broad local memory and profile retention for user context and conversation history. <br>
-Mitigation: Install only if comfortable with local profile and memory files; review or delete generated memory files regularly. <br>
-Risk: Proactive behaviors can touch sensitive workflows such as email, calendar access, app or tab cleanup, deleted files, background sub-agents, cron jobs, and external actions. <br>
-Mitigation: Require explicit human approval before granting those capabilities or taking external, destructive, or background actions. <br>
-Risk: Self-healing and security-change guidance can alter agent behavior or workspace configuration. <br>
-Mitigation: Review proposed security or behavior changes before applying them and scan the skill before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent memory, proactive check-ins, reverse prompting, self-healing routines, and safety practices to an AI agent workflow.
 
-## Reference(s): <br>
-- [Onboarding Flow](artifact/references/onboarding-flow.md) <br>
-- [Security Patterns](artifact/references/security-patterns.md) <br>
-- [Proactive Agent ClawHub Release](https://clawhub.ai/asterisk622/xiaoding-proactive-agent) <br>
-- [Creator Profile](https://x.com/halthelobster) <br>
-- [Bulletproof Memory](https://clawdhub.com/halthelobster/bulletproof-memory) <br>
-- [PARA Second Brain](https://clawdhub.com/halthelobster/para-second-brain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files with inline shell commands and starter configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local memory, profile, heartbeat, tooling, onboarding, and security-audit patterns for agent workspaces.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release evidence; artifact SKILL.md frontmatter reports 3.1.0) <br>
+Risk: The skill encourages broad local plaintext memory that could capture secrets or sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make memory capture opt-in, exclude secrets and sensitive personal data, and review memory files before sharing or syncing them.
+
+Risk: Proactive heartbeats, crons, or isolated agent turns can run checks without clear user scoping.
+
+Mitigation: Disable recurring or autonomous actions unless explicitly configured, and require user approval for each scope and schedule.
+
+Risk: Email, calendar, browser, desktop, and cleanup actions can affect private data or user workspaces.
+
+Mitigation: Restrict these actions to user-approved scopes and require confirmation before external communication, deletion, cleanup, or publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/asterisk622/skills/xiaoding-proactive-agent)
+- [Publisher Profile](https://clawhub.ai/user/asterisk622)
+- [Onboarding Flow Reference](references/onboarding-flow.md)
+- [Security Patterns Reference](references/security-patterns.md)
+- [Creator Profile](https://x.com/halthelobster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates, checklists, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes starter memory, onboarding, heartbeat, operating-rules, and tool-configuration files for an agent workspace.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release evidence; artifact frontmatter reports 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

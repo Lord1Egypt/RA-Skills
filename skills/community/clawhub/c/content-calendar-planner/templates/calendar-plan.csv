@@ -1,0 +1,11 @@
+# Content Calendar Planner - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+date,channel,format,topic,funnel_stage,owner,status,cta,link
+<YYYY-MM-DD>,<blog>,<how to guide>,<topic>,<top>,<name>,<idea>,<one action>,<url>
+<YYYY-MM-DD>,<newsletter>,<issue>,<topic>,<middle>,<name>,<idea>,<one action>,<none>
+<YYYY-MM-DD>,<linkedin>,<post>,<topic>,<middle>,<name>,<idea>,<one action>,<none>
+<YYYY-MM-DD>,<blog>,<comparison>,<topic>,<bottom>,<name>,<idea>,<one action>,<url>
+<YYYY-MM-DD>,<youtube>,<short>,<topic>,<middle>,<name>,<idea>,<one action>,<none>
+<YYYY-MM-DD>,<email>,<product update>,<topic>,<bottom>,<name>,<idea>,<one action>,<none>
+<YYYY-MM-DD>,<blog>,<original data>,<topic>,<top>,<name>,<idea>,<one action>,<url>
+<YYYY-MM-DD>,<social>,<thread>,<topic>,<middle>,<name>,<idea>,<one action>,<none>

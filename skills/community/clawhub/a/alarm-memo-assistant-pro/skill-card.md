@@ -1,49 +1,64 @@
-## Description: <br>
-A reminder and memo management skill that helps agents organize alarms, reminders, todos, daily task summaries, recurring reminders, and structured fallback records when host scheduling or storage tools are unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language productivity skill for managing reminders, alarms, memos, todos, daily task summaries, and repeat schedules through available OpenClaw host capabilities.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users and agent operators use this skill to capture reminders, memos, todos, and daily task digests, with structured outputs for storage and scheduling when the host environment supports those capabilities. It is especially suited for personal productivity workflows that need clear confirmation of what was recorded, scheduled, or left as a draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store reminder, memo, todo, and daily digest content locally. <br>
-Mitigation: Confirm where data files are stored and how records can be reviewed, edited, disabled, or deleted before enabling persistent workflows. <br>
-Risk: Recurring reminders and daily pushes depend on host scheduling and message-delivery capabilities. <br>
-Mitigation: Only describe reminders as scheduled after the host confirms cron or session delivery setup; otherwise present them as drafts or manually refreshable summaries. <br>
-Risk: Users may expect direct control over native operating system alarm or notes applications. <br>
-Mitigation: State when native app integration is unavailable and provide structured records or importable text as the fallback. <br>
+## Use Case:
 
+OpenClaw and ClawHub users use this skill to capture reminders, memos, todos, and daily task digests in Chinese. It helps agents turn natural-language requests into structured records, reminder drafts, and scheduled delivery plans when the host provides file, cron, session, and time tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/alarm-memo-assistant-pro) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
-- [README](artifact/README.md) <br>
-- [Cron Playbook](artifact/references/cron-playbook.md) <br>
-- [Limitations and Desktop Control](artifact/references/limitations-and-desktop-control.md) <br>
-- [Storage Schema](artifact/references/storage-schema.md) <br>
-- [Output Templates](artifact/references/output-templates.md) <br>
-- [Triggers and Routing](artifact/references/triggers-and-routing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with structured reminder, memo, todo, and daily digest sections; may include JSON-shaped storage records or cron schedule details when supported by the host.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should clearly distinguish created records from drafts and list any missing confirmations or unavailable host capabilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and CHANGELOG.md) <br>
+Risk: Automatic reminders or daily digests may not trigger if the OpenClaw host does not have active cron or session delivery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm cron and session delivery are enabled before relying on automatic reminders, and present unscheduled items as drafts when those capabilities are unavailable.
+
+Risk: Reminder, memo, and todo data may be stored locally in host-managed files.
+
+Mitigation: Confirm file locations, review saved records periodically, and delete or export local data according to the user's retention needs.
+
+Risk: The skill cannot directly control native operating-system alarm, reminder, or notes applications without a suitable host plugin or API.
+
+Mitigation: Disclose this limitation in responses and provide structured records or import-ready text when native integration is unavailable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/alarm-memo-assistant-pro)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+- [ClawHub Homepage](https://clawhub.com)
+- [Cron Playbook](references/cron-playbook.md)
+- [Limitations and Desktop Control](references/limitations-and-desktop-control.md)
+- [Output Templates](references/output-templates.md)
+- [Storage Schema](references/storage-schema.md)
+- [Triggers and Routing](references/triggers-and-routing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with structured reminder, memo, todo, and daily digest fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include storage locations, schedule status, delivery status, and pending confirmation items when host capabilities are limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

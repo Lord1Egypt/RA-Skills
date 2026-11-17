@@ -1,44 +1,59 @@
-## Description: <br>
-Automates Gemini or ChatGPT web image generation through a logged-in browser profile, submits prompts, waits for generated images, and saves the resulting image files locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Gemini or ChatGPT web sessions with a reusable browser profile to submit image prompts and save generated images to a local output directory.
 
-## Publisher: <br>
-[henryczq](https://clawhub.ai/user/henryczq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[henryczq](https://clawhub.ai/user/henryczq)
 
-## Use Case: <br>
-Developers and content automation operators use this skill to generate cover, marketing, short-video, or prompt-driven images from Gemini or ChatGPT without calling image APIs directly. It is useful when a workflow needs to reuse a dedicated browser login profile and download generated images into a local directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The browser profile can contain login cookies and account state for Gemini or ChatGPT. <br>
-Mitigation: Use a dedicated profile for this skill instead of an everyday browser profile. <br>
-Risk: Prompts and generated outputs may include sensitive or regulated data. <br>
-Mitigation: Do not send secrets or regulated data in prompts, and keep the output directory private. <br>
-Risk: Unpinned Python dependencies can change behavior over time. <br>
-Mitigation: Pin dependency versions before production use. <br>
+## Use Case:
 
+Developers and content operators use this skill to generate AI cover images, marketing visuals, and short-video thumbnails through browser-based Gemini or ChatGPT workflows without directly calling image APIs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/henryczq/web-ai-image-generation) <br>
-- [DEPENDENCIES.md](artifact/DEPENDENCIES.md) <br>
-- [requirements.txt](artifact/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples; runtime output is local JPEG image files and printed file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a desktop-capable browser environment, Playwright dependencies, and a dedicated Gemini or ChatGPT browser profile for saved login state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: A persistent browser profile can retain Gemini or ChatGPT login state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated isolated profile and remove or rotate it when the workflow no longer needs that login state.
+
+Risk: The automated browser disables key browser protections.
+
+Mitigation: Run it as an unprivileged user in a dedicated environment and review the browser launch flags before use.
+
+Risk: The workflow downloads page-selected URLs to local disk.
+
+Mitigation: Keep the output directory separate from unrelated files and restrict downloads to known image hosts before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/henryczq/skills/web-ai-image-generation)
+- [Skill documentation](artifact/SKILL.md)
+- [Dependency and installation notes](artifact/DEPENDENCIES.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and local image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved as local JPEG files; browser login state is reused from the configured profile directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

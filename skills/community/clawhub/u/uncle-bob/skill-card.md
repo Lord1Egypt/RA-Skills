@@ -1,40 +1,54 @@
-## Description: <br>
-Apply Robert C. Martin (Uncle Bob) principles for clean code, SOLID design, and clean architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides clean code, SOLID design, and clean architecture guidance for reviewing, refactoring, and designing software.
 
-## Publisher: <br>
-[agentsleader](https://clawhub.ai/user/agentsleader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsleader](https://clawhub.ai/user/agentsleader)
 
-## Use Case: <br>
-Developers and engineers use this skill to review, refactor, and design code with clean code, SOLID, and clean architecture principles. It helps evaluate naming, function structure, coupling, error handling, architecture boundaries, and test quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence an agent to suggest or make refactoring changes when cleanup or code quality improvement is requested. <br>
-Mitigation: Review generated code edits and refactoring suggestions before accepting or deploying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to apply clean code, SOLID, and clean architecture principles when reviewing, refactoring, designing, or improving code structure.
 
-## Reference(s): <br>
-- [SOLID Principles - Detailed Guide](references/solid.md) <br>
-- [Clean Architecture - Detailed Guide](references/clean-architecture.md) <br>
-- [ClawHub skill page](https://clawhub.ai/agentsleader/uncle-bob) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with code examples or review comments when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable code or external tool calls were found in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may encourage refactoring or architectural changes that are too broad for a small or simple project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code changes normally and scale clean-architecture patterns to the complexity of the project.
+
+Risk: Guidance-oriented output can be applied dogmatically instead of in context.
+
+Mitigation: Use the artifact's own pragmatic guidance to apply SOLID and clean architecture selectively, especially for simple scripts or low-complexity modules.
+
+## Reference(s):
+
+- [SOLID Principles](references/solid.md)
+- [Clean Architecture](references/clean-architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable behavior or hidden access requests identified by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

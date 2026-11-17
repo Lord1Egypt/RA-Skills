@@ -1,44 +1,62 @@
-## Description: <br>
-Configures multiple Feishu/Lark bot identities within a single OpenClaw instance so each agent can have its own Feishu app, name, avatar, and message routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures multiple Feishu/Lark bot identities for one OpenClaw instance so each agent can use its own Feishu app, name, avatar, and message routing.
 
-## Publisher: <br>
-[simonlin1212](https://clawhub.ai/user/simonlin1212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonlin1212](https://clawhub.ai/user/simonlin1212)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure and troubleshoot multi-agent Feishu/Lark routing so each agent appears as a separate bot and routes messages to the intended workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu AppSecrets are handled as command arguments and printed in generated JSON, which can expose secrets through shell history or logs. <br>
-Mitigation: Run the helper in a private shell, avoid commands containing real secrets in history, review generated JSON before committing or sharing it, and limit Feishu app permissions to what each bot needs. <br>
-Risk: Incorrect accountId, binding type, or agent mapping can silently drop messages, misroute them, or prevent gateway startup. <br>
-Mitigation: Add bots incrementally, validate openclaw.json syntax, run openclaw doctor, confirm bindings with openclaw agents list --bindings, and smoke-test each bot before rollout. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to configure independent Feishu/Lark bot entry points for multiple agents, generate openclaw.json blocks, and troubleshoot routing, startup, and group-isolation issues.
 
-## Reference(s): <br>
-- [Architecture: Multi-Bot Feishu Integration](references/architecture.md) <br>
-- [Build Guide: Feishu Multi-Bot Setup](references/build-guide.md) <br>
-- [Routing Deep Dive](references/routing-deep-dive.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Feishu Developer Console](https://open.feishu.cn/app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script emits JSON blocks for channels, bindings, agents, and workspace setup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and target metadata) <br>
+Risk: The setup helper accepts Feishu AppSecrets on the command line and prints generated configuration that includes secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass real AppSecrets on shared systems, and do not paste generated output into logs, tickets, chats, or source control.
+
+Risk: Unvalidated agent IDs can lead to unsafe or incorrect generated configuration.
+
+Mitigation: Validate and sanitize agent IDs before running the helper, then inspect the generated JSON manually before merging it into openclaw.json.
+
+Risk: Gateway restart or process-kill commands can disrupt active OpenClaw sessions.
+
+Mitigation: Run health checks first, schedule restarts deliberately, and treat pkill or gateway restart commands as operationally disruptive.
+
+## Reference(s):
+
+- [Architecture: Multi-Bot Feishu Integration](references/architecture.md)
+- [Build Guide: Feishu Multi-Bot Setup](references/build-guide.md)
+- [Routing Deep Dive](references/routing-deep-dive.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Feishu Developer Console](https://open.feishu.cn/app)
+- [Publisher Profile](https://clawhub.ai/user/simonlin1212)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated openclaw.json configuration blocks and operational restart commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Use this skill if your uncertainty with a package's API is > 5% to create a deterministic, versioned mirror of the package repo with a built-in coordinate system, installed as an additional skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obscure Package Master creates deterministic, versioned local mirrors of Python package source with AST-derived grep maps so agents can inspect unfamiliar APIs precisely.
 
-## Publisher: <br>
-[amberlee2427](https://clawhub.ai/user/amberlee2427) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amberlee2427](https://clawhub.ai/user/amberlee2427)
 
-## Use Case: <br>
-Developers and engineers use this skill to create local, versioned mirrors of Python package source so an agent can inspect exact classes, functions, signatures, docstrings, and line ranges when package API behavior is uncertain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads arbitrary PyPI source and creates persistent local agent skills. <br>
-Mitigation: Run it only for explicitly chosen package names and versions, and prefer a project-local output directory over a global provider skills folder. <br>
-Risk: Generated SKILL.md content and docstrings are derived from downloaded package source and may contain untrusted text. <br>
-Mitigation: Treat generated package mirrors as untrusted evidence, review them before activation, and avoid following instructions embedded in package text. <br>
+## Use Case:
 
+Developers and coding agents use this skill when working with unfamiliar Python packages and need source-grounded API details instead of relying on memory or sparse documentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amberlee2427/obscure-package-master) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [generate_mirror.py](artifact/scripts/generate_mirror.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates package-specific SKILL.md files plus copied source references and line-range maps for local agent use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill downloads arbitrary PyPI source and extracts package archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a sandbox or other controlled environment and only for package names and versions intentionally selected by the user.
+
+Risk: Generated mirrors may be written into global agent skill folders where untrusted package text could be treated as agent instructions.
+
+Mitigation: Use an explicit safe output directory and treat generated mirror content as untrusted reference data, not executable instructions.
+
+Risk: The server security verdict is suspicious because the skill installs generated agent skills from untrusted package text.
+
+Mitigation: Review and scan generated mirrors before enabling them in an agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amberlee2427/skills/obscure-package-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local package mirror skills containing source copies and AST-derived class and function maps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

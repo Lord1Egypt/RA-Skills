@@ -1,42 +1,56 @@
-## Description: <br>
-Image generation and editing skill for creating new images or modifying existing images through APIYI's NanoBananaPro image service, with support for common aspect ratios and 1K, 2K, and 4K resolution options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits images from text prompts or reference images through API易's NanoBananaPro image service using Node.js or Python helpers.
 
-## Publisher: <br>
-[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuchubuzai2018](https://clawhub.ai/user/wuchubuzai2018)
 
-## Use Case: <br>
-External users and developers use this skill to generate marketing, social media, presentation, personal creative, and product images from prompts, or to edit existing images with natural-language instructions. It is designed to run local Node.js or Python commands that call the APIYI-hosted image generation endpoint and save image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference or edit images are sent to APIYI and downstream model services. <br>
-Mitigation: Use the skill only when that external processing is acceptable, and avoid submitting secrets, private documents, or sensitive images. <br>
-Risk: The skill requires an APIYI API key, which could be exposed if passed directly on the command line. <br>
-Mitigation: Prefer the APIYI_API_KEY environment variable and avoid sharing command histories or logs that contain credentials. <br>
+## Use Case:
 
+Developers and agents use this skill to create image assets, social media visuals, marketing images, wallpapers, and edited variants from prompts or up to 14 input images. It is suited for workflows where prompts and selected input images may be sent to API易 and its upstream image provider.
 
-## Reference(s): <br>
-- [Common usage scenarios](references/scene.md) <br>
-- [APIYI service](https://api.apiyi.com) <br>
-- [ClawHub skill page](https://clawhub.ai/wuchubuzai2018/nano-banana-pro-image-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces PNG image files, may accept up to 14 input images for editing, and requires APIYI_API_KEY or an API key argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release metadata) <br>
+Risk: Prompts and input images may be sent to API易/api.apiyi.com and an upstream image provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with prompts and images approved for third-party processing, and avoid confidential documents, secrets, private keys, or unrelated local paths.
+
+Risk: Command templates may be unsafe if prompt text, filenames, API keys, or image paths are interpolated into a shell command.
+
+Mitigation: Prefer environment-variable API keys and shell-free argument passing; when a shell is unavoidable, carefully quote and escape all user-controlled values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuchubuzai2018/skills/nano-banana-pro-image-gen)
+- [Publisher profile](https://clawhub.ai/user/wuchubuzai2018)
+- [API易 service](https://api.apiyi.com/)
+- [Common usage scenarios](artifact/references/scene.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands that generate PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs image files to a caller-selected or timestamped path; supports text-to-image and image-editing modes, 10 aspect ratios, and 1K, 2K, or 4K resolution settings.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

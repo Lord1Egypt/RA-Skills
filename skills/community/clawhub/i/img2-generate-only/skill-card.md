@@ -1,40 +1,58 @@
-## Description: <br>
-Generates one image from an explicitly supplied prompt, OpenAI-compatible image endpoint, API key, model, size, task name, and timeout, then saves the image locally and returns structured status JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a single image through an OpenAI-compatible image API using explicitly supplied prompt, endpoint, API key, model, size, task name, and timeout, then saves the image locally and returns structured status JSON.
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-Developers and workflow authors use this skill to run a single-image generation step against a trusted OpenAI-compatible image service and receive a local image path plus structured success or failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill passes an API key to a hard-coded local Python script that is not included in the package for review. <br>
-Mitigation: Review or obtain the referenced script before use, and only provide a real API key after confirming the script and execution environment are trusted. <br>
-Risk: The base URL and API key are supplied by the user or workflow, so an untrusted endpoint or exposed command-line secret could leak credentials. <br>
-Mitigation: Use only trusted image-generation endpoints and prefer environment variables or a secret store over command-line API-key arguments. <br>
+## Use Case:
 
+Developers and workflow builders use this skill as a single-image generation node that accepts explicit runtime parameters and returns a local image path plus structured success or failure details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/img2-generate-only) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON status with a local image file path, and optional base64 image data when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates exactly one image per invocation; n must be 1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence and artifact/_meta.json; SKILL.md frontmatter says 3.0.0) <br>
+Risk: The security review reports that the skill tells users to run an unbundled absolute-path Python script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only after verifying or bundling the referenced script with the release.
+
+Risk: The security review reports that API keys may be passed through command-line inputs.
+
+Mitigation: Avoid placing real API keys in commands or example files; prefer a protected environment variable, secret store, or stdin-style secret input.
+
+Risk: The skill requires user-supplied API endpoints and output directories.
+
+Mitigation: Restrict the endpoint and output directory to locations the operator trusts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jerryxn/skills/img2-generate-only)
+- [Publisher profile](https://clawhub.ai/user/jerryxn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and shell command examples; the referenced runtime script returns structured JSON and a local image file path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-image generation only; successful runs return ok, stage, image_path, bytes, base_url, model, and size, with optional base64 output when requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

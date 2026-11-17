@@ -1,43 +1,58 @@
-## Description: <br>
-Returns today's lunch menu of a German university canteen via the public OpenMensa API with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Returns today's lunch menu of a German university canteen via the public OpenMensa API, with one-time city and canteen setup and no API key.
 
-## Publisher: <br>
-[rifatdevelopment](https://clawhub.ai/user/rifatdevelopment) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rifatdevelopment](https://clawhub.ai/user/rifatdevelopment)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to look up current or dated German university canteen menus, including student prices and vegan or vegetarian tags, after a one-time city and canteen setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: City, selected canteen, and menu date lookups are sent to OpenMensa. <br>
-Mitigation: Use the skill only when this lookup disclosure is acceptable, and keep the user-facing response clear that menu data comes from OpenMensa. <br>
-Risk: The release is tagged as requiring sensitive credentials even though the evidence says no credentials or API key are used. <br>
-Mitigation: Do not provide credentials to this skill; publisher should remove the unsupported sensitive-credentials tag for clarity. <br>
+## Use Case:
 
+External users and agents use this skill to look up today's or another date's lunch menu for a configured German university canteen, including student prices and vegan or vegetarian tags.
 
-## Reference(s): <br>
-- [OpenMensa](https://openmensa.org) <br>
-- [OpenMensa canteens API](https://openmensa.org/api/v2/canteens?page=N) <br>
-- [OpenMensa meals API](https://openmensa.org/api/v2/canteens/{id}/days/{date}/meals) <br>
-- [Mensa on ClawHub](https://clawhub.ai/rifatdevelopment/mensa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text menu output rendered by the agent as Markdown bullet lists, with setup and debugging shell commands when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local config.json during setup and queries OpenMensa over outbound HTTPS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter and script report 1.1.0) <br>
+Risk: Menu and date lookups are sent to OpenMensa.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if users are comfortable with OpenMensa receiving canteen and date lookup requests.
+
+Risk: The selected city and canteen are stored in a local config file.
+
+Mitigation: Re-run setup to change the saved default and review local skill storage policies before deployment.
+
+Risk: A runtime with broad shell or network access can increase the impact of any skill script behavior.
+
+Mitigation: Review the script before deployment and limit runtime access to the documented OpenMensa HTTPS use case where possible.
+
+## Reference(s):
+
+- [OpenMensa](https://openmensa.org)
+- [OpenMensa API v2](https://openmensa.org/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown bullet list with a date header; setup and debugging steps use inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; sends canteen and date lookups to OpenMensa; creates a local config.json during setup.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

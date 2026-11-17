@@ -1,40 +1,59 @@
-## Description: <br>
-CamScanner-Image2Markdown helps agents convert image files into structured Markdown using CamScanner's OCR and document parsing service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts images such as PNG and JPG into structured Markdown using CamScanner's OCR and document parsing service.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-Developers and end users can use this skill when they need an agent to extract text, tables, code, or structured document content from screenshots or image files and return it as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images may be uploaded to CamScanner servers when the skill is used for OCR or image-to-Markdown conversion. <br>
-Mitigation: Use the skill only for explicit OCR or image-conversion requests, and avoid sensitive personal, legal, medical, financial, proprietary, or regulated images without clear user approval. <br>
+## Use Case:
 
+Developers and agents use this skill to convert screenshots, photos, and scanned documents into Markdown before analysis or response generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-image2markdown-office) <br>
-- [CamScanner homepage](https://www.camscanner.com) <br>
-- [CamScanner AI tools API](https://ai-tools.camscanner.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; converted image content is downloaded as a Markdown file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; image files are uploaded to CamScanner servers for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Images may contain sensitive personal, financial, business, health, or source-code information and are sent to CamScanner servers for OCR.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when third-party OCR processing is intended; redact or crop sensitive regions before upload.
+
+Risk: The skill can process image-bearing requests without a built-in explicit consent checkpoint.
+
+Mitigation: Confirm that the user wants the image sent to CamScanner before running the upload and conversion commands.
+
+Risk: The workflow depends on remote API responses and local curl and jq binaries.
+
+Mitigation: Verify curl and jq are available, check each returned file_id before proceeding, and fail closed if upload or conversion returns null.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-image2markdown-office)
+- [CamScanner homepage](https://www.camscanner.com)
+- [CamScanner image conversion API base URL](https://ai-tools.camscanner.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands that call a remote OCR service and save a local .md result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; sends input images to CamScanner servers for processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

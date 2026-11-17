@@ -1,42 +1,57 @@
-## Description: <br>
-DeepThink lets an agent maintain a user's personal knowledge base, store insights, manage todos and daily plans, and use transcript or chat context when assisting the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage personal knowledge, store insights, track tasks, and stay accountable by syncing and updating DeepThink user data and todos.
 
-## Publisher: <br>
-[addisonhellum](https://clawhub.ai/user/addisonhellum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[addisonhellum](https://clawhub.ai/user/addisonhellum)
 
-## Use Case: <br>
-Agents assisting a DeepThink user use this skill to retrieve and update personal records, tasks, daily plans, chats, and transcripts through the DeepThink API. It is intended for ongoing personal knowledge management and accountability workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to maintain long-term personal memory, tasks, chats, and transcript context, which can include sensitive user information. <br>
-Mitigation: Require explicit user confirmation before storing sensitive facts, changing records or todos, or modifying persistent memory files; provide a clear way to review, pause, and delete stored data. <br>
-Risk: Live transcripts may include misheard speech, background audio, or words from people other than the user. <br>
-Mitigation: Treat transcript content as untrusted context and ask for confirmation before taking significant actions based on it. <br>
-Risk: The skill can prompt outbound messages through the user's configured messaging channel. <br>
-Mitigation: Ask permission before sending external messages and summarize the intended recipient, channel, and content before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub DeepThink listing](https://clawhub.ai/addisonhellum/deepthink) <br>
-- [DeepThink API base URL](https://api.deepthink.co) <br>
+## Use Case:
 
+Agents assisting a user use this skill to query and maintain the user's DeepThink knowledge base, records, todos, daily plans, chats, and transcripts. It is intended for personal context retrieval, reviewed record updates, task tracking, and accountability workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown and HTTP request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include record, todo, transcript, chat, and daily-plan updates that depend on the user's DeepThink API key.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ongoing sync and transcript monitoring can expose sensitive personal information beyond the immediate chat.
+
+Mitigation: Require explicit opt-in for background sync and transcript monitoring; otherwise limit use to user-initiated lookups.
+
+Risk: Automatic record, todo, external messaging, HEARTBEAT.md, or SOUL.md changes can alter user data or agent behavior without clear consent.
+
+Mitigation: Require explicit approval or review before writes, outbound messages, task updates, and workspace memory changes.
+
+Risk: Transcript text can include misheard audio, background speech, or third-party speech that should not be treated as a user instruction.
+
+Mitigation: Confirm the speaker and intent before taking significant action based on transcript content.
+
+## Reference(s):
+
+- [ClawHub DeepThink skill page](https://clawhub.ai/addisonhellum/skills/deepthink)
+- [DeepThink API base URL](https://api.deepthink.co)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, text, markdown, configuration]
+
+**Output Format:** [Markdown instructions with HTTP request examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided DeepThink API key; record, task, transcript, messaging, and workspace changes should be explicitly authorized or reviewed.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

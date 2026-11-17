@@ -1,13 +1,13 @@
 """Tests for mail attachment tools."""
 
-import base64
 import os
+import sys
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
 from outlook_mcp.config import Config
-from outlook_mcp.errors import ReadOnlyError
+from outlook_mcp.errors import ReadOnlyError, ToolInputError
 from outlook_mcp.tools.mail_attachments import (
     attach_to_draft,
     download_attachment,
@@ -86,14 +86,18 @@ class TestListAttachments:
 
 class TestDownloadAttachment:
     async def test_download_writes_decoded_content_to_path(self, tmp_path):
-        """download_attachment decodes Graph contentBytes to file."""
+        """download_attachment writes the SDK's raw contentBytes to file.
+
+        content_bytes is the SDK's already-decoded raw bytes (see
+        test_download_writes_binary_bytes_unchanged), so it is written verbatim.
+        """
         raw_content = b"%PDF-1.7\nfile content bytes"
         mock_att = MagicMock()
         mock_att.id = "att1"
         mock_att.name = "report.pdf"
         mock_att.size = len(raw_content)
         mock_att.content_type = "application/pdf"
-        mock_att.content_bytes = base64.b64encode(raw_content)
+        mock_att.content_bytes = raw_content
 
         mock_client = MagicMock()
         mock_client.me.messages.by_message_id.return_value.attachments.by_attachment_id.return_value.get = AsyncMock(  # noqa: E501
@@ -106,9 +110,47 @@ class TestDownloadAttachment:
             message_id="AAMkAG123=",
             attachment_id="att1",
             save_path=save_path,
+            config=Config(attachments_dir=str(tmp_path)),
         )
         assert result["saved_to"] == save_path
         assert os.path.isfile(save_path)
+        with open(save_path, "rb") as f:
+            assert f.read() == raw_content
+
+    async def test_download_writes_binary_bytes_unchanged(self, tmp_path):
+        """download_attachment writes the SDK's already-decoded bytes verbatim.
+
+        The msgraph SDK (Kiota) base64-decodes contentBytes into raw ``bytes``
+        during deserialization, so ``attachment.content_bytes`` is the raw file
+        content — including bytes that are not valid UTF-8 (e.g. a .docx zip
+        header). The tool must write them unchanged, not decode again. Regression
+        guard for issue #25.
+        """
+        # Real-world binary: a zip/.docx local-file-header magic plus non-UTF-8 bytes.
+        raw_content = b"PK\x03\x04\x14\x00\x00\x00\x08\x00\xff\xfe\x00\x01binary"
+        mock_att = MagicMock()
+        mock_att.id = "att1"
+        mock_att.name = "report.docx"
+        mock_att.size = len(raw_content)
+        mock_att.content_type = (
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        )
+        mock_att.content_bytes = raw_content
+
+        mock_client = MagicMock()
+        mock_client.me.messages.by_message_id.return_value.attachments.by_attachment_id.return_value.get = AsyncMock(  # noqa: E501
+            return_value=mock_att
+        )
+
+        save_path = str(tmp_path / "report.docx")
+        result = await download_attachment(
+            mock_client,
+            message_id="AAMkAG123=",
+            attachment_id="att1",
+            save_path=save_path,
+            config=Config(attachments_dir=str(tmp_path)),
+        )
+        assert result["saved_to"] == save_path
         with open(save_path, "rb") as f:
             assert f.read() == raw_content
 
@@ -120,7 +162,8 @@ class TestDownloadAttachment:
                 mock_client,
                 message_id="",
                 attachment_id="att1",
-                save_path="/tmp/report.pdf",
+                save_path="report.pdf",
+                config=Config(),
             )
 
     async def test_download_validates_attachment_id(self):
@@ -131,18 +174,24 @@ class TestDownloadAttachment:
                 mock_client,
                 message_id="AAMkAG123=",
                 attachment_id="",
-                save_path="/tmp/report.pdf",
+                save_path="report.pdf",
+                config=Config(),
             )
 
-    async def test_download_rejects_path_traversal(self):
-        """download_attachment rejects save_path with .. traversal."""
+    async def test_download_rejects_path_outside_attachments_dir(self, tmp_path):
+        """A path that escapes the configured directory is refused.
+
+        Full confinement coverage — traversal, symlinks, absolute paths, prefix
+        siblings — lives in tests/test_attachment_paths.py.
+        """
         mock_client = MagicMock()
-        with pytest.raises(ValueError, match="traversal"):
+        with pytest.raises(ValueError, match="attachments_dir"):
             await download_attachment(
                 mock_client,
                 message_id="AAMkAG123=",
                 attachment_id="att1",
-                save_path="/tmp/../etc/passwd",
+                save_path="/etc/passwd",
+                config=Config(attachments_dir=str(tmp_path)),
             )
 
 
@@ -162,7 +211,7 @@ class TestSendWithAttachments:
             subject="Test",
             body="See attached",
             attachment_paths=[str(test_file)],
-            config=_CFG,
+            config=Config(client_id="test", attachments_dir=str(tmp_path)),
         )
         assert result["status"] == "sent"
         assert result["attachment_count"] == 1
@@ -183,7 +232,7 @@ class TestSendWithAttachments:
             body="See attached",
             attachment_paths=[str(test_file)],
             reply_to=["alias@test.com"],
-            config=_CFG,
+            config=Config(client_id="test", attachments_dir=str(tmp_path)),
         )
 
         request_body = mock_client.me.send_mail.post.call_args.args[0]
@@ -205,7 +254,7 @@ class TestSendWithAttachments:
                 body="Hi",
                 attachment_paths=[str(test_file)],
                 reply_to=["not-an-email"],
-                config=_CFG,
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
 
     async def test_send_raises_read_only(self, tmp_path):
@@ -221,7 +270,7 @@ class TestSendWithAttachments:
                 subject="Test",
                 body="Hi",
                 attachment_paths=[str(test_file)],
-                config=_CFG_RO,
+                config=Config(client_id="test", read_only=True, attachments_dir=str(tmp_path)),
             )
 
     async def test_send_rejects_invalid_email(self, tmp_path):
@@ -237,20 +286,24 @@ class TestSendWithAttachments:
                 subject="Test",
                 body="Hi",
                 attachment_paths=[str(test_file)],
-                config=_CFG,
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
 
-    async def test_send_rejects_missing_file(self):
-        """send_with_attachments raises FileNotFoundError for missing files."""
+    async def test_send_rejects_missing_file(self, tmp_path):
+        """send_with_attachments raises ToolInputError for missing files.
+
+        The path is inside the permitted directory — a path outside it is refused
+        earlier, with a different error (see tests/test_attachment_paths.py).
+        """
         mock_client = MagicMock()
-        with pytest.raises(FileNotFoundError):
+        with pytest.raises(ToolInputError):
             await send_with_attachments(
                 mock_client,
                 to=["a@b.com"],
                 subject="Test",
                 body="Hi",
-                attachment_paths=["/nonexistent/file.txt"],
-                config=_CFG,
+                attachment_paths=["nonexistent.txt"],
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
 
     async def test_send_large_file_uses_upload_session(self, tmp_path):
@@ -282,7 +335,7 @@ class TestSendWithAttachments:
                 subject="Large file",
                 body="See attached",
                 attachment_paths=[str(large_file)],
-                config=_CFG,
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
         assert result["status"] == "sent"
         assert result["attachment_count"] == 1
@@ -303,7 +356,7 @@ class TestSendWithAttachments:
             attachment_paths=[str(test_file)],
             cc=["cc@test.com"],
             bcc=["bcc@test.com"],
-            config=_CFG,
+            config=Config(client_id="test", attachments_dir=str(tmp_path)),
         )
         assert result["status"] == "sent"
         mock_client.me.send_mail.post.assert_called_once()
@@ -320,13 +373,14 @@ class TestAttachToDraft:
 
         mock_client = MagicMock()
         mock_builder = mock_client.me.messages.by_message_id.return_value
+        mock_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
         mock_builder.attachments.post = AsyncMock(return_value=created_att)
 
         result = await attach_to_draft(
             mock_client,
             draft_id="AAMkAG123=",
             attachment_paths=[str(small_file)],
-            config=_CFG,
+            config=Config(client_id="test", attachments_dir=str(tmp_path)),
         )
 
         assert result["status"] == "attached"
@@ -346,9 +400,8 @@ class TestAttachToDraft:
 
         mock_client = MagicMock()
         mock_builder = mock_client.me.messages.by_message_id.return_value
-        mock_builder.attachments.create_upload_session.post = AsyncMock(
-            return_value=mock_session
-        )
+        mock_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
+        mock_builder.attachments.create_upload_session.post = AsyncMock(return_value=mock_session)
 
         with patch(
             "outlook_mcp.tools.mail_attachments._upload_large_file", new_callable=AsyncMock
@@ -357,7 +410,7 @@ class TestAttachToDraft:
                 mock_client,
                 draft_id="AAMkAG123=",
                 attachment_paths=[str(large_file)],
-                config=_CFG,
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
 
         assert result["status"] == "attached"
@@ -380,19 +433,16 @@ class TestAttachToDraft:
 
         mock_client = MagicMock()
         mock_builder = mock_client.me.messages.by_message_id.return_value
+        mock_builder.get = AsyncMock(return_value=MagicMock(is_draft=True))
         mock_builder.attachments.post = AsyncMock(return_value=created_att)
-        mock_builder.attachments.create_upload_session.post = AsyncMock(
-            return_value=mock_session
-        )
+        mock_builder.attachments.create_upload_session.post = AsyncMock(return_value=mock_session)
 
-        with patch(
-            "outlook_mcp.tools.mail_attachments._upload_large_file", new_callable=AsyncMock
-        ):
+        with patch("outlook_mcp.tools.mail_attachments._upload_large_file", new_callable=AsyncMock):
             result = await attach_to_draft(
                 mock_client,
                 draft_id="AAMkAG123=",
                 attachment_paths=[str(small), str(big)],
-                config=_CFG,
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
 
         assert result["attachment_count"] == 2
@@ -410,18 +460,21 @@ class TestAttachToDraft:
                 mock_client,
                 draft_id="bad id with spaces!",
                 attachment_paths=[str(f)],
-                config=_CFG,
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
 
-    async def test_attach_raises_on_missing_file(self):
-        """attach_to_draft raises FileNotFoundError when a path does not exist."""
+    async def test_attach_raises_on_missing_file(self, tmp_path):
+        """attach_to_draft raises ToolInputError when a path does not exist.
+
+        Inside the permitted directory — outside it the path is refused earlier.
+        """
         mock_client = MagicMock()
-        with pytest.raises(FileNotFoundError):
+        with pytest.raises(ToolInputError):
             await attach_to_draft(
                 mock_client,
                 draft_id="AAMkAG123=",
-                attachment_paths=["/nonexistent/file.txt"],
-                config=_CFG,
+                attachment_paths=["nonexistent.txt"],
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
             )
 
     async def test_attach_raises_read_only(self, tmp_path):
@@ -434,22 +487,26 @@ class TestAttachToDraft:
                 mock_client,
                 draft_id="AAMkAG123=",
                 attachment_paths=[str(f)],
-                config=_CFG_RO,
+                config=Config(client_id="test", read_only=True, attachments_dir=str(tmp_path)),
             )
 
-    async def test_attach_empty_list_is_noop(self):
-        """attach_to_draft with empty attachment_paths makes no API calls."""
+    async def test_attach_empty_list_is_refused(self):
+        """attach_to_draft with nothing to attach is refused, with no API call.
+
+        It used to report success with attachment_count 0. With `attachments` beside
+        `attachment_paths`, both optional, that is also what a misspelt argument
+        produced, so nothing to attach is now an error (#129 review).
+        """
         mock_client = MagicMock()
 
-        result = await attach_to_draft(
-            mock_client,
-            draft_id="AAMkAG123=",
-            attachment_paths=[],
-            config=_CFG,
-        )
+        with pytest.raises(ValueError, match="nothing would be attached"):
+            await attach_to_draft(
+                mock_client,
+                draft_id="AAMkAG123=",
+                attachment_paths=[],
+                config=_CFG,
+            )
 
-        assert result["attachment_count"] == 0
-        assert result["attachment_ids"] == []
         mock_client.me.messages.by_message_id.return_value.attachments.post.assert_not_called()
 
 
@@ -457,6 +514,9 @@ class TestRemoveDraftAttachment:
     async def test_remove_calls_delete(self):
         """remove_draft_attachment DELETEs the attachment by ID."""
         mock_client = MagicMock()
+        mock_client.me.messages.by_message_id.return_value.get = AsyncMock(
+            return_value=MagicMock(is_draft=True)
+        )
         att_builder = MagicMock()
         att_builder.delete = AsyncMock()
         mock_client.me.messages.by_message_id.return_value.attachments.by_attachment_id.return_value = (  # noqa: E501
@@ -503,3 +563,195 @@ class TestRemoveDraftAttachment:
                 attachment_id="ATT=",
                 config=_CFG_RO,
             )
+
+
+class TestDraftAttachmentToolsRefuseNonDrafts:
+    """The draft attachment tools must not add to or strip a message that is not a draft."""
+
+    async def test_attach_to_draft_refuses_a_received_message(self, tmp_path):
+        small_file = tmp_path / "note.txt"
+        small_file.write_bytes(b"hello world")
+
+        mock_client = MagicMock()
+        mock_builder = mock_client.me.messages.by_message_id.return_value
+        mock_builder.get = AsyncMock(return_value=MagicMock(is_draft=False))
+        mock_builder.attachments.post = AsyncMock()
+
+        with pytest.raises(ValueError, match="not a draft"):
+            await attach_to_draft(
+                mock_client,
+                draft_id="AAMkInboxMsg=",
+                attachment_paths=[str(small_file)],
+                config=Config(client_id="test", attachments_dir=str(tmp_path)),
+            )
+
+        mock_builder.attachments.post.assert_not_called()
+
+    async def test_remove_draft_attachment_refuses_a_received_message(self):
+        mock_client = MagicMock()
+        mock_builder = mock_client.me.messages.by_message_id.return_value
+        mock_builder.get = AsyncMock(return_value=MagicMock(is_draft=False))
+        att_builder = MagicMock()
+        att_builder.delete = AsyncMock()
+        mock_builder.attachments.by_attachment_id.return_value = att_builder
+
+        with pytest.raises(ValueError, match="not a draft"):
+            await remove_draft_attachment(
+                mock_client,
+                draft_id="AAMkInboxMsg=",
+                attachment_id="ATT456=",
+                config=_CFG,
+            )
+
+        att_builder.delete.assert_not_called()
+
+
+# ── The mail download writes the way the To Do one does ───────────────────
+# It used to `open(save_path, "wb")` and write: an existing file was emptied
+# before the bytes were known good, a symlink placed at the target after the
+# path check was written through, the file got the umask's mode (0644), and a
+# target that could never land surfaced as an OS error the model never sees.
+
+
+def _client_returning(attachment, on_get=None):
+    """A client whose attachment GET returns `attachment`, optionally running `on_get` first."""
+
+    async def _get():
+        if on_get is not None:
+            on_get()
+        return attachment
+
+    client = MagicMock()
+    builder = client.me.messages.by_message_id.return_value.attachments.by_attachment_id
+    builder.return_value.get = AsyncMock(side_effect=_get)
+    return client, builder.return_value.get
+
+
+def _file_attachment(content: bytes | None, name: str = "report.pdf"):
+    att = MagicMock()
+    att.name = name
+    att.size = len(content or b"")
+    att.content_type = "application/pdf"
+    att.content_bytes = content
+    return att
+
+
+class TestDownloadWritesSafely:
+    async def test_an_attachment_with_no_content_writes_nothing(self, tmp_path):
+        """A file already at the name is refused before Graph is asked (see
+        test_downloads_never_replace.py), so this is the fresh-name case."""
+        target = tmp_path / "report.pdf"
+        client, _ = _client_returning(_file_attachment(None))
+
+        with pytest.raises(ValueError, match="no file content to read or download") as error:
+            await download_attachment(
+                client,
+                message_id="AAMkAG123=",
+                attachment_id="att1",
+                save_path=str(target),
+                config=Config(attachments_dir=str(tmp_path)),
+            )
+
+        assert "Nothing was written." in str(error.value)
+        assert list(tmp_path.iterdir()) == []
+
+    async def test_an_attached_email_or_link_is_refused_with_a_reason(self, tmp_path):
+        """An item or reference attachment has no `content_bytes` at all."""
+        item = MagicMock(spec=["name", "size", "content_type", "odata_type"])
+        item.name = "Fwd: invoice"
+        item.odata_type = "#microsoft.graph.itemAttachment"
+        client, _ = _client_returning(item)
+
+        with pytest.raises(ValueError, match="no file content"):
+            await download_attachment(
+                client,
+                message_id="AAMkAG123=",
+                attachment_id="att1",
+                save_path="invoice.eml",
+                config=Config(attachments_dir=str(tmp_path)),
+            )
+
+        assert not (tmp_path / "invoice.eml").exists()
+
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason="os.chmod on Windows honours only the read-only attribute (#85).",
+    )
+    async def test_the_saved_file_is_readable_by_its_owner_only(self, tmp_path):
+        client, _ = _client_returning(_file_attachment(b"%PDF"))
+
+        result = await download_attachment(
+            client,
+            message_id="AAMkAG123=",
+            attachment_id="att1",
+            save_path="report.pdf",
+            config=Config(attachments_dir=str(tmp_path)),
+        )
+
+        assert oct(os.stat(result["saved_to"]).st_mode)[-3:] == "600"
+
+    @pytest.mark.skipif(sys.platform == "win32", reason="symlinks need privileges on Windows")
+    async def test_a_symlink_planted_after_the_check_is_refused_not_written_through(self, tmp_path):
+        """The path is checked, then Graph is asked, then the file is written.
+
+        A symlink put at the target in between must not redirect the write. A
+        download never replaces a file, so the name is now taken and the write
+        is refused: the link stays as it was, and what it points at is untouched.
+        """
+        attachments = tmp_path / "attachments"
+        attachments.mkdir()
+        outside = tmp_path / "shell-profile"
+        outside.write_text("export PATH=/usr/bin\n")
+        target = attachments / "report.pdf"
+
+        def plant_symlink():
+            target.symlink_to(outside)
+
+        client, _ = _client_returning(_file_attachment(b"attacker bytes"), on_get=plant_symlink)
+
+        with pytest.raises(ValueError, match="'report.pdf' already exists"):
+            await download_attachment(
+                client,
+                message_id="AAMkAG123=",
+                attachment_id="att1",
+                save_path="report.pdf",
+                config=Config(attachments_dir=str(attachments)),
+            )
+
+        assert outside.read_text() == "export PATH=/usr/bin\n"
+        assert target.is_symlink()
+        assert [p.name for p in attachments.iterdir()] == ["report.pdf"]
+
+    @pytest.mark.parametrize("save_path", [".", "missing-subfolder/report.pdf"])
+    async def test_a_target_that_cannot_land_is_refused_before_graph_is_asked(
+        self, tmp_path, save_path
+    ):
+        client, get = _client_returning(_file_attachment(b"%PDF"))
+
+        with pytest.raises(ValueError):
+            await download_attachment(
+                client,
+                message_id="AAMkAG123=",
+                attachment_id="att1",
+                save_path=save_path,
+                config=Config(attachments_dir=str(tmp_path)),
+            )
+
+        get.assert_not_called()
+
+    async def test_the_name_and_type_it_reports_are_sanitised(self, tmp_path):
+        """Both come from the sender; the To Do twin already strips control characters."""
+        att = _file_attachment(b"%PDF", name="report\x1b[31m\x07.pdf")
+        att.content_type = "application/pdf\r\nX-Injected: 1"
+        client, _ = _client_returning(att)
+
+        result = await download_attachment(
+            client,
+            message_id="AAMkAG123=",
+            attachment_id="att1",
+            save_path="report.pdf",
+            config=Config(attachments_dir=str(tmp_path)),
+        )
+
+        assert result["name"] == "report.pdf"
+        assert "\r" not in result["content_type"] and "\n" not in result["content_type"]

@@ -1,45 +1,62 @@
-## Description: <br>
-Search Beepack for reusable API packages before coding. Saves tokens and time by reusing production-tested code instead of writing from scratch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Beepack for reusable API packages before coding. Saves tokens and time by reusing production-tested code instead of writing from scratch.
 
-## Publisher: <br>
-[actabi](https://clawhub.ai/user/actabi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[actabi](https://clawhub.ai/user/actabi)
 
-## Use Case: <br>
-Developers and engineers use this skill to search Beepack for reusable JavaScript API packages, inspect package READMEs and feedback, and decide whether to reuse, improve, or publish reusable integration code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feedback or suggestion submissions can send project details to Beepack. <br>
-Mitigation: Remove secrets, API keys, internal URLs, proprietary code, customer data, and sensitive business context before submitting feedback or suggestions. <br>
-Risk: Third-party package instructions or code returned by Beepack may not match the user's security, licensing, or reliability requirements. <br>
-Mitigation: Review package READMEs, feedback, ratings, and code before using a package in a project. <br>
+## Use Case:
 
+Developers and coding agents use this skill to search Beepack for reusable standalone JavaScript API packages before implementing integrations, utilities, or API clients. They can review package details and feedback, reuse package code, submit feedback, suggest fixes, and report issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/actabi/beepack-registry) <br>
-- [Beepack homepage](https://beepack.ai) <br>
-- [Beepack search API](https://beepack.ai/api/v1/search?q=what+you+need) <br>
-- [Beepack package detail API](https://beepack.ai/api/v1/packages/{slug}) <br>
-- [Beepack package feedback API](https://beepack.ai/api/v1/packages/{slug}/feedback) <br>
-- [Beepack package suggestions API](https://beepack.ai/api/v1/packages/{slug}/suggestions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Code] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and package README content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include third-party Beepack package instructions, package feedback, and reusable JavaScript module code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can steer broad coding work toward a third-party registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review before external Beepack requests and before adopting any Beepack package recommendation.
+
+Risk: Remote package code and READMEs may be copied into a project.
+
+Mitigation: Treat Beepack package content as untrusted third-party code and review, test, and scan it before use.
+
+Risk: Feedback, suggestions, publication, or code-diff uploads may disclose project details.
+
+Mitigation: Require user approval before submitting feedback, suggestions, reports, publication data, or code diffs to Beepack.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/actabi/skills/beepack-registry)
+- [Beepack homepage](https://beepack.ai)
+- [Beepack search API](https://beepack.ai/api/v1/search?q=what+you+need)
+- [Beepack package details API](https://beepack.ai/api/v1/packages/{slug})
+- [Beepack package feedback API](https://beepack.ai/api/v1/packages/{slug}/feedback)
+- [Beepack package suggestions API](https://beepack.ai/api/v1/packages/{slug}/suggestions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API calls, guidance]
+
+**Output Format:** [Markdown guidance with API request examples and copied package code when a package is selected.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party package README content, package code, feedback payloads, suggestion payloads, or publishing guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

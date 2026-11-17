@@ -1,48 +1,57 @@
-## Description: <br>
-每日毛泽东选集文章推送。AI深度解读，支持 Obsidian 文档生成和 Telegram 推送。75篇文章库，每日一篇。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日毛泽东选集文章推送。AI深度解读，支持 Obsidian 文档生成和 Telegram 推送。75篇文章库，每日一篇。
 
-## Publisher: <br>
-[wudi488](https://clawhub.ai/user/wudi488) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wudi488](https://clawhub.ai/user/wudi488)
 
-## Use Case: <br>
-External users and personal knowledge-management users use this skill to generate a daily Chinese reading note from a 75-article Mao Zedong Selected Works corpus, save it as an Obsidian Markdown document, and optionally send it to Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated notes can be sent to the configured Telegram chat. <br>
-Mitigation: Test with --chat or --no-send first, then confirm TELEGRAM_CHAT_ID points to the intended private chat before enabling Telegram delivery. <br>
-Risk: Generated Markdown files are written under the configured Obsidian output directory. <br>
-Mitigation: Set MAOXUAN_OUTPUT_DIR to the intended notes folder and verify file output before scheduling unattended runs. <br>
-Risk: The skill depends on sensitive API and bot credentials. <br>
-Mitigation: Provide DEEPSEEK_API_KEY, TELEGRAM_BOT_TOKEN, and TELEGRAM_CHAT_ID through environment variables and avoid committing real credential values. <br>
-Risk: Persistent daily automation can repeatedly publish unwanted content if configured prematurely. <br>
-Mitigation: Enable cron only after reviewing sample output and confirming the delivery channel and output path. <br>
+## Use Case:
 
+External users and developers use this skill to generate a daily Markdown article interpretation from a 75-article Mao Zedong anthology library, optionally save it to Obsidian, and send it through Telegram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wudi488/daily-maoxuan-article) <br>
-- [README](README.md) <br>
-- [Mao article database](references/mao-articles.md) <br>
-- [Mao expansions](references/mao-expansions.md) <br>
-- [Mao quotes](references/mao-quotes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, image files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents, Telegram text messages, optional PNG images, and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Selects one article deterministically by date; can run in chat-only, no-send, or simple mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The optional image generator can execute another local script with the user's full environment, including unrelated secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid SEEDREAM_SCRIPT and the optional image generator unless the referenced di-seedream-gen script is trusted; run with a minimal environment when image generation is needed.
+
+Risk: Daily scheduled delivery can send content or write files to the wrong destination if Telegram or output settings are misconfigured.
+
+Mitigation: Verify TELEGRAM_CHAT_ID, TELEGRAM_BOT_TOKEN, and MAOXUAN_OUTPUT_DIR before enabling scheduled runs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wudi488/skills/daily-maoxuan-article)
+- [Publisher Profile](https://clawhub.ai/user/wudi488)
+- [Mao Article Database](references/mao-articles.md)
+- [Mao Article Expansions](references/mao-expansions.md)
+- [Mao Quotes](references/mao-quotes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documents, Telegram messages, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write dated Markdown files to the configured Obsidian output directory and may send messages to the configured Telegram chat.]
+
+## Skill Version(s):
+
+9.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

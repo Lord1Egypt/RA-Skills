@@ -1,44 +1,60 @@
-## Description: <br>
-Full access to ioBroker via the iobroker simple-api adapter. Read states, objects, historical data, write to states, execute scripts, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full access to ioBroker via the iobroker simple-api adapter. Read states, objects, historical data, write to states, execute scripts, and more.
 
-## Publisher: <br>
-[sanwebgit](https://clawhub.ai/user/sanwebgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sanwebgit](https://clawhub.ai/user/sanwebgit)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to let an agent inspect, update, and automate ioBroker states through the simple-api adapter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad ioBroker control, including device state changes and script execution. <br>
-Mitigation: Install only where agent administrative control over ioBroker is intended, and prefer a restricted ioBroker account with network-limited access. <br>
-Risk: Delete and exec/eval operations can make destructive changes or run code in ioBroker. <br>
-Mitigation: Avoid or disable delete and exec/eval workflows unless they are explicitly required and reviewed before execution. <br>
-Risk: The security summary flags weak scoping and potentially misleading read-only framing. <br>
-Mitigation: Treat the release as a high-privilege control integration and document the allowed command scope before deployment. <br>
+## Use Case:
 
+Developers and smart-home operators use this skill to let an agent inspect, query, and control an ioBroker installation through the simple-api adapter.
 
-## Reference(s): <br>
-- [ioBroker](https://www.iobroker.net/) <br>
-- [ioBroker simple-api Adapter](https://github.com/ioBroker/ioBroker.simple-api) <br>
-- [ioBroker REST API Docs](https://www.iobroker.net/#en/adapters/adapterref/iobroker.simple-api/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, CSV, configuration] <br>
-**Output Format:** [Command responses containing ioBroker state data, object data, status text, JSON, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the selected command and the connected ioBroker simple-api adapter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and package.json) <br>
+Risk: The skill provides broad administrative control over ioBroker, including state and device mutation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged ioBroker account and require explicit human approval for state-changing commands.
+
+Risk: Script execution commands can run JavaScript in ioBroker.
+
+Mitigation: Treat exec and eval commands as dangerous operations and approve them only after reviewing the exact code to be executed.
+
+Risk: The default configuration uses HTTP and may carry Basic Auth credentials without transport encryption.
+
+Mitigation: Prefer HTTPS, avoid storing credentials for plain HTTP endpoints, and restrict network access to trusted hosts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sanwebgit/skills/iobroker-simple-api)
+- [ioBroker](https://www.iobroker.net/)
+- [ioBroker simple-api adapter](https://github.com/ioBroker/ioBroker.simple-api)
+- [ioBroker simple-api documentation](https://www.iobroker.net/#en/adapters/adapterref/iobroker.simple-api/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text and Markdown command guidance with configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can trigger ioBroker API calls that read state, mutate devices and states, query history, and execute JavaScript when the agent invokes supported commands.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

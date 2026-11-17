@@ -1,39 +1,55 @@
-## Description: <br>
-Kimi Use provides Node.js tools for Kimi AI chat, image understanding, translation, and model-backed search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kimi Use provides Node.js tools for Kimi AI chat, image understanding, translation, and model-assisted web search.
 
-## Publisher: <br>
-[cnlangzi](https://clawhub.ai/user/cnlangzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnlangzi](https://clawhub.ai/user/cnlangzi)
 
-## Use Case: <br>
-Developers and agents use this skill to call Kimi models from Node.js for chat, image understanding, translation, and model-backed search. It supports both CLI usage and direct module imports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, translation text, and selected local image files are sent to the configured Kimi API endpoint. <br>
-Mitigation: Use only a trusted API host and avoid sending secrets, private documents, regulated data, or sensitive image files. <br>
+## Use Case:
 
+Developers and agents use this skill to call Kimi APIs from Node.js or the CLI for conversation, image analysis, translation, and search-style prompts.
 
-## Reference(s): <br>
-- [Kimi Use on ClawHub](https://clawhub.ai/cnlangzi/kimi-use) <br>
-- [Kimi API Key Page](https://www.kimi.com/code/user-center/basic-information/interface-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown responses from Kimi API calls, with CLI output and Node.js function return objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KIMI_API_KEY and optionally KIMI_API_HOST, KIMI_MODEL, and KIMI_VISION_MODEL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Prompts, selected image files, and the KIMI_API_KEY value can be sent to the configured remote API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted API hosts, keep KIMI_API_HOST on the documented Kimi endpoint unless intentionally changed, and avoid sending sensitive text, screenshots, documents, or private identifiers.
+
+Risk: The API key can be exposed if the execution environment or logs are not controlled.
+
+Mitigation: Store KIMI_API_KEY in a protected environment, restrict access to the runtime, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnlangzi/skills/kimi-use)
+- [Kimi API key setup](https://www.kimi.com/code/user-center/basic-information/interface-key)
+- [Kimi coding API endpoint](https://api.kimi.com/coding/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown with command and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stream text output when the CLI is run with streaming enabled.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

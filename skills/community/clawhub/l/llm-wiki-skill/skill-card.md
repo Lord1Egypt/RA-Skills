@@ -1,43 +1,57 @@
-## Description: <br>
-LLM-maintained knowledge wiki for Obsidian vaults: ingest sources into a structured _wiki layer, query and synthesize answers, and audit wiki health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LLM-maintained knowledge wiki for Obsidian vaults that routes ingest, query, and health workflows for a persistent _wiki knowledge layer.
 
-## Publisher: <br>
-[webkong](https://clawhub.ai/user/webkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webkong](https://clawhub.ai/user/webkong)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to maintain an Obsidian-based personal or project knowledge wiki. It routes requests to ingest sources, answer questions from accumulated wiki pages, and audit the wiki for broken links, stale pages, missing frontmatter, and other quality issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and updates a local Obsidian _wiki/ layer, so generated summaries or edits may persist in the user's vault. <br>
-Mitigation: Use backups or version control, review changes after query and health operations, and run it only on notes the user is comfortable summarizing into local wiki pages. <br>
-Risk: The health workflow can auto-fix missing frontmatter and orphan pages, which may introduce links or metadata that need human judgment. <br>
-Mitigation: Review generated health reports and diffs before relying on the updated wiki for navigation or downstream work. <br>
+## Use Case:
 
+External users and developers use this skill to maintain an Obsidian-backed knowledge wiki: ingest durable insights, query synthesized wiki pages, and audit wiki health over time.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/webkong/llm-wiki-skill) <br>
-- [Project Homepage](https://github.com/webkong/LLM-Skill) <br>
-- [Wiki Page Format](skills/llmwiki-ingest/references/wiki-page-format.md) <br>
-- [Frontmatter Schema](skills/llmwiki-ingest/references/frontmatter-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown reports, synthesized answers, and structured wiki page updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read vault notes, update _wiki/ pages, append to _wiki/log.md, and report gaps or issues needing human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can read relevant vault notes and persist model-generated changes under _wiki/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in vaults where this access is acceptable, keep version control or backups, and review generated wiki edits.
+
+Risk: Untrusted URLs or sensitive notes may be summarized into persistent wiki content.
+
+Mitigation: Avoid ingesting sources that should not be retained, and inspect synthesized pages before relying on or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webkong/skills/llm-wiki-skill)
+- [Project homepage](https://github.com/webkong/LLM-Skill)
+- [LLM Wiki concept](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [Wiki Page Format](skills/llmwiki-ingest/references/wiki-page-format.md)
+- [Frontmatter Schema](skills/llmwiki-ingest/references/frontmatter-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown wiki pages, Markdown reports, and concise text answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read vault notes, synthesize content into _wiki/, and update wiki logs when the user invokes ingest, query, or health workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, CHANGELOG, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

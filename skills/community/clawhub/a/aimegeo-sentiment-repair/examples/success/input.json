@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "brand": "青禾",
+  "as_of": "2026-10-19",
+  "mode": "illustrative",
+  "sources": [
+    {
+      "id": "F1",
+      "title": "当前费用说明（教学）",
+      "locator": "教学资料：当前费用说明（教学）",
+      "content": "青禾当前免费使用。此说明不承诺永久免费的政策。",
+      "provenance": "illustrative",
+      "scope": "current",
+      "effective_from": "2026-10-01",
+      "effective_to": null
+    },
+    {
+      "id": "F2",
+      "title": "当前账号帮助（教学）",
+      "locator": "教学资料：当前账号帮助（教学）",
+      "content": "青禾支持添加多个账号。账号切换需要手动选择，暂不支持自动轮换。",
+      "provenance": "illustrative",
+      "scope": "current",
+      "effective_from": "2026-10-01",
+      "effective_to": null
+    },
+    {
+      "id": "F3",
+      "title": "旧版账号说明（教学）",
+      "locator": "教学资料：旧版账号说明（教学）",
+      "content": "旧版青禾仅允许绑定一个账号。",
+      "provenance": "illustrative",
+      "scope": "historical",
+      "effective_from": "2026-01-01",
+      "effective_to": "2026-09-30"
+    }
+  ],
+  "observations": [
+    {
+      "id": "O1",
+      "kind": "ai_answer",
+      "status": "simulated",
+      "text": "青禾只能用单账号，而且必须付费。",
+      "question": "青禾支持多账号吗？现在收费吗？",
+      "platform": null,
+      "observed_at": null,
+      "native_citations": null,
+      "citation_capture": "not_available",
+      "error": null
+    },
+    {
+      "id": "O2",
+      "kind": "ai_answer",
+      "status": "simulated",
+      "text": "Qinghe supports multiple accounts, but switching is manual; automatic account rotation is not supported.",
+      "question": "Can Qinghe automatically rotate accounts?",
+      "platform": null,
+      "observed_at": null,
+      "native_citations": null,
+      "citation_capture": "not_available",
+      "error": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "observation_id": "O1",
+      "quote": "只能用单账号",
+      "proposition": "青禾仅支持单账号。",
+      "verdict": "outdated",
+      "rationale": "旧版资料曾限制单账号，止于2026-09-30；2026-10-01起的当前说明支持多个账号。这里只说明教学资料中的版本变化，不能推断真实AI取材来源。",
+      "evidence": [
+        {
+          "source_id": "F3",
+          "quote": "旧版青禾仅允许绑定一个账号。",
+          "relation": "historical_support"
+        },
+        {
+          "source_id": "F2",
+          "quote": "青禾支持添加多个账号。",
+          "relation": "contradicts"
+        }
+      ],
+      "faq_question": "青禾现在只能使用一个账号吗？",
+      "public_answer": "不是。根据当前账号说明，青禾支持添加多个账号。旧版说明中的单账号限制已不适用于当前版本。账号切换仍需手动选择，暂不支持自动轮换。",
+      "repair": {
+        "priority": "P1",
+        "location": "产品页账号能力段、旧版账号帮助与账号FAQ",
+        "action": "在当前能力段说明支持多账号及手动切换；将旧版帮助标注为历史版本并指向当前说明。"
+      },
+      "needed_information": []
+    },
+    {
+      "id": "C2",
+      "observation_id": "O1",
+      "quote": "必须付费",
+      "proposition": "青禾当前必须付费使用。",
+      "verdict": "contradicted",
+      "rationale": "当前费用说明明确免费使用，未提供历史收费依据，因此归为与当前事实不符，而不是已过时。",
+      "evidence": [
+        {
+          "source_id": "F1",
+          "quote": "青禾当前免费使用。",
+          "relation": "contradicts"
+        }
+      ],
+      "faq_question": "青禾现在必须付费吗？",
+      "public_answer": "根据当前费用说明，青禾目前免费使用。该说明不承诺永久免费；后续是否调整应以届时生效的费用说明为准。",
+      "repair": {
+        "priority": "P1",
+        "location": "费用说明首段与费用FAQ",
+        "action": "明确当前免费使用，不扩写为永久或任意增值功能免费；使费用段与FAQ保持一致。"
+      },
+      "needed_information": []
+    },
+    {
+      "id": "C3",
+      "observation_id": "O2",
+      "quote": "switching is manual; automatic account rotation is not supported",
+      "proposition": "Qinghe requires manual switching and does not support automatic account rotation.",
+      "verdict": "accurate",
+      "rationale": "英文原文的not supported是否定自动轮换，而非否定多账号。当前中文账号帮助支持这一限制，不能因描述听起来负面而删除。",
+      "evidence": [
+        {
+          "source_id": "F2",
+          "quote": "账号切换需要手动选择，暂不支持自动轮换。",
+          "relation": "supports"
+        }
+      ],
+      "faq_question": "Does Qinghe switch or rotate accounts automatically?",
+      "public_answer": "Qinghe supports multiple accounts, but switching requires manual selection. Automatic account rotation is not currently supported.",
+      "repair": {
+        "priority": "P2",
+        "location": "英文账号帮助中的切换步骤与账号FAQ",
+        "action": "保留手动切换与不支持自动轮换的限制，避免将多账号写成自动轮换。"
+      },
+      "needed_information": []
+    }
+  ],
+  "retests": [
+    {
+      "id": "R1",
+      "claim_ids": [
+        "C1",
+        "C2"
+      ],
+      "kind": "same_question",
+      "baseline_observation_id": "O1",
+      "question": "青禾支持多账号吗？现在收费吗？",
+      "expected_checks": [
+        "是否按当前资料区分多账号支持与手动切换限制",
+        "是否准确说明当前免费且不承诺永久",
+        "只记录实际回答和可回读的原生引用，不预设纠正成功"
+      ]
+    },
+    {
+      "id": "R2",
+      "claim_ids": [
+        "C3"
+      ],
+      "kind": "same_question",
+      "baseline_observation_id": "O2",
+      "question": "Can Qinghe automatically rotate accounts?",
+      "expected_checks": [
+        "The answer retains manual switching and the lack of automatic rotation.",
+        "Multiple-account support is not confused with automatic rotation."
+      ]
+    }
+  ]
+}

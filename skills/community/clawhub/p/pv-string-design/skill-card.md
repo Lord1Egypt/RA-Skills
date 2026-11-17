@@ -1,40 +1,63 @@
-## Description: <br>
-Helps calculate photovoltaic module string counts, match inverter parameters, check voltage and current constraints, compare DC/AC ratio options, and recommend PV string configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates photovoltaic module string counts, checks inverter voltage, current, and DC/AC sizing, and recommends PV string configurations using conservative and irradiance-temperature coupled methods.
 
-## Publisher: <br>
-[yuepeng1985-web](https://clawhub.ai/user/yuepeng1985-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuepeng1985-web](https://clawhub.ai/user/yuepeng1985-web)
 
-## Use Case: <br>
-Solar PV designers, engineers, and technical users use this skill to size module strings, match inverter constraints, compare configuration options, and produce a structured PV string design report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PV string sizing guidance can be unsafe if component datasheets, inverter limits, weather assumptions, or local code requirements are incomplete or stale. <br>
-Mitigation: Verify equipment datasheets, weather sources, local code requirements, and final designs with a qualified professional before implementation. <br>
-Risk: Project location may be used for weather or temperature lookup. <br>
-Mitigation: Share only the location detail needed for design, and confirm any weather or temperature data source before relying on the result. <br>
+## Use Case:
 
+Solar engineers, developers, and external users can use this skill to prepare photovoltaic string design reports from module, inverter, and project-location inputs. It helps compare configurations, recommend string counts, and document voltage, current, temperature, and DC/AC ratio checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuepeng1985-web/pv-string-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, calculations, checks, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PV string sizing calculations, voltage/current validation, DC/AC ratio comparison, weather-source notes, and configuration recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Incorrect photovoltaic string calculations could produce unsafe design recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require independent engineering verification before using the reported configuration for procurement, installation, or operation.
+
+Risk: Temperature coefficient units may be misunderstood or inconsistently normalized.
+
+Mitigation: Confirm whether coefficients are provided as percent per degree Celsius or decimal values before applying voltage corrections.
+
+Risk: Per-MPPT current limits may be exceeded when multiple strings are connected to the same tracker.
+
+Mitigation: Check aggregate current for each MPPT input and compare it against inverter limits before accepting a configuration.
+
+Risk: Automatic weather or location lookup can disclose project-location data or use unreliable local temperature data.
+
+Mitigation: Ask for confirmation before external lookup and cite authoritative weather sources for extreme-temperature assumptions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuepeng1985-web/skills/pv-string-design)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables and calculation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes configuration comparisons, recommended string counts, and voltage/current validation tables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-04-28T09:31:52Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

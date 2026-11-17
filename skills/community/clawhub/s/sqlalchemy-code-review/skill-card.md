@@ -1,43 +1,56 @@
-## Description: <br>
-Reviews SQLAlchemy code for session management, relationships, N+1 queries, and migration patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews SQLAlchemy code for session management, relationships, N+1 queries, and migration patterns.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to review SQLAlchemy 2.0 application code and Alembic migrations for session lifecycle, relationship loading, query style, and migration safety issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review findings may be incorrect or misleading if the agent reports SQLAlchemy issues without reading the relevant source or migration file. <br>
-Mitigation: The skill requires findings to be anchored to file and line evidence and directs the agent to withdraw, downgrade, or rephrase claims when the evidence does not support them. <br>
-Risk: Using this skill may cause the agent to inspect application source code and database migration files. <br>
-Mitigation: Use it only where the agent is allowed to read the target repository, and do not provide secrets or unrelated sensitive files as review input. <br>
+## Use Case:
 
+Developers and engineers use this skill to review SQLAlchemy 2.0 code for session lifecycle issues, relationship loading problems, query anti-patterns, and Alembic migration risks.
 
-## Reference(s): <br>
-- [Sessions](references/sessions.md) <br>
-- [Relationships](references/relationships.md) <br>
-- [Queries](references/queries.md) <br>
-- [Migrations](references/migrations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review guidance with file and line references when findings are reported] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable code or hidden access requests were reported by the security scan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The skill may lead an agent to recommend database or migration changes that affect production behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code edits before applying them to production systems and test query or migration changes in CI or staging.
+
+Risk: SQLAlchemy review findings can be overstated if they are not tied to concrete source evidence.
+
+Mitigation: Use the skill's gates to anchor each finding to file:line evidence, then withdraw, downgrade, or rephrase unsupported claims.
+
+## Reference(s):
+
+- [Sessions](references/sessions.md)
+- [Relationships](references/relationships.md)
+- [Queries](references/queries.md)
+- [Migrations](references/migrations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown review findings with file:line citations and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should be anchored to repository evidence before being asserted.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

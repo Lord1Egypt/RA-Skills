@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaleidoscope</title>
+<meta name="description" content="Kaleidoscope by WIP Computer, Inc. Every AI. One experience.">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FFFFFF;
+  --text: #1a1a1a;
+  --text-muted: #8a8580;
+  --footer-muted: #6b6b6b;
+  --footer-border: #ececec;
+  --accent: #0033FF;
+  --accent-hover: #0033FF;
+  --input-bg: #F5F3ED;
+  --input-border: #E0DDD6;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 24px;
+  padding-top: calc(24px + env(safe-area-inset-top, 0px));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.login-card {
+  position: relative;
+  max-width: 380px;
+  width: calc(100vw - 48px);
+  text-align: center;
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-status {
+  margin-top: 16px;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: none;
+  text-align: left;
+}
+
+.login-status.show { display: block; }
+.login-status.loading { background: #E8EEFF; color: var(--accent); }
+.login-status.error { background: #FFF0F0; color: #D32F2F; }
+.login-status.success { background: #F0FFF4; color: #2E7D32; }
+
+.site-footer {
+  padding: 0 0 32px;
+  line-height: 1.45;
+}
+.site-footer__inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 48px 24px 0;
+}
+.site-footer__cols {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, auto);
+  gap: 48px;
+  padding-bottom: 40px;
+  align-items: start;
+  border-top: 1px solid var(--footer-border);
+  padding-top: 48px;
+  margin-top: -48px;
+}
+.site-footer__col-group {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.site-footer__brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.site-footer__brand-name {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+.site-footer__brand-name:hover {
+  opacity: 0.65;
+}
+.site-footer__brand-tag {
+  font-size: 13px;
+}
+.site-footer__brand-tag,
+.site-footer__col a,
+.site-footer__bottom,
+.site-footer__bottom .right a,
+.site-footer__passkeys,
+.site-footer__info,
+.site-footer__link-icon {
+  color: var(--footer-muted);
+}
+.site-footer__col-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.site-footer__col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.site-footer__col a {
+  font-size: 13px;
+  text-decoration: none;
+}
+.site-footer__col a:hover,
+.site-footer__bottom .right a:hover,
+.site-footer__passkeys:hover,
+.site-footer__info:hover,
+.site-footer__link-with-icon:hover .site-footer__link-icon {
+  color: var(--text);
+}
+.site-footer__link-with-icon,
+.site-footer__passkeys-row {
+  display: inline-flex;
+  align-items: center;
+}
+.site-footer__link-with-icon {
+  gap: 8px;
+}
+.site-footer__link-icon {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+  align-items: center;
+  justify-content: center;
+}
+.site-footer__passkeys {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+.site-footer__passkeys-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c9433a;
+  display: inline-block;
+  transition: background 200ms ease;
+}
+.site-footer__passkeys.is-on .site-footer__passkeys-dot {
+  background: #2f7a5a;
+}
+.site-footer__passkeys-label {
+  position: relative;
+  display: inline-block;
+}
+.site-footer__passkeys-label > [data-passkeys-label] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+}
+.site-footer__passkeys-ghost {
+  visibility: hidden;
+  white-space: nowrap;
+}
+.site-footer__passkeys-row {
+  gap: 6px;
+}
+.site-footer__info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+.site-footer__info-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.site-footer__info-popover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  --shift: 0px;
+  transform: translateX(calc(-50% + var(--shift))) translateY(4px);
+  width: min(240px, calc(100vw - 32px));
+  padding: 10px 12px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  z-index: 20;
+  white-space: normal;
+}
+.site-footer__info-popover::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(calc(-50% - var(--shift)));
+  border: 5px solid transparent;
+  border-top-color: var(--text);
+}
+.site-footer__info[aria-expanded="true"] + .site-footer__info-popover {
+  opacity: 1;
+  transform: translateX(calc(-50% + var(--shift))) translateY(0);
+}
+.site-footer__bottom {
+  border-top: 1px solid var(--footer-border);
+  padding-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+}
+.site-footer__bottom .right {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.site-footer__bottom .right a {
+  text-decoration: none;
+}
+@media (max-width: 960px) {
+  .site-footer__cols { gap: 32px; }
+}
+@media (max-width: 720px) {
+  .site-footer__cols {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    gap: 24px;
+  }
+  .site-footer__col-group { gap: 24px; }
+  .site-footer__brand-col,
+  .site-footer__col-group:nth-of-type(1),
+  .site-footer__col-group:nth-of-type(2),
+  .site-footer__col-group:nth-of-type(3) {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;margin-left:-6px;"><span id="loginIcon" style="width:34px;height:34px;flex-shrink:0;overflow:hidden;"></span><h1 class="login-title" style="margin-bottom:0;">Kaleidoscope</h1></div>
+    <p style="color:#8a8580;font-size:16px;margin:0 0 32px 0;letter-spacing:0.2px;">Every AI. One experience.</p>
+
+    <!-- Signup view (default) -->
+    <div id="signup-view">
+      <div class="login-buttons">
+        <button class="btn btn-primary" id="createBtn" onclick="doCreateAccount()">Enter the Kaleidoscope</button>
+      </div>
+      <div style="margin-top:12px;">
+        <input type="text" id="handleInput" name="kaleidoscope-handle" placeholder="What should Lēsa call you? (optional)" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" data-1p-ignore="true" data-lpignore="true" onfocus="setTimeout(function(){document.getElementById('handleInput').scrollIntoView({behavior:'smooth',block:'center'})},300)" style="width:100%;padding:16px 18px;border:1px solid #E0DDD6;border-radius:12px;font-size:18px;font-family:var(--font);background:#F5F3ED;color:#1a1a1a;outline:none;text-align:center;" />
+      </div>
+      <p style="color:#b0aaa4;font-size:13px;font-style:italic;margin:16px 0 0;text-align:center;opacity:0.8;">Use your phone to securely create your account</p>
+      <div style="margin-top:12px;text-align:center;">
+        <a id="signInBtn" onclick="doSignIn()" style="color:var(--accent);font-size:16px;cursor:pointer;text-decoration:none;">Already have an account? Sign in.</a>
+      </div>
+    </div>
+
+    <!-- QR code view (Chrome desktop fallback) -->
+    <div id="qr-view" style="display:none">
+      <p style="color:#8a8580;font-size:16px;margin:0 0 24px 0;">Scan with your phone to continue.</p>
+      <div style="display:flex;justify-content:center;margin-bottom:24px;">
+        <img id="qr-image" style="width:200px;height:200px;border-radius:12px;background:#F5F3ED;" />
+      </div>
+      <p id="qr-status-text" style="color:var(--accent);font-size:14px;">Waiting for phone...</p>
+      <div style="margin-top:20px;">
+        <a onclick="cancelQrLogin()" style="color:var(--text-muted);font-size:14px;cursor:pointer;text-decoration:none;">Cancel</a>
+      </div>
+    </div>
+
+    <!-- Success view (legacy login flow) -->
+    <div id="success-view" style="display:none">
+      <p style="font-size:18px;margin-bottom:12px;color:var(--text);">Welcome, <span id="welcome-name"></span>.</p>
+      <div class="login-buttons">
+        <a href="/demo/" class="btn btn-primary" style="text-decoration:none;text-align:center;">Try the Demo</a>
+      </div>
+      <p style="color:var(--text-muted);font-size:15px;margin:18px 0 0;">Your passkey has been saved to your phone. You can use it to sign in to any WIP Computer service.</p>
+    </div>
+
+    <!-- Pair-approved view (CRC pair-mode, desktop-side after phone approves) -->
+    <div id="pair-approved-view" style="display:none">
+      <p style="font-size:18px;margin-bottom:12px;color:var(--text);">Approved on your phone.</p>
+      <p style="color:var(--text-muted);font-size:15px;margin-bottom:24px;">Continue pairing on your phone. Your laptop will pick this up after you confirm.</p>
+    </div>
+
+    <!-- QR authenticator confirmation view (phone-side after approving another device) -->
+    <div id="qr-auth-confirm-view" style="display:none">
+      <p style="font-size:18px;margin:0 0 24px;color:var(--text);">Your authenticated Kaleidoscope session is available on your other device.</p>
+      <div class="login-buttons">
+        <button class="btn btn-primary" id="qrAuthPrimaryBtn" onclick="backToLoginAfterQrScan()">Back to login</button>
+      </div>
+      <p id="qr-auth-close-message" style="display:none;color:var(--text-muted);font-size:15px;margin:20px 0 0;">You can close this page.</p>
+    </div>
+
+    <div class="login-status" id="loginStatus" style="position:absolute;left:0;right:0;margin-top:16px;text-align:center;"></div>
+  </div>
+  </div>
+<footer class="site-footer" data-screen-label="Footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__cols">
+      <div class="site-footer__brand-col">
+        <a class="site-footer__brand-name" href="https://wip.computer/">WIP Computer, Inc.</a>
+        <div class="site-footer__brand-tag">Learning Dreaming Machines</div>
+        <div class="site-footer__brand-tag">Made in California.</div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">AI Infrastructure</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os" target="_blank" rel="noopener">LDM OS</a></li>
+            <li><a href="https://github.com/wipcomputer/memory-crystal" target="_blank" rel="noopener">Memory Crystal</a></li>
+            <li><a href="https://github.com/wipcomputer/dream-weaver-protocol" target="_blank" rel="noopener">Dream Weaver</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os/blob/main/docs/bridge/README.md" target="_blank" rel="noopener">Bridge</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">AI Skills</div>
+          <ul>
+            <li><a href="https://github.com/wipcomputer/wip-ldm-os/blob/main/docs/universal-installer/TECHNICAL.md" target="_blank" rel="noopener">Universal Installer</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-1password" target="_blank" rel="noopener">1Password</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-ai-devops-toolbox" target="_blank" rel="noopener">AI DevOps Toolbox</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-x-xai-grok" target="_blank" rel="noopener">X + xAI</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Applications</div>
+          <ul>
+            <li><a href="https://wip.computer/login?next=/demo" target="_blank" rel="noopener">Kaleidoscope</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-codex-remote-control" target="_blank" rel="noopener">Remote Control</a></li>
+            <li><a href="https://github.com/wipcomputer/CLVR" target="_blank" rel="noopener">CLVR</a></li>
+            <li><a href="https://github.com/wipcomputer/wip-markdown-viewer" target="_blank" rel="noopener">Markdown Viewer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__col-group">
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Tools</div>
+          <ul>
+            <li>
+              <a href="https://wip.computer/agent.txt" target="_blank" rel="noopener" data-agent>Are you an AI agent?</a>
+            </li>
+            <li>
+              <a href="https://wip.computer/visualizations/kaleidoscope/onboarding/live/">Visualizations</a>
+            </li>
+            <li class="site-footer__passkeys-row">
+              <button type="button" class="site-footer__passkeys" aria-pressed="false" aria-label="Local passkeys off" data-passkeys>
+                <span class="site-footer__passkeys-dot"></span>
+                <span class="site-footer__passkeys-label">
+                  <span data-passkeys-label>Local passkeys off</span>
+                  <span class="site-footer__passkeys-ghost" aria-hidden="true">Local passkeys off</span>
+                </span>
+              </button>
+              <span class="site-footer__info-wrap">
+                <button type="button" class="site-footer__info" aria-label="About local passkeys" data-passkeys-info aria-describedby="passkeys-info-tip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                </button>
+                <span class="site-footer__info-popover" id="passkeys-info-tip" role="tooltip">
+                  Local passkeys are off by default on desktop. Your mobile device's passkeys are used for login and device sync. Turn this on to use or save passkeys on this computer.
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <div class="site-footer__col-title">Connect</div>
+          <ul>
+            <li>
+              <a href="https://github.com/wipcomputer" target="_blank" rel="noopener" class="site-footer__link-with-icon">
+                <span class="site-footer__link-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+                  </svg>
+                </span>
+                <span>@wipcomputer</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/wipcomputer" target="_blank" rel="noopener" class="site-footer__link-with-icon">
+                <span class="site-footer__link-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817-5.97 6.817H1.673l7.73-8.835L1.254 2.25h6.83l4.713 6.231 5.447-6.231zM17.083 19.77h1.833L7.084 4.126H5.117l11.966 15.644z"></path>
+                  </svg>
+                </span>
+                <span>@wipcomputer</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <div>Copyright © 2026 WIP Computer, Inc. All rights reserved.</div>
+      <div class="right">
+        <a href="https://wip.computer/legal/privacy/" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="https://wip.computer/legal/internet-services/terms/site.html" target="_blank" rel="noopener">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Random kaleidoscope icon from sprite sheet ──
+var SPRITE_COLS = 8;
+var SPRITE_ROWS = 3;
+var SPRITE_TOTAL = SPRITE_COLS * SPRITE_ROWS;
+
+function makeIconHTML(size) {
+  var idx = Math.floor(Math.random() * SPRITE_TOTAL);
+  var col = idx % SPRITE_COLS;
+  var row = Math.floor(idx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  return '<div style="width:' + size + 'px;height:' + size + 'px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/app/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+}
+
+var loginIcon = document.getElementById('loginIcon');
+if (loginIcon) loginIcon.innerHTML = makeIconHTML(34);
+
+// Rotate icon every 3s
+var loginRotateIdx = Math.floor(Math.random() * SPRITE_TOTAL);
+setInterval(function() {
+  loginRotateIdx = (loginRotateIdx + 1) % SPRITE_TOTAL;
+  var col = loginRotateIdx % SPRITE_COLS;
+  var row = Math.floor(loginRotateIdx / SPRITE_COLS);
+  var bgPosX = (col / (SPRITE_COLS - 1)) * 100;
+  var bgPosY = (row / (SPRITE_ROWS - 1)) * 100;
+  if (loginIcon) loginIcon.innerHTML = '<div style="width:34px;height:34px;overflow:hidden;"><div style="width:100%;height:100%;background:url(/app/sprites.png);background-size:' + (SPRITE_COLS * 100) + '% ' + (SPRITE_ROWS * 100) + '%;background-position:' + bgPosX + '% ' + bgPosY + '%;"></div></div>';
+}, 3000);
+
+// ── WebAuthn helpers ──
+function b64urlToBytes(b64) {
+  var bin = atob(b64.replace(/-/g, '+').replace(/_/g, '/') + '=='.slice(0, (4 - b64.length % 4) % 4));
+  return Uint8Array.from(bin, function(c) { return c.charCodeAt(0); });
+}
+function bytesToB64url(buf) {
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(buf)))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
+function setStatus(msg, type) {
+  var el = document.getElementById('loginStatus');
+  el.style.transition = '';
+  el.style.opacity = '';
+  el.textContent = msg;
+  el.className = msg ? 'login-status show ' + type : 'login-status';
+}
+
+function clearStatus() {
+  var el = document.getElementById('loginStatus');
+  el.style.transition = 'opacity 0.5s';
+  el.style.opacity = '0';
+  setTimeout(function() { el.className = 'login-status'; el.style.transition = ''; el.style.opacity = ''; }, 500);
+}
+
+// ── Browser detection ──
+function isMobileDevice() {
+  return navigator.maxTouchPoints > 0 && window.innerWidth < 768;
+}
+
+function isSafariDesktop() {
+  if (isMobileDevice()) return false;
+  return /Safari\//.test(navigator.userAgent) && !/Chrome\//.test(navigator.userAgent);
+}
+
+function needsCustomQR() {
+  return !isLocalPasskeysOn();
+}
+
+// ── Local passkeys toggle (persisted in localStorage) ──
+function defaultLocalPasskeysOn() {
+  return isMobileDevice();
+}
+
+function getLocalPasskeysPreference() {
+  var stored = localStorage.getItem('localPasskeys');
+  if (stored === 'on' || stored === 'off') return stored;
+  return defaultLocalPasskeysOn() ? 'on' : 'off';
+}
+
+function isLocalPasskeysOn() {
+  return getLocalPasskeysPreference() === 'on';
+}
+
+function localPasskeysInfoCopy() {
+  if (defaultLocalPasskeysOn()) {
+    return "Local passkeys are on by default on mobile devices. This device's passkeys are used for login and device sync. Turn this off to use or save passkeys on a different device.";
+  }
+  return "Local passkeys are off by default on desktop. Your mobile device's passkeys are used for login and device sync. Turn this on to use or save passkeys on this computer.";
+}
+
+function toggleLocalPasskeys() {
+  var on = isLocalPasskeysOn();
+  localStorage.setItem('localPasskeys', on ? 'off' : 'on');
+  updatePasskeysDot();
+}
+
+function updatePasskeysDot() {
+  var button = document.querySelector('[data-passkeys]');
+  var label = document.querySelector('[data-passkeys-label]');
+  if (!button || !label) return;
+  var on = isLocalPasskeysOn();
+  button.classList.toggle('is-on', on);
+  button.setAttribute('aria-pressed', on ? 'true' : 'false');
+  button.setAttribute('aria-label', 'Local passkeys ' + (on ? 'on' : 'off'));
+  label.textContent = 'Local passkeys ' + (on ? 'on' : 'off');
+}
+
+function initFooterPasskeys() {
+  var button = document.querySelector('[data-passkeys]');
+  if (!button) return;
+  button.addEventListener('click', toggleLocalPasskeys);
+  updatePasskeysDot();
+}
+
+function initFooterPasskeysInfo() {
+  var button = document.querySelector('[data-passkeys-info]');
+  if (!button) return;
+  var popover = document.getElementById(button.getAttribute('aria-describedby'));
+  var startScrollY = 0;
+  if (popover) popover.textContent = localPasskeysInfoCopy();
+
+  function setOpen(open) {
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      startScrollY = window.scrollY;
+      positionPopover();
+    }
+  }
+
+  function positionPopover() {
+    if (!popover || button.getAttribute('aria-expanded') !== 'true') return;
+    popover.style.setProperty('--shift', '0px');
+    var rect = popover.getBoundingClientRect();
+    var padding = 16;
+    var shift = 0;
+    if (rect.left < padding) shift = padding - rect.left;
+    if (rect.right > window.innerWidth - padding) shift = window.innerWidth - padding - rect.right;
+    popover.style.setProperty('--shift', shift + 'px');
+  }
+
+  button.addEventListener('click', function(event) {
+    event.stopPropagation();
+    setOpen(button.getAttribute('aria-expanded') !== 'true');
+  });
+  document.addEventListener('click', function(event) {
+    if (!button.contains(event.target) && (!popover || !popover.contains(event.target))) {
+      setOpen(false);
+    }
+  });
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') setOpen(false);
+  });
+  window.addEventListener('scroll', function() {
+    if (button.getAttribute('aria-expanded') === 'true' && Math.abs(window.scrollY - startScrollY) > 24) {
+      setOpen(false);
+    }
+  }, { passive: true });
+  window.addEventListener('resize', positionPopover);
+}
+
+// ── `next` continuation carrier ──
+//
+// Three whitelisted next shapes:
+//
+//   PAIR_NEXT_REGEX            /pair/<CODE> using the daemon alphabet
+//                              (CODEX_PAIR_ALPHABET, length 6, L is
+//                              included; I/O/0/1 excluded). C8 applies:
+//                              URL fallback is mobile-only, the desktop
+//                              must not become the pairing authority.
+//
+//   REMOTE_CONTROL_NEXT_REGEX  /codex-remote-control/<UUID>. Standard
+//                              ?next semantics; allowed on both
+//                              desktop and mobile (this is navigation
+//                              continuation, not authority transfer).
+//
+//   DEMO_NEXT_REGEX            /demo. Standard post-login continuation
+//                              from the homepage CTA.
+//
+// Anything else is silently dropped. `next` is NOT a general redirect
+// primitive. The server validates authoritatively; this client-side
+// check is defense-in-depth.
+var PAIR_NEXT_REGEX = /^\/pair\/[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/;
+var REMOTE_CONTROL_NEXT_REGEX = /^\/codex-remote-control\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+var DEMO_NEXT_REGEX = /^\/demo$/;
+
+function isWhitelistedNext(raw) {
+  return typeof raw === 'string' && (PAIR_NEXT_REGEX.test(raw) || REMOTE_CONTROL_NEXT_REGEX.test(raw) || DEMO_NEXT_REGEX.test(raw));
+}
+
+function readPairNextFromQuery() {
+  try {
+    var raw = new URLSearchParams(window.location.search).get('next');
+    if (!raw) return null;
+    return isWhitelistedNext(raw) ? raw : null;
+  } catch (e) { return null; }
+}
+
+function isPairNextOnDesktop() {
+  var next = readPairNextFromQuery();
+  return !!(next && PAIR_NEXT_REGEX.test(next) && !isMobileDevice());
+}
+
+// Direct Remote Control login continuation. Explicit branch ... NOT
+// routed through pair-mode helpers. Called from doSignIn / doCreateAccount
+// the moment /webauthn/auth-verify or /webauthn/register-verify returns
+// success, BEFORE any qr-login/approve or pair-mode logic runs.
+//
+// If the URL was /login?next=/codex-remote-control/<UUID> AND auth-verify
+// returned a real apiKey, store the credentials in sessionStorage so the
+// destination page's auth gate sees them, then location.replace into the
+// Remote Control surface. Returns true if it redirected; caller must
+// return early.
+//
+// If the URL has no remote-control next, returns false (caller proceeds
+// with the existing QR / pair / welcome logic).
+//
+// If the URL has a remote-control next BUT result.apiKey is missing,
+// console.warn and return false. The caller then falls through to the
+// welcome view (defense in depth from PR #805) so the user is not
+// stranded on a blank /codex-remote-control page that bounces back to
+// sign-in.
+//
+// This is deliberately separate from followPairNextIfPresent because
+// pair-mode behavior (C6 desktop strip, C8 desktop-no-redirect) is
+// orthogonal to standard Remote Control login continuation.
+//
+// Also writes a short-lived same-origin handoff cookie as a Safari-safe
+// fallback: some browsers drop sessionStorage across location.replace
+// under privacy/partition heuristics. Path=/ is required because Safari
+// will silently reject document.cookie writes whose Path attribute is
+// not the current path or an ancestor of it; /login is not an ancestor
+// of /codex-remote-control, so the previous Path=/codex-remote-control
+// scope was dropped on Safari. The Remote Control page reads either
+// source and clears both Path scopes after consumption. See
+// setHandoffCookie below.
+function setHandoffCookie(name, value) {
+  document.cookie = name + '=' + encodeURIComponent(value)
+    + '; Path=/'
+    + '; Max-Age=60'
+    + '; Secure'
+    + '; SameSite=Strict';
+}
+function redirectToRemoteControlIfDirectLogin(result) {
+  try {
+    var raw = new URLSearchParams(window.location.search).get('next');
+    if (!raw || !REMOTE_CONTROL_NEXT_REGEX.test(raw)) return false;
+    if (!result || !result.apiKey) {
+      console.warn('redirectToRemoteControlIfDirectLogin: missing apiKey on result; falling through to welcome view. result=', result);
+      return false;
+    }
+    console.log('redirectToRemoteControlIfDirectLogin: storing wip_api_key + redirecting', { agentId: result.agentId, next: raw });
+    sessionStorage.setItem('wip_api_key', result.apiKey);
+    if (result.agentId) sessionStorage.setItem('wip_handle', result.agentId);
+    setHandoffCookie('wip_rc_api_key', result.apiKey);
+    if (result.agentId) setHandoffCookie('wip_rc_handle', result.agentId);
+    location.replace(raw);
+    return true;
+  } catch (e) {
+    console.warn('redirectToRemoteControlIfDirectLogin: unexpected error', e);
+    return false;
+  }
+}
+
+// Phone-side post-passkey hook. Called after successful passkey + (optional)
+// qr-login/approve. Decides whether to redirect to the next URL based on
+// authority rules from plan C6 + C8:
+//
+//   - QR-scan path (approveResponse.next from the server): follow it for
+//     a whitelisted next. The phone scanned the desktop's QR,
+//     signed in, and the server returned a sanitized `next`.
+//
+//   - URL fallback path (no approveResponse.next):
+//       - /codex-remote-control/<UUID>: allowed on both desktop and
+//         mobile. Standard navigation continuation.
+//       - /pair/<CODE>: mobile-only (C8). Desktop with no
+//         approveResponse must not become the pairing authority.
+//
+// REGRESSION COVERED: a desktop browser with "Local passkeys" on,
+// loading /login?next=/pair/<CODE> and completing desktop WebAuthn,
+// MUST NOT redirect to /pair/<CODE> or complete pairing. If a future
+// change opens this gate, it violates plan constraint C8 ("Default
+// authority is phone-held passkey; local desktop passkeys are
+// testing-only"). The codex-remote-control next does NOT trip this
+// rule because it's a navigation continuation, not authority transfer.
+//
+// Returns true if it redirected (caller should not run other view-switching).
+async function followPairNextIfPresent(approveResponse, identity, isNewAccount) {
+  var next = null;
+  // Path 1: QR phone-side approve. Server-blessed next, either shape.
+  if (approveResponse && typeof approveResponse.next === 'string' && isWhitelistedNext(approveResponse.next)) {
+    if (DEMO_NEXT_REGEX.test(approveResponse.next)) {
+      return showQrAuthenticatorConfirmation(identity, isNewAccount === true);
+    }
+    next = approveResponse.next;
+  } else {
+    // Path 2: URL ?next= fallback (no approveResponse). Branch by
+    // shape: codex-remote-control allowed on any device, pair-mode
+    // restricted to mobile per C8.
+    var urlNext = readPairNextFromQuery();
+    if (urlNext) {
+      if (REMOTE_CONTROL_NEXT_REGEX.test(urlNext) || DEMO_NEXT_REGEX.test(urlNext)) {
+        next = urlNext;
+      } else if (PAIR_NEXT_REGEX.test(urlNext) && isMobileDevice()) {
+        next = urlNext;
+      }
+      // Path 3 (desktop + pair next, no approveResponse): next stays null.
+    }
+  }
+  if (!next) return false;
+  // Auth-handoff guard: if we don't have an apiKey to store, do NOT
+  // redirect to next. Stranding the user on /codex-remote-control/<UUID>
+  // without a key in sessionStorage would render a redirect-to-login
+  // loop or a blank page (depending on the destination's auth gate).
+  // Falling through here lets the caller render the existing
+  // welcome-name view, which at least shows the user something they
+  // can interact with.
+  if (!identity || !identity.apiKey) {
+    console.warn('followPairNextIfPresent: missing apiKey on identity; skipping redirect to', next);
+    return false;
+  }
+  sessionStorage.setItem('wip_api_key', identity.apiKey);
+  if (identity.agentId) sessionStorage.setItem('wip_handle', identity.agentId);
+  if (PAIR_NEXT_REGEX.test(next) && identity.codex_pair_presence_token) {
+    sessionStorage.setItem('wip_codex_pair_presence_token', identity.codex_pair_presence_token);
+  }
+  storeDemoHandoffIfNeeded(next, identity, isNewAccount === true);
+  location.replace(next);
+  return true;
+}
+
+// ── QR Login (Chrome desktop fallback) ──
+var qrLoginPollTimer = null;
+var qrLoginMode = null;
+
+function storeDemoHandoffIfNeeded(next, identity, isNewAccount) {
+  if (!DEMO_NEXT_REGEX.test(next) || !identity || !identity.apiKey) return;
+  sessionStorage.setItem('lesa-token', identity.apiKey);
+  if (identity.agentId) sessionStorage.setItem('lesa-agent', identity.agentId);
+  if (identity.tenantId) sessionStorage.setItem('lesa-tenant', identity.tenantId);
+  if (isNewAccount) sessionStorage.setItem('lesa-new-account', 'true');
+}
+
+function showQrAuthenticatorConfirmation(identity, isNewAccount) {
+  ['signup-view', 'qr-view', 'success-view', 'pair-approved-view'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  var primary = document.getElementById('qrAuthPrimaryBtn');
+  if (primary) primary.textContent = 'Back to login';
+  var closeMessage = document.getElementById('qr-auth-close-message');
+  if (closeMessage) closeMessage.style.display = 'none';
+  document.getElementById('qr-auth-confirm-view').style.display = 'block';
+  setStatus('', '');
+  return true;
+}
+
+function backToLoginAfterQrScan() {
+  qrSessionId = null;
+  qrHandle = null;
+  qrMode = 'register';
+  qrSessionMode = false;
+  location.replace('/login?next=/demo');
+}
+
+async function startQrLogin(handle, mode) {
+  var btn = document.getElementById('createBtn');
+  btn.disabled = true;
+  setStatus('', '');
+  qrLoginMode = mode || 'register';
+
+  try {
+    var pairNext = readPairNextFromQuery();
+    var startBody = { handle: handle || undefined, mode: mode || 'register' };
+    if (pairNext) startBody.next = pairNext;
+    var res = await fetch('/api/qr-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(startBody),
+    });
+    var data = await res.json();
+
+    // Switch to QR view
+    document.getElementById('signup-view').style.display = 'none';
+    document.getElementById('qr-view').style.display = 'block';
+    document.getElementById('qr-image').src = data.qrUrl;
+
+    // Start polling
+    qrLoginPollTimer = setInterval(function() {
+      pollQrLogin(data.sessionId);
+    }, 2000);
+
+    // Expire after 5 minutes
+    setTimeout(function() {
+      if (qrLoginPollTimer) {
+        cancelQrLogin();
+        setStatus('Session expired. Try again.', 'error');
+        setTimeout(clearStatus, 3000);
+      }
+    }, 5 * 60 * 1000);
+
+  } catch (err) {
+    setStatus('Error: ' + err.message, 'error');
+    btn.disabled = false;
+  }
+}
+
+async function pollQrLogin(sessionId) {
+  try {
+    var res = await fetch('/api/qr-login/status?s=' + sessionId);
+    if (res.status === 404) {
+      // Session expired on server
+      cancelQrLogin();
+      setStatus('Session expired. Try again.', 'error');
+      setTimeout(clearStatus, 3000);
+      return;
+    }
+    var data = await res.json();
+    if (data.status === 'approved') {
+      clearInterval(qrLoginPollTimer);
+      qrLoginPollTimer = null;
+      document.getElementById('qr-view').style.display = 'none';
+      // Branch by next shape. Three cases:
+      //
+      // 1. Pair-mode (URL ?next=/pair/<CODE>): server stripped apiKey
+      //    and next from this response (plan C6). Desktop never
+      //    redirects (C8). Show the dedicated pair-approved view.
+      //    The phone is the actor that completes pair-complete.
+      //
+      // 2. Codex remote control continuation (data.next is a
+      //    /codex-remote-control/<UUID>): standard post-login next.
+      //    Desktop authenticates with the server-provided apiKey and
+      //    redirects to next. Server returned the full login response
+      //    (apiKey, credentialLabel, next) for this case.
+      //
+      // 3. Legacy login mode (no whitelisted next anywhere): show the
+      //    existing welcome view.
+      var urlNext = readPairNextFromQuery();
+      if (urlNext && PAIR_NEXT_REGEX.test(urlNext)) {
+        document.getElementById('pair-approved-view').style.display = 'block';
+      } else if (data.next && (REMOTE_CONTROL_NEXT_REGEX.test(data.next) || DEMO_NEXT_REGEX.test(data.next)) && data.apiKey) {
+        // Standard post-login continuation: pick up the credentials
+        // so the destination page is authenticated, then redirect.
+        sessionStorage.setItem('wip_api_key', data.apiKey);
+        if (data.agentId) sessionStorage.setItem('wip_handle', data.agentId);
+        storeDemoHandoffIfNeeded(data.next, data, qrLoginMode === 'register');
+        location.replace(data.next);
+      } else {
+        storeDemoHandoffIfNeeded('/demo', data, qrLoginMode === 'register');
+        document.getElementById('success-view').style.display = 'block';
+        // Use credentialLabel (matches the saved-passkey label the user
+        // sees in iOS Passwords / 1Password). Falls back to agentId for
+        // back-compat with older deploys.
+        document.getElementById('welcome-name').textContent = data.credentialLabel || data.agentId || 'you';
+      }
+    }
+  } catch (err) {
+    // Network error, keep polling
+  }
+}
+
+function cancelQrLogin() {
+  if (qrLoginPollTimer) {
+    clearInterval(qrLoginPollTimer);
+    qrLoginPollTimer = null;
+  }
+  qrLoginMode = null;
+  document.getElementById('qr-view').style.display = 'none';
+  document.getElementById('signup-view').style.display = 'block';
+  document.getElementById('createBtn').disabled = false;
+  document.getElementById('signInBtn').style.pointerEvents = 'auto';
+}
+
+// ── Phone-side QR session detection ──
+var urlParams = new URLSearchParams(window.location.search);
+var qrSessionId = urlParams.get('s');
+var qrHandle = urlParams.get('h');
+var qrMode = urlParams.get('m') || 'register';
+var qrSessionMode = !!qrSessionId;
+
+// True only while the auto-start setTimeout is invoking
+// doCreateAccount / doSignIn. Read by the NotAllowedError catches so
+// they can suppress the user-facing "Cancelled. Try again when ready."
+// message when the rejection was caused by a strict user-activation
+// policy (Safari Private Browsing) rather than an actual user
+// cancellation. The user's eventual tap on the existing button or
+// link runs the same handler with a real user gesture, and the same
+// qrSessionId completes /api/qr-login/approve.
+var qrAutoStarting = false;
+
+if (qrSessionMode) {
+  // Clean the URL so session ID doesn't persist
+  history.replaceState(null, '', '/login');
+  // Pre-fill handle if provided
+  if (qrHandle) document.getElementById('handleInput').value = qrHandle;
+  // Auto-start the right flow on phone (no extra tap needed).
+  // Restored from the pre-#784 known-good QR phone UX. Safari (normal
+  // mode) users never see the static login page (Face ID pops within
+  // 300ms). Browsers with stricter user-activation policies (Safari
+  // Private Browsing, sometimes Chrome on iOS) may reject the
+  // auto-start with NotAllowedError. The catch path below replaces
+  // the generic "Cancelled" status with a clear, QR-specific
+  // instructional message ("This browser blocked automatic Face ID.
+  // Tap ... to continue.") and leaves the existing controls enabled
+  // so the user's tap completes the flow with a real gesture.
+  setTimeout(async function() {
+    qrAutoStarting = true;
+    try {
+      if (qrMode === 'signin') {
+        await doSignIn();
+      } else {
+        await doCreateAccount();
+      }
+    } finally {
+      qrAutoStarting = false;
+    }
+  }, 300);
+} else if (isPairNextOnDesktop()) {
+  // `codex-daemon link` opens /login?next=/pair/<CODE> on the desktop.
+  // The desktop's only authority in that flow is to display QR and wait.
+  setTimeout(function() {
+    startQrLogin('', 'signin');
+  }, 0);
+}
+
+// ── Create Account ──
+async function doCreateAccount() {
+  var username = (document.getElementById('handleInput').value || '').trim().replace(/^@/, '').toLowerCase().replace(/[^a-z0-9\-]/g, '').slice(0, 30);
+  var btn = document.getElementById('createBtn');
+  btn.disabled = true;
+
+  // Pair-mode desktop URLs must always use the QR path. A local
+  // desktop passkey is testing-only and must not become pair authority.
+  if (isPairNextOnDesktop() && !qrSessionMode) {
+    startQrLogin(username, 'signin');
+    return;
+  }
+
+  // Local passkeys off means use WIP's QR cross-device login on any device.
+  if (needsCustomQR() && !qrSessionMode) {
+    startQrLogin(username);
+    return;
+  }
+
+  setStatus('Preparing...', 'loading');
+
+  try {
+    var optRes = await fetch('/webauthn/register-options', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username || undefined }),
+    });
+    var optData = await optRes.json();
+    var challengeId = optData.challengeId;
+    var options = optData.options;
+    if (!options) throw new Error('Server returned no options');
+
+    options.challenge = b64urlToBytes(options.challenge);
+    options.user.id = b64urlToBytes(options.user.id);
+    if (options.excludeCredentials) {
+      options.excludeCredentials = options.excludeCredentials.map(function(c) { return Object.assign({}, c, { id: b64urlToBytes(c.id) }); });
+    }
+
+    // Phone-first by default. If local passkeys toggled on, show all options.
+    // On mobile (including QR session mode), always use platform (Face ID directly).
+    var mobile = isMobileDevice();
+    var localOn = isLocalPasskeysOn();
+    if (!options.authenticatorSelection) options.authenticatorSelection = {};
+    if (mobile) {
+      options.authenticatorSelection.authenticatorAttachment = 'platform';
+    } else if (!localOn) {
+      options.authenticatorSelection.authenticatorAttachment = 'cross-platform';
+    }
+    options.authenticatorSelection.residentKey = 'preferred';
+    options.authenticatorSelection.userVerification = 'required';
+
+    setStatus(mobile ? 'Waiting for biometric...' : localOn ? 'Waiting for biometric...' : 'Scan the QR code with your phone...', 'loading');
+    var credential = await navigator.credentials.create({ publicKey: options });
+
+    var reqBody = {
+      challengeId: challengeId,
+      credential: {
+        id: credential.id,
+        rawId: bytesToB64url(credential.rawId),
+        type: credential.type,
+        response: {
+          attestationObject: bytesToB64url(credential.response.attestationObject),
+          clientDataJSON: bytesToB64url(credential.response.clientDataJSON),
+          transports: credential.response.getTransports ? credential.response.getTransports() : [],
+        },
+      },
+    };
+
+    setStatus('Verifying...', 'loading');
+    var verRes = await fetch('/webauthn/register-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reqBody),
+    });
+    var result = await verRes.json();
+
+    if (result.success) {
+      // Direct Remote Control login continuation. Runs before any
+      // qr-login/approve or pair-mode logic so the apiKey lands in
+      // sessionStorage and the destination's auth gate finds it.
+      if (redirectToRemoteControlIfDirectLogin(result)) return;
+      // If phone completing a desktop QR session, approve it
+      var approveResponse = null;
+      if (qrSessionMode && qrSessionId) {
+        var approveRes = await fetch('/api/qr-login/approve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId: qrSessionId,
+            agentId: result.agentId,
+            apiKey: result.apiKey,
+            tenantId: result.tenantId,
+            credentialLabel: result.credentialLabel,
+          }),
+        });
+        try { approveResponse = await approveRes.json(); } catch (e) { approveResponse = null; }
+      }
+      // Mark that user has an account (persists across sessions)
+      localStorage.setItem('kscope-has-account', 'true');
+      // CRC pair-mode: if the server returned a sanitized `next`, store
+      // the api_key on the phone and redirect to /pair/<CODE>. Phone is
+      // the actor that completes pair-complete (plan C6).
+      if (await followPairNextIfPresent(approveResponse, result, true)) return;
+      storeDemoHandoffIfNeeded('/demo', result, true);
+      document.getElementById('signup-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+      // Prefer the typed handle for the welcome view. credentialLabel
+      // is the saved-passkey label and can be a generated user id.
+      document.getElementById('welcome-name').textContent = username || result.credentialLabel || result.agentId || 'you';
+      setStatus('', '');
+    } else {
+      setStatus(result.error || 'Registration failed', 'error');
+      btn.disabled = false;
+    }
+  } catch (err) {
+    if (err.name === 'NotAllowedError') {
+      // Distinguish auto-start rejection from a user cancellation.
+      // When the QR auto-start hits a strict user-activation policy
+      // (Safari Private Browsing, future stricter modes), surface a
+      // clear, QR-specific instruction instead of the generic
+      // "Cancelled" copy. The existing primary button stays enabled
+      // (btn.disabled = false below); the user's tap is a real
+      // gesture and reuses the same qrSessionId.
+      if (qrSessionMode && qrAutoStarting) {
+        setStatus('This browser blocked automatic Face ID. Tap Enter the Kaleidoscope to continue.', 'error');
+      } else {
+        setStatus('Cancelled. Try again when ready.', 'error');
+        setTimeout(function() { clearStatus(); }, 3000);
+      }
+    } else {
+      setStatus('Error: ' + err.message, 'error');
+    }
+    btn.disabled = false;
+  }
+}
+
+async function doSignIn() {
+  document.getElementById('signInBtn').style.pointerEvents = 'none';
+  document.getElementById('createBtn').disabled = true;
+
+  // Pair-mode desktop URLs must always use the QR path. A local
+  // desktop passkey is testing-only and must not become pair authority.
+  if (isPairNextOnDesktop() && !qrSessionMode) {
+    startQrLogin('', 'signin');
+    return;
+  }
+
+  // Local passkeys off means use WIP's QR cross-device login on any device.
+  // With local passkeys on, let Chrome show native dialog (supports YubiKey).
+  if (needsCustomQR() && !qrSessionMode) {
+    startQrLogin('', 'signin');
+    return;
+  }
+
+  setStatus('Preparing...', 'loading');
+
+  try {
+    var optRes = await fetch('/webauthn/auth-options', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}',
+    });
+    var optData = await optRes.json();
+    var challengeId = optData.challengeId;
+    var options = optData.options;
+    if (!options) throw new Error('Server returned no options');
+
+    options.challenge = b64urlToBytes(options.challenge);
+    if (options.allowCredentials) {
+      options.allowCredentials = options.allowCredentials.map(function(c) { return Object.assign({}, c, { id: b64urlToBytes(c.id) }); });
+    }
+
+    setStatus('Waiting for biometric...', 'loading');
+    var assertion = await navigator.credentials.get({ publicKey: options });
+
+    var reqBody = {
+      challengeId: challengeId,
+      credential: {
+        id: assertion.id, rawId: bytesToB64url(assertion.rawId), type: assertion.type,
+        response: {
+          authenticatorData: bytesToB64url(assertion.response.authenticatorData),
+          clientDataJSON: bytesToB64url(assertion.response.clientDataJSON),
+          signature: bytesToB64url(assertion.response.signature),
+          userHandle: assertion.response.userHandle ? bytesToB64url(assertion.response.userHandle) : null,
+        },
+      },
+    };
+
+    setStatus('Verifying...', 'loading');
+    var verRes = await fetch('/webauthn/auth-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reqBody),
+    });
+    var result = await verRes.json();
+
+    if (result.success) {
+      // Direct Remote Control login continuation. Runs before any
+      // qr-login/approve or pair-mode logic so the apiKey lands in
+      // sessionStorage and the destination's auth gate finds it.
+      if (redirectToRemoteControlIfDirectLogin(result)) return;
+      // If phone completing a desktop QR session, approve it
+      var approveResponse = null;
+      if (qrSessionMode && qrSessionId) {
+        var approveRes = await fetch('/api/qr-login/approve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sessionId: qrSessionId,
+            agentId: result.agentId,
+            apiKey: result.apiKey,
+            tenantId: result.tenantId,
+            credentialLabel: result.credentialLabel,
+          }),
+        });
+        try { approveResponse = await approveRes.json(); } catch (e) { approveResponse = null; }
+      }
+      // CRC pair-mode: if the server returned a sanitized `next`, store
+      // the api_key on the phone and redirect to /pair/<CODE>. Phone is
+      // the actor that completes pair-complete (plan C6).
+      if (await followPairNextIfPresent(approveResponse, result, false)) return;
+      storeDemoHandoffIfNeeded('/demo', result, false);
+      document.getElementById('signup-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+      // Use credentialLabel from the server, which matches the saved-
+      // passkey label the user sees in iOS Passwords / 1Password.
+      document.getElementById('welcome-name').textContent = result.credentialLabel || result.agentId || 'you';
+      setStatus('', '');
+    } else {
+      setStatus(result.error || 'Authentication failed', 'error');
+      document.getElementById('signInBtn').style.pointerEvents = 'auto';
+      document.getElementById('createBtn').disabled = false;
+    }
+  } catch (err) {
+    if (err.name === 'NotAllowedError') {
+      // Distinguish auto-start rejection from a user cancellation.
+      // When the QR auto-start hits a strict user-activation policy
+      // (Safari Private Browsing, future stricter modes), surface a
+      // clear, QR-specific instruction instead of the generic
+      // "Cancelled" copy. The sign-in link and primary button stay
+      // enabled below; the user's tap is a real gesture and reuses
+      // the same qrSessionId.
+      if (qrSessionMode && qrAutoStarting) {
+        setStatus('This browser blocked automatic Face ID. Tap Already have an account? Sign in. to continue.', 'error');
+      } else {
+        setStatus('Cancelled. Try again when ready.', 'error');
+        setTimeout(function() { clearStatus(); }, 3000);
+      }
+    } else {
+      setStatus('Error: ' + err.message, 'error');
+    }
+    document.getElementById('signInBtn').style.pointerEvents = 'auto';
+    document.getElementById('createBtn').disabled = false;
+  }
+}
+
+// Enter key on handle input triggers create
+document.getElementById('handleInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doCreateAccount();
+});
+
+initFooterPasskeys();
+initFooterPasskeysInfo();
+</script>
+</body>
+</html>

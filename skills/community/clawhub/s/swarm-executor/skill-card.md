@@ -1,48 +1,66 @@
-## Description: <br>
-Coordinate multi-agent swarm execution with a lightweight Pub/Sub protocol, standardized SwarmCommand messages, token-budget control, agent status tracking, negotiation, fallback, and completion gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate multi-agent swarm execution with a lightweight Pub/Sub protocol, standardized SwarmCommand messages, token-budget control, agent status tracking, negotiation, fallback, and completion gates.
 
-## Publisher: <br>
-[xb19960921](https://clawhub.ai/user/xb19960921) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xb19960921](https://clawhub.ai/user/xb19960921)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, validate, and operate multi-agent workflows with explicit task ownership, command schemas, token budgets, fallback rules, and completion gates. It is most useful when parallel agents need coordination without losing control of cost, state, or verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The compose stack exposes Redis, Grafana, Prometheus, and node-exporter services and includes default or environment-derived passwords. <br>
-Mitigation: Review the compose stack before use, set explicit Redis and Grafana passwords, restrict exposed ports, and pin container images before deployment. <br>
-Risk: Untrusted agents could misuse privileged IDs or bypass intended token-budget controls. <br>
-Mitigation: Configure explicit maximum token limits and prevent untrusted agents from selecting privileged IDs such as 001. <br>
-Risk: Treating the skill as a hardened production control plane could overstate its security posture. <br>
-Mitigation: Use it as a coordination library unless additional authentication, network isolation, monitoring, and operational hardening are added. <br>
-Risk: Swarm coordination can amplify mistakes for destructive, public, costly, irreversible, or ambiguous actions. <br>
-Mitigation: Require human confirmation for high-risk actions and keep owner, budget, dependency, fallback, and done criteria explicit. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, validate, and operate multi-agent workflows with explicit ownership, state, token budgets, dependencies, fallback behavior, and completion gates. It is suited to agent orchestration tasks where parallel work improves throughput or review quality and where coordination risk must be controlled.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xb19960921/swarm-executor) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Release changelog](artifact/CHANGELOG.md) <br>
-- [Swarm command schema](artifact/schemas/swarm_command.json) <br>
-- [Agent status schema](artifact/schemas/agent_status.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON command examples, shell commands, and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include swarm plans, command tables, coordination flows, budget and downgrade policy, fallback rules, and verification criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter, changelog, release evidence) <br>
+Risk: The bundled Compose deployment can expose coordination and monitoring services with weak defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require non-empty Redis and Grafana secrets, bind services to loopback or an internal network, remove node-exporter unless host metrics are needed, and review the deployment before use.
+
+Risk: Redis connectivity alone is not sufficient authorization to publish agent commands.
+
+Mitigation: Validate command source, target role, budget, deadline, dependencies, and completion gate before publishing or accepting commands.
+
+Risk: Swarm coordination can amplify mistakes when actions are destructive, public, costly, irreversible, or ambiguous.
+
+Mitigation: Require human confirmation for high-risk actions and keep one accountable task owner plus an explicit fallback owner for each task.
+
+Risk: Unpinned Python packages and container images can change behavior over time.
+
+Mitigation: Pin Python dependencies and container image tags before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xb19960921/skills/swarm-executor)
+- [SKILL.md](artifact/SKILL.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+- [Swarm command schema](artifact/schemas/swarm_command.json)
+- [Agent status schema](artifact/schemas/agent_status.json)
+- [Compose deployment](artifact/docker-compose.yml)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command tables, JSON command examples, and optional Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs emphasize explicit task ownership, budgets, dependencies, fallback owners, and verification criteria.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, SKILL.md frontmatter, CHANGELOG.md, coordinator package)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

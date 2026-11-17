@@ -1,54 +1,65 @@
-## Description: <br>
-Solana Dev Skill guides agents through Solana dApp, wallet, transaction, on-chain program, client SDK, testing, and security workflows with a framework-kit and @solana/kit-first approach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end Solana development playbook (Jan 2026). Prefer Solana Foundation framework-kit (@solana/client + @solana/react-hooks) for React/Next.js UI. Prefer @solana/kit for all new client/RPC/transaction code. When legacy dependencies require web3.js, isolate it behind @solana/web3-compat (or @solana/web3.js as a true legacy fallback). Covers wallet-standard-first connection (incl. ConnectorKit), Anchor/Pinocchio programs, Codama-based client generation, LiteSVM/Mollusk/Surfpool testing, and security checklists.
 
-## Publisher: <br>
-[h4rkl](https://clawhub.ai/user/h4rkl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h4rkl](https://clawhub.ai/user/h4rkl)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to implement, review, test, and harden Solana applications, clients, payments, and on-chain programs. It is suited for React/Next.js dApp work, wallet-signing flows, Anchor or Pinocchio programs, Codama client generation, and Solana-focused test planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated wallet-signing or payment-flow code could authorize unintended recipients, amounts, fees, or token transfers if applied without review. <br>
-Mitigation: Review wallet-signing and payment changes before use, verify recipient and amount displays, and test confirmation and error handling before deployment. <br>
-Risk: Package-install guidance can introduce unpinned or unverified dependencies into Solana projects. <br>
-Mitigation: Pin and verify new dependencies before applying generated install commands or committing lockfile changes. <br>
-Risk: Surfpool or Surfnet state-mutation helpers can alter local cluster state in ways that should not be treated as production behavior. <br>
-Mitigation: Keep Surfpool and Surfnet state-mutation workflows confined to local development or CI test environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Solana Dev Skill](https://clawhub.ai/h4rkl/solana-dev-skill) <br>
-- [Solana Documentation](https://solana.com/docs) <br>
-- [Solana Kit Docs](https://solana.com/docs/clients/kit) <br>
-- [Next.js + Solana React Hooks](https://solana.com/docs/frontend/nextjs-solana) <br>
-- [@solana/web3-compat](https://solana.com/docs/frontend/web3-compat) <br>
-- [framework-kit Repository](https://github.com/solana-foundation/framework-kit) <br>
-- [Anchor Documentation](https://www.anchor-lang.com/) <br>
-- [Pinocchio Repository](https://github.com/anza-xyz/pinocchio) <br>
-- [LiteSVM Repository](https://github.com/LiteSVM/litesvm) <br>
-- [Mollusk Repository](https://github.com/buffalojoec/mollusk) <br>
-- [Surfpool Documentation](https://docs.surfpool.dev/) <br>
-- [Codama Generating Clients](https://solana.com/docs/programs/codama-generating-clients) <br>
-- [Solana Security Best Practices](https://solana.com/docs/programs/security) <br>
-- [Commerce Kit Documentation](https://commercekit.solana.com/) <br>
+## Use Case:
 
+Developers and engineers use this skill to build and review Solana dApps, wallet flows, transactions, on-chain programs, generated clients, tests, and security checklists.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent outputs should include changed files, install/build/test commands, and risk notes for signing, fees, CPIs, or token transfers when relevant.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples used directly on mainnet or in payment flows could cause production-impacting transaction or settlement behavior if not reviewed.
+
+Mitigation: Pin tool versions, isolate dependency installation from secrets, and manually review generated or adapted code before mainnet or payment use.
+
+Risk: Smart-contract examples may need project-specific account closing, zero-copy read, and batch input validation checks before production use.
+
+Mitigation: Review generated program code against the skill's Solana security checklist and run focused tests before deployment.
+
+## Reference(s):
+
+- [Solana Documentation](https://solana.com/docs)
+- [Next.js + Solana React Hooks](https://solana.com/docs/frontend/nextjs-solana)
+- [@solana/web3-compat](https://solana.com/docs/frontend/web3-compat)
+- [Solana Kit Docs](https://solana.com/docs/clients/kit)
+- [framework-kit Repository](https://github.com/solana-foundation/framework-kit)
+- [@solana/kit Repository](https://github.com/anza-xyz/kit)
+- [Anchor Documentation](https://www.anchor-lang.com/)
+- [Pinocchio Repository](https://github.com/anza-xyz/pinocchio)
+- [LiteSVM Repository](https://github.com/LiteSVM/litesvm)
+- [Mollusk Repository](https://github.com/buffalojoec/mollusk)
+- [Surfpool Documentation](https://docs.surfpool.dev/)
+- [Codama Generating Clients](https://solana.com/docs/programs/codama-generating-clients)
+- [Solana Security Best Practices](https://solana.com/docs/programs/security)
+- [ClawHub Skill Release](https://clawhub.ai/h4rkl/skills/solana-dev-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file diffs, install/build/test commands, and risk notes for signing, fees, CPIs, token transfers, and mainnet or payment flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

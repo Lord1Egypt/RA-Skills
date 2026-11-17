@@ -1,41 +1,54 @@
-## Description: <br>
-Helps users discover and install cryptocurrency, blockchain, DeFi, and trading-related agent skills through targeted Skills CLI searches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover installable crypto, DeFi, blockchain, and trading skills and present search and installation guidance to users.
 
-## Publisher: <br>
-[youhualan](https://clawhub.ai/user/youhualan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youhualan](https://clawhub.ai/user/youhualan)
 
-## Use Case: <br>
-External users and developers use this skill to find crypto, DeFi, blockchain, trading, portfolio, alerting, and on-chain analytics skills, then install relevant options with the Skills CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install third-party crypto skills without reviewing their source, publisher, or requested permissions. <br>
-Mitigation: Review each target skill's source, publisher, permissions, and scanner results before installing it globally. <br>
-Risk: Crypto automation can expose funds or credentials if seed phrases, private keys, or overbroad exchange API keys are provided. <br>
-Mitigation: Never provide seed phrases or private keys; use restricted exchange API keys without withdrawal permissions and test with small amounts. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover crypto-related skills, map user intent to Skills CLI searches, and present install options with security reminders.
 
-## Reference(s): <br>
-- [ClawHub Listing](https://clawhub.ai/youhualan/find-crypto-skills) <br>
-- [Skills Directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes search query mappings, installation commands, and crypto safety reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Installing remote crypto or trading skills globally and non-interactively can introduce unreviewed code or misleading automation into sensitive workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill source before installation, prefer pinned versions, use local or sandboxed installation, and require explicit confirmation before adding trading-related skills.
+
+Risk: Crypto workflows can expose wallet seed phrases, withdrawal-capable exchange keys, or production trading credentials if installed skills are granted broad access.
+
+Mitigation: Do not run this skill on systems or accounts that hold seed phrases or withdrawal-capable keys; use narrowly scoped trade-only credentials when credentials are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youhualan/skills/find-crypto-skills)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces suggested Skills CLI search and install commands; does not directly execute trades.]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

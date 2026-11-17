@@ -1,44 +1,59 @@
-## Description: <br>
-健康保险顾问助手，帮助保险从业人员按标准SOP为客户进行需求分析(KYC)、风险评估、保障缺口计算，并生成专业的方案建议书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+健康保险顾问助手，帮助保险从业人员按标准SOP为客户进行需求分析、风险评估、保障缺口计算，并生成专业的方案建议书。
 
-## Publisher: <br>
-[918774384lwt-pixel](https://clawhub.ai/user/918774384lwt-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[918774384lwt-pixel](https://clawhub.ai/user/918774384lwt-pixel)
 
-## Use Case: <br>
-Insurance advisors use this skill to conduct customer KYC conversations, assess health and financial risk, calculate insurance coverage gaps, recommend Ping An health insurance products, and generate customer-facing proposal reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects and exports sensitive customer health, identity, financial, family, and insurance information. <br>
-Mitigation: Use it only with explicit customer consent, collect the minimum necessary fields, avoid unnecessary identifiers or raw medical details, and define retention and deletion rules before real-client use. <br>
-Risk: Generated insurance recommendations and reports may be shared through Feishu documents or exported files with inappropriate access permissions. <br>
-Mitigation: Verify document sharing permissions and review generated reports for completeness, accuracy, and compliance before sharing with customers. <br>
-Risk: Insurance advice may be misleading if product data, health disclosures, or local regulatory requirements are incomplete or stale. <br>
-Mitigation: Have a qualified insurance advisor validate product availability, health告知, exemptions, budget assumptions, and required disclosures before any sales or policy action. <br>
+## Use Case:
 
+External insurance advisors use this skill to guide customer KYC conversations, assess health and financial protection needs, match Ping An health insurance products, and prepare insurance proposal materials.
 
-## Reference(s): <br>
-- [SOP Guide](references/sop-guide.md) <br>
-- [Ping An Product Library](assets/pingan_products.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/918774384lwt-pixel/pingan-insurance-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational guidance and Markdown-style insurance recommendations, with optional JSON inputs, shell command snippets, Feishu document instructions, and PDF report generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process customer KYC, health, identity, financial, insurance budget, and family responsibility details; generated reports should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Sensitive health and financial insurance details may be collected, exported, or retained outside approved workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in authorized insurance-advisor workflows with customer consent, redact unnecessary sensitive details, confirm destinations before Feishu, PDF, email, or archive use, and store records only in approved systems.
+
+Risk: Report generation depends on local Python dependencies and document-export workflows that may fail or produce incomplete materials.
+
+Mitigation: Use pinned dependencies for the report generator and verify generated Feishu documents or PDF reports before sharing them with customers.
+
+Risk: Insurance recommendations may become stale as product availability, prices, or underwriting requirements change.
+
+Mitigation: Review product data and final recommendations against current authorized product materials before presenting them to customers.
+
+## Reference(s):
+
+- [Insurance Advisor SOP Guide](references/sop-guide.md)
+- [Ping An Product Library](assets/pingan_products.json)
+- [ClawHub Skill Page](https://clawhub.ai/918774384lwt-pixel/skills/pingan-insurance-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational text and Markdown guidance, with optional JSON inputs and generated proposal report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PDF reports through the bundled report-generation script and Feishu-style document content when the user confirms report generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

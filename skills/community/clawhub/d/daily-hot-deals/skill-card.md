@@ -1,41 +1,54 @@
-## Description: <br>
-Daily Hot Deals generates concise daily hot-deal reports from deal data for savings-focused users and resale opportunity review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a concise Chinese-language daily deals report using included sample deal data.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External users use this skill to generate daily summaries of notable product discounts, grouped by category with pricing details and deal timing. The included artifact currently provides a local Python report generator rather than live aggregation or delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises WeChat delivery, paid subscriptions, live deal aggregation, and scheduled push behavior that are not implemented in the included artifact. <br>
-Mitigation: Treat the current release as a local report generator and verify any future delivery, subscription, aggregation, or scheduling feature before enabling it. <br>
-Risk: Future push or delivery features could transmit account identifiers or report data without clear user expectations. <br>
-Mitigation: Before enabling delivery, confirm what data is sent, when it is sent, and how users can disable the behavior. <br>
+## Use Case:
 
+External users and deal-focused operators can use this skill to generate a compact daily hot-deals report for review or sharing. The shipped artifact is best understood as a local report generator with sample data, not as a live aggregation, subscription, scheduling, or WeChat push integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/daily-hot-deals) <br>
-- [Publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text report with Markdown-style sections and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for the included local report generator.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The release advertises daily deal aggregation, subscriptions, scheduling, and WeChat push behavior, but the artifact contains a local script with hardcoded sample deals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before deployment and do not provide WeChat credentials, payment details, or automation access unless a future release clearly implements those flows with user controls.
+
+Risk: Deal prices and availability can be stale or inaccurate, especially when generated from sample data.
+
+Mitigation: Confirm prices and availability with the original merchant before acting on or sharing recommendations.
+
+## Reference(s):
+
+- [Daily Hot Deals on ClawHub](https://clawhub.ai/275254cl-hash/skills/daily-hot-deals)
+- [OpenClaw skills homepage](https://github.com/openclaw/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown-style daily deal report, with optional Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; report contents are generated from bundled sample data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

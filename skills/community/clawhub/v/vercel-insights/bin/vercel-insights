@@ -1,0 +1,44 @@
+#!/bin/sh
+# Run vercel-insights from anywhere, with whichever interpreter can import
+# requests.
+#
+# Two things make the bare "python3 -m vercel_insights" form fragile when
+# something else is driving this skill:
+#
+#   1. -m needs the package's parent on sys.path, which in practice means the
+#      caller's working directory has to be the skill root. An agent invoking a
+#      skill has its own working directory and no reason to change it.
+#   2. requests has to be importable by whichever python3 is first on PATH. On a
+#      PEP 668 system it usually is not, and the fix is a virtualenv that the
+#      caller cannot be expected to know about.
+#
+# This script resolves both from its own location: it finds the skill directory
+# even when invoked through a symlink, prefers a virtualenv sitting beside it,
+# and hands off to the package entry point, which repairs sys.path itself.
+
+set -eu
+
+# Resolve this script's real directory, following symlinks.
+script=$0
+while [ -L "$script" ]; do
+    target=$(readlink "$script")
+    case $target in
+        /*) script=$target ;;
+        *) script=$(dirname "$script")/$target ;;
+    esac
+done
+here=$(cd "$(dirname "$script")" && pwd)
+root=$(dirname "$here")
+
+# Prefer a virtualenv beside the skill, then the caller's python3. Nothing is
+# installed and nothing is written: if neither can import requests, the entry
+# point says so and names the interpreter it tried.
+if [ -x "$root/.venv/bin/python" ]; then
+    python=$root/.venv/bin/python
+elif [ -n "${VERCEL_INSIGHTS_PYTHON:-}" ]; then
+    python=$VERCEL_INSIGHTS_PYTHON
+else
+    python=python3
+fi
+
+exec "$python" "$root/vercel_insights/__main__.py" "$@"

@@ -1,43 +1,54 @@
-## Description: <br>
-Enforces mandatory use of the process_request tool for financial execution requests while blocking direct trade execution or simulation by the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces mandatory use of a designated backend tool for financial transactions and prevents an agent from directly executing or simulating trades.
 
-## Publisher: <br>
-[tsr0705](https://clawhub.ai/user/tsr0705) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsr0705](https://clawhub.ai/user/tsr0705)
 
-## Use Case: <br>
-Developers and operators use this skill to constrain financial agents so trade or transaction requests are routed through a required backend tool, while analysis-only or ambiguous requests do not trigger execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial execution requests are routed to a separate process_request backend that is not reviewed in the artifact. <br>
-Mitigation: Install only after verifying that backend displays the exact asset, side, amount, account, fees, and order type before any transaction. <br>
-Risk: The skill asks the agent to send user input and agent reasoning to the backend, which can expose more context than needed. <br>
-Mitigation: Configure the backend to avoid logging or forwarding unnecessary user text or internal reasoning. <br>
-Risk: Ambiguous financial requests could be misclassified as executable if downstream handling is weak. <br>
-Mitigation: Require explicit user confirmation, reject ambiguous requests, and enforce sensible transaction limits before execution. <br>
+## Use Case:
 
+Developers and financial workflow operators use this skill to require a backend tool for buy, sell, or other asset-modifying requests while avoiding tool use for analysis-only or ambiguous requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tsr0705/customskill) <br>
-- [Publisher profile](https://clawhub.ai/user/tsr0705) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown instructions with a JSON tool-call schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes qualifying financial execution requests to process_request and requires exact structured fields for the proposed trade action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can route requests toward real financial execution without clear confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted, verified financial tool and require separate user confirmation showing asset, side, quantity, account, estimated cost, fees, and order state before any real transaction is submitted.
+
+Risk: The tool input schema asks for agent reasoning, which may expose unnecessary private reasoning.
+
+Mitigation: Minimize or omit private reasoning in tool payloads and retain only the transaction details needed for authorization, audit, and compliance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsr0705/skills/customskill)
+- [Publisher profile](https://clawhub.ai/user/tsr0705)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown instructions with a JSON tool input schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs agents to route financial execution requests through a named backend tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

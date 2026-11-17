@@ -1,40 +1,57 @@
-## Description: <br>
-Describe your concept and discover what makes it distinctive — structured analysis for patent consultation. NOT legal advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Describe your concept and discover what makes it distinctive - structured analysis for patent consultation. NOT legal advice.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to turn a natural-language concept description into structured technical pattern analysis, scoring, and next steps for patent consultation. It is intended to highlight distinctive aspects while avoiding legal determinations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Patent concepts can be commercially sensitive and may be retained in chat history, logs, or shared outputs. <br>
-Mitigation: Avoid entering confidential invention details in environments where outputs may be retained or shared; review generated material before distributing it. <br>
-Risk: The skill provides technical pattern analysis, not legal advice or a search of existing implementations. <br>
-Mitigation: Use the output as preparation for deeper validation and consult a registered patent attorney for intellectual property decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Patent Scanner on ClawHub](https://clawhub.ai/leegitw/patent-scanner) <br>
-- [Obviously Not](https://obviouslynot.ai) <br>
+## Use Case:
 
+External users and developers use this skill to analyze concept descriptions, identify distinctive technical patterns, score those patterns, and prepare next steps for patent consultation. It supports brainstorming and technical review, not legal determinations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown analysis report with optional JSON-structured scan data and share-card Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scoring, pattern summaries, next steps, and a required non-legal-advice disclaimer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Patent-related analysis may be mistaken for legal advice or a patentability assessment.
+
+Mitigation: Treat results as brainstorming and consult a registered patent attorney before making intellectual property decisions.
+
+Risk: Concept descriptions may contain confidential invention details that could be stored in chat history or logs.
+
+Mitigation: Avoid entering proprietary information when conversation history, logs, or sharing workflows are not appropriate for confidential material.
+
+Risk: Outputs include Obviously Not branding and a sharing prompt by default.
+
+Mitigation: Review generated reports before sharing and remove sensitive or unwanted attribution content when appropriate.
+
+## Reference(s):
+
+- [Patent Scanner on ClawHub](https://clawhub.ai/leegitw/skills/patent-scanner)
+- [Obviously Not](https://obviouslynot.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown analysis report with structured JSON schema examples and share-card Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scoring dimensions, pattern summaries, next steps, branded attribution, and a legal-advice disclaimer.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

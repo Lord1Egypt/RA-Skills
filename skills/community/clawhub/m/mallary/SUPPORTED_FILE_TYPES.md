@@ -1,280 +1,125 @@
-# Supported File Types for Upload
+# Supported Media Formats (Read-Only Reference)
 
-Mallary CLI detects upload MIME types from file extensions and automatically uploads local files to Mallary's CDN before posting. The public upload path is built for image and video media. Audio, documents, and arbitrary binary files are not part of the normal public publishing flow.
+This file describes the media formats recognized by Mallary's public media path. It intentionally contains no upload or publishing commands. Reading a format table is not authorization to transmit a local file or publish content.
 
-## How It Works
+## Agent Safety Boundary
 
-The CLI infers the content type from the local filename:
+Selecting local media for a later Mallary action can send the file bytes outside the local machine to Mallary storage, the Mallary CDN, and supporting hosting providers. The media can then be hosted at a public Mallary file URL.
 
-```bash
-mallary upload video.mp4
-# Detected as: video/mp4
+- Start with read-only Mallary discovery.
+- Do not use an upload as a format test or smoke test.
+- Do not inspect or transmit more local file data than the user requested.
+- Never transmit sensitive, regulated, customer, private, secret-bearing, or unrelated files.
+- Before any transfer, make sure the local paths, target Dashboard profile, connected account, platform, message, timing, and expected result belong to a clear user request.
+- Ask only when one of those material details is missing or ambiguous. Do not ask for a second confirmation after a clear publishing request.
+- Execute the requested transfer once and never retry it automatically when the result is uncertain.
 
-mallary upload image.png
-# Detected as: image/png
+Executable upload and publishing syntax is intentionally omitted from this agent-facing reference.
 
-mallary upload clip.webm
-# Detected as: video/webm
-```
+## MIME Type Detection
 
-## Supported File Types
+Mallary infers the media type from the local filename extension. Renaming a file does not convert its contents and can cause a MIME mismatch. Keep the extension aligned with the file's real format.
 
-### Images
+## Supported Image Formats
 
-| Extension       | MIME Type    | Supported |
-| --------------- | ------------ | --------- |
-| `.png`          | `image/png`  | Yes       |
-| `.jpg`, `.jpeg` | `image/jpeg` | Yes       |
-| `.webp`         | `image/webp` | Yes       |
-| `.gif`          | `image/gif`  | Yes       |
-| `.bmp`          | `image/bmp`  | Yes       |
+| Extension       | MIME type    | Public media path |
+| --------------- | ------------ | ----------------- |
+| `.png`          | `image/png`  | Supported         |
+| `.jpg`, `.jpeg` | `image/jpeg` | Supported         |
+| `.webp`         | `image/webp` | Supported         |
+| `.gif`          | `image/gif`  | Supported         |
+| `.bmp`          | `image/bmp`  | Supported         |
 
-Examples:
+Platform rules can be narrower than Mallary's accepted input formats. Check the selected destination's current limits before uploading media for the requested post.
 
-```bash
-mallary upload photo.jpg
-mallary upload logo.png
-mallary upload animation.gif
-mallary upload cover.webp
-```
+## Supported Video Formats
 
-### Videos
+| Extension       | MIME type          | Public media path |
+| --------------- | ------------------ | ----------------- |
+| `.mp4`          | `video/mp4`        | Supported         |
+| `.mov`          | `video/quicktime`  | Supported         |
+| `.webm`         | `video/webm`       | Supported         |
+| `.mkv`          | `video/x-matroska` | Supported         |
+| `.avi`          | `video/x-msvideo`  | Supported         |
+| `.mpeg`, `.mpg` | `video/mpeg`       | Supported         |
 
-| Extension       | MIME Type          | Supported |
-| --------------- | ------------------ | --------- |
-| `.mp4`          | `video/mp4`        | Yes       |
-| `.mov`          | `video/quicktime`  | Yes       |
-| `.webm`         | `video/webm`       | Yes       |
-| `.mkv`          | `video/x-matroska` | Yes       |
-| `.avi`          | `video/x-msvideo`  | Yes       |
-| `.mpeg`, `.mpg` | `video/mpeg`       | Yes       |
-
-Examples:
-
-```bash
-mallary upload video.mp4
-mallary upload clip.mov
-mallary upload recording.webm
-mallary upload demo.mkv
-```
+## Unsupported Public Upload Targets
 
 ### Audio
 
-| Extension | MIME Type                  | Supported |
-| --------- | -------------------------- | --------- |
-| `.mp3`    | `application/octet-stream` | No        |
-| `.wav`    | `application/octet-stream` | No        |
-| `.ogg`    | `application/octet-stream` | No        |
-| `.m4a`    | `application/octet-stream` | No        |
-
-Notes:
-
-- the public Mallary upload flow is designed for publishable social media image/video assets
-- audio-only uploads are not part of the current public CLI workflow
+| Extension | Detected fallback          | Public media path |
+| --------- | -------------------------- | ----------------- |
+| `.mp3`    | `application/octet-stream` | Not supported     |
+| `.wav`    | `application/octet-stream` | Not supported     |
+| `.ogg`    | `application/octet-stream` | Not supported     |
+| `.m4a`    | `application/octet-stream` | Not supported     |
 
 ### Documents
 
-| Extension | MIME Type                  | Supported |
-| --------- | -------------------------- | --------- |
-| `.pdf`    | `application/octet-stream` | No        |
-| `.doc`    | `application/octet-stream` | No        |
-| `.docx`   | `application/octet-stream` | No        |
+| Extension | Detected fallback          | Public media path |
+| --------- | -------------------------- | ----------------- |
+| `.pdf`    | `application/octet-stream` | Not supported     |
+| `.doc`    | `application/octet-stream` | Not supported     |
+| `.docx`   | `application/octet-stream` | Not supported     |
 
-If you need a document-style asset, convert or export it into an image or video format that the destination platform supports.
+Unknown extensions also fall back to `application/octet-stream` and are not normal public media targets. Convert an unsupported asset locally into a real image or video format only when the user requests that separate local change.
 
-### Other Files
+## Platform-Specific Media Notes
 
-For unknown extensions, the CLI falls back to:
-
-- MIME type: `application/octet-stream`
-- Result: usually not suitable for Mallary's public social publishing upload flow
-
-## Usage Examples
-
-### Upload an Image
-
-```bash
-mallary upload ./images/photo.jpg --json
-```
-
-Response:
-
-```json
-{
-  "ok": true,
-  "uploads": [
-    {
-      "source_path": "./images/photo.jpg",
-      "filename": "photo.jpg",
-      "media_url": "https://files.mallary.ai/uploads/photo.jpg",
-      "storage_key": "uploads/photo.jpg",
-      "content_type": "image/jpeg",
-      "size": 12345
-    }
-  ]
-}
-```
-
-### Upload a Video (MP4)
-
-```bash
-mallary upload ./videos/promo.mp4 --json
-```
-
-Response:
-
-```json
-{
-  "ok": true,
-  "uploads": [
-    {
-      "source_path": "./videos/promo.mp4",
-      "filename": "promo.mp4",
-      "media_url": "https://files.mallary.ai/uploads/promo.mp4",
-      "storage_key": "uploads/promo.mp4",
-      "content_type": "video/mp4",
-      "size": 9876543
-    }
-  ]
-}
-```
-
-### Upload and Use in Post
-
-```bash
-# 1. Upload the file
-RESULT=$(mallary upload video.mp4 --json)
-
-# 2. Extract the media URL
-MEDIA_URL=$(echo "$RESULT" | jq -r '.uploads[0].media_url')
-
-# 3. Use it in a post
-mallary posts create \
-  --message "Check out our latest demo." \
-  --platform youtube \
-  --profile-id AbC123xYz90 \
-  --media "$MEDIA_URL"
-```
-
-Omit `--profile-id` to use the default Dashboard profile. Use `mallary profiles list` to find public profile IDs for non-default profiles.
-
-### Upload Multiple Files
-
-```bash
-# Upload images
-mallary upload image1.jpg image2.png image3.gif
-
-# Upload videos
-mallary upload video1.mp4 video2.mov
-```
-
-## Platform-Specific Notes
+These are compatibility notes, not a user request to post.
 
 ### TikTok
 
-- video posts require exactly one video
-- photo posts support up to 35 `jpg`, `jpeg`, or `webp` images
-- `png` images are not accepted for TikTok photo posts
+- Video posts require exactly one video.
+- Photo posts support up to 35 `jpg`, `jpeg`, or `webp` images.
+- TikTok photo posts do not accept `png` images.
 
 ### YouTube
 
-- requires exactly one video
-- `post_type` can be `regular` or `shorts`
-- custom thumbnails for regular videos can use `jpg`, `jpeg`, or `png` up to 2 MB; recommended `1280x720` 16:9
-- YouTube Shorts thumbnails are skipped
+- A post requires exactly one video.
+- Regular-video custom thumbnails can use `jpg`, `jpeg`, or `png` up to 50 MB.
+- The recommended regular-video thumbnail dimensions are `1280x720` with a 16:9 ratio.
+- For YouTube Shorts, YouTube may store the thumbnail but show a video frame instead. Mallary returns a warning because the YouTube API cannot confirm the cover viewers will see.
 
 ### Instagram
 
-- public publishing currently works best with one image or one video
-- choose `feed`, `story`, `reel`, or `carousel` through `platform_options.instagram.post_type`
-- video/Reels covers can be supplied with `media[].thumbnail_url`
+- Stories use exactly one image or video and do not support captions or follow-up comments.
+- Reels use exactly one video.
+- Carousels use 2 to 10 image or video items.
+- Video and Reel covers can use a separate thumbnail.
 
 ### Facebook
 
-- video thumbnails can use `jpg`, `jpeg`, or `png` up to 10 MB through `media[].thumbnail_url`
+- Video thumbnails can use `jpg`, `jpeg`, or `png` up to 10 MB.
 
-### Twitter/X
+### X
 
-- supports up to 4 images, or 1 video, or 1 GIF
+- A post supports up to 4 images, or 1 video, or 1 GIF.
 
 ### LinkedIn
 
-- current public path supports text-only posts or one image attachment
+- The current public path supports text-only posts or one image attachment.
 
-## Troubleshooting
+### Bluesky
 
-### "Upload failed: Unsupported file type"
+- A post can use up to four `jpg`, `jpeg`, `png`, or `webp` images, up to 2 MB each.
+- A video post uses one `mp4` file, up to 300 MB.
+- Do not mix images and video in one Bluesky post.
+- Media items can include alt text for accessibility.
 
-The file is probably not a supported image or video format for Mallary's public uploader.
+## Size and Provider Limits
 
-Solution: convert it first.
+Mallary's media path accepts files up to 5 GB. Each social platform applies separate type, duration, dimension, and size limits. A format accepted by Mallary can still be rejected by the destination platform.
 
-```bash
-# Convert a video to MP4
-ffmpeg -i input.avi output.mp4
+## Read-Only Troubleshooting
 
-# Then upload
-mallary upload output.mp4
-```
+- **Unsupported file type:** confirm the real extension and compare it with the tables above.
+- **MIME mismatch:** verify that the extension matches the actual file contents; do not fix this by renaming alone.
+- **File not found:** verify the path locally without transmitting the file.
+- **No permission:** confirm that the current user can read the file without changing broad filesystem permissions.
+- **Authentication error:** ask the user to restore the API key outside chat; never request or print the key.
+- **Uncertain remote result:** inspect existing Mallary state and do not repeat the transfer automatically.
 
-### File Size Limits
+## Explicit Request Handoff
 
-Mallary's upload path accepts files up to 5 GB, but each social platform still enforces its own limits after upload.
-
-### "MIME type mismatch"
-
-Do not rename a file to a different extension just to force a MIME type.
-
-```bash
-# Wrong: PNG renamed to JPG
-launch.jpg
-
-# Correct: keep the real extension
-launch.png
-```
-
-## Testing File Upload
-
-```bash
-# Set API key
-export MALLARY_API_KEY="your_key"
-
-# Test image upload
-mallary upload test-image.jpg
-
-# Test video upload
-mallary upload test-video.mp4
-
-# Unsupported example
-mallary upload test-audio.mp3
-```
-
-## Error Messages
-
-### File Not Found
-
-Check the local path:
-
-```bash
-mallary upload ./missing-file.jpg
-```
-
-### No Permission
-
-Make sure the file is readable by your current user.
-
-### Invalid API Key
-
-Set a valid Mallary API key:
-
-```bash
-export MALLARY_API_KEY="your_key"
-mallary upload test-image.jpg
-```
-
-## Summary
-
-- Mallary CLI supports image and video uploads for the public social publishing workflow.
-- Uploaded media is hosted on `https://files.mallary.ai/...`.
-- Audio, documents, and unknown binary types are not normal public upload targets.
-- Always check platform media rules before sending the same asset to multiple destinations.
+When the user clearly requests a media transfer or publish action, follow the request-handling rules in `SKILL.md`. Ask only for missing material details and do not require another confirmation. This file does not authorize or supply an executable state-changing workflow.

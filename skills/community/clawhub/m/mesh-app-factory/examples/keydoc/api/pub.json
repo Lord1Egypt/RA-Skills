@@ -1,0 +1,12 @@
+{
+"roles": {
+    "admin":{
+        "name":"管理员",
+        "rights":{
+            "document":"*",
+            "authority":"*",
+            "browser":"*"
+        }
+    }
+}
+}

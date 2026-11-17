@@ -1,40 +1,51 @@
-## Description: <br>
-Configure and validate OpenClaw memory recall for persistent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and validate OpenClaw memory recall for persistent context. Use when enabling memory_search/memory_get, fixing poor memory recall, or setting up MEMORY.md + memory/*.md workflows in an OpenClaw workspace.
 
-## Publisher: <br>
-[SyaJask](https://clawhub.ai/user/SyaJask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[syajask](https://clawhub.ai/user/syajask)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure OpenClaw memory files, enable memory search, validate recall behavior, and troubleshoot poor memory matches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files may contain sensitive, regulated, or secret information. <br>
-Mitigation: Avoid placing secrets or regulated data in MEMORY.md or memory/*.md, and prefer the local provider for sensitive workspaces. <br>
-Risk: Remote memory providers may require API keys and send memory content outside the local workspace. <br>
-Mitigation: Use protected environment variables or secret storage for remote-provider API keys, and choose remote providers only when appropriate for the workspace data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SyaJask/memory-setup-openclaw) <br>
-- [Publisher profile](https://clawhub.ai/user/SyaJask) <br>
+## Use Case:
+
+Developers and engineers use this skill to configure durable OpenClaw memory files, enable memory search, validate recall behavior, and troubleshoot low-quality or unavailable memory results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Memory files can contain private decisions, preferences, todos, or prior work context that may be indexed for recall.
+
+Mitigation: Review the contents of MEMORY.md and memory/*.md before enabling memory search, and avoid storing sensitive information that should not be recalled.
+
+Risk: Using a remote memory provider can send memory content to an external embedding provider.
+
+Mitigation: Use the local provider when memory content should remain local, or confirm remote provider handling before configuring API keys.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output for configuring and validating OpenClaw memory recall.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with JSON configuration examples and command-line verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides memory setup and validation; it does not generate files directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

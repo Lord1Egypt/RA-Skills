@@ -1,0 +1,73 @@
+{
+  "skill": "contribution-distribution-designer",
+  "version": "0.1.0",
+  "source_book": "《价值互联网产业应用蓝皮书（2025 年）》 — 价值互联网产业应用蓝皮书编写组",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "怎么让多方按贡献公平分润？我不想让平台抽成，想按贡献分配",
+      "expected_behavior": "应激活 S5，枚举贡献类型并设计通证计量+分配规则（确权→计量→分配→可追溯）",
+      "notes": "正面场景：替代平台抽成、按贡献分配"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "怎么设计通证/积分的分配规则？比例怎么定才公平？",
+      "expected_behavior": "应激活 S5，产出经济模型草案（每种贡献→计量口径→权益映射→分配比例）",
+      "notes": "正面场景：通证经济模型设计"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "怎么把用户贡献计量出来、自动发奖励？现在全靠人工拍脑袋",
+      "expected_behavior": "应激活 S5，设计贡献计量口径（可客观计量 vs 难客观计量）并落地自动分配",
+      "notes": "正面场景：贡献可信计量与自动化"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "贡献即确权、确权即分配，怎么落地成可执行的代码？",
+      "expected_behavior": "应激活 S5，将分配规则经社区确认后写入智能合约、设可追溯与应急开关",
+      "notes": "正面场景：贡献即确权代码化落地"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "通证化、代币化、RWA 这几个概念到底什么区别？属于哪一层？",
+      "expected_behavior": "不应激活 S5，应转 S1（概念辨析器）。用户问定性合规，不是分配设计",
+      "notes": "诱饵：含'通证'但意图是概念定性；S5 边界明确'单纯概念辨析→用 S1'"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我们社区怎么拉共建者、怎么让社区活跃起来？",
+      "expected_behavior": "不应激活 S5，应转 S6（共建社区运营框架）。S5 是分配机制设计，S6 是组织运营",
+      "notes": "诱饵：社区运营问题，属 S6；S5 的 A2 明确区分'怎么活跃社区用 S6'"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "我们想面向境内零售发代币融资，合规的经济模型怎么设计？",
+      "expected_behavior": "不应激活 S5 直接做分配设计，必须先转 S2（合规红线检查）。涉及境内零售代币化融资须先过 S2",
+      "notes": "诱饵：融资导向+境内零售，必须先 S2；S5 边界明确'纯融资导向且面向境内零售→先做 S2'"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们想做创作者分润，但创意和声誉这类贡献很难量化，怎么办？",
+      "expected_behavior": "激活 S5，但按判停条件——关键贡献无法客观计量时不强行代码化，先做社区协商与抽检机制",
+      "notes": "边界：难客观计量贡献的处理（S5 盲点'贡献可被精准计量未证'），检验是否误把不可量化项强行上链"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我们做境内用户积分激励，想发代币化融资，分配规则怎么写进合约？",
+      "expected_behavior": "不激活 S5 分配设计，因涉及境内零售代币化融资，必须先触发 S2 合规红线检查 + S10 跨境备案，S5 本步不可直接执行",
+      "notes": "边界：分配设计与合规前置的冲突。检验 S5 判停条件'涉及境内发行代币化融资须先 S2'是否生效"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "4 条 should_trigger + 3 条 should_not_trigger + 2 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0）。"
+}

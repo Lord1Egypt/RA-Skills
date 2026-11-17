@@ -1,47 +1,58 @@
-## Description: <br>
-Manage Teable resources with CRUD operations for records, bases, spaces, tables, dashboards, and trash through API-backed command-line scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Teable resources with CRUD operations for records, bases, spaces, tables, dashboards, and trash through API-backed command-line scripts.
 
-## Publisher: <br>
-[killgfat](https://clawhub.ai/user/killgfat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[killgfat](https://clawhub.ai/user/killgfat)
 
-## Use Case: <br>
-Developers and operations users can use this skill to automate Teable workspace administration, data management, and record workflows from an agent-assisted command-line environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad data-changing and permanent deletion abilities in Teable. <br>
-Mitigation: Use a least-privilege Teable token, avoid production data until tested, and require review before destructive operations. <br>
-Risk: Delete, reset, and trash-emptying commands can affect the wrong resource if IDs are incorrect. <br>
-Mitigation: Verify resource IDs before running destructive commands and consider adding confirmation or dry-run safeguards. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Teable workspaces and data from an agent workflow, including administrative actions such as collaborator, dashboard, table, record, and trash operations.
 
-## Reference(s): <br>
-- [ClawHub Teable Skill](https://clawhub.ai/killgfat/teable-api) <br>
-- [Teable Homepage](https://teable.io) <br>
-- [Teable Official API Documentation](https://help.teable.ai/en/api-doc/overview) <br>
-- [Getting IDs Guide](https://help.teable.ai/en/api-doc/get-id) <br>
-- [Record Field Interface](https://help.teable.ai/en/api-doc/record/interface) <br>
-- [API Error Codes](https://help.teable.ai/en/api-doc/error-code) <br>
-- [Usage Examples](examples/usage_examples.md) <br>
-- [Data Types and Typecast Guide](references/data-types-and-typecast.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python snippets, and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TEABLE_API_KEY and can optionally use TEABLE_URL for self-hosted Teable instances.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata and artifact metadata) <br>
+Risk: The skill can perform broad live data-changing Teable actions, including delete, trash reset, collaborator, invitation, and plugin commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and use a least-privilege Teable token scoped to the intended workspace and operation.
+
+Risk: The skill relies on TEABLE_API_KEY and can target custom Teable endpoints through TEABLE_URL.
+
+Mitigation: Avoid storing tokens in shell startup files, rotate exposed tokens, and use only trusted HTTPS Teable URLs.
+
+## Reference(s):
+
+- [Teable Official Documentation](https://help.teable.ai/en/api-doc/overview)
+- [Getting IDs Guide](https://help.teable.ai/en/api-doc/get-id)
+- [Record Field Interface](https://help.teable.ai/en/api-doc/record/interface)
+- [API Error Codes](https://help.teable.ai/en/api-doc/error-code)
+- [Data Types and Typecast Guide](references/data-types-and-typecast.md)
+- [Teable Skill Page](https://clawhub.ai/killgfat/skills/teable-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include commands that call live Teable APIs using TEABLE_API_KEY and optional TEABLE_URL.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Atlassian Jira expert for creating and managing projects, planning, product discovery, JQL queries, workflows, custom fields, automation, reporting, and all Jira features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atlassian Jira expert for creating and managing projects, planning, product discovery, JQL queries, workflows, custom fields, automation, reporting, and all Jira features.
 
-## Publisher: <br>
-[omesh06](https://clawhub.ai/user/omesh06) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omesh06](https://clawhub.ai/user/omesh06)
 
-## Use Case: <br>
-Developers, Jira administrators, Scrum Masters, and product teams use this skill to plan and configure Jira projects, build JQL queries, design workflows, create dashboards, and draft automation or reporting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide sensitive Jira administration changes, including create, update, delete, workflow, automation, permission, notification, and bulk operations. <br>
-Mitigation: Use a least-privilege Jira account, test workflows and automations in a sandbox, and require confirmation before create, update, delete, or bulk actions. <br>
-Risk: Slack, email, Teams, and webhook automation recipes may expose project information or send notifications to unintended recipients. <br>
-Mitigation: Review notification targets, recipient permissions, and approved destinations before using these recipes in production. <br>
+## Use Case:
 
+Developers, project managers, Scrum Masters, and Jira administrators use this skill to plan and configure Jira projects, write JQL, design workflows, create dashboards and reports, and draft Jira automation guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/omesh06/jira-expert-brajesh-1) <br>
-- [Jira Automation Reference](references/AUTOMATION.md) <br>
-- [Jira Workflows Reference](references/WORKFLOWS.md) <br>
-- [Jira Automation Examples](references/automation-examples.md) <br>
-- [JQL Examples](references/jql-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline JQL, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed Jira MCP commands, workflow validation results, JQL snippets, automation recipes, and configuration checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Jira administration and automation changes can affect project permissions, workflows, notifications, or large sets of issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed Jira MCP commands before execution and test workflow or automation changes in a sandbox before applying them to production projects.
+
+Risk: Bulk edits or broad JQL filters can update unintended issues and may be difficult to reverse.
+
+Mitigation: Preview bulk operations, confirm the JQL result set, and apply changes in small batches when possible.
+
+Risk: Webhook, Slack, Teams, or email automation payloads may expose issue descriptions, user identities, or customer data to unapproved systems.
+
+Mitigation: Limit notification and webhook payloads to approved destinations and exclude sensitive Jira fields unless the recipient system is authorized.
+
+## Reference(s):
+
+- [Jira Automation Reference](references/AUTOMATION.md)
+- [Jira Workflows Reference](references/WORKFLOWS.md)
+- [Jira Automation Examples](references/automation-examples.md)
+- [JQL Query Examples](references/jql-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Jira MCP command examples, JQL snippets, workflow validation guidance, and automation rule patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

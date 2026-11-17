@@ -1,42 +1,58 @@
-## Description: <br>
-Extracts key information from conversations, condenses long dialogues into concise summaries, stores classified memory files, and supports scheduled cleanup through Cron or HEARTBEAT triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Distill extracts key information from conversations, condenses long dialogue into concise summaries, writes categorized memory files, supports retention cleanup, and can run manually, by Cron, or through HEARTBEAT triggers.
 
-## Publisher: <br>
-[systiger](https://clawhub.ai/user/systiger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systiger](https://clawhub.ai/user/systiger)
 
-## Use Case: <br>
-Developers and agent users use this skill to distill active conversation context into structured memory files, daily summaries, task lists, and longer-term notes before context becomes too large or is reset. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation details may be persisted into local memory files, including sensitive temporary information. <br>
-Mitigation: Configure or instruct the agent not to store verification codes, login links, secrets, personal contact details, or other short-lived sensitive data. <br>
-Risk: Scheduled Cron or HEARTBEAT automation may run distillation without a fresh human review. <br>
-Mitigation: Review the skill before enabling automation and keep automatic cleanup or reset behavior disabled unless the retention policy is understood. <br>
+## Use Case:
 
+Developers and agent users use this skill to preserve decisions, tasks, project details, preferences, and temporary notes from long sessions in structured memory files before resetting context.
 
-## Reference(s): <br>
-- [Configuration schema](references/distill-config.json) <br>
-- [ClawHub skill page](https://clawhub.ai/systiger/memory-distill) <br>
-- [Publisher profile](https://clawhub.ai/user/systiger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries, structured memory file entries, JSON Cron configuration examples, and short command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update MEMORY.md, USER.md, and dated memory files when the agent applies the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may persist private conversation details, personal preferences, project information, verification codes, and temporary links into files that outlive the current session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve destination files, retention settings, and sensitive-content handling before running the skill, especially before enabling scheduled distillation.
+
+Risk: Scheduled unattended runs can collect and write memory without a fresh user review at the time of execution.
+
+Mitigation: Keep scheduled mode disabled until retention, cleanup, and sensitivity filters are confirmed; use manual runs for sensitive workspaces.
+
+Risk: Old memory files can remain available to future sessions or other tools if cleanup is not configured or reviewed.
+
+Mitigation: Use retention settings and periodic cleanup review, and avoid enabling automatic deletion unless the deletion policy is understood.
+
+## Reference(s):
+
+- [Memory Distill ClawHub skill page](https://clawhub.ai/systiger/skills/memory-distill)
+- [distill-config.json](references/distill-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries, structured memory file entries, JSON configuration examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write persistent memory files such as MEMORY.md, USER.md, and memory/YYYY-MM-DD.md; scheduled operation is configurable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

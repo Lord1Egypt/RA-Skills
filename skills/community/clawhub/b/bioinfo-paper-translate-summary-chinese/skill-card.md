@@ -1,42 +1,57 @@
-## Description: <br>
-Extracts text from an English research paper PDF, then prompts the agent to translate and summarize it in Chinese with emphasis on bioinformatics details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates English research-paper PDFs into Chinese and organizes the result for bioinformatics-focused reading.
 
-## Publisher: <br>
-[zd200572](https://clawhub.ai/user/zd200572) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zd200572](https://clawhub.ai/user/zd200572)
 
-## Use Case: <br>
-Researchers and technical readers use this skill to turn an English PDF paper into Chinese reading notes and summaries tailored to bioinformatics workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The full extracted PDF text is sent into the agent conversation. <br>
-Mitigation: Use the skill only with papers whose contents are appropriate to share with the configured agent and workspace. <br>
-Risk: The skill writes a temporary file named temp_paper_for_translation.txt next to the input PDF. <br>
-Mitigation: Run it in a directory where that filename is not used for important content. <br>
-Risk: PDF text extraction depends on the local pdftotext binary. <br>
-Mitigation: Install poppler-utils from a trusted package source and expect lower quality on scanned or complex PDFs. <br>
+## Use Case:
 
+Researchers, students, and agents working with bioinformatics papers use this skill to extract text from a trusted English PDF, translate it into Chinese, and produce a Markdown summary emphasizing bioinformatics details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zd200572/bioinfo-paper-translate-summary-chinese) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text prompt containing extracted paper text and instructions to produce Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an absolute PDF path and the pdftotext command from poppler-utils.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: PDF text, including sensitive or proprietary paper contents, is exposed directly to the agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted PDFs whose contents may be shared with the agent, and avoid sensitive or proprietary papers unless that exposure is acceptable.
+
+Risk: The artifact writes a predictable temporary text file in the same directory as the PDF.
+
+Mitigation: Run the skill in a private working directory with trusted files, normal user privileges, and no shared writable directory.
+
+Risk: PDF conversion quality may be limited for scanned or complex PDFs.
+
+Mitigation: Install poppler-utils and review the extracted text and final summary before relying on the output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zd200572/skills/bioinfo-paper-translate-summary-chinese)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text containing extracted PDF text and instructions for a Chinese Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pdftotext from poppler-utils and an absolute PDF path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

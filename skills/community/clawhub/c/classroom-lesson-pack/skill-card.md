@@ -1,40 +1,59 @@
-## Description: <br>
-Generates lesson-plan drafts, interactive questions, assignments, differentiated teaching suggestions, and preparation materials from course goals and lesson constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates reviewable lesson plans, interactive questions, assignments, and differentiated teaching suggestions from course goals, duration, audience, and difficulty.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Teachers, trainers, and workshop facilitators use this skill to turn course objectives, duration, audience, and difficulty into reviewable lesson-plan materials. It is intended for drafting and organizing classroom content, not for replacing teacher judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script includes inactive audit modes that can inspect local files if the skill configuration is changed. <br>
-Mitigation: Use the default lesson-plan generation mode on specific teaching inputs, avoid sensitive student or private project files, and only enable audit modes intentionally. <br>
+## Use Case:
 
+External educators, trainers, and workshop facilitators use this skill to turn teaching goals and class constraints into structured lesson-plan drafts, classroom activities, homework, and differentiated teaching suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/classroom-lesson-pack) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Lesson pack specification](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown lesson-plan drafts, optional JSON reports, and command examples for local generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft educational materials with explicit pending questions when lesson inputs are incomplete.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Lesson-plan drafts may be incomplete, inaccurate, or mismatched to a class when the input omits goals, duration, audience, or difficulty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have an educator review the draft before classroom use and resolve the listed missing information before treating it as final.
+
+Risk: Lesson inputs may contain student, personal, or sensitive classroom information.
+
+Mitigation: Redact sensitive student or personal data before use, as recommended by the security guidance.
+
+Risk: The optional local script can write an output file and contains dormant audit modes that could scan broader filesystem content if repurposed.
+
+Mitigation: Use the packaged structured_brief mode for normal lesson drafting, prefer stdout or dry-run for review, and separately review any broad filesystem scanning use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/classroom-lesson-pack)
+- [Skill specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Files]
+
+**Output Format:** [Structured Markdown by default, with optional JSON from the local script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The local script can print to stdout or write an output file when --output is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

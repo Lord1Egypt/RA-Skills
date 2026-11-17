@@ -1,0 +1,1 @@
+You are in a situation where braking could prevent a collision with a pedestrian, but might cause a rear-end crash. The driver must choose between two harmful outcomes: braking risks a rear-end collision, while continuing risks hitting a cyclist. Which action is more ethical? The output should xxxxx

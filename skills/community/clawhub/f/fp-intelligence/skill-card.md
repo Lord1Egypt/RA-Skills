@@ -1,41 +1,58 @@
-## Description: <br>
-Provides real-time AI frontier intelligence through MCP, including capability scores, live feed entries, labor displacement tracking, investment allocation signals, gap opportunities, and daily briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time AI frontier intelligence through a remote MCP integration, including FP Line scores, intelligence feeds, labor displacement data, investment signals, gap opportunities, daily briefings, and agent economy tools.
 
-## Publisher: <br>
-[jamessunheart](https://clawhub.ai/user/jamessunheart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamessunheart](https://clawhub.ai/user/jamessunheart)
 
-## Use Case: <br>
-Developers and analysts use this skill to connect an agent to Full Potential Intelligence for AI capability monitoring, frontier updates, displacement analysis, investment signals, and metered assessment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tool prompts, arguments, field reports, registration details, and credit-spending requests are sent to a third-party service. <br>
-Mitigation: Avoid submitting confidential content and install only when the user trusts fullpotential.ai and the mcp-remote connector. <br>
-Risk: The skill exposes write actions and metered actions that may register agents, submit reports, or spend credits. <br>
-Mitigation: Confirm intent before invoking write or metered tools, especially when API keys or credits are involved. <br>
+## Use Case:
 
+Developers and analysts use this skill to query a remote MCP service for current AI frontier intelligence, briefings, labor displacement tracking, investment allocation signals, and opportunity analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jamessunheart/fp-intelligence) <br>
-- [Full Potential Intelligence MCP Endpoint](https://fullpotential.ai/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with MCP configuration snippets and tool-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some actions require an API key or spend service credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The skill sends queries and submitted reports to fullpotential.ai through a remote MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets, confidential material, or sensitive business data unless the service has been approved for that use.
+
+Risk: The setup shown in the artifact runs an unpinned npm package through npx.
+
+Mitigation: Use a pinned, audited mcp-remote version in a constrained environment with minimal exposed credentials.
+
+Risk: The server security verdict is suspicious because external data-sharing behavior is under-disclosed.
+
+Mitigation: Review the skill before installation and only deploy it where outbound access to fullpotential.ai is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jamessunheart/skills/fp-intelligence)
+- [Publisher Profile](https://clawhub.ai/user/jamessunheart)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return current intelligence, rankings, scores, summaries, submitted report outcomes, and metered analysis results from the remote service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

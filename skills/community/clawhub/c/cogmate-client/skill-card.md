@@ -1,41 +1,51 @@
-## Description: <br>
-Access and query Cogmate personal knowledge systems for knowledge retrieval, semantic search, and Q&A using a valid CogNexus access token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Cogmate personal knowledge systems via API for knowledge retrieval, semantic search, and Q&A using a valid CogNexus access token.
 
-## Publisher: <br>
-[MaxiiWang](https://clawhub.ai/user/MaxiiWang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxiiwang](https://clawhub.ai/user/maxiiwang)
 
-## Use Case: <br>
-External users and developers use this skill to query Cogmate knowledge bases, search facts, inspect profiles and statistics, and receive answers through authenticated Cogmate API endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Access tokens are passed in query parameters and may appear in URLs, shell history, logs, or monitoring systems. <br>
-Mitigation: Use HTTPS-only Cogmate endpoints, prefer narrow token scopes, avoid sharing command transcripts that include tokens, and rotate any token that may have been exposed. <br>
-Risk: Queries and retrieved answers may expose private knowledge from the target Cogmate instance. <br>
-Mitigation: Use the skill only with trusted Cogmate endpoints and tokens, and avoid sending sensitive questions unless the endpoint owner and access scope are appropriate. <br>
+## Use Case:
 
+Developers and agents use this skill to query a trusted Cogmate personal knowledge system, retrieve relevant facts, and ask Q&A-style questions through the Cogmate API.
 
-## Reference(s): <br>
-- [Cogmate API Details](references/api-details.md) <br>
-- [CogNexus](https://github.com/MaxiiWang/CogNexus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with bash examples; helper scripts return plain text or JSON-derived summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Cogmate API URL and access token; protected endpoints pass the token as a query parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Access tokens appear in URLs and command-line examples, which can expose private knowledge access through shell history, process listings, browser history, server logs, or proxy logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted Cogmate instances over HTTPS, prefer the lowest-scope and shortest-lived token available, avoid typing real tokens directly into helper-script command lines, and rotate any token already used in these examples.
+
+## Reference(s):
+
+- [Cogmate API Details](references/api-details.md)
+- [CogNexus](https://github.com/MaxiiWang/CogNexus)
+- [ClawHub Skill Page](https://clawhub.ai/maxiiwang/skills/cogmate-client)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Cogmate API endpoint and a valid access token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

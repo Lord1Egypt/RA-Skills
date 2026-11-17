@@ -1,44 +1,55 @@
-## Description: <br>
-ITIL 5 Manager - Elite IT Service Management Advisor specializing in ITSM, FinOps, and IT governance using ITIL 5 DPSM framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ITIL 5 Manager - Elite IT Service Management Advisor specializing in ITSM, FinOps, and IT governance using ITIL 5 DPSM framework.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-IT managers, service desk leads, and digital leaders use this skill for strategic and operational IT service management guidance, including ITIL DPSM practices, incident, problem, change, knowledge, and service request management, FinOps alignment, and executive reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic ITSM phrases such as incident management or service desk may activate the skill during ordinary IT conversations. <br>
-Mitigation: Confirm that ITIL-style advisory guidance is wanted before relying on recommendations in a broader workflow. <br>
-Risk: Governance, compliance, financial, or operational recommendations may not match an organization's policies or local regulations. <br>
-Mitigation: Validate recommendations against internal policies, accountable owners, and applicable legal or regulatory requirements before implementation. <br>
-Risk: The skill is documentation-only and advisory; advice quality depends on the context supplied by the user. <br>
-Mitigation: Provide organization-specific service context, constraints, risk appetite, and decision criteria before using the guidance for operational planning. <br>
+## Use Case:
 
+IT managers, service desk leads, and digital leaders use this skill for strategic and operational IT service management guidance. It supports ITIL 5 DPSM implementation, incident, problem, change, knowledge, service request, FinOps, and IT governance workflows.
 
-## Reference(s): <br>
-- [IT Manager Handbook (2026 Edition) - ITIL 5 Edition](references/it-manager-handbook.md) <br>
-- [IT Management Frameworks Guide (2026)](references/it-management-frameworks.md) <br>
-- [ITIL Manager Scenarios](examples/management-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown advisory response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Core answer first, with extended insights or real-world examples only after explicit user consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Common IT support phrases may invoke the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user is seeking IT service management advice when a broad support phrase triggers the skill.
+
+Risk: Process, financial, legal, or regulatory guidance may be incomplete without organization-specific context.
+
+Mitigation: Treat outputs as advisory and verify recommendations against local organizational policy, applicable regulations, and qualified reviewers before operational use.
+
+## Reference(s):
+
+- [IT Manager Handbook (2026 Edition) - ITIL 5 Edition](./references/it-manager-handbook.md)
+- [IT Management Frameworks Guide (2026)](./references/it-management-frameworks.md)
+- [ITIL Manager Scenarios](./examples/management-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown advisory response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides the core answer first and asks for user consent before extended insights, case studies, or detailed examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact README, dated 2026-04-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

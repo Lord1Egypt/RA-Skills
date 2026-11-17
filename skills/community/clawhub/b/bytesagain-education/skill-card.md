@@ -1,40 +1,57 @@
-## Description: <br>
-Generate 7-day structured learning plans, quizzes, and local study progress summaries without internet access or an account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bytesagain Education generates 7-day structured learning plans, quizzes, and local study progress tracking without requiring internet access or an account.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Learners and self-directed developers use this skill to generate short study plans, practice quizzes, and progress summaries for technical topics. It is suited to local, account-free learning workflows where generated guidance should be reviewed before relying on it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes study progress to a local JSON file under the user's home directory, and reset clears that saved progress. <br>
-Mitigation: Avoid storing sensitive information in topic or milestone names, and confirm before using progress reset. <br>
-Risk: Generated learning plans and quizzes may be incomplete or inaccurate for a learner's specific goals. <br>
-Mitigation: Review the generated plan and quiz content against trusted learning resources before relying on it. <br>
+## Use Case:
 
+Learners, developers, and educators use this skill to generate topic-based 7-day study plans, quizzes, and local progress summaries for self-guided technical learning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-education) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Terminal text and Markdown-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include 7-day plans, quiz questions with answers, and local progress summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local study progress can be overwritten or cleared by reset or set-topic without a confirmation prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review current progress before using reset or set-topic, and back up ~/.local/share/education-skill/progress.json if the progress history matters.
+
+Risk: Learning plans can include example shell commands such as Docker commands.
+
+Mitigation: Treat commands in generated plans as learning examples and review them before running them locally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-education)
+- [Python Official Tutorial](https://docs.python.org/3/tutorial/)
+- [Docker Get Started](https://docs.docker.com/get-started/)
+- [MDN JavaScript Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
+- [A Tour of Go](https://go.dev/tour/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style terminal text with inline shell commands and local JSON progress data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores progress locally in ~/.local/share/education-skill/progress.json; requires bash and python3.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

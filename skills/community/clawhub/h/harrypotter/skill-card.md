@@ -1,42 +1,51 @@
-## Description: <br>
-CLI for AI agents to lookup Harry Potter universe info for their humans. Uses HP-API. No auth required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI for AI agents to lookup Harry Potter universe info for their humans using HP-API with no authentication required.
 
-## Publisher: <br>
-[jeffaf](https://clawhub.ai/user/jeffaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffaf](https://clawhub.ai/user/jeffaf)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent retrieve Harry Potter character, house, student, staff, and spell information from HP-API through CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Lookup terms are sent to HP-API. <br>
-Mitigation: Avoid submitting private or sensitive text as lookup queries. <br>
-Risk: The README references external GitHub executable scripts that were not included in the reviewed package. <br>
-Mitigation: Inspect any externally fetched scripts before installation or execution. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve Harry Potter character, house, student, staff, and spell information from HP-API.
 
-## Reference(s): <br>
-- [HP-API](https://hp-api.onrender.com) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/jeffaf/harrypotter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output with command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, and jq; default command limit is 20 items per query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installation depends on executable scripts from a mutable external repository that were not included in this reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed scripts, prefer a pinned reviewed commit or release with checksums, and grant only the filesystem and network access needed for HP-API lookups.
+
+## Reference(s):
+
+- [HP-API](https://hp-api.onrender.com)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/jeffaf/skills/harrypotter)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text CLI output, often summarized by the agent in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Character and spell lookup results depend on HP-API availability and content.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

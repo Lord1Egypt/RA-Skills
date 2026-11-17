@@ -1,47 +1,65 @@
-## Description: <br>
-Npc Distill Main helps an agent build local, anonymized persona memory files from a specific person's communications so users can rehearse reports, pressure-test plans, draft materials, and anticipate likely decision concerns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Npc Distill Main helps agents build local, anonymized digital personas from a person's communications so users can rehearse reports, pressure-test plans, draft audience-fit materials, and anticipate decision concerns.
 
-## Publisher: <br>
-[bangbangmao666666](https://clawhub.ai/user/bangbangmao666666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bangbangmao666666](https://clawhub.ai/user/bangbangmao666666)
 
-## Use Case: <br>
-Employees and agent users use this skill to turn meeting notes, messages, emails, or web content into local persona evidence, then rehearse conversations, pressure-test plans, and draft materials aligned to the modeled person's preferences. The skill is intended for private preparation and review, not for impersonating the person or claiming to predict their actual decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates durable local profiles and rehearsal notes from potentially sensitive workplace communications. <br>
-Mitigation: Use it only with authorized data, keep memory files out of shared folders and public repositories, and consider device or disk encryption for the storage location. <br>
-Risk: Persona evidence is stored in plaintext Markdown files and may persist in backups or archives. <br>
-Mitigation: Delete the active memory file, backups, and archived files when the profile is no longer needed. <br>
-Risk: Drafts and rehearsals may be mistaken for the real person's views or decisions. <br>
-Mitigation: Treat outputs as preparation aids, preserve disclaimers that simulations do not represent the person's actual opinion, and review every diff before writing memory updates. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to organize local evidence about a workplace stakeholder, rehearse likely reactions, pressure-test plans, and draft materials tuned to that stakeholder's documented preferences. The skill is intended for private preparation and does not replace real communication or consent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bangbangmao666666/npc-distill-main) <br>
-- [Publisher profile](https://clawhub.ai/user/bangbangmao666666) <br>
-- [Project homepage from metadata](https://github.com/clawhub/npc-distill) <br>
-- [Agent skills compatibility reference](references/agentskills-compat.md) <br>
-- [Memory format reference](references/memory-format.md) <br>
-- [agentskills.io compatibility standard](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, local Markdown memory files, diffs, JSON extraction outputs, and shell commands for helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores persona evidence and rehearsal notes in local plaintext Markdown files using anonymized IDs such as L001 and L002.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version is 0.2.2) <br>
+Risk: The skill handles sensitive interpersonal and workplace material in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated private directory, avoid shared drives and repositories, and enable disk or container encryption when device access is shared.
+
+Risk: URL ingestion can expose internal or private web content to the host agent's fetching tools.
+
+Mitigation: Do not fetch internal or private URLs through the skill; paste only content that is appropriate for the active agent environment.
+
+Risk: Helper commands and dependencies may be unsafe if run with untrusted aliases, IDs, or unpinned packages.
+
+Mitigation: Install dependencies in an isolated environment, pin dependencies where possible, and review commands before execution.
+
+Risk: Retention behavior may leave sensitive records available longer than expected.
+
+Mitigation: Treat deletion as archive/comment-out unless the user explicitly performs secure removal, and periodically clean up obsolete memory files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bangbangmao666666/skills/npc-distill-main)
+- [Project homepage](https://github.com/clawhub/npc-distill)
+- [Agent skills compatibility](references/agentskills-compat.md)
+- [Memory file format](references/memory-format.md)
+- [agentskills.io standard](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional Python helper commands, diffs, and local memory-file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local plaintext memory files using anonymized IDs such as L001/L002 and asks users to review diffs before writes.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

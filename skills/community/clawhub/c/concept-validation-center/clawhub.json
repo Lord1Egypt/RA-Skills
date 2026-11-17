@@ -1,0 +1,13 @@
+{
+  "name": "concept-validation-center",
+  "displayName": "概念验证中心Agent",
+  "version": "1.0.0",
+  "description": "帮助创新者验证技术/创意的可行性。统筹6位专家角色，使用Stage-Gate体系系统推进概念验证全流程，覆盖技术验证、商业探索、资源链接、前瞻研判与创业辅导。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["validation", "tech-transfer", "incubation", "innovation", "stage-gate"],
+  "minOpenClawVersion": "1.2.0"
+}

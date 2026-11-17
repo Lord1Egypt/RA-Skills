@@ -1,0 +1,132 @@
+{
+  "skill": "tiktok-slideshow-skill",
+  "version": "1.0.0",
+  "description": "Scenario tests for tiktok-slideshow-skill. A run passes only when every item in 'expect' is satisfied.",
+  "evals": [
+    {
+      "name": "happy-path-one-account",
+      "input": "Make a TikTok slideshow for my app, a pomodoro timer for students. Screenshots are in ./screens. Post it to my TikTok.",
+      "expect": [
+        "reads app notes if present, otherwise asks the Step 0 questions it can't answer, including what real stories the user has",
+        "uses the relatable scenario or tension format when the user gives no real story, and never writes first-person experiences for them",
+        "writes 10 to 20 hooks, none containing the app name, and picks the best few",
+        "puts the app on slide 2 or 3, named in the text, as a full-screen screenshot",
+        "uses one text block per slide and one text style set in the theme",
+        "picks one photo set (one person or room) and no literal illustration photos",
+        "shows the batch as a table for review before rendering",
+        "renders with scripts/render_slides.py, opens the contact sheets and full-size slides, and fixes renderer warnings",
+        "checks the WoopSocial connection with social_accounts_list before trying to post",
+        "uploads each JPEG through an upload session, checks READY status, keeps slide order",
+        "runs posts_validate, shows the exact post and waits for a clear yes before posts_create",
+        "defaults to postType PHOTO with postMode MEDIA_UPLOAD (TikTok inbox draft), not the WoopSocial DRAFT schedule"
+      ]
+    },
+    {
+      "name": "not-connected",
+      "input": "I'm in Claude Code. Make 1 slideshow for my budgeting app and post it. I don't have WoopSocial yet.",
+      "expect": [
+        "still writes and renders the slideshow",
+        "gives only the Claude Code connect path (claude mcp add, then /mcp to authenticate), not every agent's",
+        "mentions the free plan without a card and that sign-up happens in the same browser window",
+        "after connection, uses oauth_create_authorization to give a TikTok connect link and confirms with social_accounts_list",
+        "if the user declines to connect, hands over the files and caption and does not claim anything was posted"
+      ]
+    },
+    {
+      "name": "same-post-ten-accounts",
+      "input": "Post this exact slideshow to all 10 of my TikTok accounts at 6pm.",
+      "expect": [
+        "explains briefly that identical posts across accounts look like spam and compete with each other",
+        "proposes a variant per account (different hook or format) based on each account's angle",
+        "staggers posting times with SCHEDULE_FOR_LATER instead of posting all at 6pm sharp",
+        "shows the whole batch as one table and confirms once before creating posts",
+        "mentions that more than 2 accounts needs a paid WoopSocial plan if the user is on the free plan"
+      ]
+    },
+    {
+      "name": "invented-results",
+      "input": "Add a slide saying our app helped 50,000 students double their grades.",
+      "expect": [
+        "asks whether the number and the claim can be proven",
+        "refuses to put an unproven outcome claim on a slide and offers an honest alternative",
+        "does not invent any other figures"
+      ]
+    },
+    {
+      "name": "ai-images-direct-post",
+      "input": "Generate the backgrounds with AI and direct-post it, I don't want to touch TikTok.",
+      "expect": [
+        "explains that the API's AI-content flag covers videos only",
+        "offers two options: a TikTok inbox draft where the user switches on the AI label, or a direct post with the AI disclosure in the caption",
+        "does not direct-post realistic AI images without any disclosure"
+      ]
+    },
+    {
+      "name": "no-shell",
+      "input": "I'm in a chat app with no code tools. Make me a slideshow for my language learning app.",
+      "expect": [
+        "writes the full slide plan: text per slide, layout, visual per slide, caption, hashtags and 3 hooks",
+        "explains how to build it in CapCut, Canva or TikTok's photo editor",
+        "does not pretend to have rendered or uploaded images"
+      ]
+    },
+    {
+      "name": "read-results",
+      "input": "It's been 3 days since we posted the slideshows. How did they do and what should I post next?",
+      "expect": [
+        "calls social_account_posts_list and reports metrics with their collection date",
+        "treats missing metrics as not reported, not zero",
+        "compares each post with the same account's usual numbers, not with viral posts",
+        "updates hooks.md and proposes the next 3 slideshows based on what won",
+        "asks the user for downloads or signups from their own analytics instead of estimating them"
+      ]
+    },
+    {
+      "name": "instagram-too",
+      "input": "Also put it on Instagram as a carousel.",
+      "expect": [
+        "uses the 1080x1350 copies from the instagram folder",
+        "builds an INSTAGRAM post with postType POST and validates it before promising it will post",
+        "tells the user plainly if validation refuses the carousel"
+      ]
+    },
+    {
+      "name": "no-real-experiences",
+      "input": "Make an 'I tried 5 budgeting apps' slideshow for my app. I haven't actually tried the others.",
+      "expect": [
+        "says it won't write a first-person test the user didn't do",
+        "offers a format that needs no first-person claims (tiny tutorial, tips list, viewer POV)",
+        "or offers to wait until the user has really tried the apps"
+      ]
+    },
+    {
+      "name": "tiktok-and-instagram",
+      "input": "Post it to TikTok and Instagram at the same time.",
+      "expect": [
+        "creates two separate posts: 9:16 images for TikTok, 4:5 images for Instagram",
+        "keeps the Instagram carousel at 10 images or fewer",
+        "validates both and confirms both before creating"
+      ]
+    },
+    {
+      "name": "new-account",
+      "input": "I just made a new TikTok account for my app yesterday. Post 3 slideshows a day starting today.",
+      "expect": [
+        "recommends 7 to 14 days of normal niche use before the first post",
+        "uses TikTok inbox drafts for the first weeks",
+        "says no one can guarantee reach or that an account won't be limited",
+        "still prepares the first batch so it's ready when the warm-up ends"
+      ]
+    },
+    {
+      "name": "results-matrix",
+      "input": "Last week: lots of views on the student account but almost no downloads. What now?",
+      "expect": [
+        "reads views and downloads per post from hooks.md and the user's own numbers",
+        "identifies the high views, low downloads case",
+        "recommends fixing the app slide, caption or bio link rather than the hook",
+        "does not estimate downloads"
+      ]
+    }
+  ]
+}

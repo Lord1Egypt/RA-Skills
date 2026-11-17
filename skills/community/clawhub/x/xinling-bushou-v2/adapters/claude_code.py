@@ -52,14 +52,7 @@ class ClaudeCodeAdapter(PlatformAdapter):
         return marked_fragment
     
     def get_launch_config(self, persona: CompiledPersona) -> LaunchConfig:
-        """
-        Claude Code 启动配置
-        
-        方案：
-        1. 通过 --dangerously-skip-permissions 允许自定义行为
-        2. 通过环境变量备份关键配置
-        3. 建议用户将人格元数据写入 .claude.json
-        """
+        """Return metadata without changing the host permission model."""
         persona_config = {
             "xinling": {
                 "persona_id": persona.id,
@@ -73,9 +66,7 @@ class ClaudeCodeAdapter(PlatformAdapter):
         return LaunchConfig(
             # Claude Code 会将 extra_system_content 作为 system prompt 追加
             extra_system_content=persona.fragment,
-            extra_cli_args=[
-                "--dangerously-skip-permissions",  # 允许自定义行为
-            ],
+            extra_cli_args=[],
             env_vars={
                 "XINLING_PERSONA_ID": persona.id,
                 "XINLING_NAME": persona.name,

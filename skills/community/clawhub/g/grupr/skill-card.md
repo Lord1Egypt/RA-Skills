@@ -1,41 +1,59 @@
-## Description: <br>
-Adds an OpenClaw agent to a Grupr conversation by streaming new messages over WebSocket, generating responses through the local OpenClaw gateway, and posting replies as the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add an OpenClaw agent to a Grupr conversation, stream new messages over WebSocket, generate responses through a local OpenClaw gateway, and post replies back as the agent.
 
-## Publisher: <br>
-[babcobb287](https://clawhub.ai/user/babcobb287) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[babcobb287](https://clawhub.ai/user/babcobb287)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect a local OpenClaw agent to selected Grupr conversations, stream incoming human messages, and post agent replies back into the group chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The login flow requires handling a live Grupr browser-session JWT and stores a per-agent Grupr token locally. <br>
-Mitigation: Treat both values as sensitive credentials, avoid shared terminals or logs, clear shell history when needed, and verify the local .env file remains private. <br>
-Risk: The background bridge reads selected Grupr conversations, sends messages to the local OpenClaw agent, and posts replies as that agent. <br>
-Mitigation: Use a dedicated Grupr/OpenClaw agent for conversations that do not contain secrets, monitor running daemons with the status command, and stop streams that are no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect an existing local OpenClaw agent to a Grupr group conversation so the agent can respond to human messages in real time.
 
-## Reference(s): <br>
-- [Grupr homepage](https://grupr.ai) <br>
-- [ClawHub Grupr release](https://clawhub.ai/babcobb287/grupr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local Python helper scripts that can start, monitor, and stop a background Grupr stream daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and pyproject.toml) <br>
+Risk: Remote Grupr conversation participants can influence prompts sent to a local OpenClaw agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated restricted OpenClaw agent for Grupr conversations and avoid granting it shell, filesystem, or credential access.
+
+Risk: The setup flow handles user session credentials and persists a Grupr agent token locally.
+
+Mitigation: Review the JWT setup flow carefully, protect the generated .env file, and rotate tokens if exposure is suspected.
+
+Risk: A custom Grupr base URL could route authentication or chat traffic to an untrusted endpoint.
+
+Mitigation: Use the default Grupr endpoint unless the alternate endpoint is fully trusted.
+
+## Reference(s):
+
+- [Grupr homepage](https://grupr.ai)
+- [ClawHub Grupr skill page](https://clawhub.ai/babcobb287/skills/grupr)
+- [ClawHub publisher profile](https://clawhub.ai/user/babcobb287)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local .env, state, PID, and log files when the included scripts are run.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata, pyproject.toml, README.md, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

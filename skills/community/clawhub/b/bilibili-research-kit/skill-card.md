@@ -1,43 +1,52 @@
-## Description: <br>
-Extract and analyze Bilibili video content using yt-dlp, including video metadata, danmaku, subtitles, creator profile data, and series or collection information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract and analyze Bilibili video content using yt-dlp, including video metadata, danmaku, subtitles, UP owner profile information, and series or collection data.
 
-## Publisher: <br>
-[xuya227939](https://clawhub.ai/user/xuya227939) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuya227939](https://clawhub.ai/user/xuya227939)
 
-## Use Case: <br>
-External users, developers, researchers, and content analysts use this skill to inspect Bilibili URLs, run local extraction commands, parse structured metadata or comment data, and present findings as readable Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser login cookies can expose authenticated Bilibili session data when passed to yt-dlp. <br>
-Mitigation: Use cookies only when necessary, prefer a dedicated browser profile or limited account, and never share, upload, echo, or log exported cookies. <br>
-Risk: The skill guides agents to run local shell commands and fetch third-party Bilibili data, so access limits, regional restrictions, or unavailable media can affect completeness. <br>
-Mitigation: Review commands before execution, keep extraction local, and disclose access failures or restrictions in the final analysis. <br>
+## Use Case:
 
+Developers, researchers, content creators, and content analysts use this skill to extract structured Bilibili video, subtitle, danmaku, creator profile, and collection information for analysis.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xuya227939/bilibili-research-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/xuya227939) <br>
-- [SnapVee homepage](https://snapvee.com) <br>
-- [Support issue tracker](https://github.com/xuya227939/bilibili-research-kit/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands, JSON parsing guidance, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local yt-dlp output files, subtitle files, or danmaku XML fetched with curl; no API key is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/clawhub.json) <br>
+Risk: Browser cookies used for Bilibili authentication are sensitive account credentials and can be exposed if shared, logged, or used in shared environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use cookie-based authentication only on the user's own machine and account, avoid sharing or logging cookies, and prefer an isolated Python environment with a pinned yt-dlp version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuya227939/skills/bilibili-research-kit)
+- [Publisher profile](https://clawhub.ai/user/xuya227939)
+- [Support issues](https://github.com/xuya227939/bilibili-research-kit/issues)
+- [SnapVee homepage](https://snapvee.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON field references, tables, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include yt-dlp, curl, and local parsing commands; cookie-based authentication guidance may apply when content requires login.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md body, and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Live macro, markets, and developer ecosystem data for research, finance, forecasting, and trading agents through low-cost x402 GET calls with no API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live macro, markets, and developer-ecosystem data for research, finance, forecasting, and trading agents through low-cost x402 GET calls with no API keys.
 
-## Publisher: <br>
-[rccola990-cloud](https://clawhub.ai/user/rccola990-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rccola990-cloud](https://clawhub.ai/user/rccola990-cloud)
 
-## Use Case: <br>
-External agents, developers, finance researchers, forecasting workflows, and trading assistants use this skill to retrieve live macroeconomic indicators, Treasury data, yield spreads, and developer ecosystem signals through exact market-data endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid x402 endpoint calls can spend small amounts of USDC. <br>
-Mitigation: Use a payment client or wallet policy that requires review, budget limits, or approval before paid calls are retried after HTTP 402 responses. <br>
-Risk: Live market and macro data may be stale, unavailable, or unsuitable as a sole basis for financial decisions. <br>
-Mitigation: Treat returned data as research input, verify important figures against authoritative sources, and apply domain review before trading or forecasting decisions. <br>
+## Use Case:
 
+External agents and developers use this skill to retrieve live macroeconomic, market, and developer ecosystem data for research, forecasting, finance, and trading workflows through paid or preview GET endpoints.
 
-## Reference(s): <br>
-- [ClawHub Riley Market Data release page](https://clawhub.ai/rccola990-cloud/riley-market-data) <br>
-- [AgentExchange market-data catalog](https://store.agentexchange.work/) <br>
-- [AgentExchange market-data samples](https://store.agentexchange.work/samples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with exact HTTP GET endpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid endpoints use x402 USDC payments on Base; free catalog and sample endpoints are available before paid calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can trigger small paid x402 requests to store.agentexchange.work through the agentcash MCP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm payment behavior before installation and set wallet or spending limits when the client supports them.
+
+Risk: Live market and macroeconomic data may be inappropriate as the sole basis for financial or trading decisions.
+
+Mitigation: Validate important results against authoritative sources and apply human review for finance, forecasting, or trading workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rccola990-cloud/skills/riley-market-data)
+- [Agent Store catalog](https://store.agentexchange.work/)
+- [Agent Store samples](https://store.agentexchange.work/samples)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Guidance]
+
+**Output Format:** [Markdown guidance with endpoint URLs and GET call instructions; live API responses depend on the selected endpoint.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses x402 GET calls; paid endpoints return HTTP 402 before the client signs payment and retries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

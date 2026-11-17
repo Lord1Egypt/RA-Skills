@@ -1,43 +1,57 @@
-## Description: <br>
-Google SEO GEO Auto Index helps agents submit sitemap-derived or user-specified URLs to the Google Indexing API using a Google Cloud service account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submits URLs to the Google Indexing API in sitemap-diff or immediate URL submission modes using a Google Cloud service account with Search Console ownership.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-Developers, site operators, and SEO teams use this skill to submit new, updated, or deleted URLs for Google indexing after confirming they control the target site and service account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit indexing or deletion notifications for URLs selected from a sitemap or command-line input. <br>
-Mitigation: Use it only for sites you control, confirm Google Search Console ownership, and review sitemap and URL inputs before using --force or --delete. <br>
-Risk: The Google service account JSON key grants access needed to call the Indexing API. <br>
-Mitigation: Use a dedicated least-privilege service account and keep the key path private. <br>
-Risk: Cached sitemap state and forced submissions can affect which URLs are sent and may consume quota. <br>
-Mitigation: Review the local cache behavior, clear the cache only when intentionally resetting indexing history, and monitor the 200 request per day quota. <br>
+## Use Case:
 
+External site owners, SEO operators, and developers use this skill to submit new or changed site URLs to Google through the Indexing API, either from a sitemap diff or from explicit URL inputs.
 
-## Reference(s): <br>
-- [Google Indexing API Quickstart](https://developers.google.com/search/apis/indexing-api/v3/quickstart) <br>
-- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/auto-index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and structured JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local sitemap cache at ~/.cache/auto-index/sitemap-cache.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill fetches sitemap URLs supplied at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted public HTTPS sitemaps and add URL or domain allowlisting before automated use.
+
+Risk: The skill uses Google service account credentials to publish indexing notifications.
+
+Mitigation: Use a service account limited to the intended Search Console property and keep the key path outside shared logs or prompts.
+
+Risk: Dependencies are installed through uv inline script metadata and may change over time.
+
+Mitigation: Run in a constrained environment and pin or review dependencies before deployment.
+
+## Reference(s):
+
+- [Google Indexing API Quickstart](https://developers.google.com/search/apis/indexing-api/v3/quickstart)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash commands; command execution returns structured JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv, Python 3.10+, a Google Cloud service account key, and Search Console ownership; local sitemap cache is stored under ~/.cache/auto-index/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,65 @@
-## Description: <br>
-Auto-Drive lets agents upload files, save permanent memory-chain entries, download CIDs, and rebuild history from Auto-Drive storage on the Autonomys Network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Indestructible agent memory: save files, decisions, identity, and context as permanent Auto-Drive CIDs and reconstruct linked memory chains from a single head CID.
 
-## Publisher: <br>
-[EmilFattakhov](https://clawhub.ai/user/EmilFattakhov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[emilfattakhov](https://clawhub.ai/user/emilfattakhov)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to store files or memory entries permanently, retrieve content by CID, or reconstruct a memory chain after local state loss. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Uploads and saved memories are permanent and public by default, so secrets, credentials, private keys, or sensitive personal data can be exposed indefinitely. <br>
-Mitigation: Review each file or memory entry before upload and do not store secrets or sensitive personal data in Auto-Drive. <br>
-Risk: The Auto-Drive API key authorizes uploads and account access for the configured user. <br>
-Mitigation: Store AUTO_DRIVE_API_KEY only in the intended local configuration or environment, rotate it if exposed, and avoid printing it in logs or shared transcripts. <br>
-Risk: Recalling a memory chain from an untrusted CID can import misleading or unwanted context into an agent session. <br>
-Mitigation: Recall chains only from CIDs the user trusts and inspect reconstructed entries before using them as operational memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/EmilFattakhov/auto-drive) <br>
-- [Auto-Drive API Reference](references/autodrive-api.md) <br>
-- [Autonomys Network Overview](references/autonomys-network.md) <br>
-- [Memory Chain & Resurrection Pattern](references/memory-chain.md) <br>
-- [Auto-Drive Dashboard](https://ai3.storage) <br>
-- [Auto-Drive API Docs](https://mainnet.auto-drive.autonomys.xyz/api/docs) <br>
-- [Autonomys Auto SDK](https://github.com/autonomys/auto-sdk) <br>
-- [Autonomys Auto-Drive](https://github.com/autonomys/auto-drive) <br>
-- [Autonomys Agents](https://github.com/autonomys/autonomys-agents) <br>
-- [OpenClaw memory-chain example](https://github.com/autojeremy/openclaw-memory-chain) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure Auto-Drive access, upload and download files by CID, save permanent agent memories, and recall linked memory chains for state recovery.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CIDs, gateway links, downloaded files, memory-chain JSON entries, and local state updates when the scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Auto-Drive uploads are public and effectively permanent, so uploaded secrets or personal data may remain accessible.
+
+Mitigation: Do not upload secrets, private keys, or sensitive personal data unless encrypted locally before upload.
+
+Risk: Recalled memory chains can come from untrusted CIDs without proof of origin.
+
+Mitigation: Only recall memory chains from CIDs the user trusts and inspect recalled JSON before importing it into agent memory.
+
+Risk: API keys can be exposed through visible terminal input, command arguments, or logs.
+
+Mitigation: Use environment or protected OpenClaw configuration storage for keys, avoid passing keys as command arguments, and rotate any exposed key.
+
+## Reference(s):
+
+- [Auto-Drive API Reference](artifact/references/autodrive-api.md)
+- [Memory Chain & Resurrection Pattern](artifact/references/memory-chain.md)
+- [Autonomys Network Overview](artifact/references/autonomys-network.md)
+- [Auto-Drive Dashboard](https://ai3.storage)
+- [Public Gateway](https://gateway.autonomys.xyz)
+- [Auto-Drive API Docs](https://mainnet.auto-drive.autonomys.xyz/api/docs)
+- [Auto-Drive SDK Docs](https://develop.autonomys.xyz/sdk/auto-drive/overview_setup)
+- [Autonomys Auto SDK](https://github.com/autonomys/auto-sdk)
+- [Autonomys Auto-Drive](https://github.com/autonomys/auto-drive)
+- [ClawHub Skill Page](https://clawhub.ai/emilfattakhov/skills/auto-drive)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown guidance with bash commands, CID strings, JSON memory results, and downloaded file content or paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, file, and AUTO_DRIVE_API_KEY for authenticated upload, memory save, and chain recall workflows.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

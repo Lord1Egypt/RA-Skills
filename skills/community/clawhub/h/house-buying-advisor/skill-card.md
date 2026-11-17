@@ -1,46 +1,54 @@
-## Description: <br>
-House Buying Advisor helps users plan second-hand home purchases by gathering policy and listing context, comparing properties, preparing viewing checklists, negotiation talking points, and loan and closing considerations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+House Buying Advisor helps users research Chinese second-hand home purchases, compare listings, prepare viewing checklists, build negotiation strategies, check policy constraints, and reason through mortgage and closing considerations.
 
-## Publisher: <br>
-[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201)
 
-## Use Case: <br>
-External users and agents use this skill to support second-hand home purchase research, property comparison, viewing preparation, negotiation planning, and closing or loan checklists. It is advisory support only and should be checked against official policy sources, transaction documents, and qualified professionals for legal, tax, loan, and contract decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes negotiation guidance in a high-value real-estate context that could be misused for deceptive claims or coercive tactics. <br>
-Mitigation: Review negotiation outputs before use; avoid fabricated claims, impersonation, covert elicitation, and pressure tactics that are not truthful or appropriate. <br>
-Risk: Home purchase decisions can involve legal, tax, loan, contract, and privacy-sensitive financial information. <br>
-Mitigation: Verify legal, tax, loan, and contract issues with official sources or qualified professionals, and redact bank screenshots or unnecessary financial details before sharing them with an agent. <br>
+## Use Case:
 
+External home buyers use this skill to structure second-hand property research in China, compare market and policy information, prepare for viewings, develop negotiation talking points, and review signing and mortgage considerations.
 
-## Reference(s): <br>
-- [House Buying Advisor on ClawHub](https://clawhub.ai/xiaoyaner0201/house-buying-advisor) <br>
-- [签约与贷款方法论](references/closing-checklist.md) <br>
-- [砍价弹药生成方法论](references/negotiation-ammo.md) <br>
-- [谈判策略与话术预案](references/negotiation-playbook.md) <br>
-- [购房政策检索方法论](references/policy-checklist.md) <br>
-- [房源情报网络构建方法论](references/source-comparison.md) <br>
-- [看房作战方法论](references/viewing-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, checklists, comparison tables, and scenario-specific talking points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include policy lookup prompts, property comparison structures, negotiation preparation, and closing checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill may encourage users to share bank app balance screenshots or similar financial proof without adequate privacy safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted, purpose-limited proof-of-funds documentation or mortgage pre-approval, and avoid sharing account identifiers, transaction history, or full balances with agents, sellers, or AI systems.
+
+## Reference(s):
+
+- [Closing Checklist](references/closing-checklist.md)
+- [Negotiation Ammo](references/negotiation-ammo.md)
+- [Negotiation Playbook](references/negotiation-playbook.md)
+- [Policy Checklist](references/policy-checklist.md)
+- [Source Comparison](references/source-comparison.md)
+- [Viewing Checklist](references/viewing-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance, checklists, comparison tables, and negotiation preparation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include policy summaries, listing comparison tables, viewing notes, negotiation scripts, and mortgage calculation guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

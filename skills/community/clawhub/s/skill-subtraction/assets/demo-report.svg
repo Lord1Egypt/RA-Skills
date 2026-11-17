@@ -1,0 +1,48 @@
+<svg viewBox="0 0 960 486" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Skill Subtraction audit report sample</title>
+<desc>Sample output of the skill: summary bar with keep 3, archive 4, uninstall 1, followed by the keep, archive and uninstall sections with reasons and scores.</desc>
+<g font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+<text x="40" y="30" font-size="18" font-weight="500" fill="#2C2C2A">Skill Subtraction — Audit Report (sample)</text>
+<text x="40" y="52" font-size="12" fill="#5F5E5A">Sample output · 2026-08-12 · 8 skills · bilingual (English / 中文)</text>
+
+<rect x="40" y="70" width="330" height="34" rx="6" fill="#EAF3DE" stroke="#97C459" stroke-width="0.5"/>
+<text x="56" y="87" font-size="12" font-weight="500" fill="#27500A" dominant-baseline="central">Keep 3</text>
+<rect x="370" y="70" width="440" height="34" rx="6" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+<text x="386" y="87" font-size="12" font-weight="500" fill="#633806" dominant-baseline="central">Archive 4</text>
+<rect x="810" y="70" width="110" height="34" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+<text x="826" y="87" font-size="12" font-weight="500" fill="#791F1F" dominant-baseline="central">Uninstall 1</text>
+
+<rect x="40" y="130" width="880" height="30" rx="6" fill="#EAF3DE" stroke="#97C459" stroke-width="0.5"/>
+<text x="56" y="145" font-size="13" font-weight="500" fill="#173404" dominant-baseline="central">Keep (3) 保留</text>
+<text x="56" y="176" font-size="13" fill="#173404" dominant-baseline="central">skill-subtraction</text>
+<text x="250" y="176" font-size="12" fill="#3B6D11" dominant-baseline="central">工具类 · 不可替代的技能审计能力</text>
+<text x="880" y="176" font-size="12" font-weight="500" fill="#27500A" text-anchor="end" dominant-baseline="central">100</text>
+<text x="56" y="204" font-size="13" fill="#173404" dominant-baseline="central">generate-html-ppt</text>
+<text x="250" y="204" font-size="12" fill="#3B6D11" dominant-baseline="central">工具类 · 与当前工作方向直接匹配</text>
+<text x="880" y="204" font-size="12" font-weight="500" fill="#27500A" text-anchor="end" dominant-baseline="central">88</text>
+<text x="56" y="232" font-size="13" fill="#173404" dominant-baseline="central">follow-builders</text>
+<text x="250" y="232" font-size="12" fill="#3B6D11" dominant-baseline="central">资讯类 · 与 AI 关注方向匹配</text>
+<text x="880" y="232" font-size="12" font-weight="500" fill="#27500A" text-anchor="end" dominant-baseline="central">88</text>
+
+<rect x="40" y="254" width="880" height="30" rx="6" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+<text x="56" y="269" font-size="13" font-weight="500" fill="#412402" dominant-baseline="central">Archive (4) 归档</text>
+<text x="56" y="300" font-size="13" fill="#412402" dominant-baseline="central">aihot</text>
+<text x="250" y="300" font-size="12" fill="#854F0B" dominant-baseline="central">资讯类 · 低频，WebSearch 可部分替代</text>
+<text x="880" y="300" font-size="12" font-weight="500" fill="#633806" text-anchor="end" dominant-baseline="central">63</text>
+<text x="56" y="328" font-size="13" fill="#412402" dominant-baseline="central">competitor-analysis</text>
+<text x="250" y="328" font-size="12" fill="#854F0B" dominant-baseline="central">业务型 · 无活跃项目，框架有保留价值</text>
+<text x="880" y="328" font-size="12" font-weight="500" fill="#633806" text-anchor="end" dominant-baseline="central">63</text>
+<text x="56" y="356" font-size="13" fill="#412402" dominant-baseline="central">github-ai-trends</text>
+<text x="250" y="356" font-size="12" fill="#854F0B" dominant-baseline="central">资讯类 · 与 follow-builders 功能重叠</text>
+<text x="880" y="356" font-size="12" font-weight="500" fill="#633806" text-anchor="end" dominant-baseline="central">63</text>
+<text x="56" y="384" font-size="13" fill="#412402" dominant-baseline="central">weekly-report</text>
+<text x="250" y="384" font-size="12" fill="#854F0B" dominant-baseline="central">生产力类 · 已禁用，偶尔手动调用</text>
+<text x="880" y="384" font-size="12" font-weight="500" fill="#633806" text-anchor="end" dominant-baseline="central">57</text>
+
+<rect x="40" y="406" width="880" height="30" rx="6" fill="#FCEBEB" stroke="#F09595" stroke-width="0.5"/>
+<text x="56" y="421" font-size="13" font-weight="500" fill="#501313" dominant-baseline="central">Uninstall (1) 卸载</text>
+<text x="56" y="452" font-size="13" fill="#501313" dominant-baseline="central">ecom-customer-service</text>
+<text x="250" y="452" font-size="12" fill="#A32D2D" dominant-baseline="central">业务型 · 已禁用且从未手动调用，低风险</text>
+<text x="880" y="452" font-size="12" font-weight="500" fill="#791F1F" text-anchor="end" dominant-baseline="central">31</text>
+</g>
+</svg>

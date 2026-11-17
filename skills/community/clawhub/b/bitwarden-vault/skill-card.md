@@ -1,44 +1,60 @@
-## Description: <br>
-Set up and operate Bitwarden CLI (bw) to install the CLI, authenticate, unlock vault sessions, and retrieve vault secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and use Bitwarden CLI (bw). Use when installing the CLI, authenticating (login/unlock), or reading secrets from your vault. Supports email/password, API key, and SSO authentication methods.
 
-## Publisher: <br>
-[StartupBros](https://clawhub.ai/user/StartupBros) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[startupbros](https://clawhub.ai/user/startupbros)
 
-## Use Case: <br>
-Developers and operators use this skill to install and run Bitwarden CLI for authenticated vault access, including reading passwords, secure notes, TOTP codes, custom fields, and self-hosted Vaultwarden secrets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Vault access can expose passwords, notes, TOTP codes, API keys, session tokens, and downloaded attachments. <br>
-Mitigation: Keep requests narrow, avoid printing or logging secrets, avoid unnecessary disk writes, and clean up any files created from vault attachments. <br>
-Risk: Exported BW_SESSION values can continue to decrypt vault data until the vault is locked or the session is logged out. <br>
-Mitigation: Use a dedicated tmux session only for the task, avoid storing session tokens in shell profiles or CI logs, and run bw lock or bw logout when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bitwarden CLI documentation](https://bitwarden.com/help/cli/) <br>
-- [Bitwarden downloads](https://bitwarden.com/download/) <br>
-- [Get Started Guide](references/get-started.md) <br>
-- [CLI Examples](references/cli-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/StartupBros/bitwarden-vault) <br>
-- [Publisher profile](https://clawhub.ai/user/StartupBros) <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure the Bitwarden CLI, authenticate to a Bitwarden or Vaultwarden vault, manage session state, and retrieve secrets for command-line workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Bitwarden CLI commands, tmux session steps, environment variable guidance, and JSON-processing examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Vault session tokens and exported secrets can remain available in persistent shell or tmux sessions.
+
+Mitigation: Lock or log out immediately after use, avoid leaving tmux sessions open, and treat BW_SESSION, BW_CLIENTSECRET, and exported application secrets as live credentials.
+
+Risk: Examples include create and edit commands that can change vault contents.
+
+Mitigation: Require explicit confirmation before running any command that creates, edits, deletes, or otherwise modifies vault items.
+
+Risk: Secret values may be exposed in logs, terminal output, command history, or files.
+
+Mitigation: Avoid logging secrets, avoid writing secrets to disk unless necessary, and prefer short-lived environment variables or direct piping into the consuming command.
+
+## Reference(s):
+
+- [Bitwarden CLI Documentation](https://bitwarden.com/help/cli/)
+- [Bitwarden Downloads](https://bitwarden.com/download/)
+- [Get Started Guide](references/get-started.md)
+- [CLI Examples](references/cli-examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/startupbros/skills/bitwarden-vault)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include commands that read vault data, export environment variables, or manage Bitwarden CLI sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

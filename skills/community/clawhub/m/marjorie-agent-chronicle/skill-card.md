@@ -1,45 +1,59 @@
-## Description: <br>
-AI-powered diary generation for agents - creates rich, reflective journal entries (400-600 words) with Quote Hall of Fame, Curiosity Backlog, Decision Archaeology, and Relationship Evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Chronicle generates reflective diary entries for agents from session context, with optional quote tracking, curiosity backlog, decision notes, relationship notes, memory integration, and exports.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to generate diary-style Markdown reflections from an agent's recent sessions, including wins, frustrations, learnings, quotes, curiosities, decisions, and relationship notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session logs and diary context may be sent to SkillBoss API Hub for generation. <br>
-Mitigation: Review config.json before use, set SKILLBOSS_API_KEY only in trusted environments, run with --dry-run first, and avoid submitting sensitive session content. <br>
-Risk: Generated diary entries and derived notes can be written into persistent memory files. <br>
-Mitigation: Disable memory_integration or sensitive sections when persistence is not desired, and use --no-persistent when appropriate. <br>
-Risk: HTML export may load remote stylesheet resources. <br>
-Mitigation: Avoid HTML export or review exported HTML settings when remote resource loading is a concern. <br>
+## Use Case:
 
+Agents and developers use Agent Chronicle to create and maintain personal AI diary entries from daily work context. The skill supports reflective journaling, quote collection, curiosity tracking, decision logging, relationship notes, and optional diary export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/marjorie-agent-chronicle) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [README](README.md) <br>
-- [Example configuration](config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with optional HTML or PDF exports and JSON task payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates 400-600 word diary entries and can write persistent memory files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact files declare 0.6.2 in SKILL.md and package.json) <br>
+Risk: The skill may read and upload sensitive memory logs while generating diary entries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit consent, review selected context before generation, and prefer --emit-task or interactive/local workflows for sensitive logs.
+
+Risk: Path-handling issues could expose or overwrite Markdown files outside the intended diary area.
+
+Mitigation: Keep diary and export paths inside a dedicated workspace diary directory, avoid untrusted --date values, and review output paths before writing files.
+
+Risk: Generated Markdown, HTML, or PDF diary artifacts may contain private conversations, credentials, project plans, or relationship notes.
+
+Mitigation: Treat diary outputs as sensitive artifacts and sanitize them before sharing or exporting outside the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/marjorie-agent-chronicle)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown diary entries, JSON generation payloads, command guidance, configuration values, and optional HTML/PDF export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated diary entries target roughly 400-600 words and may include summaries, wins, frustrations, learnings, emotional state, notable interactions, quotes, curiosity items, decisions, relationship notes, and next-day focus.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

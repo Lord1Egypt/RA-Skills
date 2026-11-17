@@ -1,43 +1,60 @@
-## Description: <br>
-Signet helps agents check spotlight ad prices, list current ads or signatures, and post URLs to Signet onchain advertising on Hunt Town using x402 payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Signet helps agents check spotlight ad prices, list current Signet ads, and place URL ads on the Signet spotlight through x402 payments on Base.
 
-## Publisher: <br>
-[sebayaki](https://clawhub.ai/user/sebayaki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sebayaki](https://clawhub.ai/user/sebayaki)
 
-## Use Case: <br>
-Developers and AI agents use this skill to estimate Signet spotlight costs, inspect current advertising activity, and prepare URL placement through the x402 payment flow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend crypto and publish spotlight ads. <br>
-Mitigation: Run simulation or estimate first, then require explicit approval for the exact URL, duration, wallet, network, and cost before any real post. <br>
-Risk: Posting can involve a raw wallet private key and an npm CLI. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid passing valuable private keys on the command line, and pin and verify the npm CLI before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Signet release](https://clawhub.ai/sebayaki/signet) <br>
-- [Signet service](https://signet.sebayaki.com) <br>
-- [Signet x402 estimate API](https://signet.sebayaki.com/api/x402/estimate?guaranteeHours=0) <br>
-- [Signet signature list API](https://signet.sebayaki.com/api/signature/list?startIndex=0&endIndex=5) <br>
-- [Signet x402 spotlight API](https://signet.sebayaki.com/api/x402/spotlight) <br>
+## Use Case:
 
+External users and developers use this skill to inspect Signet spotlight pricing and activity, simulate paid placement, and post a URL advertisement through the Signet x402 flow.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cost-estimation, listing, simulation, or posting commands; real posting requires explicit approval of URL, duration, wallet, network, and cost.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running mutable third-party CLI code can change behavior between executions.
+
+Mitigation: Pin and verify the CLI package version before use, and review the package before allowing it to create or submit payments.
+
+Risk: Paid onchain posting requires wallet signing and can spend funds if parameters are wrong or misunderstood.
+
+Mitigation: Use a dedicated low-value wallet, simulate first, and manually confirm destination, network, token, amount, URL, and guarantee hours before live submission.
+
+Risk: Passing a raw private key through command-line options or environment variables can expose wallet credentials.
+
+Mitigation: Prefer a protected signer or vault and avoid command-line private key arguments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sebayaki/skills/signet)
+- [Signet API Base](https://signet.sebayaki.com)
+- [Signet x402 Estimate Endpoint](https://signet.sebayaki.com/api/x402/estimate?guaranteeHours=0)
+- [Signet Signature List Endpoint](https://signet.sebayaki.com/api/signature/list?startIndex=0&endIndex=5)
+- [Signet x402 Spotlight Endpoint](https://signet.sebayaki.com/api/x402/spotlight)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes examples for estimating cost, listing current ads, simulating placement, and submitting paid spotlight posts.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

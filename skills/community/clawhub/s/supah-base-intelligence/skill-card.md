@@ -1,46 +1,64 @@
-## Description: <br>
-Comprehensive token intelligence for Base blockchain, including risk scores, whale tracking, signal analysis, and safety checks for Base tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive token intelligence for Base blockchain, including risk scores, whale tracking, signal analysis, and safety checks for Base tokens.
 
-## Publisher: <br>
-[supah-based](https://clawhub.ai/user/supah-based) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supah-based](https://clawhub.ai/user/supah-based)
 
-## Use Case: <br>
-External developers, traders, and agent builders use this skill to query Base token risk scores, safety checks, market context, whale activity, portfolio risk, and signal feeds through the SUPAH API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send wallet addresses and token queries to the third-party SUPAH API. <br>
-Mitigation: Only submit wallet addresses or token data that the user is comfortable sharing with api.supah.ai. <br>
-Risk: The skill uses paid x402 API calls and the server security summary warns about insufficient upfront consent and risk controls. <br>
-Mitigation: Use a dedicated low-balance wallet, confirm each paid API call manually, and review costs before execution. <br>
-Risk: The artifact includes trading-oriented signal and automated trading examples. <br>
-Mitigation: Treat outputs as informational analysis, require human approval before trades, and do not allow autonomous trade execution from signals alone. <br>
+## Use Case:
 
+Developers and external agent users use this skill to request Base token risk assessments, safety scans, portfolio checks, whale movement monitoring, and trading signal summaries. It supports pre-trade research and portfolio monitoring, not automated trading decisions without separate review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supah-based/supah-base-intelligence) <br>
-- [SUPAH website](https://supah.ai) <br>
-- [SUPAH API](https://api.supah.ai) <br>
-- [SUPAH docs](https://docs.supah.ai) <br>
-- [x402 protocol](https://www.x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON API result data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and curl; can send requests to api.supah.ai and may use x402 USDC payments on Base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release evidence) <br>
+Risk: Paid x402 API calls may execute automatically and incur USDC charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for paid calls and configure spending limits in the x402 client before use.
+
+Risk: Token and wallet identifiers are sent to the configured API host.
+
+Mitigation: Use the default SUPAH API endpoint unless an alternate SUPAH_API_BASE destination has been reviewed and trusted.
+
+Risk: Trading signals and risk scores may be incomplete or misleading if used as the only basis for financial decisions.
+
+Mitigation: Treat outputs as research inputs and require independent review before trading or portfolio actions.
+
+Risk: Artifact pricing statements are inconsistent across files and commands.
+
+Mitigation: Confirm expected per-call pricing in the x402 client before authorizing each paid request.
+
+## Reference(s):
+
+- [SUPAH Website](https://supah.ai)
+- [SUPAH API Endpoint](https://api.supah.ai)
+- [x402 Protocol](https://www.x402.org)
+- [ClawHub Skill Page](https://clawhub.ai/supah-based/skills/supah-base-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown-style agent responses, CLI text, and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include token scores, safety status, wallet or whale summaries, signal lists, recommendations, and per-call x402 USDC cost information.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

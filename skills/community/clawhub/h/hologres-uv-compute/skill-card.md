@@ -1,44 +1,57 @@
-## Description: <br>
-Hologres UV/PV computation using Dynamic Tables and RoaringBitmap for real-time deduplication at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hologres UV/PV computation using Dynamic Tables and RoaringBitmap for real-time deduplication at scale.
 
-## Publisher: <br>
-[wenbingyu](https://clawhub.ai/user/wenbingyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenbingyu](https://clawhub.ai/user/wenbingyu)
 
-## Use Case: <br>
-Developers and data engineers use this skill to design Hologres UV/PV analytics pipelines with Dynamic Tables, RoaringBitmap aggregation, flexible time-window queries, and text-to-integer UID encoding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The SQL examples can create persistent Hologres tables, extensions, Dynamic Tables, refresh jobs, and UID mapping tables in a real database. <br>
-Mitigation: Run examples first in a test database or with a least-privileged account, and review every CREATE, CALL, REFRESH, and mapping-table statement before execution. <br>
-Risk: UID mapping tables may store user identifier mappings that are subject to privacy and retention requirements. <br>
-Mitigation: Apply the organization's privacy, retention, and access-control rules before storing or refreshing user identifier mappings. <br>
-Risk: The workflow depends on hologres-cli for SQL execution and Dynamic Table operations. <br>
-Mitigation: Verify the hologres-cli package source and installed version before using generated commands against Hologres environments. <br>
+## Use Case:
 
+Developers and data engineers use this skill to design Hologres Dynamic Table pipelines for near-real-time UV/PV aggregation, bitmap-based deduplication, flexible time-range queries, and text UID encoding.
 
-## Reference(s): <br>
-- [RoaringBitmap Function Reference](references/roaringbitmap-functions.md) <br>
-- [Dynamic Table Configuration Patterns for UV](references/dynamic-table-patterns.md) <br>
-- [Advanced UV Scenarios](references/advanced-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with SQL and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Hologres table definitions, Dynamic Table refresh examples, RoaringBitmap query patterns, and UID mapping guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and VERSION; package.json reports 1.0.1) <br>
+Risk: SQL examples create, refresh, and overwrite Hologres database objects and can affect production data if executed directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Hologres credentials and test CREATE, REFRESH, and OVERWRITE examples outside production before applying them to real data.
+
+Risk: The skill depends on hologres-cli and Hologres features such as Dynamic Tables, RoaringBitmap, and hg_id_encoding_int4.
+
+Mitigation: Install a pinned reviewed hologres-cli version and confirm the target Hologres version supports required features before using the examples.
+
+## Reference(s):
+
+- [Hologres Uv Compute ClawHub Page](https://clawhub.ai/wenbingyu/skills/hologres-uv-compute)
+- [Publisher Profile](https://clawhub.ai/user/wenbingyu)
+- [RoaringBitmap Function Reference](references/roaringbitmap-functions.md)
+- [Dynamic Table Configuration Patterns for UV](references/dynamic-table-patterns.md)
+- [Advanced UV Scenarios](references/advanced-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides database setup, Dynamic Table configuration, query templates, and operational guidance.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and VERSION; package.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

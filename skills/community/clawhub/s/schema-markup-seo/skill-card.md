@@ -1,46 +1,58 @@
-## Description: <br>
-Helps agents recommend and implement Schema.org structured data in JSON-LD for rich results, enhanced search results, and AI search visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in adding and optimizing Schema.org JSON-LD structured data for rich snippets, enhanced search results, and generative search visibility.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, SEO specialists, and content teams use this skill to choose page-appropriate Schema.org types, draft JSON-LD, and validate structured data for search visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated structured data may misrepresent page content or include unsupported rich-result types. <br>
-Mitigation: Review JSON-LD against visible page content and validate with Google Rich Results Test and Schema Markup Validator before deployment. <br>
-Risk: Private authenticated URLs or credentials could be exposed when using external validation tools. <br>
-Mitigation: Use public test URLs or sanitized markup snippets, and avoid sharing credentials or private authenticated pages. <br>
+## Use Case:
 
+Developers, SEO practitioners, and content teams use this skill to choose appropriate Schema.org types, implement JSON-LD markup, and validate structured data for search eligibility and AI-readable content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/schema-markup-seo) <br>
-- [Schema.org](https://schema.org/) <br>
-- [Google Structured Data Documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) <br>
-- [Google Search Gallery](https://developers.google.com/search/docs/guides/search-gallery) <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
-- [Schema Markup Validator](https://validator.schema.org/) <br>
-- [Bing Markup Documentation](https://www.bing.com/webmasters/help/marking-up-your-site-with-structured-data-3a93e731) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with JSON-LD code examples and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read project or page context when available; generated schema should be reviewed against visible page content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata and skill frontmatter) <br>
+Risk: External structured-data validators may receive private or unpublished page data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public URLs only when appropriate, or validate sanitized JSON-LD snippets before submitting sensitive page content to third-party tools.
+
+Risk: Incorrect or overbroad schema recommendations can produce misleading markup or search validation errors.
+
+Mitigation: Confirm that generated structured data matches visible page content and validate it with Schema.org and search-engine tools before deployment.
+
+## Reference(s):
+
+- [Schema.org](https://schema.org/)
+- [Google Structured Data Documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
+- [Google Search Gallery](https://developers.google.com/search/docs/guides/search-gallery)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Bing Structured Data Markup](https://www.bing.com/webmasters/help/marking-up-your-site-with-structured-data-3a93e731)
+- [Schema Markup Validator](https://validator.schema.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON-LD code examples and validation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should be checked against visible page content and current search-engine structured-data requirements.]
+
+## Skill Version(s):
+
+1.4.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

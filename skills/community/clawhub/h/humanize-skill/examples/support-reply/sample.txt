@@ -1,0 +1,3 @@
+Thanks for the details. I can see why that is annoying.
+
+I am going to separate what I know from what I still need to check. First, try the small thing. If that does not work, send me the export timestamp and I will look at the logs.

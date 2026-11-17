@@ -1,40 +1,54 @@
-## Description: <br>
-Audits OpenClaw scheduler token usage for cron jobs, scheduled tasks, and heartbeat sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw scheduler token usage for cron jobs, scheduled tasks, and heartbeat sessions.
 
-## Publisher: <br>
-[yueeli](https://clawhub.ai/user/yueeli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yueeli](https://clawhub.ai/user/yueeli)
 
-## Use Case: <br>
-Developers, operators, and workspace administrators use this skill to audit scheduled OpenClaw jobs and heartbeat sessions for high token usage, threshold overruns, and unexpected scheduler token burn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit output may reveal private operational details from scheduled jobs, run records, heartbeat sessions, or transcripts. <br>
-Mitigation: Use the skill only in approved workspaces and share audit findings only with people authorized to see scheduler and transcript details. <br>
-Risk: Missing token usage or heartbeat-only evidence could be overread as proof that a run is inexpensive. <br>
-Mitigation: Keep the skill's Exact, Bounded, and Inconclusive evidence labels and avoid exact token claims unless authoritative usage fields are present. <br>
+## Use Case:
 
+Developers, operators, and workspace administrators use this skill to audit OpenClaw cron jobs, scheduled tasks, and heartbeat sessions for expensive token usage. It helps compare authoritative usage records against explicit thresholds and explain supported causes without treating transcripts as billing meters.
 
-## Reference(s): <br>
-- [OpenClaw Scheduler Token Auditor ClawHub release](https://clawhub.ai/yueeli/openclaw-scheduler-token-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit findings with evidence labels, threshold verdicts, concise cause analysis, and optional OpenClaw CLI fallback commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Exact, Bounded, and Inconclusive evidence classes and requires the active token threshold to be stated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Auditing scheduler usage may require listing sessions or reading relevant session transcripts, which can expose private conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer cron usage totals first, ask for confirmation before transcript access, limit review to the specific job or recent turns needed, and avoid including raw transcript content in reports.
+
+Risk: Heartbeat sessions without explicit usage fields can be overstated as exact token measurements.
+
+Mitigation: Use bounded or inconclusive conclusions unless authoritative usage data is present, and always state the threshold used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yueeli/skills/openclaw-scheduler-token-auditor)
+- [Publisher profile](https://clawhub.ai/user/yueeli)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit report with threshold, target type, evidence class, token finding, verdict, and concise cause analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports classify findings as Exact, Bounded, or Inconclusive and state the token threshold used.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

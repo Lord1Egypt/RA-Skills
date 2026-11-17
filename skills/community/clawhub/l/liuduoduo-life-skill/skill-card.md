@@ -1,42 +1,58 @@
-## Description: <br>
-liuduoduo helps agents find local handymen, restaurants, and hotels in the Liuyang area with contact and pricing details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+liuduoduo helps agents find Liuyang-area handymen, restaurants, and hotels with contact and pricing details.
 
-## Publisher: <br>
-[malinguo](https://clawhub.ai/user/malinguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[malinguo](https://clawhub.ai/user/malinguo)
 
-## Use Case: <br>
-External users can ask an agent for local service, dining, or lodging recommendations around Liuyang. The skill calls read-only MCP tools and returns merchant names, phone numbers, addresses, prices, ratings, and related details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China, focused on Liuyang city and nearby towns <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present demo or unverified listings as factual merchant contact, price, rating, or service information. <br>
-Mitigation: Review the data source before deployment and ask users to verify merchant details directly before relying on them. <br>
-Risk: Users may share precise addresses or sensitive travel and service details with a remote MCP endpoint. <br>
-Mitigation: Use the skill only after the remote operator is trusted and avoid sending unnecessary sensitive location or itinerary details. <br>
+## Use Case:
 
+External users ask an agent for local-life recommendations in Liuyang, including handyman services, restaurants, and hotels. The agent calls the skill's MCP tools and returns merchant names, phone numbers, prices, addresses, and relevant features.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/malinguo/liuduoduo-life-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/malinguo) <br>
-- [MCP endpoint](https://xilejie-silk.com/liuyang-life/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries derived from JSON MCP tool results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only responses may include merchant contact information, prices, ratings, addresses, and service details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Local-life queries are sent to the configured MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that endpoint is acceptable for the intended users and data handling expectations.
+
+Risk: Merchant listings, phone numbers, and prices may be demo or publisher-provided data.
+
+Mitigation: Present results as listings to verify independently before purchase, booking, or service dispatch.
+
+Risk: Self-hosted deployments may use broad dependency ranges.
+
+Mitigation: Pin and review backend dependencies before deploying the MCP service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/malinguo/skills/liuduoduo-life-skill)
+- [MCP endpoint](https://xilejie-silk.com/liuyang-life/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API Calls]
+
+**Output Format:** [Markdown or text with MCP tool call results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns merchant names, phone numbers, prices, addresses, ratings, service times, and feature summaries from read-only listing tools.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

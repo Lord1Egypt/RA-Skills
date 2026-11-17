@@ -1,44 +1,63 @@
-## Description: <br>
-A Stock Monitor helps agents guide A-share quantitative market monitoring, market sentiment scoring, stock selection, real-time price checks, leaderboard review, web UI setup, and cron-based updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Monitor helps agents configure an A-share market monitoring workflow with market sentiment scoring, short- and long-term stock selection, realtime price monitoring, ranking views, automation commands, and alert setup guidance.
 
-## Publisher: <br>
-[shifengwang333-ai](https://clawhub.ai/user/shifengwang333-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shifengwang333-ai](https://clawhub.ai/user/shifengwang333-ai)
 
-## Use Case: <br>
-Developers, analysts, and trading-tool operators use this skill to configure and operate an A-share stock monitoring workflow with market sentiment analysis, stock screening guidance, real-time price checks, and scheduled data updates. Outputs should be treated as informational market-analysis support, not professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses trading recommendations and market signals that could be mistaken for professional financial advice. <br>
-Mitigation: Treat outputs as informational only and independently verify market data, signals, and decisions before acting. <br>
-Risk: The optional cron task can run recurring commands during trading hours. <br>
-Mitigation: Review the cron payload, schedule, timezone, and local skill path before enabling automation. <br>
-Risk: The published artifact references scripts and a web UI that are not included in the artifact. <br>
-Mitigation: Confirm required files are present in the installed environment before relying on setup, monitoring, or web UI instructions. <br>
+## Use Case:
 
+External users and developers use this skill to guide setup of an A-share stock monitoring assistant for market sentiment analysis, stock screening, price dashboards, scheduled updates, and notification workflows. It is decision-support guidance and should be reviewed before use in financial workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shifengwang333-ai/skills/a-stock-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/shifengwang333-ai) <br>
-- [Author blog](https://www.cnblogs.com/Jame-mei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code snippets, configuration examples, and API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock-monitoring setup steps, cron commands, Flask endpoint descriptions, and trading-signal interpretation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact text references 1.1.2) <br>
+Risk: The shipped artifact describes cron jobs and Python scripts, but those scripts are not present in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not create the cron job or run the documented commands until the missing scripts are supplied and audited.
+
+Risk: The workflow depends on market-data libraries and possible alert integrations that may send requests or data to third-party services.
+
+Mitigation: Confirm what data is sent to market-data providers or messaging services before enabling alerts.
+
+Risk: The documented dependency installation does not pin package versions.
+
+Mitigation: Install dependencies in an isolated environment with reviewed, pinned versions.
+
+Risk: Stock screening, expected return, and buy/sell guidance can be mistaken for investment advice.
+
+Mitigation: Treat outputs as decision support only and independently review recommendations before trading or investment use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shifengwang333-ai/skills/a-stock-monitor)
+- [Publisher profile](https://clawhub.ai/user/shifengwang333-ai)
+- [Author blog](https://www.cnblogs.com/Jame-mei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; documented package requirements include akshare, flask, and ccxt.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact text references 1.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

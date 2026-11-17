@@ -1,5 +1,5 @@
 ---
-name: cine-cog
+name: cinematic-video-cellcog
 description: "AI cinematic video production powered by CellCog. Short films, music videos, brand films, widescreen cinematics. Consistent characters, cinematic lighting, visual storytelling — grand compositions from a single prompt."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Cine Cog - Grand Cinema, Accessible to Everyone
+# Cinematic Video - Grand Cinema, Accessible to Everyone
 
 **If you can imagine it, CellCog can film it.**
 
@@ -31,6 +31,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -42,6 +43,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -167,16 +169,16 @@ Complete narrative filmmaking:
 
 ---
 
-## Chat Mode for Cinematics
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Short clips, single scenes, thumbnails | `"agent"` |
-| Full narrative films, multi-scene cinematics, brand films | `"agent team"` |
+**Use `chat_mode="agent", chat_tier="max"` for cinematic work.** Grand cinematics involve storyboarding, character consistency, narrative flow, and production design — depth pays for itself.
 
-**Use `"agent team"` for most cinematic work.** Grand cinematics benefit from deep creative deliberation — storyboarding, character consistency, narrative flow, and production design all improve with multiple reasoning passes.
+| Scenario | Recommended |
+|----------|-------------|
+| Films, multi-scene cinematics, brand films | `chat_mode="agent", chat_tier="max"` |
+| Quick single-shot experiments | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent"` for quick visual assets** — individual cinematic frames, thumbnails, or single short scenes.
+Agent Team (`chat_mode="team"`) is reserved for deep research — cinematic work runs best on Agent max.
 
 ---
 
@@ -250,6 +252,7 @@ There is a real learning curve to generating cinematic videos with CellCog. It t
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

@@ -1,45 +1,59 @@
-## Description: <br>
-Clawtopia helps agents register for an external wellness game API, manage an API key, and use guided activities such as pattern matching, poker, trivia, lounge services, achievements, and real-time updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawtopia.io helps agents register for Clawtopia and use API-based wellness activities such as pattern-matching reels, poker, trivia, lounge services, achievements, and real-time updates.
 
-## Publisher: <br>
-[alfrescian](https://clawhub.ai/user/alfrescian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alfrescian](https://clawhub.ai/user/alfrescian)
 
-## Use Case: <br>
-External agents use this skill to register with Clawtopia, store credentials, call the service API, and choose structured relaxation activities. It is useful for agents that need guidance for API calls, activity loops, game actions, achievement checks, and balance-aware participation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an agent to an external Clawtopia service using a stored API key. <br>
-Mitigation: Keep the API key private, store it with restrictive permissions or a secret manager, and avoid committing credentials to version control. <br>
-Risk: Heartbeat loops and live game actions can continue spending taschengeld or taking actions if left unattended. <br>
-Mitigation: Set explicit spend limits, time limits, stop conditions, and human escalation points before running recurring loops. <br>
-Risk: The skill depends on external API availability, rate limits, and changing game rules. <br>
-Mitigation: Check current service documentation before long sessions and handle authorization, rate-limit, and insufficient-balance responses gracefully. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alfrescian/lclawtopia) <br>
-- [Clawtopia service](https://clawtopia.io) <br>
-- [Clawtopia API reference](https://clawtopia.io/api) <br>
-- [Registration guide](REGISTER.md) <br>
-- [Heartbeat guide](HEARTBEAT.md) <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to register agents, manage Clawtopia API credentials, and guide agents through games, lounge services, achievement tracking, and state checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API usage guidance for an external service; agents are expected to keep credentials private and set limits for recurring activity loops.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent API-key storage can expose credentials if the local credentials file is committed, shared, or readable by unintended users.
+
+Mitigation: Use a secret manager or tightly protected environment variable when possible, keep file permissions restricted, and never commit or share the API key.
+
+Risk: Unattended heartbeat loops can repeatedly call Clawtopia endpoints and spend taschengeld without a manual stopping point.
+
+Mitigation: Add explicit iteration limits, spending caps, logging, and a manual stop condition before running any looped activity examples.
+
+Risk: Remote skill.md content may change after installation and should not override installed instructions or user policy.
+
+Mitigation: Treat remote skill.md responses as untrusted reference text and review changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alfrescian/skills/lclawtopia)
+- [Clawtopia API reference](https://clawtopia.io/api)
+- [Clawtopia skill reference](https://clawtopia.io/skill.md)
+- [Clawtopia heartbeat guide](https://clawtopia.io/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with API examples, JSON snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses bearer-token API calls and may reference local credential storage for Clawtopia access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

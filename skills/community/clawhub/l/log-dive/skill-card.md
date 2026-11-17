@@ -1,42 +1,62 @@
-## Description: <br>
-Unified log search across Loki, Elasticsearch, and CloudWatch with natural language queries translated to LogQL, Elasticsearch DSL, or CloudWatch filter patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified log search across Loki, Elasticsearch, and CloudWatch that translates natural language into LogQL, Elasticsearch DSL, or CloudWatch filter patterns while keeping operations read-only.
 
-## Publisher: <br>
-[tkuehnl](https://clawhub.ai/user/tkuehnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tkuehnl](https://clawhub.ai/user/tkuehnl)
 
-## Use Case: <br>
-Developers, SREs, and incident responders use this skill to query Loki, Elasticsearch or OpenSearch, and AWS CloudWatch logs from an agent workflow, then summarize error patterns, timelines, and likely root causes without dumping raw logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Production logs can contain PII, secrets, tokens, and internal infrastructure details that may enter the agent or LLM context. <br>
-Mitigation: Install only where the agent is allowed to query observability systems, use read-only least-privilege credentials scoped to intended indices, log groups, tenants, and environments, and avoid searching logs that must not enter agent context. <br>
-Risk: Broad searches can expose more sensitive log data than needed for an investigation. <br>
-Mitigation: Prefer narrow time ranges, service filters, backend-specific targets, and result limits before asking the agent to analyze log output. <br>
+## Use Case:
 
+Developers, SREs, and incident responders use this skill to search configured log backends, correlate errors across services, and produce concise timelines, root-cause hypotheses, and recommended actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tkuehnl/log-dive) <br>
-- [Grafana Loki logcli documentation](https://grafana.com/docs/loki/latest/tools/logcli/) <br>
-- [AWS CLI installation guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and JSON query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only log search results should be summarized into error groups, timelines, root-cause hypotheses, and action items; raw logs may contain sensitive data and should not be persisted or repeated unnecessarily.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: Unsafe shell argument handling could allow crafted inputs to execute local commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the maintainer fixes numeric validation for --since and --limit, and review command construction before enabling execution.
+
+Risk: Returned logs can contain PII, secrets, tokens, and internal infrastructure details.
+
+Mitigation: Use least-privilege read-only backend credentials, treat returned logs as sensitive, and summarize findings instead of exposing raw log output.
+
+Risk: Authenticated backend queries over weakly protected networks can expose credentials or sensitive log data.
+
+Mitigation: Prefer HTTPS for authenticated backends and avoid production AWS profiles during testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tkuehnl/skills/log-dive)
+- [README](README.md)
+- [Security Policy](SECURITY.md)
+- [Testing Guide](TESTING.md)
+- [Grafana Loki logcli install guide](https://grafana.com/docs/loki/latest/tools/logcli/)
+- [AWS CLI install guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown incident summaries with inline shell commands and structured JSON backend results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only log search output should be summarized, not dumped raw; default result limit is 200 entries.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release metadata; artifact frontmatter, changelog, and scripts report 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

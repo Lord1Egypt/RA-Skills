@@ -1,42 +1,58 @@
-## Description: <br>
-Provides guided OpenClaw backup, snapshot, retention, email delivery, and recovery workflows for agents managing OpenClaw state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guided OpenClaw backup, snapshot, retention, and recovery workflows, with optional email delivery and integrity checks.
 
-## Publisher: <br>
-[LiliWang76](https://clawhub.ai/user/LiliWang76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liliwang76](https://clawhub.ai/user/liliwang76)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to set up local backup directories, create scheduled or pre-change snapshots, manage retention, and follow recovery guidance for OpenClaw configuration and workspace state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may include OpenClaw credentials, identity files, workspace data, and other private state. <br>
-Mitigation: Use local encrypted storage with strict permissions, review the backup scope before execution, and keep archives out of shared locations. <br>
-Risk: Email delivery can transmit sensitive backup archives without built-in encryption safeguards. <br>
-Mitigation: Skip email delivery unless archives are encrypted before sending and the mail-skill configuration has been reviewed. <br>
-Risk: Cleanup, restore, and gateway-control commands can delete backups or change running OpenClaw state. <br>
-Mitigation: Require explicit user approval before deletion, restore, or gateway-control commands and verify checksums before recovery. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to configure and run local backups, create pre-change snapshots, review backup logs, clean old backups, and follow recovery steps after failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LiliWang76/openclaw-reliable-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose filesystem, archive, restore, cleanup, and email-delivery commands for user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Full OpenClaw backups can include credentials and workspace data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store backup archives in a private directory with restrictive permissions and review what is included before relying on the workflow.
+
+Risk: Email delivery can transmit sensitive backup archives without enforced encryption.
+
+Mitigation: Keep email delivery disabled unless archives are encrypted first and the email integration is trusted and verified.
+
+Risk: Retention and deletion settings can remove backup material that may be needed for recovery.
+
+Mitigation: Review local and email retention settings carefully and confirm deletion prompts only after checking the listed files or messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liliwang76/skills/openclaw-reliable-backup)
+- [Publisher profile](https://clawhub.ai/user/liliwang76)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown-style operational guidance with inline shell commands, user prompts, backup archives, checksum files, and log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local backup archives, snapshots, SHA-256 checksum files, and backup logs; optional email delivery depends on user configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

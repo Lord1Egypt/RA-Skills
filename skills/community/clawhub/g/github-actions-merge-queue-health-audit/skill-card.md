@@ -1,39 +1,52 @@
-## Description: <br>
-Audit GitHub merge queue workflow health with failure-rate, queue-latency, and stale-success risk scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub merge queue workflow health with failure-rate, queue-latency, and stale-success risk scoring.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and release engineers use this skill to analyze exported GitHub Actions run JSON for merge queue workflow health, rank risky repository/workflow groups, and optionally fail CI when critical groups are found. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Reports may print repository, workflow, run ID, and URL details to stdout. <br>
-Mitigation: Run the skill only on intended GitHub Actions exports and treat generated reports as potentially repository-sensitive operational data. <br>
-Risk: The shell command analyzes files matched by RUN_GLOB, so an overly broad glob can include unintended JSON exports. <br>
-Mitigation: Set RUN_GLOB to the specific exported GitHub Actions run files that should be reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-merge-queue-health-audit) <br>
+## Use Case:
 
+Developers and release engineers use this skill to evaluate GitHub Actions merge queue health from exported run JSON, identify high-risk workflows, and optionally fail CI when critical health thresholds are reached.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Text report or JSON summary produced by a shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can exit with status 1 when FAIL_ON_CRITICAL=1 and critical merge queue health groups are detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The script reads local GitHub Actions run exports selected by RUN_GLOB, so an overly broad glob can scan unintended local JSON files.
+
+Mitigation: Review RUN_GLOB before execution and point it only at the intended exported GitHub Actions run files.
+
+Risk: The documented collection command exports repository workflow metadata to local files.
+
+Mitigation: Store exported run JSON in an appropriate local artifact directory and handle it according to repository data policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-merge-queue-health-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with bash examples; executed script emits text or JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports environment-variable configuration for input glob, grouping, filters, thresholds, output format, timestamp override, and critical-status fail gate.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

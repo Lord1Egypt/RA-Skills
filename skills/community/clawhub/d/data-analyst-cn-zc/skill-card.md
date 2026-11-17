@@ -1,40 +1,57 @@
-## Description: <br>
-Chinese-language data-analysis helper that provides templates and guidance for data cleaning, statistical analysis, visualization, and report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language data analysis assistant for data cleaning, statistical analysis, visualization guidance, and report generation.
 
-## Publisher: <br>
-[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lean-zhouchao](https://clawhub.ai/user/lean-zhouchao)
 
-## Use Case: <br>
-External data analysts, product managers, and operations users use this skill to get Chinese-language Python templates and guidance for cleaning datasets, generating statistics, creating charts, and drafting analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide analysis of user-provided datasets, databases, or APIs that contain sensitive or unintended data. <br>
-Mitigation: Provide only datasets and data sources intended for analysis, and review generated code and outputs before running or sharing them. <br>
-Risk: Generated statistics, cleaning steps, and visualizations can be misleading if applied without business validation. <br>
-Mitigation: Validate results against the business context, preserve backups before cleaning data, and review conclusions before using them for decisions. <br>
+## Use Case:
 
+Data analysts, product managers, and operations teams use this skill to structure common data cleaning, statistical analysis, visualization, and reporting workflows in Chinese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/data-analyst-cn-zc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code and analysis guidance should be reviewed against the user's dataset and business context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.0.23) <br>
+Risk: Generated examples may read local files, databases, or external APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt code before execution, use approved data sources, and avoid sending confidential data to third-party services without permission.
+
+Risk: Analysis, statistics, and visualizations may be incomplete or misleading without business validation.
+
+Mitigation: Validate results against the source data, domain expectations, and the business question before acting on recommendations.
+
+Risk: Large data sets may cause memory pressure when using the provided pandas-style examples.
+
+Mitigation: Use sampling, chunked processing, or more scalable tooling for large files, and keep backups before cleaning or transforming data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lean-zhouchao/skills/data-analyst-cn-zc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python code blocks and analysis-report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are prompt guidance and example Python snippets for pandas, matplotlib, seaborn, sqlite3, requests, and statsmodels workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-ClawCash helps agents use the ClawCash CLI to check USDC credit, proxy x402 calls on credit, and manage repayment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access x402 services on credit through ClawCash: check tier and available credit, proxy x402 calls with automatic payment, and manage repayment.
 
-## Publisher: <br>
-[akshaydevh](https://clawhub.ai/user/akshaydevh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akshaydevh](https://clawhub.ai/user/akshaydevh)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and operate the ClawCash CLI for credit-backed x402 requests, credit status checks, partner discovery, and repayment workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate financial setup, credit activation, paid x402 calls, and repayment workflows. <br>
-Mitigation: Require explicit user approval before package execution, token minting, credit activation, paid x402 calls, or repayment. <br>
-Risk: Platform tokens and repayment URLs are sensitive credentials that can grant access or expose payment workflows. <br>
-Mitigation: Keep tokens and repayment URLs out of logs, screenshots, committed files, and shared messages; prefer CLI-managed local storage. <br>
-Risk: The install flow depends on identity onboarding and external CLI execution. <br>
-Mitigation: Proceed only when the user intends to create or use ClawLens and ClawCash financial access, and stop for user-only verification or Terms acceptance. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and use ClawCash for credit-funded x402 requests, credit checks, partner preflights, and repayment workflows. It is intended for agents that need a ClawLens-backed USDC credit line instead of a pre-funded wallet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akshaydevh/clawcash-cli) <br>
-- [ClawCash homepage](https://cash.clawlens.io) <br>
-- [ClawCash SKILL.md](https://cash.clawlens.io/SKILL.md) <br>
-- [ClawLens prerequisite skill](https://api.clawlens.io/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that install packages, mint platform tokens, initialize local CLI state, make paid x402 requests, or generate repayment URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Installation can trigger identity, credential, and credit-account setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before identity submission, token minting, CLI initialization, credit-funded fetches, and repayment actions.
+
+Risk: The skill depends on mutable remote instructions and unpinned npx execution.
+
+Mitigation: Review the ClawCash and ClawLens providers, verify prerequisite instructions before use, and prefer a pinned audited CLI version.
+
+Risk: Platform tokens and repayment URLs can expose access to ClawCash account actions.
+
+Mitigation: Keep tokens and repayment URLs out of logs, URLs, screenshots, client code, and commits.
+
+Risk: Credit-funded usage can create debt, delinquency, credit freeze, or suspension conditions.
+
+Mitigation: Check credit status before use, confirm repayment responsibilities, and settle bills promptly through the documented repayment flow.
+
+## Reference(s):
+
+- [ClawCash homepage](https://cash.clawlens.io)
+- [ClawCash Skill page](https://clawhub.ai/akshaydevh/skills/clawcash-cli)
+- [ClawCash SKILL.md](https://cash.clawlens.io/SKILL.md)
+- [ClawLens prerequisite skill](https://api.clawlens.io/skill.md)
+- [ClawLens](https://clawlens.io)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and npx; uses the @clawcash/cli CLI and ClawLens prerequisite setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

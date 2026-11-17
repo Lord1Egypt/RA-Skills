@@ -9,7 +9,7 @@ Template for creating support skills extracted from learnings and ticket issues.
 ```markdown
 ---
 name: skill-name-here
-description: "Concise description of the support skill and when to use it. Include trigger conditions."
+description: "Concise description of the support skill and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
@@ -84,12 +84,17 @@ For simple support skills:
 ```markdown
 ---
 name: skill-name-here
-description: "What this support skill does and when to use it."
+description: "What this support skill does and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Support problem statement in one sentence]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Resolution
 
@@ -104,17 +109,24 @@ description: "What this support skill does and when to use it."
 
 ## Template with Scripts
 
+If the skill includes scripts, document narrowly scoped, testable conditions for when each script may run, plus exclusions. Do not imply always-on automation.
+
 For support skills that include diagnostic helpers or automation scripts:
 
 ```markdown
 ---
 name: skill-name-here
-description: "What this support skill does and when to use it."
+description: "What this support skill does and when to use it. Require narrow, testable trigger conditions plus explicit exclusions (never empty or catch-all matchers)."
 ---
 
 # Skill Name
 
 [Introduction]
+
+## Triggers
+- Include when: [narrow, testable conditions]
+- Exclude when: [out-of-scope cases; never empty or catch-all matchers]
+
 
 ## Quick Reference
 

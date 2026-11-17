@@ -1,38 +1,61 @@
-## Description: <br>
-China Travel helps agents plan trips within China and inbound travel to China, including city and attraction routes, transportation, hotels, family-friendly travel, budgets, and multi-city itineraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps plan domestic and inbound China travel by designing city and attraction routes, selecting transportation and hotels, arranging family- and elder-friendly trips, optimizing budgets, and coordinating multi-city itineraries.
 
-## Publisher: <br>
-[newlux](https://clawhub.ai/user/newlux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newlux](https://clawhub.ai/user/newlux)
 
-## Use Case: <br>
-External users and travel planners use this skill to design China travel itineraries, compare city and scenic-area routes, plan transport and lodging, and adapt trips for families, older travelers, seasonality, holidays, and budget constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel rules, transit policies, weather, ticket availability, hotel availability, and prices can change before a trip is booked. <br>
-Mitigation: Verify current official rules and provider availability and prices before making real bookings. <br>
+## Use Case:
 
+External travelers and travel planners use this skill to create China itineraries, compare route, hotel, and transportation options, plan around seasonality and holidays, and estimate costs for family, elder-friendly, and multi-city trips.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/newlux/chinatravel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or conversational text with itineraries, recommendations, checklists, and planning notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory travel-planning output; users should verify current rules, availability, and prices before booking.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Travel guidance may become outdated as prices, schedules, visa rules, seasonal conditions, and booking availability change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current travel documents, prices, schedules, and availability with official or trusted travel sources before making bookings or purchases.
+
+Risk: Hotel, transportation, and itinerary suggestions may not match a traveler's accessibility, family, elder-care, budget, or timing constraints.
+
+Mitigation: Review suggested plans against traveler needs and confirm accessibility, transit timing, and accommodation details before finalizing the itinerary.
+
+## Reference(s):
+
+- [China Travel Skill Release Page](https://clawhub.ai/newlux/skills/chinatravel)
+- [newlux Publisher Profile](https://clawhub.ai/user/newlux)
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Documents](references/travel-documents.md)
+- [Travel Consultants](references/agents.md)
+- [Hotel Recommendations](references/hotels.md)
+- [Attractions & Sights](references/sights.md)
+- [Flights](references/flights.md)
+- [Tour Packages & Vacations](references/vacations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown travel-planning guidance with itineraries, recommendations, comparisons, and budget notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or hidden system access; verify current prices, schedules, visa rules, and booking availability with official or trusted sources before purchase.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

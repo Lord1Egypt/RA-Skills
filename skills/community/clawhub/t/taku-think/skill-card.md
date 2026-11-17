@@ -1,44 +1,59 @@
-## Description: <br>
-Taku Think helps agents clarify ambiguous development requests, choose an appropriate planning mode, and prepare an approved design handoff before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarifies ambiguous development requests, feature ideas, product/design choices, and idea-stage work before implementation by selecting Quick, Design, or Explore mode and preparing a right-sized design handoff.
 
-## Publisher: <br>
-[kkenny0](https://clawhub.ai/user/kkenny0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkenny0](https://clawhub.ai/user/kkenny0)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to clarify vague feature, product, design, or idea-stage requests before planning or building. It selects Quick, Design, Explore, or Design System mode so implementation starts only after scope, risks, success criteria, and handoff requirements are explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning notes may include sensitive project context if users place secrets or confidential details in design artifacts. <br>
-Mitigation: Avoid putting secrets in planning notes and review generated DESIGN.md or .taku files before approving a build handoff. <br>
-Risk: Implementation could proceed from an incomplete design if open questions, scope boundaries, or success criteria are not resolved. <br>
-Mitigation: Use the skill's handoff contract: require an approved design or mini design, a selected approach, concrete success criteria, explicit scope boundaries, and accepted or resolved open questions. <br>
-Risk: Placeholder text in a design document can leave behavior for the build step to invent. <br>
-Mitigation: Run the placeholder check described by the skill and remove TBD, TODO, vague, or unresolved entries before asking for approval. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to clarify uncertain build requests before planning or implementation. It helps choose an appropriate process depth, document decisions when needed, and ensure scope, success criteria, risks, and approval are explicit before handoff.
 
-## Reference(s): <br>
-- [Design Document Scaffold](artifact/references/design-doc.md) <br>
-- [Design System Mode](artifact/references/design-system.md) <br>
-- [Taku Think on ClawHub](https://clawhub.ai/kkenny0/taku-think) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown planning guidance, mini designs, design documents, exploration notes, and handoff instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local planning documents such as DESIGN.md or .taku exploration notes when the selected mode calls for durable records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may slow ambiguous build requests by asking clarifying questions and requiring design approval before implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Quick mode for one clear change, and review the mini design or design document before handing work to a planning or build step.
+
+Risk: Design notes may capture incorrect assumptions if scope, success criteria, or open questions are not resolved before approval.
+
+Mitigation: Confirm the selected approach, testable success criteria, explicit scope boundaries, and accepted risks before proceeding.
+
+Risk: The skill may read project context and write or append design documentation in the workspace.
+
+Mitigation: Review generated design notes before committing or sharing them, especially when project context may include sensitive details.
+
+## Reference(s):
+
+- [Taku Think ClawHub page](https://clawhub.ai/kkenny0/skills/taku-think)
+- [Design Document Scaffold](references/design-doc.md)
+- [Design System Mode](references/design-system.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown prose, design handoff notes, and optional design documents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a chat-visible mini design, append exploration notes, or write DESIGN.md when the selected mode requires durable documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -20,6 +20,15 @@ This skill is for routing Wan 2.2 Fast questions to the right APIDot docs, model
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Wan 2.2 Fast model page: https://apidot.ai/models/wan-2-2-fast
+- Read Wan 2.2 Fast API docs: https://apidot.ai/docs/wan-2-2-fast
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## Search Terms
 
 Use this skill for searches and requests phrased as Wan 2.2 Fast API, Wan 2 2 Fast, wan-2-2-fast, wan2.2 fast, wan2.2-text-to-video-fast, wan2.2-image-to-video-fast, Alibaba Wan fast video, prompt-to-video draft, image-to-video draft, or APIDot Wan API.

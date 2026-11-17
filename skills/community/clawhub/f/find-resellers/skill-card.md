@@ -1,40 +1,54 @@
-## Description: <br>
-Find Resellers helps agents identify and prioritize resellers, stockists, secondary sellers, and channel resale opportunities for ecommerce and cross-border products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find resellers, stockists, secondary sellers, and channel resale opportunities for ecommerce and cross-border products.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Business users, marketplace operators, and ecommerce teams use this skill to identify, compare, and prioritize reseller prospects by product, geography, channel model, and outreach fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested reseller leads may be incomplete, outdated, or a poor fit for the product or market. <br>
-Mitigation: Verify public signals and business fit before outreach or commercial decisions. <br>
-Risk: Search context may include unnecessary sensitive commercial details. <br>
-Mitigation: Share only the product, category, market, and channel constraints needed for the search; avoid confidential pricing, customer, or supplier data. <br>
+## Use Case:
 
+External users and commercial teams use this skill to identify and prioritize reseller, stockist, and resale channel prospects by product, market, platform, and sales model.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reseller shortlist with supporting signals, risks, and outreach recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires public-market research and user-provided product, geography, and channel criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reseller candidates and public seller signals may be incomplete, stale, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify candidate details and supporting signals before outreach or business decisions.
+
+Risk: Market research prompts may expose unnecessary confidential product, pricing, or channel information.
+
+Mitigation: Limit prompts to the minimum business context needed for reseller research.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/find-resellers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shortlist with supporting rationale, verification risks, and suggested outreach angle]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prioritized reseller prospects should include fit rationale, available supporting signals, unknowns to verify, and recommended next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

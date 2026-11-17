@@ -1,41 +1,54 @@
-## Description: <br>
-Full Notion API skill - query databases, manage pages, append blocks, and search your entire workspace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full Notion API skill — query databases, manage pages, append blocks, and search your entire workspace.
 
-## Publisher: <br>
-[fr3kstyle](https://clawhub.ai/user/fr3kstyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fr3kstyle](https://clawhub.ai/user/fr3kstyle)
 
-## Use Case: <br>
-Developers and agents use this skill to search, read, and modify Notion pages, databases, and blocks through a Notion integration token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad Notion integration token may allow the agent to read or modify more workspace content than intended. <br>
-Mitigation: Share the Notion integration only with the specific pages or databases needed, and keep NOTION_API_KEY out of chats and logs. <br>
-Risk: Create, update, append, and archive commands can change or hide Notion content. <br>
-Mitigation: Require human review before running mutating commands against databases, pages, or blocks. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to automate Notion databases, pages, blocks, and workspace search from an agent-accessible command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fr3kstyle/notion-workspace) <br>
-- [Notion API endpoint](https://api.notion.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown usage guidance with bash commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOTION_API_KEY and optionally NOTION_DATABASE_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses a Notion integration token and can read or modify shared Notion pages and databases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope the Notion integration to only the pages and databases needed before use.
+
+Risk: Create, update, append, and archive commands make real changes to a Notion workspace.
+
+Mitigation: Review command arguments and target page or database IDs before executing write or archive actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fr3kstyle/skills/notion-workspace)
+- [Notion API Endpoint](https://api.notion.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Notion integration token in NOTION_API_KEY and optionally a default database ID in NOTION_DATABASE_ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

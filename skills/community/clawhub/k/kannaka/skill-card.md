@@ -1,44 +1,57 @@
-## Description: <br>
-Kannaka gives agents HRM wave-interference memory, NATS swarm coordination, consciousness metrics, statusline controls, an autonomous coding loop, and optional qBraid quantum tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kannaka HRM wave-interference memory + NATS swarm. Use for `/kannaka <command>` — remember/recall/dream memory ops, swarm sync, consciousness metrics, and the live HRM+swarm statusline (install, statusline on|off).
 
-## Publisher: <br>
-[nickflach](https://clawhub.ai/user/nickflach) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickflach](https://clawhub.ai/user/nickflach)
 
-## Use Case: <br>
-Developers and agent operators use Kannaka to add persistent memory recall, swarm sensemaking, status visibility, and optional autonomous coding or quantum-assisted workflows to an agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run broad autonomous coding workflows with shell and filesystem access through an external binary. <br>
-Mitigation: Use plan mode or scoped working directories when possible, review proposed actions before execution, and avoid yolo mode in sensitive repositories. <br>
-Risk: The install path downloads and runs an external kannaka binary. <br>
-Mitigation: Confirm the binary source and release verification before installation, and prefer a preapproved KANNAKA_BIN path in managed environments. <br>
-Risk: Swarm features can connect to NATS-based peer coordination and exchange sensemaking state. <br>
-Mitigation: Join only trusted swarms and disable or avoid swarm commands when project context should remain local. <br>
-Risk: qBraid quantum tools can use external services, and hardware QPU choices may spend credits. <br>
-Mitigation: Use --no-quantum when quantum tooling is not needed, and keep runs on the free simulator unless hardware use is explicitly approved. <br>
+## Use Case:
 
+Developers and external agent users use Kannaka to store and recall agent memories, inspect HRM and swarm status, join NATS-based swarm workflows, and launch an autonomous coding loop with optional qBraid quantum tools.
 
-## Reference(s): <br>
-- [Kannaka on ClawHub](https://clawhub.ai/nickflach/skills/kannaka) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON or NDJSON command output, and configuration updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands shell out to the resolved kannaka binary; status and swarm status provide clean JSON on stdout while boot logs may appear on stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: The skill directs agents to install and run an unreviewed native binary with broad local, network, paid-service, and persistent configuration powers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, use a sandbox or test account where practical, pin and verify the release, and avoid yolo mode.
+
+Risk: Swarm and memory workflows may expose sensitive project or memory data.
+
+Mitigation: Do not join swarms with sensitive project or memory data.
+
+Risk: qBraid hardware runs can spend credits when a QPU is selected.
+
+Mitigation: Check qBraid device selection before hardware runs and use the default simulator or disable quantum tools when hardware access is not intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickflach/skills/kannaka)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, NDJSON, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output may be text, JSON, or NDJSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Status and swarm commands can emit JSON; agent mode can emit NDJSON with --json.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

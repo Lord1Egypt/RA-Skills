@@ -1,41 +1,61 @@
-## Description: <br>
-Use the VLM Run CLI (`vlmrun`) to interact with Orion visual AI agent for natural-language processing of images, videos, and documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the VLM Run CLI to work with Orion visual AI on images, videos, documents, and generated media through natural-language prompts.
 
-## Publisher: <br>
-[spillai](https://clawhub.ai/user/spillai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[spillai](https://clawhub.ai/user/spillai)
 
-## Use Case: <br>
-Developers and agents use this skill to install and operate the VLM Run CLI for visual AI chat, OCR, extraction, summarization, and generation tasks over images, videos, and documents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external VLM Run service and the `vlmrun[cli]` package. <br>
-Mitigation: Verify that the VLM Run package and service are trusted before installing or using the CLI. <br>
-Risk: The CLI requires a VLM Run API key. <br>
-Mitigation: Use a dedicated API key and avoid exposing it in shared shells, logs, prompts, or committed files. <br>
-Risk: Images, videos, PDFs, contracts, invoices, meeting recordings, and prompts may be externally processed and cached locally as artifacts. <br>
-Mitigation: Avoid sending confidential inputs unless external processing and local artifact caching are acceptable; configure or clean the cache directory as needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spillai/vlmrun-cli-skill) <br>
+## Use Case:
 
+Developers and external users use this skill to invoke the VLM Run CLI for visual AI chat, image and video analysis or generation, OCR, document extraction, and media summarization.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, json, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; VLM Run CLI responses may be text, JSON, or generated artifact files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VLMRUN_API_KEY; may use VLMRUN_BASE_URL and VLMRUN_CACHE_DIR; generated artifacts can be saved locally.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Input files may be uploaded to a remote VLM Run service.
+
+Mitigation: Avoid sending confidential images, videos, PDFs, contracts, invoices, or other sensitive files unless the user accepts the service's handling of uploaded data.
+
+Risk: Generated artifacts and processed files may be cached locally.
+
+Mitigation: Clear or relocate the cache when working with private artifacts, and choose explicit output directories for sensitive work.
+
+Risk: The setup command installs the external vlmrun CLI package.
+
+Mitigation: Install in an isolated virtual environment and consider pinning or reviewing the vlmrun package version before use.
+
+Risk: Continuing sessions can retain prior context and generated artifacts.
+
+Mitigation: Start fresh sessions for sensitive tasks instead of reusing prior session IDs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spillai/skills/vlmrun-cli-skill)
+- [VLM Run API endpoint](https://agent.vlm.run/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe CLI options, environment variables, session handling, JSON output mode, and artifact output directories.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Diagnosis and repair of common small engine problems, including lawnmowers, generators, chainsaws, and other small gas engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnosis and repair of common small engine problems. Use when a lawnmower won't start, a generator is sputtering, a chainsaw won't idle, or any small gas engine needs troubleshooting.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to diagnose common small gas engine failures, prioritize low-cost repairs, and provide seasonal maintenance guidance. It is intended for practical troubleshooting of equipment such as lawnmowers, chainsaws, generators, snow blowers, tillers, and pressure washers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mechanical repair guidance can be unsafe if it conflicts with equipment manuals or local conditions. <br>
-Mitigation: Follow the equipment manual, use protective gear, and treat the skill's repair steps as practical guidance to verify before acting. <br>
-Risk: Fuel handling and generator use can create fire, carbon-monoxide, or electrical backfeeding hazards. <br>
-Mitigation: Handle fuel safely, keep generators outdoors and away from openings, and use transfer switches or extension cords instead of backfeeding house wiring. <br>
-Risk: Incorrect 2-stroke or 4-stroke fuel advice can damage equipment. <br>
-Mitigation: Confirm engine type before giving fuel or oil instructions, and use manufacturer-specified oil mix ratios and fuel types. <br>
+## Use Case:
 
+External users and repair-focused agents use this skill to diagnose common small gas engine problems and provide step-by-step repair or maintenance guidance for mowers, generators, chainsaws, snow blowers, and similar equipment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/howtousehumans/small-engine-repair) <br>
-- [Publisher Profile](https://clawhub.ai/user/howtousehumans) <br>
-- [Briggs & Stratton](https://www.briggsandstratton.com/) <br>
-- [Honda Engines](https://www.honda-engines.com/) <br>
-- [Kohler Engines](https://www.kohlerengines.com/) <br>
-- [EPA](https://www.epa.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown troubleshooting steps, checklists, warnings, and structured state fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference the local filesystem tool requirement from OpenClaw metadata; no executable code was found in release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The disclosed ClawHub install command is not pinned, which may be unsuitable for privileged or credential-rich environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install path before use and prefer a pinned or otherwise trusted ClawHub installer when available.
+
+Risk: Wrong fuel or oil guidance can damage two-stroke or four-stroke engines.
+
+Mitigation: Identify the engine type before fuel or oil advice and follow the manufacturer's model-specific requirements.
+
+Risk: Generator troubleshooting can involve carbon monoxide and electrical backfeeding hazards.
+
+Mitigation: Keep generator safety warnings prominent: never run generators indoors or in enclosed spaces, place them away from openings, and use transfer switches or extension cords instead of backfeeding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/small-engine-repair)
+- [Briggs & Stratton repair manuals](https://www.briggsandstratton.com/)
+- [Honda small engine maintenance guides](https://www.honda-engines.com/)
+- [Kohler engine troubleshooting](https://www.kohlerengines.com/)
+- [EPA small engine emissions and fuel guidance](https://www.epa.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown with step-by-step diagnostic instructions, checklists, safety warnings, and state examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes localization notes for fuel terms, oil mix ratios, parts sourcing, and generator electrical standards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

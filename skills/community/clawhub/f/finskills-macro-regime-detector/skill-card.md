@@ -1,43 +1,55 @@
-## Description: <br>
-Classify the current macroeconomic regime across six states using GDP, CPI, Fed Funds rate, yield curve, and credit spread data from the Finskills API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify the current macroeconomic regime across six states using GDP, CPI, Fed Funds rate, yield curve, and credit spread data from the Finskills API.
 
-## Publisher: <br>
-[finskills](https://clawhub.ai/user/finskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finskills](https://clawhub.ai/user/finskills)
 
-## Use Case: <br>
-External users and analysts use this skill to classify the current U.S. macroeconomic regime from Finskills API data and translate the result into portfolio-positioning context. It is intended for macro analysis and education, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Finskills API key and makes external API requests for macroeconomic data. <br>
-Mitigation: Configure only the required FINSKILLS_API_KEY and avoid sharing credentials or sensitive account details in prompts. <br>
-Risk: Macro regime and allocation outputs may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as educational macro analysis and review them with qualified judgment before making investment decisions. <br>
+## Use Case:
 
+External users and financial-analysis agents use this skill to classify the current US macroeconomic regime, explain the supporting economic signals, and summarize portfolio allocation implications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/finskills/finskills-macro-regime-detector) <br>
-- [Publisher profile](https://clawhub.ai/user/finskills) <br>
-- [Source homepage](https://github.com/finskills/macro-regime-detector) <br>
-- [Finskills API](https://finskills.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with macro dashboard, regime classification, rationale, and asset allocation implications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and calls Finskills API endpoints for macroeconomic and market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends macro-analysis requests to the external Finskills API using FINSKILLS_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the API key only in the intended agent environment and avoid including private portfolio holdings, personal financial details, or other secrets in prompts.
+
+Risk: Macro regime output can be incomplete or misleading if API data is delayed, unavailable, or interpreted as investment advice.
+
+Mitigation: Treat the report as analytical guidance, review the cited economic signals, and confirm decisions with appropriate financial judgment before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/finskills/skills/finskills-macro-regime-detector)
+- [Finskills API](https://finskills.net)
+- [Finskills macro regime detector homepage](https://github.com/finskills/macro-regime-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown macro regime report with dashboard values, classification, rationale, watch triggers, and allocation implications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FINSKILLS_API_KEY and sends requests to the Finskills API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

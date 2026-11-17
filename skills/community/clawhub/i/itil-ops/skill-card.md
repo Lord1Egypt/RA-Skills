@@ -1,43 +1,54 @@
-## Description: <br>
-ITIL-aligned incident, problem, and change management for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ITIL-aligned incident, problem, and change management for AI agents.
 
-## Publisher: <br>
-[chefboyrdave21](https://clawhub.ai/user/chefboyrdave21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chefboyrdave21](https://clawhub.ai/user/chefboyrdave21)
 
-## Use Case: <br>
-Developers and operators use this skill to detect service crashes, cron failures, resource pressure, and data integrity issues, then classify incidents, identify recurring problems, assess changes, and track operational follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authority over services, cron jobs, configuration changes, and operational follow-up. <br>
-Mitigation: Start in report-only mode, define the exact services and files in scope, and require explicit approval for restarts, configuration edits, cron changes, and other service-impacting actions. <br>
-Risk: Recurring reviews inspect local logs, cron state, health endpoints, and agent memory or state files. <br>
-Mitigation: Run scheduled reviews only in environments where that local operational inspection is intended, and scope filesystem and service access to the minimum needed for the review. <br>
-Risk: The security evidence flags unsafe Python filename handling in the shell review script. <br>
-Mitigation: Fix the filename handling before operational use or restrict execution to trusted paths and controlled job files until the script is hardened. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to detect service crashes, cron failures, resource pressure, and data integrity issues, then classify incidents, identify recurring problems, and plan controlled changes.
 
-## Reference(s): <br>
-- [ITIL 4 Agent Operations Mapping](references/itil4-agent-mapping.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chefboyrdave21/itil-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured incident, problem, change, and health-review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce coordination-task templates, review reports, severity classifications, RCA prompts, change checklists, and operational follow-up recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.yaml) <br>
+Risk: The authoritative security evidence rates the release suspicious because the bundled review script has a local code-execution bug and broad access to agent operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the script before installation, especially Python filename handling, and run it only in a least-privileged environment with access limited to the operational data it must inspect.
+
+Risk: Review output and automated cron or coordination workflows may expose sensitive agent state or trigger operational actions before an operator has approved them.
+
+Mitigation: Redact report contents, make cron, task, and remediation actions explicit, and require operator approval before enabling scheduled execution or acting on generated findings.
+
+## Reference(s):
+
+- [ITIL 4 to Agent Operations Mapping](references/itil4-agent-mapping.md)
+- [ClawHub skill page](https://clawhub.ai/chefboyrdave21/skills/itil-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit ITIL_CLEAR when no issues are found or an incident/problem report when issues are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

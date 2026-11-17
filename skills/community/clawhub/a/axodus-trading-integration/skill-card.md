@@ -1,45 +1,57 @@
-## Description: <br>
-Integrate trading infrastructure (hummingbot/MCP) with paper-first mode and audit logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate trading infrastructure (hummingbot/MCP) with paper-first mode and audit logs.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate hummingbot or MCP Axodus Trading infrastructure with paper-first execution, audit logging, risk limits, and validation before any live trading mode is enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Malformed trigger metadata may prevent reliable automatic activation. <br>
-Mitigation: Review and fix trigger metadata before relying on automatic invocation. <br>
-Risk: Live trading can create financial loss if real accounts are connected before validation. <br>
-Mitigation: Keep paper mode as the default and require paper-mode tests, explicit live-mode confirmation, passing preflight checks, and configured risk limits before connecting real accounts. <br>
-Risk: Exchange API keys or other secrets could be exposed if handled insecurely. <br>
-Mitigation: Use secure secret storage and do not print, commit, or store exchange API keys in plaintext. <br>
-Risk: Trading outputs could be misread as profit guarantees. <br>
-Mitigation: Avoid guaranteed-profit claims and present trading systems as controlled-risk, experimental workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate hummingbot or MCP Axodus Trading with market data, order routing, configuration, paper-mode validation, risk gates, and audit logging.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzfshark/axodus-trading-integration) <br>
-- [trading-integration.md](artifact/trading-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with configuration contracts and validation runbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve paper-mode defaults, explicit live-mode confirmation, risk controls, audit logging, and secret-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, skill.yml, and artifact metadata) <br>
+Risk: Malformed activation metadata could make the skill trigger unpredictably or fail to activate for trading-integration tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the malformed triggers entry with explicit activation phrases before installing.
+
+Risk: Live trading paths could place real orders if enabled without deliberate user action and preflight checks.
+
+Mitigation: Keep paper mode as the default and require explicit live-mode selection plus passing risk and connectivity preflight checks.
+
+Risk: Exchange API keys or other secrets could be exposed if stored in the repository or printed in logs.
+
+Mitigation: Use environment or secret-management configuration and avoid committing or logging plaintext credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/axodus-trading-integration)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with configuration details and validation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paper mode is the default; live trading requires explicit mode selection and passing preflight checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

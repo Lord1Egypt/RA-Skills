@@ -1,44 +1,56 @@
-## Description: <br>
-Provides pay-per-use access to UN Sustainable Development Goals tracking data from World Bank sources by country, region, or globally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a pay-per-use API description for tracking UN Sustainable Development Goals progress by country, region, or globally using World Bank data.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-External users and agents can query SDG indicators for impact investment reporting, development program monitoring, and ESG sustainability analysis across countries, regions, or the world. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes a free data source while its access instructions use a paid x402 endpoint at $0.01 USDC per call. <br>
-Mitigation: Configure the agent to ask before each paid request and enforce a strict spending limit before enabling purchase capability. <br>
-Risk: The skill uses crypto micropayments on Base for API access. <br>
-Mitigation: Enable it only in environments approved for x402/USDC payments and review wallet, network, and authorization settings before use. <br>
+## Use Case:
 
+External users and developers can use this skill to understand how to query SDG indicators for impact investment reporting, development program monitoring, and emerging-market sustainability scoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-world-bank-development-goals) <br>
-- [Publisher profile](https://clawhub.ai/user/ntriq-gh) <br>
-- [ntriq x402 homepage](https://x402.ntriq.co.kr) <br>
-- [World Bank Goals endpoint](https://x402.ntriq.co.kr/world-bank-goals) <br>
-- [Service catalog](https://x402.ntriq.co.kr/services) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, JSON] <br>
-**Output Format:** [Markdown with endpoint examples and JSON response shape] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate paid x402/USDC requests when used by an agent configured to make purchases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill calls a third-party API and may involve x402 USDC payment authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify endpoint pricing, payment authorization scope, and expected call volume before using it at scale.
+
+Risk: The API response depends on external data availability and may affect reporting or scoring decisions.
+
+Mitigation: Review returned indicators, years, and trends against the underlying World Bank data before using results in formal decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-world-bank-development-goals)
+- [ntriq x402 homepage](https://x402.ntriq.co.kr)
+- [World Bank Goals API endpoint](https://x402.ntriq.co.kr/world-bank-goals)
+- [Service catalog](https://x402.ntriq.co.kr/services)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with parameter tables, JSON examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes optional API parameters for country codes, SDG goals, indicators, and year ranges.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

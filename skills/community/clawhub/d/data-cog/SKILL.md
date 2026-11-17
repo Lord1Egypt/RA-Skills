@@ -1,5 +1,5 @@
 ---
-name: data-cog
+name: data-analysis-cellcog
 description: "AI data analysis and visualization powered by CellCog. Data cleaning, exploratory analysis, hypothesis testing, statistical reports, ML model evaluation, dataset profiling, charts, dashboards. Upload CSVs and get analysis back with full Python access."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Data Cog - Your Data Has Answers, CellCog Finds Them
+# Data Analysis - Your Data Has Answers, CellCog Finds Them
 
 Data analysis and visualization from uploaded files.
 
@@ -29,6 +29,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -40,6 +41,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -191,16 +193,16 @@ Applied ML without the setup:
 
 ---
 
-## Chat Mode for Data
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Quick data cleaning, simple charts, basic statistics | `"agent"` |
-| Deep analysis with multiple techniques, ML modeling, comprehensive reports | `"agent team"` |
+**Use `chat_mode="agent", chat_tier="max"` for data analysis.** Analysis is coding work — pipelines, statistics, and modeling need the deepest tier.
 
-**Use `"agent"` for most data work.** Data cleaning, EDA, chart generation, and standard statistical analysis execute well in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| All data analysis and ML work | `chat_mode="agent", chat_tier="max"` |
+| Trivial one-column summaries | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent team"` for complex analytical projects** — multi-technique analysis, ML model comparisons, or when you need deep domain reasoning about what the data means.
+Agent Team (`chat_mode="team"`) is reserved for deep research — data analysis runs best on Agent max.
 
 ---
 
@@ -260,6 +262,7 @@ That's it. CellCog's coding agent will profile the data, run exploratory analysi
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

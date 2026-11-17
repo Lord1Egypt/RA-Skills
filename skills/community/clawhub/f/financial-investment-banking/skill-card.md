@@ -1,40 +1,58 @@
-## Description: <br>
-Investment banking productivity tools for client and market insights, deck creation, financial analysis, and transaction management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment banking productivity tools: client and market insights, deck creation, financial analysis, and transaction management.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Investment banking teams and finance professionals use this skill to draft and structure buyer lists, CIMs, teasers, process letters, deal trackers, strip profiles, pitch-deck updates, data packs, and merger analyses from user-provided deal materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation workflows may inspect local skill or template names and may invoke LibreOffice to convert slides for review. <br>
-Mitigation: Use trusted source documents and templates, and limit filesystem access to only the files needed for the task. <br>
-Risk: Financial drafts, models, and deal materials can be misleading when source materials are incomplete or unchecked. <br>
-Mitigation: Review generated banking materials against authoritative source documents before external use. <br>
+## Use Case:
 
+Investment banking professionals and finance teams use this skill to structure deal workflows, prepare buyer lists, draft transaction materials, build financial analyses, track live deals, and create client-ready profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/financial-investment-banking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, files] <br>
-**Output Format:** [Markdown guidance with structured tables, drafting outlines, and occasional inline shell commands for presentation review workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or review of PowerPoint and Excel deliverables when supporting tools and user-provided source materials are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and package.json) <br>
+Risk: The skill can involve confidential deal materials, financial models, templates, and market-data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with approved data sources and confirm proprietary-data access, local template inspection, and file creation before use, especially for live M&A matters.
+
+Risk: Generated financial analysis, models, and transaction materials can contain inaccurate figures, formulas, or unsupported assumptions.
+
+Mitigation: Require qualified finance and legal review of source traceability, formulas, assumptions, anonymization, and client-facing language before use.
+
+Risk: Presentation, spreadsheet, and document workflows may create or modify files that are used in sensitive transaction processes.
+
+Mitigation: Confirm expected file operations before execution and validate outputs against approved templates and source materials before distribution.
+
+## Reference(s):
+
+- [Financial Investment Banking on ClawHub](https://clawhub.ai/paudyyin/skills/financial-investment-banking)
+- [Anthropic financial-services repository referenced by the skill](https://github.com/anthropics/financial-services)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured drafts, tables, formulas, and inline shell commands where workflows require them]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of presentation slides, spreadsheets, transaction documents, deal trackers, buyer universes, teasers, and financial models.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

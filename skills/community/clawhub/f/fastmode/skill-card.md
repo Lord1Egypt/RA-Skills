@@ -1,46 +1,59 @@
-## Description: <br>
-Create, deploy, host, and manage CMS-backed websites from the terminal using the FastMode CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastMode helps agents create, convert, deploy, and manage CMS-backed websites from the terminal using the FastMode CLI.
 
-## Publisher: <br>
-[arihgoldstein](https://clawhub.ai/user/arihgoldstein) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arihgoldstein](https://clawhub.ai/user/arihgoldstein)
 
-## Use Case: <br>
-Developers and agents use this skill to create FastMode projects, define CMS schemas, manage content, validate website packages, deploy hosted sites, and invite clients to a portal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or update live websites. <br>
-Mitigation: Confirm the target FastMode project and approve deployments before they go live. <br>
-Risk: The skill can change CMS schemas and content for existing sites. <br>
-Mitigation: Review schema and content edits before applying them to an existing project. <br>
-Risk: The skill can invite external users to client portals. <br>
-Mitigation: Approve client invite links and permissions explicitly before they are shared. <br>
-Risk: FastMode login credentials are stored locally after authentication. <br>
-Mitigation: Log in only with the intended FastMode account and treat the local credential file as sensitive. <br>
+## Use Case:
 
+Developers and agents use this skill to build or convert websites into FastMode CMS projects, manage schemas and content, validate site packages, invite client portal users, and deploy hosted sites.
 
-## Reference(s): <br>
-- [FastMode website](https://fastmode.ai) <br>
-- [fastmode-cli npm package](https://www.npmjs.com/package/fastmode-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/arihgoldstein/fastmode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and HTML/template code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that create projects, edit CMS schemas and content, deploy live sites, manage client access, and store FastMode credentials locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.3 (source: server-resolved release metadata) <br>
+Risk: The skill relies on an external FastMode CLI package that is not pinned by the artifact metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package provenance before installing and prefer a pinned or verified fastmode-cli version.
+
+Risk: FastMode OAuth credentials can persist locally and grant access to the user's FastMode projects.
+
+Mitigation: Use the skill only in environments where persistent FastMode credentials are acceptable, and remove or revoke credentials when they are no longer needed.
+
+Risk: Commands can create projects, publish content, deploy websites, invite clients, and change client permissions.
+
+Mitigation: Confirm the exact project, content, deployment target, invite, and permission changes before running commands that affect live sites or client access.
+
+## Reference(s):
+
+- [ClawHub FastMode Skill](https://clawhub.ai/arihgoldstein/skills/fastmode)
+- [FastMode Website](https://fastmode.ai)
+- [fastmode-cli npm package](https://www.npmjs.com/package/fastmode-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, and code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide or propose FastMode CLI actions that authenticate, create projects, modify CMS data, manage client access, and deploy websites.]
+
+## Skill Version(s):
+
+1.5.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

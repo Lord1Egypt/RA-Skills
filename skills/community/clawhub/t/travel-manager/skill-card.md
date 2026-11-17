@@ -1,40 +1,53 @@
-## Description: <br>
-Comprehensive travel planning, booking, and management skill. Use when needing to plan international trips, manage multi-destination itineraries, handle family travel logistics, optimize travel costs, and coordinate complex travel arrangements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive travel planning, booking, and management skill for international trips, multi-destination itineraries, family logistics, cost optimization, and travel document coordination.
 
-## Publisher: <br>
-[alvarobcmed](https://clawhub.ai/user/alvarobcmed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alvarobcmed](https://clawhub.ai/user/alvarobcmed)
 
-## Use Case: <br>
-External users and travel coordinators use this skill to plan international and multi-destination trips, compare travel logistics, prepare document checklists, and coordinate family travel needs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel document, visa, vaccination, and route guidance may be incomplete or outdated for a user's itinerary. <br>
-Mitigation: Verify current requirements with official government, airline, and destination sources before booking or travel. <br>
-Risk: Users may share sensitive passport, health, payment, or account details while planning travel. <br>
-Mitigation: Avoid entering sensitive personal data unless using a separate trusted booking or document workflow that is intended to handle it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Family Travel Checklist](references/family-travel-checklist.md) <br>
-- [International Travel Document Requirements](references/travel-documents.md) <br>
+## Use Case:
 
+External users and agent operators use this skill to plan international and multi-destination travel, coordinate family travel needs, compare costs, and prepare travel document checklists.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance, checklists, and planning steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; travel document and visa guidance should be verified against official sources before travel.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Visa and travel document requirements may be inaccurate, outdated, or destination-specific.
+
+Mitigation: Verify passport, visa, vaccination, and entry requirements with official government or consular sources before booking or travel.
+
+Risk: Cost, routing, and booking recommendations may omit current availability, airline policy changes, or traveler-specific constraints.
+
+Mitigation: Use generated plans as coordination checklists and confirm prices, schedules, baggage rules, and family travel accommodations with travel providers.
+
+## Reference(s):
+
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Document Requirements](references/travel-documents.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown travel plans, checklists, and coordination guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential use, or hidden behavior was identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

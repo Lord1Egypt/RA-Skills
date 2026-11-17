@@ -1,42 +1,51 @@
-## Description: <br>
-Control browser automation through HTTP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control browser automation through HTTP API. Supports page navigation, element interaction (click, type, select), data extraction, accessibility snapshot analysis, screenshot, JavaScript execution, and batch operations.
 
-## Publisher: <br>
-[chenhg5](https://clawhub.ai/user/chenhg5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chenhg5](https://clawhub.ai/user/chenhg5)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to drive browser navigation, element interaction, page analysis, screenshots, JavaScript execution, and data extraction through a BrowserWing Executor HTTP API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can control browser sessions and perform sensitive actions through the configured executor. <br>
-Mitigation: Require explicit user approval before logins, uploads, purchases, posts, account changes, screenshots, page dumps, network inspection, or JavaScript execution. <br>
-Risk: A remote or untrusted BrowserWing Executor could expose browser data or execute unintended actions. <br>
-Mitigation: Install only when the executor is trusted, and prefer a local or otherwise secured executor endpoint. <br>
-Risk: Using automation on sensitive logged-in sites can expose credentials, page content, or account state. <br>
-Mitigation: Avoid sensitive logged-in sites unless necessary and review planned actions before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [browserwing ClawHub release](https://clawhub.ai/chenhg5/browserwing) <br>
-- [BrowserWing project homepage](https://github.com/browserwing/browserwing) <br>
+## Use Case:
+
+Developers and automation-focused agents use this skill to control a BrowserWing executor over HTTP for page navigation, element interaction, form filling, page analysis, screenshot capture, JavaScript execution, and data extraction.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Browser automation can expose page content, typed credentials, screenshots, JavaScript execution results, and network activity to the configured executor.
+
+Mitigation: Use only trusted executors, prefer a local executor, review the active tab before actions, and avoid sensitive sites unless that exposure is intended.
+
+Risk: Automated interactions may perform unintended clicks, form submissions, or data extraction if the target page or element reference is wrong.
+
+Mitigation: Call the accessibility snapshot after navigation or page changes, prefer current RefIDs, wait for dynamic content, and review actions before running them on important pages.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses BROWSERWING_EXECUTOR_URL to choose the BrowserWing Executor endpoint.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the BROWSERWING_EXECUTOR_URL environment variable when available, with a documented local default executor URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

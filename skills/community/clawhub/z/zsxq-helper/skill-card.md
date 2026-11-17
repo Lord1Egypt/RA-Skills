@@ -1,40 +1,54 @@
-## Description: <br>
-知识星球助手 helps an agent log in to Knowledge Planet, navigate groups, view content, and prepare posts for publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知识星球助手 helps an agent log in to zsxq.com, navigate Knowledge Planet groups, view content, and publish posts when the user requests those actions.
 
-## Publisher: <br>
-[codeteenager](https://clawhub.ai/user/codeteenager) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeteenager](https://clawhub.ai/user/codeteenager)
 
-## Use Case: <br>
-External users and agents use this skill to operate a Knowledge Planet account, including login, group navigation, content viewing, and post preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish posts from a logged-in Knowledge Planet account without a clear final user confirmation. <br>
-Mitigation: Require the agent to show the target group and exact post content, then obtain explicit user confirmation before publishing. <br>
-Risk: A shared browser session may leave the Knowledge Planet account available after the task completes. <br>
-Mitigation: Use only the intended account and log out or clear the browser session when finished. <br>
+## Use Case:
 
+External users use this skill to guide an agent through Knowledge Planet login, group navigation, content viewing, and post publishing workflows on zsxq.com.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codeteenager/zsxq-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser-operation guidance for Knowledge Planet login, navigation, viewing, and posting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and skill documentation) <br>
+Risk: The skill can publish to a user's Knowledge Planet account without a clear final approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the final post content and receive explicit user approval immediately before publishing.
+
+Risk: Login requires QR-code screenshots that may expose account access flow details.
+
+Mitigation: Share login screenshots only with the requesting user and avoid retaining them after the login flow completes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codeteenager/skills/zsxq-helper)
+- [Knowledge Planet Login](https://wx.zsxq.com/login)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and browser-operation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include instructions to show login screenshots and confirm final post content before publishing.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact version text)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

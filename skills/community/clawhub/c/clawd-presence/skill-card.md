@@ -1,42 +1,57 @@
-## Description: <br>
-Physical presence display for AI agents. Shows a customizable monogram (A-Z), status state, and current activity on a dedicated terminal/screen. Provides faster feedback than chat - glance at the display to see what the agent is doing. Use when setting up always-on agent visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawd Presence shows a customizable terminal monogram, status state, and current activity so operators can monitor AI agents at a glance.
 
-## Publisher: <br>
-[voidcooks](https://clawhub.ai/user/voidcooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[voidcooks](https://clawhub.ai/user/voidcooks)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure a dedicated terminal or screen that shows an AI agent's current state and activity at a glance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and updates local config.json and state.json files in the skill directory. <br>
-Mitigation: Install and run it only when local status and configuration files in the skill directory are acceptable. <br>
-Risk: Status messages are stored locally and displayed on screen, so sensitive task details could be exposed. <br>
-Mitigation: Keep status messages non-sensitive and avoid including secrets, credentials, or private data in display text. <br>
-Risk: Automatic configuration can inspect local Clawd or Clawdbot configuration files. <br>
-Mitigation: Use manual configuration instead of --auto when local configuration inspection is not desired. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run a local terminal display that shows an agent's monogram, current state, and activity message on a dedicated screen.
 
-## Reference(s): <br>
-- [Clawd Presence on ClawHub](https://clawhub.ai/voidcooks/clawd-presence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and status values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local status-display guidance and commands that create or update config.json and state.json in the skill directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill writes local configuration and status files in its own directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it in a location where those files are expected, and review config.json and state.json if local state matters.
+
+Risk: The --auto option may read local clawdbot configuration files to infer an agent name.
+
+Mitigation: Use manual configuration with --letter and --name when local agent configuration should not be read.
+
+Risk: PyYAML may be needed for auto-detection.
+
+Mitigation: Use a virtual environment for any optional dependency installation instead of ad hoc global pip installs.
+
+## Reference(s):
+
+- [Clawd Presence on ClawHub](https://clawhub.ai/voidcooks/skills/clawd-presence)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and local terminal status display output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local config.json and state.json files in the skill directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

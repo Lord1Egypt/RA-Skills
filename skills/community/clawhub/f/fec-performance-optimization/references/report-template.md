@@ -1,59 +1,59 @@
-# 性能分析报告模板
+#Performance analysis report template
 
 ```markdown
-# 前端性能分析报告
+# Front-end performance analysis report
 
-> 生成时间: YYYY-MM-DD HH:mm
-> 目标页面/流程: ...
-> 环境: 设备、浏览器、网络、分支或版本
+> Generation time: YYYY-MM-DD HH:mm
+> Target page/process: ...
+> Environment: Device, Browser, Network, Branch or Version
 
-## 性能目标
+## Performance target
 
-- 关注指标: LCP / CLS / INP / TBT / bundle size / memory / FPS
-- 项目预算或目标阈值
-- 用户主路径和 P95 场景
+- Focus on metrics: LCP / CLS / INP / TBT / bundle size / memory / FPS
+- Project budget or target threshold
+- User home path and P95 scene
 
-## 基线数据
+## Baseline data
 
-| 指标 | 当前值 | 采集方式 | 备注 |
+| Indicator | Current value | Collection method | Remarks |
 | --- | --- | --- | --- |
 | LCP | ... | Lighthouse / RUM / trace | ... |
 
-## 瓶颈定位
+## Bottleneck location
 
-- 加载层、渲染层、数据层、主线程或资源层问题
-- 关联文件、路由、chunk、组件或请求
-- 支持该判断的 trace、bundle、日志或截图证据
+- Problems with loading layer, rendering layer, data layer, main thread or resource layer
+- Associated files, routes, chunks, components or requests
+- Trace, bundle, log or screenshot evidence to support this judgment
 
-## 候选门禁
+## Candidate access control
 
-| 候选问题 | 指标支撑 | 定位范围 | 前端可验证性 | 结论 |
+| Candidate questions | Indicator support | Positioning scope | Front-end verifiability | Conclusion |
 | --- | --- | --- | --- | --- |
-| ... | RUM / trace / bundle / network | route / component / chunk / request | 是 / 否 / 需协作 | investigate / defer / reject |
+| ... | RUM / trace / bundle / network | route / component / chunk / request | Yes / No / Collaboration required | investigate / defer / reject |
 
-## 优先级
+## Priority
 
-| 优先级 | 问题 | 用户影响 | 风险 |
+| Priority | Issues | User Impact | Risks |
 | --- | --- | --- | --- |
 | P0 / P1 / P2 | ... | ... | ... |
 
-## 优化方案
+## Optimization plan
 
-- 具体改法
-- 替代方案
-- 可维护性、可访问性和产品行为影响
+- Specific changes to the law
+- Alternatives
+- Maintainability, accessibility and product behavior impacts
 
-## 验证对比
+## Verification comparison
 
-| 指标 | 优化前 | 优化后 | 采集方式 |
+| Indicators | Before optimization | After optimization | Collection method |
 | --- | --- | --- | --- |
 | ... | ... | ... | ... |
 
-## 剩余风险
+## Residual risk
 
-- 未覆盖设备、网络或浏览器
-- 需要后端、设计、产品或基础设施协作的部分
-- 建议监控或后续任务
+- No device, network or browser coverage
+- Parts that require backend, design, product or infrastructure collaboration
+- Suggest monitoring or follow-up tasks
 ```
 
-分析完成后，将报告保存到 `reports/performance-review-YYYY-MM-DD-HHmmss.md`，并告知用户报告路径。
+After the analysis is completed, save the report to `reports/performance-review-YYYY-MM-DD-HHmmss.md` and inform the user of the report path.

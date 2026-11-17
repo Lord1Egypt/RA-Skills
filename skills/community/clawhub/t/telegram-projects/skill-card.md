@@ -1,41 +1,59 @@
-## Description: <br>
-Telegram Projects helps an OpenClaw agent manage persistent per-group Telegram project notes, instructions, knowledge files, glossaries, and active-project context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns Telegram groups into persistent OpenClaw projects with long-lived instructions, knowledge files, project glossaries, and active-project synchronization.
 
-## Publisher: <br>
-[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to keep Telegram group conversations attached to persistent project memory, including permanent instructions, knowledge entries, generated glossaries, and active-project summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Telegram group context persistently in the local OpenClaw workspace. <br>
-Mitigation: Install only when persistent local project memory for Telegram groups is desired, and review what group information is added to project knowledge files. <br>
-Risk: The bundled scripts can create project folders and update SOUL.md, which may affect the context an agent loads for Telegram group messages. <br>
-Mitigation: Review the scripts before running them and inspect generated or modified workspace files after initialization or synchronization. <br>
+## Use Case:
 
+Developers and operators use this skill to maintain persistent per-Telegram-group project context, including reusable instructions, accumulated knowledge, glossaries, and active project status. It is suited for agents that need continuity across Telegram group conversations inside an OpenClaw workspace.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/moltbotmolty-del/telegram-projects) <br>
-- [Publisher Profile](https://clawhub.ai/user/moltbotmolty-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and local workspace file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local OpenClaw project files such as project.md, knowledge.md, glossary.md, PROJECTS.md, and SOUL.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: The skill can modify persistent OpenClaw workspace memory and SOUL.md using local Telegram session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review changes before execution, keep backups of persistent workspace files, and require explicit approval before SOUL.md updates.
+
+Risk: Insufficient chat ID validation could associate or update the wrong Telegram project context.
+
+Mitigation: Add strict chat ID validation and verify project identity before creating, syncing, or loading project memory.
+
+Risk: Telegram-controlled names or content could be loaded into agent context as trusted project material.
+
+Mitigation: Escape Markdown, treat Telegram-provided names and knowledge as untrusted data, and avoid loading them as instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moltbotmolty-del/skills/telegram-projects)
+- [Publisher profile](https://clawhub.ai/user/moltbotmolty-del)
+- [Project help artifact](artifact/PROJECT_HELP.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and Python scripts that create or update workspace project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify persistent OpenClaw workspace memory, project files, and SOUL.md when scripts are run.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

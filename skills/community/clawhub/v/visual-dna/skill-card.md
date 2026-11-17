@@ -1,45 +1,61 @@
-## Description: <br>
-Extract visual identity into reusable Design DNA JSON, then apply it to generate faithful UI from references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract visual identity into reusable Design DNA JSON, then apply it to generate faithful UI from references.
 
-## Publisher: <br>
-[leostehlik](https://clawhub.ai/user/leostehlik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leostehlik](https://clawhub.ai/user/leostehlik)
 
-## Use Case: <br>
-Developers and designers use this skill to extract reusable visual identity profiles from screenshots, images, or URLs, then apply those profiles to generate matching UI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may analyze private screenshots, internal URLs, authenticated pages, regulated data, or third-party designs when users provide them as references. <br>
-Mitigation: Use only references the user is authorized to analyze, avoid sensitive or regulated inputs, and review generated Design DNA before committing or sharing it. <br>
-Risk: Generated Design DNA or UI can reflect inaccurate or unauthorized interpretations of a visual reference. <br>
-Mitigation: Report the references used, review the extracted profile against the source, and ask for clarification when a reference is ambiguous, unavailable, or requires credentials. <br>
+## Use Case:
 
+Developers and designers use this skill to analyze supplied screenshots, images, or URLs and capture their visual identity in reusable Design DNA JSON, then generate UI that follows those references. It is intended for explicit reference matching and design-system work.
 
-## Reference(s): <br>
-- [Design DNA Schema](references/schema.md) <br>
-- [Generation Guide](references/generation-guide.md) <br>
-- [Sample Design DNA JSON](examples/sample-design-dna.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leostehlik/visual-dna) <br>
-- [Inspired Design DNA Repository](https://github.com/zanwei/design-dna) <br>
-- [No Slop UI Pairing](https://github.com/LeoStehlik/no-slop-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, guidance] <br>
-**Output Format:** [Design DNA JSON, Markdown guidance, and self-contained HTML/CSS/JS code when generating UI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports which references were used and asks before generation after analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: SKILL.md metadata and server release evidence) <br>
+Risk: The security review found the scan was partial: a referenced path was missing, and scanner behavior for the CLI-installed skill could not be established.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed skill and its behavior before relying on its results.
+
+Risk: Design data extracted from references may contain information that should not be shared publicly.
+
+Mitigation: Treat extracted design data as potentially nonpublic until its sharing scope is confirmed.
+
+Risk: Analyzing a supplied URL contacts its host, and generated UI may use external assets or dependencies.
+
+Mitigation: Use intended references and review the reported external URLs; pin or vendor JavaScript dependencies as described in the generation guide.
+
+## Reference(s):
+
+- [Design DNA Schema](references/schema.md)
+- [Generation Guide](references/generation-guide.md)
+- [ClawHub release page](https://clawhub.ai/leostehlik/skills/visual-dna)
+- [Design DNA inspiration](https://github.com/zanwei/design-dna)
+- [no-slop-ui companion guidance](https://github.com/LeoStehlik/no-slop-ui)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Code, Files, Guidance]
+
+**Output Format:** [Design DNA JSON and generated UI code, typically self-contained HTML with inline CSS and JavaScript.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the supplied references and any external dependency URLs used.]
+
+## Skill Version(s):
+
+0.2.3 (source: frontmatter, server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,6 +2,9 @@
 
 > The titan of Weimar who made striving itself a form of beauty — Goethe's sixty-year odyssey with *Faust* forged the definitive myth of intellectual hunger, the soul that refuses to be satisfied.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo)
+
+
 ## Overview
 | Property | Value |
 |----------|-------|
@@ -69,3 +72,23 @@ Brands that embody the pursuit of excellence and universal human values. The Goe
 
 ---
 *Distilled by InspiredHub Taste Engine from 44 works in the collection, including Faust, The Sorrows of Young Werther, and Italian Journey.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-goethe)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

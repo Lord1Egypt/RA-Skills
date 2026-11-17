@@ -1,37 +1,48 @@
-## Description: <br>
-When the user wants to create, optimize, or audit integrations, plugins, or extensions pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating, optimizing, or auditing integrations, plugins, extensions, API integrations, and marketplace pages.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers, product teams, and site builders use this skill to plan integrations and plugins pages, including catalog structure, per-integration copy, internal links, and SEO metadata.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger on broad terms such as plugins or marketplace, which can be imprecise for non-page tasks.
+
+Mitigation: Confirm the user is asking for integrations, plugins, extensions, API integrations, or marketplace page planning; choose a more specific skill for other tasks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to plan integrations, plugins, extensions, API integration, and marketplace pages for SaaS, tooling, and developer products. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated copy or page structure may be too broad or inaccurate for a specific product because the trigger covers integrations, add-ons, plugins, marketplaces, and API integration pages. <br>
-Mitigation: Use the skill for integrations-related pages and review generated copy, platform claims, CTAs, and SEO metadata before publishing. <br>
+**Output Format:** [Markdown guidance with structured page sections, copy recommendations, link suggestions, and SEO metadata.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with page structure, copy recommendations, internal link suggestions, and SEO metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, install steps, or background behavior; output should be reviewed before publishing.] <br>
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.1 (source: artifact frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+name: aimegeo-visual-brief
+slug: aimegeo-visual-brief
+display_name: "图片创意 brief 与生成"
+description: "围绕用户给出的文章、产品事实和使用场景制作可执行视觉 brief 与生图提示；宿主支持生图时直接生成并检查图片。"
+version: 1.0.2
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-visual-brief"
+tags:
+  - "image-brief"
+  - "image-generation"
+  - "asset-inventory"
+trigger_words:
+  - "给文章设计配图"
+  - "为这篇文章生成封面"
+  - "检查生成图片"
+self_test: python3 scripts/self_test.py

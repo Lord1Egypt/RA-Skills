@@ -1,44 +1,66 @@
-## Description: <br>
-For client and program development on Solana compression, including rent-free per-user state, DePIN registrations, custom compressed accounts, and create, update, close, burn, and reinitialize workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers build Solana clients and programs that use Light Protocol compressed accounts for lower-cost, rent-free per-user state, DePIN registrations, nullifier PDAs, and custom compressed account operations.
 
-## Publisher: <br>
-[tilo-14](https://clawhub.ai/user/tilo-14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tilo-14](https://clawhub.ai/user/tilo-14)
 
-## Use Case: <br>
-Developers and engineers use this skill to build Solana client and program workflows with Light Protocol compressed accounts, compressed PDAs, nullifier PDAs, and ZK Compression SDKs. It helps generate implementation guidance, code patterns, shell commands, and troubleshooting references for TypeScript, Rust, Anchor, and native Solana projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live-network examples may use a Solana keypair, RPC API key, or transaction instructions that affect wallet funds or deployed programs. <br>
-Mitigation: Prefer localnet or devnet, use a low-balance development wallet, keep RPC keys private, review generated edits and dependency installs, and explicitly approve any mainnet transaction, deployment, close, burn, or reinitialize action before it runs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZK Compression documentation](https://www.zkcompression.com) <br>
-- [Compressed PDAs](references/compressed-pdas.md) <br>
-- [Client guide](references/client.md) <br>
-- [Nullifier PDAs](references/nullifier-pdas.md) <br>
-- [Error codes reference](references/error-codes.md) <br>
-- [light-sdk API docs](https://docs.rs/light-sdk/latest/light_sdk/) <br>
-- [light-client API docs](https://docs.rs/light-client/latest/light_client/) <br>
-- [@lightprotocol/stateless.js API docs](https://lightprotocol.github.io/light-protocol/stateless.js/index.html) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement and debug Solana compression workflows, including compressed PDA programs, client proof fetching, account packing, nullifier PDAs, and related error handling.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference project files, Solana wallets, RPC keys, CLI tools, SDK versions, and network-specific transaction steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Compressed-account examples may be unsafe if copied directly into production user-owned account flows.
+
+Mitigation: Review update, reinitialize, close, burn, and batch-create flows before production use; add explicit owner or delegation checks and derive addresses from signer- or tenant-bound seeds where appropriate.
+
+Risk: Devnet and mainnet workflows can rely on wallet keypairs and RPC API keys.
+
+Mitigation: Prefer localnet and disposable wallets during development, avoid funded mainnet keypairs, and load API keys and payer keypairs from a secrets manager in production.
+
+Risk: Mutable installation or tooling steps can change behavior across runs.
+
+Mitigation: Pin installed tooling and skill source to reviewed versions before using generated guidance in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tilo-14/skills/solana-compression-dev)
+- [ZK Compression documentation](https://www.zkcompression.com)
+- [Compressed PDAs](references/compressed-pdas.md)
+- [Client guide](references/client.md)
+- [Nullifier PDAs](references/nullifier-pdas.md)
+- [Error Codes Reference](references/error-codes.md)
+- [Light Protocol skills source](https://github.com/Lightprotocol/skills)
+- [Light Protocol program examples](https://github.com/Lightprotocol/program-examples)
+- [light-sdk API documentation](https://docs.rs/light-sdk/latest/light_sdk/)
+- [light-client API documentation](https://docs.rs/light-client/latest/light_client/)
+- [stateless.js API documentation](https://lightprotocol.github.io/light-protocol/stateless.js/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Rust, TypeScript, TOML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include localnet, devnet, and mainnet workflows; devnet and mainnet examples can require an API_KEY and Solana keypair configuration.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

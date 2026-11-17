@@ -1,0 +1,107 @@
+# house-ops 购房需求画像
+# 复制为 config/profile.yml 后填写（该文件不入库）。字段可留空，intake 模式会帮你生成。
+
+# ===== 市场（多市场支持；市场清单与开放数据源见 docs/markets/ 与 templates/official-sources.<market>.yml）=====
+# 已登记市场：cn（中国大陆）· uk（英格兰与威尔士）· ie · fr · nl · de · es（欧洲）
+#             hk（中国香港）· sg（新加坡）· jp（日本）（亚太）
+# 新增市场 = templates/ 下补 official-sources.<市场族>.yml 与 policy-notes.<市场族>.yml，此处无需改代码。
+market:
+  code: cn                 # 市场码：cn | uk | ie | fr | nl | de | es | hk | sg | jp
+  country: ""              # 国家/地区的准确范围，如：英国（英格兰与威尔士）——苏格兰 LBTT/威尔士 LTT 与英格兰 SDLT 不同
+  city_local: ""           # 城市本地写法（海外政务源按本地名检索），如：London / Amsterdam / München / 東京
+  currency: CNY            # ISO 4217：CNY | GBP | EUR | HKD | SGD | JPY —— 决定金额符号与税费口径
+  price_scale: wan         # wan = budget 里的数字 × 1 万本币（中国/中国香港/日本习惯：400 = 400 万）
+                           # whole = 本币整额（欧洲与新加坡习惯：450000 = £450,000 / S$450,000）
+  area_unit: sqm           # sqm（㎡）| sqft（平方英尺，英国/中国香港/新加坡挂牌常用；1 sqm ≈ 10.764 sqft）
+  buyer_class: ""          # 税费分档关键（欧洲/新加坡）：first_time_buyer | home_mover | additional_property
+                           #   | buy_to_let | non_resident | company
+                           # 新加坡另需公民/永久居民/外国人的身份分档（ABSD 0% / 5% / 60%）
+                           # 市场为中国时留空（中国分档看 eligibility + 首套/二套）
+  residency_status: ""     # 身份与居留：海外填居留/签证状态与非居民身份（影响附加税与贷款成数）；
+                           # 日本填是否永住（直接决定房贷成数与能否用 Flat 35）；中国填户籍或社保年限
+  tenure_preference: ""    # 产权形态偏好：freehold | leasehold | share_of_freehold | erfpacht（荷兰地租）
+                           #   | copropriete（法国共有）| 借地権（日本租赁权）| 无偏好
+  min_lease_years: null    # 仅 leasehold 市场（uk/ie）：可接受的最短剩余租期年限；
+                           #   低于 80 年转售与融资显著变差，低于用户设定值直接一票否决
+  deal_data_note: ""       # 可留空：nl/de/es/jp 无单套级开放成交价，系统会自动提示（见 modes/_shared.md）
+
+buyer:
+  self_description: ""        # 家庭结构一句话，如：三口之家，女儿 5 岁，奶奶常来小住
+  city: ""                    # 目标城市，如：杭州
+  target_districts: []        # 目标区/板块，可空，如：[未来科技城, 崇贤]
+  work_location: ""
+  work_location_coords: null   # [经度, 纬度]；intake 采集时用户提供或指令直接写入，未设置时地图不绘制通勤圈           # 主通勤锚点，如：城西银泰城
+  commute_max_minutes: null   # 主通勤单程上限（分钟）
+  commute_by_metro: null      # 依赖地铁？true/false/null
+
+family:                       # 家庭结构 → 由 intake 自动翻译成 Fit 衍生需求与硬性 DQ 候选
+  children:                   # 孩子清单（年龄驱动学区紧迫度、房间数、电梯/楼层需求）
+    - age: null               # 当前年龄
+      school_stage: ""        # 未入园 | 幼儿园 | 小学 | 初中 | 高中
+      enrollment_year: null   # 预计入学年份（对口学校与学位核实的基准年）
+  elderly:                    # 老人照护
+    co_resident: null         # 同住？true/false
+    frequent_stay: null       # 常来小住（每周/每月）？true/false
+    mobility_limited: null    # 行动不便？true → 电梯+低楼层/无障碍为硬需求
+    hospital_need: ""         # none | community(社区医院即可) | grade_a(需近三甲)
+  special_needs: []           # 其他特殊需求，如：[无障碍, 养大型犬, 居家办公需独立房间,
+                              #      噪音敏感, 婴儿车出行, 对电梯无要求但需一层储物]
+  second_commuter:            # 双职工第二通勤锚点（可选）
+    location: ""
+    commute_max_minutes: null
+
+budget:
+  # 键名 `_wan` 是历史命名，读数口径由 market.price_scale 决定：
+  #   price_scale: wan   → 数字 × 1 万本币（400 = 400 万元 / 400 万欧元）
+  #   price_scale: whole → 本币整额（450000 = £450,000 / €450,000）
+  total_range_wan: [null, null]  # 总价区间
+  walk_away_wan: null            # 绝对上限：超过无论多喜欢都不考虑
+  payment: ""                    # cash | loan | mixed
+  down_payment_wan: null         # 首付/现金预算
+  loan_type: ""                  # 中国：公积金 | 商贷 | 组合；欧洲：mortgage | 无
+  monthly_payment_comfort_wan: null  # 月供心理舒适上限
+
+eligibility:
+  purchase_qualification: ""   # 已确认 | 待确认 | 不受限（不限购城市）
+  hukou_or_social_security: "" # 中国市场：户籍/社保情况一句话（欧洲市场留空，看 market.residency_status）
+  notes: ""                    # 其他资格说明（如公积金缴存城市与年限；西班牙的 NIE、荷兰的融资承诺函等）
+
+intent:
+  purpose: ""                  # own_stay(自住) | investment(投资) | mixed
+  timeline: ""                 # 计划购入/入住时间，如：1 年内
+  holding_horizon_years: null  # 预计持有年限（投资/流通性判断用）
+
+preferences:
+  layout: ""                   # 户型，如：三居两卫（孩子+老人同住通常 ≥3 居）
+  size_range_sqm: [null, null] # 面积区间；单位按 market.area_unit（sqm = ㎡，sqft = 平方英尺）
+  building_age_max: null       # 可接受最老房龄（年），如 20
+  elevator_required: null      # 必须电梯？true/false/null（有老人/幼儿默认应 true）
+  floor_preference: ""         # 如：老人同住 → 低楼层优先；不顶楼不一楼
+  decoration: ""               # 毛坯 | 简装可住 | 精装优先 | 无要求
+  school_district_weight: ""   # high | medium | low | none（有学龄孩子时 intake 会建议 ≥high）
+  orientation_preference: ""   # 如：南北通透优先
+  community_quality_weight: "" # 小区软素质（物业/邻居/环境）权重：high | medium | low
+  hospital_weight: ""          # 医疗配套权重：high | medium | low（老人常驻建议 ≥medium）
+  shopping_weight: ""          # 商业配套权重：high | medium | low（山姆/Costco/大型商超等）
+  must_have: []                # 硬需求清单（命中缺失即 Fit ⛔）
+  nice_to_have: []             # 加分项
+  exclude: []                  # 明确排除：小区/开发商/类型，如：[商办公寓, 回迁混居, 某某开发商]
+
+# 个性化权重（语义，供 Fit/Global 定性判断用，非算术系数）
+weights:
+  can_compromise: []           # 可让步的维度/偏好，如：[装修, 面积下限]
+  cannot_compromise: []        # 不可让步，如：[通勤上限, 电梯, 学区]
+  tradeoff_notes: ""           # 取舍原则一句话，如：预算与学区冲突时保学区
+
+language:
+  output: zh                   # 输出语言：zh（默认）| en
+  currency_unit: 万元          # 金额展示单位；market.currency 非 CNY 时按 market.price_scale 换算展示
+  price_per_unit: 元/㎡        # 单价展示单位；market.area_unit = sqft 时改按 元/sqft（或本币/sqft）
+
+thresholds:                    # 与 _shared.md 默认一致，可在此下调/上调
+  deep_dive_min: 4.0           # 深挖/谈判建议门槛
+  give_up_below: 3.5           # 低于此分建议放弃
+
+research_budget:
+  evaluate_max_searches: 8     # 单次评估联网检索上限
+  deep_dive_max_searches: 12   # 单次深挖联网检索上限

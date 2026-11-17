@@ -1,45 +1,58 @@
-## Description: <br>
-A股市场全面复盘，整合指数表现、板块热力图、涨跌停、风格轮动、市场温度分析。触发词：市场复盘、今天市场怎么样、市场分析、每日复盘、市场概览。适用场景：对当日A股市场进行全面复盘、生成综合市场分析报告。不适用场景：个股深度分析、单一指标分析、债券/基金分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews the current A-share market by combining index performance, sector heatmaps, limit-up and limit-down activity, style rotation, and market temperature into a structured market analysis report.
 
-## Publisher: <br>
-[ksky521](https://clawhub.ai/user/ksky521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ksky521](https://clawhub.ai/user/ksky521)
 
-## Use Case: <br>
-External users and analysts use this skill to generate a same-day A-share market recap that combines index performance, sector heatmaps, limit-up/limit-down activity, style rotation, market temperature, and related findings into a structured report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a DAXIAPI token and may expose credentials if users paste tokens into chat transcripts. <br>
-Mitigation: Configure credentials outside shared transcripts where possible, prefer environment variables or trusted local CLI configuration, and avoid echoing token values. <br>
-Risk: The workflow runs the external npm package daxiapi-cli with @latest, which can change behavior between runs. <br>
-Mitigation: Install only if DAXIAPI is trusted, review the CLI before use when needed, and pin a known version for controlled environments. <br>
-Risk: Market data may be delayed, unavailable on non-trading days, or inconsistent across dimensions. <br>
-Mitigation: Label data timestamps, disclose missing or stale data, cross-check dimensions, and present uncertain conclusions as conditional analysis. <br>
-Risk: A market recap can be mistaken for individualized investment advice. <br>
-Mitigation: Keep the report neutral, include risk warnings and disclaimers, avoid deterministic predictions, and use the skill only for explicit A-share market recap requests. <br>
+## Use Case:
 
+External users, analysts, and agent operators use this skill to generate a same-day, multi-dimensional review of the A-share market. It is intended for broad market recap reports, not individual stock deep dives or bond, fund, futures, or foreign-exchange analysis.
 
-## Reference(s): <br>
-- [DAXIAPI](https://daxiapi.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ksky521/xiapi-market-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with tables, inline shell commands, risk notes, and disclaimer text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DAXIAPI market data via npm CLI commands and should label data timestamps, missing data, and analysis limitations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill repeatedly instructs agents to run the latest npm version of daxiapi-cli during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review a trusted daxiapi-cli version before operational use instead of relying on @latest.
+
+Risk: API token setup examples may expose secrets if tokens are pasted directly into shell commands or retained in logs.
+
+Mitigation: Use a secret store, hidden input, or carefully scoped environment variable, and avoid sharing terminal history or logs that may contain tokens.
+
+Risk: Market recap output may be mistaken for personalized investment advice.
+
+Mitigation: Keep conclusions data-grounded and neutral, preserve the disclaimer and risk warnings, and avoid deterministic predictions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ksky521/skills/xiapi-market-review)
+- [Daxiapi data service](https://daxiapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown market-review report with tables, concise analysis, cited data-source commands, risk notices, and setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to use daxiapi CLI data and to include data timing, risk warnings, and a disclaimer in generated reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

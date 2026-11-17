@@ -1,0 +1,21 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "rowCount": 3,
+    "pageCount": 2,
+    "list": [
+      {
+        "id": 203,
+        "title": "北京市第三医院实验室设备采购意向公告",
+        "publishTime": "2026-06-22",
+        "budgetAmount": "1250000.00",
+        "planPurchaseDate": "2026-10",
+        "purchasingUnit": "北京市第三医院",
+        "areaName": "北京市-北京市-朝阳区",
+        "url": "https://www.qianlima.com/purchase-203.html"
+      }
+    ]
+  },
+  "success": true
+}

@@ -1,45 +1,59 @@
-## Description: <br>
-Analyzes Chinese A-share stocks and ETFs by fetching public market data, calculating MA, MACD, and RSI indicators, and producing short-term trend, signal, score, and risk summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes short-term trends for Chinese A-share stocks and ETFs using bundled data-fetching and technical-analysis scripts.
 
-## Publisher: <br>
-[yuanfuc](https://clawhub.ai/user/yuanfuc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanfuc](https://clawhub.ai/user/yuanfuc)
 
-## Use Case: <br>
-External users and developers use this skill to inspect short-term technical conditions for A-share stocks and ETFs, including intraday snapshots, recent daily trends, buy/sell/hold signals, 0-10 scores, and technical risk hints. The output is technical reference only and is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock names or tickers may be sent to external public market-data providers. <br>
-Mitigation: Use only symbols or names that are appropriate to share with those providers, and avoid sending confidential portfolio context. <br>
-Risk: Dependency setup can install Python packages into the active interpreter. <br>
-Mitigation: Run setup and analysis scripts in a virtual environment and review dependency installation before execution. <br>
-Risk: Buy, sell, hold, score, and risk outputs are technical signals that may be incorrect, delayed, or incomplete. <br>
-Mitigation: Treat outputs as technical reference, not investment advice, and combine them with independent research and user risk tolerance. <br>
+## Use Case:
 
+External users and developers use this skill to inspect intraday snapshots and recent daily technical trends for A-share stocks and ETFs, including trend direction, weekly and daily percentage moves, buy/sell/hold signal, score, and risk hints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanfuc/china-stock-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/yuanfuc) <br>
-- [Sina Finance](https://finance.sina.com.cn) <br>
-- [Sina real-time quote endpoint](https://hq.sinajs.cn/list={codes_str}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and JSON-like analysis fields, with optional shell commands for bundled Python scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes trend, weekly_change_pct, today_change_pct, signal, score, MA/MACD/RSI context, reversal hints, and risk level when data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Dependency installation may pull unpinned packages into the active Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a virtual environment and review or pin dependencies before running setup_env.py.
+
+Risk: Stock symbols or names may be sent to external market-data APIs.
+
+Mitigation: Avoid submitting sensitive watchlists or private strategy context, and disclose external API use where required.
+
+Risk: Buy/sell/hold signals may be mistaken for financial advice.
+
+Mitigation: Present outputs as short-term technical reference only and include the non-investment-advice caveat in user-facing summaries.
+
+## Reference(s):
+
+- [China Stock Analyzer on ClawHub](https://clawhub.ai/yuanfuc/skills/china-stock-analyzer)
+- [Sina Finance](https://finance.sina.com.cn)
+- [Sina real-time quote endpoint pattern](https://hq.sinajs.cn/list={codes_str})
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with JSON outputs from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes technical indicators, buy/sell/hold signals, scores, risk hints, and a financial-advice caveat.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

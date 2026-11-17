@@ -1,0 +1,64 @@
+name: Feature request
+description: Suggest a new capability, pattern, or improvement for the k12-teacher skill.
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Feature requests should align with the project purpose statement in
+        README_FOR_AI.md. Significant changes to the five-tier model or the
+        five-phase workflow require an issue discussion before implementation
+        (see GOVERNANCE.md).
+  - type: textarea
+    id: scenario
+    attributes:
+      label: User scenario
+      description: Who benefits, and in what teaching situation? Include grade, subject, and learner profile where relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should be added or changed? Reference specific files, sections, or contracts where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: benefit
+    attributes:
+      label: Expected benefit
+      description: How does this improve instructional quality, curriculum coverage, or usability?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches or workarounds did you consider, and why were they rejected?
+    validations:
+      required: false
+  - type: dropdown
+    id: tier-impact
+    attributes:
+      label: Capability tier impact
+      description: Which tiers does this affect? See SKILL.md.
+      multiple: true
+      options:
+        - Tier 0
+        - Tier 1
+        - Tier 2
+        - Tier 3
+        - Tier 4
+        - Cross-tier or structural
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I searched existing issues and discussions for similar requests.
+          required: true
+        - label: I reviewed SKILL.md and the constraints in CONTRIBUTING.md.
+          required: true

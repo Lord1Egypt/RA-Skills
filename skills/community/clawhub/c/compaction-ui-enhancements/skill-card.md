@@ -1,50 +1,64 @@
-## Description: <br>
-Background memory compaction with auto-trigger, chat summary paragraph, configurable threshold, model selector, settings tab, and result storage for OpenClaw Control UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Background memory compaction with auto-trigger, chat summary paragraph, configurable threshold, model selector, settings tab, and result storage for OpenClaw Control UI.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add memory compaction controls that reduce active chat context, show compaction status in the UI, and preserve optional reviewable summaries. It supports both manual and automatic compaction workflows for long-running agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compaction can send conversation-derived content through the configured chat model or authentication provider. <br>
-Mitigation: Review the selected compaction model and provider credentials before enabling automatic compaction. <br>
-Risk: Automatic compaction may summarize or reduce active chat context without a manual action once token usage crosses the configured threshold. <br>
-Mitigation: Review Compaction settings after installation, adjust the threshold, or disable automatic compaction when manual control is required. <br>
-Risk: Stored compaction results may retain conversation-derived summary text. <br>
-Mitigation: Leave result storage disabled unless saved summaries are needed, and clear stored results when they are no longer required. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add configurable manual and automatic chat memory compaction, background status toasts, compaction settings, model selection, and optional result review to the OpenClaw Control UI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maverick-software/compaction-ui-enhancements) <br>
-- [Skill overview](SKILL.md) <br>
-- [Auto-compaction trigger](references/auto-compaction.ts) <br>
-- [Compaction settings view](references/compaction-settings-view.ts) <br>
-- [Compaction settings RPC](references/compaction-rpc.ts) <br>
-- [Conversation summary instruction](references/compact-summary-injection.ts) <br>
-- [Context gauge UI changes](references/context-gauge-ui.diff.md) <br>
-- [Chat history filters](references/chat-filters.diff.md) <br>
-- [Session compaction RPC changes](references/sessions-compact-rpc.diff.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript snippets and diffs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces implementation guidance for OpenClaw compaction UI, settings, and summary behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automatic compaction can send chat session content to an LLM in the background.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setting before installation and disable auto-compaction for chats containing secrets, proprietary code, personal data, or regulated information.
+
+Risk: Stored compaction summaries may preserve sensitive conversation details in local plaintext.
+
+Mitigation: Keep result storage disabled for sensitive sessions and ensure the agent directory has owner-only filesystem permissions.
+
+Risk: Custom compaction models may use provider credentials and auth paths configured for the agent.
+
+Mitigation: Select compaction models only after confirming the intended provider, credential source, and fallback behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/compaction-ui-enhancements)
+- [auto-compaction.ts](references/auto-compaction.ts)
+- [chat-filters.diff.md](references/chat-filters.diff.md)
+- [compact-summary-injection.ts](references/compact-summary-injection.ts)
+- [compaction-rpc.ts](references/compaction-rpc.ts)
+- [compaction-settings-view.ts](references/compaction-settings-view.ts)
+- [context-gauge-ui.diff.md](references/context-gauge-ui.diff.md)
+- [sessions-compact-rpc.diff.md](references/sessions-compact-rpc.diff.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces UI and RPC implementation guidance for OpenClaw compaction behavior; optional stored summaries may omit summary text when result storage is disabled.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

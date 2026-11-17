@@ -1,44 +1,60 @@
-## Description: <br>
-Llmwiki is an LLM-powered personal knowledge base that compiles raw documents into structured, interlinked trilingual wiki articles with emergent taxonomy and self-healing, served through CLI, HTTP, and MCP workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Llmwiki helps agents and users turn raw documents into a local, LLM-compiled knowledge base with interlinked trilingual wiki articles, emergent taxonomy, querying, and CLI, HTTP, and MCP access.
 
-## Publisher: <br>
-[hosuke](https://clawhub.ai/user/hosuke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hosuke](https://clawhub.ai/user/hosuke)
 
-## Use Case: <br>
-Developers, researchers, and agents use Llmwiki to ingest local files, PDFs, and URLs into a personal knowledge base, compile them into linked multilingual wiki articles, and search or query that knowledge through CLI, HTTP, or MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires user-supplied LLM credentials and sends content to the configured LLM endpoint. <br>
-Mitigation: Use a dedicated API key with usage limits and configure only trusted OpenAI-compatible endpoints. <br>
-Risk: Ingested documents, URLs, and Q&A content may be stored locally and used in later wiki compilation or query workflows. <br>
-Mitigation: Ingest only content that is appropriate to store locally and process through the selected LLM provider. <br>
-Risk: Optional web, API, MCP, and autonomous worker modes add network, file, and mutating-operation exposure in the runtime environment. <br>
-Mitigation: Keep optional servers and the worker restricted to trusted environments, and apply binding, proxy, and authentication controls before public exposure. <br>
+## Use Case:
 
+External developers and agent users use Llmwiki to build, query, and maintain a personal knowledge base from local files, URLs, PDFs, and corpus plugins. Agents can connect through MCP or HTTP to search compiled concepts, inspect raw sources, ingest new material, compile wiki pages, lint the knowledge graph, and export structured content.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hosuke/llmwiki) <br>
-- [Project homepage](https://github.com/Hosuke/llmbase) <br>
-- [Demo](https://huazangge-production.up.railway.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON or YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI, HTTP, and MCP usage guidance for local wiki ingest, compile, query, lint, export, and server workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.0 (source: server release evidence and frontmatter) <br>
+Risk: The optional web or API server can permit unauthenticated persistent writes if exposed on a shared or public network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind services to localhost or place them behind authentication, a reverse proxy, and rate limits before exposing them beyond a trusted environment.
+
+Risk: The install command pulls external package code without pinning a version.
+
+Mitigation: Install in an isolated environment and pin the package version during deployment.
+
+Risk: Documents provided for compilation or question answering may be sent to the configured LLM API.
+
+Mitigation: Use an approved OpenAI-compatible endpoint and avoid ingesting sensitive documents unless that endpoint is authorized for the data.
+
+## Reference(s):
+
+- [Llmwiki ClawHub skill page](https://clawhub.ai/hosuke/skills/llmwiki)
+- [Publisher profile](https://clawhub.ai/user/hosuke)
+- [llmbase GitHub repository](https://github.com/Hosuke/llmbase)
+- [Hosted demo](https://huazangge-production.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON snippets, and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include MCP server configuration, CLI commands, setup guidance, operational workflows, and generated or updated local wiki markdown.]
+
+## Skill Version(s):
+
+0.8.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

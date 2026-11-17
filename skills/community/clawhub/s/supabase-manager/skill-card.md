@@ -1,40 +1,54 @@
-## Description: <br>
-Manage Supabase projects from the command line by querying tables, changing rows, managing RLS policies, handling auth users, and working with storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Supabase projects from the command line, including querying tables, changing rows, managing RLS policies, handling auth users, and working with storage.
 
-## Publisher: <br>
-[vanthienha199](https://clawhub.ai/user/vanthienha199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vanthienha199](https://clawhub.ai/user/vanthienha199)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and modify Supabase project data, policies, auth users, and storage through REST API calls and formatted Markdown results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on live Supabase databases, including inserts, updates, deletes, schema changes, and raw SQL or RPC execution. <br>
-Mitigation: Review before installing, use a test Supabase project first, and require explicit confirmation before any insert, update, delete, schema change, or raw SQL execution. <br>
-Risk: Supabase access can be over-scoped or exposed if credentials are handled loosely. <br>
-Mitigation: Use restricted anon keys protected by Row Level Security, provide credentials through environment variables, and do not use service-role keys. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect and operate Supabase projects through REST API calls, including table queries, row mutations, auth-user work, storage operations, and RLS-related tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vanthienha199/supabase-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and formatted Markdown tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUPABASE_URL and SUPABASE_ANON_KEY; requests confirmation before update or delete operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can modify remote Supabase data through generated REST and RPC shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for state-changing operations, confirm the Supabase URL, and review table names, filters, and payloads before execution.
+
+Risk: Credential handling or over-privileged keys could expose data beyond the intended RLS boundary.
+
+Mitigation: Use only the Supabase anon key, never provide a service-role key, rely on RLS policies, and store credentials only in a secure credential store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vanthienha199/skills/supabase-manager)
+- [Publisher profile](https://clawhub.ai/user/vanthienha199)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with formatted tables and inline bash/curl command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SUPABASE_URL and SUPABASE_ANON_KEY; query results over 50 rows are summarized by showing the first 20 rows.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

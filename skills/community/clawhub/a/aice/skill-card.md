@@ -1,46 +1,60 @@
-## Description: <br>
-AICE tracks bidirectional agent and user confidence across TECH, OPS, JUDGMENT, COMMS, and ORCH domains with scoring triggers, runtime pool scoring, and optional Hub synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AICE tracks bidirectional confidence for agents, users, and teams across TECH, OPS, JUDGMENT, COMMS, and ORCH domains.
 
-## Publisher: <br>
-[brugillo](https://clawhub.ai/user/brugillo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brugillo](https://clawhub.ai/user/brugillo)
 
-## Use Case: <br>
-External developers and agent operators use AICE to monitor agent behavior, record confidence changes, identify recurring anti-patterns, and compare agent or runtime performance. It is intended for teams that want persistent confidence scoring and are prepared to manage local state and optional Hub synchronization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill persists behavioral confidence profiles. <br>
-Mitigation: Install only when persistent scoring is desired, avoid storing sensitive data in shared state files, and review memory writes before use. <br>
-Risk: Optional Hub synchronization can send scoring events externally. <br>
-Mitigation: Keep Hub sync disabled unless explicitly needed, require explicit commands for registration or sync, and do not store real API keys in shared files. <br>
-Risk: The skill contains broad behavioral instructions that could affect agent operation beyond scoring. <br>
-Mitigation: Require separate approval before allowing hooks, plugins, gates, prompt changes, or other operational changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brugillo/aice) <br>
-- [README](artifact/README.md) <br>
-- [AICE Reference](artifact/resources/AICE_REFERENCE.md) <br>
-- [AICE User Scoring](artifact/resources/AICE_USER_SCORING.md) <br>
-- [AICE Evaluator Guide](artifact/resources/EVALUATOR_GUIDE.md) <br>
-- [AICE Triggers and Patterns Reference](artifact/resources/TRIGGERS_AND_PATTERNS.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to score agent behavior, user input quality, and team coordination during ongoing agent work. It supports confidence tracking, correction patterns, task-completion scoring, and optional Hub synchronization.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown status lines and tables with JSON state and configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local confidence profiles and optionally sync scoring events to the Hub when explicitly enabled.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata; artifact frontmatter lists 1.1.0 and changelog top entry lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for durable authority through confidence scoring and optional Hub sync.
+
+Mitigation: Review before installing, keep persistence and Hub sync explicit opt-in, and do not grant authority beyond the intended confidence-scoring workflow.
+
+Risk: Default or example state can be misleading if reused as live confidence data.
+
+Mitigation: Reset the starter template to a neutral unregistered state and remove personal example data before deployment.
+
+Risk: Protected prompts or private context could be exposed if the skill is over-granted access.
+
+Mitigation: Do not allow the skill to read protected prompts or install enforcement hooks or plugins automatically.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brugillo/skills/aice)
+- [AICE reference](resources/AICE_REFERENCE.md)
+- [AICE user scoring](resources/AICE_USER_SCORING.md)
+- [Evaluator guide](resources/EVALUATOR_GUIDE.md)
+- [Triggers and patterns](resources/TRIGGERS_AND_PATTERNS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces confidence scores, scoring rationale, operational guidance, and starter configuration; Hub sync is optional and explicit.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

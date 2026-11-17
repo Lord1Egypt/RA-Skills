@@ -1,46 +1,62 @@
-## Description: <br>
-AI dialogue memory enhancement system that helps agents warm up from prior context, save conversation snapshots, semantically search local memory, and generate customized domain memory skills with Python, ChromaDB, and sentence-transformers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Booster helps WorkBuddy agents retrieve recent local memory, save conversation snapshots, semantically search prior notes, archive older memory files, and generate domain-specific memory skill templates.
 
-## Publisher: <br>
-[mikeliang2000](https://clawhub.ai/user/mikeliang2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeliang2000](https://clawhub.ai/user/mikeliang2000)
 
-## Use Case: <br>
-Developers and WorkBuddy users use this skill to preserve useful context across AI conversations, recall prior decisions or notes, and build semantic indexes over configured local memory directories. It also guides agents through creating domain-specific memory skill templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and index local memory files and historical conversation results, which may expose private or sensitive context. <br>
-Mitigation: Configure exact memory directories before use, avoid storing secrets or confidential client data in indexed memory, and review recalled excerpts before relying on or sharing them. <br>
-Risk: Automatic warmup and first-reply recall can surface historical context unexpectedly in shared or sensitive sessions. <br>
-Mitigation: Use the warmup behavior only in sessions where prior context is appropriate, and disable or avoid automatic recall where privacy boundaries are unclear. <br>
-Risk: The artifact declares analytics tracking without enough user control in the available evidence. <br>
-Mitigation: Disable or remove analytics configuration unless telemetry is explicitly wanted and acceptable for the deployment environment. <br>
-Risk: Archive and compression workflows can append to memory files or move older diary files during maintenance. <br>
-Mitigation: Run archive workflows in dry-run mode first, keep backups, and inspect target memory paths before executing write or archive commands. <br>
+## Use Case:
 
+External users and developers use this skill to reduce assistant memory loss across WorkBuddy conversations by warming up context, saving compact memory snapshots, searching historical notes, and organizing older local memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeliang2000/memory-booster) <br>
-- [Publisher profile](https://clawhub.ai/user/mikeliang2000) <br>
-- [Publisher homepage](https://hermesai.ltd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with command snippets, configuration guidance, memory search summaries, and generated skill templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include recalled local memory excerpts, conversation-derived summaries, generated SKILL.md content, and installation or maintenance commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can read, index, persist, mix, and report broad local WorkBuddy memory across detected workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set explicit memory_dirs before use, review which memory files will be indexed, and limit the skill to workspaces where this behavior is approved.
+
+Risk: Analytics behavior is present in the artifact metadata and may be unsuitable for sensitive memory data.
+
+Mitigation: Disable or remove analytics before deployment unless tracking has been reviewed and approved for the target environment.
+
+Risk: Silent startup hooks can cause memory warmup behavior without enough user control.
+
+Mitigation: Avoid SOUL.md silent startup hooks or require explicit user invocation before reading and summarizing memory.
+
+Risk: Archive workflows can modify and remove local memory files when execution mode is used.
+
+Mitigation: Run archive workflows in dry-run mode first, review the planned changes, and keep backups before using archive_memory.py --exec.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeliang2000/skills/memory-booster)
+- [Publisher homepage](https://hermesai.ltd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, structured reports, and generated skill/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update local memory files when the user invokes save or archive workflows.]
+
+## Skill Version(s):
+
+6.0.3 (source: server release metadata; artifact frontmatter and meta.json list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

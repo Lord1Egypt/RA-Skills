@@ -1,38 +1,49 @@
-## Description: <br>
-Fetch all active property listings from a Paragon MLS shared listing GUID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch all active property listings from a Paragon MLS shared listing GUID.
 
-## Publisher: <br>
-[earlvanze](https://clawhub.ai/user/earlvanze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earlvanze](https://clawhub.ai/user/earlvanze)
 
-## Use Case: <br>
-Real estate and deal-analysis agents use this skill to resolve Paragon MLS share links, GUIDs, or collaboration pages into the active property records behind them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an MCP server from a hard-coded local path outside the reviewed package. <br>
-Mitigation: Use it only after inspecting and controlling the local `paragon-mls-mcp` project at that path, then rebuild it from trusted source before use. <br>
+## Use Case:
 
+Real estate analysts, developers, and agents use this skill to resolve a Paragon MLS shared link or GUID into the active property listings behind it. It is intended for shared-listing workflows where the individual parsed property records are needed for downstream review or analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earlvanze/paragon-mls-fetch-listings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced MCP tool returns JSON with count and properties[] fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on an external local paragon-mls-mcp project and npm build step that are outside the submitted package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and control the referenced MCP source and npm dependencies before installation, run it with low privileges and no sensitive local credentials, and prefer a packaged or integrity-checked executable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earlvanze/skills/paragon-mls-fetch-listings)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with a bash example; the MCP tool result is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying listing fetch returns a count and parser-normalized properties array.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

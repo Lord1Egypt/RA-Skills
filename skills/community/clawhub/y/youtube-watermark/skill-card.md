@@ -1,44 +1,63 @@
-## Description: <br>
-Manage YouTube watermarks by helping agents set or unset watermarks for channel videos via the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube channel watermarks by guiding set and unset operations through the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-External users and developers use this skill to generate yutu CLI guidance for setting or removing a watermark on YouTube channel videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth credentials and a cached YouTube token. <br>
-Mitigation: Keep client_secret.json and youtube.token.json out of source control and private storage, and revoke or delete the token when access is no longer needed. <br>
-Risk: Running the generated set or unset commands can change channel branding. <br>
-Mitigation: Verify the channel ID and watermark image before executing yutu watermark commands. <br>
+## Use Case:
 
+External developers and channel operators use this skill to prepare YouTube API credentials and run yutu commands that set or remove a watermark on channel videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/OpenWaygate/youtube-watermark) <br>
-- [Yutu Project Homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [Watermark Set Reference](references/watermark-set.md) <br>
-- [Watermark Unset Reference](references/watermark-unset.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the yutu CLI plus YouTube OAuth credential and cached token configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server release evidence) <br>
+Risk: YouTube OAuth credential and token files can expose account or channel access if stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store client_secret.json and youtube.token.json outside shared or git-tracked folders and restrict file permissions.
+
+Risk: The skill depends on the external yutu CLI.
+
+Mitigation: Verify the yutu CLI source and version before installation and avoid running installs with elevated privileges.
+
+Risk: Watermark set or unset commands can affect the wrong channel if the channel ID is incorrect.
+
+Mitigation: Confirm the target channel ID before running yutu watermark set or unset commands.
+
+## Reference(s):
+
+- [Yutu Setup Guide](references/setup.md)
+- [Watermark Set](references/watermark-set.md)
+- [Watermark Unset](references/watermark-unset.md)
+- [yutu project homepage](https://github.com/eat-pray-ai/yutu)
+- [yutu README](https://github.com/eat-pray-ai/yutu#readme)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+- [ClawHub skill page](https://clawhub.ai/openwaygate/skills/youtube-watermark)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yutu, Google Cloud OAuth client credentials, and a cached YouTube token.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

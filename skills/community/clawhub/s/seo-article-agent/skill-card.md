@@ -1,40 +1,50 @@
-## Description: <br>
-Generates long-form, SEO-optimized articles with structured headings and keyword-rich content for improved search engine ranking and readability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates SEO-optimized long-form articles from a topic or keyword with structured headings and keyword-focused writing.
 
-## Publisher: <br>
-[nguyet601](https://clawhub.ai/user/nguyet601) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nguyet601](https://clawhub.ai/user/nguyet601)
 
-## Use Case: <br>
-External content creators, marketers, and website operators use this skill to draft SEO-focused blog or website articles from a topic or keyword. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may contain inaccurate, unoriginal, or unsuitable content if published without review. <br>
-Mitigation: Review generated content for factual accuracy, originality, brand fit, and audience suitability before publishing. <br>
-Risk: Keyword-focused drafting may over-emphasize search optimization at the expense of readability or editorial quality. <br>
-Mitigation: Edit the draft for natural language, clear structure, and appropriate keyword usage before publication. <br>
+## Use Case:
 
+Content creators, marketers, and website teams use this skill to draft long-form blog or website articles from a topic or keyword with SEO-oriented structure and readable sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nguyet601/seo-article-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown article with structured headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Long-form SEO-focused content generated from a topic or keyword.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Generated articles may include inaccurate, duplicated, or unsupported SEO claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content for factual accuracy, originality, and suitability before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nguyet601/skills/seo-article-agent)
+- [Publisher Profile](https://clawhub.ai/user/nguyet601)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft article content that should be reviewed for accuracy, originality, and SEO claims before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

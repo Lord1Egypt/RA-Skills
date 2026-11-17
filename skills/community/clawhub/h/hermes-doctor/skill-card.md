@@ -1,52 +1,72 @@
-## Description: <br>
-Helps agents diagnose and recover Hermes Agent failures involving authentication, provider switching, credential pools, HERMES_HOME path resolution, gateway locks, stale configuration, and backup recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Doctor helps agents diagnose and recover Hermes Agent failures involving authentication, provider switching, credential pools, HERMES_HOME redirection, gateway locks, stale configuration, and backup or migration problems.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to triage Hermes Agent incidents, inspect redacted diagnostics, identify configuration or credential drift, and choose repair steps for authentication and provider-routing failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Troubleshooting steps may expose API keys, Authorization headers, OAuth tokens, or credential files. <br>
-Mitigation: Use redacted diagnostics where possible, do not paste raw terminal output into chats or tickets, and redact secrets before sharing logs. <br>
-Risk: Repair steps may modify .env, auth.json, config.yaml, registry values, running processes, or credential locations. <br>
-Mitigation: Start with read-only checks, confirm the exact HERMES_HOME, back up affected files, and require explicit user approval before any destructive or state-changing action. <br>
-Risk: Backups and migrations can copy sensitive credentials between machines or into insecure storage. <br>
-Mitigation: Encrypt or tightly restrict backups and avoid moving credentials unless the user has approved the destination and access controls. <br>
+## Use Case:
 
+Developers, SREs, and agent operators use this skill to triage Hermes Agent incidents, identify likely root causes, and apply guided recovery steps for credentials, provider routing, configuration paths, and runtime state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongsheng123132/hermes-doctor) <br>
-- [Publisher profile](https://clawhub.ai/user/dongsheng123132) <br>
-- [Project homepage](https://github.com/dongsheng123132/hermes-doctor) <br>
-- [Auth / 401 troubleshooting](references/auth-troubleshooting.md) <br>
-- [Backup and migration](references/backup-and-migrate.md) <br>
-- [Config and paths](references/config-and-paths.md) <br>
-- [Credential pool and rotation](references/credential-pool-and-rotation.md) <br>
-- [Doctor and dump diagnostics](references/doctor-and-dump.md) <br>
-- [Fallback and rate limit handling](references/fallback-and-rate-limit.md) <br>
-- [Provider switch troubleshooting](references/provider-switch.md) <br>
-- [Hermes triage checklist](templates/triage-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and troubleshooting checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local Hermes configuration, credential, and diagnostic files; sensitive values should remain redacted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Troubleshooting steps may expose sensitive authentication data in command output, request dumps, .env files, auth.json files, or backup archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted presence checks, interactive secret entry, encrypted backups, and avoid pasting raw dumps, secret files, or archives into chat or support tickets.
+
+Risk: Credential edits or deletions can disrupt other providers, applications, or Hermes profiles.
+
+Mitigation: Require explicit confirmation before deleting or editing credentials, back up affected files first, scope changes to the confirmed HERMES_HOME, and verify with Hermes diagnostic commands.
+
+Risk: Backup and migration workflows can duplicate sensitive credential stores across machines.
+
+Mitigation: Prefer encrypted backups, keep archives local unless explicitly approved, and re-enter API keys on the destination system when possible.
+
+## Reference(s):
+
+- [Hermes Doctor repository](https://github.com/dongsheng123132/hermes-doctor)
+- [Hermes Doctor ClawHub page](https://clawhub.ai/dongsheng123132/skills/hermes-doctor)
+- [Hermes Agent project](https://github.com/NousResearch/hermes-agent)
+- [Auth / 401 Troubleshooting](references/auth-troubleshooting.md)
+- [Credential Pool and Rotation](references/credential-pool-and-rotation.md)
+- [Fallback Provider Chain and Rate Limits](references/fallback-and-rate-limit.md)
+- [Hermes Doctor and Dump Usage](references/doctor-and-dump.md)
+- [HERMES_HOME Paths and Config](references/config-and-paths.md)
+- [Provider Switching](references/provider-switch.md)
+- [Backup and Migration](references/backup-and-migrate.md)
+- [Triage Checklist](templates/triage-checklist.md)
+- [Known Hermes Issues](assets/known-issues.json)
+- [Hermes Agent issue #16394](https://github.com/NousResearch/hermes-agent/issues/16394)
+- [Hermes Agent issue #15914](https://github.com/NousResearch/hermes-agent/issues/15914)
+- [Hermes Agent issue #3685](https://github.com/NousResearch/hermes-agent/issues/3685)
+- [Hermes Agent issue #16677](https://github.com/NousResearch/hermes-agent/issues/16677)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON snippets, YAML snippets, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance should be redacted before sharing because troubleshooting may touch credentials, request dumps, auth.json, .env files, backups, and user-level environment variables.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

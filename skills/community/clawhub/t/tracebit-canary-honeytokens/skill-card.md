@@ -1,48 +1,66 @@
-## Description: <br>
-Tracebit Canaries helps agents deploy and monitor Tracebit honeytoken canaries for credential theft, prompt injection, data exfiltration, and human-supervised incident response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracebit Canaries helps agents set up Tracebit decoy credentials, monitor alert emails, and guide human-supervised incident response for credential theft, prompt injection, or data exfiltration.
 
-## Publisher: <br>
-[alessandro-brucato-tracebit](https://clawhub.ai/user/alessandro-brucato-tracebit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alessandro-brucato-tracebit](https://clawhub.ai/user/alessandro-brucato-tracebit)
 
-## Use Case: <br>
-Developers, security engineers, and agent operators use this skill to set up Tracebit canary credentials, configure recurring alert checks, and follow a human-supervised incident response workflow when a canary is triggered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation may lead an agent to begin account setup, CLI authentication, credential-store changes, or recurring monitoring when the user expected only security advice. <br>
-Mitigation: Require explicit user confirmation before setup, account creation, CLI install/auth, canary deployment, heartbeat changes, email access, messaging, and cleanup. <br>
-Risk: Canary deployment and incident response touch sensitive areas such as credential stores, email search, messaging, memory files, and temporary credentials. <br>
-Mitigation: Keep email access read-only, send notifications only to the user's configured channel, avoid exposing canary or auth token values, and require human approval before reading memory files or rotating canaries. <br>
-Risk: Installing the Tracebit CLI introduces a persistent local tool and background daemon. <br>
-Mitigation: Install only from official releases with mandatory SHA256 verification, run as the current user, and use the documented removal steps when canaries are no longer needed. <br>
+## Use Case:
 
+Developers and security teams use this skill to deploy Tracebit canary tokens in agent workspaces, configure heartbeat alert checks, and investigate triggered canaries with human approval. It is intended for workspace hardening and incident-response workflows where decoy credentials can reveal unauthorized access or misuse.
 
-## Reference(s): <br>
-- [Tracebit Community](https://community.tracebit.com) <br>
-- [Tracebit Canaries on ClawHub](https://clawhub.ai/alessandro-brucato-tracebit/tracebit-canary-honeytokens) <br>
-- [Security Compliance](references/security-compliance.md) <br>
-- [Incident Response Playbook](references/incident-response-playbook.md) <br>
-- [Canary Types](references/canary-types.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [API Reference](references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append heartbeat and incident-response entries only after the required user confirmations described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.21 (source: server release metadata) <br>
+Risk: The skill installs and runs mutable remote Tracebit software, including a background daemon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer source before use, prefer a pinned release, and require checksum verification for downloaded binaries.
+
+Risk: The skill deploys decoy credentials and may expose sensitive canary cache or setup values if handled carelessly.
+
+Mitigation: Require human confirmation before deployment, avoid printing raw canary cache contents, and avoid the fixed /tmp password file pattern called out in the security guidance.
+
+Risk: The skill uses email, messaging, and memory-file access during alert handling.
+
+Mitigation: Limit email access to read-only alert searches, send notifications only to the user's own channel, and require human confirmation before reading memory files.
+
+## Reference(s):
+
+- [Tracebit Community](https://community.tracebit.com)
+- [Tracebit Community CLI](https://github.com/tracebit-com/tracebit-community-cli)
+- [Tracebit CLI Releases](https://github.com/tracebit-com/tracebit-community-cli/releases/latest)
+- [ClawHub Tracebit Canaries Skill](https://clawhub.ai/alessandro-brucato-tracebit/skills/tracebit-canary-honeytokens)
+- [API-Based Deployment](references/api-reference.md)
+- [Attack Patterns - How Canaries Detect Real Threats](references/attack-patterns.md)
+- [Canary Types - Reference Guide](references/canary-types.md)
+- [Incident Response Playbook - Tracebit Canary Alert](references/incident-response-playbook.md)
+- [Security Compliance - Tracebit Canaries Skill](references/security-compliance.md)
+- [Troubleshooting - Tracebit Canaries](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON snippets, and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup checklists, canary deployment guidance, alert parsing instructions, and incident-response reports.]
+
+## Skill Version(s):
+
+1.0.21 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

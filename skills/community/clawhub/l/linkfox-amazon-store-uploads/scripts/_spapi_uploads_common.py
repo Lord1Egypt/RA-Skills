@@ -25,7 +25,7 @@ UPLOADS_API_VERSION = "2020-11-01"
 UPLOADS_PATH_PREFIX = f"uploads/{UPLOADS_API_VERSION}"
 
 API_BASE_URL = (
-    os.environ.get("LINKFOX_AGENT_API_URL")
+    os.environ.get("LINKFOX_TOOL_GATEWAY")
     or os.environ.get("STORE_API_BASE_URL")
     or os.environ.get("SPAPI_BASE_URL", "https://tool-gateway.linkfox.com")
 ).rstrip("/")
@@ -65,17 +65,21 @@ def ensure_auth_skill_available(caller: str = "uploads script") -> None:
 
 
 def get_api_key() -> str:
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和算力问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Set:\n  export LINKFOXAGENT_API_KEY=<your-key>",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
     return key
 
 
-def call_api(endpoint: str, params: dict, timeout: int = 120) -> dict:
+def call_api(endpoint: str, params: dict, timeout: int = 150) -> dict:
     api_key = get_api_key()
     data = json.dumps(params).encode("utf-8")
     req = Request(
@@ -85,6 +89,10 @@ def call_api(endpoint: str, params: dict, timeout: int = 120) -> dict:
             "Authorization": api_key,
             "Content-Type": "application/json",
             "User-Agent": "LinkFox-Skill/1.0",
+            "SESSION_ID": os.environ.get("SESSION_ID", ""),
+            "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
+            "MODE_ID": os.environ.get("MODE_ID", ""),
+            "APP_NAME": os.environ.get("APP_NAME", ""),
         },
         method="POST",
     )
@@ -105,16 +113,16 @@ def get_store_tokens(seller_id: str, region: str) -> dict:
 def developer_proxy_post(
     region: str,
     path: str,
-    access_token: str,
+    seller_id: str,
     *,
     query_string: Optional[str] = None,
-    timeout: int = 120,
+    timeout: int = 150,
 ) -> dict:
     params: dict = {
         "region": region,
         "path": path,
         "method": "POST",
-        "amzAccessToken": access_token,
+        "sellerId": seller_id,
         "contentType": "application/json",
     }
     if query_string:
@@ -123,9 +131,9 @@ def developer_proxy_post(
 
 
 def path_for_upload_destination(resource: str) -> str:
-    """resource 为下游 API 资源路径，如 aplus/2020-11-01/contentDocuments（勿带前导 /）。"""
+    """构造 Uploads greedy path；保留 resource 内作为路径分隔符的斜杠。"""
     res = str(resource).strip().lstrip("/")
-    enc = quote(res, safe="")
+    enc = quote(res, safe="/")
     return f"{UPLOADS_PATH_PREFIX}/uploadDestinations/{enc}"
 
 

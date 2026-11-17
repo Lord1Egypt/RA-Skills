@@ -1,40 +1,56 @@
-## Description: <br>
-Order groceries from Picnic supermarket - search products, manage cart, schedule delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Order groceries from Picnic supermarket - search products, manage cart, schedule delivery.
 
-## Publisher: <br>
-[mpociot](https://clawhub.ai/user/mpociot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mpociot](https://clawhub.ai/user/mpociot)
 
-## Use Case: <br>
-External users and agent operators use this skill to search Picnic products, inspect user and delivery information, manage a Picnic shopping cart, and choose available delivery slots through a JSON-emitting CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Picnic account access and stores an auth key in a local config file. <br>
-Mitigation: Avoid exposing login commands in terminals or transcripts, protect ~/.config/picnic/config.json as a sensitive credential file, and remove the config when access is no longer needed. <br>
-Risk: The CLI can modify the shopping cart and select delivery slots. <br>
-Mitigation: Confirm with the user before adding or removing items, clearing the cart, or setting a delivery slot. <br>
-Risk: Commands can return personal details, address, delivery history, and order contents. <br>
-Mitigation: Limit command output shared in logs or transcripts and avoid running the bundled debug helper. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users with a Picnic account use this skill to search grocery products, manage a cart, inspect delivery slots and history, and prepare an order for completion in the Picnic app.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON] <br>
-**Output Format:** [JSON responses from CLI commands, with setup and command guidance in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Picnic account credentials and stores local configuration under ~/.config/picnic/config.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Germany and Netherlands
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Picnic account credentials, cart contents, address, delivery history, and other account data.
+
+Mitigation: Review the skill before installing, avoid entering the Picnic password as a command-line argument, and do not share output from login or two-factor authentication flows.
+
+Risk: The included debug script can print raw account delivery data.
+
+Mitigation: Do not use the debug script during normal operation, and remove or quarantine it before installing the skill in shared environments.
+
+Risk: Commands can modify a user's cart or selected delivery slot.
+
+Mitigation: Confirm with the user before adding or removing products, clearing the cart, or setting a delivery slot; final checkout remains in the Picnic app.
+
+## Reference(s):
+
+- [ClawHub Picnic skill page](https://clawhub.ai/mpociot/skills/picnic)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands; CLI commands return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Picnic account and country code DE or NL; authentication details are stored in the local user config.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

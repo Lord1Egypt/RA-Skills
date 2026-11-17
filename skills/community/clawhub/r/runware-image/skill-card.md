@@ -1,46 +1,64 @@
-## Description: <br>
-Generate high-quality images on demand via the Runware.ai API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality images on-demand via the Runware.ai API.
 
-## Publisher: <br>
-[GeekLord](https://clawhub.ai/user/GeekLord) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[geeklord](https://clawhub.ai/user/geeklord)
 
-## Use Case: <br>
-External users and developers use this skill to turn text prompts into locally saved images through their own Runware account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent to Runware and may consume the user's Runware API credits. <br>
-Mitigation: Use the skill only with an approved Runware account, review prompts before generation, and follow Runware's terms and content policies. <br>
-Risk: The skill requires a Runware API key. <br>
-Mitigation: Provide RUNWARE_API_KEY through the environment or a secret manager, and do not store API keys in skill-config.json or committed files. <br>
-Risk: Generated files are saved locally and the last output directory is remembered in skill-config.json. <br>
-Mitigation: Review or clear skill-config.json's last_output_dir before sharing or publishing the skill package. <br>
-Risk: Dependencies are not fully pinned in requirements.txt. <br>
-Mitigation: Install with pinned, current dependency versions in production environments. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to generate images from text prompts through the Runware API and save the generated image files locally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GeekLord/runware-image) <br>
-- [Runware API documentation](https://runware.ai/docs/getting-started/introduction) <br>
-- [Runware task API endpoint](https://api.runware.ai/v1/tasks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Generated image files saved locally with CLI status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses RUNWARE_API_KEY from the environment, sends prompts to Runware, and remembers the last output directory in skill-config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill may send user prompts to Runware automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts before execution, avoid sensitive prompt content, and use the skill only where sending prompts to Runware is acceptable.
+
+Risk: The Runware API key may incur usage charges if misused.
+
+Mitigation: Use a dedicated Runware API key with limited billing exposure and manage it through environment variables or a secret manager.
+
+Risk: The skill writes generated image files to local storage.
+
+Mitigation: Run it only where local file writes are acceptable, confine output to a dedicated image directory, and avoid overwriting existing files without review.
+
+Risk: Dependencies are not pinned to exact versions.
+
+Mitigation: Review and pin dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/geeklord/skills/runware-image)
+- [Publisher profile](https://clawhub.ai/user/geeklord)
+- [Runware documentation](https://runware.ai/docs/getting-started/introduction)
+- [Runware task API endpoint](https://api.runware.ai/v1/tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated image files saved by the skill script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RUNWARE_API_KEY environment variable and writes generated image files to a configured local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

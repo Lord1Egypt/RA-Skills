@@ -1,39 +1,53 @@
-## Description: <br>
-DeepContent provides recipe lookup, content generation, and asset management for branded social media content such as event posters, speaker cards, partnership posts, and templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepContent supports recipe lookup, content generation, and asset management for event templates, speaker cards, partnership posts, social media generation, and event posters.
 
-## Publisher: <br>
-[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thierrypdamiba](https://clawhub.ai/user/thierrypdamiba)
 
-## Use Case: <br>
-Marketing and content teams use this skill to list DeepContent recipes and generate branded social posts, event posters, speaker announcements, and partnership announcement copy from provided or discovered assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public web searches for logos, headshots, and templates can return inaccurate, untrusted, or rights-restricted assets. <br>
-Mitigation: Prefer authorized image and logo URLs, and review identity accuracy, source trust, and reuse rights before publishing generated content. <br>
-Risk: Image recipes rely on publicly accessible asset URLs and may take several minutes or time out. <br>
-Mitigation: Warn users before image generation, retry once on timeout, and offer caption-only output or a different template URL if generation continues to fail. <br>
+## Use Case:
 
+External users and content teams use DeepContent to list DeepContent recipes and generate branded social media content such as event posters, speaker announcement cards, and LinkedIn partnership posts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Image URLs, Guidance] <br>
-**Output Format:** [Markdown containing generated text, captions, and inline image links from DeepContent tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image recipes may take 2-3 minutes and return recipe_id, status, generation_id, and content blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill may search public websites for templates, logos, or headshots when users do not provide approved asset URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer user-provided approved asset URLs and review any discovered images, logos, or headshots before publishing generated content.
+
+Risk: Image recipes require publicly accessible input URLs, which can expose unintended assets if private or sensitive links are supplied.
+
+Mitigation: Use only public, publication-approved assets and avoid providing private, sensitive, or access-controlled URLs.
+
+## Reference(s):
+
+- [DeepContent ClawHub Skill Page](https://clawhub.ai/thierrypdamiba/skills/deepcontent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Images, API Calls, Guidance]
+
+**Output Format:** [MCP tool responses with text blocks, image URLs, status, recipe ID, and generation ID]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image recipes may take 2-3 minutes and require publicly accessible template, logo, or headshot URLs.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

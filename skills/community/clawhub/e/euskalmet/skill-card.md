@@ -1,45 +1,54 @@
-## Description: <br>
-Tool for obtaining weather forecasts for the Basque Country through the Euskalmet agency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tool for obtaining weather forecasts for the Basque Country through the Euskalmet agency.
 
-## Publisher: <br>
-[zero-astro](https://clawhub.ai/user/zero-astro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zero-astro](https://clawhub.ai/user/zero-astro)
 
-## Use Case: <br>
-External users and developers can use this skill to retrieve Euskalmet weather data for supported Basque Country locations and format the forecast as a concise Basque-language weather update. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A setup helper can print part of the Euskalmet API private key to the terminal or logs. <br>
-Mitigation: Review or remove the private-key prefix print in scripts/test_env.py before installation or execution. <br>
-Risk: The skill uses Euskalmet credentials and contacts external Euskalmet/Euskadi endpoints. <br>
-Mitigation: Use dedicated, revocable API credentials and keep the .env file private. <br>
-Risk: Forecast and icon download scripts write files inside the skill directory. <br>
-Mitigation: Run the skill in a controlled workspace and review generated forecast and image files before reusing or publishing them. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Euskalmet weather forecasts for Basque Country locations and present current conditions, temperatures, and short-range trends in Basque.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zero-astro/euskalmet) <br>
-- [Publisher profile](https://clawhub.ai/user/zero-astro) <br>
-- [Euskalmet](https://www.euskalmet.euskadi.eus/) <br>
-- [Euskadi API endpoint](https://api.euskadi.eus/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-like Basque-language weather summary with inline temperatures and forecast labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches forecast JSON from Euskalmet/Euskadi endpoints, writes forecast and icon files inside the skill directory, and can include an optional personalized greeting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A diagnostic script can print a prefix of the Euskalmet private key when run in a logged environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run scripts/test_env.py where logs are shared; rotate the private key if any prefix has already been exposed.
+
+Risk: Dependencies are stale or not fully locked.
+
+Mitigation: Review, update, and pin dependencies before deployment.
+
+## Reference(s):
+
+- [Euskalmet](https://www.euskalmet.euskadi.eus/)
+- [ClawHub skill page](https://clawhub.ai/zero-astro/skills/euskalmet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Basque-language Markdown text plus forecast JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Euskalmet API email and private key environment variables; optional greeting name customizes the formatted message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

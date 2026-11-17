@@ -1,39 +1,53 @@
-## Description: <br>
-Provides local data processing and environment status tools to extend an AI agent's workflow for user Thomas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides local data processing and environment status tools to extend an AI agent's workflow for user Thomas.
 
-## Publisher: <br>
-[thomasyo2026](https://clawhub.ai/user/thomasyo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thomasyo2026](https://clawhub.ai/user/thomasyo2026)
 
-## Use Case: <br>
-OpenClaw users can use this skill as a small local workspace utility for formatting or cleaning text data, managing local files, and checking environment status during workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local file-management wording could lead an agent to change files beyond the intended workspace. <br>
-Mitigation: Keep use scoped to the intended workspace and require explicit confirmation before any file writes, moves, deletes, or broad automation. <br>
+## Use Case:
 
+Developers and agent users use this skill to format or clean local data streams, manage local files, and report environment status during workspace automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/thomasyo2026/thomas-my-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/thomasyo2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text guidance for local data processing and status workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill evidence; no executable files, install hooks, or persistence behavior reported] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is intentionally broad and could be applied to files outside the user's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with files the user explicitly provides or identifies.
+
+Risk: Future versions that add real tools could perform writes, deletes, or broad workspace automation.
+
+Mitigation: Ask for confirmation before file writes, deletes, or broad automation actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thomasyo2026/skills/thomas-my-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command or configuration snippets when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes local data-processing and status helpers; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

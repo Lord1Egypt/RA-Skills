@@ -1,40 +1,57 @@
-## Description: <br>
-Use when the user mentions Otter, Otter.ai, or wants to find, search, download, export, or manage meeting notes, transcripts, recordings, or audio from calls, standups, syncs, or interviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user mentions Otter, Otter.ai, or wants to find, search, download, export, or manage meeting notes, transcripts, recordings, or audio from calls, standups, syncs, or interviews.
 
-## Publisher: <br>
-[erickhchan](https://clawhub.ai/user/erickhchan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[erickhchan](https://clawhub.ai/user/erickhchan)
 
-## Use Case: <br>
-Agents assist users who manage Otter.ai meeting content by proposing or running otter CLI commands to list, search, retrieve, download, upload, and organize transcripts, recordings, speakers, folders, and groups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable access to privacy-sensitive Otter.ai meeting transcripts, recordings, and account content. <br>
-Mitigation: Install only when the agent should use the user's Otter.ai account, and confirm before uploads, downloads, trashing, moving, renaming, or speaker-tagging meeting content. <br>
-Risk: Persistent username and password environment variables can expose Otter.ai credentials. <br>
-Mitigation: Prefer otter login with keychain storage over long-lived OTTERAI_USERNAME and OTTERAI_PASSWORD environment variables. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Otterai Cli on ClawHub](https://clawhub.ai/erickhchan/otterai-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/erickhchan) <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to operate the otter CLI for retrieving, searching, exporting, uploading, and organizing Otter.ai meeting transcripts, recordings, folders, speakers, and related metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-oriented command options and Markdown download guidance for Otter.ai transcript workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned third-party CLI that handles Otter.ai account credentials and meeting content.
+
+Mitigation: Install only from a trusted source, prefer a pinned and reviewed package version, use a trusted machine, and limit credential exposure.
+
+Risk: The CLI can modify or remove meeting content, including a trash command with a confirmation-bypass option.
+
+Mitigation: Require explicit user confirmation before rename, move, speaker-tagging, folder creation or changes, upload, or trash actions, and avoid `--yes` unless the user specifically approves it.
+
+Risk: Environment-variable credentials can be exposed more broadly than intended.
+
+Mitigation: Prefer `otter login` with OS keychain storage and scope `OTTERAI_USERNAME` and `OTTERAI_PASSWORD` only to the command session that needs them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erickhchan/skills/otterai-cli)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may produce commands that list, retrieve, search, download, upload, rename, move, tag, or trash Otter.ai content.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

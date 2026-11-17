@@ -1,39 +1,53 @@
-## Description: <br>
-Build competitive compensation plans using market data, salary bands, equity, bonuses, geographic pay adjustments, and retention risk scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build competitive compensation plans using market data, salary bands, equity, bonuses, geographic pay adjustments, and retention risk scoring.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-HR teams, founders, finance teams, managers, and sales leaders use this skill to build compensation bands, design total rewards packages, benchmark offers, audit pay equity, and structure sales incentives. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Compensation plans can depend on sensitive employee and candidate data. <br>
-Mitigation: Avoid pasting unnecessary personal employee details, and use aggregated or minimized data when asking the agent to benchmark pay or assess retention risk. <br>
-Risk: Salary, equity, pay-equity, and employment guidance can become outdated or vary by jurisdiction. <br>
-Mitigation: Verify recommendations against current market data and applicable HR, finance, and legal requirements before making compensation decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-compensation-planner) <br>
+## Use Case:
 
+HR, finance, founders, managers, and sales leaders use this skill to draft compensation bands, benchmark offers, plan review cycles, audit pay equity, assess retention risk, and design sales commission structures.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown with tables, checklists, and concise planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include salary bands, geographic differentials, total compensation breakdowns, pay equity audit steps, annual review timelines, offer benchmarking checklists, retention risk scoring, and sales commission structures.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Salary figures and market-source suggestions may be stale or unsuitable for a specific role, geography, or company stage.
+
+Mitigation: Treat the skill output as planning guidance and verify compensation decisions against current market data, legal requirements, and internal finance or HR policy.
+
+Risk: Compensation, demographic, performance, and retention-risk inputs can include sensitive employee information.
+
+Mitigation: Avoid sharing unnecessary employee-level details and use only information the organization permits for compensation planning and pay-equity analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-compensation-planner)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown with tables, checklists, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include salary bands, geographic multipliers, total compensation breakdowns, audit checks, review calendars, offer checklists, retention scoring, and sales compensation structures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

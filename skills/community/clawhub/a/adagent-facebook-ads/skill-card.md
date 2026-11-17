@@ -1,38 +1,58 @@
-## Description: <br>
-Manage Facebook/Meta Ads -- create campaigns, ad sets, ads, monitor performance, and target audiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Facebook/Meta Ads by creating campaigns, ad sets, and ads; researching audiences; monitoring performance; and checking relevant compliance status through AdAgent.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and advertising operators use this skill to manage Meta Ads campaigns through AdAgent, including campaign setup, targeting research, ad creation, status changes, and performance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live spend-affecting changes to Meta Ads campaigns, ad sets, ads, and budgets through an embedded MCP connector. <br>
-Mitigation: Install only if AdAgent is trusted with Meta Ads account access, treat the MCP link like a password, verify connected Facebook permissions and ad accounts, and require explicit confirmation before creating, enabling, pausing, or changing budgets. <br>
+## Use Case:
 
+External advertisers, marketing operators, and agents use this skill to manage Meta ad accounts through AdAgent, including campaign setup, targeting research, budget-related changes, performance reporting, and account compliance checks.
 
-## Reference(s): <br>
-- [AdAgent](https://adagent.10xboost.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with tool-call instructions and tabular ad performance summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an MCP Connector link that contains embedded authentication for the AdAgent service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and SKILL.md frontmatter) <br>
+Risk: Credential-like MCP connector links can grant access to the connected Meta ad account if shared or exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the MCP URL as a password, avoid sharing it, rotate the connector if exposed, and revoke Facebook authorization when access is no longer needed.
+
+Risk: The skill can create, modify, pause, enable, and manage ads, campaigns, budgets, and targeting through a third-party service.
+
+Mitigation: Connect only intended ad accounts and manually confirm budget, targeting, campaign creation, and activation changes before execution.
+
+Risk: Persistent third-party OAuth access may continue until the user revokes it or the token expires.
+
+Mitigation: Confirm how to revoke AdAgent's Facebook authorization and periodically review connected account permissions.
+
+## Reference(s):
+
+- [AdAgent product website](https://adagent.10xboost.org)
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/adagent-facebook-ads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown responses with structured ad account data, targeting options, workflow steps, and MCP tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed campaign, ad set, ad, targeting, budget, activation, and performance actions for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

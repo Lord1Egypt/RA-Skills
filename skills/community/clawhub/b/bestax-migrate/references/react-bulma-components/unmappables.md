@@ -1,0 +1,236 @@
+# Recipes for every TODO(bestax-migrate) the codemod leaves
+
+Work through `grep -rn "TODO(bestax-migrate)" src/` with these. Delete each comment once
+the site is converted.
+
+## `unsupported-file` — `.astro` / `.vue` / `.svelte` / `.mdx` imports
+
+The codemod can't parse these formats, so files in them that import
+react-bulma-components are reported (not rewritten). Migrate them by hand: swap the
+import to `@allxsmith/bestax-bulma` and apply the same renames the component/prop maps
+describe — the mapping is identical, only the rewriting is manual.
+
+## `peer-deps` — install-blocking version conflicts
+
+Reported from package.json, not a code TODO. bestax-bulma's peers: **React ^18 || ^19**
+(upgrade react/react-dom before installing — RBC v4 also ran on 17) and optional
+**@fortawesome/fontawesome-free ^6.7 || ^7** (FA 5 apps: upgrade, or
+`npm install --legacy-peer-deps` and keep FA 5 for your own `<i>` tags).
+
+## `component:Element` — no generic element
+
+bestax has no `Element`. Pick the semantic component (`Block`, `Box`, `Content`, …) that
+matches the usage, or plain JSX with classes:
+
+```tsx
+// Before
+<Element renderAs="span" textColor="grey" m={2}>…</Element>
+// After
+<Span textColor="grey" m="2">…</Span>   // bestax exports Span/Paragraph/Strong/etc.
+```
+
+## `component:Tile` — Bulma v1 replaced tiles with Grid
+
+Convert ancestor/parent/child tile trees to `Grid`/`Cell` (docs:
+https://bestax.io/docs/api/grid):
+
+```tsx
+// Before
+<Tile kind="ancestor"><Tile kind="parent" size={8}><Tile kind="child">A</Tile></Tile></Tile>
+// After
+<Grid><Cell colSpan={8}>A</Cell></Grid>
+```
+
+Match the old proportions with `Cell` span props; tiles' `vertical` becomes grid flow.
+
+## Controlled `Dropdown` (`value` / `onChange`, `Dropdown.Item value`)
+
+bestax `Dropdown` is compositional — you own the selection state:
+
+```tsx
+const [choice, setChoice] = useState('a');
+<Dropdown label={labels[choice]} closeOnClick>
+  <Dropdown.Item active={choice === 'a'} onClick={() => setChoice('a')}>
+    First
+  </Dropdown.Item>
+  <Dropdown.Item active={choice === 'b'} onClick={() => setChoice('b')}>
+    Second
+  </Dropdown.Item>
+</Dropdown>;
+```
+
+## `Pagination` extras (`showFirstLast`, `showPrevNext`, `autoHide`)
+
+bestax `Pagination` renders from `total`/`current`/`onPageChange` when it has no children:
+Previous, Next and the page links, with an ellipsis for each run it skips. The codemod writes
+`delta` as `siblingCount` (the pages on each side of the current one) and `next`/`previous` as
+`nextLabel`/`previousLabel`. It always shows Previous and Next, and the first and last pages
+(`boundaryCount` of each, 1 by default), so drop `showPrevNext` and `showFirstLast`, or compose
+the parts (`Pagination.Previous`, `Pagination.List`, `Pagination.Link`) by hand for a
+different layout. Render conditionally instead of `autoHide` (`{total > 1 && <Pagination …/>}`).
+
+Two of RBC's defaults differ, and a Pagination that doesn't write them gets no TODO: RBC hides
+itself at a `total` of 1 (`autoHide` is on by default), and shows no first and last pages unless
+`showFirstLast` is set. bestax renders a one-page Pagination with both ends disabled, and shows
+the first and last pages, so check pagination that relied on either. RBC's `delta={0}` renders
+no page links at all, while `siblingCount={0}` still shows the current, first and last pages, so
+that one value gets a `prop:delta` TODO rather than converting.
+
+## `Modal` (`closeOnBlur`, `showClose`)
+
+`closeOnEsc` is not in this list: bestax has `closeOnEscape` (default `true`) and the codemod
+renames it, so `closeOnEsc={false}` keeps suppressing Escape rather than inheriting the default.
+
+The other two depend on which form the migrated modal lands in. bestax's `Modal` supplies a
+background wired to `onClose` and a floating close button only in its **legacy** form — plain
+children, no compound child. A `Modal.Content` or `Modal.Card` child (which is what almost every
+RBC modal has) selects the **compound** form, and that renders only the children you wrote:
+
+```tsx
+<Modal active={show} onClose={close}>
+  <Modal.Background onClick={close} />
+  <Modal.Content>…</Modal.Content>
+  <Modal.Close variant="floating" onClick={close} />
+</Modal>
+```
+
+So `closeOnBlur` and `showClose={true}` mean "add those two children"; passing either as `false`
+means "drop the prop", since the compound form gives you neither unless you ask.
+
+## `responsive` — `touch` / `untilWidescreen` / `untilFullhd` / `{ only: true }` breakpoints
+
+No bestax helper-prop variants exist. Use Bulma classes directly:
+`className="is-hidden-touch"`, `is-flex-tablet-only`, etc. (all still exist in Bulma v1).
+
+## Icon children the parser couldn't read
+
+bestax `Icon` renders from `name` + `library` (+ `variant` for Font Awesome styles):
+
+```tsx
+<Icon name="github" library="fa" variant="brands" ariaLabel="GitHub" />
+```
+
+For icon fonts other than Font Awesome/MDI, see the `bestax-icons` skill.
+
+## Dynamic values (`state={x}`, `textSize={n}`, `align={side}`, …)
+
+The codemod only rewrites literals. Convert the expression at its source, e.g.:
+
+```tsx
+// Before: <Button state={hovered ? 'hover' : undefined}>
+<Button isHovered={hovered}>
+// Before: <Block textSize={n}>
+<Block textSize={String(n) as '1' | '2' | '3' | '4' | '5' | '6' | '7'}>
+```
+
+## `prop:color` — Button shade colors (`black-bis`, `grey-light`, …) and `isSelected`
+
+bestax `Button` colors are the semantic set + `text`/`ghost`. For shades use
+`bgColor`/`textColor` (they accept the full palette incl. shades), and replace
+`isSelected` with `className="is-selected"` inside grouped buttons.
+
+## `colorVariant` / Hero `gradient` / Hero `halfheight`
+
+- `colorVariant="light"` → `isLight` where supported (Button, Notification), otherwise a
+  shade: `bgColor="primary-90"`.
+- Bulma v1 removed `is-bold` hero gradients — delete `gradient` or restyle with CSS.
+- `halfheight` has no bestax size; use `size="medium"` or a CSS height.
+
+## `domRef`
+
+bestax components don't take `domRef`, but many forward a plain `ref` — the form controls,
+plus `Avatar`, `Button`, `Carousel`, `CarouselItem`, `Dialog`, `Dropdown`, `Link`,
+`LinkButton`, `Loader`, `Menu.Item`, `Modal`, `Navbar`, `Navbar.Burger`, `Navbar.Dropdown`,
+`Navbar.Item`, `Navbar.Link`, `Sidebar` and `Toast`. On those, rename `domRef` to
+`ref` and it works; do not restructure the markup. "The form controls" means the inputs
+themselves: the `Field`, `Field.Label`, `Field.Body`, `Checkboxes` and `Radios` wrappers
+around them forward nothing, and `Field` is a target this codemod emits.
+
+Everywhere else the rename is not enough, and the two React majors differ: React 18 drops the
+ref and logs "Function components cannot be given refs", while React 19 passes it through as
+an ordinary prop, so it settles wherever the component spreads its rest props with nothing
+logged. bestax supports both, so attach the ref to a DOM element inside, or wrap the component
+in a `<div ref={…}>`.
+
+The codemod does not do that rename for you: `domRef` is flagged on every component, so the
+TODO names both cases and you pick. `Navbar.Dropdown` is the trap, and it cuts both ways —
+RBC's is the menu itself, so it maps to bestax's `Navbar.DropdownMenu`, which forwards no ref;
+bestax reserves the name `Navbar.Dropdown` for the outer container, which is what the
+`Navbar.Item` wrapping your dropdown becomes, and that one _does_ forward one. So after the
+codemod runs, read the target name on the line, not the one you wrote.
+
+`Button` has the same shape of trap. `<Button remove>` is Bulma's delete cross, so it migrates
+to `<Delete>`, a plain function component that forwards no ref — even though `Button` itself
+does. The codemod detects that case and replaces the general advice with a TODO naming
+`Delete`, so the message on the line is the one to trust.
+
+## `prop:as` — a tag the component does not render
+
+Several bestax components accept `as` but narrow it to the tags Bulma's markup allows there, so
+a literal `renderAs` outside that union (`<Media renderAs="section">`, `<Footer
+renderAs="section">`) becomes a `prop:as` TODO listing the tags that component does render. Wrap
+the component in the element you wanted, or restructure. See the `as` section of
+[prop-map.md](prop-map.md) for which components accept it at all.
+
+## `prop:href` — a link needs the anchor
+
+bestax gives an element the attributes of the tag `as` names, so an `href` belongs on an `<a>`
+or on a custom component you pass to `as`, never on another intrinsic tag. RBC let the two
+disagree, and the browser ignored the result: `<Menu.List.Item renderAs="span" href="/x">`
+rendered a `<span>` that navigated nowhere. The element stays, the dead attribute goes:
+
+```jsx
+<Menu.List.Item renderAs="span" href="/x">Home</Menu.List.Item>
+<Menu.Item as="span">Home</Menu.Item>
+```
+
+Most targets take no `href` at all. It lives on `Menu.Item`, `Navbar.Item`, `Navbar.Link`,
+`Panel.Block`, `Dropdown.Item` and the three `Pagination` controls, which render an `<a>` unless
+told otherwise,
+and on `Button` and `Level.Item` once `as="a"` names one — those two render a `<button>` and a
+`<div>` by default, and drop the attribute. Everywhere else the codemod removes it.
+
+`Dropdown.Item` is the one to read twice: it accepts `as="a" | "div" | "button"` and takes the
+props of whichever you name, so the default `<a>` keeps an `href` and the other two do not.
+Drop the `as` to make it a link again; inside the `<button>` form an `<a>` would nest
+interactive content, so navigate in `onClick` there.
+
+## `prop:target`, `prop:download`, `prop:hrefLang`, `prop:ping`, `prop:referrerPolicy`, `prop:media`
+
+`target`, `download`, `hrefLang`, `ping`, `referrerPolicy` and `media` follow the element the same way
+`href` does, and they are invalid on the wrong one whether or not an `href` is beside them —
+`<Navbar.Link as="span" target="_blank">` does not compile on its own. Each is judged against
+the element that actually renders, not as a group, so a `referrerPolicy` on an `<img>` or a
+`target` on a `<form>` stays where it is legal. Where one is removed the TODO quotes it. Put it
+on an `<a>` inside, or make the element one that takes it.
+
+`rel` is never touched: React declares it on `HTMLAttributes`, so it is valid on every element.
+
+A component can be narrower than its element. One that takes no `href` at any `as` takes none of
+these either. `Level.Item` is not narrower: it declares the anchor's whole attribute surface at
+every `as` and forwards it only on the `<a>`, so all of these survive at `as="a"` and none of
+them reaches a `<p>` or a `<div>`.
+
+## `prop:type` — a `<button>` item that no longer submits its form
+
+`Navbar.Item`, `Navbar.Link`, `Menu.Item` and `Dropdown.Item` write `type="button"` on the
+`<button>` an `as` makes them render, whenever the element sets no `type` or one HTML doesn't
+define. A plain `<button>` with neither submits the form around it, so an item you rendered as a
+button with `renderAs="button"` stops submitting once migrated. The codemod can't tell whether one sits
+in a form, so each gets a TODO:
+
+```jsx
+<Navbar.Item renderAs="button">Search</Navbar.Item>
+<Navbar.Item as="button">Search</Navbar.Item>
+```
+
+Add `type="submit"` if it should still submit, or `type="button"` to say it shouldn't, then
+delete the comment. An item whose `type` is written out as `button`, `submit` or `reset`, or
+comes from a spread or an expression, gets no TODO.
+
+## Helper props dropped from plain-element replacements
+
+Where the codemod produced a plain element (`Form.Label` → `<label>`, `Breadcrumb.Item` →
+`<li>`, `Table.Container` fallback `<div>`), Bulma helper props were dropped with a TODO.
+Re-express them as classes: `m={2}` → `className="m-2"`, `textAlign="center"` →
+`className="has-text-centered"`.

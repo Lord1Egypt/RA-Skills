@@ -1,38 +1,58 @@
-## Description: <br>
-Search academic literature and return structured, source-grounded results for questions about methods, markers, findings, or representative figures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search academic literature and return structured, source-grounded results for questions about methods, markers, findings, or representative figures.
 
-## Publisher: <br>
-[zackz2025](https://clawhub.ai/user/zackz2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zackz2025](https://clawhub.ai/user/zackz2025)
 
-## Use Case: <br>
-External users and research-focused agents use this skill to search academic literature, read relevant full text when available, and synthesize methods, markers, findings, or representative figures with source attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad literature-research prompts where a narrower biomedical, methods, marker, or figure-focused synthesis may be more appropriate. <br>
-Mitigation: Tighten the invocation wording or use a narrower skill when the task requires a constrained research scope. <br>
+## Use Case:
 
+External users, researchers, and developers use this skill to search academic literature and synthesize source-grounded answers about common methods, measured markers, reported findings, or representative figures.
 
-## Reference(s): <br>
-- [Query Guide](references/query-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with inline citations such as PMID, PMCID, DOI, or direct links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can organize responses in body-mode summaries by experiment type or figure-mode summaries by representative figure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: release evidence) <br>
+Risk: The skill may activate on broad requests about common methods, markers, results, or figures in a research area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intended research scope before searching and state any limits on the sources reviewed.
+
+Risk: Search terms may be translated into English for broader database coverage.
+
+Mitigation: Preserve the user's original intent, use standard terms for querying, and answer in the user's language when appropriate.
+
+Risk: Academic synthesis can overstate conclusions when full text is unavailable or evidence is sparse.
+
+Mitigation: State what was actually read, cite source identifiers, and lower confidence when full text or sufficient evidence is not available.
+
+## Reference(s):
+
+- [Query Guide](references/query-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/zackz2025/skills/academic-deep-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with citations, tables, and concise source notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers directly in chat unless the user asks for a file; uses PMID, PMCID, DOI, or direct links when available.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

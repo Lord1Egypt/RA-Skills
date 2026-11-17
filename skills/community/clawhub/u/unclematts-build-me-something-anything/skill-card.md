@@ -1,46 +1,57 @@
-## Description: <br>
-Builds one surprising, runnable local project from the user's allowed project context after collecting off-limits boundaries and optional review or tool preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explicitly invoked Uncle Matt local project generator: asks for off-limits paths, scans only allowed project/workspace evidence, diagnoses repeated patterns, and builds one fresh-folder runnable counter-move.
 
-## Publisher: <br>
-[uncmatteth](https://clawhub.ai/user/uncmatteth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncmatteth](https://clawhub.ai/user/uncmatteth)
 
-## Use Case: <br>
-Developers and builders use this skill to have an agent inspect allowed local project evidence, diagnose repeated patterns, and create a fresh runnable project that moves outside the user's usual defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may inspect local project or workspace files while looking for patterns. <br>
-Mitigation: Set explicit off-limits paths and categories before use; avoid broad scans unless that access is intended. <br>
-Risk: Generated code, commands, or configuration may be incorrect or unsuitable for a real environment. <br>
-Mitigation: Keep generated files in the fresh project folder and run local proof, review, and security checks before reuse. <br>
-Risk: Optional review or fix tools can introduce extra trust and installation considerations. <br>
-Mitigation: Use AutoReview, ClawPatch, or missing-tool installs only when opted in, and verify tool metadata and findings before applying fixes. <br>
+## Use Case:
 
+Developers and agent users invoke this skill when they want an agent to inspect allowed local project/workspace evidence, identify repeated creative patterns, and build one fresh runnable project in a new folder. The workflow emphasizes explicit scan boundaries, concise progress, local verification, and optional review tooling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/unclematts-build-me-something-anything) <br>
-- [Unattended orchestration](references/unattended-orchestration.md) <br>
-- [Review closeout](references/review-closeout.md) <br>
-- [OpenClaw AutoReview skill](https://github.com/openclaw/agent-skills/tree/main/skills/autoreview) <br>
-- [ClawPatch npm package](https://www.npmjs.com/package/clawpatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown progress updates, project files, shell commands, and run or verification guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes are intended to stay inside a fresh project folder; optional review and fix tools are opt-in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.420.70 (source: server release metadata) <br>
+Risk: The skill may inspect broad local project or workspace evidence to infer creative patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set concrete off-limits paths and avoid broad scan permission on machines containing client, private, or sensitive work.
+
+Risk: Optional AutoReview, ClawPatch, or missing-tool installs can introduce external tooling decisions.
+
+Mitigation: Approve optional review tools or installs only after confirming the named tool, source, and current package metadata are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/unclematts-build-me-something-anything)
+- [Unattended orchestration reference](references/unattended-orchestration.md)
+- [Review closeout reference](references/review-closeout.md)
+- [OpenClaw AutoReview helper](https://github.com/openclaw/agent-skills/tree/main/skills/autoreview)
+- [ClawPatch package](https://www.npmjs.com/package/clawpatch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown progress and final handoff with generated project files, code, commands, and configuration as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one local runnable project in a fresh folder and may include context notes, asset plans, verification results, and review closeout details.]
+
+## Skill Version(s):
+
+7.420.70 (source: server release metadata; artifact SKILL.md body says 7.420.69)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

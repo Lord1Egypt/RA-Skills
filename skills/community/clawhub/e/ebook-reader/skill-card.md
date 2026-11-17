@@ -1,43 +1,58 @@
-## Description: <br>
-智能电子书阅读助手，支持 EPUB/PDF 解析，并生成章节总结、关键摘录、深度分析和落地应用建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能电子书阅读助手，支持EPUB/PDF等常见格式解析；提供章节总结、关键内容摘录、深度分析与落地应用建议；当用户需要阅读电子书、做读书笔记或寻求知识转化方案时使用
 
-## Publisher: <br>
-[ludiansheng](https://clawhub.ai/user/ludiansheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ludiansheng](https://clawhub.ai/user/ludiansheng)
 
-## Use Case: <br>
-Readers, students, and knowledge workers use this skill to parse EPUB or PDF books and turn chapters into structured notes, excerpts, analysis, practical action plans, and follow-up reading suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill parses user-provided ebooks and PDFs, which may contain sensitive or restricted content. <br>
-Mitigation: Use it only with files the user is comfortable having parsed and analyzed by the agent. <br>
-Risk: Broad reading and note-taking triggers may activate the skill for unrelated note tasks. <br>
-Mitigation: Confirm the request is for ebook or PDF reading before invoking the parser or applying the reading framework. <br>
-Risk: PDF extraction can lose formatting, especially for scanned or complex-layout documents. <br>
-Mitigation: Prefer EPUB or text-based PDFs, run OCR on scanned PDFs first, and review extracted text before relying on analysis. <br>
+## Use Case:
 
+External users and knowledge workers use this skill to parse EPUB/PDF ebooks and produce chapter-by-chapter notes, excerpts, analysis, application advice, full-book synthesis, and further-reading recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ludiansheng/ebook-reader) <br>
-- [Reading analysis framework](references/reading-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reading notes and JSON parser output, with optional shell commands for parsing ebooks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports EPUB and text-based PDF parsing; scanned PDFs need OCR first for reliable analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, claw.json, README changelog) <br>
+Risk: The skill processes the full contents of user-provided ebooks or PDFs, which may include confidential, private, or copyrighted text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with files the user is authorized to process, and avoid sensitive documents unless the environment and retention policy are appropriate.
+
+Risk: Generic reading-note prompts may trigger the skill even when the user did not intend ebook processing.
+
+Mitigation: Confirm that the task involves an EPUB/PDF ebook before invoking the parser or analyzing uploaded file contents.
+
+Risk: PDF parsing may lose formatting, and scanned PDFs may require OCR before useful text can be extracted.
+
+Mitigation: Prefer EPUB or text-based PDF inputs, and run OCR first for scanned PDFs before relying on summaries or analysis.
+
+## Reference(s):
+
+- [Reading Framework](references/reading-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/ludiansheng/skills/ebook-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reading notes and structured JSON parser output, with shell commands for ebook parsing when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [EPUB/PDF input is parsed into structured chapter data before the agent writes summaries, excerpts, analyses, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, claw.json, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

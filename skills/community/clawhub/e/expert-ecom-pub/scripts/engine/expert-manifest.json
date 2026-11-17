@@ -1,0 +1,281 @@
+{
+ "category": "ecom",
+ "zh": "电商与平台结算专家",
+ "free_uses": 5,
+ "subscription_cny_per_month": 9.9,
+ "per_call_cny": 0.3,
+ "founder_price_lock": 9.9,
+ "subs": [
+  {
+   "id": "cross-border-ad-fee-check",
+   "name": "跨境电商平台佣金与广告费核对",
+   "layer": "local",
+   "entry": "cross-border-ad-fee-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "平台结算单与广告费账单",
+    "核对",
+    "跨境电商平台佣金与广告费核对"
+   ],
+   "cols": [
+    "佣金",
+    "佣金率",
+    "其它费用",
+    "平台",
+    "广告费",
+    "广告费平台账单",
+    "店铺",
+    "期间",
+    "站点",
+    "结算净额",
+    "销售额"
+   ]
+  },
+  {
+   "id": "ecom-platform-pack",
+   "name": "电商与平台结算技能包",
+   "layer": "local",
+   "entry": "ecom-platform-pack-full.js",
+   "kw": [
+    "佣金",
+    "平台结算",
+    "核对",
+    "核销",
+    "电商",
+    "电商与平台结算技能包",
+    "返利"
+   ],
+   "cols": []
+  },
+  {
+   "id": "ecom-return-refund-check",
+   "name": "电商退货退款与库存回冲核对",
+   "layer": "local",
+   "entry": "ecom-return-refund-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "核对",
+    "电商退货退款与库存回冲核对",
+    "退货退款与库存回冲明细表"
+   ],
+   "cols": [
+    "到账金额",
+    "包装扣除",
+    "商品编码",
+    "回冲数量",
+    "备注",
+    "实收金额",
+    "店铺",
+    "折旧扣除",
+    "运费扣除",
+    "退款单号",
+    "退款状态",
+    "退款金额",
+    "退货单号",
+    "退货数量",
+    "退货日期"
+   ]
+  },
+  {
+   "id": "ecommerce-monthly-selfcheck",
+   "name": "电商财务月度自查包",
+   "layer": "local",
+   "entry": "ecommerce-monthly-selfcheck-full.js",
+   "kw": [
+    "\"促销补贴与核销核对\"",
+    "\"月度自查\"",
+    "\"核对\"",
+    "\"电商平台结算核对\"",
+    "\"电商财务月度自查包\"",
+    "电商财务月度自查包"
+   ],
+   "cols": []
+  },
+  {
+   "id": "ecommerce-refund-settlement-check",
+   "name": "电商退货退款与货款结算核对",
+   "layer": "local",
+   "entry": "ecommerce-refund-settlement-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "核对",
+    "电商退货退款与货款结算核对"
+   ],
+   "cols": [
+    "合同佣金率",
+    "平台",
+    "平台佣金",
+    "平台佣金率",
+    "应结货款",
+    "店铺",
+    "扣款金额",
+    "结算净额",
+    "结算期间",
+    "订单号",
+    "订单金额",
+    "赔付金额",
+    "退款金额",
+    "退货入库状态",
+    "退货数量"
+   ]
+  },
+  {
+   "id": "insurance-agency-fee-check",
+   "name": "保险代理手续费与佣金结算核对",
+   "layer": "local",
+   "entry": "insurance-agency-fee-check-full.js",
+   "kw": [
+    "保险代理手续费与佣金结算核对",
+    "免费",
+    "对账",
+    "核对"
+   ],
+   "cols": [
+    "代扣税费",
+    "保单号",
+    "保单年度",
+    "保费金额",
+    "保险公司",
+    "协议手续费率",
+    "实收净额",
+    "应收手续费",
+    "所属期间",
+    "手续费率",
+    "手续费类型",
+    "退保追回",
+    "销售渠道"
+   ]
+  },
+  {
+   "id": "insurance-commission-check",
+   "name": "保险佣金与手续费结算核对",
+   "layer": "local",
+   "entry": "insurance-commission-check-full.js",
+   "kw": [
+    "佣金核对",
+    "保险佣金与手续费结算核对",
+    "免费",
+    "手续费勾稽"
+   ],
+   "cols": [
+    "代扣税费",
+    "佣金率",
+    "佣金类型",
+    "保单号",
+    "保单年度",
+    "保费金额",
+    "保险公司",
+    "分支机构",
+    "备注",
+    "实收净额",
+    "应收佣金",
+    "所属期间",
+    "手续费",
+    "退保冲回",
+    "险种"
+   ]
+  },
+  {
+   "id": "live-commerce-commission-check",
+   "name": "直播佣金与坑位费结算核对",
+   "layer": "local",
+   "entry": "live-commerce-commission-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "核对",
+    "直播佣金与坑位费结算核对"
+   ],
+   "cols": [
+    "佣金率",
+    "合同佣金率",
+    "坑位费",
+    "备注",
+    "实际应付",
+    "应付佣金",
+    "直播场次",
+    "结算GMV",
+    "结算期间",
+    "达人名称",
+    "退货扣减"
+   ]
+  },
+  {
+   "id": "ota-commission-check",
+   "name": "OTA佣金与净结算核对",
+   "layer": "local",
+   "entry": "ota-commission-check-full.js",
+   "kw": [
+    "OTA",
+    "OTA佣金与净结算核对",
+    "免费",
+    "渠道结算核对表",
+    "结算",
+    "酒店"
+   ],
+   "cols": [
+    "佣金",
+    "佣金率",
+    "其他扣费",
+    "净结算额",
+    "房费收入",
+    "渠道"
+   ]
+  },
+  {
+   "id": "platform-settlement-check",
+   "name": "电商平台结算核对",
+   "layer": "local",
+   "entry": "platform-settlement-check-full.js",
+   "kw": [
+    "免费",
+    "对账",
+    "平台结算单",
+    "核对",
+    "电商平台结算核对"
+   ],
+   "cols": [
+    "商品销售额",
+    "平台佣金",
+    "技术服务费",
+    "结算金额",
+    "订单号",
+    "运费",
+    "退款"
+   ]
+  },
+  {
+   "id": "takeout-commission-check",
+   "name": "外卖平台抽佣与配送费核对",
+   "layer": "local",
+   "entry": "takeout-commission-check-full.js",
+   "kw": [
+    "佣金核对",
+    "免费",
+    "外卖平台抽佣与配送费核对",
+    "外卖账单对账",
+    "配送费核对"
+   ],
+   "cols": [
+    "佣金",
+    "佣金率",
+    "商家实收",
+    "平台",
+    "期间",
+    "活动补贴商家承担",
+    "结算基数",
+    "订单数",
+    "配送费商家承担",
+    "门店"
+   ]
+  }
+ ],
+ "coverage": {
+  "local": 11,
+  "total": 12,
+  "note": "本公开包内可本地运行 11 个子技能；本类共 12 个，其余 1 个只在订阅版里提供"
+ }
+}

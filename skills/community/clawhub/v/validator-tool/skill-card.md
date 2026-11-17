@@ -1,38 +1,54 @@
-## Description: <br>
-Validate data formats including JSON, email, URL, file paths, IP addresses, and phone numbers with detailed error reporting and batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate common data values such as JSON, email addresses, URLs, IP addresses, phone numbers, UUIDs, hex strings, dates, and credit-card-like numbers with a local Python script.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to validate common input formats for sanitization pipelines, CI checks, and API request validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive values supplied as command-line arguments can be captured in local shell history or process listings. <br>
-Mitigation: Avoid validating real secrets or payment-card data through command-line arguments; use non-sensitive samples or an input path that does not expose values in shell history. <br>
+## Use Case:
 
+Developers and engineers can use this skill to run quick local validation checks for common input formats while building or testing data-processing workflows. Review the implemented script before relying on documented schema, batch, strict, or JSON-output behavior.
 
-## Reference(s): <br>
-- [Validator Tool ClawHub Page](https://clawhub.ai/dinghaibin/validator-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text or JSON validation results with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validation results may include exit status conventions for pipeline use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The release documentation overstates implemented validation features, including schema, batch, strict, and JSON-output behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify behavior against the bundled script before using the skill in automation or CI workflows.
+
+Risk: The script includes undocumented credit-card validation that may expose entered numbers through shell history, process arguments, or logs.
+
+Mitigation: Do not pass real payment-card data or secrets to the script unless input handling and output redaction are changed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/validator-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text command-line validation results with optional guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local script output depends on the selected validator and input value.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

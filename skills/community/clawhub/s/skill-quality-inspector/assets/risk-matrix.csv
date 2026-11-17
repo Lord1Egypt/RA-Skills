@@ -1,0 +1,10 @@
+﻿dimension,level,trigger_example,action_sla
+security,P1,脚本含未加边界的 eval/远程拉取执行,当轮修复，未修不发布
+security,P2,外部内容未提示视为不可信,本周 TODO
+security,P3,依赖未版本钉扎,进 backlog
+maintenance,P1,悬空脚本引用导致 playbook 不可执行,当轮修复
+maintenance,P2,孤儿 reference 不可达,本周 TODO
+maintenance,P3,路由关键词不够具体,进 backlog
+compliance,P1,声明 superpower 但 partial/legacy,当轮修复
+compliance,P2,frontmatter 缺 metadata,本周 TODO
+compliance,P3,source.updated 超 180 天未标 review_needed,进 backlog

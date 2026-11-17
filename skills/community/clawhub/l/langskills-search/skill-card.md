@@ -1,41 +1,50 @@
-## Description: <br>
-Searches 119K evidence-backed skills from 95K+ papers and 24K+ tech sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LangSkills Search helps agents search 119K evidence-backed skills from research papers and technical sources.
 
-## Publisher: <br>
-[shatianming5](https://clawhub.ai/user/shatianming5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shatianming5](https://clawhub.ai/user/shatianming5)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to find evidence-backed best practices, how-tos, and techniques from LangSkills data bundles. It is useful when answers should include source URLs or full skill bodies rather than unsupported guesses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install a third-party Python package and data bundles. <br>
-Mitigation: Install only from a trusted package source, preferably in an isolated Python environment. <br>
-Risk: Returned full skill bodies may contain commands or workflow guidance that are unsafe or unsuitable for the current environment. <br>
-Mitigation: Treat returned skill bodies as reference material and verify commands before copying them into an agent workflow. <br>
+## Use Case:
 
+Developers, researchers, and technical writers use this skill to query an offline LangSkills knowledge base for evidence-backed best practices, how-tos, and research or coding techniques with source URLs.
 
-## Reference(s): <br>
-- [LangSkills source repository](https://github.com/LabRAI/LangSkills) <br>
-- [LangSkills Search ClawHub release](https://clawhub.ai/shatianming5/langskills-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and CLI parameter tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include title, domain, quality score, source URL, and optional full skill body.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: Installing the unpinned langskills-rai package or using automatic bundle selection can introduce supply-chain risk in sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment or virtualenv, and review or pin the langskills-rai package and selected bundles before use.
+
+## Reference(s):
+
+- [ClawHub LangSkills Search release page](https://clawhub.ai/shatianming5/skills/langskills-search)
+- [LangSkills source repository](https://github.com/LabRAI/LangSkills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown search results with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results can include titles, domains, quality scores, source URLs, and optional full skill bodies.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

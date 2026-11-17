@@ -1,16 +1,22 @@
 #!/bin/bash
 # Create a recurring reminder
 # Usage: create-recurring.sh "message" "schedule" [--channel CHANNEL] [--to RECIPIENT]
-
-# Load skill config (external env vars override config.env)
-SKILL_DIR="$(cd "$(dirname "$0")" && pwd)"
-[[ -f "$SKILL_DIR/config.env" ]] && source "$SKILL_DIR/config.env"
+#
+# Environment variables (override defaults):
+#   CLAWDBOT_DIR     Path to clawdbot directory (default: directory of this script)
+#   REMINDERS_FILE   Path to reminders log file (default: ~/reminders.md)
+#   TIMEZONE         Timezone for cron scheduling (default: system timezone)
+#   CHANNEL          Delivery channel, e.g. telegram, slack (default: telegram)
+#   TO               Recipient ID/address
 
 MESSAGE="$1"
 SCHEDULE="$2"
 shift 2
 
 # Parse optional flags
+CHANNEL="${CHANNEL:-telegram}"
+TO="${TO:-}"
+
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --channel) CHANNEL="$2"; shift 2 ;;
@@ -19,14 +25,14 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Fallbacks if not set in config.env or flags
-CHANNEL="${CHANNEL:-telegram}"
+# Defaults from environment or fallback
+CLAWDBOT_DIR="${CLAWDBOT_DIR:-$(cd "$(dirname "$0")" && pwd)}"
 REMINDERS_FILE="${REMINDERS_FILE:-$HOME/reminders.md}"
 TIMEZONE="${TIMEZONE:-$(timedatectl show -p Timezone --value 2>/dev/null || date +%Z)}"
 
 [[ -z "$MESSAGE" ]]  && echo "Error: No message provided" && exit 1
 [[ -z "$SCHEDULE" ]] && echo "Error: No schedule provided" && exit 1
-[[ -z "$TO" ]]       && echo "Error: No recipient provided. Set TO in config.env or pass --to" && exit 1
+[[ -z "$TO" ]]       && echo "Error: No recipient provided. Set --to or TO env var" && exit 1
 
 # Parse schedule to cron expression or duration
 parse_schedule() {
@@ -50,8 +56,11 @@ parse_schedule() {
         local ampm="${BASH_REMATCH[4]}"
         minute="${minute#:}"
 
-        if [[ "$ampm" == "pm" ]] && [[ $hour -lt 12 ]]; then hour=$((hour + 12))
-        elif [[ "$ampm" == "am" ]] && [[ $hour -eq 12 ]]; then hour=0; fi
+        if [[ "$ampm" == "pm" ]] && [[ $hour -lt 12 ]]; then
+            hour=$((hour + 12))
+        elif [[ "$ampm" == "am" ]] && [[ $hour -eq 12 ]]; then
+            hour=0
+        fi
 
         echo "cron:$minute $hour * * *"
         return
@@ -65,13 +74,21 @@ parse_schedule() {
         local ampm="${BASH_REMATCH[4]}"
         minute="${minute#:}"
 
-        if [[ "$ampm" == "pm" ]] && [[ $hour -lt 12 ]]; then hour=$((hour + 12))
-        elif [[ "$ampm" == "am" ]] && [[ $hour -eq 12 ]]; then hour=0; fi
+        if [[ "$ampm" == "pm" ]] && [[ $hour -lt 12 ]]; then
+            hour=$((hour + 12))
+        elif [[ "$ampm" == "am" ]] && [[ $hour -eq 12 ]]; then
+            hour=0
+        fi
 
         local dow
         case "$day" in
-            Sunday)    dow=0 ;; Monday)    dow=1 ;; Tuesday)   dow=2 ;;
-            Wednesday) dow=3 ;; Thursday)  dow=4 ;; Friday)    dow=5 ;; Saturday)  dow=6 ;;
+            Sunday)    dow=0 ;;
+            Monday)    dow=1 ;;
+            Tuesday)   dow=2 ;;
+            Wednesday) dow=3 ;;
+            Thursday)  dow=4 ;;
+            Friday)    dow=5 ;;
+            Saturday)  dow=6 ;;
         esac
 
         echo "cron:$minute $hour * * $dow"
@@ -93,9 +110,11 @@ if [[ "$PARSED" == "error" ]]; then
     exit 1
 fi
 
+cd "$CLAWDBOT_DIR" || { echo "Error: CLAWDBOT_DIR not found: $CLAWDBOT_DIR"; exit 1; }
+
 if [[ "$PARSED" =~ ^duration:(.+)$ ]]; then
     DURATION="${BASH_REMATCH[1]}"
-    JOB_OUTPUT=$(openclaw cron add \
+    JOB_OUTPUT=$(npx tsx src/index.ts cron add \
         --name "Recurring: $MESSAGE" \
         --every "$DURATION" \
         --session isolated \
@@ -108,7 +127,7 @@ if [[ "$PARSED" =~ ^duration:(.+)$ ]]; then
     SCHEDULE_DISPLAY="every $DURATION"
 elif [[ "$PARSED" =~ ^cron:(.+)$ ]]; then
     CRON_EXPR="${BASH_REMATCH[1]}"
-    JOB_OUTPUT=$(openclaw cron add \
+    JOB_OUTPUT=$(npx tsx src/index.ts cron add \
         --name "Recurring: $MESSAGE" \
         --cron "$CRON_EXPR" \
         --tz "$TIMEZONE" \

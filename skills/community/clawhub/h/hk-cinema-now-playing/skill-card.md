@@ -1,38 +1,52 @@
-## Description: <br>
-Helps users find Hong Kong now-playing movies, review brief showtime availability, filter by cinema or date, and use direct booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hong Kong cinema helper that lists now-playing movies, summarizes movie showtimes by cinema and date, filters showtimes, and provides direct ticket-booking links.
 
-## Publisher: <br>
-[errchh](https://clawhub.ai/user/errchh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[errchh](https://clawhub.ai/user/errchh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users ask an agent about Hong Kong movies, cinema showtimes, and ticket booking options. The skill guides the agent through listing movies, showing concise showtime availability, filtering by cinema or date, and handing off to direct booking links.
+
+### Deployment Geography for Use:
+
+Hong Kong
+
+## Known Risks and Mitigations:
+
+Risk: Booking links and showtime details may be stale, incorrect, or lead away from the intended cinema or ticketing site.
+
+Mitigation: Before following booking links or entering account or payment details, confirm the cinema, date, film, price, and destination site.
+
+Risk: A broad activation phrase can trigger this cinema workflow for general movie or ticket-booking requests.
+
+Mitigation: Use the skill when the user is asking about Hong Kong movies, cinema showtimes, or ticket booking, and ask a clarifying question when location or intent is ambiguous.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and assistants use this skill to answer questions about Hong Kong cinema listings, showtime availability, and ticket booking links. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global; the content focus is Hong Kong cinemas. <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Cinema listings, showtimes, prices, or booking destinations may be stale or incorrect. <br>
-Mitigation: Verify the cinema, date, showtime, price, and destination before buying tickets. <br>
+**Output Format:** [Markdown or plain text with numbered movie lists, concise showtime summaries, filters, and booking links]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/errchh/hk-cinema-now-playing) <br>
+**Other Properties Related to Output:** [No executable code, persistence, credential handling, or hidden behavior identified in server security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain text responses with numbered movie lists, brief showtime summaries, filters, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code or privileged access is shown in the provided artifact.] <br>
+1.0.3 (source: server-resolved release evidence)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

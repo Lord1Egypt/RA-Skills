@@ -1,39 +1,56 @@
-## Description: <br>
-TuleBank lets an agent check wallet balance, send ARS to CVU or ALIAS destinations, swap USDC and wARS, manage beneficiaries, and move funds through ARS off-ramp and on-ramp flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TuleBank helps an agent check wallet balances, send ARS to CVU or ALIAS destinations, swap USDC and wARS, manage beneficiaries, and move funds through ARS off-ramp and on-ramp flows.
 
-## Publisher: <br>
-[aromeoes](https://clawhub.ai/user/aromeoes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aromeoes](https://clawhub.ai/user/aromeoes)
 
-## Use Case: <br>
-External users and their agents use TuleBank to operate Ripio/tulebank wallet workflows, including balance checks, beneficiary management, ARS transfers to CVU or ALIAS recipients, USDC/wARS swaps, and ARS on-ramp or off-ramp flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: This skill can initiate real-money financial transfers, swaps, and ARS on-ramp or off-ramp flows. <br>
-Mitigation: Verify the publisher and binary source, confirm every amount, recipient, destination, and swap detail with the user, and follow the CLI confirmation flow before execution. <br>
-Risk: The signup and OTP flows handle financial account setup and verification codes. <br>
-Mitigation: Only request Ripio/tulebank credentials or OTP codes inside the intended CLI flow and do not expose them outside the command interaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Tulebank release](https://clawhub.ai/aromeoes/tulebank) <br>
+## Use Case:
 
+External users and developers use this skill to operate the TuleBank CLI for wallet setup, balance checks, beneficiary management, ARS bank transfers, token swaps, and ARS on-ramp or off-ramp workflows. It is intended for conversational assistance around real wallet, KYC, beneficiary, and transaction actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI command examples and human-readable summaries of JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the installed tulebank binary; transfer, swap, and on-ramp actions require user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate real financial transfers and swaps through wallet, beneficiary, KYC, and transaction workflows.
+
+Mitigation: Require explicit human confirmation of amount, recipient, destination identifier, token, and action before execution, and prefer manual send mode for fund movement.
+
+Risk: Conversational recipient names or descriptions can resolve to the wrong beneficiary.
+
+Mitigation: Search beneficiaries first, ask the user to clarify multiple matches, and confirm exact CVU or ALIAS and holder details before sending.
+
+Risk: Token swaps and ARS-denominated sends can produce unintended amounts if an agent manually converts values.
+
+Mitigation: Use the CLI amount semantics directly, avoid manual USDC conversion for ARS amounts, and run transaction history after sends, swaps, or on-ramp creation.
+
+## Reference(s):
+
+- [ClawHub Tulebank Skill Page](https://clawhub.ai/aromeoes/skills/tulebank)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and human-readable summaries of JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the tulebank CLI binary and human confirmation for fund movement.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

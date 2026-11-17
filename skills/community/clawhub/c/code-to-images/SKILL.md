@@ -1,138 +1,111 @@
 ---
 name: "code-to-images"
-description: "Convert code files to A4-ratio PNG/SVG images with line numbers and syntax highlighting, then merge to PDF. 支持中英文双语说明。"
+description: "Convert code files into A4-ratio PNG/SVG images with line numbers, syntax highlighting and per-editor color families, then merge into a PDF. 把代码文件渲染成带行号、语法高亮的 A4 图片并合成 PDF。"
 ---
 
-# Code → A4 图片 + PDF / A4 Images + PDF
+# Code → A4 图片 + PDF / Code → A4 Images + PDF
 
-**v2.0.5** — Brace-depth indentation · Auto word-wrapping
+**v2.3.0** · 49 种语言 · 11 个编辑器配色族 · 忠实缩进 · 自动换行 · 裁剪导出
+
+把源代码文件渲染成**带行号、语法高亮**的 A4 比例图片（SVG + PNG），再合成一个 PDF。
+语言按扩展名 / 文件名 / 内容自动识别，不用手动指定。
 
 ---
 
-📖 [中文](#chinese) · [English](#english)
+## 什么时候用
+
+- 代码要**打印**：作业、讲义、代码审查、比赛提交稿
+- 代码要**发图**：贴到文档、PPT、社交平台，需要整齐的版式和行号
+- 代码要**存成 PDF 归档**，又不想丢高亮和缩进
 
 ---
 
-## 中文说明 / Chinese
-
-> 🇨🇳 中文 | [中文](#chinese)
-
-将源代码文件转换为多页 A4 比例图片（SVG+PNG），然后合并为一个 PDF。
-
-### 功能
-
-- ✅ **行号** — 自适应装订线宽度
-- ✅ **语法高亮** — 关键字、寄存器、宏、数字、字符串、注释分别着色
-- ✅ **6 种等宽字体** — Cascadia Code / Fira Code / JetBrains Mono / Consolas / Courier New / Source Code Pro
-- ✅ **字号自动适配** — 根据最长行自动缩放，填满 A4 宽度
-- ✅ **每页行数自适应** — 根据字号和行高自动计算
-- ✅ **大括号深度缩进** — 按 `{}` 嵌套层级决定缩进，每级 4 字符宽度
-- ✅ **代码超宽自动换行** — 在 `;,(){}[]` 标点后折行，续行不产生新行号
-- ✅ **Tab 制表位** — 正确按制表位对齐
-- ✅ **多行注释识别** — `/* */` 跨界注释完整处理
-- ✅ **固定 A4 比例** — 794×1123px (96 DPI)
-- ✅ **PDF 输出** — 每个源文件一份 PDF
-
-### 依赖
+## 快速开始
 
 ```bash
+# 依赖（先装一次）
 npm install -g @resvg/resvg-js
 pip install img2pdf
+
+# 渲染指定文件（推荐）
+python gen_code_pdfs.py main.c app.py schema.sql
+
+# 或编辑 gen_code_pdfs.py 顶部的 FILES 列表后直接运行
+python gen_code_pdfs.py
 ```
 
-### 使用
+**输出**：
 
-1. 编辑 `gen_code_pdfs.py` 顶部的 `FILES` 列表，填入源文件名
-2. 按需修改 `FONT_KEY`、`FONT_SIZE` 等配置
-3. 运行：`python gen_code_pdfs.py`
-4. 输出：`文件名.pdf` + `文件名_images/` 目录（中间 SVG/PNG）
+```
+main.c.pdf                    ← 合成好的 PDF（默认裁掉空白，只留代码区域）
+main.c_images/
+├── code_page_1.svg           ← 矢量图，可再编辑
+├── code_page_1.png           ← 位图
+├── code_page_1_crop.png      ← PDF 实际使用的裁剪页
+└── ...
+```
 
-### 配置
+---
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `FONT_KEY` | `cascadia` | 字体：`cascadia`/`firacode`/`jetbrains`/`consolas`/`courier`/`sourcecode` |
-| `FONT_SIZE` | `14` | 基础字号 (px)，超宽代码自动缩小 |
+## 核心能力
+
+| 能力 | 说明 |
+|---|---|
+| **49 种语言自动识别** | 按扩展名 → 文件名 → 内容嗅探（`.m` 区分 Objective-C / MATLAB，`Makefile` / `Dockerfile` / `CMakeLists.txt` 按文件名） |
+| **按编辑器配色（11 族）** | 每种语言用它最主流编辑器的亮色主题：VS Code、IntelliJ、Xcode、Visual Studio、Keil、Chrome DevTools、MATLAB、RStudio、TeXstudio、Arduino、微信暖色 |
+| **小程序专属配色** | `.wxml` / `.wxss` 走微信开发者工具暖色，`{{ }}` 表达式单独着色 |
+| **HTML 分区高亮** | `.html` 内 `<style>` 按 CSS 分词、`<script>` 按 JS 分词，整页共用 Chrome 色表 |
+| **多行结构** | `/* */`、`<!-- -->`、`--[[ ]]`、`{- -}`、`#= =#`、`(* *)` 跨行注释；三引号字符串（Python / Julia / 仓颉） |
+| **语言特性 token** | `@` 注解与装饰器、`$` 变量（含 `${}` / `$()`）、HTML/XML 标签、Makefile 目标行、YAML 键、Markdown 标题 |
+| **忠实缩进** | 保留源码真实的前导空格 / Tab，大括号风格和空格缩进语言都对 |
+| **自适应排版** | 字号按最长行自动缩放填满页宽（下限可设）；每页行数按字号自动计算 |
+| **标点换行** | 超宽行在 `; , ( ) { } [ ]` 后折行，续行不占新行号 |
+| **6 种等宽字体** | Cascadia Code / Fira Code / JetBrains Mono / Consolas / Courier New / Source Code Pro |
+| **输出尺寸** | 默认 300 DPI（2480×3508），打印清晰；可改回 96 DPI（794×1123） |
+
+---
+
+## 支持的语言
+
+**脚本 / 动态**：Python、JavaScript、TypeScript、Ruby、Perl、PHP、Lua、Shell、PowerShell、Batch、Visual Basic、R、MATLAB、Julia
+
+**编译 / 系统**：C、C++、Arduino、Go、Rust、Zig、Swift、Kotlin、Dart、仓颉 Cangjie、Objective-C、Scala、Haskell、Erlang、Elixir、Clojure、F#、Pascal、Fortran、Assembly、Solidity
+
+**标记 / 配置 / 数据**：Java、C#、Groovy、CSS、HTML/XML、JSON、YAML、INI/TOML、Markdown、LaTeX、SQL、Makefile、Dockerfile、CMake
+
+> 未识别的扩展名会回退到通用规则，保证仍能正常出图。
+
+---
+
+## 常用配置
+
+在 `gen_code_pdfs.py` 顶部：
+
+| 参数 | 默认 | 作用 |
+|---|---|---|
+| `FILES` | — | 要渲染的文件列表（命令行参数可覆盖） |
+| `FONT_KEY` | `cascadia` | 字体：`cascadia` / `firacode` / `jetbrains` / `consolas` / `courier` / `sourcecode` |
+| `FONT_SIZE` | `14` | 基础字号（px），超宽代码会自动缩小 |
+| `MIN_FONT_SIZE` | `7` | 自动缩小的下限 |
 | `LINE_HEIGHT_RATIO` | `1.65` | 行高系数 |
 | `TAB_WIDTH` | `4` | Tab 制表位宽度 |
-| `MIN_FONT_SIZE` | `7` | 自动缩小时的最小字号 |
 | `WRAP_IDENT` | `2` | 续行额外缩进字符数 |
+| `CROP_TO_CONTENT` | `True` | PDF 页裁剪到代码区域，去掉大片留白 |
+| `A4_W, A4_H` | `2480, 3508` | 输出尺寸（300 DPI）；改 `794, 1123` 即 96 DPI |
+
+**换配色**：改 `FAMILY_PALETTES[族]` 里某个 token 的颜色；**换族**：改 `LANG_TO_FAMILY[语言]`。
+
+**新增语言**：在 `LANG` 里加一条规则（关键字、注释、字符串、特殊 token），再到 `EXT2LANG` 登记扩展名即可。
 
 ---
 
-## English / English
+## 注意事项
 
-> 🇬🇧 English | [中文](#chinese)
-
-Convert source code files into multi-page A4-ratio images (SVG+PNG), then merge into a single PDF.
-
-### Features
-
-- ✅ **Line numbers** — Adaptive gutter width
-- ✅ **Syntax highlighting** — Keywords, registers, macros, numbers, strings, comments
-- ✅ **6 monospace fonts** — Cascadia Code / Fira Code / JetBrains Mono / Consolas / Courier New / Source Code Pro
-- ✅ **Auto font size** — Scales to fill A4 width based on longest line
-- ✅ **Auto lines per page** — Computed from font size and line height
-- ✅ **Brace-depth indentation** — Indent level by `{}` nesting, each level = 4 char widths
-- ✅ **Auto word-wrapping** — Breaks after `;,(){}[]`, continuation lines get no new line number
-- ✅ **Tab stops** — Proper tab alignment
-- ✅ **Multi-line comments** — Full `/* */` cross-line support
-- ✅ **Fixed A4 ratio** — 794×1123px (96 DPI)
-- ✅ **PDF output** — One PDF per source file
-
-### Prerequisites
-
-```bash
-npm install -g @resvg/resvg-js
-pip install img2pdf
-```
-
-### Usage
-
-1. Edit the `FILES` list at the top of `gen_code_pdfs.py`
-2. Configure `FONT_KEY`, `FONT_SIZE`, etc.
-3. Run: `python gen_code_pdfs.py`
-4. Output: `filename.pdf` + `filename_images/` directory (intermediate SVG/PNG)
-
-### Configuration
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `FONT_KEY` | `cascadia` | Font: `cascadia`/`firacode`/`jetbrains`/`consolas`/`courier`/`sourcecode` |
-| `FONT_SIZE` | `14` | Base font size (px), auto-reduces for wide code |
-| `LINE_HEIGHT_RATIO` | `1.65` | Line height multiplier |
-| `TAB_WIDTH` | `4` | Tab stop width |
-| `MIN_FONT_SIZE` | `7` | Minimum font size when auto-reducing |
-| `WRAP_IDENT` | `2` | Extra indent for continuation lines |
+- 必须能调用 `node`（渲染 SVG → PNG）。不在 PATH 时设环境变量 `NODE_EXE` 指向可执行文件。
+- `@resvg/resvg-js` 装在本地目录时，设 `NODE_PATH` 指向对应 `node_modules`。
+- 源文件按 UTF-8 读取；非 UTF-8 编码请先转码。
+- 单文件页数由内容长度决定，超长文件会生成多页，每页独立 SVG/PNG，最后合成一个 PDF。
 
 ---
 
-## Python Batch Script
-
-Save as `gen_code_pdfs.py` and run with `python gen_code_pdfs.py`:
-
-```python
-#!/usr/bin/env python3
-"""Batch convert code files -> A4 images + PDF. One PDF per source file."""
-import os, sys, subprocess, json
-
-# ===== CONFIG =====
-FILES = [/* List source files here */]
-FONT_KEY = '***'   # cascadia | firacode | jetbrains | consolas | courier | sourcecode
-FONT_SIZE = 14; LINE_HEIGHT_RATIO = 1.65; TAB_WIDTH = 4; MIN_FONT_SIZE = 7; WRAP_IDENT = 2
-
-FONT_NAMES = {'cascadia':'Cascadia Code','firacode':'Fira Code','jetbrains':'JetBrains Mono',
-    'consolas':'Consolas','courier':'Courier New','sourcecode':'Source Code Pro'}
-A4_W, A4_H = 794, 1123; HDR_H = 60; PAD_R = 36; PAD_T = 72; PAD_B = 28
-CONTENT_H = A4_H - PAD_T - PAD_B; CHAR_RATIO = 0.60; WRAP_PUNCT = set(';,(){}[]')
-KW = {'void','char','int','u8','u16','u32','uchar','unsigned','for','if','else','while',
-      'switch','case','break','return','static','bit','sbit','xdata','idata','code','interrupt',
-      'do','default','continue','struct','typedef','enum','const','#ifndef','#define','#endif','#ifdef','extern'}
-RG = {'P0','P1','P2','P3','P4','P5','P6','P7','RST','SCLK','IO','SCK'}
-CO = {'keyword':'#d63384','register':'#e8590c','macro':'#099268',
-      'number':'#2b8a3e','string':'#099268','comment':'#868e96','var':'#1971c2','text':'#212529'}
-BG='#ffffff'; HDR_BG='#f1f3f5'; HDR_BD='#dee2e6'; GT_BG='#f8f9fa'; GT_BD='#e9ecef'; LN_COLOR='#868e96'
-
-# [Full script at: https://github.com/yon-gjun/code-to-images/blob/master/gen_code_pdfs.py]
-# Run the script directly from the repo for the complete, tested version.
-```
+**仓库**：https://github.com/yon-gjun/code-to-images

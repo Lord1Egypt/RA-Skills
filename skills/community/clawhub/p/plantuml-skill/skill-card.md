@@ -1,43 +1,56 @@
-## Description: <br>
-Turn natural language into uml-diagrams.org style PlantUML diagrams, including sequence, class, activity, use case, component, and state diagrams, and render them to SVG, PNG, or PDF. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn natural language into uml-diagrams.org style PlantUML diagrams and render them to SVG, PNG, PDF, or ASCII text.
 
-## Publisher: <br>
-[samonysh](https://clawhub.ai/user/samonysh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samonysh](https://clawhub.ai/user/samonysh)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert natural-language requirements into PlantUML source and rendered UML diagrams for architecture, workflow, data model, and interaction documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Opt-in public rendering can send diagram source to a third-party service. <br>
-Mitigation: Use Docker or a local PlantUML JAR for private diagrams; enable public rendering only for non-sensitive diagrams or route it to a trusted self-hosted Kroki instance. <br>
-Risk: The skill runs local rendering commands and writes generated .puml and output files. <br>
-Mitigation: Review generated PlantUML and output paths before execution, and run the renderer in a workspace where Docker, Java, or curl usage is expected. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn text descriptions of systems, workflows, and interactions into PlantUML source and rendered diagrams. It is useful for producing sequence, class, activity, use case, component, deployment, state, Gantt, and mind map diagrams in a consistent UML reference style.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samonysh/skills/plantuml-skill) <br>
-- [uml-diagrams.org UML reference style](https://www.uml-diagrams.org) <br>
-- [Kroki](https://kroki.io) <br>
-- [PlantUML style evolution](https://plantuml.com/style-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with PlantUML code blocks, shell commands, and generated .puml plus SVG, PNG, PDF, or TXT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default SVG output; optional PNG, PDF, and TXT output; local-first rendering with opt-in remote rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: frontmatter and server release evidence) <br>
+Risk: The renderer can execute a local PlantUML JAR from the working directory or use a mutable Docker image.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted Docker image or an explicitly verified PlantUML JAR, and avoid running the renderer from untrusted project directories.
+
+Risk: Opt-in public server rendering sends diagram source to a third-party service.
+
+Mitigation: Do not use public server rendering for confidential diagrams; review PLANTUML_PUBLIC_SERVER before enabling remote rendering and prefer local or trusted self-hosted backends.
+
+## Reference(s):
+
+- [ClawHub Plantuml Skill](https://clawhub.ai/samonysh/skills/plantuml-skill)
+- [uml-diagrams.org UML Reference Style](https://www.uml-diagrams.org)
+- [Kroki Diagram Rendering](https://kroki.io)
+- [PlantUML Style Evolution](https://plantuml.com/style-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Files, Markdown]
+
+**Output Format:** [Markdown guidance with PlantUML code blocks and rendered SVG, PNG, PDF, or TXT diagram files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default rendering is local-first with Docker or a local PlantUML JAR; remote Kroki rendering is opt-in.]
+
+## Skill Version(s):
+
+1.7.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

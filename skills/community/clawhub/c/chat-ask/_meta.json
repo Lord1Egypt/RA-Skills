@@ -1,6 +1,74 @@
 {
-  "ownerId": "kn75xkb4vx49cnstqqje0xjcs582cjhb",
-  "slug": "chat-ask",
+  "name": "chat-ask",
+  "description": "Chat and ask functionality for OpenClaw",
+  "emoji": "💬",
+  "author": "OpenClaw User",
   "version": "1.0.0",
-  "publishedAt": 1773671711226
+  "license": "MIT",
+  "requires": {
+    "bins": []
+  },
+  "tools": [
+    {
+      "name": "chat",
+      "description": "Start or continue a chat conversation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The message to send in chat"
+          },
+          "context": {
+            "type": "string",
+            "description": "Additional context for the conversation",
+            "optional": true
+          }
+        },
+        "required": ["message"]
+      }
+    },
+    {
+      "name": "ask",
+      "description": "Ask a question to OpenClaw",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "The question to ask"
+          },
+          "detailed": {
+            "type": "boolean",
+            "description": "Whether to provide a detailed answer",
+            "optional": true,
+            "default": false
+          }
+        },
+        "required": ["question"]
+      }
+    },
+    {
+      "name": "chat_history",
+      "description": "Manage chat history",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Action to perform - 'get', 'clear', or 'summary'",
+            "enum": ["get", "clear", "summary"],
+            "default": "get"
+          },
+          "limit": {
+            "type": "number",
+            "description": "Number of messages to retrieve",
+            "optional": true,
+            "default": 10
+          }
+        },
+        "required": ["action"]
+      }
+    }
+  ]
 }

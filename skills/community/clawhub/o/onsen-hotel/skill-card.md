@@ -1,46 +1,60 @@
-## Description: <br>
-Book hotels with genuine hot spring baths, including natural onsen pools, private hot spring rooms, and Japanese-style ryokan experiences, powered by Fliggy through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book hotels with genuine hot spring baths, including natural onsen pools, private hot spring rooms, and Japanese-style ryokan experiences, using FlyAI/Fliggy live travel search and booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travel users use this skill to search for onsen hotels, private hot spring rooms, and ryokan-style stays from real-time flyai CLI results. It is also used to prepare booking-oriented Markdown summaries with current prices and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run the global flyai CLI package. <br>
-Mitigation: Review the CLI package before installation and approve installation manually in managed environments. <br>
-Risk: Local execution logs can contain raw travel queries and may include sensitive booking-related details. <br>
-Mitigation: Avoid entering highly sensitive travel, passport, payment, or booking reference information, and review or delete `.flyai-execution-log.json` after use. <br>
-Risk: Travel availability and pricing can change between search and booking. <br>
-Mitigation: Confirm price, room details, policies, and booking links on the provider page before purchase. <br>
+## Use Case:
 
+External travelers and travel-booking agents use this skill to find hotels with hot spring or onsen features, compare real-time options, and present Markdown booking results backed by FlyAI/Fliggy CLI output.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/onsen-hotel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results and include booking links when results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: server release metadata; artifact frontmatter states 3.2.0) <br>
+Risk: The skill asks the agent to install and run a third-party CLI globally before retrieving travel data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; run in an isolated environment or revise the skill to require explicit install consent and pinned dependencies.
+
+Risk: Shell-style command templates may pass user-supplied travel parameters into CLI calls.
+
+Mitigation: Use safe argument-array execution and validate or quote destination names, dates, budgets, keywords, and other user-provided values.
+
+Risk: The runbook permits persistent logging of raw user travel queries.
+
+Mitigation: Disable persistent logging or redact sensitive itinerary and personal details before storage.
+
+## Reference(s):
+
+- [Parameter and Output Templates](references/templates.md)
+- [Onsen Hotel Playbooks](references/playbooks.md)
+- [Fallback Recovery Guide](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI output for hotel data; should not emit raw JSON or fabricated travel results.]
+
+## Skill Version(s):
+
+3.2.1 (source: server release metadata; artifact frontmatter states 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+name: geo-title-optimizer
+slug: geo-title-optimizer
+version: 0.1.2
+display_name: GEO Title Optimizer
+description: 用于中文内容标题策划、候选比较、证据与正文承诺核对及平台适配。仅准备内容，不采集账号数据、不发布、不承诺排名或引用效果。
+license: MIT-0
+self_test: python3 scripts/self-test.py
+platforms:
+  - github
+  - gitee
+  - skillhub

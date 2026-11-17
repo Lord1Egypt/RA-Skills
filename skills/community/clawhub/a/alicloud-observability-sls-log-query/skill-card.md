@@ -1,43 +1,60 @@
-## Description: <br>
-Query and troubleshoot logs in Alibaba Cloud Log Service (SLS) using query|analysis syntax and the Python SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and troubleshoot logs in Alibaba Cloud Log Service (SLS) using query|analysis syntax and the Python SDK.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to run time-bounded Alibaba Cloud SLS log searches, investigate errors, and summarize troubleshooting evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud credentials to query SLS logs and may expose log contents. <br>
-Mitigation: Use read-only, least-privilege credentials scoped to the required SLS projects and logstores, and avoid sharing printed log output unnecessarily. <br>
-Risk: Credentials or sensitive log data could be accidentally echoed, saved, or committed. <br>
-Mitigation: Keep credentials in environment variables, do not commit secrets, and review saved artifacts before sharing. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to compose time-bounded Alibaba Cloud SLS queries, run SDK-backed log searches, and investigate errors or latency patterns across one or more logstores.
 
-## Reference(s): <br>
-- [Query syntax](references/query-syntax.md) <br>
-- [Python SDK](references/python-sdk.md) <br>
-- [Troubleshooting templates](references/templates.md) <br>
-- [Source list](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; helper scripts print JSON log rows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries require Alibaba Cloud SLS endpoint, project, logstore, time range, limit, and read-capable credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Returned SLS logs may contain secrets, personal data, internal tokens, or other sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review query scope before execution, avoid broad searches on sensitive logstores, and treat script output as sensitive evidence.
+
+Risk: Alibaba Cloud credentials used by the scripts can grant access beyond the intended project or logstore.
+
+Mitigation: Use read-only credentials scoped to the required SLS projects and logstores, preferably in a dedicated virtual environment.
+
+Risk: A misconfigured endpoint can query the wrong Alibaba Cloud region or environment.
+
+Mitigation: Verify SLS_ENDPOINT, SLS_PROJECT, and SLS_LOGSTORE before running queries or troubleshooting templates.
+
+## Reference(s):
+
+- [SLS Query and Analysis Syntax Notes](references/query-syntax.md)
+- [Python SDK Basic Calls](references/python-sdk.md)
+- [SLS Troubleshooting Query Templates](references/templates.md)
+- [Source List](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Python snippets; bundled scripts emit JSON lines for returned log rows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Alibaba Cloud SLS endpoint, project, logstore, and access-key environment variables when executing the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

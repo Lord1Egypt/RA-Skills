@@ -1,45 +1,55 @@
-## Description: <br>
-Browse, search, and analyze Chia NFTs, collections, profiles, marketplace events, and activity through the public MintGarden API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse, search, and analyze Chia NFTs, collections, marketplace activity, and profiles through the public MintGarden API.
 
-## Publisher: <br>
-[Koba42Corp](https://clawhub.ai/user/Koba42Corp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[koba42corp](https://clawhub.ai/user/koba42corp)
 
-## Use Case: <br>
-Developers and agent users use this skill to look up Chia NFT collections, individual NFTs, profiles, sales activity, trending collections, and marketplace summaries in CLI or chat workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Searches, lookups, and identifiers are sent to the MintGarden API. <br>
-Mitigation: Avoid submitting sensitive identifiers or private research queries unless sharing them with MintGarden is acceptable. <br>
-Risk: Trading-related command labels may imply broader coverage than the implementation actually returns. <br>
-Mitigation: Treat prices, offers, history, trending, and activity output as informational and verify material trading decisions against authoritative marketplace data. <br>
-Risk: Installation uses npm dependencies and can optionally link global CLI commands. <br>
-Mitigation: Review npm dependencies before installation and skip global linking unless the mg or mintgarden commands are needed. <br>
+## Use Case:
 
+External users and developers use this skill to query Chia NFT collections, individual NFTs, trading activity, marketplace statistics, and public profiles from MintGarden in CLI, messaging, or agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Koba42Corp/mintgarden) <br>
-- [MintGarden API documentation](https://api.mintgarden.io/docs) <br>
-- [MintGarden](https://mintgarden.io) <br>
-- [Chia Network](https://chia.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI and chat-friendly responses; marketplace data is retrieved from the MintGarden API and should be treated as informational.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, CHANGELOG.md) <br>
+Risk: Search terms, wallet or profile identifiers, NFT IDs, and collection IDs are sent to the public MintGarden API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or private identifiers unless the user is comfortable exposing those lookups to a public third-party API.
+
+Risk: The release depends on HTTP client dependencies that may need updates for production or shared environments.
+
+Mitigation: Update and re-lock dependencies before deployment, then rerun dependency and security checks.
+
+## Reference(s):
+
+- [ClawHub MintGarden Skill Page](https://clawhub.ai/koba42corp/skills/mintgarden)
+- [MintGarden API Documentation](https://api.mintgarden.io/docs)
+- [MintGarden Website](https://mintgarden.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Plain text responses with CLI and messaging-friendly formatting; JavaScript API client calls for integrations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the public MintGarden API without an API key; default query limits are 50 results and request timeout is 30 seconds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

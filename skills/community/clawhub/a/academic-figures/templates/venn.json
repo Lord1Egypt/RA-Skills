@@ -1,0 +1,53 @@
+{
+ "_chart_type": "venn",
+ "_command": "python3 scripts/gen_figure.py -t venn -d templates/venn.json -o venn.png",
+ "sets": {
+  "基因组A（WES）": [
+   "TP53",
+   "BRCA1",
+   "EGFR",
+   "MYC",
+   "KRAS",
+   "PTEN",
+   "NRAS",
+   "BRAF",
+   "PIK3CA",
+   "ERBB2"
+  ],
+  "基因组B（RNA-seq）": [
+   "TP53",
+   "EGFR",
+   "ALK",
+   "ROS1",
+   "MET",
+   "BRAF",
+   "KRAS",
+   "RET",
+   "NTRK1",
+   "FGFR2",
+   "ERBB2"
+  ],
+  "基因组C（甲基化）": [
+   "TP53",
+   "MYC",
+   "ALK",
+   "NRAS",
+   "BRAF",
+   "CDKN2A",
+   "MGMT",
+   "KRAS"
+  ],
+  "基因组D（蛋白组）": [
+   "TP53",
+   "EGFR",
+   "MYC",
+   "PTEN",
+   "AKT1",
+   "MTOR",
+   "KRAS",
+   "ERBB2",
+   "ALK"
+  ]
+ },
+ "_note": "场景：2~4 个基因/元素集合（模拟）交集关系。≥5 集合请用 upset（venn 的标准后继）；区域面积非按比例绘制（示意），精确交集计数以 stderr 事实行为准。"
+}

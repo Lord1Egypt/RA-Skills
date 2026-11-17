@@ -1,41 +1,49 @@
-## Description: <br>
-A unified operating workflow for hardening agent setups and running complex tasks reliably by combining bootstrap hardening, role orchestration, and handoff discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A unified operating workflow for hardening agent setups and running complex tasks reliably by combining bootstrap hardening, role orchestration, and handoff discipline.
 
-## Publisher: <br>
-[cwheeler67](https://clawhub.ai/user/cwheeler67) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cwheeler67](https://clawhub.ai/user/cwheeler67)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit and harden workspace operating instructions, activate role-based workflows for complex tasks, and maintain concise handoff and memory practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence future agent behavior by proposing changes to operating instructions or durable memory. <br>
-Mitigation: Review diffs or summaries before accepting lasting instruction or memory changes. <br>
-Risk: Temporary or sensitive details could be promoted into durable memory during closeout. <br>
-Mitigation: Store only durable, useful memory and avoid saving sensitive or temporary details. <br>
+## Use Case:
 
+Developers and agent operators use this skill to harden workspace instruction files, coordinate role-based execution for complex tasks, and maintain disciplined handoffs and closeout notes.
 
-## Reference(s): <br>
-- [Operator Hardening Pack Runbook](references/pack-runbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/cwheeler67/operator-hardening-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown summary with concrete file, risk, and next-step sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose changes to operating instructions, role workflow, and durable memory practices; review lasting changes before accepting them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may propose changes to workspace instruction or memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed memory and agent-guidance changes before accepting them, especially in shared or production repositories.
+
+## Reference(s):
+
+- [Operator Hardening Pack Runbook](references/pack-runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown summary with operational guidance and changed-artifact notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include a hardening or operation summary, files or artifacts changed, unresolved risks, and the next best step.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

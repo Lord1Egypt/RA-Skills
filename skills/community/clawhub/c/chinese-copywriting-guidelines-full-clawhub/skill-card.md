@@ -1,45 +1,58 @@
-## Description: <br>
-Apply the complete Chinese Copywriting Guidelines with full upstream content bundled locally for reviewing, rewriting, and explaining Chinese copy edits in Markdown, docs, PR text, UI copy, announcements, and mixed Chinese-English technical writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply the complete Chinese Copywriting Guidelines with full upstream content bundled locally when reviewing or rewriting Chinese copy in Markdown, docs, PR text, UI copy, announcements, or mixed Chinese-English technical writing.
 
-## Publisher: <br>
-[zhonglouxiaonaigao-art](https://clawhub.ai/user/zhonglouxiaonaigao-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhonglouxiaonaigao-art](https://clawhub.ai/user/zhonglouxiaonaigao-art)
 
-## Use Case: <br>
-Writers, editors, documentation maintainers, and developers use this skill to review or rewrite Chinese and mixed Chinese-English copy against the bundled Chinese Copywriting Guidelines while preserving meaning, code, commands, URLs, and identifiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-submitted copy may contain private or sensitive information. <br>
-Mitigation: Review and redact sensitive text before asking an agent to apply the skill. <br>
-Risk: Redistributing bundled upstream reference text may require separate license review. <br>
-Mitigation: Confirm the release license and bundled upstream license terms before redistribution. <br>
+## Use Case:
 
+External users, developers, editors, and documentation maintainers use this skill to review, rewrite, or explain Chinese copy according to the bundled Chinese Copywriting Guidelines while preserving meaning, facts, code, commands, URLs, and identifiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhonglouxiaonaigao-art/chinese-copywriting-guidelines-full-clawhub) <br>
-- [Source info](references/source-info.md) <br>
-- [Chinese Copywriting Guidelines](references/upstream-text/README.md) <br>
-- [Chinese Copywriting Guidelines English README](references/upstream-text/README.en.md) <br>
-- [Upstream changelog](references/upstream-text/CHANGELOG.md) <br>
-- [Bundled upstream license text](references/upstream-text/LICENSE.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with revised copy, issue lists, summaries, change logs, and notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves user-provided facts, tone unless requested, code, commands, URLs, and identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Opinionated style guidance may enforce strict or disputed Chinese copywriting preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use review-only mode or ask the agent to avoid optional disputed preferences when those style choices are not desired.
+
+Risk: Copy rewrites can unintentionally change tone, brand casing, or important identifiers.
+
+Mitigation: Review revised text before publication and require preservation of facts, code, commands, URLs, identifiers, and uncertain brand casing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhonglouxiaonaigao-art/skills/chinese-copywriting-guidelines-full-clawhub)
+- [Bundled source information](artifact/references/source-info.md)
+- [Primary Chinese guideline snapshot](artifact/references/upstream-text/README.md)
+- [English guideline snapshot](artifact/references/upstream-text/README.en.md)
+- [Bundled changelog snapshot](artifact/references/upstream-text/CHANGELOG.md)
+- [Bundled license snapshot](artifact/references/upstream-text/LICENSE.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with revised text, issue lists, summaries, notes, and concise change logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves user-provided facts, code, commands, URLs, and identifiers; optional disputed preferences are applied only when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

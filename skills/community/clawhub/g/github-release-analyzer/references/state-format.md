@@ -1,10 +1,16 @@
 # State Format
 
-Default path:
+Default paths:
 
 ```text
-~/.openclaw/workspace/state/github-release-analyzer/{stateKey}.json
+Hermes: $HERMES_HOME/state/github-release-analyzer/{stateKey}.json
+OpenClaw legacy (when populated): ~/.openclaw/workspace/state/github-release-analyzer/{stateKey}.json
+OpenClaw persistent: ~/.openclaw/state/github-release-analyzer/{stateKey}.json
 ```
+
+`GITHUB_RELEASE_ANALYZER_STATE_ROOT` overrides the default root on either
+platform. When `HERMES_HOME` is set, the Hermes path is used. Otherwise,
+OpenClaw preserves its existing legacy-then-persistent fallback behavior.
 
 Schema:
 

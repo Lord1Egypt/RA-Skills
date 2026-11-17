@@ -1,50 +1,60 @@
-## Description: <br>
-Helps developers build Towns Protocol bots with SDK setup, slash commands, message handlers, reactions, interactive components, blockchain operations, and deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports developers building Towns Protocol bots with SDK initialization, slash commands, message handlers, reactions, interactive forms, blockchain operations, and deployment.
 
-## Publisher: <br>
-[andreyz](https://clawhub.ai/user/andreyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[andreyz](https://clawhub.ai/user/andreyz)
 
-## Use Case: <br>
-Developers and engineers use this skill to build and operate Towns Protocol bots, including SDK initialization, event handlers, messaging behavior, interactive forms, blockchain transaction verification, and deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Bot credentials, webhook secrets, RPC keys, and funded gas wallets can expose production access or funds if mishandled. <br>
-Mitigation: Store APP_PRIVATE_DATA, JWT_SECRET, RPC keys, and wallet material as production secrets; do not commit them; rotate secrets and revoke webhooks when retiring a bot. <br>
-Risk: Blockchain actions may transfer value or grant access based on incomplete transaction evidence. <br>
-Mitigation: Keep bot permissions and funded balances minimal, and verify on-chain transaction receipts show success before granting access or treating a payment as complete. <br>
-Risk: Message-body logs can expose user content outside local development. <br>
-Mitigation: Redact or disable message-body logging in non-local environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, debug, and deploy Towns Protocol bots on Bun and Base, including messaging, interactive requests, and blockchain transaction workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andreyz/towns-protocol) <br>
-- [Towns Bot Documentation](https://docs.towns.com/build/bots) <br>
-- [Towns Developer Portal](https://app.towns.com/developer) <br>
-- [@towns-protocol/bot SDK](https://www.npmjs.com/package/@towns-protocol/bot) <br>
-- [Messaging API](references/MESSAGING.md) <br>
-- [Blockchain Operations](references/BLOCKCHAIN.md) <br>
-- [Interactive Components](references/INTERACTIVE.md) <br>
-- [Deployment](references/DEPLOYMENT.md) <br>
-- [Debugging](references/DEBUGGING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, bash, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory guidance for a developer agent and should be reviewed before running generated commands or deploying bot code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Payment or entitlement logic may grant access from an unverified transaction hash.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the on-chain receipt status before granting access or entitlements.
+
+Risk: Initializer packages, development webhooks, message logs, and destructive actions can expose credentials, private messages, or user assets if used without review.
+
+Mitigation: Pin and verify setup packages, require webhook request verification, avoid logging raw user messages in production, and require explicit user confirmation for transfers, signatures, deployments, and message deletion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreyz/skills/towns-protocol)
+- [Towns bot documentation](https://docs.towns.com/build/bots)
+- [@towns-protocol/bot SDK](https://www.npmjs.com/package/@towns-protocol/bot)
+- [Messaging API](references/MESSAGING.md)
+- [Blockchain Operations](references/BLOCKCHAIN.md)
+- [Interactive Components](references/INTERACTIVE.md)
+- [Deployment](references/DEPLOYMENT.md)
+- [Debugging](references/DEBUGGING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

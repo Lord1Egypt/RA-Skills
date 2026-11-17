@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "ElevenLabs"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["elevenlabs"]
   icon: "https://static.oomol.com/logo/third-party/ElevenLabs.svg"
 ---
@@ -49,8 +49,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_voice_settings` — Get the synthesis settings configured for one ElevenLabs voice.
 - `get_voices` — List the available ElevenLabs voices with their key metadata and settings.
 - `search_voices` — Search ElevenLabs voices with v2 pagination, filtering, sorting, and optional total count.
-- `text_to_speech` — Generate speech audio from text by calling ElevenLabs text-to-speech and uploading the binary result to connector transit storage.
-- `text_to_speech_with_timestamps` — Generate speech audio with character-level timing, upload the audio to connector transit storage, and return timing metadata.
+- `text_to_speech` — Generate speech audio from text by calling ElevenLabs text-to-speech and uploading the binary result to connector transit storage. [write]
+- `text_to_speech_with_timestamps` — Generate speech audio with character-level timing, upload the audio to connector transit storage, and return timing metadata. [write]
 
 ## Safety
 
@@ -81,11 +81,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — ElevenLabs is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=elevenlabs
+  https://console.oomol.com/connections/elevenlabs
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - ElevenLabs homepage: https://elevenlabs.io
+- API documentation: https://elevenlabs.io/docs/api-reference/authentication

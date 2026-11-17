@@ -1,50 +1,65 @@
-## Description: <br>
-Knowledge base for the Superfluid Protocol and its ecosystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a knowledge base for the Superfluid Protocol, its smart contracts, integrations, and ecosystem workflows.
 
-## Publisher: <br>
-[kasparkallas](https://clawhub.ai/user/kasparkallas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasparkallas](https://clawhub.ai/user/kasparkallas)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer Superfluid Protocol questions, choose the right contract, SDK, subgraph, or helper script reference, and produce implementation guidance for streams, pools, Super Apps, Super Tokens, automation, and protocol investigations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Protocol guidance can lead users toward token approvals, flow-operator permissions, EIP-712 signatures, relay providers, or on-chain contract interactions. <br>
-Mitigation: Verify contract addresses from official sources, use capped allowances and granular flow limits, review signatures and transactions before execution, and revoke permissions when they are no longer needed. <br>
-Risk: Helper scripts query external Superfluid data sources and package-provided metadata, so stale or unexpected upstream data could affect investigation results. <br>
-Mitigation: Cross-check important balances, token addresses, network metadata, and subgraph results against official protocol sources before making production or financial decisions. <br>
+## Use Case:
 
+Developers and coding agents use this skill to answer Superfluid Protocol questions, look up contract interfaces and integration patterns, and find the right SDK, API, subgraph, or command-line reference.
 
-## Reference(s): <br>
-- [Protocol Architecture Guide](references/guides/architecture.md) <br>
-- [SDK Guide](references/guides/sdks.md) <br>
-- [Scripts Guide](references/guides/scripts.md) <br>
-- [Super Apps Guide](references/guides/super-apps.md) <br>
-- [Clear Macro Guide](references/guides/clear-macro.md) <br>
-- [API Services Guide](references/guides/api-services.md) <br>
-- [Protocol Subgraph Guide](references/subgraphs/protocol-v1-guide.md) <br>
-- [GDA Scalability Deep Research](references/deep-researches/gda-scalability.md) <br>
-- [Semantic Money Yellowpaper Deep Research](references/deep-researches/semantic-money-yellowpaper.md) <br>
-- [Superfluid Reporter](https://reporter.superfluid.org) <br>
-- [Super Token Listing](https://tokens.superfluid.org/listing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and JSON or shell command snippets when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May point to artifact reference files and helper scripts for contract ABIs, selectors, metadata, token lists, and balances.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: frontmatter and server release evidence) <br>
+Risk: A balance lookup sends the wallet, token, and chain association to superapi.kazpi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted RPC when that association is sensitive.
+
+Risk: Adapting financial examples without checking their parameters can affect token allowances or active streams; the DCA sample comment is stale.
+
+Mitigation: Review recipients, amounts, allowances, and existing streams before adapting or executing an example.
+
+Risk: The static review does not certify downloaded dependencies or deployed contracts.
+
+Mitigation: Pin downloaded dependencies and independently review the packages and contracts used in an integration.
+
+## Reference(s):
+
+- [Protocol architecture](references/guides/architecture.md)
+- [SDK guidance](references/guides/sdks.md)
+- [API services](references/guides/api-services.md)
+- [Command-line scripts](references/guides/scripts.md)
+- [Smart contract patterns](references/guides/smart-contract-patterns.md)
+- [CFAv1Forwarder contract interface](references/contracts/CFAv1Forwarder.abi.yaml)
+- [GDAv1Forwarder contract interface](references/contracts/GDAv1Forwarder.abi.yaml)
+- [Superfluid SDK documentation](https://sdk.superfluid.pro/docs)
+- [Semantic Money Yellowpaper](references/deep-researches/semantic-money-yellowpaper.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code snippets, ABI details, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers are grounded in the skill's protocol references and may include integration caveats.]
+
+## Skill Version(s):
+
+1.2.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

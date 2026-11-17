@@ -1,51 +1,66 @@
-## Description: <br>
-Adaptive, auditable research across web sources, papers, GitHub projects, documentation, datasets, and local files for cited answers and evidence-backed reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research helps agents perform adaptive, evidence-backed research, literature review, project due diligence, claim verification, and cited synthesis across web pages, papers, official docs, repositories, datasets, local files, and conflicting perspectives.
 
-## Publisher: <br>
-[b143kc47](https://clawhub.ai/user/b143kc47) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b143kc47](https://clawhub.ai/user/b143kc47)
 
-## Use Case: <br>
-Developers, researchers, analysts, and external users use this skill for multi-source research, literature review, project due diligence, claim verification, and cited decision support when simple lookup is insufficient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research runs may browse external sources and encounter prompt-injection attempts or misleading source material. <br>
-Mitigation: Treat source content as untrusted, verify high-impact claims with primary or independent sources, and preserve citations or evidence IDs for auditability. <br>
-Risk: Research notes or ledger files may capture sensitive information if users include secrets or unnecessary personal data in prompts, paths, or excerpts. <br>
-Mitigation: Keep run directories in a controlled workspace and avoid logging credentials, tokens, private data, or unrelated personal information. <br>
-Risk: Reset or cleanup actions could remove research artifacts from an unintended directory. <br>
-Mitigation: Use reset only on directories created for the research run and confirm the target path before cleanup. <br>
+## Use Case:
 
+Developers, analysts, and research-focused agents use this skill for broad, auditable research tasks such as literature reviews, claim verification, technical due diligence, project comparisons, and cited reports where multiple source classes and counterevidence checks matter.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/b143kc47/b143kc47-deep-research) <br>
-- [Publisher Profile](https://clawhub.ai/user/b143kc47) <br>
-- [Project Homepage](https://github.com/B143KC47/deep-research-skill) <br>
-- [Adaptive Deep Research Protocol](references/research-protocol.md) <br>
-- [Source Quality Guide](references/source-quality.md) <br>
-- [Query Playbook](references/query-playbook.md) <br>
-- [Project and Paper Research Patterns](references/project-and-paper-patterns.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Evaluation Checklist](references/evaluation.md) <br>
-- [OpenClaw Installation Notes](references/openclaw-install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research responses and reports with evidence IDs, citations, tables, and optional shell command blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local research ledger files in a writable workspace when the bundled Python script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.1) <br>
+Risk: The ledger tool can delete directories outside its research folder if invoked with unsafe reset options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a restricted workspace and avoid using --force or path-like --name values until reset target validation is confirmed.
+
+Risk: Evidence logs may capture secrets, private data, or unnecessary personal information.
+
+Mitigation: Do not store secrets or unnecessary private data in logs, and review generated research artifacts before sharing.
+
+Risk: Research outputs can contain incorrect, stale, or misleading guidance when sources are weak or adversarial.
+
+Mitigation: Prefer primary sources, record evidence IDs and locators for high-impact claims, search for counterevidence, and review conclusions before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b143kc47/skills/b143kc47-deep-research)
+- [ClawDIS homepage](https://github.com/B143KC47/deep-research-skill)
+- [Research protocol](references/research-protocol.md)
+- [Query playbook](references/query-playbook.md)
+- [Source quality guide](references/source-quality.md)
+- [Project and paper research patterns](references/project-and-paper-patterns.md)
+- [Report template](references/report-template.md)
+- [Evaluation checklist](references/evaluation.md)
+- [OpenClaw installation notes](references/openclaw-install.md)
+- [Design bibliography and influences](references/bibliography.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional ledger artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce cited reports, evidence tables, research ledgers, limitations, uncertainty notes, and practical next steps.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

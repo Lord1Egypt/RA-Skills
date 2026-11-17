@@ -1,0 +1,220 @@
+{
+  "card_id": "WQ-EXP-022",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授过敏性哮喘的体质三级预防方案探析_邵冬梅.pdf",
+  "title": "2022 年4 月第39 卷第4 期",
+  "authors": [
+    "邵冬梅"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨体”为先，并将体质的调理贯穿疾病治疗始终。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散"
+    ],
+    "principle": "益气固表、清热利湿",
+    "herbs": [
+      "黄芪",
+      "防风",
+      "当归",
+      "茯苓",
+      "半夏",
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "为体质学说创始人，充分继承和发扬“治未病”思想，提出体质三级预防理论，用于指导临床慢性病的预防、治疗和康复，实现以“疾病”为中心向以“人”为中心，以“治”为主向以“防”为主的转变。过敏性哮喘已成为严重影响人们健康的慢性疾病，具有较高的病死率。文章将从调节过敏体质入手，探析过敏性哮喘的体质三级预防方案，为本病的防治提供群体及个体化防控方案。 体质学认为体质类型决定了疾病发生与否及发病倾向，为疾病发生的“共同土壤”，而过敏性疾病则与过敏体质这一“土壤”因素相关[4-5]。 体现中医学“以人为本、因人制宜”的思想。本文从体质三级预防理论出发，以过敏体质的调理为轴线，采用未病先防、欲病救萌、已病防变及病后防复的管理措施，探析过敏性哮喘的中医体质预防方案，为实现过敏性哮喘的群体及个体预防提供方法和途径。",
+  "knowledge_points": [
+    {
+      "category": "treatment",
+      "content": "本病缓解期着重于过敏体质的调理和巩固，根据鼻炎患者常伴有气虚的表现特征，以脱敏调体方配以玉屏风散，益气固本、脱敏调体[27]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "过敏体质易发皮肤过敏者平素可服用药膳“固表粥”调理，由乌梅15 g，黄芪20 g，当归12 g，粳米 100 g 组成，将乌梅、黄芪、当归放于砂锅中加水煎开，后用小火慢煎成浓汁，取出药渣，加水煮粳米成粥，放冰糖少许趁热食用，具有养血消风，扶正固表之效[11]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "王琦教授调理患者过敏体质同时，常加入广藿香、苏叶、银花、连翘等，清透胃肠郁热，以调节阴阳平衡，同时嘱患者在规律服药1 个月后，少量食用单一过敏食物，若未有不适，可逐渐加量或尝试食入其他种类的过敏物[32]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨体”为先，并将体质的调理贯穿疾病治疗始终。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为益气固表、清热利湿。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、防风、当归、茯苓、半夏、丹皮。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "为体质学说创始人，充分继承和发扬“治未病”思想，提出体质三级预防理论，用于指导临床慢性病的预防、治疗和康复，实现以“疾病”为中心向以“人”为中心，以“治”为主向以“防”为主的转变",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "特禀质"
+  ],
+  "related_diseases": [
+    "过敏性鼻炎",
+    "哮喘"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "本病缓解期着重于过敏体质的调理和巩固，根据鼻炎患者常伴有气虚的表现特征，以脱敏调体方配以玉屏风散，益气固本、脱敏调体[27]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    },
+    {
+      "sentence": "过敏体质易发皮肤过敏者平素可服用药膳“固表粥”调理，由乌梅15 g，黄芪20 g，当归12 g，粳米 100 g 组成，将乌梅、黄芪、当归放于砂锅中加水煎开，后用小火慢煎成浓汁，取出药渣，加水煮粳米成粥，放冰糖少许趁热食用，具有养血消风，扶正固表之效[11]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    },
+    {
+      "sentence": "王琦教授调理患者过敏体质同时，常加入广藿香、苏叶、银花、连翘等，清透胃肠郁热，以调节阴阳平衡，同时嘱患者在规律服药1 个月后，少量食用单一过敏食物，若未有不适，可逐渐加量或尝试食入其他种类的过敏物[32]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "特禀质"
+    ],
+    "disease": [
+      "过敏性鼻炎",
+      "哮喘"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 6,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 6
+      },
+      "methods": {
+        "start": 1,
+        "end": 6
+      },
+      "discussion": {
+        "start": 4,
+        "end": 6
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.890402",
+  "methods": {
+    "sample_size": 4,
+    "study_design": "RCT"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.570435",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.570441"
+  }
+}

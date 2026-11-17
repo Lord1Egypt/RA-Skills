@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="paper-product-strategy-title paper-product-strategy-desc">
+  <title id="paper-product-strategy-title">通用论文检测产品选择策略</title>
+  <desc id="paper-product-strategy-desc">先服从审核方指定的品牌和版本；没有指定时，按用途、语言和检测任务读取当前查重网站的产品目录，再区分按字符档位和按篇产品。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+    <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+    <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+    <style>
+      .paper{fill:#f5f5f5}.ink{fill:#2d3142}.muted{fill:#4f5d75}.soft{fill:#7a8399}
+      .rule{stroke:rgba(45,49,66,.16);stroke-width:1}.connector{fill:none;stroke:#4f5d75;stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+      .connector-accent{fill:none;stroke:#eb6c36;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+      .eyebrow{font:500 12px 'Geist Mono',ui-monospace,monospace;letter-spacing:.18em;fill:#4f5d75}
+      .title{font:400 36px 'Instrument Serif',Georgia,serif;fill:#2d3142}
+      .subtitle{font:400 14px 'Geist',Arial,sans-serif;fill:#4f5d75}
+      .node{fill:#fff;stroke:#2d3142;stroke-width:1.2}.node-soft{fill:rgba(45,49,66,.04);stroke:rgba(45,49,66,.3);stroke-width:1}
+      .node-focal{fill:rgba(235,108,54,.08);stroke:#eb6c36;stroke-width:1.8}
+      .node-name{font:600 17px 'Geist',Arial,sans-serif;fill:#2d3142}.node-sub{font:400 12px 'Geist',Arial,sans-serif;fill:#4f5d75}
+      .mono{font:500 11px 'Geist Mono',ui-monospace,monospace;letter-spacing:.06em;fill:#4f5d75}
+      .chip{fill:rgba(45,49,66,.08);stroke:rgba(45,49,66,.16);stroke-width:.8}.chip-accent{fill:rgba(235,108,54,.16);stroke:#eb6c36;stroke-width:.8}
+      .chip-text{font:600 10px 'Geist Mono',ui-monospace,monospace;fill:#4f5d75;letter-spacing:.05em}.chip-text-accent{fill:#eb6c36}
+      .label-mask{fill:#f5f5f5}.arrow-label{font:500 11px 'Geist Mono',ui-monospace,monospace;fill:#4f5d75;letter-spacing:.04em}
+      .section-label{font:500 11px 'Geist Mono',ui-monospace,monospace;letter-spacing:.16em;fill:#7a8399}
+      .card-title{font:600 16px 'Geist',Arial,sans-serif;fill:#2d3142}.card-sub{font:400 12px 'Geist',Arial,sans-serif;fill:#4f5d75}
+      .footer-title{font:600 14px 'Geist',Arial,sans-serif;fill:#2d3142}.footer-copy{font:400 12px 'Geist',Arial,sans-serif;fill:#4f5d75}
+    </style>
+  </defs>
+
+  <rect class="paper" width="1200" height="760"/>
+  <text class="eyebrow" x="72" y="52">PAPER CHECK / PRODUCT STRATEGY</text>
+  <text class="title" x="72" y="98">论文检测产品，先对齐审核口径</text>
+  <text class="subtitle" x="72" y="126">产品名称与价格来自当前查重网站；图示只说明选择逻辑，不冻结动态商品信息。</text>
+  <line class="rule" x1="72" y1="150" x2="1128" y2="150"/>
+
+  <!-- connectors are intentionally emitted before nodes -->
+  <path class="connector-accent" d="M292 214 H360 Q368 214 368 222 V222" marker-end="url(#arrow-accent)"/>
+  <path class="connector" d="M432 246 V300 H600" marker-end="url(#arrow)"/>
+  <path class="connector" d="M472 214 H600" marker-end="url(#arrow)"/>
+  <path class="connector" d="M720 178 H780 V246" marker-end="url(#arrow)"/>
+  <path class="connector" d="M720 334 H780 V286" marker-end="url(#arrow)"/>
+  <path class="connector" d="M900 266 V374" marker-end="url(#arrow)"/>
+
+  <!-- arrow labels with paper masks -->
+  <rect class="label-mask" x="504" y="197" width="40" height="20" rx="4"/>
+  <text class="arrow-label" x="524" y="211" text-anchor="middle">是</text>
+  <rect class="label-mask" x="446" y="266" width="40" height="20" rx="4"/>
+  <text class="arrow-label" x="466" y="280" text-anchor="middle">否</text>
+
+  <!-- start -->
+  <rect class="node-focal" x="72" y="176" width="220" height="76" rx="8"/>
+  <text class="node-name" x="182" y="209" text-anchor="middle">审核方要求</text>
+  <text class="node-sub" x="182" y="231" text-anchor="middle">学校 · 期刊 · 评审单位</text>
+
+  <!-- decision -->
+  <polygon class="node" points="448,176 520,214 448,252 376,214"/>
+  <text class="node-name" x="448" y="211" text-anchor="middle" font-size="14">指定品牌 / 版本？</text>
+  <text class="mono" x="448" y="229" text-anchor="middle">GOVERNANCE GATE</text>
+
+  <rect class="node" x="600" y="140" width="240" height="76" rx="8"/>
+  <text class="node-name" x="720" y="173" text-anchor="middle">按要求锁定</text>
+  <text class="node-sub" x="720" y="195" text-anchor="middle">品牌 · 版本 · 检测范围</text>
+
+  <rect class="node" x="600" y="296" width="240" height="76" rx="8"/>
+  <text class="node-name" x="720" y="329" text-anchor="middle">补齐送检场景</text>
+  <text class="node-sub" x="720" y="351" text-anchor="middle">用途 · 语言 · 检测任务</text>
+
+  <rect class="node-soft" x="780" y="238" width="240" height="56" rx="8"/>
+  <text class="node-name" x="900" y="262" text-anchor="middle" font-size="15">读取实时产品目录</text>
+  <text class="mono" x="900" y="281" text-anchor="middle">PRICE · FORMAT · LIMIT</text>
+
+  <!-- product family container -->
+  <rect class="node-soft" x="72" y="396" width="1056" height="134" rx="8"/>
+  <text class="section-label" x="96" y="424">PRODUCT FAMILIES / 用途 + 计价模式</text>
+  <line class="rule" x1="420" y1="444" x2="420" y2="506"/>
+  <line class="rule" x1="764" y1="444" x2="764" y2="506"/>
+
+  <text class="card-title" x="104" y="461">文本相似性查重</text>
+  <text class="card-sub" x="104" y="483">大学生 · 研究生 · 期刊 · 职称</text>
+  <rect class="chip" x="104" y="494" width="136" height="22" rx="4"/>
+  <text class="chip-text" x="172" y="509" text-anchor="middle">PER_WORD_UNIT</text>
+
+  <text class="card-title" x="452" y="461">AIGC 检测</text>
+  <text class="card-sub" x="452" y="483">识别 AI 生成风险线索</text>
+  <rect class="chip-accent" x="452" y="494" width="128" height="22" rx="4"/>
+  <text class="chip-text chip-text-accent" x="516" y="509" text-anchor="middle">PER_ARTICLE</text>
+
+  <text class="card-title" x="796" y="461">格式 · 智评 · 专项</text>
+  <text class="card-sub" x="796" y="483">排版、质量与专项风险</text>
+  <rect class="chip" x="796" y="494" width="128" height="22" rx="4"/>
+  <text class="chip-text" x="860" y="509" text-anchor="middle">PER_ARTICLE</text>
+
+  <text class="section-label" x="72" y="572">ORDER PRE-FLIGHT / 下单前核对</text>
+  <rect class="node" x="72" y="592" width="1056" height="96" rx="8"/>
+  <line class="rule" x1="420" y1="608" x2="420" y2="672"/>
+  <line class="rule" x1="764" y1="608" x2="764" y2="672"/>
+  <text class="footer-title" x="104" y="624">审核口径</text>
+  <text class="footer-copy" x="104" y="648">品牌、版本、正文/附录范围</text>
+  <text class="footer-title" x="452" y="624">计费口径</text>
+  <text class="footer-copy" x="452" y="648">/篇 或 /U字符；价格以订单返回为准</text>
+  <text class="footer-title" x="796" y="624">文件事实</text>
+  <text class="footer-copy" x="796" y="648">格式、大小、供应商解析字符数 N</text>
+  <text class="mono" x="72" y="724">RULE: 审核方要求 ＞ 当前网页 ＞ 平台解析 ＞ Word 预估</text>
+</svg>

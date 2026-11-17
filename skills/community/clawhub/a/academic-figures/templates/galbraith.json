@@ -1,0 +1,18 @@
+{
+  "_chart_type": "galbraith",
+  "_command": "python3 scripts/gen_figure.py -t galbraith -d templates/galbraith.json -o galbraith.png --cjk",
+  "_note": "场景：Galbraith 径向图（Meta 异质性可视化，漏斗图姊妹图）。横轴精度 1/SE、纵轴标准化效应 effect/SE；过原点直线=固定效应合并（斜率 b），±1.96 平行带=同质区；带外研究（红圈+stderr 报名）是异质性/离群嫌疑。效应取 log 值时（est_label=OR/HR/RR）默认画效应量弧线，把 y 轴读回临床尺度；MD/SMD 自动关弧线。本例 Dubois 2024 为故意构造的带外离群，演示检出效果。",
+  "est_label": "OR",
+  "studies": [
+    {"name": "Smith 2019", "effect": 0.58, "se": 0.34},
+    {"name": "Lee 2020", "effect": 0.71, "se": 0.28},
+    {"name": "王 2021", "effect": 0.62, "se": 0.19},
+    {"name": "Garcia 2021", "effect": 0.55, "se": 0.15},
+    {"name": "陈 2022", "effect": 0.67, "se": 0.12},
+    {"name": "Kim 2022", "effect": 0.49, "se": 0.11},
+    {"name": "Rossi 2023", "effect": 0.73, "se": 0.10},
+    {"name": "Nakamura 2023", "effect": 0.60, "se": 0.09},
+    {"name": "李 2024", "effect": 0.64, "se": 0.08},
+    {"name": "Dubois 2024", "effect": 1.55, "se": 0.22}
+  ]
+}

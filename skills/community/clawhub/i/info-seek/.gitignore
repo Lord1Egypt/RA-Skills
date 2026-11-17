@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Runtime state / local data
+.infoseek/
+*.log
+*.audit.jsonl
+.env
+
+# Local runtime outputs (keep committed perf baselines)
+audit-output/
+gate-report/
+
+# Editor / OS
+.DS_Store
+*.swp
+.idea/
+.vscode/

@@ -1,44 +1,64 @@
-## Description: <br>
-LovTrip Meetup Planner helps agents plan multi-person meetups by coordinating schedules and interests, recommending mainland China venues, checking weather and traffic, and producing itinerary artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-person meetup planner for recommending fair meeting venues, coordinating schedules, generating plans, and exporting map or calendar links.
 
-## Publisher: <br>
-[lizhijun](https://clawhub.ai/user/lizhijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lizhijun](https://clawhub.ai/user/lizhijun)
 
-## Use Case: <br>
-External users and agents use this skill to turn multiple participants' locations, schedules, and preferences into venue recommendations, meetup plans, calendar entries, map links, and backup options. <br>
-
-### Deployment Geography for Use: <br>
-Mainland China <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Participant locations and schedules can expose sensitive personal details. <br>
-Mitigation: Use coarse locations when possible, avoid exact home or work coordinates unless necessary, and get participant consent before processing or sharing their details. <br>
-Risk: The skill depends on LovTrip and AMap-backed planning tools, including an AMap API key. <br>
-Mitigation: Use a restricted AMap API key and review whether LovTrip and AMap-backed processing fit the user's privacy and operational requirements. <br>
-Risk: Using an unpinned npm package can introduce package supply-chain uncertainty. <br>
-Mitigation: Verify or pin the LovTrip npm package version instead of relying blindly on the latest package. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LovTrip Meetup Planner on ClawHub](https://clawhub.ai/lizhijun/lovtrip-meetup) <br>
-- [LovTrip Global Planner](https://lovtrip.app/global-planner) <br>
-- [LovTrip Developer Documentation](https://lovtrip.app/developer) <br>
-- [LovTrip AI Trip Planner](https://lovtrip.app/planner) <br>
+## Use Case:
 
+External users and agents use this skill to plan multi-person meetups in mainland China by finding shared availability, matching interests, selecting a fair venue, and producing an itinerary with navigation or calendar outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and structured planning details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include venue scores, commute estimates, weather and traffic notes, map links, iCal calendar content, and backup plans.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Mainland China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup example installs an external LovTrip MCP package using `@latest`, which can change between installs.
+
+Mitigation: Use a pinned, reviewed package version before deploying the skill in a shared or production agent environment.
+
+Risk: The skill handles participant locations, schedules, names, and calendar details that may be sensitive.
+
+Mitigation: Collect participant consent, share only the minimum needed data, and prefer coarse locations unless exact coordinates are required.
+
+Risk: `AMAP_API_KEY` is required for location services.
+
+Mitigation: Store the API key in a secret manager or private environment and avoid committing it to skill files or chat transcripts.
+
+Risk: Venue and travel recommendations are limited to mainland China and depend on city and map data quality.
+
+Mitigation: Require the `city` parameter, verify candidate venues before finalizing plans, and use backup plans when weather, traffic, or venue availability changes.
+
+## Reference(s):
+
+- [LovTrip Meetup Planner on ClawHub](https://clawhub.ai/lizhijun/skills/lovtrip-meetup)
+- [LovTrip Global Planner](https://lovtrip.app/global-planner)
+- [LovTrip Developer Documentation](https://lovtrip.app/developer)
+- [Tool Parameter Reference](artifact/reference.md)
+- [Meetup Planning Example](artifact/examples/plan-meetup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated itinerary text, venue recommendations, map links, and calendar export content.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

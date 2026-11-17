@@ -1,0 +1,167 @@
+{
+ "_chart_type": "rob",
+ "_command": "python3 scripts/gen_figure.py -t rob -d examples/realworld/evidence_robins_nonrandomized.json -o evidence_robins_nonrandomized.png --cjk",
+ "_note": "真实数据：robvis R 包 data_robins_e（ROBINS-I 非随机化研究工具示例评估，10 项研究×7 域+Overall；含 Very high 极高档）。",
+ "domains": [
+  {
+   "key": "D1",
+   "label": "混杂"
+  },
+  {
+   "key": "D2",
+   "label": "研究对象选择"
+  },
+  {
+   "key": "D3",
+   "label": "干预分类"
+  },
+  {
+   "key": "D4",
+   "label": "偏离既定干预"
+  },
+  {
+   "key": "D5",
+   "label": "结局数据缺失"
+  },
+  {
+   "key": "D6",
+   "label": "结局测量"
+  },
+  {
+   "key": "D7",
+   "label": "选择性报告"
+  }
+ ],
+ "studies": [
+  {
+   "name": "Study 1",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "Some concerns",
+    "D5": "Low",
+    "D6": "Some concerns",
+    "D7": "Some concerns",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 2",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Some concerns",
+    "D3": "Some concerns",
+    "D4": "Low",
+    "D5": "Some concerns",
+    "D6": "Some concerns",
+    "D7": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 3",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Very high",
+    "D3": "Very high",
+    "D4": "High",
+    "D5": "Some concerns",
+    "D6": "Some concerns",
+    "D7": "High",
+    "Overall": "Very high"
+   }
+  },
+  {
+   "name": "Study 4",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Some concerns",
+    "D3": "Low",
+    "D4": "Low",
+    "D5": "Some concerns",
+    "D6": "Some concerns",
+    "D7": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 5",
+   "judgements": {
+    "D1": "No information",
+    "D2": "Some concerns",
+    "D3": "Low",
+    "D4": "Very high",
+    "D5": "Low",
+    "D6": "Low",
+    "D7": "High",
+    "Overall": "Very high"
+   }
+  },
+  {
+   "name": "Study 6",
+   "judgements": {
+    "D1": "High",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "High",
+    "D5": "Some concerns",
+    "D6": "Low",
+    "D7": "High",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 7",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "High",
+    "D3": "Low",
+    "D4": "Some concerns",
+    "D5": "Some concerns",
+    "D6": "Some concerns",
+    "D7": "Some concerns",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 8",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Low",
+    "D3": "High",
+    "D4": "High",
+    "D5": "Low",
+    "D6": "Some concerns",
+    "D7": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 9",
+   "judgements": {
+    "D1": "High",
+    "D2": "Some concerns",
+    "D3": "Low",
+    "D4": "High",
+    "D5": "Low",
+    "D6": "Low",
+    "D7": "Some concerns",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 10",
+   "judgements": {
+    "D1": "High",
+    "D2": "Low",
+    "D3": "Some concerns",
+    "D4": "Some concerns",
+    "D5": "Some concerns",
+    "D6": "Low",
+    "D7": "Some concerns",
+    "Overall": "High"
+   }
+  }
+ ]
+}

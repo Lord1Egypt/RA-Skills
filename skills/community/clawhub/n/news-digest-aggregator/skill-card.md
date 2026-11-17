@@ -1,47 +1,63 @@
-## Description: <br>
-Daily automated news digest that fetches RSS feeds, summarizes articles, and delivers formatted digests to Discord, Slack, or Feishu on a schedule. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily automated news digest that fetches configured RSS feeds, creates brief article digests, and delivers formatted updates to Discord, Slack, or Feishu on a schedule.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Developers and content operations teams use this skill to configure scheduled RSS aggregation and publish daily news digest text to Discord, Slack, or Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script automatically installs unpinned Python packages at runtime. <br>
-Mitigation: Review the script before installation and preinstall pinned dependencies in a virtual environment. <br>
-Risk: Webhook delivery can expose digest content to configured messaging channels. <br>
-Mitigation: Use dedicated low-privilege webhooks and avoid sensitive or private RSS sources unless approved. <br>
-Risk: Cron scheduling can continue posting after automatic delivery is no longer wanted. <br>
-Mitigation: Test manually before adding cron and remove the cron entry when scheduled posting should stop. <br>
+## Use Case:
 
+Developers and operators use this skill to configure RSS sources, generate daily news digests, and send the resulting updates to team messaging channels. It is suited to scheduled content delivery workflows that rely on trusted feed and webhook configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cp3d1455926-svg/news-digest-aggregator) <br>
-- [RSS Source Configuration](references/sources.json) <br>
-- [TechCrunch RSS Feed](https://techcrunch.com/feed/) <br>
-- [The Verge RSS Feed](https://www.theverge.com/rss/index.xml) <br>
-- [Reuters Technology Feed](https://www.reutersagency.com/feed/?taxonomy=markets&post_type=reuters-best) <br>
-- [Hacker News RSS Feed](https://news.ycombinator.com/rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown digest text with configuration JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Digest content is grouped by source category and can be sent through Discord, Slack, or Feishu webhooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The script can install unpinned Python packages at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall reviewed, pinned dependencies in a controlled environment before running the skill.
+
+Risk: The skill fetches RSS feeds and posts digest content to user-configured network URLs.
+
+Mitigation: Use only trusted RSS feeds and webhook destinations, and avoid running it with access to internal networks or sensitive environment variables.
+
+Risk: Recurring delivery can repeatedly publish incorrect, stale, or unintended digest content.
+
+Mitigation: Review the cron schedule, channel selection, and destination credentials before enabling automated delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/news-digest-aggregator)
+- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg)
+- [RSS source configuration](references/sources.json)
+- [TechCrunch RSS feed](https://techcrunch.com/feed/)
+- [The Verge RSS feed](https://www.theverge.com/rss/index.xml)
+- [Reuters Technology RSS feed](https://www.reutersagency.com/feed/?taxonomy=markets&post_type=reuters-best)
+- [Hacker News RSS feed](https://news.ycombinator.com/rss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown digest text with shell command and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts digest content to a selected Discord, Slack, or Feishu webhook when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

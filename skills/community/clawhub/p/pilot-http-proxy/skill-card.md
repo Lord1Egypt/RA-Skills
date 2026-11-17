@@ -1,40 +1,54 @@
-## Description: <br>
-Routes HTTP requests through Pilot Protocol tunnels using the gateway subsystem. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Route HTTP requests through Pilot Protocol tunnels.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and agents use this skill to route HTTP traffic through Pilot Protocol tunnels when accessing services behind NATs or firewalls, or when exposing local HTTP servers to remote agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mapping sensitive or unauthenticated internal HTTP services through the gateway can expose them beyond the intended network boundary. <br>
-Mitigation: Map only intended services, prefer authenticated TLS endpoints, verify who can reach each mapped service, and unmap or stop the gateway when finished. <br>
-Risk: Forwarding common HTTP ports may require elevated privileges on Linux for ports below 1024. <br>
-Mitigation: Use the least privilege needed, avoid privileged ports when possible, and review gateway commands before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to route HTTP traffic through Pilot Protocol tunnels, including services behind NATs or firewalls and local HTTP servers exposed to remote agents.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the pilotctl binary, the pilot-protocol skill, and a running Pilot daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Gateway mappings can route or expose internal HTTP services over the Pilot overlay network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Map only services you intend to expose or route, and verify authentication and access controls on those services before use.
+
+Risk: Using privileged HTTP ports on Linux may require root or sudo.
+
+Mitigation: Avoid privileged ports unless elevated access is necessary and understood.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-http-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the pilot-protocol skill, a running Pilot daemon, and the pilotctl binary on PATH.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

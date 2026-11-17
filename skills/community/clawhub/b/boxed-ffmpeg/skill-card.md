@@ -1,38 +1,58 @@
-## Description: <br>
-Audio/video information extraction, format conversion, and audio extraction using FFmpeg WASM sandbox. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio/video information extraction, format conversion, and audio extraction using FFmpeg WASM sandbox.
 
-## Publisher: <br>
-[guyoung](https://clawhub.ai/user/guyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guyoung](https://clawhub.ai/user/guyoung)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect media files, convert video formats, and extract audio through an FFmpeg WebAssembly component executed by the OpenClaw WASM sandbox. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs a remote WASM executable without pinned integrity verification. <br>
-Mitigation: Install only when the openclaw-wasm-sandbox plugin and WASM binary are trusted, and independently verify a pinned release and checksum before processing explicit media files. <br>
+## Use Case:
 
+Developers and media workflow operators use this skill to inspect audio/video files, convert video formats, and extract audio through a local FFmpeg WebAssembly sandbox.
 
-## Reference(s): <br>
-- [Boxed FFmpeg on ClawHub](https://clawhub.ai/guyoung/boxed-ffmpeg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell and JavaScript tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires openclaw-wasm-sandbox >= 0.2.0 and a local boxed-ffmpeg WASM file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill depends on an unverified WASM binary downloaded from a mutable GitHub URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a packaged or pinned WASM artifact with a published SHA-256 or signature before running media jobs.
+
+Risk: The skill asks users to install or update the openclaw-wasm-sandbox gateway plugin.
+
+Mitigation: Install or update the plugin only from a trusted source and review the plugin before enabling it.
+
+Risk: Media processing writes outputs into the selected working directory.
+
+Mitigation: Run jobs in a dedicated directory containing only the intended input and output files.
+
+## Reference(s):
+
+- [Boxed FFmpeg ClawHub listing](https://clawhub.ai/guyoung/skills/boxed-ffmpeg)
+- [Boxed FFmpeg WASM component](https://raw.githubusercontent.com/guyoung/wasm-sandbox-openclaw-skills/main/boxed-ffmpeg/files/boxed-ffmpeg-component.wasm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and JavaScript command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run local media jobs in the selected workDir and write output files there.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

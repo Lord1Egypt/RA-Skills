@@ -1,0 +1,1264 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-sysu-library",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:08:34.809Z",
+  "entry": {
+    "url": "https://library.sysu.edu.cn/",
+    "final_url": "https://library.sysu.edu.cn/",
+    "title": "首页 | 中山大学图书馆",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:08:34.809Z",
+    "identity": {
+      "declared_name": "中山大学图书馆",
+      "hostname": "library.sysu.edu.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "馆藏资源",
+        "href": "https://library.sysu.edu.cn/copyright-notice",
+        "target": ""
+      },
+      {
+        "text": "常用医学资源",
+        "href": "https://library.sysu.edu.cn/page/3640?title=&eresource_sel_ref_top%5B0%5D=195&eresource_sel_ref%5B0%5D=195",
+        "target": "_blank"
+      },
+      {
+        "text": "所有数据库",
+        "href": "https://library.sysu.edu.cn/page/3640",
+        "target": "_blank"
+      },
+      {
+        "text": "高级检索",
+        "href": "http://10.8.11.130:8991/F/-?func=find-d-0",
+        "target": "_blank"
+      },
+      {
+        "text": "一站式搜索本校已购的主要英文资源以及网络开放获取资源",
+        "href": "javascript:void(0);",
+        "target": ""
+      },
+      {
+        "text": "一站式搜索中国高校人文社会科学文献中心(CASHL)17家中心馆人文社科类外文文献",
+        "href": "https://library.sysu.edu.cn/interlibrary",
+        "target": "_blank"
+      },
+      {
+        "text": "中大人的AI学术搜索—解决科学问题",
+        "href": "https://sysu.bohrium.com/",
+        "target": "_blank"
+      },
+      {
+        "text": "资源荐购",
+        "href": "https://library.sysu.edu.cn/newbook-recommendation",
+        "target": "_blank"
+      },
+      {
+        "text": "数据库",
+        "href": "https://library.sysu.edu.cn/page/3640",
+        "target": "_blank"
+      },
+      {
+        "text": "关于从Science Direct数据库违规过量下载事件的处理公告",
+        "href": "https://library.sysu.edu.cn/article/4725",
+        "target": "_blank"
+      },
+      {
+        "text": "开通试用：尚古汇典·汇编文献数据库·文渊阁四库全书数据库",
+        "href": "https://library.sysu.edu.cn/article/4778",
+        "target": "_blank"
+      },
+      {
+        "text": "开通试用：芝加哥大学出版社（UCP）期刊数据库",
+        "href": "https://library.sysu.edu.cn/article/4775",
+        "target": "_blank"
+      },
+      {
+        "text": "叮咚~请签收来自中大图书馆的礼物（八） ：工科类学术数据库",
+        "href": "https://library.sysu.edu.cn/article/4502",
+        "target": "_blank"
+      },
+      {
+        "text": "叮咚~请签收来自中大图书馆的礼物（一）：综合性学术数据库概览",
+        "href": "https://library.sysu.edu.cn/article/4490",
+        "target": "_blank"
+      },
+      {
+        "text": "叮咚~请签收来自中大图书馆的礼物（八） ：工科类学术数据库",
+        "href": "https://library.sysu.edu.cn/article/4502",
+        "target": "_blank"
+      },
+      {
+        "text": "叮咚~请签收来自中大图书馆的礼物（一）：综合性学术数据库概览",
+        "href": "https://library.sysu.edu.cn/article/4490",
+        "target": "_blank"
+      },
+      {
+        "text": "Sage期刊数据库有奖答题",
+        "href": "https://library.sysu.edu.cn/event/4776",
+        "target": "_blank"
+      },
+      {
+        "text": "资源导航>",
+        "href": "https://library.sysu.edu.cn/basic/1139",
+        "target": "_blank"
+      },
+      {
+        "text": "特色资源>",
+        "href": "https://library.sysu.edu.cn/basic/3743",
+        "target": "_blank"
+      },
+      {
+        "text": "数据库 >",
+        "href": "https://library.sysu.edu.cn/page/3640",
+        "target": "_blank"
+      },
+      {
+        "text": "试用数据库 >",
+        "href": "https://library.sysu.edu.cn/page/3640?title=&eresource_sel5%5B0%5D=1",
+        "target": "_blank"
+      },
+      {
+        "text": "统计数据库>",
+        "href": "https://library.sysu.edu.cn/page/3640?title=&eresource_sel2_ref%5B0%5D=133",
+        "target": "_blank"
+      },
+      {
+        "text": "专利数据库>",
+        "href": "https://library.sysu.edu.cn/page/3640?title=&eresource_sel2_ref_top%5B0%5D=126",
+        "target": "_blank"
+      },
+      {
+        "text": "民国期刊全文数据库",
+        "href": "http://202.116.65.226:8080/",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": "sw",
+      "id": "sw",
+      "css": "#sw",
+      "role": null,
+      "form_action": "https://fx.sysu.chaoxing.com/s",
+      "locator": {
+        "css": "#sw"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://fx.sysu.chaoxing.com/s",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入数据库名称",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入数据库名称",
+      "name": "title",
+      "id": "title",
+      "css": "#title",
+      "role": null,
+      "form_action": "https://library.sysu.edu.cn/page/3640",
+      "locator": {
+        "css": "#title"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://library.sysu.edu.cn/page/3640",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "中文文献\n西文文献",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "local_base",
+      "id": "",
+      "css": "select[name=\"local_base\"]",
+      "role": null,
+      "form_action": "http://10.8.11.130:8991/F/-",
+      "locator": {
+        "css": "select[name=\"local_base\"]"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "书目检索，所有字段",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "书目检索，所有字段",
+      "name": "request",
+      "id": "request",
+      "css": "#request",
+      "role": null,
+      "form_action": "http://10.8.11.130:8991/F/-",
+      "locator": {
+        "css": "#request"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "http://10.8.11.130:8991/F/-",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "进入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://libis.sysu.edu.cn/",
+      "locator": {
+        "role": "button",
+        "name": "进入",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": "bquery",
+      "id": "bquery",
+      "css": null,
+      "role": null,
+      "form_action": "https://search.ebscohost.com/login.aspx",
+      "locator": null,
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://search.ebscohost.com/login.aspx",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "Enter the e-journal title",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "Enter the e-journal title",
+      "name": "bquery",
+      "id": "bquery",
+      "css": null,
+      "role": null,
+      "form_action": "https://search.ebscohost.com/login.aspx",
+      "locator": null,
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://search.ebscohost.com/login.aspx",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "select",
+      "type": null,
+      "text": "全部\n题名\n作者\n主题\n出版机构",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "simpleColumn",
+      "id": "",
+      "css": "select[name=\"simpleColumn\"]",
+      "role": null,
+      "form_action": "https://s.cashl.edu.cn:1701/primo-explore/search",
+      "locator": {
+        "css": "select[name=\"simpleColumn\"]"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "检索CASHL17家中心馆的外文人文社科资源",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "检索CASHL17家中心馆的外文人文社科资源",
+      "name": "simpleTerm",
+      "id": "simpleTerm",
+      "css": "#simpleTerm",
+      "role": null,
+      "form_action": "https://s.cashl.edu.cn:1701/primo-explore/search",
+      "locator": {
+        "css": "#simpleTerm"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://s.cashl.edu.cn:1701/primo-explore/search",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "提问",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://sysu.bohrium.com/",
+      "locator": {
+        "role": "button",
+        "name": "提问",
+        "exact": true
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "1 of 3",
+      "label": "",
+      "aria_label": "1 of 3",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control10",
+      "css": "#slick-slide-control10",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control10"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "2 of 3",
+      "label": "",
+      "aria_label": "2 of 3",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control11",
+      "css": "#slick-slide-control11",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control11"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "3 of 3",
+      "label": "",
+      "aria_label": "3 of 3",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control12",
+      "css": "#slick-slide-control12",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control12"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "1 of 2",
+      "label": "",
+      "aria_label": "1 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control20",
+      "css": "#slick-slide-control20",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control20"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "2 of 2",
+      "label": "",
+      "aria_label": "2 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control21",
+      "css": "#slick-slide-control21",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control21"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "3 of 2",
+      "label": "",
+      "aria_label": "3 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control22",
+      "css": "#slick-slide-control22",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control22"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "4 of 2",
+      "label": "",
+      "aria_label": "4 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control23",
+      "css": "#slick-slide-control23",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control23"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "5 of 2",
+      "label": "",
+      "aria_label": "5 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control24",
+      "css": "#slick-slide-control24",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control24"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "6 of 2",
+      "label": "",
+      "aria_label": "6 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control25",
+      "css": "#slick-slide-control25",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control25"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "7 of 2",
+      "label": "",
+      "aria_label": "7 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control26",
+      "css": "#slick-slide-control26",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control26"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "8 of 2",
+      "label": "",
+      "aria_label": "8 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control27",
+      "css": "#slick-slide-control27",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control27"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "9 of 2",
+      "label": "",
+      "aria_label": "9 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control28",
+      "css": "#slick-slide-control28",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control28"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "10 of 2",
+      "label": "",
+      "aria_label": "10 of 2",
+      "placeholder": null,
+      "name": null,
+      "id": "slick-slide-control29",
+      "css": "#slick-slide-control29",
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "css": "#slick-slide-control29"
+      },
+      "observed_url": "https://library.sysu.edu.cn/",
+      "observed_at": "2026-10-09T09:08:34.017Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-sysu-library:catalog-holdings",
+      "source_id": "quiz-sysu-library",
+      "task_kind": "catalog-holdings",
+      "status": "entry_observed",
+      "parameters": [
+        "title",
+        "author",
+        "edition",
+        "language",
+        "library",
+        "holding_field"
+      ],
+      "instructions": [
+        "用本题书名、作者、版本和语言查馆藏；在馆藏明细读取索书号、馆藏地和复本，不将不同版次默认为同一记录。"
+      ],
+      "transitions": {},
+      "entry_url": "https://library.sysu.edu.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "",
+          "name": "sw",
+          "id": "sw",
+          "css": "#sw",
+          "role": null,
+          "form_action": "https://fx.sysu.chaoxing.com/s",
+          "locator": {
+            "css": "#sw"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://fx.sysu.chaoxing.com/s",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入数据库名称",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入数据库名称",
+          "name": "title",
+          "id": "title",
+          "css": "#title",
+          "role": null,
+          "form_action": "https://library.sysu.edu.cn/page/3640",
+          "locator": {
+            "css": "#title"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://library.sysu.edu.cn/page/3640",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "中文文献\n西文文献",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "local_base",
+          "id": "",
+          "css": "select[name=\"local_base\"]",
+          "role": null,
+          "form_action": "http://10.8.11.130:8991/F/-",
+          "locator": {
+            "css": "select[name=\"local_base\"]"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "书目检索，所有字段",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "书目检索，所有字段",
+          "name": "request",
+          "id": "request",
+          "css": "#request",
+          "role": null,
+          "form_action": "http://10.8.11.130:8991/F/-",
+          "locator": {
+            "css": "#request"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "http://10.8.11.130:8991/F/-",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "进入",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://libis.sysu.edu.cn/",
+          "locator": {
+            "role": "button",
+            "name": "进入",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://search.ebscohost.com/login.aspx",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://search.ebscohost.com/login.aspx",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "select",
+          "type": null,
+          "text": "全部\n题名\n作者\n主题\n出版机构",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "simpleColumn",
+          "id": "",
+          "css": "select[name=\"simpleColumn\"]",
+          "role": null,
+          "form_action": "https://s.cashl.edu.cn:1701/primo-explore/search",
+          "locator": {
+            "css": "select[name=\"simpleColumn\"]"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "检索CASHL17家中心馆的外文人文社科资源",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "检索CASHL17家中心馆的外文人文社科资源",
+          "name": "simpleTerm",
+          "id": "simpleTerm",
+          "css": "#simpleTerm",
+          "role": null,
+          "form_action": "https://s.cashl.edu.cn:1701/primo-explore/search",
+          "locator": {
+            "css": "#simpleTerm"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://s.cashl.edu.cn:1701/primo-explore/search",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "提问",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://sysu.bohrium.com/",
+          "locator": {
+            "role": "button",
+            "name": "提问",
+            "exact": true
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "1 of 3",
+          "label": "",
+          "aria_label": "1 of 3",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control10",
+          "css": "#slick-slide-control10",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control10"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "2 of 3",
+          "label": "",
+          "aria_label": "2 of 3",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control11",
+          "css": "#slick-slide-control11",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control11"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "3 of 3",
+          "label": "",
+          "aria_label": "3 of 3",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control12",
+          "css": "#slick-slide-control12",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control12"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "1 of 2",
+          "label": "",
+          "aria_label": "1 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control20",
+          "css": "#slick-slide-control20",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control20"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "2 of 2",
+          "label": "",
+          "aria_label": "2 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control21",
+          "css": "#slick-slide-control21",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control21"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "3 of 2",
+          "label": "",
+          "aria_label": "3 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control22",
+          "css": "#slick-slide-control22",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control22"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "4 of 2",
+          "label": "",
+          "aria_label": "4 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control23",
+          "css": "#slick-slide-control23",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control23"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "5 of 2",
+          "label": "",
+          "aria_label": "5 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control24",
+          "css": "#slick-slide-control24",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control24"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "6 of 2",
+          "label": "",
+          "aria_label": "6 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control25",
+          "css": "#slick-slide-control25",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control25"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "7 of 2",
+          "label": "",
+          "aria_label": "7 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control26",
+          "css": "#slick-slide-control26",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control26"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "8 of 2",
+          "label": "",
+          "aria_label": "8 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control27",
+          "css": "#slick-slide-control27",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control27"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "9 of 2",
+          "label": "",
+          "aria_label": "9 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control28",
+          "css": "#slick-slide-control28",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control28"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "10 of 2",
+          "label": "",
+          "aria_label": "10 of 2",
+          "placeholder": null,
+          "name": null,
+          "id": "slick-slide-control29",
+          "css": "#slick-slide-control29",
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "css": "#slick-slide-control29"
+          },
+          "observed_url": "https://library.sysu.edu.cn/",
+          "observed_at": "2026-10-09T09:08:34.017Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [],
+    "example_ids": [
+      "KH-Q035"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:08:34.809Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-sysu-library-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-sysu-library-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

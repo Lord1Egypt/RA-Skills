@@ -1,40 +1,54 @@
-## Description: <br>
-Generates Chinese academic citations in strict GB/T 7714-2015 format from journal or book cover images, web links, or existing citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates GB/T 7714-2015 formatted academic citations from citation text, publication screenshots, or citation webpages.
 
-## Publisher: <br>
-[michelle-lao](https://clawhub.ai/user/michelle-lao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michelle-lao](https://clawhub.ai/user/michelle-lao)
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to extract citation metadata from images, links, or existing citation text and format it as GB/T 7714-2015 references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad image trigger may activate on unrelated image attachments. <br>
-Mitigation: Attach only citation-relevant academic screenshots or cover images, and avoid unrelated private images. <br>
-Risk: Unclear or incomplete source metadata can produce incorrect or incomplete citations. <br>
-Mitigation: Review extracted citation fields against the source and provide any missing critical fields before using the result. <br>
+## Use Case:
 
+Students, researchers, academic writers, and agents use this skill to convert publication images, existing citations, or citation webpages into strict GB/T 7714-2015 reference entries.
 
-## Reference(s): <br>
-- [GB/T 7714-2015 Citation Format Reference](references/gb7714-2015.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text citation strings, or concise missing-field prompts when required metadata is unavailable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single citation by default; numbered list when multiple citations are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may activate broadly on images, including images not intended for citation formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for citation-related screenshots or explicit citation requests, and avoid providing sensitive images unless processing them is acceptable.
+
+Risk: Citation webpage handling may fetch URLs supplied by the user.
+
+Mitigation: Prefer public citation URLs and avoid private, internal, or sensitive links.
+
+## Reference(s):
+
+- [GB/T 7714-2015 Citation Format Reference](references/gb7714-2015.md)
+- [ClawHub gb-citation Skill Page](https://clawhub.ai/michelle-lao/skills/gb-citation)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text citation or concise missing-field prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single citation by default; numbered list when the user requests multiple citations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

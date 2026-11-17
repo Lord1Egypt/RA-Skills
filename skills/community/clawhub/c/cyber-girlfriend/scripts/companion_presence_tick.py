@@ -2,13 +2,15 @@
 """确定性 presence tick 入口。
 
 cron 只负责调用本脚本。本脚本先在普通进程里执行 prepare；只有命中当前
-day-schedule 事件时，才把已经生成好的合同交给稳定 companion session。
+day-schedule 事件时，才把已经生成好的合同交给本轮专用 companion session。
 """
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import os
+import secrets
 import re
 import shlex
 import time
@@ -16,6 +18,8 @@ import subprocess
 import sys
 from datetime import datetime
 from pathlib import Path
+from urllib import request as urllib_request
+from urllib.error import HTTPError, URLError
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,7 +71,7 @@ def openclaw_child_cwd() -> str:
     Codex app-server `workspace-write` turns derive writable roots from `cwd`.
     When a gateway fallback runs embedded from the workspace, the resulting
     writable roots exclude `~/.openclaw/agents/.../sessions`, which breaks
-    stable-session persistence with EPERM. Launching the CLI from the OpenClaw
+    dispatch-session persistence with EPERM. Launching the CLI from the OpenClaw
     home keeps the session state tree inside the writable root.
     """
     return str(OPENCLAW_HOME)
@@ -166,6 +170,8 @@ def diagnostic_tail_text(path: Path, max_chars: int = 1200) -> str:
         if line.startswith("ERROR:")
         or "OAuth token refresh failed" in line
         or "SecItemCopyMatching" in line
+        or "is archived. Restore it before" in line
+        or line.startswith("[openclaw] Reason:")
         or line.startswith("Traceback ")
     ]
     if marker_lines:
@@ -281,6 +287,142 @@ def text_send_command(delivery: dict, text: str) -> list[str]:
     if account:
         command.extend(["--account", account])
     return command
+
+
+def weixin_client_version(version: str) -> int:
+    parts = []
+    for raw in str(version or "0.0.0").split(".")[:3]:
+        try:
+            parts.append(int(raw))
+        except ValueError:
+            parts.append(0)
+    while len(parts) < 3:
+        parts.append(0)
+    major, minor, patch = parts[:3]
+    return ((major & 0xFF) << 16) | ((minor & 0xFF) << 8) | (patch & 0xFF)
+
+
+def load_weixin_package_info() -> dict:
+    candidates = [
+        OPENCLAW_HOME
+        / "npm"
+        / "projects"
+        / "tencent-weixin-openclaw-weixin-7783ac86ba__openclaw-generation__g-35332e4f87bce2a1"
+        / "node_modules"
+        / "@tencent-weixin"
+        / "openclaw-weixin"
+        / "package.json",
+        OPENCLAW_HOME / "npm" / "node_modules" / "@tencent-weixin" / "openclaw-weixin" / "package.json",
+        OPENCLAW_HOME / "extensions" / "node_modules" / "@tencent-weixin" / "openclaw-weixin" / "package.json",
+    ]
+    for path in candidates:
+        payload = load_json(path, {})
+        if isinstance(payload, dict) and payload:
+            return payload
+    return {}
+
+
+def random_wechat_uin() -> str:
+    value = str(secrets.randbits(32)).encode("utf-8")
+    return base64.b64encode(value).decode("ascii")
+
+
+def load_weixin_account(account_id: str) -> dict:
+    if not account_id:
+        raise RuntimeError("weixin delivery account is required")
+    account_path = OPENCLAW_HOME / "openclaw-weixin" / "accounts" / f"{account_id}.json"
+    account = load_json(account_path, {})
+    if not isinstance(account, dict) or not account:
+        raise RuntimeError(f"weixin account is not configured: {account_id}")
+    return account
+
+
+def load_weixin_context_token(account_id: str, target: str) -> str:
+    token_path = OPENCLAW_HOME / "openclaw-weixin" / "accounts" / f"{account_id}.context-tokens.json"
+    tokens = load_json(token_path, {})
+    if not isinstance(tokens, dict):
+        return ""
+    direct = tokens.get(target)
+    if isinstance(direct, str) and direct:
+        return direct
+    target_lower = str(target or "").lower()
+    for key, value in tokens.items():
+        if str(key).lower() == target_lower and isinstance(value, str) and value:
+            return value
+    return ""
+
+
+def send_text_with_weixin_api(delivery: dict, text: str) -> dict:
+    """Fallback for WeChat proactive sends when CLI plugin state lacks contextToken."""
+    target = str(delivery.get("target") or delivery.get("owner_target") or "").strip()
+    account_id = str(delivery.get("account") or delivery.get("accountId") or "").strip()
+    body_text = str(text or "").strip()
+    if not target:
+        raise RuntimeError("weixin delivery target is required")
+    if not body_text:
+        raise RuntimeError("story text is required")
+    account = load_weixin_account(account_id)
+    context_token = load_weixin_context_token(account_id, target)
+    if not context_token:
+        raise RuntimeError("weixin context token is missing")
+    package_info = load_weixin_package_info()
+    version = str(package_info.get("version") or "0.0.0")
+    app_id = str(package_info.get("ilink_appid") or "bot")
+    base_url = str(account.get("baseUrl") or "https://ilinkai.weixin.qq.com").rstrip("/") + "/"
+    token = str(account.get("token") or "").strip()
+    client_id = f"openclaw-weixin:{int(time.time() * 1000)}-{secrets.token_hex(4)}"
+    payload = {
+        "msg": {
+            "from_user_id": "",
+            "to_user_id": target,
+            "client_id": client_id,
+            "message_type": 2,
+            "message_state": 2,
+            "item_list": [{"type": 1, "text_item": {"text": body_text}}],
+            "context_token": context_token,
+        },
+        "base_info": {
+            "channel_version": version,
+            "bot_agent": "OpenClaw",
+        },
+    }
+    raw_body = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    req = urllib_request.Request(
+        base_url + "ilink/bot/sendmessage",
+        data=raw_body,
+        method="POST",
+        headers={
+            "Content-Type": "application/json",
+            "AuthorizationType": "ilink_bot_token",
+            "Content-Length": str(len(raw_body)),
+            "X-WECHAT-UIN": random_wechat_uin(),
+            "iLink-App-Id": app_id,
+            "iLink-App-ClientVersion": str(weixin_client_version(version)),
+            **({"Authorization": f"Bearer {token}"} if token else {}),
+        },
+    )
+    try:
+        with urllib_request.urlopen(req, timeout=15) as response:
+            raw_response = response.read().decode("utf-8", errors="replace")
+    except HTTPError as exc:
+        raw_response = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"weixin sendMessage HTTP {exc.code}: {raw_response[:300]}") from exc
+    except URLError as exc:
+        raise RuntimeError(f"weixin sendMessage failed: {exc.reason}") from exc
+    try:
+        parsed = json.loads(raw_response) if raw_response.strip() else {}
+    except json.JSONDecodeError:
+        parsed = {"raw": raw_response[:300]}
+    if isinstance(parsed, dict) and parsed.get("ret") not in (None, 0):
+        raise RuntimeError(
+            f"weixin sendMessage ret={parsed.get('ret')} errmsg={parsed.get('errmsg', '')}"
+        )
+    return {
+        "channel": "openclaw-weixin",
+        "messageId": client_id,
+        "via": "direct_weixin_api",
+        "ret": parsed.get("ret") if isinstance(parsed, dict) else None,
+    }
 
 
 def delivery_result_has_wrong_media_route(result: dict) -> bool:
@@ -566,7 +708,22 @@ def send_text_with_delivery_contract(delivery: dict, text: str, dry_run: bool = 
     command = text_send_command(delivery, text)
     if dry_run:
         return {"status": "dry_run", "command": command}
-    return run_json(command)
+    try:
+        return run_json(command)
+    except RuntimeError as exc:
+        channel = str(delivery.get("channel") or "").strip()
+        cli_error = str(exc)
+        cli_error_lower = cli_error.lower()
+        if channel == "openclaw-weixin" and (
+            "prepare failed" in cli_error_lower or "unknown channel" in cli_error_lower
+        ):
+            fallback_result = send_text_with_weixin_api(delivery, text)
+            return {
+                "status": "sent_after_cli_unavailable",
+                "first_error": cli_error,
+                "fallback_result": fallback_result,
+            }
+        raise
 
 
 def run_state_commit(command: list[str], dry_run: bool = False) -> dict:
@@ -672,6 +829,23 @@ def delivery_session_key(delivery: dict, agent: str = "main") -> str:
     return f"agent:{agent_name}:{channel}:direct:{target}"
 
 
+def dispatch_session_key(base_session_key: str, run_id: str) -> str:
+    """Derive a fresh session key for one prepared presence dispatch.
+
+    OpenClaw 2026.8.1 refuses new work on an archived session. Presence does
+    not need cross-event transcript continuity, so each fresh prepare gets a
+    distinct session while remaining stable for that dispatch and its media
+    completion lifecycle.
+    """
+    base = str(base_session_key or DEFAULT_SESSION_KEY).strip() or DEFAULT_SESSION_KEY
+    safe_run_id = re.sub(r"[^A-Za-z0-9._-]+", "-", str(run_id or "")).strip("-._")
+    if not safe_run_id:
+        safe_run_id = f"run-{int(time.time())}-{secrets.token_hex(4)}"
+    suffix = safe_run_id[-64:]
+    max_base_length = max(1, 180 - len(suffix) - 1)
+    return f"{base[:max_base_length]}-{suffix}"
+
+
 def dispatch_is_locked(path: Path, event_key: str, now_epoch: int, max_stall_seconds: int = DEFAULT_DISPATCH_STALL_SECONDS) -> dict:
     """Check dispatch lock.
 
@@ -688,7 +862,7 @@ def dispatch_is_locked(path: Path, event_key: str, now_epoch: int, max_stall_sec
     expires_at = int(lock.get("expires_at") or 0)
     if expires_at and expires_at > now_epoch:
         status = str(lock.get("status") or "")
-        if status in {"agent_launch_failed", "agent_start_timeout"}:
+        if status in {"agent_launch_failed", "agent_start_timeout", "delivery_failed"}:
             return {}
         started_at = int(lock.get("started_at") or 0)
         # If the agent never confirmed it started, and the lock is older
@@ -740,8 +914,8 @@ def build_agent_message(contract: dict, lock_path: str = "", lock_run_id: str = 
             "\n固定投递要求：\n"
             f"- 本轮真实投递目标来自 delivery_contract（{explicit_delivery_signature}）。\n"
             "- 文本主消息不要调用 `message(action=\"send\")`；必须调用固定 `--send-story` 入口，让 wrapper 用外部 OpenClaw CLI 按 delivery_contract 投递。\n"
-            "- 不要依赖当前 stable session 的默认投递上下文；这个 session 自己可能挂在 webchat/internal-ui，不是用户真正收到消息的聊天。\n"
-            "- 后续媒体 completion 回到这个 stable session 时，发送附件也继续沿用同一组显式 delivery_contract 字段。\n"
+            "- 不要依赖当前 dispatch session 的默认投递上下文；这个 session 自己可能挂在 webchat/internal-ui，不是用户真正收到消息的聊天。\n"
+            "- 后续媒体 completion 回到这个 dispatch session 时，发送附件也继续沿用同一组显式 delivery_contract 字段。\n"
         )
     story_lock_path = lock_path or "<dispatch-lock>"
     story_run_id = lock_run_id or str(contract.get("run_id", "")) or "<run-id>"
@@ -782,7 +956,7 @@ def build_agent_message(contract: dict, lock_path: str = "", lock_run_id: str = 
 ```
 这个入口会按 delivery_contract 显式投递文本，成功后由脚本执行 state_commit.command；如果入口失败，不要提交状态，也不要继续媒体生成。
 7. 如果 media_contract.kind != "event_media"，固定入口成功后只回复 NO_REPLY；不要自己运行 state_commit.command。
-8. 如果 media_contract.kind == "event_media"，固定入口成功后再调用 media_contract.tool_name，参数使用 life_context.event.media_info。wrapper 已经启动后台 recent-media watcher 等待本次媒体任务完成并按 delivery_contract 发送媒体；你不要自己运行 watcher，也不要等媒体 completion turn 自己发。后续媒体 completion 回到本稳定 session 时，不运行 prepare、不写第二段、不再运行 state_commit.command，只回复 NO_REPLY。
+8. 如果 media_contract.kind == "event_media"，固定入口成功后再调用 media_contract.tool_name，参数使用 life_context.event.media_info。wrapper 已经启动后台 recent-media watcher 等待本次媒体任务完成并按 delivery_contract 发送媒体；你不要自己运行 watcher，也不要等媒体 completion turn 自己发。后续媒体 completion 回到本轮 dispatch session 时，不运行 prepare、不写第二段、不再运行 state_commit.command，只回复 NO_REPLY。
 9. 固定媒体入口：
 {media_delegate_rule}10. 文本主消息和媒体 completion 都不允许直接用 message tool 投递；文本必须调用固定 `--send-story` 入口，媒体必须交给 wrapper watcher 或固定媒体入口。
 
@@ -818,8 +992,8 @@ def maybe_launch_handoff_media_watcher(
     """Start the deterministic media watcher for handoff-only flow when needed.
 
     The live isolated cron now uses `--handoff-only` and `sessions_send` instead
-    of the older shell-launched stable session path. The watcher must still be
-    started by the wrapper; otherwise the stable session sends text, launches the
+    of the older shell-launched dispatch session path. The watcher must still be
+    started by the wrapper; otherwise the dispatch session sends text, launches the
     async image task, replies NO_REPLY, and nobody explicitly delivers the media
     to the real owner channel.
     """
@@ -1052,7 +1226,8 @@ def agent_command(args, message: str) -> list[str]:
 def parse_args():
     parser = argparse.ArgumentParser(description="Run one deterministic companion presence tick.")
     parser.add_argument("--config", default=str(DEFAULT_CONFIG))
-    parser.add_argument("--session-key", default=DEFAULT_SESSION_KEY)
+    parser.add_argument("--session-key", default=DEFAULT_SESSION_KEY,
+                        help="Base key used to derive a fresh session for each prepared dispatch.")
     parser.add_argument("--agent", default="main")
     parser.add_argument("--model", default="")
     parser.add_argument("--thinking", default="medium")
@@ -1063,20 +1238,20 @@ def parse_args():
     parser.add_argument("--dispatch-stall-seconds", type=int, default=DEFAULT_DISPATCH_STALL_SECONDS,
                         help="Grace period before a stuck 'agent_enqueued' lock is treated as stale.")
     parser.add_argument("--agent-start-wait-seconds", type=float, default=DEFAULT_AGENT_START_WAIT_SECONDS,
-                        help="How long to wait for the stable agent to confirm startup before returning.")
+                        help="How long to wait for the dispatch agent to confirm startup before returning.")
     parser.add_argument("--agent-start-poll-seconds", type=float, default=DEFAULT_AGENT_START_POLL_SECONDS,
                         help="Polling interval while waiting for agent_started or early process exit.")
     parser.add_argument("--agent-launch-attempts", type=int, default=DEFAULT_AGENT_LAUNCH_ATTEMPTS,
-                        help="How many times to retry launching the stable agent on transient startup failures.")
+                        help="How many times to retry launching the dispatch agent on transient startup failures.")
     parser.add_argument("--agent-launch-retry-delay-seconds", type=float, default=DEFAULT_AGENT_LAUNCH_RETRY_DELAY_SECONDS,
-                        help="Delay between retryable stable-agent launch failures.")
+                        help="Delay between retryable dispatch-agent launch failures.")
     parser.add_argument("--update-dispatch-lock-status", default="",
                         help="Internal helper mode: update the dispatch lock and exit.")
     parser.add_argument("--run-id", default="", help="Run id for dispatch lock helper mode.")
     parser.add_argument(
         "--handoff-only",
         action="store_true",
-        help="Prepare and return a stable-session handoff payload instead of launching `openclaw agent` from shell.",
+        help="Prepare and return a dispatch-session handoff payload instead of launching `openclaw agent` from shell.",
     )
     parser.add_argument(
         "--send-story",
@@ -1106,7 +1281,7 @@ def parse_args():
     parser.add_argument(
         "--watch-recent-media-task",
         action="store_true",
-        help="Internal helper mode: find the next media task created by the stable session, then send it explicitly.",
+        help="Internal helper mode: find the next media task created by the dispatch session, then send it explicitly.",
     )
     parser.add_argument("--started-after-ms", type=int, default=0,
                         help="Only match recent media tasks created at or after this millisecond timestamp.")
@@ -1146,6 +1321,13 @@ def main():
                 dry_run=args.dry_run,
             )
         except (ValueError, RuntimeError) as exc:
+            if not args.dry_run:
+                finalize_dispatch_lock(
+                    lock_path,
+                    status="delivery_failed",
+                    run_id=args.run_id,
+                    error=str(exc),
+                )
             raise SystemExit(str(exc)) from exc
         print(json.dumps(result, ensure_ascii=False))
         return
@@ -1211,6 +1393,8 @@ def main():
     if status != "ok":
         print(json.dumps({"status": "skip", "reason": f"prepare_status_{status or 'empty'}"}, ensure_ascii=False))
         return
+
+    args.session_key = dispatch_session_key(args.session_key, str(contract.get("run_id", "")))
 
     event_key = extract_event_key(contract)
     now_epoch = int(time.time())

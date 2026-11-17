@@ -1,49 +1,64 @@
-## Description: <br>
-Retrieve and interpret World Bank annual development, macroeconomic, and demographic indicators with country comparisons and citation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve and interpret World Bank annual development, macroeconomic, and demographic indicators with country comparisons and citations.
 
-## Publisher: <br>
-[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02)
 
-## Use Case: <br>
-External users and developers use this skill to guide agents through World Bank Open Data indicator discovery, country comparisons, annual time-series retrieval, interpretation, and citation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: World Bank data is annual and may not contain the latest quarter, month, day, or ticker-level value. <br>
-Mitigation: Use this skill for annual World Bank indicators only; direct real-time, market, firm-level, or high-frequency questions to a more appropriate data source. <br>
-Risk: Missing observations can be confused with real zero values. <br>
-Mitigation: Treat null values as data not available, report the observed year explicitly, and never substitute zero or invent figures. <br>
-Risk: Incorrect indicator or country codes can produce invalid requests or misleading results. <br>
-Mitigation: Search indicators, resolve country codes, confirm metadata and units, and retry invalid-parameter errors only after correcting the request. <br>
-Risk: The generic passthrough can be misapplied outside the intended World Bank API scope. <br>
-Mitigation: Use the passthrough only for relative World Bank /v2 endpoints and keep the MCP server environment empty unless setting non-secret tuning values. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through selecting World Bank indicators, fetching annual country or aggregate time series, interpreting missing values and units, comparing countries, and citing reported figures.
 
-## Reference(s): <br>
-- [World Bank API Basic Call Structure](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392) <br>
-- [World Bank Indicator Browser](https://data.worldbank.org/indicator) <br>
-- [Endpoints & Tools](reference/endpoints.md) <br>
-- [Best Practices](reference/best-practices.md) <br>
-- [Response Fields](reference/response-fields.md) <br>
-- [Common Errors](reference/common-errors.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with tables, citation templates, and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required; outputs emphasize annual data, units, null handling, and source citations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: User-supplied country, indicator, and search terms may be sent to the World Bank API through the paired MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive user text as lookup terms and keep requests limited to the country, indicator, and date parameters needed for the answer.
+
+Risk: The paired worldbank-mcp package is outside this Markdown skill artifact.
+
+Mitigation: Verify the MCP server package separately before deployment and confirm its configured environment remains empty unless optional tuning values are intentionally set.
+
+Risk: World Bank data is annual and recent years can be null or unpublished.
+
+Mitigation: Use mrv or explicit date ranges, report null values as unavailable, include the observation year, and avoid using the skill for real-time, firm-level, ticker, or price data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/simonpierreboucher02/skills/worldbank-al)
+- [World Bank API Basic Call Structure](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392)
+- [World Bank Indicator Browser](https://data.worldbank.org/indicator)
+- [Endpoints & Tools](reference/endpoints.md)
+- [Indicators & Country Codes](reference/indicators-and-countries.md)
+- [Response Fields](reference/response-fields.md)
+- [Best Practices](reference/best-practices.md)
+- [Common Errors](reference/common-errors.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with example JSON tool calls, tables, citations, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agents to use public World Bank annual data, cite each reported figure, handle nulls as missing values, avoid invented API keys, and distinguish countries from aggregates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

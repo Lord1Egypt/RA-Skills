@@ -1,39 +1,56 @@
-## Description: <br>
-Guides structured help for App Feature Planner using clear templates, checks, and safe defaults (category: Product & Apps). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for App Feature Planner using clear templates, checks, and safe defaults (category: Product & Apps).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, founders, and app builders use this skill to turn app feature ideas into concise plans, reusable checklists, next actions, and editable draft copy while avoiding secrets and unsafe install guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may paste secrets or sensitive personal data into planning prompts.
+
+Mitigation: Request goals and owned notes without passwords, OTPs, private keys, wallets, seeds, session secrets, or unnecessary personal data.
+
+Risk: Generated planning advice could encourage unsafe installation steps or irreversible actions if the user asks for them.
+
+Mitigation: Keep outputs factual and reversible, prefer checklists, and avoid remote installers, unseen code, or chained download-and-run snippets.
+
+Risk: The PayPal donation link could be mistaken for a required part of using the skill.
+
+Mitigation: Treat the donation link as optional publisher support and separate from normal skill use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, product builders, and app teams use this skill to turn an app feature idea into a concise plan, reusable checklist, next actions, and editable draft copy while avoiding sensitive inputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: User notes may include secrets or sensitive personal data that the planning prompt does not need. <br>
-Mitigation: Keep passwords, private keys, wallets, OTPs, session secrets, and unnecessary personal data out of pasted notes. <br>
-Risk: The artifact includes an optional PayPal donation link that leads to an external site unrelated to the skill's core planning function. <br>
-Mitigation: Treat donation links as optional external destinations and evaluate them separately from the skill before using them. <br>
+**Output Format:** [Markdown plans, numbered checklists, next-action lists, and optional editable draft copy blocks.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No executable output; asks users to avoid secrets and keep pasted personal data minimal.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, tool calls, or external scraping are required by the skill.] <br>
+0.1.0 (source: SKILL.md frontmatter and artifact metadata/changelog, released 2026-05-22)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

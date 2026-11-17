@@ -1,40 +1,53 @@
-## Description: <br>
-Guide users through a structured workflow for co-authoring documentation, proposals, technical specs, decision docs, and similar structured content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users through a structured workflow for co-authoring documentation, proposals, technical specs, decision docs, and similar structured content.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Employees, external collaborators, developers, and other documentation authors use this skill to gather context, structure drafts, refine sections iteratively, and test whether a document will work for readers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workplace connectors or shared files may expose irrelevant secrets or personal data during context gathering. <br>
-Mitigation: Point the skill only at specific relevant documents, channels, or threads and avoid unnecessary sensitive data. <br>
-Risk: Drafted documents may accidentally include sensitive details or misleading guidance. <br>
-Mitigation: Review the final document for sensitive details and factual accuracy before sharing. <br>
+## Use Case:
 
+Employees, external collaborators, developers, and other documentation authors use this skill to gather context, shape drafts section by section, and test whether finished documents work for readers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codekungfu/coauthoring) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or edit documentation files when the agent environment supports file or artifact tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may ask to read linked documents or team discussions during context gathering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify exactly which sources the agent may use and provide only the material needed for the document.
+
+Risk: Reader testing or shared drafts may expose confidential material, credentials, personal data, or sensitive strategy.
+
+Mitigation: Redact sensitive information before reader testing or sharing drafts with sub-agents and connected tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/coauthoring)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce document scaffolds, section drafts, reader-test questions, review feedback, and alt-text recommendations when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

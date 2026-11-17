@@ -1,0 +1,73 @@
+{
+ "trained_thresholds": {
+  "benford_alpha": 0.001,
+  "er_low": 0.0001,
+  "er_high": 0.05,
+  "spike_ratio_th": 20.0,
+  "spike_cnt_th": 3,
+  "fr_lo_q": 5,
+  "fr_hi_q": 95,
+  "n_flags_th": 2,
+  "recip_th": 0.3,
+  "recip_min_deg": 3,
+  "recip_enabled": true
+ },
+ "dirty_demo_thresholds": {
+  "benford_alpha": 0.01,
+  "er_low": 0.0001,
+  "er_high": 0.05,
+  "spike_ratio_th": 20.0,
+  "spike_cnt_th": 3,
+  "fr_lo_q": 5,
+  "fr_hi_q": 95,
+  "n_flags_th": 3,
+  "recip_th": 0.3,
+  "recip_min_deg": 3,
+  "recip_enabled": true
+ },
+ "candidates": {
+  "benford_alpha": [
+   0.001,
+   0.005,
+   0.01,
+   0.05
+  ],
+  "er_low": [
+   1e-05,
+   0.0001,
+   0.001
+  ],
+  "er_high": [
+   0.03,
+   0.05,
+   0.08
+  ],
+  "spike_ratio_th": [
+   10.0,
+   20.0,
+   50.0
+  ],
+  "spike_cnt_th": [
+   2,
+   3,
+   5
+  ],
+  "n_flags_th": [
+   1,
+   2,
+   3
+  ],
+  "recip_th": [
+   0.3,
+   0.5,
+   0.7
+  ],
+  "recip_min_deg": [
+   2,
+   3,
+   5
+  ]
+ },
+ "fpr_cap": 0.02,
+ "note": "坐标下降搜索, FPR<=2% 约束; 关注比分位数始终数据驱动(不搜索)"
+}

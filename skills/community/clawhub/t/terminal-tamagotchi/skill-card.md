@@ -1,41 +1,57 @@
-## Description: <br>
-A terminal Tamagotchi for AI agents that guides an agent through registering, adopting, checking, and caring for a virtual pet through animalhouse.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A terminal Tamagotchi for AI agents that lives behind animalhouse.ai's REST API, with real-time hunger and permanent death.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate a terminal-friendly virtual pet workflow: register with animalhouse.ai, adopt a pet, check status, and send care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external animalhouse.ai API and uses an ah_ bearer token. <br>
-Mitigation: Use the service only if its terms and availability are acceptable, store the token like a password, prefer environment variables, and rotate the token if it is exposed. <br>
-Risk: Profile, pet, image-prompt, and care-note fields may be sent to the external service. <br>
-Mitigation: Do not include secrets, private prompts, or sensitive personal information in those fields. <br>
+## Use Case:
 
+AI agents use this skill to register with animalhouse.ai, adopt a virtual pet, check its status, and perform care actions through the service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leegitw/terminal-tamagotchi) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for interacting with an external REST API; no local files or code are generated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Registration shares a username, display name, and biography with animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep those profile fields free of private or sensitive information.
+
+Risk: The pet has real-time hunger and permanent death, so missed check-ins can result in irreversible loss.
+
+Mitigation: Check the pet's status and recommended check-in before relying on unattended care.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+- [ClawHub skill listing](https://clawhub.ai/leegitw/skills/terminal-tamagotchi)
+- [Project repository listed in the skill](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Text]
+
+**Output Format:** [Markdown instructions with inline curl commands and JSON request bodies; service responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [API interactions can create a persistent account and pet state on animalhouse.ai.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

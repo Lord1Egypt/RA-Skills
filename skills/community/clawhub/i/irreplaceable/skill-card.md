@@ -1,39 +1,54 @@
-## Description: <br>
-Acts as a top-tier career development consultant and organizational effectiveness expert, helping employees analyze their current work value, identify core competency gaps, and develop actionable improvement plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Acts as a top-tier career development consultant and organizational effectiveness expert, helping employees analyze their current work value, identify core competency gaps, and develop actionable improvement plans.
 
-## Publisher: <br>
-[wangbingpeng](https://clawhub.ai/user/wangbingpeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangbingpeng](https://clawhub.ai/user/wangbingpeng)
 
-## Use Case: <br>
-Employees and professionals use this skill to diagnose workplace irreplaceability, identify gaps in communication, judgment, execution, collaboration, and reflection, and produce concrete improvement plans for promotion, competitiveness, job-change decisions, or manager-recognition issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential company plans, proprietary project details, private HR matters, or identifiable coworker information while describing workplace situations. <br>
-Mitigation: Avoid sharing sensitive workplace details unless they are appropriate to put into chat; redact names, confidential plans, proprietary data, and private HR information. <br>
-Risk: Career diagnostics and direct feedback may be incomplete or misleading if the user provides limited, biased, or inaccurate context. <br>
-Mitigation: Treat the output as advisory guidance and validate decisions with trusted managers, mentors, HR contacts, or other qualified workplace advisors before acting on high-impact recommendations. <br>
+## Use Case:
 
+Employees and career-focused professionals use this skill to diagnose workplace value, identify gaps in communication, judgment, execution, collaboration, and reflection, and create concrete improvement plans. It is suited for promotion bottlenecks, role competitiveness concerns, job-switching decisions, and structured personal growth planning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic reports, capability assessments, risk warnings, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only output based on user-provided workplace context; no code execution, file access, credential requests, or hidden actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may ask for workplace details while providing direct career diagnostics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing confidential employer, colleague, customer, or internal project information unless disclosure is appropriate.
+
+Risk: The skill gives blunt, risk-focused career guidance that may be incomplete if the user's context is sparse.
+
+Mitigation: Provide sufficient non-confidential context and treat recommendations as advisory input before making employment or organizational decisions.
+
+## Reference(s):
+
+- [IrReplaceable ClawHub Skill Page](https://clawhub.ai/wangbingpeng/skills/irreplaceable)
+- [WBP Publisher Profile](https://clawhub.ai/user/wangbingpeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic reports, capability assessments, risk warnings, and action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured questions, rating labels, red/yellow/green capability assessments, and time-bounded deliverables.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

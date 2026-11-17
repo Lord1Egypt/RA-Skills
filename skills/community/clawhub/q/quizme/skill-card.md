@@ -1,43 +1,54 @@
-## Description: <br>
-Adaptive tech quiz skill for OpenClaw that asks one multiple-choice coding or computer science question at a time, adapts difficulty from the user's answers, and tracks topics and progress across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive tech quiz skill for OpenClaw that asks one multiple-choice coding or CS question at a time, explains answers, adapts difficulty, and tracks topics and progress across sessions.
 
-## Publisher: <br>
-[ericshi123](https://clawhub.ai/user/ericshi123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericshi123](https://clawhub.ai/user/ericshi123)
 
-## Use Case: <br>
-Developers, students, and technical learners use this skill to practice coding and computer science topics through adaptive multiple-choice quiz sessions with explanations and persistent progress tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores quiz topics, progress, and generated question banks locally under ~/quizme. <br>
-Mitigation: Install only if local storage of quiz topics and progress is acceptable, and review or remove ~/quizme data when it is no longer needed. <br>
-Risk: Broad trigger phrases such as "teach me X" or "start a quiz" may activate the skill unexpectedly. <br>
-Mitigation: Prefer explicit activation such as /quizme or "quiz me on Python". <br>
-Risk: The bundled helper script can call OpenAI with OPENAI_API_KEY if it is run manually, even though normal skill operation generates questions inline. <br>
-Mitigation: Do not run scripts/generate_bank.py unless external question generation with an OpenAI API key is intended. <br>
+## Use Case:
 
+Developers and learners use QuizMe to practice coding and computer science topics through adaptive multiple-choice quiz sessions. The skill is intended for technical study across Python, JavaScript, SQL, system design, algorithms, networking, Git, Docker, APIs, and general CS concepts.
 
-## Reference(s): <br>
-- [QuizMe topic coverage guide](references/topics.md) <br>
-- [QuizMe on ClawHub](https://clawhub.ai/ericshi123/quizme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration] <br>
-**Output Format:** [Markdown quiz prompts with optional code blocks and local JSON question-bank/progress files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One question per message; stores topics, progress, and generated question banks under ~/quizme.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill creates local files under ~/quizme/ that record quiz topics, generated questions, and progress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only if local persistence of quiz history is acceptable, and review or remove ~/quizme/ files when that history should not be retained.
+
+Risk: The bundled generator script can use the OpenAI API and OPENAI_API_KEY if run directly.
+
+Mitigation: Avoid running the script unless API use is intentional and the dependency, network behavior, and API-key handling have been reviewed.
+
+## Reference(s):
+
+- [Per-Topic Coverage Guide](references/topics.md)
+- [QuizMe ClawHub Release Page](https://clawhub.ai/ericshi123/skills/quizme)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Markdown quiz prompts and explanations with JSON question-bank files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local topic, progress, and question-bank state under ~/quizme/.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

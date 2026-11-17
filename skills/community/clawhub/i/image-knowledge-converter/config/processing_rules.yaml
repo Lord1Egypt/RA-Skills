@@ -1,0 +1,166 @@
+# 图片处理规则配置
+
+# 预处理规则
+preprocessing:
+  # 图片尺寸限制
+  size_limits:
+    max_width: 4096
+    max_height: 4096
+    min_width: 100
+    min_height: 100
+    
+  # 自动旋转
+  auto_rotate:
+    enabled: true
+    detect_orientation: true
+    
+  # 灰度转换
+  grayscale:
+    enabled: true
+    method: "weighted"
+    
+  # 对比度增强
+  contrast:
+    enabled: true
+    method: "clahe"
+    clip_limit: 2.0
+    tile_size: 8
+    
+  # 去噪
+  denoise:
+    enabled: true
+    method: "bilateral"
+    diameter: 9
+    sigma_color: 75
+    sigma_space: 75
+    
+  # 二值化
+  binarization:
+    enabled: true
+    method: "adaptive"
+    block_size: 11
+    constant: 2
+
+# OCR规则
+ocr_rules:
+  # 文本区域检测
+  text_detection:
+    min_confidence: 60
+    merge_lines: true
+    preserve_paragraphs: true
+    
+  # 语言检测
+  language_detection:
+    enabled: true
+    fallback: "chi_sim+eng"
+    
+  # 特殊字符处理
+  special_chars:
+    remove_illegal: true
+    normalize_whitespace: true
+    preserve_newlines: true
+    
+  # 表格识别
+  table_recognition:
+    enabled: true
+    min_rows: 2
+    min_cols: 2
+    detect_merged_cells: true
+
+# 内容提取规则
+content_extraction:
+  # 标题提取
+  title:
+    enabled: true
+    max_length: 100
+    methods:
+      - "first_line"
+      - "largest_font"
+      - "centered_text"
+      
+  # 关键词提取
+  keywords:
+    enabled: true
+    max_count: 10
+    min_length: 2
+    methods:
+      - "tfidf"
+      - "frequency"
+      
+  # 摘要生成
+  summary:
+    enabled: true
+    max_length: 200
+    methods:
+      - "first_sentences"
+      - "textrank"
+      
+  # 日期提取
+  date_extraction:
+    enabled: true
+    formats:
+      - "%Y-%m-%d"
+      - "%Y/%m/%d"
+      - "%d-%m-%Y"
+      - "%d/%m/%Y"
+      - "%Y年%m月%d日"
+
+# 质量检查规则
+quality_check:
+  # 置信度检查
+  confidence:
+    min_overall: 50
+    min_per_char: 30
+    flag_low_confidence: true
+    
+  # 文本质量
+  text_quality:
+    min_length: 10
+    max_gibberish_ratio: 0.3
+    check_repetition: true
+    
+  # 图片质量
+  image_quality:
+    check_blur: true
+    blur_threshold: 100
+    check_contrast: true
+    min_contrast: 30
+
+# 后处理规则
+postprocessing:
+  # 文本清理
+  text_cleanup:
+    remove_extra_whitespace: true
+    normalize_punctuation: true
+    fix_common_errors: true
+    
+  # 格式标准化
+  formatting:
+    standardize_bullets: true
+    standardize_numbering: true
+    preserve_indentation: true
+    
+  # 编码处理
+  encoding:
+    output_encoding: "utf-8"
+    handle_bom: true
+
+# 批处理规则
+batch_processing:
+  # 并发设置
+  concurrency:
+    max_workers: 4
+    max_queue_size: 100
+    
+  # 批处理设置
+  batch:
+    size: 10
+    timeout: 300
+    retry_count: 3
+    
+  # 错误处理
+  error_handling:
+    continue_on_error: true
+    log_errors: true
+    move_failed: true
+    failed_directory: "failed"

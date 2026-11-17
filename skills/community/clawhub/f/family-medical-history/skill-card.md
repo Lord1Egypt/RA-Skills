@@ -1,43 +1,59 @@
-## Description: <br>
-A local SQLite-backed skill for setting up, updating, querying, and exporting structured family medical records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, maintain, query, and export bilingual family medical history records using a local SQLite database as the source of truth.
 
-## Publisher: <br>
-[silent404](https://clawhub.ai/user/silent404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silent404](https://clawhub.ai/user/silent404)
 
-## Use Case: <br>
-Individuals or household caregivers use this skill to keep structured family medical profiles, visits, medications, allergies, vaccinations, chronic conditions, and follow-up schedules in a local database. Agents can query the records, propose updates, and export human-readable Markdown backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles and persists highly sensitive health and identity data in a local plaintext SQLite database and optional Markdown exports. <br>
-Mitigation: Store the database and exports only in protected local locations; avoid shared or cloud-synced folders unless separate encryption and access controls are in place. <br>
-Risk: Agent-proposed inserts or updates could add incorrect or unapproved medical-record content. <br>
-Mitigation: Review every proposed insert, update, import, and export before execution, and treat the records as personal documentation rather than medical advice. <br>
-Risk: The release evidence does not show clear consent, retention, deletion, or backup safeguards for household medical records. <br>
-Mitigation: Define who may be recorded, how long records are kept, how backups are protected, and how records can be deleted before routine use. <br>
+## Use Case:
 
+External users and agents use this skill to manage family health profiles, visits, medications, allergies, vaccinations, chronic conditions, vitals, and follow-up schedules. It supports structured local recordkeeping and optional Markdown export for human review or backup.
 
-## Reference(s): <br>
-- [Family Medical History — Schema Reference](references/schema.md) <br>
-- [Family Medical History — Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local SQLite records and optional Markdown exports; no external API or credential requirement is evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: server release metadata) <br>
+Risk: Family medical and identity information may be stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the workspace private, avoid cloud-synced or shared folders, do not commit generated databases or Markdown exports, and apply local access controls appropriate for sensitive health records.
+
+Risk: Markdown export behavior may overwrite files outside the intended records folder if identifiers or paths are not contained.
+
+Mitigation: Treat export operations as risky until identifiers are validated and export paths are constrained to the records directory; review paths before running sync_db.py.
+
+Risk: Incomplete or inaccurate medical entries could mislead later record review.
+
+Mitigation: Use explicit unknown placeholders for missing facts and verify entries against source documents or qualified medical guidance before relying on them.
+
+## Reference(s):
+
+- [Schema Reference](references/schema.md)
+- [Markdown Export Templates](references/templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/silent404/skills/family-medical-history)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python, SQL, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for local SQLite-backed family medical record workflows and optional Markdown exports.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

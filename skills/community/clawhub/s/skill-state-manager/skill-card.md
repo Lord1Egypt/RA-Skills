@@ -1,40 +1,53 @@
-## Description: <br>
-A Meta Skill that manages API keys and state persistence for other tools. Invoke whenever a tool requires authentication or fails with 401/403 errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A meta skill that manages API keys and state persistence for tools that require authentication or return 401/403 errors.
 
-## Publisher: <br>
-[qipengguo](https://clawhub.ai/user/qipengguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qipengguo](https://clawhub.ai/user/qipengguo)
 
-## Use Case: <br>
-Developers and agent users use this skill to let an assistant request, persist, and reuse credentials for authenticated third-party tools when a token is missing or an authentication failure occurs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to collect API tokens in chat and persist them locally. <br>
-Mitigation: Use narrowly scoped, revocable tokens; avoid pasting real secrets into normal chat when possible; confirm the destination path before writing credentials. <br>
-Risk: Stored credential files may remain usable after the workflow ends. <br>
-Mitigation: Restrict file permissions and rotate or delete stored credentials when they are no longer needed. <br>
+## Use Case:
 
+Developers and external agent users use this skill to help agents prompt for missing third-party API credentials and persist local authentication state for future tool use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qipengguo/skill-state-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code] <br>
-**Output Format:** [Markdown instructions with JSON credential file examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to prompt for credentials and write local JSON state files for later tool use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill normalizes asking users to paste live API keys or tokens into chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OAuth, masked prompts, environment variables, an OS keychain, or a dedicated secret manager where supported.
+
+Risk: The skill describes saving credentials in plaintext local JSON files for reuse.
+
+Mitigation: Use narrow-scope, short-lived tokens and review local file permissions before storing any credential.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qipengguo/skills/skill-state-manager)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, code]
+
+**Output Format:** [Markdown instructions with JSON file guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide an agent to ask for credentials in chat and save them as local JSON state.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

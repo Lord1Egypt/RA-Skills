@@ -1,49 +1,66 @@
-## Description: <br>
-Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-reflection, self-criticism, self-learning, and self-organizing memory guidance for agents that learn from corrections, failures, and reusable lessons.
 
-## Publisher: <br>
-[aysun168](https://clawhub.ai/user/aysun168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aysun168](https://clawhub.ai/user/aysun168)
 
-## Use Case: <br>
-Developers and agent users use this skill to help an agent learn from explicit corrections, self-reflection, failed operations, and repeated workflow lessons while keeping memory organized in local files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain corrections, preferences, workflow patterns, or other personal context longer than intended. <br>
-Mitigation: Install only when cross-session memory is desired, avoid sensitive personal, credential, financial, health, location, or third-party details, and periodically inspect or delete ~/self-improving/. <br>
-Risk: Workspace steering changes can alter future agent behavior through AGENTS.md, SOUL.md, and HEARTBEAT.md. <br>
-Mitigation: Review the exact proposed changes before setup and keep edits narrow, visible, and reversible. <br>
-Risk: The optional Proactivity companion may require a separate install and network access. <br>
-Mitigation: Skip the companion unless the user explicitly agrees, then review the installed companion skill before continuing setup. <br>
-Risk: Server evidence says GitHub import provenance is unavailable for this version. <br>
-Mitigation: Treat provenance as unavailable and verify the publisher profile, skill page, and artifact contents before relying on the release. <br>
+## Use Case:
 
+Developers and agent users use this skill to add local self-improvement memory, correction logging, reflection, and workspace steering for future agent behavior. It is intended for agents that should preserve explicit user preferences and reusable execution lessons across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aysun168/self-improving-bak) <br>
-- [Skill homepage](https://clawic.com/skills/self-improving) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Security boundaries](artifact/boundaries.md) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Memory operations](artifact/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local memory files under ~/self-improving/ and optional workspace steering files when the user installs and configures the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.2.16) <br>
+Risk: Persistent local memory can shape future agent behavior with learned rules or corrections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Passive or Strict mode, review stored rules before relying on them, and treat learned rules as untrusted until confirmed.
+
+Risk: Setup can alter workspace steering files such as AGENTS.md, SOUL.md, and HEARTBEAT.md.
+
+Mitigation: Review proposed changes to workspace steering files and the ~/self-improving/ directory before depending on the skill.
+
+Risk: Stored memory may contain sensitive personal, credential, financial, medical, location, access, or third-party information if users save it.
+
+Mitigation: Avoid saving secrets or sensitive personal data, follow the artifact's security boundaries, and use forget or export workflows to audit and remove memory.
+
+Risk: The optional Proactivity companion install may require network access and a separate package trust decision.
+
+Mitigation: Do not enable the optional Proactivity install unless the exact package version and publisher can be verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aysun168/skills/self-improving-bak)
+- [Skill homepage](https://clawic.com/skills/self-improving)
+- [Security boundaries](artifact/boundaries.md)
+- [Setup guide](artifact/setup.md)
+- [Learning mechanics](artifact/learning.md)
+- [Memory operations](artifact/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates, setup snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory and workspace-configuration guidance for agent behavior; no credentials or extra binaries are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.2.16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

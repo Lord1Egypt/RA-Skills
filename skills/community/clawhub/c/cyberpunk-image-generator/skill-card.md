@@ -1,51 +1,65 @@
-## Description: <br>
-Generate cyberpunk style futuristic art. Use when the user asks for neon, sci-fi, dystopia, or cyberpunk cityscapes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate cyberpunk style futuristic art for requests involving neon, sci-fi, dystopia, or cyberpunk cityscapes.
 
-## Publisher: <br>
-[632657122](https://clawhub.ai/user/632657122) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[632657122](https://clawhub.ai/user/632657122)
 
-## Use Case: <br>
-External users and developers use this skill to generate cyberpunk, neon, sci-fi, dystopian, or cityscape artwork through a WeryAI-backed image-generation workflow. It guides setup, model selection, prompt construction, batch generation, and output delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist an image-generation API key and modify project configuration. <br>
-Mitigation: Use a dedicated low-privilege API key, prefer a secure environment or secret store over project .env persistence, and review setup prompts before approving changes. <br>
-Risk: The skill may install local tooling before generation. <br>
-Mitigation: Install only after reviewing the setup request and only when the publisher and WeryAI integration are trusted. <br>
-Risk: Prompts, reference images, webhook callbacks, or web-search options may send data to external services. <br>
-Mitigation: Avoid sensitive local files or confidential prompt content, and enable webhook or web-search options only when the destination and data flow are understood. <br>
+## Use Case:
 
+External users and developers use this skill to generate cyberpunk-styled images through a WeryAI gateway wrapper, including single-image, image-to-image, batch, and style-preset workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/632657122/cyberpunk-image-generator) <br>
-- [Gateway Alignment Notes](references/weryai-platform.md) <br>
-- [First-Time Setup](references/config/first-time-setup.md) <br>
-- [Model Registry Schema](references/config/model-registry-schema.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
-- [Style Presets](references/style-presets.md) <br>
-- [WeryAI API documentation](https://docs.weryai.com/en) <br>
-- [WeryAI text-to-image API](https://docs.weryai.com/api-reference/image-generation/submit-text-to-image-task) <br>
-- [WeryAI image-to-image API](https://docs.weryai.com/api-reference/image-generation/submit-image-to-image-task) <br>
-- [WeryAI task status API](https://docs.weryai.com/api-reference/tasks/query-task-details) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, local configuration files, downloaded image files, and optional JSON summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMAGE_GEN_API_KEY and a local Node/npm runtime; generated images are delivered as files or usable image URLs when inline display is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may persist an image generation API key in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted or disposable API key and avoid persisting it on shared machines.
+
+Risk: The skill sends prompts and reference images to a third-party WeryAI gateway.
+
+Mitigation: Review prompts, generated download URLs, and reference-image uploads before using sensitive material.
+
+Risk: The runtime path may use `npx -y bun`, which can fetch tooling dynamically.
+
+Mitigation: Prefer a locally installed trusted Bun runtime before running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/632657122/skills/cyberpunk-image-generator)
+- [Publisher Profile](https://clawhub.ai/user/632657122)
+- [WeryAI Platform Notes](references/weryai-platform.md)
+- [First-Time Setup](references/config/first-time-setup.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Model Registry Schema](references/config/model-registry-schema.md)
+- [Style Presets](references/style-presets.md)
+- [WeryAI API Introduction](https://docs.weryai.com/en)
+- [WeryAI API Keys](https://weryai.com/api/keys)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and generated image files or URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated image files and optional local configuration under project or user .image-skills directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; source frontmatter reports 0.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,60 @@
-## Description: <br>
-Push static site content to GitHub Pages repositories. Clone, copy files, commit with timestamp, force-push. Use when updating GitHub Pages sites, deploying static sites, or syncing local content to a git-based host. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Push static site content to GitHub Pages or another git-backed host by cloning the target repository, copying files, committing with a timestamp, and force-pushing to a branch.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kryzl19](https://clawhub.ai/user/kryzl19)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to publish local static site output to GitHub Pages or another git remote when they want a direct git-based deployment flow instead of a CI pipeline.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The deployment flow force-pushes to the target branch and can overwrite remote Git history.
+
+Mitigation: Use it only with repositories and branches you are willing to overwrite, avoid shared or protected branches, and prefer confirmation or --force-with-lease for safer operation.
+
+Risk: The script uses a predictable temporary clone path under /tmp.
+
+Mitigation: Use a private unpredictable temporary directory and inspect existing clones before deploying.
+
+Risk: Untrusted site directories may contain repository metadata or hooks that affect automated commits.
+
+Mitigation: Use only trusted site directories, reject embedded .git content in site input, and disable Git hooks during automated commits.
+
+Risk: Incorrect remote or branch arguments may deploy content to the wrong destination.
+
+Mitigation: Validate the remote URL and branch before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to deploy a local static site directory to a git-backed host such as GitHub Pages without setting up a separate CI workflow. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment script can overwrite the target Git branch by force-pushing deployment output. <br>
-Mitigation: Use it only with a dedicated deployment repository or branch where overwriting history is acceptable; verify the remote URL and branch before execution and prefer --force-with-lease when adapting the workflow. <br>
-Risk: An existing temporary clone with the same repository name may affect what gets fetched, copied, committed, and pushed. <br>
-Mitigation: Inspect or remove any existing /tmp clone for the target repository before running the deployment. <br>
+**Output Format:** [Markdown with inline shell commands and deployment guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Reports success or failure details, including commit hash, remote URL, branch, and push status when deployment completes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with shell command examples and deployment status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local site path, git remote URL, target branch, and preconfigured git credentials.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

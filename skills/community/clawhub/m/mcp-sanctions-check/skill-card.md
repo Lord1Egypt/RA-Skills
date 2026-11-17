@@ -1,43 +1,54 @@
-## Description: <br>
-Check names against the OFAC SDN (Specially Designated Nationals) sanctions list via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks names against the OFAC SDN sanctions list through an MCP tool, using cached CSV downloads, token-based matching, optional country filtering, and structured JSON results.
 
-## Publisher: <br>
-[haveblue997](https://clawhub.ai/user/haveblue997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haveblue997](https://clawhub.ai/user/haveblue997)
 
-## Use Case: <br>
-Developers and compliance-focused agents use this skill to screen names before payments, onboarding, KYC checks, and international business workflows. It returns sanctions match status with matched OFAC SDN entries and timestamps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The README and package metadata identify different npm package scopes. <br>
-Mitigation: Verify the intended npm package scope before installation and pin the reviewed package in MCP client configuration. <br>
-Risk: Sanctions screening names may contain sensitive personal or business information. <br>
-Mitigation: Handle submitted names according to the user's data governance requirements and avoid logging unnecessary query details. <br>
-Risk: The tool downloads and caches the OFAC SDN CSV locally for up to 24 hours. <br>
-Mitigation: Confirm cache freshness requirements for the deployment context and clear or refresh the cache when current-list checks are required. <br>
+## Use Case:
 
+Developers and agent operators use this MCP server to screen customer, transaction, onboarding, KYC, international business, or booking names against OFAC SDN data before proceeding with regulated workflows. Results should be treated as a screening aid, not as a final compliance decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haveblue997/mcp-sanctions-check) <br>
-- [OFAC SDN CSV](https://www.treasury.gov/ofac/downloads/sdn.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [MCP tool response containing JSON serialized as text, plus setup configuration guidance in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns match status, matched entries, programs, remarks, and check timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Unpinned npm execution and package identity mismatch create supply-chain ambiguity before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package source before installing and pin the exact npm version or run from a locked local install.
+
+Risk: The sanctions data download and predictable temporary cache can affect compliance-integrity if the data source or cache is tampered with.
+
+Mitigation: Treat results as a screening aid, verify consequential decisions through authoritative compliance processes, and control or monitor the SDN download and cache in deployment.
+
+## Reference(s):
+
+- [OFAC SDN CSV data source](https://www.treasury.gov/ofac/downloads/sdn.csv)
+- [ClawHub skill page](https://clawhub.ai/haveblue997/skills/mcp-sanctions-check)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration]
+
+**Output Format:** [MCP text content containing formatted JSON, with MCP server configuration snippets in the documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The check_sanctions tool accepts a required name and optional country, then returns match status, matched entries, and a checked_at timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

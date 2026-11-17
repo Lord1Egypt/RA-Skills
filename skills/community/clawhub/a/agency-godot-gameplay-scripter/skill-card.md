@@ -1,40 +1,50 @@
-## Description: <br>
-Helps developers design and implement type-safe Godot 4 gameplay systems using GDScript 2.0 and C#. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in Godot gameplay scripting.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, generate, and review Godot 4 gameplay architecture, typed signal patterns, component composition, Autoload usage, and GDScript/C# interoperability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Godot code or architecture guidance may be incorrect for a specific project, Godot 4 minor version, networking model, or extension boundary. <br>
-Mitigation: Review generated GDScript, C#, networking, and extension code before adding it to a project, then test affected scenes directly in Godot. <br>
+## Use Case:
 
+Developers and game engineers use this skill to design and implement Godot 4 gameplay systems with typed GDScript 2.0, C# interop, signal-driven architecture, clean scene composition, and responsible Autoload usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-godot-gameplay-scripter) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Godot Gameplay Scripter agent notes](artifact/AGENTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown prose with GDScript and C# code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated GDScript, C#, networking, and extension code before adding it to a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Godot guidance or code may be incorrect for a specific project, especially when it involves C++ extensions, custom networking, or advanced Godot techniques.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before use, test affected scenes in isolation, and give extra scrutiny to C++ extension and networking changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-godot-gameplay-scripter)
+- [Publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Godot-oriented GDScript and C# code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include architectural guidance, typed signal patterns, scene composition advice, and reviewable gameplay code snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-04-11T01:22:14Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

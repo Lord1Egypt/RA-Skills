@@ -1,45 +1,57 @@
-## Description: <br>
-Maintains local relationship memory by recording people profiles, future birthdays or appointments, reminders, and past shared experiences for later lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Relation Keeper helps an OpenClaw agent record social contacts, upcoming birthdays or appointments, and past shared experiences so they can be recalled and surfaced as reminders.
 
-## Publisher: <br>
-[yujintang](https://clawhub.ai/user/yujintang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yujintang](https://clawhub.ai/user/yujintang)
 
-## Use Case: <br>
-External OpenClaw users use this skill to maintain a local social relationship memory, record upcoming birthdays, anniversaries, and appointments, archive past interactions, and receive reminder outputs from a recurring scan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive relationship details such as personal facts, birthdays, addresses, phone numbers, and shared history in local JSON files. <br>
-Mitigation: Use a protected data directory, avoid storing unnecessary sensitive details, and periodically review or delete stored relationship records. <br>
-Risk: The installation flow configures a recurring reminder scan every 15 minutes. <br>
-Mitigation: Install only when persistent reminders are desired, and review the configured OpenClaw cron job after installation. <br>
-Risk: Reminder text may be sent to an external service when RELATION_KEEPER_CHANNEL is configured. <br>
-Mitigation: Configure external reminder channels only for trusted destinations and avoid including sensitive personal details in reminders. <br>
-Risk: The bundled sample profile may contain placeholder personal data that is not relevant to the user. <br>
-Mitigation: Review or delete bundled sample data before using the skill for real relationship records. <br>
+## Use Case:
 
+External OpenClaw users use this skill to maintain relationship notes, remember birthdays and appointments, archive shared events, and query prior interactions with people in their social network.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujintang/relation-keeper) <br>
-- [Publisher profile](https://clawhub.ai/user/yujintang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON data] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-backed local data updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local relationship and reminder records and may emit reminder text from scheduled scans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may persist sensitive personal data such as addresses, phone numbers, birthdays, and relationship history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store data in a private user-controlled RELATION_KEEPER_DATA directory with restrictive permissions, avoid unnecessary sensitive fields, and delete stale JSON records when no longer needed.
+
+Risk: Installation can create a recurring OpenClaw cron task that scans reminders automatically.
+
+Mitigation: Review the install behavior before running npm install, confirm the cron entry after installation, and remove the task if the skill is disabled.
+
+Risk: The security review notes weak scoping and safeguards around relationship data.
+
+Mitigation: Limit use to trusted local environments and review stored data and reminder channels before relying on the skill for ongoing reminders.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yujintang/skills/relation-keeper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Plain text or Markdown responses with JSON data records and shell command snippets when configuration is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local JSON files for portraits, future events, past events, and sent reminder state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

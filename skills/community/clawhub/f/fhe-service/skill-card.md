@@ -1,45 +1,56 @@
-## Description: <br>
-Enables agents to call the RheumaScore API for homomorphic-encryption-based clinical score computations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing guidance and API examples for using RheumaScore's remote clinical scoring service, which claims to compute 165 clinical scores with fully homomorphic encryption.
 
-## Publisher: <br>
-[CryptoReuMD](https://clawhub.ai/user/CryptoReuMD) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptoreumd](https://clawhub.ai/user/cryptoreumd)
 
-## Use Case: <br>
-External developers and agent builders use this skill to register for RheumaScore API access, list available clinical scores, retrieve schemas, and request single or batch score computations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release makes strong encrypted-health-data privacy claims while examples show clinical values sent to a third-party API as ordinary JSON. <br>
-Mitigation: Review the provider, privacy terms, compliance posture, and end-to-end encryption design before using real clinical information. <br>
-Risk: Protected health information or patient-derived values could be exposed if the service or data flow is not approved for the organization. <br>
-Mitigation: Use test or de-identified data unless organizational approval covers the service and workflow. <br>
-Risk: API keys obtained from the service can authorize requests to a third-party clinical scoring API. <br>
-Mitigation: Protect API keys, rotate them when needed, and avoid embedding keys in shared prompts, logs, or repositories. <br>
+## Use Case:
 
+External developers and agent builders use this skill to register for RheumaScore API access, discover supported clinical score schemas, and request individual or batch score computations. Users should verify the service's privacy, encryption, logging, retention, and compliance claims before sending real patient data or PHI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CryptoReuMD/fhe-service) <br>
-- [CryptoReuMD publisher profile](https://clawhub.ai/user/CryptoReuMD) <br>
-- [RheumaScore website](https://rheumascore.xyz) <br>
-- [RheumaScore FHE API](https://rheumascore.xyz/fhe/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples and API endpoint details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API-key registration, score schema lookup, single and batch computation requests, pricing, error codes, and support details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The service's privacy and FHE claims conflict with examples that submit readable clinical values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat submitted clinical values as visible to the remote provider unless the publisher supplies verifiable client-side FHE encryption and an auditable protocol.
+
+Risk: The skill targets clinical data workflows that may involve patient data or PHI.
+
+Mitigation: Do not send real patient data or PHI without confirming legal agreements, retention and logging behavior, compliance claims, and data-minimization controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptoreumd/skills/fhe-service)
+- [Publisher profile](https://clawhub.ai/user/cryptoreumd)
+- [RheumaScore website](https://rheumascore.xyz)
+- [RheumaScore FHE API base URL](https://rheumascore.xyz/fhe/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API registration, authorization, score schema lookup, single-score computation, batch computation, pricing, health check, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

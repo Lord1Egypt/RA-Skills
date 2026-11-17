@@ -1,45 +1,59 @@
-## Description: <br>
-Trains and runs an XGBoost-based A-share daily price-direction prediction workflow using Tencent daily market data, CSV and JSON reports, evaluation, and a local Flask dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts next-day direction for selected A-share stocks using Tencent daily market data, XGBoost training, prediction and evaluation scripts, and a local Flask dashboard.
 
-## Publisher: <br>
-[yejiming](https://clawhub.ai/user/yejiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yejiming](https://clawhub.ai/user/yejiming)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to train, tune, run, and evaluate A-share daily direction predictions and to view generated reports in a local dashboard. The skill is suited for workflow automation and market-analysis support, with results reviewed before operational or investment use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public market-data fetching and model-generated stock predictions can be stale, unavailable, or inaccurate. <br>
-Mitigation: Evaluate predictions against subsequent trading data, review generated reports, and avoid treating the output as standalone financial advice. <br>
-Risk: The workflow creates local cache, model, result, prediction-history, and report files. <br>
-Mitigation: Run it from the documented skill scripts directory and review generated files before reusing, publishing, or deleting them. <br>
-Risk: The troubleshooting guide documents a forceful kill command for port 5000. <br>
-Mitigation: Verify the process using port 5000 and prefer a graceful stop before using kill -9. <br>
-Risk: Sector and watchlist analysis depend on named companion skills. <br>
-Mitigation: Install and review those companion skills before relying on sector or stock-analysis outputs. <br>
+## Use Case:
 
+External users and developers use this skill to train, tune, run, evaluate, and inspect daily A-share direction predictions, with supporting sector and stock analysis reports displayed in a local dashboard.
 
-## Reference(s): <br>
-- [Configuration Reference](references/config-reference.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, plus generated CSV, JSON, pickle, and Markdown report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local data, model, result, prediction-history, and report directories under the skill scripts directory; the Flask dashboard is served on 127.0.0.1:5000.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill fetches market data and writes cached data, model files, and result files under the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an environment where this data access and local file creation are acceptable.
+
+Risk: Saved .pkl and .joblib model artifacts should be treated as trusted executable artifacts.
+
+Mitigation: Retrain locally or verify the source of copied or downloaded model files before loading them.
+
+Risk: The dashboard may start a localhost service on port 5000, and force-killing that port can stop an unrelated process.
+
+Mitigation: Identify the process bound to port 5000 before stopping it, and confirm it belongs to this dashboard.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yejiming/skills/stock-prediction-daily)
+- [Configuration Reference](references/config-reference.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands plus generated CSV, JSON, model, scaler, and report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch market data, cache data, write model and results files, and start a localhost dashboard on port 5000.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,22 @@
+{
+  "user": {
+    "name": "Alex Rivera",
+    "address": "1420 Maple St, Apt 3, Springfield, IL 62704",
+    "ssn_last4": "1234"
+  },
+  "goal": "qualify for a mortgage",
+  "goal_type": "mortgage",
+  "cards": [
+    { "name": "Card A", "limit": 5000, "balance": 1850, "statement_day": 3, "opened": "2016-05-01" },
+    { "name": "Card B", "limit": 3000, "balance": 4100, "statement_day": 12, "opened": "2019-08-01" },
+    { "name": "Card C", "limit": 1500, "balance": 280, "statement_day": 24, "opened": "2021-02-01" }
+  ],
+  "loans": [],
+  "derogatory": [
+    { "type": "30-day late", "creditor": "Card C issuer", "account": "C-9912",
+      "first_delinquency": "2025-04-15", "months_clean": "11" },
+    { "type": "collection", "creditor": "MediRecover LLC", "account": "MR-5521",
+      "first_delinquency": "2024-11-01" }
+  ],
+  "recent_inquiries": 1
+}

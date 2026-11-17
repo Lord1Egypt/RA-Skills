@@ -1,40 +1,58 @@
-## Description: <br>
-A daily lyrics blessing skill that sends a random Hetu song lyric and blessing message to a designated recipient, with lyrics fetched from Baidu Baike using agent-browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A daily lyrics blessing skill that fetches Hetu song lyrics from Baidu Baike and sends a scheduled reminder message by email.
 
-## Publisher: <br>
-[Trae1ounG](https://clawhub.ai/user/Trae1ounG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trae1oung](https://clawhub.ai/user/trae1oung)
 
-## Use Case: <br>
-External users and developers use this skill to send scheduled daily reminder or warm-message emails that include verified Hetu lyrics and a blessing message. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hardcoded SMTP credentials and a fixed recipient could cause email to be sent through someone else's account if the skill is run as-is. <br>
-Mitigation: Remove hardcoded credentials and recipient values, rotate the exposed credential if it is yours, and use user-controlled secure configuration before any execution. <br>
-Risk: Scheduling the script with cron could repeatedly send unwanted reminder emails. <br>
-Mitigation: Preview the outgoing email manually first and only add the cron job after confirming how to disable or remove the schedule. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Trae1ounG/hetu-lyrics-blessing) <br>
-- [Baidu Baike](https://baike.baidu.com) <br>
+## Use Case:
 
+External users can use this skill to configure a daily email reminder that includes a Hetu lyric and blessing message. It is intended for scheduled personal messaging where the sender reviews and supplies their own email configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain text email output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-controlled SMTP configuration and review before scheduling automated sends.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release evidence reports real-looking SMTP credentials and fixed sender and recipient values.
+
+Mitigation: Remove or rotate the exposed credential before use and configure sender, password, and recipient values through a secured local configuration.
+
+Risk: The skill includes persistent cron setup for recurring email delivery.
+
+Mitigation: Add the cron entry only after confirming the schedule, recipient, and removal procedure.
+
+Risk: The setup installs browser automation globally and uses it to fetch lyric text from Baidu Baike.
+
+Mitigation: Review the dependency installation path, prefer pinned or controlled installation where possible, and verify fetched content before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trae1oung/skills/hetu-lyrics-blessing)
+- [Baidu Baike](https://baike.baidu.com)
+- [Baidu Baike lyric source example](https://baike.baidu.com/item/%E5%80%BE%E5%B0%BD%E5%A4%A9%E4%B8%8B)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python configuration snippets; plain-text email content at runtime]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SMTP email delivery, scheduled cron execution, browser automation for lyric lookup, and local fallback lyric text when lookup fails.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

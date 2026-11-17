@@ -1,42 +1,53 @@
-## Description: <br>
-Execute triangular arbitrage on Base network via KyberSwap for finding arbitrage opportunities, calculating optimal swap paths, executing multi-hop trades, and managing gas and slippage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute triangular arbitrage on Base network via KyberSwap for finding arbitrage opportunities, calculating optimal swap paths, executing multi-hop trades, and managing gas and slippage.
 
-## Publisher: <br>
-[HarleysCodes](https://clawhub.ai/user/HarleysCodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harleyscodes](https://clawhub.ai/user/harleyscodes)
 
-## Use Case: <br>
-Developers and DeFi operators use this skill to identify and evaluate triangular arbitrage paths on Base through KyberSwap. It can guide quote checks, profit calculations, and multi-hop swap execution with gas, slippage, price impact, and token safety checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct live on-chain swaps that may move real funds. <br>
-Mitigation: Use a dedicated low-balance wallet, require explicit confirmation before any transaction, and prefer read-only quote or simulation mode unless live trading is intentional. <br>
-Risk: Trades on the wrong network or against unexpected token contracts can cause loss or failed transactions. <br>
-Mitigation: Verify the Base network, router, factory, and token addresses before execution, and avoid tokens that fail the stated ownership and honeypot checks. <br>
-Risk: Slippage, gas costs, or price impact can erase expected arbitrage profit. <br>
-Mitigation: Calculate amountOutMin, gas cost, and price impact before execution, and only proceed when expected profit remains positive after those costs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HarleysCodes/kyberswap-arbitrage) <br>
-- [Publisher Profile](https://clawhub.ai/user/HarleysCodes) <br>
+## Use Case:
 
+Developers and engineers use this skill to reason about KyberSwap triangular arbitrage on Base, including quote retrieval, path calculation, trade execution parameters, and risk checks for gas, slippage, price impact, and token contract behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with TypeScript snippets and transaction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quote calculations, swap paths, contract addresses, and transaction safety checks; live transactions should require explicit user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide real on-chain cryptocurrency trades, which may be irreversible and may cause financial loss.
+
+Mitigation: Use quote or simulation mode by default, require explicit approval for each transaction, and validate token addresses, recipient addresses, slippage, gas cost, and price impact before execution.
+
+Risk: The security assessment flags missing clear consent, irreversibility, and loss-risk controls.
+
+Mitigation: Add human confirmation gates and loss-limit checks before any swap execution guidance is followed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harleyscodes/skills/kyberswap-arbitrage)
+- [Publisher profile](https://clawhub.ai/user/harleyscodes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction-planning guidance and code snippets for quote, path, and swap logic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,5 @@
+{
+  "name": "exec-policy-enforcer",
+  "version": "0.1.0",
+  "description": "Lightweight runtime tool-policy enforcement: detects risky exec/shell patterns and enforces simple tool-usage limits without modifying core systems."
+}

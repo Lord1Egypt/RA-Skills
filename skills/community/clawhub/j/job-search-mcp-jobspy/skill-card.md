@@ -1,39 +1,47 @@
-## Description: <br>
-Search and compare job listings across multiple boards using a configured JobSpy MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and compare job listings across multiple boards using JobSpy MCP, with filters for criteria, location, salary, remote options, and easy apply roles.
 
-## Publisher: <br>
-[NikkiJasmine](https://clawhub.ai/user/NikkiJasmine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nikkijasmine](https://clawhub.ai/user/nikkijasmine)
 
-## Use Case: <br>
-Job seekers and recruiting workflows use this skill to find, filter, and compare job postings by role, location, company, salary availability, remote status, recency, and Easy Apply support. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Job search criteria and related profile information may be shared with external job-board services through the configured MCP server. <br>
-Mitigation: Connect only to a JobSpy MCP server and job-board integrations that the user trusts. <br>
-Risk: Runtime setup installs Python packages for the MCP workflow. <br>
-Mitigation: Use a virtual environment and consider pinning dependency versions before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NikkiJasmine/job-search-mcp-jobspy) <br>
+## Use Case:
+
+Developers and agent users use this skill to configure and operate JobSpy MCP for searching, filtering, and comparing job listings across multiple job boards.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unpinned Python dependencies during installation can introduce supply-chain and reproducibility risk.
+
+Mitigation: Pin reviewed package versions or use a lockfile with hashes, install inside the documented virtual environment, and avoid elevated privileges for pip installs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted, configured JobSpy MCP server and access to selected job-board integrations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell commands; MCP search results are returned as text or structured job-listing data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Job listing details may include role, location, company, source job board, salary when available, posting recency, remote status, and easy apply indicators.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

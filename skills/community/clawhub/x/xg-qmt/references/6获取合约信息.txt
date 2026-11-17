@@ -1,0 +1,282 @@
+'''
+6获取合约信息
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+获取合约信息
+ContextInfo.get_instrument_detail - 根据代码获取合约详细信息
+提示
+
+旧版本客户端中，函数名为ContextInfo.get_instrumentdetail；不支持iscomplete参数
+
+原型
+
+内置python
+
+
+ContextInfo.get_instrument_detail(stockcode,iscomplete = Fasle)
+
+释义
+
+根据代码获取合约详细信息
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	标的名称，必须是 'stock.market' 形式
+iscomplete	bool	是否获取全部字段，默认为False
+返回值
+
+根据stockcode返回一个dict。该字典数据key值有：
+
+名称	类型	描述
+ExchangeID	string	合约市场代码
+InstrumentID	string	合约代码
+InstrumentName	string	合约名称
+ProductID	string	合约的品种ID(期货)
+ProductName	string	合约的品种名称(期货)
+ProductType	int	合约的类型, 默认-1,枚举值可参考下方说明
+ExchangeCode	string	交易所代码
+UniCode	string	统一规则代码
+CreateDate	str	创建日期
+OpenDate	str	上市日期（特殊值情况见表末）
+ExpireDate	int	退市日或者到期日（特殊值情况见表末）
+PreClose	float	前收盘价格
+SettlementPrice	float	前结算价格
+UpStopPrice	float	当日涨停价
+DownStopPrice	float	当日跌停价
+FloatVolume	float	流通股本（单位：股。注意，部分低等级客户端中此字段为FloatVolumn）
+TotalVolume	float	总股本（单位：股。注意，部分低等级客户端中此字段为FloatVolumn）
+LongMarginRatio	float	多头保证金率
+ShortMarginRatio	float	空头保证金率
+PriceTick	float	最小价格变动单位
+VolumeMultiple	int	合约乘数(对期货以外的品种，默认是1)
+MainContract	int	主力合约标记，1、2、3分别表示第一主力合约，第二主力合约，第三主力合约
+LastVolume	int	昨日持仓量
+InstrumentStatus	int	合约停牌状态(<=0:正常交易（-1:复牌）;>=1停牌天数;)
+IsTrading	bool	合约是否可交易
+IsRecent	bool	是否是近月合约
+ChargeType	int	期货和期权手续费方式
+ChargeOpen	float	开仓手续费(率)
+ChargeClose	float	平仓手续费(率)
+ChargeTodayOpen	float	开今仓(日内开仓)手续费(率)
+ChargeTodayClose	float	平今仓(日内平仓)手续费(率)
+OptionType	int	期权类型
+OpenInterestMultiple	int	交割月持仓倍数
+提示
+
+字段OpenDate有以下几种特殊值： 19700101=新股, 19700102=老股东增发, 19700103=新债, 19700104=可转债, 19700105=配股， 19700106=配号 字段ExpireDate为0 或 99999999 时，表示该标的暂无退市日或到期日
+
+字段ProductType 对于股票以外的品种，有以下几种值
+
+国内期货市场： 1-期货 2-期权(DF SF ZF INE GF) 3-组合套利 4-即期 5-期转现 6-期权(IF) 7-结算价交易(tas)
+
+**沪深股票期权市场：**0-认购 1-认沽
+
+外盘： 1-100：期货， 101-200：现货, 201-300:股票相关 1：股指期货 2：能源期货 3：农业期货 4：金属期货 5：利率期货 6：汇率期货 7：数字货币期货 99：自定义合约期货 107：数字货币现货 201：股票 202：GDR 203：ETF 204：ETN 300：其他
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_instrumentdetail("000001.SZ")
+	print(data)
+get_st_status - 获取历史st状态
+提示
+
+本函数需要下载历史ST数据(过期合约K线),可通过界面端数据管理 - 过期合约数据下载
+
+原型
+
+内置python
+
+get_st_status(stockcode)
+释义
+
+获取历史st状态
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，如000004.SZ（可为空，为空时取主图代码）
+返回值
+
+st范围字典 格式 {'ST': [['20210520', '20380119']], '*ST': [['20070427', '20080618'], ['20200611', '20210520']]}
+
+示例：
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	print(get_st_status('600599.SH'))
+ContextInfo.get_his_st_data - 获取某只股票ST的历史
+提示
+
+本函数需要下载历史ST数据(过期合约K线),可通过界面端数据管理 - 过期合约数据下载
+
+原型
+
+内置python
+
+ContextInfo.get_his_st_data(stockcode)
+释义
+
+获取某只股票ST的历史
+
+参数
+
+字段名	数据类型	解释
+stockcode	string	股票代码，'stkcode.market'，如'000004.SZ'
+返回值
+
+dict,st历史，key为ST,*ST,PT,历史未ST会返回{}
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	print(C.get_his_st_data('000004.SZ'))
+ContextInfo.get_main_contract - 获取期货主力合约
+提示
+
+该函数支持实盘/回测两种模式
+若要使用该函数获取历史主力合约，必须要先下载历史主力合约数据
+历史主力合约数据目前通过界面端数据管理 - 过期合约数据 - 历史主力合约下载
+原型
+
+内置python
+
+ContextInfo.get_main_contract(codemarket)
+ContextInfo.get_main_contract(codemarket,date="")
+ContextInfo.get_main_contract(codemarket,startDate="",endDate="")
+释义
+
+获取当前期货主力合约
+
+参数
+
+字段名	数据类型	解释
+codemarket	string	合约和市场，合约格式为品种名加00，如IF00.IF，zn00.SF
+startDate	string	开始日期(可以不写),如20180608
+endDate	string	结束日期(可以不写),如20190608
+返回值
+
+str，合约代码
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	symbol1 = C.get_main_contract('IF00.IF')# 获取当前主力合约
+
+	symbol2 = C.get_main_contract('IF00.IF',"20190101")# 获取指定日期主力合约
+
+	symbol3 = C.get_main_contract('IF00.IF',"20181101","20190101") # 获取时间段内全部主力合约
+
+	print(symbol1, symbol2)
+	print("="*10)
+	print(symbol3)
+ContextInfo.get_contract_multiplier - 获取合约乘数
+原型
+
+内置python
+
+ContextInfo.get_contract_multiplier(contractcode)
+释义
+
+获取合约乘数
+
+参数
+
+字段名	数据类型	解释
+contractcode	string	合约代码，格式为 'code.market'，例如 'IF1707.IF'
+返回值int,表示合约乘数
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	multiplier = C.get_contract_multiplier("rb2401.SF")
+	print(multiplier)
+ContextInfo.get_contract_expire_date - 获取期货合约到期日
+原型
+
+内置python
+
+ContextInfo.get_contract_expire_date(codemarket)
+释义
+
+获取期货合约到期日
+
+参数
+
+字段名	数据类型	解释
+Codemarket	string	合约和市场,如IF00.IF,zn00.SF
+返回值str，合约到期日
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+	data = C.get_contract_expire_date("IF2311.IF")
+	# print(type(data))
+	print(data)
+ContextInfo.get_his_contract_list - 获取市场已退市合约
+原型
+
+内置python
+
+ContextInfo.get_his_contract_list(market)
+释义
+
+获取市场已退市合约，需要手动补充过期合约列表
+
+参数
+
+字段名	数据类型	解释
+market	string	市场,SH,SZ,SHO,SZO,IF等
+返回值
+
+list,合约代码列表
+
+示例
+
+示例返回值
+
+# coding:gbk
+def init(C):
+	pass
+	
+def handlebar(C):
+
+	print(C.get_his_contract_list('SHO')[:30])

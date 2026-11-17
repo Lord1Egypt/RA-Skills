@@ -3,32 +3,32 @@
 ## SPSS Statistics Memory Template
 
 ```markdown
-### SPSS Statistics 环境配置 / SPSS Statistics Environment
+### SPSS Statistics Environment
 
-- **版本 / Version**：IBM SPSS Statistics [26/27/28/29/30/31]
-- **主程序 / Main Executable**：`C:\Program Files\IBM\SPSS\Statistics\[版本]\stats.exe`
-- **调用优先级 / Invocation Priority**：
-  1. **方案 1（首选）**：`stats.com` 控制台版 + `.spj` 文件 → 完全无闪屏，**万无一失**
+- **Version**: IBM SPSS Statistics [26/27/28/29/30/31]
+- **Main Executable**: `C:\Program Files\IBM\SPSS\Statistics\[version]\stats.exe`
+- **Invocation Priority**:
+  1. **Approach 1 (preferred)**: `stats.com` console version + `.spj` file → completely splash-free, **foolproof**
      ```bash
-     "C:\Program Files\IBM\SPSS\Statistics\[版本]\stats.com" -production silent -nologo "作业文件.spj"
+     "C:\Program Files\IBM\SPSS\Statistics\[version]\stats.com" -production silent -nologo "job.spj"
      ```
-  2. **方案 2（备用）**：Python 内部驱动 `spss.Submit()` → 无闪屏，**但只能跑纯分析语法**
-     - ❌ 不能包含 `OUTPUT SAVE`、`OUTPUT EXPORT`、`HOST COMMAND`、`XDATA` 等
-  3. **方案 3（最后备选）**：`stats.exe` GUI 版 + `.spj` → 可能有闪屏
+  2. **Approach 2 (fallback)**: internal Python driver `spss.Submit()` → splash-free, **but can only run pure analysis syntax**
+     - ❌ Must not contain `OUTPUT SAVE`, `OUTPUT EXPORT`, `HOST COMMAND`, `XDATA`, etc.
+  3. **Approach 3 (last resort)**: `stats.exe` GUI version + `.spj` → may show a splash screen
      ```bash
-     "C:\Program Files\IBM\SPSS\Statistics\[版本]\stats.exe" -production silent -nologo "作业文件.spj"
+     "C:\Program Files\IBM\SPSS\Statistics\[version]\stats.exe" -production silent -nologo "job.spj"
      ```
-- **内置 Python 路径**：`C:\Program Files\IBM\SPSS\Statistics\[版本]\Python3\python.exe`
-- **.spj 文件 XML 结构模板**：
+- **Built-in Python path**: `C:\Program Files\IBM\SPSS\Statistics\[version]\Python3\python.exe`
+- **.spj file XML structure template**:
   ```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <job xmlns="http://www.ibm.com/software/analytics/spss/xml/production"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        print="false" syntaxErrorHandling="continue"
        syntaxFormat="interactive" unicode="true">
-    <locale charset="UTF-8" country="CN" language="zh"/>
-    <output outputFormat="viewer" outputPath="输出.spv"/>
-    <syntax syntaxPath="语法.sps"/>
+    <!-- locale auto-detect: in Chinese environments inject country="CN" language="zh" automatically; in other environments omit this element so SPSS inherits the system locale (avoids hardcoding locale that changes parsing/encoding/reproducibility, SQP-3) -->
+    <output outputFormat="viewer" outputPath="output.spv"/>
+    <syntax syntaxPath="syntax.sps"/>
   </job>
   ```
 ```
@@ -53,21 +53,21 @@
 ## SPSS Modeler Memory Template
 
 ```markdown
-### SPSS Modeler 环境配置 / SPSS Modeler Environment
+### SPSS Modeler Environment
 
-- **版本 / Version**：IBM SPSS Modeler [18.0/18.1/18.2/18.3/18.4/18.5/18.6]
-- **主程序 / Main Executable**：`C:\Program Files\IBM\SPSS\Modeler\[版本]\bin\clemb.exe`
-- **modelerclient.exe**：`C:\Program Files\IBM\SPSS\Modeler\[版本]\bin\modelerclient.exe`
-- **Batch Mode 命令行格式**：
+- **Version**: IBM SPSS Modeler [18.0/18.1/18.2/18.3/18.4/18.5/18.6]
+- **Main Executable**: `C:\Program Files\IBM\SPSS\Modeler\[version]\bin\clemb.exe`
+- **modelerclient.exe**: `C:\Program Files\IBM\SPSS\Modeler\[version]\bin\modelerclient.exe`
+- **Batch Mode command format**:
   ```powershell
-  # 执行流文件
-  clemb.exe -local -stream "作业文件.str" -log "输出.log" -execute
+  # Run stream file
+  clemb.exe -local -stream "job.str" -log "output.log" -execute
 
-  # 执行 Python 脚本（推荐）
+  # Run Python script (recommended)
   clemb.exe -local -script "train_model.py" -scriptlang python -log "train.log" -execute
   ```
-- **配置字段 / Config Field**：`config.json > "SPSS Modeler"`
-- **与 Statistics 的区别**：Statistics 是统计分析工具，Modeler 是数据挖掘/建模工具
+- **Config Field**: `config.json > "SPSS Modeler"`
+- **Difference from Statistics**: Statistics is a statistical analysis tool, Modeler is a data mining/modeling tool
 ```
 
 ## SPSSModeler Version Differences
@@ -81,15 +81,15 @@
 ## Stata Memory Template
 
 ```markdown
-### Stata 环境配置
+### Stata Environment
 
-- **版本**：Stata [VERSION] [EDITION]（MP/SE/BE）
-- **主程序路径**：`[STATA_EXE_PATH]`（如 `StataMP-64.exe`）
-- **批处理命令行格式**：
+- **Version**: Stata [VERSION] [EDITION] (MP/SE/BE)
+- **Main Executable Path**: `[STATA_EXE_PATH]` (e.g., `StataMP-64.exe`)
+- **Batch Command Format**:
   ```bash
-  # Windows — 新版本 MP/SE (Stata 14+)
+  # Windows — new MP/SE (Stata 14+)
   "[STATA_EXE_PATH]" /b do "script.do"
-  # Windows — 老旧 SE (如 Stata 12 SE) 用 /e 避免弹窗
+  # Windows — old SE (e.g., Stata 12 SE) use /e to avoid popup
   "[STATA_EXE_PATH]" /e do "script.do"
   ```
 ```
@@ -105,11 +105,11 @@
 ## R Memory Template
 
 ```markdown
-### R 环境配置 / R Environment
+### R Environment
 
-- **版本 / Version**：R [VERSION]
-- **Rscript 路径 / Rscript Path**：`[RSCRIPT_EXE_PATH]`
-- **批处理命令行格式 / Batch Command Format**：
+- **Version**: R [VERSION]
+- **Rscript Path**: `[RSCRIPT_EXE_PATH]`
+- **Batch Command Format**:
   ```bash
   Rscript --vanilla "script.R"
   ```
@@ -118,10 +118,23 @@
 ## SAS Memory Template
 
 ```markdown
-### SAS 环境配置 / SAS Environment
+### SAS Environment
 
-- **版本 / Version**：SAS [VERSION]（如 9.4）
-- **主程序路径 / Executable Path**：`[SAS_EXE_PATH]`
+- **Version**: SAS [VERSION] (e.g., 9.4)
+- **Executable Path**: `[SAS_EXE_PATH]`
+```
+
+## Minitab Memory Template
+
+```markdown
+### Minitab Environment
+
+- **Version**: Minitab [22/21/20/19/18]
+- **Main Executable**: `C:\Program Files\Minitab\Minitab [VERSION]\mtb.exe`
+- **Automation**: ❌ **GUI-only** — `mtb.exe /run "script.mtb"` opens the Minitab GUI window and is not headless-safe; never call it from the agent. Detect the install and let the user run analyses interactively (or via Minitab Web App).
+- **Config Field**: `config.json > "Minitab"`
+- **macOS / Linux**: No native CLI; use Minitab Web App (https://app.minitab.com/) or remote desktop to a Windows host
+```
 
 ## R — Alternative when R is not available
 
@@ -145,32 +158,6 @@
 }
 ```
 
-## SPSS Modeler Memory Template
-
-```markdown
-### SPSS Modeler 环境配置 / SPSS Modeler Environment
-
-- **版本 / Version**：IBM SPSS Modeler [18.0/18.1/18.2/18.3/18.4/18.5/18.6]
-- **主程序 / Main Executable**：`C:\Program Files\IBM\SPSS\Modeler\[版本]\bin\clemb.exe`
-- **modelerclient.exe**：`C:\Program Files\IBM\SPSS\Modeler\[版本]\bin\modelerclient.exe`
-- **Batch Mode 命令行格式**：
-  ```powershell
-  clemb.exe -local -stream "作业文件.str" -log "输出.log" -execute
-  ```
-- **配置字段 / Config Field**：`config.json > "SPSS Modeler"`
-- **与 Statistics 的区别**：
-  - Statistics 用 `.spj` + `stats.com -production silent -nologo`
-  - Modeler 用 `.str` + `clemb.exe -local -execute`
-```
-
-## SPSSModeler Version Differences
-
-| Version | clemb.exe Path | Notes |
-|---------|---------------|-------|
-| 18.6 | `C:\Program Files\IBM\SPSS\Modeler\18.6\bin\clemb.exe` | Latest, Python scripting |
-| 18.5 | `C:\Program Files\IBM\SPSS\Modeler\18.5\bin\clemb.exe` | Performance improvements |
-| 18.0 | `C:\Program Files\IBM\SPSS\Modeler\18.0\bin\clemb.exe` | Classic stable |
-
 ## Common Errors & Solutions
 
 | Software | Error | Cause | Solution |
@@ -191,7 +178,7 @@
 ### SPSS (preferred success)
 
 ```
-✅ SPSS [version] 配置完成！
+✅ SPSS [version] configuration complete!
 
 📋 Configuration:
   - Version: IBM SPSS Statistics [version]
@@ -205,7 +192,7 @@
 ### Stata
 
 ```
-✅ Stata [version] 配置完成！
+✅ Stata [version] configuration complete!
 
 ⚠️ Notes:
   1. New MP/SE (14+) use `/b`; old SE (e.g., Stata 12) must use `/e`
@@ -219,7 +206,7 @@
 ### R
 
 ```
-✅ R [version] 配置完成！
+✅ R [version] configuration complete!
 
 ⚠️ Notes:
   1. Use Rscript --vanilla, not GUI
@@ -233,7 +220,7 @@
 ### SAS
 
 ```
-✅ SAS [version] 配置完成！
+✅ SAS [version] configuration complete!
 
 ⚠️ Notes:
   1. Batch mode generates .log and .lst files
@@ -273,5 +260,4 @@
 | SAS | `statsoft-sas run program.sas` |
 | SPSS | `statsoft-spss run syntax.sps` |
 | SPSS (batch) | `statsoft-spss run-batch s1.sps s2.sps s3.sps` |
-| JMP | `statsoft-jmp run script.jsl` |
-| GraphPad | `statsoft-graphpad run file.pzfx` |
+| JMP (Windows, CLI) | `statsoft-jmp run script.jsl` — only executes user-provided JSL scripts, requires explicit user confirmation |

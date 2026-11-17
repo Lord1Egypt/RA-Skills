@@ -1,39 +1,57 @@
-## Description: <br>
-Cai Gun Gun is a personal finance assistant for quick transaction entry, automatic categorization, account balance management, bill import and export, and spending analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cai Gun Gun is a personal finance tracking skill that helps an agent record transactions, infer categories, manage account balances, import and export Excel bills, and summarize spending.
 
-## Publisher: <br>
-[gmmg55](https://clawhub.ai/user/gmmg55) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmmg55](https://clawhub.ai/user/gmmg55)
 
-## Use Case: <br>
-Individuals use this skill through an agent to record income and expenses, review recent bills and balances, import or export Excel bills, and generate personal finance summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive financial records are copied into both a local data directory and the skill data directory, which may sync in some agent environments. <br>
-Mitigation: Confirm the agent environment's sync behavior before storing real financial data and use CAI_GUN_GUN_DATA_DIR when a specific local storage path is required. <br>
-Risk: Imports, deletes, and clear operations can alter or remove financial records. <br>
-Mitigation: Export a backup before importing or clearing data, require confirmation for destructive operations, and verify delete targets before running commands. <br>
+## Use Case:
 
+External users use this skill to manage personal finance records through an agent, including adding income and expenses, checking account balances, importing third-party Excel bills, exporting records, and reviewing spending summaries.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown responses with Python CLI commands and local JSON or Excel files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores transaction, account, category, and configuration data locally and copies supported data files into the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill stores sensitive transaction history, balances, merchants, notes, and configuration in both the user's home data directory and the skill data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this storage behavior is acceptable, restrict access to both locations, and treat exported Excel files as sensitive.
+
+Risk: Imported spreadsheets are merged into existing finance data and may contain untrusted or incorrect records.
+
+Mitigation: Import only trusted spreadsheets, review import results, and export a backup before importing.
+
+Risk: Delete and clear operations can remove finance records.
+
+Mitigation: Confirm destructive actions explicitly before execution and use the required confirmation flag for full data clearing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gmmg55/skills/cai-gun-gun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown-style agent responses with shell command invocations and JSON or Excel finance data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local JSON finance records under ~/.cai-gun-gun/data and maintain synchronized copies in the skill data directory.]
+
+## Skill Version(s):
+
+2.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

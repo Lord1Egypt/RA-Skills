@@ -1,36 +1,53 @@
-## Description: <br>
-A lateral thinking engine for stuck moments that imports solution patterns from unrelated domains and maps them onto technical problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A lateral thinking engine for stuck moments that maps solution patterns from unrelated domains onto technical problems when systematic approaches have failed.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineers use this skill when standard approaches have stalled and they need structured cross-domain analogies to generate alternative technical designs. It helps reframe architecture, resilience, UX, API, scaling, and coordination problems into candidate approaches with limits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill's analogical suggestions may be speculative or misleading if treated as authoritative engineering, security, or architecture advice. <br>
-Mitigation: Use the output as brainstorming input, then validate recommendations through technical review, testing, and the relevant production or security review process before implementation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to reframe stuck software design, architecture, reliability, UX, and prioritization problems through structured cross-domain analogy. It produces novel approaches, feasibility notes, and analogy limits for review before implementation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only creative reasoning output; no code execution, credentials, network access, persistence, or external API calls are required according to the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Cross-domain analogies can be persuasive even when their assumptions do not hold for the target software system.
+
+Mitigation: Review the skill's stated analogy limits and validate recommendations against system constraints before implementation.
+
+Risk: Brainstormed approaches may introduce incorrect or impractical technical guidance if adopted without engineering review.
+
+Mitigation: Treat outputs as proposals and run normal design, security, testing, and operational review before deployment.
+
+## Reference(s):
+
+- [Dream State on ClawHub](https://clawhub.ai/jcools1977/skills/dream-state)
+- [jcools1977 ClawHub profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured analogies and ranked technical approaches]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reasoning-only; no tools, API calls, network access, or persistent data use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

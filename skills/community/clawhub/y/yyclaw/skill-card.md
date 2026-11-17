@@ -1,41 +1,58 @@
-## Description: <br>
-YYClaw helps agents check account balance and usage, list available models, and call AI models through the YYClaw API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YYClaw helps an agent check account balance and usage, list available models, and make OpenAI-compatible chat completion calls through the YYClaw API.
 
-## Publisher: <br>
-[GeniusTimee](https://clawhub.ai/user/GeniusTimee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[geniustimee](https://clawhub.ai/user/geniustimee)
 
-## Use Case: <br>
-Developers and agents use this skill to route model requests through YYClaw, inspect available models and pricing, and monitor balance or usage tied to a YYClaw API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Model calls send prompts and related request data to a paid third-party service. <br>
-Mitigation: Use the skill only when YYClaw is an intended provider, and avoid sending secrets, credentials, private documents, or sensitive business data unless the service is trusted for that data. <br>
-Risk: Requests can consume paid balance tied to the configured API key. <br>
-Mitigation: Check balance and usage before and after use, and monitor account activity for unexpected charges. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route model requests through YYClaw, inspect prepaid credit, review usage, and call supported Claude and Gemini models from an OpenAI-compatible client or shell command.
 
-## Reference(s): <br>
-- [YYClaw ClawHub listing](https://clawhub.ai/GeniusTimee/yyclaw) <br>
-- [YYClaw API service](https://crypto.yyclaw.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON examples, and Python or JavaScript code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include API request examples and model, balance, usage, or chat-completion responses from YYClaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uses a paid external API and may spend prepaid or on-chain credit when model calls are made.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm with the user before billable model calls and check balance or usage when cost exposure is relevant.
+
+Risk: The security assessment says the skill mishandles API keys and uses broad activation for paid external calls.
+
+Mitigation: Configure YYCLAW_API_KEY as a private environment secret and do not print or paste the key into chat or logs.
+
+Risk: Prompts, account queries, and usage data are sent to YYClaw.
+
+Mitigation: Use the skill only when sending the requested data to YYClaw is acceptable for the user's workflow.
+
+## Reference(s):
+
+- [YYClaw Skill Page](https://clawhub.ai/geniustimee/skills/yyclaw)
+- [YYClaw API and Dashboard](https://crypto.yyclaw.cc)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API calls]
+
+**Output Format:** [Markdown with inline bash, Python, JavaScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for external API calls that may consume prepaid or on-chain credit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

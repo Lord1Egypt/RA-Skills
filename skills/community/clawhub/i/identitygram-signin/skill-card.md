@@ -1,40 +1,57 @@
-## Description: <br>
-Sign in to IdentityGram by calling the /auth/signin endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sign in to IdentityGram by calling the /auth/signin endpoint.
 
-## Publisher: <br>
-[waqas-orcalo](https://clawhub.ai/user/waqas-orcalo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[waqas-orcalo](https://clawhub.ai/user/waqas-orcalo)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate a user with IdentityGram credentials and receive the sign-in response for downstream account workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends an IdentityGram email and password to an external sign-in endpoint. <br>
-Mitigation: Use only with trusted IdentityGram credentials and confirm the endpoint is intended for the target environment before invoking the skill. <br>
-Risk: The response may include access or refresh tokens that can grant account access. <br>
-Mitigation: Treat returned tokens like passwords and keep them out of chats, logs, screenshots, and unrelated tools. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/waqas-orcalo/identitygram-signin) <br>
-- [IdentityGram sign-in endpoint](https://gateway-v2.identitygram.co.uk/auth/signin) <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate a user with IdentityGram credentials through OpenClaw's skill system and receive the sign-in response.
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authentication status, user information, access tokens, and refresh tokens from IdentityGram.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles IdentityGram email and password values directly as normal skill inputs.
+
+Mitigation: Install and invoke it only when the publisher is trusted and the agent is intended to handle those credentials.
+
+Risk: The skill can return full authentication tokens and raw sign-in responses.
+
+Mitigation: Treat token, accessToken, refreshToken, raw, and user fields as secrets; avoid displaying, logging, storing, or passing them to other skills unless strictly necessary.
+
+Risk: The skill depends on the configured IdentityGram HTTPS authentication endpoint being the intended service.
+
+Mitigation: Confirm the endpoint and service availability before use, and stop using the skill if the endpoint cannot be verified.
+
+## Reference(s):
+
+- [Identitygram Signin on ClawHub](https://clawhub.ai/waqas-orcalo/skills/identitygram-signin)
+- [IdentityGram sign-in endpoint](https://gateway-v2.identitygram.co.uk/auth/signin)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON response fields with supporting Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include raw IdentityGram responses, success status, token fields, user information, and status messages; returned token fields should be treated as secrets.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

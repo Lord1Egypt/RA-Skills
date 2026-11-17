@@ -1,48 +1,60 @@
-## Description: <br>
-Builds and maintains a personal Obsidian-based knowledge base from articles, papers, repositories, datasets, spreadsheets, and local files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain a personal Obsidian-based knowledge base from articles, papers, repositories, datasets, spreadsheets, and local files.
 
-## Publisher: <br>
-[durugy](https://clawhub.ai/user/durugy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[durugy](https://clawhub.ai/user/durugy)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to collect source material into a local markdown wiki, generate Obsidian-friendly source and concept pages, ask questions against the KB, and produce research outputs such as briefs, Marp slide drafts, charts, and health reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch web content, copy local files, clone repositories, and write persistent notes under configured KB folders. <br>
-Mitigation: Keep KB roots narrowly scoped, avoid ingesting sensitive private material, and review generated files before relying on them. <br>
-Risk: Cloned repositories and extracted external content may contain untrusted or misleading material. <br>
-Mitigation: Treat cloned repos and extracted text as untrusted data, preserve provenance, and review suspicious or incomplete entries before synthesis. <br>
-Risk: The daily shell wrapper sources runtime configuration from a local .env file. <br>
-Mitigation: Use only a trusted .env file and keep tokens, secrets, and private paths out of committed skill artifacts. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to collect source material into a local markdown knowledge base, compile Obsidian-friendly wiki pages, search or ask questions over the KB, generate markdown outputs, and run health checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/durugy/duru-obsidian-kb) <br>
-- [Layout Reference](references/layout.md) <br>
-- [Phase Plan](references/phase-plan.md) <br>
-- [Daily Ops](references/daily-ops.md) <br>
-- [prompt-shield-lite dependency](https://github.com/DuruGY/duru-prompt-shield-lite) <br>
-- [uv installation guide](https://docs.astral.sh/uv/getting-started/installation/) <br>
-- [LLM Knowledge Bases reference](https://x.com/karpathy/status/2039805659525644595) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, JSON status output, shell command examples, configuration snippets, and optional chart artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent KB files under configured roots, including raw source records, manifests, wiki pages, indexes, outputs, lint reports, Marp drafts, and PNG charts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence; artifact pyproject.toml says 0.1.0) <br>
+Risk: The security summary flags unsafe review-worthy behavior around command execution from configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review configuration and .env values before use, run only trusted local scripts, and execute the skill in a dedicated workspace.
+
+Risk: The security summary flags broad network fetching and repository ingestion.
+
+Mitigation: Avoid attacker-supplied URLs or repositories and prefer trusted sources until URL validation and size limits are fixed.
+
+Risk: The security summary flags file writes outside intended paths and risky file-back targets.
+
+Mitigation: Use a dedicated KB directory and review output paths and target concepts before enabling file-back behavior.
+
+## Reference(s):
+
+- [Duru Obsidian KB on ClawHub](https://clawhub.ai/durugy/skills/duru-obsidian-kb)
+- [Layout Reference](references/layout.md)
+- [Phase Plan](references/phase-plan.md)
+- [Daily Ops](references/daily-ops.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, JSON manifests, shell command guidance, and local knowledge-base artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deterministic local files under a selected knowledge-base root when scripts are run.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

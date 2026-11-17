@@ -1,0 +1,23 @@
+# 凭据（永远不要提交）
+.env
+*.env
+
+# Garmin OAuth token 缓存
+.garth/
+garmin_tokens.json
+
+# 个人配置与训练数据（含 GPS 坐标 / 体重等隐私）
+config.json
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

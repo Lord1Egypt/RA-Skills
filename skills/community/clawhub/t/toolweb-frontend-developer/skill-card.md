@@ -1,40 +1,51 @@
-## Description: <br>
-Professional Frontend Development Career Roadmap Platform that generates personalized learning paths and development strategies for aspiring and experienced frontend developers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Frontend Development Career Roadmap Platform that generates personalized learning paths and development strategies for aspiring and experienced frontend developers.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External developers, educators, career counselors, coding bootcamps, and training teams use this skill to request personalized frontend learning roadmaps, framework information, and curated learning resources from a third-party API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roadmap requests may send career profile information, skill levels, goals, session IDs, and optional user IDs to a third-party API. <br>
-Mitigation: Use anonymous or pseudonymous identifiers and avoid including sensitive employer, account, or personal details unless sharing them with the API provider is acceptable. <br>
+## Use Case:
 
+External developers, educators, career counselors, coding bootcamps, and training teams use this API to generate personalized frontend development roadmaps from assessment data and retrieve framework and learning-resource guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-frontend-developer) <br>
-- [Frontend Developer API Docs](https://api.mkkpro.com:8084/docs) <br>
-- [Frontend Developer API Route](https://api.mkkpro.com/career/frontend-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a third-party API to generate roadmap phases, milestones, recommended resources, framework lists, and learning resource listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Assessment requests may include career details, skill levels, goals, session identifiers, and optional user identifiers sent to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only information needed to generate the roadmap, avoid unnecessary persistent identifiers, and review the provider's privacy and retention terms before using real user data at scale.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-frontend-developer)
+- [Frontend Developer Roadmap API Docs](https://api.mkkpro.com:8084/docs)
+- [Frontend Developer Roadmap API Route](https://api.mkkpro.com/career/frontend-developer)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, guidance]
+
+**Output Format:** [JSON API responses with roadmap phases, milestones, recommended resources, and service metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user assessment details such as session identifier, timestamp, experience, skills, and goals for roadmap generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

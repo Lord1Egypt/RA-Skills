@@ -1,0 +1,17 @@
+{
+  "tool_name": "batch_factor_analysis",
+  "feature_days": 5,
+  "factor_dict": {
+    "Beneish_GMI": "gm = d['销售毛利率']\nout = gm.shift(252) / gm",
+    "Beneish_SGI": "s = d['每股营业收入']\nout = s / s.shift(252)",
+    "Beneish_SGAI": "sga = d['销售费用率'] + d['管理费用率']\nout = sga / sga.shift(252)",
+    "Beneish_LVGI": "lev = d['资产负债率']\nout = lev / lev.shift(252)",
+    "Beneish_TATA": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nout = (d['每股收益'] - d['每股经营现金流净额']) * d['总股本'] / ta",
+    "Beneish_AQI": "te = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\nca_ta = d['流动资产/总资产']\nfa_ta = d['固定资产合计'] / ta\nden = (1 - (ca_ta + fa_ta)).replace(0, np.nan)\nout = den.shift(252) / den",
+    "【缺数据】Beneish_DSRI": "# 需要数据：应收账款(原值)、营业收入(绝对额)。当前库仅有『应收账款周转率』与『每股营业收入』，缺绝对额，无法计算 (AR/Sales)_t / (AR/Sales)_t-1。\ndsri_t = d['应收账款'] / d['营业收入']\ndsri_t1 = d['应收账款'].shift(252) / d['营业收入'].shift(252)\nout = dsri_t / dsri_t1",
+    "【缺数据】Beneish_DEPI": "# 需要数据：折旧费用(当期及累计)。当前库无折旧字段，无法计算 折旧率_去年/折旧率_今年。\ndepi_t1 = d['折旧'].shift(252) / (d['折旧'].shift(252) + d['固定资产合计'].shift(252))\ndepi_t = d['折旧'] / (d['折旧'] + d['固定资产合计'])\nout = depi_t1 / depi_t",
+    "Beneish_MScore": "gmi = d['销售毛利率'].shift(252) / d['销售毛利率']\ns = d['每股营业收入']\nsgi = s / s.shift(252)\nsga = d['销售费用率'] + d['管理费用率']\nsgai = sga / sga.shift(252)\nlev = d['资产负债率']\nlvgi = lev / lev.shift(252)\nte = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\ntata = (d['每股收益'] - d['每股经营现金流净额']) * d['总股本'] / ta\nca_ta = d['流动资产/总资产']\nfa_ta = d['固定资产合计'] / ta\nden = (1 - (ca_ta + fa_ta)).replace(0, np.nan)\naqi = den.shift(252) / den\ndsri_t = d['应收账款'] / d['营业收入']\ndsri_t1 = d['应收账款'].shift(252) / d['营业收入'].shift(252)\ndsri = dsri_t / dsri_t1\ndepi_t1 = d['折旧'].shift(252) / (d['折旧'].shift(252) + d['固定资产合计'].shift(252))\ndepi_t = d['折旧'] / (d['折旧'] + d['固定资产合计'])\ndepi = depi_t1 / depi_t\nout = -4.84 + 0.92*dsri + 0.528*gmi + 0.404*aqi + 0.892*sgi + 0.115*depi - 0.172*sgai + 4.679*tata - 0.327*lvgi",
+    "Beneish_MScore_6": "gmi = d['销售毛利率'].shift(252) / d['销售毛利率']\ns = d['每股营业收入']\nsgi = s / s.shift(252)\nsga = d['销售费用率'] + d['管理费用率']\nsgai = sga / sga.shift(252)\nlev = d['资产负债率']\nlvgi = lev / lev.shift(252)\nte = d['每股净资产'] * d['总股本']\nta = te / (1 - d['资产负债率'].replace(0, np.nan))\ntata = (d['每股收益'] - d['每股经营现金流净额']) * d['总股本'] / ta\nca_ta = d['流动资产/总资产']\nfa_ta = d['固定资产合计'] / ta\nden = (1 - (ca_ta + fa_ta)).replace(0, np.nan)\naqi = den.shift(252) / den\nout = -4.84 + 0.528*gmi + 0.404*aqi + 0.892*sgi - 0.172*sgai + 4.679*tata - 0.327*lvgi"
+  },
+  "save_path": "output\\factor-BeneishM.xlsx"
+}

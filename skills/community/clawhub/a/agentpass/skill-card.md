@@ -1,43 +1,57 @@
-## Description: <br>
-Control Home Assistant devices through the agentpass security gateway, including read-only device queries and approval-gated state changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Home Assistant devices through the agentpass security gateway, including read-only state checks and human-approved state-changing actions.
 
-## Publisher: <br>
-[torbenwetter](https://clawhub.ai/user/torbenwetter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[torbenwetter](https://clawhub.ai/user/torbenwetter)
 
-## Use Case: <br>
-External users and developers use this skill to query Home Assistant device state and route smart home control requests through the agentpass gateway with Telegram approval for state-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AGENT_TOKEN environment variable can authorize access to the configured agentpass gateway. <br>
-Mitigation: Treat AGENT_TOKEN as sensitive, restrict its scope where possible, and install the CLI only in trusted agent environments. <br>
-Risk: Read-only Home Assistant queries can expose device names, occupancy signals, history, logbook entries, and configuration. <br>
-Mitigation: Limit use to trusted users and avoid sharing command output outside the intended Home Assistant administration context. <br>
-Risk: State-changing Home Assistant service calls can affect physical smart home devices. <br>
-Mitigation: Use the approval-gated commands as documented and verify tool names and arguments before submitting control requests. <br>
+## Use Case:
 
+External users and smart-home operators use this skill to let an agent inspect Home Assistant state, history, services, logs, and configuration, and to request guarded device changes through agentpass. State-changing actions are routed through Telegram guardian approval before execution.
 
-## Reference(s): <br>
-- [ClawHub agentpass skill page](https://clawhub.ai/torbenwetter/agentpass) <br>
-- [agentpass GitHub homepage declared by the skill](https://github.com/TorbenWetter/agentpass) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [State-changing commands can block for up to 15 minutes while Telegram approval resolves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill controls Home Assistant devices through a third-party CLI dependency.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the agentpass package source before installing and use a narrowly scoped AGENT_TOKEN.
+
+Risk: The skill can read Home Assistant states, history, logbook entries, services, and configuration.
+
+Mitigation: Deploy only where this level of home-automation visibility is acceptable, and scope credentials to the minimum required access.
+
+Risk: State-changing actions can affect physical devices.
+
+Mitigation: Keep Telegram guardian approval enabled for state changes and rely on the documented policy blocks for custom event firing and lock control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/torbenwetter/skills/agentpass)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands; command stdout is JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State-changing requests may block while awaiting Telegram guardian approval and can return success, denied, timeout, connection error, or invalid argument statuses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

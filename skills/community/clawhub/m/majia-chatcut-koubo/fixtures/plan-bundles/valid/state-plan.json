@@ -1,0 +1,70 @@
+{
+  "$schema": "../../../schemas/state-plan.schema.json",
+  "schemaVersion": "1.0.0",
+  "projectId": "proj_demo",
+  "timelineId": "timeline_demo",
+  "timelineRevision": "rev_demo",
+  "compositionStates": [
+    {
+      "stateInstanceId": "state_001",
+      "stateType": "A",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 0,
+        "end": 90
+      },
+      "layoutId": "portrait-speaker-full",
+      "reason": "speaker evidence is primary"
+    },
+    {
+      "stateInstanceId": "state_002",
+      "stateType": "B-R",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 90,
+        "end": 180
+      },
+      "layoutId": "portrait-screen-focus-pip-right",
+      "reason": "screen evidence is primary"
+    }
+  ],
+  "privacyOverlays": [
+    {
+      "privacyInstanceId": "privacy_001",
+      "range": {
+        "domain": "timeline",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 90,
+        "end": 120
+      },
+      "sourceAssetId": "asset_speaker",
+      "sourceRange": {
+        "domain": "source",
+        "rate": {
+          "numerator": 30,
+          "denominator": 1
+        },
+        "start": 60,
+        "end": 90
+      },
+      "method": "opaque-redaction",
+      "fallback": "block"
+    }
+  ],
+  "approval": {
+    "required": true,
+    "status": "approved",
+    "approvalId": "approval_state"
+  }
+}

@@ -1,43 +1,56 @@
-## Description: <br>
-Translate text and images between multiple languages using Xiangji and supported translation engines such as Baidu, Google, DeepL, and ChatGPT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate text and images between multiple languages using Xiangji/Tosoiot translation APIs and engines including Baidu, Google, DeepL, ChatGPT, and Aliyun.
 
-## Publisher: <br>
-[jcdentoncore](https://clawhub.ai/user/jcdentoncore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcdentoncore](https://clawhub.ai/user/jcdentoncore)
 
-## Use Case: <br>
-Developers and end users use this skill to translate individual or batch text and image inputs through Xiangji/tosoiot translation APIs, including local image files and image URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text, image files, image URLs, and service keys are sent to Xiangji/tosoiot translation APIs. <br>
-Mitigation: Use only provider-approved content and credentials; avoid confidential, regulated, internal-only, or secret-bearing inputs unless the provider is approved for that use case. <br>
-Risk: Examples pass API keys and signing keys on command lines, which can expose secrets through shell history or process listings. <br>
-Mitigation: Prefer safer local key handling such as environment variables, secret managers, or short-lived credentials when adapting the commands. <br>
+## Use Case:
 
+External developers and agent users use this skill to translate text, translate text embedded in local images, and batch translate image URLs across supported language pairs. It is useful when an agent needs command examples, parameter guidance, or helper scripts for Xiangji/Tosoiot translation workflows.
 
-## Reference(s): <br>
-- [Xiangji Translation Service](https://www.xiangjifanyi.com/) <br>
-- [Xiangji API Documentation](https://openapi-doc.xiangjifanyi.com/) <br>
-- [Xiangji Console](https://www.xiangjifanyi.com/console/workspace) <br>
-- [Supported Languages](references/languages.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Xiangji/tosoiot API credentials and sends selected text, image files, or image URLs to third-party translation APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Text, images, image URLs, and translation-service keys are sent to third-party Xiangji/Tosoiot translation endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved content, avoid regulated or confidential material unless permitted, and confirm that third-party processing is acceptable for the deployment context.
+
+Risk: API credentials can be exposed when pasted directly into shell commands, logs, or CI output.
+
+Mitigation: Pass credentials through environment variables, secret stores, or a local wrapper that avoids command history and log disclosure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcdentoncore/skills/image-translator-1-0-0)
+- [Xiangji Official Website](https://www.xiangjifanyi.com/)
+- [Xiangji OpenAPI Documentation](https://openapi-doc.xiangjifanyi.com/)
+- [Supported Languages](references/languages.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; helper scripts return JSON API responses and translated text or image URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Xiangji/Tosoiot API credentials, source language codes, target language codes, and text, local image files, or image URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

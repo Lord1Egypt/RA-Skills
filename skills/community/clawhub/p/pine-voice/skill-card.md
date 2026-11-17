@@ -1,43 +1,66 @@
-## Description: <br>
-Give your agent a real phone. It dials, waits on hold, negotiates your bills, and returns a full transcript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your agent a real phone. It dials, waits on hold, negotiates your bills, and returns a full transcript.
 
-## Publisher: <br>
-[bojieli](https://clawhub.ai/user/bojieli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bojieli](https://clawhub.ai/user/bojieli)
 
-## Use Case: <br>
-External users and their agents use Pine Voice to authenticate with Pine AI, place real phone calls on the user's behalf, and retrieve transcripts or outcomes for tasks such as reservations, customer-service calls, scheduling, and bill negotiation. <br>
-
-### Deployment Geography for Use: <br>
-US, Canada, Puerto Rico, United Kingdom, Australia, New Zealand, Singapore, Ireland, and Hong Kong <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive account, payment, or identity details to a remote voice service during real phone calls. <br>
-Mitigation: Confirm the phone number, purpose, exact information to disclose, spending or account-change limits, maximum duration, and sensitive-data boundaries before initiating a call. <br>
-Risk: The skill can place real calls without a clear final approval checkpoint. <br>
-Mitigation: Require explicit user approval of the complete call plan and destination number immediately before running the call command. <br>
-Risk: Credentials persist locally in ~/.pine-voice/credentials.json after authentication. <br>
-Mitigation: Use the stored credentials only for intended calls and delete ~/.pine-voice/credentials.json when the user no longer wants the skill authenticated. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Pine Voice ClawHub Listing](https://clawhub.ai/bojieli/pine-voice) <br>
-- [Pine AI](https://19pine.ai) <br>
-- [Pine AI Privacy Policy](https://www.19pine.ai/page/privacy-policy) <br>
+## Use Case:
 
+External users and agents use Pine Voice to place English-language phone calls through Pine AI for tasks such as customer-service negotiations, reservations, appointment scheduling, and follow-up calls, then review the returned transcript and call outcome.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Text, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request or response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, one-time email authentication, and locally stored Pine Voice credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.2 (source: server-resolved release evidence) <br>
+Supported calling countries and regions: United States, Canada, Puerto Rico, United Kingdom, Australia, New Zealand, Singapore, Ireland, and Hong Kong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send phone numbers, call instructions, call context, and transcripts to Pine AI servers.
+
+Mitigation: Use it only for calls where that disclosure is acceptable, and provide the minimum context needed for the call objective.
+
+Risk: Call context may include sensitive account, payment, or verification details.
+
+Mitigation: Avoid passwords, CVVs, full payment-card numbers, banking credentials, security-question answers, and one-time codes unless disclosure has been separately approved.
+
+Risk: A local Pine Voice access token is stored at ~/.pine-voice/credentials.json.
+
+Mitigation: Keep local file permissions restricted, review access to the host account, and remove the credentials file when the skill no longer needs access.
+
+Risk: The call APIs in the artifact point to a staging hostname.
+
+Mitigation: Review the endpoint before installation or use, and confirm that staging infrastructure is appropriate for the intended release.
+
+Risk: The voice agent cannot ask the user for missing information during a live call, which can cause failed or inaccurate call outcomes.
+
+Mitigation: Collect required callee context, account details, constraints, and success criteria before placing a call, then evaluate the transcript rather than relying only on status fields.
+
+## Reference(s):
+
+- [Pine Voice ClawHub listing](https://clawhub.ai/bojieli/skills/pine-voice)
+- [Pine AI homepage](https://19pine.ai)
+- [Pine AI privacy policy](https://www.19pine.ai/page/privacy-policy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON call parameters, JSON call status responses, and returned transcript text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js. Authentication writes a local Pine Voice credentials file, and completed calls can return transcript, duration, and credits charged.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

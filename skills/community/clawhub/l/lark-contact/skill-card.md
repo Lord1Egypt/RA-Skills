@@ -1,44 +1,58 @@
-## Description: <br>
-Looks up Lark/Feishu contacts by name, email, or open_id so an agent can resolve people before messaging, scheduling, or presenting directory details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lark Contact helps agents look up Lark/Feishu users by name, email, or open_id and return identifiers and profile fields needed before messaging, scheduling, or displaying contact details.
 
-## Publisher: <br>
-[gu2003li](https://clawhub.ai/user/gu2003li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gu2003li](https://clawhub.ai/user/gu2003li)
 
-## Use Case: <br>
-Employees and agents working in a configured Lark tenant use this skill to resolve names or emails to open_id values and to retrieve directory details such as name, department, email, and contact fields. It is intended for lookup before downstream actions such as sending messages, inviting people, or scheduling meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill returns workplace directory data such as names, emails, departments, chat IDs, and contact details. <br>
-Mitigation: Install it only where lark-cli is configured for the intended tenant and users are allowed to look up colleague contact details. <br>
-Risk: Ambiguous name or email matches could lead an agent to use the wrong person in a downstream message, group invite, or meeting request. <br>
-Mitigation: Confirm ambiguous candidates with the user before using an ID for an action with side effects. <br>
-Risk: Lookup results are constrained by tenant permissions and visibility rules, so some profile fields may be unavailable or empty. <br>
-Mitigation: Treat empty fields as visibility-limited data and guide users to tenant administration or the returned console URL when permission errors occur. <br>
+## Use Case:
 
+Employees and workplace agents use this skill to resolve Lark/Feishu contact names, email addresses, and open_id values before sending messages, adding people to meetings or groups, or presenting contact profile details to a user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gu2003li/lark-contact) <br>
-- [+get-user reference](artifact/references/lark-contact-get-user.md) <br>
-- [+search-user reference](artifact/references/lark-contact-search-user.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing lark-cli configuration for the intended Lark tenant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill can query Lark directory data visible to the current user account, which may include workplace personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only for legitimate workplace tasks, and handle returned profile details according to organizational data policies.
+
+Risk: Ambiguous contact matches could lead an agent to message, invite, or schedule with the wrong person.
+
+Mitigation: Show multiple plausible matches to the user and ask for confirmation before taking actions with side effects.
+
+Risk: Broad filter-only searches can enumerate contact data within the user's permission scope.
+
+Mitigation: Avoid broad filter-only searches unless there is a valid business reason and prefer specific name, email, or open_id lookups.
+
+## Reference(s):
+
+- [+get-user reference](references/lark-contact-get-user.md)
+- [+search-user reference](references/lark-contact-search-user.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Lark CLI commands, contact lookup constraints, disambiguation guidance, and permission or visibility cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

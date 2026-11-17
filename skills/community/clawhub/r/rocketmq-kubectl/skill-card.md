@@ -1,39 +1,54 @@
-## Description: <br>
-Query and manage RocketMQ messages via kubectl exec for cluster, topic, consumer, message, offset, statistics, and test-message operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage RocketMQ clusters and messages through kubectl exec, including cluster inspection, topic and consumer administration, message lookup, offset resets, statistics, and test messages.
 
-## Publisher: <br>
-[peintune](https://clawhub.ai/user/peintune) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peintune](https://clawhub.ai/user/peintune)
 
-## Use Case: <br>
-Developers and operators use this skill to generate kubectl exec commands for administering RocketMQ deployments in Kubernetes, including inspecting clusters, managing topics, checking consumer progress, querying messages, resetting offsets, and sending test messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose production-capable RocketMQ administration commands that delete topics, reset consumer offsets, skip messages, or send test messages. <br>
-Mitigation: Confirm the Kubernetes context, namespace, pod, topic, consumer group, broker, and exact command before execution, and use write operations only with approval, backups or rollback procedures, and a clear operational reason. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect and administer RocketMQ running in Kubernetes, including topic lifecycle operations, consumer backlog checks, message lookup, and controlled test messaging.
 
-## Reference(s): <br>
-- [Apache RocketMQ Admin Tool Documentation](https://rocketmq.apache.org/zh/docs/deploymentOperations/02admintool/) <br>
-- [ClawHub skill page](https://clawhub.ai/peintune/rocketmq-kubectl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with kubectl and mqadmin command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may include user-supplied Kubernetes namespaces, pods, topics, consumer groups, broker names, offsets, queue IDs, and message identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: RocketMQ administration commands can delete topics, reset consumer offsets, write test messages, or consume messages against live clusters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval, confirm namespace, cluster, topic, and consumer group targets, and use non-production or approved production targets only.
+
+Risk: Message lookup and direct pod file reads can expose message payloads or sensitive operational data.
+
+Mitigation: Validate message IDs, keys, topics, and pod paths before use, and limit output to information the requester is authorized to inspect.
+
+## Reference(s):
+
+- [Apache RocketMQ Admin Tool Documentation](https://rocketmq.apache.org/zh/docs/deploymentOperations/02admintool/)
+- [ClawHub Skill Page](https://clawhub.ai/peintune/skills/rocketmq-kubectl)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target Kubernetes pods running RocketMQ mqadmin and require user-provided topics, consumer groups, message IDs, broker names, queue IDs, offsets, and nameserver values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

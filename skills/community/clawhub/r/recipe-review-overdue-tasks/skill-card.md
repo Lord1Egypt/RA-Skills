@@ -1,39 +1,54 @@
-## Description: <br>
-Find Google Tasks that are past due and need attention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find Google Tasks that are past due and need attention.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and external users with Google Workspace task data use this recipe to find incomplete Google Tasks that are past due and decide which items need attention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe may expose Google Tasks from the gws-configured account to the agent during review. <br>
-Mitigation: Install and run it only with the intended Google account, and confirm that gws and the gws-tasks skill come from trusted sources. <br>
+## Use Case:
 
+Users with a configured Google Workspace CLI use this recipe to have an agent list task lists, inspect incomplete Google Tasks, and identify overdue items that need attention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-review-overdue-tasks) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the gws CLI and the gws-tasks prerequisite skill to list and review Google Tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The agent can list task lists and incomplete Google Tasks from the configured Google Workspace account, which may expose task titles, due dates, or other sensitive task details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with the intended Google Workspace account and avoid sharing task output outside the authorized workflow.
+
+Risk: The recipe reviews overdue tasks but does not modify or delete them, so follow-up action remains manual or must be handled by a separate approved workflow.
+
+Mitigation: Confirm any prioritization or remediation step before using another tool or skill to change task state.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/recipe-review-overdue-tasks)
+- [Publisher Profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or concise text summarizing overdue Google Tasks and relevant Google Workspace CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only task review; requires gws and the gws-tasks skill.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

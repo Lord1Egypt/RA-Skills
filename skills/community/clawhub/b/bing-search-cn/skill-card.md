@@ -1,40 +1,54 @@
-## Description: <br>
-使用必应中文搜索引擎进行网络搜索和网页抓取。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Bing China to run web searches and fetch cleaned webpage text.
 
-## Publisher: <br>
-[dej4vu](https://clawhub.ai/user/dej4vu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dej4vu](https://clawhub.ai/user/dej4vu)
 
-## Use Case: <br>
-Developers and agents use this skill to search Bing China and fetch public webpage content for research, retrieval, and source-gathering workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetching private, internal, localhost, or account-specific URLs can expose returned content to the agent context and sends network requests from the user's environment. <br>
-Mitigation: Use the skill only for public web searches and public webpage extraction, and avoid private, internal, localhost, or authenticated URLs. <br>
-Risk: Fetched web pages may contain untrusted or misleading content. <br>
-Mitigation: Review extracted content before relying on it, especially when it is used for decisions, citations, or downstream automation. <br>
+## Use Case:
 
+Developers and agent users use this skill to search cn.bing.com and fetch public webpage text for Chinese-language research and browsing workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dej4vu/bing-search-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON returned by a Node.js command-line tool, with guidance in Markdown skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search returns result counts plus titles, URLs, snippets, and site names; fetch returns a page title and cleaned text content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The webpage fetcher can request arbitrary URLs from the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only where private network destinations, localhost services, cloud metadata endpoints, and internal dashboards are blocked or allowlisted outside the skill.
+
+Risk: Fetched web content may be large or untrusted.
+
+Mitigation: Apply external response-size limits and review fetched content before using it in sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dej4vu/skills/bing-search-cn)
+- [Bing China](https://cn.bing.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON search results or fetched webpage text, with Markdown guidance for agent use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and outbound access to cn.bing.com and requested public webpage URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,58 @@
-## Description: <br>
-Build a personal client system for tracking relationships, projects, documents, and history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages client relationships end to end for freelancers, consultants, and agencies: qualifying leads, scoping, onboarding, scope creep, getting paid.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-People who manage client relationships use this skill to create and maintain a local client workspace with profiles, projects, documents, communications, notes, and lead tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may help maintain a persistent local client folder containing sensitive business details such as contracts, invoices, contacts, and communications. <br>
-Mitigation: Approve any creation, edits, or movement of client files, and avoid storing confidential material unless that local folder is appropriate for the data. <br>
+## Use Case:
 
+Freelancers, consultants, and agencies use this skill to manage the commercial client lifecycle from lead qualification through proposals, onboarding, delivery, payment collection, retention, and offboarding. It helps draft client-facing messages and maintain local client records while leaving sending, signing, pricing commitments, and acceptance decisions to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/clients) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with folder structures and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update files under ~/clients/ with user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill maintains long-lived local client records and may read, write, or delete business-sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when automatic local client-record maintenance is desired; review announced writes and deletions and keep backups of Clawic data folders.
+
+Risk: User-derived names and references can influence paths for clients, projects, contacts, artifacts, and configuration files.
+
+Mitigation: Use safe generated slugs or validated relative paths before creating, updating, or deleting records.
+
+Risk: Client work often involves credentials or access details that should not be stored in local notes.
+
+Mitigation: Store credential pointers only, such as password-manager, keychain, or environment-variable references, and avoid writing secret values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/clients)
+- [Clawic Clients homepage](https://clawic.com/skills/clients)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown guidance, client-facing drafts, checklists, local record updates, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, update, or delete local Clawic client, contact, project, receivable, and artifact records under configured local data folders.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

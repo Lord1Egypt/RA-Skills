@@ -1,42 +1,54 @@
-## Description: <br>
-Batch operations for NEAR tokens - send to multiple recipients, transfer NFTs, claim rewards with cost estimation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch operations for NEAR tokens - send to multiple recipients, transfer NFTs, claim rewards with cost estimation.
 
-## Publisher: <br>
-[shaiss](https://clawhub.ai/user/shaiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shaiss](https://clawhub.ai/user/shaiss)
 
-## Use Case: <br>
-Developers and NEAR operators use this skill to prepare and run batch NEAR token sends, NFT transfers, reward or airdrop claim workflows, and pre-execution cost estimates from JSON input files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move NEAR tokens and NFTs in bulk, so an incorrect or untrusted JSON input file can cause unwanted asset transfers. <br>
-Mitigation: Inspect every JSON input file before use, run testnet or very small trials first, and confirm the recipient accounts, token IDs, NFT contracts, and amounts before executing transfers. <br>
-Risk: The security summary notes weak safeguards around input files and command execution. <br>
-Mitigation: Use the skill only when you fully trust it, avoid untrusted recipient or NFT files, and prefer argument-based process execution, input validation, and an explicit pre-transfer review or confirmation flow before production use. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare, estimate, and run batch NEAR token sends and NFT transfers from JSON input files.
 
-## Reference(s): <br>
-- [NEAR CLI](https://docs.near.org/tools/near-cli) <br>
-- [NEAR Batch Actions](https://docs.near.org/api/rpc/transactions/batch-actions) <br>
-- [ClawHub skill page](https://clawhub.ai/shaiss/near-batch-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces batch-operation instructions, JSON input shapes, cost-estimation guidance, and command-line usage for NEAR CLI workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Batch send and NFT transfer operations can move real assets in bulk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every account, amount, contract, token ID, and network context before execution; use a controlled environment and dry-run or confirmation flow for valuable assets.
+
+Risk: The script runs unvalidated shell commands from user-supplied JSON.
+
+Mitigation: Audit input JSON before use and prefer updating the script to use argument-array process execution, validation, and batch limits.
+
+## Reference(s):
+
+- [NEAR CLI](https://docs.near.org/tools/near-cli)
+- [NEAR Batch Actions](https://docs.near.org/api/rpc/transactions/batch-actions)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEAR CLI configuration and sufficient account balance for transfer operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

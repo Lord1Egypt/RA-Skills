@@ -1,37 +1,49 @@
-## Description: <br>
-Chat with Zhuangzi, a Taoist philosopher persona for playful philosophical dialogue about radical freedom, transformation, and relativity of perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Zhuangzi (369-286 BC), a Taoist philosopher persona for playful, parable-driven dialogue about transformation, perspective, and wu wei.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-Users invoke this skill for stylized conversations in Zhuangzi's voice, using parables and paradoxes to explore Taoist ideas. It is suited for philosophical reflection, creative dialogue, and perspective-shifting discussion rather than factual or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona responses may sound authoritative while framing factual, ethical, political, or management questions through a stylized philosophical worldview. <br>
-Mitigation: Treat responses as philosophical dialogue and independently verify factual claims or consequential advice before relying on them. <br>
+## Use Case:
 
+External users can invoke this skill to converse with a Zhuangzi-inspired roleplay persona. It is suited for philosophical dialogue, perspective-shifting prompts, and parable-style responses rather than general assistant behavior.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-only skill with no tools, scripts, credential access, or hidden data behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: Persona-mode behavior may answer indirectly or stay in character when a general assistant response is expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and invoke the skill only when a dedicated Zhuangzi roleplay mode is desired, and review outputs for fit before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-zhuangzi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to remain in character and may answer indirectly.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

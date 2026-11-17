@@ -1,44 +1,58 @@
-## Description: <br>
-When a user asks for a file, this skill helps an agent find the requested local file and emit JSON that sends it to the current chat channel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Yunjia File Transfer helps an agent send local files to the current chat by packaging absolute file paths and a user-facing message into transfer JSON.
 
-## Publisher: <br>
-[billyang1222](https://clawhub.ai/user/billyang1222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billyang1222](https://clawhub.ai/user/billyang1222)
 
-## Use Case: <br>
-Agents use this skill when a user requests a local file by name or location. It guides the agent to locate an absolute file path across Windows, macOS, or Linux, then produce a sendFileToChat JSON instruction without reading the file contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may search broad personal folders while trying to locate a requested file. <br>
-Mitigation: Use exact filenames or paths and avoid broad recursive searches of the whole user profile unless necessary. <br>
-Risk: A discovered file can be sent without a mandatory confirmation step. <br>
-Mitigation: Require the agent to show the exact file path and receive confirmation before sending sensitive or ambiguous files. <br>
-Risk: File paths and request text may be written to /tmp/yunjia-file-transfer.log. <br>
-Mitigation: Clear or disable the local log when file names, paths, or request text are sensitive. <br>
+## Use Case:
 
+External users and workplace agents use this skill when a user asks for a file to be found and sent into the current chat. It is intended for file-transfer workflows where the agent can identify exact local file paths and return plugin-readable JSON.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billyang1222/yunjia-file-transfer) <br>
-- [Publisher profile](https://clawhub.ai/user/billyang1222) <br>
-- [WINDOWS_GUIDE.md](references/WINDOWS_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON object with filePaths, text, and mode fields, plus guidance for file search commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires absolute file paths; supports multiple --file arguments; writes operational logs to /tmp/yunjia-file-transfer.log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill can encourage broad local folder searches and immediate transfer of matched files into chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to confirm the exact file before sending, limit searches to user-approved directories, and avoid transferring ambiguous matches.
+
+Risk: Requested text and local file paths may be written to a persistent log file.
+
+Mitigation: Avoid sensitive content in transfer messages and prefer an updated version that redacts, disables, or rotates persistent logging.
+
+Risk: Incorrect or relative paths can fail validation or identify the wrong file.
+
+Mitigation: Use absolute platform-specific paths and verify the selected file exists before producing the transfer JSON.
+
+## Reference(s):
+
+- [Windows Guide](references/WINDOWS_GUIDE.md)
+- [ClawHub Skill Page](https://clawhub.ai/billyang1222/skills/yunjia-file-transfer)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [JSON transfer instruction with filePaths, text, and mode fields, with supporting guidance and shell commands in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires absolute local file paths; the script writes transfer JSON to stdout for chat-file delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

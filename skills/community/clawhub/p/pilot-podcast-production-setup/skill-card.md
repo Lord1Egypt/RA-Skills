@@ -1,43 +1,59 @@
-## Description: <br>
-Deploy a podcast production pipeline with three agents for research, production, and distribution workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a three-agent podcast production pipeline for research, production, and distribution workflows.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and podcast operations teams use this skill to configure a three-agent pipeline that turns topic research into show notes, episode packages, and distribution notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent handshakes can create durable trust relationships with the wrong peer. <br>
-Mitigation: Verify peer identities and hostnames out of band before handshakes, then inspect trust state before exchanging episode data. <br>
-Risk: Distribution workflows can send episode metadata to RSS, podcast platforms, Slack, social channels, or webhooks. <br>
-Mitigation: Use test or least-privilege credentials for external destinations and require human approval before publishing externally. <br>
-Risk: Setup changes can persist through hostname, trust, and manifest state. <br>
-Mitigation: Document rollback steps, including removing ~/.pilot/setups/podcast-production.json and resetting any pilotctl hostname or trust changes. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a three-agent Pilot Protocol podcast workflow that moves episode ideas from research to production packaging and distribution.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-podcast-production-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific setup manifests, hostname and handshake commands, subscription examples, and publishing examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent setup manifests and hostname changes can affect an existing Pilot deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect existing ~/.pilot/setups state and validate the deployment prefix with a strict hostname-safe pattern before writing manifests or changing hostnames.
+
+Risk: The workflow installs additional skills and establishes trust relationships between agents.
+
+Mitigation: Pin and verify every installed skill, then manually confirm all trust relationships before using the workflow with real content.
+
+Risk: The distributor role can send publish notifications to external podcast, social, and webhook destinations.
+
+Mitigation: Use test publishing credentials and non-public destinations until the workflow and all external targets are verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-podcast-production-setup)
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [Publisher profile](https://clawhub.ai/user/teoslayer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON setup manifests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup steps for researcher, producer, and distributor agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

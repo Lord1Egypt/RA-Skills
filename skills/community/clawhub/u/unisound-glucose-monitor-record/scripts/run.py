@@ -14,7 +14,7 @@ from urllib.error import URLError, HTTPError
 
 # ── 固定配置 ──
 API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-MODEL = "u1-insuremed"
+MODEL = "u2-med"
 
 # ── 同目录导入（preprocess.py 每个skill自带一份）──
 from preprocess import (

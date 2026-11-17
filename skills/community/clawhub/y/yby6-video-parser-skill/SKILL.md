@@ -46,7 +46,7 @@ pip install -r requirements.txt
 ```env
 # SiliconFlow API Key (可选，需要转录必填)
 # 获取地址: https://siliconflow.cn/
-api_key=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api_key=REDACTED-SECRET
 
 # 视频转录模型 (可选，默认: FunAudioLLM/SenseVoiceSmall)
 # 支持的模型列表: https://docs.siliconflow.cn/api-reference/audio

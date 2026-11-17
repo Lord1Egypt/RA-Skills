@@ -1,37 +1,49 @@
-## Description: <br>
-Automates security audits for OpenClaw gateway configurations by checking key security settings and running the OpenClaw deep security audit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates security audits for OpenClaw gateway configurations by checking key settings and reporting common security risks.
 
-## Publisher: <br>
-[ASantsSec](https://clawhub.ai/user/ASantsSec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asantssec](https://clawhub.ai/user/asantssec)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw gateway configuration before deployment or during routine security checks, identify risky settings, and review audit findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw gateway configuration and invokes the OpenClaw CLI from PATH, so audit output may contain sensitive local security context. <br>
-Mitigation: Install only when the local OpenClaw CLI is trusted, run it in an appropriate terminal environment, and treat terminal audit output as potentially sensitive. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect OpenClaw gateway configuration before deployment or during routine security reviews. It reports risky settings and recommended manual fixes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text report with configuration findings and recommended actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit helper; does not automatically modify OpenClaw configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Audit output can expose part or all of a local OpenClaw gateway authentication token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a private terminal, avoid shared logs or CI, and rotate any short, default, or exposed token.
+
+## Reference(s):
+
+- [OpenClaw Security Audit on ClawHub](https://clawhub.ai/asantssec/skills/openclaw-security-policy-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text report with configuration findings and recommended fixes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit output may include local configuration values or command output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

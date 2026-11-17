@@ -1,11 +1,11 @@
 ---
 name: oo-mapbox
-description: "Mapbox (mapbox.com). Use this skill for ANY Mapbox request — reading, creating, and updating data. Whenever a task involves Mapbox, use this skill instead of calling the API directly."
+description: "Mapbox (mapbox.com). Use this skill for ANY Mapbox request — searching and reading data. Whenever a task involves Mapbox, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Mapbox"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["mapbox"]
   icon: "https://static.oomol.com/logo/third-party/Mapbox.svg"
 ---
@@ -38,7 +38,7 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `batch_geocode` — Submit multiple forward or reverse geocoding queries in one Mapbox batch request.
-- `forward_geocode` — Convert free-form text into geographic features with Mapbox Geocoding v6. [write]
+- `forward_geocode` — Convert free-form text into geographic features with Mapbox Geocoding v6.
 - `get_directions` — Compute a route between multiple coordinates with the Mapbox Directions API.
 - `get_matrix` — Compute a travel time or distance matrix with the Mapbox Matrix API.
 - `reverse_geocode` — Convert a coordinate pair into place features with Mapbox Geocoding v6.
@@ -72,11 +72,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Mapbox is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=mapbox
+  https://console.oomol.com/connections/mapbox
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Mapbox homepage: https://www.mapbox.com
+- API documentation: https://docs.mapbox.com/api/

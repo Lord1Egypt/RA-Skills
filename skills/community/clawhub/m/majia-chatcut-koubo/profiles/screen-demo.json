@@ -1,0 +1,25 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/orchestration-profile.schema.json",
+  "schemaVersion": "majia.koubo.profile.v1",
+  "id": "screen-demo",
+  "version": "1.0.0",
+  "label": "录屏演示",
+  "supportedModes": ["stable", "pro"],
+  "selection": {
+    "priority": 100,
+    "goals": ["screen-demo"],
+    "minimumDurationSec": null,
+    "maximumDurationSec": null,
+    "requiresScreenCapture": true
+  },
+  "defaults": {
+    "pacing": "balanced",
+    "automationLevel": "assist",
+    "sample": {"openingSec": 60, "includeComplexWindow": true, "includePrivacyWindow": true, "includeEnding": true},
+    "treatments": {"arollCleanup": true, "smoothAudio": true, "captions": true, "restructure": false, "broll": false, "motionGraphics": false, "music": false, "generatedMedia": false, "export": false},
+    "captions": {"enabled": true, "language": "zh-CN", "semanticPaging": true, "maxLines": 2, "avoidCriticalUi": true},
+    "visualStates": ["A", "B", "S"],
+    "riskPolicy": {"low": "auto-with-evidence", "medium": "sample-review", "high": "explicit-approval"}
+  },
+  "contentProtections": ["do-not-invent", "protect-numbers", "protect-proper-nouns", "protect-negation", "preserve-user-baseline", "privacy-first"]
+}

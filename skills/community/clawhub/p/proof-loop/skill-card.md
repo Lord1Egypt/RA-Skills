@@ -1,44 +1,58 @@
-## Description: <br>
-Run evidence-gated coding sprints with frozen ACs, separated builder/verifier roles, and durable proof artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run evidence-gated coding sprints with frozen ACs, separated builder/verifier roles, and durable proof artifacts.
 
-## Publisher: <br>
-[leostehlik](https://clawhub.ai/user/leostehlik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leostehlik](https://clawhub.ai/user/leostehlik)
 
-## Use Case: <br>
-Developers and engineering teams use Proof Loop to run coding sprints where acceptance criteria are frozen before implementation, verifier work is separated from builder work, and completion is gated by durable proof artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper commands can create or update repo-local task artifacts. <br>
-Mitigation: Confirm the repository root and task id before running helpers, and use dry-run mode before writing harness guidance files. <br>
-Risk: Existing harness guide files can be overwritten when force options are used. <br>
-Mitigation: Use --force only when intentionally replacing an existing guide file. <br>
+## Use Case:
 
+Developers and teams use Proof Loop to run coding tasks with frozen acceptance criteria, a separate fresh verifier, and durable evidence before declaring work complete.
 
-## Reference(s): <br>
-- [Proof Loop Workflow](references/workflow.md) <br>
-- [Artifact Schemas](references/artifacts.md) <br>
-- [Agent Brief Template](references/brief-template.md) <br>
-- [Loopsmith Bridge](references/loopsmith-bridge.md) <br>
-- [Proof Loop ClawHub Page](https://clawhub.ai/leostehlik/proof-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance, JSON verdict artifacts, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and checks repo-local proof artifacts under .agent/tasks/<TASK_ID>/ when its helpers are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and SKILL.md metadata) <br>
+Risk: The skill uses file and shell capabilities, and runtime permissions were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review its requested file and shell access, confirm the task ID and repository root, and run helper scripts with the least privilege available.
+
+Risk: The artifact checker cannot authenticate verifier independence or prove that recorded checks ran.
+
+Mitigation: Have a fresh verifier inspect the evidence and independently run the checks before accepting a PASS verdict.
+
+## Reference(s):
+
+- [Workflow](references/workflow.md)
+- [Brief Template](references/brief-template.md)
+- [Artifacts](references/artifacts.md)
+- [Loopsmith Bridge](references/loopsmith-bridge.md)
+- [ClawHub Skill Page](https://clawhub.ai/leostehlik/skills/proof-loop)
+- [Publisher Profile](https://clawhub.ai/user/leostehlik)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown task briefs and evidence, JSON verdicts, shell commands, and optional Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates repo-local proof artifacts for a specified task; the mechanical gate checks artifact consistency but does not authenticate verifier independence or evidence truth.]
+
+## Skill Version(s):
+
+0.3.3 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

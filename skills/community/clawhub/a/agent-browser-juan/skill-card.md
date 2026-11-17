@@ -1,41 +1,57 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[amorypaz1781](https://clawhub.ai/user/amorypaz1781) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amorypaz1781](https://clawhub.ai/user/amorypaz1781)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to control browser sessions, inspect page state, fill forms, collect structured page output, and debug web UI flows through the agent-browser CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad browser-control authority, including access to authenticated sessions and browser state. <br>
-Mitigation: Install only when the upstream agent-browser CLI is trusted and require confirmation before logging in, submitting forms, uploading files, changing accounts, using eval, CDP, or network interception, or saving and loading session state. <br>
-Risk: Saved state files, cookies, storage dumps, screenshots, PDFs, traces, and recordings can expose credentials or private data. <br>
-Mitigation: Treat generated browser artifacts as sensitive, keep them out of repositories, restrict access to them, and delete them when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/amorypaz1781/agent-browser-juan) <br>
-- [Skill Issue Repository](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
-- [Upstream agent-browser CLI Repository](https://github.com/vercel-labs/agent-browser) <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to automate browser navigation, interaction, form filling, UI testing, page snapshots, and structured data extraction through the agent-browser CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and npm; browser artifacts such as saved state, screenshots, PDFs, traces, and recordings may contain sensitive data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Browser automation can act on authenticated sessions, submit forms, change account state, intercept network traffic, and reuse stored sessions.
+
+Mitigation: Use isolated installations, scope each task to a specific site, avoid elevated privileges, and require confirmation before form submissions or account changes.
+
+Risk: Saved state, screenshots, PDFs, videos, traces, cookies, and storage dumps can expose sensitive data.
+
+Mitigation: Treat generated artifacts as secrets, store them only in restricted locations, and delete or redact them before sharing.
+
+Risk: Debug, JavaScript evaluation, upload, CDP, and network routing commands can alter page behavior or expose data.
+
+Mitigation: Review commands before execution, prefer pinned CLI versions, and use test accounts or sandboxed sites for untrusted workflows.
+
+## Reference(s):
+
+- [agent-browser upstream CLI repository](https://github.com/vercel-labs/agent-browser)
+- [Agent Browser Skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and optional JSON CLI output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can also create screenshots, PDFs, videos, traces, saved browser state, cookies, and storage dumps during browser automation.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

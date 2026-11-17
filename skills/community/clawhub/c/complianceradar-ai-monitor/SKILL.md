@@ -122,7 +122,7 @@ export FDA_API_KEY="your-fda-api-key"
 export GDPR_MONITOR_TOKEN="your-gdpr-monitor-token"
 
 # Slack webhook for notifications
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 
 # OpenAI GPT-4 for impact assessment
 export OPENAI_API_KEY="sk-..."

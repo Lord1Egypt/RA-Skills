@@ -1,44 +1,58 @@
-## Description: <br>
-TokenLens Token Value Optimizer helps OpenClaw users estimate token usage, review efficiency, and get context-loading and model-routing recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TokenLens Token Value Optimizer helps OpenClaw users review token usage, estimate efficiency, and generate recommendations for context loading, model routing, and session practices.
 
-## Publisher: <br>
-[samuellai118](https://clawhub.ai/user/samuellai118) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samuellai118](https://clawhub.ai/user/samuellai118)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect estimated token usage, receive optimization recommendations, and generate command-line guidance for reducing token waste while preserving task value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and updates token tracking files under ~/.openclaw/workspace/memory/tokenlens/. <br>
-Mitigation: Review that local workspace path before installation and back up or remove the generated files if they are no longer needed. <br>
-Risk: Token usage, cost, savings, and routing recommendations may be estimates rather than measurements from a verified data source. <br>
-Mitigation: Treat reported values as planning guidance and compare them with trusted provider or OpenClaw usage data before making operational decisions. <br>
-Risk: Apply mode prints OpenClaw configuration commands that could affect agent behavior if run manually. <br>
-Mitigation: Review each printed command and confirm it matches the intended configuration change before executing it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local token-use estimates, record historical usage, and receive practical recommendations for reducing unnecessary context and choosing model tiers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samuellai118/tokenlens-token-value-optimizer) <br>
-- [Publisher profile](https://clawhub.ai/user/samuellai118) <br>
-- [TokenLens homepage](https://tokenlens.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, optional JSON, Markdown guidance, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local token usage and configuration data under ~/.openclaw/workspace/memory/tokenlens/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter, changelog, server release evidence) <br>
+Risk: Token and cost values may be mock or historical estimates rather than live billing data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as directional guidance and verify important budget or routing decisions against authoritative provider or OpenClaw usage records.
+
+Risk: The skill stores token usage history and configuration locally under the OpenClaw workspace.
+
+Mitigation: Review the local data directory before use and only enable scheduled checks if ongoing local history collection is acceptable.
+
+Risk: Some recommendations describe commands or configuration changes that are not automatically applied by the skill.
+
+Mitigation: Review proposed commands manually and apply only the changes that match the user's workspace policy.
+
+## Reference(s):
+
+- [TokenLens homepage](https://tokenlens.ai)
+- [ClawHub skill page](https://clawhub.ai/samuellai118/skills/tokenlens-token-value-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance, with optional JSON from supported script commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local token usage and configuration data under ~/.openclaw/workspace/memory/tokenlens/; reported token and cost values may be mock or historical estimates.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

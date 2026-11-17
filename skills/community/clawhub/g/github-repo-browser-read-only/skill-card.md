@@ -1,46 +1,59 @@
-## Description: <br>
-Provides read-only GitHub repository browsing for agents, including repository listing, file and README inspection, code search, commit and branch review, and optional file or archive downloads to storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides read-only GitHub repository browsing for agents, including repository listing, file and README reading, code search, commit and branch inspection, and user-directed downloads to file storage.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect GitHub repositories they can access, gather code context, review documentation and commits, search code, and retrieve selected files or repository archives for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected GitHub token can expose private repositories available to that account. <br>
-Mitigation: Install only when read access to those repositories is intended, and keep requests scoped to the minimum repositories, paths, and refs needed for the task. <br>
-Risk: Download actions can copy private repository files or archives into AgentPMT-managed storage and return signed URLs. <br>
-Mitigation: Prefer read-only inspection actions such as get_file, get_readme, list_directory, and search_code; use download_to_storage or download_repo_to_storage only when copying repository content and sharing a signed URL is intentional. <br>
-Risk: External storage retention and access controls are not clearly documented in the evidence. <br>
-Mitigation: Avoid downloading sensitive source or secrets unless downstream storage handling, retention, and sharing expectations are acceptable. <br>
+## Use Case:
 
+Developers, engineers, and agents use this skill to inspect accessible public or connected private GitHub repositories, gather code context, audit files, and download selected files or archives for downstream analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/github-repo-browser-read-only) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/github-repo-browser-read-only) <br>
-- [Generated action schema](artifact/schema.md) <br>
-- [File Management related skill](https://clawhub.ai/agentpmt/file-management) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON, files] <br>
-**Output Format:** [Markdown instructions with JSON action examples and JSON tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some download actions return file identifiers and signed URLs for copied repository files or archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Connected GitHub access may expose private repository metadata or contents to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use fine-grained read-only GitHub access, scope repository access to the task, and avoid broad private-repository access unless needed.
+
+Risk: Download actions can place repository files or archives in external file storage and return sensitive signed URLs.
+
+Mitigation: Prefer read actions before download actions, download only necessary paths or refs, and treat returned signed URLs as sensitive.
+
+Risk: Setup commands or remote product schemas may change after the artifact freshness date.
+
+Mitigation: Before production use, refresh the skill or fetch the live schema and instructions through the documented AgentPMT lookup flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/github-repo-browser-read-only)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/github-repo-browser-read-only)
+- [Action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown instructions with JSON request examples and file outputs from download actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only repository queries can return text content, metadata, pagination details, or signed storage URLs for downloaded files and archives.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

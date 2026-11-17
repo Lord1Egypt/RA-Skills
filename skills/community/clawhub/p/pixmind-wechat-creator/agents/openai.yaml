@@ -1,0 +1,7 @@
+interface:
+  display_name: "Pixmind WeChat Creator"
+  short_description: "Create formatted WeChat articles for rich-text copy"
+  icon_small: "./assets/cover.png"
+  icon_large: "./assets/cover.png"
+  brand_color: "#087A60"
+  default_prompt: "Use $pixmind-wechat-creator to create, format, and prepare a WeChat Official Account article for rich-text copy."

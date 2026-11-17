@@ -1,48 +1,62 @@
-## Description: <br>
-Imports billing files, checks duplicates, queries transactions, shows summaries, records expenses or income, manages budgets, and runs these actions through a local bookkeeping CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent import bill attachments or local bookkeeping files, check duplicates, query transactions, view summaries, record individual income or expenses, manage budgets, and launch the local bookkeeping dashboard through the local bookkeeping CLI.
 
-## Publisher: <br>
-[lastarla](https://clawhub.ai/user/lastarla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lastarla](https://clawhub.ai/user/lastarla)
 
-## Use Case: <br>
-OpenClaw users use this skill to import local Alipay, WeChat, CSV, or XLSX billing files, inspect duplicate imports, query transaction history, view spending summaries, record individual income or expenses, manage budgets, and start a local dashboard when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes local financial files and can add or change bookkeeping records. <br>
-Mitigation: Install only when the external bookkeeping CLI is trusted, review inferred imports and natural-language entries, and confirm ambiguous or multi-file operations before execution. <br>
-Risk: A database reset can remove existing local bookkeeping data. <br>
-Mitigation: Require explicit confirmation before any reset action and clearly state the effect before running it. <br>
-Risk: Unsupported or misidentified attachments could lead to failed imports or incorrect bookkeeping actions. <br>
-Mitigation: Use original filenames or MIME metadata when available, limit supported imports to CSV and XLSX files, and ask the user to choose when multiple candidate files are present. <br>
+## Use Case:
 
+External users and developers use this skill to route personal bookkeeping requests to a local CLI for bill import, duplicate checks, transaction lookup, summaries, single-entry recording, budget checks, and dashboard startup.
 
-## Reference(s): <br>
-- [Bookkeeping Skill on ClawHub](https://clawhub.ai/lastarla/bookkeeping-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/lastarla) <br>
-- [Project Homepage](https://github.com/lastarla/bookkeeping-agent) <br>
-- [Bookkeeping Tool Source](https://github.com/lastarla/bookkeeping-tool.git) <br>
-- [Install](references/install.md) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with CLI command execution results summarized for the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers JSON output from the local CLI when available and summarizes transaction, import, duplicate, budget, and reminder results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill processes local bill attachments and updates a local financial database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts the local bookkeeping CLI and review imported files before allowing mutations.
+
+Risk: Reset, re-import, and batch attachment processing can change or remove financial records at larger scope.
+
+Mitigation: Require explicit confirmation for database reset, reset followed by re-import, and multi-attachment batch processing.
+
+Risk: Attachment files may be misidentified when inbound filenames do not preserve CSV or XLSX extensions.
+
+Mitigation: Use original attachment names or MIME metadata for type checks and ask the user to choose when multiple candidate bill files exist.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lastarla/skills/bookkeeping-agent)
+- [Bookkeeping Agent Repository](https://github.com/lastarla/bookkeeping-agent)
+- [Bookkeeping Tool Repository](https://github.com/lastarla/bookkeeping-tool.git)
+- [Install](references/install.md)
+- [Quickstart](references/quickstart.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with CLI-backed JSON result summaries when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local bookkeeping command on PATH; supported bill attachment inputs are CSV and XLSX.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

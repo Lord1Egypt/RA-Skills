@@ -1,42 +1,55 @@
-## Description: <br>
-Scrape quarterly anime lineups from https://yuc.wiki/ and output structured results for a specified or latest quarter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape quarterly anime lineups from https://yuc.wiki/ and output structured results for a specified or latest quarter.
 
-## Publisher: <br>
-[yjl9903](https://clawhub.ai/user/yjl9903) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GNU Affero General Public License v3.0 <br>
+## Publisher:
 
+[yjl9903](https://clawhub.ai/user/yjl9903)
 
-## Use Case: <br>
-Developers and content maintainers use this skill to retrieve seasonal anime lineup data from public yuc.wiki quarter pages and present it as structured results plus a concise airing table. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GNU Affero General Public License v3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public yuc.wiki pages and may write scraped JSON to a user-directed output path. <br>
-Mitigation: Run it only when public website access and the selected output destination are acceptable. <br>
-Risk: Website layout changes could reduce parsing accuracy or cause incomplete lineup extraction. <br>
-Mitigation: Review the generated table and JSON, and use the manual scrape guide or update selectors if count checks or output quality look suspicious. <br>
+## Use Case:
 
+Agents and developers use this skill to fetch a seasonal anime quarter from yuc.wiki, extract structured lineup data, and present a concise human-readable airing table grouped by schedule section.
 
-## Reference(s): <br>
-- [Yuc's Anime List on ClawHub](https://clawhub.ai/yjl9903/yuc) <br>
-- [yuc.wiki](https://yuc.wiki/) <br>
-- [Manual Scrape Guide](reference/manual_scrape.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [JSON plus a concise Markdown seasonal airing table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source quarter information, grouped titles, status or time, and episode notes; may write scraped JSON to a user-directed path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release metadata; artifact metadata version 2026.03.07) <br>
+Risk: The skill fetches public web pages and can write JSON to a user-specified output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep network access scoped to yuc.wiki and provide an output path only when file creation is intended.
+
+Risk: Changes to the yuc.wiki page layout can produce incomplete or suspicious scrape results.
+
+Mitigation: Use the built-in quarter title, empty item, deduplication, and count checks; switch to the manual scrape guide when selector drift is suspected.
+
+## Reference(s):
+
+- [Yuc Anime List](https://yuc.wiki/)
+- [Manual Scrape Guide](reference/manual_scrape.md)
+- [ClawHub Skill Page](https://clawhub.ai/yjl9903/skills/yuc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Structured JSON plus a concise Markdown airing table with source quarter information.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output includes quarter_code, quarter_title, source URL, grouped lineup items, status or time, episode notes, platform links, and optional file output when requested.]
+
+## Skill Version(s):
+
+0.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,65 @@
-## Description: <br>
-Guides agents in choosing between web_search, web_fetch, opencli, and browser workflows, including fallback handling, search API setup, login confirmation, and site reference lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through choosing web_search, web_fetch, opencli, or browser workflows, including fallback behavior, login handling, and search API configuration.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route web research tasks across search, fetch, structured CLI access, and browser automation while handling failures and credential setup explicitly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to install opencli, store API keys, and restart or kill browser and gateway processes. <br>
-Mitigation: Install only after reviewing the setup script and opencli source; use low-value API keys; do not let the agent read keys back into chat; confirm Chrome, gateway, Docker, or pkill restart commands before execution. <br>
-Risk: Browser and opencli workflows may access logged-in sessions or perform write actions on supported sites. <br>
-Mitigation: Require user authorization before login, posting, deletion, payment, follow, block, like, or other account-changing actions. <br>
+## Use Case:
 
+Developers and agents use this skill to plan web information retrieval, select the appropriate web tool, handle failures, and request user confirmation before login or sensitive browser actions.
 
-## Reference(s): <br>
-- [OpenCLI Guide](references/opencli-guide.md) <br>
-- [Web Search API Configuration](references/web-search-config.md) <br>
-- [Well-Known Sites Index](references/well-known-sites.json) <br>
-- [ClawHub Release Page](https://clawhub.ai/freeman88-tch/lobster-web-tools) <br>
-- [OpenCLI Releases](https://github.com/jackwener/opencli/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration steps, and JSON reference lookups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API key handling steps, opencli setup commands, and browser or gateway restart guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, release evidence, and skill frontmatter) <br>
+Risk: The setup flow can install a global npm package and download a browser extension from a GitHub release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and trust the opencli package and extension source before running the setup script, preferably in a non-sensitive environment.
+
+Risk: The configuration flow may involve API keys and persistent local configuration changes.
+
+Mitigation: Use secure local secret handling for API keys and avoid pasting credentials into chat.
+
+Risk: The setup script can restart browser or gateway processes and make persistent local changes.
+
+Mitigation: Run it only on machines where browser restart, gateway restart, and local configuration changes are acceptable.
+
+Risk: Browser or opencli workflows may involve login or sensitive write actions.
+
+Mitigation: Require explicit user confirmation before login, posting, deleting, payment, or other state-changing actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeman88-tch/skills/lobster-web-tools)
+- [OpenCLI Guide](artifact/references/opencli-guide.md)
+- [Web Search API Configuration](artifact/references/web-search-config.md)
+- [Well-Known Sites Index](artifact/references/well-known-sites.json)
+- [OpenCLI GitHub Releases](https://github.com/jackwener/opencli/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to read local reference files before continuing web-search configuration or fallback workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

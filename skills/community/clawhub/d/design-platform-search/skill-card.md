@@ -1,43 +1,59 @@
-## Description: <br>
-Runs login-free public design search flows on Dribbble, Pinterest, and Behance and normalizes result fields such as title, cover image, author, source URL, and publish time when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run public design search flows on Dribbble, Pinterest, and Behance without login, and extract normalized result fields such as title, search-page cover image, author, source URL, and publish time when available.
 
-## Publisher: <br>
-[joeyyyy0430](https://clawhub.ai/user/joeyyyy0430) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyyyy0430](https://clawhub.ai/user/joeyyyy0430)
 
-## Use Case: <br>
-Developers, designers, and design researchers use this skill to retrieve public inspiration results from Dribbble, Pinterest, and Behance without login and return normalized records for lightweight comparison or aggregation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public design platforms can change page structure, restrict regional access, or apply anti-bot controls, which may reduce retrieval quality. <br>
-Mitigation: Validate platform reachability before changing selectors, keep request volume modest, and reduce optional detail-page backfill in constrained or proxy-heavy environments. <br>
-Risk: Supplying cookies, logged-in sessions, or authenticated APIs would exceed the documented public-only workflow. <br>
-Mitigation: Use only public pages, avoid credentials and authenticated sessions, and leave unavailable fields nullable rather than fabricating data. <br>
-Risk: English tags are the reusable default but may miss locale-specific design results. <br>
-Mitigation: Override the English-tag default when the user's topic, locale, or language calls for non-English searches. <br>
+## Use Case:
 
+Developers and agents use this skill to collect public design inspiration from Dribbble, Pinterest, and Behance with a lightweight, search-page-first workflow. It is useful for trend observation, inspiration retrieval, and normalized public result aggregation without relying on accounts, cookies, or private data.
 
-## Reference(s): <br>
-- [Platform Methods](references/platform-methods.md) <br>
-- [Tag Guidance](references/tag-taxonomy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-shaped normalized result records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normalized public-only records keep unstable fields nullable and avoid fabricated authors, publish times, or engagement metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Browser automation and proxy use for public design pages can fail or produce partial results in restricted or unstable network environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify platform reachability first, reduce detail-page backfill when connections are unstable, and keep missing fields nullable instead of fabricating data.
+
+Risk: Public design platform pages can change DOM structure or expose inconsistent author, publish time, or metrics fields.
+
+Mitigation: Prefer search-page fields, treat missing metadata as normal, and review selectors before relying on outputs in downstream workflows.
+
+Risk: Using public third-party platform data may create compliance concerns if private, authenticated, or high-resolution assets are collected.
+
+Mitigation: Keep collection limited to public pages, avoid login-only APIs, cookies, authenticated sessions, and unnecessary high-resolution image enrichment.
+
+## Reference(s):
+
+- [Platform Methods](references/platform-methods.md)
+- [Tag Guidance](references/tag-taxonomy.md)
+- [ClawHub Skill Page](https://clawhub.ai/joeyyyy0430/skills/design-platform-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON record shape, public search URLs, selector notes, and network troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normalized public result records may include nullable fields for missing authors, publish times, metrics, or unstable platform data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

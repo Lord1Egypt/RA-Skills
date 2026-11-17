@@ -1,39 +1,55 @@
-## Description: <br>
-Audits and optimizes token consumption in AI agent projects with a four-layer diagnostic framework, a six-step optimization SOP, and an automated token audit script. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Use Optimizer helps agents audit and reduce token overhead in AI-agent projects using a four-layer diagnostic workflow for rules, memory, knowledge, and runtime behavior plus a local audit script.
 
-## Publisher: <br>
-[louisecxqiu-glitch](https://clawhub.ai/user/louisecxqiu-glitch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[louisecxqiu-glitch](https://clawhub.ai/user/louisecxqiu-glitch)
 
-## Use Case: <br>
-Developers and engineers maintaining AI agent projects use this skill to baseline fixed context overhead, identify high-ROI rules, memory, knowledge, and runtime changes, and reduce token costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags the release for review because a bundled helper may grant broad local authority when run in permissive modes. <br>
-Mitigation: Install only if the publisher is trusted, review commands before execution, and prefer normal sandbox or no-yolo options for any nested review helper. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to establish a token-cost baseline, diagnose always-on context overhead, and plan scoped reductions to rules, memory, knowledge files, and runtime behavior.
 
-## Reference(s): <br>
-- [Token Optimization Strategies](references/optimization-strategies.md) <br>
-- [Token Optimization Real-World Cases](references/real-world-cases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON audit output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to rules, memory, knowledge routing, and runtime practices for token reduction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Optimization advice may recommend deleting, merging, or downgrading rules, memory, or knowledge entries that still affect desired agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes before applying them, keep a baseline for comparison, and verify requestable triggers after any rule downgrade.
+
+Risk: The audit script reads local agent project configuration and knowledge files to estimate token overhead.
+
+Mitigation: Run it only against intended local project directories and review generated reports before sharing them outside the project.
+
+## Reference(s):
+
+- [Optimization Strategies](references/optimization-strategies.md)
+- [Real-World Cases](references/real-world-cases.md)
+- [ClawHub Skill Page](https://clawhub.ai/louisecxqiu-glitch/skills/token-use-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from the audit script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled audit script estimates fixed token overhead from local project files and can emit a JSON report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

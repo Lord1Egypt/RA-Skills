@@ -1,41 +1,59 @@
-## Description: <br>
-Public holidays for 100+ countries - look up by year, check if today is a holiday, or find the next upcoming ones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public holidays for 100+ countries, including yearly lookups, checks for whether today is a holiday, and next upcoming holidays.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to look up public holidays by country and year, check whether today is a holiday, and find upcoming holidays for scheduling, travel planning, payroll, and HR workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Holiday queries are sent to the Pipeworx remote MCP gateway. <br>
-Mitigation: Use this skill for non-sensitive public holiday lookups and avoid sending confidential scheduling context unless the remote service is approved for that use. <br>
-Risk: The setup example uses an unpinned mcp-remote@latest dependency. <br>
-Mitigation: Pin the mcp-remote version in environments that require reproducible installs. <br>
+## Use Case:
 
+Developers and operational teams use this skill to account for country-specific public holidays in scheduling, travel planning, payroll, and HR workflows.
 
-## Reference(s): <br>
-- [Pipeworx Holidays](https://pipeworx.io/packs/holidays) <br>
-- [Pipeworx Holidays MCP Gateway](https://gateway.pipeworx.io/holidays/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON and bash examples; tool responses include holiday dates, names, local names, and fixed-or-floating status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented API example and uses the Pipeworx remote MCP gateway for tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The setup runs a mutable npm MCP bridge locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version before installation and review updates before changing the pinned version.
+
+Risk: Holiday lookup requests are sent to a remote holiday service.
+
+Mitigation: Use the skill only where that remote service is acceptable, and avoid including sensitive data in holiday lookup requests.
+
+Risk: The locally executed bridge may have access to more filesystem or environment data than the task needs.
+
+Mitigation: Run the skill with limited filesystem and environment access.
+
+## Reference(s):
+
+- [Pipeworx holidays ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-holidays)
+- [Pipeworx holidays homepage](https://pipeworx.io/packs/holidays)
+- [Pipeworx holidays MCP endpoint](https://gateway.pipeworx.io/holidays/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration]
+
+**Output Format:** [Holiday lookup results as text or JSON, with MCP setup configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a remote holiday service; setup uses a locally executed npm MCP bridge.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

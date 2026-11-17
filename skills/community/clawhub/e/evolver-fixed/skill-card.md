@@ -1,42 +1,61 @@
-## Description: <br>
-A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution.
 
-## Publisher: <br>
-[oliver-smith-2048](https://clawhub.ai/user/oliver-smith-2048) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oliver-smith-2048](https://clawhub.ai/user/oliver-smith-2048)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect runtime history, generate protocol-bound evolution prompts, track reusable genes and capsules, and guide repair or hardening cycles for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic code changes, source mutation, and rollback behavior may affect the workspace unexpectedly. <br>
-Mitigation: Use a disposable or tightly controlled workspace, enable review mode, and avoid loop mode until the behavior is understood. <br>
-Risk: Remote task intake, telemetry, and credential-backed GitHub or Hub features increase exposure if broadly enabled. <br>
-Mitigation: Disable Hub and worker features unless needed, review .env values, and avoid broad GitHub tokens in the environment. <br>
+## Use Case:
 
+Developers and agent operators use Evolver to analyze agent runtime history, generate protocol-constrained improvement guidance, and maintain auditable evolution assets for repair and optimization workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/oliver-smith-2048/evolver-fixed) <br>
-- [EvoMap Hub](https://evomap.ai) <br>
-- [EvoMap wiki](https://evomap.ai/wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text output with inline shell commands, generated prompts, JSON-backed evolution assets, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run offline for core prompt generation; network, worker, issue reporting, and release features depend on environment configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.41.0 (source: server release metadata) <br>
+Risk: The security evidence flags broad autonomous code-changing authority combined with remote inputs, telemetry, auto-updates, and background execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a disposable or tightly controlled workspace, use review mode, disable Hub networking unless required, avoid ambient GitHub tokens, disable auto-update, and avoid loop or lifecycle modes until the behavior is audited.
+
+Risk: Network features can use Hub credentials, GitHub tokens, and optional remote memory graph credentials.
+
+Mitigation: Provide only the credentials required for the current run, keep GitHub tokens out of the environment unless release or issue reporting is needed, and disable optional network integrations by default.
+
+Risk: Artifact metadata allows writes under workspace assets, memory, and source paths, with self-modification controlled by configuration.
+
+Mitigation: Keep self-modification disabled, review generated changes before applying them, and run with version control so workspace changes can be inspected and rolled back.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/oliver-smith-2048/skills/evolver-fixed)
+- [EvoMap Hub](https://evomap.ai)
+- [EvoMap Documentation](https://evomap.ai/wiki)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit protocol-bound prompts, configuration guidance, evolution records, and reviewable code-oriented suggestions depending on runtime mode.]
+
+## Skill Version(s):
+
+1.41.0 (source: server release evidence; artifact package.json reports 1.39.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

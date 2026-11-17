@@ -92,7 +92,7 @@ Say "**texto**" in your message and it will reply with text instead of audio.
 For **smarter AI responses**, set your Claude API key:
 
 ```bash
-export ANTHROPIC_API_KEY="sk-proj-your-api-key-here"
+export ANTHROPIC_API_KEY="REDACTED-SECRET"
 ```
 
 Then restart OpenClaw:

@@ -1,43 +1,53 @@
-## Description: <br>
-Provides common Pugoing central-control platform API calls for querying areas, hosts, and devices, and for controlling devices with natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides common Pugoing central-control platform API calls for querying areas, hosts, and devices, and for controlling devices with natural language.
 
-## Publisher: <br>
-[run02](https://clawhub.ai/user/run02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[run02](https://clawhub.ai/user/run02)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent call common Pugoing platform endpoints for area, host, and device discovery, then prepare or execute device-control requests through the bundled Python client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The client can send the configured API key to arbitrary URLs if a request spec uses the full-url option. <br>
-Mitigation: Prefer relative path specs, point PUGOING_BASE_URL only at a trusted Pugoing server, and avoid user-supplied full URLs. <br>
-Risk: Device-control endpoints can trigger real-world actions without clear safeguards. <br>
-Mitigation: Require confirmation of host, device, and intended action before allowing control commands. <br>
-Risk: PUGOING_API_KEY is a secret used for authenticated platform calls. <br>
-Mitigation: Store the key in the environment, keep request specs under user control, and avoid logging or sharing secret-bearing headers. <br>
+## Use Case:
 
+Developers and agents use this skill to call common Pugoing smart-control APIs for area, host, and device discovery and natural-language device control.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/run02/pugoing-smart) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/run02) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request or response objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON request specs passed by file or stdin; API responses may be JSON, text, or event-stream text collected into JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill exposes an authenticated HTTP client that can leak the Pugoing API key if directed to untrusted destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly scoped Pugoing API key, avoid supplying full URLs or custom destinations, and prefer HTTPS except for trusted local loopback testing.
+
+Risk: Natural-language control calls can affect physical devices.
+
+Mitigation: Require explicit user confirmation before commands that change device state.
+
+## Reference(s):
+
+- [Pugoing Smart ClawHub release page](https://clawhub.ai/run02/skills/pugoing-smart)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PUGOING_API_KEY and optional PUGOING_BASE_URL and PUGOING_TIMEOUT environment variables.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

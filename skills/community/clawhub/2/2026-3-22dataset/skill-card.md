@@ -1,44 +1,58 @@
-## Description: <br>
-Use for RAGFlow dataset tasks: create, list, inspect, update, or delete datasets; upload, list, update, or delete documents; start or stop parsing; check parse status; retrieve chunks with `search.py`; and list configured models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents manage RAGFlow datasets and documents, start or stop parsing, check parse status, run retrieval searches, and list configured models.
 
-## Publisher: <br>
-[redredrrred](https://clawhub.ai/user/redredrrred) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redredrrred](https://clawhub.ai/user/redredrrred)
 
-## Use Case: <br>
-Developers and operators use this skill to manage RAGFlow datasets and documents, run parsing workflows, inspect parse status, list available models, and retrieve chunks from configured datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete remote RAGFlow datasets and documents. <br>
-Mitigation: Use a least-privilege RAGFlow API key and require exact dataset or document IDs plus explicit confirmation before delete or bulk update operations. <br>
-Risk: The skill uploads local files to the configured RAGFlow server. <br>
-Mitigation: Set RAGFLOW_API_URL only to the intended server and upload sensitive files only after user approval. <br>
-Risk: Parsing operations may run asynchronously and return before processing completes. <br>
-Mitigation: Use parse status checks and surface returned progress or failure messages exactly. <br>
+## Use Case:
 
+Developers and operators use this skill to manage RAGFlow datasets, documents, parsing workflows, retrieval queries, and model listings from an agent session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/redredrrred/2026-3-22dataset) <br>
-- [Publisher profile](https://clawhub.ai/user/redredrrred) <br>
-- [Output Format Reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON returned from bundled command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers --json for exact API fields; requires RAGFLOW_API_URL and RAGFLOW_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: API keys and uploaded documents may be sent to an untrusted or non-HTTPS RAGFlow endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS or a loopback development URL, trust the configured endpoint, and use a narrowly scoped RAGFlow API key.
+
+Risk: Uploaded files may contain sensitive content that is transmitted to the configured RAGFlow service.
+
+Mitigation: Avoid uploading sensitive files unless the endpoint and network path are trusted.
+
+Risk: Dataset and document delete actions can remove content when explicit IDs are supplied.
+
+Mitigation: List the exact datasets or documents first and require explicit user confirmation before deletion.
+
+## Reference(s):
+
+- [Output Format Reference](artifact/reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/redredrrred/skills/2026-3-22dataset)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and JSON blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May relay exact RAGFlow API fields, messages, and errors returned by the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

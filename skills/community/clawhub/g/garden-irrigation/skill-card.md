@@ -1,44 +1,60 @@
-## Description: <br>
-Smart garden irrigation that reads Tuya soil sensors, checks recent and forecast weather, decides whether each zone should be watered, and can generate bilingual irrigation reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart garden irrigation reads soil sensors, checks weather, and decides when and how long to water each configured zone.
 
-## Publisher: <br>
-[bowlderstudio](https://clawhub.ai/user/bowlderstudio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bowlderstudio](https://clawhub.ai/user/bowlderstudio)
 
-## Use Case: <br>
-External users and garden operators use this skill to assess soil moisture, weather, and recent watering history, then produce irrigation recommendations or run configured watering actions for greenhouse and outdoor zones. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can open physical irrigation valves without confirmation when full automation is enabled. <br>
-Mitigation: Set automation.require_confirmation to true or use scripts/run_with_confirmation.py until valve IDs, sensor IDs, and watering durations have been verified. <br>
-Risk: Operational reports can be sent externally when bot reporting is enabled. <br>
-Mitigation: Disable bot reporting unless needed, and carefully verify bot_account_id and bot_target before enabling report delivery. <br>
-Risk: Tuya credentials grant device-control capability and local parent config overrides can affect runtime behavior. <br>
-Mitigation: Provide Tuya credentials only in intended deployments and ensure the parent ../config directory is not writable by untrusted processes. <br>
+## Use Case:
 
+External users, developers, and garden operators use this skill to generate irrigation reports, review soil and weather conditions, and optionally run Tuya-connected watering valves for greenhouse or outdoor garden zones.
 
-## Reference(s): <br>
-- [Garden Irrigation ClawHub page](https://clawhub.ai/bowlderstudio/garden-irrigation) <br>
-- [tuya-cloud dependency](https://clawhub.ai/minshi-veyt/tuya-cloud) <br>
-- [Tuya OpenAPI endpoint configured by the skill](https://openapi.tuyaeu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown irrigation reports, JSONL history files, console status text, and optional message-send instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may actuate Tuya irrigation valves and optionally send reports through an OpenClaw or Telegram bot when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can control real irrigation hardware automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use report-only mode or confirmation mode until valve IDs, countdown behavior, and zone limits are verified on the actual hardware.
+
+Risk: Configured daily and minimum-interval safety limits may not be enforced consistently in all actuation paths.
+
+Mitigation: Do not rely on those limits as the only protection; keep automation disabled or externally supervised until enforcement is reviewed.
+
+Risk: Notifications can send irrigation reports to an external bot destination when enabled.
+
+Mitigation: Disable report sending unless needed and verify bot account and target settings before use.
+
+## Reference(s):
+
+- [Garden Irrigation ClawHub Skill](https://clawhub.ai/bowlderstudio/skills/garden-irrigation)
+- [tuya-cloud dependency](https://clawhub.ai/minshi-veyt/tuya-cloud)
+- [Tuya API endpoint used by configuration](https://openapi.tuyaeu.com)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown irrigation report with plain-text command output and JSONL history files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open configured Tuya irrigation valves when automation is enabled; requires Tuya credentials, device IDs, zone configuration, and network access.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

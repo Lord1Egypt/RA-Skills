@@ -1,45 +1,61 @@
-## Description: <br>
-Feishu (Feishu) integration for sending messages, managing groups, and automating workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu integration for sending messages, creating and managing chat groups, listing accessible chats, and automating Feishu workflows.
 
-## Publisher: <br>
-[lukaizj](https://clawhub.ai/user/lukaizj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukaizj](https://clawhub.ai/user/lukaizj)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent send Feishu text or card messages, create group chats, list accessible chats, and assist with Feishu workflow automation after app credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Feishu app credentials. <br>
-Mitigation: Use a least-privilege Feishu app, store credentials only in environment variables, and treat app secrets and token output as sensitive. <br>
-Risk: The skill can send messages and create chats in an external Feishu workspace. <br>
-Mitigation: Require explicit user confirmation before sending messages or creating chats, and grant only the Feishu permissions needed for the intended workflow. <br>
-Risk: The callable token-retrieval tool can expose token information. <br>
-Mitigation: Remove or disable feishu_get_token unless a non-sensitive authentication health check is sufficient. <br>
+## Use Case:
 
+Developers and workflow operators use this skill to let an agent send Feishu text or card messages, create group chats, list accessible chats, and retrieve Feishu tenant token status after configuring Feishu app credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lukaizj/lukaizj-feishu) <br>
-- [ClawHub metadata homepage](https://github.com/lukaizj/feishu-integration-skill) <br>
-- [Feishu developer console](https://open.feishu.cn/) <br>
-- [Feishu Open API endpoint](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance and JSON-like tool result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET; may perform external Feishu messaging and chat-management actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact/claw.json) <br>
+Risk: The configured Feishu app can send messages and create or list chats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant the narrowest Feishu permissions needed for the intended workflow and restrict the app to approved chats.
+
+Risk: The token helper exposes part of a tenant access token.
+
+Mitigation: Remove or disable the feishu_get_token capability before production use and avoid logging or sharing token output.
+
+Risk: Messages sent through the skill may contain sensitive content.
+
+Mitigation: Avoid sending secrets or regulated data through the tool unless the Feishu workspace and workflow are approved for that data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lukaizj/skills/lukaizj-feishu)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/lukaizj)
+- [Project Homepage](https://github.com/lukaizj/feishu-integration-skill)
+- [Feishu Developer Console](https://open.feishu.cn/)
+- [Feishu Open API](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Guidance]
+
+**Output Format:** [JSON-like tool result objects and Feishu text or interactive card messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FEISHU_APP_ID and FEISHU_APP_SECRET; optionally uses FEISHU_VERIFY_TOKEN for callbacks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

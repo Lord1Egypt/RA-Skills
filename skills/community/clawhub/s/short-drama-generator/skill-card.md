@@ -1,41 +1,50 @@
-## Description: <br>
-Short Drama Generator creates multi-genre short drama drafts with character settings, plot outlines, dialogue scripts, and six-panel storyboard prompts for short-video content creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Short Drama Generator helps Chinese-language creators generate short-drama concepts, character profiles, plot outlines, dialogue scripts, and six-panel storyboard prompts.
 
-## Publisher: <br>
-[xxxholiczzz](https://clawhub.ai/user/xxxholiczzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xxxholiczzz](https://clawhub.ai/user/xxxholiczzz)
 
-## Use Case: <br>
-External short-video creators, individual creators, and short-drama studios use this skill to develop marketable short drama concepts and draft episode scripts, character notes, dialogue, and storyboard prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reported no suspicious behavior, but its summary says the review did not have a full artifact-backed inspection signal. <br>
-Mitigation: Review the listed skill files and ClawHub metadata before installation, as recommended by the scan guidance. <br>
-Risk: Generated scripts, market suggestions, dialogue, and storyboard prompts may be unsuitable, inaccurate, or misaligned with platform policies. <br>
-Mitigation: Review and edit all creative outputs before using them in production or publishing them on short-video platforms. <br>
+## Use Case:
 
+External creators, short-drama studios, and short-video entrepreneurs use this skill to draft Chinese-language short-drama packages, including genre ideas, hooks, reversals, dialogue, and storyboard prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xxxholiczzz/short-drama-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/xxxholiczzz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or text drafts containing genre recommendations, character settings, plot outlines, dialogue, and storyboard prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are creative drafts and prompt suggestions intended for human review before production or publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/SKILL.md) <br>
+Risk: Generated plots, scripts, and storyboard prompts may conflict with platform rules, originality expectations, or copyright constraints before publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated content for platform compliance, originality, and copyright before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xxxholiczzz/skills/short-drama-generator)
+- [Publisher profile](https://clawhub.ai/user/xxxholiczzz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured prose for short-drama planning, scripts, and storyboard prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or hidden system behavior was identified in the release security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

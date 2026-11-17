@@ -1,0 +1,1247 @@
+"""Risk dossier: aggregate a vet engine's Findings into a 5-axis ``VetProfile``.
+
+``--vet`` used to emit a flat "is this malicious?" verdict. The dossier reframes the
+*same* signals into five axes that answer, together, "how risky is this to install?":
+
+    danger       - how dangerous it is to use (active malice, known-bad).  FLOOR axis.
+    build        - how it is built (least-privilege, pinning, authoring hygiene).
+    behavior     - how it thinks / behaves (override, jailbreak, forged provenance).
+    persistence  - what it stores for the future (dormant / staged code, install hooks).
+    connections  - whom it connects with (outbound surface, exfil channels).
+
+This module is a pure *aggregation + grading* layer. It does NOT scan: the four vet
+engines (``vet_skill`` / ``vet_plugin`` / ``vet_mcp`` / ``vet_source`` in ``the checks engine``)
+stay the signal producers. ``build_profile`` reads their existing ``Finding`` output plus
+the ``ctx`` they attach, buckets each finding to an axis using the catalog's own AST /
+surface metadata (no per-finding hand-wiring), and rolls the axes up to an A-F grade via
+``scoring.grade_for`` - never touching ``scoring.compute`` / ``FAIL_CAPS``.
+
+Honesty rules (project law §2.4 / §5):
+  * An axis a target type *structurally cannot* produce is ``N/A`` - excluded from the
+    grade denominator, never a fabricated PASS/FAIL (e.g. an MCP server spec has no
+    dormant code -> ``persistence`` = N/A; ``vet_source`` never fetches -> every axis but
+    ``danger`` = N/A).
+  * An axis with a producer but no measurable input is ``UNKNOWN`` (e.g. a skill with no
+    Python -> ``connections`` / ``persistence`` cannot be measured) - distinct from PASS.
+  * ``danger == FAIL`` floors the overall grade to F regardless of the other axes.
+"""
+from __future__ import annotations
+
+import ast
+
+from dataclasses import dataclass, field
+from dataclasses import replace as dc_replace
+
+from . import pathprobe
+from .catalog import (
+    BY_ID, FAIL, FAIL_WEIGHT_STATUSES, PASS, UNKNOWN, WARN, ast_for,
+)
+
+from .scoring import grade_for
+from .skillast import analyze_javascript, analyze_shell, capability_families
+
+#: B-755: 'a definite verdict of any kind'. Derived, so a status added to the FAIL cascade
+#: counts as an assessment without an edit here.
+_ASSESSED_STATUSES = frozenset({PASS, WARN}) | FAIL_WEIGHT_STATUSES
+
+# Fifth status, local to the dossier (catalog has no "not applicable" concept).
+NA = "N/A"
+
+# Fixed render / iteration order.
+AXES: tuple[str, ...] = ("danger", "build", "behavior", "persistence", "connections")
+
+# B-616: the axes whose "nothing fired" PASS is evidence read FROM PROSE - the content
+# ring's own text blob (SKILL.md + bundled docs), which is exactly what a file decoded
+# under `_decode_ladder`'s assumed rung was never reliably converted into characters at
+# all. `connections`/`persistence` are excluded: their "no signal" already resolves via
+# `code_measurable` (AST/capability reads, not the prose blob), and widening this to them
+# would claim an encoding problem grounds a code-analysis gap it never touched.
+_PROSE_AXES: tuple[str, ...] = ("danger", "build", "behavior")
+AXIS_LABEL: dict[str, str] = {
+    "danger": "Danger",
+    "build": "Build quality",
+    "behavior": "Behavior",
+    "persistence": "Persistence",
+    "connections": "Connections",
+}
+
+# Overall verdict word, keyed by overall_status (mirrors report._VET_VERDICT). Used ONLY
+# by the --full pipeline's own analyst-facing surfaces (the Inventory subject block, the
+# plugin sweep) -- those are a different feature from Mode C ("before you install") and
+# are unaffected by C427; kept for that reason.
+VERDICT_WORD: dict[str, str] = {
+    FAIL: "DANGEROUS",
+    WARN: "SUSPICIOUS",
+    PASS: "NO KNOWN ISSUE",
+    UNKNOWN: "UNKNOWN",
+}
+
+# C427: Mode C's own vocabulary -- unifies what --vet/--vet-plugin/--vet-mcp/--vet-source/
+# --vet-all/--advise all say. --advise shipped this vocabulary first (F-067); Mode C's
+# text dossier previously spoke VERDICT_WORD above PLUS an A-F letter -- both are retired
+# from every Mode C rendered surface in favor of this one.
+_MODE_C_VERDICT: dict[str, str] = {
+    FAIL: "DO-NOT-INSTALL",
+    WARN: "CAUTION",
+    PASS: "INSTALL",
+    UNKNOWN: "CAUTION",
+}
+
+
+def verdict_for(overall_status: str, *, not_applicable: bool = False) -> str:
+    """Map a VetProfile's `overall_status` to Mode C's install-recommendation word.
+
+    `overall_status` is itself the categorical rollup `_grade_profile` derives from the
+    same axis pass that produces the (now internal-only) numeric score/grade -- a Danger
+    FAIL floors score to 0/F, a non-danger FAIL or a Danger-axis coverage gap caps score
+    at 79/C, any remaining WARN caps at 89/B, and an all-clean profile scores 100/A -- so
+    this only has to translate the category, not re-derive a threshold on the raw number:
+
+        FAIL    -> DO-NOT-INSTALL  (a real known-bad or floored/capped failure)
+        WARN    -> CAUTION         (a real caveat somewhere -- never "A"-equivalent)
+        PASS    -> INSTALL         (nothing found across every assessable axis)
+        UNKNOWN -> CAUTION         (not assessable -- never presented as a green light)
+
+    *not_applicable* (B-764) overrides all of the above to `NA` ("N/A"),
+    reusing the exact word already used for an inapplicable AXIS (see `NA` above) rather
+    than inventing a second "nothing here" vocabulary. This is for a target that
+    genuinely has NOTHING to assess -- `--vet-mcp` over zero configured servers being
+    the motivating case: the underlying `Finding` already carries `not_applicable=True`
+    (it can only be `True` when `status == UNKNOWN`, per `Finding.__post_init__`), but
+    before this parameter existed that fact never reached this function, so an empty MCP
+    server set rendered `CAUTION` -- "there is something to be cautious about" -- when
+    the honest answer is "there is nothing here to assess". `build_profile` is the only
+    caller that ever passes `True`; the cli.py re-vet-on-change call site, which asks a
+    genuine "could not determine" question with real content present, always leaves this
+    at its default and keeps reading CAUTION for UNKNOWN, correctly.
+
+    This is the ONE place that mapping is made: the text dossier, --json, --advise, and
+    SARIF's vetProfile all read `VetProfile.verdict` (computed once, in `build_profile`,
+    via this function) rather than keeping their own copy -- so they cannot disagree.
+    Any status this dict doesn't recognize (defensive only -- `_grade_profile` never
+    returns one) also reads CAUTION, the conservative default.
+    """
+    if not_applicable:
+        return NA
+    return _MODE_C_VERDICT.get(overall_status, "CAUTION")
+
+# -- Finding -> axis bucketing --------------------------------------------------
+# Step 1: explicit id overrides - for findings whose AST class is ambiguous across
+# axes, or which are synthetic verdict ids carrying no catalog metadata. A value of
+# None marks a synthetic aggregate handled specially (container decomposition / per-
+# reason routing), never bucketed as itself.
+_AXIS_BY_ID: dict[str, str | None] = {
+    "B13": "danger",  # malware verdict (AST01 and AST02) - danger dominates
+    "B90": "danger",  # reassembled split base64 payload = active malicious code
+    "B89": "persistence",  # dormant / unreachable-yet-code-bearing = staged
+    "B86": "persistence",  # writable import path = staging / tamper surface
+    "B87": "persistence",  # symlink escape to a sensitive path = staged exfil primitive
+    # F-177: the fourth, genuinely-new persistence feeder the B-613 comment on B335
+    # below was a stopgap for - B375 is the AST/function-scope-backed sitecustomize/
+    # PYTHONSTARTUP install detector, so it routes here directly like B86/B87/B89
+    # rather than through a dual-axis special case.
+    "B375": "persistence",
+    "B62": "build",  # capability over-grant = a build-quality / least-privilege defect
+    "B59": "connections",  # markdown-image data-exfil = outbound channel
+    "B338": "connections",  # covert tunnel / mesh-VPN enrollment = outbound channel (E-065)
+    "B339": None,  # cloud IMDS credential fetch - dual-axis via axis_reasons (E-065/C-322)
+    # B-613: B335 (runtime-computed sitecustomize/usercustomize/PYTHONSTARTUP
+    # auto-execution persistence install) was surface-routed to "build" only - its own
+    # finding text says "persistence install", so the Persistence axis silently read an
+    # empty bucket and printed "no dormant or staged code detected" over the same file
+    # Build quality WARNs on. Dual-axis like B339, but B335's producer (checks/_content.py)
+    # never populates .axis_reasons, so it cannot go through _route_axis_reasons - routed
+    # to None here and bucketed into BOTH "build" and "persistence" directly at the call
+    # site below.
+    "B335": None,
+    "SOURCE-VET": "danger",  # reputation gate is a pure danger/identity verdict
+    # F-148: the content ring was cut short by the scan budget, so part of the skill was
+    # never assessed. Mapped to danger deliberately - the ring feeds several axes, but
+    # danger is the only one carrying a coverage-gap lever (_danger_coverage_gap /
+    # _COVERAGE_GAP_DANGER_CAP), and under-reporting an unscanned skill is the failure
+    # this exists to prevent. Unmapped, it would land in `unmapped`, which is cosmetic
+    # and never reaches _grade_profile - a truncated scan would keep grading A.
+    "VET-COVERAGE": "danger",
+    # B-485 (R1): a single content-ring check crashed on one file/skill and was skipped
+    # - `checks/_vet.py::_run_content_ring`'s bare `except Exception`. Routed to danger
+    # for the same coverage-gap-lever reason as VET-COVERAGE just above, but kept as a
+    # DISTINCT id on purpose: `build_profile`'s `scan_truncated` flag (guards "no
+    # dormant/staged code" on persistence/connections) keys specifically on the
+    # `VET-COVERAGE` id, because C-135 already found keying that flag on
+    # `engine_degraded` alone was too WIDE (B13's own per-file parse error, on a scan
+    # that otherwise completed, wrongly read as "the scan was cut short" - see the block
+    # above `scan_truncated`'s definition). One ring check crashing on one file is the
+    # same shape as that already-rejected case: other checks and other files were still
+    # read, so persistence/connections must not read "cut short" over a check that never
+    # fed them to begin with - only danger, which this check actually failed to answer
+    # for. Sharing the `VET-COVERAGE` id would silently re-widen `scan_truncated`; kept
+    # separate so it can't.
+    "VET-RING-CHECK-ERROR": "danger",
+    "PLUGIN-VET": None,  # container aggregate - decomposed into its sub-findings
+    "MCP-VET": None,  # multi-reason verdict - routed per-reason via axis_reasons
+    # C-255: pre-install prose-attestation findings (adjudication.py) - a declared-
+    # purpose mismatch, an injected/manipulative instruction, or an attempt to talk
+    # the reviewing agent into trusting the skill are all manipulation/override
+    # concerns, the same category AST05 (behavior) already covers.
+    "ATTEST-PROSE-MISMATCH": "behavior",
+    "ATTEST-PROSE-INJECTION": "behavior",
+    "ATTEST-PROSE-SOCIAL-ENG": "behavior",
+}
+
+# Step 2: AST class -> axis (the grounded default; ast_for() at catalog.py).
+_AXIS_BY_AST: dict[str, str] = {
+    "AST01": "danger",  # Malicious Skills
+    "AST02": "build",  # Supply Chain Compromise (pinning / integrity)
+    "AST03": "build",  # Over-Privileged (least-privilege is a build property)
+    "AST04": "build",  # Insecure Metadata (authoring hygiene)
+    "AST05": "behavior",  # Untrusted External Instructions (override / jailbreak)
+    "AST06": "build",  # Weak Isolation
+    "AST07": "build",  # Update Drift
+    "AST08": "build",  # Poor Scanning
+    "AST09": "build",  # No Governance
+    "AST10": "build",  # Cross-Platform Reuse
+}
+
+# When a finding maps to several axes, the most-severe axis wins (deterministic).
+_AXIS_PRECEDENCE: tuple[str, ...] = ("danger", "behavior", "persistence", "connections", "build")
+
+# Step 3: surface fallback for the rare CATALOG finding with no AST tag.
+_SURFACE_AXIS: dict[str, str] = {
+    "secrets": "connections",
+    "monitoring": "connections",
+    "channels": "connections",
+    "sessions": "connections",
+    "skills": "build",
+    "mcp": "build",
+    "update": "build",
+    "tools": "build",
+    "agents": "build",
+    "gateway": "build",
+    "host": "build",
+    "hooks": "persistence",
+    "bootstrap": "behavior",
+}
+
+# Per-type axis applicability. False -> the axis is N/A for that target type (structurally
+# cannot be produced), excluded from the grade denominator.
+_AXIS_APPLICABILITY: dict[str, dict[str, bool]] = {
+    "skill": {a: True for a in AXES},
+    "plugin": {a: True for a in AXES},
+    # An MCP server spec is a live connection, not on-disk content - it stores no
+    # dormant/staged code.
+    "mcp": {**{a: True for a in AXES}, "persistence": False},
+    # A source reputation gate never fetches the artifact - only its identity (danger)
+    # is assessable; build/behavior/persistence/connections of unseen code are not.
+    "source": {"danger": True, "build": False, "behavior": False,
+               "persistence": False, "connections": False},
+}
+
+# B-160: "SKILL_ARCHIVE_PATH_TRAVERSAL" is a real third status the checks engine emits
+# for B13 (report.py / scoring.py deliberately exclude it from the *scored* audit, same
+# as UNKNOWN - see scoring.compute). But it is a confirmed known-bad signal (zip-slip),
+# not an honesty exclusion, so the --vet danger axis must rank/grade it like FAIL -
+# otherwise _worst() picks it as low as PASS and _grade_profile drops it from `scorable`
+# entirely, letting a detected archive path-traversal attack render as A/SAFE.
+_STATUS_RANK: dict[str, int] = {
+    FAIL: 3, "SKILL_ARCHIVE_PATH_TRAVERSAL": 3, WARN: 2, UNKNOWN: 1, PASS: 0,
+}
+# Overall-grade caps so the letter never contradicts the verdict word: any WARN keeps it
+# below A (an artifact with a real caveat is not "A / SAFE"); a non-danger FAIL costs a
+# further grade (mirrors scoring.FAIL_CAPS[HIGH] - "one real failure always costs a grade").
+_WARN_CAP = 89
+_NON_DANGER_FAIL_CAP = 79
+# B-092 / B-485: a Danger-axis UNKNOWN caused by a coverage gap - content that exists but
+# was never covered, whether because a payload was padded past the per-skill/500-file scan
+# cap, a file could not be read, or the AST layer could not parse it - must never read as
+# "A / SAFE". Cap it at the top of the C band, same ceiling scoring.py gives a real HIGH
+# finding. See `_danger_coverage_gap` for how that state is detected.
+_COVERAGE_GAP_DANGER_CAP = 79
+
+
+@dataclass
+class AxisResult:
+    axis: str  # danger | build | behavior | persistence | connections
+    status: str  # FAIL | WARN | PASS | UNKNOWN | N/A
+    reason: str
+    fix: str = ""
+    findings: list = field(default_factory=list)  # Findings bucketed here (empty for N/A)
+
+
+@dataclass
+class VetProfile:
+    target: str
+    target_type: str  # skill | plugin | mcp | source
+    overall_status: str  # FAIL | WARN | PASS | UNKNOWN
+    # C427: the ONE Mode C verdict word -- "INSTALL" | "CAUTION" | "DO-NOT-INSTALL",
+    # computed once here (via `verdict_for`) and read by every renderer (text dossier,
+    # --json, --advise, SARIF's vetProfile) instead of each recomputing its own mapping.
+    verdict: str
+    # C427: `overall_grade` and `score` are INTERNAL ONLY from here down -- Mode C (the
+    # --vet/--advise family) no longer renders an A-F letter or the raw number on any
+    # surface (text dossier, --json, --advise, SARIF's vetProfile); they collided with
+    # Mode A's own system-audit grade, a different scale about a different question. The
+    # fields stay because _grade_profile's coverage-gap cap machinery (well-tested,
+    # untouched by C427) and existing unit tests key off them directly. No renderer may
+    # print either field -- call `verdict_for(overall_status)` instead.
+    overall_grade: str  # A..F, or "N/A" when nothing is assessable -- NEVER rendered
+    score: int  # 0..100 (0 when not assessable) -- NEVER rendered
+    axes: list  # AxisResult, in AXES order
+    findings: list  # flat pool (for JSON detail / SARIF results)
+    unmapped: list = field(default_factory=list)  # finding ids that resolved to no axis
+
+
+def axis_for(finding) -> str | None:
+    """Resolve one finding to its axis slug, or None for synthetic aggregates / no match.
+
+    Order: explicit id override -> AST-class map (most-severe axis) -> surface fallback.
+    """
+    fid = finding.id
+    if fid in _AXIS_BY_ID:
+        return _AXIS_BY_ID[fid]
+    axes = {_AXIS_BY_AST[c] for c in ast_for(fid) if c in _AXIS_BY_AST}
+    if axes:
+        for ax in _AXIS_PRECEDENCE:
+            if ax in axes:
+                return ax
+    meta = BY_ID.get(fid)
+    if meta is not None and meta.surface:
+        return _SURFACE_AXIS.get(meta.surface)
+    return None
+
+
+def _worst(findings: list):
+    """The finding with the worst (highest-ranked) status, or None if empty."""
+    if not findings:
+        return None
+    return max(findings, key=lambda f: _STATUS_RANK.get(f.status, 0))
+
+
+def _pool_wholly_not_applicable(pool: list) -> bool:
+    """True when EVERY finding in a non-empty pool is `not_applicable` (B-764).
+
+    The one caller, `build_profile`, feeds this into `verdict_for`'s `not_applicable=`
+    to tell a genuinely empty target (`--vet-mcp` with zero configured servers, whose
+    engine returns exactly one `Finding(id="MCP-VET", status=UNKNOWN,
+    not_applicable=True)`) apart from an ordinary undetermined assessment. Deliberately
+    ALL-of, not ANY-of: a plugin/skill pool commonly buckets several findings (the
+    container's own aggregate plus every dispatched sub-check), and it would take every
+    one of them agreeing "nothing here" for the whole profile to be inapplicable --
+    one real UNKNOWN or PASS beside a not_applicable sibling means something WAS
+    assessed, so CAUTION (or better) is still the honest word. An empty pool is its own
+    branch in `build_profile` and never reaches this helper.
+    """
+    return bool(pool) and all(getattr(f, "not_applicable", False) for f in pool)
+
+
+def _danger_coverage_gap(danger_bucket: list, ctx) -> bool:
+    """True iff the Danger axis is UNKNOWN because scanning could not COVER what is
+    there - rather than the benign "there was nothing to scan" UNKNOWN (no code, no MCP
+    servers, a docs-only skill).
+
+    ``ctx`` accepts either a single Context (or ``None`` - every existing caller before
+    B-635) or an iterable of them (``build_profile`` now passes ``_pool_contexts(pool)``,
+    B-635). Leg 2 below folds ``.limit_hits`` over however many contexts it was given,
+    so a single-ctx caller and a multi-context pool are answered the same way.
+
+    B-092: those two UNKNOWN flavors must not be conflated. "Nothing to scan" is a
+    legitimately clean result and stays excluded from scoring as before. "Could not read
+    / could not finish reading what is there" means real content may exist and was never
+    looked at - so the caller floors the headline instead of letting it read INSTALL.
+
+    Three legs, in order. The first two are STRUCTURAL - a flag a producer set, or a
+    counter the collector bumped - and are the primary signal:
+
+    1. ``Finding.engine_degraded`` on an UNKNOWN in the bucket. catalog.py defines this
+       field as "the single source of truth for 'this UNKNOWN is engine-side'": the check
+       ran, tried to reach a verdict, and could not for a reason on OUR side (a crash, a
+       budget escape, an input that turned out unreadable/unparseable). That is precisely
+       this predicate's question, already answered by the producer.
+    2. ``ctx.limit_hits`` - collector.py appends to it on every size/file/nesting cap hit
+       and on an unreadable file (``note_limit``), which is how B13's own cap and
+       unreadable-file branches disclose a truncated scan. B-635: on the plugin path a
+       SINGLE ctx (``pool[0]``'s, which a ``PLUGIN-VET`` container never sets) missed
+       every bundled skill's own limit_hits - folded over every context in ``ctx`` now,
+       not just one.
+    3. The literal ``"coverage is incomplete"`` phrasing in an UNKNOWN's ``detail``. This
+       is a DOCUMENTED FALLBACK ONLY, kept for hand-built ``Finding`` objects in unit
+       tests that carry neither a real ``ctx`` nor the flag (see
+       ``tests/test_b092_coverage_gap.py``). It must never be the primary: matching
+       English prose means any producer that rewords its detail silently loses the
+       signal, and any producer that never used that wording never had it.
+
+    B-485: leg 1 is new and is what closes the reported route. B13's parse-error branch
+    (checks/_vet.py) already sets ``engine_degraded=True`` on its UNKNOWN - "could not
+    analyze <file> - parse error(s); file(s) not scanned by the AST/taint layer" - but it
+    calls no ``note_limit`` and does not use the phrase leg 3 keys on, so a skill whose
+    bundled script the AST layer could not read rolled all the way up to INSTALL, one
+    line under the Danger axis printing that it never got to look. The same hole covered
+    every future producer of an engine-side UNKNOWN that happens not to hit a collector
+    cap; keying on the flag closes the class, not the one instance.
+
+    Measured FP direction before landing leg 1 (the flip set = targets where this returns
+    True and the pre-B-485 predicate returned False): 0 of 16 real installed skills on
+    BOTH python3.12 and the python3.9 CI floor; 1 of ~1,119 fixture targets, namely
+    ``fixtures/unknown_b347_deaddrop_unparseable`` - the fixture whose name declares it
+    UNKNOWN. No narrower trigger and no WARN-instead-of-floor variant is warranted at
+    that rate, so this floors like the other legs.
+
+    R1 - a ring check that raises was swallowed by ``_run_content_ring``'s bare
+    ``except``, emitting no finding at all (an empty bucket carries no signal for any
+    predicate here to read) - is now CLOSED, by a producer change, not a change to this
+    predicate: the handler now records the crash and emits a ``VET-RING-CHECK-ERROR``
+    finding (deliberately not ``VET-COVERAGE`` - see ``_AXIS_BY_ID``'s comment on that id
+    for why), so leg 1 above fires on it the same as any other engine-side UNKNOWN.
+
+    R7 remains open: a binary blob excluded from scanning discloses no coverage gap (it
+    reaches the headline only via the separate stowaway WARN, not through this
+    predicate) - a producer-side gap this predicate structurally cannot see either way.
+    """
+    if not danger_bucket:
+        return False
+    unknowns = [f for f in danger_bucket if f.status == UNKNOWN]
+    if not unknowns:
+        return False
+    # (1) structural, per finding: the producer flagged this UNKNOWN as engine-side.
+    if any(getattr(f, "engine_degraded", False) for f in unknowns):
+        return True
+    # (2) structural, per run: the collector recorded a cap hit / unreadable file, on
+    # ANY context this call was given - see the docstring's B-635 note on why a single
+    # ctx is not enough on the plugin path.
+    contexts = ctx if isinstance(ctx, (list, tuple)) else [ctx]
+    if any(getattr(c, "limit_hits", None) for c in contexts):
+        return True
+    # (3) documented prose fallback - hand-built Findings with no ctx and no flag.
+    return any("coverage is incomplete" in (f.detail or "") for f in unknowns)
+
+
+def _normalize_pool(engine_output) -> list:
+    """Flatten an engine's return into a single finding pool.
+
+    skill / plugin / source return a primary Finding carrying `.ring_findings`; mcp
+    returns a list. PLUGIN-VET is a container: its dispatched sub-findings ride on
+    `.ring_findings`, so flattening surfaces them for bucketing (the container id itself
+    maps to None and is dropped from axes).
+    """
+    if isinstance(engine_output, list):
+        return list(engine_output)
+    primary = engine_output
+    return [primary, *getattr(primary, "ring_findings", [])]
+
+
+def _route_axis_reasons(f, buckets: dict, *, fallback_axis: str | None) -> bool:
+    """Route a multi-reason verdict into axes via its own `.axis_reasons`.
+
+    Shared by MCP-VET (vet_mcp) and PLUGIN-VET (vet_plugin): both tag `.axis_reasons` as
+    ``{axis: [[status, reason], ...]}``; each axis gets a view of the finding with only
+    its reasons and its own worst severity - so e.g. an unpinned MCP spec lands under
+    Build (WARN) while a wildcard-env passthrough lands under Connections, instead of
+    everything reading as Danger. Returns whether anything was routed.
+
+    `fallback_axis`: when no reasons were routed, bucket the whole finding there instead
+    (conservative, never falsely clean) - MCP-VET falls back to "danger" (a clean or
+    unparseable verdict still carries real signal). PLUGIN-VET passes ``None``: an empty
+    `.axis_reasons` there means the container carried no signal of its own beyond its
+    already-flattened, already-bucketed dispatched sub-findings (B-149), so it is simply
+    dropped, same as before this routing existed.
+    """
+    reasons = getattr(f, "axis_reasons", None) or {}
+    routed = False
+    for axis, entries in reasons.items():
+        if axis not in buckets or not entries:
+            continue
+        worst = FAIL if any(e[0] == FAIL for e in entries) else WARN
+        detail = "; ".join(str(e[1]) for e in entries)
+        buckets[axis].append(dc_replace(f, status=worst, detail=detail))
+        routed = True
+    if not routed and fallback_axis is not None:
+        buckets[fallback_axis].append(f)
+    return routed
+
+
+def _skill_capabilities(ctx) -> tuple[bool, set]:
+    """(has_executable_code, capability_families_PRESENT) for the vetted skill(s).
+
+    Reads only ctx data populated by the engine (ctx.installed_skill_py/_js/_shell) - no
+    re-scan of disk, no checks import. Families are `skillast.CAPABILITY_FAMILIES`:
+    network / exec / write / read / cred.
+
+    B-878: `has_code` used to ask only `installed_skill_py`, so a skill
+    bundling nothing but JS or shell answered `has_code=False` -- indistinguishable from
+    a skill with no code at all -- and the Persistence/Connections axes printed "no
+    executable code to analyze" about a directory containing exactly that (repro: a
+    `SKILL.md` plus an `a.js` running `require('child_process').exec(...)`). It now folds
+    in `installed_skill_js`/`installed_skill_shell` too, so presence is honest across every
+    language the collector reads. `families`, below, is unchanged and still Python-only -
+    `capability_families` walks a Python AST and has no JS/shell equivalent; see
+    `_skill_has_unread_language_code` for how `build_profile` keeps THAT gap from being
+    read as an affirmative PASS over content it never examined for capability presence.
+
+    B-592: this used to return the union of `ctx.effect_profiles[*]["reachable_effects"]`,
+    which is TAINT reachability - "did untrusted data reach this sink". The only consumer
+    is `_clean_reason`'s wording choice, and against that question taint is the wrong
+    predicate: a skill whose entire body is
+    `urllib.request.urlopen("https://collector.example.net/ping")` taints nothing, so the
+    axis fell through to "no outbound network surface" - an assertion that the artifact
+    has no network capability, printed on the pre-install gate, about a skill that exists
+    to make an outbound call. Presence is the predicate that sentence needs. The taint
+    view is untouched and still lives where it belongs (the findings themselves, and
+    `--emit-manifest`'s `analysis:` block).
+    """
+    if ctx is None:
+        return (False, set())
+    installed = getattr(ctx, "installed_skills", None) or {}
+    py_map = getattr(ctx, "installed_skill_py", None) or {}
+    js_map = getattr(ctx, "installed_skill_js", None) or {}
+    sh_map = getattr(ctx, "installed_skill_shell", None) or {}
+    has_code = (
+        any(py_map.get(name) for name in installed)
+        or any(js_map.get(name) for name in installed)
+        or any(sh_map.get(name) for name in installed)
+    )
+    families: set[str] = set()
+    for name in installed:
+        families |= capability_families(py_map.get(name))
+    return (has_code, families)
+
+
+def _pool_contexts(pool) -> list:
+    """Every Context object attached anywhere in ``pool``, deduped by identity.
+
+    The same two sources ``_pool_capabilities`` needs (see its own docstring for why
+    both are required): ``f.ctx`` on any pool member, and ``f.bundled_contexts`` on a
+    plugin container. Split out (B-635) so other ``pool[0]``-only consumers can fold
+    over every context the same way ``_pool_capabilities`` already does, instead of
+    reading ``pool[0].ctx`` alone and going blind on the plugin path -- the bug found
+    in ``assessed`` and ``_danger_coverage_gap``, which this function now feeds.
+    """
+    seen: list = []
+    for f in pool:
+        for ctx in [getattr(f, "ctx", None), *(getattr(f, "bundled_contexts", None) or [])]:
+            if ctx is None or any(ctx is s for s in seen):
+                continue
+            seen.append(ctx)
+    return seen
+
+
+def _pool_capabilities(pool) -> tuple[bool, set]:
+    """(has_executable_code, capability_families) folded over every Context in ``pool``.
+
+    B-628: ``build_profile`` used to ask this of ``pool[0].ctx`` alone. On the skill path
+    that is the whole story -- ``pool[0]`` is ``vet_skill``'s primary and ``_vet.py`` sets
+    ``primary.ctx = ctx`` on it. On the PLUGIN path ``pool[0]`` is the ``PLUGIN-VET``
+    container built by ``_plugin_finding``, which never sets ``.ctx``, so ``has_code`` was
+    ``False`` **by construction for every plugin ever vetted** -- and the Persistence and
+    Connections axes printed "no executable code to analyze" about plugins whose bundled
+    Python the same dossier convicted on the danger axis four lines above.
+
+    Two sources, because one is not enough and an earlier version of this function
+    claimed otherwise -- see ``_pool_contexts`` (which this now delegates the folding
+    to) for what they are and why both are needed:
+
+    * ``f.ctx`` on any pool member. Note that ``_vet.py`` sets this on the PRIMARY only --
+      ring findings are pool members since B-614 but carry no ctx of their own.
+    * ``f.bundled_contexts`` on the plugin container. This is the one that matters for the
+      COMMON case: ``vet_plugin``'s ``actionable`` filter keeps only FAIL/WARN/UNKNOWN
+      sub-findings, so a bundled skill that vets **PASS is dropped from the pool entirely**
+      and takes its ctx with it. Reading only ``.ctx`` therefore fixed the dirty plugin and
+      left the clean one exactly as broken -- found by C-135 adversarial review, not by
+      the tests, which had paired a dirty positive with a prose-only negative and so could
+      not tell "no code" apart from "code we dropped".
+
+    A plugin bundling only prose contributes no context from either source and still folds
+    to ``False``, so the honest UNKNOWN is preserved -- that is the negative control this
+    must never break.
+
+    B-635 closed what used to be documented here as deliberately narrow: ``assessed``
+    and ``_danger_coverage_gap`` in ``build_profile`` now fold over ``_pool_contexts(pool)``
+    too, instead of reading ``pool[0].ctx`` alone.
+    """
+    has_code = False
+    families: set = set()
+    for ctx in _pool_contexts(pool):
+        code, fams = _skill_capabilities(ctx)
+        has_code = has_code or code
+        families |= fams
+    return (has_code, families)
+
+
+def _skill_has_unread_language_code(ctx) -> bool:
+    """True when ``ctx`` bundles JS or shell source for an installed skill -- code
+    ``_skill_capabilities.has_code`` now counts as PRESENT (B-878) but whose
+    capability families this scan cannot compute: ``capability_families`` walks a Python
+    AST and has no JS/shell reader, and `analyze_javascript`/`analyze_shell` are narrow,
+    rule-shaped danger scanners (specific RCE/exfil patterns), not general network / exec /
+    write / read / cred presence detectors -- so they cannot license the affirmative
+    "no dormant or staged code detected" / "no outbound network call found" the PASS
+    wording asserts either.
+
+    Same family of defect B-628 fixed one layer up: finding code in ONE language must not
+    license an affirmative claim over code in ANOTHER the scan never opened for THIS axis.
+    ``build_profile`` folds this into the same "unmeasurable, honest reason" path as
+    ``unread_code`` (a plugin's un-dispatched loose file) rather than inventing a new
+    outcome -- both are "code is present, this scan has no reader for it here".
+    """
+    if ctx is None:
+        return False
+    installed = getattr(ctx, "installed_skills", None) or {}
+    js_map = getattr(ctx, "installed_skill_js", None) or {}
+    sh_map = getattr(ctx, "installed_skill_shell", None) or {}
+    return any(js_map.get(name) for name in installed) or any(sh_map.get(name) for name in installed)
+
+
+def _pool_has_unread_language_code(pool) -> bool:
+    """``_skill_has_unread_language_code`` folded over every Context in ``pool`` - same
+    two-source fold as ``_pool_capabilities`` (see its docstring), via ``_pool_contexts``.
+    """
+    return any(_skill_has_unread_language_code(ctx) for ctx in _pool_contexts(pool))
+
+
+def _declared_file_bars_measurability(relpath: str, lang: str, source: str) -> bool:
+    """B-612: whether ONE declared file (``read_skill_declared``'s ``(relpath, lang,
+    source)``) is itself enough to withdraw a Persistence/Connections PASS this scan
+    cannot back.
+
+    Content-gated, not content-blind - the first cut (retracted, see B-612's fix-round
+    history) returned True for ANY declared file, so a benign decoy named in one line of
+    prose dropped a clean skill's axes from PASS to UNKNOWN for no visible reason. The bar
+    is the one already applied to a REAL bundled file of the same language:
+
+    * Python: it must PARSE (``ast.parse``) and have a non-empty ``capability_families``
+      result over ITS OWN bytes - the same predicate ``_skill_capabilities`` applies to
+      every ``.py`` file already. Non-parsing, or parsing with no capability family
+      (an INI-ish config, a docstring), bars nothing, same as a real ``.py`` would.
+    * sh/js: either its OWN ``#!`` independently names the declared language
+      ("verified" - B-878's existing bar for a real bundled ``.sh``/``.js``); OR
+      ``analyze_shell``/``analyze_javascript`` itself flags the file's OWN bytes,
+      verified or not (fix-round-1: an unverified file that trips a rule already
+      contributes a `warns_declared_unverified` WARN on the danger axis - see
+      ``checks/_vet.py``'s declared loop - so a Persistence/Connections PASS over bytes
+      this scan just read for danger would contradict that WARN in the same report; the
+      first cut fired on "verified" alone and missed this). Neither verified nor
+      analyzer-flagged bars nothing - nothing here read anything to contradict.
+    """
+    if lang == "py":
+        try:
+            ast.parse(source)
+        except (SyntaxError, ValueError, RecursionError, MemoryError, OverflowError):
+            return False
+        return bool(capability_families([(relpath, source)]))
+    if lang in ("sh", "js"):
+        from .collector import _shebang_language  # noqa: PLC0415
+
+        if _shebang_language(source) == lang:
+            return True
+        analyzer = analyze_shell if lang == "sh" else analyze_javascript
+        try:
+            result = analyzer(source, relpath)
+        except (SyntaxError, ValueError, RecursionError, MemoryError, OverflowError):
+            # B-983: `analyze_shell`/`analyze_javascript` are large recursive parsers with
+            # no general depth bound (unlike the `py` branch's `ast.parse`, which this
+            # `try`/`except` already mirrors) -- an adversarial declared file with deeply
+            # nested constructs could raise the same exceptions here that a malformed
+            # Python file raises above. Same non-crashing outcome either way: nothing was
+            # read that could contradict a PASS, so this bars nothing (see docstring).
+            return False
+        return bool(result)
+    return False
+
+
+def _pool_has_declared_code(pool) -> bool:
+    """B-612: True when any installed skill in ``pool`` carries a file that only its
+    SKILL.md declares as code (``ctx.installed_skill_declared``, collector's
+    ``read_skill_declared``) AND whose own content clears the bar in
+    ``_declared_file_bars_measurability`` above.
+
+    That file was read by B13's danger pass and by nothing that measures these two axes,
+    so a qualifying one bars measurability exactly as ``danger_only_code`` does (B-636): it
+    can move an axis from PASS to an honest UNKNOWN, never the other way. Without this, a
+    skill bundling one clean ``helper.py`` plus a declared ``bin/sync`` printed "no
+    outbound network call found in the analysed code" -- and ``bin/sync`` was analysed
+    code. Content-gated (not "any declared file at all") so that a benign decoy named in
+    one line of prose cannot, by itself, turn an honest PASS into an UNKNOWN - the exact
+    trade a content-blind version of this predicate made and had retracted.
+    """
+    for ctx in _pool_contexts(pool):
+        installed = getattr(ctx, "installed_skills", None) or {}
+        declared = getattr(ctx, "installed_skill_declared", None) or {}
+        for name in installed:
+            for relpath, lang, source in declared.get(name) or []:
+                if _declared_file_bars_measurability(relpath, lang, source):
+                    return True
+    return False
+
+
+def _reason_and_fix(bucket: list, axis: str, *, empty_reason: str) -> tuple[str, str]:
+    worst = _worst(bucket)
+    # B-160: "SKILL_ARCHIVE_PATH_TRAVERSAL" carries a real detail/fix like FAIL does -
+    # without it here the axis grades F but the rendered reason falls back to the
+    # generic "no malware signature" text instead of the actual traversal detail.
+    if worst is not None and worst.status in (FAIL, WARN, UNKNOWN, "SKILL_ARCHIVE_PATH_TRAVERSAL"):
+        return (worst.detail, worst.fix)
+    return (empty_reason, "")
+
+
+def _axis_status(bucket: list, applicable: bool, *, no_signal_status: str) -> str:
+    """Roll a bucket up to an axis status.
+
+    Not applicable -> N/A. Otherwise the worst finding status, or `no_signal_status` when
+    the bucket is empty (PASS when the producer looked and found nothing; UNKNOWN when the
+    producer could not measure this axis at all).
+    """
+    if not applicable:
+        return NA
+    worst = _worst(bucket)
+    if worst is None:
+        return no_signal_status
+    if worst.status == "SKILL_ARCHIVE_PATH_TRAVERSAL":
+        # B-160: a real known-bad signal, not an honesty exclusion - grade it as FAIL
+        # even though scoring.py's separately-scored audit deliberately excludes it.
+        return FAIL
+    return worst.status
+
+
+def build_profile(engine_output, target: str, target_type: str) -> VetProfile:
+    """Aggregate an engine's Findings into a VetProfile for `target_type`.
+
+    `engine_output` is the engine's existing return: a Finding (skill/plugin/source) or a
+    list[Finding] (mcp). No engine is modified - this only re-reads and re-groups.
+    """
+    pool = _normalize_pool(engine_output)
+    applicability = _AXIS_APPLICABILITY.get(target_type, _AXIS_APPLICABILITY["skill"])
+
+    if not pool:
+        # Degenerate: nothing was produced - honest "not assessable", never a fake PASS.
+        axes = [
+            AxisResult(a, NA if not applicability.get(a, True) else UNKNOWN,
+                       _na_reason(a, target_type) if not applicability.get(a, True)
+                       else "nothing to assess")
+            for a in AXES
+        ]
+        return VetProfile(target, target_type, UNKNOWN,
+                          verdict_for(UNKNOWN, not_applicable=True), "N/A", 0, axes, [], [])
+
+    # Bucket every finding into an axis (or unmapped / decomposed-container).
+    buckets: dict[str, list] = {a: [] for a in AXES}
+    unmapped: list[str] = []
+    for f in pool:
+        ax = axis_for(f)
+        if ax is not None:
+            buckets[ax].append(f)
+            if f.id == "B13":
+                # B-634: B13 is a hard "danger"-only id in _AXIS_BY_ID, so axis_for()
+                # never even looks at .axis_reasons for it -- the line above always
+                # fires, unconditionally, for every B13 finding. This is an ADDITIONAL
+                # route on top of that, never a replacement: checks/_vet.py sets
+                # .axis_reasons["persistence"] on the returned finding whenever an
+                # agent-config-persistence hit (a live write to ~/.bashrc/CLAUDE.md/
+                # AGENTS.md/etc.) fired anywhere in the scan, regardless of which B13
+                # cascade branch actually won the verdict -- otherwise the Persistence
+                # axis never saw that fact at all and printed its default clean "no
+                # dormant or staged code detected" one line under the evidence proving
+                # otherwise. Uses the same dual-axis idiom B339 already established, via
+                # _route_axis_reasons; fallback_axis=None because an empty
+                # .axis_reasons here means this particular verdict carried no
+                # persistence-specific fact -- nothing to add, not a reason to fall
+                # back onto some other axis.
+                _route_axis_reasons(f, buckets, fallback_axis=None)
+        elif f.id == "PLUGIN-VET":
+            # Container aggregate: its dispatched sub-findings ride on .ring_findings and
+            # are already flattened into the pool, so they bucket on their own. The
+            # container's OWN signal (manifest sanity / npm lifecycle scripts / floating
+            # deps / skills-entry escape / native stowaways - B-149) is never carried by a
+            # sub-finding, so it rides on .axis_reasons instead and is routed here; no
+            # fallback bucket when empty, since an empty .axis_reasons means the container
+            # itself found nothing beyond what its sub-findings already bucketed.
+            _route_axis_reasons(f, buckets, fallback_axis=None)
+        elif f.id == "MCP-VET":
+            # Per-reason routing (danger/build/behavior/connections) is populated on
+            # .axis_reasons by the MCP engine; until then, keep the whole verdict on the
+            # danger axis so a dangerous server can never read as falsely clean.
+            _route_axis_reasons(f, buckets, fallback_axis="danger")
+        elif f.id == "B339":
+            # E-065/C-322: B339 (cloud IMDS credential fetch) is FAIL-only and, on FAIL,
+            # sets .axis_reasons to BOTH danger (so the F floor at _grade_profile still
+            # applies - this is as unambiguously malicious as B13's malware verdict) and
+            # connections (the specific axis the HF-incident review exists to make
+            # honest - before this routing, a credential-stealing skill's Connections
+            # axis silently read PASS because nothing bucketed there). Its non-FAIL
+            # (PASS/UNKNOWN) branches leave .axis_reasons empty and fall through here
+            # unchanged onto "connections" - the natural single axis for "no exfil
+            # signal found" - never onto "danger", which would misfile an ordinary clean
+            # result under the malware-verdict axis.
+            _route_axis_reasons(f, buckets, fallback_axis="connections")
+        elif f.id == "B335":
+            # B-613: same underlying fact is genuinely both a build-quality/authoring-
+            # hygiene issue (an installer that self-modifies the interpreter's
+            # auto-execution surface) and a persistence issue (what it stores for the
+            # future) - bucket the SAME finding object into both so neither axis loses
+            # the signal. Deliberately no `dc_replace`: both axes want the identical
+            # status/detail/fix text, so there is nothing per-axis to fabricate. That
+            # also makes this a pure re-routing change - `f.detail` (what the fingerprint
+            # manifest hashes) is the same object, unmutated, in both buckets, so this
+            # moves no fingerprint and needs no manifest re-stamp; only WHICH axis
+            # renders that text is new.
+            buckets["build"].append(f)
+            buckets["persistence"].append(f)
+        else:
+            # A real finding that maps nowhere is a coverage gap we surface, never swallow.
+            unmapped.append(f.id)
+
+    # Per-type capability signal (skill/plugin code analysis) enriches connections /
+    # persistence: it decides PASS ("looked, clean") vs UNKNOWN ("no code to measure").
+    ctx = getattr(pool[0], "ctx", None) if pool else None
+    # B-628: folded over the WHOLE pool, not pool[0] -- a plugin container carries no ctx
+    # of its own, so asking it alone made every plugin answer "no executable code".
+    has_code, families = _pool_capabilities(pool)
+    # B-628 / C-135: finding code in ONE bundled skill must not license an affirmative
+    # "no dormant or staged code detected" over content the scan never opened.
+    #
+    # The predicate is the synthetic `VET-COVERAGE` id -- `coverage_gap_finding`'s, whose
+    # whole purpose is to say "part of this target was never inspected" (both its legs:
+    # the ring's budget ceiling and vet_plugin's tree-sweep file cap). Round 2 of C-135
+    # killed two weaker predicates, and both failures are worth keeping written down:
+    #
+    #   * `engine_degraded` alone is too WIDE. B13's parse-error branch sets it per FILE
+    #     on a scan that otherwise COMPLETED, so a skill shipping one unparseable file
+    #     read "the scan was cut short" -- a fresh false sentence, on the skill path this
+    #     change claimed not to touch. Measured across all 292 shipped fixture skill
+    #     roots, exactly one flipped that way.
+    #   * gating the WORDING on `has_code` is backwards. `has_code` is precisely what a
+    #     truncated scan fails to establish, so the corner the wording was added for --
+    #     scan truncated, code present but unseen -- still printed "no executable code to
+    #     analyze". Reviewer's repro reached it at the DEFAULT 900s budget through the
+    #     file cap, with no clock pressure at all.
+    # B-741 adds a THIRD producer of a VET-COVERAGE UNKNOWN, and it is not a truncation:
+    # `vet_skill` holds a loose-`SKILL.md` scan to the manifest alone, so nothing was cut
+    # short -- no budget, no cap, no clock. The name is kept (it is read in several
+    # places) but the wording below now says what is true of all three: the scan did not
+    # cover the whole target. Do not restore "cut short" -- it would be a false statement
+    # of cause on the held-back path, which is the class of defect B-741 fixed.
+    scan_truncated = any(
+        getattr(f, "id", None) == "VET-COVERAGE" and f.status == UNKNOWN for f in pool
+    )
+    # C-135 round 3: `has_code` answers "did any analysed context contain Python", which
+    # is NOT authority to assert PASS over the whole artifact. On the plugin path the
+    # sweep has no reader for .py outside a dispatched skill dir, so a plugin whose only
+    # dangerous file is a root-level install.py had `has_code=True` (from a clean bundled
+    # skill), nothing truncated, and printed "no dormant or staged code detected" over
+    # fetch-to-exec. Measured against the pre-change tree: those axes read UNKNOWN before
+    # and PASS after, so this was introduced here, not inherited.
+    unread_code = [f for fx in pool for f in (getattr(fx, "unanalysed_code", None) or [])]
+    # B-636: read by the Danger pass, invisible to these two axes. See _unmeasurable_reason.
+    danger_only_code = [
+        f for fx in pool for f in (getattr(fx, "analysed_loose_code", None) or [])
+    ]
+    # C-633: plugin JS/TS the sweep read with `analyze_javascript`'s five lexical rules
+    # only. Same "read for danger, invisible to Persistence/Connections" shape as
+    # `danger_only_code`, so it joins it below: a JS-only plugin must not fall through to
+    # "no executable code to analyze" (a false claim about the artifact, B-628).
+    lexical_code = [
+        f for fx in pool for f in (getattr(fx, "lexical_loose_code", None) or [])
+    ]
+    # B-636: `danger_only_code` bars measurability for the SAME reason `unread_code` does.
+    # Giving the sweep a Python reader emptied `unread_code`, and without this line the
+    # axes went straight back to an affirmative PASS over a file they still cannot see -
+    # re-opening exactly the hole B-628 closed, one layer down. B-628's own case-J test
+    # caught it. Reading a file for dangerous patterns is not measuring its persistence or
+    # its outbound surface; those are computed from bundled-skill Contexts, and a loose
+    # plugin file has none.
+    # B-878: same bar for a bundled skill's JS/shell - `has_code` now counts
+    # it as code present (see `_skill_capabilities`), but `capability_families` still
+    # cannot read it, so it must not be measurable either. See
+    # `_skill_has_unread_language_code` for why this is the same "code present, no reader
+    # for THIS axis" shape as `unread_code`/`danger_only_code`, not a fresh state.
+    unread_language_code = _pool_has_unread_language_code(pool)
+    # B-612: a file only SKILL.md declares as code - read for danger, never measured here.
+    declared_code = _pool_has_declared_code(pool)
+    code_measurable = (
+        (
+            has_code
+            and not scan_truncated
+            and not unread_code
+            and not danger_only_code
+            and not lexical_code
+            and not unread_language_code
+            and not declared_code
+        )
+        or target_type not in ("skill", "plugin")
+    )
+    # Was anything actually assessed? A definite finding (PASS/WARN/FAIL) anywhere, or -
+    # for a skill/plugin - content that was read. If the artifact is missing / unreadable /
+    # empty (only UNKNOWN findings, e.g. "no MCP servers"), the empty axes must read
+    # UNKNOWN, never a fabricated PASS/grade.
+    # B-755: a pool carrying only a FAIL-weight status that is not the literal answered
+    # "nothing was assessed", which forces every empty axis to UNKNOWN - the fabricated
+    # -PASS guard firing on a definite conviction.
+    # B-635: folded over every context in the pool, not just `ctx` (== pool[0].ctx) -
+    # on the plugin path pool[0] is the PLUGIN-VET container, which never sets .ctx, so
+    # this used to read False for every plugin that bundled a skill and answer only
+    # from `_ASSESSED_STATUSES` instead.
+    assessed = any(f.status in _ASSESSED_STATUSES for f in pool) or (
+        target_type in ("skill", "plugin")
+        and any(getattr(c, "installed_skills", None) for c in _pool_contexts(pool))
+    )
+    # B-616: relpaths this run could only decode by ASSUMING a codepage (`_decode_ladder`'s
+    # latin-1 rung - collector.py's ctx.assumed_encoding_files). A single-byte codepage is
+    # undecidable from the bytes alone (b"\xee" is cp1251 "<U+043E>" or latin-1 "î" with nothing
+    # to break the tie - see `_decode_ladder`'s own docstring), so the honest move is not a
+    # smarter guess: it is refusing to let the prose axes claim they read text they did not.
+    assumed_encoding = tuple(sorted(set(getattr(ctx, "assumed_encoding_files", None) or [])))
+    # B-777: `_is_own_source` (checks/_vet.py -> collector.py) short-circuits BEFORE any
+    # text or code is read, returning a single B13 Finding and recording the resolved
+    # target's basename on ctx.self_excluded_skills - the same field report.py's
+    # --emit-manifest self-exclusion note already reads (B-786). Every axis is therefore
+    # genuinely unmeasured on this path: not because no code exists (it does - this fires
+    # on ClawSecCheck's own ~7,000-line engine, or on anything that merely LOOKS like it),
+    # but because scanning our own attack-signature database for malware signatures would
+    # self-flag by design. Without this, the non-danger axes fell through to
+    # `code_measurable=False` -> "no executable code to analyze" (build/behavior fell
+    # through to a bare PASS instead) - a false claim about the artifact (B-628) on top of
+    # an unearned PASS.
+    # C-636: the B13 Finding is now an engine-degraded UNKNOWN (or a WARN behind a
+    # symlink), NOT a canned PASS, so the DANGER axis is no longer special-cased here: it
+    # goes through the ordinary bucket path, `_danger_coverage_gap` rolls it up to CAUTION
+    # and the finding's own "NOT SCANNED" detail is the reason. `self_source` still gates
+    # the four other axes, which must stay UNKNOWN.
+    # No `or str(target)` fallback: `vet_skill` appends the exact same
+    # `Path(path).expanduser().name` (see `_vet_resolved_skill`/`resolve_skill_target`,
+    # which `build_profile`'s `target` argument is always the resolved output of - cli.py
+    # never passes the pre-resolution string), including the empty string a bare "."
+    # target produces. Substituting `str(target)` there would compare "." against the ""
+    # `_is_own_source` actually recorded and silently miss the match.
+    self_source = bool(
+        ctx is not None
+        and target_type in ("skill", "plugin")
+        and pathprobe.expand_user(target).name in (getattr(ctx, "self_excluded_skills", None) or [])
+    )
+
+    axes: list[AxisResult] = []
+    plugin_danger_partial = False  # C-715: see the relabel after _grade_profile below
+    for axis in AXES:
+        applicable = applicability.get(axis, True)
+        bucket = buckets[axis]
+        prose_gap = axis in _PROSE_AXES and bool(assumed_encoding)
+        if not assessed:
+            no_signal = UNKNOWN
+        elif self_source and axis != "danger":
+            # Checked before the connections/persistence code_measurable branch (which
+            # would also land on UNKNOWN here, for the same underlying reason) and
+            # before the prose-axis PASS default, so build/behavior can no longer read
+            # an affirmative "no issue found" over text this scan never opened.
+            no_signal = UNKNOWN
+        elif axis in ("connections", "persistence"):
+            no_signal = PASS if code_measurable else UNKNOWN
+        elif prose_gap:
+            # Only an axis whose PASS would come from "nothing fired in the misread
+            # text" flips - a bucket that already carries a real finding (something DID
+            # fire, from content this scan understood) is left exactly alone.
+            no_signal = UNKNOWN
+        else:
+            no_signal = PASS
+        status = _axis_status(bucket, applicable, no_signal_status=no_signal)
+        if not applicable:
+            reason, fix = _na_reason(axis, target_type), ""
+        elif status == PASS:
+            if (
+                target_type == "plugin" and axis == "danger"
+                and (lexical_code or unread_code)
+            ):
+                # C-633: loose plugin code was read by a few lexical rules only, or not
+                # read at all - "no malware signature or known-bad indicator" would claim
+                # a completed scan over bytes the scan never really looked at. PASS
+                # branch only: a real Danger WARN/FAIL keeps its own detail.
+                reason, fix = _plugin_partial_read_danger_reason(), ""
+                plugin_danger_partial = True
+            else:
+                reason, fix = _clean_reason(axis, families), ""
+        elif status == UNKNOWN and not bucket:
+            reason, fix = _unmeasurable_reason(
+                axis, truncated=scan_truncated,
+                unanalysed=bool(unread_code) or unread_language_code,
+                danger_only=bool(danger_only_code) or bool(lexical_code),
+                self_source=self_source,
+                declared_only=declared_code,
+                assumed_encoding=assumed_encoding if prose_gap else ()), ""
+        else:
+            reason, fix = _reason_and_fix(bucket, axis, empty_reason=_clean_reason(axis, families))
+        axes.append(AxisResult(axis=axis, status=status, reason=reason, fix=fix, findings=list(bucket)))
+
+    # B-616: the axis line above already says the text could not be decoded (limb 1); this
+    # is limb 2 - the same fact, on the channel `_situational_coverage_notes` (report.py)
+    # already walks and the vet dossier + `--vet --json` already render, so a reader is not
+    # left to infer an assumed encoding from a status flip alone. Attached to the pool's
+    # primary finding (always present - see `_normalize_pool`) since evidence lives on a
+    # Finding, not on the profile. Fired independent of whether any axis actually flipped
+    # (e.g. a real finding already occupied the bucket) - the fact that this run guessed a
+    # codepage is true regardless of what else was found.
+    if assumed_encoding and pool:
+        names = ", ".join(assumed_encoding[:2])
+        more = f" and {len(assumed_encoding) - 2} more file(s)" if len(assumed_encoding) > 2 else ""
+        note = (
+            f"coverage: {names}{more} could not be decoded in a determined encoding and "
+            "was read under an assumed codepage (latin-1); non-ASCII text in it may not "
+            "have been understood"
+        )
+        primary = pool[0]
+        if note not in (primary.evidence or []):
+            primary.evidence = list(primary.evidence or []) + [note]
+
+    # B-635: fold over every context in the pool, not just `ctx` (== pool[0].ctx) - see
+    # `_danger_coverage_gap`'s own B-635 docstring note on leg 2.
+    danger_coverage_gap = _danger_coverage_gap(buckets["danger"], _pool_contexts(pool))
+    overall_status, score, grade = _grade_profile(axes, danger_coverage_gap=danger_coverage_gap)
+    if plugin_danger_partial:
+        # C-715: the reason above says the pipe-to-shell, credential-read and outbound-POST
+        # shapes in the unread code "were not checked", so the axis cannot be labelled PASS:
+        # an unchecked surface is UNKNOWN. Done AFTER grading on purpose - this relabels one
+        # axis and changes no verdict word, score or exit code; the missing JS analysis is a
+        # declared ceiling (docs/THREAT_COVERAGE.md), not something this label convicts.
+        axes = [
+            AxisResult(axis=a.axis, status=UNKNOWN, reason=a.reason, fix=a.fix,
+                       findings=list(a.findings))
+            if a.axis == "danger" and a.status == PASS else a
+            for a in axes
+        ]
+    return VetProfile(
+        target=target,
+        target_type=target_type,
+        overall_status=overall_status,
+        verdict=verdict_for(overall_status, not_applicable=_pool_wholly_not_applicable(pool)),
+        overall_grade=grade,
+        score=score,
+        axes=axes,
+        findings=pool,
+        unmapped=unmapped,
+    )
+
+
+def _grade_profile(axes: list, *, danger_coverage_gap: bool = False) -> tuple[str, int, str]:
+    """Roll axis results up to (overall_status, score, grade). Reuses scoring.grade_for.
+
+    C427: the returned ``grade`` (and ``score``) are an INTERNAL quantity from here on --
+    no renderer may print either. They still exist because the coverage-gap cap below is
+    well-tested and expressed as a number (``min(score, _COVERAGE_GAP_DANGER_CAP)``), and
+    rewriting that as verdict-tier logic for a presentation-only change would touch
+    working logic for no reason. Every rendered surface instead calls
+    ``verdict_for(overall_status)`` (defined above `VetProfile`), which derives the
+    install-recommendation word directly from ``overall_status`` -- do not re-expose
+    ``grade``/``score`` to a renderer; that is exactly the "two different A's on two
+    different scales" bug C427 removed.
+
+    ``danger_coverage_gap`` (B-092, widened by B-485): the Danger axis reads UNKNOWN not
+    because there was nothing to scan, but because content that IS there was never
+    covered - padded past a size/file cap, unreadable, or unparseable by the AST layer.
+    That must never roll up to a confident "A / SAFE" headline one line above the axis's
+    own "could not analyze" note, so it is treated like a real non-danger-axis problem:
+    WARN-equivalent overall status (-> verdict CAUTION, the existing non-clean word - no
+    new verdict enum value) and the same grade ceiling a HIGH finding gets, never A/B.
+    """
+    by_axis = {a.axis: a for a in axes}
+
+    # Danger floor: a confirmed-dangerous artifact is F, full stop.
+    danger = by_axis.get("danger")
+    if danger is not None and danger.status == FAIL:
+        return (FAIL, 0, "F")
+
+    scorable = [a for a in axes if a.status in (PASS, WARN, FAIL)]  # exclude N/A + UNKNOWN
+    if not scorable:
+        if danger_coverage_gap:
+            # Every axis is otherwise N/A/UNKNOWN, but the Danger scan itself was
+            # incomplete - that is not the honest "nothing to assess" N/A; it is a real
+            # coverage gap on the floor axis, so it gets the same ceiling a HIGH finding
+            # would (never a fabricated N/A / SAFE).
+            return (WARN, _COVERAGE_GAP_DANGER_CAP, grade_for(_COVERAGE_GAP_DANGER_CAP))
+        # Nothing measurable (e.g. source with only N/A axes, or an unreadable target).
+        return (UNKNOWN, 0, "N/A")
+
+    earned = sum(1.0 if a.status == PASS else 0.5 if a.status == WARN else 0.0 for a in scorable)
+    score = round(earned / len(scorable) * 100)
+    # Caps keep the grade coherent with the verdict word (a WARN is never "A").
+    if any(a.status == WARN for a in scorable):
+        score = min(score, _WARN_CAP)
+    if any(a.status == FAIL for a in scorable):
+        score = min(score, _NON_DANGER_FAIL_CAP)
+    if danger_coverage_gap:
+        score = min(score, _COVERAGE_GAP_DANGER_CAP)
+    grade = grade_for(score)
+
+    if any(a.status == FAIL for a in axes):
+        overall = FAIL
+    elif any(a.status == WARN for a in axes) or danger_coverage_gap:
+        overall = WARN
+    elif any(a.status == PASS for a in axes):
+        overall = PASS
+    else:
+        overall = UNKNOWN
+    return (overall, score, grade)
+
+
+# -- Reason phrasing (English-only, project law §9) ----------------------------
+def _clean_reason(axis: str, families: set) -> str:
+    if axis == "danger":
+        return "no malware signature or known-bad indicator"
+    if axis == "build":
+        return "no least-privilege, pinning, or authoring-hygiene issue found"
+    if axis == "behavior":
+        return "no override, jailbreak, or forged-provenance directive found"
+    if axis == "persistence":
+        return "no dormant or staged code detected"
+    if axis == "connections":
+        # Both branches state what this axis DID, never what the artifact is. E-065/C-322
+        # already removed one such claim here ("reaches the network for its stated
+        # purpose" asserted an alignment check that never ran); B-592 removes the other
+        # two. "no exfiltration signal found" was false whenever the exfil finding fired
+        # and routed to the Danger axis instead - a DO-NOT-INSTALL screen carried it next
+        # to "credential-file contents flow into a network sink". And "no outbound
+        # network surface" asserted the ABSENCE of a capability nothing had measured
+        # (see `_skill_capabilities`), on the screen a user reads to decide whether to
+        # install. Neither sentence can be repaired by widening detection: they were
+        # describing the wrong subject.
+        if "network" in families:
+            return "outbound network calls present; no connection-axis finding fired"
+        return "no outbound network call found in the analysed code"
+    return "no issue found"
+
+
+def _plugin_partial_read_danger_reason() -> str:
+    """C-633: the danger axis's PASS on a plugin whose loose code was only partly read.
+
+    `vet_plugin` reads loose JS/TS with five lexical rules and has NO reader for shell
+    outside a declared skill (or for Python it could not open or parse), so
+    `_clean_reason`'s "no malware signature or known-bad indicator" would state a
+    completed scan over files nothing really looked at. The same bytes one directory
+    lower, inside a declared skill, are convicted. Says what was and was not checked;
+    the wording is generic so it is true of every trigger.
+    """
+    return (
+        "no signature matched in the code this scan could read; loose plugin code "
+        "outside the declared skills was read by a few lexical rules only or not at "
+        "all (see the coverage notes), so pipe-to-shell strings, config or credential "
+        "reads and outbound POSTs in it were not checked"
+    )
+
+
+def _unmeasurable_reason(axis: str, *, truncated: bool = False,
+                        unanalysed: bool = False, danger_only: bool = False,
+                        self_source: bool = False, declared_only: bool = False,
+                        assumed_encoding: tuple = ()) -> str:
+    """Why an axis could not be measured -- and the six reasons are not one reason.
+
+    ``assumed_encoding`` (B-616) checked first: it names the actual file(s) and is the
+    most specific of the six, and the caller (`build_profile`) only ever passes it
+    non-empty for the axis it genuinely caused -- it is never set alongside a `truncated`/
+    `unanalysed`/`danger_only`/`self_source` state for the SAME axis by construction (those
+    four key off measurability; this keys off the prose axes).
+
+    B-628: "no executable code to analyze" is a claim about the ARTIFACT, and it is false
+    whenever code is present. Two distinct ways it can be present and still unmeasured:
+
+    * ``truncated`` -- the scan started and stopped early (budget, file cap, JS size cap).
+    * ``unanalysed`` -- the scan ran to completion and there was simply no reader for the
+      file. C-135 round 3: `vet_plugin` analyses .json, native headers and JS/TS, while
+      Python is analysed only inside a dispatched skill dir. A plugin shipping
+      fetch-to-exec as a root-level `install.py` is opened by nobody, and the reviewer
+      measured this axis printing an affirmative PASS over exactly that.
+      B-878 adds a second producer of this same state: a dispatched
+      SKILL's bundled JS/shell (`_skill_has_unread_language_code`). `capability_families`
+      is Python-AST-only, so a JS- or shell-only skill has no reader for THIS axis either,
+      even though the file itself was read (has_code=True) and may already carry a Danger
+      verdict from `analyze_javascript`/`analyze_shell` four lines above.
+
+    * ``danger_only`` (B-636) -- a reader now EXISTS for that Python, and it ran: the
+      plugin sweep runs the AST/taint pass over .py outside a dispatched skill dir. But
+      these two axes are computed from bundled-skill Contexts, which still never see that
+      file. Adding the reader without adding this state swapped one false sentence for
+      another: `unanalysed` stopped applying, and a plugin shipping install.py fell
+      through to "no executable code to analyze" -- a claim about the ARTIFACT, and false.
+
+    * ``self_source`` (B-777) -- the target IS ``_is_own_source`` (checks/_vet.py's
+      self-scan short-circuit): nothing was read at all, deliberately, because a security
+      auditor's own attack-signature database would otherwise flag itself as malware.
+      Distinct from the other three: there is no budget/cap, no missing reader, and no
+      partial read -- the scan never started past the identity check. Before this state
+      existed the fallback wording ("no executable code to analyze") was false about the
+      artifact (B-628, same as the other two), and build/behavior fell through to an
+      unearned PASS ("no issue found") instead of even reaching this function, since only
+      `connections`/`persistence` gated on code-measurability -- see `build_profile`.
+      B-846: the first version of THIS string still overclaimed on the danger axis's
+      behalf -- "only the danger axis ran, by design" -- when danger did not run either
+      (`_vet_resolved_skill` returns the canned B13 PASS before any read_skill_* call).
+      The wording below says nothing ran, on every axis.
+      C-636: the danger axis no longer carries a PASS on this path at all - the B13
+      Finding is an engine-degraded UNKNOWN (CAUTION), because a layout match is a content
+      heuristic that anyone can write, not proof the folder is the genuine scanner.
+
+    Truncation wins the wording when several hold: "we stopped early" already implies the
+    rest is unknown, while naming an unread file would suggest the rest WAS read.
+    ``unanalysed`` in turn wins over ``danger_only``: if some file had no reader at all,
+    saying the code was "read for dangerous patterns" would overstate the coverage.
+    ``self_source`` is checked last of the four (`build_profile` never sets it alongside
+    the others -- see above -- so this ordering is defensive, not load-bearing).
+    """
+    if assumed_encoding:
+        names = ", ".join(assumed_encoding[:2])
+        more = f" (+{len(assumed_encoding) - 2} more)" if len(assumed_encoding) > 2 else ""
+        return (
+            f"{names}{more} could not be decoded in a determined encoding and was read "
+            "under an assumed codepage, so this could not be reliably assessed"
+        )
+    if truncated:
+        if axis == "connections":
+            return "the scan did not cover the whole target, so the outbound surface was never measured"
+        if axis == "persistence":
+            return "the scan did not cover the whole target, so staged / persistent behavior was never measured"
+        return "the scan did not cover the whole target, so this was never measured"
+    if unanalysed:
+        if axis == "connections":
+            return ("executable code is present that this scan has no reader for, so the "
+                    "outbound surface was not measured")
+        if axis == "persistence":
+            return ("executable code is present that this scan has no reader for, so "
+                    "staged / persistent behavior was not measured")
+        return "executable code is present that this scan has no reader for"
+    if danger_only:
+        if axis == "connections":
+            return ("code outside the declared skills was read for dangerous patterns "
+                    "only, so its outbound surface was not separately measured")
+        if axis == "persistence":
+            return ("code outside the declared skills was read for dangerous patterns "
+                    "only, so its staged / persistent behavior was not separately measured")
+        return "code outside the declared skills was read for dangerous patterns only"
+    if declared_only:
+        # B-612: after `danger_only` for the same reason `danger_only` follows
+        # `unanalysed` - the more specific statement of what was not read wins.
+        head = ("a bundled file that only SKILL.md declares as code was read for "
+                "dangerous patterns only, so ")
+        if axis == "connections":
+            return head + "the outbound surface was not measured"
+        if axis == "persistence":
+            return head + "staged / persistent behavior was not measured"
+        return head + "this was not measured"
+    if self_source:
+        tail = {
+            "connections": "so the outbound surface was not measured",
+            "persistence": "so staged / persistent behavior was not measured",
+            "build": "so least-privilege / pinning / authoring hygiene was not measured",
+            "behavior": "so override / jailbreak / forged-provenance directives were not measured",
+        }.get(axis, "so this was not measured")
+        return (
+            "this matched ClawSecCheck's own-source layout; a security auditor "
+            "necessarily ships attack signatures and payload text as data, so scanning "
+            "it for malware "
+            f"would self-flag \u2014 nothing here was scanned at all, not even the danger "
+            f"axis, and a folder that merely matches this layout proves nothing, {tail}"
+        )
+    if axis == "connections":
+        return "no executable code to analyze for outbound connections"
+    if axis == "persistence":
+        return "no executable code to analyze for staged / persistent behavior"
+    return "not measurable"
+
+
+def _na_reason(axis: str, target_type: str) -> str:
+    if target_type == "mcp" and axis == "persistence":
+        return "a live server spec stores no on-disk code \u2014 not applicable"
+    if target_type == "source":
+        return "identity-only reputation gate \u2014 the artifact is not fetched, so this is not assessable"
+    return "not applicable for this artifact type"

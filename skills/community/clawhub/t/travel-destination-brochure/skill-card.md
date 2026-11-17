@@ -1,46 +1,63 @@
-## Description: <br>
-Build travel destination scenarios and brochures from a city name by fetching street-level and landmark imagery from OpenStreetCam and Wikimedia Commons, then using VLM Run to generate a travel video and travel plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build travel destination scenarios and brochures from a city name by fetching street-level and landmark imagery from OpenStreetCam and Wikimedia Commons, then using VLM Run to generate a travel video and travel plan.
 
-## Publisher: <br>
-[MehediAhamed](https://clawhub.ai/user/MehediAhamed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mehediahamed](https://clawhub.ai/user/mehediahamed)
 
-## Use Case: <br>
-External users and developers use this skill to create city-specific travel brochures by collecting open imagery, producing an image manifest, and optionally generating a short travel video and one-day itinerary with VLM Run. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance may encourage unsafe API-key handling or inspection of local environment files. <br>
-Mitigation: Use a dedicated VLM Run key through a safe secret mechanism, do not expose .env files to the agent, and do not print API keys in terminal or chat. <br>
-Risk: Installer-script setup paths fetch and execute remote installation code. <br>
-Mitigation: Prefer pip or package-manager installation paths and review remote installer scripts before using them. <br>
-Risk: Images and prompts may be sent to an external VLM Run service for video and itinerary generation. <br>
-Mitigation: Only submit images, locations, and prompts that are acceptable for external processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MehediAhamed/travel-destination-brochure) <br>
-- [OpenStreetCam API Reference](references/openstreetcam_api.md) <br>
-- [Wikimedia Commons API Reference](references/commons_api.md) <br>
-- [OpenStreetCam API Doc](https://api.openstreetcam.org/api/doc.html) <br>
-- [Wikimedia Commons API](https://commons.wikimedia.org/w/api.php) <br>
-- [MediaWiki API](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page) <br>
+## Use Case:
 
+External users and developers use this skill to create destination guides, travel brochures, short travel videos, and one-day itineraries for a specified city using open imagery and optional VLM Run generation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated artifacts may include image files, JSON manifests, optional video output, and a Markdown travel plan.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10 or higher and internet access; video and itinerary generation require a VLMRUN_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup guidance includes remote installer commands that pipe downloaded content directly to a shell.
+
+Mitigation: Remove pipe-to-shell installer paths and prefer package-manager or pinned dependency installation steps before use.
+
+Risk: The skill depends on VLMRUN_API_KEY and includes guidance that could expose secrets if an agent reads or prints environment files.
+
+Mitigation: Store API keys in a secure secret mechanism and prevent agents from reading .env files or printing full keys.
+
+Risk: The skill downloads remote media that is not strongly validated before saving to disk.
+
+Mitigation: Run image downloads in a constrained output directory and review downloaded media before using it in downstream generation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mehediahamed/skills/travel-destination-brochure)
+- [Wikimedia Commons API Reference](references/commons_api.md)
+- [OpenStreetCam API Reference](references/openstreetcam_api.md)
+- [Commons API](https://commons.wikimedia.org/w/api.php)
+- [MediaWiki API](https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page)
+- [OpenStreetCam API Documentation](https://api.openstreetcam.org/api/doc.html)
+- [Nominatim Geocoding](https://nominatim.openstreetmap.org/search)
+- [VLM Run API Base](https://agent.vlm.run/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated artifact paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce image files, JSON manifests, a travel_plan.md file, and optional video output when VLMRUN_API_KEY is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

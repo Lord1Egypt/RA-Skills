@@ -1,38 +1,50 @@
-## Description: <br>
-Helps write code using vvvv gamma's Spread<T> immutable collection type and SpreadBuilder<T>. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps write code using vvvv gamma's Spread<T> immutable collection type and SpreadBuilder<T>.
 
-## Publisher: <br>
-[tebjan](https://clawhub.ai/user/tebjan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-SA-4.0 <br>
+## Publisher:
 
+[tebjan](https://clawhub.ai/user/tebjan)
 
-## Use Case: <br>
-Developers and coding agents use this skill when writing C# for vvvv gamma projects that use Spread<T>, SpreadBuilder<T>, collection transformations, Span conversion, or ProcessNode spread handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on ordinary C# collection-processing requests and steer answers toward vvvv Spread<T> patterns even when that is not intended. <br>
-Mitigation: Enable it for vvvv gamma or Spread<T> work; for general .NET collection work, use a narrower trigger or disable the skill. <br>
+## Use Case:
 
+Developers and coding agents assisting with vvvv gamma development use this skill to write C# collection-processing code with Spread<T>, SpreadBuilder<T>, iteration, mapping, filtering, zipping, accumulation, and Span-to-Spread conversion patterns.
 
-## Reference(s): <br>
-- [Spread Examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with C# code examples and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on vvvv gamma Spread<T> patterns; no tools or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; skill frontmatter metadata.version is 1.1) <br>
+Risk: The skill may activate for general collection questions inside vvvv projects and steer answers toward Spread<T> patterns when ordinary .NET collection guidance is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for ordinary .NET collection guidance when Spread<T> behavior is not desired, and review generated C# before use.
+
+## Reference(s):
+
+- [Spread Examples](examples.md)
+- [ClawHub skill page](https://clawhub.ai/tebjan/skills/vvvv-spreads)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Markdown]
+
+**Output Format:** [Markdown with C# code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

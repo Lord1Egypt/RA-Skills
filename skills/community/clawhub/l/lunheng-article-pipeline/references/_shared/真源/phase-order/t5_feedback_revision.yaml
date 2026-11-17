@@ -1,0 +1,21 @@
+# 论衡流程真源 · 第二部分：节点 t5_feedback_revision（完整定义，逐字保留原文本）
+# 装配视图 = ../phase-order.yaml（生成物）；校验 = 生成器 --check（门 AA）
+# ── 节点 YAML 正文（装配时逐字拼入；本行以上为切片头）──
+- id: t5_feedback_revision   # 别名：文档层「Phase 3.7」（T6/G14 否决后的预审计修订；本轮修完才进 Phase 4）
+  phase: "Phase 3.7"
+  phase_seq: 13
+  input: drafts/初稿-v{N}.md + analysis/批判报告-v{N}.md
+  kind: conditional_agent
+  verdict_scale: four_tier   # v2.12.40：T6 报告判定落四档
+  rerun_after_report: true   # v2.12.40「报告后激活」：前提 = 批判报告已落盘；必须在报告写入后重跑判定
+  agent: T5
+  role: T5
+  write_authority: executor   # T5 = 正式写手：初稿/修订稿由本角色直接落盘
+  verification_authority: 主控
+  on_worker_failure: {executor: 主控, disclosure: degraded_executor, retry_limit: 1}
+  output: drafts/初稿-v{N+1}.md + drafts/修订说明-v{N+1}.md
+  condition_undecidable: report_to_owner   # v2.12.54 R-6：T6 报告不可读/缺失 ⇒ 呈主人（不得静默按未触发跳过）
+  condition: T6_requires_revision   # 命中 = 报告头部「P0/P1 否决项清单」非空（高可攻击性/砍论点 ⇒ 否决项）
+  on_not_triggered: record_not_triggered_in_status   # v2.12.28：未触发也必须在 status.md 留痕（防「未触发」与「漏跑」不可分）
+  after_each: [current_draft_sync]   # P2-1：本节点非 bounded_loop，`after_each` = 单次执行后刷新。产出 v{N+1} 后必须刷新 current_draft.md，否则 T7 读旧稿。
+  next: t7_audit

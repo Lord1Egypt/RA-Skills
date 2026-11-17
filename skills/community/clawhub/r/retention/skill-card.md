@@ -1,37 +1,47 @@
-## Description: <br>
-User retention strategy, cohort analysis, churn prevention, and reactivation campaigns <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+User retention strategy, cohort analysis, churn prevention, and reactivation campaigns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External product teams and growth operators use this skill to plan retention analysis, identify churn signals, design engagement loops, and draft reactivation or churn-prevention tactics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Retention, cancellation, discount, and reactivation recommendations could be misapplied in customer-facing workflows. <br>
-Mitigation: Review messages and flows before customer use to ensure claims are truthful, cancellation remains easy, and applicable consumer-protection and privacy rules are followed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/retention) <br>
+## Use Case:
+
+Product, growth, and lifecycle teams use this skill to plan retention metrics, cohort analysis, churn prevention, and reactivation campaigns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Retention analysis may rely on privacy-sensitive signals such as data export requests, cancellation reasons, and billing-page behavior.
+
+Mitigation: Use those signals only with appropriate notice, legal compliance, and transparent customer communication.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; produces strategic retention guidance and campaign recommendations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with tables, checklists, formulas, and campaign templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; outputs are advisory retention-strategy guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

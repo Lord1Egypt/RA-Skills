@@ -1,0 +1,5 @@
+interface:
+  display_name: "pinterest-download"
+  short_description: "Search, related pins, boards, previews, and MP4s via ego-browser"
+  brand_color: "#E60023"
+  default_prompt: "Use $pinterest-download. Run node skills/pinterest-download/scripts/download.mjs with --query/--pin/--board/--url, --count, and --out. Optional --min-width and --min-height (pixels; both set means both sides). --media video saves MP4. Always tell the user that signing in to Pinterest inside Ego Lite improves results versus anonymous mode (login_tip). If login_required is true, show how_to_login and do not type the password."

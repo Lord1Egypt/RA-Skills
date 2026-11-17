@@ -1,45 +1,52 @@
-## Description: <br>
-Medical Literature Search helps users search PubMed, CNKI, Wanfang, and other medical literature databases, summarize abstracts, recommend related papers, and build evidence-based PICO search strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medical Literature Search helps agents search PubMed and Chinese medical literature databases, organize abstracts, recommend related literature, and support evidence-based medicine searches.
 
-## Publisher: <br>
-[hikaruhuimin](https://clawhub.ai/user/hikaruhuimin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hikaruhuimin](https://clawhub.ai/user/hikaruhuimin)
 
-## Use Case: <br>
-External clinicians, medical researchers, medical students, and drug development teams use this skill to locate and organize medical literature across English and Chinese databases. It supports literature reviews, evidence-based medicine searches, article summaries, and comparison tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical literature summaries may be incomplete, outdated, or unsuitable for direct clinical decision-making. <br>
-Mitigation: Verify important claims against primary sources or qualified medical professionals before relying on them. <br>
-Risk: Accessing subscription literature databases may expose institutional credentials if used in an untrusted runtime environment. <br>
-Mitigation: Use trusted environments for database access and avoid entering subscription credentials unless the runtime is trusted. <br>
-Risk: Search and ranking choices can miss relevant medical evidence or overemphasize convenient sources. <br>
-Mitigation: Review the generated search strategy, include primary sources where possible, and adjust keywords, MeSH terms, and database coverage for high-stakes use. <br>
+## Use Case:
 
+Clinicians, medical researchers, medical students, and drug development teams use this skill to find biomedical literature, build search strategies, summarize abstracts, compare papers, and identify evidence-based medicine sources.
 
-## Reference(s): <br>
-- [PubMed](https://pubmed.ncbi.nlm.nih.gov/) <br>
-- [CNKI](https://www.cnki.net/) <br>
-- [Wanfang Data](https://www.wanfangdata.com.cn/) <br>
-- [VIP Chinese Journal Service Platform](https://www.cqvip.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown literature cards, summaries, and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are typically limited to 10-20 papers and may include titles, authors, journals, publication years, DOIs, links, summaries, and study types.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Literature summaries or search results may be incomplete, outdated, or clinically misapplied if treated as medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a search aid only; verify source links, publication quality, and clinical relevance before relying on results for diagnosis or treatment questions.
+
+## Reference(s):
+
+- [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
+- [CNKI](https://www.cnki.net/)
+- [Wanfang Data](https://www.wanfangdata.com.cn/)
+- [CQVIP](https://www.cqvip.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown literature cards, comparison tables, and concise search guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are intended to be concise, typically 10-20 papers when multiple results are returned.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

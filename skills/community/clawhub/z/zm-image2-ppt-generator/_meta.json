@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn716ewtc7z7a76wre4bsckgas8398j1",
+  "ownerId": "local-zhumeng-openclaw",
   "slug": "zm-image2-ppt-generator",
+  "displayName": "ZM Image2PPT 视觉幻灯片生成",
   "version": "0.1.0",
-  "publishedAt": 1782241924287
+  "status": "local",
+  "createdAt": "2026-06-23",
+  "description": "根据 Markdown 大纲或 slides_plan.json 生成视觉化幻灯片图片、HTML viewer 和 PPTX；正式项目需配合 PPT/Deck 生产流程。"
 }

@@ -1,42 +1,61 @@
-## Description: <br>
-Safely publish an already-reviewed skill to ClawHub, verify the live registry state, and return a clear release report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely publish an already-reviewed skill to ClawHub, verify the live registry state, and return a clear release report.
 
-## Publisher: <br>
-[choosenobody](https://clawhub.ai/user/choosenobody) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[choosenobody](https://clawhub.ai/user/choosenobody)
 
-## Use Case: <br>
-Developers and release operators use this skill to publish reviewed ClawHub skills, verify the live registry state, and return a clear release report with any blocking issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing can update public marketplace content. <br>
-Mitigation: Before running publish commands, confirm the logged-in ClawHub account, slug, source path, version, changelog, and release review status. <br>
-Risk: A successful publish command may not prove that the live page is correct or fully propagated. <br>
-Mitigation: Verify the registry with clawhub inspect, check the public page when accessible, and report blocked or mismatched verification honestly. <br>
+## Use Case:
 
+Developers and release operators use this skill to publish already-reviewed ClawHub skills, verify registry and public page state, and return a clear release report with status, issues, and next action.
 
-## Reference(s): <br>
-- [Publish Checklist](references/publish-checklist.md) <br>
-- [Verification Protocol](references/verification-protocol.md) <br>
-- [Known Platform Limitations](references/archive/known-platform-limitations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown release report with status fields and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports publish status, registry verification, public page verification, URL, install command, issues, and next action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can mutate public ClawHub registry state using user-supplied slug, path, version, and changelog values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat publish inputs as untrusted, validate slug and semver strictly, confirm the source directory and completed release review, and invoke CLI commands with fixed argument arrays or equivalent safe process handling.
+
+Risk: A publish command can succeed while the registry or public page is stale, blocked, or mismatched.
+
+Mitigation: Verify with registry inspection and public page text checks where accessible, and report BLOCKED or MISMATCH instead of PASS when verification cannot be completed.
+
+Risk: Skill source content could accidentally include secrets, private credentials, local-only paths, draft notes, or visible HTML comments.
+
+Mitigation: Run the documented secrets and privacy checklist before publishing and block release when sensitive or unintended content is found.
+
+## Reference(s):
+
+- [Publish Checklist](references/publish-checklist.md)
+- [Verification Protocol](references/verification-protocol.md)
+- [Local Overrides](references/local-overrides.md)
+- [Known Platform Limitations](references/archive/known-platform-limitations.md)
+- [Failure Playbook](references/archive/failure-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown release report with status fields, verification results, issues, next action, and inline shell commands when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include publish status, registry verification, public page verification, skill URL, install command, command used, and follow-up action.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

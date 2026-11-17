@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Supabase"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.8"
   services: ["supabase"]
   icon: "https://static.oomol.com/logo/third-party/Supabase.svg"
 ---
@@ -40,6 +40,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_project_api_key` — Create a publishable or secret API key for a Supabase project. [write]
 - `delete_project_api_key` — Delete a Supabase project API key. [destructive]
 - `delete_project_secrets` — Bulk delete secrets from a Supabase project. [destructive]
+- `download_storage_object` — Download a private Supabase Storage object to connector transit storage.
 - `generate_typescript_types` — Generate TypeScript database types for a Supabase project.
 - `get_edge_function` — Get metadata for one Supabase Edge Function by slug.
 - `get_organization` — Get details for a Supabase organization by slug.
@@ -57,6 +58,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_storage_buckets` — List Storage buckets for a Supabase project.
 - `run_read_only_query` — Run a SQL query through Supabase as the read-only database user.
 - `update_project_api_key` — Update the name, description, or JWT template for a Supabase project API key. [write]
+- `upload_storage_object` — Upload an object from a public URL to Supabase Storage. [write]
 - `upsert_project_secrets` — Bulk create or update secrets for a Supabase project. [write]
 
 ## Safety
@@ -88,11 +90,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Supabase is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=supabase
+  https://console.oomol.com/connections/supabase
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Supabase homepage: https://supabase.com
+- API documentation: https://supabase.com/docs/reference/api/introduction

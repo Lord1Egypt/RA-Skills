@@ -1,41 +1,57 @@
-## Description: <br>
-Automate iOS Simulator workflows (simctl + idb): create/boot/erase devices, install/launch apps, push notifications, privacy grants, screenshots, and accessibility-based UI navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate iOS Simulator workflows (simctl + idb): create/boot/erase devices, install/launch apps, push notifications, privacy grants, screenshots, and accessibility-based UI navigation.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and test engineers use this skill to manage iOS Simulator devices, install and launch apps, capture screenshots or video, inspect app UI state, and automate simulator interactions during iOS development and testing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Simulator state can be changed through privacy grants, push notifications, clipboard updates, URL opens, app install or uninstall, and app launch commands. <br>
-Mitigation: Confirm the target UDID, bundle ID, payload, and service before running state-changing commands on a trusted macOS development machine or trusted macOS node. <br>
-Risk: Erase and delete commands can remove simulator data or simulator devices. <br>
-Mitigation: Use the required --yes flag only after verifying the selected simulator or intentionally targeting all simulators. <br>
-Risk: Optional idb dependencies are installed through Homebrew and pip when accessibility automation is needed. <br>
-Mitigation: Verify or pin idb-related packages according to the environment's dependency review process before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
+## Use Case:
 
+Developers and QA engineers use this skill to manage iOS Simulator devices, install and launch apps, capture screenshots and video, inspect accessibility UI state, and automate simulator interactions during iOS app testing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Files, Guidance] <br>
-**Output Format:** [Single-line JSON by default, with optional pretty JSON or short text summaries; screenshot and video commands write files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with Xcode Command Line Tools for simctl; idb is optional but required for accessibility UI automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Simulator clipboard contents, UI dumps, logs, app containers, screenshots, videos, and push payloads may contain sensitive test data.
+
+Mitigation: Use the skill only in macOS/Xcode test environments, avoid production credentials or real user data, and review artifacts before sharing or storing them.
+
+Risk: Erase, delete, privacy, push, clipboard, and open URL commands can alter simulator or app state.
+
+Mitigation: Target an explicit simulator UDID when practical, review commands before execution, and reserve destructive erase/delete operations for intended test devices.
+
+Risk: UI automation depends on idb and accessibility labels, so ambiguous or stale UI state can cause unintended taps or text entry.
+
+Mitigation: Inspect UI summaries or trees before semantic taps, narrow query text for multiple matches, and verify idb-related dependencies in stricter environments.
+
+## Reference(s):
+
+- [iOS Simulator Skill on ClawHub](https://clawhub.ai/tristanmanchester/skills/ios-simulator)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and CLI output that defaults to single-line JSON, with optional pretty JSON or short text summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces simulator state files, screenshots, videos, app container paths, UI summaries, logs, and command result objects when the corresponding CLI commands are run.]
+
+## Skill Version(s):
+
+0.1.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

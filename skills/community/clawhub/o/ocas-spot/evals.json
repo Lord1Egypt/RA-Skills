@@ -1,0 +1,22 @@
+{
+  "skill": "ocas-spot",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-spot",
+  "evals": [
+    {
+      "input": "Book an appointment at a hair salon next Tuesday",
+      "expected_output": "Checks availability and books appointment at selected venue",
+      "description": "Appointment booking"
+    },
+    {
+      "input": "Find salons near me with availability this week",
+      "expected_output": "Returns list of salons with open slots, ranked by relevance",
+      "description": "Salon discovery"
+    },
+    {
+      "input": "Watch for openings at a specific restaurant",
+      "expected_output": "Sets up monitoring for availability changes",
+      "description": "Availability monitoring"
+    }
+  ]
+}

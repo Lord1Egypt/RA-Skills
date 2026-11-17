@@ -1,42 +1,59 @@
-## Description: <br>
-Organize, deduplicate, summarize, and compress OpenClaw or Clawd memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize, deduplicate, summarize, and compress OpenClaw or Clawd memory files into concise, durable workspace memory.
 
-## Publisher: <br>
-[1217047020](https://clawhub.ai/user/1217047020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1217047020](https://clawhub.ai/user/1217047020)
 
-## Use Case: <br>
-Developers and agent users who maintain OpenClaw or Clawd workspaces use this skill to back up, inspect, deduplicate, summarize, and compress local memory files into concise long-term notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite local memory notes and compressed summaries may omit details. <br>
-Mitigation: Confirm the target workspace, require the backup step before changes, review proposed edits, run validation, and compare before-and-after counts. <br>
-Risk: Memory files may contain sensitive or stale information. <br>
-Mitigation: Keep only durable operational context and omit private data, expired tokens, one-off outputs, and sensitive strings unless the user explicitly needs them retained. <br>
+## Use Case:
 
+Developers and OpenClaw or Clawd users use this skill to inspect, back up, deduplicate, summarize, and maintain workspace memory files without losing durable preferences or environment facts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1217047020/openclaw-memory-curator) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON helper-script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update MEMORY.md, compressed memory notes, and memory-backups snapshots after user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill.json) <br>
+Risk: Memory cleanup can remove useful context or compress details too aggressively.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed MEMORY.md and daily-note edits before approving changes.
+
+Risk: Rewriting memory files can make accidental data loss harder to recover from.
+
+Mitigation: Create and retain the bundled backup before any rewrite.
+
+Risk: Private or sensitive strings may exist in raw memory notes.
+
+Mitigation: Prefer omitting sensitive data from long-term memory unless it is explicitly needed.
+
+## Reference(s):
+
+- [OpenClaw Memory Curator on ClawHub](https://clawhub.ai/1217047020/skills/openclaw-memory-curator)
+- [README](artifact/README.md)
+- [CHANGELOG](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON reports and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports backup location, MEMORY.md changes, before and after memory totals, and intentionally kept or dropped items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, and changelog released 2026-03-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

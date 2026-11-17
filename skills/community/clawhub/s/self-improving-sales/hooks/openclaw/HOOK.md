@@ -30,8 +30,5 @@ The hook injects reminders to log to the appropriate file based on what occurred
 
 ## Configuration
 
-No configuration needed. Enable with:
+Optional and workspace-local. Do not copy this hook to `~/.openclaw/hooks/`. The reminder is log-only and does not authorize edits.
 
-```bash
-openclaw hooks enable self-improving-sales
-```

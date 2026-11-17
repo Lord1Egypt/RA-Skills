@@ -1,46 +1,57 @@
-## Description: <br>
-Plan Colombia trips with region-specific routing, verified entry rules, weather-aware logistics, and practical tourist safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Colombia trips with region-specific routing, verified entry rules, weather-aware logistics, and practical tourist safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to design Colombia itineraries with entry, health, region, transport, budget, weather, safety, and local trip-memory context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain local trip context in ~/colombia/memory.md, which may include sensitive travel, health, mobility, child-travel, or itinerary details if the user saves them. <br>
-Mitigation: Review ~/colombia/memory.md periodically and avoid storing passport, health, mobility, child-travel, or exact itinerary details that should not be retained. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to design Colombia itineraries, compare regions, handle entry and health checks, and plan realistic transport, weather, budget, safety, and booking logistics.
 
-## Reference(s): <br>
-- [Colombia Skill Homepage](https://clawic.com/skills/colombia) <br>
-- [Sources - Colombia Skill](artifact/sources.md) <br>
-- [Cancilleria Visa Requirements](https://www.cancilleria.gov.co/tramites_servicios/visa/requisitos) <br>
-- [Migracion Colombia Check-Mig](https://apps.migracioncolombia.gov.co/pre-registro/en/) <br>
-- [Colombia Travel Practical Information](https://colombia.travel/en/practical-information) <br>
-- [Minsalud Yellow Fever Guidance](https://www.minsalud.gov.co/salud/publica/PET/Paginas/fiebre-amarilla.aspx) <br>
-- [IDEAM Forecasts and Alerts](https://www.ideam.gov.co/pronosticos-y-alertas) <br>
-- [Parques Nacionales Ecotourism](https://www.parquesnacionales.gov.co/entidad/ecoturismo/) <br>
-- [INVIAS Road Information System](https://hermes2.invias.gov.co/SIV/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown travel-planning guidance with itineraries, checklists, route tradeoffs, and local memory updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local trip context in ~/colombia/memory.md when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Trip details may be retained locally in ~/colombia/memory.md, including sensitive health or identity context if the user adds it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive health or identity details unless they are necessary for the trip, and edit or delete the local memory file when retained context is no longer wanted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/colombia)
+- [Skill homepage](https://clawic.com/skills/colombia)
+- [Colombia skill sources](sources.md)
+- [Cancilleria visa requirements](https://www.cancilleria.gov.co/tramites_servicios/visa/requisitos)
+- [Migracion Colombia Check-Mig](https://apps.migracioncolombia.gov.co/pre-registro/en/)
+- [Colombia Travel practical information](https://colombia.travel/en/practical-information)
+- [Minsalud yellow fever guidance](https://www.minsalud.gov.co/salud/publica/PET/Paginas/fiebre-amarilla.aspx)
+- [IDEAM forecasts and alerts](https://www.ideam.gov.co/pronosticos-y-alertas)
+- [INVIAS road information system](https://hermes2.invias.gov.co/SIV/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown travel-planning guidance with checklists, route models, and day-by-day itinerary structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local trip preferences stored in ~/colombia/memory.md when available]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

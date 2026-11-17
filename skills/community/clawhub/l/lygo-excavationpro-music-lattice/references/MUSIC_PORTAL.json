@@ -1,0 +1,110 @@
+{
+  "signature": "Δ9Φ963-EXCAVATIONPRO-MUSIC-LATTICE-v1",
+  "version": "1.0.0",
+  "artist": "Excavationpro",
+  "steward": "Justin Helmer / Lightfather",
+  "skill": "lygo-excavationpro-music-lattice",
+  "public": {
+    "listen": "https://deepseekoracle.github.io/Excavationpro/excavationpro-listen.html",
+    "catalog": "https://deepseekoracle.github.io/Excavationpro/excavationpro-music-catalog.html",
+    "sovereign_vault": "https://deepseekoracle.github.io/Excavationpro/excavationpro-sovereign-music-hub.html",
+    "eternal_haven": "https://deepseekoracle.github.io/Excavationpro/eternalhaven.html",
+    "haven_star_chart": "https://deepseekoracle.github.io/Excavationpro/HavenStarChart.html",
+    "lygo_resonance": "https://deepseekoracle.github.io/Excavationpro/LYGORESONANCE.html",
+    "lygo_stack": "https://deepseekoracle.github.io/lygo-protocol-stack/",
+    "hf_streams": "https://huggingface.co/datasets/DeepSeekOracle/excavationpro-music-stream",
+    "hf_stream_base": "https://huggingface.co/datasets/DeepSeekOracle/excavationpro-music-stream/resolve/main/stream",
+    "playlist_json": "https://deepseekoracle.github.io/Excavationpro/data/public_stream_playlist.json",
+    "donate_paypal": "https://www.paypal.com/paypalme/ExcavationPro",
+    "ads_txt": "https://deepseekoracle.github.io/Excavationpro/ads.txt",
+    "sitemap": "https://deepseekoracle.github.io/Excavationpro/sitemap.xml"
+  },
+  "live_portals": {
+    "kick": "https://kick.com/excavationpro",
+    "rumble_live": "https://rumble.com/user/excavationpro/live",
+    "twitch": "https://twitch.tv/excavationpro",
+    "rumble_channel": "https://rumble.com/user/Excavationpro",
+    "rumble_embed": "https://rumble.com/embed/v7anxls/?pub=1th29y"
+  },
+  "streaming_discovery": {
+    "spotify": "https://open.spotify.com/artist/6CkZ4bN2xu3WRKbjEL3u2S",
+    "youtube_music": "https://music.youtube.com/@Excavationpro",
+    "deezer": "https://www.deezer.com/artist/146004952",
+    "feature_fm": "https://ffm.to/eovnvo9"
+  },
+  "local_stack_paths": {
+    "vault_root": "MUSIC_VAULT (default I:/E Drive/MUSIC_VAULT)",
+    "public_stream": "MUSIC_VAULT/public_stream/{sha256}.mp3",
+    "playlist": "data/music_catalog/public_stream_playlist.json",
+    "vault_manifest": "data/music_catalog/music_vault_manifest.json",
+    "ledger": "data/music_catalog/excavationpro_music_ledger.json",
+    "vault_egg_core": "data/music_catalog/egg_payload/music_vault_egg_core.json",
+    "catalog": "data/music_catalog/excavationpro_catalog.json"
+  },
+  "stack_cli": [
+    {
+      "id": "vault_scan",
+      "cmd": "python tools/build_music_cas_vault.py --scan --hub",
+      "role": "hash masters + merkle vault index",
+      "consent": false
+    },
+    {
+      "id": "stream_encode",
+      "cmd": "python tools/build_public_music_stream.py --encode --workers 4",
+      "role": "160kbps MP3 stream pack",
+      "consent": false
+    },
+    {
+      "id": "stream_publish_hf",
+      "cmd": "python tools/build_public_music_stream.py --publish-hf --hub",
+      "role": "upload streams to HF + rebuild listen page",
+      "consent": true,
+      "note": "needs HF token; human must approve publish"
+    },
+    {
+      "id": "listen_hub",
+      "cmd": "python tools/build_public_music_stream.py --hub",
+      "role": "rebuild excavationpro-listen.html only",
+      "consent": false
+    },
+    {
+      "id": "catalog_site",
+      "cmd": "python tools/build_music_registry_site.py",
+      "role": "ISRC ledger + catalog HTML",
+      "consent": false
+    },
+    {
+      "id": "verify_portal",
+      "cmd": "python tools/_verify_listen_portal.py",
+      "role": "integrity check playlist/HTML/HF/Pages",
+      "consent": false
+    }
+  ],
+  "lattice_hooks": {
+    "kernel_egg_ids": [
+      "excavationpro-music-catalog-v1",
+      "excavationpro-music-vault-v1"
+    ],
+    "merkle_fields": [
+      "music_vault_manifest.merkle_root",
+      "excavationpro_music_ledger.ledger.content_sha256"
+    ],
+    "related_skills": [
+      "lygo-tools-portal",
+      "lygo-protocol-stack-operator",
+      "lygo-kernel-egg-planter",
+      "lygo-resonance",
+      "lygo-network-builder",
+      "lygo-champion-lightfather"
+    ]
+  },
+  "intents": {
+    "listen_free": ["listen", "play music", "free stream", "hear excavationpro"],
+    "rebuild_portal": ["rebuild listen page", "refresh music hub", "update portal"],
+    "scan_vault": ["scan masters", "hash music", "CAS vault", "merkle music"],
+    "publish_streams": ["upload HF", "publish streams", "public mp3"],
+    "verify": ["check portal", "verify streams", "music integrity"],
+    "live": ["kick", "twitch", "rumble live", "go live"],
+    "donate": ["paypal", "donate", "support excavationpro"]
+  }
+}

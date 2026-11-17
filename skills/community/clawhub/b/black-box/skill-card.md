@@ -1,42 +1,61 @@
-## Description: <br>
-Indestructible audit logs for agent actions, stored in TiDB Zero. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Indestructible audit logs for agent actions, stored in TiDB Zero.
 
-## Publisher: <br>
-[lilyjazz](https://clawhub.ai/user/lilyjazz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lilyjazz](https://clawhub.ai/user/lilyjazz)
 
-## Use Case: <br>
-Developers and operators use Black Box to log and retrieve agent actions, errors, and reasoning traces in a TiDB-backed cloud database for audit and debugging workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent action, error, and possible reasoning content may be sent to a TiDB-backed cloud database. <br>
-Mitigation: Prefer least-privilege user-provided TiDB credentials and avoid logging secrets, private prompts, or sensitive data. <br>
-Risk: The database connection string is cached in ~/.openclaw_black_box_dsn. <br>
-Mitigation: Protect or remove the cached DSN file and rotate database credentials if it may have been exposed. <br>
-Risk: The skill describes audit logs as indestructible, but the security evidence says durability and compliance guarantees are overstated. <br>
-Mitigation: Do not rely on this as tamper-proof or permanent compliance evidence without additional retention, access-control, and integrity controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub black-box release](https://clawhub.ai/lilyjazz/black-box) <br>
-- [TiDB Zero provisioning endpoint](https://zero.tidbapi.com/v1alpha1/instances) <br>
+## Use Case:
 
+Developers and operators use Black Box to record agent actions, errors, and command intent to a persistent TiDB-backed audit trail, then read recent records for debugging, compliance review, or incident reconstruction.
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, configuration] <br>
-**Output Format:** [JSON status responses and log records from command-line execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, curl, pymysql, and TiDB connection settings or the skill's auto-provisioning fallback.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends agent activity, prompts, commands, or other sensitive log content to cloud storage.
+
+Mitigation: Use only an approved database and require explicit user or administrator opt-in before enabling cloud logging.
+
+Risk: Database credentials and connection strings may be weakly scoped or stored with insufficient protection.
+
+Mitigation: Store DSNs and TIDB_* credentials with owner-only permissions or a secret manager, and rotate credentials if logs or configuration are exposed.
+
+Risk: Audit logs may capture reasoning chains, sensitive command details, customer data, or compliance evidence.
+
+Mitigation: Avoid logging reasoning chains or sensitive command details, and define retention, access review, and redaction practices before deployment.
+
+Risk: Networked database logging depends on external services and transport security.
+
+Mitigation: Pin dependencies, enforce verified TLS, and validate the approved TiDB endpoint before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilyjazz/skills/black-box)
+- [TiDB Zero provisioning API endpoint](https://zero.tidbapi.com/v1alpha1/instances)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON responses and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads TiDB audit log records; requires pymysql, curl, outbound network access, and TIDB_* credentials or fallback provisioning.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

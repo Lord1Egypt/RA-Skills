@@ -1,42 +1,55 @@
-## Description: <br>
-Queries historical Shanghai Gold Exchange market data by date through JikeAPI, returning instruments, open, high, low, close, change, percentage change, and volume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按日期查询上海黄金交易所历史行情，返回品种、开盘价、最高价、最低价、收盘价、涨跌幅和成交量等信息，数据由即刻数据（jikeapi.cn）开放接口提供。
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-Agents and users use this skill to fetch date-specific Shanghai Gold Exchange historical quotes from JikeAPI and present the results as a table or JSON. It is intended for information lookup and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The queried date and JikeAPI AppKey are sent to JikeAPI when the lookup runs. <br>
-Mitigation: Prefer environment variables over command-line keys, restrict any local .env file, avoid logging credentials, and rotate the key if it appears in logs or shared shell history. <br>
-Risk: Market data may be incomplete, delayed, or inappropriate for direct financial decision-making. <br>
-Mitigation: Present results as informational lookup data, keep the skill's no-investment-advice notice, and verify critical values with an authoritative market-data source before acting. <br>
+## Use Case:
 
+External users and agents use this skill to query Shanghai Gold Exchange historical quote data for a specified YYYY-MM-DD date and return a readable table or raw JSON. Results are informational only and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-gold-shgold-query) <br>
-- [JikeAPI homepage](https://www.jikeapi.cn/) <br>
-- [JikeAPI Shanghai Gold Exchange history endpoint](https://api.jikeapi.cn/v1/gold/shgold/history) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal table or JSON payload, usually summarized as Markdown by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JikeAPI AppKey via JIKE_GOLD_SHGOLD_QUERY_KEY or JIKE_APPKEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A configurable API base URL can redirect requests and expose the API key to an unintended server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only where JIKE_API_BASE_URL cannot be set by untrusted parties and use a dedicated low-privilege Jike API key.
+
+Risk: Supplying the API key on the command line can expose it through shell history or process listings.
+
+Mitigation: Prefer JIKE_GOLD_SHGOLD_QUERY_KEY or JIKE_APPKEY environment variables instead of the --key argument.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-gold-shgold-query)
+- [Jike API homepage](https://www.jikeapi.cn/)
+- [Shanghai Gold Exchange history API endpoint](https://api.jikeapi.cn/v1/gold/shgold/history)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text table or JSON, typically summarized in Markdown by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a query date and a Jike API key; the skill reminds users that market data is not investment advice.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

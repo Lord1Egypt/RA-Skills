@@ -1,43 +1,58 @@
-## Description: <br>
-企业法律风险智能检测专家，通过对话式体检帮助企业发现隐藏法律风险并给出整改建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language agent skill that conducts conversational enterprise legal risk screening across 13 compliance modules and returns risk scores and remediation guidance.
 
-## Publisher: <br>
-[lswjp1234-lgtm](https://clawhub.ai/user/lswjp1234-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lswjp1234-lgtm](https://clawhub.ai/user/lswjp1234-lgtm)
 
-## Use Case: <br>
-External business users use this skill to run a Chinese enterprise legal-risk screening conversation, score common compliance risks, and receive informational remediation guidance. It also routes users toward paid module reviews or lawyer consultation when the skill's documented flow calls for deeper review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive business or legal details without an included privacy notice. <br>
-Mitigation: Use anonymized or non-confidential facts unless the user trusts the publisher and understands how the information will be handled. <br>
-Risk: The skill includes a paid consultation funnel and asks for payment screenshots. <br>
-Mitigation: Verify the lawyer identity and payment destination before sending money, payment screenshots, or contact details. <br>
-Risk: Broad legal-risk trigger terms can activate the skill outside an intentional screening session. <br>
-Mitigation: Use it only when the user intentionally wants a Chinese enterprise legal-risk screening and confirm scope before collecting sensitive details. <br>
+## Use Case:
 
+External business users and legal or compliance operators use this skill to run Chinese-language enterprise legal-risk screening, identify top risk areas, and receive remediation guidance. The skill supports a free quick screen and paid follow-up flows for module-specific analysis or a fuller report.
 
-## Reference(s): <br>
-- [13模块97+检测项完整题库](references/modules.md) <br>
-- [ClawHub release page](https://clawhub.ai/lswjp1234-lgtm/enterprise-law-risk-checker) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style legal-risk screening questions, score summaries, risk explanations, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational and not formal legal advice; the skill may ask for business/legal facts and payment screenshots during the documented paid-service flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can solicit sensitive company, tax, invoice, employment, and possible criminal-exposure details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sanitized or minimal facts unless the publisher is trusted and data-handling expectations are clear.
+
+Risk: The skill routes users to paid legal-service steps and may request payment screenshots.
+
+Mitigation: Treat payment and lawyer-contact steps as off-platform promotional activity, and verify payment handling and representation terms independently.
+
+Risk: Outputs may be mistaken for formal legal advice.
+
+Mitigation: Use the screening as informational guidance and consult a qualified lawyer before relying on it for legal decisions.
+
+## Reference(s):
+
+- [13模块97+检测项完整题库](artifact/references/modules.md)
+- [ClawHub skill listing](https://clawhub.ai/lswjp1234-lgtm/skills/enterprise-law-risk-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown with questionnaires, risk scores, ranked risk points, and remediation suggestions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational legal-risk screening only; paid flows may request payment screenshots and follow-up contact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and README version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

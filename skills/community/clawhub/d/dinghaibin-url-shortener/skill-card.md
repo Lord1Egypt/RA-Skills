@@ -1,41 +1,52 @@
-## Description: <br>
-Create and manage short URLs with custom aliases and tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage short URLs with custom aliases, local tracking, and optional QR codes.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users can use this skill to create memorable local aliases for long URLs, inspect saved aliases, and generate QR codes for sharing links.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Saved URLs may contain private links, credentials, bearer tokens, or sensitive query parameters.
+
+Mitigation: Avoid storing sensitive URLs and review local URL data before sharing or backing up the host environment.
+
+Risk: Optional QR generation depends on an extra Python package installed in the user's environment.
+
+Mitigation: Install optional QR dependencies in a virtual environment before using QR features.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and other users use this skill to create local short aliases for long URLs, optionally with custom aliases, QR code files, and basic saved-link statistics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Stored URLs may contain tokens, private query parameters, or sensitive internal addresses. <br>
-Mitigation: Use the skill as a local helper and avoid saving sensitive URLs because mappings are written to ~/.url_shortener.json. <br>
-Risk: QR code output can overwrite an existing file if the chosen output path already exists. <br>
-Mitigation: Choose QR output paths deliberately and check existing files before writing QR code images. <br>
-Risk: The helper is not designed to operate as a hosted short-link service. <br>
-Mitigation: Keep usage local and do not rely on it for public redirect hosting or production analytics. <br>
+**Output Format:** [Markdown with inline shell commands and command output guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May create local JSON storage in the user's home directory and optional QR image files when the script is run.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; script output is plain text with optional PNG QR code files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores URL mappings locally in ~/.url_shortener.json when the helper script is used.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

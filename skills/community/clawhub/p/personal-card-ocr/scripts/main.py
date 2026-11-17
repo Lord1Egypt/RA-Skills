@@ -188,6 +188,14 @@ def main():
     ocr_type = sys.argv[1]
     file_path = sys.argv[2]
 
+    # --- 用户显式警告 ---
+    sys.stderr.write(
+        "\n⚠️  隐私警告：本操作将读取您指定的本地图片，并通过 HTTPS 上传到 Scnet 第三方 OCR 服务（https://api.scnet.cn）。\n"
+        "    图片中可能包含身份证、银行卡、护照、户口本等敏感信息，上传后将在 Scnet 服务器进行处理。\n"
+        "    请确认您已了解上述风险并同意继续。建议仅上传当前任务所需的最小数据。\n\n"
+    )
+    # -------------------
+
     config = load_config()
     # 调用带重试的识别函数
     recognize_with_retry(ocr_type, file_path, config)

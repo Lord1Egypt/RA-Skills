@@ -1,43 +1,54 @@
-## Description: <br>
-Generate conventional commit messages from code changes or diff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate conventional commit messages from code changes or diff.
 
-## Publisher: <br>
-[hazy-ca](https://clawhub.ai/user/hazy-ca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hazy-ca](https://clawhub.ai/user/hazy-ca)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft Conventional Commits messages from git diffs or natural-language descriptions of code changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diffs can contain secrets or sensitive implementation details. <br>
-Mitigation: Review and redact diffs before sharing them with the skill. <br>
-Risk: Generated commit messages may not accurately summarize the change. <br>
-Mitigation: Review the selected message before copying it or using it in a git commit. <br>
-Risk: Optional clipboard or git commit actions could apply a message before the user has chosen it. <br>
-Mitigation: Only allow clipboard actions or actual commits after explicit user selection. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn code diffs or natural-language change descriptions into Conventional Commits message candidates, including type, scope, body, and optional footer guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hazy-ca/it-commit-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/hazy-ca) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with Conventional Commit message options and analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise, standard, and full commit-message variants; no executable code or hidden access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated commit messages may misclassify the change type, scope, or breaking-change status when the input diff or description is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the recommended type, scope, body, and footer against the actual change before using the message.
+
+Risk: The skill documentation describes optional future clipboard, template, history, or Git integration behavior that could affect local repository state or expose project history if implemented without controls.
+
+Mitigation: Require explicit user confirmation before copying messages, saving templates, reading commit history, or running Git commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hazy-ca/skills/it-commit-helper)
+- [Publisher profile](https://clawhub.ai/user/hazy-ca)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with commit message code blocks and concise analysis notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces three commit-message options at different levels of detail.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

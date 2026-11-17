@@ -1,45 +1,56 @@
-## Description: <br>
-Helps agents prepare, submit, and follow up on PoYo Wan 2.2 Fast text-to-video and image-to-video generation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare and submit PoYo Wan 2.2 Fast text-to-video and image-to-video jobs, including payload fields, async task submission, polling, and webhook guidance.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to build PoYo Wan 2.2 Fast payloads, choose text-to-video or image-to-video models, submit asynchronous generation tasks, and explain polling or webhook follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys could be exposed through browser code, logs, screenshots, chat output, or public repositories. <br>
-Mitigation: Store POYO_API_KEY only in server-side environment variables or a backend secret manager, and avoid echoing or logging it. <br>
-Risk: Prompts, image URLs, callback URLs, task IDs, and generated media URLs may reveal private or sensitive information to PoYo or a callback receiver. <br>
-Mitigation: Submit only content the user is comfortable sharing with PoYo and the callback receiver; avoid confidential prompts and private media URLs. <br>
-Risk: Live task submission sends network requests to PoYo and may create generation jobs. <br>
-Mitigation: Make live API calls only after the user explicitly asks and provides a safe server-side environment. <br>
+## Use Case:
 
+Developers and agents use this skill to build PoYo Wan 2.2 Fast video-generation requests, choose the correct text-to-video or image-to-video model, submit prepared payloads, and plan polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Wan 2.2 Fast API Reference](references/api.md) <br>
-- [PoYo Wan 2.2 Text-to-Video Fast Documentation](https://docs.poyo.ai/api-manual/video-series/wan2.2-text-to-video-fast) <br>
-- [PoYo Wan 2.2 Image-to-Video Fast Documentation](https://docs.poyo.ai/api-manual/video-series/wan2.2-image-to-video-fast) <br>
-- [PoYo Wan 2.2 Fast Model Page](https://poyo.ai/models/wan-2-2-fast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads and curl or shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a returned PoYo task_id when a live request is submitted; live submission requires POYO_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API keys and bearer tokens may be exposed if commands are run on shared systems or logged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped PoYo API key where possible, keep it in a trusted server-side environment, avoid logging commands or headers, and consider hardening script execution before shared-system use.
+
+Risk: Prompts, private media URLs, callback URLs, task IDs, or generated video URLs may contain confidential information.
+
+Mitigation: Submit confidential prompts or private media only when the user trusts PoYo and the callback receiver; avoid logging private request and response data.
+
+## Reference(s):
+
+- [PoYo Wan 2.2 Fast model page](https://poyo.ai/models/wan-2-2-fast)
+- [PoYo Wan 2.2 Text-to-Video Fast API docs](https://docs.poyo.ai/api-manual/video-series/wan2.2-text-to-video-fast)
+- [PoYo Wan 2.2 Image-to-Video Fast API docs](https://docs.poyo.ai/api-manual/video-series/wan2.2-image-to-video-fast)
+- [Local PoYo Wan 2.2 Fast API reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and optional bash or curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model id, request type, resolution, aspect ratio, seed, source image count, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Bilibili garb (个性装扮) data collection and management for searching garb items, querying suit/collection details, scanning benefit data for owned items (including discontinued), and determining scarcity tiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilibili Garb supports Bilibili personalization item collection and management, including garb search, suit or collection detail lookup, owned benefit scans, discontinued item recovery, and scarcity-tier checks.
 
-## Publisher: <br>
-[kuangzhanzhiwang](https://clawhub.ai/user/kuangzhanzhiwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kuangzhanzhiwang](https://clawhub.ai/user/kuangzhanzhiwang)
 
-## Use Case: <br>
-Developers and Bilibili collectors use this skill to search garb items, inspect suit and collection details, recover discontinued-item benefit data, and determine scarcity tiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to capture and store powerful Bilibili account session credentials. <br>
-Mitigation: Use a limited or throwaway account when possible, keep credentials out of shared workspaces and logs, and rotate or revoke tokens after use. <br>
-Risk: Traffic-capture instructions for obtaining Bilibili credentials may create account or platform-policy risk. <br>
-Mitigation: Proceed only when the user understands the account risk and has confirmed that credential capture is acceptable for their own account and environment. <br>
-Risk: Debug output or command history can expose access keys, cookies, CSRF tokens, or user identifiers. <br>
-Mitigation: Prefer config files or environment variables over inline command tokens, avoid debug mode with real credentials unless necessary, and review logs before sharing. <br>
+## Use Case:
 
+Developers and operators use this skill to search Bilibili personalization items, inspect garb suit or collection details, recover discontinued item data, and scan owned benefit sub-items.
 
-## Reference(s): <br>
-- [Bilibili Garb API Reference](references/bilibili-garb-api-reference.md) <br>
-- [Bilibili Garb SOP](references/bilibili-garb-sop.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kuangzhanzhiwang/bilibili-garb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown command output, shell command examples, configuration snippets, and NDJSON scan results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search and detail commands print Markdown; the benefit scanner appends records to data/garb-benefit-results.ndjson.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill uses Bilibili account session credentials, including access keys and cookies, which can expose the account if stored or logged carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store credentials outside shared workspaces with restrictive permissions, never commit configs/bili-api-creds.json, rotate credentials after use, and install only when account-session access is acceptable.
+
+Risk: Packet capture and browser cookie collection can reveal live account secrets beyond what is needed for a single lookup.
+
+Mitigation: Avoid casual packet capture or cookie extraction, collect only the minimum required credentials, and remove captured data after credential setup is complete.
+
+Risk: Debug and curl examples may expose credentials in terminal history, logs, or retained output.
+
+Mitigation: Avoid debug mode and credential-bearing curl commands in logged environments; redact tokens from command history and shared transcripts.
+
+## Reference(s):
+
+- [Bilibili Garb API Reference](references/bilibili-garb-api-reference.md)
+- [Bilibili Garb SOP](references/bilibili-garb-sop.md)
+- [ClawHub Skill Page](https://clawhub.ai/kuangzhanzhiwang/skills/bilibili-garb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, shell command guidance, JSON configuration examples, and NDJSON scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and detail commands query Bilibili APIs and optional local gallery data; the benefit scanner can append records to data/garb-benefit-results.ndjson.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

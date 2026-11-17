@@ -1,42 +1,55 @@
-## Description: <br>
-Search, compare, and score flights with jetlag optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, compare, and score flights with jetlag optimization.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External users and travel agents use this skill to search flight routes, compare alternatives, score jetlag impact, validate fares, and prepare booking actions with explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes booking workflows that may involve sensitive passenger and payment data, and the security evidence flags disclosure and safeguards as insufficient. <br>
-Mitigation: Use it for search, comparison, and validation by default; avoid raw card entry through the agent unless Aerobase provides a clearly PCI-compliant, user-approved checkout or redirect flow. <br>
-Risk: Booking or payment actions could proceed without enough user confirmation. <br>
-Mitigation: Require explicit user approval before any booking-related action, payment submission, or purchase completion. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search, compare, and score flight options with jetlag-aware recovery context. It can validate fare offers and supports booking-related actions only with explicit user approval.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kurosh87/aerobase-travel-flights) <br>
-- [Aerobase homepage](https://aerobase.app) <br>
-- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown or concise text summaries with flight option details and next-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AEROBASE_API_KEY; booking and payment actions require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: frontmatter and server release evidence) <br>
+Risk: Booking workflows can expose payment card details, CVVs, passport data, or passenger identity information through an agent-facing flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use search, comparison, scoring, and fare validation unless a secure checkout or tokenized payment flow with clear data-handling guarantees is available.
+
+Risk: The skill includes booking-related API actions that could place or alter a travel booking.
+
+Mitigation: Require explicit user approval before any booking-related action and validate fare availability or price changes before proceeding.
+
+## Reference(s):
+
+- [Aerobase Homepage](https://aerobase.app)
+- [Aerobase OpenClaw Travel Agent Setup](https://aerobase.app/openclaw-travel-agent)
+- [ClawHub Skill Page](https://clawhub.ai/kurosh87/skills/aerobase-travel-flights)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Markdown]
+
+**Output Format:** [Markdown summaries with structured flight options and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AEROBASE_API_KEY; free tier is capped at 5 requests/day.]
+
+## Skill Version(s):
+
+3.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

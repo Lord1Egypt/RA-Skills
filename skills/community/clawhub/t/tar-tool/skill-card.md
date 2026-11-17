@@ -1,38 +1,49 @@
-## Description: <br>
-Create and extract tar archives with optional compression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and extract tar archives with optional compression for file bundling, backup, and distribution.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, list, and extract tar archives for file bundling, backup, and distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracting a crafted archive can overwrite files unexpectedly. <br>
-Mitigation: Use the skill only with trusted archives or inside an empty disposable working directory, and prefer a version that validates archive paths, rejects unsafe links and special files, and extracts into an explicit user-approved destination. <br>
+## Use Case:
 
+Developers and engineers use this skill to create and extract tar archives during file bundling, backup, and distribution workflows.
 
-## Reference(s): <br>
-- [Tar Tool on ClawHub](https://clawhub.ai/dinghaibin/tar-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and archive files created or extracted by the tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Archive operations run on local filesystem paths supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Unsafe tar extraction may overwrite files outside the intended directory when processing a crafted archive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted archives in a disposable or tightly scoped directory until archive member paths are validated, unsafe links and traversal are rejected, an explicit destination is required, and overwrite controls are added.
+
+## Reference(s):
+
+- [Tar Tool on ClawHub](https://clawhub.ai/dinghaibin/skills/tar-tool)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Archive extraction should be limited to trusted archives or disposable directories because security evidence flags unsafe extraction behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

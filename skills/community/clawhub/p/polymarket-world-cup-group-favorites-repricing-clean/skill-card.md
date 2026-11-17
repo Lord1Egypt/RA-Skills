@@ -1,43 +1,58 @@
-## Description: <br>
-Buys pre-tournament World Cup outright favorite positions and optionally exits around the knockout phase to capture group-stage repricing. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Buy pre-tournament World Cup outright favorites and capture group-stage repricing before knockout phase.
 
-## Publisher: <br>
-[alyna123t](https://clawhub.ai/user/alyna123t) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alyna123t](https://clawhub.ai/user/alyna123t)
 
-## Use Case: <br>
-Developers and prediction-market operators can use this skill to scan World Cup 2026 outright markets, evaluate repricing edges, run dry-run simulations, inspect positions, and place user-invoked live trades when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to venue availability and the user's local prediction-market compliance obligations. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live runs can place prediction-market trades using the user's Simmer API key. <br>
-Mitigation: Start with dry-run or sim mode, keep --live disabled until reviewed, and set conservative daily budget, position size, slippage, spread, and trade-count limits. <br>
-Risk: The exit workflow can sell matching World Cup outright YES positions around the configured knockout date. <br>
-Mitigation: Review manage_exits, current positions, and knockout_start_utc before running live near or after the knockout phase. <br>
-Risk: Disabling safeguards can skip context checks intended to avoid resolved markets or severe warning states. <br>
-Mitigation: Avoid --no-safeguards unless the operator has reviewed the market context and accepts the additional trading risk. <br>
+## Use Case:
 
+Developers and prediction-market researchers use this skill to scan 2026 World Cup outright-winner markets, identify favorite-team repricing opportunities before the group stage, and optionally manage exit timing around the knockout phase.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/alyna123t/polymarket-world-cup-group-favorites-repricing-clean) <br>
-- [Strategy source post](https://x.com/airdrops_io/status/2061459289059754392) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and JSON, with configuration values and trade or position summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live trading requires SIMMER_API_KEY and an explicit --live or --positions invocation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and skill metadata) <br>
+Risk: Live mode can use a sensitive Simmer API key for trading and account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege API key with spending or trading limits, and start in dry-run or sim mode before live execution.
+
+Risk: The trading SDK dependency is not pinned to an exact reviewed version.
+
+Mitigation: Pin simmer-sdk to a reviewed version before production use.
+
+Risk: Account status output can display balances and open positions.
+
+Mitigation: Run status commands only in trusted environments and avoid sharing logs that contain account details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alyna123t/skills/polymarket-world-cup-group-favorites-repricing-clean)
+- [Strategy source](https://x.com/airdrops_io/status/2061459289059754392)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text status output, JSON configuration or position output, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run and sim modes are available; live trading requires SIMMER_API_KEY and explicit live-mode execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Delivers structured US equity research including snapshots, earnings analysis, valuation scenarios, catalysts, risks, and actionable trade or monitoring plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delivers structured US equity research including company snapshots, earnings analysis, valuation scenarios, catalysts, risks, and actionable trade or monitoring plans.
 
-## Publisher: <br>
-[jhryo25](https://clawhub.ai/user/jhryo25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhryo25](https://clawhub.ai/user/jhryo25)
 
-## Use Case: <br>
-Developers, analysts, and market researchers use this skill to structure US equity research, earnings reviews, valuation scenarios, risk checks, and optional trade-plan monitoring from ticker inputs and supplied market context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis or trade-plan outputs may be mistaken for investment advice or may rely on incomplete market data. <br>
-Mitigation: Verify financial data from reliable sources, treat outputs as research support only, preserve the not-investment-advice disclaimer, and require users to provide sources when live tooling is unavailable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jhryo25/us) <br>
+## Use Case:
 
+Investors, traders, and analysts use this skill to structure US equity research, compare scenarios, identify catalysts and risks, and prepare monitoring or trade-plan next steps with a non-advice disclaimer.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown research brief with scenario, risk, action-plan, and disclaimer sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs must label missing data, avoid fabricated financial claims, include falsifiable risks, and state that the result is not investment advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can produce investment research or trade-plan structure that may be mistaken for personalized financial advice.
+
+Mitigation: Keep the required non-advice disclaimer, risk profile, scenario framing, and user-specific constraints visible in generated outputs.
+
+Risk: Market data, fundamentals, earnings details, or news may be missing, stale, or user-provided without verification.
+
+Mitigation: Label unknown values, provide sourcing paths, require verifiable signals for key claims, and ask users to verify market data before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhryo25/skills/us)
+- [ClawHub publisher profile](https://clawhub.ai/user/jhryo25)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown research brief with optional trade-plan sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes required risk framing, sourcing gaps, falsifiability checks, and a non-advice disclaimer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact basic info)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

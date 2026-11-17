@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- Locale: zh-CN — Chinese-first UI for "Lan Folder Share", a LAN knowledge-base
+     tool built for Chinese-speaking users (language constraint documented in
+     SKILL.md metadata: locale=zh-CN). 语言声明：面向中文用户，界面默认中文。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>__KB_NAME_HTML__</title>
+  <link rel="icon" href="data:,">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="assets/vendor/vue.css">
+  <link rel="stylesheet" href="assets/css/table-preview.css">
+  <link rel="stylesheet" href="assets/css/html-viewer.css">
+  <link rel="stylesheet" href="assets/css/doc-inline.css">
+  <link rel="stylesheet" href="assets/css/office-preview.css">
+  <link rel="stylesheet" href="assets/css/fullsearch.css">
+  <link rel="stylesheet" href="assets/css/dir-index.css">
+  <link rel="stylesheet" href="assets/css/dynamic-sidebar.css">
+  <style>
+    :root { --theme-color: #4a6ee0; }
+    /* 字体使用系统栈（vue.css 对 Google Fonts 的 @import 外链已本地移除），离线/内网自包含 */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+    }
+    .markdown-section code, .markdown-section pre, .markdown-section pre code {
+      font-family: Consolas, Menlo, Monaco, "Courier New", monospace;
+    }
+    .sidebar { padding-top: 20px; }
+    .app-name-link { font-weight: bold; }
+    .markdown-section table { display: table; }
+    .cover-main { text-align: left !important; }
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 12px; margin-left: 6px; background: #e8edff; color: #4a6ee0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- 动态数据：页面展示内容直接来自文件系统（服务端 /api/tree、/api/manifest 实时扫描），
+       不需要任何预生成的展示配置文件；文件目录长什么样，页面刷新后就是什么样 -->
+  <script src="assets/js/dynamic-data.js"></script>
+  <script>
+    window.$docsify = {
+      name: __KB_NAME_JSON__,
+      repo: '',
+      loadSidebar: false,   // 侧边栏由 dynamic-sidebar.js 按实际目录自动生成，不再读取 _sidebar.md
+      subMaxLevel: 3,
+      auto2top: true,
+      cache: false,
+      themeColor: '#4a6ee0',
+      coverpage: false,
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+    }
+  </script>
+  <!-- 动态侧边栏插件：在 docsify 主脚本之前把插件注册到 $docsify.plugins（$docsify 配置须已就绪），
+       按实际文件目录自动生成侧边栏，替代 _sidebar.md -->
+  <script src="assets/js/dynamic-sidebar.js"></script>
+  <!-- PDF / Word 站内预览：pdf 用 iframe 内嵌、docx 用 mammoth 转 HTML 渲染。
+       须在 docsify 主脚本之前加载：要靠 $docsify.plugins 在渲染前拦下 docsify
+       对这类二进制文件产生的乱码正文（mammoth 本身在首次预览 docx 时才按需加载） -->
+  <script src="assets/js/office-viewer.js"></script>
+  <!-- 以下依赖全部本地 vendor（无任何运行时 CDN 外链）：docsify@4.13.1 主库与 zoom-image
+       插件、prismjs@1.29.0 语言组件。断网/内网环境同样可用，也不向第三方泄漏访问者元数据 -->
+  <script src="assets/vendor/docsify.min.js"></script>
+  <script src="assets/vendor/docsify-zoom-image.min.js"></script>
+  <script src="assets/vendor/prism-sql.min.js"></script>
+  <script src="assets/vendor/prism-python.min.js"></script>
+  <script src="assets/vendor/prism-json.min.js"></script>
+  <!-- 表格在线预览：本地 SheetJS + 点击拦截插件（xlsx/xls/csv/tsv 不再下载，改为页面内查看） -->
+  <script src="assets/vendor/xlsx.full.min.js"></script>
+  <script src="assets/js/table-preview.js"></script>
+  <!-- HTML 报告预览：站内 .html 报告在右侧内容区 iframe 平铺 -->
+  <script src="assets/js/html-viewer.js"></script>
+  <!-- 文档内联铺开：本地 marked + 链接拦截（站内 md 文档在页面内展开/收起） -->
+  <script src="assets/vendor/marked.min.js"></script>
+  <script src="assets/js/doc-inline.js"></script>
+  <!-- 全站实时搜索：md 正文 + 表格单元格，浏览器端动态建索引 -->
+  <script src="assets/js/fullsearch.js"></script>
+  <!-- 自动文件夹索引：任意目录路由根据实际文件夹/文件自动渲染「本目录内容」列表 -->
+  <script src="assets/js/auto-dir-index.js"></script>
+  <!-- 图片查看增强：大图（图库灯箱 / markdown 图片）支持 Ctrl(⌘) + 滚轮缩放、按住拖动平移 -->
+  <script src="assets/js/image-zoom.js"></script>
+</body>
+</html>

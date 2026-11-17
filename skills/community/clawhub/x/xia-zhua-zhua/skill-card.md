@@ -1,39 +1,57 @@
-## Description: <br>
-Content Catcher captures web pages and media into Markdown, PDF, JSON, structured extracts, summaries, translations, and downloadable video assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Catcher helps agents capture web pages and media, convert content to Markdown, PDF, or JSON, extract structured page elements, translate content, and download video when requested.
 
-## Publisher: <br>
-[luis1213899](https://clawhub.ai/user/luis1213899) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luis1213899](https://clawhub.ai/user/luis1213899)
 
-## Use Case: <br>
-Developers, researchers, and content operations users can use this skill to extract web content, convert pages to Markdown or PDF, analyze page text, capture structured data, and download supported video or M3U8 media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation, media-key handling, cookie/header rewriting, and data-forwarding behavior may expose sensitive page content, URLs, cookies, headers, or download metadata. <br>
-Mitigation: Use the skill in an isolated workspace, avoid authenticated or sensitive pages unless necessary, do not provide cookies or session-bound URLs casually, and review any configured send-to-local destination before use. <br>
-Risk: Captured URLs and download metadata may remain in local clip history or browser localStorage. <br>
-Mitigation: Clear the .clips history and browser localStorage after use when captured URLs, media links, or download metadata are sensitive. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to collect web content, media assets, structured page data, translations, and downloadable video into reusable local outputs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown, JSON, PDF, extracted media metadata, downloaded media files, and command-line guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local clip history, extracted content files, PDFs, media fragments, and downloaded video outputs depending on the command used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.1 (source: ClawHub release metadata) <br>
+Risk: Confirmed command-injection paths in shell-based execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace shell-based execSync calls with argument-array APIs, validate inputs, and run the skill in a sandbox until patched.
+
+Risk: Under-disclosed media and key-handling behavior.
+
+Mitigation: Disable or remove key capture, Cookie header rewriting, and page-to-background pass-through unless explicitly required and reviewed.
+
+Risk: Webpage and media downloads can expose users to untrusted sources or unauthorized media capture.
+
+Mitigation: Use trusted URLs only, review media download legality before use, and keep network/file access constrained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luis1213899/skills/xia-zhua-zhua)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, files, shell commands, guidance]
+
+**Output Format:** [Markdown, PDF, JSON, text summaries, downloaded media files, and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local files and download webpage or media content.]
+
+## Skill Version(s):
+
+4.0.1 (source: server release metadata; artifact frontmatter says 4.0.0 and package.json says 2.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

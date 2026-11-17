@@ -1,0 +1,151 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "chapter-plan.schema.json",
+  "title": "Chapter Plan (Stage 0 dynamic report outline)",
+  "description": "Report outline derived from the report clusters. One chapter per cluster plus a data overview chapter, an independent observation chapter and a data gap chapter.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "client_scope", "team_version",
+    "run_id",
+    "cluster_sha256",
+    "issued_at",
+    "chapters",
+    "coverage_plan"
+  ],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "chapter_plan" },
+    "contract_name": { "const": "omni-ecom.chapter-plan" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "minLength": 1 },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "team_version": { "type": "string", "minLength": 1 },
+    "legacy_compatibility": { "const": { "read_only_import": ["omni-ecom.chapter-plan@1.0"], "current_analysis_authority": false } },
+    "run_id": { "type": "string", "minLength": 8 },
+    "cluster_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "issued_at": { "type": "string", "minLength": 8 },
+    "chapters": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/chapter" }
+    },
+    "coverage_plan": {
+      "type": "object",
+      "required": ["total_reports", "covered_report_ids", "uncovered_report_ids", "coverage_rate"],
+      "properties": {
+        "total_reports": { "type": "integer", "minimum": 0 },
+        "covered_report_ids": { "type": "array", "items": { "type": "string", "pattern": "^R[0-9]{3}$" } },
+        "uncovered_report_ids": { "type": "array", "items": { "type": "string", "pattern": "^R[0-9]{3}$" } },
+        "coverage_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "data_overview_chapter_id": { "type": "string" },
+        "data_gap_chapter_id": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "definitions": {
+    "chapter": {
+      "type": "object",
+      "required": [
+        "chapter_index",
+        "chapter_id",
+        "title",
+        "chapter_kind",
+        "source_report_ids",
+        "owner_agent",
+        "caliber",
+        "key_metrics",
+        "sections"
+      ],
+      "properties": {
+        "chapter_index": { "type": "integer", "minimum": 0 },
+        "chapter_id": { "type": "string", "pattern": "^CH[0-9]{2}$" },
+        "title": { "type": "string", "minLength": 1 },
+        "chapter_kind": {
+          "enum": ["data_overview", "domain_analysis", "independent_observation", "data_gap", "synthesis"]
+        },
+        "source_cluster_ids": { "type": "array", "items": { "type": "string" } },
+        "source_report_ids": { "type": "array", "items": { "type": "string", "pattern": "^R[0-9]{3}$" } },
+        "owner_agent": {
+          "enum": ["omni-ecom-team-lead", "data-analyst", "platform-ops", "content-live-growth", "ad-profit-optimizer"]
+        },
+        "caliber": {
+          "type": "object",
+          "required": ["metric_definitions", "denominator", "time_alignment"],
+          "properties": {
+            "metric_definitions": { "type": "array", "items": { "type": "string" } },
+            "denominator": { "type": "string", "minLength": 1 },
+            "exclusion_rules": { "type": "array", "items": { "type": "string" } },
+            "time_alignment": { "type": "string", "minLength": 1 }
+          }
+        },
+        "key_metrics": { "type": "array", "items": { "type": "string" } },
+        "sections": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["section_key", "title", "requirement"],
+            "properties": {
+              "section_key": {
+                "enum": ["caliber_and_coverage", "core_metrics", "cross_validation", "judgment_and_action"]
+              },
+              "title": { "type": "string", "minLength": 1 },
+              "requirement": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "cross_validation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["target_report_id", "rule", "on_mismatch"],
+            "properties": {
+              "target_report_id": { "type": "string", "pattern": "^R[0-9]{3}$" },
+              "metric": { "type": "string" },
+              "rule": { "type": "string", "minLength": 1 },
+              "tolerance_pct": { "type": "number", "minimum": 0 },
+              "on_mismatch": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "data_gaps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["report_id", "reason", "impact", "remedy"],
+            "properties": {
+              "report_id": { "type": "string", "pattern": "^R[0-9]{3}$" },
+              "file_name": { "type": "string" },
+              "reason": { "type": "string", "minLength": 1 },
+              "impact": { "type": "string", "minLength": 1 },
+              "remedy": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "chapter_kind": { "const": "domain_analysis" } },
+            "required": ["chapter_kind"]
+          },
+          "then": {
+            "required": ["key_metrics", "cross_validation"],
+            "properties": { "key_metrics": { "minItems": 1 } }
+          }
+        },
+        {
+          "if": {
+            "properties": { "chapter_kind": { "const": "data_gap" } },
+            "required": ["chapter_kind"]
+          },
+          "then": {
+            "required": ["data_gaps"]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,42 +1,52 @@
-## Description: <br>
-Plan subtitle specs before transcribing or burning captions: CPS limits, line breaks, timing gaps, SRT/VTT rules, SDH cues, and platform targets for readable on-screen text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan subtitle specs before transcribing or burning captions: CPS limits, line breaks, timing gaps, SRT/VTT rules, SDH cues, and platform targets for readable on-screen text.
 
-## Publisher: <br>
-[ruti3](https://clawhub.ai/user/ruti3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ruti3](https://clawhub.ai/user/ruti3)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and media teams use this skill to prepare subtitle readability briefs before transcription, translation, or caption burn-in. It helps define platform-aware limits for cue timing, line length, reading speed, SDH cues, and quality checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Subtitle guidance may not match platform-specific or jurisdiction-specific caption requirements.
+
+Mitigation: Ask users to verify platform and jurisdiction requirements before publishing or treating the brief as compliant.
+
+Risk: Raw subtitle text can include proprietary dialogue or sensitive personal information.
+
+Mitigation: Avoid pasting proprietary or sensitive dialogue unless the user has rights to use it and has considered privacy redaction.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, video editors, localization teams, and content operations teams use this skill to plan readable subtitles before transcription, translation, or burn-in. It helps set platform-aware timing, line length, CPS, SDH, and QC targets for SRT, VTT, ASS, and burned-in captions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste copyrighted scripts or dialogue that they do not have rights to use. <br>
-Mitigation: Use only authorized or user-provided text, and avoid reproducing proprietary scripts unless the user has the right to provide them. <br>
-Risk: Subtitle guidance may not satisfy every platform, broadcast, or legal captioning requirement. <br>
-Mitigation: Verify final subtitle specifications against the target platform and applicable jurisdiction before publication. <br>
-Risk: Verbatim captions can expose private or sensitive content. <br>
-Mitigation: Flag sensitive captions and redact, summarize, or omit personal information where appropriate. <br>
+**Output Format:** [Markdown brief with tables, bullets, checklist items, and optional SRT sample cue text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruti3/skills/subtitle-readability-brief) <br>
+**Other Properties Related to Output:** [Prompt-only planning output; evidence.security reports no code, credentials, network use, or persistence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown brief with tables, checklists, bullet rules, and an optional SRT sample cue.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only planning output; no code execution, network access, credentials, or persistence.] <br>
+1.0.0 (source: server release metadata and artifact frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

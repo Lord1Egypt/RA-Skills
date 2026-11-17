@@ -1,6 +1,32 @@
 {
-  "ownerId": "kn76bnn96hgy4j8wss5h2jbf7582efca",
-  "slug": "clawsafe",
+  "ownerId": "your-owner-id",
+  "slug": "clawSafe",
   "version": "1.1.0",
-  "publishedAt": 1772979790655
+  "publishedAt": null,
+  "description": "Multi-layer security detector for AI agents - blocks prompt injection, jailbreak, XSS, SQL injection, API key leaks, and more",
+  "tags": ["security", "middleware", "protection", "AI safety"],
+  "license": "MIT",
+  "author": {
+    "name": "小夏",
+    "github": "openclaw"
+  },
+  "repository": "https://github.com/openclaw/clawSafe",
+  "homepage": "https://github.com/openclaw/clawSafe",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "security",
+    "prompt-injection",
+    "jailbreak",
+    "xss",
+    "sql-injection"
+  ],
+  "platform": {
+    "openclaw": ">=3.0.0"
+  },
+  "permissions": {
+    "network": false,
+    "fileSystem": false,
+    "exec": false
+  }
 }

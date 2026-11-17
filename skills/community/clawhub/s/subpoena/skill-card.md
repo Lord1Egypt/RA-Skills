@@ -1,41 +1,54 @@
-## Description: <br>
-Subpoena law reference for types of subpoenas, service requirements, compliance obligations, and motions to quash in legal proceedings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subpoena law reference — types of subpoenas, service requirements, compliance obligations, and motion to quash. Use when issuing, receiving, or responding to subpoenas in legal proceedings.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users, legal operations teams, and developers can use this skill as a quick reference for issuing, receiving, responding to, or challenging subpoenas. It provides legal reference material and should not be treated as legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides legal reference material that could be mistaken for legal advice. <br>
-Mitigation: Consult a qualified attorney and applicable local rules before making subpoena decisions. <br>
-Risk: Local shell execution may matter in restricted environments, even though the bundled script only prints reference text. <br>
-Mitigation: Review the script before deployment and run it under normal local execution controls. <br>
+## Use Case:
 
+Legal practitioners, support staff, and agents use this skill as a quick-reference helper for subpoena types, service requirements, compliance obligations, federal Rule 45 details, motions to quash, examples, and checklists. Its content should be treated as general legal information rather than legal advice.
 
-## Reference(s): <br>
-- [Subpoena ClawHub listing](https://clawhub.ai/xueyetianya/subpoena) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text legal reference output from shell commands; Markdown command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected sections include intro, types, procedure, compliance, quash, federal, examples, checklist, help, and version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata, script VERSION) <br>
+Risk: The skill provides legal-reference content that may be incomplete or jurisdiction-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as general information, verify subpoena requirements for the relevant jurisdiction, and consult qualified legal counsel before relying on it.
+
+Risk: Static guidance can become outdated as court rules, fees, and service requirements change.
+
+Mitigation: Check current federal, state, local, and agency rules before issuing, responding to, or challenging a subpoena.
+
+## Reference(s):
+
+- [Subpoena on ClawHub](https://clawhub.ai/xueyetianya/skills/subpoena)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown command examples emitted by a local shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static legal-reference output selected by command name; no API keys, MCP tools, or external services are detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

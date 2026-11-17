@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-word-query",
   "version": "1.0.0",
-  "publishedAt": 1778294734736
+  "title": "汉语词语查询 - 即刻数据",
+  "description": "支持搜索词语、词语详情、随机词语、近义词查询和反义词查询，返回拼音、解释、出处、用法、近义词和反义词。",
+  "env": "JIKE_WORD_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/word/query",
+  "homepage": "https://www.jikeapi.cn/"
 }

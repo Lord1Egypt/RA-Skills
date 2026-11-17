@@ -1,44 +1,58 @@
-## Description: <br>
-Triskill gives agents three utility workflows: live fact-check lookup, bounded command failure diagnosis and retry, and local shared-memory coordination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triskill helps agents fact-check live claims, diagnose failed commands through bounded retries, and coordinate shared state through a local locked JSON store.
 
-## Publisher: <br>
-[welove111](https://clawhub.ai/user/welove111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[welove111](https://clawhub.ai/user/welove111)
 
-## Use Case: <br>
-Developers and agent operators use Triskill when an agent needs to check a factual claim against live sources, diagnose a failed shell command within a bounded retry loop, or coordinate small shared state across local agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The self-heal wrapper can capture command output in local logs, which may include sensitive data if used around secret-printing commands. <br>
-Mitigation: Do not run self-heal around commands that may expose credentials or sensitive side effects; review selfheal_log.jsonl before sharing a workspace. <br>
-Risk: Shared memory stores coordination data in a local unencrypted JSON file. <br>
-Mitigation: Use it only for small non-secret coordination state and never store credentials, tokens, or private data. <br>
-Risk: Fact-check search results can be incomplete, stale, or conflicting. <br>
-Mitigation: Treat returned snippets and URLs as evidence to review, cite sources when reporting conclusions, and state uncertainty when results conflict. <br>
+## Use Case:
 
+Developers and agent operators use Triskill to check factual claims against live search results, inspect failed command runs before retrying, and coordinate small shared state across local agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/welove111/triskill) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell-command examples and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fact-check and shared-memory scripts emit JSON; self-heal records bounded command attempts in selfheal_log.jsonl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The self-healing helper can execute arbitrary commands with the agent's normal filesystem, network, environment, and account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with commands the user or agent already trusts, keep retries bounded, and review each proposed fix before rerunning.
+
+Risk: Command, stdout, and stderr details are logged in plaintext by the self-healing helper.
+
+Mitigation: Avoid running commands that expose secrets, credentials, or sensitive output, and delete logs when they are no longer needed.
+
+Risk: Fact-check queries may be sent to DuckDuckGo, and shared-memory state is stored locally without encryption.
+
+Mitigation: Do not submit private queries or store secrets in shared memory; use it only for non-sensitive local coordination data.
+
+## Reference(s):
+
+- [Triskill on ClawHub](https://clawhub.ai/welove111/skills/triskill)
+- [welove111 publisher profile](https://clawhub.ai/user/welove111)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fact-check, self-heal, and shared-memory scripts return JSON or text for the agent to interpret.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

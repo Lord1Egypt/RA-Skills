@@ -22127,8 +22127,7 @@ var require_utils2 = __commonJS({
     var querystring_1 = __importDefault(require("querystring"));
     var crypto_1 = __importDefault(require("crypto"));
     var os_1 = __importDefault(require("os"));
-    var PEM_BEGIN = "-----BEGIN PRIVATE KEY-----\n";
-    var PEM_END = "\n-----END PRIVATE KEY-----";
+    var PEM_BEGIN = "REDACTED-SECRET";
     var DEFAULT_USER_AGENT = `AlibabaCloud (${os_1.default.platform()}; ${os_1.default.arch()}) Node.js/${process.version} Core/1.0.1 TeaDSL/2`;
     var GlobalParameters = class extends $tea.Model {
       constructor(map) {
@@ -80333,8 +80332,7 @@ var require_client6 = __commonJS({
     var kitx_1 = __importDefault(require_lib3());
     var querystring_1 = __importDefault(require("querystring"));
     var crypto_1 = __importDefault(require("crypto"));
-    var PEM_BEGIN = "-----BEGIN PRIVATE KEY-----\n";
-    var PEM_END = "\n-----END PRIVATE KEY-----";
+    var PEM_BEGIN = "REDACTED-SECRET";
     function replaceRepeatList(target, repeat, prefix) {
       if (prefix) {
         prefix = prefix + ".";

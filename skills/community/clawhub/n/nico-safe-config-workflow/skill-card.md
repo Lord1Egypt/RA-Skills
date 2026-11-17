@@ -1,47 +1,62 @@
-## Description: <br>
-Guides agents through a confirmation-first workflow for safely changing OpenClaw configuration, running checks, applying fixes, and validating Gateway status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through safer OpenClaw configuration changes by checking documentation, confirming changes, running repair commands, comparing backups, recording lessons, and validating Gateway status.
 
-## Publisher: <br>
-[nicoxia](https://clawhub.ai/user/nicoxia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nicoxia](https://clawhub.ai/user/nicoxia)
 
-## Use Case: <br>
-Developers and operators use this skill when modifying OpenClaw Gateway, channel, model, session, authentication, or other local OpenClaw configuration settings. It helps the agent confirm planned changes, run doctor checks, review backups and diffs, record lessons, and verify Gateway health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to local OpenClaw configuration files. <br>
-Mitigation: Keep each change explicitly OpenClaw-scoped, confirm exact fields and expected impact before editing, and review backups and diffs after doctor --fix. <br>
-Risk: Gateway checks or restart tests can temporarily disrupt active Gateway use. <br>
-Mitigation: Avoid disruptive tests during important Gateway activity and verify Gateway status after changes. <br>
-Risk: Lessons recorded to MEMORY.md could accidentally include sensitive values. <br>
-Mitigation: Do not write secrets, tokens, or authentication material into MEMORY.md. <br>
+## Use Case:
 
+Developers and operators use this skill when modifying OpenClaw configuration, especially Gateway, channel, model, session, or authentication settings in ~/.openclaw/openclaw.json. It provides a confirmation-first workflow with repair, diff review, hot-reload validation, and troubleshooting steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicoxia/nico-safe-config-workflow) <br>
-- [OpenClaw configuration documentation](https://docs.openclaw.ai/zh-CN/gateway/configuration) <br>
-- [OpenClaw doctor documentation](https://docs.openclaw.ai/zh-CN/cli/doctor) <br>
-- [OpenClaw Gateway manual](https://docs.openclaw.ai/zh-CN/gateway/index.md) <br>
-- [OpenClaw Gateway troubleshooting](https://docs.openclaw.ai/zh-CN/gateway/troubleshooting) <br>
-- [OpenClaw FAQ](https://docs.openclaw.ai/zh-CN/help/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with confirmation text, status summaries, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow expects user confirmation before edits and summarizes doctor, diff, log, and Gateway status results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The workflow can modify sensitive OpenClaw configuration, including settings related to channels, models, sessions, and authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before changes, review proposed edits, and validate the final Gateway status after repair or restart.
+
+Risk: Repair and troubleshooting output can contain credentials, tokens, raw diffs, logs, endpoint secrets, or authentication values.
+
+Mitigation: Filter user-facing output and avoid persisting secrets or raw sensitive diagnostics in MEMORY.md or other records.
+
+Risk: Automated doctor checks may not catch every operational problem, such as a syntactically valid but unusable port.
+
+Mitigation: Compare the generated backup diff, check OpenClaw logs when Gateway fails, and manually validate critical configuration values against documentation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicoxia/skills/nico-safe-config-workflow)
+- [OpenClaw configuration documentation](https://docs.openclaw.ai/zh-CN/gateway/configuration)
+- [OpenClaw doctor documentation](https://docs.openclaw.ai/zh-CN/cli/doctor)
+- [OpenClaw Gateway manual](https://docs.openclaw.ai/zh-CN/gateway/index.md)
+- [OpenClaw Gateway troubleshooting](https://docs.openclaw.ai/zh-CN/gateway/troubleshooting)
+- [OpenClaw FAQ](https://docs.openclaw.ai/zh-CN/help/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and structured status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese/zh-CN focused user-facing workflow text; expects agent review before configuration edits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

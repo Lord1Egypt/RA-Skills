@@ -499,10 +499,7 @@ def build_plan(data_dict, input_lang="auto", user_input="", use_sample_data=Fals
     P('媳妇智投全球通用版出品，必属精品 | Ai-Wife Global Investing — Quality Guaranteed', b=True, s=12, a=WD_ALIGN_PARAGRAPH.CENTER)
     P(f'v7.0 FINAL | {today_str} | AI生成内容，请注意甄别 | AI-Generated Content, Please Verify', s=9, c=RGBColor(128,128,128), a=WD_ALIGN_PARAGRAPH.CENTER)
     
-    # ── 📄 保存生成的.docx参考框架文件 ──
-    # ⚠️ [用户知情声明] 生成框架文档将保存到本地技能目录。
-    # 这是用户请求生成方案时的预期行为——生成 .docx 文件并发送给用户。
-    # 用户未明确请求时不会自动保存。
+    # 保存
     output_dir = os.path.dirname(os.path.abspath(__file__))
     filename = f'{d["variety"].replace(" ","")}{d["contract"]}下周参考框架_v7.0_{today_str}.docx'
     out = os.path.join(output_dir, filename)

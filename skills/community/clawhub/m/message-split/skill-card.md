@@ -1,38 +1,50 @@
-## Description: <br>
-Auto-split long messages into smaller chunks before sending, with sequence markers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Splits long outgoing agent messages into smaller ordered chunks to avoid channel truncation or delivery failure.
 
-## Publisher: <br>
-[54meteor](https://clawhub.ai/user/54meteor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[54meteor](https://clawhub.ai/user/54meteor)
 
-## Use Case: <br>
-Agents and users use this skill to send responses that may exceed messaging-channel limits by splitting them into readable, numbered chunks before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A single long response may be posted as several numbered messages, which can increase exposure in public or sensitive channels. <br>
-Mitigation: Confirm the active channel and message content before sending very long replies. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long responses deliverable in chat channels with per-message length limits by splitting text into ordered chunks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/54meteor/message-split) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown and plain text with optional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Long responses may be emitted as multiple numbered messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Long replies may be divided into multiple messages and include ordered chunk markers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review split output for completeness and ordering when using channels with strict message length limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/54meteor/skills/message-split)
+- [ClawHub publisher profile](https://clawhub.ai/user/54meteor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Text or Markdown split into sequentially labeled message chunks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adds ordered chunk markers when a response is split.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

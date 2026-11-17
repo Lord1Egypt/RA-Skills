@@ -1,46 +1,57 @@
-## Description: <br>
-Anime Garden helps agents search anime torrent resources through the Anime Garden API, a third-party mirror of 動漫花園, 萌番组, and ANi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anime Garden helps agents search anime torrent resources through the Anime Garden API, a third-party aggregation and mirror service for 動漫花園, 萌番组, and ANi.
 
-## Publisher: <br>
-[yjl9903](https://clawhub.ai/user/yjl9903) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GNU Affero General Public License v3.0 <br>
+## Publisher:
 
+[yjl9903](https://clawhub.ai/user/yjl9903)
 
-## Use Case: <br>
-External users and developers use this skill to find anime torrent resources, build precise Anime Garden API filters, fetch resource details, and normalize returned metadata for follow-up workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GNU Affero General Public License v3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to the third-party api.animes.garden service. <br>
-Mitigation: Do not include personal, confidential, or sensitive information in Anime Garden queries. <br>
-Risk: Returned torrent or magnet resources may have legal, trust, or content-safety implications. <br>
-Mitigation: Review results for legality and trustworthiness before using or sharing any torrent or magnet link. <br>
-Risk: The skill depends on a third-party API and upstream resource providers. <br>
-Mitigation: Check service status and handle empty, unavailable, or error responses before relying on results. <br>
+## Use Case:
 
+Developers and agents use this skill to turn anime resource search intent into structured Anime Garden API filters, endpoint calls, and normalized result summaries.
 
-## Reference(s): <br>
-- [Anime Garden HTTP API Reference](artifact/references/api.md) <br>
-- [Anime Garden API](https://api.animes.garden) <br>
-- [動漫花園](https://share.dmhy.org/) <br>
-- [萌番组](https://bangumi.moe/) <br>
-- [ClawHub skill page](https://clawhub.ai/yjl9903/animegarden) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Markdown, JSON] <br>
-**Output Format:** [Markdown with endpoint guidance, curl examples, and JSON request or response structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider and providerId fields so agents can fetch resource details later.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release metadata) <br>
+Risk: Anime search terms and filter values are sent to the third-party Anime Garden API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive or private search terms, and disclose third-party API use where appropriate.
+
+Risk: Returned torrent and magnet-related resource information comes from untrusted third-party sources and may carry legal or safety implications.
+
+Mitigation: Treat results as untrusted references, review them before use, and consider local policy and applicable law before downloading or sharing content.
+
+## Reference(s):
+
+- [Anime Garden HTTP API Reference](references/api.md)
+- [Anime Garden API](https://api.animes.garden)
+- [動漫花園](https://share.dmhy.org/)
+- [萌番组](https://bangumi.moe/)
+- [Anime Garden on ClawHub](https://clawhub.ai/yjl9903/skills/animegarden)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with structured filters, API request examples, and normalized resource summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider and providerId values so agents can fetch resource details later.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

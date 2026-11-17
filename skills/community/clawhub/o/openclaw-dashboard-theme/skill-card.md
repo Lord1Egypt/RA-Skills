@@ -1,43 +1,54 @@
-## Description: <br>
-Change OpenClaw Dashboard accent color with one sentence. Dynamically finds CSS/JS files and updates all accent CSS variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Change OpenClaw Dashboard accent color with one sentence. Dynamically finds CSS/JS files and updates all accent CSS variables.
 
-## Publisher: <br>
-[chenzhaoxuan0](https://clawhub.ai/user/chenzhaoxuan0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenzhaoxuan0](https://clawhub.ai/user/chenzhaoxuan0)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to change the Dashboard accent color by asking an agent for a named color or a #RRGGBB hex value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local script modifies files inside the user's OpenClaw installation. <br>
-Mitigation: Install only when comfortable with local dashboard asset changes, review the script first on important installations, and keep the request explicit. <br>
-Risk: Broad color-change trigger phrases could cause an unintended dashboard theme update. <br>
-Mitigation: Use explicit requests with a named color or #RRGGBB value, and confirm the target color before execution when the request is ambiguous. <br>
-Risk: OpenClaw upgrades or reinstalls can overwrite the customized dashboard assets. <br>
-Mitigation: Re-run the theme command after upgrading or reinstalling OpenClaw. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to change the OpenClaw Dashboard accent color by providing a hex color or supported color name. The skill produces shell-command guidance for updating installed Dashboard CSS variables and JavaScript accent colors.
 
-## Reference(s): <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/chenzhaoxuan0/openclaw-dashboard-theme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with a local shell command and a short status response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a single local theme-change operation for OpenClaw dashboard assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill rewrites installed OpenClaw Dashboard CSS and JavaScript assets in place without creating backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the OpenClaw installation or be prepared to reinstall or update OpenClaw before running the skill.
+
+Risk: An unintended or unreviewed color value could change the dashboard appearance across themes.
+
+Mitigation: Run the skill only for explicit dashboard theme changes and review the target #RRGGBB color before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chenzhaoxuan0/skills/openclaw-dashboard-theme)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a single target hex color or supported color name; validates #RRGGBB input before editing OpenClaw Dashboard assets.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

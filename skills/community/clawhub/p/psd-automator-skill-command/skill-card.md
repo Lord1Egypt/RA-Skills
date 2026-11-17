@@ -1,38 +1,53 @@
-## Description: <br>
-Dispatch PSD automation tasks through skill command entry while reusing the same /psd orchestrator. Requires psd-automator core. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dispatch PSD automation tasks through skill command entry while reusing the same /psd orchestrator.
 
-## Publisher: <br>
-[dhrxy](https://clawhub.ai/user/dhrxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dhrxy](https://clawhub.ai/user/dhrxy)
 
-## Use Case: <br>
-Developers and operators use this skill to invoke PSD automation from a skill command while preserving the existing /psd orchestration behavior. It supports dispatching PSD edits from either a task JSON path or natural-language requirements, including Chinese-language requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: PSD automation can modify source design files and write exported assets. <br>
-Mitigation: Use --dry-run first, restrict task and index paths, and run on copies or version-controlled assets when changes matter. <br>
-Risk: The skill depends on the separate psd-automator core for actual automation behavior. <br>
-Mitigation: Install and use this command only when the required psd-automator core is trusted and reviewed for the intended environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and design automation users use this skill to invoke PSD automation tasks through a skill command while relying on an existing psd-automator core workflow. It supports structured task paths or natural-language requests for PSD edits and output generation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with command examples and task-dispatch guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Invokes PSD automation through the psd_automator_skill_command tool and may write modified PSD exports.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: PSD automation can modify local design files or create output files in user-selected locations.
+
+Mitigation: Use --dry-run for unfamiliar tasks and review the PSD source path and output path before execution.
+
+Risk: Broad natural-language requests may produce unintended edits when applied to sensitive design files.
+
+Mitigation: Use specific task descriptions and avoid sensitive PSD files unless the underlying psd-automator core workflow is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dhrxy/skills/psd-automator-skill-command)
+- [Publisher profile](https://clawhub.ai/user/dhrxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run guidance and references to PSD input and output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,24 @@
+{
+  "description": "Synthetic lexical-recall cases; no actual user memory. Scores measure retrieval, not factual truth.",
+  "cases": [
+    {"id":"zh_migration_sentence","note":{"title":"数据库迁移与回滚","summary":"采用逻辑复制迁移数据库，失败后回滚到旧数据库","tags":["数据库迁移","回滚"]},"query":"之前数据库迁移失败后怎么回滚的？","eligible":true,"min_relevance":0.60},
+    {"id":"zh_permissions_sentence","note":{"title":"飞书权限排查","summary":"核对飞书机器人权限和应用发布状态","tags":["飞书权限","机器人"]},"query":"上次飞书权限的问题是怎么解决的","eligible":true,"min_relevance":0.60},
+    {"id":"mixed_script","note":{"title":"OpenClaw升级回退","summary":"OpenClaw更新失败时恢复原版本","tags":["OpenClaw","更新"]},"query":"之前OpenClaw更新失败是怎么恢复的？","eligible":true,"min_relevance":0.60},
+    {"id":"nfkc_casefold","note":{"title":"PostgreSQL migration"},"query":"ＰｏｓｔｇｒｅＳＱＬ","eligible":true,"min_relevance":0.60},
+    {"id":"exact_declared_alias","note":{"title":"飞书授权排查","aliases":["Lark"]},"query":"之前Lark怎么授权？","eligible":true,"min_relevance":0.60},
+    {"id":"whole_latin_token","note":{"title":"Partial deployment","summary":"We staged a partial rollout"},"query":"art","eligible":false,"max_relevance":0.0},
+    {"id":"alias_identifier_boundary","note":{"title":"数据库维护","aliases":["PG"]},"query":"pgadmin","eligible":false,"max_relevance":0.0},
+    {"id":"alias_identifier_suffix","note":{"title":"数据库维护","aliases":["PG"]},"query":"PG9","eligible":false,"max_relevance":0.0},
+    {"id":"no_partial_alias","note":{"title":"Service configuration","aliases":["Postgres DB"]},"query":"Postgres","eligible":false,"max_relevance":0.0},
+    {"id":"no_partial_zh_alias","note":{"title":"服务配置","aliases":["飞书权限"]},"query":"权限","eligible":false,"max_relevance":0.0},
+    {"id":"zh_common_only","note":{"title":"数据库迁移的经验","summary":"处理迁移失败的方法","triggers":["回忆迁移的步骤"]},"query":"之前的问题是怎么处理的？","eligible":false,"max_relevance":0.0},
+    {"id":"single_zh_filler","note":{"title":"数据库迁移的经验","summary":"处理迁移失败的方法"},"query":"的","eligible":false,"max_relevance":0.0},
+    {"id":"en_common_only","note":{"title":"Memory notes","summary":"Information about previous problems"},"query":"remember what was the information about","eligible":false,"max_relevance":0.0},
+    {"id":"unrelated","note":{"title":"云南旅游攻略","summary":"整理大理住宿和交通","tags":["旅游"]},"query":"数据库迁移失败后怎么回滚？","eligible":false,"max_relevance":0.0},
+    {"id":"explicit_fixture","note":{"title":"数据库迁移","summary":"数据库迁移回滚","is_fixture":true},"query":"数据库迁移","eligible":false,"max_relevance":0.0},
+    {"id":"legitimate_test_topic","note":{"title":"数据库测试流程","summary":"迁移前执行数据库测试"},"query":"数据库测试","eligible":true,"min_relevance":0.60},
+    {"id":"superseded_fact","note":{"title":"午餐偏好","summary":"午餐偏好米饭","status":"superseded","superseded_by":"new-fact"},"query":"午餐偏好","eligible":false,"max_relevance":0.0},
+    {"id":"current_correction","note":{"title":"午餐偏好","summary":"已经不再吃米饭，午餐偏好面食","status":"active"},"query":"午餐偏好","eligible":true,"min_relevance":0.60},
+    {"id":"symbolic_identifier","note":{"title":"C++ build settings"},"query":"之前C++怎么构建？","eligible":true,"min_relevance":0.30}
+  ]
+}

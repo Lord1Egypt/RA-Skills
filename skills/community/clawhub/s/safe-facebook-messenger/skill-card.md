@@ -1,42 +1,57 @@
-## Description: <br>
-Safe Facebook Messenger helps an agent send or draft Facebook Messenger messages through a signed-in Chrome session using Chrome DevTools MCP with thread verification, composer checks, search reacquisition, group-chat disambiguation, social-risk screening, and verified send or draft workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Facebook Messenger safely through a live signed-in Chrome session with remote debugging enabled using Chrome DevTools MCP.
 
-## Publisher: <br>
-[TSchonleber](https://clawhub.ai/user/TSchonleber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tschonleber](https://clawhub.ai/user/tschonleber)
 
-## Use Case: <br>
-People using an agent with Chrome DevTools MCP use this skill to safely send or draft Facebook Messenger messages in a signed-in browser session while reducing misdirected messages and risky sends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent operates a signed-in Messenger browser session and may inspect visible conversation state. <br>
-Mitigation: Use a deliberately selected Chrome profile, supervise sends, and review any Chrome DevTools MCP or runtime logging settings before use. <br>
-Risk: A message could be drafted or sent to the wrong thread if Messenger UI state is stale or ambiguous. <br>
-Mitigation: Verify the active conversation, composer ownership, draft placement, and send result with fresh browser state; stop on ambiguity instead of guessing. <br>
-Risk: Sensitive or high-consequence messages could create social, financial, legal, or professional exposure. <br>
-Mitigation: Prefer drafts or escalation for sensitive content, commitments, money, deadlines, legal issues, first outreach, and other messages likely to need review. <br>
+## Use Case:
 
+External users and developers use this skill to draft or send Facebook Messenger messages through a live signed-in Chrome session while verifying the target thread, composer ownership, group-chat context, and send result. It is intended for supervised Messenger workflows where wrong-recipient, ambiguous search, and high-stakes social content need explicit safeguards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TSchonleber/safe-facebook-messenger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow for browser-based Messenger drafting and sending; the skill itself does not produce files or code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can read from and send messages in a signed-in Facebook Messenger session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for operators comfortable with that access, use a dedicated or carefully chosen Chrome profile, and supervise sends.
+
+Risk: Messages can be sent to the wrong thread when search results, active headers, or composer ownership are ambiguous.
+
+Mitigation: Verify the active conversation, composer, and visible thread context after each meaningful UI change, and stop instead of guessing on ambiguity.
+
+Risk: Sensitive, financial, legal, professional, or emotionally high-stakes messages can create social or business harm if sent automatically.
+
+Mitigation: Prefer draft mode and explicit review for high-stakes content, commitments, group chats, or uncertain cases.
+
+## Reference(s):
+
+- [Safe Facebook Messenger on ClawHub](https://clawhub.ai/tschonleber/skills/safe-facebook-messenger)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Plain text operational guidance and Messenger draft/send decisions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a live signed-in Chrome session with Chrome DevTools MCP connected.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

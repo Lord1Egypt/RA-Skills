@@ -1,40 +1,54 @@
-## Description: <br>
-VaultAI DD Scanner helps produce a fast M&A due diligence red-flag review focused on operational, supply-chain, concentration, working-capital, management-dependency, India, and cross-border mid-market deal risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user wants a fast M&A due diligence red-flag review, especially for operational due diligence, supply-chain risk, customer or vendor concentration, working-capital concerns, management dependency, or India and cross-border mid-market deal risk.
 
-## Publisher: <br>
-[manavsenior-cell](https://clawhub.ai/user/manavsenior-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manavsenior-cell](https://clawhub.ai/user/manavsenior-cell)
 
-## Use Case: <br>
-External deal teams, investors, and advisors use this skill to turn provided target-company facts into a compact M&A red-flag scan, diligence questions, evidence requests, and a low/moderate/high risk view. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide unnecessary confidential deal materials. <br>
-Mitigation: Share only the facts needed for the scan and avoid unnecessary sensitive documents or credentials. <br>
-Risk: Generated red flags and recommendations may be mistaken for verified legal, financial, or investment advice. <br>
-Mitigation: Treat the output as diligence guidance, separate hypotheses from confirmed facts, and have qualified reviewers verify conclusions before acting. <br>
+## Use Case:
 
+External deal teams, investors, and advisors use this skill to produce a compact M&A due diligence red-flag scan focused on operational, supply-chain, concentration, working-capital, management-dependency, India, and cross-border mid-market risks.
 
-## Reference(s): <br>
-- [VaultAI DD Scanner Reference](references/red-flags.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured diligence sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a deal context summary, top red flags, diligence questions, evidence requests, and a low/moderate/high risk view.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence release.version) <br>
+Risk: Users may provide confidential deal materials while preparing diligence inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share sensitive materials only in approved agent environments and use sanitized summaries when confidentiality requirements are unclear.
+
+Risk: Outputs may be mistaken for verified legal, financial, or investment advice.
+
+Mitigation: Treat results as diligence prompts and have qualified reviewers verify facts, legal conclusions, financial implications, and investment decisions.
+
+## Reference(s):
+
+- [VaultAI DD Scanner Reference](references/red-flags.md)
+- [ClawHub Skill Page](https://clawhub.ai/manavsenior-cell/skills/vaultai-dd-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured sections for deal context, top red flags, diligence questions, evidence requests, and a low, moderate, or high risk view.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

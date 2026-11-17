@@ -1,41 +1,58 @@
-## Description: <br>
-PPT Generator SMB helps agents create professional presentations as interactive HTML slides and editable PowerPoint files for business, market analysis, product introduction, competitor analysis, and SWOT workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional presentations in interactive HTML and editable PowerPoint (.pptx) formats, with support for market analysis, product introductions, competitor analysis, data visualization, navigation, and a dark technology visual style.
 
-## Publisher: <br>
-[chao980](https://clawhub.ai/user/chao980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chao980](https://clawhub.ai/user/chao980)
 
-## Use Case: <br>
-Business users, consultants, and developers use this skill to turn a topic, audience, section plan, and style preference into ready-to-edit presentation assets. It is suited to presentation drafts, market reports, product introductions, competitor analysis, and SWOT summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install an unpinned Python package during PPTX generation. <br>
-Mitigation: Install required Python dependencies from a reviewed, pinned environment before running the skill, and review dependency changes before execution. <br>
-Risk: The skill may use web search and local slide previews while working with business presentation content. <br>
-Mitigation: Avoid confidential inputs unless web search and local preview behavior are explicitly approved, and stop any preview server after use. <br>
+## Use Case:
 
+Developers, business users, and content creators use this skill to assemble presentation content and generate both browser-ready HTML slides and editable PPTX files for reports, product introductions, market analysis, competitor analysis, and SWOT presentations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chao980/ppt-generator-smb) <br>
-- [Publisher profile](https://clawhub.ai/user/chao980) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [HTML slides, PPTX files, and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser-ready HTML and editable PowerPoint files; may also preview generated slides through a local HTTP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact meta.json) <br>
+Risk: The PPTX generator can automatically install an unpinned Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a constrained workspace or virtual environment and install dependencies explicitly from trusted pinned sources before use.
+
+Risk: Generated HTML can execute untrusted slide content when supplied from JSON or web-sourced data.
+
+Mitigation: Avoid untrusted slide data until the HTML generator escapes inserted content, and review generated HTML before opening or sharing it.
+
+Risk: The preview workflow can start a local HTTP server.
+
+Mitigation: Bind preview use to the local machine and do not expose the preview server beyond the local environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chao980/skills/ppt-generator-smb)
+- [Publisher Profile](https://clawhub.ai/user/chao980)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus generated HTML and PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create browser-ready HTML slides, editable PowerPoint files, and local screenshot previews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

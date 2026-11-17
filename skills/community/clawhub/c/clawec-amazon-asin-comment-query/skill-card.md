@@ -1,43 +1,55 @@
-## Description: <br>
-Queries Amazon product reviews by ASIN or product URL through the ClawEC API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Amazon product reviews by ASIN or product URL through the Clawec API for review retrieval and buyer-feedback analysis.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-Agents use this skill to fetch and summarize Amazon review data for ecommerce research, review analysis, negative-feedback investigation, and buyer-feedback insight workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Amazon product URLs or ASINs to ClawEC using the user's API key. <br>
-Mitigation: Use the skill only when sharing those product research targets with ClawEC is acceptable. <br>
-Risk: The skill requires the sensitive CLAWEC_API_KEY credential. <br>
-Mitigation: Keep CLAWEC_API_KEY in environment or secret storage, and do not hardcode or paste it unnecessarily. <br>
+## Use Case:
 
+External ecommerce sellers and analysts use this skill to query Amazon review data by product URL or ASIN and region, then summarize review counts, ratings, individual comments, and recurring positive or negative buyer-feedback themes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/anyunzhong/clawec-amazon-asin-comment-query) <br>
-- [ClawEC API Base](https://www.clawec.com/api) <br>
-- [ClawEC API Key Page](https://www.clawec.com/api-key?source=q-clawhub) <br>
-- [Response Schema](references/response-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown summaries and tables based on JSON API responses, with optional shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWEC_API_KEY and sends Amazon product URLs or ASINs to ClawEC.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Amazon product URLs or ASIN and region values are sent to Clawec with the user's Clawec API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for product identifiers suitable for disclosure to Clawec, avoid private or internal URLs, and keep the API key in an environment variable or secrets manager.
+
+Risk: Documentation and default analysis guidance are primarily Chinese, which may affect reviewability for non-Chinese operators.
+
+Mitigation: Ask the agent to translate or summarize outputs in the operator's preferred language before relying on the results.
+
+## Reference(s):
+
+- [Amazon ASIN Comment Query Response Schema](references/response-schema.md)
+- [Clawec Amazon Review Query API Endpoint](https://www.clawec.com/api/aigc/tool/amazon_asin_comment_query)
+- [ClawHub Skill Page](https://clawhub.ai/anyunzhong/skills/clawec-amazon-asin-comment-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries with optional JSON excerpts and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a CLAWEC_API_KEY and sends Amazon product URLs or ASIN and region values to Clawec.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

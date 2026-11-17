@@ -1,43 +1,57 @@
-## Description: <br>
-Process Excel and PDF files - extract data, parse tables, generate reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process Excel and PDF files by extracting data, parsing tables, and supporting report generation for .xlsx, .xls, .csv, and .pdf workflows.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to process spreadsheet and PDF inputs, extract tabular or textual data, and generate report-ready outputs such as CSV files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Excel conversion script can overwrite the selected CSV output path. <br>
-Mitigation: Check the output destination before running the script and keep backups for files that must not be replaced. <br>
-Risk: Local document processing may expose file contents to the active agent workflow. <br>
-Mitigation: Use the skill only on files the user intends to process and avoid running it on unrelated sensitive documents. <br>
-Risk: Dependency installation can introduce package supply-chain risk. <br>
-Mitigation: Install the listed dependencies in a virtual environment from a trusted package index. <br>
+## Use Case:
 
+Developers, analysts, and operations users use this skill to process spreadsheets and PDFs, extract tabular or text content, convert Excel data to CSV, and prepare report outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laimiaohua/gi-excel-pdf-process) <br>
-- [Publisher profile](https://clawhub.ai/user/laimiaohua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, text, files] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; scripts produce CSV files or printed text/table output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file processing with pandas, openpyxl, and pdfplumber dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Parsing untrusted Excel or PDF files can expose the runtime to malformed-document parser risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in an environment appropriate for untrusted document parsing.
+
+Risk: Dependency versions are ranged rather than locked.
+
+Mitigation: Use pinned or locked dependency versions for deployment.
+
+Risk: Broad trigger wording and Chinese-only helper text may reduce predictable routing or English-facing usage.
+
+Mitigation: Review routing descriptions and localize user-facing help before deploying where predictable English behavior is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laimiaohua/skills/gi-excel-pdf-process)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; helper scripts emit CSV files or extracted PDF text and tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Python dependencies for pandas, openpyxl, and pdfplumber; no external service integration is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

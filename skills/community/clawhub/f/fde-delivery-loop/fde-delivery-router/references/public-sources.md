@@ -1,0 +1,12 @@
+# Public method sources
+
+This skill combines the following public information to form routing principles. The content is the reorganized FDE working rules and is not a copy of the original text:
+
+- [GOV.UK: How the discovery phase works](https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works): Understand the problem, users, constraints and success measurements before deciding whether to move into build.
+- [AWS: Generative AI Lifecycle Operational Excellence Framework](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/understanding-gloe.html): Connecting POC, pre-production and production phases in an evidence-driven, iterative manner.
+- [AWS: Advancing from POC to pre-production](https://docs.aws.amazon.com/prescriptive-guidance/latest/gen-ai-lifecycle-operational-excellence/dev-advancing.html): Make continue, adjust, or stop decisions with preset exit criteria.
+- [Microsoft Cloud Adoption Framework](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/overview): Connect strategy, planning, readiness, adoption, governance, security, and operations into a continuous lifecycle.
+- [OpenAI Forward Deployed Engineer Job Description](https://openai.com/careers/forward-deployed-engineer-%28fde%29-nyc-new-york-city/): FDE is end-to-end responsible for discovery, technology scope, system design, build, production rollout, and measuring success by adoption, workflow impact, and evaluation feedback.
+- [Stripe Forward Deployed Engineering](https://stripe.com/jobs/listing/backend-engineer-forward-deployed-engineering/7249744): FDE sits at the boundary of platform and real enterprise complexity, collaborating directly with users and turning one-off solutions into scalable platform capabilities.
+- [Palantir UK Careers](https://www.palantir.com/uk/careers/): Public description Delta (Forward-Deployed Software Engineer) directly understands customer problems and designs and implements solutions, Echo (Deployment Strategist) goes deep into customer workflow, team, data and product environment.
+- [Forward Deployed Engineer Roadmap](https://github.com/thecoder8890/forward-deployed-engineer-roadmap): Third-party public information used to cross-check the four capabilities of software engineering, systems and cloud, data and AI, customer delivery, and end-to-end portfolio products; not used as the only authoritative source of job definitions.

@@ -1,38 +1,54 @@
-## Description: <br>
-中文UI/UX设计智能为 AI 编程助手提供面向中文互联网产品的设计系统生成、组件规范、交互指导、配色、字体和前端实现建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文UI/UX设计智能为代理提供面向中文互联网产品的 UI/UX 设计系统、组件规范、交互指导和前端实现建议。
 
-## Publisher: <br>
-[guo123dong](https://clawhub.ai/user/guo123dong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guo123dong](https://clawhub.ai/user/guo123dong)
 
-## Use Case: <br>
-Developers, designers, and product builders use this skill to create or review Chinese-localized UI/UX for websites, dashboards, design systems, components, and frontend implementations. It emphasizes Chinese fonts, local platform conventions, culturally relevant color choices, responsive layouts, and accessibility checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chinese-localized defaults for fonts, colors, interaction patterns, and platform conventions may be a poor fit for global or non-Chinese products. <br>
-Mitigation: Invoke the skill deliberately for Chinese-market work and review or override its locale assumptions when building for other audiences. <br>
+## Use Case:
 
+Developers, designers, and product teams use this skill to generate Chinese-localized UI/UX direction, design systems, component guidance, interaction patterns, and frontend implementation recommendations for ecommerce, education, finance, SaaS, public-service, and similar products.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guo123dong/skills/ui-ux-pro-max-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with optional code blocks, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-localized UI/UX recommendations covering style, color, typography, layout, frontend stack choices, responsive behavior, and accessibility checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: Broad triggers may steer ordinary UI, UX, layout, dashboard, landing page, or frontend tasks toward Chinese product conventions even when that localization is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Activate the skill only for Chinese-localized product design tasks or when the user explicitly asks for those conventions.
+
+Risk: Design guidance may be applied too broadly across industries, platforms, or accessibility requirements.
+
+Mitigation: Review generated UI/UX recommendations against the product context, target platform rules, and accessibility requirements before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guo123dong/skills/ui-ux-pro-max-cn)
+- [ClawHub publisher profile](https://clawhub.ai/user/guo123dong)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration instructions]
+
+**Output Format:** [Markdown prose with tables, checklists, and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is bundled in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

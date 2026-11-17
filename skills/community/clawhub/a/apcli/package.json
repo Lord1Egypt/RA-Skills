@@ -1,0 +1,40 @@
+{
+  "name": "@gopaljigaur/apcli",
+  "version": "0.1.2",
+  "description": "Apple Contacts CLI for macOS - search, read and edit contacts from the command line",
+  "main": "lib/jxa-runner.js",
+  "bin": {
+    "apcli": "bin/apcli.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "apple",
+    "contacts",
+    "macos",
+    "cli",
+    "jxa"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gopaljigaur/apcli"
+  },
+  "author": "Gopalji Gaur <gopaljigaur@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "scripts/",
+    "README.md",
+    "LICENSE",
+    "SKILL.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}

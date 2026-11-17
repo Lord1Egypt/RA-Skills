@@ -1,41 +1,54 @@
-## Description: <br>
-Build a complete blog system using Everything Openclaw (EO) multi-expert collaboration - full workflow demo. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Build a complete blog system using Everything Openclaw (EO) multi-expert collaboration as a full workflow demo.
 
-## Publisher: <br>
-[467718584](https://clawhub.ai/user/467718584) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[467718584](https://clawhub.ai/user/467718584)
 
-## Use Case: <br>
-Developers and agent users use this skill to demonstrate a multi-expert workflow for planning, building, validating, and deploying a complete blog system with the Everything Openclaw collaboration plugin. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external Everything Openclaw collaboration plugin. <br>
-Mitigation: Install and use it only when the plugin and publisher are trusted. <br>
-Risk: Generated code, Docker, CI/CD, and deployment files may be incomplete or unsafe for direct production use. <br>
-Mitigation: Review generated artifacts, scan them, use test credentials, and avoid exposing secrets before running or deploying. <br>
+## Use Case:
 
+Developers use this demonstration skill to learn an EO multi-expert collaboration workflow for planning, building, validating, and deploying a sample blog system.
 
-## Reference(s): <br>
-- [EO Blog Dev on ClawHub](https://clawhub.ai/467718584/eo-blog-dev) <br>
-- [Everything Openclaw (EO) Plugin](https://clawhub.com/plugins/eo-collaboration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code, shell commands, configuration, and project deliverables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated implementation, Docker, CI/CD, and deployment materials should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The workflow can generate or modify project code for a blog system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code, dependencies, permissions, and deployment configuration before using the output in a real project.
+
+Risk: The skill depends on the EO collaboration plugin.
+
+Mitigation: Before installing, verify that eo-collaboration is the intended trusted plugin and pin or control the plugin version where supported.
+
+## Reference(s):
+
+- [EO Blog Dev on ClawHub](https://clawhub.ai/467718584/skills/eo-blog-dev)
+- [Everything Openclaw (EO) Collaboration Plugin](https://clawhub.com/plugins/eo-collaboration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated project artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or modify blog project code, documentation, deployment configuration, and quality-check outputs when explicitly invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

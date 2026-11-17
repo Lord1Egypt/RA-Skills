@@ -1,44 +1,53 @@
-## Description: <br>
-BytePlan API wrapper that supports login authentication, model queries, data fetching, and reuse by related BytePlan skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BytePlan data platform API wrapper that provides login authentication, model queries, data retrieval, and field-value lookup interfaces for dependent skills.
 
-## Publisher: <br>
-[dbfu](https://clawhub.ai/user/dbfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dbfu](https://clawhub.ai/user/dbfu)
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate to BytePlan, manage user and tenant context, query available models, fetch model records, and retrieve field values for DIM, LIST, LOV, and LEVEL field types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable BytePlan credentials and tokens in plaintext. <br>
-Mitigation: Install only from a trusted publisher, use a dedicated working directory, avoid sharing the credential file, and rotate credentials if they are written to the wrong location. <br>
-Risk: Credential storage locations in behavior and documentation may not match. <br>
-Mitigation: Check which .env file the skill will modify before login and avoid generic USER_NAME or PASSWORD environment variables in projects that use the skill. <br>
-Risk: The development environment sends passwords without the UAT RSA encryption path. <br>
-Mitigation: Prefer the UAT environment when possible and reserve development login for trusted test accounts. <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate with BytePlan, manage user and tenant context, query available models, fetch model data, and retrieve DIM, LIST, LOV, and LEVEL field values. It can serve as a shared API dependency for related BytePlan reporting and media-generation skills.
 
-## Reference(s): <br>
-- [ClawHub byteplan-api release page](https://clawhub.ai/dbfu/byteplan-api) <br>
-- [BytePlan development API endpoint](https://dev.byteplan.com) <br>
-- [BytePlan UAT API endpoint](https://uatapp.byteplan.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and environment configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update BytePlan credential and token settings during authentication workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can store BytePlan passwords and reusable access or refresh tokens in plaintext .env files, including an unexpected project .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege BytePlan account where possible, keep .env files out of source control and backups, inspect project and skill-related .env paths after use, and rotate or revoke credentials if they were exposed.
+
+Risk: The documented dev environment sends the password in plaintext.
+
+Mitigation: Prefer the UAT environment when authenticating unless the dev environment is explicitly required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dbfu/skills/byteplan-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript API examples and environment configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes credential environment variables and token persistence behavior that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

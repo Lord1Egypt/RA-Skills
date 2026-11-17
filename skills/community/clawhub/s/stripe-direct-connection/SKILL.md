@@ -1,28 +1,28 @@
 ---
 name: stripe-direct-connection
-description: "Stripe Direct Connection: Stripe payments, subscriptions, invoicing, refunds, disputes, and balance. Use when an agent needs stripe direct connection, launch saas subscription billing with recurring prices and hosted payment links, automate customer onboarding and crm to stripe sync, generate stripe checkout payment links for e commerce orders, run customer support refund workflows with reason tracking, cancel subscription, subscription, create coupon through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+description: "Stripe payments, subscriptions, invoicing, refunds, disputes, and balance — full read/write for customers. Use when an agent needs stripe, stripe direct connection, launch saas subscription billing with recurring prices and hosted payment links, automate customer onboarding and crm to stripe sync, generate stripe checkout payment links for e commerce orders, run customer support refund workflows with reason tracking, cancel subscription, subscription through AgentPMT-hosted remote tool calls."
+version: 1.0.2
 homepage: https://www.agentpmt.com/marketplace/stripe-direct-connection
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/stripe-direct-connection"}}
 ---
-# Stripe Direct Connection
+# Stripe
 
 ## Freshness
-Last updated: `2026-06-23`.
+Last updated: `2026-07-28`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
 ## What This Tool Does
-Connect your AI agents to Stripe in seconds. The Stripe Direct Connection plugs straight into Stripe's official hosted MCP server, giving agents full read/write control over customers, products, prices, subscriptions, invoices, refunds, payment links, coupons, and disputes — no SDK install, no integration code, just one credential.
+Connect your AI agents to Stripe in seconds. Give agents full read/write control over customers, products, prices, subscriptions, invoices, refunds, payment links, coupons, and disputes — no SDK install, no integration code, just one credential.
 
 Use it to launch SaaS subscription billing with recurring monthly or annual prices, automate accounts receivable by issuing and finalizing invoices, generate hosted Stripe Checkout payment links for e-commerce orders, run customer-support refund flows with reason tracking, manage promotional coupon campaigns, and retrieve real-time account balances. The integration also supports Stripe's full query syntax for searching payment intents, charges, customers, and invoices, plus an interactive integration recommender that maps your business requirements to the right Stripe products (Checkout, Elements, Billing, Connect). Built for agentic workflows in SaaS billing, e-commerce, marketplace payments, donation processing, and finance automation.
 
 ## When To Use
-- Use this skill for `Stripe Direct Connection` on AgentPMT.
+- Use this skill for `Stripe` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
-- Search and activation keywords: stripe direct connection, launch saas subscription billing with recurring prices and hosted payment links, automate customer onboarding and crm to stripe sync, generate stripe checkout payment links for e commerce orders, run customer support refund workflows with reason tracking, cancel subscription, subscription, create coupon.
-- Supported action names: `cancel_subscription`, `create_coupon`, `create_customer`, `create_invoice`, `create_invoice_item`, `create_payment_link`, `create_price`, `create_product`, `create_refund`, `fetch_stripe_resources`, `finalize_invoice`, `get_stripe_account_info`, `list_coupons`, `list_customers`, `list_disputes`, `list_invoices`, `list_payment_intents`, `list_prices`, `list_products`, `list_subscriptions`, `retrieve_balance`, `search_stripe_documentation`, `search_stripe_resources`, `send_stripe_mcp_feedback`, `stripe_integration_recommender`, `update_dispute`, `update_subscription`.
+- Search and activation keywords: stripe, stripe direct connection, launch saas subscription billing with recurring prices and hosted payment links, automate customer onboarding and crm to stripe sync, generate stripe checkout payment links for e commerce orders, run customer support refund workflows with reason tracking, cancel subscription, subscription.
+- Supported action names: `cancel_subscription`, `create_coupon`, `create_customer`, `create_invoice`, `create_invoice_item`, `create_payment_link`, `create_price`, `create_product`, `create_refund`, `fetch_stripe_resources`, `finalize_invoice`, `get_instructions`, `get_stripe_account_info`, `list_coupons`, `list_customers`, `list_disputes`, `list_invoices`, `list_payment_intents`, `list_prices`, `list_products`, `list_subscriptions`, `retrieve_balance`, `search_stripe_documentation`, `search_stripe_resources`, `send_stripe_mcp_feedback`, `stripe_integration_recommender`, `update_dispute`, `update_subscription`.
 
 ## Use Cases
 - Launch SaaS subscription billing with recurring prices and hosted payment links
@@ -46,8 +46,8 @@ No categories or industry tags are published for this tool.
 
 ## Actions And Schema
 Complete generated action schema: `./schema.md`.
-Supported action count: `27`.
-x402 availability: not enabled for this product.
+Supported action count: `28`.
+x402 action routes are enabled and listed in `./schema.md`.
 
 - `cancel_subscription` (action slug: `cancel-subscription`): This tool will cancel a subscription in Stripe. It takes the following arguments: - subscription (str, required): The ID of the subscription to cancel. Price: `5` credits. Parameters: `subscription`.
 - `create_coupon` (action slug: `create-coupon`): This tool will create a coupon in Stripe. It takes several arguments: - name (str): The name of the coupon. Only use one of percent_off or amount_off, not both: - percent_off (number, optional): The percentage discount to apply (between 0 and 100). - amount_off (number, optional): The amount to subtract from an invoice (in currency minor units, e.g. cents for USD and yen for JPY). Optional arguments for duration. Use if specific duration is desired, otherwise default to 'once'. - duration (str, optional): How long the discount will last ('once', 'repeating', or 'forever'). Defaults to 'once'. - duration_in_months (number, optional): The number of months the discount will last if duration is repeating. Price: `5` credits. Parameters: `amount_off`, `currency`, `duration`, `duration_in_months`, `name`, `percent_off`.
@@ -60,6 +60,7 @@ x402 availability: not enabled for this product.
 - `create_refund` (action slug: `create-refund`): This tool will refund a payment intent in Stripe. It takes three arguments: - payment_intent (str): The ID of the payment intent to refund. - amount (int, optional): The amount to refund in currency minor units, e.g. cents for USD and yen for JPY. - reason (str, optional): The reason for the refund. Options: "duplicate", "fraudulent", "requested_by_customer". Price: `5` credits. Parameters: `amount`, `payment_intent`, `reason`.
 - `fetch_stripe_resources` (action slug: `fetch-stripe-resources`): Retrieve Stripe object details by ID. IMPORTANT: Only call this tool after search_stripe_resources is called to get specific object IDs. Do not use this tool to discover or search for objects. This tool fetches the object information from Stripe including all available fields. It is only able to fetch the following resources (prefixes): - Payment Intents (pi_) - Charges (ch_) - Invoices (in_) - Prices (price_) - Products (prod_) - Subscriptions (sub_) - Customers (cus_) It takes one argument: - id (str): The unique identifier for the Stripe object (e.g. cus_123, pi_123). Note that any amount returned is in currency minor units, e.g. cents for USD and yen for JPY. Price: `5` credits. Parameters: `id`.
 - `finalize_invoice` (action slug: `finalize-invoice`): This tool will finalize an invoice in Stripe. It takes one argument: - invoice (str): The ID of the invoice to finalize. Price: `5` credits. Parameters: `invoice`.
+- `get_instructions` (action slug: `get-instructions`): Get tool instructions and available actions. Price: `5` credits. Parameters: none.
 - `get_stripe_account_info` (action slug: `get-stripe-account-info`): This will get the account info for the logged in Stripe account. Price: `5` credits. Parameters: none.
 - `list_coupons` (action slug: `list-coupons`): This tool will fetch a list of Coupons from Stripe. It takes one optional argument: - limit (int, optional): The number of coupons to return. Price: `5` credits. Parameters: `limit`.
 - `list_customers` (action slug: `list-customers`): This tool will fetch a list of Customers from Stripe. It takes two arguments: - limit (int, optional): The number of customers to return. - email (str, optional): A case-sensitive filter on the list based on the customer's email field. Price: `5` credits. Parameters: `email`, `limit`.
@@ -138,7 +139,7 @@ Product slug: `stripe-direct-connection`
 Marketplace page: https://www.agentpmt.com/marketplace/stripe-direct-connection
 
 - AgentPMT account route: first use `../agentpmt-account-mcp-rest-api-setup` to connect the main MCP server or REST API for an Agent Group where this tool is enabled.
-- x402 route: not enabled for this product.
+- No-account AgentAddress/x402 route: first use `../agentpmt-no-account-agentaddress-x402` for the canonical payment and wallet setup instructions.
 - AgentPMT overview: use `../what-is-agentpmt` for marketplace, Agent Group, workflow, MCP, REST, and payment concepts.
 
 If those setup skills are not installed beside this product skill, use the downloads below.
@@ -152,12 +153,17 @@ Core AgentPMT setup skills:
   - ClawHub page: https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup
   - OpenClaw install: `openclaw skills install agentpmt-account-mcp-rest-api-setup`
   - skills.sh install: `npx skills add AgentPMT/agent-skills --skill agentpmt-account-mcp-rest-api-setup`
+- No-account AgentAddress/x402 setup: ../agentpmt-no-account-agentaddress-x402
+  - ClawHub page: https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402
+  - OpenClaw install: `openclaw skills install agentpmt-no-account-agentaddress-x402`
+  - skills.sh install: `npx skills add AgentPMT/agent-skills --skill agentpmt-no-account-agentaddress-x402`
 
 skills.sh install script:
 
 ```bash
 npx skills add AgentPMT/agent-skills --skill what-is-agentpmt
 npx skills add AgentPMT/agent-skills --skill agentpmt-account-mcp-rest-api-setup
+npx skills add AgentPMT/agent-skills --skill agentpmt-no-account-agentaddress-x402
 ```
 
 MCP call shape after the main AgentPMT MCP server is connected:
@@ -166,7 +172,7 @@ MCP call shape after the main AgentPMT MCP server is connected:
 {
   "method": "tools/call",
   "params": {
-    "name": "Stripe-Direct-Connection",
+    "name": "Stripe",
     "arguments": {
       "action": "cancel_subscription",
       "subscription": "example subscription"
@@ -206,6 +212,7 @@ Use the setup skill for the account connection details before making REST calls.
 ## AgentPMT Reference
 - What AgentPMT is: ../what-is-agentpmt (ClawHub: `what-is-agentpmt`, page: https://clawhub.ai/agentpmt/what-is-agentpmt; skills.sh: `npx skills add AgentPMT/agent-skills --skill what-is-agentpmt`)
 - AgentPMT account MCP/REST setup: ../agentpmt-account-mcp-rest-api-setup (ClawHub: `agentpmt-account-mcp-rest-api-setup`, page: https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup; skills.sh: `npx skills add AgentPMT/agent-skills --skill agentpmt-account-mcp-rest-api-setup`)
+- No-account AgentAddress/x402 setup: ../agentpmt-no-account-agentaddress-x402 (ClawHub: `agentpmt-no-account-agentaddress-x402`, page: https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402; skills.sh: `npx skills add AgentPMT/agent-skills --skill agentpmt-no-account-agentaddress-x402`)
 - Marketplace product: https://www.agentpmt.com/marketplace/stripe-direct-connection
 - AgentPMT main MCP server: https://api.agentpmt.com/mcp/
 - AgentPMT REST invoke endpoint: https://api.agentpmt.com/products/purchase

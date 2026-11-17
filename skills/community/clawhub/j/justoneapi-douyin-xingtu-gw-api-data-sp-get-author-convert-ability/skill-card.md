@@ -1,44 +1,57 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/gw/api/data_sp/get_author_convert_ability/v1 for Douyin Creator Marketplace (Xingtu) Conversion Analysis through JustOneAPI with oAuthorId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/gw/api/data_sp/get_author_convert_ability/v1 for Douyin Creator Marketplace (Xingtu) Conversion Analysis through JustOneAPI with oAuthorId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external agents use this skill to call JustOneAPI for Douyin Creator Marketplace (Xingtu) creator conversion analysis. It supports creator evaluation, campaign planning, and marketplace research using an author ID plus optional platform and time-range filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is passed as a query parameter and may appear in URLs, logs, screenshots, or browser history. <br>
-Mitigation: Use a narrowly scoped, revocable token when available, avoid sharing logs or copied URLs, and rotate the token if exposure is possible. <br>
-Risk: The skill returns creator marketplace analytics that may be incomplete, stale, or affected by backend API errors. <br>
-Mitigation: Review the endpoint-specific summary and raw backend payload before using results for campaign planning or creator evaluation. <br>
+## Use Case:
 
+Developers and agents use this skill to call a focused JustOneAPI endpoint for Douyin Creator Marketplace creator conversion analysis. It supports creator evaluation, campaign planning, and marketplace research using an author ID plus optional platform and date-range filters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-gw-api-data-sp-get-author-convert-ability) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_convert_ability&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_convert_ability&utm_content=project_link) <br>
-- [Generated operation reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JustOneAPI token and the oAuthorId query parameter; optional filters include platform and range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The API token may be exposed through request URLs or process arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped JustOneAPI token where available, avoid logging full URLs or command lines, and rotate the token if it may have appeared in logs.
+
+Risk: The skill consumes JustOneAPI quota or billing capacity when called.
+
+Mitigation: Review the skill before installation when the token has meaningful quota, billing, or data access, and run it only with the required author ID and filters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-gw-api-data-sp-get-author-convert-ability)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_convert_ability&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_gw_api_data_sp_get_author_convert_ability&utm_content=project_link)
+- [Generated Operations Reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON]
+
+**Output Format:** [Markdown summary followed by raw JSON when results are available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; endpoint inputs include oAuthorId with optional platform and range query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

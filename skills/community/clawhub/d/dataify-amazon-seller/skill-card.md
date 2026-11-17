@@ -1,41 +1,54 @@
-## Description: <br>
-Use for Dataify Amazon seller information collection Builder tasks by URL, including parameter confirmation, API TOKEN handling, Builder submission, task_id return, and request troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Amazon seller profile and seller information from a known seller URL. Do not use for product details, listings, or reviews.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Amazon seller information collection jobs through Dataify Builder and receive the created task_id. It helps configure or reuse a Dataify API TOKEN, confirm request parameters, and direct users to Dataify for results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Dataify API TOKEN and may expose credentials if commands, environment variables, or logs are shared. <br>
-Mitigation: Use a limited-scope token when available, keep DATAIFY_API_TOKEN out of shared logs and transcripts, and avoid pasting generated commands that contain credentials. <br>
-Risk: The skill submits network requests to Dataify Builder using user-confirmed Amazon seller URLs and file names. <br>
-Mitigation: Review the parameter table before submission and only send requests that match the intended seller URL and output file name. <br>
+## Use Case:
 
+External users and agents use this skill to submit known Amazon seller URLs to Dataify Builder, monitor the asynchronous task, and return collected seller profile and seller information as JSON. It is scoped to seller information collection and should not be used for product details, listings, or reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-amazon-seller) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown instructions and parameter tables, optional shell commands, and JSON summaries from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a Dataify task_id and dashboard URL after successful submission; does not collect or invent downstream result fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can send user-supplied URLs and account credentials to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended Amazon seller URLs, confirm the target before submission when there is ambiguity, and keep DATAIFY_API_TOKEN in an environment variable or approved secret store rather than chat.
+
+Risk: Final-result retrieval depends on external sibling code that is not included in the reviewed artifact.
+
+Mitigation: Review and pin the required task-runtime dependency before installing or executing the skill in a managed environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-amazon-seller)
+- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a task_id and resume command when final-result monitoring times out or no-wait behavior is requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

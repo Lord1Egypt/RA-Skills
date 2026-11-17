@@ -1,43 +1,50 @@
-## Description: <br>
-Timestamp-first perpetual calendar interop for AI agents that need cross-calendar conversion, timestamp timeline normalization, true month boundaries, and day-level calendar or almanac payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Timestamp-first perpetual calendar interop for AI agents that need cross-calendar conversion, timestamp normalization, true month boundaries, and day-level almanac payloads.
 
-## Publisher: <br>
-[Hosuke](https://clawhub.ai/user/Hosuke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hosuke](https://clawhub.ai/user/hosuke)
 
-## Use Case: <br>
-Developers and agent operators use this skill to normalize dates and timestamps across Gregorian, Julian, ISO, ROC, Buddhist, Japanese era, sexagenary, solar-term, and optional lunar calendar systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill requires trusting an external Python package. <br>
-Mitigation: Pin the package version in sensitive environments, install in an isolated environment, review the package before deployment, and avoid running setup with elevated privileges. <br>
-Risk: The optional HTTP or MCP server can expose calendar-conversion tools to clients that can reach it. <br>
-Mitigation: Expose the server only to trusted local clients unless access controls and network restrictions are added. <br>
-Risk: Some calendar, solar-term, lunar, or almanac outputs may be approximate or depend on optional providers. <br>
-Mitigation: Call capabilities first, inspect warnings or approximation markers, and verify critical scheduling or compliance dates against authoritative calendar sources. <br>
+## Use Case:
 
+Developers and agent builders use Clawlendar to normalize calendar, timeline, month-boundary, daily-profile, and almanac data across MCP, CLI, and HTTP workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Hosuke/clawlendar) <br>
-- [Clawlendar Homepage](https://github.com/Hosuke/Clawlender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request or response payload conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward MCP tools, CLI commands, and HTTP endpoints that return normalized JSON calendar payloads and warnings for optional or approximate providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The recommended pip install command is not version-pinned, so installation depends on current external package integrity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned reviewed version of clawlendar and its dependencies, inspect the package source, and run the MCP server with only the filesystem and network access it needs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hosuke/skills/clawlendar)
+- [Clawlendar Source Homepage](https://github.com/Hosuke/Clawlender)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports MCP tools, CLI commands, and HTTP endpoints for calendar conversion and timestamp-based timeline normalization.]
+
+## Skill Version(s):
+
+0.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

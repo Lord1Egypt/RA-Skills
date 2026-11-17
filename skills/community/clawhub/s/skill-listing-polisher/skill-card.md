@@ -1,39 +1,53 @@
-## Description: <br>
-Improves a skill's public listing before publish by tightening title, description, tags, changelog, and scan-friendly packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve a skill's public listing before publish.
 
-## Publisher: <br>
-[kyoiii](https://clawhub.ai/user/kyoiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyoiii](https://clawhub.ai/user/kyoiii)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to review ClawHub skill listings before publishing or updating them, focusing on trust signals, discoverability, and small packaging improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flagged broad repository diff sharing with configured reviewer CLIs as requiring user review. <br>
-Mitigation: Install only when comfortable sharing repository diffs with configured reviewers, prefer running without full-access modes, disable fallback reviewers when not needed, and avoid repositories containing secrets or private code. <br>
+## Use Case:
 
+Developers and skill publishers use this skill before publishing or updating a public ClawHub skill to tighten listing title, description, tags, changelog, and package contents.
 
-## Reference(s): <br>
-- [Review Notes](references/review-notes.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/kyoiii/skill-listing-polisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include findings grouped by trust, discoverability, and the smallest recommended edit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Suggested listing edits could remove useful context or understate package behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final title, description, tags, changelog, and package file list before publishing.
+
+Risk: The bundled listing check can flag internal-looking names or sensitive strings but does not prove a package is disclosure-ready.
+
+Mitigation: Use the check as a prompt for manual review and scan the skill before deployment.
+
+## Reference(s):
+
+- [Review Notes](references/review-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with concise review findings and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns trust issues, discoverability issues, and the smallest edit that improves both.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

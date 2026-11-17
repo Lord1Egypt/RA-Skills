@@ -1,43 +1,59 @@
-## Description: <br>
-A-Stock Radar monitors and analyzes China A-share market conditions, including index moves, sector rankings, macro snapshots, short-term sentiment, core company quotes, and position-style market commentary with an investment-advice disclaimer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Radar monitors Chinese A-share indices, sectors, macro indicators, core companies, limit-up/limit-down pools, and short-term sentiment to produce market snapshots and non-binding position guidance.
 
-## Publisher: <br>
-[gold3bear](https://clawhub.ai/user/gold3bear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gold3bear](https://clawhub.ai/user/gold3bear)
 
-## Use Case: <br>
-External users and market analysts use this skill to gather public A-share market snapshots, sector movement, macro indicators, sentiment signals, and concise research-oriented commentary. It supports research workflows and explicitly warns that its outputs are not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market commentary and position-style suggestions could be mistaken for investment advice. <br>
-Mitigation: Treat outputs as research only, preserve the skill's investment-advice disclaimer, and have a qualified human review any trading decision. <br>
-Risk: The skill fetches public market data over the network and may return stale, incomplete, or unavailable data when upstream sources fail. <br>
-Mitigation: Review scripts and dependencies before running with network access, and verify important data against authoritative market sources before acting on it. <br>
+## Use Case:
 
+External users and agents use this skill to answer A-share market questions, summarize index and sector movement, inspect selected large-cap companies, assess macro and short-term sentiment signals, and produce research-only trading posture suggestions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gold3bear/a-stock-radar) <br>
-- [Publisher profile](https://clawhub.ai/user/gold3bear) <br>
-- [Eastmoney market data](https://quote.eastmoney.com/) <br>
-- [Sina Finance market data](http://finance.sina.com.cn) <br>
+### Deployment Geography for Use:
 
+Global, with market coverage focused on Chinese A-shares
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text summaries with market indicators, tables, and commentary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public market data fetched from Sina Finance, Eastmoney, and akshare-backed sources; outputs include disclaimers that they are not investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: Position guidance may be based on failed or stale sentiment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat trading posture suggestions as research references only and verify them against current market data before acting.
+
+Risk: The skill contacts public market-data providers for quotes, sectors, macro data, and sentiment inputs.
+
+Mitigation: Install and run it only in environments where outbound access to those public finance data sources is acceptable.
+
+Risk: Unpinned dependencies and provider-side API changes can alter or break results.
+
+Mitigation: Use a controlled environment with reviewed dependency versions and monitor failures or empty data before trusting summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gold3bear/skills/a-stock-radar)
+- [Eastmoney quote center](https://quote.eastmoney.com/center/gridlist.html)
+- [Sina Finance](http://finance.sina.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style Chinese market summaries with numeric snapshots, position guidance, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are non-binding research references and depend on public market-data providers that may fail or return stale data.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

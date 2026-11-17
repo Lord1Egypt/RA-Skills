@@ -1,38 +1,54 @@
-## Description: <br>
-Generates daily Honduran food trend topics, 50-second Spanish video scripts, media search prompts, and SEO metadata for short-form content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily high-impact Honduran food trend topics, 50-second Spanish scripts, media search suggestions, and SEO metadata for short-form videos.
 
-## Publisher: <br>
-[lostlilbot](https://clawhub.ai/user/lostlilbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lostlilbot](https://clawhub.ai/user/lostlilbot)
 
-## Use Case: <br>
-Content creators and operators use this skill to plan Honduran food short-form videos with an English management view and Spanish audience-facing scripts and metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trend claims, facts, or links may be inaccurate or stale before publication. <br>
-Mitigation: Confirm trend data, factual claims, and any links against current sources before publishing content. <br>
+## Use Case:
 
+Developers, content operators, and social media teams use this skill to plan Honduran food-focused short-form videos with an English operator interface and Spanish consumer-facing output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lostlilbot/automaton) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown table with English topic and media fields plus Spanish script and SEO metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spanish audience-facing content with an English operator interface] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated trend choices, scripts, metadata, or media search links may be unsuitable, outdated, or inaccurate for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected topics, scripts, SEO metadata, and media search links before publishing.
+
+Risk: The bilingual workflow may mix operator-facing English and consumer-facing Spanish in the final package.
+
+Mitigation: Check the final table so operational labels remain English and audience-facing title, script, hashtags, and description remain Spanish.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lostlilbot/skills/automaton)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown table with English topic and media-link columns plus Spanish script and SEO metadata columns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumer-facing content is Spanish with Honduran dialect or neutral Spanish; operator-facing labels are English.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

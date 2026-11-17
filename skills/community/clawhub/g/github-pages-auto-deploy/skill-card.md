@@ -1,38 +1,57 @@
-## Description: <br>
-Auto-deploy websites to GitHub Pages with custom domain support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-deploy websites to GitHub Pages with custom domain support.
 
-## Publisher: <br>
-[sendwealth](https://clawhub.ai/user/sendwealth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sendwealth](https://clawhub.ai/user/sendwealth)
 
-## Use Case: <br>
-Developers and site maintainers use this skill to configure GitHub Actions workflows for deploying static websites, blogs, documentation, portfolios, and static apps to GitHub Pages with optional custom domain and HTTPS setup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example commands and workflow configuration may deploy a site, install npm tools, run npx image optimization, or perform curl checks when copied into a repository. <br>
-Mitigation: Review each command and workflow step before running it, and execute them only when intentionally deploying the target site. <br>
-Risk: Placeholder domains and URLs in the guidance may cause incorrect DNS, HTTPS, or monitoring setup if used unchanged. <br>
-Mitigation: Replace placeholder domains and URLs with the user's actual site and verify DNS and GitHub Pages settings before enabling HTTPS or health checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and site maintainers use this skill to configure GitHub Actions workflows that publish static websites, documentation, blogs, portfolios, and static apps to GitHub Pages, including custom domain and HTTPS setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with YAML, bash, HTML, and DNS configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deployment instructions and example configuration for user review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The generated GitHub Actions workflow can publish website changes automatically after pushes.
+
+Mitigation: Review the workflow before use and consider protected branches or deployment approvals for important sites.
+
+Risk: Unpinned actions or globally installed npm tools may change behavior over time.
+
+Mitigation: Pin GitHub Actions to reviewed commit SHAs and use exact-version project dependencies with a lockfile.
+
+Risk: Preview deployment guidance references a third-party action.
+
+Mitigation: Review any third-party action before adoption and avoid it unless it is needed for the deployment process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sendwealth/skills/github-pages-auto-deploy)
+- [Example deployed site](https://sendwealth.github.io/claw-intelligence/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, shell, and HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment workflow and setup guidance; no runtime service or API credentials are required by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

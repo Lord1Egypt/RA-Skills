@@ -1,41 +1,53 @@
-## Description: <br>
-Helps agents create and coordinate multi-agent teams, assign specialized roles and tasks, manage workflows, and consolidate team results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Team Builder helps agents create and manage multi-agent teams by defining roles, assigning tasks, coordinating workflows, and integrating results.
 
-## Publisher: <br>
-[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-wuxl](https://clawhub.ai/user/ryan-wuxl)
 
-## Use Case: <br>
-Developers and agent operators use this skill to design multi-agent collaboration patterns for analysis, content creation, code review, and similar workflows. It provides role templates, workflow examples, and command-oriented guidance for organizing agent teams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact describes Node scripts that are not included in the release evidence. <br>
-Mitigation: Treat the examples as guidance until the referenced scripts are supplied and reviewed before execution. <br>
-Risk: Multi-agent tasks may share sensitive context across configured roles. <br>
-Mitigation: Avoid including confidential information unless the operator is comfortable with that context being visible to the participating agents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to plan multi-agent teams for workflows such as investment analysis, content creation, and code review. It provides role templates, workflow patterns, and example commands for creating teams, assigning work, and checking team status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/agent-team-creator) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact; referenced scripts are not included in this release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The artifact references Node script commands that are not included in the release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the required scripts are available or adapt the commands before deployment; treat the shown commands as examples until the files are supplied.
+
+Risk: The skill documentation is in Chinese, which may limit review for teams that do not read Chinese.
+
+Mitigation: Use a qualified Chinese-language reviewer or validated translation to review the role definitions, usage steps, and example workflows before adoption.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryan-wuxl/skills/agent-team-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JavaScript configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node according to ClawHub metadata; no executable implementation files are bundled in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

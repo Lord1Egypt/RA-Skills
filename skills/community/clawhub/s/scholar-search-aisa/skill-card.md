@@ -1,45 +1,59 @@
-## Description: <br>
-Search academic papers and scholarly sources through the AISA scholar endpoint. Use when: the user asks for papers, authors, recent research, citations, or year-filtered academic evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches academic papers and scholarly sources through the AISA scholar endpoint for paper, author, citation, and year-filtered research queries.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and research-focused agents use this skill to retrieve academic papers, author evidence, citations, and year-filtered scholarly search results through the AISA API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AISA API key and sends user queries to api.aisa.one. <br>
-Mitigation: Install only when the operator is comfortable sharing the configured research queries with AISA, and use a scoped or revocable key where available. <br>
-Risk: The bundled client exposes broader web search, URL extraction, and AI synthesis commands beyond the scholar-search description. <br>
-Mitigation: Before deployment, either restrict usage to the scholar command or update operator-facing documentation and review procedures to disclose the broader client behavior. <br>
-Risk: Search and synthesis results can be incomplete, stale, or misleading. <br>
-Mitigation: Require users or downstream agents to verify important claims against cited papers or primary sources before relying on the output. <br>
+## Use Case:
 
+External researchers, developers, and analysts use this skill to retrieve scholarly search results, author evidence, citations, and date-filtered academic sources through AISA-backed search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bibaofeng/scholar-search-aisa) <br>
-- [Publisher profile](https://clawhub.ai/user/bibaofeng) <br>
-- [AISA API base endpoint](https://api.aisa.one/apis/v1) <br>
-- [AISA](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and text search results from the bundled Python client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; API responses may include result titles, URLs, dates, snippets, citations, answers, usage cost, and credits remaining.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The packaged client can send broader query types, arbitrary URLs, and aggregated results to AISA services beyond scholar-only use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with non-sensitive scholarly queries unless the publisher narrows or clearly documents the broader data flows.
+
+Risk: The skill requires an AISA API key for runtime access.
+
+Mitigation: Provide a scoped key where possible, avoid sharing it in prompts or logs, and rotate it if exposure is suspected.
+
+Risk: Private URLs, presigned links, internal research systems, or sensitive queries may be disclosed to external AISA services.
+
+Mitigation: Do not use those inputs with this skill unless the deployment has approved that data flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/scholar-search-aisa)
+- [AISA API service](https://aisa.one)
+- [AISA API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with search result snippets, URLs, dates, citations, and summaries when returned by AISA.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; sends requests to AISA services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

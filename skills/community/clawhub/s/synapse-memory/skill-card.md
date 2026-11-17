@@ -1,42 +1,57 @@
-## Description: <br>
-Synapse augments OpenClaw's built-in memory tools with structured learning, preference tracking, pattern detection, and cross-session intelligence consolidation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synapse is a self-learning memory skill for OpenClaw agents that analyzes interactions, extracts preferences and patterns, updates local profiles, and improves cross-session recall using OpenClaw memory tools.
 
-## Publisher: <br>
-[shadoprizm](https://clawhub.ai/user/shadoprizm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadoprizm](https://clawhub.ai/user/shadoprizm)
 
-## Use Case: <br>
-OpenClaw users and agent operators use Synapse to maintain a local structured profile of facts, preferences, behavioral patterns, corrections, and daily learning summaries across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically read prior conversations and build persistent local profiles without clear opt-in, review, or deletion controls. <br>
-Mitigation: Require user confirmation before profile writes, narrow trigger phrases, and periodically review or delete generated Synapse memory files. <br>
-Risk: Persistent memory files may collect preferences, behavioral patterns, and other operator information over time. <br>
-Mitigation: Set a controlled SYNAPSE_DATA_DIR, keep storage local, and avoid storing credentials, tokens, passwords, or other sensitive content. <br>
+## Use Case:
 
+External OpenClaw users and developers use Synapse to help agents maintain local structured memory about facts, preferences, behavioral patterns, and corrections across sessions. It is intended for agents that need improved recall while continuing to use OpenClaw's native memory_search and memory_get tools as the primary memory read path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shadoprizm/synapse-memory) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown summaries plus local JSON and JSONL memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill that uses local OpenClaw memory and file tools; no network calls or external credentials are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and skill.json) <br>
+Risk: Persistent memory can build long-lived profiles from conversations, preferences, and behavioral patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict transcript access where possible, require confirmation before saving inferred memories, and periodically inspect the local Synapse memory directory.
+
+Risk: Quiet learning can save sensitive or incorrect inferred memories if agent controls are too permissive.
+
+Mitigation: Do not store passwords, API keys, tokens, or sensitive credentials; review memory writes and use low confidence when evidence is uncertain.
+
+Risk: Package-name mismatch could lead to installing an unintended release.
+
+Mitigation: Install only the exact reviewed ClawHub release, shadoprizm/synapse-memory version 1.1.0.
+
+## Reference(s):
+
+- [Synapse ClawHub listing](https://clawhub.ai/shadoprizm/skills/synapse-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [Agent guidance with local JSON, JSONL, and Markdown memory file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local OpenClaw memory files and may write profile, preference, pattern, daily log, and association records.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

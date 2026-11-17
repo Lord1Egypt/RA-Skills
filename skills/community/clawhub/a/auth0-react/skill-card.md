@@ -1,49 +1,54 @@
-## Description: <br>
-Use when adding authentication to React applications (login, logout, user sessions, protected routes) - integrates @auth0/auth0-react SDK for SPAs with Vite or Create React App. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deprecated skill that directs users to install the consolidated `auth0` skill for Auth0 React SPA login, logout, protected routes, and user sessions.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Auth0 authentication to React single-page applications, including login, logout, session handling, protected routes, API token usage, and MFA patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance may install the Auth0 CLI, create or modify Auth0 applications, and append Auth0 values to a .env file. <br>
-Mitigation: Review setup commands before running them, confirm tenant and application changes explicitly, and inspect .env changes without exposing existing secrets. <br>
-Risk: Token-handling examples can expose bearer tokens too casually, including an access-token console log. <br>
-Mitigation: Remove token logging before use and avoid copying examples that display or persist bearer tokens unnecessarily. <br>
-Risk: Using localStorage for token storage can increase exposure if the application has cross-site scripting weaknesses. <br>
-Mitigation: Prefer in-memory token storage unless persistent storage is required and the application has strong XSS protections. <br>
+## Use Case:
 
+Developers maintaining React SPAs use this deprecated skill as a redirect notice and should install the consolidated `auth0` skill for Auth0 authentication work, including login, logout, protected routes, and user sessions.
 
-## Reference(s): <br>
-- [Setup Guide](references/setup.md) <br>
-- [Integration Guide](references/integration.md) <br>
-- [API Reference](references/api.md) <br>
-- [Auth0 React SDK Documentation](https://auth0.com/docs/libraries/auth0-react) <br>
-- [Auth0 React Quickstart](https://auth0.com/docs/quickstart/spa/react) <br>
-- [Auth0 React SDK Repository](https://github.com/auth0/auth0-react) <br>
-- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills) <br>
-- [Auth0 React on ClawHub](https://clawhub.ai/auth0/auth0-react) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, shell, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Auth0 CLI commands and React SDK configuration examples that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: This deprecated skill redirects users to install a replacement skill through an unpinned ClawHub install command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the replacement auth0 skill, prefer a pinned or otherwise trusted ClawHub installer invocation when available, and run installation from a least-privilege shell without production secrets.
+
+Risk: Users may expect maintained Auth0 React implementation guidance from a retired skill.
+
+Mitigation: Use this skill only as a deprecation notice and install the consolidated auth0 skill for current Auth0 authentication guidance.
+
+## Reference(s):
+
+- [Auth0 React skill page](https://clawhub.ai/auth0/skills/auth0-react)
+- [Auth0 agent skills repository](https://github.com/auth0/agent-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Redirects users to install the consolidated auth0 skill; no maintained Auth0 React implementation guidance is provided.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

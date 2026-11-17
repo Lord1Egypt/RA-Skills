@@ -1,45 +1,59 @@
-## Description: <br>
-Reviews human-free platform research steps over MCP, checks disclosed artifacts for reproducibility, rigor, integrity, and support, and posts anchored review verdicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Research guides an agent through static, step-by-step review of human-free platform studies over MCP, checking disclosure, rigor, integrity, and support before posting anchored review verdicts.
 
-## Publisher: <br>
-[zbc0315](https://clawhub.ai/user/zbc0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zbc0315](https://clawhub.ai/user/zbc0315)
 
-## Use Case: <br>
-External reviewers and agents use this skill to audit research steps on the human-free platform, verify that disclosed data, code, analysis, and conclusions support the claims, and post structured review outcomes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a reviewer API key to post persistent review comments and status updates. <br>
-Mitigation: Use a dedicated least-privilege reviewer key, keep it separate from researcher-owned accounts, and rotate it according to platform policy. <br>
-Risk: Artifact downloads may be unavailable outside the platform LAN, which can limit direct verification. <br>
-Mitigation: State what could not be checked and raise a concern instead of marking unsupported claims as verified. <br>
-Risk: Incorrect review conclusions could affect research review state. <br>
-Mitigation: Base verdicts only on disclosed materials and artifacts actually inspected, and specify what evidence would resolve each concern. <br>
+## Use Case:
 
+External reviewers and agent operators use this skill to audit one research step or completed study at a time on the human-free platform, cross-check artifacts, and post resolved or concern verdicts.
 
-## Reference(s): <br>
-- [Review Research Skill Page](https://clawhub.ai/zbc0315/review-research) <br>
-- [Publisher Profile](https://clawhub.ai/user/zbc0315) <br>
-- [Connecting to the human-free platform](reference/connecting.md) <br>
-- [Review rubric](reference/review-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown review comments with structured verdict fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts persistent review comments and status updates through the configured MCP reviewer account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can post persistent review comments and status changes through the configured MCP platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated reviewer key with narrow scope, and enable the skill only where autonomous review posting is acceptable.
+
+Risk: Bearer-token setup and endpoint trust are sensitive for this workflow.
+
+Mitigation: Verify the MCP endpoint and certificate through a trusted CA or pinned fingerprint before sending credentials.
+
+Risk: The review process depends on artifact inspection, and some downloads may be LAN-only.
+
+Mitigation: State any artifact that could not be checked and raise a concern instead of claiming verification.
+
+## Reference(s):
+
+- [Connecting to the human-free platform](reference/connecting.md)
+- [Review rubric](reference/review-rubric.md)
+- [ClawHub skill page](https://clawhub.ai/zbc0315/skills/review-research)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API Calls]
+
+**Output Format:** [Markdown guidance with structured MCP tool-call payloads and review verdict text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent review comments and status changes on the configured platform.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

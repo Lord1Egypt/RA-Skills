@@ -1,40 +1,49 @@
-## Description: <br>
-Use when the user asks to cut a release, tag a version, publish a release, or roll up the changelog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks to cut a release, tag a version, publish a release, or roll up the changelog. Not for routine merges; releases happen on request, not per feature.
 
-## Publisher: <br>
-[escoffier-labs](https://clawhub.ai/user/escoffier-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[escoffier-labs](https://clawhub.ai/user/escoffier-labs)
 
-## Use Case: <br>
-Developers and release maintainers use this skill to turn accumulated merged work into a tagged release with a changelog roll-up, version bump, GitHub release, and draft announcement text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release automation can push version commits, tags, and GitHub releases that are hard to unwind cleanly. <br>
-Mitigation: Run only after confirming a clean default branch, green CI, passing local tests, matching changelog and git history, and explicit release intent. <br>
-Risk: Installation may add local command-correction hooks that inspect or rewrite shell commands and store local learning data. <br>
-Mitigation: Review the installer and release source before install, avoid curl-to-bash when review is required, and leave telemetry disabled unless explicitly desired. <br>
+## Use Case:
 
+Developers maintaining a repository use this skill on explicit request to turn merged work into a validated, versioned release, update the changelog, create a commit and tag, publish a GitHub release, and prepare announcement drafts. It does not post announcements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/escoffier-labs/skillet-release-cut) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, markdown, text] <br>
-**Output Format:** [Markdown with inline shell commands and release text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository edits, tags, GitHub release notes, and announcement drafts; social posts remain drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: A requested release can edit repository files, create commits and tags, push them, and publish a GitHub release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before execution, confirm the repository, remote, and intended release scope, and verify that the user explicitly requested the release.
+
+## Reference(s):
+
+- [Release Cut on ClawHub](https://clawhub.ai/escoffier-labs/skills/skillet-release-cut)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown release guidance and announcement drafts with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Release actions occur only on request; announcement drafts are not posted.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata; artifact declares 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

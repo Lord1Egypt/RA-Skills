@@ -1,47 +1,59 @@
-## Description: <br>
-Generate videos from image and text prompts using the Tomoviee Image-to-Video API through the Wondershare OpenAPI gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 5-second videos from image and text prompts using the Tomoviee Image-to-Video API through the Wondershare OpenAPI gateway.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-Developers and agents use this skill to turn a source image URL and motion prompt into a short generated video via Tomoviee/Wondershare APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image URLs, prompts, and optional callback data are sent to Tomoviee/Wondershare services. <br>
-Mitigation: Use the skill only with data that is appropriate to send to that provider and review callback payload handling before enabling callbacks. <br>
-Risk: App keys, app secrets, and generated Basic tokens can grant API access if exposed. <br>
-Mitigation: Keep credentials out of shared terminals, shell history, repositories, and CI logs; treat printed tokens as secrets. <br>
-Risk: Callback URLs may expose generated task data to an endpoint outside the user's control. <br>
-Mitigation: Configure callbacks only to endpoints the user controls and monitors. <br>
+## Use Case:
 
+Developers and content teams use this skill to animate still images with prompt and camera-motion guidance through Tomoviee's image-to-video API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/tomoviee-image-to-video) <br>
-- [Tomoviee API docs](https://www.tomoviee.ai/doc/ai-video/image-to-video.html) <br>
-- [Tomoviee developer portal](https://www.tomoviee.ai/developers.html) <br>
-- [Tomoviee Image-to-Video API Reference](references/video_apis.md) <br>
-- [Camera Movement Types Reference](references/camera_movements.md) <br>
-- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API task identifiers and polling guidance for retrieving generated video URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Reusable Tomoviee app credentials can be exposed through command-line examples, shell history, terminal logs, CI logs, or agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager or environment-based injection for live credentials, avoid the auth helper with production secrets, and rotate credentials that may have appeared in logs.
+
+Risk: Image URLs, prompts, and callback data are sent to a third-party API gateway for processing.
+
+Mitigation: Submit only approved images and URLs, avoid private or sensitive assets unless third-party processing is authorized, and review endpoint egress before deployment.
+
+## Reference(s):
+
+- [Tomoviee Image-to-Video API Reference](references/video_apis.md)
+- [Camera Movement Types Reference](references/camera_movements.md)
+- [Tomoviee Prompt Engineering Guide](references/prompt_guide.md)
+- [Tomoviee Developer Portal](https://www.tomoviee.ai/developers.html)
+- [Tomoviee Image-to-Video API Docs](https://www.tomoviee.ai/doc/ai-video/image-to-video.html)
+- [Tomoviee Mainland Developer Portal](https://www.tomoviee.cn/developers.html)
+- [Tomoviee Mainland Image-to-Video API Docs](https://www.tomoviee.cn/doc/ai-video/image-to-video.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task IDs, polling status, and video URLs when the API client is used.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "version": "1.2",
+  "lastSnapshot": "2026-08-21",
+  "scope": "federal",
+  "sources": [
+    {"key": "ircc-ee-rounds", "name": "IRCC Express Entry 抽分记录 (rounds/invitations)", "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations.html", "category": "IRCC", "watch": true},
+    {"key": "ircc-category-selection", "name": "IRCC Category-based Selection 定向通道", "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html", "category": "IRCC", "watch": true},
+    {"key": "ircc-cec", "name": "IRCC CEC 加拿大经验类资格", "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/who-can-apply/canadian-experience-class.html", "category": "IRCC", "watch": true},
+    {"key": "ircc-fsw", "name": "IRCC FSW 联邦技术移民资格+67分表", "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/who-can-apply/federal-skilled-workers.html", "category": "IRCC", "watch": true},
+    {"key": "ircc-fst", "name": "IRCC FST 联邦技工资格", "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/who-can-apply/federal-skilled-trades.html", "category": "IRCC", "watch": true}
+  ]
+}

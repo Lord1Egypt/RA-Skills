@@ -106,23 +106,14 @@ Skills must avoid cargo cult patterns - rituals that "look right" but lack verif
 
 ```yaml
 navigation_rules:
-  - condition: "module_length > 100 lines"
-    requirement: "Table of Contents after frontmatter"
+  - condition: "a Table of Contents in SKILL.md or any module"
+    requirement: "No Table of Contents"
     penalty: "-2 points"
-    rationale: "Agentic search requires TOC for efficient grep-based navigation"
+    rationale: "An anchor list restates the headings below it and costs tokens on every load; grep finds the headings directly"
 
   - condition: "module_length > 200 lines"
     requirement: "Section anchors and backlinks"
     penalty: "-3 points"
-```
-
-**Table of Contents Format:**
-
-```markdown
-## Table of Contents
-
-- [Section Name](#section-name)
-- [Another Section](#another-section)
 ```
 
 ### Activation Reliability (20 points)
@@ -196,23 +187,29 @@ async def test_async_operation():
 | Workflow structure | 2 | Complex tasks have trackable checklists |
 | Feedback loops | 1 | Validation steps before proceeding |
 
-### Persuasion Effectiveness (bonus, up to 5 points)
+### Intent and Constraints (bonus, up to 5 points)
+
+Scored against the strength budget in `Skill(abstract:skill-authoring)`
+module `persuasion-principles.md`: a skill supplies the destination and
+the boundaries, and leaves the route to the model.
 
 | Aspect | Max Points | Requirements |
 |--------|------------|--------------|
-| Authority usage | 2 | Imperative language for critical rules |
-| Commitment patterns | 1 | Explicit declarations required |
-| Social proof | 1 | Universal norms documented |
-| Model calibration | 1 | Language appropriate for target models |
+| Stated intent | 2 | The skill says what a good outcome is and why it matters |
+| Constraints with reasons | 2 | Each boundary names what is behind it: an incident, a trust boundary, or a machine contract |
+| Strength budget | 1 | Imperative wording only on trust boundaries, destructive commands and machine contracts |
 
-### Anti-Rationalization Coverage (bonus, up to 5 points)
+Deduct the bonus, down to zero, for each retired pattern present: a
+rationalization table, a ceremonial declaration required before work,
+or intensity language chosen by skill category.
+
+### Exit Criteria (bonus, up to 5 points)
 
 | Aspect | Max Points | Requirements |
 |--------|------------|--------------|
-| Loophole closures | 2 | Specific exceptions listed |
-| Rationalization table | 1 | Common excuses with counters |
-| Red flags list | 1 | Self-checking triggers documented |
-| Foundational principles | 1 | "Spirit vs letter" addressed early |
+| Section present | 1 | An `## Exit Criteria` section with checkbox criteria |
+| Observable | 2 | Each criterion ties to a file, a command's output, or a numeric threshold |
+| Falsifiable | 2 | Removing the supporting content makes at least one criterion fail |
 
 ## Quality Levels
 
@@ -278,7 +275,7 @@ sensitivity_analysis:
 
 ### High Issues (Address Before Next Release)
 
-- Missing TOC in modules >100 lines (-2 points)
+- Table of Contents in SKILL.md or a module (-2 points)
 - Abstract Quick Start without commands (-2 points)
 - Second-person voice slips ("your"/"you") (-1 point)
 - Missing verification steps after examples (-1 point)
@@ -337,7 +334,7 @@ Path: {skill_path}
 Lines: {line_count} (SKILL.md: {skill_lines})
 
 Structure Issues:
-  [HIGH] Module async-testing.md (192 lines) missing TOC (-2 points)
+  [HIGH] Module async-testing.md (192 lines) carries a Table of Contents (-2 points)
   [MEDIUM] SKILL.md exceeds 500 lines (-1 point)
 
 Content Issues:
@@ -349,7 +346,7 @@ Activation Issues:
   [HIGH] Only 2 trigger phrases in description (-1 point)
 
 Recommendations:
-  1. Add TOC to async-testing.md after frontmatter
+  1. Remove the Table of Contents from async-testing.md; split the module if it needs navigation
   2. Update Quick Start with actual pytest commands
   3. Replace "your needs" with "project requirements"
   4. Add "Run pytest -v tests/test_async.py" after async example

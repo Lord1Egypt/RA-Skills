@@ -1,43 +1,50 @@
-## Description: <br>
-Manage customer support: track tickets, respond, and escalate issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage customer support by tracking tickets, responding to messages, and escalating issues.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Support teams use this persona to triage support inboxes, turn customer emails into tickets, log ticket status, escalate urgent issues, and schedule follow-ups across Google Workspace tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access customer email and update shared business tools without clear approval or data-handling limits. <br>
-Mitigation: Install it only for an authorized support account, configure least-privilege access, and define approved data handling boundaries before use. <br>
-Risk: Incorrect support labels, sheets, Chat spaces, or calendars could send customer information to the wrong destination. <br>
-Mitigation: Confirm the support label, target tracking sheet, escalation space, and follow-up calendar before running the workflow. <br>
-Risk: Customer-facing replies, escalation posts, or follow-up events may be inappropriate if generated without review. <br>
-Mitigation: Require human review before sending messages to customers, posting escalations, or creating follow-up events. <br>
+## Use Case:
 
+Customer support teams and agents use this persona to triage support inboxes, convert emails into tickets, update tracking sheets, escalate urgent issues, and schedule follow-up calls in Google Workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/persona-customer-support) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Google Workspace CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gws and the gws-gmail, gws-sheets, gws-chat, and gws-calendar skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The persona can affect customer-support messages, tracking sheets, Chat escalations, and calendar events.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for approved Google Workspace resources and confirm messages, escalations, and calendar inserts before automatic execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/persona-customer-support)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gws and Google Workspace utility skills for Gmail, Sheets, Chat, and Calendar.]
+
+## Skill Version(s):
+
+1.0.12 (source: ClawHub release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

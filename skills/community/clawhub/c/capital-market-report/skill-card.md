@@ -1,42 +1,57 @@
-## Description: <br>
-Generates high-signal capital market anomaly and rumor reports from Chinese and global financial media, social scanners, and local price helpers, emphasizing actionable business signals, market isolation, and source URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-signal, impact-driven capital market anomaly and delta reports covering both Chinese and global markets.
 
-## Publisher: <br>
-[yangzhe1991](https://clawhub.ai/user/yangzhe1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangzhe1991](https://clawhub.ai/user/yangzhe1991)
 
-## Use Case: <br>
-Market analysts, investors, and agent operators use this skill to gather recent financial news, scan rumors and price signals, compare against prior 24-hour reports, and draft concise capital-market reports with source URLs and explicit impact reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public market and news data and calls local finance helper skills, so generated reports can reflect stale, unavailable, or inconsistent upstream data. <br>
-Mitigation: Review the cited source URLs, verify time windows and price data with trusted sources, and keep the required helper skills available before using the report. <br>
-Risk: The workflow stores report and cache files under ~/.openclaw and includes cleanup behavior that can remove generated report history. <br>
-Mitigation: Review or disable the cleanup command before use when report history matters, and back up retained reports outside the cleanup path. <br>
-Risk: Network news fetching contacts multiple public finance and media endpoints. <br>
-Mitigation: Run the skill only in environments where outbound public news and market-data requests are permitted. <br>
+## Use Case:
 
+Developers, analysts, and market-focused agent users use this skill to gather recent Chinese and global market news, compare against prior 24-hour reports, and produce concise Markdown briefings focused on anomalies, deltas, and actionable market impact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangzhe1991/capital-market-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown market report with source URLs, delta summary, event analysis, key calendar items, and hallucination checks; helper scripts may also write text reports and cache files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires recent source URLs, isolates market impact by region, and stores report or cache files under the user's OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill reads and writes local OpenClaw memory/report files and caches fetched news.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the file paths and persistence behavior before installing, and run it only in a workspace where this local storage is acceptable.
+
+Risk: The security guidance identifies an unsafe automatic report-deletion command that can remove more report history than intended.
+
+Mitigation: Correct or remove the deletion instruction before routine use, and confirm cleanup commands target only reports older than the intended 24-hour window.
+
+Risk: The skill invokes other local skill scripts for stock, crypto, hot-topic, and rumor data.
+
+Mitigation: Install and review those dependent local skills before use, and verify market prices through the designated pricing tools rather than memory or web-search summaries.
+
+## Reference(s):
+
+- [Capital Market Report on ClawHub](https://clawhub.ai/yangzhe1991/skills/capital-market-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration]
+
+**Output Format:** [Markdown report with cited source URLs, inline command examples, and local report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are expected to include 24-hour delta comparisons, source diversity checks, market-isolation notes, leading-signal scanning, and anti-hallucination checks.]
+
+## Skill Version(s):
+
+6.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

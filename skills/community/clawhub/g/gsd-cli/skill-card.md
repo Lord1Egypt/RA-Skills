@@ -1,40 +1,50 @@
-## Description: <br>
-Redirect users to install `gsd-orchestrator`; this skill reserves the `gsd-cli` name and contains no functional implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Redirect users to install `gsd-orchestrator` instead of this name-reservation skill.
 
-## Publisher: <br>
-[glittercowboy](https://clawhub.ai/user/glittercowboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[glittercowboy](https://clawhub.ai/user/glittercowboy)
 
-## Use Case: <br>
-Developers and agents use this placeholder to identify that `gsd-cli` is reserved and to install `gsd-orchestrator` for GSD subprocess orchestration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume this placeholder provides GSD automation behavior. <br>
-Mitigation: Install and review `gsd-orchestrator` and the `gsd-pi` Node package before relying on actual GSD automation. <br>
+## Use Case:
 
+Developers and agents encounter this skill as a placeholder for the `gsd-cli` name and are directed to install `gsd-orchestrator` for full GSD orchestration guidance.
 
-## Reference(s): <br>
-- [GSD CLI ClawHub page](https://clawhub.ai/glittercowboy/gsd-cli) <br>
-- [gsd-orchestrator skill](https://clawhub.com/skills/gsd-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/glittercowboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Placeholder guidance; no executable code is included in this skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The visible skill content only redirects to `gsd-orchestrator`, but the release declares an automatic Node package install that is not needed for that placeholder purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer installing the real `gsd-orchestrator` skill directly, or proceed only after separately trusting the `gsd-pi` package and installer behavior.
+
+## Reference(s):
+
+- [GSD CLI on ClawHub](https://clawhub.ai/glittercowboy/skills/gsd-cli)
+- [gsd-orchestrator skill](https://clawhub.com/skills/gsd-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Placeholder redirect; declared metadata requires the `gsd` binary and a Node package install for `gsd-pi`.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, created 2026-03-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

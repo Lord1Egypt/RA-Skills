@@ -1,51 +1,68 @@
-## Description: <br>
-Taste generates personalized recommendations from real consumption signals by scanning email and calendar data, enriching venues and items, and explaining each suggestion with prior behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Behavior-driven taste model built from real consumption signals that scans email and calendar data, enriches entities with taste-relevant attributes via Google Maps, and generates discovery-focused recommendations that respect dietary restrictions.
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-External agent users use Taste to create a local, behavior-driven taste profile and generate evidence-backed recommendations, serendipity suggestions, model status summaries, and weekly pattern reports. It is intended for personal recommendation workflows grounded in the user's actual consumption history, not generic search or editorial lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan sensitive personal email and calendar data. <br>
-Mitigation: Require explicit approval for each scan and limit account, date, and source scope before extraction. <br>
-Risk: The skill stores derived purchase, reservation, travel, and preference history locally. <br>
-Mitigation: Review retention settings and periodically review or delete the stored JSONL data and journals. <br>
-Risk: Entity enrichment through Google Maps or web search can expose venue or item context outside the local workspace. <br>
-Mitigation: Review items before enrichment and avoid enriching sensitive or private records through external services. <br>
-Risk: The documented cron self-update can change installed skill files on a schedule. <br>
-Mitigation: Disable the taste:update cron job or require manual approval before running updates. <br>
+## Use Case:
 
+External users and developers use Taste to build and query a personal preference model from consumption signals across email, calendar, Spotify, and transaction-derived restaurant data. It supports evidence-grounded recommendations, signal ingestion, entity enrichment, model status checks, and periodic taste summaries.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Email and Calendar Extraction](references/email_extraction.md) <br>
-- [Entity Enrichment](references/enrichment.md) <br>
-- [Taste Recommendation Style](references/recommendation_style.md) <br>
-- [Taste Schemas](references/schemas.md) <br>
-- [Signal Policy](references/signal_policy.md) <br>
-- [Strength Model](references/strength_model.md) <br>
-- [Journal](references/journal.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown recommendations and reports, JSON/JSONL state records, and shell commands for setup or self-update tasks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations must cite prior consumption evidence, verify novelty and dietary compatibility, and may persist local data and journal files under ~/openclaw/data/ocas-taste/ and ~/openclaw/journals/ocas-taste/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: skill.json and server release metadata) <br>
+Risk: The skill requests broad access to sensitive personal accounts and consumption records, including Gmail, Calendar, Spotify listening history, and transaction-derived restaurant data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing requested credentials and OAuth scopes, confirm the authenticated Google account before scans, and limit environment variables to the minimum workflows being used.
+
+Risk: Credential fallback and auth-repair behavior can make it unclear which account or token source is active.
+
+Mitigation: Run documented pre-flight checks, report token failures instead of silently skipping them, and verify the active account before reading email or calendar data.
+
+Risk: Self-update and backup behavior can change local skill code or preserve sensitive personal data longer than expected.
+
+Mitigation: Disable or tightly control update and backup commands before use, and review how stored signals, extractions, journals, and backups can be deleted.
+
+Risk: Known scan and enrichment paths can produce misleading or corrupted preference data, including broken historical email dating and enrichment persistence issues.
+
+Mitigation: Avoid documented broken historical scan paths, run verification scripts after Styx delta writes, and validate signal dates, deduplication, and enrichment persistence before trusting recommendation output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/indigokarasu/skills/ocas-taste)
+- [API authentication patterns](references/api_auth.md)
+- [Script inventory](references/script_inventory.md)
+- [Storage layout](references/storage_layout.md)
+- [Spotify sync](references/spotify_sync.md)
+- [Styx delta ingestion](references/styx_delta.md)
+- [Styx place_id deduplication](references/styx_delta_placeid_dedup.md)
+- [Historical scan date bug](references/scan_historical_date_bug.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON/file updates, and structured recommendation text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or update local JSONL stores and journals when the host agent executes the described workflows.]
+
+## Skill Version(s):
+
+3.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

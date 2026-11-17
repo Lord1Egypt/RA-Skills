@@ -1,46 +1,69 @@
-## Description: <br>
-Persistent memory system for AI agents - remember facts, learn from experience, and track entities across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory system for AI agents — remember facts, learn from experience, and track entities across sessions.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local persistent memory to AI-agent workflows, including fact recall, lessons learned, and entity context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local memory database can contain sensitive cross-session facts or personal data. <br>
-Mitigation: Treat the database as sensitive, avoid storing secrets or private personal data without consent, and use expirations or cleanup for stale facts. <br>
-Risk: Recalled memory may be stale, incomplete, or poisoned and could influence important actions. <br>
-Mitigation: Review recalled memory before letting an agent take consequential actions such as deploying, sending messages, modifying access, or deleting data. <br>
-Risk: Entity tracking can become covert profiling when people are stored without a clear task reason or user awareness. <br>
-Mitigation: Track people only for clear current tasks with user awareness, and keep entity context transparent. <br>
+## Use Case:
 
+Developers and AI-agent operators use this skill to add local, cross-session memory for facts, lessons, and entity context so agents can recall prior work and avoid repeating mistakes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/agent-memory-hardened) <br>
-- [README](README.md) <br>
-- [Safety evaluation](SAFETY.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Clawdbot](https://github.com/clawdbot/clawdbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; memory operations produce text records and JSON exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local SQLite memory database by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cross-session memories are stored locally in plaintext and may include sensitive context if users or agents store it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-sensitive memories, keep the database on protected storage, and avoid storing credentials, tokens, personal identifiers, health records, or similar sensitive data.
+
+Risk: Advertised deletion may not fully remove stored fact content from the full-text search index and SQLite storage behavior.
+
+Mitigation: Do not rely on forget operations as secure deletion until the FTS index and SQLite storage behavior are fixed; avoid storing data that would require assured erasure.
+
+Risk: Recalled memory may be stale, poisoned, or insufficient authority for consequential actions.
+
+Mitigation: Present recalled data to the user for review and obtain current confirmation before deploying, sending messages, modifying access, deleting data, or taking other consequential actions.
+
+Risk: Memory contents can leak accumulated cross-session data if sent to external services or destinations.
+
+Mitigation: Keep memory contents inside the local conversation and do not send them through network commands, API calls, email, webhooks, or other external destinations.
+
+Risk: Entity memory can become covert profiling when people are tracked without a current task reason and user awareness.
+
+Mitigation: Track people only when there is a clear, current task reason and the user is aware of the tracking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/agent-memory-hardened)
+- [Skill instructions](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Safety evaluation](artifact/SAFETY.md)
+- [Faberlens safety report](https://faberlens.ai/explore/agent-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or read a local SQLite memory database at the configured path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/src/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "travel-handbook",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "personal",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "旅行手册",
+      "goal": "把行程、选择与实际出行信息整理成手机可用的手册。",
+      "optionalInputs": [
+        {
+          "key": "destination",
+          "question": "去哪里，有哪些想去或不想去的地点？"
+        },
+        {
+          "key": "dates",
+          "question": "时间、天数与抵离安排是否确定？"
+        },
+        {
+          "key": "group",
+          "question": "几个人同行，有没有节奏、行动或饮食需求？"
+        },
+        {
+          "key": "budget",
+          "question": "预算和住宿、交通偏好是什么？"
+        },
+        {
+          "key": "bookings",
+          "question": "是否已有预订或必须保留的安排？"
+        }
+      ],
+      "sections": [
+        "行程概要与假设",
+        "每日路线",
+        "交通与时间余量",
+        "预算与备选",
+        "出行清单与资料"
+      ],
+      "qualityChecks": [
+        "手机上按天快速定位，展示步行与换乘余量；地图无网络时仍有文字地址。",
+        "票价、开放时间和政策需来源与查询日期，无法核实时标为待确认。",
+        "人数或日期缺失仍可给候选路线，不编造预订、身份资料和精确实时报价。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Travel handbook",
+      "goal": "Create a mobile-friendly handbook of plans, choices and practical travel details.",
+      "optionalInputs": [
+        {
+          "key": "destination",
+          "question": "Where are you going, and which places are included or excluded?"
+        },
+        {
+          "key": "dates",
+          "question": "Are dates, duration and arrival/departure plans known?"
+        },
+        {
+          "key": "group",
+          "question": "How many people are traveling, with which pace, mobility or dietary needs?"
+        },
+        {
+          "key": "budget",
+          "question": "What are the budget, accommodation and transport preferences?"
+        },
+        {
+          "key": "bookings",
+          "question": "Are there bookings or fixed activities to preserve?"
+        }
+      ],
+      "sections": [
+        "Overview and assumptions",
+        "Daily routes",
+        "Transport and time buffers",
+        "Budget and alternatives",
+        "Checklist and sources"
+      ],
+      "qualityChecks": [
+        "Enable quick day navigation on phones; leave travel buffers and offline-readable addresses.",
+        "Give sources and check dates for prices, hours and rules; flag unverified details.",
+        "Missing group size or dates need not block an outline; never invent bookings, identity details or live quotes."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "pack_id": "data-export",
+  "framework": "DATA-EXPORT",
+  "pack_version": "2026.09.1",
+  "jurisdiction": "CN",
+  "coverage_level": "baseline_review",
+  "clause_type_lexicon": {
+    "cross_border_transfer": [
+      "出境",
+      "向境外提供",
+      "境外接收方",
+      "跨境传输",
+      "传输至境外",
+      "境外服务器"
+    ]
+  },
+  "mapping_only": [
+    {
+      "framework": "GDPR",
+      "topics": {
+        "international_transfers": [
+          "EXPORT-SAFEGUARD-001",
+          "EXPORT-CONSENT-002",
+          "EXPORT-NOTICE-003"
+        ]
+      }
+    },
+    {
+      "framework": "ISO27001",
+      "topics": {
+        "supplier_agreements": ["EXPORT-NOTICE-003"],
+        "data_residency": ["EXPORT-STORAGE-004"]
+      }
+    },
+    {
+      "framework": "等保",
+      "topics": {
+        "security_assessment": ["EXPORT-SAFEGUARD-001"],
+        "data_residency": ["EXPORT-STORAGE-004"]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "EXPORT-SAFEGUARD-001",
+      "title": "数据出境未出现安全评估、标准合同或保护认证",
+      "clause_types": ["cross_border_transfer"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "cross_border_transfer"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "transfer_safeguard",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "安全评估|标准合同|个人信息保护认证|保护认证"
+        }
+      },
+      "severity": "high",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现数据出境相关表述，但未检索到安全评估、标准合同或个人信息保护认证相关表述；需人工核对是否具备法定出境条件。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第三十八条第一款",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "对照《促进和规范数据跨境流动规定》第七条、第八条判断应当申报安全评估还是订立标准合同或通过认证，并在文本中补充相应路径与证明材料。",
+      "test_ids": [
+        "EXPORT-SAFEGUARD-001-positive",
+        "EXPORT-SAFEGUARD-001-negative",
+        "EXPORT-SAFEGUARD-001-boundary"
+      ]
+    },
+    {
+      "rule_id": "EXPORT-CONSENT-002",
+      "title": "数据出境未出现单独同意",
+      "clause_types": ["cross_border_transfer"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "cross_border_transfer"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "transfer_separate_consent",
+        "scope": "document",
+        "search": {"kind": "regex", "pattern": "单独同意|单独授权"}
+      },
+      "severity": "high",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现数据出境相关表述，但未检索到单独同意相关表述；需人工核对是否已就出境取得个人单独同意。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第三十九条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "就向境外提供个人信息取得个人的单独同意；属于《促进和规范数据跨境流动规定》豁免情形的，在文本中说明适用依据。",
+      "test_ids": [
+        "EXPORT-CONSENT-002-positive",
+        "EXPORT-CONSENT-002-negative",
+        "EXPORT-CONSENT-002-boundary"
+      ]
+    },
+    {
+      "rule_id": "EXPORT-NOTICE-003",
+      "title": "数据出境未出现境外接收方告知",
+      "clause_types": ["cross_border_transfer"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "cross_border_transfer"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "receiver_notice",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "境外接收方[^。]{0,40}(名称|联系方式|处理目的|行权)|接收方的名称|接收方的联系方式"
+        }
+      },
+      "severity": "medium",
+      "confidence_policy": {"exact_match": "high", "absence": "medium"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现数据出境相关表述，但未检索到境外接收方名称、联系方式或行权路径的告知表述；需人工核对告知事项是否完整。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第三十九条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "告知境外接收方的名称或者姓名、联系方式、处理目的、处理方式、个人信息种类，以及个人向境外接收方行使权利的方式和程序。",
+      "test_ids": [
+        "EXPORT-NOTICE-003-positive",
+        "EXPORT-NOTICE-003-negative",
+        "EXPORT-NOTICE-003-boundary"
+      ]
+    },
+    {
+      "rule_id": "EXPORT-STORAGE-004",
+      "title": "数据出境未出现境内存储说明",
+      "clause_types": ["cross_border_transfer"],
+      "match": {
+        "operator": "any",
+        "conditions": [{"kind": "clause_type", "value": "cross_border_transfer"}]
+      },
+      "assert": {
+        "operator": "absent",
+        "target": "domestic_storage",
+        "scope": "document",
+        "search": {
+          "kind": "regex",
+          "pattern": "境内存储|存储在境内|存储于境内|境内服务器"
+        }
+      },
+      "severity": "low",
+      "confidence_policy": {"exact_match": "high", "absence": "low"},
+      "evidence": ["matched_span", "document_scope"],
+      "rationale": "文本出现数据出境相关表述，但未检索到境内存储相关表述；该义务主要适用于关键信息基础设施运营者与达到规定数量的处理者，属于概览性检查，必须人工核对适用性。",
+      "source": {
+        "type": "official",
+        "citation": "《中华人民共和国个人信息保护法》第四十条",
+        "url": "https://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html"
+      },
+      "remediation": "核对是否属于关键信息基础设施运营者或达到规定数量的处理者；如适用，说明境内存储安排与确需出境时的安全评估路径。",
+      "test_ids": [
+        "EXPORT-STORAGE-004-positive",
+        "EXPORT-STORAGE-004-negative",
+        "EXPORT-STORAGE-004-boundary"
+      ]
+    }
+  ]
+}

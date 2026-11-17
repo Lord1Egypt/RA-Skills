@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pathway-atlas.example/schemas/evidence-bundle.schema.json",
+  "title": "Evidence bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest", "candidates", "facts"],
+  "properties": {
+    "manifest": {"$ref": "#/$defs/manifest"},
+    "candidates": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/sourceCandidate"}
+    },
+    "facts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidenceFact"}
+    },
+    "contexts": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {"$ref": "#/$defs/factProvenance"},
+          {
+            "type": "object",
+            "not": {
+              "required": ["kind"],
+              "properties": {"kind": {"const": "fact-provenance"}}
+            }
+          }
+        ]
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/factClaim"}
+    }
+  },
+  "$defs": {
+    "sourceTier": {
+      "type": "string",
+      "enum": ["A", "B", "C"]
+    },
+    "evidenceStatus": {
+      "type": "string",
+      "enum": [
+        "official",
+        "corroborated",
+        "reference",
+        "inferred",
+        "conflict",
+        "missing",
+        "masked",
+        "partial"
+      ]
+    },
+    "capabilityTier": {
+      "type": "string",
+      "enum": ["full", "standard", "offline"]
+    },
+    "sourceCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "url",
+        "publisher",
+        "tier",
+        "published_at",
+        "retrieved_at",
+        "content_hash",
+        "citation_root",
+        "summary"
+      ],
+      "properties": {
+        "source_id": {"type": "string"},
+        "url": {
+          "type": "string",
+          "minLength": 8,
+          "pattern": "^[Hh][Tt][Tt][Pp][Ss]?://(?:\\[[0-9A-Fa-f:.]+\\]|[^@/?#\\s:]+)(?::[0-9]{1,5})?(?:[/?#]|$)",
+          "format": "uri"
+        },
+        "publisher": {"type": "string"},
+        "tier": {"$ref": "#/$defs/sourceTier"},
+        "published_at": {"type": ["string", "null"]},
+        "retrieved_at": {"type": "string"},
+        "content_hash": {"type": "string"},
+        "citation_root": {
+          "type": "string",
+          "minLength": 8,
+          "pattern": "^[Hh][Tt][Tt][Pp][Ss]?://(?:\\[[0-9A-Fa-f:.]+\\]|[^@/?#\\s:]+)(?::[0-9]{1,5})?(?:[/?#]|$)"
+        },
+        "summary": {"type": "string"}
+      }
+    },
+    "evidenceFact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fact_id",
+        "field",
+        "value",
+        "unit",
+        "status",
+        "source_ids",
+        "method",
+        "notes"
+      ],
+      "properties": {
+        "fact_id": {"type": "string"},
+        "field": {"type": "string"},
+        "value": {},
+        "unit": {"type": ["string", "null"]},
+        "status": {"$ref": "#/$defs/evidenceStatus"},
+        "source_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "method": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    },
+    "factClaim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "value", "unit", "source_id", "method"],
+      "properties": {
+        "field": {"type": "string"},
+        "value": {},
+        "unit": {"type": ["string", "null"]},
+        "source_id": {"type": "string"},
+        "method": {"type": "string"}
+      }
+    },
+    "factProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "fact_id",
+        "source_ids",
+        "year",
+        "extraction_method",
+        "locator"
+      ],
+      "properties": {
+        "kind": {"const": "fact-provenance"},
+        "fact_id": {"type": "string", "minLength": 1},
+        "source_ids": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "year": {"type": "integer", "minimum": 1, "maximum": 9999},
+        "extraction_method": {
+          "type": "string",
+          "enum": [
+            "html-table",
+            "xlsx-worksheet",
+            "xls-worksheet",
+            "pdf-text-table",
+            "pdfplumber-text",
+            "pypdf-text",
+            "host-ocr-rows",
+            "host-public-text",
+            "qr",
+            "manual-structured"
+          ]
+        },
+        "locator": {"type": "string", "minLength": 1, "maxLength": 512}
+      }
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "session_id",
+        "capability_tier",
+        "candidates_filename",
+        "facts_filename",
+        "rejected_count",
+        "manifest_hash"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0"},
+        "session_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+        "capability_tier": {"$ref": "#/$defs/capabilityTier"},
+        "candidates_filename": {"type": "string", "minLength": 1},
+        "facts_filename": {"type": "string", "minLength": 1},
+        "rejected_count": {"type": "integer", "minimum": 0},
+        "manifest_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

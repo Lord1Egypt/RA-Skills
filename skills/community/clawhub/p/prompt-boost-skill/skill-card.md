@@ -1,46 +1,66 @@
-## Description: <br>
-嘴替 Skill acts as a universal query preprocessor that restates user intent, identifies domain and task context, asks limited clarifying questions, and produces a structured Query Plan plus rewritten professional prompt for downstream agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+嘴替 Skill is a universal query preprocessor that turns vague or conversational user requests into clarified, structured query plans and rewritten prompts for downstream agents.
 
-## Publisher: <br>
-[longsasasasasa](https://clawhub.ai/user/longsasasasasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longsasasasasa](https://clawhub.ai/user/longsasasasasa)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to turn informal or incomplete requests into clarified, structured prompts before handing work to a downstream agent or model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill attempts to act as a persistent front door for nearly all user requests. <br>
-Mitigation: Install only when that behavior is intended, manually review any AGENTS.md or SOUL.md changes, and keep a rollback path. <br>
-Risk: The learning-profile behavior may store user query-pattern preferences without enough control or privacy detail. <br>
-Mitigation: Leave the learning profile disabled unless users explicitly consent to storing their query-pattern preferences. <br>
-Risk: High-risk legal, medical, financial, tax, or psychological prompts could be over-clarified into advice-like outputs. <br>
-Mitigation: Restrict outputs in those domains to information organization, clarification, and risk identification, and direct users to qualified professionals for formal advice. <br>
+## Use Case:
 
+External users and agent operators use this skill to clarify underspecified requests, identify the task domain, fill blocking input slots, and hand off a professionalized prompt and JSON payload to a downstream model or agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/longsasasasasa/prompt-boost-skill) <br>
-- [Activation Guide](artifact/references/activation-guide.md) <br>
-- [Output Contract](artifact/references/output-contract.md) <br>
-- [Risk Guardrails](artifact/references/risk-guardrails.md) <br>
-- [Learning Profile](artifact/references/learning-profile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown sections with a structured Query Plan and JSON handoff payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Clarification responses are capped at three questions per turn and the workflow forces convergence after three clarification rounds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and skill metadata) <br>
+Risk: The skill asks to process every user query and persist activation rules into AGENTS.md or SOUL.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit activation to explicit prompt-refinement requests, make configuration edits optional, and require reviewable diffs plus rollback steps before installation.
+
+Risk: The skill can record user query patterns and preferences as a learning profile.
+
+Mitigation: Require clear user consent, retention controls, and an opt-out path before storing profile history.
+
+Risk: The artifact is primarily Chinese-language and may alter non-Chinese user intent if language preference is not preserved.
+
+Mitigation: Confirm the user's preferred language and preserve it in clarification questions, query plans, and rewritten prompts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/longsasasasasa/skills/prompt-boost-skill)
+- [Activation Guide](references/activation-guide.md)
+- [Output Contract](references/output-contract.md)
+- [Risk Guardrails](references/risk-guardrails.md)
+- [Learning Profile](references/learning-profile.md)
+- [Data Analysis Domain](references/domains/data-analysis.md)
+- [Technical Support Domain](references/domains/tech-support.md)
+- [Marketing Domain](references/domains/marketing.md)
+- [Product Manager Domain](references/domains/product-manager.md)
+- [Supply Chain Domain](references/domains/supply-chain.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance, configuration]
+
+**Output Format:** [Markdown sections with a structured Query Plan and JSON handoff payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may ask up to three clarifying questions per round, then emits either a clarification response or an approved rewritten prompt for downstream use.]
+
+## Skill Version(s):
+
+2.1.1 (source: server evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

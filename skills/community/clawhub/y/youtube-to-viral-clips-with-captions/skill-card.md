@@ -1,45 +1,61 @@
-## Description: <br>
-Convert YouTube videos into 9:16 vertical clips with burned-in captions and hook titles, optimized for TikTok, Reels, and Shorts using the MakeAIClips API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts YouTube videos or uploaded videos into vertical short-form clips with burned-in captions and hook titles using the MakeAIClips API.
 
-## Publisher: <br>
-[nosselil](https://clawhub.ai/user/nosselil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nosselil](https://clawhub.ai/user/nosselil)
 
-## Use Case: <br>
-Content creators, social media teams, and agents use this skill to submit YouTube URLs or video uploads to MakeAIClips, monitor clip generation, and retrieve captioned vertical clips for TikTok, Instagram Reels, and YouTube Shorts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a MakeAIClips API key. <br>
-Mitigation: Keep the key in an environment variable, avoid pasting it into shared logs or prompts, and rotate it if it is exposed. <br>
-Risk: YouTube URLs or uploaded video files are sent to makeaiclips.live for processing. <br>
-Mitigation: Avoid confidential or restricted video content unless the user trusts that service and has reviewed its terms. <br>
-Risk: Clip generation may consume service quotas or paid plan capacity. <br>
-Mitigation: Review the service pricing, plan limits, and intended batch size before running bulk clipping jobs. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to turn long-form YouTube videos or uploaded videos into captioned vertical clips for TikTok, Instagram Reels, and YouTube Shorts.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/nosselil/youtube-to-viral-clips-with-captions) <br>
-- [MakeAIClips homepage](https://makeaiclips.live) <br>
-- [MakeAIClips sign-up](https://makeaiclips.live/sign-up) <br>
-- [MakeAIClips API key dashboard](https://makeaiclips.live/dashboard/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples, shell commands, and downloaded MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAKEAICLIPS_API_KEY and sends YouTube URLs or uploaded video files to makeaiclips.live for processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: YouTube links or uploaded videos are sent to makeaiclips.live for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with content that may be shared with the MakeAIClips service, and avoid submitting sensitive or private videos unless the service terms and data handling are acceptable.
+
+Risk: The skill requires a MakeAIClips API key.
+
+Mitigation: Store MAKEAICLIPS_API_KEY in the environment, avoid pasting it into chat, and rotate the key if it is exposed.
+
+Risk: The security summary says the skill forces commercial MakeAIClips messaging and upgrade links into agent replies.
+
+Mitigation: Treat pricing and upgrade links as vendor promotion, and review agent responses before presenting them as neutral recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nosselil/skills/youtube-to-viral-clips-with-captions)
+- [ClawHub publisher profile](https://clawhub.ai/user/nosselil)
+- [MakeAIClips homepage](https://makeaiclips.live)
+- [MakeAIClips API key dashboard](https://makeaiclips.live/dashboard/api-key)
+- [MakeAIClips subscription dashboard](https://makeaiclips.live/dashboard/subscription)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API calls, Files, Guidance]
+
+**Output Format:** [Markdown with JSON examples, bash commands, API request guidance, and downloaded MP4 files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAKEAICLIPS_API_KEY and sends YouTube links or uploaded videos to makeaiclips.live for processing.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-从抖音视频学习: agent_builder — ☆新发售☆【辅助工具DLC】RPG MAKER MZ／MV-Tileset Builder（像素美术编辑工具） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides video-derived learning guidance for RPG Maker MZ/MV Tileset Builder and AP Art History topics.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users can use this OpenCode skill for prompt-level learning guidance drawn from Douyin video topics, including RPG Maker MZ/MV Tileset Builder workflows and bilingual AP Art History study content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill combines unrelated RPG Maker and AP Art History guidance, which can make its scope unclear. <br>
-Mitigation: Install it only when both topic areas are intended, or split the content into separate skills before broad use. <br>
-Risk: Broad trigger phrases may activate the skill unexpectedly in conversations about only one source topic. <br>
-Mitigation: Review and narrow trigger wording before deploying it in shared or production agent environments. <br>
+## Use Case:
 
+External users and agents use this skill to provide concise guidance from bundled Douyin-derived notes about RPG Maker tileset tooling and bilingual AP Art History material.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with step-by-step learning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tools, credentials, shell commands, or configuration outputs are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad triggers such as RPG, 新发售, and 中英双语 may activate the skill for loosely related prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the prompt matches the RPG Maker or AP Art History learning notes before relying on the skill response.
+
+Risk: The guidance is rough video-derived content and may be incomplete or context-specific.
+
+Mitigation: Verify important learning or tooling claims against authoritative source material before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/agent-builder-5bce38)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no code execution, sensitive access, persistence, or private-data handling indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Clipboard history management for saving, searching, restoring, clearing, and reading clipboard items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clipboard history management for saving, searching, recalling, clearing, and setting clipboard content across Windows, macOS, and Linux.
 
-## Publisher: <br>
-[yushimohuang](https://clawhub.ai/user/yushimohuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yushimohuang](https://clawhub.ai/user/yushimohuang)
 
-## Use Case: <br>
-Agents and users use this skill to inspect, set, save, search, restore, and clear local clipboard history across Windows, macOS, and Linux. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clipboard history can contain passwords, API keys, private messages, or proprietary text and is stored in a local plaintext workspace file. <br>
-Mitigation: Avoid saving sensitive clipboard contents, ignore or delete clipboard-history.md regularly, and review it before sharing or committing workspace files. <br>
-Risk: Set and restore actions can replace the current system clipboard content. <br>
-Mitigation: Confirm the intended text or history item before running clipboard set or restore commands. <br>
+## Use Case:
 
+Developers and other agent users use this skill to inspect, save, search, restore, set, and clear clipboard content while working in a local workspace.
 
-## Reference(s): <br>
-- [Skill definition](SKILL.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes clipboard-history.md in the workspace root and trims saved history to 50 items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and script header) <br>
+Risk: Saved clipboard entries can include sensitive text stored in plaintext in clipboard-history.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving passwords, API keys, MFA codes, private messages, or proprietary text, and clear history when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yushimohuang/skills/clipboard-manager-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write clipboard entries to clipboard-history.md in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

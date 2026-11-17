@@ -1,45 +1,55 @@
-## Description: <br>
-Remove obvious AI-writing traces from Chinese text in a constrained way without changing facts, data, or the article's core argument. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove obvious AI-writing traces from Chinese text in a constrained way while preserving facts, data, structure, and the article's core argument.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Writers, editors, and content agents use this skill to clean up Chinese Markdown or plain-text drafts that sound mechanically AI-generated while preserving facts, numbers, headings, structure, and core claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill rewrites local draft content and writes revised output. <br>
-Mitigation: Run it only on drafts you are comfortable processing and review the humanized Markdown before publishing. <br>
-Risk: The package depends on skill_runtime.writing_core but does not include requirements.txt. <br>
-Mitigation: Confirm the target environment provides skill_runtime.writing_core before installation or execution. <br>
-Risk: A humanization pass may unintentionally shift tone or emphasis even when facts are preserved. <br>
-Mitigation: Compare the JSON report and revised draft against the source to confirm facts, structure, headings, and core claims remain intact. <br>
+## Use Case:
 
+Writers, editors, and content developers use this skill to clean up Chinese Markdown or plain-text drafts that read too much like AI output while preserving facts, numbers, headings, structure, and core claims.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abigale-cyber/content-system-humanizer-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/abigale-cyber) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, guidance] <br>
-**Output Format:** [Humanized Markdown file plus JSON change report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a revised draft and a report with changed line count, AI-trace risk, pattern hits, and change details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill creates or overwrites the documented humanized Markdown and JSON report paths for the chosen slug.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the input slug and output paths before running, and keep source drafts under version control or backed up.
+
+Risk: The packaged README references a requirements.txt file that is not present in the artifact.
+
+Mitigation: Verify the runtime environment provides the required skill runtime dependencies before local execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abigale-cyber/skills/content-system-humanizer-zh)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files]
+
+**Output Format:** [Humanized Markdown file plus JSON report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or overwrites disclosed draft output paths for the selected slug.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

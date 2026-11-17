@@ -1,43 +1,59 @@
-## Description: <br>
-Aggregates recent China AI policy updates from national agencies, Guangdong, Guangzhou, and related public sources into concise brief-style analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates recent China AI policy updates from national agencies, Guangdong and Guangzhou sources, selected media, and a policy aggregator, then produces a concise structured brief.
 
-## Publisher: <br>
-[whitetin](https://clawhub.ai/user/whitetin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whitetin](https://clawhub.ai/user/whitetin)
 
-## Use Case: <br>
-Policy analysts, developers, and operators use this skill to run a disclosed Python crawler over public government, media, and aggregator sources, filter recent AI-related policy items, and produce a concise Markdown brief with key points, source links, and trend analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crawler contacts public government, media, and aggregator websites, so individual sites may fail, block access, or omit usable dates. <br>
-Mitigation: Review crawler errors and treat the brief as a current lead list rather than a completeness guarantee. <br>
-Risk: Media and smartcity.team results may be supplemental interpretations or aggregations rather than authoritative policy text. <br>
-Mitigation: Verify important conclusions against official government source links before relying on them. <br>
-Risk: The skill executes a Python crawler with network access and third-party dependencies. <br>
-Mitigation: Install it in controlled environments, pin dependencies where possible, and review the crawler before execution. <br>
+## Use Case:
 
+External users, analysts, and policy teams use this skill to collect recent Chinese AI policy items and receive a categorized Markdown brief with source links, dates, key points, and trend analysis. The skill is useful for tracking national, Guangdong, Guangzhou, and broader regional policy activity without manually checking each source.
 
-## Reference(s): <br>
-- [AI policy source list](references/policy_sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/whitetin/ai-policy-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown brief with source links, optional JSON crawler output, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses recent public-source crawl results, prioritizes government sources, and summarizes supplemental media or aggregator results separately.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence) <br>
+Risk: The crawler depends on live third-party websites, so availability, HTML changes, or crawler blocking can lead to missing or incomplete policy results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated briefs as monitoring aids, rerun when sources fail, and confirm important items against the original official HTTPS pages.
+
+Risk: Brief summaries may omit context or reflect stale or incomplete crawler data.
+
+Mitigation: Use the included source links and publication dates to verify claims before relying on the brief for decisions.
+
+Risk: Installing Python dependencies in a shared environment can create dependency or supply-chain exposure.
+
+Mitigation: Install dependencies in a dedicated virtual environment and review dependency sources before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whitetin/skills/ai-policy-brief)
+- [AI policy source list](references/policy_sources.md)
+- [Publisher profile](https://clawhub.ai/user/whitetin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown brief with source links and JSON-backed collection results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated summaries, categorized policy tables, publication dates, original URLs, and trend analysis.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

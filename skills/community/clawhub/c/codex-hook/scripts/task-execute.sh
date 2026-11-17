@@ -129,8 +129,8 @@ choose_worktree_strategy() {
     
     # 对于 lobster 项目，复用同一个 worktree
     local worktree_path="$WORKTREE_DIR/$task_id"
-    if [[ "$project_name" == *"lobster"* ]] && [[ -d "$WORKTREE_DIR/task-20260313-lobster-api" ]]; then
-        worktree_path="$WORKTREE_DIR/task-20260313-lobster-api"
+    if [[ "$project_name" == *"lobster"* ]] && [[ -d "$WORKTREE_DIR/taREDACTED-SECRET" ]]; then
+        worktree_path="$WORKTREE_DIR/taREDACTED-SECRET"
         echo "♻️ 复用现有 worktree: $worktree_path"
     fi
     

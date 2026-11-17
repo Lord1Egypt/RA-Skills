@@ -1,50 +1,62 @@
-## Description: <br>
-Detect AI API/provider/model failures and route requests to healthy fallback providers or downgraded models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect AI API/provider/model failures and route requests to healthy fallback providers or downgraded models.
 
-## Publisher: <br>
-[zqh2333](https://clawhub.ai/user/zqh2333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zqh2333](https://clawhub.ai/user/zqh2333)
 
-## Use Case: <br>
-Developers and operators use this skill to add AI API failover, health checks, retry policy, circuit breakers, downgrade routing, and local OpenAI-compatible proxy behavior around configured model providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read provider configuration and inherited credentials while running a local API proxy. <br>
-Mitigation: Install only when that behavior is intended, protect environment files and state paths, and review provider configuration before use. <br>
-Risk: Prompts may be sent to configured fallback providers during failover or downgrade routing. <br>
-Mitigation: Review the configured provider order and avoid sensitive workloads unless those fallback providers are approved to receive the data. <br>
-Risk: Binding the proxy beyond localhost can expose the local API entrypoint without the protections expected for a network service. <br>
-Mitigation: Keep the proxy bound to localhost unless authentication and network controls are added. <br>
+## Use Case:
 
+Developers and engineers use this skill to create or maintain a local AI API failover layer with provider health checks, circuit breakers, guarded retries, profile-aware routing, and model downgrade paths.
 
-## Reference(s): <br>
-- [API Failover ClawHub Release](https://clawhub.ai/zqh2333/api-failover) <br>
-- [Publisher Profile](https://clawhub.ai/user/zqh2333) <br>
-- [Configuration Example](references/config-example.yaml) <br>
-- [Real-World Configuration Example](references/config-realworld-example.yaml) <br>
-- [Production Configuration Template](references/config-production.yaml) <br>
-- [Activation Checklist](references/activation-checklist.md) <br>
-- [Test Scenarios](references/test-scenarios.md) <br>
-- [Real-World Setup Notes](references/realworld-notes.md) <br>
-- [Delivery Summary](references/delivery-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML configuration examples, Python scripts, shell commands, and JSON proxy responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local configuration, routing state, and a localhost OpenAI-compatible proxy when the user runs the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The local proxy can expose credential-backed model access through an unauthenticated HTTP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the proxy bound to 127.0.0.1 unless real authentication, authorization, and network controls are added.
+
+Risk: Prompts may be forwarded to each configured upstream provider in the routing chain.
+
+Mitigation: Review provider configuration and fallback order before use, and route sensitive workloads only to approved providers.
+
+Risk: Temporary file handling and health endpoint exposure were flagged as areas needing hardening before elevated or shared deployments.
+
+Mitigation: Run without elevated privileges and harden temporary file paths and health endpoint exposure before broader deployment.
+
+## Reference(s):
+
+- [API Failover Skill Page](https://clawhub.ai/zqh2333/skills/api-failover)
+- [Production Configuration Template](references/config-production.yaml)
+- [Real-world Setup Notes](references/realworld-notes.md)
+- [Activation Checklist](references/activation-checklist.md)
+- [Test Scenarios](references/test-scenarios.md)
+- [Delivery Summary](references/delivery-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration examples, Python scripts, shell commands, and JSON health or self-check output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local proxy routing behavior and configuration guidance; runtime results depend on configured upstream providers and credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

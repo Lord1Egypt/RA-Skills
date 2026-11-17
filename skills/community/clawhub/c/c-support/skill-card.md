@@ -1,41 +1,56 @@
-## Description: <br>
-C Language Support Library for OpenClaw skills. Provides AST parsing, CMake analysis, Unity test generation, and security rule checking for C projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+C Language Support Library for OpenClaw skills. Provides AST parsing, CMake analysis, Unity test generation, and security rule checking for C projects.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineers use this skill as a shared C-language support library for parsing C source, analyzing CMake projects, generating Unity test scaffolding, and checking common C security rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/c-support) <br>
-- [Publisher profile](https://clawhub.ai/user/michealxie001) <br>
-- [CWE-120: Buffer Copy without Checking Size of Input](https://cwe.mitre.org/data/definitions/120.html) <br>
-- [CWE-134: Use of Externally-Controlled Format String](https://cwe.mitre.org/data/definitions/134.html) <br>
-- [CWE-242: Use of Inherently Dangerous Function](https://cwe.mitre.org/data/definitions/242.html) <br>
+Developers and engineers use this skill as shared C-language infrastructure for agent workflows that parse C source, analyze CMake projects, generate Unity test scaffolds, and check C code against security rules.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Python APIs that return structured analysis objects, findings, and generated C test code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python dependencies from requirements.txt; security evidence notes low dependency reproducibility risk and recommends sandboxing or pinned dependencies for stricter environments.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Broad tool authority and generated build or test files create review-worthy risk on untrusted C/CMake projects.
+
+Mitigation: Install only when C/CMake project analysis and test/build generation are expected, and review generated C and CMake before building or executing them.
+
+Risk: Dependency choices or build integration may introduce unreviewed code into downstream projects.
+
+Mitigation: Pin Python dependencies and replace FetchContent tags with reviewed commits or vendored dependencies where applicable.
+
+## Reference(s):
+
+- [C Support Library on ClawHub](https://clawhub.ai/michealxie001/skills/c-support)
+- [CWE-120: Buffer Copy without Checking Size of Input](https://cwe.mitre.org/data/definitions/120.html)
+- [CWE-134: Use of Externally-Controlled Format String](https://cwe.mitre.org/data/definitions/134.html)
+- [CWE-242: Use of Inherently Dangerous Function](https://cwe.mitre.org/data/definitions/242.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python usage examples and generated C, CMake, or Unity test code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read C/CMake project files and produce generated test or build artifacts for review before use]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

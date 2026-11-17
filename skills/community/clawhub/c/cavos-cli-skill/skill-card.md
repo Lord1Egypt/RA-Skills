@@ -1,44 +1,53 @@
-## Description: <br>
-Interact with the Cavos CLI for Starknet wallet operations. Use for transfers, approvals, contract calls, session management, and transaction monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Cavos CLI for Starknet wallet operations, including transfers, approvals, contract calls, session management, and transaction monitoring.
 
-## Publisher: <br>
-[adrianvrj](https://clawhub.ai/user/adrianvrj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adrianvrj](https://clawhub.ai/user/adrianvrj)
 
-## Use Case: <br>
-Developers and operators use this skill to guide an agent through Cavos CLI workflows for Starknet wallet sessions, balances, transfers, approvals, contract reads and writes, simulations, multicalls, and transaction-status checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through wallet transfers, approvals, execute calls, and multicalls. <br>
-Mitigation: Manually confirm the active wallet, network, recipient or spender, token, amount, contract address, calldata, and expected result before any transaction-producing command. <br>
-Risk: Approval commands can grant spending authority that exceeds the immediate task. <br>
-Mitigation: Avoid unlimited approvals, approve only the needed amount and token, and revoke or expire access when the workflow is complete. <br>
-Risk: Imported Cavos sessions can enable authenticated wallet operations. <br>
-Mitigation: Import session tokens only from trusted Cavos dashboard sessions, check session status before use, and revoke or expire sessions after completing the task. <br>
-Risk: Contract execution and multicall calldata can produce unintended on-chain effects. <br>
-Mitigation: Prefer simulation before execution and review contract address, entrypoint, calldata, and expected result before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adrianvrj/cavos-cli-skill) <br>
-- [Cavos Agent Dashboard](https://agent.cavos.xyz/) <br>
+## Use Case:
 
+Developers and agents use this skill to operate Cavos CLI workflows for Starknet wallet status, session import, token transfers, approvals, contract calls, multicalls, simulation, and transaction monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with Cavos CLI shell commands and JSON-oriented command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and an imported Cavos session token for authenticated wallet operations; commands should use --json where supported.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and target metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to run an unpinned third-party CLI for wallet sessions and on-chain operations.
+
+Mitigation: Use only a trusted, pinned, audited Cavos CLI version before installing or running commands.
+
+Risk: Session tokens and transaction-changing commands can affect wallet security or assets.
+
+Mitigation: Avoid passing session tokens through untrusted runtime installs and require explicit confirmation of network, token, amount, recipient, spender, contract, entrypoint, and calldata before any transaction-changing command.
+
+## Reference(s):
+
+- [Cavos Dashboard](https://agent.cavos.xyz/)
+- [ClawHub skill listing](https://clawhub.ai/adrianvrj/skills/cavos-cli-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires npx and recommends Cavos CLI JSON output where available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Real-time crypto funding rate scanner with smart alerts that finds negative funding rates for profitable long positions on Binance futures without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time crypto funding rate scanner with smart alerts. Finds negative funding rates for profitable long positions. Supports Binance futures. No API key needed for scanning.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-External developers and crypto traders use this skill to scan Binance futures public market data for negative funding-rate signals, classify opportunities, and record scan history for later review. Its output should be treated as research support, not guaranteed trading advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto futures suggestions can be incorrect, stale, or unsuitable for a user's risk tolerance. <br>
-Mitigation: Treat output as research, verify market conditions independently, and avoid using the recommendations as guaranteed risk controls. <br>
-Risk: The skill contacts Binance public endpoints and saves local scan history. <br>
-Mitigation: Install only where Binance network access and local JSONL history retention are acceptable; configure the output path when needed. <br>
-Risk: Cron jobs or webhook integrations can create recurring scans or external alerts. <br>
-Mitigation: Enable automation only when recurring monitoring is intended, and review webhook destinations before use. <br>
+## Use Case:
 
+Developers and crypto market analysts use this skill to scan Binance futures funding rates, classify negative-funding opportunities, and generate command-line alerts and local scan history for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dagangtj/crypto-funding-alert) <br>
-- [Publisher profile](https://clawhub.ai/user/dagangtj) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with ranked signal rows, recommended actions, and JSONL history records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, contacts Binance public endpoints, and saves scan history locally by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill presents informational crypto market scans, but its financial safety claims are stronger than what the code enforces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as market scanner signals only, review the code and recommendations before acting, and avoid relying on the skill as automated trading advice.
+
+Risk: Unsafe leverage or stop-loss values can be passed through command-line options.
+
+Mitigation: Use conservative parameters, validate configuration before running, and avoid increasing leverage or weakening stop-loss thresholds without independent review.
+
+Risk: The skill saves scan history locally by default and webhook examples can forward scan output to external services.
+
+Mitigation: Review the local output path and enable Telegram, Discord, or other webhook integrations only when sending this data to those services is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/crypto-funding-alert)
+- [Publisher profile](https://clawhub.ai/user/dagangtj)
+- [Binance Futures premium index endpoint](https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${coin}USDT)
+- [Binance Futures 24hr ticker endpoint](https://fapi.binance.com/fapi/v1/ticker/24hr?symbol=${coin}USDT)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with JSONL scan-history records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and internet access; writes scan history locally by default.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

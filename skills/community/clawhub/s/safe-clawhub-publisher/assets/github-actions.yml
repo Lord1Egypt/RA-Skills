@@ -1,0 +1,79 @@
+name: ClawHub release checks
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clawhub-release-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Update only after reviewing the installed CLI's help and release notes.
+  CLAWHUB_CLI_VERSION: "0.23.3"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Install pinned ClawHub CLI
+        run: npm install --global "clawhub@${CLAWHUB_CLI_VERSION}"
+
+      - name: Capture authoritative CLI version and help
+        run: |
+          set -euo pipefail
+          clawhub --cli-version
+          clawhub skill publish --help
+
+      - name: Validate local release inputs
+        run: |
+          set -euo pipefail
+          python3 path/to/safe-clawhub-publisher/scripts/validate_release_inputs.py \
+            path/to/package --format json > local-release-check.json
+          jq -e '.status != "fail"' local-release-check.json
+
+      - name: Run ClawHub dry-run and compare fingerprints
+        env:
+          CLAWHUB_OWNER: ${{ vars.CLAWHUB_OWNER }}
+          CLAWHUB_SLUG: ${{ vars.CLAWHUB_SLUG }}
+          CLAWHUB_NAME: ${{ vars.CLAWHUB_NAME }}
+          RELEASE_VERSION: ${{ vars.RELEASE_VERSION }}
+          CHANGELOG: ${{ vars.CHANGELOG }}
+          RELEASE_TAGS: ${{ vars.RELEASE_TAGS }}
+          RELEASE_CATEGORIES: ${{ vars.RELEASE_CATEGORIES }}
+          RELEASE_TOPICS: ${{ vars.RELEASE_TOPICS }}
+        run: |
+          set -euo pipefail
+          clawhub skill publish path/to/package \
+            --owner "$CLAWHUB_OWNER" \
+            --slug "$CLAWHUB_SLUG" \
+            --name "$CLAWHUB_NAME" \
+            --version "$RELEASE_VERSION" \
+            --changelog "$CHANGELOG" \
+            --tags "$RELEASE_TAGS" \
+            --categories "$RELEASE_CATEGORIES" \
+            --topics "$RELEASE_TOPICS" \
+            --dry-run --json > clawhub-dry-run.json
+          test "$(jq -r '.fingerprint' local-release-check.json)" = \
+            "$(jq -r '.fingerprint' clawhub-dry-run.json)"
+
+      - name: Upload release evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: clawhub-release-evidence
+          path: |
+            local-release-check.json
+            clawhub-dry-run.json
+          if-no-files-found: warn
+          retention-days: 14
+
+  # Keep publication in a separate protected workflow/job triggered explicitly
+  # with workflow_dispatch. Re-run validation, whoami, remote inspection, and
+  # dry-run there before requiring an environment approval and publishing once.

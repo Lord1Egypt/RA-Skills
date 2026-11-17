@@ -1,0 +1,179 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-12371-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:04:05.845Z",
+  "entry": {
+    "url": "https://www.12371.cn",
+    "final_url": "https://www.12371.cn/",
+    "title": "共产党员网_中共中央组织部",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:04:05.845Z",
+    "identity": {
+      "declared_name": "共产党员网",
+      "hostname": "www.12371.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "课件资源",
+        "href": "https://www.12371.cn/special/kjzy/",
+        "target": "_blank"
+      },
+      {
+        "text": "山东：让党员培训课程讲得透用得上",
+        "href": "https://www.12371.cn/2026/01/14/ARTI1768358145401195.shtml",
+        "target": "_blank"
+      },
+      {
+        "text": "课件资源",
+        "href": "https://www.12371.cn/special/kjzy/",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "",
+        "id": "",
+        "name": "frameFile",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "习近平党建思想",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "inputbox20120619",
+      "css": "#inputbox20120619",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "#inputbox20120619"
+      },
+      "observed_url": "https://www.12371.cn/",
+      "observed_at": "2026-10-09T09:04:04.066Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-12371-cn:record-lookup",
+      "source_id": "quiz-12371-cn",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.12371.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "习近平党建思想",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "inputbox20120619",
+          "css": "#inputbox20120619",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "#inputbox20120619"
+          },
+          "observed_url": "https://www.12371.cn/",
+          "observed_at": "2026-10-09T09:04:04.066Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Navigation to \"https://www.12371.cn/\" is interrupted by another navigation to \"https://unesdoc.unesco.org/\"\nCall log:\n\u001b[2m  - navigating to \"https://www.12371.cn/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 2,
+      "detail": "page.goto: Navigation to \"https://www.12371.cn/\" is interrupted by another navigation to \"https://www.12371.cn/\"\nCall log:\n\u001b[2m  - navigating to \"https://www.12371.cn/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-025"
+    ],
+    "example_ids": [
+      "PT1-Q38"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:04:05.845Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-12371-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-12371-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

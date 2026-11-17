@@ -1,46 +1,61 @@
-## Description: <br>
-This skill helps an agent manage OKR and KPI work records by creating workspace JSON data for daily logs, weekly plans, recurring reports, and OKR progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KPI/OKR 工作管理系统，支持目标设置、自然语言工作日志、进度追踪和周报、月报、季报、年报生成。
 
-## Publisher: <br>
-[zerosloney](https://clawhub.ai/user/zerosloney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zerosloney](https://clawhub.ai/user/zerosloney)
 
-## Use Case: <br>
-Employees and knowledge workers use this skill to record daily work, plan weekly tasks, generate weekly, monthly, quarterly, and yearly reports, and track work against OKR goals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores OKR, work-history, and report data as local JSON files in the workspace. <br>
-Mitigation: Use it only in workspaces where that data may be stored, and avoid entering secrets or sensitive customer data. <br>
-Risk: The skill can update past logs and plans, which may affect report accuracy. <br>
-Mitigation: Review edits to historical JSON records before relying on generated weekly, monthly, quarterly, or yearly reports. <br>
-Risk: Optional Gateway Cron jobs can generate reports on a recurring schedule. <br>
-Mitigation: Enable scheduled weekly or monthly jobs only when recurring report generation is intended. <br>
+## Use Case:
 
+Employees, managers, and individual contributors use this skill to capture work logs, manage quarterly or yearly OKRs, track progress, and generate periodic review reports from workspace data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zerosloney/okr-work-manager) <br>
-- [Data schema reference](references/data-schema.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Basic usage examples](examples/basic-usage.md) <br>
-- [Advanced usage examples](examples/advanced-usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown responses plus workspace JSON records, plans, reports, and OKR configuration files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates data under .okr-work-manager/ in the active workspace when the agent follows the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Scheduled report automation can continue reading and writing workspace OKR data after the initial agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable cron jobs only when recurring reports are intended, and confirm you can list, pause, and delete those jobs before relying on automation.
+
+Risk: Work logs and OKR reports may contain confidential personnel, performance, or project data.
+
+Mitigation: Store .okr-work-manager data only in workspaces with appropriate access controls, and avoid synced or shared folders unless the data is approved for that location.
+
+Risk: The skill writes JSON state files for logs, plans, reports, configuration, and progress, so malformed or unintended updates could affect later summaries.
+
+Mitigation: Review generated changes before use, keep backups for important OKR data, and validate JSON files when repairing or migrating data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zerosloney/skills/okr-work-manager)
+- [data-schema.md](references/data-schema.md)
+- [troubleshooting.md](references/troubleshooting.md)
+- [basic-usage.md](examples/basic-usage.md)
+- [advanced-usage.md](examples/advanced-usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation output with JSON files, optional cron command examples, and structured OKR/report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads workspace OKR data under .okr-work-manager/ when the user asks the agent to manage logs, plans, reports, or OKR progress.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

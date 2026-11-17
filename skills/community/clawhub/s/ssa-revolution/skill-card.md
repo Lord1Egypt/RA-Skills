@@ -1,46 +1,66 @@
-## Description: <br>
-Revolution Auto-Evolution orchestrates autonomous multi-agent review, execution, and audit loops over local task files so agents can break down goals, process one subtask per tick, and package completed work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Revolution Auto-Evolution orchestrates a coordinator-driven review, execution, and audit loop that helps agents break complex goals into subtasks, iterate through them, and package completed work.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate autonomous task execution through reviewer, executor, and auditor roles. It is intended for local task-file workflows where work is split into subtasks, advanced one heartbeat at a time, and checked before and after execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring autonomous agent work can change local files and package skills without enough human review. <br>
-Mitigation: Use an isolated workspace, keep version-control backups, and require manual approval for destructive, credentialed, publishing, or production-impacting actions. <br>
-Risk: Task files and generated role prompts may cause agents to perform unintended work if they are not reviewed. <br>
-Mitigation: Review every task file and generated review, execution, and audit prompt before enabling heartbeat or cron execution. <br>
-Risk: Heartbeat or cron operation can repeatedly advance tasks beyond the operator's intended scope. <br>
-Mitigation: Run the coordinator with explicit task directories and monitor runs, and disable scheduled execution until task scope and acceptance criteria are confirmed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate autonomous multi-agent task execution with pre-execution review, implementation, post-execution audit, task-state tracking, and optional packaging of completed work.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Definition](SKILL.md) <br>
-- [Task Example](references/task-example.json) <br>
-- [Task Schema](config/task-schema.json) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON task files, and generated role prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local task JSON files and emits phase-specific review, execution, and audit prompts for agent orchestration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata lists 0.5.7 and SKILL.md lists 0.6.0) <br>
+Risk: Recurring autonomous execution can mutate task files and package completed work without continuous operator review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a tightly scoped workspace with least-privilege tools, keep monitoring enabled, and require explicit approval for destructive or external actions.
+
+Risk: Task-file content is inserted into reviewer, executor, and auditor prompts and may carry prompt-injection content.
+
+Mitigation: Use trusted task files, validate goals and subtasks before heartbeat processing, and avoid unattended cron use for untrusted tasks.
+
+Risk: Malformed review or audit JSON can fall back to approve or pass behavior.
+
+Mitigation: Require strict JSON validation and fail closed before using the workflow unattended.
+
+Risk: Task and workspace path containment is under-scoped.
+
+Mitigation: Set evolution directories to dedicated locations, validate task filenames and paths, and avoid broad workspace write permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cjboy007/skills/ssa-revolution)
+- [README](README.md)
+- [Task example](references/task-example.json)
+- [Task schema](config/task-schema.json)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON task files, strict JSON phase outputs, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can mutate workspace task JSON files, emit reviewer/executor/auditor prompts, and package completed tasks into skill directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact package.json reports 0.5.7 and SKILL.md reports 0.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

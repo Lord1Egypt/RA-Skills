@@ -1,0 +1,5 @@
+{"labels": ["Smith 2023", "Tanaka 2023", "Brown 2022", "王明 2024"],
+ "estimates": [0.72, 0.80, 0.75, 0.65],
+ "ci_low": [0.55, 0.62, 0.56, 0.48], "ci_high": [0.94, 1.03, 1.00, 0.84],
+ "overall": {"estimate": 0.73, "ci_low": 0.60, "ci_high": 0.88},
+ "events": [{"events": 42, "total": 120}, {"events": 30, "total": 80}, {"events": 55, "total": 150}, {"events": 20, "total": 60}]}

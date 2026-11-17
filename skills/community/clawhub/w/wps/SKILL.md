@@ -2,23 +2,13 @@
 name: wps
 description: "WPS Office workflow for Chinese users: create, edit, review, convert, and troubleshoot Writer/Spreadsheets/Presentation documents in .docx/.xlsx/.pptx and WPS native formats. Use when users ask for WPS 文档处理、格式兼容、批注修订、模板套用、导出 PDF、多人协作，或从 Microsoft Office 迁移到 WPS 的操作建议。中文触发：WPS、文字、表格、演示、批注、修订、格式错乱、导出 PDF、兼容性。"
 metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "📄",
-        "requires": { "anyBins": ["wps", "et", "wpp"] },
-        "install":
-          [
-            {
-              "id": "apt",
-              "kind": "apt",
-              "package": "wps-office",
-              "bins": ["wps", "et", "wpp"],
-              "label": "Install WPS Office (apt)",
-            },
-          ],
-      },
-  }
+  openclaw:
+    emoji: "📄"
+    requires:
+      anyBins:
+        - wps
+        - et
+        - wpp
 ---
 
 # WPS Office
@@ -36,13 +26,17 @@ metadata:
 
 - 纯代码开发、数据库查询、服务器运维类任务。
 - 只涉及 Google Docs/Notion 等在线协作工具且不需要 WPS。
-- 需要直接执行本机 GUI 点击操作但当前环境无桌面会话。
+- 仅当任务必须 GUI 交互（需要人工确认的点击、拖拽等）且当前环境无桌面会话时不适用；无桌面会话时优先改走 `scripts/` 下的 headless 路线（其中 `convert.py` 依赖 LibreOffice）。
 
 ## 默认工作流
 
 1. 明确目标：先确认文档类型（文字/表格/演示）、交付格式（源文件/PDF）和截止时间。
 2. 收集输入：确认原始文件、模板、字体要求、页边距与纸张规格（A4/Letter）。
-3. 给出最小步骤：优先提供可复制的短流程，先保证可交付，再做美化。
+3. 优先脚本处理：文档生成、格式转换、表格清洗等可自动化的操作，优先使用 `scripts/` 下的脚本完成；GUI 操作仅作为需要人工确认时的兜底。给出最小步骤：优先提供可复制的短流程，先保证可交付，再做美化。
+   - `scripts/convert.py`：封装 LibreOffice headless，批量互转 Office/WPS 格式并导出 PDF。
+   - `scripts/docx_gen.py`：从 Markdown 生成中文排版规范的 .docx（A4、宋体/黑体/Times New Roman）。
+   - `scripts/xlsx_tool.py`：表格去重清洗与交付前检查（sheet 清单、空行、公式、冻结窗格）。
+   - `scripts/inspect_doc.py`：.docx 交付前检查（字体、分页分节符、批注/修订残留）。
 4. 兼容性检查：重点检查字体替换、分页漂移、图表错位、公式兼容。
 5. 交付说明：输出“已完成项 + 待确认项 + 回滚方案”。
 
@@ -53,18 +47,21 @@ metadata:
 - 中文长文：先统一样式（标题 1/2/3、正文、引用）再插目录。
 - 合同或公文：优先锁定页面设置、页眉页脚和段落网格，最后处理编号。
 - 审阅流程：建议开启修订 + 批注，避免直接覆盖原文。
+- 从 Markdown 生成规范 docx 用 `scripts/docx_gen.py`；交付前检查用 `scripts/inspect_doc.py`。
 
 ### 2) WPS 表格
 
 - 数据清洗：先备份副本，再做分列、去重、格式标准化。
 - 汇总分析：优先使用数据透视表，减少手工复制粘贴。
 - 交付前检查：公式引用范围、数字格式、冻结窗格、打印区域。
+- 去重清洗与交付前检查用 `scripts/xlsx_tool.py`（`dedup` / `check` 子命令）。
 
 ### 3) WPS 演示
 
 - 先定母版与字体，再批量套版；避免逐页手工对齐。
 - 图文混排优先使用参考线与对齐分布工具。
 - 导出前检查字体嵌入与动画兼容，必要时导出 PDF 兜底。
+- 批量导出 PDF 用 `scripts/convert.py`。
 
 ## 兼容与故障排查
 

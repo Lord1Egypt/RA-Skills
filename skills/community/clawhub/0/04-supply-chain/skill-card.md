@@ -1,40 +1,53 @@
-## Description: <br>
-社区团购供应链与采购管理全链路技能包。涵盖供应商开发、资质审核、评分卡、采购谈判、仓储管理、配送履约及配套工具。适用于平台采购负责人、供应链管理者。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A community group buying supply-chain and procurement skill covering supplier development, qualification review, scorecards, procurement negotiation, warehouse management, delivery fulfillment, and supporting calculators.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External procurement and supply-chain operators use this skill to structure community group-buying supplier development, qualification review, sourcing negotiation, warehouse management, delivery fulfillment, and supplier scoring workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Benchmarks, supplier scores, and calculator outputs may be incomplete or misleading if used as final business decisions. <br>
-Mitigation: Treat outputs as advisory planning inputs and require qualified procurement staff to verify pricing, supplier performance data, contracts, and payment terms. <br>
-Risk: Legal, compliance, and food-safety examples may not match the user's jurisdiction, supplier category, or current requirements. <br>
-Mitigation: Have appropriate legal, compliance, or food-safety reviewers validate supplier credentials, certification claims, product labeling, and contract terms before acting. <br>
+## Use Case:
 
+External operators, procurement managers, and supply-chain practitioners use this skill to structure community group buying supplier qualification, negotiation, cost analysis, warehouse operations, delivery fulfillment, and inventory review. It can also provide embedded Python examples for supplier scoring, procurement cost calculation, and inventory turnover analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/04-supply-chain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with checklists, tables, SOPs, and embedded Python scoring snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory procurement benchmarks, supplier scores, and compliance examples require qualified human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Supplier IDs, licenses, contracts, payment terms, and payment information may be sensitive business data when users apply the workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved handling procedures for business-sensitive procurement data and avoid exposing confidential supplier or payment details in shared prompts, logs, or generated examples.
+
+Risk: Procurement scorecards and calculators can produce unsuitable recommendations if inputs are incomplete, stale, or not aligned with local contracts and regulations.
+
+Mitigation: Have procurement, finance, and compliance reviewers validate assumptions, thresholds, supplier qualifications, and contract terms before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/04-supply-chain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with embedded Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local, interactive calculator examples for supplier scoring, procurement cost analysis, and inventory turnover analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

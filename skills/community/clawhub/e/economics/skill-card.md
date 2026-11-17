@@ -1,40 +1,49 @@
-## Description: <br>
-Clarify economic thinking from everyday choices to policy analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarify economic thinking from everyday choices to policy analysis.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, educators, students, and researchers use this skill to adapt economics explanations to the reader's level, from everyday trade-offs to models, mechanisms, and policy analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Educational economics explanations may be mistaken for personalized financial, legal, investment, or policy advice. <br>
-Mitigation: Treat outputs as learning support and have qualified professionals review decisions that affect money, law, investments, or policy. <br>
-Risk: Economic models and examples can be oversimplified or miss context-specific assumptions. <br>
-Mitigation: Ask the agent to state assumptions, distinguish positive claims from value judgments, and verify important claims against current authoritative sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/economics) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users, educators, students, and agents use this skill to explain economic concepts at an appropriate level, from everyday trade-offs through policy analysis and research assumptions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, analysis] <br>
-**Output Format:** [Markdown or plain text explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational economics guidance only; not personalized financial, legal, investment, or policy advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Economics explanations may be mistaken for personalized financial or policy advice.
+
+Mitigation: Treat outputs as educational guidance and review recommendations before relying on them for financial, policy, or classroom use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/economics)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown or plain text explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational economics guidance; no executable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Delegates a task to Claude Code CLI and returns the result in chat, with support for persistent sessions and user-selected workdirs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates developer tasks to the Claude Code CLI and reports the result back in chat, with support for new or continued sessions.
 
-## Publisher: <br>
-[0xManel](https://clawhub.ai/user/0xManel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xmanel](https://clawhub.ai/user/0xmanel)
 
-## Use Case: <br>
-Developers and coding agents use this skill to delegate coding, analysis, and development tasks to Claude Code CLI within a selected project directory, then summarize the result back to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected project files and prompts may be exposed to Claude Code, and Claude Code session history may be retained locally. <br>
-Mitigation: Use the skill only with workdirs whose contents are acceptable to share with Claude Code, and avoid sensitive, regulated, credential-heavy, or account data unless that exposure is explicitly accepted. <br>
-Risk: The skill delegates execution to Claude Code with bypassed permission prompts. <br>
-Mitigation: Review the wrapper command before use and install only when that execution authority is acceptable for the selected workspace. <br>
+## Use Case:
 
+Developers and technical users use this skill to delegate coding, analysis, and development tasks to Claude Code for a selected work directory, then receive a concise summary of what was done or found.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/0xManel/ask-claude) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and summarized CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the claude binary and may continue prior Claude Code sessions for the same workdir.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and artifact metadata) <br>
+Risk: The skill delegates work to Claude Code with permission bypass and a user-selected work directory, which can expose project contents or allow unintended edits if the directory is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive project directories, avoid credential-containing paths, verify the wrapper or direct command before use, and review Claude Code's proposed or completed changes.
+
+Risk: Continued sessions can reuse prior file context, edits, prompts, and session history for the same work directory.
+
+Mitigation: Use separate work directories or fresh sessions for unrelated tasks, and avoid continuing sessions that previously handled sensitive context.
+
+Risk: The artifact makes low-risk safety claims that conflict with the server security summary.
+
+Mitigation: Treat the server security guidance as authoritative: review before installing and use the skill only with non-sensitive projects unless independently vetted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xmanel/skills/ask-claude)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local claude executable and a user-selected work directory; continued sessions reuse Claude Code per-directory session history.]
+
+## Skill Version(s):
+
+1.1.1 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

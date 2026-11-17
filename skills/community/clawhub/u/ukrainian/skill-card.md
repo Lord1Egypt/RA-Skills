@@ -1,39 +1,48 @@
-## Description: <br>
-Write Ukrainian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Ukrainian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Writers, translators, and agents use this skill to make Ukrainian text sound more natural, casual, and native while avoiding stiff AI-generated phrasing and Russian-language mixing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated text may need AI-assistance disclosure depending on the publication context. <br>
-Mitigation: Apply the user's or organization's disclosure policy before publishing generated Ukrainian text. <br>
-Risk: Casual Ukrainian wording may be inappropriate for formal, professional, or sensitive contexts. <br>
-Mitigation: Review the requested audience and formality level before applying the skill's casual-writing guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/ukrainian) <br>
+## Use Case:
 
+External users and content creators use this skill to draft or revise Ukrainian text so it sounds more casual, warm, and native-like instead of overly formal or machine-generated.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language guidance and edited Ukrainian text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, network access, or persistence requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may push Ukrainian output toward an informal register when a professional or formal tone is required.
+
+Mitigation: State the desired formality explicitly and use formal address when the audience, setting, or task calls for it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/ukrainian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language Ukrainian prose or edited Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, network access, credentials, or persistence; defaults toward informal Ukrainian unless the task requests a formal register.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

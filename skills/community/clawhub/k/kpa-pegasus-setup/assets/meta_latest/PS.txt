@@ -1,0 +1,21 @@
+collection: PS
+sort-by: 10
+shortname: ps
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/swanstation_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 圣剑传说：玛娜传奇
+file: 圣剑传说：玛娜传奇.img
+assets.box_front: Imgs/圣剑传说：玛娜传奇.png
+description: 《圣剑传说：玛娜传奇》，PlayStation 平台。
+game: 射雕英雄传
+file: 射雕英雄传.chd
+assets.box_front: Imgs/射雕英雄传.png
+description: 《射雕英雄传》，PlayStation 平台。
+game: 恶魔城：月下夜想曲
+file: 恶魔城：月下夜想曲.bin
+assets.box_front: Imgs/恶魔城：月下夜想曲.png
+description: 《恶魔城：月下夜想曲》，PlayStation 平台。
+game: 胜利十一人2002
+file: 胜利十一人2002.bin
+assets.box_front: Imgs/胜利十一人2002.png
+description: 《胜利十一人2002》，PlayStation 平台。

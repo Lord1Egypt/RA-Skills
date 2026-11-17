@@ -1,42 +1,59 @@
-## Description: <br>
-Searches the web using the iFlytek ONE SEARCH API and returns titles, summaries, URLs, and full page text, with emphasis on Chinese-language web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using iFlytek ONE SEARCH API (万搜/聚合搜索). Returns titles, summaries, URLs, and full text from web pages. Good for Chinese-language web search.22222
 
-## Publisher: <br>
-[kokkmiao](https://clawhub.ai/user/kokkmiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokkmiao](https://clawhub.ai/user/kokkmiao)
 
-## Use Case: <br>
-Developers and agents use this skill to run Chinese-language web searches through iFlytek ONE SEARCH, including queries that need result titles, summaries, URLs, and optional full text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The published artifact references scripts/search.py, but that helper script is not included. <br>
-Mitigation: Confirm the intended search script is supplied by the publisher or another trusted source before installing or running the skill. <br>
-Risk: Search queries and the iFlytek API password are sent to the iFlytek search service. <br>
-Mitigation: Use only an API password intended for this service and avoid confidential queries unless that data sharing is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill when they need Chinese-language web search results through iFlytek ONE SEARCH, including titles, summaries, URLs, and optional full page text.
 
-## Reference(s): <br>
-- [iFlytek Console](https://console.xfyun.cn/services/cbm) <br>
-- [iFlytek ONE SEARCH API Endpoint](https://search-api-open.cn-huabei-1.xf-yun.com/v2/search) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kokkmiao/test-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown search results by default, or raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result count is configurable from 1 to 20; full text and reranking can be disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Search queries may contain secrets, private personal data, or confidential business material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended non-sensitive search terms and avoid sending secrets or confidential material to the search provider.
+
+Risk: The skill requires an XFYUN_API_PASSWORD for the external iFlytek ONE SEARCH service.
+
+Mitigation: Provide the API password through the documented environment variable and avoid hard-coding credentials in skill files or prompts.
+
+Risk: The packaged artifact references scripts/search.py, but that implementation is not included.
+
+Mitigation: Verify or add the missing scripts/search.py implementation before expecting the skill to run.
+
+## Reference(s):
+
+- [test-search on ClawHub](https://clawhub.ai/kokkmiao/skills/test-search)
+- [iFlytek Console](https://console.xfyun.cn/services/cbm)
+- [iFlytek ONE SEARCH API endpoint](https://search-api-open.cn-huabei-1.xf-yun.com/v2/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional raw JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output lists search result titles, URLs, and summaries; raw mode returns the full API JSON response including retrieved document content.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

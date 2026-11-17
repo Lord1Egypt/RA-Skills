@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "meta": {
+    "title": "内容增长飞轮",
+    "subtitle": "从笔记到课程的自我增强循环",
+    "source_note": "示例：build_plan_from_text.py --from-blocks 生成"
+  },
+  "layout": "flywheel",
+  "visual_system": {
+    "palette": "editorial"
+  },
+  "blocks": [
+    {
+      "id": "notes",
+      "title": "写笔记沉淀素材"
+    },
+    {
+      "id": "topics",
+      "title": "素材变成选题"
+    },
+    {
+      "id": "course",
+      "title": "选题催生课程"
+    },
+    {
+      "id": "users",
+      "title": "课程带来读者"
+    }
+  ],
+  "relations": [
+    {
+      "from": "notes",
+      "to": "topics",
+      "label": "沉淀"
+    },
+    {
+      "from": "topics",
+      "to": "course",
+      "label": "催生"
+    },
+    {
+      "from": "course",
+      "to": "users",
+      "label": "吸引"
+    },
+    {
+      "from": "users",
+      "to": "notes",
+      "label": "反馈"
+    }
+  ]
+}

@@ -1,40 +1,53 @@
-## Description: <br>
-Measures OpenClaw response timing stages and generates benchmark reports with TTFT, TPS, and total response-time metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures OpenClaw system response times across response stages and reports millisecond-level metrics such as TTFT, tokens per second, and total response time.
 
-## Publisher: <br>
-[kingofqin2026](https://clawhub.ai/user/kingofqin2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kingofqin2026](https://clawhub.ai/user/kingofqin2026)
 
-## Use Case: <br>
-Developers and engineers use this skill to benchmark local OpenClaw response stages, inspect latency across gateway, session, memory, and LLM steps, and export timing reports for comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: LLM probe tests and exported reports may include prompt snippets or probe metadata. <br>
-Mitigation: Avoid sensitive prompts in probe tests and review JSON or Markdown reports before sharing them. <br>
-Risk: Recurring benchmark configuration can cause periodic local runs. <br>
-Mitigation: Only add the HEARTBEAT.md recurring benchmark line when periodic benchmarking is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to run single response-speed tests, benchmarks, and component probes for OpenClaw agents, then review timing reports to diagnose latency.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofqin2026/response-speed-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Console text, JSON exports, and Markdown benchmark reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include stage timing metadata such as TTFT, TPS, total response time, and probe details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and pyproject.toml) <br>
+Risk: Report-saving APIs can write outside the intended output folder or overwrite user-writable files when supplied an unsafe filename.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep report output under direct control, use trusted output directories and fixed filenames, and do not pass filenames from prompts, users, or external data into JSON or Markdown reporter APIs until path validation prevents traversal and unintended overwrites.
+
+Risk: The security verdict identifies this as a suspicious beta performance-testing tool.
+
+Mitigation: Install only where beta performance-testing tooling is acceptable and review generated reports before sharing them outside the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingofqin2026/skills/response-speed-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Console text, JSON, and Markdown reports with timing metrics and benchmark statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include staged timing points, TTFT, total response time, benchmark statistics, and optional Mermaid sequence diagrams.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

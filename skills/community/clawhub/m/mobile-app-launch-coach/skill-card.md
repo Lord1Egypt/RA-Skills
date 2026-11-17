@@ -1,42 +1,49 @@
-## Description: <br>
-Coaches indie developers and small teams through validating, building, submitting, monetizing, growing, and scaling mobile apps for the iOS App Store and Google Play. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end coach for indie developers and small teams launching mobile apps across iOS, Google Play, and emerging app stores, covering validation, stack choice, store review, monetization, growth, retention, and exit planning.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External developers, indie builders, and small product teams use this skill to plan mobile app launches, choose a practical stack, prepare App Store and Google Play submissions, design monetization, and prioritize growth and retention work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask for business plans, budgets, audience details, monetization goals, and compliance context to tailor launch advice. <br>
-Mitigation: Share only information suitable for an agent chat and avoid disclosing sensitive business, financial, legal, or personal data unless necessary. <br>
-Risk: Mobile store policies, legal obligations, tax treatment, privacy rules, and platform fees can change and may vary by app category and geography. <br>
-Mitigation: Verify current App Store, Google Play, legal, privacy, and tax requirements before acting on high-impact recommendations. <br>
+## Use Case:
 
+External developers, indie builders, and small product teams use this skill to evaluate mobile app ideas, choose an implementation stack, prepare App Store and Google Play submissions, and plan monetization and growth.
 
-## Reference(s): <br>
-- [Source skill instructions](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/mobile-app-launch-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/charlie-morrison) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown coaching response with diagnostic questions, recommendations, checklists, and milestone plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include store-submission readiness checks, monetization recommendations, risk flags, and 30/60/90 day launch milestones.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Store-policy, legal, privacy, health, finance, kids, crypto, and AI-disclosure guidance can become outdated or require qualified review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check current Apple and Google policies and qualified legal or compliance sources before launch decisions.
+
+## Reference(s):
+
+- [Mobile App Launch Coach on ClawHub](https://clawhub.ai/charlie-morrison/skills/mobile-app-launch-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown coaching response with diagnostic questions, recommendations, and launch planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ASO, store submission, privacy, monetization, user acquisition, retention, and launch milestone advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

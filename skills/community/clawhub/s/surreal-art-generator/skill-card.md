@@ -1,42 +1,59 @@
-## Description: <br>
-Generate surreal AI art from text prompts using the Neta AI image generation API, with options for image size and reference-based style inheritance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate surreal AI art from text prompts in dreamlike, absurdist, Dali-inspired, Magritte-inspired, and abstract surreal styles using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate surreal or absurdist image concepts from text prompts for social posts, album covers, gallery prints, concept art, and similar creative work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference UUIDs, and the Neta/TalesOfAI token are sent to a remote image service. <br>
-Mitigation: Use a limited token, avoid confidential prompts, and install only when that data sharing is acceptable. <br>
-Risk: Passing a literal token on the command line can expose it through shared shells or logs. <br>
-Mitigation: Prefer expanding the token from a protected environment variable such as $NETA_TOKEN. <br>
+## Use Case:
 
+External users and creators use this skill to generate surreal image concepts, social visuals, album-cover ideas, gallery-print concepts, and other creative art outputs from text prompts with optional size and reference-image controls.
 
-## Reference(s): <br>
-- [Surreal Art Generator on ClawHub](https://clawhub.ai/omactiengartelle/surreal-art-generator) <br>
-- [Neta AI token and service page](https://www.neta.art/open/) <br>
-- [TalesOfAI image API host](https://api.talesofai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL with Markdown command examples in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct image URL after the remote image job completes; requires a Neta/TalesOfAI token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: The skill sends image prompts, API tokens, selected image sizes, and optional reference image UUIDs to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or confidential reference identifiers, use the service only where third-party API processing is acceptable, and review the provider's terms before use.
+
+Risk: Passing real API tokens directly on a command line can expose them through shell history or process listings.
+
+Mitigation: Prefer expanding the token from a protected environment variable and rotate any token that was previously exposed on a command line.
+
+Risk: Install guidance includes unpinned package-manager installation.
+
+Mitigation: Prefer a ClawHub install or a pinned installer version before using the skill in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/skills/surreal-art-generator)
+- [Neta API Token Access](https://www.neta.art/open/)
+- [Tales of AI API Endpoint](https://api.talesofai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and command-line guidance; the runtime script prints a direct image URL on success.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token, sends prompts and selected options to api.talesofai.com, and may use an optional reference image UUID for style inheritance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

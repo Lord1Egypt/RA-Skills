@@ -1,46 +1,63 @@
-## Description: <br>
-CDP browser control at localhost:9222 for inspecting tabs, taking screenshots, navigating, scrolling, posting to X, and querying page content in a persistent browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CDP browser control at localhost:9222. Use when you need to inspect tabs, take screenshots, navigate, scroll, post to X, or run JS in a persistent browser session (e.g. logged into X, Gmail).
 
-## Publisher: <br>
-[gostlightai](https://clawhub.ai/user/gostlightai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gostlightai](https://clawhub.ai/user/gostlightai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to control a local Chrome or Chromium session over CDP, inspect open tabs, extract page text or HTML, capture screenshots, navigate pages, and draft or post approved X content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over logged-in browser tabs. <br>
-Mitigation: Use a separate Chrome or Chromium profile with only the accounts and tabs needed, and keep the CDP endpoint local or otherwise protected. <br>
-Risk: Page-reading and screenshot commands may expose sensitive page content. <br>
-Mitigation: Review page-reading and screenshot requests before execution, store screenshots privately, and delete screenshots after use. <br>
-Risk: Posting actions can publish content to X from an authenticated session. <br>
-Mitigation: Use tweet-draft as the default, require explicit confirmation for tweet-post, and clear pending tweet files after the workflow completes. <br>
+## Use Case:
 
+Developers and agents use this skill to control a local Chrome or Chromium browser over CDP for tab inspection, navigation, screenshots, page queries, scrolling, and user-approved X posting from a persistent browser session.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gostlightai/cdp-browser) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Security Considerations](SECURITY.md) <br>
-- [README](README.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, files] <br>
-**Output Format:** [CLI output as JSON or plain text; snapshot commands write PNG files; setup guidance uses Markdown and shell snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local Chrome or Chromium instance with CDP exposed on localhost:9222 and can operate on logged-in browser sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata, package.json, and changelog dated 2026-02-19) <br>
+Risk: The skill can control a Chrome profile that may already be logged into sensitive websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep remote debugging bound to localhost, avoid sensitive browser profiles, and review actions before using the skill on authenticated sessions.
+
+Risk: Screenshots and page queries may expose sensitive page content.
+
+Mitigation: Store generated screenshots and copied page content privately and avoid capturing confidential pages unless necessary.
+
+Risk: The optional Telegram confirm-button flow can post to X from weak shared pending state.
+
+Mitigation: Avoid the Telegram confirm-button posting flow until approvals are tied to a specific draft or session and expire after one use.
+
+Risk: Automated X posting can publish unintended content if approval is ambiguous.
+
+Mitigation: Use tweet-draft as the default flow and require explicit --confirm only after user approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gostlightai/skills/cdp-browser)
+- [Security Considerations](SECURITY.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON command output, text or HTML query results, and PNG screenshot files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser actions run against a local Chrome or Chromium session on localhost:9222 and may interact with logged-in sites.]
+
+## Skill Version(s):
+
+2.0.1 (source: release evidence, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Manage stress with quick techniques, stress logging, and recovery tools <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage stress with quick techniques, stress logging, and recovery tools.
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-Employees and external users use this skill to get quick stress-relief prompts, log stress events locally, identify recurring triggers, and review weekly stress patterns. It also reminds users to seek professional or emergency support during crisis situations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stress logs may include sensitive personal details stored locally. <br>
-Mitigation: Only log details you are comfortable keeping locally, and review or delete stored notes when your agent platform allows it. <br>
-Risk: Stress-relief guidance may be mistaken for professional or emergency mental-health support. <br>
-Mitigation: Use professional or emergency support for crisis situations, including emergency services when there is immediate danger. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jhillin8/stress-relief) <br>
+## Use Case:
 
+External users use this skill for quick stress-relief techniques, local stress logging, and weekly reflection on stress patterns. It can support self-reflection but is not a substitute for professional or emergency help.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown or plain text guidance, logs, and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local stress log entries, trigger analysis, weekly summaries, and crisis-support reminders.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate from common stress-related phrases.
+
+Mitigation: Review activation triggers before use and invoke the skill intentionally when stress-relief support is desired.
+
+Risk: Stress logs may contain sensitive personal context, triggers, and health-related details.
+
+Mitigation: Keep logs local, limit what is recorded, and avoid sharing exported notes unless reviewed.
+
+Risk: Stress-relief guidance may be mistaken for professional or emergency support.
+
+Mitigation: Use the skill for self-reflection and short relief exercises, and seek professional or emergency help for crisis situations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jhillin8/skills/stress-relief)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance with stress-relief steps, logging prompts, and pattern summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; local stress logs may contain sensitive personal context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

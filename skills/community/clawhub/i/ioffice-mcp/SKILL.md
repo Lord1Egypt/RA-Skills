@@ -67,8 +67,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Buildings
 | Tool | Description |
 |------|-------------|
-| `io_list_buildings` | List buildings with optional search, pagination, and sorting |
-| `io_get_building(id)` | Get a single building by ID |
+| `io_list_buildings(view?)` | List buildings with optional search, pagination, and sorting |
+| `io_get_building(id, view?)` | Get a single building by ID |
 | `io_create_building(name, address1?, city?, ...)` | Create a new building |
 | `io_update_building(id, ...)` | Update a building — only provide fields to change |
 | `io_delete_building(id)` | Delete a building |
@@ -76,8 +76,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Floors
 | Tool | Description |
 |------|-------------|
-| `io_list_floors(buildingId?)` | List floors, optionally filtered by building |
-| `io_get_floor(id)` | Get a single floor by ID |
+| `io_list_floors(buildingId?, view?)` | List floors, optionally filtered by building |
+| `io_get_floor(id, view?)` | Get a single floor by ID |
 | `io_create_floor(name, buildingId, ...)` | Create a floor within a building |
 | `io_update_floor(id, ...)` | Update a floor |
 | `io_delete_floor(id)` | Delete a floor |
@@ -85,8 +85,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Spaces
 | Tool | Description |
 |------|-------------|
-| `io_list_spaces(floorId?)` | List spaces/rooms, optionally filtered by floor |
-| `io_get_space(id)` | Get a single space by ID |
+| `io_list_spaces(floorId?, view?)` | List spaces/rooms, optionally filtered by floor |
+| `io_get_space(id, view?)` | Get a single space by ID |
 | `io_create_space(name, floorId, capacity?, ...)` | Create a space on a floor |
 | `io_update_space(id, ...)` | Update a space |
 | `io_delete_space(id)` | Delete a space |
@@ -94,8 +94,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Users
 | Tool | Description |
 |------|-------------|
-| `io_list_users(search?)` | List users with optional search |
-| `io_get_user(id)` | Get a single user by ID |
+| `io_list_users(search?, view?)` | List users with optional search |
+| `io_get_user(id, view?)` | Get a single user by ID |
 | `io_create_user(firstName, lastName, email, ...)` | Create a new user |
 | `io_update_user(id, ...)` | Update a user |
 | `io_delete_user(id)` | Delete a user |
@@ -103,8 +103,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Reservations
 | Tool | Description |
 |------|-------------|
-| `io_list_reservations(spaceId?, userId?, startDate?, endDate?)` | List reservations with optional filters |
-| `io_get_reservation(id)` | Get a single reservation by ID |
+| `io_list_reservations(spaceId?, userId?, startDate?, endDate?, view?)` | List reservations with optional filters |
+| `io_get_reservation(id, view?)` | Get a single reservation by ID |
 | `io_create_reservation(title, spaceId, startDate, endDate, ...)` | Reserve a space |
 | `io_update_reservation(id, ...)` | Update a reservation |
 | `io_delete_reservation(id)` | Cancel/delete a reservation |
@@ -114,8 +114,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Visitors
 | Tool | Description |
 |------|-------------|
-| `io_list_visitors(buildingId?, startDate?, endDate?)` | List visitors with optional filters |
-| `io_get_visitor(id)` | Get a single visitor record by ID |
+| `io_list_visitors(buildingId?, startDate?, endDate?, view?)` | List visitors with optional filters |
+| `io_get_visitor(id, view?)` | Get a single visitor record by ID |
 | `io_create_visitor(firstName, lastName, hostId?, expectedArrival?, ...)` | Pre-register a visitor |
 | `io_update_visitor(id, ...)` | Update a visitor record |
 | `io_checkin_visitor(id)` | Check in a visitor upon arrival |
@@ -124,8 +124,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Maintenance Requests
 | Tool | Description |
 |------|-------------|
-| `io_list_maintenance_requests(status?, spaceId?, buildingId?)` | List maintenance requests |
-| `io_get_maintenance_request(id)` | Get a single maintenance request |
+| `io_list_maintenance_requests(status?, spaceId?, buildingId?, view?)` | List maintenance requests |
+| `io_get_maintenance_request(id, view?)` | Get a single maintenance request |
 | `io_create_maintenance_request(title, spaceId?, buildingId?, ...)` | File a new maintenance request |
 | `io_update_maintenance_request(id, ...)` | Update a maintenance request |
 | `io_accept_maintenance_request(id)` | Accept a pending request (pending → accepted) |
@@ -136,8 +136,8 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Moves
 | Tool | Description |
 |------|-------------|
-| `io_list_moves(status?, buildingId?)` | List move requests |
-| `io_get_move(id)` | Get a single move request |
+| `io_list_moves(status?, buildingId?, view?)` | List move requests |
+| `io_get_move(id, view?)` | Get a single move request |
 | `io_create_move(name, fromSpaceId?, toSpaceId?, scheduledDate?, ...)` | Create a move request |
 | `io_update_move(id, ...)` | Update a move request |
 | `io_approve_move(id, notes?)` | Approve a move request |
@@ -146,11 +146,117 @@ Token auth (preferred) — set `IOFFICE_TOKEN`. Alternatively, set `IOFFICE_USER
 ### Mail
 | Tool | Description |
 |------|-------------|
-| `io_list_mail(status?, recipientId?, buildingId?)` | List mail items (packages and letters) |
-| `io_get_mail(id)` | Get a single mail item |
+| `io_list_mail(status?, recipientId?, buildingId?, view?)` | List mail items (packages and letters) |
+| `io_get_mail(id, view?)` | Get a single mail item |
 | `io_create_mail(recipientId, buildingId, carrier?, trackingNumber?, ...)` | Log a received mail item |
 | `io_deliver_mail(id, deliveredDate?, signature?)` | Mark a mail item as delivered |
 | `io_return_mail(id, reason?)` | Mark a mail item as returned to sender |
+
+### Health
+
+| Tool | Purpose |
+|---|---|
+| `io_healthcheck()` | Is this connector working? Reports which credential resolved, whether iOffice accepted it, and what to fix. Start here when any other tool fails — an empty result from a list tool can mean "no data" or "never authenticated", and this separates them. |
+
+## Response shape (`view`)
+
+The 18 read tools — every `io_list_*` and `io_get_*` across the nine resource
+groups — take `view: "compact" | "full"`, and **`compact` is the default**: the
+parameter is optional, and omitting it gives you the slim shape without asking
+for it.
+
+**Compact strips media; it does not project fields.** No hand-written field
+list exists here, deliberately. Every read tool hands back iOffice's payload
+verbatim, and the repo has no schema, no captured fixture and no live tenant —
+so nothing in it could honestly say which of iOffice's fields matter. Stripping
+is subtractive and cannot lose a field nobody knew about; an invented field list
+would return records with holes in them that read like a verified answer.
+
+Two rules do the stripping, and the second one is the one that will catch you
+out:
+
+- **A media-named key goes, whatever it holds** — `avatar`, `picture`, `photo`,
+  `thumbnail`, `image`, `icon`, `banner`, `logo`, with an optional qualifier
+  (`primary_photo_url`, `coverImage`), an optional `Url`/`Uri`/`Link`/`Src`
+  suffix, and plurals. The match is anchored at the *start* of the key, so
+  `hasThumbnail: false` and `thumbnailWidth: 200` survive — they are facts about
+  a record, not the picture.
+- **Any value that is an image URL goes, whatever the key is called** — an
+  `http(s)` URL whose *path* ends in `.png`, `.jpg`, `.gif`, `.webp`, `.svg`,
+  `.avif`, `.bmp` or `.ico`.
+
+**The surprise, and it matters most on exactly this server: whether your floor
+plan survives compact is decided by the file extension, not by the field name.**
+`floorPlanUrl` is not a media key, so rule one leaves it alone — but a plan
+served as `…/plans/3.png` is dropped by rule two, while the same plan as
+`…/plans/3.pdf`, or behind a signed extension-less URL, comes back. The same
+goes for `attachmentUrl` and `documentUrl`. If a read comes back without the
+image you expected, that is why — ask for `full`.
+
+The strip removes the **key**, recursing through nested objects and arrays, so
+on compact `"imageUrl" in space` is `false` rather than null. Everything it does
+not remove is byte-identical to `full`.
+
+Pass `view: "full"` when you want the pictures themselves — a visitor badge
+photo, a user avatar, a space's floor plan image.
+
+There is **no `raw` rung**: `full` already *is* iOffice's payload untouched, so a
+third value could only silently alias one of the other two. `view: "raw"` is a
+schema validation error, not a quiet downgrade to compact.
+
+Two of the reads — `io_list_reservations` and `io_list_mail` — also take
+`view: "brief"` (see "In context groups" below).
+
+The other 35 tools take no `view`, for two different reasons:
+
+- **The 34 write and action tools** — `io_create_*`, `io_update_*`,
+  `io_delete_*`, and the state transitions (check in/out, accept/start/
+  complete/archive, approve/cancel, deliver/return) — answer with a receipt, or,
+  on a client that cannot show a confirmation prompt (or on any client when the
+  server sets `MCP_CONFIRM_ELICITATION=off`), with a preview and a
+  `confirmToken` on the first call (nothing is written until the call is
+  repeated with that token; an update, delete, cancel or return reads its target
+  first so the preview names the record, and an unknown id fails there). There is nothing to strip and every field is load-bearing.
+- **`io_healthcheck`** is read-only, but its output is its own verdict — which
+  credential resolved, whether iOffice accepted it, what to fix — rather than an
+  iOffice record.
+
+## In context groups
+
+This server is a member of the **work** group (mcp-host context groups). Every
+tool except `io_healthcheck` carries a `_meta.mint` hint — inert to any other
+client.
+
+- **What's on at work** → `io_list_reservations` (canonical `whats-on`): room
+  and desk bookings over `startDate`/`endDate`.
+- **Anything new at work** → `io_list_mail` (canonical `whats-new`): mail and
+  packages logged at the mailroom over `startDate`/`endDate`.
+- **What's due** → nothing here answers it: iOffice records carry no due
+  dates a person is chasing, so the group asks the other work members.
+- **No subjects.** iOffice's listable sets (buildings, floors, spaces, the
+  tenant's user directory) are the organisation's, not the person's, so no
+  argument publishes a subject enum.
+
+`io_list_visitors` is a non-canonical `whats-on` read; every other read is a
+`lookup` and every write is a `change`.
+
+The canonical reads answer `view: "brief"` with one line per item —
+`title — <ISO date | no date> — <status>`, at most 120 characters (the whole
+line is cut, title first, then the status if it alone would overflow) — inside the
+same untrusted-data envelope as every other read (`data` is the list of
+lines), because titles are written by other people. A line starting `-- ` is a
+note, not an item (an item whose own title starts `-- ` or `\` is escaped
+with one more leading `\`, as `\-- …` or `\\…`): `-- none` for an empty
+page, `-- N of M shown` when iOffice states a total, `-- more` for a full
+page without one, and `-- error: …` when the payload is in a shape the brief view does not read (ask with
+`view: "full"`). The field names a line reads are a best reading of iOffice's
+payload, not a verified shape; a missing field falls back to the record id,
+`no date` or `no status` rather than dropping the item.
+
+A compound ask looks like "what's on at work tomorrow — and any packages for
+me?": the group calls `io_list_reservations` with tomorrow's range and
+`io_list_mail`, each in `view: "brief"`, and merges the lines with the other
+work members' answers.
 
 ## Workflows
 
@@ -197,6 +303,7 @@ io_approve_move(id, notes: "Approved")
 
 - All dates use ISO 8601 format (e.g. `2026-03-21T09:00:00`)
 - All list tools support `search`, `limit` (default 50, max 100), `startAt`, `orderBy`, and `orderByType`
+- All `io_list_*` and `io_get_*` tools accept `view` — see [Response shape](#response-shape-view)
 - `io_list_floors(buildingId)` and `io_list_spaces(floorId)` use nested API paths when an ID is provided
 - Building → Floor → Space is the physical location hierarchy
 

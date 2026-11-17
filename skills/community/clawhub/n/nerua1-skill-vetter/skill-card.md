@@ -1,40 +1,54 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[nerua1](https://clawhub.ai/user/nerua1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nerua1](https://clawhub.ai/user/nerua1)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill before installing or running third-party skills to review source trust, permission scope, suspicious patterns, and install risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a checklist aid, so relying on it as the only security decision could miss issues. <br>
-Mitigation: Verify the publisher and source, review the skill files, and use scanner results or human approval before installing skills. <br>
-Risk: The quick vet examples use curl to inspect GitHub repositories when intentionally run. <br>
-Mitigation: Run the commands only for repositories the user explicitly wants inspected, and review the destination URLs before execution. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to review AI agent skills before installation, checking source trust, permissions, suspicious patterns, and install risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerua1/nerua1-skill-vetter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown report with checklist items, risk classification, verdict, notes, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review guidance only; it does not execute checks by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may prompt an agent to inspect candidate skill files and run GitHub lookup commands while reviewing third-party skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution, especially when assessing private repositories or sources that may expose sensitive metadata.
+
+Risk: The skill's audit guidance can classify install risk, but it does not replace human approval for high-risk skills.
+
+Mitigation: Require human review before installing skills that request credentials, broad filesystem access, elevated permissions, or access to sensitive files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nerua1/skills/nerua1-skill-vetter)
+- [Publisher profile](https://clawhub.ai/user/nerua1)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown checklist and vetting report with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-readable risk classifications, verdicts, notes, and permission-scope summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

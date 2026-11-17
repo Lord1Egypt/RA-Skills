@@ -1,50 +1,66 @@
-## Description: <br>
-Shared Polymarket and prediction-market data access layer. Use this skill whenever another skill or task needs trader positions, trade history, market metadata, leaderboard data, win-rate or PnL statistics, or any other read-only market intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared Polymarket and prediction-market data access layer. Use this skill whenever another skill or task needs trader positions, trade history, market metadata, leaderboard data, win-rate or PnL statistics, or any other read-only market intelligence.
 
-## Publisher: <br>
-[cnica](https://clawhub.ai/user/cnica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnica](https://clawhub.ai/user/cnica)
 
-## Use Case: <br>
-Developers, engineers, and agent workflows use this skill as a shared data layer for Polymarket and prediction-market analysis. It supports trader positions, trade history, market metadata, leaderboards, preview SQL analytics, streamed exports, and local cache-backed enrichment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes network requests and sends query data plus API-key headers to configured endpoints. <br>
-Mitigation: Use a trusted MCP_URL, avoid sensitive private API keys, and review endpoint configuration before deployment. <br>
-Risk: Gamma API requests disable HTTPS certificate verification. <br>
-Mitigation: Fix TLS certificate validation before relying on generated reports or production workflows. <br>
-Risk: Broad SQL and tool access can exceed a narrow read-only analytics boundary if reused carelessly. <br>
-Mitigation: Prefer preview queries with tight limits, validate wallet inputs, and review SQL examples before execution. <br>
-Risk: Trader and market data may be cached locally. <br>
-Mitigation: Protect the workspace cache, clear cached data when no longer needed, and bypass cache when freshness is required. <br>
+## Use Case:
 
+Developers and agents use this skill as a shared read-only access layer for Polymarket market metadata, trader positions, trade history, leaderboards, PnL statistics, SQL previews, and larger stream exports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cnica/polymarket-predictradar-data-layer-skills) <br>
-- [Fallback Queries](references/fallback-queries.md) <br>
-- [Polymarket Shared Analytics Fields / API Field Reference](references/table-schema.md) <br>
-- [PredicTradar MCP endpoint](https://api.predictradar.ai/api/mcp/v2) <br>
-- [Polymarket Data API](https://data-api.polymarket.com) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Polymarket CLI](https://github.com/Polymarket/polymarket-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell snippets; helper scripts and API calls return JSON-like market and trader data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-oriented market-data workflows may use network calls, preview SQL queries, streamed exports, and local file-backed cache entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: An API key could be forwarded to an untrusted stream URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate stream URL origins before sending API keys.
+
+Risk: Invalid TLS certificates may be accepted by parts of the implementation.
+
+Mitigation: Require valid TLS verification before production or multi-user use.
+
+Risk: Unsafe SQL construction may allow malformed or unintended queries.
+
+Mitigation: Validate or parameterize SQL inputs and keep queries read-only.
+
+Risk: Local caches may retain wallet and trader analytics longer than intended.
+
+Mitigation: Set a cache retention policy and clear cached data when freshness or privacy requirements demand it.
+
+## Reference(s):
+
+- [Fallback Queries](references/fallback-queries.md)
+- [Polymarket Shared Analytics Fields / API Field Reference](references/table-schema.md)
+- [PredicTradar MCP Server](https://api.predictradar.ai/api/mcp/v2)
+- [Polymarket Data API](https://data-api.polymarket.com)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Polymarket CLI](https://github.com/Polymarket/polymarket-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript, SQL, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API calls, read-only SQL previews, streamed export guidance, and local cache usage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,70 @@
+{
+  "version": "2.8.0",
+  "topic": "",
+  "user_question": "",
+  "owner": "",
+  "created_at": "",
+  "updated_at": "",
+  "disclaimer": "本圆桌讨论由 AI 生成，所有角色发言均基于公开资料的推演与思想实验，不代表任何真实个人、机构或版权角色的官方立场。所涉及虚构角色归属其各自权利人，仅供个人学习与交流使用，请勿用于商业目的或对外冒充真实人物观点。请仔细甄别内容。",
+  "runtime_claim": "single_backend_multi_session",
+  "state": "init",
+  "state_log": [
+    {
+      "from": "",
+      "to": "init",
+      "trigger": "memory_initialized",
+      "at": ""
+    }
+  ],
+  "contract_version": "2.8.0",
+  "contract_compat": {
+    "min_compatible": "2.0.0",
+    "max_compatible": "2.8.x"
+  },
+  "output_formats": [
+    "minutes",
+    "podcast"
+  ],
+  "characters": [],
+  "rounds": [],
+  "interjections": [],
+  "synthesis": {
+    "consensus": [],
+    "divergence": [],
+    "open_questions": [],
+    "next_steps": [],
+    "argument_graph": {
+      "schema_version": "1.0.0",
+      "title": "",
+      "root_node_id": "",
+      "nodes": [],
+      "edges": []
+    }
+  },
+  "podcast_script": {
+    "show_title": "",
+    "tagline": "",
+    "host_id": "",
+    "segments": [],
+    "outro": "",
+    "shownotes": {
+      "cast": [],
+      "resources": [],
+      "timestamps": []
+    }
+  },
+  "metadata": {
+    "max_rounds": 4,
+    "round_budget": {"min": 2, "max": 6},
+    "complexity_tier": "medium",
+    "expansion_count": 0,
+    "protocol_version": "2.8.0",
+    "runtime_claim": "single_backend_multi_session",
+    "output_format": "minutes",
+    "output_formats": ["minutes"],
+    "output_artifacts": ["argument_graph"],
+    "discussion_structure": "standard",
+    "current_date": "",
+    "temporal_notes": ""
+  }
+}

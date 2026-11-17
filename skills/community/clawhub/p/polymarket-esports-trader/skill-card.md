@@ -1,44 +1,63 @@
-## Description: <br>
-Trades esports tournament, game release, and streaming milestone prediction markets on Polymarket using configurable market filters, conviction-based sizing, and paper trading by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades esports tournament, game release, and streaming milestone prediction markets on Polymarket using configurable paper or live execution.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to run a Simmer-managed Polymarket strategy for esports, game release, and streaming milestone prediction markets. The skill is intended to start in paper trading and requires explicit live mode before real USDC trades are placed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades using USDC. <br>
-Mitigation: Keep paper trading as the default until the strategy and position limits are reviewed, and enable live mode only intentionally. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Store the key securely, use the narrowest available scope, and rotate it if exposure is suspected. <br>
-Risk: The workflow depends on simmer-sdk behavior for market discovery, configuration, and trading execution. <br>
-Mitigation: Review or pin simmer-sdk before relying on live trading. <br>
+## Use Case:
 
+External users can use this skill to discover esports and gaming prediction markets on Polymarket, size paper trades using configurable safeguards, and optionally place live orders after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-esports-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance and Python-based trading workflow output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless live mode is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server-resolved release metadata) <br>
+Risk: Live mode can place real Polymarket orders with USDC.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless the strategy has been reviewed, and use account-side spending or order limits before live use.
+
+Risk: The server security summary flags a risk-control gap in the live-trading path.
+
+Mitigation: Enforce or remove the minimum-volume setting before live use, and confirm the configured position, spread, and open-position limits.
+
+Risk: The server security summary flags an unpinned high-privilege dependency.
+
+Mitigation: Pin and review simmer-sdk before installation or live execution.
+
+Risk: SIMMER_API_KEY grants trading authority.
+
+Mitigation: Use a tightly limited key and keep it scoped to the minimum permissions needed for the intended trading mode.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/polymarket-esports-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in paper mode by default; live trading requires explicit use of the live flag and valid credentials.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

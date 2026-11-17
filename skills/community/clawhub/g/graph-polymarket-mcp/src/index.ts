@@ -25,7 +25,7 @@ import {
 
 const server = new McpServer({
   name: "graph-polymarket-mcp",
-  version: "2.0.0",
+  version: "2.1.2",
 });
 
 // Helper to format tool responses
@@ -56,10 +56,24 @@ server.registerTool(
       id: key,
       name: cfg.name,
       ipfsHash: cfg.ipfsHash,
+      // `era` and `syncWarning` are surfaced, not just stored: this list is what a model reads
+      // when it picks a subgraph, and picking a stale one returns data rather than an error.
+      era: cfg.era ?? "v1",
+      ...(cfg.syncWarning ? { syncWarning: cfg.syncWarning } : {}),
+      ...(cfg.availability ? { availability: cfg.availability } : {}),
       description: cfg.description,
       keyEntities: cfg.keyEntities,
     }));
-    return textResult(list);
+    return textResult({
+      subgraphs: list,
+      choosing:
+        "V1 and V2 are different eras, not old and new. Polymarket migrated to V2 exchange " +
+        "contracts on 2026-04-28; the v2_* subgraphs start at block 84902353 and hold NO earlier " +
+        "history. All-time or pre-migration questions belong on the V1 entries. Builder-code " +
+        "attribution exists only on v2_orderbook. Any entry carrying a syncWarning is behind " +
+        "chainhead and will answer with stale data rather than erroring — check its _meta block " +
+        "before trusting a 'current' number from it.",
+    });
   }
 );
 
@@ -1539,6 +1553,236 @@ server.registerPrompt(
       },
     ],
   })
+);
+
+// ---------------------------------------------------------------------------
+// Tools 22-23: builder attribution (CLOB V2 only)
+//
+// The V2 `OrderFilled` event carries a `builder` code identifying which frontend, bot or
+// integrator routed the order. The V1 exchange contracts do not emit it, so these two questions
+// are unanswerable on every other subgraph in this registry — this is new capability, not a
+// migration of something that already existed.
+// ---------------------------------------------------------------------------
+server.registerTool(
+  "get_builder_leaderboard",
+  {
+    description:
+      "Rank Polymarket CLOB V2 builders by routed volume, order count or fees. A 'builder' is the " +
+      "frontend/bot/integrator whose code is attached to a fill — this answers 'who is actually " +
+      "routing the flow', which no V1 subgraph can, because the V1 contracts never emitted it. " +
+      "V2-era only (from block 84902353, migration 2026-04-28).",
+    inputSchema: {
+      limit: z.number().int().min(1).max(100).optional().describe("How many builders to return (default 10)"),
+      orderBy: z
+        .enum(["scaledVolume", "orderCount", "scaledFees"])
+        .optional()
+        .describe("Ranking metric (default scaledVolume)"),
+    },
+  },
+  async ({ limit, orderBy }) => {
+    try {
+      const n = limit ?? 10;
+      const by = orderBy ?? "scaledVolume";
+      const query = `{
+        builders(first: ${n}, orderBy: ${by}, orderDirection: desc) {
+          id
+          orderCount
+          volume
+          scaledVolume
+          fees
+          scaledFees
+          firstSeenTimestamp
+          lastSeenTimestamp
+        }
+        globalStats_collection(first: 1) {
+          buildersCount
+          tradesQuantity
+          scaledCollateralVolume
+        }
+      }`;
+      const data = (await querySubgraph(SUBGRAPHS.v2_orderbook.ipfsHash, query)) as {
+        builders?: Array<{ id: string; scaledVolume: string }>;
+        globalStats_collection?: Array<{ buildersCount: string; scaledCollateralVolume: string }>;
+      };
+      const totals = data.globalStats_collection?.[0];
+      // Share is computed here rather than left to the caller: the raw numbers invite comparing a
+      // builder's volume against all-time platform volume, which is a V1 number and ~3x larger.
+      const builders = (data.builders ?? []).map((b) => ({
+        ...b,
+        shareOfV2Volume: totals?.scaledCollateralVolume
+          ? `${((Number(b.scaledVolume) / Number(totals.scaledCollateralVolume)) * 100).toFixed(2)}%`
+          : null,
+      }));
+      return textResult({
+        builders,
+        v2Totals: totals ?? null,
+        era: "CLOB V2 only — from block 84902353 (2026-04-28 migration). Shares are of V2-era volume, not all-time.",
+      });
+    } catch (error) {
+      return errorResult(error);
+    }
+  }
+);
+
+server.registerTool(
+  "get_v2_top_traders",
+  {
+    description:
+      "Top real traders on Polymarket CLOB V2 by volume or trade count, with the exchange contracts " +
+      "excluded. Use this rather than querying accounts directly: the V2 exchange is itself the " +
+      "`taker` when an order matches the book, so it accumulates an Account row and outranks every " +
+      "human by an order of magnitude. V2-era only (from block 84902353).",
+    inputSchema: {
+      limit: z.number().int().min(1).max(100).optional().describe("How many traders (default 10)"),
+      orderBy: z
+        .enum(["scaledCollateralVolume", "tradesQuantity"])
+        .optional()
+        .describe("Ranking metric (default scaledCollateralVolume)"),
+    },
+  },
+  async ({ limit, orderBy }) => {
+    try {
+      const n = limit ?? 10;
+      const by = orderBy ?? "scaledCollateralVolume";
+      const cfg = SUBGRAPHS.v2_orderbook;
+      const excluded = cfg.excludeAccounts ?? [];
+      // Over-fetch by the number of excluded venues so the caller still gets `n` real traders back
+      // after filtering, rather than n-2.
+      const query = `{
+        accounts(
+          first: ${n + excluded.length}
+          orderBy: ${by}
+          orderDirection: desc
+          where: { id_not_in: ${JSON.stringify(excluded)} }
+        ) {
+          id
+          tradesQuantity
+          buysQuantity
+          sellsQuantity
+          collateralVolume
+          scaledCollateralVolume
+          lastTradedTimestamp
+        }
+      }`;
+      const data = (await querySubgraph(cfg.ipfsHash, query)) as {
+        accounts?: Array<{ id: string }>;
+      };
+      const accounts = (data.accounts ?? []).slice(0, n);
+      return textResult({
+        traders: accounts,
+        excludedVenues: excluded,
+        note: "Exchange contracts filtered out — they appear as Accounts because the exchange is the taker on a book match. V2-era volume only, not all-time.",
+      });
+    } catch (error) {
+      return errorResult(error);
+    }
+  }
+);
+
+server.registerTool(
+  "get_builder_activity",
+  {
+    description:
+      "Recent fills routed by one Polymarket CLOB V2 builder code, with that builder's aggregate " +
+      "totals. Use get_builder_leaderboard first to find a builder id. V2-era only.",
+    inputSchema: {
+      builderId: z.string().describe("The builder code (bytes32 hex, as returned by get_builder_leaderboard)"),
+      limit: z.number().int().min(1).max(100).optional().describe("How many recent fills (default 20)"),
+    },
+  },
+  async ({ builderId, limit }) => {
+    try {
+      const n = limit ?? 20;
+      const query = `{
+        builder(id: ${JSON.stringify(builderId)}) {
+          id
+          orderCount
+          scaledVolume
+          scaledFees
+          firstSeenTimestamp
+          lastSeenTimestamp
+        }
+        orderFilledEvents(
+          first: ${n}
+          orderBy: timestamp
+          orderDirection: desc
+          where: { builder: ${JSON.stringify(builderId)} }
+        ) {
+          timestamp
+          maker
+          taker
+          side
+          tokenId
+          price
+          size
+          fee
+          market { id lastPrice }
+        }
+      }`;
+      const data = (await querySubgraph(SUBGRAPHS.v2_orderbook.ipfsHash, query)) as {
+        builder?: unknown;
+      };
+      if (!data.builder) {
+        return textResult({
+          builder: null,
+          note: `No builder with id ${builderId} in the V2 orderbook subgraph. Builder ids are bytes32 hex — run get_builder_leaderboard to list real ones.`,
+        });
+      }
+      return textResult(data);
+    } catch (error) {
+      return errorResult(error);
+    }
+  }
+);
+
+// ---------------------------------------------------------------------------
+// Tool 24: check_subgraph_freshness
+// ---------------------------------------------------------------------------
+server.registerTool(
+  "check_subgraph_freshness",
+  {
+    description:
+      "Report how far behind chainhead a subgraph is, by reading its _meta block. Worth calling " +
+      "before trusting any 'current' or 'latest' number, because a lagging subgraph returns stale " +
+      "data rather than an error — it succeeds, it is just answering about the past.",
+    inputSchema: {
+      subgraph: z.enum(SUBGRAPH_NAMES).describe("Which subgraph to check"),
+    },
+  },
+  async ({ subgraph }) => {
+    try {
+      const cfg = SUBGRAPHS[subgraph];
+      const data = (await querySubgraph(
+        cfg.ipfsHash,
+        `{ _meta { block { number timestamp } hasIndexingErrors deployment } }`
+      )) as { _meta?: { block?: { number: number; timestamp: number }; hasIndexingErrors?: boolean } };
+      const block = data._meta?.block;
+      const ageSeconds = block?.timestamp ? Math.floor(Date.now() / 1000) - block.timestamp : null;
+      const behindHuman =
+        ageSeconds === null
+          ? null
+          : ageSeconds < 300
+            ? "at chainhead"
+            : ageSeconds < 86400
+              ? `${Math.floor(ageSeconds / 3600)}h behind`
+              : `${Math.floor(ageSeconds / 86400)} days behind`;
+      return textResult({
+        subgraph,
+        name: cfg.name,
+        era: cfg.era ?? "v1",
+        headBlock: block?.number ?? null,
+        headTimestamp: block?.timestamp ?? null,
+        behind: behindHuman,
+        hasIndexingErrors: data._meta?.hasIndexingErrors ?? null,
+        // The static warning and the live measurement are both reported: the registry text can go
+        // out of date, and the live number cannot.
+        registryWarning: cfg.syncWarning ?? null,
+        trustworthyForCurrentData: ageSeconds !== null && ageSeconds < 3600,
+      });
+    } catch (error) {
+      return errorResult(error);
+    }
+  }
 );
 
 // ---------------------------------------------------------------------------

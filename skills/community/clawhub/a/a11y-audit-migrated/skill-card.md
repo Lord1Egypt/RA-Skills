@@ -1,38 +1,54 @@
-## Description: <br>
-A11y Audit Migrated provides documentation and examples for using a migrated accessibility-audit skill in Qwen Code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a migrated accessibility-audit skill for Qwen Code with usage, integration, and quota-optimization notes.
 
-## Publisher: <br>
-[jacr6](https://clawhub.ai/user/jacr6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacr6](https://clawhub.ai/user/jacr6)
 
-## Use Case: <br>
-Developers and agents can use this documentation-only skill as guidance for invoking a migrated accessibility audit workflow and related local skill integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Advanced examples reference separate local skills and Exa/search integrations that are not included in this release. <br>
-Mitigation: Review those referenced integrations and their permissions before use, especially when auditing private or internal websites. <br>
+## Use Case:
 
+Developers and engineers use this skill as a migrated accessibility-audit helper in Qwen Code or OpenCode-style skill workflows, including examples for local skill execution, optimized subagent execution, skill search, and web-search integration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jacr6/a11y-audit-migrated) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with JavaScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable files are included in this release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may expect a complete accessibility-audit workflow even though the artifact is a sparse migrated documentation stub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before deployment and verify that it provides the intended audit workflow for the target environment.
+
+Risk: The documented examples depend on referenced local skills and search integration that are not bundled in this artifact.
+
+Mitigation: Confirm those referenced skills and integrations exist, are trusted, and are separately reviewed before relying on the examples.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jacr6/skills/a11y-audit-migrated)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; relies on referenced local skills and integrations when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

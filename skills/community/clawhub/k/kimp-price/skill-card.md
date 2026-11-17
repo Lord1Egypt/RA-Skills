@@ -1,39 +1,53 @@
-## Description: <br>
-Calculates the real-time Bitcoin Kimchi Premium by comparing BTC prices on Upbit and Binance using a live USD/KRW exchange rate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates the real-time Bitcoin Kimchi Premium by comparing Upbit KRW and Binance USD Bitcoin prices using live USD/KRW exchange rates.
 
-## Publisher: <br>
-[seungdols](https://clawhub.ai/user/seungdols) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seungdols](https://clawhub.ai/user/seungdols)
 
-## Use Case: <br>
-Developers, agents, and market-data users can run this skill to fetch live BTC prices and a USD/KRW exchange rate, then inspect the current Kimchi Premium as structured output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts third-party market-data APIs whenever it runs. <br>
-Mitigation: Use it only in environments where outbound requests to the listed exchange-rate and exchange APIs are acceptable. <br>
-Risk: The calculated premium is informational market data and may be incomplete, delayed, or unsuitable for financial decisions. <br>
-Mitigation: Verify results against authoritative market sources and do not treat the output as financial advice. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seungdols/kimp-price) <br>
+## Use Case:
 
+External users and developers use this skill to fetch public BTC market prices and USD/KRW rates, then calculate the current Kimchi Premium for comparison between South Korean and global Bitcoin markets.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON written to standard output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes timestamp, USD/KRW exchange rate, Upbit BTC price, Binance BTC price, premium percentage, and KRW price difference.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to exchange-rate, Upbit, and Binance APIs whenever it runs.
+
+Mitigation: Run it only in environments where public market API calls to open.er-api.com, api.upbit.com, and api.binance.com are allowed.
+
+Risk: Live market data can be unavailable, delayed, or changed by the upstream APIs.
+
+Mitigation: Treat the JSON output as a point-in-time market calculation and handle error JSON or missing data before using it in downstream decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seungdols/skills/kimp-price)
+- [ClawHub publisher profile](https://clawhub.ai/user/seungdols)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Pretty-printed JSON emitted to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes timestamp, USD/KRW rate, Upbit BTC price, Binance BTC price, Kimchi Premium percentage, and KRW price difference; errors are emitted as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

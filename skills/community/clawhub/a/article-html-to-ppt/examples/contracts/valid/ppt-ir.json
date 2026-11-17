@@ -1,0 +1,78 @@
+{
+  "schema_version": "2.0",
+  "deck": {
+    "id": "deck-001",
+    "title": "Example Deck",
+    "source_type": "article",
+    "audience": "product leaders",
+    "purpose": "decision briefing",
+    "language": "zh-CN",
+    "presentation_context": "live",
+    "aspect_ratio": "16:9",
+    "production_profile": "standard",
+    "target_builder": "auto",
+    "logical_slide_count": 2
+  },
+  "sources": [
+    {"source_id": "src-001", "type": "article", "title": "Source Article", "path": "source.md"}
+  ],
+  "style_contract_ref": "style-contract.json",
+  "asset_manifest_ref": "asset-manifest.json",
+  "slides": [
+    {
+      "id": "S01",
+      "index": 1,
+      "slide_role": "cover",
+      "title_role": "navigation",
+      "title": "Example Deck",
+      "judgment": null,
+      "message": "Frame the topic and audience promise.",
+      "audience_question": "What is this deck about?",
+      "source_refs": [],
+      "primary_expression": "conceptual_scene",
+      "primary_expression_reason": "A cover needs a memorable scene.",
+      "supporting_expressions": ["caption"],
+      "primary_anchor": "title-and-hero",
+      "objects": [],
+      "delivery_contract": {
+        "preferred_route": "native_ppt",
+        "editable_core": ["title"],
+        "raster_allowance": [],
+        "forbidden_raster": ["title"]
+      }
+    },
+    {
+      "id": "S02",
+      "index": 2,
+      "slide_role": "judgment",
+      "title_role": "judgment",
+      "title": "Contracts reduce visual drift",
+      "judgment": "Contract-first planning reduces visual drift and QA ambiguity.",
+      "message": "Use PPT IR before builder implementation.",
+      "audience_question": "Why add PPT IR?",
+      "source_refs": [
+        {"source_id": "src-001", "locator": "section-2", "claim_type": "inferred"}
+      ],
+      "primary_expression": "structured_cards",
+      "primary_expression_reason": "Three proof cards answer the question.",
+      "supporting_expressions": ["source_note"],
+      "primary_anchor": "card-row",
+      "objects": [
+        {
+          "id": "obj-1",
+          "type": "text",
+          "semantic_role": "proof",
+          "source_refs": [{"source_id": "src-001", "locator": "section-2", "claim_type": "direct"}],
+          "editability": "native_required",
+          "priority": "primary"
+        }
+      ],
+      "delivery_contract": {
+        "preferred_route": "native_ppt",
+        "editable_core": ["title", "cards", "labels"],
+        "raster_allowance": [],
+        "forbidden_raster": ["title", "cards", "labels"]
+      }
+    }
+  ]
+}

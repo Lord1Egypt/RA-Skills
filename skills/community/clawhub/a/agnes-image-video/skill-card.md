@@ -1,44 +1,55 @@
-## Description: <br>
-Uses Agnes AI models to generate and edit images with Agnes-Image-2.0-Flash and generate videos with Agnes-Video-V2.0, including text-to-image, image-to-image, text-to-video, image-to-video, and multi-image composition workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Agnes AI image and video APIs to generate or edit images and create videos with Agnes-Image-2.0-Flash and Agnes-Video-V2.0.
 
-## Publisher: <br>
-[jefsky](https://clawhub.ai/user/jefsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jefsky](https://clawhub.ai/user/jefsky)
 
-## Use Case: <br>
-Developers and agents use this skill to call Agnes AI image and video generation endpoints, prepare request parameters, poll asynchronous video jobs, and optionally save returned media locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, referenced image URLs, and account-linked API usage are sent to Agnes AI. <br>
-Mitigation: Avoid sensitive prompts or private images unless they are intended to be shared with the provider, and review Agnes account and API usage controls before use. <br>
-Risk: The helper script requires an Agnes API key. <br>
-Mitigation: Provide the key through the AGNES_API_KEY environment variable or an approved secret store, and do not hard-code it in skill files, prompts, or shared logs. <br>
-Risk: The helper script downloads provider-returned media URLs and saves generated files locally. <br>
-Mitigation: Run the script in an appropriate workspace, inspect saved outputs before reuse, and apply normal controls for files downloaded from external URLs. <br>
+## Use Case:
 
+Developers and external users use this skill to configure Agnes API calls and helper-script commands for image generation, image editing, video generation, image-to-video, and multi-image composition workflows.
 
-## Reference(s): <br>
-- [Agnes API Platform](https://platform.agnes-ai.com/) <br>
-- [Agnes API Base URL](https://apihub.agnes-ai.com/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jefsky/agnes-image-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API request payloads, local file paths for downloaded media, and generated media URLs returned by Agnes AI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, image URLs, and the Agnes API key are sent to a third-party Agnes AI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is intended, avoid sensitive prompts or private media unless the service is trusted, and keep the API key in environment variables.
+
+Risk: The helper script downloads generated media locally without download URL, size, timeout, or symlink protections.
+
+Mitigation: Run the helper script without elevated privileges in a private output directory and review downloaded media handling before using it in automated workflows.
+
+## Reference(s):
+
+- [Agnes API Platform](https://platform.agnes-ai.com/)
+- [Agnes API v1 Base URL](https://apihub.agnes-ai.com/v1)
+- [ClawHub Skill Page](https://clawhub.ai/jefsky/skills/agnes-image-video)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; the helper script saves generated image or video files locally.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Agnes API key and sends prompts, image URLs, and generation parameters to Agnes AI endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

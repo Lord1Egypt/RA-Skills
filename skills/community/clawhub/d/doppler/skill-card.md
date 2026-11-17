@@ -1,43 +1,53 @@
-## Description: <br>
-Manage secrets and environment variables via the Doppler CLI for secrets, projects, configs, environments, setup, authentication, and activity review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage secrets and environment variables via Doppler CLI - secrets, projects, configs, environments.
 
-## Publisher: <br>
-[Melvynx](https://clawhub.ai/user/Melvynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[melvynx](https://clawhub.ai/user/melvynx)
 
-## Use Case: <br>
-Developers and engineers use this skill to ask an agent for Doppler CLI command guidance when configuring projects, managing secrets and environments, running commands with injected secrets, and reviewing Doppler activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward commands that expose plaintext secrets. <br>
-Mitigation: Require explicit user intent before retrieving or downloading secrets, redact command output, and avoid printing plaintext values unless strictly necessary. <br>
-Risk: The skill includes destructive commands for deleting secrets, projects, configs, and environments. <br>
-Mitigation: Confirm the exact project, config, environment, and secret key before destructive operations and require explicit confirmation for deletes. <br>
-Risk: Downloaded secret sets can persist sensitive data on disk. <br>
-Mitigation: Avoid saving downloaded secrets to disk unless controlled storage and cleanup are in place. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Doppler CLI guidance for managing secrets, projects, configs, environments, and activity logs.
 
-## Reference(s): <br>
-- [Doppler CLI installation documentation](https://docs.doppler.com/docs/install-cli) <br>
-- [ClawHub Doppler skill page](https://clawhub.ai/Melvynx/doppler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command guidance should prefer JSON output for programmatic calls and should redact plaintext secret values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can guide agents to view, export, change, or delete secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Doppler operations before execution, require confirmation for delete and bulk export commands, and use scoped project and config flags.
+
+Risk: Secret values may be printed into chat, terminal output, or logs.
+
+Mitigation: Avoid requesting or displaying plain secret values, and prefer workflows that keep secret material out of agent-visible output.
+
+## Reference(s):
+
+- [Doppler CLI installation documentation](https://docs.doppler.com/docs/install-cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should use JSON output for programmatic use where supported and avoid exposing secret values in chat or logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

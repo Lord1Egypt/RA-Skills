@@ -1,47 +1,62 @@
-## Description: <br>
-Monitor helps agents guide Texas residential electricity users through address completion, candidate confirmation, ESIID and usage lookup, plan recommendations, self-service routing, and daily or weekly savings monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw-optimized skill for Texas residential electricity shopping, address completion, candidate confirmation, ESIID lookup, usage estimation, plan recommendation, self-service plan routing, and daily or weekly savings monitoring.
 
-## Publisher: <br>
-[catkennel](https://clawhub.ai/user/catkennel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catkennel](https://clawhub.ai/user/catkennel)
 
-## Use Case: <br>
-External Texas residential electricity shoppers use this skill through an agent to confirm a service address, compare available plan options, route to a live Personalized Energy address page, and set a daily or weekly monitoring preference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States - Texas electricity service addresses <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on external Personalized Energy and PowerLego services for Texas address, usage, and plan lookup. <br>
-Mitigation: Use it only when sharing a Texas service address with those services is acceptable for the deployment. <br>
-Risk: Provider API access is required for live lookup behavior. <br>
-Mitigation: Configure the provider API token intentionally and keep credential handling outside user-facing conversations. <br>
-Risk: Daily or weekly monitoring may imply alerts, retention, or opt-out expectations that are not provided by the skill alone. <br>
-Mitigation: Treat monitoring as a recommendation unless the host separately provides opt-in, alert delivery, retention, and opt-out controls. <br>
+## Use Case:
 
+External users use this skill as a Texas residential electricity advisor to confirm a service address, compare current plan options, route to a Personalized Energy address page, and set up daily or weekly monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/catkennel/monitor-openclaw) <br>
-- [Personalized Energy Texas electricity rates](https://www.personalized.energy/electricity-rates/texas) <br>
-- [Address Completeness](artifact/references/address-completeness.md) <br>
-- [Intent Routing](artifact/references/intent-routing.md) <br>
-- [OpenClaw Execution Guide](artifact/references/openclaw-execution.md) <br>
-- [Response Strategy](artifact/references/response-strategy.md) <br>
+### Deployment Geography for Use:
 
+United States (Texas service addresses)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown guidance with address candidates, plan summaries, monitoring recommendations, and destination links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumer-facing responses should avoid internal implementation details and end with one concrete next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill may process exact Texas service addresses, including apartment or unit details, through external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when that address data flow is acceptable and give users clear privacy notice and choice before address lookup or plan retrieval.
+
+Risk: Generated Personalized Energy URLs can contain address-specific path data.
+
+Mitigation: Share address-specific URLs only after the user provides and confirms the service address.
+
+Risk: The skill needs an intentionally provisioned POWERLEGO_API_TOKEN for live lookup behavior.
+
+Mitigation: Review configuration before installation and provide the token only in approved environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/catkennel/skills/monitor-openclaw)
+- [Personalized Energy Texas Rates](https://www.personalized.energy/electricity-rates/texas)
+- [Address Completeness](artifact/references/address-completeness.md)
+- [Intent Routing](artifact/references/intent-routing.md)
+- [OpenClaw Execution Guide](artifact/references/openclaw-execution.md)
+- [Response Strategy](artifact/references/response-strategy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise advisor responses with numbered address or plan lists and destination URLs when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include candidate addresses, ESIID, estimated usage, top plans, current best plan, Personalized Energy URL, and monitoring recommendation when supported by lookup results.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Audits and hardens OpenClaw deployments by checking instance exposure, credential handling, skill installation safety, gateway access control, session sandboxing, and incident response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secures OpenClaw by auditing instance exposure, protecting credentials, verifying skill safety, enforcing gateway token access, and enabling session sandboxing.
 
-## Publisher: <br>
-[thebrierfox](https://clawhub.ai/user/thebrierfox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thebrierfox](https://clawhub.ai/user/thebrierfox)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw or Aegis deployments, reduce common exposure and credential risks, vet installed skills, configure access controls, and follow an incident response checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes commands and configuration changes that can affect gateway availability, credentials, filesystem permissions, and running sessions. <br>
-Mitigation: Review each command before execution, run checks in the intended OpenClaw environment, and preserve logs or backups before containment and recovery steps. <br>
-Risk: Credential rotation, token revocation, and key replacement can break dependent services or make encrypted data inaccessible if performed incorrectly. <br>
-Mitigation: Follow the documented revocation order, verify replacement credentials in the provider dashboards, and record rotation dates and reasons. <br>
+## Use Case:
 
+Developers and operators use this skill to audit and harden OpenClaw deployments against exposed gateways, credential leakage, unsafe skill installation, weak access controls, and post-compromise recovery gaps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/thebrierfox/openclaw-security-hardening-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/thebrierfox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with bash commands, JSON configuration snippets, checklists, and risk matrices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational security checks and incident response sequences for human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and artifact frontmatter) <br>
+Risk: Credential inspection commands may expose or print sensitive tokens during an audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace token checks with redacted checks and approve credential scans explicitly before execution.
+
+Risk: Broad process-kill commands may terminate unrelated local services during incident response.
+
+Mitigation: Review process matches before terminating them and preserve logs before containment actions.
+
+Risk: Plaintext external IP checks may disclose instance metadata or network context to a third-party service.
+
+Mitigation: Avoid the plaintext ifconfig.me probe or replace it with an approved internal reachability check.
+
+Risk: Persistent scheduling guidance could create credential-rotation jobs without a reviewed rollback path.
+
+Mitigation: Do not create cron-based credential rotation until the script, schedule, ownership, logging, and rollback plan are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/thebrierfox/skills/openclaw-security-hardening-toolkit)
+- [Publisher profile](https://clawhub.ai/user/thebrierfox)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides checklists, command examples, configuration snippets, and incident response guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Reads and summarizes 3D Gaussian Splatting research papers from arXiv references or local PDFs, extracting method details, innovations, experimental results, limitations, and comparison tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and summarize 3DGS research papers. Extracts method architecture, innovations, experimental results from arXiv or local PDFs. Structured output with tables.
 
-## Publisher: <br>
-[jaccen](https://clawhub.ai/user/jaccen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaccen](https://clawhub.ai/user/jaccen)
 
-## Use Case: <br>
-Researchers, developers, and engineers use this skill to analyze 3DGS, NeRF, and 3D reconstruction papers and produce structured technical summaries for literature review and comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries or numerical comparisons may be inaccurate if paper details are misread or inferred. <br>
-Mitigation: Verify numerical results and key claims against the source paper when accuracy matters. <br>
-Risk: Local PDFs supplied to the agent may contain sensitive or unpublished research content. <br>
-Mitigation: Only provide local PDFs that are appropriate for the agent to read. <br>
+## Use Case:
 
+Developers, researchers, and technical readers use this skill to analyze 3D Gaussian Splatting, NeRF, and 3D reconstruction papers from arXiv references or local PDFs and produce structured summaries with method details, results, limitations, and comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaccen/3dgs-paper-reader) <br>
-- [arXiv](https://arxiv.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured sections and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include quoted numerical results, paper metadata, limitations, and explicit uncertainty markers when details need confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and frontmatter) <br>
+Risk: Generated summaries or comparisons may be incorrect or may rely on stale built-in domain reference notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated analysis against the source paper and verify current arXiv, venue, and benchmark details before relying on it.
+
+Risk: The skill may use arXiv lookups or local PDFs explicitly provided by the user.
+
+Mitigation: Provide trusted paper references or local files, and review any retrieved or parsed content before using the summary for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaccen/skills/3dgs-paper-reader)
+- [Publisher profile](https://clawhub.ai/user/jaccen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured paper summaries with tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes paper metadata, problem framing, method analysis, key results, limitations, and relationship to prior work.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

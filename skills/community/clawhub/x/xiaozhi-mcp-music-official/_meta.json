@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76d84e5yshb7jz8b8c9b3gjh82px78",
-  "slug": "xiaozhi-mcp-music-official",
+  "name": "xiaozhi-mcp-music-official",
   "version": "1.0.0",
-  "publishedAt": 1774375846717
+  "description": "Official-style XiaoZhi MCP online music bridge with search and playback support.",
+  "author": "OpenClaw Assistant",
+  "tags": ["xiaozhi", "mcp", "music", "player", "online-music"]
 }

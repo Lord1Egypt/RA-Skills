@@ -1,0 +1,4 @@
+interface:
+  display_name: "Talamus Memory"
+  short_description: "Use durable, cited local memory with Talamus"
+  default_prompt: "Use $talamus-memory to set up and use a local Talamus brain for this project."

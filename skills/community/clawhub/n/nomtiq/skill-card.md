@@ -1,47 +1,61 @@
-## Description: <br>
-Nomtiq finds restaurants worth going to without rankings or ads, remembers taste and budget, and supports Chinese and English restaurant discovery workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nomtiq 小饭票 helps agents find restaurants using live map search and local dining preferences, returning two reliable recommendations plus one reasoned exploration choice for the user's location, budget, party size, taste, and occasion.
 
-## Publisher: <br>
-[oakcoderx](https://clawhub.ai/user/oakcoderx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oakcoderx](https://clawhub.ai/user/oakcoderx)
 
-## Use Case: <br>
-External users and agents use Nomtiq to search for restaurants, personalize recommendations from a taste profile, and record dining feedback. The skill supports local China search, overseas search, onboarding, profile analysis, and optional anonymous sharing of liked restaurants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Moltbook sharing can send liked restaurants, areas, prices, and tags to an external service. <br>
-Mitigation: Keep Moltbook disabled or leave MOLTBOOK_API_KEY unset unless the user explicitly wants anonymous sharing. <br>
-Risk: The package includes promotion research and community-monitoring scripts beyond the core restaurant recommendation workflow. <br>
-Mitigation: Remove or ignore promotion and monitor scripts when deploying only a local restaurant recommender. <br>
-Risk: Restaurant search can call external services using configured API keys. <br>
-Mitigation: Configure only the API keys required for the intended geography and disclose that restaurant queries may be sent to those services. <br>
+## Use Case:
 
+External users and agents use Nomtiq to choose restaurants for nearby dining, date night, business meals, family gatherings, solo dining, and feedback-driven preference updates. The skill routes mainland-China searches to Amap and other destinations to Google Maps through Serper when the user provides the needed API key.
 
-## Reference(s): <br>
-- [ClawHub Nomtiq Release Page](https://clawhub.ai/oakcoderx/nomtiq) <br>
-- [AGENT_GUIDE.md](AGENT_GUIDE.md) <br>
-- [README.md](README.md) <br>
-- [Amap REST API](https://restapi.amap.com) <br>
-- [Serper API](https://google.serper.dev) <br>
-- [Moltbook API](https://www.moltbook.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Restaurant recommendations may use profile data, external search APIs, and optional Moltbook sharing when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.6 (source: frontmatter and server release evidence) <br>
+Risk: The release can use an undeclared Baidu Maps credential/provider path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before deployment, expose only the intended Amap or Serper key and unset BMAP_KEY unless Baidu Maps use has been explicitly reviewed and approved.
+
+Risk: The documentation includes an unpinned global npx install path.
+
+Mitigation: Prefer the OpenClaw install path for this release and avoid the unpinned npx global command unless the package source and version are independently verified.
+
+Risk: Restaurant preferences, locations, companion notes, scene history, and feedback are stored locally.
+
+Mitigation: Inform users about local storage and use the documented export, reset, companion removal, and history-clear controls when data should be reviewed or deleted.
+
+## Reference(s):
+
+- [ClawHub Nomtiq release page](https://clawhub.ai/oakcoderx/skills/nomtiq)
+- [Amap Web Service API endpoint](https://restapi.amap.com)
+- [Serper Google Maps API endpoint](https://google.serper.dev)
+- [Amap developer key setup](https://console.amap.com/dev/key/app)
+- [Serper API key setup](https://serper.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Concise Markdown or plain text recommendations, with setup commands and JSON script output when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+, network access, and user-provided Amap or Serper API keys for live search; stores restaurant taste profile and feedback locally.]
+
+## Skill Version(s):
+
+0.5.2 (source: server release, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

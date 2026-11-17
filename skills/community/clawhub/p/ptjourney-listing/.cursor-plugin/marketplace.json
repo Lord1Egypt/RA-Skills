@@ -1,0 +1,33 @@
+{
+  "name": "ptjourney-listing",
+  "owner": {
+    "name": "企雀AI助手"
+  },
+  "metadata": {
+    "description": "PTJourney 跨境电商 AI 批量上架助手，支持 Ozon ERP、Wildberries（WB）ERP、TEMU ERP 工作流。整理 1688 商品、预检上架数据、管理已授权任务，通过已登录 Windows 客户端的本机 MCP 操作。Use for marketplace product listing and task management."
+  },
+  "plugins": [
+    {
+      "name": "ptjourney-listing",
+      "source": ".",
+      "description": "PTJourney 跨境电商 AI 批量上架助手，支持 Ozon ERP、Wildberries（WB）ERP、TEMU ERP 工作流。整理 1688 商品、预检上架数据、管理已授权任务，通过已登录 Windows 客户端的本机 MCP 操作。Use for marketplace product listing and task management.",
+      "version": "0.2.0",
+      "keywords": [
+        "ptjourney",
+        "ozon",
+        "ozon erp",
+        "wildberries",
+        "wb erp",
+        "temu",
+        "temu erp",
+        "1688",
+        "跨境电商",
+        "批量上架",
+        "product listing",
+        "mcp",
+        "agent skills"
+      ],
+      "license": "MIT-0"
+    }
+  ]
+}

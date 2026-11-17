@@ -1,0 +1,227 @@
+{
+  "card_id": "WQ-EXP-011",
+  "source_type": "clinical_experience",
+  "source_file": "基于数据挖掘技术分析王琦教授治疗痤疮的用药规律_李文乐.pdf",
+  "title": "〔Modernization of Traditional Chinese Medicine and Materia Medica-World Science and Technology 〕",
+  "authors": [
+    "王济",
+    "教授"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "证型。而痤疮的诊断主要根据外在症状确定。主要为红色丘疹，粉刺、丘疹、脓疱、结节、瘢痕等。"
+  },
+  "treatment_approach": {
+    "main_formula": "",
+    "related_formulas": [],
+    "principle": "清热利湿、活血化瘀",
+    "herbs": [
+      "当归",
+      "柴胡",
+      "陈皮",
+      "熟地",
+      "泽泻"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "为名老中医经验传承创新研究提供前期分析统计。方法采集王琦院士的门诊治疗痤疮病案，运用中医传承辅助平台构建医案数据库，基于该软件的集成规则分析、复杂系统熵聚类分析等数据挖掘方法，对王琦院士的门诊治疗痤疮的用药规律进行总结。 经药频率最高，积雪草、薏苡仁、桃仁、冬瓜子、芦根、白花蛇舌草、枇杷叶、丹参为核心组方，其中积雪草、薏苡仁、桃仁、冬瓜子、芦根为最主要的五味药。结论王琦院士认为湿热体质的人群为痤疮的高发人群，病机要点是以湿热蕴结为主，毒瘀痰结为标。治疗痤疮当以清热利湿为基本治法，兼以解毒祛瘀、化痰散结。在治疗时要注重痤疮的反复发作性，通过中药内治减轻痤疮的发作。 认知以肺经风（郁）热、肺胃湿热、肝郁气滞、血瘀、痰凝、冲任不调等型为多，因此治疗多从热、湿、痰、瘀、虚、郁入手。现代临床多见痤疮合并肥胖、月经不调、便秘等多种疾病，因此对于痤疮的治疗不仅要从外治，更要从内治解决其根本问题。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "2 王琦院士对痤疮病机的认识国医大师王琦院士根据自身多年临床实践与经验，认为湿热体质是丘疹性、粉刺性、脓疱性、结节性、 囊肿性或聚合性痤疮的共性体质基础 [1]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "其主要病机即以湿热体质为本，毒瘀痰结为标，如湿热郁结不解， 则易生毒；湿热阻遏气机，易致血瘀、生痰，因此亦容易合并其他慢性脏腑功能疾病，同时结合脏腑辨证， 分为肺胃湿热、湿毒蕴结，肝郁湿热、痰瘀凝结，另外女性患者痤疮多与月经相关，出现冲任失调证 [1]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "从症状来看，患者脉诊以脉弦、脉滑、脉沉最多，舌诊以舌红、舌胖大、舌齿痕、舌裂纹为主，并伴有面部出油、睡眠易醒、便秘、口腔溃疡、口干、大便不成形等症状，结合王琦九种体质分析结果，表明患者多数为湿热体质 [5]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：证型。而痤疮的诊断主要根据外在症状确定。主要为红色丘疹，粉刺、丘疹、脓疱、结节、瘢痕等。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为清热利湿、活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括当归、柴胡、陈皮、熟地、泽泻。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "为名老中医经验传承创新研究提供前期分析统计",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "方法采集王琦院士的门诊治疗痤疮病案，运用中医传承辅助平台构建医案数据库，基于该软件的集成规则分析、复杂系统熵聚类分析等数据挖掘方法，对王琦院士的门诊治疗痤疮的用药规律进行总结",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "湿热质"
+  ],
+  "related_diseases": [
+    "肥胖",
+    "糖尿病",
+    "失眠"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "2 王琦院士对痤疮病机的认识国医大师王琦院士根据自身多年临床实践与经验，认为湿热体质是丘疹性、粉刺性、脓疱性、结节性、 囊肿性或聚合性痤疮的共性体质基础 [1]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 6
+    },
+    {
+      "sentence": "其主要病机即以湿热体质为本，毒瘀痰结为标，如湿热郁结不解， 则易生毒；湿热阻遏气机，易致血瘀、生痰，因此亦容易合并其他慢性脏腑功能疾病，同时结合脏腑辨证， 分为肺胃湿热、湿毒蕴结，肝郁湿热、痰瘀凝结，另外女性患者痤疮多与月经相关，出现冲任失调证 [1]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 6
+    },
+    {
+      "sentence": "从症状来看，患者脉诊以脉弦、脉滑、脉沉最多，舌诊以舌红、舌胖大、舌齿痕、舌裂纹为主，并伴有面部出油、睡眠易醒、便秘、口腔溃疡、口干、大便不成形等症状，结合王琦九种体质分析结果，表明患者多数为湿热体质 [5]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 6
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "湿热质"
+    ],
+    "disease": [
+      "肥胖",
+      "糖尿病",
+      "失眠"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 10,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 9
+      },
+      "methods": {
+        "start": 1,
+        "end": 9
+      },
+      "results": {
+        "start": 1,
+        "end": 9
+      },
+      "discussion": {
+        "start": 6,
+        "end": 6
+      },
+      "conclusion": {
+        "start": 1,
+        "end": 9
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.555171",
+  "methods": {
+    "sample_size": 44
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.517914",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.517920"
+  }
+}

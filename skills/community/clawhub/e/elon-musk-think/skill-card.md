@@ -1,43 +1,59 @@
-## Description: <br>
-Answer questions using Elon Musk's first-principles, optimization, and contrarian analysis frameworks without role-playing as Elon Musk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies Elon Musk-style first-principles, engineering, and optimization frameworks to analyze user questions and produce direct, action-oriented answers.
 
-## Publisher: <br>
-[star23](https://clawhub.ai/user/star23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[star23](https://clawhub.ai/user/star23)
 
-## Use Case: <br>
-External users and agent builders use this skill to apply a Musk-style analysis lens to technology, startups, engineering, manufacturing, AI, energy, future-of-humanity, management, and first-principles questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill activates broadly and applies an explicitly opinionated Elon Musk-style analysis lens. <br>
-Mitigation: Use it only when that lens is requested or contextually relevant, and review outputs for overconfident or one-sided recommendations. <br>
-Risk: The skill requires a promotional creator credit footer in every response. <br>
-Mitigation: Confirm that the footer is acceptable for the target deployment and remove or replace the skill if promotional text is not allowed. <br>
+## Use Case:
 
+External users and developers can use this skill to have an agent analyze technology, startup, engineering, management, economics, and future-focused questions through first-principles and optimization frameworks attributed to Elon Musk's public statements.
 
-## Reference(s): <br>
-- [The 69 Core Musk Methods](references/69-methods.md) <br>
-- [Elon Musk Key Examples & Analogies](references/key-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/star23/elon-musk-think) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/star23) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's language and appends a creator credit footer when the skill is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Overly broad activation can apply this thinking style where the user did not clearly ask for it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation criteria and invoke the skill only when the user explicitly requests Elon Musk-style, first-principles, or similar analysis.
+
+Risk: The mandatory promotional footer can add unrelated third-party promotion to otherwise clean outputs.
+
+Mitigation: Remove or disable promotional footer behavior when outputs must avoid third-party promotion.
+
+Risk: Persona-style framing may steer analysis toward a particular worldview.
+
+Mitigation: Ask the agent to separate sourced facts from framework-based inference and state uncertainty when applying the framework to topics Elon Musk may not have discussed.
+
+## Reference(s):
+
+- [The 69 Core Musk Methods](artifact/references/69-methods.md)
+- [Elon Musk Key Examples & Analogies](artifact/references/key-examples.md)
+- [ClawHub skill page](https://clawhub.ai/star23/skills/elon-musk-think)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Matches the user's language and may include a creator credit footer.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

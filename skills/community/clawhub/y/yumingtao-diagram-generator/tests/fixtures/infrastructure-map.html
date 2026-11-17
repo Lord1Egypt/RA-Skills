@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Region Platform Infrastructure</title>
+  <style>
+    :root {
+      --page: #f5f3ee; --paper: #fffdfa; --canvas: #f8fafc; --ink: #172033; --muted: #647084;
+      --line: #d8dee8; --actor: #0f766e; --entry: #2563eb; --compute: #15803d; --state: #7c3aed;
+      --message: #c2410c; --control: #be123c; --telemetry: #a16207; --external: #475569;
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: var(--page); color: var(--ink); font-family: var(--font); }
+    body { padding: 20px; }
+    .shell { max-width: 1720px; margin: 0 auto; border: 1px solid #e2ded4; border-radius: 10px; background: var(--paper); box-shadow: 0 24px 80px rgba(69,54,36,0.12); overflow: hidden; }
+    .topbar { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 18px; align-items: start; padding: 20px 22px; border-bottom: 1px solid #ebe5d9; background: linear-gradient(180deg,#fffdfa,#f9f6ef); }
+    .kicker { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+    .status-mark { width: 9px; height: 9px; border-radius: 50%; background: var(--entry); }
+    h1 { margin: 0; font-size: clamp(26px,3vw,42px); line-height: 1.05; letter-spacing: -0.02em; }
+    .subtitle { max-width: 900px; margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .toolbar { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .toolbar button { appearance: none; border: 1px solid #d7dce5; border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer; font: 650 12px var(--font); padding: 9px 11px; }
+    .toolbar button:hover { border-color: #aab4c4; background: #f8fafc; }
+    .body-grid { display: grid; grid-template-columns: minmax(0,1fr) 320px; min-height: 760px; }
+    .map-wrap { padding: 20px; border-right: 1px solid #ebe5d9; background: linear-gradient(90deg,rgba(148,163,184,0.10) 1px,transparent 1px),linear-gradient(180deg,rgba(148,163,184,0.10) 1px,transparent 1px),var(--canvas); background-size: 32px 32px; overflow-x: auto; }
+    svg { display: block; width: 100%; min-width: 0; height: auto; }
+    .notes { padding: 18px; background: #fffdfa; }
+    .notes h2 { margin: 0 0 12px; font-size: 15px; }
+    .note-section { border-top: 1px solid #ebe5d9; padding: 16px 0; }
+    .note-section:first-of-type { border-top: 0; padding-top: 0; }
+    .note-section h3 { margin: 0 0 8px; color: #334155; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .note-section ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .note-section li { color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 12px 22px; border-top: 1px solid #ebe5d9; color: #7b8495; font-family: var(--mono); font-size: 11px; background: #faf7f0; }
+    @media (max-width: 980px) { body { padding: 10px; } .topbar { grid-template-columns: 1fr; } .toolbar { justify-content: flex-start; } .body-grid { grid-template-columns: 1fr; } svg { min-width: 1080px; } .map-wrap { border-right: 0; border-bottom: 1px solid #ebe5d9; } }
+    @media print { body { padding: 0; background: #fff; } .shell { border: 0; box-shadow: none; } .toolbar { display: none; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="kicker"><span class="status-mark" aria-hidden="true"></span><span>Infrastructure Lens</span><span>/</span><span>Multi-Region Production</span></div>
+        <h1>Multi-Region Platform Infrastructure</h1>
+        <p class="subtitle">Active-active deployment across two cloud regions with a global edge, regional Kubernetes clusters, managed relational stores, object storage, and a cross-region telemetry plane.</p>
+      </div>
+      <nav class="toolbar" aria-label="Export toolbar">
+        <button type="button" onclick="downloadSVG()">SVG</button>
+        <button type="button" onclick="downloadPNG()">PNG</button>
+        <button type="button" onclick="copyPNG()">Copy PNG</button>
+        <button type="button" onclick="window.print()">Print</button>
+      </nav>
+    </header>
+    <section class="body-grid">
+      <div class="map-wrap">
+        <svg id="system-map" viewBox="0 0 1760 1020" role="img" aria-labelledby="map-title map-desc" xmlns="http://www.w3.org/2000/svg">
+          <title id="map-title">Multi-region platform infrastructure</title>
+          <desc id="map-desc">Active-active deployment across two regions with global edge, regional Kubernetes clusters, managed databases, object storage, message bus, and cross-region observability.</desc>
+          <defs>
+            <marker id="arrow-actor" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#0f766e"/></marker>
+            <marker id="arrow-entry" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#2563eb"/></marker>
+            <marker id="arrow-compute" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#15803d"/></marker>
+            <marker id="arrow-state" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#7c3aed"/></marker>
+            <marker id="arrow-message" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#c2410c"/></marker>
+            <marker id="arrow-telemetry" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#a16207"/></marker>
+            <marker id="arrow-external" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M 1 1 L 9 5 L 1 9 z" fill="#475569"/></marker>
+          </defs>
+          <rect x="0" y="0" width="1760" height="1020" rx="0" fill="#f8fafc"/>
+
+          <g id="regions" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <rect x="460" y="100" width="480" height="560" rx="8" fill="#eef6ff" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="482" y="128" fill="#1d4ed8" font-size="12" font-weight="700">Region A — us-east-1</text>
+            <rect x="1000" y="100" width="480" height="560" rx="8" fill="#eef6ff" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="1022" y="128" fill="#1d4ed8" font-size="12" font-weight="700">Region B — us-west-2</text>
+          </g>
+
+          <g id="connectors" font-family="SFMono-Regular, JetBrains Mono, monospace" font-size="10" fill="#334155">
+            <path data-edge-id="users_to_cdn" d="M 170 240 H 195 V 200 H 220" stroke="#0f766e" stroke-width="2" fill="none" marker-end="url(#arrow-actor)"/>
+            <text x="195" y="188" text-anchor="middle">HTTPS</text>
+
+            <path data-edge-id="cdn_to_lb" d="M 290 240 V 300" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrow-entry)"/>
+            <text x="304" y="274" text-anchor="start">anycast</text>
+
+            <path data-edge-id="lb_to_ingressA" d="M 360 340 H 430 V 195 H 500" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrow-entry)"/>
+            <text x="395" y="332" text-anchor="middle">route</text>
+
+            <path data-edge-id="lb_to_ingressB" d="M 360 340 H 380 V 80 H 1105 V 160" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrow-entry)"/>
+            <text x="732" y="70" text-anchor="middle">route</text>
+
+            <path data-edge-id="ingressA_to_k8sA" d="M 565 230 V 270" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="579" y="254" text-anchor="start">HTTP</text>
+
+            <path data-edge-id="ingressB_to_k8sB" d="M 1105 230 V 270" stroke="#15803d" stroke-width="2" fill="none" marker-end="url(#arrow-compute)"/>
+            <text x="1119" y="254" text-anchor="start">HTTP</text>
+
+            <path data-edge-id="k8sA_to_rdsA" d="M 575 380 V 420" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="589" y="404" text-anchor="start">50s</text>
+
+            <path data-edge-id="k8sB_to_rdsB" d="M 1115 380 V 420" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="1129" y="404" text-anchor="start">50s</text>
+
+            <path data-edge-id="rdsA_to_rdsB" d="M 650 465 H 1040" stroke="#7c3aed" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="845" y="455" text-anchor="middle">logical replication</text>
+
+            <path data-edge-id="k8sA_to_object" d="M 700 325 H 720 V 560 H 1720 V 205 H 1690" stroke="#7c3aed" stroke-width="2" fill="none" marker-end="url(#arrow-state)"/>
+            <text x="1734" y="380" text-anchor="start">S3 objects</text>
+
+            <path data-edge-id="k8sA_to_queue" d="M 700 340 H 740 V 560 H 1615 V 380" stroke="#c2410c" stroke-width="2" stroke-dasharray="7 5" fill="none" marker-end="url(#arrow-message)"/>
+            <text x="1629" y="470" text-anchor="start">queue</text>
+
+            <path data-edge-id="k8sA_to_observability" d="M 600 380 V 410 H 430 V 750 H 480 V 780" stroke="#a16207" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#arrow-telemetry)"/>
+            <text x="416" y="580" text-anchor="end">metrics</text>
+
+            <path data-edge-id="k8sB_to_observability" d="M 1140 380 V 410 H 1520 V 750 H 1140 V 780" stroke="#a16207" stroke-width="2" stroke-dasharray="6 5" fill="none" marker-end="url(#arrow-telemetry)"/>
+            <text x="1534" y="580" text-anchor="start">logs</text>
+          </g>
+
+          <g id="components" font-family="Inter, Arial, sans-serif">
+            <g data-node-id="users">
+              <rect x="40" y="200" width="130" height="80" rx="8" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.6"/>
+              <text x="105" y="237" text-anchor="middle" fill="#134e4a" font-size="14" font-weight="750">Users</text>
+              <text x="105" y="260" text-anchor="middle" fill="#475569" font-size="11">web mobile API</text>
+            </g>
+            <g data-node-id="cdn_edge">
+              <rect x="220" y="160" width="140" height="80" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+              <text x="290" y="195" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="750">CDN / Edge</text>
+              <text x="290" y="218" text-anchor="middle" fill="#475569" font-size="11">cache WAF TLS</text>
+            </g>
+            <g data-node-id="global_lb">
+              <rect x="220" y="300" width="140" height="80" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+              <text x="290" y="335" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="750">Global LB</text>
+              <text x="290" y="358" text-anchor="middle" fill="#475569" font-size="11">geo steering</text>
+            </g>
+            <g data-node-id="ingress_a">
+              <rect x="500" y="160" width="130" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+              <text x="565" y="192" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="750">Ingress A</text>
+              <text x="565" y="212" text-anchor="middle" fill="#475569" font-size="10">ALB + mTLS</text>
+            </g>
+            <g data-node-id="k8s_a">
+              <rect x="500" y="270" width="200" height="110" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="600" y="308" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">K8s Cluster A</text>
+              <text x="600" y="332" text-anchor="middle" fill="#475569" font-size="11">services workers</text>
+              <text x="600" y="352" text-anchor="middle" fill="#475569" font-size="11">node groups</text>
+            </g>
+            <g data-node-id="rds_primary">
+              <rect x="500" y="420" width="150" height="90" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <ellipse cx="575" cy="442" rx="42" ry="10" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.1"/>
+              <path d="M 508 442 V 485 C 508 494 537 500 575 500 C 613 500 642 494 642 485 V 442" fill="none" stroke="#7c3aed" stroke-width="1.1"/>
+              <text x="575" y="478" text-anchor="middle" fill="#4c1d95" font-size="13" font-weight="750">RDS Primary</text>
+            </g>
+            <g data-node-id="ingress_b">
+              <rect x="1040" y="160" width="130" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.6"/>
+              <text x="1105" y="192" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="750">Ingress B</text>
+              <text x="1105" y="212" text-anchor="middle" fill="#475569" font-size="10">ALB + mTLS</text>
+            </g>
+            <g data-node-id="k8s_b">
+              <rect x="1040" y="270" width="200" height="110" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="1.6"/>
+              <text x="1140" y="308" text-anchor="middle" fill="#14532d" font-size="14" font-weight="750">K8s Cluster B</text>
+              <text x="1140" y="332" text-anchor="middle" fill="#475569" font-size="11">services workers</text>
+              <text x="1140" y="352" text-anchor="middle" fill="#475569" font-size="11">node groups</text>
+            </g>
+            <g data-node-id="rds_replica">
+              <rect x="1040" y="420" width="150" height="90" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <ellipse cx="1115" cy="442" rx="42" ry="10" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.1"/>
+              <path d="M 1048 442 V 485 C 1048 494 1077 500 1115 500 C 1153 500 1182 494 1182 485 V 442" fill="none" stroke="#7c3aed" stroke-width="1.1"/>
+              <text x="1115" y="478" text-anchor="middle" fill="#4c1d95" font-size="13" font-weight="750">RDS Replica</text>
+            </g>
+            <g data-node-id="object_store">
+              <rect x="1540" y="160" width="150" height="90" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+              <text x="1615" y="200" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="750">Object Store</text>
+              <text x="1615" y="222" text-anchor="middle" fill="#64748b" font-size="11">S3 buckets</text>
+            </g>
+            <g data-node-id="message_queue">
+              <rect x="1540" y="300" width="150" height="80" rx="8" fill="#ffedd5" stroke="#c2410c" stroke-width="1.5"/>
+              <text x="1615" y="340" text-anchor="middle" fill="#7c2d12" font-size="14" font-weight="750">Message Bus</text>
+              <text x="1615" y="362" text-anchor="middle" fill="#64748b" font-size="11">SQS topics</text>
+            </g>
+            <g data-node-id="observability">
+              <rect x="460" y="780" width="1020" height="70" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="1.5"/>
+              <text x="970" y="817" text-anchor="middle" fill="#713f12" font-size="15" font-weight="750">Cross-Region Observability</text>
+              <text x="970" y="839" text-anchor="middle" fill="#64748b" font-size="11">logs metrics traces alerting</text>
+            </g>
+          </g>
+
+          <g id="map-key" transform="translate(48 940)" font-family="SFMono-Regular, JetBrains Mono, monospace">
+            <text x="0" y="0" fill="#172033" font-size="11" font-weight="700">Map key</text>
+            <g transform="translate(0 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ccfbf1" stroke="#0f766e"/><text x="22" y="8" fill="#647084" font-size="9">Actor</text></g>
+            <g transform="translate(82 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dbeafe" stroke="#2563eb"/><text x="22" y="8" fill="#647084" font-size="9">Entry</text></g>
+            <g transform="translate(169 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#dcfce7" stroke="#15803d"/><text x="22" y="8" fill="#647084" font-size="9">Compute</text></g>
+            <g transform="translate(267 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ede9fe" stroke="#7c3aed"/><text x="22" y="8" fill="#647084" font-size="9">State</text></g>
+            <g transform="translate(354 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#ffedd5" stroke="#c2410c"/><text x="22" y="8" fill="#647084" font-size="9">Message</text></g>
+            <g transform="translate(452 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#fef3c7" stroke="#a16207"/><text x="22" y="8" fill="#647084" font-size="9">Telemetry</text></g>
+            <g transform="translate(550 18)"><rect x="0" y="0" width="16" height="9" rx="2" fill="#f1f5f9" stroke="#475569"/><text x="22" y="8" fill="#647084" font-size="9">External</text></g>
+            <g transform="translate(659 18)"><path d="M 0 5 H 34" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow-external)"/><text x="44" y="8" fill="#647084" font-size="9">Sync</text></g>
+            <g transform="translate(762 18)"><path d="M 0 5 H 34" stroke="#c2410c" stroke-width="2" stroke-dasharray="6 4" fill="none" marker-end="url(#arrow-message)"/><text x="44" y="8" fill="#647084" font-size="9">Async / side path</text></g>
+          </g>
+        </svg>
+      </div>
+      <aside class="notes" aria-label="Diagram notes">
+        <h2>Reading Notes</h2>
+        <section class="note-section"><h3>System Shape</h3><ul>
+          <li>Traffic enters at the global edge, is steered by geo-DNS and anycasting, then lands in one of two active regions.</li>
+          <li>Each region owns an ingress, a Kubernetes cluster, and a managed database; the primary replicates to the cross-region replica.</li>
+          <li>Object storage and the message bus are consumed by both clusters.</li>
+        </ul></section>
+        <section class="note-section"><h3>Critical Flows</h3><ul>
+          <li>User → CDN → Global LB → regional ingress → K8s service → RDS.</li>
+          <li>RDS Primary streams logical replication to RDS Replica.</li>
+          <li>Services push domain events to the message bus and store artifacts in object storage.</li>
+        </ul></section>
+        <section class="note-section"><h3>Operational Notes</h3><ul>
+          <li>Cross-region telemetry aggregates logs, metrics, and traces for both regions.</li>
+          <li>Failover switches traffic between regions; managed services must survive a single-region outage independently.</li>
+        </ul></section>
+      </aside>
+    </section>
+    <footer class="footer">
+      <span>Diagram type: infrastructure map</span>
+      <span>Scope: multi-region production runtime</span>
+    </footer>
+  </main>
+  <script type="application/json" id="diagram-ir">
+  {
+    "title": "Multi-Region Platform Infrastructure",
+    "lens": "infrastructure",
+    "scope": "multi-region production runtime",
+    "language": "en",
+    "mode": "create",
+    "canvas": { "complexity": "wide", "viewBox": "0 0 1760 1020" },
+    "regions": [
+      { "id": "region_a", "label": "Region A — us-east-1", "role": "infrastructure", "bounds": { "x": 460, "y": 100, "width": 480, "height": 560 }, "contains": ["ingress_a", "k8s_a", "rds_primary"] },
+      { "id": "region_b", "label": "Region B — us-west-2", "role": "infrastructure", "bounds": { "x": 1000, "y": 100, "width": 480, "height": 560 }, "contains": ["ingress_b", "k8s_b", "rds_replica"] }
+    ],
+    "nodes": [
+      { "id": "users", "label": "Users", "role": "actor", "responsibility": "web, mobile, API", "bounds": { "x": 40, "y": 200, "width": 130, "height": 80 } },
+      { "id": "cdn_edge", "label": "CDN / Edge", "role": "entry", "responsibility": "cache, WAF, TLS", "bounds": { "x": 220, "y": 160, "width": 140, "height": 80 } },
+      { "id": "global_lb", "label": "Global LB", "role": "entry", "responsibility": "geo steering", "bounds": { "x": 220, "y": 300, "width": 140, "height": 80 } },
+      { "id": "ingress_a", "label": "Ingress A", "role": "entry", "responsibility": "ALB + mTLS", "bounds": { "x": 500, "y": 160, "width": 130, "height": 70 } },
+      { "id": "k8s_a", "label": "K8s Cluster A", "role": "compute", "responsibility": "services, workers, node groups", "bounds": { "x": 500, "y": 270, "width": 200, "height": 110 } },
+      { "id": "rds_primary", "label": "RDS Primary", "role": "state", "responsibility": "primary relational store", "bounds": { "x": 500, "y": 420, "width": 150, "height": 90 } },
+      { "id": "ingress_b", "label": "Ingress B", "role": "entry", "responsibility": "ALB + mTLS", "bounds": { "x": 1040, "y": 160, "width": 130, "height": 70 } },
+      { "id": "k8s_b", "label": "K8s Cluster B", "role": "compute", "responsibility": "services, workers, node groups", "bounds": { "x": 1040, "y": 270, "width": 200, "height": 110 } },
+      { "id": "rds_replica", "label": "RDS Replica", "role": "state", "responsibility": "cross-region replica", "bounds": { "x": 1040, "y": 420, "width": 150, "height": 90 } },
+      { "id": "object_store", "label": "Object Store", "role": "state", "responsibility": "S3 buckets", "bounds": { "x": 1540, "y": 160, "width": 150, "height": 90 } },
+      { "id": "message_queue", "label": "Message Bus", "role": "message", "responsibility": "SQS topics", "bounds": { "x": 1540, "y": 300, "width": 150, "height": 80 } },
+      { "id": "observability", "label": "Cross-Region Observability", "role": "telemetry", "responsibility": "logs, metrics, traces, alerting", "bounds": { "x": 460, "y": 780, "width": 1020, "height": 70 } }
+    ],
+    "edges": [
+      { "id": "users_to_cdn", "from": "users", "to": "cdn_edge", "kind": "sync", "label": "HTTPS", "role": "actor", "route": "orthogonal", "labelAnchor": { "x": 195, "y": 188, "width": 50 } },
+      { "id": "cdn_to_lb", "from": "cdn_edge", "to": "global_lb", "kind": "sync", "label": "anycast", "role": "entry", "route": "orthogonal", "labelAnchor": { "x": 304, "y": 274, "width": 58 } },
+      { "id": "lb_to_ingressA", "from": "global_lb", "to": "ingress_a", "kind": "sync", "label": "route", "role": "entry", "route": "orthogonal", "labelAnchor": { "x": 395, "y": 332, "width": 46 } },
+      { "id": "lb_to_ingressB", "from": "global_lb", "to": "ingress_b", "kind": "sync", "label": "route", "role": "entry", "route": "orthogonal", "labelAnchor": { "x": 732, "y": 70, "width": 46 } },
+      { "id": "ingressA_to_k8sA", "from": "ingress_a", "to": "k8s_a", "kind": "sync", "label": "HTTP", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 579, "y": 254, "width": 40 } },
+      { "id": "ingressB_to_k8sB", "from": "ingress_b", "to": "k8s_b", "kind": "sync", "label": "HTTP", "role": "compute", "route": "orthogonal", "labelAnchor": { "x": 1119, "y": 254, "width": 40 } },
+      { "id": "k8sA_to_rdsA", "from": "k8s_a", "to": "rds_primary", "kind": "sync", "label": "50s", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 589, "y": 404, "width": 26 } },
+      { "id": "k8sB_to_rdsB", "from": "k8s_b", "to": "rds_replica", "kind": "sync", "label": "50s", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 1129, "y": 404, "width": 26 } },
+      { "id": "rdsA_to_rdsB", "from": "rds_primary", "to": "rds_replica", "kind": "sync", "label": "logical replication", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 845, "y": 455, "width": 130 } },
+      { "id": "k8sA_to_object", "from": "k8s_a", "to": "object_store", "kind": "sync", "label": "S3 objects", "role": "state", "route": "orthogonal", "labelAnchor": { "x": 1734, "y": 380, "width": 78 } },
+      { "id": "k8sA_to_queue", "from": "k8s_a", "to": "message_queue", "kind": "async", "label": "queue", "role": "message", "route": "orthogonal", "labelAnchor": { "x": 1629, "y": 470, "width": 46 } },
+      { "id": "k8sA_to_observability", "from": "k8s_a", "to": "observability", "kind": "telemetry", "label": "metrics", "role": "telemetry", "route": "orthogonal", "labelAnchor": { "x": 416, "y": 580, "width": 58 } },
+      { "id": "k8sB_to_observability", "from": "k8s_b", "to": "observability", "kind": "telemetry", "label": "logs", "role": "telemetry", "route": "orthogonal", "labelAnchor": { "x": 1534, "y": 580, "width": 38 } }
+    ],
+    "notes": [
+      { "title": "System Shape", "bullets": ["Two active regions, each with ingress, Kubernetes, and managed database."] },
+      { "title": "Critical Flows", "bullets": ["Global edge steers traffic to a regional ingress; services persist to RDS and fan out to object storage and the message bus."] },
+      { "title": "Operational Notes", "bullets": ["Cross-region telemetry and replication support regional failover."] }
+    ],
+    "assumptions": []
+  }
+  </script>
+  <script>
+    function serializeSVG(){const s=document.getElementById('system-map');const c=s.cloneNode(true);c.setAttribute('xmlns','http://www.w3.org/2000/svg');return '<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(c);}
+    function downloadBlob(n,b){const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+    function downloadSVG(){downloadBlob('infrastructure-map.svg',new Blob([serializeSVG()],{type:'image/svg+xml;charset=utf-8'}));}
+    function renderCanvas(scale=2){return new Promise((resolve,reject)=>{const svg=document.getElementById('system-map');const box=svg.viewBox.baseVal;const c=document.createElement('canvas');c.width=Math.round((box.width||1760)*scale);c.height=Math.round((box.height||1020)*scale);const ctx=c.getContext('2d');ctx.fillStyle='#f8fafc';ctx.fillRect(0,0,c.width,c.height);const img=new Image();img.onload=()=>{ctx.drawImage(img,0,0,c.width,c.height);resolve(c);};img.onerror=reject;img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(serializeSVG());});}
+    async function downloadPNG(){const c=await renderCanvas(2);c.toBlob(b=>{if(b)downloadBlob('infrastructure-map.png',b);},'image/png');}
+    async function copyPNG(){try{const c=await renderCanvas(2);const b=await new Promise(r=>c.toBlob(r,'image/png'));if(!b)throw new Error('PNG export failed');await navigator.clipboard.write([new ClipboardItem({'image/png':b})]);}catch(e){console.error(e);window.alert('Copy PNG is not available in this browser context. Use PNG download instead.');}}
+  </script>
+</body>
+</html>

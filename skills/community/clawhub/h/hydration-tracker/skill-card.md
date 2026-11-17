@@ -1,41 +1,55 @@
-## Description: <br>
-Track daily water intake, set hydration goals, and get drink reminders. Use when logging water, setting targets, or reviewing weekly intake trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track daily water intake, set hydration goals, and get drink reminders.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users use this local command-line utility to log water intake, set daily hydration targets, check progress during the day, and review recent intake history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores hydration goal and intake history as local wellness records under ~/.water_reminder. <br>
-Mitigation: Install only if local storage of these records is acceptable, and delete ~/.water_reminder to remove the saved data. <br>
+## Use Case:
 
+External users and developers use this skill to log water intake, set daily hydration goals, check progress, and review recent hydration trends from the command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/hydration-tracker) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Hydration Tracker documentation](https://bytesagain.com/skills/hydration-tracker) <br>
-- [BytesAgain support](https://bytesagain.com/feedback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output from a Bash utility with local JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores intake history and hydration goals locally under ~/.water_reminder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill creates persistent local hydration history and goal files under ~/.water_reminder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the stored local JSON files before sharing the machine or backing up the home directory.
+
+Risk: The reminder command provides a manually invoked tip and does not schedule automatic reminders.
+
+Mitigation: Use an external scheduler or reminder application if automatic notifications are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/hydration-tracker)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Hydration Tracker documentation](https://bytesagain.com/skills/hydration-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text command output with local JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local files under ~/.water_reminder for hydration history and daily goal configuration.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

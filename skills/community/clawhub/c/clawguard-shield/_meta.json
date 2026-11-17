@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7fq6h0mc0nqbkzq8c79k1wjx834cz0",
-  "slug": "clawguard-shield",
+  "name": "clawguard",
   "version": "3.0.0",
-  "publishedAt": 1775293921969
+  "description": "ClawGuard v3 - AI Agent Security Toolkit",
+  "author": "ClawGuard Team",
+  "license": "MIT"
 }

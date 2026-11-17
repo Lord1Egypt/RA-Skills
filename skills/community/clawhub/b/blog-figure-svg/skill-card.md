@@ -1,44 +1,58 @@
-## Description: <br>
-Generates accessible, lightweight SVG figures and OG feature cards for blog and CMS workflows, with rasterized PNG outputs and writer-ready caption guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates accessible, lightweight SVG figures and rasterized PNGs for blog posts and CMS publishing workflows, including flow diagrams, comparison charts, taxonomy diagrams, terminal mocks, and 1600x840 feature cards.
 
-## Publisher: <br>
-[automatelab](https://clawhub.ai/user/automatelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[automatelab](https://clawhub.ai/user/automatelab)
 
-## Use Case: <br>
-Content marketers, indie hackers, and dev-tool blog writers use this skill to create accessible diagrams, comparison charts, taxonomy visuals, terminal mocks, and feature images after article prose is stable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated visuals may include incorrect, misleading, or uncited data if the source article is wrong or incomplete. <br>
-Mitigation: Review each SVG/PNG and caption against the article before publishing, and do not plot data the article does not already cite. <br>
-Risk: Optional rasterizer or PNG compression tools may be installed outside the skill package. <br>
-Mitigation: Install ImageMagick, rsvg-convert, Inkscape, CairoSVG, pngquant, or oxipng only from trusted package sources and keep them updated. <br>
-Risk: CMS upload credentials may be exposed if users connect generated assets to upload tooling carelessly. <br>
-Mitigation: Use trusted CMS upload tooling and keep credentials in the CMS adapter rather than in generated figures, captions, or command history. <br>
+## Use Case:
 
+Developers, content marketers, indie publishers, and dev-tool blog teams use this skill to create editorial figures and feature images after article prose is stable. It supports CMS and static-site publishing workflows that need accessible SVG source plus compressed PNG output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/automatelab/blog-figure-svg) <br>
-- [Skill homepage](https://github.com/AutomateLab-tech/publishing-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/automatelab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with inline SVG, shell commands, and figure handoff snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces editable SVG source, rasterized PNG assets, and caption requirements for publishing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill writes generated image files into a working directory and depends on local rasterizer and compressor tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for editorial SVG/PNG generation workflows, use a virtual environment or managed rasterizer, and prefer pinned dependencies.
+
+Risk: Unexpected color or accent inputs can weaken consistency or produce invalid figure output.
+
+Mitigation: Keep accent and color inputs to known hex values from the documented palette.
+
+Risk: Generated charts or diagrams can mislead readers if they plot data not present in the article or exaggerate differences.
+
+Mitigation: Review generated figures against the article source data and retain the documented rule to avoid plotting unsupported data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/automatelab/skills/blog-figure-svg)
+- [Publisher profile](https://clawhub.ai/user/automatelab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SVG, HTML, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces editable SVG source and compressed PNG image outputs in the working directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

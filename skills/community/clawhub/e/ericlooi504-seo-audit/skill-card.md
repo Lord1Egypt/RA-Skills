@@ -1,42 +1,54 @@
-## Description: <br>
-Analyzes visible website content for SEO and guides users through checklist-based reviews of title tags, meta descriptions, headers, content quality, readability, and prioritized improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO Audit helps website owners, bloggers, and small businesses review visible page content for title tags, meta descriptions, headings, content quality, readability, and other search-readiness signals.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Website owners, bloggers, and small businesses use this skill to review visible page content, compare SEO readiness against competitors, and turn findings into practical improvement checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or authenticated URLs may expose sensitive page content to the reviewing agent. <br>
-Mitigation: Use public pages unless the user is authorized to share the content, and avoid submitting sensitive private pages for review. <br>
-Risk: SEO findings may be incomplete because the skill does not use analytics data, Search Console data, crawlers, external SEO APIs, or deep server checks. <br>
-Mitigation: Treat recommendations as checklist guidance and verify important business decisions with authoritative analytics, search-console data, or specialist review. <br>
-Risk: Long-term SEO progress tracking may depend on how the agent or workspace stores review history. <br>
-Mitigation: Clarify where progress history is stored before relying on long-term tracking, and avoid storing sensitive site details unnecessarily. <br>
+## Use Case:
 
+External website owners, bloggers, and small businesses use this skill to get checklist-based SEO observations and prioritized improvements from visible web page content. It can also support side-by-side visible-content comparisons against competitor pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/ericlooi504-seo-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown checklists, recommendations, and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on visible page content and does not run crawlers, external SEO APIs, or deep server checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The agent visits websites the user asks it to review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill with public pages or pages the user is comfortable having the agent access.
+
+Risk: Visible-content-only SEO reviews can miss analytics, Search Console data, crawling issues, API data, and server configuration details.
+
+Mitigation: Treat findings as checklist-based content guidance and use specialized SEO or site-administration tools for deeper technical audits.
+
+## Reference(s):
+
+- [SEO Audit on ClawHub](https://clawhub.ai/ericlooi504/skills/ericlooi504-seo-audit)
+- [ericlooi504 ClawHub publisher profile](https://clawhub.ai/user/ericlooi504)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown checklist with recommendations and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Based on visible page content; no crawling, external SEO APIs, analytics, or Search Console access.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

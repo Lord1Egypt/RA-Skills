@@ -1,0 +1,11 @@
+# Private: detector report fragments & internal notes
+validation/corpus/
+skills/anti-ai-foolish/validation/corpus/
+skills/anti-ai-foolish/references/语料全解.md
+skills/anti-ai-foolish/references/用户文章诊断.md
+.mimosa/
+__pycache__/
+*.pyc
+
+# market catalog
+.DS_Store

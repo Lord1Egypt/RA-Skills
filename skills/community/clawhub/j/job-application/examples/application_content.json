@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "job": {
+    "company": "Beispielwerke GmbH",
+    "role": "Data Automation Consultant",
+    "language": "de"
+  },
+  "cover_letter": {
+    "recipient": "Recruiting-Team",
+    "company_address": ["Beispielstraße 1", "10115 Berlin"],
+    "date": "15.09.2026",
+    "subject": "Bewerbung als Data Automation Consultant",
+    "salutation": "Guten Tag liebes Recruiting-Team,",
+    "paragraphs": [
+      "die Verbindung aus Beratung und technischer Automatisierung in Ihrer Ausschreibung passt sehr gut zu meinem fiktiven Beispielprofil.",
+      "In meiner aktuellen Rolle konzipiere ich datengetriebene Prozesse mit Python und SQL und übersetze Anforderungen aus Workshops in belastbare technische Lösungen.",
+      "Ich freue mich darauf, meine Erfahrung in einem persönlichen Gespräch näher vorzustellen."
+    ],
+    "closing": "Mit freundlichen Grüßen",
+    "signature_image": "../assets/profile/mira-hoffmann-signature.pdf",
+    "signatory": "Mira Hoffmann"
+  },
+  "plain_text": {
+    "subject": "Bewerbung als Data Automation Consultant",
+    "salutation": "Guten Tag liebes Recruiting-Team,",
+    "paragraphs": [
+      "Ich verbinde Beratungserfahrung mit praktischer Umsetzung in Python, SQL und Cloud-Umgebungen.",
+      "Besonders wichtig sind mir verständliche Kommunikation, belastbare Datenprozesse und messbarer Nutzen."
+    ],
+    "closing": "Mit freundlichen Grüßen",
+    "signatory": "Mira Hoffmann"
+  }
+}

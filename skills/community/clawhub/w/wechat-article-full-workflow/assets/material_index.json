@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "description": "WeChat material library index — check this before generating new images",
+    "last_update": "2026-05-30",
+    "total_images": 7
+  },
+  "images": [
+    {
+      "id": "IMG_001",
+      "description": "AI数字员工概念图 - 温暖AI形象与人协作，现代简约风格",
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/ak2P49AlJ3icGscTic8qjeLl7sdLcFpfsXYZfLlC9hicMCXYe0881fSf4SU7THhBAicH3zz31CsJPMu06JfshF3X80e18OfBibbxKRJArpIXIH2s/0?wx_fmt=png",
+      "used_in": [
+        "AI打工我躺平-20260530"
+      ],
+      "tags": [
+        "AI助手",
+        "概念图",
+        "温暖风格"
+      ]
+    },
+    {
+      "id": "IMG_002",
+      "description": "WorkBuddy操作界面示意 - 聊天式交互界面，轻松无压力",
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/ak2P49AlJ3icZPSaqo3Ckk7icQibpI6Q1uFLfmR6W8GabEX5Eb7ZBqPnHI5z6czmicmgWKTLic5icsHWO7ibZcwiaQBZ04BfmqcFfia5kbGbCySc1ud0/0?wx_fmt=png",
+      "used_in": [
+        "AI打工我躺平-20260530"
+      ],
+      "tags": [
+        "AI 助手平台",
+        "界面",
+        "聊天"
+      ]
+    },
+    {
+      "id": "IMG_003",
+      "description": "零门槛上手示意 - 对话气泡，友好轻松，无需技术背景",
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ak2P49AlJ395gfZrCjmc7dZwicufnr4CYiaI8bRSCYZC4ubJpMw6uEU4fIj6ChXibibcNbIVPbxpP66I8QOKbH3Jgf6qFOqyL8A0uejWtAEoOlU/0?wx_fmt=png",
+      "used_in": [
+        "AI打工我躺平-20260530"
+      ],
+      "tags": [
+        "零门槛",
+        "对话",
+        "友好"
+      ]
+    },
+    {
+      "id": "IMG_004",
+      "description": "公众号+小程序联动示意 - 智能手机双屏，微信生态",
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ak2P49AlJ391zS2mKyNp0kfTQKAS71u8N3QaMbHYLO9w3F07d4bgU2UWV4ibJ28n3r9UTmEztnjR6IbMzHSVh8IIUjiaS9fWAqxicFZ8MPZC1A/0?wx_fmt=png",
+      "used_in": [
+        "AI打工我躺平-20260530"
+      ],
+      "tags": [
+        "公众号",
+        "小程序",
+        "微信生态"
+      ]
+    },
+    {
+      "id": "IMG_005",
+      "description": "腾讯生态产品联动图 - 产品环绕AI中心，生态系统",
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ak2P49AlJ380CjE9s7zwaSn4paMgj38YYvu4BXCGTIsdZ9hEf024hG8mSiauzDFMc6fJv9BgFJ7t30k3YQYy9ba1qe3pbSMx7TKeQPBibFhKo/0?wx_fmt=png",
+      "used_in": [
+        "AI打工我躺平-20260530"
+      ],
+      "tags": [
+        "腾讯生态",
+        "产品联动",
+        "系统"
+      ]
+    },
+    {
+      "id": "IMG_006",
+      "description": "多功能展示 - 能力轮盘多彩网格，AI多技能",
+      "url": "https://mmbiz.qpic.cn/sz_mmbiz_png/ak2P49AlJ38CZxxA5BpkANcwgCRUZQUl2b3JNGibibaiarFe7paK8TGDf7hcYpUFaGDze5K3CdwcWSnadziaH5Ln62O9ovXxnxsibWTvZzLJasg0/0?wx_fmt=png",
+      "used_in": [
+        "AI打工我躺平-20260530"
+      ],
+      "tags": [
+        "多功能",
+        "能力",
+        "轮盘"
+      ]
+    },
+    {
+      "id": "IMG_007",
+      "description": "安全与进化示意 - 盾牌+AI大脑+上升箭头，安全可信",
+      "url": "https://mmbiz.qpic.cn/mmbiz_png/ak2P49AlJ3ib5sjZdYdl3AuFMByiceEv3mZKBMHfXhkm5YD7CsJ9EM6yc13NhxQPN3DInJgRdrKgml6LU1OsibT4ZmU5EjTabqdXkzeeHibEP24/0?wx_fmt=png",
+      "used_in": [
+        "AI打工我躺平-20260530"
+      ],
+      "tags": [
+        "安全",
+        "进化",
+        "盾牌"
+      ]
+    }
+  ],
+  "qr_code": {
+    "description": "公众号二维码",
+    "url": "https://mmbiz.qpic.cn/sz_mmbiz_jpg/ak2P49AlJ39DDkkkibCc2E5ALZd0zkBRviaRMoibcerGywjUB1Y0tAmxWqzaWgL9iaPOMriaVUNpHSShYV80X2svybibyXVxAQQbygae8cIzms8ZHQ/0?wx_fmt=jpeg",
+    "local_path": "请替换为你本地的二维码图片路径"
+  }
+}

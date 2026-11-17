@@ -1,0 +1,148 @@
+<!doctype html>
+<!--
+================================================================
+  P2 特性夹具页(2026-07-27)
+  覆盖:上下标(<sup>/<sub>/vertical-align)、run 级字距、
+       预设几何(data-shape:triangle/rightArrow/chevron/diamond/
+       pentagon/star5/heart/plus/flowchartDecision 等)。
+  自包含(不引外部 CSS),L1/L2/L3 三层基线锚定 P2 行为。
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>P2 特性夹具页</title>
+<style>
+  html,body{margin:0;padding:0;overflow:hidden;}
+</style>
+</head>
+<body>
+<div class="slide-container" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFFFFF;font-family:'Noto Sans SC',Arial,sans-serif;">
+
+  <!-- 页头 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:60px;width:1200px;height:50px;font-size:36px;font-weight:700;color:#0A2E5C;line-height:50px;">P2 特性:上下标 · run 级字距 · 预设几何</div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:120px;width:1720px;height:2px;background:#D5D5D0;"></div>
+
+  <!-- ============================================ -->
+  <!-- 1. 上下标:化学式/脚注/数学表达式          -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:160px;width:800px;height:40px;font-size:24px;font-weight:600;color:#333;">① 上下标</div>
+
+  <!-- 化学式 H₂O / CO₂ / E=mc² -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:210px;width:800px;height:60px;font-size:32px;color:#1A1A1A;line-height:60px;">
+    H<sub>2</sub>O&nbsp;&nbsp;CO<sub>2</sub>&nbsp;&nbsp;E=mc<sup>2</sup>&nbsp;&nbsp;x<sup>n+1</sup>
+  </div>
+
+  <!-- 脚注样式:vertical-align:super -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:280px;width:800px;height:60px;font-size:20px;color:#555;line-height:60px;">
+    这是一段带脚注的文字<span style="vertical-align:super;font-size:14px;color:#F39800;">[1]</span> 和商标<span style="vertical-align:super;font-size:14px;">TM</span>
+  </div>
+
+  <!-- 数学表达式:混合上下标 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:350px;width:800px;height:60px;font-size:28px;color:#0A2E5C;line-height:60px;">
+    a<sub>n</sub> = a<sub>n-1</sub> + d&nbsp;&nbsp;|&nbsp;&nbsp;f<sup>-1</sup>(x)
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 2. run 级字距:标题/标签不同字距            -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1000px;top:160px;width:820px;height:40px;font-size:24px;font-weight:600;color:#333;">② run 级字距</div>
+
+  <!-- 同一 textbox 内不同字距的 run -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1000px;top:210px;width:820px;height:50px;font-size:22px;color:#1A1A1A;line-height:50px;">
+    <span style="letter-spacing:6px;">WIDE</span>&nbsp;&nbsp;<span style="letter-spacing:0px;">NORMAL</span>&nbsp;&nbsp;<span style="letter-spacing:3px;">MID</span>
+  </div>
+
+  <!-- 带字距的标签 + 普通正文混排 -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1000px;top:280px;width:820px;height:50px;font-size:20px;color:#555;line-height:50px;">
+    <span style="letter-spacing:8px;font-weight:700;color:#F39800;">AI</span> 是人类的智力外挂
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 3. 预设几何:流程图/箭头/装饰形状          -->
+  <!-- ============================================ -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:440px;width:1720px;height:40px;font-size:24px;font-weight:600;color:#333;">③ 预设几何(data-shape)</div>
+
+  <!-- 第一行:基本形状 -->
+  <div data-object="true" data-object-type="shape" data-shape="triangle"
+       style="position:absolute;left:100px;top:500px;width:120px;height:100px;background:#0A2E5C;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:610px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">triangle</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="rtTriangle"
+       style="position:absolute;left:260px;top:500px;width:120px;height:100px;background:#0A2E5C;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:260px;top:610px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">rtTriangle</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="diamond"
+       style="position:absolute;left:420px;top:500px;width:120px;height:100px;background:#F39800;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:420px;top:610px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">diamond</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="pentagon"
+       style="position:absolute;left:580px;top:500px;width:120px;height:100px;background:#2D9CDB;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:580px;top:610px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">pentagon</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="hexagon"
+       style="position:absolute;left:740px;top:500px;width:120px;height:100px;background:#27AE60;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:740px;top:610px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">hexagon</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="chevron"
+       style="position:absolute;left:900px;top:500px;width:140px;height:100px;background:#9B59B6;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:900px;top:610px;width:140px;height:24px;font-size:14px;text-align:center;color:#666;">chevron</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="rightArrow"
+       style="position:absolute;left:1080px;top:500px;width:180px;height:80px;background:#F39800;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1080px;top:590px;width:180px;height:24px;font-size:14px;text-align:center;color:#666;">rightArrow</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="star5"
+       style="position:absolute;left:1320px;top:500px;width:120px;height:120px;background:#EB5757;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1320px;top:630px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">star5</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="heart"
+       style="position:absolute;left:1500px;top:500px;width:120px;height:110px;background:#EB5757;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1500px;top:620px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">heart</div>
+
+  <!-- 第二行:更多形状 + 带边框 + 旋转 -->
+  <div data-object="true" data-object-type="shape" data-shape="plus"
+       style="position:absolute;left:100px;top:700px;width:100px;height:100px;background:#0A2E5C;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:810px;width:100px;height:24px;font-size:14px;text-align:center;color:#666;">plus</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="lightningBolt"
+       style="position:absolute;left:260px;top:700px;width:80px;height:120px;background:#F2C94C;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:260px;top:830px;width:80px;height:24px;font-size:14px;text-align:center;color:#666;">bolt</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="flowchartDecision"
+       style="position:absolute;left:400px;top:700px;width:140px;height:100px;background:#FFF;border:2px solid #0A2E5C;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:400px;top:810px;width:140px;height:24px;font-size:14px;text-align:center;color:#666;">decision</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="flowchartTerminator"
+       style="position:absolute;left:600px;top:700px;width:160px;height:80px;background:#27AE60;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:600px;top:790px;width:160px;height:24px;font-size:14px;text-align:center;color:#666;">terminator</div>
+
+  <div data-object="true" data-object-type="shape" data-shape="leftArrow"
+       style="position:absolute;left:820px;top:700px;width:180px;height:80px;background:#2D9CDB;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:820px;top:790px;width:180px;height:24px;font-size:14px;text-align:center;color:#666;">leftArrow</div>
+
+  <!-- 旋转的 chevron -->
+  <div data-object="true" data-object-type="shape" data-shape="chevron"
+       style="position:absolute;left:1060px;top:700px;width:140px;height:100px;background:#9B59B6;transform:rotate(180deg);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1060px;top:810px;width:140px;height:24px;font-size:14px;text-align:center;color:#666;">chevron↓(rot 180)</div>
+
+  <!-- 带阴影的 diamond -->
+  <div data-object="true" data-object-type="shape" data-shape="diamond"
+       style="position:absolute;left:1260px;top:700px;width:120px;height:100px;background:#F39800;box-shadow:0 4px 12px rgba(0,0,0,0.25);"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1260px;top:810px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">diamond+shadow</div>
+
+  <!-- 虚线边框的 triangle -->
+  <div data-object="true" data-object-type="shape" data-shape="triangle"
+       style="position:absolute;left:1440px;top:700px;width:120px;height:100px;background:#FFF;border:2px dashed #0A2E5C;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1440px;top:810px;width:120px;height:24px;font-size:14px;text-align:center;color:#666;">triangle+dashed</div>
+
+  <!-- 底部分隔线 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:880px;width:1720px;height:2px;background:#D5D5D0;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:900px;width:1720px;height:40px;font-size:16px;color:#999;">上下标 · run 级字距 · 80+ 预设几何(data-shape) — P2 2.3/2.4</div>
+
+  <template data-slide-notes>
+P2 特性夹具:① 上下标(H₂O/E=mc²/脚注TM/run 级字距混排;② 预设几何(triangle/diamond/chevron/arrow/star/heart/plus/bolt/flowchart + 旋转/阴影/虚线边框组合)。
+  </template>
+</div>
+</body>
+</html>

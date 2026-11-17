@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "validate-frame-before-experiment",
+      "stage": "validate",
+      "signal": "方向有若干待验证假设，但尚未写清预测、阈值和下一步决定。",
+      "state": {
+        "test_card_ready": false,
+        "experiment_finished": false
+      },
+      "primary": "validate/test-card.md",
+      "supporting": null,
+      "must_not_select": [
+        "validate/experiment-design.md",
+        "validate/gonogo-decision.md"
+      ],
+      "reason": "先定义可证伪的测试，再选择证据机制。"
+    },
+    {
+      "id": "validate-choose-experiment",
+      "stage": "validate",
+      "signal": "测试卡已经明确假设、预测和判断标准，需要选择最低成本但证据有效的验证方式。",
+      "state": {
+        "test_card_ready": true,
+        "experiment_finished": false
+      },
+      "primary": "validate/experiment-design.md",
+      "supporting": null,
+      "must_not_select": [
+        "validate/test-card.md",
+        "validate/gonogo-decision.md"
+      ],
+      "reason": "测试定义完成后才进入实验选择。"
+    },
+    {
+      "id": "validate-decide-after-experiment",
+      "stage": "validate",
+      "signal": "实验已经结束并取得结果，需要决定继续、转向或停止。",
+      "state": {
+        "test_card_ready": true,
+        "experiment_finished": true
+      },
+      "primary": "validate/gonogo-decision.md",
+      "supporting": null,
+      "must_not_select": [
+        "validate/test-card.md",
+        "validate/experiment-design.md"
+      ],
+      "reason": "此时应审计证据并作决定，而不是重新设计实验。"
+    },
+    {
+      "id": "scope-before-commit",
+      "stage": "plan",
+      "signal": "出现一个尚未承诺的新功能请求，团队正在判断是否纳入。",
+      "state": {
+        "scope_committed": false,
+        "scope_is_growing": false
+      },
+      "primary": "cross/say-no-by-default.md",
+      "supporting": null,
+      "must_not_select": [
+        "cross/feature-creep.md"
+      ],
+      "reason": "承诺前先做取舍，不把单次功能请求误判为已经发生的范围蔓延。"
+    },
+    {
+      "id": "scope-already-growing",
+      "stage": "plan",
+      "signal": "已承诺的里程碑持续增加功能，时间预算不变且核心价值开始模糊。",
+      "state": {
+        "scope_committed": true,
+        "scope_is_growing": true
+      },
+      "primary": "cross/feature-creep.md",
+      "supporting": "plan/appetite-constraint.md",
+      "must_not_select": [
+        "cross/say-no-by-default.md"
+      ],
+      "reason": "范围已经膨胀，需要恢复边界；时间预算卡只提供互补约束。"
+    },
+    {
+      "id": "rfc-before-decision",
+      "stage": "plan",
+      "signal": "重大 API 方案尚未定案，需要跨团队收集反馈并形成共识。",
+      "state": {
+        "decision_accepted": false
+      },
+      "primary": "plan/rfc-design.md",
+      "supporting": null,
+      "must_not_select": [
+        "plan/adr-rfc-enhance.md"
+      ],
+      "reason": "RFC 服务于决定形成前的评审。"
+    },
+    {
+      "id": "adr-after-decision",
+      "stage": "plan",
+      "signal": "架构决定已被接受，需要记录理由、未决问题和采用计划。",
+      "state": {
+        "decision_accepted": true
+      },
+      "primary": "plan/adr-rfc-enhance.md",
+      "supporting": null,
+      "must_not_select": [
+        "plan/rfc-design.md"
+      ],
+      "reason": "决定完成后应固化记录和落地路径，而不是重启提案流程。"
+    },
+    {
+      "id": "track-unknown-runtime-state",
+      "stage": "track",
+      "signal": "服务已上线，但团队无法从系统输出解释请求为什么失败。",
+      "state": {
+        "runtime_deployed": true,
+        "failure_explainable": false
+      },
+      "primary": "track/observability.md",
+      "supporting": null,
+      "must_not_select": [
+        "track/four-metrics.md"
+      ],
+      "reason": "先获得可解释的运行时证据，不用交付指标替代系统诊断。"
+    },
+    {
+      "id": "plan-external-input-security",
+      "stage": "plan",
+      "signal": "方案新增外部输入和用户数据访问，但没有定义验证、授权和失败处理。",
+      "state": {
+        "external_input": true,
+        "authorization_defined": false
+      },
+      "primary": "plan/security-design.md",
+      "supporting": "plan/api-design.md",
+      "must_not_select": [],
+      "reason": "安全边界是主问题，API 兼容契约只是互补信息。"
+    },
+    {
+      "id": "track-large-review-change",
+      "stage": "track",
+      "signal": "一个审查变更包含多个独立概念，审查者难以理解；问题不只是行数大。",
+      "state": {
+        "independent_concepts": 3
+      },
+      "primary": "track/code-review.md",
+      "supporting": null,
+      "must_not_select": [],
+      "reason": "按自包含概念拆分，而不是套用固定行数阈值。"
+    },
+    {
+      "id": "cross-interruptive-communication",
+      "stage": "track",
+      "signal": "复杂决定散落在即时消息中，会议和打断过多，结果无法追溯。",
+      "state": {
+        "urgent_incident": false
+      },
+      "primary": "cross/async-communication.md",
+      "supporting": null,
+      "must_not_select": [],
+      "reason": "将需要沉淀的复杂讨论转为可异步审阅的文档。"
+    },
+    {
+      "id": "retention-existing-users-leave",
+      "stage": "track",
+      "signal": "已有稳定获客渠道，但新用户首次使用后很快离开。",
+      "state": {
+        "acquisition_exists": true,
+        "retention_problem": true
+      },
+      "primary": "cross/user-retention.md",
+      "supporting": null,
+      "must_not_select": [
+        "cross/growth-flywheel.md"
+      ],
+      "reason": "先修复用户价值和留存，不用新增流量掩盖流失。"
+    },
+    {
+      "id": "growth-no-repeatable-loop",
+      "stage": "track",
+      "signal": "核心用户会持续获得价值，但增长完全依赖一次性外部投放。",
+      "state": {
+        "retention_signal": true,
+        "repeatable_growth_loop": false
+      },
+      "primary": "cross/growth-flywheel.md",
+      "supporting": null,
+      "must_not_select": [
+        "cross/user-retention.md"
+      ],
+      "reason": "已有价值和留存信号后，才寻找可重复的增长循环。"
+    },
+    {
+      "id": "plan-model-invariants-first",
+      "stage": "plan",
+      "signal": "团队准备直接列数据库字段，但尚未定义业务实体、关系和必须成立的不变量。",
+      "state": {
+        "business_invariants_defined": false
+      },
+      "primary": "plan/data-modeling.md",
+      "supporting": null,
+      "must_not_select": [
+        "plan/api-design.md"
+      ],
+      "reason": "先建模业务约束，再选择字段和存储细节。"
+    }
+  ]
+}

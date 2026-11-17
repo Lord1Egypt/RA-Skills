@@ -1,40 +1,53 @@
-## Description: <br>
-Records and queries cross-platform task history for Mingri DMP skills using a shared local history file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Logger records and queries task history across supported agent platforms, including task parameters, operation steps, results, timestamps, and platform information.
 
-## Publisher: <br>
-[mingri26](https://clawhub.ai/user/mingri26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingri26](https://clawhub.ai/user/mingri26)
 
-## Use Case: <br>
-Developers and operators use this skill to record, inspect, and audit task history across Mingri DMP workflows, including task parameters, execution steps, status, result data, and platform information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Detailed task histories may include sensitive parameters, customer identifiers, proprietary audience definitions, or credentials. <br>
-Mitigation: Avoid logging sensitive values and use an isolated, access-controlled storage path with a clear cleanup process. <br>
-Risk: Shared local storage can make task history visible across conversations or users in shared environments. <br>
-Mitigation: Use the skill only where cross-session sharing is intended, and prefer workspace-specific storage for shared or multi-user systems. <br>
+## Use Case:
 
+Developers and agent operators use this skill to persist and query task records for Mingri DMP workflows across conversations and supported platforms. It is intended for local auditability and continuity when recording task inputs, steps, statuses, and outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mingri26/dmp-skill-logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON records and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and queries local task-history records, commonly in .skill-logger/task_history.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Task records can include parameters, results, and operational details that persist across conversations in shared local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-sensitive task data, avoid secrets and personal or business-sensitive details, and confine storage to private directories with restrictive permissions when needed.
+
+Risk: Shared history locations can expose task records beyond the current conversation or agent session.
+
+Mitigation: Review storage path behavior before deployment and establish retention, access, and cleanup practices for environments where multiple users or sessions may share local paths.
+
+## Reference(s):
+
+- [ClawHub Skill Logger release page](https://clawhub.ai/mingri26/skills/dmp-skill-logger)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [JSON task records and command-line JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists task history in local JSON files and may reuse records across conversations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

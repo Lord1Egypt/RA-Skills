@@ -1,40 +1,53 @@
-## Description: <br>
-Creates structured PowerPoint presentation content from academic, research, classroom, business, and project material, including slide outlines, concise bullets, speaker notes, and visual design suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents create clear, structured, and visually coherent PowerPoint presentations from academic, research, classroom, business, and project content.
 
-## Publisher: <br>
-[scc-nyy](https://clawhub.ai/user/scc-nyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scc-nyy](https://clawhub.ai/user/scc-nyy)
 
-## Use Case: <br>
-Students, researchers, educators, and business users use this skill to turn notes, papers, reports, assignments, experimental plans, or project plans into presentation-ready slide structures. It supports slide-by-slide outlines, audience-appropriate bullets, speaker notes, and visual organization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided documents may contain confidential research, classroom, or business information. <br>
-Mitigation: Avoid supplying confidential material unless it is appropriate to process in the assistant session; review generated slides and notes before sharing. <br>
-Risk: Condensing dense source material into slides can omit nuance or introduce inaccurate emphasis. <br>
-Mitigation: Review the generated outline, bullets, and speaker notes against the source material before presenting or publishing. <br>
+## Use Case:
 
+Students, researchers, educators, and business users use this skill to turn source material, reports, papers, assignments, or project plans into slide outlines, speaker notes, visual design guidance, and presentation-ready PowerPoint content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scc-nyy/ppt-generation-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown slide outlines, speaker notes, visual design guidance, and optional .pptx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May revise existing presentation content or create shorter, more formal, or audience-adapted versions on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided papers, reports, assignments, or business materials used for slide generation may contain private or confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide content appropriate for the connected agent environment and review generated slides before sharing.
+
+Risk: Generated slide summaries, bullets, or speaker notes may omit nuance from dense source material.
+
+Mitigation: Review the generated presentation against the source material and adjust emphasis, terminology, and claims before presenting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scc-nyy/skills/ppt-generation-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, presentation files, guidance]
+
+**Output Format:** [Slide-by-slide outlines, slide titles, concise bullets, speaker notes, visual design suggestions, revised presentation content, and optional .pptx files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt slide count, audience level, language, visual style, and speaker-note depth to the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

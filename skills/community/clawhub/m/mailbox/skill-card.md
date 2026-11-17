@@ -1,39 +1,59 @@
-## Description: <br>
-Manage and read email through the mailbox CLI with structured JSON output for listing, showing, deleting, digesting, and monitoring messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mailbox helps agents read, search, send, and manage email across Gmail, QQ, 163, Outlook, and IMAP/SMTP accounts through the mailbox command-line tool.
 
-## Publisher: <br>
-[leeguooooo](https://clawhub.ai/user/leeguooooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leeguooooo](https://clawhub.ai/user/leeguooooo)
 
-## Use Case: <br>
-Agents and developers use this skill to inspect and manage mailbox content through explicit mailbox CLI commands while preserving structured success and error handling for automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive mailbox data or change email state. <br>
-Mitigation: Confirm mailbox-cli trust and account permissions before installation, and require explicit user approval before sending, deleting, monitoring, or otherwise changing email state. <br>
-Risk: Email deletion is destructive. <br>
-Mitigation: Use --dry-run before mutating when available, and require --account-id plus --confirm for destructive operations. <br>
+## Use Case:
 
+Developers and agent operators use Mailbox when an assistant needs to inspect, search, triage, send, or clean up messages across configured email accounts while preserving machine-readable JSON responses and dry-run safeguards for mutations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leeguooooo/mailbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with mailbox CLI command examples and JSON output expectations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automation should use --json and check success; mutating actions should use dry-run when available and require explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends installing the mailbox CLI through a remote shell installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release with checksum or signature verification before installation.
+
+Risk: Mailbox credentials and cached email data are sensitive and may persist on disk or in a background daemon.
+
+Mitigation: Use app-specific credentials, restrict permissions on ~/.config/mailbox/auth.json, and install the daemon only when persistent mailbox sync is intended.
+
+Risk: Email sending, deletion, marking, moving, and cleanup can change user mailbox state.
+
+Mitigation: Keep destructive operations in dry-run mode until the user explicitly approves and the command includes the required confirmation flag.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leeguooooo/skills/mailbox)
+- [Server-Resolved GitHub Source](https://github.com/leeguooooo/Mailbox/tree/main/skills/mailbox)
+- [Project Homepage](https://github.com/leeguooooo/Mailbox)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON response expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directs agents to request JSON output, check success fields, and require confirmation before mutating mailbox state.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

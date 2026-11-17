@@ -1,41 +1,58 @@
-## Description: <br>
-Generate images with Doubao web chat, extract the final generated image URL from the page, save the image locally, and return the saved local path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images with Doubao web chat, extract the final generated image URL, save it locally, and return the saved path for browser-based image generation workflows.
 
-## Publisher: <br>
-[Likely7](https://clawhub.ai/user/Likely7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likely7](https://clawhub.ai/user/likely7)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate Doubao web chat for browser-based image generation, save the selected generated image locally, and return the saved path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and browser session state may be sent to Doubao during image generation. <br>
-Mitigation: Avoid sensitive prompts unless the user is comfortable sending them to Doubao, and make clear that the workflow may use an already logged-in browser session. <br>
-Risk: An unintended local path could overwrite or place generated image files somewhere unexpected. <br>
-Mitigation: Use a deliberate output path when possible and confirm the saved file path before relying on the result. <br>
+## Use Case:
 
+Developers and external users use this skill to drive Doubao web chat image generation, select the best available generated image URL, save the image to local disk, and return the file path.
 
-## Reference(s): <br>
-- [Doubao web chat](https://www.doubao.com/chat/) <br>
-- [ClawHub skill page](https://clawhub.ai/Likely7/doubaoimages) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with local file path and optional source image URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill saves a generated image to local disk and returns the final local save path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser-script and page-automation patterns may manipulate page state in ways that deserve review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing it and use it only with prompts and browser sessions you trust.
+
+Risk: The workflow downloads remote image URLs and writes files to local disk.
+
+Mitigation: Use a dedicated image output folder, avoid privileged accounts, pass output paths as data, and prevent overwriting existing files.
+
+Risk: The skill depends on a third-party web chat session and user login state.
+
+Mitigation: Confirm the Doubao page is the intended destination and continue only after the user has authenticated in the browser when required.
+
+## Reference(s):
+
+- [Doubao Web Chat](https://www.doubao.com/chat/)
+- [ClawHub Skill Page](https://clawhub.ai/likely7/skills/doubaoimages)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript and PowerShell/Python snippets; final response returns a local file path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally include the source image URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

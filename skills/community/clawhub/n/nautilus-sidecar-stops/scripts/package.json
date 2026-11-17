@@ -1,0 +1,9 @@
+{
+  "name": "nautilus-sidecar-stops-scripts",
+  "version": "1.0.7",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hypelens/hypelens-agent-guard": "0.1.18"
+  }
+}

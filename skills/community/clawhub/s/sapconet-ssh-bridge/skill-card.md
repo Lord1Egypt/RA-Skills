@@ -1,42 +1,56 @@
-## Description: <br>
-Standard SAPCONET SSH command templates for bird reads, Puppeteer runs, and inbox messaging workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard SAPCONET SSH command templates for bird reads, Puppeteer runs, and inbox messaging workflows.
 
-## Publisher: <br>
-[Highlander89](https://clawhub.ai/user/Highlander89) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[highlander89](https://clawhub.ai/user/highlander89)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare SSH-based SAPCONET command patterns for connectivity checks, bird reads, Puppeteer prerequisite checks, and inbox messaging workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill initiates SSH sessions to SAPCONET and includes a documented default target. <br>
-Mitigation: Confirm the SSH target and account before execution, and set SAPCONET_TARGET explicitly for the intended environment. <br>
-Risk: The inbox message script can allow crafted message text to run unintended commands on the remote host. <br>
-Mitigation: Before using scripts/msg-sapconet.sh with real content, pass message text safely, such as through stdin or a properly quoted remote argument. <br>
-Risk: The included remote commands are placeholders for operational workflows. <br>
-Mitigation: Review and replace placeholders with the intended SAPCONET commands before running the scripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Highlander89/sapconet-ssh-bridge) <br>
-- [Publisher profile](https://clawhub.ai/user/Highlander89) <br>
+## Use Case:
 
+Developers and operators use this skill to standardize SSH-based SAPCONET command patterns for connectivity checks, bird reads, Puppeteer environment checks, and inbox messaging workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides command templates and operator guidance; users must supply the intended SAPCONET target and replace placeholders before real use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Message text passed to the inbox messaging script can become unintended remote shell commands.
+
+Mitigation: Review and fix scripts/msg-sapconet.sh before using it with untrusted or variable message text.
+
+Risk: SSH commands may run against the wrong remote host or account if SAPCONET_TARGET is incorrect.
+
+Mitigation: Confirm SAPCONET_TARGET points to the intended SAPCONET host and account before running the scripts.
+
+Risk: The included SSH scripts are templates with placeholders rather than ready-to-run production workflows.
+
+Mitigation: Treat the scripts as templates and review remote command placeholders before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/highlander89/skills/sapconet-ssh-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash script templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SAPCONET_TARGET configuration and review of remote command placeholders before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

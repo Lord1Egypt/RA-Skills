@@ -1,0 +1,17 @@
+{
+  "name": "douyin-chat-insight",
+  "version": "0.2.1",
+  "description": "将用户自备的群聊/私聊导出分析为单页抖音/群聊会话价值报告（硬事实、矛盾、需求原话、动作）。零 IM 登录，不强制云端 Key。",
+  "homepage": "https://github.com/tars1230/douyin-chat-insight",
+  "license": "MIT",
+  "tags": [
+    "chat",
+    "insight",
+    "community",
+    "research",
+    "report",
+    "local-first",
+    "douyin",
+    "wechat"
+  ]
+}

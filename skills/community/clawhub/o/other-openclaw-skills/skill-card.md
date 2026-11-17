@@ -1,50 +1,68 @@
-## Description: <br>
-Routes requests across Meitu image and video workflows, including poster generation, stickers, visual try-on, product editing, video generation, upscaling, ID photos, cutouts, carousels, beauty enhancement, platform adaptation, and direct Meitu CLI execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes requests to Meitu scene skills for image, video, product, poster, portrait, ID photo, background removal, carousel, beauty, and direct Meitu CLI workflows.
 
-## Publisher: <br>
-[dongjie-oss](https://clawhub.ai/user/dongjie-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongjie-oss](https://clawhub.ai/user/dongjie-oss)
 
-## Use Case: <br>
-External users and developers use this skill pack to route image and video generation or editing requests to the appropriate Meitu scene skill or CLI-backed workflow. It supports creative, commerce, identity-photo, portrait, background-removal, adaptation, and direct command-execution tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API credentials may be exposed if users follow prompts that ask them to paste AK/SK into chat. <br>
-Mitigation: Configure credentials through environment variables or a protected local credentials file, and avoid sharing secrets in conversation. <br>
-Risk: Personal photos, profile facts, and visual preferences may persist across tasks through shared visual memory behavior. <br>
-Mitigation: Review and limit stored visual memory and reference photos before use, especially for sensitive personal, biometric, business, or client images. <br>
-Risk: Image and video workflows depend on Meitu API processing and local credential access. <br>
-Mitigation: Use the skill only for content that is appropriate to process with Meitu services, and restrict credential file permissions in shared or CI environments. <br>
+## Use Case:
 
+External users and developers use this skill pack to route visual creation and editing requests to specialized Meitu workflows or direct Meitu CLI execution. It supports poster generation, stickers, virtual try-on, product replacement, motion transfer, upscaling, ID photos, cutouts, carousels, beauty enhancement, and platform-specific image adaptation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongjie-oss/other-openclaw-skills) <br>
-- [Security model](SECURITY.md) <br>
-- [Meitu tools execution hub](meitu-tools/SKILL.md) <br>
-- [Visual workflow guide](skills/meitu-visual-me/references/workflows.md) <br>
-- [Poster output formats](skills/meitu-poster/references/output-formats.md) <br>
-- [Product-view e-commerce specs](skills/meitu-product-view/references/ecommerce-specs.md) <br>
-- [ID photo specification database](skills/meitu-id-photo/references/spec-database.md) <br>
-- [Image adaptation platform presets](skills/meitu-image-adapt/references/platform-presets.md) <br>
-- [Meitu Open Platform](https://www.miraclevision.com/open-claw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON snippets and shell command examples; direct tool execution can return JSON fields with task IDs, media URLs, and results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is returned through Meitu CLI workflows when execution succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill asks users to provide Meitu OpenAPI access and secret keys in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials with environment variables or a manually created local credentials file instead of pasting secrets into chat.
+
+Risk: Unpinned global install and npx fallback paths may execute code that changes after review.
+
+Mitigation: Review and trust the runtime source before installation, and prefer pinned or internally approved installation flows for controlled environments.
+
+Risk: Memory and profile personalization can include selected local context in prompts sent to Meitu OpenAPI.
+
+Mitigation: Disable personalization unless the user accepts this data flow, and review local context before enabling memory-backed workflows.
+
+Risk: The external oc-workspace.mjs helper is treated as privileged local code by several workflows.
+
+Mitigation: Verify the helper script and its permissions before use, especially in shared or production workspaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dongjie-oss/skills/other-openclaw-skills)
+- [Security Model](SECURITY.md)
+- [Meitu CLI Reference](skills/meitu-poster/references/meitu-cli-guide.md)
+- [Output Formats](skills/meitu-poster/references/output-formats.md)
+- [Product Multi-Angle View Prompt Templates](skills/meitu-product-view/references/prompts.md)
+- [Platform Size Presets](skills/meitu-image-adapt/references/platform-presets.md)
+- [Video Motion Transfer Input Quality Guide](skills/meitu-video-dance/references/input-quality-guide.md)
+- [Meitu OpenAPI Portal](https://www.miraclevision.com/open-claw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and generated media workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Meitu CLI workflows that return task IDs, media URLs, files, and user-facing error guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

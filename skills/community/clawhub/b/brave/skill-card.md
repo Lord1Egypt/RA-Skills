@@ -1,51 +1,64 @@
-## Description: <br>
-Operate, automate, and troubleshoot Brave Browser with profiles, Shields, extensions, and Chromium debugging workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate, automate, and troubleshoot Brave Browser with profiles, Shields, extensions, and Chromium debugging workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to run Brave-specific browser workflows, isolate profile and Shields issues, handle extensions, and apply Chromium-compatible automation only after the target browser surface is clear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote debugging can expose browser control or sensitive session state if left enabled. <br>
-Mitigation: Enable remote debugging only for a specific approved task, prefer a disposable or automation profile, and turn it off when the task is complete. <br>
-Risk: Profile cleanup, cookie clearing, Sync changes, wallet changes, or extension permission changes can affect sensitive user state. <br>
-Mitigation: Confirm the target profile and get explicit approval before touching browser state, wallet-adjacent settings, Sync, or extension permissions. <br>
-Risk: Global Shields relaxations can weaken privacy defaults beyond the affected site. <br>
-Mitigation: Use per-site Shields changes first, verify the result in Brave, and record only durable site-specific fixes. <br>
-Risk: Saving browser notes could accidentally capture secrets or detailed browsing history. <br>
-Mitigation: Keep only durable operating preferences and safety boundaries under ~/brave/ after user consent, and do not store passwords, secrets, or full browsing history. <br>
+## Use Case:
 
+External users, developers, and browser operators use this skill to run Brave-specific workflows for launch paths, profile isolation, Shields troubleshooting, extension conflicts, local automation, and recovery without treating Brave as generic Chrome.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/brave) <br>
-- [Brave Skill Homepage](https://clawic.com/skills/brave) <br>
-- [setup.md](artifact/setup.md) <br>
-- [launch-and-profiles.md](artifact/launch-and-profiles.md) <br>
-- [shields-and-compatibility.md](artifact/shields-and-compatibility.md) <br>
-- [automation-and-debugging.md](artifact/automation-and-debugging.md) <br>
-- [extensions-and-wallet.md](artifact/extensions-and-wallet.md) <br>
-- [troubleshooting.md](artifact/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no undeclared remote APIs or credentials are used by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Guidance may affect Brave profiles, Shields settings, extensions, sync, wallet-adjacent settings, or local remote debugging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit approval before sensitive browser actions and prefer per-site, reversible, single-variable changes before broader settings changes.
+
+Risk: Testing or automation in a daily logged-in profile can expose cookies, sessions, extensions, and personal browser state.
+
+Mitigation: Use a disposable test or automation profile when possible, avoid daily profiles for risky debugging, and turn off remote debugging after the task unless the user requests persistence.
+
+Risk: Persistent notes could accidentally capture sensitive browsing, wallet, sync, or account information.
+
+Mitigation: Store only non-secret operating preferences and incident notes under ~/brave/ after user consent; do not store passwords, seed phrases, full browsing history, or private-session content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/brave)
+- [Skill homepage](https://clawic.com/skills/brave)
+- [Setup guide](artifact/setup.md)
+- [Launch and profiles](artifact/launch-and-profiles.md)
+- [Shields and compatibility](artifact/shields-and-compatibility.md)
+- [Automation and debugging](artifact/automation-and-debugging.md)
+- [Extensions, sync, wallet, and private windows](artifact/extensions-and-wallet.md)
+- [Troubleshooting](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local browser actions, profile notes, and reversible diagnostic steps; requires user approval for sensitive browser-state changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

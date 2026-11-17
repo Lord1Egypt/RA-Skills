@@ -1,44 +1,66 @@
-## Description: <br>
-AI customer-support skill that helps categorize tickets, track SLA status, route escalations, draft replies, and summarize support metrics for Russian-language support teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Russian-language customer support automation skill for categorizing tickets, tracking SLA risk, routing escalations, drafting customer replies, preparing CRM-oriented customer summaries, and producing NPS/CSAT and onboarding reports.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-Support leaders, operators, and implementation teams use this skill to standardize customer-support workflows across ticket categorization, SLA monitoring, escalation, response drafting, CRM context review, refunds, and quality reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad authority over customer messages, CRM context, and refund-related workflows without enough scoping or approval controls. <br>
-Mitigation: Use it only in a clearly selected support workflow, narrow triggers and credentials, and require human approval before refunds or CRM updates. <br>
-Risk: Support workflows may expose customer identifiers, contact details, order data, lifetime value, payment or refund details, and complaint history. <br>
-Mitigation: Add privacy rules that minimize access to sensitive customer data and restrict storage, sharing, and display to what each support task requires. <br>
+## Use Case:
 
+Support leaders, COOs, CEOs, and support teams use this skill to standardize Russian-language helpdesk operations for businesses with recurring ticket volume. It helps classify tickets, monitor SLA status, route escalations, draft customer replies, and prepare operational reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raaipro/raai-price-probe-dogovornaya-20260421) <br>
-- [README](README.md) <br>
-- [Onboarding guide](docs/onboarding.md) <br>
-- [Anti-fail guide](docs/anti-fail.md) <br>
-- [Quick start examples](examples/quick-start.md) <br>
+### Deployment Geography for Use:
 
+Global; content and defaults are oriented to Russian-language support operations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured ticket summaries, support reports, reply templates, configuration guidance, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Customer-facing replies, refunds, CRM updates, and escalations should be reviewed by a human before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks for broad model-provider and integration credentials for support, CRM, Telegram, and analytics workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege, integration-specific credentials only after enabling the corresponding integration, and keep provider keys outside skill text and shared artifacts.
+
+Risk: The skill describes automated customer replies, CRM updates, escalation routing, and refund-related actions.
+
+Mitigation: Require human approval for externally sent replies, refunds, compensation, and high-impact CRM changes, especially for legal threats, VIP customers, or large refund amounts.
+
+Risk: Customer messages, CRM history, LTV, and support metrics may contain sensitive personal or business data.
+
+Mitigation: Define privacy, retention, and access-control rules before connecting production CRM or support-channel data.
+
+Risk: Ticket categorization, sentiment scores, SLA reports, and NPS/CSAT analysis depend on clean support data and named escalation owners.
+
+Mitigation: Validate categories, SLA settings, L2/L3 owners, and reports during rollout; treat outputs as operational recommendations until reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raaipro/skills/raai-price-probe-dogovornaya-20260421)
+- [README](artifact/README.md)
+- [Onboarding guide](artifact/docs/onboarding.md)
+- [Anti-fail guide](artifact/docs/anti-fail.md)
+- [Quick start examples](artifact/examples/quick-start.md)
+- [Configuration template](artifact/config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with structured tables, checklists, code/config snippets, shell commands, and operational support reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language defaults; optional CRM, Telegram, and analytics integrations require user-provided credentials.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

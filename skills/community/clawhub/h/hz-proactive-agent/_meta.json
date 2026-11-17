@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77zwtv797nj9c22mts1tg9x581mrc2",
-  "slug": "hz-proactive-agent",
-  "version": "1.0.0",
-  "publishedAt": 1771755112684
+  "name": "hz-proactive-agent",
+  "displayName": "Huizai Proactive Agent",
+  "description": "OpenClaw主动代理 - 预判需求、主动行动、持续优化",
+  "author": {
+    "name": "lidekahdjdhdhsjjs-lang",
+    "url": "https://github.com/lidekahdjdhdhsjjs-lang"
+  },
+  "tags": ["proactive", "agent", "automation", "openclaw", "huizai"],
+  "homepage": "https://github.com/lidekahdjdhdhsjjs-lang/Huizai-openclaw"
 }

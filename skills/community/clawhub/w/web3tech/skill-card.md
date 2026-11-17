@@ -1,45 +1,62 @@
-## Description: <br>
-Crypto project research, new coin discovery, due diligence, developer analysis, whitepaper validation, code similarity checks, and AI-powered development monitoring via the web3tech MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto project research, new coin discovery, due diligence, developer analysis, whitepaper validation, code similarity checks, and AI-powered development monitoring via the Web3Tech MCP server.
 
-## Publisher: <br>
-[one0000u](https://clawhub.ai/user/one0000u) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[one0000u](https://clawhub.ai/user/one0000u)
 
-## Use Case: <br>
-External users and developers use this skill to research crypto projects, screen new coins, compare project risk, assess developer activity, review whitepapers, and produce evidence-first diligence summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on Web3Tech as a remote crypto research data provider. <br>
-Mitigation: Verify that the provider is trusted before installation and treat returned data as research evidence that may need cross-checking. <br>
-Risk: The skill requires a WEB3TECH_API_KEY. <br>
-Mitigation: Use a revocable API key where possible and do not share private keys, seed phrases, exchange credentials, wallet secrets, or non-public investment information. <br>
-Risk: Crypto research outputs may be mistaken for investment advice. <br>
-Mitigation: Present outputs as informational support, separate facts from interpretation, and call out unknowns or thin evidence. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to guide Web3Tech-backed crypto project diligence, new coin screening, developer review, whitepaper checks, code similarity review, and development monitoring.
 
-## Reference(s): <br>
-- [Web3Tech Homepage](https://web3tech.org) <br>
-- [Due Diligence](references/due-diligence.md) <br>
-- [New Coin Screening](references/new-coin-screening.md) <br>
-- [Output Templates](references/output-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research memos, comparison memos, new coin shortlists, and early review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Evidence-first conclusions that separate observed facts from interpretation and call out unknowns when evidence is thin.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Research queries, project identifiers, and related diligence context may be sent to the Web3Tech MCP/API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential or sensitive project information unless Web3Tech's handling of that data is acceptable for the use case.
+
+Risk: The skill requires WEB3TECH_API_KEY for normal operation.
+
+Mitigation: Store the API key in the agent environment, rotate it if exposed, and do not include it in prompts, logs, or generated files.
+
+Risk: Crypto research outputs may be mistaken for investment advice.
+
+Mitigation: Treat outputs as research support only, preserve uncertainty in conclusions, and require independent review before financial decisions.
+
+## Reference(s):
+
+- [Due Diligence](references/due-diligence.md)
+- [New Coin Screening](references/new-coin-screening.md)
+- [Output Templates](references/output-templates.md)
+- [Web3Tech](https://web3tech.org)
+- [ClawHub Skill Page](https://clawhub.ai/one0000u/skills/web3tech)
+- [Publisher Profile](https://clawhub.ai/user/one0000u)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research memos, comparisons, shortlists, and evidence-first summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require WEB3TECH_API_KEY and Web3Tech MCP/API availability; outputs should separate observed facts from interpretation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

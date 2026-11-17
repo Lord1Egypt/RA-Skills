@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "audio-transcriber-pro",
+  "name": "audio-transcriber",
+  "displayName": "音频转文字工具",
   "version": "1.0.0",
-  "publishedAt": 1775185865926
+  "slug": "audio-transcriber-pro",
+  "description": "音频录音转文字工具，自动生成 Markdown 文档和摘要",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["audio", "transcribe", "speech-to-text", "markdown", "summary"],
+  "pricing": {
+    "type": "paid",
+    "amount": 25,
+    "currency": "CNY"
+  },
+  "requirements": ["openai"],
+  "category": "productivity"
 }

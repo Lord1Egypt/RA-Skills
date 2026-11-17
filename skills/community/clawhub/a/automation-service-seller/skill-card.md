@@ -1,38 +1,55 @@
-## Description: <br>
-Offers custom business automation services using Python, APIs, Zapier, Make, browser automation, and AI integrations for common operational workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Custom automation services using Python, APIs, and tools like Zapier to streamline tasks such as social media, email, data entry, and lead management.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-External businesses and operators can use this service listing to evaluate and contact a provider for automating social media, email, data processing, reporting, lead qualification, onboarding, and API integration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat this service-provider listing as a working automation tool or grant broad access to business accounts and APIs. <br>
-Mitigation: Verify the provider's identity first, grant only narrowly scoped and revocable access, and review any delivered automation before use. <br>
+## Use Case:
 
+External business users can use this listing to evaluate and contact a third-party provider for custom automation services, including workflow automation, API integrations, reporting, lead management, and related support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/automation-service-seller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only service listing; no executable artifact or installer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake the listing for an executable automation skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as a third-party service advertisement and review the seller's offering before relying on it for operational work.
+
+Risk: Engagement, payment, credentials, or business data sharing would occur outside the skill.
+
+Mitigation: Vet the provider, contract terms, access controls, and data-handling expectations before sharing sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/skills/automation-service-seller)
+- [Publisher profile](https://clawhub.ai/user/yongtaop1-sys)
+- [Artifact skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown service listing with tiers, automation areas, tool examples, and contact details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable agent actions are defined by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

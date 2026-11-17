@@ -1,45 +1,66 @@
-## Description: <br>
-Adds paid-credit paywalls to OpenClaw Telegram bots using Stripe payment links, Telegram Stars invoices, or TON Wallet Pay, with webhook and agent-behavior guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add paywall to OpenClaw Telegram bots with Stripe external links, Telegram Stars, and TON Wallet Pay, including webhook server, credits system, and AGENTS.md behavior.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers building OpenClaw Telegram bots use this skill to add paid top-ups, payment options, credit tracking, and quota paywall behavior around generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample payment webhooks can modify local credit files with insufficient scoping or Telegram user ID validation. <br>
-Mitigation: Validate Telegram user IDs as numeric IDs and constrain credit-file writes to a dedicated application data directory. <br>
-Risk: Payment callbacks may be accepted without strong origin checks if webhook secrets are empty or Telegram webhook requests are not authenticated. <br>
-Mitigation: Require a non-empty Stripe webhook signing secret and use Telegram webhook secret tokens or an equivalent origin check. <br>
-Risk: Client-provided payment metadata can lead to incorrect credit grants if credits are trusted directly from payment payloads. <br>
-Mitigation: Map Stripe price IDs to credit amounts server-side and reject unknown or inconsistent payment records. <br>
-Risk: Calling setWebhook during startup can unintentionally change a bot's Telegram delivery mode. <br>
-Mitigation: Only call setWebhook during intentional deployment changes and document how it interacts with the bot's polling or webhook configuration. <br>
+## Use Case:
 
+Developers use this skill to add paid credit top-ups and soft paywall behavior to OpenClaw Telegram bots. It provides implementation guidance for Stripe payment links, Telegram Stars invoices, TON Wallet Pay options, webhook handling, and bot payment prompts.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-telegram-bot-payments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell-command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes agent-facing implementation examples that require environment-specific secrets, URLs, price IDs, and webhook settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md metadata) <br>
+Risk: Sample webhook behavior can grant paid credits from unauthenticated Telegram payment requests or untrusted payment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Authenticate Telegram webhooks with a secret token and validate pre-checkout and successful-payment data against server-side orders before crediting users.
+
+Risk: Billing state may be written for untrusted user identifiers or unsafe workspace paths.
+
+Mitigation: Strictly validate user IDs and path containment before writing usage or credit files.
+
+Risk: Payment callbacks may be replayed or processed more than once.
+
+Mitigation: Use idempotency keys or equivalent transaction records before applying credits.
+
+Risk: The sample payment server exposes webhook endpoints on port 8001.
+
+Mitigation: Avoid direct public exposure of port 8001; deploy behind authenticated, monitored, and properly routed infrastructure.
+
+Risk: Payment wording and flow may be unclear to users in some locales.
+
+Mitigation: Review payment wording for transparency, local compliance, and locale-appropriate user expectations before release.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [Phy Telegram Bot Payments on ClawHub](https://clawhub.ai/phy041/skills/phy-telegram-bot-payments)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes webhook server examples, payment option scripts, setup checklist, pricing guidance, and AGENTS.md behavior text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

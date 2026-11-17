@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents summarize and lightly analyze public Tencent Video pages for shows, rankings, updates, ratings, comments, and guest information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents summarize and extract lightweight information from public Tencent Video pages, including shows, rankings, updates, ratings, and guest details.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users and developers use this skill for user-directed summaries, ranking analysis, and episode or guest information extraction from public Tencent Video pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk scraping or login-gated collection could violate Tencent Video platform rules. <br>
-Mitigation: Use only user-directed, light analysis of public pages; avoid bulk scraping and login-gated content. <br>
-Risk: Attempts to download content, reverse engineer interfaces, or bypass platform controls would misuse the skill. <br>
-Mitigation: Do not use the skill for downloads, reverse engineering, API bypasses, or anti-bot circumvention. <br>
+## Use Case:
 
+Developers and analysts use this skill to collect concise summaries, ranking statistics, and episode or guest information from public Tencent Video pages for lightweight internal analysis and notifications.
 
-## Reference(s): <br>
-- [Tencent Video homepage](https://v.qq.com/) <br>
-- [Tencent Video search](https://v.qq.com/search.html) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/tencent-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No downloads, reverse engineering, platform-control bypass, or bulk scraping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Use could drift into bulk collection or automated scraping of Tencent Video pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep requests small, user-directed, and limited to lightweight public-page summaries or ranking statistics.
+
+Risk: Use could target downloads, private or account-only content, reverse engineering, API scraping, or bypassing platform controls.
+
+Mitigation: Restrict use to public page analysis and do not use the skill for downloads, private content, reverse engineering, API calls, or platform-control bypasses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/tencent-video)
+- [Tencent Video homepage](https://v.qq.com/)
+- [Tencent Video search](https://v.qq.com/search.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries with extracted public page fields and concise analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No downloads, API calls, bulk scraping, reverse engineering, private content access, or platform-control bypasses.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

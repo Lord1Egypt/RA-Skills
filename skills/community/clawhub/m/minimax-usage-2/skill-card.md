@@ -1,41 +1,55 @@
-## Description: <br>
-Check MiniMax coding plan usage/credits remaining. Requires MINIMAX_API_KEY environment variable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check MiniMax coding plan usage and credits remaining using a MINIMAX_API_KEY environment variable.
 
-## Publisher: <br>
-[khaney64](https://clawhub.ai/user/khaney64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khaney64](https://clawhub.ai/user/khaney64)
 
-## Use Case: <br>
-Developers and operators use this skill to check MiniMax coding plan credits and optionally emit an alert only when remaining usage falls below a configured threshold. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script uses MINIMAX_API_KEY to query MiniMax usage. <br>
-Mitigation: Provide the key only through a trusted local environment or cron environment, and do not expose it in shared logs or command history. <br>
-Risk: Cron or webhook usage can forward usage balance details outside the local machine. <br>
-Mitigation: Send output only to private, trusted destinations and review webhook configuration before enabling automation. <br>
+## Use Case:
 
+Developers and operators use this skill to check remaining MiniMax coding plan credits and optionally emit threshold-based alert text for automation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/khaney64/minimax-usage-2) <br>
-- [MiniMax coding plan remains API](https://www.minimax.io/v1/api/openplatform/coding_plan/remains) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Discord-formatted Markdown text emitted by a Bash script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May exit with no output when a threshold is configured and remaining usage is above that threshold.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill sends a user-provided MINIMAX_API_KEY to the MiniMax API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the endpoint is expected before use and protect the API key in local and scheduled execution environments.
+
+Risk: Optional cron usage can pipe output to a user-provided downstream webhook command.
+
+Mitigation: Review the webhook command and environment handling before enabling scheduled alerts.
+
+## Reference(s):
+
+- [MiniMax Coding Plan Remains API endpoint](https://www.minimax.io/v1/api/openplatform/coding_plan/remains)
+- [ClawHub skill page](https://clawhub.ai/khaney64/skills/minimax-usage-2)
+- [Publisher profile](https://clawhub.ai/user/khaney64)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Discord-formatted Markdown text and shell usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit silently when the optional threshold is configured and remaining usage is above that threshold.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

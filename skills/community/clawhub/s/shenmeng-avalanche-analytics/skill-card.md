@@ -1,40 +1,57 @@
-## Description: <br>
-Avalanche (AVAX) ecosystem analysis skill for subnet architecture analysis, DeFi protocol monitoring, project evaluation, subnet tracking, and investment opportunity discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avalanche Analytics helps agents analyze the Avalanche ecosystem, including subnets, DeFi protocols, project evaluation, monitoring, and validator yield estimates.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to review Avalanche ecosystem structure, monitor DeFi protocols and subnets, evaluate AVAX projects, and estimate validator or staking scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports under-disclosed payment verification that can send wallet or payment data to SkillPay and exposes a payment API key. <br>
-Mitigation: Review before installing or paying, do not provide a wallet address unless comfortable with it being sent to SkillPay, and require the publisher to rotate the exposed key and document provider, data handling, retention, and opt-in behavior. <br>
-Risk: The security guidance says the analytics numbers should be treated as illustrative unless independently verified. <br>
-Mitigation: Verify market, TVL, APY, validator, and project data with authoritative sources before using the output for investment, staking, or operational decisions. <br>
+## Use Case:
 
+External users and developers use this skill to get Avalanche ecosystem overviews, compare subnets and DeFi protocols, evaluate projects, monitor AVAX-related metrics, and estimate validator staking returns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-avalanche-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text analysis with optional Python script output and JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include illustrative ecosystem metrics, validator yield calculations, and payment instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Paid-use enforcement is under-disclosed, and wallet identifiers may be sent to SkillPay for payment verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clearly disclose the payment check before use and avoid sending wallet identifiers unless payment verification is required.
+
+Risk: A SkillPay API key is exposed in the artifact metadata and payment module.
+
+Mitigation: Rotate the exposed key, remove it from distributed artifacts, and load payment credentials from a secret store or runtime environment.
+
+Risk: Avalanche prices, TVL, APY, and validator cost estimates in the artifact may become stale.
+
+Mitigation: Treat generated financial analysis as informational and refresh market or chain data from trusted sources before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenmeng/skills/shenmeng-avalanche-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with tables, command snippets, and optional JSON output from monitoring scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled monitor script can emit JSON snapshots when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

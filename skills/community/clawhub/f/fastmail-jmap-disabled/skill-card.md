@@ -1,46 +1,59 @@
-## Description: <br>
-Give your AI agent email superpowers via Fastmail JMAP: read, search, send, move, and trash messages with a zero-dependency Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Fastmail JMAP command-line tools for agents to read, search, send, move, mark, trash, and list email, plus list, search, and read contacts.
 
-## Publisher: <br>
-[TassieDaddy](https://clawhub.ai/user/TassieDaddy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tassiedaddy](https://clawhub.ai/user/tassiedaddy)
 
-## Use Case: <br>
-Developers and external agent users use this skill to connect an AI agent to Fastmail for inbox checks, email search and reading, message sending, mailbox moves, read-state changes, trashing, and mailbox listing. It is suited to agent email workflows that can be governed with explicit consent around mailbox access and message-changing actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mailbox API tokens can expose sensitive email content and allow message-changing actions. <br>
-Mitigation: Use the narrowest Fastmail token scopes that support the intended workflow, store tokens outside prompts and logs, and rotate or revoke tokens when access is no longer needed. <br>
-Risk: Send, move, mark-read, mark-unread, and trash commands can alter mailbox state or send messages on behalf of the user. <br>
-Mitigation: Require explicit user confirmation before executing message-changing commands, especially sending or deleting email. <br>
-Risk: The bundled contacts script can access address-book data if the token includes Contacts scope. <br>
-Mitigation: Do not grant Contacts scope unless contact lookup is explicitly required for the deployment. <br>
-Risk: Autonomous inbox checks may surface private communications as background monitoring. <br>
-Mitigation: Enable background checks only with clear consent, limited query scope, and defined privacy boundaries for summaries and alerts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TassieDaddy/fastmail-jmap-disabled) <br>
-- [The Agent Wire](https://theagentwire.ai) <br>
-- [Fastmail API Tokens](https://app.fastmail.com/settings/security/tokens) <br>
-- [JMAP](https://jmap.io/) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent interact with a Fastmail mailbox through CLI commands for inbox review, search, message reading, mailbox management, and sending email after approval. It can also access contacts when a Fastmail token includes Contacts scope.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, API Calls, Configuration] <br>
-**Output Format:** [CLI text output with optional JSON output for email search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FASTMAIL_TOKEN and optional FASTMAIL_IDENTITY environment variables; scripts call Fastmail JMAP endpoints directly with Python standard library HTTP requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A broad Fastmail token can enable sensitive email or contact access.
+
+Mitigation: Use a least-privilege Fastmail token and avoid granting Contacts scope unless contact access is intentional.
+
+Risk: Send, move, trash, and bulk contact commands can change account data with limited built-in safeguards.
+
+Mitigation: Require explicit human approval before send, move, trash, or bulk contact commands.
+
+Risk: Email and contact output may place private data into agent logs or transcripts.
+
+Mitigation: Limit transcript retention and redact sensitive mailbox or contact details before sharing logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tassiedaddy/skills/fastmail-jmap-disabled)
+- [JMAP protocol](https://jmap.io/)
+- [Fastmail API token settings](https://app.fastmail.com/settings/security/tokens)
+- [The Agent Wire](https://theagentwire.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI output as plain text, JSON, or email/contact identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FASTMAIL_TOKEN; FASTMAIL_IDENTITY can override the sender address for email sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

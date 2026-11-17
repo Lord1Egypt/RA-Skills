@@ -1,40 +1,53 @@
-## Description: <br>
-Queries a knowledge base using AI-powered search, combining web search with chat AI for comprehensive answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query your knowledge base using AI-powered search. Combines web search with chat AI for comprehensive answers.
 
-## Publisher: <br>
-[c7934597](https://clawhub.ai/user/c7934597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c7934597](https://clawhub.ai/user/c7934597)
 
-## Use Case: <br>
-Employees and developers use this skill to search internal knowledge bases, retrieve current web information, synthesize answers, and translate results when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic trigger phrases can route ordinary questions into internal knowledge-base or web search workflows without clear user intent. <br>
-Mitigation: Configure the skill for explicit invocation and confirm that the user wants internal or external search before querying private knowledge bases or the web. <br>
-Risk: Use with private knowledge bases may expose or rely on proprietary content in generated answers. <br>
-Mitigation: Limit MCP access to approved knowledge bases and review deployment settings before using the skill with private or sensitive data. <br>
+## Use Case:
 
+Employees, developers, and knowledge workers use this skill to search internal knowledge bases, run web searches for current information, synthesize answers, and translate results when needed.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/c7934597/akashic-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text answers with citations when search results are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include synthesized search results, translated content, and source citations depending on the query.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence) <br>
+Risk: Broad everyday triggers may route ordinary or sensitive questions into the skill unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower triggers or require explicit user confirmation before invoking the skill for proprietary or sensitive topics.
+
+Risk: Internal or sensitive context could be sent to external search or AI synthesis providers.
+
+Mitigation: Prefer internal knowledge-base retrieval first and require explicit approval before sending proprietary content to web search or external model providers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/c7934597/skills/akashic-knowledge-base)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text answers with citations when search sources are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include synthesized answers, search result summaries, translations, and source citations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

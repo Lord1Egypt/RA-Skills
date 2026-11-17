@@ -9,7 +9,7 @@ Input:
 ```text
 POST /v1/chat/completions
 Authorization: Bearer super-secret-token
-OPENAI_API_KEY=sk-examplesecret123456789
+OPENAI_API_KEY=REDACTED-SECRET
 Contact: dev@example.com
 ```
 
@@ -25,7 +25,7 @@ Expected:
 Input:
 
 ```text
-Set OPENAI_API_KEY=sk-examplesecret123456789 in your .env file.
+Set OPENAI_API_KEY=REDACTED-SECRET in your .env file.
 Then call https://api.example.com/build?token=raw-demo-token&id=42
 ```
 

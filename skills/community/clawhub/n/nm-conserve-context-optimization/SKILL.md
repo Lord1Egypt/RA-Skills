@@ -1,7 +1,7 @@
 ---
 name: context-optimization
 description: Optimizes context window via MECW principles and memory tiering
-version: 1.9.8
+version: 1.10.3
 triggers:
   - context exceeds 30% or before long multi-step tasks
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conserve", "emoji": "\ud83e\udd9e"}}
@@ -9,17 +9,7 @@ source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [When to Use](#when-to-use)
-- [Core Hub Responsibilities](#core-hub-responsibilities)
-- [Module Selection Strategy](#module-selection-strategy)
-- [Context Classification](#context-classification)
-- [Integration Points](#integration-points)
-- [Resources](#resources)
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Context Optimization Hub
@@ -47,11 +37,11 @@ source_plugin: conserve
 ```python
 def select_optimal_modules(context_situation, task_complexity):
     if context_situation == "CRITICAL":
-        return ['mecw-assessment', 'subagent-coordination']
-    elif task_complexity == 'high':
-        return ['mecw-principles', 'subagent-coordination']
+        return ["mecw-assessment", "subagent-coordination"]
+    elif task_complexity == "high":
+        return ["mecw-principles", "subagent-coordination"]
     else:
-        return ['mecw-assessment']
+        return ["mecw-assessment"]
 ```
 
 ## Context Classification
@@ -64,7 +54,7 @@ def select_optimal_modules(context_situation, task_complexity):
 
 ## Large Output Handling (Claude Code 2.1.2+)
 
-**Behavior Change**: Large bash command and tool outputs are saved to disk instead of being truncated; file references are provided for access.
+**Behavior Change**: Large bash command and tool outputs are saved to disk instead of being truncated, and file references are provided for access.
 
 ### Impact on Context Optimization
 
@@ -76,9 +66,9 @@ def select_optimal_modules(context_situation, task_complexity):
 
 ### Best Practices
 
-- **Avoid pre-emptive reads**: Large outputs are referenced, not automatically loaded into context.
+- **Avoid pre-emptive reads**: Large outputs arrive as file references and stay out of context until read.
 - **Read selectively**: Use `head`, `tail`, or `grep` on file references.
-- **Leverage full data**: Quality gates can access complete test results via files.
+- **Use full data**: Quality gates can access complete test results via files.
 - **Monitor growth**: File references are small, but reading the full files adds to context.
 
 ## Integration Points
@@ -93,8 +83,27 @@ def select_optimal_modules(context_situation, task_complexity):
 - **Context Analysis**: See `modules/mecw-assessment.md` for risk identification.
 - **Workflow Delegation**: See `modules/subagent-coordination.md` for decomposition patterns.
 - **Context Waiting**: See `modules/context-waiting.md` for deferred loading strategies.
+- **Cache Alignment**: See `modules/cache-aligned-prefixes.md` for ordering context so provider KV caches hit (stable prefix first, volatile last).
+- **Compression Choice**: See `modules/compression-strategies.md` to pick one
+  of `/clear` and `/catchup`, a continuation agent, archive and summarize, or
+  delegation, with savings and risk.
+- **Large Tool Outputs**: See `modules/reversible-compression.md` for
+  archiving an oversized output to a retrievable handle.
+- **Pasted Logs**: See `modules/log-debugging-hygiene.md` for filtering a log
+  before any compression. `/filter-log` anchors on it.
+
 ## Troubleshooting
 
 ### Common Issues
 
 If context usage remains high after optimization, check for large files that were read entirely rather than selectively. If MECW assessments fail, ensure that your environment provides accurate token count metadata. For permission errors when writing output logs to `/tmp`, verify that the project's temporary directory is writable.
+
+## Exit Criteria
+
+- [ ] Context pressure assessed against the MECW 50% rule
+- [ ] A memory tier or routing decision recorded for the current state
+- [ ] Large outputs referenced by file or handle, not read in full
+- [ ] When the request controls the provider payload, prefix ordering checked
+      against `modules/cache-aligned-prefixes.md` (stable first, volatile last)
+- [ ] Optimization downgraded to advisory when the harness already caches
+      (cache writes cost more than they save on non-repeated prefixes)

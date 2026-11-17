@@ -1,46 +1,56 @@
-## Description: <br>
-Renders structured cross-border ecommerce data into deterministic PNG information graphics such as size charts, specification cards, feature grids, comparison tables, and promotional banners through Yufluent's server-side Pillow service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renders cross-border ecommerce templates such as size charts, specification cards, feature grids, comparison tables, and promotional banners through Yufluent server-side Pillow rendering.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External ecommerce sellers, operators, and agent developers use this skill to turn product facts and template data into rendered commerce assets for marketplace listings and promotional content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud rendering sends product data and TOKENAPI_KEY-authenticated requests to the configured service. <br>
-Mitigation: Install only when you trust Yufluent with the rendered product data, keep TOKENAPI_KEY secret, and rotate the key if exposure is suspected. <br>
-Risk: TOKENAPI_BASE_URL can redirect requests to a custom endpoint, and fallback agent routing exists when the normal render endpoint fails. <br>
-Mitigation: Set TOKENAPI_BASE_URL only to a trusted endpoint and review endpoint configuration before using the skill in production workflows. <br>
-Risk: Rendered ecommerce assets may misrepresent products if supplied specifications, claims, or comparison data are inaccurate. <br>
-Mitigation: Review input data and rendered images against authoritative product documentation before publishing commerce assets. <br>
-Risk: Fonts used for Chinese or multilingual rendering may have separate licensing requirements. <br>
-Mitigation: Use appropriately licensed fonts, such as organization-approved system fonts or reviewed Noto Sans SC deployments. <br>
+## Use Case:
 
+External sellers, ecommerce operators, and developers use this skill to turn structured product data into PNG product information graphics for marketplace listings and promotional banners.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluentcn-ecommerce-render) <br>
-- [Yufluent console](https://claw.changzhiai.com) <br>
-- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Files] <br>
-**Output Format:** [CLI text or JSON response referencing server-rendered PNG output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOKENAPI_KEY; template output is rendered server-side and may be billed per image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Product/template data, local file contents supplied as render data, API credentials, and rendering data can be sent to configurable network endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Yufluent endpoints, keep TOKENAPI_BASE_URL unset unless the destination is fully trusted, avoid non-local plaintext HTTP, and submit only intended non-sensitive JSON data.
+
+Risk: Rendered ecommerce graphics can contain incorrect or misleading product claims if the supplied product facts are inaccurate.
+
+Mitigation: Review the structured render data and final output against product facts before publication.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/metahuan/skills/yufluentcn-ecommerce-render)
+- [Yufluent homepage](https://claw.changzhiai.com)
+- [Yufluent OpenClaw integration](https://claw.changzhiai.com/app/openclaw)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or JSON responses from CLI/API execution, typically describing server-rendered PNG output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY; render inputs are submitted to the configured Yufluent endpoint.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Lobster Distill packages, encrypts, uploads, and relays skill transfer instructions so one agent can share a skill with another through a human-forwarded message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Distill helps agents package, encrypt, upload, relay, download, decrypt, and install skill packages through human-forwarded text instructions.
 
-## Publisher: <br>
-[qiaoy01](https://clawhub.ai/user/qiaoy01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiaoy01](https://clawhub.ai/user/qiaoy01)
 
-## Use Case: <br>
-Developers and agent operators use this skill to transfer local skill directories or files between agents through a human relay, including across messaging platforms that only carry plain text. The workflow is intended for selected skill packages and requires the sender and receiver to review the transfer details before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The share workflow can upload selected local files to a third-party temporary file host. <br>
-Mitigation: Verify the exact source path and contents before sharing, and avoid packaging secrets or unrelated files. <br>
-Risk: The receive workflow can install archives received from another party with limited safety checks. <br>
-Mitigation: Use only trusted senders, verify the URL, password, and expected package name, and inspect the decrypted archive before extraction. <br>
-Risk: The relay note includes shell commands that download, decrypt, extract, and clean up files. <br>
-Mitigation: Review commands before execution and run them only in an appropriate workspace or sandbox. <br>
+## Use Case:
 
+Developers and agent operators use this skill to transfer OpenClaw skill packages between agents through a human relay on text-capable messaging channels. It is most relevant when the sender and receiver do not share a direct agent-to-agent integration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qiaoy01/lobster-distill) <br>
-- [Publisher profile](https://clawhub.ai/user/qiaoy01) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style relay note with inline bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated relay note includes a download URL, decryption password, expiry notice, and receive/install commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Transferred skills are executable instruction packages that may come from an untrusted sender.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted senders, verify the sender out of band, inspect the package in quarantine first, and scan before deployment.
+
+Risk: The receive workflow downloads, decrypts, extracts, and installs content through shell commands.
+
+Mitigation: Do not run received commands automatically; review commands and destination paths before execution, and do not run them as root or with elevated privileges.
+
+Risk: The relay message includes download credentials and may be forwarded through ordinary messaging channels.
+
+Mitigation: Forward only to intended recipients and use a separate channel for secrets or signed hashes when handling sensitive skills.
+
+Risk: Security evidence notes unsafe shell/name handling that users should review before use.
+
+Mitigation: Use simple expected skill names, avoid sensitive packages unless necessary, and inspect package contents before extraction or installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiaoy01/skills/lobster-distill)
+- [Publisher profile](https://clawhub.ai/user/qiaoy01)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a relay message with an admin summary and target-agent instructions; receive workflows may install a downloaded package into a local skills directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

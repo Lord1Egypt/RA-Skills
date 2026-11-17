@@ -1,38 +1,57 @@
-## Description: <br>
-Help create Arabic-first and bilingual explanations, app text, lessons, worksheets, and education content with clear language-level controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help create Arabic-first and bilingual explanations, app text, lessons, worksheets, and education content with clear language-level controls.
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users, educators, app builders, and content creators use this skill to produce Arabic-first or bilingual explanations, UI copy, lessons, worksheets, quizzes, captions, glossaries, and beginner-friendly learning material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports a hardcoded cloud-proxy credential and incomplete privacy disclosure for remote travel searches. <br>
-Mitigation: Review before installing; the publisher should rotate the exposed proxy token, remove it from the shipped script, and add clearer privacy disclosure before broad distribution. <br>
+## Use Case:
 
+Educators, app builders, content creators, and support teams use this skill to draft Arabic-first or bilingual explanations, UI copy, lessons, worksheets, quizzes, glossaries, and social content with audience and tone controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/arabic-english-explainer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured text templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include bilingual Arabic and English copy, lesson sections, quiz prompts, vocabulary entries, UI microcopy, and review guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, artifact metadata, release evidence) <br>
+Risk: Arabic or bilingual outputs may miss tone, dialect, or domain nuance in legal, medical, financial, religious, or cybersecurity contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated text with an appropriate expert or native speaker before relying on it in sensitive or high-impact settings.
+
+Risk: Cybersecurity explanations could drift into harmful procedural detail if the user prompt requests exploit steps.
+
+Mitigation: Keep cybersecurity content defensive, educational, and awareness-focused, matching the skill's safety rules.
+
+Risk: Translations and explanations may be mistaken for certified or authoritative statements.
+
+Mitigation: Label sensitive translations and explanations as educational drafts and preserve the user's original meaning without adding unsupported claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/arabic-english-explainer-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text templates for bilingual explanations, app copy, lessons, worksheets, quizzes, glossaries, and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for tone, dialect, audience fit, and domain accuracy before use in sensitive contexts.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

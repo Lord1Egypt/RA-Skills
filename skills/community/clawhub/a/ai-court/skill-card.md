@@ -1,47 +1,64 @@
-## Description: <br>
-AI 朝廷 is an OpenClaw-based multi-agent collaboration skill that provides Ming, Tang, and modern enterprise role templates with 1-11 bot configurations for Feishu and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures an OpenClaw multi-agent collaboration system modeled on historical Chinese governance and modern enterprise structures, with Feishu and Discord deployment options.
 
-## Publisher: <br>
-[wanikua](https://clawhub.ai/user/wanikua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanikua](https://clawhub.ai/user/wanikua)
 
-## Use Case: <br>
-Developers and team administrators use this skill to deploy an OpenClaw multi-agent team with predefined coordination roles, routing templates, and platform setup guidance. It supports personal, small-team, and larger team configurations across Feishu and Discord. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default templates can expose powerful multi-agent bots too broadly. <br>
-Mitigation: Restrict allowed users, servers, channels, and direct messages, and remove broad mention triggers before deployment. <br>
-Risk: Bot tokens, Feishu app IDs, app secrets, and optional API tokens are required for deployment. <br>
-Mitigation: Keep secrets outside shared configuration files, validate every binding, and rotate credentials if a configuration is exposed. <br>
-Risk: Copying templates into an existing OpenClaw configuration can overwrite working settings or apply unsuitable sandbox permissions. <br>
-Mitigation: Back up the existing OpenClaw config first and align sandbox permissions with each role before restarting the gateway. <br>
-Risk: Archived records or multi-agent conversation logs may retain sensitive user or business content. <br>
-Mitigation: Define retention and redaction rules for archived records before enabling the system for real users. <br>
+## Use Case:
 
+Developers and team operators use this skill to deploy a coordinated AI agent team with selectable governance patterns, bot counts, and Feishu or Discord channel bindings. It supports lightweight personal setups through larger team configurations that route work among specialized agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wanikua/ai-court) <br>
-- [Feishu Quick Setup Guide](artifact/docs/feishu-setup-simple.md) <br>
-- [Feishu Flexible Configuration Guide](artifact/docs/feishu-flexible-setup.md) <br>
-- [Docker Image Configuration Guide](artifact/references/docker-config.md) <br>
+### Deployment Geography for Use:
 
+Global, with Feishu-oriented setup for China mainland workspaces and Discord-oriented setup for international workspaces.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw setup guidance, role templates, routing configuration, and deployment commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and artifact _meta.json; artifact SKILL.md and package.json list 2.1.0) <br>
+Risk: Powerful agents may be exposed to open Feishu or Discord channels with weak scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted spaces only, restrict group and direct-message access, and avoid broad @everyone or @here triggers.
+
+Risk: Agent credentials and gateway configuration can include sensitive secrets.
+
+Mitigation: Protect ~/.openclaw/openclaw.json as a secrets file and run the gateway under a low-privilege account.
+
+Risk: Broad logging or archival can retain sensitive workspace content.
+
+Mitigation: Disable archival for sensitive work or scope retention to the minimum required channels and tasks.
+
+Risk: Unbounded agent tools can increase the impact of accidental or unsafe actions.
+
+Mitigation: Enable sandboxing where available and apply per-agent tool limits before use in shared workspaces.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wanikua/skills/ai-court)
+- [Feishu Setup Guide](artifact/docs/feishu-setup-simple.md)
+- [Flexible Feishu Bot Configuration Guide](artifact/docs/feishu-flexible-setup.md)
+- [Docker Image Configuration Guide](artifact/references/docker-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup guidance and reusable OpenClaw configuration choices for 1-11 bot deployments.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

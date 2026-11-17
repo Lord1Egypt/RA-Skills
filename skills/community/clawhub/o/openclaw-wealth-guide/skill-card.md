@@ -1,45 +1,63 @@
-## Description: <br>
-Automates collection, processing, scheduling, and export of data from web, API, database, and file sources for OpenClaw workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Wealth Guide is an OpenClaw skill for collecting data from web pages, APIs, databases, and files, processing it, and exporting structured results.
 
-## Publisher: <br>
-[dxg852621787](https://clawhub.ai/user/dxg852621787) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxg852621787](https://clawhub.ai/user/dxg852621787)
 
-## Use Case: <br>
-Developers and OpenClaw users can configure this skill to gather data from authorized sources, process or clean the results, schedule recurring collection jobs, and export structured outputs for downstream analysis or reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect data from web, API, database, and local file sources, which may expose unauthorized or sensitive information if sources are configured too broadly. <br>
-Mitigation: Configure only approved data sources and review collection targets before running or scheduling jobs. <br>
-Risk: Configuration files may include authentication details for APIs or databases. <br>
-Mitigation: Avoid storing long-lived secrets in plain text configuration and prefer scoped, revocable credentials. <br>
-Risk: Scheduled jobs can repeat data collection and exports without interactive review. <br>
-Mitigation: Review scheduled jobs before enabling them and monitor exported output locations. <br>
-Risk: The skill writes exported data to local paths, which may create uncontrolled copies of collected data. <br>
-Mitigation: Direct exports to controlled directories and apply normal access controls and retention policies. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to automate collection from authorized web, API, database, and file sources, then clean, transform, schedule, and export the resulting data. It is especially oriented toward Chinese-language OpenClaw workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dxg852621787/openclaw-wealth-guide) <br>
-- [Publisher Profile](https://clawhub.ai/user/dxg852621787) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, YAML configuration, and exported data files such as JSON, CSV, Excel, SQLite, or PDF.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on configured data sources, processing rules, schedule settings, and export paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill manifest) <br>
+Risk: The skill can access broad data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with data sources you are authorized to access and restrict outbound network access where possible.
+
+Risk: Unsafe URL and credential handling can expose secrets or send them to untrusted endpoints.
+
+Mitigation: Avoid credentials unless the endpoint is trusted and uses HTTPS; review source URLs and authentication settings before use.
+
+Risk: Exports may create or overwrite files.
+
+Mitigation: Review export paths before running collection or export jobs.
+
+Risk: Scheduled collection jobs can continue unattended.
+
+Mitigation: Do not run scheduled jobs unattended until targets, credentials, and storage locations are confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dxg852621787/skills/openclaw-wealth-guide)
+- [Repository README](https://gitee.com/du-xuegong/openclaw-wealth-guide/blob/main/README.md)
+- [Repository Homepage](https://gitee.com/du-xuegong/openclaw-wealth-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime exports can be JSON, CSV, Excel, SQLite, or PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied data source, processing, scheduling, and export configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

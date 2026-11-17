@@ -1,293 +1,342 @@
 #!/usr/bin/env python3
+"""Read-only Polymarket BTC 5-minute market scanner.
+
+This module intentionally has no order, wallet, payment, or secret-handling
+code. It uses public GET endpoints and reports observations for human review.
 """
-Polymarket BTC 5分钟套利机器人
-自动交易 BTC 涨跌预测市场
-"""
-import asyncio
-import sys
-import os
-import time
+
+from __future__ import annotations
+
+import argparse
 import json
 import logging
-import requests
-from datetime import datetime, timezone, timedelta
-from typing import Optional, Dict, List
-from dotenv import load_dotenv
+import time
+from datetime import datetime, timezone
+from http.client import IncompleteRead
+from typing import Any, Dict, Iterable, List, Optional, Tuple
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
-# Setup logging
+GAMMA_API = "https://gamma-api.polymarket.com"
+CLOB_API = "https://clob.polymarket.com"
+DEFAULT_MIN_LIQUIDITY = 1000.0
+DEFAULT_MAX_MARKETS = 5
+DEFAULT_FEE_BUFFER = 0.01
+DEFAULT_TIMEOUT = 10.0
+DEFAULT_INTERVAL = 30.0
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - polymarket_btc_5m - %(levelname)s - %(message)s'
+    format="%(asctime)s - polymarket_btc_5m_scanner - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
 
-# Load environment
-load_dotenv()
 
-# Config
-POLYMARKET_PRIVATE_KEY = os.getenv('POLYMARKET_PRIVATE_KEY', '')
-POLYMARKET_API_KEY = os.getenv('POLYMARKET_API_KEY', '')
-SKILLPAY_API_KEY = os.getenv('SKILLPAY_API_KEY', 'sk_b2fe0f003da084ef5549b42c3c55869e3c0f67ea274d6376764c273fd833c76a')
-SKILL_ID = 'c9eb1217-19a6-4bb7-92a1-b3b8bd938d93'
-
-# API endpoints
-GAMMA_API = "https://gamma-api.polymarket.com"
-CLOB_API = "https://clob.polymarket.com"
-SKILLPAY_API_URL = "https://skillpay.me"
-
-# Trading params
-MIN_LIQUIDITY = 1000  # 最小流动性
-MIN_ORDER_SIZE = 5    # 最小订单量
-MAX_SPREAD = 0.05     # 最大价差
-CHARGE_PER_CALL = 0.001  # 每次调用扣费 (USDT)
+class PublicApiError(RuntimeError):
+    """Raised when a read-only public API request cannot be completed."""
 
 
-def check_skillpay_payment(user_id: str = None) -> bool:
-    """
-    基于官方 SkillPay 示例检查用户支付
-    https://skillpay.me
-    """
-    if not SKILLPAY_API_KEY:
-        logger.warning("⚠️ 未配置 SKILLPAY_API_KEY，跳过支付检查")
-        return True
-    
-    if not user_id:
-        return True
-    
+def safe_float(value: Any, default: float = 0.0) -> float:
     try:
-        import requests
-        
-        headers = {
-            'X-API-Key': SKILLPAY_API_KEY,
-            'Content-Type': 'application/json'
-        }
-        
-        # 尝试扣费
-        resp = requests.post(
-            f'{SKILLPAY_API_URL}/api/v1/billing/charge',
-            json={
-                'user_id': user_id,
-                'skill_id': SKILL_ID,
-                'amount': CHARGE_PER_CALL
-            },
-            headers=headers,
-            timeout=10
-        )
-        
-        if resp.status_code == 200:
-            data = resp.json()
-            if data.get('success'):
-                logger.info(f"✅ 用户 {user_id} 已支付，余额: {data.get('balance')} USDT")
-                return True
-            else:
-                logger.warning(f"⚠️ 用户 {user_id} 需要支付: {data.get('payment_url')}")
-                return False
-        elif resp.status_code == 402:
-            logger.warning(f"⚠️ 用户 {user_id} 支付失败")
-            return False
-        else:
-            logger.warning(f"⚠️ 支付检查失败: {resp.status_code}")
-            return True
-            
-    except Exception as e:
-        logger.warning(f"⚠️ 支付检查异常: {e}")
-        return True
+        return float(value)
+    except (TypeError, ValueError):
+        return default
 
 
-class PolymarketClient:
-    """Polymarket API 客户端"""
-    
-    def __init__(self):
-        self.session = requests.Session()
-        self.session.headers.update({
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        })
-    
-    def get_markets(self, slug: str) -> Optional[Dict]:
-        """获取市场信息"""
-        url = f"{GAMMA_API}/markets"
-        params = {'slug': slug}
-        
+def parse_json_list(value: Any) -> List[Any]:
+    if isinstance(value, list):
+        return value
+    if isinstance(value, str):
         try:
-            resp = self.session.get(url, params=params, timeout=10)
-            resp.raise_for_status()
-            data = resp.json()
-            return data[0] if data else None
-        except Exception as e:
-            logger.error(f"获取市场失败: {e}")
-            return None
-    
-    def get_order_book(self, token_id: str) -> Dict:
-        """获取订单簿"""
-        url = f"{CLOB_API}/book"
-        params = {'tokenId': token_id}
-        
-        try:
-            resp = self.session.get(url, params=params, timeout=10)
-            resp.raise_for_status()
-            return resp.json()
-        except Exception as e:
-            logger.error(f"获取订单簿失败: {e}")
-            return {'bids': [], 'asks': []}
-    
-    def get_markets_by_series(self, series_slug: str = "btc-up-or-down-5m") -> List[Dict]:
-        """获取系列市场的所有活跃市场"""
-        url = f"{GAMMA_API}/markets"
-        params = {
-            'active': 'true',
-            'closed': 'false',
-            'limit': 100
-        }
-        
-        try:
-            resp = self.session.get(url, params=params, timeout=10)
-            resp.raise_for_status()
-            all_markets = resp.json()
-            
-            # Filter for BTC 5m markets - check multiple patterns
-            btc_markets = []
-            for m in all_markets:
-                slug = m.get('slug', '').lower()
-                question = m.get('question', '').lower()
-                series_slug_lower = series_slug.lower()
-                
-                # Match various patterns
-                if ('btc' in slug or 'btc' in question) and ('5m' in slug or '5m' in question or '5 minute' in question):
-                    btc_markets.append(m)
-                elif 'updown' in slug or 'up-or-down' in slug:
-                    btc_markets.append(m)
-                    
-            return btc_markets
-        except Exception as e:
-            logger.error(f"获取市场列表失败: {e}")
+            parsed = json.loads(value)
+        except (TypeError, ValueError):
             return []
+        return parsed if isinstance(parsed, list) else []
+    return []
 
 
-def calculate_spread(best_bid: float, best_ask: float) -> float:
-    """计算价差"""
-    if best_bid == 0:
-        return 1.0
-    return (best_ask - best_bid) / best_bid
-
-
-def find_arbitrage_opportunity(order_book: Dict) -> Optional[Dict]:
-    """寻找套利机会"""
-    bids = order_book.get('bids', [])
-    asks = order_book.get('asks', [])
-    
-    if not bids or not asks:
-        return None
-    
-    best_bid = float(bids[0].get('price', 0))
-    best_ask = float(asks[0].get('price', 0))
-    spread = calculate_spread(best_bid, best_ask)
-    
-    # 检查是否有套利机会
-    if best_bid + best_ask < 1.0:
-        return {
-            'type': 'pair_arbitrage',
-            'buy_yes': best_bid,
-            'sell_no': best_ask,
-            'profit': 1.0 - (best_bid + best_ask)
-        }
-    
-    # 检查价差是否足够大
-    if spread > MAX_SPREAD:
-        return {
-            'type': 'wide_spread',
-            'best_bid': best_bid,
-            'best_ask': best_ask,
-            'spread': spread
-        }
-    
+def first_level(levels: Iterable[Any]) -> Optional[Dict[str, float]]:
+    for level in levels:
+        if not isinstance(level, dict):
+            continue
+        price = safe_float(level.get("price"))
+        size = safe_float(level.get("size"))
+        if price > 0 and size > 0:
+            return {"price": price, "size": size}
     return None
 
 
-async def scan_and_trade():
-    """扫描市场并交易"""
-    # SkillPay 支付检查 (可选)
-    if not check_skillpay_payment():
-        logger.warning("⚠️ 支付检查未通过，跳过交易")
-        return
-    
-    client = PolymarketClient()
-    
-    logger.info("🔍 扫描 BTC 5分钟市场...")
-    
-    markets = client.get_markets_by_series()
-    
-    if not markets:
-        logger.warning("⚠️ 未发现活跃市场")
-        return
-    
-    logger.info(f"📊 发现 {len(markets)} 个 BTC 5分钟市场")
-    
-    for market in markets[:5]:  # 处理前5个市场
-        slug = market.get('slug', '')
-        question = market.get('question', '')
-        liquidity = float(market.get('liquidity', 0))
-        
-        logger.info(f"\n📌 {question[:50]}...")
-        logger.info(f"   流动性: ${liquidity:,.2f}")
-        
-        if liquidity < MIN_LIQUIDITY:
-            logger.info("   跳过: 流动性不足")
-            continue
-        
-        # 获取订单簿
-        clob_token_ids = market.get('clobTokenIds', '[]')
-        try:
-            token_ids = json.loads(clob_token_ids)
-        except:
-            token_ids = []
-        
-        if not token_ids:
-            continue
-        
-        # 分析每个 token
-        for i, token_id in enumerate(token_ids[:2]):
-            outcome = market.get('outcomes', '["Up", "Down"]')
+def market_is_btc_5m(market: Dict[str, Any]) -> bool:
+    text = " ".join(
+        str(market.get(field, "")).lower()
+        for field in ("slug", "question", "seriesSlug")
+    )
+    has_btc = "btc" in text or "bitcoin" in text
+    has_window = any(
+        marker in text
+        for marker in ("5m", "5-min", "5 min", "5-minute", "5 minute", "updown")
+    )
+    return has_btc and has_window
+
+
+def find_up_down_tokens(
+    token_ids: List[Any], outcomes: List[Any]
+) -> Optional[Tuple[str, str]]:
+    clean_ids = [str(token_id) for token_id in token_ids if token_id]
+    if len(clean_ids) < 2:
+        return None
+
+    up_index: Optional[int] = None
+    down_index: Optional[int] = None
+    for index, outcome in enumerate(outcomes[: len(clean_ids)]):
+        label = str(outcome).strip().lower()
+        if up_index is None and (label == "up" or label == "yes" or "up" in label):
+            up_index = index
+        if down_index is None and (
+            label == "down" or label == "no" or "down" in label
+        ):
+            down_index = index
+
+    if up_index is not None and down_index is not None:
+        return clean_ids[up_index], clean_ids[down_index]
+
+    if not outcomes and len(clean_ids) == 2:
+        logger.warning("Market has no outcome labels; using returned token order")
+        return clean_ids[0], clean_ids[1]
+
+    return None
+
+
+class ReadOnlyPolymarketClient:
+    """Client restricted to public market-data GET requests."""
+
+    def __init__(self, timeout: float = DEFAULT_TIMEOUT) -> None:
+        self.timeout = timeout
+
+    def _get_json(self, base_url: str, params: Dict[str, str]) -> Any:
+        url = f"{base_url}?{urlencode(params)}"
+        last_error: Optional[BaseException] = None
+        for attempt in range(2):
+            request = Request(
+                url,
+                headers={
+                    "Accept": "application/json",
+                    "User-Agent": "polymarket-btc-5m-read-only-scanner/1.0.2",
+                },
+                method="GET",
+            )
             try:
-                outcomes = json.loads(outcome)
-            except:
-                outcomes = ['Up', 'Down']
-            
-            outcome_name = outcomes[i] if i < len(outcomes) else f"Token{i}"
-            
-            order_book = client.get_order_book(token_id)
-            
-            if not order_book.get('bids') or not order_book.get('asks'):
-                continue
-            
-            best_bid = float(order_book['bids'][0].get('price', 0))
-            best_ask = float(order_book['asks'][0].get('price', 0))
-            spread = calculate_spread(best_bid, best_ask)
-            
-            logger.info(f"   {outcome_name}: Bid ${best_bid:.2f} | Ask ${best_ask:.2f} | 价差 {spread*100:.1f}%")
-            
-            # 寻找套利机会
-            arb = find_arbitrage_opportunity(order_book)
-            if arb:
-                logger.info(f"   ⚠️ 套利机会: {arb}")
+                with urlopen(request, timeout=self.timeout) as response:
+                    return json.loads(response.read().decode("utf-8"))
+            except (
+                HTTPError,
+                IncompleteRead,
+                URLError,
+                TimeoutError,
+                ValueError,
+            ) as exc:
+                last_error = exc
+                if attempt == 0:
+                    time.sleep(0.25)
+        raise PublicApiError(str(last_error)) from last_error
+
+    def get_active_markets(self) -> List[Dict[str, Any]]:
+        payload = self._get_json(
+            f"{GAMMA_API}/markets",
+            {"active": "true", "closed": "false", "limit": "100"},
+        )
+        return payload if isinstance(payload, list) else []
+
+    def get_order_book(self, token_id: str) -> Dict[str, Any]:
+        payload = self._get_json(f"{CLOB_API}/book", {"tokenId": token_id})
+        return payload if isinstance(payload, dict) else {}
 
 
-async def main():
-    """主函数"""
-    logger.info("🚀 Polymarket BTC 5分钟套利机器人启动")
-    logger.info(f"📡 API: {GAMMA_API}")
-    
+def analyze_market(
+    client: ReadOnlyPolymarketClient,
+    market: Dict[str, Any],
+    fee_buffer: float,
+) -> Optional[Dict[str, Any]]:
+    token_ids = parse_json_list(market.get("clobTokenIds"))
+    outcomes = parse_json_list(market.get("outcomes"))
+    pair = find_up_down_tokens(token_ids, outcomes)
+    if pair is None:
+        logger.info("Skipping market without an identifiable Up/Down token pair")
+        return None
+
+    up_token, down_token = pair
+    try:
+        up_book = client.get_order_book(up_token)
+        down_book = client.get_order_book(down_token)
+    except PublicApiError as exc:
+        logger.warning("Order-book request failed: %s", exc)
+        return None
+
+    up_ask = first_level(up_book.get("asks", []))
+    down_ask = first_level(down_book.get("asks", []))
+    up_bid = first_level(up_book.get("bids", []))
+    down_bid = first_level(down_book.get("bids", []))
+    if up_ask is None or down_ask is None:
+        return {
+            "slug": market.get("slug", ""),
+            "question": market.get("question", ""),
+            "liquidity": safe_float(market.get("liquidity")),
+            "candidate": False,
+            "reason": "missing_up_or_down_ask",
+        }
+
+    combined_ask = up_ask["price"] + down_ask["price"]
+    candidate_edge = 1.0 - combined_ask - fee_buffer
+    available_size = min(up_ask["size"], down_ask["size"])
+    return {
+        "slug": market.get("slug", ""),
+        "question": market.get("question", ""),
+        "liquidity": safe_float(market.get("liquidity")),
+        "end_date": market.get("endDate"),
+        "up": {
+            "ask": up_ask,
+            "bid": up_bid,
+        },
+        "down": {
+            "ask": down_ask,
+            "bid": down_bid,
+        },
+        "combined_ask": round(combined_ask, 6),
+        "fee_buffer": fee_buffer,
+        "candidate_edge": round(candidate_edge, 6),
+        "available_size": round(available_size, 6),
+        "candidate": candidate_edge > 0 and available_size > 0,
+        "reason": "displayed_ask_sum_below_one_after_buffer"
+        if candidate_edge > 0
+        else "no_positive_displayed_edge",
+    }
+
+
+def scan_once(
+    client: ReadOnlyPolymarketClient,
+    min_liquidity: float,
+    max_markets: int,
+    fee_buffer: float,
+) -> Dict[str, Any]:
+    try:
+        all_markets = client.get_active_markets()
+    except PublicApiError as exc:
+        logger.error("Market-data request failed: %s", exc)
+        return {
+            "scanned_at": datetime.now(timezone.utc).isoformat(),
+            "markets_seen": 0,
+            "markets_analyzed": 0,
+            "candidates": [],
+            "observations": [],
+            "error": "market_data_request_failed",
+        }
+
+    markets = [
+        market
+        for market in all_markets
+        if isinstance(market, dict)
+        and market_is_btc_5m(market)
+        and safe_float(market.get("liquidity")) >= min_liquidity
+    ][:max_markets]
+
+    observations: List[Dict[str, Any]] = []
+    for market in markets:
+        observation = analyze_market(client, market, fee_buffer)
+        if observation is not None:
+            observations.append(observation)
+
+    return {
+        "scanned_at": datetime.now(timezone.utc).isoformat(),
+        "markets_seen": len(all_markets),
+        "markets_analyzed": len(observations),
+        "candidates": [item for item in observations if item.get("candidate")],
+        "observations": observations,
+    }
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Read-only BTC 5-minute Polymarket market scanner"
+    )
+    parser.add_argument(
+        "--once",
+        action="store_true",
+        help="Run one scan and exit; this is the default when --interval is omitted",
+    )
+    parser.add_argument(
+        "--interval",
+        type=float,
+        default=None,
+        help="Repeat scans every N seconds; no orders are ever placed",
+    )
+    parser.add_argument("--json", action="store_true", help="Print machine-readable JSON")
+    parser.add_argument(
+        "--min-liquidity", type=float, default=DEFAULT_MIN_LIQUIDITY
+    )
+    parser.add_argument("--max-markets", type=int, default=DEFAULT_MAX_MARKETS)
+    parser.add_argument("--fee-buffer", type=float, default=DEFAULT_FEE_BUFFER)
+    parser.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT)
+    return parser
+
+
+def print_result(result: Dict[str, Any], as_json: bool) -> None:
+    if as_json:
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
+
+    print(
+        f"Scanned {result['markets_analyzed']} BTC 5m markets "
+        f"(saw {result['markets_seen']} active markets)."
+    )
+    candidates = result.get("candidates", [])
+    if not candidates:
+        print("No candidate complementary-price edge found.")
+        return
+    for item in candidates:
+        print(
+            f"- {item.get('slug')}: edge={item.get('candidate_edge'):.4f}, "
+            f"available_size={item.get('available_size')}"
+        )
+    print("Read-only observation only; no order was submitted.")
+
+
+def main() -> int:
+    args = build_parser().parse_args()
+    if args.max_markets < 1 or args.fee_buffer < 0 or args.timeout <= 0:
+        raise SystemExit("max-markets must be positive; fee-buffer must be non-negative")
+
+    client = ReadOnlyPolymarketClient(timeout=args.timeout)
+    interval = args.interval
+    if interval is None or args.once:
+        print_result(
+            scan_once(
+                client,
+                min_liquidity=args.min_liquidity,
+                max_markets=args.max_markets,
+                fee_buffer=args.fee_buffer,
+            ),
+            args.json,
+        )
+        return 0
+
+    if interval <= 0:
+        raise SystemExit("interval must be positive")
     while True:
-        try:
-            await scan_and_trade()
-        except Exception as e:
-            logger.error(f"错误: {e}")
-        
-        await asyncio.sleep(30)  # 每30秒扫描一次
+        print_result(
+            scan_once(
+                client,
+                min_liquidity=args.min_liquidity,
+                max_markets=args.max_markets,
+                fee_buffer=args.fee_buffer,
+            ),
+            args.json,
+        )
+        time.sleep(interval)
 
 
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        raise SystemExit(main())
     except KeyboardInterrupt:
-        logger.info("👋 机器人已停止")
+        logger.info("Scanner stopped")

@@ -1,42 +1,53 @@
-## Description: <br>
-Use when a customer success manager, CS leader, or RevOps analyst needs to assess the renewal risk of a single SaaS account. Guides structured intake across five health dimensions, multi-signal Red/Yellow/Green scoring, and produces an overall risk tier, stakeholder map, save playbook, customer-facing talking points, and an internal escalation note. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps customer success managers, CS leaders, and RevOps analysts assess renewal risk for a single SaaS account using structured intake, multi-signal scoring, and an actionable save playbook.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Customer success managers, CS leaders, and RevOps analysts use this skill to assess one SaaS account's renewal risk, expose missing data, and produce a scorecard, stakeholder map, save playbook, talking points, and internal escalation note. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process confidential account data such as ARR, renewal dates, stakeholder names, support issues, and commercial terms. <br>
-Mitigation: Use only account data authorized for the agent session, anonymize where practical, and follow organizational data handling rules. <br>
-Risk: Incomplete or inaccurate account signals can produce misleading renewal risk scoring. <br>
-Mitigation: Require supplied evidence for every dimension score, mark missing dimensions as Insufficient data, and review the final scorecard before relying on it. <br>
-Risk: Generated talking points or escalation notes may expose sensitive internal context if shared without review. <br>
-Mitigation: Review and edit customer-facing and leadership-facing text before distribution. <br>
+## Use Case:
 
+Customer success managers, CS leaders, and RevOps analysts use this skill to evaluate a single SaaS account before a QBR, renewal forecast, escalation review, or save-play workshop. It turns user-provided account signals into a risk tier, stakeholder map, prioritized actions, talking points, and an internal escalation note.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/archlab-space/renewal-risk-scorecard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown scorecard with tables and concise prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-supplied account signals; no external data handling or tool execution is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Account names, ARR, stakeholder details, and commercial terms are confidential business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymized account handles where possible and provide only data intentionally needed for the renewal-risk assessment.
+
+Risk: Incomplete or invented account signals can produce misleading risk scores and escalation guidance.
+
+Mitigation: Record missing dimensions as insufficient data and require score justifications tied to supplied user-provided signals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/renewal-risk-scorecard)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Structured Markdown scorecard with tables and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided account data and should not require external lookups or system access.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

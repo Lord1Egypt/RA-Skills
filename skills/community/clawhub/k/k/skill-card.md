@@ -1,38 +1,53 @@
-## Description: <br>
-KnowledgeKeeper helps an agent create, organize, search, update, and export local notes with categories and tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and organize local notes with categories and tags, search note content, and export knowledge in JSON or Markdown formats.
 
-## Publisher: <br>
-[hgta23](https://clawhub.ai/user/hgta23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgta23](https://clawhub.ai/user/hgta23)
 
-## Use Case: <br>
-External users, students, professionals, creatives, and researchers use this skill to maintain a local note store, organize notes by category or tag, search stored content, and export notes for backup or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notes may contain secrets or highly sensitive personal data that are written to knowledge.json and later returned through export actions. <br>
-Mitigation: Avoid storing secrets or highly sensitive data unless local persistence and later export are acceptable; review exported content before sharing. <br>
+## Use Case:
 
+Students, professionals, creatives, researchers, and general users can use this skill through an agent to create, update, organize, search, and export personal or work notes.
 
-## Reference(s): <br>
-- [KnowledgeKeeper Skill on ClawHub](https://clawhub.ai/hgta23/k) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Files] <br>
-**Output Format:** [Plain text responses, JSON note data, and Markdown exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes notes to a local knowledge.json file and returns search, list, update, and export results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Notes are saved to a local file and may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where local note persistence is acceptable, and harden the storage path and file permissions before storing sensitive notes.
+
+Risk: Running the skill from a shared or attacker-writable directory can expose or alter saved notes.
+
+Mitigation: Run it from a trusted working directory and avoid shared writable locations.
+
+## Reference(s):
+
+- [KnowledgeKeeper Skill on ClawHub](https://clawhub.ai/hgta23/skills/k)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown]
+
+**Output Format:** [Plain text responses, structured note data, JSON exports, or Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists notes locally to knowledge.json in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

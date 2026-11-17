@@ -1,42 +1,55 @@
-## Description: <br>
-剧情生成管道流技能。支持多剧集连续生成、图谱管理、AI质检+人工确认的双控机制。自动管理人物、场景、钩子的关联关系。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+剧情生成管道流技能。支持多剧集连续生成、图谱管理、AI质检+人工确认的双控机制。自动管理人物、场景、钩子的关联关系。
 
-## Publisher: <br>
-[hexidyg](https://clawhub.ai/user/hexidyg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hexidyg](https://clawhub.ai/user/hexidyg)
 
-## Use Case: <br>
-External creators and agent users use this skill to plan and generate serialized short-drama episodes, manage story state, review episode quality, and continue or revise pipelines with human confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores full generated story drafts locally. <br>
-Mitigation: Avoid sensitive or proprietary story material and clear bundled sample pipeline state before starting a fresh workspace. <br>
-Risk: The skill documents sending story content to a third-party graph webhook. <br>
-Mitigation: Use only if that data sharing is acceptable for the material being developed. <br>
-Risk: Security evidence notes an unchecked file-path helper that can modify files outside its intended folder. <br>
-Mitigation: Do not pass arbitrary pipeline IDs until the graph path validation issue is fixed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexidyg/shorts-builder-cn) <br>
-- [Documented graph webhook](https://framedream.art/n8n/webhook-test/open_frame_construct) <br>
+## Use Case:
 
+Creators and agents use this skill to build Chinese short-drama story pipelines that generate connected episodes, track characters and hooks, run AI quality review, and wait for human approval before continuing. It supports pause, resume, modification, and multi-pipeline workflows through JSON-backed state.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-like structured story pipeline content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces episode prompts, generated story drafts, quality review prompts or results, pipeline status, and graph-management guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Graph storage can access or delete JSON files outside its intended graph directory if a crafted pipeline ID is accepted.
+
+Mitigation: Validate pipeline IDs before use and confine resolved graph paths to the graph storage directory before granting write or delete access.
+
+Risk: The skill writes local JSON state and graph data for generated story pipelines.
+
+Mitigation: Review the skill before installing it in workspaces that contain important JSON files, and run it with limited filesystem permissions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexidyg/skills/shorts-builder-cn)
+- [Artifact skill definition](artifact/SKILL.md)
+- [AI quality review template](artifact/templates/review_template.md)
+- [Graph interface endpoint](https://framedream.art/n8n/webhook-test/open_frame_construct)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown story-generation prompts and previews, JSON review/state objects, and Python API guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow with per-pipeline state, AI review scoring, user confirmation actions, and graph-backed continuity tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and scripts/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Match and extract text patterns using regular expressions for data validation, text parsing, and pattern-based extraction tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Regex Tool helps agents match, extract, and replace text patterns using regular expressions for validation, parsing, and pattern-based extraction tasks.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to test regular expressions, extract matching text, and prepare simple pattern-based replacements in local text workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Complex untrusted regex patterns over very large input may be slow or produce unexpected output. <br>
-Mitigation: Review patterns before use, test on representative samples, and avoid running untrusted patterns against very large input. <br>
-Risk: The usage examples describe file arguments, but the script evidence shows inline text or stdin behavior. <br>
-Mitigation: Confirm invocation behavior in the target environment before relying on file-path examples. <br>
+## Use Case:
 
+Developers and agents use this skill to test regex patterns against supplied text, extract matches, and perform regex-based replacements for validation, parsing, and redaction workflows.
 
-## Reference(s): <br>
-- [Regex Tool release page](https://clawhub.ai/dinghaibin/regex-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local regex match, extraction, and replacement guidance; no external services are indicated by the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Untrusted or very complex regular expressions can hang or consume heavy CPU when run against large inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run complex or untrusted patterns only in environments with time or resource limits, and test on small inputs before larger data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/regex-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print matched text, capture groups, positions, replacement output, invalid-pattern errors, or no-match status.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

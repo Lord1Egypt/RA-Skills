@@ -233,7 +233,7 @@ def build_tools(brave_api_key: str) -> list[BaseTool]:
         pref_clause = f"{preferences} " if preferences else ""
         query = (
             f"best credit cards {spending_profile} {pref_clause}US 2025 "
-            f"site:nerdwallet.com OR site:thepointsguy.com OR site:doctorofcredit.com"
+            f"site:nerdwallet.com OR site:thepointsguy.com OR site:doctorofcredit.com OR site:uscreditcardguide.com"
         )
         return search_and_format(wrapper, query)
 

@@ -1,42 +1,59 @@
-## Description: <br>
-Use when answering car maintenance, service interval, oil, brake fluid, tire pressure, or ownership questions through the TuhuCar CLI knowledge gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when answering car maintenance, service interval, oil, brake fluid, tire pressure, or ownership questions through the TuhuCar CLI knowledge gateway.
 
-## Publisher: <br>
-[finiking](https://clawhub.ai/user/finiking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[finiking](https://clawhub.ai/user/finiking)
 
-## Use Case: <br>
-External users and developers use this skill to answer vehicle maintenance and ownership questions by querying the TuhuCar CLI knowledge gateway and returning the gateway's markdown reply. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends car-care questions to the configured TuhuCar gateway, which could expose sensitive personal or vehicle details if an untrusted endpoint is used. <br>
-Mitigation: Avoid sending sensitive personal details, verify the configured endpoint, and do not use an untrusted TUHUCAR_ENDPOINT. <br>
-Risk: The skill depends on an external tuhucar CLI installation. <br>
-Mitigation: Install only if you intend to use the TuhuCar CLI and verify the @tuhucar/cli or Homebrew package source before use. <br>
+## Use Case:
 
+External users and developers use this skill to route vehicle maintenance and ownership questions through the TuhuCar CLI, parse the gateway response, and present the returned markdown answer.
 
-## Reference(s): <br>
-- [TuhuCar CLI](https://github.com/tuhucar/cli) <br>
-- [TuhuCar CLI Command Reference](references/command-reference.md) <br>
-- [ClawHub package page](https://clawhub.ai/finiking/tuhucar-knowledge-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and parsed CLI replies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the TuhuCar CLI JSON envelope for parsing; presents data.reply as markdown and does not show raw JSON to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Installing or invoking a third-party CLI can expose users to untrusted package sources or gateway behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify that @tuhucar/cli and the Homebrew tap are the intended official sources before installation or use.
+
+Risk: Gateway-supplied answers, links, and notices may be incorrect or inappropriate for a specific vehicle or service context.
+
+Mitigation: Treat returned content as TuhuCar gateway output, preserve update notices, and avoid presenting it as independently verified advice.
+
+Risk: Local configuration output may contain private endpoint or account details.
+
+Mitigation: Do not share `tuhucar config show` output when it includes private configuration values.
+
+## Reference(s):
+
+- [TuhuCar CLI Command Reference](references/command-reference.md)
+- [TuhuCar CLI Homepage](https://github.com/tuhucar/cli)
+- [ClawHub Skill Page](https://clawhub.ai/finiking/skills/tuhucar-knowledge-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and parsed CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs agents to parse JSON envelopes from the TuhuCar CLI, preserve successful reply markdown, and avoid exposing raw JSON envelopes to end users.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

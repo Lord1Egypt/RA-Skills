@@ -1,43 +1,59 @@
-## Description: <br>
-Git commit message expert. Analyzes diffs to generate perfect conventional commits, changelogs, release notes, and PR descriptions. Enforces commit message best practices and conventional commits spec. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes diffs and commit history to produce Conventional Commit messages, changelogs, release notes, PR descriptions, and commit review guidance.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn diffs, staged changes, commit lists, or branch summaries into conventional commit messages, changelogs, release notes, PR descriptions, version bump recommendations, and commit review feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated commit messages, changelogs, release notes, PR descriptions, or version bump recommendations may misclassify changes or omit important context. <br>
-Mitigation: Review generated text against the actual diff, commit history, and release policy before committing, publishing, or merging. <br>
-Risk: Diffs and commit histories may contain private keys, tokens, customer data, or sensitive internal URLs. <br>
-Mitigation: Redact sensitive content before using the skill and avoid pasting secrets or confidential data into prompts. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to turn diffs, commit lists, or change descriptions into Conventional Commit messages, changelogs, release notes, PR descriptions, version-bump recommendations, and commit-splitting guidance.
 
-## Reference(s): <br>
-- [Sovereign Commit Craft on ClawHub](https://clawhub.ai/ryudi84/sovereign-commit-craft) <br>
-- [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) <br>
-- [Keep a Changelog v1.1.0](https://keepachangelog.com/en/1.1.0/) <br>
-- [Semantic Versioning v2.0.0](https://semver.org/spec/v2.0.0.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with commit-message, changelog, release-note, pull-request, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated text should be reviewed before use, especially when based on private diffs or commit history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The install example uses an unpinned npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a trusted or pinned ClawHub CLI version when possible.
+
+Risk: Generated shell commands or release instructions may be inappropriate for a specific repository.
+
+Mitigation: Review generated commands and instructions before running or publishing them.
+
+Risk: Diffs and commit logs can contain secrets or sensitive project information.
+
+Mitigation: Do not paste secrets or sensitive diffs unless sharing them with the agent is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-commit-craft)
+- [Keep a Changelog v1.1.0](https://keepachangelog.com/en/1.1.0/)
+- [Semantic Versioning v2.0.0](https://semver.org/spec/v2.0.0.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with plain text and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commit subjects and bodies, changelog sections, release notes, PR templates, version-bump recommendations, and command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

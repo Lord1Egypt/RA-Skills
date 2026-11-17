@@ -1,38 +1,54 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover and recommend installable skills for user tasks, including search and installation guidance.
 
-## Publisher: <br>
-[JX-76](https://clawhub.ai/user/JX-76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jx-76](https://clawhub.ai/user/jx-76)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for reusable agent skills, present relevant options, and optionally install a selected skill through the Skills CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/JX-76/jx76-find-skills) <br>
-- [Skills directory](https://skills.sh/) <br>
+Developers and agent users use this skill to discover existing skills for a task, present relevant install options, and guide installation through the Skills CLI.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and skill links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security posture: review package source and publisher identity before installing suggested skills; avoid skipped confirmations and global installs unless persistent user-level installation is intended.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may lead an agent to run mutable unpinned npx commands.
+
+Mitigation: Prefer pinned CLI versions and review the command before execution.
+
+Risk: The skill may encourage broad global installation of third-party skills.
+
+Mitigation: Avoid global non-interactive installation by default, inspect skill source before installation, and install only from trusted maintainers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jx-76/skills/jx76-find-skills)
+- [Skills Directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include skill names, installation commands, and links to skill listings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

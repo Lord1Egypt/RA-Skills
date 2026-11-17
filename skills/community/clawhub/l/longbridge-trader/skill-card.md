@@ -1,43 +1,59 @@
-## Description: <br>
-Longbridge Trader helps agents use the longport Python SDK to query market data, review account balances and positions, and submit, modify, or cancel brokerage orders with user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Longbridge Trader helps agents use the longport Python SDK to query market data, account balances and positions, and submit, modify, or cancel brokerage orders.
 
-## Publisher: <br>
-[gavinyao](https://clawhub.ai/user/gavinyao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gavinyao](https://clawhub.ai/user/gavinyao)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent assist with Longbridge/Longport market-data lookup, account review, and brokerage order workflows for Hong Kong, U.S., Shanghai, and Shenzhen securities. Trading actions should be treated as user-confirmed execution assistance, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live brokerage-account authority when Longport credentials include trade permissions. <br>
-Mitigation: Use quote-only or read-only credentials where possible, grant trade permissions only when needed, and require explicit confirmation before any order placement, modification, or cancellation. <br>
-Risk: Order workflows may be unsafe if the agent does not present complete execution details before acting. <br>
-Mitigation: Before execution, show the symbol, side, order type, quantity, price, and account context, then wait for the user's confirmation. <br>
+## Use Case:
 
+Developers and trading-agent users use this skill to connect an agent to a Longbridge brokerage account for market quotes, K-line data, order book data, account balances, positions, order management, executions, and cash-flow review.
 
-## Reference(s): <br>
-- [QuoteContext API Reference](references/quote-api.md) <br>
-- [TradeContext API Reference](references/trade-api.md) <br>
-- [Longbridge Open Platform](https://open.longbridge.cn) <br>
-- [ClawHub release page](https://clawhub.ai/gavinyao/longbridge-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and inline Python or Bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make Longport API calls when configured with user credentials; trading actions require explicit user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent live brokerage access for trading and account operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated, least-privilege Longbridge credentials, prefer read-only or sandbox credentials where possible, and install only when brokerage access is intended.
+
+Risk: State-changing actions such as submitting, modifying, or canceling orders can affect a real account.
+
+Mitigation: Require explicit user confirmation for every state-changing action, including order cancellation, after showing the full order parameters.
+
+Risk: The configured longport SDK dependency mediates access to brokerage APIs.
+
+Mitigation: Pin and verify the longport SDK before use.
+
+## Reference(s):
+
+- [QuoteContext API Reference](references/quote-api.md)
+- [TradeContext API Reference](references/trade-api.md)
+- [Longbridge Open Platform](https://open.longbridge.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with tables, status summaries, and inline Python or shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market data, account values, quantities, prices, percentages, and order identifiers should be displayed clearly for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,70 @@
+<!doctype html>
+<!--
+================================================================
+  P1 图表与视觉特效夹具页(2026-07-27):canvas 截图 / data-chart 原生图表
+  / mix-blend-mode · clip-path 整体截图 / 图标字体自动截图
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>P1 图表与视觉特效</title>
+<style>html,body{margin:0;padding:0;overflow:hidden;}</style>
+</head>
+<body>
+<div class="slide-container" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#FFFFFF;font-family:'Noto Sans SC',Arial,sans-serif;">
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:50px;width:1200px;z-index:10;">
+    <div style="font-size:36px;font-weight:700;line-height:1.2;color:#1A1A1A;">P1 · canvas / chart / 视觉特效</div>
+  </div>
+
+  <!-- 1. <canvas> 用 JS 画一个简单柱状图 → 整体截图还原 -->
+  <canvas data-object="true" width="500" height="300" style="position:absolute;left:100px;top:140px;width:500px;height:300px;z-index:1;" id="cv1"></canvas>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:448px;width:500px;text-align:center;z-index:10;"><div style="font-size:16px;color:#666;">canvas · 截图还原</div></div>
+
+  <!-- 2. data-chart 原生柱状图(可编辑) -->
+  <div data-object="true" data-chart='{"type":"bar","labels":["Q1","Q2","Q3","Q4"],"series":[{"name":"营收","values":[120,150,180,210]},{"name":"利润","values":[24,33,42,55]}],"options":{"barDir":"col","showLegend":true,"legendPos":"b"}}' style="position:absolute;left:660px;top:140px;width:560px;height:320px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:660px;top:468px;width:560px;text-align:center;z-index:10;"><div style="font-size:16px;color:#666;">data-chart · 原生柱状图</div></div>
+
+  <!-- 3. data-chart 原生饼图 -->
+  <div data-object="true" data-chart='{"type":"pie","labels":["搜索","推荐","直接","其他"],"series":[{"name":"流量","values":[42,28,20,10]}],"options":{"showLegend":true,"legendPos":"r","showPercent":true}}' style="position:absolute;left:1280px;top:140px;width:540px;height:320px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1280px;top:468px;width:540px;text-align:center;z-index:10;"><div style="font-size:16px;color:#666;">data-chart · 原生饼图</div></div>
+
+  <!-- 4. mix-blend-mode 元素 → 整体截图(文字放外侧独立 textbox) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:560px;width:260px;height:160px;background:#E2232A;z-index:1;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:220px;top:600px;width:260px;height:160px;background:#0A2E5C;mix-blend-mode:multiply;z-index:2;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:740px;width:540px;text-align:center;z-index:10;"><div style="font-size:16px;color:#666;">mix-blend-mode · 截图还原</div></div>
+
+  <!-- 5. clip-path 元素 → 整体截图 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:700px;top:560px;width:240px;height:160px;background:#F39800;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 50%);z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:700px;top:740px;width:240px;text-align:center;z-index:10;"><div style="font-size:16px;color:#666;">clip-path · 截图还原</div></div>
+
+  <!-- 6. 图标字体自动截图(用 Material Icons 字体族;glyph 即便缺字也走截图路径) -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1000px;top:560px;width:300px;height:160px;display:flex;align-items:center;justify-content:center;z-index:10;">
+    <span style="font-family:'Material Icons';font-size:72px;color:#0A2E5C;">home</span>
+  </div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1000px;top:740px;width:300px;text-align:center;z-index:10;"><div style="font-size:16px;color:#666;">图标字体 · 自动截图</div></div>
+
+  <!-- 7. data-chart 原生折线图 -->
+  <div data-object="true" data-chart='{"type":"line","labels":["1月","2月","3月","4月","5月","6月"],"series":[{"name":"活跃用户","values":[820,932,901,1290,1330,1520]}],"options":{"showLegend":true,"legendPos":"b","lineSize":3}}' style="position:absolute;left:1380px;top:560px;width:440px;height:260px;z-index:1;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1380px;top:838px;width:440px;text-align:center;z-index:10;"><div style="font-size:16px;color:#666;">data-chart · 原生折线图</div></div>
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:1020px;width:1720px;z-index:10;"><div style="font-size:14px;color:#999;">html-slides P1 fixture · canvas/chart/blend/clip/icon-font</div></div>
+</div>
+
+<!-- canvas 绘制脚本(转换时已执行完毕,截图捕获绘制结果) -->
+<script>
+(function(){
+  var c=document.getElementById('cv1');if(!c)return;var ctx=c.getContext('2d');
+  var data=[80,140,110,180,120];var labels=['A','B','C','D','E'];
+  var w=c.width,h=c.height,bw=60,gap=(w-bw*5)/6,max=Math.max.apply(null,data);
+  ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,w,h);
+  data.forEach(function(v,i){var bh=v/max*(h-60);var x=gap+i*(bw+gap);var y=h-30-bh;
+    ctx.fillStyle='#0A2E5C';ctx.fillRect(x,y,bw,bh);
+    ctx.fillStyle='#666';ctx.font='20px Arial';ctx.textAlign='center';
+    ctx.fillText(labels[i],x+bw/2,h-8);});
+})();
+</script>
+<template data-slide-notes>P1 图表与视觉特效:canvas 截图、data-chart 原生柱/饼/折线图、mix-blend 与 clip-path 整体截图、图标字体自动截图。</template>
+</body>
+</html>

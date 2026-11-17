@@ -1,43 +1,56 @@
-## Description: <br>
-Build machine-readable loyalty programs, rewards APIs, and incentive protocols that AI shopping agents can discover, evaluate, and redeem autonomously, with UCP, UIP, and API integration examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through designing machine-readable loyalty programs, rewards APIs, and incentive protocols that AI shopping agents can discover, evaluate, and redeem autonomously.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and commerce engineers use this guide to design agent-readable loyalty, rewards, redemption, and incentive flows for AI shopping agents. It provides architecture guidance and illustrative code for GreenHelix-style sandbox and API integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial-style payment, cash-out, redemption, or ledger-writing examples may create real business impact if adapted directly for production. <br>
-Mitigation: Use the sandbox first, require explicit user approval for production adaptations, and review all payment, cash-out, redemption, and ledger-writing behavior before deployment. <br>
-Risk: The guide references sensitive credentials and wallet-related configuration. <br>
-Mitigation: Use least-privilege API keys, keep wallet private keys out of the workflow, and provide only the public wallet address when needed. <br>
+## Use Case:
 
+Developers and commerce engineers use this guide to design agent-readable loyalty, rewards, identity-linking, incentive-negotiation, redemption, and settlement flows for AI shopping agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mirni/greenhelix-agent-loyalty-incentives) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API endpoint](https://api.greenhelix.net/v1) <br>
-- [Schema.org](https://schema.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with JSON and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executing guide; examples reference GREENHELIX_API_KEY and WALLET_ADDRESS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and frontmatter) <br>
+Risk: Sample API flows may create or mutate loyalty, identity, payment, and ledger records if adapted against a production GreenHelix account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test in the GreenHelix sandbox first and use an API key with only the minimum permissions needed for the exercise.
+
+Risk: The guide references credentials for API access and a wallet address.
+
+Mitigation: Provide only the intended GreenHelix API key and a public wallet address; never include private keys or unrelated secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-loyalty-incentives)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guide with Python and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable educational content; examples reference GREENHELIX_API_KEY and WALLET_ADDRESS environment values.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

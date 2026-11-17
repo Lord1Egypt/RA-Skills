@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn73xn4tebehnb8cqna1p4dct9831x43",
-  "slug": "smart-agent-memory-cn",
-  "version": "2.1.1",
-  "publishedAt": 1773670587908
+  "owner": "beyound87",
+  "slug": "smart-agent-memory",
+  "displayName": "Smart Agent Memory",
+  "latest": {
+    "version": "2.0.0",
+    "publishedAt": 1773106400257,
+    "commit": "https://github.com/openclaw/skills/commit/e1927c996725960f839fb60bbda717937a371c9b"
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1772883971558,
+      "commit": "https://github.com/openclaw/skills/commit/7088389cffe43f97d948873426dc6134fe575fe5"
+    }
+  ]
 }

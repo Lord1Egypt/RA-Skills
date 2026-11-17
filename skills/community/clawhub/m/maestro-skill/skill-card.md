@@ -1,44 +1,55 @@
-## Description: <br>
-Query Maestro APIs over HTTP using the SIWX + JWT + x402 credit purchase flow. Resolve the exact endpoint from docs.gomaestro.org before requesting or paying. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Maestro APIs over HTTP using the SIWX + JWT + x402 credit purchase flow. Resolve the exact endpoint from docs.gomaestro.org before requesting or paying.
 
-## Publisher: <br>
-[Vardominator](https://clawhub.ai/user/Vardominator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vardominator](https://clawhub.ai/user/vardominator)
 
-## Use Case: <br>
-Developers and operators use this skill to make direct HTTP calls to Maestro API endpoints, including SIWX authentication and x402 credit purchase handling when a live API response requires payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to sign wallet messages or use private-key access. <br>
-Mitigation: Use a dedicated low-balance wallet or constrained runtime signer, and do not expose a high-value wallet private key. <br>
-Risk: The skill can purchase Maestro API credits with USDC when a live 402 response requires payment. <br>
-Mitigation: Require explicit approval for every paid request and verify the endpoint, network, payee, asset, and exact amount before signing. <br>
-Risk: Payment parameters can change between attempts. <br>
-Mitigation: Use only the latest live 402 response for supported chains, accepted payment terms, asset, payee, and price limits. <br>
+## Use Case:
 
+Developers and engineers use this skill to make direct Maestro API requests, resolve endpoint details from Maestro documentation, authenticate with SIWX, and purchase x402 credits only when required by the live service response.
 
-## Reference(s): <br>
-- [SIWX + x402 Reference](references/siwx-x402.md) <br>
-- [Maestro documentation index](https://docs.gomaestro.org/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/Vardominator/maestro-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with HTTP request details, headers, response summaries, and inline shell commands when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected network, payment amount, signer address, credit headers, and payment settlement metadata when returned by Maestro.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release evidence) <br>
+Risk: The skill can guide wallet signing and paid credit purchases for Maestro API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a constrained wallet signer, fund it only with the intended spend, and require explicit approval for each payment recipient, token contract, network, and amount.
+
+Risk: The skill may make additional credit purchases after initial confirmation if follow-up requests exhaust available credits.
+
+Mitigation: Require explicit approval before every paid retry or additional credit purchase, and reuse the latest live 402 response for payment parameters.
+
+## Reference(s):
+
+- [SIWX + x402 Reference](references/siwx-x402.md)
+- [Maestro documentation index](https://docs.gomaestro.org/llms.txt)
+- [Maestro API Gateway](https://api.gomaestro.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTTP request details, response data, and concise next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected network, payment amount, signer address, credit headers, and settlement metadata when relevant.]
+
+## Skill Version(s):
+
+0.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

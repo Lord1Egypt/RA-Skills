@@ -1,38 +1,52 @@
-## Description: <br>
-Standardized templates for periodic reports, system audits, revenue tracking, and progress logs that direct generated reports to workspace/artifacts/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized templates for periodic reports, system audits, revenue tracking, and progress logs.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-Developers, operators, and project teams use this skill to create structured Markdown reports for weekly retrospectives, full audits, daily progress logs, and revenue snapshots. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain private revenue, trading, infrastructure, tool inventory, or audit details. <br>
-Mitigation: Treat generated reports as private and review files before sharing or syncing workspace/artifacts/. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reporting on ClawHub](https://clawhub.ai/staybased/reporting) <br>
-- [staybased publisher profile](https://clawhub.ai/user/staybased) <br>
+## Use Case:
 
+External users and developers use this skill to have an agent create structured Markdown reports for weekly retrospectives, daily progress logs, full workspace audits, and revenue snapshots.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown report files using template placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports use ISO-dated filenames and are intended for workspace/artifacts/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports may contain sensitive business, operational, or financial information supplied by the user or inspected in the workspace.
+
+Mitigation: Review generated reports before sharing them and keep outputs in the intended workspace artifacts location with appropriate access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/staybased/skills/reporting)
+- [Weekly retrospective template](artifact/templates/weekly-retro.md)
+- [Full workspace audit template](artifact/templates/full-audit.md)
+- [Daily progress log template](artifact/templates/daily-log.md)
+- [Revenue snapshot template](artifact/templates/revenue-snapshot.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Analysis, Guidance]
+
+**Output Format:** [Markdown report files written to workspace artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ISO-dated filenames and report-specific placeholder templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter: 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

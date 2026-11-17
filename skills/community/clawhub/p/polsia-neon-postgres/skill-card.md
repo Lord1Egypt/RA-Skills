@@ -1,38 +1,48 @@
-## Description: <br>
-Use Neon PostgreSQL conventions for Polsia apps, including migration patterns and DATABASE_URL usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Neon PostgreSQL conventions for Polsia apps, including migration patterns and DATABASE_URL usage.
 
-## Publisher: <br>
-[agentlevier](https://clawhub.ai/user/agentlevier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agentlevier](https://clawhub.ai/user/agentlevier)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to guide agents working on Polsia apps that connect to Neon PostgreSQL, including DATABASE_URL usage, migration placement, and parameterized query conventions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated database migrations may modify or delete application data if applied without review.
+
+Mitigation: Review migration code and test rollback behavior before running migrations against shared or production databases.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers building Polsia apps use this skill to follow Neon PostgreSQL connection and migration conventions, including DATABASE_URL usage, start-time migrations, and parameterized queries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, code, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated migration examples may affect live data if applied without review, especially destructive rollback statements such as DROP TABLE. <br>
-Mitigation: Review generated migrations against the target database and environment before running them in an application start command. <br>
+**Output Format:** [Markdown guidance with JavaScript code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentlevier/polsia-neon-postgres) <br>
+**Other Properties Related to Output:** [No executable code is bundled with the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no executable files are included.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

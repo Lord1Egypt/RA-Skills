@@ -1,40 +1,54 @@
-## Description: <br>
-Fortinet FortiSASE audit for Secure Web Gateway policy review, ZTNA application gateway assessment, thin edge FortiGate integration validation, SD-WAN security overlay analysis, FortiClient endpoint compliance verification, and cloud security posture evaluation across FortiSASE tenants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fortinet FortiSASE audit for Secure Web Gateway policy review, ZTNA application gateway assessment, thin edge FortiGate integration validation, SD-WAN security overlay analysis, FortiClient endpoint compliance verification, and cloud security posture evaluation across FortiSASE tenants.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Security engineers and network operations teams use this skill to review FortiSASE tenant posture across SWG, ZTNA, thin edge, endpoint compliance, FortiGuard service health, logging, and configuration drift. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles high-value FortiCloud and device access credentials during audit workflows. <br>
-Mitigation: Install only for authorized FortiSASE audits, use scoped read-only API tokens or approved service principals, avoid personal FortiCloud passwords, and keep MFA bypasses limited to formally approved machine-to-machine access. <br>
-Risk: Audit outputs may include sensitive tenant, endpoint, logging, and security posture details. <br>
-Mitigation: Treat generated reports and collected data as sensitive, limit distribution to approved security and network operations personnel, and store results in approved systems. <br>
+## Use Case:
 
+Security operators and network engineers use this skill to audit Fortinet FortiSASE tenant posture across SWG, ZTNA, thin edge integration, endpoint compliance, FortiGuard services, and logging controls. It helps structure read-only reviews, evidence collection, and findings for enterprise SASE environments.
 
-## Reference(s): <br>
-- [FortiSASE REST API Reference](artifact/references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown audit workflow with API request examples, threshold tables, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit posture; requires authorized FortiSASE access and a scoped API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Reusable FortiCloud or FortiGate administrator credentials can be exposed through prompts, logs, command history, or reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated read-only service accounts or scoped API tokens, keep secrets out of prompts and generated reports, and avoid direct administrator authentication unless it is strictly necessary.
+
+Risk: The security evidence requires review because credential-handling safeguards are not adequate for normal installation without operator controls.
+
+Mitigation: Review the skill before deployment and enforce least-privilege access, token scoping, and trusted-host controls in operating procedures.
+
+## Reference(s):
+
+- [FortiSASE REST API Reference](references/api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/skills/fortisase-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline API request examples and audit findings guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only FortiSASE audit guidance requiring a scoped FortiSASE API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

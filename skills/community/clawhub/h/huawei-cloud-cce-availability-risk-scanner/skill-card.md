@@ -1,45 +1,60 @@
-## Description: <br>
-Scans Huawei Cloud CCE clusters for availability risks, reports severity-rated findings, and suggests remediation plans without directly changing cluster resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Huawei Cloud CCE clusters for availability risks such as single replicas, missing PodDisruptionBudgets, health probe gaps, AZ imbalance, gateway concentration, and resource overcommit.
 
-## Publisher: <br>
-[pintudeyudi](https://clawhub.ai/user/pintudeyudi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pintudeyudi](https://clawhub.ai/user/pintudeyudi)
 
-## Use Case: <br>
-Developers, SREs, and platform engineers use this skill to assess Huawei Cloud CCE clusters for high-availability gaps such as single replicas, missing PodDisruptionBudgets, unhealthy probes, node or workload AZ imbalance, gateway concentration, and resource overcommit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package is presented as a read-only scanner, but the bundled dispatcher exposes broader live cloud and Kubernetes mutation actions. <br>
-Mitigation: Restrict exposed actions to the read-only scanner actions listed in skill-profile.yaml before installation or deployment. <br>
-Risk: The skill requires sensitive Huawei Cloud credentials and can access administrative cloud and Kubernetes APIs. <br>
-Mitigation: Use least-privilege Huawei Cloud IAM and Kubernetes RBAC credentials that cannot create, delete, scale, update addons, read secret data, bind EIPs, or administer alarms. <br>
-Risk: Availability recommendations and YAML suggestions may be inappropriate without workload context. <br>
-Mitigation: Review remediation plans with the service owner and require explicit authorization before any operational change. <br>
+## Use Case:
 
+Cloud platform, Kubernetes, and SRE teams use this skill to assess Huawei Cloud CCE cluster availability posture, identify high-availability gaps, and produce risk-rated remediation guidance before operational changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pintudeyudi/huawei-cloud-cce-availability-risk-scanner) <br>
-- [Workflow](references/workflow.md) <br>
-- [Risk Rules](references/risk-rules.md) <br>
-- [Output Schema](references/output-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus structured JSON scan results, optional report files, remediation plans, and YAML suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Huawei Cloud credentials and CCE/Kubernetes read access; optional outputs include availability-risk-summary.json, availability-risk-report.md, and raw inventory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: release evidence) <br>
+Risk: Server security evidence says the package is advertised as a read-only availability scanner but exposes reachable actions that can change or disclose sensitive Huawei CCE infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, require a narrowed dispatcher or package that exposes only the documented read-only scan actions.
+
+Risk: The skill uses Huawei IAM credentials and Kubernetes access to inspect cluster resources.
+
+Mitigation: Run only with tightly scoped read-only Huawei IAM and Kubernetes RBAC that denies writes, Secret data access, and kubeconfig or certificate generation unless explicitly needed and separately approved.
+
+Risk: Generated remediation plans or YAML suggestions can be wrong when cluster data is incomplete or workload constraints are not understood.
+
+Mitigation: Review findings, data gaps, impact scope, rollback method, and verification metrics before applying any remediation outside the scanner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pintudeyudi/skills/huawei-cloud-cce-availability-risk-scanner)
+- [Workflow](references/workflow.md)
+- [Risk Rules](references/risk-rules.md)
+- [Output Schema](references/output-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON reports with risk issues, summaries, data gaps, recommendations, remediation plans, and optional output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Huawei Cloud credentials, target region, and CCE cluster context; optional output_dir can write availability-risk summary and report files.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

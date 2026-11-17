@@ -1,44 +1,58 @@
-## Description: <br>
-Structured web research framework for agents that plan searches, evaluate sources, synthesize findings into briefs, maintain a research library, and monitor evolving topics. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Structured web research framework for AI agents. Teaches your agent to conduct multi-source research, synthesize findings into actionable briefs, maintain a research library, and track evolving topics over time.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-Developers, analysts, and agent users use this skill to turn web search into structured research workflows for market research, competitor analysis, topic deep dives, and recurring monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can maintain persistent notes in a local research folder. <br>
-Mitigation: Use the research folder intentionally, avoid confidential topics in shared or indexed workspaces, and review stored briefs before relying on them. <br>
-Risk: Topic monitoring can repeatedly collect or update research over time. <br>
-Mitigation: Keep monitoring disabled unless intentionally configured and review monitor outputs before acting on them. <br>
-Risk: Generated research briefs may contain incorrect, stale, or misleading conclusions. <br>
-Mitigation: Review generated briefs and cited sources before using findings for decisions. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through structured web research, source evaluation, synthesis, saved research briefs, and ongoing topic monitoring for market research, competitor analysis, topic deep-dives, and trend tracking.
 
-## Reference(s): <br>
-- [Advanced Patterns](references/advanced-patterns.md) <br>
-- [Research Assistant on ClawHub](https://clawhub.ai/Clawdssen/agentledger-research-assistant) <br>
-- [The Agent Ledger](https://theagentledger.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown research briefs, monitoring notes, templates, and setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local research library files when the user configures the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can lead agents to create and maintain persistent research folders and monitoring files in a workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where persistent research files are intended, and periodically review generated research directories for relevance and sensitive content.
+
+Risk: Topic monitoring and heartbeat or cron integration can create recurring agent behavior.
+
+Mitigation: Enable monitoring only with explicit refresh rules, bounded topics, and non-sensitive subject matter.
+
+Risk: Generated reports may include a default third-party branded footer.
+
+Mitigation: Review or remove the branded footer before using reports in contexts where attribution or branding matters.
+
+## Reference(s):
+
+- [Research Assistant on ClawHub](https://clawhub.ai/clawdssen/skills/agentledger-research-assistant)
+- [Research Assistant Advanced Patterns](references/advanced-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance, Configuration]
+
+**Output Format:** [Markdown research briefs, research library indexes, monitoring notes, templates, and agent instruction snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update research/README.md, research/briefs/, research/monitoring/, templates, source networks, chains, and research quality logs.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

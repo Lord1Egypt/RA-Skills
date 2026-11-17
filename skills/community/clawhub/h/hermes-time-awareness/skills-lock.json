@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "hermes-time-awareness": {
+      "source": "mfang0126/hermes-time-awareness",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "e44767471db6906d70ceacb34ddfb4221598e8a55f332e2e6b46a42af3e4c715"
+    },
+    "perplexity-toolkit": {
+      "source": "mfang0126/perplexity-toolkit",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "8037f6330f66436ff802a20fcdbe6cdcdd6d255bc8c6e38f4ee6830956f0774e"
+    },
+    "research-pro": {
+      "source": "mfang0126/research-pro",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "f826b35bff85b87585cc78338cf434d6805a4dfff542e9349d2bd55eaedb45fb"
+    }
+  }
+}

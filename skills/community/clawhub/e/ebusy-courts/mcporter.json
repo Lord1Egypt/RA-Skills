@@ -1,0 +1,9 @@
+{
+  "name": "ebusy-courts",
+  "description": "Query eBusy-based tennis hall bookings",
+  "permissions": {
+    "env": ["EBUSY_BASE_URL", "EBUSY_USERNAME", "EBUSY_PASSWORD", "EBUSY_COURT_ID", "EBUSY_FIRST_COURT_NO"],
+    "network": ["https://*.ebusy.de"],
+    "fs": ["read"]
+  }
+}

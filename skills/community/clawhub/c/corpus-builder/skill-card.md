@@ -1,44 +1,64 @@
-## Description: <br>
-Corpus Builder helps agents build Chinese-novel text corpora with scene-aware chunking, optional DashScope annotation, rule-based fallback, and ChromaDB vector storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Corpus Builder builds Chinese-fiction corpora with scene-aware chunking, AI or rule-based annotation, embeddings, and ChromaDB vector storage.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Developers and writing-tool agents use this skill to split source novels into reusable text chunks, annotate scenes and writing attributes, embed the chunks, and maintain local corpus files for later analysis or retrieval workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated corpus files may contain original text and embeddings. <br>
-Mitigation: Store generated corpus directories in a trusted location and review exported JSON or YAML before sharing. <br>
-Risk: LLM annotation mode can send text chunks to DashScope. <br>
-Mitigation: Unset DASHSCOPE_API_KEY to use the offline rule-based mode, or only use LLM mode with text approved for that service. <br>
-Risk: Persistent shell configuration can expose API keys, and cleanup commands can remove local corpus data. <br>
-Mitigation: Prefer a secret manager or temporary environment variable for DASHSCOPE_API_KEY, and verify any rm -rf target before running cleanup commands. <br>
+## Use Case:
 
+Developers, writers, and content engineers use this skill to turn directories of Chinese novel text into chunked, annotated, embedded corpora for later analysis or retrieval. It supports local rule-based annotation and optional DashScope-backed LLM annotation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuzhihui886/corpus-builder) <br>
-- [Annotation Schema](artifact/references/annotation-schema.md) <br>
-- [Troubleshooting Guide](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration examples; generated corpus artifacts are JSON, YAML, and ChromaDB files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run fully offline with rule-based annotation, or use DashScope when DASHSCOPE_API_KEY is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: release metadata; artifact pyproject.toml and CHANGELOG report 1.1.0) <br>
+Risk: Optional DashScope annotation can send source text to a cloud API when DASHSCOPE_API_KEY is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set DASHSCOPE_API_KEY only when cloud annotation is intended; leave it unset for rule-based local annotation.
+
+Risk: Troubleshooting steps include removal commands for local corpus or model-cache directories.
+
+Mitigation: Verify and back up the exact target path before running deletion commands.
+
+Risk: Production runs can change behavior if dependencies or embedding model revisions resolve differently over time.
+
+Mitigation: Pin dependencies and the embedding model revision for production use.
+
+Risk: Generated annotations, exports, checkpoints, and vector-store documents may contain original source text.
+
+Mitigation: Store outputs in controlled local directories and review exported JSON or YAML before sharing.
+
+## Reference(s):
+
+- [README](README.md)
+- [Annotation Schema](references/annotation-schema.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [Usage Examples](examples/USAGE_EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are JSON, YAML, ChromaDB vector-store files, checkpoint files, and statistics files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include original source text, annotations, embeddings, and corpus metadata stored under the configured corpus directory.]
+
+## Skill Version(s):
+
+1.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

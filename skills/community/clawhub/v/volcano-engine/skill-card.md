@@ -1,49 +1,60 @@
-## Description: <br>
-Configure and use Volcano Engine models such as Doubao, GLM, DeepSeek, and Qwen through OpenClaw's OpenAI-compatible provider configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and use Volcano Engine (Volcengine) models including Doubao, GLM, DeepSeek, and Qwen through OpenClaw.
 
-## Publisher: <br>
-[andapeng](https://clawhub.ai/user/andapeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andapeng](https://clawhub.ai/user/andapeng)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure Volcengine API credentials, select supported text and multimodal models, define OpenClaw aliases, and troubleshoot authentication or connection issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Volcengine API key and may handle sensitive credentials. <br>
-Mitigation: Use a restricted API key, prefer environment variables or a secret manager, and do not commit .env or openclaw.json files containing real keys. <br>
-Risk: Connection tests and model prompts are sent to Volcengine remote APIs. <br>
-Mitigation: Avoid sending sensitive prompts or files unless you accept Volcengine's data handling terms. <br>
-Risk: Token-based remote API use can incur usage costs. <br>
-Mitigation: Check official pricing and monitor usage in the Volcano Engine Console before high-volume use. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Volcengine API access in OpenClaw, choose text or multimodal models, set model aliases, and troubleshoot authentication or connection issues.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andapeng/volcano-engine) <br>
-- [Volcano Engine Official Documentation](https://www.volcengine.com/docs/82379) <br>
-- [Volcano Engine API Reference](https://www.volcengine.com/docs/82379/1263693) <br>
-- [Volcano Engine Console](https://console.volcengine.com/ark) <br>
-- [Volcano Engine Pricing](https://www.volcengine.com/product/ark/pricing) <br>
-- [Configuration Guide](references/configuration.md) <br>
-- [Models Reference](references/models.md) <br>
-- [API Parameters](references/api-parameters.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw provider configuration, model aliases, environment variable guidance, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and package.json) <br>
+Risk: Prompts, files, and API credentials may be sent to Volcengine when this provider is configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when Volcengine model support is needed, store credentials in environment variables or a protected credential store, and restrict and rotate API keys.
+
+Risk: Optional documentation-updater or crawler steps may run recurring background automation or unpinned npm/npx tooling.
+
+Mitigation: Do not enable those optional updater or crawler steps unless they have been reviewed, pinned, and run in a contained environment.
+
+## Reference(s):
+
+- [Volcengine Skill Page](https://clawhub.ai/andapeng/skills/volcano-engine)
+- [Volcano Engine Official Documentation](https://www.volcengine.com/docs/82379)
+- [Volcano Engine API Reference](https://www.volcengine.com/docs/82379/1263693)
+- [Volcano Engine Console](https://console.volcengine.com/ark)
+- [Volcano Engine Pricing](https://www.volcengine.com/product/ark/pricing)
+- [Configuration Guide](references/configuration.md)
+- [Models Reference](references/models.md)
+- [API Parameters Reference](references/api-parameters.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code, Markdown]
+
+**Output Format:** [Markdown with JSON configuration examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model IDs, endpoint URLs, API-key environment variable names, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

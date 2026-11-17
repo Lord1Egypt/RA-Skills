@@ -1,298 +1,204 @@
 import argparse
 import json
-import sys
 import os
-import time
-import subprocess
-import shutil
 import re
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
 
-# SECURITY: Validate file paths to prevent path traversal
-def validate_file_path(file_path, must_exist=True):
-    """Validate file path for security - must be within workspace"""
-    if not file_path:
-        return None
-    
-    # Resolve to absolute path
-    abs_path = os.path.abspath(file_path)
-    workspace_root = os.path.abspath(os.getcwd())
-    
-    # SECURITY: Enforce workspace containment - file MUST be inside current working directory
-    if not abs_path.startswith(workspace_root + os.sep) and abs_path != workspace_root:
-        raise ValueError(f"Access denied: file must be within workspace ({workspace_root})")
-    
-    # SECURITY: Block sensitive system directories (defense in depth)
-    forbidden_prefixes = ['/etc/', '/proc/', '/sys/', '/root/', '/home/']
-    for prefix in forbidden_prefixes:
-        if abs_path.startswith(prefix):
-            raise ValueError(f"Access denied: cannot access {prefix} directories")
-    
-    if must_exist and not os.path.exists(abs_path):
-        raise FileNotFoundError(f"File not found: {abs_path}")
-    
-    return abs_path
+MAX_TEXT = 10_000
+ALLOWED_MODELS = {"tiny", "base", "small", "medium", "large", "turbo"}
 
-# Lazy imports
-def get_whisper(): import whisper; return whisper
-def get_gtts(): from gtts import gTTS; return gTTS
-def get_librosa(): import librosa; return librosa
+
+def _workspace_root() -> Path:
+    return Path.cwd().resolve()
+
+
+def validate_file_path(file_path, must_exist=True) -> str:
+    """Resolve a path and keep it inside the current workspace, including symlinks."""
+    if not file_path or not isinstance(file_path, str):
+        raise ValueError("file_path is required")
+    root = _workspace_root()
+    candidate = Path(file_path).expanduser()
+    resolved = candidate.resolve(strict=False)
+    try:
+        resolved.relative_to(root)
+    except ValueError as exc:
+        raise ValueError(f"Access denied: path must stay inside workspace ({root})") from exc
+    if must_exist and not resolved.exists():
+        raise FileNotFoundError(f"File not found: {resolved}")
+    if must_exist and not resolved.is_file():
+        raise ValueError(f"Input is not a regular file: {resolved}")
+    if not must_exist:
+        resolved.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            resolved.parent.resolve().relative_to(root)
+        except ValueError as exc:
+            raise ValueError("Access denied: output directory escapes workspace") from exc
+    return str(resolved)
+
+
+def get_whisper():
+    import whisper
+    return whisper
+
+
+def get_gtts():
+    from gtts import gTTS
+    return gTTS
+
+
+def get_librosa():
+    import librosa
+    return librosa
+
 
 def run_ffmpeg(args):
-    """Run ffmpeg command and check for errors"""
+    if not shutil.which("ffmpeg"):
+        return False, "ffmpeg not found in PATH"
     try:
-        # Check if ffmpeg is in path
-        if not shutil.which("ffmpeg"):
-            return False, "ffmpeg not found in PATH"
-            
-        cmd = ["ffmpeg", "-y"] + args
-        # ffmpeg logs info to stderr
-        process = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        return True, process.stderr.decode()
-    except subprocess.CalledProcessError as e:
-        return False, e.stderr.decode()
-    except FileNotFoundError as e:
-        return False, f"File not found: {str(e)}"
-    except Exception as e:
-        return False, f"FFmpeg error: {str(e)}"
+        process = subprocess.run(
+            ["ffmpeg", "-nostdin", "-hide_banner", "-y", *args],
+            check=True, capture_output=True, text=True, timeout=900,
+        )
+        return True, process.stderr
+    except subprocess.TimeoutExpired:
+        return False, "FFmpeg timed out after 900 seconds"
+    except subprocess.CalledProcessError as exc:
+        return False, exc.stderr or str(exc)
+    except OSError as exc:
+        return False, str(exc)
+
 
 def transcribe(file_path, model_name="base"):
     try:
-        # SECURITY: Validate file path
-        safe_path = validate_file_path(file_path, must_exist=True)
-        
-        whisper = get_whisper()
-        model = whisper.load_model(model_name)
-        result = model.transcribe(safe_path)
-        return {"text": result["text"], "segments": result.get("segments", [])}
-    except FileNotFoundError as e:
-        return {"error": str(e)}
-    except Exception as e:
-        return {"error": str(e)}
+        safe_path = validate_file_path(file_path)
+        if model_name not in ALLOWED_MODELS:
+            raise ValueError(f"Unsupported model; choose one of {sorted(ALLOWED_MODELS)}")
+        result = get_whisper().load_model(model_name).transcribe(safe_path)
+        return {"text": result.get("text", ""), "segments": result.get("segments", [])}
+    except Exception as exc:
+        return {"error": str(exc)}
 
-def tts(text, output_path=None):
+
+def tts(text, output_path=None, lang="en", allow_network=False):
     try:
-        # SECURITY: Validate text input
-        if not text or not isinstance(text, str):
-            return {"error": "Text is required and must be a string"}
-        
-        if len(text) > 10000:
-            return {"error": "Text too long (max 10000 characters)"}
-        
-        if not output_path:
-            output_path = f"tts_{int(time.time())}.mp3"
-        
-        # SECURITY: Validate output path
-        safe_output = validate_file_path(output_path, must_exist=False)
-        if safe_output:
-            output_path = safe_output
-        
-        gTTS = get_gtts()
-        tts_obj = gTTS(text=text, lang='en')
-        tts_obj.save(output_path)
-        return {"file_path": output_path, "status": "created"}
-    except Exception as e:
-        return {"error": str(e)}
+        if not allow_network:
+            raise ValueError("Remote Google TTS is disabled by default; pass --allow-network after confirming text may be sent to Google")
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError("text is required and must be a non-empty string")
+        if len(text) > MAX_TEXT:
+            raise ValueError(f"text too long (max {MAX_TEXT} characters)")
+        if not isinstance(lang, str) or not re.fullmatch(r"[a-z]{2,3}(?:-[A-Z]{2})?", lang):
+            raise ValueError("lang must be a language code such as en or fr")
+        safe_output = validate_file_path(output_path or f"tts_{int(time.time())}.mp3", must_exist=False)
+        get_gtts()(text=text, lang=lang).save(safe_output)
+        return {"file_path": safe_output, "status": "created"}
+    except Exception as exc:
+        return {"error": str(exc)}
+
 
 def extract_features(file_path):
     try:
-        # SECURITY: Validate file path
-        safe_path = validate_file_path(file_path, must_exist=True)
-        
+        y, sr = get_librosa().load(validate_file_path(file_path), sr=None, mono=True)
         librosa = get_librosa()
-        y, sr = librosa.load(safe_path, sr=None)
-        duration = librosa.get_duration(y=y, sr=sr)
-        mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
-        rms = librosa.feature.rms(y=y)
-        
         return {
-            "duration": duration,
-            "sample_rate": sr,
-            "mfcc_mean": mfcc.mean(axis=1).tolist(),
-            "rms_mean": float(rms.mean())  # Convert numpy to Python float
+            "duration": float(librosa.get_duration(y=y, sr=sr)),
+            "sample_rate": int(sr),
+            "mfcc_mean": librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13).mean(axis=1).tolist(),
+            "rms_mean": float(librosa.feature.rms(y=y).mean()),
         }
-    except FileNotFoundError as e:
-        return {"error": str(e)}
-    except Exception as e:
-        return {"error": str(e)}
+    except Exception as exc:
+        return {"error": str(exc)}
+
 
 def vad_segments(file_path, aggressiveness=2):
     try:
-        # SECURITY: Validate file path
-        safe_path = validate_file_path(file_path, must_exist=True)
-        
-        # Use ffmpeg silencedetect filter
-        # noise=-30dB, duration=0.5s (adjust based on aggressiveness)
-        # aggressiveness 1-3 map to silence thresholds roughly
-        db_threshold = -30 - (aggressiveness * 5) # e.g. -40dB for agg 2
-        
-        cmd = [
-            "-i", safe_path,
-            "-af", f"silencedetect=noise={db_threshold}dB:d=0.3",
-            "-f", "null",
-            "-"
-        ]
-        
-        success, stderr = run_ffmpeg(cmd)
-        if not success:
+        safe_path = validate_file_path(file_path)
+        if not isinstance(aggressiveness, int) or aggressiveness not in range(4):
+            raise ValueError("aggressiveness must be an integer from 0 to 3")
+        threshold = -30 - (aggressiveness * 5)
+        ok, stderr = run_ffmpeg(["-i", safe_path, "-af", f"silencedetect=noise={threshold}dB:d=0.3", "-f", "null", "-"])
+        if not ok:
             return {"error": f"FFmpeg VAD failed: {stderr}"}
-            
-        # Parse stderr for silence_start and silence_end
-        # [silencedetect @ 0x...] silence_start: 10.5
-        # [silencedetect @ 0x...] silence_end: 12.0
-        
-        silence_starts = []
-        silence_ends = []
-        
-        for line in stderr.split('\n'):
-            if "silence_start" in line:
-                match = re.search(r'silence_start: ([\d\.]+)', line)
-                if match:
-                    silence_starts.append(float(match.group(1)))
-            elif "silence_end" in line:
-                match = re.search(r'silence_end: ([\d\.]+)', line)
-                if match:
-                    silence_ends.append(float(match.group(1)))
-                    
-        # Get total duration to close the last segment
-        duration_match = re.search(r'Duration: (\d{2}):(\d{2}):(\d{2}\.\d+)', stderr)
-        total_duration = 0
-        if duration_match:
-            h, m, s = map(float, duration_match.groups())
-            total_duration = h*3600 + m*60 + s
-            
-        # Convert silence segments to speech segments
-        speech_segments = []
-        current_time = 0.0
-        
-        # Zip starts and ends. 
-        # Logic: Speech is from 0 to first_silence_start
-        # Then from first_silence_end to second_silence_start...
-        
-        # If file starts with silence (silence_start is 0 or close to 0)
-        if silence_starts and silence_starts[0] < 0.1:
-            current_time = silence_ends.pop(0)
-            silence_starts.pop(0)
-            
-        for i in range(len(silence_starts)):
-            if silence_starts[i] > current_time:
-                speech_segments.append({
-                    "start": current_time,
-                    "end": silence_starts[i]
-                })
-            
-            if i < len(silence_ends):
-                current_time = silence_ends[i]
-                
-        # Handle trailing speech
-        if current_time < total_duration:
-             speech_segments.append({
-                "start": current_time,
-                "end": total_duration
-            })
-            
-        return {"segments": speech_segments}
-        
-    except FileNotFoundError as e:
-        return {"error": str(e)}
-    except Exception as e:
-        return {"error": str(e)}
+        starts = [float(x) for x in re.findall(r"silence_start:\s*([0-9.]+)", stderr)]
+        ends = [float(x) for x in re.findall(r"silence_end:\s*([0-9.]+)", stderr)]
+        duration_match = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)", stderr)
+        duration = (int(duration_match.group(1)) * 3600 + int(duration_match.group(2)) * 60 + float(duration_match.group(3))) if duration_match else 0.0
+        silences = []
+        for i, start in enumerate(starts):
+            end = ends[i] if i < len(ends) else duration
+            if end > start:
+                silences.append((max(0.0, start), min(duration, end)))
+        segments = []
+        cursor = 0.0
+        for start, end in silences:
+            if start > cursor:
+                segments.append({"start": round(cursor, 3), "end": round(start, 3)})
+            cursor = max(cursor, end)
+        if duration > cursor:
+            segments.append({"start": round(cursor, 3), "end": round(duration, 3)})
+        return {"segments": segments}
+    except Exception as exc:
+        return {"error": str(exc)}
+
 
 def transform(file_path, operations):
     try:
-        # SECURITY: Validate file path
-        safe_path = validate_file_path(file_path, must_exist=True)
-        
-        # Build ffmpeg command filter chain
+        safe_path = validate_file_path(file_path)
+        if not isinstance(operations, list) or not operations:
+            raise ValueError("operations must be a non-empty JSON array")
         filters = []
-        # SECURITY: Validate output path
-        output_path = validate_file_path(file_path + ".processed.wav", must_exist=False)
-        if not output_path:
-            output_path = file_path + ".processed.wav"
-        
-        # Base command
         cmd = ["-i", safe_path]
-        
         for op in operations:
-            if not isinstance(op, dict) or "op" not in op:
-                continue
-                
-            if op["op"] == "trim":
-                # Use -ss and -t for trimming
-                start = str(op.get("start", 0))
-                cmd = ["-ss", start] + cmd
-                if "end" in op:
-                    duration = str(op["end"] - op.get("start", 0))
-                    cmd += ["-t", duration]
-            elif op["op"] == "resample":
-                cmd += ["-ar", str(op["rate"])]
-            elif op["op"] == "normalize":
-                # Simple normalization using loudnorm filter
+            if not isinstance(op, dict) or op.get("op") not in {"trim", "resample", "normalize"}:
+                raise ValueError("each operation must be trim, resample, or normalize")
+            kind = op["op"]
+            if kind == "trim":
+                start = float(op.get("start", 0))
+                end = float(op["end"]) if "end" in op else None
+                if start < 0 or (end is not None and (end <= start)):
+                    raise ValueError("trim requires 0 <= start < end")
+                cmd = ["-ss", f"{start:g}", *cmd]
+                if end is not None:
+                    cmd += ["-t", f"{end - start:g}"]
+            elif kind == "resample":
+                rate = int(op.get("rate", 0))
+                if rate < 8_000 or rate > 192_000:
+                    raise ValueError("resample rate must be between 8000 and 192000 Hz")
+                cmd += ["-ar", str(rate)]
+            else:
                 filters.append("loudnorm")
-
         if filters:
             cmd += ["-af", ",".join(filters)]
-            
-        cmd.append(output_path)
-        
-        success, err = run_ffmpeg(cmd)
-        if not success:
-            return {"error": f"FFmpeg failed: {err}"}
-            
-        return {"file_path": output_path}
-    except FileNotFoundError as e:
-        return {"error": str(e)}
-    except Exception as e:
-        return {"error": str(e)}
+        output = validate_file_path(str(Path(safe_path).with_suffix(".processed.wav")), must_exist=False)
+        ok, err = run_ffmpeg([*cmd, "-map_metadata", "-1", output])
+        return {"file_path": output} if ok else {"error": f"FFmpeg failed: {err}"}
+    except Exception as exc:
+        return {"error": str(exc)}
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("action", choices=["transcribe", "tts", "extract_features", "vad_segments", "transform"])
+    parser.add_argument("--file_path"); parser.add_argument("--text"); parser.add_argument("--output_path")
+    parser.add_argument("--model", default="base"); parser.add_argument("--ops"); parser.add_argument("--aggressiveness", type=int, default=2)
+    parser.add_argument("--lang", default="en"); parser.add_argument("--allow-network", action="store_true")
+    args = parser.parse_args()
+    if args.action in {"transcribe", "extract_features", "vad_segments", "transform"} and not args.file_path:
+        parser.error("--file_path is required")
+    if args.action == "transcribe": result = transcribe(args.file_path, args.model)
+    elif args.action == "tts": result = tts(args.text, args.output_path, args.lang, args.allow_network)
+    elif args.action == "extract_features": result = extract_features(args.file_path)
+    elif args.action == "vad_segments": result = vad_segments(args.file_path, args.aggressiveness)
+    else:
+        try: operations = json.loads(args.ops or "[]")
+        except json.JSONDecodeError: result = {"error": "Invalid JSON for --ops"}
+        else: result = transform(args.file_path, operations)
+    print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("action", choices=["transcribe", "tts", "extract_features", "vad_segments", "transform"])
-    parser.add_argument("--file_path", help="Path to input audio file")
-    parser.add_argument("--text", help="Text for TTS")
-    parser.add_argument("--output_path", help="Output path for generated files")
-    parser.add_argument("--model", default="base", help="Whisper model size")
-    parser.add_argument("--ops", help="JSON string of operations for transform")
-    
-    args = parser.parse_args()
-    
-    result = {"error": "Unknown action"}
-    
-    if args.action == "transcribe":
-        if not args.file_path:
-            print(json.dumps({"error": "file_path required"}))
-            sys.exit(1)
-        result = transcribe(args.file_path, args.model)
-        
-    elif args.action == "tts":
-        if not args.text:
-            print(json.dumps({"error": "text required"}))
-            sys.exit(1)
-        result = tts(args.text, args.output_path)
-        
-    elif args.action == "extract_features":
-        if not args.file_path:
-            print(json.dumps({"error": "file_path required"}))
-            sys.exit(1)
-        result = extract_features(args.file_path)
-        
-    elif args.action == "vad_segments":
-        if not args.file_path:
-            print(json.dumps({"error": "file_path required"}))
-            sys.exit(1)
-        result = vad_segments(args.file_path)
-
-    elif args.action == "transform":
-        if not args.file_path:
-            print(json.dumps({"error": "file_path required"}))
-            sys.exit(1)
-        ops = []
-        if args.ops:
-            try:
-                ops = json.loads(args.ops)
-            except json.JSONDecodeError:
-                print(json.dumps({"error": "Invalid JSON for --ops"}))
-                sys.exit(1)
-        result = transform(args.file_path, ops)
-
-    print(json.dumps(result, indent=2))
+    main()

@@ -1,40 +1,57 @@
-## Description: <br>
-Audits planned cross-branch code migrations by analyzing git history, dependency links, conflict risk, and migration readiness before cherry-picking or porting work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-Branch Migration Audit helps agents audit module or feature migrations across Git branches by analyzing commits, dependencies, conflict risks, and migration checklists.
 
-## Publisher: <br>
-[xianjingnb](https://clawhub.ai/user/xianjingnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynnchuan](https://clawhub.ai/user/kynnchuan)
 
-## Use Case: <br>
-Developers and release engineers use this skill to assess whether a module or feature can be migrated between branches, identify dependent commits and files, and plan safer cherry-pick or manual merge steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes git commands and migration actions that can affect branch history or working tree state if applied without review. <br>
-Mitigation: Review the proposed command list and run audits from a clean working tree or disposable branch before applying cherry-picks or manual merge changes. <br>
-Risk: The audit may miss scattered feature work when keyword, author, or time-range inputs are incomplete. <br>
-Mitigation: Have the user confirm the discovered commit list and supply known issue IDs, commit SHAs, module paths, or watch paths before relying on the migration plan. <br>
+## Use Case:
 
+Developers and engineers use this skill before cross-branch module or feature migrations to find relevant commits, external dependencies, likely conflicts, and a safe migration order. It is also used during migration to diagnose compilation errors and produce post-cherry-pick review checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xianjingnb/cross-branch-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, audit tables, migration plans, and generated HTML report code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create an interactive HTML audit report under docs/ and printable migration checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Incorrect source branch, target branch, paths, commit lists, or search terms can produce an incomplete migration scope or misleading migration plan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm all audit inputs with the user before running the analysis and require human review of the discovered commit set.
+
+Risk: Untrusted branch names, paths, or search values could be unsafe if inserted into shell commands through string interpolation.
+
+Mitigation: Use safe argument handling, quote shell parameters, and avoid executing generated commands against untrusted repositories without review.
+
+Risk: Generated overwrite or cherry-pick advice could damage target-branch changes if followed without review.
+
+Mitigation: Review generated migration advice, inspect diffs before applying changes, and run compilation or tests after each migration phase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kynnchuan/skills/cross-branch-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell command snippets, migration plans, checklists, and generated HTML audit reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce risk file lists, commit lists, CSV exports, Markdown migration plans, and docs/migration-audit-<timestamp>.html reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

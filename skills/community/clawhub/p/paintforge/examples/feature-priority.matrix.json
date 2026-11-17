@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "diagram_type": "matrix",
+  "meta": {
+    "title": "Feature Priority Matrix",
+    "output": "examples/matrix-feature-priority-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "quick-wins", "label": "Quick wins", "focus": ["search", "export"], "note": "High value, low effort." },
+      { "id": "big-bets", "label": "Big bets", "focus": ["ai-search", "realtime"], "note": "High value, high effort." }
+    ]
+  },
+  "axes": {
+    "x": { "label": "Effort", "low": "Low effort", "high": "High effort" },
+    "y": { "label": "Value", "low": "Low value", "high": "High value" }
+  },
+  "items": [
+    { "id": "search", "label": "Search", "x": 20, "y": 90 },
+    { "id": "export", "label": "Export", "x": 30, "y": 75 },
+    { "id": "ai-search", "label": "AI search", "x": 80, "y": 95 },
+    { "id": "realtime", "label": "Realtime", "x": 70, "y": 70 },
+    { "id": "dark-mode", "label": "Dark mode", "x": 25, "y": 35 },
+    { "id": "i18n", "label": "i18n", "x": 60, "y": 25 }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Quick wins",
+      "items": [
+        "Search and Export are high value with low effort",
+        "The top-left quadrant is the do-first zone",
+        "Dark mode and i18n are low value and low effort"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Big bets",
+      "items": [
+        "AI search and Realtime are high value but high effort",
+        "The top-right quadrant needs careful planning",
+        "Nothing sits in the low-value, high-effort trap"
+      ]
+    }
+  ]
+}

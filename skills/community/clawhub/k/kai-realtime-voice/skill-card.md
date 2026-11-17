@@ -1,39 +1,62 @@
-## Description: <br>
-Generates speech audio from text with MiniMax using a configured API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time voice streaming via MiniMax WebSocket API for low-latency voice conversations and streaming audio generation.
 
-## Publisher: <br>
-[ogdegenblaze](https://clawhub.ai/user/ogdegenblaze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ogdegenblaze](https://clawhub.ai/user/ogdegenblaze)
 
-## Use Case: <br>
-Developers and agents use this skill to check MiniMax text-to-speech access and generate MP3 speech audio from supplied text. It is suited to voice-output workflows that already have a MiniMax API key configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and text provided to the skill are sent to MiniMax under the user's API key. <br>
-Mitigation: Avoid sending secrets or sensitive private content unless MiniMax data handling is acceptable for that material. <br>
-Risk: The release describes real-time WebSocket streaming, but the security summary identifies the implementation as a REST-based MP3 generation helper. <br>
-Mitigation: Treat the skill as text-to-speech file generation and validate latency or streaming requirements before relying on it for real-time voice workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to test a MiniMax text-to-audio connection and generate speech audio from supplied text using a MiniMax API key.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration guidance] <br>
-**Output Format:** [Markdown instructions with bash commands; runtime output is status text and MP3 audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY. Generated text is sent to MiniMax, and MP3 output is saved under KAI_MINIMAX_WORKSPACE or the default OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security evidence reports a mismatch between the advertised real-time WebSocket streaming behavior and the inspected non-streaming REST text-to-audio implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the expected behavior before use; the publisher should implement true WebSocket streaming or relabel the skill as a REST text-to-audio file generator.
+
+Risk: Input text is sent to MiniMax under the user's API key.
+
+Mitigation: Use only non-sensitive text that is appropriate to send to MiniMax, and review MiniMax account and data-handling obligations before use.
+
+Risk: The script writes generated audio to a fixed MP3 path in a local workspace.
+
+Mitigation: Run it in a non-shared, non-privileged workspace and check output-file handling before using it with important local files.
+
+Risk: The shell script constructs JSON with user-provided text.
+
+Mitigation: Avoid untrusted or complex free-form input until the publisher adds JSON-safe request construction.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ogdegenblaze/skills/kai-realtime-voice)
+- [MiniMax text-to-audio API endpoint](https://api.minimax.io/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown usage guidance with bash commands; generated audio is saved as MP3 by the script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY; writes realtime_test.mp3 to KAI_MINIMAX_WORKSPACE or the default OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

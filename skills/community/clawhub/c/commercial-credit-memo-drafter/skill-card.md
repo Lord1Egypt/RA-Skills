@@ -1,44 +1,59 @@
-## Description: <br>
-Commercial Credit Memo Drafter helps commercial loan officers, credit analysts, and relationship managers turn borrower financials and loan requests into draft Credit Analysis Memoranda with 5Cs analysis, ratios, risk-rating recommendations, covenant packages, and credit-officer review controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Commercial Credit Memo Drafter helps commercial loan officers, credit analysts, and relationship managers turn borrower financials and a loan request into a draft Credit Analysis Memorandum with 5Cs analysis, DSCR, leverage, LTV, risk-rating recommendation, covenant package, and recommendation options.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Commercial loan officers, credit analysts, underwriters, and relationship managers use this skill to collect borrower and loan-request facts, compute underwriting ratios, and draft a structured Credit Analysis Memorandum for qualified credit-officer review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles confidential borrower, guarantor, financial, credit-policy, bureau, KYC, OFAC, BSA/AML, and beneficial-ownership information in the agent session. <br>
-Mitigation: Install and use it only in agent environments approved for that information, and avoid sharing raw confidential data beyond the intended session. <br>
-Risk: A generated memo, risk rating, covenant package, or approve/decline recommendation could be mistaken for a binding credit decision. <br>
-Mitigation: Treat every output as a draft analytical memo and require qualified credit-officer review before any credit, legal, compliance, or customer-facing action. <br>
-Risk: Incomplete or unsourced borrower data can lead to misleading ratios, projections, policy exceptions, or recommendation language. <br>
-Mitigation: Require source tags, historical/projected labels, open-question tracking, and verification of assumptions against institution policy and supplied documents. <br>
+## Use Case:
 
+Commercial loan officers, credit analysts, relationship managers, and underwriters use this skill to collect borrower and loan facts, draft a 5Cs Credit Analysis Memorandum, compute underwriting ratios, propose covenants, and flag policy exceptions for qualified credit-officer review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/commercial-credit-memo-drafter) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown draft credit memo with tables, source tags, ratio calculations, exception flags, covenant proposals, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafts for human credit-officer review and may include sensitive borrower, guarantor, financial, and credit-policy information supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence; artifact changelog top entry is 0.1.1) <br>
+Risk: Borrower, guarantor, credit bureau, KYC, OFAC, BSA/AML, and beneficial-ownership data may be confidential or regulated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an authorized agent environment and summarize sensitive supplied data instead of reproducing it verbatim.
+
+Risk: Drafted credit recommendations or risk ratings could be mistaken for final credit decisions.
+
+Mitigation: Keep the DRAFT - CREDIT OFFICER MUST REVIEW label and route final credit, KYC, OFAC, BSA/AML, and policy decisions to qualified human reviewers.
+
+Risk: Missing or unsupported financial inputs can lead to unreliable ratios, covenants, or policy-exception analysis.
+
+Mitigation: Require source tags and historical or projected period labels for figures, mark unavailable inputs as unknown, and review ratio calculations before relying on the memo.
+
+## Reference(s):
+
+- [Commercial Credit Memo Drafter README](artifact/README.md)
+- [Commercial Credit Memo Drafter Skill](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/commercial-credit-memo-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown draft memo with tables, inline source tags, assumptions, open questions, ratio analysis, covenant proposals, and review notices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are drafts for human review and should retain the DRAFT - CREDIT OFFICER MUST REVIEW notice.]
+
+## Skill Version(s):
+
+0.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

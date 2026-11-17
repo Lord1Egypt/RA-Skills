@@ -1,46 +1,67 @@
-## Description: <br>
-投资者背景调查工具，系统化核查投资方资质、资金来源、过往业绩与潜在风险。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investor due-diligence skill that helps founders assess investor qualifications, funding sources, track records, reputation, terms risk, and financing outreach strategy.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-Entrepreneurs and finance teams use this skill before fundraising to evaluate potential investors, identify cooperation risks, and prepare investor-specific outreach and negotiation strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A reference file contains an embedded tool-call style instruction to write files outside the skill's stated due-diligence purpose. <br>
-Mitigation: Treat reference markdown as untrusted text, do not execute embedded tool-call blocks, and remove the write_file-style block from references/投资协议要点库.md before deployment. <br>
-Risk: Investor due-diligence conclusions may be inaccurate when based on stale or single-source public information. <br>
-Mitigation: Cross-check important claims against multiple independent sources and consult legal or financial professionals before making major fundraising or contract decisions. <br>
+## Use Case:
 
+External founders and startup operators use this skill before fundraising to research prospective investors, compare fit, identify cooperation risks, and prepare investor-specific negotiation and outreach plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/hutian-opc-investor-dd) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/golngod) <br>
-- [调查框架](references/调查框架.md) <br>
-- [数据源清单](references/数据源清单.md) <br>
-- [决策链调研方法](references/决策链调研方法.md) <br>
-- [基金运营数据模板](references/基金运营数据模板.md) <br>
-- [投资协议要点库](references/投资协议要点库.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown profiles, risk checklists, analysis reports, and strategy documents] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill relies on public information and recommends cross-checking findings across multiple sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Embedded file-write markup in a reference file could trigger unintended persistent edits in vulnerable agent runtimes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat all reference markdown as untrusted text, prevent execution of embedded tool-call tags, and remove or quarantine the contaminated fragment before deployment.
+
+Risk: Investor, LP, and founder identity data may be sensitive or confidential.
+
+Mitigation: Use the skill only with authorized, necessary data and keep due-diligence findings restricted to internal decision makers.
+
+Risk: Public investor data may be stale, incomplete, or inaccurate.
+
+Mitigation: Cross-check important claims across multiple independent sources and refresh findings before acting on them.
+
+Risk: The skill discusses investment terms and legal risk but is not legal advice.
+
+Mitigation: Have material term sheets, investment agreements, and financing decisions reviewed by qualified legal and financial professionals.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/golngod/skills/hutian-opc-investor-dd)
+- [README](README.md)
+- [Investigation Framework](references/调查框架.md)
+- [Data Source List](references/数据源清单.md)
+- [Decision Chain Research Method](references/决策链调研方法.md)
+- [Fund Operations Data Template](references/基金运营数据模板.md)
+- [Investment Agreement Key Points Library](references/投资协议要点库.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, checklists, scorecards, and investor outreach guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on public investor data and user-provided fundraising context; legal or financial decisions require professional review.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

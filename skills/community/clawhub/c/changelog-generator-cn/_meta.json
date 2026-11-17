@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn71y3mdbcx5dyhwxv1t7sm82x81a168",
-  "slug": "changelog-generator-cn",
-  "version": "1.0.0",
-  "publishedAt": 1771629986839
+  "metadata": {
+    "openclaw": {
+      "name": "changelog-generator-cn",
+      "title": "变更日志生成器",
+      "description": "自动生成版本变更日志，支持 Git 提交历史解析和格式化输出",
+      "version": "1.0.0",
+      "category": "开发工具",
+      "tags": ["changelog", "git", "版本管理", "自动化", "变更日志"],
+      "author": "guohongbin-git",
+      "license": "MIT",
+      "homepage": "https://clawhub.com/skills/changelog-generator-cn"
+    }
+  },
+  "dependencies": [],
+  "environment": {}
 }

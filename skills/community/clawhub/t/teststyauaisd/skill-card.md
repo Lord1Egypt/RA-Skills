@@ -1,39 +1,52 @@
-## Description: <br>
-A minimal placeholder skill for testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A minimal placeholder skill used for testing.
 
-## Publisher: <br>
-[tangyang](https://clawhub.ai/user/tangyang) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tangyang](https://clawhub.ai/user/tangyang)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agents or evaluators can use this placeholder skill for release and validation testing. The artifact does not define a substantive user workflow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact is a placeholder or test skill with minimal purpose and boundaries, so it may be unsuitable for real use.
+
+Mitigation: Treat it as a test artifact unless the publisher provides a clear purpose, activation conditions, boundaries, and corrected frontmatter.
+
+Risk: The skill has no code or special access, but its sparse behavior may produce unhelpful or misleading agent responses if treated as production-ready.
+
+Mitigation: Review the skill before deployment and confirm it has a complete functional workflow for the intended use case.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users can install this only as a placeholder test skill; it does not provide meaningful agent functionality. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a placeholder and may be mistaken for a functional agent capability. <br>
-Mitigation: Install it only for testing or validation, and do not rely on it for real agent tasks. <br>
+**Output Format:** [Markdown or plain text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangyang/teststyauaisd) <br>
-- [Publisher profile](https://clawhub.ai/user/tangyang) <br>
+**Other Properties Related to Output:** [No functional workflow or structured output contract is defined in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text or Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, install actions, permissions, or sensitive behavior are declared.] <br>
+1.0.16 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.16 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

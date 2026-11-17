@@ -1,44 +1,64 @@
-## Description: <br>
-Lounge Guru Map provides offline, air-gapped lookup, filtering, briefing, and comparison over a bundled airport lounge catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides offline or air-gapped access to a bundled airport lounge catalog for lounge lookup, facility filtering, airport briefs, and lounge comparisons.
 
-## Publisher: <br>
-[skylinehk](https://clawhub.ai/user/skylinehk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skylinehk](https://clawhub.ai/user/skylinehk)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to answer airport lounge lookup, facility filtering, airport brief, and lounge comparison questions from a bundled offline snapshot when network access is unavailable or disallowed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled lounge catalog is an offline snapshot generated on 2026-03-11 and may be stale or incomplete for current lounge access, availability, or rules. <br>
-Mitigation: State that answers are grounded in the offline snapshot and verify current lounge details through an official or live source when freshness matters. <br>
-Risk: Users may ask for lounges or data that are outside the bundled snapshot. <br>
-Mitigation: Report missing coverage or stale data explicitly instead of inferring newer information. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to answer airport lounge questions from a bundled offline snapshot when live internet access is unavailable or disallowed. It supports covered lounge search, facility and location filtering, airport lounge briefs, catalog metadata lookup, and comparisons across returned records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skylinehk/lounge-guru-map) <br>
-- [Offline MCP Setup](references/mcp.md) <br>
-- [Offline Safety](references/safety.md) <br>
-- [Offline Publishing Notes](references/publishing.md) <br>
-- [Bundled catalog snapshot](assets/catalog.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with local MCP tool results and JSON-structured catalog records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bounded local MCP queries over a bundled offline catalog; it does not provide live lounge availability or access rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.27 (source: server release metadata) <br>
+Risk: The npm installation path is not reproducibly pinned and the referenced dependency metadata is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a constrained environment, or require exact pinned dependency metadata and a lockfile from the publisher before deployment.
+
+Risk: The offline catalog can be stale or lack requested lounges because it is a bundled snapshot, not live data.
+
+Mitigation: Tell users when the bundle lacks coverage or freshness, and avoid guessing beyond the returned catalog records.
+
+Risk: Catalog results may include airport-adjacent dining, spa, rest, and work-pod records rather than only traditional lounges.
+
+Mitigation: Preserve the record type in answers and comparisons so users can distinguish lounges from other airport services.
+
+Risk: Using remote endpoints, secrets, deploys, or rebuild workflows would exceed the skill's documented offline safety boundary.
+
+Mitigation: Keep runtime use local and read-only, avoid API keys or remote MCP endpoints, and reject deploy or data rebuild requests.
+
+## Reference(s):
+
+- [Local MCP setup](artifact/references/mcp.md)
+- [Offline trust boundary](artifact/references/safety.md)
+- [Marketplace packaging notes](artifact/references/publishing.md)
+- [ClawHub skill page](https://clawhub.ai/skylinehk/skills/lounge-guru-map)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown answers with local MCP structured JSON results and optional shell command/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounded in the bundled offline catalog snapshot; no live data fetches at runtime.]
+
+## Skill Version(s):
+
+1.3.27 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Calls Tencent Cloud RecognizeTableAccurateOCR to extract table cells from supported image or PDF inputs and optionally save the recognized table as an Excel file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls Tencent Cloud RecognizeTableAccurateOCR to extract table structure, cell text, coordinates, confidence scores, rotation angle, and optional Excel data from supported image or single-page PDF inputs.
 
-## Publisher: <br>
-[zt1314p-design](https://clawhub.ai/user/zt1314p-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zt1314p-design](https://clawhub.ai/user/zt1314p-design)
 
-## Use Case: <br>
-Developers and agent users use this skill to run Tencent Cloud table OCR on images, PDFs, or URLs when they need structured table text, cell metadata, raw OCR JSON, or an Excel export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected table images, PDFs, or URLs are sent to Tencent Cloud for OCR and may contain sensitive document data. <br>
-Mitigation: Process confidential documents only with approval, and use a least-privileged Tencent Cloud OCR key. <br>
-Risk: Excel exports may contain sensitive extracted data and can overwrite an existing output file path. <br>
-Mitigation: Choose --save-excel paths carefully and handle generated spreadsheets according to the sensitivity of the source document. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tencent Cloud table OCR on images or PDFs when they need structured table text, table geometry, confidence values, and optional Excel export data.
 
-## Reference(s): <br>
-- [Tencent Cloud RecognizeTableAccurateOCR documentation](https://cloud.tencent.com/document/api/866/86721) <br>
-- [ClawHub skill page](https://clawhub.ai/zt1314p-design/tencentcloud-ocr-recognizetableaccurate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses and optional Excel files, with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formatted output includes recognized table count, cell text, coordinates, confidence values, rotation angle, and request ID; raw mode returns Tencent Cloud OCR JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill sends selected image or PDF content, or a URL to that content, to Tencent Cloud for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents approved for Tencent Cloud processing and avoid submitting sensitive content without the required data handling approval.
+
+Risk: The skill requires Tencent Cloud API credentials through environment variables.
+
+Mitigation: Use narrowly scoped Tencent Cloud credentials, rotate them regularly, and run the skill in an isolated environment.
+
+Risk: The script depends on the Tencent Cloud Python SDK being installed at runtime.
+
+Mitigation: Install the SDK in a controlled environment and prefer a pinned dependency version.
+
+## Reference(s):
+
+- [Tencent Cloud RecognizeTableAccurateOCR documentation](https://cloud.tencent.com/document/api/866/86721)
+- [ClawHub skill page](https://clawhub.ai/zt1314p-design/skills/tencentcloud-ocr-recognizetableaccurate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [JSON OCR results printed to stdout, with optional Base64-decoded Excel file output when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Cloud OCR credentials and either an image/PDF URL or Base64/file input; formatted output is the default and raw API JSON is available with --raw.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

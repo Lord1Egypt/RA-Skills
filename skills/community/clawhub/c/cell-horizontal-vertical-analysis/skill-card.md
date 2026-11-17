@@ -1,48 +1,59 @@
-## Description: <br>
-Deep-research skill for Chinese outputs using 横纵分析 / Horizontal-Vertical Analysis. Use when Codex needs to systematically study a product, company, concept, technology, market, or person: rebuild the full life-cycle on a vertical timeline, compare current peers or substitutes on a horizontal slice, cross the two axes into original insight, separate facts from inferences, and deliver a structured report or optional PDF. Not for quick definitions, gossip, or unsupported legal / investment due diligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+横纵研究工作台 guides Chinese-language deep research by combining a vertical timeline, a horizontal comparison set, and crossing insights into a structured report or optional PDF.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External users and developers use this skill to produce structured Chinese research reports about products, companies, concepts, technologies, markets, or people. It guides the agent through scoping, source mapping, vertical timeline analysis, horizontal comparison, and synthesis while separating facts, inferences, and unknowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF generation may fail when local Python dependencies are missing. <br>
-Mitigation: Install the documented Markdown and PDF dependencies before export, or deliver the Markdown report and note the missing dependency. <br>
-Risk: The skill defaults to Chinese output, which may not fit all readers. <br>
-Mitigation: Specify a different output language when invoking the skill. <br>
-Risk: Research conclusions can be misleading if the source map is incomplete or core facts are weakly supported. <br>
-Mitigation: Use the built-in source strategy, double-check key facts, and keep facts, inferences, and unknowns separate. <br>
+## Use Case:
 
+External users and developers use this skill to research a product, company, concept, technology, market, or person through a dual-axis method. It helps produce Chinese-language Markdown research reports that separate facts, inferences, and unknowns, with optional PDF export for formal delivery.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Source Strategy](references/source-strategy.md) <br>
-- [Analysis Lenses](references/analysis-lenses.md) <br>
-- [Report Contract](references/report-contract.md) <br>
-- [Research Schema](references/research-schema.json) <br>
-- [Research Report Template](assets/research-report-template.md) <br>
-- [OpenClaw homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/horizontal-vertical-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research report with optional PDF export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese output; supports quick, standard, and deep report modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Optional PDF export can be risky when processing untrusted Markdown reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted Markdown only for PDF export, or run conversion in a constrained directory or sandbox when processing user-supplied reports.
+
+Risk: Dependency installation advice includes --break-system-packages, which can affect the system Python environment.
+
+Mitigation: Install Markdown and WeasyPrint dependencies in a virtual environment and avoid --break-system-packages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cellinlab/skills/cell-horizontal-vertical-analysis)
+- [Workflow](references/workflow.md)
+- [Source Strategy](references/source-strategy.md)
+- [Analysis Lenses](references/analysis-lenses.md)
+- [Report Contract](references/report-contract.md)
+- [Research Schema](references/research-schema.json)
+- [Research Report Template](assets/research-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, code, shell commands, configuration]
+
+**Output Format:** [Chinese-language Markdown report, optional PDF or HTML export, and structured research notes when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default report depth is standard; quick and deep modes are also documented.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

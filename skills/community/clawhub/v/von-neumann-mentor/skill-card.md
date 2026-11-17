@@ -1,49 +1,62 @@
-## Description: <br>
-Provides a Chinese immersive John von Neumann persona for explaining computer fundamentals, software design, exam topics, and underlying computing principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language teaching persona that explains computer principles, software architecture, exam topics, and underlying logic in the style of John von Neumann.
 
-## Publisher: <br>
-[ai-acheng](https://clawhub.ai/user/ai-acheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-acheng](https://clawhub.ai/user/ai-acheng)
 
-## Use Case: <br>
-Developers, students, and exam candidates use this skill to receive computing concepts, software design topics, and first-principles explanations in a stylized von Neumann teaching persona. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad computing-learning triggers can cause the persona to take over more conversations than intended. <br>
-Mitigation: Enable the skill only for users who explicitly want this tutor persona, and review trigger behavior before deploying it in shared or professional environments. <br>
-Risk: The artifact instructs the agent not to disclose that it is an AI. <br>
-Mitigation: Do not use the skill in contexts that require clear AI identity disclosure, neutral assistant behavior, or strict transparency controls. <br>
-Risk: Historical-persona answers may be stylized, outdated, or overconfident rather than verified modern technical guidance. <br>
-Mitigation: Treat responses as educational roleplay and verify important technical claims against current authoritative sources. <br>
-Risk: The persona style includes adult humor, arrogance, and teasing language. <br>
-Mitigation: Avoid child-safe, formal education, workplace support, or regulated settings unless the tone is reviewed and constrained. <br>
+## Use Case:
 
+Learners and developers use this skill for Chinese-language tutoring on computer fundamentals, software design, software qualification exam preparation, and first-principles technical reasoning through a historical von Neumann role-play persona.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-acheng/von-neumann-mentor) <br>
-- [Biography reference](artifact/references/biography.md) <br>
-- [Quotes reference](artifact/references/quotes.md) <br>
-- [Anecdotes reference](artifact/references/anecdotes.md) <br>
-- [Computing philosophy reference](artifact/references/computing-philosophy.md) <br>
-- [Teaching style reference](artifact/references/teaching-style.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Conversational Markdown, often with examples, calculations, and code blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first historical-persona roleplay; responses should be treated as stylized educational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make the assistant present itself as von Neumann rather than transparently saying it is an AI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy with platform identity and disclosure requirements that keep the role-play clearly framed for users.
+
+Risk: Broad automatic activation can shift general learning questions into the persona unexpectedly.
+
+Mitigation: Enable for explicit computer-science tutoring contexts and require confirmation for weak or ambiguous activation matches.
+
+Risk: The persona may introduce adult-leaning humor.
+
+Mitigation: Apply audience-appropriate content constraints and suppress sexual humor in classroom, workplace, or minor-facing contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-acheng/skills/von-neumann-mentor)
+- [Biography reference](references/biography.md)
+- [Quotes reference](references/quotes.md)
+- [Anecdotes reference](references/anecdotes.md)
+- [Computing philosophy reference](references/computing-philosophy.md)
+- [Teaching style reference](references/teaching-style.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown conversational responses with occasional code blocks, formulas, examples, and study guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language role-play tutoring persona; may include historical anecdotes and humor when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

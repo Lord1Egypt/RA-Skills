@@ -1,5 +1,5 @@
 #!/bin/bash
-# Okki Go post-install initialization script
+# OKKI Go post-install initialization script
 # Usage: bash scripts/post-install.sh
 
 set -e
@@ -15,7 +15,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 
 echo ""
-echo -e "${CYAN}🌐 Okki Go installation complete!${NC}"
+echo -e "${CYAN}🌐 OKKI Go installation complete!${NC}"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 
@@ -59,12 +59,12 @@ fi
 echo ""
 echo -e "${CYAN}Next step: Configure your API Key${NC}"
 echo ""
-echo "1. Visit https://go.okki.ai to register an account"
+echo "1. Visit https://go.okki.ai/ to register an account"
 echo "2. Create an API Key in the dashboard"
 echo "3. Save it using the first method your agent supports:"
 echo "   openclaw config set skills.entries.okkigo.apiKey 'sk-xxx'"
 echo "   export OKKIGO_API_KEY='sk-xxx'"
 echo "   ~/.config/okki-go/credentials.json with permissions 600"
 echo ""
-echo -e "${GREEN}🎉 All set! Start using Okki Go now!${NC}"
+echo -e "${GREEN}🎉 All set! Start using OKKI Go now!${NC}"
 echo ""

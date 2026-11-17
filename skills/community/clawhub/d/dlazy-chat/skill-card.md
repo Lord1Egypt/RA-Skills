@@ -1,42 +1,59 @@
-## Description: <br>
-Chat with the dLazy sandbox agent, a project-scoped assistant that runs skills end-to-end over multiple turns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with the dLazy sandbox agent, a project-scoped assistant for multi-turn work that runs skills end-to-end.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-Developers and external users use this skill to discover dLazy skills and projects, then start or continue project-scoped chat sessions with the hosted sandbox agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, project context, and files attached with --files are sent to dLazy hosted services. <br>
-Mitigation: Use the skill only with data appropriate for dLazy's service, and avoid attaching sensitive files unless approved for that environment. <br>
-Risk: The skill requires a dLazy API key that may be stored locally or supplied through DLAZY_API_KEY. <br>
-Mitigation: Protect the API key, restrict access on shared machines, and rotate or revoke the key if the machine or configuration is exposed. <br>
+## Use Case:
 
+Developers use this skill to chat with a hosted, project-scoped dLazy agent, start or continue multi-turn tasks, and discover available skills and projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-chat) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and streamed CLI text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx and a dLazy API key; attached files may be uploaded to dLazy storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad conversation triggers could activate the hosted chat service without a clear request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger wording before installing and invoke the skill only when you intend to use the hosted service; consider that messages may be sent externally or billable actions may start.
+
+Risk: The security scan is partial, leaving unresolved references and unexamined behavior uncertain.
+
+Mitigation: Review the skill and CLI behavior before use, and avoid relying on the scan as a complete assessment.
+
+Risk: Files attached to a chat are uploaded to dLazy media storage.
+
+Mitigation: Attach only files you are comfortable sending to the hosted service.
+
+## Reference(s):
+
+- [CLI repository link listed in skill metadata](https://github.com/dlazy-ai/cli)
+- [dLazy CLI package](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy service](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Streamed conversational text, which may include Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on the selected dLazy skill and project context.]
+
+## Skill Version(s):
+
+1.2.44 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

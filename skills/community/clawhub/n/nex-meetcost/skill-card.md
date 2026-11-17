@@ -1,41 +1,54 @@
-## Description: <br>
-Meeting cost calculator. See what meetings actually cost in billable time. Per-attendee rates by role, recurring meeting projections (weekly/monthly/yearly), cost-per-type breakdowns. Python stdlib only, SQLite storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting cost calculator. See what meetings actually cost in billable time. Per-attendee rates by role, recurring meeting projections (weekly/monthly/yearly), cost-per-type breakdowns. Python stdlib only, SQLite storage.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-Employees, operators, and teams use this skill to estimate and log meeting costs from attendee roles, custom hourly rates, duration, meeting type, and recurrence. It helps compare one-off and recurring meeting costs while storing data locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script creates local directories, initializes a SQLite database, and installs a CLI wrapper in the user's home directory. <br>
-Mitigation: Review the setup script before running it and install only in an environment where creating local files and a user-level command wrapper is acceptable. <br>
-Risk: Meeting titles, attendee names, roles, hourly rates, notes, and cost history may reveal sensitive compensation, billing, or operational information. <br>
-Mitigation: Keep the local SQLite database and exports in protected storage, avoid entering sensitive details that are not needed, and review exported JSON or CSV files before sharing. <br>
+## Use Case:
 
+Employees, managers, consultants, and operations teams use this skill to calculate meeting costs from attendee roles, hourly rates, duration, and recurring schedules. It can also log meetings locally, summarize cost trends, and export meeting records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-meetcost) <br>
-- [Nex AI website](https://nex-ai.be) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local CLI guidance and meeting cost calculations; the installed tool can export logged meetings as JSON or CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill stores meeting details in a local SQLite database under ~/.nex-meetcost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where local storage of meeting titles, attendees, rates, notes, and costs is acceptable.
+
+Risk: The export --output option can write outside the intended export folder and overwrite user-writable files.
+
+Mitigation: Avoid untrusted suggested export commands and use simple filenames for exports until this behavior is fixed.
+
+## Reference(s):
+
+- [Nex MeetCost on ClawHub](https://clawhub.ai/nexaiguy/skills/nex-meetcost)
+- [Nex AI website](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local SQLite data and JSON or CSV exports when the user runs the generated commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

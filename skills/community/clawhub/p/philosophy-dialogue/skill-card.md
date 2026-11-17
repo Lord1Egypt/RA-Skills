@@ -1,42 +1,58 @@
-## Description: <br>
-Provides a library of 243 Eastern and Western philosopher, thinker, strategist, writer, and scientist perspectives that an agent can use for dialogue, analysis, debate, and multi-perspective discussion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Philosophy Dialogue helps an agent respond from selected philosopher or thinker perspectives using a catalog of 243 Eastern and Western figures.
 
-## Publisher: <br>
-[wings229](https://clawhub.ai/user/wings229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wings229](https://clawhub.ai/user/wings229)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to adopt one or more named philosopher or thinker perspectives for analysis, dialogue, debate, or random perspective selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate persona-style responses in more conversations than intended. <br>
-Mitigation: Use explicit philosopher or perspective requests and review responses as interpretive persona guidance, not authoritative advice. <br>
-Risk: The manual maintenance script can rebuild local philosophy-dialogue reference files and replace copied perspective folders. <br>
-Mitigation: Run scripts/update_perspective.py only when intentionally refreshing local perspective references from a prepared workspace. <br>
+## Use Case:
 
+External users and agent builders use this skill to ask an AI assistant to analyze questions through named philosopher, thinker, scientist, strategist, or writer perspectives. It supports single-perspective prompts, multi-perspective comparisons, debates, and random perspective selection.
 
-## Reference(s): <br>
-- [Philosophy Dialogue on ClawHub](https://clawhub.ai/wings229/philosophy-dialogue) <br>
-- [SKILL.md](SKILL.md) <br>
-- [update_perspective.py](scripts/update_perspective.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include one or more named perspectives in a single response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.0 (source: server release evidence) <br>
+Risk: The bundled maintenance script can copy and delete directories based on workspace registry paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script before use, run it only in a trusted workspace with backups, and add path validation before execution.
+
+Risk: The authoritative security evidence marks the release suspicious because file-copying and deletion behavior is not safely bounded.
+
+Mitigation: Treat installation as requiring manual review and avoid running maintenance scripts until file scope and path handling are documented.
+
+Risk: The artifact describes referenced perspective content that may be required for full persona coverage.
+
+Mitigation: Confirm the referenced perspective content is packaged or clearly documented before relying on the advertised catalog coverage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wings229/skills/philosophy-dialogue)
+- [Publisher profile](https://clawhub.ai/user/wings229)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text dialogue responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The response depends on the selected perspective and agent runtime; the skill does not define a fixed structured output schema.]
+
+## Skill Version(s):
+
+5.0.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

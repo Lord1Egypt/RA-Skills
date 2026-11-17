@@ -1,51 +1,74 @@
-## Description: <br>
-Routes Alibaba Cloud alerts by extracting alert parameters, looking up CMDB or cloud resource context, selecting the appropriate database, network reachability, or ECS diagnostic skill, and producing a root cause report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Alibaba Cloud alerts by parsing alert content, extracting resource parameters, looking up CMDB or cloud resource data, selecting a database, network reachability, or ECS diagnostic skill, and producing a root cause report.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to triage Alibaba Cloud alerts, classify the likely incident intent, collect resource context, route to the appropriate backend diagnostic skill, and consolidate results into a root cause analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Alibaba Cloud operational metadata and CMDB-derived resource relationships. <br>
-Mitigation: Install only in environments where alert routing needs that data, restrict CMDB and cloud API access to the minimum required read-only scope, and avoid including sensitive operational details in shared reports. <br>
-Risk: Security evidence flags under-scoped activation. <br>
-Mitigation: Limit activation to explicit Alibaba Cloud alert triage requests and require the user or workflow to provide a concrete alert, resource identifier, or incident context before proceeding. <br>
-Risk: Security evidence flags a remote server command capability through the broader diagnostic workflow. <br>
-Mitigation: Require explicit approval and audit logging before any backend action can run commands on ECS, and remove or tightly gate RunCommand unless remote host execution is an intended incident-response capability. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to triage Alibaba Cloud alerts, map them to the correct diagnostic workflow, and consolidate backend diagnostic results into a root cause report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-alert-intent-router) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Enterprise CMDB](references/cmdb.md) <br>
-- [Intent Keywords Mapping](references/intent-keywords.md) <br>
-- [RAM Permission Policies](references/ram-policies.md) <br>
-- [API Reference](references/related-apis.md) <br>
-- [Root Cause Report Template](references/root-cause-report-template.md) <br>
-- [Alibaba Cloud CLI Documentation](https://help.aliyun.com/zh/cli/) <br>
-- [Alibaba Cloud CLI Configuration Guide](https://help.aliyun.com/zh/cli/configure-aliyun-cli) <br>
-- [Alibaba Cloud CLI Plugin Repository](https://github.com/aliyun/aliyun-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with routing tables, backend skill-call guidance, and root cause report sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for missing resource IDs, regions, or CMDB data before routing; backend diagnostic outputs are summarized into the final report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta.1 (source: server release evidence) <br>
+Risk: Broad alert trigger terms may invoke the router in more situations than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the trigger posture is acceptable for the agent environment before installing.
+
+Risk: The skill may perform CMDB or cloud resource lookups while triaging alerts.
+
+Mitigation: Use least-privilege read-only RAM credentials and ensure users understand when lookups may run.
+
+Risk: Manual CLI setup can introduce supply-chain or configuration risk.
+
+Mitigation: Install Aliyun CLI only from trusted sources and verify the required version and plugins.
+
+Risk: Root cause reports may include remediation commands that affect cloud resources.
+
+Mitigation: Review report-suggested remediation commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-alert-intent-router)
+- [Aliyun CLI Installation Guide](references/cli-installation-guide.md)
+- [Enterprise CMDB](references/cmdb.md)
+- [Intent Keywords Mapping](references/intent-keywords.md)
+- [RAM Permissions Policy](references/ram-policies.md)
+- [API Reference](references/related-apis.md)
+- [Root Cause Report Template](references/root-cause-report-template.md)
+- [Alibaba Cloud CLI documentation](https://help.aliyun.com/zh/cli/)
+- [Alibaba Cloud CLI configuration guide](https://help.aliyun.com/zh/cli/configure-aliyun-cli)
+- [Alibaba Cloud authentication methods](https://help.aliyun.com/zh/cli/configure-credentials)
+- [Aliyun CLI repository](https://github.com/aliyun/aliyun-cli)
+- [Alibaba Cloud ECS documentation](https://help.aliyun.com/product/25365.html)
+- [Alibaba Cloud NIS documentation](https://help.aliyun.com/product/134713.html)
+- [Alibaba Cloud security group best practices](https://help.aliyun.com/document_detail/25475.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown status tables, backend skill call requests, and root cause report text with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes to installed backend skills and summarizes their diagnostic results; proposed remediation commands require review before execution.]
+
+## Skill Version(s):
+
+0.0.1-beta.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Poll Houston TranStar incidents RSS every 10 minutes and WhatsApp me when there are changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poll Houston TranStar incidents RSS every 10 minutes and WhatsApp me when there are changes.
 
-## Publisher: <br>
-[vijay-murugan](https://clawhub.ai/user/vijay-murugan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vijay-murugan](https://clawhub.ai/user/vijay-murugan)
 
-## Use Case: <br>
-Houston residents and logistics or operations teams use this skill to monitor Greater Houston traffic incidents and receive WhatsApp summaries when new, cleared, or updated incidents appear. <br>
-
-### Deployment Geography for Use: <br>
-United States (Greater Houston, Texas) <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the installed entrypoint is wired to an unrelated placeholder external-script runner outside the reviewed package. <br>
-Mitigation: Review before installing; remove the placeholder runner and register the included TranStar watcher directly. <br>
-Risk: Network access, local state, schedule, delivery, and execution permissions are not clearly declared. <br>
-Mitigation: Declare Houston TranStar RSS polling, local snapshot storage, the 10-minute schedule, WhatsApp delivery, and execution permissions before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Houston TranStar Incidents RSS Feed](https://traffic.houstontranstar.org/data/rss/incidents_rss.xml) <br>
-- [ClawHub Skill Page](https://clawhub.ai/vijay-murugan/houston-transtar-watch) <br>
+## Use Case:
 
+External users such as Houston commuters and logistics teams use this skill to monitor Houston TranStar incident changes and receive concise traffic updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text incident summary, NO_CHANGES status, or error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries include counts of new, cleared, and updated incidents and list up to five items per category.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United States (Greater Houston, Texas)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The server security review found that the registered runtime executes an external Python script outside the audited package.
+
+Mitigation: Review and remediate the entry point before installation so it invokes only inspected package files.
+
+Risk: The release advertises WhatsApp delivery, but the inspected code does not implement that delivery path.
+
+Mitigation: Confirm notification delivery wiring before relying on alerts, or document the skill as producing local text summaries only.
+
+Risk: The skill fetches traffic incidents from a live external RSS feed and writes a local incident snapshot.
+
+Mitigation: Run it only where outbound access to Houston TranStar and local state writes under the skill state directory are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vijay-murugan/skills/houston-transtar-watch)
+- [Houston TranStar incidents RSS feed](https://traffic.houstontranstar.org/data/rss/incidents_rss.xml)
+- [Houston TranStar traffic site](http://traffic.houstontranstar.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text incident delta summary and JSON state snapshot]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns NO_CHANGES when no incident differences are detected; otherwise summarizes new, cleared, and updated incidents with each section capped at five listed items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

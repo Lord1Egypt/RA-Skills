@@ -1,46 +1,58 @@
-## Description: <br>
-Build high-performing OpenClaw agents end-to-end with comprehensive safety features for designing new agents, generating workspace files, and iterating on behavior, guardrails, autonomy, heartbeat plans, and skill rosters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-performing OpenClaw agents end-to-end with comprehensive safety features.
 
-## Publisher: <br>
-[YKaiXu](https://clawhub.ai/user/YKaiXu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ykaixu](https://clawhub.ai/user/ykaixu)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design OpenClaw agents, generate required workspace files, configure channel and model-provider setup, and produce validation prompts for agent behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated agent templates may grant broad autonomous, persistent, or privileged behavior. <br>
-Mitigation: Review and edit generated templates before use; reduce autonomy, remove no-approval language, and require explicit human approval for destructive, outbound, or privileged actions. <br>
-Risk: Channel binding mistakes can cause a new agent to take over an existing agent's communication channel. <br>
-Mitigation: Manually verify channel bindings before registration, use separate channel credentials for each agent, and keep backups of OpenClaw configuration before changes. <br>
-Risk: Workspace or configuration files can expose credentials or private context if copied into generated agent workspaces. <br>
-Mitigation: Keep credentials and session transcripts outside workspaces, avoid storing secrets in memory files, and review MEMORY.md usage for private versus shared contexts. <br>
-Risk: The included systemd deployment section may be treated as an executable administration plan. <br>
-Mitigation: Treat systemd guidance as optional administrator documentation and run privileged deployment steps only after manual review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Agent Builder Plus on ClawHub](https://clawhub.ai/YKaiXu/agent-builder-plus) <br>
-- [OpenClaw Agent Workspace](references/openclaw-workspace.md) <br>
-- [OpenClaw Agent File Templates](references/templates.md) <br>
-- [Agent Architecture Patterns](references/architecture.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to interview for, design, generate, register, and test OpenClaw agent workspaces with persona files, operating rules, memory guidance, heartbeat behavior, guardrails, and model-provider configuration notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with workspace-file templates, inline shell commands, configuration snippets, and validation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates or revises OpenClaw workspace files such as IDENTITY.md, SOUL.md, AGENTS.md, USER.md, HEARTBEAT.md, BOOTSTRAP.md, optional MEMORY.md, daily memory files, and TOOLS.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Optional systemd setup can introduce root-level persistence.
+
+Mitigation: Remove the sudo systemd section or require explicit operator approval and review before enabling any service.
+
+Risk: Generated workflows may include commits, pushes, file deletion, policy-file edits, outbound messages, or private-service checks.
+
+Mitigation: Require explicit approval before those actions and keep heartbeat or monitoring tasks narrowly scoped.
+
+Risk: Workspace and model-provider examples can lead users to place credentials in generated files.
+
+Mitigation: Keep real credentials out of workspace files and use the intended OpenClaw credential or auth-profile locations.
+
+## Reference(s):
+
+- [OpenClaw agent workspace](references/openclaw-workspace.md)
+- [OpenClaw agent file templates](references/templates.md)
+- [Agent Architecture Patterns](references/architecture.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and generated workspace file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces OpenClaw workspace files, registration and verification commands, safety checklists, and acceptance-test prompts.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

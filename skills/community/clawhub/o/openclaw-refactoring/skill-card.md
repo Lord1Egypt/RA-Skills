@@ -1,42 +1,57 @@
-## Description: <br>
-Automated refactoring assistant. Performs safe code transformations including rename, extract method, inline variable, and move code. Provides refactoring suggestions and performs batch operations with preview and undo support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated refactoring assistant for Python code that previews and applies symbol renames, reports refactoring suggestions, and manages backups for undo.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect Python code for refactoring opportunities, preview symbol renames, apply supported rename operations, and restore files from generated backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite or restore many project files. <br>
-Mitigation: Run it inside a Git repository, inspect previews with --dry-run before executing changes, and review the resulting diff before committing. <br>
-Risk: Documented behavior does not fully match implemented support for extract, inline, move, batch, preview-by-default, ignore configuration, and JavaScript workflows. <br>
-Mitigation: Verify implementation support before relying on those documented workflows and limit use to the implemented Python rename, suggest, undo, and backup listing commands. <br>
-Risk: Undo restores backup files and can overwrite current project files. <br>
-Mitigation: Prefer explicit backup IDs for undo operations and avoid pointing the skill at broad workspace or home directories. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Python code for refactoring opportunities, preview symbol renames, apply selected rename operations, and restore changes from generated backups when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michealxie001/openclaw-refactoring) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output, refactoring suggestions, and code file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create backup files under .refactoring/backup when rename operations are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Rename and undo operations can rewrite or restore files more broadly than the documentation implies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on a backed-up Git working tree, start with narrow target roots, run dry-run previews first, and inspect diffs before committing changes.
+
+Risk: Undo can restore files from an unintended backup when the backup ID is not verified.
+
+Mitigation: List available backups first and use only a backup ID that was created by the refactoring operation you intend to reverse.
+
+Risk: Advertised extract, inline, move, and batch features may be unreliable or unavailable in the current artifact.
+
+Mitigation: Treat those advertised features as unsupported until the implementation is fixed; rely on the exposed rename, suggest, undo, and list-backups commands.
+
+## Reference(s):
+
+- [OpenClaw Refactoring ClawHub skill page](https://clawhub.ai/michealxie001/skills/openclaw-refactoring)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rewrite Python files and create backup files under .refactoring/backup when rename operations are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

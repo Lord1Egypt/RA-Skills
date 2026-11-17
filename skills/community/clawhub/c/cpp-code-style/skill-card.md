@@ -1,42 +1,55 @@
-## Description: <br>
-C++/CPP代码都用这个coding style, code style, 代码风格，写代码之前阅读下面规则. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies a C++/CPP code style guide based on Google C++ style conventions before writing or revising C++ code.
 
-## Publisher: <br>
-[daxiali](https://clawhub.ai/user/daxiali) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daxiali](https://clawhub.ai/user/daxiali)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to apply a Google-style C++/CPP coding convention before creating, reviewing, or formatting C++ code. It covers naming, indentation, braces, whitespace, header guards, namespaces, comments, include order, CMake practices, and clang-format usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Style guidance may lead to broad formatting changes, including .clang-format edits or files modified with clang-format -i. <br>
-Mitigation: Review diffs before accepting changes and scope formatting commands to intended files. <br>
-Risk: The English-comment rule may conflict with explicit project or user language conventions. <br>
-Mitigation: Let project-level or user-provided conventions override this default when they are explicit. <br>
+## Use Case:
 
+Developers and coding agents use this skill to keep C++ source, headers, comments, namespaces, includes, CMake files, and formatting aligned with the stated Google-style conventions.
 
-## Reference(s): <br>
-- [C++/CPP Code Style release page](https://clawhub.ai/daxiali/cpp-code-style) <br>
-- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) <br>
-- [A C++ Guide](https://www.google-styleguide.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with C++ and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide edits to .clang-format and formatting commands; excludes external, 3rdparty, and .gitignore paths from the style rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can cause agents to apply style rules that conflict with an existing repository's own C++ conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Override this skill when a repository has its own style rules, especially around comment language or formatting changes.
+
+Risk: Formatting or code-style proposals can introduce misleading or unwanted changes if accepted without review.
+
+Mitigation: Review proposed edits and run the repository's normal formatting, linting, and test checks before deployment.
+
+## Reference(s):
+
+- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+- [A C++ Guide](https://www.google-styleguide.com/)
+- [ClawHub skill page](https://clawhub.ai/daxiali/skills/cpp-code-style)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline C++, shell, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose style-aligned edits, clang-format usage, and .clang-format configuration checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

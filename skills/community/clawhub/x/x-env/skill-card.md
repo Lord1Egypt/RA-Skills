@@ -1,44 +1,57 @@
-## Description: <br>
-x-env helps agents install and manage x-cmd packages, language runtimes, command-line tools, software versions, upgrades, cleanup, paths, and dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+x-env helps agents install and manage x-cmd software packages, programming language runtimes, command-line tools, versions, paths, dependencies, cleanup, and upgrades.
 
-## Publisher: <br>
-[lunrenyi](https://clawhub.ai/user/lunrenyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunrenyi](https://clawhub.ai/user/lunrenyi)
 
-## Use Case: <br>
-Developers and engineers use this skill to have an agent propose and run x-cmd environment commands for installing, temporarily trying, upgrading, removing, and inspecting local runtimes and CLI tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-management commands can install, update, remove, or clean up local software. <br>
-Mitigation: Require explicit user approval before running installs, removals, cleanup, or upgrades. <br>
-Risk: Remote installation methods can execute downloaded code, especially curl-to-shell workflows. <br>
-Mitigation: Prefer Homebrew or a reviewed install script, and avoid curl-to-shell in sensitive environments. <br>
-Risk: Persistent environment changes can affect later shell sessions and tool resolution. <br>
-Mitigation: Use temporary try commands when testing and verify paths or dependencies before making changes persistent. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide x-cmd environment and package management tasks, including installing runtimes and CLI tools, switching versions, inspecting installed paths and dependencies, cleaning unused packages, and upgrading software.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lunrenyi/x-env) <br>
-- [x-env repository](https://github.com/x-bash/env) <br>
-- [Installation guide](data/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill includes an auto-install path that executes a remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew or a downloaded-and-reviewed installer; only run the direct remote script in disposable environments with no secrets and explicit user consent.
+
+Risk: Cleanup, removal, and upgrade-all commands can change the user's installed tools.
+
+Mitigation: Confirm the target packages and installation scope before running cleanup, removal, or broad upgrade commands.
+
+## Reference(s):
+
+- [x-env repository](https://github.com/x-bash/env)
+- [x-cmd installation guide](data/install.md)
+- [x-cmd installer](https://get.x-cmd.com)
+- [x-cmd release artifacts](https://github.com/x-cmd/release)
+- [Conda package source](https://conda.prefix.dev)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include package names, version specifiers, installation method choices, cleanup commands, and verification steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

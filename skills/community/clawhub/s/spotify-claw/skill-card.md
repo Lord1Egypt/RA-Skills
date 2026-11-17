@@ -1,43 +1,55 @@
-## Description: <br>
-Spotify enables an agent to control Spotify Premium playback, analyze listening history and taste, discover similar music, and create or update playlists through Spotify commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spotify controls Spotify Premium playback, analyzes listening history, discovers related music, and helps create playlists through local Spotify commands.
 
-## Publisher: <br>
-[mixx85](https://clawhub.ai/user/mixx85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mixx85](https://clawhub.ai/user/mixx85)
 
-## Use Case: <br>
-External users and agents with Spotify Premium use this skill to run Spotify playback commands, inspect top tracks and artists, search liked songs, discover related music, and build playlists from natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spotify account authorization can permit playback control, library analysis, and playlist changes. <br>
-Mitigation: Review Spotify OAuth scopes before authorizing and use explicit Spotify phrasing for account-changing commands. <br>
-Risk: Playback or playlist commands can have visible side effects in the user's Spotify account. <br>
-Mitigation: Confirm the intended device, playlist, and action before running commands that play, queue, create, or update content. <br>
-Risk: Spotify client credentials are required for setup. <br>
-Mitigation: Store credentials in macOS Keychain as documented and avoid placing secrets in prompts, logs, or plain-text files. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to control Spotify Premium playback, inspect listening history, find related music, and create or modify playlists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mixx85/spotify-claw) <br>
-- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown instructions with bash command examples and short text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may control playback, read library data, and create or modify playlists through authorized Spotify account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The reviewed package does not include the local spotify.py helper script that the skill instructs the agent to run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or provide the exact local helper script before use, and confirm it matches the intended Spotify actions.
+
+Risk: The skill can use Spotify account credentials and perform account-changing actions such as controlling playback or creating and modifying playlists.
+
+Mitigation: Use explicit Spotify requests and confirm playlist creation, playlist modification, and other account-changing actions before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mixx85/skills/spotify-claw)
+- [Project Homepage](https://github.com/mixx85/spotify-claw)
+- [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local spotify.py helper script, Spotify Premium access, Spotify app credentials, and macOS Keychain credential storage.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

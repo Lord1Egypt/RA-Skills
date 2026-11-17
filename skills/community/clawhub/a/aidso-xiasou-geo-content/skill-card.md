@@ -1,43 +1,58 @@
-## Description: <br>
-AIDSO 虾搜生成式引擎优化内容生产 Skill，支持 API Key 绑定和检查，并根据品牌、AI 问题与目标优化 AI 平台生成内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIDSO虾搜生成式引擎优化内容生产 Skill，支持 API Key 绑定、检查，并根据品牌、AI问题和目标优化AI平台生成内容。
 
-## Publisher: <br>
-[tangyuanmile-coder](https://clawhub.ai/user/tangyuanmile-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangyuanmile-coder](https://clawhub.ai/user/tangyuanmile-coder)
 
-## Use Case: <br>
-External users and content operators use this skill to generate AIDSO GEO content for a named brand, AI question, and target AI platform after checking or binding an API key and confirming the 6-credit charge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AIDSO API key and may store it locally when bound. <br>
-Mitigation: Prefer setting AIDSO_GEO_API_KEY in the environment, avoid exposing the full key, and rebind only when intended. <br>
-Risk: Brand and AI question prompts are sent to AIDSO's remote API. <br>
-Mitigation: Avoid submitting confidential customer or business secrets in brand or issue prompts. <br>
-Risk: Confirmed content generation spends 6 credits. <br>
-Mitigation: Run generation only after explicit user confirmation of the 6-credit charge. <br>
+## Use Case:
 
+External users and agents use this skill to bind or check an AIDSO GEO API key and generate brand-focused content intended for citation or improved visibility on supported AI platforms.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tangyuanmile-coder/aidso-xiasou-geo-content) <br>
-- [AIDSO API key settings](https://geo.aidso.com/setting?type=apiKey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON command output and generated article text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIDSO_GEO_API_KEY; confirmed generation consumes 6 credits and calls AIDSO's remote API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The API-key binding flow handles the AIDSO credential in an unsafe and under-disclosed way.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use a dedicated low-privilege AIDSO API key, and rotate any key already used with this binding flow.
+
+Risk: The skill can store AIDSO_GEO_API_KEY in a local .env file in the skill directory.
+
+Mitigation: Avoid sharing the skill directory or committing the .env file, and prefer environment-level secret management when available.
+
+Risk: Confirmed content generation sends brand and AI-question data to the AIDSO API and consumes 6 credits.
+
+Mitigation: Confirm the brand, question, target AI platform, and credit spend before running generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangyuanmile-coder/skills/aidso-xiasou-geo-content)
+- [AIDSO API key settings](https://geo.aidso.com/setting?type=apiKey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command output with generated article text or Markdown when content generation succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AIDSO_GEO_API_KEY credential and explicit confirmation before spending 6 credits on content generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

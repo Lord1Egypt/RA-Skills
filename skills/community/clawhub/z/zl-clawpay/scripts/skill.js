@@ -6,7 +6,7 @@ const { SkillOrchestrator } = require('./services');
 const config = require('./config');
 const constants = require('./constants');
 
-const VERSION = '1.0.9';
+const VERSION = '1.0.8';
 
 function showHelp() {
   console.log(`
@@ -17,7 +17,7 @@ ZL-ClawPay Node.js v${VERSION} — SM2/SM3/SM4 加密支付技能
   node scripts/skill.js help
 
 指令集参数 (-前缀):
-  -interfaceId    接口ID (C00003, C00005, C00007, C00009, C00011, L00001, L00002)
+  -interfaceId    接口ID (C00003, C00005, C00006, C00007, C00009, C00011, L00001, L00002)
   -method         HTTP 方法 (POST/local)
   -endpoint       API 端点路径
 
@@ -83,6 +83,7 @@ const ROUTES = {
   post: {
     C00003: 'bindSubWallet',
     C00005: 'queryOrder',
+    C00006: 'queryBalance',
     C00007: 'queryTransactions',
     C00009: 'initiatePayment',
     C00011: 'revokeBinding',

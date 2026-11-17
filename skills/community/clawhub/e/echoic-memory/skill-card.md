@@ -1,51 +1,63 @@
-## Description: <br>
-Echoic Memory helps an agent create local memorial AI skills from chat history, photos, videos, voice memos, social media, and written memories to preserve a person's personality, expression style, and shared memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Echoic Memory helps users create local memorial AI Skills from chat history, photos, videos, voice memos, social media, and written memories to preserve a departed person's personality, expressions, and memories.
 
-## Publisher: <br>
-[quqicolour](https://clawhub.ai/user/quqicolour) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quqicolour](https://clawhub.ai/user/quqicolour)
 
-## Use Case: <br>
-External users and agent developers use this skill to collect memories and source materials about a departed or absent loved one, analyze them, and generate a local conversational memorial skill with memory and persona files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal data such as chats, photos, voice or video metadata, relationship details, and generated persona files. <br>
-Mitigation: Use copied or redacted inputs, store outputs only in a trusted local workspace, and get permission before using data about living people. <br>
-Risk: The workflow references third-party chat export and decryption tools for WeChat and similar data sources. <br>
-Mitigation: Use those tools only after reviewing their legal, account, and privacy implications; avoid importing data that you are not authorized to process. <br>
-Risk: The skill includes delete and rollback behaviors that can overwrite or remove generated memorial skill files. <br>
-Mitigation: Back up important outputs before delete, farewell, rollback, or update commands. <br>
-Risk: Video metadata parsing includes eval-based frame-rate handling. <br>
-Mitigation: Do not analyze untrusted video files until the frame-rate parsing is fixed. <br>
+## Use Case:
 
+External users run the skill in Claude Code or OpenClaw to build a private memorial persona skill for someone who has died, left, or become unreachable. The workflow imports personal source material, generates memory and persona files, and supports later corrections or added memories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quqicolour/echoic-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/quqicolour) <br>
-- [README](artifact/README.md) <br>
-- [Architecture](artifact/docs/ARCHITECTURE.md) <br>
-- [Cross-platform guide](artifact/docs/CROSS_PLATFORM.md) <br>
-- [Product requirements](artifact/docs/PRD.md) <br>
-- [WeChatMsg export tool](https://github.com/LC044/WeChatMsg) <br>
-- [PyWxDump export tool](https://github.com/xaoyaoo/PyWxDump) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated local skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory, persona, metadata, and generated SKILL.md files under an echoes directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill processes very private chat archives, photos, videos, voice messages, and written memories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only material you are authorized to process, redact third-party and location-sensitive details, and keep the generated echoes directory out of cloud sync.
+
+Risk: Generated memorial skills persist AI impersonation instructions for real people.
+
+Mitigation: Clearly treat each generated memorial as an AI simulation, keep respectful boundaries, and seek professional support when grief becomes overwhelming.
+
+Risk: Local delete, rollback, and media-analysis paths were flagged for review.
+
+Mitigation: Avoid those paths until slug validation, safe deletion behavior, and eval removal are fixed; keep backups before changing or deleting generated skills.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quqicolour/skills/echoic-memory)
+- [README](artifact/README.md)
+- [Architecture](artifact/docs/ARCHITECTURE.md)
+- [Product requirements](artifact/docs/PRD.md)
+- [Cross-platform guide](artifact/docs/CROSS_PLATFORM.md)
+- [WeChatMsg](https://github.com/LC044/WeChatMsg)
+- [PyWxDump](https://github.com/xaoyaoo/PyWxDump)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and generated local Markdown, JSON, and skill files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates files under echoes/{slug}/, including memory.md, persona.md, meta.json, SKILL.md, version backups, and optional source-material folders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

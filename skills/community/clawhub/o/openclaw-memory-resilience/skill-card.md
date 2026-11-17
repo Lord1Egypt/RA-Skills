@@ -1,43 +1,55 @@
-## Description: <br>
-Configure OpenClaw agent memory to survive compaction and session restarts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure OpenClaw agent memory to survive compaction and session restarts, including gateway compaction defaults, file-based memory architecture, archival patterns, diagnostics, and context-footer monitoring.
 
-## Publisher: <br>
-[Ferosin](https://clawhub.ai/user/Ferosin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ferosin](https://clawhub.ai/user/ferosin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure memory durability, compaction safeguards, context visibility, and file-based memory archives for agent workspaces. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic memory flush can persist sensitive or unintended session details into files that future agents reload or index. <br>
-Mitigation: Review before applying the configuration, disclose where memory is stored and how it can be deleted, and enable automatic flushing only when users understand which agents it affects. <br>
-Risk: Durable memory files such as MEMORY.md, TOOLS.md, and daily logs may be misused to store secrets or credentials. <br>
-Mitigation: Do not store API keys, passwords, tokens, cookies, or other secrets in memory files; use a secret manager or scoped environment configuration instead. <br>
-Risk: Global compaction defaults can change memory and pruning behavior across all agents in an OpenClaw installation. <br>
-Mitigation: Review the configuration in a controlled workspace before broader use and adjust thresholds for the relevant context window and tool usage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Compaction Config - Field Reference](references/config-explained.md) <br>
-- [Context Footer - Why It Matters](references/context-footer.md) <br>
-- [File Architecture for Memory Durability](references/file-architecture.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure OpenClaw workspaces so important instructions, preferences, and decisions are preserved across compaction and session restarts. It is also useful for diagnosing memory loss, tuning compaction headroom, and organizing searchable long-term memory files.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers OpenClaw gateway configuration, memory file architecture, context footer thresholds, and diagnostic commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Long-lived memory files and indexed archives can persist sensitive information if used for secrets or full connection details.
+
+Mitigation: Use the memory pattern only for non-sensitive notes, preferences, decisions, and references; store secret-manager names or retrieval procedures instead of plaintext secrets.
+
+Risk: Silent memory flushes can write conversation content to disk without a visible user-facing turn.
+
+Mitigation: Enable silent memory flushes only in workspaces where automatic disk persistence is acceptable and review saved memory files before sharing or indexing them.
+
+## Reference(s):
+
+- [Compaction Config - Field Reference](references/config-explained.md)
+- [Context Footer - Why It Matters](references/context-footer.md)
+- [File Architecture for Memory Durability](references/file-architecture.md)
+- [ClawHub skill page](https://clawhub.ai/ferosin/skills/openclaw-memory-resilience)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with JSON configuration, Markdown snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw compaction defaults, context-footer thresholds, memory file architecture guidance, and archive/indexing patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

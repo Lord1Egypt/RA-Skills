@@ -1,45 +1,57 @@
-## Description: <br>
-Synchronizes audio with lip movements in videos using the NewportAI/Dreamface LipSync 2.0 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dream LipSync synchronizes lip movements in videos with supplied audio using the LipSync 2.0 API.
 
-## Publisher: <br>
-[hy-1990](https://clawhub.ai/user/hy-1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hy-1990](https://clawhub.ai/user/hy-1990)
 
-## Use Case: <br>
-Developers and creators use this skill to configure an agent for video lip synchronization workflows that submit video and audio inputs to the LipSync 2.0 cloud API and retrieve asynchronous results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video and audio inputs may be uploaded to third-party cloud services for processing. <br>
-Mitigation: Use the skill only when NewportAI/Dreamface storage, retention, regional handling, and data-use terms are acceptable for the media being processed. <br>
-Risk: The required API key may incur usage or billing if exposed or misused. <br>
-Mitigation: Use a dedicated DREAMLIPSYNC_API_KEY where possible, keep it out of shared prompts and logs, and monitor provider usage. <br>
-Risk: Private, regulated, proprietary, or biometric media may create compliance obligations when sent to the provider. <br>
-Mitigation: Avoid uploading sensitive media unless the provider's handling terms satisfy the applicable privacy, consent, and compliance requirements. <br>
+## Use Case:
 
+External users and developers use this skill as a guide for configuring a DreamAPI key, preparing media URLs or uploads, submitting lip-sync jobs, and polling for completed video results.
 
-## Reference(s): <br>
-- [Dream LipSync ClawHub page](https://clawhub.ai/hy-1990/dream-lipsync) <br>
-- [LipSync 2.0 API reference](https://api.newportai.com/api-reference/LipSync-2.0) <br>
-- [DreamAPI getting started](https://api.newportai.com/api-reference/get-started) <br>
-- [Dreamface tools](https://tools.dreamfaceapp.com/home) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DREAMLIPSYNC_API_KEY and may describe upload, polling, and result retrieval steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The workflow sends video, audio, and related metadata to DreamAPI/NewportAI and its OSS storage flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media you are authorized to process, avoid confidential or non-consensual content, and review the provider's privacy and retention terms before use.
+
+Risk: The skill requires an API key for external service calls.
+
+Mitigation: Store DREAMLIPSYNC_API_KEY in the agent configuration or secret manager rather than placing credentials in prompts, logs, or shared files.
+
+## Reference(s):
+
+- [Dream LipSync ClawHub page](https://clawhub.ai/hy-1990/skills/dream-lipsync)
+- [Publisher profile](https://clawhub.ai/user/hy-1990)
+- [LipSync 2.0 API reference](https://api.newportai.com/api-reference/LipSync-2.0)
+- [DreamAPI get started](https://api.newportai.com/api-reference/get-started)
+- [Dreamface tools](https://tools.dreamfaceapp.com/home)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown instructions with shell command, JSON request, and API endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; expected workflows require DREAMLIPSYNC_API_KEY and external media URLs or uploads.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

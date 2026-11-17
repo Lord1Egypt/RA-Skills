@@ -1,46 +1,59 @@
-## Description: <br>
-BigFocus tracks product prices, public figure updates, industry information, and custom indicators, then reports changes through scheduled checks and user-facing tracking summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigFocus is a personal tracker that monitors product prices, celebrity or public figure updates, industry news, and custom metrics, then reports detected changes through scheduled checks and alerts.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kobenfang](https://clawhub.ai/user/kobenfang)
 
-## Use Case: <br>
-Individuals and teams use this skill to maintain a personal watchlist for prices, public updates, industry topics, and numeric indicators, with confirmation before tracker changes and scheduled reporting when monitored values change. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist trackers and raw tracking history in local workspace memory files. <br>
-Mitigation: Review stored tracker targets and history regularly, and avoid tracking sensitive personal or confidential information. <br>
-Risk: Scheduled scans may contact external sites or public APIs for tracked products and indicators. <br>
-Mitigation: Review or restrict allowed URLs and domains before enabling recurring checks. <br>
-Risk: Cron notifications can send tracking updates to configured channels or recipients. <br>
-Mitigation: Confirm the destination channel and recipient before enabling cron notifications. <br>
-Risk: Tracker additions, deletions, and status changes affect persistent monitoring behavior. <br>
-Mitigation: Require explicit user confirmation before adding, deleting, pausing, resuming, or changing tracker intervals. <br>
+## Use Case:
 
+External users use BigFocus to maintain personal watchlists for prices, people, industries, and metrics, with scheduled checks that report only detected changes. Operators can use the included cron template to run hourly scans and deliver updates through supported OpenClaw channels.
 
-## Reference(s): <br>
-- [BigFocus Cron Install Template](references/cron-install-shell.sh) <br>
-- [BigFocus Cron Templates](references/cron-templates.json) <br>
-- [BigFocus ClawHub Skill Page](https://clawhub.ai/kobenfang/skills/bigfocus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown tracking reports and confirmations, JSON command results, and shell commands for cron setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist tracker state and raw history in workspace memory files and may issue scheduled checks for active trackers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Persistent hourly scans can read and write workspace memory, perform web searches, fetch public product or API pages, and send update messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent tracking is expected, keep cron setup explicit, and review configured channels and targets before enabling delivery.
+
+Risk: Automatic product scans can make unsafe user-controlled web requests.
+
+Mitigation: Review or patch URL validation before enabling automatic product scans, and avoid tracking targets from untrusted sources.
+
+Risk: Stored tracker data can be corrupted by unescaped tracker names, targets, or values.
+
+Mitigation: Avoid adding untrusted tracker names, targets, or values until Markdown storage is hardened, and periodically review tracker entries.
+
+## Reference(s):
+
+- [BigFocus ClawHub release page](https://clawhub.ai/kobenfang/skills/bigfocus)
+- [Cron install shell template](artifact/references/cron-install-shell.sh)
+- [Cron templates JSON](artifact/references/cron-templates.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and confirmation prompts, JSON helper-command output, and shell command templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled scans stay quiet when no changes are found; tracker state and raw data are stored in workspace memory files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

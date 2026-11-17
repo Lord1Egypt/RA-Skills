@@ -1,41 +1,49 @@
-## Description: <br>
-Proof Post drafts a ready-to-publish public LinkedIn broadcast post grounded in real customer proof, one influence principle, and the target audience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes a ready-to-publish public LinkedIn post grounded in customer proof and one influence principle, tuned to a specified audience and offer.
 
-## Publisher: <br>
-[growthnation](https://clawhub.ai/user/growthnation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[growthnation](https://clawhub.ai/user/growthnation)
 
-## Use Case: <br>
-Sales and marketing users use this skill to turn a topic, audience, and offer into a concise LinkedIn post for public engagement. The skill can use public web research and, when connected, GrowthNation customer proof to ground claims without fabricating customer names, quotes, or statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce public LinkedIn content that includes customer names, quotes, or statistics. <br>
-Mitigation: Review each generated post before publishing and verify any customer proof against the cited source or saved GrowthNation proof. <br>
-Risk: The skill may use web research or optional GrowthNation MCP data to ground a post. <br>
-Mitigation: Confirm that web-derived claims are accurate and that any connected GrowthNation proof is appropriate for public use. <br>
+## Use Case:
 
+Sales and marketing users use this skill to draft a broadcast LinkedIn post from a topic, target audience, and offering. The skill can use public web evidence or connected GrowthNation customer proof to support the post without fabricating customers, quotes, or statistics.
 
-## Reference(s): <br>
-- [Proof Post ClawHub release page](https://clawhub.ai/growthnation/proof-post) <br>
-- [GrowthNation publisher profile](https://clawhub.ai/user/growthnation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown LinkedIn post with short supporting notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one post of up to 1200 characters, names one influence principle, identifies proof used, and reports whether research used web, MCP-assisted context, or priors only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The generated LinkedIn post may include a provider-oriented promotional closing line that is unrelated to the user's requested offer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the closing line before publishing; only include GrowthNation, Proof Expert, or another service when that is explicitly what the user asked the post to sell.
+
+## Reference(s):
+
+- [Proof Post ClawHub skill page](https://clawhub.ai/growthnation/skills/proof-post)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown post with supporting notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces one LinkedIn post of 1200 characters or fewer, plus the selected influence principle, proof note, research mode, and a short closing line.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

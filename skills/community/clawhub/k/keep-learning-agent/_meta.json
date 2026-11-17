@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn70zp8rvz2qb6sdgn6jc1g0wh81y78r",
-  "slug": "keep-learning-agent",
+  "name": "keep-learning-agent",
   "version": "1.0.0",
-  "publishedAt": 1772613154744
+  "author": "Neo & MiMi",
+  "created": "2026-03-04",
+  "description": "持续学习 Agent - 知识沉淀和经验固化框架，让 AI Agent 每天进步一点点",
+  "tags": ["learning", "knowledge", "self-improvement", "memory", "sop", "index", "framework", "continuous-improvement", "kaizen", "agent"],
+  "dependencies": {
+    "bins": ["powershell", "python3"],
+    "python_packages": ["requests"]
+  },
+  "files": {
+    "skill_definition": "SKILL.md",
+    "templates": "templates/",
+    "lib": "lib/"
+  },
+  "integration": {
+    "self_repair_script": "G:\\clawbot\\config\\self-repair.ps1",
+    "autoload_script": "G:\\clawbot\\config\\autoload-configs.ps1",
+    "learnings_dir": ".learnings/"
+  }
 }

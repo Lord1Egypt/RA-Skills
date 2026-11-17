@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn74m66dqpxawn8h6x6m0dysa983mne6",
-  "slug": "maton-outlook",
+  "name": "outlook",
   "version": "0.1.0",
-  "publishedAt": 1775230638877
+  "status": "draft",
+  "provider": "maton",
+  "notes": [
+    "Requires MATON_API_KEY",
+    "Requires an ACTIVE Maton connection with app=outlook",
+    "Write operations should remain confirmation-gated"
+  ]
 }

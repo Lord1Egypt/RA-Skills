@@ -1,44 +1,61 @@
-## Description: <br>
-Xiaohongshu Auto Poster helps an agent generate Xiaohongshu post copy and publish, pin, or inspect account content through a locally configured MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiaohongshu Auto Poster helps an agent generate Xiaohongshu post copy from a topic and publish it through a locally configured Xiaohongshu MCP service.
 
-## Publisher: <br>
-[jmin1113](https://clawhub.ai/user/jmin1113) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jmin1113](https://clawhub.ai/user/jmin1113)
 
-## Use Case: <br>
-External creators, merchants, and technically capable operators can use this skill to draft Xiaohongshu posts, check login status, publish image or video notes, pin posts, and review basic post metrics after configuring the required local service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish or pin live Xiaohongshu account content with weak confirmation safeguards. <br>
-Mitigation: Use a test or low-risk account first, generate drafts for review, and require explicit confirmation before any post or pin action. <br>
-Risk: The workflow depends on running a local MCP binary and may be configured for background or autostart execution. <br>
-Mitigation: Verify the MCP binary source before running it and disable background or autostart behavior when the service is not actively needed. <br>
+## Use Case:
 
+Creators, small businesses, and technically capable operators use this skill to draft Xiaohongshu posts, apply content templates, check account status, and publish through a local MCP service after reviewing the generated content.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jmin1113/xiaohongshu-auto-poster) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Content Templates](references/content-templates.md) <br>
-- [Xiaohongshu Operations Notes](references/运营知识.md) <br>
-- [Xiaohongshu MCP Releases](https://github.com/xpzouying/xiaohongshu-mcp/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown instructions with generated social post copy and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger live Xiaohongshu account actions through a locally running MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill depends on an external local Xiaohongshu MCP binary that can act on an authenticated social account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the service only when needed, install it only from trusted upstream sources, and verify the binary where possible.
+
+Risk: Generated content may be published before the user notices factual, brand, or platform-policy issues.
+
+Mitigation: Prefer the copy-only preview flow and require human review before any publish action.
+
+Risk: Optional auto-start can keep the local posting service running persistently.
+
+Mitigation: Avoid enabling LaunchAgent auto-start unless required, stop the service when not actively posting, and monitor local service access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jmin1113/skills/xiaohongshu-auto-poster)
+- [Xiaohongshu MCP releases](https://github.com/xpzouying/xiaohongshu-mcp/releases)
+- [Setup guide](artifact/references/setup.md)
+- [Content templates](artifact/references/content-templates.md)
+- [Xiaohongshu operations guide](artifact/references/运营知识.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Chinese post copy, command examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a local Xiaohongshu MCP service to publish content when configured and authorized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, README changelog, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

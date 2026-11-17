@@ -1,0 +1,10 @@
+{
+  "$schema": "Configuration for Code Flow Graph skill. Edit values below to customize behavior.",
+  "output_path": "docs/code_graph",
+  "language": "zh",
+  "default_scope": "project",
+  "include_external_deps": true,
+  "max_call_depth": 4,
+  "fan_out_threshold": 2,
+  "fan_in_threshold": 3
+}

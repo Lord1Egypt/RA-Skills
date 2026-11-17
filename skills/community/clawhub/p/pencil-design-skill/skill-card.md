@@ -1,53 +1,70 @@
-## Description: <br>
-Design UIs in Pencil (.pen files) and generate production-ready code from them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs UIs in Pencil (.pen files) and helps convert Pencil designs into production-ready code.
 
-## Publisher: <br>
-[caopipeline](https://clawhub.ai/user/caopipeline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caopipeline](https://clawhub.ai/user/caopipeline)
 
-## Use Case: <br>
-Developers, designers, and product teams use this skill to create or edit Pencil UI design files, generate PPT-style design boards, and convert Pencil designs into React, Tailwind CSS, and shadcn/ui code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write .pen files or edit Pencil documents through MCP. <br>
-Mitigation: Use it in workspaces where Pencil file generation or MCP editing is expected, and review generated design files before relying on them. <br>
-Risk: The skill defaults user-facing UI text in generated .pen files to Simplified Chinese unless the user specifies another language. <br>
-Mitigation: State the desired UI language explicitly for English, bilingual, or multilingual projects. <br>
-Risk: The activation scope covers broad UI prototyping and design-to-code requests. <br>
-Mitigation: Narrow activation or invoke the skill explicitly when you do not want it used for general frontend design work. <br>
-Risk: Generated Pencil, PPT, or code outputs can still contain layout or conversion mistakes. <br>
-Mitigation: Run the skill's layout integrity and screenshot QA checks before accepting final design or code output. <br>
+## Use Case:
 
+Designers, developers, and product teams use this skill to create or edit Pencil UI design files, enforce layout and token rules, and generate React/Tailwind/shadcn-oriented implementation guidance from those designs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caopipeline/pencil-design-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/caopipeline) <br>
-- [Pencil format reference](references/pen-format.md) <br>
-- [Layout integrity reference](references/layout-integrity.md) <br>
-- [Design token reference](references/design-tokens.md) <br>
-- [Design-to-code workflow](references/codegen-workflow.md) <br>
-- [MCP tool quick reference](mcp/mcp-tools.md) <br>
-- [Screenshot QA reference](mcp/screenshot-qa.md) <br>
-- [Style picker reference](styles/style-picker.md) <br>
-- [getdesign.md style source](https://getdesign.md/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, JSON .pen files, generated code, and tool or shell commands when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify Pencil .pen files directly, or use Pencil MCP tools when connected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated UI copy may default to Simplified Chinese or follow an opinionated visual style that does not match the project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the desired language, style reference, brand constraints, and token rules before design work begins.
+
+Risk: When Pencil MCP tools are connected, the skill can change existing Pencil documents.
+
+Mitigation: Name the target files and clarify whether existing nodes may be edited, deleted, copied, or only read before allowing MCP-based edits.
+
+Risk: Generated layouts or design-to-code output may still need human review for overflow, alignment, responsiveness, and implementation fit.
+
+Mitigation: Run the documented layout audit, inspect screenshots or layout snapshots, and review generated code before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caopipeline/skills/pencil-design-skill)
+- [Pencil format reference](references/pen-format.md)
+- [Layout integrity rules](references/layout-integrity.md)
+- [Overflow prevention](references/overflow-prevention.md)
+- [Design tokens](references/design-tokens.md)
+- [Design-to-code workflow](references/codegen-workflow.md)
+- [Tailwind and shadcn mapping](references/codegen-mapping.md)
+- [Component reuse](references/component-reuse.md)
+- [Responsive breakpoints](references/responsive.md)
+- [Pencil MCP tools](mcp/mcp-tools.md)
+- [Visual verification](mcp/screenshot-qa.md)
+- [Asset reuse](mcp/image-reuse.md)
+- [PPT preset](ppt/presets-ppt.md)
+- [getdesign.md style gallery](https://getdesign.md/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, Pencil .pen JSON files, code snippets, and tool or shell command sequences]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated .pen designs are expected to use variables, bounded layouts, selected style references, and layout verification before completion.]
+
+## Skill Version(s):
+
+3.2.0 (source: SKILL.md frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,48 @@
-## Description: <br>
-A simple zero-dependency, environment-agnostic, and side-effect-free skill that helps users test if their OpenClaw instances can load skills correctly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A simple zero-dependency, environment-agnostic, and side-effect-free skill that helps users test if their OpenClaw instances can load skills correctly.
 
-## Publisher: <br>
-[adairli2504](https://clawhub.ai/user/adairli2504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[adairli2504](https://clawhub.ai/user/adairli2504)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to confirm that an OpenClaw instance loads and invokes skills by sending a message containing "marco" and checking that the response includes "polo".
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Ordinary messages containing "marco" may trigger the skill and add "polo" to the assistant response.
+
+Mitigation: Install it where this trigger phrase is expected, or disable/remove the skill outside skill-loading tests.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to confirm that a skill has loaded and can influence responses. It verifies the path by adding polo when user input contains marco. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may add polo to normal conversations whenever the user message contains marco. <br>
-Mitigation: Install it for skill-loading tests or in contexts where that visible response change is acceptable. <br>
+**Output Format:** [Plain text included in an assistant response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Triggered by user messages containing "marco"; security evidence discloses no local file, credential, network, dependency, or persistent-state access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text response content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adds polo to responses when user input contains marco; no files, commands, or network calls.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

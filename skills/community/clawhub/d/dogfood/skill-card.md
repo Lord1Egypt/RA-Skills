@@ -1,41 +1,58 @@
-## Description: <br>
-Systematically explores and tests a web application to find bugs, UX issues, console errors, accessibility concerns, and other problems, then produces a structured report with reproducible evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically explores and tests a web application for bugs, UX issues, and other quality problems, producing a structured report with screenshots, repro videos, and detailed reproduction steps.
 
-## Publisher: <br>
-[thedalbee](https://clawhub.ai/user/thedalbee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thedalbee](https://clawhub.ai/user/thedalbee)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to perform exploratory browser testing of web applications and produce reproducible issue reports with screenshots, videos, console observations, and severity/category labels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can actively operate a browser against authenticated applications and may trigger state-changing actions during testing. <br>
-Mitigation: Run it only on sites you own or are authorized to test, prefer staging or test accounts, set a narrow scope, and explicitly forbid destructive or public-facing changes unless intended. <br>
-Risk: Generated auth state, screenshots, videos, console logs, and reports may contain sensitive application or account data. <br>
-Mitigation: Store outputs in a controlled location, protect access to generated evidence files, and delete or redact them after review according to the team's data-handling policy. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use this skill to perform exploratory browser QA on web applications and hand off reproducible findings. It is suited for local, staging, or scoped production-like testing where screenshots, videos, and step-by-step evidence are useful.
 
-## Reference(s): <br>
-- [Issue Taxonomy](references/issue-taxonomy.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/thedalbee/dogfood) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown report with linked screenshot and video evidence files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce PNG screenshots, WebM repro videos, console/error observations, and auth-state files when authentication is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may handle login credentials and save reusable browser authentication state during authenticated testing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privileged test accounts, prefer local or staging targets, avoid production credentials, keep the output directory private, and do not share auth-state.json.
+
+Risk: The skill records screenshots and videos that may capture sensitive application data.
+
+Mitigation: Run only on scoped targets with appropriate permission and review generated reports, screenshots, and videos before sharing them.
+
+Risk: Security evidence flags risky command allowance patterns for browser automation.
+
+Mitigation: Review the allowed command surface before installation and remove or pin the npx agent-browser allowance before relying on the skill.
+
+## Reference(s):
+
+- [Issue Taxonomy](references/issue-taxonomy.md)
+- [Dogfood Report Template](templates/dogfood-report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown report with linked screenshot and video evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create screenshots, repro videos, a report.md file, and auth-state.json when authenticated testing is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

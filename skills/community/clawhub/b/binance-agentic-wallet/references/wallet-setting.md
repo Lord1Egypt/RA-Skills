@@ -27,7 +27,7 @@ baw wallet settings --json
   "success": true,
   "data": {
     "maxSigninDuration": "48h",
-    "inactiveSignoutDuration": "24h",
+    "inactiveSignoutDuration": "48h",
     "dailyLimit": 50000,
     "abnormalTxnHandling": "AutoReject",
     "tradeAllTokens": false,
@@ -36,6 +36,18 @@ baw wallet settings --json
     "predictionQuotaUsed": 0,
     "predictionQuotaLeft": 50000,
     "predictionQuotaDate": "2026-04-03",
+    "defiDailyLimit": 5000,
+    "defiQuotaUsed": 0,
+    "defiQuotaLeft": 5000,
+    "defiQuotaDate": "2026-04-03",
+    "developerModeQuotaUsed": 0,
+    "developerModeQuotaDate": "2026-04-03",
+    "devMode": {
+      "enabled": true,
+      "expiresAt": 1783390000,
+      "dailyLimit": 10000,
+      "balanceExceeded": false
+    },
     "x402DailyLimit": 20,
     "x402QuotaUsed": 0,
     "x402QuotaLeft": 20,
@@ -51,7 +63,7 @@ baw wallet settings --json
 
 Returns the current security settings:
 - **maxSigninDuration** — The maximum time the Agentic Wallet can stay signed in before the Agent is automatically signed out.
-- **inactiveSignoutDuration** — The Agent will be signed out after this period of inactivity, regardless of the Max Sign-In Duration. Currently fixed at 24 hours and not user-configurable.
+- **inactiveSignoutDuration** — The Agent will be signed out after this period of inactivity, regardless of the Max Sign-In Duration. This duration is fixed and not user-configurable. The value shown here is illustrative; call `wallet settings` to read the wallet's actual current value (returned as a duration string such as `"48h"`).
 - **dailyLimit** — maximum total transaction value allowed in a 24-hour period.
 - **abnormalTxnHandling** — How the wallet handles transactions flagged as high-risk or with abnormal price impact. Only two values are possible:
     - `AutoReject` — automatically block abnormal transactions without prompting the user.
@@ -59,6 +71,8 @@ Returns the current security settings:
 - **tradeAllTokens** — whether the wallet can trade any token or only those on the allowed list.
 - **predictionEnabled** — whether prediction-market trading (see [`prediction`](./prediction.md) commands) is enabled for this wallet. When `false`, `prediction trade *` calls will be rejected by policy.
 - **predictionDailyLimit** — maximum total prediction-trade value (in USD) allowed in a 24-hour period. **Independent from `dailyLimit`**: prediction trades only consume `predictionQuotaUsed`.
+- **defiDailyLimit** — maximum total DeFi-operation value (in USD) allowed in a 24-hour period. **Independent from `dailyLimit`** (and prediction): DeFi `deposit` / `lp-add` only consume `defiQuotaUsed`.
+- **devMode** — Developer Mode status and daily quota for external signing (`contract-call` and `sign-message`). **Independent from `dailyLimit`, prediction, DeFi, and x402**. Developer Mode can only be enabled or configured in the Binance App.
 - **x402DailyLimit** — maximum total x402 payment value (in USD) allowed in a 24-hour period. **Independent from `dailyLimit` and `predictionDailyLimit`**: x402 payments only consume `x402QuotaUsed`.
 
 The response also includes current status information:
@@ -68,6 +82,15 @@ The response also includes current status information:
 - **predictionQuotaUsed** — how much of `predictionDailyLimit` has been consumed by prediction trades today.
 - **predictionQuotaLeft** — remaining prediction-trade quota available today.
 - **predictionQuotaDate** — the date these prediction-quota figures apply to.
+- **defiQuotaUsed** — how much of `defiDailyLimit` has been consumed by DeFi operations (`defi deposit` / `defi lp-add`) today.
+- **defiQuotaLeft** — remaining DeFi quota available today; use this when answering "how much DeFi can I still do today".
+- **defiQuotaDate** — the date these DeFi-quota figures apply to.
+- **developerModeQuotaUsed** — how much Developer Mode quota has been consumed today. Use this top-level field when explaining Developer Mode usage; never use `defiQuotaUsed` for Developer Mode.
+- **developerModeQuotaDate** — the date these Developer Mode quota figures apply to.
+- **devMode.enabled** — whether Developer Mode is currently active for external signing. When `false`, do not run `contract-call preview` or `sign-message preview`; tell the user to enable Developer Mode in the Binance App.
+- **devMode.expiresAt** — Developer Mode expiry time, as Unix seconds. This comes from backend settings and is `null` when Developer Mode is disabled or expired.
+- **devMode.dailyLimit** — maximum Developer Mode external-sign value allowed in a 24-hour period.
+- **devMode.balanceExceeded** — whether the wallet balance exceeds the configured Developer Mode daily limit.
 - **x402QuotaUsed** — how much of the x402 daily limit (in USD) has been consumed so far today.
 - **x402QuotaLeft** — remaining x402 daily limit (in USD) available for x402 payments today.
 - **x402QuotaDate** — the date these x402 quota figures apply to.
@@ -83,4 +106,4 @@ Settings cannot be changed via the CLI. To update them, follow these steps in th
 3. Tap the **settings icon** in the top-right corner to enter wallet Settings.
 4. Adjust the desired security settings.
 
-When a transaction is rejected because of a security policy (e.g., token not on the allowed list, daily limit exceeded, x402 daily limit exceeded, prediction disabled, prediction daily limit exceeded), use `wallet settings` to explain the restriction and guide the user to the App to make adjustments.
+When a transaction is rejected because of a security policy (e.g., token not on the allowed list, daily limit exceeded, x402 daily limit exceeded, prediction disabled, prediction daily limit exceeded, defi daily limit exceeded, Developer Mode disabled, Developer Mode daily limit exceeded), use `wallet settings` to explain the restriction and guide the user to the App to make adjustments.

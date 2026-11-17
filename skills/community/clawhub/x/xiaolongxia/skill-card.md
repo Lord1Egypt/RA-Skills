@@ -1,42 +1,59 @@
-## Description: <br>
-小龙虾 is a Chinese-language coding assistant for generating, reviewing, debugging, optimizing, explaining, refactoring, and testing code, plus API, SQL, and architecture guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小龙虾 is a coding assistant for code generation, code review, debugging, optimization, explanation, refactoring, testing, API design, SQL, and architecture guidance.
 
-## Publisher: <br>
-[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pengpengliu1212-art](https://clawhub.ai/user/pengpengliu1212-art)
 
-## Use Case: <br>
-Developers and engineers use this skill as a coding assistant for implementation, code review, debugging, optimization, refactoring, test generation, API design, SQL development, and architecture planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, pasted code, and previous conversation context may be sent to an external provider and local history may be kept on disk. <br>
-Mitigation: Avoid pasting secrets or proprietary code unless the provider and retention model are acceptable, and clear local history when needed. <br>
-Risk: Generated code can be saved or exported to local paths. <br>
-Mitigation: Check destination paths and included files before using save or export commands. <br>
-Risk: Generated coding advice or code may be incorrect or unsafe for a target project. <br>
-Mitigation: Review, test, and scan generated outputs before execution or deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to get coding assistance across implementation, review, debugging, optimization, testing, API design, SQL, and architecture tasks. It can run as a command-line assistant backed by a configured Volcengine DeepSeek endpoint.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pengpengliu1212-art/xiaolongxia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with code blocks, review tables, debugging reports, and command-line output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local conversation history and generated code files when the user invokes history, save, or export commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill.json) <br>
+Risk: Conversation content is sent to the configured Volcengine endpoint and stored in local history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a disposable or tightly scoped API key, avoid submitting secrets or proprietary code, and clear history when needed.
+
+Risk: The save and export commands can write generated code to user-selected paths and may overwrite user-writable files.
+
+Mitigation: Avoid arbitrary save paths until path validation and overwrite protection are fixed; review target paths before using save or export commands.
+
+Risk: Generated coding advice or code may be incorrect, insecure, or unsuitable for the target project.
+
+Mitigation: Review, test, and scan generated changes before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pengpengliu1212-art/skills/xiaolongxia)
+- [Publisher profile](https://clawhub.ai/user/pengpengliu1212-art)
+- [Configured Volcengine coding endpoint](https://ark.cn-beijing.volces.com/api/coding/v3)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with code blocks, command output, and optional generated files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a configured Volcengine DeepSeek endpoint and can save or export generated code files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

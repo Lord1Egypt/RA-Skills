@@ -1,45 +1,61 @@
-## Description: <br>
-Investment Workflow helps agents run scenario-driven investment research across stock analysis, industry analysis, market scanning, event impact analysis, and discussion workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment Workflow helps agents run scenario-driven investment research across six cases: stock analysis, industry research, market scans, industry views, hotspot impact analysis, and meeting discussion.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and agents use this skill to structure investment research, retrieve market data, compare viewpoints, and produce decision-oriented reports for stocks, industries, market scans, and investment discussions. It is intended for research support and educational analysis, not personalized financial advice or trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce direct trading-style signals that users could mistake for personalized financial advice. <br>
-Mitigation: Tell users the output is research support only, ask for market, time horizon, risk tolerance, and constraints, and avoid presenting conclusions as personalized advice. <br>
-Risk: Investment conclusions can be misleading when market data is stale, unavailable, or incomplete. <br>
-Mitigation: Require source and timestamp labels for market data, reduce confidence when data is missing, and state the data gap in the final recommendation. <br>
-Risk: Users may ask the agent to execute trades or control an account. <br>
-Mitigation: Keep the workflow limited to analysis, cost review, screening methodology, and educational explanations; do not perform account control or trade execution. <br>
+## Use Case:
 
+External users and agents use this skill to structure investment research requests into scenario-specific workflows, gather market data, analyze stocks or industries, and produce decision-oriented research reports. It should support research and education rather than replace personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lj22503/investment-workflow) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/lj22503) <br>
-- [Shared Skill Modules](references/shared-skills.md) <br>
-- [Data Layer Integration](references/data-layer-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown reports, ranked recommendations, meeting notes, and formatted investment research summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include data source and timestamp notes, confidence levels, and a clear buy, sell, hold, or watch recommendation when the workflow has enough evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and artifact/clawhub.yaml; artifact/SKILL.md frontmatter reports 1.1.0) <br>
+Risk: The skill can produce concrete buy, sell, hold, or watch recommendations from broad investment prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as research support only, require human review before financial decisions, and keep user-facing language clear that the report is not personalized financial advice.
+
+Risk: The skill requests broad Bash, Exec, Read, and Write authority and can use external market-data tools and WebSearch.
+
+Mitigation: Run it in a constrained environment and avoid exposing private files, proprietary watchlists, or account-specific trading information.
+
+Risk: Market-data tools may fail or return incomplete data, which can make recommendations misleading.
+
+Mitigation: Require source and timestamp labels, disclose data failures, and lower confidence when required data is missing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/investment-workflow)
+- [Publisher profile](https://clawhub.ai/user/lj22503)
+- [Shared skill modules](references/shared-skills.md)
+- [Data layer integration](references/data-layer-integration.md)
+- [Investment report template](templates/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports with sourced data notes, confidence labels, and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route content to formatted outputs such as cards, HTML presentations, or WeChat-style articles when an expression layer is available.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

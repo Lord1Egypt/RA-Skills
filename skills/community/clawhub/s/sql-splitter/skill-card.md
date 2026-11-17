@@ -1,47 +1,61 @@
-## Description: <br>
-Splits SQL files into object-specific SQL files, analyzes dependencies, and generates dependency-ordered merge scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Splits multi-object SQL files into separate object files, analyzes dependencies, and can generate dependency-ordered merge scripts and Dameng conversion outputs.
 
-## Publisher: <br>
-[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer)
 
-## Use Case: <br>
-Developers and database engineers use this skill to split large SQL files into procedures, functions, views, triggers, tables, indexes, and constraints, then generate merge scripts and optional SQL Server to Dameng conversion outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create output SQL files and local license, checkpoint, and configuration files under the user's home directory. <br>
-Mitigation: Review target paths before execution and keep generated state files in locations appropriate for the user's environment. <br>
-Risk: The license system stores a local machine fingerprint. <br>
-Mitigation: Review the license workflow before activation and avoid using production or sensitive machines unless that local identifier storage is acceptable. <br>
-Risk: Automated SQL splitting and conversion can produce SQL that differs semantically from the source, including documented TRUNCATE to DELETE conversion behavior. <br>
-Mitigation: Inspect generated SQL and test it in a non-production database before applying it to production systems. <br>
+## Use Case:
 
+Developers and database migration engineers use this skill to split large SQL exports into object-level files, inspect dependencies, and convert SQL Server objects toward Dameng SQL syntax. It is most useful for database migration preparation, review, and repeatable split-convert workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fish1981bimmer/sql-splitter) <br>
-- [SQL Server to Dameng Converter Design Notes](references/dm-converter-design.md) <br>
-- [dm_converter v3.4.0 Change Notes](references/dm-converter-v340-fixes.md) <br>
-- [dm_converter v3.3.0 Fix Notes](references/dm-converter-v330-fixes.md) <br>
-- [HRBI Stage Real-World Test Record](references/hrbi-stage-real-world-test.md) <br>
-- [Python Indentation Debugging Notes](references/python-indentation-debugging.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python code blocks; generated SQL files and merge scripts when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local output SQL files plus license, checkpoint, and configuration files under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.5 (source: server release metadata) <br>
+Risk: A helper script dynamically patches and executes code from a hardcoded external skill path while bypassing limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid scripts/unlimited_split.py and use the packaged splitter and converter scripts only after review.
+
+Risk: The security guidance flags broad or sensitive directory access before dynamic execution and config-name path traversal issues are constrained.
+
+Mitigation: Run the skill only on a narrow working directory with non-sensitive SQL inputs until those issues are removed or constrained.
+
+Risk: Automated SQL dialect conversion can introduce semantic differences, such as TRUNCATE-to-DELETE behavior or temporary table handling.
+
+Mitigation: Review converted SQL and run database-specific validation before applying generated scripts to production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fish1981bimmer/skills/sql-splitter)
+- [Split and conversion workflow](references/split-convert-workflow-20260627.md)
+- [Dameng converter design notes](references/dm-converter-design.md)
+- [Document maintenance notes](references/document-maintenance.md)
+- [v3.4.5 dbo and bracket handling notes](references/dm-converter-v345-fixes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated SQL files when scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces object-level .sql files, merge_all.sql scripts, optional Dameng-converted SQL output, and workflow guidance.]
+
+## Skill Version(s):
+
+3.6.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

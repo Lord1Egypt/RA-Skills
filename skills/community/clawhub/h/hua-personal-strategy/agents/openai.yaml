@@ -1,0 +1,6 @@
+interface:
+  display_name: "花花个人基金仓位管家"
+  short_description: "先确认个人目标与风险，再给出可审计的基金仓位建议"
+  default_prompt: "使用 $hua-personal-strategy 读取我的 HuahuaDaily 组合，按已确认政策给出唯一、果断、可审计的仓位建议；需要可视化时用内置模板生成 HTML 报告。"
+policy:
+  allow_implicit_invocation: true

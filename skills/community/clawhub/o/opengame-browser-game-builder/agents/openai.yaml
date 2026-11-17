@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenGame Browser Game Builder"
+  short_description: "Create focused, playable browser game prototypes"
+  default_prompt: "Use $opengame-browser-game-builder to turn my game idea into a focused playable browser prototype."

@@ -1,0 +1,14 @@
+{
+  "geocoded": {"lng": 121.4737, "lat": 31.2304},
+  "accessibility": {"nearest_metro_m": 180, "walk_min": 3},
+  "consumption_level": "Medium",
+  "commercial_density": "High",
+  "competition_intensity": "High",
+  "trade_area_type": "商圈型",
+  "poi_counts": {"餐饮": 142, "茶饮咖啡": 38, "零售": 96, "写字楼": 22, "商场": 5},
+  "competitor_pois": [
+    {"name": "竞品A·奶茶", "distance_m": 50, "scale_sqm": 150},
+    {"name": "竞品B·正餐", "distance_m": 120, "scale_sqm": 200}
+  ],
+  "map_links": {"satellite": "https://map.example.com/sat?x=121.4737&y=31.2304", "street": "https://map.example.com/street?x=121.4737&y=31.2304"}
+}

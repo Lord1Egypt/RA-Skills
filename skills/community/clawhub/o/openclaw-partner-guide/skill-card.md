@@ -1,44 +1,56 @@
-## Description: <br>
-Partner-style operating guide for OpenClaw assistants. Use when an assistant should behave like a proactive, careful partner rather than a generic chatbot, with strong defaults for concise communication, memory hygiene, phased execution, skill vetting, shared-chat restraint, and cautious external actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Partner-style operating guide for OpenClaw assistants that sets defaults for concise communication, memory hygiene, phased execution, skill vetting, shared-chat restraint, and cautious external actions.
 
-## Publisher: <br>
-[javvvid](https://clawhub.ai/user/javvvid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javvvid](https://clawhub.ai/user/javvvid)
 
-## Use Case: <br>
-Developers and assistant operators use this skill to give OpenClaw assistants a concise, proactive operating style for communication, memory hygiene, phased work, safe skill review, and restrained shared-chat behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages memory, daily logs, and scheduled follow-ups, which can retain user preferences or operational context longer than expected. <br>
-Mitigation: Keep memory and scheduled continuations scoped to the user's preferences, and review or clear stored memory when needed. <br>
-Risk: The guide can make an assistant more proactive, including during long tasks and delayed follow-through. <br>
-Mitigation: Ask before risky, destructive, outbound, or external actions, and keep follow-up behavior tied to a clearly stated goal and retry time. <br>
+## Use Case:
 
+Developers and agent operators use this skill to adapt OpenClaw assistants toward concise, careful partner-style behavior across communication, memory, execution, skill review, shared-chat, and delayed follow-through workflows.
 
-## Reference(s): <br>
-- [OpenClaw Partner Guide](https://clawhub.ai/javvvid/openclaw-partner-guide) <br>
-- [Execution Patterns](references/execution-patterns.md) <br>
-- [Memory Patterns](references/memory-patterns.md) <br>
-- [Shared Chat Patterns](references/shared-chat-patterns.md) <br>
-- [Skill Safety](references/skill-safety.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, shell commands] <br>
-**Output Format:** [Markdown guidance with optional plain-text helper-script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides assistant behavior and includes small local helper scripts for partner summaries and handoff summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The guide encourages use of durable memory for preferences, decisions, and recurring context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and constrain memory permissions in the target agent environment before deployment.
+
+Risk: The guide encourages scheduled continuations for delayed follow-through.
+
+Mitigation: Use only approved, auditable scheduling mechanisms and require confirmation before external or risky actions.
+
+## Reference(s):
+
+- [Execution Patterns](references/execution-patterns.md)
+- [Memory Patterns](references/memory-patterns.md)
+- [Shared Chat Patterns](references/shared-chat-patterns.md)
+- [Skill Safety](references/skill-safety.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with optional shell command examples and plain-text helper script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No structured API output; helper scripts print concise text summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

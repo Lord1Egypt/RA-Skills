@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "video_id": {
+      "type": "string",
+      "minLength": 11,
+      "maxLength": 11,
+      "pattern": "^[A-Za-z0-9_-]{11}$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "realtime",
+        "async"
+      ],
+      "default": "realtime"
+    }
+  },
+  "required": [
+    "video_id"
+  ]
+}

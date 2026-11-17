@@ -1,42 +1,55 @@
-## Description: <br>
-Character consistency across AI-generated images with reference sheets and LoRA techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide character consistency work for AI-generated images using reference sheets, detailed prompt anchors, LoRA techniques, color palettes, and inference.sh commands.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-External users, artists, and developers use this skill to plan consistent AI-generated character reference sheets for games, comics, illustration, animation, and visual novels. It provides prompt patterns, reference-sheet structures, LoRA guidance, and inference.sh CLI examples. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a remote CLI installer one-liner. <br>
-Mitigation: Prefer manual installation and checksum verification before running the CLI, and log in to inference.sh only when intending to use that service. <br>
-Risk: Generated character images may drift in identity, colors, outfit details, or proportions across prompts. <br>
-Mitigation: Reuse a detailed description anchor, document color values, specify proportions, and use LoRA or seed-based methods for higher consistency. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Character Design Sheet on ClawHub](https://clawhub.ai/okaris/character-design-sheet) <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
+## Use Case:
 
+Artists, game developers, illustrators, animators, and visual-novel or comics creators use this skill to create repeatable character reference material and prompts for consistent AI-generated character images.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example JSON inputs for inference.sh app runs and character-reference planning tables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The quick start asks users to run a mutable remote shell installer and then authenticate with the CLI.
+
+Mitigation: Review the installer source first, prefer a pinned and separately verified manual install, and avoid using sensitive environments unless the distribution path and token storage are trusted.
+
+Risk: The related skill installation commands are optional and may install unpinned dependencies.
+
+Mitigation: Skip those commands unless their sources and versions have been verified or pinned.
+
+## Reference(s):
+
+- [Character Design Sheet on ClawHub](https://clawhub.ai/okaris/skills/character-design-sheet)
+- [Publisher profile](https://clawhub.ai/user/okaris)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON command inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompt templates, reference-sheet layouts, color palette values, and LoRA setup guidance.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Creates Xiaohongshu (Little Red Book/RED) cover images and content graphics by combining platform content strategy, visual design guidance, and Rendshot image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create high-performing Xiaohongshu (Little Red Book / RED) cover images and content graphics by combining platform content strategy, visual design guidance, and Rendshot image generation.
 
-## Publisher: <br>
-[zoohero500](https://clawhub.ai/user/zoohero500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoohero500](https://clawhub.ai/user/zoohero500)
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to plan and generate Xiaohongshu cover images and content graphics for product recommendations, reviews, tutorials, collections, comparisons, and lifestyle posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rendshot or image generation functions may use paid credits or retain prompts, uploaded images, generated HTML, and saved templates. <br>
-Mitigation: Confirm the Rendshot service's pricing and retention terms before using sensitive brand assets or customer-provided materials. <br>
-Risk: Generated marketing text, claims, hashtags, or visual assets may be inaccurate, excessive, or unsuitable for Xiaohongshu publishing. <br>
-Mitigation: Review generated claims and final images before publication, especially for regulated products or performance claims. <br>
+## Use Case:
 
+Content creators, marketers, and developers use this skill to plan and generate Xiaohongshu cover images and content graphics with platform-aware titles, visual styles, templates, and image-generation prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoohero500/rendshot-xiaohongshu) <br>
-- [Algorithm and content strategy](references/algorithm.md) <br>
-- [Visual design guide](references/design-style.md) <br>
-- [Recommended templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with Rendshot function-call examples and prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Xiaohongshu platform dimensions, template variables, and style recommendations when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts may include product photos or business-sensitive campaign content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompts and inputs before generation, especially when using product imagery or confidential business material.
+
+Risk: The skill defaults toward Chinese-language Xiaohongshu output.
+
+Mitigation: Specify a different output language or locale when Chinese is not desired.
+
+Risk: Generated marketing guidance could make overly strong commercial, medical, financial, or platform-sensitive claims.
+
+Mitigation: Review generated titles and copy for absolute claims, sensitive terms, and compliance with the target brand and platform policies before publishing.
+
+## Reference(s):
+
+- [Algorithm and content strategy](references/algorithm.md)
+- [Visual design guide](references/design-style.md)
+- [Recommended templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls, Configuration]
+
+**Output Format:** [Markdown with image-generation prompts and Rendshot tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces platform-specific prompt guidance for Xiaohongshu standard and wide image formats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

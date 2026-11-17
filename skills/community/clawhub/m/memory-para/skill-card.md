@@ -1,40 +1,54 @@
-## Description: <br>
-Memory Management (PARA) helps OpenClaw agents distill raw daily memory logs into structured Root and PARA memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and maintain memory systems using the Root + PARA hybrid architecture for memory maintenance, daily log distillation, and core workspace file updates.
 
-## Publisher: <br>
-[Hugo-Zhu](https://clawhub.ai/user/Hugo-Zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hugo-zhu](https://clawhub.ai/user/hugo-zhu)
 
-## Use Case: <br>
-OpenClaw users and agent maintainers use this skill to maintain long-term memory by distilling daily logs, routing durable facts into Root and PARA files, archiving processed logs, and updating a global memory index. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite persistent OpenClaw memory files. <br>
-Mitigation: Keep the skill manually invoked or require reviewable diffs before applying updates to core memory files. <br>
-Risk: The maintenance SOP deletes processed raw daily logs after archiving. <br>
-Mitigation: Back up memory files and confirm archive updates before allowing deletion of processed logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hugo-Zhu/memory-para) <br>
-- [README](artifact/README.md) <br>
+## Use Case:
 
+OpenClaw users and agents use this skill to distill noisy daily conversation logs into a Root + PARA memory workspace. It routes durable preferences, rules, tool assumptions, identity details, project progress, domain knowledge, static resources, archives, and global memory index updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with file-update and shell-install instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce proposed edits to persistent memory files and archival cleanup steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can modify long-term memory files that influence future agent behavior, identity, tool assumptions, and user profile data.
+
+Mitigation: Run memory maintenance manually or require reviewed diffs before accepting changes, and keep versioned backups of memory files.
+
+Risk: The maintenance SOP deletes processed daily logs after archiving, which can remove raw evidence if distillation or archival is incorrect.
+
+Mitigation: Retain raw logs until the archive append and distilled memory updates have been reviewed and confirmed.
+
+## Reference(s):
+
+- [Skill source](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/hugo-zhu/skills/memory-para)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown file updates and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update long-term memory files and archive or remove processed raw logs during maintenance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

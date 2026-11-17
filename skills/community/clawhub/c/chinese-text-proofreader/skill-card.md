@@ -1,41 +1,52 @@
-## Description: <br>
-中文文本校验专家，用于全面检查 PPT、Word、Markdown 等文档中的中文错别字、标点符号、格式规范、学术用语、逻辑表达及文档专项问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文文本校验专家，对 PPT、Word、Markdown 等文档中的中文文本进行全面校验，包括错别字、标点符号、格式规范、学术用语、逻辑表达及 PPT/Word 文档专项问题。
 
-## Publisher: <br>
-[hntong](https://clawhub.ai/user/hntong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hntong](https://clawhub.ai/user/hntong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to proofread Chinese text in PPT, Word, Markdown, and academic documents, producing categorized findings and optional revised text.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad proofreading and document-checking triggers may activate the skill during general editing tasks.
+
+Mitigation: Confirm that the user wants Chinese document proofreading before applying the full review workflow.
+
+Risk: The skill may read user-provided document contents while proofreading.
+
+Mitigation: Only provide files or pasted text whose contents are appropriate for the active agent session.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers, reviewers, students, researchers, and business users can use this skill to proofread Chinese text in presentations, documents, and Markdown files. It produces a structured review report that highlights issues by location, severity, issue type, and suggested correction. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words may activate the proofreading behavior more often than expected. <br>
-Mitigation: Review whether the requested task is a Chinese text proofreading task before applying the skill. <br>
-Risk: Documents submitted for proofreading may contain confidential or sensitive content. <br>
-Mitigation: Review document sensitivity before providing content to the agent and avoid sharing confidential material unless the deployment environment is approved for it. <br>
+**Output Format:** [Structured Markdown proofreading report with issue tables and optional revised text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hntong/chinese-text-proofreader) <br>
-- [Publisher profile](https://clawhub.ai/user/hntong) <br>
+**Other Properties Related to Output:** [Issues are categorized by severity as severe, general, or suggestion.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with summary bullets, issue tables, and optional revised text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports issues by document location, original text, issue type, suggested correction, and severity.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

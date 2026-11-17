@@ -1,41 +1,58 @@
-## Description: <br>
-Agent memory with ALMA meta-learning, LLM fact extraction, and full-text search. Observer calls remote LLM APIs (OpenAI/Anthropic/Gemini). ALMA and Indexer work offline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent memory with ALMA meta-learning, remote LLM fact extraction, and full-text search over workspace Markdown memory files.
 
-## Publisher: <br>
-[arosstale](https://clawhub.ai/user/arosstale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arosstale](https://clawhub.ai/user/arosstale)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add memory workflows for evolving memory designs, extracting structured facts from conversations, and searching workspace Markdown memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Observer can send conversation content to third-party LLM APIs. <br>
-Mitigation: Use Observer only on chats and memory files that are appropriate to share with the selected provider, and add separate redaction controls for secrets, regulated data, or private user information. <br>
-Risk: Observer may choose an environment API key fallback that does not match the intended provider. <br>
-Mitigation: Pass an explicit apiKey for the selected provider instead of relying on environment-variable fallback. <br>
+## Use Case:
 
+Developers and agent builders use Openclaw Memory to experiment with memory-system designs, extract structured facts from conversations, and search Markdown-based memory stores for OpenClaw-style agents.
 
-## Reference(s): <br>
-- [Openclaw Memory on ClawHub](https://clawhub.ai/arosstale/openclaw-memories) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and TypeScript API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Observer may return structured observations from LLM extraction; ALMA returns candidate memory designs and scores; Indexer returns ranked memory chunks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and package.json) <br>
+Risk: Conversation text processed by the Observer may be sent to a configured remote LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid processing secrets or private conversations unless that provider use is approved for the data.
+
+Risk: Environment-based API key fallback may send the wrong key to an external provider.
+
+Mitigation: Pass an explicit provider-specific apiKey and verify it matches the selected provider.
+
+Risk: Extracted facts may be incorrect, incomplete, or unsuitable for persistent memory.
+
+Mitigation: Review extracted facts as untrusted before adding them to a long-lived memory store.
+
+## Reference(s):
+
+- [Openclaw Memory ClawHub page](https://clawhub.ai/arosstale/skills/openclaw-memories)
+- [Unicode smuggling scanner reference](https://embracethered.com/blog/posts/2026/scary-agent-skills/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Observer can make remote LLM API calls when configured; ALMA and Indexer operate offline.]
+
+## Skill Version(s):
+
+2.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

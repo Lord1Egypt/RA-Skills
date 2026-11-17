@@ -1,60 +1,79 @@
-## Description: <br>
-Use when writing or modifying Java code — enforces Alibaba Java Development Guidelines (嵩山版) for naming, formatting, OOP, collections, concurrency, control statements, exceptions, logging, MySQL, security, and project structure. Activates for any Java code generation, code review, or code modification task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing or modifying Java code - enforces Alibaba Java Development Guidelines (Songshan edition) for naming, formatting, OOP, collections, concurrency, control statements, exceptions, logging, MySQL, security, and project structure.
 
-## Publisher: <br>
-[endcy](https://clawhub.ai/user/endcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[endcy](https://clawhub.ai/user/endcy)
 
-## Use Case: <br>
-Developers and engineers use this skill to apply Alibaba Java Development Guidelines when generating, modifying, refactoring, or reviewing Java code. It also guides related SQL, MyBatis, REST API, unit-test, security, and project-structure work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly auto-applies Alibaba Java Development Guidelines to Java-related work and may conflict with a project or company style guide. <br>
-Mitigation: Disable or override the skill when another convention is authoritative for the project. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate, modify, refactor, and review Java code against Alibaba Java Development Guidelines, including database, API, testing, logging, security, and project-structure conventions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/endcy/java-standards-alibaba) <br>
-- [README](README.md) <br>
-- [API contract guidelines](references/api-contract.md) <br>
-- [Code format guidelines](references/code-format.md) <br>
-- [Collections guidelines](references/collections.md) <br>
-- [Comments guidelines](references/comments.md) <br>
-- [Concurrency guidelines](references/concurrency.md) <br>
-- [Constants guidelines](references/constants.md) <br>
-- [Control-flow guidelines](references/control-flow.md) <br>
-- [Date-time guidelines](references/date-time.md) <br>
-- [Design guidelines](references/design.md) <br>
-- [Exceptions guidelines](references/exceptions.md) <br>
-- [Logging guidelines](references/logging.md) <br>
-- [MySQL DDL guidelines](references/mysql-ddl.md) <br>
-- [MySQL index guidelines](references/mysql-index.md) <br>
-- [MySQL SQL guidelines](references/mysql-sql.md) <br>
-- [Naming guidelines](references/naming.md) <br>
-- [OOP guidelines](references/oop.md) <br>
-- [ORM guidelines](references/orm.md) <br>
-- [Other Java guidelines](references/others.md) <br>
-- [Project-structure guidelines](references/project-structure.md) <br>
-- [Security guidelines](references/security.md) <br>
-- [Unit-test guidelines](references/unit-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance, code snippets, SQL snippets, and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Applies standards broadly to Java code generation, modification, review, refactoring, SQL, API design, and unit testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and README, released 2026-04-29) <br>
+Risk: The skill applies Alibaba Java Development Guidelines broadly, which may conflict with established repository conventions or project-specific standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired style standard before use and override the skill when local conventions take precedence.
+
+Risk: Database, SQL, and schema guidance can affect production data if applied without review.
+
+Mitigation: Require human review for database changes and use backups, migrations, transactions, and environment-specific testing before deployment.
+
+Risk: Most detailed reference material is in Chinese, which can make interpretation harder for teams that do not read Chinese.
+
+Mitigation: Have bilingual reviewers or translated project standards confirm important decisions before accepting generated code or reviews.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/endcy/skills/java-standards-alibaba)
+- [README](README.md)
+- [API contract guidelines](references/api-contract.md)
+- [Code format guidelines](references/code-format.md)
+- [Collections guidelines](references/collections.md)
+- [Comment guidelines](references/comments.md)
+- [Concurrency guidelines](references/concurrency.md)
+- [Constants guidelines](references/constants.md)
+- [Control-flow guidelines](references/control-flow.md)
+- [Date and time guidelines](references/date-time.md)
+- [Design guidelines](references/design.md)
+- [Exception guidelines](references/exceptions.md)
+- [Logging guidelines](references/logging.md)
+- [MySQL DDL guidelines](references/mysql-ddl.md)
+- [MySQL index guidelines](references/mysql-index.md)
+- [MySQL SQL guidelines](references/mysql-sql.md)
+- [Naming guidelines](references/naming.md)
+- [OOP guidelines](references/oop.md)
+- [ORM guidelines](references/orm.md)
+- [Other Java guidelines](references/others.md)
+- [Project structure guidelines](references/project-structure.md)
+- [Security guidelines](references/security.md)
+- [Unit test guidelines](references/unit-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, SQL, API, testing, and review recommendations when relevant to the user's Java task.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no hidden execution, data access, persistence, or exfiltration behavior was reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

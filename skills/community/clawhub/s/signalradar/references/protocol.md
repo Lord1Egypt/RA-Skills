@@ -158,7 +158,7 @@ Top-level fields:
 
 Optional field:
 
-- `schedule` — present when the first successful add attempts auto-monitoring
+- `schedule` — present after the first successful add; carries `needs_consent: true` when background monitoring has not been authorised yet (nothing is installed until the user agrees, `schedule.auto_enable` is `true`, or `--yes` is passed)
 
 ### `show --output json`
 
@@ -315,7 +315,10 @@ The event text shown to users is derived from these fields.
 - SignalRadar persists observed reply-route env vars to `~/.signalradar/cache/openclaw_reply_route.json` on any CLI invocation.
 - Background `--push` reads this file for explicit `openclaw message send` routing
 - If no route is stored, `--push` reports `route_missing` in delivery outcome, not silent success
-- Route persists indefinitely until overwritten by a newer foreground invocation
+- Route is written only when `delivery.primary.channel` is `openclaw`, stored `0600`, and
+  **expires 30 days after capture** (deleted on the next read past that point).
+  `signalradar.py schedule clear-route` removes it immediately. A newer foreground
+  invocation overwrites it.
 
 ## last_run.json Contract (v0.9.0)
 

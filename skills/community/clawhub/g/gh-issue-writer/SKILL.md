@@ -1,8 +1,10 @@
 ---
+
 name: gh-issue-writer
 description: Draft well-structured GitHub issues from a description, error, or idea. Supports bug reports, feature requests, enhancements, and tasks. Optionally submits directly via the GitHub CLI or API. Use when someone says "write a GitHub issue", "open an issue for", "file a bug", "create a feature request", or describes a problem that needs to be tracked.
-metadata: {"clawdbot":{"emoji":"🐛","requires":{"bins":["gh","git","curl"]},"primaryEnv":"GH_TOKEN","os":["linux","darwin","win32"]}}
+metadata: {"clawdbot":{"emoji":"\ud83d\udc1b","requires":{"bins":["gh","git","curl"]},"primaryEnv":"GH_TOKEN","os":["linux","darwin","win32"],"version":"1.0.1"}}
 ---
+
 
 # gh-issue-writer
 
@@ -240,3 +242,63 @@ Before presenting the draft, verify:
 
 - GitHub's official issue template docs: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests
 - Set up templates: create `.github/ISSUE_TEMPLATE/` in your repo
+
+## Safe Submission
+
+Issue content is user-supplied text. Never interpolate it into a shell command
+string or hand-write it into JSON.
+
+**Do not build shell commands by string concatenation.** A title or body
+containing quotes, backticks, `$(...)`, or newlines can break out of the
+argument and execute unintended commands. Pass values as separate arguments:
+
+```bash
+# WRONG - interpolates user text into a shell string
+gh issue create --title "$TITLE" --body "$BODY"
+
+# RIGHT - write the body to a file and let gh read it
+BODY_FILE=$(mktemp)
+trap 'rm -f "$BODY_FILE"' EXIT
+cat > "$BODY_FILE" <<'ISSUE_BODY_EOF'
+...issue body text goes here...
+ISSUE_BODY_EOF
+
+gh issue create \
+  --repo "OWNER/REPO" \
+  --title "Short issue title" \
+  --body-file "$BODY_FILE"
+```
+
+For the `curl` fallback, **serialize the JSON with a real JSON encoder** rather
+than pasting placeholders into a JSON literal, and validate the repository
+identifier before sending:
+
+```bash
+# WRONG - hand-written JSON with interpolated values
+curl -s -X POST "https://api.github.com/repos/OWNER/REPO/issues" \
+  -H "Authorization: Bearer $GH_TOKEN" \
+  -d '{"title": "<title>", "body": "<body>"}'
+
+# RIGHT - serialize with python so quoting and newlines are handled correctly
+python3 - "$OWNER" "$REPO" "$TITLE" "$BODY_FILE" <<'PY_EOF'
+import json, os, sys, urllib.request
+owner, repo, title, body_file = sys.argv[1:5]
+if not re.fullmatch(r"[A-Za-z0-9._-]+", owner) or not re.fullmatch(r"[A-Za-z0-9._-]+", repo):
+    sys.exit("invalid owner/repo identifier")
+with open(body_file, encoding="utf-8") as f:
+    body = f.read()
+payload = json.dumps({"title": title, "body": body}).encode()
+req = urllib.request.Request(
+    f"https://api.github.com/repos/{owner}/{repo}/issues",
+    data=payload,
+    headers={"Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+             "Accept": "application/vnd.github+json",
+             "Content-Type": "application/json"},
+)
+print(urllib.request.urlopen(req).read().decode())
+PY_EOF
+```
+
+**Before submitting, always confirm with the user:** the target repository
+(verify `OWNER/REPO`), the exact title, the full body, labels, and assignees.
+Scrub secrets, API keys, tokens, and internal hostnames from the body first.

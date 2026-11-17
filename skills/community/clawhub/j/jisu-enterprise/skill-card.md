@@ -1,43 +1,55 @@
-## Description: <br>
-查企业工商基本信息、名称搜索、变更与股东高管等。当用户说：查一下某某公司的注册资本、法人是谁？企业变更记录，或类似工商信息问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查企业工商基本信息、名称搜索、变更与股东高管等。当用户说：查一下某某公司的注册资本、法人是谁？企业变更记录，或类似工商信息问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Agents and developers use this skill to query JisuAPI for Chinese enterprise registration details, company-name search results, change records, shareholder information, and executive information. It is suited to user-facing business information lookups where disclosing the searched company name or identifier to JisuAPI is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company names, registration numbers, credit codes, or organization codes are sent to JisuAPI during lookup. <br>
-Mitigation: Use the skill only when third-party disclosure to JisuAPI is acceptable, and avoid submitting confidential research targets. <br>
-Risk: The skill depends on a JisuAPI AppKey that may have quota, permission, expiration, or IP restrictions. <br>
-Mitigation: Use a dedicated, quota-limited JISU_API_KEY where possible and handle API error JSON before relying on results. <br>
+## Use Case:
 
+External users and developers use this skill to query JisuAPI for Chinese enterprise business registration details, name search results, change records, shareholders, and executives. Agents can summarize returned company records for questions about registered capital, legal representatives, addresses, operating status, ownership, and change history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/jisu-enterprise) <br>
-- [JisuAPI enterprise API documentation](https://www.jisuapi.com/api/enterprise/) <br>
-- [JisuAPI provider site](https://www.jisuapi.com/) <br>
-- [JisuAPI enterprise endpoint](https://api.jisuapi.com/enterprise) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON results and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a JISU_API_KEY environment variable. API requests are read-only and may return enterprise basic information, search results, change records, shareholder data, executive data, or structured error JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Company names, registration numbers, credit codes, organization codes, and the configured API key are sent to JisuAPI during lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when your organization permits JisuAPI for these searches, and avoid confidential investigations unless that provider is approved.
+
+Risk: Returned company records may be incomplete, unavailable, rate-limited, or provider-error responses.
+
+Mitigation: Check API error responses and corroborate important business decisions with authoritative records before relying on the output.
+
+## Reference(s):
+
+- [JisuAPI Enterprise Business Information API](https://www.jisuapi.com/api/enterprise/)
+- [JisuAPI](https://www.jisuapi.com/)
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisu-enterprise)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON responses and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; sends lookup terms to JisuAPI.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

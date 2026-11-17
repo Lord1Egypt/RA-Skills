@@ -1,44 +1,62 @@
-## Description: <br>
-Organizes public Kindle website information about product pages, bookstore entries, membership terms, help content, and event pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kindle helps agents organize information from public Kindle pages, including bookstore entries, membership details, reading features, help content, and event pages.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to summarize and organize public Kindle bookstore, membership, help-center, device-support, FAQ, copyright, and event information. It is scoped to public information and excludes private account data, piracy, account sharing, and API-bypass guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be misapplied to logged-in Amazon pages, personal libraries, purchase history, reading history, cookies, or session data. <br>
-Mitigation: Use it only with public Kindle website information unless a future version clearly discloses and scopes private-data access. <br>
-Risk: Kindle content authorization, membership benefits, download rules, and device support can vary by region and over time. <br>
-Mitigation: Include the observed region, date, and page context when summarizing benefits, restrictions, or availability. <br>
-Risk: Requests for piracy, copyright bypass, account sharing, private account data, or API bypass could produce harmful or non-compliant guidance. <br>
-Mitigation: Decline those requests and limit outputs to public, platform-compliant summaries and links. <br>
+## Use Case:
 
+External users and content operations teams use this skill to summarize and organize public Kindle storefront, membership, help, FAQ, and activity pages. The skill is scoped to public information and avoids private account data, piracy, copyright bypass, account sharing, and internal API guidance.
 
-## Reference(s): <br>
-- [Kindle public homepage](https://www.amazon.com/kindle-dbs/hz/signup) <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/kindle) <br>
-- [Publisher profile](https://clawhub.ai/user/mike47512) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include regional and time context where Kindle content, membership benefits, or authorization details may vary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Kindle content availability, subscription benefits, download rules, and device support can vary by region and over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Include the page URL, access date or context, and region-specific caveats when summarizing public Kindle information.
+
+Risk: A user may ask for piracy, copyright bypass, membership sharing, account sharing, packet capture, internal API bypass, or private account data.
+
+Mitigation: Decline those requests and keep outputs limited to public Kindle pages, official help information, and compliant copyright/account-safety summaries.
+
+Risk: The skill instructions are written in Chinese, which may reduce review clarity for operators who do not read Chinese.
+
+Mitigation: Have a Chinese-capable reviewer verify the intended behavior and safety boundaries before deployment in an English-only operations environment.
+
+Risk: The homepage frontmatter value is wrapped in backticks, which may affect how some platforms parse the homepage URL.
+
+Mitigation: Verify that the published skill metadata links to the intended Kindle homepage after installation or release.
+
+## Reference(s):
+
+- [ClawHub Kindle Skill Page](https://clawhub.ai/mike47512/skills/kindle)
+- [Kindle Homepage](https://www.amazon.com/kindle-dbs/hz/signup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, tables, and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include page context, region or time caveats when relevant, source links, and copyright/account-safety boundaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

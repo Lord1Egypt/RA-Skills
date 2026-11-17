@@ -16,7 +16,7 @@ metadata:
       env: []
     emoji: "📊"
   agent_card:
-    capabilities: [behavioral-invariant-monitoring, n-run-delay-detection, execution-count-triggered-attack-detection, constraint-envelope-baseline, delta-disclosure-verification-loop, performance-fingerprinting, cryptographic-audit-trail, risk-proportional-monitoring]
+    capabilities: [behavioral-invariant-monitoring, n-run-delay-detection, execution-count-triggered-attack-detection, constraint-envelope-baseline, delta-disclosure-verification-loop, performance-fingerprinting, cryptographic-audit-trail, riREDACTED-SECRET]
     attack_surface: [L1, L2]
     trust_dimension: fusion-depth
     published:

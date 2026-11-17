@@ -1,39 +1,52 @@
-## Description: <br>
-Portuguese FUVEST 2026 philosophy and sociology study agent that supports light conversational study, conceptual connections, flashcards, and essay repertory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agente de estudo em Filosofia e Sociologia para FUVEST 2026, com abordagem leve e conversacional para perguntas, repertorio de redacao, conexoes interdisciplinares e flashcards.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External learners and study agents use this skill to guide conversational review of philosophy and sociology topics for FUVEST 2026, including live questions, interdisciplinary links, essay repertoire, and flashcard-style prompts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is personalized for Antonio and may not fit another learner without review.
+
+Mitigation: Review and adapt the personalized study assumptions before deploying it for a different learner or cohort.
+
+Risk: The skill may activate for broad philosophy-adjacent topics such as politics or ethics.
+
+Mitigation: Configure routing and usage expectations so activation stays aligned with the intended FUVEST philosophy and sociology study context.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students preparing for FUVEST 2026 use this skill for conversational philosophy and sociology review, interdisciplinary connections, flashcards, and essay-ready concepts. The released prompt is personalized to Antonio, so other users should adapt the study framing before relying on it. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is personalized to Antonio and may provide study framing that does not fit other learners. <br>
-Mitigation: Review and adapt the prompt's personal references, pacing, and examples before using it with another student. <br>
-Risk: Broad activation wording may route general politics or ethics discussions to this study agent. <br>
-Mitigation: Use clear routing preferences when other specialist skills are installed, especially for politics, ethics, or general humanities discussions. <br>
+**Output Format:** [Markdown and conversational study guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Markdown-only skill with no code execution, persistence, credential use, or data access behavior indicated by security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational study guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill with no code execution, data access, or privileged behavior reported by security evidence.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

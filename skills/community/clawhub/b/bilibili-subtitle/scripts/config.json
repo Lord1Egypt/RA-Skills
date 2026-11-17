@@ -1,0 +1,8 @@
+{
+  "default_model": "small",
+  "default_language": "zh",
+  "output_dir": "/workspace",
+  "audio_format": "m4a",
+  "srt_format": true,
+  "txt_format": true
+}

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn72f0wmezzhe6ft4btgr55dt583t2x0",
-  "slug": "tencent-docs-reader",
+  "name": "tencent-docs-reader",
   "version": "1.0.2",
-  "publishedAt": 1777007209352
+  "author": "Cm-wenge",
+  "description": "Read Tencent Docs spreadsheet via agent-browser copy-paste method. Supports any sheet tab, returns tab-separated text.",
+  "license": "MIT",
+  "repository": "https://github.com/Cm-wenge/tencent-docs-reader"
 }

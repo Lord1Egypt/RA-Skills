@@ -1,0 +1,170 @@
+{
+  "mode": "architecture",
+  "theme": "showcase",
+  "title": "visual-architecture Case Study",
+  "summary": "A source-backed map of the tool itself: spec validation, mode-aware rendering, gallery generation, receipts, and release proof.",
+  "story": [
+    {
+      "title": "Read the repo",
+      "text": "Use the public checkout as the source of truth, not a made-up example."
+    },
+    {
+      "title": "Cite the claims",
+      "text": "Every important node carries file and line evidence from the current renderer or release surface."
+    },
+    {
+      "title": "Render the proof",
+      "text": "The generated artifact, receipt, and gallery entry become the public case study."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "specs",
+      "label": "Typed Specs",
+      "subtitle": "examples/*.json",
+      "kind": "memory",
+      "x": 120,
+      "y": 240,
+      "evidence": {
+        "source": "examples/showcase-artifact-engine.json",
+        "line": 1,
+        "commit": "2d88a21",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "validator",
+      "label": "Validator",
+      "subtitle": "shape, routes, quality",
+      "kind": "agent",
+      "x": 360,
+      "y": 160,
+      "evidence": {
+        "source": "scripts/render_architecture.py",
+        "line": 302,
+        "commit": "2d88a21",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "renderer",
+      "label": "Renderer v2",
+      "subtitle": "mode-specific backdrops",
+      "kind": "llm",
+      "x": 600,
+      "y": 160,
+      "evidence": {
+        "source": "scripts/render_architecture.py",
+        "line": 714,
+        "commit": "2d88a21",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "gallery",
+      "label": "Pages Gallery",
+      "subtitle": "interactive evidence viewer",
+      "kind": "service",
+      "x": 960,
+      "y": 160,
+      "evidence": {
+        "source": "scripts/render_architecture.py",
+        "line": 1054,
+        "commit": "2d88a21",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "receipt",
+      "label": "Receipts",
+      "subtitle": "hashes and quality score",
+      "kind": "memory",
+      "x": 600,
+      "y": 400,
+      "evidence": {
+        "source": "scripts/render_architecture.py",
+        "line": 902,
+        "commit": "2d88a21",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "release",
+      "label": "Public Release",
+      "subtitle": "README, Pages, ClawHub",
+      "kind": "service",
+      "x": 960,
+      "y": 400,
+      "evidence": {
+        "source": "README.md",
+        "line": 13,
+        "commit": "2d88a21",
+        "confidence": "medium"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "specs",
+      "to": "validator",
+      "kind": "control",
+      "label": "validate",
+      "evidence": {
+        "source": "Makefile",
+        "line": 9,
+        "commit": "2d88a21",
+        "confidence": "high"
+      }
+    },
+    {
+      "from": "validator",
+      "to": "renderer",
+      "kind": "primary-data",
+      "label": "passed"
+    },
+    {
+      "from": "renderer",
+      "to": "gallery",
+      "kind": "primary-data",
+      "label": "publish",
+      "evidence": {
+        "source": "Makefile",
+        "line": 34,
+        "commit": "2d88a21",
+        "confidence": "high"
+      },
+      "label_offset": [
+        0,
+        -26
+      ]
+    },
+    {
+      "from": "renderer",
+      "to": "receipt",
+      "kind": "memory-write",
+      "label": "receipt",
+      "source_side": "bottom",
+      "target_side": "top"
+    },
+    {
+      "from": "receipt",
+      "to": "release",
+      "kind": "control",
+      "label": "prove",
+      "source_side": "right",
+      "target_side": "left"
+    },
+    {
+      "from": "gallery",
+      "to": "release",
+      "kind": "primary-data",
+      "label": "demo",
+      "source_side": "bottom",
+      "target_side": "top",
+      "label_offset": [
+        44,
+        0
+      ]
+    }
+  ]
+}

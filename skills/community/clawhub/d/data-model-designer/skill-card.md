@@ -1,41 +1,54 @@
-## Description: <br>
-Design data models for construction projects. Create entity-relationship diagrams, define schemas, and generate database structures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design data models for construction projects. Create entity-relationship diagrams, define schemas, and generate database structures.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction data practitioners, developers, and project teams use this skill to design project data models, define construction entities and relationships, generate database schemas, and validate model structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use filesystem access for project files and export paths. <br>
-Mitigation: Grant access only to intended project files and review export paths before use. <br>
-Risk: Generated SQL DDL may contain incorrect or unsafe identifiers for a real database. <br>
-Mitigation: Review and validate generated SQL identifiers and schema changes before executing them. <br>
+## Use Case:
 
+Developers, data engineers, and construction project teams use this skill to design project data entities, relationships, schemas, ER diagrams, and draft database structures from user-provided project data.
 
-## Reference(s): <br>
-- [Data Driven Construction](https://datadrivenconstruction.io) <br>
-- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/data-model-designer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with generated SQL DDL, JSON Schema, Mermaid ER diagrams, and validation notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference user-provided project data and local file paths when the user grants filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata) <br>
+Risk: Generated SQL may include unsuitable table names, column names, relationships, or constraints for the target database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SQL manually, validate it against project requirements, and run it only in an appropriate database environment with limited privileges.
+
+Risk: The skill requests filesystem access for project data workflows.
+
+Mitigation: Install and use it only when file access is acceptable for the project data being processed.
+
+## Reference(s):
+
+- [Data Driven Construction](https://datadrivenconstruction.io)
+- [ClawHub Skill Page](https://clawhub.ai/datadrivenconstruction/skills/data-model-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured tables, Mermaid ER diagrams, SQL DDL, JSON Schema, and validation findings as applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Excel, CSV, or JSON export formats when relevant.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

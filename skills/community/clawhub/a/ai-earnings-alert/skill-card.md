@@ -1,43 +1,62 @@
-## Description: <br>
-Tracks technology and AI company earnings activity, retrieves earnings calendars and news, generates summary reports, and supports earnings alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks earnings calendars and news for technology and AI companies, generates summary reports, and supports scheduled alerts for tracked symbols.
 
-## Publisher: <br>
-[newaiguy](https://clawhub.ai/user/newaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newaiguy](https://clawhub.ai/user/newaiguy)
 
-## Use Case: <br>
-Agents use this skill to help users monitor earnings dates, news, and summaries for tracked technology and AI companies. It is suited for earnings watchlists and alert workflows, but the source states that outputs are informational and not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Earnings queries are sent to Tavily and translated content may be sent to BigModel/GLM. <br>
-Mitigation: Use the skill only with data that is acceptable to share with those providers, and use dedicated Tavily and ZAI credentials. <br>
-Risk: The translation path can use OPENAI_API_KEY as a fallback credential. <br>
-Mitigation: Run without OPENAI_API_KEY in the environment unless that fallback is explicitly approved or removed. <br>
-Risk: The package includes an unused Playwright dependency that security evidence flags for review. <br>
-Mitigation: Remove the dependency if browser automation is not needed, or upgrade it before installation. <br>
+## Use Case:
 
+External users and agents use this skill to check upcoming earnings events, retrieve recent earnings news for individual or tracked companies, and generate concise earnings summaries. It is informational and is not a source of investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newaiguy/ai-earnings-alert) <br>
-- [Publisher profile](https://clawhub.ai/user/newaiguy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown summaries, and optional JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include translated earnings news, extracted financial metrics, relevance scores, tracked-company lists, and local configuration state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.json; package.json lists 2.1.0 and script documentation mentions v2.3) <br>
+Risk: The security evidence reports that the skill can send company symbols and fetched financial text to Tavily and, by default, BigModel/GLM for translation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where this data sharing is acceptable, configure the intended provider keys explicitly, and use --no-translate when translation is not needed.
+
+Risk: The security evidence reports that an OPENAI_API_KEY fallback can silently be used with the BigModel/GLM translation endpoint.
+
+Mitigation: Use only ZAI_API_KEY for translation, avoid running in environments containing OPENAI_API_KEY, or remove the fallback before deployment.
+
+Risk: The security evidence reports an unused Playwright dependency.
+
+Mitigation: Remove or pin the dependency before production use and review the resulting package lock or install plan.
+
+Risk: The skill summarizes financial news and may produce incomplete or misleading financial interpretation.
+
+Mitigation: Treat outputs as informational only, review source links and official filings before making financial decisions, and preserve the documented no-investment-advice posture.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newaiguy/skills/ai-earnings-alert)
+- [Publisher profile](https://clawhub.ai/user/newaiguy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown summaries, and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tavily API key for search; translation is optional and can be disabled with --no-translate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

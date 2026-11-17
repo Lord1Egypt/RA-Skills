@@ -1,42 +1,55 @@
-## Description: <br>
-MoePeek AI Transcript helps macOS users work with MoePeek, a lightweight Swift 6 menu bar translation utility for selected text, OCR screenshots, clipboard text, and manual input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoePeek AI Transcript helps users work with MoePeek, a lightweight macOS menu bar translation app for selected text, screenshot OCR, clipboard text, and manual input, with on-device Apple Translation support.
 
-## Publisher: <br>
-[codeman840425-del](https://clawhub.ai/user/codeman840425-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeman840425-del](https://clawhub.ai/user/codeman840425-del)
 
-## Use Case: <br>
-External macOS users and support agents use this skill to decide when MoePeek fits a translation workflow and to provide concise installation and usage guidance. It is most relevant for quick translation across selected text, screenshots, clipboard content, and manual input where provider choice and privacy posture matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clipboard text, selected text, screenshots, and OCR content may contain sensitive information, and cloud translation providers may receive that content. <br>
-Mitigation: Use Apple Translation or local providers for confidential content, and avoid sending passwords, secrets, private screenshots, or proprietary text to cloud translation services. <br>
-Risk: Installing an unexpected or tampered macOS release can expose users to malicious software. <br>
-Mitigation: Download from the expected MoePeek GitHub release and prefer signed or checksum-verified downloads when available. <br>
+## Use Case:
 
+External users on macOS use this skill to install and use MoePeek for quick translation across apps, including selected text, screenshots, clipboard content, and manual text input.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/codeman840425-del/moepeek) <br>
-- [MoePeek GitHub Repository](https://github.com/cosZone/MoePeek) <br>
-- [MoePeek Latest Release](https://github.com/cosZone/MoePeek/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with installation and usage steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include release links and provider/privacy guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Selected text, clipboard content, and screenshot OCR may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local or on-device providers for confidential material and avoid submitting private content to third-party translation services unless that sharing is acceptable.
+
+Risk: The skill can direct users to translation providers with different privacy and data-handling behavior.
+
+Mitigation: Review the selected provider and the GitHub release before installation or use.
+
+## Reference(s):
+
+- [MoePeek ClawHub Skill Page](https://clawhub.ai/codeman840425-del/skills/moepeek)
+- [MoePeek Homepage](https://github.com/cosZone/MoePeek)
+- [MoePeek Releases](https://github.com/cosZone/MoePeek/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline links and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference translation providers and macOS usage steps; no structured machine output is claimed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

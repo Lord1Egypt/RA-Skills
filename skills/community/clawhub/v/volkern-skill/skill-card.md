@@ -1,41 +1,60 @@
-## Description: <br>
-Automate Volkern CRM operations including lead management, appointment scheduling, task tracking, service catalog, WhatsApp messaging, sales pipeline, quotations, and contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Volkern CRM operations including lead management, appointment scheduling, task tracking, service catalog work, WhatsApp messaging, sales pipeline management, quotations, and contracts through an MCP server that requires Volkern API key authentication.
 
-## Publisher: <br>
-[DeXpertmx](https://clawhub.ai/user/DeXpertmx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dexpertmx](https://clawhub.ai/user/dexpertmx)
 
-## Use Case: <br>
-External CRM operators and developers use this MCP server to let compatible AI agents query and update Volkern CRM records, schedule appointments, manage follow-up work, send WhatsApp messages, and prepare quotations or contracts through authenticated API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review was incomplete because the scanner reported that the supplied workspace did not expose the target skill artifact files referenced by the scanners. <br>
-Mitigation: Inspect the artifact files before installation and rerun security review in an environment where the scanner can access the released artifact. <br>
-Risk: Tool calls can create or change CRM records, schedule appointments, send WhatsApp messages, and share quote or contract links. <br>
-Mitigation: Require explicit user confirmation for externally visible or state-changing actions, use least-privilege API credentials, and confirm appropriate customer consent before sending messages or links. <br>
+## Use Case:
 
+Developers and operators use this skill to connect AI agents to Volkern CRM workflows for managing leads, appointments, tasks, catalog items, WhatsApp conversations, deals, quotes, and contracts. It is intended for tenants with an appropriately scoped Volkern API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DeXpertmx/volkern-skill) <br>
-- [Volkern API base URL](https://volkern.app/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance, JSON tool schemas, shell commands, and MCP tool call results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VOLKERN_API_KEY and optionally VOLKERN_API_URL; tool calls may create or modify CRM records and send WhatsApp messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: The connector can change live customer records and send messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install with a least-privilege Volkern API key and require human confirmation before sends, cancellations, record updates, catalog changes, or task completion.
+
+Risk: The security summary reports a confirmed URL path handling weakness.
+
+Mitigation: Validate and encode URL path IDs before using the connector with sensitive production data.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Prefer a pinned package version and review and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Volkern MCP Server release](https://clawhub.ai/dexpertmx/skills/volkern-skill)
+- [Volkern API base URL](https://volkern.app/api)
+- [Artifact README](artifact/readme.md)
+- [Artifact skill instructions](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON and shell command examples; MCP tool calls return JSON data from the Volkern API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a VOLKERN_API_KEY and may perform live CRM actions such as record updates, sends, cancellations, and task completion.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata, created 2026-03-18T15:14:38Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-MLX-powered local AI guidance for running LLMs, image generation, speech-to-text, and embeddings on Apple Silicon through an Ollama Herd fleet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MLX-powered local AI for running LLMs, Stable Diffusion, speech-to-text, and embeddings natively on Apple Silicon via MLX, coordinated by an Ollama Herd fleet router across Mac devices.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and run local Apple Silicon MLX workflows for text generation, image generation, transcription, embeddings, fleet status checks, and hardware-aware model recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup and operation may install local tools, start local services, and interact with a live model fleet. <br>
-Mitigation: Run the commands only in a trusted macOS development environment and review package installation, service startup, and API calls before execution. <br>
-Risk: Model management can consume local storage or alter available models. <br>
-Mitigation: Require explicit confirmation for model pulls and deletions, and avoid deleting or modifying files under ~/.fleet-manager. <br>
-Risk: The server security review describes the package as clean but still recommends trusting the maintainer workflow before installation. <br>
-Mitigation: Install only when the publisher and release are trusted, and re-scan or review the skill before deployment in managed environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and operate a local Apple Silicon AI fleet for LLM inference, image generation, speech-to-text, and embeddings through MLX-backed tools. It provides installation commands, local API examples, monitoring endpoints, and operational guardrails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/mlx-apple-silicon-mlx) <br>
-- [MLX framework](https://github.com/ml-explore/mlx) <br>
-- [Ollama Herd](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash, Python, and HTTP API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference macOS-only requirements, local service endpoints, and optional Python tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Package installation can introduce ordinary supply-chain or environment risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install Python tools in an isolated environment, avoid sudo, and pin reviewed versions of ollama-herd, mflux, and diffusionkit where practical.
+
+Risk: Prompts, audio files, embeddings, and generated content are routed to local fleet nodes.
+
+Mitigation: Treat data sent to the local router as available to those nodes and restrict the fleet to trusted machines and networks.
+
+Risk: Model downloads and deletion operations can affect local storage and model availability.
+
+Mitigation: Keep explicit user confirmation for model pulls and deletion, and do not delete or modify files under ~/.fleet-manager/.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/twinsgeeks/skills/mlx-apple-silicon-mlx)
+- [MLX Framework](https://github.com/ml-explore/mlx)
+- [Ollama Herd](https://github.com/geeks-accelerator/ollama-herd)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [Image Generation Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/image-generation.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+- [Ollama Herd on PyPI](https://pypi.org/project/ollama-herd/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash, Python, and HTTP API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS on Apple Silicon and references local services on port 11435.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

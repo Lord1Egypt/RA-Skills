@@ -1,46 +1,60 @@
-## Description: <br>
-Provides agent guidance and examples for using the XtQuant QMT Python SDK to access market data and trading interfaces for Chinese securities markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XtQuant QMT Python SDK guidance for market data and trading APIs across Chinese securities markets.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-External developers and quantitative trading engineers use this skill to get XtQuant setup guidance, market data examples, trading API examples, and QMT/miniQMT workflow references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes live trading, cancellation, account query, and bank-transfer patterns that can affect funded brokerage accounts. <br>
-Mitigation: Keep usage read-only by default and require explicit user confirmation before any order, cancellation, transfer, or bank query. <br>
-Risk: Brokerage credentials, bank passwords, or fund passwords could be exposed if supplied in prompts or source files. <br>
-Mitigation: Do not provide bank or fund passwords in prompts or source files; use the broker client and approved local credential handling instead. <br>
-Risk: Examples may interact with a live QMT or miniQMT client if run in a funded brokerage environment. <br>
-Mitigation: Test against a simulated or non-live environment before connecting a funded brokerage account. <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill to generate XtQuant/QMT setup guidance, Python examples, API usage notes, and operational cautions for market data retrieval and brokerage trading workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coderwpf/xtquant) <br>
-- [XtQuant official documentation](http://dict.thinktrader.net/nativeApi/start_now.html) <br>
-- [ThinkTrader platform](http://www.thinktrader.net) <br>
-- [XtQuant download page](http://dict.thinktrader.net/nativeApi/download_xtquant.html) <br>
-- [BossQuant Bilibili profile](https://space.bilibili.com/48693330) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and an installed xtquant package; live data and trading examples require a running QMT or miniQMT client with broker access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill includes examples for a real brokerage trading SDK that can place orders or transfer funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled XtQuant/QMT environment, prefer paper or test accounts first, and add explicit confirmations and limits before order or transfer calls.
+
+Risk: Examples may expose account data or credentials if copied directly into scripts or logs.
+
+Mitigation: Never hardcode bank or fund passwords, redact account data from logs, and review generated code before execution.
+
+Risk: Unpinned dependencies can change runtime behavior.
+
+Mitigation: Pin dependencies in the consuming project's lockfile before deployment.
+
+## Reference(s):
+
+- [ClawHub xtquant Skill Page](https://clawhub.ai/coderwpf/skills/xtquant)
+- [XtQuant Official Documentation](http://dict.thinktrader.net/nativeApi/start_now.html)
+- [ThinkTrader QMT Platform](http://www.thinktrader.net)
+- [XtQuant Download Page](http://dict.thinktrader.net/nativeApi/download_xtquant.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trading, transfer, account-query, market-data, and dependency-installation examples that require user review before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

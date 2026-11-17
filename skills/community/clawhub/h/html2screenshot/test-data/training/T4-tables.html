@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T4 - 表格密集页面</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, sans-serif; padding: 40px; background: #f0f2f5; }
+    h1 { text-align: center; margin-bottom: 30px; color: #333; }
+    .table-container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: linear-gradient(135deg, #1a73e8, #1557b0); color: white; }
+    th { padding: 16px 12px; text-align: left; font-weight: 600; font-size: 14px; border-bottom: 2px solid rgba(255,255,255,0.2); }
+    td { padding: 12px; font-size: 14px; border-bottom: 1px solid #eee; color: #333; }
+    tbody tr:hover { background: #f5f8ff; }
+    .positive { color: #00c853; font-weight: 600; }
+    .negative { color: #ff5252; font-weight: 600; }
+    .neutral { color: #666; }
+    .stock-code { font-family: 'SF Mono', 'Monaco', monospace; font-size: 13px; color: #1a73e8; }
+  </style>
+</head>
+<body>
+  <h1>📊 T4 - 表格密集页面测试</h1>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>代码</th>
+          <th>名称</th>
+          <th>最新价</th>
+          <th>涨跌</th>
+          <th>涨跌幅</th>
+          <th>成交量</th>
+          <th>成交额</th>
+          <th>换手率</th>
+          <th>市盈率</th>
+          <th>市净率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="stock-code">000001</td><td>平安银行</td><td>12.45</td><td class="positive">+0.32</td><td class="positive">+2.64%</td><td>125.6万</td><td>15.6亿</td><td class="positive">1.82%</td><td>5.2</td><td>0.68</td></tr>
+        <tr><td class="stock-code">000002</td><td>万科A</td><td>8.76</td><td class="negative">-0.15</td><td class="negative">-1.68%</td><td>89.3万</td><td>7.8亿</td><td class="negative">1.12%</td><td>8.9</td><td>0.52</td></tr>
+        <tr><td class="stock-code">000009</td><td>中国宝安</td><td>15.23</td><td class="positive">+0.87</td><td class="positive">+6.06%</td><td>234.1万</td><td>35.2亿</td><td class="positive">4.56%</td><td>22.1</td><td>2.34</td></tr>
+        <tr><td class="stock-code">000027</td><td>深圳能源</td><td>6.89</td><td class="neutral">+0.02</td><td class="neutral">+0.29%</td><td>45.2万</td><td>3.1亿</td><td class="neutral">0.67%</td><td>12.4</td><td>0.89</td></tr>
+        <tr><td class="stock-code">000039</td><td>中集集团</td><td>11.34</td><td class="positive">+0.45</td><td class="positive">+4.13%</td><td>156.8万</td><td>17.8亿</td><td class="positive">2.34%</td><td>15.6</td><td>1.45</td></tr>
+        <tr><td class="stock-code">000063</td><td>中兴通讯</td><td>28.56</td><td class="positive">+1.23</td><td class="positive">+4.50%</td><td>312.4万</td><td>89.2亿</td><td class="positive">3.78%</td><td>18.9</td><td>2.12</td></tr>
+        <tr><td class="stock-code">000066</td><td>中国长城</td><td>18.92</td><td class="negative">-0.56</td><td class="negative">-2.87%</td><td>198.7万</td><td>37.6亿</td><td class="negative">2.89%</td><td>35.6</td><td>3.45</td></tr>
+        <tr><td class="stock-code">000078</td><td>深赛格</td><td>7.23</td><td class="positive">+0.18</td><td class="positive">+2.55%</td><td>67.3万</td><td>4.8亿</td><td class="positive">1.23%</td><td>18.2</td><td>1.67</td></tr>
+        <tr><td class="stock-code">000090</td><td>天健集团</td><td>5.67</td><td class="negative">-0.08</td><td class="negative">-1.39%</td><td>34.5万</td><td>1.9亿</td><td class="negative">0.89%</td><td>9.8</td><td>0.78</td></tr>
+        <tr><td class="stock-code">000100</td><td>TCL科技</td><td>4.32</td><td class="positive">+0.12</td><td class="positive">+2.86%</td><td>456.2万</td><td>19.7亿</td><td class="positive">2.67%</td><td>14.5</td><td>1.23</td></tr>
+        <tr><td class="stock-code">000157</td><td>中联重科</td><td>7.89</td><td class="positive">+0.23</td><td class="positive">+3.00%</td><td>178.9万</td><td>14.1亿</td><td class="positive">2.12%</td><td>11.2</td><td>1.56</td></tr>
+        <tr><td class="stock-code">000158</td><td>常山北明</td><td>9.45</td><td class="negative">-0.34</td><td class="negative">-3.47%</td><td>267.3万</td><td>25.2亿</td><td class="negative">3.45%</td><td>45.6</td><td>4.23</td></tr>
+        <tr><td class="stock-code">000166</td><td>申万宏源</td><td>4.56</td><td class="neutral">+0.01</td><td class="neutral">+0.22%</td><td>89.4万</td><td>4.1亿</td><td class="neutral">0.56%</td><td>16.7</td><td>0.98</td></tr>
+        <tr><td class="stock-code">000400</td><td>许继电气</td><td>22.34</td><td class="positive">+0.89</td><td class="positive">+4.15%</td><td>134.5万</td><td>30.0亿</td><td class="positive">2.45%</td><td>28.9</td><td>2.67</td></tr>
+        <tr><td class="stock-code">000401</td><td>冀东水泥</td><td>6.78</td><td class="negative">-0.12</td><td class="negative">-1.74%</td><td>56.7万</td><td>3.8亿</td><td class="negative">0.98%</td><td>12.3</td><td>0.87</td></tr>
+        <tr><td class="stock-code">000402</td><td>金融街</td><td>4.23</td><td class="negative">-0.05</td><td class="negative">-1.17%</td><td>43.2万</td><td>1.8亿</td><td class="negative">0.67%</td><td>8.9</td><td>0.56</td></tr>
+        <tr><td class="stock-code">000404</td><td>长虹华意</td><td>8.91</td><td class="positive">+0.34</td><td class="positive">+3.97%</td><td>78.9万</td><td>7.0亿</td><td class="positive">1.56%</td><td>15.4</td><td>1.89</td></tr>
+        <tr><td class="stock-code">000408</td><td>藏格矿业</td><td>26.78</td><td class="positive">+1.45</td><td class="positive">+5.73%</td><td>189.3万</td><td>50.6亿</td><td class="positive">3.12%</td><td>12.8</td><td>1.98</td></tr>
+        <tr><td class="stock-code">000415</td><td>渤海租赁</td><td>2.89</td><td class="neutral">+0.03</td><td class="neutral">+1.05%</td><td>123.4万</td><td>3.6亿</td><td class="neutral">1.45%</td><td>7.8</td><td>0.45</td></tr>
+        <tr><td class="stock-code">000425</td><td>徐工机械</td><td>7.56</td><td class="positive">+0.28</td><td class="positive">+3.85%</td><td>234.5万</td><td>17.7亿</td><td class="positive">2.89%</td><td>13.4</td><td>1.34</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="text-align:center; margin-top:20px; color:#999; font-size:14px;">T4 - 表格密集页面测试完成 | 共 20 行数据</p>
+</body>
+</html>

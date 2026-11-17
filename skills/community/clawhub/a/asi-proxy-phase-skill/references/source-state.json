@@ -1,0 +1,84 @@
+{
+  "derivation": {
+    "archive_policy": "Do not infer or assert a DOI for archive-only records. Preserve archive and TeX hashes, content status, and source quality flags.",
+    "classification_policy": "Versioned token-boundary rules retain only labels with a stored rule, field, matched span, confidence, and completed review status.",
+    "evidential_boundary": "Summaries and routing labels support discovery only. They are not peer review, replication, empirical validation, or evidence of an ASI or phase transition.",
+    "repository_link_policy": "Extract DOI relations from each pinned root README and classify the local context as implements, companion_software, cites, or lineage. Keep paper-index-external DOIs as external citations and never infer new paper records.",
+    "summary_policy": "Extract the first sentence of the catalog abstract and truncate only at a word boundary when it exceeds 480 characters."
+  },
+  "hashes": {
+    "archive_only_parquet_sha256": "77890fa05f26ccbb57f2ea5b6840b7d5c8fdbdd83d8c6d1a8cc52fad7bb15cad",
+    "archive_records_sha256": "332d555fec8db2d3eefcf53729d31c5f304ca7ba200746950034980a76b8a821",
+    "catalog_sha256": "8f6ebebf1c783616faa50a27d8353ba89a2e170184d3aedf4bdbc032f365cd23",
+    "catalog_snapshot_sha256": "8f6ebebf1c783616faa50a27d8353ba89a2e170184d3aedf4bdbc032f365cd23",
+    "derived_papers_jsonl_sha256": "bd9a8750da7456e33bd2e00c1b3c18d9be0c93d3d679959da483800177dfd4e0",
+    "legacy_routing_review_sha256": "bd1a307c9a60f7261fddbee3a9a2190885062e5ef5da6e87304513405529f606",
+    "paper_repository_relations_sha256": "16500b6d4b9b2f8ba4787d0928dce594b319328705b885176a72d8d4f3c73d82",
+    "paper_selection_metadata_sha256": "45d46de7f7e2f30f9c963d0ea4626e0f586e6c8c6801585bf3560e2a83e869e6",
+    "papers_parquet_sha256": "0b0a47f73ec586fa3c01110b91db48cc6cdbda02c91a0bc3880d23e283dbd7d0",
+    "repositories_json_sha256": "ecff95280558844a81d6a49e91376ae77b9a71c06c74bfc80513326de3da3537",
+    "routing_rules_sha256": "ced9c6d30b6262be99ebb971471965aecb8ec2240358993707b2ffe1d291a9fe"
+  },
+  "paper_corpus": {
+    "catalog_origin": "https://kadubon.github.io/github.io/research-catalog.json",
+    "dataset": "kadubon/paper-tex-corpus",
+    "dataset_url": "https://huggingface.co/datasets/kadubon/paper-tex-corpus",
+    "license": "CC-BY-4.0",
+    "release": "v1.0.0",
+    "source_branch": "main",
+    "source_commit": "f3e594ba21031e904c63f3821d8a1c07c1c22b49",
+    "source_commit_date": "2026-07-24T19:08:50+09:00",
+    "source_repository": "https://github.com/kadubon/paper-tex-backup.git"
+  },
+  "paper_selection": {
+    "archive_only_record_source": "data/archive_only/train-00000-of-00001.parquet",
+    "archive_only_records": 4,
+    "canonical_record_source": "data/papers/train-00000-of-00001.parquet",
+    "canonical_records": 227,
+    "canonical_unique_dois": 227,
+    "catalog_records_in_snapshot": 231,
+    "catalog_records_not_in_papers_config": [
+      {
+        "doi": "10.5281/zenodo.21349042",
+        "reason": "not_present_in_released_papers_config",
+        "title": "Collective Phase Control Fabric"
+      },
+      {
+        "doi": "10.5281/zenodo.21103275",
+        "reason": "not_present_in_released_papers_config",
+        "title": "Collective Capability Runtime"
+      },
+      {
+        "doi": "10.5281/zenodo.20569166",
+        "reason": "not_present_in_released_papers_config",
+        "title": "Percolation Inversion Compiler"
+      },
+      {
+        "doi": "10.5281/zenodo.20107661",
+        "reason": "not_present_in_released_papers_config",
+        "title": "OASG: Observable-only Autonomic Slack Gradient Theory"
+      }
+    ],
+    "selection_rule": "Canonical skill records are exactly the rows released in the papers configuration; archive-only records are exactly the rows released in the archive_only configuration.",
+    "total_skill_records": 231
+  },
+  "public_repositories": {
+    "derivative_exclusions": [
+      {
+        "name": "asi-proxy-phase-skill",
+        "reason": "This repository is the derived skill itself, not an upstream research source."
+      }
+    ],
+    "observed_at": "2026-07-30T02:28:49+00:00",
+    "observed_public_repository_count": 54,
+    "owner": "kadubon",
+    "pin_policy": "Each record uses the public repository default branch and its full HEAD SHA.",
+    "private_repositories_included": false,
+    "records": 53,
+    "semantic_review_policy": "Repository summaries, roles, interfaces, dimensions, maturity, dependencies, and eligibility carry pinned commit/path evidence. They remain navigation aids rather than empirical effect estimates.",
+    "source_api": "https://api.github.com/users/kadubon/repos?per_page=100&type=public&sort=full_name",
+    "upstream_source_count": 53
+  },
+  "schema_version": "1.1.0",
+  "source_state_date": "2026-07-30"
+}

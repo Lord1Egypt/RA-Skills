@@ -1,121 +1,71 @@
 # 公共接口与常见工作流
 
-本文件包含两部分内容：
+## account_page
 
-1. **公共接口**：不归属于任何特定品类的通用工具 API
-2. **常见工作流**：跨品类的典型操作流程
+> 调用方式见 SKILL.md「调用方式」
 
----
+获取已授权的社媒平台账号列表。发布视频/图文前必须调用此接口获取 `account_id`。
 
-## 公共接口
+```json
+{}
+```
 
-### get_job_status
+用 `{}` 获取全部账号。返回 `data` 数组，每个元素含：
 
-**功能**：查询任务生成状态，轮询调用直到任务完成。
+| 字段 | 说明 |
+|------|------|
+| `_id` | 账号唯一标识，作为发布时的 `account_id` |
+| `platform` | 平台类型：1=抖音, 5=B站, 6=快手, 11=小红书 |
+| `account_name` | 平台账号名称 |
+| `status` | `normal` 表示正常 |
 
-**使用场景**：
+## video_publish_status
 
-- 调用生成类工具后，获取任务执行进度和结果
-- 轮询查询任务状态，直到 `status=complete`
+> 调用方式见 SKILL.md「调用方式」
 
-**调用参数**
-
-| 参数   | 类型     | 必填 | 说明                            |
-| ---- | ------ | -- | ----------------------------- |
-| `id` | string | 是  | 任务唯一标识符，来自生成类工具返回的 `data._id` |
-
-**调用示例**
+查询视频/图文发布任务的执行状态。
 
 ```json
 {
-  "id": "6954bc30960d4401fb542"
+  "task_id": "<发布任务 _id>"  // 必填：video_publish 或 image_publish 返回的 _id
 }
 ```
 
-**返回值说明**
+> ⚠️ 名称暗示视频，但**图文发布也用它**。
+
+## signature
+
+> 调用方式见 SKILL.md「调用方式」
+
+获取 OSS 预签名上传 URL。通常不直接调用，由 `upload.mjs` 内部使用。
 
 ```json
 {
-  "code": 0,
-  "msg": "ok",
-  "data": {
-    "_id": "6954bc30960d4401fb542",
-    "status": "processing",
-    "urls": ["https://..."],
-    "videos": [
-      {
-        "status": "success",
-        "url": "https://...",
-        "cover_url": "https://...",
-        "insert_time": 1767160925003
-      }
-    ]
-  }
+  "filename": "example.jpg",        // 必填：文件名
+  "content_type": "image/jpeg"      // 必填：MIME 类型
 }
 ```
-
----
-### signature
-
-**功能**：获取文件上传签名URL。用于阿里云OSS直传签名，支持任意文件类型（图片、视频、文档等）。注意：此工具仅返回签名信息，实际上传请使用 upload_file.sh 脚本。
-
-**调用参数**
-
-| 参数         | 类型     | 必填 | 说明                       |
-| ---------- | ------ | -- | ------------------------ |
-| `filename`   | string | 是  | 文件名，包含文件扩展名 |
-| `content_type` | string | 是  | 文件内容类型，如 `image/jpeg`、`video/mp4` 等 |
-
-**调用示例**
-
-```json
-{
-  "filename": "example.jpg",
-  "content_type": "image/jpeg"
-}
-```
-**返回值说明**
-
-```json
-{
-  "code": 0,
-  "msg": "操作指引",
-  "data": {}
-}
-```
----
-
-## 特殊响应处理`error=need_upload`
-
-**功能**：需要上传文件到云存储，上传后替换参数值为文件URL。
-
-**使用场景**：
-
-- 文件不可访问时，如文件路径错误、文件不存在等
-- 上传图片、文档、视频等文件到云存储
-- 上传本地文件到云存储，返回文件URL
-
-**调用示例**：
-
-```bash
-
-# $local_file_path 是本地文件路径
-eval $(./upload_file.sh $local_file_path)
-
-```
-
-**返回结果说明**：
-
-| 字段 | 类型 | 说明 |
-| ----------------- | ------ | ----------------- |
-| `error`           | string | 固定值 `need_upload`|
-| `tool_name`       | string | 上传成功后调用的工具名称|
-| `local_file_path` | string | 需要上传的文件路径|
 
 ---
 
 ## 常见工作流
 
----
+### 生成 → 轮询
 
-### 需补充
+```
+echo '<JSON>' | mcporter call ClawAgent.<生成工具> --args -  → 拿到 data._id
+  ↓
+echo '{"id":"<值>"}' | mcporter call ClawAgent.get_job_status --args -
+  → status=processing → 等 5-10s 重试（最多 60 次）
+  → status=complete → 提取 urls/videos
+```
+
+### 发布
+
+```
+account_page → 拿到目标平台账号 _id
+  ↓
+video_publish / image_publish → 拿到 task_id
+  ↓
+video_publish_status → 查询发布结果
+```

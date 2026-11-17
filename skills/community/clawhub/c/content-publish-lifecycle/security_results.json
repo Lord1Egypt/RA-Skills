@@ -1,0 +1,49 @@
+{
+  "skill": "content-publish-lifecycle",
+  "skill_name": "内容发布全流程（设计→落地→检查→验证→发布→沉淀）",
+  "version": "1.0.0",
+  "author": "SynomosAI",
+  "test_type": "本地闭环实测（零网络 / 零真实凭据）",
+  "tested_at": "2026-08-30",
+  "environment": "Windows / Git Bash / Python 3",
+  "overall": 4.33,
+  "dimensions": [
+    {
+      "name": "零网络依赖",
+      "score": 5,
+      "evidence": "publish_attest.py 与 gen_skill_security_radar.py 均仅使用 Python 标准库（json/hashlib/pathlib/math/sys），全程无 socket / requests / urllib 出网调用；断网环境可完整生成权属证明与雷达图。",
+      "method": "静态审查 import 清单 + 断网条件下重跑两脚本均成功"
+    },
+    {
+      "name": "零真实凭据",
+      "score": 5,
+      "evidence": "装配阶段（删 .bak → 生成指纹 → 生成证明 → 打包）不读取任何令牌或密钥；凭据仅在提交阶段由各端官方工具/DPAPI 保险库按需注入，且不落盘、不回显。",
+      "method": "装配脚本无凭据入参；令牌仅存于 DPAPI 加密件，内存态使用后即弃"
+    },
+    {
+      "name": "本地可重跑",
+      "score": 5,
+      "evidence": "同一输入目录重复运行 publish_attest.py 得到一致的文件级 SHA256 与包级指纹；雷达图由 security_results.json 确定性渲染，无随机量、无时间戳污染图形部分。",
+      "method": "连续两次运行比对输出哈希一致"
+    },
+    {
+      "name": "输出可核验",
+      "score": 4,
+      "evidence": "ATTESTATION.md 内含逐文件 SHA256 + 包级聚合指纹，支持 --verify 复核；zip 产物另记 MD5/SHA256。扣分项：verify 仅校验哈希完整性，不校验内容语义正确性。",
+      "method": "publish_attest.py --verify 复核通过；zip 双哈希登记"
+    },
+    {
+      "name": "行为可观测",
+      "score": 4,
+      "evidence": "每步输出明确的成功/失败提示与产物路径，装配过程可从终端日志完整复原；发布阶段逐端记录渠道/时间/链接/状态。扣分项：无结构化机器可读运行日志（仅人读 stdout）。",
+      "method": "全流程终端输出留痕 + 《发布记录》台账"
+    },
+    {
+      "name": "失败可诊断",
+      "score": 3,
+      "evidence": "缺参数时给出明确中文报错（如「缺少 --results」）；各端不可用时按 blocked 归因而非静默失败。扣分项：脚本未区分错误码、无重试与回滚机制，深层异常仅抛原生 traceback。",
+      "method": "构造缺参/缺文件/凭据不可用三类故障观察报错可读性"
+    }
+  ],
+  "notes": "评分为本地实测所得的自评结果，基线（行业 3.5 / 企业级 4.5）为参考估计值，非第三方认证。"
+}

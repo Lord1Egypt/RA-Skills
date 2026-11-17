@@ -1,42 +1,62 @@
-## Description: <br>
-Composes, previews, and sends professional job application emails with resume and cover-letter content through Gmail using the gog tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send resume and cover letter to companies via Gmail. Activate when user wants to send, deliver, or submit a resume by email, apply to a job, or email a company about a position. Uses gog Gmail tool to compose and send professional job application emails with resume attached.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-External users and job seekers use this skill to prepare, preview, and send personalized job application emails with resume content through Gmail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send job application emails through a Gmail tool, which may expose personal resume information or contact the wrong recipient if details are incorrect. <br>
-Mitigation: Verify the recipient, subject, sender account, email body, and resume handling before approving any send. <br>
-Risk: Temporary email bodies or job-search logs may contain sensitive personal information. <br>
-Mitigation: Remove temporary files or log entries when they are no longer needed, especially on shared systems. <br>
-Risk: The workflow depends on a Gmail helper with account access. <br>
-Mitigation: Install and use the Gmail helper only when its access requirements are acceptable for the user and environment. <br>
+## Use Case:
 
+Job applicants and agents assisting them use this skill to draft, preview, personalize, send, and log professional job application emails through Gmail.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoxty/resume-email-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with email previews and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated cover-letter text, Gmail send commands, draft fallback guidance, and optional job-search log entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill can send email from the user's Gmail account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user review and confirmation of recipient, subject, sender account, and email body before sending.
+
+Risk: The skill may state that a resume is attached when it is not actually attached.
+
+Mitigation: Correct the email wording or add a real attachment workflow before using it for applications.
+
+Risk: The skill handles resume text through unsafe temporary-file and shell-command patterns.
+
+Mitigation: Use safer temporary-file handling and quote or escape shell inputs before execution.
+
+Risk: The Gmail integration depends on the gog tool and account permissions.
+
+Mitigation: Verify the gog installation source and Gmail authorization scope before installing or running the skill.
+
+## Reference(s):
+
+- [Skill source](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/xiaoxty/skills/resume-email-sender)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with email previews and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Gmail send or draft commands and job application log entries after user confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

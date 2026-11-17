@@ -1,48 +1,63 @@
-## Description: <br>
-EduClaw is a personal IELTS study-planning skill that creates detailed study plans, schedules sessions on Google Calendar through gcalcli, and manages study materials and progress tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EduClaw is a personal IELTS study secretary for detailed planning, Google Calendar scheduling through gcalcli, and automated study material management.
 
-## Publisher: <br>
-[moclaw](https://clawhub.ai/user/moclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moclaw](https://clawhub.ai/user/moclaw)
 
-## Use Case: <br>
-External learners and agents use this skill to plan IELTS preparation, discover study materials, schedule approved sessions, and maintain progress records across calendar, Markdown, and SQLite tracking surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs Google Calendar access through gcalcli and may create or inspect study events. <br>
-Mitigation: Use a dedicated Google OAuth client where possible, review requested scopes, and approve calendar changes only after inspecting the proposed schedule. <br>
-Risk: Required API and bot tokens could expose calendar, model, search, or notification access if shared. <br>
-Mitigation: Store tokens outside shared files and source control, rotate them if exposed, and use least-privilege projects or bots. <br>
-Risk: Discord or Telegram reminders and reports may reveal personal study schedule or progress details. <br>
-Mitigation: Send notifications only to private channels or chats and disable notification integrations that are not needed. <br>
-Risk: Cron jobs can repeatedly send reminders, query local progress data, or refresh study materials. <br>
-Mitigation: Enable only desired cron jobs, review their schedules and channels, and keep the local SQLite tracker in the intended workspace. <br>
+## Use Case:
 
+IELTS learners and supporting agents use this skill to create bilingual study plans, find study materials, schedule approved sessions, and track progress over a multi-month roadmap. It is intended for calendar-backed study management with local progress records and optional reminder channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/moclaw/educlaw-ielts-planner) <br>
-- [README](artifact/README.md) <br>
-- [Setup guide](artifact/SETUP.md) <br>
-- [Workflow guide](artifact/WORKFLOW.md) <br>
-- [SQLite tracker schema](artifact/schema.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown responses with inline shell commands, calendar-event details, setup guidance, and study-plan documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update Google Calendar study events, a Markdown study plan, and a local SQLite progress tracker when the user approves those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Setup instructions and runtime behavior can affect local dependencies and background automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer isolated or pinned dependency installation, independently verify installer commands before use, and disable cron jobs unless automated reminders and reports are needed.
+
+Risk: The skill requires credentials for Google, Discord, and optionally Telegram services.
+
+Mitigation: Store tokens and OAuth files in protected configuration locations, restrict service permissions to the minimum needed, and rotate credentials if exposure is suspected.
+
+Risk: Calendar write access and notification channels can create or send user-visible content.
+
+Mitigation: Review plans before approving calendar creation, limit Google Calendar and bot permissions, and keep interactive conflict handling enabled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moclaw/skills/educlaw-ielts-planner)
+- [README.md](artifact/README.md)
+- [SETUP.md](artifact/SETUP.md)
+- [WORKFLOW.md](artifact/WORKFLOW.md)
+- [SQLite schema](artifact/schema.sql)
+- [OpenClaw](https://openclaw.dev)
+- [gcalcli](https://github.com/insanum/gcalcli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with calendar-event text, shell commands, and local tracker file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces study plans, event descriptions, reminder/report prompts, and local Markdown or SQLite tracking updates when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

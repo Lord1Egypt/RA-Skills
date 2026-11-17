@@ -1,41 +1,53 @@
-## Description: <br>
-Batch Image Processor Pro helps agents plan bulk image compression, cropping, watermarking, format conversion, resizing, renaming, color adjustment, and EXIF cleanup workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch Image Processor Pro helps agents produce bulk image-processing instructions for compression, cropping, watermarking, format conversion, renaming, resizing, color adjustment, and EXIF cleanup workflows.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-External creators, ecommerce operators, social media teams, and developers use this skill to generate command-style guidance for optimizing large groups of images. Typical tasks include compression, watermarking, format conversion, crop and resize operations, bulk renaming, color adjustment, and metadata cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk image operations can overwrite or degrade original files if run against the only copy. <br>
-Mitigation: Process copies, keep backups, or use a separate output folder before applying compression, cropping, watermarking, or conversion steps. <br>
-Risk: EXIF cleanup and bulk renaming can remove useful metadata or break existing references to image filenames. <br>
-Mitigation: Confirm metadata and naming requirements before running cleanup or rename workflows, and preserve a reversible source set. <br>
+## Use Case:
 
+Developers, operators, and content teams can use this skill to ask an agent for batch image-processing commands for ecommerce, social-media, and photo optimization workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/batch-image-processor-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/bingze00000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with command examples and processing parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill is instruction-only and does not include executable code in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Batch operations can alter many images at once, including metadata such as EXIF data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process copies or use a separate output directory, then inspect sample results before applying changes to a full image set.
+
+Risk: The skill content is primarily Chinese-language, which can lead to parameter misunderstandings for non-Chinese readers.
+
+Mitigation: Have a Chinese-reading reviewer confirm commands and parameters before using the skill in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/batch-image-processor-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language command patterns for image directory, output directory, quality, watermark, size, and format settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

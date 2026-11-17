@@ -1,6 +1,50 @@
 {
-  "ownerId": "kn7ejjy0s09ztm933hk7a5bce582b2cp",
-  "slug": "laomo-github",
+  "name": "laomo-github",
   "version": "2.0.0",
-  "publishedAt": 1773569686499
+  "slug": "laomo-github",
+  "description": "GitHub 自动化工具集 - 多账户管理、PR操作、代码审查、通知推送",
+  "author": "老默科技",
+  "license": "MIT",
+  "skills": [
+    {
+      "name": "github-accounts.sh",
+      "type": "script",
+      "description": "GitHub 多账户管理工具"
+    },
+    {
+      "name": "github-pr-push.sh",
+      "type": "script",
+      "description": "GitHub PR 一键推送工具"
+    },
+    {
+      "name": "github-pr-cleanup.sh",
+      "type": "script",
+      "description": "GitHub PR 自动清理工具"
+    },
+    {
+      "name": "github-review.sh",
+      "type": "script",
+      "description": "GitHub PR 代码审查工具"
+    },
+    {
+      "name": "github-notify.sh",
+      "type": "script",
+      "description": "GitHub 通知推送工具"
+    }
+  ],
+  "dependencies": {
+    "gh": ">=2.0.0",
+    "jq": ">=1.6.0"
+  },
+  "conditions": {
+    "gh_cli": "command -v gh &> /dev/null",
+    "jq_cli": "command -v jq &> /dev/null"
+  },
+  "commands": {
+    "accounts": "github-accounts.sh",
+    "push": "github-pr-push.sh",
+    "cleanup": "github-pr-cleanup.sh",
+    "review": "github-review.sh",
+    "notify": "github-notify.sh"
+  }
 }

@@ -1,43 +1,54 @@
-## Description: <br>
-Rewrites AI-generated text into more natural, human-sounding prose and includes optional examples for checking text with AI-detection services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-generated text rewriting helper that turns ChatGPT, Claude, and similar model outputs into more natural prose and includes optional checks against AI-detection services.
 
-## Publisher: <br>
-[realorange1994](https://clawhub.ai/user/realorange1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realorange1994](https://clawhub.ai/user/realorange1994)
 
-## Use Case: <br>
-External users and developers can use this skill to rewrite AI-generated drafts into more conversational, natural text while preserving the original meaning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is positioned to help AI-written text evade detection or disclosure checks. <br>
-Mitigation: Use it only for transparent readability editing and follow applicable school, workplace, publisher, or platform AI-disclosure rules. <br>
-Risk: The skill includes examples that submit text to a third-party GPTZero endpoint. <br>
-Mitigation: Do not submit confidential, proprietary, unpublished, or personal text to third-party services unless that disclosure is authorized. <br>
-Risk: The instructions reference helper scripts that were not included in the artifact. <br>
-Mitigation: Inspect and trust any separately obtained helper scripts before running them. <br>
+## Use Case:
 
+External users and developers use this skill to rewrite AI-drafted text into a more natural, conversational style while preserving the original meaning. The skill also gives optional detection-oriented workflows, which require policy and privacy review before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realorange1994/dandan-humanize-text) <br>
-- [GPTZero API endpoint cited by the skill](https://api.gptzero.me/v1/check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with rewritten text, a brief explanation of edits, and optional command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference optional third-party AI-detection checks; no bundled helper scripts were present in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: The skill is explicitly designed to help text avoid AI-detection systems, which could support academic dishonesty, workplace policy circumvention, fraud, or misrepresented authorship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for legitimate editing and clarity improvements, and require users to follow academic, workplace, platform, and authorship-disclosure policies.
+
+Risk: The skill includes examples that submit text to third-party detection services, which may expose confidential, proprietary, personal, student, or regulated content.
+
+Mitigation: Do not send sensitive text to external detection services unless there is clear consent and the service's data handling terms are understood.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realorange1994/skills/dandan-humanize-text)
+- [GPTZero API endpoint referenced by the skill](https://api.gptzero.me/v1/check)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with rewritten text, brief rewrite notes, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include original text, rewritten text, applied rewrite patterns, and detection expectations.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Uses 7-day and 30-day price trend extrapolation to trade crypto year-end price target markets on Kalshi. Requires SIMMER_API_KEY and simmer-sdk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses 7-day and 30-day price trend extrapolation to trade crypto year-end price target markets on Kalshi and requires SIMMER_API_KEY plus simmer-sdk.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to identify and optionally execute Kalshi crypto year-end target trades based on 7-day and 30-day momentum signals. It is dry-run by default and requires live credentials before real trades can execute. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real trades and uses high-value trading and wallet credentials. <br>
-Mitigation: Start in dry-run mode, use a dedicated low-balance wallet and limited trading API key for live runs, and pass --live only after reviewing the configuration. <br>
-Risk: Automated trading behavior depends on the simmer-sdk dependency and configurable position and trade limits. <br>
-Mitigation: Review or pin simmer-sdk, keep max position and max trades conservative, and adjust tunables before enabling live trading. <br>
+## Use Case:
 
+Agents use this skill to evaluate Kalshi crypto year-end price target markets and, when explicitly enabled, place bounded live trades from momentum-derived edge signals. It is intended for operators who can manage trading credentials, position limits, and strategy review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-crypto-momentum-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/diagnostikon) <br>
-- [Simmer skills homepage](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output, JSON automaton reports, and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live execution requires --live plus SIMMER_API_KEY and SOLANA_PRIVATE_KEY credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release evidence) <br>
+Risk: The skill requires high-value trading credentials and can place live trades when --live is supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet and tightly scoped trading API key; keep live mode disabled until credentials, limits, and strategy behavior have been reviewed.
+
+Risk: The live strategy may rely on hardcoded market assumptions rather than fresh price data.
+
+Mitigation: Do not enable --live until the strategy is connected to fresh price data and its momentum assumptions are validated.
+
+Risk: Dry-run mode is non-trading but may still import markets into the remote platform.
+
+Mitigation: Test in an isolated account or workspace and review remote-side effects before routine use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/kalshi-crypto-momentum-trader)
+- [Publisher Profile](https://clawhub.ai/user/diagnostikon)
+- [Simmer Skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk Repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text with optional JSON automaton status and configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can perform dry-run analysis by default and live trading actions only when --live is supplied.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

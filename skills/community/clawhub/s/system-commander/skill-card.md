@@ -1,40 +1,51 @@
-## Description: <br>
-Converts user tasks into Linux or Python command suggestions for file processing, data extraction, text manipulation, and related system-level work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert user tasks to optimal Linux/Python commands for file processing, data extraction, text manipulation, and other tasks that can be solved with system-level tools instead of AI inference.
 
-## Publisher: <br>
-[nelohenriq](https://clawhub.ai/user/nelohenriq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nelohenriq](https://clawhub.ai/user/nelohenriq)
 
-## Use Case: <br>
-Developers and technical users use this skill to select efficient shell or Python commands for file processing, data extraction, text manipulation, and command-oriented automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested commands may modify files or install packages if run without review. <br>
-Mitigation: Inspect commands before execution, verify paths, prefer dry runs and backups, and take extra care with sed -i, mv, xargs, and apt-get. <br>
-Risk: Command suggestions may be unsuitable for sensitive or privileged operations. <br>
-Mitigation: Use separate review before applying generated commands to sensitive data, privileged environments, or high-impact systems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/nelohenriq/system-commander) <br>
-- [Publisher Profile](https://clawhub.ai/user/nelohenriq) <br>
+## Use Case:
+
+Developers and engineers use this skill to turn operational tasks into concise Linux or Python command suggestions for file processing, data extraction, text manipulation, and batch workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can produce unsafe copy-paste commands that modify files or behave unexpectedly if executed without review.
+
+Mitigation: Review generated commands manually before running them, especially before file writes, batch renames, recursive edits, or package installs.
+
+Risk: Prompts, filenames, or other untrusted inputs could lead to command injection if output is fed directly into an executor.
+
+Mitigation: Do not feed the skill's output directly into an executor; require dry runs, backups, constrained paths, and explicit confirmation.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include brief explanations, expected output examples, alternatives, dry-run commands, and package installation notes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown responses with inline shell or Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated commands should be reviewed manually before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

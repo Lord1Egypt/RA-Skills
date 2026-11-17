@@ -1,0 +1,44 @@
+{
+  "name": "@yottameta/yotta-memory",
+  "version": "0.24.3",
+  "description": "Yuanyi (元忆) — boundary-aware, file-based memory for AI agents. File-based, zero-dependency, diff/rollback-able; FACT/PREF/BOUND/COMMIT types (public shared / private isolated), user-level + project-level storage; v0.12 reliability baseline (init guard, trash-based deletion, independent-volume backup/list/doctor/restore, start-of-work doctor, transactional snapshots before destructive writes), v0.10 consolidation (periodic summaries with provenance, near-duplicate auto-merge, per-type decay, batch audit + rollback), v0.9 recall quality + context focus + optional local embedding plugin, plus v0.8 semantic search, feedback loop, self-organization and distillation.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-memory",
+    "memory",
+    "persistent-memory",
+    "cross-agent",
+    "session-continuity"
+  ],
+  "files": [
+    "SKILL.md",
+    "skill-manifest.json",
+    "LICENSE",
+    "README.md",
+    "USER_GUIDE.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "README.zh-CN.md",
+    "NOTICE",
+    "CHANGELOG.md",
+    "!scripts/test_*.py"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-memory.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-memory": "bin/yotta-memory.js",
+    "yotta-memory-install": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

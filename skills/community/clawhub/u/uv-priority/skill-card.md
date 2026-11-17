@@ -1,41 +1,54 @@
-## Description: <br>
-Prioritize uv over pip for Python package management and execution, and guide agents to wrap Python commands and CLI tools with uv run or uvx. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prioritize uv over pip for Python package management and execution, routing Python commands and CLI tools through uv run or uvx.
 
-## Publisher: <br>
-[marcoracer](https://clawhub.ai/user/marcoracer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcoracer](https://clawhub.ai/user/marcoracer)
 
-## Use Case: <br>
-Developers and coding agents use this skill to standardize Python dependency management, virtual environment setup, command execution, testing, and Python CLI usage around uv. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may change how Python commands are run and how dependencies are installed. <br>
-Mitigation: Review dependency-changing commands before approving them. <br>
-Risk: The skill may be inappropriate for projects that require pip, Poetry, Conda, system Python, or direct interpreter execution. <br>
-Mitigation: Explicitly override the skill when a project requires a different Python package manager or execution model. <br>
+## Use Case:
 
+Developers and coding agents use this skill when working on Python projects to choose uv-based commands for dependency installation, virtual environments, CLI tools, tests, dbt, and other Python tooling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marcoracer/uv-priority) <br>
-- [Project homepage](https://github.com/marcoracer/uv-priority) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv to be available and changes how Python, dbt, pytest, and Python CLI commands are selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Always-on uv routing can conflict with pinned, offline, hermetic, or non-uv Python workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review affected projects before installation and follow project-managed tooling or lockfiles when they define the Python workflow.
+
+Risk: Unpinned uvx or @latest commands can execute tool versions that differ over time.
+
+Mitigation: Prefer project-managed locked tools or explicit versions for repeatable linting, formatting, test, and utility commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcoracer/skills/uv-priority)
+- [Project homepage](https://github.com/marcoracer/uv-priority)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv to be available; the skill is always-on for Python-related tasks.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

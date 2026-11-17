@@ -1,0 +1,4 @@
+interface:
+  display_name: "照片分析与 Darktable 修图"
+  short_description: "照片诊断、艺术分析与分阶段 Darktable 修图工作流"
+  default_prompt: "Use $darktable-photo-workflow to analyze this photograph, confirm the editing direction, and then provide a restrained Darktable plan."

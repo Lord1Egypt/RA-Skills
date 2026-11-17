@@ -1,48 +1,72 @@
-## Description: <br>
-Tencent IMA Skill Publish helps agents work with Tencent IMA notes and knowledge bases, including searching, browsing, creating notes, adding URLs, and uploading files through the IMA OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tencent Ima Skill Publish lets an agent work with Tencent IMA notes and knowledge bases, including search, browse, create, append, URL import, and file upload workflows.
 
-## Publisher: <br>
-[wat2012](https://clawhub.ai/user/wat2012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wat2012](https://clawhub.ai/user/wat2012)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to Tencent IMA for note and knowledge-base workflows, including credential-aware API calls, content search, note creation or editing, URL ingestion, and file uploads. It is most useful when users want the agent to operate on their IMA workspace while preserving documented write-operation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0; upstream Tencent IMA OpenAPI terms apply to original package content
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access or modify Tencent IMA notes, knowledge bases, uploaded files, and URLs when credentials are available. <br>
-Mitigation: Install only when that access is intended, keep credentials in protected secret or environment storage, and confirm sensitive write operations before execution. <br>
-Risk: Security evidence flags under-scoped credential, routing, and unofficial automation guidance, including optional alternate base URL and cookie or Playwright probing paths. <br>
-Mitigation: Use the official IMA endpoint by default, avoid setting IMA_BASE_URL unless the destination is trusted, and reserve cookie, Playwright, or undocumented endpoint probing for isolated test accounts. <br>
-Risk: File uploads and note writes can create duplicate, misplaced, or hard-to-remove content in IMA. <br>
-Mitigation: Follow the documented preflight checks, folder validation, duplicate-name checks, and post-upload validation before and after write operations. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage Tencent IMA note and knowledge-base content through official OpenAPI credentials. It is intended for personal or team knowledge workflows that need command, API, and guidance outputs for read/write IMA operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wat2012/tencent-ima-hermes) <br>
-- [Tencent IMA homepage](https://ima.qq.com) <br>
-- [Tencent IMA agent interface](https://ima.qq.com/agent-interface) <br>
-- [Official IMA OpenAPI skill package](https://app-dl.ima.qq.com/skills/ima-skills-1.1.7.zip) <br>
-- [IMA write flow reference](references/ima-write-flow.md) <br>
-- [Official endpoint coverage](references/official-endpoint-coverage.md) <br>
-- [Post-upload validation reference](references/post-upload-validation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration notes, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute IMA API workflows that require user-provisioned IMA OpenAPI credentials and may affect notes or knowledge-base contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill requires IMA OpenAPI credentials with note and knowledge-base read/write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted publishers, inject credentials through tightly permissioned environment handling, and prevent the agent from printing or reading credential files aloud.
+
+Risk: The security evidence flags unsafe credential handling and warns against IMA_BASE_URL or HERMES_ENV overrides.
+
+Mitigation: Keep requests constrained to ima.qq.com and scoped COS endpoints, and avoid setting IMA_BASE_URL or HERMES_ENV unless reviewed.
+
+Risk: Remote update instructions returned by the service may be untrusted display text.
+
+Mitigation: Treat update instructions as advisory text for human review and do not execute or follow them automatically.
+
+Risk: Write operations can create or upload content that the OpenAPI cannot later delete, move, or rename.
+
+Mitigation: Use the documented preflight, duplicate-name checks, upload gates, and manual review before write operations; use the IMA client for unsupported cleanup.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/wat2012/skills/tencent-ima-hermes)
+- [Publisher profile](https://clawhub.ai/user/wat2012)
+- [Tencent IMA homepage](https://ima.qq.com)
+- [Tencent IMA OpenAPI credential page](https://ima.qq.com/agent-interface)
+- [Official Tencent IMA OpenAPI skill package](https://app-dl.ima.qq.com/skills/ima-skills-1.1.7.zip)
+- [Knowledge-base API reference](knowledge-base/references/api.md)
+- [Notes API reference](notes/references/api.md)
+- [IMA write-flow recipe](references/ima-write-flow.md)
+- [IMA OpenAPI quirks](references/api-quirks.md)
+- [Official endpoint coverage](references/official-endpoint-coverage.md)
+- [Post-upload validation](references/post-upload-validation.md)
+- [IMA write hard gates](references/ima-write-hard-gates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Tencent IMA API calls and local helper scripts when used by an agent with credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

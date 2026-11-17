@@ -1,0 +1,9 @@
+{
+  "item_id": "note-e9750bce",
+  "source_path": "Inbox/example-note/note.txt",
+  "source_type": "text",
+  "status": "ok",
+  "backend": "local-text",
+  "text": "这是一个示例文本笔记。\n\n先把已下载的素材放进 Inbox，再运行工作流。\n\n",
+  "error": ""
+}

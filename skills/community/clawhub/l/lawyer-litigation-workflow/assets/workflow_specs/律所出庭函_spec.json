@@ -1,0 +1,16 @@
+{
+  "spec_name": "律所出庭函",
+  "version": "1.0",
+  "title": "律师事务所函",
+  "immutables": [{"marker": "贵院", "text": "贵院"}, {"marker": "律师事务所", "text": "律师事务所"}],
+  "replacements": {
+    "【法院名称】": "case_data.court.name",
+    "【案由】": "case_data.case_cause",
+    "【被代理人名称】": "case_data.parties.def.name",
+    "【律师姓名】": "case_data.attorney.name",
+    "【律师执业证号】": "case_data.attorney.license_no",
+    "【律所全称】": "case_data.attorney.firm",
+    "【律所地址】": "case_data.attorney.firm_address",
+    "【日期】": "case_data.date_today"
+  }
+}

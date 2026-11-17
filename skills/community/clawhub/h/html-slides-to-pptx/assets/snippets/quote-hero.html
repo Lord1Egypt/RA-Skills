@@ -1,0 +1,18 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:引用页(巨引号 + 正体引文 · 原型 6 · airy)
+  参数:
+    {{QUOTE}}   引文(≤3 行,保持原话)    {{ATTRIBUTION}} 署名(姓名·头衔·出处)
+    {{MARK_COLOR}}  引号色(主色,如 var(--lenovo-red))
+  用法: 整页替换 .slide-container 内容;没有真引用不要用这页(不要编造);
+        引文 >3 行就删减,不降字号
+  纪律: 不用渐变左边框+斜体(旧 quote-block 已弃用);巨引号是唯一装饰
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:140px;top:200px;width:300px;">
+  <div style="font-size:200px;font-weight:800;line-height:1;color:{{MARK_COLOR}};">"</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:440px;width:1400px;">
+  <div style="font-size:44px;font-weight:600;line-height:1.4;color:var(--charcoal);">{{QUOTE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:180px;top:700px;width:1400px;">
+  <div style="font-size:22px;line-height:1.5;color:var(--text-tertiary);">{{ATTRIBUTION}}</div>
+</div>

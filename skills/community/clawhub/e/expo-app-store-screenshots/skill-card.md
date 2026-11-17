@@ -1,42 +1,57 @@
-## Description: <br>
-Capture and prepare App Store / Google Play screenshots for any React Native / Expo app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture and prepare App Store / Google Play screenshots for any React Native / Expo app.
 
-## Publisher: <br>
-[tenshowinnovation](https://clawhub.ai/user/tenshowinnovation) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tenshowinnovation](https://clawhub.ai/user/tenshowinnovation)
 
-## Use Case: <br>
-Developers and release engineers use this skill to generate, resize, summarize, and optionally upload localized iOS App Store and Google Play screenshots for React Native or Expo apps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional upload helpers can replace existing App Store or Google Play screenshot slots. <br>
-Mitigation: Verify the app or package ID, locale, device slot, and screenshot directory before upload; pass --keep-existing unless replacement is intended. <br>
-Risk: Store upload commands require sensitive App Store Connect or Google Play credentials. <br>
-Mitigation: Use least-privilege store credentials and review commands before execution. <br>
-Risk: Screenshots may contain secrets, private test data, or unreleased product content. <br>
-Mitigation: Review generated images before upload or publication. <br>
+## Use Case:
 
+Developers and release engineers use this skill to capture, resize, document, and optionally upload localized iOS App Store and Google Play screenshots for React Native and Expo apps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tenshowinnovation/expo-app-store-screenshots) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with shell and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces screenshot workflow instructions, local file paths, per-device summaries, and optional store upload commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and frontmatter) <br>
+Risk: The documented eval-based setup step can be unsafe when run against untrusted Expo configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run configuration detection only in trusted app repositories, review emitted environment values before use, and avoid the eval setup pattern for untrusted projects.
+
+Risk: Store-upload helpers can replace public App Store Connect or Google Play screenshots when supplied with valid credentials.
+
+Mitigation: Use least-privilege store credentials, keep them out of shared shells and logs, and require explicit human review before upload commands are executed.
+
+Risk: The skill controls simulators, emulators, or attached devices and may alter status-bar/demo-mode state during capture.
+
+Mitigation: Run against dedicated test devices or simulators, confirm the target device serial or UDID, and reset demo/status-bar state after capture.
+
+## Reference(s):
+
+- [App Store Connect API appStoreVersionLocalization](https://developer.apple.com/documentation/appstoreconnectapi/appstoreversionlocalization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces screenshot file paths, per-device summary markdown, and optional store-upload command guidance.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

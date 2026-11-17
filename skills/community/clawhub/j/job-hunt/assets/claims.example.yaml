@@ -1,0 +1,61 @@
+# claims.yaml — the provenance ledger for every term tailoring puts on the CV.
+#
+# Lives at <workspace>/claims.yaml. APPEND-ONLY: a claim that turns out to be
+# wrong is marked `retracted: true`, never deleted, because a schema where
+# "absent" and "not retracted" look the same leaves a withdrawn claim no scar —
+# and the scar is the whole reason the field exists.
+#
+# check_claims.py reads this file. A term it finds in the tailored CV that is
+# neither in the master profile nor sourced by a row here is UNSOURCED, and
+# check_apply.py will not let the package be delivered over it. That is the
+# skill's highest-value rule, so the remedy has to be written down: the honest
+# way past UNSOURCED is to add a row saying where the term came from — NOT to
+# delete a keyword the candidate has genuinely earned, which is the under-selling
+# failure SKILL.md names as this skill's own failure mode.
+#
+# Six keys, all required on every row.
+#
+#   term          the exact string as it appears in the CV
+#   where         the artifact and place it was inserted
+#   source_kind   one of exactly three (see below) — there is no fourth source
+#   source_ref    a real path under the workspace, or a profile field path.
+#                 check_mock.py resolves this for session-answer rows: it must
+#                 name a file that exists and contain the term.
+#   session_date  YYYY-MM-DD
+#   retracted     null on a live claim; true once withdrawn. Required either way.
+#
+# The three legal source_kinds, and nothing else:
+#
+#   profile-line       already in the master profile.yaml — the ordinary case
+#   session-answer     the candidate said it, in a recorded session
+#   fetched-artifact   it came from a paper, repo or page the run fetched
+
+- term: PyTorch
+  where: cv.md:skills.ml
+  source_kind: profile-line
+  source_ref: profile.yaml:skills.ml[2]
+  session_date: "2026-08-09"
+  retracted: null
+
+- term: PACS export
+  where: tailoring-plan.md:promoted-from-mock
+  source_kind: session-answer
+  source_ref: mock/transcript-2.md#Q1
+  session_date: "2026-08-09"
+  retracted: null
+
+- term: variational network reconstruction
+  where: cv.md:experience[0].bullets[1]
+  source_kind: fetched-artifact
+  source_ref: raw/zenodo-4d-cine-recon.pdf
+  session_date: "2026-08-09"
+  retracted: null
+
+# A withdrawn claim. It stays on the ledger; check_claims stops treating it as a
+# source, and check_mock refuses to let it discharge an UNSOURCED-FACT.
+- term: MDR
+  where: cv.md:certifications[0]
+  source_kind: session-answer
+  source_ref: mock/transcript-2.md#Q3
+  session_date: "2026-08-09"
+  retracted: true

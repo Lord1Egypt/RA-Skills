@@ -1,46 +1,56 @@
-## Description: <br>
-Store and query structured data without planning schemas upfront. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store and query structured data without planning schemas upfront, while evolving data structures as new fields are discovered.
 
-## Publisher: <br>
-[marcosnataqs](https://clawhub.ai/user/marcosnataqs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcosnataqs](https://clawhub.ai/user/marcosnataqs)
 
-## Use Case: <br>
-Developers and agent builders use KameleonDB to give agents persistent structured storage for contacts, tasks, knowledge bases, imported data, user preferences, and other state that can evolve over time without upfront schema planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill can persist, query, import, change schemas, and delete records in a database. <br>
-Mitigation: Use an isolated agent-only or test database, least-privilege credentials, backups, and explicit approval rules for destructive or schema-changing operations. <br>
-Risk: Persistent storage can capture personal data or sensitive user preferences across conversations. <br>
-Mitigation: Define clear rules for what may be stored, require user consent where appropriate, and avoid storing sensitive data unless the deployment has matching privacy controls. <br>
-Risk: Direct SQL and broad import workflows can create misleading records or unintended data exposure. <br>
-Mitigation: Review generated SQL and imported files before execution, avoid production credentials, and scope database access to the minimum tables and operations required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marcosnataqs/kameleondb) <br>
-- [KameleonDB Homepage](https://github.com/marcosnataqs/kameleondb) <br>
-- [PyPI Package](https://pypi.org/project/kameleondb/) <br>
-- [First Principles](https://github.com/marcosnataqs/kameleondb/blob/main/FIRST-PRINCIPLES.md) <br>
-- [Architecture Guide](https://github.com/marcosnataqs/kameleondb/blob/main/docs/ARCHITECTURE.md) <br>
-- [Example Agent-Driven Data Modeling Workflow](examples/workflow.md) <br>
+## Use Case:
 
+Developers and agents use KameleonDB to create, evolve, query, and optimize persistent structured data stores for contacts, tasks, knowledge bases, external data ingestion, and similar stateful workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, SQL queries, JSON] <br>
-**Output Format:** [Markdown with inline bash, SQL, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the kameleondb command-line tool and KAMELEONDB_URL environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can encourage broad autonomous persistent storage, schema changes, and handling of personal or customer data.
+
+Mitigation: Use a dedicated development or least-privilege database first, avoid storing secrets or regulated personal data by default, and require explicit approval before ingesting customer/contact data or changing schemas.
+
+Risk: Installing or running the database package without verification could expose the agent environment to unreviewed package behavior.
+
+Mitigation: Pin or otherwise verify the kameleondb package before installation and review the package source and security posture before production use.
+
+## Reference(s):
+
+- [KameleonDB GitHub Repository](https://github.com/marcosnataqs/kameleondb)
+- [KameleonDB PyPI Package](https://pypi.org/project/kameleondb/)
+- [KameleonDB First Principles](https://github.com/marcosnataqs/kameleondb/blob/main/FIRST-PRINCIPLES.md)
+- [KameleonDB Architecture Guide](https://github.com/marcosnataqs/kameleondb/blob/main/docs/ARCHITECTURE.md)
+- [Example Agent-Driven Data Modeling Workflow](artifact/examples/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell, SQL, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the kameleondb CLI and KAMELEONDB_URL environment variable.]
+
+## Skill Version(s):
+
+0.1.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

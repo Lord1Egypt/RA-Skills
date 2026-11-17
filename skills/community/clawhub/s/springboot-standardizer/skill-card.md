@@ -1,43 +1,56 @@
-## Description: <br>
-Analyzes and standardizes SpringBoot + MyBatis projects by identifying structure issues, recommending migrations, and generating conventional layers plus MyBatis, Redis, and Kafka templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language skill that helps developers analyze and standardize Spring Boot and MyBatis project structures, generate a standard layered project layout, and provide MyBatis, Redis, and Kafka configuration templates.
 
-## Publisher: <br>
-[davieyang](https://clawhub.ai/user/davieyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davieyang](https://clawhub.ai/user/davieyang)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect non-standard SpringBoot + MyBatis projects, plan refactors, and generate a conventional project structure with standard configuration templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Redis configuration includes an unsafe deserialization pattern. <br>
-Mitigation: Replace the generated Redis serializer with a safer typed or restricted serialization approach before using it in production. <br>
-Risk: Project analysis and scaffolding can affect files in a target project path. <br>
-Mitigation: Run the skill against a version-controlled or disposable project path and review diffs before keeping generated files. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect Java Spring Boot and MyBatis projects for nonstandard structure, plan refactors into controller, service, DAO, entity, DTO, and VO layers, and generate starter project files and configuration templates.
 
-## Reference(s): <br>
-- [Kafka configuration template](references/kafka-config.md) <br>
-- [MyBatis configuration guide](references/mybatis-config.md) <br>
-- [Java SpringBoot naming conventions](references/naming-conventions.md) <br>
-- [Redis configuration template](references/redis-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and generated SpringBoot project files or configuration templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files and refactor recommendations should be reviewed before adoption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill can write generated project files and analysis reports into user-selected directories, which may overwrite existing files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a clean output directory or version-controlled workspace and review diffs before adopting generated files.
+
+Risk: The generated Redis template uses Jackson default typing for Object values, a pattern the security evidence flags as dangerous for real applications.
+
+Mitigation: Replace the Redis Object/default-typing template with a safer typed serializer approach before deploying generated code.
+
+## Reference(s):
+
+- [MyBatis Configuration Guide](references/mybatis-config.md)
+- [Redis Configuration Template](references/redis-config.md)
+- [Kafka Configuration Template](references/kafka-config.md)
+- [Java SpringBoot Naming Conventions](references/naming-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, shell commands, and generated source or configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or overwrite files in the selected analysis or output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

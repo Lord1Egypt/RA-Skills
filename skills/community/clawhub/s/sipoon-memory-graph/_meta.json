@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
-  "slug": "sipoon-memory-graph",
-  "version": "0.1.0",
-  "publishedAt": 1779977081504
+  "name": "memory-graph",
+  "version": "0.2.0",
+  "description": "基于 SQLite 的实体关系图谱存储。提供 add_entity / add_relation / query 等原子操作，供 skill-compounding 沉淀时调用。",
+  "owner": "local-workspace-agent",
+  "tags": ["memory", "graph", "sqlite", "knowledge"]
 }

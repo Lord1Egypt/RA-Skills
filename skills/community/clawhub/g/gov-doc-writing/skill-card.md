@@ -1,41 +1,53 @@
-## Description: <br>
-此技能用于创建符合中国政府及央企规范的Word文档(.docx)。当用户要求创建公文、国央企文档、规范文书、正式报告等需要特定中国公文格式的文档时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Chinese government and state-owned enterprise Word documents (.docx) with prescribed page, typography, heading, table, image, and pagination styles.
 
-## Publisher: <br>
-[a-lhliang](https://clawhub.ai/user/a-lhliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-lhliang](https://clawhub.ai/user/a-lhliang)
 
-## Use Case: <br>
-Employees, analysts, and developers use this skill to generate formal Chinese government and state-owned-enterprise Word documents with prescribed page layout, fonts, heading levels, tables, images, page numbers, and signature blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI writes a .docx file to the output path supplied by the user. <br>
-Mitigation: Choose a non-sensitive destination and avoid filenames that would overwrite important local documents. <br>
-Risk: Marketplace capability tags mention wallet or sensitive credential use even though the reviewed artifacts do not support that behavior. <br>
-Mitigation: Treat the skill as a local Word document formatting helper and do not provide wallet details, credentials, or other secrets. <br>
+## Use Case:
 
+Employees and developers can use this skill to create formal Chinese government or state-owned enterprise reports and other official documents in Word format, including structured headings and tables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a-lhliang/gov-doc-writing) <br>
-- [Publisher profile](https://clawhub.ai/user/a-lhliang) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and local .docx file generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-requested Word .docx files at caller-specified local output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.10.0 (source: server release evidence) <br>
+Risk: Choosing an existing output filename can overwrite a file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a distinct output filename and check the destination before running the generator.
+
+Risk: Confidential document content may be exposed if sent to a cloud rendering service.
+
+Mitigation: Use local validation for confidential documents; use cloud rendering only when approved.
+
+## Reference(s):
+
+- [ClawHub gov-doc-writing release](https://clawhub.ai/a-lhliang/skills/gov-doc-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Guidance]
+
+**Output Format:** [Word documents (.docx), with JavaScript examples and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents use the requested title, content sections, tables, images, and output filename.]
+
+## Skill Version(s):
+
+1.12.5 (source: server-resolved ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

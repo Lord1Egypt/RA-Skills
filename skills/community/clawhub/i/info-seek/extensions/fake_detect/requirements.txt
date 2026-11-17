@@ -1,0 +1,6 @@
+# FakeDetect 扩展包依赖（重依赖隔离：不进入 infoseek 主 requirements，仅本扩展按需安装）
+numpy>=1.23
+pandas>=1.5
+scipy>=1.9
+networkx>=2.8
+scikit-learn>=1.1

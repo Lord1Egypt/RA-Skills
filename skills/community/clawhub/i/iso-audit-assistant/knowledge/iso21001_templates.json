@@ -1,0 +1,23 @@
+{
+  "standard": "ISO 21001:2018 教育组织管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-ED-001", "name": "课程设计与开发控制程序", "name_en": "Curriculum Design & Development", "clause": "8.3",
+     "meta": {"owner": "教研/教务部", "frequency": "新课程/年度修订"},
+     "sections": [
+       {"title": "1 目的", "content": "规范课程设计与开发，满足学习者与相关要求。"},
+       {"title": "2 适用范围", "content": "适用于{org}课程体系的设计与更新。"},
+       {"title": "3 职责", "content": "3.1 教研部设计课程；3.2 教务部排课；3.3 管理层审批。"},
+       {"title": "4 工作程序", "content": "4.1 需求分析与目标设定；4.2 大纲/教案设计；4.3 教材与资源准备；4.4 评审与试讲；4.5 发布与持续改进。"}
+     ],
+     "high_voltage_check": ["hv-ed-process"]},
+    {"id": "SP-ED-002", "name": "教学/培训服务提供控制程序", "name_en": "Teaching/Delivery Control", "clause": "8.4",
+     "meta": {"owner": "教务/教学部", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "在受控条件下提供教学/培训服务，保障学习成效。"},
+       {"title": "2 适用范围", "content": "适用于{org}线下与线上教学服务。"},
+       {"title": "3 职责", "content": "3.1 教学部组织授课；3.2 教务部保障资源；3.3 学员评价反馈。"},
+       {"title": "4 工作程序", "content": "4.1 课前准备（场地/设备/资料）；4.2 授课与互动控制；4.3 学习者评价与考核；4.4 满意度调查；4.5 改进教学。"}
+     ],
+     "high_voltage_check": ["hv-ed-learner"]}
+  ]
+}

@@ -1,44 +1,55 @@
-## Description: <br>
-Newsletter Growth Hacker helps newsletter creators and marketers plan subscriber acquisition, optimize email content, generate A/B test subject lines, analyze campaign metrics, and forecast subscriber growth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Newsletter Growth Hacker helps agents plan newsletter subscriber acquisition, optimize email content, generate subject-line A/B tests, analyze campaign metrics, and forecast growth.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-External creators, content marketers, independent developers, and small business marketing teams use this skill to choose newsletter growth strategies, improve campaign content, generate subject-line tests, interpret campaign metrics, and plan subscriber growth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive subscriber or campaign data may be entered into the local analysis workflow. <br>
-Mitigation: Use anonymized or minimum necessary data, and avoid pasting sensitive subscriber details unless they are required for the task. <br>
-Risk: Generated urgency, authority, social-proof, or offer language could become misleading or noncompliant if used without review. <br>
-Mitigation: Review subject lines, claims, incentives, and compliance-sensitive content before sending campaigns. <br>
+## Use Case:
 
+External creators, content marketers, independent developers, and small-business marketers use this skill to choose newsletter growth strategies, refine campaign copy, create subject-line tests, and turn campaign metrics into action items.
 
-## Reference(s): <br>
-- [Email Marketing Best Practices](references/email_marketing_best_practices.md) <br>
-- [Subject Line Templates](references/subject_line_templates.md) <br>
-- [Industry Benchmarks](references/industry_benchmarks.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lvjunjie-byte/newsletter-growth-hacker) <br>
-- [Publisher Profile](https://clawhub.ai/user/lvjunjie-byte) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with Python code examples and JSON-like analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include strategy lists, subject-line variants, campaign metrics, action items, and growth projections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: Rule-based benchmarks and growth forecasts may be mistaken for authoritative marketing predictions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against current campaign data and treat projections as planning aids.
+
+Risk: Marketing guidance can affect consent, unsubscribe, and deliverability practices.
+
+Mitigation: Validate campaigns against applicable email marketing requirements before launch.
+
+## Reference(s):
+
+- [Email Marketing Best Practices](references/email_marketing_best_practices.md)
+- [Industry Benchmarks](references/industry_benchmarks.md)
+- [Subject Line Templates](references/subject_line_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python examples, local shell commands, and console or JSON-style analysis outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline, rule-based outputs; benchmarks and growth forecasts are advisory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog dated 2026-03-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

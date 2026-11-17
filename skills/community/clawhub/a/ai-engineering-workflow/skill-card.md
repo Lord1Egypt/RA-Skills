@@ -1,39 +1,54 @@
-## Description: <br>
-AI编程工程化 guides Chinese-speaking developers through a five-gate workflow for designing, planning, testing, implementing, reviewing, and improving AI-assisted software projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI编程工程化为 AI 辅助软件开发提供五道质量门槛，帮助开发者从需求、设计、计划、测试、实现到审查形成可维护、可测试、可交付的工程化流程。
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted development with explicit design, planning, TDD, implementation, review, and continuous-improvement gates. It is intended for full-stack, API, data, mobile, and team workflow scenarios where maintainability and delivery quality matter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can apply a rigid gate-based process or suggest CI and project changes that may not fit every repository. <br>
-Mitigation: Review generated plans, CI configuration, and repository changes before running or adopting them. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to guide AI-assisted full-stack, API, mobile, data, and CI/CD work through structured design, planning, TDD, implementation, review, and continuous-improvement gates.
 
-## Reference(s): <br>
-- [AI编程工程化 detailed reference](references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/ai-engineering-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Chinese Markdown guidance with templates, checklists, code snippets, shell commands, and CI configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are process-oriented and should be reviewed before applying generated code, commands, or configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata; artifact frontmatter reports 1.3.0) <br>
+Risk: The included CI/CD example may use unpinned actions or audit tools if reused as-is.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin GitHub Actions and audit tools to reviewed versions or lockfile-managed dependencies before adopting the example.
+
+Risk: Broad trigger terms or Chinese-only output may be unsuitable for some agent deployments.
+
+Mitigation: Adjust trigger wording and output-language expectations to match the deployment context before enabling the skill.
+
+## Reference(s):
+
+- [AI编程工程化 - 详细内容参考](references/details.md)
+- [ClawHub Skill Page](https://clawhub.ai/qqyougitcom/skills/ai-engineering-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown checklists, templates, review reports, code-quality guidance, and CI/CD configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are process artifacts and recommendations; CI examples should be adapted and reviewed before reuse.]
+
+## Skill Version(s):
+
+1.3.2 (source: server release metadata; artifact frontmatter lists 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-Connect to the Anycast agent network to list agents, query cross-environment connectors, send messages to remote agents, and check fleet status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to the Anycast agent network. List agents, query cross-environment connectors, send messages to remote agents, and check fleet status.
 
-## Publisher: <br>
-[markspeed](https://clawhub.ai/user/markspeed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[markspeed](https://clawhub.ai/user/markspeed)
 
-## Use Case: <br>
-Developers and operators use this skill to interact with an Anycast tenant from an assistant, including listing fleet agents, querying configured connectors, sending remote-agent messages, checking fleet statistics, and managing tenant-scoped memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send messages or commands to remote agents and query configured connectors. <br>
-Mitigation: Use a least-privilege Anycast token and confirm remote-agent messages or connector queries before use in sensitive environments. <br>
-Risk: Connector queries, messages, and memory values may expose secrets, personal data, or other sensitive tenant information. <br>
-Mitigation: Avoid sending secrets or personal data through messages, connector queries, or tenant-scoped memory values. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Anycast agent fleets, query configured connectors, send remote-agent messages, and manage scoped tenant memory through the Anycast portal API.
 
-## Reference(s): <br>
-- [Anycast agent portal](https://agents.anycast.com) <br>
-- [ClawHub skill page](https://clawhub.ai/markspeed/anycast-network) <br>
-- [Publisher profile](https://clawhub.ai/user/markspeed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector query results should be formatted as markdown tables; agent lists should show name, status, and last seen time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The Anycast token can be used to query external systems through configured connectors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege, revocable ANYCAST_API_TOKEN and require explicit user approval before connector queries.
+
+Risk: Remote-agent messages may trigger actions or disclose information outside the local session.
+
+Mitigation: Require explicit user approval before sending messages to remote agents and confirm the target agent identity.
+
+Risk: Tenant-scoped memory can persist sensitive data or untrusted instructions.
+
+Mitigation: Avoid storing secrets or untrusted instructions in shared memory and review tenant-memory writes before execution.
+
+Risk: A malicious or incorrect portal URL could redirect API calls and tokens.
+
+Mitigation: Pin ANYCAST_PORTAL_URL to a trusted HTTPS origin before use.
+
+## Reference(s):
+
+- [Anycast Agent Network](https://agents.anycast.com)
+- [ClawHub Skill Page](https://clawhub.ai/markspeed/skills/anycast-network)
+- [Publisher Profile](https://clawhub.ai/user/markspeed)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and tabular summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Connector query results are expected as markdown tables; agent lists should include name, status, and last seen time.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

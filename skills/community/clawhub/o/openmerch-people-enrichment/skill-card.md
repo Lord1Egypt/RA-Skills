@@ -1,46 +1,54 @@
-## Description: <br>
-Retrieves a full personal profile, including name, email, LinkedIn URL, title, and employer, for one Apollo person ID through the paid OpenMerch API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve a full personal profile, including name, email address, LinkedIn URL, title, and employer, for a single person using an Apollo person ID through the paid OpenMerch API.
 
-## Publisher: <br>
-[kernel-gd](https://clawhub.ai/user/kernel-gd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kernel-gd](https://clawhub.ai/user/kernel-gd)
 
-## Use Case: <br>
-Developers, sales operators, and recruiting operators use this skill to enrich a single known Apollo person ID into a normalized contact profile. Users should run it only when they have a lawful basis to process the returned personal contact data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill returns sensitive personal contact data such as names, email addresses, and LinkedIn URLs. <br>
-Mitigation: Use it only with a lawful basis for processing personal data, minimize storage and sharing, and follow applicable privacy obligations. <br>
-Risk: Each enrichment can spend OpenMerch account credits. <br>
-Mitigation: Review the planned price from the OpenMerch plan step before execution and proceed only when the cost is acceptable. <br>
-Risk: The OpenMerch API key grants access to a paid external service. <br>
-Mitigation: Keep OPENMERCH_API_KEY private and avoid exposing it in prompts, logs, command history, or shared outputs. <br>
-Risk: Changing OPENMERCH_BASE_URL can redirect requests to a non-default endpoint. <br>
-Mitigation: Use the default OpenMerch API URL unless you deliberately trust and control the alternate endpoint. <br>
+## Use Case:
 
+Sales, recruiting, and operations users can enrich one known Apollo person ID at a time with contact and employment profile data when they have a lawful basis to process that data.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kernel-gd/skills/openmerch-people-enrichment) <br>
-- [OpenMerch documentation](https://docs.openmerch.dev) <br>
-- [OpenMerch API base URL](https://api.openmerch.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON result examples and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns one normalized profile per Apollo person ID; fields absent from the upstream response are omitted rather than synthesized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A modified OPENMERCH_BASE_URL can redirect the OpenMerch API key and lookup data to an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep OPENMERCH_BASE_URL unset for normal use, allow only trusted HTTPS staging endpoints with separate test keys, and run in an environment where other users cannot alter that variable.
+
+Risk: The skill returns personal contact data and uses a paid external API.
+
+Mitigation: Install only when you trust OpenMerch, have a lawful basis for enrichment, and accept that each enrichment can consume OpenMerch account balance or credits.
+
+## Reference(s):
+
+- [OpenMerch documentation](https://docs.openmerch.dev)
+- [ClawHub skill page](https://clawhub.ai/kernel-gd/skills/openmerch-people-enrichment)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Normalized JSON profile data and concise status or error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always reports job_id; includes cost_usd and profile fields only when returned by the upstream job.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

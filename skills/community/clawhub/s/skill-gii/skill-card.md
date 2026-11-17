@@ -1,46 +1,62 @@
-## Description: <br>
-Captures learnings, errors, and corrections so agents can maintain improvement logs and review them before major tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, feature requests, and recurring task improvements so agents can preserve and promote reusable knowledge.
 
-## Publisher: <br>
-[huihuilu](https://clawhub.ai/user/huihuilu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huihuilu](https://clawhub.ai/user/huihuilu)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture command failures, user corrections, feature requests, knowledge gaps, and recurring best practices in structured learning logs. It also provides optional hook and promotion workflows for carrying reviewed learnings into future agent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release requests an unexplained Homebrew dependency for gog. <br>
-Mitigation: Confirm the intended package and repository before installation, and do not install the dependency unless the maintainer justifies why it is needed. <br>
-Risk: Learning logs can capture sensitive context, command output, or transcripts. <br>
-Mitigation: Sanitize entries, avoid raw transcripts and command output, and redact secrets, tokens, private keys, environment variables, and private configuration. <br>
-Risk: Promoted learnings and hooks can influence future agent behavior through persistent memory or workspace instruction files. <br>
-Mitigation: Require explicit review before promoting entries into AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, MEMORY.md, or sharing learnings across sessions. <br>
+## Use Case:
 
+Developers and agent users use this skill to log command failures, corrections, missing capabilities, and durable process learnings into workspace markdown files for later review or promotion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huihuilu/skill-gii) <br>
-- [OpenClaw integration](artifact/references/openclaw-integration.md) <br>
-- [Hook setup guide](artifact/references/hooks-setup.md) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and structured log templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update .learnings markdown files; hook setup is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: evidence.release.version and target metadata) <br>
+Risk: The server security review flags an unrelated Homebrew gog dependency in the skill metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install requirements before deployment and avoid installing the gog dependency unless it is intentionally required by the deployment environment.
+
+Risk: Broad hooks and persistent agent-memory changes can influence future sessions.
+
+Mitigation: Keep hooks project-scoped with narrow matchers, inspect hook output before enabling it, and require explicit approval before writing to shared agent instruction or memory files.
+
+Risk: Cross-session history or messaging can expose more context than intended.
+
+Mitigation: Use cross-session sharing only in trusted environments and send sanitized summaries or file paths instead of raw transcripts, secrets, or full command output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huihuilu/skills/skill-gii)
+- [Publisher Profile](https://clawhub.ai/user/huihuilu)
+- [OpenClaw Integration](artifact/references/openclaw-integration.md)
+- [Hooks Setup](artifact/references/hooks-setup.md)
+- [Examples](artifact/references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .learnings markdown files and optional agent instruction files when the user approves promotion.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -26,7 +26,7 @@ metadata:
 - **最小必要原则**：仅处理主诊断/主手术选择所需的病历摘要和候选项。
 - **严格脱敏**：调用方应在传入前完成姓名、证件号、手机号、详细地址等可识别身份信息的脱敏。
 - **不做本地持久化**：脚本不把请求体、中间结果或审核结果写入本地文件或数据库。
-- **模型调用说明**：默认调用内部医疗大模型 `u1-insuremed`；鉴权 `appkey` 必须由调用方传入，调用时使用 Bearer 鉴权。
+- **模型调用说明**：默认调用内部医疗大模型 `u2-med`；鉴权 `appkey` 必须由调用方传入，调用时使用 Bearer 鉴权。
 - **医疗边界**：输出为医保编码/病案首页填写辅助信息，不构成医疗诊断或治疗建议。
 
 输入格式
@@ -95,7 +95,7 @@ conda run -n deep-review-ins python doctor/icd-drg/primary-diagnosis-surgery-sel
 - `--candidate-surgeries-json STRING`：候选手术字符串数组 JSON 或文件路径。
 - 普通 `txt/pdf/doc/docx/xls/xlsx/csv` 文件不会自动知道候选诊断和候选手术，必须传候选列表参数。
 - `--base URL`：内部大模型 base URL，默认 `https://maas-api.hivoice.cn/v1`。
-- `--model STRING`：模型名称，默认 `u1-insuremed`。
+- `--model STRING`：模型名称，默认 `u2-med`。
 - `--timeout SECONDS`：HTTP 超时秒数；`0` 表示一直等待，默认 `0`。
 - `--appkey STRING`：**必填**。内部医疗大模型鉴权 key，由平台分配；调用时使用 Bearer 鉴权。
 - `--output-json PATH`：可选。保存输出 JSON；同时传 `--output` 时优先使用该参数。

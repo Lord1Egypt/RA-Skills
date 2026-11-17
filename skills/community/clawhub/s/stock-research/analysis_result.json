@@ -1,0 +1,174 @@
+{
+  "date": "2026-08-01",
+  "data_date": "2026-07-31",
+  "market_env": "熊市偏空",
+  "position_advice": 30,
+  "tech_signals": {
+    "index_macd": "死叉",
+    "index_kdj_j": 29.7,
+    "index_kdj_k": 37.1,
+    "index_above_ma5": true,
+    "index_above_ma20": true,
+    "index_above_ma60": false,
+    "macd_gold_count": 4,
+    "kdj_gold_count": 24,
+    "ma_bull_count": 28,
+    "sample_size": 50,
+    "up_ratio": 64.0
+  },
+  "fundamentals": {
+    "avg_pe": "N/A",
+    "avg_pb": "N/A",
+    "up_count": 32,
+    "down_count": 17,
+    "avg_change": 0.76,
+    "sample_size": 50
+  },
+  "top10": [
+    {
+      "code": "000625",
+      "name": "长安汽车",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 70.2,
+      "risk": "中",
+      "change": 0.51
+    },
+    {
+      "code": "002027",
+      "name": "分众传媒",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 67.5,
+      "risk": "中",
+      "change": 0.0
+    },
+    {
+      "code": "000596",
+      "name": "古井贡酒",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 66.1,
+      "risk": "中",
+      "change": 2.55
+    },
+    {
+      "code": "000001",
+      "name": "平安银行",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 66.0,
+      "risk": "中",
+      "change": 0.17
+    },
+    {
+      "code": "002304",
+      "name": "洋河股份",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 60.3,
+      "risk": "中",
+      "change": 1.08
+    },
+    {
+      "code": "001979",
+      "name": "招商蛇口",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 59.8,
+      "risk": "中",
+      "change": -1.0
+    },
+    {
+      "code": "002050",
+      "name": "三花智控",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 59.8,
+      "risk": "中",
+      "change": 5.84
+    },
+    {
+      "code": "000708",
+      "name": "中信特钢",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 59.2,
+      "risk": "中",
+      "change": -0.07
+    },
+    {
+      "code": "000975",
+      "name": "山金国际",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 59.1,
+      "risk": "中",
+      "change": 0.91
+    },
+    {
+      "code": "000768",
+      "name": "中航西飞",
+      "pe": "N/A",
+      "pb": "N/A",
+      "score": 58.1,
+      "risk": "中",
+      "change": 0.72
+    }
+  ],
+  "top3_detail": [
+    {
+      "rank": 1,
+      "code": "000625",
+      "name": "长安汽车",
+      "price": 7.87,
+      "score": 70.2,
+      "pe": "N/A",
+      "change": 0.51,
+      "tech": "温和上涨+0.51%，趋势稳健，均线多头排列",
+      "fundamental": "沪深300权重股，基本面稳健",
+      "fund_flow": "量比1.49，温和放量",
+      "chip": "20日波动率29.9%，筹码稳定",
+      "hot_topic": "沪深300权重股，受益于市场整体回暖预期"
+    },
+    {
+      "rank": 2,
+      "code": "002027",
+      "name": "分众传媒",
+      "price": 5.62,
+      "score": 67.5,
+      "pe": "N/A",
+      "change": 0.0,
+      "tech": "小幅调整+0.00%，蓄势待涨，均线多头排列",
+      "fundamental": "沪深300权重股，基本面稳健",
+      "fund_flow": "量比1.18，温和放量",
+      "chip": "20日波动率36.4%，筹码适中",
+      "hot_topic": "沪深300权重股，受益于市场整体回暖预期"
+    },
+    {
+      "rank": 3,
+      "code": "000596",
+      "name": "古井贡酒",
+      "price": 94.95,
+      "score": 66.1,
+      "pe": "N/A",
+      "change": 2.55,
+      "tech": "强势上涨+2.55%，短期动能充沛",
+      "fundamental": "沪深300权重股，基本面稳健",
+      "fund_flow": "量比1.03，温和放量",
+      "chip": "20日波动率68.5%，筹码松动",
+      "hot_topic": "沪深300权重股，受益于市场整体回暖预期"
+    }
+  ],
+  "conclusion": "市场处于熊市偏空格局，沪深300报4588.2点（日涨跌+0.85%），建议仓位30%，以防御为主，关注高股息低估值品种，等待企稳信号再加仓。",
+  "index_data": {
+    "close": 4588.2,
+    "day_change": 0.85,
+    "week_change": -1.31,
+    "month_change": -5.25,
+    "above_ma20": false,
+    "above_ma60": false,
+    "macd_positive": false,
+    "ma_arrangement": "非多头"
+  }
+}

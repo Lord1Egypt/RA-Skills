@@ -1,47 +1,62 @@
-## Description: <br>
-Guides agents in choosing between web_search, web_fetch, OpenCLI, and browser automation for web research, fetching, fallback handling, login-sensitive workflows, and web-search API configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in choosing web_search, web_fetch, OpenCLI, or browser automation for web research, including fallback behavior, search API configuration, and site-specific login references.
 
-## Publisher: <br>
-[fmls](https://clawhub.ai/user/fmls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmls](https://clawhub.ai/user/fmls)
 
-## Use Case: <br>
-External users and developers use this skill to guide agents through web search, static page retrieval, structured OpenCLI access, and browser automation fallback decisions. It is especially relevant when searches fail, pages require JavaScript or login state, or API-key configuration guidance is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup path installs global CLI tooling, downloads a browser extension, and may restart Chrome. <br>
-Mitigation: Review the setup script before running it, install only from a trusted publisher, and prefer a dedicated browser profile when enabling browser bridge functionality. <br>
-Risk: The skill includes workflows for accepting and storing web-search API keys. <br>
-Mitigation: Avoid sharing raw API keys in chat unless the workflow protects secrets, confirm provider detection before configuration, and verify stored keys through the intended OpenClaw configuration commands. <br>
-Risk: Browser and OpenCLI workflows can involve login state or account-changing actions. <br>
-Mitigation: Require user authorization before login, require a second confirmation before irreversible or write actions, and use read-only retrieval when possible. <br>
+## Use Case:
 
+Developers and agents use this skill to select an appropriate web access path, recover from web search or fetch failures, configure search provider keys when needed, and use OpenCLI or browser automation with explicit user confirmation for login or sensitive actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fmls/web-tools-guide) <br>
-- [OpenCLI usage guide](references/opencli-guide.md) <br>
-- [Web search API configuration](references/web-search-config.md) <br>
-- [Well-known sites index](references/well-known-sites.json) <br>
-- [OpenCLI setup script](scripts/setup-opencli.sh) <br>
-- [OpenCLI GitHub releases](https://github.com/jackwener/opencli/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to read bundled reference files before continuing a web-search, OpenCLI, or browser workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The setup path can download OpenCLI code and a browser extension from external sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming trust in the OpenCLI npm package and GitHub release source.
+
+Risk: The OpenCLI setup script can change browser state by loading an extension and restarting Chrome.
+
+Mitigation: Run setup only in an environment where browser extension loading and browser restarts are acceptable.
+
+Risk: Search API keys may be exposed if pasted into chat or surfaced in logs, process arguments, or configuration output.
+
+Mitigation: Prefer local secret setup outside chat and rotate any key already shared through the agent conversation.
+
+## Reference(s):
+
+- [OpenCLI Usage Guide](artifact/references/opencli-guide.md)
+- [Web Search API Configuration](artifact/references/web-search-config.md)
+- [Well-Known Sites Index](artifact/references/well-known-sites.json)
+- [OpenCLI GitHub Releases](https://github.com/jackwener/opencli/releases)
+- [ClawHub Skill Page](https://clawhub.ai/fmls/skills/web-tools-guide)
+- [Publisher Profile](https://clawhub.ai/user/fmls)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, json]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON reference data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes fallback decision guidance for web tools and setup instructions for OpenCLI.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

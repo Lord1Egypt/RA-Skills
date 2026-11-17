@@ -1,45 +1,58 @@
-## Description: <br>
-生成迷你厨房烹饪短视频，支持从文字描述或公开 HTTPS 图片生成强调微型厨具、真实烹饪细节和治愈感的短视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成迷你厨房烹饪短视频，支持从文字描述或公开 HTTPS 图片创建迷你厨具和食材的真实烹饪动效。
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Content creators and social video teams use this skill to turn mini-kitchen cooking ideas or public product images into short vertical WeryAI video-generation requests. Agents use it to build prompts, confirm video settings, run the bundled Node.js helper, and return generated video links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WERYAI_API_KEY to submit prompts and optional public image URLs to WeryAI. <br>
-Mitigation: Install and invoke it only when you trust the publisher and are comfortable sharing the prompt and image URLs with WeryAI. <br>
-Risk: Generation requires public HTTPS image URLs for image-to-video workflows; local files are not accepted. <br>
-Mitigation: Use only images intended for upload to a public host and avoid sensitive or private visual content. <br>
-Risk: WeryAI requests can fail because of unsupported model parameters, rate limits, content safety filtering, insufficient credits, or service errors. <br>
-Mitigation: Review the proposed model, duration, aspect ratio, and prompt before execution, then revise parameters or retry according to the returned API error. <br>
+## Use Case:
 
+External creators and agent users use this skill to turn mini-kitchen cooking ideas or product-style images into short vertical video generation prompts and WeryAI generation requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/mini-kitchen-video) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
-- [WeryAI video API endpoint](https://api.weryai.com) <br>
-- [WeryAI model registry endpoint](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON request parameters, shell commands, and generated video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Node.js 18+, WERYAI_API_KEY, optional public HTTPS image URLs, and WeryAI polling for completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Custom WeryAI endpoint environment variables can redirect requests and expose prompts or API credentials to an untrusted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the official WeryAI endpoints unless a custom WERYAI_BASE_URL or WERYAI_MODELS_BASE_URL is fully trusted.
+
+Risk: The WERYAI_API_KEY is required for generation and status operations, so misuse or leakage could affect the user's WeryAI account.
+
+Mitigation: Keep the key scoped, rotate it regularly, and avoid sharing logs or environments that may expose it.
+
+Risk: Interpolating JSON parameters into a shell command can create shell-environment risk.
+
+Mitigation: Invoke Node with structured arguments and avoid shell string interpolation for user-provided JSON.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/mini-kitchen-video)
+- [Publisher profile](https://clawhub.ai/user/zoucdr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON CLI parameters and generated video URLs or API status JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js 18+ and WERYAI_API_KEY; supports text-to-video, image-to-video, multi-image generation, status polling, model listing, and dry-run request inspection.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

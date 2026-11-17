@@ -1,43 +1,53 @@
-## Description: <br>
-This skill helps job seekers review real interview transcripts or written Q&A, identify strengths and risks, infer interviewer intent, and produce concrete improvement advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps job seekers review completed interviews from transcript or question-and-answer text, identify strengths and risks, infer interviewer intent, and produce actionable improvement advice.
 
-## Publisher: <br>
-[shutongzhou1222](https://clawhub.ai/user/shutongzhou1222) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shutongzhou1222](https://clawhub.ai/user/shutongzhou1222)
 
-## Use Case: <br>
-External job seekers use this skill after an interview to turn supplied transcript text or remembered Q&A into a structured Chinese-language review report. The skill evaluates overall performance, highlights up to a few strengths and risks, reviews the most consequential questions, and recommends specific next actions without inventing missing facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interview transcripts and notes can contain sensitive career, employer, compensation, or personal information. <br>
-Mitigation: Share only details you are comfortable providing to the agent, and omit or generalize sensitive names, compensation details, or personal identifiers when they are not needed for the review. <br>
-Risk: The skill cannot directly listen to audio recordings or read external systems. <br>
-Mitigation: Provide a text transcript or written Q&A in the conversation before expecting a review. <br>
-Risk: Review quality depends on the completeness of the supplied interview content and role context. <br>
-Mitigation: Provide the interview Q&A plus role, industry, and round when available; when key context is missing, the skill should ask for it or clearly mark conclusions as uncertain. <br>
+## Use Case:
 
+External job seekers use this skill after a real interview to turn provided transcript or Q&A notes into a structured review report. The report focuses on overall performance, key strengths and risks, selected high-impact questions, common issues, and concrete next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shutongzhou1222/skills/interview-review) <br>
-- [Publisher profile](https://clawhub.ai/user/shutongzhou1222) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Chinese-language Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is limited to user-provided interview content, emphasizes uncertainty when details are missing, and avoids JSON output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Interview transcripts may include personal information or employer-sensitive details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should provide only details they are comfortable sharing and remove sensitive names, confidential project facts, or private employer data when possible.
+
+Risk: The skill could give misleading coaching if interview context is incomplete or if it invents unsupported details.
+
+Mitigation: Base feedback only on the user's supplied interview text, state uncertainty when information is missing, and ask for role or interview content before producing a full review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shutongzhou1222/skills/interview-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown interview review report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language coaching output; relies on user-provided interview text and should not invent missing interview content, data, or audio details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

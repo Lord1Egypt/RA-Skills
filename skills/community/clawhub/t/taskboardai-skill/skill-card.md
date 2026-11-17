@@ -1,42 +1,58 @@
-## Description: <br>
-Manage tasks and projects using the TaskBoardAI Kanban system. Includes MCP server integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tasks and projects using the TaskBoardAI Kanban system. Includes MCP server integration.
 
-## Publisher: <br>
-[hyddd](https://clawhub.ai/user/hyddd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hyddd](https://clawhub.ai/user/hyddd)
 
-## Use Case: <br>
-Developers and teams using Clawdbot use this skill to create, start, block, complete, and summarize TaskBoardAI Kanban cards through an MCP integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task details and summaries may be retained in TaskBoardAI outside the chat. <br>
-Mitigation: Avoid saving secrets or sensitive business data in task cards, and install the skill only when external task retention is acceptable. <br>
-Risk: The MCP server path and npm package dependency must match the user's local TaskBoardAI installation. <br>
-Mitigation: Verify the installed npm package and update the MCP server path before enabling the skill. <br>
-Risk: Broad automatic task triggers can create or update cards when the user did not intend persistent tracking. <br>
-Mitigation: Narrow the optional AGENTS.md trigger so card creation happens only after explicit user commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to create, update, block, and complete TaskBoardAI Kanban tasks through an MCP-backed workflow.
 
-## Reference(s): <br>
-- [TaskBoardAI](https://github.com/taskboardai/taskboardai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and XML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Task card content is intended to be stored as Markdown in TaskBoardAI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can persist task details and final results to TaskBoardAI, which may include sensitive context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit user confirmation before task creation and store sanitized summaries instead of full conversation context.
+
+Risk: The setup uses a global TaskBoardAI dependency without a pinned version.
+
+Mitigation: Pin and verify the TaskBoardAI package version before installation or deployment.
+
+Risk: The MCP server may have access to local filesystem or environment data depending on how it is launched.
+
+Mitigation: Run the MCP server with restricted filesystem and environment access appropriate to the deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hyddd/skills/taskboardai-skill)
+- [TaskBoardAI Project](https://github.com/taskboardai/taskboardai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured task updates with inline shell commands or configuration snippets when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update TaskBoardAI task content and status through the configured MCP server.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

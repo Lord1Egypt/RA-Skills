@@ -1,44 +1,61 @@
-## Description: <br>
-Calculate true per-unit profit margins across channels by factoring in COGS, platform fees, shipping costs, ad spend allocation, returns, and overhead to identify which products and channels actually make money. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate true per-unit profit margins across channels by factoring in COGS, platform fees, shipping costs, ad spend allocation, returns, and overhead to identify which products and channels actually make money.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, founders, and finance teams use this skill to build per-SKU and per-channel profit waterfalls, compare marketplace economics, and decide whether to scale, reprice, rebundle, or retire products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business cost, revenue, and margin inputs may be sensitive. <br>
-Mitigation: Only provide financial data that is appropriate to share in the agent context. <br>
-Risk: Outdated marketplace fees or weak assumptions can produce misleading pricing and inventory guidance. <br>
-Mitigation: Verify current platform fee schedules and source assumptions before making pricing, inventory, or budget decisions. <br>
+## Use Case:
 
+External ecommerce operators, founders, and marketplace sellers use this skill to calculate SKU-level and channel-level unit economics. It helps compare DTC, Amazon, TikTok Shop, Walmart, and similar channels using a profit waterfall, sensitivity analysis, and decision flags.
 
-## Reference(s): <br>
-- [Profit Calculator on ClawHub](https://clawhub.ai/leooooooow/profit-calculator) <br>
-- [Output Template](references/output-template.md) <br>
-- [Platform Fee Schedule Reference](references/fee-schedule-reference.md) <br>
-- [Sensitivity Analysis Guide](references/sensitivity-analysis-guide.md) <br>
-- [Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown profit-waterfall analysis with tables, sensitivity scenarios, decision flags, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided cost, fee, shipping, advertising, returns, and overhead assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may be used with confidential ecommerce financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data the user is comfortable sharing in the agent session, and redact sensitive customer, supplier, and account details where possible.
+
+Risk: Marketplace fee schedules and shipping rates can become stale.
+
+Mitigation: Verify current seller documentation, 3PL rate cards, and platform fee notices before finalizing recommendations.
+
+Risk: Incorrect or incomplete COGS, ad attribution, return, or overhead inputs can produce misleading margin guidance.
+
+Mitigation: Validate inputs with the included quality checklist and document assumptions before acting on repricing, channel allocation, or SKU rationalization recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/profit-calculator)
+- [Output template](references/output-template.md)
+- [Platform fee schedule reference](references/fee-schedule-reference.md)
+- [Sensitivity analysis guide](references/sensitivity-analysis-guide.md)
+- [Quality checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and concise written analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-SKU, per-channel profit waterfall tables, sensitivity analysis, decision flags, and recommended actions when the user provides cost and channel data.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

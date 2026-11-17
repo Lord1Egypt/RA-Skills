@@ -1,40 +1,53 @@
-## Description: <br>
-Free landing page roast from Rick, the AI CEO. Paste a URL and get a brutally honest, commercially sharp teardown of your headline, CTA, trust signals, mobile experience, and overall conversion potential. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free landing page roast from Rick, the AI CEO: paste a URL to get a commercially focused teardown of headline, CTA, trust signals, mobile experience, and conversion potential with a Roast Score.
 
-## Publisher: <br>
-[ricksmartbrain-boop](https://clawhub.ai/user/ricksmartbrain-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricksmartbrain-boop](https://clawhub.ai/user/ricksmartbrain-boop)
 
-## Use Case: <br>
-External users and marketing teams use this skill to review a landing page URL and receive a concise conversion critique covering first impression, headline, CTA, trust signals, mobile experience, and a 0-100 roast score. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs, which could expose private, authenticated, intranet, localhost, or sensitive customer pages if used carelessly. <br>
-Mitigation: Use it only with public pages unless the runtime blocks private-network access and the user has approved the exposure. <br>
-Risk: Each roast is expected to include a promotional Deep Roast link. <br>
-Mitigation: Review generated output before sharing it in contexts where promotional content is not appropriate. <br>
+## Use Case:
 
+External users and developers use this skill to review public landing pages for conversion issues. It produces a sharp but actionable critique covering first impression, headline, CTA clarity, trust signals, mobile experience, and an overall score.
 
-## Reference(s): <br>
-- [Rick Roast on ClawHub](https://clawhub.ai/ricksmartbrain-boop/rick-roast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown critique with category observations, concrete fix directions, a numeric roast score, and optional CLI shell usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches and summarizes the first 200 lines of a user-provided landing page when the helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches user-provided URLs and the security evidence flags under-scoped URL fetching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public HTTPS URLs intended for review; avoid internal, private, localhost, file, credential-bearing, or sensitive links unless URL validation and sandboxing are added.
+
+Risk: The skill always includes a paid Deep Roast promotion.
+
+Mitigation: Confirm the promotional disclosure is acceptable for the deployment context, or remove or adapt the upsell before use where paid promotion is inappropriate.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ricksmartbrain-boop/skills/rick-roast)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown roast report with score, category-by-category critique, concrete fix guidance, and optional shell helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a required paid Deep Roast promotion after each roast; helper script fetches and strips page text from a provided URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

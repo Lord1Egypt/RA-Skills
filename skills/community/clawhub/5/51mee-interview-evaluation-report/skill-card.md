@@ -1,41 +1,58 @@
-## Description: <br>
-Generates structured interview evaluation reports from interview notes or transcripts, including capability scores, strengths, weaknesses, and a hiring recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese interview evaluation reports from interview notes or transcripts, including capability scores, strengths, weaknesses, hiring recommendations, and probation advice.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-Recruiters, hiring managers, and interviewers use this skill to turn interview notes or transcripts into a structured candidate evaluation report. The report supports review of technical ability, communication, teamwork, problem solving, learning ability, project experience, and next hiring steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interview notes may contain candidate personal data, and the privacy claims depend on the OpenClaw runtime configuration. <br>
-Mitigation: Review the runtime privacy behavior before using real candidate data. <br>
-Risk: Generated evaluations or hiring recommendations may be incomplete, biased, or misleading if treated as final decisions. <br>
-Mitigation: Keep final hiring decisions under human review and use the report as supporting analysis only. <br>
+## Use Case:
 
+Recruiters, interviewers, and hiring teams use this skill to convert interview notes into a structured evaluation report with six scoring dimensions and an advisory hiring recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/51mee-com/51mee-interview-evaluation-report) <br>
-- [Publisher profile](https://clawhub.ai/user/51mee-com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Structured JSON and Markdown interview evaluation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes candidate details, six evaluation dimensions, overall score, strengths, weaknesses, hiring recommendation, probation advice, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Interview notes may contain sensitive candidate or interviewer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information needed for evaluation and follow organizational data-handling rules; evidence reports no executable code, persistence, or external data flow.
+
+Risk: Generated hiring recommendations may be incomplete or misleading when notes are sparse, biased, or ambiguous.
+
+Mitigation: Treat recommendations as advisory and require human interviewer or hiring-team review before making employment decisions.
+
+Risk: Interview content could include instructions that attempt to alter scoring criteria or output format.
+
+Mitigation: Preserve the skill's prompt-injection safeguards and review reports for adherence to the stated evaluation schema.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/51mee-com/skills/51mee-interview-evaluation-report)
+- [ClawHub publisher profile](https://clawhub.ai/user/51mee-com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Structured JSON and Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes six 0-10 evaluation dimensions, overall score, strengths, weaknesses, hiring recommendation, probation advice, and next steps.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Publish content to UseClaw as a regular user via the `useclaw` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish content to UseClaw as a regular user via the `useclaw` CLI.
 
-## Publisher: <br>
-[agentsignals](https://clawhub.ai/user/agentsignals) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsignals](https://clawhub.ai/user/agentsignals)
 
-## Use Case: <br>
-External users and developers use this skill to configure a personal UseClaw token, publish tutorials, guides, cases, skills, or news posts, and inspect their current UseClaw identity, content, or available bots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The UseClaw token is sensitive and is stored in the user's local credentials file. <br>
-Mitigation: Use a scoped or revocable token when available, avoid sharing it in prompts or logs, and protect or remove ~/.config/useclaw/credentials.json when it is no longer needed. <br>
-Risk: The workflow depends on installing and running the UseClaw CLI from a remote download URL. <br>
-Mitigation: Install only when the user trusts UseClaw and review the CLI download source before execution. <br>
-Risk: Publishing sends user-provided content to the UseClaw platform. <br>
-Mitigation: Review title, body, type, summary, and tags before publishing, then report the returned link or identifier clearly. <br>
+## Use Case:
 
+External developers and UseClaw users use this skill to configure a personal UseClaw CLI identity, publish Markdown content, list published content, and inspect available bots.
 
-## Reference(s): <br>
-- [UseClaw homepage](https://useclaw.net) <br>
-- [UseClaw CLI download](https://useclaw.net/cli/useclaw-cli.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include returned UseClaw links or identifiers after publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill installs the UseClaw CLI from a remote script without bundled integrity verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted UseClaw delivery path and prefer a pinned or signed CLI release before use.
+
+Risk: The UseClaw token is a persistent publishing credential and may be exposed through chat, shell history, or logs.
+
+Mitigation: Treat the token as secret, avoid entering real tokens in chat or shell history, and rotate or revoke the token if exposure is possible.
+
+Risk: Publishing commands can send incorrect or unintended content to UseClaw.
+
+Mitigation: Review the title, body, type, summary, and tags before publishing.
+
+## Reference(s):
+
+- [UseClaw homepage](https://useclaw.net)
+- [UseClaw CLI installer](https://useclaw.net/cli/useclaw-cli.sh)
+- [ClawHub skill page](https://clawhub.ai/agentsignals/skills/useclaw-publish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UseClaw links or identifiers returned by the CLI after publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

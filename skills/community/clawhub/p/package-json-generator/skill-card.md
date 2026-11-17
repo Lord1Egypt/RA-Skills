@@ -1,40 +1,52 @@
-## Description: <br>
-Generates a professional package.json with standard scripts, dependencies, and configuration best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a starter package.json manifest with common npm scripts and basic project metadata.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers use this skill to create a starter npm package manifest for Node.js projects. Review the generated package.json before installing dependencies or running npm scripts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The shell script can overwrite an existing package.json file.
+
+Mitigation: Run it only in a disposable or empty project directory, or back up any existing manifest before use.
+
+Risk: The script writes provided names and versions into JSON without escaping.
+
+Mitigation: Do not pass untrusted values, and inspect the generated manifest before running npm install or npm scripts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to create a starter package.json for Node.js projects with common scripts, semantic versioning, and dependency organization guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generator writes package.json in the current directory and can overwrite an existing file. <br>
-Mitigation: Run it only in the intended project directory and inspect or back up any existing package.json before execution. <br>
-Risk: Name and version values are written directly into JSON. <br>
-Mitigation: Use simple trusted name and version values and inspect the generated JSON before relying on it. <br>
+**Output Format:** [Markdown guidance with shell command examples and generated JSON configuration content]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/package-json-generator) <br>
+**Other Properties Related to Output:** [Produces a package.json template using the provided project name and version.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration] <br>
-**Output Format:** [A generated package.json file with shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes package.json in the current working directory and may overwrite an existing file.] <br>
+1.0.0 (source: server release metadata and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact/_meta.json and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

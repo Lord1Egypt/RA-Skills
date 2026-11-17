@@ -1,46 +1,57 @@
-## Description: <br>
-System Architect is a conversational planning scaffold for architecture, technical selection, solution design, requirements analysis, and technical planning discussions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language conversational architecture planning skill that helps users clarify system architecture, technology selection, solution design, requirements analysis, and technical planning through staged dialogue.
 
-## Publisher: <br>
-[yangkai258](https://clawhub.ai/user/yangkai258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangkai258](https://clawhub.ai/user/yangkai258)
 
-## Use Case: <br>
-Developers and engineers use this skill to clarify architecture problems, identify constraints, compare technical options, record ADR-style decisions, and produce concise architecture summaries with validation and rollback plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture guidance may contain incorrect assumptions or recommendations that are not validated against the user's real operating constraints. <br>
-Mitigation: Review generated assumptions, decisions, and risk plans before adoption, and use the skill's validation and rollback stages before implementation. <br>
-Risk: Planning conversations may include sensitive production details or secrets. <br>
-Mitigation: Avoid sharing secrets or sensitive production details in prompts. <br>
+## Use Case:
 
+Developers, engineers, and technical leads use this skill to turn unclear architecture or planning questions into scoped requirements, constraints, system decomposition, trade-off decisions, ADR notes, and validation plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangkai258/arch-planning) <br>
-- [Publisher profile](https://clawhub.ai/user/yangkai258) <br>
-- [Architecture Decision Record Template](references/adr.md) <br>
-- [Assumptions and NFR Thresholds](references/assumptions-nfr.md) <br>
-- [Requirements Clarification Framework](references/requirements-framework.md) <br>
-- [Architecture Risk Checklist](references/risk-checklist.md) <br>
-- [Technical Tradeoffs Matrix](references/tradeoffs-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ADR entries, option comparisons, architecture summaries, validation plans, and rollback strategies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and CHANGELOG) <br>
+Risk: Non-Chinese users may have difficulty reviewing or applying the skill guidance accurately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Translate or have a Chinese-proficient reviewer inspect the guidance and templates before operational use.
+
+Risk: Architecture recommendations can be incomplete or misleading if users skip staged clarification, assumption testing, or validation planning.
+
+Mitigation: Follow the skill's gated workflow, document ADRs, and validate low-confidence assumptions with POCs, stress tests, or fallback plans before implementation.
+
+## Reference(s):
+
+- [Requirements Clarification Checklist](references/requirements-framework.md)
+- [Technology Trade-off Matrix](references/tradeoffs-matrix.md)
+- [Architecture Risk Checklist](references/risk-checklist.md)
+- [Architecture Decision Record Template](references/adr.md)
+- [Assumptions and NFR Thresholds](references/assumptions-nfr.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured planning notes, ADR entries, checklists, and concise architecture summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language conversational guidance; no shell commands, code execution, or privileged actions are described by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

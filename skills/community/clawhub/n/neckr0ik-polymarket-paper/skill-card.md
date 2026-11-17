@@ -1,42 +1,57 @@
-## Description: <br>
-Neckr0ik Polymarket Paper is a CLI paper-trading simulator for practicing prediction-market strategies with virtual accounts, local portfolios, leaderboards, and performance tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper trading platform for Polymarket that helps users practice prediction-market trading with virtual money, strategy guidance, performance tracking, and leaderboards before risking real capital.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-External users and developers use this skill to run a local Polymarket-style paper-trading simulator, practice trades with virtual funds, inspect portfolios, and review performance metrics before risking real capital. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The simulator stores virtual account names, positions, and trade history on the local filesystem. <br>
-Mitigation: Use non-sensitive account names, review files under ~/.polymarket-paper, and remove local simulator data when it is no longer needed. <br>
-Risk: Documentation describes live Polymarket data and leaderboard behavior, while security evidence says to treat market data and leaderboards as demo or local data unless a real integration is documented. <br>
-Mitigation: Treat results as training data only and verify the executable source before relying on market data, leaderboard output, or trading assumptions. <br>
+## Use Case:
 
+External users and developers can use this skill to run a local CLI paper-trading simulator for Polymarket-style prediction markets. It supports virtual accounts, simulated trades, portfolio review, leaderboards, analytics, and export workflows for practice before using real capital.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Neckr0ik/neckr0ik-polymarket-paper) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [paper_trading.py](artifact/scripts/paper_trading.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples and Python code behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local CLI output and stores virtual account, position, and trade history under ~/.polymarket-paper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Account-file handling can be tricked into reading or overwriting JSON files outside the intended data folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate account IDs, constrain account file paths to the configured data directory, and avoid untrusted account identifiers or crafted account JSON files.
+
+Risk: Generated account and trading-history files may contain private practice portfolio data.
+
+Mitigation: Treat generated local files as private, review exports before sharing them, and avoid storing sensitive real-world financial information in simulator records.
+
+Risk: Unvalidated monetary inputs can produce misleading paper-trading results.
+
+Mitigation: Validate trade amounts and starting balances before use, including rejecting negative, non-finite, or otherwise malformed values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-polymarket-paper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, CLI guidance, and code/configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The implementation can create local JSON account and trading-history files when its commands are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

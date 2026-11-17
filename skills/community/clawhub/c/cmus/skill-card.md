@@ -1,41 +1,54 @@
-## Description: <br>
-AI skill to launch cmus in a Xubuntu terminal and enforce playback rules for single-track or shuffled-folder playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI skill to launch cmus in a Xubuntu terminal and enforce playback rules for single-track playback or shuffled folder playback.
 
-## Publisher: <br>
-[nhathuynguyen19](https://clawhub.ai/user/nhathuynguyen19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nhathuynguyen19](https://clawhub.ai/user/nhathuynguyen19)
 
-## Use Case: <br>
-External users and desktop agents use this skill to launch and control cmus playback in an Xubuntu terminal, choosing between shuffled library playback from a requested track or single-track playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs agents to resolve media paths with eval echo, which can run unintended local commands when paths or filenames are untrusted. <br>
-Mitigation: Use only trusted local media paths until path handling is replaced with safe resolution such as realpath -- plus proper quoting. <br>
-Risk: The skill lets an agent control cmus and the user's desktop terminal session. <br>
-Mitigation: Review before installing and use only when agent control of the local music player and desktop session is acceptable. <br>
+## Use Case:
 
+External users and agent developers use this skill to start cmus, select a requested local audio file, and apply either shuffled-library playback or single-track playback behavior.
 
-## Reference(s): <br>
-- [cmus upstream project](https://github.com/cmus/cmus) <br>
-- [ClawHub skill page](https://clawhub.ai/nhathuynguyen19/cmus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires cmus, cmus-remote, xfce4-terminal, and pgrep in a desktop session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Unsafe path handling can execute unintended shell commands when resolving the requested file path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove eval echo and resolve paths with safe quoting or a non-evaluating path-resolution method before passing values to cmus-remote.
+
+Risk: The skill can open a local GUI terminal and clear or control the active cmus playlist.
+
+Mitigation: Review the generated commands before installation or execution, and run the skill only in a local session where playlist changes are acceptable.
+
+## Reference(s):
+
+- [cmus project homepage](https://github.com/cmus/cmus)
+- [ClawHub skill page](https://clawhub.ai/nhathuynguyen19/skills/cmus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local cmus, cmus-remote, xfce4-terminal, and pgrep binaries; controls the active local cmus playlist.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,72 @@
-## Description: <br>
-End-to-end Chinese web novel production workflow for turning a novel idea into a structured deliverable project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Studio guides agents through a staged Chinese web-fiction production workflow for discovery, market/topic analysis, story planning, character design, drafting, polishing, proofreading, final review, and optional Feishu Wiki sync.
 
-## Publisher: <br>
-[pallyoung](https://clawhub.ai/user/pallyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pallyoung](https://clawhub.ai/user/pallyoung)
 
-## Use Case: <br>
-External authors, editors, and agent operators use this skill to run a staged Chinese web-fiction production workflow from concept discovery through planning, drafting, polishing, proofreading, final review, and optional delivery sync. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Feishu Wiki sync can upload manuscript files to a configured destination space. <br>
-Mitigation: Use Feishu sync only after verifying the destination space ID, credentials, and exact files to be uploaded. <br>
-Risk: Helper scripts modify the project directory and cleanup flows may delete staging branches. <br>
-Mitigation: Keep backups and review branch promotion or cleanup actions before running them on important project data. <br>
-Risk: The workflow persists project state and manuscript artifacts on disk. <br>
-Mitigation: Install only when a persistent file-backed writing workflow is intended and the project directory is appropriate for generated manuscript content. <br>
+## Use Case:
 
+External authors, editors, and agent operators use this skill to turn a Chinese web-novel concept into a staged, reviewable project with planning documents, character materials, chapter manuscripts, revisions, QA reports, and optional delivery sync.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [File Structure](references/file-structure.md) <br>
-- [State Management](references/state-management.md) <br>
-- [Subagent Execution](references/subagent-execution.md) <br>
-- [Feishu Sync](references/feishu-sync.md) <br>
-- [Narrative Intelligence](references/narrative-intelligence.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON state files, manuscript files, review reports, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces file-backed novel project artifacts and may use helper scripts for workflow state, subagent dispatch, validation, revision tracking, and optional Feishu Wiki sync.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: Helper scripts include under-scoped file deletion and write behavior when handling stage, branch, artifact, or file-path values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in trusted project workspaces, review path-like inputs before execution, and keep backups until path containment and deletion safeguards are confirmed.
+
+Risk: Optional Feishu sync can upload manuscript content to a hard-coded, undisclosed wiki space.
+
+Mitigation: Use Feishu sync only after verifying and changing the destination space and confirming the manuscript content is approved for upload.
+
+Risk: The authoritative security verdict is suspicious even though the workflow itself is coherent.
+
+Mitigation: Review before installing, treat helper scripts as project-local tools, and avoid untrusted inputs during automated workflow execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pallyoung/skills/novel-studio)
+- [README](README.md)
+- [Skill Definition](SKILL.md)
+- [Workflow](references/workflow.md)
+- [Intake](references/intake.md)
+- [Market Research](references/market-research.md)
+- [Outlining](references/outlining.md)
+- [Character Bible](references/character-bible.md)
+- [Drafting](references/drafting.md)
+- [Polishing](references/polishing.md)
+- [Proofreading](references/proofreading.md)
+- [Final Review](references/final-review.md)
+- [State Management](references/state-management.md)
+- [Subagent Execution](references/subagent-execution.md)
+- [Narrative Intelligence](references/narrative-intelligence.md)
+- [Feishu Sync](references/feishu-sync.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown project files, manuscript text, JSON status data, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-backed stage artifacts, chapter manuscripts, ledgers, revision notes, progress reports, and optional Feishu sync output.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

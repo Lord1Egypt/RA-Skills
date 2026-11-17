@@ -1,43 +1,65 @@
-## Description: <br>
-Analyzes judgment documents, extracts key case information, and generates structured analysis reports for single PDF or Word files and folders of cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SZZZ Case Study Lite helps an agent turn a user's local PDF, DOCX, and DOC Chinese civil judgment files into a deduplicated, incrementally maintained case library with source-grounded summaries, Master Reports, question answering, and raw-text traceability.
 
-## Publisher: <br>
-[szzzcode](https://clawhub.ai/user/szzzcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzzcode](https://clawhub.ai/user/szzzcode)
 
-## Use Case: <br>
-Legal, compliance, and research users use this skill to extract text from local judgment PDFs or Word documents and turn the content into structured case summaries or batch comparison reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted text and generated summaries may contain sensitive legal or personal information. <br>
-Mitigation: Process only judgment files intended for analysis, keep the generated 摘要 folder in an appropriate protected location, and delete it when no longer needed. <br>
-Risk: Untrusted PDF or Word files and unpinned parsing dependencies can introduce document-processing risk. <br>
-Mitigation: Install dependencies in a virtual environment and consider pinning or auditing dependency versions before processing untrusted files. <br>
+## Use Case:
 
+External users and legal-document workflow developers use this skill to organize local Chinese civil judgment materials, remove duplicates, generate per-case expert summaries, prepare source-linked topic reports, and answer follow-up questions against the local case library. It is intended for user-provided local materials and does not perform external case-law retrieval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/szzzcode/judgment-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/szzzcode) <br>
-- [Project Homepage](https://github.com/szzzcode/judgment-analyzer) <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text extraction files and Markdown analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates an 摘要 folder with extracted .txt files, per-case summaries, and for batch runs a 综合分析报告.md file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Sensitive legal text may be copied into the generated case library, including from symlinked documents outside the chosen folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a trusted, clean project folder without symlinks, and review generated raw text before sharing or moving results.
+
+Risk: Dependency installation can introduce supply-chain or environment risk.
+
+Mitigation: Install dependencies in a dedicated virtual environment from a trusted package index before running the scripts.
+
+Risk: The reset workflow deletes generated analysis results.
+
+Mitigation: Use reset only after confirming that deleting law_analysis_results is intended and that any needed outputs are retained elsewhere.
+
+Risk: Generated legal summaries and reports may contain mistakes or unsupported conclusions.
+
+Mitigation: Verify case numbers, amounts, outcomes, evidence quotations, legal bases, and report conclusions against the raw extracted text before relying on or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szzzcode/skills/szzz-case-study-lite)
+- [README](README.md)
+- [CHANGELOG](CHANGELOG.md)
+- [Analyzer prompt logic](prompts/analyzer-logic.md)
+- [Master report prompt logic](prompts/master-report-logic.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands plus generated text, Markdown, and JSON files under law_analysis_results/]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces raw extracted text, deduplication reports, status JSON, per-case Markdown summaries, master_data.json, and Master_Report.md for the user's local project folder.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release metadata, README, CHANGELOG released 2026-07-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

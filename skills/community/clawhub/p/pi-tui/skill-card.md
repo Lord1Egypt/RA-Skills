@@ -1,42 +1,55 @@
-## Description: <br>
-Pi TUI is a terminal UI framework with differential rendering and synchronized output for flicker-free interactive CLIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pi TUI - Terminal UI framework with differential rendering and synchronized output for flicker-free interactive CLIs.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill when building terminal UIs, interactive CLI apps, TUI editors, terminal select lists or settings panels, terminal Markdown rendering, overlays, autocomplete, and inline terminal images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applications using file-path autocomplete may expose local file names inside that application's terminal UI. <br>
-Mitigation: Enable file-path autocomplete only where local file-name disclosure is acceptable, and review the npm package through the normal dependency process before use. <br>
-Risk: Inline terminal images depend on Kitty or iTerm2 image protocol support and may fall back to placeholders on unsupported terminals. <br>
-Mitigation: Test target terminals and provide acceptable non-image fallback behavior for users whose terminals do not support inline image rendering. <br>
+## Use Case:
 
+Developers and engineers use this skill to build terminal UIs, interactive CLI apps, TUI editors, select lists, settings panels, terminal Markdown rendering, and inline terminal images.
 
-## Reference(s): <br>
-- [Overlay System](references/overlays.md) <br>
-- [Built-in Component API](references/components.md) <br>
-- [Autocomplete & Key Detection](references/autocomplete.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with TypeScript examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill includes a normal but unpinned npm install instruction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a reviewed package version, use a lockfile, and inspect npm package scripts in an isolated or least-privileged environment before installation.
+
+Risk: Terminal UI integrations can mis-handle raw-mode input, focus, or unsupported image-capable terminals.
+
+Mitigation: Follow the documented Ctrl+C key handling and focus propagation guidance, and provide fallbacks for terminals that do not support inline image protocols.
+
+## Reference(s):
+
+- [Overlay System](artifact/references/overlays.md)
+- [Built-in Component API](artifact/references/components.md)
+- [Autocomplete & Key Detection](artifact/references/autocomplete.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill guidance; no files are generated unless the consuming agent applies the guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

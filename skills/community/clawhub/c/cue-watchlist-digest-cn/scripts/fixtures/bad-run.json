@@ -1,0 +1,12 @@
+{
+  "asof": "2026-10-10 06:20",
+  "asof_date": "2026-10-10",
+  "billing": "未回传",
+  "changed_count": 1,
+  "legs_called": 5,
+  "legs_returned": 3,
+  "new_count": 3,
+  "prev_date": "2026-10-09",
+  "subjects": 5,
+  "window": "2026-09-10~2026-10-10"
+}

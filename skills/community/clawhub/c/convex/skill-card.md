@@ -1,44 +1,58 @@
-## Description: <br>
-Build and maintain Convex backends with schema-safe modeling, query and mutation patterns, auth guards, and production rollout checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and maintain Convex backends with schema-safe modeling, query and mutation patterns, auth guards, and production rollout checks.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill when building, debugging, or scaling Convex backends that need reliable schema design, query and mutation patterns, authorization checks, indexing discipline, and rollout planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested package commands or project changes may affect a Convex application if run without review. <br>
-Mitigation: Review proposed commands and code changes before execution, especially commands involving `npx`, deployments, schema changes, or migrations. <br>
-Risk: Reusable project memory under ~/convex/ could retain sensitive project context if users store secrets or personal data there. <br>
-Mitigation: Do not store raw credentials, tokens, personal data, or unnecessary identifiers in memory files; clear local context files when retention is not desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/convex) <br>
-- [Skill Homepage](https://clawic.com/skills/convex) <br>
-- [Setup - Convex](setup.md) <br>
-- [Memory Template - Convex](memory-template.md) <br>
-- [Convex Schema and Indexes](schema-and-indexes.md) <br>
-- [Convex Operations Playbook](operations-playbook.md) <br>
+## Use Case:
 
+Developers and engineers use this skill when building, debugging, or scaling Convex backends. It supports schema-safe modeling, query and mutation design, authorization checks, index planning, deployment readiness, and incident learning.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Convex schemas, indexes, auth guards, rollout checklists, and local memory updates under ~/convex/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist Convex project context under ~/convex/, which may accidentally include secrets, personal data, or sensitive tenant details if users save them.
+
+Mitigation: Keep memory concise, redact sensitive identifiers, and do not store secrets, tokens, personal data, or sensitive tenant details in Convex memory files.
+
+Risk: The skill may engage on incidental Convex mentions if configured broadly.
+
+Mitigation: Choose a narrow activation preference during setup when automatic engagement on incidental mentions is not desired.
+
+Risk: Incorrect schema, authorization, index, or rollout guidance could affect production data integrity, tenant boundaries, or availability.
+
+Mitigation: Review proposed schema and permission changes, verify authorization at every entry point, and rehearse rollback before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/convex)
+- [Skill Homepage](https://clawic.com/skills/convex)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local project memory under ~/convex/ when the user confirms activation and storage preferences.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

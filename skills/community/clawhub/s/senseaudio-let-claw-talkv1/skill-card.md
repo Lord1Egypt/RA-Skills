@@ -1,45 +1,59 @@
-## Description: <br>
-Runs a hands-free desktop voice assistant on macOS and Windows that listens through the microphone, transcribes speech with SenseAudio ASR, sends text to AudioClaw, and reads responses with SenseAudio TTS or system speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SenseAudio-Let-Claw-Talk v1 launches an always-listening local voice assistant on macOS or Windows that captures speech, transcribes it with SenseAudio ASR, sends the text to the AudioClaw agent, and reads responses through SenseAudio TTS or system speech.
 
-## Publisher: <br>
-[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kikidouloveme79](https://clawhub.ai/user/kikidouloveme79)
 
-## Use Case: <br>
-Developers and end users use this skill to launch and tune a hands-free local voice assistant for multi-turn voice conversations, continuous voice control, and desktop assistant prototypes on macOS or Windows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start a long-running microphone assistant and send speech and reply text to SenseAudio cloud APIs. <br>
-Mitigation: Install only when that behavior is acceptable, review the wake phrase, and disable the assistant when it is not in active use. <br>
-Risk: The skill keeps local state, logs, generated reply audio, preferences, credentials, and optional voice profiles in the user's workspace. <br>
-Mitigation: Protect the SenseAudio credential file and periodically clear workspace logs, preferences, generated reply audio, and unused voice profiles. <br>
-Risk: Optional WeSpeaker voiceprint verification can run as a local background service. <br>
-Mitigation: Enable WeSpeaker only when needed and keep its service bound to 127.0.0.1. <br>
+## Use Case:
 
+External users and developers use this skill to run hands-free desktop voice conversations with AudioClaw, including wake and sleep phrases, spoken responses, runtime tuning, and optional WeSpeaker voiceprint filtering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kikidouloveme79/senseaudio-let-claw-talkv1) <br>
-- [Runtime Tuning](artifact/references/runtime_tuning.md) <br>
-- [WeSpeaker User Environment Guide](artifact/references/wespeaker_user_setup.md) <br>
-- [WeSpeaker repository](https://github.com/wenet-e2e/wespeaker.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch a long-running local microphone assistant process and write user-level state, logs, generated reply audio, preferences, and optional voice profiles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Long-running microphone workflows can capture speech continuously and send speech data to SenseAudio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and run the assistant only when the user intends active microphone capture.
+
+Risk: The skill stores local secrets, conversation state, and logs.
+
+Mitigation: Avoid putting API keys on the command line, restrict credential file permissions, and review or disable transcript logging where appropriate.
+
+Risk: The optional WeSpeaker service is flagged as unsafe by the security evidence.
+
+Mitigation: Keep WeSpeaker disabled until its local HTTP service has authentication and path validation, and pin its dependency installation to reviewed versions or commits.
+
+## Reference(s):
+
+- [Runtime Tuning](artifact/references/runtime_tuning.md)
+- [WeSpeaker User Environment Guide](artifact/references/wespeaker_user_setup.md)
+- [WeSpeaker Repository](https://github.com/wenet-e2e/wespeaker.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise spoken-response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May launch a long-running local microphone workflow and write user-level state, logs, and credentials outside the skill directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

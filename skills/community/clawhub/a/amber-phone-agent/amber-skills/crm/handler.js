@@ -5,10 +5,24 @@
  * All functions are synchronous — fast, no latency for voice calls.
  */
 
-const Database = require('better-sqlite3');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+
+function loadDatabaseDriver() {
+  try {
+    return require('better-sqlite3');
+  } catch (localError) {
+    const runtimeDriverPath = path.resolve(__dirname, '..', '..', 'runtime', 'node_modules', 'better-sqlite3');
+    try {
+      return require(runtimeDriverPath);
+    } catch (_) {
+      throw localError;
+    }
+  }
+}
+
+const Database = loadDatabaseDriver();
 
 // ============================================================================
 // Database Initialization
@@ -41,6 +55,7 @@ function getDb() {
     
     // Open DB with WAL mode for concurrent reads + serialized writes
     _db = new Database(dbPath, { verbose: null });
+    try { fs.chmodSync(dbPath, 0o600); } catch (_) {}
     _db.pragma('journal_mode = WAL');
     _db.pragma('foreign_keys = ON');
     

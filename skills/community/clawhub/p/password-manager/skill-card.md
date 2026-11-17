@@ -1,45 +1,59 @@
-## Description: <br>
-A fully local password management skill for OpenClaw with AES-256-GCM encryption, password generation, and sensitive info detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fully local password management skill for OpenClaw with AES-256-GCM encryption, password generation, and sensitive info detection.
 
-## Publisher: <br>
-[jixsonwang](https://clawhub.ai/user/jixsonwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jixsonwang](https://clawhub.ai/user/jixsonwang)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to store, search, update, generate, and detect local credentials through agent tools and a command-line interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles highly sensitive secrets and may expose generated or retrieved credentials in the agent conversation. <br>
-Mitigation: Treat revealed or generated secrets as sensitive chat content, avoid requesting plaintext display unless necessary, and rotate credentials if they are exposed in logs or transcripts. <br>
-Risk: Using the master password through environment variables or command-line arguments can expose it to local process, shell, or automation history. <br>
-Mitigation: Prefer interactive password entry for real vaults, avoid storing real master passwords in environment variables, and clear shell or CI logs after testing. <br>
-Risk: The documented 48-hour cache and plaintext reveal options can leave vault access available longer than intended on shared machines. <br>
-Mitigation: Review cache timeout and reveal defaults before use, lock the vault after operations, and use this release only where local filesystem permissions and device access are trusted. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to manage local credential vault entries, generate strong passwords, check password strength, and detect sensitive values in chat or text before saving them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jixsonwang/password-manager) <br>
-- [Skill documentation](SKILL.md) <br>
-- [OpenClaw hook documentation](hooks/openclaw/HOOK.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and OpenClaw tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local password-manager actions and may reveal, generate, or save sensitive credential values when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata, package.json, CHANGELOG) <br>
+Risk: Master passwords or saved secrets may be exposed through chat, command-line arguments, environment variables, or plaintext retrieval options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not place master passwords or saved secrets in chat, command-line arguments, or long-lived environment variables; reveal plaintext secrets only when necessary and clear related outputs or history.
+
+Risk: Vault and cache files contain sensitive material and depend on local filesystem protections.
+
+Mitigation: Store vault, cache, backup, and log files with restrictive permissions and treat each as a sensitive asset.
+
+Risk: Safety-critical backup and restore behavior should not be assumed reliable from the current documentation.
+
+Mitigation: Verify backup and restore with a non-production test vault before relying on the skill for recovery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jixsonwang/skills/password-manager)
+- [Skill Documentation](SKILL.md)
+- [OpenClaw Hook Documentation](hooks/openclaw/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text, Markdown, and structured tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return authentication prompts, password strength assessments, generated passwords, vault entry metadata, or plaintext secrets when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.4 (source: package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

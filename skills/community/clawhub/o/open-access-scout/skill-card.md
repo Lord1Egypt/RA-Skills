@@ -1,48 +1,64 @@
-## Description: <br>
-Helps researchers find open access journals, check journal policies, assess publisher credibility, and locate open access versions of papers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when finding open access journals, checking journal policies, or identifying predatory publishers. Helps researchers locate legitimate open access venues and avoid publication scams.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, librarians, and authors can use this skill to find open access venues or paper versions, compare publication options, and identify publisher credibility concerns before making publication decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present mock search output or unsupported open-access findings as if they were verified research results. <br>
-Mitigation: Treat outputs as preliminary guidance and verify each result against authoritative sources such as Unpaywall, PubMed Central, journal pages, publisher pages, and indexing databases before making publication decisions. <br>
-Risk: The artifact lists Sci-Hub alongside legitimate open-access sources. <br>
-Mitigation: Use only legal and institution-approved open-access sources, and do not use Sci-Hub or any source that violates publisher, institutional, or legal requirements. <br>
+## Use Case:
 
+Researchers, librarians, and research-support teams use this skill to identify open access venues, check publication-access options, and surface warning signs before relying on a journal or publisher.
 
-## Reference(s): <br>
-- [Open Access Scout on ClawHub](https://clawhub.ai/aipoch-ai/open-access-scout) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
-- [Audit reference](references/audit-reference.md) <br>
-- [Unpaywall](https://api.unpaywall.org/) <br>
-- [CORE](https://core.ac.uk/) <br>
-- [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/) <br>
-- [arXiv](https://arxiv.org/) <br>
-- [bioRxiv](https://www.biorxiv.org/) <br>
-- [medRxiv](https://www.medrxiv.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with optional CLI commands and Python snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state assumptions, evidence used, risks, caveats, unresolved items, and next checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mock open-access results can be mistaken for verified publication-access findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as illustrative until the search logic is connected to trusted sources and validated against real DOI or title queries.
+
+Risk: The listed Sci-Hub source can encourage legally or institutionally prohibited access paths.
+
+Mitigation: Remove Sci-Hub from recommended sources and restrict guidance to legitimate open-access services and repository checks.
+
+Risk: Claims about journal legitimacy, policies, APCs, and predatory publishers may exceed the implemented script.
+
+Mitigation: Use outputs as preliminary guidance and verify journal status, indexing, APCs, and policies against authoritative publisher and index sources before acting.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [Open Access Scout on ClawHub](https://clawhub.ai/aipoch-ai/skills/open-access-scout)
+- [Unpaywall](https://api.unpaywall.org/)
+- [CORE](https://core.ac.uk/)
+- [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/)
+- [arXiv](https://arxiv.org/)
+- [bioRxiv](https://www.biorxiv.org/)
+- [medRxiv](https://www.medrxiv.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional CLI commands and structured result sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should state assumptions, limits, risks, unresolved items, and validation needs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+# Objection Handling Cards - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+cards:
+  - objection_verbatim: ""
+    what_it_really_means: ""
+    answer: ""
+    proof: ""
+    proof_source: ""
+    next_question: ""
+    do_not_say:
+      - ""
+    needs_approval: ""

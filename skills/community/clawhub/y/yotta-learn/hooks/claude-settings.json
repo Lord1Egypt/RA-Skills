@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 PATH_TO_SKILL/scripts/yotta_learn.py review"
+          }
+        ]
+      }
+    ]
+  }
+}

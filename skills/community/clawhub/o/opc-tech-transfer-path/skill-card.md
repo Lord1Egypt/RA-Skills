@@ -1,41 +1,50 @@
-## Description: <br>
-基于22个成果转化实战案例提炼的科技成果转化路径规划工具，覆盖从实验室TRL1到商业化TRL9的全链路。专为高校院所、技术转移中心、OPC技术经纪人设计。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于22个成果转化实战案例提炼的科技成果转化路径规划工具，覆盖从实验室TRL1到商业化TRL9的全链路。专为高校院所、技术转移中心、OPC技术经纪人设计。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-高校院所、技术转移中心、OPC技术经纪人 and other external users use this skill to plan technology commercialization paths, evaluate TRL readiness, choose transfer modes, and outline valley-of-death mitigation and revenue-sharing plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Valuation, tax, pricing, and commercialization recommendations may be mistaken for professional legal, tax, investment, or institutional policy advice. <br>
-Mitigation: Treat outputs as planning guidance and have qualified legal, tax, investment, or institutional reviewers validate decisions before action. <br>
-Risk: Technology commercialization path recommendations may be unreliable when TRL, market, patent, funding, or institutional-policy inputs are incomplete. <br>
-Mitigation: Review the skill output against current project evidence and documented institutional requirements before using it to choose a transfer path. <br>
+## Use Case:
 
+External technology-transfer teams, university and research-institute transfer offices, and OPC technology brokers use this skill to evaluate commercialization readiness and plan a practical path from TRL1 laboratory work through TRL9 market deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/opc-tech-transfer-path) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/golngod) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown advisory reports and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning guidance only; security evidence reports no code execution, credential access, persistence, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can discuss valuation, revenue sharing, and tax optimization for technology transfer, which may affect real business or legal decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review valuation, revenue-sharing, legal, and tax recommendations with qualified business, legal, or tax professionals before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-tech-transfer-path)
+- [ClawHub publisher profile](https://clawhub.ai/user/golngod)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown advisory reports and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language planning outputs may include technology-transfer path assessments, transfer-mode recommendations, death-valley crossing plans, and revenue-distribution designs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

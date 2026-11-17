@@ -1,45 +1,56 @@
-## Description: <br>
-使用 Genos 模型进行 DNA 序列分析。当用户提到 DNA、基因、基因组、碱基序列、ACGT 等生物信息学相关问题时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 Genos 模型进行 DNA 序列分析。当用户提到 DNA、基因、基因组、碱基序列、ACGT 等生物信息学相关问题时使用此技能。
 
-## Publisher: <br>
-[flowertusi](https://clawhub.ai/user/flowertusi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flowertusi](https://clawhub.ai/user/flowertusi)
 
-## Use Case: <br>
-Developers and bioinformatics users use this skill to analyze DNA base sequences with the Genos-1.2B genomics model. It supports base composition statistics, GC and AT content extraction, sequence feature extraction, and next-base prediction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation or first use may execute local Python and model-provided code, including model repository code loaded with trust_remote_code=True. <br>
-Mitigation: Review the skill before installing, run it in a virtual environment or container, and require explicit approval before first model loading. <br>
-Risk: Unpinned dependencies and model downloads can introduce supply-chain or version drift risk. <br>
-Mitigation: Inspect and pin dependencies, and download Genos models only from verified official sources. <br>
-Risk: The install flow may ask for a Hugging Face token when downloading models. <br>
-Mitigation: Avoid entering a Hugging Face token unless necessary and use the least-privileged token available. <br>
+## Use Case:
 
+Developers, bioinformatics practitioners, and genomics researchers use this skill to analyze DNA base sequences, compute sequence statistics, extract features, and request next-base predictions with a local Genos model.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/flowertusi/genos-dna) <br>
-- [Genos-1.2B Hugging Face model card](https://huggingface.co/ZhejiangLab/Genos-1.2B) <br>
-- [Genos-1.2B ModelScope model page](https://modelscope.cn/models/zhejianglab/Genos-1.2B) <br>
-- [Zhejiang Lab Genos project](https://github.com/zhejianglab/Genos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON dictionaries and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [DNA sequence inputs are cleaned to A, C, G, T, and N before analysis; model loading requires a local Genos model path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: The skill can execute downloaded third-party ML model code locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a clean virtual environment or container, verify model artifacts and sources before use, and avoid running the installer or model with administrator/root privileges.
+
+Risk: The installer can handle Hugging Face tokens without strong safeguards.
+
+Mitigation: Avoid entering broad or long-lived Hugging Face tokens into install.sh; use least-privilege, short-lived credentials in trusted environments only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flowertusi/skills/genos-dna)
+- [Genos-1.2B Hugging Face model card](https://huggingface.co/ZhejiangLab/Genos-1.2B)
+- [Genos ModelScope model page](https://modelscope.cn/models/zhejianglab/Genos-1.2B)
+- [ZhejiangLab Genos repository](https://github.com/zhejianglab/Genos)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks; runtime functions return JSON-compatible dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sequence length, base composition, GC and AT content, model metadata, and next-base prediction probabilities.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

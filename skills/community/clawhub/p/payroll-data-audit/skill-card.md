@@ -1,40 +1,60 @@
-## Description: <br>
-Payroll Data Audit helps review payroll CSV or Excel exports with deterministic audit rules and produces data-backed compliance reports, issue lists, and review dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Payroll Data Audit audits payroll spreadsheets with deterministic Python rules aligned to an SOP, producing data scans, rule results, reports, issue views, sampling checks, and delivery summaries.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Payroll, HR, and finance teams use this skill to check monthly payroll data before release, including field completeness, formula checks, red/yellow/blue-line findings, month-over-month comparisons, sampling verification, and delivery-ready audit outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send sensitive payroll audit artifacts to Feishu through the current user's account. <br>
-Mitigation: Install only with explicit organizational approval; limit Feishu permissions, confirm the destination tenant and sharing settings, and add redaction and approval gates before using real payroll data. <br>
-Risk: Generated audit reports may contain consistency issues or findings that need review before payroll decisions. <br>
-Mitigation: Independently verify generated reports, issue lists, and supporting data before using them to approve or release payroll. <br>
+## Use Case:
 
+Payroll, HR operations, and finance reviewers use this skill to check payroll exports for field completeness, formula consistency, business-rule failures, red/yellow/blue risk signals, month-over-month changes, and policy exceptions before payroll approval or follow-up review.
 
-## Reference(s): <br>
-- [Rules catalog](artifact/references/rules.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated JSON, HTML, and Markdown audit files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces audit reports, issue lists, dashboards, data indexes, sampling verification output, and delivery messages from provided payroll data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.4.1 (source: server release metadata) <br>
+Risk: The skill handles sensitive payroll data and includes cloud delivery behavior plus generated sample outputs and Feishu links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation; remove generated sample outputs and cloud links, and require explicit opt-in confirmation of destination and recipients before any Feishu delivery.
+
+Risk: The delivery script executes lark-cli through shell-form subprocess commands.
+
+Mitigation: Change delivery execution to argument-based subprocess calls before using the skill with real payroll data.
+
+Risk: HTML and report outputs may include payroll-derived fields.
+
+Mitigation: Escape payroll-derived values in generated HTML and reports before sharing or deploying the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/skills/payroll-data-audit)
+- [Publisher Profile](https://clawhub.ai/user/tuobadaidai)
+- [Rules Reference](artifact/references/rules.json)
+- [Skill Source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, HTML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local audit artifacts such as data-scan JSON, audit-result JSON, Markdown and HTML reports, issue lists, sampling verification output, and delivery summaries.]
+
+## Skill Version(s):
+
+7.4.1 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

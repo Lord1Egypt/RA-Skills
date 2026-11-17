@@ -1,47 +1,62 @@
-## Description: <br>
-Football match betting prediction system that collects pre-match data from titan007.com, runs a five-step quantitative analysis framework, and outputs betting recommendations with predicted scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Soccer Predict is a football match betting prediction skill that gathers Titan007 match data, applies a five-step quantitative framework, and produces betting recommendations, expected value analysis, predicted scores, and post-match review outputs.
 
-## Publisher: <br>
-[superluigi0309](https://clawhub.ai/user/superluigi0309) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superluigi0309](https://clawhub.ai/user/superluigi0309)
 
-## Use Case: <br>
-External users and developers use this skill to collect football match data, calculate probabilities and expected value for Asian handicap and over/under markets, and produce concise or visual betting analysis. It can also review completed matches, adjust model weights, and report accumulated prediction accuracy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save football prediction history and learned model changes in local memory files without clear opt-in or cleanup controls. <br>
-Mitigation: Require explicit user confirmation before post-match review writes memory, and document how to review or remove saved football prediction memory files. <br>
-Risk: The skill browses titan007.com for match data during prediction workflows. <br>
-Mitigation: Use it only when browsing that data source is acceptable, and review collected match data before relying on the analysis. <br>
-Risk: The skill outputs betting analysis and recommendations that may be wrong or misleading. <br>
-Mitigation: Present outputs as uncertain analysis, not financial or gambling advice, and require human review before any betting-related decision. <br>
+## Use Case:
 
+External users and analysts can use this skill to collect football match data, calculate odds-derived probabilities, compare model predictions, and review post-match outcomes. It is intended for uncertain analytical guidance around football betting markets, not as guaranteed financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/superluigi0309/soccer-predict) <br>
-- [Data Collection Guide](references/data-collection.md) <br>
-- [Prediction Framework](references/prediction-framework.md) <br>
-- [Post-Match Review & Learning Framework](references/review-framework.md) <br>
-- [Titan007 Data Source](https://zq.titan007.com/) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Guidance, Configuration] <br>
-**Output Format:** [Markdown or HTML reports with probability tables, expected-value calculations, betting recommendations, predicted scores, and post-match review notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local memory files during post-match review to persist prediction history and learned weights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact CHANGELOG.md and clawhub.json list 1.0.0) <br>
+Risk: The skill can produce football betting recommendations that may be mistaken for certain or financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as uncertain analysis, require independent review before any real-money wagering, and avoid automated action on recommendations.
+
+Risk: Post-match review can write persistent football prediction memory files across sessions.
+
+Mitigation: Confirm before allowing memory writes and periodically inspect or delete football prediction memory files.
+
+Risk: The README install example uses an unpinned installer command.
+
+Mitigation: Use a pinned or verified installer command and review package source before installation.
+
+## Reference(s):
+
+- [Soccer Predict on ClawHub](https://clawhub.ai/superluigi0309/skills/soccer-predict)
+- [Data Collection Guide](references/data-collection.md)
+- [Prediction Framework](references/prediction-framework.md)
+- [Post-Match Review & Learning Framework](references/review-framework.md)
+- [Titan007 Match Analysis Source](https://zq.titan007.com/)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, html, guidance]
+
+**Output Format:** [Concise text summaries or detailed Markdown/HTML reports with odds tables, probability estimates, EV values, betting recommendations, predicted scores, and post-match review notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write cross-session football prediction memory files during post-match review and learning.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

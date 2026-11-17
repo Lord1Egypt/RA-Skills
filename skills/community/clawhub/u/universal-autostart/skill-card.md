@@ -1,45 +1,60 @@
-## Description: <br>
-Cross-platform auto-start service manager for Windows and macOS. Supports installing, uninstalling, starting, stopping, and monitoring services with automatic restart. Use when you need to set up persistent background services that survive system reboots on Windows (sc/schtasks) or macOS (launchd). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-platform auto-start service manager for Windows and macOS. Supports installing, uninstalling, starting, stopping, and monitoring services with automatic restart. Use when you need to set up persistent background services that survive system reboots on Windows (sc/schtasks) or macOS (launchd).
 
-## Publisher: <br>
-[ahao2001](https://clawhub.ai/user/ahao2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahao2001](https://clawhub.ai/user/ahao2001)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure persistent background services for Windows or macOS systems, including install, uninstall, start, stop, status, logging, health monitoring, and restart behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent autostart configuration can create high-impact system changes, including Windows tasks that may run as SYSTEM and macOS launchd entries. <br>
-Mitigation: Review the JSON configuration before installation and confirm every program path, argument, and working directory is trusted. <br>
-Risk: The artifact includes an unrelated publisher upload script with a hardcoded API key. <br>
-Mitigation: Do not run publish_textonly.py; the publisher should remove it from the distributed skill and revoke the embedded API key. <br>
-Risk: Install and uninstall scripts require elevated privileges and can modify system startup behavior. <br>
-Mitigation: Run install or uninstall commands only in a controlled environment after reviewing the target service name and startup configuration. <br>
+## Use Case:
 
+Developers and operators use this skill to configure persistent background programs that start automatically after reboot on Windows or macOS. It provides guidance, commands, scripts, and JSON configuration patterns for installing, uninstalling, starting, stopping, monitoring, and restarting those services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahao2001/universal-autostart) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [QUICKSTART.md](artifact/QUICKSTART.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for service setup and configuration; generated commands may make persistent system changes when executed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create persistent auto-start tasks that run with high privilege.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted programs, review the JSON configuration before use, and avoid SYSTEM or root defaults where a lower-privilege account is sufficient.
+
+Risk: The package includes an unrelated publishing script with a hard-coded SkillHub upload credential.
+
+Mitigation: Remove or review publish_textonly.py before deployment and rotate the exposed credential.
+
+Risk: Uninstall behavior must target the same task or plist that was installed.
+
+Mitigation: Verify the configured service name and confirm the exact scheduled task or launchd plist is removed during uninstall.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahao2001/skills/universal-autostart)
+- [Publisher profile](https://clawhub.ai/user/ahao2001)
+- [Project page listed in artifact documentation](https://gitee.com/steam2001/universal-autostart)
+- [Issue tracker listed in artifact documentation](https://gitee.com/steam2001/universal-autostart/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python code, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include privileged install or uninstall commands and service configuration files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

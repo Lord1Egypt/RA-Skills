@@ -1,41 +1,49 @@
-## Description: <br>
-Audit and consolidate HubSpot reporting dashboards, identifying unused, duplicate, or outdated dashboards through a manual HubSpot UI process because no dashboard API is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and consolidate HubSpot reporting dashboards by identifying unused, duplicate, or outdated dashboards through a manual HubSpot UI workflow.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-HubSpot administrators, operations teams, and reporting owners use this skill to audit dashboard sprawl, identify unused or duplicate dashboards, consolidate active reporting, and document cleanup decisions before making manual changes in HubSpot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deleting a HubSpot dashboard is not reversible. <br>
-Mitigation: Confirm deletion with dashboard owners first and retain screenshots or report lists before removing dashboards. <br>
-Risk: Dashboard cleanup can affect business reporting visibility for teams. <br>
-Mitigation: Use the skill only with HubSpot dashboard management authorization and communicate consolidated dashboard links after changes. <br>
+## Use Case:
 
+HubSpot administrators and operations teams use this skill to inventory dashboards, identify candidates for deletion or consolidation, rename and share retained dashboards, and communicate cleanup changes. It is intended for authorized users who can manually manage dashboards in the HubSpot UI.
 
-## Reference(s): <br>
-- [Cleanup Dashboards ClawHub release](https://clawhub.ai/tomgranot/cleanup-dashboards) <br>
-- [tomgranot ClawHub publisher profile](https://clawhub.ai/user/tomgranot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist and prose guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manual HubSpot UI workflow; no API calls or automation are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version: 1.0) <br>
+Risk: Authorized users may delete HubSpot dashboards that cannot be restored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm deletion decisions with dashboard owners and keep screenshots or notes of dashboard contents before removing dashboards.
+
+## Reference(s):
+
+- [Cleanup Dashboards on ClawHub](https://clawhub.ai/tomgranot/skills/cleanup-dashboards)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown checklist and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual workflow only; does not call a HubSpot Dashboard API or automate deletion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

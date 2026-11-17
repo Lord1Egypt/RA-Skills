@@ -1,42 +1,51 @@
-## Description: <br>
-Convert YAML input into JSON format using Expanso Edge pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts YAML input into JSON output using Expanso Edge pipelines.
 
-## Publisher: <br>
-[aronchick](https://clawhub.ai/user/aronchick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aronchick](https://clawhub.ai/user/aronchick)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert YAML strings into JSON through a local CLI pipeline or an optional HTTP server pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional server mode listens for HTTP requests and may expose YAML conversion over the network if deployed broadly. <br>
-Mitigation: Prefer CLI mode for private data; when using server mode, bind locally or otherwise restrict network exposure before processing sensitive YAML. <br>
-Risk: The skill depends on the Expanso Edge runtime to execute its pipelines. <br>
-Mitigation: Install and run it only in environments where the Expanso Edge dependency is trusted. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert YAML strings into JSON through local CLI execution, Expanso Cloud deployment, or an MCP HTTP conversion service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aronchick/expanso-yaml-to-json) <br>
-- [README.md](README.md) <br>
-- [skill.yaml](skill.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [JSON object with parsed output, validity flag, error text, and metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI mode reads YAML from stdin; server mode accepts POST requests to /convert.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: MCP server mode exposes an unauthenticated conversion endpoint on all network interfaces by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer CLI mode for local conversion; before network exposure, bind the server to localhost or place it behind authentication with request-size and rate limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aronchick/skills/expanso-yaml-to-json)
+- [Skill README](artifact/README.md)
+- [Skill definition](artifact/skill.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON object with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces json, valid, error, and metadata fields; CLI mode reads YAML from stdin and MCP mode accepts conversion requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.yaml and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

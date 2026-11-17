@@ -1,48 +1,58 @@
-## Description: <br>
-Immigration process guidance and application organization with strict privacy boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Immigration provides privacy-conscious process guidance and application organization for visa, work permit, residency, citizenship, document, deadline, and interview preparation workflows without providing legal advice.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users and their agents use this skill to organize immigration applications: compare general pathways, prepare document checklists, track deadlines and status, and rehearse interview questions while keeping records local. It is for general process support only and does not replace advice from a licensed immigration attorney. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive immigration details may be saved locally in the OpenClaw workspace. <br>
-Mitigation: Use the skill only when local storage is acceptable, avoid entering unnecessary sensitive details, and review or delete local memory files when they are no longer needed. <br>
-Risk: Visa-specific rights, restrictions, deadlines, and interview guidance may be outdated or too situation-specific. <br>
-Mitigation: Verify current requirements with official government sources or a licensed immigration attorney before acting on the guidance. <br>
-Risk: The artifact includes process guidance that can exceed the skill's stated boundary against legal advice. <br>
-Mitigation: Treat outputs as general organization support and avoid relying on them for legal interpretation or case-specific decisions. <br>
+## Use Case:
 
+External users and their agents use this skill to organize immigration applications, generate document checklists, track deadlines and application status, and prepare for interviews while preserving local-only privacy boundaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AGIstack/immigration) <br>
-- [Pathway Finder](artifact/references/pathway-finder.md) <br>
-- [Document Checklist Generator](artifact/references/document-checklist.md) <br>
-- [Deadline and Timeline Tracker](artifact/references/deadline-tracker.md) <br>
-- [Visa Interview Preparation](artifact/references/interview-prep.md) <br>
-- [Application Status Tracking](artifact/references/application-status.md) <br>
-- [Post-Approval Planning](artifact/references/post-approval.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command examples and local JSON records created by supporting scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-provided immigration records locally under the OpenClaw workspace when scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Sensitive immigration plans, application notes, checklists, and deadlines may be saved in plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store only necessary data, avoid passport numbers, receipt numbers, financial details, and private case facts, and delete local records when no longer needed.
+
+Risk: Immigration guidance may be incomplete, outdated, or mistaken for legal advice.
+
+Mitigation: Verify visa rights, restrictions, deadlines, fees, and eligibility questions with official government sources or a licensed immigration professional before acting.
+
+## Reference(s):
+
+- [Application Status Tracking](references/application-status.md)
+- [Deadline and Timeline Tracker](references/deadline-tracker.md)
+- [Document Checklist Generator](references/document-checklist.md)
+- [Visa Interview Preparation](references/interview-prep.md)
+- [Pathway Finder](references/pathway-finder.md)
+- [Post-Approval Planning](references/post-approval.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with local JSON records and Python script command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write plaintext local JSON under ~/.openclaw/workspace/memory/immigration when scripts are used.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

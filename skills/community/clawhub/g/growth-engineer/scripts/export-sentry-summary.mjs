@@ -435,6 +435,15 @@ async function sentryFetchList(url, token) {
     }
     return items;
 }
+function buildRecentIssueQuery(query, last) {
+    const normalizedQuery = String(query || '').trim();
+    const normalizedLast = String(last || '').trim().toLowerCase();
+    if (!normalizedLast || /\blastseen\s*:/i.test(normalizedQuery))
+        return normalizedQuery;
+    if (!/^\d+(?:m|h|d|w)$/.test(normalizedLast))
+        return normalizedQuery;
+    return [normalizedQuery, `lastSeen:-${normalizedLast}`].filter(Boolean).join(' ');
+}
 function redactString(value) {
     return String(value || '')
         .replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g, '[REDACTED_EMAIL]')
@@ -460,7 +469,7 @@ async function listIssues(account, token) {
         const url = buildUrl(account.baseUrl || DEFAULT_BASE_URL, `/api/0/projects/${org}/${project}/issues/`, {
             statsPeriod: account.last,
             environment: account.environment,
-            query: account.query,
+            query: buildRecentIssueQuery(account.query, account.last),
             per_page: account.limit,
         });
         const payload = await sentryFetchJson(url, token);

@@ -1,0 +1,150 @@
+{
+  "name": "AI 开源项目技术尽调与公众号内容自动化",
+  "version": "1.0.0",
+  "description": "GitHub Trending 监控 + 技术深度分析 + 公众号文章生成与发布 + 飞书知识库沉淀",
+  "category": "AI",
+  "skills": [
+    {
+      "name": "Agent-Reach",
+      "source": "workspace",
+      "location": "skills/Agent-Reach",
+      "role": "数据采集",
+      "step": 1
+    },
+    {
+      "name": "tech-article-pro",
+      "source": "workspace",
+      "location": "skills/tech-article-pro",
+      "role": "技术深度分析",
+      "step": 2
+    },
+    {
+      "name": "wechat-article-pro",
+      "source": "workspace",
+      "location": "skills/wechat-article-pro",
+      "role": "公众号文章生成",
+      "step": 3
+    },
+    {
+      "name": "feishu-create-doc",
+      "source": "plugin",
+      "location": "feishu-create-doc",
+      "role": "知识库沉淀",
+      "step": 4
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "step": 1,
+        "name": "GitHub 数据采集",
+        "skill": "Agent-Reach",
+        "inputs": {
+          "task_type": "github_analysis",
+          "repo": "${repo}",
+          "source": "${source:repo}",
+          "language": "${language:all}",
+          "since": "${since:daily}",
+          "include_readme": true,
+          "include_issues": true,
+          "include_contributors": true,
+          "include_stars_history": true
+        },
+        "outputs": {
+          "repo_data": "raw_repo_data.json",
+          "trending_list": "trending_list.json"
+        }
+      },
+      {
+        "step": 2,
+        "name": "技术深度分析",
+        "skill": "tech-article-pro",
+        "inputs": {
+          "topic": "${repo_name} 技术深度解析",
+          "repo_data": "${step1.outputs.repo_data}",
+          "analysis_dimensions": [
+            "架构设计",
+            "技术原理",
+            "性能评估",
+            "社区生态",
+            "竞品对比"
+          ],
+          "style": "machine-heart-infoq",
+          "technical_tags": ["架构", "代码实现", "技术原理", "性能优化"],
+          "min_code_examples": 4,
+          "technical_content_ratio": ">=70%"
+        },
+        "outputs": {
+          "tech_report": "tech-report-${date}.md",
+          "key_insights": "insights-${date}.json"
+        }
+      },
+      {
+        "step": 3,
+        "name": "公众号文章生成",
+        "skill": "wechat-article-pro",
+        "inputs": {
+          "title": "${repo_name} 深度解析 | ${one_line_highlight}",
+          "tech_report": "${step2.outputs.tech_report}",
+          "word_count_target": 4000,
+          "style": "liurun_narrative",
+          "required_sections": [
+            "技术原理",
+            "代码实现",
+            "竞品对比",
+            "适用场景",
+            "技术趋势"
+          ],
+          "min_code_examples": 4,
+          "generate_cover": true,
+          "no_hashtags": true,
+          "no_closing_ CTA": true
+        },
+        "outputs": {
+          "article": "wechat-article-${date}.md",
+          "cover_prompt": "cover-prompt-${date}.txt"
+        }
+      },
+      {
+        "step": 4,
+        "name": "飞书知识库沉淀",
+        "skill": "feishu-create-doc",
+        "inputs": {
+          "title": "【技术尽调】${repo_name} | ${date}",
+          "content": "${step2.outputs.tech_report}",
+          "format": "markdown",
+          "folder_token": "${feishu_folder_token}",
+          "wiki_node": "${feishu_wiki_node}",
+          "grant_to_requester": true
+        },
+        "outputs": {
+          "doc_url": "${feishu_doc_url}",
+          "doc_id": "${feishu_doc_id}"
+        }
+      }
+    ],
+    "routes": {
+      "single_repo": ["step1 -> step2 -> step3 -> step4"],
+      "trending_analysis": ["step1 (trending) -> step2 -> step3 -> step4"],
+      "multi_repo_compare": ["step1 (multi) -> step2 (compare) -> step3 -> step4"]
+    }
+  },
+  "config": {
+    "defaults": {
+      "source": "repo",
+      "language": "all",
+      "since": "daily",
+      "word_count_target": 4000,
+      "technical_content_ratio": ">=70%",
+      "min_code_examples": 4
+    },
+    "github_token_required": false,
+    "feishu_auth_required": true
+  },
+  "metadata": {
+    "author": "OpenClaw",
+    "created": "2026-07-18",
+    "tags": ["GitHub", "技术分析", "公众号", "知识管理", "AI", "自动化"],
+    "platform": "openclaw"
+  }
+}

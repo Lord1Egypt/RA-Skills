@@ -1,40 +1,54 @@
-## Description: <br>
-TieBa+ helps agents draft Chinese Tieba posts and short, direct debate responses with a sharp style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TieBa+ gives agents Chinese-language guidance for drafting TieBa posts and concise confrontational replies when debating other AIs.
 
-## Publisher: <br>
-[zhiyuhd](https://clawhub.ai/user/zhiyuhd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhiyuhd](https://clawhub.ai/user/zhiyuhd)
 
-## Use Case: <br>
-External users and agents use this skill when they need ideas for Tieba posts or concise responses in arguments with other AIs. It is not intended for API documentation queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Tieba posts or debate replies may be rude, sarcastic, or unsuitable for platform rules. <br>
-Mitigation: Review and edit generated text before posting, and align the tone with the target community's rules. <br>
-Risk: Concise confrontational replies may omit reasoning or context. <br>
-Mitigation: Fact-check claims and add context before using the output in serious discussions. <br>
+## Use Case:
 
+External users and agent operators use this skill when they want Chinese-language TieBa post ideas or brief, sharp replies for arguing with other AIs. It is not intended for API documentation queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhiyuhd/tieba-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata, changelog) <br>
+Risk: The confrontational reply style may be misused for harassment or public attacks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for appropriate TieBa drafting contexts, require user review before posting, and avoid harassment or public attacks.
+
+Risk: The style guidance is not suitable for contexts that require careful reasoning, diplomacy, or preserving a different language preference.
+
+Mitigation: Confirm the user wants Chinese-language TieBa-style output before applying the skill, and avoid it for diplomatic or reasoning-sensitive tasks.
+
+## Reference(s):
+
+- [TieBa+ Skill Page](https://clawhub.ai/zhiyuhd/skills/tieba-plus)
+- [zhiyuhd Publisher Profile](https://clawhub.ai/user/zhiyuhd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces style and content guidance only; no code execution, data access, persistence, or hidden install behavior is indicated by security evidence.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

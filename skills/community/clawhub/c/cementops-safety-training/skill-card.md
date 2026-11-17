@@ -1,51 +1,69 @@
-## Description: <br>
-Build and manage MSHA Part 46 safety training programs for cement plants, including task training templates, toolbox talks, new miner orientation, compliance checks, and program setup guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and manage MSHA Part 46 training programs for cement plants with task training templates, toolbox talk support, new miner orientation, compliance audits, and program setup guidance.
 
-## Publisher: <br>
-[larkinjoshuad](https://clawhub.ai/user/larkinjoshuad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larkinjoshuad](https://clawhub.ai/user/larkinjoshuad)
 
-## Use Case: <br>
-Plant safety managers, training coordinators, supervisors, and HR professionals use this skill to build MSHA Part 46 cement-plant training programs, generate task training outlines and toolbox talks, check compliance gaps, and prepare for inspections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workplace safety or regulatory guidance may be incomplete, outdated, or mismatched to a specific cement plant. <br>
-Mitigation: Validate outputs against current MSHA requirements, site-specific procedures, and qualified safety or legal professionals before relying on them. <br>
-Risk: Hands-on training guidance could be misapplied around energized, operating, elevated, or otherwise hazardous equipment. <br>
-Mitigation: Require pre-training hazard assessment, controlled access, appropriate PPE, competent supervision, and site approval before practical exercises. <br>
-Risk: Training records and compliance discussions may involve employee or HR-sensitive information. <br>
-Mitigation: Avoid entering employee PII or sensitive HR records unless the local agent runtime and data handling process are approved for that information. <br>
+## Use Case:
 
+Plant safety managers, training coordinators, supervisors, and HR professionals use this skill to build and maintain MSHA Part 46 training programs, generate task training outlines and toolbox talks, and prepare training records for inspection readiness.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/larkinjoshuad/cementops-safety-training) <br>
-- [CementOps AI Homepage](https://cementops.ai) <br>
-- [README](README.md) <br>
-- [MSHA Part 46 Requirements](knowledge-bases/msha-part46-requirements.json) <br>
-- [Training Topics](knowledge-bases/training-topics.json) <br>
-- [Task Training Templates](training-content/task-training-templates.json) <br>
-- [Safety Talks](training-content/safety-talks.json) <br>
-- [Training Compliance Troubleshooting](troubleshooting/training-compliance.json) <br>
-- [Training Program Setup Guide](guidance-templates/training-program-setup.md) <br>
-- [Training Safety Hazards](safety/training-safety.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown or structured text with CFR references, checklists, templates, and training outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only reference skill; no executable code or credential access was identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter version is 1.0.0) <br>
+Risk: Generated training guidance may be mistaken for legal advice or a complete regulatory determination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as regulatory support, confirm formal MSHA positions with qualified counsel or responsible compliance staff, and preserve local accountability for training decisions.
+
+Risk: Generic training templates may omit site-specific equipment, procedures, or hazards.
+
+Mitigation: Customize training content to the plant's actual equipment, procedures, hazards, and records before use.
+
+Risk: Hands-on training near equipment can expose trainees to operating hazards.
+
+Mitigation: Use controlled access, competent supervision, pre-session hazard checks, and de-energized or isolated equipment where possible.
+
+Risk: Installing from an unintended source or with elevated privileges can increase supply-chain exposure.
+
+Mitigation: Install only from the intended ClawHub source, avoid elevated privileges, and pin or verify installer versions in controlled environments.
+
+## Reference(s):
+
+- [CementOps Safety Training on ClawHub](https://clawhub.ai/larkinjoshuad/skills/cementops-safety-training)
+- [CementOps AI](https://cementops.ai)
+- [Skill README](artifact/README.md)
+- [MSHA Part 46 Requirements Knowledge Base](artifact/knowledge-bases/msha-part46-requirements.json)
+- [Training Topics Knowledge Base](artifact/knowledge-bases/training-topics.json)
+- [Task Training Templates](artifact/training-content/task-training-templates.json)
+- [Toolbox Safety Talks](artifact/training-content/safety-talks.json)
+- [Training Program Setup Guide](artifact/guidance-templates/training-program-setup.md)
+- [Training Activity Safety Protocols](artifact/safety/training-safety.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown prose with structured lists, training outlines, checklists, CFR references, and template identifiers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be customized to the plant's actual equipment, procedures, hazards, and training records.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

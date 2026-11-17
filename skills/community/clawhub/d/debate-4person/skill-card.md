@@ -1,41 +1,53 @@
-## Description: <br>
-四人制标准辩论工具，AI 扮演正反方 8 名辩手，按立论→攻辩→总结流程辩论，支持打断、评委点评打分。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language structured debate assistant that has AI roleplay affirmative and negative debate teams, run opening, cross-examination, rebuttal, and summary rounds, and optionally provide judge commentary and scoring.
 
-## Publisher: <br>
-[woqigeshenmemingzibijiaoheshine](https://clawhub.ai/user/woqigeshenmemingzibijiaoheshine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woqigeshenmemingzibijiaoheshine](https://clawhub.ai/user/woqigeshenmemingzibijiaoheshine)
 
-## Use Case: <br>
-External users use this skill to run a structured four-person debate simulation with affirmative and negative teams, optional web-search-supported arguments, interruption handling, and judge scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web-search-backed debate queries may be sent to Tavily when TAVILY_API_KEY is configured. <br>
-Mitigation: Use non-sensitive debate topics when web search is enabled. <br>
-Risk: Generated statistics, citations, or argumentative claims may be incorrect or misleading. <br>
-Mitigation: Verify important statistics and citations before relying on them. <br>
+## Use Case:
 
+External users and developers use this skill to simulate a standard Chinese four-person debate workflow for debate practice, scenario simulation, and assessment. The skill can use web search for supporting evidence when Tavily credentials are available, otherwise it falls back to the agent's general knowledge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/woqigeshenmemingzibijiaoheshine/debate-4person) <br>
-- [Publisher profile](https://clawhub.ai/user/woqigeshenmemingzibijiaoheshine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational debate transcript with judge feedback and scores] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Tavily web search when TAVILY_API_KEY is configured; otherwise falls back to model knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Sensitive personal, workplace, legal, medical, or private debate topics may be transformed into web search queries when Tavily-backed search is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive topics unless the user is comfortable with those topics or derived queries being sent to Tavily or web search.
+
+Risk: Debate arguments and cited evidence may be incomplete or inaccurate, especially when search is unavailable and the skill falls back to general model knowledge.
+
+Mitigation: Review important claims before relying on debate output for training, assessment, or decision-making.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/woqigeshenmemingzibijiaoheshine/skills/debate-4person)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text debate transcript, judge commentary, scores, and improvement guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require TAVILY_API_KEY for Tavily-backed search evidence; otherwise uses the agent's general knowledge.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

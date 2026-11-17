@@ -1,41 +1,59 @@
-## Description: <br>
-Transforms an OpenClaw agent with the APEX cognitive framework, adding structured thinking patterns, context-aware modes, and execution-focused response guidance without API keys or configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+APEX-AGENT reshapes an OpenClaw-compatible agent's session behavior with structured response guidelines for analysis, prioritization, execution, and context-aware communication.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-Developers, founders, and teams use this skill to shape an agent's conversational style toward concise diagnosis, decisive recommendations, structured execution, mentoring, and creative ideation. It is best suited for general productivity, strategy, coding, and decision-support workflows where normal safety requirements remain in force. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly changes answer framing and may make the agent more decisive across many task types. <br>
-Mitigation: Keep user instructions, task-specific policies, and normal safety requirements above this skill, especially for medical, legal, financial, security, and compliance work. <br>
-Risk: The skill is not recommended for medical advice, legal advice, financial advice, or regulated compliance contexts. <br>
-Mitigation: Avoid relying on this skill for those domains unless qualified reviewers and domain-specific safety controls are in place. <br>
+## Use Case:
 
+External developers, founders, and teams use this skill to give an agent a consistent response style for debugging, strategy, execution, mentoring, creative work, and research synthesis. It is session-scoped and intended for agent behavior guidance rather than code execution or data access.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/contrario/apex-agent) <br>
-- [Publisher Profile](https://clawhub.ai/contrario) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional inline code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Session-scoped response guidance; no API keys, environment variables, code execution, data access, persistence, or hidden setup found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The skill broadly reshapes the agent's tone and decision style across a session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that behavior is desired, and review exact-format outputs or production-operation guidance before acting on them.
+
+Risk: The artifact marks medical, legal, financial, and regulated compliance domains as not recommended.
+
+Mitigation: Use qualified human review for regulated advice and preserve safety-critical disclaimers in those contexts.
+
+Risk: An action-first response style can underemphasize review steps during operational incidents.
+
+Mitigation: Require human approval for production-impacting commands and treat generated shell commands as proposals.
+
+## Reference(s):
+
+- [APEX-AGENT ClawHub listing](https://clawhub.ai/contrario/skills/apex-agent)
+- [Publisher profile](https://clawhub.ai/user/contrario)
+- [ClawHub author homepage](https://clawhub.ai/contrario)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with optional inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Session-scoped response guidance; no API keys, environment variables, or configuration required by the artifact.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

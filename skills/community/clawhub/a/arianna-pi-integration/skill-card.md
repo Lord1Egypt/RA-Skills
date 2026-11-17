@@ -1,47 +1,61 @@
-## Description: <br>
-Integrates the Playfilo shared-memory DAG into the pi-mono coding agent, adding DAG persistence, time-travel tools, and cross-session memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates the Playfilo shared-memory DAG into the pi-mono coding agent. Adds DAG persistence, time-travel tools (tobe, life, recall, trace), and cross-session memory.
 
-## Publisher: <br>
-[wujilabs](https://clawhub.ai/user/wujilabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wujilabs](https://clawhub.ai/user/wujilabs)
 
-## Use Case: <br>
-Developers integrating Playfilo with pi-mono use this skill to apply patch guidance and bundled TypeScript for DAG-backed session persistence, temporal tools, cross-session memory, and system prompt injection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory and agent state are mirrored into ~/.playfilo/playfilo.db, which can retain sensitive prompts or session data. <br>
-Mitigation: Install only when shared Playfilo memory is intended, avoid secrets in prompts or memory, restrict filesystem permissions, and plan inspection, rotation, or deletion of ~/.playfilo/playfilo.db and tobe_debug.log. <br>
-Risk: System-prompt influence through ~/.playfilo/INCUBATION_SEED.md can steer every run. <br>
-Mitigation: Treat ~/.playfilo/INCUBATION_SEED.md as privileged configuration and review changes before use. <br>
-Risk: The security verdict is suspicious because privacy, retention, and control guidance is limited for broad shared-memory behavior. <br>
-Mitigation: Review the skill before deployment and define local retention and access-control practices for the Playfilo data store. <br>
+## Use Case:
 
+Developers and engineers use this skill to patch pi-mono's coding agent with Playfilo DAG persistence, cross-session memory, temporal navigation tools, and a system-prompt seed extension.
 
-## Reference(s): <br>
-- [Arianna homepage](https://arianna.run) <br>
-- [ClawHub skill page](https://clawhub.ai/wujilabs/arianna-pi-integration) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Verification checklist](artifact/filo/patches/verify.md) <br>
-- [Tobe V2 design spec](artifact/filo/patches/tobe-v2-spec.md) <br>
-- [Playtiss core README](artifact/playtiss/core/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces patch guidance and bundled source files; it does not directly execute changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Persistent cross-session memory may store prompts, reasoning, tool outputs, code, and secrets in local Playfilo files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only when persistent agent memory is intended; treat ~/.playfilo/playfilo.db and ~/.playfilo/tobe_debug.log as sensitive; add redaction, permissions, retention, and delete controls for sensitive workspaces.
+
+Risk: The skill installs persistent system-prompt-changing behavior through a Pi extension.
+
+Mitigation: Review or remove the seed extension before use, and document any prompt changes for users and operators.
+
+Risk: Patch and dependency changes can alter a coding agent's runtime behavior.
+
+Mitigation: Pin dependencies, review patches before execution, and run the bundled verification checklist in a non-sensitive checkout before deployment.
+
+## Reference(s):
+
+- [Arianna homepage](https://arianna.run)
+- [ClawHub skill page](https://clawhub.ai/wujilabs/skills/arianna-pi-integration)
+- [Playfilo integration skill](SKILL.md)
+- [Playtiss-backed storage module notes](playtiss/core/README.md)
+- [Verification checklist](filo/patches/verify.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown patch instructions with TypeScript source and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces additive integration guidance and bundled source for a target pi-mono checkout; patch application is performed by the consuming agent or developer.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,66 @@
-## Description: <br>
-Helps agents create Amazon SP-API Uploads API destinations through LinkFox and upload a selected file to the returned URL for A+ Content or Messaging workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This third-party skill helps agents create Amazon SP-API upload destinations, compute contentMD5 values, and upload images or attachments to returned presigned URLs for A+ Content, Messaging, and related workflows.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External developers and marketplace operators use this skill to create Amazon upload destinations and transfer binary files that downstream SP-API workflows can reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a LinkFox API key and Amazon SP-API seller context. <br>
-Mitigation: Keep LINKFOXAGENT_API_KEY in the environment, avoid committing credentials, and run only in sessions intended for LinkFox/Amazon SP-API uploads. <br>
-Risk: The upload workflow reads a user-selected local file and sends its bytes to an upload URL. <br>
-Mitigation: Review the file path, content type, marketplace, and resource before execution, and upload only to destinations returned by the Amazon upload-destination workflow. <br>
-Risk: Incorrect resource paths, marketplace IDs, or headers can cause failed uploads or uploads that cannot be used by downstream SP-API workflows. <br>
-Mitigation: Match resource values to the downstream Amazon API documentation and pass the returned uploadDestination headers unchanged. <br>
+## Use Case:
 
+External developers and Amazon store operators use this skill to prepare upload resources for Amazon SP-API workflows, especially A+ Content and Messaging attachments. It can guide API-key setup, create upload destinations through LinkFox, compute file digests, upload local file content to returned URLs, and preserve JSON results for later inspection.
 
-## Reference(s): <br>
-- [API reference](references/api.md) <br>
-- [Amazon createUploadDestinationForResource](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource) <br>
-- [Amazon Create an upload destination](https://developer-docs.amazon.com/sp-api/docs/create-an-upload-destination) <br>
-- [Amazon Messaging API reference](https://developer-docs.amazon.com/sp-api/docs/messaging-api-v1-reference) <br>
-- [ClawHub skill page](https://clawhub.ai/linkfox-ai/linkfox-amazon-store-uploads) <br>
-- [LinkFox Skills](https://skill.linkfox.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute bundled Python scripts that read a selected file, call LinkFox/Amazon SP-API upload destination endpoints, and PUT bytes to the returned upload URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and release evidence) <br>
+Risk: The skill can read local files and upload their bytes to a returned upload URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected file is intended for the Amazon workflow and verify that upload URLs come from Amazon or LinkFox before running upload commands.
+
+Risk: The skill uses LinkFox API credentials and may expose sensitive values through environment variables, logs, transcripts, or shell history.
+
+Mitigation: Run with trusted environment variables, avoid sharing command transcripts containing credentials, and rotate any API key that appears in logs or history.
+
+Risk: The onboarding flow can guide phone/SMS account setup and initiate payment-order flows.
+
+Mitigation: Use onboarding only for explicit authentication or billing recovery, and confirm account, plan, payment method, and order details before proceeding.
+
+Risk: The skill persists complete API responses locally, which may include operational or account-related data.
+
+Mitigation: Review saved JSON files before sharing them and remove session data that is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-amazon-store-uploads)
+- [API reference](references/api.md)
+- [Onboarding reference](references/onboarding.md)
+- [Amazon createUploadDestinationForResource reference](https://developer-docs.amazon.com/sp-api/reference/createuploaddestinationforresource)
+- [Amazon Create an upload destination guide](https://developer-docs.amazon.com/sp-api/docs/create-an-upload-destination)
+- [Amazon Messaging API reference](https://developer-docs.amazon.com/sp-api/docs/messaging-api-v1-reference)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Shell commands, Configuration guidance, API calls]
+
+**Output Format:** [Markdown guidance with shell commands, JSON stdout, and persisted JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes complete responses under a linkfox session data directory and may print summaries for larger responses.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

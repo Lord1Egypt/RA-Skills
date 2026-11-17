@@ -1,44 +1,62 @@
-## Description: <br>
-Registers .nad names on the Monad blockchain via Nad Name Service, including availability checks, pricing lookup, dry runs, and transaction registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nadname Agent registers .nad names on the Monad blockchain through Nad Name Service, including availability checks, pricing lookup, gas estimation, and registration commands.
 
-## Publisher: <br>
-[daaab](https://clawhub.ai/user/daaab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-External users and developers use this skill to check .nad name availability, estimate registration costs, and register or list names on Monad through Nad Name Service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles wallet private keys and can submit irreversible blockchain transactions. <br>
-Mitigation: Use a dedicated low-balance wallet, prefer dry-run first, and avoid exposing a primary wallet private key. <br>
-Risk: Some lookup results may be simulated or overstated as reliable. <br>
-Mitigation: Independently verify availability, ownership, pricing, and transaction details through official NNS sources before spending MON. <br>
+## Use Case:
 
+External developers and web3 users use this skill to check .nad name availability, estimate costs, register names, and list names through Node.js scripts for Monad and Nad Name Service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daaab/nadname-agent) <br>
-- [Nad Name Service documentation](https://docs.nad.domains) <br>
-- [Nad Name Service app](https://app.nad.domains) <br>
-- [Monad Explorer](https://explorer.monad.xyz) <br>
-- [Monad Bridge](https://bridge.monad.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration notes, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction steps, dry-run recommendations, wallet setup guidance, and verification warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill handles wallet private keys and irreversible blockchain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only a low-value wallet, run dry-run first, and manually verify transaction details before sending.
+
+Risk: Availability, ownership, and pricing lookups depend on external NAD and Monad services and should not be treated as authoritative without verification.
+
+Mitigation: Cross-check name status, price, contract address, and transaction data in trusted NNS and Monad tools before committing funds.
+
+Risk: Managed keystore behavior includes key-handling concerns called out by the security guidance.
+
+Mitigation: Prefer a low-value wallet through the PRIVATE_KEY environment variable and avoid managed keystore mode until the plaintext fallback, custom encryption, transaction validation, and explicit confirmation issues are fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daaab/skills/nadname-agent)
+- [Nad Name Service Documentation](https://docs.nad.domains)
+- [Nad Name Service App](https://app.nad.domains)
+- [NAD Registration API Endpoint](https://api.nad.domains/api/register-request)
+- [Monad Explorer](https://explorer.monad.xyz)
+- [Monad Bridge](https://bridge.monad.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a low-value wallet private key or managed keystore, network access to NAD API and Monad RPC, and user review before transactions.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact package.json and _meta.json report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

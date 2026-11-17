@@ -1,47 +1,65 @@
-## Description: <br>
-Run a full market research and strategy analysis workflow using 12 specialized prompts for market sizing, competition, personas, trends, pricing, go-to-market, financial modeling, risk, market entry, and executive synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a full McKinsey-level market research and strategy analysis using 12 specialized prompts.
 
-## Publisher: <br>
-[abdullah4ai](https://clawhub.ai/user/abdullah4ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah4ai](https://clawhub.ai/user/abdullah4ai)
 
-## Use Case: <br>
-External users, business operators, founders, analysts, and developers use this skill to turn a business description into a structured market research and strategy report. The workflow gathers business context, runs staged analyses, and delivers an executive summary, priority actions, and a saved HTML report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may collect sensitive business context, financial assumptions, and generated strategy reports during research workflows. <br>
-Mitigation: Use only approved business inputs, avoid credentials, regulated data, unreleased strategy, and proprietary financials unless authorized, and review retained artifacts after completion. <br>
-Risk: The workflow saves reports, logs, raw data, and feedback in the workspace, which may be accessible beyond the immediate run. <br>
-Mitigation: Run in an appropriate workspace, limit access to generated artifacts, and remove or protect saved reports and logs when they contain confidential information. <br>
+## Use Case:
 
+External users, developers, and business teams use this skill to run structured market research, competitive analysis, pricing, go-to-market, financial modeling, risk, and executive strategy synthesis workflows for a business idea or operating company.
 
-## Reference(s): <br>
-- [McKinsey Research Skill Page](https://clawhub.ai/abdullah4ai/mckinsey-research) <br>
-- [Security Guidance](references/security.md) <br>
-- [Variable Map](references/variable-map.md) <br>
-- [Prompts Index](references/prompts.md) <br>
-- [Gotchas](references/gotchas.md) <br>
-- [Saudi Market Reference](references/saudi-market.md) <br>
-- [Industry Benchmarks](references/benchmarks.md) <br>
-- [HTML Report Template](templates/report.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown response plus saved HTML report and supporting Markdown analysis files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final report is saved under artifacts/research/{date}-{slug}.html; intermediate analyses, raw data, execution logs, and feedback may also be saved in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can use web research, launch multiple sub-agents, and save business analysis files locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted, pinned channel when possible, avoid providing credentials or confidential financial details, and review generated artifacts before sharing.
+
+Risk: Market sizing, competitor data, and financial projections can become outdated or assumption-heavy.
+
+Mitigation: Require verifiable citations, source dates, and explicit assumptions; have a qualified reviewer check business-critical recommendations.
+
+Risk: Local report and data files persist in the workspace and may be readable by other skills in the same environment.
+
+Mitigation: Keep sensitive inputs out of artifact files and remove or restrict generated reports when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abdullah4ai/skills/mckinsey-research)
+- [Security Guidance](references/security.md)
+- [Variable Map](references/variable-map.md)
+- [Strategy Prompts](references/prompts.md)
+- [Prompt Library](references/prompts/)
+- [Gotchas](references/gotchas.md)
+- [Saudi Market Reference](references/saudi-market.md)
+- [Industry Benchmarks Reference](references/benchmarks.md)
+- [Report Template](templates/report.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown summaries and self-contained HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves individual analyses and a final report under artifacts/research/; reports should cite verifiable market sources and state assumptions.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,52 +1,61 @@
-## Description: <br>
-Okx Dex Bridge helps agents quote, compare, execute, and track OKX Onchain OS cross-chain token bridge flows across supported chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents bridge tokens across supported chains using OKX OnchainOS by checking routes, comparing fees, preparing approvals or swap calldata, executing confirmed transfers, and tracking status until funds arrive.
 
-## Publisher: <br>
-[ok-james-01](https://clawhub.ai/user/ok-james-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ok-james-01](https://clawhub.ai/user/ok-james-01)
 
-## Use Case: <br>
-External users and developers use this skill to prepare, review, execute, and monitor cross-chain token transfers through OKX Onchain OS. It supports route comparison, approvals, destination-address handling, bridge status checks, and troubleshooting for supported chains and bridge protocols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help submit real cross-chain transactions that move crypto funds. <br>
-Mitigation: Require explicit user confirmation after reviewing token addresses, chains, amount, route, fees, approval, and destination address before any broadcast. <br>
-Risk: A wrong token contract or destination address can cause permanent fund loss. <br>
-Mitigation: Resolve token addresses per chain, show token-search results for confirmation, and require a second confirmation when the receive address differs from the sender wallet. <br>
-Risk: Approvals expand a bridge router's spending authority. <br>
-Mitigation: Show the spender, amount, revoke requirement, and net effect before approval, and only pass approval-related execution flags after explicit user consent. <br>
-Risk: The skill may install or update the onchainos CLI from OKX GitHub releases. <br>
-Mitigation: Follow the artifact pre-flight checks: fetch the latest stable release, verify installer and binary SHA256 checksums, and stop on integrity mismatch. <br>
-Risk: Bridge execution is asynchronous; a source-chain broadcast does not prove destination arrival. <br>
-Mitigation: Track status with the required transaction identifier, bridge ID, and source chain, and only report completion when status or destination-chain evidence confirms arrival. <br>
+## Use Case:
 
+Developers and external users use this skill to guide agent-assisted cross-chain token transfers, including route discovery, quote comparison, approval handling, execution with confirmation gates, and status tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ok-james-01/okx-dex-bridge) <br>
-- [OKX Web3 homepage](https://web3.okx.com) <br>
-- [OKX Onchain OS cross-chain API reference](https://web3.okx.com/onchainos/dev-docs/trade/cross-chain-api-reference) <br>
-- [CLI command reference](references/cli-reference.md) <br>
-- [Cross-chain troubleshooting](references/troubleshooting.md) <br>
-- [Shared pre-flight checks](_shared/preflight.md) <br>
-- [Shared chain support](_shared/chain-support.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured transaction summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include route comparison tables, confirmation prompts, diagnostic summaries, and status-check commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill can move real cross-chain assets and approvals can expand a bridge router's spending authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before approvals, execution, route pinning, force mode, skip-approve, or any non-default receive address.
+
+Risk: Wrong token, chain, route, or destination address can cause permanent fund loss.
+
+Mitigation: Resolve token addresses per chain, show quote and route details before execution, and require a second confirmation when the receive address differs from the sender wallet.
+
+Risk: The pre-flight flow downloads and executes an updatable installer.
+
+Mitigation: Prompt visibly before install or update, verify downloaded installer checksums, and verify the installed binary checksum before use.
+
+## Reference(s):
+
+- [OKX Web3](https://web3.okx.com)
+- [OKX OnchainOS DEX Cross-Chain API Reference](https://web3.okx.com/onchainos/dev-docs/trade/cross-chain-api-reference)
+- [CLI Command Reference](artifact/references/cli-reference.md)
+- [Cross-Chain Troubleshooting](artifact/references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/ok-james-01/skills/okx-dex-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with CLI commands, tables, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route comparison tables, approval instructions, transaction status summaries, and risk-gate prompts.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

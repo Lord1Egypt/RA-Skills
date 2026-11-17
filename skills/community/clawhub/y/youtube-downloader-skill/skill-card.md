@@ -1,42 +1,56 @@
-## Description: <br>
-Download YouTube videos by URL in various resolutions using a pay-per-use API with credit-based authentication and no charge on failed downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download YouTube videos by URL in various resolutions using a pay-per-use API with credit-based authentication and no charge on failed downloads.
 
-## Publisher: <br>
-[jxyyjm](https://clawhub.ai/user/jxyyjm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jxyyjm](https://clawhub.ai/user/jxyyjm)
 
-## Use Case: <br>
-External users and agents use this skill to download YouTube videos or extract audio at requested resolutions through the skill.lordest.cn API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends YouTube URLs and an API key to the third-party skill.lordest.cn downloader service. <br>
-Mitigation: Use a dedicated, revocable API key and avoid submitting private or sensitive video URLs. <br>
-Risk: Successful downloads may consume account credits and produce hosted download links. <br>
-Mitigation: Confirm the requested video and resolution before use, and share returned download links only with intended recipients. <br>
+## Use Case:
 
+Agents use this skill when a user asks to download a YouTube video, choose a video resolution, or extract audio from a YouTube URL through the documented third-party API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jxyyjm/youtube-downloader-skill) <br>
-- [YouTube downloader service](https://skill.lordest.cn) <br>
-- [API key management](https://skill.lordest.cn/?page=apikeys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell Commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline JSON, bash, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return hosted download links, video metadata, account status, or error responses from the third-party service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release evidence) <br>
+Risk: The skill sends the user's generated service API key and requested YouTube URLs to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, rotatable API key and review the provider's terms, privacy practices, and pricing before use.
+
+Risk: Successful downloads may be served from an external storage URL.
+
+Mitigation: Review downloaded files and storage links before opening or sharing them, and confirm that the requested content may be downloaded under applicable rights and policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jxyyjm/skills/youtube-downloader-skill)
+- [Publisher profile](https://clawhub.ai/user/jxyyjm)
+- [YouTube Video Downloader service](https://skill.lordest.cn)
+- [API key management](https://skill.lordest.cn/?page=apikeys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown instructions with JSON, bash, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API requests that send the user's API key and requested YouTube URL to the third-party service.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

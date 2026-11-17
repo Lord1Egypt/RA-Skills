@@ -1,44 +1,59 @@
-## Description: <br>
-Provides retry policies, exception classification, fallback execution, degradation handling, and audit logging for ClawHub agent task failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub Retry & Fallback helps ClawHub Agent tasks retry failed tool calls, classify exceptions, switch to configured fallback tools, degrade task execution, and record audit logs.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and agent operators use this skill to make task workflows more resilient by retrying transient failures, selecting trusted fallbacks, degrading gracefully, and recording execution logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retries can repeat operations and create duplicate side effects when used with non-idempotent actions. <br>
-Mitigation: Use bounded retry attempts and durations, apply the helper to idempotent or deduplicated operations, and require confirmation for side-effecting backups. <br>
-Risk: Fallback execution can switch work to backup functions that are untrusted or less appropriate for the task. <br>
-Mitigation: Register only trusted fallback tools, review parameter mappings, and enable confirmation for sensitive switches. <br>
-Risk: Audit logs and exported records can capture sensitive task details or exception messages. <br>
-Mitigation: Keep logs in a protected directory, avoid logging secrets, and review exports before sharing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to add retry, fallback, degradation, and audit logging behavior around ClawHub Agent tool calls and workflow steps. It is intended for operational resilience when transient failures, unavailable services, or partially failed task chains need controlled handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/clawhub-retry-fallback) <br>
-- [README.md](README.md) <br>
-- [retry_policies.yaml](config/retry_policies.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples plus configuration references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes retry results, fallback results, degradation status, and local audit log records when used by the helper modules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Security evidence flags the release as suspicious because audit export behavior, unpinned install dependencies, and unsupported security claims need review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment, pin and hash dependencies, and review the claimed security and compliance properties before deployment.
+
+Risk: Fallback tool configuration can redirect work to backup functions and map parameters, which can change task behavior.
+
+Mitigation: Restrict who can configure fallback tools and require explicit confirmation for sensitive or high-impact fallback paths.
+
+Risk: Audit logs and CSV/XLSX exports may contain task details or other sensitive operational data.
+
+Mitigation: Treat audit logs and exports as sensitive, limit access to them, and avoid opening spreadsheet exports from untrusted task data until formula neutralization is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/clawhub-retry-fallback)
+- [README](artifact/README.md)
+- [Retry policy configuration](artifact/config/retry_policies.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown documentation with Python and shell examples plus YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes retry results, fallback results, degradation reports, and audit log exports when used in code.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

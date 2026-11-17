@@ -1,41 +1,53 @@
-## Description: <br>
-Navigate Utrecht as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Utrecht as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users ask the agent for practical Utrecht guidance when visiting, moving, studying, working in tech, starting a business, or comparing neighborhoods, transport, costs, food, healthcare, education, visas, and local customs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: City guidance can become stale for healthcare contacts, emergency procedures, insurance rules, visa thresholds, taxes, prices, and housing conditions. <br>
-Mitigation: Verify urgent, legal, medical, financial, visa, tax, price, and housing details with official or current local sources before relying on them. <br>
-Risk: Housing and relocation advice may affect significant personal or financial decisions. <br>
-Mitigation: Use the skill as a planning reference and confirm leases, registration requirements, fees, and tenant obligations with authoritative Dutch sources or qualified local professionals. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/utrecht) <br>
-- [Skill homepage](https://clawic.com/skills/utrecht) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+## Use Case:
 
+External users ask about visiting, moving to, studying in, working in, or starting a business in Utrecht. The skill provides practical, role-aware city guidance across neighborhoods, transport, costs, visas, food, safety, healthcare, education, and local culture.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational Utrecht city guidance; no code execution, credentials, data access, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Static city guidance can become stale for consequential immigration, tax, healthcare, housing, fine, and school details.
+
+Mitigation: Verify current official sources before relying on consequential details.
+
+Risk: The skill suggests optional related-skill install commands that could introduce behavior outside this artifact.
+
+Mitigation: Review the related skill package before approving any optional install command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/utrecht)
+- [Skill homepage](https://clawic.com/skills/utrecht)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with tables, checklists, and concise practical recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static city-guide content; no hidden execution, data access, persistence, or deceptive behavior was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

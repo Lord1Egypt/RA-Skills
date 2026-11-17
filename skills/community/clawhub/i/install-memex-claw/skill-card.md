@@ -1,43 +1,60 @@
-## Description: <br>
-Wires the local-first memex MCP memory server into an OpenClaw gateway so OpenClaw sessions are captured, back-filled, and searchable by future agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wires the local-first memex MCP memory server into an OpenClaw gateway, installs or reuses the memex-mvp daemon, back-fills OpenClaw sessions into a local SQLite and FTS5 corpus, and exposes memex search and retrieval tools to the OpenClaw LLM toolset.
 
-## Publisher: <br>
-[sedelev](https://clawhub.ai/user/sedelev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sedelev](https://clawhub.ai/user/sedelev)
 
-## Use Case: <br>
-Developers and operators who run OpenClaw use this skill to install or reuse memex, configure local session capture, back-fill existing OpenClaw history, and expose memex search tools through the OpenClaw MCP configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent searchable records of OpenClaw conversations, including historical sessions, in a local memex SQLite database. <br>
-Mitigation: Review before installing, back up memex.db if needed, and skip or manually approve back-fill and re-import steps when sensitive history should not be indexed. <br>
-Risk: The skill changes local runtime state by installing or reusing memex, registering a daemon or LaunchAgent, and editing the OpenClaw MCP server configuration. <br>
-Mitigation: Inspect the created service, LaunchAgent, OpenClaw config merge, and shell profile edits after installation; the skill's own guidance says it should not use sudo. <br>
+## Use Case:
 
+Developers and operators running OpenClaw use this skill to add persistent local memory: captured sessions, back-filled history, and MCP search tools backed by memex. It is intended for Linux or macOS OpenClaw deployments, including workstations, VPS hosts, self-hosted OpenClaw, and Moonshot Kimi-Claw.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sedelev/install-memex) <br>
-- [memex homepage](https://memex.parallelclaw.ai) <br>
-- [memex-mvp npm package](https://www.npmjs.com/package/memex-mvp) <br>
-- [memex-mvp source link](https://github.com/parallelclaw/memex-mvp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through local discovery, installation, daemon setup, OpenClaw MCP configuration, back-fill, restart, and verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: A persistent user-level service continuously indexes OpenClaw conversations into a local memex database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when continuous local session capture is intended; review the generated systemd user service or LaunchAgent before enabling it, and document disable, uninstall, and data-deletion steps.
+
+Risk: The skill installs memex-mvp from npm using a mutable latest package reference when memex is not already present or needs upgrade.
+
+Mitigation: Prefer a pinned, verified memex-mvp version for controlled deployments and review the package source and checksum before installation.
+
+Risk: PATH changes and OpenClaw MCP configuration edits could affect future shell sessions or gateway behavior.
+
+Mitigation: Confirm shell rc changes before relying on them, verify that OpenClaw configuration is merged rather than overwritten, and run the skill's MCP listing and fresh-session checks after restart.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sedelev/skills/install-memex-claw)
+- [memex homepage](https://memex.parallelclaw.ai)
+- [memex-mvp npm package](https://www.npmjs.com/package/memex-mvp)
+- [Related install-memex skill](https://clawhub.ai/sedelev/install-memex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill asks the agent to run discovery, installation, configuration, migration, and verification steps with concise human-facing status output.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

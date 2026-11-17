@@ -1,43 +1,54 @@
-## Description: <br>
-Configures OpenClaw subagent timeout fields atomically with preset or custom profiles, TTL validation, backup, dry-run preview, and optional gateway restart. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures OpenClaw subagent timeout fields atomically with preset or custom profiles, TTL constraint validation, automatic backup, dry-run preview, and optional gateway restart.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to choose quick, normal, patient, or custom timeout profiles and apply them to subagent runtime settings without manually editing JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify the OpenClaw configuration file and change timeout behavior. <br>
-Mitigation: Use --dry-run first, confirm the target config path, and rely on the automatic backup before applying changes. <br>
-Risk: The default apply flow may restart the OpenClaw gateway and interrupt active work. <br>
-Mitigation: Use --no-restart when a restart should be deferred, then restart the gateway manually at an appropriate time. <br>
-Risk: A broad timeout request could lead an agent to choose an unintended profile. <br>
-Mitigation: Confirm the intended profile or custom values before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect, preview, and update OpenClaw timeout settings for subagents that need longer task budgets.
 
-## Reference(s): <br>
-- [subagent-timeout-config on ClawHub](https://clawhub.ai/songhonglei/subagent-timeout-config) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update OpenClaw JSON configuration and optionally restart the gateway after validation and backup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can change OpenClaw timeout settings and restart the gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --dry-run first and prefer --no-restart when a gateway interruption would be disruptive.
+
+Risk: Configuration writes may need stronger permission preservation on multi-user systems.
+
+Mitigation: Review file permissions after applying changes and harden the writer before use in shared environments.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/songhonglei/skills/subagent-timeout-config)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose dry-run, status, profile, custom-value, config-path, and restart-control CLI invocations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Sets up OpenSpend CLI and optional Coinbase payments-mcp for payment-enabled workflows, including installation, updates, authentication, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up OpenSpend CLI and optional Coinbase payments-mcp for payment-enabled workflows.
 
-## Publisher: <br>
-[albertpurnama](https://clawhub.ai/user/albertpurnama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[albertpurnama](https://clawhub.ai/user/albertpurnama)
 
-## Use Case: <br>
-Developers and agents use this skill to install, authenticate, verify, and troubleshoot OpenSpend CLI and optionally configure Coinbase Payments MCP for paid service workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet-backed paid requests can spend funds without clear per-request approval or spend limits. <br>
-Mitigation: Require explicit approval for each paid request, including destination, purpose, exact maximum amount, network, and whether repeat payments are allowed. <br>
-Risk: Payment tooling may remain available in the MCP client after the workflow is complete. <br>
-Mitigation: Remove the payments MCP server from the client configuration when it is no longer needed. <br>
-Risk: The alternative curl installer executes a remote installation script. <br>
-Mitigation: Prefer the Homebrew install path and use the curl installer only with explicit user approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenSpend installer](https://openspend.ai/install) <br>
+## Use Case:
 
+Developers and operators use this skill to install, update, authenticate, and troubleshoot OpenSpend CLI, and to optionally configure Coinbase Payments MCP for payment-enabled agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes approval checkpoints for installation, authentication, and paid payment workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer commands can execute code from external distribution paths, including a curl-based installer.
+
+Mitigation: Review before installing, prefer the Homebrew path or a pinned and verified release, and avoid curl | sh unless the installer has been independently checked.
+
+Risk: The Payments MCP setup uses an unpinned package and can persist client configuration.
+
+Mitigation: Pin @coinbase/payments-mcp to a reviewed version and confirm any ~/.codex/mcp.json change before saving it.
+
+Risk: Payment-enabled workflows can spend funds through paid requests.
+
+Mitigation: Require explicit user approval and spending limits before paid requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albertpurnama/skills/setup-services)
+- [OpenSpend installer](https://openspend.ai/install)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes preflight checks, install and update commands, MCP configuration guidance, authentication checks, payment workflow guidance, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Determines nine TCM constitution types from facial photos, videos, or URLs and returns constitution scores, tendencies, health-risk notes, and personalized TCM wellness suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Determines nine TCM constitution types including Yin deficiency, Yang deficiency, Qi deficiency, phlegm-dampness, and blood stasis through facial features and physical signs, and provides personalized health preservation and conditioning suggestions.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and agents use this skill to submit a face image, video, or media URL for TCM constitution analysis and to retrieve prior analysis reports. The results are wellness-oriented and should not be treated as a medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Face photos, videos, URLs, and report history are sent to the Life Emergence service and linked to a persistent local/backend identity. <br>
-Mitigation: Get explicit user consent before analysis or history lookup, avoid submitting unnecessary personal media, and confirm the publisher's retention and deletion controls before routine use. <br>
-Risk: The skill provides TCM wellness analysis that could be mistaken for medical diagnosis or treatment advice. <br>
-Mitigation: Present results as wellness reference only and direct users with health concerns to qualified medical professionals. <br>
+## Use Case:
 
+External users can submit a face photo or video for a traditional Chinese medicine constitution assessment and receive a report with constitution tendencies and general wellness suggestions. They can also request a list of prior analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-tcm-constitution-recognition-analysis) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [API documentation](references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, JSON, shell commands, files] <br>
-**Output Format:** [Markdown or JSON analysis reports, Markdown tables for history listings, and optional saved output files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts local image/video paths or media URLs and can query report history through the service API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security review rates this release suspicious and flags credential handling, remote account registration, and health-media workflows as privacy and purpose-alignment concerns; it does not establish malicious intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and clearly explain credential handling, account creation, and media upload behavior before installation; avoid use until these workflows are addressed.
+
+Risk: Constitution assessments and wellness suggestions may be mistaken for a clinical diagnosis or treatment plan.
+
+Mitigation: Use results only as general wellness reference; consult a qualified practitioner for diagnosis or treatment, especially when experiencing symptoms.
+
+## Reference(s):
+
+- [API interface documentation](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+- [ClawHub skill listing](https://clawhub.ai/18072937735/skills/smyx-tcm-constitution-recognition-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, JSON, Markdown]
+
+**Output Format:** [Text with structured JSON analysis reports and Markdown history lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include constitution types, tendencies, scores, health considerations, and general wellness suggestions.]
+
+## Skill Version(s):
+
+1.0.18 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

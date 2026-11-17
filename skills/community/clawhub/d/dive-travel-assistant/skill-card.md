@@ -1,42 +1,58 @@
-## Description: <br>
-零配置即装即用，覆盖潜水全链路服务——潜点搜索、考证指南、安全检查，以及机票酒店交通美食预订，国内走飞猪高德国际走RG自动分流，所有预订链路支持分佣。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+潜水旅行助手为潜水旅行者提供潜点搜索、考证指南、安全检查以及潜水目的地机票、酒店、交通和美食查询。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-Divers and travel planners use this skill to compare dive sites, review certification and safety guidance, and search flights, hotels, transport, and restaurants for dive trips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel searches may send dates, origins, destinations, hotel searches, and location or food queries through SCF proxy services. <br>
-Mitigation: Use the skill only when comfortable sharing those search details, and avoid entering sensitive personal information beyond what is needed for search. <br>
-Risk: Prices and booking links are third-party search results and may change. <br>
-Mitigation: Confirm price, availability, booking terms, and provider details on the destination booking page before purchasing. <br>
-Risk: Dive safety and certification information is informational and cannot replace professional instruction, medical advice, or local emergency response. <br>
-Mitigation: Treat safety guidance as a planning aid, follow certified instructor and local operator requirements, and seek qualified medical or emergency help when needed. <br>
+## Use Case:
 
+External users use this skill to plan recreational dive trips, compare dive destinations, review certification and safety guidance, and retrieve travel options for dive itineraries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/dive-travel-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON strings with travel, booking, and dive guidance fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include third-party booking URLs, prices, route details, restaurant results, dive site attributes, certification notes, and safety reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Dive travel search details such as origins, destinations, dates, hotel stays, and location searches are sent to the skill's cloud proxy services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those itinerary and location details with the proxy services is acceptable.
+
+Risk: If PROXY_TOKEN is set in the environment, the script uses it for proxy authentication.
+
+Mitigation: Set PROXY_TOKEN only in environments where that credential is intended for this skill's proxy services.
+
+Risk: Dive safety and certification information may be incomplete for a user's health status, training, local conditions, or dive plan.
+
+Mitigation: Treat safety and certification output as planning guidance and confirm decisions with qualified dive professionals or medical experts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/dive-travel-assistant)
+- [Publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance, api calls]
+
+**Output Format:** [JSON strings and concise text guidance returned by tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns local dive reference data and may include booking, route, hotel, restaurant, or error details from external travel proxy services.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

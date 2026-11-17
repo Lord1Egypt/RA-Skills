@@ -1,46 +1,62 @@
-## Description: <br>
-海关知识产权备案查询 skill automates Chrome-based access to the General Administration of Customs intellectual-property record search system, checks brand record status, and returns risk assessment with logistics guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent query China customs intellectual property record status for brands and summarize filing records with logistics-oriented risk guidance.
 
-## Publisher: <br>
-[linhongbijkm-dot](https://clawhub.ai/user/linhongbijkm-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linhongbijkm-dot](https://clawhub.ai/user/linhongbijkm-dot)
 
-## Use Case: <br>
-Developers, logistics operators, and compliance reviewers can use this skill to query brand customs intellectual-property filings and summarize the resulting customs risk posture. It is intended for brand compliance screening before shipment or customs handling decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install unpinned browser automation code at runtime. <br>
-Mitigation: Review the dependency before use, prefer pinned versions and hashes, and require explicit confirmation before running dependency installation. <br>
-Risk: The skill opens Chrome to an external customs search site and performs online brand queries. <br>
-Mitigation: Confirm the target site and query intent with the user before online access, and run searches serially as documented. <br>
-Risk: The skill stores searched brands and customs results in a local CSV cache. <br>
-Mitigation: Treat the CSV as local query history, limit access to the workspace, and provide a clear deletion or no-cache process for sensitive searches. <br>
-Risk: The security summary flags WAF-bypass framing. <br>
-Mitigation: Review the behavior before deployment and prefer revised wording and implementation that avoids bypass-oriented framing. <br>
+## Use Case:
 
+External users, logistics teams, and compliance reviewers use this skill to check whether brands appear in customs intellectual property protection records and to decide whether shipment authorization or additional review is needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linhongbijkm-dot/customs-ip-search) <br>
-- [Customs Intellectual Property Record Search System](http://202.127.48.145:8888/zscq/search/jsp/vBrandSearchIndex.jsp) <br>
-- [Google Chrome](https://www.google.com/chrome/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON command output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Caches searched brands and results in a local CSV; online refresh is used when cache entries are absent or older than seven days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automates a WAF-protected customs lookup site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only when authorized to automate the site, and confirm that the workflow complies with applicable access rules.
+
+Risk: The skill can install unpinned Python packages at runtime and fall back to an alternate package mirror.
+
+Mitigation: Use an isolated, least-privileged environment, pin dependencies before deployment, and disable automatic mirror fallback where supply-chain controls require it.
+
+Risk: Queries use plaintext HTTP and results are cached in a workspace CSV file.
+
+Mitigation: Avoid submitting sensitive brand or shipment context through the tool, protect the workspace cache, and clear cached records when retention is not needed.
+
+Risk: The skill provides logistics risk guidance that may affect shipping decisions.
+
+Mitigation: Validate important results through an official trusted source before relying on them for shipment authorization or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linhongbijkm-dot/skills/customs-ip-search)
+- [China customs intellectual property record search system](http://202.127.48.145:8888/zscq/search/jsp/vBrandSearchIndex.jsp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with JSON-backed query results and risk guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include per-brand record tables, source indicators, filing status, date ranges, and logistics recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

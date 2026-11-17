@@ -1,43 +1,58 @@
-## Description: <br>
-Advocatus gives agents a structured adversarial-review workflow for recording, tracking, and evaluating opposition to doctrines, rules, skills, and assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advocatus gives an agent a formal adversarial-review role for recording opposition to doctrines, skills, rules, and assumptions before they harden into agency practice.
 
-## Publisher: <br>
-[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironiclawdoctor-design](https://clawhub.ai/user/ironiclawdoctor-design)
 
-## Use Case: <br>
-Developers and governance reviewers use this skill to capture steelmanned objections, maintain an opposition docket, and run local checks on whether doctrines or rules have addressed recorded challenges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changes to the opposition registry or DOCTRINES dictionary can alter governance records. <br>
-Mitigation: Treat those edits as governance changes and review them before relying on the docket. <br>
-Risk: Generated results may be used in downstream decisions about whether doctrines or rules have survived opposition. <br>
-Mitigation: Review generated results files before using them to support downstream decisions. <br>
-Risk: The evaluator depends on manually maintained registry entries and doctrine metadata staying aligned. <br>
-Mitigation: Keep the registry and DOCTRINES dictionary synchronized when adding or updating opposition entries. <br>
+## Use Case:
 
+External users and agent developers use Advocatus to create and maintain steelmanned opposition entries, review docket status, and identify assumptions or doctrines that have not survived adversarial challenge. It is for critique capture and review support, not final decision-making.
 
-## Reference(s): <br>
-- [Opposition Registry](references/opposition-registry.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ironiclawdoctor-design/advocatus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON evaluation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The local evaluator writes timestamped results files under results/ when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger phrases may cause adversarial critique behavior to appear in shared workflows where it is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow the trigger phrases and standing orders before enabling the skill in shared or production workflows.
+
+Risk: Persistent local opposition records may retain sensitive critiques of internal doctrines, rules, or assumptions.
+
+Mitigation: Use the skill only in appropriate workspaces and review registry and results files before sharing them outside the intended audience.
+
+Risk: The skill records opposition and docket status but does not resolve decisions.
+
+Mitigation: Route final decisions through the normal review process after considering the recorded opposition.
+
+## Reference(s):
+
+- [Opposition Registry](references/opposition-registry.md)
+- [Advocatus ClawHub Skill Page](https://clawhub.ai/ironiclawdoctor-design/skills/advocatus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON docket status files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local opposition registry and results files when the included evaluation script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

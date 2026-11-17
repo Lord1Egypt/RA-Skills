@@ -1,47 +1,57 @@
-## Description: <br>
-HubSpot CRM API integration with managed OAuth for contacts, companies, deals, pipelines, tickets, products, line items, marketing emails, and workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HubSpot CRM API integration with managed OAuth for managing contacts, companies, deals, pipelines, tickets, products, line items, marketing emails, and workflows.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Sales, marketing, support, and operations teams use this skill to inspect and manage HubSpot CRM data through agent-mediated HubSpot API calls. It supports read workflows plus confirmed write workflows for records such as contacts, companies, deals, tickets, campaigns, workflows, properties, quotes, tasks, notes, imports, and associations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access and sensitive credentials for a connected HubSpot account. <br>
-Mitigation: Install only when the publisher and displayed files are trusted, and verify that the requested account access matches the intended HubSpot workflow. <br>
-Risk: The skill can create, update, archive, delete, import, and associate HubSpot CRM records. <br>
-Mitigation: Preview and explicitly confirm write or destructive operations before execution, especially batch, delete, archive, GDPR deletion, and workflow actions. <br>
-Risk: HubSpot actions operate within the permissions of the connected user account. <br>
-Mitigation: Use a HubSpot account with the minimum permissions needed for the task and review high-impact changes before approving them. <br>
+## Use Case:
 
+Developers, operators, and sales or marketing teams use this skill to work with HubSpot CRM data through ClawLink-managed OAuth. It supports read workflows, CRM updates, marketing operations, workflow management, and guided confirmation for write or destructive actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/hubspot-ops) <br>
-- [HubSpot API Documentation](https://developers.hubspot.com/docs/overview) <br>
-- [HubSpot CRM Contacts API Reference](https://developers.hubspot.com/docs/api/crm/contacts) <br>
-- [HubSpot CRM Deals API Reference](https://developers.hubspot.com/docs/api/crm/deals) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected HubSpot account through ClawLink OAuth; write operations should be previewed and explicitly confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill requires users to trust ClawLink and grant HubSpot OAuth permissions that can include CRM write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the HubSpot OAuth permissions before connecting and install only when the ClawLink and ClawHub plugin sources are trusted.
+
+Risk: Create, update, archive, delete, batch, and GDPR operations can alter or remove CRM records.
+
+Mitigation: Preview write or destructive operations, confirm the target resource and intended effect with the user, and keep explicit confirmation before execution.
+
+## Reference(s):
+
+- [HubSpot API Documentation](https://developers.hubspot.com/docs/overview)
+- [HubSpot CRM Contacts API Reference](https://developers.hubspot.com/docs/api/crm/contacts)
+- [HubSpot CRM Deals API Reference](https://developers.hubspot.com/docs/api/crm/deals)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink HubSpot Connection](https://claw-link.dev/dashboard?add=hubspot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the live HubSpot tool catalog as the source of truth; write and destructive operations require preview and explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

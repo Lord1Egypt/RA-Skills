@@ -1,41 +1,54 @@
-## Description: <br>
-A file-processing skill that calculates MD5, SHA1, and SHA256 hashes and performs Base64 and URL encoding or decoding for text and file-content checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Processes text for MD5, SHA1, SHA256 hashing, Base64 encoding or decoding, and URL encoding or decoding.
 
-## Publisher: <br>
-[jiebang-tools](https://clawhub.ai/user/jiebang-tools) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiebang-tools](https://clawhub.ai/user/jiebang-tools)
 
-## Use Case: <br>
-Developers and external users can use this skill to hash text, check file-content hashes, or convert text with Base64 and URL encoding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text or file content is sent to the external jiebang.site API. <br>
-Mitigation: Do not process secrets, tokens, private URLs, proprietary files, or personal data unless the publisher provides clear data-handling disclosure and confirmation before upload. <br>
-Risk: The skill uses an admin-style environment credential for API requests. <br>
-Mitigation: Deploy only with an approved, least-privilege credential and rotate or revoke it if exposure is suspected. <br>
+## Use Case:
 
+Agents and users use this skill to calculate text or file-content hashes and to encode or decode Base64 and URL text. It is useful for checksum, text transformation, and format-conversion tasks where JSON results are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiebang-tools/jiebang-file-process) <br>
-- [Jiebang API service](https://www.jiebang.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the processed result and original input when returned by the external API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Submitted content and an environment-based admin key are sent to an external JieBang service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with passwords, tokens, private URLs, proprietary files, or regulated data unless the external service and credential handling are approved.
+
+Risk: The advertised operations could be performed locally, but this release depends on a remote service.
+
+Mitigation: Prefer a local-only implementation for sensitive workflows or when external data transfer is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiebang-tools/skills/jiebang-file-process)
+- [JieBang service](https://www.jiebang.site)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON object containing the processed result and original input]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an external JieBang service call and an admin credential; avoid submitting sensitive or regulated content.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

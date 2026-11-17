@@ -1,42 +1,53 @@
-## Description: <br>
-Provides a pure Python standard-library tool for converting Unix timestamps, formatting date-time values, and getting the current timestamp without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Timestamp Tool is a pure-Python timestamp conversion utility that requires no API key.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and operators use this skill to generate or explain local timestamp conversion commands for Unix timestamps, formatted date-time strings, and Asia/Shanghai timezone defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is tagged as requiring sensitive credentials even though the security evidence says no API key is needed. <br>
-Mitigation: Do not provide secrets for normal use; verify any credential request against the local script behavior before running it. <br>
-Risk: Promotional external links appear in the README-style skill text. <br>
-Mitigation: Review external links before following them and treat them as publisher-provided references rather than required runtime dependencies. <br>
-Risk: Invalid timezone names can fall back to default local timestamp behavior. <br>
-Mitigation: Use valid IANA timezone names such as Asia/Shanghai and verify outputs when timezone precision matters. <br>
+## Use Case:
 
+Developers and agents use this skill to convert Unix timestamps and date-time strings, get current timestamps in seconds or milliseconds, and format timestamp output with timezone support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-timestamp-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain text timestamp values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local timestamp conversions; no external services or API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Timezone defaults may produce unexpected conversions for users who do not intend Asia/Shanghai time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended timezone and pass it explicitly when converting or formatting timestamps.
+
+Risk: Chinese documentation and help text may be harder for non-Chinese reviewers or operators to assess.
+
+Mitigation: Use translation or bilingual review before deployment in teams that do not read Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-timestamp-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text timestamp or date output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Python standard library behavior; default timezone is Asia/Shanghai unless overridden where the CLI supports it.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

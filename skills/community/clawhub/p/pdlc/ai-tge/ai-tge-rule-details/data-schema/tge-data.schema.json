@@ -1,0 +1,28 @@
+{
+  "title": "AI-TGE Data",
+  "description": "Per-project data shape for AI-TGE (Test Governance Engine).",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema":{"type":"string"},
+    "$schemaVersion":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy":{"type":"string","const":"AI-DFE"},
+    "$generatedOn":{"type":"string","format":"date-time"},
+    "$family":{"type":"string"},
+    "$package":{"type":"string","const":"ai-tge"},
+    "data":{
+      "type":"object","required":["mode","currentPhase"],
+      "properties":{
+        "mode":{"type":["string","null"]},
+        "currentPhase":{"type":["string","null"]},
+        "lastStageCompleted":{"type":["integer","null"]},
+        "lastUpdated":{"type":["string","null"]},
+        "engineVersion":{"type":["string","null"]},
+        "registerStats":{"type":["object","null"],"properties":{"commitmentsTracked":{"type":["integer","null"]},"testsRequired":{"type":["integer","null"]},"testsExisting":{"type":["integer","null"]},"testsMissing":{"type":["integer","null"]},"testsFailing":{"type":["integer","null"]},"coverage":{"type":["number","string","null"]}}},
+        "riskSummary":{"type":["object","null"],"properties":{"critical":{"type":["integer","null"]},"high":{"type":["integer","null"]},"medium":{"type":["integer","null"]},"low":{"type":["integer","null"]},"totalScored":{"type":["integer","null"]}}},
+        "depthLevel":{"type":["object","null"],"properties":{"level":{"type":["string","null"]},"totalScore":{"type":["string","number","null"]}}},
+        "observationHistory":{"type":"array","items":{"type":"object","properties":{"cycle":{"type":"integer"},"date":{"type":"string"},"testsAdded":{"type":["integer","null"]},"testsDeprecated":{"type":["integer","null"]},"coverageBefore":{"type":["number","string","null"]},"coverageAfter":{"type":["number","string","null"]}}}}
+      }
+    }
+  }
+}

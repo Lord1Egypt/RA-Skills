@@ -1,42 +1,59 @@
-## Description: <br>
-Local Memory stores, searches, and deletes persistent local semantic memories using ChromaDB and the BGE-small-zh embedding model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Memory provides semantic memory storage, retrieval, and deletion using ChromaDB with BGE-small-zh embeddings.
 
-## Publisher: <br>
-[liangmu-git2](https://clawhub.ai/user/liangmu-git2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangmu-git2](https://clawhub.ai/user/liangmu-git2)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain an offline long-term memory store, recall prior facts or preferences by semantic search, and remove stored memories when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup downloads Python packages and an embedding model before first use. <br>
-Mitigation: Install in an isolated Python environment and review the dependency and model download behavior before running setup. <br>
-Risk: Memory text persists on disk in the skill's local data directory. <br>
-Mitigation: Do not store secrets or highly sensitive information unless persistent local storage is acceptable. <br>
-Risk: Query-based deletion removes the single best semantic match, which may not be the exact intended record. <br>
-Mitigation: Use recall to inspect matching records and prefer ID-based deletion when exact removal matters. <br>
+## Use Case:
 
+Developers and agent users use this skill to store, retrieve, and delete long-term semantic memories in a local ChromaDB database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangmu-git2/local-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON responses from local Python scripts, with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores memory records persistently in the skill's local data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Persistent local memory may retain private or sensitive text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or credentials, review stored memory data periodically, and run the skill in an isolated environment when handling sensitive work.
+
+Risk: First-run setup downloads dependencies and model files despite the offline memory-storage goal.
+
+Mitigation: Use pinned dependencies and a verified local model cache before relying on the skill in a production or restricted-network environment.
+
+Risk: Network and supply-chain behavior is under-disclosed relative to the offline claim.
+
+Mitigation: Review the install script before execution and approve the dependency and model sources in advance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangmu-git2/skills/local-memory)
+- [Hugging Face mirror endpoint](https://hf-mirror.com)
+- [PyTorch CPU wheel index](https://download.pytorch.org/whl/cpu)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, shell commands, configuration]
+
+**Output Format:** [JSON emitted by Python command-line scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores memory text persistently under the skill data directory; setup may download dependencies and model files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

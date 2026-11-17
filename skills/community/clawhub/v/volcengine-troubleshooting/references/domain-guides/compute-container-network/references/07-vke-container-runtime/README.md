@@ -32,7 +32,7 @@ ve vke DescribeSnapshots --Region "<region>"
 示例：
 
 ```text
-python3 skills/volcengine-troubleshooting/references/domain-guides/compute-container-network/scripts/collect_vke_pod_context.py \
+python3 "${SKILL_ROOT}/references/domain-guides/compute-container-network/scripts/collect_vke_pod_context.py" \
   --region "<region>" \
   --cluster-id "<cluster-id>" \
   --namespace "<namespace>" \

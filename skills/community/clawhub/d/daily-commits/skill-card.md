@@ -1,40 +1,50 @@
-## Description: <br>
-Summarize a person's git commits on a given date, grouped by feature area with concise descriptions for daily work review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize a person's git commits for a specific date, grouped by feature points, in English. Use when reviewing daily work output.
 
-## Publisher: <br>
-[andrew020](https://clawhub.ai/user/andrew020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andrew020](https://clawhub.ai/user/andrew020)
 
-## Use Case: <br>
-Developers and engineering managers use this skill to review a person's daily git commits by date, grouped into feature or functional areas with concise English summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commit messages, author names, and file paths from local git history can be summarized into chat. <br>
-Mitigation: Run the skill only in repositories where that history is acceptable to expose, and avoid repositories with sensitive commit metadata. <br>
-Risk: The summary depends on git log filters and the quality of commit messages and file paths. <br>
-Mitigation: Review the generated summary against the listed commit hashes before using it as a daily work record. <br>
+## Use Case:
 
+Developers and engineering leads use this skill to review a person's daily git activity for a specific date, grouped by feature or functional area with concise English descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andrew020/daily-commits) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown daily commit summary with grouped bullet lists and a total commit count] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English-only summary; omits merge commits; states clearly when no commits are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided dates and author names are placed into git command templates, which can create command-injection risk if an agent embeds them directly into shell command text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the date format, reject control characters in author names, and pass user inputs to git without composing unsafe shell command strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andrew020/skills/daily-commits)
+- [Publisher profile](https://clawhub.ai/user/andrew020)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with git command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [English-only summary grouped by feature area with total commit count.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

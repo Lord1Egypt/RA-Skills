@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.1.0",
+  "fixtures": {
+    "verification-bottleneck": {
+      "workspace_type": "isolated synthetic claim pipeline",
+      "facts": [
+        "Provenance identifiers are complete.",
+        "One verifier path yields measured coverage below the declared threshold.",
+        "A proposed second check shares the first verifier's failure mode.",
+        "Unit tests initially pass."
+      ]
+    },
+    "resource-constrained": {
+      "workspace_type": "isolated intervention chooser",
+      "facts": [
+        "Candidate A has the larger modeled effect but violates the resource floor.",
+        "Candidate B has a smaller modeled effect and remains above the resource floor.",
+        "Implementation and continuing operating costs are separately observable."
+      ]
+    },
+    "memory-provenance": {
+      "workspace_type": "isolated procedure store",
+      "facts": [
+        "One reusable procedure has no source hash.",
+        "One evidence record is expired.",
+        "The user has not authorized changing expiry."
+      ]
+    },
+    "empty-read-only": {
+      "workspace_type": "empty read-only directory",
+      "facts": [
+        "Only the installed skill may be queried.",
+        "No external mutation is allowed."
+      ]
+    },
+    "failed-candidate-gates": {
+      "workspace_type": "packet-only diagnostic",
+      "facts": [
+        "R_cap is above one.",
+        "A critical unknown remains.",
+        "The hold period is incomplete.",
+        "No causal comparison exists."
+      ]
+    },
+    "newcomer-install": {
+      "workspace_type": "empty project with release URL",
+      "facts": [
+        "uv is available.",
+        "The release ZIP and checksum are public.",
+        "No skill is initially installed."
+      ]
+    },
+    "malformed-packet": {
+      "workspace_type": "packet-only repair",
+      "facts": [
+        "The packet contains an unknown top-level property.",
+        "A bounded dimension lacks a bound and evidence.",
+        "target_dimensions contains a duplicate.",
+        "candidate_regime is true while a gate fails."
+      ]
+    },
+    "source-drift": {
+      "workspace_type": "mocked public-source responses",
+      "facts": [
+        "The public listing contains 54 repositories including the skill itself.",
+        "The 53 upstream names are unchanged.",
+        "One upstream default-branch HEAD changed without another relevant metadata change.",
+        "The catalog is unchanged."
+      ]
+    }
+  }
+}

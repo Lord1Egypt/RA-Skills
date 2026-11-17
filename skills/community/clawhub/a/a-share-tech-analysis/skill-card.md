@@ -1,40 +1,54 @@
-## Description: <br>
-A股技术分析工具包 helps agents support A-share technical analysis with indicator calculations, support and resistance levels, and daily review summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股技术分析工具包 helps agents generate informational Chinese-language A-share technical-analysis guidance, including MACD, KDJ, RSI, support/resistance calculations, and daily review summaries.
 
-## Publisher: <br>
-[wuxiangfacai](https://clawhub.ai/user/wuxiangfacai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuxiangfacai](https://clawhub.ai/user/wuxiangfacai)
 
-## Use Case: <br>
-Developers and agents use this skill to assist human review of Chinese A-share technical indicators, price levels, and daily technical summaries. Outputs should be treated as decision-support material, not investment advice or an automated trading signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation advertises CLI commands and analysis categories that may not be implemented in the artifact. <br>
-Mitigation: Confirm the available files and functions before use, and treat advertised commands as examples unless a separate implementation is installed. <br>
-Risk: Technical-analysis output can be mistaken for investment advice or an automated trading signal. <br>
-Mitigation: Use the output only as decision support, independently verify market data and calculations, and combine it with broader analysis before acting. <br>
+## Use Case:
 
+Developers, analysts, and external agents use this skill to prepare informational A-share technical-analysis outputs and review summaries for human decision support. Outputs should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wuxiangfacai/a-share-tech-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell examples and text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a local Python example for MACD, KDJ, RSI, support and resistance, and daily review output; no external API keys are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Risk: Financial-analysis output could be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only, verify market data and formulas independently, and keep a human responsible for trading decisions.
+
+Risk: The advertised feature set may exceed the behavior evidenced in the artifact.
+
+Mitigation: Do not rely on unsupported advertised features unless the publisher adds implementation evidence for them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wuxiangfacai/skills/a-share-tech-analysis)
+- [ClawHub publisher profile](https://clawhub.ai/user/wuxiangfacai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell examples and Chinese-language text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational financial-analysis output; no live market data access is evidenced.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

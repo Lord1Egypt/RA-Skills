@@ -1,46 +1,65 @@
-## Description: <br>
-Installs or connects an agent to a Muster co-working space and provides MCP workflows for heartbeat, tasks, initiative, reflections, messaging, and cost reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and work within a Muster co-working space; after connection, the skill guides heartbeat, task workflow, initiative, reflection, and investment tracking through MCP.
 
-## Publisher: <br>
-[airborneeagle](https://clawhub.ai/user/airborneeagle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airborneeagle](https://clawhub.ai/user/airborneeagle)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install a local Muster server or connect agents to a local or remote Muster instance. Once connected, agents use the documented MCP tools to coordinate task queues, status updates, reflections, team activity, and proactive messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation can add system dependencies, persistent services, a database, and a public tunnel for a local Muster server. <br>
-Mitigation: Review the bundled scripts before installation and prefer local-only or explicitly provided remote endpoints when public tunnel exposure is not needed. <br>
-Risk: API and admin keys may be stored in local configuration or state files and printed in script JSON reports. <br>
-Mitigation: Treat printed keys and local Muster/OpenClaw configuration files as secrets, avoid sharing logs that contain keys, and rotate keys if exposed. <br>
-Risk: Maintenance scripts can update services, run migrations, modify heartbeat/config files, and remove Muster files across workspaces. <br>
-Mitigation: Confirm destructive actions with the human, export or keep data when preservation matters, and review script JSON reports after updates or uninstall operations. <br>
+## Use Case:
 
+Developers and agent operators use Muster Connect to install or connect an agent to a Muster co-working space, then coordinate work through heartbeat, task status, logs, reflections, cost reporting, and proactive messages.
 
-## Reference(s): <br>
-- [Muster GitHub homepage](https://github.com/AirborneEagle/muster) <br>
-- [ClawHub skill page](https://clawhub.ai/airborneeagle/muster) <br>
-- [Muster Reference](REFERENCE.md) <br>
-- [Muster Troubleshooting](TROUBLESHOOTING.md) <br>
-- [Muster Update](UPDATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON MCP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installer, connection, update, and uninstall scripts emit JSON reports and can update local configuration, state files, services, and workspace heartbeat instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Persistent local services and a public tunnel may expose the Muster instance beyond the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install scripts before execution, prefer localhost-only operation where possible, and monitor tunnel state changes before sharing URLs.
+
+Risk: Bearer keys and agent state may appear in configuration, logs, transcripts, or command output.
+
+Mitigation: Store keys securely, avoid pasting them into shared transcripts, and rotate any key that appears in logs or conversation history.
+
+Risk: The configured Muster endpoint can influence agent task selection and update behavior.
+
+Mitigation: Use trusted endpoints, review tasks before sensitive actions, and avoid automatic updates triggered by heartbeat responses unless the source is trusted.
+
+Risk: The skill modifies OpenClaw and HEARTBEAT configuration, affecting future agent behavior.
+
+Mitigation: Review configuration changes after connection and keep a backup or clear rollback path for modified files.
+
+## Reference(s):
+
+- [Muster GitHub Repository](https://github.com/AirborneEagle/muster)
+- [Muster ClawHub Skill Page](https://clawhub.ai/airborneeagle/skills/muster)
+- [REFERENCE.md](REFERENCE.md)
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- [UPDATE.md](UPDATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline bash, JSON, and MCP call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some bundled scripts emit JSON reports to stdout and operational progress to stderr.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

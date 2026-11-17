@@ -1,12 +1,12 @@
 ---
-name: china-hotel-price-compare
+name: 酒店比价
 display_name: 酒店比价
-description: 先浏览再比价，飞猪+途牛+同程+美团+RollingGo五源并发比价，找出全网最低价。含评分、距离、早餐、取消政策等详细信息。暑期出行多平台比价，轻松找到最划算的住宿方案
+description: 先浏览再比价，TourMind+途牛+同程+美团+RollingGo五源并发比价，找出全网最低价。含评分、距离、早餐、取消政策等详细信息。暑期出行多平台比价，轻松找到最划算的住宿方案
 version: 4.1.1
 tags: [酒店, 酒店比价, 订酒店, 住宿, 旅行, 特价酒店, 酒店预订]
 tools:
-  - name: hotel_compare
-    description: 多平台酒店比价，先浏览选定酒店再启动飞猪/途牛/同程/RG多平台比价
+  - name: hotelCompare
+    description: 多平台酒店比价，先浏览选定酒店再启动TourMind/途牛/同程/RG多平台比价
     primaryEnv: HOTEL_COMPARE_PROXY_URL
     env:
       - name: HOTEL_COMPARE_PROXY_URL
@@ -20,11 +20,11 @@ tools:
         type: string
         description: 目标城市，如"上海""北京""成都"
         required: true
-      - name: check_in
+      - name: checkIn
         type: string
         description: 入住日期，格式YYYY-MM-DD
         required: false
-      - name: check_out
+      - name: checkOut
         type: string
         description: 退房日期，格式YYYY-MM-DD
         required: false
@@ -32,31 +32,31 @@ tools:
         type: string
         description: 搜索关键词，支持区域（如"外滩""三里屯"）、地标（如"迪士尼"）、品牌（如"全季""亚朵"），不填则搜索全城
         required: false
-      - name: hotel_name
+      - name: hotelName
         type: string
         description: 选定的酒店名称。不填→第一步浏览模式，展示酒店列表；填写→第二步比价模式，在多个旅游平台查找该酒店最低价
         required: false
-      - name: max_price
+      - name: maxPrice
         type: number
         description: 价格上限（元），如1000表示只看1000元以内的酒店，不填则不限价格
         required: false
-      - name: poi_name
+      - name: poiName
         type: string
         description: 兴趣点或景点名称，如"东方明珠""西湖"，会搜索该景点附近的酒店
         required: false
-      - name: min_score
+      - name: minScore
         type: number
         description: 最低评分要求，如4.5表示只看4.5分及以上的酒店，不填则不限评分
         required: false
 ---
 
-# 酒店比价 — 5平台找全网最低价
+# 酒店比价 — 5源找全网最低价
 
-> 搜一次，比5家。飞猪/途牛/同程/美团/RollingGo 并发比价，最低价一目了然。
+> 搜一次，比5家。TourMind/途牛/同程/美团/RollingGo 并发比价，最低价一目了然。
 
 🔥 **核心亮点：**
 - **两步式交互** — 先浏览酒店列表（含评分/距离/早餐/窗户/取消政策），选定后一键启动5源比价
-- **5源并发** — 同时查询飞猪、途牛、同程、美团、RollingGo，自动匹配最低价，带预订链接
+- **5源并发** — 同时查询TourMind、途牛、同程、美团、RollingGo，自动匹配最低价，带预订链接
 - **丰富信息** — 展示评分、距地标距离、早餐、窗户、取消政策、住客点评摘要
 - **智能筛选** — 支持限价、限评分、按区域/地标/品牌查找
 - **价格异常提醒** — 平台间价差过大时自动提醒，帮你避坑
@@ -75,9 +75,9 @@ tools:
 ## 核心能力
 
 1. **两步式交互**：先浏览酒店列表（含评分、距离、早餐、窗户等），选定后启动多平台比价
-2. **5源并发比价**：选定酒店后同时查询飞猪、RollingGo、途牛、同程、美团，找全网最低价
+2. **5源并发比价**：选定酒店后同时查询TourMind、RollingGo、途牛、同程、美团，找全网最低价
 3. **丰富酒店信息**：展示评分、距地标距离、早餐、窗户、取消政策、住客点评摘要
-4. **佣金优先推荐**：同价时优先推荐有佣金的平台（RollingGo>飞猪），最低价带预订链接
+4. **佣金优先推荐**：同价时优先推荐有佣金的平台（RollingGo>TourMind），最低价带预订链接
 5. **智能换条件提示**：结果不理想时，提示限价、限评分、或换个区域
 6. **价格异常提醒**：当平台间价差过大时自动提醒
 
@@ -106,12 +106,12 @@ tools:
 
 - 价格实时变动，以实际预订页面为准
 - 第一步浏览模式展示途牛价格，尚未比价；选定酒店后才启动多平台比价
-- 查询通过云端代理并发转发到飞猪、途牛、同程、RollingGo等OTA平台，代理不存储用户数据
+- 查询通过云端代理并发转发到TourMind、途牛、同程、RollingGo等OTA平台，代理不存储用户数据
 - 部分平台偶发超时无数据，比价结果可能少于5个平台
 
 ## 数据流向
 
-用户输入 → 本技能 → 腾讯云SCF代理（密钥安全存储）→ 飞猪/途牛/同程/RollingGo → 代理返回数据 → 本技能解析比价 → 返回结果给用户
+用户输入 → 本技能 → 腾讯云SCF代理（密钥安全存储）→ TourMind/途牛/同程/RollingGo → 代理返回数据 → 本技能解析比价 → 返回结果给用户
 
 ## 使用提示
 
@@ -123,5 +123,5 @@ tools:
 ## 🔗 搭配使用
 
 - **全能旅行助手** — 行程规划+机票火车票酒店景点一站式服务
-- **机票比价** — 飞猪+途牛+同程+美团+RG 5平台直飞航班比价
-- **景点门票比价** — 美团+飞猪+途牛 3平台门票最低价
+- **机票比价** — 途牛+同程+美团+RG 多平台直飞航班比价
+- **景点门票比价** — 美团+途牛 多平台门票最低价

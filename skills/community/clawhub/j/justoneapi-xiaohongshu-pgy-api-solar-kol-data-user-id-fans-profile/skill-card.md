@@ -1,43 +1,52 @@
-## Description: <br>
-Call GET /api/xiaohongshu-pgy/api/solar/kol/data/userId/fans_profile/v1 for Xiaohongshu Creator Marketplace (Pugongying) Follower Distribution through JustOneAPI with userId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/xiaohongshu-pgy/api/solar/kol/data/userId/fans_profile/v1 for Xiaohongshu Creator Marketplace (Pugongying) Follower Distribution through JustOneAPI with userId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call a JustOneAPI endpoint for Xiaohongshu Creator Marketplace follower distribution data by userId, supporting creator evaluation, campaign planning, and benchmarking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required JustOneAPI token can be exposed through command-line arguments or query-string authentication. <br>
-Mitigation: Use a protected environment variable or secret store, avoid shared or logging-heavy machines, and prefer header-based authentication if the upstream API supports it. <br>
-Risk: API responses may contain audience demographics, interests, and campaign-planning data for a creator lookup. <br>
-Mitigation: Handle returned JSON according to the user's privacy and commercial-data policies, and avoid storing or logging unnecessary response data. <br>
+## Use Case:
 
+External developers and agents use this skill to call a focused JustOneAPI Xiaohongshu Creator Marketplace endpoint for follower distribution data by KOL user ID. The returned data supports creator evaluation, campaign planning, and creator benchmarking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu-pgy-api-solar-kol-data-user-id-fans-profile) <br>
-- [JustOneAPI API homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_user_id_fans_profile&utm_content=project_link) <br>
-- [Generated operation reference](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and userId; returns raw JSON after a short endpoint-specific summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires a JustOneAPI token for the follower-distribution endpoint, and command-line or URL handling can expose credentials in local process or logging surfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or limited-scope token where available, avoid shared machines and process logging, do not paste token values into chat or screenshots, and rotate the token if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-pgy-api-solar-kol-data-user-id-fans-profile)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_user_id_fans_profile&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_user_id_fans_profile&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with a shell command example and JSON API response handling]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN; the API helper emits parsed JSON on successful backend responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

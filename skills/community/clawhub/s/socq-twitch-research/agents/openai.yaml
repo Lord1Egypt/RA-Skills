@@ -1,0 +1,11 @@
+interface:
+  display_name: "SocQ Twitch Research"
+  short_description: "Collect and analyze public Twitch data"
+  default_prompt: "Use $socq-twitch-research to collect and analyze this public Twitch research request."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socq"
+      description: "Hosted SocQ Twitch data tools"
+      transport: "streamable_http"
+      url: "https://api.socq.ai/mcp?platforms=twitch"

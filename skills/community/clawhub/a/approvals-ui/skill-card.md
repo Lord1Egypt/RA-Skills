@@ -1,44 +1,60 @@
-## Description: <br>
-Web dashboard to approve OpenClaw device and channel pairings, manage connections, and access a live terminal from the browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web dashboard to approve OpenClaw device and channel pairings, manage connections, and access a live terminal from the browser.
 
-## Publisher: <br>
-[Dr1nnas](https://clawhub.ai/user/Dr1nnas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dr1nnas](https://clawhub.ai/user/dr1nnas)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to run a local dashboard for reviewing device and channel pairing requests, approving or rejecting connections, viewing gateway state, and opening a browser-based terminal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release exposes powerful local administration, gateway-token visibility, and shell access. <br>
-Mitigation: Run only on localhost, keep the dashboard behind strong authentication, and remove the browser terminal route and template unless terminal access is required. <br>
-Risk: Default dashboard credentials, API password, and Flask secret-key placeholder can allow unauthorized access if unchanged. <br>
-Mitigation: Change the dashboard username and password, set a strong SERVER_AUTH_PASSWORD, and provide a random FLASK_SECRET_KEY before first use. <br>
-Risk: Debug mode and broad Socket.IO CORS settings increase exposure if the service is reachable beyond the local machine. <br>
-Mitigation: Disable debug mode, keep the host bound to 127.0.0.1, and do not expose the service to a network without TLS, strong auth, and a reverse proxy. <br>
-Risk: The app reads sensitive OpenClaw state files, including gateway tokens and pairing credentials. <br>
-Mitigation: Limit filesystem and account access to trusted users and treat the dashboard as sensitive administrative tooling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Dr1nnas/approvals-ui) <br>
-- [Publisher profile](https://clawhub.ai/user/Dr1nnas) <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to review pending device and channel connections, approve or reject pairings, and administer a local OpenClaw environment through a browser-based dashboard.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, text] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration notes, and local web UI behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Flask routes and browser UI interactions for pairing approval, token viewing, and terminal access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The dashboard can expose sensitive OpenClaw pairing data, gateway tokens, and a host terminal.
+
+Mitigation: Run only on a trusted local machine, keep the service bound to localhost, and do not expose the port beyond localhost without a hardened reverse proxy, TLS, and strong authentication.
+
+Risk: Default dashboard and API credentials allow unauthorized access if left unchanged.
+
+Mitigation: Change the dashboard username and password, set SERVER_AUTH_PASSWORD to a strong unique value, and set FLASK_SECRET_KEY to a random secret before first use.
+
+Risk: The terminal feature provides shell access on the host machine.
+
+Mitigation: Remove or disable the terminal route and template unless browser-based shell access is required and tightly controlled.
+
+Risk: Changing passwords alone does not address the reported Socket.IO terminal/data exposure, token-in-page exposure, or XSS-prone rendering.
+
+Mitigation: Rework the terminal Socket.IO authorization, avoid rendering gateway tokens into pages, sanitize untrusted pairing fields, and review the implementation before use with real OpenClaw credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dr1nnas/skills/approvals-ui)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup and operating guidance for a local Flask and Socket.IO OpenClaw approvals dashboard.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

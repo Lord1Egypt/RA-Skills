@@ -177,7 +177,7 @@
         "shard_grants": false,
         "cast_range": "0",
         "bkbpierce": null,
-        "desc": "Opens 2 portals, one next to Underlord and one in the target location. Heroes can channel a portal for 3.5 seconds to teleport to the other side. Portals have to be at least 1500 away from each other."
+        "desc": "Opens 2 portals, one next to Underlord and one in the target location. Heroes can channel a portal for 3.5 seconds to teleport to the other side. Portals have to be at least 1500 away from each other.\n\n# Update (7.41d)\nChanneling Dark Portal is now interrupted by immobilize effects."
       }
     ],
     "talents": []
@@ -361,8 +361,8 @@
         "name": "冰晶爆轰",
         "mc": "175",
         "cd": [
-          "60",
           "50",
+          "45",
           "40"
         ],
         "behavior": "",
@@ -624,7 +624,7 @@
           "925"
         ],
         "bkbpierce": "No",
-        "desc": "Enrages an enemy unit, causing it to take damage over time until it kills another unit or the duration ends. The enemy is slowed as long as they are facing away from Axe."
+        "desc": "Enrages an enemy unit, causing it to take damage over time until it kills another unit or the duration ends. The enemy is slowed as long as they are facing away from Axe.\n\n# Update (7.41d)\nDamage per second reduced to 12/16/20/24 (was 12/18/24/30)."
       },
       {
         "key": "axe_counter_helix",
@@ -746,7 +746,7 @@
           "700"
         ],
         "bkbpierce": "No",
-        "desc": "Puts the target enemy or friendly Hero to sleep. Sleeping units walk in Bane's chosen direction and are awakened when damaged. If the target was directly attacked, the Nightmare passes to the attacking unit. Bane can attack and damage Nightmared targets freely.\n\n Can be put on alt-cast to have the target stand still."
+        "desc": "Puts the target enemy or friendly Hero to sleep. Sleeping units walk in Bane's chosen direction and are awakened when damaged. If the target was directly attacked, the Nightmare passes to the attacking unit. Bane can attack and damage Nightmared targets freely.\n\n Can be put on alt-cast to have the target stand still.\n\n# Update (7.41d)\nDuration reduced from 3.5/4.5/5.5/6.5s to 3/4/5/6s. Target now has no vision instead of overlaid vision."
       },
       {
         "key": "bane_fiends_grip",
@@ -766,7 +766,7 @@
         "shard_grants": false,
         "cast_range": "625",
         "bkbpierce": "Yes",
-        "desc": "CHANNELED - Grips an enemy unit, disabling it and causing heavy damage over time, while stealing mana every 0.5 seconds based on the unit's maximum mana."
+        "desc": "CHANNELED - Grips an enemy unit, disabling it and causing heavy damage over time, while stealing mana every 0.5 seconds based on the unit's maximum mana.\n\n# Update (7.41d)\nAghanim's Scepter: Fiend's Grip cooldown reduction reduced from 45s to 40s."
       },
       {
         "key": "bane_nightmare_end",
@@ -791,7 +791,7 @@
         "is_innate": true,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Every time Bane kills an enemy hero or they die under the effect of Bane's debuff, they receive a Terror for the rest of the game that decreases their status resistance to Bane's subsequent debuffs."
+        "desc": "Every time Bane kills an enemy hero or they die under the effect of Bane's debuff, they receive a Terror for the rest of the game that decreases their status resistance to Bane's subsequent debuffs.\n\n# Update (7.41d)\nMax Fear Stacks: 6 (was 5). Status Resistance per Stack: 4% (was 5%)."
       }
     ],
     "talents": []
@@ -868,7 +868,7 @@
         "is_innate": true,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Batrider's attacks apply a debuff that deals 20% of the attack damage every 1s for 2s."
+        "desc": "Batrider's attacks apply a debuff that deals 20% of the attack damage every 1s for 2s.\n\n# Update (7.41d)\nSmoldering Resin no longer applies when attacking allied units."
       },
       {
         "key": "batrider_flaming_lasso",
@@ -1359,7 +1359,7 @@
       {
         "key": "broodmother_insatiable_hunger",
         "name": "极度饥渴",
-        "mc": "80",
+        "mc": "70",
         "cd": [
           "45",
           "40",
@@ -1477,7 +1477,7 @@
         "shard_grants": false,
         "cast_range": "175",
         "bkbpierce": "No",
-        "desc": "Centaur strikes a mighty blow at melee range, damaging both himself and a small area around the target. Deals extra damage based on your strength. Centaur cannot die from Double Edge."
+        "desc": "Centaur strikes a mighty blow at melee range, damaging both himself and a small area around the target. Deals extra damage based on your strength. Centaur cannot die from Double Edge.\n\n# Update (7.41d)\nAghanim's Shard upgrade: Double Edge buff duration reduced from 15s to 12s."
       },
       {
         "key": "centaur_return",
@@ -1489,7 +1489,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "Yes",
-        "desc": "Centaur counters all attacks, dealing damage back to the attacker. Returns a fixed amount plus a percentage of your strength. Deals half damage to towers."
+        "desc": "Centaur counters all attacks, dealing damage back to the attacker. Returns a fixed amount plus a percentage of your strength. Deals half damage to towers.\n\n# Update (7.41d)\nReturn damage based on strength reduced from 16/24/32/40% to 14/21/28/35%."
       },
       {
         "key": "centaur_work_horse",
@@ -1569,7 +1569,7 @@
         "shard_grants": false,
         "cast_range": "600",
         "bkbpierce": "No",
-        "desc": "Throws a mysterious bolt of energy at the target unit. It stuns for a random duration and deals random damage."
+        "desc": "Throws a mysterious bolt of energy at the target unit. It stuns for a random duration and deals random damage.\n\n# Update (7.41d)\nChaos Bolt projectile speed increased from 700 to 900."
       },
       {
         "key": "chaos_knight_reality_rift",
@@ -2690,7 +2690,7 @@
         "shard_grants": false,
         "cast_range": "200",
         "bkbpierce": "No",
-        "desc": "Doom swings his burning sword, igniting the enemy. Stuns for 0.66 seconds and applies a 4 second burn that deals a base damage plus a percentage of the target's Max HP as damage per second."
+        "desc": "Doom swings his burning sword, igniting the enemy. Stuns for 0.66 seconds and applies a 4 second burn that deals a base damage plus a percentage of the target's Max HP as damage per second.\n\n# Update (7.41d)\nBase burn damage: 18/34/50/66 (was 15/30/45/60). Max Health Burn: 0.5/1.75/3/4.25% (was 1/2/3/4%)."
       },
       {
         "key": "doom_bringer_doom",
@@ -2786,7 +2786,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "The life blood of the Dragon improves Dragon Knight's abilities and items to have increased AoE and causes his attacks to deal additional magic damage to enemy units."
+        "desc": "The life blood of the Dragon improves Dragon Knight's abilities and items to have increased AoE and causes his attacks to deal additional magic damage to enemy units.\n\n# Update (7.41d)\nRadius bonus increased from 25/50/75/100 to 30/60/90/120."
       },
       {
         "key": "dragon_knight_fireball",
@@ -2869,10 +2869,10 @@
         "key": "drow_ranger_multishot",
         "name": "数箭齐发",
         "mc": [
-          "50",
           "70",
-          "90",
-          "110"
+          "85",
+          "100",
+          "115"
         ],
         "cd": [
           "24",
@@ -2885,7 +2885,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "Yes",
-        "desc": "CHANNELED - Drow releases a flurry of arrows in continuous salvos, hitting enemies for extra damage and applying Frost Arrows. Lasts up to 1.75 seconds.\n\nDrow can move slowly and use items while casting Multishot."
+        "desc": "CHANNELED - Drow releases a flurry of arrows in continuous salvos, hitting enemies for extra damage and applying Frost Arrows. Lasts up to 1.75 seconds.\n\nDrow can move slowly and use items while casting Multishot.\n\n# Update (7.41d)\nArrow distance: 475 + 1x Attack Range (was 1.75x). Base damage bonus: 80/100/120/140% (was 100/120/140/160%)."
       },
       {
         "key": "drow_ranger_glacier",
@@ -3156,7 +3156,7 @@
         "shard_grants": false,
         "cast_range": "1200",
         "bkbpierce": "Yes",
-        "desc": "Elder Titan's spirit echoes his movements, dealing damage and reducing armor. When Elder Titan is affected by root, ensnare, or entangle, Diverse Summoning no longer replaces the spirit."
+        "desc": "Elder Titan's spirit echoes his movements, dealing damage and reducing armor. When Elder Titan is affected by root, ensnare, or entangle, Diverse Summoning no longer replaces the spirit.\n\n# Update (7.41d)\nAncestral Spirit's Move sub-ability no longer breaks invisibility."
       },
       {
         "key": "elder_titan_natural_order",
@@ -3194,7 +3194,7 @@
         "is_innate": true,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Elder Titan gains armor equal to a percentage of his bonus movement speed."
+        "desc": "Elder Titan gains armor equal to a percentage of his bonus movement speed.\n\n# Update (7.41d)\nArmor from movement speed: 7% + 0.5% per level (was 5% + 0.5% per level)."
       },
       {
         "key": "elder_titan_earth_splitter",
@@ -3227,7 +3227,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Returns the Astral Spirit to Elder Titan."
+        "desc": "Returns the Astral Spirit to Elder Titan.\n\n# Update (7.41d)\nReturn Spirit and Spirit Move sub-abilities no longer break invisibility."
       }
     ],
     "talents": []
@@ -3859,7 +3859,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "Yes",
-        "desc": "",
+        "desc": "\n\n# Update (7.41d)\nDark Portrait illusions no longer have vision penalty.",
         "magic_resist": "90"
       },
       {
@@ -3908,7 +3908,7 @@
       {
         "key": "gyrocopter_rocket_barrage",
         "name": "火箭弹幕",
-        "mc": "85",
+        "mc": 75,
         "cd": [
           "7",
           "6.5",
@@ -3927,15 +3927,15 @@
         "name": "追踪导弹",
         "mc": [
           "120",
-          "130",
-          "140",
-          "150"
+          "120",
+          "120",
+          "120"
         ],
         "cd": [
-          "30",
-          "24",
-          "18",
-          "12"
+          "26",
+          "21",
+          "16",
+          "11"
         ],
         "behavior": "",
         "scepter_grants": false,
@@ -4098,7 +4098,7 @@
         "key": "hoodwink_hunters_boomerang",
         "name": "猎手旋镖",
         "mc": "125",
-        "cd": "18",
+        "cd": 20,
         "behavior": "",
         "scepter_grants": false,
         "shard_grants": true,
@@ -4110,9 +4110,9 @@
         "key": "hoodwink_sharpshooter",
         "name": "一箭穿心",
         "mc": [
-          "100",
           "150",
-          "200"
+          "200",
+          "250"
         ],
         "cd": "45",
         "behavior": "",
@@ -4144,7 +4144,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": ""
+        "desc": "\n\n# Update (7.41d)\nTurn chance: 14.25% + 0.75% per level (was 14% + 1% per level)."
       },
       {
         "key": "hoodwink_forager",
@@ -4295,7 +4295,7 @@
         "key": "invoker_cold_snap",
         "name": "急速冷却",
         "mc": "100",
-        "cd": "18",
+        "cd": "19",
         "behavior": "",
         "scepter_grants": false,
         "shard_grants": false,
@@ -4313,7 +4313,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Invoker manipulates the ice and electrical energies around him, rendering his body invisible and gaining health and mana regen. The elemental imbalance created as a consequence slows nearby enemies based on the level of Quas, and slows Invoker as well based on the level of Wex."
+        "desc": "Invoker manipulates the ice and electrical energies around him, rendering his body invisible and gaining health and mana regen. The elemental imbalance created as a consequence slows nearby enemies based on the level of Quas, and slows Invoker as well based on the level of Wex.\n\n# Update (7.41d)\nDuration reduced from 60s to 50s. Aghanim's Shard no longer increases Ghost Walk's radius."
       },
       {
         "key": "invoker_tornado",
@@ -4663,10 +4663,10 @@
         "name": "查克拉魔法",
         "mc": "0",
         "cd": [
-          "19",
-          "16",
-          "13",
-          "10"
+          "2.5",
+          "3.5",
+          "4.5",
+          "5.5"
         ],
         "behavior": "",
         "scepter_grants": false,
@@ -4683,7 +4683,7 @@
         "behavior": "",
         "scepter_grants": false,
         "shard_grants": false,
-        "cast_range": "850",
+        "cast_range": "750",
         "bkbpierce": "No",
         "desc": "Weakens an enemy's magical resistance, and applies a slow that increases in strength the more the target moves."
       },
@@ -5531,10 +5531,10 @@
           "140"
         ],
         "cd": [
+          "21",
           "20",
           "19",
-          "18",
-          "17"
+          "18"
         ],
         "behavior": "",
         "scepter_grants": false,
@@ -5893,7 +5893,7 @@
         "is_innate": true,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Summons a powerful Spirit Bear companion that can equip items.\n\nIf the bear moves 1100 distance away from the Lone Druid, it cannot attack. Lone Druid suffers 20% of his max health as backlash damage if the Spirit Bear dies.\nSpirit Bear has Demolish, Return, Entangling Claws, Savage Roar, and Spirit Link abilities."
+        "desc": "Summons a powerful Spirit Bear companion that can equip items.\n\nIf the bear moves 1100 distance away from the Lone Druid, it cannot attack. Lone Druid suffers 20% of his max health as backlash damage if the Spirit Bear dies.\nSpirit Bear has Demolish, Return, Entangling Claws, Savage Roar, and Spirit Link abilities.\n\n# Update (7.41d)\nSpirit Bear base armor reduced by 1. Demolish: bonus damage to buildings reduced from 30% to 20%."
       },
       {
         "key": "lone_druid_true_form",
@@ -6171,7 +6171,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Magnus tosses any enemies in front of him, launching them to his rear. Enemies take damage, spend 0.6 seconds in the air, and are stunned while in the air and an additional amount of time after landing."
+        "desc": "Magnus tosses any enemies in front of him, launching them to his rear. Enemies take damage, spend 0.6 seconds in the air, and are stunned while in the air and an additional amount of time after landing.\n\n# Update (7.41d)\nHorn Toss damage increased from 300 to 325."
       },
       {
         "key": "magnataur_solid_core",
@@ -6410,7 +6410,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "Yes",
-        "desc": "Medusa magically splits her shot into several arrows. These arrows deal a lower percent of her normal damage.The extra targets will not receive other attack effects (such as critical strike)."
+        "desc": "Medusa magically splits her shot into several arrows. These arrows deal a lower percent of her normal damage.The extra targets will not receive other attack effects (such as critical strike).\n\n# Update (7.41d)\nSplit Shot no longer breaks invisibility when toggled. Can be toggled while silenced."
       },
       {
         "key": "medusa_mystic_snake",
@@ -6680,7 +6680,7 @@
         "is_innate": true,
         "cast_range": "630",
         "bkbpierce": null,
-        "desc": "When a charge is available, Mirana's next attack will deal bonus magic damage.\n\nGains a charge every 7 hero levels.",
+        "desc": "When a charge is available, Mirana's next attack will deal bonus magic damage.\n\nGains a charge every 6 hero levels.",
         "max_charges_per_level": "6"
       },
       {
@@ -6938,9 +6938,9 @@
         "name": "变形",
         "mc": "50",
         "cd": [
-          "140",
-          "100",
-          "60"
+          "125",
+          "90",
+          "55"
         ],
         "behavior": "",
         "scepter_grants": false,
@@ -6951,7 +6951,7 @@
           "1000"
         ],
         "bkbpierce": "Yes",
-        "desc": "Morphling changes his form to match the targeted enemy, gaining their basic abilities. Can be toggled for the duration of the ability.",
+        "desc": "Morphling changes his form to match the targeted enemy, gaining their basic abilities. Can be toggled for the duration of the ability.\n\n# Update (7.41d)\nAghanim's Scepter upgrade: Replicate illusions no longer have vision penalty.",
         "scepter_incoming_damage": "200"
       },
       {
@@ -7021,7 +7021,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": ""
+        "desc": "\n\n# Update (7.41d)\nGunslinger no longer breaks invisibility when toggled."
       },
       {
         "key": "muerta_spectral_slug",
@@ -7261,7 +7261,7 @@
         "behavior": "",
         "scepter_grants": false,
         "shard_grants": true,
-        "cast_range": "750",
+        "cast_range": "600",
         "bkbpierce": "No",
         "desc": "Necrophos turns into a large Death Pulse towards the target unit's position. Once it arrives to the location, the Death Pulse spreads towards nearby enemies and allies."
       },
@@ -7276,7 +7276,7 @@
         "is_innate": true,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Necrophos gains stacking regen for 8 seconds for each unit he kills. Hero kills multiply the effect."
+        "desc": "Necrophos gains stacking regen for 8 seconds for each unit he kills. Hero kills multiply the effect.\n\n# Update (7.41d)\nSadist regen: 3.8 + 0.2 per level (was 3.7 + 0.3 per level)."
       },
       {
         "key": "necrolyte_reapers_scythe",
@@ -7310,7 +7310,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Shadow Fiend razes the ground directly in front of him, dealing damage to enemy units in the area, dealing bonus damage based on his current Necromastery Soul amount. Adds a stacking damage amplifier on the target that causes the enemy to take bonus Shadowraze damage per stack."
+        "desc": "Shadow Fiend razes the ground directly in front of him, dealing damage to enemy units in the area, dealing bonus damage based on his current Necromastery Soul amount. Adds a stacking damage amplifier on the target that causes the enemy to take bonus Shadowraze damage per stack.\n\n# Update (7.41d)\nShadowraze stack duration reduced from 7s to 6s. Level 25 talent: Shadowraze attack damage no longer applies attack modifiers or triggers."
       },
       {
         "key": "nevermore_shadowraze2",
@@ -7441,7 +7441,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Night Stalker horrifies all nearby enemies, causing them to become silenced and take damage over time while near him. The effect lasts longer at night."
+        "desc": "Night Stalker horrifies all nearby enemies, causing them to become silenced and take damage over time while near him. The effect lasts longer at night.\n\n# Update (7.41d)\nRadius reduced from 375 to 350."
       },
       {
         "key": "night_stalker_midnight_feast",
@@ -7663,16 +7663,16 @@
         "mc": 175,
         "cd": [
           "36",
-          "34",
-          "32",
-          "30"
+          "33",
+          "30",
+          "27"
         ],
         "behavior": "",
         "scepter_grants": false,
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Increases Outworld Destroyer's maximum mana. When cast, protects Outworld Destroyer with an all damage barrier equal to a flat amount and a percentage of his maximum mana."
+        "desc": "Increases Outworld Destroyer's maximum mana. When cast, protects Outworld Destroyer with an all damage barrier equal to a flat amount and a percentage of his maximum mana.\n\n# Update (7.41d)\nObjurgation is now instant cast, no longer interrupts movement. Shield: 150/200/250/300 (was 120/180/240/300)."
       },
       {
         "key": "obsidian_destroyer_equilibrium",
@@ -7893,7 +7893,7 @@
         "shard_grants": false,
         "cast_range": "150",
         "bkbpierce": "Yes",
-        "desc": "Omniknight imbues his hammer with holy power, causing his attack to have increased range, deal 25/45/65/85 pure damage based on a percentage of his base damage and slow his target for a short duration. Omniknight heals for 30% of the damage dealt over 5s."
+        "desc": "Omniknight imbues his hammer with holy power, causing his attack to have increased range, deal 25/45/65/85 pure damage based on a percentage of his base damage and slow his target for a short duration. Omniknight heals for 40% of the damage dealt over 4s.\n\n# Update (7.41d)\nHeal: 40% of damage dealt over 4s (was 35% over 5s)."
       },
       {
         "key": "omniknight_degen_aura",
@@ -7966,7 +7966,7 @@
         "shard_grants": false,
         "cast_range": "700",
         "bkbpierce": "No",
-        "desc": "Oracle enraptures a target, disarming them and granting them 100% magic damage resistance."
+        "desc": "Oracle enraptures a target, disarming them and granting them 100% magic damage resistance.\n\n# Update (7.41d)\nFate's Edict cast on Oracle or allies can now be dispelled by enemies."
       },
       {
         "key": "oracle_purifying_flames",
@@ -8021,8 +8021,8 @@
         "scepter_grants": false,
         "shard_grants": false,
         "cast_range": [
-          "700",
           "800",
+          "850",
           "900"
         ],
         "bkbpierce": "Yes",
@@ -8228,7 +8228,7 @@
         "is_innate": true,
         "cast_range": "500",
         "bkbpierce": null,
-        "desc": "Phantom Assassin blurs her body, disjointing incoming projectiles, increasing her movement speed, causing her to be impossible to see until she comes near enemy heroes or towers."
+        "desc": "Phantom Assassin blurs her body, disjointing incoming projectiles, increasing her movement speed, causing her to be impossible to see until she comes near enemy heroes or towers.\n\n# Update (7.41d)\nBlur is now undispellable."
       },
       {
         "key": "phantom_assassin_fan_of_knives",
@@ -8351,7 +8351,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Phantom Lancer has a chance to fracture his presence on an attack, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for 8 seconds, while illusions created from other illusions last 4 seconds."
+        "desc": "Phantom Lancer has a chance to fracture his presence on an attack, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for 8 seconds, while illusions created from other illusions last 4 seconds.\n\n# Update (7.41d)\nAghanim's Shard: Juxtapose cooldown increased from 15s to 18s."
       }
     ],
     "talents": []
@@ -8609,10 +8609,10 @@
           "120"
         ],
         "cd": [
+          "12",
           "11",
           "10",
-          "9",
-          "8"
+          "9"
         ],
         "behavior": "",
         "scepter_grants": false,
@@ -8888,9 +8888,9 @@
         "name": "暗影突袭",
         "mc": [
           "100",
+          "105",
           "110",
-          "120",
-          "130"
+          "115"
         ],
         "cd": [
           "11",
@@ -8980,7 +8980,7 @@
         "shard_grants": false,
         "cast_range": "700",
         "bkbpierce": "Yes",
-        "desc": "Creates a gigantic wave of sound in front of Queen of Pain, dealing heavy damage to all enemy units in its wake and pushing them back."
+        "desc": "Creates a gigantic wave of sound in front of Queen of Pain, dealing heavy damage to all enemy units in its wake and pushing them back.\n\n# Update (7.41d)\nRapidly cast Sonic Waves can now stack their damage."
       }
     ],
     "talents": []
@@ -9013,7 +9013,7 @@
       {
         "key": "rattletrap_power_cogs",
         "name": "能量齿轮",
-        "mc": "75",
+        "mc": "90",
         "cd": [
           "21",
           "19",
@@ -9025,7 +9025,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "Yes",
-        "desc": "Forms a ring of energized cogs around Clockwerk, trapping any units that are near. Enemies outside the trap that touch a cog are knocked back, losing health and mana. Once a cog has delivered a shock, it will power down. Damage is increased by 50% of the mana burned.\n\n Cogs can be destroyed by enemy attacks, but Clockwerk can push them up to 1000 distance away with one hit. Clockwerk can move through the cogs freely, disabling them as he passes over.",
+        "desc": "Forms a ring of energized cogs around Clockwerk, trapping any units that are near. Enemies outside the trap that touch a cog are knocked back, losing health and mana. Once a cog has delivered a shock, it will power down. Damage is increased by 50% of the mana burned.\n\n Cogs can be destroyed by enemy attacks, but Clockwerk can push them up to 850/900/950/1000 distance away with one hit. Clockwerk can move through the cogs freely, disabling them as he passes over.\n\n# Update (7.41d)\nMana lost: 40/75/110/145 (was 40/80/120/160). Cogs travel distance: 850/900/950/1000 (was 1000). Cogs vision: 800/400 (was 1600/600). Cogs no longer block neutral camp spawns.",
         "damage": "55/110/165/220",
         "works_on_no_mana": "True"
       },
@@ -9358,7 +9358,7 @@
         "shard_grants": false,
         "cast_range": "2400",
         "bkbpierce": "No",
-        "desc": "Ringmaster throws one of his daggers to a precise point of his choosing. If he strikes an enemy, the dagger deals impact damage, briefly slows the unit hit, and causes them to bleed. The bleeding deals a percentage of the victim's maximum health in damage every second to heroes and flat damage per second to creeps."
+        "desc": "Ringmaster throws one of his daggers to a precise point of his choosing. If he strikes an enemy, the dagger deals impact damage, briefly slows the unit hit, and causes them to bleed. The bleeding deals a percentage of the victim's maximum health in damage every second to heroes and flat damage per second to creeps.\n\n# Update (7.41d)\nNon-hero damage per second adjusted from 85/90/95/100 to 60/75/90/105."
       },
       {
         "key": "ringmaster_spotlight",
@@ -10550,7 +10550,7 @@
         "shard_grants": false,
         "cast_range": "800",
         "bkbpierce": "No",
-        "desc": "Snapfire unloads with a wide blast that damages and slows enemies in a cone. Damage is increased by 30% and Movement Slow, Attack Slow and Slow Duration are increased by 50% for enemies caught at point-blank range."
+        "desc": "Snapfire unloads with a wide blast that damages and slows enemies in a cone. Damage is increased by 25% and Movement Slow, Attack Slow and Slow Duration are increased by 50% for enemies caught at point-blank range.\n\n# Update (7.41d)\nScatterblast initial blast width is no longer increased by cast range bonuses. Point-blank bonus damage reduced from 30% to 25%."
       },
       {
         "key": "snapfire_firesnap_cookie",
@@ -10567,7 +10567,7 @@
         "shard_grants": false,
         "cast_range": "650",
         "bkbpierce": null,
-        "desc": "Snapfire feeds a potent cookie to Mortimer or an ally, causing them to hop a short distance. The hopping unit stuns and damages enemies in the landing zone.",
+        "desc": "Snapfire feeds a potent cookie to Mortimer or an ally, causing them to hop a short distance. The hopping unit stuns and damages enemies in the landing zone.\n\n# Update (7.41d)\nImpact damage reduced from 75/150/225/300 to 60/130/200/270.",
         "shard_heal": "175"
       },
       {
@@ -10634,7 +10634,7 @@
         "shard_grants": false,
         "cast_range": "3000",
         "bkbpierce": "No",
-        "desc": "Snapfire's friend launches a barrage of firespit globs over 5.5 seconds. Globs cause impact damage and create pools of firespit, which slow and apply damage over time. Snapfire has a reduced turn rate for the duration and a minimum launch range of 600. Each glob can be targeted with a right click."
+        "desc": "Snapfire's friend launches a barrage of firespit globs over 5.5 seconds. Globs cause impact damage and create pools of firespit, which slow and apply damage over time. Snapfire has a reduced turn rate for the duration and a minimum launch range of 600. Each glob can be targeted with a right click.\n\n# Update (7.41d)\nFireball damage reduced from 180/270/360 to 170/250/330."
       },
       {
         "key": "snapfire_boomstick",
@@ -10708,7 +10708,7 @@
         "shard_grants": true,
         "cast_range": "600",
         "bkbpierce": "No",
-        "desc": "Launches a grenade at the target area, dealing damage to enemies and knocking them and Sniper back. Enemies affected are disarmed and have their movement slowed after the knockback."
+        "desc": "Launches a grenade at the target area, dealing damage to enemies and knocking them and Sniper back. Enemies affected are disarmed and have their movement slowed after the knockback.\n\n# Update (7.41d)\nConcussive Grenade can now be cast while immobilized. Sniper is not knocked back while immobilized."
       },
       {
         "key": "sniper_keen_scope",
@@ -10853,7 +10853,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "Yes",
-        "desc": "Creates a spectral nemesis to haunt all enemy Heroes.\n\nHaunt illusions are uncontrollable, take extra damage, and deal less damage than Spectre herself. They ignore terrain.\n\nThe Reality sub-ability may be used to teleport to the illusion, destroying it.",
+        "desc": "Creates a spectral nemesis to haunt all enemy Heroes.\n\nHaunt illusions are uncontrollable, take extra damage, and deal less damage than Spectre herself. They ignore terrain.\n\nThe Reality sub-ability may be used to teleport to the illusion, destroying it.\n\n# Update (7.41d)\nIllusion attack damage: 35/50/65% (was 30/50/70%).",
         "scepter_fear_duration": "2"
       }
     ],
@@ -11341,7 +11341,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "CHANNELED - Allows Templar Assassin to teleport to any Psionic Trap after channeling for 2 seconds, detonating it upon arrival as if it was fully charged and instantly dealing 400 bonus damage. Channeling Psionic Projection does not break Meld."
+        "desc": "CHANNELED - Allows Templar Assassin to teleport to any Psionic Trap after channeling for 2 seconds, detonating it upon arrival as if it was fully charged and instantly dealing 400 bonus damage. Channeling Psionic Projection does not break Meld.\n\n# Update (7.41d)\nPsi Blades Trap Teleport is now interrupted by immobilize effects."
       },
       {
         "key": "templar_assassin_psionic_trap",
@@ -11754,7 +11754,7 @@
         "shard_grants": false,
         "cast_range": "600",
         "bkbpierce": "No",
-        "desc": "Bombards an area with rocks, continously doing small intervals of damage and stun to enemy units."
+        "desc": "Bombards an area with rocks, continously doing small intervals of damage and stun to enemy units.\n\n# Update (7.41d)\nBase health regeneration reduced by 1.0."
       },
       {
         "key": "tiny_toss",
@@ -11880,7 +11880,12 @@
       {
         "key": "treant_leech_seed",
         "name": "寄生种子",
-        "mc": null,
+        "mc": [
+          "35",
+          "35",
+          "35",
+          "35"
+        ],
         "cd": [
           "15",
           "12",
@@ -11892,15 +11897,15 @@
         "shard_grants": false,
         "cast_range": "150",
         "bkbpierce": "No",
-        "desc": "Treant's attack plants a life-sapping seed in an enemy unit. That unit takes additional magic damage, is rooted and disarmed for a short duration, and emits 2 healing pulses to up to 5 nearby allies of Treant Protector based on the damage dealt by the attack."
+        "desc": "Treant's attack plants a life-sapping seed in an enemy unit. That unit takes additional magic damage, is rooted and disarmed for a short duration, and emits 2 healing pulses to up to 5 nearby allies of Treant Protector based on the damage dealt by the attack.\n\n# Update (7.41d)\nRoot duration reduced from 0.9/1.1/1.3/1.5s to 0.75/1.0/1.25/1.5s."
       },
       {
         "key": "treant_living_armor",
         "name": "活体护甲",
         "mc": [
-          "65",
-          "70",
-          "75",
+          "80",
+          "80",
+          "80",
           "80"
         ],
         "cd": [
@@ -11978,7 +11983,7 @@
         "is_innate": true,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Troll Warlord swaps from using ranged to melee attacks. While melee, Troll Warlord's base attack time is improved to 1.4.\n\nTroll Warlord gains 1 armor per 30 bonus attack speed."
+        "desc": "Troll Warlord swaps from using ranged to melee attacks. While melee, Troll Warlord's base attack time is improved to 1.4.\n\nTroll Warlord gains 1 armor per 30 bonus attack speed.\n\n# Update (7.41d)\nSwitching stances no longer breaks invisibility."
       },
       {
         "key": "troll_warlord_whirling_axes_ranged",
@@ -12043,7 +12048,7 @@
         "shard_grants": false,
         "cast_range": "525",
         "bkbpierce": null,
-        "desc": "Troll unleashes a powerful battle trance, that forces you to continuously attack the closest enemy unit within 900 range, prioritizing heroes. Damage does not kill you during this mode. Grants you bonus lifesteal, attack speed and movement speed. Applies a Basic Dispel.\n\nDISPEL TYPE: Basic Dispel"
+        "desc": "Troll unleashes a powerful battle trance, that forces you to continuously attack the closest enemy unit within 900 range, prioritizing heroes. Damage does not kill you during this mode. Grants you bonus lifesteal, attack speed and movement speed. Applies a Basic Dispel.\n\nDISPEL TYPE: Basic Dispel\n\n# Update (7.41d)\nBattle Trance now also grants 35% slow resistance."
       }
     ],
     "talents": []
@@ -12176,7 +12181,7 @@
       {
         "key": "undying_decay",
         "name": "腐朽",
-        "mc": "100",
+        "mc": "110",
         "cd": [
           "13",
           "10",
@@ -12256,7 +12261,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Undying transforms into a horrifying flesh golem. While in this state, he gains a percentage increase to strength, bonus movement speed, and causes attacks to slow, apply damage amplification, and spawn Tombstone zombies."
+        "desc": "Undying transforms into a horrifying flesh golem. While in this state, he gains a percentage increase to strength, bonus movement speed, and causes attacks to slow, apply damage amplification, and spawn Tombstone zombies.\n\n# Update (7.41d)\nMovement speed bonus increased from 20% to 25%."
       }
     ],
     "talents": []
@@ -12400,7 +12405,7 @@
         "shard_grants": false,
         "cast_range": "1200",
         "bkbpierce": "Yes",
-        "desc": "Vengeful Spirit's presence increases the damage of nearby friendly heroes. Vengeful Spirit herself receives 25% extra bonus."
+        "desc": "Vengeful Spirit's presence increases the damage of nearby friendly heroes. Vengeful Spirit herself receives 25% extra bonus.\n\n# Update (7.41d)\nAghanim's Scepter upgrade: Vengeance Aura illusions no longer have vision penalty."
       },
       {
         "key": "vengefulspirit_retribution",
@@ -12487,7 +12492,7 @@
         "shard_grants": false,
         "cast_range": "600",
         "bkbpierce": null,
-        "desc": "Venomancer summons a Spawn of Aktok to sink its fangs into an enemy, dealing 10/20/30/40 magical damage per second and poisoning the target."
+        "desc": "Venomancer summons a Spawn of Aktok to sink its fangs into an enemy, dealing 10/30/50/70 magical damage per second and poisoning the target."
       },
       {
         "key": "venomancer_plague_ward",
@@ -12684,7 +12689,7 @@
         "shard_grants": false,
         "cast_range": "0",
         "bkbpierce": "No",
-        "desc": "Orders the Familiar closest to Visage to cast Stone Form in its current location, turning into stone and smashing into the ground, stunning and damaging all targets in the area. The Familiar becomes invulnerable, and will regain its health very rapidly. After 6 seconds, the Familiar will automatically leave Stone Form.\n\n Can be alt-cast to order the closest Familiar to the target location to move there and cast Stone Form."
+        "desc": "Orders the Familiar closest to Visage to cast Stone Form in its current location, turning into stone and smashing into the ground, stunning and damaging all targets in the area. The Familiar becomes invulnerable, and will regain its health very rapidly. After 6 seconds, the Familiar will automatically leave Stone Form.\n\n Can be alt-cast to order the closest Familiar to the target location to move there and cast Stone Form.\n\n# Update (7.41d)\nStone Form no longer breaks invisibility when used to command Familiars."
       },
       {
         "key": "visage_silent_as_the_grave",
@@ -13009,7 +13014,7 @@
         "is_innate": true,
         "cast_range": null,
         "bkbpierce": null,
-        "desc": "Whenever Weaver deals damage to an enemy hero with an attack or ability, if he remains within 700 range of them for 1.5s, he establishes a Thread of Fate that briefly slows the enemy and ties Weaver and the enemy together. Each established thread of fate grants bonus damage to Weaver."
+        "desc": "Whenever Weaver deals damage to an enemy hero with an attack or ability, if he remains within 890 range of them for 1.5s, he establishes a Thread of Fate that briefly slows the enemy and ties Weaver and the enemy together. Each established thread of fate grants bonus damage to Weaver.\n\n# Update (7.41d)\nThreads of Fate break distance: 890 + 10 * Hero Level (was 900)."
       }
     ],
     "talents": []
@@ -13146,9 +13151,9 @@
         "name": "严寒烧灼",
         "mc": "100",
         "cd": [
+          "29",
           "26",
-          "24",
-          "22",
+          "23",
           "20"
         ],
         "behavior": "",
@@ -13417,7 +13422,7 @@
         "shard_grants": false,
         "cast_range": "600",
         "bkbpierce": "No",
-        "desc": "Curses all enemy Heroes and player-controlled units in a small area, causing them to take a set amount of damage each second, as well as bursts of damage every 4 seconds based on how much health they have lost since the curse began."
+        "desc": "Curses all enemy Heroes and player-controlled units in a small area, causing them to take a set amount of damage each second, as well as bursts of damage every 4 seconds based on how much health they have lost since the curse began.\n\n# Update (7.41d)\nLevel 20 talent: Maledict burst treats illusions as non-hero targets. Burst from illusions does not deal damage."
       },
       {
         "key": "witch_doctor_voodoo_switcheroo",
@@ -13549,7 +13554,7 @@
         "shard_grants": true,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Zeus gains bonus attack speed and his attacks create Arc Lightnings that deal a percentage of its damage. Can be toggled off to stop this effect."
+        "desc": "Zeus gains bonus attack speed and his attacks create Arc Lightnings that deal a percentage of its damage. Can be toggled off to stop this effect.\n\n# Update (7.41d)\nLightning Hands no longer breaks invisibility when toggled. Can be toggled while silenced. Attack speed bonus reduced to 20 (was 30)."
       },
       {
         "key": "zuus_thundergods_wrath",
@@ -13565,7 +13570,7 @@
         "shard_grants": false,
         "cast_range": null,
         "bkbpierce": "No",
-        "desc": "Strikes all enemy heroes with a bolt of lightning, dealing damage no matter where they may be. Provides True Sight around each hero before they are struck."
+        "desc": "Strikes all enemy heroes with a bolt of lightning, dealing damage no matter where they may be. Provides True Sight around each hero before they are struck.\n\n# Update (7.41d)\nDamage reduced from 300/475/650 to 275/425/575."
       },
       {
         "key": "zuus_static_field",

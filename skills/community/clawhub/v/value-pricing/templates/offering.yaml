@@ -1,0 +1,25 @@
+# Offering specification template for any product, service, bundle, licence, or commercial model.
+# Include only relevant fields. Keep claims tied to dated evidence; unknowns remain explicit gaps.
+offering:
+  id: configure_offering_id
+  name: null
+  type: null                         # User-defined, e.g. product, service, platform, or hybrid
+  description: null
+  buyer_and_user: null
+  problem_or_job: null
+  geography_and_availability: null
+  business_model: null
+  pricing_structure: null            # Current model, billing unit/period, terms, or null if unknown
+  units_of_value: []
+
+customer_segments: []                # User-defined; add only material segments
+value_drivers: []                    # Buyer outcomes, evidence, and measurement approach
+alternatives: []                     # Status quo, competitors, substitutes, or no-purchase
+
+attributes: []                       # Optional structured attributes; feature lists are not required
+features: []                         # Optional script-compatible list, with evidence for each entry
+# Suggested status vocabulary for configured attributes: yes | partial | no | unknown
+# Evidence item shape: {quote, source, observed_on, note}
+evidence_gaps: []
+moats: []                            # Optional claims, each with evidence and source
+weak_points: []                      # Optional claims, each with evidence and source

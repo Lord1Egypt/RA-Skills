@@ -1,38 +1,49 @@
-## Description: <br>
-Deep message queue workflow for queue versus topic choices, ordering and partitions, retries and dead-letter queues, idempotency, backpressure, observability, and failure design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Message Queues provides a deep workflow for queue versus topic selection, ordering and partitions, retries and DLQ, idempotency, backpressure, observability, and failure design when integrating workers, event buses, or debugging poison messages and lag.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, and troubleshoot message-queue systems, including topology, delivery semantics, retries, dead-letter queues, idempotency, observability, and failure drills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Failure-drill suggestions can disrupt production message processing if run without controls. <br>
-Mitigation: Use staging or a controlled production drill with explicit approval, monitoring, and rollback plans. <br>
+## Use Case:
 
+Developers and engineers use this skill to design or troubleshoot message-queue and event-driven workflows, including delivery semantics, ordering, partitioning, retries, DLQs, replay, lag, and operational readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawkk/message-queues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and decision prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, API calls, or hidden installation behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Provider-specific queue behavior may differ from the architectural guidance and could affect production correctness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify details such as SQS visibility timeouts and Kafka ordering guarantees against current vendor documentation before making production changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/message-queues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with staged workflow prompts, checklists, and concise architectural recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no sensitive access, execution, or persistence requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

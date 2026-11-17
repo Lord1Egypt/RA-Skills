@@ -1,42 +1,57 @@
-## Description: <br>
-Provides local hybrid memory retrieval with BM25 keyword search, BGE-M3 embeddings, and BGE reranking over Markdown memory files under /root/workspace/Remember. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches local Markdown memory files under /root/workspace/Remember using BM25 keyword retrieval, BGE-M3 embeddings, and BGE reranking as a replacement for mem0 memory search.
 
-## Publisher: <br>
-[ckqiao](https://clawhub.ai/user/ckqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckqiao](https://clawhub.ai/user/ckqiao)
 
-## Use Case: <br>
-Developers and agents use this skill to search local Markdown memory files and retrieve ranked context snippets for a query. It is intended to replace mem0 for memory search workflows that need hybrid keyword, semantic, and reranked results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to run /opt/memory/bm25_rerank_search.py, which is not included in the artifact and cannot be reviewed from this release package. <br>
-Mitigation: Review the local script before installation or execution and run it only in an environment where its behavior is trusted. <br>
-Risk: Memory search may send private memory content to SiliconFlow for embedding and reranking. <br>
-Mitigation: Avoid using the skill on sensitive memories unless data handling with SiliconFlow is understood and acceptable. <br>
-Risk: The documented dependency command modifies the system Python environment with --break-system-packages. <br>
-Mitigation: Install dependencies in an isolated environment with pinned versions. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve concise memory snippets from local Markdown notes and rebuild the retrieval index after memory files change.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckqiao/bm25-rerank-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and ranked text result descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include score, path, chunk_id, and a content snippet capped at 200 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can retrieve broad local memory content that may include private conversations, credentials, business data, or internal instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an environment where the indexed memory directory is intentionally scoped and reviewed for sensitive content.
+
+Risk: Embedding and reranking route memory content through the external SiliconFlow processing path.
+
+Mitigation: Use the skill only when that external processing path is trusted for the data being searched.
+
+Risk: The skill relies on the local /opt/memory/bm25_rerank_search.py script and a dependency installation command.
+
+Mitigation: Review the local script before installation or use, pin dependencies, and prefer an isolated runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckqiao/skills/bm25-rerank-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and text result snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include score, path, chunk identifier, and a content snippet of up to 200 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

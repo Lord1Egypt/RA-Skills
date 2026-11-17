@@ -1,40 +1,50 @@
-## Description: <br>
-Provides a comprehensive framework for deploying AI in ways that respect employee psychology, preserve human agency, and treat workforce well-being as a strategic priority rather than an afterthought. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a framework for deploying AI in ways that respect employee psychology, preserve human agency, and treat workforce well-being as a strategic priority.
 
-## Publisher: <br>
-[fatihguner](https://clawhub.ai/user/fatihguner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fatihguner](https://clawhub.ai/user/fatihguner)
 
-## Use Case: <br>
-Leaders, managers, HR partners, and AI project teams use this skill to plan or repair AI rollouts that affect employees, especially when adoption resistance, algorithmic monitoring, burnout, or loss of agency are concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include identifiable employee records, confidential HR details, or monitoring data while applying the guidance. <br>
-Mitigation: Avoid entering sensitive workplace data into an agent unless appropriate consent, policy, and legal controls are in place. <br>
-Risk: AI adoption recommendations may affect employee experience, morale, or governance decisions if applied without local review. <br>
-Mitigation: Have responsible leaders, HR, and legal or compliance reviewers adapt outputs to the organization's policies and workforce context before acting on them. <br>
+## Use Case:
 
+Leaders, managers, HR partners, and AI adoption teams use this skill to plan workplace AI deployments that preserve employee agency, transparency, feedback, and well-being. It is useful when AI rollout resistance, algorithmic monitoring, productivity pressure, morale issues, or burnout indicate that the human experience needs redesign.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fatihguner/ai-human-centered-approach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with prompts, assessment tables, and deployment plan templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no tools, credentials, or shell commands required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The broad activation scope may cause the skill to appear in general workplace AI conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing behavior before installation and use the skill when human-centered AI rollout planning is relevant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fatihguner/skills/ai-human-centered-approach)
+- [ClawHub publisher profile](https://clawhub.ai/user/fatihguner)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance, prompts, assessment tables, and deployment planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable advisory output for human-centered AI deployment planning]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

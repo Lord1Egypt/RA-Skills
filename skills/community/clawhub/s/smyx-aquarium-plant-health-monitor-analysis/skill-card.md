@@ -1,46 +1,51 @@
-## Description: <br>
-Analyzes aquarium plant images or videos to identify visual health symptoms, produce structured health assessments, care suggestions, and report links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes aquarium plant images and videos for visible color and shape changes, then provides a health assessment and care suggestions.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users, aquarium hobbyists, aquascaping shops, and developers use this skill to analyze aquarium plant media for visible color, morphology, algae, and nutrient-deficiency symptoms. It returns a visual health assessment, care direction, and optional history/report links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends aquarium media or media URLs to lifeemergence.com services for analysis. <br>
-Mitigation: Use only media you are permitted to share, and avoid private or signed URLs unless you trust the publisher and service. <br>
-Risk: The skill creates or reuses local identity state, queries cloud-stored report history, and stores returned tokens in a local SQLite database with limited user control. <br>
-Mitigation: Avoid shared workspaces, review local state before reuse, and remove stored credentials or identity state when access should be revoked. <br>
-Risk: The security evidence marks the release suspicious because of silent remote authentication and token persistence. <br>
-Mitigation: Review the skill and network destinations before deployment, and run it in an isolated environment when evaluating it. <br>
+## Use Case:
 
+Aquarium owners, aquascapers, and aquarium shops can use plant images or videos to review visible signs of stress and receive possible causes and care guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-aquarium-plant-health-monitor-analysis) <br>
-- [Publisher Profile](https://clawhub.ai/user/smyx-sunjinhui) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [API Interface Documentation](references/api_doc.md) <br>
-- [Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with structured JSON analysis and report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save the analysis result to a local output file when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: The security assessment marks the skill suspicious and reports account and token handling, possible credential or media transmission, and unclear export-only behavior; its evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, ask the publisher to explain account registration, persistent profile and token storage, external media uploads, and export-only behavior; avoid sharing sensitive credentials or media until clarified.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-aquarium-plant-health-monitor-analysis)
+- [API documentation](references/api_doc.md)
+- [Skill introduction](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured analysis reports in JSON and report listings in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a health assessment, possible symptoms and causes, care suggestions, and report links; visual findings may be uncertain.]
+
+## Skill Version(s):
+
+1.0.16 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

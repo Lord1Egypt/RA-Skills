@@ -1,42 +1,62 @@
-## Description: <br>
-将“张氏财务分析框架”落地为可直接执行的查表、计算、判断与排雷步骤，帮助用户依据财务报表和附注识别利润含金量、产业链话语权、潜在雷区、集团管控模式与管理效能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将“张氏财务分析框架”落地为可直接执行的查表、计算、判断与排雷步骤，帮助使用者依据财务报表和附注识别利润含金量、产业链话语权、潜在雷区、集团管控模式与管理效能。
 
-## Publisher: <br>
-[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiyouwolegequ](https://clawhub.ai/user/aiyouwolegequ)
 
-## Use Case: <br>
-External finance, investment, credit, and operations analysts can use this Chinese-language skill to structure financial statement reviews, calculate core quality indicators, and surface business-risk questions from company reports and disclosures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the financial analysis as audit, legal, or investment advice. <br>
-Mitigation: Present outputs as decision-support analysis and require review by qualified finance, audit, legal, or investment professionals before relying on conclusions. <br>
-Risk: Incomplete statements, missing notes, single-year data, or absent industry context can make conclusions overconfident. <br>
-Mitigation: State data gaps and downgrade conclusions when cash flow, disclosures, parent-company statements, peer data, or multi-year trends are unavailable. <br>
-Risk: Financial red flags may be misread as definitive fraud or misconduct findings. <br>
-Mitigation: Use probabilistic risk language and require corroborating disclosures, announcements, audit opinions, and source documents before making formal determinations. <br>
+## Use Case:
 
+Financial analysts, investors, credit reviewers, operators, and advisors use this skill to turn Chinese financial statements, notes, and group-level reporting data into plain-language diagnostics for profit quality, cash conversion, asset risks, operating leverage, and parent-subsidiary structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiyouwolegequ/zhang-financial-analysis-gpt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Markdown analysis with structured headings, calculations, risk labels, and conclusion boundaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are financial-analysis aids and should not be treated as audit, legal, or investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Financial analysis may be mistaken for audit, legal, or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs for screening and business-risk analysis only, and require qualified review before relying on conclusions for audit, legal, credit, or investment decisions.
+
+Risk: Incomplete financial statements, missing notes, single-year data, or absent industry context can lead to overconfident conclusions.
+
+Mitigation: Ask users to provide cash-flow data, balance-sheet detail, notes and disclosures, multi-year periods, industry context, and parent-company statements when available; clearly mark conclusion boundaries when data is missing.
+
+Risk: Non-public financial data may be sensitive.
+
+Mitigation: Use the skill only in trusted environments and avoid supplying confidential data where retention, access, or sharing controls are unclear.
+
+Risk: The skill defaults to Chinese plain-language output, which may not fit every user.
+
+Mitigation: Ask for the preferred language or adapt the output language when Chinese is unsuitable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiyouwolegequ/skills/zhang-financial-analysis-gpt)
+- [ClawHub publisher profile](https://clawhub.ai/user/aiyouwolegequ)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown or structured text with financial calculations, risk labels, conclusions, and missing-data boundaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese plain-language financial analysis; reliability depends on supplied statements, notes, period coverage, industry context, and parent-company data.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and target metadata; artifact frontmatter lists 2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

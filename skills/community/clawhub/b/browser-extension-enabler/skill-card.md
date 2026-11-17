@@ -1,40 +1,54 @@
-## Description: <br>
-Auto-detect and enable OpenClaw Browser Relay Chrome extension when disconnected. Uses native mouse control to click the extension icon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-detects a disconnected OpenClaw Browser Relay Chrome extension and enables it by moving and clicking the mouse through a native dependency.
 
-## Publisher: <br>
-[kevinZhj](https://clawhub.ai/user/kevinZhj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kevinzhj](https://clawhub.ai/user/kevinzhj)
 
-## Use Case: <br>
-Developers and agent users on Windows use this skill to reconnect the OpenClaw Browser Relay Chrome extension by running a PowerShell workflow that checks connection status and clicks a calibrated extension icon coordinate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to move and click the real mouse, which can interfere with active desktop work or click the wrong target if coordinates are stale. <br>
-Mitigation: Use it only when intentional, verify coordinates with TestMode first, and avoid unattended execution unless the browser state is controlled. <br>
-Risk: The release references a PowerShell script that is missing from the packaged artifact. <br>
-Mitigation: Verify the expected script is present and reviewed before running any command that invokes it. <br>
+## Use Case:
 
+Developers and agents use this Windows-focused skill to restore an OpenClaw Browser Relay Chrome connection by checking status, focusing Chrome, and clicking the extension icon at configured coordinates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kevinZhj/browser-extension-enabler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with PowerShell command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows-only workflow; extension icon coordinates require calibration before real mouse control is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, _meta.json) <br>
+Risk: The skill is flagged for review because its mouse-control implementation is missing and it depends on an unpinned native mouse-control skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the missing PowerShell script to be included and pin or verify the win-mouse-native dependency before treating the release as low risk.
+
+Risk: The skill can move and click the real mouse, which may interfere with user activity or click unintended targets if coordinates are wrong.
+
+Mitigation: Use test mode first, verify coordinates on the target display, keep Chrome visible, and avoid running it during important interactive work.
+
+## Reference(s):
+
+- [Browser Extension Enabler ClawHub page](https://clawhub.ai/kevinzhj/skills/browser-extension-enabler)
+- [kevinzhj publisher profile](https://clawhub.ai/user/kevinzhj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with PowerShell and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-focused usage guidance with configurable screen coordinates and a native mouse-control dependency.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, _meta.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

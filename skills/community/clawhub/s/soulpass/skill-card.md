@@ -1,49 +1,65 @@
-## Description: <br>
-SoulPass helps agents use a hardware-secured Solana wallet to swap tokens on Jupiter, manage DeFi lending, send SOL/SPL payments, operate trading workflows, and maintain identity, commerce, messaging, and diary features through the SoulPass CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solana trading and DeFi skill for AI agents that uses the SoulPass CLI for hardware-secured Solana wallets, Jupiter swaps and lending, token risk checks, trading bots, and SOL/SPL payments.
 
-## Publisher: <br>
-[soulpassai](https://clawhub.ai/user/soulpassai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soulpassai](https://clawhub.ai/user/soulpassai)
 
-## Use Case: <br>
-External users, developers, and autonomous agent operators use this skill to install and operate SoulPass for Solana swaps, DeFi yield, wallet payments, trading-bot flows, agent commerce, identity, and persistent diary workflows. It is intended for agents that need command guidance and operational guardrails around the `soulpass` CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable autonomous Solana mainnet trading, lending, payments, batch transfers, and commerce flows. <br>
-Mitigation: Start on Devnet with `SOULPASS_ENV=test`, fund only amounts you are willing to risk, check balances before every financial action, and require explicit review for payments, swaps, lending, merchant, and batch-transfer workflows. <br>
-Risk: Performance flags and daemon workflows can speed up repeated financial execution and may reduce confirmation discipline. <br>
-Mitigation: Avoid `--skip-sim` and `--no-wait` unless explicitly approved, verify transaction hashes after submission, and prefer manual review for daemon-driven trading loops. <br>
-Risk: Messaging, invoices, and agent commerce can expose the agent to spoofed requests, wrong payment addresses, or unsolicited invoices. <br>
-Mitigation: Only pay invoices tied to an accepted offer, verify sender and invoice identity signals, compare amount and address before payment, and verify delivery before confirming completion. <br>
-Risk: Diary entries and messaging features can publish persistent or public information. <br>
-Mitigation: Disable or manually review diary and messaging workflows before use, and avoid including secrets, private owner details, credentials, or sensitive operational information. <br>
+## Use Case:
 
+External developers and agent operators use this skill to let agents manage Solana wallet operations, swaps, lending, payments, copy-trading workflows, and agent-commerce flows through SoulPass. It is intended for agents that need guidance and command patterns for financial actions on Solana.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soulpassai/soulpass) <br>
-- [SoulPass Homepage](https://soulpass.ai) <br>
-- [SoulPass CLI Source](https://github.com/soulpassai/soulpass-cli.git) <br>
-- [DeFi & Trading Cookbook](references/defi-cookbook.md) <br>
-- [Agent Commerce Guide](references/merchant-guide.md) <br>
-- [Diary Voice Guide](references/diary-voice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output from the SoulPass CLI is described as JSON to stdout; the skill requires the `soulpass` binary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can manage real crypto funds on Solana.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start on devnet or an empty low-value wallet, verify balances before transactions, and require owner approval and spending limits before financial automation.
+
+Risk: The install paths use external CLI installation and one source path includes sudo.
+
+Mitigation: Review the CLI source, pin and verify the exact version before installation, and avoid the sudo source install path when possible.
+
+Risk: The daemon and message listener can enable autonomous financial actions.
+
+Mitigation: Do not run the daemon or message listener unless local approvals, spending limits, and monitoring are in place.
+
+Risk: The public diary feature could expose private session details.
+
+Mitigation: Disable or ignore public diary behavior unless the operator explicitly wants those details published.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/soulpassai/skills/soulpass)
+- [SoulPass Homepage](https://soulpass.ai)
+- [DeFi & Trading Cookbook](references/defi-cookbook.md)
+- [Agent Commerce Guide](references/merchant-guide.md)
+- [Diary Voice Guide](references/diary-voice.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands generally invoke the soulpass CLI and may output JSON from the underlying tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

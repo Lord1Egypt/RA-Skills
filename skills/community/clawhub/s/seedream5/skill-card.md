@@ -1,44 +1,60 @@
-## Description: <br>
-Seedream5 helps an agent generate or edit images with Volcengine Doubao Seedream 5.0, including text-to-image, single-image and multi-image editing, grouped images, and optional web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Volcengine Doubao Seedream 5.0 to generate or edit images from text prompts, reference images, grouped image generation, and optional web search.
 
-## Publisher: <br>
-[zealman2025](https://clawhub.ai/user/zealman2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zealman2025](https://clawhub.ai/user/zealman2025)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to call Volcengine Seedream 5.0 from an agent workflow, sending prompts and optional reference images and receiving locally saved generated images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images are sent to Volcengine for generation or editing. <br>
-Mitigation: Avoid sending confidential images, secrets, or regulated personal data unless the provider terms and internal policy allow it. <br>
-Risk: The script writes generated image files to the filename or path supplied by the user. <br>
-Mitigation: Choose output filenames deliberately and review the destination path before execution. <br>
-Risk: The skill requires a Volcengine API key in configuration or environment variables. <br>
-Mitigation: Store the key in the supported credential configuration or environment variable and avoid exposing it in prompts, logs, or shared files. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to generate or edit images through Volcengine Seedream 5.0 from prompts, local or URL reference images, and optional web-search-enabled requests.
 
-## Reference(s): <br>
-- [ClawHub Seedream5 Listing](https://clawhub.ai/zealman2025/seedream5) <br>
-- [Volcengine Seedream API Documentation](https://www.volcengine.com/docs/82379/1541523) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and local image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved to the requested local path and emitted as MEDIA paths for compatible OpenClaw chat channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, reference images, and image URLs are sent to Volcengine for generation or editing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or private content unless the target environment and Volcengine terms are appropriate for that data.
+
+Risk: API keys can be exposed if passed directly on the command line.
+
+Mitigation: Use the OpenClaw credential UI, openclaw.json, or protected environment variables for VOLC_API_KEY or ARK_API_KEY.
+
+Risk: The requested output filename can overwrite an existing writable file.
+
+Mitigation: Choose output filenames inside a safe working folder and use unique names such as timestamped filenames.
+
+## Reference(s):
+
+- [Volcengine Seedream API documentation](https://www.volcengine.com/docs/82379/1541523)
+- [Volcengine image generation API endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+- [uv documentation](https://docs.astral.sh/uv/)
+- [ClawHub Seedream5 skill page](https://clawhub.ai/zealman2025/skills/seedream5)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and a Volcengine API key; generated images are saved locally and reported with MEDIA paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

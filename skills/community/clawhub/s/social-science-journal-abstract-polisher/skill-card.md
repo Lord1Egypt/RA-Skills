@@ -1,40 +1,53 @@
-## Description: <br>
-Refines social science academic abstracts for peer-reviewed journal submission while aligning wording, structure, and APA 7th edition style without changing research content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reusable prompt for refining social science academic abstracts to align with peer-reviewed journal requirements, including APA 7th edition compliance.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Researchers, students, and academic authors use this skill to polish social science abstracts for journal submission. It helps refine functional abstract segments, APA style, academic register, concision, and the final revision summary while preserving the original study content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The polished abstract could unintentionally change research claims, overstate results, or weaken alignment between methods, findings, and implications. <br>
-Mitigation: Review the final abstract against the source study before submission and keep the skill's constraint to avoid new claims, data points, or frameworks. <br>
-Risk: Sensitive or unpublished research text may be exposed to an untrusted agent environment. <br>
-Mitigation: Use the skill only in an agent environment trusted to process the abstract text. <br>
+## Use Case:
 
+External researchers, academic authors, and editors use this skill to polish social science journal abstracts for peer-reviewed submission while preserving the study design, sample, findings, and core research content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/social-science-journal-abstract-polisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown containing a polished abstract paragraph, a brief change log, and a final word count.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, credentials, persistence, or external data access are produced by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Abstracts may contain unpublished research or sensitive study details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide text that is appropriate to share with the agent environment used to run the skill.
+
+Risk: Polishing could unintentionally change the meaning or overstate the findings of a study.
+
+Mitigation: Review the polished abstract for factual fidelity before journal submission, with particular attention to study design, sample, findings, and implications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/social-science-journal-abstract-polisher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response containing one polished abstract paragraph, a brief change log, and the final word count.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves substantive research content and flags missing or unsupported abstract elements instead of fabricating them.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

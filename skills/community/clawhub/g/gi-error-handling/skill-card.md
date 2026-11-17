@@ -1,40 +1,54 @@
-## Description: <br>
-Handle errors and logging following project conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to implement project-conventional error handling and logging patterns, especially around ApiException.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
 
-## Use Case: <br>
-Developers and engineers use this skill to add API exception handling, validation errors, resource-not-found handling, logging, and frontend error-response conventions for projects that use ApiException patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logs can expose secrets or sensitive personal data if the guidance is applied without filtering. <br>
-Mitigation: Avoid logging passwords, tokens, full card numbers, and other sensitive values; review log fields before deployment. <br>
-Risk: The examples assume a project that provides tkms ApiException and the documented response format. <br>
-Mitigation: Use this skill only in codebases that follow those conventions or adapt the examples to the local exception and response APIs. <br>
+## Use Case:
 
+Developers and engineers use this skill to add API exception handling, validation errors, logging, unified responses, and frontend error behavior that match project conventions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laimiaohua/gi-error-handling) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown] <br>
-**Output Format:** [Markdown guidance with Python and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable install behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate for broad error-handling or logging requests outside the intended project conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use project-specific activation guidance or review generated changes when working outside ApiException-based codebases.
+
+Risk: Logging examples could be adapted in ways that expose sensitive values.
+
+Mitigation: Review generated logging statements to keep passwords, tokens, complete card numbers, and other sensitive data out of logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laimiaohua/skills/gi-error-handling)
+- [Publisher profile](https://clawhub.ai/user/laimiaohua)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, markdown]
+
+**Output Format:** [Markdown with inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance for Python ApiException handling and logging conventions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

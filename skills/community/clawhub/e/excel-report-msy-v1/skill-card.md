@@ -1,40 +1,53 @@
-## Description: <br>
-Create formatted Excel report workbooks from CSV files using openpyxl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create formatted Excel report workbooks from CSV files using openpyxl.
 
-## Publisher: <br>
-[ms-yun](https://clawhub.ai/user/ms-yun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ms-yun](https://clawhub.ai/user/ms-yun)
 
-## Use Case: <br>
-Developers and analysts use this skill to convert user-selected CSV files into polished Excel .xlsx reports with formatted headers, numeric totals, filters, frozen headers, autosized columns, and a simple bar chart. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The report script can create directories and overwrite the target workbook path selected by the user or agent. <br>
-Mitigation: Choose an explicit output path, avoid pointing at existing workbooks unless replacement is intended, and verify the generated file before returning it. <br>
-Risk: The skill requires the openpyxl Python dependency in the active environment. <br>
-Mitigation: Install openpyxl only in environments where adding that dependency is acceptable, or use an environment that already provides it. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to convert CSV files into formatted Excel workbooks with styling, numeric totals, table filters, and a basic chart.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ms-yun/excel-report-msy-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, guidance] <br>
-**Output Format:** [Markdown with generated .xlsx file paths and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Excel workbook files from CSV input; important outputs should be verified before delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: CSV content from untrusted sources can carry formula-prefixed values into a generated workbook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use this skill only for trusted CSV files, or review and sanitize formula-prefixed fields before opening or sharing the workbook.
+
+Risk: Installing an unpinned openpyxl dependency globally can expose the user to dependency drift.
+
+Mitigation: Run the conversion in an isolated environment with a pinned openpyxl version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ms-yun/skills/excel-report-msy-v1)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, markdown, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated .xlsx workbook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workbooks may include formulas, table formatting, filters, frozen headers, autosized columns, and a simple bar chart for the first numeric column.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

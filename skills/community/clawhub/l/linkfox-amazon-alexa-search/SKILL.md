@@ -1,4 +1,4 @@
-﻿---
+---
 name: linkfox-amazon-alexa-search
 description: 通过亚马逊前台的 Alexa 购物助手发起自然语言问答，获取与问题相关的导购回答、推荐商品分组、ASIN 列表，以及可继续追问的问题。每次调用仅支持 1 条 prompt，如需追问须由 agent 总结上下文后拼接新问题发起新请求。可用 url 补充亚马逊页面上下文。当用户提到亚马逊 Alexa、Alexa 购物助手、亚马逊智能助手、AI 导购、对话式选品、自然语言购物、亚马逊聊天问答、Amazon Alexa shopping, conversational shopping, AI shopping assistant, follow-up questions、产品推荐对话、上下文追问等场景时触发此技能。即使用户未明确提及"Alexa"，只要其需求是"在亚马逊前台用自然语言问出商品推荐"，也应触发此技能。
 ---
@@ -63,7 +63,7 @@ This skill drives Amazon's storefront Alexa shopping assistant: pose a natural-l
 
 - **API 端点**：`POST /amazon/alexaSearch`（完整参数/响应/错误码见 `references/api.md`）
 - **Python 脚本**：`python scripts/amazon_alexa_search.py '<JSON 参数>' [--inline]`
-- **成本约束**：本工具会消耗积分；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
+- **成本约束**：本工具会消耗算力；同一会话同一参数组合默认只调用一次，脚本带 24h 本地缓存。失败/空结果不得自动换关键词、翻页或改邮编连续试探；需要继续检索时先向用户说明会产生额外消耗。
 
 **输出策略（脚本默认行为）**：
 - **始终**将完整响应写入 `<cwd>/linkfox/<YYYY-MM-DD>/<session>/data/linkfox-amazon-alexa-search-<timestamp>.json`（`<cwd>` 为脚本执行时的工作目录，在 Claude Code 里即当前项目目录；`<session>` 取自环境变量 `SESSION_ID`，按用户任务自动聚合；**禁止写入 /tmp**，当前目录不可写则报错）
@@ -72,6 +72,14 @@ This skill drives Amazon's storefront Alexa shopping assistant: pose a natural-l
 - 加 `--inline` 强制全量打印到 stdout（同样落盘）
 
 **读数据建议**：先看摘要判断是否足够；需要具体字段时优先用 `jq`或`ConvertFrom-Json` 从保存的 json 文件按需抽取，避免整份 JSON 进入上下文。
+
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
 
 ## How to Build Queries
 
@@ -167,6 +175,12 @@ Second call (agent summarizes the previous answer and appends the follow-up):
 - Aggregated statistics over a flat product list (no structured table here).
 
 **Boundary judgment**: when the user wants a **conversation** — "ask Amazon, get a recommendation, then keep asking" — this skill applies. If they want raw search-result rows, structured analytics, or a specific ASIN's data, route to the matching specialized skill instead.
+
+## 算力消耗规则
+
+按动态规则计费：消耗算力 = 对话轮次 × 12.6。
+
+> **重要**：本技能的服务按倍数动态计算，可能一次性消耗大量算力，必须提醒用户，由用户决定是否继续。
 
 **Feedback:**
 

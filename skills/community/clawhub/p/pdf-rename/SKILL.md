@@ -7,82 +7,97 @@ description: Rename academic PDF papers to a standardized format "[Year] [Venue]
 
 Rename academic PDFs to: `[Year] [Venue] Title.pdf`
 
-**Three-stage pipeline (strict order):**
+**Three-stage pipeline:**
 
 ```
 Extract → Verify → Rename
 ```
 
-**Anti-error principle:** Never re-parse PDF content during Rename stage. The Manifest is the single source of truth.
+**Anti-error principle:** Never re-parse PDF content during Rename. The Manifest is the single source of truth.
 
 ---
 
 ## Quick Start
 
 ```bash
-# Stage 1: Extract metadata → generate manifest
+# Stage 1: Extract raw text → manifest.json
 python scripts/extract.py "<folder_path>"
 
-# Stage 2: Verify (manual or web search), then inject verified data
-#   → Edit scripts/VERIFIED_DATA dict with web-verified values
+# Stage 2: LLM parses raw_text → inject verified data → manifest_verified.json
+#   (Agent reads manifest.json raw_text field and writes to scripts/VERIFIED_DATA_*.py)
 python scripts/apply_verified.py "<folder_path>"
 
-# Stage 3: Preview rename plan
+# Stage 3: Preview / Execute
 python scripts/execute.py "<folder_path>" --preview
-
-# Execute rename (with backup)
 python scripts/execute.py "<folder_path>" --execute
 ```
 
 ---
 
-## Workflow Details
+## Stage 1: Extract
 
-### Stage 1: Extract
-
-`scripts/extract.py` reads every PDF in the folder and generates `manifest.json`.
-
-For each PDF it extracts:
-- **Title**: from PDF first-page text (heuristic: first non-metadata line)
-- **Year**: from filename prefix (most reliable) or PDF text (conference-year pattern)
-- **Venue**: inferred from PDF text (NeurIPS, ICML, arXiv, etc.)
-- **Status**: `needs_verification` (title/year from auto-extraction)
+**What it does:**
+- Reads first 3 pages of each PDF
+- Stores raw text in `manifest.json` → `raw_text` field
+- Extracts `year_hint` from filename prefix
+- Detects potential duplicates by filename similarity
 
 **Manifest schema** — see `references/manifest_spec.md`
 
-> ⚠️ PDF text extraction is unreliable for titles. Expected quality: filename > PDF text for title. Always verify with web search before executing rename.
+---
 
-### Stage 2: Verify
+## Stage 2: Verify
 
-Before running rename, manually or via web search verify:
-1. Title is correct (filename is often sufficient, but multi-word titles may differ)
-2. Year is correct (arXiv submission year ≠ conference year)
-3. Venue is correct
+The agent reads `manifest.json`, parses each `raw_text` field, and writes verified metadata.
 
-Inject verified data via `scripts/apply_verified.py`:
-- Key = original filename (exact match)
-- Value = `{'title', 'year', 'venue', 'confirmed': True}`
+**Steps:**
+1. Read `manifest.json`
+2. For each entry, parse the `raw_text` to extract: title, authors, venue, year, abstract
+3. Create or update `scripts/VERIFIED_DATA_*.py` with verified entries
 
-Set `confirmed: False` or omit entry for files to skip.
+**VERIFIED_DATA format:**
 
-### Stage 3: Rename
+```python
+VERIFIED_DATA = {
+    "OriginalFilename.pdf": {
+        "title": "Correct Paper Title",
+        "year": "2024",
+        "venue": "NeurIPS",
+        "confirmed": True   # must be True to be renamed
+    },
+}
+```
 
-`scripts/execute.py` reads manifest and renames files:
-- **Status must be `ready`** to execute
-- Duplicate titles → append `(1)`, `(2)`, etc.
-- Files with status `needs_verification` or `manual_review` are **skipped**
-- Backup is created automatically at `<folder>/_backup_YYYYMMDD_HHMMSS/`
+**Rules:**
+- Key must **exactly match** the original filename
+- `confirmed: True` → status becomes `ready` → will be renamed
+- `confirmed: False` or omitted → **skipped**
+- Multiple `VERIFIED_DATA_*.py` files are auto-merged
+- **Prefer venue/conference year over filename year** (e.g., arXiv 2022 → NeurIPS 2024)
+
+**⚠️ Key gotchas during parsing:**
+- Multi-line titles: pypdf concatenates lines without spaces (e.g., `"Direct score maximization outperformsplanning loss"`) — use context to infer correct split
+- Journal refs at top of page: `"Math. Program. (2012) 133..."` is NOT the title — read further
+- arXiv papers: use conference year if published, otherwise use arXiv year
+- Non-paper files (book chapters, lecture notes, loss curves): set `confirmed: False` and skip
+
+Then run:
+```bash
+python scripts/apply_verified.py "<folder_path>"
+```
 
 ---
 
-## Key Design Decisions
+## Stage 3: Rename
 
-| Problem | Solution |
-|---------|----------|
-| PDF title extraction garbled/incomplete | Use filename as primary title source; PDF text only for venue/year hints |
-| Wrong year from arXiv ID vs conference year | Verify with web search; inject corrected year in `VERIFIED_DATA` |
-| Duplicate papers (same content, different filenames) | Detect via title similarity; rename both with `(1)`, `(2)` suffixes |
-| Accidental data loss | Always create timestamped backup before renaming |
+- Only `status == 'ready'` files are renamed
+- Duplicate titles → `(1)`, `(2)` suffixes
+- Backup created at `<folder>/_backup_YYYYMMDD_HHMMSS/`
+
+```bash
+python scripts/execute.py "<folder_path>" --preview   # dry run
+python scripts/execute.py "<folder_path>" --execute   # rename
+```
 
 ---
 
@@ -90,10 +105,25 @@ Set `confirmed: False` or omit entry for files to skip.
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/extract.py` | Stage 1: extract PDF metadata → manifest.json |
-| `scripts/apply_verified.py` | Stage 2: inject verified data into manifest |
-| `scripts/execute.py` | Stage 3: rename files from manifest (preview or execute) |
-| `scripts/find_duplicates.py` | Utility: detect near-duplicate titles in manifest |
+| `scripts/extract.py` | Stage 1: extract raw PDF text → manifest.json |
+| `scripts/apply_verified.py` | Stage 2: inject verified metadata → manifest_verified.json |
+| `scripts/execute.py` | Stage 3: rename files (preview or execute) |
+| `scripts/llm_parse.py` | (Optional) programmatic LLM parsing via gateway API |
+
+---
+
+## Known Failure Modes
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| `raw_text` empty | PDF is a scan | Skip (`confirmed: False`) or manually determine metadata |
+| Title extracted without spaces | pypdf concatenates lines | LLM infers from context; use filename as hint |
+| Wrong year (arXiv ≠ conference) | Used filename year | Use venue year from `raw_text`, not filename |
+| DOI/journal ref at top of page | Metadata precedes title | Read past it — title is usually after |
+| Middle-dot author lines misidentified | `·` separator in names | LLM handles via semantic understanding |
+| Non-paper files renamed | No filter applied | Set `confirmed: False` for non-papers |
+| Windows filename encoding garbled | Chinese/non-ASCII chars in PowerShell | Use Python scripts, not manual file ops |
+| Ligature artifacts | PDF encoding (e.g., `ﬁ` → `fi`) | `clean_title_text()` in extract.py handles these |
 
 ---
 
@@ -101,4 +131,3 @@ Set `confirmed: False` or omit entry for files to skip.
 
 - `references/manifest_spec.md` — Full manifest JSON schema
 - `references/venue_abbrev.md` — Standard venue abbreviation map
-- `references/anti_patterns.md` — Common mistakes and how to avoid them

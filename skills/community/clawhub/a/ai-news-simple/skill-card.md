@@ -1,47 +1,63 @@
-## Description: <br>
-AI News Simple generates Chinese AI news briefings by fetching and filtering public AI news sources with bash and curl. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple AI news briefing using bash commands that monitors top AI news sources and generates professional Chinese briefings.
 
-## Publisher: <br>
-[Sharkwind](https://clawhub.ai/user/Sharkwind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sharkwind](https://clawhub.ai/user/sharkwind)
 
-## Use Case: <br>
-External users and developers use this skill to generate AI industry news briefings, monitor AI news sources, and summarize recent AI-related developments in Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public news websites while generating briefings. <br>
-Mitigation: Review outbound network policy before use in corporate or privacy-sensitive environments. <br>
-Risk: Fetched webpage content is untrusted and may contain incomplete, stale, or misleading material. <br>
-Mitigation: Treat fetched content as source material for review and verify important claims against authoritative sources before acting on them. <br>
+## Use Case:
 
+Developers, analysts, and operations teams use this skill to collect AI-related headlines from public news sources and turn them into concise Chinese news briefings. It is intended for AI industry monitoring and briefing workflows, not general web browsing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Sharkwind/ai-news-simple) <br>
-- [Publisher Profile](https://clawhub.ai/user/Sharkwind) <br>
-- [TechCrunch AI](https://techcrunch.com/tag/artificial-intelligence/) <br>
-- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/) <br>
-- [VentureBeat AI](https://venturebeat.com/category/ai/) <br>
-- [Reuters Artificial Intelligence](https://www.reuters.com/technology/artificial-intelligence/) <br>
-- [OpenAI Blog](https://openai.com/blog) <br>
-- [Google DeepMind Blog](https://deepmind.google/discover/blog/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style Chinese briefing with bash command output and source attribution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl to fetch public webpages; no credential inputs were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Risk: The skill fetches live content from public AI news sites, so retrieved page text may be incomplete, stale, or untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat fetched page text as untrusted source material, verify important claims against the linked publishers, and review generated briefings before using them for decisions.
+
+Risk: The skill depends on outbound curl requests and public website availability.
+
+Mitigation: Run it only in environments where outbound requests to the listed news sources are acceptable, and expect individual source failures or changed page markup.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sharkwind/skills/ai-news-simple)
+- [TechCrunch AI](https://techcrunch.com/tag/artificial-intelligence/)
+- [MIT Technology Review AI](https://www.technologyreview.com/topic/artificial-intelligence/)
+- [VentureBeat AI](https://venturebeat.com/category/ai/)
+- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence/)
+- [Forbes AI](https://www.forbes.com/ai/)
+- [Reuters AI](https://www.reuters.com/technology/artificial-intelligence/)
+- [MarkTechPost](https://www.marktechpost.com/)
+- [OpenAI Blog](https://openai.com/blog)
+- [Google DeepMind Blog](https://deepmind.google/discover/blog/)
+- [The Rundown AI](https://www.therundown.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese markdown-style news briefing with source-by-source sections and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and outbound access to public AI news sites; no credential use is indicated in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

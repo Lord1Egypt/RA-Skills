@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn77d2vazdq1xz0qh5g1s8y7vd81zacc",
-  "slug": "openclaw-iflow-doctor",
+  "id": "openclaw-iflow-doctor",
+  "name": "OpenClaw iFlow Doctor",
   "version": "1.1.0",
-  "publishedAt": 1772337087710
+  "description": "AI-powered auto-repair system for OpenClaw with iflow integration",
+  "author": "kosei-echo",
+  "license": "MIT",
+  "tags": ["self-healing", "auto-repair", "iflow", "diagnostic", "monitoring"],
+  "compatibility": {
+    "openclaw_min": "2026.2.0",
+    "python_min": "3.8",
+    "os": ["linux", "windows", "darwin"]
+  },
+  "requires": {
+    "bins": ["python3", "openclaw"],
+    "skills": ["iflow-helper"]
+  },
+  "changelog_url": "https://github.com/kosei-echo/openclaw-iflow-doctor/blob/main/RELEASE.md",
+  "homepage": "https://github.com/kosei-echo/openclaw-iflow-doctor",
+  "updated_at": "2026-03-01T11:15:00+08:00"
 }

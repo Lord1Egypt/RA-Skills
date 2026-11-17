@@ -1,41 +1,57 @@
-## Description: <br>
-Controls a Bambu P1S 3D printer over FTPS for file listing, upload, download, deletion, size checks, and basic connectivity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a Bambu P1S 3D printer for FTPS file management, connection checks, file listing, G-code and 3MF upload or download, and timelapse access.
 
-## Publisher: <br>
-[mayf3](https://clawhub.ai/user/mayf3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayf3](https://clawhub.ai/user/mayf3)
 
-## Use Case: <br>
-Developers and printer operators use this skill to manage files on a configured Bambu P1S printer, including listing printer storage, uploading print files, downloading timelapse media, checking file sizes, and checking basic connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release publicly includes a real printer access code and device identifiers. <br>
-Mitigation: Rotate the printer access code before use, remove real IP, serial, and access-code values from the package, and keep credentials in a private local configuration outside the skill. <br>
-Risk: The skill can delete files from the printer without clear safeguards. <br>
-Mitigation: Add explicit user confirmation and path validation before any delete operation, and review each command before execution. <br>
+## Use Case:
 
+Developers and printer operators use this skill to inspect a Bambu P1S printer's connectivity and manage printer files over FTPS, including uploads, downloads, listings, deletion, size summaries, and timelapse retrieval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mayf3/bambu-printer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mayf3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and command output as text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May list, upload, download, size-check, or delete files on a configured printer; security evidence marks this release suspicious and recommends review before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The published version includes a real printer credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed printer access code, remove embedded credentials and script fallbacks, and load secrets from a private local source before use.
+
+Risk: FTPS upload, download, listing, and deletion use insecure certificate handling.
+
+Mitigation: Enable certificate validation or certificate pinning before using the skill with a real printer.
+
+Risk: Delete operations can remove files from the printer.
+
+Mitigation: Add clear confirmation before any delete operation on a real printer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mayf3/skills/bambu-printer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that affect printer files; execution should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

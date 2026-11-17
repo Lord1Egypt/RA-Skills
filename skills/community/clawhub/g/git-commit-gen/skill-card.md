@@ -1,42 +1,49 @@
-## Description: <br>
-Generate conventional, descriptive commit messages from git diffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates conventional, descriptive commit messages from staged changes, branch diffs, commit ranges, or user-provided diffs.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and maintainers use this skill to draft, rewrite, or validate Conventional Commits messages from staged changes, branch diffs, commit ranges, or provided diffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Git diffs or commit history can contain secrets, credentials, or sensitive implementation details. <br>
-Mitigation: Review staged changes before use, avoid running the skill on diffs containing secrets, and do not provide credentials because the skill does not need them. <br>
-Risk: Generated commit messages can omit context or mischaracterize a change, especially for large diffs summarized at chunk level. <br>
-Mitigation: Review and edit the proposed message before using it in a commit. <br>
+## Use Case:
 
+Developers, maintainers, and teams use this skill to draft, rewrite, summarize, or validate Conventional Commits messages from git diffs and commit ranges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ericlooi504/git-commit-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/ericlooi504) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with Conventional Commits message blocks and brief rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Proposed messages are shown for review before the user commits changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Git diffs may contain private code, secrets, or other sensitive repository context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in repositories where the agent may read diffs, and review generated messages before committing or sharing them.
+
+## Reference(s):
+
+- [Commit Message Generator on ClawHub](https://clawhub.ai/ericlooi504/skills/git-commit-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with Conventional Commits examples and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a proposed commit message, explanation of reasoning, validation feedback, or suggested git commit command for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

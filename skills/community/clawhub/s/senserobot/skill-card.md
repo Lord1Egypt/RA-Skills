@@ -1,44 +1,61 @@
-## Description: <br>
-Enables an agent to control a SenseRobot Go-playing robot for stone pickup and placement, arm movement, expressions, Chinese text-to-speech, board cleanup, board detection, photo capture, recording, and image display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用户可以让 OpenClaw 控制元萝卜下棋机器人进行围棋取落子、机械臂移动、表情控制、语音播报、棋盘管理时使用此技能。
 
-## Publisher: <br>
-[SenseRobotClawBot](https://clawhub.ai/user/SenseRobotClawBot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[senserobotclawbot](https://clawhub.ai/user/senserobotclawbot)
 
-## Use Case: <br>
-External users and developers who own or administer a SenseRobot device use this skill to guide an agent through supervised Go robot control, including movement, stone handling, board state checks, media capture, and speech or display actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger physical arm movement and board cleanup on a connected robot. <br>
-Mitigation: Use it only with in-person supervision, keep the arm area clear, and require confirmation before movement or cleanup commands. <br>
-Risk: The skill can control camera and microphone functions. <br>
-Mitigation: Use photo and recording commands only with explicit consent from nearby people. <br>
-Risk: The image display command can upload a local file to the robot. <br>
-Mitigation: Avoid uploading sensitive local files and review the selected image path before execution. <br>
+## Use Case:
 
+OpenClaw users use this skill to control a local SenseRobot chess robot for Go stone pickup and placement, robotic arm movement, board cleanup, expression display, Chinese speech playback, photo capture, audio recording, and image display.
 
-## Reference(s): <br>
-- [SenseRobot API Reference](references/API_REFERENCE.md) <br>
-- [SenseRobot Cheat Sheet](references/CHEATSHEET.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/SenseRobotClawBot/senserobot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls] <br>
-**Output Format:** [Markdown guidance with curl examples and Python CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and network access to the SenseRobot device at 192.168.199.10:60010.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill can move a physical robotic arm and clear the board through local HTTP commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with physical supervision and require explicit user confirmation before arm movement, stone placement, or board cleanup.
+
+Risk: The skill can take photos, record audio, speak, and upload or display local PNG images.
+
+Mitigation: Require explicit consent before camera, microphone, speech, recording stop, or file-upload actions, and limit file paths to intended images.
+
+Risk: The robot API is described as unauthenticated local HTTP.
+
+Mitigation: Operate the robot only on a trusted, isolated network and avoid exposing the API beyond the local robot-control environment.
+
+## Reference(s):
+
+- [元萝卜下棋机器人 API 参考文档](references/API_REFERENCE.md)
+- [元萝卜下棋机器人 速查表](references/CHEATSHEET.md)
+- [ClawHub skill page](https://clawhub.ai/senserobotclawbot/skills/senserobot)
+- [Publisher profile](https://clawhub.ai/user/senserobotclawbot)
+- [SenseRobot homepage](https://www.SenseRobotChess.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, Python CLI examples, and JSON response descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct an agent to call unauthenticated local HTTP endpoints that move a physical robotic arm, use cameras and microphones, play speech, and upload local PNG images.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

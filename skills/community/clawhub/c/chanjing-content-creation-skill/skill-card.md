@@ -1,50 +1,63 @@
-## Description: <br>
-Routes agents through Chanjing workflows for credentials, TTS, voice cloning, digital-human video, lip-sync, AI image and video generation, customized-person training, one-click video assembly, and cartoon video creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes an agent to Chanjing credential management, TTS, voice cloning, digital-human video, lip-sync, text-to-image/video, custom digital-human training, one-click video composition, and cartoon video workflows.
 
-## Publisher: <br>
-[binkes](https://clawhub.ai/user/binkes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binkes](https://clawhub.ai/user/binkes)
 
-## Use Case: <br>
-External users and developers use this skill to create Chanjing media assets and videos through routed product and orchestration workflows. It is intended for Chanjing-backed content creation tasks such as speech synthesis, digital-human video, image/video generation, and short-video assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Chanjing APP_ID and SECRET_KEY values for authenticated media and account operations. <br>
-Mitigation: Install only in trusted workspaces and keep credentials scoped to the intended process or project environment. <br>
-Risk: Changing the Chanjing API base could redirect credentialed requests away from the official service. <br>
-Mitigation: Keep CHANJING_API_BASE pointed at the official Chanjing API unless a trusted operator has explicitly approved another endpoint. <br>
-Risk: Media workflows can write local outputs that may contain generated assets, account data, or user-provided content. <br>
-Mitigation: Review output directories before sharing or syncing generated files. <br>
-Risk: Some operations can delete custom digital people or start costly/non-interactive render jobs. <br>
-Mitigation: Require explicit user confirmation before destructive account actions or expensive render workflows. <br>
+## Use Case:
 
+External creators, operators, and developers use this skill to route Chanjing media creation requests into the appropriate product or orchestration workflow, including speech generation, voice cloning, digital-human videos, lip-sync, AI image/video generation, and composed short-form videos.
 
-## Reference(s): <br>
-- [Chanjing Documentation](https://doc.chanjing.cc) <br>
-- [ClawHub Skill Page](https://clawhub.ai/binkes/chanjing-content-creation-skill) <br>
-- [Top-Level Runtime Contract](references/top-level-runtime-contract.md) <br>
-- [Orchestration Contract](orchestration/orchestration-contract.md) <br>
-- [One-Click Video Workflow Orchestration](orchestration/chanjing-one-click-video-creation/references/workflow-orchestration.md) <br>
-- [One-Click Video Constraints and Limits](orchestration/chanjing-one-click-video-creation/references/constraints-and-limits.md) <br>
-- [Chanjing Avatar Create Video API](products/chanjing-avatar/references/create-video-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls, files] <br>
-**Output Format:** [Markdown guidance with JSON inputs, shell command invocations, API task results, URLs, and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference generated media, downloaded assets, workflow state files, and rendered video outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill handles Chanjing account credentials and may exchange them for short-lived access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials through the documented environment variables or local credential path, avoid pasting secret keys into chat or command-line history, and rotate credentials if exposed.
+
+Risk: Media workflows can upload or download user media through Chanjing services and may incur service costs.
+
+Mitigation: Review generated workflow inputs before rendering, confirm downloads before saving files locally, and keep CHANJING_API_BASE pointed at the official Chanjing endpoint.
+
+Risk: Video composition workflows may invoke ffmpeg or ffprobe and write media artifacts to output or work directories.
+
+Mitigation: Run the skill in a controlled workspace, set explicit output directories for media jobs, and review generated files before sharing or committing them.
+
+## Reference(s):
+
+- [Chanjing Documentation](https://doc.chanjing.cc)
+- [ClawHub Skill Page](https://clawhub.ai/binkes/skills/chanjing-content-creation-skill)
+- [Top-Level Runtime Contract](references/top-level-runtime-contract.md)
+- [Orchestration Contract](orchestration/orchestration-contract.md)
+- [One-Click Workflow Schema](orchestration/chanjing-one-click-video-creation/references/workflow-json-schema.md)
+- [Chanjing AI Creation Reference](products/chanjing-ai-creation/reference.md)
+- [Chanjing Video Compose Reference](products/chanjing-video-compose/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON task outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return remote media URLs or local file paths when Chanjing workflows complete.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

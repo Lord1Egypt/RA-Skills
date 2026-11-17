@@ -1,0 +1,27 @@
+{
+  "slug": "resilient-imagegen",
+  "title": "Resilient ImageGen",
+  "category": "content",
+  "summary": "Stabilize multi-image runs with serial jobs, capability-aware backend routing, retry policy, recoverable handoff, and a reviewable manifest.",
+  "keywords": [
+    "ImageGen",
+    "imgGen",
+    "batch image generation",
+    "retry",
+    "backend routing",
+    "ChatGPT handoff",
+    "visual QA"
+  ],
+  "user_needs": [
+    "generate several images without losing progress when ImageGen fails",
+    "retry transient ImageGen network errors safely",
+    "resume an interrupted image generation batch",
+    "route image jobs across Computer Use, built-in generation, manual handoff, or local rendering",
+    "decide when a separately confirmed CLI or API fallback is justified"
+  ],
+  "source_dir": "skills/content/resilient-imagegen",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

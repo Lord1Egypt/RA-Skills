@@ -1,40 +1,51 @@
-## Description: <br>
-Guides entrepreneurs through community selection, idea validation, MVP scope, early customers, pricing, marketing, sustainable growth, company values, and business decision review using minimalist entrepreneur principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through minimalist entrepreneurship frameworks for finding community, validating ideas, building MVPs, acquiring customers, pricing, marketing, sustainable growth, company values, and business decision review.
 
-## Publisher: <br>
-[zooshots7](https://clawhub.ai/user/zooshots7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zooshots7](https://clawhub.ai/user/zooshots7)
 
-## Use Case: <br>
-External users and entrepreneurs use this skill pack as structured business coaching for building a profitable, sustainable business from community discovery through launch, growth, and operating decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides opinionated business coaching that may affect outreach, public sharing, pricing, hiring, fundraising, or financial decisions. <br>
-Mitigation: Review recommendations for legality, privacy, financial fit, and business context before acting. <br>
+## Use Case:
 
+External entrepreneurs, founders, and small-business operators use this skill pack to structure early-stage business decisions, including community selection, idea validation, MVP scope, first-customer sales, pricing, marketing, growth, culture, and decision review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zooshots7/minimalist-entrepreneur) <br>
-- [The Minimalist Entrepreneur](https://www.minimalistentrepreneur.com/) <br>
-- [Sahil Lavingia](https://sahillavingia.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured business advice, checklists, verdicts, plans, templates, and decision reviews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may provide broad pricing, hiring, remote-work, and growth recommendations that do not fit every user's constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the user's market, legal, financial, and operational context before making business decisions.
+
+## Reference(s):
+
+- [Minimalist Entrepreneur Skill on ClawHub](https://clawhub.ai/zooshots7/skills/minimalist-entrepreneur)
+- [The Minimalist Entrepreneur](https://www.minimalistentrepreneur.com/)
+- [Sahil Lavingia](https://sahillavingia.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted business guidance, checklists, recommendations, and decision reviews]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only guidance; no code execution, credential access, persistence, or hidden system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

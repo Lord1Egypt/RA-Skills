@@ -1,0 +1,9 @@
+interface:
+  display_name: "Instagram Creator Video Insights"
+  short_description: "Daily or weekly insights from one or more public Instagram creators"
+  icon_small: "./assets/instagram-creator-reels-insights-icon.svg"
+  icon_large: "./assets/instagram-creator-reels-insights-icon.svg"
+  default_prompt: "Use $instagram-creator-reels-insights to review these public Instagram creators' recent videos in a Daily Scan."
+
+policy:
+  allow_implicit_invocation: true

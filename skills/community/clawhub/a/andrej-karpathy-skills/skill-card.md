@@ -1,39 +1,54 @@
-## Description: <br>
-Behavioral guidelines for coding agents that reduce common LLM coding mistakes by encouraging explicit assumptions, simple implementations, focused edits, and verifiable success criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Behavioral guidelines to reduce common LLM coding mistakes when writing, reviewing, or refactoring code.
 
-## Publisher: <br>
-[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sg345662365-oss](https://clawhub.ai/user/sg345662365-oss)
 
-## Use Case: <br>
-Developers and coding-agent users apply this skill when writing, reviewing, or refactoring code so the agent surfaces assumptions, avoids overcomplication, limits changes to the task, and verifies outcomes against clear success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional npm or clone installation can modify agent instruction files, and --force or --global can overwrite or persist instructions beyond one project. <br>
-Mitigation: Review the target agent file before installation and use --force or --global only when intentionally replacing or installing persistent instructions. <br>
+## Use Case:
 
+Developers and coding agents use this skill to keep code changes simple, scoped, explicit about assumptions, and tied to verifiable success criteria.
 
-## Reference(s): <br>
-- [Andrej Karpathy observation on LLM coding pitfalls](https://x.com/karpathy/status/2015883857489522876) <br>
-- [ClawHub skill page](https://clawhub.ai/sg345662365-oss/andrej-karpathy-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional inline shell commands for installing agent instruction files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides behavioral instructions for coding agents and optional installer commands; it does not require credentials or external API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The documentation suggests unpinned npx and global npm installer commands, while the executable installer script is not present in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the files being installed, pin and verify the npm package version, and inspect the installer script before running it in sensitive environments.
+
+Risk: The guidance intentionally biases agents toward caution, which can slow trivial coding tasks or add unnecessary clarification steps.
+
+Mitigation: Apply the skill with judgment for small, low-risk edits and keep success criteria proportional to the task.
+
+## Reference(s):
+
+- [Andrej Karpathy observation on LLM coding pitfalls](https://x.com/karpathy/status/2015883857489522876)
+- [ClawHub skill listing](https://clawhub.ai/sg345662365-oss/skills/andrej-karpathy-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance with optional code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent behavior guidance only; no API calls, credentials, or MCP tools are required by the skill instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

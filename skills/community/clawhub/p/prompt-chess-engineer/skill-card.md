@@ -1,40 +1,54 @@
-## Description: <br>
-Prompt Chess Engineer guides agents through game-theoretic prompt security analysis, red-team/blue-team iteration, and adaptive prompt-injection defense design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Chess Engineer helps agents apply game-theory concepts to prompt-injection defense, red/blue prompt testing, and adaptive prompt-security strategy design.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Developers and security engineers use this skill to structure prompt-injection threat modeling, build layered defenses, and run iterative red-team/blue-team prompt evaluations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes dual-use red-team prompt security concepts that could be misapplied outside authorized testing. <br>
-Mitigation: Use the red-team material only in authorized evaluations and keep human oversight over generated attack prompts and security conclusions. <br>
-Risk: The source artifact is a Chinese-language guide, which may create review or interpretation gaps for teams that do not read Chinese. <br>
-Mitigation: Have a qualified reviewer verify the guidance before applying it to production prompt security work. <br>
+## Use Case:
 
+Developers and security engineers use this skill to structure prompt-injection threat modeling, adversarial prompt testing, and iterative defense design for LLM systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kingofzhao/prompt-chess-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis report and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance for prompt security analysis; no executable code is produced by the skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes red-team prompt testing concepts that could be misapplied to weaken or bypass guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in authorized security testing workflows and keep non-negotiable safety and system rules outside the iterative prompt-optimization loop.
+
+Risk: The source skill is written in Chinese and may cause an agent to answer in Chinese by default.
+
+Mitigation: Specify the desired response language when invoking the skill in multilingual or English-only workflows.
+
+## Reference(s):
+
+- [Prompt Chess Engineer on ClawHub](https://clawhub.ai/kingofzhao/skills/prompt-chess-engineer)
+- [Publisher profile: kingofzhao](https://clawhub.ai/user/kingofzhao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance, analysis frameworks, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language skill content; users can request another output language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

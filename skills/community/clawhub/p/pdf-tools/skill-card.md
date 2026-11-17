@@ -1,44 +1,61 @@
-## Description: <br>
-View, extract, edit, and manipulate PDF files, including text extraction, text overlay and replacement, merging, splitting, rotating pages, and PDF metadata retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF Tools helps agents view, extract, edit, merge, split, rotate, and inspect PDF documents using bundled Python scripts.
 
-## Publisher: <br>
-[cmpdchtr](https://clawhub.ai/user/cmpdchtr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cmpdchtr](https://clawhub.ai/user/cmpdchtr)
 
-## Use Case: <br>
-Developers, engineers, and document-focused agents use this skill to inspect PDF content, extract text, add overlays, reorganize pages, combine documents, split sections, rotate pages, and retrieve metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Accidental overwriting or unwanted changes to important PDFs when users choose unsafe output paths. <br>
-Mitigation: Work on copies of important PDFs and use explicit new output filenames. <br>
-Risk: PDF byte-level text replacement can be unreliable and may produce unexpected document changes. <br>
-Mitigation: Prefer text overlays or extract-edit-regenerate workflows, and review generated PDFs before use. <br>
-Risk: Dependency installation can affect the host Python environment. <br>
-Mitigation: Install pdfplumber, PyPDF2, and reportlab in a virtual environment. <br>
+## Use Case:
 
+Developers and external users use this skill to automate common PDF document tasks such as extracting content, inspecting metadata, reorganizing pages, combining files, rotating pages, and adding simple text overlays.
 
-## Reference(s): <br>
-- [PDF Libraries Reference](references/libraries.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/cmpdchtr/pdf-tools) <br>
-- [Publisher Profile](https://clawhub.ai/user/cmpdchtr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, PDF files, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, text or JSON command output, and generated PDF or text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local PDF files and caller-selected output paths; page numbers are 1-indexed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: PDF operations can write new files or overwrite an existing file if the user selects the same output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit output paths, keep backups for important PDFs, and avoid reusing the original file path unless overwriting is intended.
+
+Risk: Unpinned Python dependencies may change behavior across environments.
+
+Mitigation: Install the skill in a virtual environment and pin pdfplumber, PyPDF2, and reportlab versions.
+
+Risk: PDF text replacement is limited and may fail or produce unexpected document changes because PDF text encoding and layout are complex.
+
+Mitigation: Prefer text overlays for simple additions, and use an extract, edit, and regenerate workflow for complex edits.
+
+Risk: Text extraction does not include OCR and works best on text-based PDFs.
+
+Mitigation: Use a separate OCR workflow for scanned PDFs before relying on extracted text.
+
+## Reference(s):
+
+- [PDF Libraries Reference](references/libraries.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated local PDF or text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts can write PDF, text, or JSON outputs to user-specified local paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

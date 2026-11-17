@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72xnry9tr39a40x4awwpzs1n80kvg1",
+  "source": "github",
+  "owner": "0xjordansg-yolo",
+  "repo": "Twitter-Skills-Hermes-Agent",
+  "githubUrl": "https://github.com/0xjordansg-yolo/Twitter-Skills-Hermes-Agent",
+  "convertedFrom": "public/downloads/github/0xjordansg-yolo/Twitter-Skills-Hermes-Agent.tar.gz",
+  "language": "zh",
   "slug": "twitter-autopilot-zh",
-  "version": "1.0.0",
-  "publishedAt": 1776503556605
+  "version": "1.0.0"
 }

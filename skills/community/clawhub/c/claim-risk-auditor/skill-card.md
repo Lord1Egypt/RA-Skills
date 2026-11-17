@@ -1,41 +1,53 @@
-## Description: <br>
-Checks copy, papers, promotional drafts, and product descriptions for high-risk claims, evidence gaps, and safer rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks copy, academic writing, promotional scripts, and product descriptions for high-risk claims, evidence gaps, and safer phrasing.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, writers, marketers, trainers, and academic authors use this skill to review assertions in copied text, identify unsupported or absolute claims, and draft more cautious wording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and display the current system clipboard when invoked. <br>
-Mitigation: Clear sensitive clipboard contents before use, paste text directly when possible, and confirm that clipboard access is acceptable before running the skill. <br>
-Risk: The audit may suggest safer wording without independently verifying whether a claim is true. <br>
-Mitigation: Check important claims against authoritative evidence before publication or submission. <br>
+## Use Case:
 
+Writers, marketers, researchers, trainers, and agents use this skill to review copied content for risky assertions, missing support, and more cautious wording.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/claim-risk-auditor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style audit notes with risk labels, evidence gaps, and safer rewrite suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and pbpaste; reads clipboard text on macOS before analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog) <br>
+Risk: The skill can read the current macOS clipboard on broad prompts without an explicit confirmation step, and the clipboard may contain passwords, tokens, private notes, or unrelated confidential text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only after intentionally copying the text to review, and clear or replace sensitive clipboard contents before use.
+
+Risk: Clipboard ingestion depends on local Node.js and macOS pbpaste availability.
+
+Mitigation: Confirm those binaries are available before relying on clipboard-based review, or provide the text directly to the agent instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/claim-risk-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text analysis, with shell output when clipboard access is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and macOS pbpaste for clipboard ingestion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and CHANGELOG.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

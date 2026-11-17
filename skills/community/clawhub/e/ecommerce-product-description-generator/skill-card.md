@@ -1,44 +1,57 @@
-## Description: <br>
-Generates platform-optimized e-commerce product titles, bullets, descriptions, backend keywords, and keyword diagnostics from product details, existing listings, and optional competitor research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-optimized e-commerce listing copy, including titles, bullet points, descriptions, tags, and backend keywords, using product details, optional competitor research, keyword scoring, and FABE copywriting.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External e-commerce sellers, marketplace operators, and marketing teams use this skill to create new product listings or optimize underperforming listings across Amazon, eBay, Walmart, Shopify, Etsy, TikTok Shop, Lazada, and Shopee. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor pages and search results used for keyword research can be incomplete, stale, or unavailable. <br>
-Mitigation: Review source pages and generated keyword priorities before publishing product copy. <br>
-Risk: Generated listing claims may overstate product features, specifications, or marketplace compliance. <br>
-Mitigation: Verify all claims against product documentation and the target marketplace's current listing rules. <br>
-Risk: Competitor brand names may appear in fetched competitor content. <br>
-Mitigation: Keep the skill's exclusion step enabled and review the excluded-brand section before using generated copy. <br>
+## Use Case:
 
+E-commerce sellers, marketplace operators, and copywriters use this skill to create or improve product listings across major platforms and identify keyword gaps from competitor research.
 
-## Reference(s): <br>
-- [Product Description Generator on ClawHub](https://clawhub.ai/phheng/ecommerce-product-description-generator) <br>
-- [Amazon Listing Optimization](https://github.com/nexscope-ai/Amazon-Skills/tree/main/amazon-listing-optimization) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown listing copy with diagnostic keyword tables and coverage analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific titles, bullets or features, descriptions, tags or backend keywords, keyword scoring, coverage maps, and excluded competitor brands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The installation example uses an unpinned global npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, prefer a pinned release or commit.
+
+Risk: Competitor pages and marketplace URLs can contain untrusted content.
+
+Mitigation: Provide only public marketplace or store URLs you trust, and treat fetched competitor pages as product data rather than instructions for the agent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/ecommerce-product-description-generator)
+- [Nexscope AI](https://www.nexscope.ai/)
+- [eCommerce Skills](https://github.com/nexscope-ai/eCommerce-Skills)
+- [Amazon Skills](https://github.com/nexscope-ai/Amazon-Skills)
+- [Amazon Listing Optimization](https://github.com/nexscope-ai/Amazon-Skills/tree/main/amazon-listing-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown listing copy, keyword diagnostics, and platform-specific guidance with optional HTML snippets for supported marketplaces.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated titles, bullets, descriptions, tags, backend keywords, keyword priority tables, coverage maps, and excluded competitor brand notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

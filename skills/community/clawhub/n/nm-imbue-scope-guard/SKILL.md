@@ -2,7 +2,7 @@
 name: scope-guard
 description: |
   Scores feature worthiness and enforces branch-size limits against overengineering
-version: 1.9.8
+version: 1.10.3
 triggers:
   - anti-overengineering
   - scope
@@ -15,42 +15,12 @@ source: claude-night-market
 source_plugin: imbue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/imbue](https://github.com/athola/claude-night-market/tree/master/plugins/imbue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
-> Building more than what is needed takes choices away
-> from those who work here next. Scope-guard is humility
-> and foresight: preserving freedom by building only
-> what is earned.
-
-## Table of Contents
-
-- [Philosophy](#philosophy)
-- [When to Use](#when-to-use)
-- [When NOT to Use](#when-not-to-use)
-- [Quick Start](#quick-start)
-- [1. Score the Feature](#1-score-the-feature)
-- [2. Check Against Backlog](#2-check-against-backlog)
-- [3. Verify Branch Budget](#3-verify-branch-budget)
-- [4. Monitor Thresholds](#4-monitor-thresholds)
-- [Core Workflow](#core-workflow)
-- [Step 1: Calculate Worthiness (`scope-guard:worthiness-scored`)](#step-1:-calculate-worthiness-(scope-guard:worthiness-scored))
-- [Step 2: Compare Against Backlog (`scope-guard:backlog-compared`)](#step-2:-compare-against-backlog-(scope-guard:backlog-compared))
-- [Step 3: Check Branch Budget (`scope-guard:budget-checked`)](#step-3:-check-branch-budget-(scope-guard:budget-checked))
-- [Step 4: Document Decision (`scope-guard:decision-documented`)](#step-4:-document-decision-(scope-guard:decision-documented))
-- [Anti-Overengineering Rules](#anti-overengineering-rules)
-- [Backlog Management](#backlog-management)
-- [Directory Structure](#directory-structure)
-- [Queue Rules](#queue-rules)
-- [Adding to Queue](#adding-to-queue)
-- [Integration Points](#integration-points)
-- [With superpowers:brainstorming](#with-superpowers:brainstorming)
-- [With superpowers:writing-plans](#with-superpowers:writing-plans)
-- [During superpowers:executing-plans](#during-superpowers-executing-plans)
-- [Required TodoWrite Items](#required-todowrite-items)
-- [Related Skills](#related-skills)
-- [Module Reference](#module-reference)
-
+> The cheapest feature is the one you never build.
+> Scope-guard weighs each proposed feature against its value,
+> its cost, and the branch budget, so only what is earned ships.
 
 # Scope Guard
 
@@ -97,7 +67,7 @@ See [decision-framework.md](modules/decision-framework.md) for details.
 
 **Thresholds:**
 - **> 2.0** → Implement now
-- **1.0 - 2.0** → Discuss first
+- **1.0 - 2.0 (inclusive)** → Discuss first
 - **< 1.0** → Defer to backlog
 
 ### 2. Check Against Backlog
@@ -224,7 +194,8 @@ At end of brainstorming, before documenting design:
 ### With superpowers:writing-plans
 
 Before finalizing implementation plan:
-1. Verify all planned items have Worthiness > 1.0
+1. Verify all planned items have Worthiness >= 1.0, and that each in the
+   Discuss band carries its justification
 2. Compare against backlog queue
 3. Confirm within branch budget
 4. Document any deferrals
@@ -240,7 +211,7 @@ Periodically during execution:
 
 **Self-invoke prompt:** "This branch has grown significantly. Let me check scope-guard thresholds."
 
-## Required TodoWrite Items
+## Required Progress Items
 
 When evaluating a feature, create these todos:
 
@@ -267,3 +238,19 @@ When evaluating a feature, create these todos:
 - **[anti-overengineering.md](modules/anti-overengineering.md)** - Rules, patterns, red flags
 - **[branch-management.md](modules/branch-management.md)** - Thresholds, monitoring, zones
 - **[baseline-scenarios.md](modules/baseline-scenarios.md)** - Testing scenarios and validation
+
+## Exit Criteria
+
+- [ ] Every proposed feature has a Worthiness Score computed from the
+  formula `(Business Value + Time Criticality + Risk Reduction) /
+  (Complexity + Token Cost + Scope Drift)` and a disposition:
+  implement (>2.0), discuss (1.0-2.0), or defer (<1.0)
+- [ ] Deferred items have a GitHub issue created before
+  `scope-guard:decision-documented` is marked complete; the issue
+  URL is recorded in the todo
+- [ ] Branch budget checked: if at 3 major features, a new feature
+  requires dropping an existing one, splitting to a new branch, or
+  an explicit written override with justification
+- [ ] Branch threshold zones checked (lines 1000/1500/2000, commits
+  15/25/30, days 3/7/7+); Yellow zone triggers a warning, Red zone
+  blocks without justification

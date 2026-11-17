@@ -1,42 +1,56 @@
-## Description: <br>
-Multi-Model Council - parallel execution of multiple LLMs with voting/consensus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Arena Council runs multiple local LLMs in parallel and combines their responses with voting or consensus strategies.
 
-## Publisher: <br>
-[nerua1](https://clawhub.ai/user/nerua1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nerua1](https://clawhub.ai/user/nerua1)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use Arena Council to send prompts to multiple local LM Studio LLMs, collect responses in parallel, and return a majority or weighted consensus answer for analysis, coding, and Q&A workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may rewrite prompts to bypass model refusals and can interact with a sibling god-mode module.
+
+Mitigation: Install only when that behavior is intended; review the sibling god-mode directory and remove or disable prompt rewriting before sensitive or policy-bound use.
+
+Risk: Prompts can be sent to multiple locally loaded LM Studio models, increasing exposure of sensitive inputs within the local model environment.
+
+Mitigation: Avoid sensitive prompts, or explicitly select and audit trusted local models before using the council.
+
+Risk: The installation guidance does not pin dependencies.
+
+Mitigation: Install in a controlled environment and pin reviewed dependency versions before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users can use this skill to query multiple local LM Studio models in parallel and combine their responses with majority or weighted voting. It is intended for workflows where response diversity, robustness, or local-only inference are useful. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes automatic safety-bypass prompt rewriting through god-mode integration. <br>
-Mitigation: Install only when that integration is explicitly desired; otherwise remove or disable the god-mode imports and prompt rewriting before use. <br>
-Risk: The skill can probe local models and save profiles for refusal-bypass behavior. <br>
-Mitigation: Disable probing and saved profile use when the goal is normal multi-model consensus. <br>
-Risk: Prompts may be sent to every selected local model. <br>
-Mitigation: Avoid sensitive prompts unless every local model receiving the prompt is trusted. <br>
+**Output Format:** [String or Markdown, depending on the prompt and selected local models.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nerua1/arena-council) <br>
+**Other Properties Related to Output:** [Returns a single consensus response; raw per-model responses are available through the Python API.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Plain text responses returned by Python helpers, with Markdown documentation and Python examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries local LM Studio models in parallel and returns a single selected or consensus response; the default response cap is 512 tokens.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

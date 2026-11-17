@@ -1,0 +1,9 @@
+In recent years, deep learning has revolutionized medical image analysis. Furthermore, transformer architectures have further expanded the frontier. It is worth noting that these advances bring both opportunities and challenges.
+
+However, the deployment of such models in clinical workflows remains limited — regulatory requirements, data heterogeneity and interpretability concerns persist. Moreover, most published benchmarks are single-center — generalization claims are therefore weak. Additionally, annotation cost scales linearly with dataset size — active learning mitigates but does not remove the burden.
+
+In this paper, we propose a multi-scale framework for lesion segmentation. Specifically, our method fuses local texture cues with global context — enabling robust performance under domain shift. Notably, the framework requires no auxiliary modalities — a practical advantage.
+
+Consequently, extensive experiments were run to demonstrate the superiority of our approach — outperforming strong baselines on three public datasets. Ablation studies further confirm the contribution of each module.
+
+Ultimately, our framework offers a practical path toward deployment — while acknowledging that prospective validation is still needed.

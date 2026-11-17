@@ -1,0 +1,123 @@
+snapshot_date: 2026-11-02 06:21
+base_url: https://yce-api-01.makeupar.com
+credit:
+  balance_path: /s2s/v1.0/client/credit
+  history_path: /s2s/v1.0/client/credit/history
+  feature_cost_path: /s2s/v2.0/credit/feature-cost
+  api_spendable_prefix: Api
+features:
+  skin-tone-analysis:
+    api_name: AI Facial Color Tones Analyzer
+    version: v2.0
+    task_path: /s2s/v2.0/task/skin-tone-analysis
+    doc: https://docs.perfectcorp.com/reference/ai_skin_tone_analysis.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      properties:
+        face_angle_strictness_level:
+          type: string
+          description: "The strictness level of face angle detection (pitch, yaw, roll).\nA stricter level ensures more accurate face attribute results.\nDefault is 'high'.\noptoins:\n  - strict: pitch <= 4 degrees, yaw <= 6 degrees, roll <= 4 degrees\n  - high: pitch, yaw, roll <= 10 degrees\n  - medium: pitch, yaw, roll <= 15 degrees\n  - low: pitch, yaw, roll <= 20 degrees\n  - flexible: pitch, yaw, roll <= 30 degrees\n"
+          enum:
+          - strict
+          - high
+          - medium
+          - low
+          - flexible
+          example: high
+  face-attr-analysis:
+    api_name: AI Face Attributes & Ratio Analyzer
+    version: v2.0
+    task_path: /s2s/v2.0/task/face-attr-analysis
+    doc: https://docs.perfectcorp.com/reference/ai_face_analyzer.md
+    body_schema:
+      title: BasicRunTaskV2
+      anyOf:
+      - title: Run task with src file url
+        type: object
+        required:
+        - src_file_url
+        properties:
+          src_file_url:
+            type: string
+            description: Url of the file to run task. The url should be publicly accessible.
+            example: https://example.com/selfie.jpg
+      - title: Run task with src file ID
+        type: object
+        required:
+        - src_file_id
+        properties:
+          src_file_id:
+            type: string
+            description: ID of file to run task. File ID from upload file API.
+            example: pfNK5PuRe0MrwLHcGA3DOmB1ahwfXTbYHjv+KoBIxbE=
+      type: object
+      required:
+      - features
+      properties:
+        face_angle_strictness_level:
+          type: string
+          description: "The strictness level of face angle detection (pitch, yaw, roll).\nA stricter level ensures more accurate face attribute results.\nDefault is 'high'.\noptoins:\n  - strict: pitch <= 4 degrees, yaw <= 6 degrees, roll <= 4 degrees\n  - high: pitch, yaw, roll <= 10 degrees\n  - medium: pitch, yaw, roll <= 15 degrees\n  - low: pitch, yaw, roll <= 20 degrees\n  - flexible: pitch, yaw, roll <= 30 degrees\n"
+          enum:
+          - strict
+          - high
+          - medium
+          - low
+          - flexible
+          example: high
+        features:
+          description: "AI Face Analysis categories\n* Face Analysis\n  - FACE: faceShape\n  - EYES: eyeShape eyeSize eyeAngle eyeDistance eyelid\n  - BROWS: eyebrowShape eyebrowThickness eyebrowDistance eyebrowShortness\n  - LIPS: lipShape\n  - NOSE: noseWidth noseLength\n  - CHEEKBONES: cheekbones\n  - AGE & GENDER: age gender\n  - COLORS: eyeColor hairColor eyebrowColor lipColor\n\n* Facial Ratios\n  - horizontalThird\n  - verticalFifth\n  - faceAspectRatio\n  - eyeAspectRatio\n  - eyebrowPosition\n  - eyebrowArch\n  - eyeHeightToEyebrowDistance\n  - noseAspectRatio\n  - noseWidthToMouthWidth\n  - noseToLipToChin\n  - upperLipToLowerLip\n"
+          type: array
+          items:
+            type: string
+            enum:
+            - eyeShape
+            - eyeSize
+            - eyeAngle
+            - eyeDistance
+            - eyelid
+            - eyebrowShape
+            - eyebrowThickness
+            - eyebrowDistance
+            - eyebrowShortness
+            - cheekbones
+            - faceShape
+            - lipShape
+            - noseWidth
+            - noseLength
+            - age
+            - gender
+            - eyeColor
+            - lipColor
+            - eyebrowColor
+            - hairColor
+            - horizontalThird
+            - verticalFifth
+            - faceAspectRatio
+            - eyeAspectRatio
+            - eyebrowPosition
+            - eyebrowArch
+            - eyeHeightToEyebrowDistance
+            - noseAspectRatio
+            - noseWidthToMouthWidth
+            - noseToLipToChin
+            - upperLipToLowerLip

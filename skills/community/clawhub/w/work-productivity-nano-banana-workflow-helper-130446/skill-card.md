@@ -1,44 +1,58 @@
-## Description: <br>
-Build practical AI image generation and editing workflows inspired by Nano Banana Pro demand for users who need prompt sets, reference-image planning, iteration rules, output QA, cost controls, or deployment hardening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A workflow skill for planning and debugging AI image generation or editing work by turning a visual goal into prompt packs, reference-image instructions, retry budgets, and visual QA checks.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-AI-agent users, skill authors, maintainers, and teams use this skill to turn image generation or editing goals into prompt packs, reference constraints, visual QA checks, retry budgets, and deployment checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may invoke the skill when the user did not intend image-workflow assistance. <br>
-Mitigation: Explicitly choose the intended skill for ambiguous requests, or disable implicit invocation in agent environments that support it. <br>
-Risk: Generated image workflows can still produce failed outputs, visual artifacts, brand inconsistencies, safety issues, or licensing concerns. <br>
-Mitigation: Use the skill's QA checklist and bounded retry plan before accepting or publishing generated assets. <br>
+## Use Case:
 
+External users, developers, skill authors, and teams use this skill to turn AI image generation or editing goals into prompt packs, reference-image plans, QA checks, and bounded retry plans. It also helps diagnose failed outputs caused by prompt ambiguity, reference mismatch, model limits, queue or cost issues, and setup problems.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [Nano PDF ClawHub demand signal](https://clawhub.ai/skills/nano-pdf) <br>
-- [Nano Banana Pro ClawHub demand signal](https://clawhub.ai/skills/nano-banana-pro) <br>
-- [V2EX image and video generation experience discussion](https://www.v2ex.com/t/1222073) <br>
-- [Guided first deployment feature request](https://github.com/Makerspace-Ashoka/smart-db/issues/25) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown with prompt packs, checklists, retry plans, and workflow notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include image-generation prompts, negative prompts, reference-image instructions, QA criteria, bounded retry rules, and deployment checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill may activate more often than intended in environments that honor broad Chinese trigger metadata or implicit invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger metadata before deployment and prefer explicit invocation in environments where broad activation would be disruptive.
+
+Risk: Image-workflow guidance, prompts, QA checks, or retry plans may still be incomplete for a user's specific model, tool, brand, licensing, or safety constraints.
+
+Mitigation: Have users review generated workflows against their model limits, brand rules, safety requirements, and export criteria before production use.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/work-productivity-nano-banana-workflow-helper-130446)
+- [Nano Banana Pro Demand Signal](https://clawhub.ai/skills/nano-banana-pro)
+- [Nano PDF Demand Signal](https://clawhub.ai/skills/nano-pdf)
+- [AI Image and Video Generation Experience Discussion](https://www.v2ex.com/t/1222073)
+- [Guided First Deployment Feature Request](https://github.com/Makerspace-Ashoka/smart-db/issues/25)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown with prompt packs, QA checklists, retry plans, and optional configuration checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should name unresolved model or tool limits and keep retry decisions bounded by an explicit budget.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn74970nf8dzc6mqqrn4c9rph183d5b0",
-  "slug": "files-memory-system",
+  "name": "files-memory-system",
   "version": "1.16.1",
-  "publishedAt": 1774669928939
+  "description": "Multi-context memory management system for OpenClaw agents with group-isolated storage, global shared memory, workspace organization, and group-specific skills isolation. CRITICAL FIX: Added mandatory manual memory loading check for group chats due to OpenClaw auto-loading bug. Use --group parameter for git clone in group contexts.",
+  "author": "wxwzl",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://clawhub.com/skills/files-memory-system"
+  },
+  "keywords": [
+    "memory",
+    "group-isolation",
+    "multi-context",
+    "workspace-organization",
+    "auto-loading"
+  ],
+  "lastUpdated": "2026-03-26",
+  "dependencies": {
+    "openclaw": ">=2026.3.0"
+  }
 }

@@ -1,44 +1,65 @@
-## Description: <br>
-Sendivent provides agent guidance for using a multi-channel notification API across email, SMS, Slack, push, Telegram, WhatsApp, and Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Sendivent API guidance for sending multi-channel notifications via email, SMS, Slack, push, Telegram, WhatsApp, or Discord.
 
-## Publisher: <br>
-[oakleaf](https://clawhub.ai/user/oakleaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oakleaf](https://clawhub.ai/user/oakleaf)
 
-## Use Case: <br>
-Developers and agents use this skill to integrate Sendivent notifications, manage contacts, inspect delivery data, configure webhooks, and produce API or SDK implementation examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill can draft or execute workflows that send real notifications and change Sendivent contact data. <br>
-Mitigation: Start with sandbox or test keys, confirm production recipients and contact deletions before execution, and use idempotency keys for send operations. <br>
-Risk: Webhook signing secrets and API keys can be mishandled if copied into logs, examples, or shared prompts. <br>
-Mitigation: Store secrets in environment or secret-management systems, avoid logging webhook signing secrets, and review generated code before using production credentials. <br>
+## Use Case:
 
+Developers and external teams use this skill to write Sendivent integrations for notification sending, contact management, events, templates, webhooks, and Node.js SDK workflows.
 
-## Reference(s): <br>
-- [Sendivent API Guide](references/api-guide.md) <br>
-- [Sendivent Node.js SDK Guide](references/sdk-guide.md) <br>
-- [Sendivent Documentation](https://sendivent.com/docs) <br>
-- [Sendivent Node.js SDK](https://github.com/appitudeio/sendivent-node) <br>
-- [Sendivent PHP SDK](https://github.com/appitudeio/sendivent-php) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JSON, TypeScript, REST, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include examples that use Sendivent API keys, sandbox or production base URLs, event names, channel settings, contact identifiers, and webhook configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can guide real production notification sends, which may contact end users or trigger provider costs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer sandbox keys for testing and require explicit confirmation before sending real notifications.
+
+Risk: The skill covers destructive operations such as deleting contacts, removing push tokens, and deleting webhooks.
+
+Mitigation: Require a lookup or read-back step plus explicit user confirmation before performing destructive actions.
+
+Risk: The skill documents API keys and webhook signing secrets, which can expose production messaging infrastructure if logged or shared.
+
+Mitigation: Avoid printing or storing secrets in logs, keep credentials in environment variables, and protect webhook signing secrets.
+
+Risk: The server security summary flags insufficient safeguards around production messaging, deletion, and webhook-secret workflows.
+
+Mitigation: Review the skill before installing it for production credential use and pin install or package versions where applicable.
+
+## Reference(s):
+
+- [Sendivent API Reference](references/api-guide.md)
+- [Sendivent Node.js SDK Guide](references/sdk-guide.md)
+- [Sendivent Documentation](https://sendivent.com/docs)
+- [Sendivent Node.js SDK](https://github.com/appitudeio/sendivent-node)
+- [Sendivent PHP SDK](https://github.com/appitudeio/sendivent-php)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code examples, shell commands, JSON payloads, and TypeScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, SDK usage patterns, and configuration steps for Sendivent credentials, channels, events, and webhooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

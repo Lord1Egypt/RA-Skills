@@ -1,38 +1,52 @@
-## Description: <br>
-Guide CS learning from first programs to research and industry practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide CS learning from first programs to research and industry practice.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Learners, educators, researchers, interview candidates, and practitioners use this skill to adapt computer science explanations, exercises, verification habits, and production-oriented trade-off guidance to the user's level and goal. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated code, complexity claims, citations, or recent-development statements may be incorrect or outdated. <br>
-Mitigation: Verify code with tests and known inputs, check algorithmic claims carefully, validate citations in authoritative sources, and state knowledge cutoff for recent developments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Computer Science skill page](https://clawhub.ai/ivangdavila/computer-science) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Students, educators, researchers, and practitioners use this skill for computer-science tutoring, concept explanations, proof guidance, interview preparation, and production-oriented trade-off discussion.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown and plain text with optional code examples, diagrams, tables, and verification guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts explanation depth to the user's computer science level and goal.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Computer-science explanations, complexity claims, or recent research references may be incorrect or outdated.
+
+Mitigation: Verify recent claims and important technical conclusions against authoritative sources before relying on them.
+
+Risk: Generated code or algorithm recommendations may contain bugs or fail edge cases.
+
+Mitigation: Test generated code with known inputs, edge cases, and project-specific constraints before use.
+
+## Reference(s):
+
+- [Computer Science ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/computer-science)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with code examples, diagrams, tables, and step-by-step explanations as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

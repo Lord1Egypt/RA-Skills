@@ -1,0 +1,14 @@
+Category,Feature,Main feature description,Weight,Corresponding negative prompts,Negative weight,Syntax strategy
+# Adult-declaration: all character variants in this sheet (Nanwang, Song Jiuning) are adult (18+) women. Do not reintroduce minor ages ("16-year-old", "teen girl", "loli", "未成年").
+Facial features,Mole,Nanwang: faint brown 1mm mole below the left eye,1.8,"Mole below the right eye, mole gone, heavy makeup",1.3,SD full / MJ --no short words
+Facial features,Eye shape,Nanwang: rounded eye shape,1.2,"Sharp eyes, upturned eyes, phoenix eyes",1.1,SD full
+Facial features,Lip color,"Nanwang: light pink lips, no lip makeup",1.1,"Dark lip gloss, thick lips, gradient lip makeup",1.1,SD full
+Hairstyle & accessories,Accessory,Nanwang: white daisy in the hair,1.5,"No accessory, exaggerated accessory, metal accessory",1.3,SD full / MJ --no
+Hairstyle & accessories,Hairstyle,Nanwang: black waist-length straight hair with slightly curled ends,1.3,"Short hair, dyed hair, frizzy ends, over-curled",1.2,SD full
+Core outfit,Dress,Nanwang: light mint cotton plain dress,1.4,"Red dress, leather jacket, gown, torn clothing",1.3,SD full / MJ --no
+Core outfit,Hem pattern,Nanwang: 3cm white daisy pattern on the skirt hem,1.2,"No hem pattern, wrong pattern",1.1,SD full
+Body & height,Body,"Nanwang: slim young-adult woman's figure, ~165cm",1,"Adult female build, too thin, overweight",0.9,SD full
+Facial features,Eye shape,Song Jiuning: drooping outer eye corners,1.5,"Upturned outer corners, wide almond eyes",1.2,SD full / MJ --no
+Facial features,Expression,Song Jiuning: aloof and detached with built-in sadness,1.4,"Sweet smile, lively expression, big laugh",1.2,SD full
+Hairstyle & accessories,Hairstyle,Song Jiuning: black waist-length straight hair with slightly curled ends,1.3,"Short hair, dyed hair, exaggerated accessories",1.2,SD full
+Core outfit,Robe,Song Jiuning: gray-blue plain robe (example),1.2,"High-saturation vivid clothing, ornate attire",1.1,SD full

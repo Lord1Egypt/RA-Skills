@@ -1,43 +1,56 @@
-## Description: <br>
-Uses the ChatPPT CLI to help an agent generate PowerPoint presentations from a topic or from Word, PDF, Markdown, and text files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the ChatPPT CLI to generate PowerPoint presentations from a topic or from Word, PDF, Markdown, or text files, including login, generation, import, polling, download, and editor-link workflows.
 
-## Publisher: <br>
-[kahn520](https://clawhub.ai/user/kahn520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kahn520](https://clawhub.ai/user/kahn520)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to drive ChatPPT CLI workflows that turn prompts or existing documents into PPT presentations and retrieve finished results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Global npm installation and CLI execution can affect the local environment.
+
+Mitigation: Install and run the CLI in a restricted or disposable environment and avoid elevated npm installs unless explicitly required.
+
+Risk: Document-import workflows upload local content to the ChatPPT/Baidu BOS-backed service.
+
+Mitigation: Do not upload confidential documents unless the user is comfortable sending their contents to that service.
+
+Risk: Authentication and storage configuration can expose AK/SK values, passwords, tokens, or raw auth config if logged or pasted.
+
+Mitigation: Avoid displaying or storing raw credential material in chat logs, command output, or shared artifacts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and external users use this skill to guide an agent through ChatPPT CLI authentication, parameter collection, presentation generation, polling, and retrieval of download or editor links. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded documents and login or configuration data may be processed by a third-party service. <br>
-Mitigation: Use the skill only with approved data, avoid confidential or regulated documents unless third-party processing is authorized, and do not share credentials or config output. <br>
-Risk: Local CLI authentication can persist after use. <br>
-Mitigation: Use `chatppt auth logout` or remove the local ChatPPT config when the CLI should no longer remain authenticated. <br>
-Risk: The skill can invoke a web-search option that may add cost. <br>
-Mitigation: Require explicit user confirmation before enabling `--web-search`; otherwise pass `--web-search=false`. <br>
+**Output Format:** [Markdown guidance with shell commands and JSON response examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kahn520/chatppt-agent) <br>
-- [ChatPPT OpenClaw](https://chat-ppt.com/openclaw) <br>
+**Other Properties Related to Output:** [Single-stream agent guidance; generated PPT files and links are produced by the ChatPPT service.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to run ChatPPT CLI commands, collect required user inputs, poll for task status, and present generated file or editor links.] <br>
+1.0.4 (source: evidence.release.version)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

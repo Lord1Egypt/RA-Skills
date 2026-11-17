@@ -1,0 +1,92 @@
+[
+ {
+  "i": 0,
+  "site": "ppxt",
+  "label": "ppxt_home",
+  "rows": 51,
+  "typeable": 1,
+  "url": "https://www.perplexity.ai/",
+  "hash": "60ae0cb2c3d9"
+ },
+ {
+  "i": 1,
+  "site": "ppxt",
+  "label": "ppxt_explore",
+  "rows": 1,
+  "typeable": 0,
+  "url": "https://www.perplexity.ai/explore",
+  "hash": "70e167eeb7f7"
+ },
+ {
+  "i": 2,
+  "site": "ppxt",
+  "label": "ppxt_library",
+  "rows": 46,
+  "typeable": 0,
+  "url": "https://www.perplexity.ai/library",
+  "hash": "61bc53d2ac50"
+ },
+ {
+  "i": 3,
+  "site": "github",
+  "label": "gh_tree",
+  "rows": 104,
+  "typeable": 1,
+  "url": "https://github.com/browser-use/jev-ultrafast/tree/main",
+  "hash": "1dfc3f3db453"
+ },
+ {
+  "i": 4,
+  "site": "github",
+  "label": "gh_blob",
+  "rows": 57,
+  "typeable": 1,
+  "url": "https://github.com/browser-use/jev-ultrafast/blob/main/README.md",
+  "hash": "ba0fcecc4507"
+ },
+ {
+  "i": 5,
+  "site": "github",
+  "label": "gh_repo",
+  "rows": 114,
+  "typeable": 1,
+  "url": "https://github.com/browser-use/jev-ultrafast",
+  "hash": "7719fc614537"
+ },
+ {
+  "i": 6,
+  "site": "github",
+  "label": "gh_issues",
+  "rows": 106,
+  "typeable": 1,
+  "url": "https://github.com/browser-use/jev-ultrafast/issues",
+  "hash": "954386d7a98c"
+ },
+ {
+  "i": 7,
+  "site": "github",
+  "label": "gh_pulls",
+  "rows": 130,
+  "typeable": 1,
+  "url": "https://github.com/browser-use/jev-ultrafast/pulls",
+  "hash": "b53b91b0e182"
+ },
+ {
+  "i": 8,
+  "site": "github",
+  "label": "gh_actions",
+  "rows": 45,
+  "typeable": 1,
+  "url": "https://github.com/browser-use/jev-ultrafast/actions",
+  "hash": "b4b31007a85f"
+ },
+ {
+  "i": 9,
+  "site": "github",
+  "label": "gh_search",
+  "rows": 122,
+  "typeable": 0,
+  "url": "https://github.com/search?q=browser+agent&type=repositories",
+  "hash": "8d5e716c6d8b"
+ }
+]

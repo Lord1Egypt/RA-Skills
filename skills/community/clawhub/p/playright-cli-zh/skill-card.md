@@ -1,53 +1,67 @@
-## Description: <br>
-自动化浏览器交互、测试网页以及使用 Playwright 测试。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates browser interaction, web page testing, and Playwright test workflows through playwright-cli.
 
-## Publisher: <br>
-[xutao0565](https://clawhub.ai/user/xutao0565) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xutao0565](https://clawhub.ai/user/xutao0565)
 
-## Use Case: <br>
-Developers and engineers use this Chinese-language skill to drive Playwright browser sessions, debug tests, generate Playwright test code, inspect pages, mock requests, and capture traces or videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation can inspect or persist cookies, local storage, profiles, and authentication state. <br>
-Mitigation: Use dedicated test browsers and test accounts, avoid attaching personal or work browser sessions, and delete saved session data after use. <br>
-Risk: Snapshots, traces, recordings, screenshots, PDFs, and raw outputs can contain sensitive authentication, payment, or personal data. <br>
-Mitigation: Avoid tracing or recording real sensitive flows and treat generated artifacts as sensitive files that require review before sharing. <br>
-Risk: Custom Playwright code and request mocking can change browser context, permissions, network behavior, or downloaded files. <br>
-Mitigation: Review proposed commands before execution and scope advanced automation to test environments. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to drive browser sessions, inspect page state, generate locators and tests, mock requests, and debug Playwright flows from an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xutao0565/playright-cli-zh) <br>
-- [Playwright documentation](https://playwright.dev) <br>
-- [Running Playwright Tests](references/playwright-tests.md) <br>
-- [Request Mocking](references/request-mocking.md) <br>
-- [Running Custom Playwright Code](references/running-code.md) <br>
-- [Browser Session Management](references/session-management.md) <br>
-- [Spec-driven testing](references/spec-driven-testing.md) <br>
-- [Storage Management](references/storage-state.md) <br>
-- [Test Generation](references/test-generation.md) <br>
-- [Tracing](references/tracing.md) <br>
-- [Video Recording](references/video-recording.md) <br>
-- [Inspecting Element Attributes](references/element-attributes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Markdown, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Playwright snapshots, storage-state files, traces, videos, screenshots, PDFs, and raw command output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad browser automation can access, save, or alter sensitive browser session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts where possible, avoid real payment or secret-bearing flows, do not print or persist cookies or tokens unless necessary, and delete auth-state files after use.
+
+Risk: Tracing and video recording can persist sensitive page content or user data.
+
+Mitigation: Avoid capturing real secrets, personal data, or payment flows; review generated traces and videos before sharing or retaining them.
+
+Risk: The installation guidance allows mutable npm tooling through latest or global installs.
+
+Mitigation: Prefer pinned project-local npm dependencies over global latest installs.
+
+## Reference(s):
+
+- [Playwright documentation](https://playwright.dev)
+- [Inspecting Element Attributes](references/element-attributes.md)
+- [Running Playwright Tests](references/playwright-tests.md)
+- [Request Mocking](references/request-mocking.md)
+- [Running Custom Playwright Code](references/running-code.md)
+- [Browser Session Management](references/session-management.md)
+- [Spec-driven testing](references/spec-driven-testing.md)
+- [Storage Management](references/storage-state.md)
+- [Test Generation](references/test-generation.md)
+- [Tracing](references/tracing.md)
+- [Video Recording](references/video-recording.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Playwright TypeScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also guide creation of browser state files, screenshots, PDFs, traces, and video recordings through playwright-cli commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

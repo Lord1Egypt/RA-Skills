@@ -1,44 +1,50 @@
-## Description: <br>
-Discovers AWS-hosted AI agent and MCP-relevant assets with operator-controlled AWS credentials, writes canonical agent-bom inventory JSON, and optionally scans or exports that inventory when the operator requests it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover AWS-hosted AI agent and MCP-relevant assets from the operator's environment, emit canonical agent-bom inventory JSON, and optionally scan it when the operator requests a scan.
 
-## Publisher: <br>
-[msaad00](https://clawhub.ai/user/msaad00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[msaad00](https://clawhub.ai/user/msaad00)
 
-## Use Case: <br>
-Developers, cloud operators, and security engineers use this skill to collect AWS Bedrock, ECS, SageMaker, Lambda, EKS, Step Functions, EC2, and related agentic infrastructure inventory as schema-valid local JSON. They can then run agent-bom scans or exports only after an explicit operator-approved handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: AWS credentials used for discovery may expose more cloud inventory than intended if the selected profile or role is too broad. <br>
-Mitigation: Use operator-controlled AWS SSO, WebIdentity, or STS assumed-role credentials with read-only IAM scope and confirm the target account, region, and services before running discovery. <br>
-Risk: Generated inventory and export files may contain sensitive cloud metadata even when credential-like values are redacted. <br>
-Mitigation: Write outputs only to operator-selected paths and review the JSON or export before sharing it outside the operator environment. <br>
-Risk: A substituted package or unexpected publisher/source could change runtime behavior despite the clean scan telemetry for this release. <br>
-Mitigation: Install only from the expected ClawHub publisher handle or source link and review the artifact files when stronger assurance is needed. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inventory AI agents and workloads in their AWS environment with operator-controlled, read-only credentials. They can stop after generating a canonical inventory or explicitly request a local scan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/msaad00/agent-bom-discover-aws) <br>
-- [agent-bom homepage](https://github.com/msaad00/agent-bom) <br>
-- [agent-bom PyPI package](https://pypi.org/project/agent-bom/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and operator-selected JSON inventory or export file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local inventory or export files to operator-selected paths; uses the local AWS SDK credential chain and does not require a hosted agent-bom service handoff.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.89.2 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The security review is incomplete because a local reference could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unresolved reference and inspect the skill before installing.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/koda-ai-studio/agent-bom)
+- [agent-bom on PyPI](https://pypi.org/project/agent-bom/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Canonical inventory JSON file and Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Inventory is written to an operator-selected path; scanning and export are optional operator-directed steps.]
+
+## Skill Version(s):
+
+0.115.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

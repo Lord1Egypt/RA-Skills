@@ -1,42 +1,55 @@
-## Description: <br>
-Provides Baidu Cloud text and image content moderation APIs that return detailed JSON audit results and user-facing conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Baidu Cloud text and image moderation APIs that detect content safety issues and return detailed JSON review results.
 
-## Publisher: <br>
-[HeKe-UESTC](https://clawhub.ai/user/HeKe-UESTC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heke-uestc](https://clawhub.ai/user/heke-uestc)
 
-## Use Case: <br>
-Developers and agents use this skill to submit user-selected text, image URLs, or local image files for Baidu Cloud content safety review and present the returned moderation findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Moderated text, image URLs, and local image file contents are sent to Baidu Cloud. <br>
-Mitigation: Use the skill only for content that is allowed to leave the local environment and is appropriate for Baidu Cloud processing. <br>
-Risk: Baidu API credentials and cached access tokens could expose moderation access if committed, logged, or left behind after rotation. <br>
-Mitigation: Store BCE_SINAN_AK and BCE_SINAN_SK only in environment variables, avoid logging credential-bearing URLs, rotate credentials when needed, and delete the local token cache during rotation or uninstall. <br>
+## Use Case:
 
+Developers and agents use this skill to submit text, image URLs, or local image files to Baidu Cloud content moderation and present the returned compliance result to users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HeKe-UESTC/baidu-content-censor) <br>
-- [Baidu text moderation endpoint](https://aip.baidubce.com/rest/2.0/solution/v1/text_censor/v2/user_defined) <br>
-- [Baidu image moderation endpoint](https://aip.baidubce.com/rest/2.0/solution/v1/img_censor/v2/user_defined) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON moderation results with concise Markdown or plain-text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Baidu audit fields such as request log ID, conclusion, conclusion type, and detailed result data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reviewed content, including local image files, can be sent to Baidu Cloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data transfer is intended, use restricted Baidu credentials, and confirm local file uploads before sending.
+
+Risk: Token caching is weakly safeguarded.
+
+Mitigation: Verify token-cache file permissions and rotate credentials if cached tokens may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heke-uestc/skills/baidu-content-censor)
+- [Baidu Text Moderation API Endpoint](https://aip.baidubce.com/rest/2.0/solution/v1/text_censor/v2/user_defined)
+- [Baidu Image Moderation API Endpoint](https://aip.baidubce.com/rest/2.0/solution/v1/img_censor/v2/user_defined)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, guidance]
+
+**Output Format:** [JSON responses summarized in human-facing text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Baidu API credentials in BCE_SINAN_AK and BCE_SINAN_SK.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

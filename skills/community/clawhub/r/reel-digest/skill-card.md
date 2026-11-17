@@ -1,42 +1,54 @@
-## Description: <br>
-Download, transcribe, extract frames, and analyze videos or reels from URLs including Instagram, YouTube, TikTok, X, and direct MP4 links for content, strategy, script, visual elements, and marketing breakdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reel Digest downloads a video or reel from a URL, extracts frames, transcribes audio, and helps an agent produce a structured content, visual, and marketing analysis.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-External users, creators, marketers, and analysts use this skill to turn a video URL into a structured digest that combines transcript content, selected frame observations, visual strategy, engagement tactics, business signals, and viral mechanics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A crafted URL or output path could cause unintended shell command execution in the Python helper. <br>
-Mitigation: Review or patch the helper before installation, replace shell=True command strings with argument lists, and use the skill only with trusted URLs. <br>
-Risk: Downloaded video, audio, frames, transcripts, and metadata can contain sensitive or copyrighted content. <br>
-Mitigation: Keep outputs in a dedicated temporary directory and delete generated media, transcripts, and metadata after analysis. <br>
-Risk: The downloader can disable certificate checks for yt-dlp and fetch remote media from user-provided URLs. <br>
-Mitigation: Validate URL schemes and domains before running the download workflow and avoid disabling certificate checks. <br>
+## Use Case:
 
+Developers, creators, marketers, and analysts use this skill to turn a video URL into a concise digest of transcript content, key frames, visual strategy, engagement tactics, and business signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/casperzinou/reel-digest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown digest with transcript excerpts, frame observations, command examples, and generated local media artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create video, audio, frame, transcript, and metadata files in a temporary output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-supplied video URLs and output paths may be handled unsafely by the included scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a restricted environment, avoid untrusted video links, and do not use attacker-controlled output directories.
+
+Risk: The downloader/transcription pipeline may execute local commands while processing media.
+
+Mitigation: Review the scripts before installation and prefer a fixed version that removes shell=True, validates URLs and paths, preserves TLS verification, and uses private temporary directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/casperzinou/skills/reel-digest)
+- [ClawHub publisher profile](https://clawhub.ai/user/casperzinou)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown digest with supporting transcript text, extracted frame references, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local video, audio, transcript, frame, and metadata files for analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

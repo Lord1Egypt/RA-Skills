@@ -1,44 +1,60 @@
-## Description: <br>
-Remove image backgrounds using the remove.bg API with API-key auth and transparent PNG output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remove image backgrounds using the remove.bg API with API-key auth and transparent PNG output.
 
-## Publisher: <br>
-[rolandkakonyi](https://clawhub.ai/user/rolandkakonyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rolandkakonyi](https://clawhub.ai/user/rolandkakonyi)
 
-## Use Case: <br>
-Developers and agents use this skill to remove backgrounds from workspace images when high-quality cutouts are needed and cloud processing through remove.bg is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are sent to remove.bg for processing. <br>
-Mitigation: Use the skill only for images that are acceptable to process through remove.bg under the applicable terms. <br>
-Risk: API usage may consume remove.bg account credits or paid quota. <br>
-Mitigation: Confirm account quota and intended size setting before running the background-removal command. <br>
-Risk: The skill requires REMOVE_BG_API_KEY. <br>
-Mitigation: Store REMOVE_BG_API_KEY in OpenClaw-managed secret configuration rather than embedding it in prompts, files, or shell history. <br>
+## Use Case:
 
+Developers and content operators use this skill to send selected workspace images to remove.bg and save background-removed outputs for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rolandkakonyi/removebg-api) <br>
-- [remove.bg API endpoint](https://api.remove.bg/v1.0/removebg) <br>
-- [remove.bg API key dashboard](https://www.remove.bg/dashboard#api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Transparent image file plus console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the processed image under outputs/removebg-api/ and prints a MEDIA line for chat workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Selected workspace images are sent to the remove.bg service for cloud processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when cloud processing of those images is acceptable.
+
+Risk: remove.bg API use can consume free credits or paid quota.
+
+Mitigation: Configure and monitor REMOVE_BG_API_KEY usage according to the account holder's remove.bg plan.
+
+Risk: Unexpected input or output paths can cause failed runs or misplaced outputs.
+
+Mitigation: Use image inputs inside the OpenClaw workspace and output paths under outputs/removebg-api/.
+
+## Reference(s):
+
+- [removebg-api on ClawHub](https://clawhub.ai/rolandkakonyi/skills/removebg-api)
+- [Publisher profile](https://clawhub.ai/user/rolandkakonyi)
+- [remove.bg API key dashboard](https://www.remove.bg/dashboard#api-key)
+- [remove.bg API endpoint](https://api.remove.bg/v1.0/removebg)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Transparent image file with terminal status text and MEDIA line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REMOVE_BG_API_KEY; writes outputs under outputs/removebg-api/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-AI-powered construction knowledge management. Search project documents, safety compliance records, permits, building codes, and RFIs with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered construction knowledge management. Search project documents, safety compliance records, permits, building codes, and RFIs with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Construction project teams use this skill to search project documentation, safety records, permits, building codes, RFIs, submittals, change orders, and related organizational context. It supports field and office workflows such as change order review, pre-pour verification, onboarding, and compliance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access confidential construction project data, including cost data, bid information, safety incidents, and litigation-sensitive records. <br>
-Mitigation: Use least-privilege UPLO tokens and preserve classification tiers when answering or exporting information. <br>
-Risk: The skill can guide agents to log conversations, mark documents outdated, or export organizational context, which may alter or disclose project records. <br>
-Mitigation: Require explicit user approval before logging conversations, flagging documents, or exporting organizational context. <br>
+## Use Case:
 
+Construction teams use this skill to search project documentation, safety records, permits, building codes, RFIs, submittals, change orders, and related project context through UPLO-backed knowledge tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RooJenkins/uplo-construction) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO Schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, MCP tool calls, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference project names, document revisions, dates, statuses, responsible parties, and deadlines when grounded in the connected knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The install path runs an unpinned npm MCP server with the user's UPLO API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin or verify the MCP server package before deployment and use a least-privilege UPLO token.
+
+Risk: The skill may access sensitive construction records and organizational data through the configured UPLO instance.
+
+Mitigation: Restrict project access, export permissions, and token scope to the minimum needed for the intended users.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/roojenkins/skills/uplo-construction)
+- [UPLO](https://uplo.ai)
+- [UPLO Schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline tool calls, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use UPLO MCP tools to retrieve and summarize construction knowledge from configured project data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Converts and verifies data across Base64, URL encoding, HEX, HTML entities, hashes, JWT payloads, and binary, octal, decimal, and hexadecimal formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encoding Converter helps agents convert, decode, hash, and inspect common encoding formats including Base64, URL encoding, hex, HTML entities, JWT payloads, and numeric bases.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and engineers use this skill for local debugging, data inspection, and format conversion tasks such as encoding or decoding text, calculating hashes, viewing JWT header and payload contents, and converting numeric bases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: JWT decode output may be mistaken for a verified authentication or authorization result. <br>
-Mitigation: Use the decoded JWT only for inspection unless the token signature, algorithm, issuer, audience, and expiration are separately verified. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert and inspect encoded data during debugging, validation, and integration work. It is useful for local Base64, URL, hex, hash, JWT payload, HTML entity, and numeric base conversion tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiyuelv/encoding-converter) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Plain text values, Python strings and dictionaries, and Markdown with Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local conversion and decoding output; JWT decoding does not verify signatures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Decoded JWT contents may be misleading if used for security decisions without signature and claim validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use JWT decoding only for inspection; validate the signature, issuer, audience, expiration, and accepted algorithms before making authorization or trust decisions.
+
+Risk: Sensitive inputs provided for encoding, hashing, or decoding may expose secrets through agent transcripts, logs, or copied outputs.
+
+Mitigation: Avoid processing production secrets unless the surrounding agent environment is approved for sensitive data handling.
+
+## Reference(s):
+
+- [Encoding Converter ClawHub listing](https://clawhub.ai/kaiyuelv/skills/encoding-converter)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Plain text strings, JSON-like decoded JWT objects, hashes, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local utility output; JWT decoding is for inspection only and does not verify signatures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

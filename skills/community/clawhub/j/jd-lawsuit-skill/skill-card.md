@@ -1,47 +1,57 @@
-## Description: <br>
-Helps users document e-commerce consumer disputes by collecting order evidence through browser automation and generating refund requests, 12315 complaint letters, civil complaint drafts, and related guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JD Lawsuit Skill helps agents collect e-commerce order evidence, build local evidence bundles, and draft refund, 12315 complaint, and civil complaint documents for Chinese consumer disputes.
 
-## Publisher: <br>
-[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyaner0201](https://clawhub.ai/user/xiaoyaner0201)
 
-## Use Case: <br>
-External users and agents use this skill to organize e-commerce order disputes, preserve relevant order evidence, and draft consumer complaint or lawsuit materials for review before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may expose sensitive order, logistics, seller, and personal dispute information while viewing logged-in shopping pages and collecting evidence. <br>
-Mitigation: Run the skill only for the specific dispute being documented, use a trusted browser automation MCP, and review or redact personal details before filing or sharing generated documents. <br>
-Risk: Evidence files saved locally may be unintentionally shared if the target folder is synced or broadly accessible. <br>
-Mitigation: Keep the evidence folder out of shared or cloud-synced locations when possible and restrict access to the collected files. <br>
-Risk: Generated complaint and lawsuit drafts may be incomplete or unsuitable for complex or high-value disputes. <br>
-Mitigation: Treat generated documents as editable drafts and consult a qualified lawyer for large, complex, or uncertain claims. <br>
+## Use Case:
 
+External users and assisting agents use this skill to organize Chinese e-commerce consumer-dispute evidence and prepare complaint or lawsuit-oriented documents. It is aimed at refund, product-quality, delivery, false-advertising, after-sale, and food-safety disputes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiaoyaner0201/jd-lawsuit-skill) <br>
-- [Platform guide](references/platform-guide.md) <br>
-- [Evidence collection guide](references/evidence-collection.md) <br>
-- [Legal templates](references/legal-templates.md) <br>
-- [Legal basis quick reference](references/legal-basis.md) <br>
-- [Complaint channel guide](references/complaint-channels.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, guidance] <br>
-**Output Format:** [Markdown documents, structured JSON evidence data, local evidence files, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save screenshots, evidence indexes, raw-data JSON, and generated dispute documents under ~/Downloads/dispute-evidence/{orderId}/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may expose sensitive order, payment, logistics, chat, invoice, and legal-document data while viewing logged-in pages and creating local evidence files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user accepts that access, redact addresses, phone numbers, IDs, tracking numbers, payment details, and unrelated chat content, store evidence privately, and delete bundles when no longer needed.
+
+Risk: Generated complaint and lawsuit documents are templates and may not fit complex, high-value, or jurisdiction-sensitive disputes.
+
+Mitigation: Have the user review and edit all generated documents, and recommend professional legal advice for larger or complex matters.
+
+## Reference(s):
+
+- [Platform Guide](references/platform-guide.md)
+- [Evidence Collection](references/evidence-collection.md)
+- [Legal Templates](references/legal-templates.md)
+- [Legal Basis](references/legal-basis.md)
+- [Complaint Channels](references/complaint-channels.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance, files]
+
+**Output Format:** [Markdown documents and evidence indexes, JSON order data, screenshot/PDF evidence bundles, and text guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When used as documented, evidence is saved under ~/Downloads/dispute-evidence/{orderId}/.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

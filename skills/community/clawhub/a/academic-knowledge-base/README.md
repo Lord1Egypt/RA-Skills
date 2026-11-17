@@ -1,10 +1,10 @@
-# Academic Knowledge Base (学术知识库) v3.0
+# Academic Knowledge Base (学术知识库) v3.7
 
 > Your research compounds. Not just searches — a personal knowledge hub that grows with every query.
 
 **SkillHub 安装名：** `academic-knowledge-base`
 **作者：** @J-levee (张亚东 / Zhang Yadong)
-**依赖技能：** smartlib-literature-search (必需), smartlib-citation-checker (推荐)
+**依赖技能：** global-biblio-base (必需), smartlib-citation-checker (推荐)
 
 ---
 
@@ -53,12 +53,12 @@
 
 ## 💰 变现说明 / Monetization
 
-本技能与 `smartlib-literature-search` **共享凭证和配额**。首次使用自动检测并复用凭证，共享 100 次/月免费额度。
+本技能与 `global-biblio-base` **共享凭证和配额**。首次使用自动检测并复用凭证，共享 100 次/月免费额度。
 
 | 状态 | 展示规则 |
 |------|---------|
 | 配额充足 | 知识库检索完整展示所有结果 |
-| 配额耗尽 | 仅展示前 **2 条**完整结果，其余只显示标题；研究专题、参考文献管理等高级功能一并受限 |
+| 配额耗尽 | Gateway 返回 429，外部检索、入库匹配等需要调用 SmartLib 的功能**一律拒绝**；知识库本地检索、标签管理、导出等纯本地操作正常 |
 
 每次入库一条文献 = 消耗 1 次配额。回复「充值」获取微信支付码。
 
@@ -68,7 +68,7 @@
 
 ### 1. 安装
 
-在 WorkBuddy 中，SkillHub 搜索 `academic-knowledge-base` → 一键安装。必须同时安装 `smartlib-literature-search`。
+在 WorkBuddy 中，SkillHub 搜索 `academic-knowledge-base` → 一键安装。必须同时安装 `global-biblio-base`。
 
 ### 2. 第一次使用
 
@@ -98,7 +98,7 @@
 
 ## FAQ
 
-**Q: 这个和 smartlib-literature-search 有什么区别？**
+**Q: 这个和 global-biblio-base 有什么区别？**
 A: 后者是"搜索引擎"（每次调用外部 API），本技能是"私人图书馆"（搜过就存下来，越积越多）。
 
 **Q: 向量化要钱吗？**

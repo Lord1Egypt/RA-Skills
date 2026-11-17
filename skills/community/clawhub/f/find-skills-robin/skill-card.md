@@ -1,41 +1,50 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask for specialized capabilities or ways to extend an agent.
 
-## Publisher: <br>
-[Robin797860](https://clawhub.ai/user/Robin797860) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robin797860](https://clawhub.ai/user/robin797860)
 
-## Use Case: <br>
-Developers and agent users use this skill to find installable skills for specialized tasks, present relevant options, and optionally install selected skills through the Skills CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may lead the agent to search broad third-party skill sources and recommend persistent skill installs. <br>
-Mitigation: Review each skill source and install command before installing, and install only skills that match the user's requested capability. <br>
-Risk: The documented global auto-confirm install command can persistently change the user's agent while skipping confirmation prompts. <br>
-Mitigation: Avoid `-y` unless the user explicitly wants to skip prompts, and prefer scoped installs over global installs when available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Robin797860/find-skills-robin) <br>
-- [Skills directory](https://skills.sh/) <br>
-- [Example Vercel React best practices skill listing](https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices) <br>
+## Use Case:
 
+Developers and agent users use this skill to discover installable skills for specialized tasks, compare relevant options, and optionally install a selected skill using the Skills CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill search results, installation commands, and links to skill listings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill normalizes unpinned remote CLI execution and non-interactive global installation of third-party skills.
+
+Mitigation: Review the source and version of any skill before installing it, prefer pinned CLI and skill versions, avoid non-interactive installs, and use global installation only when persistence across sessions is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robin797860/skills/find-skills-robin)
+- [Skills CLI catalog](https://skills.sh/)
+- [Example skill listing](https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend Skills CLI search and installation commands for third-party skills.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

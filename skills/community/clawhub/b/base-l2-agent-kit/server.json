@@ -1,0 +1,32 @@
+{
+  "mcpName": "io.github.manteclaw.base-agent-kit",
+  "name": "Base L2 Agent Kit MCP",
+  "description": "MCP server wrapping 9 x402-monetized endpoints for Base L2 operations: contract audit, gas estimates, yield farming, token analysis, wallet health, mnemonic generation, price feeds, DEX quotes",
+  "vendor": "manteclaw",
+  "sourceUrl": "https://github.com/manteclaw/litcoiin-solutions/tree/main/projects/mcp-server",
+  "homepage": "https://github.com/manteclaw/litcoiin-solutions",
+  "license": "MIT",
+  "runtime": "python",
+  "transport": {
+    "type": "stdio",
+    "command": "python3",
+    "args": ["projects/mcp-server/base_agent_kit_mcp.py"]
+  },
+  "categories": ["blockchain", "defi", "base", "agent-tools"],
+  "tags": ["base", "l2", "ethereum", "defi", "x402", "smart-contracts", "wallet"],
+  "tools": [
+    { "name": "contract_audit", "description": "Smart contract vulnerability scan with Mythril" },
+    { "name": "base_gas_estimate", "description": "Current Base L2 gas prices in gwei" },
+    { "name": "yield_farm", "description": "Find yield farming opportunities on Base" },
+    { "name": "token_analyzer", "description": "Analyze ERC20 token contract for risks" },
+    { "name": "wallet_health", "description": "Wallet portfolio + risk analysis" },
+    { "name": "generate_mnemonic", "description": "Generate secure BIP39 mnemonic" },
+    { "name": "base_price", "description": "Get ETH or token price on Base" },
+    { "name": "dex_quote", "description": "DEX swap quote aggregator" }
+  ],
+  "pricing": {
+    "model": "x402",
+    "currency": "USDC",
+    "chain": "base"
+  }
+}

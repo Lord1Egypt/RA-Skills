@@ -1,39 +1,54 @@
-## Description: <br>
-Mailcheck is a devtools reference skill that provides quick guidance for Mailcheck concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup material for Mailcheck concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick Mailcheck reference while working in devtools contexts. It provides topic-specific guidance for common workflows such as onboarding, troubleshooting, performance review, security review, migration, and quick command lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Mailcheck content is generic reference guidance and may not match a specific project, version, or production environment. <br>
-Mitigation: Verify operational and security advice against the actual Mailcheck implementation or official project documentation before applying it in production. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference helper for Mailcheck-related devtools workflows, including quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance.
 
-## Reference(s): <br>
-- [ClawHub Mailcheck skill page](https://clawhub.ai/xueyetianya/mailcheck) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and command-oriented sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API calls, credentials, or network access are required; output varies by selected reference command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Some documentation is generic and may not match a user's specific Mailcheck implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate recommendations against the project's own Mailcheck documentation, environment, and operational requirements before applying them.
+
+Risk: The cheatsheet names a troubleshooting command, while the script exposes debugging as the supported command.
+
+Mitigation: Use the debugging command for troubleshooting content and confirm available commands with the help output.
+
+## Reference(s):
+
+- [ClawHub Mailcheck Skill Page](https://clawhub.ai/xueyetianya/skills/mailcheck)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local command output only; no credentials, network access, or persistent system settings are used according to server security evidence.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

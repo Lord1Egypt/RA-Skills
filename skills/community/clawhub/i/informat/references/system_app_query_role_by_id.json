@@ -1,0 +1,20 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_query_role_by_id",
+    "description": "Query the full definition of an existing role in the current app by role key. Before calling, use _query_app_define_designer to get the real role identifier. In the returned permissionList, internal module ID permissions are converted to module key permissions, such as tableKey_TableQuery, for later _app_update_role calls.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role identifier (role key), from roleList returned by _query_app_define_designer. Examples: tester, dataManager, workflowApprover.",
+          "minLength": 2,
+          "maxLength": 50,
+          "pattern": "^(?!admin$)[a-z][A-Za-z0-9]{1,49}$"
+        }
+      },
+      "required": ["id"]
+    }
+  }
+}

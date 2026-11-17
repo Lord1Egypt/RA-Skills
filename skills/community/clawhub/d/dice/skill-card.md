@@ -1,42 +1,59 @@
-## Description: <br>
-Roll dice, track scores, and manage game stats for tabletop gaming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dice is a local command-line tabletop gaming logger for recording game notes, reviewing logged activity, and exporting history.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External tabletop players and game facilitators use this skill to log dice-related activity, scores, rankings, challenges, and recent game history from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command text is stored in plaintext local log files and may include private notes if users enter them. <br>
-Mitigation: Do not enter secrets or unrelated private information; review and delete ~/.local/share/dice logs or exports when they are no longer needed. <br>
-Risk: The artifact behaves more like a local game activity logger than a complete dice roller. <br>
-Mitigation: Use it for tracking tabletop activity and verify any dice outcomes or scores before relying on them in play. <br>
+## Use Case:
 
+External tabletop gaming users can use this skill to keep local game-themed logs, inspect recent entries, search history, and export logged data. It should not be relied on as an actual dice roller or score calculator.
 
-## Reference(s): <br>
-- [ClawHub Dice skill page](https://clawhub.ai/bytesagain3/dice) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local logs under ~/.local/share/dice and can export accumulated entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Users may expect real dice rolling or score calculation from the skill name and summary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present and use it as a local logging and export utility, and verify game outcomes or scores with a separate trusted tool.
+
+Risk: Local logs and exports may contain sensitive player or session information.
+
+Mitigation: Avoid entering sensitive information and review exported files before sharing or storing them outside the local machine.
+
+Risk: JSON and CSV exports can be unsafe or malformed when entries contain quotes, commas, newlines, or spreadsheet formula characters.
+
+Mitigation: Treat exported files as untrusted, inspect them before import, and avoid opening CSV exports directly in spreadsheet software when entries come from untrusted sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/dice)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
+
+**Output Format:** [Command-line text with local log files and optional JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries locally under ~/.local/share/dice/.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

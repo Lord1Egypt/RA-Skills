@@ -1,43 +1,58 @@
-## Description: <br>
-现金流领航 helps small and medium business owners import bills, track income and expenses, monitor receivables and payables, generate cash-flow reports, and forecast future cash flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+现金流领航 helps small and medium business owners manage income and expenses, import bills, generate cash-flow reports, track receivables and payables, and forecast future cash flow in Chinese.
 
-## Publisher: <br>
-[hanjing5024064](https://clawhub.ai/user/hanjing5024064) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanjing5024064](https://clawhub.ai/user/hanjing5024064)
 
-## Use Case: <br>
-External users and business operators use this skill to keep a local cash-flow ledger, import transaction files, review monthly cash-flow status, manage receivables and payables, and generate simple forecasts for planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive business finance records stored in local JSON files. <br>
-Mitigation: Set CFP_DATA_DIR to a private, backed-up directory with appropriate local access controls before importing or recording financial data. <br>
-Risk: Imported ledger entries, generated reminders, and cash-flow forecasts can be incomplete or inaccurate. <br>
-Mitigation: Review imported classifications, reminder lists, and generated forecasts before using them for business decisions. <br>
-Risk: The skill reads user-selected transaction files from disk. <br>
-Mitigation: Import only files the user explicitly chooses and trusts. <br>
+## Use Case:
 
+External small and medium business owners use this skill to maintain a local cash-flow ledger, import CSV bill data, review monthly reports, manage receivables and payables, and generate short-horizon cash-flow forecasts. It is intended for Chinese-language bookkeeping assistance and management insight, not audited accounting advice.
 
-## Reference(s): <br>
-- [Cashflow Pilot ClawHub page](https://clawhub.ai/hanjing5024064/cashflow-pilot) <br>
-- [Report templates](references/report-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown reports, tables, Mermaid chart snippets, JSON-backed local records, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are tier-dependent; paid features add forecasts, expanded reminders, anomaly alerts, and chart snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive business financial records are stored locally as plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private CFP_DATA_DIR on an encrypted disk and avoid shared or synced folders for business records.
+
+Risk: Imported CSV text can affect generated Markdown or Mermaid reports.
+
+Mitigation: Review imported CSV data and generated reports before sharing or relying on them.
+
+Risk: Cash-flow forecasts are based on historical data and may be inaccurate for business decisions.
+
+Mitigation: Treat forecasts as planning support and compare them with current business context before making financial commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanjing5024064/skills/cashflow-pilot)
+- [Cashflow report templates](artifact/references/report-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Chinese Markdown reports, tables, Mermaid chart blocks for paid features, JSON-backed local ledger files, and inline shell commands for bundled Python scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional CFP_SUBSCRIPTION_TIER and CFP_DATA_DIR environment variables; free and paid tiers expose different reporting, import, reminder, and forecasting features.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

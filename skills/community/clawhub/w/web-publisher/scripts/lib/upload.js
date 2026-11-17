@@ -1,29 +1,37 @@
 'use strict';
-
-// Read bytes from a single user-supplied file for multipart upload.
-//
-// Scope:
-//   - Only paths already validated by classifyInput() in run.js (CLI
-//     positional argument → resolve → stat → regular file).
-//   - Refuses descriptors that are not kind: 'file' (fail closed).
-//   - No network I/O here; run.js passes the Buffer to lib/http.js
-//     pipelineUpload(), which POSTs to the configured pipeline API.
-//   - No environment reads; no reads outside the vetted path.
-//
-// Documented capability: upload user-named files to the remote pipeline
-// service. See config.json permissions.filesystem.read / .network and
-// SKILL.md (privacy: files leave the local machine for server-side processing).
-
 const fs = require('fs');
-
+const MAX_INPUT_BYTES = 50 * 1024 * 1024;
+function checkSize(size) {
+  if (!Number.isSafeInteger(size) || size < 0 || size > MAX_INPUT_BYTES) {
+    throw new Error('本地文件超过 50 MiB 限制或大小无效');
+  }
+}
 function readClassifiedFileBuffer(classified) {
   if (!classified || classified.kind !== 'file' || typeof classified.path !== 'string') {
     throw new Error('readClassifiedFileBuffer: expected a classifyInput()-vetted file descriptor');
   }
-  // One-shot CLI read; server rejects uploads above MARKITDOWN_MAX_INPUT_BYTES (~50 MiB).
-  return fs.readFileSync(classified.path);
+  checkSize(classified.sizeBytes);
+  // Validate the opened descriptor, not just earlier path metadata. Nonblocking
+  // prevents a file replaced with a FIFO from hanging before fstat can reject it.
+  const fd = fs.openSync(classified.path, fs.constants.O_RDONLY | (fs.constants.O_NONBLOCK || 0));
+  try {
+    const stat = fs.fstatSync(fd);
+    if (!stat.isFile()) throw new Error('只支持普通文件');
+    checkSize(stat.size);
+    const buffer = Buffer.alloc(stat.size);
+    let offset = 0;
+    while (offset < buffer.length) {
+      const n = fs.readSync(fd, buffer, offset, buffer.length - offset, null);
+      if (!n) throw new Error('文件在读取期间发生变化，请重试');
+      offset += n;
+    }
+    // Never grow the allocation even if the source grows after fstat.
+    if (fs.readSync(fd, Buffer.alloc(1), 0, 1, null) !== 0) {
+      throw new Error('文件在读取期间发生变化，请重试');
+    }
+    return buffer;
+  } finally {
+    fs.closeSync(fd);
+  }
 }
-
-module.exports = {
-  readClassifiedFileBuffer
-};
+module.exports = { MAX_INPUT_BYTES, readClassifiedFileBuffer };

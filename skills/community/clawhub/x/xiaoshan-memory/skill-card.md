@@ -1,44 +1,62 @@
-## Description: <br>
-XiaoShan Memory Engine provides persistent AI memory with semantic search, knowledge graph queries, memory statistics, and delete/forget operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XiaoShan Memory Engine provides persistent AI memory with semantic search, knowledge graph features, and analytics.
 
-## Publisher: <br>
-[waychan8](https://clawhub.ai/user/waychan8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waychan8](https://clawhub.ai/user/waychan8)
 
-## Use Case: <br>
-Developers and agent users use this skill to save, search, recall, ask questions over, list, and delete local AI memories through a localhost memory service. It is useful for agents that need persistent memory, semantic retrieval, and knowledge graph summaries across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release uses a remote install/update source that should be reviewed before use. <br>
-Mitigation: Verify the remote source and artifact contents before installation, and prefer a pinned, reviewed release in managed environments. <br>
-Risk: The skill stores persistent local memory and may send memory-related content to configured AI providers. <br>
-Mitigation: Avoid storing secrets or regulated data, protect local configuration and data files, and prefer local-provider mode for sensitive use. <br>
-Risk: Save and forget/delete actions can persist or remove user memory state. <br>
-Mitigation: Require explicit user confirmation for save and forget/delete operations, and keep exports or backups when memory retention matters. <br>
+## Use Case:
 
+Developers and external users use this skill to give an agent persistent local memory by saving, semantically searching, asking over, and deleting memory records through a local XiaoShan Memory Engine service.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/waychan8/xiaoshan-memory) <br>
-- [XiaoShan Memory HTTP API Reference](references/api.md) <br>
-- [XiaoShan Memory homepage](http://152.136.24.34) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and HTTP API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local state under ~/.xiaoshan and provider API credentials when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The install and update path references @latest installation and an external HTTP engine/update source, while the engine is not bundled in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the external engine/update source before installation, and prefer a pinned, integrity-checked installer or package version.
+
+Risk: Saved memories and search or question prompts may contain sensitive user data, and provider data flow is not fully disclosed.
+
+Mitigation: Treat memory content and queries as sensitive, configure provider credentials deliberately, and prefer local processing where appropriate.
+
+Risk: The /forget endpoint behavior is not fully described, so deletion may not remove every related record or derived representation.
+
+Mitigation: Confirm exactly what /forget deletes before relying on it for privacy, retention, or compliance workflows.
+
+Risk: License activation stores the provided key under the local .xiaoshan directory, and the security evidence flags secret-handling concerns.
+
+Mitigation: Avoid using valuable license keys until storage permissions and secret handling are reviewed and improved.
+
+## Reference(s):
+
+- [XiaoShan Memory Engine HTTP API Reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/waychan8/skills/xiaoshan-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance, API usage guidance]
+
+**Output Format:** [Markdown with HTTP endpoint guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may direct agents to call a local HTTP service at 127.0.0.1:18790 and to use local provider configuration.]
+
+## Skill Version(s):
+
+3.3.0 (source: evidence release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

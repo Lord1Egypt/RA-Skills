@@ -1,45 +1,59 @@
-## Description: <br>
-This skill lets agents operate Vercel through OOMOL's oo CLI connector for reading, creating, updating, and deleting Vercel resources instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an agent read and manage Vercel projects, deployments, domains, environment variables, and webhooks through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and manage Vercel projects, domains, deployments, runtime logs, environment variables, teams, and webhooks through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform credentialed Vercel operations through an OOMOL-connected account. <br>
-Mitigation: Use it only for Vercel tasks you requested, and provide account access or files only when they clearly match the intended operation. <br>
-Risk: Some supported actions create, update, delete, or overwrite Vercel resources. <br>
-Mitigation: Confirm the exact target, payload, and expected effect before running actions marked write or destructive. <br>
-Risk: Connector inputs may change as Vercel or OOMOL connector schemas evolve. <br>
-Mitigation: Fetch the live action schema with oo connector schema before constructing a payload. <br>
+## Use Case:
 
+Developers use this skill to inspect and manage Vercel projects, deployments, domains, environment variables, and webhooks through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Vercel homepage](https://vercel.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-vercel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses oo CLI connector schema and run commands; connector responses are JSON objects containing data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The CLI's startup behavior may add or refresh skills across agent installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately; set OO_SKILLS_SYNC_DISABLED=1 if that synchronization is not wanted.
+
+Risk: Vercel actions can change or delete projects, deployments, domains, environment variables, and webhooks, including production traffic.
+
+Mitigation: Limit the connected Vercel account's permissions and retain explicit approval for production changes.
+
+Risk: The remote installer contents and exact CLI binary are unverified.
+
+Mitigation: Review and install the oo CLI separately before use.
+
+## Reference(s):
+
+- [Vercel](https://vercel.com)
+- [Vercel REST API documentation](https://vercel.com/docs/rest-api)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON connector responses and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected Vercel action.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

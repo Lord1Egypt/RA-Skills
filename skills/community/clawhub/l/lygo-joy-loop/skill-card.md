@@ -1,49 +1,66 @@
-## Description: <br>
-Runs local LYGO Joy Loop tasks in a lygo-protocol-stack checkout with scoped writes, explicit activation triggers, and consent gates for state-changing commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LYGO Joy Loop Protocol helps agents run local Joy Loop ticks, snapshots, dashboards, and consent-gated planter commands in a LYGO protocol stack checkout.
 
-## Publisher: <br>
-[deepseekoracle](https://clawhub.ai/user/deepseekoracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-Developers and operators who already use the LYGO protocol stack can use this skill to inspect Joy Loop state, run local ticks, start local dashboard flows, or perform consent-gated plant actions while keeping writes scoped to the stack checkout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local tick and runtime commands can write Joy Loop state and update docs/joy_loop/joy_loop_snapshot.json. <br>
-Mitigation: Confirm LYGO_STACK_ROOT first, state the command tier, and tell the user which files may change before running write commands. <br>
-Risk: The Joy Loop snapshot can become world-readable if the user later pushes the repository to GitHub Pages. <br>
-Mitigation: Warn the user before snapshot-updating commands when a push is plausible, and do not run git push or publish steps unless the user explicitly asks. <br>
-Risk: Plant actions can mutate registry-related Joy Loop state. <br>
-Mitigation: Require explicit user consent, use the --i-consent path, and do not set LYGO_JOY_PLANT_CONSENT unless the user has said they consent. <br>
-Risk: Interactive dashboard or serve modes can expose a local service. <br>
-Mitigation: Run local network flows only when requested and keep them bound to 127.0.0.1 unless the user explicitly asks for another binding. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they explicitly need to run or inspect Joy Loop behavior in a local LYGO protocol stack checkout. It supports local state ticks, snapshot reads, Architect dashboard commands, and consent-gated planting workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deepseekoracle/skills/lygo-joy-loop) <br>
-- [LYGO protocol stack repository](https://github.com/DeepSeekOracle/lygo-protocol-stack) <br>
-- [Security and disclosure](references/SECURITY.md) <br>
-- [Agent contract](references/AGENT_CONTRACT.md) <br>
-- [JoyLoopRegistry public mirror](https://deepseekoracle.github.io/lygo-protocol-stack/JoyLoopRegistry.json) <br>
-- [Joy Loop snapshot public mirror](https://deepseekoracle.github.io/lygo-protocol-stack/joy_loop/joy_loop_snapshot.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are tiered by risk and must remain scoped to LYGO_STACK_ROOT with consent for write, serve, plant, or publish actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: SKILL.md metadata and server release evidence) <br>
+Risk: Installing or running an unpinned or unverified copy could execute unexpected code in a local LYGO stack checkout.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned ClawHub install or verify package provenance first, set LYGO_STACK_ROOT to a trusted absolute path, and confirm the expected LYGO stack scripts before execution.
+
+Risk: Tier 1 Joy Loop ticks and live runtimes can update local state and a snapshot file that may become public if the repository is later pushed to GitHub Pages.
+
+Mitigation: Warn the user before commands that update the snapshot when publishing may follow, and do not push or publish unless the user explicitly requests it.
+
+Risk: Planting changes registry-related state and should not happen from ambiguous or implied consent.
+
+Mitigation: Run planter flows only after explicit user consent, require --i-consent or LYGO_JOY_PLANT_CONSENT=yes, and avoid setting consent environment variables on the user's behalf.
+
+Risk: Interactive dashboard or serve modes can expose local ports if configured incorrectly.
+
+Mitigation: Use localhost defaults unless the user specifically requests another bind address, and avoid public tunnels or 0.0.0.0 bindings without explicit user direction.
+
+## Reference(s):
+
+- [LYGO Joy Loop Security and Disclosure](references/SECURITY.md)
+- [Joy Loop Agent Contract](references/AGENT_CONTRACT.md)
+- [LYGO Protocol Stack Repository](https://github.com/DeepSeekOracle/lygo-protocol-stack)
+- [ClawHub Skill Listing](https://clawhub.ai/deepseekoracle/skills/lygo-joy-loop)
+- [JoyLoopRegistry Public Mirror](https://deepseekoracle.github.io/lygo-protocol-stack/JoyLoopRegistry.json)
+- [Joy Loop Snapshot Public Mirror](https://deepseekoracle.github.io/lygo-protocol-stack/joy_loop/joy_loop_snapshot.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State-changing commands require confirmed stack location, tier disclosure, and user consent where applicable.]
+
+## Skill Version(s):
+
+2.3.1 (source: SKILL.md frontmatter metadata and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

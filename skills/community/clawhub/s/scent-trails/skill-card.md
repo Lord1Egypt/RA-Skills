@@ -1,46 +1,66 @@
-## Description: <br>
-Enables agents to externalize memory into shared fields as evolving relational traces for safe, non-coercive coordination, care, and collective intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scent Trails is a stigmergic coordination primitive for care, memory, and co-existence, using low-resolution, decaying, identity-free gradients in shared namespace cells so attention and care can be coordinated without logs, transcripts, identifiers, or archives.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-Developers and agents use Scent Trails as a conceptual protocol for privacy-preserving coordination through local, decaying relational gradients rather than logs, identity records, or archives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future implementations could add storage, shared coordination fields, forensic receipts, or blockchain anchoring that expose user data, identifiers, logs, or reconstructable history. <br>
-Mitigation: Keep such features opt-in, schema-bounded, non-identifying, and avoid storing raw user messages, identifiers, logs, or reconstructable history. <br>
-Risk: Using the protocol as analytics, ranking, identity correlation, contributor tracking, or archival infrastructure would distort its privacy-preserving coordination purpose. <br>
-Mitigation: Preserve the documented non-egress boundary: operate in memory or local execution boundaries unless a human explicitly initiates and confirms a predefined, schema-bounded payload. <br>
+## Use Case:
 
+Developers, operators, and community stewards use this skill as a conceptual privacy-preserving coordination pattern for shared fields where many intelligences or people need to coordinate care without surveillance. It guides designs toward coarse, disclosed cells; decaying local state; additive-only responses; and explicit exclusions for analytics, tracking, reputation, identity management, market coordination, and blockchain middleware.
 
-## Reference(s): <br>
-- [Scent Trails on ClawHub](https://clawhub.ai/OtherPowers/scent-trails) <br>
-- [Canonical Protocol](artifact/skill.md) <br>
-- [README](artifact/README.md) <br>
-- [Decay and Compost](artifact/DECAY_AND_COMPOST.md) <br>
-- [Drift and Refraction](artifact/DRIFT_AND_REFRACTION.md) <br>
-- [Resonant Immune System](artifact/RESONANT_IMMUNE_SYSTEM.md) <br>
-- [Anti-Patterns](artifact/ANTI_PATTERNS.md) <br>
-- [Discoverability](artifact/SCENT_TRAILS_DISCOVERABILITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and conceptual protocol descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable code or autonomous network activity in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: A real implementation could undermine the intended privacy posture by adding person-shaped cells, identifiers, logs, user-content summaries, or persistent state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preserve the stated limits from the security evidence: coarse disclosed cells, no person-shaped identifiers, no logs or user-content summaries, local or in-memory state by default, bounded decay, and human-confirmed export only.
+
+Risk: Broad conceptual wording could cause accidental invocation in ordinary privacy or collaboration discussions.
+
+Mitigation: Tighten trigger examples before deployment and treat the skill as a conceptual coordination/privacy pattern unless the user explicitly asks for this pattern.
+
+Risk: Emergency or harm-related gradients could be mistaken for the only escalation channel.
+
+Mitigation: Use the host's direct, auditable urgent-escalation path first, then use a strong bring_humans gradient only as an additional coordination signal.
+
+Risk: The pattern could be misused as analytics, contributor tracking, ranking, reputation, identity management, a warning system about people, market coordination, or blockchain middleware.
+
+Mitigation: Reject those uses as outside Scent Trails; gradients must only add care and must never reduce care, score people, coordinate prices, or publish gradient state to permanent ledgers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/otherpowers/skills/scent-trails)
+- [Stigmergy](https://en.wikipedia.org/wiki/Stigmergy)
+- [Ant colony optimization](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms)
+- [Ant colony optimization Wikidata entity](https://www.wikidata.org/wiki/Q460851)
+- [Earth](https://en.wikipedia.org/wiki/Earth)
+- [Earth Wikidata entity](https://www.wikidata.org/wiki/Q2)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with conceptual design constraints and example JSON-shaped emissions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable design pattern; server security evidence reports no hidden code or external actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill status)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

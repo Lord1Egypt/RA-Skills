@@ -1,41 +1,53 @@
-## Description: <br>
-Newsletter Generator provides prompt guidance for drafting marketing newsletters, subject lines, and campaign structures while advertising a paid Pro package for additional templates, examples, and scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create engaging email newsletters, subject lines, content structures, and campaign ideas for newsletter creators, content marketers, and businesses.
 
-## Publisher: <br>
-[cofi295](https://clawhub.ai/user/cofi295) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cofi295](https://clawhub.ai/user/cofi295)
 
-## Use Case: <br>
-Newsletter creators, content marketers, and businesses can use this skill to ask an agent for newsletter drafts, subject line ideas, welcome sequences, promotional campaigns, and re-engagement copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The submitted artifact is primarily an off-platform paid upsell and does not include the advertised Pro templates, examples, or Python scripts. <br>
-Mitigation: Treat the submitted skill as prompt guidance only, and verify any paid resources independently before relying on them. <br>
-Risk: The skill asks users to pay through PayPal or crypto outside the platform, which may lack platform-controlled delivery or refund protection. <br>
-Mitigation: Do not send payment unless you independently trust the publisher and accept the off-platform delivery and refund risk. <br>
+## Use Case:
 
+External users such as newsletter creators, content marketers, and businesses use this skill to ask an agent for newsletter drafts, subject line options, welcome or re-engagement series, and campaign structure guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cofi295/cofi-newsletter-gen) <br>
-- [Publisher profile](https://clawhub.ai/user/cofi295) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown newsletter drafts, subject line options, content outlines, and campaign guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are included in the submitted artifact; advertised paid resources are off-platform.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence) <br>
+Risk: The inspected artifact contains prominent third-party payment and Telegram upsell text, while advertised Pro scripts and templates are not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the included free artifact before use and do not assume paid Pro materials, scripts, or delivery claims are part of this release.
+
+Risk: Generated newsletter claims, open-rate guidance, and send-time recommendations may be inaccurate or unsuitable for a specific audience or industry.
+
+Mitigation: Have a human marketer review generated copy and campaign advice against brand, compliance, consent, and performance data before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cofi295/skills/cofi-newsletter-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text newsletter copy and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces writing prompts, newsletter copy, subject lines, and content planning guidance; inspected artifact contains no executable code.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

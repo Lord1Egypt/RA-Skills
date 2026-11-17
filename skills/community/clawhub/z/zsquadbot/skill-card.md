@@ -1,42 +1,52 @@
-## Description: <br>
-Comprehensive quadruped robot development skill covering motor control, sensor data processing, locomotion patterns, and debugging workflows for legged robots such as Unitree Go1, ANYmal, and custom four-legged designs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop and test quadruped robot motor control, sensor processing, gait generation, diagnostics, and simulation workflows.
 
-## Publisher: <br>
-[Wsteve](https://clawhub.ai/user/Wsteve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wsteve](https://clawhub.ai/user/wsteve)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and robotics engineers use this skill to prototype and debug quadruped locomotion, sensor handling, motor commands, and simulation before moving to hardware.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can activate real quadruped robot motors with weak safety controls.
+
+Mitigation: Use the simulator first, and do not connect physical hardware until it is secured with an emergency stop, explicit arming, validated command limits, telemetry health checks, and a torque-disable stop.
+
+Risk: simple_test.py runs code from a hardcoded local path.
+
+Mitigation: Do not run simple_test.py unchanged; replace the hardcoded exec path with a normal package-relative import before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to generate, test, and troubleshoot quadruped robot motor commands, sensor handling, gait patterns, simulation workflows, and motion exports before moving to real hardware. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable and command real quadruped motors without strong safety gating. <br>
-Mitigation: Use simulation workflows first; run hardware commands only with the robot physically secured, power and emergency stop ready, and conservative position, velocity, and force limits in place. <br>
-Risk: The simple_test.py artifact uses a hardcoded dynamic code execution path. <br>
-Mitigation: Avoid simple_test.py unless the hardcoded exec path is removed or replaced with a normal import from the installed skill files. <br>
-Risk: Incorrect gait, calibration, or communication settings can cause unexpected motion or unstable operation. <br>
-Mitigation: Verify baud rate, cable connections, sensor calibration, PID tuning, and telemetry before enabling motors or running generated gait profiles. <br>
+**Output Format:** [Markdown with inline code blocks and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wsteve/zsquadbot) <br>
+**Other Properties Related to Output:** [May describe or produce JSON and CSV motion export files through included scripts.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; bundled scripts may generate JSON or CSV motion files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hardware-control guidance, simulation workflows, gait generation examples, and motion export instructions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

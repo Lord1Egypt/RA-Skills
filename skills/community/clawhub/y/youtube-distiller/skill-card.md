@@ -1,45 +1,59 @@
-## Description: <br>
-Automatically downloads subtitles from YouTube and Bilibili videos and generates structured knowledge articles in multiple summary styles using AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically downloads subtitles from YouTube or Bilibili videos and turns them into structured knowledge summaries in multiple styles using AI.
 
-## Publisher: <br>
-[sumo0221](https://clawhub.ai/user/sumo0221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sumo0221](https://clawhub.ai/user/sumo0221)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn YouTube or Bilibili video content into concise notes, action lists, investment summaries, news briefs, or other structured knowledge articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An exposed MiniMax API key appears in the release evidence. <br>
-Mitigation: Remove the key from the artifact, rotate it, and require users to provide credentials through an environment variable or secret store. <br>
-Risk: Transcript-derived content is sent to MiniMax for summarization with limited disclosure. <br>
-Mitigation: Clearly disclose external AI processing and avoid private or sensitive videos unless that processing is acceptable. <br>
-Risk: Generated summaries may be persisted locally and synced to SumoNoteBook by default. <br>
-Mitigation: Make syncing explicit or opt-in, document local storage paths, and use the no-sync option when local persistence is not desired. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to extract video subtitles and generate concise Chinese-language summaries, notes, action lists, news-style briefs, investment analyses, podcast-style recaps, ELI5 explanations, or bullet summaries. It is suited for turning YouTube or Bilibili videos into local research notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sumo0221/youtube-distiller) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Development log](artifact/youtube-knowledge-dev.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [UTF-8 plain text or Markdown knowledge articles, with command-line invocation guidance when used interactively.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multiple summary styles and can persist generated summaries locally or sync them to SumoNoteBook unless syncing is disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The artifact includes an exposed MiniMax API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke and rotate the exposed key before use, remove it from the artifact and history, and require users to provide credentials through environment configuration.
+
+Risk: Video subtitles or transcript text may be sent to MiniMax for AI summarization.
+
+Mitigation: Use only with content approved for external processing, and disclose MiniMax processing before installation or execution.
+
+Risk: Summaries are saved to configured local Windows directories and synced to SumoNoteBook by default.
+
+Mitigation: Review output and sync paths before running, and use the no-sync option when local persistence or notebook updates are not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sumo0221/skills/youtube-distiller)
+- [README.md](artifact/README.md)
+- [youtube-knowledge-dev.md](artifact/youtube-knowledge-dev.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or UTF-8 text summaries with video metadata and selected summary style]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write summary files to local Windows directories and sync entries into SumoNoteBook unless disabled.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -11,8 +11,8 @@ metadata:
   tags: [product-research, sourcing, blue-ocean, bsr, amazon, tiktok, aliexpress, inventory, yufluent, b2b]
   billing: yufluent
   languages: [zh, en, es, de, fr, ja]
-  homepage: https://claw.changzhiai.com
-  license: MIT
+  homepage: https://www.changzhiai.com/skills/product-pick
+license: MIT
   openclaw: '{"requires":{"env":["TOKENAPI_KEY"]},"primaryEnv":"TOKENAPI_KEY","install":[{"id":"deps","kind":"pip","label":"Install requests","packages":["requests>=2.31.0"]}]}'
 ---
 

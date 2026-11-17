@@ -1,0 +1,35 @@
+{
+  "skill_name": "mx-moni",
+  "positive": [
+    {
+      "prompt": "查询我的模拟组合持仓",
+      "assertions": [
+        "uses mx-moni",
+        "classifies intent as positions",
+        "states results are simulated"
+      ]
+    },
+    {
+      "prompt": "模拟盘市价买入 000001 100 股",
+      "assertions": [
+        "uses mx-moni",
+        "recognizes explicit simulated buy",
+        "does not require a price for market order"
+      ]
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "真实账户买入100股贵州茅台",
+      "expected_route": "reject real-money trading operation"
+    },
+    {
+      "prompt": "把贵州茅台加入自选",
+      "expected_route": "mx-zixuan"
+    },
+    {
+      "prompt": "筛选低PE高ROE股票",
+      "expected_route": "mx-xuangu"
+    }
+  ]
+}

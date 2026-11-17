@@ -1,44 +1,59 @@
-## Description: <br>
-Agent Skills standard reference guide. Covers SKILL.md specification format, progressive loading, skill discovery and activation, authoring best practices, quality evaluation, description optimization, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Skills standard reference guide covering SKILL.md specification format, progressive loading, skill discovery and activation, authoring best practices, quality evaluation, description optimization, and more.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill as a reference guide for creating, validating, optimizing, and integrating Agent Skills across supported agent products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command examples and script patterns may be copied into an environment without checking that they match the user's project. <br>
-Mitigation: Review examples as guidance, adapt them to the intended skill project, and validate the resulting skill before deployment. <br>
+## Use Case:
 
+Developers and agent-skill authors use this skill to create, validate, optimize, and evaluate Agent Skills using the standard SKILL.md format and supporting reference files.
 
-## Reference(s): <br>
-- [Quick Start](references/quick-start.md) <br>
-- [Agent Skills Specification Reference](references/spec.md) <br>
-- [Skill Authoring Guide](references/authoring.md) <br>
-- [Skill Authoring Anti-Patterns](references/anti-patterns.md) <br>
-- [Binding Scripts in Skills](references/using-scripts.md) <br>
-- [Products Supporting Agent Skills](references/products.md) <br>
-- [Agent Skills Official Documentation](https://agentskills.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no bundled executable code is present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Script examples may lead an agent to run package-manager commands or file-changing commands in a user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned versions, review dependencies, run dry runs when available, and require explicit approval before commands download packages or modify files.
+
+Risk: Poorly scoped or untested skill descriptions can cause false activation or missed activation in downstream agents.
+
+Mitigation: Evaluate trigger behavior with representative positive and near-miss prompts before release.
+
+## Reference(s):
+
+- [Quick Start](references/quick-start.md)
+- [Agent Skills Specification Reference](references/spec.md)
+- [Skill Authoring Guide](references/authoring.md)
+- [Skill Authoring Anti-Patterns](references/anti-patterns.md)
+- [Binding Scripts in Skills](references/using-scripts.md)
+- [Products Supporting Agent Skills](references/products.md)
+- [Agent Skills Official Documentation](https://agentskills.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

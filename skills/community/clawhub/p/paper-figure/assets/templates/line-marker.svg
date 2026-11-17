@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 数据图最小片段：一段折线 + 数据点 + 误差棒（数值图请交给 scripts/chart.mjs 生成） -->
+<svg xmlns="http://www.w3.org/2000/svg" width="40mm" height="24mm" viewBox="0 0 40 24">
+  <title>折线/数据点/误差棒模板</title>
+  <g data-role="axes">
+    <path d="M4,2 L4,20 L38,20" fill="none" stroke="#4a4a4a" stroke-width="0.2117"/>
+  </g>
+  <g data-role="series" data-series="ours">
+    <path d="M6,17 L12,13 L18,11 L24,8 L30,6.5" fill="none" stroke="#0072b2" stroke-width="0.2646"
+          stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="6" cy="17" r="0.7" fill="#ffffff" stroke="#0072b2" stroke-width="0.1764"/>
+    <circle cx="12" cy="13" r="0.7" fill="#ffffff" stroke="#0072b2" stroke-width="0.1764"/>
+    <circle cx="18" cy="11" r="0.7" fill="#ffffff" stroke="#0072b2" stroke-width="0.1764"/>
+    <circle cx="24" cy="8" r="0.7" fill="#ffffff" stroke="#0072b2" stroke-width="0.1764"/>
+    <circle cx="30" cy="6.5" r="0.7" fill="#ffffff" stroke="#0072b2" stroke-width="0.1764"/>
+  </g>
+  <g data-role="error-bars" data-series="ours">
+    <!-- 误差棒：竖线 + 上下两条 1.4mm 横帽 -->
+    <path d="M18,9.2 L18,12.8 M17.3,9.2 L18.7,9.2 M17.3,12.8 L18.7,12.8"
+          fill="none" stroke="#0072b2" stroke-width="0.1764"/>
+  </g>
+  <text x="4" y="23" font-family="Arial, Helvetica, 'PingFang SC', sans-serif"
+        font-size="2.1167" fill="#5f5f5f" text-anchor="start"
+        data-role="axis-label" data-font-pt="6">epoch</text>
+</svg>

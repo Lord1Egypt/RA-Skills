@@ -1,42 +1,52 @@
-## Description: <br>
-Supadata helps agents search YouTube data, retrieve transcripts and metadata, map website links, and scrape web pages through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve Supadata data, including YouTube metadata and transcripts and web page content.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to perform read-oriented Supadata account, YouTube, transcript, link-mapping, and web-scraping tasks without directly handling Supadata API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Supadata account and sends Supadata requests through OOMOL as an intermediary. <br>
-Mitigation: Install only when comfortable with OOMOL-mediated access, and review the OOMOL account connection and credential scope before use. <br>
-Risk: Connector actions run through shell commands and depend on the live connector schema for valid payloads. <br>
-Mitigation: Inspect the target action schema before building a payload, and approve any future write or destructive connector action only after checking the exact target and effect. <br>
+## Use Case:
 
+External users and developers can use the skill to search YouTube, retrieve channel, playlist, and video details or transcripts, and extract web page content and links through Supadata.
 
-## Reference(s): <br>
-- [ClawHub Supadata Skill](https://clawhub.ai/oomol/oo-supadata) <br>
-- [Supadata Homepage](https://supadata.ai/) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects with data and meta.executionId when actions run successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill metadata) <br>
+Risk: The fallback setup automatically executes a remote installer outside the inspected package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation separately before allowing the fallback setup to run.
+
+## Reference(s):
+
+- [Supadata API documentation](https://docs.supadata.ai/api-reference/introduction)
+- [Supadata](https://supadata.ai/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Markdown, Shell commands]
+
+**Output Format:** [JSON action responses and extracted text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected Supadata action and the connected account.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

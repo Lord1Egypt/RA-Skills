@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7dx1eff0kpqzzyjcsyk7af3182mmbg",
-  "slug": "pupper0601-memory-manager",
-  "version": "v3.5.5",
-  "publishedAt": 1775573445563
+  "name": "memory-manager",
+  "version": "3.5.0",
+  "description": "三层AI记忆管理系统（含向量语义搜索），管理临时记忆(L1)/长期记忆(L2)/永久记忆(L3)，支持自动压缩、多用户隔离、GitHub跨设备同步、AI自我进化和洞察报告",
+  "author": "Pupper",
+  "location": "user",
+  "publishedAt": 1743685200000
 }

@@ -1,42 +1,55 @@
-## Description: <br>
-Intelligent multi-model router that selects an OpenAI-compatible model for vision, image generation, video generation, audio, reasoning, code, and general chat tasks, with @alias shortcuts for direct model selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent multi-model router that automatically selects an AI model for vision, image generation, video generation, audio, reasoning, code, or general chat tasks through an OpenAI-compatible API endpoint.
 
-## Publisher: <br>
-[samstone908](https://clawhub.ai/user/samstone908) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samstone908](https://clawhub.ai/user/samstone908)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to route prompts and media tasks to configured external AI models through an OpenAI-compatible API. It supports automatic category selection, explicit @alias model selection, fallback within a category, and provider model discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, generated media requests, code, or documents may be sent to the configured external API provider. <br>
-Mitigation: Use only approved OpenAI-compatible endpoints and avoid routing secrets, regulated data, private code, screenshots, or sensitive documents unless that provider is approved. <br>
-Risk: Generated media and provider model-list outputs may be written under /tmp on the local machine. <br>
-Mitigation: Review and remove temporary Smart Router output files when they may contain sensitive generated content or provider metadata. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to route prompts, images, generation requests, reasoning tasks, and code tasks to configured remote models. It supports automatic task classification, direct @alias model selection, and fallback within model categories.
 
-## Reference(s): <br>
-- [ClawHub Smart Router release](https://clawhub.ai/samstone908/smart-models) <br>
-- [samstone908 ClawHub profile](https://clawhub.ai/user/samstone908) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown or plain text responses, with shell commands and generated media URLs or local output paths when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured OpenAI-compatible provider credentials and may return external model responses, image URLs, async task results, or local /tmp file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send broad prompts and image URLs to a configured remote model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted HTTPS providers, avoid routing sensitive or regulated content automatically, and confirm user consent before sending private prompts or attachments.
+
+Risk: Provider credentials are required for remote API calls.
+
+Mitigation: Configure a limited API key with spending controls and rotate or revoke it if the environment is shared or compromised.
+
+## Reference(s):
+
+- [Smart Router ClawHub release](https://clawhub.ai/samstone908/skills/smart-models)
+- [samstone908 ClawHub profile](https://clawhub.ai/user/samstone908)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional URLs, generated file paths, and shell command output from configured model calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote model results depend on the configured OpenAI-compatible provider, selected model, request type, and API credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

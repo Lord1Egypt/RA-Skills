@@ -1,45 +1,60 @@
-## Description: <br>
-Generate and edit images using TensorsLab's AI models with text-to-image, image-to-image, avatar generation, watermark removal, object erasure, face replacement, prompt enhancement, progress tracking, and local file saving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and edit images using TensorsLab's AI models, including text-to-image, image-to-image, avatar generation, watermark removal, object erasure, face replacement, prompt enhancement, progress tracking, and local file saving.
 
-## Publisher: <br>
-[bob5-tensorslab](https://clawhub.ai/user/bob5-tensorslab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bob5-tensorslab](https://clawhub.ai/user/bob5-tensorslab)
 
-## Use Case: <br>
-External users, developers, and creative teams use this skill to generate images, transform source images, and run common image-editing workflows through TensorsLab's API. It supports prompt enhancement, asynchronous task tracking, and saving completed outputs locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watermark removal guidance could be used on images where the user lacks rights. <br>
-Mitigation: Use the skill only on images the user owns or is authorized to modify, and avoid removing third-party attribution or rights markings. <br>
-Risk: Face replacement and avatar workflows could be used to impersonate people or edit faces without consent. <br>
-Mitigation: Require consent for identifiable people and avoid prompts intended to deceive viewers about identity or authenticity. <br>
-Risk: Prompts, source images, and the API key are sent to TensorsLab's external API. <br>
-Mitigation: Avoid uploading sensitive photos, confidential prompts, or regulated data unless the user accepts TensorsLab as a trusted processor. <br>
+## Use Case:
 
+External users and developers use this skill to generate new images, transform source images, and run guided image-editing workflows through the TensorsLab API. The skill is useful when an agent needs to prepare prompts, call the image service, monitor asynchronous jobs, and save generated image files locally.
 
-## Reference(s): <br>
-- [TensorsLab Image API Reference](references/api_reference.md) <br>
-- [TensorsLab Image Generation Scenarios](references/scenarios.md) <br>
-- [TensorsLab Console](https://tensorai.tensorslab.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bob5-tensorslab/tensorslab-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TENSORSLAB_API_KEY; generated or edited images are saved to tensorslab_output/ unless a custom output directory is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill sends user prompts and source images to TensorsLab.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with prompts and images approved for third-party processing, and avoid confidential or personal images unless policy allows that use.
+
+Risk: Watermark-removal and face-replacement workflows can be misused.
+
+Mitigation: Run these workflows only for clearly authorized, consensual cases and review requests before execution.
+
+Risk: The bundled downloader has validation weaknesses around task IDs, download hosts, redirects, and response size.
+
+Mitigation: Harden the downloader before sensitive or routine deployment by validating task IDs, restricting download hosts, disabling unsafe redirects, and limiting download size.
+
+## Reference(s):
+
+- [TensorsLab Image API Reference](references/api_reference.md)
+- [TensorsLab Image Generation Scenarios](references/scenarios.md)
+- [TensorsLab Console](https://tensorai.tensorslab.com/)
+- [ClawHub Skill Page](https://clawhub.ai/bob5-tensorslab/skills/tensorslab-image)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Downloaded image files with Markdown-style status messages and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved to tensorslab_output by default or to a user-specified output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

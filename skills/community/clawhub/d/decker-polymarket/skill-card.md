@@ -1,42 +1,56 @@
-## Description: <br>
-Helps agents handle Polymarket prediction-market requests through Decker, including market search, category and event lookup, market slug details, and YES/NO order requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user asks an agent to search Polymarket prediction markets through Decker, inspect categories, events, market slugs, prices, positions, or prepare YES/NO order requests.
 
-## Publisher: <br>
-[gigshow](https://clawhub.ai/user/gigshow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gigshow](https://clawhub.ai/user/gigshow)
 
-## Use Case: <br>
-External users or developers using Decker can ask an agent to find Polymarket markets, inspect categories, events, and market slugs, and prepare YES/NO order requests. The skill is intended for Decker-connected workflows that require manual confirmation of trading details before orders are submitted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real Polymarket trades, so incorrect market slugs, sides, quantities, or prices can cause financial loss. <br>
-Mitigation: Verify every market slug, YES/NO outcome, quantity, price, and wallet manually before submitting an order. <br>
-Risk: The setup flow asks users to store a Polygon wallet private key with Decker, creating wallet-level authority risk. <br>
-Mitigation: Use a dedicated low-balance wallet for Polymarket, and do not provide a primary wallet private key or seed phrase. <br>
+## Use Case:
 
+External users and agents use this skill to work with Polymarket prediction markets via Decker, including market discovery, market detail lookup, YES/NO order-request preparation, and position checks where credentials are available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gigshow/decker-polymarket) <br>
-- [Decker API endpoint](https://api.decker-ai.com) <br>
-- [Polymarket](https://polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown text with API request examples and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Decker order-request URLs, market slug guidance, YES/NO outcome selection, quantity, and optional limit price.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill metadata) <br>
+Risk: Wallet private key exposure can give Decker or anyone with access to the key control over funds associated with that wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance Polygon wallet, do not reuse a wallet that holds other assets, and prefer wallet-native signing or scoped revocable credentials when available.
+
+Risk: Authentication secrets in request URLs may be logged or replayed for financially consequential requests.
+
+Mitigation: Require explicit confirmation before trade requests, avoid sharing or storing request URLs, and rotate any exposed secret.
+
+## Reference(s):
+
+- [Decker API](https://api.decker-ai.com)
+- [Polymarket](https://polymarket.com)
+- [ClawHub skill page](https://clawhub.ai/gigshow/skills/decker-polymarket)
+- [Publisher profile](https://clawhub.ai/user/gigshow)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, configuration, shell commands]
+
+**Output Format:** [Markdown with inline URL and request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financially consequential trade-request guidance that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

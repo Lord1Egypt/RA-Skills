@@ -1,47 +1,61 @@
-## Description: <br>
-Privacy-first UX research ethnography for OpenClaw that observes local usage over time, extracts local session data and conversations, analyzes workflow friction, and generates daily local-only reports with metrics, insights, anonymized evidence, and next-day research plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-first UX research ethnography for OpenClaw that observes local usage, analyzes workflow friction, and generates redacted daily reports with metrics, insights, recommendations, and next-day research plans.
 
-## Publisher: <br>
-[giulianomorse](https://clawhub.ai/user/giulianomorse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[giulianomorse](https://clawhub.ai/user/giulianomorse)
 
-## Use Case: <br>
-OpenClaw users and teams use this skill to run local UX research on agent sessions, identify behavioral friction, and produce daily reports with redacted evidence, recommendations, and next-day research plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and retain OpenClaw conversation histories more broadly than its consent prompt clearly states. <br>
-Mitigation: Use this_session_only and minimal or snippets capture unless broader collection is explicitly needed, review generated reports before sharing them, and use purge or a short retention window for sensitive work. <br>
-Risk: Local reports and data files may contain sensitive conversation context even after redaction. <br>
-Mitigation: Keep all artifacts local, apply the bundled redaction rules before persistence, and delete retained data with purge or purge full when no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Fallback Session Paths](references/fallback-session-paths.md) <br>
-- [Redaction Rules](references/redaction-rules.md) <br>
-- [Report Template](references/report-template.md) <br>
-- [Summary Schema](references/summary-schema.json) <br>
-- [OpenClaw Creating Skills](https://docs.openclaw.ai/tools/creating-skills) <br>
-- [OpenClaw Skills](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw Skills Config](https://docs.openclaw.ai/tools/skills-config) <br>
-- [OpenClaw Cron Jobs](https://docs.openclaw.ai/tools/cron-jobs) <br>
-- [OpenClaw Session Management](https://docs.openclaw.ai/tools/session-management) <br>
+## Use Case:
 
+Developers and OpenClaw teams use this skill to collect consented local session data, identify UX friction, and produce daily redacted ethnography reports for product, documentation, and workflow improvements.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Chat summary plus local Markdown report and JSON summary files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include redacted evidence, metrics, pain points, recommendations, saved file paths, and a next-day research plan.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can repeatedly collect and store broad conversation history and operational logs when consent settings allow it.
+
+Mitigation: Review consent settings before use, prefer this_session_only and minimal capture by default, and avoid recurring cron runs until recurring collection is explicitly acceptable.
+
+Risk: Captured transcripts and reports may include sensitive content if broader capture levels are selected.
+
+Mitigation: Apply the bundled redaction rules before writing files, redact uncertain sensitive content, and use purge or purge full when reports are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/giulianomorse/skills/nutcrackertestgpt)
+- [Fallback Session Paths](artifact/references/fallback-session-paths.md)
+- [Redaction Rules](artifact/references/redaction-rules.md)
+- [Report Template](artifact/references/report-template.md)
+- [Summary Schema](artifact/references/summary-schema.json)
+- [Creating OpenClaw Skills](https://docs.openclaw.ai/tools/creating-skills)
+- [OpenClaw Skills](https://docs.openclaw.ai/tools/skills)
+- [OpenClaw Skills Config](https://docs.openclaw.ai/tools/skills-config)
+- [OpenClaw Cron Jobs](https://docs.openclaw.ai/tools/cron-jobs)
+- [OpenClaw Session Management](https://docs.openclaw.ai/tools/session-management)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSON summaries, local data files, and concise chat guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local-only and should be redacted according to the configured capture level, consent scope, and retention window.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

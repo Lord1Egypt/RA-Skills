@@ -1,43 +1,54 @@
-## Description: <br>
-Interacts with the Forge AI platform to manage authentication, articles, evaluations, tags, and file uploads through the Forge AI API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Forge AI articles, evaluations, tags, file uploads, and authentication through the Forge AI API when the user explicitly invokes /forge.
 
-## Publisher: <br>
-[scemoon](https://clawhub.ai/user/scemoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scemoon](https://clawhub.ai/user/scemoon)
 
-## Use Case: <br>
-Developers and operators use this skill to work with Forge AI content from an agent session, including logging in, preparing JSON payloads, listing local article and evaluation files, creating or updating Forge records, managing tags, and uploading selected files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists authentication tokens in .forgeai/session.json. <br>
-Mitigation: Treat .forgeai/session.json as sensitive, avoid using synced or shared directories, and run logout when finished. <br>
-Risk: The skill can create or update remote Forge AI content from raw JSON payloads. <br>
-Mitigation: Review JSON files before execution and confirm the target action before creating or updating Forge records. <br>
-Risk: The skill can upload user-selected files to the Forge AI service. <br>
-Mitigation: Upload only files explicitly intended for Forge AI and confirm the storage path before execution. <br>
+## Use Case:
 
+Developers and content operators use this skill to manage Forge AI articles, evaluations, tags, uploads, and account session actions from an agent-assisted CLI workflow.
 
-## Reference(s): <br>
-- [Forge AI Skill release page](https://clawhub.ai/scemoon/forge-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/scemoon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local .forgeai state files and may send user-selected JSON payloads or files to Forge AI when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: Credentials and session tokens can be exposed through shell history, process listings, shared folders, commits, or backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Forge accounts, avoid entering real passwords directly in shell commands, and keep .forgeai/session.json out of shared folders, source control, and backups.
+
+Risk: The skill can perform account-changing Forge AI actions for articles, evaluations, tags, and file uploads.
+
+Mitigation: Review JSON request bodies, selected files, and account context before running create, update, upload, or tag mutation commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scemoon/skills/forge-skill)
+- [Forge AI API endpoint](https://cloud1-2gavd8kj8a1ce021.service.tcloudbase.com/api/forge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local .forgeai state files and call Forge AI API endpoints.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

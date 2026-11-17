@@ -1,0 +1,40 @@
+part: CH340N
+link_status: product-page-removed_2026-06-30 (no-datasheet, no-product-page)
+expected_family: WCH CH340 — USB-to-UART bridge IC (SOP-8 variant, no crystal)
+main_page: https://www.wch-ic.com/products/CH340.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH340N_datasheet.pdf
+datasheet_source_note: 'CH340N is a variant of the CH340 family. No dedicated
+  product page on wch-ic.com; datasheet is the shared CH340 datasheet.
+  CH340N-specific specs below are inferred from WCH general documentation.'
+specs:
+  function: USB-to-UART bridge IC (CH340 family variant)
+  variant_difference_vs_CH340C: SOP-8 (smaller package), requires external 12 MHz crystal
+  usb:
+    version: USB 2.0 Full Speed
+    device_class: CDC-ACM
+  uart:
+    signals: TX, RX (no hardware flow control on CH340N — RTS/CTS not bonded out)
+    baud_rate_max: 2 Mbps
+  power:
+    supply_voltage_v: 3.3-5.0
+  package: SOP-8
+unverified:
+- exact_baud_rate_max
+- exact_io_voltage_tolerance
+- operating_temperature_c
+- exact_package_dimensions
+- exact_max_current_consumption
+notes:
+- 'Placeholder yaml created on 2026-06-30 — no dedicated product page
+  on wch-ic.com. Specs above are inferred from CH340 family datasheet
+  (not yet in catalog) and WCH general documentation.'
+- 'Use case: smallest-package CH340 variant for space-constrained
+  designs (e.g. ESP8266 dev boards use CH340N). Requires external 12 MHz
+  crystal (vs CH340C integrated).'
+- 'Difference vs CH340C: smaller package (SOP-8 vs SOP-16), external
+  crystal needed, no hardware flow control pins bonded out.'
+- 'Open gap: needs shared CH340 datasheet downloaded.'
+extracted_at: '2026-06-30T00:55:00+08:00'
+extracted_from_pages: []
+extraction_method: catalog-registration (variant inference from CH340 family)
+extraction_source: None (placeholder, awaiting datasheet re-acquisition)

@@ -1,42 +1,56 @@
-## Description: <br>
-Standardized reusable prompt template for e-commerce customer service agents to handle buyer return, exchange, and refund inquiries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized reusable prompt template for e-commerce customer service agents to handle buyer return, exchange, and refund inquiries with friendly, policy-compliant responses.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Customer support agents and e-commerce operators use this prompt to draft Chinese-language return, exchange, and refund replies based on order context, platform return window, product category, and escalation triggers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Buyer-provided text could steer the generated response away from the intended return and refund workflow.
+
+Mitigation: Treat buyer text as untrusted data, validate structured fields such as issue_type and days_since_delivery, and isolate free-text reasons from operational instructions.
+
+Risk: Generated replies could promise refunds, compensation, timelines, or legal interpretations that the platform has not authorized.
+
+Mitigation: Validate outputs against the stated platform policy and keep human approval for refunds, compensation, legal, safety, or high-value disputes.
+
+Risk: Customer-service replies may expose private order, seller, or third-party information if sensitive data is inserted into the prompt.
+
+Mitigation: Limit prompt inputs to the minimum required fields and review replies before sending to ensure internal order details, seller addresses, and other buyers' information are not disclosed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Customer service teams and e-commerce agents use this prompt template to generate policy-aware responses for buyer return, exchange, refund, and after-sale dispute inquiries based on supplied order and platform-policy inputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect policy values or unsupported compensation promises could mislead buyers. <br>
-Mitigation: Verify the platform return window, category rules, refund timelines, and compensation terms before using the generated response. <br>
-Risk: Responses may include sensitive buyer or order information. <br>
-Mitigation: Use only the necessary buyer and order fields, and review outputs to avoid exposing internal order details, seller addresses, or other buyers' information. <br>
-Risk: High-value disputes, legal or safety concerns, or strongly negative buyer sentiment may require human judgment. <br>
-Mitigation: Escalate those cases to a human support agent and use the prompt output only as draft guidance. <br>
+**Output Format:** [Structured customer-service response text or Markdown sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/ecom-return-refund-prompt) <br>
+**Other Properties Related to Output:** [Default output language is zh-CN unless the language input is set explicitly.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style customer service response text with greeting, status, operation guidance or alternative options, warm tips, and closing sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses buyer, order, issue, timing, category, platform-policy, and language placeholders; defaults output language to zh-CN when no language is provided.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

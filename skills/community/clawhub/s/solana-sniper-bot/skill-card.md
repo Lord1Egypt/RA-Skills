@@ -1,45 +1,63 @@
-## Description: <br>
-Autonomous Solana token sniper and trading bot that monitors new Raydium and Jupiter token launches, evaluates rugpull risk with LLM analysis, auto-buys promising launches, and manages exit strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Solana token sniper and trading bot that monitors new Raydium and Jupiter launches, evaluates rugpull risk with LLM analysis, and can auto-buy selected tokens.
 
-## Publisher: <br>
-[srikanthbellary](https://clawhub.ai/user/srikanthbellary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[srikanthbellary](https://clawhub.ai/user/srikanthbellary)
 
-## Use Case: <br>
-External developers and trading automation users use this skill to configure and run an autonomous Solana trading bot that monitors new pools, scores token risk, and submits Jupiter swap transactions. Users should treat it as high-risk financial automation because it can trade from a wallet private key without a confirmation or dry-run safety gate. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a wallet private key to attempt autonomous live trades without a confirmation or dry-run safety gate. <br>
-Mitigation: Use only a dedicated low-balance wallet, start with tiny trade amounts, prefer dry-run or manual approval before live use, and assume all allocated funds can be lost. <br>
-Risk: The documented stop-loss and auto-sell protections should not be relied on without implementation and testing. <br>
-Mitigation: Review and test exit behavior before enabling live transactions, and monitor positions actively while the bot is running. <br>
-Risk: New Solana token and memecoin trading is extremely high risk and many assets can lose all value. <br>
-Mitigation: Limit capital exposure, set conservative position sizes and thresholds, and avoid using a primary wallet or funds needed for other purposes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Solana Sniper Bot on ClawHub](https://clawhub.ai/srikanthbellary/solana-sniper-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/srikanthbellary) <br>
-- [Publisher homepage](https://github.com/srikanthbellary) <br>
-- [Jupiter Aggregator API](references/jupiter-api.md) <br>
-- [Raydium Pool Monitoring](references/raydium-pools.md) <br>
+## Use Case:
 
+External developers and advanced traders use this skill to configure and operate a Solana pool-monitoring bot that evaluates new token launches and can submit Jupiter swap transactions. It is intended for users who understand the financial and wallet-custody risks of automated trading.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands, environment configuration, and Python code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SOLANA_PRIVATE_KEY and LLM_API_KEY; may also use RPC_URL, HELIUS_API_KEY, BUY_AMOUNT_SOL, TAKE_PROFIT, STOP_LOSS, MAX_POSITIONS, MIN_LIQUIDITY, and SLIPPAGE_BPS.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks for live wallet authority and can automatically buy tokens, so funded assets can be lost.
+
+Mitigation: Use a dedicated low-balance wallet, start with tiny trade amounts, and never provide a main wallet private key.
+
+Risk: Advertised stop-loss, take-profit, and auto-sell behavior may be missing or unsafe.
+
+Mitigation: Do not rely on unattended exits; monitor positions actively and verify exit logic before running with real funds.
+
+Risk: Transaction signing and validation require review before live use.
+
+Mitigation: Review and fix signing, transaction validation, and preflight behavior before allowing the bot to submit real swaps.
+
+Risk: Server-resolved GitHub import provenance is unavailable for this release.
+
+Mitigation: Treat the packaged artifact as the source of record and do not infer repository provenance from skill text or metadata links.
+
+## Reference(s):
+
+- [Jupiter Aggregator API](artifact/references/jupiter-api.md)
+- [Raydium Pool Monitoring](artifact/references/raydium-pools.md)
+- [ClawHub Skill Page](https://clawhub.ai/srikanthbellary/skills/solana-sniper-bot)
+- [ClawHub Metadata Homepage](https://github.com/srikanthbellary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment configuration, and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SOLANA_PRIVATE_KEY and LLM_API_KEY; may also use RPC_URL and HELIUS_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Structured AI image prompt generator that turns a character or theme name into a 15-dimension prompt in JSON and Markdown formats for tools such as Midjourney and Stable Diffusion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cosprompt generates structured AI image prompts from a character or theme, using a 17-dimension framework for JSON, Markdown, and plain text outputs for tools such as Midjourney and Stable Diffusion.
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-External users and creators use this skill to generate structured image prompts for character posters, cosplay posters, product posters, character standees, and related visual concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate human character image prompts and includes underage character categories without explicit safety limits. <br>
-Mitigation: Add and enforce an adults-only or minor-safety rule before use, and reject prompts involving minors, school-age characters, or ambiguous young-looking people. <br>
-Risk: Generated image prompts for recognizable characters may raise copyright or licensing concerns in commercial use. <br>
-Mitigation: Review character rights and intended usage before using generated prompts commercially. <br>
+## Use Case:
 
+External creators and developers use this skill to turn character, cosplay, product, or scene ideas into structured prompts for image-generation tools. It is intended to help organize visual subject, style, composition, lighting, lens, typography, negative prompt, and aspect-ratio details.
 
-## Reference(s): <br>
-- [Cosprompt on ClawHub](https://clawhub.ai/fslong520/cosprompt) <br>
-- [Publisher profile](https://clawhub.ai/user/fslong520) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON and Markdown prompt specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes subject, age, model, face, pose, hair, costume, style, mood, environment, lighting, composition, typography, negative prompt, and aspect ratio fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: The security review flagged under-18 age presets in a cosplay or glamour prompt workflow without clear safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove under-18 presets before deployment, or require that minors are depicted only in age-appropriate, non-sexual contexts without suggestive clothing, pose, body emphasis, or mood tags.
+
+Risk: The artifact declares broad Write and Edit tool permissions for a prompt-generation workflow.
+
+Mitigation: Remove file-modification permissions unless the deployment specifically requires the skill to modify local files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fslong520/skills/cosprompt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [JSON, Markdown, and plain text prompt content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a 17-dimension image-prompt structure covering subject, age, model, face, pose, hair, costume, style, mood, environment, lighting, composition, lens, quality tags, typography, negative prompt, and aspect ratio.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

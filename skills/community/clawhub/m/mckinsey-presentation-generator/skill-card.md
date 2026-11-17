@@ -1,40 +1,57 @@
-## Description: <br>
-McKinsey consulting-style multi-page HTML presentation generator that creates data-rich slide decks with rigorous research, SVG charts, and source citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates McKinsey consulting-style multi-page HTML presentation decks with data-driven slide layouts, SVG charts, and source citations.
 
-## Publisher: <br>
-[yinin2005](https://clawhub.ai/user/yinin2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinin2005](https://clawhub.ai/user/yinin2005)
 
-## Use Case: <br>
-Business users, consultants, analysts, and agents use this skill to research a topic, plan a consulting-style narrative, and generate a static HTML presentation with cited data and inline SVG charts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research prompts and generated decks may include confidential company plans, client names, or private data. <br>
-Mitigation: Avoid using confidential or private information unless the user has approved external research queries and reviewed the final deck before deployment or sharing. <br>
-Risk: Presentation claims can become misleading if sourced data is stale, incomplete, or copied without review. <br>
-Mitigation: Review citations, dates, and key statistics before relying on the presentation for business decisions. <br>
+## Use Case:
 
+External users and developers use this skill to research a business topic and generate a consulting-style HTML slide deck with charts, citations, and presentation-ready layouts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinin2005/mckinsey-presentation-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, and SVG code for a static presentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes sourced research, slide planning, static HTML rendering, inline SVG charts, and deployment via deploy_html_presentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can trigger on broad presentation requests and directs the agent to perform external research, which may expose confidential business plans or client data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the topic and data sensitivity with the user before research, avoid confidential inputs unless explicitly authorized, and prefer public or approved sources.
+
+Risk: The workflow includes deployment of the completed presentation.
+
+Mitigation: Require explicit user approval before running any deployment or publication step.
+
+Risk: Generated presentations may contain stale, incorrect, or weakly supported claims if research quality is poor.
+
+Mitigation: Use authoritative current sources, record source names, dates, and URLs, cite every data slide, and manually review claims before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinin2005/skills/mckinsey-presentation-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, SVG, citation tables, and deployment commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires current external research, source citations on data slides, screenshot verification, and manual confirmation before deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

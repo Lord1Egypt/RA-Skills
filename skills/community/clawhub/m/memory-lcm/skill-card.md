@@ -1,41 +1,54 @@
-## Description: <br>
-Stores complete OpenClaw conversation history in a local SQLite database, supports search and recall, creates summaries, and syncs extracted decisions to MEMORY.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stores and manages complete conversation history with searchable local storage, chunked and daily summaries, and automatic syncing of key decisions to MEMORY.md.
 
-## Publisher: <br>
-[louch84](https://clawhub.ai/user/louch84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[louch84](https://clawhub.ai/user/louch84)
 
-## Use Case: <br>
-Developers and agent operators use this skill to retain, search, summarize, and recall local OpenClaw conversation context across sessions while keeping raw messages available in a local database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Complete conversations are retained locally and remain searchable later. <br>
-Mitigation: Use only in sessions where local retention is intended, and avoid logging credentials, personal data, confidential business context, or regulated information. <br>
-Risk: Extracted decisions may be appended automatically to MEMORY.md without a built-in review or redaction step. <br>
-Mitigation: Review MEMORY.md updates regularly and add local redaction, deletion, or retention controls before using the skill with sensitive material. <br>
+## Use Case:
 
+Developers and agents use this skill to preserve full conversation history, search prior sessions, recall summarized topics, and keep selected long-term decisions available across OpenClaw workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/louch84/memory-lcm) <br>
-- [Publisher profile](https://clawhub.ai/user/louch84) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, CLI commands, local SQLite storage, and MEMORY.md updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores complete conversation content locally and may append extracted decisions to MEMORY.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Full conversation history may include secrets, personal data, customer data, or sensitive business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in workspaces where persistent local retention is acceptable, protect the database and MEMORY.md files, and periodically review or purge stored content.
+
+Risk: Automatically captured decisions may write incorrect or unintended memories into MEMORY.md.
+
+Mitigation: Review MEMORY.md after sync or compaction runs, remove unsuitable entries, and require human review before relying on captured decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/louch84/skills/memory-lcm)
+- [Publisher profile](https://clawhub.ai/user/louch84)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JavaScript examples, and text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and retrieves session-scoped memory, search results, summaries, and MEMORY.md entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

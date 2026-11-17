@@ -2,8 +2,8 @@
 name: mybooks
 homepage: https://www.mybooks.top
 allowed-tools: Bash(python3:*)
-metadata: {"clawdbot":{},"openclaw":{"requires":{"bins":["python3"],"env":["MYBOOKS_HOST","MYBOOKS_USER","MYBOOKS_PASSWORD"]}}}
-description: "MyBooks(PoxenStudio/Talebook)是个人书库管理系统，提供电子书及实体书管理，包括存储、分类、搜索和元数据管理功能。你可以帮助用户：查询书库统计信息和阅读统计,搜索/浏览书籍,获取书籍详情,更新书籍元数据（书名、作者、标签、分类、简介等）,自动联网填充书籍信息,发送书籍到邮箱或阅读器设备,上传电子书或通过ISBN添加实体书,管理阅读状态（想读/在读/已读/收藏）,查看作者信息和分类信息等"
+metadata: {"clawdbot":{},"openclaw":{"requires":{"bins":["python3"],"env":["MYBOOKS_HOST","MYBOOKS_USER","MYBOOKS_PASSWORD"]},"permissions":{"network":{"required":true,"scope":"user-configured MYBOOKS_HOST only","protocols":["http","https"]},"filesystem":{"read":"only when uploading: ebook files (book_upload) and mp3/wav samples (tts_clone_upload) at paths the user gives","write":"only tts_clone_audio save_to (.wav, never overwrites)"}}}}
+description: "MyBooks是个人书库管理系统，提供电子书及实体书管理，包括存储、分类、搜索和元数据管理功能。你可以帮助用户：查询书库统计信息和阅读统计,搜索/浏览书籍,获取书籍详情,更新书籍元数据（书名、作者、标签、分类、简介等）,自动联网填充书籍信息,发送书籍到邮箱或阅读器设备,上传电子书或通过ISBN添加实体书,管理阅读状态（想读/在读/已读/收藏）,查询/手动更新某本书分格式的阅读时长与进度,按日期补录/修改/删除阅读时间（v4.3.0+）,管理书单（创建/浏览/加书/移书/点赞，v4.3.0+）,查看作者信息和分类信息,导入第三方阅读App的划线与想法（如微信读书，需配合微信读书 skill 读取原始数据）,以及MiMo TTS有声书功能（配置TTS API、EPUB转有声书、查询转换进度、克隆音色与语音提示词管理，需管理员权限）等"
 ---
 
 # MyBooks
@@ -14,12 +14,23 @@ description: "MyBooks(PoxenStudio/Talebook)是个人书库管理系统，提供�
 export MYBOOKS_HOST="http://127.0.0.1:8082"
 export MYBOOKS_USER="admin"
 export MYBOOKS_PASSWORD="your_password"
+export MYBOOKS_SSL_VERIFY="false"   # 如服务器使用自签名证书，设为 false
+# 明文 http 仅允许回环/内网地址（如 192.168.x.x）；公网地址必须用 https
+# 确需对非内网地址使用明文 http 时：export MYBOOKS_ALLOW_INSECURE_HTTP="true"
 
 然后按如下方式执行：
 <skill-installation-path>/scripts/mybooks_api.py <tool-name> '<json-args>'
 ```
 
 > **安全提示**：请勿将凭据写入共享或全局配置文件（如 `~/.openclaw/.env`），以避免凭据被其他 agent 或进程意外读取。建议通过会话级环境变量或专用密钥管理工具传入凭据。
+
+## 权限与网络声明
+
+- **网络访问（必需）**：本 skill 是 MyBooks 服务器的 REST 客户端，所有工具都通过 HTTP(S) 访问**且仅访问**用户自己配置的 `MYBOOKS_HOST`，不连接任何其他地址，无遥测、无第三方回传。
+- **会修改数据的工具**：`edit_book`、`set_folder`、`rename_folder`、`push_notes`(`dry_run:false`)、`clear_imported_notes`、`book_fill`、`save_meta_to_file`、`book_upload`、`book_add_by_isbn`、`wants`/`favorite`/`reading`/`read_done`、`set_reading_time`、`delete_reading_time`、书单的创建/修改/删除/增删书/点赞、以及全部 `tts_*` 写操作。删除类工具（`delete_booklist`、`delete_reading_time`）脚本内强制 `confirm:true` 两步确认。
+- **本地文件读取**：仅 `book_upload`（限电子书扩展名 epub/mobi/azw/azw3/pdf/txt/lrf/rtf/djvu/docx）和 `tts_clone_upload`（限 mp3/wav，≤7MB）会读取用户明确给出路径的文件并上传到 `MYBOOKS_HOST`；agent **不得**自行挑选文件上传。
+- **本地文件写入**：仅 `tts_clone_audio` 的 `save_to`（必须 `.wav` 结尾，且不覆盖已存在文件）。
+- **凭据**：见下方"认证方式"。
 
 ## 通用响应格式与认证方式
 
@@ -42,11 +53,20 @@ export MYBOOKS_PASSWORD="your_password"
 | `"params.invalid"` | 请求参数错误 |
 | `"params.book.invalid"` | 书籍不存在或 ID 错误 |
 | `"task.running"` | 后台任务正在进行中，稍后重试 |
+| `"tts.converting"` | TTS 转换任务正在运行 |
+| `"tts.no_config"` | 未配置 TTS API |
+| `"clone.exists"` | 克隆音色名称已存在 |
+| `"clone.not_found"` | 克隆音色不存在 |
+| `"clone.too_large"` | 文件超过 7MB 限制 |
+| `"clone.invalid_format"` | 仅支持 MP3/WAV 格式 |
+| `"prompt.exists"` | 提示词名称已存在 |
+| `"prompt.not_found"` | 提示词不存在 |
 
 ### 认证方式
 - 脚本通过 `MYBOOKS_USER` / `MYBOOKS_PASSWORD` 环境变量自动调用 `/api/user/sign_in` 完成登录
 - 服务端通过 **Secure Cookie**（`user_id` + `lt`）维持会话
 - 若响应中出现 `err=user.need_login`，脚本会自动重新登录后重试一次；仍失败则报错退出
+- **凭据去向说明**：`MYBOOKS_USER` / `MYBOOKS_PASSWORD` **只会**以表单形式 POST 到用户自己配置的 `MYBOOKS_HOST` 的 `/api/user/sign_in`，不会发往任何其他地址；登录请求不跟随重定向；`MYBOOKS_HOST` 必须是 `http(s)://host[:port]` 且不含内嵌账号密码，对非内网地址要求 https
 - **必须**在调用前配置 `MYBOOKS_HOST`、`MYBOOKS_USER`、`MYBOOKS_PASSWORD` 三个环境变量，否则脚本直接报错退出
 
 ---
@@ -135,27 +155,72 @@ export MYBOOKS_PASSWORD="your_password"
 ### `search_books` — 搜索书籍
 
 **使用场景**：
-- 按书名或作者名搜索，支持简繁体自动转换
-- "有没有余华的书？" / "找一下《三体》"
+- 关键词模糊搜索（书名/作者/简介），支持简繁体自动转换："有没有余华的书？" / "找一下《三体》"
+- 按字段精确定位：只查书名、只查作者、按 ISBN 查找："ISBN 9787536692930 是哪本书？"
+- 组合条件搜索：多个字段参数同时给出时按 **AND** 组合："余华在作家出版社出的书"
+- Calibre 条件表达式：`name` 中写入 `字段:值` 形式的表达式，支持 `AND`/`OR`/`NOT` 与括号："评分 4 星以上的科幻小说"
 
-**参数**：
+**参数**（`name`/`title`/`author`/`isbn`/`publisher`/`series`/`tag` 至少提供一个）：
 
 | 参数 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
-| `name` | string | ✅ | — | 搜索关键词（书名或作者名） |
+| `name` | string | ❌ | — | 关键词、纯 ISBN 号或 Calibre 条件表达式（见下方说明） |
+| `title` | string | ❌ | — | 书名，**精确匹配** |
+| `author` | string | ❌ | — | 作者，包含匹配 |
+| `isbn` | string | ❌ | — | ISBN-10 / ISBN-13，可带 `-` |
+| `publisher` | string | ❌ | — | 出版社，包含匹配 |
+| `series` | string | ❌ | — | 丛书，包含匹配 |
+| `tag` | string | ❌ | — | 标签，包含匹配 |
+| `exact` | bool | ❌ | false | 为 true 时 `author`/`publisher`/`series`/`tag` 改为精确匹配 |
+| `order` | string | ❌ | — | 排序字段，如 `pubdate`、`rating`、`timestamp` |
 | `num` | int | ❌ | 20 | 每页数量 |
 | `page` | int | ❌ | 1 | 页码，从 1 开始 |
 
+**`name` 的三种解析方式**（后台自动识别）：
+1. **纯 ISBN**（10/13 位数字，可含 `-`）→ 按 ISBN 精确查找。
+2. **Calibre 条件表达式**（包含 `字段:` 形式，字段为 Calibre 内置搜索字段或 `#` 开头的自定义列）→ 原样交给 Calibre 搜索（同时追加简繁体转换版本以 OR 合并）。
+3. 其它 → 普通关键字，在书名/作者/简介等所有字段中模糊搜索。
+
+**Calibre 表达式速查**：
+
+| 写法 | 含义 |
+|------|------|
+| `title:三体` | 书名包含"三体" |
+| `title:=三体` | 书名**等于**"三体" |
+| `title:"=三体 死神永生"` | 值含空格时用双引号包住 |
+| `authors:=余华` | 作者精确为"余华" |
+| `tags:科幻 AND rating:>=4` | 标签含"科幻"且评分 ≥ 4 星 |
+| `publisher:作家 OR publisher:人民文学` | 任一出版社 |
+| `authors:刘慈欣 AND NOT tags:短篇` | 排除条件 |
+| `pubdate:>=2020` / `pubdate:<2000-01-01` | 出版日期范围 |
+| `formats:epub` | 有 EPUB 格式 |
+| `isbn:9787536692930` | 按 ISBN |
+| `#category:="小说"` | 自定义列（分类） |
+| `title:~^三体` | 正则匹配 |
+
+常用字段：`title` `authors` `tags` `publisher` `series` `isbn` `identifiers` `comments` `rating` `pubdate` `timestamp` `formats` `languages` `id`，以及 `#` 开头的自定义列。
+
 **执行脚本**：
 ```bash
+# 关键词
 <skill-installation-path>/scripts/mybooks_api.py search_books '{"name":"三体"}'
+# 按 ISBN
+<skill-installation-path>/scripts/mybooks_api.py search_books '{"isbn":"978-7-5366-9293-0"}'
+# 组合条件：余华 + 作家出版社
+<skill-installation-path>/scripts/mybooks_api.py search_books '{"author":"余华","publisher":"作家出版社"}'
+# 书名精确匹配
+<skill-installation-path>/scripts/mybooks_api.py search_books '{"title":"活着"}'
+# Calibre 表达式
+<skill-installation-path>/scripts/mybooks_api.py search_books '{"name":"tags:科幻 AND rating:>=4","order":"rating"}'
 ```
+
+**选择建议**：用户只给出模糊描述时用 `name` 关键词；明确说出"作者是…/出版社是…/ISBN…"时用对应字段参数；需要评分、日期、格式、排除等条件时用 Calibre 表达式。字段参数与 `name` 可同时使用，彼此为 AND 关系。
 
 **响应示例**：
 ```json
 {
   "err": "ok",
-  "title": "搜索：三体",
+  "title": "搜索作者:余华 出版社:作家出版社",
   "total": 3,
   "books": [ /* 书籍对象列表 */ ]
 }
@@ -178,6 +243,88 @@ export MYBOOKS_PASSWORD="your_password"
 **执行脚本**：
 ```bash
 <skill-installation-path>/scripts/mybooks_api.py search_by_category '{"category":"科幻"}'
+```
+
+---
+
+### `list_folders` — 查看目录树
+
+**使用场景**：查看书库的"目录"（层级有上限，当前为两级，如 `文学.小说`）及各目录书籍数量；未设置目录的书在根目录 `/`
+
+**参数**：无
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py list_folders '{}'
+```
+
+**响应示例**（`count` 含子目录，`root_count` 为未设置目录的书）：
+```json
+{
+  "err": "ok",
+  "folders": [
+    { "name": "文学", "count": 12, "children": [{ "name": "小说", "count": 8 }] }
+  ],
+  "root_count": 5,
+  "max_depth": 2
+}
+```
+
+---
+
+### `search_by_folder` — 按目录查询书籍
+
+**使用场景**：查看某个目录下**直属**的书（不含子目录的书）；`path` 为空表示根目录
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `path` | string | ❌ | `""` | 目录路径，用 `.` 连接，如 `"文学"`、`"文学.小说"` |
+| `num` | int | ❌ | 20 | 每页数量 |
+| `page` | int | ❌ | 1 | 页码，从 1 开始 |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py search_by_folder '{"path":"文学.小说"}'
+```
+
+---
+
+### `set_folder` — 设置书籍目录
+
+**使用场景**：把一本或多本书放进某个目录。单本需管理员或书籍所有者；批量（`book_ids`）仅管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `book_id` | int | 二选一 | 单本书 ID |
+| `book_ids` | array | 二选一 | 批量书籍 ID 列表 |
+| `folder` | string | ✅ | 目录路径，层级数以 `list_folders` 返回的 `max_depth` 为准（当前为 2），每级 1–24 字符、不含标点，如 `"文学.小说"`；传 `""`/`"清除"`/`"clear"` 移出目录 |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py set_folder '{"book_id":42,"folder":"文学.小说"}'
+```
+
+---
+
+### `rename_folder` — 重命名目录
+
+**使用场景**：修改目录的最后一段名称（仅管理员），子目录随之改名，如 `文学` → `读物` 后 `文学.小说` 变为 `读物.小说`
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `path` | string | ✅ | 现有目录路径 |
+| `name` | string | ✅ | 新的末段名称（1–24 字符、不含标点和 `.`） |
+| `merge` | bool | ❌ | 默认 `false`。目标目录已存在时服务端返回 `folder.exists`（附 `count`、`target`）且**不修改任何数据**；合并**不可撤回**，必须先向用户说明并获得确认，再带 `"merge":true` 重发 |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py rename_folder '{"path":"文学.小说","name":"故事"}'
 ```
 
 ---
@@ -271,6 +418,205 @@ export MYBOOKS_PASSWORD="your_password"
 ```json
 { "err": "ok", "msg": "更新成功", "books": [42] }
 ```
+
+---
+
+### `push_notes` — 导入第三方批注（微信读书等）
+
+**使用场景**：把从其他阅读 App（目前是微信读书）读到的划线/想法，通过服务端全文检索定位到 MyBooks 书库里对应 EPUB 书籍的正文位置，写入这本书的阅读记录。详细方案见 `plan/WeChatReading_Annotation_Import_Plan.md`。
+
+**前提**：目标书籍必须已经在 MyBooks 书库里，且**必须有 EPUB 格式**（定位算法依赖 EPUB 的正文结构，其它格式不支持）。
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `book_id` | int | ✅ | — | 书籍 ID（须为 EPUB 格式） |
+| `anchors` | array | ✅ | — | 待导入的批注列表，见下 |
+| `anchors[].id` | string | ✅ | — | 来源系统里的稳定 ID（如微信读书的 `bookmarkId`/`reviewId`），用于生成幂等的记录 ID——同样的 `anchors` 重复调用不会重复导入 |
+| `anchors[].text` | string | ❌ | — | 划线/引用的原文，用于全文检索定位；不传则视为"无原文锚点"（章节点评/整本书评），会退化为"挂在章节开头"的书签 |
+| `anchors[].chapterHint` | string | ❌ | — | 来源系统里的章节标题，`text` 未提供时用于定位章节起始位置 |
+| `anchors[].note` | string | ❌ | — | 用户写的想法/点评正文 |
+| `anchors[].color` | string | ❌ | `"yellow"` | 高亮颜色 |
+| `anchors[].style` | string | ❌ | `"highlight"` | `highlight`/`underline`/`squiggly` |
+| `anchors[].createdAt` | int | ❌ | 当前时间 | 来源系统里的创建时间（毫秒时间戳） |
+| `anchors[].source` | string | ❌ | `"wxread"` | 来源标记 |
+| `on_ambiguous` | string | ❌ | `"error"` | 原文在书里检索到多处命中时的处理：`"error"`=不写入、标记为歧义待复核；`"first_match"`=取第一个命中位置写入 |
+| `dry_run` | bool | ❌ | `true` | `true`=只做检索定位、返回预览报告，不写入；`false`=同时写入。**务必先用 `dry_run:true` 看一遍报告、跟用户确认后再用 `dry_run:false` 提交，不要一步到位直接写入** |
+| `force` | bool | ❌ | `false` | 重复导入默认会**自动判重**：某条 `anchors[].id` 如果 `text`/`chapterHint` 跟上次导入时一样，直接复用上次的定位结果，不会重新跑检索（响应里对应条目会带 `"reused": true`）。`force:true` 会跳过判重、强制重新定位所有条目——只有书籍文件本身被替换过这种场景才需要，**日常重复同步不要传这个参数**，判重本身就是为了处理"微信读书上有新批注后再次同步"这种情况设计的 |
+
+**再次同步（判重）说明**：微信读书没有增量接口，每次都会拿到全量划线/想法列表。直接把全量列表再传一遍给 `push_notes` 是安全且推荐的做法——服务端会按 `anchors[].id` 匹配上次导入的记录，`text`/`chapterHint` 没变的条目不会重新定位（省时间，也避免同一条批注每次定位到略有不同的位置），只有新增的、或者原文本身变了的条目才会真正重新检索。如果只是想法/评论内容改了但划线原文没变，也会被识别为"位置没变、内容更新"，只更新想法文本，不重新定位。
+
+**执行脚本**：
+```bash
+# 第一步：预览（默认 dry_run:true），不会写入任何数据
+<skill-installation-path>/scripts/mybooks_api.py push_notes '{
+  "book_id": 42,
+  "anchors": [
+    {"id": "wx-bm-1001", "text": "他手里拿着两大块磁铁", "note": "开篇的魔幻现实主义笔法"},
+    {"id": "wx-review-2001", "chapterHint": "第一章"}
+  ]
+}'
+
+# 第二步：跟用户确认预览报告无误后，正式写入
+<skill-installation-path>/scripts/mybooks_api.py push_notes '{
+  "book_id": 42,
+  "anchors": [
+    {"id": "wx-bm-1001", "text": "他手里拿着两大块磁铁", "note": "开篇的魔幻现实主义笔法"},
+    {"id": "wx-review-2001", "chapterHint": "第一章"}
+  ],
+  "dry_run": false
+}'
+```
+
+**响应示例**（预览，`dry_run:true`）：
+```json
+{
+  "err": "ok",
+  "book_id": 42,
+  "book_hash": "cloud-42-epub",
+  "dry_run": true,
+  "results": [
+    { "id": "wx-bm-1001", "status": "ok", "cfi": "epubcfi(/6/10!/4/4/2,/19:17,/21:4)", "matchCount": 1 },
+    { "id": "wx-review-2001", "status": "ok", "cfi": "epubcfi(/6/8!/4)", "degraded": "chapter_start" }
+  ]
+}
+```
+
+**响应示例**（提交，`dry_run:false`，额外带 `pushed`）：
+```json
+{
+  "err": "ok",
+  "book_id": 42,
+  "book_hash": "cloud-42-epub",
+  "dry_run": false,
+  "results": [ /* 同上 */ ],
+  "pushed": { "notes": [ /* 写入后的最终记录，字段与 GET /api/sync 一致 */ ] }
+}
+```
+
+**`results[].status` 取值**：
+| 值 | 含义 | 建议处理 |
+|----|------|----------|
+| `"ok"` | 定位成功，`cfi` 有值 | 展示给用户确认；`degraded:"chapter_start"` 表示这是退化的章节级书签，不是精确定位，需要提示用户区分 |
+| `"no_match"` | 原文在书里没有检索到 | 大概率两边不是同一版本的书，或原文被来源系统二次编辑过；列入失败清单，不会写入 |
+| `"ambiguous"` | 原文命中了多处（`matchCount` > 1），且 `on_ambiguous="error"` | 列入歧义清单，需要人工复核；不会写入 |
+| `"error"` | 该条内部处理出错（如 CFI 生成失败） | 列入失败清单，不会写入 |
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"params.book.invalid"` | 书籍不存在 |
+| `"book.no_epub"` | 书籍没有 EPUB 格式，或找不到 EPUB 文件 |
+| `"sync.import.failed"` | 服务端批注定位流程整体失败（如 CFI 子进程异常）——不同于单条 `status:"error"`，这是整批请求都没有结果 |
+| `"sync.disabled"` | 服务端数据同步功能未启用 |
+
+---
+
+### `get_notes` — 查询书籍批注
+
+**使用场景**：查看某本书已有的划线/批注/书签（通过 `GET /api/sync` 实现，`type=notes`）。
+
+- "这本书我都划了哪些线？" / "看看《活着》的批注"
+- 确认 `push_notes` 导入结果，或在 `clear_imported_notes` 前先看一眼现有批注
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `book_id` | int | ❌ | — | 书籍 ID；与 `title` 二选一，优先生效 |
+| `title` | string | ❌ | — | 书名；不传 `book_id` 时用于搜索定位书籍，仅精确匹配到唯一一本书才会继续查询——命中多本时返回 `candidates` 列表，需要调用方明确选择后改传 `book_id` |
+| `own` | int | ❌ | `1` | `1`=只返回当前用户自己的批注；`0`=额外并入其他用户在这本书上共享的批注（受服务端 `ENABLE_SHARED_NOTES` 开关约束） |
+
+**执行脚本**：
+```bash
+# 按 book_id 查询自己的批注
+<skill-installation-path>/scripts/mybooks_api.py get_notes '{"book_id":42}'
+
+# 按书名查询，并包含其他用户共享的批注
+<skill-installation-path>/scripts/mybooks_api.py get_notes '{"title":"活着","own":0}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "book_id": 42,
+  "book_hash": "cloud-42-epub",
+  "books": null,
+  "configs": null,
+  "notes": [
+    {
+      "id": "wxread-wx-bm-1001",
+      "book_hash": "cloud-42-epub",
+      "type": "annotation",
+      "cfi": "epubcfi(/6/10!/4/4/2,/19:17,/21:4)",
+      "text": "他手里拿着两大块磁铁",
+      "note": "开篇的魔幻现实主义笔法",
+      "style": "highlight",
+      "color": "yellow",
+      "updated_at": 1755600000000,
+      "deleted_at": null
+    }
+  ]
+}
+```
+**`notes[]` 每条记录的字段**：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `id` | string | 记录唯一 ID；`push_notes` 导入的批注固定带 `wxread-` 前缀 |
+| `book_hash` | string | 所属书籍的 hash（云端书籍固定为 `cloud-<book_id>-epub`） |
+| `type` | string | `"bookmark"`（书签）/ `"annotation"`（划线+想法）/ `"excerpt"`（摘录） |
+| `cfi` | string | 该批注在 EPUB 正文里的定位（canonical CFI） |
+| `text` | string | 划线/摘录的原文，书签类可能为空 |
+| `note` | string | 用户写的想法/点评正文 |
+| `style` | string | `"highlight"` / `"underline"` / `"squiggly"` |
+| `color` | string | 高亮颜色，如 `"yellow"`，也可能是十六进制色值 |
+| `global` | bool | 可选；为 `true` 表示对本章节内该 `text` 的所有出现位置生效 |
+| `page` | number | 可选；分页/固定排版格式下的页码 |
+| `updated_at` | number | 最近一次更新的毫秒时间戳，用于判断是否新增/变更 |
+| `deleted_at` | number/null | 墓碑时间戳；非 `null` 表示该批注已被删除，仍会出现在结果里但应视为已删除 |
+
+按书名查询时命中多本书会返回：
+```json
+{ "status": "error", "message": "Multiple books matched this title; specify book_id", "candidates": [ {"id": 42, "title": "活着", "authors": ["余华"]}, ... ] }
+```
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"sync.disabled"` | 服务端数据同步功能未启用 |
+
+---
+
+### `clear_imported_notes` — 清空某本书已导入的批注（重置用，非日常操作）
+
+**使用场景**：撤销/重置某本书通过 `push_notes` 导入的全部批注——比如导入用错了数据、或者 `on_ambiguous:"first_match"` 选错了位置，用户明确要求"重新导入一遍"。**不要**把这个当成处理"再次同步"的常规手段——`push_notes` 本身已经会自动判重（见上），日常重复同步应该直接再调一次 `push_notes`，不需要先清空。
+
+**范围**：只会清除当前登录用户通过 `push_notes` 导入的批注（`id` 带 `wxread-` 前缀的），不影响这本书上其他人的批注，也不影响用户自己在 MyReader 里手动做的批注。
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `book_id` | int | ✅ | 书籍 ID |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py clear_imported_notes '{"book_id":42}'
+```
+
+**响应示例**：
+```json
+{ "err": "ok", "book_id": 42, "book_hash": "cloud-42-epub", "cleared": 5 }
+```
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"params.book.invalid"` | 书籍不存在 |
+| `"sync.disabled"` | 服务端数据同步功能未启用 |
 
 ---
 
@@ -669,6 +1015,556 @@ export MYBOOKS_PASSWORD="your_password"
 
 ---
 
+### `get_book_reading_stats` — 分格式阅读时长/进度统计
+
+**使用场景**：查看某本书**分格式**（epub/pdf/mobi 等）的阅读时长、阅读进度、开始/完成阅读的时间、开始阅读的次数。与 `reading`/`read_done` 的整本书阅读状态不同，这个接口是"格式"级别的细粒度数据。
+
+- "这本书我读了多久？" / "我读到哪了？" / "这本书 epub 版我什么时候开始读的？"
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `book_id` | int | ✅ | 书籍 ID |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py get_book_reading_stats '{"book_id":42}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "stats": [
+    {
+      "format": "epub",
+      "state": 0,
+      "total_seconds": 5421,
+      "progress_current": 3,
+      "progress_total": 488,
+      "progress_percent": 0.61,
+      "start_time": "2026-08-20T10:00:00Z",
+      "finish_time": null,
+      "start_count": 1,
+      "update_time": "2026-08-27T09:12:00Z"
+    }
+  ]
+}
+```
+
+`state`：`0`=在读，`1`=已完成。没有任何格式统计数据时 `stats` 为空数组 `[]`（比如从未通过 MyReader/网页阅读器打开过这本书）。
+
+---
+
+### `update_book_reading_stats` — 手动更新阅读时长/进度
+
+**使用场景**：手动补记或纠正某本书某个格式的阅读数据——导入历史阅读记录、用户口述"我刚读完这本书的 PDF 版"、或者网页阅读器等没有自动进度上报的场景。日常通过 MyReader 阅读的书籍会自动统计，**不需要**调用这个工具。
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `book_id` | int | ✅ | 书籍 ID |
+| `format` | string | ✅ | 电子书格式，如 `epub`/`pdf`/`mobi`/`azw3`/`txt` |
+| `duration_seconds` | int | ❌ | 累加到该格式累计阅读时长（是增量，不是覆盖总值） |
+| `progress` | array | ❌ | `[当前, 总数]`，如 `[120, 488]`；达到约 100% 会自动标记为已完成 |
+| `start_time` | string | ❌ | ISO8601 字符串或时间戳；显式开启新一轮阅读（开始次数 +1） |
+| `finish_time` | string | ❌ | ISO8601 字符串或时间戳；显式标记本轮阅读已完成 |
+| `state` | int | ❌ | `0`=在读，`1`=已完成，效果与传 `finish_time` 类似（不需要同时传两个） |
+
+**执行脚本**：
+```bash
+# 补记刚读的 40 分钟，并更新进度
+<skill-installation-path>/scripts/mybooks_api.py update_book_reading_stats \
+  '{"book_id":42,"format":"pdf","duration_seconds":2400,"progress":[50,200]}'
+
+# 手动标记这本书的 epub 版已读完
+<skill-installation-path>/scripts/mybooks_api.py update_book_reading_stats \
+  '{"book_id":42,"format":"epub","state":1}'
+```
+
+**响应示例**：
+```json
+{ "err": "ok", "stats": { "format": "pdf", "state": 0, "total_seconds": 2400, "progress_current": 50, "progress_total": 200, "progress_percent": 25.0, "start_time": "2026-08-27T09:00:00Z", "finish_time": null, "start_count": 1, "update_time": "2026-08-27T09:40:00Z" } }
+```
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"params.invalid"` | 缺少 `format`，或 `progress`/`state` 参数格式错误 |
+| `"params.book.invalid"` | 书籍不存在 |
+
+---
+
+### `get_reading_time` / `set_reading_time` / `delete_reading_time` — 按日期补录阅读时间
+
+> **版本要求：MyBooks v4.3.0+**（旧版本服务端没有 `/api/book/<id>/reading_time`，调用会 404）。
+
+**使用场景**：某天读了书但没有通过 MyReader/网页阅读器自动计时（纸质书、其他 App 等），按**日期**补录一条手工阅读记录。每本书每天最多一条手工记录：再次 `set_reading_time` 同一天是**覆盖**（不是累加），差值会同步到当日阅读统计、该书分格式累计时长和用户总阅读时长。与 `update_book_reading_stats`（按格式累加时长/进度）不同，这里是按天的"覆盖式"记录。
+
+**限制**：书籍必须有电子书格式（记录会挂到已有的阅读格式，否则挂到可用格式之一）；日期不能晚于今天；`duration_seconds` 范围 0~64800（18 小时）。均需登录，只影响当前用户自己的数据。
+
+**参数**：
+
+| 工具 | 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|------|
+| 三个都有 | `book_id` | int | ✅ | 书籍 ID |
+| 三个都有 | `date` | string | ✅ | 日期，格式 `YYYY-MM-DD` |
+| `set_reading_time` | `duration_seconds` | int | ✅ | 当天该书的阅读总秒数（覆盖原手工记录） |
+| `set_reading_time` | `start_time` | string | ❌ | 开始时间（文本，如 `"20:30"`） |
+| `set_reading_time` | `end_time` | string | ❌ | 结束时间（文本） |
+| `delete_reading_time` | `confirm` | bool | 删除时必填 | 必须为 `true` 才会真正删除，否则只返回预览 |
+
+**执行脚本**：
+```bash
+# 查询某天的手工记录及参考数据（自动记录的秒数、手工秒数、该书总时长）
+<skill-installation-path>/scripts/mybooks_api.py get_reading_time '{"book_id":42,"date":"2026-09-20"}'
+
+# 补录（或覆盖）：当天读了 45 分钟
+<skill-installation-path>/scripts/mybooks_api.py set_reading_time '{"book_id":42,"date":"2026-09-20","duration_seconds":2700,"start_time":"20:30","end_time":"21:15"}'
+
+# 删除当天的手工记录（同步回退统计）
+<skill-installation-path>/scripts/mybooks_api.py delete_reading_time '{"book_id":42,"date":"2026-09-20"}'
+# ↑ 不带 confirm 只返回待删记录预览（err:"confirm.required"），不会删除；用户明确同意后加 "confirm":true 才真正删除
+<skill-installation-path>/scripts/mybooks_api.py delete_reading_time '{"book_id":42,"date":"2026-09-20","confirm":true}'
+```
+
+**响应示例**：
+```json
+// get_reading_time
+{ "err": "ok", "entry": { "date": "2026-09-20", "duration_seconds": 2700, "format": "epub" }, "date_recorded_seconds": 600, "manual_recorded_seconds": 2700, "book_total_seconds": 8121 }
+// set_reading_time
+{ "err": "ok", "entry": { "date": "2026-09-20", "duration_seconds": 2700, "format": "epub" } }
+// delete_reading_time
+{ "err": "ok", "deleted": true }
+```
+`entry` 为 `null` 表示该日没有手工记录；`deleted:false` 表示本来就没有可删的记录。`entry` 的具体字段以服务端返回为准。
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"params.invalid"` | 日期格式错误/是未来日期、缺少或超出范围的 `duration_seconds`、书籍没有可阅读的电子书格式 |
+| `"params.book.invalid"` | 书籍不存在 |
+
+---
+
+## 书单工具列表
+
+> **版本要求：MyBooks v4.3.0+**（旧版本没有 `/api/booklist*` 接口）。书单（booklist）是用户自建的书籍集合，每人数量有上限，可设为公开供他人浏览、点赞。
+
+**权限规则**：浏览公开书单不需登录；创建/修改/删除书单、增删书籍、点赞需要登录，其中修改/删除/增删书籍仅限书单所有者或管理员；私有书单仅所有者/管理员可看，且不能点赞。
+
+**书单对象**（各接口 `booklist(s)` 里的元素）主要字段：`id`、`name`、`description`、`color`、`is_public`、`is_sticky`、`view_count`、`like_count`、`book_count`、`create_time`、`update_time`、`owner`（`id`/`username`/`avatar`）、`is_owner`、`liked_by_me`；列表接口另带 `cover_books`（最多 12 本的封面卡片）。
+
+| 工具 | 说明 | 参数 |
+|------|------|------|
+| `list_my_booklists` | 我的书单（需登录） | 无 |
+| `list_public_booklists` | 公开书单，分页 | `page`（默认 1）、`page_size`（默认 20，最大 50） |
+| `list_liked_booklists` | 我点赞过的书单（需登录） | 无 |
+| `get_booklist` | 书单详情 + 分页书籍（`books`、`books_total`） | `booklist_id`（必填）、`order`（`desc` 默认/`asc`，按加入时间）、`page`、`page_size`（默认 24，最大 60） |
+| `create_booklist` | 新建书单 | `name`（必填）、`description`（≤500 字）、`color`、`is_public`（默认 false） |
+| `update_booklist` | 修改书单，只改传入的字段 | `booklist_id`（必填）、`name`/`description`/`color`/`is_public` |
+| `delete_booklist` | 删除书单（**不会删除书籍本身**）。脚本强制两步确认：不带 `confirm:true` 时**不会删除**，只返回 `err:"confirm.required"` 和书单预览（名称/书数量）；须把预览给用户看，用户明确同意后再带 `"confirm":true` 重新调用 | `booklist_id`（必填）、`confirm`（真正删除时必须为 `true`） |
+| `booklist_add_books` | 批量加书（不存在的书自动忽略） | `booklist_id`（必填）、`book_ids`（数组，必填） |
+| `booklist_remove_book` | 移出一本书 | `booklist_id`、`book_id`（均必填） |
+| `like_booklist` | 点赞/取消点赞（切换） | `booklist_id`（必填） |
+| `get_book_booklists` | 我的书单里哪些已包含某本书（`contains_book`） | `book_id`（必填） |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py list_my_booklists '{}'
+<skill-installation-path>/scripts/mybooks_api.py create_booklist '{"name":"2026 科幻必读","description":"年度科幻","is_public":true}'
+<skill-installation-path>/scripts/mybooks_api.py booklist_add_books '{"booklist_id":7,"book_ids":[42,43]}'
+<skill-installation-path>/scripts/mybooks_api.py get_booklist '{"booklist_id":7,"page":1}'
+<skill-installation-path>/scripts/mybooks_api.py booklist_remove_book '{"booklist_id":7,"book_id":43}'
+# 删除书单：第一次调用只返回预览，不会删除
+<skill-installation-path>/scripts/mybooks_api.py delete_booklist '{"booklist_id":7}'
+# 用户明确同意后才带 confirm
+<skill-installation-path>/scripts/mybooks_api.py delete_booklist '{"booklist_id":7,"confirm":true}'
+```
+
+**响应示例**（`get_booklist`）：
+```json
+{
+  "err": "ok",
+  "booklist": {
+    "id": 7, "name": "2026 科幻必读", "is_public": true, "book_count": 2, "like_count": 3,
+    "is_owner": true, "liked_by_me": false,
+    "books": [ { "book_id": 42, "title": "三体", "img": "...", "thumb": "...", "href": "/book/42" } ],
+    "books_total": 2, "page": 1, "page_size": 24
+  }
+}
+```
+写操作响应：`create_booklist`/`update_booklist` 返回 `booklist` + `msg`；`booklist_add_books` 返回 `added`、`book_count`；`booklist_remove_book` 返回 `book_count`；`like_booklist` 返回 `liked`（当前是否已点赞）。
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"confirm.required"` | 删除类操作缺少 `confirm:true`，未执行任何删除，仅返回预览 |
+| `"booklist.not_found"` | 书单不存在 |
+| `"booklist.limit_exceeded"` | 已达每人书单数量上限 |
+| `"permission.denied"` | 无权限（非所有者/管理员，或私有书单） |
+| `"params.invalid"` | 参数错误（名称为空、未指定书籍、书不在书单中等） |
+| `"params.book.invalid"` | `booklist_add_books` 中的书籍全部不存在 |
+
+---
+
+## TTS 有声书工具列表（MiMo TTS，需管理员权限）
+
+> 将 EPUB 电子书转换为有声书。所有 TTS 接口均需要**管理员权限**。
+
+### `tts_save_config` — 保存 TTS API 配置
+
+**使用场景**：配置 TTS API 的连接参数（API URL、模型、密钥、类型等），保存后服务端加密存储
+
+**权限**：管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `api_url` | string | ✅ | API 地址，如 `https://api.xiaomimimo.com/v1/chat/completions` |
+| `model_name` | string | ✅ | 模型 ID，MiMo TTS 类型固定为 `mimo-v2.5-tts` |
+| `api_type` | string | ✅ | API 类型：`chat_completions`（MiMo TTS）/ `audio_speech`（OpenAI 兼容）/ `custom` |
+| `api_key` | string | ✅ | API 密钥 |
+| `auth_type` | string | ❌ | 认证类型：`bearer`（默认）/ `basic` / `custom` |
+| `voice_name` | string | ❌ | 预置音色 ID（`api_type=chat_completions` 且 `voiceType=preset` 时）或 `audio_speech` 的音色名 |
+| `voice_desc` | string | ❌ | 自定义音色描述（`voiceType=custom` 时） |
+| `clone_voice` | string | ❌ | 克隆音色名称（`voiceType=clone` 时） |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_save_config '{"api_url":"https://api.xiaomimimo.com/v1/chat/completions","model_name":"mimo-v2.5-tts","api_type":"chat_completions","api_key":"sk-xxx","voice_name":"mimo_default"}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "msg": "配置已保存"
+}
+```
+
+---
+
+### `tts_test_connection` — 测试 API 连接
+
+**使用场景**：使用当前保存的配置发送一次测试请求，验证 API Key 和端点是否可用
+
+**权限**：管理员
+
+**参数**：无（使用已保存的配置）
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_test_connection '{}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "msg": "连接成功"
+}
+```
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"tts.no_config"` | 未保存配置，请先调用 `tts_save_config` |
+| `"tts.connection_failed"` | 无法连接到 API 服务器 |
+| `"tts.invalid_key"` | API Key 无效 |
+
+---
+
+### `tts_convert` — 开始 EPUB 转有声书
+
+**使用场景**：将指定 EPUB 电子书转换为有声书，后台逐章合成 WAV 音频
+
+**权限**：管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `book_id` | int | ✅ | 书籍 ID |
+| `api_url` | string | ✅ | API 地址 |
+| `model_name` | string | ✅ | 模型 ID |
+| `api_type` | string | ✅ | API 类型：`chat_completions` / `audio_speech` / `custom` |
+| `api_key` | string | ✅ | API 密钥 |
+| `auth_type` | string | ❌ | 认证类型（默认 `bearer`） |
+| `voice_name` | string | ❌ | 预置音色 ID 或 `audio_speech` 音色名 |
+| `voice_desc` | string | ❌ | 自定义音色描述 |
+| `clone_voice` | string | ❌ | 克隆音色名称 |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_convert '{"book_id":42,"api_url":"https://api.xiaomimimo.com/v1/chat/completions","model_name":"mimo-v2.5-tts","api_type":"chat_completions","api_key":"sk-xxx","voice_name":"mimo_default"}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "msg": "转换任务已启动"
+}
+```
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"params.book.invalid"` | 书籍不存在 |
+| `"tts.converting"` | 已有转换任务在运行 |
+| `"book.no_epub"` | 书籍没有 EPUB 格式 |
+
+---
+
+### `tts_progress` — 查询转换进度
+
+**使用场景**：查询当前 TTS 转换任务的进度、阶段和章节信息
+
+**权限**：管理员
+
+**参数**：无
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_progress '{}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "status": "running",
+  "progress": 35,
+  "stage": "converting",
+  "current_chapter": 7,
+  "total_chapters": 20,
+  "current_title": "第七章 归途",
+  "book_id": 42
+}
+```
+
+**status 值**：
+| 值 | 含义 |
+|----|------|
+| `"idle"` | 无任务运行 |
+| `"running"` | 转换进行中 |
+| `"completed"` | 转换已完成 |
+| `"failed"` | 转换失败 |
+
+---
+
+### `tts_clone_upload` — 上传克隆音色
+
+**使用场景**：上传 MP3/WAV 音频样本作为克隆音色，上传后自动切换到 `mimo-v2.5-tts-voiceclone` 模型
+
+**权限**：管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `voice_name` | string | ✅ | 克隆音色名称（如"旁白"、"男主"） |
+| `file_path` | string | ✅ | 本地音频文件的绝对路径（MP3/WAV，≤7MB） |
+
+**限制**：
+- 格式：仅支持 `.mp3` 和 `.wav`
+- 大小：原始文件 ≤ 7MB（Base64 编码后约 9.3MB，MiMo 官方限制 Base64 ≤ 10MB）
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_clone_upload '{"voice_name":"旁白","file_path":"/path/to/sample.mp3"}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "msg": "克隆音色上传成功",
+  "data": { "name": "旁白", "ext": "mp3", "size": 1048576 }
+}
+```
+
+**常见错误**：
+| `err` 值 | 含义 |
+|----------|------|
+| `"clone.exists"` | 音色名称已存在 |
+| `"clone.too_large"` | 文件超过 7MB |
+| `"clone.invalid_format"` | 格式不支持 |
+
+---
+
+### `tts_clone_list` — 克隆音色列表
+
+**使用场景**：获取所有已上传的克隆音色列表
+
+**权限**：管理员
+
+**参数**：无
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_clone_list '{}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "clones": [
+    { "name": "旁白", "ext": "mp3", "size": 1048576 },
+    { "name": "男主", "ext": "wav", "size": 2097152 }
+  ]
+}
+```
+
+---
+
+### `tts_clone_delete` — 删除克隆音色
+
+**使用场景**：删除指定的克隆音色
+
+**权限**：管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `voice_name` | string | ✅ | 要删除的克隆音色名称 |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_clone_delete '{"voice_name":"旁白"}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "msg": "克隆音色已删除"
+}
+```
+
+---
+
+### `tts_clone_audio` — 下载克隆音频
+
+**使用场景**：下载/试听指定的克隆音色原始音频文件（返回二进制 WAV 数据）
+
+**权限**：管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `voice_name` | string | ✅ | 克隆音色名称 |
+| `save_to` | string | ❌ | 保存到本地路径（不传则返回 base64） |
+
+**执行脚本**：
+```bash
+# 保存到文件
+<skill-installation-path>/scripts/mybooks_api.py tts_clone_audio '{"voice_name":"旁白","save_to":"/tmp/clone_preview.wav"}'
+
+# 返回 base64（小文件）
+<skill-installation-path>/scripts/mybooks_api.py tts_clone_audio '{"voice_name":"旁白"}'
+```
+
+**响应示例**（保存到文件）：
+```json
+{
+  "err": "ok",
+  "msg": "音频已保存",
+  "path": "/tmp/clone_preview.wav",
+  "size": 1048576
+}
+```
+
+---
+
+### `tts_prompt_list` — 提示词列表
+
+**使用场景**：获取所有已保存的自定义语音提示词
+
+**权限**：管理员
+
+**参数**：无
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_prompt_list '{}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "prompts": [
+    { "name": "温柔女声", "desc": "温柔细腻的语调，语速偏慢，咬字清晰" },
+    { "name": "沉稳男声", "desc": "沉稳厚重的语调，语速适中偏低" }
+  ]
+}
+```
+
+---
+
+### `tts_prompt_save` — 保存提示词
+
+**使用场景**：将自定义音色描述保存为提示词（同名覆盖），存储于服务端 `voice_prompts.json`
+
+**权限**：管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `name` | string | ✅ | 提示词名称 |
+| `desc` | string | ✅ | 音色描述（自然语言描述语音特征） |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_prompt_save '{"name":"温柔女声","desc":"温柔细腻的语调，语速偏慢，咬字清晰，富有亲和力"}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "msg": "提示词已保存"
+}
+```
+
+---
+
+### `tts_prompt_delete` — 删除提示词
+
+**使用场景**：删除指定的语音提示词
+
+**权限**：管理员
+
+**参数**：
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `name` | string | ✅ | 要删除的提示词名称 |
+
+**执行脚本**：
+```bash
+<skill-installation-path>/scripts/mybooks_api.py tts_prompt_delete '{"name":"温柔女声"}'
+```
+
+**响应示例**：
+```json
+{
+  "err": "ok",
+  "msg": "提示词已删除"
+}
+```
+
+---
+
 ## 使用场景决策指南
 
 ```
@@ -687,8 +1583,14 @@ export MYBOOKS_PASSWORD="your_password"
 ├─ "找 XX 分类下的书"
 │   → search_by_category
 │
+├─ "XX 目录下有什么书" / "书库有哪些目录"
+│   → search_by_folder / list_folders
+│
 ├─ "查看书籍详情"
 │   → get_book
+│
+├─ "这本书我都划了哪些线？" / "看看《XX》的批注/书签"
+│   → get_notes（传 book_id 或 title；own:0 可连他人共享的批注一起看）
 │
 ├─ "更新/补全《XX》的封面、简介、标签信息"（自动从网上获取）
 │   → book_fill（需要管理员权限，传入 book_id 数组）
@@ -699,6 +1601,14 @@ export MYBOOKS_PASSWORD="your_password"
 ├─ "把修改后的元数据也写入电子书文件本身" / "同步元数据到文件"
 │   → save_meta_to_file（仅 epub/azw3/pdf，需管理员或书籍所有者权限）
 │
+├─ "把我在微信读书上的划线/想法导入这本书" / "导入第三方批注"
+│   → 先确认目标书是 EPUB 格式，再用 push_notes（先 dry_run:true 预览，用户确认后再 dry_run:false 提交）
+│   → 微信读书上有新批注后再次同步：直接把全量列表再传一遍 push_notes 即可，会自动判重，不用先清空
+│
+├─ "撤销/重置这本书导入的批注" / "刚才导入错了，重新来一遍"
+│   → clear_imported_notes（只影响当前用户自己通过 push_notes 导入的批注），然后重新调 push_notes
+│
+
 ├─ "把书发给我的 Kindle / 发到邮箱"
 │   → mailto（发邮箱附件）
 │
@@ -719,9 +1629,80 @@ export MYBOOKS_PASSWORD="your_password"
 │   → reading（read_state: 1 或 2）
 │   → read_done（快捷标记已读完）
 │
+├─ "这本书读了多久？" / "读到哪了？" / "epub 版什么时候开始读的？"
+│   → get_book_reading_stats（分格式的时长/进度/开始完成时间）
+│
+├─ "帮我补记这本书的阅读时长" / "标记这本书 XX 格式已读完"（无自动心跳的场景）
+│   → update_book_reading_stats
+│
+├─ "补录某天的阅读时间" / "昨天晚上读了 45 分钟没记上"（v4.3.0+）
+│   → set_reading_time（按日期覆盖）；查看用 get_reading_time；撤销用 delete_reading_time
+│
+├─ "我有哪些书单？" / "把这本书加到《XX》书单" / "新建一个书单"（v4.3.0+）
+│   → list_my_booklists / booklist_add_books / create_booklist
+│   → 看书单里的书：get_booklist；浏览大家的公开书单：list_public_booklists
+│   → 这本书已经在哪些书单里：get_book_booklists
+│
 └─ "有哪些分类？" / "XX 作者有哪些书？"
     → categories / list_authors / get_author_books
 ```
+
+### TTS 场景
+
+```
+用户请求
+│
+├─ "配置 TTS API" / "设置 MiMo API Key"
+│   → tts_save_config
+│
+├─ "测试 API 能不能用" / "连接正常吗"
+│   → tts_test_connection
+│
+├─ "把这本书转成有声书" / "开始转换"
+│   → tts_convert（需先有配置或直接传参）
+│
+├─ "转换到哪了" / "进度怎么样"
+│   → tts_progress
+│
+├─ "上传克隆音色" / "我想用自己的声音"
+│   → tts_clone_upload
+│
+├─ "有哪些克隆音色" / "看看上传的音色"
+│   → tts_clone_list
+│
+├─ "删除克隆音色" / "不要这个音色了"
+│   → tts_clone_delete
+│
+├─ "试听克隆音色" / "下载克隆音频"
+│   → tts_clone_audio
+│
+├─ "有哪些提示词" / "保存的音色描述"
+│   → tts_prompt_list
+│
+├─ "保存这个音色描述" / "存一个提示词"
+│   → tts_prompt_save
+│
+└─ "删除提示词" / "不要这个描述了"
+    → tts_prompt_delete
+```
+
+---
+
+## 预置音色参考
+
+MiMo TTS 类型（`api_type=chat_completions`）内置 9 个预置音色：
+
+| ID | 名称 | 语言 | 性别 |
+|----|------|------|------|
+| `mimo_default` | MiMo-默认 | 中文 | 女 |
+| `冰糖` | 冰糖 | 中文 | 女 |
+| `茉莉` | 茉莉 | 中文 | 女 |
+| `苏打` | 苏打 | 中文 | 男 |
+| `白桦` | 白桦 | 中文 | 男 |
+| `Mia` | Mia | 英文 | 女 |
+| `Chloe` | Chloe | 英文 | 女 |
+| `Milo` | Milo | 英文 | 男 |
+| `Dean` | Dean | 英文 | 男 |
 
 ---
 
@@ -733,10 +1714,17 @@ export MYBOOKS_PASSWORD="your_password"
 | `"user.need_login"` | 未登录或登录态过期 | 脚本自动重登录，仍失败则检查环境变量 |
 | `"permission"` | 无权限 | 说明当前账号权限不足，需管理员协助 |
 | `"params.book.invalid"` | 书籍不存在 | 建议用 `search_books` 重新确认 book_id |
+| `"book.no_epub"` | 书籍没有 EPUB 格式（或找不到 EPUB 文件） | `push_notes` 专属：提示用户该书无法导入批注，仅支持 EPUB |
+| `"sync.import.failed"` | `push_notes` 批注定位流程整体失败 | 与单条 `results[].status:"error"` 不同，是整批请求都没有结果，稍后重试或检查书籍文件是否损坏 |
 | `"task.running"` | 后台有任务在运行 | 等待当前任务完成后重试 |
 | `"book.notfound"` | ISBN 对应的书籍未在网上找到 | 换其他数据源或手动添加 |
 | `"connection.failed"` | 无法连接到设备 | 检查设备 IP 和 WiFi 接收功能是否开启 |
 | `"format.not_supported"` | 书籍没有 epub/azw3/pdf 格式 | 提示用户该书无法同步元数据到文件 |
+| `"tts.converting"` | TTS 转换任务进行中 | 等待完成后重试 |
+| `"tts.no_config"` | 未配置 TTS API | 先调用 `tts_save_config` |
+| `"clone.too_large"` | 克隆音色文件超限 | 提示用户裁剪音频至 7MB 内 |
+| `"clone.invalid_format"` | 克隆音色格式不支持 | 仅支持 MP3/WAV |
+| `"clone.exists"` | 克隆音色名称重复 | 换名或先删除旧的 |
 
 ---
 
@@ -749,3 +1737,11 @@ export MYBOOKS_PASSWORD="your_password"
 5. **send_to_device 限制**：仅支持本地临时推送，不支持通过服务器中转到远程设备。
 6. **在线数据源**：`book_fill` 依赖豆瓣（douban）、百科（baike）等在线源，网络不可用或书籍较冷门时可能无结果。
 7. **批量 book_fill**：建议每批不超过 10 本，避免触发后台任务冲突（`task.running` 错误）。
+8. **TTS 管理员权限**：所有 TTS 接口均需要管理员权限，普通用户无法使用。
+9. **TTS 异步转换**：`tts_convert` 启动后台任务后立即返回，需用 `tts_progress` 轮询进度。
+10. **TTS 断点续传**：重复转换同一本书时，自动跳过已存在的 WAV 文件（≥44 字节），中断后可继续。
+11. **TTS 音频输出**：转换完成后，音频输出到 `/audio/{book_id}` 页面播放，也可通过 Web 界面访问。
+12. **TTS 克隆音色限制**：MP3/WAV ≤ 7MB；上传后自动切换 `mimo-v2.5-tts-voiceclone` 模型。
+13. **TTS 提示词存储**：提示词保存在服务端 `voice_prompts.json`，跨浏览器共享，不依赖本地存储。
+14. **TTS API Key 加密**：API Key 经 PBKDF2-SHA256 + 流加密保存，密钥文件权限 0o600。
+15. **TTS 模型锁定**：MiMo TTS 类型下模型 ID 固定为 `mimo-v2.5-tts`，不可修改；`audio_speech` 和 `custom` 类型可自由修改。

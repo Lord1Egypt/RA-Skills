@@ -1,46 +1,66 @@
-## Description: <br>
-Speech recognition from voice messages using Yandex SpeechKit, with an extensible architecture for other providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speech recognition from voice messages using Yandex SpeechKit (with an extensible architecture for other providers). Use when you need to convert a voice message to text.
 
-## Publisher: <br>
-[bzSega](https://clawhub.ai/user/bzSega) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bzsega](https://clawhub.ai/user/bzsega)
 
-## Use Case: <br>
-External users and developers use this skill in OpenClaw to transcribe voice messages or local audio files into text through Yandex SpeechKit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Audio selected for transcription is sent to Yandex SpeechKit for processing. <br>
-Mitigation: Install and use the skill only for audio that may be processed by Yandex SpeechKit. <br>
-Risk: Yandex credentials are required for operation. <br>
-Mitigation: Use a least-privilege Yandex service account key and store credentials in OpenClaw configuration rather than chat, logs, or shared diagnostics. <br>
-Risk: The skill depends on local Python packages, FFmpeg, and an owner-controlled temporary directory. <br>
-Mitigation: Keep Python dependencies and FFmpeg current, and ensure the configured temporary directory is controlled by the skill owner. <br>
+## Use Case:
 
+External users and developers use this OpenClaw skill to transcribe voice messages or local audio files into text through Yandex SpeechKit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bzSega/sergei-mikhailov-stt) <br>
-- [Yandex Cloud documentation](https://yandex.cloud/ru/docs) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [OpenClaw skills configuration](https://docs.openclaw.ai/tools/skills-config) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown with optional JSON metadata and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful transcription can include recognized text, language, confidence, provider, and processing time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server-resolved release evidence) <br>
+Risk: Voice audio is sent to Yandex SpeechKit for transcription.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sending audio to Yandex SpeechKit is acceptable for the user, data, and deployment context.
+
+Risk: Yandex credentials are required for operation.
+
+Mitigation: Store credentials through OpenClaw skill environment configuration and use a narrowly scoped Yandex API key.
+
+Risk: Diagnostics or local configuration can expose operational details on shared hosts.
+
+Mitigation: Avoid running diagnostics on shared hosts where process arguments may be logged, and do not display or log API keys.
+
+Risk: Dependency versions are specified as minimum ranges rather than pinned releases.
+
+Mitigation: Pin dependencies for higher-assurance deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bzsega/skills/sergei-mikhailov-stt)
+- [Publisher profile](https://clawhub.ai/user/bzsega)
+- [OpenClaw documentation](https://docs.openclaw.ai/)
+- [OpenClaw skill configuration documentation](https://docs.openclaw.ai/tools/skills-config)
+- [Yandex Cloud documentation](https://yandex.cloud/ru/docs)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcription results, Markdown guidance, and inline shell/configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful recognition returns transcribed text and may include language, provider, confidence, and processing-time metadata.]
+
+## Skill Version(s):
+
+1.1.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

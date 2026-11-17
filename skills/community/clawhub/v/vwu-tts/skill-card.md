@@ -1,44 +1,54 @@
-## Description: <br>
-Calls the vwu.ai speech-2.8-hd and speech-2.8-turbo models through an OpenAI-compatible chat completions API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent call vwu.ai speech models through an OpenAI-compatible chat completions endpoint.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-Developers and agents use this skill to configure a vwu.ai API key and call the listed speech models from a shell command. It is suited for workflows that need OpenAI-compatible chat-completions access to those vwu.ai models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and account quota are handled by vwu.ai when the skill calls the API. <br>
-Mitigation: Install only if you trust vwu.ai, use a limited or replaceable API key, and avoid sending prompts that should not be shared with that service. <br>
-Risk: Changing VWU_BASE_URL can direct prompts and credentials to an untrusted host. <br>
-Mitigation: Keep the default endpoint unless a trusted replacement endpoint is explicitly required. <br>
-Risk: The artifact uses a chat-completions request path rather than a clearly dedicated audio TTS workflow. <br>
-Mitigation: Validate model behavior against the intended speech or text workflow before relying on it in production. <br>
+## Use Case:
 
+Developers and agents can use this skill to configure a vwu.ai API key and send prompts to the supported speech-2.8-hd and speech-2.8-turbo models. It is intended for vwu.ai model access through the included shell helper and model list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a3273283/vwu-tts) <br>
-- [Publisher profile](https://clawhub.ai/user/a3273283) <br>
-- [vwu.ai](https://vwu.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text model responses and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VWU_API_KEY. VWU_BASE_URL defaults to https://vwu.ai and should only be changed to a trusted endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The shell helper can send the user's API key and prompt to an unintended server if VWU_BASE_URL is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the endpoint before running, keep VWU_BASE_URL unset or set only to the intended HTTPS vwu.ai endpoint, and avoid sending sensitive prompts until the destination is verified.
+
+Risk: The helper constructs JSON in shell before calling the API.
+
+Mitigation: Review prompt handling before use with untrusted input and prefer a proper JSON serializer for production workflows.
+
+## Reference(s):
+
+- [vwu.ai](https://vwu.ai)
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/vwu-tts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VWU_API_KEY; sends prompts and API keys to the configured vwu.ai endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

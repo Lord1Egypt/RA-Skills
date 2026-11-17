@@ -127,7 +127,7 @@ Generates weekly/monthly reports with:
 # API Keys & Webhooks
 export COMPETITOR_DOMAINS="competitor1.com,competitor2.com,competitor3.com"
 export SERP_API_KEY="your_serpapi_key_here"
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 export GOOGLE_SHEETS_API_KEY="your_google_api_key"
 export GOOGLE_SHEET_ID="your_sheet_id"
 

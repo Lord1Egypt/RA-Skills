@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn73fqp9he241zy7a9s2nrf10d83j6gh",
-  "slug": "chan-stock-analysis",
-  "version": "1.0.4",
-  "publishedAt": 1774862040293
-}
+{"name":"chan-stock-analysis","version":"1.0.0","description":"缠论多级别联立股票行情分析","triggers":["使用缠论分析下","分析下股票","缠论分析"]}

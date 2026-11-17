@@ -2,7 +2,7 @@
 name: python-testing
 description: |
   Python testing patterns with pytest, fixtures, TDD, mocking, async and integration tests
-version: 1.9.8
+version: 1.10.3
 triggers:
   - python
   - testing
@@ -16,18 +16,12 @@ source: claude-night-market
 source_plugin: parseltongue
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/parseltongue](https://github.com/athola/claude-night-market/tree/master/plugins/parseltongue). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Python Testing Hub
 
 Testing standards for pytest configuration, fixture management, and TDD implementation.
-
-## Table of Contents
-
-1. [Quick Start](#quick-start)
-2. [When to Use](#when-to-use)
-3. [Modules](#modules)
 
 ## Quick Start
 
@@ -52,7 +46,7 @@ Testing standards for pytest configuration, fixture management, and TDD implemen
 - Evaluating test
   quality - use pensive:test-review instead
 - Infrastructure test
-  config - use leyline:pytest-config
+  config - use leyline:testing-quality-standards
 
 ## Modules
 
@@ -72,11 +66,12 @@ This skill uses modular loading to manage the system prompt budget.
 
 ## Exit Criteria
 
-- Tests implement the AAA pattern.
-- Coverage reaches the 80% project minimum.
-- Individual tests are independent and do not rely on execution order.
-- Fixtures are scoped appropriately (function, class, or session) to prevent side effects.
-- Mocking is restricted to external system boundaries.
+- [ ] Tests implement the AAA pattern.
+- [ ] Coverage reaches the 80% project minimum.
+- [ ] Individual tests are independent and do not rely on execution order.
+- [ ] Fixtures are scoped appropriately (function, class, or session) to
+  prevent side effects.
+- [ ] Mocking is restricted to external system boundaries.
 
 ## Troubleshooting
 

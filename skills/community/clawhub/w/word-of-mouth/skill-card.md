@@ -1,39 +1,54 @@
-## Description: <br>
-提供口碑营销的可落地指南与SOP。在开展口碑营销相关工作时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language, practical SOP guidance for word-of-mouth marketing work.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Marketing operators and business teams use this skill to plan and run word-of-mouth campaigns with clear goals, metrics, SOPs, pilot rollout steps, reporting cadence, and reusable checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign execution could conflict with privacy rules, platform policies, or local marketing regulations. <br>
-Mitigation: Apply the skill's compliance guidance by following local regulations, platform rules, personal information protection requirements, and data minimization practices before running campaigns. <br>
-Risk: Marketing recommendations may be incomplete or unsuitable for a specific business context. <br>
-Mitigation: Review goals, metrics, resource assumptions, pilot results, and reporting definitions with accountable business owners before standardizing the SOP. <br>
+## Use Case:
 
+Marketing teams and business operators use this skill to plan, execute, measure, and review word-of-mouth marketing campaigns with SOP steps, metric definitions, compliance checks, and reusable templates.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, SOP structure, metrics, and reporting templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, credentials, install steps, or hidden execution behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Marketing work can involve customer data or campaign audience details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply platform rules, privacy requirements, and data-minimization practices before using real customer data with the skill.
+
+Risk: Word-of-mouth campaign guidance may not match every local advertising, privacy, or platform requirement.
+
+Mitigation: Review the generated SOP, metrics, templates, and compliance notes against applicable China-specific laws and platform policies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/word-of-mouth)
+- [Publisher profile](https://clawhub.ai/user/codenova58)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with checklists, SOP steps, metric definitions, report structures, and meeting-note structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, credential handling, or automatic system changes are described in the evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

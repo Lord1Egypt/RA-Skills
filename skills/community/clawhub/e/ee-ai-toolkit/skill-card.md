@@ -1,46 +1,59 @@
-## Description: <br>
-Electrical engineering AI toolkit for AI in Electrical Engineering, prompt engineering, power systems, smart grids, electrical calculations, design automation, data visualization, optimization, career toolkit, and 100 electrical engineering Python example scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EE AI Toolkit helps electrical engineers use AI, prompt engineering, and Python examples for calculations, power systems, smart grids, design automation, data visualization, optimization, and career workflows.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Developers, electrical engineers, educators, and learners use this skill to retrieve course guidance, prompt templates, calculations, engineering workflow advice, and Python examples for electrical engineering AI tasks. It supports draft analysis and educational workflows that should be checked against applicable standards, simulations, field data, and qualified engineering review for safety-critical or compliance-sensitive decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some bundled Python examples read from or write to local files, including prompt logging and generated engineering templates. <br>
-Mitigation: Run examples in a working directory that is safe to modify, inspect each script before execution, and avoid entering credentials, proprietary prompts, resumes, or sensitive engineering data unless local retention is acceptable. <br>
-Risk: Electrical design, protection, grid analysis, optimization, and fault-analysis outputs may be incomplete or unsuitable for safety-critical use without validation. <br>
-Mitigation: Treat outputs as educational drafts and verify them with applicable standards, simulation tools, field data, and qualified engineering review before operational use. <br>
+## Use Case:
 
+Developers, electrical engineers, and learners use this skill to answer electrical-engineering AI questions, route to course references, and adapt local Python examples for calculations, analysis, visualization, optimization, and prompt workflows. Outputs should be treated as educational drafts requiring independent engineering verification for safety-critical work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/ee-ai-toolkit) <br>
-- [Course Index](references/course-index.md) <br>
-- [Condensed Lesson Notes](references/condensed-lessons.md) <br>
-- [Prompt Library](references/prompt-library.md) <br>
-- [Python Script Catalog](references/python-script-catalog.md) <br>
-- [Source Digest](references/source-digest.md) <br>
-- [Build Manifest](references/build-manifest.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with optional Python code and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local course files and Python script assets; examples can read or write local files when the user runs them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Electrical calculations, protection settings, sizing, optimization, and design outputs may be incomplete or unsuitable for real systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as educational drafts and verify them with applicable standards, simulation tools, field data, and qualified engineering review.
+
+Risk: Local example scripts can read user-provided files or write local outputs such as prompt logs, reports, templates, or exported data.
+
+Mitigation: Run scripts in a controlled local workspace and avoid entering confidential prompts, credentials, resumes, job-search details, or sensitive meter data unless local processing and file output are acceptable.
+
+## Reference(s):
+
+- [Course Index](references/course-index.md)
+- [Condensed Lesson Notes](references/condensed-lessons.md)
+- [Source Digest](references/source-digest.md)
+- [Prompt Library](references/prompt-library.md)
+- [Python Script Catalog](references/python-script-catalog.md)
+- [Build Manifest](references/build-manifest.md)
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/ee-ai-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with optional Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual Chinese and English explanations, assumptions, units, formulas, validation steps, and references to local skill files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

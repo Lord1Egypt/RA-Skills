@@ -1,39 +1,49 @@
-## Description: <br>
-Generate structured project scaffolds and template files for Node.js, Python, and Go using predefined bash templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured project scaffolds and template files for Node.js, Python, and Go through bash commands.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to create starter project layouts for Node.js, Python, and Go applications, or to inspect template file contents before creating a scaffold. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The init command writes files under the project directory name provided by the user. <br>
-Mitigation: Use a simple new relative folder name, avoid absolute paths or ../, and review generated files before running follow-up commands. <br>
-Risk: Generated templates include dependency manifests and next-step commands for npm, pip, or go tooling. <br>
-Mitigation: Review generated package files and dependency commands before installing or running them. <br>
+## Use Case:
 
+Developers and agents use this skill to create starter project structures for Node.js, Python, and Go applications, or to inspect representative template files before scaffolding.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration] <br>
-**Output Format:** [Generated scaffold files and terminal text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes scaffold files under the requested project directory and can print representative template files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The init command can overwrite template files in any writable path supplied by the user or agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination before running init, use a fresh project directory, and avoid absolute or parent-directory paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/proj-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with shell commands and generated source or configuration file contents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The init command can create or replace files in the project directory supplied by the user or agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

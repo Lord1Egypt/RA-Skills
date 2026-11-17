@@ -1,45 +1,56 @@
-## Description: <br>
-Hermes Memory CN gives an AI assistant a local, Chinese-optimized long-term memory layer for saving, searching, relating, expiring, exporting, and evolving user memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes Memory CN gives an AI assistant a local long-term memory layer for storing, searching, organizing, decaying, archiving, importing, and exporting user memories with Chinese-optimized vector search.
 
-## Publisher: <br>
-[dream978](https://clawhub.ai/user/dream978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dream978](https://clawhub.ai/user/dream978)
 
-## Use Case: <br>
-External users and developers use this skill to give an assistant persistent local memory for preferences, facts, lessons, trading notes, entity relationships, and repeated workflow patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly persists sensitive conversation details in a local memory database. <br>
-Mitigation: Enable it only for intended memory use, decide which categories may be saved, and avoid retaining sensitive personal or financial details unless explicitly approved. <br>
-Risk: Exported Markdown backups and scheduled memory maintenance can expose or preserve sensitive information beyond the current conversation. <br>
-Mitigation: Review exported files and cron jobs, keep the database and backups in user-controlled storage, and remove stale or sensitive entries during maintenance. <br>
-Risk: The skill-evolution workflow can turn remembered patterns into draft or promoted skill files. <br>
-Mitigation: Treat generated drafts and promote operations as untrusted until the files, paths, and proposed behavior have been inspected and scanned. <br>
+## Use Case:
 
+External users and developers use this skill to add persistent local memory to an agent, including preferences, facts, portfolio notes, strategies, lessons, and relationship queries. It is especially oriented toward Chinese-language semantic search and local personal knowledge workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dream978/hermes-memory-cn) <br>
-- [Installation guide](references/install.md) <br>
-- [AGENTS.md integration guide](references/integration.md) <br>
-- [Hermes Agent](https://github.com/NousResearch/hermes-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local memory search results, Markdown exports, entity relationship summaries, and skill draft files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server evidence release.version) <br>
+Risk: The skill can persist broad conversation memories, including preferences, trading details, and other personal context on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for data you are comfortable storing locally, avoid secrets or regulated data, and periodically review or delete stored memories and exports.
+
+Risk: Markdown exports and generated skill drafts may write files that overwrite existing Markdown or instruction content.
+
+Mitigation: Restrict exports and drafts to reviewed directories, inspect generated files before promotion, and keep backups for any directories the scripts can write to.
+
+## Reference(s):
+
+- [Installation guide](artifact/references/install.md)
+- [AGENTS.md integration guide](artifact/references/integration.md)
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent)
+- [Hugging Face mirror endpoint](https://hf-mirror.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local SQLite-backed memory records, relationship data, Markdown exports, and skill draft files when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+1.4.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

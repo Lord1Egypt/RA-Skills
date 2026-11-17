@@ -1,42 +1,54 @@
-## Description: <br>
-Scans local image folders, reports supported image formats and file metadata, and groups results by filename-based style categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans image folders to identify image formats, classify files by filename-based style cues, and produce a Chinese-language organization report.
 
-## Publisher: <br>
-[mrxolin](https://clawhub.ai/user/mrxolin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrxolin](https://clawhub.ai/user/mrxolin)
 
-## Use Case: <br>
-Developers, creators, and photo-library maintainers can use this skill to scan an explicit local photo directory and produce a quick report of image files, formats, sizes, timestamps, and filename-based categories before deciding how to organize files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scanning broad or sensitive folders can expose filenames, paths, sizes, and timestamps in reports. <br>
-Mitigation: Run the skill only on an explicit photo directory and review any report before sharing it. <br>
-Risk: Style and color classifications may be incomplete or inaccurate. <br>
-Mitigation: Treat classifications as a starting point and verify important results before relying on them for organization. <br>
-Risk: Automatic file organization claims may be misunderstood as fully implemented file-moving behavior. <br>
-Mitigation: Review the generated report first and confirm any future file-moving workflow before allowing it to modify files. <br>
+## Use Case:
 
+Developers and agents use this skill to scan local photography folders, summarize image formats and sizes, and classify images into broad style categories before organizing files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrxolin/image-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports local file metadata and filename-based classifications; color analysis and file moving should be treated as limited unless separately verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill is Chinese-language and may be harder for non-Chinese readers to review before acting on its report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the operator is comfortable reviewing Chinese-language prompts and report output.
+
+Risk: Future or optional classification behavior may organize files in bulk.
+
+Mitigation: Run it first on a specific test folder and review the report and output path before using classification on important photo libraries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrxolin/skills/image-scanner)
+- [Publisher profile](https://clawhub.ai/user/mrxolin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text console report with usage commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports image counts, formats, file sizes, modification times, and filename-derived style labels; current color analysis is reported as unknown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

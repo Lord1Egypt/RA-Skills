@@ -1,41 +1,57 @@
-## Description: <br>
-Answers questions based on the content of uploaded documents (PDF, DOCX, TXT), supporting individual files or entire folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answers questions based on the content of uploaded documents (PDF, DOCX, TXT), supporting individual files or entire folders.
 
-## Publisher: <br>
-[anand2426](https://clawhub.ai/user/anand2426) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anand2426](https://clawhub.ai/user/anand2426)
 
-## Use Case: <br>
-External users and developers use this skill to extract text from supported document files or folders and ask an agent fact-focused questions about the contents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected document contents are shown to the agent and may appear in terminal logs. <br>
-Mitigation: Use single files or tightly scoped folders, avoid mixed confidential directories, and confirm the documents are appropriate for agent processing. <br>
-Risk: The skill depends on a separate PDF reader skill and local Python libraries for some formats. <br>
-Mitigation: Verify the PDF-reader skill and required Python dependencies before relying on PDF, DOCX, or XLSX extraction. <br>
-Risk: Very long documents or questions that require distant context may produce incomplete answers. <br>
-Mitigation: Ask focused questions and verify important answers against the source documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Usage Guide for Document Q&A Skill](references/usage_guide.md) <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to extract local document content and ask factual questions about one file or a folder of supported files. It is best suited for document-grounded summarization, retrieval, and content review workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text containing extracted document context and the user's question] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes a single file or folder; PDF support depends on the separate iyeque-pdf-reader-1.1.0 skill, and DOCX/XLSX extraction depends on Python libraries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reads the specific local document or top-level folder path provided by the user.
+
+Mitigation: Provide only files or folders intended for analysis, especially when working with sensitive documents.
+
+Risk: Untrusted document text may contain prompt-injection attempts or misleading content that affects generated answers.
+
+Mitigation: Treat answers as document-grounded assistance and verify important claims against the source documents.
+
+Risk: PDF, DOCX, and XLSX handling depends on separate reader skills or Python libraries.
+
+Mitigation: Use reviewed, pinned dependencies and a trusted PDF-reader skill before relying on the workflow for sensitive files.
+
+## Reference(s):
+
+- [Usage Guide for Document Q&A Skill](references/usage_guide.md)
+- [ClawHub skill page](https://clawhub.ai/anand2426/skills/document-qa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text document context and question prompts; answers are typically returned as text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads user-provided document paths or folders and emits extracted content for the agent to answer against.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

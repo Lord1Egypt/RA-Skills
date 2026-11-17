@@ -1,40 +1,53 @@
-## Description: <br>
-Chrome MCP Tools helps agents access and control a live local Chrome browser through Chrome DevTools MCP middleware for opening pages, extracting rendered content, interacting with pages, taking snapshots, and collecting web data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accesses or controls a live local Chrome browser through Chrome DevTools MCP for opening pages, extracting rendered content, interacting with DOM elements, taking snapshots, and collecting website data.
 
-## Publisher: <br>
-[mallocfeng](https://clawhub.ai/user/mallocfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mallocfeng](https://clawhub.ai/user/mallocfeng)
 
-## Use Case: <br>
-Developers and agents use this skill when browser-rendered state is required, such as reading JavaScript-heavy pages, using an existing Chrome session, extracting article or list content, interacting with DOM elements, or capturing screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs external @mallocfeng/chromedev tooling that can control a live local Chrome session. <br>
-Mitigation: Use only when the publisher and npm package are trusted, review install commands before execution, keep the endpoint bound to 127.0.0.1, and stop the daemon after use. <br>
-Risk: A live Chrome session may already be logged into private accounts or sensitive sites. <br>
-Mitigation: Prefer read-only tasks, avoid sensitive sites unless necessary, approve any Chrome debugging prompt deliberately, and limit extracted content to the requested task. <br>
+## Use Case:
 
+Developers and agents use Chrome MCP Tools to inspect live, rendered web pages, including JavaScript-heavy or authenticated browser sessions, and return concise extracted content or summaries.
 
-## Reference(s): <br>
-- [Chrome MCP Tools on ClawHub](https://clawhub.ai/mallocfeng/chromedev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown or plain text with bounded extracted page content, summaries, and command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Chrome state through a daemon; final answers should be buffered, delivered once, and limited to the requested browser task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release metadata) <br>
+Risk: The skill can attach to a local Chrome session and read pages the user is logged into.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate browser profile for sensitive accounts and install only when browser-session access is acceptable.
+
+Risk: The skill may automatically install or upgrade a global npm package before use.
+
+Mitigation: Review the npm package source and resolved version before installation, and avoid automatic global upgrades where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mallocfeng/skills/chromedev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with concise extracted page content, summaries, status messages, and occasional inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final extracted answers are buffered and delivered as one complete response; blocked pages report visible content and the blocking condition.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

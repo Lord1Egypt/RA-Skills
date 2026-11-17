@@ -1,43 +1,60 @@
-## Description: <br>
-Use the ZapYeti API to list debts, track balances, view payoff schedules, log payments, and monitor debt-free progress via api.zapyeti.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ZapYeti API to list debts, track balances, view payoff schedules, log payments, and monitor debt-free progress via api.zapyeti.com.
 
-## Publisher: <br>
-[djedi](https://clawhub.ai/user/djedi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djedi](https://clawhub.ai/user/djedi)
 
-## Use Case: <br>
-Developers and external users use this skill to query and manage ZapYeti debt payoff data through the ZapYeti REST API, including debts, balances, payments, payoff schedules, exports, SimpleFin sync, social features, and admin endpoints when authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access broad financial-account actions, including payments, exports, SimpleFin connections, social posting, API key management, account deletion, and admin endpoints. <br>
-Mitigation: Use a least-privilege ZapYeti API key and require explicit user approval before any mutating, export, account, SimpleFin, social, API-key, or admin operation. <br>
-Risk: Read-only debt and payment lookups may expose sensitive financial information. <br>
-Mitigation: Install only when ZapYeti is trusted for the workflow and avoid sharing returned financial data beyond the user's requested task. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent interact with ZapYeti debt-management data, including debt lists, payoff progress, payment history, profile data, exports, and plan management.
 
-## Reference(s): <br>
-- [ZapYeti API reference](references/api.md) <br>
-- [ZapYeti homepage](https://zapyeti.com) <br>
-- [ZapYeti source link from metadata](https://github.com/djedi/zapyeti) <br>
-- [ClawHub skill page](https://clawhub.ai/djedi/zapyeti) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, python3, and ZAPYETI_API_KEY. Amounts are represented in cents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill gives an agent broad access to sensitive ZapYeti financial-account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, use the narrowest available ZapYeti API key, and review agent actions before execution.
+
+Risk: Exports, deletes, account changes, API-key changes, SimpleFin sync, and social posting can expose or modify sensitive data.
+
+Mitigation: Require explicit user confirmation before running sensitive, destructive, exporting, synchronization, or posting operations.
+
+Risk: The ZapYeti API key may be exposed through command-line process logging or terminal history.
+
+Mitigation: Pass the key through the ZAPYETI_API_KEY environment variable, avoid logging commands that reveal credentials, and rotate the key if exposure is possible.
+
+## Reference(s):
+
+- [ZapYeti API Reference](references/api.md)
+- [ZapYeti Homepage](https://zapyeti.com)
+- [ZapYeti API Base URL](https://api.zapyeti.com)
+- [Declared Source Link](https://github.com/djedi/zapyeti)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZAPYETI_API_KEY; amounts are represented in cents.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

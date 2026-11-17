@@ -1,41 +1,58 @@
-## Description: <br>
-Analyze server logs for error patterns, IP frequency, time-based analysis, and alert generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze server logs for error patterns, IP frequency, time-based analysis, alert generation, anomaly detection, top error messages, and frequency aggregation across syslog, custom log files, or piped input.
 
-## Publisher: <br>
-[laolaoqi](https://clawhub.ai/user/laolaoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laolaoqi](https://clawhub.ai/user/laolaoqi)
 
-## Use Case: <br>
-Developers, site reliability engineers, and operations teams use this skill to inspect syslog, custom log files, or piped log streams for recurring errors, IP frequency patterns, time buckets, and spikes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided trace or log material may include sensitive cookies, tokens, request bodies, console logs, DOM content, screenshots, attachments, or operational details. <br>
-Mitigation: Redact sensitive data and limit shared inputs and outputs before using or distributing analysis results. <br>
-Risk: System logs may require elevated access, and large files can expose more data than intended. <br>
-Mitigation: Run the analysis with the least required permissions and pre-filter or reduce large log files before analysis. <br>
+## Use Case:
 
+Developers, operators, and site reliability engineers use this skill to analyze selected server logs for error patterns, IP frequency, time-based trends, and spike indicators. It helps summarize local log files or piped log streams and suggests operational follow-up areas.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laolaoqi/laolaoqi-log-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/laolaoqi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text output with tabular summaries and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports error counts, top matching messages, hourly or daily buckets, IPv4 frequency, and spike indicators when the input format supports them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Log contents may include sensitive production, customer, credential, host, or IP address data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Analyze only logs you are authorized to inspect and redact sensitive values before sharing output.
+
+Risk: Running the analyzer over system logs may require elevated access in some environments.
+
+Mitigation: Prefer user-owned or copied log files and avoid sudo unless access is explicitly authorized.
+
+Risk: Logs from untrusted sources may contain terminal control characters that affect displayed output.
+
+Mitigation: Review or sanitize untrusted logs before analysis and treat terminal output as untrusted text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laolaoqi/skills/laolaoqi-log-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/laolaoqi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text with counts, ranked tables, status messages, simple bar charts, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally over a chosen file or stdin and prints analysis results to stdout/stderr.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

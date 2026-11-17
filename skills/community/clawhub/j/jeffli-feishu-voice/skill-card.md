@@ -1,44 +1,56 @@
-## Description: <br>
-Generates Feishu-native voice replies by synthesizing text with Edge TTS, converting the audio to Ogg/Opus with ffmpeg, and sending it as a playable Feishu voice message alongside visible text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Feishu-native voice replies with a playable pause/resume bar by synthesizing text, converting it with ffmpeg to Ogg/Opus, and sending it as a voice message.
 
-## Publisher: <br>
-[jeffli2002](https://clawhub.ai/user/jeffli2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jeffli2002](https://clawhub.ai/user/jeffli2002)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and Feishu workspace users use this skill to provide both visible text and a Feishu-native playable voice message for Chinese voice playback, spoken summaries, or replies that should appear as an in-chat audio player.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Chat text may be synthesized through an external TTS tool and then sent into Feishu, which can expose private or sensitive content.
+
+Mitigation: Avoid using the skill for secrets, private records, or sensitive business content unless the user accepts the TTS and Feishu data flow.
+
+Risk: Broad voice-playback triggers can cause unintended audio-message generation.
+
+Mitigation: Use the skill only when the user explicitly requests Feishu voice playback, spoken summaries, or equivalent voice-message behavior.
+
+Risk: The artifact contains unresolved conflict markers in the skill text.
+
+Mitigation: Review and clean the skill documentation before deployment so agents do not receive contradictory or malformed guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to respond in Feishu with both readable text and a native voice bubble when a user asks for spoken playback, a voice reply, or a compact spoken summary. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, files, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Message text is sent through Edge TTS and may include sensitive content if the agent uses it indiscriminately. <br>
-Mitigation: Use the skill only for content that is acceptable to synthesize through Edge TTS; avoid secrets, regulated data, and sensitive internal content. <br>
-Risk: Generated MP3 and Ogg/Opus audio files remain in the workspace after voice generation. <br>
-Mitigation: Store generated files only in an approved workspace location and apply local retention or cleanup controls appropriate for the content. <br>
-Risk: The artifact contains unresolved merge-conflict markers in the skill documentation. <br>
-Mitigation: Have the publisher remove the conflict markers before relying on the release documentation operationally. <br>
-Risk: The skill depends on local media tooling such as edge-tts, ffmpeg, and optionally ffprobe. <br>
-Mitigation: Confirm those dependencies are installed and trusted in the agent runtime before enabling the workflow. <br>
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON/file paths from the helper script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeffli2002/jeffli-feishu-voice) <br>
+**Other Properties Related to Output:** [Produces an Ogg/Opus voice file path intended for Feishu voice-message sending and keeps a visible text reply aligned with the spoken content.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output; generated media files are MP3 and Ogg/Opus.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates workspace-local audio files intended for Feishu voice-message delivery.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

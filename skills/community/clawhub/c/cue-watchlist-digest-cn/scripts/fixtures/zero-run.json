@@ -1,0 +1,19 @@
+{
+  "asof": "2026-10-13 06:05",
+  "asof_date": "2026-10-13",
+  "billing": "credits_charged=0.000（服务端返回原样）",
+  "changed_count": 0,
+  "events_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "exit_code": 0,
+  "idempotent_replay": false,
+  "legs_called": 2,
+  "legs_returned": 0,
+  "missing_legs": [
+    "实跑 2 域、返货只覆盖 0 域"
+  ],
+  "new_count": 0,
+  "offlist_skipped": 0,
+  "prev_date": "无（首次运行）",
+  "subjects": 2,
+  "window": "2026-09-13~2026-10-13"
+}

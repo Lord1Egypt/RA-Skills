@@ -1,0 +1,221 @@
+{
+  "_comment": "贝莱德智库（BlackRock Investment Institute）风格令牌 —— 单一来源。theme_inject.py / check_br.py 都从这里读，禁止在脚本里重复硬编码。",
+  "version": "1.1.0",
+
+  "brand": {
+    "black": "#000000",
+    "yellow": "#FFCE00",
+    "yellowTint": "#FFF5CC",
+    "yellowMid": "#FDCE34",
+    "yellowText": "#8A6200",
+    "red": "#FF4713",
+    "redText": "#CE2A0A",
+    "redTint": "#FFDAD0",
+    "green": "#008B5C",
+    "greenText": "#00704A",
+    "greenTint": "#B5FFE6",
+    "purple": "#9062BC",
+    "pink": "#FC9BB3",
+    "darkred": "#C00B28",
+    "yellowDeep": "#FEDC00",
+    "gold2": "#C49C04",
+    "goldDark": "#896E00",
+    "redDeep": "#E23E0F",
+    "burntOrange": "#CD4119",
+    "orangeHot": "#FF3D06",
+    "purpleLight": "#9E79D9",
+    "purpleTint": "#CFBCEC",
+    "peach": "#FFB76D",
+    "peachTint": "#FFD3A5",
+    "salmonBand": "#FFB5A1",
+    "greenTint2": "#80C5AE",
+    "redTint2": "#FFA389",
+    "pinkTint": "#FFD7CB",
+    "axisGray": "#808080",
+    "gray": "#D9D9D9",
+    "grayText": "#595959",
+    "white": "#FFFFFF",
+    "paper": "#F7F7F5",
+    "rule": "#E2E2DD"
+  },
+
+  "root_vars": {
+    "--bk": "#000000",
+    "--by": "#FFCE00",
+    "--bw": "#FFFFFF",
+    "--bg": "#F7F7F5",
+    "--bd": "#E2E2DD",
+    "--t3": "#8C8C8C",
+    "--t2": "#595959",
+    "--t1": "#111111",
+    "--up": "#CE2A0A",
+    "--dn": "#00704A",
+    "--by2": "#FEDC00",
+    "--br-pl": "#9E79D9",
+    "--br-ax": "#808080"
+  },
+
+  "bii2026q4": {
+    "_comment": "贝莱德《2026年第四季度全球投资展望》（MKTG0926-M-5961218-EXP0927，21页）全要素实测。研读依据与明细见 docs/br2026q4_design_study.md。色值均为 pdftoppm 位图 + Pillow 全分辨率量化实测，非目测。",
+    "sample": "MKTG0926-M-5961218-EXP0927（2026年9月，21页 A4 横向）",
+    "measured_colors": {
+      "brand_yellow": "#FFCE00",
+      "series_yellow_deep": "#FEDC00",
+      "series_red": "#FF4713",
+      "series_red_deep": "#E23E0F",
+      "series_burnt_orange": "#CD4119",
+      "series_orange_hot": "#FF3D06",
+      "series_dark_red": "#C00B28",
+      "series_green": "#008B5C",
+      "series_green_deep": "#007A51",
+      "series_purple_solid": "#9062BC",
+      "series_purple_line": "#9E79D9",
+      "fill_purple_tint": "#CFBCEC",
+      "series_pink": "#FC9BB3",
+      "fill_peach": "#FFB76D",
+      "fill_peach_tint": "#FFD3A5",
+      "fill_salmon_band": "#FFB5A1",
+      "fill_green_tint": "#80C5AE",
+      "fill_red_tint": "#FFA389",
+      "fill_pink_tint": "#FFD7CB",
+      "axis_gray": "#808080",
+      "card_gray": "#DCDCDC",
+      "gold_dark": "#896E00",
+      "gold_2": "#C49C04"
+    },
+    "fonts": {
+      "latin_display": "BLKFort-Extrabold / BLKFort-Bold",
+      "latin_body": "BLKFort-Book",
+      "latin_data": "BLKFortCond-Light",
+      "cjk_body": "NotoSansSC (Bold/Regular/Light)",
+      "cjk_cover_theme": "FZBeiWeiKaiShu-S19S（封面主题语书法体）",
+      "fallback": "BLKFort→Arial/Helvetica w800；书法体→STKaiti/KaiTi/serif；Cond→Arial Narrow"
+    },
+    "page_anatomy": "论点式大标题（判断句）→ 论据副标（1-2行）→ 左右双图面板 → 每面板「资料来源+注」；页脚三段：免责声明｜页码｜文件编号 MKTG…-N/21；封面整页 #FFCE00 铺底（实测 82.8%）",
+    "chart_gallery": [
+      "柱状+均线+阈值虚线", "多系列线图", "堆积柱+空心柱（假设值）", "多基准价格线",
+      "长周期占比堆积", "含负值堆积柱", "单线全宽", "对数尺度+趋势虚线+估计段",
+      "指数化多线（基准=100）", "信号面板表（状态徽章）", "OAS双系列", "2×2象限图",
+      "比率线", "月度柱", "Z-score条形", "七币种堆积柱",
+      "收益率曲线双日对比", "水平占比堆积+大数字", "双轴组合（柱+线右轴）", "到期墙前瞻堆积",
+      "交易额柱", "配置梯度图", "估计段线图", "IQR/十分位距分布",
+      "三栏驱动映射表（彩色主题卡）", "点阵量尺（低配/中性/超配+早期观点空心点）",
+      "双语气泡资产地图（中英对照）", "战术观点表"
+    ],
+    "conventions": [
+      "估计段：预测区上方置「估计」标签，浅色调或虚线边界",
+      "免责前缀三态：前瞻性估计可能不会实现 / 所示数据仅代表过往表现 / 仅供说明",
+      "资料来源句式：资料来源：贝莱德智库、[机构]，数据来自 [Haver Analytics|LSEG Datastream|彭博|PitchBook|Preqin|CBO|美联储|Dealogic|Aladdin]，YYYY年M月。",
+      "注释句式：注：图中线条/柱状图呈列的是…（含口径与指数代理）",
+      "图例置面板顶部横排；轴单位随轴竖排；指数化注明基准时点（=100）",
+      "符号语义：空心柱=假设值；虚线=估计/阈值；浅带=分位区间；实心点=现配置，空心点=早期观点",
+      "信号徽章两态：乐观（实底）/观察中（描边）"
+    ]
+  },
+
+  "geometry": {
+    "page_w_mm": 297,
+    "page_h_mm": 210,
+    "media_box_pt": [0, 0, 841.92, 594.96],
+    "expected_pages": 22,
+    "spine_mm": 1.3,
+    "spine_cover_mm": 4.6,
+    "band_mm": 6.2,
+    "band_cover_mm": 10,
+    "content_margin_mm": 12,
+    "cover_margin_mm": 18
+  },
+
+  "palette_remap": {
+    "_comment": "全局色板重定向表：源 BII 色 → 贝莱德色。作用于 CSS / 内联样式 / SVG fill / canvas JS，全部区域。",
+    "_categorical_note": "⚠️ 7 槽分类色（#C62828 红 / #FFB500 黄 / #2E6FAF 蓝 / #2E9E8F 青 / #E07B39 橙 / #8E44AD 紫 / #8C8C8C 灰）必须映射到**7 个仍可区分**的色相。v1.0.0 曾把 #E07B39→#FF4713、#8E44AD→#6E4E9E，结果 7 色塌缩成 5 色（红×2、紫×2），A5 箱线图有 4 个系列肉眼难分。v1.0.1 起：#2E6FAF 保留冷蓝相、#E07B39 保留橙相、#8E44AD 取品牌紫。",
+    "#C62828": "#CE2A0A",
+    "#A32D2D": "#A82407",
+    "#B71C1C": "#A81F05",
+    "#E24B4A": "#E8552E",
+    "#E53935": "#FF4713",
+    "#EF9A9A": "#FF9F80",
+    "#FBE9E7": "#FFE3D9",
+    "#FFCDD2": "#FFCEC2",
+    "#7F1D1D": "#8A1C04",
+    "#FFB500": "#FFCE00",
+    "#FBE8C4": "#FFF3C4",
+    "#FAC775": "#FDDC6B",
+    "#EF9F27": "#F5C518",
+    "#FFF6E0": "#FFF5CC",
+    "#B37F00": "#8A6200",
+    "#7A5200": "#6B4A00",
+    "#633806": "#5C3A00",
+    "#412402": "#3A2C00",
+    "#2E7D32": "#00704A",
+    "#1B5E20": "#00563A",
+    "#3B6D11": "#0A5C3F",
+    "#81C784": "#4FB894",
+    "#A5D6A7": "#8ED9BD",
+    "#97C459": "#43AB84",
+    "#E8F5E9": "#E3F6EF",
+    "#2E6FAF": "#3F6FA6",
+    "#8E44AD": "#9062BC",
+    "#E07B39": "#E8892B",
+    "#2E9E8F": "#008B5C",
+    "#5F5E5A": "#595959",
+    "#F0F0EC": "#F2F1EE",
+    "#EDEDE8": "#EFEEEA",
+    "#F1EFE8": "#F3F2EE",
+    "#FBFBF8": "#FBFAF7",
+    "#BBBBBB": "#D9D9D9"
+  },
+
+  "categorical_ramp": {
+    "_comment": "重定向后的 7 槽分类色，供体检脚本核对「色相未塌缩」。",
+    "红": "#CE2A0A",
+    "黄": "#FFCE00",
+    "蓝": "#3F6FA6",
+    "青绿": "#008B5C",
+    "橙": "#E8892B",
+    "紫": "#9062BC",
+    "灰": "#8C8C8C"
+  },
+
+  "rgba_remap": {
+    "rgba(46,125,50,": "rgba(0,112,74,",
+    "rgba(198,40,40,": "rgba(206,42,10,"
+  },
+
+  "preserve_css_head": [
+    "*{box-sizing:border-box;margin:0;padding:0}",
+    "html{-webkit-print-color-adjust:exact; print-color-adjust:exact}",
+    "body{",
+    ".legend-hint{display:none}",
+    "@page{ size:A4 landscape; margin:0 }",
+    "page-break-after:always",
+    "min-height:210mm",
+    "width:297mm"
+  ],
+
+  "required_structures": [
+    ":root{",
+    "--by:#FFCE00",
+    "--up:#CE2A0A",
+    "--dn:#00704A",
+    "@page{ size:A4 landscape; margin:0 }",
+    "min-height:210mm",
+    ".page::before",
+    ".page::after",
+    ".cover::after",
+    "data-br-tab",
+    "br-code"
+  ],
+
+  "forbidden_after_inject": [
+    "#FFB500",
+    "#C62828",
+    "#2E7D32"
+  ],
+
+  "front_matter": {
+    "brand_line": "BII · EQUITY NOTE",
+    "brand_sub": "贝莱德智库风格 · 贵金属 · 个股涨势研判 · 可视化解读",
+    "style_note": "本报告版式参照贝莱德智库（BlackRock Investment Institute）公开出版物的视觉规范重建；本报告为独立分析件，非贝莱德公司出品，与其无任何关联。"
+  }
+}

@@ -1,41 +1,50 @@
-## Description: <br>
-Guides an agent through cloning or downloading a GitHub project, running model predictions on a supplied dataset, calculating accuracy metrics, and producing experiment reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Given a GitHub repository URL and a data file, this skill guides an agent through running the project, validating prediction accuracy, and producing workflow and accuracy reports.
 
-## Publisher: <br>
-[kevinyyc](https://clawhub.ai/user/kevinyyc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinyyc](https://clawhub.ai/user/kevinyyc)
 
-## Use Case: <br>
-Developers and ML evaluators use this skill to run a GitHub-hosted model project against a provided dataset, compute MAE, RMSE, MAPE, and accuracy, and generate reproducible experiment reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Loading untrusted PyTorch model files with weights_only=false can execute code from an untrusted repository download. <br>
-Mitigation: Use a disposable isolated environment, avoid sensitive files and credentials, prefer safetensors or a verified state_dict, and review repository code and dependencies before evaluation. <br>
-Risk: Cloning or downloading arbitrary GitHub projects may expose the agent runtime to untrusted code and dependencies. <br>
-Mitigation: Evaluate repositories only in a sandbox with limited network reachability and inspect dependency installation and execution steps before running them. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess a GitHub project's predictive accuracy against a supplied dataset and generate experiment results for review.
 
-## Reference(s): <br>
-- [GitHub Experiment Accuracy Workflow](artifact/references/workflow.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kevinyyc/github-experiment-accuracy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, code snippets, report templates, and JSON result paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include accuracy_report.md, experiment_report.md, and outputs/daily_results.json in the evaluated project workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may load models from arbitrary repositories using unsafe PyTorch deserialization, which can execute untrusted code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted and verified repositories, commits, and model artifacts in a disposable sandbox with no secrets or sensitive files; prefer safe model formats or weights-only loading.
+
+## Reference(s):
+
+- [Workflow Reference](references/workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/kevinyyc/skills/github-experiment-accuracy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell, PowerShell, and Python snippets; generated reports may be Markdown or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces experiment reports and daily result files such as accuracy_report.md, experiment_report.md, and outputs/daily_results.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

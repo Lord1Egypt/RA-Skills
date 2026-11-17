@@ -1,46 +1,60 @@
-## Description: <br>
-Review academic papers for correctness, quality, and novelty using OpenJudge's multi-stage pipeline, with support for PDF files, LaTeX source packages, and BibTeX verification across 10 disciplines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review academic papers for correctness, quality, and novelty using OpenJudge's multi-stage pipeline, supporting PDF files and LaTeX source packages across 10 disciplines.
 
-## Publisher: <br>
-[helloml0326](https://clawhub.ai/user/helloml0326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helloml0326](https://clawhub.ai/user/helloml0326)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill to run OpenJudge's multi-stage academic paper review pipeline for manuscript critique, correctness checks, venue-aware review scoring, and optional reference verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paper contents, references, or manuscript metadata may be processed by configured external model and bibliography services. <br>
-Mitigation: Use approved providers or endpoints, and do not submit confidential, embargoed, or unpublished manuscripts unless that use is authorized. <br>
-Risk: Model API keys and custom endpoints are required for normal operation. <br>
-Mitigation: Prefer environment variables or restricted API keys, avoid printing secrets in terminals, and verify custom base URLs before use. <br>
-Risk: The skill depends on the OpenJudge and LiteLLM package chain and on the selected provider's behavior. <br>
-Mitigation: Install only in trusted environments and review dependency and provider trust requirements before deployment. <br>
+## Use Case:
 
+Developers, researchers, and reviewers use this skill to run structured academic paper reviews, correctness checks, criticality assessment, and optional BibTeX verification on PDF or LaTeX paper sources.
 
-## Reference(s): <br>
-- [Paper Review Skill Reference](reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/helloml0326/paper-review) <br>
-- [LiteLLM providers](https://docs.litellm.ai/docs/providers) <br>
-- [OpenAI models](https://platform.openai.com/docs/models) <br>
-- [Anthropic models](https://docs.anthropic.com/en/docs/about-claude/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review report and BibTeX verification summary, with shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include review scores, correctness findings, criticality assessment, safety or format results, and reference verification status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires installing Python dependencies and running a paper-review pipeline in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in an isolated Python environment with pinned, reviewed package versions.
+
+Risk: Paper files, metadata, prompts, or reference information may be sent to selected model providers or reference-checking services.
+
+Mitigation: Provide only the files and API credentials needed for the review, and choose providers appropriate for the paper's confidentiality requirements.
+
+Risk: Model-generated reviews may contain incorrect judgments or miss paper-specific issues.
+
+Mitigation: Treat the review as decision support and require human reviewer validation before relying on scores or correctness findings.
+
+## Reference(s):
+
+- [Paper Review Skill Reference](reference.md)
+- [LiteLLM Providers](https://docs.litellm.ai/docs/providers)
+- [OpenAI Models](https://platform.openai.com/docs/models)
+- [Anthropic Models](https://docs.anthropic.com/en/docs/about-claude/models)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with inline command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call model-provider APIs and optional reference-checking services; output can include review scores, correctness findings, criticality assessment, and BibTeX verification summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

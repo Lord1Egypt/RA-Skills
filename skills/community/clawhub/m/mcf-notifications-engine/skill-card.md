@@ -1,41 +1,58 @@
-## Description: <br>
-Multi-channel notification delivery with customizable templates, email and SMS sending, and full delivery logging -- built for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-channel notification delivery with customizable templates, email and SMS sending, and full delivery logging - built for AI agents.
 
-## Publisher: <br>
-[cameron48](https://clawhub.ai/user/cameron48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron48](https://clawhub.ai/user/cameron48)
 
-## Use Case: <br>
-External developers and AI agent builders use this skill to send email and SMS notifications, manage reusable notification templates, and inspect delivery history through a paid API gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recipient contact details, message contents, delivery history, and payment activity are sent to an external notification gateway. <br>
-Mitigation: Install only when the publisher and gateway are trusted, and avoid sensitive personal data until privacy, retention, access control, and billing behavior are documented. <br>
-Risk: The skill can send email or SMS messages and incur x402 payment charges. <br>
-Mitigation: Require user approval before allowing an agent to send notifications or perform paid API operations. <br>
+## Use Case:
 
+Developers and agent builders use this skill to let AI agents send email and SMS notifications, manage reusable templates, and inspect delivery logs through a unified notification API.
 
-## Reference(s): <br>
-- [Notifications Engine on ClawHub](https://clawhub.ai/cameron48/mcf-notifications-engine) <br>
-- [MCF Agentic Gateway](https://gateway.mcfagentic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with API endpoint descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses x402 payments in USDC on Base L2 for email, SMS, template, and delivery-log operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Email and SMS notifications may contact recipients without proper consent or lawful basis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm consent or another lawful basis before sending notifications, especially for automated agent-driven outreach.
+
+Risk: Notification messages and delivery logs may contain sensitive, regulated, or operationally confidential information.
+
+Mitigation: Avoid sending secrets or regulated data unless the provider contract supports it, and review how logs are retained, protected, and deleted.
+
+Risk: Paid x402 requests may create unexpected costs if an agent sends notifications or queries logs repeatedly.
+
+Mitigation: Set agent-side limits and review the quoted price in 402 responses before allowing automated requests.
+
+## Reference(s):
+
+- [Notifications Engine ClawHub listing](https://clawhub.ai/cameron48/skills/mcf-notifications-engine)
+- [MCF Agentic notification gateway](https://gateway.mcfagentic.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Text]
+
+**Output Format:** [Markdown guidance with API endpoint details and notification workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve paid x402 requests in USDC on Base L2 and delivery logs containing notification metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

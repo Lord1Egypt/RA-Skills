@@ -1,40 +1,49 @@
-## Description: <br>
-Accurately interpret "67" based on context, including internet slang, Ki-67 medical usage, mathematical properties, and IP67 technical ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accurately interpret "67" based on context, including slang usage, Ki-67 in medical reports, mathematical meaning, and IP67 technical ratings.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Agents use this skill to explain what "67" likely means in a user-provided context and to distinguish casual, medical, mathematical, and technical interpretations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses medical meanings such as Ki-67, which could be mistaken for diagnostic advice. <br>
-Mitigation: Treat medical interpretations as contextual explanations only and defer clinical decisions to qualified medical professionals. <br>
-Risk: Users may provide unnecessary credentials or grant tool access while using an informational skill. <br>
-Mitigation: Follow the scanner guidance: review displayed instructions and grant credentials or tools only when they clearly match the requested task. <br>
+## Use Case:
 
+Agents use this skill to disambiguate the number or phrase "67" for users across internet culture, medical, mathematical, and technical contexts. It is useful for general assistants that need concise contextual explanations rather than a single fixed definition.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/67) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with explanatory text, comparison tables, and optional Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Medical examples such as Ki-67 may be mistaken for clinical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat medical interpretations as general context and rely on qualified clinicians or authoritative medical sources for health decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/67)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown prose with a comparison table and Python code block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational guidance only; no external execution, privileges, persistence, or data access are described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Step-by-step protocol for building an emergency fund from zero. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step protocol for building an emergency fund from zero for users who have no savings buffer, live paycheck to paycheck, or want a concrete system to build financial resilience.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users use this skill to calculate essential expenses, set emergency savings targets, find realistic monthly savings, choose a safe account framework, and automate a savings plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general emergency-savings guidance as individualized financial advice. <br>
-Mitigation: Present outputs as general guidance, preserve the skill disclaimer, and direct complex debt, tax, benefit, or investment situations to qualified nonprofit or professional support. <br>
-Risk: Users may disclose sensitive account details or private financial documents while planning. <br>
-Mitigation: Avoid collecting account numbers, login credentials, or private documents; ask only for the minimum planning figures needed. <br>
-Risk: Bank rates, fees, deposit insurance status, and account terms can change. <br>
-Mitigation: Have users verify current rates, fees, FDIC or NCUA coverage, withdrawal limits, and account terms directly before opening or changing accounts. <br>
+## Use Case:
 
+External users use this skill to calculate emergency fund targets, identify realistic monthly savings, choose safe account criteria, automate transfers, and define when the fund should be used. Agents can use it to guide structured financial resilience conversations without recommending specific banks or investment products.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/emergency-fund-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
-- [Federal Deposit Insurance Corporation](https://fdic.gov) <br>
-- [Consumer Financial Protection Bureau](https://consumerfinance.gov) <br>
-- [National Foundation for Credit Counseling](https://nfcc.org) <br>
-- [National Credit Union Administration](https://mycreditunion.gov) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown with structured checklists, calculators, and state fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce calendar reminders and filesystem-backed state when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may retain sensitive financial profile details between sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide account numbers, passwords, banking login information, or other credentials; prefer session-only use or clear deletion controls for stored budget details.
+
+Risk: The installer command is unpinned.
+
+Mitigation: Verify the ClawHub publisher, package name, and source before running the npx install command.
+
+Risk: Filesystem access is requested without a clear user-facing need in the release evidence.
+
+Mitigation: Grant filesystem access only when needed for an explicit task and review what files the agent can read or write.
+
+## Reference(s):
+
+- [Emergency Fund Builder on ClawHub](https://clawhub.ai/howtousehumans/skills/emergency-fund-builder)
+- [FDIC](https://www.fdic.gov/)
+- [Consumer Financial Protection Bureau](https://www.consumerfinance.gov/)
+- [National Foundation for Credit Counseling](https://www.nfcc.org/)
+- [National Credit Union Administration](https://mycreditunion.gov/)
+- [Bankrate High-Yield Savings Account Comparisons](https://www.bankrate.com/banking/savings/best-high-yield-interests-savings-accounts/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown guidance with interactive prompts, checklists, calculations, and YAML-style state and reminder definitions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request and retain sensitive financial profile details such as monthly expenses, savings targets, transfer settings, and emergency definitions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

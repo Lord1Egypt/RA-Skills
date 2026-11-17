@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "OwlCodaRunKitVerificationContextV1",
+  "reusePolicy": "portable",
+  "platform": null,
+  "toolchains": [
+    {
+      "name": "node",
+      "version": "replace-with-exact-version"
+    }
+  ],
+  "lockfiles": [],
+  "fixtures": [],
+  "services": [],
+  "environment": []
+}

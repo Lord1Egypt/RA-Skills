@@ -1,46 +1,64 @@
-## Description: <br>
-Queries multiple AI assistants independently on the same complex question, compares their responses, and synthesizes a concise cross-validated analysis report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multiple AI assistants to analyze the same complex topic independently and synthesize a comparative Markdown report.
 
-## Publisher: <br>
-[zhangsaizz](https://clawhub.ai/user/zhangsaizz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangsaizz](https://clawhub.ai/user/zhangsaizz)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to ask the same analysis question across multiple AI providers, compare the answers, and produce a synthesized Markdown report for complex topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to multiple third-party AI providers through logged-in user sessions. <br>
-Mitigation: Use only data approved for those providers; avoid secrets, personal data, regulated data, internal documents, and confidential business material unless explicitly authorized. <br>
-Risk: Browser session data and generated reports can persist locally. <br>
-Mitigation: Protect or clear the browser-profile directory regularly, and review saved reports before backing them up or sharing them. <br>
-Risk: Synthesized reports can carry forward inaccurate, outdated, or conflicting claims from provider responses. <br>
-Mitigation: Cross-check important facts with authoritative sources before using the output for decisions. <br>
+## Use Case:
 
+Analysts, developers, and business users use this skill to ask the same complex question across several AI platforms and compare the resulting perspectives, data points, and recommendations. It is suited to market research, technical comparisons, product evaluations, trend analysis, and other work where cross-checking multiple model responses is useful.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/zhangsaizz/multi-ai-search-analysis) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Python Usage Guide](artifact/scripts/USAGE.md) <br>
-- [AI Platform Configuration](artifact/config/ai-platforms.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with comparison tables, synthesized summaries, setup commands, and optional chart assets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include timestamps, provider names, extracted data tables, quality scores, and generated chart files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: Analysis topics and prompts are submitted to third-party AI providers through logged-in user accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets, regulated data, or confidential business information; use only topics that are appropriate for the selected providers' terms and data handling.
+
+Risk: The skill uses a persistent browser profile to retain login state for multiple AI services.
+
+Mitigation: Use a dedicated browser profile or separate OS account, periodically remove stored browser state, and avoid sharing the profile directory.
+
+Risk: Installer and browser automation choices include unsafe practices such as shell-based install commands, unpinned dependencies, and --no-sandbox browser flags.
+
+Mitigation: Review scripts before execution, pin dependency versions, replace shell-based installer steps where possible, and remove --no-sandbox unless it is explicitly required in the deployment environment.
+
+Risk: Generated comparative reports may contain inaccurate or unsupported claims from upstream AI systems.
+
+Mitigation: Review the final report and verify important facts against authoritative sources before sharing, publishing, or using it for decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangsaizz/skills/multi-ai-search-analysis)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/README.md](artifact/README.md)
+- [artifact/scripts/USAGE.md](artifact/scripts/USAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, command-line status text, and local report/chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports are written under reports/ with timestamps; optional chart generation may write chart files under reports/charts/.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

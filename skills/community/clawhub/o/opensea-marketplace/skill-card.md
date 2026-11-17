@@ -1,46 +1,53 @@
-## Description: <br>
-Buy and sell NFTs on OpenSea's Seaport marketplace by fulfilling listings, accepting offers, creating orders, making cross-chain purchases, and sweeping multiple listings, with wallet signing required and read-only queries routed to opensea-api. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenSea guidance and tools for NFT and token data, NFT trading, token swaps, wallet signing, and gated AI tool development.
 
-## Publisher: <br>
-[opensea](https://clawhub.ai/user/opensea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[opensea](https://clawhub.ai/user/opensea)
 
-## Use Case: <br>
-External developers and agents use this skill to execute OpenSea marketplace workflows for NFTs, including listing fulfillment, offer acceptance, cross-chain purchases, and multi-listing sweeps. It is appropriate when wallet-backed signing and transaction review are part of the workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace workflows can produce live transactions that move assets or grant token approvals. <br>
-Mitigation: Use a dedicated low-balance wallet, prefer managed signers with spending caps and allowlists, and review every transaction before signing. <br>
-Risk: Fulfillment responses and transaction payloads may include targets, values, or calldata that are unsafe, stale, or unexpected. <br>
-Mitigation: Verify the transaction target, value, calldata, order hash, chain, and approval steps before submitting any transaction. <br>
-Risk: API keys, wallet credentials, cached keys, or raw private keys could expose trading authority. <br>
-Mitigation: Store credentials only in environment variables, avoid raw private keys except for local development, and clean up cached keys or tokens when no longer needed. <br>
+## Use Case:
 
+Developers use this skill to query OpenSea NFT and token data, prepare marketplace actions and swaps, configure wallet signing, and build or access gated AI tools.
 
-## Reference(s): <br>
-- [OpenSea Marketplace API](opensea-marketplace/references/marketplace-api.md) <br>
-- [Seaport Protocol Reference](opensea-marketplace/references/seaport.md) <br>
-- [OpenSea Skill Repository](https://github.com/ProjectOpenSea/opensea-skill) <br>
-- [OpenSea CLI](https://github.com/ProjectOpenSea/opensea-cli) <br>
-- [OpenSea Developer Docs](https://docs.opensea.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with inline bash commands, API request examples, JSON payloads, and transaction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include transaction calldata or ordered transaction steps that require wallet review and signing before onchain submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.16.0 (source: package.json and server release evidence) <br>
+Risk: Security evidence reports transaction flows without clear approval checkpoints and installation examples using unpinned packages; scanner analysis was partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package versions before installation, and inspect transaction details and approval requests before authorizing wallet actions.
+
+## Reference(s):
+
+- [OpenSea developer documentation](https://docs.opensea.io/)
+- [OpenSea API key documentation](https://docs.opensea.io/reference/api-keys#instant-api-key-for-agents)
+- [OpenSea API specification](https://api.opensea.io/api/v2/openapi.json)
+- [OpenSea Tool SDK](https://github.com/ProjectOpenSea/tool-sdk)
+- [OpenSea Skill project homepage](https://github.com/ProjectOpenSea/opensea-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown guidance, shell commands, code examples, and JSON API data or transaction plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content varies with the requested OpenSea data or wallet operation.]
+
+## Skill Version(s):
+
+2.32.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

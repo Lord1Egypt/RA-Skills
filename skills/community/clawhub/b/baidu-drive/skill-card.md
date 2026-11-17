@@ -1,49 +1,61 @@
-## Description: <br>
-Enables an agent to manage Baidu Drive files, including upload, download, transfer, sharing, search, move, copy, rename, folder creation, and supported agent memory backup or restore workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Baidu Drive files for upload, download, transfer, sharing, search, movement, copying, renaming, folder creation, and supported agent memory backup or restore.
 
-## Publisher: <br>
-[baidunetdiskaibot](https://clawhub.ai/user/baidunetdiskaibot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidunetdiskaibot](https://clawhub.ai/user/baidunetdiskaibot)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate within a Baidu Drive app folder and to back up, list, or restore supported agent memory files through Baidu Drive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Baidu Drive authorization and uses sensitive local credentials. <br>
-Mitigation: Authorize only on trusted machines, avoid shared environments, and do not expose local token or configuration contents. <br>
-Risk: Cloud file operations can upload, download, overwrite, share, move, copy, rename, or delete user files. <br>
-Mitigation: Review local and remote paths before execution, confirm destructive or overwrite-prone operations, and keep actions within the intended Baidu Drive app folder. <br>
-Risk: Shared links, especially permanent links, can expose files beyond the current session. <br>
-Mitigation: Choose the shortest practical share validity period and review link recipients before sharing. <br>
-Risk: Memory restore can replace local agent instruction and memory files. <br>
-Mitigation: Inspect backup contents before restoring and preserve the pre-restore local backup for rollback. <br>
+## Use Case:
 
+External users and developers use this skill to operate files in a Baidu Drive account from an agent session. Supported Claw users can also use it to back up, list, and restore agent memory files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baidunetdiskaibot/baidu-drive) <br>
-- [Authentication guide](reference/authentication.md) <br>
-- [bdpan CLI command reference](reference/bdpan-commands.md) <br>
-- [Usage examples](reference/examples.md) <br>
-- [Troubleshooting guide](reference/troubleshooting.md) <br>
-- [Developer notes](reference/notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and occasional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, modify, upload, download, share, back up, or restore files when the user authorizes the relevant workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release evidence; artifact VERSION records v1.6.0) <br>
+Risk: The skill requests access to a Baidu Drive account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that account access is acceptable, review login prompts carefully, avoid untrusted environments, and log out when access is no longer needed.
+
+Risk: Install, update, uninstall, and memory-restore paths have review-worthy risks around network-supplied code and persistent agent files.
+
+Mitigation: Review install and update prompts, avoid unattended update or uninstall flows, and inspect restored memory backups before relying on them.
+
+Risk: Restored memory backups and generated share links may expose sensitive information.
+
+Mitigation: Treat memory archives and share links as sensitive, confirm destructive or overwrite operations, and choose limited link durations unless a permanent link is explicitly needed.
+
+## Reference(s):
+
+- [Authentication Guide](reference/authentication.md)
+- [bdpan CLI Command Reference](reference/bdpan-commands.md)
+- [Usage Examples](reference/examples.md)
+- [Development Notes and Safety Notices](reference/notes.md)
+- [Troubleshooting Guide](reference/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce proposed file operations, authentication steps, share links, and memory backup or restore commands.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release metadata and artifact/VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

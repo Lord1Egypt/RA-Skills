@@ -1,41 +1,56 @@
-## Description: <br>
-Call GET /api/weibo/hot-search/v1 for Weibo Hot Search through JustOneAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/weibo/hot-search/v1 for Weibo Hot Search through JustOneAPI.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Weibo hot-search endpoint and retrieve ranking data for trend monitoring, newsroom workflows, and topic discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required JustOneAPI token may be exposed through command arguments, request URLs, command history, process listings, proxy logs, or error traces. <br>
-Mitigation: Use a limited-scope token if available, avoid shared or heavily logged environments, do not paste token values into chat or logs, and rotate the token if exposure is possible. <br>
+## Use Case:
 
+External users and developers use this skill to call JustOneAPI's Weibo hot-search endpoint for ranking data, trend monitoring, newsroom workflows, and topic discovery.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_hot_search&utm_content=project_link) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_hot_search&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-weibo-hot-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the hotSearchV1 operation on /api/weibo/hot-search/v1 and requires a JUST_ONE_API_TOKEN credential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API tokens may be exposed through command lines, logs, process listings, diagnostics, or shared screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-scope or revocable JustOneAPI token, avoid pasting token values into chat or logs, and rotate the token if exposure is suspected.
+
+Risk: Backend errors or API responses may include payload details that need review before sharing.
+
+Mitigation: Review returned JSON and error payloads before forwarding results outside the intended workflow.
+
+## Reference(s):
+
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_hot_search&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_weibo_hot_search&utm_content=project_link)
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-weibo-hot-search)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON from the API helper]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JUST_ONE_API_TOKEN and the hotSearchV1 operation for /api/weibo/hot-search/v1.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Wrap sending a Telegram message to a fixed topic into one script call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wraps sending a Telegram message to a fixed topic into one script call for quick notifications or messages.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shing19](https://clawhub.ai/user/shing19)
 
-## Use Case: <br>
-Developers and operators use this skill to send plain-text notifications or status messages to a specific Telegram supergroup topic through an OpenClaw-configured channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent using this skill can post messages to the configured Telegram group topic. <br>
-Mitigation: Confirm the OpenClaw channel auth and any TG_DEFAULT_CHANNEL, TG_DEFAULT_CHAT_ID, and TG_DEFAULT_TOPIC_ID values point only to the intended group and topic before installing or running it. <br>
+## Use Case:
 
+Developers and operators use this skill to send plain-text Telegram topic notifications through a configured OpenClaw channel, with chat, topic, and channel defaults that can be overridden per call.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/telegram-topic-message-sender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends plain-text messages only; markdown and HTML parse modes are intentionally not enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The script can send a message to an unintended Telegram destination if channel, chat ID, topic ID, or configured OpenClaw channel auth are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the configured OpenClaw channel auth and verify --channel, --chat-id, and --topic-id before running the script.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shing19/skills/telegram-topic-message-sender)
+- [Publisher profile](https://clawhub.ai/user/shing19)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown with inline bash commands and plain-text messaging guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends user-provided plain text through OpenClaw messaging; markdown and HTML parse modes are intentionally not enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

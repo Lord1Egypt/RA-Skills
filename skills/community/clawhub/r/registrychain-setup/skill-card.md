@@ -1,41 +1,59 @@
-## Description: <br>
-Install the RegistryChain plugin for on-chain entity registration. Use when the user wants to set up RegistryChain, install the RegistryChain plugin, or when the register_entity tool is not available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs the RegistryChain plugin for on-chain entity registration when setup is needed or the register_entity tool is unavailable.
 
-## Publisher: <br>
-[kutaibah](https://clawhub.ai/user/kutaibah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kutaibah](https://clawhub.ai/user/kutaibah)
 
-## Use Case: <br>
-Developers and OpenClaw or Codex users use this skill to install and enable the RegistryChain plugin when they need on-chain entity registration support or the register_entity tool is unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup makes persistent OpenClaw and Codex configuration changes and broadens tool access. <br>
-Mitigation: Verify the RegistryChain repository and pinned commit, review package.json and dependencies, and back up ~/.openclaw/openclaw.json before installation. <br>
-Risk: The setup does not define a clear rollback boundary for installed plugin files, copied skills, extension directories, or tools-profile changes. <br>
-Mitigation: Ask for explicit uninstall steps and track the plugin path, copied skill path, extension directory, and tools-profile change before running setup. <br>
+## Use Case:
 
+Developers and operators use this skill to install and enable the RegistryChain OpenClaw plugin so entity registration tooling becomes available.
 
-## Reference(s): <br>
-- [ClawHub Registrychain Setup release](https://clawhub.ai/kutaibah/registrychain-setup) <br>
-- [RegistryChain plugin repository](https://github.com/RegistryChain/registrychain-agents.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sequential setup instructions; stops on the first failed step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The setup persistently downloads and enables third-party plugin code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plugin source and package metadata before installation, prefer a full reviewed commit hash, and use lockfile-based dependency installation where available.
+
+Risk: The setup changes OpenClaw's global tool profile to full, which can broaden available tool access beyond this plugin.
+
+Mitigation: Back up the OpenClaw configuration first and use a narrower tool profile if OpenClaw supports one.
+
+Risk: The setup force-restarts the OpenClaw gateway and provides limited rollback guidance.
+
+Mitigation: Run installation during an acceptable maintenance window and record rollback steps for disabling the plugin and restoring the prior configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kutaibah/skills/registrychain-setup)
+- [Publisher profile](https://clawhub.ai/user/kutaibah)
+- [RegistryChain plugin repository referenced by setup commands](https://github.com/RegistryChain/registrychain-agents.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sequential setup guidance that stops and reports errors when a setup step fails.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

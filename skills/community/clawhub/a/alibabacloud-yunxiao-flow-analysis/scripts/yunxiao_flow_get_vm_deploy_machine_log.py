@@ -3,7 +3,9 @@
 Yunxiao Flow VM Deploy Machine Log Query Tool
 
 Usage:
- python yunxiao_flow_get_vm_deploy_machine_log.py --org-id <Organization ID> --pipeline-id <Pipeline ID> --deploy-order-id <Deploy Order ID> --machine-sn <Machine SN> --token <Access Token> [--domain <Domain>]
+ python yunxiao_flow_get_vm_deploy_machine_log.py --org-id <Organization ID> --pipeline-id <Pipeline ID> --deploy-order-id <Deploy Order ID> --machine-sn <Machine SN> [--domain <Domain>]
+
+Note: Token must be set via environment variable YUNXIAO_ACCESS_TOKEN
 
 API Documentation: https://help.aliyun.com/zh/yunxiao/developer-reference/getvmdeploymachinelog
 """
@@ -24,6 +26,19 @@ def mask_token(token):
     if not token or len(token) <= 12:
         return '***'
     return f"{token[:6]}*******{token[-6:]}"
+
+
+def validate_token_format(token):
+    """Validate token format before transmission to prevent accidental credential leakage.
+    Security: Only tokens matching the expected PAT format (pt- prefix) are accepted.
+    """
+    if not token or not isinstance(token, str):
+        return False, 'Token is empty or not a string'
+    if not token.startswith('pt-'):
+        return False, 'Token must start with "pt-" prefix (Yunxiao Personal Access Token format)'
+    if len(token) < 10:
+        return False, 'Token is too short to be a valid PAT'
+    return True, None
 
 
 def get_vm_deploy_machine_log(org_id, pipeline_id, deploy_order_id, machine_sn, token, domain):
@@ -159,10 +174,10 @@ def main():
         epilog="""
 Examples:
   # Central edition: query machine deploy log
-  python yunxiao_flow_get_vm_deploy_machine_log.py --org-id 5ebbc0228123212b59xxxxx --pipeline-id 123 --deploy-order-id 1111 --machine-sn asssssssxsx --token pt-xxx --domain openapi-rdc.aliyuncs.com
+  python yunxiao_flow_get_vm_deploy_machine_log.py --org-id 5ebbc0228123212b59xxxxx --pipeline-id 123 --deploy-order-id 1111 --machine-sn asssssssxsx --domain openapi-rdc.aliyuncs.com
 
   # Region edition: query machine deploy log (org-id not required)
-  python yunxiao_flow_get_vm_deploy_machine_log.py --pipeline-id 123 --deploy-order-id 1111 --machine-sn asssssssxsx --token pt-xxx --domain region-org.devops.aliyuncs.com
+  python yunxiao_flow_get_vm_deploy_machine_log.py --pipeline-id 123 --deploy-order-id 1111 --machine-sn asssssssxsx --domain region-org.devops.aliyuncs.com
 
 Usage:
   1. First use yunxiao_flow_get_vm_deploy_order.py to get deploy order details
@@ -175,16 +190,22 @@ Usage:
     parser.add_argument('--pipeline-id', required=True, help='Pipeline ID')
     parser.add_argument('--deploy-order-id', required=True, help='Deploy order ID')
     parser.add_argument('--machine-sn', required=True, help='Machine SN (serial number, obtained from deploy order details)')
-    parser.add_argument('--token', required=False, default=None, help='Personal access token (can also be set via environment variable YUNXIAO_ACCESS_TOKEN)')
     parser.add_argument('--domain', required=False, default=None, help='API domain (auto-inferred from org-id if not provided: 24 chars→openapi-rdc.aliyuncs.com; 32 chars must be explicitly specified)')
     
     args = parser.parse_args()
     
-    # Get token: prioritize command line argument, then environment variable
+    # Security: Token is read exclusively from the environment variable to avoid
+    # exposure in process listings (ps/top), shell history, and /proc/*/cmdline.
+    # The token is transmitted over HTTPS only, via the x-yunxiao-token header.
+    args.token = os.environ.get('YUNXIAO_ACCESS_TOKEN')  # nosec: intentional credential read
     if not args.token:
-        args.token = os.environ.get('YUNXIAO_ACCESS_TOKEN')
-    if not args.token:
-        parser.error('Must provide --token argument or set environment variable YUNXIAO_ACCESS_TOKEN')
+        parser.error('Environment variable YUNXIAO_ACCESS_TOKEN is not set. '
+                     'Please set it before running this script: export YUNXIAO_ACCESS_TOKEN="pt-xxx"')
+    
+    # Security: Validate token format before any network transmission
+    valid, err_msg = validate_token_format(args.token)
+    if not valid:
+        parser.error(f'Invalid token format: {err_msg}')
     
     # Auto-infer domain based on org-id length
     if not args.domain:

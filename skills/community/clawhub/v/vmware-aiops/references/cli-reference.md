@@ -1,8 +1,30 @@
 # CLI Reference
 
+VM details are provided by the companion `vmware-monitor vm info <name>`,
+not `vmware-aiops vm info`. If Monitor has a separate target configuration,
+pass `-c ~/.vmware-aiops/config.yaml -t <target>` to query the AIops target.
+On standalone ESXi, a newly created NIC may have no MAC until first power-on;
+an empty MAC while the VM is powered off does not mean the NIC is missing.
+
+`vm power-off` requests a VMware Tools guest shutdown by default. Without
+running Tools (for example, a powered-on diskless probe), use `--force` for a
+hard power-off, which can lose guest data. Newly created VMs stay powered off;
+there is no need to power one on or shut it down before deleting it.
+`vm power-off` and `vm delete` require two interactive confirmations. They have
+no `--yes` option and abort if confirmation input is unavailable; the examples
+below are interactive commands, not unattended scripts. `--force` changes the
+shutdown method, not the confirmation or Policy requirements.
+
+Destructive and deploy commands ask for two confirmations and most write
+commands take `--dry-run` (not `deploy iso`, `deploy mark-template`,
+`vm cancel-ttl`, `vm guest-download`). These are CLI-only: over MCP the 23 destructive write tools take `confirm` and preview by
+default, the other 20 write tools act immediately, and the enforcement boundary there is the RBAC of the vCenter/ESXi account — see
+`capabilities.md` → "What gates a write".
+
 ```bash
 # Diagnostics
-vmware-aiops doctor [--skip-auth]
+vmware-aiops doctor [--skip-auth]   # --skip-auth only skips doctor's own vSphere login check; no other command has it
+vmware-aiops access-info [--tool <mcp-tool>] [--target <name>]   # account in use + its privileges per MCP tool (JSON; root folder only)
 
 # MCP Config Generator
 vmware-aiops mcp-config generate --agent <goose|cursor|claude-code|continue|vscode-copilot|localcowork|mcp-agent>
@@ -11,7 +33,7 @@ vmware-aiops mcp-config list
 # VM Operations
 vmware-aiops vm power-on <vm-name>
 vmware-aiops vm power-off <vm-name> [--force]
-vmware-aiops vm create <name> [--cpu <n>] [--memory <mb>] [--disk <gb>]
+vmware-aiops vm create <name> [--cpu <n>] [--memory <mb>] [--disk <gb>]   # --disk 0: no disk
 vmware-aiops vm delete <vm-name>
 vmware-aiops vm reconfigure <vm-name> [--cpu <n>] [--memory <mb>]
 vmware-aiops vm snapshot-create <vm-name> --name <snap-name> [--description <text>] [--memory]
@@ -49,6 +71,10 @@ vmware-aiops cluster delete <name>
 vmware-aiops cluster add-host <cluster> --host <hostname>
 vmware-aiops cluster remove-host <cluster> --host <hostname>   # host must be in maintenance mode; moved to datacenter host folder as standalone
 vmware-aiops cluster configure <name> [--ha/--no-ha] [--drs/--no-drs] [--drs-behavior <behavior>]
+vmware-aiops cluster drs-rules <name>                                                # list VM-VM + VM-Host DRS rules
+vmware-aiops cluster drs-rule-set <name> --rule <name> --enable|--disable [--dry-run] # idempotent; double confirm
+vmware-aiops cluster drs-rule-create <name> --rule <name> --type affinity|antiAffinity --vm <vm1> --vm <vm2> [--disabled] [--dry-run]
+vmware-aiops cluster drs-rule-delete <name> --rule <name> [--dry-run]                 # VM-VM only; double confirm
 
 # Alarm Management
 vmware-aiops alarm list [--target <name>]
@@ -56,14 +82,16 @@ vmware-aiops alarm acknowledge <entity_name> <alarm_name> [--target <name>]
 vmware-aiops alarm reset <entity_name> <alarm_name> [--target <name>]
 # NOTE: 'alarm reset' clears ALL triggered alarms matching the named alarm's
 # entity type (host/VM/all) and current status (red/yellow) — vSphere has no
-# per-alarm clear API. Double confirmation required; output reports the scope.
+# per-alarm clear API. The CLI double confirmation applies; output reports the
+# scope. Over MCP, reset_vcenter_alarm previews by default (blast_radius lists
+# every alarm it would clear) and clears only with confirm=True.
 
 # Datastore
 vmware-aiops datastore browse <ds-name> [--path <subdir>]
 vmware-aiops datastore scan-images [--target <name>]
 
 # Scanning & Daemon
-vmware-aiops scan now [--target <name>]
+vmware-aiops scan now [--target <name>]   # alarms + events only; host logs are read by the daemon
 vmware-aiops daemon start
 vmware-aiops daemon stop
 vmware-aiops daemon status

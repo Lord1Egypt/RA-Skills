@@ -1,46 +1,56 @@
-## Description: <br>
-Discover which free or low-cost AI APIs are reachable from the current environment, verify them safely, and recommend a task-to-provider routing plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover which free or low-cost AI APIs are reachable from the current environment, verify them safely, and recommend a task-to-provider routing plan.
 
-## Publisher: <br>
-[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to check reachable AI API providers, safely verify credentials after approval, and choose a low-cost routing plan for chat, code, speech, or multimodal tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may make outbound requests to AI provider domains while checking availability.
+
+Mitigation: Use short, explicit reachability probes and tell the user which providers will be contacted before testing.
+
+Risk: Credential verification may involve API keys if the user chooses to test authenticated endpoints.
+
+Mitigation: Request only the minimum key needed, mask secrets in logs and notes, and do not store keys unless the user explicitly approves it.
+
+Risk: Provider availability, quotas, and free-tier costs are time-sensitive.
+
+Mitigation: Base routing recommendations on current verified results and re-check providers when conditions may have changed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to check which AI API providers are reachable from the current environment, verify credentials only with approval, and choose a practical routing plan for chat, code, speech, or multimodal tasks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, code, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound API probing may be disallowed or monitored in some environments. <br>
-Mitigation: Confirm network policy before probing providers and use short, targeted reachability checks. <br>
-Risk: Credential verification can expose API keys through notes, logs, or copied terminal output. <br>
-Mitigation: Use temporary or low-privilege keys where possible, request credentials only after approval, and mask secrets in notes and logs. <br>
-Risk: Provider availability, pricing, and quota information can change after a routing recommendation is made. <br>
-Mitigation: Base recommendations on verified results from the current environment and re-check availability and quota before relying on a route. <br>
+**Output Format:** [Markdown with provider status notes, routing recommendations, and inline code or shell commands when useful]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuxuclassmate/free-api-discovery) <br>
-- [Groq API endpoint](https://api.groq.com) <br>
-- [OpenRouter API endpoint](https://openrouter.ai/api/v1) <br>
-- [DeepSeek API endpoint](https://api.deepseek.com) <br>
-- [Mistral API endpoint](https://api.mistral.ai/v1) <br>
+**Other Properties Related to Output:** [May include reachable providers, credential requirements, task-to-provider routing, cost or quota notes, and missing coverage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with provider reachability notes, credential checks, routing recommendations, and optional code or shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cost or quota notes, providers requiring credentials, and risks or missing coverage.] <br>
+1.0.1 (source: evidence.release.version and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

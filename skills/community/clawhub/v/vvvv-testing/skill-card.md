@@ -1,40 +1,54 @@
-## Description: <br>
-Set up and run automated tests for vvvv gamma packages and C# nodes using VL.TestFramework, NUnit, .vl patch assertions, and lightweight agent-driven workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and run automated tests for vvvv gamma packages and C# nodes using VL.TestFramework, NUnit, VL patch assertions, and CI workflows.
 
-## Publisher: <br>
-[tebjan](https://clawhub.ai/user/tebjan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-SA-4.0 <br>
+## Publisher:
 
+[tebjan](https://clawhub.ai/user/tebjan)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, run, and integrate automated tests for vvvv gamma packages, C# nodes, and .vl patches in local or CI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated test code or package search paths may load unintended project code during local test execution. <br>
-Mitigation: Review generated test code and search paths before running tests, and use the workflow only with trusted repositories. <br>
-Risk: Wildcard dependency versions in test project examples can reduce CI reproducibility. <br>
-Mitigation: Pin dependency versions in production CI when reproducible test environments are required. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, run, and integrate automated tests for vvvv gamma packages, C# nodes, and .vl patches.
 
-## Reference(s): <br>
-- [VL.TestFramework API Reference](artifact/test-framework-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with XML, C#, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and testing guidance for agents; it does not execute tests itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated test workflows can execute project code when run in CI or shared projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run tests only against trusted vvvv packages and patches, and review generated test code before execution.
+
+Risk: Wildcard NuGet dependency versions can change test behavior over time.
+
+Mitigation: Pin exact NuGet package versions and consider committing a lock file before using the workflow in CI.
+
+## Reference(s):
+
+- [VL.TestFramework API Reference](test-framework-reference.md)
+- [ClawHub skill release](https://clawhub.ai/tebjan/skills/vvvv-testing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with C#, XML, YAML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CI setup guidance, NUnit test project examples, vvvv launch commands, and VL.TestFramework API usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

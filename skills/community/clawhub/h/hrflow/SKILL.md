@@ -139,7 +139,7 @@ export PAYROLL_API_KEY="your-gusto-or-adp-api-key"
 export PAYROLL_SYSTEM="gusto"  # Options: gusto, adp, paychex, square
 
 # Communication Channels
-export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+export SLACK_WEBHOOK_URL="REDACTED-SECRET"
 export SLACK_DEFAULT_CHANNEL="#hr-alerts"
 export SENDGRID_API_KEY="your-sendgrid-key"  # For email
 

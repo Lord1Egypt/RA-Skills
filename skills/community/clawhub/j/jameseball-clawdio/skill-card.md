@@ -1,46 +1,57 @@
-## Description: <br>
-Secure P2P communication for AI agents. Noise XX handshake, XChaCha20-Poly1305 encryption, connection consent, human verification. Zero central servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure P2P communication for AI agents with a Noise XX handshake, XChaCha20-Poly1305 encryption, connection consent, human verification, and no central servers.
 
-## Publisher: <br>
-[JamesEBall](https://clawhub.ai/user/JamesEBall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jameseball](https://clawhub.ai/user/jameseball)
 
-## Use Case: <br>
-Developers and agent operators use Clawdio to set up encrypted peer-to-peer messaging, task delegation, and sub-agent communication across machines or networks without a central server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Security-sensitive defaults and trust handling may be weaker than the skill's secure messaging claims. <br>
-Mitigation: Review before installing and test in an isolated environment before relying on it for sensitive agent communication. <br>
-Risk: Automatic peer acceptance can allow unintended peers in non-test environments. <br>
-Mitigation: Keep autoAccept disabled outside isolated tests and require explicit consent for unknown inbound peers. <br>
-Risk: Listening on a remotely reachable interface can expose the node to unintended connection attempts. <br>
-Mitigation: Bind to 127.0.0.1 or firewall the configured port unless remote access is intentional. <br>
-Risk: Peer identity trust depends on out-of-band verification for high-trust use. <br>
-Mitigation: Compare peer safety numbers out of band before marking a peer human-verified. <br>
-Risk: Persisted identity files contain sensitive identity material. <br>
-Mitigation: Avoid persisting sensitive identities until the identity file is protected and outbound peer-key binding is fixed. <br>
+## Use Case:
 
+Developers and agent builders use Clawdio to add encrypted peer-to-peer messaging, connection consent, and human peer verification between agents across machines or networks without relying on a central server.
 
-## Reference(s): <br>
-- [Clawdio release page](https://clawhub.ai/JamesEBall/jameseball-clawdio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides an agent in creating Clawdio nodes, exchanging connection strings, sending encrypted agent messages, and configuring consent, verification, identity persistence, and liveness checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server-resolved release metadata) <br>
+Risk: Peer-authentication and key-storage weaknesses may undercut security-sensitive use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify peers out of band before trust-sensitive use and protect or avoid persistent identityPath files.
+
+Risk: Automatic acceptance and exposed listeners can admit unintended peers.
+
+Mitigation: Keep autoAccept disabled outside local tests and restrict listener exposure with host binding and firewall controls.
+
+Risk: Sensitive agent traffic may rely on unreviewed dependency ranges or connection-string key validation.
+
+Mitigation: Prefer a version that pins dependencies and fixes connection-string key validation before handling sensitive traffic.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jameseball/skills/jameseball-clawdio)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with JavaScript and shell code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides setup steps, API usage examples, connection-string handling, identity persistence options, and peer verification workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata; package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[sunyue1977](https://clawhub.ai/user/sunyue1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sunyue1977](https://clawhub.ai/user/sunyue1977)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to design, create, package, and iterate on skill packages that extend Claude with specialized workflows, bundled resources, and tool guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated or edited skills may contain inaccurate, overly broad, or unnecessary instructions.
+
+Mitigation: Review generated skill content before packaging or sharing it.
+
+Risk: The skill can guide file edits in skill directories selected by the user.
+
+Mitigation: Keep edits scoped to the intended skill directory and inspect changes before release.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and skill authors use this skill to design, edit, package, and iterate on agent skills with concise instructions, appropriate bundled resources, and clear progressive disclosure. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Skills produced with this guidance may include scripts, references, or assets that introduce their own risks. <br>
-Mitigation: Review and scan any generated skill artifacts before installation or deployment. <br>
+**Output Format:** [Markdown guidance with code and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunyue1977/skill-creator-2-0-1-0) <br>
-- [Publisher profile](https://clawhub.ai/user/sunyue1977) <br>
+**Other Properties Related to Output:** [May include file organization guidance, packaging workflow steps, and review recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides creation of SKILL.md files and optional bundled scripts, references, and assets.] <br>
+1.0.0 (source: server release evidence; artifact metadata reports 0.1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

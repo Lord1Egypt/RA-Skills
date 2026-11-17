@@ -1,42 +1,53 @@
-## Description: <br>
-Answer AI questions with current info instead of outdated training data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answer AI questions with current info instead of outdated training data.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Agents use this skill when answering AI product, model, pricing, ranking, availability, hallucination-reduction, RAG, fine-tuning, local-model, API, and token-estimation questions. It guides the agent to prefer current public sources and concrete decision criteria over stale training-data recall. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI pricing, model rankings, availability, context windows, and rate limits can change frequently. <br>
-Mitigation: Check current public model, ranking, provider, and status pages before giving time-sensitive AI guidance. <br>
-Risk: Advice based on stale memory can produce incorrect recommendations for RAG, fine-tuning, local models, APIs, or token estimates. <br>
-Mitigation: Use verified sources, provider tokenizers or tiktoken for counts, and cite current evidence when the answer depends on recent or provider-specific facts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenRouter Models](https://openrouter.ai/models) <br>
-- [LM Arena](https://lmarena.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and other agent users use this skill to answer AI product, model, pricing, ranking, outage, hallucination-reduction, RAG, fine-tuning, local model, API, and token-count questions with current verification instead of stale assumptions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with cited current-source recommendations when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No files, credentials, local data, or privileged system access are requested by the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: AI pricing, model rankings, availability, context windows, rate limits, and outage status can change quickly.
+
+Mitigation: Verify decision-relevant claims against current public model, ranking, and provider status sources before answering.
+
+Risk: Public third-party AI model, ranking, and status sites may be incomplete, unavailable, or inconsistent.
+
+Mitigation: Cite checked sources, qualify uncertainty when sources disagree, and avoid presenting volatile values as durable facts.
+
+## Reference(s):
+
+- [OpenRouter Models](https://openrouter.ai/models)
+- [LM Arena](https://lmarena.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown or concise text guidance, with code, shell commands, or configuration snippets when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal responses should verify fast-changing AI prices, rankings, availability, and status before making decision-relevant claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

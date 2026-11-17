@@ -1,47 +1,61 @@
-## Description: <br>
-Detect and analyze trending market themes across sectors, including bullish and bearish narratives, sector rotation, and lifecycle maturity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect and analyze trending market themes across sectors for current market themes, trending sectors, sector rotation, thematic investing, and bullish or bearish market narratives with lifecycle analysis.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-External users and developers use this skill to generate theme-level market analysis from FINVIZ industry data, ETF references, uptrend signals, and narrative checks. It helps compare hot, cold, emerging, crowded, and exhausted market themes rather than selecting individual stocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API-key handling instructions could expose FINVIZ or FMP credentials if users echo keys in shared shells, logs, or recordings. <br>
-Mitigation: Avoid echoing secrets, use a virtual environment or secret manager, prefer temporary or revocable provider keys, and review shell commands before running them. <br>
-Risk: Market themes, ticker lists, and narrative queries may be sent to third-party market-data or web-search services. <br>
-Mitigation: Use the skill only when sharing those queries externally is acceptable, and avoid including confidential holdings, client details, or proprietary strategy context. <br>
-Risk: Public FINVIZ scraping mode is slower and limited, so reports can be incomplete or less reliable than full data runs. <br>
-Mitigation: Prefer authenticated data sources for fuller coverage and independently verify market conclusions before acting on them. <br>
+## Use Case:
 
+External users and developers use this skill to detect, rank, and explain bullish and bearish market themes across sectors using momentum, volume, breadth, lifecycle, ETF, and narrative signals. It supports theme-level market analysis and thematic allocation research, not individualized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/einstein-research-themes-dv) <br>
-- [Publisher profile](https://clawhub.ai/user/clawdiri-ai) <br>
-- [Cross-Sector Theme Definitions](references/cross_sector_themes.md) <br>
-- [Theme Detection Methodology](references/theme_detection_methodology.md) <br>
-- [Thematic ETF Catalog](references/thematic_etf_catalog.md) <br>
-- [FINVIZ Industry Codes](references/finviz_industry_codes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language guidance with shell commands plus generated JSON and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces theme-level market analysis and timestamped report files; does not provide individual stock picks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence; artifact frontmatter says 1.0.0) <br>
+Risk: Instructions can expose API keys if users run commands that print credential values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use presence checks instead of echoing secrets, avoid logging credentials, and rotate any key that may have been printed into logs.
+
+Risk: Dependencies and outbound network access are under-hardened.
+
+Mitigation: Run the skill in an isolated environment with pinned dependencies and expect outbound requests to FINVIZ, FMP, yfinance, GitHub data sources, and web search providers.
+
+Risk: Generated theme reports may be mistaken for financial advice.
+
+Mitigation: Treat outputs as informational market analysis and review results before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/clawdiri-ai/skills/einstein-research-themes-dv)
+- [Cross-Sector Theme Definitions](references/cross_sector_themes.md)
+- [Theme Detection Methodology](references/theme_detection_methodology.md)
+- [Thematic ETF Catalog](references/thematic_etf_catalog.md)
+- [FINVIZ Industry Codes](references/finviz_industry_codes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language analysis with optional Markdown reports, JSON report files, Python commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports are informational market analysis and may rely on FINVIZ, FMP, yfinance, GitHub-hosted data sources, and web search for narrative confirmation.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; source skill frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

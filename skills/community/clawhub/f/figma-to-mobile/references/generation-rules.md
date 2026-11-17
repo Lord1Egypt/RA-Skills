@@ -3,6 +3,12 @@
 
 ## Output Rules (absolute — never break these)
 
+**Write boundary — generated code stays in conversation until confirmed:**
+- Output all generated code in the conversation first, as text with filename headers (e.g. `📄 activity_main.xml`).
+- Only write files to disk after the user sees the output, confirms it's correct, and explicitly specifies where to put them.
+- When writing files, always ask: "Where should I write this?" Wait for the user to specify a path.
+- Never write files into an existing project module without explicit user instruction to do so.
+
 **Project scan availability check:**
 - If a project scan report is available (Step 2.5 was run): match Figma values against project resources first, then hardcode unmatched values.
 - If NO project scan was run: hardcode ALL values directly (hex colors, literal strings, dp dimensions). Do not use `@color/placeholder` or `@string/placeholder` — write real values for instant visual preview.

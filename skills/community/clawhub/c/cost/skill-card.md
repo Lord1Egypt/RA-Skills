@@ -1,43 +1,51 @@
-## Description: <br>
-A comprehensive AI agent skill for understanding, managing, and reducing costs in business. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for understanding, managing, and reducing costs in business.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agenticio](https://clawhub.ai/user/agenticio)
 
-## Use Case: <br>
-Small business owners, founders, and operations managers use this skill to analyze costs, margins, pricing, vendor spend, and cost structure so they can improve profitability without damaging revenue-generating capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive financial details while using the skill. <br>
-Mitigation: Redact unnecessary sensitive financial, customer, payroll, vendor, and account details before sharing data with an agent. <br>
-Risk: The skill may trigger on broad finance terms and provide business cost advice outside the user's intended scope. <br>
-Mitigation: Confirm that the request is about cost management, margin, pricing, vendor spend, or related business cost analysis before relying on the output. <br>
+## Use Case:
 
+Small business owners, founders, operations managers, and teams responsible for profitability use this skill to build cost visibility, analyze fixed and variable costs, identify careful cost reductions, support pricing decisions, review vendors, and model cost structure for growth.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agenticio/cost) <br>
-- [Skill definition](artifact/skill.md) <br>
-- [Usage examples](artifact/examples.md) <br>
-- [Cost review heartbeat](artifact/heartbeat.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis, configuration] <br>
-**Output Format:** [Markdown guidance and structured business analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only advisory output; no executable code, account access, or external tool calls are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Using the skill may involve sharing sensitive business financial details such as costs, margins, vendor spend, and payroll assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use summarized figures where possible and avoid providing account credentials, raw bank access, or other secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agenticio/skills/cost)
+- [Usage examples](artifact/examples.md)
+- [Heartbeat guide](artifact/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown advisory responses with cost analysis, checklists, prompts, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no executable code, external access, credential use, or persistence indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact skill.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

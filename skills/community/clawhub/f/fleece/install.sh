@@ -27,12 +27,15 @@ install_claude() {
 }
 
 install_agents() {
-  TARGET=".agents/skills/fleece"
-  mkdir -p "$TARGET"
-  src="$SCRIPT_DIR/.agents/skills/fleece/SKILL.md"
-  dest="$TARGET/SKILL.md"
-  [ "$(realpath "$src")" != "$(realpath "$dest" 2>/dev/null)" ] && cp "$src" "$dest"
-  echo "✓ Agent skill installed to $TARGET/SKILL.md"
+  TARGET=".agents/skills"
+  mkdir -p "$TARGET/fleece" "$TARGET/fleece-gmail-spend"
+  fleece_src="$SCRIPT_DIR/.agents/skills/fleece/SKILL.md"
+  fleece_dest="$TARGET/fleece/SKILL.md"
+  gmail_src="$SCRIPT_DIR/skills/fleece-gmail-spend/SKILL.md"
+  gmail_dest="$TARGET/fleece-gmail-spend/SKILL.md"
+  [ "$(realpath "$fleece_src")" != "$(realpath "$fleece_dest" 2>/dev/null)" ] && cp "$fleece_src" "$fleece_dest"
+  [ "$(realpath "$gmail_src")" != "$(realpath "$gmail_dest" 2>/dev/null)" ] && cp "$gmail_src" "$gmail_dest"
+  echo "✓ Agent skills installed to $TARGET/"
 }
 
 install_gemini() {

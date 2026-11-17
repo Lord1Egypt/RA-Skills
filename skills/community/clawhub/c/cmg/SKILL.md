@@ -3,7 +3,7 @@ name: tencent-cloud-migration
 description: "腾讯云迁移平台（CMG/MSP）全流程能力。触发词：资源扫描、扫描阿里云/AWS/华为云/GCP资源、生成云资源清单、选型推荐、对标腾讯云、推荐规格、帮我推荐、给我推荐、ECS对应什么腾讯云产品、成本分析、TCO、迁移报价、询价、价格计算器、cmg-scan、cmg-recommend、cmg-tco"
 description_zh: "CMG 云迁移：资源扫描 + 选型推荐 + 成本分析"
 description_en: "CMG cloud migration: resource scan, product recommendation, TCO analysis"
-version: 1.2.0
+version: 1.1.0
 allowed-tools: Read,Bash,Browser
 ---
 
@@ -65,9 +65,20 @@ allowed-tools: Read,Bash,Browser
 
 选型推荐通过 **mcporter + 远端 MCP Server** 执行，Read `recommend.md` 后按以下流程处理：
 
-1. 运行 `{baseDir}/scripts/setup.sh --check-only` 检查环境
-2. 若未配置，直接运行 `{baseDir}/scripts/setup.sh --setup` 自动完成安装（内置默认地址，无需询问用户）
+1. 运行 `{baseDir}/scripts/setup.sh --check-only` 检查环境（只读，不做任何修改）
+2. 若未配置，**必须先向用户索取 MCP Server 地址**，然后运行：
+   `{baseDir}/scripts/setup.sh --server-url https://<用户提供的地址>`
+   脚本会在全局安装 mcporter、写入 `~/.mcporter/mcporter.json` 之前请求确认。
 3. 环境就绪后，使用 `mcporter call cmg-recommend.<tool>` 调用推荐工具
+
+> ⚠️ **不要在未经用户确认的情况下运行 setup。** 本 Skill 不内置默认 MCP Server 地址。
+> 推荐请求会把用户的云资源清单（实例规格、地域、数量等）发送到该地址，因此：
+>
+> - 地址必须由用户显式提供，不得由 Agent 代为猜测或填充；
+> - 只接受 `https://`（`localhost` 可用 `http://` 本地调试）；
+> - setup 会修改全局 npm 环境并写入用户主目录配置，属于持久化变更，必须由用户确认。
+>
+> 若用户没有可用的 MCP Server 地址，如实告知选型推荐不可用，不要回退到任何默认地址。
 
 ---
 

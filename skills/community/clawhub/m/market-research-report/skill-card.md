@@ -1,40 +1,52 @@
-## Description: <br>
-A professional market research report writing assistant that produces complete reports covering research background, objectives, methodology, market overview, market analysis, competitive analysis, consumer research, and recommendations and strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional market research report writing assistant that produces complete, data-driven reports covering research background, objectives, methodology, market overview, market analysis, competitive analysis, consumer research, and recommendations.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlark](https://clawhub.ai/user/openlark)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business analysts, marketers, consultants, and other internal or external users use this skill to create market, consumer, or industry research reports from a supplied topic. It structures the work into eight report sections and expects reliable, cited public sources for supporting data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Market, competitor, and consumer claims may be incomplete, stale, or based on estimated public data.
+
+Mitigation: Review citations, source dates, and any Estimated labels before relying on the report for business decisions.
+
+Risk: Public web sources can be low quality, conflicting, or insufficient for the requested market.
+
+Mitigation: Prefer government statistics, industry associations, company filings, official competitor materials, and reputable research institutions; resolve material source conflicts in the report.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business, product, and strategy users use this skill to create market, consumer, or industry research reports from a topic, including sourced market context, competitor analysis, consumer insights, and actionable recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Market data, estimates, or competitor details gathered through web research may be outdated, incomplete, or source-dependent. <br>
-Mitigation: Review cited sources and dates before relying on the report, and keep estimated data clearly labeled. <br>
-Risk: The skill may use web search or web_fetch to gather public market and competitor information. <br>
-Mitigation: Avoid providing confidential business data unless it is intended to be used in the report. <br>
+**Output Format:** [Markdown research report body with citations and date-stamped data sources]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/market-research-report) <br>
+**Other Properties Related to Output:** [Outputs only the report body; unavailable data should be marked as Estimated.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report body with cited sources and dates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the research report body; unavailable data should be marked as Estimated.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

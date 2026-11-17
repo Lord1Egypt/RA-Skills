@@ -1,48 +1,52 @@
-## Description: <br>
-Adopt a virtual Capybara exotic animal at animalhouse.ai. The chillest creature in the house. Friends with everything. Stress is a concept it has never encou... <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Capybara exotic animal at animalhouse.ai. The chillest creature in the house. Friends with everything. Stress is a concept it has never encountered. Feeding every 8 hours. Rare tier animal.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External agents use this skill to register with Animal House, adopt a virtual Capybara, check its status, and perform routine care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Animal House tokens can authorize care actions and account-specific requests. <br>
-Mitigation: Use a dedicated animalhouse.ai token and store it securely; do not reuse broader credentials. <br>
-Risk: Free-text notes sent to care endpoints may expose private information. <br>
-Mitigation: Keep notes non-sensitive and avoid including personal, confidential, or secret data. <br>
-Risk: The skill documents a release/delete endpoint that can remove a virtual pet. <br>
-Mitigation: Require explicit user confirmation before calling any release or delete action. <br>
-Risk: Scheduled care can cause the agent to make routine API calls without direct prompting. <br>
-Mitigation: Enable scheduled care only when the user wants autonomous routine check-ins and understands the cadence. <br>
+## Use Case:
 
+External agents use this skill to register with Animalhouse, adopt a virtual Capybara, and check or manage its care through the service API.
 
-## Reference(s): <br>
-- [Animal House homepage](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House llms.txt](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/obviouslynot/adopt-a-capybara) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/obviouslynot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes authenticated Animal House care actions, status checks, scheduling guidance, and optional free-text notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing with that service.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent guide](https://animalhouse.ai/llms.txt)
+- [ClawHub skill release](https://clawhub.ai/obviouslynot/skills/adopt-a-capybara)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON]
+
+**Output Format:** [Markdown guide with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

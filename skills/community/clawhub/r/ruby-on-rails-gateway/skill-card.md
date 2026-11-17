@@ -1,43 +1,58 @@
-## Description: <br>
-Configure and operate a Ruby On Rails Agent Gateway integration from the OpenClaw side for briefing pull workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and operate a Ruby On Rails Agent Gateway integration from the OpenClaw side for briefing pull workflows.
 
-## Publisher: <br>
-[jessewaites](https://clawhub.ai/user/jessewaites) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jessewaites](https://clawhub.ai/user/jessewaites)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw to read briefing data from a Rails app through the agent_gateway briefing endpoint. It supports setup checks, scoped read-only pulls, result summarization, and reusable command patterns for reporting or automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live bearer tokens and path secrets may be exposed through logs or pasted commands. <br>
-Mitigation: Use dedicated read-only tokens where possible, redact secrets in user-visible output, and keep token values out of logs. <br>
-Risk: Broad pulls such as full history can retrieve more application data than intended. <br>
-Mitigation: Start with narrow resource, period, and latest filters before expanding the query scope. <br>
-Risk: A local helper script may run with the user's environment and credentials. <br>
-Mitigation: Verify the helper script before running it and prefer non-destructive briefing requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rails Agent Gateway Usage Reference](references/usage.md) <br>
-- [agent_gateway Ruby gem](https://github.com/jessewaites/agent-gateway) <br>
-- [ClawHub skill page](https://clawhub.ai/jessewaites/ruby-on-rails-gateway) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure OpenClaw to query a Rails agent_gateway briefing endpoint, validate authentication settings, and generate scoped read-only data summaries for reports or automations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize JSON briefing responses and redact live secrets in user-visible output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can pull sensitive Rails application data broadly when configured with gateway credentials.
+
+Mitigation: Use least-scope resources and periods, avoid period=all unless needed, and keep briefing pulls read-only.
+
+Risk: Bearer tokens and secret-bearing gateway URLs can be exposed through logs, shell history, pasted commands, or shared output.
+
+Mitigation: Redact live credentials, avoid printing tokens, and keep secret-bearing URLs out of user-visible output and logs.
+
+Risk: The local helper script path may point to unaudited code while receiving Rails gateway credentials.
+
+Mitigation: Prefer direct curl or a verified trusted helper, and avoid running the absolute-path helper unless its source and contents are known.
+
+## Reference(s):
+
+- [Rails Agent Gateway Usage Reference](references/usage.md)
+- [agent_gateway Ruby gem](https://github.com/jessewaites/agent-gateway)
+- [Ruby On Rails Gateway on ClawHub](https://clawhub.ai/jessewaites/skills/ruby-on-rails-gateway)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and concise data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands, helper-script command patterns, environment-variable checks, troubleshooting notes, and summarized briefing counts or latest records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

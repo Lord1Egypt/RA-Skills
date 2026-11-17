@@ -2,7 +2,7 @@
 name: project-init
 description: |
   Scaffolds new projects with git, CI/CD workflows, pre-commit hooks, and build config
-version: 1.9.8
+version: 1.10.3
 triggers:
   - starting a new Python
   - Rust
@@ -12,24 +12,7 @@ source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Use When](#use-when)
-- [Workflow](#workflow)
-- [1. Detect or Select Language](#1-detect-or-select-language)
-- [2. Collect Project Metadata](#2-collect-project-metadata)
-- [3. Review Existing Files](#3-review-existing-files)
-- [4. Render and Apply Templates](#4-render-and-apply-templates)
-- [5. Initialize Git (if needed)](#5-initialize-git-(if-needed))
-- [6. Verify Setup](#6-verify-setup)
-- [7. Next Steps](#7-next-steps)
-- [Error Handling](#error-handling)
-- [Success Criteria](#success-criteria)
-- [Examples](#examples)
-- [Example 1: New Python Project](#example-1:-new-python-project)
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Project Initialization Skill
@@ -99,6 +82,16 @@ python3 plugins/attune/scripts/attune_init.py \
 ```
 **Verification:** Run the command with `--help` flag to verify availability.
 
+The script also scaffolds the project decision journal: `docs/tradeoffs.md`
+and `docs/lessons-learned.md`. These are append-only logs that later workflows
+(brainstorm, specify, plan, execute, review) write to as decisions and lessons
+arise. Existing journal files are never overwritten. The format follows the
+`leyline:decision-journal` contract; init uses leyline's template when present
+and a vendored copy otherwise, so it works with or without leyline installed.
+
+**Verification:** Confirm `docs/tradeoffs.md` and `docs/lessons-learned.md`
+exist and each contains an `## Active index` and an `## Archive` section.
+
 ### 5. Initialize Git (if needed)
 
 ```bash
@@ -151,6 +144,16 @@ make help
 - Git repository initialized
 - `make help` shows available targets
 - `make test` runs without errors (even if no tests yet)
+
+## Exit Criteria
+
+- [ ] Template files for the selected language are created (or, in dry-run,
+  reported) with no unconfirmed overwrites.
+- [ ] `docs/tradeoffs.md` and `docs/lessons-learned.md` exist, each with an
+  `## Active index` and an `## Archive` section.
+- [ ] A pre-existing journal file is detected and left unmodified.
+- [ ] Git is initialized (unless `--no-git`) and `make help` lists targets.
+- [ ] Running with `--dry-run` writes no files, including the journal.
 
 ## Examples
 

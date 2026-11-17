@@ -1,0 +1,143 @@
+name: rl
+description: Reinforcement Learning authoritative sources
+
+categories:
+  official_docs:
+    - name: OpenAI Gym Docs
+      url: https://www.gymlibrary.dev/
+      type: official-docs
+      description: RL environment library
+
+    - name: Stable Baselines3 Docs
+      url: https://stable-baselines3.readthedocs.io/
+      type: official-docs
+      description: RL algorithms library
+
+    - name: Ray RLlib Docs
+      url: https://docs.ray.io/en/latest/rllib/index.html
+      type: official-docs
+      description: Scalable RL library
+
+    - name: PyTorch RL Docs
+      url: https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html
+      type: official-docs
+      description: PyTorch RL tutorials
+
+    - name: TensorFlow Agents Docs
+      url: https://www.tensorflow.org/agents
+      type: official-docs
+      description: TF RL library
+
+    - name: SB3 Contrib Docs
+      url: https://sb3-contrib.readthedocs.io/
+      type: official-docs
+      description: SB3 extensions
+
+    - name: CleanRL Docs
+      url: https://docs.cleanrl.dev/
+      type: official-docs
+      description: High-quality single-file RL implementations
+
+    - name: DeepMind Control Suite
+      url: https://github.com/deepmind/dm_control
+      type: official-docs
+      description: Physics-based RL environments
+
+    - name: Unity ML-Agents
+      url: https://unity-technologies.github.io/ml-agents/
+      type: official-docs
+      description: Unity RL framework
+
+    - name: PettingZoo Docs
+      url: https://pettingzoo.farama.org/
+      type: official-docs
+      description: Multi-agent RL environments
+
+  official_blogs:
+    - name: DeepMind Blog
+      url: https://deepmind.google/discover/blog/
+      type: official-blog
+      description: DeepMind RL research
+
+    - name: OpenAI Blog
+      url: https://openai.com/research
+      type: official-blog
+      description: OpenAI RL research
+
+    - name: Meta AI Research
+      url: https://ai.meta.com/blog/
+      type: official-blog
+      description: Meta RL research
+
+    - name: NVIDIA Developer Blog
+      url: https://developer.nvidia.com/blog/
+      type: official-blog
+      description: GPU-accelerated RL
+
+    - name: Hugging Face Blog
+      url: https://huggingface.co/blog
+      type: official-blog
+      description: RL tutorials
+
+  conferences:
+    - name: NeurIPS
+      url: https://neurips.cc/
+      type: top-conference
+      description: Neural Information Processing Systems
+
+    - name: ICML
+      url: https://icml.cc/
+      type: top-conference
+      description: International Conference on Machine Learning
+
+    - name: ICLR
+      url: https://iclr.cc/
+      type: top-conference
+      description: International Conference on Learning Representations
+
+    - name: AAAI
+      url: https://aaai.org/
+      type: top-conference
+      description: AAAI Conference on AI
+
+    - name: AAMAS
+      url: https://www.aamas2024-conference.auckland.ac.nz/
+      type: top-conference
+      description: International Conference on Autonomous Agents
+
+    - name: WWW
+      url: https://www2025.thewebconf.org/
+      type: conference
+      description: Web and RL applications
+
+  papers:
+    - name: arXiv cs.LG
+      url: https://arxiv.org/list/cs.LG/recent
+      type: preprint
+      description: Machine Learning papers (includes RL)
+
+    - name: arXiv cs.AI
+      url: https://arxiv.org/list/cs.AI/recent
+      type: preprint
+      description: AI papers
+
+    - name: arXiv stat.ML
+      url: https://arxiv.org/list/stat.ML/recent
+      type: preprint
+      description: Statistics ML papers
+
+    - name: RL Papers with Code
+      url: https://paperswithcode.com/area/reinforcement-learning
+      type: aggregator
+      description: RL papers with implementations
+
+  courses:
+    - name: David Silver RL Course
+      url: https://www.davidsilver.uk/teaching/
+      type: university
+      description: UCL RL course
+
+    - name: Stanford CS234
+      url: https://cs234.stanford.edu/
+      type: university
+      description: Reinforcement Learning

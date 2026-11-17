@@ -1,52 +1,64 @@
-## Description: <br>
-Generates draw.io diagrams, flowcharts, architecture diagrams, ER diagrams, UML diagrams, network topologies, ML/DL figures, mind maps, and other visualizations as .drawio XML with local export support for PNG, SVG, PDF, and JPG. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, validate, and export draw.io diagrams for architecture, UML, ERD, flowcharts, network topology, infrastructure, and other technical visualizations.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use this skill to create editable draw.io diagrams for software architecture, data models, workflows, code structure, and other complex systems. It is most useful when diagrams need rich draw.io shapes, custom styling, local exports, or optional Graphviz-assisted layout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or overwrite diagram and export files in the working directory or a requested output path. <br>
-Mitigation: Review requested output paths before running exports and keep generated files in an expected project or artifact directory. <br>
-Risk: Code-structure diagram requests may read selected project folders to build import or class graphs. <br>
-Mitigation: Run code-visualization flows only on repositories or directories that are appropriate for local analysis. <br>
-Risk: Some icon and browser-fallback flows can contact external icon CDNs or diagrams.net. <br>
-Mitigation: Use embedded icons or XML-only/local export workflows when offline operation or network minimization is required. <br>
-Risk: Style-management flows can store user presets under ~/.drawio-skill/styles. <br>
-Mitigation: Inspect or remove saved presets if a shared environment should not retain diagram styling preferences. <br>
+## Use Case:
 
+Developers and engineers use this skill to produce polished, editable diagrams and related exports for software architecture, infrastructure, data models, processes, and technical explanations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/agents365-ai/drawio-pro-skill) <br>
-- [Auto-layout reference](references/autolayout.md) <br>
-- [Diagram type presets](references/diagram-types.md) <br>
-- [Shape vocabulary and search](references/shapes.md) <br>
-- [Style presets](references/style-presets.md) <br>
-- [Style extraction](references/style-extraction.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Shape index attribution](data/SHAPE-INDEX-NOTICE.md) <br>
-- [draw.io Desktop releases](https://github.com/jgraph/drawio-desktop/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with XML, JSON, and shell command snippets; local .drawio and exported image or document files when the required tools are available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create files in the working directory or requested output path, read selected code folders for code-structure diagrams, and use local draw.io or Graphviz tools when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.14.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill runs local draw.io and Python tooling over user-selected files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in workspaces where local file processing is acceptable, and review generated commands before execution.
+
+Risk: Generated HTML animation helpers have disclosed title escaping bugs for attacker-controlled filenames or repository directory names.
+
+Mitigation: Avoid attacker-controlled filenames and repository directory names with those helpers until the escaping issue is fixed.
+
+Risk: Logo lookup behavior can use CDN-hosted assets.
+
+Mitigation: Use embedded or local assets when external CDN requests are not acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agents365-ai/skills/drawio-pro-skill)
+- [Publisher Profile](https://clawhub.ai/user/agents365-ai)
+- [Toolbox Reference](artifact/references/toolbox.md)
+- [Diagram Type Presets](artifact/references/diagram-types.md)
+- [XML Authoring Reference](artifact/references/xml-authoring.md)
+- [Auto-layout Reference](artifact/references/autolayout.md)
+- [Troubleshooting Reference](artifact/references/troubleshooting.md)
+- [Shape Index Notice](artifact/data/SHAPE-INDEX-NOTICE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with draw.io XML, JSON inputs, and shell commands as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce editable .drawio files and exported PNG, SVG, PDF, JPG, PPTX, Mermaid, or HTML artifacts when supporting tools are available.]
+
+## Skill Version(s):
+
+1.34.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

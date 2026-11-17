@@ -1,42 +1,58 @@
-## Description: <br>
-Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[warm-wm](https://clawhub.ai/user/warm-wm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[warm-wm](https://clawhub.ai/user/warm-wm)
 
-## Use Case: <br>
-Developers and skill authors use this agent skill to create or update reusable skills with focused instructions, optional scripts, reference material, and packaged outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to write files and package generated skill content. <br>
-Mitigation: Run it in a trusted workspace, avoid elevated privileges, and keep output paths inside the intended project or user skill directory. <br>
-Risk: Generated skill instructions or scripts may be incomplete, misleading, or unsuitable for release. <br>
-Mitigation: Review generated SKILL.md files, scripts, and packaged contents before installing, sharing, or relying on them. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create or update agent skills, plan reusable resources, validate skill structure, and package distributable skill files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/warm-wm/creator) <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline code blocks and generated skill package files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify SKILL.md files, reference files, scripts, and distributable .skill packages when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Bundled initialization and packaging scripts can write files in local directories selected by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scripts only in controlled workspaces and inspect target paths before creating or packaging a skill.
+
+Risk: Packaging untrusted skill folders could include files that were not intended for release.
+
+Mitigation: Inspect skill folders before packaging, remove symlinks, and validate the package contents before distribution.
+
+Risk: The security scan verdict is suspicious because of local file-scope weaknesses.
+
+Mitigation: Review the skill before installing it, especially when using it on untrusted skill folders or automated inputs.
+
+## Reference(s):
+
+- [Workflow Patterns](references/workflows.md)
+- [Output Patterns](references/output-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create skill package files when the bundled packaging script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

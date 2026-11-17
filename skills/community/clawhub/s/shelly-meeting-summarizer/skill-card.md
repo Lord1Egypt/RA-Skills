@@ -1,40 +1,52 @@
-## Description: <br>
-Generates concise meeting summaries with key decisions, action items with owners, follow-up dates, and a brief three-sentence overview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise meeting summaries highlighting key decisions, action items with owners, follow-up dates, and a brief 3-sentence overview.
 
-## Publisher: <br>
-[claudiodrusus](https://clawhub.ai/user/claudiodrusus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[claudiodrusus](https://clawhub.ai/user/claudiodrusus)
 
-## Use Case: <br>
-Employees, project teams, and developers can use this skill to turn meeting transcripts into structured notes for follow-up planning and accountability. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meeting transcripts are sent to Anthropic for summarization. <br>
-Mitigation: Use only with transcripts whose confidentiality and data-flow requirements permit processing by Anthropic with the user's API key. <br>
-Risk: The skill depends on local command-line prerequisites and an API key. <br>
-Mitigation: Confirm bash, curl, python3, and ANTHROPIC_API_KEY are available before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/claudiodrusus/shelly-meeting-summarizer) <br>
-- [Example output](example-output.md) <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn raw meeting transcripts into concise Markdown summaries with decisions, action items, owners, deadlines, and follow-up dates.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown with Summary, Key Decisions, Action Items, and Follow-up Dates sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcript text is sent to Anthropic for summarization and the response is capped at 1500 max tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Meeting transcripts are sent to Anthropic for processing.
+
+Mitigation: Use only with transcripts your organization permits sharing with Anthropic; avoid confidential, regulated, customer, legal, HR, or security-sensitive meetings unless approved.
+
+Risk: The skill requires an Anthropic API key for outbound API calls.
+
+Mitigation: Use a dedicated key with spending limits, rotate it regularly, and store it in the ANTHROPIC_API_KEY environment variable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/claudiodrusus/skills/shelly-meeting-summarizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown with sections for Summary, Key Decisions, Action Items, and Follow-up Dates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires transcript input and an ANTHROPIC_API_KEY; API response length is configured for concise summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

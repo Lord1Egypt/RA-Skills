@@ -1,42 +1,59 @@
-## Description: <br>
-Creates social-media quote images by selecting a random JPG from a configured photo folder, applying a dark gradient overlay, and adding quote, author, role, and contact text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates social-media quote images by applying text and a gradient overlay to a random JPG from a configured local photo folder.
 
-## Publisher: <br>
-[quoc-modoro](https://clawhub.ai/user/quoc-modoro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quoc-modoro](https://clawhub.ai/user/quoc-modoro)
 
-## Use Case: <br>
-Content creators, marketers, and automation agents use this skill to generate 1200x630 quote images for LinkedIn, X, Facebook, and WordPress posts from a configured image folder. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can select random personal photos from PICS_DIR, which may expose private or unintended images in generated outputs. <br>
-Mitigation: Use a dedicated non-sensitive JPG folder for PICS_DIR and review generated images before sharing or publishing them. <br>
-Risk: Generated image paths can be passed to other skills or posting workflows, which may share files beyond the local workspace. <br>
-Mitigation: Write outputs only to an approved directory, share generated files intentionally, and delete generated images when no longer needed. <br>
-Risk: The shell script depends on local ImageMagick and font paths, so execution may fail or produce inconsistent images on differently configured machines. <br>
-Mitigation: Confirm ImageMagick, required fonts, PICS_DIR, and output permissions before using the skill in an automated workflow. <br>
+## Use Case:
 
+Developers and content automation users use this skill to generate branded quote images for LinkedIn, X, Facebook, WordPress, or downstream posting workflows from local JPG photos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/quoc-modoro/image-quote-overlay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bash, ImageMagick, configured fonts, and at least one JPG image in PICS_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The skill reads JPG files from the configured local photo folder, which may include sensitive personal images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point PICS_DIR at a dedicated folder containing only images intended for generated quote overlays.
+
+Risk: Generated images may be reused by social-media posting workflows before a human reviews the final visual.
+
+Mitigation: Review each generated image before upload, scheduling, or publication by another skill.
+
+Risk: Default and intermediate file paths may use shared temporary directories.
+
+Mitigation: Choose a private output directory for generated images and avoid shared temporary paths for sensitive content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quoc-modoro/skills/image-quote-overlay)
+- [README](artifact/README.md)
+- [Usage examples](artifact/examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime output is plain text plus generated PNG image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ImageMagick, Bash, configured JPG input photos, and available local fonts.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

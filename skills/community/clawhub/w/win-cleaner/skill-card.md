@@ -1,42 +1,61 @@
-## Description: <br>
-Deep cleans Windows C drive junk files by scanning disk usage and guiding cleanup of caches, temp files, logs, browser data, application caches, Windows Store, .NET, game, and video-conferencing caches while protecting user data and system stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep clean Windows C drive junk files by analyzing disk usage, identifying safe-to-delete items, and cleaning caches, temp files, logs, browser data, application caches, Windows Store, .NET, game, and video-conferencing caches while protecting user data and system stability.
 
-## Publisher: <br>
-[ftois](https://clawhub.ai/user/ftois) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ftois](https://clawhub.ai/user/ftois)
 
-## Use Case: <br>
-Users and support engineers use this skill to scan Windows C drive storage pressure, identify cleanup candidates, and execute or review cleanup commands for temporary files, caches, logs, browser data, app caches, and other low-value disk usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Aggressive automatic deletion can remove data or application state that the user expected to keep. <br>
-Mitigation: Run scan-only first and require explicit approval before any deletion. <br>
-Risk: VSS resizing, DISM resetbase, and Recycle Bin emptying can reduce recovery options or permanently remove recoverable files. <br>
-Mitigation: Treat each recovery-impacting action as a separate opt-in step with a clear explanation before execution. <br>
-Risk: Browser data removal, Desktop cleanup, user-profile recursive matches, and old app-version deletion may affect user workflows or application state. <br>
-Mitigation: Review matched paths and categories with the user before cleanup, and skip uncertain or user-owned content. <br>
+## Use Case:
 
+External users and support-focused agents use this skill to assess and reclaim space on Windows C drives by scanning disk usage, proposing cleanup steps, and running PowerShell cleanup commands for caches, logs, update data, and other re-creatable junk.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ftois/win-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell command blocks and cleanup summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scan-first cleanup workflow; deletion and recovery-impacting actions require user supervision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may automatically delete important app or user state and weaken recovery options despite presenting cleanup steps as safe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every command before execution, start with scan/report behavior, and skip high-impact steps unless the user explicitly accepts the tradeoff.
+
+Risk: DISM resetbase and VSS resizing can reduce the ability to uninstall updates or recover from system changes.
+
+Mitigation: Prefer quick-clean phases when recovery options matter, and run DISM resetbase or VSS resizing only after explicit user confirmation.
+
+Risk: Browser, IDE, and Teams cleanup can remove sessions, history, workspace metadata, databases, or local storage.
+
+Mitigation: Close affected apps, back up important state, and skip browser history or cookies, IDE workspaceStorage, Teams databases, and Teams local storage unless reviewed.
+
+Risk: Desktop and profile-wide heuristic deletions can match files the user may still need.
+
+Mitigation: Treat Desktop and profile-wide findings as review-only candidates and require explicit item selection before deletion.
+
+## Reference(s):
+
+- [Win Cleaner ClawHub page](https://clawhub.ai/ftois/skills/win-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline PowerShell code blocks and cleanup summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scan results, proposed cleanup actions, confirmation prompts, and per-phase freed-space totals.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

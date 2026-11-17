@@ -1,36 +1,52 @@
-## Description: <br>
-Analyze a US stock using a value investing checklist and output detailed scoring steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a US stock using a value investing checklist and output detailed scoring steps.
 
-## Publisher: <br>
-[kristian-Zf](https://clawhub.ai/user/kristian-Zf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kristian-zf](https://clawhub.ai/user/kristian-zf)
 
-## Use Case: <br>
-Developers and external users can use this skill to score user-provided US stock metrics against a simple value-investing checklist and receive a rating with per-metric reasoning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat checklist ratings as financial advice or live market analysis. <br>
-Mitigation: Treat the output as an educational checklist, verify all metrics with current trusted sources, and do not rely on it for trading or investment decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers can use this skill to score a U.S. stock from user-supplied metrics against a simple value investing checklist and review the rating rationale.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, guidance] <br>
-**Output Format:** [JSON with ticker, rating, reasons, and an explanatory note.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores only user-provided metrics; it does not fetch live market data or make trades.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The stock rating may be misleading if the supplied metrics are stale, incomplete, or incorrect.
+
+Mitigation: Verify all input metrics from trusted financial sources before using the checklist output.
+
+Risk: Users may mistake the checklist score for financial advice.
+
+Mitigation: Present the output as a lightweight screening aid and require human financial review before investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kristian-zf/skills/ai-investing-assistant-with-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON object with ticker, rating, reasons, and note.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses only user-provided metrics; missing metrics are reported in the output.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, skill.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

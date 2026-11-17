@@ -1,40 +1,55 @@
-## Description: <br>
-Generates investor-ready board reporting packages, including monthly KPI flash reports, quarterly board decks, annual reviews, committee templates, and board meeting prep materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured investor-ready board decks and reports including monthly KPIs, quarterly deep dives, annual reviews, and committee templates.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, executives, and finance or operations leaders use this skill to turn business metrics into board-ready flash reports, decks, annual reviews, and committee materials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Board reports may include sensitive company metrics, customer information, employee details, or financial data if the agent is given broad access. <br>
-Mitigation: Limit the agent to explicit files, systems, date ranges, and metrics; avoid unnecessary customer or employee details; store generated board materials in an access-controlled location. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-board-reporting) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Founders, finance leaders, executives, and board-facing teams use this skill to turn approved company data into board-ready monthly flash reports, quarterly board decks, annual reviews, committee reports, and meeting-prep materials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, templates, checklists, tables, and report outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only framework; generated materials depend on user-provided business data, source limits, and reporting scope.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Board materials may include confidential financial, customer, operational, and strategy information.
+
+Mitigation: Name approved data sources, the reporting period, and the company or entity before generation, and review outputs before sharing.
+
+Risk: Generated board narratives or metrics may be incomplete, stale, or misleading if source data is not approved and current.
+
+Mitigation: Validate generated reports against finance, customer, pipeline, and operating records before using them in board materials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-board-reporting)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown templates and structured reporting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided company data, reporting period, company or entity name, and approved data sources.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Document beautifier for AI Agents that converts Markdown to styled webpages, Word, PDF, and image slideshows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Reader helps AI agents convert Markdown and image inputs into styled HTML, PDF, DOCX, and slideshow outputs.
 
-## Publisher: <br>
-[ebbfijsf](https://clawhub.ai/user/ebbfijsf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ebbfijsf](https://clawhub.ai/user/ebbfijsf)
 
-## Use Case: <br>
-Developers and agent users use Agent Reader to turn Markdown reports, documents, and image sets into delivery-ready webpages, PDF or DOCX files, and slideshow exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup runs an external npm package through npx. <br>
-Mitigation: Install only if comfortable running the package and prefer pinning the package version in the MCP configuration. <br>
-Risk: Rendered files, inline HTML, and base64 returns may contain the same sensitive information as the source Markdown or images. <br>
-Mitigation: Treat generated outputs as sensitive whenever the source content is sensitive and share or store them accordingly. <br>
-Risk: Implicit format selection or generated export variants may be less predictable than explicit tool calls. <br>
-Mitigation: Use explicit export tools and formats when predictable output is required. <br>
+## Use Case:
 
+Developers and agent builders use this skill to turn raw Markdown reports, documents, and image collections into delivery-ready webpages, PDF or Word documents, and standalone slideshows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ebbfijsf/agent-reader) <br>
-- [npm Package](https://www.npmjs.com/package/agent-reader) <br>
-- [Glama MCP Server Listing](https://glama.ai/mcp/servers/ebbfijsf/agent-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Configuration, HTML, PDF, DOCX] <br>
-**Output Format:** [File paths or inline content for rendered HTML, PDF, DOCX, and slideshow exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return inline HTML or base64 file content; file outputs are described as writing under /tmp/agent-reader/ in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.7 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup command uses an unpinned npm package, so the runtime code can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the MCP command to the reviewed package version, such as agent-reader@1.3.7, or install from a controlled lockfile.
+
+Risk: Converted documents and generated assets may be written to /tmp/agent-reader.
+
+Mitigation: Avoid processing highly sensitive documents unless this output location and retention behavior are acceptable.
+
+Risk: Generated HTML from untrusted Markdown or image inputs can carry content-rendering risk.
+
+Mitigation: Review generated HTML before opening or sharing it, and run the skill with least privilege.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ebbfijsf/skills/agent-reader)
+- [GitHub repository](https://github.com/ebbfijsf/agent-reader)
+- [npm package](https://www.npmjs.com/package/agent-reader)
+- [Glama listing](https://glama.ai/mcp/servers/ebbfijsf/agent-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [HTML, PDF, DOCX, standalone slideshow HTML, base64 file content, file paths, JSON status fields, and warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may be written under /tmp/agent-reader or returned inline when requested.]
+
+## Skill Version(s):
+
+1.3.7 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

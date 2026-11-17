@@ -18,15 +18,15 @@
 # in EasyEDA's webview, not on disk, so we version the layout SNAPSHOT instead.
 set -euo pipefail
 
-DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT="$(cd "$DIR/../../.." && pwd)"   # scripts → easyeda-agent → skills → repo root
-BIN="$ROOT/bin/easyeda"
+DIR="$(cd "$(dirname "$0")" && pwd -P)"
+ROOT="$(cd "$DIR/../../../.." && pwd -P)"   # scripts → easyeda-agent → skills → .agents → repo root
 
 # ---- arg parse: flags anywhere, positionals in order ----
 ALL=0; SAVE=0; INITGIT=0
 POS=()
 for a in "$@"; do
   case "$a" in
+    --help|-h) printf 'Usage: lint.sh [project] [--all|--save|--init-git] [host] [portStart] [portEnd]\nCLI: EASYEDA_BIN overrides PATH; a repository build is the final fallback.\n'; exit 0 ;;
     --all) ALL=1 ;;
     --save) SAVE=1 ;;
     --init-git) INITGIT=1 ;;
@@ -36,12 +36,22 @@ for a in "$@"; do
 done
 PROJ="${POS[0]:-ceshi}"
 HOST="${POS[1]:-127.0.0.1}"
-PS="${POS[2]:-49620}"; PE="${POS[3]:-49629}"
+PS="${POS[2]:-60832}"; PE="${POS[3]:-60841}"
 
 STORE="${EASYEDA_LINT_DIR:-$HOME/.easyeda-agent/lint}/$PROJ"
 SNAP="$STORE/snapshot.json"
 
-[ -x "$BIN" ] || { echo "build first: make build" >&2; exit 1; }
+if [ -n "${EASYEDA_BIN:-}" ]; then
+  BIN="$(command -v "$EASYEDA_BIN" 2>/dev/null || true)"
+  [ -n "$BIN" ] && [ -x "$BIN" ] || { echo "EASYEDA_BIN is not an executable: $EASYEDA_BIN" >&2; exit 1; }
+elif BIN="$(command -v easyeda 2>/dev/null)" && [ -x "$BIN" ]; then
+  :
+elif [ -f "$ROOT/go.mod" ] && [ -d "$ROOT/cmd/easyeda" ] && [ -x "$ROOT/bin/easyeda" ]; then
+  BIN="$ROOT/bin/easyeda"
+else
+  echo "easyeda CLI not found: install it on PATH or set EASYEDA_BIN=/absolute/path/to/easyeda (repository development: make build)." >&2
+  exit 1
+fi
 
 # --init-git sets up the store and exits (no live window needed).
 if [ "$INITGIT" = 1 ]; then

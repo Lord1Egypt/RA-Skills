@@ -1,43 +1,60 @@
-## Description: <br>
-Distills any commercial entity into a personalized brand agent with authentic voice, declared service capabilities, a standard service contract, and support for creating brand identity from existing content or from scratch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill any commercial entity into a personalized brand agent with authentic voice, declared service capabilities, and a standard service contract.
 
-## Publisher: <br>
-[neiljo-gy](https://clawhub.ai/user/neiljo-gy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neiljo-gy](https://clawhub.ai/user/neiljo-gy)
 
-## Use Case: <br>
-Developers, brand operators, and agencies use this skill to generate commercial brand-agent persona packs with declared services, customer-facing behavior guidance, A2A discoverability, and service contracts for external agent interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated brand agents may receive broad shell, file, and network authority by default. <br>
-Mitigation: Before running generated agents, confirm the output directory, review overwrite behavior, and remove unnecessary shell, curl, Python, broad file access, and web access permissions unless the specific brand service requires them. <br>
-Risk: ACN/A2A registration or action services such as payments, orders, and bookings can create real-world effects. <br>
-Mitigation: Treat registration and state-changing commercial services as opt-in and require explicit user confirmation before execution. <br>
+## Use Case:
 
+Businesses, brands, studios, and institutions use this skill to create a customer-facing brand agent from existing brand material or direct brand declarations. The generated agent can expose declared information services, action services, third-party routing, behavior guidance, A2A discovery metadata, and a service contract.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/neiljo-gy/brand-persona-skill) <br>
-- [Brand Persona Template](artifact/assets/brand.persona.template.json) <br>
-- [Behavior Guide Template](artifact/assets/behavior-guide.template.md) <br>
-- [Service Contract Template](artifact/references/SERVICE-CONTRACT.template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration, shell commands, and generated persona-pack files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a self-contained brand-agent skill directory with persona.json, SKILL.md, behavior guide, agent-card metadata, ACN configuration, and a service contract.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and skill metadata) <br>
+Risk: The skill runs mutable npm tooling through npx/openpersona during generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the openpersona package version before generation, and run generation in a restricted workspace.
+
+Risk: Generated brand agents may include broad command, file, and web permissions.
+
+Mitigation: Remove broad default runtime tools unless a declared service capability truly requires them.
+
+Risk: Generated agents can include persistence and ACN registration paths.
+
+Mitigation: Require explicit user approval before enabling persistence or registering the agent on ACN or another external network.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/neiljo-gy/skills/brand-persona-skill)
+- [Service Contract Template](references/SERVICE-CONTRACT.template.md)
+- [Behavior Guide Template](assets/behavior-guide.template.md)
+- [Brand Persona Template](assets/brand.persona.template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, generated files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a self-contained brand persona skill directory with behavior guidance, service contract material, trigger mapping, and A2A discovery metadata when dependencies are available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

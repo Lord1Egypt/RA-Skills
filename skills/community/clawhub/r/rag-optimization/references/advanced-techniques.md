@@ -2,6 +2,15 @@
 
 > 本文档详细介绍九项核心RAG优化技术的实现细节、配置参数与最佳实践
 
+> 注意：**导入约定**：本文示例统一使用平铺导入（`from self_rag import ...`）。
+> 运行前需先把 `scripts/` 目录加入 `sys.path`：
+>
+> ```python
+> import sys; sys.path.insert(0, "scripts")
+> ```
+>
+> `from xxx import ...` 的包式写法**不可用**（脚本内部为平铺导入，包式导入会报 `ModuleNotFoundError`）。
+
 ## 目录
 
 1. [Self-RAG / Corrective RAG](#一self-rag--corrective-rag)
@@ -26,10 +35,10 @@
 
 | 特性 | Corrective RAG | Self-RAG |
 |------|---------------|----------|
-| 检索前评估 | ✗ | ✓ 判断是否需要检索 |
-| 检索后评估 | ✓ 相关性评估 | ✓ 相关性评估 |
-| 生成后评估 | ✗ | ✓ 忠实度/幻觉检测 |
-| 来源标注 | ✗ | ✓ 每个片段标注来源 |
+| 检索前评估 | 否 | 是，判断是否需要检索 |
+| 检索后评估 | 是，相关性评估 | 是，相关性评估 |
+| 生成后评估 | 否 | 是，忠实度/幻觉检测 |
+| 来源标注 | 否 | 是，每个片段标注来源 |
 | 实现复杂度 | 中等 | 较高 |
 
 ### 1.2 核心流程
@@ -67,7 +76,7 @@ Self-RAG 流程：
 ### 1.4 使用示例
 
 ```python
-from scripts.self_rag import CorrectiveRAG, SelfRAG
+from self_rag import CorrectiveRAG, SelfRAG
 
 # Corrective RAG
 crag = CorrectiveRAG(
@@ -165,7 +174,7 @@ result = self_rag.query("RAG系统如何优化？")
 ### 2.4 使用示例
 
 ```python
-from scripts.segment_extractor import RelevantSegmentExtractor
+from segment_extractor import RelevantSegmentExtractor
 
 extractor = RelevantSegmentExtractor(
     llm_client=your_llm,
@@ -256,7 +265,7 @@ context = extractor.get_context_for_llm(query, documents, max_length=2000)
 ### 3.4 使用示例
 
 ```python
-from scripts.proposition_chunker import PropositionChunker
+from proposition_chunker import PropositionChunker
 
 chunker = PropositionChunker(
     llm_client=your_llm,
@@ -336,7 +345,7 @@ indexable = chunker.to_indexable_format(propositions)
 ### 4.4 使用示例
 
 ```python
-from scripts.contextual_header import ContextualHeaderEnhancer
+from contextual_header import ContextualHeaderEnhancer
 
 enhancer = ContextualHeaderEnhancer(
     llm_client=your_llm,
@@ -354,7 +363,7 @@ enhanced = enhancer.enhance(chunk, document_metadata)
 enhanced_chunks = enhancer.enhance_document(document, metadata)
 
 # 分层头部构建
-from scripts.contextual_header import HierarchicalHeaderBuilder
+from contextual_header import HierarchicalHeaderBuilder
 
 builder = HierarchicalHeaderBuilder()
 full_header = builder.build_full_header(
@@ -432,7 +441,7 @@ full_header = builder.build_full_header(
 ### 5.4 使用示例
 
 ```python
-from scripts.context_compression import ContextCompressor
+from context_compression import ContextCompressor
 
 # 初始化压缩器
 compressor = ContextCompressor(
@@ -528,7 +537,7 @@ print(f"压缩内容: {result['compressed_text']}")
 ### 6.4 使用示例
 
 ```python
-from scripts.citation_tracker import CitationTracker
+from citation_tracker import CitationTracker
 
 # 初始化引用追踪器
 tracker = CitationTracker(
@@ -626,42 +635,40 @@ for citation in result['citations']:
 
 ### 7.3 配置参数
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `enable_complexity` | bool | True | 是否评估复杂度 |
-| `enable_query_rewrite` | bool | True | 是否改写查询 |
-| `enable_colloquial_fix` | bool | True | 是否标准化口语表达 |
-| `intent_types` | list | 七种标准类型 | 自定义意图类型列表 |
-| `complexity_levels` | int | 3 | 复杂度级别数 |
+> 注意：**如实说明（与代码对齐）**：`QueryIntentRecognizer(llm_client=None, config=None)` 会保存 `config`，
+> 但**当前版本不消费任何配置键**——复杂度评估、查询标准化、意图分类、策略路由始终启用。
+> 接入 `llm_client` 后，意图分类走 LLM 语义判定；无 LLM 时走规则模式（关键词/句式模板）。
+> 下表为行为说明而非可调参数：
+
+| 行为 | 触发条件 | 说明 |
+|------|--------|------|
+| 复杂度评估 | 始终启用 | 输出 `QueryComplexity`（简单/中等/复杂） |
+| 查询标准化 | 始终启用 | 去噪声、统一表达，写入 `normalized_query` |
+| 意图分类 | 始终启用 | 七种标准意图；主意图 + 次要意图 + 置信度 |
+| 策略路由 | 始终启用 | 输出 `suggested_strategy`（top_k / retrieval_mode / multi_hop 等） |
 | `rewrite_rules` | dict | {} | 自定义改写规则 |
 
 ### 7.4 使用示例
 
 ```python
-from scripts.query_intent import QueryIntentAnalyzer
+from query_intent import QueryIntentRecognizer
 
-# 初始化意图分析器
-analyzer = QueryIntentAnalyzer(
-    llm_client=your_llm,
-    config={
-        'enable_complexity': True,
-        'enable_query_rewrite': True,
-        'enable_colloquial_fix': True
-    }
-)
+# 初始化意图识别器（llm_client 可选，无 LLM 时走规则模式；config 当前版本不消费任何键）
+analyzer = QueryIntentRecognizer(llm_client=your_llm)
 
-# 分析查询
-result = analyzer.analyze("RAG和微调有什么区别，哪个更适合企业？")
+# 识别查询（返回 IntentResult 数据类）
+result = analyzer.recognize("RAG和微调有什么区别，哪个更适合企业？")
 
-print(f"意图类型: {result['intent_type']}")  # 对比分析
-print(f"复杂度: {result['complexity']}")      # 中等
-print(f"改写查询: {result['rewritten_query']}")  # "RAG与微调的对比分析..."
-print(f"推荐策略: {result['recommended_strategy']}")  # 多对象检索+对比
+print(f"意图类型: {result.primary_intent}")            # QueryIntent.COMPARATIVE
+print(f"复杂度: {result.complexity}")                  # QueryComplexity.MEDIUM
+print(f"标准化查询: {result.normalized_query}")
+print(f"分解子问题: {result.sub_queries}")
 
-# 获取检索参数建议
-params = analyzer.get_retrieval_params(result)
-print(f"建议检索数量: {params['top_k']}")
-print(f"建议检索模式: {params['retrieval_mode']}")
+# 检索策略建议（IntentResult.suggested_strategy 字典）
+params = result.suggested_strategy
+print(f"建议检索数量: {params['top_k']}")               # 8
+print(f"建议检索模式: {params['retrieval_mode']}")       # hybrid
+print(f"是否多跳: {params.get('multi_hop')}")           # True
 ```
 
 ### 7.5 最佳实践
@@ -735,7 +742,7 @@ print(f"建议检索模式: {params['retrieval_mode']}")
 ### 8.4 使用示例
 
 ```python
-from scripts.multi_hop_retriever import MultiHopRetriever
+from multi_hop_retriever import MultiHopRetriever
 
 # 初始化多跳检索器
 retriever = MultiHopRetriever(
@@ -837,7 +844,7 @@ for hop in result['hop_details']:
 ### 9.4 使用示例
 
 ```python
-from scripts.document_preprocessor import DocumentPreprocessor
+from document_preprocessor import DocumentPreprocessor
 
 # 初始化预处理器
 preprocessor = DocumentPreprocessor(
@@ -913,15 +920,15 @@ for section in result['sections']:
 
 | 技术 | 实现复杂度 | LLM依赖 | 效果提升 | 延迟影响 |
 |------|-----------|---------|---------|---------|
-| Self-RAG | 中高 | 高 | ⭐⭐⭐⭐⭐ | +20-50% |
-| 相关片段提取 | 中 | 中 | ⭐⭐⭐⭐ | +10-20% |
-| 命题分块 | 高 | 高 | ⭐⭐⭐⭐ | 索引时开销 |
-| 上下文头增强 | 低 | 中 | ⭐⭐⭐ | 索引时开销 |
-| 上下文压缩 | 中 | 中 | ⭐⭐⭐⭐ | +5-15% |
-| 引用溯源 | 低 | 低 | ⭐⭐⭐ | +5-10% |
-| 查询意图识别 | 低 | 低 | ⭐⭐⭐⭐ | +5% |
-| 多跳检索 | 中高 | 高 | ⭐⭐⭐⭐⭐ | +50-200% |
-| 文档预处理 | 中 | 低 | ⭐⭐⭐ | 索引时开销 |
+| Self-RAG | 中高 | 高 | 5/5 | +20-50% |
+| 相关片段提取 | 中 | 中 | 4/5 | +10-20% |
+| 命题分块 | 高 | 高 | 4/5 | 索引时开销 |
+| 上下文头增强 | 低 | 中 | 3/5 | 索引时开销 |
+| 上下文压缩 | 中 | 中 | 4/5 | +5-15% |
+| 引用溯源 | 低 | 低 | 3/5 | +5-10% |
+| 查询意图识别 | 低 | 低 | 4/5 | +5% |
+| 多跳检索 | 中高 | 高 | 5/5 | +50-200% |
+| 文档预处理 | 中 | 低 | 3/5 | 索引时开销 |
 
 ---
 

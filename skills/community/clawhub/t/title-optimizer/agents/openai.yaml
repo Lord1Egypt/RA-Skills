@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 标题优化建议"
+  short_description: "基于商品字段与评论证据优化标题表达"
+  default_prompt: "使用 $amazon-title-optimizer 根据商品详情和评论证据提出 Amazon 标题优化建议。"

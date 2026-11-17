@@ -1,42 +1,55 @@
-## Description: <br>
-MediaClaw is an AI video content factory for teams that need brand video production and repurposing at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MediaClaw helps teams turn source videos into localized clips, ad creatives, captioned shorts, voiceover variants, and platform-ready exports for TikTok, Reels, Shorts, Douyin, and Xiaohongshu.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External brands, MCN agencies, e-commerce sellers, marketing teams, and creators use this skill to request localized, platform-ready video variants, ad copy, captions, voiceovers, and brand-element replacements from source video and brand assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with videos, faces, voices, logos, packaging, or ad assets that the user is not authorized to transform. <br>
-Mitigation: Use only rights-cleared media and assets, and confirm required consent before uploading or transforming content. <br>
-Risk: Anti-duplicate and repurposing workflows could be misused to evade platform rules or repost unauthorized content. <br>
-Mitigation: Apply the workflow only for compliant, authorized campaigns and review outputs against platform policies before publication. <br>
+## Use Case:
 
+External marketing teams, brands, MCN agencies, e-commerce sellers, and content creators use this skill to plan AI-assisted video repurposing, brand replacement, captioning, voiceover replacement, and multi-platform short-form exports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/imwyvern/mediaclaw) <br>
-- [MediaClaw product suite](https://mediaclaw.ai) <br>
-- [MediaClaw production and API access](https://mediaclawbot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown text with production briefs, prompts, ad copy, and platform export specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe requested media variants and service access; does not execute production automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill promotes face, voice, brand replacement, and anti-duplicate media generation that could be misused without consent or proper rights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only videos, faces, voices, brands, and commercial assets that the user is authorized to modify, and review generated substitutions for impersonation or misleading claims before publication.
+
+Risk: The README shows an unpinned npx installation command.
+
+Mitigation: Prefer a pinned, verified ClawHub install command in sensitive environments.
+
+## Reference(s):
+
+- [MediaClaw video content production suite](https://mediaclaw.ai)
+- [MediaClaw production pipeline access](https://mediaclawbot.com)
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/mediaclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with example requests and installation command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe video transformation plans, platform-ready export targets, caption and voiceover variants, ad copy, and dashboard links.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

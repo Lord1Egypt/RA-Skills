@@ -24,7 +24,7 @@ cp -r web-search-feishu /path/to/openclaw/skills/
 Get your API key from [DashScope Console](https://dashscope.console.aliyun.com/).
 
 ```bash
-export DASHSCOPE_API_KEY="sk-your-dashscope-api-key"
+export DASHSCOPE_API_KEY="REDACTED-SECRET"
 ```
 
 ### 3. Configure Feishu Credentials
@@ -44,7 +44,7 @@ Or add to your shell profile:
 
 ```bash
 cat >> ~/.bashrc << 'EOF'
-export DASHSCOPE_API_KEY="sk-your-dashscope-api-key"
+export DASHSCOPE_API_KEY="REDACTED-SECRET"
 export FEISHU_APP_ID="cli_xxxxxxxxxxxxxxxx"
 export FEISHU_APP_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 EOF

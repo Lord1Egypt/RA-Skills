@@ -1,46 +1,60 @@
-## Description: <br>
-A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-evolution engine for AI agents. Analyzes runtime history to identify improvements and applies protocol-constrained evolution.
 
-## Publisher: <br>
-[chris8265-cl](https://clawhub.ai/user/chris8265-cl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris8265-cl](https://clawhub.ai/user/chris8265-cl)
 
-## Use Case: <br>
-Developers and teams maintaining agent prompts, logs, and long-running agent loops use this skill to inspect runtime history, generate GEP-guided evolution prompts, and capture reusable Genes, Capsules, and Events for auditable improvement cycles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence describes this as a high-authority self-evolving agent component that can spawn long-running automation and update behavior. <br>
-Mitigation: Use review or dry-run modes first, run it in a disposable git worktree, and require human review before applying generated changes in sensitive environments. <br>
-Risk: The security evidence says the skill can read broad agent history, memory files, and stable identifiers, and may send data to configured external services. <br>
-Mitigation: Limit accessible logs and memory, remove secrets from transcripts, review remote memory and hub settings, and use only the minimum credentials needed. <br>
-Risk: The security evidence calls out auto-update, hub networking, task claiming, auto-publish, loop mode, and remote memory settings as controls that need review. <br>
-Mitigation: Disable or explicitly review those features before running the skill, especially in shared, production, or credentialed workspaces. <br>
-Risk: The artifact supports validation commands and external asset ingestion, which can affect local files or agent behavior if promoted without review. <br>
-Mitigation: Validate external assets before promotion, keep command allowlists narrow, and verify generated Genes, Capsules, and Events before reuse. <br>
+## Use Case:
 
+Developers and agent teams use Evolver.Bak to analyze agent runtime history, produce protocol-bound evolution prompts, and record reusable GEP assets for auditable repair and improvement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris8265-cl/evolver-bak) <br>
-- [EvoMap documentation](https://evomap.ai/wiki) <br>
-- [EvoMap](https://evomap.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text prompts with structured JSON-style evolution assets, command snippets, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local GEP assets, reports, and evolution state when the skill is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic evolution workflows can drive code changes or skill updates before a human has reviewed the result.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated git-backed workspace, disable bridge execution and auto-update for real work, and require human review plus validation before applying changes.
+
+Risk: Outbound hub access can expose transcript-derived signals, project context, or other local data.
+
+Mitigation: Run with no sensitive conversations, credentials, or private project data available, and block or explicitly approve outbound hub access.
+
+Risk: Validation commands and promoted Gene/Capsule assets may execute local commands or influence future agent behavior.
+
+Mitigation: Inspect staged assets before promotion, keep validation command allowlists enabled, and run validation in a disposable workspace when possible.
+
+## Reference(s):
+
+- [EvoMap Documentation](https://evomap.ai/wiki)
+- [EvoMap](https://evomap.ai)
+- [GitHub Releases](https://github.com/autogame-17/evolver/releases)
+- [ClawHub Skill Page](https://clawhub.ai/chris8265-cl/skills/evolver-bak)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON/text prompts with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local GEP assets and emits prompts or commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact package.json reports 1.22.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Gate multi-account asset manager L2 skill for checking total assets, margin and liquidation risk, earnings snapshots, affiliate commissions, and confirmed unified-account actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate multi-account asset manager L2 skill for total asset views, margin and liquidation risk checks, earnings snapshots, affiliate commissions, and confirmed unified-account actions.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to inspect Gate account balances, margin and liquidation risk, earn and staking snapshots, affiliate commissions, and unified-account borrowing or collateral settings. Write operations are intended to be drafted, risk-disclosed, and executed only after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access broad authenticated financial-account data across account, asset, margin, earn, staking, affiliate, and rebate domains. <br>
-Mitigation: Install only after review, prefer read-only Gate credentials unless write operations are required, and keep account snapshots confined to the authenticated user's context. <br>
-Risk: The skill includes confirmed write authority for unified-account borrowing, collateral, leverage, and mode changes. <br>
-Mitigation: Require a clear Action Draft with operation, target, amount or setting, rate where applicable, and risk note before accepting explicit single-use confirmation. <br>
-Risk: The release depends on an external Gate runtime-rules document that is not pinned inside the reviewed package. <br>
-Mitigation: Verify the referenced runtime-rules document before deployment and re-review the skill if those external rules change. <br>
-Risk: Vague account prompts may reveal a broad financial snapshot. <br>
-Mitigation: Scope ambiguous requests to the minimum relevant modules and disclose when broad account overview data will be queried. <br>
+## Use Case:
 
+External Gate users use this skill to aggregate account balances, risk indicators, earn positions, and affiliate commission data across Gate account domains. It can prepare and execute unified-account borrow, collateral, leverage, or mode changes only after an Action Draft and explicit confirmation.
 
-## Reference(s): <br>
-- [Gate Exchange Account and Asset Manager on ClawHub](https://clawhub.ai/gate-exchange/gate-exchange-assets-manager) <br>
-- [MCP execution specification](references/mcp.md) <br>
-- [Behavior scenarios](references/scenarios.md) <br>
-- [Gate runtime rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, action drafts, MCP tool-call guidance, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read reports should include module tags and timestamps; write actions require an explicit Action Draft and single-use confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter reports 2026.3.25-1) <br>
+Risk: The skill reads sensitive Gate account, asset, rebate, and position data across many account domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with least-privilege Gate API credentials and prefer read-only permissions unless unified-account mutations are required.
+
+Risk: The release is marked suspicious because it depends on mutable external runtime rules while using sensitive financial reads and write-capable tools.
+
+Mitigation: Verify the external gate-runtime-rules.md source before use and review the skill before enabling write-capable workflows.
+
+Risk: Unified-account borrow, collateral, leverage, and mode changes can affect margin, debt, or account configuration.
+
+Mitigation: Require an Action Draft, risk disclosure, and immediate explicit confirmation before each mutation; use read-only mode when confirmation is missing or stale.
+
+## Reference(s):
+
+- [Gate Assets Manager MCP Specification](references/mcp.md)
+- [Account and Asset Manager Scenarios](references/scenarios.md)
+- [Gate Runtime Rules](https://github.com/gate/gate-skills/blob/master/skills/gate-runtime-rules.md)
+- [Gate API Key Management](https://www.gate.io/myaccount/profile/api-key/manage)
+- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/skills/gate-exchange-assets-manager)
+- [Publisher Profile](https://clawhub.ai/user/gate-exchange)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports and Action Drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include data timestamps and module-level degradation notes when available.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Automatically sorts files in a directory into folders named by file extension to help organize local files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically sorts files in a chosen directory into folders named by file extension.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers and end users use this skill to organize a local directory by moving files into extension-named folders. It is useful for decluttering folders such as Downloads or Desktop while preserving files under the selected directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the sorter moves files and changes their paths, which can break shortcuts, scripts, or workflows that expect the old locations. <br>
-Mitigation: Run it first on a test or backed-up directory and review the target path before execution. <br>
-Risk: The documented command name may not match the packaged script name. <br>
-Mitigation: Use the packaged script name if the documented command does not resolve. <br>
+## Use Case:
 
+Developers and end users use this skill to organize local directories by grouping files into extension-named folders from the command line.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/albionaiinc-del/filesorter-by-ext) <br>
-- [Publisher profile](https://clawhub.ai/user/albionaiinc-del) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local filesystem changes by creating extension folders and moving files when the packaged script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can move files unexpectedly while reorganizing a directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it first on a test folder and keep backups of important files.
+
+Risk: The security summary reports a flaw that can move files outside the chosen folder.
+
+Mitigation: Avoid shared or untrusted directories and check for existing extension-named symlinks such as pdf or jpg before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/filesorter-by-ext)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown usage guidance and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Moves files in place within the selected directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Moodle REST API client, batch downloader, and MCP server for Claude Code integration with SSO support for Azure AD, Google, and SAML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moodle REST API client, batch downloader, and MCP server for Claude Code integration. SSO-enabled with support for Azure AD, Google, and SAML.
 
-## Publisher: <br>
-[jabir-srj](https://clawhub.ai/user/jabir-srj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jabir-srj](https://clawhub.ai/user/jabir-srj)
 
-## Use Case: <br>
-Developers, students, and education-technology operators use this skill to connect agents and command-line workflows to Moodle for course, grade, assignment, announcement, material, summary, and file-download tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles account tokens and private Moodle course data. <br>
-Mitigation: Use only with trusted local MCP clients, protect config.json and credentials.enc, and exclude credentials, cache, and downloads from commits and backups. <br>
-Risk: Download and write behavior can place files in user-selected output directories. <br>
-Mitigation: Restrict downloads to trusted Moodle URLs and safe output directories, and review downloaded files before using or sharing them. <br>
-Risk: Credential behavior is inconsistent in the release evidence, including a hardcoded test-pass path. <br>
-Mitigation: Avoid the hardcoded test-pass path and require a strong MOODLE_CRED_PASSWORD or equivalent secret handling before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to connect to Moodle instances, retrieve courses, grades, assignments, announcements, materials, and summaries, and download Moodle-hosted files through CLI, Python, or MCP workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jabir-srj/moodle-connector) <br>
-- [Project homepage](https://github.com/Jabir-Srj/moodle-connector) <br>
-- [Project repository](https://github.com/Jabir-Srj/moodle-connector.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown, command output, downloaded files, and MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read Moodle API data, cache responses, store encrypted credentials, and write downloaded files to configured directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and package.json) <br>
+Risk: Credential handling, downloads, and local persistence have serious under-disclosed security risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not use real Moodle credentials until credential storage, caching, and data transmission behavior are accurately documented.
+
+Risk: Downloads may use untrusted URLs or write outside an approved location.
+
+Mitigation: Restrict downloads to the configured Moodle origin and contain output paths to an approved directory before deployment.
+
+Risk: Default credential-password behavior can weaken protection for stored Moodle tokens or passwords.
+
+Mitigation: Remove the test-pass default, require a strong deployment-specific password, and rotate Moodle tokens or stored passwords if the skill was already used with the default.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/jabir-srj/skills/moodle-connector)
+- [Project Homepage](https://github.com/Jabir-Srj/moodle-connector)
+- [Project Repository](https://github.com/Jabir-Srj/moodle-connector.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown and plain text responses, downloaded files, JSON configuration, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Moodle course data, grades, assignments, announcements, materials, summaries, cached API responses, and downloaded files.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

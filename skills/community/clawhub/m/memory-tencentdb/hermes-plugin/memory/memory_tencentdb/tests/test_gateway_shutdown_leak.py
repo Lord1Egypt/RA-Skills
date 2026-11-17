@@ -529,8 +529,8 @@ class RealGatewayShutdownTest(unittest.TestCase):
             # unset keys make the L1 extractor log loud errors. A fake
             # key keeps the log clean and has no effect on the shutdown
             # path we're actually testing.
-            "TDAI_LLM_API_KEY": "sk-test-placeholder-not-used",
-            "MEMORY_TENCENTDB_LLM_API_KEY": "sk-test-placeholder-not-used",
+            "TDAI_LLM_API_KEY": "REDACTED-SECRET",
+            "MEMORY_TENCENTDB_LLM_API_KEY": "REDACTED-SECRET",
         })
         try:
             provider = MemoryTencentdbProvider()
@@ -640,8 +640,8 @@ class RealGatewayShutdownTest(unittest.TestCase):
             "TDAI_GATEWAY_HOST": "127.0.0.1",
             "TDAI_GATEWAY_PORT": str(port),
             "TDAI_DATA_DIR": str(self._data_dir),
-            "TDAI_LLM_API_KEY": "sk-test-placeholder-not-used",
-            "MEMORY_TENCENTDB_LLM_API_KEY": "sk-test-placeholder-not-used",
+            "TDAI_LLM_API_KEY": "REDACTED-SECRET",
+            "MEMORY_TENCENTDB_LLM_API_KEY": "REDACTED-SECRET",
         })
         try:
             provider = MemoryTencentdbProvider()

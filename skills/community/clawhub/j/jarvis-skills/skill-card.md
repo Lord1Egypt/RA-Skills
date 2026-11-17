@@ -1,39 +1,56 @@
-## Description: <br>
-Controls robotic arms and grippers through voice or code with OpenClaw, including 6-DOF movement, force sensing, collision detection, and simulation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control robotic arms and grippers through voice or code using OpenClaw-style robotic movement, force sensing, collision detection, and simulation workflows.
 
-## Publisher: <br>
-[Aly-Joseph](https://clawhub.ai/user/Aly-Joseph) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[aly-joseph](https://clawhub.ai/user/aly-joseph)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and robotics operators use this skill to connect agent workflows to robotic arm and gripper commands, including movement, grasping, status checks, and simulation-oriented control flows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is intended for real robotic arms and grippers, while the provided package lacks the declared implementation file.
+
+Mitigation: Review the local implementation before installation or execution and only use a verified implementation with supervised operation.
+
+Risk: Physical movement could cause harm if workspace, force, or motion limits are missing or misconfigured.
+
+Mitigation: Require explicit operator confirmation for movement, configure workspace and force limits, start in simulation or dry-run mode, and maintain an independent emergency stop.
+
+Risk: Advertised collision detection and safety behavior is not sufficient evidence of safe hardware operation.
+
+Mitigation: Do not rely on those claims until the missing implementation is supplied, reviewed, and validated with the target hardware.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and robotics operators use this skill to prepare or run robotic arm and gripper actions through voice commands or programmatic control. Use with real hardware only after the control module, dependencies, and safety limits have been independently reviewed. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Real robotic arm or gripper movement can cause physical damage or injury if controls are used without verified safety limits. <br>
-Mitigation: Treat the skill as simulation-only until the control module is obtained and audited, emergency stop behavior is configured, and workspace limits are confirmed. <br>
-Risk: The release lacks reviewed control code and clear confirmation rules for physical movement. <br>
-Mitigation: Require explicit operator approval for every movement or gripper action and verify dependency provenance before using real hardware. <br>
+**Output Format:** [Markdown with code and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include operator-facing robotic control steps, integration examples, and safety guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe robotic movement commands, hardware setup, simulation use, and operator approval steps.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence; artifact metadata says 2.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Builds a custom fear index from Polymarket markets by aggregating geopolitical escalation, falling crypto, extreme weather, and disease signals, then uses the index to identify oversold or overpriced prediction markets for paper or explicit live trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a custom fear index from Polymarket markets by aggregating geopolitical, crypto, weather, and disease signals, then trades panic-discounted or complacency-overpriced markets.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-Developers and trading automation operators use this skill to evaluate Polymarket markets through a macro fear-index strategy, tune risk controls, and run simulated trades by default or live trades only when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades and create financial exposure. <br>
-Mitigation: Run in paper mode first and use --live only when the operator accepts real trading risk. <br>
-Risk: The skill requires a sensitive SIMMER_API_KEY credential. <br>
-Mitigation: Use a limited or segregated API key where possible and keep the credential private. <br>
-Risk: The runtime depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review the simmer-sdk dependency before trusting live credentials. <br>
+## Use Case:
 
+External users and trading agents use this skill to scan Polymarket markets, compute a macro fear index, and run paper or explicitly enabled live trading based on oversold and overpriced signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-macro-fear-index-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/diagnostikon) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk source](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation, Python command-line execution, and runtime trade logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless --live is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: Live-trading safeguards do not fully enforce the advertised risk limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, provide only a narrowly scoped and revocable SIMMER_API_KEY, and do not rely on documented max-position or minimum-volume safeguards unless the code is fixed or the venue enforces equivalent limits.
+
+Risk: The skill can execute real Polymarket trades when live mode is explicitly enabled.
+
+Mitigation: Review the skill and dependency before live use, keep live credentials separate from paper testing, and enable live mode only after confirming position limits and venue controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-macro-fear-index-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can place simulated or live trading orders depending on execution mode and credentials.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

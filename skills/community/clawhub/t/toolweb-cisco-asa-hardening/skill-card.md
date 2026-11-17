@@ -1,45 +1,52 @@
-## Description: <br>
-Generates hardened Cisco ASA firewall configurations based on security best practices and specified hardening options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates hardened Cisco ASA firewall configurations based on security best practices and specified hardening options.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Network administrators, security engineers, managed service providers, security consultants, and DevSecOps teams use this skill to draft repeatable Cisco ASA hardening configurations from selected hardening options and session metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ASA commands could be incomplete, incorrect, or unsuitable for a specific production firewall environment. <br>
-Mitigation: Use the output as a draft and have a qualified network or security engineer review and test commands before applying them. <br>
-Risk: Requests to the external API may expose identifiers or sensitive internal network context if users include them. <br>
-Mitigation: Avoid sending real user identifiers, customer names, secrets, or sensitive internal network details unless the API provider is trusted. <br>
+## Use Case:
 
+Network administrators, security engineers, MSPs, security consultants, and DevSecOps teams use this skill to generate repeatable Cisco ASA hardening configurations and CLI command sets from selected hardening options.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-cisco-asa-hardening) <br>
-- [API documentation](https://api.mkkpro.com:8142/docs) <br>
-- [Kong route](https://api.mkkpro.com/hardening/cisco-asa) <br>
-- [Publisher profile](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON response containing generated ASA settings, CLI command groups, applied option counts, deployment estimate, and timestamps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires hardeningOptions, sessionId, and timestamp; userId is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Hardening options and session metadata are sent to an external provider, which may expose user identifiers, internal IPs, secrets, or production-only infrastructure details if included in requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting real user identifiers, live infrastructure secrets, internal IPs, or production-only details unless the provider's privacy and retention practices have been reviewed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-cisco-asa-hardening)
+- [ToolWeb](https://toolweb.in)
+- [Cisco ASA Hardening API Docs](https://api.mkkpro.com:8142/docs)
+- [Cisco ASA Hardening API Route](https://api.mkkpro.com/hardening/cisco-asa)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Shell commands, Text]
+
+**Output Format:** [JSON response containing organized Cisco ASA settings and CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a configuration ID, applied option count, estimated deployment time, and response timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

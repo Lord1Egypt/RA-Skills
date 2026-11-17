@@ -1,43 +1,58 @@
-## Description: <br>
-Automate login and page capture for WHUT AI Augmented sites using agent-browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates authenticated WHUT AI Augmented page access, popup handling, login, and page text/question capture through agent-browser.
 
-## Publisher: <br>
-[dongxingao](https://clawhub.ai/user/dongxingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongxingao](https://clawhub.ai/user/dongxingao)
 
-## Use Case: <br>
-External users working with WHUT AI Augmented pages use this skill to open authenticated pages, handle login prompts, and capture page text and questions for later review. The skill requires user-provided WHUT credentials and should be used only on intended WHUT URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use stored WHUT credentials on an arbitrary supplied URL. <br>
-Mitigation: Verify the target URL before execution and provide credentials only through environment variables or a local secret file for the intended WHUT site. <br>
-Risk: The workflow can submit answers or forms without a clear approval step. <br>
-Mitigation: Require explicit user approval before allowing the agent to submit answers, forms, or other page changes. <br>
-Risk: latest_page_dump.json can contain private coursework, prompts, account data, or other sensitive page text. <br>
-Mitigation: Review and delete latest_page_dump.json after use when it contains sensitive information. <br>
+## Use Case:
 
+Developers and authorized users working with WHUT AI Augmented pages use this skill to open a target page in an authenticated browser session and capture current page text or extracted questions for later processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dongxingao/ya) <br>
-- [Workflow conventions](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell command invocations, and JSON page dumps written to latest_page_dump.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses agent-browser to open the target page, fills login fields from configured credentials, and captures page URL, text, extracted questions, timestamp, and status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Stored WHUT credentials could be submitted to an unintended page if URL handling is not constrained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with explicit WHUT AI Augmented target URLs, add URL validation before opening pages, filling credentials, and submitting login forms, and avoid stored credentials until validation exists.
+
+Risk: The generated latest_page_dump.json can contain authenticated page data and extracted questions.
+
+Mitigation: Treat the dump as sensitive local data, avoid sharing it, and remove it when it is no longer needed.
+
+Risk: Automatic answer submission can make unintended changes on authenticated pages.
+
+Mitigation: Require explicit user approval before any answer-filling or submission action.
+
+## Reference(s):
+
+- [WHUT workflow conventions](artifact/references/workflow.md)
+- [ClawHub skill page](https://clawhub.ai/dongxingao/skills/ya)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Text, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON runtime output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write latest_page_dump.json containing captured authenticated page text and extracted questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

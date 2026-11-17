@@ -1,43 +1,56 @@
-## Description: <br>
-GLM Search Pro lets an agent run Zhipu GLM web searches through a preferred REST/cURL backend or an optional MCP backend with engine, recency, domain, result count, and detail-level controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhipu GLM web search using cURL or MCP backends, with Pro, Sogou, Quark, and Std engines plus intent recognition, recency filtering, domain filtering, and configurable result detail.
 
-## Publisher: <br>
-[bithostgits](https://clawhub.ai/user/bithostgits) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bithostgits](https://clawhub.ai/user/bithostgits)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current web information, news, and online resources through Zhipu GLM search. It is useful when web access is needed from China without a VPN and when searches need configurable engines, recency, domain filtering, or response detail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Zhipu/GLM. <br>
-Mitigation: Install and use the skill only when sending search queries to Zhipu/GLM is acceptable for the intended data and workflow. <br>
-Risk: MCP mode can persist the Zhipu API key in a local mcporter configuration URL. <br>
-Mitigation: Prefer cURL mode with ZHIPU_API_KEY in the runtime environment; use MCP setup only when local key persistence is acceptable and rotate the key if the config file may have been exposed. <br>
+## Use Case:
 
+Developers and agent users use this skill when an agent needs current web search, news lookup, domain-scoped search, or online resource retrieval through Zhipu GLM search APIs.
 
-## Reference(s): <br>
-- [GLM Search Pro API Notes](references/api-notes.md) <br>
-- [Zhipu Web Search Documentation](https://docs.bigmodel.cn/cn/guide/tools/web-search) <br>
-- [Zhipu MCP Search Server Documentation](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server) <br>
-- [GLM Search Pro on ClawHub](https://clawhub.ai/bithostgits/glm-search-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search responses with command-line status and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; cURL mode sends the key in an Authorization header, while optional MCP mode stores the key in a local mcporter configuration URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: Optional MCP setup stores the Zhipu API key on disk and includes it in an MCP broker URL query parameter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use cURL mode when possible; if MCP mode is required, keep the generated mcporter config owner-only and avoid sharing logs or config files.
+
+Risk: MCP setup or MCP use can invoke unpinned npm code through npx mcporter.
+
+Mitigation: Review the MCP setup path before use, prefer cURL mode in untrusted environments, and pin or preinstall trusted mcporter tooling when operational policy requires it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bithostgits/skills/glm-search-pro)
+- [Zhipu GLM Web Search API Reference](artifact/references/api-notes.md)
+- [Zhipu Web Search Docs](https://docs.bigmodel.cn/cn/guide/tools/web-search)
+- [Zhipu MCP Search Server Docs](https://docs.bigmodel.cn/cn/coding-plan/mcp/search-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON search-result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include titles, summaries, links, source names, reference IDs, and optional publish dates.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-基于高德开放平台，为 AI Agent 提供单地址商铺选址分析和多地址对比评估，生成 POI、交通、评分和地图可视化结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于高德开放平台的商铺选址分析 Skill，支持单地址竞品、配套、交通和热力图分析，以及多地址评分排名和可视化对比。
 
-## Publisher: <br>
-[wukongmazi](https://clawhub.ai/user/wukongmazi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wukongmazi](https://clawhub.ai/user/wukongmazi)
 
-## Use Case: <br>
-Business operators, analysts, and AI agents use this skill to evaluate prospective store locations, compare two to five candidate addresses, and produce reviewable site-selection evidence from nearby competitors, facilities, traffic status, weighted scores, and map visualizations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Address and location queries are sent to AMap services for geocoding, POI lookup, reverse geocoding, and traffic status. <br>
-Mitigation: Use the skill only for locations you are comfortable sharing with AMap, and avoid submitting sensitive or confidential addresses unless that disclosure is acceptable. <br>
-Risk: Generated HTML reports can contain addresses, coordinates, nearby businesses and facilities, and an AMap JS key. <br>
-Mitigation: Store generated reports in a private directory, avoid broadly sharing them, and delete them after use when the location data or key exposure is no longer needed. <br>
-Risk: Site-selection recommendations rely on external POI and traffic data plus a fixed weighted scoring method. <br>
-Mitigation: Treat the output as decision-support evidence and verify important business, lease, foot-traffic, and regulatory assumptions before acting on a store-location decision. <br>
+## Use Case:
 
+External users, business analysts, and agents use this skill to evaluate candidate store locations with nearby competitors, supporting facilities, traffic conditions, and generated map-based reports. It can compare two to five addresses and return ranked recommendations for site-selection decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wukongmazi/store-site-analysis) <br>
-- [AMap Open Platform API Documentation](https://lbs.amap.com/api/) <br>
-- [AMap Open Platform](https://lbs.amap.com/) <br>
+### Deployment Geography for Use:
 
+Global, subject to AMap service availability and applicable API key terms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [JSON responses with generated HTML visualization file paths and human-facing analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-address mode returns location, competitor, facility, traffic, and heatmap details; compare mode returns ranked candidate locations, component scores, a recommendation, and a comparison HTML path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Generated reports can overwrite writable files when output_dir is misconfigured or controlled by an untrusted user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated output directory with limited filesystem permissions and do not allow untrusted users to control output_dir.
+
+Risk: AMap API keys may be exposed in generated HTML or shared reports.
+
+Mitigation: Configure a separate browser-safe AMAP_JS_KEY and rotate AMAP_KEY if it has already appeared in shared reports.
+
+Risk: Address strings or generated report content may allow script injection in generated HTML.
+
+Mitigation: Run only for trusted inputs or review generated HTML before sharing it outside the execution environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wukongmazi/skills/store-site-analysis)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+- [AMap Open Platform](https://lbs.amap.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML files, guidance]
+
+**Output Format:** [JSON results with generated HTML report paths and agent-facing recommendation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AMAP_KEY and optionally AMAP_JS_KEY; writes visualization HTML files to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

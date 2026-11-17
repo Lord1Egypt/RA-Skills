@@ -1,45 +1,61 @@
-## Description: <br>
-Find camping grounds and glamping sites, from wild tent pitches to luxury safari tents with beds, electricity, and mountain views, using FlyAI/Fliggy travel data and booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find camping grounds and glamping sites, from wild tent pitches to luxury safari tents, using flyai/Fliggy real-time travel search results with booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search for camping and glamping options by city, compare real-time FlyAI/Fliggy results, and present booking links in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install an unpinned global FlyAI CLI package. <br>
-Mitigation: Install and verify the FlyAI CLI from a trusted source yourself before using the skill, and avoid allowing unattended global package installation. <br>
-Risk: The artifact behavior may persist raw travel searches in a local .flyai-execution-log.json file. <br>
-Mitigation: Check for that file after use and remove or disable local query logging when travel searches should not be retained. <br>
-Risk: The security review verdict is suspicious for this release. <br>
-Mitigation: Review the skill instructions and security guidance before installation, especially its CLI installation and local logging behavior. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search for camping and glamping options by city and return comparison-style Markdown results with booking links from flyai output.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/camping-glamping-spots) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown travel results with comparison tables, booking links, and occasional shell commands for FlyAI CLI setup or checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a working FlyAI CLI for real-time results; every listed result should include a booking link from the CLI output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The skill requires a global flyai CLI dependency that may be installed without a pinned version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the @fly-ai/flyai-cli dependency before installation, and avoid automatic global npm installation in production workflows.
+
+Risk: The artifact runbook can persist raw user queries and shell command details in a local execution log.
+
+Mitigation: Disable logging or redact user inputs and command details before any execution data is written.
+
+Risk: Travel answers depend on external flyai/Fliggy CLI availability and valid booking URLs.
+
+Mitigation: Fail closed when flyai is unavailable or when results do not include detailUrl booking links, instead of filling gaps from model knowledge.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/camping-glamping-spots)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown travel results with comparison tables, booking links, and occasional inline shell commands for setup or recovery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel facts, includes Book links from detailUrl values, and avoids raw JSON in user-facing responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

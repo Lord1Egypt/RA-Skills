@@ -4,7 +4,7 @@
 
 1. Run `openclaw doctor --fix` — clean orphans, confirm config valid
 2. Back up config: `cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak.$(date +%Y%m%d)`
-3. Confirm `MODEL_GROUND_TRUTH.md` is current (if you changed config/cron recently, update it first)
+3. Confirm `MODEL_GROUND_TRUTH.md` (and `refs/ground-truth/*.md` if using split structure) is current (if you changed config/cron recently, update it first)
 
 ## Upgrade
 
@@ -25,7 +25,7 @@ The agent reads `scripts/post-upgrade-verify.md` and executes the 5-phase check.
 
 ## GROUND_TRUTH Maintenance
 
-**⚠️ Any time you modify config or cron, update `MODEL_GROUND_TRUTH.md` to match.**
+**⚠️ Any time you modify config or cron, update `MODEL_GROUND_TRUTH.md` (and corresponding `refs/ground-truth/*.md` sub-files) to match.**
 
 If using an OpenClaw agent, add the sync rule to AGENTS.md:
 

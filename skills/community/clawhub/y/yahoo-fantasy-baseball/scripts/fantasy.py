@@ -1068,6 +1068,136 @@ def _early_season_weight(current_week):
     return 1.0 - (current_week - 2) / 5.0
 
 
+# Categories that are already rates — used as-is rather than divided by
+# playing time.
+_RATE_CATEGORIES = {"AVG", "OBP", "SLG", "OPS", "ERA", "WHIP", "K/9", "K9",
+                    "BB/9", "BB9", "K/BB"}
+# Categories where a lower value is the better result.
+_LOWER_IS_BETTER = {"ERA", "WHIP", "BB/9", "BB9", "L", "BSV"}
+# How much of the score comes from recent form vs. full-season rate.
+_RECENCY_WEIGHT = 0.35
+# Below this much recent playing time, the recent window is too small to
+# read anything into and the player falls back to his season rate.
+_MIN_RECENT_AB = 15.0
+_MIN_RECENT_IP = 5.0
+
+
+def _stat_value(stats, abbr):
+    """Pull one category value out of a Yahoo stats dict.
+
+    Returns a float, or None when the category isn't present. 'H' and 'AB'
+    are unpacked from the combined 'H/AB' field Yahoo returns.
+    """
+    if not stats:
+        return None
+    if abbr in ("H", "AB"):
+        hab = stats.get("H/AB")
+        if isinstance(hab, str) and "/" in hab:
+            h, _, ab = hab.partition("/")
+            try:
+                return float(h if abbr == "H" else ab)
+            except (TypeError, ValueError):
+                return None
+    val = stats.get(abbr)
+    if val in (None, ""):
+        return None
+    try:
+        return float(val)
+    except (TypeError, ValueError):
+        return None
+
+
+def _playing_time(stats, position_type):
+    """Denominator used to turn window totals into rates."""
+    if position_type == "P":
+        return _stat_value(stats, "IP") or 0.0
+    return _stat_value(stats, "AB") or 0.0
+
+
+def _normalize(values):
+    """Min-max a {key: value} map onto 0..1, dropping None entries.
+
+    A pool where everyone is equal normalizes to 0.5 rather than 0, so a
+    category nobody separates on stays neutral instead of vanishing.
+    """
+    present = [v for v in values.values() if v is not None]
+    if not present:
+        return {}
+    lo, hi = min(present), max(present)
+    if hi - lo < 1e-9:
+        return {k: 0.5 for k, v in values.items() if v is not None}
+    return {k: (v - lo) / (hi - lo)
+            for k, v in values.items() if v is not None}
+
+
+def _score_pool(players, categories, position_type):
+    """Score players 0-100 using the league's own scoring categories.
+
+    Each category is min-max normalized across the pool and the results are
+    averaged, so every category carries equal weight — which is how category
+    leagues actually settle. Baseline values come from Yahoo's per-game
+    'average_season' window so accumulated playing time can't inflate a
+    score, blended with recent form from 'lastmonth'.
+
+    Returns True if the pool was scored, False if there was nothing to score
+    on (caller then falls back to the legacy formula).
+    """
+    cats = [c for c in categories
+            if (c.get("position_type") or "") == position_type
+            and (c.get("abbr") or "")]
+    if not cats or not players:
+        return False
+
+    floor = _MIN_RECENT_IP if position_type == "P" else _MIN_RECENT_AB
+    window_scores = {}
+
+    for window in ("_rate_stats", "_recent_stats"):
+        per_cat_norm = []
+        for cat in cats:
+            abbr = cat["abbr"].upper()
+            raw = {}
+            for p in players:
+                stats = p.get(window) or {}
+                if window == "_rate_stats":
+                    # average_season is already per-game or a true rate.
+                    raw[id(p)] = _stat_value(stats, abbr)
+                elif abbr in _RATE_CATEGORIES:
+                    raw[id(p)] = _stat_value(stats, abbr)
+                else:
+                    per = _playing_time(stats, position_type)
+                    val = _stat_value(stats, abbr)
+                    raw[id(p)] = val / per if (val is not None and per >= floor) else None
+            norm = _normalize(raw)
+            if not norm:
+                continue
+            if abbr in _LOWER_IS_BETTER:
+                norm = {k: 1.0 - v for k, v in norm.items()}
+            per_cat_norm.append(norm)
+
+        if not per_cat_norm:
+            return False
+
+        scores = {}
+        for p in players:
+            vals = [n[id(p)] for n in per_cat_norm if id(p) in n]
+            scores[id(p)] = sum(vals) / len(vals) if vals else None
+        window_scores[window] = scores
+
+    rate = window_scores.get("_rate_stats", {})
+    recent = window_scores.get("_recent_stats", {})
+    for p in players:
+        base = rate.get(id(p))
+        if base is None:
+            base = 0.0
+        # Too little recent playing time to read — lean on the season rate.
+        form = recent.get(id(p))
+        if form is None:
+            form = base
+        blended = (1.0 - _RECENCY_WEIGHT) * base + _RECENCY_WEIGHT * form
+        p["_opt_score"] = round(blended * 100.0, 1)
+    return True
+
+
 def _effective_score(player, teams_playing, sitting_players=None):
     """Return a batter's effective score for today (0 if team not playing or player sitting)."""
     import mlb_client
@@ -1268,22 +1398,34 @@ def _solve_pitcher_lineup(pitchers, available_slots, unlocked_teams, teams_playi
 
         is_probable = (team_abbr in probable_pitchers and
                        _pitcher_names_match(name, probable_pitchers[team_abbr]))
+        # A starter-only arm accrues nothing on a day he isn't starting, so
+        # his team having a game is irrelevant — only relief eligibility or a
+        # confirmed probable-starter listing makes him worth a slot.
+        can_appear = is_probable or "RP" in positions
 
         if is_probable and team_abbr in unlocked_teams:
             priority = 100
         elif "RP" in positions and team_abbr in teams_playing and not status and team_abbr in unlocked_teams:
             priority = 50
-        elif team_abbr in teams_playing and team_abbr in unlocked_teams and not status:
+        elif can_appear and team_abbr in teams_playing and team_abbr in unlocked_teams and not status:
             priority = 10
-        elif team_abbr in teams_playing and team_abbr in unlocked_teams:
+        elif can_appear and team_abbr in teams_playing and team_abbr in unlocked_teams:
             priority = 5  # playing but has a status like DTD
         else:
-            priority = 0  # team off today or game locked
+            priority = 0  # off today, locked, or an SP who isn't starting
 
         scored.append((p, priority, opt_score, positions, current_slot))
 
-    # Sort by priority desc, then opt_score desc
-    scored.sort(key=lambda x: (-x[1], -x[2]))
+    def _pitcher_sort_key(entry):
+        _p, priority, opt_score, _positions, current_slot = entry
+        # At priority 0 nobody can accrue stats today, so a score-based swap is
+        # pure churn — keep whoever already holds the active slot.
+        incumbent_first = 0
+        if priority == 0 and current_slot in _PITCHER_SLOTS:
+            incumbent_first = -1
+        return (-priority, incumbent_first, -opt_score)
+
+    scored.sort(key=_pitcher_sort_key)
 
     remaining_slots = list(available_slots)
     assignment = {}
@@ -1451,9 +1593,32 @@ def _group_moves_into_swaps(moves):
                     "reshuffle": [],
                 })
             else:
-                pass  # skip orphan active→active reshuffles
+                # Pure active→active reshuffle (e.g. UTIL ↔ 3B) — no bench
+                # involved, so walk the displacement chain until it closes
+                # into a cycle.
+                cycle = [m]
+                start_slot = m["from_slot"]
+                slots_involved = [m["from_slot"]]
+                target_slot = m["to_slot"]
+                while target_slot != start_slot and target_slot in slot_vacated_by:
+                    nxt = slot_vacated_by[target_slot]
+                    if id(nxt) in used:
+                        break
+                    used.add(id(nxt))
+                    cycle.append(nxt)
+                    slots_involved.append(target_slot)
+                    target_slot = nxt["to_slot"]
+                slots_involved.append(target_slot)
+                groups.append({
+                    "label": " / ".join(slots_involved),
+                    "start": [],
+                    "bench": [],
+                    "reshuffle": cycle,
+                })
 
-    # Filter out any groups that don't involve the bench
+    # Keep only groups that move a player to or from the bench.  A group made
+    # up purely of active→active shifts leaves the same set of players in the
+    # lineup, so it cannot change scoring — it's noise the user can't act on.
     groups = [g for g in groups if g["start"] or g["bench"]]
 
     # Tag each move with its swap_group_index for JSON consumers
@@ -1513,42 +1678,65 @@ def cmd_optimize(args):
         elif slot not in ("", "NA"):
             active_players.append(player)
 
-    # Fetch season stats for scoring comparisons
+    # Fetch stats for scoring comparisons.  'average_season' carries per-game
+    # rates (so a player isn't rewarded merely for having accumulated at-bats)
+    # and 'lastmonth' carries recent form; 'season' is kept as the fallback
+    # for the legacy formula.
     non_il_ids = [p.get("player_id") for p in active_players + bench_players
                   if p.get("player_id")]
-    stats_by_id = {}
+    windows = {"season": {}, "average_season": {}, "lastmonth": {}}
     batch_size = 25
-    for i in range(0, len(non_il_ids), batch_size):
-        batch = non_il_ids[i:i + batch_size]
-        try:
-            stats = league.player_stats(batch, "season")
-            for s in stats:
-                pid = s.get("player_id")
-                if pid:
-                    stats_by_id[pid] = s
-        except Exception as e:
-            print(f"Warning: Could not fetch stats for batch: {e}",
-                  file=sys.stderr)
+    for window in list(windows):
+        for i in range(0, len(non_il_ids), batch_size):
+            batch = non_il_ids[i:i + batch_size]
+            try:
+                for s in league.player_stats(batch, window):
+                    pid = s.get("player_id")
+                    if pid:
+                        windows[window][pid] = s
+            except Exception as e:
+                print(f"Warning: Could not fetch {window} stats for batch: {e}",
+                      file=sys.stderr)
 
-    # Merge stats into player dicts
+    # Merge season stats into player dicts; hold the other windows aside so
+    # they don't collide with the season keys the formatters read.
     for p in active_players + bench_players:
         pid = p.get("player_id")
-        if pid in stats_by_id:
-            p.update(stats_by_id[pid])
+        if pid in windows["season"]:
+            p.update(windows["season"][pid])
+        p["_rate_stats"] = windows["average_season"].get(pid, {})
+        p["_recent_stats"] = windows["lastmonth"].get(pid, {})
 
-    # Compute scores for all players
+    # Score against the league's own categories.  Batters and pitchers are
+    # normalized within their own pools — their categories aren't comparable.
+    categories = []
+    try:
+        categories = formatters._extract_categories_from_settings(
+            league.stat_categories())
+    except Exception as e:
+        print(f"Warning: Could not fetch stat categories: {e}", file=sys.stderr)
+
+    everyone = active_players + bench_players
+    for pos_type in ("B", "P"):
+        pool = [p for p in everyone if p.get("position_type", "B") == pos_type]
+        if _score_pool(pool, categories, pos_type):
+            continue
+        # No usable categories — fall back to the legacy composite.
+        for p in pool:
+            p["_opt_score"] = round(
+                _compute_standout_score(formatters._extract_player_stats(p),
+                                        pos_type), 1)
+
+    # Boost probable starters — they'll pitch a full game
     PROBABLE_STARTER_BOOST = 20.0
-    for p in active_players + bench_players:
-        stats = formatters._extract_player_stats(p)
-        pos_type = p.get("position_type", "B")
-        score = _compute_standout_score(stats, pos_type)
-        # Boost probable starters — they'll pitch a full game
+    for p in everyone:
+        if p.get("position_type", "B") != "P":
+            continue
         team_abbr = mlb_client.normalize_team_abbr(formatters._player_team(p))
-        if pos_type == "P" and team_abbr in probable_pitchers:
-            if _pitcher_names_match(formatters._player_name(p),
-                                    probable_pitchers[team_abbr]):
-                score += PROBABLE_STARTER_BOOST
-        p["_opt_score"] = round(score, 1)
+        if team_abbr in probable_pitchers and _pitcher_names_match(
+                formatters._player_name(p), probable_pitchers[team_abbr]):
+            p["_opt_score"] = round(
+                p.get("_opt_score", 0) + PROBABLE_STARTER_BOOST, 1)
 
     # Blend preseason rank bonus for early-season weeks
     try:

@@ -1,41 +1,54 @@
-## Description: <br>
-AI Copywriting Expert berbahasa Indonesia - menghasilkan copy persuasif, strategis, dan conversion-oriented untuk digital marketing, social media, landing page, iklan, dan brand positioning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Copyku helps agents draft conversion-oriented marketing copy for social media, landing pages, ads, brand positioning, email sequences, SEO metadata, bulk content, and A/B variants across Indonesian, English, Chinese, Japanese, Malay, and Arabic.
 
-## Publisher: <br>
-[khamalismadie](https://clawhub.ai/user/khamalismadie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[khamalismadie](https://clawhub.ai/user/khamalismadie)
 
-## Use Case: <br>
-External marketers, founders, and content teams use Copyku to draft Indonesian-language marketing copy for social posts, ads, landing pages, email, and calls to action using quick, guided, or advanced inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include inaccurate product claims or language that does not meet a user's advertising standards. <br>
-Mitigation: Review generated copy for factual accuracy, brand fit, and compliance before publishing. <br>
-Risk: Automatic format selection may choose a tone or sales structure that is too aggressive for the product or audience. <br>
-Mitigation: Use guided or advanced inputs to specify platform, objective, tone, and guardrails before relying on the output. <br>
+## Use Case:
 
+External marketers, founders, and content teams use Copyku to draft multilingual marketing copy, campaign variants, email sequences, SEO metadata, and platform-specific social or ad copy.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/khamalismadie/copyku) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Indonesian marketing copy with hooks, body text, benefits, calls to action, and optional hashtags, testimonials, or guarantees.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports quick prompts, guided question flow, and advanced structured inputs for platform, objective, tone, awareness level, industry, CTA type, and content length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: release metadata; artifact frontmatter lists 1.5.0) <br>
+Risk: Marketing drafts can include unsupported product claims, especially for regulated products or services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims before publishing, require evidence-backed statements, and use compliance notes for sensitive domains.
+
+Risk: Broad keyword detection may shape platform, tone, or formula choices without explicit user intent.
+
+Mitigation: Prompt with explicit platform, objective, tone, language, and output format when precision matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/khamalismadie/skills/copyku)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/khamalismadie)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Guidance]
+
+**Output Format:** [Plain text, Markdown, or compact HTML marketing copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce 2-3 A/B variants, 5-10 bulk items, email sequences, or SEO meta fields when requested.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

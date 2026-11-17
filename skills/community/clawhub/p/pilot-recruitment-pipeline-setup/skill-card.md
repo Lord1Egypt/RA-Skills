@@ -1,39 +1,58 @@
-## Description: <br>
-Deploy a recruitment pipeline with 3 agents for candidate sourcing, screening, and interview scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a recruitment pipeline with 3 agents for candidate sourcing, screening, and interview scheduling.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and hiring operations teams use this skill to configure a three-agent recruitment workflow for candidate sourcing, resume screening, and interview scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate information may be shared with agents and external calendar services without clear privacy controls. <br>
-Mitigation: Review before installing in a hiring workflow, use only approved calendar endpoints, minimize candidate PII, obtain required consent, and define retention and access controls. <br>
+## Use Case:
 
+Developers and hiring operations teams use this skill to configure a three-agent recruitment workflow for candidate sourcing, resume screening, and interview scheduling.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-recruitment-pipeline-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific setup manifests, peer handshakes, subscriptions, and publish examples for the recruitment pipeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup uses broad shell-based installation and configuration steps with mutable third-party skill installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, use approved and pinned dependency skills, and run setup only in an authorized hiring environment.
+
+Risk: The workflow can move candidate profile, screening, Slack, calendar, and webhook data between agents and external services.
+
+Mitigation: Confirm what applicant data may be shared, restrict destinations to approved peers and services, and verify peer identities before handshakes.
+
+Risk: Hostname prefixes and peer names are user-supplied.
+
+Mitigation: Restrict prefixes to safe hostname characters before applying hostnames or initiating handshakes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-recruitment-pipeline-setup)
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilot-protocol, pilotctl, clawhub, role-specific skills, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

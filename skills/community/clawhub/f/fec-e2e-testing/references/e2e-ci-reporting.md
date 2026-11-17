@@ -1,6 +1,6 @@
-# E2E CI 与报告
+#E2E CI & Reporting
 
-## CI 集成（示例）
+## CI integration (example)
 
 ```yaml
 # .github/workflows/e2e.yml
@@ -29,34 +29,34 @@ jobs:
           retention-days: 30
 ```
 
-Cypress：固定 `CYPRESS_baseUrl` 或配置文件中的 `baseUrl`，失败截图/视频同样建议上传 artifact。
+Cypress: Fixed `CYPRESS_baseUrl` or `baseUrl` in the configuration file. Failure screenshots/videos are also recommended to upload artifacts.
 
-## E2E 报告模板（Markdown）
+## E2E report template (Markdown)
 
-输出或归档测试报告时可采用下列结构，便于复盘：
+The following structure can be used when outputting or archiving test reports to facilitate review:
 
 ```markdown
-# E2E 测试报告
+# E2E test report
 
-**日期：** YYYY-MM-DD HH:mm
-**耗时：** X 分 Y 秒
-**结果：** 通过 / 失败
+**Date:** YYYY-MM-DD HH:mm
+**Time taken:** X minutes Y seconds
+**Result:** Pass/Fail
 
-## 摘要
+## Summary
 
-- 总计 X | 通过 Y | 失败 Z | 不稳定/跳过 说明
+- Total X | Pass Y | Fail Z | Unstable/Skip Description
 
-## 失败用例
+## Failed use case
 
-### 用例名
+### Use case name
 
-- **文件：** `tests/e2e/xxx.spec.ts:行号`
-- **错误：** 简述断言或超时信息
-- **截图/Trace：** 路径或 artifact 名称
-- **建议修复：** 可执行结论
+- **File:** `tests/e2e/xxx.spec.ts:line number`
+- **ERROR:** Brief assertion or timeout information
+- **Screenshot/Trace:** path or artifact name
+- **Suggested fix:** Executable conclusion
 
-## 产物
+## Product
 
-- HTML 报告：`playwright-report/index.html`
-- Trace / 视频 / 截图：CI artifact 或本地 `test-results/`
+- HTML report: `playwright-report/index.html`
+- Trace / Video / Screenshot: CI artifact or local `test-results/`
 ```

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7chnxm92e2m8b70w6j8pk52d82tpwz",
-  "slug": "humanizer-xiaoshu",
-  "version": "1.0.0",
-  "publishedAt": 1775375738927
+  "owner": "biostartechnology",
+  "slug": "humanizer",
+  "displayName": "Humanizer",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1769231736865,
+    "commit": "https://github.com/clawdbot/skills/commit/03bb4d7b8d0304fa187739f4186bb6cae02a299d"
+  },
+  "history": []
 }

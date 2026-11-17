@@ -1,46 +1,63 @@
-## Description: <br>
-War/Den Governance evaluates OpenClaw bot actions against local or enterprise policies before execution and records decisions in governed audit and memory stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates and governs OpenClaw bot actions with YAML policies and tamper-evident audit logs to allow, deny, or require review before execution.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and operators use this skill to add policy checks, review gates, and audit trails to OpenClaw agents before actions such as deletion, code execution, API calls, and payments proceed. It supports local community mode and optional enterprise integrations for cloud governance and memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records action context and errors in local audit and memory stores. <br>
-Mitigation: Review the data passed to OpenClaw actions and configure retention, storage paths, and access controls for the local SQLite audit and memory databases. <br>
-Risk: Enterprise mode can transmit action details, memory content, metadata, and errors to Sentinel_OS or EngramPort when API keys are configured. <br>
-Mitigation: Use enterprise keys only when cloud processing is intended, treat keys as secrets, and confirm that transmitted data is appropriate for those services. <br>
-Risk: Fail-open behavior can allow actions when the governance engine fails. <br>
-Mitigation: Keep WARDEN_FAIL_OPEN=false unless an operator explicitly accepts fail-open behavior for the deployment. <br>
+## Use Case:
 
+Developers and teams use this skill to add policy checks, review gates, and audit logging around OpenClaw agent actions before they execute. It supports local community operation and optional enterprise integrations for cloud governance and memory.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jcools1977/an2b-warden-governance) <br>
-- [AN2B Technologies](https://an2b.com) <br>
-- [War/Den Documentation](https://warden.an2b.com/docs) <br>
-- [Sentinel_OS](https://getsentinelos.com) <br>
-- [EngramPort](https://engram.eideticlab.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, shell commands, text] <br>
-**Output Format:** [Python hook responses, audit records, governed memory entries, and Markdown documentation with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns allow, deny, or review decisions before actions execute; local mode writes SQLite-backed audit and memory records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, pyproject.toml, clawhub.json, server release metadata) <br>
+Risk: Cached ALLOW decisions may bypass required approvals for high-impact actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or patch the ALLOW decision cache before relying on the skill for deletes, payments, or other high-impact enforcement.
+
+Risk: Action logging may retain or send full action details without redaction.
+
+Mitigation: Review and redact logged payloads before enabling enterprise API keys or sending action details to cloud services.
+
+Risk: Over-privileged OpenClaw accounts can increase the impact of an incorrect governance decision.
+
+Mitigation: Run the skill with least-privileged OpenClaw accounts and require human review for destructive or payment actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcools1977/skills/an2b-warden-governance)
+- [Publisher Profile](https://clawhub.ai/user/jcools1977)
+- [AN2B Technologies](https://an2b.com)
+- [War/Den Documentation](https://warden.an2b.com/docs)
+- [Sentinel_OS](https://getsentinelos.com)
+- [EngramPort](https://engram.eideticlab.com)
+- [MandelDB Registration API](https://mandeldb.com/api/v1/portal/register)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, Code, Markdown]
+
+**Output Format:** [Markdown guidance with YAML configuration, shell commands, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce local policy decisions, audit log entries, review requirements, and setup guidance for optional enterprise services.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, frontmatter, pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

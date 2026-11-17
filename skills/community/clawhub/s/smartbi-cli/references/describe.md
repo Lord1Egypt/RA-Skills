@@ -1,13 +1,13 @@
 # `describe` 参考
 
-本文件为 **Smartbi CLI Skill** 的附属参考；流程性 MUST 以上级 `SKILL.md` 为准。
+本文件为 **SmartBI CLI Skill** 的附属参考；流程性 MUST 以上级 `SKILL.md` 为准。
 
 **用途**：Phase 2（Contract）与 Phase 4（Diagnose）— 读取契约与诊断信息。按 Skill 要求，**默认只消费最小字段集**；其余字段仅在升级诊断时查阅。
 
 ## 命令形式
 
 ```bash
-smartbi describe <operationKey> [--json] [--yaml] [--agent] [--include-raw-schema] [--refresh] [--config <path>]
+smartbi describe <operationKey> --profile <name> [--json] [--yaml] [--agent] [--include-raw-schema] [--refresh] [--config <path>]
 ```
 
 
@@ -18,6 +18,7 @@ smartbi describe <operationKey> [--json] [--yaml] [--agent] [--include-raw-schem
 | `--agent`              | 默认成功 `stdout` 为 YAML，失败时 `stderr` 必须输出结构化 JSON；成功体可含 Agent 侧重字段（见下节） |
 | `--include-raw-schema` | 附加 `requestBodySchemaRaw`、`responseSchemaRaw`（保留 OpenAPI 侧 `$ref` 等，供调试） |
 | `--refresh`            | 强制刷新 registry 缓存                                                         |
+| `--profile <name>`     | 环境名；**所有命令一律带**（环境选择见 `references/profiles.md`）                     |
 | `--config`             | 配置文件路径                                                                   |
 
 
@@ -34,7 +35,7 @@ smartbi describe <operationKey> [--json] [--yaml] [--agent] [--include-raw-schem
 
 ## 文档加载（优先获取，不可用时兜底）
 
-`describe` 完成后，应主动按主 Skill Phase 2「文档加载」步骤 1 识别文档来源，通过 `smartbi doc <path> --agent` 加载并递归穿透。文档有定义时以其为基准理解 schema；文档不可用或未覆盖的字段，直接使用 schema。
+`describe` 完成后，应主动按主 Skill Phase 2「文档加载」步骤 1 识别文档来源，通过 `smartbi doc <path> --profile <name> --agent` 加载并递归穿透。文档有定义时以其为基准理解 schema；文档不可用或未覆盖的字段，直接使用 schema。
 
 文档路径索引见 `references/doc-index.md`，各 domain 的主要文档目录可从该文件快速定位。
 
@@ -45,7 +46,7 @@ smartbi describe <operationKey> [--json] [--yaml] [--agent] [--include-raw-schem
 
 ## `--agent` 额外字段（诊断与摘要）
 
-在 `--agent` 成功响应中，通常还包含（具体以当前 CLI 与 `smartbi-cli/schemas/smartbi.cli.describe.v1.schema.json` 为准）：
+在 `--agent` 成功响应中，通常还包含；具体字段以当前 CLI 版本的实际输出为准，Skill 不捆绑版本固定的 schema 文件：
 
 - `summary`、`description`、`requiredAll`、`llmBrief`、`constraintsHints`
 - 以及 `idempotent`、`deprecated` 等元信息
@@ -55,11 +56,11 @@ smartbi describe <operationKey> [--json] [--yaml] [--agent] [--include-raw-schem
 ## Phase 4 升级
 
 1. 先根据调用失败结构中的 `code`、`status`、`hint`、`details` 等定位（见主 Skill）。
-2. 需要更紧凑的必填与约束提示时，使用 **`describe <operationKey> --agent`**。
-3. 仅在仍有契约歧义时，使用 **`describe <operationKey> --agent --include-raw-schema`**。
+2. 需要更紧凑的必填与约束提示时，使用 **`describe <operationKey> --profile <name> --agent`**。
+3. 仅在仍有契约歧义时，使用 **`describe <operationKey> --profile <name> --agent --include-raw-schema`**。
 
 ## 输出契约（机器校验）
 
-- `smartbi-cli/schemas/smartbi.cli.describe.v1.schema.json`
+- 当前安装 CLI 的 `smartbi describe --help` 和目标 operation 的实际响应
 
-与 CLI 行为或 schema 不一致时，以**当前安装的 `smartbi describe --help` 与上述 schema 文件**为准。
+与说明不一致时，以**当前安装的 `smartbi describe --help` 与目标 operation 的实际响应**为准。

@@ -1,38 +1,52 @@
-## Description: <br>
-Skill Quality Evaluator - Score any skill on 6 dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Quality Evaluator - Score any skill on 6 dimensions. Catch 30% of skills that look good but fail silently. Based on Tessl Research 2026 findings.
 
-## Publisher: <br>
-[aptratcn](https://clawhub.ai/user/aptratcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aptratcn](https://clawhub.ai/user/aptratcn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and skill maintainers use this skill to evaluate agent skills across activation reliability, task coverage, instruction clarity, leakage resistance, model compatibility, and real-world value. It helps produce concise quality reports with critical issues, recommendations, and quick wins.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Evaluation reports can capture private or proprietary details from the skills being reviewed when batch mode or memory output is used.
+
+Mitigation: Confirm that storing or sharing evaluation reports is acceptable before retaining outputs, especially for internal or proprietary skills.
+
+Risk: The skill provides a structured quality assessment, but its scores may not substitute for task-specific testing of the evaluated skill.
+
+Mitigation: Use the report as review guidance and pair it with representative evaluation tasks before relying on score thresholds for release decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to review agent skills across activation reliability, task coverage, instruction clarity, leakage resistance, model compatibility, and real-world value. It produces a concise evaluation report with scores, critical issues, recommendations, and quick wins. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Batch evaluation or saved reports may include sensitive skill text, proprietary evaluations, or secrets if the user points the skill at broad or inappropriate directories. <br>
-Mitigation: Scope batch mode to the intended skill directory and avoid saving reports with secrets, proprietary skill content, or sensitive internal evaluations unless persistent memory storage is acceptable. <br>
+**Output Format:** [Markdown evaluation report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aptratcn/xiaobai-skill-quality-eval) <br>
+**Other Properties Related to Output:** [May include numeric scores, status indicators, critical issues, recommendations, and quick wins.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown evaluation report with score table and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write evaluation reports to memory/evaluations when the user requests saved outputs.] <br>
+1.0.0 (source: server release metadata and frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

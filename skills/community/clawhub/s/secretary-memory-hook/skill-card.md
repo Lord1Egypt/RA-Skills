@@ -1,42 +1,58 @@
-## Description: <br>
-Automatically records short conversation snippets, creates session summaries before compaction, and reloads prior context after compaction for OpenClaw Secretary Memory workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically runs Secretary Memory scripts around OpenClaw session compaction to create conversation summaries, persist lightweight reply logs, maintain the memory index, and recall prior context.
 
-## Publisher: <br>
-[wgj24](https://clawhub.ai/user/wgj24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wgj24](https://clawhub.ai/user/wgj24)
 
-## Use Case: <br>
-OpenClaw users and developers use this hook to automate Secretary Memory behavior during conversation compaction. It helps retain session summaries, maintain a local memory index, and reload prior context for later turns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation snippets may be retained in local memory files. <br>
-Mitigation: Enable the hook only in workspaces where local memory retention is acceptable, and review retained memory files before using it with sensitive conversations. <br>
-Risk: Top-level memory markdown files may be moved automatically before compaction. <br>
-Mitigation: Back up the memory directory and review the automatic file movement behavior before enabling the hook in important or regulated workspaces. <br>
-Risk: The hook depends on separate secretary-memory Python scripts and shell command execution. <br>
-Mitigation: Verify the dependent scripts from a trusted source and review the command construction before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this hook to automate memory workflows during long-running sessions, including compact-time summarization, context recall, and local memory index maintenance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wgj24/secretary-memory-hook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Local markdown/log files and context text produced through OpenClaw hook execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, Python3, and the separate secretary-memory scripts; preference extraction is documented but currently disabled in the artifact notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The hook automatically persists parts of assistant replies and may capture sensitive conversation content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Document logging and retention clearly, obtain user approval before enabling the hook, and provide controls to disable or prune incremental logs.
+
+Risk: The hook runs shell commands using session and filename-derived data.
+
+Mitigation: Replace shell-based execution with argument-safe process APIs and validate or hash session keys before using them in commands or paths.
+
+Risk: The hook automatically moves markdown files and rebuilds local indexes during compaction.
+
+Mitigation: Require explicit user control for file migration and indexing, and limit the operation to the intended memory directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wgj24/skills/secretary-memory-hook)
+- [Publisher Profile](https://clawhub.ai/user/wgj24)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, text logs, local command execution, and recalled context for OpenClaw sessions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Automatically appends up to 200 characters of reply content to a daily memory log and invokes local Python memory scripts during session compaction.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

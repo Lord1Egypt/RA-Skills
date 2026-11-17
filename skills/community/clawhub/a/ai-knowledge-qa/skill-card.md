@@ -1,41 +1,50 @@
-## Description: <br>
-Knowledge question answering for FAQ management, semantic retrieval, and AI-assisted answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知识问答，FAQ + 智能检索 + AI 问答。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users, support teams, and knowledge managers use this skill to manage FAQ content, retrieve relevant knowledge semantically, and answer product-support or internal knowledge questions through Web, WeChat, or API channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanned package does not include the external application code referenced by the installation instructions. <br>
-Mitigation: Inspect the referenced repository and Python dependencies before installing or running the application. <br>
-Risk: Knowledge-base content and channel credentials may be exposed when connecting GPT, WeChat, Web, or API integrations. <br>
-Mitigation: Review data handling, credential storage, and channel permissions before connecting private content or production accounts. <br>
+## Use Case:
 
+External users, support teams, and knowledge-management teams use this skill to manage FAQs, retrieve relevant knowledge semantically, and answer questions with AI assistance across Web, WeChat, and API channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-knowledge-qa) <br>
-- [Referenced GitHub repository](https://github.com/openclaw-skills/ai-intelligent-knowledge-qa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The packaged skill describes a knowledge-QA application and installation flow; no executable package code is included in the scanned artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, skill.json, and server release metadata) <br>
+Risk: The installation path points users to unpinned external Python code that is not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact revision and dependency set, prefer a pinned commit or signed release, and run it in an isolated environment without sensitive files or production credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-knowledge-qa)
+- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with setup commands and implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external Python application code and dependencies that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

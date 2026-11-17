@@ -1,42 +1,51 @@
-## Description: <br>
-Enables agents to query Alpha Vantage market, company, forex, crypto, commodity, macroeconomic, news, and sector data through OOMOL's oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Alpha Vantage through an OOMOL-connected account to retrieve market, company, and economic data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to fetch Alpha Vantage financial and market data after inspecting the live connector schema and running read-oriented connector actions with JSON payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence says scan telemetry is clean but still advises users to skim the skill before installing. <br>
-Mitigation: Install only after confirming the requested connector actions match the expected Alpha Vantage use case. <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected account. <br>
-Mitigation: Use the documented setup flow and avoid exposing raw Alpha Vantage tokens in prompts, files, or shell history. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve Alpha Vantage market, company, and economic data through an existing OOMOL connection.
 
-## Reference(s): <br>
-- [ClawHub Alpha Vantage skill page](https://clawhub.ai/oomol/oo-alpha-vantage) <br>
-- [Alpha Vantage homepage](https://www.alphavantage.co) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and PowerShell command examples; connector responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions return data with meta.executionId; Alpha Vantage credentials are handled through the user's OOMOL-connected account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter) <br>
+Risk: Automatic setup may execute changing third-party CLI code and introduce broader agent changes without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review a specific oo CLI release before running it and check whether automatic skill synchronization is wanted; the publisher documents a synchronization-disable option.
+
+## Reference(s):
+
+- [Alpha Vantage API documentation](https://www.alphavantage.co/documentation/)
+- [Alpha Vantage homepage](https://www.alphavantage.co)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API data, JSON, CSV, Shell commands, Guidance]
+
+**Output Format:** [JSON or CSV data with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Raw provider data; format depends on the selected Alpha Vantage action.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

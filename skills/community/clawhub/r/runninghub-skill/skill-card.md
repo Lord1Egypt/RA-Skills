@@ -1,46 +1,62 @@
-## Description: <br>
-RunningHub AI 智能调用。Use when user wants to generate images, videos, or audio content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using RunningHub AI through RHMCP to generate images, videos, or audio and choose apps, parameters, polling, storage, and retries.
 
-## Publisher: <br>
-[airix315](https://clawhub.ai/user/airix315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airix315](https://clawhub.ai/user/airix315)
 
-## Use Case: <br>
-Developers and agent users use this skill to guide OpenClaw agents in selecting and calling RunningHub AI workflows for image, video, and audio generation, including parameter defaults, async polling, storage decisions, and fallback handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends prompts, media, and generation requests to the external RunningHub service. <br>
-Mitigation: Use it only when RunningHub processing is intended, and avoid submitting private prompts or media unless the user accepts that external-service handling. <br>
-Risk: RunningHub access depends on the RUNNINGHUB_API_KEY credential. <br>
-Mitigation: Store the API key in the environment or approved secret storage, avoid logging it, and rotate it if exposure is suspected. <br>
-Risk: The setup flow asks users to install and build the external RHMCP project before use. <br>
-Mitigation: Review the external project and dependency installation path before running npm install or build commands. <br>
+## Use Case:
 
+Developers and external agent users use this skill to route media-generation requests to RunningHub AI apps, fill required parameters, manage asynchronous polling, and return generated media URLs.
 
-## Reference(s): <br>
-- [RHMCP project](https://github.com/AIRix315/RHMCP) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [RunningHub](https://www.runninghub.cn) <br>
-- [recommended-apps.json](references/recommended-apps.json) <br>
-- [templates.json](references/templates.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Code] <br>
-**Output Format:** [Markdown guidance with JavaScript, shell command, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to return RunningHub task results and media URLs while using the configured RHMCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup asks users to clone and build external RHMCP code without a pinned commit or release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a reviewed, pinned RHMCP version in a sandbox or low-privilege environment before enabling the skill.
+
+Risk: The skill requires a RunningHub API key and local configuration files.
+
+Mitigation: Use least-privilege credentials, keep production secrets out of install and build steps, and rotate the key if it is exposed.
+
+Risk: Prompts, image URLs, uploaded media, and generated outputs may be sent to RunningHub or related infrastructure.
+
+Mitigation: Do not submit private, regulated, or sensitive content unless that cloud sharing is approved for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airix315/skills/runninghub-skill)
+- [RHMCP project](https://github.com/AIRix315/RHMCP)
+- [OpenClaw](https://openclaw.ai)
+- [RunningHub](https://www.runninghub.cn)
+- [Recommended apps](references/recommended-apps.json)
+- [Templates](references/templates.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JavaScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance can include RunningHub app aliases, parameter defaults, polling intervals, storage recommendations, and generated media URLs returned by RHMCP tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

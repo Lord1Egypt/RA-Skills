@@ -1,47 +1,63 @@
-## Description: <br>
-Supports uni-app WeChat Mini Program development, builds, miniprogram-ci publishing, and CI/CD release workflows for GitHub Actions, GitLab CI, and Jenkins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance, scripts, and CI/CD templates for developing, building, and publishing uni-app projects as WeChat Mini Programs with miniprogram-ci.
 
-## Publisher: <br>
-[acxj](https://clawhub.ai/user/acxj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acxj](https://clawhub.ai/user/acxj)
 
-## Use Case: <br>
-Developers and release engineers use this skill to configure uni-app WeChat Mini Program projects, generate build and publishing commands, and set up automated CI/CD workflows for experience, review, or release publishing modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: WeChat Mini Program publishing requires private key and AppID credentials that could expose release authority if mishandled. <br>
-Mitigation: Store private keys only in CI secrets, never commit them or upload them as artifacts, and delete generated key files after each job. <br>
-Risk: Automated review or release modes can publish changes beyond an experience build if workflows are triggered too broadly. <br>
-Mitigation: Restrict workflows to protected branches and require manual approval before review or release modes run. <br>
+## Use Case:
 
+Developers and release engineers use this skill to configure uni-app WeChat Mini Program builds, automate uploads or experience-version publishing, and troubleshoot miniprogram-ci and WeChat DevTools workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/acxj/uni-app-wechat-miniprogram-cicd) <br>
-- [miniprogram-ci reference](references/miniprogram-ci.md) <br>
-- [CI/CD templates](references/cicd-templates.md) <br>
-- [WeChat DevTools CLI reference](references/wechat-devtools.md) <br>
-- [WeChat Mini Program documentation](https://developers.weixin.qq.com/miniprogram/) <br>
-- [miniprogram-ci official documentation](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html) <br>
-- [uni-app documentation](https://uniapp.dcloud.io/) <br>
-- [GitHub Actions documentation](https://docs.github.com/en/actions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JavaScript, YAML, JSON, and pipeline configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CI environment variable names, private key handling steps, miniprogram-ci API examples, and workflow templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The CI/CD workflow can upload, submit, or release WeChat Mini Program builds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use protected branches, manual approvals, and least-privilege release roles before enabling review or release modes.
+
+Risk: WeChat private keys may be written to CI workspaces or passed through weakly scoped paths.
+
+Mitigation: Keep keys only in CI secret stores, write them to temporary confined paths, delete them after use, and avoid arbitrary WEAPP_PRIVATE_KEY_PATH values.
+
+Risk: The publishing flow installs and runs project dependencies during release automation.
+
+Mitigation: Pin dependencies and use npm ci in controlled CI environments before running upload or release commands.
+
+## Reference(s):
+
+- [miniprogram-ci reference](references/miniprogram-ci.md)
+- [CI/CD templates](references/cicd-templates.md)
+- [WeChat DevTools CLI reference](references/wechat-devtools.md)
+- [WeChat Mini Program documentation](https://developers.weixin.qq.com/miniprogram/)
+- [miniprogram-ci official documentation](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html)
+- [uni-app documentation](https://uniapp.dcloud.io/)
+- [GitHub Actions documentation](https://docs.github.com/en/actions)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JavaScript, shell, JSON, YAML, and CI configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce workflow steps that upload, submit, or release WeChat Mini Program builds.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

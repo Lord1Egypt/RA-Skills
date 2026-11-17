@@ -1,40 +1,59 @@
-## Description: <br>
-Fetches historical K-line data for A-share stocks and major Chinese indexes, using AKShare first and Sina Finance as a fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches historical K-line data for mainland China A-share stocks and indexes, with adjusted-price support through AKShare and a Sina Finance fallback.
 
-## Publisher: <br>
-[mc82465](https://clawhub.ai/user/mc82465) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mc82465](https://clawhub.ai/user/mc82465)
 
-## Use Case: <br>
-Developers and analysts use this skill to retrieve A-share stock and index K-line data, calculate price changes, and build simple market-data workflows in Python. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised today quote path can return stale March 2026 data. <br>
-Mitigation: Validate the returned quote date or fix the hard-coded AKShare date window before using it for real-time financial decisions. <br>
-Risk: The skill makes outbound requests to AKShare and Sina Finance market-data endpoints. <br>
-Mitigation: Use it only in environments where third-party market-data access is allowed, and treat upstream availability as a dependency. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve A-share stock and index history, inspect current daily change data, and calculate adjusted price changes between dates. It is a market-data helper and should not be treated as financial advice or a guaranteed real-time quote source.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mc82465/get-stock-line) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and Python snippets describing structured dictionaries and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return market-data dictionaries or lists from external AKShare and Sina Finance requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Finance data may be delayed, unavailable, provider-dependent, or unsuitable as investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as a market-data helper only, verify important values against authoritative sources, and avoid relying on it for trading decisions.
+
+Risk: The skill makes outbound requests to finance data providers and uses optional third-party Python dependencies.
+
+Mitigation: Install it in an isolated Python environment and pin or review dependencies before deployment.
+
+Risk: When AKShare is unavailable, the Sina Finance fallback returns unadjusted data that can contain ex-dividend gaps.
+
+Mitigation: Prefer AKShare for adjusted historical calculations and disclose when fallback data is used.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mc82465/skills/get-stock-line)
+- [SKILL.md](artifact/SKILL.md)
+- [kline.py](artifact/kline.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and returned dictionary/list data shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on outbound finance data provider availability and may fall back to unadjusted Sina Finance data when AKShare is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-Provide consistent status updates and concise summaries after each action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide consistent status updates and concise summaries after each action.
 
-## Publisher: <br>
-[szpili](https://clawhub.ai/user/szpili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szpili](https://clawhub.ai/user/szpili)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep users informed with structured progress updates and concise completion or blocked summaries after agent actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may add required progress-summary text in workflows that expect an exact response format or that already use another response-style skill. <br>
-Mitigation: Disable or override the skill for format-constrained workflows, and confirm which response-style instruction takes precedence before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep tool-driven work visible through structured status updates and concise completion or blocked summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szpili/interaction-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown status updates and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, data access, credentials, or persistence are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill attempts to override other skills and default response style, which can conflict with higher-priority instructions or workflow-specific output formats.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep its formatting rules subordinate to system, developer, safety, and user instructions, and review fit before installation.
+
+Risk: Tool-by-tool status messages could reveal too much operational detail in sensitive workflows.
+
+Mitigation: Avoid installing it for workflows where intermediate operational details should remain hidden or tightly controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szpili/skills/interaction-pipeline)
+- [ClawHub publisher profile](https://clawhub.ai/user/szpili)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured status and summary lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable payload; formats assistant responses after actions or blocks.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

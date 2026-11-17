@@ -1,41 +1,54 @@
-## Description: <br>
-Generates structured Chinese interview question banks for HR recruiters and interviewers based on role requirements, seniority, department, and assessment focus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese interview question sets for HR recruiters and interviewers, covering behavioral, technical, scenario-based, and general competency questions tailored by role, level, and department.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-HR recruiters and interviewers use this skill to draft Chinese structured interview question sets for hiring, campus recruiting, and internal promotion workflows. The generated question banks can include behavioral, technical, scenario-based, and general competency questions with reference answer points and scoring guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated interview questions may be unfair, legally inappropriate, or poorly aligned with the role if used without review. <br>
-Mitigation: Review generated questions for fairness, legality, and job relevance before using them in a hiring process. <br>
-Risk: Providing unnecessary hiring materials may expose sensitive recruiting or candidate information. <br>
-Mitigation: Provide only the role requirements needed and restrict read/write access to relevant hiring materials. <br>
+## Use Case:
 
+HR recruiters, interviewers, and hiring teams use this skill to generate structured Chinese interview question banks with reference points and scoring guidance for campus recruiting, experienced hiring, and internal promotion scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/interview-questions-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/olina1ye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with categorized interview questions, reference answer points, and scoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for fairness, legality, job relevance, and alignment with the specific role before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated interview materials may need review for role fit, fairness, and compliance with local hiring rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated question set before use and align it with applicable hiring policies and legal requirements.
+
+Risk: Broad activation wording could cause the skill to be used outside its intended HR interview-materials context.
+
+Mitigation: Use the skill only for generating interview materials and evaluate outputs against the specific role, level, and assessment criteria.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/interview-questions-zh)
+- [Publisher profile](https://clawhub.ai/user/olina1ye)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style Chinese interview question lists with reference answer points and scoring guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for human review before use in hiring workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

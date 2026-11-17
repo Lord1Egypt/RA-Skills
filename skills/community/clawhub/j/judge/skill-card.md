@@ -1,42 +1,52 @@
-## Description: <br>
-A court-help agent skill that explains court documents, hearing preparation, filing procedures, self-representation concerns, attorney collaboration, and post-ruling next steps in plain language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Judge helps people navigate court systems and legal proceedings by explaining court venues, court documents, hearing preparation, self-representation procedures, attorney collaboration, and post-ruling options.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[duclawbot](https://clawhub.ai/user/duclawbot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, including self-represented litigants and people working with attorneys, use this skill to understand court documents, prepare for hearings, identify procedural next steps, and track deadline-sensitive court obligations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad legal-process guidance can be mistaken for legal advice or relied on for deadline-sensitive matters.
+
+Mitigation: Use it as general court-process orientation only, and verify deadlines, forms, filing formats, service rules, appeal periods, and courtroom requirements against official court materials, clerk instructions, or a licensed attorney.
+
+Risk: Incorrect guidance in high-stakes matters such as criminal, immigration, custody, eviction, restraining-order, appeal, or urgent deadline situations could cause serious harm.
+
+Mitigation: Consult official court resources or qualified legal counsel before acting in high-stakes or urgent matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, especially self-represented litigants and people working with attorneys, use this skill to understand court venue, deadlines, documents, hearings, filings, orders, enforcement, and appeal-related next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides high-stakes legal guidance without enough jurisdiction, legal-advice, or privacy guardrails. <br>
-Mitigation: Redact sensitive details, verify deadlines and filing rules with the court or local legal aid, and seek a licensed attorney for criminal, custody, eviction, restraining-order, immigration, appeal, or other high-stakes matters. <br>
-Risk: Court deadlines, filing rules, and procedures can vary by jurisdiction and may change. <br>
-Mitigation: Confirm all deadlines, forms, filing requirements, and procedural steps against the relevant court before relying on the guidance. <br>
+**Output Format:** [Markdown-style legal process guidance in plain language]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Judge on ClawHub](https://clawhub.ai/Duclawbot/judge) <br>
-- [Usage Examples](examples.md) <br>
-- [Heartbeat Checks](heartbeat.md) <br>
+**Other Properties Related to Output:** [May include deadlines, checklists, procedural steps, and document explanations; users should verify against official court materials or legal counsel.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational guidance, checklists, and plain-language explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; evidence reports no code or device access.] <br>
+1.0.0 (source: server release metadata and artifact skill.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

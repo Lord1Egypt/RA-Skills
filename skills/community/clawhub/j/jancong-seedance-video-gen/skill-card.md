@@ -1,47 +1,59 @@
-## Description: <br>
-Generates AI videos with Volcengine Ark Seedance 2.0 models from text prompts and optional image, video, or audio references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI videos with Huoshan Engine Seedance 2.0 models through the Ark API, supporting text, image, video, and audio references.
 
-## Publisher: <br>
-[jancong](https://clawhub.ai/user/jancong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jancong](https://clawhub.ai/user/jancong)
 
-## Use Case: <br>
-Developers, creators, and external users use this skill to submit Seedance video generation tasks, poll task status, and retrieve generated video outputs through the Volcengine Ark API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API credentials are required to submit, query, and download video generation results. <br>
-Mitigation: Use a scoped or quota-limited ARK_API_KEY and avoid exposing it in prompts, logs, or shared shell history. <br>
-Risk: Prompts and reference media are sent to the Volcengine Ark/Seedance provider endpoint. <br>
-Mitigation: Do not submit sensitive prompts or private media unless the user accepts that external processing. <br>
-Risk: Generated videos and cover images may be downloaded to local output directories. <br>
-Mitigation: Review output paths and access permissions before storing or sharing generated media. <br>
-Risk: Changing ARK_API_URL can redirect requests to an untrusted endpoint. <br>
-Mitigation: Keep ARK_API_URL at the trusted provider default unless there is a deliberate, reviewed reason to change it. <br>
+## Use Case:
 
+Developers and creators use this skill to submit Seedance 2.0 video generation jobs, poll task status, and retrieve generated video and cover files from the Ark platform.
 
-## Reference(s): <br>
-- [Seedance 2.0 API Reference](references/api_reference.md) <br>
-- [Seedance 2.0 Prompt Guide](references/prompt_guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jancong/jancong-seedance-video-gen) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/jancong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API payloads, task IDs, status summaries, generated video URLs, and local output file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Ark API key can be sent to any endpoint configured through ARK_API_URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ARK_API_URL pinned to the official HTTPS Ark endpoint and use a limited-scope Ark API key.
+
+Risk: Prompts and reference media URLs are sent to the external Ark service.
+
+Mitigation: Avoid sensitive prompts, private media URLs, or confidential source material unless the environment and service use are approved.
+
+Risk: The download script retrieves result URLs and writes files into the workspace.
+
+Mitigation: Review or patch download behavior before using the skill in shared or important workspaces.
+
+## Reference(s):
+
+- [Seedance 2.0 API Reference](references/api_reference.md)
+- [Seedance 2.0 Prompt Guide](references/prompt_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/jancong/skills/jancong-seedance-video-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, API JSON responses, and downloaded video or cover files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated video tasks use configurable model, prompt, aspect ratio, duration, watermark, optional audio generation, and optional reference media URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

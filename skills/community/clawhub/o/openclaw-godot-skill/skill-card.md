@@ -1,44 +1,62 @@
-## Description: <br>
-Control Godot Editor via OpenClaw Godot Plugin. Use for Godot game development tasks including scene management, node manipulation, input simulation, debugging, and editor control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls the Godot Editor via OpenClaw for scene management, node manipulation, input simulation, debugging, screenshots, and editor control in trusted local projects.
 
-## Publisher: <br>
-[TomLeeLive](https://clawhub.ai/user/TomLeeLive) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tomleelive](https://clawhub.ai/user/tomleelive)
 
-## Use Case: <br>
-Developers and engineers use this skill to control a Godot 4.x editor from OpenClaw for scene management, node manipulation, debugging, input simulation, script inspection, screenshots, and gameplay testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes broad Godot editor automation through a local HTTP bridge, including scene saves, node deletion, property changes, script reads, screenshots, and simulated input. <br>
-Mitigation: Install only when intentional, keep the OpenClaw gateway reachable only by trusted local components, and require explicit user approval before project-changing or sensitive actions. <br>
-Risk: Automated editor actions can damage or corrupt a Godot project. <br>
-Mitigation: Back up projects first and test the skill in a separate project before using it on important work. <br>
-Risk: Leaving the extension enabled when not actively using it increases exposure to unwanted editor control. <br>
-Mitigation: Disable or remove the extension when it is not needed. <br>
+## Use Case:
 
+Developers and game engineers use this skill to operate a local Godot 4.x editor through OpenClaw for scene inspection, node creation and editing, gameplay input simulation, logs, screenshots, and editor state checks.
 
-## Reference(s): <br>
-- [Godot Skill on ClawHub](https://clawhub.ai/TomLeeLive/openclaw-godot-skill) <br>
-- [OpenClaw Godot Plugin](https://github.com/TomLeeLive/openclaw-godot-plugin) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON, Code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include proposed Godot editor actions, command results, session status, script content, screenshots, and project state summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.7 (source: server release metadata and extension/package.json) <br>
+Risk: The installed gateway extension can mutate Godot projects through scene saves, node deletion, input simulation, and script or project inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on trusted local machines and projects, keep version control or backups available, and confirm state-changing editor operations before running them.
+
+Risk: The security summary flags an under-protected HTTP control channel in some configurations.
+
+Mitigation: Keep the bridge bound to localhost and do not expose the gateway or bridge port on shared or public networks.
+
+Risk: The installer writes into the local OpenClaw extension directory and may overwrite an existing Godot extension.
+
+Mitigation: Review the existing ~/.openclaw/extensions/godot contents before running the installer.
+
+Risk: The skill can expose project names, engine version, scene structure, script contents, and screenshots to the connected agent.
+
+Mitigation: Use only with projects whose contents may be shared with the active agent session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomleelive/skills/openclaw-godot-skill)
+- [Project homepage](https://github.com/TomLeeLive/openclaw-godot-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline commands, code snippets, and tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose editor actions that modify scenes, nodes, saved files, or gameplay state; state-changing actions should be confirmed before execution.]
+
+## Skill Version(s):
+
+1.2.10 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

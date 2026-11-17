@@ -18,9 +18,9 @@
 
 ### 3. 版本号不一致
 
-**错误做法：**SKILL.md frontmatter、SKILL.md 正文、_meta.json 三者版本号不一致。
+**错误做法：**`_meta.json`、SKILL.md frontmatter、`references/changelog.md` 三端版本号不一致（漏改任何一端会导致 SkillHub 拒绝发布或版本混乱）。
 
-**正确做法：**三者版本号必须一致，每次更新时同步更新。
+**正确做法：**三端版本号必须一致（`_meta.json` 为唯一源，bump 顺序：先改 `_meta.json` → SKILL.md version 行 → changelog 加条目），每次更新时同步更新。
 
 ### 4. 跳过规范审查
 

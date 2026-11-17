@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_company_department_delete",
+    "description": "Delete an existing department in the company. (Dangerous operation, only allowed when the user explicitly requests to delete a specific department)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Department ID (must exist)."
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

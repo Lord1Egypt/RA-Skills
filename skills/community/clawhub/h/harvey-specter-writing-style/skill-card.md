@@ -1,43 +1,60 @@
-## Description: <br>
-Rewrite or draft text in a Harvey Specter (Suits)-inspired writing style: confident, concise, sharp-witted, leverage-focused, and decisive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrite or draft text in a Harvey Specter (Suits)-inspired writing style: confident, concise, sharp-witted, leverage-focused, and decisive.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-Employees and external users use this skill to rewrite or draft professional messages, negotiations, refusals, and accountability notes with a confident, concise, and strategically assertive tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Style-transfer output could become overly aggressive or inappropriate in workplace-sensitive contexts. <br>
-Mitigation: The skill instructs the agent to stay professional by default, avoid harassment and crude insults, and convert intimidation requests into firm boundaries with practical consequences. <br>
-Risk: A user may ask for copyrighted Suits dialogue or close imitation of specific quotes. <br>
-Mitigation: The skill explicitly forbids copying dialogue or quotes verbatim and frames the behavior as an inspired writing style. <br>
-Risk: The scanner summary notes that artifacts were unavailable during its review. <br>
-Mitigation: Inspect the included SKILL.md and examples.md before installation and confirm that the requested behavior matches expected tone-writing assistance. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to rewrite or draft professional emails, negotiation messages, refusals, corrections, and concise persuasive text with a confident, assertive voice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anugotta/harvey-specter-writing-style) <br>
-- [Character style reference](https://screenrant.com/suits-iconic-harvey-spectre-quotes/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with a rewrite or draft, plus a brief rationale or optional variants when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps outputs concise and professional by default; avoids verbatim Suits dialogue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger wording may activate the skill on general requests to make text more confident, punchier, or assertive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or invoke it when this persona is intended, and narrow activation wording if users only want explicit Harvey Specter-style rewrites.
+
+Risk: A confident negotiation persona can drift into intimidation, harassment, or personal attacks if used carelessly.
+
+Mitigation: Keep the artifact guardrails that require professional language, firm boundaries, clear consequences, and no threats or crude insults.
+
+Risk: The style is inspired by a copyrighted character and television show.
+
+Mitigation: Follow the artifact guardrail to avoid copying dialogue or quotes verbatim from Suits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anugotta/skills/harvey-specter-writing-style)
+- [Publisher profile](https://clawhub.ai/user/anugotta)
+- [Examples](artifact/examples.md)
+- [Suits Harvey Specter reference](https://screenrant.com/suits-iconic-harvey-spectre-quotes/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text rewrites, drafts, optional variants, and a one-line rationale when rewriting.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output is concise, professional, and bounded to the user's requested rewrite or draft.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

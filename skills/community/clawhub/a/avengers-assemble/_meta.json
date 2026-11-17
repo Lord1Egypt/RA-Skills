@@ -1,6 +1,32 @@
 {
-  "ownerId": "kn7cpm3v62nhstt9qqtrv08z8h810brz",
+  "ownerId": "avengers-initiative",
   "slug": "avengers-assemble",
   "version": "1.0.0",
-  "publishedAt": 1773883089363
+  "publishedAt": 1773882442000,
+  "theme": "Marvel Avengers",
+  "coordinator": {
+    "name": "Nick Fury",
+    "title": "Director of S.H.I.E.L.D.",
+    "role": "Primary orchestration coordinator"
+  },
+  "team_size": 6,
+  "session_keys": ["captain", "ironman", "hulk", "widow", "hawkeye", "thor"],
+  "features": [
+    "Round-robin dispatch protocol",
+    "Reply-first communication protocol",
+    "Session key reuse for memory continuity",
+    "Multi-mission parallel deployment",
+    "Threat level assessment system",
+    "Hero-specific specialization matching",
+    "Cross-role collaboration support"
+  ],
+  "inspired_by": "multi-agent-cn-1.2.0",
+  "canonical_references": {
+    "captain_america": "Strategic leadership and moral compass",
+    "iron_man": "Technology and innovation",
+    "hulk": "Raw power and scientific intellect",
+    "black_widow": "Espionage and intelligence",
+    "hawkeye": "Precision and accuracy",
+    "thor": "Overwhelming power and divine authority"
+  }
 }

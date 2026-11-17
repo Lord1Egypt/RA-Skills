@@ -1,44 +1,64 @@
-## Description: <br>
-ADHD Founder Planner helps users plan and reflect on daily work with bullet-journal style rapid logging, energy-based swim lanes, task migration, and dopamine rewards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADHD Founder Planner helps users create ADHD-friendly daily and monthly plans with rapid logging, energy-based swim lanes, task migration, reflection, and dopamine rewards.
 
-## Publisher: <br>
-[jankutschera](https://clawhub.ai/user/jankutschera) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jankutschera](https://clawhub.ai/user/jankutschera)
 
-## Use Case: <br>
-External users and founders use this skill to create ADHD-friendly daily plans, choose one priority, sort tasks by current energy, and reflect on or migrate unfinished work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Planner notes may contain sensitive personal, medical, financial, or business details stored locally under the user's home directory. <br>
-Mitigation: Avoid entering highly sensitive details unless local file permissions, backups, and sync tools are managed appropriately. <br>
+## Use Case:
 
+External users and productivity-focused agents use this skill to structure daily planning, task capture, task migration, and end-of-day reflection for ADHD-friendly founder workflows. It is suited to local planning assistance where flexible energy-based organization is preferred over rigid schedules.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jankutschera/adhd-founder-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/jankutschera) <br>
-- [ADHD-founder.com](https://adhd-founder.com) <br>
-- [Migration reference](references/migration.md) <br>
-- [Swim lanes reference](references/swim-lanes.md) <br>
-- [Rapid logging symbols reference](references/symbols.md) <br>
-- [Time-blindness reference](references/time-blindness.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, planner templates, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local Markdown planner files under the user's home directory when the bundled shell workflow is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The planner stores task lists, reflections, wins, blockers, and energy notes in local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering highly sensitive information unless local file storage and backups are acceptable for the user.
+
+Risk: Relative time blocks may be insufficient for fixed commitments and appointments.
+
+Mitigation: Use exact calendar entries and alarms for time-critical obligations.
+
+Risk: Re-running the planning command can replace the current day's planning file.
+
+Mitigation: Review the existing daily file or keep backups before rerunning a full planning session.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jankutschera/skills/adhd-founder-planner)
+- [ADHD-founder.com](https://adhd-founder.com)
+- [Founder Circle](https://adhd-founder.com/founder-circle)
+- [Migration Reference](references/migration.md)
+- [Swim Lanes Reference](references/swim-lanes.md)
+- [Rapid Logging Symbols](references/symbols.md)
+- [Time-Blindness Planning](references/time-blindness.md)
+- [ADHD Body Doubling](https://github.com/jankutschera/adhd-body-doubling)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown planner entries with concise command and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local daily and monthly planning Markdown files when the shell helper is used.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact frontmatter says 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

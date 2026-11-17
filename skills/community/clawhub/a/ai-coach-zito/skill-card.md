@@ -1,39 +1,53 @@
-## Description: <br>
-Coach de IA personalizado que proporciona retroalimentacion, ayuda a establecer metas y motiva la mejora continua. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach de IA personalizado. Proporciona retroalimentacion, establece metas y te motiva a mejorar continuamente.
 
-## Publisher: <br>
-[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[miguelguerra200022-sudo](https://clawhub.ai/user/miguelguerra200022-sudo)
 
-## Use Case: <br>
-Usuarios externos y desarrolladores pueden usar este skill para recibir coaching conversacional sobre metas, check-ins, motivacion, habitos, productividad, fitness, aprendizaje, carrera y bienestar. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Goals, habits, productivity, fitness, career, and wellbeing details may contain personal context. <br>
-Mitigation: Treat coaching inputs and outputs as personal data and avoid sharing sensitive details unnecessarily. <br>
-Risk: Habit-tracker, task-manager, daily-digest, or personality-mode integrations may use connected personal context. <br>
-Mitigation: Review connected integrations and their data access before enabling them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miguelguerra200022-sudo/ai-coach-zito) <br>
+## Use Case:
 
+External users use this Spanish-language coaching skill to set personal goals, run daily check-ins, review weekly progress, and receive motivation across productivity, fitness, learning, career, and wellbeing topics.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown guidance with command examples and environment configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spanish-language coaching prompt skill; no executable code is included in the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Coaching sessions can expose personal routine, productivity, goal, habit, task, fitness, career, or wellbeing details to the agent.
+
+Mitigation: Use the skill only with personal data the user is comfortable sharing, and review connected habit or task integrations before coaching sessions.
+
+Risk: Motivational or progress feedback may be incomplete or inappropriate if the agent receives inaccurate or limited user context.
+
+Mitigation: Treat coaching output as reflective guidance, not professional medical, mental health, financial, or career advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/miguelguerra200022-sudo/skills/ai-coach-zito)
+- [Publisher Profile](https://clawhub.ai/user/miguelguerra200022-sudo)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spanish-language coaching responses may reference user-provided goals, habits, tasks, routines, and progress details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

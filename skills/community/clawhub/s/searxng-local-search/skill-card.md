@@ -1,40 +1,58 @@
-## Description: <br>
-Search the web using SearXNG to retrieve current information, research topics, documentation, fact-checking context, URLs, and ranked results with titles, URLs, and content snippets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using SearXNG and return ranked results with titles, URLs, and content snippets.
 
-## Publisher: <br>
-[noblepayne](https://clawhub.ai/user/noblepayne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[noblepayne](https://clawhub.ai/user/noblepayne)
 
-## Use Case: <br>
-Developers, researchers, and agent users use this skill to retrieve current web information, documentation, URLs, and fact-checking context through a configured SearXNG instance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented search script is not included in the artifact. <br>
-Mitigation: Before installing, confirm any separately provided scripts/search.clj comes from the same trusted source and matches the documented behavior. <br>
-Risk: Search queries may be sent to the configured SearXNG service. <br>
-Mitigation: Use a local or trusted SearXNG instance and avoid putting secrets or sensitive private data into search queries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SearXNG API Reference](references/api-guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/noblepayne/searxng-local-search) <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current web results, documentation, news, and fact-checking material from a configured SearXNG instance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Formatted text search results with titles, URLs, snippets, scores, and source engines; documentation includes Markdown and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the bb command and a configured SEARXNG_URL environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries are sent to the configured SearXNG instance and may expose sensitive text to that service.
+
+Mitigation: Use only a trusted SearXNG instance, prefer HTTPS for non-local endpoints, and avoid searching for secrets or highly sensitive content.
+
+Risk: The artifact references scripts/search.clj, but the server security guidance notes that the script is missing from the package.
+
+Mitigation: Verify the search script is present and executable before deployment, or supply the missing script from a trusted source.
+
+Risk: Search behavior depends on the availability, configuration, and rate limits of the configured SearXNG instance.
+
+Mitigation: Operate or select a reliable SearXNG instance and handle empty results, timeouts, and rate-limit responses during use.
+
+## Reference(s):
+
+- [SearXNG API Reference](references/api-guide.md)
+- [SearXNG Documentation](https://docs.searxng.org/)
+- [ClawHub Skill Page](https://clawhub.ai/noblepayne/skills/searxng-local-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted text search results with titles, URLs, snippets, scores, and engine names.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results are ranked and may be filtered by category, time range, language, and result count.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

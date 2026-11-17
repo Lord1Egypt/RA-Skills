@@ -1,40 +1,49 @@
-## Description: <br>
-Deep Docker workflow-image design, multi-stage builds, security, runtime config, health checks, and operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Docker workflow - image design, multi-stage builds, security, runtime config, health checks, and operations.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers and engineers use this skill to containerize applications, improve Dockerfile structure, harden images, configure runtime behavior, define health checks, and debug container behavior in CI and production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dockerfile edits, image pushes, registry logins, or production deployment changes proposed while using this skill can affect real systems. <br>
-Mitigation: Review proposed changes before execution, test them in non-production environments, scan resulting images, and confirm registry or orchestrator targets before applying changes. <br>
-Risk: Container configuration guidance can accidentally introduce secrets into image layers or runtime manifests if applied carelessly. <br>
-Mitigation: Keep secrets out of Dockerfiles and image layers, inject secrets at runtime through approved secret stores, and inspect build context and .dockerignore entries before building images. <br>
+## Use Case:
 
+Developers and engineers use this skill to containerize applications, improve Dockerfiles, harden container images, configure runtime secrets, and troubleshoot container behavior in CI and production.
 
-## Reference(s): <br>
-- [Docker Eng on ClawHub](https://clawhub.ai/mikeclaw007/docker-eng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Dockerfile, shell command, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review checklists and implementation guidance for Docker workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agent-proposed Docker commands, registry operations, or deployment changes could affect credentials, images, or production environments if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands and configuration before use, especially when registries, secrets, or production deployments are involved.
+
+## Reference(s):
+
+- [Docker Eng ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/docker-eng)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline Dockerfile, configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory workflow steps and checklists; users should review commands before applying them to registries, credentials, or production deployments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

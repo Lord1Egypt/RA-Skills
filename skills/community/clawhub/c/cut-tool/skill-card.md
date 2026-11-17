@@ -1,37 +1,53 @@
-## Description: <br>
-Extract specific fields or columns from text files using delimiter-based parsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract specific fields or columns from text files using delimiter-based parsing. Use when you need to select columns from CSV, TSV, or delimited data.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent for cut-style commands or guidance for extracting columns and character ranges from delimited text such as CSV, TSV, logs, and structured files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the helper script is a minimal local text truncation script, not a working delimiter-based field extractor. <br>
-Mitigation: Test behavior on representative input before using it in CSV, TSV, log, or automation workflows, and review generated commands before execution. <br>
+## Use Case:
 
+Developers and data-processing users use this skill to request extraction of fields or character ranges from delimited text such as CSV, TSV, and logs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or credentials are indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may silently truncate data instead of extracting the requested fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shipped script behavior against expected cut-style field extraction before installing or using it in data-processing workflows.
+
+Risk: Users may rely on misleading output from delimited-file processing.
+
+Mitigation: Run representative test inputs and compare output against the requested field or character selection before using results downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/cut-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; script output is plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Security evidence reports that the shipped script may silently truncate each input line rather than extracting requested fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

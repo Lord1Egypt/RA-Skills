@@ -1,40 +1,53 @@
-## Description: <br>
-Toggles the Sumo task assignment method among sessions_spawn, clawteam, and SumoSubAgent through the /Sumo_Assign_Tasks command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Switches the Sumo task assignment method among sessions_spawn, clawteam, and SumoSubAgent.
 
-## Publisher: <br>
-[sumo0221](https://clawhub.ai/user/sumo0221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sumo0221](https://clawhub.ai/user/sumo0221)
 
-## Use Case: <br>
-OpenClaw users and agent developers use this skill to inspect or change how Sumo delegates subagent work among supported assignment methods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes settings to a hardcoded Windows user path, which may target the wrong location on non-Windows systems or shared machines. <br>
-Mitigation: Review or adjust the config path before running so the settings file is written to the intended OpenClaw workspace. <br>
+## Use Case:
 
+Developers and Sumo workflow users use this skill to check and switch the backend used for assigning tasks to subagents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sumo0221/sumo-assign-tasks) <br>
-- [Publisher profile](https://clawhub.ai/user/sumo0221) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text status messages and a local JSON configuration file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes assign_method.json to a hardcoded Windows OpenClaw workspace memory path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill persists the selected assignment method to a documented local OpenClaw memory path that is hard-coded for a Windows user profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or adapt the path before relying on persistence outside that profile or operating environment.
+
+Risk: The skill changes which backend is used for assigning tasks to subagents.
+
+Mitigation: Use the status command to confirm the active method after switching and before starting dependent workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sumo0221/skills/sumo-assign-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and plain text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the selected assignment method to a local OpenClaw memory JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

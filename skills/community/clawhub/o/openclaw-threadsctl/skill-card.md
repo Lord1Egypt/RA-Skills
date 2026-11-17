@@ -1,42 +1,58 @@
-## Description: <br>
-Manage Threads accounts, OAuth connect URLs, drafts, and publishing through the local threadsctl CLI. Use when the user wants to post to Threads, create or publish drafts, connect accounts, inspect stats, or work with image, carousel, or spoiler media posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Threads accounts, OAuth connect URLs, drafts, and publishing through the local threadsctl CLI.
 
-## Publisher: <br>
-[dladislav201](https://clawhub.ai/user/dladislav201) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dladislav201](https://clawhub.ai/user/dladislav201)
 
-## Use Case: <br>
-External users and developers use this skill to manage Threads account connection, drafts, publishing, stats, and media posting workflows through the local threadsctl CLI. It is useful when an agent should prefer the deployed CLI over raw HTTP calls and should distinguish draft-first from immediate publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish publicly to Threads or publish approved drafts through threadsctl. <br>
-Mitigation: Confirm the target account and post content before publishing, use draft-first workflows unless immediate posting is clearly requested, and use --confirmed only when the user intends direct publication. <br>
-Risk: The skill depends on sensitive Threads service credentials. <br>
-Mitigation: Protect THREADS_SERVICE_API_KEY, avoid exposing credentials in messages or logs, and install only when the local threadsctl CLI and deployed Threads service are trusted. <br>
-Risk: OAuth connect URLs can affect account access. <br>
-Mitigation: Generate connect URLs only for the requested account label and have the user complete the OAuth flow deliberately. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Threads accounts, create OAuth connection URLs, prepare or approve drafts, inspect stats, and publish text, image, carousel, or spoiler media posts through threadsctl.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dladislav201/openclaw-threadsctl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Threads account labels, draft IDs, post IDs, and OAuth connect URLs when useful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release.version) <br>
+Risk: An agent could publish content immediately to a public Threads account when the user intended review first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use draft-first workflows unless the user clearly asks to post now, and verify the account and content before using --confirmed.
+
+Risk: OAuth connection URLs and configured Threads service credentials can affect account access.
+
+Mitigation: Install only for environments that should manage Threads accounts, keep THREADS_SERVICE_API_KEY protected, and share connection URLs only with the intended account owner.
+
+Risk: Media posts can use the wrong source type or spoiler behavior.
+
+Mitigation: Use local files only with --file or --files, public URLs only with --media-url or --media-urls, and apply --spoiler only when the user asks for media to be hidden.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dladislav201/skills/openclaw-threadsctl)
+- [ClawHub source listing](https://clawhub.ai/dladislav201/openclaw-threadsctl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include account labels, draft IDs, publish results, OAuth connect URLs, and error summaries when relevant.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

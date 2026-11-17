@@ -1,42 +1,57 @@
-## Description: <br>
-Fusion Search routes multilingual web search queries across 16 search engines with Playwright-based browsing, result deduplication, quality scoring, and optional full-content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fusion Search routes Chinese and English web queries across multiple search engines using Playwright, then deduplicates, scores, and optionally fetches full page content.
 
-## Publisher: <br>
-[lvjingxuan-ai](https://clawhub.ai/user/lvjingxuan-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjingxuan-ai](https://clawhub.ai/user/lvjingxuan-ai)
 
-## Use Case: <br>
-Developers and research agents use this skill to perform multilingual web research from the command line or Python API, combining results from Chinese and international search engines and optionally fetching page text for deeper review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated web scraping through a stealth Playwright browser may have privacy, reliability, or policy implications. <br>
-Mitigation: Use the skill only in environments where this behavior is acceptable, avoid sensitive searches, and review results before relying on them. <br>
-Risk: The browser launch weakens several Chromium protections. <br>
-Mitigation: Run the skill in a contained environment and avoid using it with trusted sessions or sensitive local data. <br>
-Risk: Automatic engine routing and full-content fetching can contact multiple search engines and result pages. <br>
-Mitigation: Specify an engine when privacy matters and keep full-content fetching disabled unless the task requires it. <br>
+## Use Case:
 
+Developers and agent users use this skill to perform multilingual web research, choose an appropriate search engine chain, and return ranked results with snippets or optional fetched page content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvjingxuan-ai/fusion-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, shell commands, guidance] <br>
-**Output Format:** [JSON search results or human-readable CLI text with titles, URLs, snippets, optional extracted content, engine names, and scores] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output is ranked and deduplicated; optional full-content extraction is capped by the skill parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Stealth browsing and anti-detection behavior may have policy or site-terms implications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review allowed use for target search engines and sites before deployment, and restrict or disable the behavior where policy requires it.
+
+Risk: Full-content fetching can visit arbitrary result URLs and may expose sensitive or internal queries.
+
+Mitigation: Run the skill in a contained environment with restricted outbound network access, block private networks and metadata endpoints, and avoid sending secrets or internal queries.
+
+Risk: The browser is launched with unsafe Chromium settings while fetching web pages.
+
+Mitigation: Use container or sandbox isolation with minimal privileges and do not share browser state with trusted browsing sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lvjingxuan-ai/skills/fusion-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON array of search results or plain text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include title, url, snippet, content, engine, and score; full-content fetching is optional and limited by the implementation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter, metadata.json, and changelog show 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

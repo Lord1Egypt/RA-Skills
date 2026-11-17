@@ -1,44 +1,57 @@
-## Description: <br>
-基于候选人简历自动生成面试题、笔试题、追问路径和评分标准的 AI Skill。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured technical interview or written-test questions, follow-up paths, reference answers, scoring criteria, and resume-risk validation points from a candidate resume and role context.
 
-## Publisher: <br>
-[yangchao228](https://clawhub.ai/user/yangchao228) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangchao228](https://clawhub.ai/user/yangchao228)
 
-## Use Case: <br>
-Technical interviewers, recruiting teams, and hiring managers use this skill to turn a candidate resume and target role into structured interview questions, written-test prompts, follow-up paths, scoring standards, and risk-verification points. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume content may contain personal or sensitive candidate data. <br>
-Mitigation: Redact real names, phone numbers, email addresses, IDs, and other sensitive fields before use when possible. <br>
-Risk: Generated interview questions, scoring standards, or candidate-risk signals may be unfair, legally sensitive, or technically inaccurate if used without review. <br>
-Mitigation: Review generated materials for fairness, legality, and technical accuracy before using them in hiring decisions. <br>
+## Use Case:
 
+Technical interviewers, hiring leads, and engineering managers use this skill to turn candidate resumes and role requirements into structured interview or written-test plans with follow-up questions, scoring guidance, and validation points.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [Level Guidelines](artifact/references/level-guidelines.md) <br>
-- [Technical Question References](artifact/references/tech-questions.md) <br>
-- [Resume Demo](artifact/resume_demo.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yangchao228/resume-interview-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with structured sections, scoring criteria, follow-up questions, and optional code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate profile summaries, interview or written-test questions, reference answers, scoring rubrics, and risk-verification points.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and README) <br>
+Risk: The documentation includes an unpinned npx installer that can execute mutable third-party code during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the OpenClaw install path where possible; if using the npx installer, pin and verify the CLI version and run it without elevated privileges.
+
+Risk: Real resumes can contain sensitive personal data.
+
+Mitigation: Do not repeat names, contact details, identifiers, addresses, or social accounts in generated outputs; focus questions and assessments on technical experience, role fit, and validation points.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangchao228/skills/resume-interview-generator)
+- [Source homepage](https://github.com/yangchao228/my_open_skills/tree/main/skills/work/resume-interview-generator)
+- [Skills Hub listing](https://skills-hub.ai/skills/resume-interview-generator-2)
+- [Different-level question-depth guide](references/level-guidelines.md)
+- [Technical-stack question reference](references/tech-questions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include candidate profile summaries, interview or written-test questions, follow-up paths, reference answers, scoring criteria, and risk validation points.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

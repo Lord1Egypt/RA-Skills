@@ -1,41 +1,53 @@
-## Description: <br>
-Drafts LinkedIn posts for Marcus Wang using five solar thermal and OEM manufacturing writing styles tailored to his European B2B audience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Marcus Wang-style LinkedIn posts for solar thermal, OEM manufacturing, European market insight, and B2B sales topics using five tailored writing engines.
 
-## Publisher: <br>
-[suntaskmarcus-design](https://clawhub.ai/user/suntaskmarcus-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suntaskmarcus-design](https://clawhub.ai/user/suntaskmarcus-design)
 
-## Use Case: <br>
-Marcus Wang or an assisting agent uses this skill to draft LinkedIn post body text about solar thermal, OEM manufacturing, European market insights, and B2B sales lessons in one of five defined styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated LinkedIn drafts may contain inaccurate, overstated, or unsupported market, client, or manufacturing details. <br>
-Mitigation: Review each draft for factual accuracy and brand fit before publishing, and replace any plausible-but-unverified detail with confirmed experience. <br>
-Risk: Drafts about client conversations or OEM relationships may expose confidential or sensitive business context. <br>
-Mitigation: Remove client-identifying details and confidential commercial information before posting. <br>
+## Use Case:
 
+Marcus Wang or his content collaborators use this skill to draft concise LinkedIn posts about solar thermal, OEM manufacturing, European market observations, and B2B sales lessons. The skill guides the agent to ask for a topic and style, then produce post body text only.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suntaskmarcus-design/marcus-linkedin-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/suntaskmarcus-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text LinkedIn post body, optionally multiple variants; no labels or explanations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts are capped at 1,300 characters and should end with 2-4 niche-specific hashtags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger wording may activate the style guide for non-Marcus LinkedIn-writing requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly for Marcus Wang's LinkedIn posts and confirm the topic and preferred style before using the output.
+
+Risk: Generated posts may contain inaccurate or unsuitable public claims, especially plausible experience details or market observations.
+
+Mitigation: Review and edit every post before publication, checking factual claims, tone, audience fit, and business sensitivity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/suntaskmarcus-design/skills/marcus-linkedin-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text LinkedIn post content with line breaks and hashtags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Posts are constrained to under 1,300 characters, contain no labels or explanations, and end with 2-4 niche-specific hashtags.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,62 @@
-## Description: <br>
-Voyage AI CLI guides agents in using the vai CLI for Voyage AI embeddings, reranking, MongoDB Atlas Vector Search, model discovery, similarity checks, and batch ingestion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voyage AI CLI helps agents use the vai CLI to generate embeddings, rerank search results, manage MongoDB Atlas vector search indexes, and run semantic search workflows.
 
-## Publisher: <br>
-[mrlynn](https://clawhub.ai/user/mrlynn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mrlynn](https://clawhub.ai/user/mrlynn)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate and manage embeddings, rerank search results, create Atlas vector search indexes, store vectors, run similarity search, and learn common retrieval workflows with the vai CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing a global CLI package can introduce supply-chain risk if the package or publisher is not the expected one. <br>
-Mitigation: Verify the voyageai-cli npm package and publisher before installation. <br>
-Risk: API keys and database credentials can be exposed if entered directly into shell history or shared logs. <br>
-Mitigation: Use least-privilege Voyage AI and MongoDB credentials, and avoid placing real API keys directly in shell history. <br>
-Risk: Store, ingest, index create, and index delete commands can modify Atlas data or search infrastructure. <br>
-Mitigation: Test these commands on non-production databases before using them on production collections. <br>
-Risk: Embedded or ingested documents may be processed by external services and stored in MongoDB Atlas. <br>
-Mitigation: Do not embed or ingest sensitive documents unless that processing and storage is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate embeddings, rerank results, store vectors in MongoDB Atlas, create vector search indexes, and run retrieval workflows through the Voyage AI CLI.
 
-## Reference(s): <br>
-- [Voyage AI CLI Skill on ClawHub](https://clawhub.ai/mrlynn/voyageai-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/mrlynn) <br>
-- [Author Website](https://mlynn.org) <br>
-- [Model Catalog](references/models.md) <br>
-- [Atlas Vector Search Integration Patterns](references/vector-search.md) <br>
-- [MongoDB AI API](https://ai.mongodb.com/v1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI command examples, configuration notes, and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that call external Voyage AI and MongoDB Atlas services; users must supply VOYAGE_API_KEY and, for Atlas operations, MONGODB_URI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: release evidence and OpenClaw metadata) <br>
+Risk: The skill documents an unpinned global CLI install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the voyageai-cli package and publisher are trusted, and prefer a pinned package version.
+
+Risk: Embedding, reranking, storage, search, and ingest workflows can send text to external services.
+
+Mitigation: Do not send private or sensitive text unless that external transfer is approved for the use case.
+
+Risk: Atlas store, ingest, index create, and index delete commands can affect real databases and indexes.
+
+Mitigation: Use least-privilege Atlas credentials, test in non-production environments, and review data-changing commands before execution.
+
+## Reference(s):
+
+- [Model Catalog](artifact/references/models.md)
+- [Vector Search Patterns](artifact/references/vector-search.md)
+- [MongoDB AI API](https://ai.mongodb.com/v1/)
+- [ClawHub skill page](https://clawhub.ai/mrlynn/skills/voyageai-skill)
+- [Publisher profile](https://clawhub.ai/user/mrlynn)
+- [Publisher website](https://mlynn.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CLI commands, configuration notes, and JSON-oriented examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that call external embedding, reranking, and MongoDB Atlas services.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

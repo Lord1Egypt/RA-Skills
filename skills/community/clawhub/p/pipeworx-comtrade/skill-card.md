@@ -1,40 +1,49 @@
-## Description: <br>
-Retrieve international bilateral trade data, top trading partners, top traded commodities, and country ISO numeric codes through a Pipeworx MCP connector for the UN Comtrade API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve international bilateral trade data, top trading partners, top traded commodities, and country ISO numeric codes through a Comtrade MCP connector.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External users and developers use this skill to query UN Comtrade-style trade data, identify top partner countries or commodities, and look up ISO numeric country codes for trade queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relevant requests may be handled by the remote Pipeworx MCP endpoint. <br>
-Mitigation: Limit prompts and query inputs to the trade-data task, and avoid including unrelated secrets, credentials, or confidential context. <br>
+## Use Case:
 
+Analysts, researchers, and developers use this skill to query Comtrade-related trade data through an MCP gateway, including bilateral trade flows, partner rankings, commodity rankings, and numeric country code lookup.
 
-## Reference(s): <br>
-- [Pipeworx Comtrade ClawHub release](https://clawhub.ai/b-gutman/pipeworx-comtrade) <br>
-- [Pipeworx Comtrade MCP endpoint](https://gateway.pipeworx.io/comtrade/mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/b-gutman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown text with JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may depend on availability and behavior of the remote Pipeworx MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Comtrade queries and responses pass through a third-party Pipeworx MCP gateway rather than an official UN endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential business research unless that dependency is acceptable, and verify decision-critical trade data against authoritative UN Comtrade sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-comtrade)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, API calls, guidance]
+
+**Output Format:** [Markdown or plain text responses with MCP server configuration JSON when setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on the configured Pipeworx Comtrade MCP gateway and should be checked against authoritative sources for decision-critical use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

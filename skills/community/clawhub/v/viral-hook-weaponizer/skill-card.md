@@ -1,38 +1,54 @@
-## Description: <br>
-Generates high-performing viral hooks for short-form content based on proven psychological patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 10 concise viral hooks for short-form content using psychological drivers and proven hook archetypes.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-Content creators, social media marketers, and agents preparing short-form posts use this skill to generate ten concise hooks for a topic, optional audience, and optional platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated hooks may use persuasive marketing patterns that overstate a claim, mislead an audience, or violate platform and advertising rules. <br>
-Mitigation: Review hooks for accuracy, avoid deceptive claims or sensitive targeting, and confirm compliance with the intended platform and advertising policy before use. <br>
+## Use Case:
 
+Content creators, marketers, and social media operators use this skill to turn a topic, audience, and optional platform into short hook options for TikTok, Instagram, YouTube, and similar short-form channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/viral-hook-weaponizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style numbered list headed HOOKS] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ten unique hooks under 15 words each; no emojis or explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation wording may cause the skill to influence general brainstorming, caption, or engagement requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation scope during installation and invoke the skill only when viral hooks or short-form engagement copy are intended.
+
+Risk: Social-media hooks can overemphasize urgency, status, fear, or curiosity in ways that may mislead audiences.
+
+Mitigation: Review generated hooks for accuracy, brand fit, and audience impact before publication.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshimaw-svg/skills/viral-hook-weaponizer)
+- [Publisher Profile](https://clawhub.ai/user/theshimaw-svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style numbered list of hooks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 10 unique hooks, each under 15 words, without emojis or explanatory text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

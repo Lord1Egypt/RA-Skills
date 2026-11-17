@@ -1,40 +1,58 @@
-## Description: <br>
-瑜伽老师专用学员课时管理系统。使用SQLite本地存储学员信息、课程套餐（包年/包课时）和课时扣除日志，每次扣课后自动发送邮件记录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+瑜伽老师专用学员课时管理系统，使用 SQLite 本地存储学员信息、课程套餐和课时扣除日志，并可在扣课后发送邮件记录。
 
-## Publisher: <br>
-[yujintang](https://clawhub.ai/user/yujintang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yujintang](https://clawhub.ai/user/yujintang)
 
-## Use Case: <br>
-Yoga teachers use this skill to manage student contact records, online and offline course packages, remaining class hours, lesson deductions, and email reports from a local SQLite-backed command-line or Python workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool stores student personal data locally and may include notes in deduction emails or full reports. <br>
-Mitigation: Protect the skill directory and database from syncing or sharing, avoid highly sensitive notes, and review report contents before sending. <br>
-Risk: The tool stores an SMTP password or app code in local configuration. <br>
-Mitigation: Use an app-specific email password, restrict access to the configuration file, and confirm the configured email account before sending records. <br>
+## Use Case:
 
+Yoga teachers use this skill to manage student contact records, online and offline course packages, lesson deductions, renewal reminders, and email reports from a local command-line or Python workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yujintang/yoga-manage-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local SQLite database and email configuration file when the provided Python tool is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SMTP email credentials are stored locally in plaintext configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated app password or authorization code, keep the skill directory private, and exclude config.json from source control and shared backups.
+
+Risk: Student contact details, notes, course data, and lesson logs are stored in a local SQLite database.
+
+Mitigation: Treat yoga_students.db as sensitive student information and keep it out of source control, shared folders, and unmanaged backups.
+
+Risk: The full-report email can send all student contact details and notes to the configured mailbox.
+
+Mitigation: Confirm the configured recipient before sending full reports and avoid sending reports from shared or untrusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yujintang/skills/yoga-manage-skill)
+- [Publisher profile](https://clawhub.ai/user/yujintang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output, Markdown usage guidance, Python API calls, and local SQLite/JSON configuration files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local SQLite database and email configuration file when run; can send lesson records and full reports through user-provided SMTP settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Provides A-share market sentiment and sector movement lookups using disclosed public market-data endpoints, with a required Chinese attribution footer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese A-share market sentiment and sector rise/fall summaries using Niuguwang public market-data endpoints.
 
-## Publisher: <br>
-[lbl581581](https://clawhub.ai/user/lbl581581) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbl581581](https://clawhub.ai/user/lbl581581)
 
-## Use Case: <br>
-Investors or market analysts use this skill to ask an agent for informational A-share market sentiment, sentiment score details, and rising or falling sector rankings. The skill is intended as market context and not as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts disclosed third-party market-data endpoints. <br>
-Mitigation: Install only when third-party endpoint access is acceptable for the agent environment. <br>
-Risk: Market sentiment outputs could be mistaken for financial advice. <br>
-Mitigation: Present results as informational context and avoid treating them as investment recommendations. <br>
-Risk: The artifact requires a Chinese attribution footer in each answer. <br>
-Mitigation: Keep the required footer intact so users can see the stated data source. <br>
+## Use Case:
 
+Investors, analysts, and market watchers can ask an agent to summarize current A-share market sentiment, sector strength, and sector weakness as informational decision-support context.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lbl581581/ngw-market-sentiment) <br>
-- [Market Emotion Endpoint](https://stq.niuguwang.com/taoquant/DBXF/GetMarketEmotion?plateType=-1) <br>
-- [Plate Emotion Ranking Endpoint](https://stq.niuguwang.com/taoquant/DBXF/GetPlateEmoRank) <br>
-- [StockHN App Download](https://www.stockhn.com/#/appDownload) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional curl examples and a required Chinese attribution footer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should treat results as informational market sentiment and append the disclosed data-source footer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence and artifact metadata) <br>
+Risk: Market sentiment summaries could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the data as informational context only and avoid directing specific investment actions.
+
+Risk: The skill depends on public Niuguwang market-data endpoints for current values.
+
+Mitigation: Check returned timestamps and values before relying on a response, and disclose the data source.
+
+Risk: The skill requires a promotional footer with an external app/download link.
+
+Mitigation: Confirm the footer is acceptable for the deployment context and keep the source/link clearly separated from analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lbl581581/skills/ngw-market-sentiment)
+- [Niuguwang market emotion endpoint](https://stq.niuguwang.com/taoquant/DBXF/GetMarketEmotion?plateType=-1)
+- [Niuguwang plate emotion ranking endpoint](https://stq.niuguwang.com/taoquant/DBXF/GetPlateEmoRank)
+- [StockHN app download page](https://www.stockhn.com/#/appDownload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with optional shell command examples and sourced footer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should treat market data as informational and append the disclosed source footer when the skill is used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

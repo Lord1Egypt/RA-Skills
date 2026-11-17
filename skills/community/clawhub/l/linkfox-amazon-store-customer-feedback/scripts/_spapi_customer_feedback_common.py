@@ -65,17 +65,21 @@ def ensure_auth_skill_available(caller: str = "customer-feedback script") -> Non
 
 
 def get_api_key() -> str:
+    """
+获取配置在环境变量的API Key。
+如果获取不到，按 SKILL.md 的 **## 解决认证和算力问题** 处理。
+"""
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Set:\n  export LINKFOXAGENT_API_KEY=<your-key>",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
     return key
 
 
-def call_api(endpoint: str, params: dict, timeout: int = 120) -> dict:
+def call_api(endpoint: str, params: dict, timeout: int = 150) -> dict:
     api_key = get_api_key()
     data = json.dumps(params).encode("utf-8")
     req = Request(
@@ -85,6 +89,10 @@ def call_api(endpoint: str, params: dict, timeout: int = 120) -> dict:
             "Authorization": api_key,
             "Content-Type": "application/json",
             "User-Agent": "LinkFox-Skill/1.0",
+            "SESSION_ID": os.environ.get("SESSION_ID", ""),
+            "MESSAGE_ID": os.environ.get("MESSAGE_ID", ""),
+            "MODE_ID": os.environ.get("MODE_ID", ""),
+            "APP_NAME": os.environ.get("APP_NAME", ""),
         },
         method="POST",
     )
@@ -105,15 +113,15 @@ def get_store_tokens(seller_id: str, region: str) -> dict:
 def developer_proxy_get(
     region: str,
     path: str,
-    access_token: str,
+    seller_id: str,
     query_string: Optional[str] = None,
-    timeout: int = 120,
+    timeout: int = 150,
 ) -> dict:
     params: dict = {
         "region": region,
         "path": path,
         "method": "GET",
-        "amzAccessToken": access_token,
+        "sellerId": seller_id,
     }
     if query_string:
         params["queryString"] = query_string
@@ -230,12 +238,7 @@ def run_item_get(
     path = f"{API_PREFIX}/items/{asin}/{path_suffix}"
     qs = query_builder(params)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_get(region, path, tokens["accessToken"], query_string=qs)
+    proxy = developer_proxy_get(region, path, seller_id, query_string=qs)
     out: dict = {"developerProxy": proxy, "resolvedPath": path, "queryString": qs}
     merge_success_json(out, proxy, result_key)
     emit_result(out, inline=lf_inline_flag())
@@ -263,12 +266,7 @@ def run_browse_node_get(
     path = f"{API_PREFIX}/browseNodes/{bn}/{path_suffix}"
     qs = query_builder(params)
 
-    tokens = get_store_tokens(seller_id, region)
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
-    proxy = developer_proxy_get(region, path, tokens["accessToken"], query_string=qs)
+    proxy = developer_proxy_get(region, path, seller_id, query_string=qs)
     out: dict = {"developerProxy": proxy, "resolvedPath": path, "queryString": qs}
     merge_success_json(out, proxy, result_key)
     emit_result(out, inline=lf_inline_flag())

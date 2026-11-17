@@ -115,7 +115,7 @@ const { data, error } = await supabase
 
 ### Slack
 ```bash
-curl -X POST "https://hooks.slack.com/services/T.../B.../xxx" \
+curl -X POST "REDACTED-SECRET.../B.../xxx" \
   -d '{"text":"New form submission from user@example.com"}'
 ```
 

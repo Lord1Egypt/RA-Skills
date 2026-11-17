@@ -1,40 +1,54 @@
-## Description: <br>
-Set up or log in to Karma before first use of Karma skills, including API key creation, saving, and configuration verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up or log in to Karma by obtaining, saving, and verifying a KARMA_API_KEY for Karma agent skills.
 
-## Publisher: <br>
-[maheshmurthy](https://clawhub.ai/user/maheshmurthy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maheshmurthy](https://clawhub.ai/user/maheshmurthy)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent environment to Karma, obtain or enter a Karma API key, optionally persist it in shell configuration, and verify that the setup is ready for Karma project and funding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill requires careful handling of a local Ziniao/ZClaw bridge with browser-control authority and a ZClaw API key. <br>
-Mitigation: Install only when the local bridge is trusted, use a dedicated revocable API key, avoid pasting secrets into shared chats, keep local configuration private, and rotate the key if it appears in logs or transcripts. <br>
-Risk: The skill asks users to handle Karma API keys that may be saved in shell configuration files. <br>
-Mitigation: Ask permission before persisting secrets, avoid duplicate key entries, keep shell configuration files private, and prefer revocable keys. <br>
+## Use Case:
 
+Developers and external users use this skill for first-time Karma setup, including quick-start key generation, email login, environment variable configuration, and verification before running Karma action skills.
 
-## Reference(s): <br>
-- [Agent API Reference](../references/agent-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user for an email address, verification code, or API key during setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: API keys may be exposed if echoed into chat, displayed in full, or written permanently to shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before persisting credentials, prefer session-only environment variables when appropriate, and redact API keys in user-facing output.
+
+Risk: Verification commands could send credentials to an unintended endpoint if KARMA_API_URL is overridden.
+
+Mitigation: Use the production Karma HTTPS endpoint by default and only allow trusted local development URLs when the user intentionally opts in.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maheshmurthy/skills/karma-setup-agent)
+- [Karma Agent API base URL](https://gapapi.karmahq.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user prompts for setup method, email address, verification code, API key handling, and permission to persist credentials.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

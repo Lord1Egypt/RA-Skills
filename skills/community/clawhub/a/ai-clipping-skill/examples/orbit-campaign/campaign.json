@@ -1,0 +1,79 @@
+{
+ "id": "example-orbit-crew-dragon",
+ "name": "Training for Crew Dragon (EXAMPLE campaign, made up)",
+ "brand": "Example Orbit",
+ "example_demo": true,
+ "marketplace": "the example marketplace (made up)",
+ "brief_file": "brief.txt",
+ "brief_date": "2026-11-15",
+ "currency": "USD",
+ "platforms": {
+  "TIKTOK": {
+   "rate_per_1k": 1.0
+  },
+  "INSTAGRAM": {
+   "rate_per_1k": 0.8
+  },
+  "YOUTUBE": {
+   "rate_per_1k": 0.5
+  }
+ },
+ "min_payout": 5,
+ "cap_per_clip": 150,
+ "budget_total": 3000,
+ "budget_remaining": 2140,
+ "budget_checked_at": "2026-11-16T13:30:00Z",
+ "fee_pct": 10,
+ "window_days": 30,
+ "window_from": "threshold",
+ "days_live": 30,
+ "submit_within_minutes": 30,
+ "caption": {
+  "disclosure": "#ad",
+  "hashtags": [
+   "#exampleorbit"
+  ],
+  "mentions": [
+   "@example.orbit"
+  ],
+  "links": [
+   "example.com/orbit"
+  ]
+ },
+ "on_screen": {
+  "disclosure": "EXAMPLE ONLY: not a real ad",
+  "disclosure_seconds": 4,
+  "watermark": "EXAMPLE ONLY"
+ },
+ "bio": "example.com/orbit",
+ "length": {
+  "min_s": 15,
+  "max_s": 60
+ },
+ "aspect": "9:16",
+ "footage": {
+  "allowed": "supplied footage only",
+  "files": [
+   "behnken.mp4"
+  ],
+  "sources": [
+   "https://images.nasa.gov/details/jsc2020m000132_Bob_Behnken_discusses_training_and_development_in_SpaceX_Crew_Dragon"
+  ],
+  "recency_days": null
+ },
+ "audience": {
+  "geo": "US",
+  "min_share": 0.3
+ },
+ "engagement_min": 0.03,
+ "proof": [
+  "analytics screenshot with views and audience countries at 72 hours"
+ ],
+ "approval_before_posting": false,
+ "required_sound": null,
+ "banned": [
+  "giveaway",
+  "#fyp"
+ ],
+ "max_overlap": 0.5
+}

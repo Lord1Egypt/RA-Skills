@@ -1,41 +1,55 @@
-## Description: <br>
-Uses the OCR.space free API to recognize text in images, with multilingual support and command-line or Python usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the OCR.space free API to extract text from image files.
 
-## Publisher: <br>
-[juguangyuan520-dotcom](https://clawhub.ai/user/juguangyuan520-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juguangyuan520-dotcom](https://clawhub.ai/user/juguangyuan520-dotcom)
 
-## Use Case: <br>
-Developers and agents use this skill to extract text from user-selected image files through OCR.space, especially for workflows that can use the free API limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected image files are sent to OCR.space for processing. <br>
-Mitigation: Avoid using the skill with IDs, invoices, private screenshots, medical records, or other sensitive images unless that matches the user's privacy expectations. <br>
-Risk: The free OCR.space API has usage and file-size limits that can affect reliability for larger or higher-volume workloads. <br>
-Mitigation: Use the skill for workflows that fit the documented free limits, or switch to a paid OCR.space plan for production workloads that need higher limits. <br>
+## Use Case:
 
+Developers and agents use this skill to send image files to OCR.space for multilingual OCR and receive recognized text from command-line or Python workflows.
 
-## Reference(s): <br>
-- [OCR.space OCR API documentation](https://ocr.space/ocrapi) <br>
-- [ClawHub skill page](https://clawhub.ai/juguangyuan520-dotcom/ocr-space) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text OCR results with Markdown usage examples and Python or shell invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Sends selected image content to OCR.space; free API usage is documented as 500 requests per day and 5 MB per file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Images are uploaded to OCR.space for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with images that are acceptable to share with the external OCR.space service; avoid sensitive or regulated documents unless that sharing is approved.
+
+Risk: The compression behavior can overwrite or delete a predictable local *_compressed.jpg file.
+
+Mitigation: Run with ordinary user privileges in directories without valuable matching compressed-image files, and replace the predictable path with a secure temporary file before broader deployment.
+
+## Reference(s):
+
+- [OCR.space OCR API documentation](https://ocr.space/ocrapi)
+- [ClawHub skill page](https://clawhub.ai/juguangyuan520-dotcom/skills/ocr-space)
+- [ClawHub publisher profile](https://clawhub.ai/user/juguangyuan520-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload image data to OCR.space and may create a temporary compressed JPEG for files over the free API size limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+# skills-summarize-audit-skill dsh profile bundle: registers the SKILL.md at
+# this package root on ctx.skills. Applied after @deepseek-ai/dsh-base, which
+# already mounts the skill registry and the model-facing skill loader.
+- insert:
+    - id: skills-summarize-audit-skill
+      name: 'skills-summarize-audit-skill'

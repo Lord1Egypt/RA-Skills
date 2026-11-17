@@ -14,6 +14,7 @@ DEFAULT_API_BASE = "https://softcraft.cloud"
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create Code-Right task via API.")
     parser.add_argument("--system-name")
+    parser.add_argument("--system-desc")
     parser.add_argument("--notify-email")
     parser.add_argument("--access-token")
     args = parser.parse_args()
@@ -26,9 +27,11 @@ def main() -> int:
         return 2
 
     api_base = DEFAULT_API_BASE.rstrip("/")
-    url = f"{api_base}/api/tasks/"
+    url = f"{api_base}/api/skill/tasks/"
 
     payload = {"systemName": args.system_name, "notifyEmail": args.notify_email}
+    if args.system_desc:
+        payload["user_system_desc"] = args.system_desc
     data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
 
     headers = {"Content-Type": "application/json"}

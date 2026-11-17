@@ -1,43 +1,62 @@
-## Description: <br>
-Garmin Connect Pro helps agents retrieve Garmin Connect activity, sleep, heart rate, stress, body battery, training readiness, VO2 max, race prediction, and activity export data through a Python CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Garmin Connect Pro lets an agent retrieve Garmin Connect activity, sleep, heart rate, stress, body battery, training, VO2 max, race prediction, chart, comparison, JSON export, and FIT/GPX activity data for OpenClaw workflows.
 
-## Publisher: <br>
-[drpeterkalmar](https://clawhub.ai/user/drpeterkalmar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drpeterkalmar](https://clawhub.ai/user/drpeterkalmar)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to query Garmin Connect fitness and health data, generate summaries and trend views, export activity data, and automate recurring fitness reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Garmin health, activity, profile, device, and possibly location data. <br>
-Mitigation: Install only when that access is acceptable, use the minimum commands needed, and avoid broad JSON exports unless required. <br>
-Risk: Credentials and OAuth tokens may be stored locally, including a plaintext credentials fallback. <br>
-Mitigation: Prefer environment variables or a system secret store, keep credential and token files protected, and remove saved tokens when use ends. <br>
-Risk: Scheduled jobs that run with Garmin credentials can increase exposure. <br>
-Mitigation: Use protected environment variables for automation, review cron jobs periodically, and remove them when no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to query, summarize, compare, chart, export, and download Garmin Connect health and activity data through OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drpeterkalmar/garmin-connect-pro) <br>
-- [garminconnect Python library](https://github.com/cyberjunkie/garminconnect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Plain text CLI responses with ASCII charts, JSON exports, shell commands, and downloaded FIT or GPX activity files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Garmin Connect account, python3, and garminconnect>=0.2.38.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence) <br>
+Risk: The skill handles sensitive Garmin health-account access and locally cached OAuth tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, protect cached tokens, and remove them when no longer needed.
+
+Risk: The skill supports a plaintext credentials file fallback.
+
+Mitigation: Prefer secure environment variables or a credential manager, and avoid the credentials.json option when possible.
+
+Risk: Cron or OpenClaw cron commands can expose Garmin passwords if secrets are placed directly in scheduled commands.
+
+Mitigation: Do not put GARMIN_PASSWORD directly in cron commands; use secure environment injection or a dedicated Garmin account where possible.
+
+Risk: The skill relies on the third-party garminconnect dependency for Garmin API communication.
+
+Mitigation: Pin or audit the garminconnect dependency before use in sensitive environments.
+
+## Reference(s):
+
+- [Garmin Connect Pro on ClawHub](https://clawhub.ai/drpeterkalmar/skills/garmin-connect-pro)
+- [garminconnect Python library](https://github.com/cyberjunkie/garminconnect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance]
+
+**Output Format:** [Terminal text and Markdown guidance with optional JSON output and FIT/GPX file downloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, garminconnect, Garmin credentials, and locally cached OAuth tokens after login.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence; artifact SKILL.md reports 1.4.0 and package.json reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

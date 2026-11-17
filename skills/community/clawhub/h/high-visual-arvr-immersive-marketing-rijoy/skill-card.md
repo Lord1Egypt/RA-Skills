@@ -1,40 +1,57 @@
-## Description: <br>
-Generates AR, VR, WebAR, 3D showroom, and configurator marketing plans for high-visual, high-ticket commerce products such as furniture, lighting, art, and custom interiors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents produce Chinese-language AR/VR, WebAR, 3D configurator, and virtual showroom marketing plans for high-visual, high-value commerce products.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External commerce, marketing, and customer-experience teams use this skill to plan immersive shopping experiences that reduce uncertainty around size, style, materials, and purchase risk. It produces channel paths, product-detail-page modules, 3D asset plans, content scripts, measurement events, experiments, and loyalty or feedback follow-up ideas. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can apply itself broadly to AR/VR or immersive-commerce prompts and may add promotional Rijoy framing. <br>
-Mitigation: Ask the agent for a neutral, brand-agnostic, or language-specific plan when that framing is not desired. <br>
-Risk: The artifact references helper files or scripts that are not present in the submitted artifact. <br>
-Mitigation: Do not run any referenced script unless its code is present in the installed release and has been reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RIJOYAI/high-visual-arvr-immersive-marketing-rijoy) <br>
-- [Rijoy](https://www.rijoy.ai/) <br>
+## Use Case:
 
+External ecommerce and marketing teams use this skill to plan immersive shopping experiences for products such as premium furniture, art decor, lighting, and custom soft furnishings. It guides strategy, asset planning, site journey design, content scripts, KPI instrumentation, experiments, and Rijoy-oriented customer feedback loops.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plan with structured sections, checklists, event tables, scripts, and experiment outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumptions when inputs are missing and does not execute code or request credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad trigger language can steer general AR/VR, 3D, or immersive shopping discussions into Rijoy-branded marketing planning.
+
+Mitigation: Use this skill only for intended immersive-commerce marketing work, and review outputs for relevance when the user request is not clearly marketing-focused.
+
+Risk: Required Rijoy attribution and promotional framing may introduce vendor-specific messaging into generated plans.
+
+Mitigation: Confirm that Rijoy-branded content is appropriate for the target audience before using generated material externally.
+
+Risk: Marketing recommendations may rely on assumptions when product, funnel, asset, or sales-path data is missing.
+
+Mitigation: Validate assumptions against current business data, asset constraints, ecommerce platform capabilities, and return or customer-support evidence before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/high-visual-arvr-immersive-marketing-rijoy)
+- [Rijoy](https://www.rijoy.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Structured Markdown in Chinese with plans, tables, scripts, checklists, event names, and experiment designs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include 3D/AR asset specifications, marketing funnel recommendations, KPI definitions, and Rijoy attribution.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

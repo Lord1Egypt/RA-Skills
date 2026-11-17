@@ -1,46 +1,61 @@
-## Description: <br>
-Proactive Trigger evaluates user silence, interest decay, topic heat, and readiness signals to decide when an assistant should intervene proactively. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proactive Trigger helps an agent decide when to initiate proactive engagement by evaluating user silence, topic heat, signal priority, and trigger timing.
 
-## Publisher: <br>
-[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaoguoqiang-hub](https://clawhub.ai/user/zhaoguoqiang-hub)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to evaluate whether a proactive assistant should respond based on silence, topic interest, time windows, and incoming local signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local behavioral history and may create or update .soul state and log files. <br>
-Mitigation: Inspect retention expectations before deployment and periodically review or clear the local .soul state and log files. <br>
-Risk: The skill trusts shared local OpenClaw signal files. <br>
-Mitigation: Restrict which local components can write signals and review signal sources before enabling proactive behavior. <br>
-Risk: The skill includes a shell-based OpenClaw command wrapper identified by security evidence as unsafe. <br>
-Mitigation: Replace or disable the shell wrapper and review command execution paths before use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add proactive timing decisions to OpenClaw-style agents, including checks for silence duration, topic interest decay, cooldowns, daily limits, and pending signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaoguoqiang-hub/proactive-trigger) <br>
-- [Proactive trigger system reference](references/SKILL.zh.md) <br>
-- [Interest graph calculation](references/interest-graph-calculation.md) <br>
-- [Silence index formula](references/silence-index-formula.md) <br>
-- [Trigger state management](references/trigger-state-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update local OpenClaw .soul state, signal, and log files during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: The security evidence reports behavioral profiling of interaction timing, topics, responses, and possibly mood-related signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user opt-in for proactive messaging and define retention, review, and deletion controls for OpenClaw .soul state and signal files.
+
+Risk: The security evidence reports unsafe command execution wrappers around the OpenClaw CLI.
+
+Mitigation: Review and harden the CLI wrapper before deployment, especially parameter handling and the trust boundary for any OpenClaw command invocation.
+
+Risk: The skill can generate proactive messages based on inferred timing and topic signals, which may interrupt users or create unwanted engagement.
+
+Mitigation: Keep daily limits, cooldowns, focus-mode checks, quiet hours, and user rejection learning enabled, and require a clear path to disable proactive contact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaoguoqiang-hub/skills/proactive-trigger)
+- [Interest graph calculation](references/interest-graph-calculation.md)
+- [Silence index formula](references/silence-index-formula.md)
+- [Trigger state management](references/trigger-state-management.md)
+- [Chinese skill reference](references/SKILL.zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and JSON-backed state or signal files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write trigger state, signal, context, and message log files under the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata; package.json reports 0.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

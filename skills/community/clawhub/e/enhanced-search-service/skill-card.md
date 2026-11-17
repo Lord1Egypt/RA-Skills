@@ -1,40 +1,54 @@
-## Description: <br>
-Enhances memory search by combining co-occurrence graph analysis and semantic vector similarity for contextual relevance ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhances memory search by combining co-occurrence graph analysis and semantic similarity for improved contextual relevance and ranking.
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers and system integrators use this skill to improve memory search by re-ranking raw results and surfacing related memories with semantic and co-occurrence signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Query snippets and result relationships may be recorded by local memory infrastructure, creating privacy exposure for secrets or highly sensitive personal data. <br>
-Mitigation: Avoid using the skill with secrets or highly sensitive personal data unless the deployment accepts that local recording behavior. <br>
-Risk: Search quality depends on trusted co-occurrence and semantic-vector adapters. <br>
-Mitigation: Install only with trusted adapters and verify dependency health before relying on ranking output. <br>
+## Use Case:
 
+Developers and system integrators use this skill to add context-aware ranking to memory search workflows by combining text matches, co-occurrence relationships, and semantic similarity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whoisme007/enhanced-search-service) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python API responses as dictionaries plus Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Enhanced results include base, co-occurrence, semantic, and combined relevance scores when adapters are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Parts of search queries may be stored in the co-occurrence system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in environments with sensitive memory contents, and require query redaction and retention limits where sensitive data may be searched.
+
+Risk: Adapter code is loaded from a hard-coded local workspace path outside the reviewed package.
+
+Mitigation: Install only when the adapter directory is trusted and controlled, or require packaged or integrity-checked dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whoisme007/skills/enhanced-search-service)
+- [Publisher profile](https://clawhub.ai/user/whoisme007)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Markdown and Python examples with configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces enhanced search result fields such as enhanced score, component scores, memory ID, and explanation when used in code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

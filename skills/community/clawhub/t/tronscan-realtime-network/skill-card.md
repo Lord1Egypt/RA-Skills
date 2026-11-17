@@ -1,43 +1,61 @@
-## Description: <br>
-Query TRON real-time network data including latest block height, current TPS, node count, latest TVL, total transaction count, and real-time vote count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TRON real-time network data including latest block height, current TPS, node count, latest TVL, total transaction count, and real-time vote count.
 
-## Publisher: <br>
-[sshnii](https://clawhub.ai/user/sshnii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sshnii](https://clawhub.ai/user/sshnii)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill through the TronScan MCP service to answer current TRON network status questions such as TPS, block height, node count, TVL, transaction totals, and witness vote counts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the TronScan service without an API key can encounter API rate limits or 429 errors. <br>
-Mitigation: Configure a dedicated TronScan API key only in the intended MCP configuration when higher call volume is needed. <br>
-Risk: Latest solidified block data can lag the chain head, and some block detail fields may be null or zero. <br>
-Mitigation: Clarify solidified-block semantics in responses and use a block-detail skill when users need fields not returned by this realtime endpoint. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to answer current TRON network-status questions through TronScan MCP tools, including TPS, block height, node count, TVL, total transaction count, and witness vote totals.
 
-## Reference(s): <br>
-- [TronScan MCP Server](https://mcp.tronscan.org/mcp) <br>
-- [TronScan MCP Guide](https://mcpdoc.tronscan.org) <br>
-- [TronScan Developer API](https://tronscan.org/#/developer/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sshnii/tronscan-realtime-network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries backed by MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public network statistics; an optional dedicated TronScan API key may be configured for rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: TRON network-stat questions are routed through the TronScan MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when use of the TronScan MCP service is acceptable for the intended workflow.
+
+Risk: Rate-limit credentials may be needed for higher TronScan API usage.
+
+Mitigation: Configure any API key only through MCP settings and avoid sharing credentials in chat.
+
+Risk: Some block-detail fields may be unavailable or returned as zero or null by the underlying API.
+
+Mitigation: Treat unavailable fields as absent and use a block-detail skill when detailed block fields are required.
+
+## Reference(s):
+
+- [TronScan MCP Server](https://mcp.tronscan.org/mcp)
+- [TronScan MCP Guide](https://mcpdoc.tronscan.org)
+- [TronScan Developer API](https://tronscan.org/#/developer/api)
+- [ClawHub Skill Page](https://clawhub.ai/sshnii/skills/tronscan-realtime-network)
+- [Publisher Profile](https://clawhub.ai/user/sshnii)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text responses based on live TronScan MCP tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current network metrics returned by the configured TronScan MCP service.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

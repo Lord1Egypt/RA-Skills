@@ -1,42 +1,65 @@
-## Description: <br>
-Developer oversight and AI agent coaching for viewing project status across repositories, syncing GitHub data, and analyzing agents.md against commit patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Developer oversight and AI agent coaching. Use when viewing project status across repos, syncing GitHub data, or analyzing agents.md against commit patterns.
 
-## Publisher: <br>
-[InfantLab](https://clawhub.ai/user/InfantLab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[infantlab](https://clawhub.ai/user/infantlab)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to track activity across configured repositories, refresh GitHub project data, and generate agent-instruction improvement suggestions from commit patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads configured repositories through the user's existing GitHub CLI login and caches repository activity plus agent-instruction content locally. <br>
-Mitigation: Install and run it only for repositories you are comfortable exposing to the local ~/.god-mode cache, and review local cache handling before use on shared systems. <br>
-Risk: Agent analysis may display prompt content and repository-derived context in the terminal. <br>
-Mitigation: Avoid running agent analysis in CI logs or shared terminals unless the generated output can be exposed there. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to track activity across configured repositories, sync GitHub project data into a local cache, and generate prompts that analyze agent instructions against commit patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/InfantLab/god-mode) <br>
-- [GitHub repository referenced by artifact documentation](https://github.com/InfantLab/god-mode-skill) <br>
-- [GitHub CLI documentation](https://cli.github.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, JSON, and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gh, sqlite3, and jq; stores repository activity and agent-instruction analysis locally under ~/.god-mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill reads repository metadata, commit history, and agent-instruction files, then stores snapshots and analysis data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with repositories you trust and keep ~/.god-mode private.
+
+Risk: Custom agent file patterns can broaden what repository files are read for analysis.
+
+Mitigation: Avoid analysis.agentFiles entries that use absolute paths or parent-directory components.
+
+Risk: Generated analysis prompts and recommendations may contain sensitive repository context or suggest unsafe instruction changes.
+
+Mitigation: Review generated prompts and recommendations before sending them to an LLM or applying them to agent instructions.
+
+Risk: Adding the cloned scripts directory persistently to PATH can expose the shell to unreviewed command changes.
+
+Mitigation: Prefer a temporary PATH entry unless the cloned scripts have been reviewed and are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infantlab/skills/god-mode)
+- [Publisher profile](https://clawhub.ai/user/infantlab)
+- [GitHub CLI documentation](https://cli.github.com/)
+- [Configuration example](config.example.yaml)
+- [Agent analysis prompt](prompts/agent-analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text, JSON, Markdown prompts, shell commands, and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local status summaries and agent-analysis prompts; generated recommendations should be reviewed before use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

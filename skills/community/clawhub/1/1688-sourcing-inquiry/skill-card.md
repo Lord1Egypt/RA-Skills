@@ -1,47 +1,62 @@
-## Description: <br>
-Transforms vague 1688 procurement intent into structured sourcing inquiries so suppliers can be matched and quotations can be requested. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688 Sourcing Inquiry helps an agent turn vague procurement needs into structured 1688 sourcing inquiries so the platform can match suppliers and quotation options.
 
-## Publisher: <br>
-[1688aiinfra](https://clawhub.ai/user/1688aiinfra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1688aiinfra](https://clawhub.ai/user/1688aiinfra)
 
-## Use Case: <br>
-External procurement users and agents use this skill before selecting a specific product or supplier to submit 1688 sourcing inquiries from a product name, quantity, and requirements. It is intended for quote-seeking and supplier matching, not product browsing, supplier directory lookup, order placement, payment, or logistics tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a 1688 Access Key and stores credentials locally. <br>
-Mitigation: Use a limited and revocable credential where available, configure it only through the documented flow, and rotate or revoke it when access is no longer needed. <br>
-Risk: The security review source flags token-management and telemetry behavior for careful review. <br>
-Mitigation: Review credential handling, token storage, and usage-reporting behavior before deployment in shared or business environments. <br>
-Risk: Procurement inquiries create sourcing tasks and may send incomplete or unintended requirements if the agent guesses missing fields. <br>
-Mitigation: Require explicit product name, numeric quantity, and demand details before running procurement commands. <br>
+## Use Case:
 
+External procurement users and agents use this skill when a buyer has a product name, quantity, and requirements but has not selected a specific product or supplier. The skill submits a 1688 sourcing inquiry after required fields are collected.
 
-## Reference(s): <br>
-- [1688 Sourcing Inquiry on ClawHub](https://clawhub.ai/1688aiinfra/1688-sourcing-inquiry) <br>
-- [Procurement capability guide](references/capabilities/procurement.md) <br>
-- [Configuration guide](references/capabilities/configure.md) <br>
-- [Common error handling](references/common/error-handling.md) <br>
-- [1688 authorization page](https://air.1688.com/app/tai/oauth_page/index.html) <br>
-- [1688 skills gateway](https://skills-gateway.1688.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON objects containing a success flag, user-facing markdown, and optional structured data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent should display the markdown field directly and use structured data only as supporting context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill requires a 1688 access key and handles OAuth credential material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the skill, provide credentials only in trusted environments, and rotate the access key if it may have been exposed.
+
+Risk: Command usage is reported to the 1688 gateway.
+
+Mitigation: Use the skill only when this telemetry behavior is acceptable for the deployment context.
+
+Risk: Credential status or configuration output could appear in shared logs or transcripts.
+
+Mitigation: Avoid running configure status commands in shared logs or transcripts.
+
+## Reference(s):
+
+- [1688 Sourcing Inquiry on ClawHub](https://clawhub.ai/1688aiinfra/skills/1688-sourcing-inquiry)
+- [AK configuration guide](references/capabilities/configure.md)
+- [Procurement capability guide](references/capabilities/procurement.md)
+- [Common error handling](references/common/error-handling.md)
+- [Skill usage telemetry notes](references/skill埋点说明.md)
+- [1688 skills gateway](https://skills-gateway.1688.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [JSON containing success, markdown, and data fields; agents should present the markdown field to users]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a configured ACCESS_KEY for authenticated 1688 gateway calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

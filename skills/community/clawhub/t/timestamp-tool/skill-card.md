@@ -1,38 +1,49 @@
-## Description: <br>
-Convert between Unix timestamps and human-readable dates for time conversion, log analysis, and date arithmetic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert between Unix timestamps and human-readable dates for time conversion, log analysis, and date arithmetic.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators use this skill to convert Unix epoch timestamps to readable date/time strings and convert dates back to timestamps while reviewing logs or doing date arithmetic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: README-style examples may not match the included Python script's supported command-line options. <br>
-Mitigation: Check the script help output and use the supported flags before relying on a documented example. <br>
+## Use Case:
 
+Developers and operators use this skill to convert timestamps, inspect log times, and perform simple date arithmetic in local workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/timestamp-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally and prints converted timestamps or error messages to stdout/stderr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Documentation and script behavior do not fully agree, which can lead to incorrect command usage or timestamp output assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify supported command syntax and timestamp output in the target environment before relying on the skill for logs, audits, or automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/timestamp-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timestamp output depends on command options, timezone handling, and the requested date format.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

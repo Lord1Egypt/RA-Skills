@@ -1,39 +1,54 @@
-## Description: <br>
-Cnc Quick Probe helps agents collect missing CNC quote parameters including material, quantity, tolerance, surface finish, and Ra before handing off to quoting when enough information is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cnc Quick Probe helps an agent collect missing CNC quote parameters and route the request once material, quantity, tolerance, surface treatment, and roughness are sufficiently complete.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-External users, operators, and developers use this skill during CNC quote intake to ask for missing manufacturing parameters before generating or handing off a quote. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically route to a CNC quote system once it judges that enough parameters have been collected. <br>
-Mitigation: Review generated quotes before relying on them or sending them to customers. <br>
-Risk: The skill depends on a local cnc-quote-system workspace dependency. <br>
-Mitigation: Install only when the referenced local quote system is expected and trusted. <br>
+## Use Case:
 
+External users, developers, and quoting agents use this skill when a CNC quote request lacks enough information. It asks for five quote-critical parameters, tracks convergence, and prepares the request for downstream quotation once the threshold is met.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted parameter questions and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Collects up to five CNC manufacturing parameters and reports whether the quote is ready.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill imports executable Python from a hard-coded local cnc-quote-system path that is not bundled or integrity-checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where that dependency path is controlled, trusted, immutable, and reviewed before use.
+
+Risk: CNC quote readiness depends on user-provided parameters and convergence state.
+
+Mitigation: Have a qualified reviewer confirm collected material, quantity, tolerance, surface treatment, and roughness before relying on the resulting quote workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/openclaw-cnc-quick-probe)
+- [Publisher profile](https://clawhub.ai/user/timo2026)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown prompts with structured status fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes convergence status, current CNC parameters, follow-up questions, and readiness to route for quotation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and code report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

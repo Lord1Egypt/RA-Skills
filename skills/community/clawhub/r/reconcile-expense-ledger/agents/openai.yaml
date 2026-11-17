@@ -1,0 +1,13 @@
+interface:
+  display_name: Excel 智能记账与对账
+  short_description: 通过聊天维护 Excel 账本，核查上传修改、信用卡账单并分析消费
+  default_prompt: 使用 $reconcile-expense-ledger 核查我的最新 Excel 账本，按我的消费描述或上传文件增删改记录，并保存更新后的账本。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

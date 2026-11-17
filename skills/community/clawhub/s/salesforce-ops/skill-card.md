@@ -1,47 +1,64 @@
-## Description: <br>
-Salesforce CRM integration with managed OAuth. Manage accounts, contacts, leads, opportunities, campaigns, tasks, reports, SOQL queries, and SObject records through the Salesforce REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Salesforce CRM integration with managed OAuth. Manage accounts, contacts, leads, opportunities, campaigns, tasks, reports, SOQL queries, and SObject records through the Salesforce REST API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Employees, sales operations teams, and developers use this skill to inspect and manage Salesforce CRM data through ClawLink-managed OAuth. It supports read, query, create, update, delete, bulk, file, report, and Salesforce metadata workflows when the connected account has the needed permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: With sufficient Salesforce permissions, the skill can change or delete live Salesforce records, files, and schema. <br>
-Mitigation: Use a Salesforce account with only the permissions needed for the task, and require a clear preview plus explicit approval before write, delete, bulk, file, or schema actions. <br>
-Risk: Salesforce access is mediated through ClawLink OAuth and depends on the connected account and granted scopes. <br>
-Mitigation: Install only if you trust ClawLink to broker the connection, verify the active Salesforce integration, and reconnect through the ClawLink dashboard if tools are missing or stale. <br>
+## Use Case:
 
+Sales and operations users use this skill to work with Salesforce CRM records, queries, reports, files, and metadata from an agent conversation. It supports read workflows and write workflows for accounts, contacts, leads, opportunities, campaigns, tasks, notes, files, SObjects, bulk jobs, custom fields, and custom objects.
 
-## Reference(s): <br>
-- [ClawHub Salesforce Skill Page](https://clawhub.ai/hith3sh/salesforce-ops) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
-- [Salesforce REST API Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.api.meta/api_rest/) <br>
-- [Salesforce SOQL Reference](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_samples_soql.htm) <br>
-- [Salesforce SOSL Reference](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_samples_sosl.htm) <br>
-- [Salesforce SObject Reference](https://developer.salesforce.com/docs/atlas.en-us.api_rest.api.meta/api_rest/resources_sobjects.htm) <br>
-- [Salesforce Bulk API 2.0](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.api.meta/api_asynch/bulk_api_2_0.htm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Salesforce account through ClawLink OAuth; write operations should be previewed and explicitly approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill requires installing and allowlisting a third-party ClawLink plugin that can access and change sensitive Salesforce CRM data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the ClawLink plugin publisher and package provenance before installing, and allow only the plugin needed for this Salesforce workflow.
+
+Risk: Salesforce OAuth access may expose more CRM data or write capability than the user intends.
+
+Mitigation: Connect Salesforce with the narrowest OAuth scopes practical and revoke the Salesforce OAuth connection if it is no longer needed.
+
+Risk: Create, update, delete, clone, bulk, and custom object actions can modify or remove Salesforce records.
+
+Mitigation: Use preview and explicit confirmation before write or destructive operations, and verify target record IDs before execution.
+
+## Reference(s):
+
+- [Salesforce REST API Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.api.meta/api_rest/)
+- [Salesforce SOQL Reference](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_samples_soql.htm)
+- [Salesforce SOSL Reference](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_samples_sosl.htm)
+- [Salesforce SObject Reference](https://developer.salesforce.com/docs/atlas.en-us.api_rest.api.meta/api_rest/resources_sobjects.htm)
+- [Salesforce Bulk API 2.0](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.api.meta/api_asynch/bulk_api_2_0.htm)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=salesforce-ops)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown with inline bash commands and JSON parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Salesforce record data, query results, previews for write actions, connection guidance, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

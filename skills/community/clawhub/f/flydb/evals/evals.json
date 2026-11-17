@@ -1,0 +1,90 @@
+{
+  "skill_name": "flydb",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我们项目想开始用 Flydb 管理数据库迁移，现在什么都没有，从哪开始？",
+      "expected_output": "路由为「从零接入」组合流程：先 flydb-cli-release（Java 预检、获取发行包、init），再 flydb-migration-scripts 确立脚本风格，单环境跑通后按需用 flydb-multi-environment 扩展；给出各子技能的入口而不是自己复述安装步骤细节。",
+      "files": [],
+      "assertions": [
+        "按组合顺序点名了至少两个子技能及其分工",
+        "没有在路由器内复述 Java 预检或 init 的具体命令细节",
+        "多环境作为可选后续步骤提及"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "给 orders 表加一列 remark，然后把迁移跑到测试库。",
+      "expected_output": "识别为组合场景：先用 flydb-migration-scripts 写新版本脚本（不改已应用脚本），再用 flydb-cli-release 走 validate → dry-run → 测试库授权 → migrate → info 核对；两个阶段分别进入对应技能的工作流。",
+      "files": [],
+      "assertions": [
+        "明确拆分为写脚本（flydb-migration-scripts）与执行（flydb-cli-release）两步",
+        "写脚本遵循新增版本而非修改既有脚本",
+        "执行阶段包含 validate/dry-run/授权的顺序"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我们要给四个环境（mysql uat/prod、dm uat/prod）搭迁移的 CI 流水线。",
+      "expected_output": "路由到 flydb-multi-environment：环境矩阵、deploy/ 配置布局、密码分层注入、统一命令序列与审批门、退出码门禁；不在路由器内展开完整细节而是指向该技能。",
+      "files": [],
+      "assertions": [
+        "路由到 flydb-multi-environment 技能",
+        "点到配置矩阵/密码注入/审批门中的至少两项",
+        "没有把四套环境的完整配置在路由器里全部展开"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "flydb validate 报 [FLYDB-2003] 迁移校验不一致，帮我看下。",
+      "expected_output": "按路由规则：先用 flydb-cli-release 的错误码参考定位 FLYDB-2003，识别 checksum/MISSING/FUTURE 三类；涉及脚本内容的修正（谁改了脚本、要不要新版本承载）进入 flydb-migration-scripts 的纪律处置；不直接建议 repair。",
+      "files": [],
+      "assertions": [
+        "指出 FLYDB-2003 需按 checksum/MISSING/FUTURE 分类处理",
+        "脚本内容相关的修正路由到 flydb-migration-scripts",
+        "没有把 repair 作为第一建议"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "这个 flydb 技能族都有哪些技能？我想一起装上。",
+      "expected_output": "给出技能族表（flydb 总入口、flydb-cli-release、flydb-migration-scripts、flydb-multi-environment 及各自职责）与逐个安装命令；说明子技能可独立使用但组合效果最好。",
+      "files": [],
+      "assertions": [
+        "列出全部四个技能及各自职责",
+        "给出安装命令（npx skills add）",
+        "说明子技能自包含、可独立安装"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "用 flydb web 管理现有配置，并看看 CLI 跑过的记录。",
+      "expected_output": "路由到 flydb-cli-release 的 Web 分支；核验 0.3.5+ 和本机状态目录，导入原配置，说明可见的是同机记录。",
+      "files": [],
+      "assertions": [
+        "路由到 CLI 技能的 Web 参考",
+        "不为查看记录添加写库操作"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "MCP 里只有 plan 工具，没有 migrate，是不是坏了？",
+      "expected_output": "路由到 CLI 技能的 MCP 分支；解释默认不注册写工具，检查既有宿主配置，开启写入开关与本次写入授权分开处理。",
+      "files": [],
+      "assertions": [
+        "不把默认只读当作故障",
+        "不开启开关或写库，除非用户授权相应动作"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Flydb 的 migrate 工具超时了，日志最后是 JDBC confirmed 800/1000，帮我判断还能不能重跑。",
+      "expected_output": "路由到 CLI 技能长迁移/失败现场分支，先区分终端托管与 MCP 子进程，核验进程及事务结果。",
+      "files": [],
+      "assertions": [
+        "不把 confirmed 当成提交数",
+        "不自动重放或 repair"
+      ]
+    }
+  ]
+}

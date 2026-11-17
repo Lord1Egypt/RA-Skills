@@ -1,45 +1,63 @@
-## Description: <br>
-Reports upcoming or recent earnings, dividends, and stock splits from Financial Modeling Prep for a watchlist of tickers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reports upcoming or recent earnings, dividends, and stock splits from FMP for a watchlist of tickers, accepting a comma-separated ticker list or a file of tickers and returning events in a requested date range.
 
-## Publisher: <br>
-[khaney64](https://clawhub.ai/user/khaney64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[khaney64](https://clawhub.ai/user/khaney64)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to check earnings, dividend, and stock split calendars for specified tickers over a configurable past or future date range. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an FMP API key for market-event lookups. <br>
-Mitigation: Use a dedicated, revocable FMP key and rotate it if it is exposed. <br>
-Risk: Dependency hygiene is the main security concern because the release depends on requests without a pinned version. <br>
-Mitigation: Install in an isolated environment and prefer a maintained, pinned requests release. <br>
-Risk: The --file option reads local ticker lists supplied by path. <br>
-Mitigation: Point --file only at trusted, simple .txt or .csv ticker lists. <br>
-Risk: FMP rate limits or API errors can produce partial results. <br>
-Mitigation: Check warnings, narrow the ticker/date range, or retry after the provider rate limit resets. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to check upcoming or recent corporate market events for specified stock tickers. It is suited for earnings dates, dividend schedules, and stock split lookups over a bounded date window.
 
-## Reference(s): <br>
-- [Financial Modeling Prep Stable API](https://financialmodelingprep.com/stable) <br>
-- [Market Events on ClawHub](https://clawhub.ai/khaney64/market-events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [Plain text tables, JSON objects, or Discord-flavored Markdown emitted to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes event dates, tickers, event types, formatted details, and raw FMP event data in JSON mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill requires an FMP API key to query market-event data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an FMP API key intended for this workflow and keep it scoped to the execution environment.
+
+Risk: Ticker-list files are read from paths supplied by the user.
+
+Mitigation: Pass ticker files intentionally and review file paths before execution.
+
+Risk: FMP rate limits or API errors can produce partial results.
+
+Mitigation: Review warnings in the command output and verify important market events against an authoritative source.
+
+Risk: Dependency behavior may change if requests is installed without a pinned version.
+
+Mitigation: Install from a locked environment or pin dependencies when reproducibility matters.
+
+## Reference(s):
+
+- [Financial Modeling Prep stable API](https://financialmodelingprep.com/stable)
+- [Market Events on ClawHub](https://clawhub.ai/khaney64/skills/market-events)
+- [Publisher profile](https://clawhub.ai/user/khaney64)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown]
+
+**Output Format:** [Plain text table, JSON object, or Discord-style Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include event date, ticker, event type, detail text, and raw FMP response data when JSON output is requested.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

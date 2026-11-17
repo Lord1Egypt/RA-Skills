@@ -1,0 +1,89 @@
+{
+  "dataset": "career_fit_assessment_items",
+  "version": "1.0.0",
+  "framing": {
+    "what_it_is": "A transparent, self-built INTEREST CHECK grounded in the Holland/RIASEC vocational model.",
+    "what_it_is_not": "NOT the O*NET Interest Profiler and NOT any validated or official instrument. It sketches which kinds of activities the person leans toward; it does not diagnose, label, or predict hiring.",
+    "honesty_line_en": "This is a quick interest check, not an official test. It's built on the Holland/RIASEC model — a real, widely-used vocational framework — but it is NOT the O*NET Interest Profiler or any validated instrument. It just sketches which kinds of activities you lean toward. Answer for what you'd ENJOY, not what you're good at or 'should' like.",
+    "honesty_line_zh": "这是一个快速的兴趣小测，不是正式测评。它基于真实、常用的 Holland/RIASEC 职业兴趣模型，但并不是 O*NET Interest Profiler，也不是任何经过验证的正式量表。它只是勾勒你更偏好哪类活动。请按你会「喜欢」什么来回答，而不是你擅长什么或「应该」喜欢什么。"
+  },
+  "response_scale": {
+    "type": "5-point liking scale (per item)",
+    "store_range": "0-4",
+    "options": [
+      {"value": 0, "en": "Strongly dislike", "zh": "很不喜欢"},
+      {"value": 1, "en": "Dislike",          "zh": "不喜欢"},
+      {"value": 2, "en": "Neutral",          "zh": "一般"},
+      {"value": 3, "en": "Like",             "zh": "喜欢"},
+      {"value": 4, "en": "Strongly like",    "zh": "很喜欢"}
+    ],
+    "presentation": "Present each item as one AskUserQuestion with these selectable options — never free-text."
+  },
+  "interest_items": [
+    {"id": 1,  "type": "R", "en": "Build, assemble, or repair something with my hands or with tools.",            "zh": "用手或工具搭建、组装或修理东西。"},
+    {"id": 2,  "type": "R", "en": "Work outdoors with plants, animals, machines, or the land.",                    "zh": "在户外和植物、动物、机器或土地打交道。"},
+    {"id": 3,  "type": "R", "en": "Operate equipment or vehicles, or fix mechanical/electrical things.",           "zh": "操作设备或车辆，或修理机械/电气类的东西。"},
+    {"id": 4,  "type": "R", "en": "Take apart how something works and put it back together better.",               "zh": "拆开研究一样东西怎么运转，再把它更好地装回去。"},
+    {"id": 5,  "type": "I", "en": "Investigate a puzzling question by gathering and analyzing data.",             "zh": "通过收集和分析数据去研究一个让人费解的问题。"},
+    {"id": 6,  "type": "I", "en": "Read or run experiments to understand why something happens.",                 "zh": "通过阅读或做实验去理解某件事为什么会发生。"},
+    {"id": 7,  "type": "I", "en": "Work through a hard technical or scientific problem on my own.",               "zh": "独自钻研一个困难的技术或科学问题。"},
+    {"id": 8,  "type": "I", "en": "Learn a complex system deeply just to satisfy my curiosity.",                  "zh": "纯粹出于好奇，深入弄懂一个复杂系统。"},
+    {"id": 9,  "type": "A", "en": "Create original work — writing, music, design, art, or performance.",          "zh": "创作原创作品——写作、音乐、设计、艺术或表演。"},
+    {"id": 10, "type": "A", "en": "Come up with unconventional ideas and express them my own way.",               "zh": "想出不落俗套的点子，并用自己的方式表达出来。"},
+    {"id": 11, "type": "A", "en": "Work in an open-ended space with few fixed rules or procedures.",              "zh": "在少有固定规则或流程、开放度高的环境里工作。"},
+    {"id": 12, "type": "A", "en": "Design how something looks, sounds, or reads so it moves people.",             "zh": "设计一样东西的外观、声音或文字，让它打动人。"},
+    {"id": 13, "type": "S", "en": "Teach, coach, or explain something to help someone grow.",                     "zh": "教学、指导或讲解，帮助别人成长。"},
+    {"id": 14, "type": "S", "en": "Listen to and support people through a personal or practical problem.",        "zh": "倾听并陪伴他人度过一个个人或现实的难题。"},
+    {"id": 15, "type": "S", "en": "Work closely as part of a team focused on others' wellbeing.",                "zh": "作为团队一员，紧密协作去关照他人的福祉。"},
+    {"id": 16, "type": "E", "en": "Persuade, pitch, or lead others toward a goal or a sale.",                     "zh": "说服、推介或带领别人达成一个目标或一笔成交。"},
+    {"id": 17, "type": "E", "en": "Start or run a venture and take responsibility for the outcome.",             "zh": "创办或经营一项事业，并为结果负责。"},
+    {"id": 18, "type": "E", "en": "Negotiate, influence a decision, or take charge of a group.",                 "zh": "谈判、影响一个决定，或主导一个团队。"},
+    {"id": 19, "type": "C", "en": "Organize records, schedules, or data so everything is accurate.",             "zh": "整理记录、日程或数据，让一切都准确无误。"},
+    {"id": 20, "type": "C", "en": "Follow a clear, well-defined procedure and get the details exactly right.",   "zh": "按清晰、明确的流程，把每个细节做到分毫不差。"},
+    {"id": 21, "type": "C", "en": "Manage numbers, budgets, or files in a structured, orderly way.",             "zh": "以有条理、有秩序的方式管理数字、预算或档案。"}
+  ],
+  "scoring_key": {
+    "R": [1, 2, 3, 4],
+    "I": [5, 6, 7, 8],
+    "A": [9, 10, 11, 12],
+    "S": [13, 14, 15],
+    "E": [16, 17, 18],
+    "C": [19, 20, 21]
+  },
+  "items_per_type": {"R": 4, "I": 4, "A": 4, "S": 3, "E": 3, "C": 3},
+  "scoring_key_note": "R, I, and A carry 4 items each; S, E, and C carry 3 each (total 21). (Input design prose said 'R and I have 4, A/S/E/C have 3' — that miscounted A, which has 4 items per the key. Normalization below uses each type's ACTUAL item count, so the uneven counts never bias the vector.)",
+  "normalization": "Per-type raw score = sum of that type's item responses (each 0-4). Normalize each type to 0-1 by dividing by (n_items_for_type * 4). This yields the person interest vector [R,I,A,S,E,C] fed to career_match.py.",
+  "vector_order": ["R", "I", "A", "S", "E", "C"],
+  "short_form": {
+    "min_items": 12,
+    "rule": "A 12-item subset (2 items per type) is a valid run; the confidence note shrinks accordingly and MUST be surfaced. Item ids are pre-tagged so any subset still maps via scoring_key.",
+    "balanced_24": "An optional balanced 24-item set adds one more S/E/C item each (4 per type); items stay pre-tagged so the key generalizes."
+  },
+  "optional_big_five": {
+    "framing_en": "A light read from well-known trait descriptions — a mirror to react to, not a scored personality test. No percentile, no label.",
+    "framing_zh": "从大家熟悉的人格特质描述里做一次轻量对照——是给你照的一面镜子，不是打分的人格测验。不给百分位，不贴标签。",
+    "response_scale": {"type": "5-point slider between the two poles", "store_range": "0-4", "normalize": "divide by 4"},
+    "traits": [
+      {"trait": "Openness",            "low_pole_en": "Practical, conventional, prefers the familiar and concrete", "high_pole_en": "Curious, imaginative, drawn to novelty, ideas, and variety"},
+      {"trait": "Conscientiousness",   "low_pole_en": "Flexible, spontaneous, loose with plans and deadlines",       "high_pole_en": "Organized, dependable, plans ahead, follows through"},
+      {"trait": "Extraversion",        "low_pole_en": "Reserved, energized by solitude and depth",                  "high_pole_en": "Outgoing, energized by people and high activity"},
+      {"trait": "Agreeableness",       "low_pole_en": "Frank, competitive, skeptical, puts task over harmony",      "high_pole_en": "Warm, cooperative, trusting, values harmony"},
+      {"trait": "Emotional stability", "low_pole_en": "Sensitive to stress, feels pressure and setbacks keenly",    "high_pole_en": "Calm, even, recovers quickly under pressure"}
+    ],
+    "usage": "Qualitative + a SMALL soft trait-fit signal only (see scoring spec). Never reported as a percentile or a personality label."
+  },
+  "optional_work_values": {
+    "framing_en": "Rank these six by how much they matter to you at work — forced-choice, so trade-offs are real.",
+    "framing_zh": "按它们对你工作的重要程度，给这六项排序——强制取舍，所以权衡是真实的。",
+    "response": "The person orders all six (1st..6th).",
+    "values": [
+      {"value": "Achievement",        "en": "Using my abilities, seeing concrete results, a sense of accomplishment"},
+      {"value": "Independence",       "en": "Autonomy — deciding my own methods, working with little supervision"},
+      {"value": "Recognition",        "en": "Advancement, status, being respected and looked up to"},
+      {"value": "Relationships",      "en": "Friendly co-workers, service to others, no ethical conflict"},
+      {"value": "Support",            "en": "Supportive management, fair and consistent treatment, good backing"},
+      {"value": "Working Conditions", "en": "Security, pay, comfort, variety, good conditions"}
+    ],
+    "ipsative_to_weights": "A rank r in {1..6} maps to score (7 - r), giving 6,5,4,3,2,1; divide by 21 (=6+5+...+1) so the values vector sums to 1. This is a PREFERENCE vector, not a Likert level — no absolute magnitudes are invented."
+  }
+}

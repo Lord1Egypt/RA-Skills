@@ -1,40 +1,57 @@
-## Description: <br>
-Generates structured, comprehensive Markdown introductions for fictional characters, historical figures, and original characters using Chinese or English names, aliases, and nicknames. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured, source-aware character profiles for people or fictional characters, covering background, appearance, personality, abilities, relationships, notable quotes or scenes, impact, and related works.
 
-## Publisher: <br>
-[cleandx](https://clawhub.ai/user/cleandx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cleandx](https://clawhub.ai/user/cleandx)
 
-## Use Case: <br>
-External users and agents use this skill to produce encyclopedia-style character or person profiles with background, appearance, personality, abilities, relationships, memorable lines, cultural impact, and source notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on broad phrases such as "介绍" or "是谁," which can make it activate for requests that only need a short answer. <br>
-Mitigation: Confirm the user wants a full structured profile when the prompt is ambiguous, or scope the response down when the surrounding task calls for brevity. <br>
-Risk: The skill may prefer Chinese Markdown output unless the agent or user prompt overrides that behavior. <br>
-Mitigation: Honor explicit language preferences from the user or host agent and translate section labels when a non-Chinese output is requested. <br>
+## Use Case:
 
+External users and content-focused agents use this skill to produce comprehensive Markdown introductions for anime, game, film, historical, original, or otherwise named characters. It is suited to requests that ask who a character is, request a character introduction, or ask for a full background analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cleandx/character-intro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured sections include an info card, overview, appearance, personality, abilities, origin story, relationships, notable lines or scenes, popularity, related works, source notes, and spoiler warnings when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may use public web searches and aggregate information from mixed-quality sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated profiles for source quality, accuracy, and clear attribution before relying on them.
+
+Risk: Ambiguous trigger wording such as "介绍" or "是谁" could overlap with other skills.
+
+Mitigation: Adjust routing or trigger wording during installation if this skill conflicts with other installed skills.
+
+Risk: Character profiles can include spoilers when describing background stories, relationships, or notable scenes.
+
+Mitigation: Keep spoiler warnings visible for plot-sensitive sections and ask the user before including major spoilers when appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cleandx/skills/character-intro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown character profile with tables, sections, source notes, and spoiler warnings when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use public web searches when character details or sourcing are needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

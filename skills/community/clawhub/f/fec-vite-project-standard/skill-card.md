@@ -1,42 +1,53 @@
-## Description: <br>
-Use when creating, configuring, reviewing, or debugging Vite-based frontend projects, vite.config.ts, environment variables, dev server proxy, HMR, plugin ordering, library mode, dependency pre-bundling, bundle splitting, or Vite build performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in configuring and reviewing Vite applications and libraries, including plugins, environment variables, development servers, and build performance.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure, review, and debug Vite application, component library, dev server, and production build setups. It focuses on safe environment variable handling, plugin choices, type checking, dependency pre-bundling, bundle splitting, and build performance validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad Vite-related frontend tasks. <br>
-Mitigation: Review trigger scope before installation when a narrower Vite workflow is preferred. <br>
-Risk: Guidance could be applied incorrectly and expose client-side environment variables or secrets in a Vite bundle. <br>
-Mitigation: Review proposed Vite environment variable handling and keep secrets on the server or in the build system. <br>
-Risk: License metadata is inconsistent between server release evidence and artifact files. <br>
-Mitigation: Confirm the authoritative license before public card publication or redistribution. <br>
+## Use Case:
 
+Frontend developers use this skill to create, review, and troubleshoot Vite project configuration while checking client-side secrets, development behavior, type checking, and production builds.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-vite-project-standard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code, shell commands] <br>
-**Output Format:** [Markdown with TypeScript configuration examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable install hooks or runtime data access are declared in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: ClawHub release metadata) <br>
+Risk: Exposing private environment variables in a client bundle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review exposed prefixes and keep credentials on the server or build system before applying configuration changes.
+
+Risk: Misconfigured development proxies or build splitting can change application behavior or performance.
+
+Mitigation: Review proposed proxy and chunk settings for the project and verify the resulting development and production builds.
+
+## Reference(s):
+
+- [Vite Project Standard on ClawHub](https://clawhub.ai/bovinphang/skills/fec-vite-project-standard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Code, Shell commands]
+
+**Output Format:** [Markdown with Vite configuration examples and verification commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes project-type assessment, environment-variable guidance, and build and development checks.]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json, metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

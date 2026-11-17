@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Postman"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["postman"]
   icon: "https://static.oomol.com/logo/third-party/Postman.webp"
 ---
@@ -77,9 +77,9 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_an_environment` — Tool to delete an environment permanently in Postman. Use when you need to remove an environment that is no longer needed. [destructive]
 - `delete_monitor` — Tool to delete a monitor by its ID. Use when you need to permanently remove a monitor from Postman. The monitor ID must be provided to identify which monitor to delete. [destructive]
 - `duplicate_a_collection` — Tool to create a duplicate of a collection in another workspace. Use when you need to copy an existing collection to a different workspace. Returns an asynchronous task that can be tracked using the duplication task status endpoint. [write]
-- `fork_collection` — Tool to create a fork of a collection in a specified workspace. Use when you need to fork an existing collection to a workspace.
-- `generate_a_collection_from_spec` — Tool to generate a Postman collection from an OpenAPI 2.0, 3.0, or 3.1 specification. Use when you need to create a collection from an existing API spec. The operation is asynchronous and returns a task ID and polling URL to check the generation status.
-- `generate_spec_from_collection` — Tool to generate an API specification from a Postman collection. Use when you need to create an OpenAPI 3.0 specification from an existing collection. The operation is asynchronous and returns a task ID and polling URL to check the generation status.
+- `fork_collection` — Tool to create a fork of a collection in a specified workspace. Use when you need to fork an existing collection to a workspace. [write]
+- `generate_a_collection_from_spec` — Tool to generate a Postman collection from an OpenAPI 2.0, 3.0, or 3.1 specification. Use when you need to create a collection from an existing API spec. The operation is asynchronous and returns a task ID and polling URL to check the generation status. [write]
+- `generate_spec_from_collection` — Tool to generate an API specification from a Postman collection. Use when you need to create an OpenAPI 3.0 specification from an existing collection. The operation is asynchronous and returns a task ID and polling URL to check the generation status. [write]
 - `get_a_collections_comments` — Tool to retrieve all comments left by users in an API's collection. Use when you need to fetch all comments associated with a specific collection within an API.
 - `get_a_collections_forks` — Tool to get all forks of a specific collection. Use when you need to retrieve information about who has forked a collection, including fork IDs, users, and creation dates.
 - `get_a_collections_pull_requests` — Tool to get information about a collection's pull requests including source and destination IDs, status, and URLs. Use when you need to retrieve pull request details for a specific collection.
@@ -121,7 +121,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_an_apis_comments` — Tool to retrieve all comments left by users in an API. Use when you need to fetch all comments associated with a specific API.
 - `get_an_environment` — Tool to retrieve detailed information about a specific environment in Postman. Use when you need to fetch environment details including name, ID, owner, and all environment variables.
 - `get_an_environments_forks` — Tool to retrieve all forked environments for a specific environment. Use when you need to list all environments that have been forked from a particular environment.
-- `get_async_collection_update_status` — Tool to get the status of an asynchronous collection update task. Use when you need to check whether a previously initiated async collection update is still processing, has completed successfully, or has failed. The task ID is obtained from PUT /collections/{collectionId} endpoint when using the Prefer: respond-async header. [write]
+- `get_async_collection_update_status` — Tool to get the status of an asynchronous collection update task. Use when you need to check whether a previously initiated async collection update is still processing, has completed successfully, or has failed. The task ID is obtained from PUT /collections/{collectionId} endpoint when using the Prefer: respond-async header.
 - `get_authenticated_user` — Tool to get information about the authenticated user. Use when you need to retrieve details about the current authenticated user, including their user ID, username, and email address.
 - `get_collection_access_keys` — Tool to retrieve all personal and team collection access keys for the authenticated user. Use when you need to list or manage collection access keys. Returns an array of access key objects with their IDs, tokens, status, and associated collection information.
 - `get_contract_test_relations` — Tool to retrieve contract test relations for a specific API version. Use when you need to check contract test associations. Note: This endpoint is deprecated and may return limited or no data.
@@ -143,12 +143,12 @@ Each action is listed below with a one-line description; actions that change sta
 - `merge_a_fork` — Tool to merge a forked collection back into its parent collection. This endpoint is deprecated. Use when you need to merge changes from a forked collection into the parent collection. [write]
 - `merge_a_fork2` — Tool to merge a forked environment back into its parent environment. Use when you need to merge changes from a forked environment into the parent. [write]
 - `publish_a_mock_server` — Tool to publish a mock server in Postman. Use when you need to make a mock server publicly accessible. Publishing sets the mock server's Access Control configuration to public. [write]
-- `pull_source_changes2` — Tool to pull changes from a parent (source) collection into a forked collection. Use when you need to sync a forked collection with its parent.
-- `replace_an_environments_data` — Tool to completely replace an environment's data with new variables and values. Use when you need to update an entire environment by replacing all its contents. This operation replaces ALL existing variables with the ones provided in the request. [write]
-- `replace_collections_data_asynchronously` — Tool to replace the entire contents of a collection asynchronously. Use when you need to completely replace a collection with new data. IMPORTANT: Include the collection's ID values in item, variable, and other nested objects to preserve them. If you do not include IDs, existing items will be removed and new items will be created. [write]
-- `resolve_a_comment_thread` — Tool to resolve a comment thread and any associated replies. Use when you need to mark a comment thread as resolved. On success, this returns an HTTP 204 No Content response. [write]
-- `review_a_pull_request` — Tool to update the review status of a pull request by approving, declining, or unapproving it. Use when you need to perform a review action on a Postman pull request.
-- `run_a_monitor` — Tool to trigger an immediate run of a monitor and retrieve its execution results. Use when you need to manually execute a monitor outside of its scheduled runs.
+- `pull_source_changes2` — Tool to pull changes from a parent (source) collection into a forked collection. Use when you need to sync a forked collection with its parent. [write]
+- `replace_an_environments_data` — Tool to completely replace an environment's data with new variables and values. Use when you need to update an entire environment by replacing all its contents. This operation replaces ALL existing variables with the ones provided in the request. [destructive]
+- `replace_collections_data_asynchronously` — Tool to replace the entire contents of a collection asynchronously. Use when you need to completely replace a collection with new data. IMPORTANT: Include the collection's ID values in item, variable, and other nested objects to preserve them. If you do not include IDs, existing items will be removed and new items will be created. [destructive]
+- `resolve_a_comment_thread` — Tool to resolve a comment thread and any associated replies. Use when you need to mark a comment thread as resolved. On success, this returns an HTTP 204 No Content response. [destructive]
+- `review_a_pull_request` — Tool to update the review status of a pull request by approving, declining, or unapproving it. Use when you need to perform a review action on a Postman pull request. [write]
+- `run_a_monitor` — Tool to trigger an immediate run of a monitor and retrieve its execution results. Use when you need to manually execute a monitor outside of its scheduled runs. [write]
 - `sync_collection_with_schema` — Tool to sync a collection attached to an API with the API schema. This is an asynchronous endpoint that returns HTTP 202 Accepted. Use when you need to synchronize a collection with changes made to the API schema. The collection must already be attached to the API. Returns a task ID that can be used to check the status of the sync operation. [write]
 - `sync_collection_with_spec` — Tool to sync a collection generated from an API specification. This is an asynchronous operation that returns HTTP 202 Accepted. Use when you need to update a collection to match the latest version of its source API specification. The collection must have been generated from a spec. [write]
 - `sync_spec_with_collection` — Tool to sync an API specification with a linked collection. This is an asynchronous operation that returns HTTP 202 Accepted with task tracking information. Use when you need to synchronize changes from a generated collection back to its source specification. Prerequisites: the collection must be generated from the spec, and the spec must be single-file. [write]
@@ -170,7 +170,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `update_an_api` — Tool to update an existing API in Postman. Use when you need to modify the name, summary, or description of an API. [write]
 - `update_an_apis_comment` — Tool to update a comment on an API. Use when you need to modify the text content of an existing comment on a specific API. [write]
 - `update_an_environment` — Tool to update specific environment properties using JSON Patch operations (RFC 6902). Use when you need to modify environment name or variables without replacing the entire environment. [write]
-- `update_global_variables` — Tool to update and replace a workspace's global variables. Use when you need to set or replace all global variables in a workspace. Note: This endpoint replaces all existing global variables with the provided list. [write]
+- `update_global_variables` — Tool to update and replace a workspace's global variables. Use when you need to set or replace all global variables in a workspace. Note: This endpoint replaces all existing global variables with the provided list. [destructive]
 - `update_part_of_a_collection` — Tool to update specific collection properties like name, description, authentication, variables, or events. Use when you need to partially update a collection without replacing the entire collection structure. Returns the updated collection information after the changes are applied. [write]
 
 ## Safety
@@ -202,11 +202,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Postman is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=postman
+  https://console.oomol.com/connections/postman
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Postman homepage: https://www.postman.com
+- API documentation: https://learning.postman.com/docs/developer/postman-api/intro-api/

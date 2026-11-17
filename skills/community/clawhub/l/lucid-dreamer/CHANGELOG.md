@@ -1,8 +1,15 @@
 # Changelog
 
-All notable changes to Lucid will be documented in this file.
+## [0.8.0] - 2026-08-31
 
-Format based on [Keep a Changelog](https://keepachangelog.com/).
+### Fixed
+- Replaced `openclaw cron add` with `openclaw automations add` in README and SKILL.md. `cron` still works as an alias.
+- Removed `--wake-mode now`. That flag does not exist; the flag is `--wake <now|next-heartbeat>`.
+- Replaced the `--model "your-preferred-model"` placeholder with a real `provider/model` reference. An unrecognised model value is skipped without an error and the job runs on the session default.
+- Rewrote `metadata.openclaw` as YAML. The single-line JSON form parsed, but `CLAWD_DIR` was documented in a `note` string where nothing could read it; it is now an `envVars` entry.
+
+### Added
+- Section on the `memory-core:memory-dreaming` automation that OpenClaw 2.0 enables by default. It writes `MEMORY.md` at 03:00, the hour Lucid has always used. Three ways to resolve the collision.
 
 ## [Unreleased] — "Sharper Dreams"
 

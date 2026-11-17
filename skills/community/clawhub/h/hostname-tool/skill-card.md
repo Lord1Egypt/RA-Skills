@@ -1,41 +1,50 @@
-## Description: <br>
-Display or set the system hostname. Use for identifying the current machine on a network and configuring system identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display or set the system hostname. Use for identifying the current machine on a network and configuring system identity.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and system administrators use this skill to inspect the current machine hostname and get guidance for configuring system identity when hostname changes are intended. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changing the system hostname can alter machine identity and may require administrator privileges. <br>
-Mitigation: Before running any hostname-changing command, confirm the exact executable, the target hostname, and that the privilege escalation is intentional. <br>
-Risk: Displaying the hostname can reveal local system identity. <br>
-Mitigation: Use the skill only when local machine identification is intended, and avoid sharing hostname output in sensitive contexts. <br>
+## Use Case:
 
+Developers, operators, and system administrators use this skill to check a machine's hostname and guide intentional system identity configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/hostname-tool) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dinghaibin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display the local hostname as a single text string.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Changing a hostname can alter the machine's system or network identity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use hostname-changing behavior only when explicitly intended and authorized; otherwise keep use to displaying the current hostname.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/hostname-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Changing the hostname requires administrative privileges when supported by the host environment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

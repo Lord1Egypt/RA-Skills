@@ -1,42 +1,57 @@
-## Description: <br>
-Intelligent educational curriculum generation system with strict step enforcement and human escalation policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent educational curriculum generation system with strict step enforcement and human escalation policies.
 
-## Publisher: <br>
-[tarasinghrajput](https://clawhub.ai/user/tarasinghrajput) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarasinghrajput](https://clawhub.ai/user/tarasinghrajput)
 
-## Use Case: <br>
-External educators, curriculum owners, and POD operators use this skill to gather requirements, design or assess educational curricula, find educational resource links, and generate draft Excel or CSV curriculum outputs for human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local memory may retain student, teacher, or institutional details. <br>
-Mitigation: Avoid entering personal student data, inspect the memory directory, and periodically delete retained memory when it is no longer needed. <br>
-Risk: Shell-based educational resource searches have unclear privacy and control boundaries. <br>
-Mitigation: Use a constrained search tool or disable shell-based searches in sensitive environments. <br>
-Risk: Draft curriculum recommendations can affect students, teachers, or POD operations if treated as final. <br>
-Mitigation: Require curriculum owner or POD leader review before operational use, especially when inputs are ambiguous or changes are high impact. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Curriculum Generator ClawHub page](https://clawhub.ai/tarasinghrajput/curriculum-generator) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+## Use Case:
 
+Educators, curriculum owners, and POD operators use this skill to assess existing curricula or design new curricula through structured questionnaires, resource research, escalation checkpoints, and CSV/Excel draft outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, files] <br>
-**Output Format:** [Markdown guidance with generated CSV or Excel files and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store memory, templates, and generated outputs under ~/.openclaw/skills/curriculum-generator/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run shell-based web searches from user-provided curriculum topics.
+
+Mitigation: Review and narrow the search behavior before installation, treat curriculum topics as untrusted input, and run searches in a controlled environment.
+
+Risk: The skill may persist sensitive education context locally, including details about students, teacher capability, infrastructure, and operational constraints.
+
+Mitigation: Avoid entering student-identifying or sensitive disability or socioeconomic details unless storage is explicitly disabled or controlled, and confirm where records are kept and how they can be deleted.
+
+Risk: The release depends on external search behavior and local dependency controls.
+
+Mitigation: Review the neo-ddg-search dependency and local runtime requirements before deployment, and limit installation to environments where dependency behavior can be audited.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tarasinghrajput/skills/curriculum-generator)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with structured curriculum tables and CSV/Excel file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft curricula pending human review and may include resource links, assumptions, risks, and local memory records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, OpenClaw frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

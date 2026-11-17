@@ -4,6 +4,44 @@
 
 A batteries-included framework scaffold for [OpenClaw](https://github.com/openclaw/openclaw) workspaces. When you install OpenClaw, you get an AI agent — but an agent without a workspace is like an astronaut without a spacesuit. This package gives your agent structure, memory, safety, and operational conventions.
 
+## Core monitoring and agent flavors
+
+[Command Center](https://github.com/jontsai/openclaw-command-center) works on its
+own out of the box. **Spacesuit is its highly recommended companion** for workspace
+conventions and optional per-agent flavors, without forking the dashboard.
+
+**Spacesuit alone has no human-agent interaction UX.** It can scaffold a workspace
+and collect data without Command Center, but Command Center supplies the dashboard
+UI that makes the companion experience usable. Installing Spacesuit does not add a
+chat composer or another interaction interface.
+
+The first implemented flavor, [business operations](flavors/business-operations/README.md),
+composes Intel, Pipeline and Monetization through a versioned read-only snapshot
+contract. It requires a Command Center build with extension-host v1 support; older
+builds do not consume these snapshots. Selection and collection are explicit:
+
+```bash
+node scripts/flavors.js preview --workspace /path/to/workspace
+node scripts/flavors.js apply --workspace /path/to/workspace
+node scripts/flavors.js collect --workspace /path/to/workspace
+```
+
+Requires Node.js 18+. See the flavor runbook for identity matching, bounds, core-only
+disable, backups and restore. Base upgrades now preserve unmarked files unless explicitly adopted;
+these commands do not schedule jobs or restart anything. See the
+[architecture](docs/architecture/agent-flavors.md) and
+[implementation plan](docs/plans/flavor-packages-v1.md).
+
+## Unified project portfolio (read-only)
+
+Spacesuit now includes [project tracker adapters](docs/adapters/project-trackers.md)
+for Linear projects and explicitly configured Jira epics. The offline preview/apply
+CLI converts provider exports into Command Center's shared project-board contract;
+**live tracker synchronization is not configured**. An injected, bounded read-only
+transport API is available for future authorized host connectors. Native status and
+identity are preserved; memory/topic strategies remain independently composable.
+Asana and GitHub Issues are planned adapter targets, not implemented providers.
+
 ## What's Included
 
 - **Session startup protocol** — security-first file loading order
@@ -40,7 +78,7 @@ After installation, run the installer to create workspace files from templates:
 
 ```bash
 cd skills/spacesuit
-make init
+bash scripts/install.sh --workspace /absolute/workspace
 ```
 
 This creates `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `HEARTBEAT.md`, `SECURITY.md`, `MEMORY.md`, `IDENTITY.md`, `USER.md`, and `Makefile` at your workspace root — each with framework content wrapped in `SPACESUIT` markers and space for your customizations.
@@ -165,6 +203,23 @@ OPENCLAW_PROFILE=myprofile ./scripts/sync-operators.sh
 | `USER.md` | — (template only) | All about your human |
 | `Makefile` | — (template only) | Gateway management targets |
 
+## Releasing
+
+Version bumps go through review. Publication is separate from validation:
+
+```bash
+bash scripts/release.sh --current
+bash scripts/release.sh 0.4.0
+bash scripts/release.sh 0.4.0 --stage /absolute/new/staging-directory
+```
+
+These commands do not commit, tag, push or publish. Follow the
+[release and migration guide](docs/releases/README.md), including Bash 4+
+requirements, package validation and backup restoration. `version.txt` supports
+registry downloads that omit extensionless `VERSION`/`Makefile` files. Starter
+installation preserves existing files; upgrade preserves unmarked files unless
+`--adopt-unmarked` is selected explicitly after reviewing a dry run.
+
 ## Author
 
 Created by [jontsai](https://github.com/jontsai).
@@ -172,3 +227,7 @@ Created by [jontsai](https://github.com/jontsai).
 ## License
 
 MIT
+
+## Work graph compiler
+
+Normalize reviewed Linear/Jira exports and runtime assignments into an evidence-labeled operations graph. [Contract, usage, and inference limits](docs/work-graph.md). This is an offline compiler, not live tracker synchronization.

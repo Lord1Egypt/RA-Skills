@@ -1,43 +1,56 @@
-## Description: <br>
-Guides agents through updating OpenClaw documentation based on code changes, including diff analysis, source-to-doc mapping, documentation edits, scaffolding, and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through identifying documentation impact from code changes, updating or scaffolding OpenClaw docs, and validating formatting, links, and frontmatter.
 
-## Publisher: <br>
-[frisky1985](https://clawhub.ai/user/frisky1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frisky1985](https://clawhub.ai/user/frisky1985)
 
-## Use Case: <br>
-Developers, maintainers, and documentation reviewers use this skill to identify documentation affected by code changes, update existing pages, scaffold new docs, and validate formatting and links before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect repository changes and modify documentation files. <br>
-Mitigation: Use it only in repositories where git and file access are acceptable, and review proposed documentation edits before approval. <br>
-Risk: Documentation updates may introduce inaccurate or misleading guidance if code behavior is misunderstood. <br>
-Mitigation: Validate frontmatter, links, formatting, examples, and alignment with current code behavior before committing changes. <br>
+## Use Case:
 
+Developers and maintainers use this skill to inspect changed source files, find affected OpenClaw documentation, update existing docs or scaffold new pages, and run basic documentation validation.
 
-## Reference(s): <br>
-- [Code to Documentation Mapping](references/CODE-TO-DOCS-MAPPING.md) <br>
-- [Documentation Conventions](references/DOC-CONVENTIONS.md) <br>
-- [API Reference Template](assets/api-reference-template.md) <br>
-- [Guide Template](assets/guide-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, file paths, checklists, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or create documentation files and validation steps based on repository diffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Documentation edits can introduce incorrect or misleading guidance if proposed changes are applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned edits before approving them and validate frontmatter, formatting, links, spelling, and examples before release.
+
+Risk: Optional bundled utilities can inspect git changes or create/package files when run.
+
+Mitigation: Use the normal guided documentation workflow unless those utilities are needed, and review command effects before execution.
+
+## Reference(s):
+
+- [Code to Documentation Mapping](references/CODE-TO-DOCS-MAPPING.md)
+- [Documentation Conventions](references/DOC-CONVENTIONS.md)
+- [API Reference Template](assets/api-reference-template.md)
+- [Guide Template](assets/guide-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, file paths, checklists, and optional generated Markdown or code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect local git diffs and propose documentation edits; bundled utilities can list changed files, map affected docs, validate docs, initialize skill files, or package the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

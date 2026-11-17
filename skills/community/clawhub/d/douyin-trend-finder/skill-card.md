@@ -1,41 +1,54 @@
-## Description: <br>
-Tracks Douyin hot lists, rising BGM, topic trends, and viral video patterns for short-video creators, brand operators, and MCN teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Douyin hot lists, BGM trends, topic momentum, and viral video patterns for short-video creators, brand operators, and MCN teams.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External creators, brand operators, and MCN teams use this skill to identify Douyin trends, analyze popular music and topics, break down viral video structure, and generate content ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-time data, paid-tier, or API-access claims may be inaccurate, unavailable, or dependent on services outside the skill artifact. <br>
-Mitigation: Verify current Douyin-related data sources, access requirements, and pricing before relying on generated reports or paid workflows. <br>
-Risk: The skill expects the agent environment to use Python, curl, and the requests package for public lookups. <br>
-Mitigation: Install dependencies in a controlled environment and avoid providing platform credentials unless a future release documents why they are needed and how they are scoped. <br>
+## Use Case:
 
+External creators, brand operators, and MCN teams use this skill to request Douyin trend reports, rising BGM discovery, topic analysis, viral video breakdowns, creator monitoring, and content-idea generation based on public information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/douyin-trend-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown trend reports and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked trend lists, BGM summaries, topic analysis, viral-video breakdowns, and creative direction suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Dependency installation may be less reproducible when packages are not pinned or installed from a controlled source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or controlled dependency source for requests before installing in managed environments.
+
+Risk: Trend reports are based on public information and may become stale or contain incomplete market signals.
+
+Mitigation: Review generated trend analysis against current public Douyin data before using it for publishing, campaign, or investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/douyin-trend-finder)
+- [Publisher profile](https://clawhub.ai/user/275254cl-hash)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown trend reports and content recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose shell commands for disclosed setup dependencies such as installing requests when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

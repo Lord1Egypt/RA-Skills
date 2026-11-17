@@ -1,41 +1,54 @@
-## Description: <br>
-Cryptocurrency tax reference - IRS guidance, FIFO/LIFO/HIFO cost basis methods, Form 8949, tax loss harvesting, and DeFi transaction categorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cryptocurrency tax reference - IRS guidance, FIFO/LIFO/HIFO cost basis methods, Form 8949, tax loss harvesting, and DeFi transaction categorization.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve concise cryptocurrency tax reference material covering taxable events, cost basis methods, reporting forms, loss harvesting, record keeping, and DeFi transaction categorization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Third-party publisher content may not meet every organization's trust or compliance requirements. <br>
-Mitigation: Install only if the publisher is trusted and review the scanned artifacts before deployment. <br>
-Risk: Cryptocurrency tax reference material may be outdated or may not match a user's jurisdiction, filing facts, or current tax authority guidance. <br>
-Mitigation: Treat outputs as educational reference and verify filing decisions against current official guidance or a qualified tax professional. <br>
+## Use Case:
 
+External users use this skill as static reference guidance for cryptocurrency taxable events, cost-basis methods, reporting forms, record keeping, and tax-software migration. It supports tax-preparation research, but it is not personalized tax advice.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-crypto-tax-calc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown-style headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; artifact states no API keys, credentials, network access, or external API calls are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and script state 3.0.0) <br>
+Risk: Tax guidance can become outdated or may not apply to a user's tax year or jurisdiction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify rates, deadlines, reporting requirements, and jurisdiction-specific treatment with official sources or a qualified tax professional before relying on the material.
+
+Risk: Users could mistake the static reference material for personalized tax advice.
+
+Mitigation: Use the skill as a research checklist and confirm calculations, cost-basis choices, and filings against personal records and professional guidance.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-crypto-tax-calc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text Markdown-style reference sections emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static heredoc output; no API keys, network access, file mutation, or persistence according to artifact and security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and script report 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Guide for using the Jinko CLI (@gojinko/cli), a terminal tool for searching flights, discovering destinations, managing trips, and booking travel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for using the Jinko CLI (@gojinko/cli), a terminal tool for searching flights, discovering destinations, managing trips, and booking travel.
 
-## Publisher: <br>
-[kevinjinko](https://clawhub.ai/user/kevinjinko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevinjinko](https://clawhub.ai/user/kevinjinko)
 
-## Use Case: <br>
-External users and developers use this skill to operate the Jinko CLI for flight search, destination discovery, trip setup, and travel checkout workflows from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports travel booking flows that can collect traveler identity and contact details. <br>
-Mitigation: Use it only when the user is comfortable sharing traveler and contact information with the booking provider. <br>
-Risk: Booking commands or payment flows can affect real travel purchases. <br>
-Mitigation: Require the agent to show the exact trip, traveler fields, price, and checkout destination before running booking commands or opening payment flows. <br>
-Risk: Cached flight results may be stale before checkout. <br>
-Mitigation: Confirm live pricing with the CLI price-check workflow before creating a trip or booking. <br>
+## Use Case:
 
+External users and developers use this skill when they want agent guidance for running Jinko CLI commands to search flights, compare fares, discover destinations, manage trips, and generate booking checkout links from a terminal.
 
-## Reference(s): <br>
-- [Jinko ClawHub skill page](https://clawhub.ai/kevinjinko/jinko-flight) <br>
-- [kevinjinko publisher profile](https://clawhub.ai/user/kevinjinko) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include terminal commands that search flights, manage trips, set traveler/contact details, and open booking checkout flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill guides users to install and run a global npm executable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install @gojinko/cli only from a trusted package source and confirm that global executable installation is acceptable for the environment.
+
+Risk: API keys and traveler or contact details can be exposed through command arguments, shell history, terminal recordings, or shared logs.
+
+Mitigation: Prefer OAuth when possible, use JINKO_API_KEY or local configuration for headless use, and avoid pasting real credentials or traveler details into shared shells and logs.
+
+Risk: Booking commands can generate payment checkout links after traveler and trip data are submitted.
+
+Mitigation: Review flight, traveler, contact, trip, and price details before sending booking data or opening a payment checkout URL.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kevinjinko/skills/jinko-flight)
+- [Publisher profile](https://clawhub.ai/user/kevinjinko)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, command options, JSON examples, and workflow steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes the jinko and node binaries are available and either OAuth or JINKO_API_KEY authentication is configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

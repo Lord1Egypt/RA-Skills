@@ -1,44 +1,60 @@
-## Description: <br>
-AIMPACT Crypto provides crypto morning and evening reports, 24-hour hot-news rankings, and curated crypto updates by fetching listed APIs, sorting content by AI score, and optionally sending reports through preconfigured message channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIMPACT Crypto provides Chinese-language crypto morning reports, evening reports, 24-hour trend rankings, and curated news from configured AIMPACT and MetaEra API sources.
 
-## Publisher: <br>
-[jamesmenews](https://clawhub.ai/user/jamesmenews) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamesmenews](https://clawhub.ai/user/jamesmenews)
 
-## Use Case: <br>
-External users and agents use this skill to generate on-demand or scheduled Chinese-language crypto news reports from the configured AIMPACT and MetaEra APIs. Operators can optionally send reports to already configured messaging channels after confirming manual report output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reports depend on the listed agent.me.news API sources and may reflect their source quality or availability. <br>
-Mitigation: Install and use the skill only if the operator trusts those API sources, and test manual report generation before relying on scheduled reports. <br>
-Risk: Optional message delivery can send reports outside the chat when message channels or scheduled tasks are configured. <br>
-Mitigation: Do not configure message channels or cron/scheduled tasks unless outbound delivery is intended; confirm the destination channel before enabling scheduled delivery. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Chinese-language crypto briefings, trend rankings, and curated news summaries. It can also support optional scheduled delivery through already configured messaging channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jamesmenews/aimpact-crypto) <br>
-- [MetaEra AI flash API](https://agent.me.news/skill/flash/list?page=1&size=20) <br>
-- [AIMPACT Crypto news API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=crypto) <br>
-- [sources.md](artifact/sources.md) <br>
-- [format.md](artifact/format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style Chinese crypto news report with source links and optional scheduling command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are organized by crypto category, limited to the selected top items, and may be sent through preconfigured messaging channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Reports are based on configured crypto-news APIs and may contain time-sensitive or incomplete market information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as informational summaries and verify linked source material before making market, compliance, or operational decisions.
+
+Risk: Optional scheduled delivery can send reports to already configured messaging recipients.
+
+Mitigation: Configure the message tool or scheduler examples only when automatic delivery is intended, and verify target channels after setup.
+
+Risk: The skill depends on curl access to agent.me.news API endpoints.
+
+Mitigation: Confirm network access to the listed endpoints and review returned HTTP status codes or error summaries when requests fail.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jamesmenews/skills/aimpact-crypto)
+- [Publisher Profile](https://clawhub.ai/user/jamesmenews)
+- [MetaEra AI Flash API](https://agent.me.news/skill/flash/list?page=1&size=20)
+- [AIMPACT Crypto News API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=crypto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language Markdown reports with source links and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Top 10 news items by report type; optional delivery through configured messaging channels.]
+
+## Skill Version(s):
+
+0.8.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

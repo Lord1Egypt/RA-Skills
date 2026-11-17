@@ -1,44 +1,54 @@
-## Description: <br>
-Public OpenClaw skill for generating reproducible PPTX decks from project notes, status bullets, and screenshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Public OpenClaw skill for generating reproducible PPTX decks from project notes, status bullets, and screenshots.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT No Attribution <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers, project leads, and release teams use Artifact Deck to turn curated project notes, status bullets, release summaries, audit outputs, and screenshots into a reproducible stakeholder-ready PPTX deck plus a share-safe markdown summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local notes and screenshots selected by the user, so sensitive content can be included in generated deck artifacts. <br>
-Mitigation: Provide curated inputs only and review the PPTX, manifest, build JSON, and summary before sharing. <br>
-Risk: Deck generation writes files to user-specified output paths. <br>
-Mitigation: Write outputs inside a known workspace folder and inspect the generated paths before distributing artifacts. <br>
-Risk: The workflow depends on local Python scripts and python-pptx. <br>
-Mitigation: Run it in a trusted Python environment and install dependencies from trusted sources. <br>
+## Use Case:
 
+Developers, engineers, and project teams use this skill to turn curated notes, release summaries, audit outputs, and screenshot evidence into a stakeholder-ready, reproducible PPTX deck with a share-safe markdown summary.
 
-## Reference(s): <br>
-- [Artifact Deck ClawHub Page](https://clawhub.ai/zack-dev-cm/artifact-deck) <br>
-- [Artifact Deck Homepage](https://github.com/zack-dev-cm/artifact-deck) <br>
-- [Publisher Profile](https://clawhub.ai/user/zack-dev-cm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [PPTX deck file, JSON manifest and build reports, markdown summary, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.9+ and python-pptx; reads user-selected local notes and screenshots and writes outputs to user-specified paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads note and image paths supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only intended project-local inputs and avoid pointing the manifest at sensitive files that should not be included in a deck.
+
+Risk: The skill writes or overwrites user-selected deck, JSON, and summary output paths.
+
+Mitigation: Use a dedicated project or output folder and review output paths before running the build scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skills/artifact-deck)
+- [OpenClaw Homepage Metadata](https://github.com/zack-dev-cm/artifact-deck)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command templates and generated local PPTX, JSON, and summary files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+ and python-pptx; reads user-selected notes and images and writes user-selected output paths.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

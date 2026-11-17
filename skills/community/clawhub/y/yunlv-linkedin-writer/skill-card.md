@@ -1,47 +1,61 @@
-## Description: <br>
-Generates professional B2B outreach messages, LinkedIn-style connection requests, and follow-up sequences from user-provided prospect and company context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and optimizes professional B2B LinkedIn outreach messages, connection requests, and follow-up sequences from user-provided prospect and campaign context.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External sales, export, and customer-development users use this skill to draft personalized B2B outreach messages, optimize short social connection requests, and plan multi-step follow-up sequences for prospects. It produces draft content for human review and manual sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prospect and company context may be sent to Yunlv's API with the user's TRADEGPT_API_KEY. <br>
-Mitigation: Enter only the minimum context needed for drafting, and avoid confidential notes, regulated personal data, sensitive business context, or unnecessary LinkedIn profile URLs. <br>
-Risk: Generated outreach messages may contain inaccurate, misleading, or non-compliant claims. <br>
-Mitigation: Review and edit every message before sending, verify personalization details, and keep manual control of any social platform interaction. <br>
-Risk: Generated messages and sequences may remain in the local data directory. <br>
-Mitigation: Clear ./data/yunlv-skills/linkedinWriter/ when generated content contains information that should not be retained. <br>
+## Use Case:
 
+Sales, business development, and customer-development users use this skill to draft personalized B2B LinkedIn outreach, improve message quality, and plan multi-step follow-up sequences. The skill is intended for human-reviewed copy-paste sending rather than automated social-platform access.
 
-## Reference(s): <br>
-- [LinkedIn Message Templates](references/linkedin_message_templates.md) <br>
-- [Industry Hooks Library](references/industry_hooks_library.md) <br>
-- [Follow-up Sequence Templates](references/followup_sequence_templates.md) <br>
-- [Yunlv Homepage](https://yunlvai.com) <br>
-- [Yunlv MatchGPT API](https://api.yunlvai.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/yunlv-linkedin-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown prose, message drafts, follow-up tables, and JSON from the bundled optimizer script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outreach should be reviewed by a human before use; the optimizer script prints JSON to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and clawhub.yaml; SKILL.md frontmatter lists 1.0.3) <br>
+Risk: Prospect or customer details may be sent to an external Yunlv AI API when external generation is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with an appropriate consent or legal basis, avoid unnecessary identifiers, and minimize names, profile URLs, employers, titles, and notes before generation.
+
+Risk: The artifact makes conflicting privacy and retention claims for customer or prospect information.
+
+Mitigation: Do not rely on retention, deletion, or non-storage statements unless the publisher provides enforceable terms that cover the intended use.
+
+Risk: Generated outreach may be inaccurate, misleading, or unsuitable for platform rules.
+
+Mitigation: Require human review for personalization accuracy, claims, tone, message limits, and social-platform compliance before sending.
+
+## Reference(s):
+
+- [Yunlv Homepage](https://yunlvai.com)
+- [Yunlv AI MatchGPT API](https://api.yunlvai.com)
+- [LinkedIn Message Templates](references/linkedin_message_templates.md)
+- [Industry Hooks Library](references/industry_hooks_library.md)
+- [Follow-up Sequence Templates](references/followup_sequence_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and message drafts, with optional JSON output from the included command-line optimizer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use TRADEGPT_API_KEY for external Yunlv AI generation; generated outreach should be reviewed before use.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and clawhub.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

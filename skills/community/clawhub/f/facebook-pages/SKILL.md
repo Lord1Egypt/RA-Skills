@@ -5,7 +5,7 @@ description: Manage Facebook Pages, posts, comments, messages, and insights via 
 
 # Facebook
 
-![Facebook](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/brand-logos/facebook.svg)
+![Facebook](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/facebook.png)
 
 Access Facebook Pages via the Graph API with managed OAuth authentication. Post content, read engagement, manage comments and messages, and view insights from chat.
 
@@ -15,8 +15,23 @@ This skill uses [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=
 
 | Step 1: Install | Step 2: Pair Account | Step 3: Connect Facebook |
 |:---:|:---:|:---:|
-| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/pairing/initialstep_1.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/approve_process.gif) | *App-specific connection GIF coming soon* |
+| ![Install](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-install.gif) | ![Pair](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/setup-pair.gif) | *App-specific connection GIF coming soon* |
 | Run the install command in OpenClaw | Sign in and approve the device | Open the dashboard and connect Facebook |
+
+## No Account Needed: Public Facebook Data
+
+Read any public Facebook page, post, group or event, search Marketplace, and browse the Meta Ad Library, without connecting a Facebook account. These tools work as soon as the plugin is paired: there is nothing to connect, and each call is paid from ClawLink credit (most cost a fraction of a cent; new accounts get $0.50 free).
+
+| Tool | What it returns | Price |
+|------|-----------------|-------|
+| `facebookdata_page_profile` | Public Facebook page or profile by URL: name, category, likes, followers, about | $0.00282 |
+| `facebookdata_page_posts` | Recent public posts of a Facebook page by URL | $0.00282 |
+| `facebookdata_post_comments` | Comments on a public Facebook post by URL | $0.00282 |
+| `facebookdata_ad_library_search` | Search the Meta Ad Library for active ads by keyword | $0.00282 |
+| `facebookdata_marketplace_search` | Search Facebook Marketplace listings near a point | $0.00282 |
+| `facebookdata_events_search` | Search public Facebook events by keyword | $0.00282 |
+
+Use the connected-account tools above for the user's own Facebook; use these for anyone else's public content. More: [Ad Spy](https://clawhub.ai/hith3sh/skills/ad-spy), [Transcribe Any Video](https://clawhub.ai/hith3sh/skills/transcribe-any-video).
 
 ## How It Works
 
@@ -238,7 +253,8 @@ clawlink_call_tool --tool "facebook_get_post_insights" \
 
 ## Security & Permissions
 
-- Access is scoped to the connected Facebook account's managed Pages and their permissions.
+- Connected-account tools are scoped to the connected Facebook account's managed Pages and their permissions.
+- The public-data tools under "No Account Needed" read other people's public Facebook content (profiles, posts, comments) without any connected account. They are read-only, never post or change anything, and each call is paid from the user's ClawLink credit.
 - **All write operations require explicit user confirmation.** Before executing any create, update, or delete call, confirm the target resource and intended effect with the user.
 - Destructive actions (deleting posts, comments) are marked as high-impact and must be confirmed.
 - Publishing posts affects the Page's public-facing content; confirm all write operations.
@@ -296,4 +312,4 @@ clawlink_call_tool --tool "facebook_get_post_insights" \
 
 **Powered by [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=facebook-pages)** — an integration hub for OpenClaw
 
-![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawlink/main/public/images/logo/link_logo_black_small.png)
+![ClawLink Logo](https://raw.githubusercontent.com/ClawLink-HQ/clawhub-assets/main/logos/clawlink.png)

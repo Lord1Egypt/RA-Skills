@@ -1,42 +1,56 @@
-## Description: <br>
-A real-time monitoring dashboard for OpenClaw agents that tracks agents, sub-agents, cron jobs, costs, project progress, activity, memory, logs, and session replay in a dark-mode UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A real-time monitoring dashboard for OpenClaw agents that tracks agents, sub-agents, cron jobs, costs, project progress, memory files, logs, and session replay in a browser UI.
 
-## Publisher: <br>
-[mrpixelraf](https://clawhub.ai/user/mrpixelraf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrpixelraf](https://clawhub.ai/user/mrpixelraf)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to monitor local OpenClaw agent activity, project state, costs, cron jobs, memory files, logs, and session history from a browser dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can expose private local OpenClaw sessions, memory files, costs, project data, and logs through its server. <br>
-Mitigation: Run it only on a trusted machine and trusted network, avoid exposing port 3721 beyond localhost unless access controls are added, and stop the server when monitoring is complete. <br>
-Risk: LAN access can make sensitive dashboard data reachable from other devices on the same network. <br>
-Mitigation: Use LAN access only on trusted networks and restrict network exposure when private OpenClaw data is present. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor local OpenClaw agent activity, costs, cron runs, project state, memory files, logs, and session history from a dashboard.
 
-## Reference(s): <br>
-- [OpenClaw Dashboard on ClawHub](https://clawhub.ai/mrpixelraf/oc-dashboard) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw Dashboard demo](https://openclaw-dashboard-demo.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for running a local React, Vite, Tailwind CSS, Express, and Chart.js monitoring dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata) <br>
+Risk: The local dashboard exposes sensitive OpenClaw data over an unauthenticated Express server bound to all network interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on a trusted local machine, avoid exposing port 3721 to LAN, VPN, or container networks, and prefer binding the server to 127.0.0.1 with authentication before using real data.
+
+Risk: Memory files, session replays, logs, and Claude Code usage may contain secrets, private prompts, or operational details.
+
+Mitigation: Treat displayed data as sensitive, restrict browser and network access, and review files before sharing screenshots, logs, or exported dashboard output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mrpixelraf/skills/oc-dashboard)
+- [OpenClaw](https://openclaw.ai)
+- [OpenClaw Dashboard Demo](https://openclaw-dashboard-demo.vercel.app)
+- [Artifact README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JavaScript, React, Express, Vite, Tailwind CSS, and package configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs and runs a local web dashboard that reads OpenClaw files from the user's machine.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

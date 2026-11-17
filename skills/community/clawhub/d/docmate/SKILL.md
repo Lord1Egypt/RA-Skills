@@ -1,6 +1,6 @@
 ---
 name: docmate
-description: "Documentation QA and repair skill for agent platforms: answer from project docs, verify stale implementation-sensitive claims against code, report documentation gaps, and optionally open GitHub PRs or GitLab MRs. This ClawHub package is an install notice; use the native curl installer for the runtime skill."
+description: "Documentation QA and repair skill for agent platforms: answer from project docs, verify stale implementation-sensitive claims against code, report documentation gaps, and optionally open GitHub PRs or GitLab MRs. This ClawHub package is an install notice; follow the official repository documentation for the runtime skill."
 ---
 
 # DocMate
@@ -17,14 +17,10 @@ DocMate is useful when you want an agent to:
 
 ## Install
 
-If you installed DocMate through ClawHub, this package is only a ClawHub page and install notice. It is not the DocMate runtime skill body.
+This ClawHub package is an install notice, not the DocMate runtime skill body. DocMate is configured at installation time, so use the official repository's installation documentation and review the current source before making any local agent-host changes.
 
-Use the native installer from the README:
+Official repository: https://github.com/wufei-png/DocMate
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/wufei-png/DocMate/main/scripts/install.sh | bash
-```
+The native setup selects an English or Chinese runtime skill, creates `references/docmate.catalog.json`, records the documentation repositories you want DocMate to use, and links the skill into the selected agent hosts.
 
-The native installer is required because DocMate is configured at install time. It installs the selected English or Chinese runtime skill, creates `references/docmate.catalog.json`, records the documentation repositories you want DocMate to use, and links the skill into the selected agent hosts.
-
-Do not use this ClawHub package as the active DocMate skill. After running the curl installer, use the installed DocMate skill and edit the generated catalog path printed by the installer.
+After installation, use the installed DocMate skill and edit the generated catalog path printed by the installer.

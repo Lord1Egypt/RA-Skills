@@ -1,42 +1,58 @@
-## Description: <br>
-Smart Restart Protection helps restart OpenClaw Gateway safely with rate limits, lock checks, configuration backups, and status recovery checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides smart restart protection for OpenClaw Gateway to prevent restart loops, control restart frequency, preserve state, and support safe recovery after configuration changes.
 
-## Publisher: <br>
-[jackytianjp](https://clawhub.ai/user/jackytianjp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackytianjp](https://clawhub.ai/user/jackytianjp)
 
-## Use Case: <br>
-Developers and operators managing OpenClaw Gateway use this skill to inspect restart protection status, run guarded restarts, and reset protection state during emergencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can restart the local OpenClaw Gateway and touches local OpenClaw configuration, session, and workspace state. <br>
-Mitigation: Install only when Gateway restart control is intended, review the shell scripts before use, and run them in an environment where local OpenClaw state changes are acceptable. <br>
-Risk: Copied OpenClaw configuration backups may contain sensitive local configuration data. <br>
-Mitigation: Treat backup files as sensitive, restrict local file permissions, and clean up old backups according to operational policy. <br>
-Risk: Documented force, no-backup, or rollback behavior may not be reliable in every environment. <br>
-Mitigation: Verify those behaviors directly in the target environment before depending on them for recovery or emergency operations. <br>
+## Use Case:
 
+Developers and operators use this skill to restart OpenClaw Gateway with rate limits, lock checks, configuration backups, health checks, and status reporting. It is intended for managing local OpenClaw Gateway recovery while reducing the chance of runaway restart loops or concurrent restart conflicts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackytianjp/smart-restart-protection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text guidance with inline shell commands, JavaScript snippets, and status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local OpenClaw Gateway commands and read or write local OpenClaw restart state, backups, logs, sessions, and workspace files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can stop and start OpenClaw Gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when the operator intends to grant restart authority, and review restart actions before deployment.
+
+Risk: The skill creates persistent local backups of OpenClaw configuration.
+
+Mitigation: Review backup contents, storage location, and file permissions so sensitive configuration is not exposed.
+
+Risk: The security guidance calls out /tmp lock-file handling as a production concern.
+
+Mitigation: Fix or review the lock-file handling before production use and avoid running the skill as a privileged user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackytianjp/skills/smart-restart-protection)
+- [Artifact README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, shell command output, JavaScript API results, JSON reports, and markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local restart records, logs, configuration backups, and status reports under the user's OpenClaw directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

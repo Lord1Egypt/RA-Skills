@@ -1,40 +1,52 @@
-## Description: <br>
-Use rn-logs to read React Native Metro logs via CDP, with plain-text output for non-interactive agent runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use rn-logs to read React Native Metro logs via CDP with plain-text output suitable for non-interactive agent runs.
 
-## Publisher: <br>
-[okwasniewski](https://clawhub.ai/user/okwasniewski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[okwasniewski](https://clawhub.ai/user/okwasniewski)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and agents use this skill to install and run rn-logs for live or snapshot React Native Metro logs from a running app. It is suited for low-context troubleshooting where plain-text CLI output is preferable.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unpinned global installation of rn-logs-cli can expose users to package supply-chain changes.
+
+Mitigation: Install only from a trusted package source, prefer pinning a known version or using a project-local install, and avoid elevated privileges unless necessary.
+
+Risk: The CLI cannot read useful logs unless Metro and the target React Native app are already running and reachable.
+
+Mitigation: Confirm Metro host and port settings, ensure the app is running on a simulator or device, and specify --app when multiple apps are connected.
+
+## Reference(s):
 
 
-## Use Case: <br>
-React Native developers and agents use this skill to install and run rn-logs, list connected apps, stream Metro logs, and capture bounded log snapshots from a running app. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party rn-logs-cli package. <br>
-Mitigation: Install and use it only when the package and publisher are trusted. <br>
-Risk: React Native logs may contain tokens, user data, or debug details. <br>
-Mitigation: Treat captured logs as sensitive and prefer bounded snapshots such as --limit when full streaming is unnecessary. <br>
+**Output Format:** [Markdown guidance with bash command examples and plain-text CLI output expectations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/okwasniewski/react-native-logs-cli) <br>
+**Other Properties Related to Output:** [Requires Metro and a simulator or device with a running React Native app; pass --app when multiple apps are connected.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and plain-text log output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can stream logs or capture bounded snapshots with --limit.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; SKILL.md metadata says 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

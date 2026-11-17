@@ -1,43 +1,61 @@
-## Description: <br>
-Schedule personalized AI wake-up phone calls via wake.meup.ai for one-time or recurring wake-up calls, including phone verification, call scheduling, voice selection, and x402 USDC payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wake Up schedules personalized AI wake-up phone calls through wake.meup.ai, including phone verification, voice selection, scheduling, and x402 USDC payment.
 
-## Publisher: <br>
-[brianium](https://clawhub.ai/user/brianium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianium](https://clawhub.ai/user/brianium)
 
-## Use Case: <br>
-External users and agents use this skill to verify a phone number, schedule paid AI wake-up calls, choose a voice, and manage the required wake.meup.ai payment flow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends phone details, schedule, voice choice, and optional personalization hints to a paid third-party phone-call service. <br>
-Mitigation: Confirm the user intends to use wake.meup.ai, keep optional hints minimal, and avoid sharing unnecessary personal context. <br>
-Risk: Paid endpoints use a Solana keypair to sign x402 USDC payments. <br>
-Mitigation: Use a dedicated low-balance Solana keypair and confirm the exact cost before each verification or scheduled call. <br>
+## Use Case:
 
+External users and agents use Wake Up to verify a phone number and schedule one or more paid AI wake-up calls with optional personalization hints.
 
-## Reference(s): <br>
-- [Wake Up homepage](https://wake.meup.ai) <br>
-- [Wake Up OpenClaw documentation](https://wake.meup.ai/openclaw) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
-- [x402 documentation](https://www.x402.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with JSON API payloads and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Solana keypair path for paid x402 USDC calls; optional personalization hints should remain concise and are truncated to 200 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill uses a Solana signing key for automatic paid x402 API calls without strong local payment limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance Solana wallet, never a primary wallet, and review every verification or scheduled call as a paid third-party action.
+
+Risk: Phone numbers, schedule details, and optional personalization hints are shared with wake.meup.ai.
+
+Mitigation: Avoid sensitive personal details in hints and keep personalization concise.
+
+Risk: Changing the API endpoint could direct paid requests to an untrusted service.
+
+Mitigation: Keep the default wake.meup.ai endpoint unless the replacement endpoint is fully trusted.
+
+## Reference(s):
+
+- [Wake Up homepage](https://wake.meup.ai)
+- [Wake Up OpenClaw documentation](https://wake.meup.ai/openclaw)
+- [uv documentation](https://docs.astral.sh/uv/)
+- [x402 protocol](https://www.x402.org/)
+- [ClawHub skill page](https://clawhub.ai/brianium/skills/wake-meup-ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and a Solana keypair with USDC.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

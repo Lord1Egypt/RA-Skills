@@ -1,42 +1,55 @@
-## Description: <br>
-Control SwitchBot smart home devices (curtains, plugs, lights, locks, etc.) via SwitchBot Cloud API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control SwitchBot smart home devices (curtains, plugs, lights, locks, etc.) via SwitchBot Cloud API.
 
-## Publisher: <br>
-[daaab](https://clawhub.ai/user/daaab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-People and agents managing SwitchBot-enabled spaces use this skill to set up API credentials, discover devices, control curtains, plugs, lights, locks, and humidifiers, and read device or sensor status through the SwitchBot Cloud API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform broad physical smart-home actions, including lock, unlock, plug, appliance, curtain, lighting, and humidifier control, using persistent credentials. <br>
-Mitigation: Install only where ongoing SwitchBot device control from this machine is acceptable, limit available devices and commands to the intended use, and require explicit confirmation before lock, unlock, plug, appliance, or other safety-sensitive actions. <br>
-Risk: The skill depends on a persistent SwitchBot token and secret stored for API access. <br>
-Mitigation: Prefer a managed secret store when available; otherwise keep the credentials file owner-only, never display or log the token or secret, and rotate credentials if exposure is suspected. <br>
-Risk: The raw command mode can send arbitrary SwitchBot commands beyond the typed helper flows. <br>
-Mitigation: Restrict or remove raw command mode unless it is needed, and prefer the narrower list, status, curtain, and plug commands for routine operation. <br>
+## Use Case:
 
+External users and smart-home operators use this skill to configure SwitchBot Cloud API credentials, discover devices, and control or inspect supported SwitchBot devices such as curtains, plugs, lights, locks, humidifiers, and meters.
 
-## Reference(s): <br>
-- [SwitchBot Cloud API endpoint](https://api.switch-bot.com/v1.1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided SwitchBot token and secret; command output can include device names, device IDs, status values, and API error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: The skill can issue broad physical-device commands, including lock, unlock, plug, lighting, curtain, humidifier, and raw device commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each requested device action before execution, and require explicit confirmation for unlock, power, batch, and raw command operations.
+
+Risk: Durable SwitchBot API credentials enable ongoing access to real smart-home devices.
+
+Mitigation: Store credentials with restrictive file permissions, avoid displaying token or secret values, and rotate credentials if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Switchbot skill page](https://clawhub.ai/daaab/skills/switchbot)
+- [SwitchBot Cloud API v1.1 endpoint](https://api.switch-bot.com/v1.1)
+- [Publisher profile](https://clawhub.ai/user/daaab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local SwitchBot credentials and may trigger SwitchBot Cloud API actions against physical devices.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

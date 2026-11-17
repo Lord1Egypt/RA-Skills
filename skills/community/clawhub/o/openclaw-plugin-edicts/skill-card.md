@@ -1,47 +1,63 @@
-## Description: <br>
-Ground truth layer for AI agents — provide verified facts in every prompt and expose read/search tools for edict management, with write tools opt-in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edicts injects verified ground-truth facts into agent prompts and exposes configurable tools for reading, searching, and managing edicts.
 
-## Publisher: <br>
-[mssteuer](https://clawhub.ai/user/mssteuer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mssteuer](https://clawhub.ai/user/mssteuer)
 
-## Use Case: <br>
-Developers and agent operators use this OpenClaw plugin to inject curated, verified facts into agent context and optionally expose tools for listing, searching, adding, updating, or removing those facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent facts can shape future agent prompts if runtime writes are enabled. <br>
-Mitigation: Keep edicts curated and trusted; disable write tools or restrict tool names to read-only operations unless persistent mutation is intentional. <br>
-Risk: Incorrect or stale edicts can cause agents to follow outdated facts or constraints. <br>
-Mitigation: Review edicts regularly and use stale or expiry metadata to clean up facts that should no longer influence prompts. <br>
-Risk: A package/version mismatch can install behavior different from the reviewed release. <br>
-Mitigation: Verify the package name and version before installation. <br>
+## Use Case:
 
+Developers and agent operators use this OpenClaw plugin to keep critical facts such as launch dates, naming rules, compliance constraints, and embargoes available in agent context. It is intended for teams that want lightweight ground-truth management without a retrieval stack.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mssteuer/openclaw-plugin-edicts) <br>
-- [Edicts documentation](https://edicts.ai) <br>
-- [OpenClaw plugin package](https://www.npmjs.com/package/openclaw-plugin-edicts) <br>
-- [Core library package](https://www.npmjs.com/package/edicts) <br>
-- [API reference](https://edicts.ai/docs/reference/api/) <br>
-- [OpenClaw integration guide](https://edicts.ai/docs/integrations/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON/YAML configuration examples, shell commands, and prompt-context text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inject locally stored facts into agent prompts; runtime write tools are opt-in and configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence) <br>
+Risk: The reviewed artifact may not match the plugin artifact users install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a pinned, matching artifact with provenance or complete an OpenClaw plugin source review before use.
+
+Risk: Persisted edicts can place incorrect or untrusted content into future agent prompt context.
+
+Mitigation: Keep write tools disabled unless writers are trusted, prefer read-only tool whitelists, set autoSave false when persistence is not intended, and review imported edict files before use.
+
+Risk: Dependency or artifact drift can change runtime behavior after review.
+
+Mitigation: Update flagged dependencies and re-review the exact package version before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mssteuer/skills/openclaw-plugin-edicts)
+- [Edicts documentation](https://edicts.ai)
+- [OpenClaw plugin package](https://www.npmjs.com/package/openclaw-plugin-edicts)
+- [Core library package](https://www.npmjs.com/package/edicts)
+- [API reference](https://edicts.ai/docs/reference/api/)
+- [CLI reference](https://edicts.ai/docs/reference/cli/)
+- [OpenClaw integration guide](https://edicts.ai/docs/integrations/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Prompt context text with optional Markdown or JSON renderings, plus CLI and tool responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can persist YAML or JSON edict files when write tools and autoSave are enabled.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

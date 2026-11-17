@@ -1,41 +1,55 @@
-## Description: <br>
-Extracts clean page text from URLs through the AISA Tavily extraction API for summarization, comparison, and evidence review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 AISA Tavily 抽取接口从 URL 获取干净正文。触发条件：当用户已经有 URL，需要读取页面正文做总结、对比或证据审查时使用。
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and agents use this skill when they already have URLs and need clean extracted page text for summarization, comparison, or evidence review. It is most appropriate as a web-content intake step before downstream analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled client exposes broader search and AI synthesis commands beyond URL extraction. <br>
-Mitigation: Invoke only the extract subcommand for URL body extraction unless the broader commands are intentionally reviewed and approved. <br>
-Risk: AISA_API_KEY is required, and URLs, queries, and retrieved content may be sent to AISA endpoints. <br>
-Mitigation: Use an appropriate key and avoid private or sensitive URLs unless AISA's handling of that data is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill when they already have one or more URLs and need clean page text for summarization, comparison, or evidence review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/tavily-extract-zh) <br>
-- [AISA service](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON from the Python CLI, with extracted page content printed to stdout.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and sends URLs, queries, and retrieved content to AISA endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The bundled client exposes broader API-backed search and AI synthesis actions beyond URL extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the available CLI commands before installation and restrict use to environments where those broader AISA_API_KEY-backed requests are acceptable.
+
+Risk: Private URLs or sensitive queries may be sent to external AISA endpoints during extraction or related commands.
+
+Mitigation: Avoid submitting private URLs, confidential content, or sensitive queries unless the publisher documents narrower data handling and command behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aisadocs/skills/tavily-extract-zh)
+- [AISA service](https://aisa.one)
+- [AISA API endpoint](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; the CLI returns extracted text or JSON responses from AISA endpoints.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

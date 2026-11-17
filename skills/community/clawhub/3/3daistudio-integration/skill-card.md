@@ -1,45 +1,60 @@
-## Description: <br>
-Convert images and text prompts to 3D models (.glb) using the 3D AI Studio API, with support for TRELLIS.2, Hunyuan Rapid, and Hunyuan Pro models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert images and text prompts to 3D models (.glb) using the 3D AI Studio API. Supports TRELLIS.2, Hunyuan Rapid, and Hunyuan Pro models.
 
-## Publisher: <br>
-[whale-professor](https://clawhub.ai/user/whale-professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whale-professor](https://clawhub.ai/user/whale-professor)
 
-## Use Case: <br>
-Developers, artists, and automation agents use this skill to submit image or text inputs to 3D AI Studio, poll generation jobs, and save generated .glb models for downstream asset workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference images, and related metadata are sent to 3D AI Studio. <br>
-Mitigation: Use only content approved for that provider and avoid sensitive, proprietary, regulated, or personal images unless permitted by the organization. <br>
-Risk: Generated assets are downloaded from provider-supplied URLs without enough documented scoping. <br>
-Mitigation: Validate generated asset URLs before fetching them and scan downloaded model files before using them in production workflows. <br>
-Risk: Generation jobs consume third-party service credits. <br>
-Mitigation: Confirm account balance and expected credit cost before submitting jobs, especially for Hunyuan Pro or textured outputs. <br>
+## Use Case:
 
+Developers, artists, and automation agents use this skill to turn image inputs or text prompts into downloadable .glb 3D model files through the 3D AI Studio API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whale-professor/3daistudio-integration) <br>
-- [3D AI Studio homepage](https://www.3daistudio.com) <br>
-- [3D AI Studio API platform](https://www.3daistudio.com/Platform/API) <br>
-- [3D AI Studio API documentation](https://www.3daistudio.com/Platform/API/Documentation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [CLI text plus generated .glb model files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires THREE_D_AI_STUDIO_API_KEY; generations consume provider credits and may block while polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Agent-run generation commands can spend paid 3D AI Studio account credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before each paid generation and check the requested model, options, and estimated credit cost before execution.
+
+Risk: The skill requires a 3D AI Studio API key.
+
+Mitigation: Store the key only in the THREE_D_AI_STUDIO_API_KEY environment variable and limit use to agents and workspaces trusted with that account.
+
+Risk: Downloaded result URLs are provider-supplied and are not constrained by host, size, or file-type checks in the artifact.
+
+Mitigation: Use a limited-output directory and review or harden downloads to require HTTPS, trusted 3D AI Studio or CDN hosts, and size and format limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whale-professor/skills/3daistudio-integration)
+- [3D AI Studio homepage](https://www.3daistudio.com)
+- [3D AI Studio API dashboard](https://www.3daistudio.com/Platform/API)
+- [3D AI Studio API documentation](https://www.3daistudio.com/Platform/API/Documentation)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [GLB model files with terminal text and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires THREE_D_AI_STUDIO_API_KEY and a funded 3D AI Studio account; generation jobs are asynchronous and may spend account credits.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

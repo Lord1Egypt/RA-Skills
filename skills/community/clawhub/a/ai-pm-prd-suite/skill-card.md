@@ -1,41 +1,57 @@
-## Description: <br>
-AI 产品经理教练。通过引导式对话帮助 PM 完成 AI 产品设计：从痛点分析到 PRD 输出。不替代 PM 决策，而是引导 PM 思考，在关键节点让 PM 做出选择。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 产品经理教练，通过引导式对话帮助 PM 完成从痛点分析到 PRD 输出的 AI 产品设计，并在关键节点要求 PM 做出选择。
 
-## Publisher: <br>
-[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijinhongucl-pixel](https://clawhub.ai/user/lijinhongucl-pixel)
 
-## Use Case: <br>
-Product managers use this coaching agent to work through AI product design decisions, from pain-point diagnosis and AI suitability assessment to capability boundaries, confidence thresholds, hallucination handling, and PRD drafting. The agent is intended to guide user decisions rather than replace them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases such as product design, PRD, continue, or generate PRD may route ordinary product discussions into the coaching flow. <br>
-Mitigation: Use explicit wording to indicate whether the AI product coaching workflow should be started, continued, or avoided. <br>
-Risk: Generated PRD or product guidance may be mistaken for final product decisions. <br>
-Mitigation: Review each decision point and final artifact with the responsible product owner before use. <br>
+## Use Case:
 
+Product managers and product teams use this Chinese-language coaching agent to work through AI product design decisions, including pain point validation, AI suitability, capability boundaries, confidence thresholds, hallucination handling, and PRD assembly. The agent guides discussion and records choices without replacing the PM's decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lijinhongucl-pixel/ai-pm-prd-suite) <br>
-- [Publisher profile](https://clawhub.ai/user/lijinhongucl-pixel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Conversational guidance and Markdown product artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce structured assessments, capability-boundary statements, confidence-mechanism notes, hallucination-response plans, and PRD drafts for user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release metadata) <br>
+Risk: Broad trigger terms such as AI product, product design, or PRD may activate the workflow in conversations where the user expected a narrower response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill explicitly when possible and confirm that the user wants a guided AI product-design coaching workflow before proceeding.
+
+Risk: The skill content is Chinese-language, which can limit usability or review quality for non-Chinese-speaking users or reviewers.
+
+Mitigation: Use it for Chinese-language PM coaching contexts, or require bilingual review before using outputs in multilingual or English-only teams.
+
+Risk: The agent produces product-management guidance and PRD drafts that could be mistaken for final product decisions.
+
+Mitigation: Keep the documented decision checkpoints in place and require PM confirmation before treating generated PRD sections, thresholds, or risk boundaries as final.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijinhongucl-pixel/skills/ai-pm-prd-suite)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text with Markdown product-management artifacts and occasional JSON-style structured assessments.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow may generate PRD sections, AI capability boundary statements, confidence mechanisms, hallucination response plans, and decision summaries for user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

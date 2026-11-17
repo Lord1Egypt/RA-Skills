@@ -1,45 +1,60 @@
-## Description: <br>
-Helps agents plan and run Chinese website data scraping workflows with platform-specific Scrapling guidance, adaptive selector patterns, compliance boundaries, and a helper script for supported public search pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese website data scraping expert with anti-bypass strategies for Baidu, Taobao, Douyin, Zhihu, WeChat, 1688, Xiaohongshu, Weibo, CSDN, and Boss Zhipin using Scrapling-oriented recipes, adaptive selectors, legal boundary guidance, and executable scraping examples.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers and agents use this skill to draft scraping approaches, selector strategies, Scrapling configurations, and optional shell-driven extraction runs for Chinese websites. It is intended for legitimate, authorized data collection with legal and platform-compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses anti-bot behavior, login-cookie scraping, and platform-specific scraping techniques that could be misused against sites where the user lacks authorization. <br>
-Mitigation: Use it only for legitimate, authorized scraping; prefer approved APIs; and do not bypass login walls, paywalls, platform defenses, or terms that prohibit the activity. <br>
-Risk: Cookies and tokens used for scraping are sensitive credentials and may expose accounts or private access if mishandled. <br>
-Mitigation: Treat cookies and tokens as secrets, keep them out of prompts, logs, commits, and shared files, and rotate or revoke them after use. <br>
-Risk: Scraping can collect personal data, copyrighted material, gated content, or data subject to local legal restrictions. <br>
-Mitigation: Collect only necessary public or explicitly permitted data, avoid private personal data and copyrighted redistribution, anonymize when appropriate, and complete legal review before commercial use. <br>
+## Use Case:
 
+Developers and agents use this skill to plan and implement Chinese website data collection workflows with platform-specific scraping recipes, Scrapling configurations, adaptive selector patterns, and legal compliance checks. It is most relevant when public or authorized data access is required across Chinese search, social, ecommerce, article, and job platforms.
 
-## Reference(s): <br>
-- [ClawHub cn-data-scraper](https://clawhub.ai/lm203688/cn-data-scraper) <br>
-- [Scrapling](https://github.com/D4Vinci/Scrapling) <br>
-- [Scrapling Chinese Documentation](https://github.com/D4Vinci/Scrapling/blob/main/docs/README_CN.md) <br>
-- [Camoufox](https://github.com/nicegamer7/camoufox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python examples and optional JSON output from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script accepts a platform, keyword, and optional output path, then writes JSON with the platform, keyword, source URL, extracted content count, and preview text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes anti-crawl and login-wall bypass guidance that can be misused against protected or unauthorized data sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for authorized scraping, prefer official APIs, avoid protected or login-gated data unless explicit permission is documented, and exclude personal or private data collection.
+
+Risk: The bundled scrape.sh script can execute injected code or overwrite files when given untrusted inputs or sensitive output paths.
+
+Mitigation: Review the script before use, run it only with trusted arguments, choose non-sensitive output locations, and execute it in a constrained sandbox.
+
+Risk: The workflow depends on scraping libraries and browser automation behavior that may change or introduce supply-chain exposure.
+
+Mitigation: Install dependencies in an isolated environment, pin reviewed versions, and retest platform recipes before operational use.
+
+## Reference(s):
+
+- [Scrapling GitHub](https://github.com/D4Vinci/Scrapling)
+- [Scrapling Chinese Documentation](https://github.com/D4Vinci/Scrapling/blob/main/docs/README_CN.md)
+- [Camoufox](https://github.com/nicegamer7/camoufox)
+- [ClawHub Skill Page](https://clawhub.ai/lm203688/skills/cn-data-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks; the bundled CLI script prints JSON scraping results or error objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific recipes, legal boundary notes, Scrapling configuration examples, MCP integration examples, and an optional shell script for selected platforms.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

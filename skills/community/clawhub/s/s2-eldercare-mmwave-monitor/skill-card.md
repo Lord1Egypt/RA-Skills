@@ -1,41 +1,59 @@
-## Description: <br>
-Detects elder falls and apnea using privacy-safe 60/77 GHz mmWave radar with real-time micro-Doppler STFT analysis for emergency alerts and response. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects elder falls and apnea using privacy-safe 60/77 GHz mmWave radar with real-time micro-Doppler STFT analysis for emergency alerts and smart-home response.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Care technology developers and integrators use this skill to evaluate privacy-preserving elder fall monitoring with mmWave DSP and optional Home Assistant emergency routing. It is intended for environments where safety controls and independent validation are applied before any physical actuation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Enabling real actuation can automatically control smart-home devices, including door unlocking, without enough scoping or confirmation. <br>
-Mitigation: Keep dry-run mode enabled for testing; before enabling real actuation, restrict the Home Assistant token, verify the base URL is a trusted local endpoint, and add human confirmation or remove automatic door unlocking. <br>
-Risk: Life-safety decisions based on simulated DSP behavior may be unreliable without independent validation. <br>
-Mitigation: Treat the skill as a prototype until validated with the target radar hardware, deployment environment, and emergency response workflow. <br>
+## Use Case:
 
+Developers and care-technology operators use this skill to simulate or deploy mmWave-based fall detection and route verified emergency events to Home Assistant actions. It is intended for privacy-sensitive eldercare monitoring where real physical actuation must remain gated and reviewed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SpaceSQ/s2-eldercare-mmwave-monitor) <br>
-- [Project homepage](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and runtime console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python dependencies and optional Home Assistant environment variables for real actuation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact manifest) <br>
+Risk: Real actuation can unlock doors or control smart-home devices after a fall event.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run mode enabled by default and require explicit human approval or independent sensor confirmation before enabling physical actions.
+
+Risk: Home Assistant credentials may be sent to a configurable HTTP endpoint.
+
+Mitigation: Use HTTPS with a fixed trusted Home Assistant host and a least-privilege token before enabling real actuation.
+
+Risk: Unpinned dependencies can change behavior across installations.
+
+Mitigation: Pin dependencies with a lockfile and review updates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/spacesq/skills/s2-eldercare-mmwave-monitor)
+- [Publisher profile](https://clawhub.ai/user/spacesq)
+- [Project homepage](https://space2.world)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local console output, simulated Home Assistant routing intents, and DSP analysis artifacts during execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

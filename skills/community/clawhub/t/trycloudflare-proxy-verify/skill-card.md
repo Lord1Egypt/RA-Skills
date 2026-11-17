@@ -1,42 +1,55 @@
-## Description: <br>
-Exposes a local file, folder, screenshot, or HTTP service through a temporary trycloudflare.com tunnel and verifies the public URL before sharing it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose a local file, local folder, screenshot, or local HTTP service through a temporary trycloudflare.com tunnel and verify the public URL before sharing it.
 
-## Publisher: <br>
-[ojbkxiongdei](https://clawhub.ai/user/ojbkxiongdei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ojbkxiongdei](https://clawhub.ai/user/ojbkxiongdei)
 
-## Use Case: <br>
-Developers and operators use this skill to create temporary public links to local files, folders, screenshots, or localhost services and confirm those links respond correctly before sharing them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary public Cloudflare links can expose private folders, files, or local services if the served path is too broad. <br>
-Mitigation: Use a dedicated export folder containing only the exact content to share, avoid authenticated localhost apps, and stop the server and tunnel as soon as the link is no longer needed. <br>
-Risk: A tunnel URL may be shared before the public endpoint is reachable or serving the expected content. <br>
-Mitigation: Verify the local origin, tunnel registration, exact public URL status, and expected content type or length before returning the link. <br>
+## Use Case:
 
+Developers and agents use this skill when they need to share local files, folders, screenshots, generated artifacts, or local web services through a temporary public trycloudflare.com URL. The skill emphasizes verifying the public URL before sharing it.
 
-## Reference(s): <br>
-- [Verification Checklist](references/verification-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ojbkxiongdei/trycloudflare-proxy-verify) <br>
-- [Publisher Profile](https://clawhub.ai/user/ojbkxiongdei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and verified public URL text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include temporary trycloudflare.com URLs after reachability verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A user could unintentionally publish sensitive local files or services through a temporary public URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated export directory containing only the intended files, avoid home directories and project roots, and verify the exact public path before sharing.
+
+Risk: A local administrative or sensitive localhost service could be exposed outside the machine.
+
+Mitigation: Tunnel only known safe local services and stop the tunnel immediately after the sharing task is complete.
+
+## Reference(s):
+
+- [Verification Checklist](references/verification-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/ojbkxiongdei/skills/trycloudflare-proxy-verify)
+- [Publisher Profile](https://clawhub.ai/user/ojbkxiongdei)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns verified temporary public URLs and operational guidance; links are temporary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

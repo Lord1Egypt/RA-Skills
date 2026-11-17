@@ -1,47 +1,62 @@
-## Description: <br>
-Google Analytics CLI helps agents query Google Analytics 4 reports, realtime activity, account structure, and user behavior through google-analytics-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Analytics 4 data analysis and reporting via google-analytics-cli.
 
-## Publisher: <br>
-[bin-huang](https://clawhub.ai/user/bin-huang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bin-huang](https://clawhub.ai/user/bin-huang)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to inspect GA4 properties, run standard and custom reports, monitor realtime users, and summarize analytics behavior from CLI JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GA4 reports, access reports, and audience export commands can expose sensitive analytics, identity, or audience data. <br>
-Mitigation: Use a dedicated least-privilege service account scoped to the intended properties, avoid pasting credential JSON into chat, and require explicit approval before running access-report or audience-export commands. <br>
-Risk: Default gcloud credentials may grant broader analytics access than the immediate task requires. <br>
-Mitigation: Prefer per-command credentials or GOOGLE_APPLICATION_CREDENTIALS for a narrowly scoped service account, and verify access with an accounts command before running reports. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to query GA4 accounts and properties, run traffic and behavior reports, monitor realtime activity, and inspect analytics configuration from an agent workflow.
 
-## Reference(s): <br>
-- [google-analytics-cli documentation](https://github.com/Bin-Huang/google-analytics-cli) <br>
-- [GA4 Data API overview](https://developers.google.com/analytics/devguides/reporting/data/v1) <br>
-- [Dimensions and metrics reference](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema) <br>
-- [Realtime API schema](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema) <br>
-- [FilterExpression reference](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/FilterExpression) <br>
-- [OrderBy reference](https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/OrderBy) <br>
-- [Quotas and limits](https://developers.google.com/analytics/devguides/reporting/data/v1/quotas) <br>
-- [GA4 Admin API](https://developers.google.com/analytics/devguides/config/admin/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Analysis] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GA4 property IDs and Google service account credentials; CLI output is pretty-printed JSON by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill recommends installing google-analytics-cli globally without pinning a package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review npm package provenance before installation and prefer a pinned, isolated install.
+
+Risk: GA4 access reports and audience exports can expose sensitive identifiers such as emails, device IDs, or user IDs.
+
+Mitigation: Use least-privilege service account credentials and require explicit approval before commands that may return sensitive user-level data.
+
+Risk: The security verdict flags the release as suspicious because sensitive export commands are present despite read-only positioning.
+
+Mitigation: Review the skill before deployment and limit credentials to only the GA4 properties needed for the task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bin-huang/skills/google-analytics-cli)
+- [google-analytics-cli documentation](https://github.com/Bin-Huang/google-analytics-cli)
+- [GA4 Data API overview](https://developers.google.com/analytics/devguides/reporting/data/v1)
+- [Dimensions and metrics reference](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema)
+- [Realtime API schema](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema)
+- [GA4 Admin API](https://developers.google.com/analytics/devguides/config/admin/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GA4 report outputs in JSON when commands are executed by the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

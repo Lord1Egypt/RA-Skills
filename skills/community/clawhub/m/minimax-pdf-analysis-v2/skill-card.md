@@ -1,46 +1,60 @@
-## Description: <br>
-Analyze PDF files using MiniMax API. Supports text extraction, keyword search, and image-based VLM analysis (converts PDF pages to images first). Requires MiniMax Coding Plan API key (sk-cp-*). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze PDF files using MiniMax API with text extraction, keyword search, and image-based VLM analysis after converting PDF pages to images.
 
-## Publisher: <br>
-[jlin53882](https://clawhub.ai/user/jlin53882) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jlin53882](https://clawhub.ai/user/jlin53882)
 
-## Use Case: <br>
-Developers and agent operators use this skill to extract text from PDFs, search PDF text for snippets, and analyze selected PDF pages with MiniMax vision models after converting pages to images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vision analysis sends selected PDF pages, prompts, and converted page images to MiniMax using MINIMAX_API_KEY. <br>
-Mitigation: Use the vision mode only with PDFs and prompts approved for external processing, scope API credentials appropriately, and prefer extract or search mode when external model analysis is not required. <br>
-Risk: The bundled JavaScript helper includes web search and arbitrary image upload capabilities beyond the documented PDF workflow. <br>
-Mitigation: Review or remove scripts/minimax_coding_plan_tool.js when the deployment only needs PDF text extraction, PDF search, or the Python vision workflow. <br>
-Risk: Local image files passed to the helper can be uploaded to MiniMax for image understanding. <br>
-Mitigation: Restrict helper access to trusted local files and require user approval before sending non-PDF images or sensitive document pages to the API. <br>
+## Use Case:
 
+Developers, analysts, and document reviewers use this skill to extract text from PDFs, search for relevant snippets, and request MiniMax VLM analysis of PDF pages rendered as images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jlin53882/minimax-pdf-analysis-v2) <br>
-- [MiniMax platform](https://platform.minimaxi.com) <br>
-- [MiniMax Coding Plan VLM endpoint](https://api.minimax.io/v1/coding_plan/vlm) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plain-text PDF extraction and search results, and text analysis returned from MiniMax VLM calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python, node, PyMuPDF, and MINIMAX_API_KEY. Vision mode converts selected PDF pages to PNG images before sending them with the prompt to MiniMax.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Confidential PDF content may be sent to a third-party MiniMax API when vision mode uploads rendered page images and prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use vision mode only with documents approved for third-party processing, and prefer local extract or search mode for sensitive documents.
+
+Risk: The package includes an undeclared MiniMax web search helper and a generic local-image upload helper beyond the advertised PDF workflow.
+
+Mitigation: Review available helper commands before installation and restrict use of web search or image upload helpers unless they are explicitly intended.
+
+Risk: Broad local file paths or sensitive images could be exposed through the image understanding helper.
+
+Mitigation: Pass only specific approved image paths and avoid running the helper from directories containing unrelated confidential files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jlin53882/skills/minimax-pdf-analysis-v2)
+- [ClawHub publisher profile](https://clawhub.ai/user/jlin53882)
+- [MiniMax platform](https://platform.minimaxi.com)
+- [MiniMax Coding Plan VLM endpoint](https://api.minimax.io/v1/coding_plan/vlm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
+
+**Output Format:** [Plain text, saved text files, PNG page images, JSON from helper tools, and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Vision mode sends rendered PDF page images and prompts to the MiniMax API; extraction and search can run locally with PyMuPDF.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

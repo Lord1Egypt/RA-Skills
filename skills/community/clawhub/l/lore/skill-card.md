@@ -1,37 +1,49 @@
-## Description: <br>
-Search and ingest knowledge from Lore, a research repository with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and ingest knowledge from Lore, a research repository with citations.
 
-## Publisher: <br>
-[mishkinf](https://clawhub.ai/user/mishkinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mishkinf](https://clawhub.ai/user/mishkinf)
 
-## Use Case: <br>
-Developers and agent users use Lore to search, ingest, retain, and cite project knowledge from conversations, documents, and external sources so later answers can be grounded in preserved evidence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may preserve conversations, meeting notes, and external workspace content without explicit consent, redaction, retention, or access-control boundaries. <br>
-Mitigation: Use it only where persistent searchable memory is intended, and confirm access permissions, consent, redaction review, retention policy, and deletion controls before ingesting sensitive or regulated content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mishkinf/lore) <br>
+## Use Case:
 
+Agents use Lore to search prior project knowledge, retrieve cited source material, and preserve selected meeting notes, documents, decisions, and insights for later reference.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with tool-use workflows and citation practices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include cited summaries, direct quotes, source links, and proposed Lore search, research, ingest, retain, or get_source tool calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter: 1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents may save conversation content and material fetched from workplace tools into Lore without adequate consent or sensitivity controls.
+
+Mitigation: Define approved projects and sources before use, require confirmation for sensitive documents, and avoid storing credentials, personal data, legal, HR, medical, or confidential third-party content unless retention is explicitly approved.
+
+## Reference(s):
+
+- [Lore ClawHub skill page](https://clawhub.ai/mishkinf/skills/lore)
+- [mishkinf ClawHub publisher profile](https://clawhub.ai/user/mishkinf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses with citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source titles, dates, source URLs, project names, retrieved excerpts, and retained insights.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

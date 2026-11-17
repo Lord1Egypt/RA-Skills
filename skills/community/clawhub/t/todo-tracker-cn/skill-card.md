@@ -1,40 +1,54 @@
-## Description: <br>
-生成、跟踪和验证待办列表的执行状态。提供 generate-todo-list, mark-completed, show-progress, verify-completion 四个核心动作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, tracks, displays, and verifies todo-list progress for AI assistant workflows.
 
-## Publisher: <br>
-[elderyang](https://clawhub.ai/user/elderyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elderyang](https://clawhub.ai/user/elderyang)
 
-## Use Case: <br>
-Agents, developers, and operators use this skill to create, update, display, and verify task checklists for multi-step work. It is most useful when an agent needs to make execution progress visible and confirm that planned steps are complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task names, timestamps, completion details, and progress history may persist in long-lived local files beyond the current todo database. <br>
-Mitigation: Do not put secrets, credentials, customer data, incident details, or other sensitive information in task titles or todo items; periodically review and clean local memory and history files. <br>
-Risk: The skill reads and writes local todo state and may append progress records to a local memory file. <br>
-Mitigation: Run it only in the intended user workspace and review the local todo and memory files if the workspace is shared with other agents or users. <br>
+## Use Case:
 
+Developers and AI assistant operators use this skill to create, update, inspect, and verify persistent task checklists for multi-step work that needs visible progress and completion checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elderyang/todo-tracker-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-like command output from Python CLI actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes todo state to local files under the user's OpenClaw workspace when actions are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Task descriptions are written to persistent local files and may be appended to agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive task descriptions, review stored todo and memory files, and make memory writes opt-in or disabled for sensitive environments.
+
+Risk: Persistent progress records can outlive the immediate task and expose prior work context.
+
+Mitigation: Define retention expectations and clear ~/.openclaw/workspace/todo-current.json and MEMORY.md entries when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elderyang/skills/todo-tracker-cn)
+- [Publisher profile](https://clawhub.ai/user/elderyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like progress text and command-line responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists todo state under ~/.openclaw/workspace and may append task titles to MEMORY.md.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

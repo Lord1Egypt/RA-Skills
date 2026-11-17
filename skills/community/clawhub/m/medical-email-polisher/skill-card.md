@@ -1,44 +1,58 @@
-## Description: <br>
-Transforms rough email drafts into polished, professional medical correspondence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms rough email drafts into polished, professional medical correspondence.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Employees, external medical professionals, and agents use this skill to turn rough mentor, editor, colleague, or patient email drafts into clearer professional correspondence. It supports wording, tone, opening, closing, subject-line, and change-summary suggestions without replacing clinical or compliance review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical or HIPAA-related wording could be mistaken for clinical, legal, or compliance guidance. <br>
-Mitigation: Use the skill only to polish wording, avoid unnecessary patient identifiers or confidential details, and have a qualified person review patient-facing or compliance-sensitive emails before sending. <br>
-Risk: Drafts may contain sensitive patient or institutional information. <br>
-Mitigation: Provide only the minimum necessary detail, remove identifiers when possible, and keep generated outputs in the approved workspace. <br>
-Risk: Requests outside the documented email-polishing scope can lead to unsupported assumptions. <br>
-Mitigation: Stop when required inputs are missing or the request asks for clinical interpretation, and ask for the minimum additional drafting context needed. <br>
+## Use Case:
 
+External users and agents use this skill to turn rough medical, academic, or patient-facing email drafts into professional correspondence with a suggested subject, tone assessment, and change summary.
 
-## Reference(s): <br>
-- [Medical Email Polisher Guidelines](references/guidelines.md) <br>
-- [Medical Email Polisher Audit Result v1](medical-email-polisher_audit_result_v1.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/medical-email-polisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [JSON object with polished_email, subject_line, changes_made, tone_assessment, and recipient_type fields; narrative agent responses may summarize assumptions, risks, and next checks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafting aids and should be reviewed before use in patient-facing or compliance-sensitive contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Drafts may contain real patient or confidential medical content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use de-identified drafts and review all output before use in real medical or patient communication.
+
+Risk: Draft text can be supplied through command-line arguments where it may be exposed through shell history or process listings.
+
+Mitigation: Do not pass PHI or sensitive details as command-line arguments; use only sanitized examples or a safer input path if the skill is adapted.
+
+Risk: The package claims HIPAA-aware communication, but the evidence does not prove compliance safeguards.
+
+Mitigation: Treat HIPAA-aware output as editorial assistance only and require qualified human review for policy, privacy, and clinical appropriateness.
+
+## Reference(s):
+
+- [Medical Email Polisher ClawHub listing](https://clawhub.ai/aipoch-ai/skills/medical-email-polisher)
+- [Medical Email Polisher References](references/guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON object containing polished_email, subject_line, changes_made, tone_assessment, and recipient_type.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Inputs include a rough draft, recipient type, and optional context; avoid sensitive medical details or PHI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

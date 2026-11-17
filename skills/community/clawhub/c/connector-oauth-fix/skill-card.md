@@ -1,40 +1,50 @@
-## Description: <br>
-修复 WorkBuddy 连接器 OAuth 授权失败问题，覆盖第三方连接器出现 0x800401F5、找不到应用程序、SSE error 405、授权超时或 streamableHttp connect failed 等错误时的诊断、根因定位、注册表修复和验证流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents troubleshoot and fix WorkBuddy connector OAuth authorization failures on Windows, including diagnosis, HKCU browser ProgId repair guidance, and verification.
 
-## Publisher: <br>
-[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwenqi123123](https://clawhub.ai/user/liuwenqi123123)
 
-## Use Case: <br>
-Developers, support engineers, and WorkBuddy operators use this skill to diagnose and repair Windows browser-launch failures that interrupt OAuth authorization for third-party connectors. It guides log review, network checks, default-browser ProgId inspection, current-user registry override, and post-fix validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A current-user registry override can leave URL handling pointed at an unintended browser command if the failing ProgId or replacement path is wrong. <br>
-Mitigation: Verify the failing ProgId and browser executable path first, prefer changing the default browser through Windows settings when practical, and back up or note the existing registry value before applying the override. <br>
-Risk: OAuth troubleshooting may involve logs, connector endpoints, or credentials-sensitive context. <br>
-Mitigation: Limit installation and use to the specific WorkBuddy connector OAuth issue, and avoid sharing logs or command output that contains tokens or sensitive connector details. <br>
+## Use Case:
 
+Support engineers and WorkBuddy users use this skill when third-party connector OAuth flows fail with errors such as 0x800401F5, missing application messages, SSE 405 responses, or authorization timeouts. It guides the agent through log review, network checks, Windows default-browser diagnosis, registry repair, and post-fix validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuwenqi123123/connector-oauth-fix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Windows-specific registry repair guidance and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill includes a persistent HKCU registry change for browser ProgId handling that can affect how links open for the current user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the affected ProgId and browser executable path before applying the change, record or export the existing HKCU value, and proceed only with user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuwenqi123123/skills/connector-oauth-fix)
+- [Publisher profile](https://clawhub.ai/user/liuwenqi123123)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language troubleshooting workflow for Windows WorkBuddy connector OAuth failures.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

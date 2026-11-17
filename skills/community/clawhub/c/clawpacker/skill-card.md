@@ -1,41 +1,55 @@
-## Description: <br>
-Use when exporting, importing, packaging, cloning, restoring, or moving an OpenClaw agent between machines or instances, especially when the user mentions clawpacker, .ocpkg packages, agent portability, or reusable agent templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when exporting, importing, packaging, cloning, restoring, or moving an OpenClaw agent between machines or instances, especially when the user mentions clawpacker, .ocpkg packages, agent portability, or reusable agent templates.
 
-## Publisher: <br>
-[lc708](https://clawhub.ai/user/lc708) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lc708](https://clawhub.ai/user/lc708)
 
-## Use Case: <br>
-Developers and operators use this skill to find current Clawpacker guidance before exporting, importing, packaging, cloning, restoring, or moving portable OpenClaw agent bundles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes mutable remote GitHub instructions authoritative for operations that can change local OpenClaw agent state. <br>
-Mitigation: Review the GitHub-hosted SKILL.md before each use, prefer a pinned commit or local reviewed copy, and confirm source, destination, dry-run output, and overwrite or force options before allowing import or restore commands. <br>
-Risk: If the canonical source is unavailable, guessing Clawpacker command syntax or flags could lead to incorrect package operations. <br>
-Mitigation: Stop and request an updated repository path or current local SKILL.md instead of inventing commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to move OpenClaw agents between machines or instances by fetching the current canonical clawpacker instructions before running package operations.
 
-## Reference(s): <br>
-- [Canonical Clawpacker skill (master)](https://raw.githubusercontent.com/cogine-ai/clawpack/master/skills/clawpacker/SKILL.md) <br>
-- [Canonical Clawpacker skill (main fallback)](https://raw.githubusercontent.com/cogine-ai/clawpack/main/skills/clawpacker/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs the agent to fetch canonical Clawpacker instructions before proposing package operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The skill instructs the agent to fetch and follow live remote instructions that can change after review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Vendor the full reviewed instructions locally, or pin the remote content by commit and verify it by hash before use.
+
+Risk: Canonical instruction URLs may become unavailable during a packaging or restore task.
+
+Mitigation: Stop and ask for an updated repository path or current local copy instead of guessing clawpacker commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lc708/skills/clawpacker)
+- [Canonical clawpacker instructions URL from artifact](https://raw.githubusercontent.com/cogine-ai/clawpack/master/skills/clawpacker/SKILL.md)
+- [Canonical clawpacker fallback URL from artifact](https://raw.githubusercontent.com/cogine-ai/clawpack/main/skills/clawpacker/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline URLs and command-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current remote canonical instructions at task time; stops and asks for an updated source if both listed URLs are unavailable.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

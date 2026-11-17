@@ -1,42 +1,56 @@
-## Description: <br>
-Daily trivia questions with scoring, streaks, and category selection. Learn something new every day. Competitive mode for group chats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily trivia questions with scoring, streaks, and category selection. Learn something new every day. Competitive mode for group chats.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-External users and developers use this skill to add daily trivia prompts, answer checking, score tracking, and streak summaries to an agent experience. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores score and streak state in a local JSON file, and a user-provided score file path could point at an important existing file. <br>
-Mitigation: Use a dedicated, non-sensitive score file path for TriviaBot state and keep independent backups of important local data. <br>
-Risk: The release claims group mode, difficulty selection, and weekly leaderboard behavior that the security evidence says is not implemented in this version. <br>
-Mitigation: Treat those features as unavailable unless verified in a newer release, and do not rely on them for user-facing workflows. <br>
+## Use Case:
 
+External users and developers can use this skill to run daily trivia quizzes, answer multiple-choice questions, and track local scores and streaks across casual quiz sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/trivia-bot) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Text responses and JavaScript result objects containing quiz prompts, answer feedback, score, streak, and fact fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local score and streak state in a JSON file when used through the bundled JavaScript module.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill can create or update a local trivia score JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated data file path for trivia progress and keep backups of any important local data in the same working area.
+
+Risk: Advertised category, difficulty, group, and leaderboard behavior may not be fully implemented in the artifact.
+
+Mitigation: Validate the installed behavior before relying on those features for group play, scoring workflows, or user-facing quiz sessions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/trivia-bot)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+- [Skill README](artifact/README.md)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses with JavaScript module behavior for trivia questions, answers, facts, and local score updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores score, total answers, streak, and best streak in a local JSON file when used through the bundled JavaScript module.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

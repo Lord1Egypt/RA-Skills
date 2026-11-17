@@ -1,43 +1,58 @@
-## Description: <br>
-Helps agents generate and convert PyTorch code for Moore Threads MUSA GPUs using torch_musa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers in generating and converting PyTorch code for Moore Threads MUSA GPUs using torch_musa.
 
-## Publisher: <br>
-[lipeidcc](https://clawhub.ai/user/lipeidcc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lipeidcc](https://clawhub.ai/user/lipeidcc)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate MUSA-compatible PyTorch patterns, convert CUDA-oriented code to torch_musa conventions, and reason about MUSA environment setup. Review generated code and setup commands before running them in a GPU environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Published metadata describes an OpenAI transcription skill and requests OPENAI_API_KEY, which does not match the MUSA coding helper behavior. <br>
-Mitigation: Install only for MUSA and torch_musa coding workflows, and do not provide OPENAI_API_KEY unless the publisher corrects or clearly justifies that requirement. <br>
-Risk: Generated CUDA-to-MUSA conversions can change device and distributed backend behavior or write modified Python files. <br>
-Mitigation: Review conversion diffs, prefer dry-run review where available, and test converted code in a controlled MUSA environment before relying on it. <br>
-Risk: Some setup guidance includes privileged or environment-wide GPU configuration commands. <br>
-Mitigation: Run privileged setup only with administrator approval and verify commands against the target MUSA driver, SDK, and conda environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to write PyTorch code for Moore Threads MUSA GPUs, convert CUDA-oriented PyTorch patterns to MUSA equivalents, and follow MUSA environment and distributed-training conventions.
 
-## Reference(s): <br>
-- [MUSA torch_musa reference](references/reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lipeidcc/musa-torch-coding) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets; the bundled converter can write converted Python files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated conversions and environment commands should be reviewed and tested before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The published metadata describes OpenAI Whisper transcription and requests OPENAI_API_KEY even though the artifact is for MUSA/PyTorch coding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the release as a MUSA/PyTorch coding skill only after the publisher corrects the metadata and removes the unrelated OpenAI API key requirement.
+
+Risk: The CUDA-to-MUSA converter can rewrite Python files or entire directories when run without dry-run mode.
+
+Mitigation: Run the converter in dry-run mode first, write converted output to a separate path, and review diffs before adopting generated files.
+
+Risk: Some setup and troubleshooting guidance involves preconfigured GPU environments, native libraries, build commands, and privileged group changes.
+
+Mitigation: Use an approved MUSA environment and require administrator review before changing system groups, driver paths, or build/install steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lipeidcc/skills/musa-torch-coding)
+- [MUSA API reference](references/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell code examples; bundled scripts can generate converted Python files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a CUDA-to-MUSA conversion script and a YOLOv8n MUSA template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

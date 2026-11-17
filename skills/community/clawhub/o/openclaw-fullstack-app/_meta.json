@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "openclaw-fullstack-app",
+  "schema_version": "1",
+  "name": "openclaw-fullstack-app",
   "version": "1.0.0",
-  "publishedAt": 1772639411249
+  "description": "Generate fullstack applications with OpenClaw - frontend, backend, database, and deployment",
+  "homepage": "",
+  "author": {
+    "name": "Sunshine-del-ux",
+    "email": "",
+    "url": ""
+  },
+  "repository": "",
+  "keywords": ["fullstack", "generator", "react", "node", "python", "app"],
+  "license": "MIT",
+  "dependencies": {}
 }

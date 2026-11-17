@@ -1,44 +1,60 @@
-## Description: <br>
-Query Polymarket prediction markets for market questions, odds, prices, event probabilities, and related Polymarket data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Polymarket prediction markets. Use for questions about prediction markets, betting odds, market prices, event probabilities, or when user asks about Polymarket data.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to query live Polymarket prediction market data, search active markets, inspect event groups, and interpret Yes/No prices as implied probabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live requests to gamma-api.polymarket.com, so excessive or broad queries could create resource-abuse concerns. <br>
-Mitigation: Use targeted searches, slugs, or small result limits, and avoid repeated polling or bulk enumeration. <br>
-Risk: Saved or redirected market data could leave the local working context unintentionally. <br>
-Mitigation: Save files only inside the current working directory when explicitly requested, and do not pipe or send output to external services. <br>
-Risk: Market prices and implied probabilities can be misread as betting or investment advice. <br>
-Mitigation: Present outputs as informational market data and avoid recommending trades, wagers, or financial decisions. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to query live Polymarket public market data, including top markets, search results, market slugs, and event groups. It supports informational probability review and market research, not financial advice or trade execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/polymarket-api-hardened) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/polymarket-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text market summaries or JSON returned from shell command execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public API queries with optional result limits; no credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Polymarket prices can be mistaken for financial advice or trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as public market data and avoid trade execution or financial advice.
+
+Risk: Remote market strings displayed in terminal output can be unsafe or misleading if reused without review.
+
+Mitigation: Review terminal-rendered output before reuse and sanitize remote strings before downstream processing.
+
+Risk: Broad or repeated public API queries can create unnecessary service load.
+
+Mitigation: Limit requests to the market, search term, slug, event, or result count the user explicitly asks for.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/polymarket-api-hardened)
+- [Publisher profile](https://clawhub.ai/user/snazar-faberlens)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [Faberlens Polymarket API safety report](https://faberlens.ai/explore/polymarket-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with shell commands, terminal text, and optional JSON API data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries Polymarket public API endpoints without credentials; results can include market questions, outcome prices, volumes, liquidity, status, and dates when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

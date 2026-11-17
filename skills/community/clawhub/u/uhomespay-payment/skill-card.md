@@ -1,45 +1,61 @@
-## Description: <br>
-Guides Chinese study-abroad users through overseas tuition, rent, and insurance payment channel comparison, covering official options such as Flywire and Convera and directing actual transactions to uhomespay.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides payment-comparison guidance for Chinese international students and families paying overseas tuition, rent, and insurance through channels such as Flywire and Convera, with handoff to uhomespay.com for transactions.
 
-## Publisher: <br>
-[yalding8](https://clawhub.ai/user/yalding8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yalding8](https://clawhub.ai/user/yalding8)
 
-## Use Case: <br>
-External students and parents use this skill to identify the study-abroad payment scenario, compare supported official payment channels for a school or bill type, and move to uhomespay.com for current pricing and transaction handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may rely on payment channel guidance for large study-abroad payments without independently confirming the official recipient, current fees, exchange rate, or refund terms. <br>
-Mitigation: Before paying, verify the university-approved payment channel, recipient, fees, exchange rate, refund terms, and official uhomespay contact details. <br>
-Risk: Users may share unnecessary personal, student, or payment details in chat while seeking payment help. <br>
-Mitigation: Avoid collecting or sharing unnecessary personal or payment details in chat; handle transaction-specific information only through the relevant payment provider or official uhomespay contact paths. <br>
+## Use Case:
 
+External users, especially Chinese international students and parents, use this skill to identify tuition, rent, and insurance payment scenarios, compare supported official payment channels, and decide when to visit uhomespay.com for current fee and rate information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yalding8/uhomespay-payment) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yalding8) <br>
-- [Uhomespay homepage](https://www.uhomespay.com) <br>
-- [Channel details reference](artifact/references/channels.md) <br>
-- [Country routing reference](artifact/references/country-routing.md) <br>
-- [Trust and safety reference](artifact/references/trust-and-safety.md) <br>
+### Deployment Geography for Use:
 
+Global, with artifact examples covering China-origin payments to overseas schools and housing providers in the UK, Australia, United States, Canada, New Zealand, and Europe.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, links] <br>
-**Output Format:** [Markdown guidance with scenario-specific payment channel discussion and tracked uhomespay.com links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not provide fixed exchange-rate numbers; directs users to uhomespay.com for current prices and payment completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The security summary reports that the skill broadly steers payment questions into a tracked commercial payment funnel with privacy and neutrality gaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the uhomespay-oriented referral posture and independently compare school-approved payment channels, fees, cashback terms, licensing, refunds, and support processes before relying on the recommendation.
+
+Risk: School, payment amount, and payment-purpose context may be discussed in chat or encoded in referral tracking links.
+
+Mitigation: Avoid sharing unnecessary personal, order, or account details in chat; use official school, payment-provider, or uhomespay support channels for sensitive account and transaction issues.
+
+Risk: Payment-channel availability, fees, exchange rates, cashback, and refund terms can change.
+
+Mitigation: Verify current payment options and terms directly with the school, payment provider, or uhomespay.com before initiating a payment.
+
+## Reference(s):
+
+- [Channel Details Reference](artifact/references/channels.md)
+- [Country Routing Reference](artifact/references/country-routing.md)
+- [Trust and Safety Reference](artifact/references/trust-and-safety.md)
+- [Uhomespay Homepage](https://www.uhomespay.com)
+- [ClawHub Skill Page](https://clawhub.ai/yalding8/skills/uhomespay-payment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational guidance with payment-channel comparisons, safety notes, support routing, and uhomespay.com links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include UTM-tagged uhomespay.com referral links; should avoid exact real-time exchange-rate figures and route users to current provider or school information.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-SVG.js is a lightweight, zero-dependency SVG manipulation and animation library with a chainable API for creating, positioning, transforming, and animating SVG shapes, text, images, groups, gradients, masks, patterns, and text paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SVG.js is a documentation-only skill for using the lightweight SVG manipulation and animation library, covering chainable APIs for creating, positioning, styling, animating, importing, and exporting SVG elements.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill as concise SVG.js reference material when drawing SVG, animating vector graphics, building data visualizations, creating SVG-based UI components, or manipulating the SVG DOM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples copied into a project may add or rely on the @svgdotjs/svg.js dependency. <br>
-Mitigation: Review dependency additions and project compatibility before using copied examples in production code. <br>
-Risk: SVG import and export examples can handle SVG, HTML, or XML strings. <br>
-Mitigation: Sanitize untrusted markup and review generated SVG or DOM changes before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill when generating or reviewing SVG.js code for vector graphics, data visualizations, SVG-based UI components, animation flows, and SVG DOM manipulation.
 
-## Reference(s): <br>
-- [Shapes](references/shapes.md) <br>
-- [Text, Images, Masks, Gradients](references/text-image.md) <br>
-- [Manipulating Elements](references/manipulating.md) <br>
-- [Animating](references/animating.md) <br>
-- [Container Elements](references/containers.md) <br>
-- [Events](references/events.md) <br>
-- [Utilities](references/utilities.md) <br>
-- [Utility Classes](references/classes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and inline npm/import commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces reference guidance only and does not execute code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated SVG.js guidance may import or transform SVG, HTML, or XML from untrusted sources if copied directly into an application.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the npm package used by the project and sanitize or review untrusted SVG, HTML, and XML before importing it.
+
+Risk: Examples may produce invisible or incorrect SVG output when required sizing, animation chaining, container geometry, text layout, or path structure constraints are missed.
+
+Mitigation: Review generated code for explicit SVG size(), correct animate() sequencing, appropriate nested containers, explicit text line handling, and matching path command structures.
+
+## Reference(s):
+
+- [Shape Elements](references/shapes.md)
+- [Text, Images, Masks, Gradients](references/text-image.md)
+- [Manipulating Elements](references/manipulating.md)
+- [Animating](references/animating.md)
+- [Container Elements](references/containers.md)
+- [Events](references/events.md)
+- [Utilities](references/utilities.md)
+- [Utility Classes](references/classes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no hidden runtime behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

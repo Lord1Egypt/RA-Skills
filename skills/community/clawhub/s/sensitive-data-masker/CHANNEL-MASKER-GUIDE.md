@@ -277,7 +277,7 @@ DEPLOY_PASS="DeployPass123"
 
 **用户**：
 ```
-使用 sk-1234567890abcdefghijklmnop 调用 API
+使用 REDACTED-SECRET 调用 API
 ```
 
 **脱敏后发送给大模型**：
@@ -292,7 +292,7 @@ DEPLOY_PASS="DeployPass123"
 
 **本地还原显示**：
 ```
-已使用 sk-1234567890abcdefghijklmnop 完成调用
+已使用 REDACTED-SECRET 完成调用
 ```
 
 ---

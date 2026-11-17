@@ -1,41 +1,54 @@
-## Description: <br>
-Manage Apple Reminders via the `remindctl` CLI on macOS (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Apple Reminders via the `remindctl` CLI on macOS, including listing, adding, editing, completing, and deleting reminders with list filters, date filters, and JSON or plain-text output.
 
-## Publisher: <br>
-[landercortazarromero](https://clawhub.ai/user/landercortazarromero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[landercortazarromero](https://clawhub.ai/user/landercortazarromero)
 
-## Use Case: <br>
-Developers and macOS users use this skill to view, create, edit, complete, and delete Apple Reminders from an agent-assisted terminal workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required Reminders permission allows the CLI to read, modify, complete, or delete reminders and lists. <br>
-Mitigation: Grant Reminders access only on trusted Macs and review destructive commands, especially delete and list-delete operations, before running them. <br>
-Risk: The skill depends on installing `remindctl` from the Homebrew tap `steipete/tap` or another upstream source. <br>
-Mitigation: Install only if the Homebrew tap or upstream project is trusted in the deployment environment. <br>
+## Use Case:
 
+Developers and macOS users use this skill to have an agent propose `remindctl` commands for viewing and managing Apple Reminders from the terminal. It is useful for reminder workflows that need list filtering, date-based views, scripting output, or batch completion and deletion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/landercortazarromero/korta-apple-reminders) <br>
-- [remindctl GitHub repository](https://github.com/steipete/remindctl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output options including JSON, plain text, and counts-only formats.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS-only; requires the `remindctl` binary and Apple Reminders permission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide users to grant remindctl access to Apple Reminders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and authorize remindctl only on Macs where the user is comfortable allowing terminal-based access to reminder data.
+
+Risk: Delete commands, especially commands using --delete or --force, may remove reminder data.
+
+Mitigation: Check list names and reminder IDs before running destructive commands, and prefer viewing the target reminders first.
+
+## Reference(s):
+
+- [Korta Apple Reminders on ClawHub](https://clawhub.ai/landercortazarromero/skills/korta-apple-reminders)
+- [remindctl project homepage](https://github.com/steipete/remindctl)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; referenced command output may be JSON, plain text, TSV, or counts-only.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only; requires the remindctl binary and Apple Reminders permission on the Mac where commands run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

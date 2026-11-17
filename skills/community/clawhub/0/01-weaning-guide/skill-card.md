@@ -1,41 +1,54 @@
-## Description: <br>
-Miki辅食指导 · 输入宝宝月龄+已添加食物+过敏史，输出当前阶段判断+下一步推荐+示例食谱 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Miki辅食指导：根据宝宝月龄、已添加食物和过敏史，输出当前辅食阶段判断、下一步食物推荐和示例食谱。
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Parents and caregivers use this skill to classify a baby's weaning stage from age, foods already tried, and allergy history, then receive next-food recommendations, cautions, and sample meals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports a suspicious full-access review helper default in the broader maintainer bundle. <br>
-Mitigation: Install only in a trusted ClawHub maintainer environment and disable full-access autoreview defaults unless intentionally needed. <br>
-Risk: The skill provides caregiver-facing nutrition guidance that may be inappropriate for babies with complex medical needs or severe allergy symptoms. <br>
-Mitigation: Review outputs before use, treat severe allergic symptoms as urgent, and seek qualified medical care for allergy reactions or individualized dietary concerns. <br>
+## Use Case:
 
+Parents, caregivers, and parenting-support agents use this skill to structure Chinese-language infant complementary-feeding guidance by age, known foods, and allergy history. It helps produce stage assessment, next-food recommendations, safety notes, and simple meal examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/01-weaning-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text with structured sections and meal recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Personalized from baby age, existing foods, allergy history, and a free-form caregiver question.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill provides general infant-feeding guidance that may be mistaken for pediatric medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should consult a pediatric clinician for allergies, choking risk, illness, poor growth, severe reactions, or individualized medical concerns.
+
+Risk: Food-allergy and choking situations can require urgent action beyond a general feeding plan.
+
+Mitigation: Treat allergy symptoms, breathing difficulty, and high-risk feeding concerns as reasons to stop the food and seek medical care.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/01-weaning-guide)
+- [Publisher profile](https://clawhub.ai/user/nic-yuan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language feeding guidance based on user-provided infant age, added foods, allergy history, and question.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

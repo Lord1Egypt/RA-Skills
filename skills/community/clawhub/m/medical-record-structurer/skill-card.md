@@ -1,44 +1,60 @@
-## Description: <br>
-Medical Record Structurer converts oral, handwritten, or free-text clinical notes into standardized electronic medical record fields with optional payment, OCR, and speech-to-text integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structures unstructured medical notes into standardized electronic medical record fields with text, file, batch, demo, and SkillPay-enabled usage paths.
 
-## Publisher: <br>
-[Andyxcg](https://clawhub.ai/user/Andyxcg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyxcg](https://clawhub.ai/user/andyxcg)
 
-## Use Case: <br>
-Healthcare operators, clinicians, and developers can use this skill to transform unstructured medical notes into structured EMR JSON for review, filing, or downstream clinical documentation workflows. Outputs should be verified by qualified healthcare professionals before use in care decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Under-disclosed self-modifying background code may change skill behavior after review. <br>
-Mitigation: Review or remove auto-evolve-daemon.sh and scripts/self_evolve.py before installation, and re-scan any modified package before deployment. <br>
-Risk: The skill handles sensitive medical records and may write PHI to output files or interact with billing, OCR, or speech-to-text services. <br>
-Mitigation: Use real patient data only after verifying data flows, consent, retention, access controls, and applicable healthcare compliance requirements. <br>
-Risk: Structured medical record output may be incomplete or inaccurate. <br>
-Mitigation: Require review by qualified healthcare professionals before using outputs in clinical documentation or care decisions. <br>
+## Use Case:
 
+Healthcare developers and operators can use this skill to convert clinical notes, patient histories, and other unstructured medical text into structured EMR-style records. Because the artifact handles sensitive medical information, outputs and deployment controls should be reviewed before use with real PHI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Andyxcg/medical-record-structurer) <br>
-- [EMR Schema Reference](references/emr-schema.md) <br>
-- [Skillpay.me API Reference](references/skillpay-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Structured EMR JSON returned through Python functions or printed/saved by command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output may include patient demographics, clinical fields, treatment plan fields, metadata, trial or billing status, and optionally the original source text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The server security verdict is suspicious because the package includes an unbounded self-evolution daemon and overstated privacy claims around sensitive medical data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this package carefully before installing, do not run auto-evolve-daemon.sh or scripts/self_evolve.py, and scan the package before deployment.
+
+Risk: The skill processes medical records that may contain PHI, while the inspected evidence does not support all advertised encryption, hashing, audit logging, and no-storage claims.
+
+Mitigation: Avoid processing real PHI unless independent privacy, retention, encryption, access control, and audit controls are in place and verified.
+
+Risk: Non-demo usage can call external billing endpoints and write local trial or subscription state.
+
+Mitigation: Review SkillPay configuration, outbound network policy, and local state paths before enabling paid or trial workflows.
+
+## Reference(s):
+
+- [EMR schema reference](artifact/references/emr-schema.md)
+- [SkillPay API reference](artifact/references/skillpay-api.md)
+- [ClawHub skill page](https://clawhub.ai/andyxcg/skills/medical-record-structurer)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON EMR records with Markdown usage guidance and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured records include patient demographics, clinical information, assessment and plan fields, provider information, and processing metadata.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

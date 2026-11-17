@@ -1,38 +1,49 @@
-## Description: <br>
-中国河流分布情况查询，包含七大水系、主要河流及流域信息 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供中国主要河流、七大水系、流域面积、区域分布特征和湖泊分布信息。
 
-## Publisher: <br>
-[anmu14641](https://clawhub.ai/user/anmu14641) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anmu14641](https://clawhub.ai/user/anmu14641)
 
-## Use Case: <br>
-External users and agents use this skill as a Chinese geography reference for answering questions about China's major rivers, seven main river systems, drainage basins, regional distribution patterns, and lake areas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static geography data may be outdated or imprecise for high-stakes use. <br>
-Mitigation: Verify river, basin, and hydrology facts against authoritative sources when precision matters. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language questions about the distribution of China's rivers, major river systems, basin areas, regional river characteristics, and lake regions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmu14641/china-rivers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference text with tables and question-answer entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static Chinese-language geography reference content; verify factual precision with authoritative sources when accuracy matters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Geography and hydrology facts may become outdated because the skill is static educational content with cited source names but no live verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For current, operational, or high-impact uses, verify facts against authoritative geography or water-resources sources before relying on the answer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anmu14641/skills/china-rivers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text in Chinese with tables, bullet lists, and Q&A.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static educational reference content; no tool calls, credentials, permissions, persistent access, or live data retrieval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

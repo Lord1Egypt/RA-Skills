@@ -1,53 +1,70 @@
-## Description: <br>
-AI search enhancement tool. Prioritizes authoritative sources for research and fact-checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AISEACT guides agents to plan searches, prioritize primary and authoritative sources, filter low-quality sources, and cross-verify findings for research and fact-checking.
 
-## Publisher: <br>
-[stephenlzc](https://clawhub.ai/user/stephenlzc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenlzc](https://clawhub.ai/user/stephenlzc)
 
-## Use Case: <br>
-External users and research-focused agents use AISEACT to plan web searches, prioritize authoritative sources, cross-check claims, and cite source URLs with uncertainty noted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The registry security summary says the skill can affect searches more broadly than the main skill documentation suggests, especially when autonomous mode is enabled. <br>
-Mitigation: Keep manual invocation enabled unless autonomous use is intentional, and verify when the agent says it is applying AISEACT methodology. <br>
-Risk: The source-quality framework may filter or deprioritize sources in ways that reflect documented methodological bias. <br>
-Mitigation: Use overrides such as "Show all sources," "Include [source]," or lower strictness settings when broader or alternative-source coverage is needed. <br>
-Risk: Server-resolved provenance is unavailable for this version. <br>
-Mitigation: Confirm package provenance and review the submitted skill files before relying on the source lists or enabling autonomous behavior. <br>
+## Use Case:
 
+External users and developers use AISEACT when they want web research with explicit source planning, authority ranking, and cross-validation. It is most useful for business, technical, policy, academic, and fact-checking tasks where source quality matters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stephenlzc/aiseact) <br>
-- [Publisher profile](https://clawhub.ai/user/stephenlzc) <br>
-- [Provenance unavailable](No server-resolved GitHub import provenance is stored for this version.) <br>
-- [Configuration Guide](CONFIGURATION.md) <br>
-- [Security Information](SECURITY.md) <br>
-- [Trust & Transparency Report](TRUST.md) <br>
-- [Quick Reference](references/quick-reference.md) <br>
-- [Authoritative Sources Recommendation List](references/authority-sources.md) <br>
-- [Search Strategies and Techniques](references/search-strategies.md) <br>
-- [Unreliable Sources Reference](references/unreliable-sources.md) <br>
-- [AISEACT Reference Cases](references/case-studies.md) <br>
-- [Workflow Reference](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with source citations, source-quality notes, and uncertainty statements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code, dependencies, credentials, or custom network endpoints are described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Source guidance may narrow results toward official, mainstream, or pre-rated sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the default manual mode, request diverse viewpoints when needed, and use documented overrides to include specific sources.
+
+Risk: Source ratings and reference lists may become stale or reflect methodological bias.
+
+Mitigation: Check current primary sources for important claims and adjust strictness, language, or region preferences for the research context.
+
+Risk: Autonomous invocation can change normal search behavior if enabled.
+
+Mitigation: Use autonomous mode only by explicit configuration choice and apply the documented skip commands when standard search is preferred.
+
+Risk: Modified skill files could change search guidance.
+
+Mitigation: Review SKILL.md and reference documents before deployment; the release evidence reports no executable code, credential access, persistence, or hidden data handling.
+
+## Reference(s):
+
+- [AISEACT ClawHub listing](https://clawhub.ai/stephenlzc/skills/aiseact)
+- [Configuration Guide](CONFIGURATION.md)
+- [Trust & Transparency Report](TRUST.md)
+- [Security Information](SECURITY.md)
+- [Quick Source Reference](references/quick-reference.md)
+- [Authoritative Sources Recommendation List](references/authority-sources.md)
+- [AISEACT Detailed Workflow](references/workflow.md)
+- [Search Strategies and Techniques](references/search-strategies.md)
+- [Unreliable Sources Reference](references/unreliable-sources.md)
+- [Reference Cases](references/case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown text with citations, source-quality notes, and optional configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include URLs, source reliability labels, uncertainty notes, and user-requested source overrides.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

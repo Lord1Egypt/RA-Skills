@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>{{TITLE}} — Lenormand Reading</title>
+<style>
+  :root {
+    --parchment:   #f5f4ed;
+    --near-black:  #141413;
+    --dark-warm:   #3d3d3a;
+    --stone:       #6b6a64;
+    --brand:       #1B365D;
+    --border:      #e8e6dc;
+    --border-soft: #e5e3d8;
+    --positive:    #E1F5EE; --positive-text: #085041;
+    --negative:    #FAECE7; --negative-text: #6B2F1A;
+    --neutral:     #EEEDFE;  --neutral-text: #3C3489;
+    --serif: "Chiron Sung HK", "Chiron Sung HK WS", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm 22mm 22mm 22mm;
+    background: var(--parchment);
+    @top-right { content: string(section-title); font-size: 8pt; color: var(--stone); font-family: var(--serif); }
+    @bottom-center { content: counter(page) "  \00b7  Lenormand Reading"; font-family: var(--serif); font-size: 9pt; color: var(--stone); }
+  }
+  @page:first { @top-right { content: ""; } @bottom-center { content: ""; } }
+  @page:nth(1) { @top-right { content: ""; } @bottom-center { content: ""; } }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--parchment);
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+
+  .cover { string-set: section-title ""; break-after: page; }
+  .cover-top { margin-bottom: 8mm; }
+  .cover-label {
+    font-size: 10pt; color: var(--brand); letter-spacing: 2pt;
+    text-transform: uppercase; margin-bottom: 8mm;
+  }
+  .cover-title {
+    font-size: 28pt; font-weight: 500; color: var(--near-black);
+    line-height: 1.3; max-width: 85%;
+    border-left: 4pt solid var(--brand); padding-left: 12mm;
+  }
+  .cover-date { font-size: 11pt; color: var(--stone); margin-top: 6mm; }
+
+  .cover-cards { margin: 10mm 0 8mm 0; }
+  .cover-cards h2 {
+    font-size: 13pt; font-weight: 500; color: var(--brand);
+    text-align: center; margin-bottom: 5mm;
+    border-bottom: 1pt solid var(--border); padding-bottom: 2mm;
+    display: inline-block;
+  }
+
+  .card-svg { }
+  .card-svg.center-card { outline: 2pt solid var(--brand); outline-offset: 2pt; }
+
+  .spread-layout { display: flex; justify-content: center; align-items: center; }
+  .spread-three { gap: 5mm; padding-bottom: 4mm; }
+  .spread-five  { gap: 3mm; padding-bottom: 4mm; }
+  .spread-box-row { display: flex; justify-content: center; gap: 4mm; margin-bottom: 4mm; }
+
+  .card-arrow { font-size: 24pt; color: var(--brand); font-family: var(--serif); }
+  .card-stack { display: flex; flex-direction: column; align-items: center; gap: 2mm; }
+  .card-stack-name { font-size: 8pt; color: var(--stone); text-align: center; font-weight: 400; }
+  .spread-labels { display: flex; justify-content: center; gap: 5mm; margin-top: 2mm; }
+  .spread-labels span { width: 90px; text-align: center; font-size: 9pt; color: var(--stone); }
+
+  .cover-bottom { border-top: 1pt solid var(--border); padding-top: 6mm; }
+  .cover-meta { font-size: 9pt; color: var(--stone); }
+  .cover-cards-preview { font-size: 14pt; color: var(--dark-warm); margin-top: 3mm; letter-spacing: 1pt; }
+
+  .chapter h2 {
+    string-set: section-title attr(data-short);
+    font-size: 16pt; font-weight: 500; color: var(--brand);
+    margin-top: 10mm; margin-bottom: 4mm;
+    border-bottom: 1pt solid var(--border); padding-bottom: 2mm;
+  }
+  .chapter:first-of-type h2 { margin-top: 0; }
+  .chapter p {
+    font-size: 10.5pt; line-height: 1.55; letter-spacing: 0.3pt;
+    color: var(--near-black); margin-bottom: 3mm; text-align: justify;
+  }
+  .combination {
+    margin: 4mm 0; padding: 3mm 5mm;
+    background: var(--border-soft); border-left: 3pt solid var(--brand);
+    border-radius: 0 4pt 4pt 0;
+  }
+  .combo-label { font-size: 10pt; font-weight: 500; color: var(--brand); margin-bottom: 1mm; }
+  .takeaway {
+    margin-top: 6mm; padding: 4mm 6mm;
+    background: var(--brand); color: #f5f4ed;
+    border-radius: 4pt; font-size: 11pt; line-height: 1.5;
+  }
+  .takeaway p { color: inherit; }
+</style>
+<!-- Fonts: Google Fonts primary, CN mirror fallback -->
+<link id="font-css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&family=Chiron+Sung+HK:ital,wght@0,200..900;1,200..900&display=swap">
+<script>
+(function(){var t=setTimeout(function(){var l=document.getElementById('font-css');if(l)l.href=l.href.replace('fonts.googleapis.com','fonts.loli.net');},2500);document.fonts.ready.then(function(){clearTimeout(t);});})();
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="g" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0L72 72M0 72L72 72" fill="none" stroke="#7A8B7A" stroke-width="0.3" opacity=".12"/>
+    </pattern>
+    <pattern id="sg" width="18" height="18" patternUnits="userSpaceOnUse">
+      <path d="M18 0L18 18M0 18L18 18" fill="none" stroke="#7A8B7A" stroke-width="0.2" opacity=".06"/>
+    </pattern>
+  </defs>
+</svg>
+
+<section class="cover">
+  <div class="cover-top">
+    <p class="cover-label">{{SPREAD_LABEL}}</p>
+    <h1 class="cover-title">{{TITLE}}</h1>
+    <p class="cover-date">{{DATE}}</p>
+  </div>
+
+  <div class="cover-cards">
+    <h2>{{SPREAD_TITLE}}</h2>
+
+    <!-- BEGIN_SPREAD_THREE -->
+    <div class="spread-layout spread-three">
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="112" height="168">{{CARD_1_SVG}}</svg>
+      <div class="card-arrow">→</div>
+      <svg class="card-svg center-card" viewBox="0 0 1024 1536" width="112" height="168">{{CARD_2_SVG}}</svg>
+      <div class="card-arrow">→</div>
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="112" height="168">{{CARD_3_SVG}}</svg>
+    </div>
+    <div class="spread-labels">
+      <span>{{POS1}}</span><span></span><span>{{POS2}}</span><span></span><span>{{POS3}}</span>
+    </div>
+    <!-- END_SPREAD_THREE -->
+
+    <!-- BEGIN_SPREAD_FIVE -->
+    <div class="spread-layout spread-five">
+      <div class="card-stack">
+        <svg class="card-svg" viewBox="0 0 1024 1536" width="85" height="128">{{CARD_1_SVG}}</svg>
+        <span class="card-stack-name">{{POS1}}</span>
+      </div>
+      <div class="card-arrow">→</div>
+      <div class="card-stack">
+        <svg class="card-svg" viewBox="0 0 1024 1536" width="85" height="128">{{CARD_2_SVG}}</svg>
+        <span class="card-stack-name">{{POS2}}</span>
+      </div>
+      <div class="card-arrow">→</div>
+      <div class="card-stack">
+        <svg class="card-svg center-card" viewBox="0 0 1024 1536" width="85" height="128">{{CARD_3_SVG}}</svg>
+        <span class="card-stack-name">{{POS3}}</span>
+      </div>
+      <div class="card-arrow">→</div>
+      <div class="card-stack">
+        <svg class="card-svg" viewBox="0 0 1024 1536" width="85" height="128">{{CARD_4_SVG}}</svg>
+        <span class="card-stack-name">{{POS4}}</span>
+      </div>
+      <div class="card-arrow">→</div>
+      <div class="card-stack">
+        <svg class="card-svg" viewBox="0 0 1024 1536" width="85" height="128">{{CARD_5_SVG}}</svg>
+        <span class="card-stack-name">{{POS5}}</span>
+      </div>
+    </div>
+    <!-- END_SPREAD_FIVE -->
+
+    <!-- BEGIN_SPREAD_BOX -->
+    <div class="spread-box-row">
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_1_SVG}}</svg>
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_2_SVG}}</svg>
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_3_SVG}}</svg>
+    </div>
+    <div class="spread-box-row">
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_4_SVG}}</svg>
+      <svg class="card-svg center-card" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_5_SVG}}</svg>
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_6_SVG}}</svg>
+    </div>
+    <div class="spread-box-row">
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_7_SVG}}</svg>
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_8_SVG}}</svg>
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="80" height="120">{{CARD_9_SVG}}</svg>
+    </div>
+    <!-- END_SPREAD_BOX -->
+
+    <!-- BEGIN_SPREAD_YESNO -->
+    <div class="spread-layout" style="flex-direction:column; padding-bottom:10mm;">
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="130" height="195">{{CARD_1_SVG}}</svg>
+      <p style="margin-top:6mm; font-size:18pt; font-weight:500; letter-spacing:3pt;">{{VERDICT}}</p>
+    </div>
+    <!-- END_SPREAD_YESNO -->
+
+    <!-- BEGIN_SPREAD_TWO -->
+    <div class="spread-layout" style="gap:8mm; padding-bottom:10mm;">
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="110" height="165">{{CARD_1_SVG}}</svg>
+      <div class="card-arrow">+</div>
+      <svg class="card-svg" viewBox="0 0 1024 1536" width="110" height="165">{{CARD_2_SVG}}</svg>
+    </div>
+    <!-- END_SPREAD_TWO -->
+  </div>
+
+  <div class="cover-bottom">
+    <p class="cover-meta">Lenormand Reading · In the Cards</p>
+    <p class="cover-cards-preview">{{CARD_NAMES_LIST}}</p>
+  </div>
+</section>
+
+<!-- CHAPTER_LOOP_START -->
+<section class="chapter" style="break-before: page;">
+  <h2 data-short="{{SHORT_TITLE}}">{{CHAPTER_TITLE}}</h2>
+  {{CHAPTER_CONTENT}}
+</section>
+<!-- CHAPTER_LOOP_END -->
+
+</body>
+</html>

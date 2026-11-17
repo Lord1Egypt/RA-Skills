@@ -1,40 +1,49 @@
-## Description: <br>
-Facilitates coordinated crisis response using multiple agents to assess, investigate, fix, and document critical production issues efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facilitates coordinated crisis response using multiple agents to assess, investigate, fix, and document critical production issues efficiently.
 
-## Publisher: <br>
-[amdf01-debug](https://clawhub.ai/user/amdf01-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amdf01-debug](https://clawhub.ai/user/amdf01-debug)
 
-## Use Case: <br>
-Developers and operations teams use this skill to run a structured incident-response workflow for production outages, critical user-impacting bugs, urgent deadlines, or complex investigations that benefit from parallel agent roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases could shift the agent into incident-response mode when user intent is ambiguous. <br>
-Mitigation: Invoke the skill with explicit wording and confirm the active incident context before following the protocol. <br>
-Risk: Urgent workflows can lead to proposed production changes, reverts, or emergency actions under time pressure. <br>
-Mitigation: Review proposed production changes, reverts, and emergency actions before allowing them. <br>
+## Use Case:
 
+Developers and incident responders use this skill to coordinate urgent production debugging, assign investigation roles, maintain a status cadence, and document resolution follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amdf01-debug/sw-war-room) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured incident-response protocol with role assignments, status cadence, and resolution checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases such as "critical issue" or "emergency fix" may activate the incident-response workflow during ordinary debugging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants incident-response coordination before assigning roles, coordinating fixes, or creating shared state notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amdf01-debug/skills/sw-war-room)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Incident-response prompts, role assignments, status cadence, and resolution checklist guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

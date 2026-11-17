@@ -1,39 +1,52 @@
-## Description: <br>
-Simplifies and refines code for clarity, consistency, and maintainability while preserving all functionality. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simplifies and refines recently changed code for clarity, consistency, and maintainability while preserving functionality.
 
-## Publisher: <br>
-[tobiaswestholm](https://clawhub.ai/user/tobiaswestholm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tobiaswestholm](https://clawhub.ai/user/tobiaswestholm)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers use this skill to clean up recently modified code by simplifying structure, applying project conventions, and preserving behavior during refactoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Refactoring guidance or code edits can unintentionally change behavior.
+
+Mitigation: Review resulting diffs and run the project's relevant tests before accepting changes.
+
+Risk: Applying the skill outside its intended scope can create unnecessary code churn.
+
+Mitigation: Limit use to recently modified code unless a broader cleanup is explicitly requested.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to simplify recently modified code for clarity, consistency, and maintainability while preserving behavior. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Code refinement guidance or edits can affect local files under the user's authenticated permissions. <br>
-Mitigation: Review proposed changes before applying them and run the project's normal tests or checks after edits. <br>
+**Output Format:** [Markdown prose with code changes or patch-oriented guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobiaswestholm/simplify-code) <br>
-- [Publisher profile](https://clawhub.ai/user/tobiaswestholm) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown prose with code edits or diffs when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves existing behavior while focusing on recently modified code unless directed otherwise.] <br>
+1.0.2 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.2 <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

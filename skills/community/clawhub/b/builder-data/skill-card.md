@@ -1,44 +1,56 @@
-## Description: <br>
-Query builder reputation data via Talent Protocol API. Get Builder Rank, verify humans, resolve identities (Twitter/Farcaster/GitHub/wallet), search by location/country, get credentials, and enrich with GitHub data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query builder reputation data via Talent Protocol API, including Builder Rank, human verification, identity resolution, location search, credentials, and GitHub enrichment.
 
-## Publisher: <br>
-[JuampiHernandez](https://clawhub.ai/user/JuampiHernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juampihernandez](https://clawhub.ai/user/juampihernandez)
 
-## Use Case: <br>
-Developers and operators use this skill to query Talent Protocol for builder reputation, identity resolution, location-based discovery, credentials, and project signals. It can also enrich resolved GitHub identities with public profile, repository, and activity data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries can send handles, wallet addresses, locations, and profile identifiers to Talent Protocol, and GitHub usernames to GitHub when enrichment is used. <br>
-Mitigation: Use the skill only for appropriate profile lookups, avoid unnecessary broad searches, and be cautious when correlating identity, wallet, reputation, location, and public GitHub data. <br>
-Risk: API tokens can be exposed if pasted into chats, commands, or logs. <br>
-Mitigation: Keep TALENT_API_KEY and GITHUB_TOKEN in environment variables or a secret store, and use the GitHub token only when higher rate limits are needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JuampiHernandez/builder-data) <br>
-- [Talent Protocol](https://talent.app) <br>
-- [Talent API data issuers and credentials](https://docs.talentprotocol.com/docs/talent-api/api-reference/get-data-issuers-and-credentials-available) <br>
-- [Endpoints](references/endpoints.md) <br>
-- [Use Cases](references/use-cases.md) <br>
-- [GitHub Enrichment](references/github-enrichment.md) <br>
+## Use Case:
 
+Developers and technical operators use this skill to query Talent Protocol profiles, builder ranks, identity links, credentials, and related GitHub activity for builder discovery and reputation analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, JSON] <br>
-**Output Format:** [Markdown with inline curl commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TALENT_API_KEY for Talent Protocol requests and optional GITHUB_TOKEN for higher GitHub rate limits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can query external Talent Protocol and GitHub services using profile, identity, wallet, credential, or activity data.
+
+Mitigation: Use a limited Talent API key, use an unscoped GitHub token for public data when needed, and request sensitive identity or credential lookups only when required for the task.
+
+Risk: Builder rank, credentials, human verification, and GitHub activity can be incomplete, stale, or privacy-sensitive.
+
+Mitigation: Treat returned data as external API results, cite or preserve source context when presenting findings, and avoid overclaiming identity or reputation conclusions.
+
+## Reference(s):
+
+- [Talent Protocol](https://talent.app)
+- [Talent API data issuers and credentials documentation](https://docs.talentprotocol.com/docs/talent-api/api-reference/get-data-issuers-and-credentials-available)
+- [Endpoints](artifact/references/endpoints.md)
+- [Use Cases](artifact/references/use-cases.md)
+- [GitHub Enrichment](artifact/references/github-enrichment.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with API request examples and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Talent Protocol and GitHub API query examples; ranks are the default reputation output unless scores are explicitly requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

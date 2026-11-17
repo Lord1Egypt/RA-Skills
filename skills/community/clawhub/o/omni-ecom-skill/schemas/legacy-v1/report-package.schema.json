@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/report-package-1.0.json",
+  "title": "Omni E-commerce Report Package",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "run_id", "client_scope", "gate_status", "status", "title", "period", "scope", "data_gate", "metrics", "facts", "judgments", "actions", "missing_data", "sources", "provenance"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,80}$" },
+    "client_scope": { "type": "string", "minLength": 1 },
+    "gate_status": { "enum": ["PASS", "WARN", "BLOCKED"] },
+    "status": { "enum": ["data_blocked", "draft_diagnosis", "ready_for_review"] },
+    "title": { "type": "string", "minLength": 1 },
+    "period": { "type": "string", "minLength": 1 },
+    "scope": { "type": "object" },
+    "data_gate": { "type": "object" },
+    "metrics": { "type": "array" },
+    "facts": { "type": "array" },
+    "judgments": { "type": "array" },
+    "hypotheses": { "type": "array" },
+    "actions": { "type": "array" },
+    "missing_data": { "type": "array" },
+    "risks": { "type": "array" },
+    "sources": { "type": "array" },
+    "provenance": { "type": "object" }
+  }
+}

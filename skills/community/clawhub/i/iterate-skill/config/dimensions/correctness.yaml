@@ -1,0 +1,9 @@
+# Correctness review dimension
+name: "正确性"
+name_en: "Correctness"
+priority: critical
+focus: |
+  Crash risks: force-unwrap, out-of-bounds, nil/None dereference, division by zero.
+  Logic errors: inverted conditions, off-by-one, wrong boolean operators, stale state.
+  Concurrency: race conditions, deadlocks, unprotected shared mutable state.
+  Type mismatches, swallowed errors, silent except blocks.

@@ -1,39 +1,59 @@
-## Description: <br>
-Submit Dataify Facebook Event Builder tasks for event list URLs, event search URLs, or specific event URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect Facebook events from an event-list URL, event-search URL, or event URL.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Dataify Builder jobs for Facebook event collection by event list URL, event search URL, or specific event URL. The skill returns task identifiers and status so users can view results in Dataify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-facebook-events) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify Builder endpoint](https://scraperapi.dataify.com/builder?platform=1) <br>
+External users and developers use this skill to submit Dataify Builder jobs that collect Facebook event data from event list URLs, event search URLs, or specific event URLs, then monitor the task and return the collected result.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DATAIFY_API_TOKEN for authenticated Dataify Builder submissions, validates supported modes and Facebook URL inputs, and returns task_id/status when submission succeeds. Treat the token as sensitive, review target Facebook URLs before submission, and run only for intended Dataify Facebook event collection tasks.] <br>
+Global
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill sends Facebook event URLs and task parameters to Dataify and requires a Dataify API token.
+
+Mitigation: Use it only when sharing those inputs with Dataify is acceptable, configure DATAIFY_API_TOKEN outside chat, and never paste the token into conversation.
+
+Risk: The security review notes an unaudited sibling runtime that receives the API token.
+
+Mitigation: Review before installing and require the publisher to package or pin the task runtime before treating the release as low risk.
+
+Risk: Localized token-handling instructions are inconsistent.
+
+Mitigation: Follow the server security guidance and confirm token handling behavior before deployment.
+
+## Reference(s):
+
+- [Modes and Parameters](references/modes-and-parameters.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-facebook-events)
+- [Dataify Dashboard Login](https://dashboard.dataify.com/login?utm_source=skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task/result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit paid Dataify Builder tasks, monitor asynchronous task status, and return final JSON results or a resumable task ID.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

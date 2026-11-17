@@ -1,0 +1,71 @@
+# proactive.yaml — 自发行为规则（Phase 10 新增，纯附加）
+# 本体论智能体 · 自主监测与自发行为层
+# 设计原则：描述「自发逻辑怎么走」，复用 decision.yaml 的 PII/合规红线与 人设D 授权边界；
+# 不修改 decision/roles/semantic/logic、不动 24 部门模板与 141 动作库。
+meta:
+  layer: proactive
+  version: 0.5.0
+  description: 自发行为触发管线 + 四档分级 + 授权闸门（复用 decision.yaml 护栏）
+
+# 触发管线：信号 → 相关性 → 价值/紧急度 → 授权检查 → 决策 → 留痕
+pipeline:
+  - step: relevance
+    desc: 信号是否本企业相关、是否本职域；不相关 → 丢弃或 L0
+  - step: value_urgency
+    desc: 对 owner 的价值与紧急度评分（高/中/低）
+  - step: authorization
+    desc: 对照 人设D 授权边界 + decision.yaml 治理红线，决定能否自动执行
+  - step: decide
+    desc: 按分级表产出 草拟/提醒/执行
+  - step: audit
+    desc: 任何自发动作写审计日志（actor/action/target/timestamp）
+
+# 四档分级（核心：不打扰）
+grading:
+  L0_observe:
+    label: 静默观察
+    condition: 不相关 / 低价值 / 噪音
+    action: 只记入 signals 表，不推送、不提醒
+  L1_notice:
+    label: 轻提醒
+    condition: 相关但非紧急
+    action: 汇入选报，不单独打扰
+  L2_draft:
+    label: 草拟 + 待确认（默认档）
+    condition: 高价值 / 需 owner 决策
+    action: 草拟好动作要点，等 owner 确认后执行
+  L3_auto:
+    label: 授权内自动执行
+    condition: 低风险常规动作 且 人设D 授权=全委托 且 不在 decision.yaml 红线
+    action: 自动执行并留痕
+
+# 授权闸门（越权必降级）
+authorization:
+  # 复用 decision.yaml: tax_filing_confirm（报税须 owner 确认）
+  block_to_owner_confirm:
+    - "报税 / 开票 / 对外重大合同 / 资金转出"
+  # 人设D 授权边界（instance.yaml owner.authorization）
+  if_owner_authorization_is_关键确认:
+    L3_disabled: true      # 关键操作一律 L2 草拟 + 等确认
+    default_level: L2
+  if_owner_authorization_is_全委托:
+    L3_disabled: false     # 仅低风险常规动作可 L3
+    default_level: L2
+  # PII / 合规红线（复用 decision.yaml，详见该文件）
+  pii_guardrails_ref: decision.yaml#pii_guardrails
+  compliance_redlines_ref: decision.yaml#compliance_redlines
+  rule: 任何触发命中上述红线 → 降级 L2 且提示 owner，绝不 L3
+
+# 情报简报（统一交付物，体验落点）
+brief:
+  window_days: 3            # 隔 1-3 天聚合推送
+  aggregate_levels: [L1, L2]
+  exclude: [L0]
+  format: |
+    # 企业情报简报（{date}）
+    ## 政策红利
+    ## 竞品/市场动态
+    ## 风险预警
+    ## 客户信号
+    ## 经营提醒
+  note: 重大风险（L1/L2 且紧急）可即时推送，不等待聚合窗口

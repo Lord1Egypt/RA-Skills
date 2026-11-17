@@ -1,11 +1,11 @@
 ---
 name: oo-ossinsight
-description: "OSS Insight (ossinsight.io). Use this skill for ANY OSS Insight request — searching and reading data. Whenever a task involves OSS Insight, use this skill instead of calling the API directly."
+description: "OSS Insight (ossinsight.io). Use this skill for ANY OSS Insight request — reading, creating, and updating data. Whenever a task involves OSS Insight, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "OSS Insight"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["ossinsight"]
   icon: "https://static.oomol.com/logo/third-party/ossinsight.png"
 ---
@@ -52,9 +52,9 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_stargazer_countries` — List countries or regions of stargazers for a GitHub repository.
 - `list_stargazer_organizations` — List organizations of stargazers for a GitHub repository.
 - `list_trending_repos` — List recently trending GitHub repositories from OSS Insight.
-- `rank_collection_repos_by_issues` — Rank repositories in an OSS Insight collection by issue growth.
-- `rank_collection_repos_by_pull_requests` — Rank repositories in an OSS Insight collection by pull request growth.
-- `rank_collection_repos_by_stars` — Rank repositories in an OSS Insight collection by star growth.
+- `rank_collection_repos_by_issues` — Rank repositories in an OSS Insight collection by issue growth. [write]
+- `rank_collection_repos_by_pull_requests` — Rank repositories in an OSS Insight collection by pull request growth. [write]
+- `rank_collection_repos_by_stars` — Rank repositories in an OSS Insight collection by star growth. [write]
 
 ## Safety
 
@@ -82,8 +82,11 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
   oo auth login
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - OSS Insight homepage: https://ossinsight.io
+- API documentation: https://ossinsight.io/docs/api

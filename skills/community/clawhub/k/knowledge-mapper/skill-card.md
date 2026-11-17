@@ -1,42 +1,58 @@
-## Description: <br>
-Notes Knowledge Mapper ingests Markdown/TXT notes or topic folders, extracts entities, similar ideas, relationships, and map views, and outputs searchable JSON or graph summaries plus follow-up questions with local-first analysis unless the user chooses otherwise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notes Knowledge Mapper analyzes Markdown and text notes to extract entities, relationships, searchable summaries, and graph views.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and developers use this skill to convert local Markdown/TXT notes into searchable entity lists, relationship maps, JSON summaries, text summaries, and GraphViz DOT exports for research, note-taking, and knowledge management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents added to the knowledge base are retained locally in the OpenClaw data directory. <br>
-Mitigation: Avoid adding highly sensitive notes on shared systems unless local file permissions and retention behavior have been reviewed. <br>
-Risk: The documented workflow can write GraphViz DOT or generated image files to user-selected paths. <br>
-Mitigation: Review output paths before running export or rendering commands, especially when redirecting output to existing files. <br>
+## Use Case:
 
+Developers, researchers, and note-taking users use this skill to turn local Markdown or text collections into searchable knowledge maps with entity lists, relationship summaries, and exportable graph formats.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/knowledge-mapper) <br>
-- [Publisher Profile](https://clawhub.ai/user/harrylabsj) <br>
-- [Artifact Documentation](artifact/SKILL_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; the described tool can produce text, JSON, and GraphViz DOT exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local SQLite-backed storage in the OpenClaw data directory and can export map files when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release and package.json) <br>
+Risk: The inspected artifact does not include the knowledge-graph CLI implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the executable implementation is present and review it before installing or running the skill.
+
+Risk: Imported notes are stored persistently in a local SQLite database.
+
+Mitigation: Avoid importing sensitive documents unless users have a retention and deletion plan for ~/.openclaw/data/knowledge-graph/.
+
+Risk: Graph image generation depends on optional GraphViz tooling.
+
+Mitigation: Install GraphViz before using DOT-to-image workflows, or rely on text and JSON exports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/knowledge-mapper)
+- [English skill documentation](artifact/SKILL_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, GraphViz DOT, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and exported text, JSON, or GraphViz DOT artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist imported note data in a local SQLite database under ~/.openclaw/data/knowledge-graph/.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

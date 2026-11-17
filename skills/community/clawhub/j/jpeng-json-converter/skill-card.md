@@ -1,37 +1,53 @@
-## Description: <br>
-Converts JSON to other formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert JSON to other formats.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert JSON inputs to other formats and automate JSON data processing tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires JSON_API_KEY and may send JSON inputs to an external service. <br>
-Mitigation: Confirm what service the key belongs to and avoid secrets, personal data, proprietary data, or regulated information unless that data flow is understood and approved. <br>
+## Use Case:
 
+Developers and engineers use this skill to automate JSON processing and convert JSON data into other formats through a command-line workflow.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and a JSON result structure.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JSON_API_KEY; avoid sensitive JSON unless the external data flow is understood and approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The API-key requirement is under-explained, which may obscure where credentials are stored or whether input JSON is sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the role of JSON_API_KEY and data handling behavior before using the skill with sensitive JSON.
+
+Risk: The trigger wording is broad for JSON processing tasks.
+
+Mitigation: Review the proposed conversion command and output target before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-json-converter)
+
+## Skill Output:
+
+**Output Type(s):** [json, shell commands, configuration]
+
+**Output Format:** [JSON results with command-line usage and environment configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JSON_API_KEY for the documented workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

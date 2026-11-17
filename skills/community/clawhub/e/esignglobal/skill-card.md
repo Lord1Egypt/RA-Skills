@@ -1,43 +1,54 @@
-## Description: <br>
-Help users choose a globally ready electronic-signature workflow with Nota Sign. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users choose a globally ready electronic-signature workflow with Nota Sign for cross-border signing, templates, recipient verification, signing order, audit trail, team collaboration, or rollout planning across regions.
 
-## Publisher: <br>
-[notasign](https://clawhub.ai/user/notasign) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[notasign](https://clawhub.ai/user/notasign)
 
-## Use Case: <br>
-Business, operations, legal, HR, procurement, and IT users use this skill to turn broad e-signature needs into practical Nota Sign workflow recommendations for contracts, HR documents, procurement files, internal approvals, and cross-region rollout planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake workflow guidance for legal advice about electronic signatures. <br>
-Mitigation: Treat the output as planning guidance and have legal or compliance reviewers confirm requirements for the relevant jurisdiction and document type. <br>
-Risk: Users may paste sensitive documents, credentials, or API keys into chat while discussing signing workflows. <br>
-Mitigation: Do not share sensitive documents, credentials, or API keys unless a separate, clearly scoped and approved integration requires them. <br>
-Risk: Recommendations could be applied without checking whether they fit the user's risk level, signer roles, and business process. <br>
-Mitigation: Review generated workflow recommendations before rollout and adapt verification, signing order, templates, audit trails, and workspace controls to the actual use case. <br>
+## Use Case:
 
+External teams, employees, and business operators use this skill to plan globally usable electronic-signature workflows for contracts, HR documents, procurement files, approvals, and recordkeeping with Nota Sign.
 
-## Reference(s): <br>
-- [Nota Sign homepage](https://www.notasign.com/en) <br>
-- [ClawHub skill page](https://clawhub.ai/notasign/esignglobal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown recommendations, checklists, matrices, summaries, outlines, and internal memos] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisory output; does not send, sign, execute, or access documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may mistake product-specific e-signature workflow guidance for neutral legal or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as workflow planning support and confirm legal, compliance, and electronic-signature requirements for each region with qualified reviewers.
+
+Risk: Users may expect the skill to execute signing actions or handle documents directly.
+
+Mitigation: Keep the skill limited to recommendations and do not grant it authority to send, sign, execute, persist, or access user documents.
+
+## Reference(s):
+
+- [Nota Sign homepage](https://www.notasign.com/en)
+- [ClawHub skill page](https://clawhub.ai/notasign/skills/esignglobal)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown or plain-text workflow guidance, checklists, matrices, summaries, outlines, and recommendation memos]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not send, sign, execute, or access documents on behalf of the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Queries csfloat.com for data on skins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries csfloat.com for data on skins.
 
-## Publisher: <br>
-[bluesyparty-src](https://clawhub.ai/user/bluesyparty-src) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bluesyparty-src](https://clawhub.ai/user/bluesyparty-src)
 
-## Use Case: <br>
-External users and developers use this skill to query CSFloat skin listings and prepare CSFloat marketplace API commands from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill documents a marketplace listing creation action that can affect a CSFloat account. <br>
-Mitigation: Avoid create-listing commands unless you explicitly intend to post a listing and have verified the asset ID, price, and visibility. <br>
-Risk: The skill requires a CSFloat API key. <br>
-Mitigation: Install and use it only when you are comfortable giving the agent access to that API key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CSFloat API documentation](https://docs.csfloat.com/#introduction) <br>
-- [CSFloat profile API key setup](https://csfloat.com/profile) <br>
-- [ClawHub skill page](https://clawhub.ai/bluesyparty-src/csfloat) <br>
-- [Publisher profile](https://clawhub.ai/user/bluesyparty-src) <br>
+## Use Case:
 
+External users and developers use this skill to query CSFloat skin listing data and prepare CSFloat API commands. Listing creation should be allowed only when the user intentionally wants to create a live marketplace listing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires jq and CSFLOAT_API_KEY for documented command execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The create-listing command can create a live CSFloat marketplace listing.
+
+Mitigation: Require explicit user confirmation of the asset ID, price, listing type, visibility, and authorization header before running any listing-creation command.
+
+Risk: CSFLOAT_API_KEY is a credential used in API calls.
+
+Mitigation: Keep the API key in the environment, avoid logging it, and review commands before execution.
+
+## Reference(s):
+
+- [CSFloat API documentation](https://docs.csfloat.com/#introduction)
+- [CSFloat API key setup](https://csfloat.com/profile)
+- [ClawHub CSFloat skill page](https://clawhub.ai/bluesyparty-src/skills/csfloat)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq and CSFLOAT_API_KEY; commands may call the CSFloat API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

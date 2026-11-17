@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/reddit/search/v1 for Reddit Keyword Search through JustOneAPI with keyword. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/reddit/search/v1 for Reddit Keyword Search through JustOneAPI with keyword.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to search Reddit by keyword through JustOneAPI, then review titles, authors, and subreddit context for topic discovery and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a URL query parameter and may be exposed by systems that log full URLs. <br>
-Mitigation: Use a limited-scope, revocable token, avoid environments that log full URLs, and rotate the token if exposure is suspected. <br>
-Risk: The skill sends search requests and credentials to the third-party service api.justoneapi.com. <br>
-Mitigation: Install and use the skill only when the user trusts JustOneAPI for the intended Reddit search workflow. <br>
+## Use Case:
 
+Developers and agents use this skill to search Reddit by keyword through JustOneAPI and summarize titles, authors, and subreddit context for topic discovery and monitoring.
 
-## Reference(s): <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_reddit_search&utm_content=project_link) <br>
-- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_reddit_search&utm_content=project_link) <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-reddit-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional raw JSON response and inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses operation searchRedditV1 with required keyword and optional after pagination token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The API token may be exposed through command-line arguments and URL query parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived, scoped token, avoid sensitive search terms, and rotate the token if it may have appeared in shell history, process telemetry, proxy logs, or API gateway logs.
+
+Risk: Reddit search keywords are sent to api.justoneapi.com.
+
+Mitigation: Avoid sending confidential or sensitive keywords unless that external service use is acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-reddit-search)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_reddit_search&utm_content=project_link)
+- [Reddit Keyword Search Operations](generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary with raw JSON response data and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a keyword; supports an optional after pagination token.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

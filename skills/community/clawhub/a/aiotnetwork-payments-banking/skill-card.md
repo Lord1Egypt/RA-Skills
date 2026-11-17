@@ -1,42 +1,62 @@
-## Description: <br>
-Fund wallets, transfer money, send remittances, and convert currencies. Includes top-up via multiple payment methods and international money transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fund wallets, transfer money, send remittances, and convert currencies. Includes top-up via multiple payment methods and international money transfers.
 
-## Publisher: <br>
-[D9m1n1c](https://clawhub.ai/user/D9m1n1c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[d9m1n1c](https://clawhub.ai/user/d9m1n1c)
 
-## Use Case: <br>
-External users and agents use this skill to check balances, top up wallets, transfer money, send international remittances, manage recipients, convert currencies, and retrieve transaction records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Money-moving actions can initiate transfers, remittances, conversions, top-ups, or recipient deletion, and the security evidence says the artifact does not show a clear confirmation step before irreversible actions. <br>
-Mitigation: Require the agent to restate amount, currency, recipient, destination, fees, and action type before any transfer, conversion, top-up, remittance, or recipient deletion, and confirm in the payment provider UI where possible. <br>
-Risk: Transfer, remittance, and conversion confirmations require sensitive transaction PINs. <br>
-Mitigation: Ask for the transaction PIN fresh for each confirmation and never cache, log, or persist PINs, bearer tokens, passwords, card numbers, or CVVs. <br>
+## Use Case:
 
+External users and developers use this skill to manage wallet top-ups, money transfers, international remittances, currency conversions, and transaction lookups through authenticated payment API flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/D9m1n1c/aiotnetwork-payments-banking) <br>
-- [Publisher profile](https://clawhub.ai/user/D9m1n1c) <br>
-- [Default AIOT payment API base URL](https://payment-api-dev.aiotnetwork.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, text] <br>
-**Output Format:** [Markdown guidance with endpoint descriptions and shell configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIOT_API_BASE_URL for API base URL configuration; financial operations require authentication and some confirmations require a fresh transaction PIN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; SKILL.md frontmatter says 1.0.0) <br>
+Risk: The skill can perform real financial actions, including transfers, remittances, top-ups, conversions, and recipient deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit quote-and-confirm flow and independently verify the amount, currency, recipient, fees, and destructive recipient changes before calling confirmation or deletion endpoints.
+
+Risk: The skill handles bearer-token sessions and transaction PINs.
+
+Mitigation: Use only a verified first-party HTTPS API endpoint, request transaction PINs fresh for each confirmation, and never cache, log, or persist secrets.
+
+Risk: Ambiguous requests for transfers, confirmations, conversions, or recipient deletion could lead to unintended financial activity.
+
+Mitigation: Ask the user to resolve ambiguity and restate the exact operation details before taking any initiating, confirming, converting, or deleting action.
+
+Risk: Exchange rates are indicative and can change between quote and confirmation.
+
+Mitigation: Present the latest quote details and ask for confirmation before executing the final conversion or remittance step.
+
+## Reference(s):
+
+- [Payments & Banking ClawHub skill page](https://clawhub.ai/d9m1n1c/skills/aiotnetwork-payments-banking)
+- [Default AIOT payment API base URL](https://payment-api-dev.aiotnetwork.io)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with REST endpoints and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AIOT_API_BASE_URL configuration and an authenticated bearer-token session for financial operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

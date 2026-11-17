@@ -1,44 +1,57 @@
-## Description: <br>
-Adapts a source idea or draft into platform-specific Chinese content for Xiaohongshu, Douyin, Bilibili, and WeChat through a staged confirmation workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adapts a user's source content into platform-specific copy for Xiaohongshu, Douyin, Bilibili, and WeChat through a progressive confirmation workflow.
 
-## Publisher: <br>
-[jrnonr](https://clawhub.ai/user/jrnonr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jrnonr](https://clawhub.ai/user/jrnonr)
 
-## Use Case: <br>
-Content creators, marketers, and operators use this skill to turn a topic or existing draft into copy tailored for Chinese social platforms. It confirms direction and key points before producing titles, body text, hashtags, publishing tips, and optional cover-image prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated platform drafts may contain inaccurate, misleading, or unsuitable content if published without review. <br>
-Mitigation: Review and edit generated drafts before publishing them to any platform. <br>
-Risk: User content or cover prompts may contain sensitive material that could be sent to external image or publishing tools. <br>
-Mitigation: Remove sensitive material before using generated cover prompts or draft content with external tools. <br>
+## Use Case:
 
+External users and content creators use this skill to turn one source idea or draft into copy tailored for Xiaohongshu, Douyin, Bilibili, and WeChat. The skill asks for direction and key-point confirmation before producing platform-specific titles, body text, hashtags, cover suggestions, and publishing tips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jrnonr/viral-note-distributor) <br>
-- [Platform Styles](references/platform-styles.md) <br>
-- [Hooks Library](references/hooks-library.md) <br>
-- [Cover Image Guide](references/cover-image-guide.md) <br>
-- [Progressive Dialogue Examples](examples/progressive-dialogue.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted copy with platform sections and optional cover-image prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include titles, body copy, hashtags, publishing tips, and cover guidance for selected platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.3 (source: release evidence; artifact frontmatter reports 3.0.1) <br>
+Risk: Generated social-media copy or cover prompts may contain inaccurate, misleading, or unsuitable claims if the user's source material is incomplete or wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fact-check all generated copy, hashtags, publishing tips, and image prompts before publishing.
+
+Risk: Platform-tailored promotional language may not match a publisher's brand, compliance needs, or platform policy expectations.
+
+Mitigation: Edit outputs for brand voice, local requirements, and target-platform rules before using them in a public post.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jrnonr/skills/viral-note-distributor)
+- [Platform style guide](references/platform-styles.md)
+- [Hooks library](references/hooks-library.md)
+- [Cover image guide](references/cover-image-guide.md)
+- [Progressive dialogue examples](examples/progressive-dialogue.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and copy-ready plain text, with internal JSON structures used for platform outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces platform-specific titles, body copy, hashtags, cover suggestions, optional cover image prompts, and publishing tips; it does not post content or handle account credentials.]
+
+## Skill Version(s):
+
+3.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

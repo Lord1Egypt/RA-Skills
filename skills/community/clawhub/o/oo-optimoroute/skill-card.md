@@ -1,44 +1,55 @@
-## Description: <br>
-OptimoRoute lets agents read, create, update, merge, sync, and delete OptimoRoute orders through an OOMOL-connected account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OptimoRoute (optimoroute.com). Use this skill for any OptimoRoute request, including reading, creating, updating, and deleting data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate OptimoRoute order workflows from an agent session, including order retrieval, bulk create/update/sync operations, and explicitly approved deletions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fallback setup can install the oo CLI by running a remote installer script directly in a shell. <br>
-Mitigation: Review the installation path first, prefer manual installation from OOMOL's official instructions, and verify the source before allowing installation. <br>
-Risk: The skill can perform write and destructive OptimoRoute order actions. <br>
-Mitigation: Inspect the live action schema, review the exact payload and target records, and require explicit user approval before write or delete actions. <br>
+## Use Case:
 
+Operations teams use an assistant with this skill to retrieve, create, update, and delete OptimoRoute orders through their connected account.
 
-## Reference(s): <br>
-- [OptimoRoute homepage](https://optimoroute.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-optimoroute) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run oo CLI connector commands that return JSON responses from OptimoRoute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: First-time setup can run a downloaded installer and may add changes to the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an already trusted oo CLI; otherwise verify and pin the installation, and check whether it adds other agent skills before proceeding.
+
+Risk: Creating, updating, or deleting orders changes OptimoRoute account data.
+
+Mitigation: Confirm the exact payload and effect before writes, and obtain explicit approval for deletions.
+
+## Reference(s):
+
+- [OptimoRoute](https://optimoroute.com/)
+- [OptimoRoute API documentation](https://optimoroute.com/api/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown instructions with oo CLI commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers read-only retrieval and order changes; the skill requires confirmation for writes and explicit approval for deletions.]
+
+## Skill Version(s):
+
+1.0.5 (source: artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

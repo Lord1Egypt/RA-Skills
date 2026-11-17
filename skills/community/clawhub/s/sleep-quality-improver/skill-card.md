@@ -1,41 +1,54 @@
-## Description: <br>
-Help users improve sleep quality through hygiene practices, environment optimization, relaxation techniques, and sleep tracking guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users improve sleep quality through hygiene practices, environment optimization, relaxation techniques, and sleep tracking guidance.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for general sleep-wellness support, including bedtime routine design, sleep environment optimization, relaxation techniques, and simple sleep tracking. It is not intended to diagnose or treat sleep disorders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general sleep-wellness suggestions as medical diagnosis or treatment. <br>
-Mitigation: Frame responses as general wellness guidance and direct persistent, severe, or medically complex sleep problems to qualified healthcare professionals. <br>
-Risk: Crisis and medical disclaimer text may not be usable for users who do not read Chinese. <br>
-Mitigation: Provide safety escalation and medical disclaimer language in the user's language before continuing normal sleep guidance. <br>
-Risk: The artifact refers to sleep reference files that are not included in this release. <br>
-Mitigation: Use only the included SKILL.md and README.md content unless the publisher restores the missing reference files. <br>
+## Use Case:
 
+External users use this skill for general sleep-wellness coaching, including bedtime routines, sleep environment improvements, relaxation methods, and simple sleep tracking. It is intended for practical wellness support, not diagnosis or treatment of sleep disorders.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown prose with practical steps, checklists, and short sleep-tracking suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, external tool use, credential handling, or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat sleep-wellness suggestions as medical advice for persistent insomnia, suspected sleep apnea, severe symptoms, or complex health conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as wellness guidance and direct users to qualified healthcare professionals for persistent, severe, or medically complex sleep problems.
+
+Risk: Crisis and disclaimer examples are Chinese-localized and may not fit every user's language or region.
+
+Mitigation: Adapt crisis language and support resources to the user's locale when available, and avoid relying on a single country-specific hotline for global users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/sleep-quality-improver)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance with checklists, routines, questions, and escalation language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Wellness-only guidance; no code, shell commands, tools, API calls, or credential handling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

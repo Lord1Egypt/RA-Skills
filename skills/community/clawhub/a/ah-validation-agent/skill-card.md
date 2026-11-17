@@ -1,38 +1,54 @@
-## Description: <br>
-A validation agent that verifies code quality, functionality, test coverage, security, performance, and documentation for planned software changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a **Validation Agent** specialized in verifying that improvements and changes meet quality standards.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineering reviewers use this skill to validate whether implementation work meets a plan and satisfies quality, security, testing, performance, and documentation expectations before release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger language may cause the skill to activate more often than intended. <br>
-Mitigation: Invoke it deliberately for validation tasks and review proposed validation commands before running them on sensitive or production repositories. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate code changes against quality, functionality, test coverage, security, performance, and documentation expectations before deployment or handoff.
 
-## Reference(s): <br>
-- [Validation Agent Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown validation report with checklists, findings, recommendations, metrics, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approval status, warnings, failures, test output excerpts, and remediation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Validation may involve running tests, builds, benchmarks, or dependency audits that execute project-defined scripts on an unfamiliar repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review project scripts first and prefer a sandbox or disposable environment before allowing those commands to run.
+
+Risk: The validation report may miss context-specific issues if the improvement plan, modified files, or available checks are incomplete.
+
+Mitigation: Compare results against the original change plan and record any checks that could not be completed.
+
+## Reference(s):
+
+- [Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-validation-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown validation report with checklists, findings, command examples, metrics, and an approval decision]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local test, build, benchmark, and dependency audit command output when those checks are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

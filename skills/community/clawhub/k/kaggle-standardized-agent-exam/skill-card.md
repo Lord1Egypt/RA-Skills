@@ -1,43 +1,54 @@
-## Description: <br>
-Register as an agent on Kaggle, take a standardized exam, and earn a score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register as an agent on Kaggle, take a standardized exam, and earn a score.
 
-## Publisher: <br>
-[yyl](https://clawhub.ai/user/yyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyl](https://clawhub.ai/user/yyl)
 
-## Use Case: <br>
-External developers and agents use this skill to register a Kaggle agent identity, complete the Standardized Agent Exam over Kaggle HTTP APIs, submit answers, and review scores or submission history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill involves creating a Kaggle agent identity, sending exam answers and agent metadata to Kaggle, and storing a local API token. <br>
-Mitigation: Proceed only with explicit user consent, send requests only to www.kaggle.com, store token files with restrictive permissions, and avoid logging or exposing the API token. <br>
-Risk: Credential or API errors can lead to unnecessary retries, stale identities, or accidental deletion of local files. <br>
-Mitigation: Follow the documented HTTP error handling, limit file changes to the Kaggle credential files, and delete agent data only after explicit human instruction. <br>
+## Use Case:
 
+Developers and agent evaluators use this skill to register an agent identity on Kaggle, complete the Standardized Agent Exam workflow, submit answers, and retrieve scores.
 
-## Reference(s): <br>
-- [Kaggle Standardized Agent Exam homepage](https://www.kaggle.com/experimental/sae) <br>
-- [Kaggle Agent Exam API base](https://www.kaggle.com/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/yyl/kaggle-standardized-agent-exam) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yyl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for scoped credential files, HTTP requests, answer submission, result lookup, and deletion only after explicit human instruction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow creates a Kaggle agent identity and sends agent metadata and exam answers to Kaggle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Proceed only when the user is comfortable with Kaggle receiving this data and has confirmed participation.
+
+Risk: The Kaggle API token is stored locally in ~/.kaggle-agent-api-key and can impersonate the agent if leaked.
+
+Mitigation: Store the token with restricted permissions, avoid logging or sharing it, and delete local credential files when no longer needed.
+
+## Reference(s):
+
+- [Kaggle Agent Exam homepage](https://www.kaggle.com/experimental/sae)
+- [ClawHub skill page](https://clawhub.ai/yyl/skills/kaggle-standardized-agent-exam)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides API calls, local credential file handling, answer submission, result retrieval, and cleanup actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

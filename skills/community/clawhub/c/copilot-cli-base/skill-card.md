@@ -1,50 +1,64 @@
-## Description: <br>
-Reference knowledge base for GitHub Copilot CLI features, commands, configuration, plugins, hooks, skills, MCP servers, custom agents, automation, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference knowledge base for GitHub Copilot CLI features, commands, configuration, plugins, hooks, skills, MCP servers, custom agents, automation, and troubleshooting CLI workflows.
 
-## Publisher: <br>
-[awalesagar](https://clawhub.ai/user/awalesagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awalesagar](https://clawhub.ai/user/awalesagar)
 
-## Use Case: <br>
-Developers and agent operators use this skill to answer Copilot CLI questions, set up CLI workflows, configure integrations, and troubleshoot automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad unattended permissions and persistent trust changes can let automated Copilot CLI sessions take actions beyond the intended task. <br>
-Mitigation: Prefer scoped --allow-tool and --add-dir patterns, set continuation limits, avoid --yolo or --allow-all with --no-ask-user outside isolated disposable workspaces, and remove trusted_folders entries that are no longer needed. <br>
-Risk: Copied examples for remote installers, OAuth or PAT-backed workflows, and raw tool output can expose sensitive data or run untrusted code if used without review. <br>
-Mitigation: Review examples before use, do not email raw tool output, verify remote installers before running them, and use least-privilege tokens. <br>
+## Use Case:
 
+Developers and engineers use this skill as a reference for installing, configuring, automating, customizing, and troubleshooting GitHub Copilot CLI workflows. It helps agents answer Copilot CLI-specific questions and produce operational guidance, commands, and configuration examples.
 
-## Reference(s): <br>
-- [Copilot CLI documentation](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli) <br>
-- [Reference Index](references/index.md) <br>
-- [Getting Started](references/getting-started.md) <br>
-- [Usage Guide](references/usage.md) <br>
-- [Automation, Delegation & Agents](references/automation-and-delegation.md) <br>
-- [Customization](references/customization.md) <br>
-- [Hooks](references/hooks.md) <br>
-- [Integrations](references/integrations.md) <br>
-- [Research & Chronicle](references/research.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Patterns and Best Practices](references/patterns-and-best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference skill; review generated commands and configuration before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Automation examples may grant broad unattended permissions such as `--yolo`, `--allow-all`, or `--no-ask-user`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit tool and path scopes, set continuation limits, and reserve broad permissions for disposable trusted environments.
+
+Risk: Setup and integration recipes can expose credentials or operational data if copied without review.
+
+Mitigation: Use verified package sources, pin MCP package versions, avoid plaintext API keys, and redact hook logs before sending them externally.
+
+## Reference(s):
+
+- [Copilot CLI skill page](https://clawhub.ai/awalesagar/skills/copilot-cli-base)
+- [GitHub Copilot CLI documentation](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli)
+- [Reference Index](references/index.md)
+- [Getting Started](references/getting-started.md)
+- [Usage Guide](references/usage.md)
+- [Automation, Delegation & Agents](references/automation-and-delegation.md)
+- [Customization](references/customization.md)
+- [Hooks](references/hooks.md)
+- [Integrations](references/integrations.md)
+- [Research & Chronicle](references/research.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Patterns and Best Practices](references/patterns-and-best-practices.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-only output; no files are generated by the skill itself.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

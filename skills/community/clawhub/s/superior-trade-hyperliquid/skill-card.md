@@ -1,44 +1,60 @@
-## Description: <br>
-Superior Trade Hyperliquid helps agents backtest, configure, and manage Hyperliquid trading strategies through Superior Trade's managed cloud. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backtest and deploy trading strategies on Superior Trade's managed cloud.
 
-## Publisher: <br>
-[superior-ai](https://clawhub.ai/user/superior-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superior-ai](https://clawhub.ai/user/superior-ai)
 
-## Use Case: <br>
-Use this skill when an agent needs to create trading strategy code and configuration, run and compare backtests, inspect results, check Hyperliquid balances, and manage Superior Trade deployments including live starts, stops, exits, and supported deposits after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Online use where Superior Trade, Hyperliquid, and the user's local financial and digital-asset rules permit the activity. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API key can start live deployments that trade with real funds and can initiate supported Arbitrum USDC deposits into Hyperliquid. <br>
-Mitigation: Treat the API key as a financial credential, review each live deployment or deposit summary, and require explicit user confirmation before executing fund-affecting actions. <br>
-Risk: Incorrect strategy settings, balance assumptions, or unresolved positions can cause unexpected trading behavior or financial loss. <br>
-Mitigation: Run backtests first, verify balances and deployment readiness with current API responses, and review open positions, stake sizing, and risk controls before live deployment. <br>
-Risk: The artifact states that the API key cannot withdraw funds or export private keys, but it still grants broad authority over the user's own backtests and deployments. <br>
-Mitigation: Limit use to intended Superior Trade operations, avoid collecting wallet secrets, and confirm high-impact stop, exit, transfer, delete, and deposit actions with the user. <br>
+## Use Case:
 
+External users and trading developers use this skill to configure, backtest, and operate Superior Trade strategies on Hyperliquid with a platform-managed trading wallet.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superior-ai/superior-trade-hyperliquid) <br>
-- [Publisher profile](https://clawhub.ai/user/superior-ai) <br>
-- [Superior Trade account](https://account.superior.trade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, text] <br>
-**Output Format:** [Conversational guidance with API request details, trading strategy code, JSON-style deployment configuration, and backtest or deployment summaries.] <br>
-**Output Parameters:** [Requires SUPERIOR_TRADE_API_KEY for protected Superior Trade operations; user-provided strategy goals, pairs, timeframe, trading mode, stake sizing, and confirmation are needed for live or fund-moving actions.] <br>
-**Other Properties Related to Output:** [Outputs should distinguish simulated backtests from live trading, use current API responses for balances and deployment status, and avoid displaying or requesting private keys, seed phrases, or wallet credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.5.0 <br>
+Risk: The API key can manage live trading and move real USDC inside the Superior Trade and Hyperliquid flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit, transaction-specific confirmation before starting live deployments, deposits, sub-account transfers, account changes, deployment deletion, or portfolio exits.
+
+Risk: Live actions can affect real balances and open positions.
+
+Mitigation: Verify balances, open positions, wallet source, deployment status, and strategy sizing immediately before execution.
+
+Risk: Credential exposure would grant high-impact trading authority within the platform scope.
+
+Mitigation: Use only the SUPERIOR_TRADE_API_KEY environment credential and avoid displaying, logging, or storing secrets in agent output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superior-ai/skills/superior-trade-hyperliquid)
+- [Superior Trade account portal](https://account.superior.trade)
+- [Superior Trade API endpoint](https://api.superior.trade)
+- [Hyperliquid public info endpoint](https://api.hyperliquid.xyz/info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON examples, code snippets, shell commands, and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide API calls that create or manage backtests, deployments, portfolio deposits, and position exits.]
+
+## Skill Version(s):
+
+4.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

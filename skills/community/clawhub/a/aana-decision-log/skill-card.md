@@ -1,46 +1,56 @@
-## Description: <br>
-Creates compact, privacy-aware audit records for important agent decisions, checks, changes, evidence, and residual risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates compact, privacy-aware audit records for important agent decisions, including checks performed, failures, changes, evidence, and residual risk.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent operators use this skill to produce concise audit notes for guardrail decisions, sensitive actions, refusals, escalations, corrections, and changed plans. It helps record what was checked, what failed or remained unverified, what changed, and how private data was minimized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decision logs may expose sensitive data if raw records, secrets, payment details, private messages, or sensitive logs are copied into the audit note. <br>
-Mitigation: Use redacted summaries, omit forbidden payload content, and record only the evidence basis needed for review. <br>
-Risk: A log can overstate assurance by implying checks, tests, evidence review, or compliance validation that did not actually happen. <br>
-Mitigation: List only checks actually performed, mark missing or unclear checks as unverified, and include residual risk for high-impact decisions. <br>
-Risk: The skill provides instructions and schema guidance but does not enforce storage, retention, access control, or review workflows by itself. <br>
-Mitigation: Treat decision logs as guidance-driven audit artifacts and apply host-side review, retention, and access controls before sharing or storing them. <br>
+## Use Case:
 
+Agents and developers use this skill to produce concise decision logs for guardrail gates, high-impact actions, refusals, escalations, corrections, and changed plans. The logs help reviewers see what was checked, what remained unverified, how private data was handled, and what risk remains.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/mindbomber/aana-decision-log) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Decision log schema](schemas/decision-log.schema.json) <br>
-- [Redacted decision log example](examples/redacted-decision-log.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown decision-log bullets or JSON matching the bundled decision-log schema] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not install dependencies, execute commands, call services, write files, or persist memory by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Decision logs may expose sensitive records if raw private details are copied into the log.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted summaries and avoid secrets, full records, private messages, sensitive logs, and unrelated private data.
+
+Risk: A decision log may be mistaken for a compliance check or proof that unperformed checks passed.
+
+Mitigation: Record only checks actually performed, list unverified items explicitly, and avoid unsupported verification or compliance claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-decision-log)
+- [Artifact README](artifact/README.md)
+- [Decision log JSON schema](artifact/schemas/decision-log.schema.json)
+- [Redacted decision log example](artifact/examples/redacted-decision-log.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Compact Markdown-style decision log bullets or a JSON object matching the bundled decision log schema]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be concise, truthful about checks actually performed, and redacted to avoid secrets or raw private records.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

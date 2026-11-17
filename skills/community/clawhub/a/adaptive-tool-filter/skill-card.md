@@ -1,40 +1,53 @@
-## Description: <br>
-Filters an agent's available tools based on task intent to reduce token use and prioritize relevant tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive Tool Filter helps agents identify task intent and prioritize a smaller set of relevant tools to reduce tool-list token overhead.
 
-## Publisher: <br>
-[paibwhgs](https://clawhub.ai/user/paibwhgs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paibwhgs](https://clawhub.ai/user/paibwhgs)
 
-## Use Case: <br>
-Agent developers and operators use this skill as guidance for selecting smaller, intent-matched tool sets before or during conversations when many tools are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad keyword matching can expose sensitive tools such as command execution, file editing, messaging, external document actions, or subagent spawning. <br>
-Mitigation: Require explicit user intent before enabling sensitive tools and avoid relying on single broad keywords for access decisions. <br>
-Risk: Intent-based filtering can hide tools needed later in a conversation or retain tools that are no longer relevant. <br>
-Mitigation: Carry forward recently used context only while relevant and allow users or agents to request missing tools when the task changes. <br>
+## Use Case:
 
+Developers and agent operators can use this skill as guidance for configuring intent-based tool filtering, prioritizing relevant tools, and reducing prompt overhead during agent conversations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paibwhgs/adaptive-tool-filter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with inline code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no executable installer or hidden data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad keyword rules could make sensitive tools such as shell execution, messaging, subagents, or business-document actions available in contexts where they are not appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and tighten the intent-to-tool rules before deployment, and require explicit approval for sensitive actions such as command execution and file edits.
+
+Risk: The artifact is guidance for influencing tool selection, so behavior depends on the host runtime implementing the filtering rules correctly.
+
+Mitigation: Validate the runtime integration with representative requests before relying on the skill for production tool filtering.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paibwhgs/skills/adaptive-tool-filter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no executable payload, persistence, or hidden data flow found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

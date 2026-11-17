@@ -1,42 +1,58 @@
-## Description: <br>
-Custom TTS using Gemini 2.5 Flash for high-quality, persona-driven voice output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Custom TTS using Gemini 2.5 Flash for high-quality, persona-driven voice output.
 
-## Publisher: <br>
-[yangzhe1991](https://clawhub.ai/user/yangzhe1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangzhe1991](https://clawhub.ai/user/yangzhe1991)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate spoken audio files from supplied text through Gemini 2.5 Flash TTS. It is useful when an agent workflow needs command-line text-to-speech output and can provide a GEMINI_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for speech generation is sent to Google Gemini, which can expose secrets, private prompts, or regulated data. <br>
-Mitigation: Use only appropriate text for the target environment and avoid sending secrets, private prompts, or regulated data. <br>
-Risk: The skill requires a Gemini API key for cloud API access. <br>
-Mitigation: Provide GEMINI_API_KEY through the environment and manage it as a secret outside prompts, source files, and generated artifacts. <br>
-Risk: The --voice/persona option is accepted by the script but the security guidance says it is not actually honored. <br>
-Mitigation: Do not rely on custom voice or persona selection until the script is updated and retested. <br>
+## Use Case:
 
+Developers and agents use this skill to generate persona-driven audio from text through Gemini 2.5 Flash TTS when a GEMINI_API_KEY is configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangzhe1991/gemini-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [Audio file plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output_voice.<mime extension>; requires GEMINI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Text provided to the skill is sent to Google's Gemini API using the configured GEMINI_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with text that is acceptable to send to the Gemini API, and avoid submitting sensitive content unless that use is approved.
+
+Risk: The documented --voice option does not control the generated voice in the current implementation, which always uses Puck.
+
+Mitigation: Do not rely on custom persona voice selection until the implementation is fixed or verified.
+
+Risk: Generated audio is written as output_voice.<type> in the current working directory.
+
+Mitigation: Run the command from an intended output directory or move/rename the generated file after creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangzhe1991/skills/gemini-tts)
+- [Gemini TTS API endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance and command-line usage that produce an audio file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GEMINI_API_KEY and writes generated audio to output_voice.<type> in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

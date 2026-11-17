@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="panel.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header id="panelHeader" title="拖动我移动浮层 · 双击复位">
+        <span class="grip">⠿</span>
+        <span class="brand">🦐 小虾 · 网页对话</span>
+        <button id="closeBtn" title="关闭">✕</button>
+      </header>
+
+      <div id="pageInfo" class="page-info">
+        <span id="backendStatus" class="backend-status" hidden>
+          ● 后端在线
+          <button id="stopBtn" class="stop-btn" title="停止本地后端">⏹ 停止</button>
+        </span>
+      </div>
+
+      <div id="backendOffline" class="offline-banner" hidden>
+        <div class="offline-title">⚠️ 后端未启动</div>
+        <div class="offline-desc">
+          点「🚀 启动后端」即可自动拉起本地后端（无需终端）。首次会询问是否允许打开 webchat 链接，允许后即为无感启动；不常驻，用完关浏览器不影响。
+        </div>
+        <button id="startBtn" class="offline-btn">🚀 启动后端</button>
+        <button id="copyStartBtn" class="offline-copy">📋 复制启动命令</button>
+        <code id="startCmdPreview" class="offline-cmd"></code>
+      </div>
+
+      <div id="ctxSection" class="ctx-section">
+        <div class="ctx-toolbar">
+          <button id="addSelBtn" class="ctx-add-btn">➕ 添加选中文本</button>
+        </div>
+        <div id="addStatus" class="add-status"></div>
+        <div id="ctxList" class="ctx-list"></div>
+      </div>
+
+      <div id="messages"></div>
+
+      <div id="inputBar">
+        <textarea
+          id="input"
+          rows="2"
+          placeholder="输入或粘贴你的问题，回车发送（Shift+回车换行）…"
+        ></textarea>
+        <button id="sendBtn">发送</button>
+      </div>
+    </div>
+    <script src="panel.js"></script>
+  </body>
+</html>

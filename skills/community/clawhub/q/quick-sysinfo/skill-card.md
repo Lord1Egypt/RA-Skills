@@ -1,40 +1,53 @@
-## Description: <br>
-快速查询本机系统信息和OpenClaw配置。包括CPU、内存、磁盘、网络、环境配置、硬件资源占用、Docker容器、OpenClaw配置/频道/插件/服务状态。当用户询问"系统状态"、"CPU使用率"、"内存占用"、"磁盘空间"、"网络信息"、"硬件配置"、"进程状态"、"Docker状态"、"系统负载"、"配置信息"、"OpenClaw状态"时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速查询本机系统信息和 OpenClaw 配置，包括 CPU、内存、磁盘、网络、环境、硬件资源、Docker 容器以及 OpenClaw 配置、频道、插件和服务状态。
 
-## Publisher: <br>
-[evangeliona](https://clawhub.ai/user/evangeliona) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evangeliona](https://clawhub.ai/user/evangeliona)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local system status and OpenClaw configuration when troubleshooting CPU, memory, disk, network, Docker, GPU, process, service, or OpenClaw runtime questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic output can reveal operational details such as hostnames, IP addresses, channel names, Docker state, and service status. <br>
-Mitigation: Request only the needed module and review the output before sharing it outside the local troubleshooting context. <br>
-Risk: Redacted OpenClaw configuration summaries may still expose configuration structure or non-secret identifiers. <br>
-Mitigation: Treat OpenClaw output as environment-sensitive even when credentials are redacted. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect local system status and OpenClaw runtime configuration during troubleshooting or environment checks. It is intended for trusted diagnostic contexts where host and configuration details may be discussed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evangeliona/quick-sysinfo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text diagnostic output, optionally summarized in Markdown by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional module argument selects all, cpu, mem, disk, net, env, load, proc, gpu, docker, or openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill may expose sensitive host details and OpenClaw configuration metadata in chats or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted diagnostic sessions and avoid sharing broad default or OpenClaw module output with untrusted recipients.
+
+Risk: The security evidence warns that OpenClaw configuration can be exposed too easily even with redaction behavior present.
+
+Mitigation: Review generated output before forwarding it and consider narrowing requested modules to the specific system area being diagnosed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evangeliona/skills/quick-sysinfo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown summaries of shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local IP addresses, process details, Docker ports, OpenClaw channel and plugin metadata, agent names, and redacted OpenClaw configuration values.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

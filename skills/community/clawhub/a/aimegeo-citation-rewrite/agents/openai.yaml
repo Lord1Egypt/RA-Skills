@@ -1,0 +1,6 @@
+interface:
+  display_name: "文章 AI 引用增强"
+  short_description: "围绕用户问题与可信资料修订文章并检查授权范围"
+  default_prompt: "使用 $aimegeo-citation-rewrite 围绕用户问题与已有来源按指定范围修订文章，保留未授权部分，并列出变更和待核实来源。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"

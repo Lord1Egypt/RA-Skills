@@ -1,47 +1,61 @@
-## Description: <br>
-Use the BrickEconomy API through the included CLI for LEGO set/minifig valuation, collection performance, and sales-ledger analysis from verified Brick Directory references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the BrickEconomy API through the included CLI for LEGO set/minifig valuation, collection performance, and sales-ledger analysis from verified Brick Directory references.
 
-## Publisher: <br>
-[musketyr](https://clawhub.ai/user/musketyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[musketyr](https://clawhub.ai/user/musketyr)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve BrickEconomy valuation, forecast, collection, and sales-ledger data through a read-only CLI. It supports LEGO set and minifig pricing analysis, collection performance review, and profit/loss summaries when the user provides a BrickEconomy API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a BrickEconomy API key and can retrieve private collection or sales-ledger data when those workflows are requested. <br>
-Mitigation: Install only when that access is acceptable, keep the API key in the environment, and summarize private account data instead of exposing full records unless the user explicitly needs them. <br>
-Risk: Changing the API base URL could send credentials or account data to an untrusted endpoint. <br>
-Mitigation: Use the default BrickEconomy API endpoint and avoid base-url overrides unless the endpoint is trusted. <br>
-Risk: Pricing and forecast outputs could be mistaken for guaranteed financial results. <br>
-Mitigation: Describe forecasts as estimates based on returned BrickEconomy fields and call out missing paid-price or fee data before calculating ROI or profit/loss. <br>
-Risk: The skill is intended for read-only valuation and analysis, not marketplace writes or purchase actions. <br>
-Mitigation: Use only the documented read-only commands and route buy/sell marketplace requests to an appropriate marketplace-specific workflow. <br>
+## Use Case:
 
+LEGO collectors, sellers, and portfolio analysts use this skill to retrieve BrickEconomy valuations, forecasts, authenticated collection performance, and sales-ledger profit/loss summaries.
 
-## Reference(s): <br>
-- [BrickEconomy API OpenAPI reference](references/openapi/brickeconomy.yaml) <br>
-- [BrickEconomy tool guidance](references/prompts/brickeconomy-tools.txt) <br>
-- [BrickEconomy API](https://www.brickeconomy.com) <br>
-- [ClawHub BrickEconomy release](https://clawhub.ai/musketyr/brickeconomy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should summarize API response fields and avoid pasting full private collection or sales-ledger records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The BrickEconomy API key can be sent to an arbitrary host when BRICKECONOMY_BASE_URL or --base-url is overridden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default BrickEconomy API host unless the alternate destination is fully trusted, and rotate the API key if it may have been used with an untrusted base URL.
+
+Risk: Authenticated collection and sales-ledger endpoints can expose private financial or account data.
+
+Mitigation: Call personal collection or sales-ledger endpoints only for user-requested collection, ROI, or sales analysis, and summarize sensitive results minimally.
+
+Risk: BrickEconomy rate limits can be exhausted by broad or repeated lookups.
+
+Mitigation: Prefer collection-level endpoints for portfolio analysis, use dry-run mode to inspect request shape, and avoid large fan-out unless the user accepts the request budget.
+
+## Reference(s):
+
+- [BrickEconomy OpenAPI Reference](references/openapi/brickeconomy.yaml)
+- [BrickEconomy Tool Guidance](references/prompts/brickeconomy-tools.txt)
+- [BrickEconomy API](https://www.brickeconomy.com/api/v1)
+- [BrickEconomy](https://www.brickeconomy.com)
+- [ClawHub Skill Page](https://clawhub.ai/musketyr/skills/brickeconomy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call read-only BrickEconomy API endpoints through a CLI when BRICKECONOMY_API_KEY is configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

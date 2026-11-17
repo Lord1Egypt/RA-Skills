@@ -1,41 +1,54 @@
-## Description: <br>
-Unity CI pipeline toolkit that provides a Python CLI and Unity Editor runner for automated Unity batchmode builds, compile checks, and structured error parsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unity CI Kit provides a Python CLI and Unity Editor runner for automated Unity batchmode builds, compile checks, reusable CI pipelines, and structured error parsing.
 
-## Publisher: <br>
-[jssj07](https://clawhub.ai/user/jssj07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jssj07](https://clawhub.ai/user/jssj07)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up reusable CI for Unity projects, run batchmode compilation and builds, and inspect generated build status for agent-assisted repair loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Editable CI configuration values can affect Unity command execution, especially on Windows where the scanner reports shell execution risk. <br>
-Mitigation: Install only for trusted Unity projects; review ci_config.json values before build or compile, especially unity_path, execute_method, log_file, and result_file. <br>
-Risk: Running the skill in privileged CI can expose secrets or sensitive project files if command invocation is not hardened. <br>
-Mitigation: Run with least-privilege CI permissions and avoid privileged environments with secrets unless command execution is hardened to argument lists with shell disabled. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up repeatable CI for Unity projects, run Unity batchmode compilation or builds, and parse results into structured output that agents can use in code-fix workflows.
 
-## Reference(s): <br>
-- [Unity CI Kit setup guide](references/setup_guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jssj07/skills/unity-ci-kit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python and C# code references, JSON configuration, and CI result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update ci_config.json, ci_output.log, and ci_result.json in the Unity project workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled runner has unsafe command handling, especially on Windows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted Unity repositories, review ci_config.json before execution, and prefer argument-list subprocess calls with shell=False before CI use.
+
+Risk: Configurable log and result paths can write outside the intended project area if misconfigured.
+
+Mitigation: Constrain log_file and result_file to project-local paths before running builds in shared or automated environments.
+
+## Reference(s):
+
+- [Unity CI Kit setup guide](references/setup_guide.md)
+- [ClawHub Unity CI Kit skill page](https://clawhub.ai/jssj07/skills/unity-ci-kit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, Python code, and C# Unity Editor code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or helps install ci_config.json, ci_result.json, Unity log parsing output, Python CLI commands, and a Unity Editor runner template.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

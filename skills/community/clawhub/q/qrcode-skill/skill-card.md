@@ -1,40 +1,50 @@
-## Description: <br>
-Generates QR code PNG images from text or URLs and decodes QR code images through a remote MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QR code generation and decoding skill for creating scannable QR codes from text or URLs and extracting text from QR code images via a remote MCP service.
 
-## Publisher: <br>
-[marc-chen](https://clawhub.ai/user/marc-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marc-chen](https://clawhub.ai/user/marc-chen)
 
-## Use Case: <br>
-Developers and agent users use this skill to create scannable QR codes or extract text from QR images without implementing QR parsing directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR text and QR images are sent to a remote MCP service. <br>
-Mitigation: Avoid using the skill with secrets, private tickets, internal URLs, or real Wi-Fi credentials unless the service's data handling is trusted. <br>
+## Use Case:
 
+External users and developers use this skill to generate PNG QR codes from text or URLs and decode QR code images into their embedded text.
 
-## Reference(s): <br>
-- [MCP API Reference](artifact/references/mcp-api.md) <br>
-- [Qrcode Skill on ClawHub](https://clawhub.ai/marc-chen/qrcode-skill) <br>
-- [QR Code MCP Server](https://qrcode.api4claw.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown responses with base64 PNG image embeds, optional PNG files, and decoded text strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [QR generation limits text to 1000 characters and image size to 128-1024 pixels; QR text and images are processed by a remote MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: QR text or QR images are sent to the listed remote MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use this skill for passwords, OTP setup codes, private tickets, payment data, access tokens, or confidential business data unless that transfer is acceptable.
+
+## Reference(s):
+
+- [MCP API Reference](references/mcp-api.md)
+- [QR Code MCP Server](https://qrcode.api4claw.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown responses with base64 PNG image embeds, decoded text, optional PNG files, and MCP configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated QR input is limited to 1000 characters; QR image size is 128 to 1024 pixels with a 512 pixel default.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

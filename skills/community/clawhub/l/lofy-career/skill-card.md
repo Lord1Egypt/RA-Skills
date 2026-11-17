@@ -1,36 +1,55 @@
-## Description: <br>
-Job search automation for the Lofy AI assistant, covering application tracking, resume tailoring, interview prep, follow-up drafts, and pipeline analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lofy Career helps agents track job applications, tailor resumes to job descriptions, prepare for interviews with company research, draft follow-ups, and analyze job-search strategy.
 
-## Publisher: <br>
-[harrey401](https://clawhub.ai/user/harrey401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harrey401](https://clawhub.ai/user/harrey401)
 
-## Use Case: <br>
-Job seekers using Lofy use this skill to maintain application records, tailor resumes to job descriptions, prepare for interviews, draft follow-up emails, and analyze job-search response patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist sensitive job-search records after broad career conversations without clear confirmation. <br>
-Mitigation: Ask the assistant to show the exact record change and wait for explicit approval before writing data, scheduling follow-ups, or sending anything. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Job seekers and career-support agents use this skill to manage a job-search pipeline, adapt application materials, prepare for interviews, draft follow-ups, and review application-response patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive career and application data may be persisted in a job-application file.
+
+Mitigation: Use the skill only in workspaces where persistent career data is acceptable, and review stored application data regularly.
+
+Risk: Career conversations may trigger state-changing updates without clear confirmation.
+
+Mitigation: Require explicit user confirmation before writing application-status, follow-up, interview, or offer updates.
+
+Risk: The skill may read career-profile information while tailoring resumes or preparing interviews.
+
+Mitigation: Keep profile/career.md limited to information the user is comfortable using for job-search assistance.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown guidance, draft email text, and JSON application-record updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update data/applications.json and draft follow-up messages; review proposed changes before writing, scheduling, or sending.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance, draft email text, resume bullet suggestions, and JSON application-tracking updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain data/applications.json and read profile/career.md when those files are available to the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-02-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

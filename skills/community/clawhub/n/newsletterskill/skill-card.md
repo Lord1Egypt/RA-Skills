@@ -1,43 +1,58 @@
-## Description: <br>
-Helps AI agents plan, review, implement, audit, or improve newsletter workflows across editorial calendars, issue structure, sponsorship inventory, reader growth, and retention loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Newsletter Skill helps agents plan, review, implement, audit, or improve newsletter work across editorial calendars, issue structure, sponsorship inventory, reader growth, and retention loops.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-Developers, operators, editors, and growth teams use this skill to make newsletter planning, audits, sponsorship reviews, reader survey synthesis, and retention recommendations specific, reviewable, and safe before any live email-system action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Newsletter guidance could lead to live sends, contact imports, suppression edits, DNS changes, production automation changes, provider migrations, or destructive cleanup. <br>
-Mitigation: Treat those actions as high risk and stop for explicit human approval before execution. <br>
-Risk: Recommendations may rely on incomplete newsletter metrics, consent state, suppression status, or sponsor obligations. <br>
-Mitigation: State which source material supports each recommendation and do not assume missing fields, consent, or suppression state. <br>
-Risk: Sponsor placement or growth experiments could reduce reader trust if they conflict with the publication promise. <br>
-Mitigation: Keep sponsor copy distinct from editorial copy and match growth ideas to the audience and publication promise. <br>
+## Use Case:
 
+Developers, operators, and newsletter teams use this skill to produce issue outlines, editorial calendars, sponsor slot plans, reader survey syntheses, growth experiments, and retention audits with clear review gates.
 
-## Reference(s): <br>
-- [Newsletter Skill Operating Checklist](references/operating-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/polnikale/newsletterskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations separate analysis from live-system actions and require explicit approval before high-risk email operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Newsletter advice could be applied directly to live email systems, including sends, contact imports, suppression changes, DNS/authentication changes, provider migrations, or production automation edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before live email-system changes and review generated plans before applying them.
+
+Risk: Recommendations may be based on incomplete audience, consent, suppression, engagement, or sponsorship context.
+
+Mitigation: State which source material supports each recommendation and do not assume missing fields, consent, or suppression state.
+
+Risk: Sponsor placement or growth recommendations could weaken reader trust if they conflict with the publication promise.
+
+Mitigation: Keep sponsor copy distinct from editorial copy and check that growth ideas match the audience and publication promise.
+
+## Reference(s):
+
+- [Newsletter Skill Operating Checklist](artifact/references/operating-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/polnikale/skills/newsletterskill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include issue outlines, editorial calendars, sponsor slot plans, survey syntheses, growth experiments, retention audits, QA checks, and approval gates.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,51 @@
-## Description: <br>
-Track and analyze token usage and estimated costs across AI providers with budget alerts, model comparisons, optimization tips, exports, and local storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Watch helps agents and developers track AI API token usage, estimate costs, set budget alerts, compare model prices, and export local usage reports.
 
-## Publisher: <br>
-[vedantsingh60](https://clawhub.ai/user/vedantsingh60) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vedantsingh60](https://clawhub.ai/user/vedantsingh60)
 
-## Use Case: <br>
-Developers and AI power users use Token Watch to record AI API token usage, estimate spend, set budgets, compare model costs, and export local reports for cost review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Usage history, task labels, session IDs, and exported reports are stored on disk and may reveal sensitive project or client details. <br>
-Mitigation: Avoid sensitive labels and treat .tokenwatch/ plus exported reports as private logs that should not be committed or shared without review. <br>
+## Use Case:
 
+Developers, AI power users, and agents use Token Watch to monitor token spending across AI providers, compare model costs before calls, configure budgets, and review locally stored usage history.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/vedantsingh60/token-watch) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples; JSON exports when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local usage, alert, and budget records under .tokenwatch/ by default] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata and artifact manifest) <br>
+Risk: Local usage history and exported reports can include model names, token counts, costs, timestamps, task labels, and session IDs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generic task labels for sensitive work, review exported reports before sharing, and delete or relocate the .tokenwatch storage directory when local retention is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vedantsingh60/skills/token-watch)
+- [README](artifact/README.md)
+- [Skill Documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and JSON report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores usage, budget, and alert history locally in .tokenwatch by default.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

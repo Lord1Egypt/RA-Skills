@@ -1,42 +1,54 @@
-## Description: <br>
-Analyzes MongoDB 4.4 slow logs from pasted text or uploaded log files, groups repeated query patterns, and produces practical optimization advice with evidence-backed index guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes MongoDB 4.4 slow logs directly in conversation, groups repeated query shapes by namespace, and returns evidence-backed query, index, and validation guidance.
 
-## Publisher: <br>
-[1447443432](https://clawhub.ai/user/1447443432) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1447443432](https://clawhub.ai/user/1447443432)
 
-## Use Case: <br>
-Developers and database operators use this skill to inspect MongoDB slow-query evidence, summarize repeated slow-log patterns by namespace and query shape, and decide whether to rewrite queries or test candidate indexes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MongoDB slow logs can contain business data, query values, collection names, and operational details. <br>
-Mitigation: Redact sensitive values before sharing logs and limit reports to the fields needed for performance analysis. <br>
-Risk: Generated index commands can affect production performance, storage use, and query plans if executed without review. <br>
-Mitigation: Review createIndex commands manually and test them in staging or with explain output before running them on production databases. <br>
+## Use Case:
 
+Developers and database operators use this skill to analyze pasted or uploaded MongoDB slow logs, identify repeated slow query patterns, and produce practical query rewrites, index candidates, Mongo shell commands, and validation steps.
 
-## Reference(s): <br>
-- [MongoDB 4.4 Slowlog Guidelines](references/mongodb-4.4-slowlog-guidelines.md) <br>
-- [MongoDB Slow Query Optimization](https://docs-pd.mingdao.com/deployment/components/mongodb/slowQueryOptimization) <br>
-- [ClawHub Skill Page](https://clawhub.ai/1447443432/hap-mongodb-slowlog-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or HTML reports with formatted query JSON and Mongo shell createIndex command blocks when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers Chinese output by default, supports English when requested, and treats DOCX or PDF export as optional local-tool conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Slow logs can contain sensitive collection names, query values, or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only logs you are comfortable sharing with the agent, and redact sensitive values when possible.
+
+Risk: Generated createIndex commands or query rewrites may be inappropriate for a production database if applied without validation.
+
+Mitigation: Review recommendations against MongoDB execution evidence and test changes before running commands against production.
+
+## Reference(s):
+
+- [MongoDB 4.4 Slowlog Guidelines](artifact/references/mongodb-4.4-slowlog-guidelines.md)
+- [MongoDB 慢查询优化](https://docs-pd.mingdao.com/deployment/components/mongodb/slowQueryOptimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports with formatted JSON snippets and optional HTML content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Mongo shell createIndex commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

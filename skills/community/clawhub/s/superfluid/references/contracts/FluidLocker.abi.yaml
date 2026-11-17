@@ -200,6 +200,7 @@ unstake:
     - "Gotcha: The stackSignature is obtained from the Superfluid points API (GET /points/signed-balance)."
     - "Gotcha: connect() must be called for the program before claiming."
     - "Gotcha: No onlyLockerOwner — anyone can submit a valid claim on behalf of the locker."
+    - "Gotcha: Sets units to the signed points (absolute, not additive). Before prompting a claim, compare cappedPoints / signed points (not unsigned points) with current pool units; a lower signed balance lowers units."
   mutability: nonpayable
   inputs:
     - programId: uint256
@@ -210,6 +211,8 @@ unstake:
 
 "claim(uint256[],uint256[],uint256,bytes)":
   # Batch claim from multiple emission programs in one transaction.
+  notes:
+    - "Gotcha: Signature from POST /points/signed-balance-batch (one signature over all programIds)."
   mutability: nonpayable
   inputs:
     - "programIds: uint256[]"

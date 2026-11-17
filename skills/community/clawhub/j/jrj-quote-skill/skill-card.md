@@ -1,47 +1,60 @@
-## Description: <br>
-Provides A-share real-time quotes, historical daily K-line data, and local technical indicator calculations for stocks, listed funds, and indices. <br>
+## Description:
 
-This skill is for research and development only. <br>
+A股实时行情和历史K线数据查询，支持技术指标计算，用于获取股票、场内基金、指数的实时价格、历史K线，以及计算MA、MACD、KDJ、BOLL、RSI等技术指标。
 
-## Publisher: <br>
-[haomanjia](https://clawhub.ai/user/haomanjia) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haomanjia](https://clawhub.ai/user/haomanjia)
 
-## Use Case: <br>
-External users, developers, and market-analysis agents use this skill to fetch JRJ A-share quote and K-line data, compute indicators such as MA, MACD, KDJ, BOLL, and RSI, and prepare structured market-analysis outputs for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JRJ_API_KEY, which can expose account access if leaked. <br>
-Mitigation: Store the key in the environment, keep it scoped, avoid logging it, and rotate it if exposure is suspected. <br>
-Risk: Using an untrusted JRJ_API_URL could send requests or credentials to an unintended service. <br>
-Mitigation: Leave JRJ_API_URL unset unless intentionally using a trusted JRJ-compatible HTTPS endpoint. <br>
-Risk: Market data and technical indicators can be incomplete, delayed, or misread as investment advice. <br>
-Mitigation: Treat outputs as informational, verify important data independently, and require human review for investment decisions. <br>
-Risk: Truncated historical K-line responses can reduce indicator accuracy when warm-up data is insufficient. <br>
-Mitigation: Check truncation flags and adjust limit or start-date parameters before relying on calculated indicators. <br>
+## Use Case:
 
+External users, developers, and AI assistants use this skill to retrieve A-share real-time quotes, historical daily K-line data, and local technical indicators for market review, formatted tables, and quantitative-analysis workflows. The artifact states that market data and indicators are for learning and research support and do not constitute investment advice.
 
-## Reference(s): <br>
-- [API 接口参考](references/api-reference.md) <br>
-- [技术指标说明](references/indicators-guide.md) <br>
-- [JRJ OpenClaw homepage](https://ai.jrj.com.cn/claw) <br>
-- [ClawHub release page](https://clawhub.ai/haomanjia/jrj-quote-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [JSON or Markdown market-data tables with optional technical-analysis guidance and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JRJ_API_KEY; supports local indicator calculations for historical daily K-line data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The kline script can send JRJ_API_KEY to an arbitrary HTTP or HTTPS endpoint if JRJ_API_URL is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, use a JRJ_API_KEY acceptable for this environment, and leave JRJ_API_URL unset unless the destination is fully trusted; the publisher should remove or strictly validate endpoint overrides.
+
+Risk: Market data and technical indicators can be mistaken for investment advice or predictions.
+
+Mitigation: Present outputs as informational analysis support only and require users to make independent investment decisions.
+
+Risk: Indicator calculations can be incomplete when the upstream response is truncated or insufficient warmup data is available.
+
+Mitigation: Review truncation warnings, adjust limit or start-date parameters, and avoid relying on indicators until enough historical data is available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haomanjia/skills/jrj-quote-skill)
+- [JRJ Claw homepage](https://ai.jrj.com.cn/claw)
+- [API interface reference](artifact/references/api-reference.md)
+- [Technical indicators guide](artifact/references/indicators-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON or Markdown tables, with shell command and API call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JRJ_API_KEY. The kline script can output JSON by default or Markdown when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

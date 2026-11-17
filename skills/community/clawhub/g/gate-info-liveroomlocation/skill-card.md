@@ -1,45 +1,60 @@
-## Description: <br>
-Gate live stream and replay listing skill for finding live rooms or replays by tag, coin, sort order, or count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate live stream and replay listing skill for finding live rooms or replays by tag, coin, sort order, and result count.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve Gate live stream and replay listings by tag, coin, sort order, and count through the Gate Info MCP integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, excluding Gate-restricted regions such as the US, Canada, and Japan. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact Gate for public live and replay listing data. <br>
-Mitigation: Use only the documented read-only Gate Info MCP endpoint and do not request secrets or trading permissions. <br>
-Risk: Gate live and replay features may be unavailable in restricted regions. <br>
-Mitigation: Block use before calling the API when the user is in restricted regions such as the US, Canada, or Japan. <br>
-Risk: Creator-provided live or replay content could be mistaken for investment advice. <br>
-Mitigation: Return neutral listing output, preserve the skill disclaimer when needed, and avoid explicit buy or sell advice. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Gate live-stream and replay listings for requested tags, coins, hottest/newest sorting, and bounded result counts. It returns creator content links and avoids trading advice or market analysis.
 
-## Reference(s): <br>
-- [Gate Live Room Location MCP Specification](references/mcp.md) <br>
-- [Gate Info Liveroom Location Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/gate-exchange/gate-info-liveroomlocation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown list with live/replay labels, titles, and Gate links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits listings to 1-10 items, preserves live versus replay link formats, and avoids fabricated entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter: 2026.4.8-1) <br>
+Risk: The required Gate Info MCP server may be unavailable in the runtime environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm MCP availability before use and return setup or availability guidance instead of fabricated results.
+
+Risk: Users may mistake live or replay listings for trading or investment advice.
+
+Mitigation: Keep responses limited to creator content listings and links, and avoid buy, sell, market-analysis, or investment claims.
+
+Risk: Gate live or replay content may be unavailable in restricted regions.
+
+Mitigation: Apply the documented region availability policy and return a concise availability message when access is restricted.
+
+## Reference(s):
+
+- [Gate Info Liveroom Location skill page](https://clawhub.ai/gate-exchange/skills/gate-info-liveroomlocation)
+- [Gate Info Liveroom Location Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+- [Gate Live Room Location MCP Specification](references/mcp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown list of live or replay titles with Gate links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only output; result count is limited to 1-10 items and restricted-region requests may return an availability message instead of listings.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

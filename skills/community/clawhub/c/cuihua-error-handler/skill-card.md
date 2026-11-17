@@ -1,42 +1,58 @@
-## Description: <br>
-Cuihua Error Handler helps agents analyze JavaScript and TypeScript projects for weak or missing error handling and draft try/catch, retry, circuit breaker, fallback, logging, and rollback patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered error handling assistant that transforms fragile code into resilient systems by generating error handling, recovery strategies, and graceful degradation.
 
-## Publisher: <br>
-[supermario11](https://clawhub.ai/user/supermario11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supermario11](https://clawhub.ai/user/supermario11)
 
-## Use Case: <br>
-Developers and engineers use this skill to find missing or weak error handling in code and draft resilient recovery patterns for application functions, API routes, database operations, and external service calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated logging or error responses may expose sensitive request bodies, arguments, tokens, payment details, stack traces, or raw internal errors. <br>
-Mitigation: Review generated changes before applying them and redact sensitive data from logs, responses, and error payloads. <br>
-Risk: Generated retries, fallbacks, circuit breakers, or rollbacks may change production behavior in unsafe ways if applied without domain review. <br>
-Mitigation: Validate recovery behavior for auth, payment, database, and API-route code before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze JavaScript or TypeScript code for missing or weak error handling and to generate try/catch blocks, retry logic, circuit breaker patterns, fallbacks, logging guidance, and coverage reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supermario11/cuihua-error-handler) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript code snippets, CLI commands, configuration examples, and coverage reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; generated code and reports should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: Generated handlers may log raw arguments, request bodies, headers, tokens, secrets, or payment fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated logging before use and redact or omit sensitive fields.
+
+Risk: Broad prompts may produce payment, authentication, or database code changes that need domain review.
+
+Mitigation: Invoke the skill with exact paths and function names, and require human review before applying changes to high-impact code.
+
+Risk: Regex-based analysis can miss or misclassify complex JavaScript or TypeScript control flow.
+
+Mitigation: Treat coverage findings as review guidance and verify important functions manually or with project tests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supermario11/skills/cuihua-error-handler)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, shell command examples, and generated JavaScript code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; generated code and logging should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

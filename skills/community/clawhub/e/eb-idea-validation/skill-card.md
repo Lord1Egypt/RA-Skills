@@ -1,43 +1,49 @@
-## Description: <br>
-Validate business ideas before building with structured pain analysis, market sizing, competitor review, feasibility checks, validation experiments, and a clear GO, PIVOT, EXPLORE, or KILL verdict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate business ideas before building with structured pain, market, competitor, differentiation, feasibility, experiment, and verdict analysis.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Founders, product teams, and startup advisors use this skill to evaluate whether a business idea is worth pursuing before investing in a build. It produces a concise validation report covering customer pain, market opportunity, competition, differentiation, feasibility, validation experiments, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to engage on general market research or competitor analysis prompts. <br>
-Mitigation: Confirm the user wants an idea validation report before applying the full framework. <br>
-Risk: Idea validation can involve confidential business plans, customer lists, pricing assumptions, or proprietary financial details. <br>
-Mitigation: Avoid sharing sensitive business information unless the user intends the agent to use it in the analysis. <br>
-Risk: Market sizing and competitor assessments can be incomplete or misleading when based on weak evidence. <br>
-Mitigation: Treat conclusions as decision support and verify important claims with current, independent market and customer research. <br>
+## Use Case:
 
+External users and founders use this skill to evaluate whether a business idea is worth pursuing before building. It produces evidence-oriented validation reports covering customer pain, market sizing, competitors, differentiation, feasibility, cheap demand tests, and a GO/PIVOT/EXPLORE/KILL verdict.
 
-## Reference(s): <br>
-- [Validation Frameworks Reference](references/validation-frameworks.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/eb-idea-validation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pain scoring, TAM/SAM/SOM estimates, competitor table, feasibility notes, recommended validation experiments, verdict, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill may activate for broad business-analysis requests when a user only wants casual discussion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the user wants a full validation report before applying the complete workflow.
+
+## Reference(s):
+
+- [Validation Frameworks Reference](references/validation-frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown structured report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scored pain analysis, TAM/SAM/SOM estimates, competitor table, feasibility assessment, validation experiments, verdict, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

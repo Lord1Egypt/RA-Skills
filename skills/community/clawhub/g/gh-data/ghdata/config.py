@@ -1,15 +1,14 @@
 """
-全局配置 — 支持 ClawHub 设置 + 4种配置方式（优先级从高到低）
+全局配置
 
-  1. ClawHub skills.entries.ghdata_analyze.config  ← 技能设置面板
-  2. settings.json 文件（技能根目录）
-  3. 环境变量               ← GHDATA_API_URL / GHDATA_TIMEOUT
-  4. 默认值                 ← http://api.topeasychina.com:15099/api / 30秒
+APIKey 仅从 ~/.ghdata/ghdataapikey 读取（不读 settings.json 或环境变量）
+删除该文件 → 自动生成随机GUID → 服务端验证失败 → 降级为免费预览
 
-APIKey存放位置：~/.ghdata/ghdataapikey
-  - 首次使用自动生成随机GUID并保存到此文件
-  - 付费后替换文件内容为购买到的密钥
-  - ~ 为用户主目录（Windows下为 C:\\Users\\<用户名>）
+URL/超时 支持 3 种来源（优先级从高到低）：
+  1. init() 传参
+  2. settings.json（ghdataskill/ 目录下）
+  3. 环境变量 GHDATA_API_URL / GHDATA_TIMEOUT
+  4. 默认值 http://api.topeasychina.com:15099/api / 30秒
 """
 import os
 import json
@@ -31,7 +30,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _GH_DATA_DIR = os.path.join(os.path.expanduser("~"), ".ghdata")
 _APIKEY_FILE = os.path.join(_GH_DATA_DIR, "ghdataapikey")
 
-# ===== 预测参数 =====
+# ===== 分析参数 =====
 BASE_SCORE = 5.0
 RANGE_MAP = {
     "偏多": "+1.5%~+3.0%",
@@ -114,44 +113,32 @@ def _ensure_api_key() -> str:
 
 def init(webapi_url: str = None, timeout: int = None, api_key: str = None):
     """
-    初始化配置 — 4层优先级（高→低）：
-
-    1. init() 传参 webapi_url/timeout/api_key
-    2. settings.json 文件（ghdataskill/ 目录下）
-    3. 环境变量 GHDATA_API_URL / GHDATA_TIMEOUT / GHDATA_API_KEY
-    4. 默认值
+    初始化配置 — APIKey仅从 ~/.ghdata/ghdataapikey 读取
+    删除该文件后自动生成随机GUID（服务端验证失败→降级为免费预览）
 
     参数:
         webapi_url: WebAPI 基地址
         timeout: 请求超时秒数
-        api_key: APIKey验证密钥（付费版本必填）
+        api_key: APIKey（传入则覆盖文件内容）
 
     示例:
-        >>> config.init()                                                    # 从settings.json或默认
-        >>> config.init("http://192.168.1.100:5099/api")                    # 代码覆盖
-        >>> config.init(api_key="00000000-0000-0000-0000-000000000000")     # 指定APIKey
+        >>> config.init()                                          # 从 ~/.ghdata/ghdataapikey 读取
+        >>> config.init("http://192.168.1.100:5099/api")          # 代码覆盖URL
+        >>> config.init(api_key="<在此填入你的APIKey>")  # 指定APIKey（示例，用真实Key替换）
     """
     global WEBAPI_BASE_URL, TIMEOUT, DOC_DIR, DATA_DIR, API_KEY, _initialized
 
-    # 第1层：settings.json 文件
+    # URL/超时来源：settings.json > 环境变量 > 默认
     settings = _load_settings()
     file_url = settings.get("webapi_url", "")
     file_timeout = settings.get("webapi_timeout", 0)
-
-    # 第2层：环境变量
     env_url = os.environ.get("GHDATA_API_URL", "")
     env_timeout = os.environ.get("GHDATA_TIMEOUT", "")
-    env_api_key = os.environ.get("GHDATA_API_KEY", "")
 
-    # 第3层：文件（~/.ghdata/ghdataapikey）
-    file_api_key = _read_apikey_file()
-
-    # 第4层：传参覆盖前几层
     final_url = webapi_url or file_url or env_url or "http://api.topeasychina.com:15099/api"
     final_timeout = (timeout or 
                      (int(file_timeout) if file_timeout else 0) or 
                      (int(env_timeout) if env_timeout else 30))
-    final_api_key = api_key or env_api_key or file_api_key or ""
 
     WEBAPI_BASE_URL = final_url.rstrip("/")
     TIMEOUT = final_timeout
@@ -163,28 +150,30 @@ def init(webapi_url: str = None, timeout: int = None, api_key: str = None):
     os.makedirs(DOC_DIR, exist_ok=True)
     os.makedirs(DATA_DIR, exist_ok=True)
 
-    # APIKey：传参 > 环境变量 > 本地文件 > 自动生成
-    if not final_api_key:
-        final_api_key = _ensure_api_key()
-    API_KEY = final_api_key
-
-    # 如果APIKey来自传参/环境变量（非文件），同步保存到文件
-    if api_key or env_api_key:
-        _write_apikey_file(final_api_key)
+    # APIKey：仅从 ~/.ghdata/ghdataapikey 读取
+    local_file_api_key = _read_apikey_file()
+    if api_key:
+        # 传参指定Key → 保存到文件并覆盖
+        _write_apikey_file(api_key)
+        API_KEY = api_key
+    elif local_file_api_key:
+        API_KEY = local_file_api_key
+    else:
+        # 文件不存在 → 自动生成随机GUID → 服务端验证失败 → 降级免费预览
+        API_KEY = _ensure_api_key()
 
     _initialized = True
 
-    # 打印配置来源
-    sources = []
-    if webapi_url or api_key:
-        sources.append("init传参")
-    if _CONFIG_FILE:
-        sources.append(os.path.basename(_CONFIG_FILE))
-    elif os.environ.get("GHDATA_API_URL"):
-        sources.append("环境变量")
-    source_str = f" ({' + '.join(sources)})" if sources else ""
+    # 打印配置
     masked_key = API_KEY[:8] + "****" + API_KEY[-4:] if len(API_KEY) > 20 else "（未设置）"
-    print(f"[config] WebAPI: {WEBAPI_BASE_URL}  timeout={TIMEOUT}s  APIKey: {masked_key}{source_str}")
+    key_source = "ghdataapikey文件"
+    if api_key:
+        key_source = "init传参"
+    elif not os.path.exists(_APIKEY_FILE):
+        key_source = "自动生成（文件不存在）"
+    print(f"[config] WebAPI: {WEBAPI_BASE_URL}  timeout={TIMEOUT}s  APIKey: {masked_key} ({key_source})")
+    # 购买链接由 db.get_payment_url() 生成（v2.2.50 token化，URL不含完整Key）
+    print(f"[config] 购买链接: 由 analyze() 返回的 _payment_url 提供（token化，不再打印完整Key）")
     print(f"[config] DOC: {DOC_DIR}")
 
 
@@ -206,11 +195,16 @@ def show():
     print(f"  APIKey文件:    {_APIKEY_FILE}")
     print(f"  输出目录:      {DOC_DIR}")
     print(f"  数据目录:      {DATA_DIR}")
-    print(f"  配置来源:      {_CONFIG_FILE or '默认值'}")
+    print(f"  配置来源:      settings.json(URL/超时) + ghdataapikey(API密钥)")
 
-    print(f"\n  📋 修改方式（优先级从高到低）：")
-    print(f"  ① init() 传参  → 临时覆盖")
-    print(f"  ② settings.json → 改url/timeout，永久生效 ✅ 推荐")
-    print(f"  ③ 环境变量      → set GHDATA_API_URL=...")
-    print(f"  ④ 默认值        → http://api.topeasychina.com:15099/api")
+
+# ===== 模块加载时自动初始化 =====
+# 确保 config.API_KEY / WEBAPI_BASE_URL / TIMEOUT 在使用前已设置
+if not _initialized:
+    init()
+
+    print(f"\n  📋 APIKey来源（仅从文件读取）：")
+    print(f"  ① init() 传参  → 覆盖文件内容")
+    print(f"  ② ~/.ghdata/ghdataapikey → 默认读取位置 ✅")
+    print(f"  ③ 自动生成    → 文件不存在时生成随机GUID（无效Key→降级免费预览）")
     print("=" * 50)

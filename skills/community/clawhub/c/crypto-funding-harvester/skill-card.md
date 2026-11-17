@@ -1,43 +1,59 @@
-## Description: <br>
-Scans public perpetual futures funding rates across Hyperliquid, Binance, and Bybit to identify delta-neutral carry trade opportunities and save ranked results as JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans public perpetual futures funding rates across Hyperliquid, Binance, and Bybit, ranks high-yield delta-neutral carry opportunities, detects cross-exchange spreads, and writes results to a local JSON file.
 
-## Publisher: <br>
-[Mibayy](https://clawhub.ai/user/Mibayy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mibayy](https://clawhub.ai/user/mibayy)
 
-## Use Case: <br>
-External users, developers, and trading analysts can use this skill to monitor public funding-rate data and review potential delta-neutral carry opportunities before making any trading decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs as a scheduled background task that polls public exchange APIs every 15 minutes and writes to /tmp/funding_opportunities.json. <br>
-Mitigation: Install it only in environments where this polling cadence and shared temporary output path are acceptable. <br>
-Risk: Funding-rate opportunities can change quickly and may not account for fees, liquidity, liquidation, exchange risk, or execution constraints. <br>
-Mitigation: Independently evaluate trading risks and current market conditions before acting on any reported opportunity. <br>
+## Use Case:
 
+External users and developers use this automaton to monitor public crypto funding-rate data and produce a local shortlist of potential delta-neutral carry and cross-exchange spread opportunities for further review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mibayy/crypto-funding-harvester) <br>
-- [Hyperliquid info endpoint](https://api.hyperliquid.xyz/info) <br>
-- [Binance futures premium index endpoint](https://fapi.binance.com/fapi/v1/premiumIndex) <br>
-- [Bybit market tickers endpoint](https://api.bybit.com/v5/market/tickers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Analysis] <br>
-**Output Format:** [JSON file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes /tmp/funding_opportunities.json on each scheduled run with ranked opportunities, cross-exchange spreads, and summary data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, clawhub.json) <br>
+Risk: The automaton makes recurring outbound requests to public exchange APIs every 15 minutes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where those network calls are expected and acceptable.
+
+Risk: Results are written to a shared /tmp path, which may be inappropriate on multi-user systems.
+
+Mitigation: Run under an unprivileged account and change the output path to a private application directory when needed.
+
+Risk: Funding-rate opportunities can be misleading or stale and do not remove market, liquidity, exchange, or execution risk.
+
+Mitigation: Treat the output as market-data screening for review, not as automated trading or financial advice.
+
+## Reference(s):
+
+- [Hyperliquid info API](https://api.hyperliquid.xyz/info)
+- [Binance USD-M futures premium index API](https://fapi.binance.com/fapi/v1/premiumIndex)
+- [Bybit market tickers API](https://api.bybit.com/v5/market/tickers)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Text]
+
+**Output Format:** [JSON file with log text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes /tmp/funding_opportunities.json; optional environment variables tune funding-rate threshold, spread threshold, and request timeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, clawhub.json, server release evidence, target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

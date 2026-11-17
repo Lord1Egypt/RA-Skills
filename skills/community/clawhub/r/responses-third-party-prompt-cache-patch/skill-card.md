@@ -1,43 +1,58 @@
-## Description: <br>
-Patch an installed OpenClaw dist bundle so third-party OpenAI-compatible Responses endpoints keep prompt_cache_key and prompt_cache_retention instead of having them stripped. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patch an installed OpenClaw dist bundle so third-party OpenAI-compatible Responses endpoints keep prompt_cache_key and prompt_cache_retention instead of having them stripped.
 
-## Publisher: <br>
-[tsunheimat](https://clawhub.ai/user/tsunheimat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsunheimat](https://clawhub.ai/user/tsunheimat)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to apply, verify, and roll back a local bundle patch that preserves Responses prompt-cache hints for third-party OpenAI-compatible endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes directly into an installed OpenClaw dist bundle. <br>
-Mitigation: Run the dry-run first, test with --root against a copied install or fixture, and keep the generated backups before restarting the gateway. <br>
-Risk: The patch may be applied to a different OpenClaw install or bundle version than intended. <br>
-Mitigation: Confirm the resolved OpenClaw root and target bundle before applying; use --root to select a specific installation. <br>
-Risk: Gateway behavior does not change until the running service reloads the modified bundle. <br>
-Mitigation: Restart the OpenClaw gateway only after confirming the patch or rollback completed and node --check passed. <br>
+## Use Case:
 
+Developers and operators use this skill to patch a local OpenClaw installation so third-party OpenAI-compatible Responses endpoints retain prompt-cache hints. It is intended for local apply, dry-run verification, rollback, and upgrade-aware reapplication workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tsunheimat/responses-third-party-prompt-cache-patch) <br>
-- [Skill-provided source link](https://github.com/tsunheimat/openclaw-responses-prompt-cache-patch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code] <br>
-**Output Format:** [Markdown with inline bash commands and Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run, timestamped backups, syntax validation, rollback, and upgrade-aware reapply behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server-resolved release metadata) <br>
+Risk: The skill edits local OpenClaw installation files under dist/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the dry-run first, confirm the selected OpenClaw root and bundle paths, and consider testing with --root on a copied fixture before applying to the active installation.
+
+Risk: A changed or upgraded OpenClaw bundle may no longer match the expected patch point.
+
+Mitigation: Use the script's target-shape checks and upgrade-aware messages; stop and inspect the new dist layout if the script reports an unexpected shape or missing target.
+
+Risk: The patch or rollback only takes effect after the gateway reloads the modified bundle.
+
+Mitigation: Keep the rollback script available and restart the OpenClaw gateway after apply or rollback.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsunheimat/skills/responses-third-party-prompt-cache-patch)
+- [Project link from skill documentation](https://github.com/tsunheimat/openclaw-responses-prompt-cache-patch)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code]
+
+**Output Format:** [Markdown guidance with inline bash commands and bundled Python scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run, backup, syntax validation, auto-restore on failed patch validation, and rollback behavior.]
+
+## Skill Version(s):
+
+0.1.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

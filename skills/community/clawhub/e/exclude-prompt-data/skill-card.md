@@ -1,37 +1,49 @@
-## Description: <br>
-Ensures AI output contains only the requested result, without leaking prompt instructions, rationale, meta-commentary, or change announcements into code, documentation, or other content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures AI output contains only the result, not the prompt. Use when writing code, documentation, or content where prompt instructions, rationale, or meta-commentary must not leak into the output. Applies to all file types to prevent phrases like "as requested", "per the prompt", or change announcements from appearing in generated content.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and content authors use this skill when generating or editing code, documentation, or other files that must contain only the requested result without prompt framing, rationale, acknowledgments, or meta-commentary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marked the release suspicious because it may include powerful maintainer actions and unsandboxed review defaults. <br>
-Mitigation: Install only in a trusted ClawHub maintainer environment; use no-yolo or disabled full-access defaults in sensitive repositories and require exact targets, reasons, and confirmation before moderation or publishing commands. <br>
+## Use Case:
 
+Developers, documentation authors, and agents use this skill to keep generated code, documentation, and content free of prompt instructions, rationale, and meta-commentary. It is useful when output should be production-ready and self-contained.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code] <br>
-**Output Format:** [Markdown guidance with examples and review checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on removing prompt-derived wording, change announcements, and meta-commentary from generated output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may cause an agent to rewrite prompt-derived wording into cleaner standalone content, which can remove text that was intended to be preserved verbatim.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated diffs and preserve prompt text only when the user explicitly requests verbatim transcription or when editing prompt and instruction artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jhauga/skills/exclude-prompt-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance applied to generated files and agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; applies prompt-leakage checks across file types.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

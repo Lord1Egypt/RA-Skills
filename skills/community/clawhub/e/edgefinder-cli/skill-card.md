@@ -1,44 +1,55 @@
-## Description: <br>
-Use the EdgeFinder CLI for NFL, NBA, and MLB analysis, plus NFL/NBA schedules, standings, Polymarket odds, and portfolio lookups from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the EdgeFinder CLI for NFL, NBA, and MLB analysis, plus NFL/NBA schedules, standings, Polymarket odds, and portfolio lookups from the terminal.
 
-## Publisher: <br>
-[andrewnexys](https://clawhub.ai/user/andrewnexys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andrewnexys](https://clawhub.ai/user/andrewnexys)
 
-## Use Case: <br>
-External users and agent developers use this skill to call EdgeFinder from an agent workflow for sports betting analysis, schedules, standings, Polymarket odds, and portfolio lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require an EdgeFinder API key for authenticated CLI access. <br>
-Mitigation: Treat EDGEFINDER_API_KEY like a password, keep it in environment or agent configuration, and do not paste or echo the full key in chat or logs. <br>
-Risk: If the local edgefinder binary is not installed, the wrapper can execute the published @edgefinder/cli package through npx. <br>
-Mitigation: Install and pin the CLI through a trusted package workflow when possible, and use the npx fallback only when you are comfortable executing the npm package. <br>
-Risk: Sports betting analysis and odds can be incomplete, stale, or unsuitable for a user's jurisdiction or risk tolerance. <br>
-Mitigation: Review CLI output before acting on it and treat it as decision support rather than guaranteed betting advice. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to run EdgeFinder CLI commands for sports betting analysis, NFL/NBA schedules and standings, Polymarket odds, and portfolio lookups.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andrewnexys/edgefinder-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/andrewnexys) <br>
-- [EdgeFinder CLI homepage](https://github.com/andrewnexys/edgefinder-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-output recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke the EdgeFinder CLI or npx fallback and may use EDGEFINDER_API_KEY for authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The wrapper can automatically download and run an unpinned npm CLI through npx when edgefinder is not installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer installing and reviewing a pinned EdgeFinder CLI version before use, and avoid relying on the npx fallback in controlled environments.
+
+Risk: The skill uses an EdgeFinder API key or login session for paid access and portfolio data.
+
+Mitigation: Provide only the required EDGEFINDER_API_KEY, avoid printing secrets, and limit environment exposure during agent runs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andrewnexys/skills/edgefinder-cli)
+- [EdgeFinder CLI Repository](https://github.com/andrewnexys/edgefinder-cli)
+- [Publisher Profile](https://clawhub.ai/user/andrewnexys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-producing CLI invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a locally installed edgefinder binary or fall back to npx; structured commands can request JSON output.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

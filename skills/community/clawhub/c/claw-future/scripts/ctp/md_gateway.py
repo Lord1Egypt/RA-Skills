@@ -43,6 +43,14 @@ class MdGateway:
         self._connected  = False
         self._logged_in  = False
 
+    @property
+    def connected(self) -> bool:
+        return self._connected
+
+    @property
+    def logged_in(self) -> bool:
+        return self._logged_in
+
     # ---------------------------------------------------------------- #
 
     def connect(self, broker_id: str, user_id: str, password: str) -> None:

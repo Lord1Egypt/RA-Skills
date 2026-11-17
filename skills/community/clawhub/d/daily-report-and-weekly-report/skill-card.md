@@ -1,39 +1,53 @@
-## Description: <br>
-Generates structured daily and weekly work reports by analyzing git commits, TODO comments, and work notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自动生成工作日报和周报，分析 git 提交记录、TODO 注释和工作日志来生成结构化 Markdown 工作报告。
 
-## Publisher: <br>
-[flonerze](https://clawhub.ai/user/flonerze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flonerze](https://clawhub.ai/user/flonerze)
 
-## Use Case: <br>
-Developers and employees use this skill to prepare daily standup summaries, weekly progress reports, manager updates, and follow-up plans from repository activity and task notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan broad repository contents and task notes, which may include sensitive or irrelevant information in generated reports. <br>
-Mitigation: Specify exact repositories or paths, exclude secrets and private notes, and review generated reports before sharing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare daily, weekly, or custom-range work reports from repository activity, TODOs, and work notes for standups, manager updates, and progress reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flonerze/daily-report-and-weekly-report) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/flonerze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports require user review before sharing because they may summarize repository contents, TODO notes, or private work details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated reports may include sensitive project details from git commit messages, TODO comments, task files, or work notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local report before sharing and redact confidential project, customer, credential, or planning details.
+
+Risk: Intermediate local files or report outputs may remain on shared machines.
+
+Mitigation: Use a private temporary directory for report generation on shared systems and delete intermediate files after review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flonerze/skills/daily-report-and-weekly-report)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Markdown report files and optional HTML conversions; users should review generated reports before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

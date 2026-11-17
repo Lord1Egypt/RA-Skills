@@ -89,4 +89,3 @@ ve directconnect DescribeDirectConnectVirtualInterfaces --Region "<region>"
 | 路由缺少目的 CIDR | 私网或跨域链路不可达 |
 | CEN/TR/VPN 单向路由 | 请求能出去但回包失败 |
 | 专线 BGP/虚拟接口异常 | 混合云链路中断或路由未学习 |
-

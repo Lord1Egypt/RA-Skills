@@ -1,39 +1,53 @@
-## Description: <br>
-Create targeted, personalized multi-touch cold outreach messages using proven outreach frameworks for B2B and local service prospects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates targeted, personalized multi-touch cold outreach messages for email, SMS, LinkedIn, Upwork proposals, and follow-up sequences.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-Sales, marketing, business development, and freelance users use this skill to draft cold emails, SMS messages, LinkedIn messages, follow-up sequences, Upwork proposals, and lead magnet ideas for prospect outreach. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Drafted outreach may be used for noncompliant cold messaging. <br>
-Mitigation: Confirm recipient data was lawfully obtained, honor consent and opt-out requirements, and follow CAN-SPAM, GDPR/UK GDPR, TCPA, CASL, and platform rules before sending. <br>
-Risk: Personalization or performance claims in generated copy may be inaccurate or unsupported. <br>
-Mitigation: Review all claims, examples, metrics, and recipient-specific statements against reliable business records before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/staybased/cold-outreach) <br>
+## Use Case:
 
+External users, sales teams, founders, freelancers, and service businesses use this skill to draft, evaluate, and improve personalized cold outreach and multi-touch follow-up sequences for prospecting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with outreach copy, reusable templates, checklists, and sequence guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated drafts should be reviewed for lawful recipient sourcing, consent, opt-out handling, platform compliance, and claim accuracy before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated outreach may use personal or prospect information in ways that violate privacy, platform, or outreach rules.
+
+Mitigation: Use only lawfully obtained, business-relevant prospect information, avoid sensitive personal data, honor opt-outs, and check applicable email, SMS, LinkedIn, GDPR, CCPA, CAN-SPAM, and local outreach requirements before sending.
+
+Risk: Outreach drafts may be inaccurate, overly aggressive, or misaligned with a recipient's context.
+
+Mitigation: Review and edit generated copy for factual accuracy, respectful personalization, truthful claims, and appropriate tone before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/staybased/skills/cold-outreach)
+- [ClawHub publisher profile](https://clawhub.ai/user/staybased)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown drafts, templates, sequences, and evaluation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are cold outreach copy and related guidance intended for review before sending.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

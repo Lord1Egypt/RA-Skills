@@ -1,43 +1,57 @@
-## Description: <br>
-Generates job-specific tailored resumes from a base profile and target job description, producing print-optimized HTML and PDF-ready output in Chinese or English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates job-specific tailored resumes from a base profile and job description, then produces print-optimized HTML suitable for PDF export.
 
-## Publisher: <br>
-[26048608982lp-ai](https://clawhub.ai/user/26048608982lp-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[26048608982lp-ai](https://clawhub.ai/user/26048608982lp-ai)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to collect resume profile details, compare them against a job description, and generate a tailored resume with match analysis and review guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow stores personal resume data in a local resume-profile.md file. <br>
-Mitigation: Keep the workspace private, review the saved profile for sensitive details, and delete it when it is no longer needed. <br>
-Risk: Using a job-description URL can expose browsing context or fetch a page the user did not intend to share. <br>
-Mitigation: Prefer pasted job descriptions or local files for privacy-sensitive applications. <br>
-Risk: Tailored resume content may contain formatting issues, inaccurate dates, or overstated achievements. <br>
-Mitigation: Review the generated HTML/PDF before sending and verify contact information, dates, names, and claims. <br>
+## Use Case:
 
+External users and agents use this skill to collect resume profile details, compare them against a target job description, and generate a tailored bilingual resume for job applications.
 
-## Reference(s): <br>
-- [HTML Resume Template Guide](references/html-template-guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/26048608982lp-ai/jd-resume-tailor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown workflow guidance, self-contained HTML resume code, browser PDF export commands, and generated resume files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local resume-profile.md and resume HTML/PDF files under the workspace; prompts the user to confirm job-description parsing and tailoring strategy before generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill stores sensitive personal resume profile data in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review resume-profile.md for sensitive fields and delete or redact it when it is no longer needed.
+
+Risk: The skill may fetch job descriptions from user-provided URLs.
+
+Mitigation: Prefer pasted job descriptions or trusted local files when network fetching is not required.
+
+Risk: Tailored resume content can overstate qualifications or introduce inaccurate claims.
+
+Mitigation: Review generated resumes for correct contact details, dates, employer names, project facts, and achievement claims before sending.
+
+## Reference(s):
+
+- [HTML Resume Template Guide](references/html-template-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown guidance plus self-contained HTML/CSS resume files and browser PDF export commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a persistent resume-profile.md and writes generated HTML/PDF resume artifacts under resumes/.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

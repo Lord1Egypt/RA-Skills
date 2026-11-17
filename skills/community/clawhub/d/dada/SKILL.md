@@ -1,7 +1,7 @@
 ---
 name: "达达快送"
-version: "1.0.0"
-description: "达达快送开发助手，精通即时配送API、订单管理、运力调度、数据对接"
+version: "1.1.0"
+description: "达达同城配送指南。Use for: (1) 同城即时配送选型——达达快送与京东到家/顺丰同城/闪送的场景差异, (2) 商家侧接入（京东生态协同）与计费结构理解, (3) 发同城件的时效与物品限制。Dada same-city delivery guide: platform selection, merchant integration, and shipping constraints."
 tags: ["delivery", "logistics", "api", "instant"]
 author: "ClawSkills Team"
 category: "logistics"
@@ -243,3 +243,13 @@ business 类型：1 食品, 2 饮料, 3 鲜花, 5 其他, 8 文件, 19 水果, 2
 3. 记录所有 API 请求和响应日志，便于排查问题
 4. 运费预估结果有时效性，下单时实际运费可能有差异
 5. 高峰期（午餐/晚餐）运力紧张，建议提前发单
+
+## 工作边界
+
+- 达达与京东深度绑定（京东到家运力），京东系商家协同优势明显
+- 计费按距离/重量/时段浮动，以下单页实时报价为准
+- 违禁品与贵重物品限制从严提示，大额物品建议保价
+
+---
+
+**最后更新**: 2026-07-11

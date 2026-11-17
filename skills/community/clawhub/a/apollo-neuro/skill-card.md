@@ -1,41 +1,57 @@
-## Description: <br>
-Selects a response path for incoming tasks, routing urgent or simple work faster and complex work toward deeper analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+像神经系统一样选择最快路径：紧急的事快速处理，复杂的事慢慢想。
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External users and agent operators use this skill to classify a task by urgency, complexity, and context, then choose a fast, standard, guarded, or deep-analysis response path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Urgent-sounding requests can be routed toward reduced-confirmation handling. <br>
-Mitigation: Keep normal confirmations for external, irreversible, privileged, sensitive, business, or financial actions. <br>
-Risk: User task text may be retained in local .neuro route state. <br>
-Mitigation: Inspect or clear the local .neuro state before sharing workspaces, and avoid entering sensitive task text when possible. <br>
+## Use Case:
 
+External agent users use Apollo Neuro to classify incoming tasks into fast, standard, delayed, or deeper-analysis response paths based on urgency, complexity, and available circadian state. The skill helps an agent choose a routing recommendation and produce a concise routing report.
 
-## Reference(s): <br>
-- [Apollo Neuro ClawHub release](https://clawhub.ai/nic-yuan/apollo-neuro) <br>
-- [Publisher profile: nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance and shell route reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script may save task, route, circadian phase, and timestamp data to local .neuro route state JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can influence task-routing policy and may reduce confirmations or validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where external confirmation and validation requirements remain enforced outside the skill.
+
+Risk: The shell script can store raw task text in route-state JSON.
+
+Mitigation: Avoid using it for workflows that handle secrets or sensitive user content unless that state file is protected and retention is acceptable.
+
+Risk: The security verdict is suspicious because of broad behavior changes.
+
+Mitigation: Review and scan the skill before deployment, especially before using it in workflows that send messages, modify files, publish content, or spend money.
+
+## Reference(s):
+
+- [Apollo Neuro Skill Page](https://clawhub.ai/nic-yuan/skills/apollo-neuro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text and shell-script routing reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write route-state JSON containing raw task text when the bundled shell script is used.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

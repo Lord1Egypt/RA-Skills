@@ -1,41 +1,50 @@
-## Description: <br>
-Generate customer-facing answers for common content marketing questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customer-facing answers for common content marketing questions. Use when working on FAQ content for content teams, creators, growth marketers.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External content teams, creators, and growth marketers use this skill to draft and refine FAQ page copy for content marketing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated FAQ copy may be inaccurate, off-brand, or unsuitable for publication rights. <br>
-Mitigation: Review and edit generated answers for factual accuracy, brand voice, and publication rights before publishing. <br>
-Risk: Prompts or web-search-backed workflows may expose sensitive unpublished business information. <br>
-Mitigation: Avoid entering confidential business details or unpublished plans when using the skill. <br>
+## Use Case:
 
+External content teams, creators, and growth marketers use this skill to draft customer-facing FAQ answers for content marketing pages, then review the answers for accuracy before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-build-content-marketing-faq-page) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/build-content-marketing-faq-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text FAQ drafts and revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy should be reviewed for factual accuracy, brand voice, and publication rights before external use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated FAQ answers may contain inaccurate claims or marketing overstatements, especially when web search is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review answers for factual accuracy, source support, and brand or compliance fit before publishing.
+
+## Reference(s):
+
+- [SkillBoss Skill Page](https://www.skillboss.co/skills/build-content-marketing-faq-page)
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-build-content-marketing-faq-page)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text FAQ draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

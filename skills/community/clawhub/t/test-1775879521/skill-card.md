@@ -1,39 +1,52 @@
-## Description: <br>
-Helps agents search private-car day tours and related travel services through the flyai CLI, then format results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire a private car with driver for customized day tours and related travel services using FlyAI CLI results from Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Travel agents and external users use this skill to search for private-car day tours, half-day tours, multi-day driver services, and related travel options from CLI-sourced provider results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may install a global npm CLI and route travel searches through a specific commercial provider.
+
+Mitigation: Confirm the package source and version before installation, and use the skill only when provider-directed booking results are acceptable.
+
+Risk: The security review describes unpinned global software installation and limited user control.
+
+Mitigation: Review the skill before installing or deploying it, and prefer controlled environments where global package installation can be audited.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to find private cars with drivers for day tours, half-day trips, and multi-day travel requests. The skill guides the agent to collect a query, run flyai CLI searches, and present bookable results. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run an unpinned global npm CLI. <br>
-Mitigation: Install only after user or operator approval, prefer a sandboxed or manually reviewed install, and trust the @fly-ai/flyai-cli package before use. <br>
-Risk: Travel queries are sent to the provider and results may influence booking decisions. <br>
-Mitigation: Review provider output and booking links before taking action, and verify prices, itinerary details, and terms on the booking page. <br>
+**Output Format:** [Markdown with booking links and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires results to come from FlyAI CLI output and include booking links when presenting travel options.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; every travel result should include a booking link.] <br>
+3.2.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

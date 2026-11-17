@@ -1,41 +1,59 @@
-## Description: <br>
-Use this skill to extract structured Markdown and JSON from PDFs and document images, including tables, formulas, figures, charts, headers, footers, multi-column layouts, and reading order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured Markdown and JSON from PDFs and document images, including tables, formulas, figures, headers, footers, multi-column layout, and reading order.
 
-## Publisher: <br>
-[bobholamovic](https://clawhub.ai/user/bobholamovic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bobholamovic](https://clawhub.ai/user/bobholamovic)
 
-## Use Case: <br>
-Developers and document-processing teams use this skill to call the PaddleOCR CLI for structured parsing of complex PDFs and document images into Markdown and JSON outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents selected for parsing may be processed by PaddleOCR's remote API. <br>
-Mitigation: Confirm data-sharing, retention, and compliance terms before processing confidential, regulated, financial, legal, or customer documents. <br>
-Risk: The skill depends on a PaddleOCR access token and the installed PaddleOCR CLI package. <br>
-Mitigation: Install only from trusted package sources, keep the access token secret, and handle authentication, quota, and no-content errors explicitly. <br>
+## Use Case:
 
+Developers and document-processing teams use this skill to parse complex PDFs and document images into structured Markdown or JSON for downstream review, extraction, and automation workflows.
 
-## Reference(s): <br>
-- [PaddleOCR Official API CLI Documentation](https://www.paddleocr.ai/latest/en/version3.x/inference_deployment/serving/paddleocr_official_api/cli.html) <br>
-- [ClawHub skill release page](https://clawhub.ai/bobholamovic/paddleocr-doc-parsing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the paddleocr CLI and PADDLEOCR_ACCESS_TOKEN; may return extracted page Markdown plus image resource links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Documents may contain sensitive content processed through the PaddleOCR service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive documents unless PaddleOCR service terms, data-handling expectations, and local environment controls are acceptable for the use case.
+
+Risk: The skill requires a PaddleOCR access token.
+
+Mitigation: Store PADDLEOCR_ACCESS_TOKEN in a managed secret store or protected environment variable, and avoid exposing it in prompts, logs, or shared shell history.
+
+Risk: The paddleocr CLI package may change behavior across releases.
+
+Mitigation: Use a pinned or reviewed paddleocr package version in controlled or production environments.
+
+## Reference(s):
+
+- [PaddleOCR Official API CLI Documentation](https://www.paddleocr.ai/latest/en/version3.x/inference_deployment/serving/paddleocr_official_api/cli.html)
+- [ClawHub Skill Page](https://clawhub.ai/bobholamovic/skills/paddleocr-doc-parsing)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/bobholamovic)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON result structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the paddleocr CLI and PADDLEOCR_ACCESS_TOKEN; CLI options can save result JSON and related resource files.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

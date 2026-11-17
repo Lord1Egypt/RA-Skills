@@ -1,36 +1,54 @@
-## Description: <br>
-Deep form validation workflow covering schemas, sync versus async rules, UX patterns, accessibility, and server parity for complex forms and multi-step wizards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep form validation workflow for schemas, sync and async rules, UX patterns, accessibility, and server parity.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and review complex form validation flows, including schema modeling, validation timing, accessibility, async checks, API error mapping, and test coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and product engineers use this skill when designing or reviewing complex forms, multi-step wizards, checkout flows, or validation behavior that must stay accessible and consistent between client and server.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with implementation recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; recommendations should be adapted to the application's frontend framework and server validation model.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated form guidance may miss application-specific privacy, security, or compliance requirements for server validation and draft storage.
+
+Mitigation: Review resulting form code changes against the application's privacy and security requirements before deployment.
+
+Risk: Client-side validation advice can diverge from authoritative server rules or async validation behavior.
+
+Mitigation: Keep server validation authoritative, map API validation errors back to fields, and test schema logic plus critical user flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/form-validation)
+- [Publisher profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with checklists and implementation-oriented recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, persistence, or sensitive access behavior according to server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

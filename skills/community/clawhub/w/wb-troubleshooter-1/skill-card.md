@@ -1,38 +1,54 @@
-## Description: <br>
-Western Blot troubleshooting guide with step-by-step solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Western Blot troubleshooting guide with step-by-step solutions.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Lab users and researchers use this skill to diagnose common Western Blot issues, including high background, no signal, multiple bands, and band smearing, and to receive likely causes with recommended troubleshooting steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script and may save generated outputs in the workspace. <br>
-Mitigation: Review scripts/main.py before installation, run it only in a trusted environment, and use explicit input and output paths inside a workspace directory. <br>
+## Use Case:
 
+Wet-lab researchers and lab teams use this skill to diagnose common Western Blot issues, including high background, no signal, multiple bands, and band smearing, and receive likely causes with recommended troubleshooting steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/wb-troubleshooter-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Plain text diagnostic output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks likely causes and recommended troubleshooting steps for the supplied symptom.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The documentation mentions file read/write access that the inspected script does not use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm expected local execution behavior and tighten the documentation before publication.
+
+Risk: The skill provides troubleshooting guidance for wet-lab workflows and may not cover every experimental condition.
+
+Mitigation: Have users review recommendations against their protocol, controls, and lab safety procedures before changing experiments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/wb-troubleshooter-1)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a symptom string; list mode prints known problem categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

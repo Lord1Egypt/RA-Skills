@@ -14,7 +14,6 @@ from _shopee_shop_flash_sale_common import (
     lf_inline_flag,
     merge_shopee_body,
     qs_add,
-    resolve_store_tokens,
 )
 
 
@@ -111,16 +110,17 @@ def run_shop_flash_sale_api(api_name: str, params: dict, caller: Optional[str] =
     else:
         body = _build_post_body(params, spec)
 
-    tokens = resolve_store_tokens(params)
-    if "error" in tokens or "accessToken" not in tokens:
-        return tokens
+    shop_id = params.get("shopId")
+    merchant_id = params.get("merchantId")
+    if not shop_id and not merchant_id:
+        print("Missing required field: shopId OR merchantId", file=sys.stderr)
+        sys.exit(1)
 
     proxy = developer_proxy_call(
-        tokens["accessToken"],
         path,
         method,
-        shop_id=params.get("shopId"),
-        merchant_id=params.get("merchantId"),
+        shop_id=shop_id,
+        merchant_id=merchant_id,
         query_string=query_string or None,
         body=body,
         content_type=content_type,

@@ -1,46 +1,64 @@
-## Description: <br>
-B站视频弹幕提取工具，输入B站视频链接或BV号后提取弹幕并导出为JSON和Markdown文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts public Bilibili video danmaku from a BV ID or video URL and exports the results as JSON and Markdown files.
 
-## Publisher: <br>
-[unclecheng-li](https://clawhub.ai/user/unclecheng-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclecheng-li](https://clawhub.ai/user/unclecheng-li)
 
-## Use Case: <br>
-External users and developers use this skill to extract danmaku from a Bilibili video for local review, archiving, or downstream analysis. It accepts a Bilibili URL or BV identifier and saves time-ordered exports with video metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Bilibili public APIs for each provided video. <br>
-Mitigation: Use it only when network access to Bilibili is acceptable for the video being processed. <br>
-Risk: Extracted danmaku is stored locally and may include user-generated content. <br>
-Mitigation: Write exports to a dedicated output folder and review sharing decisions against platform rules and privacy expectations. <br>
-Risk: Aggressive bulk extraction may trigger platform rate limits or risk controls. <br>
-Mitigation: Run extraction at a controlled pace and retry later if Bilibili returns access or rate-limit errors. <br>
+## Use Case:
 
+External users and developers use this skill to fetch publicly available danmaku for a Bilibili video and save time-ordered exports for analysis, archiving, or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unclecheng-li/unclecheng-bilibili-danmaku-extractor) <br>
-- [Publisher profile](https://clawhub.ai/user/unclecheng-li) <br>
-- [Bilibili video info API](https://api.bilibili.com/x/web-interface/view?bvid={bvid}) <br>
-- [Bilibili danmaku API](https://api.bilibili.com/x/v1/dm/list.so?oid={cid}) <br>
-- [Bilibili](https://www.bilibili.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON files, Markdown files] <br>
-**Output Format:** [JSON and Markdown files, with conversational guidance and shell command examples when used by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes extracted danmaku, timestamps, display type, color, send timestamp, and video metadata to a user-selected local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _skillhub_meta.json) <br>
+Risk: The skill contacts Bilibili public APIs and writes extracted public comments to a selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where outbound Bilibili access and local file output are acceptable, and choose an output directory intended for extracted data.
+
+Risk: Generated Markdown contains third-party danmaku text that may be unsafe to render or pass into another AI system without review.
+
+Mitigation: Treat exported Markdown as untrusted content; inspect or sanitize it before permissive rendering or downstream AI use.
+
+Risk: The dependency specification allows future requests versions, which can reduce install reproducibility.
+
+Mitigation: Pin dependencies in deployment environments when reproducible installs are required.
+
+Risk: Bilibili may rate-limit or reject requests, resulting in 403 or 412 responses.
+
+Mitigation: Control request frequency and retry later if public API access is temporarily blocked.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unclecheng-li/skills/unclecheng-bilibili-danmaku-extractor)
+- [ClawHub publisher profile](https://clawhub.ai/user/unclecheng-li)
+- [Bilibili video info API](https://api.bilibili.com/x/web-interface/view?bvid={bvid})
+- [Bilibili danmaku API](https://api.bilibili.com/x/v1/dm/list.so?oid={cid})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell examples; generated JSON and Markdown export files when the script is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8+, network access to Bilibili public APIs, and the requests package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _skillhub_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

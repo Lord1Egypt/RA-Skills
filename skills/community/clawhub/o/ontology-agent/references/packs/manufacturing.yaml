@@ -1,0 +1,267 @@
+# packs/manufacturing.yaml — Manufacturing industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `manufacturing.zh.yaml`.
+# Same paradigm as opc / ecommerce / sme. Manufacturing has very many sub-segments
+# (apparel / food / electronics / machinery / chemicals / building materials / pharma / household /
+# automotive / metals / packaging / toys…), so this pack uses a "one main pack + built-in subtypes"
+# structure: the top level defines manufacturing commonalities and each subtype only adds its
+# differences, avoiding bloat and duplication from one file per sub-segment.
+#
+# Zero-intrusion note: this is an added pack; it does not modify the 24-department template,
+# the action library, decision/roles/semantic/logic, or init.py.
+# The "heart" departments of manufacturing (production / equipment engineering / process engineering)
+# are not in the 24-department common library; they are recommended to users as private custom
+# additions via suggested_custom_departments (references/customization.md) and are not written into
+# the skill package itself.
+
+meta:
+  pack_id: manufacturing
+  display_name: Manufacturing
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [manufacturing, factory, production, plant, processing, industrial, workshop, production line, OEM, ODM, contract manufacturing, industrial enterprise]
+  description: >
+    For factory-type enterprises that manufacture physical products (both discrete and process
+    manufacturing). The main pack covers manufacturing commonalities
+    (production / equipment / process / quality / supply chain / safety & environment);
+    subtypes cover the differences of the main sub-segments.
+
+# ── 1. Manufacturing common entities (not covered by the base layer; types and relations must be explicit) ──
+entities_extra:
+  - type: Factory
+    extends: Organization
+    properties:
+      - { name: plant_name, type: string, example: "Plant No. 1" }
+      - { name: prod_type, type: enum, enum: [discrete manufacturing, process manufacturing], required: true }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+  - type: ProductionLine
+    extends: Account
+    properties:
+      - { name: line_no, type: string, required: true }
+      - { name: capacity, type: number, desc: "capacity per day / shift" }
+      - { name: oee, type: number, desc: "Overall Equipment Effectiveness (OEE)" }
+    relations:
+      - { to: Factory, type: in_plant, cardinality: many_to_one }
+  - type: Equipment
+    extends: Asset
+    properties:
+      - { name: asset_no, type: string, required: true }
+      - { name: spec, type: string }
+      - { name: special_device, type: boolean, desc: "Whether a special device (pressure vessel / lifting machinery / boiler, etc.)" }
+      - { name: next_inspect, type: date, desc: "Next statutory inspection date" }
+    relations:
+      - { to: ProductionLine, type: on_line, cardinality: many_to_one }
+  - type: ProcessRoute
+    extends: Document
+    properties:
+      - { name: step, type: string }
+      - { name: station, type: string }
+    relations:
+      - { to: Product, type: for_product, cardinality: many_to_one }
+  - type: WorkOrder
+    extends: Task
+    properties:
+      - { name: wo_no, type: string, required: true }
+      - { name: qty, type: integer }
+      - { name: status, type: enum, enum: [awaiting scheduling, in production, awaiting inspection, qualified & stored, rework], required: true }
+    relations:
+      - { to: ProductionLine, type: runs_on, cardinality: many_to_one }
+  - type: WIP
+    extends: Asset
+    properties:
+      - { name: qty, type: integer }
+    relations:
+      - { to: WorkOrder, type: of_wo, cardinality: many_to_one }
+  - type: Yield
+    extends: Metric
+    properties:
+      - { name: rate, type: number, desc: "yield %" }
+      - { name: defect_code, type: string }
+  - type: Material
+    extends: Account
+    properties:
+      - { name: sku, type: string, required: true }
+      - { name: safety_stock, type: integer, desc: "safety stock" }
+    relations:
+      - { to: Supplier, type: sourced_from, cardinality: many_to_one }
+  - type: BOM
+    extends: Document
+    properties:
+      - { name: version, type: string }
+    relations:
+      - { to: Product, type: for_product, cardinality: many_to_one }
+  - type: Supplier
+    extends: Organization
+    properties:
+      - { name: lead_time, type: integer, desc: "supply lead time (days)" }
+
+# ── 2. Recommended departments (12 core + manufacturing-related optional; production / equipment / process go to private customization) ──
+recommended_departments:
+  # 12 core (reused, personas not redefined)
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+  # Manufacturing-related optional (already in the 24-department library; when_to_include already covers "manufacturing")
+  - { code: operations,  name: Operations }              # orchestrate daily operations / processes
+  - { code: procurement, name: Procurement & Supply Chain }  # suppliers / materials / inventory / fulfilment
+  - { code: quality,     name: Quality Management }      # QA / quality control / standards
+# Note: the "heart" departments of manufacturing — production / equipment engineering / process
+# engineering — are not in the 24-department common library; they are recommended below as private
+# custom additions and do not affect package integrity.
+
+suggested_custom_departments:
+  - { code: production,  name: Production, gender_default: male, expertise: "scheduling / workshop management / work hours / capacity utilization", when: "recommended whenever the factory has production lines" }
+  - { code: maintenance, name: Equipment Engineering, gender_default: male, expertise: "equipment maintenance / TPM / special device inspection / spare parts", when: "recommended whenever there is line equipment" }
+  - { code: process,     name: Process Engineering, gender_default: male, expertise: "process routes / IE lean / yield improvement / cost reduction", when: "recommended when product processes are complex" }
+
+# ── 3. Default workflow (manufacturing core loop) ──
+default_workflow: manufacturing_ops
+workflow_bindings:
+  manufacturing_ops:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [order intake, scheduling, material procurement, production, quality inspection, warehousing, delivery, review]
+
+# ── 4. Localization policy hooks (references new red lines in decision.yaml) ──
+policy_hooks:
+  region: nationwide
+  redline_refs:
+    - compliance_redlines.manufacturing_safety   # work safety / environmental / quality system / special devices / fire safety (triggered by this pack, provided by decision.yaml)
+    - compliance_redlines.tax                    # invoicing / tax filing compliance
+  local_services: []
+
+# ── 5. Layer-B flavor (injected into personas as "industry red lines", keyed by department, default as fallback) ──
+flavor:
+  default: >-
+    You serve a factory-type manufacturing enterprise where work safety and environmental protection
+    are its lifeline; the quality system (e.g. ISO9001) requires constant attention, special devices
+    require periodic inspection and certified operators, and major actions such as invoicing, tax
+    filing and large purchases require second confirmation by the owner. Public business registration
+    data such as the Unified Social Credit Code may be recorded, but personal ID numbers, bank cards
+    and invoice images are PII and must never be stored in plain text.
+  quality: Quality standards and sampling inspection must be traceable; non-conforming product is never released unilaterally; complaint root causes must close the loop; system certification (IATF16949 / GMP / CCC) applies per subtype.
+  procurement: Supplier sourcing and stocking must balance cost and lead time; set safety stock and backup suppliers for critical materials to prevent stock-outs; large purchases escalate per delegation.
+  operations: Scheduling and capacity balancing are core; OEE / yield dashboards should be routine; cross-department bottlenecks (stock-outs / equipment downtime) are reported immediately.
+  legal: Administrative permits such as environmental assessment / emission permit / fire acceptance must be complete; hazardous chemicals and special devices must be compliant; safety and environmental incidents must be reported as required by law.
+  finance: Manufacturing finance essentials such as manufacturing cost allocation (material / labour / overhead), VAT credit carry-forward, and equipment purchase credits; invoicing → bookkeeping → filing must become an SOP.
+
+# ── 6. Manufacturing-specific monitoring signals (pairs with the manufacturing domain in monitoring.yaml) ──
+# These signals run under a thick profile (manufacturing usually has line / equipment / inventory data);
+# the subtype decides the emphasis. Routed to operations/quality/procurement/risk and the recommended
+# production department.
+manufacturing_signals:
+  signals:
+    - { id: equipment_down, name: equipment downtime / OEE drop, owner: [operations, maintenance],    desc: "critical equipment down or OEE below threshold" }
+    - { id: yield_drop,     name: yield fluctuation,            owner: [quality, process],           desc: "abnormal batch yield drop / concentrated defects" }
+    - { id: material_short, name: material stock-out,           owner: [procurement, production],    desc: "critical material below safety stock / supplier delay" }
+    - { id: safety_incident, name: safety & environmental incident, owner: [legal, risk],            desc: "safety / environmental / fire / injury incident or warning" }
+    - { id: energy_anomaly, name: energy anomaly,               owner: [operations],                 desc: "abnormal rise in energy consumption per unit" }
+    - { id: recall_risk,    name: quality recall risk,          owner: [quality, legal],             desc: "quality defect that may trigger a recall" }
+
+# ── 7. Instantiation prompts (fill-in-the-blank items during onboarding) ──
+instance_prompts:
+  - "Please describe the manufacturing type (discrete / process) and sub-segment (apparel / food / electronics / machinery / chemicals…)"
+  - "Please introduce the enterprise (legal entity, region, plants, production lines, whether you hire staff)"
+  - "Which departments do you want to build (12 core by default + operations / procurement / quality; recommended to add Production / Equipment Engineering / Process Engineering)"
+  - "Core business logic (e.g. order intake → scheduling → material prep → production → quality inspection → delivery)"
+  - "Whether there are special devices / hazardous chemicals / system certifications (affects safety & environmental red lines)"
+
+# ── 8. Sub-segment subtypes: differences only, commonalities come from the main pack ──
+# When the user describes the enterprise, the subtype is matched on match_keywords and its
+# differences are layered on top of the main pack.
+subtypes:
+  - id: apparel
+    display_name: Apparel & Textiles
+    match_keywords: [apparel, textile, clothing, garment making, fabric, ready-made garment]
+    entities_extra: [style, size BOM, fabric lot]
+    department_emphasis: [procurement, quality, mkt_content]
+    flavor_overrides: "Strong seasonality and a fast-response supply chain; fabric inspection and colour-difference control; hit-style reorder cadence."
+    monitoring_focus: [material_short, yield_drop]
+  - id: food
+    display_name: Food & Beverage
+    match_keywords: [food, beverage, food processing, agricultural, bakery, prepared meals]
+    entities_extra: [batch, shelf life, SC production licence, ingredient list]
+    department_emphasis: [quality, legal, procurement]
+    flavor_overrides: "SC food production licence is a prerequisite; batch traceability and shelf-life alerts; food safety law red lines; recall plan."
+    monitoring_focus: [recall_risk, yield_drop, material_short]
+  - id: electronics
+    display_name: Electronics & Electrical
+    match_keywords: [electronics, electrical, components, SMT, consumer electronics, home appliances]
+    entities_extra: [PCBA, component BOM, ESD protection]
+    department_emphasis: [quality, rnd, procurement]
+    flavor_overrides: "Component kit completeness affects scheduling; ESD / yield control; RoHS / CCC compliance."
+    monitoring_focus: [material_short, yield_drop]
+  - id: machinery
+    display_name: Machinery & Equipment (Heavy Industry)
+    match_keywords: [machinery, equipment, heavy industry, machine tool, equipment manufacturing, parts]
+    entities_extra: [parts BOM, large equipment, assembly process]
+    department_emphasis: [production, maintenance, process]
+    flavor_overrides: "Mostly single-piece / small-batch; equipment maintenance and assembly process are critical; long delivery cycles for large equipment."
+    monitoring_focus: [equipment_down, material_short]
+  - id: chemical
+    display_name: Chemicals
+    match_keywords: [chemical, chemistry, coatings, plastics, fine chemicals, hazardous chemicals]
+    entities_extra: [hazardous chemicals, reactor, controlled safety stock, MSDS]
+    department_emphasis: [legal, quality, operations]
+    flavor_overrides: "Full life-cycle management of hazardous chemicals; MSDS / environmental assessment / emission permit; process safety (HAZOP); mandatory incident reporting."
+    monitoring_focus: [safety_incident, material_short]
+  - id: building
+    display_name: Building Materials & Home Furnishing
+    match_keywords: [building materials, home furnishing, ceramics, furniture, doors & windows, decoration materials]
+    entities_extra: [specification model, engineering order, batch]
+    department_emphasis: [sales, procurement, quality]
+    flavor_overrides: "Engineering channels and key accounts dominate; delivery and installation coordination; eco building material certification."
+    monitoring_focus: [material_short, yield_drop]
+  - id: pharma
+    display_name: Pharmaceutical & Biotech
+    match_keywords: [pharmaceutical, pharma, biotech, medical device, health products]
+    entities_extra: [GMP, batch record, registration certificate, expiry date]
+    department_emphasis: [quality, legal, rnd]
+    flavor_overrides: "GMP is mandatory; batch records must be traceable; registration certificate / clinical compliance; recall and adverse reaction monitoring."
+    monitoring_focus: [recall_risk, yield_drop, safety_incident]
+  - id: consumer
+    display_name: Consumer Goods & Household Products
+    match_keywords: [household goods, consumer products, daily necessities, plastic products, small commodities, general merchandise]
+    entities_extra: [SKU, mould, packaging]
+    department_emphasis: [mkt_content, sales, quality]
+    flavor_overrides: "Many SKUs with moulds and packaging prepared up front; fast-moving cadence; brand and channel both matter."
+    monitoring_focus: [material_short, yield_drop]
+  - id: auto
+    display_name: Automotive & Parts
+    match_keywords: [automotive, parts, auto parts, new energy vehicle, three-electric system]
+    entities_extra: [VIN, parts BOM, IATF16949]
+    department_emphasis: [quality, process, production]
+    flavor_overrides: "IATF16949 system; APQP / PPAP; traceability and recall are mandatory; OEM supply chain coordination."
+    monitoring_focus: [recall_risk, yield_drop, material_short]
+  - id: metal
+    display_name: Metals & Materials
+    match_keywords: [metallurgy, steel, non-ferrous, metals, materials, casting, forging]
+    entities_extra: [heat/lot number, composition, energy consumption]
+    department_emphasis: [operations, quality, procurement]
+    flavor_overrides: "High energy consumption and a focus of environmental inspection; heat-number traceability; energy and carbon emission control."
+    monitoring_focus: [energy_anomaly, safety_incident, material_short]
+  - id: packaging
+    display_name: Packaging & Printing
+    match_keywords: [packaging, printing, carton, label, flexible packaging]
+    entities_extra: [printing plate, order specification, batch]
+    department_emphasis: [production, sales, quality]
+    flavor_overrides: "Order specifications vary widely with sampling first; tight lead times; VOCs treatment compliance."
+    monitoring_focus: [material_short, yield_drop]
+  - id: toy
+    display_name: Plastics & Toys
+    match_keywords: [toys, plastics, infant & child, gifts, collectibles]
+    entities_extra: [mould, 3C certification, safety testing]
+    department_emphasis: [quality, mkt_content, production]
+    flavor_overrides: "3C certification is mandatory; safety testing for phthalates / heavy metals; IP and collectible release cadence."
+    monitoring_focus: [recall_risk, yield_drop, material_short]

@@ -1,0 +1,19 @@
+version: 1
+library_id: "0"
+collection:
+  name: "GNN"
+  key: "A9VNJUPI"
+items:
+  - item_key: "ABCD1234"
+    title: "Example Graph Paper"
+    item_type: "conferencePaper"
+    date: "2024"
+    # Omit doi when the Zotero DOI field has not been read.
+    # Use doi: "" only when it was read and is empty.
+    doi: "10.xxxx/example"
+    arxiv: "2401.00001"
+    url: "https://example.invalid/paper"
+    tags:
+      - "user-managed-tag"
+    collections:
+      - "A9VNJUPI"

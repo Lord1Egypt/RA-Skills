@@ -1,0 +1,444 @@
+# Market conventions — Germany (de)
+#
+# Built 2026-08-09 from docs/superpowers/research/2026-08-09/
+# markets.json + review-de.md. Every `published` URL in that research was fetched
+# and every "Verbatim:" string grepped against the fetched text on 2026-08-09.
+#
+# DROPPED
+#   de-dach-ch-permit-is-employer-filed-and-capped — Switzerland-only. The market
+#   keys are cn/nl/de/uk/us, so it can never render under any of them, and a
+#   renderer that ignored applies_when would show a German applicant Swiss quota
+#   advice as their own.
+#   de-dach-at-advertised-pay-is-a-floor — Austria-only, same reason. The
+#   Austrian/Swiss certificate entry survives because its subject is a document a
+#   GERMAN employer will read.
+#
+# NEXT REVIEW — from review-de.md's "Important and missing", verbatim. Do not
+# write these into conventions from this comment; a person must check the source
+# first.
+#   1. **Blue Card lower salary threshold.** § 18g(1) sentence 2 (verified today) sets a reduced threshold for named ISCO occupation groups — which include ICT and engineering families — and for anyone whose degree is recent. Entry 3 says "a threshold", singular. A candidate below the general figure may wrongly conclude they are ineligible when they sit in a shortage group. Highest-value gap in the set.
+#   2. **Job change while holding a Blue Card.** § 18g(4) (verified today): no immigration-authority permission is needed for a job change, but during the first months of employment the authority may suspend and refuse it. This table's user is by definition someone applying to a new employer; a Blue Card holder applying out of their current job has a hard constraint here and nothing in the entry mentions it.
+#   3. **KSchG small-business exclusion (§ 23).** Covered above under entry 5; listing separately because it also changes how a candidate should price probation and notice terms at a small employer.
+#   4. **§ 81a is not universally available** — restricted to the residence purposes the provision enumerates, and it is initiated by agreement between employer and authority, so an employer with no such Vereinbarung cannot simply opt in late. Entry 3 reads as if the route is always on the table.
+#   5. **The Anschreiben's status at international employers.** The entry flags this honestly in `unverified` item 3 and then writes the convention as though the letter is universally screened. Since large international tech employers in Germany routinely run CV-only ATS flows, the gap between "the federal agency treats it as standard" and "this employer wants one" is the operative question — and `applies_when` already half-concedes it ("not routed through an employer portal which explicitly asks for a CV only"). Either source the practice or move the strength of the claim into `applies_when`.
+#
+#   CORRECTION the reviewer made to the research's own unverified list, recorded
+#   here because it is not an entry: the note claiming no official source could be
+#   found on the Bewerbungsfoto is wrong — the source is a page
+#   de-application-is-a-file-not-a-cv already cites. That note is therefore dropped
+#   rather than carried across. Whether the photo becomes a convention is a separate
+#   judgement: it is arguably layout, and the same page's treatment of anonymised CVs
+#   turns on protected traits.
+
+
+market: de
+
+conventions:
+  - id: "de-arbeitszeugnis-is-a-graded-document"
+    text_en: |-
+      German employers read the written reference from each of your previous jobs (Arbeitszeugnis)
+      as a graded assessment, not a formality. On leaving a job you have a legal claim to a written
+      certificate, but you have to assert it, and by default it need only cover the kind and length
+      of the work; the fuller version covering performance and conduct is issued only if you ask
+      for it — so if you never asked, you do not hold the document recruiters expect to see. Federal
+      labour case law places the standard "performed the duties to our full satisfaction" wording
+      in the middle of a school-style satisfaction scale running from very good to poor, and holds
+      that the grade above it needs the constancy word ("stets") and the word "full" together —
+      a reinforcing word on its own does not lift the grade — while the burden sits on you to show
+      facts justifying a better closing assessment. The same statute forbids wording that carries
+      a hidden message about you, which is your ground for demanding a change. Read every reference
+      against that scale before you attach it, and ask a former employer to correct it while the
+      relationship is still workable.
+    text_zh: |-
+      德国雇主会把你每段过往工作的书面证明（Arbeitszeugnis）当作一份带评分的鉴定来读
+      ，而不是走过场。离职时法律赋予你索取书面证明的请求权，但需要你主动主张；默认版本只写工作内容
+      和时长，含「表现与行为」评价的完整版必须你提出要求才会出具——没提过，就等于没有招聘方期待看
+      到的那份文件。联邦劳动法院把「完全令我们满意地完成工作」这类标准措辞定位在一把「满意度刻度」
+      的中间档，这把刻度从「很好」一直到「差」；要够到上一档，必须「始终」（stets）与「完全」
+      （vollen）同时出现——只有强化词、没有「完全」，档次并不上升。而且，想要更好的总评，举
+      证责任在你身上。同一部法律也禁止在证明里夹带暗示性表述，这正是你要求修改的法律依据。因此，附
+      上任何一份证明之前，先按这把刻度读一遍；要改，趁与前雇主关系还谈得动的时候提。
+    applies_when: "Every application to a German employer where you have prior employment documented in this system, and at every exit from a German job — the time to fix the wording is at exit, not at application."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "Bundesministerium der Justiz / juris"
+      title: "§ 109 GewO - Einzelnorm (Gewerbeordnung)"
+      url: "https://www.gesetze-im-internet.de/gewo/__109.html"
+      retrieved: "2026-08-09"
+      quote: "Der Arbeitnehmer hat … Anspruch auf ein schriftliches Zeugnis. Das Zeugnis muss mindestens Angaben zu Art und Dauer der Tätigkeit (einfaches Zeugnis) enthalten. Der Arbeitnehmer kann verlangen, dass sich die Angaben darüber hinaus auf Leistung und Verhalten … erstrecken. … Es darf keine Merkmale oder Formulierungen enthalten, die den Zweck haben, eine andere als aus der äußeren Form oder aus dem Wortlaut ersichtliche Aussage über den Arbeitnehmer zu treffen."
+      note: "The plain certificate is a claim the employee has to assert, not a document that arrives unprompted, which is the whole point of the entry."
+      also:
+        - publisher: "Bundesarbeitsgericht"
+          title: "Decision 9 AZR 584/13 of 18 November 2014"
+          url: "https://www.bundesarbeitsgericht.de/entscheidung/9-azr-584-13/"
+          retrieved: "2026-08-09"
+          quote: "Zufriedenheitsskala … Skala, die von \"sehr gut\" bis hin zu \"mangelhaft\" reicht; \"zur vollen Zufriedenheit\" … wird das der Note \"befriedigend\" zugerechnet"
+        - publisher: "Bundesarbeitsgericht"
+          title: "Decision 9 AZR 584/13 of 18 November 2014, on the reinforcing wording"
+          url: "https://www.bundesarbeitsgericht.de/entscheidung/9-azr-584-13/"
+          retrieved: "2026-08-09"
+          quote: "\"Gut\" im Sinne der Zufriedenheitsskala ist ein Arbeitnehmer nur dann, wenn ihm bescheinigt wird, er habe \"stets\" … Zufriedenheit des Arbeitgebers gearbeitet"
+    why: |-
+      The posting asks for "Zeugnisse" as an attachment and says nothing about how the sentences
+      inside them are read. A candidate sees polite, positive-sounding German and files it as good
+      news, without knowing the closing sentence is being scored — or that the request for the
+      graded version had to be made at exit.
+  - id: "de-degree-classification-is-a-separate-procedure"
+    text_en: |-
+      Holding a qualification and having it classified in the German system are not the same thing,
+      and are run by different bodies. A public database maintained by the standing conference
+      of the state education ministers (anabin) records whether an awarding institution and a given
+      degree are recognised, using an institution status marker (H+, H+/-, H-). Separately, the
+      central office for foreign education (ZAB) issues an official statement of comparability,
+      the Zeugnisbewertung. Many employers ask for it as a precondition for an application, the
+      public service among them, and visa and Blue Card EU files require you to evidence comparability.
+      It does not by itself entitle you to practise a regulated profession or to enrol in further
+      study — those need a separate recognition from the responsible body. Note that anabin does
+      not claim to be complete: if your degree or degree type is simply absent, that is not a verdict
+      on it, and a Zeugnisbewertung is the route. Start it early — it is an administrative queue.
+    text_zh: |-
+      「拿到学位」和「学位在德国体系中被归类认定」不是一回事，分属不同机构。各州文教部长联席会议运
+      营的公共数据库 anabin 记录颁授院校和具体学位是否被认可，院校带有状态标记（H+、H+/-、
+      H-）。另有中央外国教育办公室（ZAB）出具的官方等值说明，称为 Zeugnisbewertung。
+      不少雇主把它列为投递的前提条件，公共部门即在其列；申请签证或欧盟蓝卡时，也必须凭它证明学位的
+      可比性。它本身并不赋予你从事受管制职业或继续升学的资格——那要向对口主管机构另行申请职业资格
+      承认。另需注意：anabin 明确声明数据库并不追求收录完整，你的学位或学位类型查不到，并不
+      等于不被认可，此时正确的做法是申请 Zeugnisbewertung。这件事要尽早启动：它是
+      行政排队流程。
+    applies_when: "Whenever the qualification you are relying on is not itself a German award — most sharply where the employer is a public body, or where the role is a regulated profession."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "Zentralstelle für ausländisches Bildungswesen (ZAB) im Sekretariat der Kultusministerkonferenz"
+      title: "Zeugnisbewertung für ausländische Hochschulabschlüsse"
+      url: "https://zab.kmk.org/de/zeugnisbewertung"
+      retrieved: "2026-08-09"
+      quote: "Viele Arbeitgebende verlangen eine Zeugnisbewertung als Voraussetzung für die Bewerbung – zum Beispiel im öffentlichen Dienst"
+      note: "The word \"voluntary\" is not on the cited page and is not carried here; what the page says is that many employers require the document, the public service among them."
+      also:
+        - publisher: "Zentralstelle für ausländisches Bildungswesen (ZAB)"
+          title: "Zeugnisbewertung für ausländische Hochschulabschlüsse"
+          url: "https://zab.kmk.org/de/zeugnisbewertung"
+          retrieved: "2026-08-09"
+          quote: "sie berechtigt aber nicht zur Studienzulassung, zu weiterführenden Studien oder zum Arbeiten in einem reglementierten Beruf"
+        - publisher: "anabin (Kultusministerkonferenz)"
+          title: "Rechercheanleitung: Bewertung Hochschulabschluss"
+          url: "https://anabin.kmk.org/rechercheanleitung-hochschulabschluss"
+          retrieved: "2026-08-09"
+          quote: "Weitere Informationen zum Status finden Sie mit Klick auf den Status (H+, H+/-, H-)"
+        - publisher: "anabin (Kultusministerkonferenz)"
+          title: "Rechercheanleitung: Bewertung Hochschulabschluss"
+          url: "https://anabin.kmk.org/rechercheanleitung-hochschulabschluss"
+          retrieved: "2026-08-09"
+          quote: "Die anabin-Datenbank erhebt keinen Anspruch auf Vollständigkeit. Daher kann es vorkommen, dass Ihr Abschluss/Abschlusstyp in anabin noch nicht aufgeführt oder bewertet ist."
+    why: |-
+      Postings say "abgeschlossenes Hochschulstudium" and stop there. Nothing in the advertisement
+      tells you that a separate federal-states agency classifies the degree, that public employers
+      screen on that document before a human reads your file, or that a regulated role needs a
+      further step on top of it.
+  - id: "de-employer-drives-the-permit-not-you"
+    text_en: |-
+      Germany has no employer sponsor licence to look up, so the thing to establish is whether
+      an employer is actually set up to run the procedure. Statute provides an accelerated skilled-worker
+      procedure, for the skilled-worker and study-related residence purposes the provision lists,
+      that the EMPLOYER applies for at the competent immigration authority under a power of attorney,
+      on the basis of a written agreement between employer and authority: the employer supplies
+      the documents, is obliged to keep the worker cooperating, and the authority initiates the
+      comparability check of the qualification. The Blue Card EU is a named route in the residence
+      statute; its minimum salary carries a threshold defined as a share of the annual pension-insurance
+      contribution assessment ceiling, and the federal interior ministry announces the figures
+      for each calendar year in the Federal Gazette. Look the current figure up there rather than
+      trusting a number quoted in an advertisement or a blog, and ask HR who owns this procedure
+      internally.
+    text_zh: |-
+      德国没有英美式的「雇主担保牌照」可查，所以真正要确认的是：这家雇主是否具备实际跑流程的能力。
+      法律设有「加速技术工人程序」，适用范围限于该条款所列举的技术工人类及学业相关类居留目的；该程
+      序由雇主凭授权书向主管外国人管理局提出申请，并与该机关签订书面协
+      议：雇主负责提交材料、有义务督促求职者履行配合义务，机关则启动学历等值核查。欧盟蓝卡是居留法
+      中的一条具名路径，其最低薪资门槛按法定养老保险年度缴费上限的一定比例确定，联邦内政部每个日历
+      年在《联邦公报》上公布具体数额。请以那里的现行数额为准，不要采信招聘广告或博客里引用的数字；
+      同时向 HR 问清楚公司内部由谁负责这套流程。
+    applies_when: "Whenever the start of the role depends on a residence title being issued — frame the question as what this employer is set up to do, and ask before you invest in later rounds."
+    added: "2026-08-09"
+    review_by: "2027-09-05"
+    source:
+      kind: "published"
+      publisher: "Bundesministerium der Justiz / juris"
+      title: "§ 81a AufenthG - Einzelnorm (Aufenthaltsgesetz)"
+      url: "https://www.gesetze-im-internet.de/aufenthg_2004/__81a.html"
+      retrieved: "2026-09-05"
+      quote: "in Vollmacht des Ausländers … Verpflichtung des Arbeitgebers, auf die Einhaltung der Mitwirkungspflicht des Ausländers … hinzuwirken"
+      note: "The accelerated procedure is available only for the residence purposes the provision enumerates, and it runs on an agreement between the employer and the authority, so an employer that has none cannot simply opt in late. The salary figures are re-announced every calendar year, which is why none is printed here."
+      also:
+        - publisher: "Bundesministerium der Justiz / juris"
+          title: "§ 18g AufenthG - Einzelnorm"
+          url: "https://www.gesetze-im-internet.de/aufenthg_2004/__18g.html"
+          retrieved: "2026-08-09"
+          quote: "Das Bundesministerium des Innern und für Heimat gibt die Mindestgehälter … für jedes Kalenderjahr … im Bundesanzeiger bekannt."
+    why: |-
+      Advertisements say "we support relocation" or say nothing. Nothing tells you that the fast-track
+      route is something the employer files rather than something you file, or that the salary
+      threshold is re-set every year by ministry announcement — so candidates negotiate against
+      a stale figure and discover the gap after the offer.
+  - id: "de-works-council-must-consent-to-the-hire"
+    text_en: |-
+      In companies above the statutory size threshold, an employer must inform the works council
+      before hiring you, hand over the application documents, disclose the intended post and its
+      pay classification, and obtain the council's consent. The council may withhold consent on
+      listed statutory grounds — including that a required internal posting was skipped, or that
+      the hire would disadvantage existing staff. That has practical consequences: an offer can
+      sit between the verbal yes and the signed contract for reasons that have nothing to do with
+      you, and your file is seen by people outside HR — who are bound by a statutory duty of confidentiality
+      over what they read. The council's window to object in writing is short, and consent counts
+      as given if it lets that window pass, so this stage does not explain a long silence on its
+      own. Do not read a gap as a rejection; ask where in the process it is.
+    text_zh: |-
+      在员工人数超过法定门槛的企业里，雇主录用你之前必须先通知职工委员会（Betriebsrat）
+      ：提交你的申请材料、说明拟聘岗位及其薪酬定级，并取得职工委员会的同意。职工委员会可以基于法律
+      列举的理由拒绝同意——例如公司跳过了应做的内部招聘公告，或该录用会使现有员工受到不利影响。这
+      带来的实际后果是：口头确认到合同签署之间，offer 可能因为与你完全无关的原因卡住；你的材
+      料也会被 HR 之外的人看到——而这些人依法负有保密义务。职工委员会书面提出异议的期限很短，
+      逾期未提即视为同意，所以单靠这一环节并不足以解释长时间的杳无音信。不要把沉默当成婉拒，直接问
+      流程走到哪一步了。
+    applies_when: "Applying to a German company or public body that has a works council or staff council — common in larger and long-established employers, but not automatic above the size threshold, so treat it as a possibility rather than a certainty."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "Bundesministerium der Justiz / juris"
+      title: "§ 99 BetrVG - Einzelnorm (Betriebsverfassungsgesetz)"
+      url: "https://www.gesetze-im-internet.de/betrvg/__99.html"
+      retrieved: "2026-08-09"
+      quote: "den in Aussicht genommenen Arbeitsplatz und die vorgesehene Eingruppierung mitzuteilen"
+      note: "A works council is elected on employee initiative rather than mandated by size, so the size threshold in the provision does not establish that one exists at any given employer."
+      also:
+        - publisher: "Bundesministerium der Justiz / juris"
+          title: "§ 99 BetrVG - Einzelnorm, refusal grounds"
+          url: "https://www.gesetze-im-internet.de/betrvg/__99.html"
+          retrieved: "2026-08-09"
+          quote: "eine nach § 93 erforderliche Ausschreibung im Betrieb unterblieben ist; dass … im Betrieb beschäftigte Arbeitnehmer gekündigt werden oder sonstige Nachteile erleiden"
+        - publisher: "Bundesministerium der Justiz / juris"
+          title: "§ 99 BetrVG - Einzelnorm, deemed consent on lapse"
+          url: "https://www.gesetze-im-internet.de/betrvg/__99.html"
+          retrieved: "2026-08-09"
+          quote: "Teilt der Betriebsrat dem Arbeitgeber die Verweigerung seiner Zustimmung nicht innerhalb der Frist schriftlich mit, so gilt die Zustimmung als erteilt"
+    why: |-
+      The posting never mentions the works council, and no interviewer volunteers it. A candidate
+      reads a long post-interview gap as a soft no and disengages, or is startled that a pay grade
+      was fixed and reviewed by a third party before any contract reached them.
+  - id: "de-your-notice-period-sets-the-start-date"
+    text_en: |-
+      "Earliest possible start date" is not a preference question in Germany, it is a legal one.
+      Your own resignation runs on a statutory default notice tied to the middle or the end of
+      a calendar month; the longer notice periods that grow with length of service are the ones
+      the EMPLOYER owes you, and they bind your side only where your contract or an applicable
+      collective agreement says so — which is common enough that you must read the clause rather
+      than assume the default. During an agreed probationary period a much shorter notice applies
+      in both directions, and statutory protection against socially unjustified dismissal begins
+      only after an initial continuous waiting period AND only in establishments above a small-business
+      size threshold — so the early phase of a new job, and a job at a very small employer, are
+      genuinely different legal states. Work out your own notice from your contract before you
+      name a date, and treat the probation clause and the notice terms in the new contract as negotiable
+      items alongside pay.
+    text_zh: |-
+      在德国，「最早可入职时间」不是偏好题，是法律题。你自己辞职适用的是法定默认通知期，以日历月的
+      月中或月末为终点；而随工龄延长的那套更长的通知期，是雇主解雇你时须遵守的，只有当你的劳动合同
+      或适用的集体合同如此约定，才同样约束你一方——这种约定并不少见，所以务必去读条款，别默认按法
+      定最短算。在约定的试用期内，双方适用远短得多的通知期；针对「社会性不当解雇」的法定解雇保护，
+      既要连续雇佣满一段等待期才生效，也只适用于规模超过「小企业」门槛的单位——也就是说，新工作的
+      最初阶段，以及在极小规模雇主处的工作，在法律上确实是另一种状态。报日期之前，先按你的合同算清
+      自己的通知期；并且把新合同里的试用期条款和通知期条款，与薪资一起当作可谈判事项。
+    applies_when: "From the moment a German application form or interviewer asks for your Eintrittstermin, and again when the contract draft arrives."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "Bundesministerium der Justiz / juris"
+      title: "§ 622 BGB - Einzelnorm (Bürgerliches Gesetzbuch)"
+      url: "https://www.gesetze-im-internet.de/bgb/__622.html"
+      retrieved: "2026-08-09"
+      quote: "Das Arbeitsverhältnis … kann mit einer Frist von vier Wochen zum Fünfzehnten oder zum Ende eines Kalendermonats gekündigt werden. … Für eine Kündigung durch den Arbeitgeber beträgt die Kündigungsfrist, wenn das Arbeitsverhältnis …"
+      note: "The ladder that lengthens with length of service is the EMPLOYER's side of the notice. The employee's own resignation runs on the statutory default unless the contract or an applicable collective agreement extends it, and the employee's period may not exceed the employer's."
+      also:
+        - publisher: "Bundesministerium der Justiz / juris"
+          title: "§ 1 KSchG - Einzelnorm (Kündigungsschutzgesetz)"
+          url: "https://www.gesetze-im-internet.de/kschg/__1.html"
+          retrieved: "2026-08-09"
+          quote: "ohne Unterbrechung länger als sechs Monate"
+        - publisher: "Bundesministerium der Justiz / juris"
+          title: "§ 23 KSchG - Einzelnorm"
+          url: "https://www.gesetze-im-internet.de/kschg/__23.html"
+          retrieved: "2026-08-09"
+          quote: "the first section of the Act does not apply in establishments at or below the stated small-business size for employment begun after the stated date"
+    why: |-
+      The posting asks for a start date in one line, as though it were up to you. Candidates name
+      a date they cannot lawfully hit and then have to walk it back, or sign a probation clause
+      without registering that the protections they are picturing have not switched on yet.
+  - id: "de-public-sector-pay-is-classified-not-negotiated"
+    text_en: |-
+      In the German public sector, and in bodies that apply the public-sector collective agreements,
+      your pay is not negotiated — it is classified. The pay group follows from the task profile
+      of the post under the collective pay order, and federal guidance calls this automatic: you
+      are in the group whose activity characteristics your actual, non-temporary duties match.
+      What is genuinely decidable at hiring is your step within that group, which turns on prior
+      professional experience equivalent to the new duties; federal labour case law asks whether
+      you could take the new role on in full immediately, without meaningful induction, and refuses
+      to infer equivalence from a theoretical transferability of tasks. So build an evidenced argument
+      that your previous duties were the same duties, rather than asking for a higher number.
+    text_zh: |-
+      在德国公共部门、以及适用公共部门集体合同的机构里，薪酬不是谈出来的，是「归类」出来的。薪级组
+      （Entgeltgruppe）由岗位在集体薪酬规程下的职务特征决定，联邦层面的指引称之为「自
+      动定级」：你实际长期承担的工作对应哪一组的职务特征，你就在那一组。招聘环节真正可以争取的，是
+      这一组里的档级（Stufe），它取决于你此前与新岗位职责相当的工作经验；联邦劳动法院的判断标
+      准是：你能否在入职后立即完整胜任新工作、无需明显的培训适应期，并且明确拒绝仅凭「任务在理论上
+      可迁移」来推定相当性。所以要做的是拿证据论证「我以前做的就是这份工作」，而不是去要一个更高的
+      数字。
+    applies_when: "Applying to a German university, research institute, hospital, agency, municipality or any employer whose advertisement names a pay group under a public-sector collective agreement."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "Bundesverwaltungsamt – Beratungszentrum des Bundes, Referat Eingruppierungsfragen"
+      title: "Die unbestimmten Rechtsbegriffe des Teil I der Anlage 1 des Tarifvertrages über die Entgeltordnung des Bundes (TV EntgO Bund) – Definitionskatalog, Köln, tenth edition July 2022 (status 30 August 2022) — the FEDERAL collective agreement"
+      url: "https://www.bva.bund.de/SharedDocs/Downloads/DE/Behoerden/Beratung/Eingruppierung/Eingruppierung/20150722_Definitionskatalog_TV_EntgO_Bund.pdf?__blob=publicationFile&v=2"
+      retrieved: "2026-08-09"
+      quote: "Die/Der Beschäftigte ist in der Entgeltgruppe eingruppiert (Tarifautomatik), deren Tätigkeitsmerkmalen die gesamte von ihr/ihm nicht nur vorübergehend auszuübende Tätigkeit entspricht."
+      note: "The two citations cover different collective agreements — the catalogue is the federal one, the court decision is on the Länder one — and together they span both. A reader checking one against the other needs to know that, which the original citation did not say."
+      also:
+        - publisher: "Bundesarbeitsgericht"
+          title: "Decision 6 AZR 205/20 of 18 February 2021, on § 16 Abs. 2 TV-L — the LÄNDER collective agreement, which is the one governing German universities and state research institutes"
+          url: "https://www.bundesarbeitsgericht.de/entscheidung/6-azr-205-20/"
+          retrieved: "2026-08-09"
+          quote: "relevant professional experience for step assignment requires that the employee can take up the new activity in full immediately after hiring without appreciable induction time, and cannot be derived from a theoretical transferability of tasks"
+    why: |-
+      The advertisement prints a pay group as if it were an opening offer, so a candidate spends
+      their leverage arguing about the salary figure — the one thing that is fixed — and never
+      makes the equivalence-of-duties argument, which is the only lever that moves their pay.
+  - id: "de-application-is-a-file-not-a-cv"
+    text_en: |-
+      A German application is a documented file, and the cover letter is part of the screen rather
+      than a courtesy. The federal employment agency's own guidance for applicants describes an
+      application as cover letter, CV and attachments, tells you to concentrate the letter on what
+      matters for that specific advertisement rather than reusing a template, and says work references
+      should ideally be supplied from every former employer, together with the qualification and
+      further-training certificates relevant to the post — while also telling you to limit the
+      attachments to the evidence the job actually needs, so the pack is complete rather than merely
+      thick. Treat a bare CV with references "available on request" as an incomplete file by the
+      standard this guidance sets, not as a normal submission.
+    text_zh: |-
+      在德国，一份申请是一套有据可查的材料档案，而求职信属于筛选环节的一部分，不是客套。联邦劳工局
+      面向求职者的官方指引把申请材料界定为：求职信（Anschreiben）、履历（
+      Lebenslauf）和附件；并要求求职信集中回应「这一则招聘广告」的具体要求，而不是套用模
+      板；同时说明工作证明最好能提供每一位前雇主出具的那一份，另附与该岗位相关的学历与进修证书；但
+      同一份指引也要求把附件限制在这份工作确实需要的凭证范围内——要的是「齐全」，不是「厚」。按这
+      份指引的标准，一份光秃秃的履历加上一句「证明材料可另行索取」，属于材料不齐，而非常规做法。
+    applies_when: "Any German application that is not routed through an employer portal which explicitly asks for a CV only."
+    added: "2026-08-09"
+    review_by: "2027-02-09"
+    source:
+      kind: "published"
+      publisher: "Bundesagentur für Arbeit"
+      title: "Bewerbung schreiben"
+      url: "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/bewerbungstraining/bewerbung-schreiben"
+      retrieved: "2026-08-09"
+      quote: "Arbeitszeugnisse: Diese sollten Sie möglichst von jedem ehemaligen Arbeitgeber vorlegen. … Konzentrieren Sie sich auf das, was für die jeweilige Stellenanzeige wichtig ist."
+      note: "The submission-mechanics sentence this entry used to carry is gone: it is layout, and this table is about what the market weighs."
+      also:
+        - publisher: "Bundesagentur für Arbeit"
+          title: "Bewerbung schreiben"
+          url: "https://www.arbeitsagentur.de/arbeitslos-arbeit-finden/bewerbungstraining/bewerbung-schreiben"
+          retrieved: "2026-08-09"
+          quote: "Weisen Sie Ihre Qualifikationen mit Zeugnissen, Zertifikaten oder Arbeitsproben nach. Beschränken Sie sich dabei auf die für den Job notwendigen Nachweise."
+        - publisher: "Bundesagentur für Arbeit"
+          title: "Bewerbungsunterlagen: Das gehört rein"
+          url: "https://www.arbeitsagentur.de/bildung/bewerbung/bewerbungsunterlagen"
+          retrieved: "2026-08-09"
+          quote: "Scannen Sie Zeugnisse und Bescheinigungen ein. Bei einer Bewerbung per Post verschicken Sie keine Originale sondern Kopien."
+    why: |-
+      The posting says "send your application documents", which in many markets means a CV and
+      nothing else. Nothing warns you that the letter is read against the advertisement point by
+      point, or that missing prior references are read as a gap in the record rather than as a
+      formatting choice.
+  - id: "de-austrian-and-swiss-certificates-do-not-transfer"
+    text_en: |-
+      Do not carry the German reference playbook across the border. Austrian law entitles you,
+      on request at the end of the employment, to a written service certificate covering the duration
+      and the kind of the service, and it expressly prohibits entries and annotations that would
+      make it harder for you to obtain a new position. So what you can demand in Austria is duration
+      and kind — a performance grading is not part of the entitlement, and an Austrian certificate
+      that carries none is a compliant document, not a withheld one. Switzerland runs the other
+      way: you may request a certificate at any time, during the employment as well as at its end,
+      covering the kind and duration of the work and also your performance and conduct, and the
+      federal economics secretariat states the wording must be truthful and benevolent and expressly
+      rejects ambiguous phrasing and certificate codes. Negative facts may appear in a Swiss certificate
+      where they are material to the overall assessment of the employee. Match the document to
+      the country you are applying in, and explain the difference rather than letting a thin Austrian
+      certificate look like a bad German one.
+    text_zh: |-
+      不要把德国那套「工作证明」的打法直接带过边境。奥地利法律规定：雇佣关系结束时，你可以要求一份
+      书面服务证明，内容为服务的时长与种类；并且明文禁止写入任何会使你更难找到新工作的记载与批注。
+      因此在奥地利，你能够「要求」到的内容就是时长与种类——表现评级不在请求权范围内；一份不含评级
+      的奥地利证明是合规文件，不是雇主有意扣着不给。瑞士则相反：你在雇佣期间和结束时都可以随时要求
+      出具证明，内容涵盖工作的种类、时长以及你的表现与行为；瑞士联邦经济事务秘书处明确要求措辞真实
+      且善意，并明文反对含糊表述和「证明暗语」。负面事实只要对雇员的整体评价具有重要性，就可以写进
+      瑞士的工作证明。请按你投递的国家匹配文件；如果一份内容单薄的奥地利证明被拿到德国来看，主动解
+      释这项法律差异，别让它显得像一份差评。
+    applies_when: "Applying to a German employer when the work history you are presenting is Austrian or Swiss."
+    added: "2026-08-09"
+    review_by: "2027-08-09"
+    source:
+      kind: "published"
+      publisher: "Rechtsinformationssystem des Bundes (RIS), Bundeskanzleramt der Republik Österreich"
+      title: "Angestelltengesetz Art. 1 § 39, Bundesrecht konsolidiert"
+      url: "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008069&Artikel=1&Paragraf=39"
+      retrieved: "2026-08-09"
+      quote: "Der Dienstgeber ist verpflichtet, bei Beendigung des Dienstverhältnisses dem Angestellten auf Verlangen ein schriftliches Zeugnis über die Dauer und die Art der Dienstleistung auszustellen. Eintragungen und Anmerkungen im Zeugnisse, durch die dem Angestellten die Erlangung einer neuen Stelle erschwert wird, sind unzulässig."
+      note: "The Austrian provision sets a minimum content and bars harmful entries; it does not bar a favourable assessment. What it establishes is that a grading is not part of what you can demand. The Swiss address is the redirect target of the one in the research."
+      also:
+        - publisher: "Staatssekretariat für Wirtschaft (SECO)"
+          title: "FAQ zu Arbeitszeugnis"
+          url: "https://www.seco.admin.ch/de/faq-arbeitszeugnis"
+          retrieved: "2026-08-09"
+          quote: "wahrheitsgetreue Aussagen … wohlwollende Formulierung"
+        - publisher: "Staatssekretariat für Wirtschaft (SECO)"
+          title: "FAQ zu Arbeitszeugnis, on material negatives"
+          url: "https://www.seco.admin.ch/de/faq-arbeitszeugnis"
+          retrieved: "2026-08-09"
+          quote: "Negative Tatsachen dürfen im Zeugnis erwähnt werden, sofern sie für die Gesamtbeurteilung des Arbeitnehmers erheblich sind"
+    why: |-
+      Recruiters and candidates alike treat "DACH" as one market and reuse one document set across
+      it. Nothing in a posting tells you that the certificate that is standard in one of the three
+      countries is legally out of place in another, so a compliant Austrian certificate can be
+      misread in Germany as a deliberately empty one.
+
+# The lint reports WARN_UNVERIFIED_OVERLAP on the first three notes below. Each was read
+# against its entry side by side before this file was committed: the shared words are in
+# the half of the note that records what the entry DOES claim, and the disclaimed claims
+# are absent from every rendered field — no discretionary recognition of förderliche
+# Zeiten as a hiring lever and no step or pay-group figures (note one), no distribution
+# claim about reference grades (note two), and no upgrade of "standard component" into
+# "always required" (note three, which applies_when scopes as well).
+unverified:
+  - note: "Public-sector step assignment as a recruitment lever. The BMI circular \"Durchführungshinweise zu § 16 (Bund) TVöD\" of 30 May 2024 is the authority on recognising förderliche Zeiten and Stufenrestlaufzeiten when hiring, and search results describe it as having been extended for exactly that purpose. Every attempt to retrieve it failed: https://www.bmi.bund.de/SharedDocs/rundschreiben/DE/tarifrecht/2024/RdSchr_20240530.html returned HTTP 400 to WebFetch and to curl, and the PDF at https://www.bmi.bund.de/RundschreibenDB/DE/2024/RdSchr_20240530.pdf returned HTTP 400 across every parameter variant and across two federal mirror hosts. The de-public-sector-pay-is-classified-not-negotiated entry therefore claims only what the Bundesverwaltungsamt Definitionskatalog and BAG 6 AZR 205/20 support (classification by task profile; equivalence of prior duties for the step). It does NOT claim that discretionary recognition of beneficial times exists as a hiring instrument, and no numeric step or pay-group thresholds appear anywhere in this entry."
+    disclaims: [de-public-sector-pay-is-classified-not-negotiated]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [classified, duties, equivalence, federal, hiring, negotiated, profile, public, sector]
+  - note: "Any distribution claim about reference grades. The oft-repeated line that most German references carry \"good\" or \"very good\" is not asserted here. BAG 9 AZR 584/13 expressly refused to shift the burden of proof on the strength of studies to that effect, and I measured nothing."
+    disclaims: [de-arbeitszeugnis-is-a-graded-document]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [burden, german, reference]
+  - note: "Whether the Anschreiben is universally expected. The Bundesagentur für Arbeit treats it as standard, and the entry is written on that basis. I found no source on how many German employers, particularly international technology employers, now waive it. Do not upgrade \"standard component\" into \"always required\"."
+    disclaims: [de-application-is-a-file-not-a-cv]
+      # Read side by side on 2026-08-10: the shared words sit in the half of the note
+      # recording what WAS sourced, and the claim it disclaims is absent from the text.
+      # Self-revoking — if the overlap changes, the lint asks for the review again.
+    overlap_reviewed: [anschreiben, german, standard]
+  - note: "Swiss statute text could not be fetched directly. https://www.fedlex.admin.ch/eli/cc/27/317_321_377/de serves a JavaScript shell (77 KB of app scaffolding, zero occurrences of \"330a\"), so Art. 330a OR is cited through SECO's official FAQ rather than the statute page. https://www.ch.ch/de/arbeit/arbeitszeugnis/ returned a 404 page. Someone should re-anchor the Swiss citation on the statute itself."
+    disclaims: [de-austrian-and-swiss-certificates-do-not-transfer]

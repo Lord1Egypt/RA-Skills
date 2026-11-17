@@ -1,0 +1,80 @@
+---
+provider: perplexity
+category: llm
+last-reviewed: 2026-07-09
+---
+
+# perplexity (Perplexity)
+
+Web-grounded LLM through a single `instruct` action — **every model has live internet access** (per the schema: "All models have access to internet"). The research rung of the LLM stack: use it when the answer must come from the current web (company facts, recent news, "what is X known for"), not for offline transforms — bulk-tier `openAi`/`gemini` models are 10–80× cheaper (gpt-5-nano 0.006 vs sonar's 0.3–1) on prompts that don't need the web.
+
+## Credits-based actions
+
+| Action | Cost | Inputs | Use for |
+|---|---|---|---|
+| `instruct` | 0.3–1 / 1,000-token package (per model × `searchContextSize`, below) | `model` + `prompt` (required); `advancedSettings.{searchContextSize, systemPrompt, searchRecencyFilter, searchDomainFilter, returnRelatedQuestions, returnImages, maxTokens, temperature}`; `output.{responseFormat, jsonSchema, regex}` | Web-grounded research answers per record. |
+
+### Per-model cost tiers (credits / 1,000 tokens, by `searchContextSize`)
+
+| Model | low | medium (default) | high | Rate limit |
+|---|---|---|---|---|
+| `sonar` | 0.3 | 0.4 | 0.5 | 1,000/min |
+| `sonar-reasoning` | 0.4 | 0.5 | 0.6 | 1,000/min |
+| `sonar-reasoning-pro` | 0.5 | 0.7 | 0.9 | 1,000/min |
+| `sonar-pro` | 0.6 | 0.8 | 1 | 1,000/min |
+| `sonar-deep-research` | 0.5 (flat) | 0.5 (flat) | 0.5 (flat) | **5/min** |
+
+## What it's for
+
+- ✅ **Per-record web research** — company summaries, recent-news lookups, fact-finding that feeds personalization (see [`../guides/writing-outreach.md`](../guides/writing-outreach.md), research step).
+- ✅ **Scoped research** — `searchRecencyFilter` (`month`/`week`/`day`/`hour`) for freshness; `searchDomainFilter` to pin citations to up to 3 domains (prefix `-` to blacklist one).
+- ✅ **Deep single-shot reports** — `sonar-deep-research` for a handful of high-value accounts, never batches (5/min).
+- ❌ **Offline transforms** — extraction, classification, scoring, personalization on data you already hold: `sonar` at 0.3–0.5 costs 50–80× `openAi` `gpt-5-nano` (0.006).
+- ❌ **Result listings** — if you want raw Google results to parse yourself, that's `serper.search` (0.05 fixed); perplexity returns synthesized answers.
+
+## Pattern — web-grounded company research per record
+
+```bash
+cargo-ai orchestration action execute-batch \
+  --action '{"kind":"connector","integrationSlug":"perplexity","actionSlug":"instruct"}' \
+  --records '[{"model":"sonar","prompt":"What is Acme GmbH known for? 2-sentence summary.","advancedSettings":{"searchContextSize":"low","searchRecencyFilter":"month","temperature":0}},{"model":"sonar","prompt":"..."}, ...]' \
+  --wait-until-finished
+```
+
+**`model`, `prompt`, and `advancedSettings` are all *inputs*** — they go in each record, never in the action's `config`, which a top-level action does not carry at all. `config` is stripped without an error that names it, so settings placed there are **silently dropped** (a missing required `model` or `prompt` gets the call refused instead) — and a dropped `searchContextSize` is a real cost difference here. Pipe the answers into a cheap `anthropic`/`openAi` step for structured extraction if you need parse-ready JSON downstream.
+
+## Input quirks
+
+- **The schema default model is `sonar-deep-research`** — the 5/min, research-grade model. Always set `model` explicitly; an unset model turns a 500-row batch into a ~100-minute crawl at premium depth.
+- **`searchContextSize` is a cost lever, not just quality** (an input, alongside `model`/`prompt`) — it moves the token rate up to ~1.8× (defaults to `medium`). Start `low` for one-fact lookups.
+- **Structured output enums differ from openAi/gemini:** `output.responseFormat` is `text` (default) | `jsonSchema` (camelCase, requires sibling `jsonSchema`) | `regex` (requires sibling `regex`). There is no `json_object` mode here.
+- **Temperature is 0–2 (exclusive), default 0** — already deterministic by default, unlike openAi/gemini (default 1).
+- No `withWebSearch` flag — search is always on; that's the product.
+
+## Cost traps
+
+- **500-row batch math** (≈1 package per short call): `sonar` low ≈ **150 credits**, medium ≈ **200**; `sonar-pro` high ≈ **500**; `sonar-deep-research` ≈ **250 credits AND ~100 minutes** at 5/min. Compare: the same 500 rows on `openAi` `gpt-5-nano` ≈ 3 credits — only pay perplexity rates for rows that genuinely need the web.
+- **Don't use reasoning/pro tiers for lookups.** "What does this company do?" is a `sonar`-low question; `sonar-reasoning-pro` high (0.9) triples the cost for no better citation.
+- **Research the account, not the contact list.** 20 accounts × 25 contacts = research 20 times, not 500 — dedupe to one perplexity call per company, then fan the answer out to contacts.
+
+## Position in the LLM stack
+
+- **The web-grounded rung** of [`../references/stage-action-map.md`](../references/stage-action-map.md) LLM section; escalation path for facts: model data → `serper.search` (0.05) + cheap extract → `perplexity.instruct` when synthesis/citations are needed.
+- Gate batch research spend through [`../references/cost-discipline.md`](../references/cost-discipline.md) — pilot ~10 rows first.
+
+## Recurring use
+
+Web-grounded answers decay — **re-research is legitimate here**, but only on rows a fresh signal touched, never the whole segment on a timer.
+
+- **Recurring shape:** a `sonar`-low `instruct` node inside a signal-triggered play (funding, job change — see [`../recipes/funding-watch.md`](../recipes/funding-watch.md)), with `searchRecencyFilter` matched to the trigger cadence (weekly funding watch → `week`) so each answer covers only the new window. Cadence defaults: [`../recipes/save-as-play.md`](../recipes/save-as-play.md).
+- **In-play gate:** gate on timestamps, not empty-only — run where the signal's detected-at is newer than the row's last-researched column; stale answers *should* refresh, but only when a signal fires.
+- **Cost compounds:** 0.3–1 per row per cycle — keep the "research the account, not the contact list" dedupe from Cost traps: one call per company per signal, fanned out to contacts.
+
+## Action shape
+
+`{"kind":"connector","integrationSlug":"perplexity","actionSlug":"instruct"}`, with `model`, `prompt`, and `advancedSettings` per record in `--records` / `--data`. **No `connectorUuid` in `config`** — and no model settings there either; inside a workflow **node** those same fields are the node's `config`. Costs above are the Cargo-credits rules; a workspace can instead attach its own Perplexity key (connector config takes a single required `apiKey`) and bill the provider directly.
+
+## Pairs with
+
+- [`../references/prompt-library/index.md`](../references/prompt-library/index.md) — company-research prompts; run the research here, the structured extraction on a cheap offline model.
+- [`../recipes/outreach-activation.md`](../recipes/outreach-activation.md) / [`../recipes/funding-watch.md`](../recipes/funding-watch.md) — fresh-facts inputs to the personalization stage.

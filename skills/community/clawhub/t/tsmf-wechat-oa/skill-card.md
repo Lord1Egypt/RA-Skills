@@ -1,47 +1,70 @@
-## Description: <br>
-Guides an agent through WeChat Official Account article planning, drafting, theme-based formatting, cover generation, content validation, and optional draft publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates, formats, validates, and optionally pushes WeChat Official Account article drafts with configurable themes and cover generation.
 
-## Publisher: <br>
-[onegrown](https://clawhub.ai/user/onegrown) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onegrown](https://clawhub.ai/user/onegrown)
 
-## Use Case: <br>
-Content creators, operators, and developers use this skill to generate WeChat Official Account article drafts, apply reusable themes, create covers, validate factual claims, and prepare drafts for publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle WeChat Official Account drafts and credentials. <br>
-Mitigation: Use a dedicated low-privilege WeChat app credential, keep AppSecret out of prompts and commits, and review before any draft push, update, or delete. <br>
-Risk: Security evidence flags under-disclosed draft deletion, broad host inspection, and cleanup/Git helper scripts. <br>
-Mitigation: Review the affected behavior before installation and avoid cleanup or upload helper scripts unless the exact paths and effects have been verified. <br>
+## Use Case:
 
+External users and content teams use this skill to turn a topic or reference material into a WeChat Official Account article draft, apply an appropriate visual theme, generate supporting cover assets, and prepare or push the result for review before publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onegrown/tsmf-wechat-oa) <br>
-- [Skill overview](references/SKILL_OVERVIEW.md) <br>
-- [Workflow design](references/WORKFLOW_DESIGN.md) <br>
-- [Themes guide](references/THEMES_GUIDE.md) <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/) <br>
-- [WeChat draft API](https://api.weixin.qq.com/cgi-bin/draft/add) <br>
-- [html2canvas](https://html2canvas.hertzen.com/) <br>
-- [FileSaver.js](https://github.com/eligrey/FileSaver.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated article artifacts may include Markdown, HTML, JSON, and cover files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can optionally interact with WeChat Official Account credentials and external validation/search services when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can push or modify WeChat Official Account drafts when credentials are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use guided or local generation by default and review every article, cover, author, digest, and draft in WeChat before publication.
+
+Risk: Generated output may include fixed creator branding or digest text that was not explicitly approved for a given run.
+
+Mitigation: Check and edit branding, author, footer, and digest fields before accepting or publishing generated drafts.
+
+Risk: Automatic mode and mock or incomplete verification can leave factual claims or publishing actions under-reviewed.
+
+Mitigation: Avoid relying on automatic mode for production workflows and manually verify factual claims and sources before publication.
+
+Risk: WeChat and Tavily credentials may grant external API access beyond local file generation.
+
+Mitigation: Run the skill in a dedicated low-privilege environment with separate credentials and rotate secrets if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onegrown/skills/tsmf-wechat-oa)
+- [Publisher profile](https://clawhub.ai/user/onegrown)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/)
+- [WeChat token API](https://api.weixin.qq.com/cgi-bin/token)
+- [WeChat image upload API](https://api.weixin.qq.com/cgi-bin/media/uploadimg)
+- [WeChat draft add API](https://api.weixin.qq.com/cgi-bin/draft/add)
+- [SKILL_OVERVIEW](references/SKILL_OVERVIEW.md)
+- [WORKFLOW_DESIGN](references/WORKFLOW_DESIGN.md)
+- [THEMES_GUIDE](references/THEMES_GUIDE.md)
+- [CONTENT_PIPELINE_ANALYSIS](references/CONTENT_PIPELINE_ANALYSIS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, HTML, JSON, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local article, cover, and draft metadata files and may call WeChat APIs when credentials and push mode are configured.]
+
+## Skill Version(s):
+
+3.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

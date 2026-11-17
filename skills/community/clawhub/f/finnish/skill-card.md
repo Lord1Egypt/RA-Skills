@@ -1,38 +1,48 @@
-## Description: <br>
-Write Finnish that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Finnish that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and developers use this skill to make Finnish writing sound more natural and casual, especially by preferring puhekieli over overly formal kirjakieli when context permits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Casual Finnish wording can be inappropriate when the user needs formal, regional, or audience-specific language. <br>
-Mitigation: Review the resulting text for tone, dialect, and wording conventions before using it in sensitive or formal contexts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Finnish ClawHub release](https://clawhub.ai/ivangdavila/finnish) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users and developers use this skill to guide an agent toward casual, natural Finnish phrasing, especially puhekieli, when formal Finnish is not requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language writing guidance and revised Finnish text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, sensitive access, or persistence is indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Casual Finnish guidance can be inappropriate for official, academic, legal, business, or otherwise formal communications.
+
+Mitigation: Explicitly ask the agent to use kirjakieli or a formal register when formal Finnish is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/finnish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language guidance applied to agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, network access, persistence, or data access are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

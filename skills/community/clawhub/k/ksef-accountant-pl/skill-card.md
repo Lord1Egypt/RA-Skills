@@ -1,54 +1,73 @@
-## Description: <br>
-Polish-language accounting reference skill for KSeF 2.0, FA(3) invoices, VAT workflows, payment matching, correction invoices, split payment, JPK_V7 registers, and related accounting guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish-language accounting assistant for KSeF 2.0, FA(3) invoices, VAT/JPK workflows, payment matching, correcting invoices, split payment, security patterns, and related accounting guidance.
 
-## Publisher: <br>
-[alexwoo-awso](https://clawhub.ai/user/alexwoo-awso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexwoo-awso](https://clawhub.ai/user/alexwoo-awso)
 
-## Use Case: <br>
-Accountants, finance teams, and developers use this skill for Polish KSeF e-invoicing workflows, including API-oriented implementation guidance, FA(3) examples, VAT accounting flows, security patterns, and troubleshooting. It provides reference guidance and example patterns; users remain responsible for verifying legal, tax, banking, and production-system decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Poland <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Financial and tax examples may be incomplete or out of date for a specific organization, transaction, or current Polish requirement. <br>
-Mitigation: Verify MPP payment flows, FA(3) validation, accounting treatment, JPK_V7 handling, and legal conclusions with current Polish tax, accounting, and banking requirements before use. <br>
-Risk: Production KSeF actions can create legally binding invoices or financial consequences. <br>
-Mitigation: Test with the KSeF DEMO environment first and require explicit user approval before production submission, payment blocking, accounting-record changes, or other consequential actions. <br>
-Risk: User-provided KSeF tokens, certificates, or encryption keys could be exposed if platform secret handling is not enforced. <br>
-Mitigation: Use environment variables or a secrets manager, confirm secret isolation in the hosting platform, and do not paste credentials directly into agent conversations. <br>
-Risk: The skill declares instruction-only and disabled autonomous invocation behavior, but enforcement depends on the hosting platform. <br>
-Mitigation: Confirm registry metadata and platform controls before providing credentials or enabling production use; if controls are missing, use the skill only as unauthenticated reference documentation. <br>
+## Use Case:
 
+Accountants, finance teams, and developers use this skill to work with Polish KSeF e-invoicing flows, including KSeF API usage, FA(3) XML examples, VAT registers, JPK_V7 preparation, payment matching, corrections, and implementation-oriented security/compliance patterns.
 
-## Reference(s): <br>
-- [KSeF API 2.0 Reference](artifact/references/ksef-api-reference.md) <br>
-- [Przyklady FA(3) XML](artifact/references/ksef-fa3-examples.md) <br>
-- [Przeplywy Ksiegowe KSeF](artifact/references/ksef-accounting-workflows.md) <br>
-- [Stan Prawny KSeF - Szczegoly](artifact/references/ksef-legal-status.md) <br>
-- [Security & Compliance dla KSeF](artifact/references/ksef-security-compliance.md) <br>
-- [Troubleshooting KSeF](artifact/references/ksef-troubleshooting.md) <br>
-- [Funkcje AI dla KSeF](artifact/references/ksef-ai-features.md) <br>
-- [Portal KSeF](https://ksef.podatki.gov.pl) <br>
-- [KSeF API Documentation](https://ksef.mf.gov.pl/api/docs) <br>
-- [API Bialej Listy VAT](https://wl-api.mf.gov.pl) <br>
-- [KSeF Latarnia Status](https://github.com/CIRFMF/ksef-latarnia) <br>
+### Deployment Geography for Use:
 
+Poland
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, XML, JSON, HTTP, SQL, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only reference output; examples require user review before use in real accounting or production KSeF systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.6 (source: server release metadata) <br>
+Risk: Sensitive KSeF credentials could be exposed or misused if platform secret handling or disable-model-invocation controls are not enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not provide production KSeF tokens, encryption keys, or certificates unless the platform confirms secret isolation and disable-model-invocation enforcement.
+
+Risk: Accounting examples include actions with financial or legal impact, including sending invoices, posting accounting entries, holding payments, and production KSeF use.
+
+Mitigation: Require explicit human approval before financial, tax, payment, or production KSeF actions, and test with the demo environment before production use.
+
+Risk: Troubleshooting material suggests running an external GitHub status script.
+
+Mitigation: Pin, review, and approve any external code before running it; do not execute cloned scripts directly in a sensitive financial environment.
+
+Risk: Incorrect XML validation or weak exported register storage could create compliance, audit, or data integrity issues.
+
+Mitigation: Validate FA(3) XML against current official schemas and harden storage, access control, audit logging, and retention before production deployment.
+
+## Reference(s):
+
+- [KSeF API Reference](references/ksef-api-reference.md)
+- [FA(3) XML Examples](references/ksef-fa3-examples.md)
+- [KSeF Accounting Workflows](references/ksef-accounting-workflows.md)
+- [KSeF AI Features](references/ksef-ai-features.md)
+- [KSeF Security and Compliance](references/ksef-security-compliance.md)
+- [KSeF Legal Status](references/ksef-legal-status.md)
+- [KSeF Troubleshooting](references/ksef-troubleshooting.md)
+- [Official KSeF Portal](https://ksef.podatki.gov.pl)
+- [KSeF API Documentation](https://ksef.mf.gov.pl/api/docs)
+- [KSeF Demo Environment](https://ksef-demo.mf.gov.pl)
+- [KSeF Production Environment](https://ksef.mf.gov.pl)
+- [VAT White List API](https://wl-api.mf.gov.pl)
+- [KSeF Latarnia Status Tool](https://github.com/CIRFMF/ksef-latarnia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, XML and JSON examples, workflow checklists, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; examples are reference material for user implementation and do not run as skill code.]
+
+## Skill Version(s):
+
+2.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

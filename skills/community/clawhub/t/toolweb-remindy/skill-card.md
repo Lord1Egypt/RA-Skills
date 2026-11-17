@@ -1,43 +1,52 @@
-## Description: <br>
-Email and browser push notification reminders delivered 15 minutes before scheduled events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email and browser push notification reminders delivered 15 minutes before scheduled events.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers and agent builders use Remindy to create, list, and delete scheduled reminders, manage browser push subscriptions, and send email or push notifications before scheduled events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The service stores and changes personal reminder, email, and push-notification data without documenting authentication or ownership checks. <br>
-Mitigation: Confirm provider authentication and userId access controls before production use, and test that users cannot list, modify, or delete another user's reminders. <br>
-Risk: Push subscription secrets and notification email addresses may be sensitive personal data. <br>
-Mitigation: Use non-sensitive reminders until storage, retention, deletion, consent, and secret-protection controls are documented and accepted. <br>
+## Use Case:
 
+Developers and web application builders use Remindy to create, list, and delete time-zone-aware reminders and manage browser push subscriptions for email or push notifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-remindy) <br>
-- [API Documentation](https://api.toolweb.in:8198/docs) <br>
-- [Kong Route](https://api.toolweb.in/tools/remindy) <br>
-- [OpenAPI Specification](artifact/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON request and response examples plus OpenAPI 3.1 schema.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reminder, push subscription, status, and health-check interactions; no token cap is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; OpenAPI service version reports 2.0.0) <br>
+Risk: The API contract exposes user-scoped reminder and push-notification actions without documented authentication or authorization controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use it for sensitive schedules, private task details, or real user notification subscriptions unless the publisher confirms authentication, ownership checks, and deletion behavior.
+
+## Reference(s):
+
+- [OpenAPI contract](artifact/openapi.json)
+- [Remindy API documentation](https://api.toolweb.in:8198/docs)
+- [Remindy API route](https://api.toolweb.in/tools/remindy)
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-remindy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote API calls may include user IDs, reminder details, email addresses, timezone strings, and browser push subscription values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

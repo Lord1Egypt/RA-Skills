@@ -1,51 +1,68 @@
-## Description: <br>
-ERiC Compliance Suite helps agents run ERiC product compliance checks for intellectual property and ecommerce platform policy risks, including design patents, utility patents, graphic trademarks, text trademarks, copyright, and policy compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ERiC Compliance Suite helps agents run ERiC SaaS checks for design patents, invention patents, graphic and text trademarks, copyright images, and e-commerce policy compliance.
 
-## Publisher: <br>
-[wteng2286](https://clawhub.ai/user/wteng2286) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wteng2286](https://clawhub.ai/user/wteng2286)
 
-## Use Case: <br>
-External developers and compliance operators use this skill to check product images, titles, descriptions, and policy feature words against ERiC patent, trademark, copyright, and platform-policy APIs before listing or reviewing products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill uploads product images, titles, descriptions, image URLs, and the API token to ERiC. <br>
-Mitigation: Use only approved product data, start with non-sensitive test inputs, and keep ERIC_API_TOKEN scoped to a trusted environment. <br>
-Risk: The security evidence says the skill can change remote feature-word settings. <br>
-Mitigation: Require explicit operator confirmation before P005 or P006 changes and use a token with the minimum privileges available. <br>
-Risk: The security evidence says the skill auto-installs a Python dependency at runtime. <br>
-Mitigation: Prefer installing and reviewing dependencies yourself in a controlled environment before running the skill. <br>
-Risk: The security evidence and artifact behavior show paid checks, radar-enabled checks, and optional automatic safe-word lookups. <br>
-Mitigation: Confirm expected credit usage before running checks, especially default radar-enabled modes and automatic T002 safe-word lookups. <br>
+## Use Case:
 
+Developers and e-commerce compliance operators use this skill to screen product titles, descriptions, and images for intellectual-property and marketplace-policy risks before listing or reviewing products.
 
-## Reference(s): <br>
-- [ERiC Compliance Suite ClawHub Page](https://clawhub.ai/wteng2286/eric-compliance-suite) <br>
-- [ERiC Website](https://eric-bot.com) <br>
-- [D001 Design Patent API Reference](artifact/references/design-patent.md) <br>
-- [I001 Utility Patent API Reference](artifact/references/invention-patent.md) <br>
-- [L001 Graphic Trademark API Reference](artifact/references/logo-detection.md) <br>
-- [T001/T002 Text Trademark API Reference](artifact/references/trademark-detection.md) <br>
-- [C001 Copyright API Reference](artifact/references/copyright-detection.md) <br>
-- [Policy Compliance API Reference](artifact/references/policy-detection.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell command examples, JSON API responses when requested, and concise text summaries of compliance results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ERIC_API_TOKEN and may process product images, titles, descriptions, image URLs, and feature-word settings through ERiC APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: The skill can send product titles, descriptions, images, and the ERiC token to the ERiC SaaS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only organization-approved data and avoid confidential, unreleased, regulated, or customer-sensitive material unless vendor data handling has been approved.
+
+Risk: The CLI can fetch image content from URLs supplied by a user.
+
+Mitigation: Prefer approved local image files or trusted image URLs, and avoid untrusted sources.
+
+Risk: The script can install the requests dependency at runtime if it is missing.
+
+Mitigation: Run the skill in a controlled Python environment with requests installed from a trusted, pinned source.
+
+Risk: P005 and P006 can change remote account feature-word configuration.
+
+Mitigation: Review feature-word save and delete operations before execution and restrict use to authorized account operators.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wteng2286/skills/eric-compliance-suite)
+- [ERiC service](https://eric-bot.com)
+- [Design patent detection reference](references/design-patent.md)
+- [Invention patent detection reference](references/invention-patent.md)
+- [Logo detection reference](references/logo-detection.md)
+- [Trademark detection reference](references/trademark-detection.md)
+- [Copyright detection reference](references/copyright-detection.md)
+- [Policy detection reference](references/policy-detection.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and optional JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize ERiC API results, risk labels, point costs, and account feature-word operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn70vzjs01s6d4emrvva5r6j4s83pkab",
-  "slug": "fear-greed-index",
+  "name": "fear-greed-index",
   "version": "1.0.1",
-  "publishedAt": 1775179850223
+  "description": "Crypto Fear & Greed Index reporter - Get daily market sentiment with BTC price analysis.",
+  "author": "",
+  "license": "MIT",
+  "keywords": ["crypto", "bitcoin", "trading", "sentiment", "fear-greed"]
 }

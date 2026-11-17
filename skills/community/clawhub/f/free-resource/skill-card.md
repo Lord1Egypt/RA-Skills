@@ -1,46 +1,61 @@
-## Description: <br>
-Search and retrieve royalty-free media from Pexels (photos/videos), Pixabay (images/videos), Freesound (audio effects), and Jamendo (music/BGM). Use when the user needs to find stock photos, illustrations, vectors, videos, sound effects, or background music, download media, or query media libraries with filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve royalty-free media from Pexels (photos/videos), Pixabay (images/videos), Freesound (audio effects), and Jamendo (music/BGM).
 
-## Publisher: <br>
-[darknoah](https://clawhub.ai/user/darknoah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darknoah](https://clawhub.ai/user/darknoah)
 
-## Use Case: <br>
-External users, developers, and content creators use this skill to search media libraries and download royalty-free photos, videos, sound effects, and music for projects while managing provider attribution and licensing obligations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires API keys for media services. <br>
-Mitigation: Provide keys through environment variables or a local config file, keep them out of prompts and shared files, and rotate keys if they are exposed. <br>
-Risk: The security scan notes under-documented original-download behavior and broad URL-to-file download commands. <br>
-Mitigation: Download only from provider search results or trusted provider URLs, avoid arbitrary or private-network URLs, and choose non-sensitive output folders. <br>
-Risk: Downloaded media can carry provider-specific attribution, license, and original-file usage requirements. <br>
-Mitigation: Review provider metadata and Freesound licensing before reuse, and include required attribution for Pexels, Pixabay, Freesound, and Jamendo assets. <br>
+## Use Case:
 
+Developers and content-producing agents use this skill to search provider media catalogs, inspect returned metadata, and download royalty-free photos, videos, sound effects, or music for projects.
 
-## Reference(s): <br>
-- [API Reference](references/api_reference.md) <br>
-- [Pexels API](https://www.pexels.com/api/) <br>
-- [Pixabay API](https://pixabay.com/api/) <br>
-- [Freesound API](https://freesound.org/apiv2/apply) <br>
-- [Jamendo Developer Portal](https://devportal.jamendo.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI scripts return JSON search results and downloaded media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires provider API keys and can write result JSON or downloaded media to user-specified output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Risk: Download commands can fetch arbitrary URLs or write to arbitrary local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only download URLs copied from trusted provider responses and choose output paths inside a dedicated media folder.
+
+Risk: API credentials may be stored in a local config file.
+
+Mitigation: Use environment variables for provider credentials when possible and avoid committing config files containing secrets.
+
+Risk: The security verdict is suspicious due to under-scoped download behavior.
+
+Mitigation: Review the skill before installing it in environments that process untrusted URLs or run inside sensitive networks.
+
+## Reference(s):
+
+- [Free Resource API Reference](references/api_reference.md)
+- [Pexels API](https://www.pexels.com/api/)
+- [Pixabay API](https://pixabay.com/api/)
+- [Freesound API](https://freesound.org/apiv2/apply)
+- [Jamendo Developer Portal](https://devportal.jamendo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON API responses, and downloaded media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided API credentials for the selected media provider.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

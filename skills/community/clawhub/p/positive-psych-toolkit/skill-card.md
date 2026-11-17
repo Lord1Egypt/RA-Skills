@@ -1,46 +1,59 @@
-## Description: <br>
-A Chinese-language positive psychology companion that helps users explore PERMA well-being, VIA character strengths, gratitude practices, emotion tracking, meaning, goals, and resilience while keeping clear non-clinical boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+积极心理学工具箱 is a Chinese positive psychology assistant that uses PERMA, VIA character strengths, gratitude practices, emotion tracking, resilience exercises, and culturally adapted guidance to support wellbeing and self-growth without replacing professional mental health care.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-External users and agent operators use this skill for structured self-growth conversations, positive psychology exercises, well-being self-reflection, and optional local helper tools for emotion tracking or VIA-style strengths exploration. It is not intended for diagnosis, treatment, or crisis support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive mood, trigger, body-feeling, and self-assessment data may be written as plaintext local files by helper scripts. <br>
-Mitigation: Use the skill only on a trusted private machine, avoid entering unnecessary private details, and delete emotion_log.jsonl and via_result.json when no longer needed. <br>
-Risk: Positive psychology guidance may be mistaken for diagnosis, treatment, or crisis support. <br>
-Mitigation: Keep use limited to self-growth and reflection, and seek professional or emergency support for self-harm, severe depression, violence, or urgent mental-health concerns. <br>
+## Use Case:
 
+External users and agents use this skill to guide Chinese-language positive psychology conversations, including PERMA wellbeing reflection, VIA strengths exploration, gratitude and resilience exercises, emotion vocabulary support, and culturally adapted self-growth prompts. It should be treated as a wellbeing and coaching aid, not as therapy, diagnosis, crisis counseling, or medical advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/earthwalking/positive-psych-toolkit) <br>
-- [PERMA happiness model and assessment](references/perma_assessment.md) <br>
-- [VIA character strengths reference](references/via_strengths.md) <br>
-- [Positive psychology exercise guide](references/exercises.md) <br>
-- [Chinese emotion vocabulary](references/emotion_vocabulary.md) <br>
-- [Cultural integration guide](references/cultural_integration.md) <br>
-- [VIA Institute survey](https://www.viacharacter.org/survey/account/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text guidance, with optional local JSON or JSONL files from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts can save emotion_log.jsonl and via_result.json in the artifact scripts directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled scripts can store sensitive mental-wellbeing records and personality assessment results in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing on shared, managed, backed-up, or indexed machines; avoid running the scripts for sensitive entries or delete generated local files after use.
+
+Risk: Users may present distress, self-harm, or crisis signals while using a non-clinical positive psychology assistant.
+
+Mitigation: Keep responses within self-growth support, avoid diagnosis or treatment advice, and direct crisis situations to professional emergency or mental health resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/positive-psych-toolkit)
+- [PERMA 幸福模型与评估](artifact/references/perma_assessment.md)
+- [VIA 性格优势 24 项详解](artifact/references/via_strengths.md)
+- [积极心理练习引导手册](artifact/references/exercises.md)
+- [中文情绪词汇表](artifact/references/emotion_vocabulary.md)
+- [中西心理学文化融合指南](artifact/references/cultural_integration.md)
+- [VIA Character Strengths Survey](https://www.viacharacter.org/survey/account/register)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Shell commands]
+
+**Output Format:** [Chinese-language conversational guidance, Markdown reports, and optional command-line script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional local scripts that can create plaintext emotion logs and VIA assessment result files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

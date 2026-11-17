@@ -1,41 +1,53 @@
-## Description: <br>
-思维导图总结生成技能。根据传入的文本，生成json格式的思维导图； <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates JSON mind-map summaries in the simple_mind_map format from supplied text.
 
-## Publisher: <br>
-[cx17030204-dotcom](https://clawhub.ai/user/cx17030204-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cx17030204-dotcom](https://clawhub.ai/user/cx17030204-dotcom)
 
-## Use Case: <br>
-External users and developers use this skill to turn input text into a simple_mind_map-compatible JSON mind-map summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release publishes a shared trial API key. <br>
-Mitigation: Use a private scoped key instead of the published default key. <br>
-Risk: The skill sends user text and an API key to an undocumented local backend. <br>
-Mitigation: Install only when you control and trust the localhost:8000 backend, and avoid sensitive or regulated text until the backend owner, retention policy, and security model are clear. <br>
+## Use Case:
 
+External users and developers can use this skill to summarize provided text into a JSON mind map. It is intended for workflows that need simple_mind_map output from a text input.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cx17030204-dotcom/jiujiu-mindmap-summary) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/cx17030204-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown heading followed by pretty-printed JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and JIUJIUMINDMAP_API_KEY; posts input text to the configured local generation endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends user text and an API key to an under-disclosed HTTP service on 127.0.0.1:8000.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local service before use and avoid submitting confidential, proprietary, regulated, or secret-bearing text unless you control and trust that service.
+
+Risk: The skill documentation mentions a shared trial API key.
+
+Mitigation: Replace any shared trial key with a unique key and prefer authenticated HTTPS or protected local IPC before routine use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cx17030204-dotcom/skills/jiujiu-mindmap-summary)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown heading followed by pretty-printed JSON returned by the generation service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the JIUJIUMINDMAP_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

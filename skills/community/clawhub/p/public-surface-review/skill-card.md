@@ -1,41 +1,54 @@
-## Description: <br>
-Publish Guard audits README, SKILL.md, launch docs, agent metadata, and leak patterns before GitHub or ClawHub publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish Guard audits a repository's public release surface, including README, SKILL.md, agent metadata, launch docs, and obvious leak patterns before GitHub or ClawHub publication.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Developers and maintainers use Publish Guard before publishing a GitHub repository or ClawHub skill to identify secret-shaped strings, internal launch artifacts, weak first-run copy, and public-audience issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated audit reports can expose sensitive filenames and line numbers for possible secret findings, even when snippets are redacted. <br>
-Mitigation: Run the skill against a specific repository rather than a broad filesystem path, and treat generated reports as sensitive until reviewed. <br>
-Risk: Heuristic scans for leak patterns, public-audience mismatch, and launch-copy readiness can miss issues or flag benign content. <br>
-Mitigation: Use the report as a pre-release review aid and manually confirm findings before publishing or sharing the results. <br>
+## Use Case:
 
+Developers and release maintainers use Publish Guard before publishing GitHub repositories or ClawHub skills to find public-audience issues, weak first-run copy, internal launch material, and obvious leak patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/public-surface-review) <br>
-- [Project homepage](https://zack-dev-cm.github.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit with supporting JSON scan outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include a publish recommendation, launch-copy score, and summarized leak and public-surface findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release and SKILL.md frontmatter) <br>
+Risk: The scanners may follow repository symlinks and read user-readable files outside the intended target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on trusted repositories or in an isolated workspace until symlink containment is fixed.
+
+Risk: Local audit reports may include limited findings or snippets derived from files reached through crafted repository paths.
+
+Mitigation: Review generated reports before sharing them and avoid running the skill against untrusted working trees.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skills/public-surface-review)
+- [Publisher Homepage](https://zack-dev-cm.github.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown audit with supporting JSON scanner outputs and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes leak findings, public-surface findings, launch-copy score, and a publish recommendation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Deploys a Xiaohongshu publishing agent team for content formatting, browser-assisted publishing, and basic analytics; it is triggered with /xiaohongshu-publisher-setup and requires the content-creation team. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a two-agent Xiaohongshu publishing team for XHS formatting, browser-assisted publishing, and post data review, triggered with /xiaohongshu-publisher-setup after content-creation is installed.
 
-## Publisher: <br>
-[little-ke](https://clawhub.ai/user/little-ke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[little-ke](https://clawhub.ai/user/little-ke)
 
-## Use Case: <br>
-External users and operators use this skill to install a two-agent Xiaohongshu workflow that formats content packages, registers the publishing agents, initializes a local login session, and guides confirmed publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow saves local Xiaohongshu account profile data and browser session state. <br>
-Mitigation: Protect ~/.openclaw/workspace-xiaohongshu-publisher, and delete .session/state.json and .env when retained login or profile state is no longer needed. <br>
-Risk: Browser automation can publish content to a live Xiaohongshu account. <br>
-Mitigation: Review the generated content package and confirm publishing only when the title, body, images, tags, and login state are correct. <br>
+## Use Case:
 
+External creators and operators use this skill to install a Xiaohongshu-focused OpenClaw team that prepares platform-style content packages, registers publishing agents, and supports browser-assisted posting. The workflow is intended for accounts that can provide their own Xiaohongshu login session and review content before publication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/little-ke/xiaohongshu-publisher-setup) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
-- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com) <br>
-- [Xiaohongshu publish page](https://creator.xiaohongshu.com/publish/publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local agent workspaces, account profile configuration, and Playwright session state under ~/.openclaw/workspace-xiaohongshu-publisher.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill stores a reusable Xiaohongshu browser session at ~/.openclaw/workspace-xiaohongshu-publisher/.session/state.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the session file like a credential: keep it local, restrict access, do not sync or share it, and re-login if exposure is suspected.
+
+Risk: The installer deploys local workspace files and registers OpenClaw agents.
+
+Mitigation: Review the setup script before running it and install only in the intended OpenClaw workspace.
+
+Risk: Browser automation depends on Playwright and Xiaohongshu page behavior, which may change or fail during publishing.
+
+Mitigation: Use pinned Playwright dependencies where possible and keep the documented human confirmation step before final publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/little-ke/skills/xiaohongshu-publisher-setup)
+- [Publisher profile](https://clawhub.ai/user/little-ke)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+- [Xiaohongshu Creator Center](https://creator.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands, JSON examples, and deployed Node.js scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw, the content-creation team, node, npm, Playwright with Chromium, and a Xiaohongshu account login session.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

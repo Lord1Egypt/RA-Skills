@@ -1,0 +1,108 @@
+{
+  "contract_version": "2.0.0",
+  "name": "kya_regulated_financial_agent_tools",
+  "required_sequence": [
+    "evaluate_financial_action",
+    "create_control_challenge",
+    "record_control_result",
+    "issue_delegation_receipt",
+    "verify_and_consume_receipt",
+    "execute_authorized_action",
+    "write_audit_event"
+  ],
+  "safety_invariants": [
+    "all_required_controls_are_cumulative",
+    "ai_agent_cannot_satisfy_human_control",
+    "receipt_is_bound_to_exact_action_hash",
+    "receipt_is_short_lived_and_one_time",
+    "executor_rejects_decision_or_approval_id_without_receipt",
+    "uncertain_provider_or_audit_state_fails_closed"
+  ],
+  "tools": [
+    {
+      "name": "evaluate_financial_action",
+      "trusted_actor": "policy_service",
+      "input_schema": "action-intent-schema.json",
+      "returns_schema": "gate-decision-schema.json",
+      "must_return": [
+        "action_hash",
+        "decision",
+        "authorization_status",
+        "required_controls",
+        "satisfied_controls",
+        "blocked_actions",
+        "policy_version"
+      ]
+    },
+    {
+      "name": "create_control_challenge",
+      "trusted_actor": "control_orchestration_service",
+      "requires": ["decision_id", "action_hash", "required_controls"],
+      "forbids": ["ai_agent_self_approval"]
+    },
+    {
+      "name": "record_control_result",
+      "trusted_actor": "control_orchestration_service",
+      "requires": ["decision_id", "action_hash", "provider_signed_evidence_reference"],
+      "must_reject": ["untrusted_agent_assertion", "action_hash_mismatch"]
+    },
+    {
+      "name": "issue_delegation_receipt",
+      "trusted_actor": "authorization_service",
+      "returns_schema": "delegation-receipt-schema.json",
+      "requires": [
+        "authorization_status_approved",
+        "all_required_controls_satisfied",
+        "independent_approver_when_required",
+        "signing_key_not_available_to_ai_agent"
+      ]
+    },
+    {
+      "name": "verify_and_consume_receipt",
+      "trusted_actor": "authorized_execution_service",
+      "requires": ["final_action", "delegation_receipt"],
+      "must_verify": [
+        "signature",
+        "action_hash",
+        "tenant_subject_agent_binding",
+        "policy_version",
+        "expiry",
+        "one_time_nonce",
+        "idempotency_key"
+      ],
+      "must_reject": ["replay", "mutation", "expired_receipt", "unknown_key_id"]
+    },
+    {
+      "name": "execute_authorized_action",
+      "trusted_actor": "authorized_execution_service",
+      "requires": ["verified_consumed_receipt", "idempotency_key"],
+      "must_not_accept": ["chat_confirmation", "screenshot", "decision_id_only", "approval_id_only"]
+    },
+    {
+      "name": "write_audit_event",
+      "trusted_actor": "audit_service",
+      "input_schema": "audit-log-schema.json",
+      "append_only_expected": true,
+      "fail_closed_when_unavailable": true
+    },
+    {
+      "name": "check_identity_status",
+      "trusted_actor": "identity_provider_adapter",
+      "returns_reference_only": true,
+      "fail_closed_on_uncertain": true
+    },
+    {
+      "name": "check_aml_status",
+      "trusted_actor": "screening_provider_adapter",
+      "returns_reference_only": true,
+      "fail_closed_on_uncertain": true
+    }
+  ],
+  "forbidden_sequences": [
+    "execute_authorized_action_without_verify_and_consume_receipt",
+    "issue_delegation_receipt_before_all_controls_satisfied",
+    "agent_creates_own_human_approval",
+    "reuse_receipt_for_modified_action",
+    "continue_execution_when_audit_write_fails"
+  ]
+}

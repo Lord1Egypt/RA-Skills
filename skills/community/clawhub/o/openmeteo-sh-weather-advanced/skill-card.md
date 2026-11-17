@@ -1,42 +1,54 @@
-## Description: <br>
-Advanced weather from free OpenMeteo API: historical data, detailed variable selection, model choice, past-days, and in-depth forecasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent answer advanced Open-Meteo weather questions with historical data, detailed weather variables, model choice, past-day lookback, and fine-grained forecast controls.
 
-## Publisher: <br>
-[lstpsche](https://clawhub.ai/user/lstpsche) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lstpsche](https://clawhub.ai/user/lstpsche)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to generate precise OpenMeteo CLI commands for current, forecast, historical, and model-specific weather queries, then summarize the results in natural language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external openmeteo CLI and the package source used to install it. <br>
-Mitigation: Install only from a trusted source and review the CLI before using it in sensitive environments. <br>
-Risk: City names or precise coordinates are sent to Open-Meteo weather and geocoding endpoints. <br>
-Mitigation: Use city-level locations where possible and avoid precise coordinates unless the task requires them. <br>
+## Use Case:
 
+External users, employees, and developers use this skill when they need detailed weather forecasts or historical Open-Meteo data beyond a simple current-conditions lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lstpsche/openmeteo-sh-weather-advanced) <br>
-- [openmeteo-sh CLI](https://github.com/lstpsche/openmeteo-sh) <br>
-- [Open-Meteo](https://open-meteo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and natural-language weather summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses compact --llm TSV output from the openmeteo CLI; raw JSON is reserved for explicit user requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: Documented install paths for the openmeteo-sh CLI can add package sources or run installation steps with elevated privileges without pinning a reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified openmeteo-sh release; review the install path; verify APT signing-key fingerprints and package sources; and avoid sudo make install from an unreviewed default branch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lstpsche/skills/openmeteo-sh-weather-advanced)
+- [openmeteo-sh CLI](https://github.com/lstpsche/openmeteo-sh)
+- [Open-Meteo](https://open-meteo.com)
+- [Open-Meteo forecast API](https://api.open-meteo.com)
+- [Open-Meteo archive API](https://archive-api.open-meteo.com)
+- [Open-Meteo geocoding API](https://geocoding-api.open-meteo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and natural-language weather summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses compact TSV-style CLI output for agent analysis; raw JSON is only requested when the user explicitly asks for it.]
+
+## Skill Version(s):
+
+1.2.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

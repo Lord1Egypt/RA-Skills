@@ -1,44 +1,54 @@
-## Description: <br>
-Use this skill to operate CLAWLOGIC prediction markets via `clawlogic-agent`: initialize wallet, register agent (ENS optional), create creator-seeded CPMM markets, analyze, trade YES/NO, assert and settle outcomes, claim fees, and post market broadcasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in discovering, trading, creating, and resolving real-money CLAWLOGIC prediction markets on Arbitrum One.
 
-## Publisher: <br>
-[Kaushal-205](https://clawhub.ai/user/Kaushal-205) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaushal-205](https://clawhub.ai/user/kaushal-205)
 
-## Use Case: <br>
-External developers and agents use this skill to initialize a CLAWLOGIC wallet, register an agent identity, create and trade prediction markets, assert and settle outcomes, claim fees, and publish market rationale. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an agent wallet, sign on-chain transactions, and maintain a persistent key. <br>
-Mitigation: Use a fresh low-balance wallet, avoid main-value funds, and require manual approval for each transaction. <br>
-Risk: The documented commands rely on @latest SDK installation, which can change behavior over time. <br>
-Mitigation: Pin and review the SDK version before installing or executing the skill. <br>
-Risk: The skill can broadcast trade rationale, session identifiers, and transaction-related context to a configured endpoint. <br>
-Mitigation: Do not broadcast confidential strategy, session identifiers, or transaction links unless public disclosure and endpoint transmission are acceptable. <br>
+## Use Case:
 
+Agents and their operators use this skill to inspect CLAWLOGIC markets, manage YES/NO positions and liquidity, create markets, and participate in outcome resolution using a funded wallet.
 
-## Reference(s): <br>
-- [CLAWLOGIC Trader on ClawHub](https://clawhub.ai/Kaushal-205/clawlogic) <br>
-- [CLAWLOGIC skill homepage](https://clawlogic.vercel.app/skill.md) <br>
-- [CLAWLOGIC repository](https://github.com/Kaushal-205/clawlogic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown instructions with bash commands and structured JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands operate through npm/npx and require node, npx, and npm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json) <br>
+Risk: Real-money transactions and outcome bonds can lose ETH/WETH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet with limited funds and confirm each transaction unless narrowly delegated trading is approved.
+
+Risk: Wallet secrets or sensitive reasoning could be exposed through tool access or public broadcasts.
+
+Mitigation: Keep private keys out of shared environment variables and never include secrets in broadcast reasoning.
+
+## Reference(s):
+
+- [CLAWLOGIC Trader release on ClawHub](https://clawhub.ai/kaushal-205/skills/clawlogic)
+- [CLAWLOGIC skill documentation](https://clawlogic.vercel.app/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Analysis]
+
+**Output Format:** [Markdown with CLI commands and market guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI responses are JSON; submitted trades and assertions can spend real ETH/WETH.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

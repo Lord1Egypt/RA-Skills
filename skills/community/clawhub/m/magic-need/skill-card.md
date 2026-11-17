@@ -1,42 +1,55 @@
-## Description: <br>
-Magic Need captures missing tool, API, or data-source requests from AI agents, categorizes them, and stores them for later review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Magic Need lets agents register missing tools, APIs, or data sources during task execution so teams can review categorized needs and plan integrations.
 
-## Publisher: <br>
-[guim4dev](https://clawhub.ai/user/guim4dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guim4dev](https://clawhub.ai/user/guim4dev)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to record tools, APIs, logs, metrics, or data sources an agent needed but could not access during a task. The recorded backlog helps teams review recurring gaps and prioritize integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Need descriptions may contain secrets, credentials, incident details, or sensitive operational context if users paste them into the local backlog. <br>
-Mitigation: Do not record secrets, tokens, credentials, or sensitive incident details; review generated reports before sharing them through Slack, Discord, or other channels. <br>
-Risk: The skill keeps a durable local backlog of agent-requested tools and data sources. <br>
-Mitigation: Install it only when local persistence is desired and manage ~/.magic-need/needs.json according to the environment's data retention practices. <br>
+## Use Case:
 
+Developers and agent operators use Magic Need to capture missing-tool and missing-data requests from agents, categorize them, and review reports that inform an integration roadmap.
 
-## Reference(s): <br>
-- [Magic Need on ClawHub](https://clawhub.ai/guim4dev/magic-need) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Sonary](https://www.sonary.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text confirmations, JSON-backed local records, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local need records to ~/.magic-need/needs.json and can generate grouped reports for review or notification workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Agents may record sensitive need descriptions, such as secrets, personal data, incident details, or confidential system names, in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Instruct agents and reviewers not to enter sensitive data, and review ~/.magic-need/needs.json before retaining or sharing reports.
+
+Risk: Generated reports may expose locally retained unmet-tool requests beyond the intended audience.
+
+Mitigation: Review report contents before sending them to notification systems or roadmap-tracking workflows.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/guim4dev/skills/magic-need)
+- [OpenClaw](https://openclaw.ai)
+- [Sonarly](https://www.sonary.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [CLI text confirmations, Markdown reports, and JSON records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes need records to ~/.magic-need/needs.json and reports pending needs grouped by category.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

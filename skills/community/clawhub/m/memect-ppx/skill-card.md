@@ -1,45 +1,61 @@
-## Description: <br>
-Parse PDFs and images into Markdown/JSON using the memect-ppx (`ppx`) CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse PDFs and images into Markdown/JSON using the memect-ppx (`ppx`) CLI.
 
-## Publisher: <br>
-[lihanghang](https://clawhub.ai/user/lihanghang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lihanghang](https://clawhub.ai/user/lihanghang)
 
-## Use Case: <br>
-Developers and engineers use this skill to OCR scanned PDFs or images, extract tables, convert documents into Markdown or JSON, and inspect the generated parsing output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs and images may contain sensitive content, and parsed text, JSON, pages, or extracted images may persist in the output directory. <br>
-Mitigation: Parse only files the user chooses, write results to a private output directory, and review retained outputs before sharing or archiving them. <br>
-Risk: LLM or persistent backend settings can expose document contents to configured services. <br>
-Mitigation: Use backend modes only with services trusted for the document contents, and prefer the default local pipeline when privacy is the priority. <br>
-Risk: Debug or development modes may retain extra intermediate data while troubleshooting. <br>
-Mitigation: Avoid debug/dev modes during normal parsing and clean up intermediate files after troubleshooting. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to run the local `ppx` CLI for OCR, PDF/image parsing, table extraction, and conversion into Markdown or JSON outputs.
 
-## Reference(s): <br>
-- [Memect PPX homepage](https://github.com/memect/memect-ppx) <br>
-- [CLI Options](references/cli-options.md) <br>
-- [Backend Config](references/backend-config.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and paths to generated Markdown/JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports OCR mode, table mode, backend choice, and output directory when they materially affect accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: frontmatter and release evidence) <br>
+Risk: Dependency installation can affect sensitive environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated virtual environment and review or pin package versions before installing PPX dependencies.
+
+Risk: Backend options can send document content to configured OCR or LLM services.
+
+Mitigation: Avoid LLM/backend options for confidential documents unless the endpoint is controlled and approved.
+
+Risk: OCR and table extraction can produce partial or inaccurate results.
+
+Mitigation: Inspect `doc.md`, `doc.json`, and page-level outputs, and report OCR mode, table mode, and backend choices when they affect accuracy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lihanghang/skills/memect-ppx)
+- [memect-ppx homepage](https://github.com/memect/memect-ppx)
+- [CLI Options](references/cli-options.md)
+- [Backend Config](references/backend-config.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and references to generated Markdown/JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the output directory and notes OCR mode, table mode, and backend when relevant.]
+
+## Skill Version(s):
+
+0.2.6 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

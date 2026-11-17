@@ -1,41 +1,58 @@
-## Description: <br>
-Complete pipeline: Reddit pain scan -> cluster -> build pip-installable CLI tool -> push to GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a pipeline that scans Reddit developer pain points, clusters them, scaffolds pip-installable CLI tools, and prepares GitHub publication.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to guide an automation pipeline that scans Reddit for developer pain points, clusters opportunities, generates pip-installable CLI tools, and publishes results to GitHub after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pipeline can publish generated code to GitHub without clear limits or approval steps. <br>
-Mitigation: Review the implementation before use, run locally or in dry-run mode first, and require manual approval before any push, package release, or scheduled production run. <br>
-Risk: Repository or package publishing could expose broader access than intended. <br>
-Mitigation: Use a repository-scoped GitHub token with minimal permissions. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn Reddit pain signals into candidate Python CLI packages through scanning, clustering, scaffolding, packaging, and publication steps. It is best suited to workflows where generated package ideas and publication actions receive human review before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/pain-to-pip-package) <br>
-- [HermesMade GitHub repository](https://github.com/minirr890112-byte/HermesMade) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and pipeline descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe publishing generated code to GitHub; require review before push, package release, or scheduled production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and frontmatter) <br>
+Risk: The workflow collects and processes Reddit content, which can include privacy-sensitive or terms-restricted material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm Reddit API usage complies with applicable terms and review collected content for privacy concerns before using it.
+
+Risk: The workflow includes GitHub push and package publication behavior that can publish generated code externally.
+
+Mitigation: Require explicit human approval before any GitHub push or package publication.
+
+Risk: Generated CLI package ideas and code may be incorrect, unsafe, or unsuitable for release.
+
+Mitigation: Review generated code, documentation, and package metadata before building or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/pain-to-pip-package)
+- [HermesMade GitHub homepage](https://github.com/minirr890112-byte/HermesMade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated package files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repository publication steps that require explicit human approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

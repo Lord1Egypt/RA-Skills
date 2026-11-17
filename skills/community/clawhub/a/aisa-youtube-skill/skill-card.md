@@ -1,40 +1,51 @@
-## Description: <br>
-YouTube SERP Scout for agents. Search top-ranking videos, channels, and trends for content research and competitor tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube SERP Scout for agents. Search top-ranking videos, channels, and trends for content research and competitor tracking.
 
-## Publisher: <br>
-[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bowen-dotcom](https://clawhub.ai/user/bowen-dotcom)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to research YouTube search rankings, monitor competitor presence, discover trends, and inspect region or language-specific video results through the AIsa API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube research queries, competitor names, locale parameters, and related request metadata are sent to AIsa under the user's API key. <br>
-Mitigation: Use a dedicated AISA_API_KEY when possible and avoid submitting confidential strategy terms, secrets, or personal data unless AIsa is approved for that data. <br>
+## Use Case:
 
+Developers, marketers, and content teams use this skill to research YouTube search results, discover trends, monitor competitors, and inspect regional or language-specific video rankings.
 
-## Reference(s): <br>
-- [AIsa API Reference](https://docs.aisa.one/reference/) <br>
-- [OpenClaw Homepage](https://openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bowen-dotcom/aisa-youtube-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell and Python command examples, plus JSON responses from the YouTube search API client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and sends YouTube search parameters to AIsa.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Authenticated API requests may expose the AIsa API key if redirects leave the intended API domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a limited-scope or low-credit API key, avoid sensitive search terms, and prefer a version that rejects cross-origin redirects or strips Authorization on redirect.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.ai)
+- [AIsa API Reference](https://docs.aisa.one/reference/)
+- [ClawHub Skill Page](https://clawhub.ai/bowen-dotcom/skills/aisa-youtube-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl or python3 and an AISA_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,61 @@
-## Description: <br>
-招投标助手（Bid Assistant） helps bid teams move from tender opportunity intake and feasibility review through tender analysis, scoring models, response outlines, draft writing support, expression cleanup, and pre-submission consistency checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+招投标助手（Bid Assistant）。协助完成从机会识别、评估、标书解析、评分模型建立，到方案结构设计、正文撰写辅助、表达净化与提交前一致性审查的完整招投标流程。本工具由 @afeicn 提供支持。
 
-## Publisher: <br>
-[afeicn](https://clawhub.ai/user/afeicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afeicn](https://clawhub.ai/user/afeicn)
 
-## Use Case: <br>
-Market, business, proposal, bid, solution, and management teams use this skill to convert tender notices, tender files, company materials, prior bids, and knowledge bases into opportunity briefs, feasibility reports, scoring models, task lists, response structures, draft sections, cleanup reports, and final review checklists. It supports preparation and review workflows while leaving bid/no-bid decisions, pricing, business commitments, qualification truthfulness, stamping, and final submission under human control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tender documents, company qualifications, personnel records, pricing-related material, customer names, and historical bids can contain sensitive business information. <br>
-Mitigation: Install only where AI processing of those materials is approved; use redacted demo files where possible and confirm Feishu and Hermes storage, retention, and access controls. <br>
-Risk: Incorrect bid decisions, pricing, commitments, stamping, or submission actions could create commercial or compliance harm. <br>
-Mitigation: Keep final bid/no-bid decisions, pricing, business commitments, stamping, and submission under responsible human control. <br>
-Risk: Generated bid content could include unverifiable qualifications, personnel claims, project history, or inherited sample-bid details. <br>
-Mitigation: Require human validation of qualifications, personnel records, project cases, commitments, and final documents; use the skill's checks for sample residue, internal strategy language, and consistency issues before submission. <br>
+## Use Case:
 
+Market, business, proposal, bid, and management teams use this skill to turn tender notices and bid materials into opportunity summaries, feasibility checks, scoring models, response outlines, draft bid sections, and pre-submission review reports. It is especially oriented toward government procurement technical-service bids and keeps final bid decisions, pricing, commitments, seals, and submission under human approval.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/afeicn/bid-assistant) <br>
-- [README.md](artifact/README.md) <br>
-- [workflows.md](artifact/workflows.md) <br>
-- [runbook.md](artifact/runbook.md) <br>
-- [employee.yaml](artifact/employee.yaml) <br>
-- [skills/bid_skills.yaml](artifact/skills/bid_skills.yaml) <br>
-- [knowledge/README.md](artifact/knowledge/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports, tables, checklists, outlines, draft sections, and YAML-style configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include risk levels, required human confirmation points, missing-material lists, evidence-chain gaps, and final review items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Tender workflows may handle customer information, pricing material, company qualifications, historical bids, and business strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm that only authorized users can submit materials and configure retention, audit logs, sensitive-information masking, and Feishu permissions.
+
+Risk: Generated recommendations could affect high-impact bid/no-bid decisions, pricing, commitments, seals, or final submission.
+
+Mitigation: Keep final decisions, pricing, business commitments, qualification truthfulness, seals, and submission under explicit human approval.
+
+Risk: Draft bid content may contain sample-project residue, unsupported qualifications, internal scoring language, or AI-style phrasing.
+
+Mitigation: Use the skill's pre-submission review, expression cleanup, no-negative-deviation index, and human confirmation steps before any formal bid use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afeicn/skills/bid-assistant)
+- [README.md](README.md)
+- [workflows.md](workflows.md)
+- [runbook.md](runbook.md)
+- [knowledge/README.md](knowledge/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Structured Markdown reports, tables, checklists, outlines, and draft sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include opportunity briefs, tender analysis reports, scoring models, task lists, service-scheme structures, draft bid sections, cleanup reports, chart placeholder catalogs, consistency checks, and retrospective summaries.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence; artifact README.md and employee.yaml list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

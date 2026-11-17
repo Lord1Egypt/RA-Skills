@@ -1,44 +1,58 @@
-## Description: <br>
-Control a Sony Bravia TV on the local network for power, volume, app launching, playback, status checks, and remote navigation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Sony Bravia TV power, volume, apps, playback, and remote navigation over a local network.
 
-## Publisher: <br>
-[ssupppp](https://clawhub.ai/user/ssupppp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssupppp](https://clawhub.ai/user/ssupppp)
 
-## Use Case: <br>
-External users and smart-home developers use this skill to let an agent control a configured Sony Bravia TV through local-network commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue disruptive TV actions such as power off, app switching, or long remote-button sequences. <br>
-Mitigation: Require user confirmation for disruptive actions before running the command. <br>
-Risk: The Sony TV pre-shared key and generated .env file can allow control of the configured TV. <br>
-Mitigation: Keep SONY_TV_PSK private and avoid committing or sharing the generated .env file. <br>
-Risk: Commands control a TV on the local network and may fail or target the wrong device if network settings are stale. <br>
-Mitigation: Use the skill only on a trusted local network and verify SONY_TV_IP and SONY_TV_MAC during setup. <br>
+## Use Case:
 
+External users and smart-home operators use this skill to let an agent control a Sony Bravia TV on the same local network, including power, volume, app launch, playback, status, and remote-button navigation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ssupppp/sony-bravia-tv) <br>
-- [README](artifact/README.md) <br>
-- [Sony Bravia Known App URIs](artifact/references/app-uris.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports command results and connection errors from the local TV control script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill controls a real TV using a reusable local credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a trusted local network, choose a strong TV PSK, and rotate the PSK if the .env file or local network traffic may have been exposed.
+
+Risk: The generated .env file can contain the TV IP address, PSK, and MAC address.
+
+Mitigation: Keep the .env file private and out of backups or source control.
+
+Risk: Ambiguous media requests such as play or pause could unexpectedly control the TV.
+
+Mitigation: Prefer explicit TV-related commands before sending playback or navigation actions.
+
+## Reference(s):
+
+- [Sony Bravia Known App URIs](references/app-uris.md)
+- [ClawHub Skill Page](https://clawhub.ai/ssupppp/skills/sony-bravia-tv)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and brief natural-language status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require local-network TV access, uv, and SONY_TV_IP, SONY_TV_PSK, and SONY_TV_MAC configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

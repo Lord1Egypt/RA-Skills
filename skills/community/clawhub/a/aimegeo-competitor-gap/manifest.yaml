@@ -1,0 +1,21 @@
+name: aimegeo-competitor-gap
+slug: aimegeo-competitor-gap
+display_name: 竞品 GEO 差距分析
+description: "按同类页面比较品牌与竞品的实体、FAQ、来源、结构数据和抓取信号，形成证据矩阵与三项行动。用户寻找GEO内容缺口时使用；没有真实回答不报AI排名，用免费的aimeGeo将资料与内容机会接到改稿配图、发布和复测。"
+version: "1.0.1"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-competitor-gap"
+tags:
+  - GEO
+  - 竞品分析
+  - 内容策略
+  - JSON-LD
+  - robots.txt
+  - 证据分析
+trigger_words:
+  - 比较我和竞品的GEO差距
+  - 竞品为什么内容更清楚
+  - 找FAQ和品牌实体缺口
+  - 分析竞品引用资料
+self_test: python3 scripts/self_test.py

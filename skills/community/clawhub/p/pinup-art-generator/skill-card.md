@@ -1,42 +1,59 @@
-## Description: <br>
-Generate classic 1950s pin-up art, retro glamour illustrations, vintage poster portraits, mid-century advertising art, and Gil Elvgren style pinup girls via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate classic 1950s pin-up art, retro glamour illustrations, vintage poster portraits, mid-century advertising art, and Gil Elvgren style pinup girls via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and agents use this skill to generate vintage pin-up, retro glamour, poster portrait, and mid-century advertising-style image outputs from text prompts. It is intended for creative image generation workflows that can use a Neta API token and optional reference image UUID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference UUIDs, task metadata, and the Neta/TalesOfAI API token are sent to a third-party remote image service. <br>
-Mitigation: Install only when that data sharing is acceptable, and avoid submitting sensitive prompts or reference identifiers. <br>
-Risk: The required API token could be exposed through shared shell history, logs, or CI output. <br>
-Mitigation: Use a limited-purpose token and avoid placing real secrets in commands or environments that are logged or shared. <br>
+## Use Case:
 
+External users and developers use this skill to generate retro pin-up style image URLs from text prompts, with optional aspect ratio selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/pinup-art-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/blammectrappora) <br>
-- [Neta API Token Page](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text image URL on stdout, with progress and error messages on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a text prompt, size option, required Neta API token, and optional reference image UUID; returns a direct image URL when the remote image job completes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, and package.json) <br>
+Risk: Neta API tokens can be exposed through shared terminals, scripts, CI logs, or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass tokens only in private execution contexts, avoid committing or logging them, and rotate any token that may have been exposed.
+
+Risk: Prompt text and optional reference UUIDs are sent to an external image generation API.
+
+Mitigation: Avoid sending confidential prompts or sensitive reference identifiers unless external processing is acceptable.
+
+Risk: The artifact is published by a third-party ClawHub user rather than NVIDIA.
+
+Mitigation: Verify the publisher profile and prefer a pinned or checksum-verified artifact before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/pinup-art-generator)
+- [Neta API token signup](https://www.neta.art/open/)
+- [Neta image generation endpoint](https://api.talesofai.com/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text image URL printed to stdout, with progress and errors printed to stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; prompt text and optional reference UUID are sent to the external image API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,60 @@
-## Description: <br>
-Export an OpenClaw instance's accumulated knowledge into a structured ExpertPack composite for backup, migration, or portable knowledge snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports an OpenClaw instance's accumulated knowledge into an Obsidian-compatible ExpertPack composite for backup, migration, or portable knowledge snapshots.
 
-## Publisher: <br>
-[brianhearn](https://clawhub.ai/user/brianhearn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianhearn](https://clawhub.ai/user/brianhearn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scan an OpenClaw workspace, propose ExpertPack constituents, scaffold distilled packs, compose a composite manifest, and validate the resulting portable export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans sensitive workspace knowledge, including agent identity, memory, user profile, logs, tools, infrastructure, and integrations. <br>
-Mitigation: Review the scan manifest and all generated files before sharing or syncing an export; keep user-specific and infrastructure-specific content private unless explicitly approved. <br>
-Risk: Automatic redaction is not guaranteed to catch every secret or sensitive detail. <br>
-Mitigation: Run the validation step and manually inspect files derived from tools, infrastructure, integrations, memory, logs, and profiles before distribution. <br>
-Risk: Pack classification and distillation can be ambiguous or incomplete. <br>
-Mitigation: Review proposed packs, confidence scores, warnings, and generated stubs before composing the final ExpertPack composite. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan an OpenClaw workspace, propose ExpertPack pack assignments, scaffold distilled pack files, compose a composite manifest, and validate the resulting export before migration or backup.
 
-## Reference(s): <br>
-- [ExpertPack homepage](https://expertpack.ai) <br>
-- [ExpertPack schema docs](https://expertpack.ai/#schemas) <br>
-- [ExpertPack repository](https://github.com/brianhearn/ExpertPack) <br>
-- [ExpertPack Schema Summary for Export](references/schemas-summary.md) <br>
-- [ClawHub skill page](https://clawhub.ai/brianhearn/expertpack-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON scan manifests, Markdown pack files with YAML frontmatter, YAML manifests, shell commands, and validation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces files under the selected export directory and leaves the live OpenClaw workspace unchanged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Automatic redaction may not catch every secret or sensitive operational detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually inspect the scan manifest and final export, especially operational/tools.md and operational/infrastructure.md, before sharing or using the export.
+
+Risk: An output path or slug containment issue can write outside the intended export folder.
+
+Mitigation: Run the skill only in trusted workspaces, choose a dedicated export directory, and avoid untrusted IDENTITY.md files or externally supplied scan manifests until containment checks are fixed.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review the skill before installation and use it only on workspaces whose contents and file names are trusted.
+
+## Reference(s):
+
+- [ExpertPack homepage](https://expertpack.ai)
+- [ExpertPack schema summary](references/schemas-summary.md)
+- [ExpertPack schema docs](https://expertpack.ai/#schemas)
+- [ClawHub skill page](https://clawhub.ai/brianhearn/skills/expertpack-export)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON scan manifests, Markdown pack files, YAML manifests, and terminal validation summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; exported content should be manually reviewed for secrets and privacy-sensitive details.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -144,9 +144,7 @@ if __name__ == "__main__":
     config = {
         "mchid": "1234567890",
         "serial_no": "XXXXXXXXXXXXXXXXXXXXXXXX",
-        "private_key": """-----BEGIN PRIVATE KEY-----
-...你的私钥...
------END PRIVATE KEY-----""",
+        "private_key": """REDACTED-SECRET""",
         "appid": "wx1234567890abcdef",    # 开放平台移动应用AppID
         "api_v3_key": "0123456789abcdef0123456789abcdef"
     }

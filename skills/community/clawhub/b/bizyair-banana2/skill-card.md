@@ -1,44 +1,61 @@
-## Description: <br>
-Generates images with the BizyAir API and Nano Banana 2 model, including text-to-image, reference-image, and meme generation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the BizyAir API and Nano Banana 2 model to generate images, including text-to-image, reference-image, and meme-style generation, without a local GPU.
 
-## Publisher: <br>
-[kevin-chen2026](https://clawhub.ai/user/kevin-chen2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevin-chen2026](https://clawhub.ai/user/kevin-chen2026)
 
-## Use Case: <br>
-External users and developers use this skill to call BizyAir cloud image generation from an agent workflow, producing image files from prompts and optional reference images without local GPU resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images are sent to BizyAir for third-party processing. <br>
-Mitigation: Avoid confidential or personal images unless the user accepts third-party processing. <br>
-Risk: Successful image generations can incur pay-per-use charges. <br>
-Mitigation: Keep the API key scoped and private, monitor spending, and invoke the skill explicitly for intended generations. <br>
+## Use Case:
 
+External users and developers use this skill to generate images through BizyAir from prompts and optional reference images. It is intended for workflows that need cloud-hosted image generation, aspect-ratio control, and optional JSON status output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kevin-chen2026/bizyair-banana2) <br>
-- [BizyAir website](https://www.bizyair.cn) <br>
-- [BizyAir documentation](https://docs.bizyair.cn) <br>
-- [BizyAir API reference](https://docs.bizyair.cn/api/api-reference.html) <br>
-- [BizyAir pricing](https://docs.bizyair.cn/pricing/introduce.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, code, JSON, files] <br>
-**Output Format:** [Markdown guidance with command examples; the bundled script writes image files and can print JSON status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a BizyAir API key and may upload prompts and selected reference images to BizyAir.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The skill uses a paid BizyAir API key and broad image-generation triggers may cause unintended paid use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm intent before running generation commands, set spending controls in the BizyAir account, and review generated-command parameters before execution.
+
+Risk: Prompts and reference images are sent to BizyAir for processing.
+
+Mitigation: Avoid submitting sensitive images or confidential prompts unless the user's BizyAir account and data-handling terms are acceptable.
+
+Risk: API keys can be exposed through .env files, terminal output, logs, or screenshots.
+
+Mitigation: Prefer environment variables or a secret manager, do not print .env files, never share terminal output containing secrets, and rotate any exposed key.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kevin-chen2026/skills/bizyair-banana2)
+- [BizyAir Website](https://www.bizyair.cn)
+- [BizyAir Documentation](https://docs.bizyair.cn)
+- [BizyAir API Reference](https://docs.bizyair.cn/api/api-reference.html)
+- [BizyAir Pricing](https://docs.bizyair.cn/pricing/introduce.html)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, JSON]
+
+**Output Format:** [Generated image files with terminal status output and optional JSON result metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BIZYAIR_API_KEY and may upload prompts and reference images to BizyAir.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

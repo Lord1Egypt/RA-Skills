@@ -1,40 +1,48 @@
-## Description: <br>
-Extract readable content from browser pages as markdown. Use when web_fetch fails (bot protection, auth-required pages, Twitter/X, LinkedIn) and you already have the page open in the browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract readable content from browser pages as markdown when web_fetch fails and the page is already open in the browser.
 
-## Publisher: <br>
-[bill492](https://clawhub.ai/user/bill492) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bill492](https://clawhub.ai/user/bill492)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to extract readable markdown and page metadata from browser pages that require session context, block normal fetching, or render dynamic content.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can expose visible text and URLs from authenticated or sensitive pages opened in the browser.
+
+Mitigation: Use it only on pages whose content is intended to be shared with the agent; avoid banking, email, admin, HR, private internal, or similarly sensitive pages unless sharing that content is intentional.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use Browser Read to extract readable markdown from an already-open browser page when normal web fetching fails because of bot protection, authentication, or dynamic content. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can return visible text and URLs from logged-in pages selected for extraction. <br>
-Mitigation: Avoid using it on private messages, account settings, dashboards, or other sensitive authenticated pages unless that page text and URL may be shared with the agent. <br>
-Risk: Extraction may fall back to broad body text when primary readable-content extraction fails. <br>
-Mitigation: Review the returned markdown before relying on it for decisions or sharing it further. <br>
+**Output Format:** [JSON object containing markdown content and page metadata]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bill492/browser-read) <br>
+**Other Properties Related to Output:** [Includes title, excerpt, byline, site name, content length, URL, and a plain-text fallback when markdown extraction fails.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [JSON object containing markdown content and page metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes title, content, excerpt, byline, site name, content length, and URL.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

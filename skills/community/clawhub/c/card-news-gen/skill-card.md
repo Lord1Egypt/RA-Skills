@@ -1,42 +1,58 @@
-## Description: <br>
-Generates Instagram and social carousel card-news assets from a topic by planning content, creating HTML designs, capturing Playwright screenshots, and preparing upload-ready images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Instagram and social-media card-news carousels from a topic by planning content, producing HTML card layouts, capturing Playwright screenshots, and preparing upload-ready images.
 
-## Publisher: <br>
-[gyeuun97](https://clawhub.ai/user/gyeuun97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gyeuun97](https://clawhub.ai/user/gyeuun97)
 
-## Use Case: <br>
-Content creators, marketers, and agent operators use this skill to turn a topic into an Instagram-style carousel with planned card copy, HTML/CSS layout, screenshots, captions, and upload preparation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated images or captions could be published or sent externally before the user has checked them. <br>
-Mitigation: Review every generated image and caption, then confirm the target account or recipient before upload or delivery. <br>
-Risk: Publishing and sharing steps may use local credentials or external delivery channels. <br>
-Mitigation: Run publishing steps only in an environment where the relevant account credentials and recipients have been intentionally approved. <br>
-Risk: The JPEG helper invokes a shell conversion path and is not appropriate for untrusted output paths. <br>
-Mitigation: Avoid the --jpeg helper with untrusted paths until the conversion command is made safer, or convert files with a reviewed local workflow. <br>
+## Use Case:
 
+Creators, marketing teams, and social-media operators use this skill to turn a topic into an Instagram-style carousel workflow with content planning, HTML design guidance, screenshot generation, captions, and posting steps.
 
-## Reference(s): <br>
-- [Pretendard Webfont CSS](https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets that produce image files and captions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces carousel card images such as PNG or JPEG screenshots plus caption text for review before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence flags hardcoded account branding that can publish or watermark content for a specific handle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the user to set or confirm the target brand handle before generating or publishing assets.
+
+Risk: The release evidence flags credential-backed Instagram posting and Telegram sharing steps.
+
+Mitigation: Require explicit upload confirmation and keep publishing credentials outside generated card assets and prompts.
+
+Risk: The release evidence flags the JPEG conversion path as unsafe.
+
+Mitigation: Replace the shell-based conversion path with a non-shell image conversion API or disable JPEG conversion until reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gyeuun97/skills/card-news-gen)
+- [Pretendard webfont stylesheet](https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces image-generation workflow guidance for 1080x1350 card screenshots and optional PNG/JPEG output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

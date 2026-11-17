@@ -1,44 +1,60 @@
-## Description: <br>
-Analyzes Amazon product categories with Sorftime data and a five-dimension scoring model, then generates market research reports for category selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Amazon category research using Sorftime data and a five-dimension scoring model to produce market analysis reports for product selection decisions.
 
-## Publisher: <br>
-[liangdabiao](https://clawhub.ai/user/liangdabiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[liangdabiao](https://clawhub.ai/user/liangdabiao)
 
-## Use Case: <br>
-External sellers, ecommerce analysts, and developers use this skill to research Amazon categories, compare market opportunity signals, and produce category selection reports from Sorftime data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A local Sorftime API credential may be read automatically and sent in URL-based API requests. <br>
-Mitigation: Review the skill before installation, use a dedicated low-privilege Sorftime key, prefer an environment variable over storing keys in .mcp.json, and rotate the key if it is exposed. <br>
-Risk: Category queries, business research targets, generated logs, and raw response files may contain sensitive commercial context. <br>
-Mitigation: Avoid submitting sensitive research targets unless Sorftime sharing is acceptable, and do not share generated logs or raw response files outside the intended workspace. <br>
-Risk: The generated dashboard has an external ECharts CDN dependency. <br>
-Mitigation: Open the dashboard only when that external dependency is acceptable, or replace it with an approved internal or pinned copy before wider use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sorftime MCP API Quick Reference](references/api-quick-reference.md) <br>
-- [Category API Reference](references/category-api-reference.md) <br>
-- [Five-Dimension Scoring Model Standard](references/scoring-standard.md) <br>
-- [Sorftime MCP API Documentation](references/sorftime-mcp-api.md) <br>
+## Use Case:
 
+Developers, analysts, and Amazon sellers use this skill to collect Sorftime category data, score market opportunity, competition, barriers, and margin signals, and generate category selection reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, Excel workbooks, HTML dashboards, JSON data files, CSV exports, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default workflow analyzes Top 20 products and can be configured for larger category samples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security evidence says the skill can automatically use a local Sorftime API key and send it in request URLs.
+
+Mitigation: Use a dedicated low-privilege Sorftime API key and avoid placing unrelated secrets in the .mcp.json available to this skill.
+
+Risk: The security evidence says generated HTML reports may be unsafe when built from external data and currently depend on a CDN.
+
+Mitigation: Review generated dashboard.html files before opening or sharing them, and fix HTML escaping and external dependency handling before broad use.
+
+Risk: The security evidence verdict is suspicious and recommends review before installing.
+
+Mitigation: Review and scan the skill before deployment, with particular attention to API key handling, external data rendering, and generated reports.
+
+## Reference(s):
+
+- [Five-Dimension Scoring Model Standard](artifact/references/scoring-standard.md)
+- [Sorftime MCP API Quick Reference](artifact/references/api-quick-reference.md)
+- [Sorftime MCP API Documentation](artifact/references/sorftime-mcp-api.md)
+- [Category Selection API Reference](artifact/references/category-api-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/liangdabiao/skills/amazon-sorftime-research-category-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, Excel reports, HTML dashboards, command examples, and analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Sorftime category, keyword, trend, and product data; default analysis depth is Top 20 products unless configured otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

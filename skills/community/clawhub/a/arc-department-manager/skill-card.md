@@ -1,40 +1,48 @@
-## Description: <br>
-Manage a team of AI sub-agents organized into departments for delegating tasks, tracking outputs, assigning roles, and coordinating multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a team of AI sub-agents organized into departments for delegating tasks, tracking outputs, assigning roles, and coordinating multi-agent workflows.
 
-## Publisher: <br>
-[Trypto1019](https://clawhub.ai/user/Trypto1019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trypto1019](https://clawhub.ai/user/trypto1019)
 
-## Use Case: <br>
-External users and developers use this skill to organize specialized agent departments, assign tasks, track active and completed work, and generate team-level status reports for complex projects or autonomous business workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Task text and completion output are persisted in a local JSON file, which may expose sensitive business details if the local data directory is not appropriate for that information. <br>
-Mitigation: Avoid storing secrets, credentials, or highly sensitive details in department tasks or outputs unless local storage at ~/.openclaw/department-manager/departments.json is acceptable. <br>
-Risk: The skill coordinates agent tasks but does not perform quality assurance on completed outputs. <br>
-Mitigation: Review completed task output before publishing, executing, or relying on it for business decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Trypto1019/arc-department-manager) <br>
-- [Publisher Profile](https://clawhub.ai/user/Trypto1019) <br>
+## Use Case:
 
+Developers and operators use this skill to organize AI workers into departments, assign and complete tasks, review active work, and generate department reports for complex projects or autonomous-business workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and local JSON task-state data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores department and task state locally under ~/.openclaw/department-manager/departments.json by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Task descriptions and completion outputs are persisted on local disk and may contain sensitive workflow details if users enter them.
+
+Mitigation: Avoid entering secrets or sensitive business data unless local persistence in ~/.openclaw/department-manager/departments.json is acceptable; use the data directory override when isolation is needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/trypto1019/skills/arc-department-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores department and task data locally in ~/.openclaw/department-manager/departments.json unless a data directory override is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,58 @@
-## Description: <br>
-中文AI科技日报自动采集与推送。从The Verge、Wired、TechCrunch等英文源抓取最新AI资讯，自动翻译整理为中文，按分类推送到飞书/Telegram/Discord等渠道。适合关注AI行业动态的中文用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中文AI科技日报自动采集与推送。从The Verge、Wired、TechCrunch等英文源抓取最新AI资讯，自动翻译整理为中文，按分类推送到飞书/Telegram/Discord等渠道。适合关注AI行业动态的中文用户。
 
-## Publisher: <br>
-[gitsarp](https://clawhub.ai/user/gitsarp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitsarp](https://clawhub.ai/user/gitsarp)
 
-## Use Case: <br>
-Chinese-speaking AI news readers and operators use this skill to fetch English-language AI news, translate and classify it, and prepare a concise Chinese daily briefing for manual review or configured channel posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public AI news sources and may collect incomplete, stale, duplicated, or incorrectly classified stories. <br>
-Mitigation: Run the skill manually first and review the generated briefing, including source links, before relying on scheduled output. <br>
-Risk: If channel posting is configured, a briefing could be sent to an unintended or overly broad audience. <br>
-Mitigation: Use a limited test destination before enabling scheduled posting to Feishu, Telegram, Discord, or another channel. <br>
-Risk: Optional web search may require an API key. <br>
-Mitigation: Keep any optional search API key scoped to search-only access. <br>
+## Use Case:
 
+Chinese-language AI readers and teams use this skill to collect recent English AI news, translate and categorize it into a concise daily briefing, and optionally deliver it to Feishu, Telegram, or Discord.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitsarp/ai-news-zh-bak) <br>
-- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence) <br>
-- [Wired AI RSS](https://www.wired.com/feed/tag/ai/latest/rss) <br>
-- [TechCrunch RSS](https://techcrunch.com/feed/) <br>
-- [Anthropic News](https://www.anthropic.com/news) <br>
-- [MIT Technology Review RSS](https://www.technologyreview.com/feed/) <br>
-- [Google AI Blog](https://blog.google/technology/ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown daily briefing in Chinese with categorized items, source links, and a short trend insight] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically 8-12 news items, ordered by importance and deduplicated across runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Scheduled delivery may post a generated briefing to the wrong Feishu, Telegram, or Discord destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill manually once, verify the generated content, and confirm the exact destination before enabling scheduled delivery.
+
+Risk: Translated news summaries may lose nuance or include source-content errors.
+
+Mitigation: Review the briefing and source links before forwarding it to a broad audience.
+
+## Reference(s):
+
+- [The Verge AI](https://www.theverge.com/ai-artificial-intelligence)
+- [Wired AI RSS](https://www.wired.com/feed/tag/ai/latest/rss)
+- [TechCrunch RSS](https://techcrunch.com/feed/)
+- [Anthropic News](https://www.anthropic.com/news)
+- [MIT Technology Review RSS](https://www.technologyreview.com/feed/)
+- [Google AI Blog](https://blog.google/technology/ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown daily briefing with Chinese headlines, summaries, source links, category labels, and a closing insight]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 8-12 deduplicated news items ordered by importance when enough current source material is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

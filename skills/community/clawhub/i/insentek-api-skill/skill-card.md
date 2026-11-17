@@ -1,48 +1,64 @@
-## Description: <br>
-Lets an agent query Insentek IoT device data with natural language, including real-time readings, historical data, trend analysis, cross-device comparison, and data export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to query Insentek OpenAPI IoT device data, including device lookup, latest and historical readings, trend analysis, comparisons, and file exports.
 
-## Publisher: <br>
-[xddcode](https://clawhub.ai/user/xddcode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xddcode](https://clawhub.ai/user/xddcode)
 
-## Use Case: <br>
-External users and operators with Insentek-connected IoT devices use this skill to retrieve device status, inspect historical trends, compare devices, detect anomalies, and export reports without handling raw API calls directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Insentek appid and secret credentials. <br>
-Mitigation: Configure credentials only with `npx @insentek/openapi-skill login`; do not paste appid or secret into an agent chat. <br>
-Risk: Changing the API base URL can route device-data requests to an unintended endpoint. <br>
-Mitigation: Leave `INSENTEK_API_BASE` unset unless the endpoint is controlled and trusted. <br>
-Risk: Exports and generated reports can write device data to local files. <br>
-Mitigation: Choose output paths deliberately and use dry-run or summarized previews before creating large exports. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to retrieve and analyze Insentek IoT device telemetry through an agent interface. It supports conversational queries, reports, cross-device comparisons, and CSV, Excel, JSON, or HTML export workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xddcode/insentek-api-skill) <br>
-- [Getting Started](docs/getting-started.md) <br>
-- [Interaction Guide](docs/interaction.md) <br>
-- [Analysis Guide](docs/analysis.md) <br>
-- [Platform Setup Guide](docs/platform-setup.md) <br>
-- [Insentek OpenAPI Reference](reference/api-doc.md) <br>
-- [Script Usage](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown summaries and tables, JSON command output, shell commands, CSV/Excel/JSON exports, and HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chat output is summarized rather than full raw sensor dumps; file exports and reports may contain device data and should use intentional output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence, SKILL.md frontmatter, skill.json, package.json, CHANGELOG) <br>
+Risk: Local Insentek API credentials are stored on the user's machine and could be exposed through shell history, logs, generated URLs, or unsafe sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the interactive login flow, never send appid or secret in agent chat, avoid command-line secret flags, and rotate credentials if exposure is suspected.
+
+Risk: Changing INSENTEK_API_BASE can direct credentialed requests to an endpoint outside the default Insentek OpenAPI service.
+
+Mitigation: Keep the default HTTPS endpoint unless the replacement endpoint is fully trusted and controlled by the user or organization.
+
+Risk: Large telemetry exports or reports can contain sensitive operational device data.
+
+Mitigation: Prefer summarized chat output, use file exports intentionally, and review generated CSV, Excel, JSON, or HTML files before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xddcode/skills/insentek-api-skill)
+- [Publisher profile](https://clawhub.ai/user/xddcode)
+- [Insentek OpenAPI reference](reference/api-doc.md)
+- [Interaction guide](docs/interaction.md)
+- [Analysis and report guide](docs/analysis.md)
+- [Script usage guide](scripts/README.md)
+- [Insentek OpenAPI endpoint](https://openapi.ecois.info)
+- [E eco cloud portal](https://cloud.ecois.info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses with JSON from helper scripts and optional CSV, Excel, JSON, or HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires locally configured Insentek API credentials and Python 3.10+ for script execution; raw data shown in chat is limited by the artifact's guardrails.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence, SKILL.md frontmatter, skill.json, package.json, README, CHANGELOG released 2026-05-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

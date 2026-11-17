@@ -1,42 +1,48 @@
-## Description: <br>
-Transforms academic text into publication-quality prose matching Nature journal standards, including grammar correction, academic tone elevation, clarity improvement, and style consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform academic text into publication-quality prose matching Nature journal standards. Covers grammar correction, academic tone elevation, clarity improvement, and style consistency. Use when refining manuscripts, grant proposals, abstracts, or any formal academic writing that needs to meet top-tier journal standards.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External authors, editors, and researchers use this skill to polish manuscripts, grant proposals, abstracts, and formal academic writing for clearer, more concise Nature-style prose.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automatic translation or style changes can alter meaning, especially for non-English, confidential, or citation-sensitive material.
+
+Mitigation: Review revised text against the source material and ask the agent to preserve the source language or show translation separately before applying style edits.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External researchers, authors, and academic teams use this skill to refine manuscripts, grant proposals, abstracts, and formal academic writing for clearer, more concise publication-style prose. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Academic edits or translations may alter scientific meaning or introduce inaccuracies. <br>
-Mitigation: Review outputs carefully for scientific accuracy, especially translated passages and data-heavy sections. <br>
-Risk: Confidential unpublished material may be processed by the agent environment. <br>
-Mitigation: Avoid submitting confidential unpublished material unless the processing environment is approved for that content. <br>
-Risk: Nature-style rewriting may be applied too broadly when a different journal style or author preference is required. <br>
-Mitigation: Provide the target journal or style guide when it differs from Nature, and verify that the final text preserves author intent. <br>
+**Output Format:** [Markdown with revised text, a numbered change summary, and residual concerns]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/371166758-qq/nature-style-writer) <br>
+**Other Properties Related to Output:** [Preserves author intent where possible and flags points needing author clarification.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with revised text, change summary, and residual concerns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May translate multilingual input to English before style editing; user review is needed for scientific accuracy.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

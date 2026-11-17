@@ -1,40 +1,58 @@
-## Description: <br>
-Uses a platform text translation skill to automatically split and translate full books or long documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the platform text translation skill to automatically split and translate full books or long texts.
 
-## Publisher: <br>
-[jackzhenguo](https://clawhub.ai/user/jackzhenguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackzhenguo](https://clawhub.ai/user/jackzhenguo)
 
-## Use Case: <br>
-External users and agents use this skill to translate books, research papers, technical documents, course materials, and other long text into a requested language while preserving paragraph structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive, personal, regulated, proprietary, or restricted copyrighted documents may be processed through the platform translation workflow. <br>
-Mitigation: Use the skill only with documents the user is allowed and comfortable to process under the platform's handling terms. <br>
-Risk: Chunked translation can lose terminology consistency or context across long documents. <br>
-Mitigation: Review the combined translation for continuity, terminology, and completeness before relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to translate full books, research papers, technical documents, course materials, and long reports by splitting source content into chunks, translating each chunk, and merging the result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackzhenguo/book-translate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Translated long-form text, typically plain text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Splits long inputs into 1000-2000 character chunks, calls a translation skill per chunk, and recombines translated segments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Confidential, regulated, or proprietary documents may be processed by the agent and translation model during full-text translation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only with content approved for that processing path, or avoid it for sensitive documents unless the deployment and model handling are acceptable.
+
+Risk: Very long inputs can exceed token limits or fail partway through translation.
+
+Mitigation: Use the skill's chunking approach, keep track of completed chunks, and resume from the last successful segment if translation is interrupted.
+
+Risk: PDF translation depends on the quality of extracted source text.
+
+Mitigation: Review or clean extracted PDF text before translation when document fidelity is important.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackzhenguo/skills/book-translate)
+- [ClawHub publisher profile](https://clawhub.ai/user/jackzhenguo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text translated content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chunked translations are merged into a complete translated document while preserving paragraph structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

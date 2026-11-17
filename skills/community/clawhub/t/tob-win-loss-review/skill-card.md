@@ -1,42 +1,53 @@
-## Description: <br>
-Helps review lost ToB sales opportunities by using a local rules engine to turn industry, account size, sales stage, competitor, and key-event inputs into root-cause analysis, risk signals, and improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ToB销售丢单复盘助手。输入行业/规模/阶段/竞品/关键事件，使用原创销售经验规则引擎输出根因分析、风险信号和改进建议。
 
-## Publisher: <br>
-[william202404](https://clawhub.ai/user/william202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[william202404](https://clawhub.ai/user/william202404)
 
-## Use Case: <br>
-Sales, solution, and revenue teams use this skill to perform structured win/loss reviews after a lost ToB opportunity. It produces a fixed Chinese report with project profile, ranked root causes, risk signals, and short-, medium-, and long-term improvement recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive customer or deal details while preparing a win/loss review. <br>
-Mitigation: Provide only the deal context needed for review, avoid real customer identifiers where possible, and review generated reports before sharing them outside the sales team. <br>
-Risk: Rules-based findings can be incomplete or misleading when the input omits buyer feedback, decision-chain context, or competitor details. <br>
-Mitigation: Treat the report as a review aid, not a substitute for customer interviews or documented post-loss feedback. <br>
+## Use Case:
 
+External users and sales teams use this skill to review ToB sales losses from deal context such as industry, account size, sales stage, competitor, and key events. It produces Chinese-language root-cause analysis, risk signals, and practical next-step recommendations.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/william202404/tob-win-loss-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Chinese Markdown-style report text, with optional formatted JSON when invoked with --json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline rules-based output; no network access, credential use, file modification, or persistence shown in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The generated win/loss analysis may be misleading if treated as a definitive customer truth.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as advisory input and validate conclusions against customer interviews and deal evidence.
+
+Risk: User-entered deal notes may include sensitive customer details.
+
+Mitigation: Avoid entering sensitive customer details unless local processing is acceptable; redact or generalize customer identifiers before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/william202404/skills/tob-win-loss-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Chinese Markdown report, with optional JSON debug output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline rule-engine output; advisory sales review, not a substitute for customer interviews.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

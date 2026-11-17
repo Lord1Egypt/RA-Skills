@@ -1,41 +1,65 @@
-## Description: <br>
-Helps users discover, analyze, and evaluate startup painpoints in specific domains through browser-based market research and structured reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Painpoint discovery expert. Helps users discover, analyze, and evaluate startup painpoints in specific domains.
 
-## Publisher: <br>
-[lyuxing](https://clawhub.ai/user/lyuxing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lyuxing](https://clawhub.ai/user/lyuxing)
 
-## Use Case: <br>
-Founders, product managers, investors, and independent developers use this skill to research startup opportunity areas, identify recurring user complaints, compare existing solutions, and produce structured painpoint reports for validation planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Browser searches can expose sensitive business plans, customer names, or private internal topics as search queries. <br>
-Mitigation: Use non-confidential domain descriptions and avoid private customer, roadmap, financial, or strategy details in prompts and search terms. <br>
-Risk: Generated painpoint rankings, market-size estimates, and business ratings may be incomplete or misleading because they depend on public web results. <br>
-Mitigation: Treat reports as preliminary research, preserve source citations, and validate findings with interviews, primary data, and domain experts before investment or product decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lyuxing/painpoint-discovery) <br>
-- [README](artifact/README.md) <br>
-- [Example report](artifact/example-report.md) <br>
+## Use Case:
 
+Entrepreneurs, product managers, investors, and developers use this skill to research a domain, identify recurring user complaints, structure painpoints, and assess startup opportunities with suggested solution directions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional Mermaid diagrams, report file paths, browser search steps, and validation recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate quick in-chat reports or deeper saved research reports under painpoint-reports/ when run as a subagent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Domain keywords and related browsing activity may be sent to search engines and public websites during research.
+
+Mitigation: Avoid entering sensitive, confidential, or regulated business information as search terms; review planned searches before deep research.
+
+Risk: Research output can include incomplete or misleading market, competition, or willingness-to-pay conclusions.
+
+Mitigation: Treat reports as discovery inputs, require source citations, and validate priority painpoints with interviews or other real-world evidence before product decisions.
+
+Risk: Deep-research mode can take about 30 minutes and create local Markdown report files.
+
+Mitigation: Choose quick mode for exploratory work, reserve deep mode for saveable reports, and review generated files before sharing or committing them.
+
+Risk: Reports in health, finance, legal, or similarly regulated domains may surface recommendations that need domain-specific compliance review.
+
+Mitigation: Add appropriate disclaimers and have qualified reviewers check regulated-domain outputs before using them externally.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lyuxing/skills/painpoint-discovery)
+- [Skill Definition](artifact/SKILL.md)
+- [Painpoint Discovery README](artifact/README.md)
+- [Runner Workflow](artifact/runner.md)
+- [Standalone Agent Configuration](artifact/agent-config.md)
+- [Example Report](artifact/example-report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown research reports with structured painpoint analysis, recommendations, and optional Mermaid knowledge graph code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deep-research mode may create local Markdown report files under painpoint-reports/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

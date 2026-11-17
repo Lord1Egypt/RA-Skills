@@ -1,0 +1,22 @@
+{
+  "spec": "bookorigin-skill-contract/1.0",
+  "stdout": "Exactly one JSON object; no prose, ANSI, absolute paths, source text, DOCX bytes, or secrets.",
+  "exit_codes": {"0": "ok", "2": "invalid input or known action failure", "3": "integrity or review binding denied", "4": "unexpected runtime failure"},
+  "actions": {
+    "book-docx-safe-preflight": {
+      "action_id": "book-docx-safe-preflight",
+      "input": {"required": ["input"], "cli": "--input <local-authorized.docx>"},
+      "output": ["input_filename", "source_sha256", "zip_preflight", "observation", "criteria", "summary", "findings", "boundaries"],
+      "criteria_version": "bookorigin-structure/1.0",
+      "failure_codes": ["INPUT_REQUIRED", "FILENAME_INVALID", "INPUT_READ_FAILED", "ZIP_MAGIC_INVALID", "ZIP_EOCD_INVALID", "ZIP_PATH_UNSAFE", "ZIP_ENCRYPTED", "ZIP_METHOD_UNSUPPORTED", "ZIP_EXPANSION_LIMIT", "DOCX_STRUCTURE_MISSING", "DOCX_MACRO_REJECTED", "PARSER_FAILED"]
+    },
+    "book-review-package": {
+      "action_id": "book-review-package",
+      "input": {"required": ["case_json", "source", "decisions"], "cli": "--case-json <preflight.json> --source <same-source.docx> --decisions <decisions.json>"},
+      "case_schema": {"spec": "bookorigin-review-case/1.0", "required": ["source.sha256", "events", "event_chain_head", "candidates", "decisions"], "decision_values": ["acknowledged", "deferred", "rejected"], "decision_binding": "every unique candidate_id must occur exactly once in decisions", "event_hash": "sha256(recursively-key-sorted JSON of event excluding hash)"},
+      "output": ["manifest", "candidates", "decisions", "boundaries"],
+      "failure_codes": ["INPUT_REQUIRED", "CASE_JSON_UNREADABLE", "CASE_JSON_INVALID", "SOURCE_COPY_UNREADABLE", "SOURCE_HASH_CHANGED", "EVENT_CHAIN_INVALID", "EVENT_CHAIN_TAMPERED", "REVIEW_BINDING_INVALID"]
+    }
+  },
+  "boundaries": ["No network or model", "No DOCX write, copy, conversion, or overwrite", "All candidates are advisory-only", "No identity, signature, approval, or delivery claim"]
+}

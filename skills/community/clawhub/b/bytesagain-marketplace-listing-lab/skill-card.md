@@ -1,41 +1,54 @@
-## Description: <br>
-Generate marketplace listings and SEO copy. Use when writing Amazon, Taobao, Pinduoduo, Shopee, or marketplace product titles, bullets, attributes, and QA checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate marketplace listings and SEO copy. Use when writing Amazon, Taobao, Pinduoduo, Shopee, or marketplace product titles, bullets, attributes, and QA checks.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Marketplace operators, ecommerce teams, and agents use this skill to draft product listing briefs, titles, bullets, SEO metadata, FAQs, scripts, audits, and launch bundles from product facts for channels such as Amazon, Taobao, Pinduoduo, Shopee, Shopify, TikTok Shop, and independent storefronts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive product, pricing, or business information may be entered while drafting marketplace copy. <br>
-Mitigation: Avoid entering sensitive business secrets into prompts or command arguments. <br>
-Risk: Generated listing copy may include product claims that are inaccurate or not allowed by marketplace policy. <br>
-Mitigation: Verify product claims against source facts and official marketplace policies before publishing. <br>
+## Use Case:
 
+Marketplace operators, ecommerce teams, and developers use this skill to draft product listing briefs, titles, bullets, SEO metadata, FAQs, short scripts, audits, and launch bundles from product facts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bytesagain-lab/bytesagain-marketplace-listing-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces listing briefs, titles, bullets, SEO metadata, FAQ content, video scripts, audits, and launch bundles; does not upload products or request seller credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generated marketplace copy can include claims that are inaccurate, unsupported, or inconsistent with platform rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated listing copy against official marketplace policies and source product facts before publishing.
+
+Risk: Product facts entered into the local drafting flow may be reused in generated listing text.
+
+Mitigation: Provide only product information that is approved for use in public marketplace copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/bytesagain-marketplace-listing-lab)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local drafting and audit output; it does not upload products or request seller credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

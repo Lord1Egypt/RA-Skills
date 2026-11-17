@@ -1,50 +1,64 @@
-## Description: <br>
-Step Audiobook helps agents build and run a local audiobook workflow for voice-library management, Step official voice sync, clone voice analysis, LLM casting, replayable TTS requests, segment synthesis, and final audio export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when your agent needs to build, maintain, or run a local audiobook workflow for voice-library management, Step official voice sync, clone voice analysis, LLM casting, replayable TTS requests, segment synthesis, and final audiobook export.
 
-## Publisher: <br>
-[praanmichael](https://clawhub.ai/user/praanmichael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[praanmichael](https://clawhub.ai/user/praanmichael)
 
-## Use Case: <br>
-Developers, creators, and agent workflows use this skill to turn story text and reviewed voice-library assets into structured scripts, casting plans, replayable Step TTS requests, audio segments, and final audiobook files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Story text, role and casting metadata, TTS text, and reference voice audio may be sent to Step or a configured LLM endpoint. <br>
-Mitigation: Use a test or limited STEP_API_KEY, run in a private workspace, and install only when the external API data flow is acceptable. <br>
-Risk: Generated voice and audio artifacts are stored locally and may contain sensitive manuscript or voice material. <br>
-Mitigation: Keep generated artifacts in a private workspace and review local output locations before sharing or publishing results. <br>
-Risk: Paid voice cloning can incur billing if explicitly confirmed. <br>
-Mitigation: Review voice-library.yaml and clone-review.yaml, then run clone_selected_voices.py --dry-run before any paid clone. <br>
+## Use Case:
 
+Developers, agents, and audiobook producers use this skill to turn story text and voice-library inputs into structured scripts, casting plans, replayable TTS request manifests, synthesized segments, and final audiobook exports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/praanmichael/step-audiobook) <br>
-- [Audiobook Workflows](artifact/references/workflows.en.md) <br>
-- [Audiobook Voice Library](artifact/references/voice-library.en.md) <br>
-- [Audiobook Script Format](artifact/references/script-format.en.md) <br>
-- [Audiobook Casting](artifact/references/casting.en.md) <br>
-- [Audiobook Synthesis](artifact/references/synthesis.en.md) <br>
-- [Audiobook Editing Guide](artifact/references/editing.en.md) <br>
-- [Security And External Access](artifact/references/security.en.md) <br>
-- [Step reasoning endpoint](https://api.stepfun.com/step_plan/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Audio files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML and JSON artifacts, script stdout JSON, and generated audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STEP_API_KEY plus ffmpeg and ffprobe; major intermediate artifacts are written locally for review and reruns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Story text, role and casting data, and selected voice audio may be sent to StepFun or to a user-configured compatible endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited STEP_API_KEY, review .env and base_url settings before running, and run first in an isolated workspace when validating the skill.
+
+Risk: Paid voice cloning can incur billing when intentionally enabled.
+
+Mitigation: Keep clone_selected_voices.py in dry-run until cloning is intended, and require explicit confirmation before running a real clone.
+
+Risk: Force-style operations can overwrite generated segments or final audio outputs.
+
+Mitigation: Review run paths and existing artifacts before using --force, and keep source text, structured scripts, and request manifests available for reruns.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/praanmichael/skills/step-audiobook)
+- [Audiobook Workflows](references/workflows.en.md)
+- [Audiobook Voice Library](references/voice-library.en.md)
+- [Audiobook Script Format](references/script-format.en.md)
+- [Audiobook Casting](references/casting.en.md)
+- [Audiobook Synthesis](references/synthesis.en.md)
+- [Audiobook Editing Guide](references/editing.en.md)
+- [Security And External Access](references/security.en.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, YAML, Audio files]
+
+**Output Format:** [Markdown guidance with shell commands, plus JSON/YAML workflow artifacts and final audio files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes intermediate artifacts under configured workspace paths; requires STEP_API_KEY, ffmpeg, and ffprobe.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

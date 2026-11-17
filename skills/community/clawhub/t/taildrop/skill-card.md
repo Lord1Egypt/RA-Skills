@@ -1,39 +1,52 @@
-## Description: <br>
-Download files from Tailscale Taildrop inbox to local storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download files from Tailscale Taildrop inbox to local storage. Use when user wants to retrieve files sent via Tailscale or mentions Taildrop.
 
-## Publisher: <br>
-[cortexuvula](https://clawhub.ai/user/cortexuvula) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cortexuvula](https://clawhub.ai/user/cortexuvula)
 
-## Use Case: <br>
-Developers and Tailscale users use Taildrop to retrieve files sent to a Linux machine through Tailscale Taildrop and save them locally. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Custom destination paths can trigger command injection in the helper script when passed to the Tailscale command. <br>
-Mitigation: Avoid custom destination paths until the helper replaces eval with safe argument handling; use the default Downloads target or review and patch the script before running. <br>
-Risk: Tailscale operator access or sudo may be required, and loop mode continuously receives Taildrop files. <br>
-Mitigation: Grant Tailscale operator access only to trusted local users and use loop mode only when continuous receiving is intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Taildrop listing](https://clawhub.ai/cortexuvula/taildrop) <br>
+## Use Case:
 
+Developers, engineers, and Tailscale users use this skill to retrieve files sent through Taildrop on Linux systems where Taildrop files are not automatically saved.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Tailscale to be installed and running; file retrieval may require Tailscale operator access or sudo.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A malicious or unexpected destination path can cause unintended local command execution in the bundled shell script.
+
+Mitigation: Review before installing, use only trusted literal destination paths, and remove eval-based command execution before use.
+
+Risk: The overwrite mode can replace existing local files in the destination directory.
+
+Mitigation: Use the default skip mode or rename mode unless replacing files is intentional.
+
+## Reference(s):
+
+- [Taildrop skill page](https://clawhub.ai/cortexuvula/skills/taildrop)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline bash commands and local file download behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Downloads Taildrop files to a local directory and supports skip, overwrite, rename, and loop modes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

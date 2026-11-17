@@ -1,42 +1,53 @@
-## Description: <br>
-Trade stocks, retrieve Indian market data, and manage portfolio and orders on Groww. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade stocks and manage portfolio on Groww for Indian NSE/BSE market data, portfolio holdings, order placement, order status, and order cancellation.
 
-## Publisher: <br>
-[pushp1997](https://clawhub.ai/user/pushp1997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pushp1997](https://clawhub.ai/user/pushp1997)
 
-## Use Case: <br>
-External users and developers use this skill to help an agent retrieve NSE/BSE market data, view Groww holdings, and manage brokerage orders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent live brokerage trading power without enough built-in confirmation or safety boundaries. <br>
-Mitigation: Require manual confirmation with symbol, side, quantity, order type, and estimated cost before every buy, sell, or cancellation. <br>
-Risk: The skill depends on a Groww brokerage API key that can expose account data and trading actions. <br>
-Mitigation: Store GROWW_API_KEY as a secret and install only when the agent is intended to access a live Groww brokerage account. <br>
-Risk: The artifact references a groww-mcp server for account and order actions. <br>
-Mitigation: Verify the groww-mcp server separately before enabling MCP calls for portfolio, order, or market-data operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Groww skill page](https://clawhub.ai/pushp1997/groww) <br>
-- [Groww API base URL](https://api.groww.in/v1/) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent retrieve Groww portfolio and Indian equity market data, then prepare or execute Groww order-management actions when explicitly requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GROWW_API_KEY for live Groww brokerage account access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place or cancel live Groww stock orders without documented confirmation safeguards.
+
+Mitigation: Require explicit human confirmation for every buy, sell, or cancel request and keep trading disabled unless order execution is intended.
+
+Risk: The skill requires a Groww API key that can expose account and trading capabilities.
+
+Mitigation: Use a restricted key if Groww supports it, store GROWW_API_KEY securely, and revoke or rotate it when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Groww skill page](https://clawhub.ai/pushp1997/skills/groww)
+- [Groww API base URL](https://api.groww.in/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API calls, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GROWW_API_KEY and may produce trading commands or direct Groww API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

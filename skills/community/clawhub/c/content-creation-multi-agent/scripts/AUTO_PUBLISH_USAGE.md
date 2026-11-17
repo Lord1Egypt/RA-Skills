@@ -29,7 +29,7 @@
    - ✅ `repo` (Full control of private repositories)
    - ✅ `workflow` (Update GitHub Action workflows)
 5. **点击**："Generate token"
-6. **复制 Token**（格式：`ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`）
+6. **复制 Token**（格式：`REDACTED-SECRET`）
 
 ⚠️ **重要**：Token 只会显示一次，立即复制保存！
 
@@ -41,7 +41,7 @@
 
 ```bash
 # 1. 添加到 ~/.zshrc
-echo 'export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' >> ~/.zshrc
+echo 'export GITHUB_TOKEN=REDACTED-SECRET' >> ~/.zshrc
 
 # 2. 使配置生效
 source ~/.zshrc
@@ -54,7 +54,7 @@ echo $GITHUB_TOKEN
 #### 方式二：临时配置（当前终端会话）
 
 ```bash
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+export GITHUB_TOKEN=REDACTED-SECRET
 ```
 
 ---

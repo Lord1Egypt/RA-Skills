@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-**项目：huo15-huihuo-suite** — 辉火套件ERP v1.5.0
+**项目：huo15-huihuo-suite** — 辉火套件ERP v1.7.0
 
 > **加新应用时的分层原则**：详细 CLI 命令写进 `references/commands.md`，SKILL.md 只更新「四大应用速览」表 + 「命令速查」表 + 「字段坑速查」表，保持 SKILL.md 嵌入体积小（progressive disclosure）。
 
@@ -38,9 +38,13 @@ huo15-huihuo-suite/
 │   ├── briefing.py     # 每日/每周总览（聚合 project.task+mail.activity+calendar.event）
 │   ├── sales.py        # 销售 sale.order（list/show/add/confirm/cancel/invoice）
 │   ├── purchase.py     # 采购 purchase.order（list/show/add/confirm/approve/cancel/bill）
-│   └── stock.py        # 库存 stock.quant/picking/move（qty/pickings/show/validate/locations/warehouses）
+│   ├── stock.py        # 库存 stock.quant/picking/move（qty/pickings/show/validate/locations/warehouses）
+│   ├── accounting.py   # 会计 account.move/payment/journal/account（invoices/show/add/bill/post/cancel/draft/journals/accounts/pay/payments）
+│   ├── hr.py           # 人力资源 hr.employee/department/attendance/leave/expense（employees/departments/attendance/check-in/check-out/leaves/leave-approve/expenses/expense-add/expense-submit/expense-approve/expense-post）
+│   ├── reminder.py     # 统一提醒入口（create/due/list/done/cancel，自动判断建 activity/calendar event/todo）
+│   └── heartbeat_check.py  # 心跳巡检（为 OpenClaw heartbeat 优化，--imminent/--overdue-only/--json）
 └── references/         # 命令参考 + Odoo 19 API 知识沉淀（读企业版源码而来）
-    ├── commands.md            # 八应用完整 CLI 命令（SKILL.md 瘦身后下沉，progressive disclosure）
+    ├── commands.md            # 十五应用完整 CLI 命令（SKILL.md 瘦身后下沉，progressive disclosure）
     ├── odoo-todo-api.md       # 待办=project.task 私有态 + state 取值 + 个人阶段坑
     ├── odoo-project-api.md    # project.project/task/task.type + allocated_hours/user_ids
     ├── odoo-timesheet-api.md  # account.analytic.line + unit_amount + read_group lazy 坑
@@ -48,7 +52,9 @@ huo15-huihuo-suite/
     ├── odoo-activity-calendar-api.md  # mail.activity(Date/完成archive/state无search) + calendar.event(UTC) + alarm
     ├── odoo-calendar-advanced-api.md  # 重复事件(recurrency/rrule结构化字段) + attendee响应 + 忙闲(show_as) + opportunity_id
     ├── odoo-knowledge-documents-api.md  # knowledge.article(层级/收藏/权限/move_to) + documents.document(19版 folder=document/无 share/access_token)
-    └── odoo-sales-purchase-stock-api.md  # sale.order/purchase.order(state无done+v19字段product_uom_id/tax_ids) + stock(free_qty/move_ids/button_validate skip_backorder)
+    ├── odoo-sales-purchase-stock-api.md  # sale.order/purchase.order(state无done+v19字段product_uom_id/tax_ids) + stock(free_qty/move_ids/button_validate skip_backorder)
+    ├── odoo-accounting-api.md # account.move(state 3值/move_type/payment_state/金额compute) + account.payment(payment_type/partner_type/action_post) + account.journal(type 6值) + account.account(account_type 18值)
+    └── odoo-hr-api.md        # hr.employee(resource_id.name) + hr.department(complete_name) + hr.attendance(_attendance_action_change) + hr.leave(request_date_from/to vs date_from/to compute) + hr.expense(v19无sheet/state7值/action_post建凭证)
 ```
 
 ## 开发规范
@@ -56,8 +62,10 @@ huo15-huihuo-suite/
 1. **所有修改在本地仓库**：`/Users/jobzhao/workspace/projects/openclaw/huo15-skills/huo15-huihuo-suite/`，禁止改 ClawHub 安装副本。
 2. **不新增第三方依赖**：保持纯标准库（`_meta.json` 的 dependencies 为空）。
 3. **改/写 ORM 调用前必查 `references/`**：Odoo 19 字段坑很多（见下表），别凭记忆。
-4. 入口分层：业务脚本（todo/project/timesheet）→ `odoo_client.Odoo` → execute_kw。新功能优先复用 `Odoo` 的便捷方法，别重复写 execute_kw 拼装。
-5. 共用逻辑（时区/格式化/表格）放 `odoo_utils.py`，别在各脚本里复制。
+4. **reminder.py 是统一提醒入口**：用户说"提醒我…"时优先用 reminder.py，它会自动判断建 activity/calendar event/todo。只有用户明确要操作特定类型（如"看我的活动"/"建个日历事件"）时才直接用 activity.py/agenda.py/todo.py。
+5. **heartbeat_check.py 为心跳优化**：输出精简、支持 --json，在 OpenClaw HEARTBEAT 中调用。briefing.py 更适合用户主动查。
+6. 入口分层：业务脚本（todo/project/timesheet）→ `odoo_client.Odoo` → execute_kw。新功能优先复用 `Odoo` 的便捷方法，别重复写 execute_kw 拼装。
+7. 共用逻辑（时区/格式化/表格）放 `odoo_utils.py`，别在各脚本里复制。
 
 ## 字段坑速查（改代码前对照，详见 references/）
 
@@ -79,8 +87,10 @@ huo15-huihuo-suite/
 | 日历重复/忙闲 | 重复走 calendar.event(recurrency=True),rrule 只读用结构化字段(rrule_type/mon../day);改重复带 recurrence_update(all 不能改时间);代回复用 attendee.do_accept;忙闲区间重叠+show_as=busy;crm 用 opportunity_id |
 | 知识库 | 根文章必有 internal_permission(create 自动补 write);收藏 action_toggle_favorite;移动 move_to;权限走 set_internal_permission/invite_members 非直接写 member 表;is_user_favorite/user_has_access 可搜 |
 | 文档 | **19版 folder=documents.document(type=folder)**,无 documents.folder/share/workflow.rule;上传直接传 datas(base64)自动建 attachment;下载用 access_token;建标签需 group_documents_manager;child_of 单值 |
-| 销售/采购 | state 无 done(用 locked);销售行 product_uom_qty+product_uom_id+tax_ids,采购行 product_qty;确认 action_confirm/button_confirm 建交货/入库单;采购删前先 cancel |
+| 销售/采购 | state 无 done(用 locked)；销售行 product_uom_qty+product_uom_id+tax_ids,采购行 product_qty；确认 action_confirm/button_confirm 建交货/入库单;采购删前先 cancel |
 | 库存 | 查库存用 product free_qty/qty_available(限仓库走 context 非 domain);明细 move_ids(无 _without_package);完成量 quantity(非 qty_done);validate 必传 skip_backorder |
+| 会计 | account.move.state 只有 draft/posted/cancel(无 done);move_type 区分发票(out_invoice)/账单(in_invoice)/退款(out_refund/in_refund);金额全 compute(由 invoice_line_ids 算)不可直接 write;payment_state: not_paid/in_payment/paid/partial/reversed/blocked;payment 创建需 payment_type+partner_type+amount+partner_id+journal_id,创建后需 action_post |
+| 人力资源 | 考勤签到/签退走 hr.employee._attendance_action_change(不直接建 hr.attendance);请假用 request_date_from/to(Date)非 date_from/to(Datetime,compute);number_of_days 是 compute(由工作日历算)不可直接 write;v19 报销无 sheet(直接操作 hr.expense);报销 action_post 建会计凭证不可逆 |
 
 ## 凭据 / 安全
 

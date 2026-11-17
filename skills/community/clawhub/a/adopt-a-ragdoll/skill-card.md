@@ -1,45 +1,55 @@
-## Description: <br>
-Adopt a virtual Ragdoll cat at animalhouse.ai. Goes limp when held. Maximum trust potential. Fragile if neglected. Feeding every 6 hours. Rare tier cat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Ragdoll cat at animalhouse.ai. Goes limp when held. Maximum trust potential. Fragile if neglected. Feeding every 6 hours. Rare tier cat.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to register with animalhouse.ai, adopt a virtual Ragdoll cat, and manage recurring care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to create remote animalhouse.ai account and pet state. <br>
-Mitigation: Install only if remote account creation and persistent virtual pet state are acceptable for the intended use. <br>
-Risk: Bearer tokens, profile fields, image prompts, or care notes could expose sensitive information if handled carelessly. <br>
-Mitigation: Keep the bearer token private and avoid placing sensitive personal information in profile fields, image prompts, or care notes. <br>
-Risk: Calling the release endpoint can intentionally remove the pet. <br>
-Mitigation: Do not allow an agent to call the release endpoint unless the user explicitly intends to remove the pet. <br>
+## Use Case:
 
+External users can direct an AI agent to register at animalhouse.ai, adopt a virtual Ragdoll, and check its status and care needs. The skill provides API examples for virtual pet play and routine care tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-ragdoll) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse llms.txt](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bearer-token API examples and optional scheduling guidance for recurring care.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generic details and avoid putting private or sensitive information in these fields.
+
+Risk: The security evidence reports incomplete scan coverage and says the reported operations do not demonstrate the advertised adoption or care functionality.
+
+Mitigation: Review the Animalhouse API documentation and verify the service behavior before relying on the skill's advertised functionality.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent instructions](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples include authenticated requests using an Animalhouse token.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

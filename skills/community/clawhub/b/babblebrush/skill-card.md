@@ -1,43 +1,60 @@
-## Description: <br>
-Generate and iteratively edit images. Supports storage, UI for manual editing, history, version branching, time travel, reference images, and multiple AI models and providers with your own API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and iteratively edit images. Supports storage, UI for manual editing, history, version branching, time travel, reference images, and multiple AI models and providers with your own API keys.
 
-## Publisher: <br>
-[kivS](https://clawhub.ai/user/kivS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kivs](https://clawhub.ai/user/kivs)
 
-## Use Case: <br>
-External users and agents use babbleBrush to create, edit, branch, inspect, and manage image canvases through the babbleBrush API. It is suited for workflows that need iterative image generation or editing with reference images, version history, and user-provided provider keys. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a BABBLEBRUSH_API_KEY and can guide authenticated requests involving user images, prompts, edit history, and configured provider credentials. <br>
-Mitigation: Keep BABBLEBRUSH_API_KEY secure, install only if BabbleBrush is trusted with that data, and use scoped provider keys where possible. <br>
-Risk: The documented API includes credential-management and canvas deletion actions. <br>
-Mitigation: Require explicit user confirmation before adding provider credentials, removing provider credentials, or deleting canvases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kivS/babblebrush) <br>
-- [babbleBrush Website](https://babblebrush.com) <br>
-- [babbleBrush API Reference](https://babblebrush.com/api) <br>
-- [babbleBrush Claude Skill](https://babblebrush.com/babblebrush/claude/SKILL.md) <br>
-- [babbleBrush OpenClaw Skill](https://babblebrush.com/babblebrush/openclaw/SKILL.md) <br>
+## Use Case:
 
+External users and agents use this skill to create, edit, branch, inspect, and manage BabbleBrush image canvases through the BabbleBrush API. It is useful when an agent needs to guide image workflows, issue API requests, poll asynchronous edits, manage reference images, or configure provider credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BABBLEBRUSH_API_KEY for authenticated API requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: BabbleBrush can access images and prompts managed through the service.
+
+Mitigation: Install only when the user is comfortable giving BabbleBrush access to those images and prompts.
+
+Risk: BYOK workflows store provider API keys with BabbleBrush and provider usage can affect billing.
+
+Mitigation: Use dedicated provider keys where possible and monitor provider billing.
+
+Risk: Canvas deletion and other account operations can affect stored image work.
+
+Mitigation: Confirm exact canvas details before delete or destructive operations.
+
+## Reference(s):
+
+- [BabbleBrush website](https://babblebrush.com)
+- [BabbleBrush API reference](https://babblebrush.com/api)
+- [babbleBrush ClawHub listing](https://clawhub.ai/kivs/skills/babblebrush)
+- [OpenClaw skill source](https://babblebrush.com/babblebrush/openclaw/SKILL.md)
+- [Claude skill source](https://babblebrush.com/babblebrush/claude/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Markdown]
+
+**Output Format:** [Markdown with curl command examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BABBLEBRUSH_API_KEY; API responses may include image URLs, canvas identifiers, version identifiers, status fields, and remaining credits.]
+
+## Skill Version(s):
+
+1.4.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

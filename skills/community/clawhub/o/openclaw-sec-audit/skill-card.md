@@ -1,41 +1,53 @@
-## Description: <br>
-Run a local security audit on an OpenClaw environment and summarize risks, impacted locations, and prioritized remediation steps without exposing raw secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a local security audit on the OpenClaw environment, identifying risks, affected files, and prioritized remediation steps without exposing secrets.
 
-## Publisher: <br>
-[haooyi](https://clawhub.ai/user/haooyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haooyi](https://clawhub.ai/user/haooyi)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit a local OpenClaw installation or workspace for leaked secrets, risky configuration, exposed services, and file or host security issues. It produces prioritized findings and remediation guidance for local review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local audit reports can contain sensitive host, workspace, file path, process, listener, and masked secret evidence. <br>
-Mitigation: Keep generated reports private, review them before sharing, and run the skill only when intentionally auditing the local machine or OpenClaw workspace. <br>
-Risk: The skill performs local host, network, configuration, filesystem, git, and secret scanning. <br>
-Mitigation: Run it in the intended local environment and use provided options such as --no-host or --no-git when those checks are not appropriate. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local audit of OpenClaw installations and review prioritized findings about secrets, configuration, host exposure, and remediation.
 
-## Reference(s): <br>
-- [Openclaw Security Audit ClawHub page](https://clawhub.ai/haooyi/openclaw-sec-audit) <br>
-- [haooyi publisher profile](https://clawhub.ai/user/haooyi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Console summary plus optional text, JSON, and Markdown report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include local usernames, hostnames, file paths, process or listener details, security posture information, and masked secret examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The skill may inspect OpenClaw config, repository files, environment files, logs, workspace memory documents, git-tracked files, and host or network state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a private workspace and use opt-out flags such as --no-host or --no-git when those checks are not needed.
+
+Risk: Generated reports may reveal host details, paths, listener information, and masked credential fragments.
+
+Mitigation: Write reports to a directory with owner-only permissions and limit report sharing to trusted reviewers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haooyi/skills/openclaw-sec-audit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Text, JSON, or Markdown audit report with prioritized findings and remediation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may include host details, filesystem paths, listener information, and masked credential fragments.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

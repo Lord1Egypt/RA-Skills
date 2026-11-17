@@ -1,42 +1,53 @@
-## Description: <br>
-Browse and search Reddit in read-only mode using public JSON endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and search Reddit in read-only mode using public JSON endpoints.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers, agents, and external users use this skill to find Reddit posts, search topics, inspect comment threads, and collect permalinks for manual review or replies. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The local Node script sends requested subreddit names, search terms, and post URLs to Reddit public endpoints. <br>
-Mitigation: Use the skill only for queries you are comfortable sending to reddit.com, and avoid entering sensitive or private search terms. <br>
-Risk: Reddit may return incomplete, rate-limited, or HTML responses instead of JSON. <br>
-Mitigation: Start with small limits, reduce request volume when failures occur, and use the documented pacing environment variables when repeated requests are needed. <br>
-Risk: The skill is read-only and cannot post replies, vote, moderate, or authenticate as a Reddit user. <br>
-Mitigation: Use the generated permalinks to inspect Reddit manually and perform any account actions outside the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tristanmanchester/reddit-read-only) <br>
-- [Output schema](references/OUTPUT_SCHEMA.md) <br>
+## Use Case:
 
+External users and developers use this skill to browse subreddits, search Reddit posts, inspect comment threads, and prepare shortlists of Reddit permalinks for manual review or replies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [JSON from shell commands, with Markdown summaries and permalinks presented by the agent] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output is read-only Reddit data shaped as ok/data or ok/error JSON; comment and post text is returned as snippets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill fetches public Reddit content through a bundled Node script.
+
+Mitigation: Install it only when this network behavior is acceptable, keep use user-directed, and avoid adding Reddit credentials or auth cookies unless the skill is redesigned and re-reviewed.
+
+Risk: Public Reddit results and comment snippets can be incomplete, stale, rate-limited, or unavailable.
+
+Mitigation: Use small request limits first, preserve permalinks, and have the user review source threads before taking action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/reddit-read-only)
+- [Output Schema](references/OUTPUT_SCHEMA.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; bundled commands return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled command output is structured as ok/data or ok/error JSON and includes Reddit permalinks when results are returned.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Creates Seedance 2.0 image and video prompts, and can help run Dreamina CLI workflows for text-to-image, text-to-video, image-to-image, image-to-video, video extension, task lookup, and history checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seedance Creator helps agents write Chinese Seedance 2.0 image and video prompts and, when explicitly used with a logged-in dreamina CLI, run image and video generation workflows.
 
-## Publisher: <br>
-[chencore](https://clawhub.ai/user/chencore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chencore](https://clawhub.ai/user/chencore)
 
-## Use Case: <br>
-External users and creative developers use this skill to draft structured Chinese Seedance 2.0 prompts and, when the local Dreamina CLI is installed and authenticated, run media generation workflows. It supports image generation, video generation, image edits, image-to-video, video extension, and result retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can invoke Dreamina CLI generation workflows that upload local image or video files to an external service. <br>
-Mitigation: Only provide media files intended for upload, avoid sensitive local files, and confirm generation commands before running them. <br>
-Risk: Broad activation wording could cause surprise use when a request only mentions related Seedance or video-generation terms. <br>
-Mitigation: Prefer explicit Seedance requests or a dedicated command before executing CLI actions; use prompt-only mode when CLI use is not intended. <br>
-Risk: The skill depends on a locally installed and browser-authenticated Dreamina CLI. <br>
-Mitigation: Verify the CLI with `dreamina --version` and confirm login or credits before attempting generation. <br>
+## Use Case:
 
+Creators, marketers, and developers use this skill to turn creative briefs or reference media into structured Seedance 2.0 prompts, generation commands, and result-handling guidance for images, videos, image-to-video, and video-extension workflows.
 
-## Reference(s): <br>
-- [Dreamina CLI download](https://jimeng.jianying.com/cli) <br>
-- [ClawHub skill page](https://clawhub.ai/chencore/seedance-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Chinese prompt text, inline bash command examples, generation result links, and task status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Dreamina submit IDs, image or video URLs, dimensions, durations, and the prompt used for generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Using the skill with a logged-in dreamina CLI account can submit generation jobs and may consume account credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use CLI execution only when intended, review the generated command before running it, and use prompt-only mode when CLI state or account usage is uncertain.
+
+Risk: Image-to-image and image-to-video workflows can upload user-selected local media to the Seedance/dreamina service.
+
+Mitigation: Review file paths before execution and avoid uploading media that contains sensitive, private, or restricted content.
+
+Risk: Broad activation phrases for image and video tasks could trigger the skill when a user only wants general creative guidance.
+
+Mitigation: Prefer explicit /seedance invocation for CLI-backed workflows and confirm intent before executing generation commands.
+
+## Reference(s):
+
+- [dreamina CLI download](https://jimeng.jianying.com/cli)
+- [ClawHub skill page](https://clawhub.ai/chencore/skills/seedance-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and generated prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dreamina submit IDs, result links, media dimensions, duration, and user-facing cautions about local media uploads.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

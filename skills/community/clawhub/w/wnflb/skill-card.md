@@ -1,43 +1,54 @@
-## Description: <br>
-获取福利吧 (https://www.wnflb2023.com/) 指定板块的帖子列表（标题、内容、链接），进入帖子提取正文内容，最后由 AI 归纳总结。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+福利吧 helps an agent fetch recent posts from selected wnflb forum sections, extract thread content, summarize key information, and perform forum check-in using a configured cookie.
 
-## Publisher: <br>
-[nsnake](https://clawhub.ai/user/nsnake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nsnake](https://clawhub.ai/user/nsnake)
 
-## Use Case: <br>
-External users and agents use this skill to fetch recent posts from selected 福利吧 forum sections, summarize thread content, and extract useful links or passwords into a Markdown table. It can also run a forum check-in action for the configured account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a 福利吧 forum session cookie and can persist updated cookie values. <br>
-Mitigation: Use a throwaway or low-privilege forum account, restrict cookie.txt permissions, and do not ask the agent to display cookie.txt contents. <br>
-Risk: The check-in command performs an account action using the configured session. <br>
-Mitigation: Run the check-in command only when the user explicitly intends that account action. <br>
-Risk: The scraper follows redirects while sending a session cookie. <br>
-Mitigation: Review or patch the code to enforce a www.wnflb2023.com origin allowlist before sending or persisting cookies. <br>
+## Use Case:
 
+External users and their agents use this skill to review recent 福利吧 forum activity, summarize thread contents, extract useful links or passwords mentioned in posts, and run the forum check-in flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nsnake/wnflb) <br>
-- [福利吧 forum](https://www.wnflb2023.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with JSON command output from the scraper/check-in script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scraper returns forum title, source URL, section ID, item count, and thread items containing title, URL, and content; summaries should stay under 200 Chinese characters per item.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill handles forum login cookies and may update cookie.txt during scraping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege forum account, keep cookie.txt tightly permissioned, and avoid placing unrelated cookies in the file.
+
+Risk: The security scan reports unsafe cookie handling and remote JavaScript execution during scraping.
+
+Mitigation: Review before installing and avoid using the skill on untrusted redirects or sensitive sessions unless redirect parsing and cookie-origin checks are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nsnake/skills/wnflb)
+- [福利吧 forum](https://www.wnflb2023.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries and tables, with JSON returned from Node.js commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 22+ and a configured cookie.txt for authenticated forum access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

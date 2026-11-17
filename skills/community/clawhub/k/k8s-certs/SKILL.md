@@ -1,16 +1,49 @@
 ---
 name: k8s-certs
 description: Kubernetes certificate management with cert-manager. Use when managing TLS certificates, configuring issuers, or troubleshooting certificate issues.
+license: MIT-0
+metadata:
+  author: rohitg00
+  version: "2.0.0"
+  tools: 8
+  category: security
 ---
 
 # Certificate Management with cert-manager
 
 Manage TLS certificates using kubectl-mcp-server's cert-manager tools.
 
+> Requires the `certs` toolset: start kubectl-mcp-server with `--toolsets default,certs` (or `MCP_TOOLSETS=default,certs`).
+
+## When to Apply
+
+Use this skill when:
+- User mentions: "certificate", "cert-manager", "TLS", "SSL", "issuer", "Let's Encrypt"
+- Operations: creating certificates, configuring issuers, debugging cert issues
+- Keywords: "https", "secure", "encrypt", "renew", "expiring"
+
+## Priority Rules
+
+| Priority | Rule | Impact | Tools |
+|----------|------|--------|-------|
+| 1 | Detect cert-manager first | CRITICAL | `detect_ecosystem` |
+| 2 | Use staging issuer for testing | HIGH | Test with letsencrypt-staging |
+| 3 | Check issuer before cert | HIGH | `list_cert_issuers` |
+| 4 | Monitor certificate expiry | MEDIUM | `get_cert` |
+
+## Quick Reference
+
+| Task | Tool | Example |
+|------|------|---------|
+| Detect cert-manager | `detect_ecosystem` | `detect_ecosystem()` |
+| List certificates | `list_certs` | `list_certs(namespace)` |
+| Get certificate | `get_cert` | `get_cert(name, namespace)` |
+| List issuers | `list_cert_issuers` | `list_cert_issuers()` |
+
 ## Check Installation
 
 ```python
-certmanager_detect_tool()
+detect_ecosystem()
 ```
 
 ## Certificates
@@ -18,27 +51,16 @@ certmanager_detect_tool()
 ### List Certificates
 
 ```python
-# List all certificates
-certmanager_certificates_list_tool(namespace="default")
-
-# Check certificate status
-# - True: Certificate ready
-# - False: Certificate not ready (check events)
+list_certs(namespace="default")
 ```
 
 ### Get Certificate Details
 
 ```python
-certmanager_certificate_get_tool(
+get_cert(
     name="my-tls",
     namespace="default"
 )
-# Shows:
-# - Issuer reference
-# - Secret name
-# - DNS names
-# - Expiry date
-# - Renewal time
 ```
 
 ### Create Certificate
@@ -66,24 +88,21 @@ spec:
 ### List Issuers
 
 ```python
-# Namespace issuers
-certmanager_issuers_list_tool(namespace="default")
+list_cert_issuers(namespace="default")
 
-# Cluster-wide issuers
-certmanager_clusterissuers_list_tool()
+list_cert_issuers()
 ```
 
 ### Get Issuer Details
 
 ```python
-certmanager_issuer_get_tool(name="my-issuer", namespace="default")
-certmanager_clusterissuer_get_tool(name="letsencrypt-prod")
+get_cert_issuer(name="my-issuer", namespace="default")
+get_cert_issuer(name="letsencrypt-prod")
 ```
 
 ### Create Let's Encrypt Issuer
 
 ```python
-# Staging (for testing)
 kubectl_apply(manifest="""
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -101,7 +120,6 @@ spec:
           class: nginx
 """)
 
-# Production
 kubectl_apply(manifest="""
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -136,13 +154,11 @@ spec:
 ## Certificate Requests
 
 ```python
-# List certificate requests
-certmanager_certificaterequests_list_tool(namespace="default")
+list_cert_requests(namespace="default")
 
-# Get request details (for debugging)
-certmanager_certificaterequest_get_tool(
-    name="my-tls-xxxxx",
-    namespace="default"
+list_cert_requests(
+    namespace="default",
+    label_selector="app=my-app"
 )
 ```
 
@@ -151,30 +167,21 @@ certmanager_certificaterequest_get_tool(
 ### Certificate Not Ready
 
 ```python
-1. certmanager_certificate_get_tool(name, namespace)  # Check status
-2. certmanager_certificaterequests_list_tool(namespace)  # Check request
-3. get_events(namespace)  # Check events
-4. # Common issues:
-   # - Issuer not ready
-   # - DNS challenge failed
-   # - Rate limited by Let's Encrypt
+get_cert(name, namespace)
+list_cert_requests(namespace)
+kubectl_get(resource_type="events", namespace)
 ```
 
 ### Issuer Not Ready
 
 ```python
-1. certmanager_clusterissuer_get_tool(name)  # Check status
-2. get_events(namespace="cert-manager")  # Check events
-3. # Common issues:
-   # - Invalid credentials
-   # - Network issues
-   # - Invalid configuration
+get_cert_issuer(name)
+kubectl_get(resource_type="events", namespace="cert-manager")
 ```
 
 ## Ingress Integration
 
 ```python
-# Automatic certificate via ingress annotation
 kubectl_apply(manifest="""
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -200,6 +207,13 @@ spec:
               number: 80
 """)
 ```
+
+## Prerequisites
+
+- **cert-manager**: Required for all certificate tools
+  ```bash
+  kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
+  ```
 
 ## Related Skills
 

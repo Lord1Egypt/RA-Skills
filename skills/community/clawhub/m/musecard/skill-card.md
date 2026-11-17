@@ -1,44 +1,53 @@
-## Description: <br>
-自媒体情绪金句插画卡片创作助手。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自媒体情绪金句插画卡片创作助手
 
-## Publisher: <br>
-[fslong520](https://clawhub.ai/user/fslong520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fslong520](https://clawhub.ai/user/fslong520)
 
-## Use Case: <br>
-Creators, social media operators, and developers use this skill to turn a sentence, mood, or theme into a vertical 9:16 illustration-card prompt, with style selection, copy confirmation, and iterative cute/anime visual refinements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated image prompts can produce unsuitable, misleading, or rights-sensitive visual content depending on user input and the downstream image model. <br>
-Mitigation: Review prompts and generated images before publication, especially for brand, public, or commercial use. <br>
-Risk: The artifact contains hidden Unicode/control-character signals that may reduce readability or reviewer trust even though the security verdict is clean. <br>
-Mitigation: Review the rendered skill text before use and prefer a version with hidden Unicode/control characters removed. <br>
+## Use Case:
 
+External creators and social media authors use this skill to turn Chinese-language quotes, emotions, and OI competition themes into 9:16 illustration-card prompts. It helps select a style, confirm or draft card text, add composition details, and optionally generate an image when image generation is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fslong520/musecard) <br>
-- [Publisher profile](https://clawhub.ai/user/fslong520) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [OI pain example output](artifact/output/2026-04-18_oi_pain.txt) <br>
-- [Musecard prompt example](artifact/output/musecard_prompt.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Files, Guidance] <br>
-**Output Format:** [Markdown responses with image-generation prompts and optional imageGenerate calls or written prompt files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts are designed for 9:16 vertical illustration cards and may include image model parameters such as aspect ratio.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Generated image prompts may include character descriptions or social-media styling that need age-appropriate review before image generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final prompt for age-appropriate character details, language, and style before sending it to an image model.
+
+Risk: The skill is primarily Chinese-language and may not match every installer's intended language or cultural style.
+
+Mitigation: Confirm the desired language, quote text, and illustration tone with the user before generating or publishing a card.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fslong520/skills/musecard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text image-generation prompt with optional generated image output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts target 9:16 vertical quote-card illustrations and may include Chinese text for the final card.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-Pocketbook records, queries, completes, corrects, and undoes personal bookkeeping entries through short natural-language conversation with local JSONL and Markdown persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pocketbook records, queries, completes, corrects, and undoes personal bookkeeping entries through short natural-language conversation, with local JSONL and Markdown persistence plus support for incomplete entries.
 
-## Publisher: <br>
-[SuRu711](https://clawhub.ai/user/SuRu711) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suru711](https://clawhub.ai/user/suru711)
 
-## Use Case: <br>
-External users use this skill to maintain a personal ledger by capturing expenses, income, refunds, and transfers, then reviewing summaries or correcting recent entries. It is intended for explicit ledger operations, not accounting, tax, investment, invoice, OCR, or reimbursement advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personal transaction history is stored in local ledger files. <br>
-Mitigation: Choose and protect the data directory, and avoid putting secrets or sensitive notes into ledger entries. <br>
-Risk: Short transaction messages can be ambiguous or duplicate an existing entry. <br>
-Mitigation: Review entries flagged as ambiguous or possible duplicates before relying on summaries or applying corrections. <br>
-Risk: Dates default to the skill's configured timezone when the user does not specify one. <br>
-Mitigation: Set the correct timezone for the user's ledger before recording time-sensitive entries. <br>
+## Use Case:
 
+External users and agents use Pocketbook to operate a personal ledger: capture expenses, income, refunds, and transfers; summarize spending or income; review recent entries; complete incomplete records; and correct or undo recent ledger events.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/SuRu711/pocket-book) <br>
-- [Publisher Profile](https://clawhub.ai/user/SuRu711) <br>
-- [Homepage](https://github.com/SuRu711/pocketbook) <br>
-- [Pocketbook Schema](references/schema.md) <br>
-- [Trigger Examples](references/intent-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Concise ledger confirmations, query summaries, structured script payloads, and Markdown ledger views] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local ledger files and concise confirmations; duplicate and ambiguity warnings may be returned for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores sensitive personal finance data in ordinary local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private data directory with appropriate filesystem permissions and review where ledger, profile, and Markdown files are stored before use.
+
+Risk: The Markdown renderer accepts an optional output path that can overwrite any writable file.
+
+Mitigation: Avoid passing --output except for the intended Pocketbook Markdown file, and review the exact output path before rendering.
+
+Risk: Implicit invocation could write ledger entries when the user's intent is ambiguous.
+
+Mitigation: Require confirmation for medium-confidence transaction utterances or disable implicit invocation for deployments that need stricter write controls.
+
+Risk: Default timezone and currency may not match the user's locale.
+
+Mitigation: Configure timezone and currency before use if Asia/Shanghai and CNY are not intended.
+
+## Reference(s):
+
+- [Pocketbook ClawHub Skill Page](https://clawhub.ai/suru711/skills/pocket-book)
+- [Pocketbook Project Homepage](https://github.com/SuRu711/pocketbook)
+- [Pocketbook Schema](artifact/references/schema.md)
+- [Trigger Examples](artifact/references/intent-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Concise natural-language ledger replies, structured JSON command payloads and results, and Markdown finance snapshots.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists ledger state locally as JSONL, renders a derived Markdown view, and can use profile defaults and aliases for currency, timezone, payment method, and account values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

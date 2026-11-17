@@ -1,44 +1,59 @@
-## Description: <br>
-Converts a webpage into page-structure analysis, operation steps, and runnable Python Selenium automation code using captured screenshots and rendered HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts webpages into runnable Python Selenium automation scripts by fetching rendered HTML and screenshots, analyzing page structure and interactions, and producing element locators, workflow guidance, and code.
 
-## Publisher: <br>
-[icestorms](https://clawhub.ai/user/icestorms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icestorms](https://clawhub.ai/user/icestorms)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to inspect authorized web pages, identify DOM and interaction patterns, and produce Selenium scripts for workflows such as navigation, form entry, login handling, and search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate real browser interactions on pages that may be sensitive or outside the user's authorization. <br>
-Mitigation: Use it only on pages the user owns or is authorized to test, and review the target URL and intended action before execution. <br>
-Risk: Login support can use credentials, and captured screenshots or HTML may include private account data. <br>
-Mitigation: Use low-privilege test accounts, avoid broad ROUTER_* credential configuration, store outputs in controlled locations, and treat generated captures as private data. <br>
-Risk: Broad activation language may lead to browser automation when the requested scope is ambiguous. <br>
-Mitigation: Confirm the URL, authorization, credential scope, and intended action before enabling login or executing generated Selenium code. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to inspect public or authenticated webpages and generate Selenium scripts for form filling, navigation, clicking, searching, and repeatable browser workflows.
 
-## Reference(s): <br>
-- [Selenium Patterns](artifact/references/selenium-patterns.md) <br>
-- [Operation Examples](artifact/references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/icestorms/html-element-to-selenium-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks, Selenium examples, page analysis, shell commands, and generated page-capture files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save screenshots, rendered HTML, viewport screenshots, and page metadata while analyzing a target page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.7 (source: server release evidence) <br>
+Risk: The skill can use supplied credentials for automated login.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on explicitly trusted domains, prefer least-privilege accounts, and avoid broad ROUTER_* environment credentials.
+
+Risk: Command-line credentials and generated artifacts can expose sensitive data.
+
+Mitigation: Do not pass real passwords on the command line, and treat screenshots, rendered HTML, and metadata files as sensitive outputs.
+
+Risk: Generated Selenium code may perform unintended browser actions if the page analysis is wrong.
+
+Mitigation: Review generated scripts and workflow steps before running them against real accounts or internal systems.
+
+## Reference(s):
+
+- [Selenium patterns](artifact/html-to-selenium/references/selenium-patterns.md)
+- [Operation examples](artifact/html-to-selenium/references/examples.md)
+- [Skill manifest](artifact/html-to-selenium/MANIFEST.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks, plus generated screenshot, HTML, and metadata files when the fetch script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated browser artifacts may include screenshots, rendered HTML, and page metadata; generated Selenium code should be reviewed before execution.]
+
+## Skill Version(s):
+
+2.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

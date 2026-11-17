@@ -1,37 +1,51 @@
-## Description: <br>
-Verify the bead daemon is alive and responsive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify the bead daemon is alive and responsive.
 
-## Publisher: <br>
-[Xejrax](https://clawhub.ai/user/Xejrax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xejrax](https://clawhub.ai/user/xejrax)
 
-## Use Case: <br>
-Developers and operators who use the beads system use this skill to check whether the local bead daemon is running and responsive. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A local PATH entry could point bd or ping-beads to an unintended command. <br>
-Mitigation: Confirm that bd and ping-beads resolve to trusted local binaries before relying on the health check. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Xejrax/ping-beads) <br>
+## Use Case:
+
+Developers and operators who use the beads system can use this skill to check whether the local bead daemon is running and accepting connections.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a local beads environment and the bd command being present.
+
+Mitigation: Install only where the beads system is expected and verify bd is available in PATH before use.
+
+Risk: The health check is limited to daemon responsiveness and does not diagnose broader system state.
+
+Mitigation: Treat the result as a narrow daemon availability check and perform additional diagnostics for operational incidents.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local bd and ping-beads commands to be trusted and available in PATH.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local bd command and bead daemon socket.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

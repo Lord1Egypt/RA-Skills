@@ -1,44 +1,60 @@
-## Description: <br>
-Text-to-Speech (TTS) and voice-feature skill for Gitee AI that lets the user choose audiofly, chattts, cosyvoice2, cosyvoice3, cosyvoice-300m, fish-speech-1.2-sft, index-tts-1.5, index-tts-2, glm-tts, megatts3, moss-ttsd-v0.5, qwen-tts, spark-tts-0.5b, step-audio-tts-3b, or vibevoice-large, then fills in only model-specific parameters for speech or voice feature extraction, including multi-item Qwen3-TTS inputs with built-in or custom voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moark Tts helps agents generate speech and extract CosyVoice voice features through Gitee AI TTS models while collecting only the parameters relevant to the selected model.
 
-## Publisher: <br>
-[fchange](https://clawhub.ai/user/fchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fchange](https://clawhub.ai/user/fchange)
 
-## Use Case: <br>
-Developers and agents use this skill to route Gitee AI speech synthesis and CosyVoice voice-feature extraction requests across supported TTS models while collecting only model-relevant parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gitee AI API keys can authorize speech generation requests and should be treated as sensitive credentials. <br>
-Mitigation: Use a scoped GITEEAI_API_KEY where possible, pass it through the environment or a deliberate --api-key value, and avoid logging or sharing command transcripts that contain the key. <br>
-Risk: Voice samples, prompt audio URLs, and generated speech can contain sensitive or unauthorized voice data. <br>
-Mitigation: Use only audio the user is permitted to submit, avoid private or internal audio URLs, and obtain clear permission before using another person's voice for cloning or feature extraction. <br>
-Risk: Generated binary outputs may be written to local paths selected by the caller. <br>
-Mitigation: Choose output paths deliberately and review generated files before sharing or using them downstream. <br>
+## Use Case:
 
+Developers and content workflow users use this skill to synthesize speech with one of fifteen Gitee AI TTS model choices or prepare CosyVoice voice features for cloning workflows. It is suited to agents that need model-specific parameter guidance and a direct script-based execution path.
 
-## Reference(s): <br>
-- [TTS Model Routing](references/models.md) <br>
-- [Moark Tts on ClawHub](https://clawhub.ai/fchange/moark-tts) <br>
-- [Gitee AI API endpoint](https://ai.gitee.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with runnable Python command examples and parsed script result labels such as AUDIO_URL, AUDIO_FILE, TTS_RESULT, VOICE_URL, and VOICE_FEATURE_FILE.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce remote audio URLs, local audio or voice-feature files, or JSON API result summaries depending on the selected model and response mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill accepts user-supplied reference audio URLs, which can create risk when URLs point to internal, local, metadata, or private-network resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review URLs before execution and prefer a patched version that validates allowed schemes and destinations, limits downloaded file size and type, and blocks private-network targets.
+
+Risk: The skill uses a Gitee AI API key from the agent environment or command line.
+
+Mitigation: Use only a Gitee AI key approved for the agent environment, avoid exposing secrets in prompts or logs, and send the key only to trusted Gitee AI endpoints.
+
+Risk: Voice samples and generated voice features can involve third-party biometric or personal data.
+
+Mitigation: Use reference audio only with consent and avoid submitting sensitive or third-party voice samples unless the workflow has appropriate authorization.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fchange/skills/moark-tts)
+- [TTS Model Routing](artifact/references/models.md)
+- [Gitee AI API Base](https://ai.gitee.com/v1)
+- [Gitee AI Voice Feature Extraction Endpoint](https://ai.gitee.com/v1/audio/voice-feature-extraction)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown-style agent responses with command guidance, script output labels, URLs, and optional generated file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITEEAI_API_KEY; speech output may be returned as AUDIO_URL, AUDIO_FILE, or TTS_RESULT, and voice-feature output may be returned as VOICE_URL or VOICE_FEATURE_FILE.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

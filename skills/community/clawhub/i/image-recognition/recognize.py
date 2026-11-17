@@ -101,7 +101,7 @@ def get_model_config():
     
     # 3. 如果还是没有 API Key，使用默认 Bailian Key（仅作为后备）
     if not config["api_key"]:
-        config["api_key"] = "sk-sp-e20dc070c4724e909f4b0be4d1d386e0"
+        config["api_key"] = "REDACTED-SECRET"
         config["headers"]["Authorization"] = f"Bearer {config['api_key']}"
     
     return config

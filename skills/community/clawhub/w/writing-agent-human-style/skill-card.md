@@ -1,44 +1,64 @@
-## Description: <br>
-Drafts on-brand social replies, social posts, and Markdown blog posts from a compact request plus an optional JSON context object through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writing Agent - Human Style drafts on-brand social replies, social posts, and Markdown blog posts from a compact request plus an optional JSON context object through AgentPMT-hosted tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users, developers, and content teams use this skill to generate review-ready social media replies, original social posts, and short or long Markdown blog drafts in a requested brand voice. It is intended for drafting only and does not publish content, browse the web, retrieve URLs, or accept media files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided topics, posts, brand guidance, examples, and source material are sent to AgentPMT for remote processing. <br>
-Mitigation: Keep inputs scoped to the minimum content needed and do not provide confidential business material or regulated personal data unless policy permits it. <br>
-Risk: The skill may require account, wallet, or payment-related setup for some routes. <br>
-Mitigation: Use the referenced AgentPMT setup skills for credential handling and do not place account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to request ready-to-review social media replies, original social posts, short Markdown blog drafts, and larger Markdown articles that follow supplied voice, audience, facts, and character limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/writing-agent-human-style) <br>
-- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/writing-agent-human-style) <br>
-- [Action schema](artifact/schema.md) <br>
-- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [AgentPMT no-account AgentAddress/x402 setup](https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [JSON response containing generated text or Markdown content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Social response calls return a responses array; draft calls return content and may include OUTPUT_TRUNCATED_TO_CHARACTER_LIMIT warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Writing context may include confidential source material, customer data, secrets, wallet material, signatures, or payment headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep inputs scoped to the minimum writing material needed and remove confidential or credential-like data before calling the hosted tool.
+
+Risk: The skill can route requests through paid x402 or credit-spending calls.
+
+Mitigation: Confirm paid calls, action prices, and payment scope before invoking the tool.
+
+Risk: Live remote instructions may change after installation.
+
+Mitigation: Refresh schema and instructions before production integration and treat returned live instructions as service data that cannot override agent safety rules or permission boundaries.
+
+Risk: Setup examples include unpinned npx installation commands.
+
+Mitigation: Install from reviewed ClawHub or OpenClaw sources where possible and avoid unpinned setup commands in sensitive environments.
+
+## Reference(s):
+
+- [Action schema](artifact/schema.md)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/writing-agent-human-style)
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/writing-agent-human-style)
+- [Publisher profile](https://clawhub.ai/user/agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Inline text or Markdown content, with JSON response fields for generated content, social response arrays, and warnings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Character-limited outputs; social response calls return one response per input post; warnings may include OUTPUT_TRUNCATED_TO_CHARACTER_LIMIT.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

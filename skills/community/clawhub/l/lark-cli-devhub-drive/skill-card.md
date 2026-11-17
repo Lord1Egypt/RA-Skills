@@ -1,41 +1,53 @@
-## Description: <br>
-Use when managing Feishu/Lark Drive files through lark-cli or feishu-cli for Dev Hub search, inspect, upload, download, import, export, sync, comments, permissions, and artifact registration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing Feishu/Lark Drive files through lark-cli or feishu-cli for Dev Hub search, inspect, upload, download, import, export, sync, comments, permissions, and artifact registration.
 
-## Publisher: <br>
-[afengzi](https://clawhub.ai/user/afengzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afengzi](https://clawhub.ai/user/afengzi)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to manage Feishu/Lark Drive files through lark-cli or feishu-cli during Dev Hub workflows. It supports Drive discovery, inspection, import, export, sync, comments, permissions guidance, and artifact registration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drive commands can read or change files, comments, permissions, exports, uploads, sync targets, and artifact records through the authenticated Lark/Feishu account. <br>
-Mitigation: Review each command before execution, especially export, upload, sync, permissions, and artifact writeback operations. <br>
-Risk: Downloaded private files may be stored locally if the user asks for export or sync workflows. <br>
-Mitigation: Do not store downloaded private files in the repository unless the user explicitly requests it. <br>
+## Use Case:
 
+Developers and teams use this skill to manage Feishu/Lark Drive files in Dev Hub workflows, including discovery, inspection, import, export, sync, comments, permissions, and artifact registration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afengzi/lark-cli-devhub-drive) <br>
-- [Publisher profile](https://clawhub.ai/user/afengzi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-run lark-cli or feishu-cli session authenticated to the user's Lark/Feishu account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Drive sync, upload, export, permission, and artifact writeback actions can affect files or workspace records in the authenticated Lark/Feishu account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution and confirm lark-cli is authenticated to the intended account and workspace.
+
+Risk: Downloaded private files may be retained locally if a workflow stores them in the repository.
+
+Mitigation: Follow the skill guidance to avoid storing downloaded private files in the repo unless the user explicitly requests it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afengzi/skills/lark-cli-devhub-drive)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated lark-cli or feishu-cli session for Drive operations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

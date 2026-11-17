@@ -1,4 +1,23 @@
-# Stripe Connect — Marketplace Payments
+# Connect — Marketplaces and Platforms
+
+**Read `## Integration Shape` in `~/Clawic/data/stripe-api-integration/memory.md`** (or its box) before writing any Connect call: the charge type already in production determines fees, liability and reporting, and changing it later is a migration, not a parameter.
+
+**Contents:** [Charge Type Decides Everything](#charge-type-decides-everything) · [Connect Account Types](#connect-account-types) · [Create Connected Account](#create-connected-account) · [Account Onboarding](#account-onboarding) · [Payment Flows](#payment-flows) · [Application Fees](#application-fees) · [Payouts to Connected Accounts](#payouts-to-connected-accounts) · [Refunds with Connect](#refunds-with-connect) · [Express Dashboard](#express-dashboard) · [Account Updates](#account-updates) · [Connect Webhooks](#connect-webhooks) · [Common Patterns](#common-patterns) · [Negative Balances and Seller Risk](#negative-balances-and-seller-risk)
+
+## Charge Type Decides Everything
+
+| | Direct charge | Destination charge | Separate charges and transfers |
+|---|---|---|---|
+| Charge is created on | The connected account | The platform | The platform |
+| Funds land | Seller's balance | Platform balance, then transferred | Platform balance, transferred later or to several sellers |
+| Statement descriptor | Seller's | Platform's | Platform's |
+| Dispute liability | The seller | **The platform** | **The platform** |
+| Processing fee paid by | The seller | The platform | The platform |
+| Fits | Sellers with their own brand and their own customers | A platform that owns the customer relationship | One payment split between several sellers, or money held before release |
+
+Pick from liability and brand, not from which is easiest to write. The platform absorbing dispute liability is a real cost line that has to be priced into the application fee (`disputes.md`), and the descriptor the buyer sees is the single biggest driver of `unrecognized` disputes.
+
+Operational corollaries: acting on a connected account means the `Stripe-Account` header, not a different key; idempotency keys are scoped per account; and platform and connected balances reconcile separately (`reconciliation.md`).
 
 ## Connect Account Types
 
@@ -237,3 +256,23 @@ curl https://api.stripe.com/v1/payouts \
   -d "amount=5000" \
   -d "currency=usd"
 ```
+
+---
+
+## Onboarding Is a Treadmill, Not a Form
+
+- Requirements differ by country, business type and volume, and they change. `requirements[currently_due]`, `eventually_due` and `past_due` on the account object are the contract: read them and surface exactly what is missing, rather than asking sellers for everything up front.
+- `charges_enabled` and `payouts_enabled` are the only reliable readiness flags. An account that finished the onboarding flow is not necessarily either.
+- Hosted onboarding hands the treadmill to Stripe; owning the UI means owning every new requirement in every new country. Teams that are not in the compliance business hand it over (`SKILL.md`, Where Experts Disagree).
+- The newer controller-based account configuration expresses who owns fees, losses and the dashboard directly; the older Standard, Express and Custom labels map onto the same choices and still appear everywhere. Whichever vocabulary the account uses, the underlying questions are: who pays the fee, who eats the loss, and whose dashboard the seller logs into.
+- An account link expires quickly and is single-use — generate it when the seller clicks, never in advance.
+
+## Negative Balances and Seller Risk
+
+A refund or a dispute after the seller has been paid out leaves their balance negative, and that is a receivable, not a Stripe problem. Decide before launch: hold a rolling reserve, delay payouts for new sellers, or absorb it on the platform. Platforms that decide this after the first fraudulent seller decide it expensively.
+
+Payout timing to sellers is a product decision too: instant costs a percentage, standard is free and slower, and manual gives you the release moment as a lever against fraud.
+
+---
+
+**Write in the same turn**: the charge type, the application fee model and who holds dispute liability go to `## Integration Shape` in `~/Clawic/data/stripe-api-integration/memory.md`, and the reasoning to `artifacts/decision-<charge-type>.md` with its `## Boxes` line. Each connected seller who is a named person or company goes to `~/Clawic/data/contacts/contacts.md` and is referenced here by name only — never duplicate the seller record inside this skill's box. A seller loss that the platform absorbed is a row in `incidents/<year>.md`.

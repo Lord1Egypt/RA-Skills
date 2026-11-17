@@ -1,46 +1,62 @@
-## Description: <br>
-Prompt Injection Firewall for AI agents. 113 detection patterns, 14 threat categories, zero dependencies. Protects against fake authority, command injection, memory poisoning, skill malware, crypto spam, and more. Hash-chain tamper-proof whitelist with mandatory peer review. Claude Code hook integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompt Injection Firewall for AI agents. 113 detection patterns, 14 threat categories, zero dependencies. Protects against fake authority, command injection, memory poisoning, skill malware, crypto spam, and more. Hash-chain tamper-proof whitelist with mandatory peer review. Claude Code hook integration.
 
-## Publisher: <br>
-[stlas](https://clawhub.ai/user/stlas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[stlas](https://clawhub.ai/user/stlas)
 
-## Use Case: <br>
-Developers and agent operators use this skill to scan user prompts, files, stdin, or batches for prompt injection, spam, command injection, phishing, and related manipulation patterns before an agent processes the content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The optional hook can inspect and block future prompts, and false positives can interrupt normal work. <br>
-Mitigation: Enable the hook only after reviewing its behavior, keep warning and block thresholds aligned with local tolerance, and provide a bypass or review path for legitimate blocked prompts. <br>
-Risk: Whitelist changes alter filtering behavior and can reduce detection coverage if misused. <br>
-Mitigation: Use the provided whitelist commands, require peer review for entries, verify the hash chain, and review exemption scope and expiration before deployment. <br>
-Risk: The skill depends on PyYAML for pattern and whitelist parsing. <br>
-Mitigation: Install PyYAML from a trusted package source and include it in normal dependency review. <br>
-Risk: Peer-review labels are local process labels rather than strong identity proof. <br>
-Mitigation: Map approver labels to an auditable local approval process when using the whitelist in production. <br>
+## Use Case:
 
+Developers and agent operators use Prompt Shield to scan prompts or batches for prompt injection, spam, and malicious skill behavior. It can also be wired into Claude Code hooks to warn on or block risky input before an agent processes it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stlas/prompt-shield) <br>
-- [Project URL listed in skill documentation](https://github.com/stlas/PromptShield) <br>
-- [SCORING.md](artifact/SCORING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, JSON scan results, shell exit codes, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scan results classify input as CLEAN, WARNING, or BLOCK with scores capped at 100.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.6 (source: ClawHub release metadata and artifact/SKILL.md) <br>
+Risk: Installing the Claude Code hook makes Prompt Shield run on future Claude Code inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the hook script before installation and enable it only in environments where this persistent prompt-scanning behavior is expected.
+
+Risk: The whitelist peer-review model is not a strong security boundary without authenticated approver identity.
+
+Mitigation: Use authenticated review controls outside the whitelist file before relying on whitelist approvals for sensitive workflows.
+
+Risk: Dependency drift or unsafe local environments can affect scanner behavior.
+
+Mitigation: Run the skill in an isolated environment with a pinned PyYAML version.
+
+Risk: The hook stdout leak noted by security evidence may expose unintended output during prompt handling.
+
+Mitigation: Fix and retest hook output behavior before installing it as an active Claude Code hook.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stlas/skills/prompt-shield)
+- [SCORING.md](artifact/SCORING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON scan results with Markdown usage guidance and shell/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan output classifies input as CLEAN, WARNING, or BLOCK with a bounded score from 0 to 100.]
+
+## Skill Version(s):
+
+3.0.6 (source: server release metadata and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

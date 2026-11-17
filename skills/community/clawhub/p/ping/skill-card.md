@@ -1,42 +1,58 @@
-## Description: <br>
-Monitor network connectivity and diagnose latency issues using ping and traceroute. Use when troubleshooting network problems or checking host availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor network connectivity and diagnose latency issues using ping and traceroute.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, network operators, and support engineers use this skill to check host availability, trace routes, monitor connectivity over time, sweep authorized subnets, and analyze latency history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan user-selected subnets. <br>
-Mitigation: Use sweep only on networks you own or are authorized to test. <br>
-Risk: Hostnames, IP addresses, route previews, and sweep results are saved locally under ~/.ping. <br>
-Mitigation: Delete or protect ~/.ping when it contains sensitive network diagnostic data. <br>
+## Use Case:
 
+Developers, operators, and support engineers use this skill to check host reachability, trace network routes, monitor uptime, sweep small authorized subnets, and analyze historical latency results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/ping) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with inline bash commands, terminal diagnostic text, and local JSONL or CSV records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores ping history and configuration under ~/.ping when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can sweep small subnets and may probe hosts on networks where the user lacks authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run sweep only against networks you own or are explicitly authorized to test.
+
+Risk: Ping, traceroute, monitor, compare, and sweep results are retained locally under ~/.ping.
+
+Mitigation: Review and delete ~/.ping/data.jsonl when retained network history is no longer needed.
+
+Risk: The export command writes to the caller-provided PING_OUTPUT path.
+
+Mitigation: Set PING_OUTPUT only to an intended destination and avoid overwriting important files.
+
+## Reference(s):
+
+- [Ping ClawHub listing](https://clawhub.ai/xueyetianya/skills/ping)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and local JSON/CSV history exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local history and configuration under ~/.ping; export can write JSON or CSV to stdout or to PING_OUTPUT.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

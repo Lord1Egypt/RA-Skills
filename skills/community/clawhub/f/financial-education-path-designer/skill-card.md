@@ -1,41 +1,50 @@
-## Description: <br>
-Creates structured financial education frameworks with actionable recommendations and clear next-step checklists for learning paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates structured financial education learning paths with actionable recommendations and next-step checklists.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to create step-by-step financial education curricula for topics such as budgeting, debt and credit, investing basics, taxes, insurance, retirement planning, pre-college financial literacy, and real estate investing. The outputs are intended as learning-path suggestions, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could mistake education-path suggestions for personalized financial advice. <br>
-Mitigation: Present outputs as informational learning guidance and consult a qualified professional before making investment or debt decisions. <br>
+## Use Case:
 
+External learners and educators use this skill to design financial literacy curricula and progressive study plans for adults, teenagers, and focused topics such as real estate investing. It provides educational recommendations and checklists, not personalized financial advice or transactions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/financial-education-path-designer) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [Artifact Acceptance Criteria](artifact/ACCEPTANCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [JSON object containing input analysis, recommendations, next steps, templates, and a disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational-only output; no external API calls, hidden access, data collection, network use, or financial transactions were identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may mistake sample portfolio allocations or educational recommendations for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as generic learning material and consult a qualified financial professional before making decisions involving real money.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/financial-education-path-designer)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Structured JSON and human-readable educational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes structured analysis, recommendations, templates, next-step checklists, and a descriptive-use disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

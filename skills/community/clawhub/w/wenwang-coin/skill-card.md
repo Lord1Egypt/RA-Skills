@@ -1,37 +1,54 @@
-## Description: <br>
-Provides AI-assisted Zhou Wen coin divination with I Ching hexagram interpretations and personalized guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI-powered Zhou Wen coin divination with I Ching hexagram interpretations and reflective guidance for life, career, and business questions.
 
-## Publisher: <br>
-[alisa-xh](https://clawhub.ai/user/alisa-xh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alisa-xh](https://clawhub.ai/user/alisa-xh)
 
-## Use Case: <br>
-External users ask life, career, or business questions and receive coin-divination readings, hexagram interpretation, and reflective guidance based on the Zhou Wen and I Ching tradition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alisa-xh/wenwang-coin) <br>
+External users can use this skill to generate coin-divination readings and I Ching-style interpretations for reflective decision support. It is intended for divination-style guidance, not factual, financial, legal, or professional advice.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text divination reading] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, install script, credentials, persistence, or hidden data access. Treat divination output as entertainment or personal reflection rather than professional financial, legal, medical, or business advice.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Divination-style guidance may be mistaken for professional advice on business, career, legal, financial, or life decisions.
+
+Mitigation: Frame outputs as reflective or entertainment guidance and direct users to qualified professionals for consequential decisions.
+
+Risk: Users may expect a specific language because the skill mixes Chinese and English concepts.
+
+Mitigation: Ask for English, Chinese, or bilingual output explicitly when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alisa-xh/skills/wenwang-coin)
+- [ClawHub publisher profile: alisa-xh](https://clawhub.ai/user/alisa-xh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text divination reading with hexagram interpretation and advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, hidden access, persistence, or data-handling behavior is identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

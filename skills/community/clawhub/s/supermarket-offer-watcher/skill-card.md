@@ -1,43 +1,54 @@
-## Description: <br>
-Save a personal grocery product watchlist and check nearby supermarket deals automatically by radius. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save a personal grocery product watchlist and check nearby supermarket deals automatically by radius.
 
-## Publisher: <br>
-[lukasosterheider](https://clawhub.ai/user/lukasosterheider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukasosterheider](https://clawhub.ai/user/lukasosterheider)
 
-## Use Case: <br>
-External users use this skill to maintain a grocery product watchlist, configure a home location and radius, and receive daily or weekly summaries of validated nearby supermarket offers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores an approximate home location and grocery preferences in the workspace. <br>
-Mitigation: Use a coarse location when possible, avoid sensitive notes, and review or delete /data/workspace/data/supermarkt-watchlist.json when it is no longer needed. <br>
-Risk: Daily or weekly cron checks may run scheduled web searches if enabled. <br>
-Mitigation: Enable cron alerts only intentionally and review the configured schedule, timezone, products, and radius before activation. <br>
-Risk: Offer search results can be stale, incomplete, or misleading. <br>
-Mitigation: Report only deals that satisfy the documented validation checks for product or alias, store, valid date window, and visible price or discount. <br>
+## Use Case:
 
+External users use this skill to maintain a local grocery watchlist, configure location and radius, and run daily or weekly checks for nearby supermarket offers.
 
-## Reference(s): <br>
-- [Offer Check Template](references/check-template.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/lukasosterheider/supermarket-offer-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and compact alert summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local JSON watchlist at /data/workspace/data/supermarkt-watchlist.json and may guide daily or weekly cron scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The local watchlist may include a home area and shopping preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a coarse location when possible and review or delete /data/workspace/data/supermarkt-watchlist.json when it is no longer needed.
+
+Risk: Scheduled offer checks may send product and location-based queries to external search or fetch services.
+
+Mitigation: Create the cron job only when recurring checks are desired, and keep product and location entries limited to what is needed for the search.
+
+## Reference(s):
+
+- [Offer Check Template](artifact/references/check-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/lukasosterheider/skills/supermarket-offer-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON watchlist configuration, and concise alert summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local JSON watchlist at /data/workspace/data/supermarkt-watchlist.json.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

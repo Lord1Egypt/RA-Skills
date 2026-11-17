@@ -1,5 +1,6 @@
 #!/bin/bash
 # Operations Self-Improvement Error Detector Hook
+# Inspects CLAUDE_TOOL_OUTPUT in-process only. Never writes tool output, secrets, or transcripts to disk.
 # Triggers on PostToolUse for Bash to detect operational errors
 # Reads CLAUDE_TOOL_OUTPUT environment variable
 

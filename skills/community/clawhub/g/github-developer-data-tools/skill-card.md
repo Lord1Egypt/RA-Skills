@@ -1,41 +1,51 @@
-## Description: <br>
-GitHub and developer data for AI agents, including repository metadata, audit and risk scoring, user profiles, releases, and gist content through paid HTTPS GET calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub & Developer Data gives AI agents live GitHub repository metadata, repository audits and risk scoring, user profiles, recent releases, and gist content through paid x402 HTTPS GET endpoints.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-Developers, engineers, and dev-tool agents use this skill to look up live GitHub repository, release, user, and gist data and to support dependency due diligence or open source research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries may send GitHub repository, user, release, or gist identifiers to GoCreative. <br>
-Mitigation: Review the identifiers before use and avoid submitting private or sensitive repository details unless that sharing is acceptable. <br>
-Risk: Using the skill may trigger small USDC payments through x402. <br>
-Mitigation: Configure wallet spending limits or approval prompts before allowing an agent to make calls. <br>
+## Use Case:
 
+Developers, dependency reviewers, and dev-tool agents use this skill to look up live GitHub repository, release, user, and gist data. It supports developer research, open source dependency due diligence, repository audits, and related automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/colinhughes2121/github-developer-data-tools) <br>
-- [GoCreative API](https://api.gocreativeai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis, API Calls] <br>
-**Output Format:** [JSON responses from HTTPS GET endpoints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key or signup is described. Calls are paid per request in USDC through x402.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill can trigger paid x402 API calls and the security evidence notes that automatic wallet payment is described without confirmation, budget, maximum price, or retry safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a wallet or runtime that requires explicit payment confirmation, enforces a maximum price per call, applies a session budget, and limits retries; treat repeated lookups as potentially billable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/colinhughes2121/skills/github-developer-data-tools)
+- [Publisher Profile](https://clawhub.ai/user/colinhughes2121)
+- [GoCreative API Base URL](https://api.gocreativeai.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Analysis, Guidance]
+
+**Output Format:** [JSON API responses with concise agent-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid x402 HTTPS GET calls that may incur USDC charges per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

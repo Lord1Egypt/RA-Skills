@@ -285,31 +285,37 @@ operately comments create \
   --entity-type "project_check_in" \
   --content "Great progress! The design phase looks solid."
 
-# Comment on goal check-in
+# Comment on goal check-in (API type: goal_update)
 operately comments create \
   --entity-id ci2 \
-  --entity-type "goal_check_in" \
+  --entity-type "goal_update" \
   --content "Concerned about the timeline. Can we discuss?"
 
-# Comment on task
+# Comment on project task
 operately comments create \
   --entity-id t1 \
-  --entity-type "task" \
+  --entity-type "project_task" \
   --content "I'll take this one. Should be done by EOD."
 
-# Comment on discussion
+# Comment on space task
+operately comments create \
+  --entity-id t2 \
+  --entity-type "space_task" \
+  --content "Picking this up tomorrow."
+
+# Comment on space discussion (message board post)
 operately comments create \
   --entity-id d1 \
-  --entity-type "discussion" \
+  --entity-type "message" \
   --content "I agree with option 1. Here's why..."
 ```
 
 Common entity types:
-- `project_check_in`
-- `goal_check_in`
-- `task`
-- `discussion`
-- `document`
+- `project_check_in`, `project_retrospective`, `project_discussion`
+- `goal_update`, `goal_discussion`
+- `project_task`, `space_task`
+- `message` (space discussions)
+- `resource_hub_document`, `resource_hub_file`, `resource_hub_link`
 - `milestone`
 
 ### Listing Comments
@@ -353,10 +359,10 @@ operately reactions create \
   --parent-type "project_check_in" \
   --emoji "❤️"
 
-# Celebrate
+# Celebrate a goal check-in
 operately reactions create \
-  --entity-id g1 \
-  --entity-type "goal" \
+  --entity-id ci2 \
+  --entity-type "goal_update" \
   --emoji "🎉"
 ```
 
@@ -495,11 +501,49 @@ operately companies grant_resource_access \
   --resources.1.access-level edit_access
 ```
 
-### Global Search
+### Global and Full-Text Search
 
 ```bash
+# Full-text search (preferred)
+operately companies search --query "roadmap" --sort best_match
+
+# Quick title/name lookup
+operately companies quick_search --query "roadmap"
+
+# Broad lookup across many resource types
 operately companies global_search --query "roadmap"
 ```
+
+Scoped Docs & Files search:
+
+```bash
+operately documents search --project-id p1 --query "spec"
+```
+
+### Notification Recipients on Content
+
+Many mutations accept notification recipient controls:
+
+```bash
+operately projects create_check_in \
+  --project-id p1 \
+  --status on_track \
+  --description "# Update" \
+  --send-notifications-to-everyone false \
+  --subscriber-ids u2 \
+  --subscriber-ids u3
+```
+
+Same flags work on document updates, discussions, goal close/reopen, and other content mutations. Use `--send-notifications-to-everyone` sparingly; prefer `--subscriber-ids` for targeted alerts.
+
+### Template vs Live Comments
+
+| Intent | Commands |
+| --- | --- |
+| Comment on live check-ins, tasks, docs, discussions | `operately comments create …` |
+| Comment on template blueprint content | `operately project_templates create_comment …` |
+
+See [Project Template Workflows](project-template-workflows.md) for template collaboration patterns.
 
 ### Activity Feed
 
@@ -558,14 +602,11 @@ operately spaces update_tools \
   --tools.discussions-enabled true \
   --tools.resource-hub-enabled true
 
-# 5. Find the space's resource hub ID
-operately spaces list_tools --space-id s1
-
-# 6. Create welcome discussion
+# 5. Create welcome discussion
 operately spaces create_discussion \
   --space-id s1 \
   --title "Welcome to Product Team!" \
-  --body "# Welcome!\n\nGlad to have you on the team.\n\n## Getting Started\n- Review our resource hub\n- Join daily standups\n- Introduce yourself"
+  --body "# Welcome!\n\nGlad to have you on the team.\n\n## Getting Started\n- Review our Docs & Files\n- Join daily standups\n- Introduce yourself"
 ```
 
 ### Cross-Functional Project
@@ -627,12 +668,14 @@ Entity types must match exactly:
 # Wrong
 operately comments create \
   --entity-id ci1 \
-  --entity-type "check_in"  # ❌
+  --entity-type "check_in" \
+  --content "Example"
 
 # Right
 operately comments create \
   --entity-id ci1 \
-  --entity-type "project_check_in"  # ✅
+  --entity-type "project_check_in" \
+  --content "Example"
 ```
 
 ### Space Tools

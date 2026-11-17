@@ -1,46 +1,62 @@
-## Description: <br>
-Open-source geospatial intelligence gathering and visualization guidance for building Worldview-style dashboards that combine satellite tracking, flight and maritime data, street cameras, seismic feeds, and real-time 3D visualization effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for building geospatial OSINT dashboards that combine public location data sources, 3D globe visualization, satellite and aircraft tracking, maritime and seismic layers, and post-processing display modes.
 
-## Publisher: <br>
-[imjohnathanblog-spec](https://clawhub.ai/user/imjohnathanblog-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imjohnathanblog-spec](https://clawhub.ai/user/imjohnathanblog-spec)
 
-## Use Case: <br>
-Developers and OSINT analysts use this skill to design browser-based geospatial dashboards that integrate public aviation, maritime, satellite, seismic, camera, and map data with Cesium.js-style visualization workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive OSINT workflows can enable privacy-invasive or unlawful monitoring when applied to individuals, private spaces, or restricted data sources. <br>
-Mitigation: Use lawful public sources, follow API and camera-site terms, avoid monitoring individuals or private spaces, and add explicit privacy and responsible-use safeguards before deployment. <br>
-Risk: Example integrations use API keys and public data services that may expose credentials or exceed third-party terms if copied directly into a client-side dashboard. <br>
-Mitigation: Keep API keys out of client-side code where possible, use server-side secret handling or proxying, and review each provider's access and rate-limit terms before use. <br>
-Risk: Live public feeds can be incomplete, delayed, mislabeled, or misleading when combined into operational geospatial views. <br>
-Mitigation: Display source attribution and timestamps, cross-check important observations against multiple sources, and require human review before acting on alerts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cesium.js Basics](references/cesium-basics.md) <br>
-- [Rendering Stack Deep Dive](references/rendering-stack.md) <br>
-- [ADS-B Exchange API Reference](references/adsb-api.md) <br>
-- [Satellite Pass Prediction](references/satellite-passes.md) <br>
-- [Post-Processing Effects](references/effects.md) <br>
-- [Geospatial Osint ClawHub Release](https://clawhub.ai/imjohnathanblog-spec/geospatial-osint) <br>
+## Use Case:
 
+Developers and analysts use this skill to plan and build real-time geospatial intelligence dashboards that aggregate public aviation, maritime, satellite, seismic, mapping, and camera data. It is best suited for implementation guidance, source selection, visualization architecture, and agent-assisted dashboard development.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and reference links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dashboard architecture, data-source notes, example integrations, visualization effects, and responsible-use guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Aggregating public-location intelligence can expose privacy-sensitive patterns, especially when combining aviation, maritime, camera, and regional monitoring data.
+
+Mitigation: Use only lawful and authorized sources, restrict regions and data categories to the approved use case, and add logging and review before storing, sharing, or acting on aggregated observations.
+
+Risk: CCTV aggregation may include exposed private camera feeds or feeds without clear reuse rights.
+
+Mitigation: Do not use camera feeds unless usage rights are clear; require explicit user approval and document the permitted source before adding camera overlays.
+
+Risk: Automated alerts for military or geopolitical activity can amplify misleading or sensitive interpretations.
+
+Mitigation: Keep automated monitoring bounded by source, region, and rate limits, and require human review before alert escalation or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imjohnathanblog-spec/skills/geospatial-osint)
+- [Publisher profile](https://clawhub.ai/user/imjohnathanblog-spec)
+- [ADS-B Exchange API Reference](references/adsb-api.md)
+- [Cesium.js Basics](references/cesium-basics.md)
+- [Post-Processing Effects](references/effects.md)
+- [Rendering Stack Deep Dive](references/rendering-stack.md)
+- [Satellite Pass Prediction](references/satellite-passes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell command examples, API references, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; outputs should be reviewed before implementation against lawful data-source access, privacy, rate-limit, and monitoring constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

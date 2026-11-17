@@ -1,40 +1,53 @@
-## Description: <br>
-Rapproche les opérations bancaires avec les factures et notes de frais, signale les paiements réglés, partiels, impayés ou en retard, et produit un suivi mensuel par client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rapproche les opérations bancaires avec les factures et notes de frais classées, signale les paiements réglés, partiels, impayés ou en retard, et produit un suivi mensuel par client.
 
-## Publisher: <br>
-[trendex](https://clawhub.ai/user/trendex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trendex](https://clawhub.ai/user/trendex)
 
-## Use Case: <br>
-Accountants and finance operators use this skill to reconcile client bank transactions against classified invoices and expense reports. It highlights missing invoices, orphan payments, duplicate payments, unreadable statements, overdue invoices, and documents that need visual review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive bank, invoice, and expense data may be persisted in plaintext transcriptions, extraction caches, and vision sidecars beside accounting documents. <br>
-Mitigation: Run the skill only in a controlled copy or secured accounting workspace, review generated files, and define cleanup and retention rules for all generated artifacts. <br>
-Risk: Accounting follow-up can be affected if generated matches, anomalies, or visual-review corrections are accepted without review. <br>
-Mitigation: Review reconciliation output, unresolved vision items, duplicate-payment flags, and overdue-invoice recommendations before relying on them or sending reminders. <br>
+## Use Case:
 
+Accounting teams and their agents use this skill to reconcile bank transactions against classified invoices and expense reports, identify missing or duplicate payment evidence, and prepare a concise payment-status report for the accountant.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trendex/rapprochement-paiements) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with command examples and JSON reconciliation artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes per-client reconciliation state, consolidated reports, review queues, and document extraction sidecars.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated sidecar, transcription, report, and temporary vision files can contain sensitive financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only in a controlled accounting workspace, and exclude generated financial artifacts from sync, backups, and source control unless that sharing is intended.
+
+Risk: The vision queue can process files outside the intended client folder when the queue is modifiable by another party.
+
+Mitigation: Review or patch path-containment checks before using resolve_vision.py with queues that anyone else can modify.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/trendex/skills/rapprochement-paiements)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON accounting artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-client company.json and rapprochement.json files, consolidated reconciliation summaries, and vision sidecar guidance when documents need review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

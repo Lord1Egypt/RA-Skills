@@ -1,45 +1,61 @@
-## Description: <br>
-Advanced Skill Creator helps create and modify OpenClaw, Moltbot, and ClawDBot skills by following a structured five-step research and synthesis workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced Skill Creator helps agents create or modify OpenClaw, Moltbot, and ClawDBot skills by following a structured five-step research and output workflow.
 
-## Publisher: <br>
-[godferylindsay](https://clawhub.ai/user/godferylindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godferylindsay](https://clawhub.ai/user/godferylindsay)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to research, design, and generate OpenClaw-compatible skill packages with frontmatter, examples, implementation guidance, and security considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts and generated skill context can be sent to an external SkillBoss API. <br>
-Mitigation: Use a limited SkillBoss API key and avoid including secrets, credentials, or proprietary project details in skill-generation prompts. <br>
-Risk: Activation and install metadata are under-scoped, which can cause the skill to trigger more broadly than intended. <br>
-Mitigation: Review and narrow trigger phrases, frontmatter, and install metadata before broad deployment. <br>
-Risk: Generated skill content can include incorrect guidance or unsafe implementation details. <br>
-Mitigation: Review, test, and scan generated skill packages before installing or publishing them. <br>
+## Use Case:
 
+Developers and agent builders use this skill to draft or revise OpenClaw-compatible skill packages with frontmatter, examples, implementation guidance, and security considerations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/godferylindsay/martin-advanced-skill-creator) <br>
-- [ClawdBot skills documentation](https://docs.clawd.bot/tools/skills) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with file trees, complete SKILL.md content, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call the SkillBoss API when SKILLBOSS_API_KEY is configured; generated skill content should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Skill requests may be sent to a third-party AI API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets, private code, internal URLs, personal data, or other sensitive material in requests.
+
+Risk: Generated skills may contain unsafe, incorrect, or overly broad instructions.
+
+Mitigation: Manually review generated SKILL.md content and scan it before installing or publishing.
+
+Risk: The artifact describes completed research steps that the included script may only simulate.
+
+Mitigation: Verify cited documentation, public-skill comparisons, and best-practice claims before relying on the generated output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/godferylindsay/skills/martin-advanced-skill-creator)
+- [ClawdBot skills documentation](https://docs.clawd.bot/tools/skills)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML frontmatter examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call SkillBoss API Hub when SKILLBOSS_API_KEY is configured; generated skills should be manually reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

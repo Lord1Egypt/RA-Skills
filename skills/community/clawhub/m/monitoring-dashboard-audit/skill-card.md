@@ -1,42 +1,54 @@
-## Description: <br>
-Monitoring infrastructure assessment covering Grafana dashboard analysis, PromQL query validation, alert rule evaluation, SLA/SLO reporting review, and Prometheus data source health checks for network operations environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitoring infrastructure assessment covering Grafana dashboard analysis, PromQL query validation, alert rule evaluation, SLA/SLO reporting review, and Prometheus data source health checks for network operations environments.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Developers, SREs, and network operations teams use this skill to audit Grafana, Prometheus, and Alertmanager monitoring coverage, query quality, alerting behavior, SLA/SLO reporting, and data source health without modifying the target systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to Grafana, Prometheus, and Alertmanager data that may expose sensitive infrastructure details. <br>
-Mitigation: Use it only with authorization, grant a dedicated read-only or Viewer-level token, and avoid admin credentials. <br>
-Risk: Generated reports and command output may contain sensitive monitoring topology, service, alerting, and availability information. <br>
-Mitigation: Handle audit outputs as sensitive infrastructure information and share them only with approved operations or security stakeholders. <br>
+## Use Case:
 
+Developers, SREs, and network operations teams use this skill to audit Grafana dashboards, Prometheus data sources, PromQL queries, alert rules, and SLA/SLO reporting for monitoring coverage and reliability gaps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vahagn-madatyan/monitoring-dashboard-audit) <br>
-- [CLI Reference - Grafana and Prometheus APIs](references/cli-reference.md) <br>
-- [Query Reference - PromQL Patterns for Network Monitoring](references/query-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline API requests, shell commands, tables, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only audit findings, coverage scorecards, prioritized recommendations, and PromQL or alerting examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: Monitoring audit outputs can expose sensitive operational details such as datasource URLs, alert routing, contact points, silences, and Prometheus configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Grafana Viewer access, keep tokens out of shared outputs, and review reports before distributing them outside the authorized operations team.
+
+Risk: Dashboard, alert, or query recommendations may be incorrect if inventory, SLA/SLO targets, or baseline documentation are incomplete.
+
+Mitigation: Validate findings against current network scope, service documentation, and operations runbooks before changing monitoring configuration.
+
+## Reference(s):
+
+- [CLI Reference - Grafana and Prometheus APIs](references/cli-reference.md)
+- [Query Reference - PromQL Patterns for Network Monitoring](references/query-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown report with command and PromQL snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only audit guidance; the skill does not create, modify, or delete dashboards, alerts, or data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

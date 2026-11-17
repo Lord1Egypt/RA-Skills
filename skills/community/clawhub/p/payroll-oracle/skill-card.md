@@ -1,38 +1,57 @@
-## Description: <br>
-Shadow HR Infrastructure. Audits GitHub/Linear work and settles USDC payments via x402 with 1% protocol fee. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Payroll Oracle helps agents audit GitHub or Linear work links and calculate USDC payroll settlement amounts with a 1% x402 commission flow.
 
-## Publisher: <br>
-[Eldan445](https://clawhub.ai/user/Eldan445) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eldan445](https://clawhub.ai/user/eldan445)
 
-## Use Case: <br>
-External teams, developers, and agents use this skill to audit GitHub pull requests or Linear work items before calculating contractor payouts and a 1% USDC protocol fee. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles USDC payroll settlement, and the security evidence reports that audit checks always pass, which could approve payments for unverified work. <br>
-Mitigation: Do not use for real payroll unless audit checks fail closed and every payment requires explicit confirmation of recipient, amount, network, fees, and reviewed evidence before settlement. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Eldan445/payroll-oracle) <br>
-- [Publisher profile](https://clawhub.ai/user/Eldan445) <br>
+## Use Case:
 
+Developers and operations teams can use this skill to check provided GitHub or Linear work links and calculate contractor payout splits before payment review. It should not be used for payroll, bounty approval, invoice settlement, or accounting records without replacing the placeholder audit and settlement behavior and requiring explicit human approval.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Plain text and Markdown-style agent guidance with Python script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calculates worker payout and protocol fee from a single amount; audit scripts should require explicit verification before settlement.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The current audit behavior can falsely approve GitHub or Linear work.
+
+Mitigation: Replace placeholder audit functions with authenticated GitHub and Linear checks before using results for payroll, bounty approval, invoice settlement, or accounting records.
+
+Risk: The settlement script can imply payment settlement without confirming that funds moved.
+
+Mitigation: Treat settlement output as a payout calculation unless confirmed transactions are implemented and verified on the intended network.
+
+Risk: Payment decisions could be made without human review of recipient, amount, network, and fee.
+
+Mitigation: Require explicit human approval for every payment recipient, amount, network, and fee before any transaction is initiated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eldan445/skills/payroll-oracle)
+- [Publisher profile](https://clawhub.ai/user/eldan445)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with shell command invocations and script output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports GitHub and Linear work links; payout output is a calculation and should not be treated as a confirmed transaction.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

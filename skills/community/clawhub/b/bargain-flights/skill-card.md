@@ -1,48 +1,62 @@
-## Description: <br>
-Helps users find hidden-city flight opportunities by comparing one-way direct fares with connecting itineraries that pass through the intended destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users find hidden-city flight opportunities by comparing one-way direct fares with one-stop connecting itineraries that pass through the intended destination.
 
-## Publisher: <br>
-[coder-0x7fffffff](https://clawhub.ai/user/coder-0x7fffffff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coder-0x7fffffff](https://clawhub.ai/user/coder-0x7fffffff)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search one-way hidden-city flight options, compare them with direct-flight prices, and present booking links with baggage, return-ticket, and airline-policy cautions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hidden-city ticketing may conflict with airline policies and creates baggage, return-ticket, missed-segment, and itinerary-change risks. <br>
-Mitigation: Use only when the user explicitly wants hidden-city ticketing, disclose the policy and baggage risks before purchase, and prefer one-way itineraries without checked baggage. <br>
-Risk: The skill can activate for ordinary cheap-flight requests and may present skipped-segment booking guidance. <br>
-Mitigation: Present direct-flight comparison results first, label hidden-city options clearly, and treat the skipped-segment strategy as an optional choice that requires explicit user understanding. <br>
-Risk: Generated QR-code links send booking URLs to a third-party QR provider, which may expose personal, session, or tracking data embedded in those URLs. <br>
-Mitigation: Avoid QR generation for sensitive booking URLs unless the user accepts the data-sharing risk; use a direct or sanitized booking link when possible. <br>
-Risk: Flight searches depend on the external FlyAI CLI and Feizhu service. <br>
-Mitigation: Install the FlyAI CLI only from the referenced npm package, review it before use, and avoid entering credentials or secrets into generated commands. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search one-way hidden-city fare opportunities, compare savings against a direct-flight baseline, and present booking QR links with passenger risk warnings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coder-0x7fffffff/bargain-flights) <br>
-- [bargain-flights reference](references/bargain-flights.md) <br>
-- [FlyAI CLI package](https://www.npmjs.com/package/@fly-ai/flyai-cli) <br>
-- [Feizhu flight service endpoint](https://a.feizhu.com) <br>
-- [QR Server API](https://api.qrserver.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and guidance with JSON helper-script output and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes generated booking QR-code URLs and hidden-city travel risk notices when presenting results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: release evidence) <br>
+Risk: The skill depends on installing a global, unpinned npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, pin and review the @fly-ai/flyai-cli version before use, and reinstall only from the expected npm package source.
+
+Risk: Booking links can be shared with a third-party QR-code service when QR links are opened or previewed.
+
+Mitigation: Avoid sensitive or signed booking URLs, and review generated QR links before sharing them with users.
+
+Risk: Hidden-city itineraries can create baggage, airline-policy, missed-segment, return-ticket, and international-document risks.
+
+Mitigation: Independently verify airline policy, baggage handling, visa and passport requirements, and ticketing consequences before purchase; prefer one-way trips and hand luggage.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coder-0x7fffffff/skills/bargain-flights)
+- [ClawHub publisher profile](https://clawhub.ai/user/coder-0x7fffffff)
+- [bargain-flights reference](artifact/references/bargain-flights.md)
+- [@fly-ai/flyai-cli npm package](https://www.npmjs.com/package/@fly-ai/flyai-cli)
+- [Feizhu flight API endpoint](https://a.feizhu.com)
+- [QR Server API endpoint](https://api.qrserver.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables and links, with JSON outputs from helper scripts and inline shell commands for flight lookup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include explored route summaries, candidate hidden-city fare recommendations, QR-code booking links, and required baggage, itinerary, airline-policy, and visa/passport warnings.]
+
+## Skill Version(s):
+
+1.0.8 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

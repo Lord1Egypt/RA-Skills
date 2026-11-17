@@ -1,43 +1,58 @@
-## Description: <br>
-Query the BCRA Central de Deudores API to check current debts, historical debt status, and rejected checks for individuals or companies in Argentina by CUIT, CUIL, or CDI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the BCRA Central de Deudores API to check the credit status, current and historical debts, and rejected checks of individuals or companies in Argentina using a CUIT, CUIL, or CDI number.
 
-## Publisher: <br>
-[ferminrp](https://clawhub.ai/user/ferminrp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ferminrp](https://clawhub.ai/user/ferminrp)
 
-## Use Case: <br>
-External users and business or legal workflow agents use this skill to retrieve and interpret Argentine credit/debt registry information by authorized CUIT, CUIL, or CDI lookup. <br>
-
-### Deployment Geography for Use: <br>
-Argentina <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve sensitive credit and debt information by tax identifier. <br>
-Mitigation: Use it only for your own records or clearly authorized business or legal workflows, and avoid sharing retrieved results unnecessarily. <br>
-Risk: A mistyped CUIT, CUIL, or CDI could return information for the wrong person or company. <br>
-Mitigation: Verify the 11-digit identifier before querying and treat no-record responses as inconclusive rather than proof of no debts. <br>
-Risk: The optional third-party visual interface may expose lookup data outside the official API path. <br>
-Mitigation: Prefer the official BCRA API unless the user intentionally asks to use the third-party UI. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Central de Deudores OpenAPI specification](references/openapi-spec.json) <br>
-- [BCRA API base URL](https://api.bcra.gob.ar) <br>
-- [ClawHub release page](https://clawhub.ai/ferminrp/bcra-central-deudores) <br>
+## Use Case:
 
+External users and agents use this skill to query Argentina Central Bank debtor registry data for authorized credit-status checks, debt history review, and rejected-check reporting by CUIT, CUIL, or CDI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON response summaries and optional inline curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include interpreted credit situation codes, debt amounts in thousands of ARS, historical trend notes, and rejected check status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes sensitive credit-status information tied to CUIT, CUIL, or CDI identifiers.
+
+Mitigation: Use it only for authorized debtor-registry lookups and avoid checking unrelated people or companies without consent or a valid legal basis.
+
+Risk: The optional compara.ar web interface can disclose the queried identifier to a third-party site.
+
+Mitigation: Prefer the public BCRA API when possible, and use the compara.ar link only after accepting that disclosure.
+
+Risk: A 404 response may be misread as proof that no debt exists.
+
+Mitigation: Present missing records carefully as no records found for that identifier and note that the identifier may be incorrect.
+
+## Reference(s):
+
+- [OpenAPI specification](references/openapi-spec.json)
+- [BCRA API base URL](https://api.bcra.gob.ar)
+- [ClawHub skill page](https://clawhub.ai/ferminrp/skills/bcra-central-deudores)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Markdown with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces interpreted debtor-registry results and cautions for missing records, reported amounts, risk codes, and unpaid rejected checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

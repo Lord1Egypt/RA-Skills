@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "AgentMail"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["agent_mail"]
   icon: "https://static.oomol.com/logo/third-party/agent_mail.svg"
 ---
@@ -136,8 +136,8 @@ Each action is listed below with a one-line description; actions that change sta
 - `update_pod_thread` — Update labels on an AgentMail thread scoped to a pod. [write]
 - `update_thread` — Update labels on an AgentMail thread. [write]
 - `update_webhook` — Update an AgentMail webhook. [write]
-- `verify_domain` — Ask AgentMail to verify a domain's DNS records.
-- `verify_pod_domain` — Ask AgentMail to verify a pod domain's DNS records.
+- `verify_domain` — Ask AgentMail to verify a domain's DNS records. [write]
+- `verify_pod_domain` — Ask AgentMail to verify a pod domain's DNS records. [write]
 - `who_am_i` — Get AgentMail identity information for the current API key.
 
 ## Safety
@@ -169,11 +169,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — AgentMail is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=agent_mail
+  https://console.oomol.com/connections/agent_mail
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - AgentMail homepage: https://agentmail.to
+- API documentation: https://docs.agentmail.to/api-reference/

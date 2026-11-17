@@ -1,42 +1,59 @@
-## Description: <br>
-ReplyHer helps users decode messages and craft emotionally intelligent replies for dating, workplace, and social scenarios across Chinese, English, and other languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ReplyHer helps users decode dating, workplace, and social messages and craft emotionally intelligent replies in Chinese, English, and other languages.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use ReplyHer to paste received messages or conversation threads and get interpretations, reply options, and tactical communication coaching for dating, workplace, and social situations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste private chat content, personal identifiers, workplace secrets, financial or health information, or third-party messages without permission. <br>
-Mitigation: Redact names, contact details, sensitive workplace information, financial or health details, and private third-party messages before using the skill. <br>
-Risk: Communication coaching may be used in sensitive interpersonal situations where pressure, harassment, or boundary-crossing would cause harm. <br>
-Mitigation: Review suggested replies before sending them, respect clear refusal or disengagement, and avoid using the skill to manipulate, guilt-trip, or pursue someone who is pulling away. <br>
+## Use Case:
 
+External users use this skill to interpret message subtext, generate reply options, and receive tactical coaching for dating, workplace, social, and family conversations.
 
-## Reference(s): <br>
-- [Replyher Skill on ClawHub](https://clawhub.ai/imwyvern/replyher-skill) <br>
-- [ReplyHer](https://replyher.com) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections, interpretations, reply options, and brief strategy notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language and adapts to dating, workplace, or social context without extra configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Users may paste private chats, workplace messages, screenshots, or relationship details into the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and avoid sharing sensitive personal or workplace information unless the deployment environment is approved for that data.
+
+Risk: The skill can promote an external service during sensitive interactions.
+
+Mitigation: Review and, if needed, disable or adapt promotional language before deploying the skill in environments with strict privacy, advertising, or user trust requirements.
+
+Risk: The artifact includes a release script that commits, pushes, and publishes through npm tooling.
+
+Mitigation: Do not run the publish script unless git changes and npm dependency resolution are reviewed and controlled.
+
+## Reference(s):
+
+- [Replyher Skill on ClawHub](https://clawhub.ai/imwyvern/skills/replyher-skill)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style coaching responses with brief analysis, reply options, strategy notes, and situation-specific guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are intended to match the user's language and the detected communication scenario.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

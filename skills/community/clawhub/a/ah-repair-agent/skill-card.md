@@ -1,38 +1,54 @@
-## Description: <br>
-RepairAgent helps agents diagnose software defects, localize likely root causes, generate patch hypotheses, and validate fixes through tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+repair-agent helps an agent diagnose software defects, localize likely causes, propose patches, and validate fixes through test-driven repair workflows.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use RepairAgent to guide automated bug repair workflows, from fault localization and hypothesis generation through patch creation, validation, and final fix recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated patches or repair guidance could introduce incorrect behavior, especially in security-sensitive or deployment-related code. <br>
-Mitigation: Use the skill on repositories you control, keep version-control rollback available, review diffs before accepting changes, and run the relevant test suite before deployment. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to investigate failing tests or bug reports, identify likely root causes, generate candidate patches, and document validation results before accepting a repair.
 
-## Reference(s): <br>
-- [RepairAgent code examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with diagnostic summaries, ranked findings, patch explanations, validation results, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include confidence scores, test outcomes, and final fix recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may guide an agent to edit code and run project tests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use version control, inspect proposed diffs, and review changes before accepting them.
+
+Risk: Generated patches or diagnoses may be incomplete or incorrect.
+
+Mitigation: Run the relevant test suite, add regression tests for the reported bug, and accept only changes with reviewed validation results.
+
+## Reference(s):
+
+- [RepairAgent examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-repair-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with diagnostic summaries, ranked locations, patch suggestions, validation notes, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence scores, test outcomes, and final fix recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

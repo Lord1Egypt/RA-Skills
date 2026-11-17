@@ -1,43 +1,59 @@
-## Description: <br>
-Connects an agent to the Shuaishou HTYD MCP server through a Streamable HTTP client so it can list and call shop workflow tools, including login, product collection, claim, and Temu publishing tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and uses a Streamable HTTP MCP client to connect to the htyd production MCP server and invoke shop workflow tools for login, listing shops, collecting goods, claiming goods, publishing Temu drafts, and checking publish records.
 
-## Publisher: <br>
-[wang-jie-ss](https://clawhub.ai/user/wang-jie-ss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wang-jie-ss](https://clawhub.ai/user/wang-jie-ss)
 
-## Use Case: <br>
-External sellers, shop operators, and automation developers use this skill to connect an agent to Shuaishou shop workflows for collecting product links, claiming products into shop drafts, and publishing or tracking Temu listings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish products to live shops through Shuaishou and Temu workflows. <br>
-Mitigation: Require human confirmation of the product URL, target shop, platform, and publish action before running collect_and_publish, publish_and_track, publish_temu, or raw MCP calls. <br>
-Risk: Authorization may be stored locally for reuse. <br>
-Mitigation: Use a dedicated low-privilege MCP key and protect or remove ~/.htyd-mcp-client-streamable.json after use. <br>
-Risk: Broad MCP tool access can perform actions beyond simple listing or status checks. <br>
-Mitigation: Review requested tool names and arguments before execution, especially login, claim, publish, and generic raw tool calls. <br>
+## Use Case:
 
+External sellers, operators, and developers use this skill to drive Shuashou Store Manager workflows from an agent shell: connect to the MCP endpoint, inspect available tools, collect products, claim them to shops, and publish or track Temu listings. It is intended for production use against the documented htyd MCP service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wang-jie-ss/shuaishou-mcp-client) <br>
-- [Shuaishou MCP endpoint](https://dz.shuaishou.com/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke live MCP tools that affect shop drafts and Temu publishing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can perform live shop actions, including product collection, claiming, Temu publishing, and status checks against a production MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before collect, claim, publish, or publish-and-track commands, and verify shop IDs, platform IDs, product URLs, and draft selections before execution.
+
+Risk: Credentials or authorization values may be supplied through environment variables or cached in the user's home directory for reuse.
+
+Mitigation: Use revocable environment-provided credentials where possible, avoid sharing shell history or config files, and remove ~/.htyd-mcp-client-streamable.json after use when persistent access is not needed.
+
+Risk: Changing MCP_URL can redirect the client to a different MCP endpoint.
+
+Mitigation: Keep MCP_URL pointed at the trusted production endpoint unless a trusted operator intentionally overrides it, and avoid untrusted or HTTP-only endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wang-jie-ss/skills/shuaishou-mcp-client)
+- [htyd production MCP endpoint](https://dz.shuaishou.com/mcp)
+- [Publisher profile](https://clawhub.ai/user/wang-jie-ss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may call live shop APIs and can return MCP tool results, progress logs, publish status summaries, or error details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

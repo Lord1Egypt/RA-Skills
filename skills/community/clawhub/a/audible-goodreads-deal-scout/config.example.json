@@ -1,5 +1,5 @@
 {
-  "artifactDir": ".audible-goodreads-deal-scout/artifacts/current",
+  "artifactDir": "artifacts/current",
   "audibleAuthPath": null,
   "audibleDealUrl": null,
   "audibleFetchBackend": "auto",
@@ -14,9 +14,9 @@
   "freshnessDays": 180,
   "enrichGoodreadsRatings": true,
   "goodreadsRatingLimit": 20,
-  "goodreadsCsvPath": "/absolute/path/to/goodreads_library_export.csv",
-  "preferencesPath": ".audible-goodreads-deal-scout/preferences.md",
+  "goodreadsCsvPath": "goodreads_library_export.csv",
+  "preferencesPath": "preferences.md",
   "privacyMode": "normal",
-  "stateFile": ".audible-goodreads-deal-scout/state.json",
+  "stateFile": "state.json",
   "threshold": 3.8
 }

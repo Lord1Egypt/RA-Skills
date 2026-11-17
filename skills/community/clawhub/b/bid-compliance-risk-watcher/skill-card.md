@@ -1,40 +1,53 @@
-## Description: <br>
-Monitors public procurement and tender records for China-focused bid-compliance risks, related-party exposure, and structured supplier due-diligence reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors public procurement records for bid cancellations, complaints, violations, and related-party issues to help assess enterprise bidding compliance risk.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Procurement, vendor-risk, and compliance teams use this skill to review a company before supplier onboarding or partnership decisions, focusing on official bid rejection, complaint, penalty, blacklist, and related-party risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China-focused source coverage; usable globally by teams assessing Chinese procurement and tender records. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: China-focused procurement sources may not cover non-China jurisdictions or general reputation issues. <br>
-Mitigation: Use the skill for China tender-compliance due diligence and supplement it with jurisdiction-specific checks when assessing companies outside that scope. <br>
-Risk: Supplier exclusion or contract decisions could be affected by stale, incomplete, or misattributed public records. <br>
-Mitigation: Verify cited official sources, confirm entity identity and related-party matches, and keep inferred analysis clearly separated from confirmed facts before acting. <br>
+## Use Case:
 
+Procurement, compliance, and risk teams use this skill to review a company before supplier onboarding or partnership approval. It searches official procurement and corporate records, filters unverified rumors, scores bidding-compliance risk, and produces monitoring recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/daviddatamining/bid-compliance-risk-watcher) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown risk warning report with tables, evidence links, risk levels, and compliance recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target company name; optional controls include time range, warning-letter inclusion, and related-party penetration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may produce reputational or compliance risk assessments about companies from public procurement records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the report for procurement due diligence, verify cited official sources, and have qualified reviewers confirm material conclusions before acting on them.
+
+Risk: Internal-control defects, trend labels, and risk-transfer conclusions may be analytical inferences rather than verified facts.
+
+Mitigation: Keep inferred statements clearly labeled as analysis and corroborate them with source documents, company responses, or independent review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/bid-compliance-risk-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables, cited-source fields, risk ratings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes official-source evidence requirements, rumor-filtering notes, related-party risk analysis, blacklist status, and dynamic monitoring suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

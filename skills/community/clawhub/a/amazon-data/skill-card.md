@@ -1,41 +1,50 @@
-## Description: <br>
-Retrieve Amazon product data including pricing, reviews, sales estimates, stock levels, search results, deals, and more via the Canopy API REST endpoints using Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve Amazon product data including pricing, reviews, sales estimates, stock levels, search results, deals, and more via the Canopy API REST endpoints using Python.
 
-## Publisher: <br>
-[rhino88](https://clawhub.ai/user/rhino88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rhino88](https://clawhub.ai/user/rhino88)
 
-## Use Case: <br>
-Developers and agents use this skill to generate Python-based Canopy API requests for Amazon product lookup, pricing, reviews, sales and stock estimates, search, offers, deals, category, seller, and author data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Canopy API usage sends product identifiers, URLs, GTINs, seller IDs, author terms, and search terms to a third-party API. <br>
-Mitigation: Use the skill only for approved Canopy workflows and avoid submitting secrets or sensitive internal research terms as request parameters. <br>
-Risk: Misuse or leakage of the Canopy API key could allow unauthorized access or unexpected billing. <br>
-Mitigation: Use a dedicated or limited Canopy API key, keep it in the API_KEY environment variable, and monitor API usage and billing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rhino88/amazon-data) <br>
-- [Canopy API](https://canopyapi.co) <br>
-- [Canopy REST API base URL](https://rest.canopyapi.co) <br>
+## Use Case:
 
+Developers and analysts use this skill to draft Python-based Canopy API requests for Amazon product lookup, search, reviews, offers, deals, stock, and sales-estimate workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Canopy API key supplied through the API_KEY environment variable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a Canopy API key and sends Amazon lookup or search parameters to Canopy API.
+
+Mitigation: Store the API key in an environment variable, review Canopy billing and data-use terms before use, and avoid sending sensitive lookup data unless permitted for the use case.
+
+## Reference(s):
+
+- [Canopy API](https://canopyapi.co)
+- [Canopy API REST base URL](https://rest.canopyapi.co)
+- [ClawHub skill page](https://clawhub.ai/rhino88/skills/amazon-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Canopy API REST requests return JSON responses; the skill contains guidance only and no bundled executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

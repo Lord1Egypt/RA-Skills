@@ -1,41 +1,49 @@
-## Description: <br>
-Merges, dedupes, ranks, and formats research findings into a ranked report after research agents return results from multiple channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges, dedupes, ranks, and formats research findings into a report. Use after research agents return results from multiple channels to produce a ranked report.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and researchers use this skill after multi-channel research sessions to merge raw findings, deduplicate overlap, rank findings, group themes, and produce a final report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad single-word triggers that may activate when a user did not intend to synthesize research results. <br>
-Mitigation: Invoke it only for active multi-channel research sessions where a ranked synthesis report is desired. <br>
-Risk: Synthesis can preserve or amplify incorrect, stale, or low-quality source findings. <br>
-Mitigation: Review the generated report against the original research findings before using it for decisions or publication. <br>
+## Use Case:
 
+Developers and research agents use this skill after gathering findings from multiple channels to merge duplicates, rank and group findings by theme, and produce a report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-tome-synthesize) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/tome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report, brief, or transcript] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks, groups, and formats findings from an active research session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The skill's trigger name may overlap with a built-in command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check whether the agent already assigns the same trigger to a built-in command before relying on this skill's activation.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown report, brief, or transcript]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings are merged, ranked, and grouped by theme.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

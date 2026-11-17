@@ -1,40 +1,53 @@
-## Description: <br>
-Generates a standalone offline HTML quiz app for students with practice, exam, memorization, and error-review modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a single-file, offline HTML quiz app for students, with practice, exam, memorization, and wrong-answer review modes.
 
-## Publisher: <br>
-[duzhilei951](https://clawhub.ai/user/duzhilei951) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duzhilei951](https://clawhub.ai/user/duzhilei951)
 
-## Use Case: <br>
-Teachers, tutors, and developers use this skill to turn pasted question banks into deployable single-file quiz pages for student practice, review, and lightweight assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated quiz HTML contains the answer key, so it is not suitable for settings where answers must remain secret. <br>
-Mitigation: Use it for practice, study, or low-stakes assessment, and review generated files before any exam that requires answer secrecy. <br>
-Risk: Browser localStorage and exported learning-record JSON can reveal student progress or wrong answers on shared devices. <br>
-Mitigation: Avoid storing personal learning records on shared computers, clear local data after use, and review import/export handling before classroom deployment. <br>
+## Use Case:
 
+Teachers, tutors, and education content authors use this skill to turn pasted or loosely formatted question sets into a deployable offline quiz page for student practice, testing, memorization, and wrong-answer review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duzhilei951/quiz-app-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, guidance] <br>
-**Output Format:** [Single-file HTML code with brief Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated quiz pages are designed to run offline without external dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated quiz apps may store scores and wrong-answer history in the browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before sharing with students, add or verify a clear local-storage notice and provide a way to clear saved learning records.
+
+Risk: Imported learning-record JSON could come from an untrusted source.
+
+Mitigation: Use care when importing records and share import files only through trusted channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duzhilei951/skills/quiz-app-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Files, Guidance]
+
+**Output Format:** [Single-file HTML with inline CSS and JavaScript, plus brief Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated apps are designed to run offline with no external dependencies and may persist quiz progress in browser localStorage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

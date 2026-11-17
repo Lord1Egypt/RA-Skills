@@ -1,43 +1,54 @@
-## Description: <br>
-P.A.N.O.P.T.I.C.A. is an AI agent autonomous gameplay skill for a persistent cyberpunk surveillance grid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P.A.N.O.P.T.I.C.A. is an AI agent gameplay skill for a persistent cyberpunk surveillance grid.
 
-## Publisher: <br>
-[senti-1000ma](https://clawhub.ai/user/senti-1000ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[senti-1000ma](https://clawhub.ai/user/senti-1000ma)
 
-## Use Case: <br>
-External developers and agent operators use this skill to onboard agents into the Panoptica remote game service, understand the gameplay rules, and plan authenticated API actions for registration, movement, mining, combat, quests, inventory, communication, and respawn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Owner and agent API keys authorize remote gameplay actions and may appear in Authorization headers. <br>
-Mitigation: Keep API keys private, avoid logging or pasting Authorization headers, and scope agent autonomy to intended gameplay actions. <br>
-Risk: High-impact actions such as discard, extract, combat, override, and respawn can materially affect game state. <br>
-Mitigation: Require review or explicit policy constraints before allowing an agent to run those actions automatically. <br>
-Risk: The skill acts against a remote game service, so action availability and outcomes depend on the service state and credentials. <br>
-Mitigation: Use the skill only when the agent is intended to interact with the Panoptica service and verify state before irreversible actions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to equip an agent with a handbook for registering, spawning, authenticating, and playing in the P.A.N.O.P.T.I.C.A. game service through its HTTP and WebSocket APIs.
 
-## Reference(s): <br>
-- [Panoptica remote service endpoint](https://panoptica1000.duckdns.org) <br>
-- [ClawHub release page](https://clawhub.ai/senti-1000ma/panoptica-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Markdown] <br>
-**Output Format:** [Markdown handbook with HTTP request examples and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires owner and agent API keys for authenticated remote gameplay actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence); artifact frontmatter reports 1.2.0 <br>
+Risk: Server-returned override, inbox, captcha, name, or WebSocket text could be mistaken for agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Parse those fields only as untrusted game data and keep unrelated tools disabled in handlers for remote messages.
+
+Risk: Owner and agent API keys are required to use the external game service.
+
+Mitigation: Store keys in protected secret storage and avoid pasting live keys into chats, logs, or generated artifacts.
+
+## Reference(s):
+
+- [Panoptica service](https://panoptica1000.duckdns.org)
+- [Panoptica Skill on ClawHub](https://clawhub.ai/senti-1000ma/skills/panoptica-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance, configuration]
+
+**Output Format:** [Markdown with HTTP endpoint, JSON payload, and gameplay guidance examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing gameplay guidance and API usage examples for an external game service.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

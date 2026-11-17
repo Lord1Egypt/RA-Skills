@@ -1,31 +1,31 @@
-# Alchemy 评审检查清单
+#Alchemy Review Checklist
 
-## 架构
+## Architecture
 
-- [ ] 变更属于选定的目标模块。
-- [ ] 没有重复实现已有能力、入口、抽象或用户工作流。
-- [ ] 职责清晰且不重叠。
-- [ ] 命名符合目标项目语义。
-- [ ] 目标架构落点清晰，未为了参考项目形态引入并行体系。
-- [ ] 配置、运行时流程、工具函数和文档承诺没有互相冲突。
+- [ ] Changes belong to the selected target module.
+- [ ] No duplication of existing capabilities, portals, abstractions, or user workflows.
+- [ ] Responsibilities are clear and non-overlapping.
+- [ ] Naming conforms to target project semantics.
+- [ ] The target architecture has a clear focus, and no parallel system is introduced for reference project form.
+- [ ] Configuration, runtime processes, utility functions, and document commitments do not conflict with each other.
 
-## 原创性
+## Originality
 
-- [ ] 不存在缺少许可证依据的非平凡复制代码或文本。
-- [ ] 实现已用目标项目原生风格表达。
-- [ ] 参考项目影响被总结为思想、模式或行为。
-- [ ] 如许可证要求，已保留必要署名。
+- [ ] There is no non-trivial copying of code or text that lacks a license basis.
+- [ ] Implementation has been expressed using the native style of the target project.
+- [ ] Reference project impact summarized as thoughts, patterns, or behaviors.
+- [ ] Where required by the license, necessary attribution has been retained.
 
-## 质量
+## Quality
 
-- [ ] 测试或验证步骤覆盖了被吸收的行为。
-- [ ] 错误与边界场景已处理。
-- [ ] 依赖新增有充分理由。
-- [ ] 文档和示例已更新。
-- [ ] 选用的项目形态探针与实际目标相关，没有做无关全量扫描。
+- [ ] The test or verification step covers the absorbed behavior.
+- [ ] Errors and edge scenarios have been handled.
+- [ ] There are good reasons to rely on new additions.
+- [ ] Documentation and examples updated.
+- [ ] The selected project form probe is related to the actual target, and no irrelevant full scan is performed.
 
-## 交付
+## Delivery
 
-- [ ] 已总结面向用户的变更。
-- [ ] 已说明被拒绝的候选项。
-- [ ] 已记录风险和后续工作。
+- [ ] User-facing changes summarized.
+- [ ] Rejected candidates have been described.
+- [ ] Risks and follow-up actions documented.

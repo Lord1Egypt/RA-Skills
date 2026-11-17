@@ -1,39 +1,53 @@
-## Description: <br>
-Parses and validates mainland Chinese ID card numbers offline, extracting region, birthdate, gender, and age, with format hints for Hong Kong, Macau, Taiwan, and passport documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses and validates Chinese mainland ID card numbers offline, extracting province, city, district, birthdate, gender, age, and checksum status while providing format guidance for related permit and passport numbers.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and developers use this skill to interpret or validate Chinese identity-document numbers in an offline agent session for form checking, identity-data review, age calculation, and region extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal identifier data. <br>
-Mitigation: Only process ID numbers the user is authorized to handle, and keep full ID numbers masked or otherwise minimized in outputs. <br>
-Risk: A valid format and checksum do not prove that an identity document is real or officially issued. <br>
-Mitigation: Present results as offline format parsing only, and use official verification channels when identity proof is required. <br>
+## Use Case:
 
+External users, developers, and support staff can use the skill to parse or validate Chinese mainland ID card numbers, extract non-sensitive attributes, and explain why a number is invalid. It should be used only when the user is authorized to process the ID number.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted analysis with masked identifier excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline only; no API keys, network access, or executable code required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can reveal personal attributes encoded in an ID number.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for ID numbers the user is authorized to process and keep outputs redacted.
+
+Risk: Checksum validation can be mistaken for proof that an ID is real or belongs to a person.
+
+Mitigation: State that validation only confirms internal format consistency and does not verify issuance or identity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/china-idcard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses with redacted ID-number displays and validation explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline guidance only; no API keys, network calls, persistence, or code execution required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

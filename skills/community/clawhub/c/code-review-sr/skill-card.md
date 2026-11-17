@@ -1,39 +1,60 @@
-## Description: <br>
-AI-powered code review that combines fast local static analysis with deep AI reasoning. Catches bugs, security vulnerabilities, performance issues, and style problems. Supports Anthropic, OpenAI, and Ollama models. Falls back to local regex analysis when offline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Review provides AI-assisted code review with local static analysis, optional Anthropic, OpenAI, or Ollama review, and fallback local findings for bugs, security, performance, and style issues.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and engineers use this skill to review files or directories for bugs, security issues, performance concerns, style problems, and maintainability findings. It can run local static checks only, or combine local findings with a configured Anthropic, OpenAI, or Ollama model for deeper analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: When an external AI provider is configured, reviewed source code and local findings are sent to that provider. <br>
-Mitigation: For proprietary or sensitive repositories, leave external API keys unset, use local Ollama, or avoid reviewing files that contain secrets unless organizational policy allows that provider. <br>
+## Use Case:
 
+Developers and engineers use this skill to review individual files or source directories for bugs, security issues, performance concerns, style problems, and maintainability feedback.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TheShadowRose/code-review-sr) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Structured JSON review results with issue lists, scores, suggestions, summaries, and directory aggregate metrics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Files reviewed with AI are truncated at 8,000 characters before model submission; directory reviews use configurable concurrency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: Directory review may follow symlinks outside the selected folder and send unintended local files to a configured AI provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only mode for sensitive repositories, avoid directory review on untrusted repositories or repositories containing symlinks, and review the file set before enabling external AI providers.
+
+Risk: When Anthropic, OpenAI, or Ollama is configured, reviewed source code and static-analysis findings are sent to the selected provider.
+
+Mitigation: Do not analyze code containing secrets or sensitive data with external providers unless the data-sharing path has been approved; run without an API key for local-only analysis.
+
+Risk: AI-generated review findings can be incomplete or incorrect.
+
+Mitigation: Treat results as review assistance and confirm security decisions with separate static analysis, tests, and human review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/code-review-sr)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Configuration, Guidance]
+
+**Output Format:** [JSON review objects and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review output can include score, issues, suggestions, summary, line counts, model name, and whether AI review was used; files sent to AI are truncated at 8000 characters.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

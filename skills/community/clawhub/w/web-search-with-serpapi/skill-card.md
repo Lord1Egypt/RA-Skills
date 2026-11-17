@@ -1,39 +1,56 @@
-## Description: <br>
-Search the web using SerpAPI with customizable engines (Google, Google AI Mode, Bing, etc.). Use when user needs web search results via SerpAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using SerpAPI with customizable engines (Google, Google AI Mode, Bing, etc.). Use when user needs web search results via SerpAPI.
 
-## Publisher: <br>
-[lsl001006](https://clawhub.ai/user/lsl001006) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lsl001006](https://clawhub.ai/user/lsl001006)
 
-## Use Case: <br>
-Developers and agents use this skill to run web searches through SerpAPI when a task needs current search results from supported engines. It is useful for retrieving text search-result blocks after the user or environment provides a SerpAPI key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to SerpAPI and may expose confidential or sensitive query content. <br>
-Mitigation: Avoid searching secrets, credentials, private customer data, or confidential internal material through this skill. <br>
-Risk: The skill depends on a SerpAPI API key and the third-party serpapi Python package. <br>
-Mitigation: Provide the key through SERPAPI_API_KEY instead of editing source files, and review or pin the dependency in controlled environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lsl001006/web-search-with-serpapi) <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve web search results through SerpAPI when an agent needs current search results from supported engines.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text search-result blocks returned from SerpAPI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SERPAPI_API_KEY and the serpapi Python package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries and related request data are sent to SerpAPI.
+
+Mitigation: Install only in environments where sending search queries to SerpAPI is acceptable.
+
+Risk: The skill requires a SerpAPI key.
+
+Mitigation: Set SERPAPI_API_KEY through an environment variable or secret manager and avoid hardcoding credentials.
+
+Risk: The serpapi dependency is not pinned in the artifact metadata.
+
+Mitigation: Pin or lock the serpapi dependency before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lsl001006/skills/web-search-with-serpapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text returned from SerpAPI text blocks or an error/status string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SERPAPI_API_KEY environment variable and the serpapi Python package; supports query and engine parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

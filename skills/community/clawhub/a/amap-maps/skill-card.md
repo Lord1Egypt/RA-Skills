@@ -1,42 +1,55 @@
-## Description: <br>
-Amap LBS services. Call Amap services via Streamable HTTP MCP, supporting geocoding, route planning, POI search, weather query, distance measurement, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amap LBS services. Call Amap services via Streamable HTTP MCP, supporting geocoding, route planning, POI search, weather query, distance measurement, and more.
 
-## Publisher: <br>
-[elric2011](https://clawhub.ai/user/elric2011) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[elric2011](https://clawhub.ai/user/elric2011)
 
-## Use Case: <br>
-Developers and agents use this skill to query Amap location services from a Node.js CLI for geocoding, POI lookup, route planning, weather, distance measurement, IP location, and Amap URI generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Map, route, IP-location, and place queries are sent to Amap and may include sensitive location or travel data. <br>
-Mitigation: Avoid submitting home, customer, internal, or sensitive travel-location data unless sharing it with Amap is acceptable. <br>
-Risk: The Amap API key could be exposed through logs, shell history, shared terminals, or copied command output. <br>
-Mitigation: Use a dedicated Amap API key, keep it in the AMAP_KEY environment variable, avoid printing it, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to call Amap location services from command-line workflows for weather, geocoding, POI search, route planning, distance measurement, IP location, and Amap URI generation.
 
-## Reference(s): <br>
-- [Amap MCP Server Official Documentation](https://lbs.amap.com/api/mcp-server/summary) <br>
-- [Amap API Key Registration Guide](https://lbs.amap.com/api/javascript-api-v2/guide/abc/register) <br>
-- [ClawHub Skill Page](https://clawhub.ai/elric2011/amap-maps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+ and an AMAP_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill sends places, coordinates, routes, POI lookups, weather cities, IP addresses, and the Amap API key to Amap's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing that location or routing data with Amap is intended, and avoid submitting sensitive home, workplace, or travel-pattern data.
+
+Risk: The skill requires an AMAP_KEY for remote API access.
+
+Mitigation: Store the key in the environment, rotate it if exposed, and avoid placing it in prompts, logs, or shared command transcripts.
+
+## Reference(s):
+
+- [Amap MCP Server Official Documentation](https://lbs.amap.com/api/mcp-server/summary)
+- [Amap API Key Registration Guide](https://lbs.amap.com/api/javascript-api-v2/guide/abc/register)
+- [ClawHub skill page](https://clawhub.ai/elric2011/skills/amap-maps)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and an AMAP_KEY environment variable; command results may include map, route, weather, POI, distance, IP-location, and URI data returned by Amap.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

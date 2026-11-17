@@ -1,46 +1,60 @@
-## Description: <br>
-Helps an agent rewrite generic advice into grounded practitioner judgment with clear trade-offs, practical signals, boundaries, and one concrete next step. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents rewrite generic advice into grounded practitioner judgment for ambiguous decisions, critiques, trade-offs, and incomplete information.
 
-## Publisher: <br>
-[august1314](https://clawhub.ai/user/august1314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[august1314](https://clawhub.ai/user/august1314)
 
-## Use Case: <br>
-External users, employees, and developers use this skill when they want advice, strategy, critique, or decision-making help to move from abstract, generic answers to grounded practitioner guidance under ambiguity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence broad advice and strategy answers toward a more decisive posture. <br>
-Mitigation: Use it for advice, strategy, critique, and decision-making prompts, and keep assumptions, boundaries, and change conditions visible in the answer. <br>
-Risk: The examples include Chinese phrasing and may pull responses toward Chinese-language patterns. <br>
-Mitigation: Match the user's requested language and adapt examples to the user's locale and context. <br>
-Risk: Decisive practitioner guidance can be inappropriate for legal, compliance, exact code transformation, or factual lookup tasks. <br>
-Mitigation: Do not trigger the skill for strict structured output, legal or compliance wording, exact code transformations, or clear factual lookups. <br>
+## Use Case:
 
+External users, developers, and team leads use this skill when advice, strategy, critique, or decision-making responses are technically plausible but too generic. It guides the agent to state a clear judgment, surface practical signals, name trade-offs and boundaries, and end with one concrete next step.
 
-## Reference(s): <br>
-- [Michael Polanyi Skill Page](https://clawhub.ai/august1314/michael-polanyi) <br>
-- [Polanyi Concept Reference](polanyi-notes.md) <br>
-- [Response Patterns](references/response-patterns.md) <br>
-- [Quality Checks](references/quality-checks.md) <br>
-- [Anti-Generic Advice Detection](references/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance, often with concise diagnostic bullets and one recommended next step] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include factual, interpretive, and hypothesis layers plus explicit trade-offs and flip conditions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.3 (source: server release evidence) <br>
+Risk: Decisive guidance can be misleading if the agent overstates a judgment under incomplete information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require visible facts, assumptions, boundaries, and flip conditions before acting on the recommendation.
+
+Risk: The skill can drift into unsupported intuition, pseudo-depth, or generic advice if its response contract is applied loosely.
+
+Mitigation: Use the provided quality checks and optional scanner to catch empty balance, pseudo-depth, and unsubstantiated confidence.
+
+Risk: The optional checker script scans text files supplied by the user.
+
+Mitigation: Run the checker only on text intentionally selected for local scanning, especially when drafts may contain sensitive information.
+
+## Reference(s):
+
+- [Polanyi Concept Reference](polanyi-notes.md)
+- [Response Patterns](references/response-patterns.md)
+- [Quality Checks](references/quality-checks.md)
+- [Anti-Generic Advice Detection](references/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands or JSON scanner reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should distinguish facts, interpretations, and hypotheses, state boundaries, and include one concrete next step.]
+
+## Skill Version(s):
+
+0.5.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

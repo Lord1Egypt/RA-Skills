@@ -1,42 +1,57 @@
-## Description: <br>
-Email OTP Service - Simple, Fast, Reliable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OTPly helps agents use ToolWeb's OTPLY API to register accounts, retrieve credentials, send and verify email one-time passwords, and review usage.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers use OTPly to integrate email-based one-time password registration, delivery, verification, and usage tracking into authentication, recovery, or sensitive transaction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys, API secrets, recipient email addresses, and OTP values are sensitive authentication data. <br>
-Mitigation: Keep secrets and OTP values out of client-side code, chats, logs, screenshots, and repositories. <br>
-Risk: Sending OTPs can contact real recipients and affect authentication workflows. <br>
-Mitigation: Require explicit confirmation before sending OTPs and use the intended recipient, purpose, template, and expiry values. <br>
+## Use Case:
 
+Developers and integration agents use this skill to add email OTP flows for authentication, account recovery, transaction checks, and usage monitoring through the OTPLY service.
 
-## Reference(s): <br>
-- [OTPly ClawHub Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-otply) <br>
-- [OTPLY API Docs](https://api.toolweb.in:8168/docs) <br>
-- [OTPLY Kong Route](https://api.toolweb.in/tools/otply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown with endpoint descriptions, JSON request examples, and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OTPLY API key and secret handling for authenticated OTP send, verification, and usage endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: The skill handles account passwords, API keys, API secrets, JWTs, OTPs, and email addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat these values as sensitive credentials, avoid logging or pasting production secrets into casual prompts, and rotate exposed credentials.
+
+Risk: Using the skill sends email addresses and OTP verification data to ToolWeb's OTPLY service.
+
+Mitigation: Confirm that ToolWeb is acceptable for the application's email verification flow and applicable data handling requirements before production use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-otply)
+- [OTPLY API Docs](https://api.toolweb.in:8168/docs)
+- [OTPLY Kong Route](https://api.toolweb.in/tools/otply)
+- [ToolWeb](https://toolweb.in)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTTP headers, request bodies, credential handling reminders, and endpoint-specific response fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

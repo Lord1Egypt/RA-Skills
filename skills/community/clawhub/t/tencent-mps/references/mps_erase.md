@@ -108,5 +108,6 @@ python3 scripts/mps_erase.py --url https://example.com/video.mp4 --template 102 
 # 查询已有任务结果
 python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --verbose
 
-# 查询任务并下载结果到本地
-python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx --download-dir ./output/
+# 查询任务并下载结果到本地（本脚本仅查询，下载用 mps_cos_download.py）
+python3 scripts/mps_get_video_task.py --task-id 2600011633-WorkflowTask-xxxxx
+python3 scripts/mps_cos_download.py --cos-input-key <上一步输出的 COS Key> --local-file ./output/result.mp4

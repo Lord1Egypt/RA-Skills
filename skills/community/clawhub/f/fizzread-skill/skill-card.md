@@ -1,39 +1,58 @@
-## Description: <br>
-Instant access to 100K+ nonfiction book summaries with 1-minute audio previews, including search, category browsing, daily recommendations, and listening via FizzRead. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Instant access to 100K+ nonfiction book summaries with 1-minute audio previews. Free demo key included — no signup needed. Search, browse, and listen via FizzRead.
 
-## Publisher: <br>
-[yang1997434](https://clawhub.ai/user/yang1997434) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yang1997434](https://clawhub.ai/user/yang1997434)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve FizzRead nonfiction book recommendations, summaries, category results, and audio preview links from the FizzRead API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose a user's FizzRead API key in chat, command output, or logs when checking or substituting credentials. <br>
-Mitigation: Use the built-in demo key when appropriate, store personal keys in a secure environment or secret mechanism, avoid printing FIZZREAD_API_KEY, and use revocable keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1997434/fizzread-skill) <br>
-- [FizzRead website](https://www.fizzread.ai) <br>
-- [FizzRead API base URL](https://skill.fizzread.ai/v1) <br>
+## Use Case:
 
+External users use this skill to discover nonfiction book summaries, search or browse FizzRead recommendations, and request short audio preview links through an agent conversation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown responses with links and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FizzRead API responses for book data and may include app and audio preview links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys may be exposed if pasted into chat or printed while checking environment configuration.
+
+Mitigation: Use a low-privilege FizzRead key, prefer environment configuration, and avoid printing or echoing secret values.
+
+Risk: Responses can include external FizzRead download links that are not independently verified by the skill.
+
+Mitigation: Treat generated download links as external destinations and review them before opening or sharing.
+
+Risk: Shell commands include user-provided keys and search text in API calls.
+
+Mitigation: Validate and encode user input before command execution, and avoid unsafe shell interpolation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1997434/skills/fizzread-skill)
+- [FizzRead](https://www.fizzread.ai)
+- [FizzRead Skill API](https://skill.fizzread.ai/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline links and curl command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are based on FizzRead API responses and may include external app download or audio preview links.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

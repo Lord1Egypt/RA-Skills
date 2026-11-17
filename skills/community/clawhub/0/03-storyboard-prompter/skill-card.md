@@ -1,40 +1,49 @@
-## Description: <br>
-Generates consistent AI art storyboard prompts from short-drama scene objects, using local formatting without API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts short drama scene data into AI art storyboard prompt entries with consistent vertical cinematic styling.
 
-## Publisher: <br>
-[ghwyever](https://clawhub.ai/user/ghwyever) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ghwyever](https://clawhub.ai/user/ghwyever)
 
-## Use Case: <br>
-Creators, developers, and content automation teams use this skill to convert short-drama scene lists into consistent vertical cinematic image prompts for storyboard or AI art workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scene text may contain secrets, sensitive personal details, or private story information that could be exposed if generated prompts are shared. <br>
-Mitigation: Redact sensitive details before providing scenes, and review generated prompts before sharing or publishing them. <br>
-Risk: Missing scene fields can produce incomplete or unclear prompts. <br>
-Mitigation: Validate that every scene object includes scene, role, action, and duration before running the skill. <br>
+## Use Case:
 
+Creators and developers use this skill to convert short drama scene arrays into consistent storyboard prompts for downstream AI image generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ghwyever/03-storyboard-prompter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON object containing a shot_list array of storyboard prompt entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each shot entry includes shot_id, prompt, and duration; prompts combine scene, role, action, 9:16 aspect ratio, and cinematic style terms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Scene text is transformed directly into prompt strings, so inaccurate or sensitive input can carry into downstream image-generation prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input scenes and generated shot_list entries before using them with an image-generation system.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ghwyever/skills/03-storyboard-prompter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON object containing a shot_list array of storyboard prompt entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each shot_list entry includes shot_id, prompt, and duration when duration is supplied.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

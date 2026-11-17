@@ -1,47 +1,57 @@
-## Description: <br>
-帮助用户审计、共创、分阶段落地并持续优化基于 OpenClaw 的 GTD 个人知识管理（PKM）系统，适用于从零搭建、旧库重构、目录与标签策略、AGENTS.md/HEARTBEAT.md/TODO 自动化设计，以及后续迭代。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户审计、共创、分阶段落地并持续优化基于 OpenClaw 的 GTD 个人知识管理（PKM）系统，适用于从零搭建、旧库重构、目录与标签策略、AGENTS.md/HEARTBEAT.md/TODO 自动化设计，以及后续迭代。
 
-## Publisher: <br>
-[zhaor1995](https://clawhub.ai/user/zhaor1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaor1995](https://clawhub.ai/user/zhaor1995)
 
-## Use Case: <br>
-External users and developers use this skill to audit, design, phase in, and refine a GTD-based personal knowledge management system for Markdown, Obsidian, or OpenClaw workflows. It supports collaborative planning, directory and tag strategy, staged scaffolding, and ongoing workflow review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scaffolding in the wrong knowledge-root can add directories and Markdown templates to an unintended folder. <br>
-Mitigation: Confirm the target knowledge-root before running bootstrap_knowledge.py and prefer an existing backup or Git snapshot for established note libraries. <br>
-Risk: Using --force can overwrite existing template files created by earlier GTD/PKM work. <br>
-Mitigation: Run the audit workflow first when unsure and use --force only after intentionally accepting template replacement. <br>
-Risk: Directory, tag, or automation recommendations can disrupt a user's existing PKM habits if applied all at once. <br>
-Mitigation: Apply the skill's staged rollout posture: audit first, align on a blueprint, implement one clear phase, then review friction before further changes. <br>
+## Use Case:
 
+External users and developers use this skill to audit, design, phase in, and maintain a GTD-based personal knowledge management system for OpenClaw, Markdown, Obsidian, or local knowledge-base workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaor1995/gtd-pkm) <br>
-- [README](README.md) <br>
-- [共创式设计流程](references/collaborative-design-playbook.md) <br>
-- [GTD 个人知识库框架](references/gtd-knowledge-framework.md) <br>
-- [OpenClaw 自动化配方](references/openclaw-automation-recipes.md) <br>
-- [OpenClaw 可迁移模式](references/openclaw-portable-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands and generated Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local GTD directory scaffolds and audit reports when the user explicitly runs the bundled scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Automation recipes may read or persist chat history, memory files, TODO entries, project notes, and configuration data without sufficient privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling HEARTBEAT, cron, log generation, memory cleanup, or configuration backups, define allowed input paths, output paths, access controls, and redaction or deletion rules.
+
+Risk: Helper scripts can inspect or write files under the user-selected knowledge-base root, including generated reports, directories, templates, and starter documentation.
+
+Mitigation: Run audit before restructuring, confirm the target root, keep a Git snapshot or backup before bulk changes, and use overwrite options only when replacement is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaor1995/skills/gtd-pkm)
+- [Collaborative Design Playbook](references/collaborative-design-playbook.md)
+- [GTD Knowledge Framework](references/gtd-knowledge-framework.md)
+- [OpenClaw Automation Recipes](references/openclaw-automation-recipes.md)
+- [OpenClaw Portable Patterns](references/openclaw-portable-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands, Python-script usage, and generated knowledge-base files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate audit reports, directory skeletons, templates, and configuration guidance only after the user selects a knowledge root and confirms the rollout stage.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

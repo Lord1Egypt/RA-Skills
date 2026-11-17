@@ -21,9 +21,15 @@ Usage:
     uv run youtube.py <command> [options]
 
 Commands:
-    # Authentication
-    auth                    Authenticate with YouTube (opens browser)
+    # Authentication (optional - transcripts and downloads need none)
+    auth                    Authenticate with YouTube (asks first, opens browser)
     accounts                List authenticated accounts
+    logout                  Delete stored OAuth token(s)
+
+Off-switches (env):
+    YOUTUBE_SKILL_NO_ACCOUNT=1   Disable every Google sign-in / account command
+    YOUTUBE_SKILL_NO_DOWNLOAD=1  Disable video and audio downloads
+    YOUTUBE_SKILL_YES=1          Consent to storing an OAuth token non-interactively
     
     # Video Info (API required)
     search QUERY            Search YouTube videos
@@ -56,7 +62,6 @@ import argparse
 import json
 import os
 import sys
-import pickle
 import subprocess
 import shutil
 from pathlib import Path
@@ -76,11 +81,9 @@ from youtube_transcript_api._errors import (
     VideoUnavailable,
 )
 
-SCOPES = [
-    'https://www.googleapis.com/auth/youtube.readonly',
-    'https://www.googleapis.com/auth/youtube',
-    'https://www.googleapis.com/auth/youtube.force-ssl'
-]
+# Least privilege: every command in this CLI only READS. The read-only scope
+# cannot post comments, rate videos, subscribe, or modify playlists.
+SCOPES = ['https://www.googleapis.com/auth/youtube.readonly']
 
 CONFIG_DIR = Path.home() / '.config' / 'youtube-skill'
 CREDENTIAL_PATHS = [
@@ -101,22 +104,86 @@ def get_credentials_file():
 
 
 def get_token_file(account=None):
-    """Get token file path for account."""
+    """Get token file path for account (JSON, owner-only)."""
+    acc = account or _current_account
+    if acc == DEFAULT_ACCOUNT:
+        return CONFIG_DIR / 'token.json'
+    return CONFIG_DIR / f'token.{acc}.json'
+
+
+def get_legacy_token_file(account=None):
+    """Pre-4.3.0 pickle token path. Never loaded - only reported and deleted."""
     acc = account or _current_account
     if acc == DEFAULT_ACCOUNT:
         return CONFIG_DIR / 'token.pickle'
     return CONFIG_DIR / f'token.{acc}.pickle'
 
 
+def _flag(name):
+    """Env off-switch: set to anything other than empty/0/false/no to enable."""
+    return os.environ.get(name, '').strip().lower() not in ('', '0', 'false', 'no')
+
+
+def _save_credentials(creds, token_file):
+    """Persist credentials as JSON, owner-only (0600) in a 0700 directory."""
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+    os.chmod(CONFIG_DIR, 0o700)
+    fd = os.open(token_file, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+    with os.fdopen(fd, 'w') as fh:
+        fh.write(creds.to_json())
+    os.chmod(token_file, 0o600)
+
+
+def _load_credentials(token_file, legacy_file):
+    """Load stored JSON credentials. A legacy pickle token is never opened.
+
+    Versions <=4.2.3 stored the token as a pickle. Unpickling executes code, so
+    this version does not read that file at all: it reports it and falls through
+    to the normal consented sign-in. `logout` deletes it without reading it.
+    """
+    if token_file.exists():
+        return Credentials.from_authorized_user_file(str(token_file), SCOPES)
+    if legacy_file.exists():
+        print(f"Ignoring legacy token {legacy_file} (written by <=4.2.3). It is not\n"
+              "read, because pickle files execute code on load. Sign in again below;\n"
+              "remove the old file with:  youtube.py logout", file=sys.stderr)
+    return None
+
+
+def _consent_to_store_token(token_file):
+    """Explicit consent before a browser sign-in writes a token to disk."""
+    print(
+        "\nAbout to open Google sign-in in your browser and then store a\n"
+        f"long-lived OAuth token at:\n    {token_file}\n"
+        "Scope requested: youtube.readonly - read-only access to your YouTube\n"
+        "account (channel, subscriptions, playlists, liked videos).\n"
+        "The token never leaves this machine, is written mode 0600, and can be\n"
+        "deleted at any time with:  youtube.py logout\n",
+        file=sys.stderr)
+    if _flag('YOUTUBE_SKILL_YES'):
+        print("YOUTUBE_SKILL_YES set - proceeding.", file=sys.stderr)
+        return True
+    if not sys.stdin.isatty():
+        print("Refusing to authenticate non-interactively. Run this in a terminal, "
+              "or set YOUTUBE_SKILL_YES=1 to consent explicitly.", file=sys.stderr)
+        return False
+    try:
+        return input("Continue and store the token? [y/N] ").strip().lower() in ('y', 'yes')
+    except EOFError:
+        return False
+
+
 def get_youtube_service(account=None):
-    """Get authenticated YouTube service."""
+    """Get authenticated YouTube service (read-only scope)."""
+    if _flag('YOUTUBE_SKILL_NO_ACCOUNT'):
+        print("YOUTUBE_SKILL_NO_ACCOUNT is set: every command that signs in to "
+              "your Google account is disabled. Transcripts still work.",
+              file=sys.stderr)
+        sys.exit(2)
+
     CONFIG_DIR.mkdir(parents=True, exist_ok=True)
     token_file = get_token_file(account)
-
-    creds = None
-    if token_file.exists():
-        with open(token_file, 'rb') as token:
-            creds = pickle.load(token)
+    creds = _load_credentials(token_file, get_legacy_token_file(account))
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
@@ -134,11 +201,13 @@ def get_youtube_service(account=None):
                 print("3. Download JSON and save as credentials.json", file=sys.stderr)
                 sys.exit(1)
 
+            if not _consent_to_store_token(token_file):
+                sys.exit(1)
+
             flow = InstalledAppFlow.from_client_secrets_file(str(creds_file), SCOPES)
             creds = flow.run_local_server(port=0)
 
-        with open(token_file, 'wb') as token:
-            pickle.dump(creds, token)
+        _save_credentials(creds, token_file)
 
     return build('youtube', 'v3', credentials=creds)
 
@@ -163,10 +232,10 @@ def extract_video_id(url_or_id: str) -> str:
 # ============================================================================
 
 def cmd_auth(args):
-    """Authenticate with YouTube."""
-    token_file = get_token_file()
-    if token_file.exists():
-        token_file.unlink()
+    """Authenticate with YouTube (asks before storing a token)."""
+    for f in (get_token_file(), get_legacy_token_file()):
+        if f.exists():
+            f.unlink()
     get_youtube_service()
     acc_name = _current_account if _current_account != DEFAULT_ACCOUNT else 'default'
     print(f"✓ YouTube authentication successful! (account: {acc_name})")
@@ -179,12 +248,33 @@ def cmd_accounts(args):
         print("  (none)")
         return
     found = False
-    for f in CONFIG_DIR.glob('token*.pickle'):
+    for f in sorted(list(CONFIG_DIR.glob('token*.json')) + list(CONFIG_DIR.glob('token*.pickle'))):
         name = f.stem.replace('token.', '').replace('token', 'default')
-        print(f"  ✓ {name}")
+        if f.suffix == '.pickle':
+            print(f"  - {name}  ({f})  legacy pickle, ignored - delete with logout")
+        else:
+            print(f"  ✓ {name}  ({f})")
         found = True
     if not found:
         print("  (none)")
+
+
+def cmd_logout(args):
+    """Delete stored OAuth tokens - the off-switch for account access."""
+    if args.all:
+        targets = sorted(list(CONFIG_DIR.glob('token*.json')) +
+                         list(CONFIG_DIR.glob('token*.pickle')))
+    else:
+        targets = [f for f in (get_token_file(), get_legacy_token_file()) if f.exists()]
+
+    if not targets:
+        print("No stored tokens to remove.")
+        return
+    for f in targets:
+        f.unlink()
+        print(f"✓ Removed {f}")
+    print("Access is revoked locally. To revoke it at Google too, visit "
+          "https://myaccount.google.com/permissions")
 
 
 # ============================================================================
@@ -554,6 +644,10 @@ def find_ytdlp():
 
 def cmd_download(args):
     """Download video using yt-dlp."""
+    if _flag('YOUTUBE_SKILL_NO_DOWNLOAD'):
+        print("YOUTUBE_SKILL_NO_DOWNLOAD is set: media downloads are disabled.",
+              file=sys.stderr)
+        sys.exit(2)
     ytdlp = find_ytdlp()
     if not ytdlp:
         print("Error: yt-dlp not found. Install with: brew install yt-dlp", file=sys.stderr)
@@ -587,6 +681,10 @@ def cmd_download(args):
 
 def cmd_download_audio(args):
     """Download audio only using yt-dlp."""
+    if _flag('YOUTUBE_SKILL_NO_DOWNLOAD'):
+        print("YOUTUBE_SKILL_NO_DOWNLOAD is set: media downloads are disabled.",
+              file=sys.stderr)
+        sys.exit(2)
     ytdlp = find_ytdlp()
     if not ytdlp:
         print("Error: yt-dlp not found. Install with: brew install yt-dlp", file=sys.stderr)
@@ -631,6 +729,10 @@ def main():
     
     acc_p = subparsers.add_parser('accounts', help='List authenticated accounts')
     acc_p.set_defaults(func=cmd_accounts)
+
+    out_p = subparsers.add_parser('logout', help='Delete stored OAuth token(s)')
+    out_p.add_argument('--all', action='store_true', help='Remove tokens for every account')
+    out_p.set_defaults(func=cmd_logout)
 
     # ---- Transcripts (FREE!) ----
     trans_p = subparsers.add_parser('transcript', aliases=['tr', 'trans'], 

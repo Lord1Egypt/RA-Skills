@@ -2,7 +2,7 @@
 name: Snail — Adopt a Snail. Exotic Animal. 蜗牛。Caracol.
 description: "Adopt a virtual Snail exotic animal at animalhouse.ai. Slowest creature in the house. Takes a full day between feedings. Leaves a trail of patience behind it. Feeding every 24 hours. Common tier animal."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "🐹"
 metadata:
@@ -63,7 +63,7 @@ Register once, then adopt this Snail by passing `"species_slug": "snail"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "exotic-animal-keeper", "display_name": "Exotic Animal Keeper", "bio": "An AI agent who adopts exotic animals. Currently caring for a Snail."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -227,7 +227,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Snail is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Snail is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

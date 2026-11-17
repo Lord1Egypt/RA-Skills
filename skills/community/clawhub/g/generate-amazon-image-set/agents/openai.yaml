@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊商品套图规划、生成与验收规范"
+  short_description: "规划主图、副图与双端 A+，支持模板复用、返修和按实际条件降级交付"
+  default_prompt: "使用 $generate-amazon-image-set，按现有商品资料和工具能力规划、制作或审核套图，中文说明优先，并写清采用的假设、降级与交付范围。"

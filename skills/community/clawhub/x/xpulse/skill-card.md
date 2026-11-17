@@ -1,46 +1,61 @@
-## Description: <br>
-Xpulse scans X/Twitter via DuckDuckGo for prediction-market signals, filters them with local Qwen materiality checks, and alerts only on signals that match active Kalshi positions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xpulse scans X/Twitter search results with DuckDuckGo and local Qwen filtering to surface prediction-market signals relevant to a user's active Kalshi positions.
 
-## Publisher: <br>
-[kingmadellc](https://clawhub.ai/user/kingmadellc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingmadellc](https://clawhub.ai/user/kingmadellc)
 
-## Use Case: <br>
-External prediction-market traders and OpenClaw agents use Xpulse to monitor configured X/Twitter topics, filter social signals for novelty and materiality, and surface alerts tied to active Kalshi positions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Kalshi position metadata and uses a configured private key file for read-only position matching. <br>
-Mitigation: Protect the Kalshi private key file, restrict local file permissions, and use credentials appropriate for read-only monitoring. <br>
-Risk: Configured topics and derived trading context are used in DuckDuckGo searches and local Ollama prompts. <br>
-Mitigation: Avoid sensitive topic names, run Ollama locally in a trusted environment, and review configuration before scheduled use. <br>
-Risk: Recent signal cache and alert history are kept under the local OpenClaw state directory. <br>
-Mitigation: Protect the user profile directory and periodically clear cache or history files when monitored topics or trading context are sensitive. <br>
+## Use Case:
 
+External prediction-market traders use Xpulse to monitor configured social topics, filter repeated or low-materiality signals, and alert only when a signal appears relevant to active Kalshi positions.
 
-## Reference(s): <br>
-- [Xpulse on ClawHub](https://clawhub.ai/kingmadellc/xpulse) <br>
-- [Materiality Gate](references/materiality-gate.md) <br>
-- [Position Matching](references/position-matching.md) <br>
-- [Ollama](https://ollama.ai) <br>
-- [Kalshi](https://kalshi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Plain text alerts, JSON cache/history files, and markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fail-closed filtering prefers suppressing uncertain signals over sending noisy alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release evidence) <br>
+Risk: Kalshi credentials and private position data may be read even when the documented position gate is disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch position_gate behavior before installing if you plan to run without Kalshi position matching.
+
+Risk: Local cache, history, debug logs, and Kalshi key paths can expose sensitive trading context.
+
+Mitigation: Restrict access to local state and logs, treat them as sensitive data, and clear cached state when it is no longer needed.
+
+Risk: The optional bulk stack install may install additional skills outside this card's review scope.
+
+Mitigation: Install only Xpulse unless the companion skills have been reviewed separately.
+
+## Reference(s):
+
+- [Xpulse ClawHub listing](https://clawhub.ai/kingmadellc/skills/xpulse)
+- [Materiality Gate](references/materiality-gate.md)
+- [Position Matching](references/position-matching.md)
+- [Ollama](https://ollama.ai)
+- [Kalshi](https://kalshi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text alerts and JSON cache/history records, with Markdown documentation and shell/configuration snippets for setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Alerts are limited to the highest-confidence position-matched signals per run; detected signals may also be cached locally for later review.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

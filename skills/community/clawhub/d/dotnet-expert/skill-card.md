@@ -1,39 +1,52 @@
-## Description: <br>
-Use when building .NET 8/9 applications, ASP.NET Core APIs, Entity Framework Core, MediatR CQRS, modular monolith architecture, FluentValidation, Result pattern, JWT authentication, or any C# backend development question. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when building .NET 8/9 applications, ASP.NET Core APIs, Entity Framework Core, MediatR CQRS, modular monolith architecture, FluentValidation, Result pattern, JWT authentication, or any C# backend development question.
 
-## Publisher: <br>
-[jgarrison929](https://clawhub.ai/user/jgarrison929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jgarrison929](https://clawhub.ai/user/jgarrison929)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance and examples when building production-oriented .NET 8/9 backend applications with ASP.NET Core, Entity Framework Core, MediatR CQRS, FluentValidation, JWT authentication, and modular monolith patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated database migration, authentication, or production configuration changes may affect runtime security or data integrity. <br>
-Mitigation: Review generated code and configuration, test migrations in a non-production environment, and require normal application review before applying changes. <br>
-Risk: Broad C# and backend triggers may activate the skill for unrelated .NET tasks. <br>
-Mitigation: Confirm the skill is relevant to the current task before relying on its architectural or implementation guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jgarrison929/dotnet-expert) <br>
+## Use Case:
 
+Developers and engineers use this skill for .NET backend implementation guidance, including ASP.NET Core APIs, Entity Framework Core, MediatR CQRS, FluentValidation, JWT authentication, and modular monolith patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with C# and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no tool execution is performed by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may trigger for broad or generic C# and .NET requests.
+
+Mitigation: Review activation scope during installation and invoke it only for .NET backend implementation tasks.
+
+Risk: Sample implementation guidance may be copied into production without project-specific review.
+
+Mitigation: Review generated code and configuration against the target application's security, validation, and architecture requirements before use.
+
+## Reference(s):
+
+- [Dotnet Expert Skill Page](https://clawhub.ai/jgarrison929/skills/dotnet-expert)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with C# and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-提供 Obsidian 本地笔记快速入门，涵盖核心概念、必备插件、模板方案及实用避坑指南。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供 Obsidian 本地笔记快速入门，涵盖核心概念、必备插件、模板方案及实用避坑指南。
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to get concise Obsidian onboarding guidance, recommended plugin setup, reusable note templates, and practical workflow advice for personal knowledge management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may appear during general planning or note-taking prompts because its trigger examples are broad. <br>
-Mitigation: Confirm the user wants Obsidian-specific guidance before applying the templates or workflow advice. <br>
-Risk: Recommended third-party Obsidian plugins and Templater JavaScript can introduce separate security or privacy considerations. <br>
-Mitigation: Review each plugin, its permissions, and any Templater JavaScript separately before enabling it in Obsidian. <br>
+## Use Case:
 
+Obsidian users and knowledge workers use this skill to get concise Chinese-language guidance for setting up a local-first note vault, choosing common plugins, and applying daily notes, reading notes, and project review templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/obsidian-handbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with code-fenced note templates and plugin examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language, text-only Obsidian quick-start guidance; no tool execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chinese trigger examples may activate the skill for daily planning or book note requests that do not explicitly mention Obsidian.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants Obsidian-oriented guidance before applying templates or workflow advice.
+
+Risk: Suggested Obsidian plugins and sync options may affect a user's vault behavior, privacy, or data storage choices.
+
+Mitigation: Review each plugin and sync service before enabling it in a vault, especially for private or work notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/obsidian-handbook)
+- [Publisher profile](https://clawhub.ai/user/smseow001)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration guidance]
+
+**Output Format:** [Markdown guidance with Obsidian template examples and plugin configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language informational output; does not execute commands or modify files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

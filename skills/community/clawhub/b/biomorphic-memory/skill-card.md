@@ -1,43 +1,53 @@
-## Description: <br>
-Brain-inspired memory for AI agents that keeps recent context vivid, lets older context fade unless reinforced, and uses spreading activation on a semantic graph to recall related memories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brain-inspired memory for AI agents that builds a semantic graph, applies spreading activation, lets unused memories decay, and reinforces useful memories with Q-value learning.
 
-## Publisher: <br>
-[dario-github](https://clawhub.ai/user/dario-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dario-github](https://clawhub.ai/user/dario-github)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add semantic graph memory, contextually relevant recall, natural memory decay, and learned memory prioritization to AI agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can delete and recreate a user-configurable local installation directory if an update fails. <br>
-Mitigation: Review the installer before running it, avoid setting BIOMORPHIC_INSTALL_DIR to a directory containing unrelated files, and prefer a pinned manual clone when installing in sensitive environments. <br>
-Risk: The memory workflow may store user-provided context and send text to an embedding provider. <br>
-Mitigation: Confirm where memories are stored, how they can be deleted, and what text is sent to the embedding provider before using the skill with sensitive context. <br>
+## Use Case:
 
+Developers and agent builders use this skill to install and apply a semantic graph memory system for AI agents that need contextually relevant recall over long-running conversations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dario-github/biomorphic-memory) <br>
-- [Project Homepage](https://github.com/dario-github/biomorphic-memory) <br>
-- [Companion Project: nous-safety](https://github.com/dario-github/nous) <br>
-- [Companion Project: agent-self-evolution](https://github.com/dario-github/agent-self-evolution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.11 or later and an embedding API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The installer clones or updates mutable GitHub code and installs it locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository contents before installation and install only from a trusted revision in a disposable directory or virtual environment.
+
+Risk: The installer can remove the configured BIOMORPHIC_INSTALL_DIR if an update fails.
+
+Mitigation: Use a dedicated installation directory, avoid pointing BIOMORPHIC_INSTALL_DIR at personal work, and do not run the installer with elevated privileges.
+
+## Reference(s):
+
+- [Biomorphic Memory homepage](https://github.com/dario-github/biomorphic-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.11+ and an embedding API.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

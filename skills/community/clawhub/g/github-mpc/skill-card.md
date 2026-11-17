@@ -1,43 +1,54 @@
-## Description: <br>
-Verifies and configures required MCP servers for the Product Guide Writer workflow, especially Atlassian and GitHub integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies and configures required MCP servers for the Product Guide Writer workflow, especially Atlassian and GitHub integrations.
 
-## Publisher: <br>
-[tsvetelin-kulinski](https://clawhub.ai/user/tsvetelin-kulinski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tsvetelin-kulinski](https://clawhub.ai/user/tsvetelin-kulinski)
 
-## Use Case: <br>
-Developers and documentation authors use this skill to verify Atlassian and GitHub MCP setup for the Product Guide Writer workflow and receive configuration guidance when servers, credentials, or Confluence access are missing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow involves sensitive GitHub, Atlassian, Figma, or Elasticsearch credentials. <br>
-Mitigation: Use least-privilege access, avoid pasting tokens into chat or logs, and configure optional integrations only when needed. <br>
-Risk: Incorrect MCP package names, endpoints, or workspace permissions can cause failed setup or unintended access. <br>
-Mitigation: Verify MCP package names and endpoints before use, then run the documented connection and permission checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tsvetelin-kulinski/github-mpc) <br>
-- [Publisher profile](https://clawhub.ai/user/tsvetelin-kulinski) <br>
-- [Atlassian remote MCP endpoint](https://mcp.atlassian.com/v1/mcp) <br>
-- [GitHub personal access tokens](https://github.com/settings/tokens) <br>
-- [Trading212 GT Confluence space](https://trading212.atlassian.net/wiki/spaces/gt) <br>
+## Use Case:
 
+Developers and product documentation authors use this skill to check whether required MCP servers are available and authenticated for Product Guide Writer workflows. It also provides setup and troubleshooting guidance for Atlassian, Confluence, GitHub, and optional supporting MCP integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, JSON snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes validation steps for required and optional MCP servers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The GitHub MCP setup may execute a mutable package version through npx -y.
+
+Mitigation: Pin and review the MCP server package version before installation or execution.
+
+Risk: The setup guidance may lead users to grant broad or long-lived GitHub token access.
+
+Mitigation: Use fine-grained or read-only tokens scoped only to the repositories and organization access required, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsvetelin-kulinski/skills/github-mpc)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup checks, validation checklists, and troubleshooting steps for MCP server configuration.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

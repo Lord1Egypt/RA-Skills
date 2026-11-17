@@ -1,44 +1,54 @@
-## Description: <br>
-Analyzes rental comps and recommends competitive rent pricing for Massachusetts properties using comparable listings and property features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze rental comps and recommend rent pricing for Massachusetts properties.
 
-## Publisher: <br>
-[AdamsJB](https://clawhub.ai/user/AdamsJB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamsjb](https://clawhub.ai/user/adamsjb)
 
-## Use Case: <br>
-External landlords and property managers use this skill to analyze Massachusetts rental comps for lease renewals, vacancies, acquisition underwriting, and tenant rent inquiries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Massachusetts, United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read property details from ~/.openclaw/shared/properties.json, which can include addresses, rents, and property context. <br>
-Mitigation: Review the property file before use and provide only information appropriate for the rent-pricing analysis. <br>
-Risk: Generated reports may store addresses, rents, and analysis locally under ~/.openclaw/workspace/properties. <br>
-Mitigation: Handle generated reports according to the user's property-data retention and sharing requirements. <br>
-Risk: Rent recommendations can be affected by incomplete comparable listings or outdated local-market information. <br>
-Mitigation: Review the comparable listings, adjustment assumptions, and Massachusetts rent-increase notes before relying on the recommendation. <br>
+## Use Case:
 
+Landlords and property managers use this skill to compare Massachusetts rental listings, adjust comps for property features, and produce a recommended rent for renewals, vacancies, acquisitions, or tenant rent questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AdamsJB/homestruk-rent-comps) <br>
-- [Publisher profile](https://clawhub.ai/user/AdamsJB) <br>
-- [Homestruk](https://homestruk.com) <br>
+### Deployment Geography for Use:
 
+Massachusetts, United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown rent-comps report with structured property, comparable-listing, analysis, and recommendation sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web_search query suggestions and a saved local Markdown report under ~/.openclaw/workspace/properties.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Reports may persist property addresses, current rent, and renewal recommendations locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or delete saved reports when these details should not remain on disk.
+
+Risk: Rent-increase notes may become outdated or may not cover local exceptions.
+
+Mitigation: Verify current Massachusetts and local legal requirements before relying on rent-increase guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamsjb/skills/homestruk-rent-comps)
+- [Publisher profile](https://clawhub.ai/user/adamsjb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with comparable listing analysis, rent recommendation, legal notes, and search commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save a local Markdown report containing property addresses, rents, and renewal recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Manages cross-border ecommerce mailboxes across business lines by classifying customer emails, extracting communication history, and generating multilingual reply suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages multi-business-line email workflows for cross-border ecommerce by classifying customer messages, retrieving communication history, and drafting multilingual reply suggestions.
 
-## Publisher: <br>
-[szzg007](https://clawhub.ai/user/szzg007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzg007](https://clawhub.ai/user/szzg007)
 
-## Use Case: <br>
-Cross-border ecommerce operators use this skill to organize customer mail by product line, retrieve prior communication context, and prepare professional multilingual replies for sales, support, and B2B follow-up workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to access business mailbox credentials and customer email history. <br>
-Mitigation: Use app-specific or least-privilege mailbox credentials and require confirmation before reading real customer histories or mailbox content. <br>
-Risk: Generated replies or CRM sync actions may affect customer communications and records. <br>
-Mitigation: Review draft replies and customer-data sync proposals before sending, storing, or updating production records. <br>
-Risk: Local storage of emails and customer records can create retention and deletion obligations. <br>
-Mitigation: Define approved storage locations, retention periods, access controls, and deletion procedures before deployment. <br>
+## Use Case:
 
+Cross-border ecommerce operators use this skill to triage customer email across product lines, retrieve customer timelines, and prepare professional Chinese or English response drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szzg007/szzg007-email-business-manager) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports, email reply drafts, structured configuration examples, and guidance text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include customer communication timelines, classification labels, business-line filters, and draft email responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may handle sensitive mailbox contents, customer history, and credential data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or least-privilege mailbox account and require explicit confirmation before reading, searching, classifying, syncing, or drafting from mailbox history.
+
+Risk: The artifact describes encryption, desensitization, access-control, and logging behavior without implementation evidence.
+
+Mitigation: Treat those controls as unverified unless a separate implementation or deployment configuration supplies them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szzg007/skills/szzg007-email-business-manager)
+- [Publisher profile](https://clawhub.ai/user/szzg007)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, reply drafts, classification summaries, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer timelines, message categories, suggested reply language, business-line labels, and mailbox configuration values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

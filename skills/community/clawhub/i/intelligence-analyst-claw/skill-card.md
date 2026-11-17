@@ -1,47 +1,58 @@
-## Description: <br>
-A private intelligence analysis skill that gathers public sources, cross-checks signals, and produces structured reports for industry, company, policy, technology, and market research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language private intelligence analyst skill for gathering multi-source market, company, policy, and technology information, cross-checking sources, and producing structured research reports.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to scope research questions, search public sources, compare evidence, and turn findings into structured research reports with data, risks, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research may include account-scoped, private, or internal materials if source permissions are not defined before use. <br>
-Mitigation: Before using the skill, specify permitted sources and whether logged-in databases or private documents are allowed; do not grant access to restricted materials without permission. <br>
-Risk: Market, policy, or competitor conclusions may be misleading when based on stale, single-source, or unverified information. <br>
-Mitigation: Require public source citations, cross-check important claims, prefer primary sources, and preserve the skill's source credibility labels in the final report. <br>
+## Use Case:
 
+Employees, external analysts, and developers use this skill to research industries, companies, projects, policies, and emerging technologies, then turn findings into concise structured research reports with source confidence labels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/intelligence-analyst-claw) <br>
-- [Publisher profile](https://clawhub.ai/user/tujinsama) <br>
-- [Information source taxonomy](references/data-sources.md) <br>
-- [Analysis frameworks](references/frameworks.md) <br>
-- [National Bureau of Statistics of China](https://www.stats.gov.cn) <br>
-- [Ministry of Industry and Information Technology of China](https://www.miit.gov.cn) <br>
-- [People's Bank of China](https://www.pbc.gov.cn) <br>
-- [arXiv](https://arxiv.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with tables, source notes, analysis sections, risk lists, recommendations, and optional JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite sources, label source credibility, and avoid unverified market rumors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may access paid, logged-in, or interactive databases during research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the authorized account and source before use, and avoid unauthorized internal materials.
+
+Risk: Investment or market outputs could be mistaken for professional financial advice.
+
+Mitigation: Treat outputs as research support and require appropriate professional review before decisions.
+
+Risk: Market rumors or weak sources can lead to misleading conclusions.
+
+Mitigation: Cross-check sources, cite original references where available, and preserve source confidence labels in reports.
+
+## Reference(s):
+
+- [Information Source System](references/data-sources.md)
+- [Analysis Framework Library](references/frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown research reports with tables, source ratings, JSON search plans, and command guidance when helper scripts are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite sources, label source confidence, separate core data from analysis, and include risk notes and action recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

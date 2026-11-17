@@ -1,40 +1,56 @@
-## Description: <br>
-Manage ThingsBoard devices, dashboards, telemetry, and users via the ThingsBoard REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage ThingsBoard devices, dashboards, telemetry, and users via the ThingsBoard REST API.
 
-## Publisher: <br>
-[hoangnv170752](https://clawhub.ai/user/hoangnv170752) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hoangnv170752](https://clawhub.ai/user/hoangnv170752)
 
-## Use Case: <br>
-Developers and operators use this skill to administer ThingsBoard IoT resources, including devices, telemetry, dashboards, assets, users, and customers through REST API commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes high-impact ThingsBoard administration actions, including telemetry deletion and dashboard publication. <br>
-Mitigation: Verify the target tenant, device, dashboard, and keys before execution, and require explicit confirmation before destructive or public-sharing commands. <br>
-Risk: Deleting telemetry can remove important operational data. <br>
-Mitigation: Back up or export important telemetry before running deletion commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ThingsBoard](https://thingsboard.io) <br>
-- [ClawHub skill page](https://clawhub.ai/hoangnv170752/thingsboard-skill) <br>
+## Use Case:
 
+Developers and operators use this skill to manage ThingsBoard IoT resources through REST API workflows, including device, telemetry, dashboard, asset, customer, and user operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl and jq with ThingsBoard URL and credential environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact ships default ThingsBoard credentials.
+
+Mitigation: Replace bundled credentials with unique least-privilege credentials and avoid committing credentials.json.
+
+Risk: The skill includes high-impact ThingsBoard operations such as deleting telemetry and making dashboards public.
+
+Mitigation: Require explicit confirmation before destructive telemetry changes or public dashboard exposure.
+
+Risk: The skill can authenticate to local or remote ThingsBoard servers using user-provided credentials.
+
+Mitigation: Use it only against ThingsBoard servers you control and use HTTPS for any non-local server.
+
+## Reference(s):
+
+- [ThingsBoard](https://thingsboard.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, TB_URL, TB_USERNAME, and TB_PASSWORD.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

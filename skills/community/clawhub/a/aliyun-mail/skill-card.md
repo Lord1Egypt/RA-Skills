@@ -1,45 +1,57 @@
-## Description: <br>
-A skill to send emails via Aliyun enterprise email service with support for markdown, HTML text, attachments, and syntax highlighting for code blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill to send emails via Aliyun enterprise email service with support for markdown, HTML text, attachments, and syntax highlighting for code blocks.
 
-## Publisher: <br>
-[jixsonwang](https://clawhub.ai/user/jixsonwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jixsonwang](https://clawhub.ai/user/jixsonwang)
 
-## Use Case: <br>
-Developers and operators use this skill to send plain text, Markdown, or HTML email through Aliyun Enterprise Mail, including messages built from files and messages with attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Email bodies, recipient addresses, and attachments leave the local machine through Aliyun SMTP infrastructure. <br>
-Mitigation: Double-check recipients and attachments before sending, and avoid sending sensitive material unless that transfer is intended. <br>
-Risk: SMTP credentials are loaded from a local JSON configuration file. <br>
-Mitigation: Use a dedicated SMTP account or app password, keep the configuration file private, and restrict file permissions such as chmod 600. <br>
-Risk: Body files and attachment paths cause local files to be read and included in outgoing email. <br>
-Mitigation: Review requested file paths before execution and attach only files meant for the recipient. <br>
+## Use Case:
 
+External users and developers use this skill to send plain text, Markdown, or HTML email through Aliyun Enterprise Mail, optionally attaching local files and reading body content from a file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jixsonwang/aliyun-mail) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and Python command-line usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can invoke SMTP sending behavior that transmits email bodies and attachments through the configured mail server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version, artifact/_meta.json, package.json) <br>
+Risk: SMTP credentials may be exposed or misused if the configuration file is not protected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated app password and keep the SMTP configuration file private with restrictive permissions.
+
+Risk: SMTP login may be unencrypted if TLS or STARTTLS is not enabled in configuration.
+
+Mitigation: Require TLS or STARTTLS before using the skill to authenticate or send email.
+
+Risk: Sensitive information may be sent to the wrong recipient or included through the wrong body file or attachment path.
+
+Mitigation: Carefully verify every recipient, message body source, and attachment path before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jixsonwang/skills/aliyun-mail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Shell commands, Configuration]
+
+**Output Format:** [Email content, attachment selections, and command-line configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local body files and attach local files; SMTP credentials are supplied through a JSON configuration file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

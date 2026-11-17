@@ -431,7 +431,7 @@ curl -X POST "{BASE}/api/secondme/avatar/api-key/create" \
     "keyId": 1,
     "avatarId": 2,
     "name": "接入官网",
-    "secretKey": "sk-e5443b6842d54208bc2c9a0bc2b65376",
+    "secretKey": "REDACTED-SECRET",
     "enabled": true
   }
 }

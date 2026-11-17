@@ -1,44 +1,62 @@
-## Description: <br>
-Search for flights accommodating oversize baggage and sports equipment, with additional travel booking support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for flights accommodating oversize baggage and sports equipment, with related travel booking support powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to search live flight options for oversized baggage, sports equipment, and related travel bookings. It guides agents to collect route details, run the flyai CLI, and return Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install an unpinned global third-party CLI package before use. <br>
-Mitigation: Review and install @fly-ai/flyai-cli manually from a trusted package source, pin or record the approved version, and verify `flyai --version` before allowing agent execution. <br>
-Risk: Travel search details may be sent to flyai or Fliggy services during CLI searches. <br>
-Mitigation: Run searches only with user-approved route, date, budget, and preference parameters, and avoid submitting sensitive personal information unless required and approved. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search flight options for oversized baggage, sports equipment, and related travel bookings. The skill guides the agent to collect route details, run FlyAI CLI searches, and return concise Markdown results with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/oversize-baggage) <br>
-- [Parameter Collection & Output Templates](artifact/references/templates.md) <br>
-- [Scenario Playbooks](artifact/references/playbooks.md) <br>
-- [Failure Recovery](artifact/references/fallbacks.md) <br>
-- [Execution Runbook](artifact/references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables and summaries with inline booking links and shell command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include booking links when available, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs agents to install and run an unpinned global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, pin and verify the package, and prefer an isolated install.
+
+Risk: Travel searches may send route, date, and booking intent to an external CLI service.
+
+Mitigation: Use the skill only when users trust the FlyAI CLI source and are comfortable with external travel queries and booking links.
+
+Risk: Unsafe shell command templates could mishandle user-provided city or date values.
+
+Mitigation: Validate origin, destination, and date inputs, and pass structured CLI arguments instead of interpolated shell strings.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/oversize-baggage)
+- [Publisher profile](https://clawhub.ai/user/xiejinsong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with CLI-derived comparison tables and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FlyAI CLI output for travel results; responses should avoid raw JSON and include booking links when results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

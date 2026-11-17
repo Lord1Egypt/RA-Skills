@@ -1,44 +1,56 @@
-## Description: <br>
-Analyzes interaction and memory patterns to produce reports, candidate rules, and self-assessments for agent behavior improvement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous self-improvement engine that analyzes interaction patterns, extracts learnings, proposes behavioral changes, and reports on long-term agent behavior.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shenmeng](https://clawhub.ai/user/shenmeng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to review OpenClaw memory and learning files, detect recurring patterns, and produce candidate behavior updates, self-assessments, and evolution reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads persistent OpenClaw memory and learning files, which may contain sensitive transcripts or user preferences.
+
+Mitigation: Use it only on scoped workspaces that have been reviewed for secrets or sensitive content, and add redaction before processing sensitive logs.
+
+Risk: Generated behavior changes can affect long-lived agent behavior if integrated without review.
+
+Mitigation: Review proposed rules, validate them in isolation, keep backups, and require explicit approval before updating behavioral files.
+
+Risk: Automated or scheduled runs may promote noisy patterns into persistent guidance.
+
+Mitigation: Avoid unattended auto-evolution and compare recommendations against the evolution log before adopting them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze learning logs and memory files, identify recurring errors or preferences, and generate candidate behavior changes or reports for review. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can convert prior sessions, memories, and learning logs into persistent behavior changes that may encode incorrect guidance. <br>
-Mitigation: Require manual invocation, review proposed changes before any write, validate changes in isolation, and keep backups so behavior files can be restored. <br>
-Risk: Memory and transcript analysis can expose sensitive data if secrets or raw conversations are included in the analyzed sources. <br>
-Mitigation: Exclude secrets and raw transcripts from inputs, sanitize learning logs before analysis, and limit access to the intended workspace. <br>
-Risk: Broad access to memory and behavior files can make agent conduct change unexpectedly over time. <br>
-Mitigation: Use human oversight for significant changes, keep an evolution log, and apply only small reviewed updates. <br>
+**Output Format:** [Markdown guidance with inline shell commands and JSON or Markdown reports from the helper script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Self Evolution Engine on ClawHub](https://clawhub.ai/shenmeng/self-evolution-engine) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Evolution script](artifact/scripts/evolution.py) <br>
+**Other Properties Related to Output:** [Outputs may include candidate rules, pattern summaries, recommendations, self-assessment JSON, and evolution report Markdown.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON analysis output, Markdown reports, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write report files or evolution logs when invoked with output or logging options.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

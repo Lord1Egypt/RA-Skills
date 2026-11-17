@@ -1,43 +1,61 @@
-## Description: <br>
-Display GitHub Copilot premium request usage, quota, billing stats, and per-model multipliers for the authenticated user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display GitHub Copilot premium request usage, quota, billing stats, and per-model multipliers for the authenticated user.
 
-## Publisher: <br>
-[hitman86r](https://clawhub.ai/user/hitman86r) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hitman86r](https://clawhub.ai/user/hitman86r)
 
-## Use Case: <br>
-Developers and GitHub Copilot users use this skill to inspect premium request usage, remaining quota, overage costs, per-model usage, and alert thresholds from their authenticated GitHub account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires GitHub CLI authentication with billing-related Copilot scope to read usage data. <br>
-Mitigation: Install only if you are comfortable granting the GitHub CLI the required scopes, and review the requested scopes before use. <br>
-Risk: The displayed remaining quota depends on a locally configured plan because the GitHub API does not expose plan quota. <br>
-Mitigation: Configure the correct Copilot plan and update it when the account plan changes. <br>
+## Use Case:
 
+Developers and GitHub Copilot users use this skill to review premium request usage, remaining configured quota, overage costs, and per-model usage for personal, Business, or Enterprise plans.
 
-## Reference(s): <br>
-- [GitHub Billing Usage REST API](https://docs.github.com/en/rest/billing/usage) <br>
-- [GitHub Copilot Request Multipliers](https://docs.github.com/en/copilot/concepts/billing/copilot-requests#model-multipliers) <br>
-- [API Reference](references/api.md) <br>
-- [Model Multipliers](references/multipliers.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text dashboard, optional JSON, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local plan setting to ~/.config/copilot-usage/config.json when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The alert command has a command-execution vulnerability according to the authoritative security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch scripts/copilot-alert.sh before installing or using the alert command, especially in automation.
+
+Risk: The skill requires GitHub CLI authentication with billing-related scopes and uses a classic token path.
+
+Mitigation: Use the skill only where that account access is acceptable, and verify gh authentication scopes before execution.
+
+Risk: The skill writes and reads a local plan and quota configuration file because the GitHub API does not expose plan quota.
+
+Mitigation: Confirm the configured plan and quota before relying on remaining-quota or alert results.
+
+## Reference(s):
+
+- [GitHub REST Billing Usage API](https://docs.github.com/en/rest/billing/usage)
+- [GitHub Copilot Model Multipliers](https://docs.github.com/en/copilot/concepts/billing/copilot-requests#model-multipliers)
+- [API Reference](references/api.md)
+- [Model Multipliers](references/multipliers.md)
+- [Copilot Usage on ClawHub](https://clawhub.ai/hitman86r/skills/copilot-usage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style terminal text and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local plan and quota configuration file under ~/.config/copilot-usage/config.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

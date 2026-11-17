@@ -1,48 +1,70 @@
-## Description: <br>
-Let your agent shop tickets online with owner approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let your agent shop tickets online with owner approval.
 
-## Publisher: <br>
-[jononovo](https://clawhub.ai/user/jononovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jononovo](https://clawhub.ai/user/jononovo)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent shop for game tickets and other online purchases through CreditClaw with owner approval, spending checks, and payment status polling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend real money and its behavior is broader than ticket buying. <br>
-Mitigation: Install only when broad CreditClaw shopping and payment capabilities are intended, keep approval mode set to ask for every purchase, and use low spend limits plus narrow merchant and category restrictions. <br>
-Risk: CREDITCLAW_API_KEY is a payment credential that could enable unauthorized spending if exposed. <br>
-Mitigation: Store the key only in a secure secrets manager or protected environment variable, and never send it to domains other than creditclaw.com. <br>
-Risk: Payment links and x402 payments expand the skill beyond purchasing tickets. <br>
-Mitigation: Do not enable payment links or x402 payment rails unless those capabilities are explicitly needed. <br>
+## Use Case:
 
+External users and their agents use this skill to register with CreditClaw, check spending permissions, and request owner-approved ticket or online purchases through supported payment rails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jononovo/tickets) <br>
-- [Publisher profile](https://clawhub.ai/user/jononovo) <br>
-- [CreditClaw homepage](https://creditclaw.com) <br>
-- [CreditClaw skill guide](https://creditclaw.com/creditcard/skill.md) <br>
-- [Self-hosted card guide](https://creditclaw.com/creditcard/self-hosted-card.md) <br>
-- [Heartbeat guide](https://creditclaw.com/creditcard/heartbeat.md) <br>
-- [CreditClaw skill metadata](https://creditclaw.com/creditcard/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CREDITCLAW_API_KEY and CreditClaw API endpoints for registration, status checks, spending permissions, purchases, top-up requests, and payment links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: The skill can initiate real financial actions through CreditClaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a trusted CreditClaw account, keep per-purchase approval enabled, and configure low transaction, daily, and monthly limits.
+
+Risk: CREDITCLAW_API_KEY functions as a spending credential.
+
+Mitigation: Store the key in a secrets manager or protected environment variable and send it only to creditclaw.com API endpoints.
+
+Risk: Remote skill documents may change after installation.
+
+Mitigation: Load remote documents only when their exact versions and hashes have been reviewed and verified.
+
+Risk: Automated purchases may target unwanted merchants or categories.
+
+Mitigation: Set merchant, category, and spending restrictions before use and review owner approval requests before accepting them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jononovo/skills/tickets)
+- [CreditClaw homepage](https://creditclaw.com)
+- [CreditClaw skill guide](https://creditclaw.com/creditcard/skill.md)
+- [CreditClaw shopping guide](https://creditclaw.com/creditcard/shopping.md)
+- [CreditClaw Amazon guide](https://creditclaw.com/creditcard/amazon.md)
+- [CreditClaw pre-paid wallet guide](https://creditclaw.com/creditcard/prepaid-wallet.md)
+- [CreditClaw self-hosted card guide](https://creditclaw.com/creditcard/self-hosted-card.md)
+- [CreditClaw Stripe x402 wallet guide](https://creditclaw.com/creditcard/stripe-x402-wallet.md)
+- [CreditClaw heartbeat guide](https://creditclaw.com/creditcard/heartbeat.md)
+- [CreditClaw skill metadata](https://creditclaw.com/creditcard/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CREDITCLAW_API_KEY and owner-configured spending controls.]
+
+## Skill Version(s):
+
+1.2.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

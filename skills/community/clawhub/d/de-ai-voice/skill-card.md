@@ -1,56 +1,69 @@
-## Description: <br>
-去除中文/英文/日文文本的“AI味”，以信息传递为核心先补齐事实/证据/取舍/边界，再按场景重写并清理模板化口癖与格式指纹；适用于文案、邮件、报告、PRD、社媒内容与学术写作的去AI味改写，以及识别并拦截假证据句式与虚构参考文献。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites Chinese, English, and Japanese text to reduce AI-like style by improving information density, evidence discipline, scenario fit, and template/fingerprint cleanup.
 
-## Publisher: <br>
-[yamasite](https://clawhub.ai/user/yamasite) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yamasite](https://clawhub.ai/user/yamasite)
 
-## Use Case: <br>
-External writers, editors, and developers use this skill to rewrite Chinese, English, and Japanese text for higher information density, clearer audience fit, fewer templated AI-writing fingerprints, and stronger citation discipline. It can also guide agents to produce rewrite notes and targeted follow-up questions when facts, sources, constraints, or boundaries are missing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or confidential source text may be exposed to an agent during rewriting. <br>
-Mitigation: Review and redact sensitive text before use, especially when the rewrite task involves internal communications, customer support, legal language, reports, or unpublished research. <br>
-Risk: The optional scanner can write local JSONL scan summaries when --logfile is used. <br>
-Mitigation: Use --logfile only with an approved local path and avoid logging text-derived metadata for sensitive material. <br>
-Risk: Style-linter findings may be mistaken for proof that text was AI-generated. <br>
-Mitigation: Treat scan output as edit guidance only, and keep the skill's citation-verification and hallucination gates separate from authorship claims. <br>
-Risk: Aggressive de-AI rewriting can remove necessary legal, technical, or factual precision. <br>
-Mitigation: Preserve names, interface terms, legal commitments, data, citations, and stated constraints unless the user explicitly authorizes changes. <br>
+## Use Case:
 
+Writers, editors, marketers, product teams, researchers, and support teams use this skill to diagnose and rewrite drafts for clearer information transfer, fewer template-style cues, and stricter citation discipline across Chinese, English, and Japanese.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yamasite/de-ai-voice) <br>
-- [“AI 味”与“人味”的本质差别](references/principles.md) <br>
-- [Wikipedia 等材料中的“AI 写作迹象”映射表](references/signs-of-ai-writing.md) <br>
-- [参考文献/引用验真](references/citation-verification.md) <br>
-- [中文：常见 AI 味与改写动作库](references/zh.md) <br>
-- [English: AI-writing tells and rewrite moves](references/en.md) <br>
-- [日本語：AIっぽさのサインと自然化の手筋](references/ja.md) <br>
-- [模型/平台层“AI 味指纹”](references/model-tells.md) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Fake citation checker](https://www.aidetectors.io/blog/fake-citation-checker) <br>
-- [hallucinator citation verification tool](https://github.com/gianlucasb/hallucinator) <br>
-- [Claude system prompt release notes](https://docs.claude.com/en/release-notes/system-prompts) <br>
-- [Claude prompt engineering best practices](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with rewritten text, change notes, follow-up questions, and optional JSON scan reports from the local linter] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The optional scanner is a local heuristic style linter, not an AI-authorship detector; optional logging writes compact JSONL summaries only when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The optional scanner may be mistaken for an AI detector.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat scanner output only as style-lint hints and do not use it as proof of authorship.
+
+Risk: The optional scanner reads local text and can print matched context snippets or write a local summary log.
+
+Mitigation: Run it only on intended files, avoid sensitive text unless appropriate, and use --logfile only when a local log is desired.
+
+Risk: Rewriting can accidentally preserve or introduce unsupported claims, vague evidence, or fabricated citations.
+
+Mitigation: Apply the skill's hallucination and citation-verification gates; ask for sources or downgrade/remove unverifiable claims.
+
+## Reference(s):
+
+- [AI Flavor Principles](references/principles.md)
+- [Citation Verification](references/citation-verification.md)
+- [Chinese Rewrite Moves](references/zh.md)
+- [English Rewrite Moves](references/en.md)
+- [Japanese Rewrite Moves](references/ja.md)
+- [Signs of AI Writing Mapping](references/signs-of-ai-writing.md)
+- [Model and Platform Tells](references/model-tells.md)
+- [Wikipedia: Signs of AI Writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Fake Citation Checker](https://www.aidetectors.io/blog/fake-citation-checker)
+- [Hallucinator Citation Verification Tool](https://github.com/gianlucasb/hallucinator)
+- [Claude System Prompt Release Notes](https://docs.claude.com/en/release-notes/system-prompts)
+- [Claude Prompt Engineering Best Practices](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices)
+- [GLM Model Documentation](https://docs.bigmodel.cn/cn/guide/models/text/glm-4.7)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with rewritten draft, change notes, follow-up questions, and optional local style-lint report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional scanner is a heuristic linter for style fingerprints, not proof of AI authorship.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

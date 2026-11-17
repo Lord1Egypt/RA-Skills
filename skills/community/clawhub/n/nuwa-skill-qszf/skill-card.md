@@ -1,43 +1,58 @@
-## Description: <br>
-Nuwa Skill takes a person or topic, performs deep research, and distills the findings into a runnable agent skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+女娲造人 — 输入人名/主题，自动深度调研蒸馏成可运行的Skill
 
-## Publisher: <br>
-[dxy0905](https://clawhub.ai/user/dxy0905) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxy0905](https://clawhub.ai/user/dxy0905)
 
-## Use Case: <br>
-Developers and skill authors use this skill to research a person or topic, synthesize useful frameworks, and draft a runnable agent skill with supporting references, scripts, and templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to search local documents and collect web content without narrow source boundaries. <br>
-Mitigation: Provide explicit directories and source lists, avoid broad drive scans, and require confirmation before file-reading or scraping work. <br>
-Risk: Generated skills may contain incomplete, inaccurate, or misleading distilled guidance. <br>
-Mitigation: Review, test, and scan each generated skill before deployment or publication. <br>
+## Use Case:
 
+Developers and internal skill authors use this skill to research a person or topic, distill source material into a thinking framework, and produce a runnable agent skill. It is aimed at skill creation workflows that may generate SKILL.md files, references, scripts, templates, and lifecycle guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxy0905/nuwa-skill-qszf) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Skill-declared company repository](https://github.com/dxy0905/qiushuzhifang-skills/tree/main/skills/nuwa-skill) <br>
-- [Skill-declared upstream repository](https://github.com/alchaincyf/nuwa-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text guidance with code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May draft SKILL.md content, reference notes, reusable scripts, templates, and installation commands for generated skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter reports 1.2.0) <br>
+Risk: The skill may search broad local drives for books, documents, or papers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit source paths, show a preview of candidate files before reading, and redact sensitive material before publishing generated skill artifacts.
+
+Risk: The skill may automate web collection without enough scoping or consent controls.
+
+Mitigation: Limit collection to approved domains and articles, review site terms before automation, and require operator approval before downloading or reusing collected content.
+
+Risk: The installation guidance references an unpinned raw URL.
+
+Mitigation: Use a pinned commit URL, checksum, or reviewed release artifact before installing the skill in a production agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxy0905/skills/nuwa-skill-qszf)
+- [ClawHub publisher profile](https://clawhub.ai/user/dxy0905)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated skill file specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe generated SKILL.md, references, scripts, and templates for downstream skill packaging.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata; artifact SKILL.md frontmatter states 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

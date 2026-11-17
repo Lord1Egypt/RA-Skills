@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import shutil
+import sys
 import subprocess
 import tempfile
 import unittest
@@ -14,8 +16,11 @@ BIN_CHECK = ROOT / "bin" / "proof-loop-check"
 
 
 def run(*args: object, cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
+    argv = [str(a) for a in args]
+    if Path(argv[0]).parent == ROOT / "bin":
+        argv.insert(0, sys.executable if Path(argv[0]).name == "proof-loop" else "bash")
     return subprocess.run(
-        [str(a) for a in args],
+        argv,
         cwd=cwd,
         text=True,
         stdout=subprocess.PIPE,
@@ -51,7 +56,7 @@ class ProofLoopCliTests(unittest.TestCase):
             self.assertIn("UNKNOWN", result.stdout)
 
     def test_completed_example_passes_done_gate(self) -> None:
-        result = run("python3", CHECK, ROOT / "examples" / "example-task" / ".agent" / "tasks" / "ui-language-fix")
+        result = run("python3", CHECK, ROOT / "examples" / "example-task" / "tasks" / "ui-language-fix")
         self.assertEqual(result.returncode, 0, result.stdout)
         self.assertIn("PROOF_LOOP_PASS", result.stdout)
 
@@ -100,7 +105,7 @@ class ProofLoopCliTests(unittest.TestCase):
             self.assertIn("PROOF_LOOP_FAIL", check.stdout)
 
     def test_unified_cli_status_list_doctor_report_and_validate(self) -> None:
-        report_task = ROOT / "examples" / "demo-repo" / ".agent" / "tasks" / "nav-labels-proof"
+        report_task = ROOT / "examples" / "demo-repo" / "tasks" / "nav-labels-proof"
         doctor = run(ROOT / "bin" / "proof-loop", "doctor")
         self.assertEqual(doctor.returncode, 0, doctor.stdout)
         self.assertIn("PROOF_LOOP_DOCTOR_PASS", doctor.stdout)
@@ -109,7 +114,9 @@ class ProofLoopCliTests(unittest.TestCase):
         self.assertEqual(status.returncode, 0, status.stdout)
         self.assertIn("overall=PASS", status.stdout)
 
-        listing = run(ROOT / "bin" / "proof-loop", "list", "--root", ROOT / "examples" / "demo-repo")
+        with tempfile.TemporaryDirectory() as tmp:
+            shutil.copytree(report_task, Path(tmp) / ".agent/tasks/nav-labels-proof")
+            listing = run(ROOT / "bin" / "proof-loop", "list", "--root", tmp)
         self.assertEqual(listing.returncode, 0, listing.stdout)
         self.assertIn("nav-labels-proof", listing.stdout)
 

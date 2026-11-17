@@ -1,45 +1,61 @@
-## Description: <br>
-Monetize idle LLM API capacity or access 100+ models through a unified OpenAI-compatible API. No GPU required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monetize idle LLM API capacity or access 100+ models through a unified OpenAI-compatible API.
 
-## Publisher: <br>
-[neuralpool](https://clawhub.ai/user/neuralpool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuralpool](https://clawhub.ai/user/neuralpool)
 
-## Use Case: <br>
-External developers, API consumers, and node operators use this skill to set up NeuralPool Node, configure upstream LLM providers, and access or provide LLM API capacity through an OpenAI-compatible marketplace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install path runs remote code and installs an unverified executable on the user's machine. <br>
-Mitigation: Download the script and binary separately, inspect them, and verify a published checksum or signature before running; avoid piping remote scripts directly into a shell. <br>
-Risk: The skill requires sensitive credentials such as a NeuralPool auth token and upstream provider keys. <br>
-Mitigation: Use least-privilege credentials where possible, store them locally, and rotate them if the local machine or configuration is exposed. <br>
-Risk: The workflow can involve paid usage, settlement, and wallet-based withdrawals. <br>
-Mitigation: Confirm pricing, token limits, settlement timing, and wallet details before enabling a node or depositing funds. <br>
+## Use Case:
 
+Developers and node operators use this skill to install and configure a NeuralPool node, monetize upstream LLM API capacity, or consume NeuralPool through an OpenAI-compatible API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neuralpool/neuralpool) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/neuralpool) <br>
-- [NeuralPool website](https://neuralpool.ai) <br>
-- [NeuralPool documentation](https://neuralpool.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a NeuralPool authentication token and local configuration of upstream provider credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The installer may execute remote code and install a downloaded binary system-wide.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid curl | bash, inspect the installer first, pin a specific release, and verify any published checksums or signatures before installation.
+
+Risk: The node handles local provider API keys, prompts, responses, billing data, and a NeuralPool auth token.
+
+Mitigation: Run it only in an environment where NeuralPool and configured upstream providers are trusted, and use least-privilege credentials where available.
+
+Risk: Default installation may require writing to /usr/local/bin with sudo.
+
+Mitigation: Prefer a user-owned INSTALL_DIR when possible to reduce the blast radius of installation.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/neuralpool/skills/neuralpool)
+- [NeuralPool website](https://neuralpool.ai)
+- [NeuralPool documentation](https://neuralpool.ai/docs)
+- [NeuralPool registration](https://neuralpool.ai/register)
+- [Manual binary downloads](https://github.com/neuralpool/neuralpool-node/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installer commands, node setup steps, start commands, and OpenAI-compatible API examples.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

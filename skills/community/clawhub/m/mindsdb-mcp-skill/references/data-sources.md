@@ -392,7 +392,7 @@ PARAMETERS = {
 CREATE DATABASE slack_connection
 WITH ENGINE = 'slack',
 PARAMETERS = {
-  'token': 'xoxb-your-token-here'
+  'token': 'REDACTED-SECRET'
 }
 ```
 

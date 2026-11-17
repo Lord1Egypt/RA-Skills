@@ -1,40 +1,53 @@
-## Description: <br>
-Automated work log management with daily and weekly report generation for recording tasks, tracking progress, setting reminders, and marking task completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated work log management with daily and weekly report generation for recording tasks, tracking progress, setting reminders, and updating completion status.
 
-## Publisher: <br>
-[wwl52](https://clawhub.ai/user/wwl52) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwl52](https://clawhub.ai/user/wwl52)
 
-## Use Case: <br>
-Employees and individual contributors use this skill to maintain a local plaintext work log, track task progress, receive reminders for incomplete work, and generate daily or weekly summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Work log entries are stored locally as plaintext and may contain sensitive workplace details. <br>
-Mitigation: Avoid logging secrets, credentials, regulated data, or customer-confidential information unless local storage on the device is acceptable. <br>
-Risk: Recurring progress reminders can surface task names and status during working hours. <br>
-Mitigation: Use explicit completion or deletion commands to close or remove tasks and keep reminder content nonsensitive. <br>
+## Use Case:
 
+Employees and teams use this skill to keep local work logs, update task progress, receive reminders for unfinished tasks, and generate daily or weekly status reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwl52/work-log) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown tables and text summaries, plus local JSON log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores logs locally at ~/.workbuddy/work-log/logs.json and may schedule recurring progress reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata; artifact frontmatter reports 1.3.0) <br>
+Risk: Local work notes can include secrets, credentials, or sensitive business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or highly sensitive details, and review or delete stored logs when they are no longer needed.
+
+Risk: Recurring reminders for unfinished tasks can continue until task status is updated.
+
+Mitigation: Mark tasks complete, update progress, or delete stale log entries to stop unnecessary reminders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwl52/skills/work-log)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Conversational text and Markdown reports, with local JSON work-log entries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores user-entered work notes locally under ~/.workbuddy/work-log/logs.json.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

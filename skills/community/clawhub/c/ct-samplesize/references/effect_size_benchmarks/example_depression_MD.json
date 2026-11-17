@@ -1,0 +1,28 @@
+{
+  "_comment": "格式示例（FORMAT EXAMPLE）：数值为演示占位，NOT VERIFIED——作为真实基线使用前，须经路线 C 人工核实并替换 source/pmid 与数值。",
+  "ta": "示例-抑郁症",
+  "endpoint": "HAMD-17 均值差",
+  "as_of": "2026-10-14",
+  "references": [
+    {
+      "param": "effect",
+      "scale": "MD",
+      "estimate": 3.2,
+      "ci_low": 2.1,
+      "ci_high": 4.3,
+      "n": 2541,
+      "source": "示例格式：某 Cochrane 综述（占位，待人工核实）",
+      "pmid": null
+    },
+    {
+      "param": "effect",
+      "scale": "MD",
+      "estimate": 2.8,
+      "ci_low": 1.5,
+      "ci_high": 4.1,
+      "n": 1180,
+      "source": "示例格式：某已发表荟萃（占位，待人工核实）",
+      "pmid": null
+    }
+  ]
+}

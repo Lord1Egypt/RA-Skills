@@ -1,37 +1,52 @@
-## Description: <br>
-Extracts key insights from tweet URLs and organizes them into structured Markdown notes across tools, tech, design, people, and miscellaneous categories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts key insights from tweet URLs and categorizes them into structured, formatted notes across tools, tech, design, people, and miscellaneous files.
 
-## Publisher: <br>
-[caqlayan](https://clawhub.ai/user/caqlayan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[caqlayan](https://clawhub.ai/user/caqlayan)
 
-## Use Case: <br>
-Developers and knowledge workers who collect technical insights from social posts use this skill to turn tweet URLs into categorized local Markdown notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Tweet URLs and derived notes may preserve private or sensitive context in local files. <br>
-Mitigation: Process only tweets the user is comfortable storing locally, and review saved summaries for accuracy before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caqlayan/tweet-processor) <br>
+## Use Case:
 
+External users and developers use this skill to process tweet links into curated local notes for later reference. It helps capture tools, technical workflows, design insights, people, and miscellaneous learnings from individual tweets.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files] <br>
-**Output Format:** [Markdown note entries appended to categorized tweet-notes files, with a brief text report of what was added.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Entries include the date, source URL, key takeaway, and why the item matters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tweet content comes from external sources and may produce inaccurate or low-quality notes.
+
+Mitigation: Review generated note entries before relying on them.
+
+Risk: The skill can append notes automatically when tweet links are sent.
+
+Mitigation: Install and use it only when automatic tweet-to-notes behavior is desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caqlayan/skills/tweet-processor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands]
+
+**Output Format:** [Markdown note entries appended to local files, with command-line status text when run through the included script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Entries include a title, date, tweet URL, key takeaway, and why-it-matters note.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

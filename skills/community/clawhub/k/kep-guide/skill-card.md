@@ -1,43 +1,62 @@
-## Description: <br>
-Guides users through Turkey's Registered Electronic Mail (KEP) system, including what it is, how to obtain an address, who must use it, provider choices, and integration options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Türkiye Kayıtlı Elektronik Posta (KEP) rehberi. KEP nedir, nasıl alınır, zorunlu mu, hangi kurumlar kullanıyor, entegrasyon yöntemleri. Use when asked about KEP, registered electronic mail, Türkkep, or Turkish official electronic communication.
 
-## Publisher: <br>
-[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayhanagirgol](https://clawhub.ai/user/ayhanagirgol)
 
-## Use Case: <br>
-External users, company operators, and developers use this skill to understand KEP obligations, compare Turkish KEP providers, plan application steps, and review illustrative integration approaches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Turkey <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Illustrative KEP integration examples could lead users to expose real passwords or API tokens if copied directly into chat or source files. <br>
-Mitigation: Use placeholders, keep secrets in a managed secret store, and do not paste real KEP passwords or API tokens into agent conversations. <br>
-Risk: KEP legal duties, provider endpoints, delivery-proof retention, and approval workflows may be context-dependent or change over time. <br>
-Mitigation: Verify obligations, provider documentation, retention rules, and production workflows against official sources before relying on generated guidance. <br>
+## Use Case:
 
+External users and developers use this skill to answer questions about Turkey's KEP system, including legal obligations, provider selection, application steps, e-tebligat differences, and API integration pointers.
 
-## Reference(s): <br>
-- [Kayıtlı Elektronik Posta (KEP) Rehberi - Türkiye](references/kep_rehber.md) <br>
-- [BTK KEP Portal](https://www.btk.gov.tr/kep) <br>
-- [Türkkep API Documentation](https://www.turkkep.com.tr/api) <br>
-- [TNB KEP Integration Documentation](https://www.tnbkep.com.tr/entegrasyon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown responses with tables and inline code or command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider links, comparison tables, and illustrative API or SMTP snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Legal or provider guidance about KEP can become outdated or vary by use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current law, BTK guidance, and provider documentation before relying on the skill for legally significant decisions.
+
+Risk: Illustrative API examples could be mistaken for production-ready integration instructions.
+
+Mitigation: Review provider API documentation and avoid using real credentials or legally significant message content in examples.
+
+Risk: The skill includes disclosed Finhouse promotional mentions for integration help.
+
+Mitigation: Treat vendor recommendations as promotional and compare alternatives before selecting an integration provider.
+
+## Reference(s):
+
+- [Kayıtlı Elektronik Posta (KEP) Rehberi](references/kep_rehber.md)
+- [BTK KEP Official Portal](https://www.btk.gov.tr/kep)
+- [Türkkep](https://www.turkkep.com.tr)
+- [Finhouse](https://finhouse.ai)
+- [ClawHub Skill Page](https://clawhub.ai/ayhanagirgol/skills/kep-guide)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ayhanagirgol)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with links, comparison tables, and illustrative API snippets when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute code or access user data on its own.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

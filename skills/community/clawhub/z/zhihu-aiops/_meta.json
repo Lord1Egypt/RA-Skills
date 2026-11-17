@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn77qx634tjhab2te78gmqt6p187ftz6",
-  "slug": "zhihu-aiops",
+  "name": "zhihu-aiops",
   "version": "1.0.0",
-  "publishedAt": 1779930385870
+  "description": "Zhihu AIOps / 智护运维平台 skill references for assets, CMDB, monitoring, alarms, VictoriaMetrics, Categraf SNMP metrics, and managed asset inspection."
 }

@@ -1,44 +1,55 @@
-## Description: <br>
-Analyze a Java Maven project delivered as a ZIP archive or a GitLab repository URL for secondary-development scope, class counts, module distribution, product customization traces, invasive modifications, and upgrade pollution risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a Java Maven project delivered as a ZIP archive or a GitLab repository URL for secondary-development scope, class counts, module distribution, product customization traces, invasive modifications, and upgrade pollution risks.
 
-## Publisher: <br>
-[mrliugangqiang](https://clawhub.ai/user/mrliugangqiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrliugangqiang](https://clawhub.ai/user/mrliugangqiang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect Java Maven projects from ZIP archives or authorized GitLab repositories and produce a structured secondary-development analysis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The available security summary notes that full artifact content review was not present in the scan inputs. <br>
-Mitigation: Review the bundled SKILL.md, scanner script, template, and any install or execution steps before deployment. <br>
-Risk: The analysis relies on structural and keyword scanning, so customization findings can be incomplete or require business-context interpretation. <br>
-Mitigation: Treat generated reports as first-pass evidence and require human review for important findings, affected file paths, and upgrade-risk conclusions. <br>
+## Use Case:
 
+Developers and engineers use this skill to produce a Chinese-language first-pass secondary-development analysis report for Java Maven projects. It helps summarize project structure, class and layer distribution, customization traces, invasive-change candidates, and upgrade-risk indicators.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/mrliugangqiang/java-maven-secondary-analysis) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mrliugangqiang) <br>
-- [Artifact: SKILL.md](artifact/SKILL.md) <br>
-- [Artifact: report template](artifact/templates/report.md) <br>
-- [Artifact: secondary analysis scanner](artifact/scripts/scan_secondary_analysis.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with supporting JSON analysis data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a formal report under business/ and can emit structured scan results for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The report's invasive-change and upgrade-risk sections are heuristic triage and may miss issues or overstate keyword matches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review findings against project context before using them for architecture, upgrade, or security decisions.
+
+Risk: The analyzer reads files in the project directory provided to it.
+
+Mitigation: Run it only against Java Maven project directories or archives that the operator intends to analyze.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrliugangqiang/skills/java-maven-secondary-analysis)
+- [Skill definition](artifact/SKILL.md)
+- [Report template](artifact/templates/report.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with supporting JSON scan output and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are written under business/ and should include supporting file-path evidence for important findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

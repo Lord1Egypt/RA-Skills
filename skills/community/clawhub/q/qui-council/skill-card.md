@@ -1,46 +1,65 @@
-## Description: <br>
-Send an idea to the Council of the Wise for multi-perspective feedback. Spawns sub-agents to analyze from multiple expert perspectives. Auto-discovers agent personas from agents/ folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send an idea to the Council of the Wise for multi-perspective feedback, using auto-discovered agent personas to analyze the idea from several expert perspectives.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-External users and developers use this skill to stress-test business ideas, project plans, content strategies, and major decisions through several agent perspectives. It returns synthesized feedback, disagreements, prioritized action items, and a confidence signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided ideas may include secrets or highly sensitive material that is processed by a model-routing workflow. <br>
-Mitigation: Remove secrets and sensitive details before invoking the council, or use only material approved for that processing path. <br>
-Risk: Custom agent markdown files can change the advice style and scope of future council runs. <br>
-Mitigation: Review custom agent files before adding them to the agents folder and keep only trusted personas in production skill bundles. <br>
-Risk: Multi-perspective advice can be persuasive even when assumptions or estimates are wrong. <br>
-Mitigation: Treat the council report as decision support, verify key claims independently, and use the confidence signal to identify where more research is needed. <br>
+## Use Case:
 
+External users and developers use this skill to submit substantial ideas, plans, or designs for synthesized feedback from multiple AI expert perspectives. It is intended for deeper review of business plans, projects, content strategies, and major decisions rather than quick questions or time-sensitive tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/quincygunter/qui-council) <br>
-- [Publisher profile](https://clawhub.ai/user/quincygunter) <br>
-- [README](README.md) <br>
-- [Council self-review](docs/council-self-review.md) <br>
-- [Daniel Miessler](https://danielmiessler.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown council report with synthesis, expert perspectives, action items, and confidence signal] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May take 2-5 minutes and can return partial results on timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog state 1.4.0) <br>
+Risk: Submitted ideas are processed through a spawned sub-agent and model routing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for ideas and documents you are comfortable submitting for that processing path.
+
+Risk: Accidental invocation or broad prompts can trigger extra model usage and a 2-5 minute review.
+
+Mitigation: Invoke the council explicitly for substantial reviews and avoid using it for quick questions or time-sensitive tasks.
+
+Risk: Custom persona files added to the agents folder are auto-loaded into the council review.
+
+Mitigation: Review new or modified persona files before installation or use.
+
+Risk: Generated reports include a required promotional footer.
+
+Mitigation: Review the final output before sharing it outside the intended audience.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quincygunter/skills/qui-council)
+- [Publisher profile](https://clawhub.ai/user/quincygunter)
+- [README](README.md)
+- [Council self-review](docs/council-self-review.md)
+- [Daniel Miessler](https://danielmiessler.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with synthesis, expert perspectives, prioritized action items, and a confidence signal.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Council review may take 2-5 minutes, use additional model calls, and return partial results if the review times out.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog state 1.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

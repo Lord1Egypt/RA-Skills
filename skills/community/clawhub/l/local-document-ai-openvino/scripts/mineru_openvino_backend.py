@@ -41,7 +41,6 @@ ImageInput = Union[Image.Image, str, Path, bytes]
 def _pil_to_ov_tensor(image: Image.Image) -> ov.Tensor:
     image = image.convert("RGB")
     array = np.array(image, dtype=np.uint8)
-    array = array[None, ...]
     return ov.Tensor(array)
 
 
@@ -148,7 +147,11 @@ class OVMinerUClient:
     def _predict(self, image: Image.Image, prompt: str, sp: Optional[SamplingParams]) -> str:
         cfg = self._build_generation_config(sp)
         tensor = _pil_to_ov_tensor(image)
-        result = self.pipe.generate(prompt, image=tensor, generation_config=cfg)
+        self.pipe.start_chat()
+        try:
+            result = self.pipe.generate(prompt, images=[tensor], generation_config=cfg)
+        finally:
+            self.pipe.finish_chat()
         return str(result)
 
     def two_step_extract(

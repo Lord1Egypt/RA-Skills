@@ -14,7 +14,7 @@
  *   - 保留原有 number/percentage/date 检测能力（不删）
  */
 
-let OpenAlexClient; try { OpenAlexClient = require('./openalex-client'); } catch(e) { OpenAlexClient = class { constructor() {} }; }
+let OpenAlexClient; try { OpenAlexClient = require('../core/openalex-client'); } catch(e) { OpenAlexClient = class { constructor() {} }; }
 
 /**
  * 绝对化/不可证伪模式（引擎层硬编码）
@@ -354,7 +354,7 @@ const factChecker = {
     if (dates.length === 0) return { checked: false };
     const now = new Date();
     for (const d of dates) {
-      const year = parseInt(d);
+      const year = parseInt(d, 10);
       if (year > now.getFullYear() + 1) {
         return { checked: true, type: 'date', issue: `日期${d}在未来，可能错误`, confidence: 'low' };
       }

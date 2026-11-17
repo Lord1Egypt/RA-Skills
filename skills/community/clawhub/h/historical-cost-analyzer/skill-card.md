@@ -1,37 +1,53 @@
-## Description: <br>
-Analyze historical construction costs for benchmarking, trend analysis, and estimating calibration. Compare projects, track escalation, identify patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze historical construction costs for benchmarking, trend analysis, and estimating calibration.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction estimators, cost engineers, and project teams use this skill to benchmark historical project costs, normalize costs by time and location, track escalation, identify cost drivers, and calibrate future estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require broad filesystem access to read construction cost spreadsheets and project data. <br>
-Mitigation: Grant access only to the specific cost files or folders needed for the analysis, and avoid exposing unrelated or confidential project data. <br>
+## Use Case:
 
+Construction cost estimators, project controls teams, and analysts use this skill to benchmark historical project costs, normalize costs across years and locations, identify cost drivers, and calibrate future estimates.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown analysis with cost metrics, benchmark comparisons, trend data, outlier notes, and optional Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use user-provided construction project data and spreadsheet-derived cost fields for benchmarking and reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: claw.json and server release metadata) <br>
+Risk: Dependency installation could introduce unreviewed package versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in an isolated environment and pin reviewed versions before use.
+
+Risk: Historical project cost records may contain confidential business information.
+
+Mitigation: Provide only construction cost data that is approved for analysis in the target environment.
+
+## Reference(s):
+
+- [Historical Cost Analyzer on ClawHub](https://clawhub.ai/datadrivenconstruction/skills/historical-cost-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown reports, benchmark summaries, comparison metrics, trend data, and implementation guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include normalized cost metrics, escalation rates, comparable-project confidence levels, and outlier explanations.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

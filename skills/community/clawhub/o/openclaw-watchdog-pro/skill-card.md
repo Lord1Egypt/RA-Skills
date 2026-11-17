@@ -1,43 +1,56 @@
-## Description: <br>
-OpenClaw Watchdog Pro backs up OpenClaw configuration, monitors the local gateway, restores from backups, and detects gateway error patterns across Linux, macOS, and Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Watchdog Pro helps agents guide users through cross-platform OpenClaw configuration backup, gateway monitoring, automatic rollback, and gateway error-pattern checks.
 
-## Publisher: <br>
-[doradx](https://clawhub.ai/user/doradx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[doradx](https://clawhub.ai/user/doradx)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw operators use this skill to configure a persistent watchdog that backs up OpenClaw configuration, checks gateway health, restores the latest valid backup, and analyzes gateway log error patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The installer can configure a persistent long-running OpenClaw watchdog service.
+
+Mitigation: Install only when persistent monitoring is intended, review the installer before use, and maintain a clear uninstall or disable procedure.
+
+Risk: The watchdog may run with elevated privileges through system services or scheduled tasks.
+
+Mitigation: Prefer a least-privileged user service and avoid administrator or root execution unless operationally required.
+
+Risk: Automatic repair or rollback can change OpenClaw configuration without enough user control.
+
+Mitigation: Consider disabling automatic repair or rollback, and review backups and recovery actions before relying on unattended remediation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to keep a local OpenClaw gateway healthy, preserve recent configuration backups, and recover after gateway failures without reconstructing configuration by hand. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on recovery can restore configuration, restart the gateway, and run repair commands automatically. <br>
-Mitigation: Install only when this behavior is intended, review the installer first, and monitor watchdog logs and state after enabling it. <br>
-Risk: The installer can configure persistent services or scheduled tasks with elevated privileges. <br>
-Mitigation: Avoid root or SYSTEM deployment where possible and confirm how to remove the service, scheduled task, and shell alias before use. <br>
-Risk: Configuration backups under `~/.openclaw/backups` may contain sensitive OpenClaw settings. <br>
-Mitigation: Protect the backup directory with appropriate filesystem permissions and retention controls. <br>
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and operational procedures]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/doradx/openclaw-watchdog-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/doradx) <br>
+**Other Properties Related to Output:** [Outputs are operational guidance for local OpenClaw configuration, service setup, monitoring, backup, recovery, and troubleshooting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance and command suggestions; when executed, bundled scripts may create backups, logs, state files, shell aliases, and service or scheduled-task configuration.] <br>
+2.2.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

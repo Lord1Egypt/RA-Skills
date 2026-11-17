@@ -1,45 +1,54 @@
-## Description: <br>
-AI lesson-preparation assistant for educators that generates lesson plans, quizzes, and course outlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps educators draft grade-appropriate lesson plans, quizzes, course syllabi, slide outlines, and teaching presentation scripts.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
 
-## Use Case: <br>
-Educators use this skill to prepare structured teaching materials, including lesson plans, assessment questions with explanations, and course outlines. It is intended for classroom preparation workflows where generated content is reviewed before use with students. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: OpenWebUI executes saved tool code. <br>
-Mitigation: Review teacher_kit.py before saving it into OpenWebUI. <br>
-Risk: Generated lesson materials or quiz answers may be inaccurate or unsuitable for a specific class. <br>
-Mitigation: Have an educator review generated content before using it with students. <br>
-Risk: Source content pasted into the tool may include sensitive material. <br>
-Mitigation: Avoid entering sensitive data and follow institutional data-handling policies. <br>
+## Use Case:
 
+Educators draft lesson plans, quizzes with answer explanations, course syllabi, slide outlines, and teaching scripts for students from primary school through graduate study.
 
-## Reference(s): <br>
-- [TeacherKit ClawHub release](https://clawhub.ai/dongsheng123132/teacher-kit) <br>
-- [TeacherKit README](artifact/README.md) <br>
-- [TeacherKit OpenWebUI tool source](artifact/teacher_kit.py) <br>
-- [Publisher profile](https://clawhub.ai/user/dongsheng123132) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted text prompts and structured educational content guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese, English, or bilingual output and caps quiz generation at the configured maximum.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Broad teaching-related terms may activate the skill for unrelated requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested teaching task before generating materials.
+
+Risk: Generated teaching materials may contain inaccurate facts or unsupported textbook details.
+
+Mitigation: Check facts and references against supplied course materials before classroom use; flag uncertain details for review.
+
+## Reference(s):
+
+- [TeacherKit on ClawHub](https://clawhub.ai/dongsheng123132/skills/teacher-kit)
+- [Project homepage listed in skill metadata](https://github.com/dongsheng123132/teacher-kit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown with headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese by default; English or bilingual on request. Provides slide outlines, not finished presentation files.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, CHANGELOG.md, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

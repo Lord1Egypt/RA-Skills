@@ -1,43 +1,53 @@
-## Description: <br>
-DiGiCo mixer OSC protocol remote control system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DiGiCo mixer OSC remote control system.
 
-## Publisher: <br>
-[zimuge-doudou](https://clawhub.ai/user/zimuge-doudou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zimuge-doudou](https://clawhub.ai/user/zimuge-doudou)
 
-## Use Case: <br>
-Audio technicians and automation operators use this skill to connect to DiGiCo mixer infrastructure, send OSC control actions, monitor mixer status, and manage scenes or snapshots when remote operation is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send OSC actions that change live mixer state, including scenes, gain, compressor settings, routing-related controls, and snapshots. <br>
-Mitigation: Restrict use to approved operators on trusted networks and require human confirmation before write actions against production mixer equipment. <br>
-Risk: Incorrect target IP or port values could send control traffic to the wrong device or fail during time-sensitive audio operations. <br>
-Mitigation: Verify the DiGiCo mixer IP address and OSC port before connection and maintain an allowlist for production devices. <br>
-Risk: Automated operation can apply changes without built-in safety checks or confirmations. <br>
-Mitigation: Add an external approval process for automated scene, gain, routing, compressor, and snapshot changes. <br>
+## Use Case:
 
+Audio engineers and technical operators use this skill to connect to DiGiCo mixers over OSC, load scenes, adjust channel settings, save snapshots, and check mixer status during rehearsals or live events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zimuge-doudou/skill-digico-mixer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zimuge-doudou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Configuration, Guidance] <br>
-**Output Format:** [JSON status objects and Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include success or error status, OSC target details, and action-specific fields such as scene, channel, gain, latency, or snapshot name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: State-changing OSC actions can affect live audio equipment immediately when pointed at a real mixer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on a trusted, isolated management network with operator confirmation before scene, gain, compressor, or snapshot changes.
+
+Risk: Insufficient endpoint scoping or validation can send commands to unintended mixer targets.
+
+Mitigation: Add target allowlists, real endpoint verification, logging, pinned dependencies, and dry-run behavior before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zimuge-doudou/skills/skill-digico-mixer)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON-compatible action results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send state-changing OSC commands to configured mixer endpoints when executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

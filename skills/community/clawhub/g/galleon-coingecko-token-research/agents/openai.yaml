@@ -1,0 +1,4 @@
+interface:
+  display_name: "CoinGecko token research"
+  short_description: "Resolve token contracts and dated market evidence"
+  default_prompt: "Use $galleon-coingecko-token-research to complete the requested provider workflow with concrete evidence and unresolved gaps."

@@ -1,39 +1,55 @@
-## Description: <br>
-Use when converting a video clip into a GIF with ffmpeg, including optional trimming, frame rate, width, and output detail controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts local video clips into GIF animations with ffmpeg, with options for start time, duration, frame rate, output width, and bilingual Chinese-English guidance.
 
-## Publisher: <br>
-[sallyxie2026](https://clawhub.ai/user/sallyxie2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sallyxie2026](https://clawhub.ai/user/sallyxie2026)
 
-## Use Case: <br>
-Developers and end users use this skill to convert a local video clip into a GIF, optionally trimming by start time and duration and controlling frame rate and width. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The conversion depends on local ffmpeg and ffprobe binaries. <br>
-Mitigation: Use a trusted ffmpeg installation and process only local files the user intentionally selects. <br>
-Risk: The script writes to the requested GIF output path and may overwrite an existing file. <br>
-Mitigation: Choose an output filename that is safe to create or overwrite before running the conversion. <br>
+## Use Case:
 
+Developers, content creators, and external users use this skill to convert local video files or selected clips into GIFs while controlling frame rate, width, start time, and duration.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated GIF file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the output path, file size, dimensions, and frame rate after conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs ffmpeg and ffprobe on local video files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and trust ffmpeg/ffprobe before use, and run the converter only on video files the user intends to process.
+
+Risk: The converter uses overwrite mode for the selected GIF output path.
+
+Mitigation: Review the output path before running the command and choose a new filename when preserving an existing file matters.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sallyxie2026/skills/video-to-gif)
+- [Skill Definition](artifact/SKILL.md)
+- [Conversion Script](artifact/scripts/convert.py)
+
+## Skill Output:
+
+**Output Type(s):** [files, text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated GIF file details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or overwrites the user-provided GIF output path and reports the output path, size, dimensions, and frame rate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

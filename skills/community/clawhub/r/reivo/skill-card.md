@@ -1,45 +1,60 @@
-## Description: <br>
-Track AI agent costs in real-time, set budget limits, and auto-detect runaway loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track AI agent costs in real time, set budget limits, and detect runaway loops while routing OpenAI, Anthropic, and Google model traffic through the Reivo proxy.
 
-## Publisher: <br>
-[tazsat0512](https://clawhub.ai/user/tazsat0512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tazsat0512](https://clawhub.ai/user/tazsat0512)
 
-## Use Case: <br>
-Developers and agent operators use Reivo to monitor AI API spend, enforce budgets, detect runaway loops, and configure cost-saving model routing for OpenAI, Anthropic, and Google traffic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes AI API traffic through the Reivo proxy and uses Reivo account credentials. <br>
-Mitigation: Install only when that traffic routing is acceptable; use dedicated or scoped provider keys where possible and keep REIVO_API_KEY private. <br>
-Risk: The skill can change Reivo account settings such as budget limits, routing mode, and Slack webhook notifications when requested. <br>
-Mitigation: Review budget, routing-mode, and Slack webhook changes before applying them. <br>
-Risk: Cost and defense reports depend on the Reivo service and the configured account state. <br>
-Mitigation: Treat reports as account-specific operational data and verify important decisions in the Reivo dashboard. <br>
+## Use Case:
 
+Developers and external users use Reivo to monitor AI API spending, configure budget limits, receive cost and defense status, route provider requests through Reivo, and get optimization guidance for OpenAI, Anthropic, and Google model usage.
 
-## Reference(s): <br>
-- [Reivo homepage](https://reivo.dev) <br>
-- [Reivo dashboard](https://app.reivo.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/tazsat0512/reivo) <br>
-- [Publisher profile](https://clawhub.ai/user/tazsat0512) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live account cost, budget, routing, defense, optimization, and Slack notification status returned from Reivo APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.4 (source: server release metadata and package.json) <br>
+Risk: The skill routes AI-provider traffic through Reivo and shares usage metadata with that service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that routing and metadata sharing match the user's data-handling requirements.
+
+Risk: Budget, routing mode, and Slack webhook changes are authenticated account-level settings changes.
+
+Mitigation: Require the user to confirm exact values before running commands that change those settings.
+
+Risk: Optional self-hosted guardrail installs can depend on external package versions.
+
+Mitigation: Prefer pinned package versions when installing self-hosted guardrail components.
+
+## Reference(s):
+
+- [Reivo homepage](https://reivo.dev)
+- [Reivo dashboard](https://app.reivo.dev)
+- [Reivo ClawHub page](https://clawhub.ai/tazsat0512/skills/reivo)
+- [reivo-guard open-source guardrail engine](https://github.com/tazsat0512/reivo-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style status reports, setup guidance, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REIVO_API_KEY and may call Reivo dashboard or proxy APIs when the generated commands are run.]
+
+## Skill Version(s):
+
+0.4.4 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

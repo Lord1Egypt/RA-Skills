@@ -11,4 +11,4 @@ dashscope>=1.17.0,<2.0.0                       # TTS_BACKEND=cosyvoice
 # TTS_BACKEND=google     — uses requests only (no extra package)
 
 # Design learning (optional)
-# playwright             # Only needed for learn_design.py URL analysis
+# playwright             # Only needed for scripts/learn_design.py URL analysis

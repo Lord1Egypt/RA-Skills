@@ -1,45 +1,61 @@
-## Description: <br>
-Wuxing Daily helps an agent provide Chinese traditional wuxing and Bazi analysis, daily fortune guidance, lunar date conversion, and optional reminder setup from a user's birth details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wuxing Daily helps agents provide Chinese-language five-elements astrology readings, Ba Zi-style profile summaries, daily fortune guidance, lunar date conversion, and optional daily reminder setup.
 
-## Publisher: <br>
-[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo)
 
-## Use Case: <br>
-External users can ask an agent for entertainment-oriented wuxing, Bazi, lunar calendar, and daily fortune readings based on birth date and optional birth hour. Developers can also use the bundled local Python scripts to calculate wuxing distributions, daily fortune text, and lunar date conversions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can suggest fortune, wellness, finance, or decision-related guidance that users may over-weight. <br>
-Mitigation: Present readings as cultural entertainment and avoid treating them as medical, financial, legal, or other professional advice. <br>
-Risk: The optional daily reminder uses a cron-style scheduled command. <br>
-Mitigation: Enable reminders only after reviewing the exact command and confirming how to list, modify, and remove the scheduled task. <br>
-Risk: The artifact includes local Python scripts that run on the user's machine. <br>
-Mitigation: Review the scripts before execution and run them in an appropriate local environment. <br>
+## Use Case:
 
+External users and agent operators use this skill to generate cultural or entertainment-focused five-elements readings, daily fortune summaries, and lunar calendar conversions from birth date information. Operators may also use it to propose local shell commands for running the bundled scripts or setting a daily reminder.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/timyljob2011-sudo/wuxing-daily) <br>
-- [Nayin table reference](artifact/nayin_table.md) <br>
-- [Wuxing daily-life reference](artifact/wuxing_daily.md) <br>
-- [Ziwei star reference](artifact/ziwei_stars.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with optional Python and cron command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are cultural entertainment guidance and local script results; no hidden data access or network behavior was identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact README) <br>
+Risk: The daily reminder workflow can create a persistent cron task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before enabling reminders, show the exact cron command, and provide removal steps before scheduling anything.
+
+Risk: The skill may request birth date and birth hour information.
+
+Mitigation: Collect only the date and time details needed for the requested reading and avoid retaining them after the session.
+
+Risk: Fortune, health, finance, or major life-decision suggestions could be mistaken for professional advice.
+
+Mitigation: Present outputs as entertainment or cultural reference and direct users to qualified professionals for medical, financial, legal, or other consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/skills/wuxing-daily)
+- [README](artifact/README.md)
+- [Six-Cycle Nayin Table](artifact/nayin_table.md)
+- [Wuxing Daily Correspondence Table](artifact/wuxing_daily.md)
+- [Zi Wei Dou Shu Main Stars](artifact/ziwei_stars.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional inline shell commands and formatted console-style reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language astrology and almanac content; no external API output format is documented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact README)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

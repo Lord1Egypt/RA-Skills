@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn7bxc79hkset41rq175brg97s85g8c1",
+  "name": "热点收集雷达",
   "slug": "hot-radar",
   "version": "1.1.0",
-  "publishedAt": 1779682965366
+  "description": "多平台热点追踪 + 趋势分析 + 竞品监控 + AI 日报生成。超越数据抓取，从产品经理视角分析热点生命周期、话题共鸣度与跨平台传播路径。",
+  "keywords": [
+    "热点雷达",
+    "热点追踪",
+    "竞品监控",
+    "趋势分析",
+    "行业日报",
+    "飞书推送"
+  ],
+  "requires": {
+    "bins": ["python3"],
+    "pythonPackages": ["requests", "beautifulsoup4", "jieba"]
+  },
+  "metadata": {
+    "openclaw": {
+      "emoji": "📡",
+      "requires": {
+        "bins": ["python3"]
+      }
+    }
+  }
 }

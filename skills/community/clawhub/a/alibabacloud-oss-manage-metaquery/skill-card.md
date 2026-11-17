@@ -1,51 +1,67 @@
-## Description: <br>
-Alicloud OSS AI Content Awareness Skill for enabling and querying OSS semantic search with AI-powered content understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud OSS AI Content Awareness skill for enabling and querying OSS semantic search with AI-powered content understanding.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to configure Alibaba Cloud OSS MetaQuery, enable AI content awareness, and run scalar or semantic searches across bucket contents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-OSS buckets in cn-hangzhou, cn-shanghai, cn-qingdao, cn-beijing, cn-zhangjiakou, cn-shenzhen, cn-guangzhou, cn-chengdu, cn-hongkong, ap-southeast-1, and us-east-1. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect live Alibaba Cloud OSS buckets, including creating buckets, uploading objects, enabling MetaQuery, and closing indexes. <br>
-Mitigation: Use scoped RAM or STS credentials for the exact bucket and require explicit review before create, delete, close-index, or other state-changing actions. <br>
-Risk: Credential misuse could expose sensitive Alibaba Cloud access keys or broaden access beyond the intended bucket. <br>
-Mitigation: Use a dedicated RAM user or temporary credentials, avoid root or account-wide keys, and do not print, echo, or request access key secrets in conversation or command output. <br>
-Risk: Indexing large buckets or enabling AI content awareness can incur cloud costs and may take significant processing time. <br>
-Mitigation: Check bucket object counts and confirm costs before enabling MetaQuery, especially for buckets with more than 1000 objects. <br>
-Risk: Installer and CLI setup commands fetch external tooling before the workflow can run. <br>
-Mitigation: Verify installer sources and plugin updates before running setup commands in managed or production environments. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to configure Alibaba Cloud OSS MetaQuery with AI content awareness, upload and index bucket objects, run scalar or semantic searches, and verify index status and results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-oss-manage-metaquery) <br>
-- [Acceptance Criteria](references/acceptance-criteria.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [MetaQuery Query Condition Reference](references/metaquery.md) <br>
-- [ossutil Installation Guide](references/ossutil-installation-guide.md) <br>
-- [RAM Permission Policies](references/ram-policies.md) <br>
-- [Related APIs and CLI Commands](references/related-apis.md) <br>
-- [Verification Methods](references/verification-method.md) <br>
+### Deployment Geography for Use:
 
+Supported Alibaba Cloud OSS regions: cn-hangzhou, cn-shanghai, cn-qingdao, cn-beijing, cn-zhangjiakou, cn-shenzhen, cn-guangzhou, cn-chengdu, cn-hongkong, ap-southeast-1, and us-east-1.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, text] <br>
-**Output Format:** [Markdown with shell commands, XML and JSON query snippets, and Python script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Aliyun CLI commands and bundled Python helper scripts for OSS bucket, MetaQuery, upload, and query workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Remote CLI installation and automatic plugin installation can introduce unreviewed code into the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify installer sources independently, prefer preapproved package installation, and disable automatic plugin installation after setup.
+
+Risk: The skill can create buckets, upload objects, close indexes, delete OSS resources, and generate presigned links when granted OSS authority.
+
+Mitigation: Use a test bucket or tightly scoped RAM role and require exact bucket, object, index, upload, or presigned-link confirmation before execution.
+
+Risk: Long-lived Alibaba Cloud AccessKeys increase exposure if stored in local CLI configuration or environment variables.
+
+Mitigation: Prefer temporary STS credentials or role-based credentials and avoid printing, echoing, or sharing access-key material.
+
+## Reference(s):
+
+- [Acceptance Criteria](references/acceptance-criteria.md)
+- [Aliyun CLI Installation and Configuration Guide](references/cli-installation-guide.md)
+- [MetaQuery Query Condition Reference](references/metaquery.md)
+- [OSS RAM Permission Policies](references/ram-policies.md)
+- [Related APIs and CLI Commands](references/related-apis.md)
+- [Verification Methods](references/verification-method.md)
+- [Aliyun CLI Official Documentation](https://help.aliyun.com/zh/cli/)
+- [OpenMetaQuery API Documentation](https://help.aliyun.com/zh/oss/developer-reference/openmetaquery)
+- [GetMetaQueryStatus API Documentation](https://help.aliyun.com/zh/oss/developer-reference/getmetaquerystatus)
+- [DoMetaQuery API Documentation](https://help.aliyun.com/zh/oss/developer-reference/dometaquery)
+- [OSS Vector Search User Guide](https://help.aliyun.com/zh/oss/user-guide/vector-retrieval/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, XML query examples, Python script invocations, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Alibaba Cloud OSS operations that require explicit user confirmation before changing or deleting resources.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata, created 2026-04-24T08:13:59Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

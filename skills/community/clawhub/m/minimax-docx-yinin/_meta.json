@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ax5z74zbmyeya8hjxk5dmdd83ma9w",
-  "slug": "minimax-docx-yinin",
-  "version": "1.0.0",
-  "publishedAt": 1774510707330
+  "id": 380332020064802,
+  "name": "minimax-docx",
+  "platform": "minimax",
+  "skill_id": 1893,
+  "updated_at": 1774407535046,
+  "version": "1.0.0"
 }

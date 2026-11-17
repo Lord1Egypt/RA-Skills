@@ -33,6 +33,9 @@ function createSecureAxios(baseConfig = {}) {
     httpsAgent: buildHttpsAgent(),
     timeout: 30000,
     ...baseConfig,
+    // 问卷网接口必须保持端到端 HTTPS。禁止 Axios 自动读取环境中的
+    // HTTP_PROXY/HTTPS_PROXY，避免错误代理把 HTTPS 请求改写成明文 HTTP。
+    proxy: false,
   });
 
   // 简单客户端限流：同一进程最小间隔，避免高频误调用

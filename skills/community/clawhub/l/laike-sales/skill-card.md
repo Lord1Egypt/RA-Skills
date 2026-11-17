@@ -1,40 +1,55 @@
-## Description: <br>
-This skill answers product information and FAQ questions about the 来客推商城 e-commerce system, including source-code licensing, product editions, features, technical stack, and support contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供来客推/LaikeTui 商城系统的产品介绍、功能说明、技术栈和咨询信息。
 
-## Publisher: <br>
-[yo-onething](https://clawhub.ai/user/yo-onething) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yo-onething](https://clawhub.ai/user/yo-onething)
 
-## Use Case: <br>
-External users, merchants, and developers can use this skill to understand the 来客推商城 product offering, supported storefront channels, feature areas, deployment requirements, and support options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes vendor contact information and may be invoked for broad e-commerce or software-development questions. <br>
-Mitigation: Use it as product FAQ guidance only, and do not share private credentials, proprietary source code, or sensitive business details with listed contacts unless the vendor relationship is independently trusted. <br>
+## Use Case:
 
+External users and developers use this skill to ask about LaikeTui mall and e-commerce source-code products, including product versions, feature modules, supported client platforms, technical stack, service model, and contact paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yo-onething/laike-sales) <br>
-- [来客推官网](https://www.laiketui.com) <br>
-- [ThinkInShop demo](https://pc.thinkinshop.laiketui.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown or plain text answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Product-information responses based on the skill's bundled FAQ and feature summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: Broad trigger wording may surface vendor-specific sales information or contact details during general software or e-commerce conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user asks about 来客推, LaikeTui, ThinkInShop, or closely related mall/e-commerce system products, and clarify scope when the request is generic.
+
+Risk: Product and contact details can become outdated after release.
+
+Mitigation: Confirm commercial terms, demo availability, and contact channels against the official LaikeTui website or the ClawHub publisher profile before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yo-onething/skills/laike-sales)
+- [LaikeTui official website](https://www.laiketui.com)
+- [ThinkInShop demo site](https://pc.thinkinshop.laiketui.net/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product feature summaries, FAQ-style answers, technical-stack notes, and contact information from the skill evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

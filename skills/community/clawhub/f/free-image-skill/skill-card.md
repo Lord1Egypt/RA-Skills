@@ -1,48 +1,68 @@
-## Description: <br>
-Provides a workflow for planning image needs, generating priority images with OpenAI credits, searching free image sources, removing permitted watermarks, and batch-processing image outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan image workflows that combine OpenAI image generation, free stock-image search, watermark-removal tooling, and batch image optimization.
 
-## Publisher: <br>
-[titancheung](https://clawhub.ai/user/titancheung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[titancheung](https://clawhub.ai/user/titancheung)
 
-## Use Case: <br>
-Content creators, developers, and marketing teams can use this skill to assemble image assets for articles, reports, social posts, and similar content workflows while prioritizing free sources and controlled API spending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watermark removal can violate license terms or creator rights when used on images the user is not authorized to modify. <br>
-Mitigation: Only process images you own or are explicitly authorized to modify, and preserve required attribution and license records. <br>
-Risk: The skill handles OPENAI_API_KEY and can spend API credits when image generation scripts are executed. <br>
-Mitigation: Use environment variables for credentials, avoid sharing keys, set hard billing limits, and run plan-only or dry-run modes before generation. <br>
-Risk: Free image source licenses and attribution requirements vary by provider and asset. <br>
-Mitigation: Review each selected asset's license and attribution requirements before commercial use. <br>
+## Use Case:
 
+Developers, content creators, and publishing teams can use this skill to plan and run mixed image workflows for articles, reports, social posts, and other content assets. It provides commands and scripts for selecting AI-generated images, searching free stock sources, processing image files, and creating indexes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/titancheung/free-image-skill) <br>
-- [使用示例](references/使用示例.md) <br>
-- [项目说明](references/项目说明.md) <br>
-- [Unsplash](https://unsplash.com) <br>
-- [Pexels](https://www.pexels.com) <br>
-- [Pixabay](https://pixabay.com) <br>
-- [Freepik](https://www.freepik.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python scripts, JSON configuration, and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may create image files, optimized WebP outputs, and JSON or Markdown indexes when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: API quota or paid image-generation charges may occur despite zero-cost claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, review the scripts first, set provider-side spending limits, and prefer plan-only or dry-run modes before generation.
+
+Risk: Watermark removal can violate license terms, creator rights, or platform rules.
+
+Mitigation: Only remove watermarks from images you own or are explicitly allowed to modify, and keep source license and attribution records.
+
+Risk: Stock-image license assumptions may be wrong for individual assets or providers.
+
+Mitigation: Check each provider and asset license before commercial use, especially sources that require attribution.
+
+Risk: The scripts perform network calls and local file operations.
+
+Mitigation: Run the skill in a constrained workspace or virtual environment and review output directories before using generated assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/titancheung/skills/free-image-skill)
+- [使用示例](artifact/references/使用示例.md)
+- [图片解决方案项目](artifact/references/项目说明.md)
+- [Demo README](artifact/examples/demo/README.md)
+- [Unsplash](https://unsplash.com)
+- [Pexels](https://www.pexels.com)
+- [Pixabay](https://pixabay.com)
+- [Freepik](https://www.freepik.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python command examples, JSON indexes, and generated or processed image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use OPENAI_API_KEY, network access to image providers, local output directories, and ImageMagick for batch processing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

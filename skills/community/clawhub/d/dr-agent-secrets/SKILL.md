@@ -1,207 +1,88 @@
 ---
 name: "dr-agent-secrets"
-description: "Manage persistent local OpenClaw secrets safely."
+description: "Persistent local secret setup, rotation, inspection, and recovery with SecretRefs, protected env fragments, redaction, and restart safety."
 ---
 
 # DR Agent Secrets
 
-Use when setting up, adding, inspecting, validating, or troubleshooting persistent local secrets or environment variables for Daniel-owned OpenClaw/Codex agents across sessions.
+Use when setting up, adding, inspecting, validating, rotating, or troubleshooting persistent local secrets or environment variables for Daniel-owned OpenClaw agents across sessions.
 
-This skill stores procedures only. It must never store secret values.
+This skill stores procedures only. Never store a secret value.
 
 ## Core Rules
 
-1. Do not put secret values in chat, memory files, AGENTS.md, TOOLS.md, git repos, logs, screenshots, transcripts, or final answers.
-2. Redact secret values in commands and diagnostics. Show key names and presence/absence, not values.
-3. Prefer native OpenClaw secret references when configuring OpenClaw-managed config fields.
-4. Use protected local env fragments for service-level environment variables that the gateway or child processes must inherit.
-5. Add secrets additively. Do not replace one global env file containing unrelated secrets.
-6. Ask before restarting `openclaw-gateway.service` if a restart could interrupt live work.
-7. Ask before changing secret paths, credential mechanisms, permissions policy, or production/customer-impacting auth.
+1. Keep values out of chat, memory, workspace instructions, git, logs, screenshots, transcripts, receipts, and final answers.
+2. Redact diagnostics: report key names and presence/absence only.
+3. Prefer OpenClaw SecretRefs for supported OpenClaw-managed fields.
+4. Use protected, additive local env fragments only for service-level environment that the gateway or child processes must inherit.
+5. Inspect the existing effective configuration before changing it. Never replace a global env file, systemd drop-in, or permission policy that can contain unrelated settings.
+6. Ask before a gateway restart when interruption risk is unclear, and before changing secret paths, credential mechanisms, permissions policy, or production/customer-impacting auth.
 
-## Preferred Patterns
+## Pattern A — OpenClaw SecretRefs
 
-### Pattern A, OpenClaw SecretRefs for OpenClaw config fields
+Use SecretRefs when an OpenClaw-managed config field supports them.
 
-Use this when the secret belongs to an OpenClaw config field that supports secret references.
+1. Configure the SecretRef through the supported OpenClaw secret command or configuration flow.
+2. Run the supported plaintext-secret audit when available.
+3. Reload or restart only under the applicable approval gate.
+4. Verify the actual feature without printing its credential.
+5. Record only a non-secret identifier and owning subsystem.
 
-Examples:
-- provider API keys
-- memory embedding API keys
-- plugin config secrets
-- other OpenClaw-managed secret-bearing config fields
+Completion criterion: the intended feature works and no value entered durable text.
 
-Workflow:
-1. Use the OpenClaw secret mechanism, such as `openclaw secrets configure` or `openclaw secrets apply`, when available.
-2. Audit config for plaintext secrets when supported:
-   ```bash
-   openclaw secrets audit --check
-   ```
-3. Verify the relevant feature after gateway reload/restart.
-4. Record only the non-secret mapping or convention in memory, for example: `memory embeddings use secret id OPENAI_API_KEY`.
+## Pattern B — Additive env.d fragment
 
-Do not copy secret values into memory notes.
+Use this only when a gateway service or its spawned tools need a value across sessions.
 
-### Pattern B, env.d fragments for service-level environment
+1. Inspect the current service unit and drop-ins, existing env fragments, file ownership, and permissions. Print paths and key names only.
+2. Create or update one project-scoped fragment with mode 600 inside an existing or newly created mode-700 env.d directory. Preserve unrelated files.
+3. If service configuration does not already load the fragment, add a dedicated, named drop-in only after confirming it will not replace existing EnvironmentFile declarations. Use explicit protected paths when the host cannot safely expand a fragment pattern.
+4. Run daemon-reload only when unit/drop-in configuration changed.
+5. Restart only after the requester approves when interruption risk exists.
+6. Verify the relevant capability and, when cross-path behavior matters, invoke dr-runtime-contract.
 
-Use this when a gateway service or tools spawned by the gateway need environment variables across sessions.
+Do not use redirection or replacement operations against an unknown existing service override. If a shared override needs modification, stop and present a bounded patch for review.
 
-Preferred layout:
+## Adding or Rotating a Secret Group
 
-```text
-~/.config/openclaw/env.d/
-  10-ikara-platform.env
-  20-azure-devops.env
-  30-m365-mail.env
-```
+- Use one stable fragment per project/system, not a global catch-all.
+- Create files under a restrictive umask and enforce 600 on files and 700 on containing secret directories.
+- Update only keys owned by the requested system.
+- Before rotation, identify consumers, cache/reload behavior, and rollback source through a non-secret manifest.
+- Do not delete an old credential or file until the replacement capability passes across all declared runtime paths.
 
-Keep the systemd override stable and additive:
+Completion criterion: the owner, consumers, reload state, and redacted validation result are known.
 
-```bash
-install -d -m 700 "$HOME/.config/openclaw"
-install -d -m 700 "$HOME/.config/openclaw/env.d"
-install -d -m 700 "$HOME/.config/systemd/user/openclaw-gateway.service.d"
+## Reload And Validation
 
-cat > "$HOME/.config/systemd/user/openclaw-gateway.service.d/override.conf" <<'EOF'
-[Service]
-EnvironmentFile=-%h/.config/openclaw/env.d/*.env
-EOF
+1. Determine whether the consumer reads credentials at startup, per request, or through a cache.
+2. Use the approved reload/restart action only.
+3. Confirm directory/file permissions and service references without reading values.
+4. Run a safe capability check for the feature, not only an environment-presence check.
+5. For OpenClaw memory/provider credentials, use a relevant non-secret health/status command where available.
+6. If the credential must work across Gateway, fresh sessions, isolated children, scheduled jobs, or API clients, invoke dr-runtime-contract and require its full applicable matrix to pass.
 
-chmod 700 "$HOME/.config/openclaw" "$HOME/.config/openclaw/env.d"
-systemctl --user daemon-reload
-```
+Do not print a service Environment property that can expose values.
 
-The leading `-` makes missing files non-fatal. If the host/systemd version does not support glob expansion for `EnvironmentFile`, use multiple explicit `EnvironmentFile=-%h/.config/openclaw/env.d/<name>.env` lines instead.
+## Runtime Contract Cross-Reference
 
-## Adding A Secret Group
-
-Create one file per project/system instead of replacing a global file.
-
-```bash
-umask 077
-cat > "$HOME/.config/openclaw/env.d/10-example.env" <<'EOF'
-EXAMPLE_API_URL=replace-with-url
-EXAMPLE_USERNAME=replace-with-username
-EXAMPLE_PASSWORD=replace-with-secret
-EOF
-
-chmod 600 "$HOME/.config/openclaw/env.d/10-example.env"
-```
-
-Rules:
-- Use placeholder values in shared instructions.
-- Add or update the specific relevant env file only.
-- Do not overwrite unknown existing values casually.
-- Prefer scoped names like `10-ikara-platform.env` over one giant file.
-- Keep filenames stable so restore steps and diagnostics are predictable.
-
-## Reload And Restart
-
-After changing only env file contents:
-
-```bash
-systemctl --user restart openclaw-gateway.service
-```
-
-After changing systemd override files:
-
-```bash
-systemctl --user daemon-reload
-systemctl --user restart openclaw-gateway.service
-```
-
-Ask Daniel before restarting if the gateway is doing live work or if interruption risk is unclear.
-
-## Validation
-
-Check permissions:
-
-```bash
-ls -ld "$HOME/.config/openclaw" "$HOME/.config/openclaw/env.d"
-ls -l "$HOME/.config/openclaw/env.d"
-```
-
-Check that systemd sees the env files without printing secret values:
-
-```bash
-systemctl --user show openclaw-gateway.service -p EnvironmentFiles
-```
-
-Avoid printing full `Environment` because it may reveal values.
-
-Prefer presence checks from inside the service context or a controlled diagnostic that prints only key names/status. Example shape:
-
-```bash
-systemctl --user show openclaw-gateway.service -p EnvironmentFiles
-# Then verify feature behavior directly, such as memory status, provider auth, git access, or API health.
-```
-
-For OpenClaw memory/provider secrets, verify with the relevant command, for example:
-
-```bash
-openclaw memory status --index --deep
-```
-
-If a diagnostic must mention a value, show only a suffix/prefix approved by Daniel or a hash, never the full secret.
+Use dr-runtime-contract whenever a persistent secret or environment setting must work across enabled runtime paths. This skill remains authoritative for SecretRefs, protected files, permissions, redaction, rotation safety, and restart safety. Runtime-contract owns precedence, stale-declaration detection, cross-path capability verification, and the redacted receipt.
 
 ## Git And Backup Safety
 
-Ensure secret files are excluded from git.
-
-Recommended `.gitignore` entries:
-
-```gitignore
-.config/openclaw/env.d/*.env
-.config/openclaw/*.env
-*.env
-gateway.systemd.env
-gateway.systemd.env.*
-.env
-```
-
-Before committing:
-
-```bash
-git status --short
-git diff --cached --name-only
-```
-
-If a secret-bearing file is staged, stop and unstage it. Do not rely on later cleanup.
-
-## Restore Notes
-
-Backup procedures may record:
-- secret file path conventions
-- key names
-- which subsystem expects them
-- how to re-run validation
-
-Backup procedures must not record:
-- values
-- tokens
-- passwords
-- private keys
-- OAuth files
-- copied env file contents
+Keep secret-bearing files out of version control. Before any commit, inspect staged paths and stop if a secret-bearing file is present. Backup material may record path conventions, key names, owner subsystem, and validation steps; it must never record values, tokens, passwords, private keys, OAuth files, or env-file contents.
 
 ## Troubleshooting
 
-If a secret works in the shell but not in the gateway:
-1. Check whether the gateway service inherited the file.
-2. Check whether `systemctl --user daemon-reload` is needed.
-3. Restart the gateway if approved.
-4. Verify the feature, not just the variable.
-5. Check for stale env files in old OpenClaw paths such as `~/.openclaw/.env` or `~/.openclaw/gateway.systemd.env` only when investigating a known conflict.
-6. Remove or update stale files only after confirming ownership and risk.
+When a credential works in a shell but not in the gateway:
 
-## What To Report
+1. Inspect the service's declared secret sources and relevant drop-ins without exposing values.
+2. Check whether a daemon reload is needed.
+3. Check for known legacy sources only when investigating a specific conflict.
+4. Apply the approved reload/restart action.
+5. Verify the intended capability.
+6. Use dr-runtime-contract if more than one runtime path is enabled.
 
-When done, report:
-- files created or changed, with paths only
-- permissions applied
-- whether daemon reload ran
-- whether gateway restart ran
-- validation command and result
-- any remaining approval needed
+## Receipt
 
-Never report secret values.
+Report only changed paths, permission result, daemon-reload/restart state, capability result, and any remaining approval. Never report secret values.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊消费者洞察 · 深度需求报告"
+  short_description: "深度洞察报告：画像、动因、场景、机会"
+  default_prompt: "使用 $amazon-consumer-insight 为一个 Amazon ASIN 生成深度消费者洞察报告。"

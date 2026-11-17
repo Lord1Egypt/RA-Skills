@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes a software project and generates Docker build and deployment files, Compose workflows, configuration templates, and containerization documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a software project and generates Docker-based build, deployment, configuration, and documentation assets for containerized delivery.
 
-## Publisher: <br>
-[zhuyifeiruichuang](https://clawhub.ai/user/zhuyifeiruichuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuyifeiruichuang](https://clawhub.ai/user/zhuyifeiruichuang)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to inspect existing projects and produce a deploy/ workspace with Dockerfiles, Docker Compose files, scripts, configuration templates, and documentation for Docker-based builds and deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated deployment artifacts may copy real configuration secrets into deploy/.env or deploy/config. <br>
-Mitigation: Inspect generated files, remove secrets, and add sensitive deploy paths to .gitignore before committing. <br>
-Risk: Generated Docker and Compose commands can build and run project-controlled code. <br>
-Mitigation: Review generated Dockerfiles, shell scripts, and Compose files before running them, and use the skill only on trusted projects. <br>
-Risk: Generated containers may default to running as root. <br>
-Mitigation: Change generated Dockerfiles to use a non-root user when root is not required. <br>
+## Use Case:
 
+Developers and engineers use this skill to containerize existing projects by generating deployment-ready Dockerfiles, Compose manifests, configuration templates, shell commands, and supporting documentation.
 
-## Reference(s): <br>
-- [project-containerize ClawHub page](https://clawhub.ai/zhuyifeiruichuang/project-containerize) <br>
-- [Publisher profile](https://clawhub.ai/user/zhuyifeiruichuang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus generated Dockerfiles, Compose YAML, shell scripts, and configuration templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-local deploy/ artifacts for human review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated workflows can run Docker build and deployment commands against a real project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Dockerfiles, Compose files, and shell scripts before executing them, and run only where Docker builds are acceptable.
+
+Risk: Configuration preparation can copy live .env or other secret-bearing files into deploy/config.
+
+Mitigation: Avoid running the skill on repositories with live secrets, inspect copied configuration files, and replace sensitive values with templates before sharing or committing outputs.
+
+Risk: Some generated runtime containers default to root unless a non-root mode is explicitly selected.
+
+Mitigation: Prefer non-root users, pinned base images, and pinned package-manager versions for production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuyifeiruichuang/skills/project-containerize)
+- [Publisher profile](https://clawhub.ai/user/zhuyifeiruichuang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Docker, Compose, shell, and configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a deploy directory with analysis reports, Dockerfiles, Compose manifests, environment templates, deployment scripts, and containerization documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

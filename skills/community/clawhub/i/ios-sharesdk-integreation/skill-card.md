@@ -1,44 +1,61 @@
-## Description: <br>
-面向 iOS 工程的 MobTech ShareSDK 集成 skill。默认优先使用 CocoaPods，先扫描工程，再串行确认阻塞项，最后以最小改动完成接入、隐私合规与项目内说明文档落地。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+面向 iOS 工程的 MobTech ShareSDK 集成 skill。默认优先使用 CocoaPods，先扫描工程，再串行确认阻塞项，最后以最小改动完成接入、隐私合规与项目内说明文档落地。
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-iOS developers use this skill to integrate MobTech ShareSDK into existing iOS projects with CocoaPods, platform credential configuration, privacy-gated initialization, and minimal project changes. It supports scanning the project first, generating a ShareSDK_Config.xlsx template, validating credentials, and preparing configuration or code changes for enabled platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles MobTech and social-platform app credentials while preparing ShareSDK configuration. <br>
-Mitigation: Install it only for the intended iOS project, keep credentials scoped to that project, and review generated configuration before applying it. <br>
-Risk: The skill can modify project configuration files and propose CocoaPods dependency installation or updates. <br>
-Mitigation: Review the proposed file changes first, and only allow pod install or pod update after confirming the plan. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate MobTech ShareSDK into iOS projects, configure CocoaPods dependencies, platform credentials, URL schemes, Universal Links, privacy-gated initialization, and project documentation with minimal changes.
 
-## Reference(s): <br>
-- [MobTech ShareSDK iOS documentation](https://www.mob.com/wiki/detailed?wiki=4&id=14) <br>
-- [MobTech ShareSDK iOS integration documentation](https://www.mob.com/wiki/detailed?wiki=500&id=14) <br>
-- [MobTech ShareSDK related documentation](https://www.mob.com/wiki/detailed?wiki=499&id=14) <br>
-- [MobTech ShareSDK platform documentation](https://www.mob.com/wiki/detailed?wiki=747&id=14) <br>
-- [ShareSDK privacy policy](https://policy.zztfly.com/sdk/share/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code, shell commands, configuration snippets, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a ShareSDK_Config.xlsx workbook and project integration notes; requires user confirmation before dependency installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can collect production ShareSDK and platform credentials in a plaintext ShareSDK_Config.xlsx file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use throwaway or restricted app credentials where possible, keep ShareSDK_Config.xlsx out of version control and CI artifacts, and delete or redact it after integration.
+
+Risk: Some provider secrets may be copied into app configuration that is distributed in a mobile app bundle.
+
+Mitigation: Avoid placing provider secrets in a mobile app bundle unless the provider explicitly documents that the value is safe for client distribution.
+
+Risk: The skill can modify iOS project dependencies, Info.plist entries, URL schemes, Universal Links, and initialization code.
+
+Mitigation: Review the proposed minimal change plan before applying edits, and verify that only user-enabled platforms are configured.
+
+## Reference(s):
+
+- [MobTech ShareSDK iOS documentation](https://www.mob.com/wiki/detailed?wiki=4&id=14)
+- [MobTech ShareSDK iOS documentation](https://www.mob.com/wiki/detailed?wiki=500&id=14)
+- [MobTech ShareSDK related documentation](https://www.mob.com/wiki/detailed?wiki=499&id=14)
+- [MobTech ShareSDK related documentation](https://www.mob.com/wiki/detailed?wiki=747&id=14)
+- [ShareSDK privacy policy](https://policy.zztfly.com/sdk/share/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, and optional generated Excel workbook files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default responses are in Chinese; code, configuration keys, class names, and command names retain their original spelling.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

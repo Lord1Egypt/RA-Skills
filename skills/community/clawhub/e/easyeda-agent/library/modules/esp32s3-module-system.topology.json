@@ -1,0 +1,631 @@
+{
+  "schemaVersion": 1,
+  "kind": "role_topology_module",
+  "source": {
+    "kind": "live_schematic_readback",
+    "containsProjectIdentity": false,
+    "containsOriginalReferenceDesign": false,
+    "evidence": [
+      "official manufacture netlist",
+      "LCSC device identity resolver"
+    ]
+  },
+  "module": {
+    "id": "lib.esp32s3_module_system_live",
+    "title": "ESP32-S3 模组最小系统与启动接口",
+    "maturity": "topology_ready",
+    "parts": [
+      {
+        "role": "MCU",
+        "lcsc": "C2913201",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "f1c4b28a063f4c649ca8e2a2600c5103",
+          "name": "ESP32-S3-WROOM-1-N8R8"
+        },
+        "footprint": "WIRELM-SMD_ESP32-S3-WROOM-1",
+        "pins": [
+          {
+            "number": "1",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "3V3",
+            "net": "port.POWER"
+          },
+          {
+            "number": "3",
+            "name": "EN",
+            "net": "port.RESET"
+          },
+          {
+            "number": "4",
+            "name": "IO4",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "5",
+            "name": "IO5",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "6",
+            "name": "IO6",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "7",
+            "name": "IO7",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "8",
+            "name": "IO15",
+            "net": "port.IO15"
+          },
+          {
+            "number": "9",
+            "name": "IO16",
+            "net": "port.IO16"
+          },
+          {
+            "number": "10",
+            "name": "IO17",
+            "net": "port.IO17"
+          },
+          {
+            "number": "11",
+            "name": "IO18",
+            "net": "port.IO18"
+          },
+          {
+            "number": "12",
+            "name": "IO8",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "13",
+            "name": "IO19",
+            "net": "port.USB_DM"
+          },
+          {
+            "number": "14",
+            "name": "IO20",
+            "net": "port.USB_DP"
+          },
+          {
+            "number": "15",
+            "name": "IO3",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "16",
+            "name": "IO46",
+            "net": "internal.01"
+          },
+          {
+            "number": "17",
+            "name": "IO9",
+            "net": "port.IO9"
+          },
+          {
+            "number": "18",
+            "name": "IO10",
+            "net": "port.IO10"
+          },
+          {
+            "number": "19",
+            "name": "IO11",
+            "net": "port.IO11"
+          },
+          {
+            "number": "20",
+            "name": "IO12",
+            "net": "port.IO12"
+          },
+          {
+            "number": "21",
+            "name": "IO13",
+            "net": "port.IO13"
+          },
+          {
+            "number": "22",
+            "name": "IO14",
+            "net": "port.IO14"
+          },
+          {
+            "number": "23",
+            "name": "IO21",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "24",
+            "name": "IO47",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "25",
+            "name": "IO48",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "26",
+            "name": "IO45",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "27",
+            "name": "IO0",
+            "net": "port.BOOT"
+          },
+          {
+            "number": "28",
+            "name": "IO35",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "29",
+            "name": "IO36",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "30",
+            "name": "IO37",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "31",
+            "name": "IO38",
+            "net": "port.IO38"
+          },
+          {
+            "number": "32",
+            "name": "IO39",
+            "net": "port.IO39"
+          },
+          {
+            "number": "33",
+            "name": "IO40",
+            "net": "port.IO40"
+          },
+          {
+            "number": "34",
+            "name": "IO41",
+            "net": "port.IO41"
+          },
+          {
+            "number": "35",
+            "name": "IO42",
+            "net": "port.IO42"
+          },
+          {
+            "number": "36",
+            "name": "RXD0",
+            "net": "port.UART_RX"
+          },
+          {
+            "number": "37",
+            "name": "TXD0",
+            "net": "port.UART_TX"
+          },
+          {
+            "number": "38",
+            "name": "IO2",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "39",
+            "name": "IO1",
+            "connectionState": "unconnected"
+          },
+          {
+            "number": "40",
+            "name": "GND",
+            "net": "port.GND"
+          },
+          {
+            "number": "41",
+            "name": "GND",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "RESET_PULLUP",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.RESET"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.POWER"
+          }
+        ]
+      },
+      {
+        "role": "BOOT_PULLUP",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.BOOT"
+          }
+        ]
+      },
+      {
+        "role": "STRAP_PULLDOWN",
+        "lcsc": "C25804",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "b948db94476e4027ac8953235755ec96",
+          "name": "0603WAF1002T5E"
+        },
+        "footprint": "R0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "internal.01"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "RESET_CAP",
+        "lcsc": "C15849",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "f4744ff7405a46a48e360c2c6fadeca3",
+          "name": "CL10A105KB8NNNC"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.RESET"
+          },
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          }
+        ]
+      },
+      {
+        "role": "BULK",
+        "lcsc": "C45783",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "159c3da60be9490abf4e97599788a0d5",
+          "name": "CL21A226MAQNNNE"
+        },
+        "footprint": "C0805",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          }
+        ]
+      },
+      {
+        "role": "DECOUP",
+        "lcsc": "C14663",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "96b39256cc3f4d80bd3b503deb4f3328",
+          "name": "CC0603KRX7R9BB104"
+        },
+        "footprint": "C0603",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.POWER"
+          }
+        ]
+      },
+      {
+        "role": "RESET_SW",
+        "lcsc": "C2681476",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "0336d6185ead44c3b64b95eecae5f197",
+          "name": "TS3425BA"
+        },
+        "footprint": "SW-SMD_4P-L4.2-W3.2-P2.15-LS4.6-1",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.GND"
+          },
+          {
+            "number": "3",
+            "name": "3",
+            "net": "port.RESET"
+          },
+          {
+            "number": "4",
+            "name": "4",
+            "net": "port.RESET"
+          }
+        ]
+      },
+      {
+        "role": "BOOT_SW",
+        "lcsc": "C2681476",
+        "device": {
+          "libraryUuid": "0819f05c4eef4c71ace90d822a990e87",
+          "deviceUuid": "0336d6185ead44c3b64b95eecae5f197",
+          "name": "TS3425BA"
+        },
+        "footprint": "SW-SMD_4P-L4.2-W3.2-P2.15-LS4.6-1",
+        "pins": [
+          {
+            "number": "1",
+            "name": "1",
+            "net": "port.GND"
+          },
+          {
+            "number": "2",
+            "name": "2",
+            "net": "port.GND"
+          },
+          {
+            "number": "3",
+            "name": "3",
+            "net": "port.BOOT"
+          },
+          {
+            "number": "4",
+            "name": "4",
+            "net": "port.BOOT"
+          }
+        ]
+      }
+    ],
+    "nets": [
+      {
+        "id": "internal.01",
+        "members": [
+          "MCU.16",
+          "STRAP_PULLDOWN.2"
+        ]
+      },
+      {
+        "id": "port.USB_DM",
+        "members": [
+          "MCU.13"
+        ],
+        "port": "USB_DM"
+      },
+      {
+        "id": "port.USB_DP",
+        "members": [
+          "MCU.14"
+        ],
+        "port": "USB_DP"
+      },
+      {
+        "id": "port.POWER",
+        "members": [
+          "BOOT_PULLUP.2",
+          "BULK.2",
+          "DECOUP.2",
+          "MCU.2",
+          "RESET_PULLUP.1"
+        ],
+        "port": "POWER"
+      },
+      {
+        "id": "port.BOOT",
+        "members": [
+          "BOOT_PULLUP.1",
+          "BOOT_SW.3",
+          "BOOT_SW.4",
+          "MCU.27"
+        ],
+        "port": "BOOT"
+      },
+      {
+        "id": "port.GND",
+        "members": [
+          "BOOT_SW.1",
+          "BOOT_SW.2",
+          "BULK.1",
+          "DECOUP.1",
+          "MCU.1",
+          "MCU.40",
+          "MCU.41",
+          "RESET_CAP.1",
+          "RESET_SW.1",
+          "RESET_SW.2",
+          "STRAP_PULLDOWN.1"
+        ],
+        "port": "GND"
+      },
+      {
+        "id": "port.IO10",
+        "members": [
+          "MCU.18"
+        ],
+        "port": "IO10"
+      },
+      {
+        "id": "port.IO11",
+        "members": [
+          "MCU.19"
+        ],
+        "port": "IO11"
+      },
+      {
+        "id": "port.IO12",
+        "members": [
+          "MCU.20"
+        ],
+        "port": "IO12"
+      },
+      {
+        "id": "port.IO13",
+        "members": [
+          "MCU.21"
+        ],
+        "port": "IO13"
+      },
+      {
+        "id": "port.IO14",
+        "members": [
+          "MCU.22"
+        ],
+        "port": "IO14"
+      },
+      {
+        "id": "port.IO15",
+        "members": [
+          "MCU.8"
+        ],
+        "port": "IO15"
+      },
+      {
+        "id": "port.IO16",
+        "members": [
+          "MCU.9"
+        ],
+        "port": "IO16"
+      },
+      {
+        "id": "port.IO17",
+        "members": [
+          "MCU.10"
+        ],
+        "port": "IO17"
+      },
+      {
+        "id": "port.IO18",
+        "members": [
+          "MCU.11"
+        ],
+        "port": "IO18"
+      },
+      {
+        "id": "port.IO38",
+        "members": [
+          "MCU.31"
+        ],
+        "port": "IO38"
+      },
+      {
+        "id": "port.IO39",
+        "members": [
+          "MCU.32"
+        ],
+        "port": "IO39"
+      },
+      {
+        "id": "port.IO40",
+        "members": [
+          "MCU.33"
+        ],
+        "port": "IO40"
+      },
+      {
+        "id": "port.IO41",
+        "members": [
+          "MCU.34"
+        ],
+        "port": "IO41"
+      },
+      {
+        "id": "port.IO42",
+        "members": [
+          "MCU.35"
+        ],
+        "port": "IO42"
+      },
+      {
+        "id": "port.IO9",
+        "members": [
+          "MCU.17"
+        ],
+        "port": "IO9"
+      },
+      {
+        "id": "port.RESET",
+        "members": [
+          "MCU.3",
+          "RESET_CAP.2",
+          "RESET_PULLUP.2",
+          "RESET_SW.3",
+          "RESET_SW.4"
+        ],
+        "port": "RESET"
+      },
+      {
+        "id": "port.UART_RX",
+        "members": [
+          "MCU.36"
+        ],
+        "port": "UART_RX"
+      },
+      {
+        "id": "port.UART_TX",
+        "members": [
+          "MCU.37"
+        ],
+        "port": "UART_TX"
+      }
+    ],
+    "verification": {
+      "pinNetReadback": "passed",
+      "deviceIdentityResolution": "passed",
+      "geometry": "not_captured",
+      "pcb": "not_tested",
+      "bringup": "not_tested"
+    }
+  }
+}

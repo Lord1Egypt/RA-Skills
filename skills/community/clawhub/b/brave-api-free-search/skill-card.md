@@ -1,46 +1,61 @@
-## Description: <br>
-Free Brave API alternative for OpenClaw. Completely FREE web search. Secure localhost-only deployment. Supports hidden --dev flag. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a local, no-API-key web search workflow using SearXNG as a Brave API alternative for OpenClaw.
 
-## Publisher: <br>
-[pipepi](https://clawhub.ai/user/pipepi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pipepi](https://clawhub.ai/user/pipepi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run a local SearXNG-backed web search service as a no-API-key alternative to Brave Search. It helps agents issue web searches against a localhost service while avoiding paid search API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation runs a persistent local SearXNG Docker container and replaces any existing container named searxng-local. <br>
-Mitigation: Install only when Docker use is acceptable, check for an existing searxng-local container first, and remove it with docker rm -f searxng-local when no longer needed. <br>
-Risk: Setting SEARXNG_BASE_URL can send searches to a remote endpoint instead of localhost. <br>
-Mitigation: Leave SEARXNG_BASE_URL unset unless the remote SearXNG endpoint is intentionally selected and trusted. <br>
-Risk: The --dev install mode reduces safety controls by disabling safe_search and the limiter. <br>
-Mitigation: Use --dev only for local development where reduced filtering and rate limiting are acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to run local web searches without a Brave API key, backed by a localhost SearXNG service. It is suited for OpenClaw workflows that need text search results while keeping the default search endpoint local.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pipepi/brave-api-free-search) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Install script](artifact/scripts/install.py) <br>
-- [Search script](artifact/scripts/search.py) <br>
-- [Healthcheck script](artifact/scripts/healthcheck.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text search results and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker, python3, and the Python requests package; queries default to a localhost SearXNG service unless SEARXNG_BASE_URL is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata and skill metadata) <br>
+Risk: The installer runs shell commands through shell=True.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch scripts/install.py to invoke Docker with argument arrays before installation.
+
+Risk: The installer deploys a persistent Docker service from an unpinned SearXNG image.
+
+Mitigation: Pin the container image and remove or consciously accept --restart unless-stopped before running the installer.
+
+Risk: Search queries are sent to the configured SEARXNG_BASE_URL.
+
+Mitigation: Use the default localhost endpoint or only set SEARXNG_BASE_URL to a trusted service.
+
+Risk: Development mode disables safe_search and the limiter.
+
+Mitigation: Use --dev only for local development and keep the default safe_search and limiter settings for normal use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pipepi/skills/brave-api-free-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration]
+
+**Output Format:** [Plain text search results and command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output is limited to the first 10 results returned by the configured SearXNG endpoint.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

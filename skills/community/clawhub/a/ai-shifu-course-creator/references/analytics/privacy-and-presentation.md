@@ -38,8 +38,14 @@ python3 scripts/shifu-cli.py analytics-query <bid> --dsl '{
 Returns:
 
 ```json
-{"columns":["user_bid","nickname"],
- "rows":[["u-bid-1","Python 学徒"],["u-bid-2","[REDACTED-PHONE]"],["u-bid-3","Alice"]]}
+{
+  "columns": ["user_bid", "nickname"],
+  "rows": [
+    ["u-bid-1", "Python 学徒"],
+    ["u-bid-2", "[REDACTED-PHONE]"],
+    ["u-bid-3", "Alice"]
+  ]
+}
 ```
 
 ### Use B — reverse-look up `user_bid` from a phone number
@@ -56,8 +62,10 @@ python3 scripts/shifu-cli.py analytics-query <bid> --dsl '{
 Returns:
 
 ```json
-{"columns":["user_bid","nickname","user_identify"],
- "rows":[["u-bid-xxx","Python 学徒","138*****000"]]}
+{
+  "columns": ["user_bid", "nickname", "user_identify"],
+  "rows": [["u-bid-xxx", "Python 学徒", "138*****000"]]
+}
 ```
 
 Once you have the `user_bid`, use it to query `order_orders` (purchase status), `learn_progress_records` (learning progress), `learn_generated_blocks` (follow-up questions), etc.
@@ -66,7 +74,7 @@ Even when the nickname is redacted, **never paste the raw `user_bid` in user-fac
 
 ## `learn_generated_blocks.generated_content` — Selective Access
 
-The conversation/content text column is selectable **only** for types `[301, 311, 312, 321, 322]` — system narration, Markdown narration, interaction prompts, learner follow-up questions, and LLM answers to follow-ups.
+The conversation/content text column is selectable **only** for types `[301, 311, 312, 321, 322]` — system narration, Markdown narration, interaction prompts, learner follow-up questions, and Teaching Agent answers to follow-ups.
 
 Hard rules (any violation → `11002`):
 
@@ -74,26 +82,15 @@ Hard rules (any violation → `11002`):
 2. `limit ≤ 100`
 3. Every access is audited server-side (`user_id + shifu_bid + types + limit`)
 
-The remaining `type` values — `303` input, `309` phone, `310` checkcode and similar widget types — contain learner PII and are blocked at the protocol level. Use aggregation templates (recipes 11 and 12) by default and fetch raw content only when specifically reviewing follow-up conversations (recipes 13–15).
+The remaining `type` values — `303` input, `309` phone, `310` checkcode and similar widget types — contain learner PII and are blocked at the protocol level. Use aggregation templates (Recipes 17, 18, and 23) by default and fetch raw content only when specifically reviewing follow-up conversations (Recipes 19–22).
 
 ## Course title is not history — hard rule
 
-When the user names a course by title and asks for data, you must resolve the **current** `shifu_bid → title` mapping before issuing any downstream query. The current title comes from:
-
-1. The `shifu_published_shifus` row with `deleted = 0` (authoritative — there is at most one).
-2. If no published row exists, the `shifu_draft_shifus` row with `deleted = 0`, and flag the course as "currently in draft" to the user.
-
-Historical / renamed / deleted titles (`deleted = 1` rows in either table) are **never** the answer to "this course is currently called …". Specific failure modes this rule prevents:
-
-- The user says "show me data on 跟 AI 学 AI 通识". You happen to remember a `shifu_bid` that historically carried that title. You silently use it. Reality: that `shifu_bid` was renamed half a year ago to something completely different; the user actually meant a different course. **You report numbers from the wrong course.**
-- A title you saw in an earlier turn of this same conversation does not count as the current title. The author may have renamed the course mid-conversation. Re-resolve via Recipe 0b whenever you take a destructive or final action on a title-named course.
-- Do not bypass this with `shifu-cli.py list` — that command lists drafts only, so a course whose draft title leads its published title appears under the wrong name in the listing.
-
-When the only matches are historical, state it explicitly: "This course was previously called X. It is currently called Y. Are you asking about Y, or do you mean a different course?" Never silently substitute one for the other.
+When the user names a course by title and asks for data, follow the Course Metadata path in `query-recipes.md` to resolve the **current** `shifu_bid → title` mapping before issuing any downstream query. Present the result under the published-versus-draft semantics and phrasing in `tables.md` → "Course title is 'current published', not 'history'".
 
 ## `var_variable_values.value` — Aggregate-Only
 
-Learners may enter free-text personal information into course variables. Aggregate only (`group_by value count`); never paste the raw value list to the user. Recipe 8 shows the canonical safe pattern.
+Persisted learner answers in this table may contain free-text personal information. Aggregate only (`group_by value count`); never paste the raw value list to the user. Recipe 15 in `query-recipes.md` shows the safe query pattern. This existing analytics permission is independent of course-authoring syntax.
 
 ## Refusals
 
@@ -108,16 +105,11 @@ Refuse with a short explanation when:
 Pass every result through these checks before showing it to the user:
 
 1. **Integer / string enums** (status, type, scene, mode) → translate via the code tables in `tables.md`. Never show raw codes like `601`, `502`, `1101`, `"read"`.
-2. **ID fields** → apply the ID Field Translation Rules in `tables.md`:
-   - `shifu_bid` → course title (`shifu-cli.py list` cache)
-   - `outline_item_bid` → "Lesson X.Y: <title>" (`shifu-cli.py show` cache)
-   - `progress_record_bid` → two-step lookup to chapter/lesson name
-   - `user_bid` → ordinal label ("Learner A / B / C"); never show 36-char ID
-   - Row-level `*_bid` keys → never display
+2. **ID fields** → apply the ID Field Translation Rules in `tables.md`: never display a raw `*_bid`; `user_bid` → ordinal labels ("Learner A / B / C"); `outline_item_bid` → "Lesson X.Y: \<title\>"
 3. **Monetary values** → add currency unit (¥/CNY/USD), 2 decimal places
-4. **Timestamps** (`created_at`, `updated_at` etc.) → convert to local-timezone readable format (`2026-05-12 14:23`); never show raw ISO timestamps
+4. **Timestamps** (`created_at`, `updated_at` etc.) → backend timestamps are UTC (treat values without an explicit offset as UTC); convert to the user's local-timezone readable format (`2026-05-12 14:23`); never show raw ISO timestamps. Convert using the machine's timezone rules; do not substitute a session-fixed numeric UTC offset (DST-observing zones shift), and never assume a timezone from the conversation language
 5. **Ratios / percentages** → use percent form ("62%" not "0.623")
-6. **Credits** → round `consumed_credits` to 2 decimal places (e.g. `154.05 积分`); never invent or re-derive credit values from anything other than `bill_daily_usage_metrics.consumed_credits`
+6. **Credits** → round to 2 decimal places (e.g. `154.05 积分`); take credit values only from `credit-detail` output (`credits` / `total_credits`) — never invent or re-derive them (`bill_daily_usage_metrics.consumed_credits` applies only once the daily aggregation cron is enabled)
 
 ### Bad example (do not answer like this)
 
@@ -130,6 +122,8 @@ Pass every result through these checks before showing it to the user:
 > Want to see a ranked breakdown of each learner's progress?
 
 ## Answer Structure
+
+Write answer headings, narrative findings, interpretations, refusals, and drill-down offers in `resolved_target_language`. Keep table names, JSON/DSL fields, commands, raw enum codes, and ids as internal control data; present their translated human meaning according to the gate above.
 
 1. **Numbers + plain language**: express results in ordinary language; all codes and IDs are already translated.
 2. **One-line interpretation**: avoid raw data dumps — add a brief "what this means" judgement.

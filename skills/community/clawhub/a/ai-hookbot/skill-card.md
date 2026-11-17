@@ -1,46 +1,57 @@
-## Description: <br>
-AI Hookbot helps an agent scrape YouTube Shorts hooks from a creator, trim them, and stitch them with a CTA video into ready-to-post vertical clips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes YouTube Shorts hooks from a creator channel, trims them, and stitches them with a CTA video to produce ready-to-post vertical content.
 
-## Publisher: <br>
-[jean-maradiaga](https://clawhub.ai/user/jean-maradiaga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jean-maradiaga](https://clawhub.ai/user/jean-maradiaga)
 
-## Use Case: <br>
-External users and content operators use this skill to run a local Hookbot pipeline that turns creator Shorts and a CTA video into short-form clips for TikTok, Reels, and Shorts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs separate Hookbot pipeline scripts that are not included in the artifact. <br>
-Mitigation: Review the pipeline source before execution and set HOOKBOT_SCRIPTS_DIR only to a trusted local directory. <br>
-Risk: Viral sorting may use a YouTube API key. <br>
-Mitigation: Use the API key only when needed, keep it out of shared logs, and pass it through the documented environment variable. <br>
-Risk: Raw failures may expose local paths or secret values. <br>
-Mitigation: Sanitize error output before sharing logs or summaries. <br>
+## Use Case:
 
+External creators, marketers, and content operators use this skill to generate short-form vertical videos by combining hooks from YouTube Shorts creators with their own CTA video.
 
-## Reference(s): <br>
-- [ClawHub AI Hookbot release page](https://clawhub.ai/jean-maradiaga/ai-hookbot) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [FFmpeg](https://ffmpeg.org/) <br>
-- [Google Cloud Console](https://console.cloud.google.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration guidance, and run summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying pipeline is expected to create 9:16 MP4 files and an output manifest.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can run external pipeline code with local file access and optional YouTube API-key access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted, pinned, inspected pipeline source, run it in a restricted working directory, and avoid passing secrets unless they are necessary.
+
+Risk: Generated videos may include downloaded or stitched content that the user does not have rights to publish.
+
+Mitigation: Confirm rights to the source Shorts, CTA video, and final stitched outputs before publishing.
+
+## Reference(s):
+
+- [AI Hookbot on ClawHub](https://clawhub.ai/jean-maradiaga/skills/ai-hookbot)
+- [OpenClaw](https://openclaw.ai)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [FFmpeg](https://ffmpeg.org/)
+- [Google Cloud Console](https://console.cloud.google.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration values, generated file paths, and run summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports hook counts, created video counts, output directory, and sanitized failures.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

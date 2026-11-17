@@ -9,7 +9,7 @@ const encoder = new UTF8Encoder();
 
 // 配置 - 从环境变量获取
 const DISCORD_WEBHOOK = process.env.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1482573744688857109/tD4x8oDKD539koQEeBauFe12N-K2fI1Iydh2Sjvyl23_3JYO08qgXbpBcRFRemKsPUq6';
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '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';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || 'REDACTED-SECRET';
 
 console.log('🚀 UTF-8编码工具 - 集成测试');
 console.log('='.repeat(60));

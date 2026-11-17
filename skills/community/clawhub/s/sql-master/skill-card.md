@@ -1,52 +1,71 @@
-## Description: <br>
-SQL Master helps agents generate and optimize SQL, analyze execution plans, design indexes and warehouse schemas, access file or database data, and prepare query results for visualization across common SQL dialects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Master helps agents generate, diagnose, optimize, and explain SQL across major database dialects, with optional data loading, export, visualization, and report-pipeline workflows.
 
-## Publisher: <br>
-[sqlskills](https://clawhub.ai/user/sqlskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moniq888](https://clawhub.ai/user/moniq888)
 
-## Use Case: <br>
-Developers, data engineers, analysts, and DBAs use this skill to draft production-grade SQL, diagnose slow queries, review execution plans, design indexes and schemas, and move query results into visualization or reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access local datasets, database connections, and database credentials through agent-assisted Python workflows. <br>
-Mitigation: Use read-only database accounts by default, limit file access to trusted datasets, and review credentials and connection settings before use. <br>
-Risk: Generated SQL, data exports, or pipeline operations could be incorrect, destructive, or written to unsafe locations if accepted without review. <br>
-Mitigation: Review every SQL statement before execution, run EXPLAIN or equivalent checks for complex queries, and send exports only to known safe paths. <br>
-Risk: Loading untrusted serialized or local data files can expose the environment to unsafe content. <br>
-Mitigation: Avoid loading pickle files or other trusted-only formats unless the source is fully verified. <br>
+## Use Case:
 
+Developers, data engineers, and data analysts use this skill to draft and review SQL, inspect execution plans, design indexes and schemas, load database or file data, convert query results, and coordinate downstream visualization or reporting workflows.
 
-## Reference(s): <br>
-- [SQL Generation](references/sql-generation.md) <br>
-- [Query Optimization](references/query-optimization.md) <br>
-- [Index Design](references/index-design.md) <br>
-- [Data Warehouse](references/data-warehouse.md) <br>
-- [Hive Skew Advanced](references/hive-skew-advanced.md) <br>
-- [SQL Internals](references/sql-internals.md) <br>
-- [Dialect Guide](references/dialect-guide.md) <br>
-- [DDL Design](references/ddl-design.md) <br>
-- [SQL Security](references/sql-security.md) <br>
-- [CLI Quick Reference](references/cli-quickref.md) <br>
-- [Visualization Guide](references/visualization-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with SQL, Python, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQL proposals, optimization reports, execution-plan guidance, data pipeline snippets, and file or database handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Pickle file loading can execute code during deserialization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not load untrusted .pkl or .pickle files; prefer trusted CSV, JSON, Parquet, Excel, or database sources.
+
+Risk: Database execution and export workflows can access or modify sensitive data when broad credentials are used.
+
+Mitigation: Use read-only or least-privilege database accounts, review SQL before execution, and verify output paths before writing exports.
+
+Risk: Companion skill integration expands the trust boundary for visualization and report generation.
+
+Mitigation: Use only trusted sql-dataviz and sql-report-generator installations, and review generated charts, reports, and insights before sharing.
+
+Risk: Range-based Python dependencies may resolve differently across environments.
+
+Mitigation: Pin and review dependencies before production or sensitive-environment deployment.
+
+## Reference(s):
+
+- [CLI 实操速查](references/cli-quickref.md)
+- [数仓建模 & 分层架构](references/data-warehouse.md)
+- [DDL 设计规范](references/ddl-design.md)
+- [多方言差异速查](references/dialect-guide.md)
+- [Hive 数据倾斜：大厂生产级深化补充](references/hive-skew-advanced.md)
+- [索引设计策略](references/index-design.md)
+- [慢查询诊断 & 执行计划分析](references/query-optimization.md)
+- [SQL 生成指南](references/sql-generation.md)
+- [SQL 原理深度](references/sql-internals.md)
+- [SQL 安全规范](references/sql-security.md)
+- [SQL 查询结果可视化指南](references/visualization-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown prose with SQL, Python, and shell snippets, plus optional CSV, JSON, Excel, Parquet, SQLite, PNG, HTML, or report file outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local database and file connector scripts, and may hand off to trusted sql-dataviz or sql-report-generator companion skills when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-This skill handles Spotify requests that read, create, update, or delete Spotify data through the OOMOL `oo` CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spotify (spotify.com). Use this skill for ANY Spotify request — reading, creating, updating, and deleting data. Whenever a task involves Spotify, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to search Spotify, inspect account and catalog data, manage playlists and saved library items, and control playback from an OOMOL-connected Spotify account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform Spotify write actions that change playlists, saved library items, playback state, follows, queue, and device settings. <br>
-Mitigation: Confirm the exact payload and intended effect with the user before running actions tagged as write. <br>
-Risk: The skill can perform destructive actions that remove or overwrite Spotify data. <br>
-Mitigation: Require explicit approval for the target and action before running commands tagged as destructive. <br>
-Risk: Connector actions depend on account authentication, scopes, app readiness, and OOMOL account credit. <br>
-Mitigation: Use first-time setup and connection recovery steps only after a command fails for the matching reason. <br>
+## Use Case:
 
+Users with an OOMOL-connected Spotify account can search Spotify's catalog, read account and playback information, and manage playlists, saved items, follows, and playback through the oo CLI.
 
-## Reference(s): <br>
-- [Spotify homepage](https://spotify.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup instructions install a remote CLI whose installer contents are unverified, and the skill security review says broader agent changes are unexplained.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately, including any changes to other agents' skills; prefer a verified release and disable unwanted skill synchronization.
+
+Risk: Write and destructive actions can change Spotify playback or account data.
+
+Mitigation: Keep the skill's approval requirements for account changes and confirm the exact target and effect before these actions.
+
+## Reference(s):
+
+- [ClawHub Spotify skill release](https://clawhub.ai/oomol/skills/oo-spotify)
+- [Spotify Web API documentation](https://developer.spotify.com/documentation/web-api)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Spotify](https://spotify.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands]
+
+**Output Format:** [JSON connector results with natural-language guidance; oo CLI actions use shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may read Spotify data or change playback and account data; write and destructive actions require user confirmation as specified by the skill.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

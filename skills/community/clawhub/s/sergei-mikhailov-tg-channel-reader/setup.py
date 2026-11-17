@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="sergei-mikhailov-tg-channel-reader",
-    version="0.10.0",
+    version="0.11.1",
     description="OpenClaw skill: read Telegram channels via MTProto",
     author="Sergey Mikhailov",
     url="https://github.com/bzSega/sergei-mikhailov-tg-channel-reader",

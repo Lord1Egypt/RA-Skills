@@ -20,6 +20,6 @@ If yes: Log to .learnings/ using the self-improving-science format.
   - Methodology/statistical insights → LEARNINGS.md
   - Missing ML tooling → FEATURE_REQUESTS.md
 
-If high-value (recurring, broadly applicable): Promote to experiment checklist, model card, or methodology standard.
+If high-value (recurring, broadly applicable): propose promotion to experiment checklist, model card, or methodology standard.; apply only after explicit user approval.
 </science-improvement-reminder>
 EOF

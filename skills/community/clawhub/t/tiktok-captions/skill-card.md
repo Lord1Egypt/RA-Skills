@@ -1,41 +1,49 @@
-## Description: <br>
-Guides agents in creating TikTok captions, video scripts, video specs, and hashtags for organic TikTok content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in creating TikTok captions, video scripts, hashtags, and video-format guidance for organic TikTok content.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Copy, video, and design agents use this skill to draft publish-ready TikTok captions, scripts, basic video specifications, and niche-relevant hashtags for organic TikTok posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated captions, hashtags, claims, or calls to action may be inaccurate, misleading, or unsuitable for posting. <br>
-Mitigation: Review generated TikTok content before publishing. <br>
-Risk: The skill may activate on broad TikTok-related wording when a more specific TikTok skill is intended. <br>
-Mitigation: Route paid promotion requests to the related TikTok ads skill when the user asks about TikTok advertising. <br>
+## Use Case:
 
+External users and content agents use this skill to draft publish-ready TikTok captions, optional video scripts, video specs, and niche hashtags for organic short-form content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/tiktok-captions) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured caption, video script, video specs, and hashtag sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces TikTok-oriented creative copy and posting guidance; no code, credentials, install steps, or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate for broad TikTok marketing requests beyond organic captions and scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a specialized skill for TikTok ads, analytics, account operations, or posting workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/tiktok-captions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with caption, script, video-spec, and hashtag sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or credential handling is reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

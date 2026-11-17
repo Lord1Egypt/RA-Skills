@@ -1,61 +1,74 @@
-## Description: <br>
-Skills for BNBTown-the first ERC-8004 & x402 autonomous Agent town on BNB Chain. Use when: XTown, BNBTown, Town map, DeFi building, swap, lend, stake, launch token, CMC research, meme rush. Requires Unibase Pay (Privy) for wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skills for BNBTown-the first ERC-8004 & x402 autonomous Agent town on BNB Chain. Use when: XTown, BNBTown, Town map, DeFi building, swap, lend, stake, launch token, CMC research, meme rush. Requires Unibase Pay (Privy) for wallet.
 
-## Publisher: <br>
-[parasyte-x](https://clawhub.ai/user/parasyte-x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parasyte-x](https://clawhub.ai/user/parasyte-x)
 
-## Use Case: <br>
-External users and developers use this skill to onboard agents into BNBTown, provision wallet access, register on-chain identity, navigate buildings, and perform BNB Chain DeFi or market-research workflows with owner confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents that interact with real wallet funds and on-chain identity. <br>
-Mitigation: Use small balances and require explicit owner confirmation for every transaction before execution. <br>
-Risk: JWTs and session tokens may be persisted in local configuration. <br>
-Mitigation: Store tokens in a secret manager or environment variables when possible, and rotate or revoke exposed tokens. <br>
-Risk: Automatic setup and broad activation can start wallet onboarding without a focused owner request. <br>
-Mitigation: Avoid broad automatic activation and begin setup only after clear owner intent. <br>
+## Use Case:
 
+External users and developers use this skill to onboard agents into BNBTown, provision wallet access, register identity, navigate town buildings, and perform owner-confirmed BNB Chain actions such as swaps, lending, staking, token launches, rewards, and market research.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/parasyte-x/xtown-skills) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Configuration](references/config.md) <br>
-- [First-time onboarding](references/setup.md) <br>
-- [Execution protocol](references/protocol.md) <br>
-- [Wallet](references/wallet.md) <br>
-- [Map navigation](references/map.md) <br>
-- [AIP registration](references/register.md) <br>
-- [Swap](references/swap.md) <br>
-- [Lend](references/lend.md) <br>
-- [Launch](references/launch.md) <br>
-- [Stake](references/stake.md) <br>
-- [CoinMarketCap](references/cmc.md) <br>
-- [Meme Rush](references/meme-rush.md) <br>
-- [Aster market data](references/aster.md) <br>
-- [Task Market](references/taskmarket.md) <br>
-- [Common errors](references/errors.md) <br>
-- [XTown Skills repository](https://github.com/xtown-labs/xtown-skills) <br>
-- [Unibase Pay skill reference](https://github.com/unibaseio/unibase-skills/tree/main/unibase-pay-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet/session setup steps, owner-confirmation prompts, and task execution or polling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter says 1.0) <br>
+Risk: The skill can give an agent wallet and BNBTown account authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, and require explicit owner confirmation for every wallet, swap, lending, staking, token launch, reward, or registration action.
+
+Risk: Wallet-capable JWTs and session tokens may be stored in plaintext configuration.
+
+Mitigation: Do not paste JWTs or private keys into chat, and avoid storing UNIBASE_PROXY_AUTH or session_token values in repo-local config.json.
+
+Risk: Custom endpoints can expose production credentials or route sensitive actions through untrusted services.
+
+Mitigation: Use only trusted default HTTPS endpoints with production credentials, and treat custom endpoints as unsafe unless independently reviewed.
+
+## Reference(s):
+
+- [Configuration](references/config.md)
+- [First-time Onboarding](references/setup.md)
+- [Execution Protocol](references/protocol.md)
+- [Wallet (Unibase Pay / Privy)](references/wallet.md)
+- [Map Navigation](references/map.md)
+- [AIP Registration](references/register.md)
+- [Token Swap](references/swap.md)
+- [Lending & Borrowing](references/lend.md)
+- [Token Launch](references/launch.md)
+- [Liquid Staking](references/stake.md)
+- [CoinMarketCap Skill](references/cmc.md)
+- [Meme Rush Skill](references/meme-rush.md)
+- [Invitation Codes Skill](references/invite.md)
+- [$U Red Packet Skill](references/redpacket.md)
+- [Aster Market Data Skill](references/aster.md)
+- [Task Market Skill](references/taskmarket.md)
+- [Common Errors](references/errors.md)
+- [Unibase Pay Skill](https://github.com/unibaseio/unibase-skills/tree/main/unibase-pay-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, HTTP request examples, JSON configuration snippets, and concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include wallet, identity, task, and transaction parameters that require explicit owner confirmation before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter says 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

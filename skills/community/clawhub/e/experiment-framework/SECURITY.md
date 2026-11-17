@@ -1,0 +1,4 @@
+# Security and privacy
+Do not include credentials, private transcripts, host inventories or actual operational output in public issues or pull requests. Report vulnerabilities privately through a maintainer contact or a private repository security advisory when available; this package does not provide a dedicated reporting service.
+Run only on authorized, trusted inputs in an isolated environment. Keep generated artifacts private until reviewed. Filename filters, token pattern checks and coverage hashes are not general anonymization or proof that all secrets are absent.
+Real execution can create external resources, incur costs and upload artifacts. Missing governance or provider dependencies must fail closed. Do not bypass reservations, online telemetry or source checks to make a launch pass.

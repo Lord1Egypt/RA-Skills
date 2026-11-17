@@ -1,42 +1,59 @@
-## Description: <br>
-opencli浏览器自动化 helps agents use opencli with a Chrome/Chromium browser bridge to automate browser actions, collect web data, operate AI chat sites, and run site-specific commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+opencli浏览器自动化 helps agents control Chrome or Edge through opencli and a Browser Bridge extension for page navigation, screenshots, JavaScript evaluation, data extraction, and workflows on sites such as Zhihu, Bilibili, and Doubao.
 
-## Publisher: <br>
-[wxdwqy](https://clawhub.ai/user/wxdwqy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxdwqy](https://clawhub.ai/user/wxdwqy)
 
-## Use Case: <br>
-Developers and agent users use this skill to automate browser workflows through opencli, including page navigation, element interaction, screenshots, JavaScript evaluation, web data extraction, and repeated interactions with sites that may already be logged in. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant broad automation control over logged-in browser sessions. <br>
-Mitigation: Use a dedicated low-privilege browser profile, avoid sensitive accounts, and disable the extension or daemon when automation is finished. <br>
-Risk: The skill includes workflows that execute JavaScript or generated opencli commands in the browser. <br>
-Mitigation: Review every eval or generated command before running it, especially on authenticated sites or pages containing private data. <br>
-Risk: The release evidence reports insufficient install-source assurance for the separate opencli extension. <br>
-Mitigation: Install only when the opencli extension source is trusted and matches the intended release. <br>
+## Use Case:
 
+Developers and agent users use this skill to automate browser workflows, inspect page state, capture screenshots, extract page content, and operate supported public or logged-in websites through opencli commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wxdwqy/opencli-browser-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell and JavaScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes browser setup guidance, command sequences, troubleshooting notes, and cautions for logged-in browser automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill directs users to install and operate an unverifiable browser extension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify the extension source, version, permissions, and checksum before installation.
+
+Risk: Automation can run against logged-in browser sessions and extract page text, screenshots, or structured data.
+
+Mitigation: Use a dedicated browser profile with only the needed accounts, avoid sensitive sites, and limit extraction to data that is explicitly intended for the workflow.
+
+Risk: Automating sites with anti-bot or verification controls can trigger account protections or violate platform expectations.
+
+Mitigation: Do not use the skill to bypass anti-bot or verification controls, and require manual completion when a site presents verification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wxdwqy/skills/opencli-browser-automation)
+- [Publisher profile](https://clawhub.ai/user/wxdwqy)
+- [Source skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with opencli and PowerShell command examples plus JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires opencli, a compatible Chromium browser, and the Browser Bridge extension; outputs may reflect data visible in the active browser profile.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,17 +1,16 @@
 # sutras.yaml — summarize skill metadata & configuration
 
 name: summarize
-version: "6.4.0"
+version: "11.0.0"
 description: |
-  🛡️ 错误免疫系统: 自动收割错误→5维分类→多信号检索→规则自进化→采纳追踪→收敛预警
-  Error immune system: auto-harvest errors → 5D classification → multi-signal retrieval → self-evolving rules → adoption tracking → convergence alerts.
+  用户请求“总结”“总结一下”“总结进度”“复盘”“精简上下文”“compact”“交接”“handoff”“总结 checkpoint”“总结 交接 分层”“总结 诊断 历史”或“summarize”时触发。区分快速扫描、当前上下文精简、分层交接和显式历史诊断，保留验证、未知项、阻塞与下一步，并在末尾提供基于证据的建议；仅“总结 保存”写入当前项目。 Evidence-first Codex summaries with separate scan, compact-context, layered handoff, and explicit historical diagnostics; persistence is explicit and project-local.
 
 author: ZCode (https://github.com/gtbwpkwjnb-alt)
 license: MIT
 repository: https://github.com/gtbwpkwjnb-alt/summarize-skill
 
 compatibility:
-  platforms: [zcode, claude-code, cursor, codex, windsurf]
+  platforms: [zcode, codebuddy, claude-code, codex, reasonix]
   note: "安装脚本自动检测目标平台并适配安装路径"
   minVersion: "2.0.0"
 
@@ -21,32 +20,26 @@ build:
     - README.md
     - LICENSE
     - VERSION
-    - install.sh
-    - install.ps1
+    - manifest.json
+    - agents/
+    - scripts/install.sh
+    - scripts/install.ps1
+    - scripts/save_handoff.py
+    - scripts/inspect_handoff.py
+    - references/
     - harvests/
 
 distribution:
   tags:
-    - diagnostics
     - session-management
-    - self-evolution
     - productivity
     - multi-platform
     - agent-skill
     - zcode
     - claude-code
-    - cursor
-    - token-tracking
-    - skill-analytics
-    - reversible-compression
-    - cross-agent
-    - 3-tier-self-healing
-    - git-versioned
-    - error-immune
-    - error-prevention
-    - error-harvesting
-    - agent-memory
-    - convergence-alert
+    - handoff
+    - evidence-first
+    - read-only-default
   category: developer-tools
   github:
     owner: gtbwpkwjnb-alt

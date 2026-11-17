@@ -1,41 +1,54 @@
-## Description: <br>
-Saves paper metadata, PDF links, tags, abstracts, and AI-generated summaries to a user's Zotero library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将论文保存到 Zotero 文库，请按照 userid:apiKey 的格式配置 ZOTERO_CREDENTIALS 环境变量。
 
-## Publisher: <br>
-[lifenglei](https://clawhub.ai/user/lifenglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifenglei](https://clawhub.ai/user/lifenglei)
 
-## Use Case: <br>
-External users, researchers, and developers use this skill to add academic paper records to Zotero from command-line inputs, including optional abstracts, tags, summaries, and arXiv PDF attachments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Zotero API key and writes metadata, summaries, tags, and attachments to a Zotero library. <br>
-Mitigation: Use a minimally scoped Zotero API key, avoid exposing ZOTERO_CREDENTIALS in logs or shared shells, and review Zotero writes after execution. <br>
-Risk: arXiv PDF attachment runs download and upload PDFs associated with the provided paper URL. <br>
-Mitigation: Run only for paper URLs the user intends to store in Zotero and confirm the created Zotero record and attachment. <br>
+## Use Case:
 
+Researchers, students, and knowledge workers use this skill to save academic paper metadata, optional abstracts, AI-generated summaries, tags, and arXiv PDF attachments into a Zotero library.
 
-## Reference(s): <br>
-- [Zotero](https://www.zotero.org) <br>
-- [ClawHub skill page](https://clawhub.ai/lifenglei/zotero-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, API Calls, Guidance] <br>
-**Output Format:** [Markdown instructions with command-line examples; runtime output is terminal text and Zotero library updates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and ZOTERO_CREDENTIALS in userid:apiKey format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Zotero API key that can add items and attachments to the user's library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Zotero API key, keep ZOTERO_CREDENTIALS secret, and revoke the key when it is no longer needed.
+
+Risk: Weak arXiv URL handling can trigger unintended network requests and upload the downloaded response to Zotero.
+
+Mitigation: Use only trusted paper URLs and prefer broad deployment after the publisher strengthens arXiv URL validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lifenglei/skills/zotero-skills)
+- [Zotero](https://www.zotero.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with command-line examples and parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ZOTERO_CREDENTIALS for Zotero API access and requires uv to run the bundled Python script.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

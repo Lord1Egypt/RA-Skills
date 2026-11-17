@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "kotlin",
-  "version": "1.0.1",
-  "publishedAt": 1771100283526
+  "displayName": "Kotlin",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785068764942
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1785066064440
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771100283526
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770680242012
+    }
+  ]
 }

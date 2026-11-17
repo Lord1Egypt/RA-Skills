@@ -1,42 +1,54 @@
-## Description: <br>
-Slacrawl helps agents search Slack archives, check sync freshness, inspect threads and DMs, run SQL counts, and work with the Slacrawl repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Slacrawl helps agents search local Slack archives, check archive freshness, inspect threads and DMs, and run read-only SQL counts.
 
-## Publisher: <br>
-[openclaw](https://clawhub.ai/user/openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclaw](https://clawhub.ai/user/openclaw)
 
-## Use Case: <br>
-Developers and teams with local Slack archives use this skill to query bounded message slices, check archive freshness, refresh stale data, inspect threads or DMs, and report exact spans, counts, and token/source limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slack archive searches can surface sensitive personal, DM, or private-channel content to the agent. <br>
-Mitigation: Install only where Slack archive access is intended, keep personal and company archives in separate configs, and limit searches to the minimum relevant slice. <br>
-Risk: API sync and full thread or DM hydration may require Slack tokens with sensitive scopes. <br>
-Mitigation: Review Slack token scopes before API sync and do not assume Slack tokens are present. <br>
-Risk: Stale local archives can produce incomplete or misleading answers about recent Slack activity. <br>
-Mitigation: Check archive freshness with Slacrawl status commands and refresh only when stale or explicitly requested. <br>
+## Use Case:
 
+Developers and employees with local Slack archive access use Slacrawl to answer questions from archived Slack data, check freshness, refresh archives when needed, and report bounded message slices, counts, and date spans.
 
-## Reference(s): <br>
-- [OpenClaw Slacrawl repository](https://github.com/openclaw/slacrawl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and SQL snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports workspace and channel names, absolute date spans, counts, and token/source limits; queries should use bounded result slices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The slacrawl binary can access local Slack archive data and, when explicitly used, Slack API tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments approved for Slack data access, and do not assume Slack tokens are present or required for every workflow.
+
+Risk: Installing the Go module with @latest can introduce unreviewed changes in environments with sensitive Slack data.
+
+Mitigation: Prefer a pinned, reviewed slacrawl version for sensitive or controlled deployments.
+
+## Reference(s):
+
+- [Slacrawl GitHub repository](https://github.com/openclaw/slacrawl)
+- [Slacrawl ClawHub release page](https://clawhub.ai/openclaw/skills/slacrawl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and SQL snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workspace and channel names, absolute date spans, counts, and token or source limits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

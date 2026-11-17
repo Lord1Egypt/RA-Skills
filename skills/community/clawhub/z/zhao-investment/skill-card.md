@@ -1,44 +1,56 @@
-## Description: <br>
-三维投资分析框架 - 基于宏观、行业、公司三维认知，帮助用户开展个股深度分析、投资组合诊断、行业赛道评估、宏观经济研判和交易决策支持。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language investment-analysis framework for macro, industry, and company analysis, with workflows for stock research, portfolio review, sector assessment, macro assessment, and trading-decision support.
 
-## Publisher: <br>
-[tingdall](https://clawhub.ai/user/tingdall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tingdall](https://clawhub.ai/user/tingdall)
 
-## Use Case: <br>
-External users and investment learners use this skill to structure educational investment research, including macro analysis, industry screening, company analysis, trading plans, portfolio reviews, and risk-control checklists. It supports disciplined analysis but does not replace independent judgment or professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce financial analysis that users could mistake for personalized investment advice. <br>
-Mitigation: Treat outputs as educational research support, verify conclusions independently, and consult a qualified financial professional for investment decisions. <br>
-Risk: Investment analysis can be inaccurate or stale if market data, macro indicators, announcements, or prices are outdated. <br>
-Mitigation: Verify market data, company filings, and current news from reliable sources before acting on any analysis. <br>
-Risk: Users may expose sensitive financial access information while discussing trading workflows. <br>
-Mitigation: Do not provide brokerage credentials, account secrets, or other sensitive financial access details to the skill. <br>
+## Use Case:
 
+External users can use this skill to structure investment research, portfolio diagnostics, sector reviews, macro analysis, and trading plans. Outputs should be treated as educational analysis prompts, not personalized financial advice.
 
-## Reference(s): <br>
-- [投资分析详细工作流](references/analysis-workflow.md) <br>
-- [投资分析检查清单](references/checklists.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tingdall/zhao-investment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, structured checklists, and educational analysis guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only educational investment analysis; no code execution, credentials, persistence, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Buy, sell, stop-loss, and position-sizing outputs could be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational prompts, verify market data independently, and do not rely on the skill as automated trading authority.
+
+Risk: Investment conclusions may be outdated or incomplete if the user does not provide current macro, industry, company, and market data.
+
+Mitigation: Use current filings, market data, and credible external sources before acting on any analysis.
+
+## Reference(s):
+
+- [Skill source](artifact/SKILL.md)
+- [Investment analysis workflow](artifact/references/analysis-workflow.md)
+- [Investment analysis checklists](artifact/references/checklists.md)
+- [ClawHub skill page](https://clawhub.ai/tingdall/skills/zhao-investment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis reports, portfolio diagnostics, checklists, and trading-plan guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational investment framework; users should provide and independently verify current market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

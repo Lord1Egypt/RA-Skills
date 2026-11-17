@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents draft Binance Square cryptocurrency content, including market analysis, trading strategy posts, news interpretation, engagement prompts, tags, and compliance reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents draft Chinese-language Binance Square cryptocurrency posts for market analysis, trading strategy, news interpretation, experience sharing, tags, and audience engagement.
 
-## Publisher: <br>
-[chencore](https://clawhub.ai/user/chencore) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chencore](https://clawhub.ai/user/chencore)
 
-## Use Case: <br>
-Crypto content creators and agents use this skill to structure concise Binance Square posts with analysis, strategy suggestions, news framing, audience interaction, hashtags, and publishing checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts may include specific trading advice, price targets, or return claims that are unsuitable for publication without review. <br>
-Mitigation: Verify market data independently, remove buy/sell/add-position calls and guaranteed-return language, and include clear risk and non-investment-advice disclaimers. <br>
-Risk: Connecting the workflow to exchange, wallet, or auto-posting permissions could raise additional financial and publication risks. <br>
-Mitigation: Keep the skill limited to drafting unless a separate security and compliance review approves those permissions. <br>
+## Use Case:
 
+Content creators and agents use this skill to structure Chinese-language crypto posts for Binance Square, including market commentary, trading-strategy drafts, news reactions, risk reminders, and engagement prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chencore/binance-square-author) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chencore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for factual accuracy, investment-advice language, and required risk disclaimers before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated posts may be mistaken for personalized or specific investment recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review drafts before publishing, avoid personalized recommendations, and include clear risk and non-investment-advice disclaimers.
+
+Risk: Market facts, prices, regulatory news, and trading examples can become inaccurate quickly.
+
+Mitigation: Verify current market information independently before using generated content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chencore/skills/binance-square-author)
+- [Publisher profile](https://clawhub.ai/user/chencore)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and structured prose templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language crypto-content drafts should be reviewed for factual accuracy, risk disclosure, and non-investment-advice wording before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

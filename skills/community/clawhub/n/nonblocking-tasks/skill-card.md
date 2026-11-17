@@ -1,43 +1,57 @@
-## Description: <br>
-Nonblocking Tasks guides an OpenClaw agent to keep the main conversation responsive by spawning background agents for task work, tracking active tasks, and proactively reporting completion or stalled progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw agents keep the main conversation responsive by delegating work to sub-agents, tracking active tasks, running heartbeat checks, and proactively notifying users of results.
 
-## Publisher: <br>
-[colinxu1-sys](https://clawhub.ai/user/colinxu1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinxu1-sys](https://clawhub.ai/user/colinxu1-sys)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage long-running or concurrent agent tasks without blocking new conversation turns. It is intended for workflows where background execution, progress tracking, heartbeat checks, and proactive completion notices are useful. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad nonblocking behavior, recurring heartbeat checks, and persistent changes to workspace guidance files. <br>
-Mitigation: Install only where that behavior is desired; review proposed changes to AGENTS.md, MEMORY.md, active_tasks.md, HEARTBEAT.md, and any cron monitor before enabling it. <br>
-Risk: Task details may be stored in active_tasks.md and cross-channel recall may access conversation history. <br>
-Mitigation: Avoid use in shared or sensitive workspaces unless users consent to stored task metadata and cross-channel boundaries are clearly enforced. <br>
-Risk: The security verdict is suspicious because the release asks for automatic background execution and persistent monitoring. <br>
-Mitigation: Inspect the installed skill behavior and keep the heartbeat monitor disabled unless recurring background checks are required. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to keep an assistant responsive during long-running or multi-step work by delegating tasks, recording status, and pushing completion updates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/colinxu1-sys/nonblocking-tasks) <br>
-- [Publisher Profile](https://clawhub.ai/user/colinxu1-sys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with configuration snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update task-tracking and heartbeat configuration files when installed in an OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server evidence and frontmatter) <br>
+Risk: The skill can persistently change workspace agent behavior by updating AGENTS.md, MEMORY.md, active_tasks.md, HEARTBEAT.md, and a recurring monitor.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve those file and schedule changes before enabling the skill, and disable the heartbeat monitor when it is not needed.
+
+Risk: The skill can send task status through external chat channels such as Feishu or WeCom.
+
+Mitigation: Enable notifications only for approved workspaces and channels, and verify that completion messages do not expose sensitive task details.
+
+Risk: The skill can read same-day cross-channel conversation history from ~/.openclaw when a user asks about another channel.
+
+Mitigation: Confirm that cross-channel history access is expected, scoped to the intended user, and allowed by the workspace's data-handling policy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/colinxu1-sys/skills/nonblocking-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline configuration and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace task-tracking and heartbeat files and schedule recurring status checks when enabled.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

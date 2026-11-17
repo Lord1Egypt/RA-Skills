@@ -1,42 +1,60 @@
-## Description: <br>
-Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. Use when extracting content from Word documents, PowerPoint presentations, or Excel spreadsheets.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, analysts, and other users use this skill to extract readable Markdown from Word, PowerPoint, and Excel documents so the content can be reviewed, summarized, or analyzed by an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected Office documents are uploaded to MinerU's external cloud API for processing. <br>
-Mitigation: Use only with documents appropriate for that service; avoid confidential, regulated, or highly sensitive files unless the user explicitly trusts MinerU's handling of uploaded content. <br>
-Risk: The documented quick path supports a maximum of 10MB or 20 pages per document. <br>
-Mitigation: Use the authenticated mineru-open-api extract workflow for larger or precision extraction needs, or choose another conversion path when the file exceeds those limits. <br>
+## Use Case:
 
+Developers and agents use this skill to extract content from Word, PowerPoint, and Excel files into Markdown for reading, summarization, or analysis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tanis90/docx-to-markdown) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI Download](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mineru-open-api flash-extract; output is Markdown and embedded images may be replaced with placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill uploads documents to MinerU's cloud API for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential or regulated documents unless MinerU's privacy terms satisfy the user's requirements.
+
+Risk: The skill depends on an external CLI installed through npm, uv, or go, and package versions are not pinned in the release metadata.
+
+Mitigation: Install and run the CLI in a low-privilege or sandboxed environment and review the resolved package before use.
+
+Risk: The flash-extract path is documented for documents up to 10MB or 20 pages, and embedded images may be replaced with placeholders.
+
+Mitigation: Use the authenticated MinerU extract workflow for larger or precision-sensitive documents, and verify extracted Markdown against the source file.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tanis90/skills/docx-to-markdown)
+- [Publisher Profile](https://clawhub.ai/user/tanis90)
+- [MinerU](https://mineru.net)
+- [MinerU CLI Download](https://mineru.net/ecosystem?tab=cli)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown content with CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MinerU Open API for document extraction; flash-extract is documented for files up to 10MB or 20 pages, and embedded images may be replaced with placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

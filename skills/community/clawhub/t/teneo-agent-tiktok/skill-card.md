@@ -1,44 +1,65 @@
-## Description: <br>
-The TikTok Agent helps users extract TikTok video metrics, creator profile details, and hashtag post data for trend and performance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The TikTok Agent helps users retrieve TikTok video metrics, creator profile details, and hashtag post data for trend analysis and creator auditing.
 
-## Publisher: <br>
-[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teneoprotocoldev](https://clawhub.ai/user/teneoprotocoldev)
 
-## Use Case: <br>
-External users, developers, businesses, and researchers use this agent to request TikTok video metadata, profile details, and hashtag post discovery through the Teneo Protocol SDK. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use requires trust in the Teneo service and correct handling of wallet-based USDC payment credentials. <br>
-Mitigation: Verify the Teneo service before installation and provide credentials only through the intended local or platform configuration. <br>
-Risk: TikTok scraping or metrics extraction may be subject to service terms or data-handling requirements. <br>
-Mitigation: Confirm that the intended TikTok data collection and use comply with applicable service terms and organizational data policies. <br>
+## Use Case:
 
+Developers, agents, businesses, and researchers use this skill to access TikTok video, profile, and hashtag data through the Teneo SDK for analytics, audits, and trend monitoring.
 
-## Reference(s): <br>
-- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk) <br>
-- [Teneo Protocol SDK on npm](https://www.npmjs.com/package/@teneo-protocol/sdk) <br>
-- [Teneo Agent SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk) <br>
-- [Teneo Protocol](https://teneo-protocol.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teneoprotocoldev/teneo-agent-tiktok) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and structured TikTok data returned by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent responses may include humanized text and raw or structured response content from Teneo SDK calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release evidence) <br>
+Risk: The setup installs an unpinned SDK package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin package versions, commit a lockfile, and review dependency changes before running the SDK.
+
+Risk: The workflow uses automatic USDC wallet payments.
+
+Mitigation: Use a dedicated low-balance wallet and require explicit confirmation for every payment.
+
+Risk: Wallet transactions can be signed on multiple supported networks.
+
+Mitigation: Verify the destination, network, asset, amount, and fees before signing any transaction.
+
+Risk: Broad environment secrets could be exposed to the Node process running the SDK.
+
+Mitigation: Scope environment variables narrowly and avoid loading unrelated secrets into the SDK runtime.
+
+## Reference(s):
+
+- [Tiktok - powered by Teneo Protocol on ClawHub](https://clawhub.ai/teneoprotocoldev/skills/teneo-agent-tiktok)
+- [Teneo Agent SDK on ClawHub](https://clawhub.ai/teneoprotocoldev/teneo-agent-sdk)
+- [Teneo Protocol](https://teneo-protocol.ai)
+- [@teneo-protocol/sdk on npm](https://www.npmjs.com/package/@teneo-protocol/sdk)
+- [Teneo Agent SDK GitHub Repository](https://github.com/TeneoProtocolAI/teneo-agent-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with TypeScript examples, shell commands, and structured response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced agent can return formatted text or raw structured content through the Teneo SDK.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,64 @@
+{
+  "skill": "pmclite-daily-report",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "标准日报",
+      "category": "happy_path",
+      "input": { "user_message": "今天的生产情况怎么样，写个日报" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["get_dashboard", "query_records"],
+        "output_contains": ["在制", "应开工", "逾期", "异常"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "应开工不能说成已开工",
+      "category": "edge_case",
+      "input": { "user_message": "今天有几单开工了" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["get_dashboard"],
+        "output_contains": ["应开工", "未开工"],
+        "must_not": ["3 单已开工"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "没有报工数据",
+      "category": "edge_case",
+      "input": { "user_message": "今天车间怎么样" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["get_dashboard", "query_records"],
+        "output_contains": ["还没有报工记录"],
+        "must_not": ["生产正常"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "异常分类",
+      "category": "edge_case",
+      "input": { "user_message": "今天有哪些异常" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": ["query_records"],
+        "output_contains": ["缺料", "设备", "质量"],
+        "must_not": ["异常 3 条"],
+        "uses_fallback": false
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "边界：月度经营分析",
+      "category": "boundary",
+      "input": { "user_message": "帮我看下这个月的利润情况" },
+      "expected": { "trigger_skill": false, "calls_tool": [], "output_contains": ["财务"], "uses_fallback": false }
+    }
+  ]
+}

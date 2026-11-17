@@ -1,43 +1,59 @@
-## Description: <br>
-Use for any travel question: hotels, flights, trains, attractions, destinations, and travel tips worldwide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use for any travel question -- hotels, flights, trains, attractions, destinations, and travel tips worldwide.
 
-## Publisher: <br>
-[trips-ai](https://clawhub.ai/user/trips-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[trips-ai](https://clawhub.ai/user/trips-ai)
 
-## Use Case: <br>
-External users and travel agents use TripGenie to answer travel questions, search flights, and summarize travel-related results from Trip.com APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel queries, itinerary details, and API credentials are sent to Trip.com for processing. <br>
-Mitigation: Confirm Trip.com is an acceptable processor, set TRIPGENIE_API_KEY as an environment variable, avoid pasting keys into chat, and avoid unnecessary sensitive personal details. <br>
-Risk: External API responses may include promotional content, links, or details that are not appropriate to relay verbatim. <br>
-Mitigation: Summarize and filter API responses before presenting results to users. <br>
+## Use Case:
 
+External users and travel-focused agents use TripGenie to answer travel questions, search flight options, and summarize Trip.com travel API responses for hotels, flights, trains, attractions, destinations, and travel tips.
 
-## Reference(s): <br>
-- [TripGenie Skill Page](https://clawhub.ai/trips-ai/trip-tripgenie-skill) <br>
-- [TripGenie Homepage](https://www.trip.com/tripgenie) <br>
-- [TripGenie OpenClaw Setup](https://www.trip.com/tripgenie/openclaw) <br>
-- [TripGenie API Endpoint](https://tripgenie-openclaw-prod.trip.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline bash commands and summarized travel results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRIPGENIE_API_KEY plus curl and jq; API responses should be summarized or filtered before presentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Travel questions, itinerary details, and API tokens are sent to Trip.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only when Trip.com is an acceptable data processor, prefer TRIPGENIE_API_KEY over pasted keys, and avoid including unnecessary personal details in prompts.
+
+Risk: API responses are third-party content that may include promotional links or unnecessary details.
+
+Mitigation: Summarize and filter TripGenie responses before presenting them to users instead of relaying raw API output.
+
+Risk: Automatic invocation can send travel queries more often than intended.
+
+Mitigation: Disable or limit automatic invocation when case-by-case control is required.
+
+## Reference(s):
+
+- [TripGenie homepage](https://www.trip.com/tripgenie)
+- [TripGenie OpenClaw setup](https://www.trip.com/tripgenie/openclaw)
+- [ClawHub TripGenie skill page](https://clawhub.ai/trips-ai/skills/trip-tripgenie-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline bash command examples and summarized text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TRIPGENIE_API_KEY, curl, and jq; API responses should be summarized and filtered before being presented to users.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

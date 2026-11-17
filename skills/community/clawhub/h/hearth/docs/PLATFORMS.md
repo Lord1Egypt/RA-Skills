@@ -7,6 +7,8 @@ hearth has two roles for any host:
 
 Bridgehead requirements are stricter (needs bash, ssh, curl, python3+yaml). Probed device requirements are looser (often just "responds to ping" + "has SSH" + standard Linux tools).
 
+> **hearth needs no special privileges.** It runs as an ordinary user, needs no `sudo`, no root, and no elevated container capabilities. Where this document mentions Docker capabilities or TUN devices, those belong to **third-party tools** (Tailscale, Docker) that you might run *alongside* hearth — they are never required by, or requested by, hearth itself.
+
 ## Compatibility matrix
 
 | Role | Linux | macOS | Windows | Android | iOS |
@@ -72,13 +74,13 @@ Not supported. iOS doesn't allow arbitrary local shell scripts in any maintained
 ## Chroot environments (Kali NetHunter, Linux Deploy, etc.)
 
 - No systemd inside the chroot — `no_systemd: true`
-- TUN devices not available — Tailscale must run in userspace networking mode (see `examples/archetypes/linux-nosystemd-chroot.md`)
 - First SSH after chroot starts up is slow — `ssh_warmup: true`
 - Use the chroot's user/password, not the host Android's credentials
+- If you *also* run Tailscale inside the chroot, note it's a separate tool with its own networking needs (TUN devices are often unavailable inside a chroot, so Tailscale there typically uses userspace networking mode — see its own docs and `examples/archetypes/linux-nosystemd-chroot.md`). hearth itself needs none of this.
 
 ## Container environments (Docker, Podman)
 
-You CAN run hearth inside a Docker container. Mount your `devices.yaml` as a volume:
+You CAN run hearth inside a Docker container. hearth needs no special capabilities — mount your `devices.yaml` (and optionally your SSH keys, read-only) and run:
 
 ```bash
 docker run --rm -it \
@@ -97,13 +99,13 @@ If your bridgehead is itself running in a container, all the above caveats apply
 
 - Container needs network access to the LAN (host networking, or bridge networking with the LAN exposed)
 - Container needs DNS pointed at your LAN's resolver if you use hostnames in `address:`
-- Tailscale-in-Docker requires `--cap-add=NET_ADMIN --device=/dev/net/tun` for kernel-mode, or userspace networking otherwise
+- **Separately**, if you choose to run Tailscale *inside* that container (a third-party tool, not part of hearth), Tailscale's own kernel-mode networking asks for extra Docker capabilities, while its userspace mode does not — consult Tailscale's documentation. hearth requires none of these; it works over whatever network path already reaches your hosts.
 
 ## Distribution-specific notes
 
 ### Debian 13 (trixie) and Ubuntu 24.04+
 
-Both ship `iptables-nft` by default. Tailscale's apt package will swap `iptables` to `nft` mode via `update-alternatives`. This is **fine in normal cases** but has caused failures on hosts with unusual NIC configurations (USB NICs, certain Realtek drivers). If you're installing Tailscale on a Linux host that hearth will probe, do it from the physical console, not from the only SSH session you have, with a recovery plan.
+Both ship `iptables-nft` by default. If you install Tailscale on a host, its apt package will swap `iptables` to `nft` mode via `update-alternatives`. This is **fine in normal cases** but has caused failures on hosts with unusual NIC configurations (USB NICs, certain Realtek drivers). If you're installing Tailscale on a Linux host that hearth will probe, do it from the physical console, not from the only SSH session you have, with a recovery plan. (This is a Tailscale caveat, not a hearth one — hearth only probes.)
 
 ### Alpine Linux
 

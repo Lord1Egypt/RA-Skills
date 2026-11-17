@@ -1,38 +1,52 @@
-## Description: <br>
-Standardize how agents handle background, sub-agent, and ACP-session work so completed results, progress, or blockers are proactively delivered back to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes how agents handle background, sub-agent, or ACP work so completed results are proactively delivered back to the user.
 
-## Publisher: <br>
-[wangwang0301](https://clawhub.ai/user/wangwang0301) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangwang0301](https://clawhub.ai/user/wangwang0301)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agent builders and workflow maintainers use this skill to make async, background, sub-agent, and ACP task handling end with a clear final result, progress update, or blocker.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agents may over-apply the SOP and move routine tool work into background execution when a local response would be clearer.
+
+Mitigation: Review the workflow wording before deployment and tune it for teams that prefer more work to remain in the main session.
+
+Risk: Acknowledgment examples may not match every user's language or communication style.
+
+Mitigation: Adapt example acknowledgments to the deployment audience while preserving the requirement to send one start update and one completion delivery.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agent workflow authors and operators use this skill to define how async or delegated work should be acknowledged, monitored, and delivered. It is especially useful when fixing workflows where background results finish but are not returned to the user. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes agent workflow and communication defaults, including when agents should use background or delegated work. <br>
-Mitigation: Review whether proactive completion delivery and background execution defaults match the target agent's operating policy before installation. <br>
+**Output Format:** [Markdown guidance and response patterns]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/wangwang0301/background-delivery-sop) <br>
+**Other Properties Related to Output:** [No executable output; the skill provides operating rules for agent responses.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with SOP steps and response patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential access, or external tool requirements.] <br>
+1.2.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

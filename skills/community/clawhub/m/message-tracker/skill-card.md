@@ -1,43 +1,53 @@
-## Description: <br>
-Message Tracker helps agents collect, store, search, export, and summarize Feishu channel messages using local Python tracker scripts and daemon controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends formatted tracked messages to Feishu channels via webhook with automatic retry on failure.
 
-## Publisher: <br>
-[wjl1004](https://clawhub.ai/user/wjl1004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjl1004](https://clawhub.ai/user/wjl1004)
 
-## Use Case: <br>
-Developers and operators use this skill to run and manage a local Feishu message tracker, including daemon lifecycle commands, message collection, search, export, and statistics. It is intended for trusted local environments where chat data retention and access are controlled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local daemon and chat-control socket are too broad for automatic approval outside a trusted single-user environment. <br>
-Mitigation: Install only in a trusted local environment, restrict daemon socket permissions, and add authentication or peer checks before broader deployment. <br>
-Risk: The skill handles Feishu credentials and retained chat message content, including export and purge workflows. <br>
-Mitigation: Document credential handling, retention, export, purge, and privacy expectations, and limit access to local storage and logs. <br>
-Risk: Runtime file cleanup around daemon startup can remove lock, PID, or socket files before safe ownership checks. <br>
-Mitigation: Avoid pre-lock deletion of runtime files and validate ownership before removing daemon state. <br>
+## Use Case:
 
+Developers and operations teams use this skill to send tracked message events or monitoring results to Feishu channels as structured webhook cards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjl1004/message-tracker) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs local daemon, search, export, and statistics operations; outputs may include terminal text, JSON exports, SQLite-backed records, and log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Feishu webhook URLs and optional secrets are credentials that could allow unauthorized message posting if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure webhooks only for intended channels and keep webhook URLs and secrets out of public repositories.
+
+Risk: Chinese-only instructions can increase operator misunderstanding for teams that do not read Chinese.
+
+Mitigation: Confirm installers are comfortable with the instructions or provide a reviewed translation before use.
+
+## Reference(s):
+
+- [Message Tracker Plugin on ClawHub](https://clawhub.ai/wjl1004/skills/message-tracker-plugin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript examples and configuration fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu webhook payload guidance, retry settings, and HMAC-SHA256 signing notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

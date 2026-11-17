@@ -1,45 +1,56 @@
-## Description: <br>
-Uploads and manages Shopify products individually, in bulk from CSV, or from images while generating UK English SEO content and confirming changes before Shopify Admin API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload and manage Shopify products individually, in bulk from CSV, or from images with SEO-optimised UK English listing content, variants, collections, inventory, and draft or archive workflows.
 
-## Publisher: <br>
-[hussainpatan9](https://clawhub.ai/user/hussainpatan9) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hussainpatan9](https://clawhub.ai/user/hussainpatan9)
 
-## Use Case: <br>
-E-commerce operators and store teams use this skill to create, update, bulk upload, draft, archive, and manage inventory for Shopify listings through an agent interface. It is designed for workflows that need SEO-ready product copy, CSV mapping previews, image-to-listing support, and confirmation before store changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Shopify Admin API token can modify products, inventory, and collections if exposed or over-scoped. <br>
-Mitigation: Use the narrowest Shopify scopes possible, store the token in a secrets vault or environment variable, avoid pasting it into chat, and rotate or revoke it when the skill is no longer needed. <br>
-Risk: Bulk uploads, updates, archive actions, and permanent deletes can change many storefront listings. <br>
-Mitigation: Use draft mode for review, inspect CSV mappings and generated previews, and require explicit confirmation before uploads, destructive actions, or permanent deletes. <br>
-Risk: Generated SEO descriptions can introduce inaccurate claims for safety-relevant, food, supplement, or compliance-sensitive products. <br>
-Mitigation: Review generated listing text before publishing and confirm compliance claims such as CE, UKCA, food-safe status, or health-related statements from authoritative product information. <br>
+## Use Case:
 
+E-commerce operators and developers use this skill to create, preview, upload, update, draft, archive, and manage Shopify product listings through an agent workflow. It is especially suited to catalogue creation from short product descriptions, CSV files, supplier data, or product images.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/hussainpatan9/shopify-product-uploader) <br>
-- [Setup guide](artifact/CONFIG.md) <br>
-- [Few-shot examples](artifact/EXAMPLES.md) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style confirmations, HTML product descriptions, CSV and bulk upload summaries, and Shopify Admin API request payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Shopify Admin API token and explicit confirmation before uploads, updates, archive actions, or permanent deletes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to provide a powerful Shopify Admin API access token and stores it in long-term agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Shopify custom app token with only the scopes required for the intended workflows, keep it in isolated encrypted secret storage, and rotate or revoke it if exposed.
+
+Risk: The skill can create, update, archive, and permanently delete Shopify products.
+
+Mitigation: Require explicit user confirmation before uploads, archive actions, or permanent deletion, and prefer draft mode for listings that need review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hussainpatan9/skills/shopify-product-uploader)
+- [README.md](artifact/README.md)
+- [CONFIG.md](artifact/CONFIG.md)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with product-listing previews, HTML snippets, JSON API payloads, and concise status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses UK English by default; Shopify writes require user confirmation before upload or destructive actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

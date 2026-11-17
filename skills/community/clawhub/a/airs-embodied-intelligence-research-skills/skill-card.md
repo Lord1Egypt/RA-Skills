@@ -1,46 +1,59 @@
-## Description: <br>
-AIRS招投标订单采集与核查 organizes company identity resolution, Tianyancha bidding evidence collection, third-party order verification, LLM case extraction, ingestion table generation, and case quality review for embodied intelligence and robotics industry research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIRS招投标订单采集与核查 helps agents run a reusable robotics industry research workflow for entity confirmation, Tianyancha bidding evidence collection, third-party order verification, LLM-assisted case extraction, standardized ingestion tables, and case quality review.
 
-## Publisher: <br>
-[airs-guest](https://clawhub.ai/user/airs-guest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airs-guest](https://clawhub.ai/user/airs-guest)
 
-## Use Case: <br>
-Industry researchers and analysts use this skill to collect public procurement evidence, verify robotics orders, extract structured embodied intelligence case records, and prepare reviewed case-library outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in Tianyancha browser session. <br>
-Mitigation: Use a dedicated browser profile or low-privilege account, keep Chrome remote debugging bound to localhost, and close the session after collection. <br>
-Risk: Collected procurement and research text may be sent to the configured LLM provider. <br>
-Mitigation: Verify the provider, endpoint, retention terms, and data handling policy before processing sensitive or proprietary material. <br>
-Risk: External Excel inputs may be unsafe until the xlsx dependency concern is addressed. <br>
-Mitigation: Avoid untrusted Excel files and pre-screen inputs before running third-party order verification. <br>
-Risk: Generated outputs under data/ may be overwritten or refreshed during the workflow. <br>
-Mitigation: Run the skill in a backed-up workspace and preserve copies of important outputs before reruns. <br>
+## Use Case:
 
+External users, developers, and research analysts use this skill to collect public bidding evidence, verify robotics orders, extract embodied-intelligence deployment cases, and prepare reviewed case-library ingestion outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/airs-guest/airs-embodied-intelligence-research-skills) <br>
-- [Project homepage](https://github.com/airs-guest/airs-embodied-intelligence-research-skills) <br>
-- [Tianyancha](https://www.tianyancha.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated CSV or Markdown data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local data outputs such as company lists, bidding records, raw content Markdown, verification reports, extraction sheets, ingestion CSV files, and ingest reports under data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The workflow uses a logged-in browser session and Chrome remote debugging for Tianyancha access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a controlled local environment, use a dedicated Chrome profile, and close the remote-debugging browser session after collection.
+
+Risk: Research records may be sent to a configurable OpenAI-compatible LLM provider.
+
+Mitigation: Process confidential customer, internal, or regulated spreadsheets only with an approved provider and data-handling process.
+
+Risk: Spreadsheet inputs and generated CSV outputs can carry dependency and formula-injection risk when opened in office tools.
+
+Mitigation: Update or replace vulnerable spreadsheet/browser dependencies and neutralize CSV formula cells before opening generated files in Excel or similar tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airs-guest/skills/airs-embodied-intelligence-research-skills)
+- [Source homepage from ClawHub metadata](https://github.com/airs-guest/airs-embodied-intelligence-research-skills)
+- [Tianyancha](https://www.tianyancha.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and CSV/Markdown file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local research data files under data/ when executed; those generated files are not part of the release package.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

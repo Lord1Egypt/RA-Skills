@@ -1,40 +1,54 @@
-## Description: <br>
-Orchestrate parallel codebase research. Spawns multiple researcher subagents to investigate different areas, then synthesizes findings into research.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate parallel codebase research. Spawns multiple researcher subagents to investigate different areas, then synthesizes findings into research.md.
 
-## Publisher: <br>
-[flip-in](https://clawhub.ai/user/flip-in) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flip-in](https://clawhub.ai/user/flip-in)
 
-## Use Case: <br>
-Developers and engineers use this skill to investigate a codebase by decomposing a research question into parallel investigation areas and synthesizing findings into a research.md report. It is intended for technical mapping of existing code, including file:line references and open questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repository content and can include sensitive code details or repository metadata in research.md. <br>
-Mitigation: Run it only on codebases intended for review, inspect the generated report before sharing it, and make sure repository remote URLs do not contain credentials. <br>
-Risk: The skill writes research.md in the current directory and may replace an existing local report. <br>
-Mitigation: Check for an existing research.md before running the skill, or run it in a clean working directory. <br>
+## Use Case:
 
+Developers and engineers use this skill to map an existing codebase by splitting a research question into parallel investigation areas and synthesizing the results into a local research.md report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flip-in/test-research-delete) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report plus brief text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes research.md in the current directory; the report includes file:line references, git metadata, findings, architecture notes, and open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill reads project files and writes a local research.md report that may include repository metadata and file references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated report before sharing it outside the workspace.
+
+Risk: Running the skill in a directory with an existing research.md may overwrite or replace prior research notes.
+
+Mitigation: Keep a backup or run the skill in a prepared workspace when the existing report must be preserved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flip-in/skills/test-research-delete)
+- [Publisher profile](https://clawhub.ai/user/flip-in)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with frontmatter and file:line references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes or updates a local research.md file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

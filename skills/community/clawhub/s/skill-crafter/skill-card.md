@@ -1,47 +1,60 @@
-## Description: <br>
-Skill Crafter helps agents create, modify, validate, and register high-quality skills using a four-layer skill structure and four-phase workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Crafter helps agents create, revise, validate, and register high-quality skills using a four-layer skill structure and a four-phase workflow.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Developers and agent builders use this skill to turn a requested workflow or domain practice into a reusable agent skill, including scoping, scaffolding, quality checks, and registration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills may contain incorrect guidance or unsafe operational instructions if registered without review. <br>
-Mitigation: Review the generated SKILL.md, references, and scripts before registration, then scan the skill before deployment. <br>
-Risk: Generated helper scripts may propose repository cloning, dependency installation, writing outside the workspace, or embedding private conversation details. <br>
-Mitigation: Inspect generated scripts and instructions for file-system scope, dependency changes, network use, and private data before use. <br>
+## Use Case:
 
+Developers and agent builders use this skill to turn workflows or user requirements into structured agent skills, including skill scaffolding, drafting, quality checks, registration, and later iteration.
 
-## Reference(s): <br>
-- [Skill Crafter on ClawHub](https://clawhub.ai/tuobadaidai/skill-crafter) <br>
-- [Quality Checklist](references/checklist.md) <br>
-- [Complete Example](references/example-complete.md) <br>
-- [Four-Layer Structure](references/four-layers.md) <br>
-- [Iteration Guide](references/iteration.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [Phase Mapping](references/phase-mapping.md) <br>
-- [Workflow Patterns](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create SKILL.md, reference files, and helper scripts for a new skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can create or modify skills and then submit or register them without a clear final user review step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a mandatory confirmation step that shows the generated skill path and a concise summary before registration.
+
+Risk: Generated skills may include network setup behavior such as cloning external source code.
+
+Mitigation: Require user approval before any generated skill performs network setup such as git clone.
+
+## Reference(s):
+
+- [Skill Crafter on ClawHub](https://clawhub.ai/tuobadaidai/skills/skill-crafter)
+- [Quality Checklist](artifact/references/checklist.md)
+- [Complete Example](artifact/references/example-complete.md)
+- [Four-Layer Skill Structure](artifact/references/four-layers.md)
+- [Iteration Guide](artifact/references/iteration.md)
+- [Output Patterns](artifact/references/output-patterns.md)
+- [Phase Mapping](artifact/references/phase-mapping.md)
+- [Workflow Patterns](artifact/references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, generated skill files, shell commands, and configuration-oriented instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify skill directories and propose registration commands as part of the skill-authoring workflow.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

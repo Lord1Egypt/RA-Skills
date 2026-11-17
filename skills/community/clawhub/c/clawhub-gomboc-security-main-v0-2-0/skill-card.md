@@ -1,48 +1,69 @@
-## Description: <br>
-Automatically scans codebases for security and configuration issues, generates deterministic fixes, and can apply remediation through CLI, MCP, or CI/CD workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically scan codebases for security issues and generate deterministic, merge-ready fixes for CLI, CI/CD, and agent workflows.
 
-## Publisher: <br>
-[matthewsweeney](https://clawhub.ai/user/matthewsweeney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[matthewsweeney](https://clawhub.ai/user/matthewsweeney)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to scan repositories, generate remediation output, and optionally apply fixes to infrastructure, application, and configuration code. It is intended for agent-assisted security remediation workflows where diffs are reviewed before merge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate repository changes, commits, and pushes with limited safeguards. <br>
-Mitigation: Run remediation on a clean branch, review generated diffs before merge, require PR review, and avoid unattended push workflows. <br>
-Risk: The skill requires a Gomboc personal access token for API-backed scanning and remediation. <br>
-Mitigation: Use a dedicated least-privilege token supplied through environment variables or CI secrets, and rotate it if exposed. <br>
-Risk: The MCP workflow can run a containerized service that interacts with the workspace. <br>
-Mitigation: Pin or verify the MCP container image before use and limit workspace access to the minimum required. <br>
+## Use Case:
 
+Developers and security engineers use this skill to scan repositories, generate remediation guidance or fixes, and automate code security remediation through local CLI, MCP, or GitHub Actions workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/matthewsweeney/clawhub-gomboc-security-main-v0-2-0) <br>
-- [Setup Guide](references/setup.md) <br>
-- [MCP Integration Guide](references/mcp-integration.md) <br>
-- [GitHub Actions Integration](references/github-action.md) <br>
-- [Security Audit and Practices](SECURITY.md) <br>
-- [Gomboc Documentation](https://docs.gomboc.ai) <br>
-- [Gomboc Community Edition](https://docs.gomboc.ai/getting-started-ce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown, JSON, SARIF, code snippets, and command-line output depending on the selected workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate repository changes, commits, or pushes when remediation options are explicitly invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact documentation reports skill version 0.2.0) <br>
+Risk: Repository context may be sent to the Gomboc service during scanning or remediation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when the user trusts Gomboc and has approved sharing the relevant repository context.
+
+Risk: Docker MCP mode uses an unpinned container image with access to the mounted workspace and token.
+
+Mitigation: Pin the container image digest, bind the service to 127.0.0.1, and restrict workspace and token scope before using MCP mode.
+
+Risk: Autonomous remediation can commit or push changes to a repository.
+
+Mitigation: Avoid commit or push automation on important branches without branch protection, pull request review, and human approval of generated changes.
+
+Risk: Personal access tokens can be exposed through shell profiles, logs, or broad environment inheritance.
+
+Mitigation: Store the token in a secret manager or scoped CI secret, avoid printing it, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/matthewsweeney/skills/clawhub-gomboc-security-main-v0-2-0)
+- [Setup Guide](references/setup.md)
+- [MCP Integration Guide](references/mcp-integration.md)
+- [GitHub Actions Integration](references/github-action.md)
+- [Security Audit and Practices](SECURITY.md)
+- [Changelog](CHANGELOG.md)
+- [Gomboc Docs](https://docs.gomboc.ai)
+- [Gomboc Community Edition](https://docs.gomboc.ai/getting-started-ce)
+- [Gomboc GitHub Discussions](https://github.com/Gomboc-AI/gomboc-ai-feedback/discussions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, SARIF, code snippets, shell commands, and YAML workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Gomboc personal access token; remediation workflows may send repository context to Gomboc and can modify, commit, or push code when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact documentation reports 0.2.0 dated 2026-03-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

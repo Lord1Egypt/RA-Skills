@@ -1,37 +1,53 @@
-## Description: <br>
-Reviews Flutter GetX code for architecture, memory safety, clean UI code, async error handling, naming conventions, and team coding standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review Flutter GetX code for strict architecture, memory safety, clean UI code, async error handling, naming conventions, and team coding standards.
 
-## Publisher: <br>
-[hautvfami](https://clawhub.ai/user/hautvfami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hautvfami](https://clawhub.ai/user/hautvfami)
 
-## Use Case: <br>
-Developers and reviewers use this skill to review Flutter pull requests that use GetX, with emphasis on architecture, memory management, null safety, performance, and team conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strict team-specific review rules may over-block changes that are acceptable in another Flutter/GetX codebase. <br>
-Mitigation: Reviewers should treat the output as policy guidance and confirm blockers against the repository's own standards before rejecting a change. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill to review Flutter applications that use GetX, with emphasis on architecture, state management, null safety, memory management, UI cleanliness, async handling, security, and team naming conventions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown review feedback with severity labels and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces strict blocker, warning, and suggestion feedback; it does not execute code or modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The strict review posture may flag many architecture, formatting, logging, and Jira-ticket issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review findings against the target project's actual standards before blocking a change.
+
+Risk: Suggested code snippets could be applied without enough local project context.
+
+Mitigation: Treat snippets as reviewer guidance and validate them with normal project tests and code review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hautvfami/skills/hautv-flutter-senior-getx-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown review feedback with severity labels and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Blocker, Warning, and Suggestion categories; produces review guidance rather than executable components.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

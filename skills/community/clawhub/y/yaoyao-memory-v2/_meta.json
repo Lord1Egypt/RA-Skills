@@ -1,6 +1,46 @@
 {
   "ownerId": "kn74j824bn4xq1y1td0h2k093s8432mx",
-  "slug": "yaoyao-memory-v2",
-  "version": "4.0.1",
-  "publishedAt": 1776262442411
+  "slug": "yaoyao-memory",
+  "version": "4.0.0",
+  "publishedAt": 1775655088685,
+  "requires": {
+    "envVars": [],
+    "files": [],
+    "paths": [
+      "~/.openclaw/workspace/memory/"
+    ]
+  },
+  "credentials": {
+    "optional": [
+      "LLM API Key - 如需 LLM 增强功能",
+      "Embedding API Key - 如需向量搜索功能",
+      "IMA Cloud Sync credentials (~/.config/ima/) - 如需云同步"
+    ]
+  },
+  "networkCalls": {
+    "description": "可选网络调用 - 用户未配置 API 时自动降级到本地模式",
+    "modes": {
+      "full": "完整模式 - 用户配置 API Key 后启用向量搜索和 LLM 增强",
+      "local": "本地模式 - 无 API Key 时使用全文搜索，记忆功能不受影响"
+    }
+  },
+  "storage": {
+    "description": "本地记忆存储在 ~/.openclaw/workspace/memory/",
+    "paths": [
+      "~/.openclaw/workspace/memory/",
+      "~/.openclaw/memory-tdai/.cache/"
+    ]
+  },
+  "behavior": {
+    "silentRecording": false,
+    "confirmBeforeRecord": true,
+    "description": "默认需要用户确认后才能记录重要信息，可通过 memory.silent_mode 关闭"
+  },
+  "security": {
+    "noUnknownServers": true,
+    "noBackgroundDataExfil": true,
+    "noHardcodedEndpoints": true,
+    "sensitiveInfoNeverRecorded": true,
+    "worksWithoutApiKey": true
+  }
 }

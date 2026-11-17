@@ -1,40 +1,57 @@
-## Description: <br>
-Sea route navigation: generate the shortest maritime route between two ports or coordinates, output navigation waypoints and an interactive HTML map. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates approximate maritime routes between two ports or coordinate pairs, including route waypoints, estimated distance and travel time, and an interactive HTML map.
 
-## Publisher: <br>
-[f2quantum](https://clawhub.ai/user/f2quantum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[f2quantum](https://clawhub.ai/user/f2quantum)
 
-## Use Case: <br>
-External users and agents use this skill to estimate maritime routes between ports or coordinates, including distance, travel time, waypoints, and a local interactive map for route visualization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route outputs are approximate and intended for visualization or estimation rather than real vessel navigation. <br>
-Mitigation: Use the generated route only for planning discussion or visualization, and rely on authoritative nautical charts and navigation systems for operational decisions. <br>
-Risk: Generated HTML map files and route labels may expose route details or names if saved in sensitive locations or shared. <br>
-Mitigation: Save maps to non-sensitive paths, avoid untrusted route labels, and review generated files before sharing. <br>
+## Use Case:
 
+External users, developers, and logistics-focused agents use this skill to answer maritime route, shipping lane, port distance, travel time, and waypoint requests for visualization and planning support.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/f2quantum/sea-route) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, HTML files, shell commands, guidance] <br>
-**Output Format:** [JSON route data with a Markdown-facing summary and a generated HTML map file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes origin and destination coordinates, distance, estimated duration, waypoint coordinates, and the saved map path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated HTML can include unescaped route labels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted origin and destination names, avoid labels supplied by untrusted users, and HTML-escape labels before opening or sharing generated maps.
+
+Risk: Dependencies are fetched at runtime and are not pinned to exact versions.
+
+Mitigation: Run in a controlled environment and pin or review searoute and folium versions before operational use.
+
+Risk: Routes are approximate and not suitable for real vessel navigation.
+
+Mitigation: Use outputs for visualization and planning support only, and verify any operational route with authoritative maritime navigation tools.
+
+## Reference(s):
+
+- [Sea Route Navigation release page](https://clawhub.ai/f2quantum/skills/sea-route)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, files, guidance]
+
+**Output Format:** [Markdown response with route summary and waypoint table, JSON stdout from the script, and an HTML map file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python >=3.9, uv, and runtime installation of searoute and folium dependencies; generated routes are approximate and not intended for real navigation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

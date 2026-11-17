@@ -1,46 +1,57 @@
-## Description: <br>
-模型蒸馏大师 provides a workflow for transferring capabilities from large teacher models into smaller student models, including teacher analysis, data synthesis, QLoRA training, evaluation, and deployment packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+模型蒸馏大师 helps developers transfer capabilities from a large teacher model into a smaller student model through analysis, synthetic data generation, QLoRA training, evaluation, and deployment packaging.
 
-## Publisher: <br>
-[shixiangyu2](https://clawhub.ai/user/shixiangyu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shixiangyu2](https://clawhub.ai/user/shixiangyu2)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to plan and execute model distillation workflows for reasoning, math, code, or task-specific model compression. It helps generate training configurations, scripts, evaluation reports, and deployment artifacts for smaller student models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install software, download large models, run model-supplied code, and launch training or deployment scripts. <br>
-Mitigation: Use it in a controlled ML environment such as a container or disposable project directory, and review pip, apt-get, brew, git-lfs, git clone, model download, training, and deployment steps before execution. <br>
-Risk: Teacher-model API calls and generated training data may expose sensitive or regulated data to external providers. <br>
-Mitigation: Avoid sensitive or regulated data unless the teacher provider and its retention policy have been approved. <br>
-Risk: Model repositories or generated workflows may rely on remote code execution behavior. <br>
-Mitigation: Disable or restrict trust_remote_code unless the model repository is pinned and trusted. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to plan and run model distillation workflows for edge deployment, API cost reduction, domain-specific smaller models, or faster inference.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shixiangyu2/model-distill-master) <br>
-- [Distillation methodology](references/methodology.md) <br>
-- [ModelScope gemma-3-4b-it repository](https://www.modelscope.cn/LLM-Research/gemma-3-4b-it.git) <br>
-- [Knowledge distillation paper](https://arxiv.org/abs/1503.02531) <br>
-- [DistilBERT paper](https://arxiv.org/abs/1910.01108) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, YAML configuration, Python scripts, JSONL data expectations, and evaluation report descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local training, evaluation, model download, and deployment packaging files when the user approves execution steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact skill.yaml, CHANGELOG dated 2024-04-13) <br>
+Risk: The skill asks agents to install software, download models, run training, and execute generated scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated virtual environment or container, pin dependencies and model revisions, and require explicit approval before package installs, downloads, training, or generated script execution.
+
+Risk: Model loading and teacher-model workflows can expose users to unreviewed remote code or remote API data handling.
+
+Mitigation: Disable trust_remote_code unless the model repository has been reviewed, and avoid sensitive or regulated datasets with remote teacher APIs unless provider privacy and retention terms are confirmed.
+
+## Reference(s):
+
+- [Model Distillation Methodology](artifact/references/methodology.md)
+- [Knowledge Distillation Original Paper](https://arxiv.org/abs/1503.02531)
+- [DistilBERT Paper](https://arxiv.org/abs/1910.01108)
+- [Gemma Documentation](https://ai.google.dev/gemma)
+- [ModelScope Gemma 3 4B IT Repository](https://www.modelscope.cn/LLM-Research/gemma-3-4b-it.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON/YAML configuration and Python/shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow plans, generated training and evaluation scripts, reports, and deployment packaging instructions for model distillation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, skill.yaml, and CHANGELOG dated 2024-04-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

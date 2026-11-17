@@ -1,38 +1,48 @@
-## Description: <br>
-AEO - Agent effect operations platform for discovering agent performance drift, diagnosing root causes, running AI data feedback loops, proposing optimization options, attributing outcomes, tracking quality trends, optimizing cost, and monitoring SLAs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Effect Operations helps teams monitor agent performance, detect quality drift, diagnose root causes, track costs and SLAs, and plan optimization work.
 
-## Publisher: <br>
-[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yuchangxu1989-openclaw](https://clawhub.ai/user/yuchangxu1989-openclaw)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operations teams use this skill to frame agent effectiveness operations work, including performance measurement, outcome attribution, quality trend tracking, cost optimization, and SLA monitoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release is a minimal descriptive stub, so users may overestimate the operational functionality available from the artifact alone.
+
+Mitigation: Confirm required operational components, integrations, and workflows are present before relying on the skill for agent performance operations.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operations teams, and agent owners use this skill as guidance for monitoring agent quality, detecting performance drift, diagnosing likely causes, and planning optimization work across cost, quality, outcomes, and SLAs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, text]
 
-## Known Risks and Mitigations: <br>
-Risk: Future versions that add code, telemetry, credential handling, data ingestion, or background automation could materially change the security posture. <br>
-Mitigation: Review the security evidence and scanner findings for each new release before installation or deployment. <br>
+**Output Format:** [Markdown or text guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuchangxu1989-openclaw/agent-effect-operations) <br>
+**Other Properties Related to Output:** [The artifact is a descriptive stub and may require additional components to provide operational functionality.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive markdown-only skill with no executable behavior in this release.] <br>
+0.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-基于 ZAST.AI 安全手册的 OpenClaw 安全审计与加固技能。运行全面安全诊断（内置 audit + 手册补充项），生成结构化报告，提供交互式修复引导，支持定时审计调度。触发场景：安全审计、安全加固、漏洞检查、security audit、hardening、暴露检查。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Security Handbook (CN) guides Chinese-language OpenClaw security audits and hardening by running diagnostics, adding manual checks, formatting reports, and guiding reviewed remediation.
 
-## Publisher: <br>
-[ruijh](https://clawhub.ai/user/ruijh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruijh](https://clawhub.ai/user/ruijh)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to audit local OpenClaw security posture, review findings, receive hardening guidance, and optionally configure recurring security checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security audits may expose sensitive local configuration, logs, sessions, memory content, tokens, or credentials in generated reports. <br>
-Mitigation: Ask the agent to redact token values and memory contents before presenting or storing reports, and avoid sharing raw audit output outside the trusted environment. <br>
-Risk: Remediation guidance can include commands that change file permissions, add cron jobs, uninstall skills, use sudo/chattr, or delete local data. <br>
-Mitigation: Require explicit user confirmation before applying fixes, scheduling jobs, uninstalling skills, using elevated privileges, or running delete commands. <br>
-Risk: The skill performs local security checks and command recommendations that may be inappropriate for some OpenClaw deployments. <br>
-Mitigation: Review each finding against the actual deployment context before applying changes, especially for sandbox, group policy, OAuth, and workspace cleanup decisions. <br>
+## Use Case:
 
+Developers and security operators use this skill to audit OpenClaw installations, review security findings, and apply hardening steps with manual approval for high-impact actions.
 
-## Reference(s): <br>
-- [OpenClaw Security Checklist](references/checklist.md) <br>
-- [OpenClaw Security Fix Commands](references/fix-commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ruijh/openclaw-security-handbook-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured security report sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize OpenClaw audit findings, propose remediation commands, and guide scheduling of recurring security audits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill may inspect sensitive OpenClaw configuration, logs, sessions, credentials metadata, and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer redacted or metadata-only checks and do not paste raw secret output into chat or reports.
+
+Risk: Generated remediation may include high-impact actions such as token rotation, workspace deletion, sudo or chattr commands, Docker or network changes, and cron scheduling.
+
+Mitigation: Review every generated remediation before execution and treat destructive or privileged actions as manual decisions.
+
+Risk: The release security verdict is suspicious because the skill handles secrets, memory contents, and fix guidance in ways that could expose sensitive data or lead to unsafe commands.
+
+Mitigation: Install only when this access is acceptable for the target environment and run the skill in a controlled workspace.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ruijh/skills/openclaw-security-handbook-cn)
+- [OpenClaw Security Checklist](references/checklist.md)
+- [OpenClaw Fix Commands Reference](references/fix-commands.md)
+- [ZAST.AI OpenClaw Security Handbook](https://github.com/zast-ai/openclaw-security)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and step-by-step remediation guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language workflow; high-impact remediation is presented for user review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

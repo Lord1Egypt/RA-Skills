@@ -1,41 +1,54 @@
-## Description: <br>
-Searches local knowledge and insight-history records for Chuwi Minibook-related items, although the artifact documentation describes a system monitoring skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chuwi Minibook utility skill documented for system status checks; release security evidence notes that the packaged behavior instead searches local knowledge and insight-history data.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and users can use this skill to query local Chuwi Minibook knowledge and insight-history records. Review the release before installation because server security evidence reports that the documented monitoring behavior does not match the current code behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release appears mislabeled because documentation describes hardware monitoring while the code searches local knowledge and insight-history files. <br>
-Mitigation: Review the artifact before installing, align the documentation with the implemented behavior, and disclose the local data sources the skill reads. <br>
-Risk: Broad trigger phrases may invoke the skill for general system or Chuwi queries even though the implemented behavior is local data search. <br>
-Mitigation: Narrow trigger phrases to the actual local-search behavior or update the code to match the documented monitoring workflow. <br>
+## Use Case:
 
+External users and developers can invoke this skill for Chuwi Minibook-related local search results or, according to its documentation, system status summaries. Review fit carefully because release security evidence reports a mismatch between the documented monitoring behavior and the packaged code behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/chuwi-minibook) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [JSON object containing status, query metadata, result summaries, sources, optional URLs, and timestamp] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are deduplicated and limited to local knowledge and insight-history matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Documented system-monitoring behavior does not match the packaged behavior reported by release security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and describe it to users as a local knowledge/history search skill unless the implementation is changed to match the monitoring documentation.
+
+Risk: The packaged code can read shared local knowledge/history data and import Python code from an external database directory.
+
+Mitigation: Install only in trusted workspaces, restrict access to the shared database directory, and review that directory before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/chuwi-minibook)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON object with status, topic, query, count, result records, and timestamp]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locally sourced knowledge-base or insight-history entries when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

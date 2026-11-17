@@ -1,45 +1,59 @@
-## Description: <br>
-Web Reader fetches articles and videos from supported web platforms, archives them locally, and supports follow-up analysis, summaries, and derived work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches articles and videos from supported web platforms, saves local archives, and supports follow-up summarization, analysis, comparison, and content extraction.
 
-## Publisher: <br>
-[alexxxiong](https://clawhub.ai/user/alexxxiong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexxxiong](https://clawhub.ai/user/alexxxiong)
 
-## Use Case: <br>
-Developers and content-focused agent users use this skill to fetch web articles, documents, and videos, archive them by category, and then summarize, analyze, compare, or derive follow-up material from the saved content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch URLs through scraping, headless browser, anti-detection browser, and video download tools. <br>
-Mitigation: Review target URLs before execution, use only content you have permission to access, and prefer explicit confirmation before authenticated or anti-detection fetches. <br>
-Risk: The skill can use logged-in browser sessions or cookies for restricted content. <br>
-Mitigation: Use a dedicated browser profile when cookies are needed and avoid private or premium content unless you are authorized to archive it. <br>
-Risk: The skill saves downloaded pages, images, and videos to local archive directories. <br>
-Mitigation: Set the archive directory deliberately and review saved files before sharing or reusing them. <br>
+## Use Case:
 
+Developers and content-focused agent users use this skill to capture web articles, images, and videos into local files, then analyze, summarize, compare, or repurpose the saved material.
 
-## Reference(s): <br>
-- [ClawHub Web Reader Release](https://clawhub.ai/alexxxiong/web-reader) <br>
-- [README](artifact/README.md) <br>
-- [Platform Strategies](artifact/references/platforms.md) <br>
-- [Adding a New Platform](artifact/references/extending.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown archives, downloaded media files, optional JSON command output, and concise text summaries or analyses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local article, image, and video archives under the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can fetch arbitrary web content and save persistent archives locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit trusted URLs, choose a bounded output directory, and review saved files before reusing their contents.
+
+Risk: Some modes can use logged-in browser context or browser cookies for restricted pages.
+
+Mitigation: Avoid cookie-based and private-document modes unless necessary; use a separate browser profile or isolated environment when possible.
+
+Risk: The skill depends on external scraping and downloading tools for article and video capture.
+
+Mitigation: Install pinned dependencies in an isolated environment and review tool behavior before using the skill with sensitive sources.
+
+## Reference(s):
+
+- [Platform Strategies](references/platforms.md)
+- [Adding a New Platform](references/extending.md)
+- [ClawHub Skill Page](https://clawhub.ai/alexxxiong/skills/web-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON status output, saved article/video files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write persistent local archives and image folders; optional JSON output is available for programmatic use.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

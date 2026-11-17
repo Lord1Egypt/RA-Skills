@@ -1,46 +1,59 @@
-## Description: <br>
-Professional GitHub workflow skill for AI agents covering repository setup, Git Flow branching, atomic commits, pull requests, code review, CI/CD monitoring, semantic versioning, releases, secrets management, and security rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through GitHub-centered project workflows covering repository setup, branching, commits, pull requests, CI/CD, releases, secrets management, and work logs.
 
-## Publisher: <br>
-[kretkas](https://clawhub.ai/user/kretkas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kretkas](https://clawhub.ai/user/kretkas)
 
-## Use Case: <br>
-Developers and agents use this skill to apply a structured GitHub project workflow for repository setup, branching, work logs, pull requests, CI checks, releases, and credential-safe operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through repository writes, merges, releases, branch protection changes, archives, deletes, and secret updates. <br>
-Mitigation: Confirm the target repository and GitHub account before actions, require explicit user approval for irreversible or security-sensitive changes, and review proposed commands before execution. <br>
-Risk: The skill depends on GitHub credentials and may operate around sensitive repository secrets. <br>
-Mitigation: Use least-privilege tokens, prefer interactive secret entry, and keep tokens, secret values, and credentials out of logs and command output. <br>
+## Use Case:
 
+Developers and AI agents use this skill to manage GitHub repositories with consistent branching, pull request, CI, release, secret-handling, and task-continuity practices.
 
-## Reference(s): <br>
-- [GitHub Workflow on ClawHub](https://clawhub.ai/kretkas/github-project-workflow) <br>
-- [API Queries, Search & Audit](references/api-queries.md) <br>
-- [CI / GitHub Actions](references/ci-actions.md) <br>
-- [Pull Requests](references/pull-requests.md) <br>
-- [Releases & Versioning](references/releases.md) <br>
-- [Repo Setup & Branch Protection](references/repo-setup.md) <br>
-- [Secrets & Environments](references/secrets-envs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitHub account, gh CLI authentication, and careful handling of repository secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.5 (source: server-resolved release evidence) <br>
+Risk: The skill broadly applies a GitHub workflow to coding tasks and may lead an agent to create or change repository artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for GitHub-centered work, require explicit user approval before branch, commit, issue, pull request, merge, release, secret, workflow, branch-protection, or work-log writes, and avoid enabling it globally for unrelated tasks.
+
+Risk: GitHub authentication and repository secrets are part of the workflow.
+
+Mitigation: Use `gh auth status` to verify authentication, set secrets interactively with `gh secret set`, and never print or log tokens, secrets, or credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kretkas/skills/github-project-workflow)
+- [API Queries, Search & Audit](references/api-queries.md)
+- [CI / GitHub Actions](references/ci-actions.md)
+- [Pull Requests](references/pull-requests.md)
+- [Releases & Versioning](references/releases.md)
+- [Repo Setup & Branch Protection](references/repo-setup.md)
+- [Secrets & Environments](references/secrets-envs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes workflow checklists, confirmation warnings for write operations, and secret-handling guidance.]
+
+## Skill Version(s):
+
+1.3.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

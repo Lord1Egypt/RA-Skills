@@ -1,37 +1,52 @@
-## Description: <br>
-基于整数规划（MILP）的仓配网络优化系统，支持时效计算（含等待时间）、中转链路、供应关系到区县等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于整数规划（MILP）的仓配网络优化系统，支持时效计算（含等待时间）、中转链路、供应关系到区县等。
 
-## Publisher: <br>
-[jinqianfei](https://clawhub.ai/user/jinqianfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jinqianfei](https://clawhub.ai/user/jinqianfei)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Logistics planners and operations engineers use this skill to convert warehouse network data, configure RDC limits, and run MILP-based warehouse distribution optimization. It helps compare selected RDCs, supply relationships, transit links, province assignments, and weighted delivery timing in generated reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted Excel or JSON inputs could affect local optimization results or generated reports.
+
+Mitigation: Run the skill in a normal project or virtual environment and use only trusted or reviewed Excel and JSON inputs.
+
+Risk: Generated .xlsx reports may preserve formula-like values from supplied data.
+
+Mitigation: Review generated spreadsheets before opening or sharing reports created from third-party data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Supply-chain planners and operations analysts use this skill to convert warehouse and distribution data, configure RDC constraints, run MILP-based warehouse network optimization, and generate Excel reports for RDC selection, supply relationships, transfer paths, province assignment, and weighted delivery-time metrics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, code, configuration, files]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown guidance with bash and Python examples, plus generated JSON and Excel files]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinqianfei/warehouse-network-optimizer) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Produces local optimization artifacts, including converted trunk-line and distribution-cycle JSON data and Excel reports with summary, RDC selection, supply relationships, transfer links, and province distribution sheets.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, Python entry points, JSON conversion files, and local Excel reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates local Excel reports and JSON conversion outputs; use explicit output filenames or a dedicated output directory to avoid replacing existing files.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-2.7.0 (source: server release evidence and SKILL.md version history) <br>
+2.7.0 (source: release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

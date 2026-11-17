@@ -1,41 +1,53 @@
-## Description: <br>
-发明专利撰写专家 - 专利申请的撰写、修改和审查意见答复。覆盖机械、土木、控制、AI等全领域，精通中国及国际专利规范。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language invention patent drafting assistant for drafting, revising, and responding to patent examination opinions across mechanical, civil, control, AI, and other technical domains.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Patent practitioners, inventors, and technical teams use this skill to draft, revise, and review invention patent materials, including claims, specifications, abstracts, office-action response plans, and patentability risk notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent citations, legal conclusions, filing-ready text, experimental claims, and probability estimates may be inaccurate or incomplete. <br>
-Mitigation: Verify these outputs with official patent databases and a qualified patent professional before filing, disclosure, or business reliance. <br>
-Risk: Users may paste confidential invention disclosures or unpublished patent material into the agent. <br>
-Mitigation: Use only in an environment approved for the relevant confidential material and follow the organization's patent disclosure and data-handling policies. <br>
+## Use Case:
 
+External inventors, patent professionals, and technical teams use this skill to review invention disclosures, claims, or complete patent application drafts and produce structured patent-drafting guidance. It can generate diagnostic reports, revised claim and specification text, comparison tables, office-action response drafts, and grant-risk estimates for professional review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jirboy/patent-assistant-jirboy) <br>
-- [Publisher profile](https://clawhub.ai/user/jirboy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown reports, tables, draft patent text, and response templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include patent diagnosis, claim rewrites, specification text, comparison tables, office-action response drafts, and probability or risk estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Patent searches, legal citations, prosecution strategy, and grant-risk estimates may be incomplete or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify searches, citations, filing strategy, and final drafts with qualified patent counsel before relying on outputs for filing decisions.
+
+Risk: Patent requirements vary by jurisdiction, and the skill is written primarily for Chinese-language patent drafting while also referencing international practice.
+
+Mitigation: Review outputs against the rules and filing requirements of each target jurisdiction before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/patent-assistant-jirboy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured reports, tables, and draft patent text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include patent-search plans, revised patent application sections, office-action response drafts, grant-probability estimates, and risk notes that require professional review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata; artifact notes v1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

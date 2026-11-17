@@ -1,42 +1,54 @@
-## Description: <br>
-Cadence Virtuoso Skill language development helper that supports API lookup, code linting, and natural-language API recommendations for writing and debugging Virtuoso Skill code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtuoso Skill helps developers look up Cadence Virtuoso SKILL APIs, validate SKILL code, and get function recommendations from a bundled API database.
 
-## Publisher: <br>
-[keenone](https://clawhub.ai/user/keenone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keenone](https://clawhub.ai/user/keenone)
 
-## Use Case: <br>
-Developers and engineers use this skill to query Cadence Virtuoso Skill APIs, recommend likely API functions from natural-language tasks, and lint Skill source files or snippets for undefined calls and argument-count issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional web UI has no authentication and listens on all interfaces. <br>
-Mitigation: Start the web UI only on localhost or a trusted network. <br>
-Risk: Directory linting reads files from user-selected project folders. <br>
-Mitigation: Run directory checks only on intended Virtuoso Skill project folders. <br>
+## Use Case:
 
+Developers and engineers use this skill while writing or debugging Cadence Virtuoso SKILL code to find supported API calls, inspect parameters, and catch undefined or mismatched function usage before submission.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keenone/virtuoso-skill) <br>
-- [skill_api_database.json](artifact/references/skill_api_database.json) <br>
-- [skill_api_database_full.gz.json](artifact/references/skill_api_database_full.gz.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal text with Skill code snippets, API details, lint diagnostics, and command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked API recommendations, syntax and parameter summaries, example Skill code, warnings, and validation errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence) <br>
+Risk: Optional web mode exposes an unauthenticated service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use CLI modes by default; when web mode is needed, bind it to localhost or restrict access with a firewall.
+
+Risk: Web mode renders API database content unsafely.
+
+Mitigation: Load only trusted API databases and avoid exposing web mode to untrusted users or networks.
+
+## Reference(s):
+
+- [Skill API Database](references/skill_api_database.json)
+- [Virtuoso Skill on ClawHub](https://clawhub.ai/keenone/skills/virtuoso-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or terminal text with SKILL code examples and CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API search results, lint findings, suggested SKILL function calls, and web-mode setup guidance.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

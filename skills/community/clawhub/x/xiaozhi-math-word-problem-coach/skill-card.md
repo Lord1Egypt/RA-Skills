@@ -1,41 +1,57 @@
-## Description: <br>
-Xiaozhi Math Word Problem Coach helps students translate math word problems into equations by identifying quantities, verbalizing relationships, and converting those relationships into mathematical expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+针对中国初高中数学应用题，引导学生识别数量关系并将文字条件转化为方程、函数或其他数学模型。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-External learners, tutors, and learning agents use this skill to coach math word-problem modeling through Socratic prompts instead of direct solution handoff. It is intended for application-problem understanding, unknown selection, relationship extraction, and equation setup across trip, work, mixture, profit, and growth-rate problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may steer word-problem or equation-setting requests into coaching prompts when a direct worked answer is expected. <br>
-Mitigation: Use it when the desired outcome is modeling practice, and pair it with a solution-oriented math skill after the learner has completed the modeling steps. <br>
-Risk: The skill declares companion learning-profile dependencies that may affect educational progress records if installed separately. <br>
-Mitigation: Review separately installed companion skills and their data behavior before using them for learner tracking. <br>
+## Use Case:
 
+面向使用简体中文学习的初中和高中学生，帮助他们读懂数学应用题、提取数量关系，并练习把关系写成合适的数学模型。
 
-## Reference(s): <br>
-- [Five Math Word Problem Modeling Patterns](references/modeling-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/qizhitang/xiaozhi-math-word-problem-coach) <br>
+### Deployment Geography for Use:
 
+中国大陆
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown coaching prompts and explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Socratic coaching style and may defer direct answers until the learner has modeled the problem.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The Chinese-language requirements and mainland-China school examples may not fit every learner or curriculum.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the learner is comfortable with Simplified Chinese and that the curriculum context fits before use.
+
+Risk: Some examples extend into solving or calculations beyond the skill's main modeling focus.
+
+Mitigation: Keep this skill focused on forming the model and route equation solving or calculation to an appropriate problem-solving resource.
+
+## Reference(s):
+
+- [ClawHub release 2.12.7](https://clawhub.ai/qizhitang/skills/xiaozhi-math-word-problem-coach)
+- [五大应用题题型建模框架与数量关系速查表](artifact/references/modeling-patterns.md)
+- [高一衔接段的函数模型](artifact/references/math-hs1-function-models.md)
+- [高中必修后半的数学模型](artifact/references/math-hs2-models.md)
+- [高中选择性必修的数学模型](artifact/references/math-hs3-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Mathematical expressions, Guidance]
+
+**Output Format:** [Simplified Chinese conversational text with mathematical expressions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive, stepwise prompts that help students build a model before moving to solving or calculation.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

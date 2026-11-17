@@ -1,47 +1,63 @@
-## Description: <br>
-Manage paid advertising campaigns across Meta (Facebook and Instagram), Google Ads, X, and Snapchat for Indian businesses, with performance analysis, issue detection, and high-ROI recommendations before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage paid advertising campaigns across Meta (Facebook and Instagram), Google Ads, X, and Snapchat for Indian businesses; the skill analyzes performance, detects issues, and recommends high-ROI actions before execution.
 
-## Publisher: <br>
-[abhishekj9621](https://clawhub.ai/user/abhishekj9621) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhishekj9621](https://clawhub.ai/user/abhishekj9621)
 
-## Use Case: <br>
-External advertisers, founders, and marketing operators use this skill to diagnose campaign performance, evaluate paid-ad metrics, and plan or execute budget, creative, audience, and campaign changes across major ad platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-India <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require powerful ad-account credentials that could expose accounts or customer data if pasted into chat. <br>
-Mitigation: Use secure OAuth or a secret manager, grant least-privilege access, and avoid sharing access tokens, API secrets, OAuth client files, refresh tokens, or customer lists in chat. <br>
-Risk: Campaign changes can spend budget, activate campaigns, pause or delete delivery, or upload audiences. <br>
-Mitigation: Require explicit user confirmation before any budget change, campaign activation, pause, deletion, or audience upload. <br>
-Risk: Rapid budget scaling or unreviewed optimization recommendations can waste ad spend. <br>
-Mitigation: Review recommendations in currency terms and keep sudden changes within the artifact's stated guardrails unless the user explicitly approves a larger change. <br>
+## Use Case:
 
+External advertisers, founders, and marketing operators for Indian businesses use this skill to analyze campaign performance, diagnose ROAS, CAC, and funnel issues, and prepare confirmed campaign changes across Meta, Google Ads, X, and Snapchat.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abhishekj9621/ads-manager-claw) <br>
-- [Credential Guides](references/credential-guides.md) <br>
-- [Google Ads API Reference](references/google-ads.md) <br>
-- [Meta (Facebook & Instagram) Ads API Reference](references/meta.md) <br>
-- [Snapchat Ads API Reference](references/snapchat.md) <br>
-- [X (Twitter) Ads API Reference](references/x-ads.md) <br>
+### Deployment Geography for Use:
 
+India
 
-## Skill Output: <br>
-**Output Type(s):** [text, analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured performance summaries, diagnostics, recommendations, expected impact estimates, and API-oriented snippets or commands when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actions should be proposed with explicit user confirmation before spend, activation, pause, deletion, audience upload, or other campaign changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill asks for sensitive ad-platform credentials and can support write-level advertising actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use secure OAuth or a secret store instead of pasting tokens or client secrets into chat; prefer read-only credentials for reporting workflows.
+
+Risk: Campaign, budget, deletion, audience, or posting changes could affect live spend or public content.
+
+Mitigation: Require explicit user confirmation before budget changes, activation, deletion, audience uploads, or posting content.
+
+Risk: Performance guidance could be misleading if platform ROAS omits return, tracking, or funnel data.
+
+Mitigation: Review recommendations against current business metrics such as CAC, LTV, payback period, return rate, and conversion tracking health.
+
+## Reference(s):
+
+- [Credential Guides](references/credential-guides.md)
+- [Google Ads API Reference](references/google-ads.md)
+- [Meta Ads API Reference](references/meta.md)
+- [Snapchat Ads API Reference](references/snapchat.md)
+- [X Ads API Reference](references/x-ads.md)
+- [ClawHub skill page](https://clawhub.ai/abhishekj9621/skills/ads-manager-claw)
+- [ClawHub publisher profile](https://clawhub.ai/user/abhishekj9621)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with analysis, recommendations, API request examples, and confirmation-gated action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Campaign changes should be treated as proposals until the user explicitly confirms execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

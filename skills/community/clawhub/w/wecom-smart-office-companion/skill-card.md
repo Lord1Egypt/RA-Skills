@@ -1,39 +1,54 @@
-## Description: <br>
-企业微信智能办公助手，每日自动汇总日程、会议、待办和团队数据，生成可视化早报卡片。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+企业微信智能办公助手，每日自动汇总日程、会议、待办和团队数据，生成可视化早报卡片
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Managers, project leads, and operations teams use this skill to assemble a daily Enterprise WeChat office brief from schedules, meetings, todos, and team smart-sheet data. It supports manual prompts and scheduled morning runs that produce a shareable briefing card. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect sensitive workplace schedule, meeting, todo, and team-data content and package it into a report. <br>
-Mitigation: Confirm the exact WeCom data sources and permissions before installation, and use data minimization or redaction for sensitive fields. <br>
-Risk: Automatic cron execution and chat delivery could send the briefing to unintended Feishu or WeCom recipients. <br>
-Mitigation: Prefer manual runs until recipient allowlists, trigger permissions, approval checks, and audit logging are configured. <br>
+## Use Case:
 
+Managers, project leads, and operations staff use this skill to collect daily schedules, meetings, todos, and team smart sheet data into a concise visual morning briefing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Image] <br>
-**Output Format:** [Structured office brief with a generated PNG briefing card] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for manual chat triggers or scheduled weekday morning delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and workflow.json) <br>
+Risk: The skill can gather sensitive workplace schedules, todos, meetings, and team metrics into a shareable report.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an organization-approved workspace with least-privilege WeCom and smart-sheet access.
+
+Risk: Automatic delivery could send confidential briefing content to unintended recipients.
+
+Mitigation: Gate scheduled sending until recipients are explicitly selected and consent, retention, and confidentiality expectations are defined.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/wecom-smart-office-companion)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, guidance]
+
+**Output Format:** [Structured briefing content and image-rendering instructions for a PNG morning report card]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for manual chat triggers or scheduled weekday delivery after workspace configuration and permission checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

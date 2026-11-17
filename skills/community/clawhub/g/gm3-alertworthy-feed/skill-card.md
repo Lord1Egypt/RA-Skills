@@ -1,41 +1,57 @@
-## Description: <br>
-Read-only access to the GM3 Alertworthy feed, providing real-time token market data for analysis agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only access to the GM3 Alertworthy feed, providing real-time token market data for analysis agents.
 
-## Publisher: <br>
-[bigbadman-lab](https://clawhub.ai/user/bigbadman-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bigbadman-lab](https://clawhub.ai/user/bigbadman-lab)
 
-## Use Case: <br>
-Developers and analysis agents use this skill to access the GM3 Alertworthy feed and inspect token market snapshots for downstream analysis. The skill provides read-only market data context and does not perform filtering, ranking, or trading actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a GM3 Developer API key to call the documented feed. <br>
-Mitigation: Store the key as a secret and avoid logging Authorization headers or exposing the key in client-side code. <br>
-Risk: Returned market data could be mistaken for trading instructions. <br>
-Mitigation: Treat the feed as analysis input only; keep strategy logic, filtering, decisions, and any execution outside this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GM3 Alertworthy feed endpoint](https://api.gm3.fun/functions/v1/gm3-api/v1/paid/alertworthy) <br>
-- [ClawHub skill page](https://clawhub.ai/bigbadman-lab/gm3-alertworthy-feed) <br>
-- [Publisher profile](https://clawhub.ai/user/bigbadman-lab) <br>
+## Use Case:
 
+External analysts and agent developers use this skill to fetch current GM3 alertworthy-token market snapshots for downstream analysis, filtering, and decision support. The skill is analysis-only and does not perform ranking, strategy logic, or trading execution.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API call, JSON data] <br>
-**Output Format:** [Markdown guidance describing a read-only GET request and JSON response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GM3 Developer API key; the endpoint accepts no input parameters.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: GM3 API key exposure or misuse.
+
+Mitigation: Store the API key as a secret and never expose it in client-side code.
+
+Risk: Market data may be mistaken for trading advice or execution authority.
+
+Mitigation: Treat returned token data as analysis input and keep filtering, decision logic, and any trading actions outside this skill.
+
+Risk: Dependency on a third-party market data API and active entitlement.
+
+Mitigation: Install only if you trust GM3 as the data provider and handle 401, 429, and temporary 5xx responses in agent workflows.
+
+## Reference(s):
+
+- [GM3 Alertworthy API endpoint](https://api.gm3.fun/functions/v1/gm3-api/v1/paid/alertworthy)
+- [ClawHub skill page](https://clawhub.ai/bigbadman-lab/skills/gm3-alertworthy-feed)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API data]
+
+**Output Format:** [JSON object containing a data array of alertworthy token snapshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GM3 Developer API key; exact response fields may change as the GM3 platform evolves.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV3/dataSummary/v1 for Xiaohongshu Creator Marketplace (Pugongying) Data Summary through JustOneAPI with userId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/xiaohongshu-pgy/api/solar/kol/dataV3/dataSummary/v1 for Xiaohongshu Creator Marketplace (Pugongying) Data Summary through JustOneAPI with userId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-External developers and operators use this skill to call the JustOneAPI Xiaohongshu Creator Marketplace data summary endpoint for creator evaluation, campaign planning, and creator benchmarking. It requires a JustOneAPI token and a creator userId, with optional business type selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The marketplace token is passed as a URL query parameter and may be exposed through logs, browser history, screenshots, or support bundles. <br>
-Mitigation: Use a scoped and revocable token when available, avoid sharing generated URLs or logs, and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to call JustOneAPI for Xiaohongshu Creator Marketplace creator summary data by userId, supporting creator evaluation, campaign planning, and benchmarking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu-pgy-api-solar-kol-data-v3-data-summary) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_v3_data_summary&utm_content=project_link) <br>
-- [Generated operation reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with an inline shell command and JSON API response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill targets one GET endpoint, uses userId as the required lookup parameter, and summarizes endpoint-specific results before returning raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API tokens can be exposed through command lines, logs, or URL query strings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or short-lived JustOneAPI token when available, avoid logging commands or full request URLs, and rotate the token if exposure is suspected.
+
+Risk: The release has a suspicious security verdict from ClawHub scan evidence.
+
+Mitigation: Review the skill before installing, especially when the token has billing or broad account access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-xiaohongshu-pgy-api-solar-kol-data-v3-data-summary)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_v3_data_summary&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_api_solar_kol_data_v3_data_summary&utm_content=project_link)
+- [Generated operation reference](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses operation apiSolarKolDataV3DataSummaryV1 with required userId, required JUST_ONE_API_TOKEN, and optional business query value.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Builds reactive real-time backends on the iii engine for event-driven apps where state changes trigger side effects, clients receive live updates via streams or websockets, or teams need a real-time database layer with pub/sub and CRUD endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds reactive real-time backends on the iii engine for event-driven apps where state changes trigger side effects, clients receive live updates via streams or websockets, or a real-time database layer with pub/sub and CRUD endpoints is needed.
 
-## Publisher: <br>
-[rohitg00](https://clawhub.ai/user/rohitg00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rohitg00](https://clawhub.ai/user/rohitg00)
 
-## Use Case: <br>
-Developers and engineers use this skill to design iii engine backends where CRUD state changes drive reactive side effects, aggregate metrics, and live client updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CRUD endpoints, state triggers, or live streams could expose or mutate application data if scopes and authorization are too broad. <br>
-Mitigation: Review generated backend code before deployment, verify authorization and stream scoping, and keep reactive handlers focused on intended state changes. <br>
-Risk: State triggers fire on any change in a scope, which can create unintended side effects or expensive work. <br>
-Mitigation: Use event fields such as new_value, old_value, and key to filter relevant changes, and offload heavy work to queues or background processing. <br>
+## Use Case:
 
+Developers and engineers use this skill to design iii reactive backends with state-triggered side effects, CRUD state access, live stream or websocket updates, and aggregate metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rohitg00/iii-reactive-backend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with code-oriented implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on iii state triggers, CRUD endpoints, streams, and pattern boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated backend code may expose state scopes, delete endpoints, or public stream/websocket surfaces in ways that affect application data and network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated backend code before deployment, with specific attention to state scope boundaries, destructive endpoints, and stream or websocket exposure.
+
+Risk: Reactive triggers can unintentionally propagate side effects when any value in a watched state scope changes.
+
+Mitigation: Use event fields such as new_value, old_value, and key to filter trigger behavior and keep reactive handlers focused and fast.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rohitg00/skills/iii-reactive-backend)
+- [ClawHub publisher profile](https://clawhub.ai/user/rohitg00)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no bundled execution behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

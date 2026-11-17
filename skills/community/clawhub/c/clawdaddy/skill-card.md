@@ -1,43 +1,59 @@
-## Description: <br>
-ClawDaddy helps agents check domain availability, brainstorm available names, purchase domains with USDC or cards, and manage DNS or nameservers without CAPTCHAs or signup for lookups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawDaddy helps agents check domain availability, brainstorm available names, get purchase quotes, purchase domains with USDC or cards, and manage DNS and nameservers.
 
-## Publisher: <br>
-[gregm711](https://clawhub.ai/user/gregm711) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gregm711](https://clawhub.ai/user/gregm711)
 
-## Use Case: <br>
-External users and developers use this skill to let agents check and suggest available domains, obtain purchase quotes, complete domain registration flows, and configure DNS, nameservers, settings, recovery, or transfer preparation for managed domains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agents can initiate real domain purchases through USDC or card checkout flows. <br>
-Mitigation: Require explicit user approval before submitting purchase requests or payment proofs, and confirm the quoted total before purchase. <br>
-Risk: DNS record deletion, DNS overwrites, nameserver changes, settings changes, and transfer preparation can disrupt an active domain. <br>
-Mitigation: Review proposed changes with the user before execution, preserve existing DNS values when possible, and require confirmation for destructive or ownership-affecting operations. <br>
-Risk: Management tokens control domain administration and recovery invalidates older tokens. <br>
-Mitigation: Store management tokens only in an approved secret store, avoid placing them in normal chat history or memory, and warn users before token recovery. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawDaddy homepage](https://clawdaddy.app) <br>
-- [ClawDaddy agent documentation](https://clawdaddy.app/llms.txt) <br>
-- [ClawHub listing](https://clawhub.ai/gregm711/clawdaddy) <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to find available domain names, compare prices, initiate domain purchases, and manage domain settings after registration.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration instructions, Text] <br>
-**Output Format:** [Markdown guidance with HTTP examples and JSON/TXT response formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Domain lookup endpoints can return JSON or TXT; management actions require bearer tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can initiate real domain purchases through USDC or card payment flows.
+
+Mitigation: Require explicit user approval after presenting the quote, payment method, total cost, domain name, and registration consequences before any purchase request.
+
+Risk: The skill can change DNS records, nameservers, domain lock state, autorenew settings, and transfer state.
+
+Mitigation: Require explicit approval before DNS deletion, nameserver changes, domain unlocks, autorenew changes, transfer actions, or other administrative changes.
+
+Risk: Management tokens grant control over registered domains and token recovery invalidates previous tokens.
+
+Mitigation: Keep management tokens private, avoid exposing them in shared logs or public responses, and warn users when token recovery will invalidate old tokens.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gregm711/skills/clawdaddy)
+- [Publisher profile](https://clawhub.ai/user/gregm711)
+- [ClawDaddy](https://clawdaddy.app)
+- [ClawDaddy documentation](https://clawdaddy.app/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, JSON, text, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with HTTP examples, JSON responses, TXT responses, and bearer-token instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can lead agents through real domain purchase, DNS, nameserver, settings, transfer, and token recovery workflows.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

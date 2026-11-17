@@ -1,41 +1,50 @@
-## Description: <br>
-Monitors the OpenCode Zen pricing page for new free models and offers to update your default configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors the OpenCode Zen pricing page for new free models and offers to update your default configuration.
 
-## Publisher: <br>
-[pranjal-joshi](https://clawhub.ai/user/pranjal-joshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pranjal-joshi](https://clawhub.ai/user/pranjal-joshi)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to monitor OpenCode Zen pricing for newly available free models and decide whether to update local default model configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches a public pricing page with curl, so it depends on current remote page availability and content. <br>
-Mitigation: Install only if remote pricing-page access is acceptable, and review detected model IDs before changing defaults. <br>
-Risk: The skill writes ./zen_seen_models.json in the current workspace and can offer to change local OpenClaw defaults. <br>
-Mitigation: Allow configuration changes only after user confirmation and review local workspace changes after execution. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor OpenCode Zen pricing for newly available free models and decide whether to update their default model configuration.
 
-## Reference(s): <br>
-- [OpenCode Zen pricing documentation](https://opencode.ai/docs/zen/#pricing) <br>
-- [ClawHub skill page](https://clawhub.ai/pranjal-joshi/opencode-zen-check-free-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON files] <br>
-**Output Format:** [Markdown guidance with shell commands and local JSON/configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create ./zen_seen_models.json and may update local OpenClaw defaults after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Accepting an incorrect model change can affect all agents and related automation that rely on the default OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before accepting a model change, verify the suggested model ID and confirm which OpenClaw config file or environment setting will be changed.
+
+## Reference(s):
+
+- [OpenCode Zen pricing documentation](https://opencode.ai/docs/zen/#pricing)
+- [ClawHub skill page](https://clawhub.ai/pranjal-joshi/skills/opencode-zen-check-free-models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with user prompts, shell command guidance, JSON state updates, and configuration changes after confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and may write zen_seen_models.json plus confirmed OpenClaw configuration updates in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

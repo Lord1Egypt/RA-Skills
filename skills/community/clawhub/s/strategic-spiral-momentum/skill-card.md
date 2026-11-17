@@ -1,46 +1,57 @@
-## Description: <br>
-Strategic Spiral Momentum helps teams diagnose an organization's current strategy phase, identify phase mismatches, and plan phase-appropriate next actions in a 10-phase strategic cycle. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams diagnose their organization’s current strategic phase and choose phase-appropriate goals, resources, and next steps.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Strategy leaders, founders, operators, and advisors use this skill to map an organization's strategy work to a current phase, find misaligned initiatives, define exit criteria, and prepare lookahead signals for the next cycle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat strategy-coaching output as authoritative business advice. <br>
-Mitigation: Use the skill as a thinking aid and review recommendations with qualified business stakeholders before acting. <br>
-Risk: Phase diagnoses or examples may be incomplete or misleading for a specific organization. <br>
-Mitigation: Validate examples, sources, behavioral indicators, and exit criteria against current organizational evidence before making resource decisions. <br>
+## Use Case:
 
+External business leaders and strategy teams use the framework to assess where an organizational strategy sits in its cycle, check whether initiatives match that phase, and plan phase-appropriate actions.
 
-## Reference(s): <br>
-- [Strategic Spiral Momentum on ClawHub](https://clawhub.ai/deciqai/skills/strategic-spiral-momentum) <br>
-- [Publisher profile](https://clawhub.ai/user/deciqai) <br>
-- [Primary sources](references/sources.md) <br>
-- [Toyota strategic spiral example](examples/toyotas-strategic-spiral-1950-1989.md) <br>
-- [Sun Tzu, The Art of War](https://ctext.org/art-of-war) <br>
-- [Peter Senge, The Fifth Discipline](https://www.penguinrandomhouse.com/books/316158/the-fifth-discipline-by-peter-m-senge/) <br>
-- [Taiichi Ohno, Toyota Production System](https://www.productivitypress.com/toyota-production-system.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown/text coaching responses with a phase diagnosis and action template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May pause for user responses at documented [WAIT] steps; produces no code or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: A phase diagnosis based on incomplete or aspirational information may lead to poorly timed goals or resource shifts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Base phase placement on specific observed behaviors and outcomes, then review proposed actions against current organizational evidence before acting.
+
+Risk: Saved strategy notes could expose confidential company details.
+
+Mitigation: Remove confidential company information before saving lessons.
+
+## Reference(s):
+
+- [Sources — strategic-spiral-momentum](references/sources.md)
+- [Toyota's Strategic Spiral (1950–1989)](examples/toyotas-strategic-spiral-1950-1989.md)
+- [The Art of War, Chapter 6](https://ctext.org/art-of-war)
+- [The Fifth Discipline](https://www.penguinrandomhouse.com/books/316158/the-fifth-discipline-by-peter-m-senge/)
+- [Toyota Production System](https://www.productivitypress.com/toyota-production-system.html)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown strategic assessment and action plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Phase diagnosis, exit criterion, initiative alignment, lookahead, leading indicators, and suggested action.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

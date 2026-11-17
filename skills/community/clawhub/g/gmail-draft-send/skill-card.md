@@ -1,38 +1,49 @@
-## Description: <br>
-Atomic node skill to send an existing Gmail draft. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to send an existing Gmail draft.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Developers and agent users use this skill to send a specific existing Gmail draft through the local gog CLI and receive JSON confirmation that the send completed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to send Gmail drafts through the local gog CLI. <br>
-Mitigation: Before use, verify the gog binary and Gmail account, and require confirmation of the exact draft ID, recipients, subject, and final body before sending. <br>
+## Use Case:
 
+Developers and automation builders use this skill when an agent needs to send a preexisting Gmail draft by draft ID through the gog CLI and return confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/gmail-draft-send) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON] <br>
-**Output Format:** [JSON confirmation returned after executing a Gmail draft send command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local gog binary and an existing Gmail draft ID; retries failed attempts up to three times.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill sends Gmail drafts immediately and the security evidence notes no built-in recipient, subject, content preview, or explicit confirmation requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in workflows that verify the draft ID, recipients, subject, and content and require clear user approval before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/gmail-draft-send)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, json]
+
+**Output Format:** [Shell command followed by JSON confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gog; retries failed or invalid attempts up to three times.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

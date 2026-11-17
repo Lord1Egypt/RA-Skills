@@ -1,42 +1,53 @@
-## Description: <br>
-Control Music Assistant playback, volume, queues, library search, and player status through a local Music Assistant server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Music Assistant (Home Assistant music server) - playback, volume, queue management, and library search.
 
-## Publisher: <br>
-[rodrigosiviero](https://clawhub.ai/user/rodrigosiviero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rodrigosiviero](https://clawhub.ai/user/rodrigosiviero)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent control a configured Music Assistant server for playback, queue management, volume changes, library search, and status checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Music Assistant access token, which could allow unwanted control if exposed. <br>
-Mitigation: Treat MA_TOKEN like a password, keep it out of logs and screenshots, and rotate it if it is exposed. <br>
-Risk: Authenticated Music Assistant requests over an untrusted network could expose the token or allow unintended access. <br>
-Mitigation: Use HTTPS when available or restrict use to a trusted local network. <br>
-Risk: If MA_PLAYER is not set, the CLI auto-detects the first available player and may control the wrong device. <br>
-Mitigation: Set MA_PLAYER explicitly when the agent should control a specific player. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rodrigosiviero/music-assistant) <br>
-- [Music Assistant API documentation](http://YOUR_SERVER:8095/api-docs) <br>
+## Use Case:
 
+External users and developers use this skill to control a configured Music Assistant server, including playback, volume, queue management, library search, player status, and library sync operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MA_URL and MA_TOKEN; MA_PLAYER is optional for selecting a specific player.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a long-lived bearer token against a user-configured Music Assistant endpoint that is documented with plaintext HTTP examples.
+
+Mitigation: Use HTTPS or a trusted local-only connection, protect MA_TOKEN as a secret, prefer a dedicated low-scope token if supported, and rotate the token if it may have crossed an untrusted network.
+
+Risk: Direct API commands and playback or queue actions can immediately affect the active listening session.
+
+Mitigation: Confirm the target player and command before issuing playback, queue, volume, sync, or direct JSON-RPC operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rodrigosiviero/skills/music-assistant)
+- [Music Assistant API documentation on configured server](http://YOUR_SERVER:8095/api-docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MA_URL and MA_TOKEN environment variables; MA_PLAYER is optional.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,59 @@
-## Description: <br>
-Leads AI software projects through strict research, design, planning, and implementation phases to produce secure, maintainable, and high-quality code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leads AI software projects through strict research, design, planning, and implementation phases to produce secure, maintainable, and high-quality code.
 
-## Publisher: <br>
-[sidrtraktor](https://clawhub.ai/user/sidrtraktor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sidrtraktor](https://clawhub.ai/user/sidrtraktor)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to guide AI coding agents through factual codebase research, architecture design, implementation planning, and gated implementation with review, test, and security checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence software design and code changes through an AI agent. <br>
-Mitigation: Keep the required human approval gates and review research, architecture, plans, diffs, tests, and commits before relying on the output. <br>
-Risk: The workflow asks agents to coordinate implementation, quality checks, and commits. <br>
-Mitigation: Run builds, tests, linters, and security checks in the target project, and confirm commit metadata matches the team's attribution policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sidrtraktor/ai-tech-lead) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to make an AI coding agent gather factual codebase context, design an architecture, plan implementation steps, and execute work through human review gates and quality checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose with research notes, design artifacts, implementation plans, review findings, code-oriented guidance, and shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human approval gates between phases; implementation output depends on the target project, stack, and available sub-agents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill treats sub-agent coordination and commits after completed phases as part of its normal workflow.
+
+Mitigation: Before using the skill, decide whether the agent must ask separately before spawning sub-agents or creating commits.
+
+Risk: The skill blocks progress until human review gates, builds, tests, linting, security checks, and architecture checks are satisfied.
+
+Mitigation: Use it when the project can support staged reviews and make the required approval path clear before implementation begins.
+
+Risk: The workflow forbids architecture guessing when the stack, patterns, or project standards are missing.
+
+Mitigation: Provide the technology stack and architectural standards with the initial task, or expect the agent to pause for clarification.
+
+## Reference(s):
+
+- [AI Tech Lead on ClawHub](https://clawhub.ai/sidrtraktor/skills/ai-tech-lead)
+- [Publisher profile](https://clawhub.ai/user/sidrtraktor)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with code, command, configuration, and review guidance as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill emphasizes staged research, design, planning, implementation coordination, human approval gates, and quality checks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

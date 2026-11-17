@@ -1,45 +1,60 @@
-## Description: <br>
-Scan GitHub and Algora for high-value bounties, analyze competition and freshness, score opportunities, and provide actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan GitHub and Algora for high-value bounties, analyze competition and freshness, score opportunities, and provide actionable recommendations.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-Developers, open source contributors, bounty hunters, agencies, and job seekers use this skill to find and prioritize paid GitHub and Algora bounty opportunities with low competition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires GitHub and Algora credentials for live scans. <br>
-Mitigation: Use dedicated least-privilege credentials, keep .env files out of version control and support bundles, and rotate any token that may have been exposed. <br>
-Risk: The scanner writes optional JSON results to a user-provided local path. <br>
-Mitigation: Restrict local file access where possible and review output paths before running automated scans. <br>
-Risk: Results depend on external GitHub and Algora APIs and may be incomplete or stale. <br>
-Mitigation: Review recommendations before acting on them and account for API limits, missing credentials, and source availability. <br>
+## Use Case:
 
+Developers, bounty hunters, open source contributors, and dev agencies use this skill to scan bounty sources, rank opportunities by value and competition, and decide which issues to pursue.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/github-bounty-finder-lvjunjie) <br>
-- [Publisher profile](https://clawhub.ai/user/lvjunjie-byte) <br>
-- [GitHub personal access tokens](https://github.com/settings/tokens) <br>
-- [Algora API settings](https://algora.io/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text output and optional JSON export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GitHub and Algora credentials for live scans; demo mode uses sample data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill uses GitHub and Algora credentials for API access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-privilege credentials, keep .env files out of source control and shared workspaces, and rotate keys if exposure is suspected.
+
+Risk: Terminal output and exported results can include public issue data and URLs from external services.
+
+Mitigation: Treat printed and exported result content as untrusted before opening links, sharing files, or using results in downstream automation.
+
+Risk: Dependency integrity depends on the package source and installed dependency versions.
+
+Mitigation: Install from a reviewed package and prefer a lockfile or audited dependency versions before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lvjunjie-byte/skills/github-bounty-finder-lvjunjie)
+- [Publisher profile](https://clawhub.ai/user/lvjunjie-byte)
+- [GitHub personal access tokens](https://github.com/settings/tokens)
+- [Algora API settings](https://algora.io/settings/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with CLI commands and optional JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print public issue titles, bounty URLs, competition signals, opportunity scores, and pricing recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

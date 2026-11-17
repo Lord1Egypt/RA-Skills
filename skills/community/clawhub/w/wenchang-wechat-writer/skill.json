@@ -1,0 +1,22 @@
+{
+  "slug": "wenchang-wechat-writer",
+  "title": "Wenchang WeChat Writer",
+  "category": "content",
+  "summary": "Drafts WeChat-style long-form articles from a confirmed topic, outline, evidence pack, or content_state.",
+  "keywords": [
+    "wechat",
+    "long-form writing",
+    "draft",
+    "content writing"
+  ],
+  "user_needs": [
+    "turn a confirmed topic into a WeChat article draft",
+    "generate title candidates, hooks, an outline, and a reviewed body draft",
+    "write with reader value and evidence"
+  ],
+  "source_dir": "skills/content/wenchang-wechat-writer",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

@@ -1,43 +1,59 @@
-## Description: <br>
-AutoCAD/Autodesk Clean Uninstall Tool - Thoroughly remove all residues, supports multi-PC and multi-user environments, step-by-step confirmation, intelligent discovery of non-standard installation directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AutoCAD/Autodesk Clean Uninstall Tool - Thoroughly remove all residues, supports multi-PC and multi-user environments, step-by-step confirmation, intelligent discovery of non-standard installation directories.
 
-## Publisher: <br>
-[gzjohny](https://clawhub.ai/user/gzjohny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gzjohny](https://clawhub.ai/user/gzjohny)
 
-## Use Case: <br>
-External users and Windows support agents use this skill to inspect and remove AutoCAD or Autodesk leftovers after uninstall, including files, user configuration, registry entries, processes, and services. It is intended for cleanup, reinstall troubleshooting, disk-space recovery, and preparing a machine before handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad, irreversible Windows changes by deleting directories and registry keys and terminating Autodesk-related processes. <br>
-Mitigation: Use it only when intentional Autodesk/AutoCAD removal is desired, create backups or a restore point first, and review every listed path, process, service, and registry key before approval. <br>
-Risk: The one-click cleanup script supports an unattended -Auto mode that bypasses per-step confirmations. <br>
-Mitigation: Prefer the step-by-step commands and do not use -Auto unless the target machine, cleanup scope, and backups have already been independently verified. <br>
-Risk: Administrative cleanup of Program Files, services, and HKLM registry locations can affect system functionality or future software reinstall behavior. <br>
-Mitigation: Run with administrator privileges only after confirming the detected Autodesk items are expected, and keep a recovery path available for registry or file restoration. <br>
+## Use Case:
 
+External users and IT administrators use this skill to generate and follow PowerShell-based cleanup guidance for removing Autodesk and AutoCAD installation residues, user data, services, processes, and registry entries from Windows 10/11 systems.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gzjohny/autodesk-clean-uninstall) <br>
-- [Chinese User Guide](readme中文说明.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with PowerShell command blocks and step-by-step cleanup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are Windows-focused and include environment scanning, confirmation-gated cleanup steps, registry and file deletion commands, and a one-click script with an unattended -Auto option.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence; artifact frontmatter reports 2.1) <br>
+Risk: Broad, irreversible Windows file and registry deletion can remove user data, licensing information, file associations, or uninstall records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a backed-up Windows system where full Autodesk removal is intended, inspect every deletion target manually, and avoid elevated execution unless the exact files and registry keys are understood.
+
+Risk: The one-click script supports an Auto mode that bypasses confirmation prompts.
+
+Mitigation: Avoid the -Auto option and run the step-by-step workflow so each process, service, directory, and registry deletion target can be reviewed before execution.
+
+Risk: Stopping processes and services can interrupt active Autodesk work or related background licensing components.
+
+Mitigation: Close active work, confirm that no needed Autodesk tasks are running, and stop only the listed targets that are intended for removal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gzjohny/skills/autodesk-clean-uninstall)
+- [Chinese usage documentation](artifact/readme中文说明.txt)
+- [ClawHub manifest](artifact/claw.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target Windows 10/11 systems and may require administrator privileges for protected directories and registry keys.]
+
+## Skill Version(s):
+
+2.1.0 (source: evidence.release.version; artifact frontmatter reports 2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

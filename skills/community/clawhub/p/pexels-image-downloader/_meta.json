@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn79jt69vp0r1a992ptnrzdv1n826gxr",
-  "slug": "pexels-image-downloader",
+  "name": "pexels-image-downloader",
   "version": "1.0.0",
-  "publishedAt": 1772940080591
+  "description": "使用Pexels API搜索和下载高质量免费图片，支持自动调整尺寸和格式验证",
+  "author": "OpenClaw User",
+  "license": "MIT",
+  "keywords": ["pexels", "images", "download", "free", "stock-photos", "social-media", "content-creation"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/skills/pexels-image-downloader"
+  },
+  "dependencies": {
+    "python": ">=3.8",
+    "requests": ">=2.31.0",
+    "pillow": ">=10.0.0"
+  },
+  "openclaw": {
+    "emoji": "📸",
+    "category": "media",
+    "compatibility": ["macos", "linux", "windows"],
+    "minVersion": "1.0.0"
+  }
 }

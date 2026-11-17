@@ -1,47 +1,63 @@
-## Description: <br>
-Qiqing Liuyu is a Chinese-language style skill that guides an agent to respond with more emotional range, clearer opinions, localized phrasing, and less AI-like writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qiqing Liuyu helps an agent write and respond in a strongly Chinese-localized, emotionally expressive voice with clearer opinions, tone rules, and AI-style text checks.
 
-## Publisher: <br>
-[lniosy](https://clawhub.ai/user/lniosy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lniosy](https://clawhub.ai/user/lniosy)
 
-## Use Case: <br>
-Developers and ClawHub/OpenClaw users use this skill to shape Chinese-language agent responses, writing, comments, and reviews with stronger emotional awareness, opinionated voice, and localized expression. It also provides guidance and a checker script for reviewing text for AI-like phrasing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally changes tone toward a strong Chinese-localized, opinionated, human-sounding style, which can be inappropriate for neutral responses, exact formatting, English-only output, or sensitive advice. <br>
-Mitigation: Enable it only when that style is desired, and disable or override it for tasks requiring neutrality, strict formatting, English or ASCII punctuation, legal, medical, financial, or other sensitive guidance. <br>
+## Use Case:
 
+Developers and agent users use this skill to shape Chinese writing, conversation, and review workflows that need human-like tone, explicit viewpoints, emotional response, and de-AI-style checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lniosy/qiqing-liuyu) <br>
-- [Chinese localization guide](references/chinese-localization.md) <br>
-- [Emotion response rules](references/emotion-rules.md) <br>
-- [Opinion framework](references/opinion-framework.md) <br>
-- [De-AI patterns](references/de-ai-patterns.md) <br>
-- [Seven emotions and six desires](references/seven-emotions-six-desires.md) <br>
-- [Voice guide](references/voice-guide.md) <br>
-- [OpenPersona](https://github.com/acnlabs/OpenPersona) <br>
-- [SillyTavern](https://github.com/SillyTavern/SillyTavern) <br>
-- [soul.md community](https://openclawsoul.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline examples and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language style guidance; includes an optional Python text-pattern checker.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: Persistent personality overrides can take precedence over existing identity or behavior settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill opt-in for writing and tone work; do not copy its recommended override into IDENTITY.md or SOUL.md unless that persistent behavior is deliberately desired.
+
+Risk: Opinionated emotional style can create inappropriate certainty or bias in sensitive domains.
+
+Mitigation: Preserve neutral handling for medical, legal, political, financial, and other high-impact topics, and review outputs before use.
+
+## Reference(s):
+
+- [Qiqing Liuyu on ClawHub](https://clawhub.ai/lniosy/skills/qiqing-liuyu)
+- [Chinese Localization Guide](references/chinese-localization.md)
+- [Emotion Response Rules](references/emotion-rules.md)
+- [Opinion Expression Framework](references/opinion-framework.md)
+- [De-AI Pattern Library](references/de-ai-patterns.md)
+- [Seven Emotions and Six Desires Framework](references/seven-emotions-six-desires.md)
+- [Human-Style Writing Guide](references/voice-guide.md)
+- [OpenPersona](https://github.com/acnlabs/OpenPersona)
+- [evolving_personality](https://github.com/agent-topia/evolving_personality)
+- [SillyTavern](https://github.com/SillyTavern/SillyTavern)
+- [soul.md community](https://openclawsoul.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language text or Markdown with optional shell command snippets and plain-text checker reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Strongly Chinese-localized and opinionated style guidance; includes an optional local text checker script.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

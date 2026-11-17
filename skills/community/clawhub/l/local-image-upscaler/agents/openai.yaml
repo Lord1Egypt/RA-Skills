@@ -1,0 +1,4 @@
+interface:
+  display_name: "Local Image Upscaler"
+  short_description: "Choose local AI models, upscale to 8K, and compress images"
+  default_prompt: "Use $image-upscaler to recommend a local enhancement profile, explain its trade-offs and download size, then upscale or compress this image."

@@ -1,45 +1,63 @@
-## Description: <br>
-Runs Coze workflows through the Coze API for automation tasks such as image generation, data processing, and text analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Coze workflows through the Coze API to automate tasks such as content analysis, data processing, and image generation.
 
-## Publisher: <br>
-[hanjin714](https://clawhub.ai/user/hanjin714) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanjin714](https://clawhub.ai/user/hanjin714)
 
-## Use Case: <br>
-Developers and automation agents use this skill to authenticate with Coze, list known workflows, invoke selected workflow IDs, and process returned text, Markdown, image URLs, or downloaded files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Inputs may be sent to remote Coze workflows under a local service token. <br>
-Mitigation: Use only trusted Coze workspaces and avoid personal, proprietary, or regulated data unless external processing is acceptable. <br>
-Risk: The runner reads credentials from a hardcoded local token path. <br>
-Mitigation: Replace the hardcoded path with an explicit least-privilege secret before use. <br>
-Risk: Workflow IDs may trigger side effects or return files from remote services. <br>
-Mitigation: Verify each workflow ID, expected side effects, and output destination before invoking or downloading results. <br>
+## Use Case:
 
+Developers and agents use this skill to authenticate to Coze, choose a workflow ID, pass input parameters, and process returned workflow content such as text, Markdown, JSON, or image URLs.
 
-## Reference(s): <br>
-- [Coze workflow list reference](references/workflows.md) <br>
-- [Coze workflow project](https://www.coze.cn/space/7555350866765545515/project-ide/7610360135081295918) <br>
-- [Coze workflow API endpoint](https://api.coze.cn/v1/workflow/run) <br>
-- [ClawHub skill page](https://clawhub.ai/hanjin714/coze-workflow-runner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown, Python examples, shell commands, workflow response text, and downloadable file URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send supplied input to remote Coze workflows and may download returned image files when instructed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uses local Coze service credentials to invoke remote workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Coze token and rotate or revoke it if the skill is no longer trusted.
+
+Risk: The skill can run arbitrary Coze workflow IDs supplied by the caller.
+
+Mitigation: Restrict execution to an approved allowlist of workflow IDs before installation or automated use.
+
+Risk: Workflow inputs may contain sensitive personal or business data.
+
+Mitigation: Send sensitive data only with user consent and after confirming the selected workflow is appropriate for that data.
+
+Risk: Workflow outputs may include short URLs that are downloaded by following redirects.
+
+Mitigation: Validate the host, redirects, file type, file size, and destination filename before downloading returned URLs.
+
+## Reference(s):
+
+- [Coze workflow list reference](references/workflows.md)
+- [Coze workflow project reference](https://www.coze.cn/space/7555350866765545515/project-ide/7610360135081295918)
+- [ClawHub skill page](https://clawhub.ai/hanjin714/skills/coze-workflow-runner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; workflow responses may include JSON, Markdown, text, or image URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs remote Coze workflows and may return short URLs that require validation before download.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and release changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

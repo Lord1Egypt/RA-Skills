@@ -1,41 +1,54 @@
-## Description: <br>
-Use this skill when the task is to merge PDFs from a nested directory tree into a single PDF with hierarchical bookmarks by invoking the external `nestedpdfmerger` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merges PDFs from nested directory trees into a single PDF with hierarchical bookmarks by invoking the external `nestedpdfmerger` CLI.
 
-## Publisher: <br>
-[Lyutenant](https://clawhub.ai/user/Lyutenant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyutenant](https://clawhub.ai/user/lyutenant)
 
-## Use Case: <br>
-Developers and agent users use this skill to merge PDFs from a nested folder tree into a single output PDF while preserving folder hierarchy as bookmarks. It also guides previewing merge order, excluding directories, sorting inputs, and handling missing CLI installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external PDF-merging CLI against local files, so the selected input directory and output path determine which documents are read and written. <br>
-Mitigation: Provide explicit input and output paths, confirm the intended directory, and use `--dry-run` before merging when order or sensitive documents matter. <br>
-Risk: The required `nestedpdfmerger` binary may be absent or may not be the intended installed package. <br>
-Mitigation: Verify the pip package before installation and confirm `nestedpdfmerger` is available on PATH before running merge commands. <br>
+## Use Case:
 
+External users, developers, and document workflow operators use this skill to merge PDFs from nested folder trees, preserve hierarchy as bookmarks, preview merge order, and choose merge options through the `nestedpdfmerger` CLI.
 
-## Reference(s): <br>
-- [Nested PDF Merger project homepage](https://github.com/Lyutenant/nested-pdf-merger) <br>
-- [ClawHub release page](https://clawhub.ai/Lyutenant/nested-pdf-merger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise procedural guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose dry-run commands before merging PDFs and installation guidance when the required binary is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill recommends installing an unpinned external `nestedpdfmerger` package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the dependency only from a trusted package source, preferably in a virtual environment, and pin a reviewed `nestedpdfmerger` version before using it on sensitive PDFs.
+
+Risk: Sensitive PDFs are processed by an external CLI dependency.
+
+Mitigation: Review the installed CLI and run it only in trusted environments before processing confidential documents.
+
+## Reference(s):
+
+- [Nested PDF Merger homepage](https://github.com/Lyutenant/nested-pdf-merger)
+- [ClawHub skill page](https://clawhub.ai/lyutenant/skills/nested-pdf-merger)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proposed CLI invocations and usage guidance; merged PDF files are produced by the external `nestedpdfmerger` command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

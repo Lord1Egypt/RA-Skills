@@ -12,7 +12,7 @@ from _output import print_output, print_error
 
 from capabilities.seller_trade_code_index.service import get_trade_code_index
 
-COMMAND_NAME = "seller_trade_code_index"
+COMMAND_NAME = "alibaba.1688.seller.trade.code.index"
 COMMAND_DESC = "获取店铺交易核心指标（总盘健康判断核心接口）"
 
 def main():
@@ -30,10 +30,12 @@ def main():
     parser.add_argument("--device", "-v", default="ALL",
                         choices=["ALL", "PC", "WIRELESS"],
                         help="设备类型: ALL(全部,默认) / PC / WIRELESS(无线)")
+    parser.add_argument("--NEWTON_SHOP_LOGIN_ID", default=None,
+                        help="店铺登录ID，指定查询的店铺")
     args = parser.parse_args()
 
     try:
-        result = get_trade_code_index(args.date_type, args.device)
+        result = get_trade_code_index(args.date_type, args.device, login_id=args.NEWTON_SHOP_LOGIN_ID)
         print_output(True, "店铺交易核心指标查询成功", {
             "data": result,
         })

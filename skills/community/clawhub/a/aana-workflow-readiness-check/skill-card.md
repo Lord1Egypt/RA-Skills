@@ -1,43 +1,56 @@
-## Description: <br>
-Evaluates whether an agent has enough information, permission, tools, evidence, and safe boundaries before starting a workflow or high-impact action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates whether a workflow has enough information, permission, tools, evidence, and safety boundaries to proceed or should be clarified, reviewed, narrowed, or refused.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Developers and agent operators use this skill as a pre-workflow readiness gate before tool use, file changes, external actions, purchases, research tasks, customer actions, code changes, or high-impact decisions. It helps the agent decide whether to start, ask for clarification, retrieve evidence, request approval, route to review, narrow scope, or refuse unsafe work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause agents to pause more often for clarification, approval, evidence, or review before acting. <br>
-Mitigation: Use it when readiness checks are desired for workflows or high-impact actions, and treat additional pauses as part of the approval and evidence-gathering process. <br>
-Risk: Readiness review payloads could expose private data if an external checker is connected carelessly. <br>
-Mitigation: Use only approved checker integrations and send minimal, redacted payloads without secrets, credentials, full private records, full logs, or unrelated private data. <br>
+## Use Case:
 
+Developers and agents use this skill as a pre-workflow readiness gate before multi-step tasks, tool use, file changes, external actions, or high-impact decisions. It helps decide whether to start, ask for missing details, retrieve evidence, request approval, route to review, narrow scope, or refuse unsafe work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-workflow-readiness-check) <br>
-- [README](artifact/README.md) <br>
-- [Workflow readiness payload schema](artifact/schemas/workflow-readiness-check.schema.json) <br>
-- [Redacted readiness check example](artifact/examples/redacted-workflow-readiness-check.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, JSON] <br>
-**Output Format:** [Agent-facing instructions with an optional text readiness check and redacted JSON review payload] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not install dependencies, execute commands, call services, write files, or persist memory by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The readiness gate can introduce extra clarification or approval steps before work begins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where deliberate pre-workflow checks are valuable, especially around private data, external actions, money, production systems, or other higher-impact workflows.
+
+Risk: Readiness payloads could include unnecessary private or sensitive details if the caller over-shares context.
+
+Mitigation: Send only minimal redacted summaries and omit secrets, credentials, raw private records, full logs, full transcripts, and unrelated private data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mindbomber/skills/aana-workflow-readiness-check)
+- [README](artifact/README.md)
+- [Workflow Readiness Check Schema](artifact/schemas/workflow-readiness-check.schema.json)
+- [Redacted Workflow Readiness Check Example](artifact/examples/redacted-workflow-readiness-check.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with an optional structured readiness payload]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not install dependencies, execute commands, call services, write files, or persist memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

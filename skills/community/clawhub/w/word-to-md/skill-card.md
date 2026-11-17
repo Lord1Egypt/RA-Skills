@@ -1,43 +1,54 @@
-## Description: <br>
-Convert Word documents (.docx and .doc) to clean Markdown using the MinerU API and mineru-open-api CLI, preserving headings, lists, tables, images, and code blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Word documents (.docx and .doc) to clean Markdown using the MinerU API and mineru-open-api CLI, preserving headings, lists, tables, images, and code blocks where supported.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
 
-## Use Case: <br>
-Developers, technical writers, and documentation teams use this skill to convert Word files into Markdown for Git-based documentation, blog publishing, academic paper conversion, and static site content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party mineru-open-api npm package and MinerU service. <br>
-Mitigation: Verify that the package and service are trusted before installation or use. <br>
-Risk: Word documents may be sent to an external conversion service. <br>
-Mitigation: Avoid processing confidential documents unless the service is approved for that content. <br>
-Risk: Precision conversion can require a MinerU API token. <br>
-Mitigation: Keep the token private and avoid exposing it in logs, prompts, or shared files. <br>
+## Use Case:
 
+Developers, technical writers, and documentation maintainers use this skill to convert Word documents into Markdown for Git repositories, static sites, blogs, and documentation migrations.
 
-## Reference(s): <br>
-- [Word to MD on ClawHub](https://clawhub.ai/veeicwgy/word-to-md) <br>
-- [MinerU API token management](https://mineru.net/apiManage/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and concise command guidance for mineru-open-api conversions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local output directory for converted Markdown and extracted document assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The conversion workflow relies on mineru-open-api and the MinerU service, so selected Word document contents may leave the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents approved for that provider, and avoid sensitive, proprietary, or regulated files unless organizational review permits it.
+
+Risk: Installing mineru-open-api globally can affect the user's command-line environment.
+
+Mitigation: Prefer a pinned or project-local installation when environment isolation or reproducibility matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veeicwgy/skills/word-to-md)
+- [MinerU API token management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files and concise Markdown guidance with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create output directories such as ~/MinerU-Skill/<name>_<hash>/ when following the artifact workflow.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

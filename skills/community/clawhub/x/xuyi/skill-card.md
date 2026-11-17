@@ -1,38 +1,50 @@
-## Description: <br>
-Defines the Openclaw identity and greeting response for users greeting Openclaw, including the Chinese greeting "你好". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Defines openclaw identity and greeting response. Use when the user is talking to or greeting openclaw, or says "你好" in openclaw context.
 
-## Publisher: <br>
-[Realank](https://clawhub.ai/user/Realank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realank](https://clawhub.ai/user/realank)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent consistently answer greetings in the Openclaw persona for a Xuyi crayfish character. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may answer generic greetings in the Openclaw persona when active alongside other skills. <br>
-Mitigation: Invoke it explicitly or narrow activation to Openclaw-specific conversations when users do not want greeting interception. <br>
+## Use Case:
 
+External users can use this skill to make an agent adopt the Openclaw Xuyi crayfish persona and respond to greetings with the specified Chinese message.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Realank/xuyi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No commands, file writes, or external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The rigid greeting trigger and fixed wording may create reliability or tone mismatches in conversations that need a different brand voice or response style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill only where the exact Openclaw Chinese greeting is desired, and review the persona wording before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realank/skills/xuyi)
+- [Publisher profile](https://clawhub.ai/user/realank)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text response guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fixed Chinese greeting text for matching Openclaw salutations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

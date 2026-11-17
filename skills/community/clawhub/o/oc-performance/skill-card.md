@@ -1,40 +1,52 @@
-## Description: <br>
-Performance analysis and optimization. Profiles code execution, identifies bottlenecks, and suggests optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performance analysis and optimization. Profiles code execution, identifies bottlenecks, and suggests optimizations.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[michealxie001](https://clawhub.ai/user/michealxie001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to inspect Python and C/C++ code for performance issues, benchmark selected functions, and receive optimization suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill automatically trusts a neighboring c-support/lib module when present, which can load code outside the reviewed artifact.
+
+Mitigation: Install and run it only where that sibling directory is absent or controlled by trusted users; review that support code separately if present.
+
+Risk: Security evidence says several advertised profiling, benchmarking, or analysis capabilities are broken or overstated.
+
+Mitigation: Treat generated findings as advisory, test commands on representative code, and confirm recommendations before changing production code.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to profile code execution, identify performance bottlenecks, run benchmarks, and receive optimization guidance for Python and C/C++ projects. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads source files or directories selected by the user. <br>
-Mitigation: Run it only on intended project paths and avoid passing directories that contain sensitive source or data unless that access is acceptable. <br>
-Risk: Profiling or benchmarking can execute code supplied by the user. <br>
-Mitigation: Profile or benchmark untrusted code only in an isolated environment with appropriate review and resource controls. <br>
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/michealxie001/oc-performance) <br>
+**Other Properties Related to Output:** [Produces advisory performance findings and suggested commands for profiling or benchmarking.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style text with command examples and structured analysis output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read user-selected source files or directories and may execute profiling or benchmarking commands against supplied code.] <br>
+1.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

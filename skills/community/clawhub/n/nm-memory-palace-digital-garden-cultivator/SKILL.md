@@ -1,7 +1,7 @@
 ---
 name: digital-garden-cultivator
 description: Manages digital garden notes, link structures, and health metrics
-version: 1.9.8
+version: 1.10.3
 triggers:
   - digital-garden
   - knowledge-base
@@ -11,28 +11,12 @@ triggers:
   - curating a knowledge base
   - pruning stale notes
   - or tracking content maturity
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:storage-templates"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.leyline:decision-journal"]}}}
 source: claude-night-market
 source_plugin: memory-palace
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [What It Is](#what-it-is)
-- [Quick Start](#quick-start)
-- [Calculate Garden Metrics](#calculate-garden-metrics)
-- [Output Formats](#output-formats)
-- [When to Use](#when-to-use)
-- [Content Maturity Levels](#content-maturity-levels)
-- [Core Workflow](#core-workflow)
-- [Garden Layout Template](#garden-layout-template)
-- [Maintenance Cadence](#maintenance-cadence)
-- [Success Metrics](#success-metrics)
-- [Detailed Resources](#detailed-resources)
-- [Integration](#integration)
+> **Night Market Skill**: ported from [claude-night-market/memory-palace](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Digital Garden Cultivator
@@ -52,9 +36,8 @@ A digital garden approach to knowledge management that:
 
 ### Calculate Garden Metrics
 ```bash
-python scripts/garden_metrics.py path/to/garden.json --format brief
+python -m memory_palace.garden_metrics path/to/garden.json --format brief
 ```
-**Verification:** Run `python --version` to verify Python environment.
 
 ### Output Formats
 - `json` - Full metrics as JSON
@@ -109,7 +92,6 @@ garden:
       outbound_links: []
       last_tended: "2025-11-24T10:00:00Z"
 ```
-**Verification:** Run the command with `--help` flag to verify availability.
 
 ## Maintenance Cadence
 
@@ -149,3 +131,17 @@ Use `git merge --abort` to reset, then resolve conflicts carefully
 
 **Commit rejected**
 Check hook output and fix reported issues before committing again
+
+## Exit Criteria
+
+- [ ] `python -m memory_palace.garden_metrics` runs without error on the target
+      `garden.json` and outputs link density, bidirectional coverage,
+      freshness, and maturity ratio
+- [ ] Stale notes (inactive for more than 7 days) are identified and
+      surfaced for the user's review
+- [ ] Each note in scope has a maturity level assigned as one of:
+      `seedling`, `growing`, or `evergreen`
+- [ ] Dead links and orphaned notes are reported so they can be pruned
+      or reconnected during the maintenance pass
+- [ ] If `garden.json` is absent or malformed, the error is reported
+      with the path that was searched rather than silently completing

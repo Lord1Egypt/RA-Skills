@@ -1,38 +1,53 @@
-## Description: <br>
-Display user group memberships on the system. Shows all groups a user belongs to for permission auditing and access control verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display user group memberships on the system for permission auditing and access control verification.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, system administrators, and security reviewers use this skill to inspect local Unix group memberships for permission auditing and access-control verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Group names can reveal sensitive access, administrative roles, or permission structure. <br>
-Mitigation: Treat output as local security information and avoid sharing results unless the audience is authorized to see access-control details. <br>
+## Use Case:
 
+Developers, system administrators, and agents managing Unix-like systems use this skill to inspect local user group memberships for permission auditing and access-control checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/groups-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lists local Unix group names for the current or specified user; results can reveal sensitive access or administrative roles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local account and group names may be exposed when group membership output is shared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on authorized systems and avoid sharing raw output outside the operational context that needs the access-control information.
+
+Risk: The included helper may not support every option or username lookup documented by the skill text.
+
+Mitigation: Verify command behavior in the target environment before relying on it for operational audits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/groups-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local system group data only; no network access or external API calls are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

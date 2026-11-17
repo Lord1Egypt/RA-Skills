@@ -175,6 +175,23 @@ A HIT is triggered when `|current - baseline| >= applicable_threshold`.
 Unsupported channels (for example `telegram`) are rejected by `config` validation and reported by `doctor`.
 不支持的通道（例如 `telegram`）会在 `config` 写入时被拒绝，并在 `doctor` 中报告。
 
+### What leaves your machine when you use a webhook
+
+⚠️ Configuring a webhook sends data to a third party you choose. Two things go
+out with every alert:
+
+- **The alert content** — the market questions being monitored, their previous
+  and current probabilities, and the size of the move. That is a record of what
+  you are watching and when you were told about it, held by whoever operates the
+  endpoint (Slack, Telegram, Discord, or your own server).
+- **The webhook URL itself is a credential.** A Telegram bot token or a Slack
+  webhook path is embedded in it; anyone holding the URL can post to that
+  destination. SignalRadar masks it in its own output for that reason, and
+  refuses `http://` targets so it is not sent in the clear.
+
+Nothing is transmitted until you set a webhook URL. Use an endpoint you control
+or trust, and treat the URL like a password.
+
 ### Recommended: webhook
 
 `webhook` is the recommended delivery channel. It works on any platform (OpenClaw, Claude Code, standalone) with zero LLM cost when paired with `crontab` scheduling.
@@ -186,7 +203,7 @@ Example for Slack webhook:
   "delivery": {
     "primary": {
       "channel": "webhook",
-      "target": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+      "target": "REDACTED-SECRET"
     }
   }
 }
@@ -268,7 +285,11 @@ The following config fields are no longer supported:
 
 ## Scheduling (Auto-Monitoring)
 
-After the first successful `add` or `onboard finalize`, SignalRadar attempts to auto-enable 10-minute background monitoring. Prefers system `crontab` (zero LLM cost; adds `--push` only for `openclaw` delivery); falls back to `openclaw cron` when crontab is unavailable. **Route gate** (v0.9.2+): when `delivery.primary.channel == openclaw` + `crontab` driver + no captured reply route, the CLI enables monitoring but returns a `route_missing` warning because checks can run while background chat delivery remains not ready. The actual monitoring frequency is managed by the `schedule` command, not by editing config values.
+After the first successful `add` or `onboard finalize`, SignalRadar reports that background monitoring is available and **asks before enabling it**. Nothing is written to your scheduler unless you agree, `schedule.auto_enable` is `true`, or `--yes` is passed (automation has nobody to ask, so the flag counts as consent). `false` refuses permanently and stops the asking.
+
+⚠️ **Enabling monitoring changes your system, not just this skill's config.** It adds a tagged entry to your user `crontab` (or a job to `openclaw cron`) that keeps running after the session ends and across reboots. Inspect it with `crontab -l | grep signalradar` and remove it with `signalradar.py schedule disable`, which touches only the entry this skill created.
+
+Once enabled, the default driver is system `crontab` (zero LLM cost; adds `--push` only for `openclaw` delivery), falling back to `openclaw cron` when crontab is unavailable. **Route gate** (v0.9.2+): when `delivery.primary.channel == openclaw` + `crontab` driver + no captured reply route, the CLI enables monitoring but returns a `route_missing` warning because checks can run while background chat delivery remains not ready. The actual monitoring frequency is managed by the `schedule` command, not by editing config values.
 
 On the first successful `add` or `onboard finalize`, if `profile.language` is still empty, SignalRadar persists the detected system-message language into the user config so background jobs keep using the same language later.
 

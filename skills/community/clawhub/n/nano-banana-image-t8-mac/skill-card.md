@@ -1,40 +1,57 @@
-## Description: <br>
-Helps an agent run Nano Banana/T8Star text-to-image and image-to-image generation using a user-provided prompt, optional input images, and an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs Nano Banana image generation tests with a user-provided API key and prompt, supporting text-to-image and image-to-image workflows with optional size or aspect ratio settings.
 
-## Publisher: <br>
-[flywhale-666](https://clawhub.ai/user/flywhale-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flywhale-666](https://clawhub.ai/user/flywhale-666)
 
-## Use Case: <br>
-Developers and creative users use this skill to generate or edit images through the Nano Banana/T8Star service from an agent chat, while reusing saved model and API-key settings when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected images can be sent to the external service at https://ai.t8star.cn. <br>
-Mitigation: Use the skill only with content approved for that service and confirm the intended image inputs before execution. <br>
-Risk: The Nano Banana API key can be saved locally for reuse. <br>
-Mitigation: Use a dedicated key when possible and delete ~/.whaleclaw/credentials/nano_banana_api_key.txt when saved-key reuse is no longer desired. <br>
+## Use Case:
 
+Developers and image-generation users use this skill to run Nano Banana text-to-image and image-to-image requests from an agent session, passing prompts, optional input images, and optional size or aspect ratio settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flywhale-666/nano-banana-image-t8-mac) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown with concise status text, shell command examples, and local image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved under the configured local output directory, defaulting to ~/.whaleclaw/workspace/nano_banana_test.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The skill stores and reuses a Nano Banana API key on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited, revocable API key, avoid shared machines, and rotate or delete the saved key when access is no longer needed.
+
+Risk: API key handling could expose credentials to unintended URLs if the API host is changed.
+
+Mitigation: Keep the base URL fixed to the documented service host and do not override it during normal use.
+
+Risk: The security verdict is suspicious because credential handling is not yet low risk.
+
+Mitigation: Review the security guidance before deployment and require publisher-side host validation, unauthenticated image downloads, and an explicit key deletion or non-persistent mode before treating the skill as low risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flywhale-666/skills/nano-banana-image-t8-mac)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown or plain text with shell commands, API status details, and generated image file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated PNG files are saved under ~/.whaleclaw/workspace/nano_banana_test by default.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

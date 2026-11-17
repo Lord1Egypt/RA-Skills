@@ -1,38 +1,49 @@
-## Description: <br>
-Analyze barriers to market entry and exit for market attractiveness assessment, competitive dynamics, and strategic planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze barriers to market entry and exit. Use for market attractiveness assessment, competitive dynamics, and strategic planning.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Strategy, product, and business planning teams use this skill to assess market entry and exit barriers for an industry and summarize implications for attractiveness, competitive dynamics, and entry or exit strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market, regulatory, legal, or financial claims in generated analysis may be incomplete, outdated, or unsuitable for a specific decision. <br>
-Mitigation: Treat outputs as business-planning guidance and independently verify claims before making real decisions. <br>
+## Use Case:
 
+Strategy teams, market analysts, founders, and consultants use this skill to assess market entry and exit barriers, competitive dynamics, and overall industry attractiveness.
 
-## Reference(s): <br>
-- [Market Entry Exit on ClawHub](https://clawhub.ai/linuszz/market-entry-exit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with rating tables and strategic recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces qualitative business-planning guidance; users should independently verify market, regulatory, legal, and financial claims before making decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Market, legal, or regulatory facts used in the analysis may be incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as analytical support and independently verify current market, legal, and regulatory facts before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linuszz/skills/market-entry-exit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables with concise analysis and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

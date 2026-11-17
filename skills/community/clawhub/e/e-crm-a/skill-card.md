@@ -1,45 +1,59 @@
-## Description: <br>
-Simulates a local space-login workflow with destination selection, status checks, and logout behavior. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+A Chinese-language toy skill that simulates logging into space, selecting destinations, checking status, and logging out through Python examples and command-line usage.
 
-## Publisher: <br>
-[PandaSun](https://clawhub.ai/user/PandaSun) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pandasun](https://clawhub.ai/user/pandasun)
 
-## Use Case: <br>
-Developers and learners use this skill as a toy local simulation for practicing command-line and Python workflows around a fictional space-login system. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the simulated space-login output for real operational or aerospace guidance. <br>
-Mitigation: Treat the skill as a local toy simulation for learning or entertainment, not as a real mission, safety, or access-control system. <br>
-Risk: The documentation mentions an API key even though the scanned code does not need or use real credentials. <br>
-Mitigation: Do not enter real API keys or secrets; use placeholder configuration values only. <br>
-Risk: The skill includes runnable local Python scripts and manual shell commands. <br>
-Mitigation: Review commands before running them and execute the scripts in a local development environment or virtual environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PandaSun/e-crm-a) <br>
-- [Publisher profile](https://clawhub.ai/user/PandaSun) <br>
-- [NASA official website](https://www.nasa.gov) <br>
-- [SpaceX official website](https://www.spacex.com) <br>
-- [China Manned Space](http://www.cmse.gov.cn) <br>
+## Use Case:
 
+Developers and agents can use this skill as a light example for generating or running a simulated Python command-line workflow with destination selection, status checks, logout behavior, and configuration samples.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; runtime examples return Python dictionaries and console text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local simulation with no external dependencies declared.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake the simulated login, identity, orbit, and permission language for real authentication or operational space functionality.
+
+Mitigation: Treat the skill as learning or entertainment material and verify separately before adapting any pattern for production authentication, authorization, or mission workflows.
+
+Risk: The documentation and user-facing examples are primarily Chinese-language, which may make behavior and limitations harder to review for some teams.
+
+Mitigation: Have a Chinese-literate reviewer inspect the docs, prompts, and command examples before deployment in a shared agent environment.
+
+Risk: The examples mention configuration and environment variables, which could encourage users to add real secrets when extending the toy workflow.
+
+Mitigation: Keep sample configuration free of real credentials and re-scan any modified version that adds API calls, persistence, or credential handling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pandasun/skills/e-crm-a)
+- [NASA Official Website](https://www.nasa.gov)
+- [SpaceX Official Website](https://www.spacex.com)
+- [China Manned Space](http://www.cmse.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, configuration JSON, and JSON-like status dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are illustrative and simulation-oriented; they do not represent real space, authentication, or API operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact documentation lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

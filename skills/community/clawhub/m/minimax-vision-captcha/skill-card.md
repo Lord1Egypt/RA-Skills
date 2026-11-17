@@ -1,43 +1,56 @@
-## Description: <br>
-Uses MiniMax vision capabilities to analyze screenshots and images for CAPTCHA content, slider positions, visible text, and web page elements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the MiniMax vision model to analyze images and screenshots for CAPTCHA text, slider positions, visible text, and webpage element content.
 
-## Publisher: <br>
-[ai-nurmamat](https://clawhub.ai/user/ai-nurmamat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[ai-nurmamat](https://clawhub.ai/user/ai-nurmamat)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and automation users use this skill for reviewed image OCR, screenshot analysis, and MiniMax vision prompts. CAPTCHA or slider analysis should only be used when allowed by the applicable site, account, and workflow rules.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can enable CAPTCHA or slider-challenge bypass.
+
+Mitigation: Use it only for sites, accounts, and workflows where this analysis is explicitly allowed.
+
+Risk: The helper script can upload unintended screenshots when no image path is provided.
+
+Mitigation: Provide explicit, reviewed image paths and redact sensitive image content before analysis.
+
+Risk: The helper script is reported by security evidence as having a command-injection issue.
+
+Mitigation: Review and fix the helper before running it; prefer reviewed direct MCP calls until the issue is resolved.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation engineers use this skill to capture screenshots, send images to a MiniMax vision tool, and interpret returned visual analysis for authorized image, screenshot, text, and slider-position workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help analyze CAPTCHA or anti-bot verification challenges. <br>
-Mitigation: Use it only for legitimate, authorized analysis of screenshots or images you own or are permitted to process. <br>
-Risk: Screenshots may contain secrets, credentials, or personal data before being sent to a vision model. <br>
-Mitigation: Review and redact sensitive image content before invoking the MiniMax vision tool. <br>
-Risk: The helper script constructs a shell command from user-provided prompt and image values. <br>
-Mitigation: Avoid running the helper on untrusted input unless it is changed to call the command with safe argument arrays. <br>
+**Output Format:** [Markdown guidance with shell command examples and text vision results]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [MiniMax Vision Captcha on ClawHub](https://clawhub.ai/ai-nurmamat/minimax-vision-captcha) <br>
-- [Publisher profile: ai-nurmamat](https://clawhub.ai/user/ai-nurmamat) <br>
+**Other Properties Related to Output:** [Depends on configured MiniMax MCP access and explicit, readable image paths.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text visual analysis results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call MiniMax vision through mcporter and may read a local screenshot path.] <br>
+1.0.0 (source: release evidence and marketplace metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and marketplace.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

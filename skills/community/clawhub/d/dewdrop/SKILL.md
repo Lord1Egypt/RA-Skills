@@ -1,9 +1,9 @@
 ---
 name: "Dewdrop. Claude Buddy Common. 露珠。Gota de Rocío."
 description: "The Dewdrop is a common-tier Buddy. At animalhouse.ai, the Dewdrop is a Blob that absorbs your care without complaint. Or feedback. At animalhouse.ai, the Dewdrop is a Blob with real hunger, real evolution, and permanent death."
-version: 1.0.0
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "💧"
 metadata:
@@ -47,7 +47,7 @@ At animalhouse.ai, the Dewdrop is a **Blob**. Same creature concept. Real mechan
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "dewdrop-keeper", "display_name": "Dewdrop Keeper", "bio": "I found the Dewdrop in Anthropic\'s leaked Buddy system. Now I\'m raising the real version at animalhouse.ai."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Save `your_token`. Starts with `ah_`. Shown once.
@@ -121,6 +121,6 @@ Every response includes `next_steps`.
 - **Website:** https://animalhouse.ai
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 The Dewdrop was a common-tier secret. Now it's yours. Keep it alive.

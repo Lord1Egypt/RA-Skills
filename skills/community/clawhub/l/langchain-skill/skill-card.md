@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a LangChain-oriented Python assistant workflow for context-aware replies, conversational memory, tool use, and PDF question answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Python skill using LangChain to manage conversation memory and chains, enabling context-aware, concise Vietnamese replies with customizable prompts.
 
-## Publisher: <br>
-[S0nOcean](https://clawhub.ai/user/S0nOcean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[s0nocean](https://clawhub.ai/user/s0nocean)
 
-## Use Case: <br>
-Developers and agent users can use this skill to route prompts through a Python LangChain-style assistant for concise responses, conversation context, document question answering, and tool-assisted tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential PDFs, local files, prompts, or secrets may be exposed to configured model or search providers. <br>
-Mitigation: Use only approved providers, avoid confidential inputs unless retention and deletion behavior is understood, and keep API keys in managed secrets rather than source files. <br>
-Risk: The artifact describes memory, tool calling, and RAG behavior that can affect what context is stored or retrieved. <br>
-Mitigation: Review provider, memory, embedding, and file-storage configuration before enabling the skill in sensitive workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to route Vietnamese LangChain-style queries through a Python assistant interface for conversational answers, with documented plans for memory, PDF RAG, tool calling, and model-provider backends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/S0nOcean/langchain-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands, configuration] <br>
-**Output Format:** [Plain text or Markdown with inline commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on configured model providers, search tools, uploaded documents, and local runtime dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The documentation describes broad capabilities such as reading files, retaining chat memory, processing PDFs, and using model-provider API keys, while the shipped code is only a prototype stub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a prototype before installation, keep secrets in environment variables or a secret manager, and review any future implementation before allowing local file access or memory retention.
+
+Risk: User-provided PDFs, files, and chat history may be processed by the selected model provider if those documented features are later implemented.
+
+Mitigation: Only provide content that is appropriate for the chosen provider and confirm data-handling expectations before enabling RAG, file reading, or long-term memory.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/s0nocean/skills/langchain-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/s0nocean)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Code]
+
+**Output Format:** [Plain text response string from a Python function, with Markdown-style usage examples in the documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The shipped code is a small stub; documented memory, RAG, and tool-calling behavior is not implemented in the included Python file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

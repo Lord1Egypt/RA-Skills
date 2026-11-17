@@ -1,44 +1,64 @@
-## Description: <br>
-Founder Video helps agents create Pexo founder videos by relaying a founder story, pitch, website text, or uploaded media to Pexo for scriptwriting, shot generation, model selection, music, and final delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make a founder video with Pexo for solo founders and small teams by sending a story, product, pitch, or site to the hosted Pexo agent, which writes the script, generates shots, and returns a finished video with music.
 
-## Publisher: <br>
-[pexo](https://clawhub.ai/user/pexo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pexo](https://clawhub.ai/user/pexo)
 
-## Use Case: <br>
-External founders, solo builders, and small teams use this skill to turn a founder story, pitch, product description, website text, or uploaded media into a finished Pexo video for fundraising, Product Hunt, or personal brand content. Agents use the included shell scripts to create a project, upload assets, send the exact user request, poll status, relay Pexo choices or questions, and deliver the final asset URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Founder-video prompts, pasted website text, and uploaded media are sent to Pexo for processing. <br>
-Mitigation: Submit only material acceptable under Pexo data-handling terms, and avoid secrets or regulated/confidential content unless that use is approved. <br>
-Risk: The skill uses a local Pexo API key from ~/.pexo/config or environment variables. <br>
-Mitigation: Store the config with restrictive permissions, do not commit or share the key, and rotate the key if it is exposed. <br>
-Risk: Creating projects can consume Pexo credits and may require the user to add credits. <br>
-Mitigation: Confirm the user wants to start or continue production, surface credit-balance or purchase links when returned, and do not buy credits on the user's behalf. <br>
+## Use Case:
 
+External users, solo founders, and small teams use this skill to turn a founder story, product pitch, or website into a finished fundraising, Product Hunt, or personal-brand video through Pexo's hosted video agent.
 
-## Reference(s): <br>
-- [Pexo homepage](https://pexo.ai) <br>
-- [Setup Checklist](references/SETUP-CHECKLIST.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with shell command invocations, status updates, project links, and final asset URLs; helper scripts return JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PEXO_API_KEY and PEXO_BASE_URL configuration plus curl, jq, and file; video generation is asynchronous and typically requires polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts, business details, and uploaded media are sent to Pexo's hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust Pexo and are comfortable sharing those inputs with the service.
+
+Risk: The skill uses a Pexo API key stored in configuration or environment variables.
+
+Mitigation: Use a narrowly scoped key, keep the config file readable only by the user, and rotate the key if it is exposed.
+
+Risk: Changing PEXO_BASE_URL can send requests and credentials to a different endpoint.
+
+Mitigation: Keep PEXO_BASE_URL set to https://pexo.ai unless the replacement endpoint is fully trusted.
+
+Risk: Unpinned installation can make the reviewed artifact differ from a later installed copy.
+
+Mitigation: Inspect the exact installed version or commit before deployment.
+
+## Reference(s):
+
+- [Founder Video skill page](https://clawhub.ai/pexo/skills/founder-video)
+- [Pexo homepage](https://pexo.ai)
+- [Setup Checklist](references/SETUP-CHECKLIST.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON script outputs, and plain-text project or asset URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PEXO_API_KEY and PEXO_BASE_URL; may upload local media and retrieve signed asset URLs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

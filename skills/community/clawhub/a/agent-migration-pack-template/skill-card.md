@@ -1,48 +1,62 @@
-## Description: <br>
-Agent Migration Pack Template helps users migrate an AI agent across environments by packaging identity, memory, owner preferences, relationships, skills, style, session state, and migration history into structured templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Migration Pack Template helps developers create portable AI agent migration packages that preserve identity, memory, owner preferences, relationships, skills, communication style, and session state across platforms.
 
-## Publisher: <br>
-[alexlinf](https://clawhub.ai/user/alexlinf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexlinf](https://clawhub.ai/user/alexlinf)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create migration packs that preserve an agent's identity, memory, relationships, skills, communication style, and active work state when moving to a new environment or sharing with a trusted recipient. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an embedded bearer token in an upload command example. <br>
-Mitigation: Remove the token from the package and rotate it before installing, sharing, or running the skill. <br>
-Risk: Migration packs can include private identity, owner, relationship, memory, session, business, and communication data. <br>
-Mitigation: Redact personal details, third-party contact history, private communications, business or investment details, and all secrets before generating or sharing a pack. <br>
-Risk: Generated archives may expose sensitive data if sent to the wrong recipient or destination. <br>
-Mitigation: Encrypt archives that contain real data and verify both the recipient and upload destination before transfer. <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to structure, validate, and package migration data when moving an AI agent into a new environment. It is intended to preserve continuity for agent identity, memory, relationships, skills, style, and active work while prompting users to review privacy-sensitive files before sharing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexlinf/agent-migration-pack-template) <br>
-- [README](artifact/README.md) <br>
-- [Migration guide](artifact/MIGRATION-GUIDE.md) <br>
-- [Skill information](artifact/SKILL-INFO.md) <br>
-- [Manifest](artifact/manifest.toml) <br>
-- [Community feedback summary](artifact/v1.0.5_社区反馈汇总.md) <br>
-- [Publisher profile](https://clawhub.ai/user/alexlinf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, JSON and TOML templates, and Python command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces migration-pack files and archive workflows that may contain sensitive or private agent and user data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata, manifest.toml, SKILL.md, CHANGES.md) <br>
+Risk: The release evidence reports a real-looking upload token in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate and remove the token before use, and do not run the documented upload command unless the credential has been replaced and authorized.
+
+Risk: The release evidence reports sensitive private examples and exports, and the artifact classifies owner, memory, relations, style, identity, and session-state data as private or sensitive.
+
+Mitigation: Replace real examples with synthetic data, redact personal details, and inspect generated packages before sharing them.
+
+Risk: The generation script can copy raw memory content into temporary extracted fields.
+
+Mitigation: Remove _extracted_content and other temporary extraction fields, and make sensitive exports opt-in before packaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexlinf/skills/agent-migration-pack-template)
+- [README](artifact/README.md)
+- [Migration Guide](artifact/MIGRATION-GUIDE.md)
+- [Skill Info](artifact/SKILL-INFO.md)
+- [Changelog](artifact/CHANGES.md)
+- [Manifest](artifact/manifest.toml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON/TOML templates, and Python CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces migration package templates and local packaging or validation commands; generated packages can include sensitive agent, user, relationship, memory, and session-state data.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata, manifest.toml, SKILL-INFO.md, CHANGES.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

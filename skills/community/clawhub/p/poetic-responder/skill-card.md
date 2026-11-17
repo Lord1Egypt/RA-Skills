@@ -1,39 +1,54 @@
-## Description: <br>
-This skill responds to informal greeting, availability, location, and activity questions by generating poetic, atmospheric Chinese scene descriptions with randomized locations, weather conditions, and activities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill responds to informal greeting, availability, and location questions with poetic, atmospheric scene descriptions using randomized locations, weather conditions, and activities.
 
-## Publisher: <br>
-[lukassun1999-lab](https://clawhub.ai/user/lukassun1999-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukassun1999-lab](https://clawhub.ai/user/lukassun1999-lab)
 
-## Use Case: <br>
-External users and agent builders use this skill to turn casual check-ins such as "在吗?", "Where are you?", or "What's up?" into warm, evocative Chinese responses built from randomized place, atmosphere, and activity details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may over-trigger on broad casual greetings such as "how are you?" or "what's up?" and answer in a stylized poetic format when a direct conversational answer was expected. <br>
-Mitigation: Enable it only in contexts where poetic Chinese greeting responses are desired, and review trigger examples before deployment. <br>
+## Use Case:
 
+External users and agent builders use this skill to turn casual check-ins such as "are you there?", "where are you?", or Chinese equivalents into warm, imaginative Chinese poetic replies.
 
-## Reference(s): <br>
-- [Reference Documentation for Poetic Responder](references/api_reference.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/lukassun1999-lab/poetic-responder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Short Chinese poetic response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are randomized from or inspired by location, atmosphere, and activity libraries, and are expected to end with "感觉特别棒,你来不来?".] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate on common greetings where a direct factual response was expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in contexts where imaginative poetic replies are appropriate, or narrow the trigger phrases before deployment.
+
+Risk: Randomized scene descriptions could be mistaken for real location or activity claims.
+
+Mitigation: Treat outputs as creative responses rather than factual statements about the agent's whereabouts or actions.
+
+## Reference(s):
+
+- [Poetic Responder Reference Documentation](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/lukassun1999-lab/skills/poetic-responder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Short Chinese poetic response text, sometimes shown with Markdown emphasis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Randomized combinations of locations, atmosphere, and activities; no credential access, persistence, network use, or destructive behavior indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

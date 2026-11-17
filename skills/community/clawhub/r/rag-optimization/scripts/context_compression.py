@@ -22,6 +22,9 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional, Tuple
 from enum import Enum
 
+# 统一 LLM 客户端抽象层
+from llm_client import LLMClient, wrap_llm
+
 # 设置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -192,6 +195,8 @@ class SentenceExtractor:
         self.llm = llm_client
         self.embedding_model = embedding_model
         self.config = config or {}
+        # 用统一 LLMClient 包装
+        self.llm_client = wrap_llm(llm_client)  # H23: 已是 LLMClient 则原样返回，避免重试放大
     
     def split_sentences(self, text: str) -> List[str]:
         """
@@ -206,14 +211,16 @@ class SentenceExtractor:
         # 匹配中英文句子结束符
         pattern = r'[^。！？.!?]+[。！？.!?]'
         sentences = []
-        
-        for match in re.finditer(pattern, text):
+
+        all_matches = list(re.finditer(pattern, text))
+        for match in all_matches:
             sentence = match.group().strip()
             if sentence and len(sentence) > 5:  # 过滤过短的句子
                 sentences.append(sentence)
-        
-        # 处理剩余文本
-        remaining = text[match.end():].strip() if 'match' in dir() else text.strip()
+
+        # 处理剩余文本（无句子结束符时 all_matches 为空，默认取全文）
+        last_end = all_matches[-1].end() if all_matches else 0
+        remaining = text[last_end:].strip()
         if remaining and len(remaining) > 5:
             sentences.append(remaining)
         
@@ -255,9 +262,27 @@ class SentenceExtractor:
         return min(1.0, score)
     
     def _llm_score(self, sentence: str, query: str) -> float:
-        """使用LLM评分"""
+        """使用LLM评分（通过统一 LLMClient）"""
         if not self.llm:
             return 0.5
+
+        prompt = f"""
+请评估以下句子对于回答用户问题的重要性（0-1分）：
+
+用户问题：{query}
+
+句子：{sentence}
+
+评分标准：
+- 1.0: 直接回答问题的关键信息
+- 0.7-0.9: 包含重要相关信息
+- 0.4-0.6: 有一定关联
+- 0.0-0.3: 无关或冗余
+
+只返回一个0到1之间的数字。
+"""
+        # LLMClient.score() 内部处理安全解析 + 重试 + 缓存
+        return self.llm_client.score(prompt, default=0.5)
         
         try:
             prompt = f"""
@@ -279,11 +304,20 @@ class SentenceExtractor:
             response = self.llm.invoke(prompt) if hasattr(self.llm, 'invoke') else self.llm(prompt)
             score_text = response.strip() if isinstance(response, str) else str(response)
             
-            # 提取数字
-            match = re.search(r'[\d.]+', score_text)
+            # 提取数字——安全解析第一个合法小数，支持百分比
+            match = re.search(r'(\d+\.?\d*)%', score_text)
             if match:
-                return float(match.group())
-            return 0.5
+                score = float(match.group(1)) / 100.0
+            else:
+                match = re.search(r'(-?\d*\.\d+|-?\d+)', score_text)
+                if match:
+                    raw = float(match.group(1))
+                    if raw > 1.0 and raw <= 100.0:
+                        raw = raw / 100.0
+                    score = max(0.0, min(1.0, raw))
+                else:
+                    score = 0.5
+            return score
             
         except Exception as e:
             logger.error(f"LLM评分失败: {e}")

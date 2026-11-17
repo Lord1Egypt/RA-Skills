@@ -1,175 +1,65 @@
 ---
 name: midjourney-image
-description: Generate, edit, blend, upscale, and describe images with Midjourney via AceDataCloud API. Use when creating AI images from text prompts, editing existing images, generating 2x2 grids, upscaling, creating variations, blending multiple images, reverse-prompting from images, or generating video from images. Supports versions 5.2 through 8.
+description: Generate and edit Midjourney images or videos through Ace Data Cloud. Use for imagine, edit, blend, variations, upscale, describe, video generation, and querying the exact task ID.
 license: Apache-2.0
 metadata:
   author: acedatacloud
   version: "1.0"
-compatibility: Requires ACEDATACLOUD_API_TOKEN environment variable. Optionally pair with mcp-midjourney for tool-use.
+compatibility: Requires an AceDataCloud service API key with Midjourney access; get one at https://platform.acedata.cloud/console/applications. Optionally use the hosted mcp-midjourney server for tool calls.
 ---
 
-# Midjourney Image Generation
+# Midjourney via Ace Data Cloud
 
-Generate and manipulate AI images through AceDataCloud's Midjourney API.
+Use the [Midjourney API](https://platform.acedata.cloud/documents/midjourney-imagine) or the hosted MCP server.
 
-## Authentication
+## First-time setup
 
-```bash
-export ACEDATACLOUD_API_TOKEN="your-token-here"
-```
+1. Install the official Skill with `clawhub install @acedatacloud/midjourney`. Check that the ClawHub publisher is **@acedatacloud**.
+2. Sign in at [AceDataCloud → Applications](https://platform.acedata.cloud/console/applications), open **General application** (initialize it if prompted), and check Midjourney access, balance, and current pricing. Copy its API key, or select **Manage Keys → Create** for a separate key. Copy the key value without `Bearer `; a `platform-...` management token is not a service API key.
+3. If you enable **Allowed APIs** restrictions, include `/midjourney/imagine` and `/midjourney/tasks` for the first image. Other actions below need their own routes.
+4. On the OpenClaw Gateway host, put `ACEDATACLOUD_API_TOKEN=your_api_key_here` in `~/.openclaw/.env`, then restart the Gateway and start a new session. For a direct terminal test, run `export ACEDATACLOUD_API_TOKEN="your_api_key_here"` in that shell. Never put the key in a prompt or commit an `.env` file.
+5. Run the **First image** example below. Save the returned task ID and query that same task until it finishes; do not submit another billable imagine request just to check progress.
 
-## Quick Start — Generate an Image
+[Token setup and troubleshooting](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+
+## First image
+
+Check your current Midjourney pricing and balance in the Ace Data Cloud console before submitting a generation. One imagine request can produce a 2×2 grid. Use `async: true` so the request returns a `task_id` promptly:
 
 ```bash
 curl -X POST https://api.acedata.cloud/midjourney/imagine \
   -H "Authorization: Bearer $ACEDATACLOUD_API_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"prompt": "a futuristic city at sunset, cyberpunk style --ar 16:9", "wait": true}'
+  -d '{"prompt":"A small red sailboat on a calm lake at sunrise --ar 1:1","mode":"fast","async":true}'
 ```
 
-## Generation Modes
-
-| Mode | Speed | Cost | Best For |
-|------|-------|------|----------|
-| `fast` | Fast | Standard | Most tasks (default) |
-| `relax` | Slow | Cheaper | Batch generation |
-| `turbo` | Fastest | Premium | Time-sensitive work |
-
-## Midjourney Versions
-
-| Version | Notes |
-|---------|-------|
-| `8` | Latest, best quality |
-| `7` | Great quality, fast |
-| `6.1` | Stable, well-tested |
-| `6` | Previous generation |
-| `5.2` | Legacy |
-
-## Core Workflows
-
-### 1. Generate Images (Imagine)
-
-Creates a 2x2 grid of 4 image variations.
-
-```json
-POST /midjourney/imagine
-{
-  "prompt": "a serene mountain lake at dawn, photorealistic --ar 16:9 --v 7",
-  "mode": "fast",
-  "translation": true,
-  "split_images": true
-}
-```
-
-Set `translation: true` to auto-translate non-English prompts. Set `split_images: true` to get individual images besides the grid.
-
-### 2. Upscale / Vary / Pan / Zoom
-
-After generating a grid, use transform actions on individual images:
-
-```json
-POST /midjourney/imagine
-{
-  "action": "upscale1",
-  "image_id": "grid-image-id"
-}
-```
-
-**Available actions:**
-- `upscale1`–`upscale4`: Upscale individual quadrant
-- `variation1`–`variation4`: Create variation of a quadrant
-- `variation_subtle` / `variation_strong`: Subtle/strong variation of full image
-- `reroll`: Re-generate with same prompt
-- `zoom_out_2x` / `zoom_out_1_5x`: Zoom out
-- `pan_left` / `pan_right` / `pan_up` / `pan_down`: Extend canvas
-
-### 3. Edit an Image
-
-Modify an existing image using a text prompt, optionally with a mask.
-
-```json
-POST /midjourney/edits
-{
-  "image_url": "https://example.com/photo.jpg",
-  "prompt": "add a rainbow in the sky",
-  "mode": "fast"
-}
-```
-
-### 4. Blend Images
-
-Combine 2–5 images into a new composition.
-
-```json
-POST /midjourney/imagine
-{
-  "action": "blend",
-  "image_urls": [
-    "https://example.com/image1.jpg",
-    "https://example.com/image2.jpg"
-  ]
-}
-```
-
-### 5. Describe an Image (Reverse Prompt)
-
-Get AI-generated text descriptions of an image (returns 4 options).
-
-```json
-POST /midjourney/describe
-{"image_url": "https://example.com/photo.jpg"}
-```
-
-### 6. Generate Video from Image
-
-Create a video with a reference image and text prompt.
-
-```json
-POST /midjourney/videos
-{
-  "image_url": "https://example.com/photo.jpg",
-  "prompt": "the city comes alive with moving traffic",
-  "resolution": "720p"
-}
-```
-
-## Prompt Parameters
-
-Append these to your prompt text:
-
-| Parameter | Example | Description |
-|-----------|---------|-------------|
-| `--ar` | `--ar 16:9` | Aspect ratio |
-| `--v` | `--v 7` | Midjourney version |
-| `--q` | `--q 2` | Quality (0.25, 0.5, 1, 2) |
-| `--s` | `--s 750` | Stylization (0–1000) |
-| `--c` | `--c 50` | Chaos/variety (0–100) |
-| `--no` | `--no text, watermark` | Negative prompt |
-| `--seed` | `--seed 12345` | Reproducible generation |
-
-## Task Polling
-
-```json
-POST /midjourney/tasks
-{"task_id": "your-task-id"}
-```
-
-## MCP Server
+Save the returned `task_id`. Poll **that same ID**; do not repeat the imagine call to check progress:
 
 ```bash
-pip install mcp-midjourney
+curl -X POST https://api.acedata.cloud/midjourney/tasks \
+  -H "Authorization: Bearer $ACEDATACLOUD_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"action":"retrieve","id":"TASK_ID_FROM_FIRST_CALL"}'
 ```
 
-Or hosted: `https://midjourney.mcp.acedata.cloud/mcp`
+An accepted task is not a finished image. Only present the final artifact after the retrieved task contains `response.success: true` and a usable `response.image_url` or `response.raw_image_url`. Stop and report the error when the task fails. Keep the task ID when a query or network connection is interrupted; querying the same ID does not submit another generation. See the [task API guide](https://platform.acedata.cloud/documents/midjourney-tasks).
 
-Key tools: `midjourney_imagine`, `midjourney_transform`, `midjourney_edit`, `midjourney_blend`, `midjourney_describe`, `midjourney_generate_video`
+## Other actions
 
-## Gotchas
+- Transform a completed grid with its `image_id` and an action such as `upscale1`, `variation1`, or `reroll` through `POST /midjourney/imagine`. These are new billable actions, not task queries.
+- Edit an input image with a prompt through `POST /midjourney/edits`.
+- Describe an image through `POST /midjourney/describe`.
+- Generate or extend video through `POST /midjourney/videos`. Save its task ID and query the same task.
+- Use the `version` parameter or prompt flags only for a version documented by the live API. Midjourney V8.1 supports `fast` and `relax`, not `turbo`, and does not accept a `quality` parameter.
 
-- Imagine returns a **2x2 grid** — use upscale/variation actions to work with individual images
-- Use `split_images: true` to also receive individual cropped images alongside the grid
-- Prompt parameters (`--ar`, `--v`, etc.) go **inside the prompt string**, not as separate fields
-- `translation: true` auto-translates Chinese/other languages to English before sending to Midjourney
-- Video generation requires a reference `image_url` — it cannot generate from text alone
-- Available transform actions depend on the image — check `available_actions` in the response
-- Get the seed with `POST /midjourney/seed` using the image_id for reproducible results
+## MCP tools
+
+The hosted Streamable HTTP server is `https://midjourney.mcp.acedata.cloud/mcp`. Configure `Authorization: Bearer <Ace token>` privately in the MCP client. Its named tools include `midjourney_imagine`, `midjourney_edit`, `midjourney_blend`, `midjourney_describe`, `midjourney_generate_video`, `midjourney_get_task`, and `midjourney_get_tasks_batch`. Use `midjourney_get_task` with the exact ID returned by a generation tool until the final success or failure is clear. The [MCP server source](https://github.com/AceDataCloud/MidjourneyMCP) documents the full tool surface.
+
+The server can also run locally from the published `mcp-midjourney` package. Do not add a substitute model or service if an operation fails.
+
+## Troubleshooting
+
+- `401`: check the token value and expiry. `403`: check Midjourney access or content policy. `429`: wait for the advised rate-limit interval. A `5xx` or transport timeout after task submission is not a reason to create another task; query the saved ID first.
+- If the task is complete but no URL is present, inspect the full task response and report the missing artifact; do not treat the task ID as a result.
+- Review the Ace Data Cloud usage or billing record for the completed action. Task queries do not create another imagine request.

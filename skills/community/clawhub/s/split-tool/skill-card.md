@@ -1,40 +1,57 @@
-## Description: <br>
-Split files into smaller pieces by size, line count, or number of chunks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Split files into smaller pieces by size, line count, or number of chunks.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to break large logs, datasets, or other files into smaller local parts for easier handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local splitter can overwrite existing output files when the chosen prefix collides with files in the output directory. <br>
-Mitigation: Run it in a dedicated output folder or choose a unique prefix before splitting files. <br>
-Risk: The documented -n option and exact line-count behavior are not reliable in the released implementation. <br>
-Mitigation: Do not depend on -n or exact line-count splitting unless the implementation is fixed; verify output chunk counts and sizes after running. <br>
+## Use Case:
 
+Developers and engineers use this skill to break large logs, binary data, or text files into smaller parts for transfer, inspection, or downstream processing.
 
-## Reference(s): <br>
-- [Split Tool ClawHub release](https://clawhub.ai/dinghaibin/split-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates numbered output files using the selected prefix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The splitter can silently overwrite predictable output files that already match the selected prefix.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated output directory, choose a non-conflicting prefix, and review generated paths before relying on the output.
+
+Risk: The documentation describes an -n chunk-count option and line-based splitting behavior that the artifact does not fully implement.
+
+Mitigation: Validate the supported command-line options before use and prefer the implemented byte-size or prefix controls until the publisher updates the script or documentation.
+
+Risk: The security verdict is suspicious because the skill is purpose-aligned but has overwrite and documentation accuracy issues.
+
+Mitigation: Review before installing, avoid elevated privileges, and scan or test the skill in a controlled workspace before broader use.
+
+## Reference(s):
+
+- [Split Tool ClawHub page](https://clawhub.ai/dinghaibin/skills/split-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Markdown with command examples and generated file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces smaller output files on disk using a caller-selected prefix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

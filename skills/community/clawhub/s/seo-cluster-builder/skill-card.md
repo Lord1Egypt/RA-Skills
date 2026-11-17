@@ -1,45 +1,58 @@
-## Description: <br>
-Build complete SEO topic clusters with full article content, schema markup, and internal linking for keyword groups, pillar pages, WordPress-ready content, competitor-informed SEO research, and cluster audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build complete SEO topic clusters with full article content, schema markup, and internal linking for website content planning and publishing.
 
-## Publisher: <br>
-[vionguyen](https://clawhub.ai/user/vionguyen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vionguyen](https://clawhub.ai/user/vionguyen)
 
-## Use Case: <br>
-External creators, marketers, and SEO operators use this skill to research a target website and competitors, design a 6-8 article topic cluster, draft SEO articles, generate schema markup, and produce publish-ready HTML for a website or WordPress workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may use live site and competitor research, so users could expose domains, topics, or market strategy to external search and fetch tools. <br>
-Mitigation: Use only domains and competitor topics that are appropriate for external research, and confirm the target market and language before running the workflow. <br>
-Risk: Generated redirects, internal links, schema markup, and article copy could be inaccurate or unsuitable for the target site. <br>
-Mitigation: Review redirects, links, schema, and final copy before publishing; validate JSON-LD and confirm that body links match the intended site architecture. <br>
+## Use Case:
 
+External users, marketers, SEO specialists, and content teams use this skill to research a website and competitors, design 6-8 article topic clusters, write SEO-ready articles, add JSON-LD schema, and package the result for publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vionguyen/seo-cluster-builder) <br>
-- [Phase 1 - Research & Competition Analysis](references/phase1-research.md) <br>
-- [Phase 2 - Cluster Design](references/phase2-design.md) <br>
-- [Phase 3 - Content Writing](references/phase3-content.md) <br>
-- [Phase 4 - Output Generation](references/phase4-output.md) <br>
-- [Schema.org](https://schema.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance plus a production-ready HTML file with SEO metadata, article content, internal link maps, and JSON-LD schema blocks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final output is intended for human review before publishing and includes validation of schema JSON and body-placed internal links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Vietnamese-specific templates and examples may be copied unchanged for non-Vietnamese sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target language, locale, currency, and UI labels before using the skill outside Vietnamese-language sites.
+
+Risk: Generated SEO clusters can include invalid schema or weak internal links if the validation steps are skipped.
+
+Mitigation: Run the skill's schema and internal-link validation checklist before publishing the final HTML output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vionguyen/skills/seo-cluster-builder)
+- [Phase 1 - Research and Competition Analysis](artifact/references/phase1-research.md)
+- [Phase 2 - Cluster Design](artifact/references/phase2-design.md)
+- [Phase 3 - Content Writing](artifact/references/phase3-content.md)
+- [Phase 4 - Output Generation](artifact/references/phase4-output.md)
+- [Schema.org](https://schema.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance plus a copy-paste-ready HTML file with article bodies, SEO metadata, JSON-LD schema, internal link maps, and publish summary tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The final artifact is typically named cluster-[topic-slug].html and includes inline CSS and copy buttons for publishing workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

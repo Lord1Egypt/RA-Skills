@@ -1,45 +1,67 @@
-## Description: <br>
-Emailbox is an IMAP/SMTP email toolkit for 12+ providers that helps agents send, receive, search, forward, schedule, and format emails with templates, attachments, and document-data workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emailbox helps agents send, receive, search, forward, and schedule email through IMAP/SMTP across common providers, with HTML templates, attachments, and document-data email workflows.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Employees, external users, developers, and automation agents use Emailbox to operate authenticated mailboxes through IMAP/SMTP, including sending messages, reading and searching inboxes, forwarding mail, scheduling messages, and packaging document-derived content into email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles mailbox credentials and sensitive email content. <br>
-Mitigation: Use session-only environment variables or a system secret manager, avoid plaintext credential files, and prefer a dedicated low-privilege email account. <br>
-Risk: Email sending or forwarding can expose sensitive documents or messages to unintended recipients. <br>
-Mitigation: Verify recipients, attachments, and generated content before sending sensitive messages. <br>
-Risk: Downloaded attachments from untrusted mail can be unsafe. <br>
-Mitigation: Do not download attachments from untrusted senders until filename handling is tightened, and scan attachments before opening them. <br>
+## Use Case:
 
+Employees and developers use Emailbox to automate mailbox workflows, including sending messages, reading and searching inboxes, forwarding mail, scheduling delivery, and packaging document or data outputs into emails through configured IMAP/SMTP accounts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobewin/emailbox) <br>
-- [Provider Configuration Guide](artifact/references/providers.md) <br>
-- [Document Integration Workflows](artifact/references/integrations.md) <br>
-- [HTML Email Templates](artifact/references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash command examples, email text or HTML content, local queue files, and downloaded attachment files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus EMAIL_ADDRESS and EMAIL_AUTH, or provider-specific EMAIL_* and EMAIL_*_AUTH environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: The skill can access an email account and send message content, recipients, attachments, and downloaded mailbox data through the configured provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or least-privileged mailbox where possible, use provider app passwords or authorization codes, and confirm recipients and attachments before sending sensitive material.
+
+Risk: Attachment downloads can write outside the chosen folder if unsafe filenames are present.
+
+Mitigation: Download attachments only from trusted senders into an isolated directory, inspect filenames and paths before opening files, and avoid untrusted attachments until filename sanitization is confirmed.
+
+Risk: Scheduled emails are stored as plaintext in ~/.emailbox/queue until they are processed or cancelled.
+
+Mitigation: Treat the queue as sensitive, restrict local filesystem access, avoid scheduling highly sensitive content, and clean up sent, failed, or cancelled queue entries.
+
+Risk: Email authorization codes in environment variables may be exposed through shell history, process listings, CI logs, or crash reports.
+
+Mitigation: Prefer a system credential manager or session-only environment variables, avoid public or shared terminals, and unset EMAIL_AUTH and provider-specific auth variables after use.
+
+## Reference(s):
+
+- [Emailbox ClawHub skill page](https://clawhub.ai/tobewin/skills/emailbox)
+- [Email Provider Configuration](references/providers.md)
+- [Document Integration Workflows](references/integrations.md)
+- [HTML Email Templates](references/templates.md)
+- [Microsoft account security](https://account.microsoft.com/security)
+- [Google account security](https://myaccount.google.com/security)
+- [Google app passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, Python script invocations, optional generated text or HTML email bodies, downloaded attachment files, and scheduled-email queue entries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Python standard-library scripts to perform IMAP/SMTP actions against configured email providers; scheduled email content is stored locally until processed.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter says 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

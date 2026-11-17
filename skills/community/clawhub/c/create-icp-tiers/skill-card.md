@@ -1,42 +1,58 @@
-## Description: <br>
-Classify companies into Ideal Customer Profile (ICP) tiers based on firmographic data (industry + employee count). Creates a custom property via API and 4 classification workflows in HubSpot UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classify companies into Ideal Customer Profile (ICP) tiers based on firmographic data (industry + employee count). Creates a custom property via API and 4 classification workflows in HubSpot UI.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-Sales, marketing, and CRM operations teams use this skill to define ICP tier criteria, create a HubSpot company property, and set up workflows that keep company records classified for lead prioritization and campaign segmentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses HubSpot API access to create and verify a CRM-wide company property. <br>
-Mitigation: Confirm the target HubSpot portal first and use a minimally scoped HubSpot private app token. <br>
-Risk: Incorrect property names, tier criteria, or workflow activation order can cause broad misclassification of company records. <br>
-Mitigation: Review the property name, tier rules, and staggered workflow activation sequence before enabling workflows, then verify classification results before relying on them. <br>
-Risk: HubSpot Breeze AI may create event-based triggers or omit required guards, which can assign tiers incorrectly. <br>
-Mitigation: Manually verify workflow triggers use filter-based AND logic, include the ICP Tier unknown guard where required, and have re-enrollment configured. <br>
+## Use Case:
 
+Revenue operations, sales operations, and CRM administrators use this skill to create and validate HubSpot ICP tiering based on industry and employee-count criteria. It helps prioritize companies for sales and marketing workflows while preserving an audit trail before and after classification.
 
-## Reference(s): <br>
-- [Create Icp Tiers ClawHub listing](https://clawhub.ai/tomgranot/create-icp-tiers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python scripts and HubSpot workflow configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CRM setup guidance and audit outputs for HubSpot company ICP tier classification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow setup can persistently update ICP tier values across all HubSpot company records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test in a HubSpot sandbox or small filtered cohort, export affected company data first, and define rollback steps before enrolling all existing companies.
+
+Risk: Broad administrator access or long-lived mutation tokens could increase the impact of mistakes or credential exposure.
+
+Mitigation: Avoid Super Admin where possible, use separate least-privileged tokens for audit and mutation steps, and rotate the mutation token after setup.
+
+Risk: Incorrect HubSpot workflow triggers can misclassify companies or overwrite higher-priority tiers.
+
+Mitigation: Manually verify filter-based AND trigger logic, re-enrollment settings, and staggered activation before turning workflows on broadly.
+
+## Reference(s):
+
+- [Create Icp Tiers on ClawHub](https://clawhub.ai/tomgranot/skills/create-icp-tiers)
+- [HubSpot API](https://api.hubapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python scripts and HubSpot configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces before-state and after-state CSV audit files when the bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

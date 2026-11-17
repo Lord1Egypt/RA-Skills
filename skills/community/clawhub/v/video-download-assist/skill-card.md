@@ -1,43 +1,63 @@
-## Description: <br>
-Automatically downloads user-provided videos from Bilibili, Douyin, TikTok, YouTube, and other yt-dlp-supported sites to local storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads videos from Bilibili, Douyin, TikTok, YouTube, and other supported video sites when a user provides a link.
 
-## Publisher: <br>
-[zhangxiangyu8516](https://clawhub.ai/user/zhangxiangyu8516) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangxiangyu8516](https://clawhub.ai/user/zhangxiangyu8516)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent download videos they explicitly provide from supported platforms and return saved file details for local use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supported video links can trigger local downloads and consume disk space, especially for large videos or playlists. <br>
-Mitigation: Install only where automatic local downloads are desired, monitor the downloads directory, and avoid bulk or playlist downloads unless intended. <br>
-Risk: The skill relies on yt-dlp and may inherit risk from an untrusted or outdated local installation. <br>
-Mitigation: Install yt-dlp from a trusted source and keep it updated through the selected package manager. <br>
-Risk: Browser-cookie based downloads may use authenticated account access when enabled by the user. <br>
-Mitigation: Use cookie options only for accounts and content the user is authorized to access, and avoid sharing exported cookie files. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent download videos from user-provided Bilibili, Douyin, TikTok, YouTube, or other yt-dlp-supported links into local storage.
 
-## Reference(s): <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [Douyin_TikTok_Download_API](https://github.com/Evil0ctal/Douyin_TikTok_Download_API) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance, shell commands, and JSON status from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save video files and metadata JSON to a local downloads directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill downloads remote videos to local storage, which can consume disk space or bring untrusted media files into the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated workspace, set an explicit output directory, and review downloaded files before sharing or reusing them.
+
+Risk: The documentation includes a privileged sudo curl install path for yt-dlp.
+
+Mitigation: Prefer package-manager installation or an isolated Python environment, and verify binaries before granting executable permissions.
+
+Risk: Browser-cookie download options can expose sensitive login sessions.
+
+Mitigation: Avoid browser-cookie options unless necessary, use least-privilege accounts, and remove exported cookies after use.
+
+Risk: Downloading videos may violate copyright or platform terms if used without permission.
+
+Mitigation: Download only user-authorized content and follow the applicable platform rules and rights restrictions.
+
+## Reference(s):
+
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [Douyin_TikTok_Download_API](https://github.com/Evil0ctal/Douyin_TikTok_Download_API)
+- [ClawHub skill page](https://clawhub.ai/zhangxiangyu8516/skills/video-download-assist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON status output from the bundled downloader script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create downloaded media files and yt-dlp metadata JSON in local storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

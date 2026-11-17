@@ -1,49 +1,56 @@
-## Description: <br>
-Vmware Pilot designs, supervises, and manages multi-step VMware workflows across companion skills with approval gates, audit logging, state persistence, and rollback support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs and manages multi-step VMware workflows with human approval gates and explicit, best-effort rollback.
 
-## Publisher: <br>
-[zw008](https://clawhub.ai/user/zw008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zw008](https://clawhub.ai/user/zw008)
 
-## Use Case: <br>
-Infrastructure operators and developers use this skill to plan and supervise cross-skill VMware tasks such as clone-and-test changes, incident response, rolling maintenance, compliance scans, and AKO-aware deployments with review points before high-impact actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact VMware workflows can affect VM power state, deletion, networking, storage, Kubernetes resources, or guest execution. <br>
-Mitigation: Require explicit human approval before those changes and run companion skills with least-privilege accounts. <br>
-Risk: Workflow parameters could expose passwords or kubeconfigs if users pass secrets directly through the orchestration flow. <br>
-Mitigation: Do not pass passwords or kubeconfigs through workflow parameters; rely on the companion skills' normal authentication mechanisms. <br>
-Risk: Local audit and baseline files may contain operationally sensitive infrastructure history. <br>
-Mitigation: Protect ~/.vmware/audit.db and baseline files with appropriate filesystem permissions and operational handling. <br>
+## Use Case:
 
+Developers and infrastructure operators use Pilot to design, review, and coordinate multi-step VMware changes across companion skills, with approval gates and explicit best-effort rollback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zw008/skills/vmware-pilot) <br>
-- [Project homepage](https://github.com/zw008/VMware-Pilot) <br>
-- [Capabilities](references/capabilities.md) <br>
-- [Integration Patterns](references/integration-patterns.md) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [Workflow Design](references/workflow-design.md) <br>
-- [Templates](references/templates.md) <br>
-- [CLI Reference](references/cli-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML or JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow plans, approval checkpoints, rollback guidance, setup snippets, and companion-skill routing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.2 (source: server release metadata) <br>
+Risk: Documented network setup may make infrastructure and security changes before approval, and the scan is incomplete because one referenced path could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the approval ordering and installation source before production use, and resolve the missing referenced path.
+
+## Reference(s):
+
+- [VMware Pilot on ClawHub](https://clawhub.ai/zw008/skills/vmware-pilot)
+- [VMware Pilot project](https://github.com/vmware-skills/VMware-Pilot)
+- [Workflow design guide](artifact/references/workflow-design.md)
+- [Integration patterns](artifact/references/integration-patterns.md)
+- [Workflow templates](artifact/references/templates.md)
+- [Setup guide](artifact/references/setup-guide.md)
+- [Agent guardrails](artifact/references/agent-guardrails.md)
+- [Model fit self-test guide](https://github.com/vmware-skills/marketplace/blob/main/MODEL_FIT_SELF_TEST.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with structured workflow details and YAML template examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe multi-step VMware actions that require human approval; rollback is explicit and best-effort.]
+
+## Skill Version(s):
+
+2.5.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Manage business clients by listing, searching, creating, and updating client information in Norman Finance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage business clients - list, search, create, or update client information.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Employees or agents working in Norman Finance use this skill to manage business client records, including listing or searching clients, creating new clients, and updating existing client details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may create or update records in the wrong Norman Finance workspace. <br>
-Mitigation: Confirm the connected Norman Finance workspace before creating or updating client records. <br>
-Risk: Generic mentions of contacts or customers may refer to people who do not belong in the client database. <br>
-Mitigation: Clarify that the person or organization should be managed as a Norman Finance client before making changes. <br>
-Risk: Incorrect client details can affect downstream invoices, tax handling, or account maintenance. <br>
-Mitigation: Review client details with the user before creating records, updating records, or creating invoices. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
-- [ClawHub skill listing](https://clawhub.ai/stanlee000/norman-manage-clients) <br>
+## Use Case:
 
+Business users and agents use this skill to list, search, create, and update Norman Finance client records, including contact, tax, payment, and notes fields.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API Calls, guidance] <br>
-**Output Format:** [Markdown tables and concise text guidance, with agent tool calls to Norman Finance MCP actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May present client lists as tables and should confirm user-approved changes before updating records.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can list client contact details and outstanding balances.
+
+Mitigation: Review requests and outputs involving real customer data before approval.
+
+Risk: The skill can create or update client records, and creation guidance does not explicitly require a final confirmation step.
+
+Mitigation: Confirm intended record changes with the user before approving create or update actions.
+
+Risk: Broad activation wording may trigger client-management behavior for general references to clients, contacts, customers, or Kunden.
+
+Mitigation: Check that the request is specifically about Norman Finance client records before using the skill.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+- [ClawHub skill listing](https://clawhub.ai/stanlee000/skills/norman-manage-clients)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Markdown]
+
+**Output Format:** [Markdown guidance with client-management tool calls and tabular client summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the Norman Finance MCP server for client records.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

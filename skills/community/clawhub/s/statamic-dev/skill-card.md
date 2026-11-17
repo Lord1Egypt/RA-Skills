@@ -1,38 +1,54 @@
-## Description: <br>
-Provides Statamic CMS development guidance for content files, collections, blueprints, fieldsets, globals, taxonomies, and Bard YAML content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents work with Statamic CMS content structure, collections, blueprints, fieldsets, Bard YAML content, globals, taxonomies, navigation, forms, assets, and addon development patterns.
 
-## Publisher: <br>
-[michael-stokoe](https://clawhub.ai/user/michael-stokoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michael-stokoe](https://clawhub.ai/user/michael-stokoe)
 
-## Use Case: <br>
-Developers and content engineers use this skill as a Statamic CMS reference when authoring or reviewing project content structures, blueprints, fieldsets, and Bard content stored in YAML. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michael-stokoe/statamic-dev) <br>
-- [Publisher profile](https://clawhub.ai/user/michael-stokoe) <br>
+Developers and content teams use this skill to guide agents when authoring or editing Statamic CMS content files, field definitions, and addon scaffolding. It is most useful for producing YAML examples, PHP/Laravel addon code patterns, shell commands, and configuration guidance within existing Statamic projects.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, Antlers, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; review agent-generated project changes before applying them.] <br>
+Global
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated composer, pnpm, artisan, or build-cleanup commands may change dependencies, caches, generated assets, or project state when run in a real Statamic project.
+
+Mitigation: Review commands before execution, run them in the intended project directory, and use version control or a disposable environment for dependency and build changes.
+
+Risk: Generated Statamic YAML, PHP, route, middleware, or authorization examples may not match a project's existing content model or access-control requirements.
+
+Mitigation: Validate generated files against the project's blueprints, permissions, and tests before deployment.
+
+## Reference(s):
+
+- [Statamic Development artifact](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/michael-stokoe/skills/statamic-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, PHP, JavaScript, JSON, XML, Antlers, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before applying generated commands or code in a real Statamic project.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

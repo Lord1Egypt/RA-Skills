@@ -199,7 +199,7 @@ This section contains the detection methods and patterns Canary uses internally.
 |---|---|---|
 | OpenAI | `sk-` | `sk-abc123...` |
 | Anthropic | `sk-ant-` | `sk-ant-abc123...` |
-| AWS Access Key | `AKIA` | `AKIAIOSFODNN7EXAMPLE` |
+| AWS Access Key | `AKIA` | `REDACTED-SECRET` |
 | AWS Secret Key | (40-char base64 near an access key) | `wJalrXUtnFEMI/K7MDENG/...` |
 | GitHub PAT | `ghp_` or `github_pat_` | `ghp_abc123...` |
 | GitHub OAuth | `gho_` | `gho_abc123...` |
@@ -209,8 +209,8 @@ This section contains the detection methods and patterns Canary uses internally.
 | Stripe Test | `sk_test_` or `rk_test_` | `sk_test_abc123...` |
 | Google Cloud / Firebase | `AIza` | `AIzaSyB-abc123...` |
 | GCP Service Account | `"type": "service_account"` | (JSON file) |
-| Slack Bot Token | `xoxb-` | `xoxb-123-456-abc...` |
-| Slack User Token | `xoxp-` | `xoxp-123-456-abc...` |
+| Slack Bot Token | `xoxb-` | `REDACTED-SECRET...` |
+| Slack User Token | `xoxp-` | `REDACTED-SECRET...` |
 | Slack Webhook | `https://hooks.slack.com/` | URL |
 | Discord Webhook | `https://discord.com/api/webhooks/` | URL |
 | Twilio | `SK` (32 hex chars) | `SKabc123...` |

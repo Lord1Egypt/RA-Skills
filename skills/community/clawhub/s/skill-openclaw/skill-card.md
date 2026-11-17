@@ -1,43 +1,73 @@
-## Description: <br>
-Give your OpenClaw agent the power to spend. Stablecoin payments, spending policies, and compliance - built-in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives OpenClaw agents stablecoin payment, spending policy, and compliance capabilities through Oris.
 
-## Publisher: <br>
-[fluxaventures](https://clawhub.ai/user/fluxaventures) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fluxaventures](https://clawhub.ai/user/fluxaventures)
 
-## Use Case: <br>
-External developers and agent operators use this skill to connect OpenClaw agents to Oris payment infrastructure for stablecoin payments, wallet balance checks, spending review, marketplace orders, fiat on-ramp/off-ramp flows, cross-chain quotes, and KYA attestations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent durable authority to move money through payment, order, approval, and off-ramp tools. <br>
-Mitigation: Install only when agent payments are intended, set very low spending limits, keep limited wallet balances, and require host-side human approval for pay, order, off-ramp, and approval workflows. <br>
-Risk: Sensitive financial credentials and bank details can be exposed through local configuration or argument logging. <br>
-Mitigation: Protect ~/.openclaw/config.json, rotate Oris credentials if exposed, and disable or redact logging for payment and banking arguments. <br>
+## Use Case:
 
+Developers and operators use this skill to let OpenClaw agents make stablecoin payments, check balances, manage spending, route cross-chain transfers, and interact with Oris marketplace services under configured credentials and spending policies.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/fluxaventures/skill-openclaw) <br>
-- [Oris OpenClaw documentation](https://useoris.finance/docs/openclaw) <br>
-- [Oris documentation](https://useoris.finance/docs) <br>
-- [Oris dashboard](https://useoris.finance/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown and JSON-compatible MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Oris credentials and an OpenClaw MCP server configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can initiate real payments, withdrawals, fiat funding, cross-chain transfers, and marketplace purchases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requests before execution, start with low spending limits, and require explicit human confirmation for transfers, withdrawals, fiat funding, and purchases.
+
+Risk: The skill uses persistent Oris credentials for authenticated payment operations.
+
+Mitigation: Run it only in trusted launch environments and rotate or revoke Oris credentials if logs or local configuration may have been exposed.
+
+Risk: The security summary flags raw sensitive argument logging.
+
+Mitigation: Avoid sensitive free-text payment details, redact financial logs, and prefer a release that redacts tool arguments.
+
+Risk: The API base URL can be set through ORIS_BASE_URL.
+
+Mitigation: Use the default Oris API endpoint and avoid untrusted environments that can override runtime environment variables.
+
+Risk: The setup package depends on an unbounded oris-sdk version.
+
+Mitigation: Review installed dependencies and prefer a release that pins the production SDK dependency.
+
+Risk: Payment controls depend on usage and policy enforcement before execution.
+
+Mitigation: Prefer a release that validates endpoint configuration and initializes fail-closed usage checks correctly before enabling real fund movement.
+
+## Reference(s):
+
+- [Skill Openclaw listing](https://clawhub.ai/fluxaventures/skills/skill-openclaw)
+- [Oris OpenClaw documentation](https://useoris.finance/docs/openclaw)
+- [Oris documentation](https://useoris.finance/docs)
+- [Oris dashboard](https://useoris.finance/dashboard)
+- [Oris API base URL](https://api.useoris.finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON-formatted MCP tool responses and Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ORIS_API_KEY, ORIS_API_SECRET, ORIS_AGENT_ID, python, and node; payment tools call the Oris API.]
+
+## Skill Version(s):
+
+1.0.4 (source: SKILL.md frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

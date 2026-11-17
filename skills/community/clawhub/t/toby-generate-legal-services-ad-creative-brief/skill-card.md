@@ -1,42 +1,55 @@
-## Description: <br>
-Plan campaign visuals and hooks for legal services promotions. Use when working on paid campaign planning for legal ops teams, attorneys, compliance teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for legal services promotions. Use when working on paid campaign planning for legal ops teams, attorneys, compliance teams.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Legal operations teams, attorneys, and compliance teams use this skill to plan paid campaign creative briefs with visuals, messaging hooks, constraints, and review-ready drafts for legal services promotions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated briefs could be mistaken for legal advice or final compliant advertising guidance. <br>
-Mitigation: Require attorney, compliance, or qualified human review before client delivery or reliance as legal advice. <br>
-Risk: Campaign hooks or visual concepts may include inaccurate claims or jurisdiction-sensitive legal advertising issues. <br>
-Mitigation: Verify factual claims, audience targeting, and applicable legal advertising rules before publishing or launching paid campaigns. <br>
+## Use Case:
 
+Legal operations teams, attorneys, and compliance teams use this skill to draft concise ad creative briefs, campaign visuals, and messaging hooks for paid legal services promotions. Outputs should receive human review before client delivery or use as legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-legal-services-ad-creative-brief) <br>
-- [SkillBoss setup guide](https://skillboss.co/skill.md) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-legal-services-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text creative brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose image-generation concepts; requires human review before client use or reliance as legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests shell and file-read access that is not explained by its advertised drafting workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in a sandboxed OpenClaw environment, and do not grant shell or broad file-read access unless a reviewer confirms a specific need.
+
+Risk: Legal services advertising content may be inaccurate, noncompliant, or mistaken for legal advice.
+
+Mitigation: Require review by appropriate legal, compliance, or marketing stakeholders before client delivery, publication, or reliance as legal advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-legal-services-ad-creative-brief)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-legal-services-ad-creative-brief)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured prose for an ad creative brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign hooks, visual concepts, audience constraints, and review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

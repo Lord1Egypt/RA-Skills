@@ -1,45 +1,61 @@
-## Description: <br>
-一个简洁高效的AI新闻简报生成技能。每日自动从多个可靠数据源采集AI领域最新动态，生成干净的Markdown格式简报，帮助您快速掌握AI行业前沿信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Ai Brief Skill collects AI news from RSS feeds, social sources, web pages, and APIs, then writes structured Markdown and JSON briefings.
 
-## Publisher: <br>
-[yanll](https://clawhub.ai/user/yanll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanll](https://clawhub.ai/user/yanll)
 
-## Use Case: <br>
-Developers, analysts, and agent users can use this skill to collect recent AI news from configured RSS feeds, APIs, websites, and X/Twitter accounts, then generate structured daily briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts many external websites, feeds, APIs, and social platforms while collecting briefing content. <br>
-Mitigation: Review and limit src/data_sources.yaml before running the skill, especially in restricted network or compliance environments. <br>
-Risk: The skill uses browser automation and scraping behavior that may create privacy, reliability, or terms-of-service concerns. <br>
-Mitigation: Run it in a sandboxed environment where possible and disable sources or scrapers that are not appropriate for the user's policy requirements. <br>
-Risk: Collected third-party content is saved locally in generated reports. <br>
-Mitigation: Handle generated reports as externally sourced content and review them before sharing or using them in downstream workflows. <br>
+## Use Case:
 
+External users and developers use this skill to generate daily AI industry briefings from configured feeds, social sources, web pages, and APIs for quick news review and downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanll/daily-ai-brief-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yanll) <br>
-- [README](artifact/README.md) <br>
-- [Data source configuration](artifact/src/data_sources.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, configuration] <br>
-**Output Format:** [Markdown and JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are written to a local reports directory and include source links for collected items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata; artifact frontmatter states 1.0.0) <br>
+Risk: The skill contacts many third-party sites and processes untrusted web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it as an unprivileged user or in a container, and review generated reports before sharing or opening them in permissive Markdown renderers.
+
+Risk: The browser-based social-source fetcher disables Chromium sandbox protections.
+
+Mitigation: Prefer a version that removes no-sandbox Chromium flags, or run browser scraping only inside an isolated environment.
+
+Risk: Dependency ranges are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yanll/skills/daily-ai-brief-skill)
+- [Publisher Profile](https://clawhub.ai/user/yanll)
+- [README](artifact/README.md)
+- [Data Source Configuration](artifact/src/data_sources.yaml)
+- [Hacker News API Source](https://hacker-news.firebaseio.com/v0/topstories.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown report files and JSON data files saved under reports/]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Timestamped reports include source, publication time, original link, and summary fields when available.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

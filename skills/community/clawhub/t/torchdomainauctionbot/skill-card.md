@@ -1,49 +1,65 @@
-## Description: <br>
-Torch Domain Auction Bot discovers domains, launches them as Torch Market tokens, monitors lending positions, and can auto-liquidate underwater loans through a Torch Vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Torch Domain Auction Bot helps agents operate a Solana domain lending keeper that discovers domain opportunities, launches domain-backed tokens, monitors loans, and submits vault-routed liquidations.
 
-## Publisher: <br>
-[mrsirg97-rgb](https://clawhub.ai/user/mrsirg97-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mrsirg97-rgb](https://clawhub.ai/user/mrsirg97-rgb)
 
-## Use Case: <br>
-External developers and DeFi operators use this skill to configure and run a Solana keeper for Torch Market domain tokens, lending health monitoring, vault-routed liquidation, and lease rotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The monitor can spend vault SOL on eligible liquidations and launch domain tokens on Solana mainnet. <br>
-Mitigation: Install only when this mainnet keeper behavior is intended; use a disposable linked wallet, keep the vault authority key out of the bot environment, fund conservatively, and set conservative thresholds. <br>
-Risk: The skill uses external network egress for Solana RPC and read-only market, identity, and domain data. <br>
-Mitigation: Review egress policy before running, use trusted RPC providers, and monitor logs for unexpected endpoint or transaction behavior. <br>
-Risk: Liquidation and domain lease rotation can have irreversible economic consequences. <br>
-Mitigation: Require explicit user initiation, test on a fork or controlled setup first, and verify vault linkage, risk threshold, and profit threshold before enabling continuous monitoring. <br>
+## Use Case:
 
+Developers and operators use this skill to run or inspect a Torch Market keeper for domain-backed lending workflows on Solana, including domain discovery, token launch, lending-market monitoring, risk scoring, and liquidation actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/mrsirg97-rgb/torchdomainauctionbot) <br>
-- [Torch Market Website](https://torch.market) <br>
-- [Torch Market Docs](https://torch-market-docs.vercel.app) <br>
-- [Kit Source Link from Metadata](https://github.com/mrsirg97-rgb/torch-domain-auction-bot) <br>
-- [Design Document](artifact/design.md) <br>
-- [Security Audit](artifact/audit.md) <br>
-- [Formal Verification Report](artifact/verification.md) <br>
-- [Whitepaper](artifact/whitepaper.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, TypeScript snippets, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user initiation; monitor actions depend on Solana RPC, vault linkage, and configured thresholds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The server security review flags unpinned npm execution as review-worthy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install an exact pinned package version or use a verified local audited build before running the skill.
+
+Risk: The server security review flags automatic fund-moving actions as review-worthy.
+
+Mitigation: Run the bot in a restricted container or account, omit SOLANA_PRIVATE_KEY unless a stable controller wallet is required, and fund the vault minimally.
+
+Risk: The server security review flags unvalidated metadata URL fetching as review-worthy.
+
+Mitigation: Restrict outbound network access so untrusted token metadata cannot reach localhost, private networks, or cloud metadata services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mrsirg97-rgb/skills/torchdomainauctionbot)
+- [ClawHub Listing](https://clawhub.ai/mrsirg97-rgb/torch-domain-auction-bot)
+- [Kit Source](https://github.com/mrsirg97-rgb/torch-domain-auction-bot)
+- [Torch Market](https://torch.market)
+- [Torch Market Documentation](https://torch-market-docs.vercel.app)
+- [Torch SDK npm Package](https://www.npmjs.com/package/torchsdk)
+- [Skill Source](artifact/SKILL.md)
+- [Security Audit](artifact/audit.md)
+- [Formal Verification Report](artifact/verification.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript or TypeScript code snippets, and JSON configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce transaction-building guidance and runtime CLI commands for Solana vault and keeper workflows.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

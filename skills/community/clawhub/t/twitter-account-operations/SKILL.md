@@ -1,13 +1,24 @@
 ---
 name: twitter-account-operations
-description: Operating doctrine for X/Twitter account automation — stable Chrome sessions, role separation (post / engage / stealth), human-like interaction, careful posting, reply discipline, recovery patterns. Use this for any scheduled X activity (cron, agent, recurring task) where account safety and long-term reputation matter more than raw output.
+description: Run scheduled X/Twitter work on an account you own — role separation, careful posting, reply limits, recovery. Use when an agent or cron posts or replies. Trigger on "twitter cron".
 ---
 
 # X / Twitter Account Operations
 
-This skill is the operating doctrine for every X/Twitter automation run on a brand, professional or personal account.
+This skill is the operating doctrine for X/Twitter automation runs on a brand, professional or personal account.
 
-**The goal is not to click fast. The goal is to operate Chrome like a careful human operator: stable browser, correct context, useful action, no spam, no reputational risk.**
+## Scope and preconditions (read first)
+
+| Rule | Detail |
+|---|---|
+| Accounts | Only accounts you own or are explicitly authorized to operate. Named in `<X_HANDLE>`. Never any other account |
+| Activation | Only for a named account with an approved schedule. Read-only runs (weekly planning, keyword monitor, metrics recap) never post, like, or follow |
+| Human review | Required before any post touching health, legal, finance, politics, a named person, a client result, or a correction of someone. Draft locally, send to the operator, publish only after approval |
+| Platform defenses | CAPTCHA, verification challenge, "unusual activity", lock, or rate-limit notice → stop the run, report, hand over to a human. Never work around it |
+| AI disclosure | If anyone asks whether the account or a reply is automated or AI-assisted, answer truthfully. Follow X's automation rules and label the account as automated where they require it |
+| Data | Reads public posts and your own notifications only. Logs keep post/reply text and URLs, not profiles of other users. Delete log entries older than your retention period (default suggestion: 90 days) |
+
+**The goal is not to click fast. The goal is to operate the browser deliberately: stable session, correct context, useful action, no spam, no reputational risk.**
 
 Drop-in for any niche (legal, medical, software, finance, creator, ecommerce). Replace the placeholders in section 0 with your own values.
 
@@ -24,8 +35,9 @@ Before running anything, fill these placeholders in your local copy or your agen
 | `<X_HANDLE>` | "@AcmeStudio" | — |
 | `<BROWSER_PROFILE>` | "x-live" | — |
 | `<BROWSER_PORT>` | "9222" | — |
-| `<NICHE_KEYWORDS>` | "retrait permis OR contester amende" | — |
+| `<NICHE_KEYWORDS>` | "bookkeeping OR invoicing" | — |
 | `<WORKSPACE_DIR>` | "~/.openclaw/workspace/twitter-<brand>" | — |
+| `<TIMEZONE>` | IANA name of your audience's timezone | — |
 
 All shell snippets below assume an [OpenClaw](https://openclaw.ai) browser CLI bound by CDP, but the doctrine works with any browser-automation stack (Playwright, Puppeteer, Chrome MCP). Swap the CLI calls for your own.
 
@@ -44,7 +56,7 @@ x:
   browser_port: <BROWSER_PORT>       # e.g. 9222
 
 discovery:
-  niche_keywords: <NICHE_KEYWORDS>   # e.g. "retrait permis OR contester amende"
+  niche_keywords: <NICHE_KEYWORDS>   # e.g. "bookkeeping OR invoicing"
 
 workspace:
   dir: <WORKSPACE_DIR>               # e.g. "~/.openclaw/workspace/twitter-acme"
@@ -54,7 +66,7 @@ alerts:
   webhook: <YOUR_WEBHOOK_URL>
 
 schedule:
-  timezone: Europe/Paris             # everything else is relative to this
+  timezone: <TIMEZONE>               # required, no default; every window below is relative to it
   windows:
     morning_post:   "09:00"
     noon_post:      "12:30"
@@ -62,18 +74,6 @@ schedule:
     reply_passes:   ["11:00", "15:00", "19:30"]
     metrics_recap:  "21:30"
 ```
-
-### Compatibility
-
-The skill is markdown — it works wherever an agent reads `SKILL.md`:
-
-| Stack | Skill install path |
-|---|---|
-| [Claude Code](https://claude.ai/code) | `~/.claude/skills/twitter-account-operations/` |
-| [OpenClaw](https://openclaw.ai) | `~/.openclaw/skills/twitter-account-operations/` |
-| ClawHub-published | one-click install via [clawhub.ai](https://clawhub.ai/alexbloch-ia/twitter-account-operations) |
-| Cursor / Copilot CLI | drop `SKILL.md` into your project's `.cursorrules` or `AGENTS.md` |
-| Any LLM agent reading markdown rules | concatenate `SKILL.md` into your system prompt |
 
 ---
 
@@ -97,7 +97,7 @@ openclaw browser --browser-profile <BROWSER_PROFILE> type <ref> "text"
 openclaw browser --browser-profile <BROWSER_PROFILE> press Enter
 ```
 
-The profiles `tw-post`, `tw-engage`, and `tw-stealth` below are **operating roles**, not necessarily separate physical profiles. With one physical profile, keep the same separation by workflow, tab discipline, and resting page.
+The profiles `tw-post`, `tw-engage`, and `tw-maintain` below are **operating roles**, not necessarily separate physical profiles. With one physical profile, keep the same separation by workflow, tab discipline, and resting page.
 
 ### Role: `tw-post`
 
@@ -134,7 +134,7 @@ Default page:
 
 Mental model: discover, qualify, decide. Do not post impulsively from discovery.
 
-### Role: `tw-stealth`
+### Role: `tw-maintain`
 
 Quiet maintenance bay. Use for low-noise maintenance.
 
@@ -152,14 +152,14 @@ Mental model: maintain quietly. No noisy engagement.
 
 - `tw-post` = act as the account
 - `tw-engage` = discover what to react to
-- `tw-stealth` = maintain quietly
+- `tw-maintain` = maintain quietly
 - stability matters more than speed
 
 Never collapse all workflows into chaotic browsing.
 
 ---
 
-## 2. Human-like browser behavior
+## 2. Deliberate browser behavior
 
 ### Open the right page first
 
@@ -517,7 +517,7 @@ Never:
 - force posts when the slot is weak
 - reply generically
 - use noisy engagement during maintenance
-- act like a script
+- fire actions without verifying the result
 - publish expert-grade advice on a specific personal case
 - promise a result
 - denigrate anyone
@@ -539,7 +539,7 @@ Leave the browser cleaner than you found it.
 
 `tw-post` = act as the account.
 `tw-engage` = discover what to react to.
-`tw-stealth` = maintain quietly.
+`tw-maintain` = maintain quietly.
 
 **Stability matters more than speed.**
 
@@ -555,15 +555,14 @@ Before enabling any cron, run through this checklist:
 - [ ] Loading `https://x.com/notifications` from your profile renders the feed (= session OK).
 - [ ] `<WORKSPACE_DIR>/memory/` directory exists with the memory files used by your crons (post log, reply log, ideas, learnings, recaps).
 - [ ] Alert channel (Telegram / Slack / Discord) webhook tested with a "hello" message.
-- [ ] At least 1 week of manual posting before letting automation drive the account — establishes a baseline tone and avoids day-1 algorithmic flags.
+- [ ] At least 1 week of manual posting before letting automation drive the account — establishes a baseline tone the drafts can match.
+- [ ] Human reviewer named for sensitive posts (see Scope), and the account labelled as automated where X requires it.
 
 A bash one-liner to init the memory files:
 
 ```bash
 mkdir -p "<WORKSPACE_DIR>/memory" && cd "$_" && touch x-recaps.md x-post-log.md x-reply-log.md x-ideas.md x-learnings.md x-metrics-log.md
 ```
-
-(The GitHub repo ships an `init-memory.sh` script that does the same interactively.)
 
 ---
 
@@ -614,10 +613,10 @@ Small precision: [the corrected fact, sourced if possible].
 A: No. OpenClaw browser CLI is the example stack — the doctrine works with Playwright, Puppeteer, Chrome MCP, or any CDP-capable tool. Swap the CLI calls.
 
 **Q: Can I use this skill for multiple X accounts?**
-A: Yes — clone the workspace dir per account. Each account gets its own `memory/` and its own browser profile. Use a different `<BROWSER_PORT>` per account so they don't collide.
+A: Yes, for accounts you own or are authorized to operate — clone the workspace dir per account. Each account gets its own `memory/` and its own browser profile. Use a different `<BROWSER_PORT>` per account so they don't collide.
 
 **Q: How does this interact with X API rate limits?**
-A: The skill is browser-driven, not API-driven — you're not consuming X API quota. You are, however, subject to X's behavioral throttling on the UI side, which is exactly why the doctrine caps actions per role and per minute.
+A: The skill is browser-driven, not API-driven — you're not consuming X API quota. You are, however, subject to X's behavioral throttling on the UI side, The caps in this doctrine are editorial limits, not a way around that throttling: if X throttles or challenges the session, stop and hand over to a human.
 
 **Q: Should I post threads or single tweets?**
 A: Default to single tweets. Run a thread once per week max (Tue or Fri) when you have actual depth worth a thread. Threads-for-the-sake-of-threads get under-engaged.

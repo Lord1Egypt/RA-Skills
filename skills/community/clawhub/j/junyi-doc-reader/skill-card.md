@@ -1,43 +1,62 @@
-## Description: <br>
-Archives and indexes large local or Feishu documents by converting them to structured Markdown, splitting them into searchable chunks, and optionally adding LLM-generated summaries for Obsidian workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Junyi Doc Reader converts large local documents and Feishu cloud documents into structured Markdown archives, chunk indexes, optional LLM summaries, and Obsidian-ready files.
 
-## Publisher: <br>
-[xuanranc](https://clawhub.ai/user/xuanranc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuanranc](https://clawhub.ai/user/xuanranc)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to process large Word, PDF, text, Markdown, or Feishu documents into Obsidian-ready archives, root indexes, chunk JSONL, and processing reports. It is intended for document archiving, retrieval, and optional insight generation when a document is too large for an agent context window. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional LLM enrichment can send document chunks to an external endpoint, and the security summary says the privacy controls do not fully match the code. <br>
-Mitigation: Use offline archive-only or archive+index modes unless enrichment is intentionally needed; before enabling it, explicitly set DOC_READER_API_URL, DOC_READER_MODEL, DOC_READER_API_KEY, and DOC_READER_ALLOW_EXTERNAL=true and review which chunks will be sent. <br>
-Risk: Feishu ingestion requires local Feishu app credentials and OAuth-style access to cloud document content. <br>
-Mitigation: Use a least-privilege Feishu account, enable Feishu mode only for documents the user is authorized to fetch, and keep credentials scoped to the configured account. <br>
-Risk: Archived document content and indexes are written to a local output vault that may contain sensitive material. <br>
-Mitigation: Choose an output directory appropriate for the document sensitivity and use dry-run behavior for daily-note splitting where available before writing managed blocks. <br>
+## Use Case:
 
+Developers, knowledge workers, and agent users use this skill to archive, index, split, and retrieve large local or Feishu documents as Markdown assets for Obsidian workflows. It is especially useful when source documents exceed the agent context window and need chunked processing.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/xuanranc/junyi-doc-reader) <br>
-- [Feishu Open API](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, JSON/JSONL metadata, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes outputs under the user-selected output directory, including source.md, ROOT_INDEX.md, chunks.jsonl, manifest.json, processing_report.md, and optional split files or enrichment indexes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release evidence) <br>
+Risk: Private document content may be exposed through optional insights mode or direct use of the enrichment script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep insights mode disabled unless external processing is intended; require explicit user consent and review chunks.jsonl before any LLM enrichment.
+
+Risk: Feishu mode reads local Feishu app credentials and calls Feishu APIs.
+
+Mitigation: Use only a configured account selected by the user, restrict network access to official Feishu API endpoints, and do not log or persist credentials.
+
+Risk: Archive output can mix or overwrite state when reusing an output directory.
+
+Mitigation: Use a fresh output directory for each document and review manifest.json, source_meta.json, and processing_report.md after each run.
+
+Risk: --dry-run may not provide a complete no-write preview for every pipeline path.
+
+Mitigation: Treat dry-run as limited to date-split preview behavior and avoid using it as the sole control for preventing writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuanranc/skills/junyi-doc-reader)
+- [Feishu Open API](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown files, JSON/JSONL manifests and indexes, and shell commands for running the document pipeline]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include source.md, converted.md, ROOT_INDEX.md, chunks.jsonl, manifest.json, processing_report.md, optional enriched_chunks.jsonl, optional indexes, and optional daily-note Markdown files.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

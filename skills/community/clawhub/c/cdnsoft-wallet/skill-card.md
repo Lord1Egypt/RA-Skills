@@ -1,43 +1,58 @@
-## Description: <br>
-EVM wallet tool for autonomous agents that creates, signs, and broadcasts ETH and ERC20 transfers on EVM-compatible chains, then appends every transaction to a JSON log file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EVM wallet tool for autonomous agents that creates, signs, and broadcasts ETH/ERC20 transfers, x402 payments, arbitrary contract calls, and swaps while recording transactions to a JSON log.
 
-## Publisher: <br>
-[cromatikap](https://clawhub.ai/user/cromatikap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cromatikap](https://clawhub.ai/user/cromatikap)
 
-## Use Case: <br>
-Developers and external agents use this skill to send ETH or ERC20 payments, make x402-gated API requests, perform supported Uniswap V3 swaps, and maintain a local JSON audit log of wallet activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign irreversible crypto transactions and x402 payments with broad wallet authority. <br>
-Mitigation: Use a dedicated low-balance wallet, require explicit approval for every transaction, and prefer allowlisted recipients, RPC endpoints, and API domains. <br>
-Risk: x402 requests or swaps could spend more than intended or execute with unfavorable terms. <br>
-Mitigation: Set x402 --max-amount, set swap --min-out, and use --pay-to when the payment address is known and stable. <br>
-Risk: Arbitrary contract calls through --calldata can execute opaque on-chain behavior. <br>
-Mitigation: Avoid --calldata unless a human can decode and verify the exact contract call before signing. <br>
+## Use Case:
 
+External developers and autonomous-agent operators use this skill when an agent needs to make EVM payments, paid x402 API requests, token transfers, swaps, or transaction-log entries with a local audit trail.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cromatikap/cdnsoft-wallet) <br>
-- [Agentwallet documentation](https://cdnsoft.github.io/agentwallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON transaction logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or updates a local agentwallet.json transaction log when the scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.4 (source: server release evidence) <br>
+Risk: The skill can give agents broad, irreversible wallet spending and contract-signing power.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-balance dedicated wallet, require human approval for every signing action, and pin and review dependencies before use.
+
+Risk: x402 requests can sign payments to unexpected amounts or recipients.
+
+Mitigation: Always set --max-amount and, when the provider address is stable, set --pay-to.
+
+Risk: Swaps and arbitrary calldata can execute unintended or poorly bounded on-chain actions.
+
+Mitigation: Set --min-out for swaps and avoid --calldata unless the destination contract and function are independently verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cromatikap/skills/cdnsoft-wallet)
+- [agentwallet documentation](https://cdnsoft.github.io/agentwallet)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, JSON files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or appends agentwallet.json transaction records; signing and broadcast behavior depends on wallet key, RPC endpoint, recipient, amount, and payment constraints.]
+
+## Skill Version(s):
+
+0.3.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

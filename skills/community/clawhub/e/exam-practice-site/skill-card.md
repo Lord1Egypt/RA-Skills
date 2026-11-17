@@ -1,40 +1,55 @@
-## Description: <br>
-Generates a data-driven static exam practice website with daily question selection, answer checking, mistake review, weekly reporting, and question-bank management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a customizable, data-driven single-page exam practice site with daily question selection, answer checking, a mistake book, weekly analysis, and question bank management.
 
-## Publisher: <br>
-[zzjmay123](https://clawhub.ai/user/zzjmay123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzjmay123](https://clawhub.ai/user/zzjmay123)
 
-## Use Case: <br>
-Educators, developers, and exam-prep teams use this skill to build a static single-page practice site for standardized exams. It guides them through creating a JSON question bank, customizing the HTML template, running the daily question update script, and deploying the resulting site. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Question-bank content is rendered from local JSON into the practice site and may contain inaccurate or inappropriate material if not reviewed. <br>
-Mitigation: Review and validate all question, answer, and explanation content before publishing or relying on the generated site. <br>
-Risk: The daily update script writes today.json and used_ids.json in the project data directory. <br>
-Mitigation: Run the script only in the intended project folder and review the generated data files before deployment. <br>
+## Use Case:
 
+Developers and educators use this skill to scaffold a static exam-practice site for standardized exams by creating a JSON question bank, customizing the HTML template, and configuring daily question rotation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zzjmay123/exam-practice-site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON, HTML, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions for a static website and local question-bank files; users supply and review exam content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted question-bank or saved wrong-answer content can create stored browser XSS in the shipped web template.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render question data with textContent or sanitized HTML, remove inline event handlers, validate JSON fields, and treat localStorage as untrusted before using imported, shared, or user-contributed question banks.
+
+Risk: The optional cron or launchd updater may run an unintended path or schedule if enabled without review.
+
+Mitigation: Only enable scheduled updates after confirming the updater path and schedule are exactly intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zzjmay123/skills/exam-practice-site)
+- [Skill README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON, HTML, Python, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a static single-page site scaffold and local JSON data files; generated question content must be supplied or verified by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

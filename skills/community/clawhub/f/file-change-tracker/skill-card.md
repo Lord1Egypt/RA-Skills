@@ -1,40 +1,58 @@
-## Description: <br>
-Mandatory before the first file-changing action in a new edit batch. Use before creating, editing, overwriting, patching, renaming, moving, deleting, or generating files. Run PRE once at batch start with the explicit target paths, then run POST when the batch is complete. Do not use for read-only inspection, search, grep, diff-only review, or explanation-only tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks file-changing edit batches by creating path-scoped local Git recovery points before and after changes, then reports recent records and rollback guidance.
 
-## Publisher: <br>
-[songxf1024](https://clawhub.ai/user/songxf1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songxf1024](https://clawhub.ai/user/songxf1024)
 
-## Use Case: <br>
-Developers and coding agents use this skill before file-changing work to create path-scoped local Git recovery points, record post-change results, and report rollback guidance for the protected paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill deliberately creates local Git recovery snapshots around file edits, which may preserve secrets, generated output, or other sensitive files if they are inside declared target paths and not ignored. <br>
-Mitigation: Use narrow target paths and review .gitignore and guarded-edit.ignore before broad directory changes or generated output snapshots. <br>
-Risk: The helper initializes or uses a local Git repository and records path-scoped PRE and POST commits, which can affect local repository history. <br>
-Mitigation: Install only when local Git recovery commits are desired, avoid broad target scopes, and review the reported PRE and POST snapshot details after each batch. <br>
+## Use Case:
 
+Developers and coding agents use this skill when a task will create, edit, move, delete, or generate files and the target paths are known. It creates local Git recovery points for those paths, records post-change results when needed, and provides reports plus rollback commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songxf1024/file-change-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and plain-text status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs local Git recovery snapshot identifiers, session status, protected paths, recent records, and rollback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill automatically mutates local Git repositories and may create durable local commits without a separate user confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the declared target paths before running the workflow, and use it only when local Git recovery commits are desired.
+
+Risk: Non-ignored generated files, binaries, or secret-containing files inside declared target paths may be captured in local snapshots.
+
+Mitigation: Keep target paths narrow and confirm .gitignore and guarded-edit.ignore exclude generated output and sensitive files before snapshotting.
+
+Risk: The helper may initialize Git, set repository-local Git identity, bypass commit hooks, and leave .git/.guarded-edit session records.
+
+Mitigation: Run it in repositories where local history changes are acceptable, and inspect session records and rollback guidance after use.
+
+## Reference(s):
+
+- [File Change Tracker on ClawHub](https://clawhub.ai/songxf1024/skills/file-change-tracker)
+- [README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git plus bash or sh according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

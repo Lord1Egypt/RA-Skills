@@ -1,39 +1,50 @@
-## Description: <br>
-深度分析项目的系统边界、核心概念、模块架构、关键算法、技术选型以及错误排查。当用户需要深入理解代码库或定位疑难问题时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project Deep Analyzer provides a structured methodology for auditing software projects across boundaries, concepts, architecture, algorithms, technical decisions, and debugging.
 
-## Publisher: <br>
-[aznikline](https://clawhub.ai/user/aznikline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aznikline](https://clawhub.ai/user/aznikline)
 
-## Use Case: <br>
-Developers and engineers use this skill to build a structured understanding of unfamiliar software projects, audit architecture and technical choices, and troubleshoot complex bugs through trace and root-cause analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect repository contents, logs, stack traces, and design details that include sensitive or production information. <br>
-Mitigation: Use it only with materials the user is comfortable sharing with the agent, and set clear scope limits before analysis. <br>
+## Use Case:
 
+Developers and engineers use this skill to build a structured understanding of unfamiliar codebases, review architecture and technical choices, and investigate complex bugs through guided analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aznikline/project-deep-analyzer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/aznikline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with structured analysis sections and optional code or configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no executable code or hidden data handling is identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact README points users to an unverified external ClawHub registration URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before following publishing instructions, verify the official ClawHub registration endpoint and avoid granting repository or account permissions through the linked domain unless its ownership and requested permissions are clear.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aznikline/skills/project-deep-analyzer)
+- [Publisher profile](https://clawhub.ai/user/aznikline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured analysis, checklists, and optional code or command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project-analysis guidance rather than executing tools itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

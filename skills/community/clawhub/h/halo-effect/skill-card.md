@@ -1,42 +1,53 @@
-## Description: <br>
-Helps agents recognize and correct halo-effect bias when evaluating people, companies, brands, vendors, investments, or business analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents recognize when a global positive or negative impression is biasing judgments of specific attributes in reviews, interviews, vendor evaluations, investments, and business analysis.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to structure evaluations where an overall impression may be distorting specific judgments. It supports performance reviews, hiring interviews, vendor reviews, investment assessment, CEO analysis, self-assessment, and critical reading of business claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is decision support and may be misapplied to hiring, performance, investment, or other high-impact decisions without independent review. <br>
-Mitigation: Use structured rubrics and independently verify facts, legal requirements, HR requirements, and domain-specific evidence before relying on outputs. <br>
-Risk: The skill can overcorrect by treating a legitimate overall satisfaction judgment as halo bias. <br>
-Mitigation: Apply it only when separate attributes are being judged and attribute-by-attribute analysis is appropriate for the decision. <br>
+## Use Case:
 
+Employees, external evaluators, and agents use this skill to structure reviews, hiring interviews, vendor assessments, investment analysis, self-assessments, and business-reading decisions so attribute-level evidence is separated from overall impressions.
 
-## Reference(s): <br>
-- [Sources - halo-effect](references/sources.md) <br>
-- [Thorndike 1920 + Nisbett-Wilson 1977 + Rosenzweig 2007 Business Application](examples/thorndike-1920-nisbett-wilson-1977-rosenzweig-2007-business-application.md) <br>
-- [Halo Effect ClawHub Skill Page](https://clawhub.ai/deciqai/skills/halo-effect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured evaluation fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive coaching mode may ask one question at a time before producing the final analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may over-rely on the skill for high-stakes hiring, investment, vendor, or business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a structured bias-checking aid and independently verify examples, supporting evidence, and final decisions.
+
+## Reference(s):
+
+- [Primary sources for halo-effect](references/sources.md)
+- [Thorndike 1920, Nisbett-Wilson 1977, and Rosenzweig 2007 business application](examples/thorndike-1920-nisbett-wilson-1977-rosenzweig-2007-business-application.md)
+- [The AI halo: Builder.ai and the AI-washing wave](examples/ai-halo-builderai-and-ai-washing-2023-2026.md)
+- [SEC press release 2024-36 on AI-washing enforcement](https://www.sec.gov/newsroom/press-releases/2024-36)
+- [ClawHub skill page](https://clawhub.ai/deciqai/skills/halo-effect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with structured rubric fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stepwise coaching with hard stops when the user lacks a concrete case.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

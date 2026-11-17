@@ -1,46 +1,59 @@
-## Description: <br>
-Guides an agent to operate Douyin web through the douyin-web CLI for session launch, login checks, navigation, search, playback control, interactions, screenshots, and recording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants an Agent to operate Douyin web through the douyin-web CLI, including launching or focusing Douyin, login checks, feed navigation, search, current video info, playback control, comments, likes, following the current author, favorites, sharing, danmaku, screenshots, or screen/audio recording.
 
-## Publisher: <br>
-[billwang233](https://clawhub.ai/user/billwang233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billwang233](https://clawhub.ai/user/billwang233)
 
-## Use Case: <br>
-Developers and external agent users use this skill to operate an authenticated Douyin web session through a dedicated CLI while preserving boundaries for login challenges, account-affecting actions, screenshots, and recording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an authenticated Douyin web session and perform public account actions. <br>
-Mitigation: Require explicit user confirmation before likes, follows, favorites, shares, submitted comments, or submitted danmaku. <br>
-Risk: Screenshots and recordings can capture private page content or system audio. <br>
-Mitigation: Treat generated screenshots and recordings as sensitive and review the target session before capture. <br>
-Risk: The skill depends on an external douyin-web-cli project for browser control. <br>
-Mitigation: Install and run it only when the external CLI project is trusted for the intended environment. <br>
-Risk: Login, captcha, verification, or account-risk challenges may appear during automation. <br>
-Mitigation: Pause automation and ask the user to complete verification manually before continuing. <br>
+## Use Case:
 
+Agents use this skill to control Douyin Web through the douyin-web CLI for browser launch, login checks, navigation, search, playback, screenshots, recording, and user-approved interactions. Developers and testers can also use it to validate or extend the CLI while preserving manual handling for login, captcha, and account-risk checks.
 
-## Reference(s): <br>
-- [Douyin Web Control release page](https://clawhub.ai/billwang233/douyin-web-control) <br>
-- [Douyin Web CLI project](https://github.com/billwang233/douyin-web-cli) <br>
-- [Feature Matrix](references/feature-matrix.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented command output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands may create screenshot or recording files and JSON status output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The launcher can execute an unreviewed local or installed CLI that controls an authenticated Douyin browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed CLI revision in an isolated virtual environment, set DOUYIN_WEB_CLI or DOUYIN_CLI_ROOT to a trusted absolute path, and avoid untrusted workspaces.
+
+Risk: The skill can trigger public or account-affecting actions such as likes, follows, favorites, shares, comments, danmaku, or recording.
+
+Mitigation: Require explicit user confirmation before account-affecting actions or recording, and use isolated --profile or --home values for separate sessions.
+
+Risk: Login, captcha, SMS verification, and account-risk checks require human handling.
+
+Mitigation: Pause automation when these checks appear, have the user complete them manually, and resume only after status or wait-login confirms the session state.
+
+## Reference(s):
+
+- [Feature Matrix](references/feature-matrix.md)
+- [douyin-web CLI project](https://github.com/billwang233/douyin-web-cli)
+- [ClawHub skill page](https://clawhub.ai/billwang233/skills/douyin-web-control)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs agents to inspect CLI JSON fields and screenshot paths, and to require user confirmation before account-affecting actions.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

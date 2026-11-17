@@ -1,38 +1,52 @@
-## Description: <br>
-Execute commands with superuser privileges. Use for system administration tasks requiring elevated permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an agent-facing wrapper for running authorized commands with superuser or alternate-user privileges.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and system administrators use this skill when an agent must inspect sudo permissions or run explicitly authorized system administration commands that require elevated privileges.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad root command execution can make system-wide changes or expose protected data when invoked by an agent.
+
+Mitigation: Constrain sudoers permissions to the smallest required command set and require explicit human approval before elevated commands run.
+
+Risk: Commands copied from web pages, documents, tool output, or other untrusted text may be executed with elevated privileges.
+
+Mitigation: Treat untrusted command text as input requiring human review, and avoid passing it directly to this skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and system administrators use this skill to request or describe command execution that requires sudo-level privileges, including running commands as root or another configured user. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables sudo-level command execution and the security summary says it lacks guardrails for powerful system changes. <br>
-Mitigation: Install only when elevated system administration is intended, require explicit approval for each privileged command, and use contained or non-production environments unless strong operational controls are in place. <br>
+**Output Format:** [Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Sudo Tool on ClawHub](https://clawhub.ai/dinghaibin/sudo-tool) <br>
+**Other Properties Related to Output:** [Requires host sudo authorization and sudoers configuration outside the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Privileged commands should require explicit approval and an appropriate sudoers configuration.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

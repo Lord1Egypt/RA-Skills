@@ -1,45 +1,63 @@
-## Description: <br>
-Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve with memory, proactive check-ins, security hardening, self-healing, and verification patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms AI agents from task-followers into proactive partners that anticipate needs and continuously improve through persistent memory, verification, and security-hardening patterns.
 
-## Publisher: <br>
-[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuyonghao-123](https://clawhub.ai/user/yuyonghao-123)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure an assistant with persistent memory, proactive check-ins, onboarding, self-healing workflows, security review habits, and approval gates for external actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory and profile logging can capture sensitive personal or workspace information. <br>
-Mitigation: Require explicit opt-in before enabling memory files, define what may be recorded, and regularly review or purge generated memory. <br>
-Risk: Proactive monitoring of mailboxes, calendars, files, apps, logs, tools, and accounts can exceed the user's intended scope. <br>
-Mitigation: Limit the skill to a documented allowlist of sources and accounts before use. <br>
-Risk: Crons and autonomous sub-agents can take action without sufficient oversight. <br>
-Mitigation: Disable autonomous schedules by default or require human approval before enabling them. <br>
+## Use Case:
 
+External developers and agent builders use this skill to add proactive behavior, persistent local memory, context-recovery routines, self-improvement loops, and safety checks to an AI agent workspace.
 
-## Reference(s): <br>
-- [Proactive Agent on ClawHub](https://clawhub.ai/yuyonghao-123/yuyonghao-proactive-agent) <br>
-- [Onboarding Flow Reference](references/onboarding-flow.md) <br>
-- [Security Patterns Reference](references/security-patterns.md) <br>
-- [Hal 9001 profile](https://x.com/halthelobster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes starter memory, onboarding, heartbeat, agent-rules, and security-audit artifacts for an agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and package.json; artifact skill text describes 3.1.0) <br>
+Risk: Persistent local memory and proactive checks can collect more user or workspace context than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Make memory opt-in, scope readable files and accounts, and define redaction and deletion rules before use.
+
+Risk: Autonomous cron or sub-agent work can act without clear current user intent.
+
+Mitigation: Disable autonomous cron and sub-agent work by default and require explicit approval before enabling it.
+
+Risk: Changes to AGENTS.md or other instruction files can alter future agent behavior.
+
+Mitigation: Require user approval before modifying instruction files and review those changes before deployment.
+
+Risk: The bundled security audit is a lightweight checklist rather than a complete security scanner.
+
+Mitigation: Use the audit as a starting point and add independent review or scanning for deployed environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuyonghao-123/skills/yuyonghao-proactive-agent)
+- [Security Patterns Reference](references/security-patterns.md)
+- [Onboarding Flow Reference](references/onboarding-flow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operating procedures and workspace file guidance for local agent use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

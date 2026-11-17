@@ -1,43 +1,58 @@
-## Description: <br>
-提供六爻排盘和传统易学占卜解读，生成本卦、变卦、世应、六亲、六神、空亡和吉凶判断。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供专业六爻预测功能，进行中国传统易学占卜，支持起卦、排盘、纳甲、寻世应、定六亲、配六神及吉凶判断。
 
-## Publisher: <br>
-[qichenx](https://clawhub.ai/user/qichenx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qichenx](https://clawhub.ai/user/qichenx)
 
-## Use Case: <br>
-External users and AI agents use this skill to generate Liuyao divination charts and formatted readings from a question and optional gender input. It is intended for traditional divination-style interpretation, not medical, legal, financial, or other professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may overrely on divination outputs for medical, legal, financial, or other professional decisions. <br>
-Mitigation: Present readings as traditional divination-style guidance only and direct users to qualified professionals for high-stakes decisions. <br>
-Risk: Private questions can include sensitive personal context. <br>
-Mitigation: Avoid sensitive details when possible and review or delete saved history if the runtime stores one. <br>
-Risk: Optional LLM mode may send questions to an external API. <br>
-Mitigation: Enable LLM-assisted interpretation only when external API processing is acceptable for the user and question. <br>
+## Use Case:
 
+Developers and external users can use this skill to generate Liuyao divination charts and receive structured Chinese-language explanations of hexagrams, changing lines, relationships, spirits, void branches, and fortune judgments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qichenx/liuyao-divination) <br>
-- [LiuYaoDivining GitHub repository](https://github.com/QiChenX/LiuYaoDivining) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with shell commands, Python examples, and formatted Chinese divination readings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts a question and optional gender input; the standalone script can also return structured Python data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may include unnecessary sensitive personal details in divination questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask only for the minimum question context and sex parameter needed for the reading, and avoid collecting identifying details.
+
+Risk: The optional project-integrated flow depends on trusted surrounding project modules and uses an unsafe import pattern.
+
+Mitigation: Prefer the standalone liuyao_standalone.py flow; use liuyao_skill.py only in a trusted project directory.
+
+Risk: Divination output may be mistaken for factual, medical, legal, or financial advice.
+
+Mitigation: Present results as traditional Liuyao interpretation and route high-stakes decisions to appropriate qualified advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qichenx/skills/liuyao-divination)
+- [GitHub repository listed in skill documentation](https://github.com/QiChenX/LiuYaoDivining)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language Markdown or structured text with optional JSON-like Python dictionaries from the standalone module.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local divination results from a user question and optional sex parameter; no network service is required by the recommended standalone flow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,62 @@
-## Description: <br>
-Searches a local document library such as an Obsidian vault, wiki, notes folder, or documentation set using BM25 query matching, LLM query expansion, and grep for line-level locations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches a local document library such as an Obsidian vault, wiki, or notes folder using a BM25 inverted index, LLM query expansion, and grep for line-level matches.
 
-## Publisher: <br>
-[FantasyRL](https://clawhub.ai/user/FantasyRL) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fantasyrl](https://clawhub.ai/user/fantasyrl)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to search local notes and documentation, narrow results to likely files, and report matching file paths with line numbers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and indexes a user-selected local document folder, so choosing a broad directory can include unrelated or sensitive files. <br>
-Mitigation: Point the skill at a specific notes or documentation directory and avoid sensitive unrelated folders. <br>
-Risk: The generated search index may contain content-derived metadata from local documents. <br>
-Mitigation: Keep the index local and avoid syncing or sharing it unintentionally. <br>
+## Use Case:
 
+Developers, external users, and knowledge workers use this skill to find relevant files and line-level matches in local Markdown, text, reStructuredText, and Org document collections without external search infrastructure.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/FantasyRL/doc-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON search-result arrays] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include path, relative path, score, title, and summary fields; final reporting can include grep line numbers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill recursively scans a user-selected local document directory and can index sensitive local content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted, intentional document directories and avoid folders containing secrets, private keys, or unrelated personal data.
+
+Risk: The skill writes a persistent local index that may reveal document paths, titles, summaries, and terms.
+
+Mitigation: Keep the index in a private location, avoid shared or attacker-writable directories, and delete or rebuild the index when the document set changes sensitivity.
+
+Risk: Unsafe command and path handling can make grep or script execution risky when paths, keywords, or index contents are untrusted.
+
+Mitigation: Quote shell arguments, validate returned paths stay under the selected docs directory, and review commands before execution.
+
+Risk: The artifact describes more than one default index location, which can confuse review and cleanup.
+
+Mitigation: Confirm the actual index path before use and document a single expected location in deployment guidance.
+
+## Reference(s):
+
+- [doc-search README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/fantasyrl/skills/doc-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown response with inline shell commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Top-K defaults to 5; default indexed extensions are md, txt, rst, and org.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

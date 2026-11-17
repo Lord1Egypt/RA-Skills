@@ -1,44 +1,60 @@
-## Description: <br>
-Pay for any x402-gated API or resource and receive payments from a non-custodial Merktop wallet on Base, with each payment pulled just in time from the user's wallet under a hard on-chain spend cap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pay for any x402-gated API or resource, and get paid, from a non-custodial Merktop wallet on Base under a hard on-chain spend cap.
 
-## Publisher: <br>
-[luiso2](https://clawhub.ai/user/luiso2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luiso2](https://clawhub.ai/user/luiso2)
 
-## Use Case: <br>
-Developers and agents use this skill when a task needs a paid x402-gated API, dataset, hosted paywall, or agent-to-agent service. It also guides users through exposing their own endpoint behind a Merktop hosted paywall so other agents can pay them in USDC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The buyer key can authorize spending from a configured Merktop budget, so careless use could spend real funds within that cap. <br>
-Mitigation: Set a low budget cap, pay only for resources needed by the current task, and monitor x-merktop-spent-cents after paid calls. <br>
-Risk: Putting the buyer key in a URL can expose it through shared terminal logs or proxy logs. <br>
-Mitigation: Prefer the x-merktop-key header form when possible so the buyer key is not embedded in request URLs. <br>
-Risk: Payment or settlement failures can make refund timing uncertain. <br>
-Mitigation: For 502 pay_failed responses, verify the wallet balance before assuming a refund landed. <br>
+## Use Case:
 
+External developers and agents use this skill when a task needs an x402-gated API, dataset, service, data feed, hosted paywall, or agent-to-agent resource. The skill guides the agent to pay through Merktop's hosted pay proxy and to report real-money spend from the response headers.
 
-## Reference(s): <br>
-- [Merktop Documentation](https://facilitator.merktop.com/docs) <br>
-- [Merktop](https://merktop.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/luiso2/skills/merktop-wallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and HTTP outcome guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and MERKTOP_BUYER_KEY; reports paid-call cost through x-merktop-spent-cents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The payment credential can be exposed if MERKTOP_BUYER_KEY is placed in URL paths or queryable logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the x-merktop-key header form, rotate any key already used in URL examples, and keep a small spend cap.
+
+Risk: Using the unpinned npx MCP integration can execute an unexpected package version.
+
+Mitigation: Avoid the unpinned npx integration unless a specific trusted version is pinned and verified.
+
+Risk: Paid calls spend real money and repeated loops can consume the user's budget.
+
+Mitigation: Use paid resources only when needed, stop on spend-cap or sanctioned-party errors, and report x-merktop-spent-cents to the user.
+
+## Reference(s):
+
+- [Merktop documentation](https://facilitator.merktop.com/docs)
+- [Merktop website](https://merktop.com)
+- [ClawHub skill page](https://clawhub.ai/luiso2/skills/merktop-wallet)
+- [ClawHub publisher profile](https://clawhub.ai/user/luiso2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and HTTP outcome guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and MERKTOP_BUYER_KEY; successful paid calls return the upstream response body and expose spend in x-merktop-spent-cents.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

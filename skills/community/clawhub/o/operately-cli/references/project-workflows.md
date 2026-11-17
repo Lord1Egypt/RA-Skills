@@ -217,7 +217,7 @@ operately projects create_contributors \
 operately projects list_contributors --project-id p1
 
 # Get contributor details
-operately projects get_contributor --contributor-id c1
+operately projects get_contributor --id c1
 
 # Update responsibility
 operately projects update_contributor \
@@ -228,6 +228,8 @@ operately projects update_contributor \
 operately projects delete_contributor --contrib-id c1
 ```
 
+Adding the same person twice is rejected. Use `update_contributor` to change responsibility or access on an existing contributor.
+
 ### Searching for Contributors
 
 ```bash
@@ -236,41 +238,35 @@ operately projects search_potential_contributors \
   --query "engineer"
 ```
 
-## Key Resources
+## Resources
 
-### Adding Resources
+Link important documents through the project's Docs & Files hub instead. See [Docs & Files](docs-and-files.md).
 
-```bash
-# Add design doc
-operately projects create_key_resource \
-  --project-id p1 \
-  --title "Technical Design" \
-  --link "https://docs.example.com/design" \
-  --resource-type "document"
+## Project Templates
 
-# Add Figma link
-operately projects create_key_resource \
-  --project-id p1 \
-  --title "Design Mockups" \
-  --link "https://figma.com/file/abc123" \
-  --resource-type "design"
-```
+Save repeatable project structures as templates and instantiate them in a space. See [Project Template Workflows](project-template-workflows.md).
 
-### Managing Resources
+## Project Docs & Files
+
+Every project has its own Docs & Files hub. Use `--project-id` to scope commands:
 
 ```bash
-# Get resource
-operately projects get_key_resource --id kr1
+# List project hub contents
+operately documents list_contents --project-id p1
 
-# Update resource
-operately projects update_key_resource \
-  --id kr1 \
-  --title "Updated Design Doc" \
-  --url "https://docs.example.com/design-v2"
+# Create a spec document
+operately documents create_document \
+  --project-id p1 \
+  --name "Technical Spec" \
+  --content "# Spec\n\nArchitecture overview..."
 
-# Delete resource
-operately projects delete_key_resource --id kr1
+# Upload a PDF
+operately documents create_file \
+  --project-id p1 \
+  --file ./spec.pdf
 ```
+
+See [Docs & Files Reference](docs-and-files.md) for full command coverage.
 
 ## Project Discussions
 
@@ -349,6 +345,14 @@ operately projects list_check_ins --project-id p1
 
 # Get specific check-in
 operately projects get_check_in --id ci1
+
+# Edit an unpublished check-in (notification recipients optional)
+operately projects update_check_in \
+  --check-in-id ci1 \
+  --status on_track \
+  --description "# Updated progress\n\nRevised after review." \
+  --send-notifications-to-everyone false \
+  --subscriber-ids u2
 ```
 
 ## Retrospectives
@@ -368,6 +372,13 @@ operately projects update_retrospective \
 operately projects get_retrospective --project-id p1
 ```
 
+### Acknowledging Retrospective
+
+```bash
+# Reviewer only — authors cannot acknowledge their own. From list_assignments, use origin.id.
+operately projects acknowledge_retrospective --project-id p1
+```
+
 ## Project Permissions
 
 ### Updating Access Levels
@@ -375,10 +386,9 @@ operately projects get_retrospective --project-id p1
 ```bash
 operately projects update_permissions \
   --project-id p1 \
-  --public false \
-  --anonymous-access-level 0 \
-  --company-access-level 10 \
-  --space-access-level 70
+  --access-levels.public 0 \
+  --access-levels.company 10 \
+  --access-levels.space 70
 ```
 
 Access levels:
@@ -405,13 +415,15 @@ operately projects move_to_space \
 ```bash
 operately projects pause \
   --project-id p1 \
-  --reason "Waiting for budget approval"
+  --message "Waiting for budget approval"
 ```
 
 ### Resume Project
 
 ```bash
-operately projects resume --project-id p1
+operately projects resume \
+  --project-id p1 \
+  --message "Budget approved — resuming work."
 ```
 
 ## Gotchas

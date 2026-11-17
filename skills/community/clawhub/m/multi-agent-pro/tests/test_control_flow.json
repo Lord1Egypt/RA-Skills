@@ -1,0 +1,62 @@
+{
+  "pipeline_name": "control_flow_test",
+  "version": "4.0",
+  "description": "控制流单元测试：condition + switch + for-each + while-loop 端到端验证",
+  "agents": [
+    {
+      "id": "start",
+      "name": "起始任务",
+      "role": "产出测试数据",
+      "type": "task",
+      "depends_on": []
+    },
+    {
+      "id": "sw",
+      "name": "多路分支",
+      "type": "switch",
+      "switch": "nodes.start.output_data.kind",
+      "cases": {
+        "a": ["path_a"],
+        "b": ["path_b"]
+      },
+      "default": ["path_default"],
+      "depends_on": ["start"]
+    },
+    {"id": "path_a", "name": "分支A", "type": "task", "depends_on": ["sw"]},
+    {"id": "path_b", "name": "分支B", "type": "task", "depends_on": ["sw"]},
+    {"id": "path_default", "name": "默认分支", "type": "task", "depends_on": ["sw"]},
+    {
+      "id": "fan",
+      "name": "动态展开",
+      "type": "for-each",
+      "items": "nodes.start.output_data.list",
+      "template": {"role": "处理单项", "timeout": 30, "retry": 1},
+      "join": ["merge"],
+      "depends_on": ["path_a", "path_b", "path_default"]
+    },
+    {"id": "merge", "name": "汇合", "type": "task", "depends_on": ["fan"]},
+    {"id": "gen", "name": "生成", "type": "task", "depends_on": ["merge"]},
+    {"id": "chk", "name": "检查", "role": "输出 {\"ok\": true/false}", "type": "task", "depends_on": ["gen"]},
+    {
+      "id": "guard",
+      "name": "循环守卫",
+      "type": "while-loop",
+      "condition": "nodes.chk.output_data.ok == False",
+      "loop_body": ["gen", "chk"],
+      "max_iterations": 2,
+      "depends_on": ["chk"]
+    },
+    {
+      "id": "decide",
+      "name": "发布判定",
+      "type": "condition",
+      "condition": "nodes.chk.output_data.score >= 60",
+      "on_true": ["pub"],
+      "on_false": ["arc"],
+      "depends_on": ["guard"]
+    },
+    {"id": "pub", "name": "发布", "type": "task", "depends_on": ["decide"]},
+    {"id": "arc", "name": "归档", "type": "task", "depends_on": ["decide"]}
+  ],
+  "state_store": {"type": "json", "path": "./test_control_flow_state.json"}
+}

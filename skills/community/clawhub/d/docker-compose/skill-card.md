@@ -1,40 +1,52 @@
-## Description: <br>
-Define multi-container applications with proper dependency handling, networking, and volume management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Define multi-container applications with proper dependency handling, networking, and volume management.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and platform engineers use this skill as a Docker Compose reference for service readiness, health checks, volume handling, resource limits, build context hygiene, override files, profiles, and environment variable precedence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Docker Compose commands can delete persistent application data when volume-removal flags are used. <br>
-Mitigation: Review destructive Compose commands before execution and confirm whether named or anonymous volumes should be preserved. <br>
-Risk: Compose files and build contexts can expose secrets or environment-specific settings through environment variables, host-mounted paths, or missing .dockerignore entries. <br>
-Mitigation: Inspect environment files, host mounts, override files, and build context contents before applying generated configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/docker-compose) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers and engineers use this skill for Docker Compose guidance covering service readiness, health checks, volume handling, resource limits, build context hygiene, override files, profiles, and environment variable precedence.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline YAML and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing Docker Compose recommendations and command snippets; review destructive commands and environment-specific configuration before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Docker Compose guidance may include destructive volume commands such as docker compose down -v, which can delete application data.
+
+Mitigation: Review volume-related commands before use and confirm backups or disposable data before removing volumes.
+
+Risk: Compose and Docker build guidance can accidentally include secrets or large local directories in image contexts or base compose files.
+
+Mitigation: Use a .dockerignore file, keep secrets out of images and base compose files, and review resolved configuration with docker compose config.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/docker-compose)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with YAML snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Docker Compose tooling through either docker-compose or docker.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

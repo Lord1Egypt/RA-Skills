@@ -1,40 +1,52 @@
-## Description: <br>
-A drafting assistant for AI security pre-sales engineers that helps create project initiation documents, technical solutions, POC plans and summaries, executive presentation outlines, Mermaid architecture topologies, tender response materials, competitor battlecards, and BOM or pricing estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists AI security pre-sales teams with project initiation, solution drafting, POC planning and summaries, executive presentation outlines, architecture diagrams, tender responses, competitor battlecards, and BOM or pricing estimates.
 
-## Publisher: <br>
-[ZhangZhixu](https://clawhub.ai/user/ZhangZhixu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangzhixu](https://clawhub.ai/user/zhangzhixu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Pre-sales engineers, sales teams, and enterprise AI security solution teams use this skill to draft structured customer-facing and internal commercial materials for AI security opportunities. It supports proposal development, POC design, procurement response, competitive positioning, topology drafting, and resource estimation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The POC summary workflow may overstate success when supplied results are partial, failed, or inconclusive.
+
+Mitigation: Review POC summaries against actual passed, failed, partial, and inconclusive test results, and revise or override conclusion language before customer or executive use.
+
+Risk: Generated procurement, POC, and sales materials may contain overly favorable claims if source inputs are incomplete or unsupported.
+
+Mitigation: Validate customer-facing outputs against product capabilities, test evidence, legal requirements, and commercial approval processes before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Pre-sales, sales engineering, and solution teams use this skill to draft AI security sales materials for customer discovery, solution design, POC planning, tender support, competitive positioning, pricing estimates, and executive reporting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The POC summary workflow directs the assistant to present test outcomes as successful, which may overstate results when the supplied evidence does not support that conclusion. <br>
-Mitigation: Require human review of POC summaries and revise conclusions to reflect actual pass, partial-pass, or fail results before sharing with customers or executives. <br>
-Risk: Generated pricing, tender language, security claims, and competitor statements may be inaccurate or unsuitable for external use without validation. <br>
-Mitigation: Verify all pricing, legal or procurement language, security assertions, and competitor comparisons against approved source material before publication or customer delivery. <br>
+**Output Format:** [Markdown documents, Markdown tables, Mermaid code blocks, and structured slide outlines]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ZhangZhixu/pre-sales-engineer-assistant) <br>
+**Other Properties Related to Output:** [Chinese ToB AI security pre-sales output by default; workflows request customer, technical, testing, procurement, competitor, or sizing inputs before producing final materials.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown documents, Markdown tables, and Mermaid code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include project initiation reports, custom solution drafts, POC test plans, presentation outlines, topology diagrams, tender response tables, battlecards, BOM estimates, and POC summaries.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

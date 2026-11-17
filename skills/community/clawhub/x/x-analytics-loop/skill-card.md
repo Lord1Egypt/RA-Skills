@@ -1,37 +1,56 @@
-## Description: <br>
-Review X performance and choose next experiments. Use when analyzing weekly post metrics, diagnosing winners and losers, or planning what to repeat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review X performance and choose next experiments for weekly post-metric analysis, winner and loser diagnosis, and repeat planning.
 
-## Publisher: <br>
-[mikaelaldy](https://clawhub.ai/user/mikaelaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mikaelaldy](https://clawhub.ai/user/mikaelaldy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External creators, marketers, and social media operators use this skill to review weekly X post metrics, diagnose performance patterns, and choose experiments and posting plans for the next week.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may paste private or sensitive account analytics into the conversation.
+
+Mitigation: Avoid sharing private or sensitive account data unless it is appropriate for the agent environment.
+
+Risk: Incomplete metrics can lead to overconfident performance conclusions.
+
+Mitigation: Mark missing data and assumptions, and treat qualitative diagnoses as hypotheses for the next experiment cycle.
+
+Risk: Optimization against public X algorithm signals can encourage low-quality or manipulative posting choices.
+
+Mitigation: Use algorithm signals as directional feedback and prioritize posts that earn useful positive actions while avoiding behavior that drives negative actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Creators, social media operators, and marketing teams use this skill weekly to review X post metrics, diagnose what worked, and choose repeatable experiments for the next posting cycle. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [Markdown]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikaelaldy/x-analytics-loop) <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Structured sections for top winners, hidden winners, losers, signal diagnosis, next week's experiments, and posting plan.]
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown summary with metric calculations, signal diagnosis, and a weekly posting plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Marks assumptions when source metrics are missing and focuses on recommendations for X content experiments.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.0 (source: release evidence)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

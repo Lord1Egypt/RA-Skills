@@ -1,42 +1,58 @@
-## Description: <br>
-Control Homey home automation hub via CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Homey smart-home devices, zones, and automation flows through a CLI with capability-allowlisted write operations.
 
-## Publisher: <br>
-[KrauseFx](https://clawhub.ai/user/KrauseFx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[krausefx](https://clawhub.ai/user/krausefx)
 
-## Use Case: <br>
-Developers and home automation operators use this skill to inspect and control Homey smart home devices, zones, and flows from an agent-accessible CLI workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The reviewed artifact references CLI files that were not included, so the runnable implementation was not fully reviewed. <br>
-Mitigation: Inspect the referenced run.sh and package files before installation or execution. <br>
-Risk: Homey credentials and OAuth tokens can grant control over real smart-home devices. <br>
-Mitigation: Protect .env and ~/.config/homey-cli files, avoid committing secrets, and limit credential access to trusted users. <br>
-Risk: Device changes and flow triggers can affect physical home automation state. <br>
-Mitigation: Require clear user confirmation before write operations or flow triggers, and prefer the documented allowlisted capabilities. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KrauseFx/homey-cli) <br>
-- [Homey Developer Tools](https://tools.developer.homey.app/tools/app) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect Homey hub state, control allowlisted smart-home device capabilities, manage zones, and trigger Homey flows from CLI commands.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read or modify real Homey device and flow state when executed with valid credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can affect real smart-home devices through on/off, dimming, color, temperature, and flow-trigger commands.
+
+Mitigation: Install only when an agent is intended to control Homey devices; review requested actions before execution and keep write capabilities allowlisted.
+
+Risk: Homey OAuth credentials and token files grant access to the user's Homey account and devices.
+
+Mitigation: Protect HOMEY_CLIENT_ID, HOMEY_CLIENT_SECRET, and files under ~/.config/homey-cli/; rotate credentials if exposed.
+
+Risk: Triggered flows may perform broader home automations than a single device command.
+
+Mitigation: Inspect flows before triggering them and restrict agent access to flows that are acceptable for automated operation.
+
+## Reference(s):
+
+- [Homey Developer App Tools](https://tools.developer.homey.app/tools/app)
+- [ClawHub skill page](https://clawhub.ai/krausefx/skills/homey-cli)
+- [ClawHub publisher profile](https://clawhub.ai/user/krausefx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Homey CLI commands that read device state or change allowlisted device capabilities when the user directs it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,57 @@
-## Description: <br>
-Standardized paper writing workflow integrating academic-writing, research-paper-writer, scientific-writing and other skills. Provides complete paper writing process from topic selection to final manuscript with 6 stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardized paper writing workflow integrating academic-writing, research-paper-writer, scientific-writing, and related skills to support a six-stage process from topic selection to final manuscript.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[earthwalking](https://clawhub.ai/user/earthwalking)
 
-## Use Case: <br>
-Researchers, students, and academic-writing assistants use this skill to coordinate a six-stage manuscript workflow from topic and hypothesis selection through literature review, IMRAD outlining, drafting, figure planning, polishing, and format checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated citations, claims, journal formatting, and manuscript content may be inaccurate or incomplete. <br>
-Mitigation: Review generated academic content, citations, claims, and target-journal formatting before relying on or submitting the manuscript. <br>
-Risk: The workflow coordinates companion skills whose behavior is outside this skill's direct evidence. <br>
-Mitigation: Review any companion skills before use, especially skills that perform literature search, paper parsing, citation management, figure generation, drafting, or polishing. <br>
-Risk: The helper script can write local Markdown output files. <br>
-Mitigation: Run it in an appropriate working directory and review generated files before using them as manuscript artifacts. <br>
+## Use Case:
 
+Developers, researchers, and academic writers use this skill to coordinate paper-writing work across topic selection, literature review, IMRAD outline design, draft writing, figure planning, polishing, and format checks for supported journal templates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/earthwalking/paper-writing-workflow) <br>
-- [Scientific Data](https://www.nature.com/sdata/) <br>
-- [Nature Communications](https://www.nature.com/ncomms/) <br>
-- [IEEE Author Center](https://ieeeauthorcenter.ieee.org/) <br>
-- [APA Style](https://apastyle.apa.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown and terminal guidance; the helper script can write a Markdown paper outline file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports template, topic, action, section, input, output, output directory, stage, and style options described by the artifact documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact metadata, and SKILL.md frontmatter) <br>
+Risk: The workflow can create local Markdown outline files in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from an intended project directory and review output paths before use, especially in sensitive workspaces.
+
+Risk: Generated paper outlines, drafts, citations, and format checks may be incomplete or inappropriate for a target venue.
+
+Mitigation: Review manuscript content, references, journal requirements, and formatting manually before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/earthwalking/skills/paper-writing-workflow)
+- [Scientific Data](https://www.nature.com/sdata/)
+- [Nature Communications](https://www.nature.com/ncomms/)
+- [IEEE Author Center](https://ieeeauthorcenter.ieee.org/)
+- [APA Style](https://apastyle.apa.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown documents and terminal guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Markdown outline files; review output paths before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, openclaw.skill.json, SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

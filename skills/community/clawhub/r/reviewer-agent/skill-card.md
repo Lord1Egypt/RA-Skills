@@ -1,41 +1,52 @@
-## Description: <br>
-Reviewer Agent provides an independent review perspective for projects, checking completion, quality, communication, efficiency, maintainability, and concrete improvement actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviewer Agent provides an independent review perspective for projects, checking quality, maintainability, and progress control.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and project maintainers use this skill to review project completion claims, code quality, communication, efficiency, and maintainability from an independent perspective.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Review reports are written locally and review conclusions may be sent through Feishu with broad activation and weak scoping.
+
+Mitigation: Require explicit approval before Feishu notification, define the content and recipient, and narrow triggers before use.
+
+Risk: The helper script accepts project names and uses them to inspect local skill directories.
+
+Mitigation: Validate project names and restrict review scope to intended workspace paths.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and project teams use this skill to perform independent post-completion reviews of OpenClaw skills or projects. It compares claimed work against evidence, scores review dimensions, and produces actionable recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw skill files and writes review reports, which may expose confidential project details in generated review output. <br>
-Mitigation: Run it only against intended projects and review generated reports before sharing or retaining them. <br>
-Risk: The skill may send a short conclusion through Feishu when notification behavior is configured. <br>
-Mitigation: Confirm the notification recipient and project confidentiality before enabling or using notification delivery. <br>
+**Output Format:** [Markdown review report with scored findings and actionable recommendations; helper script output is shell text.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nic-yuan/reviewer-agent) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+**Other Properties Related to Output:** [Writes review reports locally and may send review conclusions through Feishu.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review reports and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write review reports to /tmp/review-result-{project}.md and workspace review logs; may send a short Feishu notification when configured.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

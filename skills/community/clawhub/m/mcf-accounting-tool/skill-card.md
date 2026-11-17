@@ -1,43 +1,54 @@
-## Description: <br>
-Financial management with invoices, expenses, job costing, P&L reports, and QuickBooks sync for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Financial management with invoices, expenses, job costing, P&L reports, and QuickBooks sync - built for AI agents.
 
-## Publisher: <br>
-[cameron48](https://clawhub.ai/user/cameron48) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cameron48](https://clawhub.ai/user/cameron48)
 
-## Use Case: <br>
-External users and agents use this skill to manage accounting workflows such as invoice creation and sending, expense logging, job-cost tracking, P&L reporting, and QuickBooks synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable agents to create financial records, send invoices, mark invoices paid, and sync accounting data without clear approval limits. <br>
-Mitigation: Require human approval for mutating accounting actions and use sandbox or least-privilege accounting accounts until authorization scopes and audit controls are clear. <br>
-Risk: QuickBooks synchronization can propagate incorrect or unauthorized accounting changes into a traditional accounting system. <br>
-Mitigation: Approve sync operations explicitly, review sync logs, and limit connected QuickBooks permissions to the minimum needed. <br>
-Risk: Each endpoint call requires x402 USDC payment on Base L2, so automated use can incur costs. <br>
-Mitigation: Set spending limits and require confirmation for higher-cost or repeated paid calls. <br>
+## Use Case:
 
+External developers and agent operators use this skill to automate accounting workflows, including invoice creation and sending, expense logging, job-cost tracking, financial reporting, and QuickBooks sync.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cameron48/mcf-accounting-tool) <br>
-- [MCF Agentic gateway](https://gateway.mcfagentic.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration] <br>
-**Output Format:** [Markdown with accounting API endpoints, payment notes, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires x402 USDC payment on Base L2 for each call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can affect financial workflows, including sending invoices, changing payment status, creating expenses and job-cost entries, and syncing QuickBooks data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval and audit logging for high-impact accounting actions before enabling agent execution.
+
+Risk: The security summary states that the skill does not define approval or scoping safeguards for high-impact operations.
+
+Mitigation: Configure external controls that scope accessible accounts, limit allowed endpoints, and review financial changes before submission.
+
+## Reference(s):
+
+- [Accounting Tool on ClawHub](https://clawhub.ai/cameron48/skills/mcf-accounting-tool)
+- [Accounting API Gateway](https://gateway.mcfagentic.com)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with API endpoint details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [All listed endpoints require x402 payment in USDC on Base L2.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

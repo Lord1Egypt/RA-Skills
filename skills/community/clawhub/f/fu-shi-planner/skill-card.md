@@ -1,40 +1,54 @@
-## Description: <br>
-伏矢·路径魄 helps an agent decompose complex tasks, choose planning strategies, optimize execution paths, and track progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+伏矢·路径魄 helps agents decompose complex tasks, choose execution strategies, optimize paths, and track progress.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt8899789](https://clawhub.ai/user/lt8899789)
 
-## Use Case: <br>
-Developers, operators, and agent users can use this skill to turn broad or complex work into structured task breakdowns with phases, dependencies, key paths, risks, and resource needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may proactively plan or decompose broad project requests because of its broad activation wording. <br>
-Mitigation: Review generated plans before execution and confirm that the task scope, dependencies, and proposed next steps match the user's intent. <br>
-Risk: The artifact lists dependent skills that may not be installed or may have separate behavior and risks. <br>
-Mitigation: Review any separately installed dependent skills before relying on plans that assume their availability. <br>
+## Use Case:
 
+Developers, operators, and other agent users can use this skill to turn complex projects or multi-step requests into task breakdown reports with phases, key paths, risks, and resource needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lt8899789/fu-shi-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown task decomposition report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task overview, phases, key path, risks, and resource needs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Planning output may be incomplete or misleading for complex work if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task breakdowns, risk points, dependencies, and resource assumptions before using them to drive execution.
+
+Risk: The skill is Chinese-oriented and may not match users who expect another working language.
+
+Mitigation: Confirm the desired output language and planning style when using it in multilingual workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lt8899789/skills/fu-shi-planner)
+- [Publisher profile](https://clawhub.ai/user/lt8899789)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown task breakdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task overview, execution phases, key path, risk points, resource needs, complexity assessment, dependency mapping, and progress updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

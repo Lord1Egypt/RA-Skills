@@ -1,44 +1,59 @@
-## Description: <br>
-BBOT MCP服务器是一个用于管理和执行BBOT安全扫描的工具，提供模块管理、预设配置、实时监控等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BBOT MCP服务器是一个用于管理和执行BBOT安全扫描的工具，提供模块管理、预设配置、实时监控等功能。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Security teams, developers, and authorized operators use this skill to list BBOT modules and presets, start scans against permitted targets, monitor scan status, wait for completion, and retrieve scan results through an external XiaoBenYang MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate security scans and may send targets and scan results to an external service. <br>
-Mitigation: Use it only for assets the user owns or is authorized to test, and disclose the external service path before submitting sensitive targets. <br>
-Risk: The skill stores the XiaoBenYang API key in a local .env file. <br>
-Mitigation: Prefer short-lived or scoped API keys, protect the workspace, and rotate the key if the workspace is shared or exposed. <br>
-Risk: Server security evidence flags inconsistent BBOT, Gaokao, and XiaoBenYang documentation and configuration. <br>
-Mitigation: Review the publisher's documentation and resolved configuration before routine use, especially before relying on scan results. <br>
+## Use Case:
 
+Security engineers and authorized operators use this skill to list BBOT modules and presets, start BBOT scans, monitor active scans, and retrieve scan results through the XiaoBenYang external API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/bbot) <br>
-- [Publisher profile](https://clawhub.ai/user/cainingnk) <br>
-- [XiaoBenYang service](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown summaries of JSON API responses and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API key and authorized scan targets; tool calls return raw JSON, success status, and message fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill asks for and stores an external service API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted workspace, avoid shared .env files for sensitive keys, and rotate the key if it may have been exposed.
+
+Risk: Scan targets, scan options, and API keys are sent to the XiaoBenYang external API.
+
+Mitigation: Use the skill only with systems you are authorized to scan and only when you trust the configured service endpoint.
+
+Risk: The service endpoint and dependency versions may affect where data is sent and what code is installed.
+
+Mitigation: Review the configured base URL and dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/bbot)
+- [XiaoBenYang service](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries of API responses and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an XBY_APIKEY value before calling the external service.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

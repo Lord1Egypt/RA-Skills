@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataify SEO Audit"
+  short_description: "Audit crawlability, metadata, headings and structured data"
+  default_prompt: "Audit this public website and prioritize evidence-backed SEO fixes."

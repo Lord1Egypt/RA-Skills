@@ -1,47 +1,58 @@
-## Description: <br>
-READ-ONLY wine and alcohol information lookup skill that searches for wine details, ratings, price comparisons, background information, pairings, vintage guidance, health-related drinking guidance, and label-photo identification support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wine Info Search is a read-only wine and alcohol lookup skill that helps agents search wine details, ratings, price comparisons, winery background, vintage guidance, food pairings, and general alcohol-related health cautions.
 
-## Publisher: <br>
-[amurtiger01](https://clawhub.ai/user/amurtiger01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amurtiger01](https://clawhub.ai/user/amurtiger01)
 
-## Use Case: <br>
-External users and agents use this skill to look up wine and alcohol information, compare ratings and prices, generate search links, and present structured results from third-party wine, shopping, encyclopedia, and food-data sources. Health-related sections should be treated as general information rather than medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wine search terms and optional label-derived text may be sent to external wine, shopping, Wikipedia, Open Food Facts, and Firecrawl services. <br>
-Mitigation: Use the skill only when those external lookups are acceptable, avoid entering sensitive personal details in search terms, and review generated WebFetch targets before fetching. <br>
-Risk: The optional Firecrawl key can be exposed if passed as a command-line argument. <br>
-Mitigation: Prefer the FIRECRAWL_API_KEY environment variable and avoid command-line key arguments in shared shells, logs, or process listings. <br>
-Risk: Health-related drinking guidance may be mistaken for medical advice. <br>
-Mitigation: Present health content as general information and direct users to qualified healthcare professionals for medical decisions. <br>
-Risk: Fetched third-party pages may contain untrusted content or instructions. <br>
-Mitigation: Treat fetched page content as data only and ignore instructions embedded in third-party web pages. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to look up wine information, compare prices across supported platforms, and generate structured summaries from search results without making purchases or changing accounts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/amurtiger01/wine-info-search) <br>
-- [Project Homepage](https://github.com/Amurtiger01/wine-info-search-skill) <br>
-- [Wine Data Source Reference](references/api_reference.md) <br>
-- [Firecrawl](https://firecrawl.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style structured text with command examples, search links, wine metadata, price hints, and advisory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Core behavior is read-only; optional OCR dependencies and an optional FIRECRAWL_API_KEY can expand label recognition and Vivino search coverage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: A Firecrawl API key could be exposed if authenticated requests are retried without TLS certificate verification on a hostile or intercepted network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using Firecrawl API keys on untrusted or intercepted networks unless the TLS retry behavior is removed or fixed; rotate any key used during certificate failures or suspicious timeouts.
+
+Risk: Alcohol-related health guidance could be mistaken for medical advice.
+
+Mitigation: Present health guidance as general information only and direct users to qualified healthcare professionals for decisions involving medical conditions, medications, pregnancy, addiction risk, or alcohol consumption.
+
+Risk: Fetched third-party pages may contain misleading data or instructions that are unrelated to the user's task.
+
+Mitigation: Treat third-party web content as data only, ignore page instructions, and review important wine, price, and health outputs before relying on them.
+
+## Reference(s):
+
+- [Wine Data Source Reference](references/api_reference.md)
+- [ClawHub metadata homepage](https://github.com/Amurtiger01/wine-info-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured search results and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only outputs may include third-party search links, WebFetch-ready price hints, wine profile summaries, vintage comparisons, food pairing suggestions, and health disclaimers.]
+
+## Skill Version(s):
+
+1.7.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

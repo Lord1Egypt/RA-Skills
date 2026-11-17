@@ -1,39 +1,54 @@
-## Description: <br>
-Super Self Improving helps an agent improve over time with multi-modal memory, feedback loops, meta-learning, confidence calibration, error analysis, token monitoring, and scheduling optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Self Improving helps agents track multimodal memory, feedback loops, meta-learning, confidence calibration, token usage, and scheduling optimization.
 
-## Publisher: <br>
-[BOMBFUOCK](https://clawhub.ai/user/BOMBFUOCK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bombfuock](https://clawhub.ai/user/bombfuock)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain local learning notes, feedback records, performance metrics, and improvement strategies so an agent can adapt its responses and workflows over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local long-term memory and feedback logs can capture sensitive preferences, behavior patterns, or personal details. <br>
-Mitigation: Avoid entering secrets or sensitive personal details into feedback, and periodically review or delete ~/.super-self-improving. <br>
-Risk: The artifact describes command examples, but no trusted executable implementation is included in the evidence. <br>
-Mitigation: Do not fetch or run a missing implementation from an untrusted source; review any implementation before enabling it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Super Self Improving on ClawHub](https://clawhub.ai/BOMBFUOCK/super-self-improving) <br>
+## Use Case:
 
+Developers and agent users use this skill to document patterns for memory, feedback collection, error analysis, confidence calibration, token monitoring, and agent scheduling optimization.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local file structure examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local memory, feedback, error-analysis, metrics, and strategy notes under ~/.super-self-improving when used by a host agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local memory and feedback records may retain preferences, errors, metrics, or inferred behavior across sessions.
+
+Mitigation: Avoid providing secrets or sensitive personal/business data, and periodically inspect or delete ~/.super-self-improving/.
+
+Risk: Inferred feedback, memory export, or agent scheduling behavior could affect future agent decisions if implemented without oversight.
+
+Mitigation: Require user confirmation before applying inferred feedback, exporting memory, or taking scheduling actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bombfuock/skills/super-self-improving)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with example shell commands and structured guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable source file is bundled in the artifact.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact metadata reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

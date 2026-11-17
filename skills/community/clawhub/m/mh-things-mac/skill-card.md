@@ -1,42 +1,61 @@
-## Description: <br>
-Manage Things 3 via the `things` CLI on macOS, including adding or updating projects and todos through the URL scheme and reading, searching, or listing items from the local Things database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Things 3 via the `things` CLI on macOS by adding or updating projects and todos through the URL scheme and reading, searching, or listing data from the local Things database.
 
-## Publisher: <br>
-[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mohdalhashemi98-hue](https://clawhub.ai/user/mohdalhashemi98-hue)
 
-## Use Case: <br>
-External users on macOS use this skill to let an agent inspect Things 3 lists and search results, then prepare or execute task and project updates with the `things` CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can require broad local access to read the Things 3 database. <br>
-Mitigation: Grant Full Disk Access only to trusted calling apps and review requested local reads before relying on their results. <br>
-Risk: Update commands can change or complete Things 3 tasks and may require a Things auth token. <br>
-Mitigation: Use dry-run or manual confirmation before changes, and keep auth tokens in environment variables rather than prompts or command flags. <br>
-Risk: The documented install command uses an unpinned third-party CLI release. <br>
-Mitigation: Prefer a trusted pinned `things3-cli` version and verify the upstream project before installation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MH things-mac on ClawHub](https://clawhub.ai/mohdalhashemi98-hue/mh-things-mac) <br>
-- [things3-cli](https://github.com/ossianhempel/things3-cli) <br>
+## Use Case:
 
+External users and developers use this skill to help an agent manage Things 3 tasks on macOS, including reading inbox, today, upcoming, projects, areas, and tags, and adding or updating todos through the `things` CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local Things 3 read results, dry-run command previews, and commands that modify or complete tasks when the user has granted access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on an unpinned third-party `things3-cli` install target.
+
+Mitigation: Prefer a pinned and reviewed version of the dependency before deployment.
+
+Risk: The Things database can contain sensitive personal or business task data and may require broad Full Disk Access.
+
+Mitigation: Grant Full Disk Access only when necessary, limit it to the calling app, and remove the permission afterward.
+
+Risk: Write operations can modify Things 3 todos and projects.
+
+Mitigation: Use `--dry-run` for write previews when practical and review commands before execution.
+
+Risk: Authentication tokens used for update operations can be exposed through shell history or command logs.
+
+Mitigation: Avoid placing tokens directly in command history and prefer environment-based handling where appropriate.
+
+## Reference(s):
+
+- [things3-cli GitHub repository](https://github.com/ossianhempel/things3-cli)
+- [ClawHub skill page](https://clawhub.ai/mohdalhashemi98-hue/skills/mh-things-mac)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and Things CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose read and write operations against a local Things 3 database; write operations should use dry-run previews when practical.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

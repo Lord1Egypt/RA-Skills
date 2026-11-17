@@ -1,48 +1,65 @@
-## Description: <br>
-OpenClaw plugin and skill hybrid that adds long-term memory, anti-hallucination checks, self-evolution routines, workflow orchestration, maintenance jobs, auto-scan, and version checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory, anti-hallucination, self-evolution, and workflow orchestration for OpenClaw, delivered as a plugin plus skill hybrid with lifecycle hooks, maintenance scripts, and optional embedding configuration.
 
-## Publisher: <br>
-[grushheart](https://clawhub.ai/user/grushheart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crusheart-7](https://clawhub.ai/user/crusheart-7)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to extend an agent with persistent memory, retrieval, workflow routing, quality checks, scheduled maintenance, and workspace scans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runs local commands and Python engines from OpenClaw lifecycle hooks. <br>
-Mitigation: Review the package before installation and test in a separate OpenClaw workspace where local command execution is acceptable. <br>
-Risk: Modifies workspace state, memory, skills, and agent behavior rules. <br>
-Mitigation: Back up workspace data and avoid installing in environments that contain sensitive memory or configuration data. <br>
-Risk: Registers or replaces OpenClaw scheduled jobs. <br>
-Mitigation: Inspect existing cron tasks before installation and verify scheduled jobs after installation. <br>
-Risk: Contacts clawhub.ai for version checks. <br>
-Mitigation: Install only in environments where outbound version-check traffic to ClawHub is permitted. <br>
+## Use Case:
 
+OpenClaw users and developers use this release to add persistent memory, message-pipeline validation, workflow orchestration, self-evaluation, maintenance automation, and skill/memory scanning to an agent workspace.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/grushheart/crusheart-performance-autobrain) <br>
-- [README](artifact/README.md) <br>
-- [Architecture Reference](artifact/bundle/ARCHITECTURE.md) <br>
-- [Install Guide](artifact/bundle/INSTALL_GUIDE.md) <br>
-- [Plugin Manifest](artifact/openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text responses with command and configuration snippets when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local workspace state, schedule OpenClaw jobs, scan memory and skill directories, and check clawhub.ai for version updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.3.1 (source: package.json, server-resolved release evidence) <br>
+Risk: High-privilege workspace changes can affect agent behavior and local state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workspace changes before installation and install first in an isolated or backed-up OpenClaw workspace.
+
+Risk: The release can create persistent memory and index files and deploy behavior-rule content.
+
+Mitigation: Confirm the storage locations and behavior-rule changes are acceptable before enabling the plugin in a shared or production workspace.
+
+Risk: Local script execution and recurring cron jobs can continue operating after installation.
+
+Mitigation: Inspect the bundled scripts and back up existing OpenClaw cron jobs before installing.
+
+Risk: External version checks and optional embedding API configuration may introduce network and credential exposure considerations.
+
+Mitigation: Review network access expectations and provide embedding API credentials only through controlled environment configuration.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/crusheart-7/skills/crusheart-performance-autobrain)
+- [README](artifact/README.md)
+- [Architecture Reference](artifact/bundle/ARCHITECTURE.md)
+- [Install Guide](artifact/bundle/INSTALL_GUIDE.md)
+- [Plugin Manifest](artifact/openclaw.plugin.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenClaw >= 2026.5.0, Node.js >= 18, and Python >= 3.10; runtime behavior may create persistent workspace files and recurring cron tasks.]
+
+## Skill Version(s):
+
+6.3.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Battle-tested prompt patterns for production AI agents. Covers consumer-first design, deletion test, cascading validation, advisory mode tiers, proof-of-work enforcement, heartbeat protocol, contradiction detection, WAL protocol, rule escalation ladder, and cross-validation patterns. Use when designing agent behavior, enforcing reliability, or building agent operating manuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Prompt Patterns provides production-oriented prompt patterns for designing reliable AI agents and operating manuals, including validation, proof-of-work, approval tiers, heartbeat, contradiction detection, WAL, escalation, and cross-validation patterns.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers, agent operators, and teams designing production agent workflows use this skill to choose prompt and operating-manual patterns for reliability, validation, approvals, and safe autonomy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt examples include approval and autonomy patterns that could be misapplied to sensitive actions. <br>
-Mitigation: Keep explicit human approval gates for email, deletion, financial actions, access-control changes, public posting, and pushes. <br>
-Risk: Proof-of-work and logging examples can expose sensitive operational details if copied without filtering. <br>
-Mitigation: Do not log full secrets, tokens, session data, or unnecessary credential fingerprints when adapting the examples. <br>
+## Use Case:
 
+Developers and agent operators use this skill to design, harden, and review production AI agent behavior and operating manuals. It is useful when defining approval tiers, completion criteria, validation loops, proof requirements, and safeguards for agent workflows.
 
-## Reference(s): <br>
-- [Agent Prompt Patterns on ClawHub](https://clawhub.ai/samledger67-dotcom/agent-prompt-patterns) <br>
-- [samledger67-dotcom Publisher Profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with prompt patterns, templates, checklists, and inline code or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No automatic actions; the artifact is a markdown-only reference skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata) <br>
+Risk: Users may copy reference templates into an agent and treat them as automatic policy enforcement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt approval tiers before use, and add explicit human control or mechanical gates for sensitive actions.
+
+Risk: Sensitive examples involve email sending, deletion outside the workspace, financial transactions, access-control changes, and public posting.
+
+Mitigation: Keep these actions under explicit human approval and use the skill as guidance rather than an autonomous executor.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samledger67-dotcom/skills/agent-prompt-patterns)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with example operating-manual snippets, code blocks, shell commands, and configuration patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no automatic policy enforcement or external service calls.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

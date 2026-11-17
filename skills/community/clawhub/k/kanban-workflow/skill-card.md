@@ -1,47 +1,66 @@
-## Description: <br>
-Kanban Workflow is a TypeScript skill for a stage-based agentic co-worker that integrates PM platforms via CLI-auth adapters only (no direct HTTP auth). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kanban Workflow is a TypeScript skill for a stage-based agentic co-worker that integrates PM platforms through CLI-auth adapters and provides setup plus workflow verbs around backlog, blocked, in-progress, and in-review stages.
 
-## Publisher: <br>
-[simonvanlaak](https://clawhub.ai/user/simonvanlaak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[simonvanlaak](https://clawhub.ai/user/simonvanlaak)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to standardize project-management work across GitHub, Planka, Plane, and Linear using a shared stage lifecycle and CLI-authenticated adapters. It supports setup, work-item selection, status updates, comments, task creation, completion, polling, diffing, and progress-update automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Authenticated PM CLIs may post comments, create tasks, assign tasks, or move workflow stages in repositories and projects available to the user's session. <br>
-Mitigation: Install and run the skill only where the relevant PM CLIs are authenticated for the intended repositories or projects, and review write-oriented verbs before execution. <br>
-Risk: Recurring progress updates can create unwanted noise or expose sensitive work status in project comments. <br>
-Mitigation: Enable recurring progress updates only on appropriate projects and persist automation state so comments are posted at the intended interval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kanban Workflow README](README.md) <br>
-- [Adapter documentation](src/adapters/README.md) <br>
-- [Requirements](references/REQUIREMENTS.md) <br>
-- [Technical Plan](references/TECH_PLAN.md) <br>
-- [Architecture Review](references/ARCH_REVIEW.md) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
-- [Planka CLI](https://github.com/voydz/planka-cli) <br>
-- [Plane CLI](https://github.com/simonvanlaak/plane-cli) <br>
-- [Linear CLI](https://github.com/simonvanlaak/linear-cli) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to let an agent inspect, select, update, create, and move project-management work items through a shared Kanban lifecycle while relying on already-authenticated platform CLIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with inline commands and JSON configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update project-management work items through the user's authenticated platform CLIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.12 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workflow verbs can make live comments, stage changes, labels/state changes, or new tasks through the authenticated PM CLI.
+
+Mitigation: Install and run the skill only with a scoped CLI account whose project permissions match the intended agent authority.
+
+Risk: Automatic progress updates can repeatedly post visible comments while work remains in progress.
+
+Mitigation: Enable periodic updates only after confirming the cadence, visibility, persisted state, and stop conditions are acceptable for the team.
+
+Risk: The artifact describes early scaffolding and changing interfaces.
+
+Mitigation: Review the configured adapter behavior and run the included tests before using it in CI or production workflows.
+
+## Reference(s):
+
+- [Kanban Workflow README](README.md)
+- [Kanban Workflow adapters](src/adapters/README.md)
+- [Kanban Workflow requirements](references/REQUIREMENTS.md)
+- [Kanban Workflow technical plan](references/TECH_PLAN.md)
+- [Kanban Workflow architecture review](references/ARCH_REVIEW.md)
+- [GitHub CLI](https://cli.github.com/)
+- [planka-cli](https://github.com/voydz/planka-cli)
+- [plane-cli](https://github.com/simonvanlaak/plane-cli)
+- [linear-cli](https://github.com/simonvanlaak/linear-cli)
+- [Planka](https://github.com/plankanban/planka)
+- [Plane](https://github.com/makeplane/plane)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON CLI output, TypeScript code/configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflow actions may post comments, change stages, or create tasks in the configured project-management system.]
+
+## Skill Version(s):
+
+0.1.12 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Sends selected notes, tags, and memo text to flomo using a configured Flomo webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends text notes and tagged memos to flomo through a configured webhook, with setup guidance for storing a flomo PRO webhook token.
 
-## Publisher: <br>
-[qiantao1001](https://clawhub.ai/user/qiantao1001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qiantao1001](https://clawhub.ai/user/qiantao1001)
 
-## Use Case: <br>
-External users and developers use this skill to capture notes, links, clipboard text, or piped content into a flomo inbox from an agent workflow or shell, with optional hashtags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Flomo webhook token and sends selected note content to Flomo. <br>
-Mitigation: Use the default local .env storage with restricted permissions, avoid shell startup files when possible, and only send content intended for Flomo. <br>
-Risk: Older skill text mentions URL-scheme behavior that does not match the current webhook-only send script. <br>
-Mitigation: Treat scripts/flomo_send.sh as the source of runtime behavior and configure FLOMO_WEBHOOK_URL or FLOMO_WEBHOOK_TOKEN before use. <br>
+## Use Case:
 
+Developers and agent users use this skill to capture thoughts, links, clipboard text, and tagged notes into a flomo inbox from shell commands or agent workflows.
 
-## Reference(s): <br>
-- [Flomo API Reference](references/api.md) <br>
-- [Flomo incoming webhook settings](https://flomoapp.com/mine?source=incoming_webhook) <br>
-- [Flomo official API help](https://help.flomoapp.com/advance/api.html) <br>
-- [ClawHub skill page](https://clawhub.ai/qiantao1001/flomo-via-app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and note text sent through webhook requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a flomo PRO webhook token; note content is limited to 5000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: The skill sends note content through a flomo webhook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when sending the note content to flomo is acceptable, and inspect the destination webhook before saving or using it.
+
+Risk: Webhook tokens may be persisted in local files or shell profile configuration.
+
+Mitigation: Treat the token as a secret, prefer the permission-restricted local .env configuration, and rotate the token if it is exposed.
+
+Risk: The package documentation and scripts are inconsistent about URL Scheme support and webhook-only behavior.
+
+Mitigation: Rely on the current script behavior and review the package before installation until the documentation is aligned with the implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qiantao1001/skills/flomo-via-app)
+- [flomo webhook settings](https://flomoapp.com/mine?source=incoming_webhook)
+- [flomo API reference](https://help.flomoapp.com/advance/api.html)
+- [Bundled API reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flomo PRO webhook configuration; sends note content to flomo servers over HTTPS.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

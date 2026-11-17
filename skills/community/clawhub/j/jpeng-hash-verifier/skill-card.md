@@ -1,41 +1,54 @@
-## Description: <br>
-Verify data integrity with hashes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify data integrity with hashes.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and security operators use this skill to verify file or data integrity with hashes and automate checksum validation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HASH_API_KEY could be exposed if hardcoded, echoed, or included in logs. <br>
-Mitigation: Store HASH_API_KEY in a protected environment or secret manager and avoid printing it in command output or logs. <br>
-Risk: The skill may be invoked outside explicit file-integrity or digest-checking tasks. <br>
-Mitigation: Use it only for requested hash or checksum verification workflows. <br>
+## Use Case:
 
+Developers and security operators use this skill to validate data integrity, automate hash checks, and report verification results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-hash-verifier) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON result expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses HASH_API_KEY configuration and returns verification results as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill asks for HASH_API_KEY without explaining its purpose or handling requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the key is required, keep it out of committed files and logs, and provide secret-handling guidance before use.
+
+Risk: The documented command references scripts/hash_verifier.py, but no executable script is included in the artifact.
+
+Mitigation: Verify the required verifier implementation is supplied and reviewed before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-hash-verifier)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced verifier command is expected to return JSON verification results.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

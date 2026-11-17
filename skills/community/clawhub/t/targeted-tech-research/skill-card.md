@@ -1,43 +1,65 @@
-## Description: <br>
-Performs in-depth, vendor-specific technical research on products or solutions, producing structured hardware, software, co-design, and benchmarking analysis with clear fact, derivation, and gap labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs deep, vendor-specific technical research on products or solutions and produces structured reports that separate public facts from technical derivations across hardware, software, co-design, and benchmarking.
 
-## Publisher: <br>
-[outdog-hwh](https://clawhub.ai/user/outdog-hwh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[outdog-hwh](https://clawhub.ai/user/outdog-hwh)
 
-## Use Case: <br>
-Developers, engineers, and technical analysts use this skill to research a specific vendor, product or solution model, and application scenario, then produce a structured technical breakdown grounded in public sources and marked derivations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs public web research and may trigger dynamic browsing for selected technical or patent sites. <br>
-Mitigation: Use it only where public-source research is appropriate, and review gathered sources and generated claims before relying on the report. <br>
-Risk: Local evidence, execution metadata, or audit artifacts may retain sensitive information if users provide confidential PDFs, patents, or business documents. <br>
-Mitigation: Avoid providing confidential material unless retention is acceptable, and review or delete generated evidence and metadata after use. <br>
+## Use Case:
 
+Developers, technical researchers, and solution evaluators use this skill to investigate a specific vendor, product model, and application scenario, then produce a structured technical research report with source labels, derivation labels, information gaps, and benchmarking notes.
 
-## Reference(s): <br>
-- [Step Prompts](references/prompts.md) <br>
-- [Execution Rules and Checklists](references/rules.md) <br>
-- [Dynamic Sites Whitelist](references/dynamic_sites_whitelist.json) <br>
-- [Technical Research Report Template](assets/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with source annotations, tables, optional appendices, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs distinguish public facts, derived content, and missing information; optional audit artifacts and execution metadata may be retained locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can delegate broad web and browser scraping for vendor research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target, source list, and scraping scope before execution, and avoid pages that require login, paywalls, CAPTCHAs, or private access.
+
+Risk: Quick-start mode can proceed with default research settings after minimal input.
+
+Mitigation: Use the onboarding questionnaire for sensitive or high-impact research so the vendor, model, scenario, priority, and granularity are explicit.
+
+Risk: Research outputs can mix public facts, derivations, and information gaps.
+
+Mitigation: Require reviewers to check source labels, derivation labels, and information-gap tables before using the report for decisions.
+
+Risk: The workflow may store local evidence and run metadata.
+
+Mitigation: Do not provide confidential PDFs or proprietary source material unless retention, access, and deletion controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/outdog-hwh/skills/targeted-tech-research)
+- [Prompt templates](artifact/references/prompts.md)
+- [Execution rules](artifact/references/rules.md)
+- [Dynamic site whitelist](artifact/references/dynamic_sites_whitelist.json)
+- [Report template](artifact/assets/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown technical research reports with source labels, derivation labels, tables, appendices, and occasional shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include information-gap tables, credibility scorecards, reproducible research recipes, and local run metadata when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Code Mentor is an interactive programming tutor that teaches concepts, reviews code, guides debugging, supports algorithm practice, and helps learners plan projects in Python and JavaScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Mentor is an AI programming tutor that supports interactive lessons, code review, debugging guidance, algorithm practice, project mentoring, and design pattern exploration for Python and JavaScript learners.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers, students, and engineering learners use this skill for guided programming lessons, code review, debugging practice, algorithm and data-structure exercises, interview preparation, and project architecture guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local learning progress notes may contain sensitive code, credentials, or private project details if shared during tutoring. <br>
-Mitigation: Avoid sharing secrets or sensitive project details, and ask the agent to skip, show, or delete saved progress when needed. <br>
+## Use Case:
 
+Developers, students, and other learners use this skill for programming instruction, code review, debugging practice, algorithm and data structure exercises, interview preparation, and project architecture guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alvisdunlop/alv-code-mentor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown conversational tutoring with code blocks, examples, review feedback, and optional shell commands or configuration steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save local learning progress notes during tutoring sessions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter lists 1.0.1) <br>
+Risk: The skill may save tutoring sessions, goals, weak areas, solved problems, or notes locally without clear opt-in, retention, or deletion controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and require progress logging to be opt-in, easy to inspect, editable, and deletable.
+
+Risk: Programming advice, code review comments, debugging guidance, or generated examples may be incomplete or incorrect for a learner's specific project.
+
+Mitigation: Have users review, test, and understand code changes before applying them to coursework, interviews, or production projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alv-code-mentor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation with inline code blocks and optional shell commands or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts explanations and exercises to learner level, goals, and preferred learning style; may propose local progress logging.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

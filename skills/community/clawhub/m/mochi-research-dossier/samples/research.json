@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "id": "demo-source",
+      "url": "https://example.com/announcement",
+      "title": "Fictional announcement",
+      "text": "The fictional demo release has three tools.",
+      "accessedAt": "2026-10-26T00:00:00Z"
+    }
+  ],
+  "claims": [
+    {
+      "id": "demo-claim",
+      "claim": "The demo release has three tools.",
+      "sources": [
+        "demo-source"
+      ],
+      "status": "supported",
+      "quote": "three tools"
+    }
+  ]
+}

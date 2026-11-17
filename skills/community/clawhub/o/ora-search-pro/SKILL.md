@@ -12,6 +12,14 @@ homepage: https://www.topeasychina.com
 
 输入企业名称、产品关键词或国家，找到相关企业的网站。
 
+## ⚠️ 数据外传声明
+
+**使用本技能即表示您知悉并同意以下事项：**
+- 您的搜索关键词（产品名、公司名、国家）和 API 凭证将通过 HTTPS 发送至 `h.smtso.com` 进行查询
+- API 密钥从环境变量 `ORA_API_KEY` 或技能目录下的 `OraAgent.key` 文件中读取
+- 本技能不存储、不缓存您的搜索数据，所有查询直接透传至上述接口
+- 如果您对数据外传有顾虑，请勿在搜索中输入敏感或涉密信息
+
 ## 触发条件
 
 - 用户想通过产品关键词找企业
@@ -24,7 +32,6 @@ homepage: https://www.topeasychina.com
 - 接口地址：`https://h.smtso.com/skill/domaininfo/queryYellowPage`
 - 请求方式：POST
 - Content-Type：`application/x-www-form-urlencoded`
-- 必须使用 Node.js 发起请求
 
 ## 入参
 
@@ -73,22 +80,35 @@ homepage: https://www.topeasychina.com
 
 ## 🔴 调用方式（强制遵守）
 
-通过 `exec` 直接执行 `node -e "..."` 命令，把真实的参数替换进去：
+通过 `exec` 执行技能同目录下的 `ora-client.js` 脚本，传入参数即可：
 
 ```powershell
-node -e "const https = require('https'); const fs = require('fs'); const path = require('path'); const keyFile = path.join(process.env.USERPROFILE, '.openclaw', 'workspace', 'skills', 'OraAgent.key'); const apiKey = fs.existsSync(keyFile) ? fs.readFileSync(keyFile, 'utf8').trim() : ''; const querystring = require('querystring'); const postData = querystring.stringify({ CompanyName:'', ProductName:'furniture', CountryTag:'us', page:1, limit:20 }); const req = https.request({ hostname:'h.smtso.com', path:'/skill/domaininfo/queryYellowPage', method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded', 'Content-Length':Buffer.byteLength(postData), 'X-API-Key':apiKey } }, res => { let body=''; res.on('data',c=>body+=c); res.on('end',()=>{ console.log(body); }); }); req.write(postData); req.end();"
+node ora-client.js --product=furniture --country=us --page=1 --limit=20
 ```
 
-使用时替换 `CompanyName`, `ProductName`, `CountryTag`, `page`, `limit` 即可。
-- **单参数查询**：只传 `ProductName`（产品搜索），或只传 `CompanyName`（企业名搜索）
-- **组合查询**：同时传 `ProductName` + `CountryTag`（某国某产品），或 `CompanyName` + `CountryTag`
-- **分页**：`page` 从 1 开始，`limit` 建议 20，最多 50
+**参数说明：**
+
+| 参数 | 对应接口字段 | 示例 |
+|------|-------------|------|
+| `--product=` | ProductName | `--product=furniture` |
+| `--company=` | CompanyName | `--company="ABC Trade"` |
+| `--country=` | CountryTag | `--country=us` |
+| `--page=` | page | `--page=1` |
+| `--limit=` | limit | `--limit=20` |
+
+- **单参数查询**：只传 `--product=`（产品搜索），或只传 `--company=`（企业名搜索）
+- **组合查询**：同时传 `--product=` + `--country=`（某国某产品），或 `--company=` + `--country=`
+- **分页**：`--page=` 从 1 开始，`--limit=` 建议 20，最多 50
+
+**API 密钥**从以下来源依次读取：
+1. 环境变量 `ORA_API_KEY`
+2. 技能目录下的 `OraAgent.key` 文件
 
 ## 搜索无结果时
 - 自动换同义词重试
 - 尝试更短/更通用的关键词
 - 尝试去掉国家限制扩大范围
-- 尝试只用 ProductName 或只用 CountryTag
+- 尝试只用 `--product=` 或只用 `--country=`
 - 调整分页参数重试（page=1, limit=20）
 - 重试后仍无结果，如实告知用户
 

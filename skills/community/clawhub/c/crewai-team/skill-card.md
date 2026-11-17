@@ -1,46 +1,61 @@
-## Description: <br>
-Uses a CrewAI multi-agent team to analyze product ideas and generate product requirements documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses a CrewAI multi-agent team to analyze product requirements and generate PRD documents.
 
-## Publisher: <br>
-[namechenxinyu](https://clawhub.ai/user/namechenxinyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[namechenxinyu](https://clawhub.ai/user/namechenxinyu)
 
-## Use Case: <br>
-Product managers, founders, and developers use this skill to turn a product idea into a structured PRD with market research, product design, architecture, development, and QA sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runnable scripts include a hard-coded external LLM API key and forced provider endpoint. <br>
-Mitigation: Remove embedded credentials, rotate the key if it was real, and configure provider credentials through environment variables before running. <br>
-Risk: Product ideas and generated PRD content may be sent to the configured external LLM service. <br>
-Mitigation: Avoid submitting confidential product details unless the selected provider and account are approved for that data. <br>
-Risk: Dependency installation and generated logs or PRD files may expose operational details. <br>
-Mitigation: Install dependencies in an isolated environment and review generated files before sharing them externally. <br>
+## Use Case:
 
+Product managers, developers, and teams use this skill to turn a product idea into a PRD with market research, product design, technical architecture, implementation guidance, and QA planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/namechenxinyu/crewai-team) <br>
-- [Publisher Profile](https://clawhub.ai/user/namechenxinyu) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Usage Guide](artifact/USAGE.md) <br>
-- [DashScope Console](https://dashscope.console.aliyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown PRD documents and terminal text, with optional Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save PRD and supporting analysis files; requires Python 3.10 and external LLM credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Executable code includes a bundled API credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the credential, rotate it before use, and require users to provide their own secret through environment configuration.
+
+Risk: Install guidance includes curl-to-shell behavior and dependency installation that may not be pinned or locked.
+
+Mitigation: Use reviewed installation steps with pinned or locked dependencies and avoid piping remote install scripts directly to a shell.
+
+Risk: Product ideas and generated analysis may be sent to DashScope-compatible model calls or web search.
+
+Mitigation: Review inputs for confidential information and confirm external data handling is acceptable before running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/namechenxinyu/skills/crewai-team)
+- [DashScope Console](https://dashscope.console.aliyun.com/)
+- [README.md](artifact/README.md)
+- [SETUP.md](artifact/SETUP.md)
+- [USAGE.md](artifact/USAGE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown PRD content with supporting command-line and Python usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated PRD output to local Markdown files depending on the selected runner.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

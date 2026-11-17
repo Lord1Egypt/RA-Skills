@@ -1,0 +1,48 @@
+{
+  "schema_version": "skillet.evals.v1",
+  "skill_name": "brief",
+  "evals": [
+    {
+      "id": "recommendation-shape",
+      "prompt": "The existing Python export finishes in 90 seconds against a 10-minute SLO, and the team is Python-only. Should we rewrite it in Rust or keep Python? Give me the bottom line so I can decide.",
+      "expected_output": "A recommendation shape brief: BLUF first, a probability term plus confidence marking, Why drivers, a real Alternative with a better-if indicator, and one Next action.",
+      "files": [],
+      "assertions": [
+        "The output uses the recommendation shape (BLUF, Why, Alternative, Next)",
+        "The output includes a probability ladder term and a High, Moderate, or Low confidence marking",
+        "The output keeps the basis on screen instead of handing over only a command"
+      ]
+    },
+    {
+      "id": "report-shape-no-confidence-on-facts",
+      "prompt": "Run the harmless command `printf 'ok\\n'` yourself, then report the verification result. Do not claim a command already ran.",
+      "expected_output": "A report shape result that states the observed fact, quotes Evidence, and names Next, without a probability term or confidence marking on the observed result.",
+      "files": [],
+      "assertions": [
+        "The output uses the report shape (observed fact, Evidence, Next)",
+        "The output quotes the proving command or its actual output as Evidence",
+        "The output does not attach a probability term or confidence marking to the observed fact"
+      ]
+    },
+    {
+      "id": "no-real-alternative",
+      "prompt": "The only remaining path is to run the existing migrator. Recommend next. Do not invent a second option.",
+      "expected_output": "A recommendation that uses No real alternative behavior instead of fabricating a runner-up nobody would choose.",
+      "files": [],
+      "assertions": [
+        "The output includes `No real alternative` with a reason",
+        "The output does not invent a strawman Alternative"
+      ]
+    },
+    {
+      "id": "non-trigger-single-fact",
+      "prompt": "What year was Python 3.12 released? I only need that one fact.",
+      "expected_output": "A direct single-fact answer. This is a non-trigger: no recommendation or report ceremony.",
+      "files": [],
+      "assertions": [
+        "The output treats the request as a single-fact lookup",
+        "The output does not use the recommendation or report shape because this is a non-trigger"
+      ]
+    }
+  ]
+}

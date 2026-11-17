@@ -1,45 +1,56 @@
-## Description: <br>
-Segment customers by lifetime value and design tailored retention, upsell, and reactivation strategies for each cohort to maximize long-term revenue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Segment customers by lifetime value and design tailored retention, upsell, and reactivation strategies for each cohort to maximize long-term revenue.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, lifecycle, ecommerce, and analytics teams use this skill to calculate customer lifetime value, define customer cohorts, and create segment-specific retention, upsell, suppression, and reactivation playbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for customer purchase, contact, and marketing engagement data, which may be sensitive or regulated. <br>
-Mitigation: Use least-privilege exports, prefer pseudonymous customer identifiers, and install or run the skill only when authorized to process the relevant customer data. <br>
-Risk: Recommended outreach campaigns can create compliance or consent issues if applied to suppressed, unsubscribed, or ineligible contacts. <br>
-Mitigation: Verify email, SMS, and phone consent, suppression lists, and regional marketing rules before implementing campaign recommendations in live platforms. <br>
-Risk: Incorrect LTV formulas, segment thresholds, or offer strategies can misallocate budget or harm margins. <br>
-Mitigation: Have marketing, legal or compliance, and analytics reviewers validate formulas, segment logic, campaign offers, and platform mappings before deployment. <br>
+## Use Case:
 
+Marketing, lifecycle, and ecommerce teams use this skill to calculate customer lifetime value, define value-based cohorts, and draft retention, upsell, reactivation, suppression, and platform-mapping playbooks.
 
-## Reference(s): <br>
-- [LTV Calculation Comprehensive Guide](references/ltv-calculation-guide.md) <br>
-- [LTV Segmentation Campaign Output Template](references/output-template.md) <br>
-- [LTV Segmentation Playbook Guide](references/segmentation-playbook-guide.md) <br>
-- [LTV Quality Assurance Checklist](assets/ltv-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with tables, formulas, checklists, and campaign playbook sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LTV formulas, RFM overlays, segmentation thresholds, campaign cadence recommendations, suppression rules, and platform mapping guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Customer exports for LTV segmentation may include personal, behavioral, and purchase data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict exports to the minimum customer fields needed, use approved storage, and confirm privacy notice coverage before analysis.
+
+Risk: SMS, phone, and ad-audience activation can create consent, suppression, or policy errors if applied without governance.
+
+Mitigation: Honor legal suppression lists, require channel-specific opt-in for SMS and phone outreach, and review ad-audience uploads under company policy.
+
+## Reference(s):
+
+- [LTV Calculation Comprehensive Guide](references/ltv-calculation-guide.md)
+- [LTV Segmentation Playbook Guide](references/segmentation-playbook-guide.md)
+- [LTV Segmentation Campaign Output Template](references/output-template.md)
+- [LTV Quality Assurance Checklist](assets/ltv-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance, tables, campaign templates, checklist items, and platform setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include segment definitions, RFM overlays, suppression rules, email/SMS sequences, offer guidance, and launch quality checks.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

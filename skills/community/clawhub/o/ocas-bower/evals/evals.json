@@ -1,0 +1,32 @@
+{
+  "skill": "ocas-bower",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-bower",
+  "evals": [
+    {
+      "input": "Organize my Google Drive",
+      "expected_output": "Initiates bowers.scan.deep to crawl Drive structure and propose organization changes",
+      "description": "Drive organization trigger"
+    },
+    {
+      "input": "What's disorganized in my Drive?",
+      "expected_output": "Runs analysis and returns a report of outliers, misnamed files, and structural issues",
+      "description": "Disorganization inquiry"
+    },
+    {
+      "input": "Show me Bower's pending proposals",
+      "expected_output": "Lists all pending move/rename/description proposals grouped by destination folder with confidence tiers",
+      "description": "Proposal review"
+    },
+    {
+      "input": "What has Bower learned about my file organization preferences?",
+      "expected_output": "Displays the preference profile including naming conventions, depth preferences, detected domains, and auto-approved patterns",
+      "description": "Preference profile query"
+    },
+    {
+      "input": "Apply the pending Bower proposals to my Drive",
+      "expected_output": "Executes approved proposals (up to apply_cap) and produces a digest of changes made",
+      "description": "Apply proposals"
+    }
+  ]
+}

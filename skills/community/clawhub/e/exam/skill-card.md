@@ -1,39 +1,51 @@
-## Description: <br>
-Generate practice tests, flashcards, study schedules, and timed simulations from any study material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate practice tests, flashcards, study schedules, and timed simulations from any study material.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Students, certification candidates, and professionals use this skill to turn study materials into practice questions, flashcards, timed mock exams, study schedules, summaries, and progress reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated questions, answers, flashcards, and performance history may be saved locally under ~/exams/. <br>
-Mitigation: Review what is being saved and avoid storing sensitive study materials or answers on shared machines. <br>
-Risk: Study reminders may add cron entries that continue after the exam date. <br>
-Mitigation: Ask the agent to show the exact cron entry before enabling it and remove the entry when the exam is over. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/exam) <br>
+## Use Case:
+
+Students, certification candidates, and professionals use this skill to turn study materials into practice questions, flashcards, timed mock exams, study schedules, and progress reports.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may keep study questions, flashcards, session history, and performance statistics locally under ~/exams/.
+
+Mitigation: Avoid sensitive notes or proprietary exam materials unless local storage is acceptable, and review or remove stored study files when no longer needed.
+
+Risk: Study reminders may create scheduled cron jobs.
+
+Mitigation: Review the exact scheduled job before enabling reminders and confirm how to remove it.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with question sets, flashcards, study plans, progress reports, JSON or JSONL examples, and occasional shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local study files under ~/exams/ and optional cron reminders for study scheduling.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with structured study artifacts and optional JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local study files and reminder setup guidance when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

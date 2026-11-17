@@ -1,41 +1,54 @@
-## Description: <br>
-Polish a technical blog draft into a 1000-1200 word, 4-5 section en-US article, preserve technical terms and code, and generate consistent hero and per-section image prompts when the user asks to polish and translate a blog with images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish a technical blog draft into a 1000-1200 word en-US article, preserve technical terms and code, and generate consistent hero and section image prompts.
 
-## Publisher: <br>
-[j3ffyang](https://clawhub.ai/user/j3ffyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[j3ffyang](https://clawhub.ai/user/j3ffyang)
 
-## Use Case: <br>
-Developers, technical writers, and blog authors use this skill to turn a technical draft into a polished en-US article while keeping technical meaning intact. It also prepares a consistent image prompt package for a hero image and each section. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags broad unsandboxed execution and possible automatic involvement of reviewer tools. <br>
-Mitigation: Install only from a trusted maintainer workflow, prefer `--no-yolo` or `AUTOREVIEW_YOLO=0`, and disable automatic fallback reviewers for private diffs. <br>
-Risk: Auto-run test or static-check behavior can act on repository content during review workflows. <br>
-Mitigation: Review any auto-run test or static-check behavior before use and run the skill in a controlled workspace. <br>
+## Use Case:
 
+Developers, technical writers, and content teams use this skill to turn a draft Markdown blog post into a polished en-US article package with consistent image prompts for the hero and each section.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/j3ffyang/blog-polish-enus-images) <br>
-- [Publisher profile](https://clawhub.ai/user/j3ffyang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Guidance] <br>
-**Output Format:** [Structured JSON with output paths plus polished Markdown and single-line image prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns polishedPath, imagePaths, and imagePrompts; may save files under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact frontmatter) <br>
+Risk: The workflow may produce placeholder article content rather than a fully polished translation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the generated article before publishing or relying on it.
+
+Risk: The workflow writes persistent output files by default.
+
+Mitigation: Use a custom output directory for sensitive drafts and confirm generated file paths before sharing outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/j3ffyang/skills/blog-polish-enus-images)
+- [Publisher profile](https://clawhub.ai/user/j3ffyang)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [JSON summary plus Markdown article content and single-line image prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a polished Markdown file and returns intended or generated image file paths with matching prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

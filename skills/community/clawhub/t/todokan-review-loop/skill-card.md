@@ -1,41 +1,59 @@
-## Description: <br>
-Process Todokan task and thought boards with a review-loop workflow. Use when a task enters doing and the agent should pick it up, read latest comments, respond to the newest comment with a high-quality context-aware reply, add an execution update comment, and move the task back to done (Review). Use for recurring polling/cron automation with Todokan MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process Todokan task and thought boards with a review-loop workflow.
 
-## Publisher: <br>
-[BANATEALAB](https://clawhub.ai/user/BANATEALAB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[banatealab](https://clawhub.ai/user/banatealab)
 
-## Use Case: <br>
-External Todokan users and automation operators use this skill to process AI-enabled Todokan tasks, answer the latest user intent from the full task thread, post concise progress comments, and move addressed work to Review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically post Todokan comments, attach documents, and move tasks to Review. <br>
-Mitigation: Test on a non-production or beta board first, monitor early runs, and keep human review over comments, attachments, and status changes. <br>
-Risk: A broad Todokan API key could expose more boards or habitats than intended. <br>
-Mitigation: Use a dedicated narrowly scoped API key and limit accessible boards or habitats. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/BANATEALAB/todokan-review-loop) <br>
-- [Todokan homepage](https://todokan.com) <br>
-- [Todokan MCP endpoint](https://todokan.com/mcp) <br>
+## Use Case:
 
+External users and teams use this skill to automate Todokan review-loop task handling: read AI-enabled doing tasks, understand the full comment thread, post concise context-aware updates, and move addressed tasks to done/Review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Concise Todokan comments, optional attached documents, status updates, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Todokan MCP access and TODOKAN_API_KEY and TODOKAN_MCP_URL environment configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read enabled Todokan task context and comments.
+
+Mitigation: Install it only for Todokan workspaces where AI-enabled task review is intended, and keep read scopes limited to the boards and tasks needed for the workflow.
+
+Risk: The skill can post comments, attach task documents, and move addressed tasks to done/Review.
+
+Mitigation: Configure write scopes narrowly, monitor review-loop runs, and rely on Todokan's done/Review state for human review before final closure.
+
+Risk: The skill requires Todokan API credentials and MCP configuration.
+
+Mitigation: Store TODOKAN_API_KEY securely, rotate it as needed, and avoid granting broader MCP permissions than the documented task and comment workflow requires.
+
+## Reference(s):
+
+- [Todokan](https://todokan.com)
+- [Todokan MCP endpoint](https://todokan.com/mcp)
+- [ClawHub skill page](https://clawhub.ai/banatealab/skills/todokan-review-loop)
+- [ClawHub publisher profile](https://clawhub.ai/user/banatealab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Concise Todokan comments, optional task documents, and status updates through the configured MCP server.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TODOKAN_API_KEY, TODOKAN_MCP_URL, and Todokan MCP access scoped for reading tasks/comments and writing comments/status updates.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

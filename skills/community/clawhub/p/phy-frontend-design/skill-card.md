@@ -1,42 +1,55 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces with high design quality for web components, pages, artifacts, posters, and applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces with high design quality.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers, designers, and frontend engineers use this skill to turn web UI requirements into distinctive, polished interfaces and implementation guidance. It is suited for websites, landing pages, dashboards, React components, HTML/CSS layouts, and styling improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend work may introduce third-party fonts, assets, libraries, animations, or broader design changes than intended. <br>
-Mitigation: Review generated code, dependencies, assets, and animation behavior before production use; approve or pin any third-party resources explicitly. <br>
-Risk: The skill encourages bold aesthetic choices that may conflict with brand, accessibility, or performance constraints. <br>
-Mitigation: Provide brand, accessibility, and performance requirements up front, then test responsive behavior, contrast, keyboard access, and runtime performance before release. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to build or refine web components, pages, applications, dashboards, posters, and other frontend artifacts with distinctive visual direction and production-grade implementation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PHY041/phy-frontend-design) <br>
-- [PHY041 Publisher Profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI Homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code blocks and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include frontend files, dependency choices, CSS/JavaScript framework snippets, animations, and visual design guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can strongly influence frontend styling choices across many UI-building requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated interfaces for product fit, brand requirements, accessibility, and usability before release.
+
+Risk: Later agent outputs may add third-party frontend libraries or remote visual assets while implementing a design.
+
+Mitigation: Inspect generated dependencies, asset URLs, and licenses before merging or deploying the resulting code.
+
+## Reference(s):
+
+- [Phy Frontend Design on ClawHub](https://clawhub.ai/phy041/skills/phy-frontend-design)
+- [Canlah AI homepage](https://canlah.ai)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with prose, code blocks, shell commands, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs vary by frontend task and may include HTML, CSS, JavaScript, React, Vue, configuration, or design guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

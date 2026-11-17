@@ -1,48 +1,62 @@
-## Description: <br>
-Guides an agent through a travel-vlog editing workflow that analyzes raw footage, plans a narrative edit, previews the result, and renders a finished video with ffmpeg and Python tooling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an AI agent through analyzing travel footage, planning a vlog edit, generating preview dashboards and storyboards, and rendering a finished video with ffmpeg.
 
-## Publisher: <br>
-[znyupup](https://clawhub.ai/user/znyupup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[znyupup](https://clawhub.ai/user/znyupup)
 
-## Use Case: <br>
-Creators and agent users use this skill to turn a folder of travel or daily-life video clips into a structured vlog. The workflow helps the agent inspect footage, transcribe speech, request visual descriptions, draft an edit plan, generate review dashboards, and produce a final video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected video frames may be sent to the user's chosen vision API. <br>
-Mitigation: Use a limited API key, review the provider's retention policy, and avoid sensitive footage unless sharing it is approved. <br>
-Risk: The workflow reads footage folders and generates local transcripts, thumbnails, dashboards, and rendered videos. <br>
-Mitigation: Run it only on footage the user intends to process and review generated dashboards and plans before final rendering or sharing. <br>
-Risk: The skill may install media packages and execute ffmpeg or Python commands. <br>
-Mitigation: Review commands and dependency changes before execution, especially in shared or production environments. <br>
+## Use Case:
 
+External creators and agent users use this skill to turn travel or daily-life video folders into edited vlog plans, visual previews, and final rendered videos. It is intended for agent-assisted workflows that combine ffmpeg, Whisper, a vision API, and human review of the proposed edit.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/znyupup/vlog-auto-edit) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/znyupup) <br>
-- [Author link from ClawHub metadata](https://github.com/znyupup) <br>
-- [Skill workflow](artifact/SKILL.md) <br>
-- [Project README](artifact/README.md) <br>
-- [Edit plan prompt template](artifact/templates/edit_plan_prompt.md) <br>
-- [Vision API provider referenced by documentation](https://open.bigmodel.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, HTML, video files] <br>
-**Output Format:** [Markdown guidance with bash and Python snippets, JSON edit plans, generated HTML previews, and rendered video artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local footage and local generated assets; selected frames may be sent to a user-selected vision API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Personal media frames or transcripts may be sent to a vision API during clip analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm which frames and transcripts will be uploaded, use only media the user is comfortable processing, and prefer the smallest frame size needed for review.
+
+Risk: Generated dashboard files may expose private filenames, speech transcripts, notes, or preview frames.
+
+Mitigation: Keep dashboard HTML and generated assets in a private project folder and avoid publishing them unless the user has reviewed the contents.
+
+Risk: The workflow includes command execution and a shell=True highlight example that may be unsafe if adapted directly.
+
+Mitigation: Require command review before execution, run in a dedicated workspace with pinned dependencies, and avoid shell=True when implementing command wrappers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/znyupup/skills/vlog-auto-edit)
+- [Publisher profile](https://clawhub.ai/user/znyupup)
+- [Clawdis author profile](https://github.com/znyupup)
+- [Vision API provider referenced by the skill](https://open.bigmodel.cn)
+- [Claude Code documentation referenced by README](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+- [OpenClaw repository referenced by README](https://github.com/nicepkg/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON, files]
+
+**Output Format:** [Markdown guidance with inline shell and Python snippets, JSON edit plans, generated HTML previews, and video output files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided media, ffmpeg, Python 3.9+, Whisper or compatible transcription support, and a compatible vision API for frame analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

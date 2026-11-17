@@ -1,41 +1,58 @@
-## Description: <br>
-Converts vague user requests into structured, actionable prompts using a four-part framework without executing the requested task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns vague or underspecified user requests into structured, actionable prompts using a four-part framework for role, task, context, and constraints.
 
-## Publisher: <br>
-[flonerze](https://clawhub.ai/user/flonerze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flonerze](https://clawhub.ai/user/flonerze)
 
-## Use Case: <br>
-External users and developers use this skill to turn underspecified or mixed-language requests into complete prompt text with role, task, context, and constraints. It is intended for prompt refinement only, not for carrying out the refined task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad routing language may cause the skill to activate when a user expects the agent to answer or execute a task directly. <br>
-Mitigation: Enable it only for prompt-rewriting workflows, and disable or avoid it in conversations where direct execution is desired. <br>
-Risk: Generated prompts can carry incorrect assumptions from ambiguous input. <br>
-Mitigation: Review the generated prompt before using it for downstream work, especially when requirements, constraints, or success criteria matter. <br>
+## Use Case:
 
+External users, employees, and developers can use this skill to convert brief Chinese, English, or mixed-language requests into clearer prompts before handing work to an AI assistant or human collaborator.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flonerze/prompt-improve) <br>
-- [Publisher profile](https://clawhub.ai/user/flonerze) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates prompt text only; does not inspect files, call tools, or execute the requested task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may expect the original task to be completed immediately, while this skill intentionally returns only a refined prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the refined prompt as an intermediate artifact and run it separately with an agent or collaborator when execution is desired.
+
+Risk: For vague requests, the refined prompt may include assumptions that do not match the user's real constraints.
+
+Mitigation: Review and adjust inferred context, requirements, and success criteria before using the generated prompt for execution.
+
+Risk: Prompt text that asks for reasoning disclosure may be broader than needed for some deployments.
+
+Mitigation: Replace requests for detailed reasoning with concise rationale or decision summaries where policy or privacy requirements call for less disclosure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flonerze/skills/prompt-improve)
+- [Publisher profile](https://clawhub.ai/user/flonerze)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill only returns an optimized prompt; it does not execute the requested task, inspect files, or call tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

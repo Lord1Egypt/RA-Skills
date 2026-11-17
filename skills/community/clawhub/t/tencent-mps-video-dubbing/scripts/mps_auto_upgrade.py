@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """MPS 脚本运行时依赖检查与自动升级。
 
-所有 MPS 脚本在执行前导入此模块即可自动触发依赖检查：
+用法（两步，缺一不可）：
     from mps_auto_upgrade import check_sdk_version
+    check_sdk_version()          # ← 必须显式调用，import 本身不做依赖检查
+
+  · 仅 import 只会注册 urllib3 NotOpenSSLWarning 过滤器（模块级副作用）；
+  · 依赖检查与自动安装发生在 check_sdk_version() 内部，不调用则不生效；
+  · 调用点应放在第三方包（tencentcloud / qcloud_cos / dotenv）首次 import 之前。
 
 依赖清单的**唯一真源**是同目录下的 `requirements.txt`：
   - 包名 + 最低版本约束（如 `pkg>=X.Y.Z`）都从 requirements.txt 解析
@@ -81,8 +86,12 @@ def _load_dependencies_from_requirements():
 # 依赖清单（唯一真源：requirements.txt；本模块只是运行时解析）
 _DEPENDENCIES = _load_dependencies_from_requirements()
 
-# 兼容保留：老代码可能引用 MIN_SDK_VERSION 常量（=第一条依赖的最低版本）
-MIN_SDK_VERSION = _DEPENDENCIES[0][1] if _DEPENDENCIES else None
+# 兼容保留：老代码可能引用 MIN_SDK_VERSION 常量
+# 按包名精确查找，不依赖 requirements.txt 中的行序
+MIN_SDK_VERSION = next(
+    (ver for pkg, ver in _DEPENDENCIES if pkg == "tencentcloud-sdk-python"),
+    None,
+)
 
 
 def _ver_tuple(ver_str):

@@ -1,46 +1,61 @@
-## Description: <br>
-Apply inspired-by character/persona writing styles for fun and creative outputs with explicit on/off controls, intensity settings, and automatic neutral fallback for serious or high-stakes tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply inspired-by character/persona writing styles for fun and creative outputs with explicit on/off controls, intensity settings, and automatic neutral fallback for serious or high-stakes tasks.
 
-## Publisher: <br>
-[anugotta](https://clawhub.ai/user/anugotta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anugotta](https://clawhub.ai/user/anugotta)
 
-## Use Case: <br>
-External users and developers use this skill to apply playful, inspired-by persona styles to rewrites, scripts, banter, creative brainstorming, and social copy while preserving neutral responses for serious or high-stakes requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona styling could be used for deceptive impersonation or to imply a real person authored the content. <br>
-Mitigation: Use the presets as inspired-by tone templates, avoid identity claims, and disclose the active preset when asked. <br>
-Risk: Styled output could copy protected dialogue or quotes too closely. <br>
-Mitigation: Generate original wording and avoid verbatim copying of copyrighted dialogue. <br>
-Risk: Applying a playful persona to legal, medical, financial, security, emergency, or compliance-critical content could reduce clarity or accuracy. <br>
-Mitigation: Automatically fall back to neutral factual style for high-stakes or safety-sensitive requests. <br>
+## Use Case:
 
+External users and creators use this skill to apply playful, inspired-by persona tones to rewrites, scripts, banter, brainstorming, and social copy while retaining neutral fallback for serious or high-stakes topics.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/anugotta/persona-fun-styles) <br>
-- [Setup](setup.md) <br>
-- [Presets](presets.md) <br>
-- [Safety and fallback](safety.md) <br>
-- [Examples](examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text responses with styled output, optional neutral version, and style status lines on request] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only style transformations; no credentials, code execution, network access, or system access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Persona styling could make serious legal, medical, financial, security, emergency, or compliance-sensitive answers less precise.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's neutral fallback for serious or precision-critical requests and avoid persona mode in those domains.
+
+Risk: Inspired-by persona output could be mistaken for deceptive impersonation or copied protected dialogue.
+
+Mitigation: Use the documented disclaimer, avoid identity impersonation, and do not copy protected quotes or dialogue verbatim.
+
+Risk: Users may leave a playful style active after the creative task is complete.
+
+Mitigation: Use the explicit status and deactivation commands to confirm or turn off the active style.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anugotta/skills/persona-fun-styles)
+- [Setup](artifact/setup.md)
+- [Presets](artifact/presets.md)
+- [Safety and fallback controls](artifact/safety.md)
+- [Prompt examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses with optional neutral version and status line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports explicit style activation, preset switching, low/medium/high intensity, deactivation, and neutral fallback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

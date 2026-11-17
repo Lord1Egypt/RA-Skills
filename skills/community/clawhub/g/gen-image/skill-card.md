@@ -1,45 +1,56 @@
-## Description: <br>
-Generates images with SiliconFlow-hosted Kolors, FLUX, and Qwen-Image models using a SiliconFlow API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with SiliconFlow using Kolors, FLUX, and Qwen-Image models when the user provides a SiliconFlow API key.
 
-## Publisher: <br>
-[duyiliu](https://clawhub.ai/user/duyiliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[duyiliu](https://clawhub.ai/user/duyiliu)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate image assets from text prompts through SiliconFlow image-generation models. It is useful when an agent needs to provide shell commands, configuration guidance, or a generated image file path for downstream workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent to SiliconFlow and may contain sensitive or proprietary text. <br>
-Mitigation: Avoid secrets, regulated data, and proprietary content in prompts before using the skill. <br>
-Risk: Using the SiliconFlow API key can consume paid quota. <br>
-Mitigation: Confirm the configured API key and quota policy before running generation commands. <br>
-Risk: The helper script parses API responses with jq and will fail if jq is unavailable. <br>
-Mitigation: Install jq alongside curl before using artifact/scripts/generate.sh. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/duyiliu/gen-image) <br>
-- [SiliconFlow homepage](https://siliconflow.cn) <br>
-- [SiliconFlow image generation API endpoint](https://api.siliconflow.cn/v1/images/generations) <br>
-- [SiliconFlow model list API endpoint](https://api.siliconflow.cn/v1/models) <br>
-- [SiliconFlow API key portal](https://cloud.siliconflow.cn) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate images from text prompts through the SiliconFlow image generation API. It is useful when an agent needs to propose the required API call, configuration, or shell command for creating a PNG image file.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance and shell output that can include a generated image file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq for the helper script, and SILICONFLOW_API_KEY; may consume SiliconFlow paid quota.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Image prompts are sent to SiliconFlow under the user's API key.
+
+Mitigation: Do not include secrets, proprietary text, or personal data in prompts, and use the skill only when SiliconFlow API use is acceptable.
+
+Risk: The bundled script defaults to saving output under /tmp when no output path is supplied.
+
+Mitigation: Provide an explicit output path for generated images and avoid running the script with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duyiliu/skills/gen-image)
+- [SiliconFlow homepage](https://siliconflow.cn)
+- [SiliconFlow cloud console](https://cloud.siliconflow.cn)
+- [SiliconFlow image generations endpoint](https://api.siliconflow.cn/v1/images/generations)
+- [SiliconFlow models endpoint](https://api.siliconflow.cn/v1/models)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash examples; the bundled script emits status text and saves a PNG image file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and SILICONFLOW_API_KEY; accepts a text prompt, optional output path, MODEL, and SIZE.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

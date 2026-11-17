@@ -2,7 +2,7 @@
 name: document-conversion
 description: |
   Converts documents and URLs to markdown via tiered fallback (MCP markitdown, native tools, user notice)
-version: 1.9.8
+version: 1.10.3
 triggers:
   - conversion
   - markitdown
@@ -18,7 +18,7 @@ source: claude-night-market
 source_plugin: leyline
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Document Conversion
@@ -33,6 +33,8 @@ conversion logic.
 - Converting PDF, DOCX, PPTX, XLSX, HTML, or images to
   markdown for downstream processing
 - Any skill that ingests external documents
+- Importing an external document into the project as an
+  editable markdown file (see `modules/project-import.md`)
 - File format is not plain text or markdown
 
 ## When NOT To Use
@@ -143,3 +145,22 @@ Then in their workflow: "Convert the document using the
 - Format support details: `modules/format-matrix.md`
 - Per-format fallback instructions: `modules/fallback-tiers.md`
 - URI construction rules: `modules/uri-construction.md`
+- Importing a document as an editable project file (cleanup,
+  target path, review markers): `modules/project-import.md`
+
+## Exit Criteria
+
+- [ ] Conversion tier attempted in order: Tier 1 (MCP markitdown)
+  first; Tier 2 (native tools) only if Tier 1 is unavailable or
+  fails; Tier 3 (user notification with install instructions) only
+  if Tier 2 has no coverage for the format
+- [ ] Converted content wrapped in
+  `--- EXTERNAL CONTENT [source: <tool>] ---` boundary markers
+  and truncated to 2000 words per section before being passed
+  downstream
+- [ ] For DOCX, PPTX, XLSX, audio, archives, and e-books with no
+  Tier 2 coverage, the exact Tier 3 user notification template is
+  shown including the `.mcp.json` snippet
+- [ ] Format detected from URI extension before attempting
+  conversion; unknown extension surfaced to the user rather than
+  passed to converters blindly

@@ -1,45 +1,62 @@
-## Description: <br>
-Practical recipes for integrating x402 payments into web services, including Express.js middleware, FastAPI integration, Cloudflare Workers, payment verification, settlement, and production deployment patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The x402 Merchant Integration Cookbook provides practical recipes for integrating x402 payments into Express.js, FastAPI, and Cloudflare Workers services, including payment verification, settlement, and deployment patterns.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and engineers use this skill to add x402 crypto payment gates to APIs and web services. It provides implementation guidance and examples for Node.js, Python, and Cloudflare Workers deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes payment automation patterns that may spend funds or sign payment payloads without sufficient user-control safeguards. <br>
-Mitigation: Require explicit approval, budget limits, merchant allowlists, and transaction logging before enabling automated payment flows. <br>
-Risk: The skill references sensitive payment credentials including signing keys and Stripe API keys. <br>
-Mitigation: Use sandbox credentials first and avoid providing live Stripe keys or signing keys unless a reviewed snippet specifically requires them. <br>
-Risk: Example implementations may be copied into production before security, settlement, and accounting controls are reviewed. <br>
-Mitigation: Review and test copied examples in a sandbox environment before deployment, then add logging and operational controls for settlement behavior. <br>
+## Use Case:
 
+Developers and engineers use this guide to add x402 payment gates to APIs and services. It is aimed at API monetization workflows that need examples for Node.js, Python, edge workers, verification, settlement, testing, and deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirni/greenhelix-x402-merchant-cookbook) <br>
-- [GreenHelix sandbox](https://sandbox.greenhelix.net) <br>
-- [x402 facilitator endpoint](https://x402.org/facilitator) <br>
-- [x402 protocol specification](https://www.x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guide with code blocks, shell commands, configuration examples, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes illustrative payment-flow examples and environment-variable guidance; the artifact is not executable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release evidence and frontmatter) <br>
+Risk: Payment-control examples may be unsafe if copied directly into services handling real funds or protected content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the content as educational material and complete a security review before using it with production payment flows.
+
+Risk: Misconfigured credentials or copied private-key examples can expose payment infrastructure.
+
+Mitigation: Align environment variable names, remove unnecessary secrets, keep balances server-side, and avoid placing real private keys in copied test code.
+
+Risk: Weak facilitator validation can allow access when payment verification fails or is unavailable.
+
+Mitigation: Validate facilitator responses strictly and fail closed on verification problems before serving protected content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-x402-merchant-cookbook)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [x402 protocol specification](https://www.x402.org)
+- [x402 facilitator endpoint](https://x402.org/facilitator)
+- [Agent Production Hardening Guide](https://clawhub.ai/skills/greenhelix-agent-production-hardening)
+- [Base Sepolia faucet](https://www.coinbase.com/faucets/base-ethereum-sepolia-faucet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with code blocks, configuration examples, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable educational material; examples require user-supplied payment, wallet, and service credentials.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

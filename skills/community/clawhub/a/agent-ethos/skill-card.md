@@ -1,36 +1,48 @@
-## Description: <br>
-Extended ethos and mental models for Clanky, used when auditing behavior or tuning agent personality and decision discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extended ethos and mental models for Clanky, for use when auditing behavior or tuning agent personality and decision discipline.
 
-## Publisher: <br>
-[MrClanky](https://clawhub.ai/user/MrClanky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrclanky](https://clawhub.ai/user/mrclanky)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to guide behavior audits and personality tuning for an agent named Clanky, especially around candor, reliability, and decision discipline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence an agent's behavioral posture during audits or personality tuning. <br>
-Mitigation: Install it only when that stated ethos is desired, and review the resulting guidance before adopting behavior changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Agent builders and reviewers use this skill to guide behavior audits, persona tuning, and decision-discipline adjustments for Clanky. It is not intended for routine task execution.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only persona and decision-discipline guidance; no tools, credentials, network access, or code execution are requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill influences an agent's behavior, persona, and decision posture.
+
+Mitigation: Install it only when those behavior-audit preferences are wanted, and review the skill before deployment.
+
+## Reference(s):
+
+- [Agent Ethos on ClawHub](https://clawhub.ai/mrclanky/skills/agent-ethos)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Behavior-audit guidance only; no tools, execution steps, credentials, or privileged access requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

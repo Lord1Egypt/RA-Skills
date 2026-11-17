@@ -1,45 +1,64 @@
-## Description: <br>
-Persistent memory system - automatic context capture and semantic search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory system for OpenClaw agents with automatic context capture, recall, and semantic search.
 
-## Publisher: <br>
-[lovefromio](https://clawhub.ai/user/lovefromio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovefromio](https://clawhub.ai/user/lovefromio)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add long-term agent memory with automatic context capture, semantic search, and recall across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses long-term agent context, which can include sensitive or outdated information. <br>
-Mitigation: Use it only when persistent memory is intended, avoid storing secrets, and review or back up the memory database before deleting or relying on stored memories. <br>
-Risk: Automatic capture and recall can inject stored context into later prompts without the user noticing every retrieved item. <br>
-Mitigation: Consider disabling autoCapture or autoRecall until the team understands what is stored and when memories are recalled. <br>
-Risk: The installation documentation includes both reviewed package installation and a curl-to-bash path. <br>
-Mitigation: Prefer ClawHub or reviewed npm installation, inspect scripts before execution, and keep the memory worker bound to localhost. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent memory to OpenClaw agents, including saved observations, full-text search, and automatic recall across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lovefromio/lovefromio-openclaw-persistent-memory) <br>
-- [Installation Guide](INSTALL.md) <br>
-- [Full Documentation](SKILL.md) <br>
-- [npm Package](https://www.npmjs.com/package/openclaw-persistent-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local worker setup, OpenClaw extension configuration, and memory search guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installer path and curl-to-bash installation can execute remote code before review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer path first, prefer bundled or manual install steps, and pin the npm package version where possible.
+
+Risk: Always-on auto-capture and auto-recall can persist sensitive conversation content and later reintroduce it into agent context.
+
+Mitigation: Keep auto-capture disabled for sensitive conversations unless persistent storage and later recall are acceptable.
+
+Risk: The memory worker exposes local REST endpoints for search, observation access, update, and deletion.
+
+Mitigation: Keep the worker URL bound to localhost and do not expose the service outside the local machine.
+
+Risk: Documented deletion commands can remove the local memory directory.
+
+Mitigation: Back up or inspect the memory directory before running deletion or uninstall commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lovefromio/skills/lovefromio-openclaw-persistent-memory)
+- [npm package: openclaw-persistent-memory](https://www.npmjs.com/package/openclaw-persistent-memory)
+- [Installation guide](artifact/INSTALL.md)
+- [Full skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local REST endpoint usage and memory-management command guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

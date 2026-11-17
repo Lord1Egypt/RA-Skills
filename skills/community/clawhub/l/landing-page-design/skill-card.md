@@ -1,42 +1,54 @@
-## Description: <br>
-Landing page conversion optimization with layout rules, hero section design, and CTA psychology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Landing Page Design helps agents create conversion-focused landing pages with guidance for hero sections, CTAs, social proof, mobile layout, page speed, and AI-generated visuals.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Designers, developers, and marketers use this skill to structure startup, SaaS, and product landing pages around clear hero messaging, social proof, CTA design, form design, mobile optimization, and page-speed checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a shell command that installs and uses a third-party CLI. <br>
-Mitigation: Verify the inference.sh CLI installer and checksum before installation, and review commands before execution. <br>
-Risk: Prompts and search queries used with infsh apps may be sent to external AI or search services. <br>
-Mitigation: Avoid including confidential customer, company, or strategy details unless the relevant provider terms, account settings, and billing expectations allow that use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/landing-page-design) <br>
+## Use Case:
 
+Developers, designers, and marketing teams use this skill to draft or review startup, product, and SaaS landing pages for conversion-focused structure, hero imagery, calls to action, forms, and mobile readiness.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with structured guidance and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompts and command examples for image generation and landing-page research through inference.sh.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup examples include mutable remote installers and unpinned skill install commands.
+
+Mitigation: Verify downloaded artifacts through pinned versions, checksums, or signatures before running install commands.
+
+Risk: Example infsh prompts, generated assets, and search queries may be sent to external services.
+
+Mitigation: Review prompts and queries for confidential or sensitive information before using external generation or search tools.
+
+## Reference(s):
+
+- [Landing Page Design on ClawHub](https://clawhub.ai/okaris/skills/landing-page-design)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with example shell commands and prompt/configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose external infsh CLI calls for image generation and web research.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

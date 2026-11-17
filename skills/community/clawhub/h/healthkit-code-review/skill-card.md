@@ -1,41 +1,56 @@
-## Description: <br>
-Reviews HealthKit code for authorization patterns, query usage, background delivery, and data type handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews HealthKit code for authorization patterns, query usage, background delivery, and data type handling. Use when reviewing code with import HealthKit, HKHealthStore, HKSampleQuery, HKObserverQuery, or HKQuantityType.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and reviewers use this skill to examine Swift HealthKit code for common authorization, query, background delivery, threading, lifecycle, and data type issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HealthKit review guidance could be mistaken for legal, privacy, or production approval for sensitive health data handling. <br>
-Mitigation: Treat outputs as development review guidance; verify user consent, data minimization, secure transport, retention and deletion behavior, and Apple HealthKit requirements before release. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Swift code that integrates with Apple HealthKit. It focuses the review on authorization semantics, query safety, background delivery, data types, threading, and lifecycle handling.
 
-## Reference(s): <br>
-- [HealthKit Authorization](references/authorization.md) <br>
-- [HealthKit Queries](references/queries.md) <br>
-- [HealthKit Background Delivery](references/background.md) <br>
-- [HealthKit Data Types](references/data-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown code review findings with file and symbol citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local HealthKit reference material and does not directly access HealthKit data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: HealthKit example snippets could be copied into production apps without sufficient consent, privacy disclosure, or minimum-permission review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat snippets as review examples and require explicit user consent, clear privacy copy, and least-privilege HealthKit permissions before shipping app code.
+
+Risk: Background delivery, sleep, characteristic, write, and server-sync examples touch sensitive health-data workflows.
+
+Mitigation: Evaluate those patterns carefully against the target app's entitlements, user expectations, and secure health-data handling requirements.
+
+## Reference(s):
+
+- [HealthKit Authorization](references/authorization.md)
+- [HealthKit Queries](references/queries.md)
+- [HealthKit Background Delivery](references/background.md)
+- [HealthKit Data Types](references/data-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown review findings with code references and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces review observations and questions; it does not execute HealthKit code or access health data.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Assemble 6 sub-figures (A-F) into a high-resolution composite figure with consistent labels, padding, and publication-ready DPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assemble 6 sub-figures (A-F) into a high-resolution composite figure with consistent labels, padding, and publication-ready DPI.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users, developers, and research teams use this skill to combine exactly six existing image panels into a reproducible publication-ready composite figure with standardized labels, padding, borders, layout, and DPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The dependency file includes an invalid or obsolete 'pil' package line and unpinned Pillow and numpy dependencies. <br>
-Mitigation: Install only in a virtual environment or sandbox, remove the 'pil' line, and pin reviewed Pillow and numpy versions before use. <br>
-Risk: The packaged script reads input paths and writes the output path supplied on the command line. <br>
-Mitigation: Use only intended local image paths and approved output locations, preferably inside a workspace or sandbox. <br>
+## Use Case:
 
+Researchers, authors, and developers use this skill to combine exactly six existing image panels into a labeled 2x3 or 3x2 composite figure for publication workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/multi-panel-figure-assembler) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Markdown guidance] <br>
-**Output Format:** [Composite image file plus concise Markdown status or fallback report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires exactly six local image inputs and one output path; supports 2x3 or 3x2 layouts, DPI, label styling, padding, border, and background options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release security summary says the dependency list is unsafe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies before installation, remove the obsolete pil entry, and pin reviewed versions of Pillow and numpy.
+
+Risk: The release security summary says the script does not enforce the workspace path limits documented by the skill.
+
+Mitigation: Run the skill in an isolated environment and use only trusted image paths until workspace-boundary checks are enforced in code.
+
+Risk: The release security verdict is suspicious even though no specific risk findings were listed.
+
+Mitigation: Review the skill before installing or running it, following the server-provided security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/multi-panel-figure-assembler)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions and command examples; execution produces PNG, JPG, or TIFF composite image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires exactly 6 input image paths and one output path; supports 2x3 and 3x2 layouts, DPI, labels, padding, borders, and colors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

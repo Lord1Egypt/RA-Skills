@@ -1,0 +1,10 @@
+# md-classification-route
+
+> 医疗器械分类与注册路径初判器 — 医疗器械合规判定器（决策支持，非权威结论）
+
+- 类型：零依赖确定性 CLI 技能
+- 输入：命令行参数（枚举值）
+- 输出：JSON IR（result / rc / error_code / aigc_mark）
+- 规则源：EU MDR (EU) 2017/745 Annex VIII /《医疗器械分类目录》/ FDA 21 CFR 860
+- 定位：决策支持；正式结论以主管部门决定与官方最新文件为准
+- 作者：SynomosAI contributors · © 2026 SynomosAI · MIT

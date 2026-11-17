@@ -1,0 +1,327 @@
+{
+  "ping": {
+    "method": "GET",
+    "path": "/api/ping",
+    "summary": "ping",
+    "tags": [
+      "health"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_db_user_info": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/info",
+    "summary": "用户信息",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_db_user_videos": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/videos",
+    "summary": "用户视频",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_brands": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/brands",
+    "summary": "合作品牌",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_similar": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/similar",
+    "summary": "相似用户推荐",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "tiktok_user_hashtag_engagement": {
+    "method": "GET",
+    "path": "/api/v1/tiktok/user/hashtag/engagement",
+    "summary": "用户top10 hashtag互动数据",
+    "tags": [
+      "tiktok"
+    ],
+    "required_query": [
+      "unique_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_db_user_info": {
+    "method": "GET",
+    "path": "/api/v1/instagram/user/info",
+    "summary": "用户信息",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_db_user_medias": {
+    "method": "GET",
+    "path": "/api/v1/instagram/user/medias",
+    "summary": "用户贴文",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_user_brands": {
+    "method": "GET",
+    "path": "/api/v1/instagram/user/brands",
+    "summary": "合作品牌",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_user_similar": {
+    "method": "GET",
+    "path": "/api/v1/instagram/user/similar",
+    "summary": "相似用户推荐",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "instagram_user_hashtag_engagement": {
+    "method": "GET",
+    "path": "/api/v1/instagram/user/hashtag/engagement",
+    "summary": "用户top10 hashtag互动数据",
+    "tags": [
+      "instagram"
+    ],
+    "required_query": [
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_db_user_info": {
+    "method": "GET",
+    "path": "/api/v1/youtube/user/info",
+    "summary": "用户信息",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [],
+    "required_any_query": [
+      "channel_id",
+      "username"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_db_user_videos": {
+    "method": "GET",
+    "path": "/api/v1/youtube/user/videos",
+    "summary": "用户视频",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_user_brands": {
+    "method": "GET",
+    "path": "/api/v1/youtube/user/brands",
+    "summary": "合作品牌",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_user_similar": {
+    "method": "GET",
+    "path": "/api/v1/youtube/user/similar",
+    "summary": "相似用户推荐",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [],
+    "required_any_query": [
+      "channel_id",
+      "channel_handle"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "youtube_user_hashtag_engagement": {
+    "method": "GET",
+    "path": "/api/v1/youtube/user/hashtag/engagement",
+    "summary": "用户top10 hashtag互动数据",
+    "tags": [
+      "youtube"
+    ],
+    "required_query": [
+      "channel_id"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  },
+  "search_youtube_user": {
+    "method": "POST",
+    "path": "/api/v1/search/youtube/user",
+    "summary": "搜索youtube用户",
+    "tags": [
+      "search"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [
+      "query"
+    ],
+    "default_headers": {}
+  },
+  "search_youtube_video": {
+    "method": "POST",
+    "path": "/api/v1/search/youtube/video",
+    "summary": "搜索youtube视频",
+    "tags": [
+      "search"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [
+      "query"
+    ],
+    "default_headers": {}
+  },
+  "search_tiktok_user": {
+    "method": "POST",
+    "path": "/api/v1/search/tiktok/user",
+    "summary": "搜索tiktok用户",
+    "tags": [
+      "search"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [
+      "query"
+    ],
+    "default_headers": {}
+  },
+  "search_tiktok_video": {
+    "method": "POST",
+    "path": "/api/v1/search/tiktok/video",
+    "summary": "搜索tiktok视频",
+    "tags": [
+      "search"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [
+      "query"
+    ],
+    "default_headers": {}
+  },
+  "search_instagram_user": {
+    "method": "POST",
+    "path": "/api/v1/search/instagram/user",
+    "summary": "搜索instagram用户",
+    "tags": [
+      "search"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [
+      "query"
+    ],
+    "default_headers": {}
+  },
+  "search_instagram_media": {
+    "method": "POST",
+    "path": "/api/v1/search/instagram/media",
+    "summary": "搜索instagram帖文",
+    "tags": [
+      "search"
+    ],
+    "required_query": [],
+    "required_path": [],
+    "required_body": [
+      "query"
+    ],
+    "default_headers": {}
+  },
+  "search_instagram_suggest": {
+    "method": "POST",
+    "path": "/api/v1/search/suggest",
+    "summary": "搜索联想",
+    "tags": [
+      "search"
+    ],
+    "required_query": [
+      "platform",
+      "query"
+    ],
+    "required_path": [],
+    "required_body": [],
+    "default_headers": {}
+  }
+}

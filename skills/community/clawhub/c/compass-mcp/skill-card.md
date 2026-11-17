@@ -1,45 +1,60 @@
-## Description: <br>
-Looks up Compass real-estate listings, property details, photos, price history, comparable rentals, agent listings, and address resolutions through an MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up real-estate listings, property details, photos, price history, and resolve addresses on Compass via MCP.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-Developers and real-estate workflows use this skill to query Compass listing information, compare properties, inspect price history and photos, and run local mortgage or affordability calculations from an agent interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses the user's signed-in Compass browser session to fetch listing data. <br>
-Mitigation: Install and use it only when that session-powered access is acceptable, and keep the browser session scoped to the account intended for the lookup. <br>
-Risk: Compass access may be subject to site restrictions, WAF challenges, or terms that limit bulk or commercial use. <br>
-Mitigation: Confirm Compass permits the intended use before bulk or commercial workflows, and expect network tools to fail until browser sign-in or WAF challenges are resolved. <br>
-Risk: Network-backed listing tools depend on compass-mcp and the fetchproxy browser extension being active. <br>
-Mitigation: Run the healthcheck before relying on results; use the local mortgage and affordability tools when Compass session access is unavailable. <br>
+## Use Case:
 
+Developers and real-estate researchers use this skill to ask an agent for Compass listing searches, property details, photos, price history, address resolution, comparisons, and local mortgage or affordability calculations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/compass-mcp) <br>
-- [npm package: compass-mcp](https://www.npmjs.com/package/compass-mcp) <br>
-- [Source: chrischall/compass-mcp](https://github.com/chrischall/compass-mcp) <br>
-- [Fetchproxy browser extension](https://github.com/chrischall/fetchproxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown and structured MCP tool responses with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Network-backed Compass tools require compass-mcp, the fetchproxy browser extension, and a signed-in Compass browser session; local mortgage and affordability calculators do not require Compass sign-in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.11.6 (source: server-resolved release metadata) <br>
+Risk: Setup uses unpinned third-party package and repository install commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin compass-mcp package versions and fetchproxy repository commits, then review the exact package, repository, and extension permissions before installation.
+
+Risk: Network-backed tools route requests through a signed-in Compass browser session.
+
+Mitigation: Use a dedicated browser profile or low-privilege environment for Compass access and avoid sharing unrelated sensitive browser sessions with the bridge.
+
+Risk: Compass data extraction depends on rendered page state, authentication, and WAF/session behavior rather than a public API.
+
+Mitigation: Treat returned listing details as best-effort and verify important property, price, and availability information against Compass or other primary sources before decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/compass-mcp)
+- [compass-mcp npm package](https://www.npmjs.com/package/compass-mcp)
+- [compass-mcp linked repository](https://github.com/chrischall/compass-mcp)
+- [fetchproxy linked repository](https://github.com/chrischall/fetchproxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with tool results, JSON snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Network-backed tools require compass-mcp, the fetchproxy extension, and an active signed-in Compass browser session; local mortgage and affordability calculations can run without the session.]
+
+## Skill Version(s):
+
+0.11.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

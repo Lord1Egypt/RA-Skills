@@ -1,42 +1,58 @@
-## Description: <br>
-Tracks personal expenses in local JSON files and provides command-line workflows for adding expenses, querying spending, checking budgets, generating reports, summarizing locations, producing snarky spending analysis, and creating trend charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local expense-tracking skill that records spending, queries budgets and reports, analyzes expenses in a snarky tone, aggregates spending by location, and generates trend charts.
 
-## Publisher: <br>
-[ybl2020](https://clawhub.ai/user/ybl2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ybl2020](https://clawhub.ai/user/ybl2020)
 
-## Use Case: <br>
-External users and agents use this skill to maintain a personal spending ledger, review budget status, summarize expense patterns, and generate local reports or trend charts from recorded expense data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trend chart generation can send spending totals to OpenRouter when OPENROUTER_API_KEY is configured. <br>
-Mitigation: Leave OPENROUTER_API_KEY unset or avoid the trend feature unless sharing spending totals with OpenRouter is acceptable. <br>
-Risk: Expense and location history is stored in local JSON files selected by environment variables. <br>
-Mitigation: Set EXPENSE_DATA_FILE and EXPENSE_TRENDS_DIR to intended private paths and use appropriate filesystem permissions before recording sensitive personal data. <br>
+## Use Case:
 
+Individuals and agents use this skill to maintain local personal spending records, check budget status, summarize expenses, and generate spending reports or charts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ybl2020/snarky-expense-butler) <br>
-- [Publisher Profile](https://clawhub.ai/user/ybl2020) <br>
-- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown or plain text with shell commands, local JSON data, and optional PNG trend chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local expense JSON files by default; trend chart generation may call OpenRouter when OPENROUTER_API_KEY is configured, otherwise it falls back to matplotlib.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trend chart generation can send spending totals to OpenRouter when an OpenRouter API key is available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or disable scripts/expense_trends.py, or unset OPENROUTER_API_KEY, if external sharing of spending totals is not acceptable; use the local matplotlib fallback instead.
+
+Risk: The skill stores personal spending records on disk.
+
+Mitigation: Set EXPENSE_DATA_FILE to an appropriate protected path and review local file permissions before storing sensitive spending notes.
+
+Risk: The trend script reads OpenClaw auth configuration while looking for OpenRouter profiles.
+
+Mitigation: Review or remove that lookup before deployment if agent auth configuration should not be read.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ybl2020/skills/snarky-expense-butler)
+- [OpenRouter Chat Completions API](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, terminal text output, local JSON data, and optional PNG trend chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores expense records in a local JSON file and can write trend charts to a local trends directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

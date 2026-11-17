@@ -1,39 +1,53 @@
-## Description: <br>
-Guides creator program strategy for AI/SaaS products, including partnerships, content co-creation, incentives, launch planning, recruitment, and KPI frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to plan, implement, or optimize creator program strategy.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, growth, and product teams use this skill to plan, implement, or optimize creator programs for AI/SaaS products. It helps compare creator, affiliate, and influencer programs; choose incentives; plan launch phases; recruit creators; and define KPIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local project-context files to tailor creator-program advice. <br>
-Mitigation: Review project-context files before use in sensitive workspaces and remove confidential details that should not shape the output. <br>
+## Use Case:
 
+External teams and operators use this skill to plan creator programs for AI or SaaS products, including incentive models, recruitment, launch phases, and KPI tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/creator-program) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides strategy recommendations, launch elements, recruitment approach, timeline, and KPI framework.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate during broad creator-economy or creator-community discussions where creator-program guidance is not actually needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants creator-program planning before applying the skill to generic creator or community topics.
+
+Risk: Creator-program advice may affect brand, budget, partner terms, or content policy decisions.
+
+Mitigation: Review recommendations against the product's brand guidelines, legal terms, content policy, and budget constraints before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/creator-program)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces creator-program recommendations, landing page elements, recruitment approach, phase timeline, and KPI framework.]
+
+## Skill Version(s):
+
+1.1.0 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

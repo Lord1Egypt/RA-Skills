@@ -1,47 +1,67 @@
-## Description: <br>
-Jekyll blog authoring UI - manage posts, drafts, tags, and publishing workflow for static sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jekyll blog authoring UI for managing posts, drafts, tags, and publishing workflows for static sites.
 
-## Publisher: <br>
-[amrree](https://clawhub.ai/user/amrree) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amrree](https://clawhub.ai/user/amrree)
 
-## Use Case: <br>
-Developers, site maintainers, and technical writers use this skill to manage Jekyll or static-site blog posts, drafts, tags, previews, and publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local post files can be created, edited, deleted, and published through the skill. <br>
-Mitigation: Run only against a trusted Jekyll working copy, keep backups or version control available, and review changes before publishing. <br>
-Risk: Publishing workflows can run git commands and push changes to GitHub Pages. <br>
-Mitigation: Use a least-privilege git credential, review commit contents, and avoid running publish actions from an untrusted workspace. <br>
-Risk: The web server and generation features may expose local operations or call external research and AI services. <br>
-Mitigation: Keep the server bound to a trusted local environment, do not expose it to a network, and review any generated content or external-service use before saving. <br>
-Risk: The artifact may look for a MiniMax API key at a hard-coded local path. <br>
-Mitigation: Store credentials securely, verify the expected key path before use, and rotate credentials if the runtime environment is not fully trusted. <br>
+## Use Case:
 
+Developers, writers, and site maintainers use this skill to create, edit, preview, organize, and publish Markdown posts for Jekyll or static-site blogs.
 
-## Reference(s): <br>
-- [Blog Composer on ClawHub](https://clawhub.ai/amrree/skills/blog-composer) <br>
-- [TheSolAI blog](https://thesolai.github.io) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content, Jekyll post files, configuration guidance, and local run/publish commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local Jekyll blog files, run git publishing commands, and call external research or AI services when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Local file and publish actions can modify blog content or push changes without enough containment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind services only to localhost, require authentication for any web API, and add clear confirmation before publish or delete actions.
+
+Risk: Post filenames and metadata can affect filesystem writes under the configured blog directory.
+
+Mitigation: Validate filenames with a strict allowlist, resolve paths under the expected posts directory, and reject path traversal or unexpected extensions.
+
+Risk: Rendered Markdown and metadata may include unsafe or misleading content before publication.
+
+Mitigation: Sanitize rendered Markdown and front matter, and require human review before saving or publishing generated content.
+
+Risk: AI-assisted generation and research features may send prompts or source material to external providers.
+
+Mitigation: Disclose provider use and data sharing, make AI generation opt-in, and avoid sending secrets or unpublished sensitive content.
+
+Risk: Hardcoded local paths and secret-file paths can fail outside the publisher environment and may expose operational assumptions.
+
+Mitigation: Move blog roots and API-key locations into user-controlled configuration and document required permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amrree/skills/blog-composer)
+- [Publisher Profile](https://clawhub.ai/user/amrree)
+- [TheSolAI Blog](https://thesolai.github.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown blog content, Jekyll front matter, configuration notes, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local blog post files and trigger git-based publish actions when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

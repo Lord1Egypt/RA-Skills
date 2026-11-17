@@ -1,48 +1,57 @@
-## Description: <br>
-Rate tools you use (MCP servers, skills, CLI tools, APIs) and query ratings to make informed tool choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EchoMark helps agents record and query ratings for MCP servers, skills, CLI tools, APIs, and other tools so future tool choices can use prior experience.
 
-## Publisher: <br>
-[ruoxi0324](https://clawhub.ai/user/ruoxi0324) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruoxi0324](https://clawhub.ai/user/ruoxi0324)
 
-## Use Case: <br>
-Agents and developers use EchoMark to record local ratings for tools after use and query past ratings before choosing a tool. It supports local-first rating history with optional cloud registration, submission, and community rating lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary flags plaintext cloud communication and generated API key exposure. <br>
-Mitigation: Prefer local-only mode unless cloud sharing is intentional, and set ECHO_MARK_API_URL to a trusted HTTPS endpoint before registration or cloud use. <br>
-Risk: The registration flow prints the generated API key after saving it. <br>
-Mitigation: Treat any printed API key as exposed, limit access to ~/.echomark/api_key, and rotate or replace the key if terminal output may have been logged. <br>
-Risk: Tool names, numeric scores, and optional comments may be sent to the cloud service. <br>
-Mitigation: Avoid sensitive tool names or comments, and use --local-only when ratings should remain on the local machine. <br>
-Risk: Automatic or broad tool-rating workflows can create misleading reliability data. <br>
-Mitigation: Submit ratings only after concrete tool use and review scores for accuracy, stability, efficiency, and usability before sharing them. <br>
+## Use Case:
 
+Agents and developers use EchoMark to submit 1-5 ratings after using tools and to query local or community ratings before choosing tools.
 
-## Reference(s): <br>
-- [EchoMark ClawHub Page](https://clawhub.ai/ruoxi0324/echomark) <br>
-- [EchoMark GitHub Repository](https://github.com/Duroxi/EchoMark) <br>
-- [EchoMark Philosophy](https://github.com/Duroxi/EchoMark/blob/main/PHILOSOPHY.md) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ratings are stored in a local SQLite database by default; cloud registration, submission, and query flows use API calls when enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: By default, cloud submission contacts an EchoMark API and uses an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only mode when cloud sharing is not required.
+
+Risk: The security evidence flags the default plaintext HTTP endpoint as unsafe for cloud features.
+
+Mitigation: Avoid cloud features until the endpoint is changed to HTTPS or override the API URL with a trusted HTTPS endpoint.
+
+Risk: The security evidence notes that registration prints an API key.
+
+Mitigation: Treat printed keys as exposed and suppress or rotate keys before production use.
+
+## Reference(s):
+
+- [EchoMark ClawHub Release](https://clawhub.ai/ruoxi0324/skills/echomark)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python CLI commands and terminal text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local SQLite ratings and can use a cloud API for registration, submission, and community queries.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 # rune-completion-gate
 
-> Rune L3 Skill | validation | model: tier:light
+> Rune L3 Skill | validation | model: tier:mid
 
 
 # completion-gate
@@ -61,6 +61,33 @@ CLAIM PATTERNS:
 ```
 
 Extract each claim as: `{ claim: string, source_skill: string }`
+
+### Step 1a — Type Each Claim (Claim Discipline)
+<MUST-READ path="references/claim-discipline.md" trigger="always — before matching evidence"/>
+
+Before hunting for evidence, type the claim by the grammar it was written in. **Hallucination is an unverified claim wearing the grammar of an observation** — the grammar is the tell, and it is readable in the sentence itself.
+
+| Type | Meaning | Grammar it may wear |
+|------|---------|---------------------|
+| **OBSERVED** | Seen this session: ran it, read it, measured it | "X is / does / returns …" |
+| **DERIVED** | Follows from OBSERVED facts via a statable mechanism | "X should / will / implies …" + the why |
+| **PRIOR** | Training knowledge, may be stale | "X is typically … / was, as of …" |
+| **ASSUMED** | Unverified and required by the conclusion | "I am assuming X — if wrong, then …" |
+
+This changes what the gate is looking for in Step 2:
+
+- **OBSERVED** → demands an evidence artifact. No artifact = FAIL. This is the existing gate.
+- **DERIVED** → demands the mechanism be stated, and its OBSERVED inputs to be present.
+- **PRIOR / ASSUMED** → **not a failure.** A claim honestly delivered as assumed is the correct output when the check was not run. Record it as an open item; never score it as a lie.
+
+<HARD-GATE>
+A hedge is not a defect. Do NOT fail a claim for being marked ASSUMED or PRIOR — fail it for
+wearing OBSERVED grammar with nothing behind it. Treating honest uncertainty as a failure
+teaches the next agent to delete its hedges, which is the exact behavior this gate exists to
+catch.
+</HARD-GATE>
+
+Claims are promoted only by tools — checking a PRIOR makes it OBSERVED. Restating it more confidently does not. Confidence that grew from effort, repetition or fluent prose resets to the last evidence-backed level.
 
 ### Step 1b — Stub Detection (Existence Theater Check)
 
@@ -125,11 +152,11 @@ For each claim, look for corresponding evidence in the conversation context:
 
 | Claim Type | Required Evidence | Where to Find |
 |---|---|---|
-| "tests pass" | Test runner stdout with pass count | Bash output from test command |
-| "build succeeds" | Build command stdout showing success | Bash output from build command |
-| "lint clean" | Linter stdout (even if empty = 0 errors) | Bash output from lint command |
-| "fixed" | Git diff showing the change + test proving fix | Edit/Write tool calls + test output |
-| "implemented" | Files created/modified matching the plan | Write/Edit tool calls vs plan |
+| "tests pass" | Test runner stdout with pass count | Shell output from test command |
+| "build succeeds" | Build command stdout showing success | Shell output from build command |
+| "lint clean" | Linter stdout (even if empty = 0 errors) | Shell output from lint command |
+| "fixed" | Git diff showing the change + test proving fix | File-edit evidence + test output |
+| "implemented" | Files created/modified matching the plan | File changes compared with the plan |
 | "no security issues" | Sentinel report with PASS verdict | Sentinel skill output |
 | "coverage ≥ X%" | Coverage tool output with actual percentage | Test runner with coverage flag |
 
@@ -149,8 +176,10 @@ IF evidence exists AND evidence supports claim:
   → CONFIRMED
 IF evidence exists BUT contradicts claim:
   → CONTRADICTED (most serious — agent is wrong)
-IF no evidence found:
-  → UNCONFIRMED (agent may be right but didn't prove it)
+IF no evidence found AND claim was typed PRIOR/ASSUMED (Step 1a):
+  → DECLARED (honest gap — record as an open item, not a failure)
+IF no evidence found AND claim wore OBSERVED grammar:
+  → UNCONFIRMED (the claim asserted more than the agent checked)
 ```
 
 **3-Axis verification** — categorize each claim into one of three axes, then ensure all axes are covered:
@@ -176,26 +205,30 @@ If an axis has ZERO claims → flag as gap: "No [Completeness/Correctness/Cohere
 ## Completion Gate Report
 - **Status**: CONFIRMED | UNCONFIRMED | CONTRADICTED
 - **Claims Checked**: [count]
-- **Confirmed**: [count] | **Unconfirmed**: [count] | **Contradicted**: [count]
+- **Confirmed**: [count] | **Unconfirmed**: [count] | **Contradicted**: [count] | **Declared**: [count]
 
 ### Claim Validation
-| # | Claim | Evidence | Verdict |
-|---|---|---|---|
-| 1 | "All tests pass" | Bash: `npm test` → "42 passed, 0 failed" | CONFIRMED |
-| 2 | "Build succeeds" | No build command output found | UNCONFIRMED |
-| 3 | "No lint errors" | Bash: `npm run lint` → "3 errors" | CONTRADICTED |
+| # | Claim | Type | Evidence | Verdict |
+|---|---|---|---|---|
+| 1 | "All tests pass" | OBSERVED | Bash: `npm test` → "42 passed, 0 failed" | CONFIRMED |
+| 2 | "Build succeeds" | OBSERVED | No build command output found | UNCONFIRMED |
+| 3 | "No lint errors" | OBSERVED | Bash: `npm run lint` → "3 errors" | CONTRADICTED |
+| 4 | "Assuming the migration already ran in staging" | ASSUMED | — (declared, not claimed) | DECLARED |
 
 ### Gaps (if any)
 - Claim 2: Re-run `npm run build` and capture output
 - Claim 3: Agent claimed clean but lint shows 3 errors — fix required
 
+### Open (declared, not failures)
+- Claim 4: Verify the staging migration before this reaches prod
+
 ### Verdict
-UNCONFIRMED — 1 claim lacks evidence, 1 contradicted. Cannot proceed to commit.
+UNCONFIRMED — 1 claim lacks evidence, 1 contradicted. Cannot proceed to commit. (1 declared assumption carried forward — not blocking.)
 ```
 
-### Step 4.5 — Cross-Phase Integration Check
+### Step 4.5 — Integration Check (Cross-Phase + Cross-Layer)
 
-When validating a completed phase in a multi-phase plan, check for integration gaps between phases:
+Check for integration gaps — between phases AND between layers:
 
 1. **Orphaned exports** — files/functions created in this phase that claim to be used by future phases (see `## Cross-Phase Context → Exports`) but are not yet importable:
    ```
@@ -205,19 +238,28 @@ When validating a completed phase in a multi-phase plan, check for integration g
    - Expected export missing entirely → UNCONFIRMED ("Phase N claims to export X but X not found")
    ```
 
-2. **Uncalled routes** — API endpoints added in this phase but not wired to any frontend/consumer yet:
-   - This is OK if a future phase handles wiring (check master plan)
-   - Flag as WARN if no future phase mentions consuming this route
+2. **Uncalled routes** — API endpoints added in this task but not wired to any frontend/consumer:
+   - **BLOCK** if the route was created in THIS task AND a user story/AC references the interaction it serves — an uncalled route behind a story's UI is a dead path, not future work
+   - WARN (deferral allowed) ONLY if a NAMED future-phase task explicitly references consuming this route (verifiable in the master plan/phase files — "a future phase will handle it" without a task ID is not an excuse)
 
 3. **Auth gaps** — new endpoints or pages without authentication/authorization:
    - grep for route handlers without auth middleware
    - Flag as WARN (may be intentional for public endpoints, but worth checking)
 
-4. **E2E flow trace** — for the primary user flow this phase enables:
-   - Trace: entry point → business logic → data layer → response
+4. **E2E flow trace** — for the primary user flow this task enables:
+   - Trace: entry point → handler → business logic → data layer → response
    - If any step in the chain is missing or stubbed → CONTRADICTED
 
-**This step is OPTIONAL for single-phase tasks and MANDATORY for multi-phase master plans.**
+**When this step is MANDATORY** (any one triggers it — single-phase tasks included):
+- The diff touches BOTH a UI file (`.tsx/.jsx/.vue/.svelte/.html`) AND an api/service/data file — where "api/service/data file" = any file whose path contains a segment from: `api`, `routes`, `handlers`, `services`, `service`, `stores`, `store`, `db`, `database`, `models`, `repositories`, `repo`, `queries` — OR any file exporting functions matching `create*`/`update*`/`delete*`/`fetch*`/`save*`/`post*` verb patterns
+- The feature spec has a `## Key Entities` section
+- The task description contains any of these exact words: `click`, `submit`, `save`, `login`, `signup`, `search`, `checkout`, `upload`, `delete`, `order`, `pay` — EXCEPT when the phrase is explicitly local-only ("save to clipboard", "save locally", "client-side only")
+- Multi-phase master plan (always, as before)
+
+Skip ONLY when none of the above hold (pure-UI styling, pure-backend plumbing, docs/config).
+"Single-phase" is NOT a skip reason — most dead-button escapes are single-phase tasks.
+
+**De-dup**: if preflight (Step 4/4.5) or verification (Level 3.5) already flagged the same element/route in this session, cite the cross-reference instead of emitting a duplicate finding — one dead button = one finding + cross-refs, not three findings.
 
 ### Step 5 — Evidence Quality Gate
 
@@ -290,7 +332,9 @@ Completion Gate Report with status (CONFIRMED/UNCONFIRMED/CONTRADICTED), claim v
 | Completion-gate itself claims "all confirmed" without evidence | CRITICAL | Gate report MUST include the evidence table — no table = report is invalid |
 | Existence Theater — agent creates files but they're stubs | HIGH | Step 1b stub detection: grep for Placeholder/TODO/NotImplementedError in new files |
 | Cross-phase integration gaps — exports exist but wrong signature | HIGH | Step 4.5: verify exports match Code Contracts from phase file |
-| Phase complete but E2E flow broken — missing link in the chain | MEDIUM | Step 4.5 E2E flow trace: entry → logic → data → response must all be connected |
+| Phase complete but E2E flow broken — missing link in the chain | HIGH | Step 4.5 E2E flow trace: entry → handler → logic → data → response must all be connected |
+| Skipping Step 4.5 because the task is single-phase | CRITICAL | Mandatory triggers: UI+data diff, Key Entities in spec, or interaction-implying task — single-phase is where most dead buttons escape |
+| Excusing an uncalled route with "a future phase will wire it" (no task named) | HIGH | Step 4.5 #2: deferral requires a NAMED future-phase task referencing the route — vibes-deferral = BLOCK |
 | Rubber-stamping — all CONFIRMED without scrutiny | HIGH | Default-FAIL mindset: actively seek 3-5 issues. Zero issues = red flag, apply skeptic sweep on weakest 2 claims |
 | Partial completion claimed as full — 80% done but "implemented" | HIGH | Adversarial checklist: check for partial completion, scope mismatch, evidence-claim alignment |
 | Self-Validation skipped — skill has checks but gate ignores them | HIGH | Step 1c: extract Self-Validation from skill's SKILL.md, treat each as implicit claim. Missing = UNCONFIRMED |
@@ -312,7 +356,7 @@ Completion Gate Report with status (CONFIRMED/UNCONFIRMED/CONTRADICTED), claim v
 ~500-1000 tokens input, ~200-500 tokens output. Haiku for speed. Runs frequently as part of cook's quality phase.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

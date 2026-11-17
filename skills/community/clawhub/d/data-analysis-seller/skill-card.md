@@ -1,41 +1,54 @@
-## Description: <br>
-Provides data cleaning, statistical analysis, visual reports, and custom dashboard service information using Python, Excel or Google Sheets, dashboards, and SQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide data cleaning, statistical analysis, interactive visual reports, and custom real-time dashboards using Python, Excel, and SQL.
 
-## Publisher: <br>
-[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongtaop1-sys](https://clawhub.ai/user/yongtaop1-sys)
 
-## Use Case: <br>
-External users and developers can use this skill to evaluate a marketplace data analysis service offering for cleaning datasets, generating statistics, creating reports, and building dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share private customer data, credentials, or business-sensitive files with a marketplace service provider. <br>
-Mitigation: Verify the provider and establish a separate trust and privacy arrangement before sharing sensitive datasets or credentials. <br>
-Risk: Users may pay or engage the listed service without independently confirming the provider identity and terms. <br>
-Mitigation: Confirm the publisher profile, contact channel, pricing, scope, and delivery expectations before purchase or data transfer. <br>
+## Use Case:
 
+External users can use this skill as a service listing for requesting data cleaning, statistical analysis, visual reports, and custom dashboards from the third-party publisher.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongtaop1-sys/data-analysis-seller) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yongtaop1-sys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown service listing with bullet points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes service tiers, pricing, tools, delivery windows, and contact channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may share sensitive datasets or business information through the listed contact channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share data only after confirming the provider, scope, confidentiality expectations, and acceptable handling practices.
+
+Risk: The skill is a seller listing and does not provide executable analysis functionality inside the agent.
+
+Mitigation: Treat it as contact and service guidance rather than an automated data analysis workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yongtaop1-sys/skills/data-analysis-seller)
+- [Publisher Profile](https://clawhub.ai/user/yongtaop1-sys)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown service listing with pricing, capabilities, tools, and contact details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the skill presents service tiers and contact channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

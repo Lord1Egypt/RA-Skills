@@ -1,42 +1,52 @@
-## Description: <br>
-Format tabular data as ASCII box tables for Telegram. Stdin-only input eliminates shell injection risks. Handles smart column sizing, text wrapping, and proper padding for monospace display. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format tabular data as ASCII box tables for Telegram. Stdin-only input eliminates shell injection risks. Handles smart column sizing, text wrapping, and proper padding for monospace display.
 
-## Publisher: <br>
-[NaLG](https://clawhub.ai/user/NaLG) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nalg](https://clawhub.ai/user/nalg)
 
-## Use Case: <br>
-External users and developers use this skill to turn pipe-delimited rows into Telegram-friendly monospace tables for chat updates, status summaries, and compact reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive table data could be included in generated output and then shared in Telegram. <br>
-Mitigation: Only pipe or paste data intended for the table and review the generated output before sending it. <br>
-Risk: The pipe character is used as the column delimiter and cannot appear safely inside cell content. <br>
-Mitigation: Remove or replace pipe characters in cell values before formatting the table. <br>
-Risk: Wide characters such as emoji or CJK text may not align consistently in Telegram monospace rendering. <br>
-Mitigation: Preview the output in the target Telegram client and use mobile ASCII mode when compatibility matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NaLG/telegram-ascii-table) <br>
-- [Publisher profile](https://clawhub.ai/user/NaLG) <br>
+## Use Case:
 
+Developers, operators, and support teams use this skill to turn pipe-delimited stdin data into monospace tables suitable for Telegram messages. It is useful for sharing compact status, task, or inventory data in desktop or mobile-friendly table layouts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell examples and generated plain-text ASCII or Unicode table output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads table rows from stdin; supports desktop Unicode mode, mobile ASCII mode, and custom width.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Input provided through stdin is printed back as table output, so sensitive data can be exposed if copied into Telegram or retained in terminal logs.
+
+Mitigation: Use only data approved for the target chat and review the rendered table before sharing it.
+
+Risk: The packaged script may not be directly executable in every environment.
+
+Mitigation: Run it with python3 or set executable permissions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nalg/skills/telegram-ascii-table)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text ASCII or Unicode table output, commonly wrapped in Markdown code blocks for Telegram]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads pipe-delimited rows from stdin; supports desktop, mobile, and custom-width output modes.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

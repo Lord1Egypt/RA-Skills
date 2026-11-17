@@ -1,42 +1,60 @@
-## Description: <br>
-Runs an on-demand fleet-wide Azure Key Vault health check across availability, API latency, throttling, authentication failures, and saturation, then deep-dives into the most relevant vaults with metrics and resource logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs an on-demand Azure Key Vault health check through Azure Managed Grafana, summarizing fleet availability, latency, throttling, authentication failures, saturation, and targeted deep-dive findings.
 
-## Publisher: <br>
-[1w2w3y](https://clawhub.ai/user/1w2w3y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1w2w3y](https://clawhub.ai/user/1w2w3y)
 
-## Use Case: <br>
-Cloud operations engineers, SREs, and developers use this skill to inspect Azure Key Vault fleet health through Azure Managed Grafana telemetry, identify degraded vaults, and produce prioritized remediation actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can display or persist sensitive operational telemetry such as vault names, subscription IDs, caller IPs, application IDs, or secret/key identifiers. <br>
-Mitigation: Use it only for authorized Azure subscriptions, avoid sharing raw outputs externally, and review or clean memory/amg-check-key-vault/report.md and config.md when they contain sensitive details. <br>
-Risk: The configured Azure Managed Grafana MCP endpoint and token grant access to operational telemetry. <br>
-Mitigation: Verify the MCP endpoint before registration and use a least-privilege Grafana service-account token. <br>
+## Use Case:
 
+Developers and cloud operations engineers use this skill to inspect Azure Key Vault health across configured Azure subscriptions, identify significant vault issues, and produce prioritized remediation guidance.
 
-## Reference(s): <br>
-- [Analysis Patterns & Known Issue Cross-Reference](reference/analysis-patterns.md) <br>
-- [Deep-Dive Queries](reference/deep-dive-queries.md) <br>
-- [Error Handling](reference/error-handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with metric summaries, KQL query results, action items, and persisted issue updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write or update memory/amg-check-key-vault/config.md and memory/amg-check-key-vault/report.md during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill requires access to Azure Managed Grafana telemetry for configured subscriptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the minimum required Azure Managed Grafana access for the intended subscriptions.
+
+Risk: The setup flow uses a bearer token in a shell command.
+
+Mitigation: Use a least-privilege, short-lived Grafana service-account token and avoid pasting it into shell history.
+
+Risk: Persistent health-check reports may contain subscription IDs, vault names, caller IPs, app IDs, and secret or key object references.
+
+Mitigation: Review or redact memory/amg-check-key-vault reports before sharing logs or workspace files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1w2w3y/skills/amg-check-key-vault)
+- [Analysis patterns](artifact/reference/analysis-patterns.md)
+- [Deep-dive queries](artifact/reference/deep-dive-queries.md)
+- [Error handling](artifact/reference/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown operational report with inventory summaries, telemetry findings, KQL query results, and prioritized action items.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local configuration and known-issue report files for the configured health-check workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

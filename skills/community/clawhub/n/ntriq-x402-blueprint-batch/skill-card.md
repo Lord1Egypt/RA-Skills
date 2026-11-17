@@ -1,42 +1,56 @@
-## Description: <br>
-Batch architectural blueprint analysis for up to 500 images with flat $15.00 USDC payment via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch architectural blueprint analysis for up to 500 images. Flat $15.00 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-External developers and agents use this skill to submit batches of architectural blueprint image URLs for room, dimension, material, or full-plan analysis through the ntriq x402 service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blueprint images or image URLs may contain confidential building plans, security layouts, regulated project documents, or client-owned drawings. <br>
-Mitigation: Use only with authorized, non-confidential inputs unless the user has reviewed and accepted the provider's privacy and retention terms. <br>
-Risk: The skill can initiate a paid x402 workflow for a flat $15.00 USDC charge on Base mainnet. <br>
-Mitigation: Confirm payment intent, endpoint, network, and x402 payment header before making requests. <br>
+## Use Case:
 
+Developers, construction technologists, and architecture teams use this skill to prepare paid x402 requests for batch analysis of blueprint image URLs, including room, dimension, material, or full-plan analysis.
 
-## Reference(s): <br>
-- [Ntriq x402 Service Homepage](https://x402.ntriq.co.kr) <br>
-- [x402 Protocol](https://x402.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ntriq-gh/ntriq-x402-blueprint-batch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls a third-party paid x402 endpoint that accepts up to 500 blueprint image URLs per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Blueprint image URLs may identify confidential or client-owned plans sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the plans are approved for external processing before using the skill, and avoid submitting sensitive blueprint URLs without appropriate authorization.
+
+Risk: The workflow requires an x402 USDC payment header for the listed external service.
+
+Mitigation: Verify the service endpoint, payment amount, and payment authorization before sending requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-blueprint-batch)
+- [Ntriq X402 Homepage](https://x402.ntriq.co.kr)
+- [x402 Protocol](https://x402.org)
+- [Ntriq Services Endpoint](https://x402.ntriq.co.kr/services)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown with HTTP and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides paid x402 requests for up to 500 blueprint image URLs with optional analysis type and language parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

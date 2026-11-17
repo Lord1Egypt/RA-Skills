@@ -1,39 +1,53 @@
-## Description: <br>
-Expert guidance on roofing estimating, materials, insurance claims, OSHA compliance, licensing, crew management, financial benchmarks, and growth strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides roofing business operations guidance for estimating, material selection, insurance claims, OSHA safety, licensing, crew management, financial benchmarks, and growth planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Roofing company owners, estimators, insurance restoration contractors, consultants, and AI agents use this skill to estimate jobs, compare materials, plan crews, handle claim supplements, check safety and licensing considerations, benchmark finances, and plan growth. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Roofing prices, OSHA fines, licensing rules, insurance requirements, claim approval rates, and business benchmarks may be outdated or vary by jurisdiction, carrier, and project. <br>
-Mitigation: Verify figures against current manufacturer pricing, local licensing authorities, OSHA materials, insurance carriers, and qualified legal or business advisors before using them for bids, compliance, claims, or business decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/1kalin/afrexai-roofing-contractor) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Roofing company owners, estimators, insurance restoration contractors, and construction consultants use this skill to guide agent responses about roofing estimates, claims, compliance, staffing, benchmarks, and growth operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference guidance with tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only advisory content; no code execution or file generation] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Roofing prices, OSHA fines, insurance rules, and licensing requirements may become outdated or vary by jurisdiction.
+
+Mitigation: Verify operational and compliance details against current local authorities, insurers, and project-specific requirements before relying on them for bids or compliance decisions.
+
+Risk: The artifact includes promotional links to the publisher's external site.
+
+Mitigation: Review external links before use in environments with vendor, advertising, or outbound-link restrictions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/1kalin/skills/afrexai-roofing-contractor)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance with tables and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

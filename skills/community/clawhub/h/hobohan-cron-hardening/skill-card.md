@@ -1,40 +1,53 @@
-## Description: <br>
-Guidelines for reliable OpenClaw cron jobs: model pinning, absolute paths, timeouts, delivery config, and error recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guidelines for reliable OpenClaw cron jobs: model pinning, absolute paths, timeouts, delivery config, and error recovery.
 
-## Publisher: <br>
-[hohobohan](https://clawhub.ai/user/hohobohan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hohobohan](https://clawhub.ai/user/hohobohan)
 
-## Use Case: <br>
-Developers and operators use this skill to configure reliable OpenClaw scheduled jobs, including model pinning, absolute paths, timeout choices, delivery settings, concurrency limits, and recovery checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hardcoded Telegram recipient values could send cron output or failure alerts to the wrong recipient. <br>
-Mitigation: Replace every hardcoded Telegram recipient with the intended channel before enabling delivery or failure alerts. <br>
-Risk: Personal absolute filesystem paths could fail or cause scheduled jobs to operate on the wrong files when reused. <br>
-Mitigation: Replace personal paths with environment-specific absolute paths and verify each command before installing or updating crons. <br>
+## Use Case:
 
+Developers and operators use this skill to configure more reliable OpenClaw cron jobs with explicit model choices, absolute command paths, suitable timeouts, delivery settings, failure recovery checks, concurrency limits, and failure alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hohobohan/hobohan-cron-hardening) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes timeout guidance, delivery settings, failure alerts, and recovery checks for cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, CHANGELOG.md) <br>
+Risk: The skill includes fixed Telegram delivery and failure-alert recipients that may not belong to the installing user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace Telegram recipients before installation or use, and only allow cron creation or updates after confirming delivery and failure-alert destinations.
+
+Risk: Existing cron configurations may already contain the fixed Telegram recipient from the skill examples.
+
+Mitigation: Check existing cron configurations for telegram:37134287 and replace it with an approved recipient before running scheduled notifications.
+
+## Reference(s):
+
+- [Cron Hardening ClawHub listing](https://clawhub.ai/hohobohan/skills/hobohan-cron-hardening)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides cron configuration patterns and operational checks for agent-authored schedules.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

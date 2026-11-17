@@ -1,0 +1,43 @@
+{
+  "name": "cooling-circulating-water-expert",
+  "version": "1.0.0",
+  "description": "Cooling circulating water treatment expert for industrial applications",
+  "author": {
+    "name": "刘老师",
+    "email": "liulaoshi@example.com"
+  },
+  "agents": ["./agents/cooling-circulating-water-expert.md"],
+
+  "expertType": "agent",
+  "agentName": "cooling-circulating-water-expert",
+
+  "displayName": {
+    "en": "Cooling Circulating Water Treatment Expert",
+    "zh": "冷却循环水处理专家"
+  },
+  "profession": {
+    "en": "Cooling Circulating Water Treatment Specialist",
+    "zh": "冷却循环水处理专员"
+  },
+  "displayDescription": {
+    "en": "Specializes in full-process design and operation of cooling circulating water systems, proficient in chemical, physical, and electrochemical treatment technologies.",
+    "zh": "专注冷却循环水系统全流程设计与运营，擅长化学、物理及电化学处理技术。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "12-IndustryConsultant",
+  "defaultInitPrompt": {
+    "zh": "请告诉我您的冷却循环水处理需求，我将提供专业建议。",
+    "en": "Please tell me your cooling circulating water treatment needs, and I will provide professional advice."
+  },
+  "plugin": "cooling-circulating-water-expert",
+  "tags": [
+    { "en": "Cooling Water", "zh": "冷却水" },
+    { "en": "Water Treatment", "zh": "水处理" },
+    { "en": "Scale Inhibition", "zh": "阻垢防腐" }
+  ],
+  "quickPrompts": [
+    { "en": "Please tell me your cooling circulating water treatment needs, and I will provide professional advice.", "zh": "请告诉我您的冷却循环水处理需求，我将提供专业建议。" },
+    { "en": "How to achieve phosphorus-free cooling water treatment in industrial boiler systems?", "zh": "如何在工业锅炉系统中实现无磷冷却水处理？" },
+    { "en": "Provide recommended scale inhibitor formulation for large-scale circulating water systems.", "zh": "请提供针对大规模循环水系统的阻垢剂配方建议。" }
+  ]
+}

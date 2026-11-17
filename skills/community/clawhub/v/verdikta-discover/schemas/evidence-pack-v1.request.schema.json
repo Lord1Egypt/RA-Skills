@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fixture_only": {
+      "type": "boolean"
+    },
+    "data_classification": {
+      "const": "PUBLIC_NON_SENSITIVE"
+    },
+    "source_policy": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "PROVIDED_CORPUS",
+            "INDEPENDENT_PUBLIC_RETRIEVAL"
+          ]
+        },
+        "allowed_sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "minItems": 1,
+          "maxItems": 30,
+          "description": "Exact approved source URLs; no wildcard hosts or implicit additional sources."
+        },
+        "version_scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "as_of": {
+          "type": "string",
+          "format": "date"
+        },
+        "minimum_locations_per_item": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "max_search_actions_per_item": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "access_failure_policy": {
+          "const": "LOG_LIMITATION_DO_NOT_FABRICATE"
+        }
+      },
+      "required": [
+        "mode",
+        "allowed_sources",
+        "version_scope",
+        "as_of",
+        "minimum_locations_per_item",
+        "max_search_actions_per_item",
+        "access_failure_policy"
+      ],
+      "additionalProperties": false
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "entity_id",
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 10
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "value_type": {
+            "enum": [
+              "string",
+              "number",
+              "boolean"
+            ]
+          }
+        },
+        "required": [
+          "field_id",
+          "definition",
+          "value_type"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 10
+    }
+  },
+  "required": [
+    "schema_version",
+    "task_id",
+    "fixture_only",
+    "data_classification",
+    "source_policy",
+    "entities",
+    "fields"
+  ],
+  "additionalProperties": false
+}

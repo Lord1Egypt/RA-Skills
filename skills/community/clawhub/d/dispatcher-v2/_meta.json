@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7bgzggqf615ev1ffjbvbfgt18480vx",
+  "owner": "sora",
   "slug": "dispatcher-v2",
-  "version": "1.0.0",
-  "publishedAt": 1775392307219
+  "displayName": "Dispatcher V2",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 0,
+    "commit": ""
+  },
+  "history": []
 }

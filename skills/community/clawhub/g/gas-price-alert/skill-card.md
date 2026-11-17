@@ -1,45 +1,61 @@
-## Description: <br>
-Find and monitor gas prices with daily notifications. Use when searching for the cheapest gas in a specific area, tracking Costco and other discount fuel stations, or setting up daily gas price alerts. Supports any US location with configurable radius and fuel type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and monitor gas prices for U.S. locations with daily notifications, configurable radius and fuel type, and emphasis on Costco and other discount stations.
 
-## Publisher: <br>
-[GustavoZiaugra](https://clawhub.ai/user/GustavoZiaugra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gustavoziaugra](https://clawhub.ai/user/gustavoziaugra)
 
-## Use Case: <br>
-External users and agents use this skill to search for US gas stations by ZIP code or coordinates, compare estimated fuel prices, and configure daily fuel-price notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: ZIP codes or coordinates may be sent to external mapping or gas-price services during searches. <br>
-Mitigation: Install and run the skill only when sharing searched locations with those services is acceptable. <br>
-Risk: Displayed prices and non-Columbus search results may be approximate or incomplete. <br>
-Mitigation: Treat prices as estimates unless using a real price source, and verify important results with the station or a current fuel-price service. <br>
-Risk: Scheduled alerts can continue sending location-based requests after the user no longer needs them. <br>
-Mitigation: Review cron alert configuration and disable recurring searches when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to search nearby gas stations, estimate discount-station fuel prices, save station results, and configure recurring gas-price alerts for U.S. locations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/GustavoZiaugra/gas-price-alert) <br>
-- [Locations Reference](references/locations.md) <br>
-- [ZIP Codes Reference](references/zip_codes.md) <br>
-- [OpenStreetMap Overpass API](http://overpass-api.de/api/interpreter) <br>
-- [GasBuddy](https://www.gasbuddy.com) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, cron configuration snippets, and JSON station results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Gas prices may be estimates, and station coverage depends on external mapping and price services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Location searches and repeated scheduled alerts can disclose a user's travel area to external services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scheduled alerts only when repeated location queries are acceptable, and limit queries to the minimum location detail and radius needed.
+
+Risk: Fuel prices and station rankings may be inaccurate because the skill relies on estimates, OpenStreetMap coverage, and Columbus-specific logic.
+
+Mitigation: Treat results as planning guidance, verify prices with station apps or GasBuddy before purchase, and test or adjust the location logic before relying on non-Columbus results.
+
+Risk: The Overpass request uses an unencrypted endpoint.
+
+Mitigation: Change the Overpass endpoint to HTTPS before production or privacy-sensitive use.
+
+## Reference(s):
+
+- [Gas Price Alert - US City Coordinates](references/locations.md)
+- [Columbus, OH Area ZIP Codes](references/zip_codes.md)
+- [OpenStreetMap Overpass API](http://overpass-api.de/api/interpreter)
+- [GasBuddy](https://www.gasbuddy.com)
+- [Costco Warehouse Locations](https://www.costco.com/warehouse-locations)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style summaries, JSON station records, shell command examples, and scheduled alert configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write station results to a configured JSON output file; price values are often estimates or N/A.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

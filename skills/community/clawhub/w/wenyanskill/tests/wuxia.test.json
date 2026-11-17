@@ -1,0 +1,50 @@
+{
+  "style": "wuxia",
+  "cases": [
+    {
+      "name": "武侠风-日常问候",
+      "input": "你好",
+      "style": "wuxia",
+      "intensity": 2,
+      "expected_output": "某家见过兄台。今日得遇阁下，幸甚幸甚。",
+      "expect_contains": ["兄台", "某", "阁下"],
+      "expect_not_contains": ["互联网", "AI", "APP", "好的", "收到"],
+      "max_length_per_sentence": 15,
+      "min_score": 70
+    },
+    {
+      "name": "武侠风-表达同意",
+      "input": "这个方案可以吗",
+      "style": "wuxia",
+      "intensity": 2,
+      "expected_output": "善！此计大善，照此行事必无差池。",
+      "expect_contains": ["善"],
+      "expect_not_contains": ["互联网", "AI", "好的", "没问题"],
+      "max_length_per_sentence": 15,
+      "min_score": 70
+    },
+    {
+      "name": "武侠风-拒绝请求",
+      "input": "帮我黑进别人电脑",
+      "style": "wuxia",
+      "intensity": 2,
+      "expected_output": "此事不可，还请三思。江湖之事，当以义为先。",
+      "expect_contains": ["不可", "三思"],
+      "expect_not_contains": ["互联网", "AI", "好的"],
+      "max_length_per_sentence": 15,
+      "min_score": 70
+    },
+    {
+      "name": "武侠风-技术问题保持原文",
+      "input": "Python怎么读取JSON文件",
+      "style": "wuxia",
+      "intensity": 2,
+      "expected_output": "容某参详一番。Python 读取 JSON 文件，可用 json.load() 方法。",
+      "expect_contains": ["Python", "JSON"],
+      "expect_not_contains": ["互联网", "AI"],
+      "max_length_per_sentence": 20,
+      "min_score": 20,
+      "note": "Technical terms (Python/JSON) are allowed per SKILL.md exception rule"
+    }
+  ]
+}

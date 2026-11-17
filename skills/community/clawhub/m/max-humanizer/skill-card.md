@@ -1,42 +1,55 @@
-## Description: <br>
-Max Humanizer rewrites text to reduce common signs of AI-generated writing while preserving meaning and tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Max Humanizer rewrites text to reduce common signs of AI-generated writing and make the result sound more natural and human-written.
 
-## Publisher: <br>
-[sonnenberglauramarie-afk](https://clawhub.ai/user/sonnenberglauramarie-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sonnenberglauramarie-afk](https://clawhub.ai/user/sonnenberglauramarie-afk)
 
-## Use Case: <br>
-External users and writing editors use this skill to revise text they are allowed to edit, replacing formulaic AI writing patterns with more natural wording while preserving meaning and tone. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to disguise AI-authored text in settings where disclosure or authorship rules apply. <br>
-Mitigation: Use only on text the user is allowed to revise, and do not use it to bypass academic, workplace, legal, platform, or anti-impersonation rules. <br>
-Risk: Rewriting may change meaning, tone, attribution, or factual precision. <br>
-Mitigation: Review the revised text before accepting it, especially for legal, academic, medical, financial, or publication-sensitive content. <br>
+## Use Case:
 
+External users and developers use this skill to revise prose so it reads less like AI-generated text while preserving meaning, tone, and voice.
 
-## Reference(s): <br>
-- [Max Humanizer on ClawHub](https://clawhub.ai/sonnenberglauramarie-afk/max-humanizer) <br>
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) <br>
-- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text containing rewritten text and, when useful, a brief summary of changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and edit user-specified text or files when the host agent has permission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.1.1) <br>
+Risk: Rewrites can alter factual accuracy, legal meaning, or personal voice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes before accepting edits, especially for factual, legal, or personally sensitive documents.
+
+Risk: The skill can edit documents as part of its writing workflow.
+
+Mitigation: Inspect diffs or keep a backup before applying file edits.
+
+## Reference(s):
+
+- [ClawHub: Max Humanizer](https://clawhub.ai/sonnenberglauramarie-afk/skills/max-humanizer)
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+- [Wikipedia: WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with rewritten text and an optional brief summary of changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May edit documents when invoked on files; review proposed changes before accepting them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json; artifact frontmatter states 2.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

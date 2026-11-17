@@ -1,0 +1,28 @@
+{
+  "name": "determinability-checker",
+  "version": "2.0.0",
+  "description": "Check target determinability on a bounded finite configuration set.",
+  "author": "Cognitive Emergence Lab <yuqiang@humanjudgment.org>",
+  "license": "MIT",
+  "protocol": "COE",
+  "entrypoint": "skill.api:app",
+  "host_targets": [
+    "mcp",
+    "api",
+    "python"
+  ],
+  "dependencies": [
+    "requirements.txt (exact versions and hashes)"
+  ],
+  "tags": [
+    "jep",
+    "causality",
+    "audit",
+    "determinability",
+    "gatekeeper",
+    "meta-skill"
+  ],
+  "environment_variables": [
+    "JEP_CLIENTS"
+  ]
+}

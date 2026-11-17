@@ -1,43 +1,58 @@
-## Description: <br>
-Install, configure, verify, or troubleshoot the @jwongart/openclaw-minimax-media OpenClaw plugin for MiniMax image understanding, image generation, music generation, video generation, text-to-speech, and web search tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, verify, or troubleshoot the @jwongart/openclaw-minimax-media OpenClaw plugin for MiniMax image understanding, image generation, music generation, video generation, text-to-speech, and web search tools.
 
-## Publisher: <br>
-[junwongpp](https://clawhub.ai/user/junwongpp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwongpp](https://clawhub.ai/user/junwongpp)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, pin, configure, verify, and troubleshoot the MiniMax media plugin and its API-key setup. It supports workflows that expose MiniMax image, music, video, text-to-speech, and web-search tools through OpenClaw. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and configures a third-party OpenClaw plugin package. <br>
-Mitigation: Prefer the pinned install command and review the referenced package before granting it credentials. <br>
-Risk: The plugin requires a MiniMax API key or compatible environment variable. <br>
-Mitigation: Use a dedicated or limited key where possible, store it outside source control, and avoid committing real tokens. <br>
-Risk: Prompts, media, or generated content may be processed by MiniMax services when the plugin tools are used. <br>
-Mitigation: Avoid sending sensitive prompts or media unless the deployment has approved MiniMax processing for that data. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install, configure, update, verify, migrate, and troubleshoot the MiniMax media plugin and its image, music, video, text-to-speech, and web search tools.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/junwongpp/minimax-media-plugin) <br>
-- [OpenClaw MiniMax Media plugin repository](https://github.com/jwong-art/openclaw-minimax-media) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include package verification commands, plugin-list checks, environment variable names, and migration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.8 (source: server release evidence) <br>
+Risk: Installing an unversioned npm package can change the trusted code over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the specific-version install command and verify the npm package and GitHub source before installation.
+
+Risk: MiniMax API keys or tokens could be exposed if committed to project files.
+
+Mitigation: Keep real API keys out of committed files and use the documented environment variables or local OpenClaw configuration.
+
+Risk: Enabled plugin tools may send relevant prompts or media requests to MiniMax-backed services.
+
+Mitigation: Review the plugin behavior and only enable it in environments where those external service calls are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwongpp/skills/minimax-media-plugin)
+- [openclaw-minimax-media GitHub repository](https://github.com/jwong-art/openclaw-minimax-media)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides installation, configuration, verification, migration, and troubleshooting guidance for an OpenClaw plugin.]
+
+## Skill Version(s):
+
+0.8.8 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

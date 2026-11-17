@@ -1,41 +1,57 @@
-## Description: <br>
-Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Toolkit for interacting with and testing local web applications using Playwright, including frontend verification, UI debugging, browser screenshots, and browser log review.
 
-## Publisher: <br>
-[corbin-breton](https://clawhub.ai/user/corbin-breton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[corbin-breton](https://clawhub.ai/user/corbin-breton)
 
-## Use Case: <br>
-Developers and engineers use this skill to test and debug local web applications with Playwright, including browser automation, screenshots, rendered DOM inspection, and console-log review. It is intended for localhost or staging workflows, not live production targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper can start local development servers and run automation commands. <br>
-Mitigation: Review commands before execution and use the skill only for intended local or staging web-app testing workflows. <br>
-Risk: The optional --shell mode runs server commands through the shell. <br>
-Mitigation: Prefer the default non-shell mode and use --shell only for trusted commands that were written or inspected by the user. <br>
-Risk: Using browser automation against production targets could exercise live systems unintentionally. <br>
-Mitigation: Restrict usage to localhost or staging targets, consistent with the skill documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to test local web applications with Playwright, inspect rendered UI behavior, capture screenshots, review browser logs, and automate browser interactions in development or staging environments.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Playwright scripts, local server commands, selector analysis, screenshots paths, browser console observations, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Server commands run as real local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review server and automation commands before running them, and install the skill only for local web testing workflows you intend to execute.
+
+Risk: Shell mode can execute compound commands through the system shell.
+
+Mitigation: Avoid --shell unless the command is trusted and reviewed; prefer the default argv command mode.
+
+Risk: Browser automation can interact with unintended targets if pointed outside the expected environment.
+
+Mitigation: Keep Playwright targets to localhost or staging and do not use the skill against production sites.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/corbin-breton/skills/keats-webapp-testing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Playwright scripts, local server commands, screenshots paths, console log summaries, selector findings, and testing guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

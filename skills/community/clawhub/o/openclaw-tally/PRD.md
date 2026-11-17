@@ -16,7 +16,7 @@
 4. [User Personas](#4-user-personas)
 5. [Requirements (P0/P1/P2)](#5-requirements)
 6. [Technical Architecture](#6-technical-architecture)
-7. [Task Complexity Framework](#7-task-complexity-framework)
+7. [Task Complexity Framework](#7-taREDACTED-SECRET)
 8. [TES Metric Design](#8-tes-metric-design)
 9. [Analytics Dimensions](#9-analytics-dimensions)
 10. [Implementation Phases](#10-implementation-phases)

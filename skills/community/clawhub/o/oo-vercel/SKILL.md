@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Vercel"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["vercel"]
   icon: "https://static.oomol.com/logo/third-party/Vercel.svg"
 ---
@@ -38,27 +38,43 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `add_project_domain` — Add a domain to a Vercel project. [write]
+- `assign_deployment_alias` — Assign an alias to a Vercel deployment, moving it from any deployment that currently owns it. [destructive]
+- `cancel_deployment` — Cancel a Vercel deployment that is still in progress. [destructive]
+- `create_file_deployment` — Create an asynchronous Vercel deployment from file references returned by upload_deployment_file_from_url. [destructive]
+- `create_git_deployment` — Create an asynchronous Vercel deployment from a Git repository connected to the account. [destructive]
 - `create_project` — Create a Vercel project. [write]
 - `create_project_env` — Create a Vercel project environment variable. [write]
 - `create_webhook` — Create a Vercel webhook. [write]
+- `delete_deployment` — Permanently delete a Vercel deployment. [destructive]
 - `delete_project_env` — Delete a Vercel project environment variable. [destructive]
+- `delete_webhook` — Delete a Vercel webhook. [destructive]
 - `get_auth_user` — Get the authenticated Vercel user.
 - `get_deployment` — Get a Vercel deployment.
 - `get_deployment_events` — Get Vercel deployment events.
+- `get_deployment_file_contents` — Get one Vercel deployment file as base64-encoded content.
 - `get_domain_config` — Get domain configuration guidance from Vercel.
+- `get_latest_deployment_promotion_aliases` — Get alias mapping statuses for the latest production promotion of a project; results are project-global and are not correlated to a specific promote_deployment call.
 - `get_project` — Get a Vercel project.
 - `get_project_domain` — Get a Vercel project domain.
 - `get_runtime_logs` — Get runtime logs for a Vercel deployment.
 - `get_team` — Get a Vercel team by id or slug.
 - `get_webhook` — Get a Vercel webhook.
+- `list_deployment_aliases` — List aliases currently assigned to a Vercel deployment.
+- `list_deployment_files` — List the source file tree stored for a Vercel deployment.
 - `list_deployments` — List Vercel deployments.
 - `list_project_domains` — List domains for a Vercel project.
 - `list_project_envs` — List environment variables for a Vercel project.
 - `list_projects` — List Vercel projects.
 - `list_teams` — List Vercel teams available to the authenticated user.
 - `list_webhooks` — List Vercel webhooks.
+- `promote_deployment` — Request Vercel to point a project's production traffic to an existing deployment. [destructive]
+- `redeploy_deployment` — Create an asynchronous Vercel deployment from an existing deployment's source and settings. [destructive]
+- `rollback_deployment` — Roll back a Vercel project's production traffic to a previous deployment. [destructive]
+- `update_deployment_integration_action` — Update the status and optional outcomes of a Vercel Marketplace integration action attached to a deployment. [destructive]
+- `update_deployment_rollback_description` — Update the recorded reason for a Vercel production rollback. [write]
 - `update_project` — Update a Vercel project. [write]
 - `update_project_env` — Update a Vercel project environment variable. [write]
+- `upload_deployment_file_from_url` — Download one public file through the Connector SSRF guard, calculate its SHA-1 digest when needed, and upload up to 1 GiB through the Connector to Vercel for a file-based deployment. [write]
 - `verify_project_domain` — Verify a Vercel project domain.
 
 ## Safety
@@ -90,11 +106,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Vercel is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=vercel
+  https://console.oomol.com/connections/vercel
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Vercel homepage: https://vercel.com
+- API documentation: https://vercel.com/docs/rest-api

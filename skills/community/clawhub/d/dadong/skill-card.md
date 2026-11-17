@@ -1,38 +1,49 @@
-## Description: <br>
-Dadong helps agents produce AI safety education, digital literacy framing, and public-facing narratives around security incidents and cognitive immunity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dadong provides a Chinese-language framework for drafting AI safety education, cognitive immunity narratives, and thought-experiment content.
 
-## Publisher: <br>
-[nrt2024](https://clawhub.ai/user/nrt2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nrt2024](https://clawhub.ai/user/nrt2024)
 
-## Use Case: <br>
-Developers, educators, and communications teams use Dadong to draft AI safety public-education narratives, thought experiments, whitepaper summaries, and social posts that explain security incidents and cognitive immunity concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated public posts, images, whitepapers, or standards-related claims may be inaccurate, misleading, or imply unsupported consensus. <br>
-Mitigation: Review and fact-check generated material before publication, especially when it names projects, people, endorsements, or standards. <br>
+## Use Case:
 
+Developers, educators, and content creators use Dadong to frame Chinese-language AI safety education, incident retrospectives, cognitive immunity concepts, and social-platform thought experiments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nrt2024/dadong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and prose templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only outputs should be reviewed before public publication, especially for claims about people, projects, endorsements, standards, or public consensus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated AI-safety narratives or social posts may carry strong advocacy framing or present speculative concepts as settled standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated content before publication, clearly separating thought experiments and advocacy from established facts, organizational policy, or formal safety standards.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nrt2024/skills/dadong)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with Chinese-language narrative templates and social-post drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; review generated posts before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

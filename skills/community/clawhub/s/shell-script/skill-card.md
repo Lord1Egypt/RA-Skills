@@ -1,41 +1,59 @@
-## Description: <br>
-Helps agents generate, explain, debug, lint, and adapt Bash and Linux shell scripts for workflows such as backup, deployment, monitoring, setup, and command-line automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shell Script helps agents generate, explain, debug, lint, and provide templates for Bash and Linux shell scripts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to draft shell scripts, inspect existing Bash files, troubleshoot command-line behavior, and produce reusable templates for common system tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated deployment, setup, backup, and monitoring scripts can change services, firewall or SSH settings, synchronize files, delete old backups, restart processes, or run remote commands. <br>
-Mitigation: Review paths, hosts, deletion flags, firewall and SSH changes, service restart commands, and package installation steps before running; test in a non-production environment first. <br>
-Risk: Command arguments or generated scripts may expose sensitive values through shell history, logs, process listings, or local helper history files. <br>
-Mitigation: Avoid passing secrets as command arguments; use protected environment variables or secret files and remove sensitive values from generated scripts and logs. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for shell-script generation, script review, command-line examples, Bash best practices, deployment helpers, monitoring templates, setup scripts, and troubleshooting guidance.
 
-## Reference(s): <br>
-- [Shell Script on ClawHub](https://clawhub.ai/ckchzh/shell-script) <br>
-- [Shell Script Helper tips](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Bash code blocks, shell command examples, and generated script templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated templates may include backup, deployment, monitoring, server setup, linting, and operational command guidance that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.4 (source: server release metadata) <br>
+Risk: Generated shell scripts can make high-impact system or deployment changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts carefully before running them, especially when they use sudo, deployment credentials, service restarts, file deletion, or file synchronization.
+
+Risk: User-provided values may be embedded into executable Bash.
+
+Mitigation: Do not pass untrusted or copied values into template parameters; validate paths, hostnames, command fragments, and credentials before execution.
+
+Risk: Setup, deploy, and monitor outputs may affect servers or production services.
+
+Mitigation: Treat these outputs as privileged operational scripts and test them in a controlled environment before using them on live systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/shell-script)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with Bash code blocks and generated shell-script templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce executable Bash templates for backup, deployment, monitoring, server setup, and linting workflows.]
+
+## Skill Version(s):
+
+2.3.4 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

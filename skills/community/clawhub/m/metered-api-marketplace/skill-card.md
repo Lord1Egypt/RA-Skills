@@ -1,45 +1,61 @@
-## Description: <br>
-Build and operate a metered public API endpoint for OpenClaw skills and agents with API-key auth, per-request usage logging and pricing, prepaid balances, and BTC/ETH top-ups through payment-processor webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and operate a metered public API endpoint for OpenClaw skills or agents with API-key authentication, per-request usage logging and pricing, prepaid balances, and BTC/ETH top-ups through payment-processor webhooks.
 
-## Publisher: <br>
-[arshingleton](https://clawhub.ai/user/arshingleton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arshingleton](https://clawhub.ai/user/arshingleton)
 
-## Use Case: <br>
-Developers and operators use this skill to package an OpenClaw capability as a paid public API with signed API keys, prepaid usage metering, rate limits, balance tracking, and crypto payment top-ups. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Payment webhooks can mutate prepaid balances. <br>
-Mitigation: Use strong provider-specific webhook secrets, verify signatures, enforce idempotency, and fail closed when any required secret is missing. <br>
-Risk: Administrative endpoints can create keys and inspect usage data. <br>
-Mitigation: Restrict admin endpoints with strong tokens, network controls, and operational access review before deployment. <br>
-Risk: The service stores usage, payment, and balance metadata. <br>
-Mitigation: Protect the Postgres database and document what metadata is stored, retained, and exposed to operators. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Reference](references/api_reference.md) <br>
-- [Billing and Ledger Notes](references/billing_ledger.md) <br>
-- [Agent Integration Prompt](references/integration_prompt.md) <br>
-- [Payment Provider Adapters](references/providers.md) <br>
-- [Next.js Starter Deployment](scripts/nextjs-starter/README_DEPLOY.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to package an OpenClaw capability as a public metered API with signed requests, usage accounting, prepaid balances, and payment webhooks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets and bundled JavaScript implementation files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reference server and serverless starter assets for signed API access, metered usage, balance management, and payment webhook integration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: External routing and billing flows may send sensitive lead, contract, or business data to an endpoint the operator does not control.
+
+Mitigation: Replace the hardcoded api.vms0.com endpoint with a confirmed deployment or deliberately approve that hosted service before use.
+
+Risk: Payment, credential, and admin flows require hardening before production use.
+
+Mitigation: Use strong webhook secrets, disable or guard demo payment behavior, protect admin routes, and review idempotency and failed-charge handling.
+
+Risk: Unpinned JavaScript dependencies can change during installation.
+
+Mitigation: Pin dependencies with lockfiles and review package updates before deploying the service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arshingleton/skills/metered-api-marketplace)
+- [API Reference](references/api_reference.md)
+- [Billing and Ledger Notes](references/billing_ledger.md)
+- [Payment Provider Adapters](references/providers.md)
+- [Agent Integration Prompt](references/integration_prompt.md)
+- [VMS0 API Base URL](https://api.vms0.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript server code, JSON API examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance and starter files for a metered API service; runtime responses are structured JSON.]
+
+## Skill Version(s):
+
+0.1.3 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

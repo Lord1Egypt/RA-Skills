@@ -1,0 +1,8 @@
+# npm 发布排除项（GitHub 仓库保留完整功能文件）
+.gitignore
+*.pyc
+__pycache__/
+.pytest_cache/
+dist/*.json
+.DS_Store
+*.swp

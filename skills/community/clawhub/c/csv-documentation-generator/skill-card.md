@@ -1,44 +1,67 @@
-## Description: <br>
-Use when generating computer system validation (CSV) documentation for pharmaceutical and medical device industries, including validation plans, URS, FS, IQ/OQ/PQ documents, and traceability matrices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when generating computer system validation (CSV) documentation for pharmaceutical and medical device industries, including validation plans, URS, FS, IQ/OQ/PQ documents, and traceability matrices.
 
-## Publisher: <br>
-[zealot00](https://clawhub.ai/user/zealot00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zealot00](https://clawhub.ai/user/zealot00)
 
-## Use Case: <br>
-External users and developers use this skill to generate bilingual CSV validation documentation for GMP-regulated pharmaceutical and medical device systems. It supports validation plans, URS, FS, IQ/OQ/PQ protocols, risk assessments, traceability matrices, and related Word or Excel outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run Python setup, scan project source files, and write generated requirements, audit, template, Word, or Excel files. <br>
-Mitigation: Run it in a dedicated project directory and review generated or modified files before relying on them or committing changes. <br>
-Risk: Optional Git hooks or cross-skill system-prompt rules may persist behavior beyond a single generation task. <br>
-Mitigation: Avoid global hook installation and add cross-skill agent rules only when that persistent behavior is explicitly intended. <br>
+## Use Case:
 
+Developers, validation engineers, and quality teams use this skill to generate GxP computer system validation documents for pharmaceutical and medical device systems. It supports validation plans, URS, FS, risk assessments, IQ/OQ/PQ protocols, traceability matrices, checklists, and validation summary reports.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/zealot00/csv-documentation-generator) <br>
-- [GAMP 5 reference](references/gamp-5.md) <br>
-- [21 CFR Part 11 reference](references/21cfr-part11.md) <br>
-- [EU Annex 11 reference](references/annex-11.md) <br>
-- [Data integrity reference](references/data-integrity.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Word or Excel document files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the requested document type, project name, system name, GAMP category, language, and output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.4 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill includes guidance for broad code annotation rules that can affect future agent-generated code when copied into global agent instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply annotation rules only to workspaces where GxP traceability markers are intended, and review generated code before use.
+
+Risk: The artifact includes optional Git hook installation that can persist behavior in a repository.
+
+Mitigation: Install hooks only after reviewing the hook script and confirming the repository should enforce those checks.
+
+Risk: Automatic dependency setup may install packages without pinned versions.
+
+Mitigation: Use a reviewed, pinned dependency environment for production or regulated validation workflows.
+
+Risk: Generated validation documents may be incomplete or inappropriate for a specific regulated system.
+
+Mitigation: Have qualified validation and quality personnel review generated documents against the system scope and applicable regulations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zealot00/skills/csv-documentation-generator)
+- [Project homepage](https://github.com/zealot00/csv-documentation-generator)
+- [GAMP 5 quick reference](artifact/references/gamp-5.md)
+- [21 CFR Part 11 quick reference](artifact/references/21cfr-part11.md)
+- [EU Annex 11 quick reference](artifact/references/annex-11.md)
+- [ALCOA+ data integrity reference](artifact/references/data-integrity.md)
+- [Code annotation standards](artifact/STANDARDS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands; generated .docx and .xlsx validation documents when scripts are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports bilingual Chinese/English templates and optional document generation for a full validation package.]
+
+## Skill Version(s):
+
+1.6.4 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

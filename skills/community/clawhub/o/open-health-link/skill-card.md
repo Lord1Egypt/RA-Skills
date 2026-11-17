@@ -1,47 +1,61 @@
-## Description: <br>
-Open Health Link connects an agent to breo Scalp5 health data so authorized users can bind or unbind a breo account, view scalp detection reports, and retrieve scalp care plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Health Link helps users authorize a breo Scalp5 account, view scalp detection reports, retrieve scalp-care plans, and bind or unbind the connected account.
 
-## Publisher: <br>
-[breo](https://clawhub.ai/user/breo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[breo](https://clawhub.ai/user/breo)
 
-## Use Case: <br>
-External users use this skill in OpenClaw to authorize access to their breo Scalp5 account, inspect recent scalp detection reports, review trends, and receive care-plan explanations based on available report data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive breo Scalp5 health report data. <br>
-Mitigation: Use it only for an account the user intentionally authorizes, avoid exposing raw responses, and base report conclusions only on returned data. <br>
-Risk: A local authorization token may remain in the skill directory until the account is unbound. <br>
-Mitigation: Do not share the skill directory after use, and run the unbind flow when OpenClaw should no longer access the reports. <br>
-Risk: First use requires installing Node.js dependencies for the skill scripts. <br>
-Mitigation: Approve dependency installation only when the user trusts this release and intends to connect a breo Scalp5 account. <br>
+## Use Case:
 
+External users use this skill in OpenClaw to connect their breo account, scan an authorization QR code, and ask an agent for recent Scalp5 scalp reports, trends, and care-plan summaries. The skill is intended for health-data access and personal care guidance, not diagnosis.
 
-## Reference(s): <br>
-- [Open Health Link ClawHub page](https://clawhub.ai/breo/open-health-link) <br>
-- [Publisher profile: breo](https://clawhub.ai/user/breo) <br>
-- [Setup guide](assets/setup-guide.md) <br>
-- [API reference](references/api-reference.md) <br>
-- [Data schema](references/data-schema.md) <br>
-- [Care-plan catalog data source](https://breo-obs.obs.cn-south-1.myhuaweicloud.com/agents/plan-catalog.csv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and natural-language responses with occasional local image output for authorization QR codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js at runtime and may use a local saved authorization token until the user unbinds the account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill stores a reusable local authorization credential for breo health-account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted workspaces, avoid shared or indexed machines, and clear the account binding when access is no longer needed.
+
+Risk: Generated QR authorization images and agent execution output may expose account authorization material or health report details.
+
+Mitigation: Treat generated QR images and report outputs as sensitive, avoid logging or sharing them, and remove temporary authorization artifacts after use.
+
+Risk: Health report and care-plan responses may be mistaken for medical conclusions.
+
+Mitigation: Keep responses grounded in retrieved report fields, state when information is insufficient, and present care suggestions as health-management guidance rather than diagnosis.
+
+## Reference(s):
+
+- [Open Health Link ClawHub Page](https://clawhub.ai/breo/skills/open-health-link)
+- [Setup Guide](assets/setup-guide.md)
+- [API Reference](references/api-reference.md)
+- [Data Schema](references/data-schema.md)
+- [breo Care Plan Catalog](https://breo-obs.obs.cn-south-1.myhuaweicloud.com/agents/plan-catalog.csv)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with concise natural-language summaries; scripts emit JSON for agent-side processing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include QR image file output during authorization and summarized health report or care-plan content after authorization.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

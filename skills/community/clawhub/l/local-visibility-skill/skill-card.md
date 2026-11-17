@@ -1,50 +1,64 @@
-## Description: <br>
-Expert guidance on AI Visibility and Local SEO from Local Falcon, the pioneer of geo-grid rank tracking, including optimization for AI search platforms, local pack rankings, Google Business Profile, and optional Local Falcon MCP data analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance on AI visibility and local SEO from Local Falcon, including optimization for AI search platforms, local pack rankings, Google Business Profile, geo-grid tracking, and Local Falcon MCP-assisted analysis.
 
-## Publisher: <br>
-[WeAreLocalFalcon](https://clawhub.ai/user/WeAreLocalFalcon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wearelocalfalcon](https://clawhub.ai/user/wearelocalfalcon)
 
-## Use Case: <br>
-External marketers, agencies, SMB owners, enterprise local SEO teams, developers, and AI agents use this skill to interpret local visibility metrics, plan Local SEO and AI visibility improvements, and guide optional Local Falcon MCP workflows for live data analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional Local Falcon MCP workflows can access account data after a user connects an API key. <br>
-Mitigation: Review the MCP package before use and prefer a dedicated or limited API key where available. <br>
-Risk: Running scans, enabling AI Analysis, creating campaigns, or changing monitoring settings may consume credits or alter account state. <br>
-Mitigation: Require explicit user approval before account-connected MCP actions that read account data, consume credits, or change settings. <br>
-Risk: Local SEO and AI visibility recommendations can be misleading when based only on generic guidance instead of current account data. <br>
-Mitigation: State assumptions clearly and prefer live MCP data when the user has connected Local Falcon MCP. <br>
+## Use Case:
 
+External users, agencies, enterprise marketers, SMB owners, developers, and AI agents use this skill to interpret local SEO and AI visibility signals, distinguish map metrics from AI visibility metrics, and produce prioritized optimization guidance. When Local Falcon MCP tools are connected, the skill can guide data-driven scan, campaign, competitor, and account analysis workflows.
 
-## Reference(s): <br>
-- [Local Falcon ClawHub Release](https://clawhub.ai/WeAreLocalFalcon/local-visibility-skill) <br>
-- [Local Falcon Platform](https://www.localfalcon.com) <br>
-- [Local Falcon Documentation](https://docs.localfalcon.com) <br>
-- [Local Falcon MCP Package](https://www.npmjs.com/package/@local-falcon/mcp) <br>
-- [Local Falcon Skill Package](https://www.npmjs.com/package/@local-falcon/local-visibility-skill) <br>
-- [AI Platforms Deep Dive](references/ai-platforms.md) <br>
-- [Local Falcon MCP Workflows](references/mcp-workflows.md) <br>
-- [Local Falcon Metrics Glossary](references/metrics-glossary.md) <br>
-- [Prompt Templates for Local Falcon Analysis](references/prompt-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with optional inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose MCP tool workflows when Local Falcon MCP is connected; otherwise provides best-practice guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can instruct agents to install or run external MCP packages with a Local Falcon API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified MCP package version and avoid storing API keys in broadly readable configuration files.
+
+Risk: MCP-assisted workflows can trigger billable scans or change account state through campaigns, locations, and Falcon Guard actions.
+
+Mitigation: Require explicit user approval before scans, campaigns, Falcon Guard changes, or other credit-consuming or account-changing actions.
+
+Risk: Local SEO and AI visibility recommendations may be misleading if SoLV map metrics and SAIV AI visibility metrics are confused.
+
+Mitigation: Keep SoLV and SAIV separate in analysis and ask the user to clarify which visibility channel they are evaluating when ambiguous.
+
+## Reference(s):
+
+- [Local Falcon documentation](https://docs.localfalcon.com)
+- [Local Falcon platform](https://www.localfalcon.com)
+- [Local Falcon MCP package](https://www.npmjs.com/package/@local-falcon/mcp)
+- [Local Falcon API credentials](https://www.localfalcon.com/api/credentials/)
+- [Metrics glossary](references/metrics-glossary.md)
+- [AI platforms deep dive](references/ai-platforms.md)
+- [MCP workflows](references/mcp-workflows.md)
+- [Prompt templates](references/prompt-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown prose with tables, checklists, inline shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Local Falcon MCP tools when available and should require explicit approval before billable scans, campaigns, or account-changing actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

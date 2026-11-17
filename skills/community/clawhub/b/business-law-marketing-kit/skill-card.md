@@ -1,50 +1,63 @@
-## Description: <br>
-Generates Nevada-focused business law and contracts marketing assets with compliance gates for attorney advertising, fee transparency, non-compete enforceability, equity-for-fees disclosures, online legal services positioning, and securities-offering language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Nevada-focused business law marketing assets with compliance checks for attorney advertising, fee transparency, non-compete limits, business formation claims, reviews, referrals, and securities-offering content.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Nevada business law attorneys, legal marketing teams, and law firm administrators use this skill to draft advertising campaigns, website copy, schema markup, referral materials, review requests, and intake sequences for business-law services. The outputs are intended as compliance-aware marketing drafts that attorneys should review against current bar, FTC, SEC, and Nevada rules before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could treat generated marketing drafts as legal advice or publish them without confirming current Nevada bar, FTC, SEC, fee, referral, review, and advertising requirements. <br>
-Mitigation: Use the outputs as marketing drafts only and require Nevada attorney review before publication. <br>
-Risk: Compliance-focused prompt outputs may still contain outdated, incomplete, or jurisdiction-specific legal statements when applied to a real firm or campaign. <br>
-Mitigation: Verify all legal-rule references, disclosures, fee language, referral language, review requests, and securities-offering language against current rules and the firm's facts. <br>
-Risk: Generated advertising may create misleading expectations if outcome claims, specialization claims, fee scope, or testimonials are not reviewed in context. <br>
-Mitigation: Keep compliance gates visible during review and revise or reject any [GATE: FLAG - reason] output before use. <br>
+## Use Case:
 
+Nevada business law attorneys, legal marketers, and law firm administrators use this skill to draft advertising, website, referral, reputation, and intake materials that include Nevada-specific compliance checks. The generated materials are intended as review-ready marketing drafts, not legal advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gitflopez/business-law-marketing-kit) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Marketing Strategy](artifact/MARKETING.md) <br>
-- [Client Acquisition Campaigns Prompt](artifact/prompts/01-client-acquisition-campaigns.md) <br>
-- [Digital Advertising Suite Prompt](artifact/prompts/02-digital-advertising-suite.md) <br>
-- [Website Content and Schema Prompt](artifact/prompts/03-website-content-schema.md) <br>
-- [Reputation and Referral Program Prompt](artifact/prompts/04-reputation-referral-program.md) <br>
-- [Nevada Business Law Firm Example](artifact/examples/nevada-business-law-firm.md) <br>
+### Deployment Geography for Use:
 
+United States (Nevada-focused)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown drafts with structured ad copy, campaign briefs, email templates, website content, JSON-LD schema blocks, referral materials, and inline compliance markers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include compliance markers such as [GATE: PASS] or [GATE: FLAG - reason] where the prompt modules request them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated legal advertising may become inaccurate as attorney advertising, bar, FTC, securities, or Nevada business-law rules change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified attorney review all generated materials against current rules before publication or client use.
+
+Risk: Users may apply Nevada-specific marketing language or compliance assumptions outside the intended jurisdiction.
+
+Mitigation: Confirm jurisdiction, practice area, and applicable advertising rules before adapting outputs for non-Nevada firms or campaigns.
+
+Risk: Prompt outputs may include firm-specific claims, fees, credentials, or testimonials that require substantiation.
+
+Mitigation: Verify all factual claims, fee disclosures, bar numbers, testimonials, and service descriptions before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/business-law-marketing-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+- [README](artifact/README.md)
+- [Client Acquisition Campaigns prompt](artifact/prompts/01-client-acquisition-campaigns.md)
+- [Digital Advertising Suite prompt](artifact/prompts/02-digital-advertising-suite.md)
+- [Website Content and Schema prompt](artifact/prompts/03-website-content-schema.md)
+- [Reputation and Referral Program prompt](artifact/prompts/04-reputation-referral-program.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured marketing copy, email templates, compliance checklists, and JSON-LD code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs commonly include inline compliance markers such as GATE: PASS or GATE: FLAG for reviewer attention.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

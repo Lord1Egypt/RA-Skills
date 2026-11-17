@@ -1,5 +1,7 @@
 ---
 name: special
+version: 0.1.0
+license: MIT
 description: Use when asked what to build next, what features a repo is missing, where the opportunities are, or to suggest a direction or roadmap grounded in the code. Triggers on "what should we build next", "what's missing", "suggest features", "what's the next thing". Proposes opportunities, not fixes; for finding problems use line-check, bug-hunt, or security-sweep.
 ---
 

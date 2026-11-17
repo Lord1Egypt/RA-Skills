@@ -1,38 +1,49 @@
-## Description: <br>
-Format and beautify text output for better readability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format Tool provides local command-line text transformations for case changes, wrapping, trimming, sorting, deduplication, reversing, and whitespace removal.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and other users use this skill to turn raw text into more readable output by changing case, sorting or deduplicating lines, wrapping text, trimming whitespace, and preparing table-like displays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text passed through stdin or command arguments is printed back to the terminal. <br>
-Mitigation: Avoid passing secrets or sensitive text unless terminal output disclosure is intended. <br>
+## Use Case:
 
+Developers and agents use this skill to clean up local text input from arguments or stdin, including case conversion, line sorting, deduplication, wrapping, trimming, reversing, and whitespace removal.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dinghaibin/format-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text with Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads text from command arguments, files, or stdin and prints formatted text to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documentation advertises JSON, CSV, table, column alignment, padding, and separator features that are not implemented in the inspected script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the implemented text commands only, and verify behavior before relying on advertised structured-data formatting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/format-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text and concise Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operates on local stdin or an optional text argument; wrapping accepts a width parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

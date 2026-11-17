@@ -1,39 +1,54 @@
-## Description: <br>
-Secure credential proxy for AI agents. Make API calls through AgentKeys - real secrets never leave the vault. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentKeys helps AI agents make API calls through a secure credential proxy so real secrets never leave the vault.
 
-## Publisher: <br>
-[alexandr-belogubov](https://clawhub.ai/user/alexandr-belogubov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexandr-belogubov](https://clawhub.ai/user/alexandr-belogubov)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure AI agents to call external APIs through the AgentKeys proxy while keeping real service credentials outside the agent runtime. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Covered API calls and request data are routed through the AgentKeys proxy service. <br>
-Mitigation: Confirm the service trust and privacy terms, and route only API traffic approved for that proxy before installing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentKeys Skill Page](https://clawhub.ai/alexandr-belogubov/agentkeys) <br>
-- [AgentKeys Documentation](https://agentkeys.io/docs) <br>
-- [AgentKeys Dashboard](https://app.agentkeys.io) <br>
+## Use Case:
 
+Developers and agent operators use AgentKeys to configure agents to call external APIs through the AgentKeys proxy with either a workspace API key and credential name or a single-credential proxy token.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGENTKEYS_PROXY_URL and either AGENTKEYS_API_KEY or AGENTKEYS_PROXY_TOKEN.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A workspace API key can allow an agent to proxy requests using multiple named credentials permitted in the workspace.
+
+Mitigation: Prefer a single-credential proxy token when the agent only needs one credential, and review the workspace key's allowed credentials and target APIs before use.
+
+Risk: The skill guides agents to forward requests to external target APIs through the AgentKeys proxy.
+
+Mitigation: Limit use to agents that are intended to make those API calls and monitor the AgentKeys audit trail for proxied requests.
+
+## Reference(s):
+
+- [AgentKeys ClawHub listing](https://clawhub.ai/alexandr-belogubov/skills/agentkeys)
+- [AgentKeys documentation](https://agentkeys.io/docs)
+- [AgentKeys dashboard](https://app.agentkeys.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and environment variable configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTKEYS_PROXY_URL and either AGENTKEYS_API_KEY or AGENTKEYS_PROXY_TOKEN.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

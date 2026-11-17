@@ -17,21 +17,16 @@ Typecho 博客自动发布脚本 (增强版)
 - 脚本自动读取 .env 文件中的配置
 """
 import xmlrpc.client
-from xmlrpc.client import DateTime
 import sys
 import os
-import re
-import requests
-import urllib.request
-import datetime
-# from datetime import datetime  # 已删除，避免覆盖模块名
+from datetime import datetime
 
 # 日志文件
 LOG_FILE = os.path.join(os.path.dirname(__file__), 'publish_log.txt')
 
 def log_message(message, show=True):
     """记录日志到文件和控制台"""
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     log_entry = f"[{timestamp}] {message}\n"
     
     if show:
@@ -260,88 +255,6 @@ def markdown_to_html(content):
     return '\n'.join(html_lines)
 
 
-
-def upload_image_to_typecho(image_url_or_path, config=None):
-    """上传图片到 Typecho 服务器，返回服务器上的真实 URL"""
-    if config is None:
-        config = load_env()
-    
-    XMLRPC_URL = config.get('BLOG_URL', 'http://yuanblog.tk:9980') + config.get('BLOG_XMLRPC', '/index.php/action/xmlrpc')
-    USERNAME = config.get('BLOG_USERNAME', 'admin')
-    PASSWORD = config.get('BLOG_PASSWORD', '')
-    
-    server = xmlrpc.client.ServerProxy(XMLRPC_URL)
-    
-    try:
-        if image_url_or_path.startswith('http'):
-            log_message(f"📥 下载网络图片：{image_url_or_path}")
-            resp = requests.get(image_url_or_path, timeout=10)
-            resp.raise_for_status()
-            image_data = resp.content
-            filename = os.path.basename(image_url_or_path.split('?')[0]) or 'image.png'
-        else:
-            if not os.path.exists(image_url_or_path):
-                log_message(f"❌ 本地图片不存在：{image_url_or_path}")
-                return None
-            log_message(f"📥 读取本地图片：{image_url_or_path}")
-            with open(image_url_or_path, 'rb') as f:
-                image_data = f.read()
-            filename = os.path.basename(image_url_or_path)
-        
-        media_obj = {'name': filename, 'type': 'image/png' if filename.endswith('.png') else 'image/jpeg', 'bits': xmlrpc.client.Binary(image_data)}
-        
-        log_message(f"📤 正在上传图片到服务器：{filename}")
-        upload_result = server.metaWeblog.newMediaObject('', USERNAME, PASSWORD, media_obj)
-        
-        if 'url' in upload_result:
-            log_message(f"✅ 图片上传成功：{upload_result['url']}")
-            return upload_result['url']
-        else:
-            log_message(f"❌ 图片上传失败：{upload_result}")
-            return None
-    except Exception as e:
-        log_message(f"❌ 图片上传异常：{str(e)}")
-        return None
-
-def process_markdown_images(markdown_content, config=None):
-    """处理 Markdown 中的图片链接，上传到服务器并替换"""
-    image_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
-    matches = re.findall(image_pattern, markdown_content)
-    
-    for alt, url in matches:
-        should_upload = (not url.startswith('http')) or ('github.com' in url or 'githubusercontent.com' in url)
-        if should_upload:
-            log_message(f"🔄 处理图片：{url}")
-            server_url = upload_image_to_typecho(url, config)
-            if server_url:
-                old_markdown = f'![{alt}]({url})'
-                new_markdown = f'![{alt}]({server_url})'
-                markdown_content = markdown_content.replace(old_markdown, new_markdown)
-                log_message(f"✅ 图片链接已替换：{server_url}")
-    return markdown_content
-
-def get_post_real_url(post_id, config=None):
-    """获取文章的lorl真实 URL"""
-    if config is None:
-        config = load_env()
-    
-    XMLRPC_URL = config.get('BLOG_URL', 'http://yuanblog.tk:9980') + config.get('BLOG_XMLRPC', '/index.php/action/xmlrpc')
-    USERNAME = config.get('BLOG_USERNAME', 'admin')
-    PASSWORD = config.get('BLOG_PASSWORD', '')
-    server = xmlrpc.client.ServerProxy(XMLRPC_URL)
-    
-    try:
-        post = server.metaWeblog.getPost('', USERNAME, PASSWORD, post_id)
-        if 'link' in post or 'permalink' in post:
-            return post.get('link') or post.get('permalink')
-        blog_url = config.get('BLOG_URL', 'http://yuanblog.tk:9980').rstrip('/')
-        return f"{blog_url}/archives/{post_id}"
-    except Exception as e:
-        log_message(f"⚠️ 获取文章 URL 失败：{str(e)}")
-        blog_url = config.get('BLOG_URL', 'http://yuanblog.tk:9980').rstrip('/')
-        return f"{blog_url}/archives/{post_id}"
-
-
 def optimize_markdown(content):
     """
     优化 Markdown 内容，提高 Typecho 兼容性
@@ -424,11 +337,7 @@ def publish_post(title, content, categories=None, tags=None, publish_now=True, c
         blog_id = users[0]['blogid']
         log_message(f"✅ 登录成功！Blog ID: {blog_id}")
         
-                # 2. 将 Markdown 转换为 HTML（Typecho 需要 HTML 格式）
-        # 【新增】先处理图片上传：在转换为 HTML 之前
-        log_message("🖼️ 开始处理文章中的图片...")
-        content = process_markdown_images(content, config)
-
+        # 2. 将 Markdown 转换为 HTML（Typecho 需要 HTML 格式）
         html_content = markdown_to_html(content)
         
         # 2. 准备文章数据
@@ -447,13 +356,13 @@ def publish_post(title, content, categories=None, tags=None, publish_now=True, c
         }
         
         # 添加正确的创建日期（避免未来时间问题）
+        import datetime
+        from xmlrpc.client import DateTime
         
         # 使用本地时间（默认已经是北京时间）
         now = datetime.datetime.now()
         post_data['dateCreated'] = DateTime(now)
-        
-# 图片已处理
-
+        log_message(f"⏰ 使用本地时间：{now.strftime('%Y-%m-%d %H:%M:%S')}")
         
         # 添加标签
         if tags:
@@ -465,17 +374,6 @@ def publish_post(title, content, categories=None, tags=None, publish_now=True, c
         
         blog_url = XMLRPC_URL.replace('/index.php/action/xmlrpc', '')
         log_message(f"✅ 文章发布成功！文章 ID: {post_id}")
-    
-        # 【新增】获取文章真实 URL
-        real_url = get_post_real_url(post_id, config)
-        log_message(f"🔗 文章链接：{real_url}")
-    # 【新增】检查文章是否可访问
-        log_message(f"⚠️ 文章可能为草稿状态：{real_url}")
-        log_message("👉 请登录后台手动发布：http://yuanblog.tk:9980/admin/write-post.php?cid=" + str(post_id))
-    
-    # 移除旧的链接打印（避免重复）
-    # link_message = f"🔗 文章链接：http://yuanblog.tk:9980/archives/{post_id}.html"
-    # log_message(link_message, show=False)
         log_message(f"🔗 文章链接：{blog_url}/archives/{post_id}.html")
         return True
         

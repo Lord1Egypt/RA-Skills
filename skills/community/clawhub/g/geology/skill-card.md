@@ -1,37 +1,49 @@
-## Description: <br>
-Explain Earth's rocks, processes, and history from field trips to research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain Earth's rocks, processes, and history from field trips to research.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners, students, teachers, and geology-focused users use this skill for level-appropriate explanations of rocks, Earth processes, deep time, field observations, and place-specific geological context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Geology guidance may be incomplete or inappropriate for real-world hazard, engineering, land-use, resource, or field-safety decisions. <br>
-Mitigation: Verify outputs against authoritative local geological, engineering, and safety sources before relying on them for real-world decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/geology) <br>
+## Use Case:
 
+External users, educators, students, and researchers use this skill to adapt geology explanations to audience level, connect observations to Earth processes, and discuss rocks, landscapes, geologic time, hazards, and evidence.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts explanation depth to the user's level and emphasizes location, evidence, uncertainty, and scale.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Geology guidance may be insufficient for hazard, engineering, mining, or legal decisions that depend on local conditions.
+
+Mitigation: Use the skill for educational support and seek qualified professional review for safety-critical, regulated, or site-specific decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/geology)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text educational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

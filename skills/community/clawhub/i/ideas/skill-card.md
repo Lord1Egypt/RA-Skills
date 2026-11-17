@@ -1,40 +1,54 @@
-## Description: <br>
-Records everyday ideas, inspiration snippets, and technical concepts with topic tags, status tracking, and keyword search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ideas records everyday ideas, inspiration snippets, and technical concepts with topic classification, status tracking, and keyword search.
 
-## Publisher: <br>
-[kazuya-ecnu](https://clawhub.ai/user/kazuya-ecnu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kazuya-ecnu](https://clawhub.ai/user/kazuya-ecnu)
 
-## Use Case: <br>
-Individuals and developers use this skill to capture, organize, search, update, and retire ideas in a local JSON-backed list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ideas are saved locally in a JSON file and may persist beyond the current session. <br>
-Mitigation: Avoid storing secrets or highly sensitive information, and confirm the data location before relying on backups or deletion. <br>
-Risk: Broad natural-language triggers could capture an idea when the user did not intend to save it. <br>
-Mitigation: Use explicit save, update, and delete requests and review saved content when handling sensitive notes. <br>
+## Use Case:
 
+Individuals and knowledge workers use this skill to capture ideas as structured local records, browse them in reverse chronological order, search by content or tags, and update or delete their status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kazuya-ecnu/ideas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Plain text or Markdown responses with local JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists idea records, tags, status, and timestamps in a local JSON file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Ideas may be saved locally, which can affect privacy, retention, and backup expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the actual storage path and backup policy before relying on the skill for sensitive or durable records.
+
+Risk: The skill can delete or mark ideas as dropped.
+
+Mitigation: Use explicit commands for delete or status-change actions, and confirm destructive changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kazuya-ecnu/skills/ideas)
+- [Publisher profile](https://clawhub.ai/user/kazuya-ecnu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown responses with local JSON idea records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Idea records include an id, content, tags, status, created_at timestamp, and updated_at timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

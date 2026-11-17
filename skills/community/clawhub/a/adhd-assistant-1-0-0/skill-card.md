@@ -1,40 +1,56 @@
-## Description: <br>
-ADHD-friendly life management assistant for OpenClaw that helps with daily planning, task breakdown, time management, prioritization, body doubling, dopamine regulation, and maintaining routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADHD Assistant is an ADHD-friendly life management assistant for OpenClaw that helps with daily planning, task breakdown, time management, prioritization, body doubling, dopamine regulation, routines, and overwhelm.
 
-## Publisher: <br>
-[Loui1979](https://clawhub.ai/user/Loui1979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[loui1979](https://clawhub.ai/user/loui1979)
 
-## Use Case: <br>
-External OpenClaw users use this skill to turn ADHD-related planning, focus, prioritization, procrastination, and overwhelm challenges into concrete daily plans, micro-step checklists, reminders, and review routines. It is productivity support and should not be treated as diagnosis, medical advice, or a replacement for professional care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The assistant may use OpenClaw memory for ADHD-related routines, preferences, and health-adjacent context. <br>
-Mitigation: Review memory settings before use, avoid saving diagnosis or treatment details unless explicitly desired, and delete remembered items that feel too personal. <br>
+## Use Case:
 
+External users use this skill to plan days and weeks, break down tasks, manage time blindness, prioritize commitments, and create gentle accountability workflows for ADHD-related executive function challenges. Agents can use it to produce structured check-ins, micro-step task plans, reminder language, body-doubling sessions, and end-of-day or weekly reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Loui1979/adhd-assistant-1-0-0) <br>
-- [CHADD](https://chadd.org) <br>
-- [ADDitude Magazine](https://www.additudemag.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown and plain-language plans, checklists, reminder prompts, review summaries, and coaching guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose memory entries, task files, schedules, and recurring check-ins for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Risk: The skill can lead an agent to store sensitive ADHD status, treatment context, routines, triggers, and productivity patterns in memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only where memory storage is visible and controllable, and avoid sharing medical or therapy details unless they are intentionally needed for personalization.
+
+Risk: Users may rely on productivity and emotional-support guidance as a substitute for professional medical, psychiatric, or therapeutic care.
+
+Mitigation: Keep use focused on planning and executive-function support; for diagnosis, medication, severe distress, self-harm thoughts, or crisis, involve appropriate healthcare or crisis resources.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/loui1979/skills/adhd-assistant-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/loui1979)
+- [CHADD](https://chadd.org)
+- [ADDitude Magazine](https://additudemag.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown plans, checklists, reminder prompts, review summaries, and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May personalize outputs using user preferences, routines, and memory when the host agent permits it.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

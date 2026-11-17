@@ -1,40 +1,54 @@
-## Description: <br>
-Identifies automation opportunities by analyzing business workflows, estimating time and cost savings, and prioritizing processes to automate based on ROI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies automation opportunities by analyzing business workflows, estimating time and cost savings, and prioritizing processes by ROI.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Operations leaders, business analysts, consultants, and developers use this skill to assess manual workflows, quantify automation opportunities, and create a phased automation roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential business, employee, customer, or financial details while requesting an audit. <br>
-Mitigation: Share only the process details needed for analysis, prefer aggregated data, and remove unnecessary sensitive information. <br>
-Risk: Salary, savings, ROI, and implementation estimates may be inaccurate for a specific organization. <br>
-Mitigation: Validate assumptions and calculations against internal compensation, cost, tool, and implementation data before making operational or financial decisions. <br>
+## Use Case:
 
+Business leaders, operations teams, and consultants use this skill to assess manual workflows, quantify potential savings, and plan a phased automation roadmap.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-business-process-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown audit report with tables, prioritization scores, roadmap phases, and ROI estimates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses stated calculation assumptions for salary, work week, automation capture, and implementation timeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may share confidential customer data, credentials, proprietary financials, or security-sensitive architecture details while requesting an audit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the business context needed for the audit, and anonymize or aggregate sensitive values before use.
+
+Risk: ROI and savings figures may be treated as exact financial projections even though they are estimates based on assumptions and user-provided context.
+
+Mitigation: Review estimates against current internal data, implementation costs, and process complexity before making business commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-business-process-audit)
+- [Publisher profile](https://clawhub.ai/user/afrexai-cto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report with tables, ROI estimates, and phased recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces estimates from user-provided business context and stated calculation assumptions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

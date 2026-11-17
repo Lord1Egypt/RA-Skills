@@ -1,44 +1,54 @@
-## Description: <br>
-Guides an agent in using the desktop-control MCP server for macOS automation, emphasizing Accessibility-tree workflows, verified actions, session-state checks, and fallback screenshot-based control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to use the desktop-control MCP server for macOS automation with accessibility-tree-first interaction, post-action verification, and session-state checks.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to help an agent operate macOS applications through desktop-control while preferring Accessibility APIs over fragile coordinate clicks. It is intended for tasks such as opening apps, inspecting UI trees, clicking controls, typing, reading screenshots, and recovering from desktop-control errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad macOS desktop control through screen, keyboard, mouse, clipboard, and shell-related capabilities. <br>
-Mitigation: Install it only in environments where agent desktop control is intended, and limit macOS Accessibility and Screen Recording permissions to those environments. <br>
-Risk: Desktop automation may expose private documents, passwords, browser sessions, or account-management workflows to the agent. <br>
-Mitigation: Avoid using the skill around sensitive screens and review actions before allowing the agent to interact with private or financial workflows. <br>
-Risk: Broad trigger phrases can activate desktop-control behavior for ordinary requests that mention clicking, screenshots, or controlling the computer. <br>
-Mitigation: Review the trigger phrases before deployment and require clear user intent before invoking desktop-control tools. <br>
+## Use Case:
 
+Developers and agents use this skill to operate macOS applications through OpenClaw's desktop-control MCP server, favoring accessibility-tree element targeting over pixel clicks and verifying each desktop action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-openclaw-desktop-control) <br>
-- [Publisher profile](https://clawhub.ai/user/zhaobod1) <br>
-- [Homepage](https://cnb.cool/huo15/ai/huo15-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with command and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces procedural desktop-automation guidance and example desktop-control MCP tool usage rather than standalone executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release evidence, _meta.json) <br>
+Risk: The skill is intended for macOS desktop automation involving screen, accessibility, clipboard, app-control, and shell-capable MCP tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that desktop-control capability is intended, grant macOS permissions deliberately, and review proposed actions before execution.
+
+Risk: The included installer replaces existing copies of this skill in discovered OpenClaw workspace skill directories.
+
+Mitigation: Review the installer before rerunning it and back up any locally customized copy of the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-openclaw-desktop-control)
+- [Skill homepage](https://cnb.cool/huo15/ai/huo15-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline command examples and automation patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the desktop-control MCP server and appropriate macOS Accessibility, Screen Recording, and Automation permissions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

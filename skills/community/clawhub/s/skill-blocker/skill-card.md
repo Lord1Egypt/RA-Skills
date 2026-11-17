@@ -1,42 +1,58 @@
-## Description: <br>
-Skill Blocker - 安全守卫 is an advisory safety gatekeeper that tells an agent to block risky commands, unsafe file operations, suspicious network requests, and dangerous skill behavior before execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blocks risky commands, unsafe file operations, suspicious network requests, credential access, code injection, and unauthorized system changes before execution.
 
-## Publisher: <br>
-[squallfire](https://clawhub.ai/user/squallfire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squallfire](https://clawhub.ai/user/squallfire)
 
-## Use Case: <br>
-External users and developers use this skill as an advisory guardrail for ClawHub and OpenClaw agents to flag destructive shell commands, credential access, unsafe network execution, sensitive configuration edits, and other high-risk actions before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to disable other skills or edit global OpenClaw configuration. <br>
-Mitigation: Require explicit user confirmation before changing installed skills or global configuration. <br>
-Risk: Blocked-request logging may capture sensitive details from user prompts or operations. <br>
-Mitigation: Minimize log contents, avoid secrets, and keep logs local for user review. <br>
-Risk: Aggressive blocking guidance may stop legitimate work. <br>
-Mitigation: Treat blocks as advisory, explain the matched risk pattern, and ask for confirmation before continuing with ambiguous operations. <br>
+## Use Case:
 
+Developers and agent operators use this skill as a security gatekeeper to review proposed agent actions and block behavior associated with destructive deletion, credential access, code injection, data exfiltration, or unauthorized system changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squallfire/skill-blocker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON log examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory prompt content; no executable payload is present in the provided artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can direct agents to disable installed skills or alter global blocklists, which could interrupt normal workflows or change persistent skill state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when strict blocking is desired, and require user confirmation before quarantine, disablement, or blocklist changes.
+
+Risk: Strict blocking rules may over-block legitimate shell, browser, or file operations.
+
+Mitigation: Review blocked actions with the user and maintain a narrow allowlist for approved read-only or routine commands.
+
+Risk: Audit log examples include operation details that may contain sensitive context.
+
+Mitigation: Store audit logs outside agent memory where possible and redact credentials, personal data, and secret paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/squallfire/skills/skill-blocker)
+- [ClawHub publisher profile](https://clawhub.ai/user/squallfire)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline command examples and JSON audit-log examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend blocking or disabling risky operations and skills; no executable implementation is bundled in the artifact.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Gcal Manager concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Gcal Manager.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Gcal Manager concepts, setup patterns, troubleshooting, performance, security, migration, and command cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the static reference helper for live Google Calendar or account functionality. <br>
-Mitigation: Treat outputs as generic documentation and verify any operational calendar steps against authoritative product documentation before use. <br>
-Risk: The script's embedded version reports 3.0.0 while server release metadata and SKILL.md frontmatter identify this release as 3.0.1. <br>
-Mitigation: Use the server release metadata and SKILL.md version for the card, and reconcile the script version in a future artifact update. <br>
+## Use Case:
 
+Developers and engineers use this skill as a static reference helper for Gcal Manager concepts, quickstart steps, common patterns, troubleshooting, performance, security, migration, and cheat-sheet material.
 
-## Reference(s): <br>
-- [Gcal Manager on ClawHub](https://clawhub.ai/ckchzh/gcal-manager) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no external API calls, credentials, or network access indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may expect the skill to manage Google Calendar directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as static reference documentation only; use separate reviewed tooling for real calendar operations.
+
+Risk: Generic guidance may not match a specific production environment.
+
+Mitigation: Review commands and recommendations against local requirements before applying them.
+
+## Reference(s):
+
+- [Gcal Manager on ClawHub](https://clawhub.ai/ckchzh/skills/gcal-manager)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference sections emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no calendar access, credentials, files, or network access.]
+
+## Skill Version(s):
+
+3.0.1 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-舆情风险预诊工具。单段文本快速风险评估，输出风险评分 (1-10)、风险等级 (蓝/黄/橙/红/黑)、传播力×危害力矩阵。适用于客服筛查、社交媒体预检。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+声誉体温计是一个中文舆情风险预诊工具，用于对单段文本快速评估 1-10 分风险评分、颜色风险等级和传播力与危害力矩阵。
 
-## Publisher: <br>
-[zhushanwei](https://clawhub.ai/user/zhushanwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhushanwei](https://clawhub.ai/user/zhushanwei)
 
-## Use Case: <br>
-Customer service, communications, and social media teams use this skill to screen a single text sample for public-opinion and reputation risk before deciding whether to monitor, escalate, or respond. It is best suited for quick triage rather than authoritative crisis response or full-network monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill produces heuristic reputation-risk scores that may be incomplete or wrong for high-impact incidents. <br>
-Mitigation: Use the output as an initial screening aid and require human review before crisis-response, moderation, or escalation decisions. <br>
-Risk: The artifact is intended for single-text triage, not broad monitoring or deep analysis. <br>
-Mitigation: Limit use to quick checks of supplied text and pair it with appropriate monitoring, legal, communications, or domain review for broader cases. <br>
+## Use Case:
 
+Customer service, social media, and communications teams can use this skill for quick Chinese-language reputation-risk screening before escalation. It supports preliminary triage by identifying likely risk level, industry context, and suggested response urgency for a single text input.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhushanwei/reputation-thermometer) <br>
-- [examples.md](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text or JSON risk report with score, color-coded level, risk factors, industry classification, and response guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and analyzes one supplied text input at a time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The score is preliminary triage guidance and may not reflect the full legal, reputational, or crisis-management context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use results as an initial screening signal and route high-risk items to qualified communications, legal, or risk reviewers before action.
+
+Risk: The skill is designed for Chinese-language documentation and output, which may limit usefulness for other languages or mixed-language inputs.
+
+Mitigation: Apply it to Chinese-language text or validate outputs with reviewers who understand the source language and domain context.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/zhushanwei/skills/reputation-thermometer)
+- [Examples](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, JSON, Guidance]
+
+**Output Format:** [Plain text report or JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores a single text input and reports risk score, risk level, industry, dimensions, matrix values, tags, and response suggestion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

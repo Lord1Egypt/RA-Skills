@@ -1,45 +1,63 @@
-## Description: <br>
-Realtime Web Search helps agents perform Baidu-backed live web search and fact-checking with fallback routes and traceable result metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Realtime Web Search lets an agent query Baidu-backed web search and summary routes for changing facts, current news, and cross-source verification with traceable JSON outputs.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-Developers and agent users use this skill when they need current web results, Chinese web evidence, or cross-source verification through Baidu-backed search and summary routes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Baidu using BAIDU_API_KEY and may expose sensitive query text to a third-party service. <br>
-Mitigation: Avoid secrets and private data in queries, and use a limited-scope Baidu key appropriate for the intended environment. <br>
-Risk: The script prints parsed request bodies, so query text may appear in local logs. <br>
-Mitigation: Run it only in trusted environments and avoid submitting confidential query text. <br>
-Risk: Endpoint override variables can redirect requests and credentials away from the default Baidu endpoints. <br>
-Mitigation: Set BAIDU_WEB_SEARCH_ENDPOINT, BAIDU_CHAT_SEARCH_ENDPOINT, and BAIDU_SUMMARY_ENDPOINT only to trusted Baidu-compatible endpoints. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch recent public web results, fact-check changing claims, and gather Chinese web evidence through Baidu search routes. It is not intended for private database queries or browser automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangziiiiii/realtime-web-search) <br>
-- [Baidu Qianfan web_search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search) <br>
-- [Baidu Qianfan chat search endpoint](https://qianfan.baidubce.com/v2/ai_search/chat/completions) <br>
-- [Baidu Qianfan web_summary endpoint](https://qianfan.baidubce.com/v2/ai_search/web_summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON arrays or structured error text, with shell command examples in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result records may include source, source_endpoint, request_id, answer, title, url, content, and date fields depending on the Baidu route response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: A Baidu credential may be sent to endpoint override URLs configured in the environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped Baidu credentials and set endpoint override variables only to trusted destinations.
+
+Risk: Search queries and returned source metadata may appear in process output or collected logs.
+
+Mitigation: Avoid sensitive queries and handle command output as potentially logged data.
+
+Risk: The security verdict is suspicious because endpoint destinations are environment-configurable.
+
+Mitigation: Review the installed skill and environment before execution; keep overrides unset unless a trusted destination is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangziiiiii/skills/realtime-web-search)
+- [Publisher profile](https://clawhub.ai/user/wangziiiiii)
+- [Baidu Qianfan web search endpoint](https://qianfan.baidubce.com/v2/ai_search/web_search)
+- [Baidu Qianfan chat search endpoint](https://qianfan.baidubce.com/v2/ai_search/chat/completions)
+- [Baidu Qianfan web summary endpoint](https://qianfan.baidubce.com/v2/ai_search/web_summary)
+- [Jisu API](https://jisuapi.com)
+- [Jisu EPC](https://jisuepc.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results printed to stdout, with errors as text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BAIDU_API_KEY; result items may include source, source_endpoint, request_id, answer, title, url, content, date, or provider-specific fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

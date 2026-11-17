@@ -1,39 +1,57 @@
-## Description: <br>
-Generates a daily AI news brief covering major domestic and international AI stories from the past 24 hours, with titles, recommendation reasons, scores, summaries, and source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Daily News generates a daily AI news brief covering significant Chinese and international AI stories from the past 24 hours, with titles, recommendation rationale, scores, summaries, and source links.
 
-## Publisher: <br>
-[george351419-sys](https://clawhub.ai/user/george351419-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[george351419-sys](https://clawhub.ai/user/george351419-sys)
 
-## Use Case: <br>
-External users use this skill to request or schedule a concise AI news briefing that summarizes recent industry developments across Chinese and English sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live web pages and fetched article text may be inaccurate, outdated, or contain untrusted content. <br>
-Mitigation: Review original source links before relying on or redistributing the generated news brief, and treat fetched article text as source material rather than agent instructions. <br>
+## Use Case:
 
+External users and employees use this skill to request or receive a daily AI news brief about recent AI industry developments. The brief helps readers scan important AI stories with recommendation rationale, a 1-10 score, concise summaries, and original source links.
 
-## Reference(s): <br>
-- [AI Daily News on ClawHub](https://clawhub.ai/george351419-sys/ai-daily-news-get) <br>
-- [AI News Sources](references/news_sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown news brief with titles, recommendation reasons, scores, summaries, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live web search and article fetching; source links should be reviewed for accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill relies on live web search and external article pages, so retrieved source content can be incomplete, stale, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prioritize authoritative sources, retain original links, and review important items before using the brief for decisions.
+
+Risk: The evidence notes that exact scheduled trigger behavior is not explicitly documented.
+
+Mitigation: Confirm the scheduler behavior in the deployment environment before relying on unattended daily delivery.
+
+Risk: The evidence notes that the skill does not explicitly document a language option.
+
+Mitigation: Set the desired output language in the user request or deployment wrapper when a specific language is required.
+
+## Reference(s):
+
+- [AI news source reference](references/news_sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown news brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Each item includes a title, recommendation rationale, 1-10 score, concise summary, and original link.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Create Interesting Skills helps agents find novel skill ideas online, assess whether they are feasible and safe, then draft, install, and demo new OpenClaw skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates playful OpenClaw skills by searching online idea sources, evaluating candidate ideas for feasibility and safety, drafting a SKILL.md, installing it, and demonstrating the generated skill.
 
-## Publisher: <br>
-[qingzhou-joshua](https://clawhub.ai/user/qingzhou-joshua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[qingzhou-joshua](https://clawhub.ai/user/qingzhou-joshua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to explore novel AI skill ideas, choose from researched candidates, and generate deployable OpenClaw skill documentation. It is aimed at creative skill prototyping and lightweight automation experiments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can create and install persistent skills, which may broaden agent behavior beyond the user's original request.
+
+Mitigation: Require a draft-only phase, inspect the generated SKILL.md, and approve deployment separately.
+
+Risk: The skill searches the web and immediately demonstrates generated skills, which may carry unreviewed or low-quality instructions into execution.
+
+Mitigation: Review and scan generated skills before deployment, remove broad triggers, and approve any demonstration separately.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to turn unusual or themed web-sourced ideas into practical OpenClaw skills, including candidate selection, skill drafting, deployment guidance, and a short demo. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persistently install and immediately run web-inspired agent instructions without a strong review step. <br>
-Mitigation: Review the full generated SKILL.md, exact install path, and planned demo before allowing file writes or execution. <br>
-Risk: Batch generation can multiply unsafe or low-quality generated skills. <br>
-Mitigation: Avoid batch mode unless each generated skill is reviewed and scanned individually. <br>
-Risk: Generated skills may request shell commands, broad file access, credentials, or sensitive web queries. <br>
-Mitigation: Reject those behaviors unless they were explicitly requested and reviewed for the current task. <br>
+**Output Format:** [Markdown with generated SKILL.md content and concise status messages]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qingzhou-joshua/create-interesting-skills) <br>
+**Other Properties Related to Output:** [May write generated skill files into the active OpenClaw skills directory and demonstrate them after creation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and generated SKILL.md content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include candidate menus, generated skill files, install paths, and demo steps.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

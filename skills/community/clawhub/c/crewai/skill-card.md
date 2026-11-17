@@ -1,41 +1,58 @@
-## Description: <br>
-CrewAI multi-agent framework assistant for agent orchestration, task assignment, tool integration, and workflow design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CrewAI multi-agent framework assistant for agent orchestration, task assignment, tool integration, and workflow design.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on designing CrewAI multi-agent workflows, including agents, tasks, crews, tools, sequential and hierarchical orchestration, memory, planning, callbacks, async execution, and training. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CrewAI workflows can optionally use memory, file reading, web scraping, API access, or code execution tools that may expose data or systems. <br>
-Mitigation: Use a virtual environment, review dependency versions, sandbox code execution, and enable powerful tools only for data and systems you are comfortable exposing. <br>
-Risk: Prompts or persistent memory may accidentally contain secrets or sensitive data. <br>
-Mitigation: Avoid placing secrets in prompts or persistent memory and review generated workflow configuration before use. <br>
+## Use Case:
 
+Developers and engineers use this skill to design CrewAI multi-agent workflows, define agents and tasks, configure orchestration patterns, and understand tool, memory, planning, callback, async, and training features.
 
-## Reference(s): <br>
-- [Crewai on ClawHub](https://clawhub.ai/zhangifonly/crewai) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CrewAI workflow examples, installation commands, tool integration patterns, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Package installation examples may introduce unreviewed dependencies into the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment or container, and pin and review dependency versions where possible before installing CrewAI packages.
+
+Risk: Tool-use examples may access web, file, or code execution capabilities beyond the intended task.
+
+Mitigation: Enable web, file, and code tools only for the folders and tasks required for the workflow.
+
+Risk: Memory examples may retain secrets, credentials, personal data, or confidential documents.
+
+Mitigation: Keep CrewAI memory off or limit it when working with sensitive or confidential data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/crewai)
+- [Publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance with examples for CrewAI workflow design.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Adds equilibrium-constrained symbolic reasoning to OpenClaw assistants, with validation, adaptive balancing, and local vault persistence helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds equilibrium-constrained reasoning to OpenClaw assistants so symbolic operations are validated for balance before execution or persistence.
 
-## Publisher: <br>
-[Architect-SIS](https://clawhub.ai/user/Architect-SIS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[architect-sis](https://clawhub.ai/user/architect-sis)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to structure analyses, state updates, and tradeoff decisions around balance checks and symbolic operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The hard-coded /home/claude/sis Python import path could cause the skill to load unreviewed local code. <br>
-Mitigation: Remove the sys.path change and use package-relative imports from the bundled files before deployment. <br>
-Risk: The equilibrium checks may be mistaken for a safety guarantee. <br>
-Mitigation: Treat the checks as advisory reasoning support and review outputs before relying on them. <br>
-Risk: Vault features can persist local symbol records. <br>
-Mitigation: Enable file persistence only for data that is acceptable to store locally. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add symbolic equilibrium checks, validation loops, and persistence-aware reasoning patterns to assistant workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Architect-SIS/sis-skill) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text guidance with inline code snippets and Python library behavior.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist symbol records locally when vault features are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe import-path behavior can affect code loading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and remove the hard-coded import path before running it outside an isolated environment.
+
+Risk: File-vault behavior can affect local files when persistent storage is enabled.
+
+Mitigation: Use FileVault only with trusted keys and records, and validate that record paths remain contained within the intended vault directory.
+
+Risk: The optional Postgres backend can send vault data to a configured database.
+
+Mitigation: Enable the Postgres backend only when database persistence is intended and the connection target is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/architect-sis/skills/sis-skill)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide symbolic reasoning traces, validation results, demo output, and vault configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

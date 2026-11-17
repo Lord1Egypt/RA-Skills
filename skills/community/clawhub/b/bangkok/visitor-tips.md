@@ -2,197 +2,78 @@
 
 ## Arrival
 
-### Airports
+### Airport → City Decision
 
-**Suvarnabhumi (BKK)** — Main international airport
-- **To city center**: Airport Rail Link (45 min, 45 THB to Makkasan, connect to MRT)
-- **Alternative**: Grab/taxi (300-400 THB, 45-90 min depending on traffic)
-- **Avoid**: Airport taxis at desk — use Grab or metered taxi from level 1
-- **SIM card**: True, AIS, or DTAC booths in arrivals (300-400 THB for tourist SIM with data)
+| Situation | Best option |
+|-----------|-------------|
+| Solo, light luggage, rush hour (7-9 AM, 5-8 PM) | Airport Rail Link: 45 THB, ~30 min to Phaya Thai, immune to traffic |
+| 2+ people or heavy luggage | Grab or official taxi: 300-400 THB total including tolls, 45-90 min |
+| Arriving after midnight | Grab (ARL stops ~midnight); agree the driver uses tollways |
+| Don Mueang (DMK, budget airlines) | A1/A2 bus to BTS Mo Chit (30 THB) or taxi — no rail link, budget for traffic |
+| Anything else | Default: ARL to Phaya Thai/Makkasan, then BTS/MRT or short Grab |
 
-**Don Mueang (DMK)** — Budget airlines (AirAsia, Nok Air)
-- **To city center**: A1/A2 bus to BTS Mo Chit (30 THB) or taxi
-- **No rail link** — plan for traffic
-
-### First Hour Essentials
-1. Get SIM card at airport (AIS or True recommended)
-2. Download **Grab** app (your transport lifeline)
-3. Get 2,000-3,000 THB cash from airport ATM
-4. Connect to airport WiFi to book Grab if needed
+- **Taxi rule at BKK**: use the public taxi queue (ground floor, ticket machine) — never touts inside the terminal quoting flat "1,000 baht" fares.
+- **First hour**: SIM/eSIM at arrivals (AIS or True, ฿300-400 tourist packages), install Grab, withdraw ฿2,000-3,000 (ATM fee ฿220 applies everywhere — see Money).
 
 ## Getting Around
 
-### Grab (Essential App)
-- Works like Uber: cars, motorbike taxis, food delivery
-- **GrabCar**: Most common, price fixed upfront
-- **GrabBike**: Motorcycle taxi, faster in traffic, wear helmet
-- Always confirm destination in app — drivers often don't speak English
-- Payment: Cash or card (register card in app)
+Decision rules live in `transport.md`; the visitor-critical subset:
 
-### BTS Skytrain
-- **Hours**: 6:00 AM - midnight
-- **Cost**: 17-62 THB per trip
-- **Rabbit Card**: Refillable card, skip ticket queues (200 THB purchase, 100 THB refundable)
-- **Lines**: Sukhumvit (green), Silom (dark green)
-- Clean, efficient, air-conditioned — use whenever possible
-
-### MRT
-- **Hours**: 6:00 AM - midnight
-- **Cost**: 17-42 THB
-- **Separate card from BTS** (annoying, yes)
-- Covers: Chinatown, Hua Lamphong (train station), Chatuchak
-
-### Taxis
-- **Metered only**: Insist on "meter" — "TAXI-METER" sign on roof
-- **Flag fall**: 35 THB
-- **Traffic**: Can take 2+ hours for 10km in rush hour
-- **Tip**: Round up to nearest 10-20 THB
-- **Scam**: If driver refuses meter at tourist spots, walk away
-
-### Boats
-- **Chao Phraya Express**: Orange flag boat, 15-16 THB, covers riverside temples
-- **Tourist boats**: Blue flag, 50 THB single/180 THB day pass, hop-on/hop-off
-- **Khlong boats**: Canal boats, 10-20 THB, local commuter routes
-
-### Motorbike Taxis
-- **Orange vests** at most sois
-- Negotiate price before riding (20-50 THB for short trips)
-- Fast but risky — only for confident riders
-- Helmets should be provided
+- **Rail first.** BTS/MRT run ~6 AM-midnight, ฿17-62/ride. If a rail route exists, it wins — rush-hour car trips take 3-6× longer.
+- **Grab** is the taxi app (cars, bikes, food). Fixed upfront price kills the meter negotiation. Confirm the pin, not a verbal address — drivers often don't speak English.
+- **Metered taxi**: flag fall ฿35. Driver refuses the meter → walk away; a moving hailed cab is more likely to use the meter than one parked at a tourist spot.
+- **Motorbike taxi** (orange vests, at every soi mouth): ฿20-50 for short hops, agree price first, take the helmet. Fastest option in gridlock; skip if you've been drinking.
+- **Boats**: Chao Phraya Express orange flag ฿16 covers the temple riverfront; blue-flag tourist boat ฿50/ride or ฿180 day pass; khlong canal boats ฿10-20 are the locals' east-west shortcut.
+- **Cards**: BTS (Rabbit card) and MRT still use separate cards; contactless bank cards work on MRT.
 
 ## Money
 
-### Currency
-- **Thai Baht (THB/฿)**
-- Rough conversion: 35 THB = $1 USD
-
-### ATMs
-- **220 THB fee per withdrawal** (unavoidable)
-- **Tip**: Withdraw max (usually 20,000-30,000 THB) to minimize fees
-- Use Charles Schwab, Wise, or other fee-reimbursing cards
-- Decline "conversion" — always charge in THB
-
-### Cash vs Card
-- **Street food, markets, taxis**: Cash only
-- **Malls, hotels, restaurants**: Cards accepted (sometimes 3% fee)
-- **Grab**: Links to international cards
-
-### Tipping
-- **Not expected** in local places
-- **Restaurants**: Round up or 20-50 THB
-- **Massage**: 50-100 THB
-- **Hotel staff**: 20-50 THB
+- **~35 THB = $1** (rough figure used across these files).
+- **ATM fee ฿220 per withdrawal, every bank, unavoidable** → withdraw the maximum (usually ฿20,000-30,000) rather than small amounts; a fee-reimbursing card (Schwab, Wise) pays for itself in a week.
+- **Always decline dynamic currency conversion** — charging in your home currency adds 3-6%.
+- **Cash vs card**: stalls, markets, taxis, motorbikes = cash; malls/hotels = cards (occasional 3% surcharge). Thais pay by PromptPay QR everywhere, but it needs a Thai bank account — visitors carry cash.
+- **Tipping**: not expected at local places; round up in restaurants (20-50 THB); ฿50-100 for a good massage.
 
 ## Communication
 
-### Language
-- **English**: Widely spoken in tourist areas, hotels, malls
-- **Basic Thai helps**:
-  - Sawasdee (hello)
-  - Khop khun (thank you)
-  - Mai ao (I don't want)
-  - Tao rai (how much)
-  - Phet/Mai phet (spicy/not spicy)
+- **English works** in hotels, malls, and tourist zones; fails at street level. Five phrases carry you: sawasdee (hello), khop khun (thank you), tao rai (how much), mai phet (not spicy), mai ao (don't want — the tout-repellent).
+- **Apps that matter**: Grab (transport/food), Google Maps (accurate for transit here), Google Translate camera mode (menus), LINE (how Thai businesses and condo buildings actually communicate).
 
-### Essential Apps
-| App | Use |
-|-----|-----|
-| **Grab** | Transport, food delivery |
-| **Google Maps** | Navigation (better than Apple Maps here) |
-| **Google Translate** | Camera mode for menus |
-| **LINE** | Thai messaging app (some businesses use it) |
-| **Agoda** | Last-minute hotels |
-| **Foodpanda** | Food delivery alternative |
+## Scam Pattern Recognition
 
-## Safety
+One meta-rule covers 90% of cases: **locals who approach *you* in fluent English near a major sight are working.** Thais are friendly but reserved; unsolicited help with a destination attached is a commission funnel.
 
-### Generally Safe
-Bangkok is very safe for tourists. Violent crime against visitors is rare.
+| Script | Reality | Response |
+|--------|---------|----------|
+| "Temple is closed today" | It isn't. Next stop: gem/tailor shop | Walk to the entrance and check yourself |
+| Tuk-tuk city tour for ฿20-50 | Below-cost = commission stops en route | Pay real prices or skip tuk-tuks |
+| "Special government gem sale, today only" | No such program exists, ever | Walk away; no legitimate gems are sold this way |
+| Jet ski / motorbike rental wants passport | Pre-existing "damage" claims against your hostage passport | Never leave a passport as deposit |
+| Bar with no listed prices, friendly greeters | ฿5,000+ "mandatory drinks" bill, enforced at the door | Only enter venues with visible prices; if trapped, pay, then Tourist Police 1155 |
+| Parked taxi at tourist spot, "meter broken" | Meter works fine; price is 3-5× | Grab, or hail a moving cab |
 
-### Main Risks
-- **Scams**: #1 concern — see below
-- **Traffic**: Look both ways, multiple times
-- **Pickpockets**: Rare but possible on crowded BTS
-- **Motorbike accidents**: Don't ride drunk
+Violent crime against tourists is rare — the real risks are scams, traffic (look both ways twice; motorbikes use sidewalks), and drunk motorbike riding.
 
-### Common Scams
-- **"Temple closed today"**: It's not. They want to take you to gem shops.
-- **Tuk-tuk "tours"**: Free/cheap rides that stop at commission shops.
-- **Gem scams**: "Government sale" or "special price" — always fake.
-- **Jet ski damage**: Operators claim pre-existing damage. Avoid jet skis.
-- **Ping pong show overcharging**: ฿5,000+ bills for "mandatory drinks."
-- **Fake taxis**: No meter, inflated prices. Use Grab.
+## Heat, Rain, Packing
 
-### Rule of Thumb
-If a stranger approaches YOU offering help or deals, be very skeptical.
-
-## Weather & Packing
-
-### What to Expect
-- **Always hot**: 30-35°C year-round
-- **Always humid**: 70-90%
-- **Rainy season (Jun-Oct)**: Daily afternoon showers, usually 30-60 min
-- **"Cool" season (Nov-Feb)**: Still 25-30°C, just less oppressive
-
-### Packing Essentials
-- Light, breathable clothing (cotton, linen)
-- Cover-ups for temples (no shorts, shoulders covered)
-- Comfortable walking sandals
-- Small umbrella (for sun AND rain)
-- Sunscreen, hat
-- Small daypack
-- Hand sanitizer for street food adventures
-- Pepto-Bismol/Imodium just in case
+- Bangkok is 30-35°C and 70-90% humidity year-round; plan outdoor sights 7:30-10 AM, malls/museums 12-3 PM, resume late afternoon.
+- Rainy season (Jun-Oct): downpours are intense but usually 30-60 minutes — wait them out in a café instead of Grabbing through gridlock.
+- Pack: breathable fabrics, temple cover-ups (shoulders + knees), broken-in sandals, small umbrella (sun and rain), sunscreen; buy anything forgotten at any 7-Eleven (they're every 200 m).
 
 ## Temple Etiquette
 
-### Dress Code
-- **Shoulders covered**
-- **Knees covered**
-- **No see-through clothing**
-- Can rent/buy cover-ups outside major temples
-
-### Behavior
-- **Remove shoes** before entering buildings
-- **Never point feet** at Buddha images
-- **Women cannot touch monks** or hand things directly to them
-- **Don't climb on anything**
-- **Ask before photographing** people or inside temples
+- Shoulders and knees covered, no see-through; rentable cover-ups at major temples.
+- Shoes off before buildings; never point feet at Buddha images; never climb on anything.
+- Women don't touch monks or hand them objects directly (place items down instead).
+- Buddha images are sacred nationwide — no selfies sitting on or turning your back to them; Buddha tattoos draw refusals at temple gates.
 
 ## Food Safety
 
-### General Rules
-- **Busy stalls = safe stalls** (high turnover)
-- **Cooked food > raw food** initially
-- **Ice is usually safe** in Bangkok (machine-made)
-- **Tap water**: Don't drink it. Bottled water everywhere.
-- **Street food**: Generally safe. Start mild, work up to spicy.
-
-### If You Get Sick
-- **Pharmacies**: Everywhere, staff speak English
-- **Imodium**: Readily available
-- **Rehydration salts**: Essential for food poisoning
-- **Hospital**: If severe, Bangkok has excellent private hospitals
+Covered in depth in `food-overview.md`. Visitor essentials: busy stalls at peak hours are safe; cylindrical machine ice is fine; don't drink tap water; pharmacies are everywhere and English-speaking if it goes wrong.
 
 ## Useful Info
 
-### Electricity
-- **220V, 50Hz**
-- Plugs: Types A, B, C (US and European fit most outlets)
-
-### Business Hours
-- **Malls**: 10 AM - 10 PM
-- **Street food**: 6 AM - midnight (varies)
-- **Temples**: 8 AM - 5 PM
-- **Banks**: 9 AM - 3:30 PM (weekdays)
-- **Government**: 8:30 AM - 4:30 PM (weekdays)
-
-### Emergencies
-- **Tourist Police**: 1155 (English speaking)
-- **Emergency**: 191
-- **Ambulance**: 1669
-- **Your embassy**: Save number before arriving
-
-### Time Zone
-- **GMT+7** (no daylight saving)
-- Same zone as Vietnam, Indonesia (WIB)
+- **Electricity**: 220V, 50Hz; outlets take both US and EU two-pin plugs.
+- **Hours**: malls 10-22; temples ~8-17 (Grand Palace ticket sales end 15:30); banks weekdays 9-15:30.
+- **Emergencies**: Tourist Police **1155** (English, handles scam disputes), general emergency 191, ambulance 1669. For anything serious, go straight to a private hospital (`healthcare.md`).
+- **Time zone**: GMT+7, no daylight saving.

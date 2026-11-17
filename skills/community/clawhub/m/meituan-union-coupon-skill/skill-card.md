@@ -1,47 +1,69 @@
-## Description: <br>
-Helps users authenticate to Meituan, claim Meituan Union coupons, view campaign links, manage coupon reminders, and troubleshoot coupon or authentication issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users claim Meituan promotional coupons, open related activity links, and set daily coupon reminders after phone and SMS authentication.
 
-## Publisher: <br>
-[meituan-union](https://clawhub.ai/user/meituan-union) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meituan-union](https://clawhub.ai/user/meituan-union)
 
-## Use Case: <br>
-External users use this skill in an agent to claim Meituan coupons, receive coupon reminders, manage local account state, and view related promotional activity links after consenting to the stated terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles phone/SMS login and stores local login and device identifiers. <br>
-Mitigation: Install only from a trusted publisher, complete the consent flow before use, and review the logout and device-clearing commands before providing account information. <br>
-Risk: Doctor diagnostics can expose raw tokens or log data. <br>
-Mitigation: Run diagnostics only when explicitly needed and avoid sharing diagnostic output unless sensitive tokens and account data have been removed. <br>
-Risk: The security review flags unsafe network settings and broad triggers. <br>
-Mitigation: Prefer a version that narrows triggers and enables TLS certificate verification for all account-related requests. <br>
+## Use Case:
 
+External users use this skill through an agent to authenticate a Meituan account, claim available coupons, view related promotional activity links, manage coupon history and reminders, and run explicit diagnostics when troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meituan-union/meituan-union-coupon-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/meituan-union) <br>
-- [Doctor diagnostics guide](references/DOCTOR.md) <br>
-- [Skill terms of service](references/terms-of-service.md) <br>
-- [Meituan user service agreement](https://rules-center.meituan.com/rule-detail/4/1) <br>
-- [Meituan privacy policy](https://rules-center.meituan.com/m/detail/guize/2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with command snippets and JSON script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include coupon result tables, reminder prompts, account-management guidance, diagnostic summaries, and links to Meituan campaign or policy pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill requires a Meituan phone number, SMS code, and account token for coupon claiming.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that credential access is acceptable, and use the logout or device-clear flows when access should be removed.
+
+Risk: Security evidence says the skill under-discloses credential handling and makes misleading local-only privacy statements.
+
+Mitigation: Review and correct consent text and data-flow disclosures before deployment.
+
+Risk: Security evidence says some authentication requests disable TLS certificate checks.
+
+Mitigation: Require TLS verification on authentication requests before treating the release as low-risk.
+
+Risk: Security evidence says tokens are exposed through script output or command-line arguments and logs are decryptable.
+
+Mitigation: Redact credential outputs, avoid passing tokens through command arguments, minimize retained logs, and restrict local file permissions.
+
+Risk: Security evidence says the skill can set reminders and run update or diagnostic flows.
+
+Mitigation: Keep reminder, update, and diagnostic actions user-initiated or explicitly confirmed, and review their scope before enabling them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meituan-union/skills/meituan-union-coupon-skill)
+- [Skill service rules](references/terms-of-service.md)
+- [Diagnostic guide](references/DOCTOR.md)
+- [Meituan user service agreement](https://rules-center.meituan.com/rule-detail/4/1)
+- [Meituan privacy policy](https://rules-center.meituan.com/m/detail/guize/2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Chinese user-facing messages, Markdown coupon tables, JSON script results, and shell command invocations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include coupon records, activity links, authentication status, reminder settings, and diagnostic output; credential-bearing output should be redacted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact SKILL.md mentions 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

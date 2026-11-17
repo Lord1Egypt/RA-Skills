@@ -19,6 +19,8 @@ if str(SKILL_ROOT) not in sys.path:
     sys.path.insert(0, str(SKILL_ROOT))
 
 import argparse
+from core.safe_fs import atomic_write_text, iter_files, read_text
+from scripts.rebuild import preflight_rebuild
 import re
 import sys
 from datetime import date
@@ -57,7 +59,7 @@ def replace_heading_bullet(text: str, heading: str, new_value: str) -> str:
 
 
 def iter_notes(root: Path):
-    for path in root.rglob("*.md"):
+    for path in iter_files(root, "*.md"):
         if path.name in SKIP:
             continue
         yield path
@@ -84,12 +86,14 @@ def main() -> int:
     args = parser.parse_args()
 
     root = resolve_memory_root(args.memory_root)
+    if args.rebuild and not args.dry_run:
+        preflight_rebuild(root, root.parent / "heartbeat-state.json")
     today = date.today()
     changes = []
     maintenance_flags = []
 
     for path in iter_notes(root):
-        text = path.read_text(encoding="utf-8")
+        text = read_text(path)
         confidence = parse_heading_value(text, "Confidence")
         state = parse_heading_value(text, "Memory state")
         last_verified = parse_date(parse_heading_value(text, "Last verified") or "")
@@ -148,7 +152,7 @@ def main() -> int:
                 new_text = replace_heading_bullet(new_text, "Confidence", target_confidence)
             if target_next_review:
                 new_text = replace_heading_bullet(new_text, "Next review", target_next_review)
-            path.write_text(new_text, encoding="utf-8")
+            atomic_write_text(path, new_text)
 
     if not changes and not maintenance_flags:
         print(f"No maintenance needed. memory root: {root}")

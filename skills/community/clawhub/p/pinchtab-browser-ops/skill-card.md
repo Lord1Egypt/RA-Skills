@@ -1,43 +1,59 @@
-## Description: <br>
-Browser automation via PinchTab CLI (nav/snap/find/click/fill/press/text) with low-token accessibility-tree flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation via PinchTab CLI (nav/snap/find/click/fill/press/text) with low-token accessibility-tree flow for operating websites, filling forms, publishing content, collecting page text, and running repeatable browser workflows.
 
-## Publisher: <br>
-[WisZhou](https://clawhub.ai/user/WisZhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wiszhou](https://clawhub.ai/user/wiszhou)
 
-## Use Case: <br>
-Developers and operators use this skill to drive browser workflows through PinchTab, including navigation, form filling, page text collection, and repeatable browser tasks. It is especially oriented toward low-token browser control and Xiaohongshu draft preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate inside a browser profile that is already logged into websites. <br>
-Mitigation: Use a dedicated browser profile when possible, handle login and 2FA manually, and review browser state before automation continues. <br>
-Risk: Browser automation may create drafts, submit content, or change account state if used without clear confirmation. <br>
-Mitigation: Require explicit confirmation before submissions, saved drafts, purchases, account changes, public posts, or approved eval use. <br>
-Risk: A missing or untrusted PinchTab CLI could make browser actions unreliable. <br>
-Mitigation: Verify the PinchTab CLI separately before installation or use. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to guide an agent through PinchTab browser automation with fresh accessibility snapshots, deterministic element actions, and completion checks. It includes a Xiaohongshu long-form draft workflow with manual handling for login, CAPTCHA, SMS, and 2FA.
 
-## Reference(s): <br>
-- [小红书长文发布](references/xiaohongshu-longform.md) <br>
-- [ClawHub skill page](https://clawhub.ai/WisZhou/pinchtab-browser-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses page text, fresh snapshots, URLs, and visible UI markers to verify browser outcomes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill operates websites through the user's active browser session, which can affect authenticated accounts or sensitive forms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review actions before allowing publishing or form submission on sensitive sites, and require the user to complete login, QR scan, SMS, CAPTCHA, and 2FA steps manually.
+
+Risk: Dynamic pages can rerender and make previously captured element references stale, leading to incorrect clicks or fills.
+
+Mitigation: Use fresh PinchTab snapshots after major state changes, wait 1-2 seconds around critical actions, and retry at most twice before asking for human intervention.
+
+Risk: The eval fallback can bypass the normal low-token accessibility-tree flow if used too broadly.
+
+Mitigation: Use eval only with explicit approval for a short-lived unblock, then return immediately to nav, snap, find, click, fill, press, and text commands.
+
+## Reference(s):
+
+- [PinchTab Browser Ops Skill](https://clawhub.ai/wiszhou/skills/pinchtab-browser-ops)
+- [Xiaohongshu Long-Form Workflow](references/xiaohongshu-longform.md)
+- [Xiaohongshu Creator Publish Page](https://creator.xiaohongshu.com/publish/publish)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running PinchTab environment and user-controlled browser session for authenticated or sensitive steps.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

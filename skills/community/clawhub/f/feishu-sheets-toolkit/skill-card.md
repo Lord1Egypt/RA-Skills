@@ -1,44 +1,61 @@
-## Description: <br>
-Feishu Sheets Toolkit helps an agent create, read, write, append, and manage Feishu online spreadsheets and worksheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Sheets Toolkit helps agents create, read, write, append, and manage Feishu online spreadsheets.
 
-## Publisher: <br>
-[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiuwenxi416488212-ship-it](https://clawhub.ai/user/qiuwenxi416488212-ship-it)
 
-## Use Case: <br>
-Developers and automation users use this skill to let an agent prepare Feishu Sheets API requests and operations for spreadsheet creation, data reads and writes, row or column edits, and worksheet management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu credentials can grant access to spreadsheet and drive data. <br>
-Mitigation: Use a dedicated Feishu app with the narrowest required Sheets and Drive permissions, and avoid admin or tenant-wide credentials. <br>
-Risk: The skill can delete worksheets, delete rows or columns, or overwrite spreadsheet ranges. <br>
-Mitigation: Require explicit human confirmation before destructive actions or large range writes. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare Feishu Sheets actions for spreadsheet automation, including creating spreadsheets, reading and writing cell ranges, appending rows, and managing worksheets.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qiuwenxi416488212-ship-it/feishu-sheets-toolkit) <br>
-- [Feishu Sheets API Reference](references/api-reference.md) <br>
-- [Feishu Sheets API v2](https://open.feishu.cn/open-apis/sheets/v2/spreadsheets) <br>
-- [Feishu Sheets API v3](https://open.feishu.cn/open-apis/sheets/v3/spreadsheets) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON, YAML, and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials and tenant access tokens for live API use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill can alter remote Feishu Sheets, including writing values, appending rows, deleting rows or columns, deleting worksheets, changing protection, and find-and-replace operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test spreadsheets first, keep backups or version history, and require explicit human confirmation before destructive or broad write operations.
+
+Risk: The server security summary reports under-described management capabilities without clear safeguards.
+
+Mitigation: Review requested actions before execution and limit enabled Feishu permissions to the smallest set needed for the workflow.
+
+Risk: The executable client requires Feishu app credentials and tenant access tokens to access spreadsheet data.
+
+Mitigation: Store credentials outside prompts and shared files, rotate exposed credentials, and scope Feishu app permissions to intended spreadsheets where possible.
+
+## Reference(s):
+
+- [Feishu Sheets API Reference](artifact/references/api-reference.md)
+- [Feishu Sheets API v2](https://open.feishu.cn/open-apis/sheets/v2/spreadsheets)
+- [Feishu Sheets API v3](https://open.feishu.cn/open-apis/sheets/v3/spreadsheets)
+- [Feishu Tenant Access Token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [ClawHub Skill Page](https://clawhub.ai/qiuwenxi416488212-ship-it/skills/feishu-sheets-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and Python or shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Feishu Sheets action payloads and JSON API responses when the included client is executed with valid Feishu credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-CogDx Feedback helps agents submit pre/post-change evaluation data to Cerebratech's CogDx API to verify whether retraining or prompt changes improved performance and to earn credits toward diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CogDx Feedback helps agents submit post-change feedback to the Cerebratech CogDx API to check whether retraining, prompt changes, or instruction updates improved performance.
 
-## Publisher: <br>
-[drkavner](https://clawhub.ai/user/drkavner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drkavner](https://clawhub.ai/user/drkavner)
 
-## Use Case: <br>
-Developers and agent operators use this skill after retraining, prompt changes, or instruction updates to submit reviewed outcome data and check whether an observed improvement transferred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feedback submissions are sent to a third-party Cerebratech service and may contribute to a shared calibration commons. <br>
-Mitigation: Review payloads before submission, remove secrets, personal data, customer data, proprietary prompts, internal system instructions, and confidential notes, and use a non-identifying agent_id where possible. <br>
+## Use Case:
 
+Agents and developers use this skill after retraining, prompt changes, or instruction updates to submit feedback records and receive an improvement verification score, earned credits, and suggested next diagnostic steps.
 
-## Reference(s): <br>
-- [CogDx Feedback API Reference](references/api.md) <br>
-- [Cerebratech Feedback API](https://api.cerebratech.ai/feedback) <br>
-- [Cerebratech API Catalog](https://api.cerebratech.ai/catalog) <br>
-- [ClawHub Skill Page](https://clawhub.ai/drkavner/cogdx-feedback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON] <br>
-**Output Format:** [Markdown with HTTP request examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No local file output; API responses include verification, score, credits, and next-step fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Feedback submissions can include prompts, responses, notes, identifiers, and evaluation data that may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact each payload before submission; use aggregate metrics or sanitized samples where possible.
+
+Risk: The skill sends data to an external service and shared commons without clear retention, deletion, or consent terms in the artifact.
+
+Mitigation: Confirm authorization and the provider's retention, deletion, and commons-sharing terms before production use.
+
+## Reference(s):
+
+- [CogDx Feedback API Reference](references/api.md)
+- [CogDx Feedback endpoint](https://api.cerebratech.ai/feedback)
+- [Cerebratech API catalog](https://api.cerebratech.ai/catalog)
+- [ClawHub skill page](https://clawhub.ai/drkavner/skills/cogdx-feedback)
+- [Publisher profile](https://clawhub.ai/user/drkavner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and inline HTTP command details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include request fields, response fields, error codes, and credit guidance for the feedback API.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

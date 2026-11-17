@@ -1,43 +1,62 @@
-## Description: <br>
-Provides a patient-facing post-operative rehabilitation function self-assessment workflow based on survey and questionnaire inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides postoperative rehabilitation patient self-assessment by collecting survey answers, calculating basic scores, and generating a structured assessment summary.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External users and developers can collect post-operative rehabilitation questionnaire responses, calculate basic scores, and generate a Markdown interpretation through an external medical model. The skill is limited to self-reported assessment support and is not a diagnosis or substitute for professional evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health assessment data may be sent to an external model provider without clear disclosure, consent, retention, or deletion controls. <br>
-Mitigation: Use only with explicit user disclosure and consent; document what fields and files are transmitted; prefer sandboxed or local processing for sensitive health data and define retention and deletion handling. <br>
-Risk: Broad document, spreadsheet, text, and image inputs can contain unintended patient or regulated data. <br>
-Mitigation: Limit accepted files to the minimum necessary, review prepared JSON before API calls, and avoid uploading regulated patient data unless appropriate governance controls are in place. <br>
-Risk: The skill requires a sensitive appkey bearer token for model access. <br>
-Mitigation: Use a scoped credential, keep it out of source files and logs, rotate it regularly, and revoke it if exposure is suspected. <br>
+## Use Case:
 
+External users and healthcare application developers can use this skill to collect patient postoperative rehabilitation self-assessment answers, compute simple scores, and return a Markdown interpretation with structured JSON data. It is for self-assessment support and does not provide diagnosis or replace professional clinical evaluation.
 
-## Reference(s): <br>
-- [ResearchKit surveys/questionnaires reference](https://github.com/ResearchKit/ResearchKit) <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-function-self-assessment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [UTF-8 JSON containing structured assessment data and Markdown natural-language interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an appkey bearer token; supports JSON plus document, table, text, and image inputs through preprocessing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Patient assessment contents are sent to a fixed external medical-model API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that endpoint is approved for the health data being processed, users consent to external processing, and retention and compliance terms are acceptable.
+
+Risk: Document and image inputs may contain sensitive identifiers or unnecessary clinical details.
+
+Mitigation: Prefer JSON input with minimal identifiers and avoid uploading sensitive documents unless they are necessary for the assessment.
+
+Risk: The runtime can fall back to preprocessing code loaded from a shared directory outside the package.
+
+Mitigation: Ensure any shared preprocessing directory is trusted and not writable by unprivileged users before installation.
+
+Risk: Users may mistake self-assessment interpretation for clinical diagnosis.
+
+Mitigation: Present outputs as self-assessment support only and require professional clinical review for diagnosis or treatment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-function-self-assessment)
+- [ResearchKit](https://github.com/ResearchKit/ResearchKit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [UTF-8 JSON with structured assessment data and a Markdown text field]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an appkey and sends assessment content to a fixed external medical-model API for Markdown interpretation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

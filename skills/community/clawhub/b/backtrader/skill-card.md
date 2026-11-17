@@ -1,45 +1,59 @@
-## Description: <br>
-Provides Backtrader guidance, examples, and demo code for Python-based quantitative strategy backtesting with data feeds, indicators, analyzers, and broker simulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backtrader is an open-source Python framework for quantitative backtesting, multi-source and multi-period strategy development, and simulated or live trading workflows.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers and quantitative researchers use this skill to draft, run, and adapt Backtrader strategy examples for local backtesting and paper-trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency versions may change over time and affect reproducibility. <br>
-Mitigation: Install the skill dependencies in a virtual environment and pin package versions for repeatable backtesting runs. <br>
-Risk: Backtesting examples can be adapted toward live trading workflows. <br>
-Mitigation: Keep generated strategies in backtest or paper-trading mode unless live brokerage access is deliberately configured and approved. <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill to get Backtrader installation guidance, API examples, and strategy templates for local backtesting, analysis, and experimentation with trading workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coderwpf/backtrader) <br>
-- [Publisher profile](https://clawhub.ai/user/coderwpf) <br>
-- [Backtrader documentation](https://www.backtrader.com/docu/) <br>
-- [Backtrader GitHub repository](https://github.com/mementum/backtrader) <br>
-- [README](artifact/README.md) <br>
-- [Quick reference](artifact/QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local Backtrader examples, dependency installation commands, and backtesting configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill mixes local backtesting guidance with live-trading and automation examples, which could lead to unintended trading activity if connected to broker credentials or live connectors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid broker credentials and live-trading connectors unless live trading is explicitly intended; add paper-trading, position-limit, and confirmation safeguards before any automated trading use.
+
+Risk: Running the examples requires installing and executing Python packages and scripts in the user's environment.
+
+Mitigation: Install and run the skill examples only in an isolated Python environment.
+
+Risk: Strategy examples and generated trading logic may be educational rather than validated investment guidance.
+
+Mitigation: Review strategy code, validate input data, and treat examples as educational backtests unless independently tested and approved for the user's risk controls.
+
+## Reference(s):
+
+- [Backtrader official documentation](https://www.backtrader.com/docu/)
+- [Backtrader GitHub repository](https://github.com/mementum/backtrader)
+- [ClawHub skill page](https://clawhub.ai/coderwpf/skills/backtrader)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local backtesting examples, dependency installation commands, and optional plotting guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

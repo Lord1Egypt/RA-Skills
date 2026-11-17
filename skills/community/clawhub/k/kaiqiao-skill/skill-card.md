@@ -1,43 +1,59 @@
-## Description: <br>
-Kaiqiao calibrates an agent's conversational behavior so it asks when context is missing, proceeds when authorized, challenges risky directions, and gives brief status updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kaiqiao is a Chinese-language agent behavior calibration skill that guides an AI agent on when to ask clarifying questions, act without extra confirmation, push back, and give brief status feedback.
 
-## Publisher: <br>
-[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leslietong2046-ship-it](https://clawhub.ai/user/leslietong2046-ship-it)
 
-## Use Case: <br>
-Developers and agent users use this skill to tune assistant behavior around clarification, execution, escalation, and concise progress reporting. It also includes an optional local CLI for checking prompts and producing behavior-diagnostic reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill trains the agent to ask fewer confirmations and act more directly. <br>
-Mitigation: Require prior confirmation for deletions, payments, publishing, account changes, external messages, private-data access, commits, and other irreversible or high-impact actions. <br>
-Risk: The security guidance flags behavioral profile notes and recurring reminder behavior. <br>
-Mitigation: Review or disable USER.md, MEMORY.md, and recurring reminder behavior if preference retention or emotional-cue tracking is not desired. <br>
+## Use Case:
 
+External users and agent developers use Kaiqiao to tune Chinese-language assistant behavior: ask when requirements are unclear, proceed on low-risk delegated tasks, raise objections with alternatives, and provide short progress or completion feedback. The skill also includes an optional local CLI helper for prompt checks and self-diagnosis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leslietong2046-ship-it/kaiqiao-skill) <br>
-- [README](README.md) <br>
-- [Behavior checklist](references/checklist.md) <br>
-- [Kaiqiao CLI checker](references/kaiqiao.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional text diagnostic reports and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API is required; the optional CLI uses local rule matching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can encourage inferred user traits or preferences to be written into shared long-term memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before any memory write and keep entries concise, reviewable, and removable.
+
+Risk: The skill asks the agent to create recurring memory-scanning reminders.
+
+Mitigation: Disable recurring reminders by default or require manual approval before creating and acting on them.
+
+Risk: The skill's direct-action guidance could reduce confirmations for actions that should remain guarded.
+
+Mitigation: Keep explicit confirmations for destructive, costly, public, financial, account-changing, or otherwise irreversible actions.
+
+## Reference(s):
+
+- [Kaiqiao ClawHub Skill Page](https://clawhub.ai/leslietong2046-ship-it/skills/kaiqiao-skill)
+- [Behavior Checklist](references/checklist.md)
+- [CLI Behavior Calibrator](references/kaiqiao.py)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with optional CLI commands and text diagnostic reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language behavioral guidance; optional local Python CLI uses standard library only]
+
+## Skill Version(s):
+
+2.0.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

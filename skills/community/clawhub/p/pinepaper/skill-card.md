@@ -1,41 +1,59 @@
-## Description: <br>
-PinePaper helps agents create and animate vector-based text, shapes, diagrams, maps, and visualizations on an infinite canvas through Agent Mode and MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PinePaper helps agents create, animate, query, transform, and export vector-based text, shapes, diagrams, maps, and visual effects on an infinite canvas.
 
-## Publisher: <br>
-[speaktoarpit](https://clawhub.ai/user/speaktoarpit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[speaktoarpit](https://clawhub.ai/user/speaktoarpit)
 
-## Use Case: <br>
-Developers and creative operators use this skill to let an agent build, modify, animate, and export PinePaper canvas content such as diagrams, typography, maps, and visual assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server can let an agent control PinePaper actions that clear or delete canvas content and export training data. <br>
-Mitigation: Enable it only when agent control of PinePaper is intended, verify the package source, and require explicit approval before clearing, resetting, deleting, or exporting training data. <br>
-Risk: The release was flagged as suspicious because the training-data export behavior is under-explained. <br>
-Mitigation: Review the training-data export workflow and generated outputs before using them in a production or shared environment. <br>
+## Use Case:
 
+Developers and external agents use this skill as a PinePaper API and MCP reference for building animated canvas content, diagrams, visualizations, and exportable graphics.
 
-## Reference(s): <br>
-- [PinePaper Studio](https://pinepaper.studio) <br>
-- [ClawHub PinePaper release](https://clawhub.ai/speaktoarpit/pinepaper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript examples and MCP tool references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API patterns for creating, animating, selecting, clearing, and exporting canvas content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Destructive canvas actions can clear, reset, or delete selected content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Agents should ask for explicit confirmation before clearing, resetting, or deleting PinePaper canvas content.
+
+Risk: The training-data export tool may expose canvas content without clear scope.
+
+Mitigation: Agents should avoid training-data export unless the user explicitly requests it and understands what will be exported.
+
+Risk: Using PinePaper with sensitive or valuable canvas content increases review requirements.
+
+Mitigation: Review the skill before installation and limit use to appropriate canvas content and workflows.
+
+## Reference(s):
+
+- [PinePaper Studio](https://pinepaper.studio)
+- [ClawHub PinePaper Skill Page](https://clawhub.ai/speaktoarpit/skills/pinepaper)
+- [PinePaper Studio AI Agent Skills Reference](artifact/skills.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reference material with JavaScript examples, MCP tool names, and export workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide agents toward PinePaper canvas operations, API calls, MCP tools, and export formats.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

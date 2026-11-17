@@ -1,43 +1,55 @@
-## Description: <br>
-Guide for creating effective skills. This skill should be used when users want to create a new skill or update an existing skill that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide for creating effective skills. This skill should be used when users want to create a new skill or update an existing skill that extends an agent's capabilities with specialized knowledge, workflows, or tool integrations.
 
-## Publisher: <br>
-[wangkang5](https://clawhub.ai/user/wangkang5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wangkang5](https://clawhub.ai/user/wangkang5)
 
-## Use Case: <br>
-Developers and skill authors use this skill to design, initialize, validate, package, and iterate on agent skills with concise instructions, reusable scripts, references, and assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or modified skill files can contain incorrect, incomplete, or misleading guidance. <br>
-Mitigation: Review generated SKILL.md content, bundled references, and scripts before packaging or deploying the skill. <br>
-Risk: The packaging helper archives all files under the selected skill directory, which can unintentionally include secrets or unrelated files. <br>
-Mitigation: Use an explicit workspace path, inspect the skill directory contents before packaging, and keep secrets outside the skill folder. <br>
-Risk: The release is third-party-owned and may be forked or republished under identities that differ from the original source. <br>
-Mitigation: Confirm the publisher handle and package identity are acceptable before using the skill in shared or production environments. <br>
+## Use Case:
 
+Developers and skill authors use this skill to design, create, validate, package, and iterate on agent skills with clear instructions and reusable resources.
 
-## Reference(s): <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local skill directories and package them as .skill archives when the user asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release evidence) <br>
+Risk: The packaging helper can accidentally include files outside the intended skill directory through symlinks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on directories you control, check for symlinks and unexpected files before packaging, and run packaging in a contained workspace.
+
+Risk: Initializer inputs can create files at user-provided paths.
+
+Mitigation: Avoid untrusted skill names or output paths, and review the target path before running the initializer.
+
+## Reference(s):
+
+- [Workflow Patterns](artifact/references/workflows.md)
+- [Output Patterns](artifact/references/output-patterns.md)
+- [ClawHub skill page](https://clawhub.ai/wangkang5/skills/wangkang-skill-c)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and optional generated files or shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create SKILL.md, resource folders, validation output, and .skill package files when helper scripts are used.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

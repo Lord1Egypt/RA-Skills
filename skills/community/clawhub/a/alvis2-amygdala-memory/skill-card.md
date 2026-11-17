@@ -1,46 +1,62 @@
-## Description: <br>
-Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and agent users use this skill to maintain persistent emotional state across sessions, log emotional events, decay state toward a baseline, and optionally use conversation-derived signals to update future agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic encoding may process conversation-derived data with an external API. <br>
-Mitigation: Review the scripts before use, avoid providing SkillBoss_API_KEY unless external processing is acceptable, and limit which conversation history is analyzed. <br>
-Risk: Cron jobs can repeatedly update persistent emotional state and influence future sessions. <br>
-Mitigation: Do not enable cron until the scheduling, disable path, and data deletion process have been reviewed. <br>
-Risk: Generated emotional summaries may be auto-injected into later sessions. <br>
-Mitigation: Inspect generated state files before session injection and keep a documented way to disable or remove them. <br>
+## Use Case:
 
+Developers and external agent users use this skill to add persistent emotional state tracking, decay, visualization, and session context for OpenClaw-style agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/alvis2-amygdala-memory) <br>
-- [Publisher Profile](https://clawhub.ai/user/alvisdunlop) <br>
-- [OpenClaw Metadata Repository](https://github.com/ImpKind/amygdala-memory) <br>
-- [Hippocampus Memory](https://www.clawhub.ai/skills/hippocampus) <br>
-- [VTA Memory](https://www.clawhub.ai/skills/vta-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with inline bash commands and JSON state examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses persistent local state files, optional cron scheduling, and a SkillBoss API key for automatic emotional encoding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Persistent cross-session emotional profiles may retain sensitive conversation-derived signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming storage location, retention expectations, and delete or reset controls.
+
+Risk: Cron-based decay or automatic encoding creates recurring local execution.
+
+Mitigation: Leave cron disabled unless the user explicitly accepts scheduled execution and can audit or remove the jobs.
+
+Risk: Automatic encoding may send conversation history or derived emotional signals to external processing.
+
+Mitigation: Require opt-in, payload preview, redaction, or a local-only path before processing private conversations.
+
+Risk: The artifact describes script behavior without bundling the scripts for review.
+
+Mitigation: Review the actual installed scripts before deployment and prefer releases that include auditable implementation files.
+
+## Reference(s):
+
+- [Amygdala Memory ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis2-amygdala-memory)
+- [alvisdunlop ClawHub publisher profile](https://clawhub.ai/user/alvisdunlop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes persistent emotional state files, optional cron schedules, and dashboard generation behavior.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Chinese-language anti-scam analysis skill that helps assess whether an opportunity, investment, project, product, service, or suspicious situation shows common scam patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anti Scam Expert helps agents analyze suspicious opportunities, investments, projects, collaborations, products, or services by comparing user-described scenarios against historical and modern scam patterns.
 
-## Publisher: <br>
-[gao322759](https://clawhub.ai/user/gao322759) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gao322759](https://clawhub.ai/user/gao322759)
 
-## Use Case: <br>
-External users and agents use this skill to analyze suspicious opportunities or interactions, identify red flags, compare them with historical and modern scam patterns, and produce practical next-step guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A scam-risk assessment may affect financial, legal, law-enforcement, or account decisions. <br>
-Mitigation: Use the skill as a practical warning tool and confirm serious matters through official channels before acting. <br>
+## Use Case:
 
+External users and support agents can use this skill to assess whether a described opportunity, transaction, or relationship shows scam indicators. It produces a risk rating, red-flag analysis, comparable cases, reasoning, and suggested next actions.
 
-## Reference(s): <br>
-- [Historical Scam Reference Library](references/history.md) <br>
-- [Modern Scam Reference Library](references/modern.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scam-risk analysis with scenario summary, risk rating, red flags, comparable cases, rationale, and suggested actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language response format grounded in bundled historical and modern scam reference materials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill may trigger on broad credibility or trustworthiness questions and provide scam-analysis framing even when the situation is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as decision-support guidance and ask the agent or a human reviewer to separate evidence-backed red flags from uncertain assumptions.
+
+Risk: The skill is Chinese-language and may respond in Chinese unless the hosting agent adapts the output language.
+
+Mitigation: Configure the agent to translate or localize the response when serving users who need another language.
+
+## Reference(s):
+
+- [Historical Scam Reference Library](references/history.md)
+- [Modern Scam Reference Library](references/modern.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured risk rating, red flags, comparable cases, rationale, and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language scam-pattern analysis; no executable code or tool calls are produced by the skill itself.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

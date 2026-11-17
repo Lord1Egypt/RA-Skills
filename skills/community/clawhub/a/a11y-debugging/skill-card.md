@@ -1,41 +1,56 @@
-## Description: <br>
-Uses Chrome DevTools MCP for accessibility (a11y) debugging and auditing based on web.dev guidelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Chrome DevTools MCP for accessibility (a11y) debugging and auditing based on web.dev guidelines.
 
-## Publisher: <br>
-[POIUY1318](https://clawhub.ai/user/POIUY1318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[poiuy1318](https://clawhub.ai/user/poiuy1318)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit web pages for accessibility issues, including semantic structure, accessible names, keyboard focus, tap targets, and color contrast. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser inspection snippets execute in the context of the page being audited. <br>
-Mitigation: Run the snippets only on pages the user intends to inspect and review the narrow diagnostic behavior before execution. <br>
-Risk: Automated accessibility checks may miss issues such as complex color contrast over gradients, images, or transparency. <br>
-Mitigation: Use screenshots and manual review alongside Lighthouse, accessibility tree snapshots, and the provided diagnostic snippets. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit web pages and components for accessibility issues, including semantic structure, labels, focus behavior, keyboard navigation, tap target size, and color contrast.
 
-## Reference(s): <br>
-- [Accessibility Debugging Snippets](references/a11y-snippets.md) <br>
-- [Accessible Tap Targets](https://web.dev/articles/accessible-tap-targets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include accessibility findings, remediation guidance, and diagnostic snippets for browser inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser audits and page-inspection snippets can expose page URLs, selectors, snippets, or tested-page data in reports and agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on authorized sites and handle generated reports according to the data sensitivity of the audited page.
+
+Risk: The color-contrast snippet uses a simplified calculation and may miss transparency, gradients, or image backgrounds.
+
+Mitigation: Treat simplified contrast results as a screening signal and confirm ambiguous findings with browser issues, Lighthouse, screenshots, or production-grade accessibility tooling.
+
+## Reference(s):
+
+- [Accessibility Debugging Snippets](references/a11y-snippets.md)
+- [Accessible tap targets](https://web.dev/articles/accessible-tap-targets)
+- [ClawHub skill page](https://clawhub.ai/poiuy1318/skills/a11y-debugging)
+- [Publisher profile](https://clawhub.ai/user/poiuy1318)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference Lighthouse reports, accessibility tree snapshots, Chrome issue output, screenshots, and small read-only JavaScript snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

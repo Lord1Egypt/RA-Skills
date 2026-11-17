@@ -1,43 +1,59 @@
-## Description: <br>
-Gmail, Contacts, Calendar, Drive (with comments), Docs, and Sheets for OpenClaw agents <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail, Contacts, Calendar, Drive (with comments), Docs, and Sheets for OpenClaw agents.
 
-## Publisher: <br>
-[panthrocorp](https://clawhub.ai/user/panthrocorp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panthrocorp](https://clawhub.ai/user/panthrocorp)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to let agents access selected Google Workspace data and perform opt-in Calendar, Drive comment, Docs, and Sheets write operations through configured Google OAuth scopes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review marks the skill suspicious because setup handles sensitive Google Workspace access and may weaken account protections. <br>
-Mitigation: Review the trust boundary before installation, prefer a dedicated low-privilege Google account or Workspace project, and keep services off or readonly unless writes are required. <br>
-Risk: The security guidance notes risk from installing an unpinned executable. <br>
-Mitigation: Pin and verify the release binary before placing it in the OpenClaw bin directory. <br>
-Risk: Advanced Protection accounts may require temporary unenrollment to complete OAuth setup. <br>
-Mitigation: Avoid using this skill with Advanced Protection accounts when unenrollment is unacceptable. <br>
+## Use Case:
 
+OpenClaw agents and operators use this skill to read Gmail, contacts, calendar events, Drive files, Docs, and Sheets, with opt-in write modes for calendar events, Drive comments, Docs edits, and Sheets writes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/panthrocorp/panthrocorp-google-workspace) <br>
-- [Skill homepage](https://github.com/PanthroCorp-Limited/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Text, Shell commands, Configuration] <br>
-**Output Format:** [JSON by default, with plain text output where supported and shell command examples in documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Google OAuth credentials and a google-workspace binary available to the OpenClaw environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.2 (source: frontmatter, release metadata) <br>
+Risk: The release guidance includes installing a binary that may be mutable or unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned release and verify the SHA-256 checksum or signature before installing the binary.
+
+Risk: OAuth setup guidance can lead users to weaken Google Advanced Protection.
+
+Mitigation: Do not disable Advanced Protection for a primary account; use an administrator-approved OAuth client or a dedicated least-privilege Google account.
+
+Risk: Readwrite modes and command output can expose or modify private Google Workspace data.
+
+Mitigation: Keep readwrite modes disabled unless explicitly needed, and treat command output as sensitive workspace data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panthrocorp/skills/panthrocorp-google-workspace)
+- [Project homepage](https://github.com/PanthroCorp-Limited/openclaw-skills)
+- [Google Cloud Console](https://console.cloud.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Shell commands, Configuration]
+
+**Output Format:** [JSON by default; plain text where supported]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Google OAuth credentials, an encrypted token key, the google-workspace binary, and service modes that control readonly or readwrite behavior.]
+
+## Skill Version(s):
+
+0.5.2 (source: SKILL.md frontmatter, evidence release metadata, artifact/dist/metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

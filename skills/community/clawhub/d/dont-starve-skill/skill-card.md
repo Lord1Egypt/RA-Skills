@@ -1,41 +1,55 @@
-## Description: <br>
-Agent Skill for Don't Starve / DST survival guides covering character selection, seasonal preparation, boss strategy, base building, Crock Pot recipes, survival pacing, multiplayer coordination, DLC mechanics, mod recommendations, terminology, lore, and local survivor-profile guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Don't Starve and Don't Starve Together guidance for survival planning, character selection, boss fights, recipes, base building, multiplayer strategy, and lore.
 
-## Publisher: <br>
-[morandot](https://clawhub.ai/user/morandot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morandot](https://clawhub.ai/user/morandot)
 
-## Use Case: <br>
-Players and agent users use this skill to get concise, version-aware Don't Starve and Don't Starve Together guidance for character choices, seasonal preparation, boss fights, base building, recipes, multiplayer coordination, and spoiler-controlled lore. When local file access is available, it can read and update a structured survivor profile so guidance reflects stable gameplay facts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain local gameplay facts in survivor-profile.json. <br>
-Mitigation: Use DONTSTARVE_MEMORY_DIR to choose the storage location, review or delete the profile when memory is not desired, and avoid storing personal or account information. <br>
+## Use Case:
 
+External users can get actionable guidance for Don't Starve and Don't Starve Together runs, including seasonal planning, character choice, base building, boss preparation, recipes, multiplayer coordination, and spoiler-aware lore explanations.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/morandot/dont-starve-skill) <br>
-- [Project homepage](https://github.com/morandot/dont-starve-skill) <br>
-- [Answer templates](references/answer-templates.md) <br>
-- [Style examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional inline shell commands and structured JSON profile patches] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or update a local survivor-profile.json when local file access is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The skill can save narrow gameplay facts in a local survivor profile for future personalization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not put sensitive personal data in gameplay preferences or notes, and inspect or remove ~/.config/dont-starve-skill/survivor-profile.json if saved facts are no longer wanted.
+
+Risk: Advice about current patches, mode differences, or mod compatibility can become stale.
+
+Mitigation: For latest-version or mod-compatibility questions, verify current information before relying on the answer.
+
+## Reference(s):
+
+- [Answer Templates](references/answer-templates.md)
+- [Style Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/morandot/skills/dont-starve-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, decision-first explanations, and occasional shell command blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May personalize answers from a local survivor profile when file access is available.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

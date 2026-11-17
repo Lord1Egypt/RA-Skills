@@ -1,43 +1,62 @@
-## Description: <br>
-Complaint Handling helps agents classify, track, remind, close, and report on customer complaints using a defined complaint-management workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through customer complaint intake, classification, time-bound handling, closure, follow-up, and reporting for property service workflows.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-Property service and customer operations staff use this skill to record complaints, classify severity and category, monitor response deadlines, generate reminders and reports, and manage customer follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Complaint records may include identifiable customer data and complaint details. <br>
-Mitigation: Use only in an authorized business environment, apply retention and redaction controls, and restrict access to complaint records and generated reports. <br>
-Risk: The artifact reads and writes local Excel files, backups, and report files. <br>
-Mitigation: Configure storage paths deliberately and limit filesystem permissions to the intended complaint-management data locations. <br>
-Risk: Optional WeCom forwarding can disclose real customer data to broad chat groups. <br>
-Mitigation: Enable WeCom forwarding only after approval, route messages to limited groups, and avoid sending sensitive complaint details unless they are necessary and authorized. <br>
+## Use Case:
 
+Property service and customer service teams use this skill to standardize complaint intake, severity classification, response tracking, follow-up, and recurring complaint analysis. It supports operational workflows that require 30-minute response targets, 7-day closure targets, escalation handling, and customer callback management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/perrykono-debug/complaint-handling) <br>
-- [Publisher profile](https://clawhub.ai/user/perrykono-debug) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown guidance, Python command outputs, and JSON complaint reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Excel complaint records and can optionally forward text or Markdown notifications through WeCom webhooks when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can handle sensitive customer complaint records and generated reports or backups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an authorized complaint-management environment, restrict access to generated reports and backups, minimize personal data, and define clear retention policies.
+
+Risk: Complaint details may be sent through WeCom notification webhooks if notification behavior is configured.
+
+Mitigation: Configure WeCom destinations deliberately, verify recipient groups before use, and avoid sending unnecessary personal or sensitive complaint details.
+
+Risk: Spreadsheet-backed complaint records may contain user-provided values.
+
+Mitigation: Neutralize spreadsheet formula-like values before writing or exporting complaint data.
+
+Risk: Local paths for complaint data, reports, backups, and configuration must match the deployment environment.
+
+Mitigation: Review and configure file paths before use so records are read from and written to approved storage locations.
+
+## Reference(s):
+
+- [Complaint Handling skill page](https://clawhub.ai/perrykono-debug/skills/complaint-handling)
+- [Skill source documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, console text, JSON reports, Python code, shell-command examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update complaint records, reminders, backups, and reports when connected to local complaint data and configured notification channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact _meta.json, scripts/__init__.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

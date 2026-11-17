@@ -1,39 +1,54 @@
-## Description: <br>
-Forces M2.7 to produce an explicit structured plan before writing code, capturing sub-problems, APIs with version requirements, risks, files affected, and implementation order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forces M2.7 to produce an explicit structured plan before writing code, capturing sub-problems, APIs and version requirements, risks, affected files, implementation order, and estimated LOC.
 
-## Publisher: <br>
-[stephenlthorn](https://clawhub.ai/user/stephenlthorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenlthorn](https://clawhub.ai/user/stephenlthorn)
 
-## Use Case: <br>
-Developers and agent orchestrators use this skill to decompose complex or multi-file coding tasks into a structured implementation plan before code generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send the user's task and retrieved context to an external AI service without clear user disclosure. <br>
-Mitigation: Review and approve the configured LLM endpoint before installation, and avoid using secrets, customer data, proprietary code, or sensitive retrieved context unless the endpoint is approved for that data. <br>
-Risk: A generated plan can provide incorrect API, file, risk, or implementation guidance that downstream coding steps may follow. <br>
-Mitigation: Review the structured plan before execution and validate listed APIs, file changes, ordering, and risk assumptions against the target project. <br>
+## Use Case:
 
+Developers and coding agents use this skill to force a structured planning pass before complex implementation work. It is intended for multi-file, higher-LOC, or architecture-sensitive coding tasks where decomposition can reduce wasted generation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [Structured JSON plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes sub-problems, APIs, risks, files affected, implementation order, and estimated LOC; may add a warning when estimated LOC exceeds 500.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Coding task details and optional retrieved context may be sent to the configured LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the endpoint and data-handling expectations before installation, and avoid sending sensitive task context unless approved.
+
+Risk: Generated plans may include incorrect APIs, incomplete file lists, or misleading implementation guidance.
+
+Mitigation: Review the plan before implementation and validate API availability, dependencies, and proposed file changes during normal engineering review.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/stephenlthorn/skills/decompose-plan)
+- [Publisher profile](https://clawhub.ai/user/stephenlthorn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON plan object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The plan includes sub-problems, API requirements, risks, affected files, implementation order, and estimated LOC.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

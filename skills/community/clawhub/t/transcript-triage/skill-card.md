@@ -1,38 +1,49 @@
-## Description: <br>
-Parses long transcripts into topics under ordered lists, to triage in your notes system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses long transcripts into topics under ordered lists, to triage in your notes system.
 
-## Publisher: <br>
-[nonlinear](https://clawhub.ai/user/nonlinear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nonlinear](https://clawhub.ai/user/nonlinear)
 
-## Use Case: <br>
-Developers, project maintainers, and knowledge workers use this skill to turn long AI conversation transcripts into triaged topics, action items, and decisions for project notes and memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Transcript content can be summarized into persistent project notes and memory entries without clear review controls. <br>
-Mitigation: Review extracted NOW items and DECISIONS before accepting them, avoid sensitive or adversarial transcripts, and constrain automatic writes to epic-notes and memory unless explicitly requested. <br>
+## Use Case:
 
+Developers, project maintainers, and note-system users use this skill to extract topics, decisions, and action items from AI conversation transcripts, then classify them into current work, future work, backlog ideas, and decision logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nonlinear/transcript-triage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown triage report with ordered topic lists and decision entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent note or memory updates; review before accepting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter says 0.1.0) <br>
+Risk: Transcript-derived content may be proposed for or written into project notes and memory without enough review controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review extracted topics, decisions, and action items before allowing writes, especially when transcripts include speculative, sensitive, or instruction-like content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nonlinear/skills/transcript-triage)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown triage summary with ordered topic lists and decision bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Organizes transcript-derived items into NOW, LATER, BACKLOG, and DECISIONS sections.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Creates template-based dress-up playable ads for mobile advertising platforms with customizable character, clothing, background, and CTA assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create dress-up style playable ads for mobile advertising platforms like Mintegral, using customizable character, clothing, background, and UI assets.
 
-## Publisher: <br>
-[lxnan](https://clawhub.ai/user/lxnan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lxnan](https://clawhub.ai/user/lxnan)
 
-## Use Case: <br>
-Developers and ad creative producers use this skill to generate customizable dress-up playable ad bundles from image assets for Mintegral and other mobile advertising platforms. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated playable ads include a hardcoded app-store CTA destination that may not match the intended campaign. <br>
-Mitigation: Review and edit window.install() and the DOWNLOAD NOW button destination in the generated index.html before publishing. <br>
-Risk: The generator copies user-supplied assets into the output bundle. <br>
-Mitigation: Run the generator only on trusted asset folders with normal image filenames, then review the generated bundle before distribution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Dressup Playable Maker guide](references/guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lxnan/dressup-playable-maker) <br>
+## Use Case:
 
+Developers and ad creative teams use this skill to generate or customize mobile dress-up playable ads with selectable fashion items and campaign CTA behavior.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated HTML/JavaScript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an output folder containing index.html, mraid.js, and copied assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated playable ads may redirect users to an unintended campaign destination.
+
+Mitigation: Review the generated CTA behavior and verify the destination URL before publishing.
+
+Risk: Generated HTML may be unsafe when built from untrusted asset folders or copied command lines.
+
+Mitigation: Use trusted asset directories, inspect generated files, and scan the output before deployment.
+
+Risk: Playable-ad creative may behave differently across ad networks or mobile devices.
+
+Mitigation: Test the generated ad in browser, mobile, and target platform environments before release.
+
+## Reference(s):
+
+- [Dressup Playable Maker on ClawHub](https://clawhub.ai/lxnan/skills/dressup-playable-maker)
+- [Dressup Playable production guide](references/guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated playable-ad files such as HTML, JavaScript, and copied assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated ads should be reviewed before publishing, with special attention to asset sources and CTA destinations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

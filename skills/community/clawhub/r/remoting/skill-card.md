@@ -1,44 +1,59 @@
-## Description: <br>
-Mirror your Claude Code terminal in a browser for remote viewing and real-time interaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mirror a Claude Code terminal in a browser for remote viewing and real-time interaction through a public localhost.run web terminal.
 
-## Publisher: <br>
-[topcheer](https://clawhub.ai/user/topcheer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[topcheer](https://clawhub.ai/user/topcheer)
 
-## Use Case: <br>
-Developers and operators use this skill to expose a Claude Code terminal session through a browser for remote viewing or real-time interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally creates a public interactive terminal session that can expose credentials, private files, or privileged shell access. <br>
-Mitigation: Install only when public terminal sharing is intended, treat the generated URL like a password, use non-sensitive directories, and avoid privileged shells. <br>
-Risk: Terminal output is cached, so new viewers may see prior session history. <br>
-Mitigation: Avoid sharing sessions containing secrets or private output, and stop the session immediately when finished. <br>
-Risk: The security evidence reports weak activation wording and limited safeguards around the public session. <br>
-Mitigation: Confirm the user explicitly requested remote terminal sharing before running the commands. <br>
+## Use Case:
 
+Developers and collaborators use this skill to share a live Claude Code terminal session in a browser so another person can watch or interact with the session remotely.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/topcheer/remoting) <br>
-- [Project homepage](https://github.com/topcheer/claude-remoting) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require Node.js and may create a public interactive terminal session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: A public interactive terminal session can expose workspace contents or allow remote interaction by anyone who obtains the session URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when public remote access is intentional, keep the URL narrowly shared, and stop the session as soon as collaboration is complete.
+
+Risk: Mutable npm or npx package execution can change behavior if the package version is not pinned and reviewed.
+
+Mitigation: Prefer a pinned, reviewed @remotego/remotego version before use.
+
+Risk: Cached terminal output may reveal secrets or sensitive history to new viewers during the session.
+
+Mitigation: Run from a sanitized workspace and avoid displaying secrets before or during the mirrored session.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/topcheer/skills/remoting)
+- [Project homepage](https://github.com/topcheer/claude-remoting)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes npm or npx commands, optional port/domain/cwd flags, and operational guidance for starting and stopping the mirrored terminal.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

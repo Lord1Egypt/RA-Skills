@@ -1,44 +1,55 @@
-## Description: <br>
-Scan your OpenClaw workspace for truncation risks, compaction anchor health, workspace hygiene, and drift tracking over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan OpenClaw workspaces for truncation risk, compaction anchor health, workspace hygiene, and drift trends.
 
-## Publisher: <br>
-[danandbub](https://clawhub.ai/user/danandbub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danandbub](https://clawhub.ai/user/danandbub)
 
-## Use Case: <br>
-Developers and OpenClaw operators use Driftwatch to scan workspace bootstrap files for truncation risk, compaction anchor health, hygiene issues, and growth trends before those issues affect agent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports and saved scan history can reveal local workspace details. <br>
-Mitigation: Treat reports and history under ~/.driftwatch as private diagnostics and review them before sharing in chat or with teammates. <br>
-Risk: Enabling --save or cron monitoring creates ongoing local records of workspace health. <br>
-Mitigation: Enable persistent history or cron monitoring only when ongoing local records are intended. <br>
+## Use Case:
 
+Developers and OpenClaw operators use Driftwatch to inspect workspace bootstrap files for truncation, missing anchor sections, hygiene issues, and drift trends before those issues degrade agent behavior.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/danandbub/driftwatch-oc) <br>
-- [Publisher profile](https://clawhub.ai/user/danandbub) <br>
-- [Bub Builds homepage](https://bubbuilds.com) <br>
-- [README](README.md) <br>
-- [OpenClaw constants](references/constants.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Conversational summary with optional JSON, HTML report files, cron summary lines, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normal scans exit 0 and produce JSON for agent interpretation; --check mode can emit one-line status with non-zero warning or critical exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.4 (source: server release metadata) <br>
+Risk: Scan metadata and HTML reports may persist under ~/.driftwatch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports and retention settings before enabling save, history, or recurring scans; remove local reports and history when they are no longer needed.
+
+Risk: Agent delivery rules may send HTML report attachments on messaging surfaces without per-run consent.
+
+Mitigation: Require user approval before sharing reports outside the local terminal or session, and inspect report contents for sensitive workspace details before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danandbub/skills/driftwatch-oc)
+- [BubBuilds homepage](https://bubbuilds.com)
+- [Source-verified OpenClaw constants](references/constants.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [JSON scan results, self-contained HTML reports, one-line check summaries, and human-facing Markdown or plain-text guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local OpenClaw workspace files; optional save and history modes persist scan history under ~/.driftwatch.]
+
+## Skill Version(s):
+
+1.1.4 (source: server release metadata; artifact constant reports 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

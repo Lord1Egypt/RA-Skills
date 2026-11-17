@@ -1,43 +1,55 @@
-## Description: <br>
-Search indexed Discord community discussions via Answer Overflow to find solutions to coding problems, library issues, and community Q&A that only exist in Discord conversations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search indexed Discord community discussions via Answer Overflow to find solutions to coding problems, library issues, and public community Q&A.
 
-## Publisher: <br>
-[brave88heart](https://clawhub.ai/user/brave88heart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brave88heart](https://clawhub.ai/user/brave88heart)
 
-## Use Case: <br>
-Developers and engineers use this skill to search public Answer Overflow Discord discussions, fetch thread content in Markdown, and identify community answers for coding and library issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms and fetched thread requests may be sent to search providers, Answer Overflow, or the optional Answer Overflow MCP endpoint. <br>
-Mitigation: Avoid including secrets, private code, or sensitive project details in searches or thread lookups. <br>
-Risk: Discord discussion content may be informal, incomplete, or specific to one server or channel context. <br>
-Mitigation: Check the server and channel context and validate any solution before applying it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brave88heart/answeroverflow-1-0-2) <br>
-- [Answer Overflow Website](https://www.answeroverflow.com) <br>
-- [Answer Overflow Docs](https://docs.answeroverflow.com) <br>
-- [Answer Overflow MCP Server](https://www.answeroverflow.com/mcp) <br>
-- [Answer Overflow Discord](https://discord.answeroverflow.com) <br>
+## Use Case:
 
+Developers and engineers use this skill to search public Discord support discussions indexed by Answer Overflow, fetch relevant threads, and review community Q&A for troubleshooting context.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to query search providers, fetch Answer Overflow Markdown threads, or use the optional Answer Overflow MCP endpoint.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fetched Answer Overflow threads contain public user-generated Discord content that may be informal, incomplete, outdated, or incorrect.
+
+Mitigation: Verify technical advice against authoritative project documentation or source code before applying it.
+
+Risk: Search queries or fetch requests may disclose sensitive project details if private context is included.
+
+Mitigation: Avoid including secrets, credentials, private repository details, or confidential incident information in Answer Overflow searches.
+
+## Reference(s):
+
+- [Answer Overflow Website](https://www.answeroverflow.com)
+- [Answer Overflow Documentation](https://docs.answeroverflow.com)
+- [Answer Overflow MCP Server](https://www.answeroverflow.com/mcp)
+- [Answer Overflow Discord](https://discord.answeroverflow.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls]
+
+**Output Format:** [Markdown with search queries, URLs, and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include public Discord discussion content retrieved through Answer Overflow search, markdown thread URLs, web fetches, or MCP tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

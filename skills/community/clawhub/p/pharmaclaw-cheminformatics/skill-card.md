@@ -1,46 +1,58 @@
-## Description: <br>
-Pharmaclaw Cheminformatics provides RDKit-based 3D conformer generation, pharmacophore mapping, molecular format conversion, RECAP fragmentation, and stereoisomer enumeration for SMILES-driven chemistry workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced cheminformatics agent for 3D conformer analysis, pharmacophore mapping, molecular format conversion, RECAP fragmentation, and stereoisomer enumeration.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Developers, cheminformatics practitioners, and drug discovery teams use this skill to turn SMILES inputs into 3D conformer, pharmacophore, fragmentation, stereochemistry, and molecular-format analysis outputs for downstream chemistry workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Runtime dependencies for chemistry analysis can affect the local Python environment. <br>
-Mitigation: Install RDKit, Pillow, and numpy from trusted sources in an isolated Python environment. <br>
-Risk: The scripts can create molecular structure, coordinate, and image files at user-selected output paths. <br>
-Mitigation: Use explicit project-local output paths, avoid sensitive directories, and do not run the scripts with elevated privileges. <br>
+## Use Case:
 
+Developers and cheminformatics practitioners use this skill to profile molecules from SMILES, generate 3D conformers, extract pharmacophore features, convert molecular formats, and inspect RECAP fragments and stereoisomers for drug discovery workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Cheminem/pharmaclaw-cheminformatics) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Conformer generation script](artifact/scripts/conformer_gen.py) <br>
-- [Pharmacophore script](artifact/scripts/pharmacophore.py) <br>
-- [RECAP fragmentation script](artifact/scripts/recap_fragment.py) <br>
-- [Stereoisomer enumeration script](artifact/scripts/stereoisomers.py) <br>
-- [Format conversion script](artifact/scripts/format_converter.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, code, files, guidance] <br>
-**Output Format:** [JSON reports with optional molecular structure, coordinate, and image files such as SDF, MOL, PDB, XYZ, SMILES, InChI, and PNG.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SMILES or supported molecular files as inputs; optional output paths can produce local visualization and structure files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cheminformatics jobs can consume substantial compute on large or complex molecules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a reviewed environment with pinned dependencies, dedicated output directories, and external CPU, memory, and time limits.
+
+Risk: The skill can write user-directed SDF, PNG, and molecular-format output files.
+
+Mitigation: Use a dedicated output directory and review generated files before sharing or feeding them into automated workflows.
+
+Risk: FDA, IP, and downstream-agent suggestions could be mistaken for legal or regulatory advice.
+
+Mitigation: Treat these suggestions as scientific workflow context only and require expert legal, regulatory, or intellectual-property review before acting on them.
+
+## Reference(s):
+
+- [Pharmaclaw Cheminformatics ClawHub listing](https://clawhub.ai/cheminem/skills/pharmaclaw-cheminformatics)
+- [Cheminem publisher profile](https://clawhub.ai/user/cheminem)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON script outputs and optional SDF or PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include conformer energies, RMSD matrices, pharmacophore maps, converted molecular formats, warnings, risks, and recommended downstream workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

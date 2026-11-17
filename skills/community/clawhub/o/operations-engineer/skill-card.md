@@ -1,38 +1,53 @@
-## Description: <br>
-Provides operations-engineering guidance for system stability, monitoring, incident response, performance optimization, data backup, recovery, and security. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language operations engineering guidance for system stability, monitoring, incident response, performance optimization, backup and recovery, and data security.
 
-## Publisher: <br>
-[WesLon1987](https://clawhub.ai/user/WesLon1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weslon1987](https://clawhub.ai/user/weslon1987)
 
-## Use Case: <br>
-Operations engineers, SREs, developers, and support teams use this skill to plan monitoring, troubleshoot production incidents, improve system performance, and design backup and recovery procedures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Production troubleshooting, backup, recovery, or optimization guidance could affect availability or data if applied without review. <br>
-Mitigation: Review recommendations through normal change-management controls, test material changes in a safe environment, and verify backup and recovery steps before applying them to production. <br>
+## Use Case:
 
+Developers, SREs, and operations teams use this skill to get production-oriented guidance for monitoring, incident troubleshooting, performance tuning, backup and recovery, and data security practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WesLon1987/operations-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with procedural steps, operational recommendations, and optional command or configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable artifact is included; outputs should be reviewed before use in production environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Operational advice may include commands or recovery steps that could affect production availability or data if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review suggested commands and recovery procedures against the target environment before executing them on production systems.
+
+Risk: The skill has broad scope across infrastructure, monitoring, troubleshooting, backup, and security-advice questions.
+
+Mitigation: Treat responses as general operations guidance and validate them against organization-specific runbooks, controls, and change-management requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weslon1987/skills/operations-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown prose with operational procedures and command or configuration examples when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language operations advice; production commands and recovery steps should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

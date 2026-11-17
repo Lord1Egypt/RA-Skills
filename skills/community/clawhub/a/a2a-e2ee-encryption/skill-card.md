@@ -1,41 +1,53 @@
-## Description: <br>
-Implements end-to-end encryption utilities for secure A2A (Agent-to-Agent) communication, including key generation, message encryption and decryption, and key management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements end-to-end encryption utilities for A2A agent communication, including key generation, message encryption and decryption, signing, HMAC helpers, and key import/export.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and engineers use this skill to add end-to-end encryption patterns to agent-to-agent communication, including key generation, encryption and decryption, signing, HMAC integrity checks, and secure message envelopes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release contains unaudited cryptography code. <br>
-Mitigation: Review the implementation before production use and deploy only when its algorithms, key sizes, and key-management practices meet the target system's security requirements. <br>
-Risk: Private keys or shared secrets could be exposed if pasted into shared chats, logs, or insecure storage. <br>
-Mitigation: Store private keys in environment-specific secret storage or a vault, avoid logging sensitive material, and keep key handling out of shared conversation history. <br>
-Risk: A misleading public-key diagram in the documentation could cause incorrect implementation assumptions. <br>
-Mitigation: Correct or disregard the diagram and verify public-key fingerprints out of band before trusting a peer key. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add encryption, signing, message integrity checks, and key management helpers to A2A communication workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, guidance] <br>
-**Output Format:** [JavaScript CommonJS module APIs with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external network services or API keys are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, _meta.json) <br>
+Risk: Security-sensitive cryptographic behavior may have correctness gaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, fix, and test the crypto edge cases before using the skill for high-value agent commands, financial actions, or irreversible workflows.
+
+Risk: Private keys and shared secrets could be mishandled by downstream users.
+
+Mitigation: Store private keys and shared secrets in a secure secret manager or vault and verify public key fingerprints before exchanging sensitive messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/a2a-e2ee-encryption)
+
+## Skill Output:
+
+**Output Type(s):** [code, configuration, guidance]
+
+**Output Format:** [JavaScript module exports and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cryptographic helper functions for RSA, AES-GCM, signatures, HMAC, shared secrets, and secure message envelopes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Find night markets, food streets, and local culinary hotspots, with additional travel lookup support for flights, hotels, train tickets, attractions, itinerary planning, visa information, travel insurance, car rental, and related Fliggy-powered services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds night markets, food streets, local culinary hotspots, and related travel options using flyai CLI output powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and agent operators use this skill to retrieve real-time night-market, street-food, attraction, and travel booking options through the flyai CLI, then present concise Markdown results with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and execute a global third-party flyai CLI. <br>
-Mitigation: Review the CLI package before installation, install it manually when possible, and require confirmation before running npm installs or shell commands. <br>
-Risk: Travel queries and command execution details may be written to .flyai-execution-log.json. <br>
-Mitigation: Avoid entering passport, payment, or booking-reference details, and delete or disable the local execution log when query retention is not desired. <br>
-Risk: The skill returns booking links and can route users toward purchases. <br>
-Mitigation: Review destination links before booking and keep final purchase decisions under explicit user control. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search for night markets, street food, local attractions, and travel booking options from real-time flyai CLI results.
 
-## Reference(s): <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Night Market Playbooks](references/playbooks.md) <br>
-- [Fallback Procedures](references/fallbacks.md) <br>
-- [Execution Log Runbook](references/runbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/night-bazaar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when setup or recovery is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results should be based on flyai CLI output and include a booking link for each listed item when results are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may prompt installation and execution of a third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a sandbox or controlled environment, and do not allow automatic global npm installation.
+
+Risk: CLI commands may be built from user-provided city or keyword text.
+
+Mitigation: Sanitize parameters, avoid shell interpolation, and pass arguments through structured command APIs where available.
+
+Risk: Travel searches can include sensitive personal, itinerary, or travel-document details and the artifact includes a local execution log pattern.
+
+Mitigation: Avoid entering sensitive personal or travel-document details and disable raw prompt logging by default.
+
+## Reference(s):
+
+- [Templates - night-market](references/templates.md)
+- [Playbooks - night-market](references/playbooks.md)
+- [Fallbacks - Attraction Category](references/fallbacks.md)
+- [Runbook - Execution Log Schema](references/runbook.md)
+- [Night Bazaar ClawHub Page](https://clawhub.ai/xiejinsong/skills/night-bazaar)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, status messages, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI output for travel data, includes Book links from detailUrl values, and avoids raw JSON in user-facing responses.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

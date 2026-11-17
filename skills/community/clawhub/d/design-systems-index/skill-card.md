@@ -1,49 +1,61 @@
-## Description: <br>
-External-link index of major companies' design systems, design-token tools and specs, pattern-library tooling, and React/React Native design-system component libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+External-link index of major companies' design systems, design-token tools and specs, pattern-library tooling, and React or React Native design-system component libraries.
 
-## Publisher: <br>
-[ezra-y](https://clawhub.ai/user/ezra-y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezra-y](https://clawhub.ai/user/ezra-y)
 
-## Use Case: <br>
-Designers, developers, and agents use this skill to find established design systems, design-token resources, pattern-library tools, and React or React Native component libraries before doing broader web research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External design-system and library links can become stale or unsuitable for a specific product, license, or maintenance standard. <br>
-Mitigation: Verify each linked project's current documentation, license, maintenance status, and fit before adopting it. <br>
-Risk: Security evidence says privileged operational workflows may be present in the release context. <br>
-Mitigation: Use in an appropriate maintainer or staff context, review exact commands before execution, confirm targets, and keep dry-run, signoff, and audit steps in place. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to find public design-system references, token tooling, pattern-library tools, and React or React Native component libraries before choosing or adopting a design-system direction.
 
-## Reference(s): <br>
-- [Server-resolved source repository](https://github.com/Ezra-Y/design-systems-index) <br>
-- [ClawHub skill page](https://clawhub.ai/ezra-y/skills/design-systems-index) <br>
-- [klaufel/awesome-design-systems](https://github.com/klaufel/awesome-design-systems) <br>
-- [jbranchaud/awesome-react-design-systems](https://github.com/jbranchaud/awesome-react-design-systems) <br>
-- [Design Tokens W3C Community Group](https://www.w3.org/community/design-tokens/) <br>
-- [Style Dictionary](https://github.com/amzn/style-dictionary) <br>
-- [Storybook](https://storybook.js.org/) <br>
-- [Material Design](https://material.io/design) <br>
-- [Fluent UI](https://fluentui.microsoft.com/) <br>
-- [Carbon Design System](https://www.carbondesignsystem.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with curated external links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Curated index only; does not provide token-architecture methodology.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Some referenced local files are not included in the artifact, so agents may only have access to the top-level links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the top-level links included in SKILL.md or provide the missing reference files before expecting deeper local lookup.
+
+Risk: External design-system links can become stale or change outside the skill artifact.
+
+Mitigation: Verify selected external references before relying on them for implementation or governance decisions.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/Ezra-Y/design-systems-index)
+- [klaufel/awesome-design-systems](https://github.com/klaufel/awesome-design-systems)
+- [jbranchaud/awesome-react-design-systems](https://github.com/jbranchaud/awesome-react-design-systems)
+- [Google Material Design](https://material.io/design)
+- [Microsoft Fluent UI](https://fluentui.microsoft.com/)
+- [IBM Carbon](https://www.carbondesignsystem.com/)
+- [Design Tokens W3C Community Group](https://www.w3.org/community/design-tokens/)
+- [Storybook](https://storybook.js.org/)
+- [Material UI](https://mui.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference-only output; the skill does not execute code or modify files.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

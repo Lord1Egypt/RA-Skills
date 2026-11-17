@@ -1,44 +1,60 @@
-## Description: <br>
-A Chinese-language creative writing skill for short-drama and AI manga scripts, with genre templates, story structure guidance, storyboard prompts, and ViFlow-compatible JSON export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language writing assistant for short dramas and AI manga scripts that helps plan genre structure, hooks, storyboard beats, and ViFlow-compatible JSON exports.
 
-## Publisher: <br>
-[kingsunzhang2026-oss](https://clawhub.ai/user/kingsunzhang2026-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingsunzhang2026-oss](https://clawhub.ai/user/kingsunzhang2026-oss)
 
-## Use Case: <br>
-Creators and developers use this skill to draft short-drama outlines, episode scripts, AI manga storyboards, character and scene libraries, and ViFlow-compatible JSON packages for production workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ViFlow JSON drafts may be saved under assets/output and could overwrite or expose sensitive story ideas. <br>
-Mitigation: Confirm the output filename and path before writing, and review saved drafts before sharing them. <br>
+## Use Case:
 
+External creators and production teams use this skill to draft short-drama and AI manga outlines, episode scripts, storyboard shots, character and scene libraries, and ViFlow-style JSON exports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kingsunzhang2026-oss/ai-short-drama-writer) <br>
-- [ViFlow schema](assets/output/viflow_schema.json) <br>
-- [Manga guide](references/manga-guide.md) <br>
-- [Market rules](references/market-rules.md) <br>
-- [Production process](references/production-process.md) <br>
-- [Structure templates](references/structure-templates.md) <br>
-- [Writing skills](references/writing-skills.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, guidance] <br>
-**Output Format:** [Markdown prose and structured ViFlow JSON saved as local draft files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated ViFlow drafts under assets/output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may create generated JSON files under assets/output during ViFlow-style export workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output paths and generated JSON before committing, importing, or publishing produced files.
+
+Risk: Market and platform claims in the skill content may be creative guidance rather than verified current business data.
+
+Mitigation: Validate market assumptions and platform requirements against current authoritative sources before making production or commercial decisions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/kingsunzhang2026-oss/skills/ai-short-drama-writer)
+- [Publisher profile](https://clawhub.ai/user/kingsunzhang2026-oss)
+- [Market rules](references/market-rules.md)
+- [Structure templates](references/structure-templates.md)
+- [Writing skills](references/writing-skills.md)
+- [AI manga guide](references/manga-guide.md)
+- [Production process](references/production-process.md)
+- [ViFlow schema](assets/output/viflow_schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown narrative and structured ViFlow-compatible JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create generated JSON files under assets/output when exporting storyboard data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

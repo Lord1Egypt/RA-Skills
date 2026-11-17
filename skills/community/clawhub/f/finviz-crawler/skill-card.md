@@ -1,41 +1,67 @@
-## Description: <br>
-Continuous financial news crawler for finviz.com with SQLite storage, article extraction, and a query tool for market monitoring and news digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous financial news crawler for finviz.com with SQLite storage, article extraction, query tooling, and optional background service operation.
 
-## Publisher: <br>
-[camopel](https://clawhub.ai/user/camopel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[camopel](https://clawhub.ai/user/camopel)
 
-## Use Case: <br>
-Developers and market-monitoring users use this skill to build a local financial news archive, track ticker-specific headlines, and query recent articles for summaries or digest workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker-removal and cleanup paths can delete local directories outside the intended article folder if unsafe ticker values are accepted. <br>
-Mitigation: Review or patch deletion paths before installation, validate ticker names, enforce path containment, keep backups, and require confirmation or a dry run before remove-ticker or automatic cleanup actions. <br>
+## Use Case:
 
+Developers and agents use this skill to maintain a local financial news archive, monitor selected market tickers, and retrieve recent headlines or article content for summaries and digests.
 
-## Reference(s): <br>
-- [Finviz](https://finviz.com) <br>
-- [Finviz News](https://finviz.com/news.ashx) <br>
-- [PrivateApp](https://github.com/camopel/PrivateApp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/camopel/finviz-crawler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, SQLite-backed query results, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local article archives and ticker-filtered market news outputs for agent summarization workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server-resolved release metadata) <br>
+Risk: The installer may create persistent user-level background execution that runs across logins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service setup before installation, make service creation explicitly opt-in where possible, and know how to disable or remove the systemd or launchd entry.
+
+Risk: The skill downloads dependencies and browser components for web crawling.
+
+Mitigation: Install in an isolated Python environment, pin or review dependencies before use, and avoid running it on machines with sensitive files.
+
+Risk: The crawler scrapes third-party sites and may use browser automation.
+
+Mitigation: Run it on a network where this traffic is acceptable, confirm applicable site terms, and keep crawl intervals conservative.
+
+Risk: The skill writes and deletes local article files as part of expiry and ticker removal behavior.
+
+Mitigation: Use a dedicated data directory, review expiry settings before first run, and back up any local archive that must be retained.
+
+Risk: The security guidance calls out ticker validation and Chromium sandbox settings for review.
+
+Mitigation: Validate ticker inputs, inspect the browser launch configuration, and patch sandbox settings before use in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/camopel/skills/finviz-crawler)
+- [Finviz](https://finviz.com)
+- [PrivateApp](https://github.com/camopel/PrivateApp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with bash commands, plus text or JSON output from the query CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When installed and run, the crawler stores article metadata in SQLite and article content as local Markdown files.]
+
+## Skill Version(s):
+
+3.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

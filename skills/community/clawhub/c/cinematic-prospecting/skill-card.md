@@ -1,40 +1,58 @@
-## Description: <br>
-AI-powered business card prospecting with cinematic email outreach. Snap photos, get researched leads, send branded emails with visual mockups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered business card prospecting that extracts card data from photos, researches leads, and prepares branded cinematic outreach emails with visual mockups.
 
-## Publisher: <br>
-[wizelements](https://clawhub.ai/user/wizelements) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wizelements](https://clawhub.ai/user/wizelements)
 
-## Use Case: <br>
-Freelancers, agencies, and sales teams use this skill to convert business card photos into researched prospects and approval-gated outreach drafts with branded visual mockup concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes business-card contact data and sends real outreach emails without enough disclosed privacy, consent, retention, or bulk-send controls. <br>
-Mitigation: Use only with contacts you are allowed to process and email; confirm each recipient and message before sending; define opt-out, storage, deletion, and tracking-record handling before deployment. <br>
-Risk: The skill relies on SMTP credentials for outbound email. <br>
-Mitigation: Use a dedicated sending account or app password, limit account permissions where possible, and avoid sharing credentials in prompts, logs, or exported prospect records. <br>
+## Use Case:
 
+External sales teams, agencies, and freelancers use this skill to turn business card photos into researched prospects, draft branded outreach with visual mockups, and track follow-up after approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wizelements/cinematic-prospecting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured outreach guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prospect summaries, email drafts, approval workflow guidance, and response tracking instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill processes business-card photos and extracted lead data, which may include personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for contacts the user is allowed to process, decide where data may be sent or stored, and define deletion and retention practices before use.
+
+Risk: SMTP email sending can create consent, spam, or suppression-list risk.
+
+Mitigation: Confirm every message before sending and maintain opt-out and suppression records.
+
+Risk: SMTP credentials are required for outbound email workflows.
+
+Mitigation: Store credentials securely and avoid exposing them in skill inputs, logs, or generated content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wizelements/skills/cinematic-prospecting)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/wizelements)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, lead research summaries, email draft text, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires review of extracted contact data and outreach messages before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

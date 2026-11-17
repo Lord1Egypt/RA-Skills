@@ -1,41 +1,57 @@
-## Description: <br>
-Turn one ecommerce content core into channel-ready publish packs (X, WeChat, Xiaohongshu, TikTok notes) with platform-specific formatting and CTA adaptation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn one ecommerce content core into channel-ready publish packs (X, WeChat, Xiaohongshu, TikTok notes) with platform-specific formatting and CTA adaptation.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 for non-commercial use; separate commercial license required from Razestar <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing, ecommerce, and content teams use this skill to convert a core product or campaign message into channel-specific publish packs, CTA mappings, and posting rhythm for X, WeChat, Xiaohongshu, and TikTok notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated channel copy can contain platform-inappropriate claims, CTAs, or posting guidance. <br>
-Mitigation: Review each channel pack against brand, legal, and platform requirements before publishing. <br>
-Risk: Commercial usage rights are unclear because artifact license text and server license metadata do not match. <br>
-Mitigation: Confirm the governing license with the publisher before commercial use. <br>
+## Use Case:
 
+Marketing, ecommerce, and content teams use this skill to turn a core product or campaign message into channel-specific publish packs with adapted CTAs and posting rhythm.
 
-## Reference(s): <br>
-- [Output Template](artifact/references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/multichannel-content-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown publish pack with sections for core message, channel publish pack, CTA mapping, and posting rhythm.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools, API calls, or credentials detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact contains non-commercial license language that may conflict with commercial release use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the authoritative license and any required commercial rights before using the skill in a commercial workflow.
+
+Risk: Campaign text and channel preferences supplied by users may contain sensitive product, launch, or brand information.
+
+Mitigation: Provide only the campaign details needed for the publish pack and review generated content before posting.
+
+Risk: Cross-channel adaptations can change tone, CTA emphasis, or compliance-sensitive claims.
+
+Mitigation: Review each channel draft for brand alignment, factual accuracy, and platform policy fit before publication.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown publish pack with CTA mapping table and posting rhythm]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces channel-adapted ecommerce content for X, WeChat, Xiaohongshu, and TikTok notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

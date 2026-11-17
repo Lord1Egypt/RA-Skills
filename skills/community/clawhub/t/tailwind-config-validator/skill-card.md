@@ -1,39 +1,49 @@
-## Description: <br>
-Validate JSON-exported Tailwind CSS configuration files for structural issues, content path problems, theme misconfiguration, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate JSON-exported Tailwind CSS configuration files for structural issues, content path problems, theme misconfiguration, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Tailwind CSS configuration before production builds or CI enforcement. It helps identify content path, theme, dark mode, plugin, and best-practice issues from a JSON-exported Tailwind config. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exporting a Tailwind JavaScript configuration with Node can execute code from the target project. <br>
-Mitigation: Run the export command only in Tailwind projects you trust, or isolate the project before generating the JSON config. <br>
-Risk: Server-resolved GitHub import provenance is unavailable for this version. <br>
-Mitigation: Review the included source files before adoption when publisher provenance is important. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit JSON-exported Tailwind CSS configs before production builds or CI enforcement.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance plus validator output in text, JSON, or summary format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The validator can exit nonzero when errors are found, or when warnings are present in strict mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Exporting a Tailwind JavaScript or TypeScript config with Node can execute code from an untrusted project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill on trusted projects, require a pre-generated JSON config, or run export steps in a disposable environment with no credentials and no network access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/tailwind-config-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON validator output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text, JSON, and summary report formats; strict mode can fail CI on warnings.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

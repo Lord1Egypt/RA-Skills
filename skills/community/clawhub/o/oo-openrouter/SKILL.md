@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "OpenRouter"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["openrouter"]
   icon: "https://static.oomol.com/logo/third-party/Openrouter.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `create_chat_completion` — Create an OpenRouter chat completion through the OpenAI-compatible `/chat/completions` endpoint. [write]
+- `create_chat_completion` — Create an OpenRouter chat completion through the OpenAI-compatible `/chat/completions` endpoint.
 - `create_coinbase_charge` — Call OpenRouter's deprecated Coinbase charge endpoint for credits purchases. The upstream endpoint is currently deprecated and may return 410 Gone. [write]
 - `create_message` — Create an OpenRouter Anthropic-format message through the `/messages` endpoint. [write]
 - `get_credits` — Get the authenticated OpenRouter credit balance summary.
@@ -80,11 +80,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — OpenRouter is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=openrouter
+  https://console.oomol.com/connections/openrouter
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - OpenRouter homepage: https://openrouter.ai
+- API documentation: https://openrouter.ai/docs

@@ -1,42 +1,62 @@
-## Description: <br>
-Creates structured vendor-risk briefs for external SaaS/API integrations, focusing on integration impact, requested permissions, data flows, mitigations, alternatives, and recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese vendor-risk briefs for external SaaS or API integrations, focusing on integration impact, permissions, data flows, risks, mitigations, alternatives, and recommendations.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Employees, procurement reviewers, security teams, and developers use this skill to turn scoped vendor capability, permission, and data-type inputs into a reviewable vendor-risk brief before procurement or integration decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated briefs may be mistaken for formal legal or security approval. <br>
-Mitigation: Use the output as a draft vendor-risk summary and route final approval through the organization's normal legal and security review process. <br>
-Risk: Inputs may include secrets, personal data, or sensitive vendor details. <br>
-Mitigation: Provide scoped inputs, remove unnecessary sensitive data before use, and review generated output before sharing. <br>
+## Use Case:
 
+Security, procurement, and integration reviewers use this skill to turn supplied vendor capability, permission, and data-type information into a structured review draft. It is intended as a review aid and checklist source, not as a formal legal or security approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/vendor-risk-brief) <br>
-- [README.md](README.md) <br>
-- [resources/spec.json](resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured Markdown or JSON report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-selected input file, directory, or inline text; can print to stdout or write a user-selected output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The generated brief could be mistaken for a completed legal, procurement, or security approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a review draft and require formal approval by the appropriate legal, security, or procurement owner before relying on it.
+
+Risk: Sensitive vendor or customer information may be included in the input materials.
+
+Mitigation: Run the skill only on files intentionally provided for review, prefer stdout or dry-run for sensitive material, and redact personal or confidential data before processing when possible.
+
+Risk: The skill does not independently verify vendor facts or fetch current external evidence.
+
+Mitigation: Use the generated待确认项 and next steps to identify missing facts, then verify those facts against authoritative vendor and internal sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/vendor-risk-brief)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Output template](artifact/resources/template.md)
+- [Structured spec](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Structured Markdown by default, with optional JSON output from the bundled local script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include vendor summary, permissions and data flow, main risks, mitigations, alternatives, recommendation, items to confirm, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

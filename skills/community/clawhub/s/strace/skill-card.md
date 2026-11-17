@@ -1,39 +1,55 @@
-## Description: <br>
-Strace reference tool for working with strace in devtools contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strace reference tool for agents working with strace in devtools contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a lightweight command-driven reference for strace topics, including quick starts, patterns, troubleshooting, performance, security, migration, and cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the skill's strace guidance is mostly generic placeholder text rather than substantive strace-specific operational guidance. <br>
-Mitigation: Use the skill as a lightweight reference helper only, and verify strace advice against authoritative strace documentation before relying on it. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for strace-related devtools tasks, including introductory guidance, troubleshooting, performance notes, security considerations, migration checklists, and cheat-sheet style summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/strace) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown reference text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command-selected reference sections from a shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill may provide generic or placeholder guidance that is not reliable for strace troubleshooting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance before use and verify strace commands, examples, and safety caveats against reliable strace documentation or known-good operational practice.
+
+Risk: Agents may over-trust the skill because it presents itself as a strace reference.
+
+Mitigation: Use it only as a lightweight prompt aid and require human review before applying its advice to production debugging or security-sensitive investigations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/strace)
+- [Publisher profile](https://clawhub.ai/user/xueyetianya)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces static reference-style guidance selected by command topic.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

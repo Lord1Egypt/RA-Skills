@@ -1,49 +1,64 @@
-## Description: <br>
-Professional personal finance advisor specializing in plain-text accounting with Beancount and Fava. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional personal finance advisor specializing in plain-text accounting with Beancount and Fava.
 
-## Publisher: <br>
-[y1feng200156](https://clawhub.ai/user/y1feng200156) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GNU General Public License v3.0 <br>
+## Publisher:
 
+[y1feng200156](https://clawhub.ai/user/y1feng200156)
 
-## Use Case: <br>
-External users and finance-focused operators use this skill to analyze Beancount ledgers, interpret Fava reports, create Beancount entries and queries, and receive financial education for budgeting, planning, and investment concepts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GNU General Public License v3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt an agent to read sensitive personal finance ledger files selected by the user. <br>
-Mitigation: Install only if comfortable sharing selected Beancount data with the agent, and prefer sanitized or narrowed ledger excerpts for sensitive questions. <br>
-Risk: Financial, investment, or tax guidance may be incomplete or unsuitable for major decisions. <br>
-Mitigation: Treat outputs as education and analysis, and verify major financial or tax decisions with a qualified professional. <br>
-Risk: The analysis workflow may require local command execution and Python dependencies. <br>
-Mitigation: Review local commands before running them and install Python dependencies only from trusted sources. <br>
+## Use Case:
 
+External users and agents use this skill to analyze Beancount ledgers, interpret Fava reports, write BQL queries, organize accounts, and produce educational personal finance guidance from user-provided data.
 
-## Reference(s): <br>
-- [Skill README](artifact/README.md) <br>
-- [Beancount Syntax Reference](artifact/references/beancount_syntax.md) <br>
-- [Beancount Query Language Reference](artifact/references/beancount_query.md) <br>
-- [Fava Reference](artifact/references/fava_features.md) <br>
-- [Fava Dashboards Reference](artifact/references/fava_dashboards.md) <br>
-- [Financial Analysis Reference](artifact/references/financial_analysis.md) <br>
-- [Beancount Documentation](https://beancount.github.io/docs/index.html) <br>
-- [Fava Documentation](https://beancount.github.io/fava/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Beancount, BQL, Python, and shell command examples when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May analyze user-selected local Beancount files through the included Python helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The included analysis script can load Beancount ledgers whose plugin or include directives may trigger unsafe or unexpected behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script only on trusted personal ledgers, or use a sandbox and review plugin/include directives before analysis.
+
+Risk: Ledger files contain sensitive financial records.
+
+Mitigation: Limit access to necessary files, avoid sharing third-party ledgers, and remove private account details before using outputs outside the trusted environment.
+
+Risk: Financial, tax, or investment outputs may be incomplete or unsuitable for a user's circumstances.
+
+Mitigation: Treat outputs as educational analysis and verify major decisions with qualified financial, tax, or investment professionals.
+
+## Reference(s):
+
+- [Personal Finance Beancount on ClawHub](https://clawhub.ai/y1feng200156/skills/beancount-skill)
+- [Beancount documentation](https://beancount.github.io/docs/index.html)
+- [Fava documentation](https://beancount.github.io/fava/)
+- [Beancount syntax reference](artifact/references/beancount_syntax.md)
+- [Beancount query reference](artifact/references/beancount_query.md)
+- [Fava features reference](artifact/references/fava_features.md)
+- [Fava dashboards reference](artifact/references/fava_dashboards.md)
+- [Financial analysis guide](artifact/references/financial_analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with Beancount, BQL, Python, and shell code blocks when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May analyze user-provided Beancount files with the included Python script when appropriate.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

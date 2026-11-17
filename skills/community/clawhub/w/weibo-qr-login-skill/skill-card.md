@@ -1,44 +1,56 @@
-## Description: <br>
-Fetches a Weibo login QR code through OpenClaw browser integration and guides the agent through cookie restore, QR login, and session persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches a Weibo login QR code through OpenClaw browser integration and handles browser startup, page navigation, QR extraction, cookie checks, and retry flow.
 
-## Publisher: <br>
-[fmls](https://clawhub.ai/user/fmls) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmls](https://clawhub.ai/user/fmls)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs to log in to Weibo by restoring saved cookies or presenting a fresh QR code for scanning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes global OpenClaw browser and tool configuration and may restart the gateway. <br>
-Mitigation: Run it only in an isolated OpenClaw environment where those configuration changes and a gateway restart are acceptable. <br>
-Risk: The skill stores reusable Weibo session cookies locally. <br>
-Mitigation: Review the scripts before use and delete ~/.openclaw/data/weibo/cookies.json and meta.json when the session should no longer be preserved. <br>
-Risk: The cookie export path can expose cookie values as shell commands. <br>
-Mitigation: Avoid the export command unless explicitly needed and handle any exported cookie values as sensitive credentials. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to automate Weibo QR-code login, restore an existing Weibo browser session from saved cookies, and save cookies after a successful scan for later reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fmls/weibo-qr-login-skill) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
-- [Weibo sign-in page](https://passport.weibo.com/sso/signin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and an optional local QR image path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit a MEDIA line for the QR image path and stores Weibo session cookies locally after successful login.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Setup changes global OpenClaw settings, enables broad tool access, clears deny rules, runs the browser without sandboxing, and restarts the gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup script and local OpenClaw policy before installation; run it only in an environment where those configuration changes are acceptable.
+
+Risk: The skill stores reusable Weibo login cookies on disk.
+
+Mitigation: Use only on trusted machines, protect the OpenClaw data directory, and remove saved cookies when persistent Weibo access is no longer needed.
+
+## Reference(s):
+
+- [OpenClaw Documentation](https://docs.openclaw.ai/)
+- [Weibo Login Page](https://passport.weibo.com/sso/signin)
+- [Weibo Website](https://weibo.com/)
+- [Playwright Mirror Used by Setup](https://npmmirror.com/mirrors/playwright)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON status output, and a local PNG QR-code file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or reuses Weibo login cookies stored on disk and may require a gateway restart after setup.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

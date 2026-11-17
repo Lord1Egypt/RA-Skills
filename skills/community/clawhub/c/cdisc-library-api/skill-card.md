@@ -1,46 +1,60 @@
-## Description: <br>
-Queries the CDISC Library API for clinical data standards including QRS instruments, ADaM, CDASH, SDTM, and controlled terminology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents query the CDISC Library API for clinical data standards including QRS instruments, ADaM, CDASH, SDTM, and controlled terminology.
 
-## Publisher: <br>
-[whereayan](https://clawhub.ai/user/whereayan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whereayan](https://clawhub.ai/user/whereayan)
 
-## Use Case: <br>
-Developers, clinical data standards specialists, and agents use this skill to retrieve, compare, search, cache, and export CDISC Library API content for clinical standards workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the CDISC API using a local API key. <br>
-Mitigation: Prefer setting CDISC_API_KEY in the environment and review the workspace before installing or running the skill. <br>
-Risk: The skill can read API keys from TOOLS.md, which may also contain unrelated secrets. <br>
-Mitigation: Avoid installing it in workspaces where TOOLS.md contains unrelated API keys or sensitive credentials. <br>
-Risk: The skill caches API responses locally and can read batch query files or write JSON/CSV exports. <br>
-Mitigation: Review batch input files, output locations, and cache contents before and after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CDISC Library Browser](https://library.cdisc.org/browser) <br>
-- [CDISC Library API Portal](https://api.developer.library.cdisc.org) <br>
-- [CDISC Library API Documentation](https://api.developer.library.cdisc.org/api-details) <br>
-- [Skill Usage Guide](SKILL.md) <br>
-- [Quick Reference](assets/quickref.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/whereayan/cdisc-library-api) <br>
+## Use Case:
 
+Developers, data managers, and clinical standards users can use this skill to look up CDISC products, questionnaires, domains, rules, terminology, version comparisons, and exports through the CDISC Library API.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown and terminal-style text; export commands can write JSON or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a CDISC API key, calls the CDISC API, caches responses locally for one hour, and supports batch query files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact changelog lists 1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Credential loading can pick up an unrelated API key from a shared local TOOLS.md file and send it to the CDISC API.
+
+Mitigation: Prefer CDISC_API_KEY through the environment or a secret manager, and avoid putting API keys in shared or committed TOOLS.md files.
+
+Risk: The skill contacts the external CDISC API and caches responses locally.
+
+Mitigation: Use it only in approved network environments, review whether queried data should be cached, and clear the cache when local retention is not appropriate.
+
+Risk: Export commands write JSON or CSV files into the current working directory and may overwrite existing files with the same generated name.
+
+Mitigation: Run exports from a directory where generated files are expected, and move or rename existing exports before repeating a query.
+
+## Reference(s):
+
+- [CDISC Library Browser](https://library.cdisc.org/browser)
+- [CDISC API Portal](https://api.developer.library.cdisc.org)
+- [CDISC API Documentation](https://api.developer.library.cdisc.org/api-details)
+- [CDISC API Profile](https://api.developer.library.cdisc.org/profile)
+- [CDISC Skill Quick Reference](artifact/assets/quickref.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with command examples, API query results, and optional JSON or CSV export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can contact the CDISC API, cache API responses locally for one hour, and write JSON or CSV exports to the current directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact changelog lists 1.0 released 2026-03-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

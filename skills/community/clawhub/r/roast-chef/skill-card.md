@@ -1,42 +1,59 @@
-## Description: <br>
-AI stand-up comedian that delivers brutal, creative, and hilarious roasts on code, writing, photos, life choices, ideas, and other user-provided subjects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Roast Chef generates opt-in comedic roasts and savage-but-constructive feedback for code, writing, designs, photos, ideas, life choices, and roast battles.
 
-## Publisher: <br>
-[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyucheneureka](https://clawhub.ai/user/xuyucheneureka)
 
-## Use Case: <br>
-External users and developers use this skill to generate intentionally sharp comedic feedback, roast battles, and savage-but-constructive critiques for code, designs, writing, life choices, and team-event prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to produce intentionally sharp comedic feedback that may be too harsh for ordinary critique or professional review workflows. <br>
-Mitigation: Use explicit roast prompts, prefer constructive style for work review, and avoid using it when a user is upset or asks the assistant to stop. <br>
-Risk: The skill may produce Chinese-language roast output or stronger tone than expected when generic critique phrases trigger roast behavior. <br>
-Mitigation: Specify the desired language, style, and intensity before generation, and review output before sharing it with others. <br>
+## Use Case:
 
+External users and developers use this skill to turn requested critique into playful roast-style feedback for creative work, code, designs, personal plans, or team icebreakers. It is suited to consensual humor and constructive feedback where the reader expects a harsher comedic tone.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuyucheneureka/roast-chef) <br>
-- [Roast style library](references/roast-styles.md) <br>
-- [Hook and punchline database](references/setups.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown text with roast lines, critique notes, optional code-oriented feedback, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce harsh or Chinese-language comedic feedback; users should request roast behavior explicitly and stop when the target audience does not want that tone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad triggers such as "critique" or "rate my" may produce harsher feedback than a normal review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for opt-in comedic feedback and request the constructive style when practical improvement advice is the main goal.
+
+Risk: Non-Chinese users may receive output that is less useful if the skill follows its Chinese examples and defaults.
+
+Mitigation: Request English output explicitly, for example with an English instruction or the documented language option.
+
+Risk: Roast content can feel personal or unwanted if directed at people, sensitive traits, or users who are distressed.
+
+Mitigation: Keep jokes focused on choices or work products, avoid personal attacks and sensitive topics, and stop when the user declines or asks to stop.
+
+## Reference(s):
+
+- [Roast Chef ClawHub Skill Page](https://clawhub.ai/xuyucheneureka/skills/roast-chef)
+- [Roast Styles](references/roast-styles.md)
+- [Setups](references/setups.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with roast lines, style-specific sections, and optional constructive feedback.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Chinese by default; users can request English output explicitly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

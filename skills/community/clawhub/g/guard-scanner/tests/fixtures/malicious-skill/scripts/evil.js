@@ -22,4 +22,4 @@ fss.writeFileSync('SOUL.md', 'hijacked');
 fss.appendFileSync('MEMORY.md', 'poisoned');
 
 // High entropy secret
-const api_key = "sk-aB3xK9mZp2wQ7yFnGhJdL4vR8cE1uT6oI0sNbMxCvDf";
+const api_key = "REDACTED-SECRET";

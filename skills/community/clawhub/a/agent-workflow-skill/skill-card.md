@@ -1,43 +1,54 @@
-## Description: <br>
-Decompose complex user tasks into multi-step workflows using DAG-based execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decompose complex user tasks into multi-step workflows using DAG-based execution.
 
-## Publisher: <br>
-[keweizhan](https://clawhub.ai/user/keweizhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keweizhan](https://clawhub.ai/user/keweizhan)
 
-## Use Case: <br>
-Developers and engineers use this skill to break natural-language requests into dependency-aware task graphs, schedule independent work in parallel, and return structured execution results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OpenAI API key and sends task descriptions to OpenAI for decomposition. <br>
-Mitigation: Use an appropriate API key handling process, avoid submitting secrets in task descriptions, and install only when external API processing is acceptable. <br>
-Risk: Generated task graphs may not match the intended workflow or may contain unsafe follow-on steps. <br>
-Mitigation: Review generated task graphs before execution and confirm dependencies, task wording, and expected outputs. <br>
-Risk: Extending the placeholder tool registry to real tools can introduce file, account, production system, or public-content modification risk. <br>
-Mitigation: Gate real tool integrations with least privilege, human approval for sensitive actions, and focused tests before deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to break complex requests into dependency-aware task graphs, execute independent steps in parallel, and return structured task results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/keweizhan/agent-workflow-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/keweizhan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured text and JSON-like task execution results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task lists, dependency graphs, execution status, and generated commands or configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Task text may be sent to OpenAI during planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets, credentials, or confidential data in tasks handled by this skill.
+
+Risk: Generated workflows may propose repository cloning, external research, file changes, or other side-effecting work.
+
+Mitigation: Require explicit user confirmation before executing side-effecting steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keweizhan/skills/agent-workflow-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/keweizhan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured JSON or text task execution summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task IDs, dependency lists, execution status, and per-task results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

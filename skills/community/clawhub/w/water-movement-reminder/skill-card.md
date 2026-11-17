@@ -1,40 +1,52 @@
-## Description: <br>
-Sends hydration and movement reminders every 45 minutes from 8:00 to 23:00 to promote healthy work habits and prevent prolonged sitting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends hydration and movement reminders every 45 minutes from 8:00 to 23:00 to promote healthy work habits and prevent prolonged sitting.
 
-## Publisher: <br>
-[RenchZhao](https://clawhub.ai/user/RenchZhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[renchzhao](https://clawhub.ai/user/renchzhao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agent users use this skill to receive recurring hydration, movement, and eye-rest reminders during configured working hours. It supports healthier work routines during long sessions by tracking the last reminder time locally.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The reminder schedule may not match the user's intended day if the fixed 8:00-23:00 GMT+8 window is not appropriate.
+
+Mitigation: Confirm the desired reminder window before installing or enabling the skill.
+
+Risk: The skill stores the last reminder time and chat/session ID in a local OpenClaw state file to send recurring reminders.
+
+Mitigation: Review the local state file behavior and keep session identifiers protected according to the user's environment policy.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agent operators use this skill to schedule recurring hydration, movement, and eye-rest reminders during extended work sessions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: USER.md and heartbeat-state.json may contain a channel or session identifier. <br>
-Mitigation: Keep those files private and review their contents before enabling the skill. <br>
-Risk: Recurring reminders may run at an unexpected cadence or outside the intended working-hours window if heartbeat or timezone settings are misconfigured. <br>
-Mitigation: Review the heartbeat setting and the GMT+8 8:00-23:00 reminder window before enabling the skill. <br>
+**Output Format:** [Markdown guidance with reminder text, JSON state examples, and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RenchZhao/water-movement-reminder) <br>
+**Other Properties Related to Output:** [Maintains local reminder state for recurring notifications.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reminder behavior guidance and configuration notes for local heartbeat state and channel delivery.] <br>
+0.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata and target metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

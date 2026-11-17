@@ -1,43 +1,60 @@
-## Description: <br>
-Anti Cheating Assistant helps model business workflows, analyze fraud and business-security risks, and propose risk-control solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide business-security and anti-cheating analysis from workflow clarification through risk modeling and solution guidance.
 
-## Publisher: <br>
-[jshdcn](https://clawhub.ai/user/jshdcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jshdcn](https://clawhub.ai/user/jshdcn)
 
-## Use Case: <br>
-Business, risk, and security teams use this skill to clarify business flows, create three-flow business models, identify possible cheating or fraud risks, and request targeted risk-control recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business names and workflow details may be embedded in external visualization URLs. <br>
-Mitigation: Avoid entering confidential processes, customer data, trade secrets, or regulated business information unless diagrams are generated locally or the user explicitly consents to external link creation. <br>
-Risk: The solution workflow may require an external MCP/API service and an API key. <br>
-Mitigation: Confirm the endpoint and credential handling with the publisher before use, and provide general guidance when the knowledge retrieval service is unavailable or unauthorized. <br>
+## Use Case:
 
+Business, fraud-risk, and trust-and-safety teams use this skill to clarify a business workflow, model it with a three-flow method, identify cheating and fraud risks, and draft mitigation guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jshdcn/anti-cheating-assistant) <br>
-- [Risk problems table](references/risk-problems-table.md) <br>
-- [Solution MCP interface](references/solution-list.md) <br>
-- [Three-flow graph analysis workflow](scripts/three_flow_graph_analysis.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown responses with structured questions, business-flow summaries, risk findings, solution recommendations, diagram links, and tables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external visualization links and MCP/API examples when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive business workflow details may be sent to or embedded in external hdconsultatio.com services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted or generic workflow descriptions unless the publisher provides clear consent, retention, and data-handling guarantees.
+
+Risk: The skill describes an API-key flow for an external RAG service.
+
+Mitigation: Avoid entering secrets directly in chat and confirm API-key handling, scoping, and rotation practices before use.
+
+Risk: Risk-control recommendations may be incomplete or unsuitable for a specific business without review.
+
+Mitigation: Have qualified business-security or fraud-risk reviewers validate the model, assumptions, and mitigations before operational use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jshdcn/skills/anti-cheating-assistant)
+- [Risk Problems Table](artifact/references/risk-problems-table.md)
+- [Solution List](artifact/references/solution-list.md)
+- [Three Flow Graph Analysis Script](artifact/scripts/three_flow_graph_analysis.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured text with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include business workflow summaries, three-flow tables, risk lists, mitigation recommendations, and external-service setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

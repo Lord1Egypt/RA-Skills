@@ -1,48 +1,65 @@
-## Description: <br>
-Godot Dev Guide provides Godot 4.x development guidance covering GDScript patterns, .gd/.tscn/.tres file formats, scene architecture, physics, UI, audio, performance, exports, and testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Godot Dev Guide provides a Godot 4.x development guide covering GDScript patterns, .gd/.tscn/.tres formats, scene architecture, physics, UI, audio, performance, export, and testing.
 
-## Publisher: <br>
-[IsonaEi](https://clawhub.ai/user/IsonaEi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[isonaei](https://clawhub.ai/user/isonaei)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Godot 4.x reference while creating, reviewing, or troubleshooting game projects. It helps agents produce Godot-specific guidance, code snippets, file-format examples, CLI commands, and configuration advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation triggers such as scene and node may activate the skill in conversations that are not specifically about Godot. <br>
-Mitigation: Disable the skill or narrow activation triggers if it becomes distracting in non-Godot workflows. <br>
-Risk: Godot CLI export commands can write build artifacts or otherwise change local project output directories. <br>
-Mitigation: Review generated Godot CLI commands before running them, especially export commands and commands that write files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Project Structure](references/01-project-structure.md) <br>
-- [GDScript Patterns](references/02-gdscript-patterns.md) <br>
-- [Godot File Formats](references/03-file-formats.md) <br>
-- [Scenes and Nodes](references/04-scenes-nodes.md) <br>
-- [UI and Input](references/05-ui-input.md) <br>
-- [Physics](references/06-physics.md) <br>
-- [Audio and Animation](references/07-audio-animation.md) <br>
-- [Performance](references/08-performance.md) <br>
-- [Export](references/09-export.md) <br>
-- [Testing](references/10-testing.md) <br>
+## Use Case:
 
+Developers and engineers use this skill as a reference for AI-assisted Godot 4.x game development, including GDScript patterns, scene and resource file formats, project structure, UI, physics, export, and testing.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with GDScript, INI, resource-format, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Godot 4.x reference snippets, pitfall notes, and review checklists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad auto-invocation triggers may activate the skill during unrelated discussions about scenes or nodes.
+
+Mitigation: Narrow triggers or disable auto-invocation when the workspace is not focused on Godot development.
+
+Risk: Testing and CI examples may reference third-party tooling that executes in local or CI environments.
+
+Mitigation: Verify the GDUnit4 source, pin dependency versions or container digests where practical, and review add-on code before use.
+
+Risk: The skill is Chinese-language guidance, which may be misread by users or agents that require English-only project documentation.
+
+Mitigation: Use it where Chinese-language Godot guidance is acceptable, or translate and review guidance before adopting it in an English-only workflow.
+
+## Reference(s):
+
+- [Project Structure](artifact/references/01-project-structure.md)
+- [GDScript Patterns](artifact/references/02-gdscript-patterns.md)
+- [File Formats](artifact/references/03-file-formats.md)
+- [Scenes and Nodes](artifact/references/04-scenes-nodes.md)
+- [UI and Input](artifact/references/05-ui-input.md)
+- [Physics](artifact/references/06-physics.md)
+- [Audio and Animation](artifact/references/07-audio-animation.md)
+- [Performance](artifact/references/08-performance.md)
+- [Export](artifact/references/09-export.md)
+- [Testing](artifact/references/10-testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with GDScript, Godot configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language Godot 4.x reference content with AI pitfall annotations]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

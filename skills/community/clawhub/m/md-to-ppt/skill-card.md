@@ -1,40 +1,55 @@
-## Description: <br>
-Converts Markdown into presentation assets with smart content analysis, pagination, slide layout selection, themes, and optional image fetching for Slidev, HTML, or PPTX workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Markdown into presentation assets with smart pagination, layout selection, themes, and optional image search or generation for Slidev, HTML, or PPTX outputs.
 
-## Publisher: <br>
-[neutronstar238](https://clawhub.ai/user/neutronstar238) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neutronstar238](https://clawhub.ai/user/neutronstar238)
 
-## Use Case: <br>
-Developers, content creators, and business users use this skill to turn structured Markdown into presentation files, layout plans, speaker-ready slide content, and preview/export commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional automatic image fetching can send slide titles or extracted keywords to Unsplash and download external image assets. <br>
-Mitigation: Keep auto-images disabled for confidential Markdown, or review and sanitize slide titles and keywords before enabling image search. <br>
+## Use Case:
 
+Developers, presenters, and content authors use this skill to turn Markdown documents into structured presentation outputs with themes, layouts, speaker notes, and preview or export guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neutronstar238/md-to-ppt) <br>
-- [Skill README](artifact/README.md) <br>
-- [Example Markdown template](artifact/templates/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, CSS, JSON layout plans, generated presentation files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write slides.md, style.css, README.md, layout-plan.json, and optional image assets to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and frontmatter) <br>
+Risk: The release security review flags unsafe preview and export commands in the skill guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated shell commands before use and prefer a trusted, pinned local Slidev CLI dependency instead of running the generated npx slidew commands.
+
+Risk: Auto-image mode may send document-derived search terms to external image services.
+
+Mitigation: Disable auto-images or use local or approved assets for confidential Markdown.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neutronstar238/skills/md-to-ppt)
+- [Artifact README](artifact/README.md)
+- [Example Markdown template](artifact/templates/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown presentation files, CSS, README guidance, optional layout-plan JSON, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Slidev, HTML, or PPTX-oriented assets; auto-image mode can use external image search or generation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

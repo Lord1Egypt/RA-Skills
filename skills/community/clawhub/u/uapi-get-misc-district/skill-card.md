@@ -1,44 +1,57 @@
-## Description: <br>
-使用 UAPI 的“Adcode 国内外行政区域查询”单接口 skill，帮助 agent 准备并调用 GET /misc/district 查询行政区域信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用 UAPI 的“Adcode 国内外行政区域查询”接口帮助代理查询国内外行政区域、行政编码和坐标反查结果。
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-External users and developers use this skill when an agent needs to look up administrative regions by keyword, adcode, or coordinates through UAPI's GET /misc/district endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous requests that mention district could be routed to the UAPI Adcode lookup when the user intended a different meaning. <br>
-Mitigation: Confirm that the user wants an administrative-region lookup before making an external call for broad or ambiguous district requests. <br>
-Risk: Queries may include precise coordinates or sensitive location context. <br>
-Mitigation: Ask for confirmation before sending precise location details to UAPI when the user's intent is unclear. <br>
+## Use Case:
 
+Developers and agents use this skill when a user needs UAPI administrative district lookup through GET /misc/district, including keyword search, adcode lookup, or coordinate reverse lookup.
 
-## Reference(s): <br>
-- [Quick Start](references/quick-start.md) <br>
-- [Adcode 国内外行政区域查询](references/operations/get-misc-district.md) <br>
-- [Misc 分类接口](references/resources/Misc.md) <br>
-- [UAPI](https://uapis.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuakami/uapi-get-misc-district) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with endpoint, parameter, authentication, and response-code details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports keyword, adcode, and latitude/longitude query planning for the UAPI administrative-region lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Administrative-region search terms, adcodes, or coordinates may be sent to UAPI when the skill is invoked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit administrative district lookup tasks and avoid sending unnecessary precise coordinates or sensitive location details.
+
+Risk: The broad district trigger could select this skill when another district-related task was intended.
+
+Mitigation: Confirm that the user needs UAPI administrative district lookup before preparing the API call.
+
+## Reference(s):
+
+- [Quick Start](references/quick-start.md)
+- [Adcode 国内外行政区域查询](references/operations/get-misc-district.md)
+- [Misc 分类接口](references/resources/Misc.md)
+- [UAPI](https://uapis.cn)
+- [UAPI API Base URL](https://uapis.cn/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with endpoint, parameter, authentication, and response-code details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare GET /misc/district requests using keywords, adcode, or latitude and longitude query parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,7 @@
 # Life Scene Library / 人生场景库
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用途：把事件库里的宏观事件，翻译成用户能感受到的生活画面。生成事件冲击卡前，先从这里选择场景，再写代价、情绪和验证动作。
 
 ## 使用方法

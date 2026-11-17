@@ -1,39 +1,52 @@
-## Description: <br>
-Dida365 helps agents query and manage TickTick/Dida365 tasks, projects, to-dos, productivity stats, completion status, and filtered task views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dida365 helps an agent interact with TickTick/Dida365 (滴答清单) to query, create, update, complete, search, and filter tasks, projects, and productivity statistics.
 
-## Publisher: <br>
-[huangcheng](https://clawhub.ai/user/huangcheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huangcheng](https://clawhub.ai/user/huangcheng)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to let an agent manage TickTick/Dida365 tasks and projects, including viewing lists, searching tasks, creating or updating tasks, completing tasks, and calculating completion rates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent can create, update, move, batch update, or complete tasks in the connected TickTick/Dida365 account.
+
+Mitigation: Confirm task-system intent and review any create, batch update, move, or complete action before allowing it to run.
+
+Risk: Generic task-management prompts could be routed to TickTick/Dida365 when the user intended a different task system.
+
+Mitigation: Ask the user to confirm TickTick/Dida365 should be used before taking account actions for ambiguous task-management requests.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and productivity-focused teams use this skill to let an agent inspect, search, create, update, move, and complete TickTick/Dida365 tasks and lists through configured MCP tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [API Calls, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, move, batch-add, and complete tasks in a connected TickTick/Dida365 account. <br>
-Mitigation: Require user confirmation before write actions, especially for bulk changes or work-related lists. <br>
-Risk: Broad activation around task-management requests may expose personal or work task data to the agent. <br>
-Mitigation: Install only when the user intends the assistant to access TickTick/Dida365, and avoid using it for accounts or lists that should remain private. <br>
+**Output Format:** [Markdown with MCP tool call examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses mcp__dida__* tools for task-management read and write actions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [Natural-language responses with MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or modify task data in the connected TickTick/Dida365 account.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

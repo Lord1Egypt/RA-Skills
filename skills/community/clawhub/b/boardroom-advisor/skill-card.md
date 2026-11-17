@@ -1,42 +1,57 @@
-## Description: <br>
-Consult a virtual board of 4 strategic advisors (Donald Miller, Seth Godin, Alex Hormozi, Daniel Priestley) on any major business decision. Two rounds of argument + rebuttal, then a decision brief, interactive dashboard, and clear recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consult a virtual board of 4 strategic advisors (Donald Miller, Seth Godin, Alex Hormozi, Daniel Priestley) on any major business decision through two rounds of argument and rebuttal, followed by a decision brief, interactive dashboard, and clear recommendation.
 
-## Publisher: <br>
-[Batsirai](https://clawhub.ai/user/Batsirai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[batsirai](https://clawhub.ai/user/batsirai)
 
-## Use Case: <br>
-Business operators, founders, and strategy teams use this skill to deliberate major business decisions through four advisor perspectives, then receive a decision brief, optional interactive dashboard, print-ready summary, and clear recommendation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business details may be shared with OpenRouter when OPENROUTER_API_KEY is configured. <br>
-Mitigation: Use OpenRouter only when acceptable for the business context, and avoid sharing confidential details unless the user has approved that data path. <br>
-Risk: The skill writes decision briefs, dashboards, and print-ready HTML files to the working directory. <br>
-Mitigation: Run it in a dedicated folder so generated decision artifacts are easy to review, retain, or delete. <br>
-Risk: Strategic recommendations can be incomplete or misleading if the input business context is thin. <br>
-Mitigation: Collect sufficient context before running the board and treat the output as decision support that remains subject to human review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Boardroom model: OpenRouter + Claude Opus 4.6](references/openrouter-board-model.md) <br>
-- [OpenRouter Claude Opus 4.6](https://openrouter.ai/anthropic/claude-opus-4.6) <br>
+## Use Case:
 
+Business operators, founders, and teams use this skill to deliberate major strategic decisions through four advisor personas, structured debate, rebuttal, and a final recommendation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown decision brief, self-contained HTML dashboard, optional print-ready HTML, and final synthesis in chat] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a decision-specific folder in the working directory; optional OpenRouter use requires OPENROUTER_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can activate proactively for major business decisions and may gather sensitive business context.
+
+Mitigation: Narrow activation to explicit phrases such as 'consult the board' or require confirmation before gathering context.
+
+Risk: The workflow may send confidential business context to OpenRouter when an API key is configured.
+
+Mitigation: Avoid providing confidential financial, customer, or strategy information unless the user accepts the external model provider's data handling.
+
+Risk: The skill writes decision briefs, dashboards, and print-ready files into the working directory.
+
+Mitigation: Confirm the output location and review generated files before relying on or sharing them.
+
+## Reference(s):
+
+- [Boardroom model: OpenRouter + Claude Opus 4.6](references/openrouter-board-model.md)
+- [OpenRouter Claude Opus 4.6 model page](https://openrouter.ai/anthropic/claude-opus-4.6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, self-contained HTML, configuration snippets, and conversational synthesis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a decision folder containing a decision brief, interactive dashboard, and optional print-ready HTML.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

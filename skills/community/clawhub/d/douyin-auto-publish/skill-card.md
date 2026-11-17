@@ -1,46 +1,60 @@
-## Description: <br>
-抖音创作者平台视频上传发布。触发条件：用户要求上传视频到抖音、发布抖音视频、自动上传视频到抖音创作者平台 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an OpenClaw agent upload and publish videos to the Douyin Creator Platform after the user provides the file path, title, visibility, and explicit pre-publication confirmation.
 
-## Publisher: <br>
-[l1angjy](https://clawhub.ai/user/l1angjy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l1angjy](https://clawhub.ai/user/l1angjy)
 
-## Use Case: <br>
-External creators and operators use this skill to guide an agent through uploading a local video to Douyin Creator Platform, setting a title and visibility, and publishing only after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Douyin Creator Platform availability and account eligibility. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill operates a logged-in Douyin Creator session and can publish content after confirmation. <br>
-Mitigation: Use the dedicated douyin-profile or sandbox mode, review the file name, title, and visibility, and confirm only the intended upload. <br>
-Risk: Using a real browser profile could expose unrelated cookies, accounts, or settings. <br>
-Mitigation: Avoid profile="user" and use the isolated douyin-profile or sandbox configuration described by the artifact. <br>
-Risk: Saved visibility preferences may not match the intended audience for a specific upload. <br>
-Mitigation: Check the selected visibility before confirming each publication and override the saved preference when needed. <br>
+## Use Case:
 
+External creators and operators use this skill to guide an agent through uploading a local video to Douyin, filling in title and visibility settings, and publishing only after explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/l1angjy/douyin-auto-publish) <br>
-- [Publisher profile](https://clawhub.ai/user/l1angjy) <br>
-- [Douyin Creator Platform](https://creator.douyin.com/creator-micro/home) <br>
-- [Douyin upload page](https://creator.douyin.com/creator-micro/content/upload) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Browser actions] <br>
-**Output Format:** [Markdown instructions with inline shell commands and browser action examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided video path, title, visibility choice, logged-in Douyin Creator session, and explicit confirmation before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.7 (source: release evidence) <br>
+Risk: The skill can publish through a logged-in Douyin creator account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the file name, title, and visibility and obtain explicit user confirmation before every publish.
+
+Risk: A persistent browser profile can retain account access between sessions.
+
+Mitigation: Use the sandbox browser target when stronger isolation is needed, accepting that the user may need to log in each time.
+
+Risk: Unsafe file-staging instructions may be risky for unusual or untrusted file paths.
+
+Mitigation: Use only trusted local video paths and verify the staged file before upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/l1angjy/skills/douyin-auto-publish)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Douyin Creator Platform](https://creator.douyin.com/creator-micro/home)
+- [Douyin upload page](https://creator.douyin.com/creator-micro/content/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser-tool actions and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided video path, title, visibility selection, and explicit confirmation before publishing.]
+
+## Skill Version(s):
+
+2.2.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

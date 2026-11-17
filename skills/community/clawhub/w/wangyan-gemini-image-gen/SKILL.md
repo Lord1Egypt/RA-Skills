@@ -153,7 +153,7 @@ nano .env
 
 ```bash
 # 必填配置
-GEMINI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+GEMINI_API_KEY=REDACTED-SECRET
 GEMINI_BASE_URL=https://api.example.com/v1
 
 # 可选配置

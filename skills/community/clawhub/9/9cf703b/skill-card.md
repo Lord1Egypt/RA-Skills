@@ -1,44 +1,57 @@
-## Description: <br>
-Analyzes scientific PDF figures by extracting images and text with PyMuPDF, using Kimi K2.6 vision analysis when available, and producing structured scientific interpretation and reverse-engineered visualization workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A scientific paper figure analysis workflow that extracts figures and text from PDFs, optionally analyzes figures with Kimi K2.6 vision, applies scientific reasoning, and reconstructs likely visualization or analysis workflows.
 
-## Publisher: <br>
-[huangjk1103](https://clawhub.ai/user/huangjk1103) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangjk1103](https://clawhub.ai/user/huangjk1103)
 
-## Use Case: <br>
-Developers, research analysts, and scientific teams use this skill to extract figures from paper PDFs, combine figure captions with multimodal analysis, and produce structured knowledge about panels, measurements, trends, and likely visualization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted figures and prompts may be sent to Moonshot/Kimi for vision analysis. <br>
-Mitigation: Use only approved PDFs, and avoid unpublished, confidential, regulated, patient, or proprietary content unless permission is clear. <br>
-Risk: The workflow requires a sensitive MOONSHOT_API_KEY credential. <br>
-Mitigation: Keep the key in an environment variable or secret manager and avoid hardcoding it in scripts, prompts, or shared documents. <br>
+## Use Case:
 
+Researchers, literature review agents, and developers use this skill to extract scientific figures from PDFs, analyze visual panels and captions, and produce structured figure summaries or reverse-engineered analysis workflows.
 
-## Reference(s): <br>
-- [Kimi K2.6 Vision API Reference](references/kimi-k2.6-vision-api.md) <br>
-- [BusR Paper Case Study](references/busr-paper-case-study.md) <br>
-- [Moonshot API Base](https://api.moonshot.cn/v1) <br>
-- [Kimi Platform](https://platform.kimi.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huangjk1103/9cf703b) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-style figure reports with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses MOONSHOT_API_KEY for Kimi/Moonshot vision analysis when available and can fall back to text-only PDF extraction.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scientific PDFs or figure images may contain confidential, unpublished, licensed, patient-related, or proprietary information that would be sent to Moonshot/Kimi when vision analysis is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Kimi vision only for papers and figures approved for third-party processing; otherwise use the local text-only fallback path or obtain approval first.
+
+Risk: Unpinned dependencies, optional OCR setup, and exposed API credentials can create operational or security risk.
+
+Mitigation: Install dependencies in a virtual environment, consider pinning versions, avoid optional sudo OCR installation unless needed, and protect MOONSHOT_API_KEY.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangjk1103/skills/9cf703b)
+- [BusR paper case study](references/busr-paper-case-study.md)
+- [Kimi K2.6 vision API calling pattern](references/kimi-k2.6-vision-api.md)
+- [Moonshot API base URL](https://api.moonshot.cn/v1)
+- [Kimi platform](https://platform.kimi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, JSON structures, Python snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include confidence labels, extracted figure metadata, visible values, labels, trends, and fallback guidance when vision analysis is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

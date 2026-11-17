@@ -1,41 +1,56 @@
-## Description: <br>
-查询 Datayes/通联的宏观与行业指标数据，用于搜索并拉取 GDP、CPI、PPI、PMI、M2、社融、利率、就业、贸易、产量、价格等宏观或行业时间序列。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询 Datayes/通联的宏观与行业指标数据，帮助 agents search, select, and retrieve macroeconomic or industry time series such as GDP, CPI, PPI, PMI, M2, credit, rates, employment, trade, output, and prices.
 
-## Publisher: <br>
-[datayes](https://clawhub.ai/user/datayes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[datayes](https://clawhub.ai/user/datayes)
 
-## Use Case: <br>
-Developers and analysts use this skill to answer macroeconomic or industry-data questions by searching Datayes indicators, selecting the closest time series, and retrieving recent values with a local Python helper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Datayes API token may be exposed if it is pasted into chats, printed in logs, or used in shared shell environments. <br>
-Mitigation: Use a scoped and revocable DATAYES_TOKEN, avoid pasting or printing it, and rotate the token if exposure is suspected. <br>
-Risk: Macro-data requests depend on a user-provided Datayes token and external Datayes-related endpoints. <br>
-Mitigation: Run the helper only in environments approved for Datayes access and review requested indicators and date ranges before using the results. <br>
+## Use Case:
 
+External users and developers use this skill to query Datayes macroeconomic and industry indicators through the bundled Python CLI, inspect candidate indicators, and retrieve selected time series data. It is intended for questions about Chinese or broader macro and industry data where the agent should report indicator name, frequency, unit, source, latest value, and recent observations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datayes/datayes-macro) <br>
-- [Datayes login](https://r.datayes.com/auth/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional JSON output from the Python helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a DATAYES_TOKEN environment variable; the helper can print JSON when invoked with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The Datayes bearer token could leak across HTTP redirects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable, least-privileged token and avoid running the skill until redirect handling blocks cross-origin redirects or strips Authorization on origin changes.
+
+Risk: The skill depends on a DATAYES_TOKEN secret in the environment.
+
+Mitigation: Keep the token out of prompts, logs, and committed files, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [Datayes API spec endpoint](https://gw.datayes.com/aladdin_llm_mgmt/web/mgr/api)
+- [Datayes login](https://r.datayes.com/auth/login)
+- [ClawHub skill page](https://clawhub.ai/datayes/skills/datayes-macro)
+- [ClawHub publisher profile](https://clawhub.ai/user/datayes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a DATAYES_TOKEN environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

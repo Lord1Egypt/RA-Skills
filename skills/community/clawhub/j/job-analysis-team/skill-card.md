@@ -1,46 +1,60 @@
-## Description: <br>
-在对话中辅助学习 Job Analysis 第 5 章 Management and Teams，覆盖管理岗位分析、MPDQ、competency modeling、团队设计、team KSAs/functions、MAP system 与 team cognitive task analysis。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study aid that helps users learn and apply Job Analysis chapter 5 concepts about management roles, MPDQ, competency modeling, team design, team KSAs and functions, MAP, and team cognitive task analysis.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Learners, instructors, and agents use this skill for Chinese-language tutoring, review, and applied discussion of management and team topics in a Job Analysis textbook chapter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may give incorrect or incomplete academic guidance if its explanations are not checked against the course source material. <br>
-Mitigation: Verify important academic claims against the original textbook or course materials. <br>
-Risk: Study or project examples could include sensitive personal or institutional information. <br>
-Mitigation: Avoid sharing sensitive personal or institutional information unless it is necessary for the learning task. <br>
+## Use Case:
 
+Students, educators, and practitioners use this skill for Chinese-language tutoring, review, and applied Q&A on management and team analysis topics from a Job Analysis textbook chapter.
 
-## Reference(s): <br>
-- [Overview](references/overview.md) <br>
-- [MPDQ](references/mpdq.md) <br>
-- [Competency Modeling](references/competency-modeling.md) <br>
-- [Team Design](references/team-design.md) <br>
-- [Team KSA Functions](references/team-ksa-functions.md) <br>
-- [MAP System](references/map-system.md) <br>
-- [Chapter 5 Examples and Teaching Anchors](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language conversational Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses progressive disclosure and scoped reference material for study, review, examples, and applied discussion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is scoped as a Chinese-language study aid for a specific Job Analysis chapter, so it may not match users seeking broader job analysis guidance or another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired language and chapter scope before relying on its tutoring responses.
+
+Risk: Educational explanations may be incomplete or misaligned with an instructor's interpretation of the textbook.
+
+Mitigation: Review important answers against the assigned textbook, course materials, or instructor guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/job-analysis-team)
+- [Chapter 5 Overview: Management and Teams](references/overview.md)
+- [MPDQ: Management Position Description Questionnaire](references/mpdq.md)
+- [Competency Modeling](references/competency-modeling.md)
+- [Team Analysis and Team Design](references/team-design.md)
+- [Team KSAs and Team Functions](references/team-ksa-functions.md)
+- [MAP System and Team Cognitive Task Analysis](references/map-system.md)
+- [Chapter 5 Examples and Teaching Anchors](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Markdown in Chinese with English terminology where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure and references chapter-specific Markdown material on demand.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

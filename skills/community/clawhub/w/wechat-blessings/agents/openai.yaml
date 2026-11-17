@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Blessings"
+  short_description: "Create personalized greetings and send after confirmation"
+  default_prompt: "Use $wechat-blessings to draft a personalized blessing and send it after I confirm."

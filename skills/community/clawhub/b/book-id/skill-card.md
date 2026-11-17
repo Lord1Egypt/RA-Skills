@@ -1,45 +1,57 @@
-## Description: <br>
-Catalog books from photos or text. Trigger on: book photo, catalog book, log book, add to library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Catalog books from photos or text. Trigger on: book photo, catalog book, log book, add to library.
 
-## Publisher: <br>
-[gabebac](https://clawhub.ai/user/gabebac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gabebac](https://clawhub.ai/user/gabebac)
 
-## Use Case: <br>
-External users use this skill to identify a book from a cover photo or text prompt, gather bibliographic details from web sources, and create a structured book note with a saved cover photo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create book notes and photos in the workspace after broad trigger phrases. <br>
-Mitigation: Confirm the target book and output path before allowing file creation. <br>
-Risk: The workflow includes running a local fix-md.sh script that is not provided in the artifact. <br>
-Mitigation: Review or remove the fix-md.sh step before installation or execution. <br>
+## Use Case:
 
+External users and personal knowledge-base maintainers use this skill to identify books from cover photos or text, gather catalog metadata, and create structured book notes with associated cover images.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gabebac/book-id) <br>
-- [Publisher Profile](https://clawhub.ai/user/gabebac) <br>
-- [OpenLibrary Search API](https://openlibrary.org/search.json) <br>
-- [OpenLibrary Covers API](https://covers.openlibrary.org/) <br>
-- [Wikipedia](https://www.wikipedia.org/) <br>
-- [Goodreads](https://www.goodreads.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Markdown note with YAML frontmatter, workspace file paths, and shell command execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a 32-property book note and may save a related book photo when a readable cover or sufficient text is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs an agent to run shell commands against user-derived files and paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, trust the local fix-md.sh script before execution, and ensure generated filenames or inbound media names cannot inject shell syntax.
+
+Risk: The skill can export generated notes to a vault destination after cataloging.
+
+Mitigation: Confirm the vault push destination with the user before approving any export.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gabebac/skills/book-id)
+- [OpenLibrary Search API](https://openlibrary.org/search.json?title=[TITLE]&author=[AUTHOR]&limit=5)
+- [OpenLibrary Covers API](https://covers.openlibrary.org/b/isbn/[ISBN]-M.jpg)
+- [Wikipedia](https://www.wikipedia.org/)
+- [Goodreads](https://www.goodreads.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown book note with YAML frontmatter, file paths, and confirmation text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a 32-property book schema, a mandatory body section, a saved photo path, and an optional vault push prompt after user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

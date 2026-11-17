@@ -1,41 +1,57 @@
-## Description: <br>
-Generates technical project documentation in Markdown under docs/, including overview, architecture, module, API, data model, dependency, and deployment documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates comprehensive Markdown technical documentation for a project, including overview, architecture, module, API, data model, dependency, and deployment documentation under docs/.
 
-## Publisher: <br>
-[hhngdcz](https://clawhub.ai/user/hhngdcz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhngdcz](https://clawhub.ai/user/hhngdcz)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze a codebase and generate structured technical documentation files for project understanding, onboarding, and maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads project files and may generate or update Markdown documentation under docs/. <br>
-Mitigation: Install it only for projects where documentation generation is intended, run it on a branch when existing docs matter, and review overwrite choices before allowing changes. <br>
-Risk: Generated documentation may be in Chinese, which may not match every project's documentation standards. <br>
-Mitigation: Confirm Chinese documentation is acceptable for the project before using the skill or revise the generated docs afterward. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate project documentation for an existing codebase. It is intended for creating Markdown docs covering architecture, modules, APIs, data models, dependencies, and deployment notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hhngdcz/hhngdcz-b) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hhngdcz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files written under docs/ with brief status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces docs/README.md, docs/architecture.md, docs/modules/*.md, docs/api.md, docs/data-model.md, docs/dependencies.md, and docs/deployment.md; generated documentation is written in Chinese with English technical terms preserved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The agent reads project source and writes generated documentation under docs/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when source-code reading and docs/ writes are acceptable for the target project.
+
+Risk: Existing documentation may be overwritten or supplemented depending on the user's choice when docs/ already exists.
+
+Mitigation: Review the overwrite or supplement choice before generation and inspect changed documentation files after completion.
+
+Risk: Generated documentation may be incomplete or misleading if source analysis misses behavior or project conventions.
+
+Mitigation: Review generated Markdown before relying on it for engineering, deployment, or external publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hhngdcz/skills/hhngdcz-b)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, guidance]
+
+**Output Format:** [Markdown files written under docs/, with a concise completion summary returned to the user]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documentation is instructed to be written in Chinese with English technical terms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

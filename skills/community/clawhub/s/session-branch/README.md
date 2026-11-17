@@ -1,6 +1,6 @@
-# Session Branch — 会话分叉
+# Session Branch — 支线任务
 
-[![版本](https://img.shields.io/badge/版本-1.1.0-blue)](https://github.com/EdwardWason/session-branch)
+[![版本](https://img.shields.io/badge/版本-1.4.0-blue)](https://github.com/EdwardWason/session-branch)
 [![许可证](https://img.shields.io/badge/许可证-MIT--0-green)](LICENSE)
 [![ClawHub](https://img.shields.io/badge/ClawHub-session--branch-orange)](https://clawhub.ai/skills/session-branch)
 
@@ -32,12 +32,14 @@ clawhub install session-branch
 
 在当前对话中说：
 
-- "开个支线" / "分叉" / "branch" / "新任务但保留上下文"
+- "支线任务" / "开个支线" / "分叉"
 
 Skill 将：
 1. 分析当前会话和项目
-2. 在项目中生成 `docs/session-handoff.md`
+2. **写入文件**：在项目中生成 `docs/session-handoff.md`（如已存在会覆盖）
 3. 给你一份新对话的启动提示词
+
+> **注意**：此 Skill 会在项目目录中创建/覆盖文件。IDE 专属扫描（如 WorkBuddy 身份文件、TRAE memory 文件）需要你明确同意后才会执行。新会话中读取 memory/identity 文件是 OPT-IN 的，可以拒绝。交接文档中的用户消息会自动脱敏（删除凭证/PII/敏感信息）。
 
 ### 在新对话中
 
@@ -75,7 +77,7 @@ MIT-0
 
 # Session Branch
 
-[![version](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/EdwardWason/session-branch)
+[![version](https://img.shields.io/badge/version-1.4.0-blue)](https://github.com/EdwardWason/session-branch)
 [![License](https://img.shields.io/badge/license-MIT--0-green)](LICENSE)
 [![ClawHub](https://img.shields.io/badge/ClawHub-session--branch-orange)](https://clawhub.ai/skills/session-branch)
 
@@ -107,12 +109,14 @@ clawhub install session-branch
 
 In your current conversation, say:
 
-- "开个支线" / "分叉" / "branch" / "new task but keep context"
+- "支线任务" / "开个支线" / "分叉"
 
 The skill will:
 1. Analyze your current session and project
-2. Generate a `docs/session-handoff.md` in your project
+2. **Writes a file**: Generates `docs/session-handoff.md` in your project (overwrites if exists)
 3. Give you a startup prompt for the new conversation
+
+> **Note**: This skill creates/overwrites files in your project directory. IDE-specific scanning (e.g., WorkBuddy identity files, TRAE memory files) requires your explicit consent before execution. Reading memory/identity files in the new session is OPT-IN — you can decline. User messages in the handoff doc are automatically sanitized (credentials/PII/sensitive info stripped).
 
 ### In the New Conversation
 

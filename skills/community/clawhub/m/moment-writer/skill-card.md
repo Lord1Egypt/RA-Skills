@@ -1,39 +1,52 @@
-## Description: <br>
-朋友圈文案生成器（精简版），基于私域变现核心方法论。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+朋友圈文案生成器（精简版），基于私域变现核心方法论。
 
-## Publisher: <br>
-[fengbabao0929](https://clawhub.ai/user/fengbabao0929) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fengbabao0929](https://clawhub.ai/user/fengbabao0929)
 
-## Use Case: <br>
-External creators, consultants, and private-domain operators use this skill to draft WeChat Moments copy for authority building, trust building, warm personal updates, value sharing, counter-positioning, audience targeting, and short self-introductions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may be inaccurate, unsuitable for the user's audience, or too persuasive for the intended context. <br>
-Mitigation: Review and edit generated copy before posting, especially claims about expertise, outcomes, customer targeting, or personal experiences. <br>
-Risk: The scanner guidance notes rough quality issues and recommends inspection before relying on scaffold or publishing claims. <br>
-Mitigation: Inspect the skill files and generated text before operational use, and do not rely on undeclared framework or packaging claims without separate verification. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengbabao0929/moment-writer) <br>
+## Use Case:
 
+External creators, marketers, and private-domain operators use this skill to draft Chinese WeChat Moments copy prompts for professional, trust-building, warm, altruistic, counter-positioning, audience-targeting, and short self-introduction posts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text prompt with structured Chinese copywriting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated prompt asks the agent to output the final Moments copy directly without explanation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, manifest, release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated posts may be unsuitable or misleading if published without review.
+
+Mitigation: Review generated posts before publishing and adapt them to the real audience, facts, and claims.
+
+Risk: The templates are oriented toward private-domain marketing and audience targeting.
+
+Mitigation: Use the output as drafting guidance and avoid deceptive claims, hidden marketing, or pressure tactics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengbabao0929/skills/moment-writer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text prompts with Chinese copywriting structure and formatting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports a required copy type and an optional topic.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,60 @@
-## Description: <br>
-Reversible Keyword Masking (RKM) locally masks sensitive document keywords with stable placeholders before AI editing, then verifies and restores them from an encrypted local mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reversible Keyword Masking (RKM) helps agents guide users through local masking of sensitive document keywords with stable placeholders, encrypted local mappings, verification, repair, and restoration before or after AI editing.
 
-## Publisher: <br>
-[fuetsui](https://clawhub.ai/user/fuetsui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuetsui](https://clawhub.ai/user/fuetsui)
 
-## Use Case: <br>
-Developers, writers, legal operations staff, and business users can use this skill to mask configured sensitive terms before sending documents to an AI model for editing, rewriting, translating, summarizing, polishing, or restructuring. It is most useful when placeholders must be verified and restored locally after AI editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local CLI reads and writes documents in its working directory. <br>
-Mitigation: Install and run it only in directories where local document processing is acceptable, and review input, output, and mapping paths before execution. <br>
-Risk: Mapping files, password files, and RKM_KEY can reveal or unlock sensitive originals. <br>
-Mitigation: Keep mapping files, password files, and RKM_KEY private, exclude them from Git, and avoid sharing decrypted mapping data with remote models. <br>
-Risk: Legacy .doc conversion relies on Microsoft Word or LibreOffice parsers with their own attack surface. <br>
-Mitigation: Prefer .txt, .md, or .docx for untrusted documents, or run legacy .doc conversion in a sandboxed or offline environment. <br>
-Risk: The skill masks explicit keywords and matched patterns, not indirect context, business logic, document structure, or writing style. <br>
-Mitigation: Review masked documents for remaining contextual clues, add missing terms or regex patterns, and avoid treating masking as complete anonymization. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill when documents need editing, rewriting, translation, summarization, polishing, or restructuring while explicit sensitive keywords should stay out of the model context. It is especially suited to workflows that can run a local CLI to mask, verify, repair, and restore placeholders around AI-edited content.
 
-## Reference(s): <br>
-- [Skill Instructions](SKILL.md) <br>
-- [README](README.md) <br>
-- [RKM Keyword Configuration](references/keyword-config.md) <br>
-- [Custom Keyword Template](references/custom-keywords.txt) <br>
-- [Fictional Sample Workflow](examples/README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fuetsui/skills/reversible-keyword-masking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON] <br>
-**Output Format:** [Markdown instructions with shell commands; the CLI can produce masked/restored document files, encrypted mapping files, and JSON reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local filesystem output; mapping files are encrypted, and scan/verification reports omit raw sensitive values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, manifest.yaml, README.md) <br>
+Risk: Legacy Word document handling can invoke local Office or LibreOffice on user-selected files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted legacy .doc files, or convert and inspect them in a sandbox or isolated environment before using the skill.
+
+Risk: Mapping files, password files, RKM_KEY values, or decrypted mappings could expose the sensitive keywords the skill is intended to protect.
+
+Mitigation: Keep mapping files, password files, environment values, and decrypted mapping data local and out of chats, logs, and Git.
+
+Risk: Keyword masking protects explicit terms and configured pattern matches, but not indirect context, business logic, document structure, or background clues.
+
+Mitigation: Review masked documents for residual contextual disclosure before sending them to an AI model, and add explicit keywords or patterns when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fuetsui/skills/reversible-keyword-masking)
+- [Keyword Configuration](references/keyword-config.md)
+- [Custom Keyword Template](references/custom-keywords.txt)
+- [Example Workflow](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, configuration snippets, and local file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local masked documents, encrypted mapping files, verification reports, repaired masked files, and restored documents when the user runs the bundled CLI.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

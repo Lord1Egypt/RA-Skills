@@ -1,40 +1,59 @@
-## Description: <br>
-Integrate AI agents with business data via Model Context Protocol, including ads, analytics, and CRM data through normalized interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate AI agents with business data via Model Context Protocol to query ads, analytics, and CRM data through normalized interfaces.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan or draft MCP integrations that connect AI agents to databases, APIs, files, ads platforms, analytics systems, and CRM systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Illustrative MCP snippets may be copied into production without least-privilege credentials, approval gates, audit controls, or data handling rules. <br>
-Mitigation: Before deployment, add least-privilege credentials, explicit approval for writes or business-impacting actions, input validation, file path restrictions, redacted logging, audit controls, and clear caching or retention rules for business data. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan MCP servers that connect AI agents to business systems such as databases, REST APIs, ad platforms, analytics tools, and CRM data sources.
 
-## Reference(s): <br>
-- [Model Context Protocol Documentation](https://modelcontextprotocol.io) <br>
-- [Official MCP Servers](https://github.com/modelcontextprotocol/servers) <br>
-- [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; examples require adaptation before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill describes broad business-data integrations and write-capable tools that could affect customer records, files, or ad budgets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege credentials, explicit authorization checks, and confirmation gates before writes or budget changes.
+
+Risk: Illustrative file and API examples may be unsafe if copied directly into a production MCP server.
+
+Mitigation: Add path containment, destination allowlists, input validation, and bounded query limits before implementation.
+
+Risk: Business data, credentials, and tool results can be exposed through logs or caches.
+
+Mitigation: Redact sensitive logs and define clear cache expiration, retention, and deletion controls.
+
+## Reference(s):
+
+- [Model Context Protocol Documentation](https://modelcontextprotocol.io)
+- [Official MCP Servers](https://github.com/modelcontextprotocol/servers)
+- [Community MCP Servers](https://github.com/punkpeye/awesome-mcp-servers)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline Python, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance and illustrative snippets; examples require review before use with real business systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

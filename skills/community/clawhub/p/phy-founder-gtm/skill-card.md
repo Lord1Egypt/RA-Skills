@@ -1,41 +1,55 @@
-## Description: <br>
-GTM strategy router for startup founders. Use for general distribution questions or when platform is unclear. For platform-specific work, prefer the dedicated skills (twitter-x-gtm, linkedin-gtm, event-gtm). Triggers on "GTM strategy", "distribution", "growth tactics", "which platform", or general marketing questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GTM strategy router for startup founders. Use for general distribution questions or when platform is unclear.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-External startup founders use this skill to decide which go-to-market channel or platform-specific playbook to use for distribution, growth, investor outreach, and general marketing questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad marketing or distribution prompts and provide general routing guidance where a narrower skill would be more appropriate. <br>
-Mitigation: Confirm the user's goal and platform before applying recommendations, and review any delegated platform-specific skills separately before relying on them. <br>
+## Use Case:
 
+Founders and go-to-market operators use this skill to choose an appropriate GTM channel, compare cross-platform strategy, and route platform-specific requests to more focused skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-founder-gtm) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [GitHub profile](https://github.com/PHY041) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and routing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, credential access, persistence, or hidden data handling is identified in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may activate for broad marketing or distribution questions where the user's target channel is still unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's GTM goal and platform constraints before applying channel-specific recommendations.
+
+Risk: The skill references other GTM skills and an outbound document that are not included in this artifact.
+
+Mitigation: Use available installed skills when present, and do not assume missing referenced materials are available.
+
+## Reference(s):
+
+- [Canlah AI](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-founder-gtm)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and routing recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not execute commands or request credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

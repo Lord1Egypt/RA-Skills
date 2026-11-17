@@ -1,44 +1,55 @@
-## Description: <br>
-Run QuantConnect LEAN backtests and manage US equity algorithm development, including strategy backtesting, market data setup, configuration editing, result analysis, and Interactive Brokers TWS deployment guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run QuantConnect LEAN backtests and manage US equity algorithm development, including algorithm setup, data preparation, configuration, result review, and Interactive Brokers-oriented deployment guidance.
 
-## Publisher: <br>
-[cylqqqcyl](https://clawhub.ai/user/cylqqqcyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cylqqqcyl](https://clawhub.ai/user/cylqqqcyl)
 
-## Use Case: <br>
-Developers and quantitative trading practitioners use this skill to prepare a local LEAN environment, run Python algorithm backtests, download US equity data, and review backtest outputs. It also guides configuration changes for backtesting and Interactive Brokers live-trading setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The backtest helper temporarily replaces the active LEAN config during execution. <br>
-Mitigation: Review the helper scripts before use, run them in a separate LEAN workspace or with a credential-free backtesting config, and avoid concurrent LEAN sessions. <br>
-Risk: A LEAN config used for Interactive Brokers can contain live-trading credentials. <br>
-Mitigation: Do not store Interactive Brokers credentials in the config used by this skill; keep live-trading credentials in a separate protected configuration. <br>
-Risk: Setup and data-download flows install packages and fetch market data from external sources. <br>
-Mitigation: Install dependencies in an isolated environment and review downloaded data before relying on backtest results. <br>
+## Use Case:
 
+Developers and quantitative engineers use this skill to prepare and run LEAN algorithmic trading backtests, manage US equity data, edit backtest configuration, inspect results, and plan Interactive Brokers deployment settings.
 
-## Reference(s): <br>
-- [LEAN data download reference](artifact/references/data-download.md) <br>
-- [.NET 8 SDK download](https://dotnet.microsoft.com/download/dotnet/8.0) <br>
-- [LEAN Engine skill release](https://clawhub.ai/cylqqqcyl/lean-engine) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local LEAN paths, environment variables, generated config files, market data files, and backtest result locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can touch LEAN trading configuration that may contain sensitive broker settings or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in an isolated project or VM, avoid live broker configs with Interactive Brokers credentials, keep a minimal backtest-only config, and back up LEAN config files before using helper scripts.
+
+Risk: Setup and data workflows may download dependencies or market data from external sources.
+
+Mitigation: Prefer pinned dependencies, review downloaded packages and data sources, and avoid elevated privileges during setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cylqqqcyl/skills/lean-engine)
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [Data download reference](references/data-download.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples; helper scripts produce LEAN configuration and data files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires dotnet, Python, LEAN_ROOT, DOTNET_ROOT, and PYTHONNET_PYDLL; network access may be used for dependency and market data downloads.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

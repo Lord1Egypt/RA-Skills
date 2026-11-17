@@ -1,45 +1,60 @@
-## Description: <br>
-The skill starts a video call with a real-time AI avatar using the Runway Characters API and returns a call link, transcript, and recording for agent follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start a video call with a real-time AI avatar using the Runway Characters API. The agent sends the user a call invite link for standups, urgent alerts, check-ins, or any conversation that's better face-to-face.
 
-## Publisher: <br>
-[yining1023](https://clawhub.ai/user/yining1023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yining1023](https://clawhub.ai/user/yining1023)
 
-## Use Case: <br>
-Developers and agents use this skill to initiate live video check-ins, urgent alerts, standups, or complex explanations with a real-time avatar. After the call, the transcript and recording support follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calls, transcripts, recordings, avatar images, and personality prompts may contain sensitive data shared with external services. <br>
-Mitigation: Avoid secrets, unnecessary personal details, private project data, and biometric face images unless needed; share recordings or detailed summaries only with user approval. <br>
-Risk: Remote call links and tunnels can expose the local call experience beyond localhost. <br>
-Mitigation: Use cloudflared only when required for another device, stop the local server after use, and avoid posting call links in broad channels. <br>
-Risk: Stored avatars and reusable personality prompts may preserve sensitive identity or user-context details. <br>
-Mitigation: Keep avatar personality text minimal, reuse only approved avatar IDs, and delete unused avatars when finished. <br>
+## Use Case:
 
+Agents and developers use this skill to invite a user into a real-time avatar video call for urgent alerts, standups, decision points, complex explanations, or status updates. After the call ends, the agent can use the transcript and recording link to summarize the discussion and take follow-up actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yining1023/video-call-agent) <br>
-- [openclaw-video-call npm package](https://www.npmjs.com/package/openclaw-video-call) <br>
-- [OpenClaw skills repository](https://github.com/runwayml/openclaw-skills) <br>
-- [Runway developer documentation](https://dev.runwayml.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, HTTP API examples, JSON request bodies, call links, transcripts, and recording URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RUNWAYML_API_SECRET, node, npm, a local video-call server, and optional cloudflared tunneling for remote devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs an unpinned npm runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the npm package version where possible before installation or repeated use.
+
+Risk: Avatar images, personality prompts, call audio/video, transcripts, and recordings may be sent to Runway.
+
+Mitigation: Use a narrowly scoped Runway API key, avoid sensitive user context in persistent avatar prompts, and share only data users expect to provide.
+
+Risk: Video calls may create transcripts and recordings involving sensitive user conversations.
+
+Mitigation: Get clear user consent before recording or transcribing calls and review generated follow-up actions before acting on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yining1023/skills/video-call-agent)
+- [Runway Developer Portal](https://dev.runwayml.com)
+- [openclaw-video-call npm Package](https://www.npmjs.com/package/openclaw-video-call)
+- [openclaw-skills Repository](https://github.com/runwayml/openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON request examples, API endpoint references, call invite links, transcript data, and recording URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, RUNWAYML_API_SECRET, and the openclaw-video-call runtime; optional cloudflared tunneling enables calls on other devices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,30 +1,151 @@
-# 5工具路由 + 兜底搜索机制
+# 引擎级路由 + 兜底搜索机制
 
-## 工具路由器
+## 总览：37通道引擎级路由
 
-根据素材的核查类型，自动选择最佳搜索工具：
+可用搜索通道共37个，分属5个工具：
 
-| 核查类型 | 路由目标 | 数据源 |
-|---------|---------|--------|
-| 金融硬数据（股价/市值/财报/CapEx/目标价） | 妙想 mx-data / mx-search | 东方财富实时行情、研报、财务数据 |
-| AI行业动态/模型发布/产品发布/论文 | aihot | aihot.virxact.com 公开API，实时AI资讯，无需API Key |
-| 行业背景/趋势/技术概念/竞品数据 | cn-web-search | 28引擎聚合（财经/美股/学术/技术） |
-| 近期动态/舆论/热点/行业讨论 | last30days-cn | 8大平台近30天（百度/微博/知乎/小红书/B站/微信/抖音/头条） |
-| 事实核查流程/谣言辨别 | news-fact-check | 核查方法论+多源验证框架 |
+| 工具 | 通道数 | 通道明细 |
+|------|-------|---------|
+| cn-web-search | 17引擎 | 公众号2(搜狗微信/必应索引) + 中文综合5(360/搜狗/必应中文/百度/头条) + 英文综合7(DDG/Qwant/Startpage/必应英文/Yahoo/Brave/Mojeek) + 技术2(SO/GitHub) + 财经3(东方财富/集思录/财新) + 百科2(Wiki中英文) |
+| 妙想5件套 | 5工具 | mx-data(行情/财务/关联) + mx-search(新闻/研报/政策/公告) + mx-xuangu(选股/行业筛选) + mx-zixuan(自选) + mx-moni(模拟) |
+| aihot | 6通道 | 5个category(ai-models/ai-products/industry/paper/tip) + 关键词搜索(q=) |
+| last30days-cn | 8平台 | 百度/微博/知乎/小红书/B站/微信/抖音/头条 |
+| news-fact-check | 1通道 | 核查方法论+多源验证框架 |
 
-### 路由规则
+---
 
-1. 含具体股票/市值/CapEx/EPS等金融指标 → 妙想优先
-2. **AI领域关键词（AI/大模型/LLM/OpenAI/Anthropic/Google AI等）→ aihot优先**，比通用搜索更精准更实时
-3. 含行业/技术/学术关键词（非AI领域）→ cn-web-search 优先
-4. 含"最新"/"近期"/"舆论"等时间敏感词 → last30days 优先
-5. 含"真假"/"辟谣"/"核实"等核查词 → news-fact-check
-6. 可组合：AI领域先查aihot，再用cn-web-search交叉验证
-7. 降级：妙想不可用→cn-web-search财经引擎；aihot不可用→cn-web-search技术引擎；last30days不可用→cn-web-search中文引擎
+## 话题领域→引擎级路由矩阵
 
-### 通用降级：WebSearch 兜底
+根据素材的话题领域，精准路由到最合适的引擎通道：
 
-当上述专用工具（妙想/aihot/last30days-cn/news-fact-check）在当前环境不可用时，**统一使用 `WebSearch` 工具替代**：
+| 话题领域 | 第1优先通道 | 第2优先通道 | 第3优先通道 |
+|---------|-----------|-----------|-----------|
+| **财经/金融/投资/上市** | mx-data(硬数据) + mx-search(资讯/研报/政策) | cn-web-search: 东方财富+集思录+财新 + **港交所披露易(港股/H股)** | mx-xuangu(行业/板块对比) |
+| **AI/大模型/LLM** | aihot: 对应category(ai-models/industry/paper等) | cn-web-search: Brave+DDG+必应英文(英文一手) | mx-search(如涉及上市公司) |
+| **科技/互联网/产品** | cn-web-search: Brave+DDG+必应英文(英文一手) + SO+GitHub(技术) | aihot(如涉及AI) | last30days-cn: 知乎+B站(深度讨论) |
+| **医疗/教育/政策** | cn-web-search: Wikipedia+Brave(权威一手) | cn-web-search: 财新(政策解读) | last30days-cn: 微信+知乎(深度) |
+| **近期舆论/热点** | last30days-cn: 微博+百度+抖音(热点) | cn-web-search: 搜狗微信(公众号) | cn-web-search: 必应中文(综合) |
+| **知识/概念/定义** | cn-web-search: Wikipedia中英文 | cn-web-search: Brave+DDG | cn-web-search: SO+GitHub(技术概念) |
+| **学术/研究/论文** | **arXiv REST API**(同行评审论文，Tier 1) | cn-web-search: Brave+DDG+必应英文(英文一手) | cn-web-search: Wikipedia中英文(概念背景) |
+| **公众号深度文章** | cn-web-search: 搜狗微信+必应索引 | last30days-cn: 微信 | — |
+
+### 路由规则（优先级从高到低）
+
+1. **话题领域匹配** → 按上方矩阵选择第1优先通道
+2. 含具体股票/市值/CapEx/EPS等金融指标 → 妙想mx-data优先
+3. **AI领域关键词**（AI/大模型/LLM/OpenAI/Anthropic/Google AI等）→ aihot优先
+4. 含行业/技术/学术关键词（非AI领域）→ cn-web-search对应引擎优先
+5. 含"最新"/"近期"/"舆论"等时间敏感词 → last30days-cn优先
+6. 含"真假"/"辟谣"/"核实"等核查词 → news-fact-check
+7. 可组合：AI领域先查aihot，再用cn-web-search英文引擎交叉验证
+8. 降级：妙想不可用→cn-web-search财经引擎；aihot不可用→cn-web-search英文引擎；last30days不可用→cn-web-search中文引擎
+9. **学术关键词**（论文/research/arXiv/DOI/Paper/Transformer/attention 等学术术语）→ arXiv REST API 优先（详见"学术信源专用通道"小节）
+
+---
+
+## cn-web-search 引擎选择规则
+
+cn-web-search有17个引擎，**必须根据场景选择引擎，不能默认走百度/360/头条**：
+
+| 搜索场景 | 优先引擎 | 避开引擎 | WebFetch URL模板 |
+|---------|---------|---------|----------------|
+| 财经深度 | 东方财富 + 集思录 + 财新 + 港交所披露易 | 百度/360/头条 | `https://search.eastmoney.com/search?keyword={Q}` / `https://www.jisilu.cn/explore/?keyword={Q}` / `https://search.caixin.com/search/?keyword={Q}` / `https://www1.hkexnews.hk/search/searchtitleweb.xhtml?lang=zh`（港股财报/公告） |
+| 英文一手信源 | Brave + DDG + Startpage + 必应英文 + Yahoo + Mojeek + Qwant | 中文通用引擎 | `https://search.brave.com/search?q={Q}` / `https://lite.duckduckgo.com/lite/?q={Q}` / `https://www.startpage.com/do/search?q={Q}&cluster=web` / `https://www.bing.com/search?q={Q}` / `https://search.yahoo.com/search?p={Q}` / `https://www.mojeek.com/search?q={Q}` / `https://www.qwant.com/?q={Q}&t=web` |
+| 知识/概念/定义 | Wikipedia中文 + Wikipedia英文 | 百度/360 | `https://zh.wikipedia.org/w/index.php?search={Q}&title=Special:Search` / `https://en.wikipedia.org/w/index.php?search={Q}&title=Special:Search` |
+| 公众号文章 | 搜狗微信 + 必应索引 | 头条 | `https://weixin.sogou.com/weixin?type=2&query={Q}&page=1` / `https://cn.bing.com/search?q=site:mp.weixin.qq.com+{Q}` |
+| 技术概念 | Stack Overflow + GitHub | 百度/360 | `https://stackoverflow.com/search?q={Q}` / `https://github.com/trending?since=weekly` |
+| 中文通用（兜底） | 百度 + 360 | — | `https://www.baidu.com/s?wd={Q}` / `https://m.so.com/s?q={Q}` |
+| 最新资讯（最后兜底） | 头条搜索 | — | `https://so.toutiao.com/search?keyword={Q}` |
+
+**关键约束：头条搜索仅作为最后兜底，不得作为默认引擎。**
+
+---
+
+## 学术信源专用通道（arXiv REST API）
+
+涉及学术论文/研究/模型架构等学术话题时，优先使用 arXiv REST API 获取一手论文信息（Tier 1 同行评审信源）。
+
+**调用方式**（WebFetch）：
+```
+http://export.arxiv.org/api/query?search_query=all:{关键词}&max_results=5&sortBy=relevance
+```
+
+**适用场景**：
+- 实录中引用了具体论文（如"Transformer 论文""attention is all you need"）
+- 涉及模型架构/算法原理（如 Diffusion/Mamba/MoE）
+- 学术人物访谈（论文作者/研究者）
+
+**信源分级**：arXiv 论文 = **Tier 1**（同行评审/官方预印本），必附 URL（`arxiv.org/abs/{id}`）
+
+**降级**：arXiv 无结果 → cn-web-search 英文引擎（Brave/DDG）→ Wikipedia（概念背景）→ Agent 已知信息[AI推断]
+
+**与 aihot 的区别**：aihot 覆盖 AI 行业新闻/产品发布，arXiv 覆盖学术论文本身。AI 领域访谈应 aihot + arXiv 双查。
+
+---
+
+## 妙想5件套路由详情
+
+| 工具 | 路由场景 | 调用方式 |
+|------|---------|---------|
+| **mx-data** | 金融硬数据：股价/市值/财报/CapEx/EPS/毛利率/股东/行业对比/板块数据 | `python ./mx_data.py "{自然语言查询}"` |
+| **mx-search** | 财经全场景：公司动态/行业分析/政策解读/研报/估值讨论/交易规则/事件解读/公告 | `python ./mx_search.py "{自然语言查询}"` |
+| **mx-xuangu** | 行业/板块筛选："XX行业有哪些公司"/"XX板块市盈率分布"等横向对比 | `python ./mx_xuangu.py "{自然语言条件}"` |
+| mx-zixuan | 自选股管理（非搜索用途，不纳入路由） | — |
+| mx-moni | 模拟交易（非搜索用途，不纳入路由） | — |
+
+**注意**：mx-search不限于"研报/目标价"，它的核心能力是**金融场景信源智能筛选**，覆盖新闻/公告/研报/政策/交易规则/具体事件/影响分析等全场景。财经话题的搜索补充应优先走mx-search。
+
+---
+
+## aihot 路由详情
+
+| 场景 | 端点 | 说明 |
+|------|------|------|
+| AI模型发布/更新 | `GET /api/public/items?mode=selected&category=ai-models` | 新模型、模型更新 |
+| AI产品发布 | `GET /api/public/items?mode=selected&category=ai-products` | 产品上线、功能更新 |
+| AI行业动态 | `GET /api/public/items?mode=selected&category=industry` | 融资、收购、人事变动 |
+| AI论文 | `GET /api/public/items?mode=selected&category=paper` | 重要论文 |
+| AI技巧与观点 | `GET /api/public/items?mode=selected&category=tip` | 观点文章 |
+| 关键词搜索 | `GET /api/public/items?q={关键词}` | 公司/技术/产品名搜索 |
+| 时间窗口 | `since=ISO-8601` | 限最近7天 |
+
+- 调用方式：通过 HTTP 请求 aihot.virxact.com 公开 API，无需 API Key
+- **必须带浏览器User-Agent**（否则403）：`UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"`
+- 不适用：非AI领域（金融/医疗/教育等通用行业）
+
+---
+
+## last30days-cn 路由详情
+
+| 平台 | 适用场景 | 内容类型 |
+|------|---------|---------|
+| 微信公众号 | 专业分析/深度文章 | Tier 3-4 |
+| 知乎 | 行业讨论/专业问答 | Tier 4-5 |
+| B站 | 深度视频内容/行业解读 | Tier 4-5 |
+| 微博 | 热点/舆论/快讯 | Tier 4-5 |
+| 百度 | 新闻聚合 | Tier 4-5 |
+| 小红书 | 用户口碑/消费端 | Tier 5 |
+| 抖音 | 短视频/热点 | Tier 5 |
+| 头条 | 资讯聚合 | Tier 4-5 |
+
+- 调用方式：`python {SKILL_DIR}/scripts/last30days.py "{主题}" --emit compact`
+- 可指定平台：`--search weibo,zhihu,bilibili`
+- 深度模式：`--deep --emit md`
+
+---
+
+## news-fact-check 路由详情
+
+1. 识别关键声明 → 从素材中提取可验证的核心事实主张
+2. 多源验证 → 权威新闻源比对 + 官方信息核查 + 专业核查网站
+3. 评估来源可靠性 → 媒体声誉/消息源明确性/多方观点/时效性
+4. 给出结论 → 已证实为真/已证实为假/部分属实/无法核实/误导性
+
+---
+
+## 通用降级：WebSearch 兜底
+
+当上述专用工具在当前环境不可用时，**统一使用 `WebSearch` 工具替代**：
 
 | 原始路由 | WebSearch 替代查询策略 |
 |---------|----------------------|
@@ -36,44 +157,17 @@
 
 **降级优先级**：专用工具 → WebSearch → Agent已知信息[AI推断]
 
-### 各工具查询策略
+---
 
-**妙想 mx-data / mx-search**：
-- 股价/市值 → mx-data 查实时行情和历史数据
-- 财报指标 → mx-data 查财务数据（收入/CapEx/EPS/毛利率等）
-- 研报/目标价 → mx-search 搜索分析师研报
-- 行业对比 → mx-data 查同业数据
+## 信源多样性门控（v1.1.0 升级，详见 source-quality-gate.md）
 
-**aihot（AI行业动态）**：
-- 调用方式：curl aihot.virxact.com 公开API，无需API Key
-- 必须带浏览器User-Agent（否则403）
-- AI模型发布/更新 → `GET /api/public/items?mode=selected&category=ai-models`
-- AI产品发布 → `GET /api/public/items?mode=selected&category=ai-products`
-- AI行业动态 → `GET /api/public/items?mode=selected&category=industry`
-- AI论文 → `GET /api/public/items?mode=selected&category=paper`
-- 关键词搜索 → `GET /api/public/items?q=关键词`（如q=OpenAI、q=RAG）
-- 时间窗口 → `since=ISO-8601`（最近7天内）
-- 日报 → `GET /api/public/daily`（用户明确说"日报"时才用）
-- 适用场景：访谈涉及AI/大模型/LLM/OpenAI/Anthropic等关键词时优先使用
-- 不适用：非AI领域（金融/医疗/教育等通用行业）
+**Step 5 搜索完成后必须执行**，3 项硬阻断，任一不通过→换通道重搜。完整规范见 `source-quality-gate.md`。
 
-**cn-web-search**：
-- 行业背景数据 → 财经引擎（东方财富/集思录/财新）+ 美股引擎（Seeking Alpha/Finviz）
-- 技术概念注释 → 知识引擎（Wikipedia中英文）+ 技术引擎（Stack Overflow/GitHub）
-- 竞品/市场数据 → 中文综合引擎 + 美股深度引擎
-- 公众号文章查重 → 搜狗微信引擎
+1. **信源多样性**：单一域名≤30% + 聚合平台（头条/百家号/UC大鱼号/企鹅号等）≤20% + 独立信源≥6个
+2. **信源分级覆盖**：Tier 1 官方≥1 + Tier 2 权威媒体≥2 + Tier 3 行业研究≥1 + Tier 4-5 占比≤50%
+3. **始发信源追溯**：聚合平台内容必须追溯始发信源，追溯不到→降级 Tier 5 或弃用
 
-**last30days-cn**：
-- 近期热点 → 百度/微博/头条（新闻类）
-- 行业讨论 → 知乎/B站（深度内容类）
-- 用户口碑 → 小红书/抖音（消费端）
-- 专业分析 → 微信公众号（深度文章）
-
-**news-fact-check**：
-1. 识别关键声明 → 从素材中提取可验证的核心事实主张
-2. 多源验证 → 权威新闻源比对 + 官方信息核查 + 专业核查网站
-3. 评估来源可靠性 → 媒体声誉/消息源明确性/多方观点/时效性
-4. 给出结论 → 已证实为真/已证实为假/部分属实/无法核实/误导性
+未通过时换通道优先级：妙想mx-search → cn-web-search财经引擎 → cn-web-search英文引擎（Brave/DDG）→ arXiv（学术话题）→ Wikipedia
 
 ---
 
@@ -81,34 +175,34 @@
 
 **核心原则：每个干货信息点的补充信息不能空缺。**
 
-当首选工具搜索无结果或结果不足以形成有效补充时，必须按以下顺序逐个尝试其他工具：
+当首选通道搜索无结果或结果不足以形成有效补充时，按话题领域矩阵逐级降级：
 
 ```
-首选工具搜索
+第1优先通道搜索
     ↓
 有有效结果？ ──是──→ 记录结果，标记核查状态
     │
     否
     ↓
-工具2搜索（调整查询词：放宽条件）
+第2优先通道搜索（调整查询词：放宽条件）
     ↓
 有有效结果？ ──是──→ 记录结果，标记 [PARTIAL] 或 [相关]
     │
     否
     ↓
-工具3搜索（换角度/换语言）
+第3优先通道搜索（换角度/换语言）
     ↓
 有有效结果？ ──是──→ 记录结果，标记 [相关]
     │
     否
     ↓
-工具4搜索（换领域引擎）
+cn-web-search 英文引擎（Brave/DDG等）
     ↓
 有有效结果？ ──是──→ 记录结果，标记 [间接相关]
     │
     否
     ↓
-工具5搜索（最宽泛查询）
+cn-web-search 中文通用（百度/360，最后兜底）
     ↓
 有有效结果？ ──是──→ 记录结果，标记 [间接相关]
     │
@@ -121,11 +215,11 @@
 
 | 尝试轮次 | 查询词调整 | 示例 |
 |---------|----------|------|
-| 第1轮（首选工具） | 精确查询 | "美光 FY2027 CapEx 440亿美元 大摩" |
-| 第2轮（换工具） | 放宽条件 | "Micron capital expenditure 2027 forecast" |
-| 第3轮（换角度） | 查相关主题 | "存储行业 资本开支 2026 2027 趋势" |
-| 第4轮（换领域引擎） | 换数据源 | "MU capital expenditure analyst estimate" |
-| 第5轮（最宽泛） | 查大类背景 | "美光 投资 扩产 计划" |
+| 第1轮（首选通道） | 精确查询 | "SpaceX Starlink ARPU 2026" |
+| 第2轮（第2优先通道） | 放宽条件 | "Starlink revenue per user decline" |
+| 第3轮（第3优先通道） | 查相关主题 | "SpaceX 营收 星链 用户数 趋势" |
+| 第4轮（英文引擎） | 换数据源 | "SpaceX Starlink financial metrics" |
+| 第5轮（中文通用兜底） | 查大类背景 | "SpaceX 星链 商业模式" |
 
 ### 核查状态标记
 
@@ -143,13 +237,12 @@
 
 - 绝不允许任何干货信息点的补充信息为空
 - 即使无法验证具体数字，也要提供该领域的背景趋势、行业共识或相关案例
-- 例如：无法验证"美光FY27 CapEx 440亿"，但可以补充"存储行业整体CapEx趋势"和"美光历史CapEx数据"作为参照系
 
 ---
 
 ## 来源可信度分级体系
 
-搜索工具只是通道，可信度取决于搜索结果的**实际来源**。所有补充信息必须标注来源分级，决定链接策略和文章写法。
+搜索工具只是通道，可信度取决于搜索结果的**实际来源**。所有补充信息必须标注来源分级。
 
 ### 5级采信标准
 
@@ -173,13 +266,16 @@
     └─ 来源为UGC平台/无明确来源/Agent推断 → Tier 5
 ```
 
-### 各工具搜索结果的典型分级
+### 各通道搜索结果的典型分级
 
-| 工具 | 高概率产出级别 | 说明 |
+| 通道 | 高概率产出级别 | 说明 |
 |------|--------------|------|
 | 妙想 mx-data/mx-search | Tier 1-2 | SEC文件、研报、官方行情 |
 | aihot | Tier 3-4 | 聚合AI行业新闻，需追溯原始报道判断分级 |
-| cn-web-search | Tier 2-5 | 跨度大，需按URL域名判断 |
+| cn-web-search 财经引擎 | Tier 2-3 | 东方财富/集思录/财新 |
+| cn-web-search 英文引擎 | Tier 2-3 | Brave/DDG/Bing等，一手信源多 |
+| cn-web-search 百科引擎 | Tier 2-3 | Wikipedia |
+| cn-web-search 中文通用 | Tier 4-5 | 百度/360/头条，聚合内容多 |
 | last30days-cn | Tier 4-5 | UGC为主，极少Tier 2 |
 | news-fact-check | Tier 1-2 | 专业核查机构结论 |
 
@@ -194,18 +290,20 @@
 - **来源分级**: Tier {1-5}
 - **来源标注**: {来源名称}（如：S-1/A招股书 / 路透社 / TrendForce 2026年HBM报告）
 - **来源URL**: {URL}（Tier 1-3必填，Tier 4选填，Tier 5填"无"）
+- **搜索通道**: {使用的具体通道}（如：mx-search / cn-web-search:Brave / aihot:industry）
 - **文章写法**: {在文章中的具体写法，含链接或标注}
 - **链接位置**: 正文行内 / 文末参考来源 / 无链接
 ```
 
 **示例**：
 ```markdown
-### [DATA]-3: HBM 2026产能售罄
+### [DATA]-3: SpaceX估值从1750亿增至1.77万亿
 
 - **核查结果**: [VERIFIED]
-- **来源分级**: Tier 3
-- **来源标注**: TrendForce 2026年HBM供需报告
-- **来源URL**: https://www.trendforce.com/xxx
-- **文章写法**: 2026年HBM产能已售罄（据TrendForce 2026年HBM供需报告）
-- **链接位置**: 文末参考来源
+- **来源分级**: Tier 2
+- **来源标注**: 路透社
+- **来源URL**: https://www.reuters.com/xxx
+- **搜索通道**: cn-web-search:Brave
+- **文章写法**: 不到三年估值从1750亿飙升至1.77万亿（[路透社](https://www.reuters.com/xxx)）
+- **链接位置**: 正文行内
 ```

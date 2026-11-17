@@ -1,46 +1,61 @@
-## Description: <br>
-Virtual Forum orchestrates structured multi-agent debates between distilled persona skills and can add game-theory and behavioral-economics analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+虚拟论坛 orchestrates structured multi-agent debates between distilled persona skills and can add game-theory analysis for strategic discussions.
 
-## Publisher: <br>
-[erongcao](https://clawhub.ai/user/erongcao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erongcao](https://clawhub.ai/user/erongcao)
 
-## Use Case: <br>
-Developers and agent users use this skill to run structured debates, roundtable discussions, adversarial decision sessions, and strategy analysis across persona skills. It is intended for exploratory analysis and decision support rather than authoritative conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bash workflow can read local Skill files and send their contents plus discussion history to Claude. <br>
-Mitigation: Review Skill files for secrets before use, set SKILLS_DIR and OUTPUT_DIR deliberately, and run the workflow only when external API transfer is acceptable. <br>
-Risk: Parallel Claude CLI calls can consume API quota and require valid local Claude CLI credentials. <br>
-Mitigation: Confirm authentication, quota, and cost expectations before running long or multi-participant debates. <br>
-Risk: Game-theory and behavioral-economics outputs may be persuasive or experimental rather than neutral analysis. <br>
-Mitigation: Treat debate outcomes and strategy advice as decision-support material and apply independent human review before acting on them. <br>
+## Use Case:
 
+Developers and agent users use this skill to run structured discussions, adversarial debates, and decision-oriented forums among persona skills. It can produce debate transcripts, summaries, decisions, and strategy-oriented game-theory analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erongcao/virtual-forum) <br>
-- [README](artifact/README.md) <br>
-- [Usage guide](artifact/USAGE.md) <br>
-- [Claude Code parallel debate script documentation](artifact/v5/README.md) <br>
-- [Game-theory module documentation](artifact/v5/game-theory/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown debate transcripts and reports, JavaScript return objects, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce debate records, moderator summaries, decision reports, game-theory analysis, and behavioral-economics strategy guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.3 (source: server release evidence, package.json, and CHANGELOG; SKILL.md frontmatter says 5.0.2) <br>
+Risk: Selected local Skill files and debate prompts can be sent to the Claude provider through the user's local Claude Code setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review participant Skill files for secrets or private instructions before use, and avoid including sensitive skills in debate sessions.
+
+Risk: The debate script has weak scoping controls around which local skills may be read.
+
+Mitigation: Run the skill only in a contained workspace with explicit participant selection and narrow SKILLS_DIR and OUTPUT_DIR values.
+
+Risk: Broad or casual activation may expose private context without clear user consent.
+
+Mitigation: Use explicit activation and obtain consent before sending persona skill content or debate prompts to external model processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/erongcao/skills/virtual-forum)
+- [README.md](artifact/README.md)
+- [USAGE.md](artifact/USAGE.md)
+- [v5 Claude Code parallel debate README](artifact/v5/README.md)
+- [v5 game-theory README](artifact/v5/game-theory/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, plain text, JavaScript examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include debate transcripts, round summaries, decision recommendations, and game-theory reports.]
+
+## Skill Version(s):
+
+5.0.3 (source: release evidence, package.json, CHANGELOG, released 2026-04-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

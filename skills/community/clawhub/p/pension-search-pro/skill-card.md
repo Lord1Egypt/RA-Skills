@@ -1,43 +1,58 @@
-## Description: <br>
-企业年金智能查询技能。搜索并确认企业年金信息，输出带来源链接和错误检查的标准化调查报告。只查询企业年金，不查询职业年金。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for and verifies enterprise annuity information about organizations, then produces a standardized investigation report with source links, confidence labels, and error checks.
 
-## Publisher: <br>
-[yanwenzhe](https://clawhub.ai/user/yanwenzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanwenzhe](https://clawhub.ai/user/yanwenzhe)
 
-## Use Case: <br>
-Analysts and agents use this skill to investigate whether a named organization has public enterprise-pension information and to produce a sourced Markdown report with confidence labels and review checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; intended for public enterprise-pension research about organizations covered by China enterprise-pension context. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investigation queries may send target organization names and pension-related terms to external search providers. <br>
-Mitigation: Review queries before execution, avoid confidential targets or sensitive internal context, and use only approved search providers and credentials. <br>
-Risk: Security review found the scripts may do more than the advertised enterprise-pension-only purpose. <br>
-Mitigation: Treat script output as a draft, review generated reports before use, and confirm that conclusions address enterprise pensions rather than occupational pensions. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Review and scan the skill before installing or running it in an agent environment. <br>
+## Use Case:
 
+External users and analysts use this skill to investigate whether organizations have enterprise annuity arrangements, collect supporting web evidence, and generate standardized markdown reports for review. It is designed for evidence-gathering and reporting, not authoritative benefits determination.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanwenzhe/pension-search-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/yanwenzhe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown investigation report with source links, confidence labels, and checklist items; shell scripts may also print search URLs and write Markdown report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an organization name as the primary input. Script execution may require curl, jq, and TAVILY_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The security review reports that the scripts search and report on occupational annuity despite the skill claiming an enterprise-annuity-only scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the scripts before relying on the enterprise-annuity-only claim; treat occupational-annuity results as out of scope unless explicitly intended.
+
+Risk: Organization names and pension-related queries may be sent to Tavily and public search engines.
+
+Mitigation: Use only queries appropriate for external search, avoid sensitive personnel or benefits data, and review generated source links before sharing reports.
+
+Risk: The security review flags Tavily credential handling as something users should review.
+
+Mitigation: Use a limited Tavily key, avoid shared machines, do not commit key files, and rotate credentials after testing or batch runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yanwenzhe/skills/pension-search-pro)
+- [Publisher profile](https://clawhub.ai/user/yanwenzhe)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown investigation report with source links, confidence labels, summary tables, and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Tavily and public search engines; batch mode writes per-organization markdown reports and a summary.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and SKILL.md frontmatter; artifact _meta.json and body also mention 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

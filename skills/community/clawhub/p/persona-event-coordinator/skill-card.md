@@ -1,40 +1,49 @@
-## Description: <br>
-Plan and manage events, including scheduling, invitations, and logistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and manage events — scheduling, invitations, and logistics.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and workspace agents use this skill to coordinate event planning in Google Workspace, including calendar entries, invitations, event materials, announcements, and RSVP or logistics tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send emails, post Chat updates, upload Drive files, create attendee calendar events, and edit Sheets in a real Google Workspace account. <br>
-Mitigation: Require the agent to show and get approval for recipients, attendee lists, message text, calendar details, Drive folders and sharing settings, Chat spaces, and Sheet targets before it sends, posts, uploads, invites, or appends anything. <br>
-Risk: Event logistics actions may expose or modify business information across Google Workspace services. <br>
-Mitigation: Install and run the skill only with appropriately scoped Workspace access, and review planned changes before applying them. <br>
+## Use Case:
 
+Employees and agents use this persona to coordinate Google Workspace event logistics, including calendar entries, invitations, materials, Chat updates, and RSVP tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/persona-event-coordinator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown instructions with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command and Google Workspace utility skills for Calendar, Gmail, Drive, Chat, and Sheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: ClawHub release evidence; artifact metadata version 0.22.5) <br>
+Risk: Recipient-facing calendar invitations, emails, shared files, or Chat posts could disclose details or send premature messaging if not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipients, spaces, shared links, and message content before allowing the agent to create events, send email, upload materials, or post announcements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/persona-event-coordinator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown with Google Workspace command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gws plus the gws-calendar, gws-gmail, gws-drive, gws-chat, and gws-sheets skills.]
+
+## Skill Version(s):
+
+1.0.12 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

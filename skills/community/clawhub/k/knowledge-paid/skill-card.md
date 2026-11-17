@@ -1,38 +1,53 @@
-## Description: <br>
-Provides guidance for finding, filtering, and assessing paid knowledge courses and lecture resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供得到/知乎盐选等付费专栏、精品讲座获取指南。
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-External users can use this skill to compare paid learning resources by stage, teaching format, assessment indicators, course details, and learning progress. Use should be limited to lawful learning workflows such as official subscriptions, authorized trials, discounts, or user-owned materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be interpreted as helping obtain paid platform content without clear authorization boundaries. <br>
-Mitigation: Use it only for official subscriptions, authorized trials, discounts, or user-owned materials; do not use it to bypass paywalls, scrape paid content, or obtain copyrighted content without permission. <br>
+## Use Case:
 
+Learners and education shoppers use this skill to compare paid Chinese-language columns, courses, lectures, and study resources by stage, format, assessment criteria, instructor background, progress, and exam outcomes.
 
-## Reference(s): <br>
-- [Knowledge Paid on ClawHub](https://clawhub.ai/mikeclaw007/knowledge-paid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include resource filters, course fields, learning progress details, and authorized access guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Users may seek or apply guidance in ways that bypass legitimate access to paid education content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use legitimate trials, subscriptions, and provider-approved downloads; the artifact itself does not grant or request account access.
+
+Risk: Course recommendations, discounts, exam details, and learning outcomes can become stale or vary by provider.
+
+Mitigation: Confirm current course terms, exam requirements, and provider claims before subscribing or relying on the guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/knowledge-paid)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance with structured comparison fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language educational content guidance; no code execution or account access requested by the artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Solopreneur helps solo business owners manage dashboards, pipeline tracking, invoicing, priorities, and weekly reviews while keeping business data local. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solo business management with dashboard, pipeline tracking, invoicing, and weekly reviews for clients, revenue, pipeline, invoices, and priorities.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Solo business owners, freelancers, and independent consultants use this skill to organize local client records, pipeline status, invoices, priorities, revenue metrics, and weekly business reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client and financial records are stored locally and may contain sensitive business data. <br>
-Mitigation: Keep the local workspace access controlled, use explicit requests for client or financial updates, and manage retention and deletion according to business needs. <br>
-Risk: Invoice, pipeline, and priority outputs may be incomplete or unsuitable for accounting, tax, payment, or legal decisions. <br>
-Mitigation: Use outputs for organization and drafting only; do not use the skill to process payments, file taxes, or replace accountant or legal counsel review. <br>
-Risk: Future helper scripts could change how local business records are read or updated. <br>
-Mitigation: Review added helper scripts before relying on them for client, invoice, pipeline, or revenue records. <br>
+## Use Case:
 
+Solo business operators and their agents use this skill to inspect local business metrics, track clients and pipeline status, draft invoices, prioritize work, and support weekly business reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AGIstack/solopreneur) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and terminal text with local JSON-backed business records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local memory records under the solopreneur workspace; no payment processing or cloud accounting integration is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill handles local client, revenue, invoice, pipeline, and priority data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the workspace memory directory local, review generated business records before reuse, and avoid sharing client or financial data outside the intended workspace.
+
+Risk: The packaged release only includes the dashboard script, while the documentation describes additional invoice, pipeline, payment, priority, and review workflows.
+
+Mitigation: Confirm required workflow scripts are present before relying on those workflows, and treat missing-script commands as unsupported until separately supplied.
+
+Risk: The skill can draft invoices and track payments but is not a payment processor, tax filer, accountant, or legal adviser.
+
+Mitigation: Use outputs as operational drafts and records only; route payments, tax decisions, and legal/accounting questions through appropriate external systems or professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agistack/skills/solopreneur)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Text and Markdown with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local workspace memory for client, revenue, invoice, pipeline, review, and priority data.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

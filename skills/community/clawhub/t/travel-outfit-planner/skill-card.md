@@ -1,43 +1,56 @@
-## Description: <br>
-Generate travel capsule-wardrobe plans with outfit formulas, packing lists, layering strategy, and visual lookbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate travel capsule-wardrobe plans with outfit formulas, packing lists, layering strategy, and a visual lookbook.
 
-## Publisher: <br>
-[tinayunyunyun](https://clawhub.ai/user/tinayunyunyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinayunyunyun](https://clawhub.ai/user/tinayunyunyun)
 
-## Use Case: <br>
-External users use this skill to plan practical travel outfits across destinations, weather, scenes, and travelers. It produces a capsule wardrobe, daily outfit calendar, packing checklist, luggage strategy, travel reminders, and an optional visual lookbook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a local HTML lookbook that may include trip details and outfit planning information. <br>
-Mitigation: Review the generated HTML before sharing it and avoid including sensitive travel or identity details in lookbook content. <br>
-Risk: The optional lookbook workflow can use third-party image or search services. <br>
-Mitigation: Use the Pexels API key only when comfortable sending search terms to that service, and review external search links before following or sharing them. <br>
+## Use Case:
 
+External users use this skill to plan trip wardrobes across destinations, weather, scenes, and travelers, including daily outfit calendars, capsule packing lists, layering strategy, and a local visual lookbook.
 
-## Reference(s): <br>
-- [Lookbook Guide](artifact/references/lookbook-guide.md) <br>
-- [Outfit Examples](artifact/references/outfit-examples.md) <br>
-- [Pexels API](https://www.pexels.com/api/) <br>
-- [ClawHub Release Page](https://clawhub.ai/tinayunyunyun/travel-outfit-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Chinese Markdown travel outfit plan plus generated HTML lookbook file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for lookbook generation; can use an optional Pexels API key and falls back to CSS placeholders and Xiaohongshu search links when no key is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using a Pexels API key can send destination and style search keywords to Pexels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the lookbook generator without a Pexels API key, or provide a key only when sharing those search keywords is acceptable.
+
+Risk: Generated HTML lookbooks have a limited safety caveat when created from untrusted JSON input.
+
+Mitigation: Open lookbooks only when they are generated from trusted trip data, and review or fix the item-ID escaping issue before using untrusted JSON.
+
+## Reference(s):
+
+- [Lookbook Guide](references/lookbook-guide.md)
+- [Outfit Examples and Scenario Rules](references/outfit-examples.md)
+- [Pexels API](https://www.pexels.com/api/)
+- [Travel Outfit Planner on ClawHub](https://clawhub.ai/tinayunyunyun/skills/travel-outfit-planner)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Simplified Chinese Markdown plus a generated HTML lookbook file; may include JSON lookbook data and a shell command to render the lookbook.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 for the local lookbook generator. A Pexels API key is optional; without it, the lookbook uses CSS placeholders and Xiaohongshu search links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

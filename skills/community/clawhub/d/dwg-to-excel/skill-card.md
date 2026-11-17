@@ -1,44 +1,55 @@
-## Description: <br>
-Convert AutoCAD DWG files (1983-2026) to Excel databases using DwgExporter CLI. Extract layers, blocks, attributes, and geometry data without Autodesk licenses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert AutoCAD DWG files (1983-2026) to Excel databases using DwgExporter CLI. Extract layers, blocks, attributes, and geometry data without Autodesk licenses.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Developers, CAD/BIM engineers, and construction teams use this skill to convert local DWG files into Excel data for layer, block, attribute, geometry, text, quantity-takeoff, and drawing-analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes a local DwgExporter.exe converter, so an untrusted executable could affect local files or produce misleading output. <br>
-Mitigation: Install and run only a trusted DwgExporter.exe, and verify the converter path before conversion. <br>
-Risk: Recursive or broad batch conversion can process unintended DWG files across a folder tree. <br>
-Mitigation: Use explicit input and output paths, and enable recursive batch processing only when the full folder scope is intended. <br>
-Risk: Generated Excel and PDF files can contain sensitive CAD project data. <br>
-Mitigation: Treat exported XLSX and PDF files as sensitive project artifacts and apply the same access controls as the source DWG files. <br>
+## Use Case:
 
+Developers, CAD/BIM engineers, and construction data teams use this skill to convert local DWG drawings into Excel datasets and help analyze layers, blocks, attributes, geometry, text, and drawing summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/dwg-to-excel) <br>
-- [cad2data Pipeline](https://github.com/datadrivenconstruction/cad2data-Revit-IFC-DWG-DGN-pipeline-with-conversion-validation-qto) <br>
-- [DWG to Excel Pipeline video tutorial](https://www.youtube.com/watch?v=jVU7vlMNTO0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with CLI and Python code blocks; local XLSX and optional PDF files from DwgExporter.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a locally installed DwgExporter.exe and explicit DWG input paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: claw.json and server-resolved release metadata) <br>
+Risk: Generated Excel or PDF outputs can expose sensitive project annotations, attributes, coordinates, layouts, and other drawing metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat converted outputs as sensitive project files and share or store them under the same access controls as the source DWG.
+
+Risk: The skill executes a local DWG conversion tool against user-selected files.
+
+Mitigation: Use only trusted local DWG paths and a verified DwgExporter installation when running conversion commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/datadrivenconstruction/skills/dwg-to-excel)
+- [cad2data pipeline repository](https://github.com/datadrivenconstruction/cad2data-Revit-IFC-DWG-DGN-pipeline-with-conversion-validation-qto)
+- [DWG to Excel pipeline video tutorial](https://www.youtube.com/watch?v=jVU7vlMNTO0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local file conversion and analysis; generated Excel and PDF outputs are created by the local DwgExporter CLI.]
+
+## Skill Version(s):
+
+2.0.0 (source: artifact/claw.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

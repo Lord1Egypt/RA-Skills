@@ -1,45 +1,59 @@
-## Description: <br>
-PaperCash helps students and academic writers search academic sources, generate literature reviews and outlines, run similarity prechecks, rewrite and polish drafts, format citations, and export Word-ready outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+论文全流程辅助: 8源检索、综述生成、查重预检、降AI率、参考文献格式化、Word导出.
 
-## Publisher: <br>
-[jesseovo](https://clawhub.ai/user/jesseovo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jesseovo](https://clawhub.ai/user/jesseovo)
 
-## Use Case: <br>
-External users and academic writers use this skill to gather scholarly sources, draft literature-review structure, format citations, and prepare academic writing artifacts. It is most appropriate as an assisted review and drafting aid where the user checks sources, claims, and institutional policy compliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The humanize feature can be used to conceal AI authorship or bypass school policies. <br>
-Mitigation: Use rewriting only as an editing aid, disclose assistance where required, and require the final draft to reflect the user's own analysis. <br>
-Risk: Generated text may add unsupported personal research claims or overstate findings. <br>
-Mitigation: Review every claim against the user's actual data, cited sources, and assignment requirements before submission. <br>
-Risk: Search, citation, and formatting workflows may process confidential drafts or copied account cookies. <br>
-Mitigation: Avoid entering sensitive drafts or credentials unless the user understands where queries, cookies, and external requests may go. <br>
+## Use Case:
 
+Students and academic writers use PaperCash to search scholarly sources, draft literature reviews and outlines, format citations, run plagiarism prechecks, polish text, and export Word documents. Agents should present results as assistance that requires user review, source verification, and academic-integrity checks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/jesseovo/papercash) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Project README](artifact/README.md) <br>
-- [ClawHub metadata](artifact/clawhub.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON from selected commands, and optional DOCX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save search, review, and formatting outputs to local files when invoked with export or save options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research-derived queries and manuscript text may be sent to external academic services during search, plagiarism precheck, citation lookup, or diagnostics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, unpublished, or institution-restricted manuscripts unless external service use is acceptable; review generated search terms before use.
+
+Risk: Optional CNKI/Wanfang cookies and Semantic Scholar API keys can be stored in local configuration files.
+
+Mitigation: Store credentials with restrictive file permissions, prefer environment variables when possible, and remove credentials when no longer needed.
+
+Risk: The humanize feature can be misused to conceal AI authorship or violate academic policies.
+
+Mitigation: Use rewriting as editing assistance only, keep the student or author responsible for the final text, and follow institutional disclosure and academic-integrity rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jesseovo/skills/papercash)
+- [README.md](README.md)
+- [User feedback report](docs/user_feedback_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, DOCX files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown, compact text, JSON, or exported Word documents depending on the command and flags.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can save outputs to a chosen directory and can export search or review results as .docx files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

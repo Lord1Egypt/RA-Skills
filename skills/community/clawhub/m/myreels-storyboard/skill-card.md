@@ -1,46 +1,54 @@
-## Description: <br>
-Professional storyboard design tool for short drama/video production. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional storyboard design tool for short drama and video production that helps plan stories, characters, shot breakdowns, CSV review tables, and handoff guidance for downstream image or video generation.
 
-## Publisher: <br>
-[beautyaiclub](https://clawhub.ai/user/beautyaiclub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beautyaiclub](https://clawhub.ai/user/beautyaiclub)
 
-## Use Case: <br>
-Creators and production teams use this skill to turn a plot outline or script into character designs, relationship planning, and structured storyboard CSVs for short-form video production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Story scripts, draft CSVs, generation requests, and metadata may be saved in a local storyboard project workspace. <br>
-Mitigation: Choose the output folder deliberately and avoid using confidential scripts unless local drafts and generation metadata are acceptable. <br>
-Risk: Actual image and video generation is handed off to a separate myreels-api skill. <br>
-Mitigation: Review the separate myreels-api skill before sending approved CSVs or prompts for image or video generation. <br>
-Risk: Storyboards and prompts can contain inconsistent character, relationship, or shot details if the source story is ambiguous. <br>
-Mitigation: Review and approve character tags, relationship rows, and storyboard CSVs before using them for downstream generation. <br>
+## Use Case:
 
+Creators, production planners, and agent users use this skill to turn story outlines or scripts into character design prompts, relationship matrices, shot-by-shot storyboard CSVs, and review-ready planning notes. It is intended for storyboard planning and handoff; actual image and video generation is delegated to a separate myreels-api workflow.
 
-## Reference(s): <br>
-- [Character Design Reference](references/character-design.md) <br>
-- [Recommended Model List](references/models.md) <br>
-- [Multilingual Support Reference](references/multilingual.md) <br>
-- [Scene Templates for Short Drama](references/scene-templates.md) <br>
-- [Storyboard Template & Format Specification](references/storyboard-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration] <br>
-**Output Format:** [Markdown guidance and CSV files for character, relationship, and storyboard planning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local storyboard project workspaces with draft, approved, export, request, task, metadata, review, and delivery folders when file output is needed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: The skill may save story briefs, prompts, request payloads, task IDs, metadata, returned URLs, and generated media references in local project folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a deliberate output directory and avoid sensitive or confidential story material unless local retention is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/beautyaiclub/skills/myreels-storyboard)
+- [Character Design Reference](references/character-design.md)
+- [Recommended Model List](references/models.md)
+- [Multilingual Support Reference](references/multilingual.md)
+- [Scene Templates for Short Drama](references/scene-templates.md)
+- [Storyboard Template & Format Specification](references/storyboard-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance and CSV-compatible planning tables for characters, relationships, and storyboard shots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May organize local project workspaces containing story briefs, prompts, review notes, CSV drafts, approved snapshots, request payloads, task records, metadata, and generated media references.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

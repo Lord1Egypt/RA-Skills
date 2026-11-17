@@ -1,42 +1,54 @@
-## Description: <br>
-支持在开源中国平台发布和管理技术博客文章，包含写作、编辑、分类、标签和发布流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports publishing and managing technical blog articles on OSCHINA, including writing, editing, categorization, tagging, and publication flow guidance.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and technical writers use this skill as a manual guide for publishing, editing, categorizing, tagging, and formatting technical blog articles on OSCHINA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the guide for an official OSCHINA integration or automation. <br>
-Mitigation: Present it as manual publishing guidance and verify OSCHINA account actions directly in the OSCHINA interface. <br>
-Risk: Publishing workflows may involve OSCHINA account credentials. <br>
-Mitigation: Do not provide OSCHINA credentials to an agent unless a separate trusted tool clearly explains why it needs them and how it will use them. <br>
+## Use Case:
 
+Chinese-speaking developers and technical content authors use this skill for practical guidance on drafting, formatting, tagging, and publishing blog posts on OSCHINA.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/kay-oschina-content) <br>
-- [Publisher profile](https://clawhub.ai/user/shenghoo123-png) <br>
-- [OSCHINA](https://www.oschina.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guide with article templates and step-by-step publishing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or automation; produces manual publishing guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Following the guide may involve logging into OSCHINA or a third-party account and publishing public content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review account login choices and article drafts before publishing.
+
+Risk: The publishing workflow can change on OSCHINA after the skill release.
+
+Mitigation: Confirm current OSCHINA interface labels and content policies before relying on the steps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/kay-oschina-content)
+- [OSCHINA](https://www.oschina.net)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with article templates and step-by-step publishing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content guidance; may include article title and body templates]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

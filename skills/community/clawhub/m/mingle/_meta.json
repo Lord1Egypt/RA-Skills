@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn780jv20fjwp08gw7vmveqz1581rbsv",
-  "slug": "mingle",
-  "version": "2.2.1",
-  "publishedAt": 1773606967578
+  "name": "mingle",
+  "display_name": "Mingle",
+  "description": "Find people through your agent. Tell your agent who you're looking for and Mingle helps find the right person through their agent.",
+  "version": "5.0.0",
+  "author": "aeoess",
+  "tags": [
+    "people",
+    "networking",
+    "agent-to-agent",
+    "open-source",
+    "mcp"
+  ],
+  "mcp_server": "mingle-mcp",
+  "install": "npx mingle-mcp-setup@5.0.0",
+  "tools": 8,
+  "license": "Apache-2.0",
+  "homepage": "https://aeoess.com/mingle"
 }

@@ -1,39 +1,58 @@
-## Description: <br>
-Perform deep, concurrent web research using the Perplexity Search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform deep, concurrent web research using the Perplexity Search API.
 
-## Publisher: <br>
-[HolyGrass](https://clawhub.ai/user/HolyGrass) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[holygrass](https://clawhub.ai/user/holygrass)
 
-## Use Case: <br>
-Developers and agent users use this skill to break complex research requests into targeted search queries, fetch Perplexity Search API results concurrently, and synthesize sourced findings into a Markdown report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user research queries to the Perplexity API and may automatically install an unpinned third-party Python package at runtime. <br>
-Mitigation: Review SKILL.md before deployment, avoid sensitive queries unless external API sharing is intended, and prefer preinstalling or pinning the dependency in the execution environment. <br>
+## Use Case:
 
+Developers and external users can use this skill to have an agent decompose complex research requests into focused queries, retrieve current web results through Perplexity, and synthesize a cited Markdown report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HolyGrass/echo-openclaw-perplexity-ultimate-async-deep-researcher) <br>
-- [Publisher profile](https://clawhub.ai/user/HolyGrass) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with inline hyperlink citations, supported by JSON search results from the Perplexity Search API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PERPLEXITY_API_KEY and python3; may install the unpinned perplexityai Python package at runtime; requests up to five search results per query with 2048 tokens per page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may install an unpinned Python package at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a sandbox where runtime package installation is acceptable, or preinstall and pin the Perplexity SDK before enabling the skill.
+
+Risk: Research queries and retrieved context are sent to Perplexity using PERPLEXITY_API_KEY.
+
+Mitigation: Avoid sensitive, confidential, or regulated research topics unless that data flow is acceptable, and scope the API key specifically to this use.
+
+Risk: The runtime environment requires python3, network egress, and a writable package-install location.
+
+Mitigation: Verify those runtime requirements in the target sandbox or bake dependencies into the image before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/holygrass/skills/echo-openclaw-perplexity-ultimate-async-deep-researcher)
+- [Publisher profile](https://clawhub.ai/user/holygrass)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research report with inline citations, plus Python code execution and JSON search-result parsing during the workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and PERPLEXITY_API_KEY; uses up to five concurrent Perplexity search queries and requests snippets capped at 2048 tokens per page.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

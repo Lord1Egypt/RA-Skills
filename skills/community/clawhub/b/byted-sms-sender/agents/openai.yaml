@@ -1,0 +1,4 @@
+interface:
+  display_name: "火山引擎短信（Volcengine SMS）"
+  short_description: "发短信、验证码和营销群发，支持创建资质、签名模板与回执"
+  default_prompt: "使用 $byted-sms-sender 通过火山引擎发送短信，必要时通过本机私密向导创建资质，并处理服务开通、签名模板和回执查询。"

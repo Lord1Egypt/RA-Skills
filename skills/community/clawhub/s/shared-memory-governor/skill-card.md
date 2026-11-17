@@ -1,43 +1,62 @@
-## Description: <br>
-Govern a file-based shared-memory layer for OpenClaw multi-agent and subagent systems while preserving each agent's private memory and adding a separate, reviewable shared layer for stable user preferences, shared rules, and durable cross-agent facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Govern a file-based shared-memory layer for OpenClaw multi-agent and subagent systems while preserving private memory, identity isolation, explicit local guidance, and conservative shared promotion.
 
-## Publisher: <br>
-[jiy29104983](https://clawhub.ai/user/jiy29104983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiy29104983](https://clawhub.ai/user/jiy29104983)
 
-## Use Case: <br>
-Developers and operators use this skill to design, initialize, attach, maintain, and review a workspace-scoped shared-memory layer for multi-agent systems. It helps keep shared memory explicit, auditable, and separate from private assistant identity context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared memory may accidentally capture secrets or assistant identity context. <br>
-Mitigation: Keep secrets and assistant identity context out of shared files, and review configured shared roots and memory sources before promotion. <br>
-Risk: Attach or detach operations may leave local startup guidance inconsistent with the intended shared-memory state. <br>
-Mitigation: Inspect AGENTS.md and SHARED_ATTACH.md after attach, detach, or repair operations. <br>
+## Use Case:
 
+Developers and engineers use this skill to initialize, attach, review, maintain, and govern workspace-scoped shared memory across OpenClaw agents while keeping each agent's private memory and identity context separate.
 
-## Reference(s): <br>
-- [Config Reference](references/config-reference.md) <br>
-- [Shared Promotion Rules](references/shared-promotion-rules.md) <br>
-- [Startup Guidance Rules](references/startup-guidance-rules.md) <br>
-- [Status and Review Fields](references/status-review-fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command names, file-layout guidance, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable shared-memory governance instructions and configuration guidance; it does not include executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The example configuration enables recurring private-memory maintenance and preserves it after detach or unregister.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the privateMaintenance schedule before installation and set it to disabled unless recurring private-memory maintenance is intended.
+
+Risk: Shared memory may be readable by attached agents and configured subagents.
+
+Mitigation: Confirm the participant and subagent read settings before use, and attach only agents that should receive supplemental shared-memory context.
+
+Risk: Detach and unregister behavior may not stop all configured background activity.
+
+Mitigation: After detach or unregister, review schedule state and local attachment status to confirm remaining activity matches expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiy29104983/skills/shared-memory-governor)
+- [Configuration Reference](references/config-reference.md)
+- [Shared Promotion Rules](references/shared-promotion-rules.md)
+- [Startup Guidance Rules](references/startup-guidance-rules.md)
+- [Status and Review Fields](references/status-review-fields.md)
+- [Example Shared Memory Configuration](assets/shared-memory.config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands, file paths, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose reviewable shared-memory file updates, attachment guidance, status reports, maintenance reports, and configuration changes.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

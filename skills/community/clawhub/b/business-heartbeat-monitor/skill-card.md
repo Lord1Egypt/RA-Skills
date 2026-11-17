@@ -1,42 +1,57 @@
-## Description: <br>
-HEARTBEAT.md framework for continuous business monitoring of sites, services, inboxes, payments, processes, and revenue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HEARTBEAT.md framework for continuous business monitoring — sites, services, inbox, payments, processes, and revenue.
 
-## Publisher: <br>
-[joeytbuilds](https://clawhub.ai/user/joeytbuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeytbuilds](https://clawhub.ai/user/joeytbuilds)
 
-## Use Case: <br>
-Business operators, founders, and operations engineers use this skill to create a recurring heartbeat plan for checking production health, support response timing, payment issues, background processes, and revenue trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad recurring authority over production systems, customer messages, and payment workflows. <br>
-Mitigation: Define exactly which systems may be monitored, which credentials are read-only, what customer or payment data may be accessed, and when human approval is required before enabling the schedule. <br>
-Risk: Automatic restarts, process kills, customer replies, or payment retries could affect live operations. <br>
-Mitigation: Keep these actions disabled or approval-gated until explicit recovery rules, escalation tiers, logging, and stop procedures are documented. <br>
-Risk: Heartbeat logs may contain operational, customer, or revenue details. <br>
-Mitigation: Choose an approved log location, limit sensitive fields, and review retention and access permissions before use. <br>
+## Use Case:
 
+Operators, founders, and support teams use this skill to create a HEARTBEAT.md routine for recurring business monitoring. It helps an agent check production sites, services, customer support queues, payments, revenue, and background processes while documenting escalation tiers and daily notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joeytbuilds/business-heartbeat-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown templates and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a heartbeat framework, setup checklist, autonomy-tier mapping, and daily notes structure for recurring business monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives agents broad authority over production recovery and process termination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit allowlists, least-privilege read-only access by default, and human approval before production changes, process termination, or restarts.
+
+Risk: The skill includes customer replies and payment retries in monitored workflows.
+
+Mitigation: Require approval gates for customer-facing messages and payment retries, with clear logging, retry limits, and rollback procedures.
+
+Risk: The security verdict is suspicious because the monitoring template lacks enough scoping and approval gates.
+
+Mitigation: Review and tailor the skill before installing it in a real business environment, then document alert channels, escalation thresholds, and audit logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeytbuilds/skills/business-heartbeat-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown templates and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a HEARTBEAT.md monitoring template, nightly review template, setup checklist, and autonomy-tier guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

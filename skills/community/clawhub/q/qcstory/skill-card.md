@@ -1,39 +1,58 @@
-## Description: <br>
-华与华 QCstory 周改善教练，逐步引导用户完成松浦九条改善流程并输出完整改善报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language QCstory improvement coach that guides users through the nine-step QCstory process, reviews each response against completion standards, and produces a complete improvement report.
 
-## Publisher: <br>
-[CoCokkxy](https://clawhub.ai/user/CoCokkxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cocokkxy](https://clawhub.ai/user/cocokkxy)
 
-## Use Case: <br>
-Teams and employees use this skill as a Chinese-language QCstory coach for weekly improvement work, moving step by step from topic clarification through current-state analysis, root-cause work, countermeasures, standardization, reflection, and the next improvement topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may start the QCstory workflow when a user only mentions a general work problem. <br>
-Mitigation: Confirm the user wants to begin a QCstory improvement session before proceeding through the full nine-step workflow. <br>
-Risk: Users may include confidential business details while describing teams, problems, targets, causes, or countermeasures. <br>
-Mitigation: Avoid entering sensitive business information unless it is appropriate to include in the chat context. <br>
+## Use Case:
 
+Employees, team leads, and continuous-improvement facilitators use this skill to structure a QCstory improvement activity from topic clarification through follow-up. The skill is best suited for Chinese-language coaching where each step needs clear acceptance criteria and a final formatted report.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Chinese text and markdown-formatted QCstory improvement reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Step-by-step coaching with a final report after the nine-step workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: The skill can activate for broad work-improvement requests and may steer the conversation into a rigid nine-step QCstory process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants QCstory-style coaching before continuing when the request is general or ambiguous.
+
+Risk: Users may include confidential business process details while describing improvement topics, current state, goals, causes, and countermeasures.
+
+Mitigation: Ask users to omit or generalize sensitive operational, customer, financial, or personnel details before sharing examples with the agent.
+
+Risk: The generated improvement report may be incomplete or misleading if the user's inputs are inaccurate, underspecified, or outside the QCstory method.
+
+Mitigation: Have a responsible reviewer check the final report and underlying data before using it for business decisions or implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cocokkxy/skills/qcstory)
+- [Publisher profile](https://clawhub.ai/user/cocokkxy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese conversational guidance with structured Markdown-style prompts and a final formatted improvement report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The agent advances one QCstory step at a time, asks for revisions when acceptance criteria are not met, and summarizes the completed activity after all nine steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

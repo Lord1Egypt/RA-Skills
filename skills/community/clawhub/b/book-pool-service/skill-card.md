@@ -1,38 +1,49 @@
-## Description: <br>
-Book Pool Service helps agents search for pool service providers, check availability, and create bookings through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search for pool-service providers, check availability, and create bookings through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to find pool service options, check provider availability, and create a booking when the user intends to request pool service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Creating a booking sends customer contact information to Lokuli for the service request. <br>
-Mitigation: Use booking actions only when the user intends to book pool service, and confirm provider, time slot, and contact details before creating the booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/book-pool-service) <br>
-- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill through an agent to find pool-service providers, check appointment availability, and book a selected time slot with customer contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON-RPC MCP call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May collect and send customer contact details to Lokuli when creating a booking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The booking flow sends customer contact details to Lokuli when creating a booking.
+
+Mitigation: Confirm the provider, service, time slot, customer name, email, and phone number with the user before calling create_booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-pool-service)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [JSON-RPC tool calls and brief text confirmations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contacts Lokuli MCP and may use customer name, email, and phone when creating a booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

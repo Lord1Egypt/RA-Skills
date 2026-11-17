@@ -1,42 +1,53 @@
-## Description: <br>
-Publish, create, and update Confluence pages from HTML content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish, create, and update Confluence pages from HTML content.
 
-## Publisher: <br>
-[aeincx](https://clawhub.ai/user/aeincx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aeincx](https://clawhub.ai/user/aeincx)
 
-## Use Case: <br>
-Developers and teams use this skill to publish HTML content to Atlassian Confluence, creating new pages or updating existing pages in a target space. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A publish request can update an existing Confluence page when the title already exists in the target space. <br>
-Mitigation: Verify the target space key and page title before publishing, and use a test or draft space when validating new workflows. <br>
-Risk: The skill uses Atlassian credentials to create or update Confluence content. <br>
-Mitigation: Use a least-privilege Atlassian API token scoped only to the spaces and actions required. <br>
-Risk: Unpinned dependency ranges can make installs less reproducible over time. <br>
-Mitigation: Use pinned dependency versions or a reviewed lock file for production deployments. <br>
+## Use Case:
 
+Developers and content automation teams use this skill to publish HTML content into Confluence Cloud, creating a new page or updating an existing page in the target space by title.
 
-## Reference(s): <br>
-- [Confluence Publish release page](https://clawhub.ai/aeincx/confluence-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Text] <br>
-**Output Format:** [JSON response containing status, operation, page metadata, page URL, or connection identity.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a new Confluence page or update an existing page with the same title in the target space.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and skill.json) <br>
+Risk: The skill can create or update Confluence pages using an Atlassian API token, including updating an existing page with the same title.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped Atlassian API token and confirm the tenant, space key, and page title before publishing.
+
+Risk: Dependency versions are declared as lower bounds, so installs can resolve newer package versions over time.
+
+Mitigation: Use a locked dependency set before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aeincx/skills/confluence-publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON status and result objects with Confluence page or connection details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Confluence Cloud credentials and writes only to Atlassian Cloud tenant URLs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and skill manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

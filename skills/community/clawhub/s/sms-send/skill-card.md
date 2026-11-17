@@ -1,46 +1,56 @@
-## Description: <br>
-Sends template-based SMS messages through the Chuanglan SMS platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过创蓝短信平台发送模板短信。
 
-## Publisher: <br>
-[chuanglanyunzhi](https://clawhub.ai/user/chuanglanyunzhi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chuanglanyunzhi](https://clawhub.ai/user/chuanglanyunzhi)
 
-## Use Case: <br>
-Developers and operators use this skill to send approved Chuanglan SMS templates from an agent workflow. It supports single or comma-separated recipient phone numbers, a template ID, and optional JSON template variables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real paid SMS messages, including bulk sends. <br>
-Mitigation: Use a dedicated low-quota Chuanglan account and require human confirmation before bulk or customer-facing sends. <br>
-Risk: SMS account credentials are required and may be loaded from environment variables or a local .env file. <br>
-Mitigation: Keep credentials out of untrusted .env files, rotate them regularly, and restrict the account with IP whitelisting where available. <br>
-Risk: Changing CHANGLAN_API_URL can redirect requests and credentials to another endpoint. <br>
-Mitigation: Only set CHANGLAN_API_URL when the endpoint is trusted and expected for the deployment. <br>
+## Use Case:
 
+Developers and operators with a Chuanglan SMS account use this skill to send approved template SMS messages to one or more phone numbers, optionally filling template variables from JSON.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chuanglanyunzhi/sms-send) <br>
-- [Chuanglan Website](https://www.chuanglan.com/) <br>
-- [Chuanglan Registration](https://www.chuanglan.com/register) <br>
-- [SMS Signature Real-Name Documentation](https://doc.chuanglan.com/document/9OHGKZG716OXFI9O) <br>
-- [Chuanglan SMS API Documentation](https://doc.chuanglan.com/document/HAQYSZKH9HT5Z50L) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [CLI text status messages with Chuanglan message IDs and success counts; configuration uses environment variables or a local .env file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, openssl, CHANGLAN_ACCOUNT, and CHANGLAN_PASSWORD; sends real paid SMS messages through the configured Chuanglan endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.6 and skill.json reports 1.0.7) <br>
+Risk: Credential handling and endpoint controls require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use OpenClaw-managed secrets, avoid the .env file path, run only from a trusted non-writable skill directory, and keep SMS credentials scoped to the official Chuanglan HTTPS endpoint.
+
+Risk: SMS sends can affect recipients or incur account charges if phone numbers, templates, or variables are wrong.
+
+Mitigation: Confirm destination numbers, use only approved Chuanglan templates, and test template variables before broader sends.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chuanglanyunzhi/skills/sms-send)
+- [Chuanglan Website](https://www.chuanglan.com/)
+- [Chuanglan SMS API Documentation](https://doc.chuanglan.com/document/HAQYSZKH9HT5Z50L)
+- [Chuanglan SMS Signature Real-Name Documentation](https://doc.chuanglan.com/document/9OHGKZG716OXFI9O)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Text, Configuration guidance]
+
+**Output Format:** [CLI text output from a shell command that sends JSON over HTTPS to the Chuanglan SMS API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, openssl, CHANGLAN_ACCOUNT, and CHANGLAN_PASSWORD; accepts phone, template, and optional vars JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; artifact versions differ: SKILL.md 1.0.6, skill.json 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

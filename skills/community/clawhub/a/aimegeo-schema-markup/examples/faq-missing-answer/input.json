@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Organization", "name": "青禾资料库（演示）"},
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "资料可以导出吗？"}
+      ]
+    }
+  ]
+}

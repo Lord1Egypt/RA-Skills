@@ -1,39 +1,54 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup text for Fakerjs concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers use this skill as a local reference stub for Fakerjs topics such as quickstart, patterns, debugging, performance, security, migration, and cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included Fakerjs guidance appears generic and may be incomplete or inaccurate for a specific project. <br>
-Mitigation: Treat the output as a starting point and verify implementation details against authoritative Fakerjs documentation before applying changes. <br>
+## Use Case:
 
+Developers and engineers can use this skill for quick plain-text reference notes about Fakerjs commands, patterns, debugging, performance, security, migration, and cheatsheets. Review the outputs before relying on them because server security evidence says the documentation is mostly generic placeholder devtools text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/fakerjs) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local text output; no external API calls, credentials, or network access are described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release evidence) <br>
+Risk: The skill may mislead users or agents seeking real Fakerjs help because the security evidence reports mostly generic placeholder devtools text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reference output against trusted Fakerjs documentation before use, and avoid relying on it for implementation-critical decisions without verification.
+
+Risk: The release metadata, artifact frontmatter, and script report different versions.
+
+Mitigation: Treat 3.0.2 as the server release version and confirm any behavior-sensitive version claims before publishing or installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/fakerjs)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings, tables, and lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference topics; no external API calls, credentials, or network access reported.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release metadata; artifact frontmatter reports 3.0.1 and script reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

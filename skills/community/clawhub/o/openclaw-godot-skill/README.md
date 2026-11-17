@@ -14,7 +14,7 @@ This software is in **beta**. Use at your own risk.
 - Test in a separate project first
 - The authors are not responsible for any data loss or project corruption
 
-See [LICENSE](LICENSE) for full terms.
+See [LICENSE](LICENSE.md) for full terms.
 
 ## Installation
 
@@ -70,4 +70,9 @@ ls ~/.openclaw/workspace/skills/godot-plugin/SKILL.md
 
 ## License
 
-MIT License - See [LICENSE](LICENSE)
+MIT License - See [LICENSE](LICENSE.md)
+
+## License
+
+This project has been licensed under [Apache-2.0](LICENSE) since its initial release.
+Copyright 2026 Tom Lee (TomLeeLive)

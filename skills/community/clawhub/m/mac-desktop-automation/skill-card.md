@@ -1,45 +1,58 @@
-## Description: <br>
-Advanced desktop automation with mouse, keyboard, screen capture, window management, clipboard operations, and natural-language task execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced desktop automation with mouse, keyboard, screen capture, window management, clipboard operations, and optional autonomous task execution.
 
-## Publisher: <br>
-[liyafeichina](https://clawhub.ai/user/liyafeichina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyafeichina](https://clawhub.ai/user/liyafeichina)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let an agent control a local desktop through mouse, keyboard, screenshot, clipboard, window, and application-launch operations. It is suited for desktop workflow automation where the operator intentionally grants live-desktop control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a live desktop through mouse, keyboard, clipboard, screenshots, and application launch actions. <br>
-Mitigation: Install only when that level of control is intended; keep failsafe and approval mode enabled and test first in a non-sensitive environment. <br>
-Risk: Screenshots and clipboard contents may expose passwords, private documents, or other sensitive data. <br>
-Mitigation: Avoid exposing sensitive windows while the skill is active and treat screenshots, clipboard data, and logs as sensitive local artifacts. <br>
-Risk: Weak default guardrails could allow unintended actions if an agent misinterprets a task or the screen state. <br>
-Mitigation: Review planned actions, require confirmation for high-impact operations, and stop execution immediately with the configured failsafe if behavior diverges. <br>
+## Use Case:
 
+Developers and agent builders use this skill to let an agent operate a desktop session through mouse movement, keyboard input, screenshots, window focus changes, clipboard access, and simple autonomous workflows. It is suited to local UI automation where the operator can supervise sensitive actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyafeichina/mac-desktop-automation) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [AI agent guide](artifact/AI_AGENT_GUIDE.md) <br>
-- [Quick reference](artifact/QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions, Files] <br>
-**Output Format:** [Markdown guidance with Python snippets and shell commands; runtime helpers may create screenshots or update clipboard and desktop state.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Desktop actions depend on local OS permissions, visible screen state, installed applications, and enabled safety settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can broadly control the active desktop through mouse, keyboard, window, and application actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in supervised sessions, keep failsafe enabled, prefer explicit approval for actions, and avoid financial, administrative, or otherwise sensitive workflows.
+
+Risk: Screenshots, clipboard contents, and action logs may contain sensitive information.
+
+Mitigation: Close private windows before use, avoid credentials and private messages, and handle saved screenshots and logs as sensitive data.
+
+Risk: Autonomous workflows may execute unintended clicks, keystrokes, or app launches.
+
+Mitigation: Start with low-risk tasks, set bounded step limits, and review behavior in a disposable or non-sensitive desktop session before broader use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyafeichina/skills/mac-desktop-automation)
+- [Publisher profile](https://clawhub.ai/user/liyafeichina)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce desktop actions, screenshots, clipboard reads or writes, and execution status dictionaries when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

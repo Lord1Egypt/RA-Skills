@@ -1,22 +1,22 @@
 ---
 name: vmware-avi
 description: >
-  Use this skill whenever the user mentions load balancing, ingress, virtual services, pool members, AVI, NSX ALB, AKO, or application delivery.
-  Also trigger when the user mentions AKO ingress troubleshooting in a Tanzu/vSphere environment.
-  Do NOT trigger when the user explicitly asks to set up or configure nginx/HAProxy/Traefik from scratch — those are not AVI tasks.
-  Directly handles: virtual service listing and enable/disable, pool member management (drain/enable traffic), SSL certificate expiry checks,
-  analytics and error logs, service engine health, AKO pod troubleshooting, AKO Helm config management, Ingress annotation validation,
-  K8s-to-Controller sync diagnostics, and multi-cluster AKO overview.
-  Always use this skill for any "virtual service", "pool member", "AKO status", "AKO logs", "ingress diagnose", "ssl expiry",
-  "load balancer", "NSX ALB", "AVI controller", "AKO sync", "ingress", or "负载均衡" task.
-  For VM lifecycle use vmware-aiops, for NSX networking use vmware-nsx, for K8s cluster lifecycle (Supervisor/TKC) use vmware-vks.
+  Use this skill whenever the user mentions load balancing, ingress, virtual services, pool members, AVI, NSX ALB, AKO, or application delivery
+  in a VMware/NSX ALB or Tanzu/vSphere Kubernetes context.
+  Directly handles: virtual service listing and enable/disable, pool member drain/enable, SSL certificate expiry checks, analytics and error logs,
+  service engine health, AKO pod troubleshooting, AKO Helm config management, Ingress annotation validation, K8s-to-Controller sync diagnostics,
+  and multi-cluster AKO overview.
+  Always use it for "virtual service", "pool member", "AKO status", "AKO logs", "ingress diagnose", "ssl expiry", "load balancer", "NSX ALB",
+  "AVI controller", "Avi Load Balancer", "AKO sync", or "负载均衡" tasks.
+  Do NOT use to set up or configure nginx/HAProxy/Traefik from scratch — those are not AVI tasks.
+  For VM lifecycle use vmware-aiops, for NSX networking use vmware-nsx, for Kubernetes cluster lifecycle (Supervisor/TKC) use vmware-vks.
 installer:
   kind: uv
   package: vmware-avi
 argument-hint: "[vs-name, ako command, or describe your task]"
 allowed-tools:
   - Bash
-metadata: {"openclaw":{"requires":{"env":["VMWARE_AVI_CONFIG"],"bins":["vmware-avi"],"config":["~/.vmware-avi/config.yaml","~/.vmware-avi/.env"]},"optional":{"env":["VMWARE_<CONTROLLER>_PASSWORD","KUBECONFIG"],"bins":["vmware-policy","kubectl"]},"primaryEnv":"VMWARE_AVI_CONFIG","homepage":"https://github.com/zw008/VMware-AVI","emoji":"🔀","os":["macos","linux"]}}
+metadata: {"openclaw":{"requires":{"anyBins":["vmware-avi","uvx"]},"optional":{"env":["VMWARE_AVI_CONFIG","<CONTROLLER>_PASSWORD","<CONTROLLER>_USERNAME","KUBECONFIG","VMWARE_AUDIT_APPROVED_BY"],"bins":["vmware-policy","kubectl","helm"]},"homepage":"https://github.com/vmware-skills/VMware-AVI","emoji":"🔀","os":["macos","linux"]}}
 compatibility: >
   vmware-policy auto-installed as Python dependency (provides @vmware_tool decorator and audit logging). All write operations audited to ~/.vmware/audit.db.
   AVI Controller operations require avisdk and a per-controller password env var in ~/.vmware-avi/.env following the pattern <CONTROLLER_NAME_UPPER>_PASSWORD (e.g., controller "prod-avi" → PROD_AVI_PASSWORD).
@@ -25,33 +25,37 @@ compatibility: >
 
 # VMware AVI
 
-> **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by VMware, Inc. or Broadcom Inc.** "VMware", "NSX", and "AVI" are trademarks of Broadcom. Source code is publicly auditable at [github.com/zw008/VMware-AVI](https://github.com/zw008/VMware-AVI) under the MIT license.
+> Self-test: [guide](https://github.com/vmware-skills/marketplace/blob/main/MODEL_FIT_SELF_TEST.md).
+
+> **Disclaimer**: This is a community-maintained open-source project and is **not affiliated with, endorsed by, or sponsored by VMware, Inc. or Broadcom Inc.** "VMware", "NSX", and "AVI" are trademarks of Broadcom. Source code is publicly auditable at [github.com/vmware-skills/VMware-AVI](https://github.com/vmware-skills/VMware-AVI) under the MIT license.
 
 AVI (NSX Advanced Load Balancer) application delivery and AKO Kubernetes operations — 28 MCP tools.
 
 > **Dual mode**: Traditional AVI Controller management + AKO K8s operations in one skill.
-> **Family**: [vmware-aiops](https://github.com/zw008/VMware-AIops) (VM lifecycle), [vmware-monitor](https://github.com/zw008/VMware-Monitor) (inventory/health), [vmware-storage](https://github.com/zw008/VMware-Storage) (iSCSI/vSAN), [vmware-vks](https://github.com/zw008/VMware-VKS) (Tanzu Kubernetes), [vmware-nsx](https://github.com/zw008/VMware-NSX) (NSX networking), [vmware-nsx-security](https://github.com/zw008/VMware-NSX-Security) (DFW/firewall), [vmware-aria](https://github.com/zw008/VMware-Aria) (metrics/alerts/capacity), [vmware-harden](https://github.com/zw008/VMware-Harden) (compliance baselines).
+> **Family**: [vmware-aiops](https://github.com/vmware-skills/VMware-AIops) (VM lifecycle), [vmware-monitor](https://github.com/vmware-skills/VMware-Monitor) (inventory/health), [vmware-storage](https://github.com/vmware-skills/VMware-Storage) (iSCSI/vSAN), [vmware-vks](https://github.com/vmware-skills/VMware-VKS) (Tanzu Kubernetes), [vmware-nsx](https://github.com/vmware-skills/VMware-NSX) (NSX networking), [vmware-nsx-security](https://github.com/vmware-skills/VMware-NSX-Security) (DFW/firewall), [vmware-aria](https://github.com/vmware-skills/VMware-Aria) (metrics/alerts/capacity), [vmware-harden](https://github.com/vmware-skills/VMware-Harden) (compliance baselines).
 > | [vmware-pilot](../vmware-pilot/SKILL.md) (workflow orchestration) | [vmware-policy](../vmware-policy/SKILL.md) (audit/policy)
 
 ## What This Skill Does
 
-| Category | Tools | Count |
-|----------|-------|:-----:|
-| **Virtual Service** | list, status, enable/disable | 3 |
-| **Pool Member** | pool discovery, member list, enable/disable member (drain/restore traffic) | 4 |
-| **SSL Certificate** | list, expiry check | 2 |
-| **Analytics** | VS metrics overview, request error logs | 2 |
-| **Service Engine** | list, health check | 2 |
-| **AKO Pod Ops** | status, logs, restart, version info | 4 |
-| **AKO Config** | values.yaml view, Helm diff, Helm upgrade | 3 |
-| **Ingress Diagnostics** | annotation validation, VS mapping, error diagnosis, fix recommendation | 4 |
-| **Sync Diagnostics** | K8s-Controller comparison, inconsistency list, force resync | 3 |
-| **Multi-cluster** | cluster list, cross-cluster AKO overview, AMKO status | 3 |
+| Category | Tools | Count | Read or Write |
+|----------|-------|:-----:|:-------------:|
+| **Virtual Service** | list, status, enable/disable | 3 | 2R / 1W |
+| **Pool Member** | pool discovery, member list, enable/disable member (drain/restore traffic) | 4 | 2R / 2W |
+| **SSL Certificate** | list, expiry check | 2 | 2R |
+| **Analytics** | VS metrics overview, request error logs | 2 | 2R |
+| **Service Engine** | list, health check | 2 | 2R |
+| **AKO Pod Ops** | status, logs, restart, version info | 4 | 3R / 1W |
+| **AKO Config** | values.yaml view, Helm diff, Helm upgrade | 3 | 2R / 1W |
+| **Ingress Diagnostics** | annotation validation, VS mapping, error diagnosis (with fix recommendations) | 3 | 3R |
+| **Sync Diagnostics** | K8s-Controller comparison, inconsistency list, force resync | 3 | 2R / 1W |
+| **Multi-cluster** | cross-cluster AKO cluster list, AMKO status | 2 | 2R |
+
+**Total**: 28 tools (22 read + 6 write)
 
 ## Quick Install
 
 ```bash
-uv tool install vmware-avi
+uv tool install vmware-avi==2.5.2
 vmware-avi doctor            # checks Controller connectivity + kubeconfig + avisdk
 ```
 
@@ -141,23 +145,23 @@ vmware-avi doctor            # checks Controller connectivity + kubeconfig + avi
 
 | Category | Tools | R/W |
 |----------|-------|:---:|
-| Virtual Service (3) | `vs_list`, `vs_status` | Read |
-| | `vs_toggle` | Write |
-| Pool Member (4) | `pool_list`, `pool_members` | Read |
-| | `pool_member_enable`, `pool_member_disable` | Write |
-| SSL Certificate (2) | `ssl_list`, `ssl_expiry_check` | Read |
-| Analytics (2) | `vs_analytics`, `vs_error_logs` | Read |
-| Service Engine (2) | `se_list`, `se_health` | Read |
-| AKO Pod (4) | `ako_status`, `ako_logs`, `ako_version` | Read |
-| | `ako_restart` | Write |
-| AKO Config (3) | `ako_config_show`, `ako_config_diff` | Read |
-| | `ako_config_upgrade` | Write |
-| Ingress Diagnostics (3) | `ako_ingress_check`, `ako_ingress_map`, `ako_ingress_diagnose` | Read |
-| Sync Diagnostics (3) | `ako_sync_status`, `ako_sync_diff` | Read |
-| | `ako_sync_force` | Write |
-| Multi-cluster (2) | `ako_clusters`, `ako_amko_status` | Read |
+| Virtual Service (3) | `list_virtual_services`, `get_virtual_service_status` | Read |
+| | `set_virtual_service_enabled` | Write |
+| Pool Member (4) | `list_lb_pools`, `list_lb_pool_members` | Read |
+| | `enable_lb_pool_member`, `disable_lb_pool_member` | Write |
+| SSL Certificate (2) | `list_ssl_certs`, `check_ssl_cert_expiry` | Read |
+| Analytics (2) | `get_virtual_service_analytics`, `get_virtual_service_error_logs` | Read |
+| Service Engine (2) | `list_service_engines`, `get_service_engine_health` | Read |
+| AKO Pod (4) | `get_ako_status`, `get_ako_logs`, `get_ako_version` | Read |
+| | `restart_ako` | Write |
+| AKO Config (3) | `get_ako_config`, `diff_ako_config` | Read |
+| | `upgrade_ako_config` | Write |
+| Ingress Diagnostics (3) | `check_ako_ingress`, `list_ako_ingresses`, `diagnose_ako_ingress` | Read |
+| Sync Diagnostics (3) | `get_ako_sync_status`, `diff_ako_sync` | Read |
+| | `force_ako_sync` | Write |
+| Multi-cluster (2) | `list_ako_clusters`, `get_ako_amko_status` | Read |
 
-**Read/write split**: 22 tools are read-only, 6 modify state. Write tools require double confirmation and are audit-logged.
+**Read/write split**: 22 tools are read-only, 6 modify state, all audit-logged. Five of them (`set_virtual_service_enabled`, `disable_lb_pool_member`, `restart_ako`, `force_ako_sync`, `upgrade_ako_config`) take `confirm` (default `false`): a bare call returns a `blast_radius` and changes nothing.
 
 ## CLI Quick Reference
 
@@ -209,7 +213,7 @@ vmware-avi ako amko status
 ### "Controller unreachable" error
 1. Run `vmware-avi doctor` to verify connectivity
 2. Check if the controller address and port are correct in `~/.vmware-avi/config.yaml`
-3. For self-signed certs: set `verify_ssl: false` in config.yaml (lab environments only)
+3. Keep `verify_ssl: true`; trust a private CA via `SSL_CERT_FILE`. An isolated-lab-only `verify_ssl: false` disables certificate/hostname checks and permits endpoint impersonation and credential interception
 
 ### AKO Pod in CrashLoopBackOff
 1. Check logs → `vmware-avi ako logs --tail 50`
@@ -233,7 +237,7 @@ Force resync triggers AKO to re-reconcile all K8s objects. If the drift persists
 ## Setup
 
 ```bash
-uv tool install vmware-avi
+uv tool install vmware-avi==2.5.2
 mkdir -p ~/.vmware-avi
 vmware-avi init              # generates config.yaml and .env templates
 chmod 600 ~/.vmware-avi/.env
@@ -251,10 +255,11 @@ vmware-avi doctor            # verify Controller + K8s connectivity
 All operations are automatically audited via vmware-policy (`@vmware_tool` decorator):
 - Every tool call logged to `~/.vmware/audit.db` (SQLite, framework-agnostic)
 - Policy rules enforced via `~/.vmware/rules.yaml` (deny rules, maintenance windows, risk levels)
-- Destructive operations (`vs_toggle` disable, `pool_member_disable`, `ako_restart`, `ako_config_upgrade`, `ako_sync_force`) require double confirmation
-- `ako_config_upgrade` defaults to `--dry-run` mode — user must explicitly confirm to apply
+- Each controller may declare `environment:` in `config.yaml` (`production` / `staging` / `lab`) as an optional label; an environment-scoped `deny` rule in `~/.vmware/rules.yaml` can match on it to block writes (e.g. freeze `production`). A controller with no label is simply not matched by such a rule. Reads are never affected
+- MCP: `set_virtual_service_enabled`, `disable_lb_pool_member`, `restart_ako`, `force_ako_sync` and `upgrade_ako_config` preview by default. Without `confirm=true` they return `blast_radius` — the VS or pool with its member counts, the AKO pod and the Ingresses it programs, or the Helm release and the chart it would move to — and change nothing. Show it to the user; do not pass `confirm=true` on your own because they asked earlier. `confirm=true` is refused when a blocker is found (the pool's only enabled member, a terminating AKO pod, a failing `helm upgrade --dry-run`) or a field could not be read. the old `confirmed` and `dry_run` aliases were removed in 2.4.1 and are refused as unknown arguments
+- CLI: destructive commands require double confirmation; `vmware-avi ako config upgrade` defaults to `--dry-run`
 - View recent operations: `vmware-audit log --last 20`
 
 ## License
 
-MIT — [github.com/zw008/VMware-AVI](https://github.com/zw008/VMware-AVI)
+MIT — [github.com/vmware-skills/VMware-AVI](https://github.com/vmware-skills/VMware-AVI)

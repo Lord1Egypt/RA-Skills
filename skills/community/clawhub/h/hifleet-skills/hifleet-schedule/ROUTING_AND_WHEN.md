@@ -8,8 +8,7 @@
 | Bulk / general cargo **liner** schedule | **Yes** |
 | Ro-Ro / car carrier schedule | **Yes** |
 | Container liner / feeder schedule | **Yes** |
-| Open tonnage from **my mailbox** | **No** → `hifleet-mytonnages` |
-| Vessels **arriving at** a port (ETA / pre-arrival) | **No** → `hifleet-mytonnages` route C |
+| Public open tonnage / cargo | **No** → `hifleet-opentonnages` |
 
 ## Trigger examples
 
@@ -26,4 +25,4 @@
 
 ## Mixed questions
 
-If the user asks mailbox tonnage **and** liner schedule in one turn, run **`hifleet-mytonnages`** and **`hifleet-schedule`** **separately**; do not merge into one API call.
+If the user asks public open tonnage **and** liner schedule in one turn, run **`hifleet-opentonnages`** and **`hifleet-schedule`** **separately**; do not merge into one API call.

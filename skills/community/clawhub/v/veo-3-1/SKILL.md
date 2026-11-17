@@ -1,10 +1,16 @@
 ---
 name: poyo-veo-3-1
 description: Use PoYo AI Veo 3.1 for frame-conditioned video generation through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants fast or quality modes, start-frame and end-frame guidance, up to 4K resolution, reference-image video generation, or PoYo payloads for `veo3.1-fast` and `veo3.1-quality`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/video-series/veo-3-1", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage": "https://poyo.ai/models/veo-3-1", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Veo 3.1 Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/veo-3-1>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/veo-3-1>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill to submit and track PoYo jobs for the VEO 3.1 family.
 
@@ -50,8 +56,3 @@ When helping with this model family, include:
 - whether reference images are involved
 - returned `task_id` if a request was actually submitted
 - next step: poll status or wait for webhook
-
-Notes:
-
-Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

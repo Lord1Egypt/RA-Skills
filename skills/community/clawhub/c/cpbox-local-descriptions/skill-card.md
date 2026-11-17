@@ -1,45 +1,57 @@
-## Description: <br>
-Gets AI-generated markdown descriptions for local points of interest from POI IDs obtained through web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets AI-generated markdown descriptions for points of interest using POI IDs from web search location results.
 
-## Publisher: <br>
-[sprintmint](https://clawhub.ai/user/sprintmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintmint](https://clawhub.ai/user/sprintmint)
 
-## Use Case: <br>
-Developers and agents use this skill to request narrative markdown descriptions for local businesses or travel points of interest after obtaining POI IDs from a location-filtered web search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests may trigger automatic x402 pay-per-use payment signing. <br>
-Mitigation: Check pricing, wallet permissions, and spending limits before enabling automatic payment signing. <br>
-Risk: POI IDs are sent to cpbox.io and payment flow may use an external facilitator. <br>
-Mitigation: Review data-sharing expectations and external service trust before sending location-related identifiers. <br>
-Risk: Descriptions are AI-generated from web search context and may be incomplete or inaccurate. <br>
-Mitigation: Verify critical business or travel details against authoritative sources before publishing or acting on them. <br>
+## Use Case:
 
+Developers and agents use this skill to enrich local search workflows with narrative, travel-guide-style descriptions for businesses and places. It is intended for POI IDs previously returned by web search location results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sprintmint/cpbox-local-descriptions) <br>
-- [CPBox API Provider](https://www.cpbox.io) <br>
-- [Local Descriptions Endpoint](https://www.cpbox.io/api/x402/local-descriptions) <br>
-- [CPPAY Facilitator](https://www.cppay.finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown descriptions returned in JSON responses, with curl and x402-payment command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires 1-20 POI IDs from web-search; POI IDs are short-lived and requests may trigger x402 payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The quick start uses an unpinned npm payment helper that may change over time and executes locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed version of the payment helper and run it in a least-privileged environment.
+
+Risk: Automatic x402 payments can sign and retry paid requests without enough transaction review.
+
+Mitigation: Require explicit transaction review or spending limits before enabling automatic payment flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sprintmint/skills/cpbox-local-descriptions)
+- [CPBox API provider](https://www.cpbox.io)
+- [CPPay facilitator](https://www.cppay.finance)
+- [Local descriptions endpoint](https://www.cpbox.io/api/x402/local-descriptions)
+- [Web search locations endpoint example](https://www.cpbox.io/api/x402/web-search?q=restaurants+san+francisco&result_filter=locations)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown descriptions returned in JSON API responses, with usage guidance and curl or npx command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts 1-20 opaque POI IDs that are valid for approximately 8 hours; descriptions may be null when unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

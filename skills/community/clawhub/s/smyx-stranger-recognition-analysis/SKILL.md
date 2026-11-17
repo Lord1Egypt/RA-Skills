@@ -1,7 +1,7 @@
 ---
 name: "stranger-recognition-analysis"
 description: "Identifies strangers appearing in surveillance areas through facial comparison; supports video stream and image detection, suitable for stranger warnings in residential communities, units, access control, and other scenarios. | 陌生人识别技能，通过人脸比对识别监控区域出现的陌生人员，支持视频流和图片检测，适用于小区、单位、门禁等场景的陌生人预警"
-version: "1.0.3"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

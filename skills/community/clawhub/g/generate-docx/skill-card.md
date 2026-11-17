@@ -1,43 +1,62 @@
-## Description: <br>
-Generate DOCX converts generated or revised content into strictly formatted Word (.docx) documents for 19 Chinese document categories, including government, business, academic, technical, medical, legal, finance, engineering, and general documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate DOCX creates Word (.docx) documents from agent-generated or edited content and can reformat existing .docx files using Chinese national and industry document formatting templates.
 
-## Publisher: <br>
-[FtoIS](https://clawhub.ai/user/FtoIS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ftois](https://clawhub.ai/user/ftois)
 
-## Use Case: <br>
-Developers and document-producing agents use this skill to create or reformat Word documents with structured headings, lists, tables, code blocks, captions, signatures, warnings, and document-type-specific Chinese formatting rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and Pandoc tooling to read and write document files. <br>
-Mitigation: Install and run it only in a trusted local environment, preferably inside a virtual environment rather than using the documented --break-system-packages pip command. <br>
-Risk: Dry-run and show-md modes can display document contents in terminal output. <br>
-Mitigation: Use preview modes only with documents whose contents are acceptable to expose in the terminal or logs. <br>
-Risk: Reformatted documents may omit or flatten unsupported source-document features such as images, footnotes, and complex merged-cell tables. <br>
-Mitigation: Review generated DOCX files before distribution and manually restore unsupported elements when needed. <br>
+## Use Case:
 
+Developers and document-producing agents use this skill to create or reformat Chinese Word documents for government, business, academic, technical, medical, legal, financial, engineering, marketing, and general document workflows.
 
-## Reference(s): <br>
-- [ClawHub Generate DOCX Release Page](https://clawhub.ai/FtoIS/generate-docx) <br>
-- [Pandoc](https://pandoc.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [DOCX files generated from Markdown, with Python API examples and shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local python3, python-docx, and Pandoc; can reformat existing .docx files and can print Markdown previews for inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter: 4.1.0) <br>
+Risk: Dependency setup instructions may encourage privileged package installation or system-wide Python changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment or have an administrator provision Pandoc and fonts; do not let an agent run sudo or --break-system-packages automatically.
+
+Risk: Generated documents and temporary Markdown files could be written to shared or unintended locations.
+
+Mitigation: Use explicit output paths in a private output directory and avoid shared writable directories.
+
+Risk: Untrusted Markdown or raw OpenXML can alter document content or formatting in ways that are hard to inspect.
+
+Mitigation: Do not pass untrusted content into raw_markdown, and review generated documents before distribution.
+
+Risk: Legal, medical, financial, or official documents may be formatted convincingly even when source content is inaccurate.
+
+Mitigation: Require qualified human review before relying on generated legal, medical, financial, or official documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ftois/skills/generate-docx)
+- [Pandoc documentation](https://pandoc.org)
+
+## Skill Output:
+
+**Output Type(s):** [files, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [DOCX files generated from Markdown, with optional Markdown previews and Python API or command-line snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, python-docx, Pandoc, generated reference templates, and explicit output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists internal version 4.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

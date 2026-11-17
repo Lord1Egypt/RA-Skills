@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# rosx: ROS 环境执行包装器
+# 用法: rosx <任意ROS2命令>
+# 示例: rosx ros2 topic list
+#       rosx ros2launch xrrobot_bringup xrrobot_base.launch.py
+#       rosx xr-call capture --timeout 2
+#
+# 与同一 skill 的 scripts/xr-call 配合使用。
+
+ROS_SETUP="/opt/ros/jazzy/setup.bash"
+WS_SETUP="${XRROBOT_WS:-$HOME/colcon_ws}/install/setup.bash"
+
+if [ -f "$ROS_SETUP" ]; then
+    source "$ROS_SETUP"
+fi
+
+# 加载 XRRobot 工作区。
+if [ -f "$WS_SETUP" ]; then
+    source "$WS_SETUP"
+fi
+
+exec "$@"

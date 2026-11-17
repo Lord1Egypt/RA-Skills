@@ -1,40 +1,58 @@
-## Description: <br>
-Generates Chinese meme images by overlaying text on simple templates or by creating prompt-based images with Pollinations AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates meme images with Chinese text overlays or optional AI-generated images.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and content creators use this skill to generate meme images from Chinese text or prompts. Text mode works locally, while AI mode is useful when a generated image should match a described theme. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI mode sends user prompts to the external Pollinations image-generation service. <br>
-Mitigation: Do not include secrets, personal data, unreleased business content, or confidential text in prompts. <br>
-Risk: Generated AI images may need review before public or commercial use. <br>
-Mitigation: Review generated images for brand, policy, and content suitability before sharing or publishing them. <br>
+## Use Case:
 
+Developers and agents use this skill to create simple Chinese-language meme images, either offline by placing top and bottom text on a template or online by requesting an AI-generated image from Pollinations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-meme-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text mode renders locally; AI mode sends the prompt to Pollinations and writes the resulting image to the configured output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata) <br>
+Risk: AI mode sends prompts to Pollinations, which can expose sensitive prompt content to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts in AI mode and use text mode when offline or local-only generation is required.
+
+Risk: The script writes the generated image directly to the requested output path.
+
+Mitigation: Choose output paths deliberately and review paths before execution to avoid overwriting unintended files.
+
+Risk: AI image responses may not match the requested meme content or may return unexpected data.
+
+Mitigation: Review generated images before sharing or using them in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-meme-generator)
+- [Pollinations image endpoint](https://image.pollinations.ai/prompt/)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG image files with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text mode can run offline; AI mode sends prompts to Pollinations and writes the generated file to the selected output path.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

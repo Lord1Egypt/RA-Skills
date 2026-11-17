@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn7b3js61fwjr917hemskh3mrn81rfk3",
+  "owner": "francisque",
   "slug": "sonarr-fixed",
-  "version": "1.0.2",
-  "publishedAt": 1771933701406
+  "displayName": "Sonarr (Fixed)",
+  "latest": {
+    "version": "1.0.2",
+    "publishedAt": null,
+    "commit": null
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": null,
+      "commit": null,
+      "changes": "Fixed metadata to properly declare required credentials, config paths, and env vars"
+    }
+  ],
+  "fork": {
+    "originalOwner": "jordyvandomselaar",
+    "originalSlug": "sonarr",
+    "originalUrl": "https://clawhub.com/jordyvandomselaar/sonarr",
+    "reason": "Fixed metadata to properly declare required credentials and config paths"
+  }
 }

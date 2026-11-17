@@ -1,44 +1,55 @@
-## Description: <br>
-Provides a ClawHub namespace and static brand information for the Netsnek e.U. IAM toolkit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IAM namespace for Netsnek e.U. identity and access management toolkit that presents static brand and feature information.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve concise brand, feature, and JSON metadata for the iam namespace. It should be treated as an informational placeholder, not as an implemented authentication or authorization system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill advertises IAM capabilities but only provides static branding and feature information. <br>
-Mitigation: Use it only for namespace or product information; do not rely on it for authentication, authorization, session management, audit logging, OAuth, or OIDC functionality. <br>
-Risk: The artifact requires executable permission to run a shell script. <br>
-Mitigation: Review the script before execution and run it in an environment appropriate for informational commands. <br>
-Risk: License evidence is inconsistent across server and artifact sources. <br>
-Mitigation: Confirm the license with the publisher before redistribution or commercial integration. <br>
+## Use Case:
 
+Developers and operators use this skill to retrieve concise IAM brand information, feature summaries, and optional JSON metadata from the packaged helper script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/iam) <br>
-- [Publisher profile](https://clawhub.ai/user/kleberbaum) <br>
-- [Netsnek e.U.](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, json, guidance] <br>
-**Output Format:** [Markdown or plain text with optional JSON metadata from the bundled shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The script supports default, --features, and --json modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, claw.json, server release metadata) <br>
+Risk: Users may mistake the skill for a working authentication or access-control implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present it as static IAM brand and feature information only; do not rely on it for authentication, authorization, credential handling, or session enforcement.
+
+Risk: The packaged shell script may fail to execute in some environments because of encoding or line-ending issues.
+
+Mitigation: Run it in a Linux shell and normalize file encoding or line endings before execution if the shell reports parsing errors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/iam)
+- [Publisher profile](https://clawhub.ai/user/kleberbaum)
+- [Netsnek website](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, json]
+
+**Output Format:** [Markdown summary or JSON emitted by a shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports default, --features, and --json modes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, claw.json, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

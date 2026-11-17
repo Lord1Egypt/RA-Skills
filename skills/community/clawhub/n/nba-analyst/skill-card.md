@@ -1,47 +1,58 @@
-## Description: <br>
-NBA Analyst is a Chinese-language NBA data assistant for scores, standings, player and team statistics, comparisons, AI-style analysis, and visual HTML reports without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NBA 全能数据分析助手。查询比分、排名、球员数据、球队信息、球员/球队对比、AI深度分析、生成可视化HTML报告。全中文界面，零API Key。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and developers use this skill to answer NBA questions in Chinese, including live or historical scores, standings, schedules, player and team lookups, comparisons, and report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests for NBA data and depends on public NBA.com endpoint availability and terms. <br>
-Mitigation: Run it only where outbound NBA data access is approved, and expect endpoints to be rate-limited or unavailable at times. <br>
-Risk: The skill creates local cache and report files during normal use. <br>
-Mitigation: Use a workspace where local cache and generated HTML report files are acceptable, and clean those files when no longer needed. <br>
-Risk: Dependency resolution may vary across environments. <br>
-Mitigation: Install from a locked environment or pin the listed Python dependencies when reproducibility matters. <br>
-Risk: Generic sports queries may trigger this NBA-specific skill even when another sport is intended. <br>
-Mitigation: Confirm the user is asking about NBA basketball before relying on the skill's response. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese-language NBA questions about scores, schedules, standings, players, teams, comparisons, drafts, and recent performance. It can also generate local HTML analysis reports for players, teams, and current games.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/nba-analyst) <br>
-- [Publisher profile](https://clawhub.ai/user/bettermen) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Artifact manifest](artifact/clawhub.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, html, files, guidance] <br>
-**Output Format:** [Markdown-style text responses and generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local NBA cache files and HTML reports; outputs depend on NBA.com public API availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Dependency versions are range-based rather than locked, so future package updates may change runtime behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated Python environment and add a lockfile or pinned dependency set before relying on the skill.
+
+Risk: The skill performs outbound requests to NBA data services, so results can fail, change, or be rate-limited by upstream services.
+
+Mitigation: Review outputs for freshness and handle endpoint failures or empty data as part of the agent workflow.
+
+Risk: Report and cache behavior creates local files inside the skill package.
+
+Mitigation: Run the skill with appropriate filesystem permissions and periodically review or clean generated cache and report files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/nba-analyst)
+- [ClawHub publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Files]
+
+**Output Format:** [Chinese-language plain text tables and local HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report mode writes HTML files, and data queries may create local cache files inside the skill package.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

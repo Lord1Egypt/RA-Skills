@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 720" font-family="-apple-system,Segoe UI,Microsoft YaHei,sans-serif">
+  <rect width="680" height="720" fill="#FFFFFF"/>
+  <text x="340" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#1A1A1A">注册老炮·统一凭据保险库 · 能力全景</text>
+  <text x="340" y="62" text-anchor="middle" font-size="13" fill="#666">只讲能力，不披露做法 · 9 项能力覆盖「全生态 / 零知识 / 抗钓鱼 / AI 适配 / 防盗 / 可恢复 / 分级 / 审计 / 免费」</text>
+
+  <!-- 3x3 cards -->
+  <!-- row1 -->
+  <g>
+    <rect x="30" y="90" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="50" y="124" font-size="15" font-weight="700" fill="#E8543F">① 全生态覆盖</text>
+    <text x="50" y="152" font-size="12.5" fill="#444">手机 / 电脑 / 平板</text>
+    <text x="50" y="172" font-size="12.5" fill="#444">含华为鸿蒙设备</text>
+    <text x="50" y="192" font-size="12.5" fill="#444">同一套库随身走</text>
+    <text x="50" y="216" font-size="12.5" fill="#444">一处改，处处同步</text>
+  </g>
+  <g>
+    <rect x="245" y="90" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="265" y="124" font-size="15" font-weight="700" fill="#E8543F">② 零知识·自托管</text>
+    <text x="265" y="152" font-size="12.5" fill="#444">机密只存你自己的存储</text>
+    <text x="265" y="172" font-size="12.5" fill="#444">明文从不离本机</text>
+    <text x="265" y="192" font-size="12.5" fill="#444">服务端只见密文</text>
+    <text x="265" y="216" font-size="12.5" fill="#444">你完全掌控</text>
+  </g>
+  <g>
+    <rect x="460" y="90" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="480" y="124" font-size="15" font-weight="700" fill="#E8543F">③ 抗 AI 钓鱼</text>
+    <text x="480" y="152" font-size="12.5" fill="#444">防钓鱼登录架构</text>
+    <text x="480" y="172" font-size="12.5" fill="#444">钓鱼站无效</text>
+    <text x="480" y="192" font-size="12.5" fill="#444">结构性窃取免疫</text>
+    <text x="480" y="216" font-size="12.5" fill="#444">AI 破解不可行</text>
+  </g>
+  <!-- row2 -->
+  <g>
+    <rect x="30" y="255" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="50" y="289" font-size="15" font-weight="700" fill="#E8543F">④ AI 世界适配</text>
+    <text x="50" y="317" font-size="12.5" fill="#444">AI 可安全借用权限</text>
+    <text x="50" y="337" font-size="12.5" fill="#444">永不见明文密码</text>
+    <text x="50" y="357" font-size="12.5" fill="#444">秘不进模型上下文</text>
+    <text x="50" y="381" font-size="12.5" fill="#444">短时·窄域·可审计</text>
+  </g>
+  <g>
+    <rect x="245" y="255" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="265" y="289" font-size="15" font-weight="700" fill="#E8543F">⑤ 硬件密钥·防盗</text>
+    <text x="265" y="317" font-size="12.5" fill="#444">支持硬件安全密钥</text>
+    <text x="265" y="337" font-size="12.5" fill="#444">设备丢失也打不开</text>
+    <text x="265" y="357" font-size="12.5" fill="#444">需物理钥匙</text>
+    <text x="265" y="381" font-size="12.5" fill="#444">丢失不崩盘</text>
+  </g>
+  <g>
+    <rect x="460" y="255" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="480" y="289" font-size="15" font-weight="700" fill="#E8543F">⑥ 忘密可恢复</text>
+    <text x="480" y="317" font-size="12.5" fill="#444">主密码忘了也能找回</text>
+    <text x="480" y="337" font-size="12.5" fill="#444">应急恢复机制</text>
+    <text x="480" y="357" font-size="12.5" fill="#444">不必全丢</text>
+    <text x="480" y="381" font-size="12.5" fill="#444">有预案不怕忘</text>
+  </g>
+  <!-- row3 -->
+  <g>
+    <rect x="30" y="420" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="50" y="454" font-size="15" font-weight="700" fill="#E8543F">⑦ 分级授权·子账号</text>
+    <text x="50" y="482" font-size="12.5" fill="#444">不同用途受限子授权</text>
+    <text x="50" y="502" font-size="12.5" fill="#444">不同平台互不干扰</text>
+    <text x="50" y="522" font-size="12.5" fill="#444">主秘不外分</text>
+    <text x="50" y="546" font-size="12.5" fill="#444">最小权限</text>
+  </g>
+  <g>
+    <rect x="245" y="420" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="265" y="454" font-size="15" font-weight="700" fill="#E8543F">⑧ 一键解绑·审计</text>
+    <text x="265" y="482" font-size="12.5" fill="#444">疑泄可一键收回全部</text>
+    <text x="265" y="502" font-size="12.5" fill="#444">每次授权有记录</text>
+    <text x="265" y="522" font-size="12.5" fill="#444">解绑可审计</text>
+    <text x="265" y="546" font-size="12.5" fill="#444">不可抵赖</text>
+  </g>
+  <g>
+    <rect x="460" y="420" width="190" height="150" rx="12" fill="#FFF3F0" stroke="#E8543F" stroke-width="1.5"/>
+    <text x="480" y="454" font-size="15" font-weight="700" fill="#E8543F">⑨ 开源免费</text>
+    <text x="480" y="482" font-size="12.5" fill="#444">体系开放</text>
+    <text x="480" y="502" font-size="12.5" fill="#444">无订阅绑架</text>
+    <text x="480" y="522" font-size="12.5" fill="#444">可自托管</text>
+    <text x="480" y="546" font-size="12.5" fill="#444">自由可控</text>
+  </g>
+
+  <text x="340" y="610" text-anchor="middle" font-size="13" fill="#999">9 项能力 = 一套你完全掌控的凭据中枢 · 对外资料仅描述能力，不披露实现</text>
+  <text x="340" y="636" text-anchor="middle" font-size="12" fill="#BBB">© 2026 注册老炮 (MedXpert) · 知识版权所有 · 详见 ATTESTATION.md</text>
+</svg>

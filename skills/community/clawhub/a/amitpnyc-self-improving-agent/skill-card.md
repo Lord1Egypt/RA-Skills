@@ -1,40 +1,57 @@
-## Description: <br>
-Logs high-signal corrections, tool failures, feature requests, and recurring workflow lessons to lightweight local learning files, then promotes only repeated or durable lessons into project instructions when authorized. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log high-signal corrections, tool failures, feature requests, and recurring workflow lessons to a lightweight .learnings/ directory, then promote only repeated or durable learnings into durable instruction or memory files for OpenClaw or coding-agent workspaces that should improve over time without accumulating noise.
 
-## Publisher: <br>
-[amitpnyc](https://clawhub.ai/user/amitpnyc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amitpnyc](https://clawhub.ai/user/amitpnyc)
 
-## Use Case: <br>
-Developers and coding-agent users use this skill in OpenClaw or similar workspaces to capture useful corrections, failures, and workflow lessons while context is fresh. It helps teams improve agent behavior over time while keeping durable instruction changes intentional and reviewable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local learning notes may contain sensitive project context if captured too broadly. <br>
-Mitigation: Redact secrets and private data, prefer summaries over raw output, and review .learnings before sharing or committing it. <br>
-Risk: Promoting lessons into high-authority instruction or memory files can steer future agent behavior incorrectly if the lesson is temporary or misunderstood. <br>
-Mitigation: Require explicit authorization for durable instruction edits and promote only repeated, durable lessons in distilled form. <br>
+## Use Case:
 
+Developers and coding-agent users use this skill to capture high-value lessons from corrections, tool failures, feature requests, and recurring workflow issues. It helps teams keep lightweight append-only learning logs and promote only durable lessons into higher-authority instruction or memory files after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amitpnyc/amitpnyc-self-improving-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown log entries and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Append-only local learning files by default; durable instruction or memory edits only when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent learning logs may retain sensitive workspace details if an agent records too much context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Record short sanitized summaries, redact sensitive excerpts, and do not log secrets, tokens, private keys, environment variables, raw customer data, or full sensitive transcripts unless explicitly requested.
+
+Risk: Promoting lessons into AGENTS.md, MEMORY.md, SOUL.md, TOOLS.md, or project instructions can influence future agent behavior.
+
+Mitigation: Review and explicitly authorize proposed promotion into durable instruction or memory files before accepting the change.
+
+Risk: Low-signal or duplicate entries can create noisy learning history that is harder to maintain.
+
+Mitigation: Use the skill's logging threshold, recurrence metadata, and deduplication guidance before appending new entries or promoting lessons.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amitpnyc/skills/amitpnyc-self-improving-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown log entries and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Append-only .learnings entries by default; durable instruction or memory edits only after review or explicit authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

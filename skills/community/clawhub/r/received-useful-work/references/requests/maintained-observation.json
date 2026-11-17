@@ -1,0 +1,16 @@
+{
+  "schema": "neomorphic.received-useful-work.request.v1",
+  "task": "hold-sellers",
+  "inputs": {
+    "subscription": false,
+    "explicitOptIn": true,
+    "wallet": false
+  },
+  "expectedOutput": "maintenance-observation",
+  "budget": {
+    "maxUsd": 0,
+    "pay": false,
+    "timeoutMs": 8000,
+    "bodyBytes": 65536
+  }
+}

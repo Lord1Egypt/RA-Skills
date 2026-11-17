@@ -1,41 +1,58 @@
-## Description: <br>
-Load CSV files and ask questions in plain English. AI-powered natural language queries via Anthropic, OpenAI, or local Ollama. No SQL required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load CSV files and ask questions in plain English with AI-powered natural language queries via Anthropic, OpenAI, or local Ollama.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and data analysts use this skill to load CSV or TSV files, profile columns, run structured filters or aggregations, and ask natural-language questions about tabular data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud AI modes can send CSV-derived metadata and sample rows to Anthropic or OpenAI. <br>
-Mitigation: Use local Ollama, redact sensitive columns and sample rows, or obtain approval before using cloud providers with confidential, regulated, customer, or secret-bearing CSVs. <br>
-Risk: AI-generated answers may be inaccurate for important analysis. <br>
-Mitigation: Manually verify important results against the underlying data or a structured query before relying on them. <br>
+## Use Case:
 
+Developers and data analysts use this skill to load delimited tabular data, profile columns, run structured filters or aggregates, and ask natural language questions that return plain-English answers with supporting data.
 
-## Reference(s): <br>
-- [CSVBrain ClawHub Page](https://clawhub.ai/TheShadowRose/csv-brain) <br>
-- [TheShadowRose Publisher Profile](https://clawhub.ai/user/TheShadowRose) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, guidance] <br>
-**Output Format:** [Plain English answers and JSON objects from JavaScript APIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Anthropic, OpenAI, or local Ollama when natural-language questions are used; structured query and profile operations run locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release metadata) <br>
+Risk: AI query mode shares column names, statistics, the first five rows, and user questions with the configured model provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local Ollama or an approved provider for sensitive datasets, and avoid sending confidential data to providers that are not approved for the use case.
+
+Risk: AI-generated analysis may be incomplete or incorrect for important business, financial, legal, or operational decisions.
+
+Mitigation: Verify generated answers against the underlying CSV data or independent analysis before relying on them.
+
+Risk: A custom OLLAMA_HOST can direct dataset summaries and questions to an unintended host.
+
+Mitigation: Use trusted local or managed Ollama endpoints and review OLLAMA_HOST values before running natural language queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/csv-brain)
+- [Publisher profile](https://clawhub.ai/user/theshadowrose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return plain-English AI answers, structured query objects, profile statistics, or provider setup commands depending on the user request.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

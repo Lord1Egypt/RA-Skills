@@ -1,0 +1,6 @@
+{
+  "parent_wiki_url": "https://xxx.feishu.cn/wiki/<YOUR_NODE_TOKEN>",
+  "parent_node_token": "<YOUR_NODE_TOKEN>",
+  "preferred_tool": "mcp",
+  "title_timezone": "Asia/Shanghai"
+}

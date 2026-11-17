@@ -1,41 +1,54 @@
-## Description: <br>
-Pixelate chat and messaging app screenshots to hide chat names, profile pictures, and display names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pixelate chat and messaging app screenshots to hide chat titles, profile pictures, and display names.
 
-## Publisher: <br>
-[frankz2020](https://clawhub.ai/user/frankz2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankz2020](https://clawhub.ai/user/frankz2020)
 
-## Use Case: <br>
-External users and developers use ChatMask to redact identity elements from chat screenshots before sharing, publishing, or reviewing them. The skill helps an agent locate requested chat UI elements and run local image processing for each screenshot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup can automatically change system packages and fetch helper code from GitHub. <br>
-Mitigation: Review the setup commands first, preinstall python3-venv where possible, and verify the pinned commit and Python requirements before use. <br>
-Risk: Temporary input and output folders may retain sensitive chat screenshots after processing. <br>
-Mitigation: Delete `/tmp/chat_pixelate_in_*` and `/tmp/chat_pixelate_out_*` folders after processing sensitive screenshots. <br>
+## Use Case:
 
+External users and developers use ChatMask to redact identity elements in chat screenshots before sharing them. The skill guides an agent to locate requested chat names, avatars, or display names and invoke a local image-pixelation workflow.
 
-## Reference(s): <br>
-- [ChatMask homepage](https://github.com/frankz2020/chatmask) <br>
-- [ChatMask on ClawHub](https://clawhub.ai/frankz2020/chatmask) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files plus Markdown guidance with bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes each screenshot separately and writes pixelated image files to a temporary output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Setup installs and runs code and dependencies fetched from outside the submitted skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream source, verify the pinned commit before installation, and run setup in a restricted environment.
+
+Risk: Setup may attempt a host package-manager install if Python virtualenv support is missing.
+
+Mitigation: Avoid running setup with root or broad package-manager privileges; preinstall required system packages through an approved environment image when possible.
+
+## Reference(s):
+
+- [ChatMask GitHub repository](https://github.com/frankz2020/chatmask)
+- [ChatMask ClawHub skill page](https://clawhub.ai/frankz2020/skills/chatmask)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, files]
+
+**Output Format:** [Markdown with inline bash commands and JSON bounding-box prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces locally processed pixelated image files after per-image analysis.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

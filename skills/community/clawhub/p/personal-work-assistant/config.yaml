@@ -1,0 +1,48 @@
+# 个人工作助理配置 (Personal Work Assistant Config)
+
+user:
+  name: "彭梓轩"
+  aliases: ["Azusa", "梓轩"]
+  dingtalk_user_id: "645745096024342883"
+
+rules:
+  # 1. 重点全量监控群（无论有无@，全量分析讨论与任务）
+  focused_groups:
+    - name: "HK小队"
+      id: "cidfmvyxEoXjQMYDRsKsmkdBA=="
+      profile: "dinge30d840c34f761d335c2f4657eb6378f:645745096024342883" # 汇量科技
+    - name: "HelpKnow 小分队"
+      id: "cidvFm3nMJF7g0GWiOHsTN/ww=="
+      profile: "dinge30d840c34f761d335c2f4657eb6378f:645745096024342883" # 汇量科技
+    - name: "HK问题反馈（学习）"
+      id: "cidarNOErjtSilORPY7VuQEiw=="
+      profile: "dingf9adfa24336a8264f2c783f7214b6d69" # 广州标品
+
+  # 2. 完全忽略的群（如报警通知群）
+  ignored_group_keywords:
+    - "报警"
+    - "通知"
+    - "监控"
+    - "打卡"
+
+  # 3. 私聊监控配置（拉取与核心协作者的 1 对 1 对话）
+  direct_messages:
+    enabled: true
+    profiles:
+      - "dinge30d840c34f761d335c2f4657eb6378f:645745096024342883"
+      - "dingf9adfa24336a8264f2c783f7214b6d69"
+
+  # 4. @所有人 智能识别
+  at_all_mode: "smart_classify" # 自动识别为待办任务或需知悉公告
+
+  # 5. Teambition 任务配置
+  teambition:
+    enabled: true
+    user_token: "u-W8ASWDui25gI8KqHFKpo8VMzfxnkIVh3Tsyx7aE3UYTzzt8y"
+    org_id: "61b171d6562d7ce2cd1a7c68"
+    role_types: "executor" # 仅关注我作为执行人的任务
+
+reporting:
+  delivery_channel: "dingtalk-connector"
+  target_user_id: "645745096063779466"
+  time_window_hours: 24

@@ -1,48 +1,59 @@
-## Description: <br>
-Manage outbound notifications across WhatsApp, Telegram, and email with templates, scheduling, delivery tracking, and rate limiting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage outbound notifications across WhatsApp, Telegram, and email with templates, scheduling, delivery tracking, and rate limiting.
 
-## Publisher: <br>
-[engibarian](https://clawhub.ai/user/engibarian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engibarian](https://clawhub.ai/user/engibarian)
 
-## Use Case: <br>
-Developers and operators use this skill to draft, queue, schedule, and track outbound notifications across WhatsApp, Telegram, and email for operational, appointment, payment, support, marketing, and alert workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward sending real outbound messages. <br>
-Mitigation: Require explicit human approval for sends and scheduled jobs, and start with test recipients before enabling production targets. <br>
-Risk: Delivery logs and queue entries can contain recipient contact details. <br>
-Mitigation: Define retention, masking, and deletion rules before use, and restrict access to queue and delivery log files. <br>
-Risk: Automatic fallback across channels can contact recipients through an unintended medium. <br>
-Mitigation: Confirm opt-in status per recipient and per channel before enabling fallback from WhatsApp to Telegram or email. <br>
-Risk: Marketing or broadcast templates can create spam, consent, or rate-limit problems. <br>
-Mitigation: Use the configured rate limits, quiet hours, deduplication window, and opt-out handling before sending bulk messages. <br>
+## Use Case:
 
+Developers and operators use this skill to manage outbound WhatsApp, Telegram, and email notifications with reusable templates, scheduling, delivery tracking, and rate limiting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/engibarian/notification-system) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Rate limiter configuration](artifact/rate-limiters.json) <br>
-- [Template index](artifact/templates/index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown templates, JSON queue and rate-limit configuration, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes message templates for WhatsApp, Telegram, and email plus queue, scheduling, delivery tracking, rate limiting, quiet hours, retry, and deduplication guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can produce instructions and templates for real outbound messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in any environment that can send messages and require explicit operator confirmation for sends and broadcasts.
+
+Risk: Example recipients, caller-supplied links, and high-priority sends can create misuse or delivery-abuse paths.
+
+Mitigation: Replace example recipients with placeholders, validate or generate links server-side, and restrict high-priority use with authorization and bounded quotas.
+
+Risk: Delivery logs and opt-out handling can create privacy or consent risk.
+
+Mitigation: Protect or minimize delivery logs and enforce consent and opt-outs before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engibarian/skills/notification-system)
+- [Skill definition](artifact/SKILL.md)
+- [Template index](artifact/templates/index.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown templates, JSON queue and rate-limit configuration, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes channel-specific templates, pending queue data, rate limits, and delivery tracking guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

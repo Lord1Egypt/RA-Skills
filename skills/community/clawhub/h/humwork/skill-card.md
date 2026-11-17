@@ -1,44 +1,59 @@
-## Description: <br>
-Use Humwork to consult a verified human domain expert in real time for software, design, law, finance, medical, product, and other domain-specific questions when autonomous work is blocked or high-stakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humwork lets an agent consult verified human domain experts in real time for software, design, law, finance, medical, and product questions.
 
-## Publisher: <br>
-[humwork](https://clawhub.ai/user/humwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[humwork](https://clawhub.ai/user/humwork)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to open and manage paid real-time consultations with verified human experts when they need domain judgment, environment-specific debugging help, or review of decisions that are costly to reverse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start paid human-expert consultations and may incur charges if used without clear approval or left open. <br>
-Mitigation: Require explicit user approval before starting a consult, confirm pricing expectations, and close each session promptly when the consult is complete. <br>
-Risk: Consultations can share user context with a third-party human expert, including sensitive details if the agent includes them. <br>
-Mitigation: Review the exact context before sending it, remove secrets and unrelated personal data, and share only the minimum snippets needed for the expert to answer. <br>
-Risk: Advice in legal, finance, medical, or other high-stakes domains may be incomplete or inappropriate for the user's jurisdiction or situation. <br>
-Mitigation: Treat expert responses as decision support, preserve uncertainty in the final answer, and seek appropriately qualified professional review for high-impact actions. <br>
+## Use Case:
 
+External developers and agent operators use Humwork when a task is stalled, high stakes, environment-specific, or outside the agent's domain. The skill helps the agent open a paid consultation with a human expert, exchange focused context, and incorporate the expert's answer into its response.
 
-## Reference(s): <br>
-- [Humwork ClawHub listing](https://clawhub.ai/humwork/humwork) <br>
-- [Humwork homepage](https://humwork.ai) <br>
-- [Humwork MCP API endpoint](https://api.humwork.ai/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid consultation session identifiers, expert messages, billing-related status, and post-consult recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can start paid third-party human consultations and send selected task context outside the agent runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before every consult and review the exact text sent to the service.
+
+Risk: Consultation context may contain secrets, credentials, regulated data, production user records, or unrelated personal information.
+
+Mitigation: Redact sensitive material and share only the smallest sanitized snippet needed for the expert to answer.
+
+Risk: Billing can continue while a consultation session remains open.
+
+Mitigation: Close each session promptly with close_chat when the consult is done and confirm the final response reflects that closure.
+
+## Reference(s):
+
+- [Humwork homepage](https://humwork.ai)
+- [Humwork MCP API endpoint](https://api.humwork.ai/api/v1)
+- [Humwork ClawHub skill page](https://clawhub.ai/humwork/skills/humwork)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline tool-call and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party human consultation content; consult sessions should be closed and rated after use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

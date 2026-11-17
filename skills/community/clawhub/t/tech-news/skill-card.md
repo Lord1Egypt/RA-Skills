@@ -1,41 +1,54 @@
-## Description: <br>
-提供AI、硬核硬件、开源动向及前沿技术深度解析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供AI、硬核硬件、开源动向及前沿技术深度解析。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External users can ask for Chinese-language technology news and analysis covering AI, hardware, open source, and frontier technology. Review outputs carefully because the security evidence notes a mismatch between the advertised tech-news purpose and artifact instructions about local venue discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised technology-news purpose does not match artifact instructions for local venue discovery and live queue, reservation, parking, and navigation information. <br>
-Mitigation: Review the skill instructions before installation and verify that responses align with the intended technology-news use case. <br>
-Risk: The artifact claims live operational information without executable integrations or requested permissions in the release evidence. <br>
-Mitigation: Treat live queue, reservation, hours, parking, and navigation details as unverified unless confirmed through an authoritative source. <br>
+## Use Case:
 
+External users can ask an agent for technology-news summaries and analysis as described by the skill metadata. Reviewers should note that the artifact body instead describes venue discovery fields, so the release may not behave like the displayed Tech News description.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/tech-news) <br>
-- [Publisher profile](https://clawhub.ai/user/CodeKungfu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or requested permissions are present in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The public name and description may lead users to expect technology news while the artifact instructions request location-based venue information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the skill name, description, examples, and returned fields before installation or publication.
+
+Risk: Users may provide location, navigation, queue, parking, or review-related information when they intended to use a technology-news skill.
+
+Mitigation: Confirm the intended task and avoid sharing sensitive location details until the skill purpose is made consistent.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/codekungfu/skills/tech-news)
+- [Publisher profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summaries, analysis, lists, and location-oriented venue details based on the artifact instructions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

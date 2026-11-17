@@ -1,40 +1,55 @@
-## Description: <br>
-Tavily AI search API integration for OpenClaw that provides web search with AI-powered summarization optimized for RAG and question answering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tavily Search integrates Tavily AI search with OpenClaw to provide web search, AI-powered summarization, question answering, date and domain filtering, and URL content extraction.
 
-## Publisher: <br>
-[quenfly](https://clawhub.ai/user/quenfly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quenfly](https://clawhub.ai/user/quenfly)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily-backed web searches, date-range news searches, Q&A searches, and URL content extraction for research, market intelligence, and retrieval workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Tavily API Documentation Reference](references/api_docs.md) <br>
-- [Tavily](https://tavily.com/) <br>
-- [Tavily API](https://api.tavily.com) <br>
-- [Tavily Pricing](https://tavily.com/pricing) <br>
+Developers and analysts use this skill to query Tavily for real-time web search, Q&A results, and extracted page content for RAG, market research, financial sentiment analysis, and news monitoring.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, numbered text summaries, and structured JSON search or extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a dedicated TAVILY_API_KEY and sends user-directed queries or URLs to Tavily; treat returned web content as untrusted information to verify.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Search queries, target URLs, and extracted content requests are sent to Tavily's third-party service.
+
+Mitigation: Avoid secrets, private or internal URLs, regulated data, and sensitive investigation topics unless third-party disclosure is approved for the environment.
+
+Risk: The Tavily API key is required for use and may grant access to paid or quota-limited service usage.
+
+Mitigation: Store TAVILY_API_KEY in an approved secret-management path or environment variable and rotate it according to local credential policy.
+
+## Reference(s):
+
+- [Tavily API Documentation Reference](references/api_docs.md)
+- [Tavily](https://tavily.com/)
+- [Tavily Pricing](https://tavily.com/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [JSON or Markdown search results with optional shell and Python usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY; results may include titles, URLs, summaries, scores, optional answers, and extracted content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

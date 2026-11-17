@@ -1,42 +1,56 @@
-## Description: <br>
-Reduce OpenClaw per-turn prompt costs by 70%+ through file splitting, prompt caching, context pruning, and model routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduce OpenClaw per-turn prompt costs by 70%+ through file splitting, prompt caching, context pruning, and model routing.
 
-## Publisher: <br>
-[Jack-Yang-ai](https://clawhub.ai/user/Jack-Yang-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-yang-ai](https://clawhub.ai/user/jack-yang-ai)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit OpenClaw prompt usage and apply file-splitting, prompt caching, context pruning, and model-routing changes that reduce per-turn token costs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace file edits and OpenClaw configuration changes can alter future agent behavior or remove useful context. <br>
-Mitigation: Inspect and back up BOOTSTRAP.md, AGENTS.md, MEMORY.md, and openclaw.json before applying the guide. <br>
-Risk: Prompt caching, pruning, and heartbeat settings can change context retention, cache behavior, or background activity. <br>
-Mitigation: Apply only settings you are comfortable with, then monitor session status, cache hit rate, context usage, and compactions after restart. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw token usage, split always-loaded workspace files, configure prompt caching, tune context pruning, and route low-value work to cheaper models.
 
-## Reference(s): <br>
-- [OpenClaw Prompt Caching docs](https://docs.openclaw.ai/reference/prompt-caching) <br>
-- [Session Pruning docs](https://docs.openclaw.ai/concepts/session-pruning) <br>
-- [Gateway Configuration](https://docs.openclaw.ai/gateway/configuration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell and JSON configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes user-directed OpenClaw workspace and gateway configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Workspace file pruning or configuration edits may remove useful context or change OpenClaw behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and back up AGENTS.md, MEMORY.md, BOOTSTRAP.md, and openclaw.json before applying the guide.
+
+Risk: Installing an unpinned latest branch may include unreviewed changes.
+
+Mitigation: Prefer a reviewed ClawHub release or a specific commit, then confirm caching and pruning settings fit the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jack-yang-ai/skills/token-optimization)
+- [OpenClaw Prompt Caching docs](https://docs.openclaw.ai/reference/prompt-caching)
+- [Session Pruning docs](https://docs.openclaw.ai/concepts/session-pruning)
+- [Gateway Configuration](https://docs.openclaw.ai/gateway/configuration)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guide with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewed optimization steps; it has no hidden code or automatic behavior.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

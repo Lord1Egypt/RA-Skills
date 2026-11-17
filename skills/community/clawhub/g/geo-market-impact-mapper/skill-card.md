@@ -1,43 +1,55 @@
-## Description: <br>
-Fetches Yahoo Finance crude oil and gold futures data, detects threshold-based market moves, and maps those moves to geopolitical-event market impact context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets and analyzes crude oil and gold futures price movement, detects market-move thresholds, and maps commodity changes to geopolitical event impact paths.
 
-## Publisher: <br>
-[liweijie0709-cmyk](https://clawhub.ai/user/liweijie0709-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liweijie0709-cmyk](https://clawhub.ai/user/liweijie0709-cmyk)
 
-## Use Case: <br>
-Developers and analysts use this skill to add commodity-price context to geopolitical-event monitoring workflows, including oil and gold thresholds, sector impact descriptions, and event bonus scoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Yahoo Finance to fetch commodity prices. <br>
-Mitigation: Use it only in environments where outbound requests to Yahoo Finance are acceptable. <br>
-Risk: Market-impact descriptions may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational context and require human review before important financial or operational decisions. <br>
-Risk: Server-resolved provenance is unavailable for this version. <br>
-Mitigation: Weigh the limited publisher provenance and review the artifact before relying on it in important workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch public crude oil and gold futures prices, compute percentage movement, and summarize possible sector impacts for geopolitical or market events. The output is informational market-impact analysis, not financial advice or an automated trading signal.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liweijie0709-cmyk/geo-market-impact-mapper) <br>
-- [Yahoo Finance chart endpoint](https://query1.finance.yahoo.com/v8/finance/chart/CL=F) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python objects and dictionaries with short text descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contacts Yahoo Finance for commodity prices; market-impact output is informational context, not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, artifact VERSION constant, and SKILL.md version section) <br>
+Risk: The skill performs outbound Yahoo Finance price lookups, which may be unsuitable in restricted environments or fail when public market-data access is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where outbound public commodity price requests fit the environment, and handle unavailable market data as an expected operational condition.
+
+Risk: Generated sector impacts and event scoring could be mistaken for investment advice or an automated trading signal.
+
+Mitigation: Use the outputs as informational market-impact analysis and require human review before any trading, portfolio, or risk decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liweijie0709-cmyk/skills/geo-market-impact-mapper)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Artifact Python module](artifact/geo_market_impact_mapper.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Analysis]
+
+**Output Format:** [Python module outputs, dictionaries, and Chinese-language text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public Yahoo Finance commodity price data for WTI crude oil and gold futures when network access is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

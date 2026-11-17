@@ -1,46 +1,58 @@
-## Description: <br>
-Designs customer or employee onboarding journeys by breaking work into Day 1, Day 7, and Day 30 plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs customer or employee onboarding journeys with Day 1, Day 7, and Day 30 tasks, milestones, blockers, and success metrics.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Customer success, enablement, HR, and product teams use this skill to turn onboarding inputs into reviewable Markdown journey drafts, checklists, milestones, blockers, and metrics. It is suited for customer activation, employee onboarding, and new-user guidance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper can create or overwrite the file named by --output. <br>
-Mitigation: Choose an output path deliberately, use --dry-run or stdout for review first, and avoid pointing the output at important existing files. <br>
-Risk: Onboarding materials may include sensitive personal or business information. <br>
-Mitigation: Use only files intended to be shared with the skill and redact sensitive data unless it is necessary for the onboarding plan. <br>
-Risk: Generated onboarding journeys may be too generic or incomplete for a specific product, role, or customer segment. <br>
-Mitigation: Review the draft against the actual product context, fill the listed confirmation items, and adjust milestones and metrics before execution. <br>
+## Use Case:
 
+Customer success, enablement, HR, and product teams use this skill to turn onboarding goals, core actions, and success criteria into reviewable journey drafts and execution checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/onboarding-journey-designer) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Output Template](artifact/resources/template.md) <br>
-- [Structured Specification](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown by default, with optional JSON from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable onboarding drafts and can write an output file when the local Python helper is run with --output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The packaged script includes dormant audit and scanning modes beyond the advertised onboarding workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default structured onboarding mode unless audit behavior is intentionally needed, and review configuration before enabling alternate modes.
+
+Risk: The --input option can inspect local files or directories and --output can create or overwrite a report file.
+
+Mitigation: Provide explicit non-sensitive input paths, avoid broad or sensitive directories, and choose an output path intended for generated reports.
+
+Risk: Onboarding drafts may be too generic or may include unsupported assumptions when required context is missing.
+
+Mitigation: Review the generated draft, fill the listed missing information, and adapt milestones and metrics to the specific product, role, or customer segment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/onboarding-journey-designer)
+- [Publisher profile](https://clawhub.ai/user/52yuanchangxing)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown, with optional JSON when the local script is invoked with --format json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a structured onboarding report with Day 1, Day 7, Day 30, milestones, blocker warnings, metrics, missing information, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

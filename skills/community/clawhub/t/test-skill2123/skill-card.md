@@ -1,42 +1,54 @@
-## Description: <br>
-Set up and use 1Password CLI (op). Use when installing the CLI, enabling desktop app integration, signing in (single or multi-account), or reading/injecting/running secrets via op. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and use 1Password CLI (op) for installation, desktop app integration, sign-in, and secure secret read, inject, or run workflows.
 
-## Publisher: <br>
-[littlecrabzzz-alt](https://clawhub.ai/user/littlecrabzzz-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[littlecrabzzz-alt](https://clawhub.ai/user/littlecrabzzz-alt)
 
-## Use Case: <br>
-Developers and operators use this skill to install, sign in to, and run 1Password CLI workflows for account checks and secret injection while following the documented guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide access to sensitive 1Password vault data. <br>
-Mitigation: Authorize only the intended 1Password account, specify the exact vault or item before access, and verify identity with op whoami before reading secrets. <br>
-Risk: Secrets may be exposed in logs, chat, code, or temporary files. <br>
-Mitigation: Avoid commands that print secret values, never paste secrets into logs or chat, and prefer op run or op inject over writing secrets to disk. <br>
-Risk: An authenticated CLI session may remain active longer than intended. <br>
-Mitigation: Run op commands in a dedicated tmux session and confirm that the session is closed after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started/) <br>
-- [ClawHub skill page](https://clawhub.ai/littlecrabzzz-alt/test-skill2123) <br>
+## Use Case:
 
+Developers and operators use this skill to install and authenticate 1Password CLI, verify account access, and run secret-related commands through tmux with guardrails that reduce accidental secret exposure.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command guidance is scoped to 1Password CLI setup, sign-in, access checks, and secret injection through a dedicated tmux session.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill helps an agent operate 1Password CLI workflows that can access sensitive secrets.
+
+Mitigation: Do not allow secret values to be printed or pasted into chat, logs, or files; prefer `op run` or `op inject` as recommended by the skill and security guidance.
+
+Risk: 1Password commands can fail or repeatedly prompt when authentication state is not preserved.
+
+Mitigation: Run `op` commands inside a fresh dedicated tmux session, unlock or authorize 1Password, and verify access with `op whoami` before reading secrets.
+
+## Reference(s):
+
+- [1Password CLI get started](https://developer.1password.com/docs/cli/get-started/)
+- [ClawHub skill page](https://clawhub.ai/littlecrabzzz-alt/skills/test-skill2123)
+- [Publisher profile](https://clawhub.ai/user/littlecrabzzz-alt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands assume the 1Password CLI binary `op` is installed and authenticated through a dedicated tmux session.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

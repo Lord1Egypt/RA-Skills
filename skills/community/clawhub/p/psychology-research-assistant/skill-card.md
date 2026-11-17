@@ -1,39 +1,54 @@
-## Description: <br>
-Assist with psychology research by supporting literature searches, systematic reviews, meta-analyses, methodology guidance, and structured writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with psychology research by supporting literature searches, systematic reviews, meta-analyses, methodology guidance, and structured research writing.
 
-## Publisher: <br>
-[Jiaqi-Guo-0114](https://clawhub.ai/user/Jiaqi-Guo-0114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiaqi-guo-0114](https://clawhub.ai/user/jiaqi-guo-0114)
 
-## Use Case: <br>
-Researchers, students, and analysts use this skill to plan psychology literature searches, support systematic reviews and meta-analyses, and structure research methods and writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated literature summaries or search guidance may omit relevant studies, cite outdated evidence, or overstate findings. <br>
-Mitigation: Verify search strategies, inclusion criteria, citations, and conclusions against primary sources before using them in research decisions or publications. <br>
-Risk: Generated statistical conversions, meta-analysis guidance, or R code may not match a specific dataset or study design. <br>
-Mitigation: Review formulas, assumptions, effect-size choices, and generated code with a qualified researcher or statistician before relying on results. <br>
+## Use Case:
 
+Researchers, students, and research teams use this skill to plan and document psychology literature searches, systematic reviews, meta-analyses, research methods, and manuscript sections.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Structured Markdown with research summaries, templates, citations, formulas, and code snippets when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed against source literature and applicable research standards before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated formulas, evidence ratings, database results, or citation summaries may be incorrect, incomplete, or stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against the underlying studies and use qualified research or statistical judgment before relying on them.
+
+Risk: Research guidance may be mistaken for expert clinical or statistical advice.
+
+Mitigation: Treat the skill as research assistance only and require expert review for clinical interpretation, study design decisions, and final analyses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiaqi-guo-0114/skills/psychology-research-assistant)
+- [Publisher Profile](https://clawhub.ai/user/jiaqi-guo-0114)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Structured Markdown summaries, templates, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search strategies, study characteristics, evidence ratings, effect-size calculations, citations, and R metafor snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

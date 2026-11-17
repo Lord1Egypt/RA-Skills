@@ -1,42 +1,55 @@
-## Description: <br>
-Class Seven coordinates multi-agent development workflows with specialized PM, architect, developer, tester, and debugger roles and flexible tool selection across Claude Code, Kimi, and native tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Class Seven coordinates complex development work by orchestrating specialized PM, architect, developer, tester, and debugger agents with tool selection guidance for Claude Code, Kimi, and native tools.
 
-## Publisher: <br>
-[russellfei](https://clawhub.ai/user/russellfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[russellfei](https://clawhub.ai/user/russellfei)
 
-## Use Case: <br>
-Developers and engineers use this skill to coordinate complex development tasks across planning, architecture, implementation, testing, debugging, and review workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive logs or private code may be shared with multiple agents or model providers during orchestration. <br>
-Mitigation: Decide which agents and providers may see project data before use, and redact sensitive logs, secrets, and proprietary code from prompts. <br>
-Risk: Installer snippets in the artifact pipe remote scripts directly into PowerShell. <br>
-Mitigation: Prefer verified vendor installation instructions and inspect remote installer scripts before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Class Seven on ClawHub](https://clawhub.ai/russellfei/class-seven) <br>
-- [Workflow Patterns](references/workflows.md) <br>
-- [Tool Integration Guide](references/tools-guide.md) <br>
-- [Example Projects](references/examples.md) <br>
+## Use Case:
 
+Developers and engineers use Class Seven to coordinate multi-agent software delivery workflows across requirements, architecture, implementation, testing, code review, debugging, and integration.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with structured role outputs, code blocks, and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include requirements notes, architecture guidance, implementation code, test plans, bug reports, and integration recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can route sensitive code, logs, or repository context to external model tools.
+
+Mitigation: Use it only with explicit approval for external model calls, and sanitize logs and repository content before sharing them with external tools.
+
+Risk: The artifact recommends remote installer commands and persistent Claude/Kimi configuration changes.
+
+Mitigation: Independently trust and verify installer commands before execution, and review any proposed agent configuration changes before applying them.
+
+## Reference(s):
+
+- [Class Seven Workflow Patterns](references/workflows.md)
+- [Class Seven Tool Integration Guide](references/tools-guide.md)
+- [Class Seven Example Projects](references/examples.md)
+- [Class Seven ClawHub Release](https://clawhub.ai/russellfei/skills/class-seven)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose role-specific agent outputs such as requirements, architecture notes, implementation code, test plans, root cause analysis, fixes, and delivery summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

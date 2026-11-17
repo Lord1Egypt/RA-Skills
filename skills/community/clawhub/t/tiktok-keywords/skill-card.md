@@ -1,44 +1,60 @@
-## Description: <br>
-Identify high-volume, low-competition keywords specific to TikTok Shop and ecommerce search behavior to improve listing discoverability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify high-volume, low-competition keywords specific to TikTok Shop and ecommerce search behavior to improve listing discoverability.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers, marketplace operators, and affiliate teams use this skill to research TikTok Shop keyword opportunities and produce structured listing, caption, hashtag, backend term, and affiliate brief recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keyword, title, description, hashtag, and affiliate brief recommendations may be inaccurate, stale, or poorly matched to a live listing. <br>
-Mitigation: Manually review generated recommendations against current TikTok Shop search behavior, listing requirements, and brand constraints before publishing. <br>
-Risk: Research workflows may involve seller accounts or ecommerce data. <br>
-Mitigation: Use public or low-privilege browsing where practical and avoid sharing private seller credentials unless the surrounding workflow explicitly requires them. <br>
+## Use Case:
 
+External ecommerce sellers, marketplace operators, and affiliate teams use this skill to produce TikTok Shop keyword research reports for product listings, video captions, hashtags, and affiliate briefs.
 
-## Reference(s): <br>
-- [TikTok Keywords ClawHub Listing](https://clawhub.ai/leooooooow/tiktok-keywords) <br>
-- [Keyword Intent Framework](artifact/keyword-intent-framework.md) <br>
-- [TikTok Search Mechanics](artifact/tiktok-search-mechanics.md) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown keyword research report with tables, scoring notes, draft copy, and checklist-backed validation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations for human review before applying them to live TikTok Shop listings or affiliate briefs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Keyword recommendations may be based on time-sensitive TikTok Shop autocomplete, hashtag, listing, and competitor observations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Record the research date, validate current platform signals before applying recommendations, and refresh findings at least every 30 days or sooner for seasonal products.
+
+Risk: The workflow may ask for product, audience, price, listing, and competitor context to tailor recommendations.
+
+Mitigation: Provide only the commercial context needed for the analysis and avoid sharing credentials, private customer data, or account access.
+
+Risk: Applying unreviewed keyword or copy recommendations to live listings could reduce relevance or misrepresent the product.
+
+Mitigation: Review final keyword placements, draft listing copy, and hashtag guidance against the product details and TikTok Shop policy before publishing changes.
+
+## Reference(s):
+
+- [Keyword Intent Framework for TikTok Shop](artifact/keyword-intent-framework.md)
+- [TikTok Search Mechanics for Shop Optimization](artifact/tiktok-search-mechanics.md)
+- [TikTok Keywords Output Template](artifact/output-template.md)
+- [TikTok Keywords Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown keyword research report with tables, draft listing copy, hashtag recommendations, and monitoring guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses manual TikTok Shop, autocomplete, hashtag, competitor, and listing observations supplied or gathered during the research workflow.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
   "id": "fec-react-project-standard",
-  "name": "React 项目规范",
+  "name": "React project specifications",
   "category": "project-standard",
   "tags": [
     "react",
@@ -9,8 +9,8 @@
     "components",
     "architecture"
   ],
-  "summary": "Frontend Craft skill for React 项目规范.",
-  "version": "2.7.0",
+  "summary": "Organize React and TypeScript components, hooks, routes, state boundaries, and project structure.",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when designing or reviewing React + TypeScript project structure, feature/module boundaries, component architecture, hooks organization, routing composition, state/API/error/styling defaults, or repository-wide React conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include React 项目规范, React 组件架构.",
+  "description": "Use when designing or reviewing React + TypeScript project structure, feature/module boundaries, component architecture, hooks organization, routing composition, state/API/error/styling defaults, or repository-wide React conventions. Prefer narrower skills for forms, data fetching, tests, accessibility, virtualization, animation, or security deep dives; Chinese triggers include React project specification, React component architecture.",
   "source": "skills/fec-react-project-standard",
   "references": [
     "references/react-performance-patterns.md",

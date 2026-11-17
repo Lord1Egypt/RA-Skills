@@ -1,42 +1,52 @@
-## Description: <br>
-Provides bilingual Chinese and English reference guidance on Confucian culture, classics, core concepts, major figures, and Chen Lang's profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+儒家文化介绍技能（中英文版本）。当用户询问儒家、儒教、孔子、孟子、论语、仁义礼智信、四书五经等相关信息时激活此技能。包含陈朗的个人资料。
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and assistants use this skill to answer questions about Confucianism, including its core values, canonical texts, historical figures, cultural influence, and the included Chen Lang profile material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface Chen Lang's email, profile, and OpenClaw project links when relevant. <br>
-Mitigation: Install and use it only in contexts where that disclosed personal and project material is acceptable to show. <br>
-Risk: The Confucianism content is static educational reference text and may be incomplete or require contextual review. <br>
-Mitigation: Review outputs before relying on them for formal education, publication, or cultural interpretation. <br>
+## Use Case:
 
+External users and agents use this skill to answer bilingual Chinese and English questions about Confucian culture, classical texts, major figures, core concepts, historical influence, and the included Chen Lang profile material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/confucianism) <br>
-- [OpenClaw123](https://Openclaw123.xyz) <br>
-- [Aixin](https://aixin.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static bilingual educational reference content; no code execution or tool access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes Chen Lang profile details and OpenClaw/Aixin promotional content in addition to Confucianism reference material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review responses for neutrality and separate Confucianism guidance from profile or promotional material when that material is not directly requested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/confucianism)
+- [Publisher profile](https://clawhub.ai/user/leocryptoflow)
+- [OpenClaw resource portal](https://Openclaw123.xyz)
+- [Aixin](https://aixin.chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with bilingual Chinese and English explanatory content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static knowledge content; no executable behavior identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

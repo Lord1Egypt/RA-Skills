@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "kungfu-soccer",
+  "displayName": "功夫女足经典界面",
+  "version": "1.0.0",
+  "images": {
+    "hero": "../../assets/kungfu_soccer_scene.png",
+    "texture": "../../assets/kungfu_soccer_scene.png"
+  },
+  "copy": {
+    "brandTitle": "功夫女足 · 经典界面",
+    "brandSubtitle": "WorkBuddy 江湖限定版 ⚽",
+    "signature": "功夫女足 ♡",
+    "tagline": "凌空一脚，踢出整片江湖"
+  },
+  "targets": {
+    "workbuddy": {
+      "css": "workbuddy.css",
+      "verification": {
+        "contexts": [
+          {
+            "name": "home",
+            "when": { "any": [".wb-home-page"] },
+            "required": [
+              { "name": "home-hero", "any": [".wb-home-header"] },
+              { "name": "home-composer", "any": [".wb-home-composer"] }
+            ],
+            "recommended": [
+              { "name": "scene-tabs", "any": [".wb-scene-tabs"] },
+              { "name": "quick-actions", "any": [".quick-actions"] }
+            ]
+          },
+          {
+            "name": "conversation",
+            "when": { "any": [".chat-container:not(.chat-container--welcome)"] },
+            "required": [
+              {
+                "name": "conversation-composer-shell",
+                "any": [".chat-container:not(.chat-container--welcome) section:has([role='textbox'][contenteditable='true'])"]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

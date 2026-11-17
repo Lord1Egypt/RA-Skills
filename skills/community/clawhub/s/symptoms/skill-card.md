@@ -1,39 +1,52 @@
-## Description: <br>
-Build a private symptom tracker for logging health patterns and preparing for doctor visits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a private symptom tracker for logging health patterns and preparing for doctor visits.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to log symptoms, medications, patterns, and doctor-visit notes in a local workspace while avoiding diagnosis or treatment recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive symptom, medication, and doctor-prep notes locally under ~/symptoms/. <br>
-Mitigation: Use device account security, consider disk encryption, and review local backup or sync behavior before logging sensitive health information. <br>
-Risk: Doctor-prep summaries may contain sensitive health details that users could share externally. <br>
-Mitigation: Review and redact summaries before sharing them with clinicians, caregivers, or other recipients. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/symptoms) <br>
+## Use Case:
 
+External users use this skill to keep local symptom logs, identify patterns and red flags, and prepare concise summaries for clinician visits. The skill is for documentation and organization only, not diagnosis, treatment, or medication advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown notes and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local notes under ~/symptoms/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive personal health information in local files under ~/symptoms/.
+
+Mitigation: Install only if local health-note storage is acceptable, keep the directory under appropriate device access controls, and avoid placing it in synced or shared locations unless intentional.
+
+Risk: Symptom summaries or follow-up prompts could be mistaken for medical advice.
+
+Mitigation: Use the output as an organized record for discussion with a clinician; do not treat it as diagnosis, treatment guidance, or medication advice, and seek immediate care for red-flag symptoms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/symptoms)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Conversational text and Markdown notes written to local symptom-tracking files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores sensitive health notes locally under ~/symptoms/; no sync behavior is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

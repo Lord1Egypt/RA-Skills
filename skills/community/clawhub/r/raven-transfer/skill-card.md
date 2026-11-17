@@ -1,48 +1,61 @@
-## Description: <br>
-Wallet-aware Raven Atlas transfer operations for NGN payouts. Use when an agent must check wallet balance, resolve Nigerian bank accounts, enforce explicit confirmation tokens, and execute idempotent confirmed transfers to bank beneficiaries or merchant settlement accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wallet-aware Raven Atlas transfer operations for NGN payouts that help an agent check wallet balance, resolve Nigerian bank accounts, enforce explicit confirmation tokens, and execute idempotent confirmed transfers to bank beneficiaries or merchant settlement accounts.
 
-## Publisher: <br>
-[Fmacmak](https://clawhub.ai/user/Fmacmak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmacmak](https://clawhub.ai/user/fmacmak)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check Raven NGN wallet balances, resolve Nigerian bank accounts, preview payouts, and execute confirmed bank or merchant settlement transfers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute real NGN payouts. <br>
-Mitigation: Install only for intentional Raven payout workflows, keep implicit invocation disabled, and require the agent to show recipient, amount, fee, total debit, and balance impact before any --confirm command. <br>
-Risk: Credential exposure could allow unauthorized Raven API use. <br>
-Mitigation: Use a dedicated least-privilege Raven key when available and prefer RAVEN_API_KEY_FILE with owner-only file permissions. <br>
-Risk: Local state may retain transfer metadata. <br>
-Mitigation: Exclude scripts/.state from backups or shared repositories, rely on owner-only permissions, or set RAVEN_DISABLE_LOCAL_STATE=1 when local idempotency state should be disabled. <br>
-Risk: Duplicate or premature retries could create unintended payouts. <br>
-Mitigation: Use confirmation tokens and idempotency references, do not auto-retry transfer submissions, and check transfer-status plus wallet balance before any resend decision. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run confirmation-gated Raven Atlas NGN payouts to Nigerian bank beneficiaries or merchant settlement accounts while checking wallet funds, resolving account names, and verifying transfer status.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Safety and Reliability](references/safety.md) <br>
-- [Installation](references/install.md) <br>
-- [Raven Transfer on ClawHub](https://clawhub.ai/Fmacmak/raven-transfer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands return normalized JSON envelopes with transfer, balance, fee, status, and settlement fields when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill can submit real NGN transfers after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review for each confirmed transfer, verify balance and account lookup first, use the exact confirmation token, and check settlement status before any resend decision.
+
+Risk: A configured API base can receive the Raven API key and transfer details.
+
+Mitigation: Use the default Raven endpoint unless the replacement endpoint is fully controlled and trusted, store the API key in a locked-down secret source, and prefer a restricted Raven API key where available.
+
+Risk: Local idempotency state can persist transfer reference metadata.
+
+Mitigation: Keep state files owner-only, exclude the state directory from sync and backups, or set RAVEN_DISABLE_LOCAL_STATE=1 when local persistence is unsuitable.
+
+## Reference(s):
+
+- [Raven NGN Transfers on ClawHub](https://clawhub.ai/fmacmak/skills/raven-transfer)
+- [Workflow](references/workflow.md)
+- [Command Reference](references/commands.md)
+- [Safety and Reliability](references/safety.md)
+- [Installation](references/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command results use a success or failure JSON envelope and include normalized balance, fee, total debit, status, and reference fields when available.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

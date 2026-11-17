@@ -1,5 +1,7 @@
 ---
 name: stations
+version: 0.1.0
+license: MIT
 description: Use when facing two or more independent pieces of work - separate bugs, separate subsystems, separate repos - that could be executed by concurrent agents, before dispatching any of them. Also use when the user says "fan out", "parallelize this", or hands over a pile of unrelated failures.
 ---
 

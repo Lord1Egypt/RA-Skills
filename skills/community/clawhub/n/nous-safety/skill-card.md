@@ -1,43 +1,56 @@
-## Description: <br>
-Nous Safety provides an ontology-driven agent safety layer that evaluates tool actions with semantic analysis, Datalog reasoning, and knowledge graph evidence before returning ALLOW, BLOCK, or REVIEW decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ontology-driven agent safety layer that evaluates runtime tool-call decisions with semantic analysis, Datalog rules, and knowledge graph evidence.
 
-## Publisher: <br>
-[dario-github](https://clawhub.ai/user/dario-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dario-github](https://clawhub.ai/user/dario-github)
 
-## Use Case: <br>
-Developers and engineers use this skill to add a runtime safety decision layer to agents, starting in shadow mode for observation and moving to primary mode after tuning rules. It helps evaluate proposed tool calls with formal rules, semantic analysis, and knowledge graph context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can delete the configured install directory without confirmation if an update fails. <br>
-Mitigation: Review the installer first, avoid setting NOUS_INSTALL_DIR to a broad or valuable directory, and back up any existing ~/.nous installation before updates. <br>
-Risk: The installer clones and installs from a GitHub repository, so an unpinned install may change over time. <br>
-Mitigation: Prefer installing from a pinned trusted commit in a virtual environment before using the skill in an agent workflow. <br>
-Risk: Primary blocking mode can affect agent actions before the rules are tuned. <br>
-Mitigation: Start in shadow mode, inspect local logs and any data sent to the configured LLM provider, then enable blocking only after reviewing the decisions. <br>
+## Use Case:
 
+Developers and agent engineers use this skill to add a runtime safety gate that can observe, review, or block potentially harmful tool calls. It is intended for agent workflows that need auditable decision traces and configurable safety rules.
 
-## Reference(s): <br>
-- [Nous GitHub Repository](https://github.com/dario-github/nous) <br>
-- [Nous Safety ClawHub Page](https://clawhub.ai/dario-github/nous-safety) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash, Python, Prolog, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an installer, usage snippets, and mode configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The installer runs mutable remote GitHub code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before running it and prefer installation from a pinned commit or signed release in a virtual environment.
+
+Risk: The installer can delete a caller-selected installation directory during update failure.
+
+Mitigation: Avoid sudo or root installation and do not set NOUS_INSTALL_DIR to a directory containing unrelated data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dario-github/skills/nous-safety)
+- [Nous GitHub Homepage](https://github.com/dario-github/nous)
+- [Biomorphic Memory Companion Project](https://github.com/dario-github/biomorphic-memory)
+- [Agent Self Evolution Companion Project](https://github.com/dario-github/agent-self-evolution)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash, Python, YAML, and Datalog snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation guidance, integration examples, configuration notes, and safety-mode guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

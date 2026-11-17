@@ -30,9 +30,9 @@ POST /app_api/edit/create_question/
 | 参数 | 类型 | 必填 | 说明 |
 |-----|------|------|------|
 | `project_id` | string | 条件 | 项目ID（位置参数，不传则从列表选择） |
-| `--type` | string | 否 | 题型：auto(自动)/single(单选)/multi(多选)/fill(填空)/judge(判断)，默认auto |
+| `--type` | string | 否 | 题型：auto(自动)/single(单选)/multi(多选)/fill(填空)/judge(判断)/**evaluation(评价题)**/**scale(量表题)**/**score(打分题)**/**nps(NPS题)**，默认auto。用户说「新增评价题」时用 `evaluation`。 |
 | `--title` | string | 否 | 题目标题（可选；不传则按最新结构中的项目信息 + 已有题目智能生成，见上文） |
-| `--options` | string | 否 | 选项，逗号分隔（可选，不传则使用模板选项） |
+| `--options` | string | 否 | 选项，逗号分隔（可选，不传则使用模板选项）。对 `evaluation` 表示刻度文案。 |
 | `--index` | int | 否 | 插入位置，0-based（默认末尾） |
 | `-h, --help` | bool | 否 | 显示帮助信息 |
 
@@ -116,6 +116,26 @@ node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
   --type judge \
   --title "您是否满意当前服务？"
 
+# 创建评价题（编辑器「评价」）
+node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
+  --type evaluation \
+  --title "请评价本次服务"
+
+# 创建量表题（1~5）
+node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
+  --type scale \
+  --title "请给本项打分"
+
+# 创建打分题（最小 custom_attr 结构）
+node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
+  --type score \
+  --title "请给本项打分"
+
+# 创建 NPS 题（0~10）
+node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
+  --type nps \
+  --title "您向朋友或同事推荐我们的可能性有多大？"
+
 # 指定插入位置（0-based，默认末尾）
 node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
   --type single \
@@ -186,8 +206,111 @@ node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
 | 多选题 | 3 | QUESTION_TYPE_MULTIPLE |
 | 填空题 | 6 | QUESTION_TYPE_BLANK |
 | 判断题 | 2 | QUESTION_TYPE_SINGLE（disp_type=judge） |
-| 评分题 | 50 | QUESTION_TYPE_SCORE |
+| 评价题 | 50 | QUESTION_TYPE_SCORE（`disp_type=evaluation`、`score_display=star`、`open_eval=on`、`min/max_answer_num=1/5`、`show_seq=off`、`base_on=service`） |
+| 量表题 | 50 | QUESTION_TYPE_SCORE（`scale_tag=2`、`score_display=circle`、`min/max_answer_num=1/5`、`answer_score=off`、`desc_left/right`、`magnitude_scale=1`、`disp_type=scale`、`show_seq=off`） |
+| 打分题 | 50 | QUESTION_TYPE_SCORE（最小结构：`min/max_answer_num` + `magnitude_scale` + `show_seq`） |
+| NPS题 | 50 | QUESTION_TYPE_SCORE（`disp_type=nps_score`、`min_answer_num=0`、`max_answer_num=10`、`show_seq=off`） |
 | 性别 | 2 | QUESTION_TYPE_SEX |
+
+## 参考结构（可直接复用）
+
+### 评价题（`--type evaluation`）
+
+```json
+{
+  "title": "请评价本次服务",
+  "question_type": 50,
+  "en_name": "QUESTION_TYPE_SCORE",
+  "custom_attr": {
+    "disp_type": "evaluation",
+    "score_display": "star",
+    "open_eval": "on",
+    "min_answer_num": 1,
+    "show_seq": "off",
+    "max_answer_num": 5,
+    "base_on": "service"
+  },
+  "option_list": [
+    { "title": "分数", "is_open": false, "custom_attr": {} },
+    {
+      "title": "标签",
+      "is_open": false,
+      "custom_attr": {
+        "label_data": {
+          "1": { "score_desc": "非常不满意", "label_list": ["态度冷淡", "推销多", "技术差"] },
+          "2": { "score_desc": "比较不满意", "label_list": ["速度慢", "仪表乱", "不专业"] },
+          "3": { "score_desc": "一般", "label_list": ["无互动", "不积极", "业务不精"] },
+          "4": { "score_desc": "比较满意", "label_list": ["文明礼貌", "速度快", "较专业"] },
+          "5": { "score_desc": "非常满意", "label_list": ["热情好客", "敬业精神", "技能专业"] }
+        }
+      }
+    }
+  ]
+}
+```
+
+### 量表题（`--type scale`）
+
+```json
+{
+  "title": "请给本项打分",
+  "question_type": 50,
+  "en_name": "QUESTION_TYPE_SCORE",
+  "custom_attr": {
+    "scale_tag": 2,
+    "score_display": "circle",
+    "min_answer_num": 1,
+    "max_answer_num": 5,
+    "answer_score": "off",
+    "desc_right": "非常满意",
+    "desc_left": "非常不满意",
+    "magnitude_scale": 1,
+    "disp_type": "scale",
+    "show_seq": "off"
+  },
+  "option_list": [
+    { "title": "选项1", "is_open": false, "custom_attr": {} }
+  ]
+}
+```
+
+### 打分题（`--type score`）
+
+```json
+{
+  "title": "请给本项打分",
+  "question_type": 50,
+  "en_name": "QUESTION_TYPE_SCORE",
+  "custom_attr": {
+    "min_answer_num": 1,
+    "show_seq": "off",
+    "max_answer_num": 5,
+    "magnitude_scale": 1
+  },
+  "option_list": [
+    { "title": "选项1", "is_open": false, "custom_attr": {} }
+  ]
+}
+```
+
+### NPS题（`--type nps`）
+
+```json
+{
+  "title": "您向朋友或同事推荐我们的可能性有多大？",
+  "question_type": 50,
+  "en_name": "QUESTION_TYPE_SCORE",
+  "custom_attr": {
+    "disp_type": "nps_score",
+    "show_seq": "off",
+    "min_answer_num": 0,
+    "max_answer_num": 10
+  },
+  "option_list": [
+    { "title": "选项1", "is_open": false, "custom_attr": {} }
+  ]
+}
+```
 
 ## 注意事项
 
@@ -195,6 +318,8 @@ node "${SKILL_DIR}/scripts/create_question.js" 69cf1ec220c788db14aa18e8 \
 2. **智能生成**：如果不指定 `--title` 和 `--options`，会根据项目类型和已有题目数量自动生成合适的题目
 3. **分页ID**：脚本会自动获取项目的第一个分页ID，如果项目没有分页会报错
 4. **插入选项**：`--index` 参数指定插入位置，0 表示插入到第一题，不指定则添加到末尾
+5. **不支持矩阵题型**：本 Skill 不能创建或导入矩阵单选/多选等矩阵题。用户要「对多个方面分别评价」时，拆成多道 `--type scale` / `evaluation` / `score` 题，或告知在问卷网编辑器手动添加。
+6. **量表题 ≠ 打分题 ≠ NPS题**：`--type scale`（量表）、`--type score`（打分最小结构）、`--type nps`（`disp_type: nps_score`，0～10）需要严格区分，不要混用。
 
 ## 依赖脚本
 

@@ -1,39 +1,55 @@
-## Description: <br>
-MeetMind turns pasted meeting text or uploaded audio into structured meeting notes using template detection, ACE-style sections, and optional cross-meeting memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MeetMind helps users turn pasted meeting text or uploaded audio into structured meeting minutes using template detection, cloud processing, optional transcription, and cross-meeting memory.
 
-## Publisher: <br>
-[mikeliang2000](https://clawhub.ai/user/mikeliang2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeliang2000](https://clawhub.ai/user/mikeliang2000)
 
-## Use Case: <br>
-Employees, consultants, and team leads can use this skill to convert meeting text or audio into structured minutes, action-oriented summaries, and follow-up context across related meetings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting text, audio, user identifiers, and long-lived meeting memory may be sent to hermesai.ltd without enough published privacy, deletion, retention, or certificate-handling detail. <br>
-Mitigation: Use only for meetings whose content is approved for that service, avoid confidential or regulated material unless acceptable terms are available, and review organization policy before enabling memory or paid certificate-based use. <br>
+## Use Case:
 
+Employees and business users use this skill to generate structured meeting minutes from meeting text or audio, including action-oriented summaries for common meeting types. Paid tiers add audio handling, cloud transcription, custom templates, and cross-meeting memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mikeliang2000/meetmind) <br>
-- [Publisher homepage](https://hermesai.ltd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, shell commands] <br>
-**Output Format:** [Markdown or plain text meeting notes, JSON responses from helper scripts, and setup commands for transcription or certificate-based access] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send meeting text, uploaded audio, user identifiers, and meeting memory context to a third-party cloud service; paid use may require mTLS client certificates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Meeting text, uploaded audio, user identifiers, usage data, and paid-tier memory context may be sent to the MeetMind cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the organization accepts the provider, retention model, analytics, and account-linking behavior; avoid confidential meetings otherwise.
+
+Risk: Paid-tier memory features can retain cross-meeting context.
+
+Mitigation: Confirm retention expectations and account identity mapping before enabling memory-backed workflows.
+
+## Reference(s):
+
+- [MeetMind ClawHub listing](https://clawhub.ai/mikeliang2000/skills/meetmind)
+- [HermesAI homepage](https://hermesai.ltd)
+- [MeetMind service endpoint](https://www.hermesai.ltd/meetmind)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown and text responses with optional JSON API results and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include structured meeting summaries, transcription results, template selections, memory context, usage status, and upgrade or certificate guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 0.6.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

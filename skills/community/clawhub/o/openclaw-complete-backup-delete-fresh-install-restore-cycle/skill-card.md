@@ -1,43 +1,58 @@
-## Description: <br>
-A runbook-style skill for backing up, deleting, reinstalling, and restoring OpenClaw installations, including full-cycle and selective restore workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through backing up, deleting, reinstalling, restoring, and verifying an OpenClaw installation.
 
-## Publisher: <br>
-[stefanferreira](https://clawhub.ai/user/stefanferreira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stefanferreira](https://clawhub.ai/user/stefanferreira)
 
-## Use Case: <br>
-Developers and operators responsible for OpenClaw instances use this skill as a disaster-recovery runbook to create backups, perform clean reinstall cycles, and restore or selectively restore configuration, credentials, and agent state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The runbook includes high-impact destructive and privileged commands that can remove or overwrite OpenClaw state. <br>
-Mitigation: Review each command before execution, test the restore path in a sandbox, verify backups before any delete or restore step, and prefer moving old state aside before permanent deletion. <br>
-Risk: Backups may contain credentials and API keys. <br>
-Mitigation: Protect backup directories with strict permissions or encryption and restore only the credential material that is intentionally needed. <br>
-Risk: The workflow includes a curl-to-shell install path. <br>
-Mitigation: Use that path only after independently trusting and verifying the source; prefer package-manager or pinned installation methods where available. <br>
+## Use Case:
 
+Developers and operators responsible for OpenClaw hosts use this skill to plan and execute backup, clean installation, restore, dashboard verification, and recovery troubleshooting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stefanferreira/openclaw-complete-backup-delete-fresh-install-restore-cycle) <br>
-- [OpenClaw install script](https://cli.openclaw.ai/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown runbook with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes staged backup, clean install, restore, verification, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: High-impact delete, reinstall, and global binary replacement steps can remove data or alter host command behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on an isolated or well-backed-up OpenClaw host, validate backups before destructive steps, prefer reversible moves, and confirm every global binary or symlink target before changing /usr/local/bin.
+
+Risk: Credential backup and restore steps copy sensitive OpenClaw credential files.
+
+Mitigation: Encrypt or tightly restrict backup locations and verify restored file permissions before starting services.
+
+Risk: Installer fallback and package steps may execute network-fetched or unpinned software.
+
+Mitigation: Avoid the curl-to-shell fallback where possible, pin and verify packages, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stefanferreira/skills/openclaw-complete-backup-delete-fresh-install-restore-cycle)
+- [OpenClaw CLI installer referenced by the skill](https://cli.openclaw.ai/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational backup, restore, reinstall, verification, and troubleshooting steps for OpenClaw hosts.]
+
+## Skill Version(s):
+
+2.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,36 @@
+{
+  "objectClassName": "autnum",
+  "handle": "AS15169",
+  "startAutnum": 15169,
+  "endAutnum": 15169,
+  "name": "GOOGLE",
+  "status": [
+    "active"
+  ],
+  "entities": [
+    {
+      "objectClassName": "entity",
+      "handle": "GOGL",
+      "roles": [
+        "registrant"
+      ]
+    },
+    {
+      "objectClassName": "entity",
+      "handle": "ZG39-ARIN",
+      "roles": [
+        "technical"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "eventAction": "last changed",
+      "eventDate": "2012-02-24T09:44:34-05:00"
+    },
+    {
+      "eventAction": "registration",
+      "eventDate": "2000-03-30T00:00:00-05:00"
+    }
+  ]
+}

@@ -1,41 +1,55 @@
-## Description: <br>
-A Chinese-language orchestration helper that decomposes complex tasks into 3-6 independent, executable sub-skill structures and returns structured retry or error responses when inputs are incomplete or unsuitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Factory decomposes complex tasks into 3-6 independent, executable sub-skill structures and returns status-specific JSON without scheduling or executing them.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
 
-## Use Case: <br>
-Developers and orchestrator agents use this skill to turn a structured task brief, prior analysis, and critic insight into independent sub-skill definitions with names, descriptions, input examples, and output examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sub-skill plans may be used by downstream agents before a human or orchestrator checks whether the structure is appropriate. <br>
-Mitigation: Review the proposed sub-skill plan before orchestration or execution. <br>
-Risk: The skill designs structures but does not enforce safe execution of the generated sub-skills. <br>
-Mitigation: Apply normal safety, security, and policy checks to any downstream skill that is created or run from the plan. <br>
+## Use Case:
 
+Developers and orchestrator agents use this skill to turn a complex structured task into 3-6 independent sub-skill definitions with names, descriptions, input examples, and output examples.
 
-## Reference(s): <br>
-- [Decomposition Patterns](references/decomposition-patterns.md) <br>
-- [Independence Check](references/independence-check.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns success, need_retry, or error objects with proposed sub-skill structures and reasoning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated sub-skill structures can be incomplete or misleading if the required structured inputs are missing or low quality.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated sub-skill definitions before use and rely on the skill's need_retry and error outputs when required context is absent.
+
+Risk: The artifact documentation and examples are in Chinese, which may reduce reviewer comprehension for non-Chinese users.
+
+Mitigation: Request localized output or human translation before approving the skill for teams that do not read Chinese.
+
+## Reference(s):
+
+- [Decomposition Patterns](references/decomposition-patterns.md)
+- [Independence Check](references/independence-check.md)
+- [ClawHub Skill Page](https://clawhub.ai/smallkeyboy/skills/smallkeyboy-skill-factory)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [Structured JSON with success, need_retry, and error variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful outputs include a stage, status, 3-6 proposed skills, reasoning, and next_action; retry and error outputs explain missing inputs or structural problems.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

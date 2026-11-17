@@ -1,42 +1,58 @@
-## Description: <br>
-Syncs team skills from a configured Git repository into a local OpenClaw skills directory, with setup, scheduled sync, manual sync, log viewing, and uninstall workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes skills from a team Git repository into a local OpenClaw skills directory, with setup, scheduled updates, manual sync, log viewing, and uninstall guidance.
 
-## Publisher: <br>
-[wzj666666](https://clawhub.ai/user/wzj666666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wzj666666](https://clawhub.ai/user/wzj666666)
 
-## Use Case: <br>
-OpenClaw users and team administrators use this skill to install shared skills from a trusted team Git repository and keep them updated through scheduled or manual syncs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic sync can keep changing local OpenClaw skill behavior from an unpinned Git repository. <br>
-Mitigation: Use only trusted repositories, review repository changes before syncing, and pin the configured source to a trusted commit or branch when stability matters. <br>
-Risk: Syncing replaces local skill directories and may affect future OpenClaw sessions. <br>
-Mitigation: Back up ~/.openclaw/skills before enabling sync and open a new OpenClaw session only after reviewing the updated skills. <br>
-Risk: Scheduled cron jobs continue pulling updates until removed. <br>
-Mitigation: Remove the qg-skill-sync OpenClaw cron jobs when continuing automatic updates are not desired. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to initialize, schedule, manually run, inspect, and uninstall synchronization of team-maintained skills from a configured Git repository into their local OpenClaw skills directory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzj666666/qg-skill-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git and bash; setup commands configure local sync state and OpenClaw cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Scheduled synchronization creates an unattended remote update path into local OpenClaw skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted repository, prefer manual sync or a pinned and reviewed revision, and inspect changes before relying on newly synchronized skills.
+
+Risk: Synchronization can overwrite or delete existing files in synchronized skill directories.
+
+Mitigation: Back up local skills before enabling sync and confirm the configured repository path and skills subdirectory before running setup or sync commands.
+
+Risk: Cron jobs and synchronized skill directories may remain active or present after uninstall steps.
+
+Mitigation: Remove the named OpenClaw cron jobs and manually clean any synchronized skill directories that should no longer be available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wzj666666/skills/qg-skill-sync)
+- [Default configured team skills repository](https://github.com/wzj666666/ai-platform-skills.git)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash code blocks and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires git and bash; writes local synchronization configuration, logs, and copied skill files when the generated commands are executed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

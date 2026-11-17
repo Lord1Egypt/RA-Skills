@@ -1,40 +1,49 @@
-## Description: <br>
-Runtime environment and configuration audit pack that validates Node.js version, secrets workflow, HTTP headers, allowed commands, trusted proxy, disk budget, and DM allowlist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime environment and configuration audit pack that validates Node.js version, secrets workflow, HTTP headers, allowed commands, trusted proxy, disk budget, and DM allowlist.
 
-## Publisher: <br>
-[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romainsantoli-web](https://clawhub.ai/user/romainsantoli-web)
 
-## Use Case: <br>
-Developers and operators use this skill to audit OpenClaw runtime configuration before deployment or review. It focuses on Node.js runtime posture, secret handling, HTTP headers, command allowlists, proxy settings, disk budget, and direct-message allowlist policy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill audits configuration files and may inspect sensitive runtime settings when pointed at broad paths or unrelated files. <br>
-Mitigation: Run it only against specific OpenClaw configuration files intended for review. <br>
-Risk: The skill depends on mcp-openclaw-extensions to provide the audit tools. <br>
-Mitigation: Install it only when the mcp-openclaw-extensions dependency is trusted for the target environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw runtime configuration for Node.js compatibility, secrets handling, HTTP security headers, command allowlists, proxy settings, disk budget limits, and direct message allowlist policy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/romainsantoli-web/firm-runtime-audit-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown or text audit findings with configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcp-openclaw-extensions >= 3.0.0 and should be run against specific configuration files selected for review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The required OpenClaw extension provider and reviewed configuration files may involve security-sensitive deployment settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only a trusted mcp-openclaw-extensions provider and run the audit tools only against configuration files intended for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romainsantoli-web/skills/firm-runtime-audit-pack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces runtime audit guidance for configuration files supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

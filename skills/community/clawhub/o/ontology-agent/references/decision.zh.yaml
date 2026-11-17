@@ -1,0 +1,157 @@
+# decision.yaml — 决策层 / 治理层（加厚版）
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 决策层职责：数据合规红线 + 权限治理 + 审计留痕。其规则优先级高于 logic 层，
+# 任何 logic 工作流都不得覆盖本层硬规则。
+
+meta:
+  layer: decision
+  version: 0.2.0
+  description: 治理与合规护栏，约束语义层与逻辑层的执行边界
+
+# ── 一、PII 与敏感数据红线（强制，写入前拦截）──
+pii_guardrails:
+  enforcement: hard            # hard = 写入前硬拦截；soft = 仅提示
+  deny_plaintext_patterns:     # 命中即拒绝写入图谱明文，仅允许存外部加密引用索引
+    - { type: id_card,     pattern: '(\d{15}|\d{17}[\dxX])', desc: "身份证号" }
+    - { type: bank_card,   pattern: '\b(\d{16,19})\b',        desc: "银行卡号" }
+    - { type: social_sec,  pattern: '\d{15,18}',              desc: "社保号/个人编号" }
+    - { type: mobile,      pattern: '1[3-9]\d{9}',            desc: "手机号（默认脱敏存储）" }
+    - { type: invoice_img, desc: "票据影像文件", kind: file }  # 影像不入库明文
+    - { type: tax_no,      pattern: '[0-9A-Z]{15,20}',        desc: "纳税人识别号" }
+  storage_policy:
+    pii_placeholder: "__REDACTED__"
+    external_ref_only: true     # PII 只能以外部加密引用（如金税凭证号/银行回执号）指向，不进图谱属性
+
+# ── 二、权限治理（行级访问 + 只读强制 + 审计，借鉴 A2 roles 范式）──
+governance:
+  row_level_access: true       # 每个 role 仅可见其 scope 内的实体（见 roles.yaml）
+  read_only_enforcement: true  # 标注 read_only 的实体/字段不可被 logic 改写
+  audit:
+    enabled: true
+    log_fields: [actor, action, target, timestamp, before_hash, after_hash]
+    immutable: true            # 审计日志不可篡改
+
+# ── 三、决策回写规则库（闭环：when 触发 → then 动作 → reason 理由；本层优先级高于 logic）──
+decision_rules:
+  - id: tax_filing_confirm
+    when: "action == '报税' && actor.role != 'owner'"
+    then: "block + 转交 owner 确认"
+    reason: "税务申报属重大合规动作，须经企业主二次确认"
+  - id: pii_block
+    when: "write_target matches pii_guardrails.deny_plaintext_patterns"
+    then: "reject + 替换为外部引用索引"
+    reason: "PII 不得入图谱明文，符合个保法最小必要原则"
+  - id: pii_auto_mask
+    when: "field in [phone, contact, mobile] && 未显式要求明文"
+    then: "mask(中间四位脱敏) 后存储"
+    reason: "联系方式默认脱敏，降低泄露风险"
+  - id: credential_no_plaintext
+    when: "field matches Account.password|Document.secret"
+    then: "reject 明文 + 要求外部密钥管理引用"
+    reason: "凭据明文存储是高危违规"
+  - id: cross_dept_read_owner_admin
+    when: "actor.role in ['owner', 'admin']"
+    then: "allow_full_scope"
+    reason: "企业主与管理者拥有全量视图"
+  - id: cross_dept_read_employee
+    when: "actor.role == 'employee'"
+    then: "allow_department_scope + 审计留痕"
+    reason: "员工仅可见本职责域数据"
+  - id: guest_readonly
+    when: "actor.role == 'guest'"
+    then: "allow_read_only"
+    reason: "外部/访客只读"
+  - id: invoice_status_flow
+    when: "Invoice.status 迁移非 draft→issued→paid"
+    then: "block"
+    reason: "票据状态须按法定流程推进"
+  - id: readonly_field_protect
+    when: "logic 试图改写 read_only 实体/字段"
+    then: "block"
+    reason: "只读字段（如历史凭证哈希）不可篡改"
+  - id: ecommerce_realname
+    when: "legal_form == 'ecommerce' && Organization.credit_code 缺失"
+    then: "warn + 阻断经营动作"
+    reason: "电商法要求公示营业执照，主体未实名不得经营"
+  - id: audit_all_writes
+    when: "any write/delete action"
+    then: "append audit log（before_hash+after_hash）"
+    reason: "所有写操作须可追溯"
+
+# ── 四、合规红线（中国语境，国内化深度包基座；具体条款）──
+compliance_redlines:
+  tax:
+    - "禁止在图谱中保存完税凭证/发票原件明文；仅存凭证号与时间"
+    - "增值税起征点：小规模纳税人月销售额 10 万元（按季 30 万）以下免征（以最新政策为准）"
+    - "个人所得税：经营所得 5%-35% 超额累进；综合所得按年汇算"
+    - "企业所得税：基本税率 25%；小型微利企业可享优惠税率（以最新政策为准）"
+    - "税务申报动作须经 owner 角色二次确认方可执行"
+  social_security:
+    - "法人本人缴社保无专项减免（灵活就业补贴排除法人身份）"
+    - "招用员工可享个人缴费 25% 社保补贴（政策延至 2026.12.31）"
+    - "企业须依法为员工缴纳五险，逾期面临滞纳金与合规风险"
+  company_reg:
+    - "集中注册/工位地址（如河川大厦）不等于实体办公，对外披露须一致，避免地址异常被列入经营异常"
+    - "一人有限责任公司须证明财产独立于股东，否则承担无限连带责任"
+  ecommerce_law:               # 电商法（packs/ecommerce.yaml 引用）
+    - "须公示营业执照与经营许可；不得虚假宣传"
+    - "交易记录、商品信息留存不少于三年"
+    - "依法出具发票，不得拒绝开票"
+  general:
+    - "涉及个人信息的处理须遵循最小必要原则（个保法第 6 条）"
+    - "自动化决策须保证透明与可解释，不得对个人在交易价格等实行不合理差别待遇"
+  tianjin_support:             # 天津 OPC/AI 创业扶持（微数所在地）
+    - "和平区有天开和平园·模创社区『五个一』OPC 专属服务（全市首个），注册载体在河川大厦需主动对接确认入驻/享服务条件"
+    - "天津 OPC 政策：创业担保贷款个人最高 30 万 / 小微最高 400 万；社保补贴个人缴费 25%"
+    - "顺然已获腾讯 WorkBuddy 效率智能体 OPC 从业者认证（证号 TCLC-CWB-00465，有效期至 2028-07-27），可作对外合作资质背书"
+  manufacturing_safety:         # 制造业工厂安全/环保/质量体系红线（packs/manufacturing.yaml 引用）
+    - "安全生产：依法建立健全全员安全生产责任制；特种作业人员须持证上岗；隐患排查治理常态化，重大隐患须上报"
+    - "特种设备（压力容器/起重机械/锅炉/电梯等）须办理使用登记并定期检验，逾期未检不得运行"
+    - "环保：环评与排污许可齐备；危废须交由有资质单位处置；环保督察与自行监测数据真实留存"
+    - "消防：厂房消防验收/备案完备，消防通道与设施常备；定期演练并留痕"
+    - "质量体系：按行业适用认证（ISO9001 通用 / IATF16949 汽车 / GMP 医药 / CCC 强制）建立体系并保持有效"
+    - "危化品： MSDS 齐备、储存与使用合规；工艺安全(HAZOP)评估；泄漏/火灾/中毒事故须依法即时上报"
+    - "安环/质量事故须第一时间上报老板与法务，不得擅自掩盖或延迟；涉及召回须启动预案并依规上报监管"
+
+  # ── 以下为横向扩展行业包的合规红线（2026-08-15 批量新增；均为参考框架，须由对应持牌合规/法务核验并以最新法规为准）──
+  public_institution:          # 事业单位 / 行政事业单位（packs/public_institution.yaml 引用）
+    - "国有资产须登记入账、定期盘点；处置（无偿划转/对外投资和出租出借/报废）须评估备案并经审批，不得擅自处置"
+    - "政府采购须编报预算、走法定采购方式（公开招标为默认）；严禁化整为零规避公开招标；进口产品须审批"
+    - "财政票据/非税收入按规使用，不得转借、代开、伪造；票据影像不存明文"
+    - "编制实名管理，不得超编进人；编外用工合规；工资总额与绩效按规"
+    - "公益一类不得从事经营活动；收费须按政府定价或标准，不得擅自设立收费项目"
+    - "信息公开按《政府信息公开条例》执行；PII 不写明文（个保法最小必要）"
+  finance:                     # 金融机构（packs/finance.yaml 引用，参考非法律意见）
+    - "持牌经营、不得超范围；代销须持牌机构产品"
+    - "投资者适当性管理：了解客户/了解产品/风险匹配，不得向风险不匹配投资者销售；双录留痕"
+    - "反洗钱：客户身份识别(KYC)/大额与可疑交易报告/名单监控；不得为身份不明客户提供服务"
+    - "资本与审慎监管：资本充足率/拨备覆盖率/杠杆率/流动性指标须达标（以最新监管规定为准）"
+    - "金融数据分类分级（C1–C4）；重要数据/核心数据出境须通过安全评估；个人信息去标识化"
+    - "征信合规：查询须授权，不得违规查询或提供征信信息"
+    - "营销合规：不得保本保收益承诺；金融广告与销售可回溯合规"
+  biomed:                      # 医疗 / 生物医药（packs/biomed.yaml 引用，参考框架）
+    - "人类遗传资源采集/保藏/利用/对外提供须按《人类遗传资源管理条例》审批或备案，不得擅自出境"
+    - "药品/医疗器械生产须持注册证与 GMP；批记录可追溯；不合格品不擅自放行"
+    - "健康医疗数据分类分级；病案/基因等 PII 强护栏、去标识化；不得擅自共享病历"
+    - "医疗机构须持执业许可、在核准诊疗科目内执业；处方/互联网诊疗合规"
+    - "医疗器械按风险分类管理、须注册或备案；不良事件监测与上报"
+    - "涉及人的研究须伦理审查；不良反应/不良事件监测与上报刚性"
+  edu_research:                # 教育 / 科研院所（packs/edu_research.yaml 引用，参考框架）
+    - "科研经费专款专用，不得挪用或虚假列支；差旅/会议/劳务费按规；结题须审计"
+    - "职务科技成果权属归单位；转化须合规（尽调/评估/公示），收益分配按《促进科技成果转化法》"
+    - "办学须许可、招生合规、学历教育资质齐备；不得违规收费"
+    - "学生/受试者信息 PII 强护栏；未成年人须额外保护、不得泄露（未成年人保护法）"
+    - "涉及人的研究须伦理审查；科研诚信，不得学术不端/数据造假"
+
+# ── 五、合规校验入口（由 init.py 与写入路径调用）──
+compliance_checks:
+  - {id: tax_filing_owner_confirm, refs: [tax]}
+  - {id: pii_no_plaintext,         refs: [general, tax]}
+  - {id: ecommerce_realname,       refs: [ecommerce_law]}
+  - {id: company_reg_consistency,   refs: [company_reg]}
+  - {id: ss_subsidy_eligibility,    refs: [social_security, tianjin_support]}
+  - {id: manufacturing_safety_check, refs: [manufacturing_safety]}
+  - {id: public_institution_check,    refs: [public_institution]}
+  - {id: finance_check,               refs: [finance]}
+  - {id: biomed_check,                refs: [biomed]}
+  - {id: edu_research_check,          refs: [edu_research]}

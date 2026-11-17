@@ -1,0 +1,34 @@
+{
+ "content": [
+  {
+   "text": "16 vueltas a la Tierra al día: así es la vida en la Estación Espacial Internacional. La astronauta de la NASA Nichole Ayers saluda desde la órbita. #EEI #NASA #espacio",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId of captioned/intro/intro.vertical.es.mp4>"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-26T01:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "<connect this account>",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "PUBLIC_TO_EVERYONE",
+   "allowComment": true,
+   "allowDuet": true,
+   "allowStitch": true,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "isAiGeneratedContent": false
+  }
+ ],
+ "autoDeleteMediaAfterPublish": false
+}

@@ -1,45 +1,51 @@
-## Description: <br>
-Monitor available TestFlight beta slots with smart app lookups and silent batch checking. Get alerted when slots open up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor available TestFlight beta slots with smart app lookups and silent batch checking. Get alerted when slots open up.
 
-## Publisher: <br>
-[jon-xo](https://clawhub.ai/user/jon-xo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jon-xo](https://clawhub.ai/user/jon-xo)
 
-## Use Case: <br>
-External users and developers use this skill to monitor one or more Apple TestFlight beta links, resolve app names from TestFlight codes, and receive alerts when previously full betas appear to have open seats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged batch configuration includes an example TestFlight URL that may be checked if left in place. <br>
-Mitigation: Review config/batch-config.json before installation and remove or replace the example link with URLs you intend to monitor. <br>
-Risk: Monitoring makes outbound requests to Apple TestFlight links and stores monitored URLs locally. <br>
-Mitigation: Add only TestFlight URLs you are comfortable checking from this environment and retaining in local configuration or state files. <br>
-Risk: The cron example creates ongoing scheduled checks. <br>
-Mitigation: Disable or remove the cron job when monitoring is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to monitor one or more trusted Apple TestFlight beta URLs, resolve join codes to readable app names, and receive alerts only when seats become available.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jon-xo/testflight-monitor) <br>
-- [Publisher Profile](https://clawhub.ai/user/jon-xo) <br>
-- [awesome-testflight-link Lookup Data](https://github.com/pluwen/awesome-testflight-link) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Terminal text and Markdown-style alert messages, with JSON configuration and state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch mode is designed to stay silent unless monitored TestFlight availability changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and manifest.json) <br>
+Risk: The security evidence says the skill can save and repeatedly fetch arbitrary URLs instead of only TestFlight links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with TestFlight URLs you personally trust, avoid shared batch configuration files, and prefer versions that strictly validate https://testflight.apple.com/join/<code> URLs and disable unsafe redirects before scheduled checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jon-xo/skills/testflight-monitor)
+- [awesome-testflight-link lookup data](https://github.com/pluwen/awesome-testflight-link)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown and terminal text with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Batch checks are designed to stay silent unless a monitored TestFlight URL changes from full or unknown to available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

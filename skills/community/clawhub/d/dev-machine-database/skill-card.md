@@ -1,45 +1,53 @@
-## Description: <br>
-Queries the dw MySQL database on the datax development machine over SSH and formats read-only database results for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to a development machine over SSH to query a MySQL dw database, inspect tables, count rows, and format query results for the user.
 
-## Publisher: <br>
-[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect tables, schemas, row counts, and limited result sets in a development MySQL data warehouse through natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a development MySQL database over SSH using broad credentials. <br>
-Mitigation: Install only where the datax host and dw database are intended to be accessible, and replace root access with a least-privileged read-only account. <br>
-Risk: Hard-coded database credentials may expose or preserve unsafe access. <br>
-Mitigation: Rotate or remove the hard-coded root password and provide credentials through a secure runtime secret mechanism. <br>
-Risk: The claimed read-only posture depends on weak query safeguards. <br>
-Mitigation: Enforce SELECT, SHOW, and DESC-only execution with strict table and field allowlists before running generated SQL. <br>
-Risk: Database query results may be sent to Feishu. <br>
-Mitigation: Require explicit confirmation before posting any database result outside the query session. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect a development MySQL data warehouse through SSH, including listing tables, checking schemas, running limited read queries, and summarizing row counts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexmayanjun-collab/dev-machine-database) <br>
-- [Publisher profile](https://clawhub.ai/user/alexmayanjun-collab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown tables and concise text, with SSH/MySQL shell commands or Python helper behavior when execution is required.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query examples and helper behavior default SELECT results to a 50-row limit.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The security evidence reports hardcoded privileged database access and unsafe command construction that could expose or alter internal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate exposed credentials, remove hardcoded passwords, use a dedicated read-only account, enforce an allowlist for SELECT, SHOW, and DESCRIBE-style operations, and avoid embedding SQL in SSH shell strings.
+
+Risk: Database results may include sensitive internal information and the artifact describes sending formatted results to Feishu.
+
+Mitigation: Require user confirmation before sharing query results externally and restrict the skill to environments where the operator controls the datax host and MySQL instance.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/alexmayanjun-collab/skills/dev-machine-database)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tabular query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-oriented database lookup output; artifact behavior applies a default 50-row display limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

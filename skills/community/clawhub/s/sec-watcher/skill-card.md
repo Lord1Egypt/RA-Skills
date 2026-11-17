@@ -1,44 +1,60 @@
-## Description: <br>
-Monitor SEC EDGAR filings for AI and technology companies, summarize filing significance, filter by filing type, and surface high-signal regulatory events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor SEC EDGAR filings for AI and technology companies, summarize recent disclosures, and flag high-signal form types and 8-K events.
 
-## Publisher: <br>
-[sukanto-m](https://clawhub.ai/user/sukanto-m) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sukanto-m](https://clawhub.ai/user/sukanto-m)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to check recent SEC EDGAR filings for AI and technology companies, inspect form-specific disclosures, and receive plain-English summaries of material events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill mixes real SEC filing results with unsupported promotional intelligence claims that users could mistake for actual analysis. <br>
-Mitigation: Treat Signal Report preview, pattern detection, and cross-source analysis language as advertising unless separately verified. <br>
-Risk: Company and ticker searches are sent to sec.gov when the fetcher runs. <br>
-Mitigation: Use only queries appropriate for public SEC EDGAR lookups and avoid entering confidential watchlists or sensitive research targets. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to check recent SEC EDGAR filings for AI and technology companies and receive readable summaries or JSON for downstream processing.
 
-## Reference(s): <br>
-- [SEC Watcher on ClawHub](https://clawhub.ai/sukanto-m/sec-watcher) <br>
-- [Publisher profile](https://clawhub.ai/user/sukanto-m) <br>
-- [EDGAR Full-Text Search API Reference](references/edgar-api.md) <br>
-- [SEC EDGAR full-text search endpoint](https://efts.sec.gov/LATEST/search-index) <br>
-- [Signal Report](https://signal-report.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, analysis] <br>
-**Output Format:** [Markdown summaries and optional JSON from the fetcher script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; sends company and ticker searches to sec.gov; no API key required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Default results may include built-in Signal Report marketing and Pro-upgrade claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated filing summaries before use and remove promotional content that is not appropriate for the deployment.
+
+Risk: Cross-source pattern or intelligence-preview claims may be presented alongside SEC filing results without independent verification.
+
+Mitigation: Treat those claims as promotional estimates and rely on the linked SEC filings plus independent analysis for decisions.
+
+Risk: The skill runs bundled fetcher code to make live SEC EDGAR requests.
+
+Mitigation: Use a pinned installer version or an isolated install environment, consistent with the security guidance.
+
+## Reference(s):
+
+- [SEC Watcher on ClawHub](https://clawhub.ai/sukanto-m/skills/sec-watcher)
+- [Signal Report](https://signal-report.com)
+- [EDGAR Full-Text Search API Reference](references/edgar-api.md)
+- [SEC EDGAR Full-Text Search API](https://efts.sec.gov/LATEST/search-index)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text filing summaries with optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include EDGAR filing URLs, signal levels, and an intelligence_preview field in JSON output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

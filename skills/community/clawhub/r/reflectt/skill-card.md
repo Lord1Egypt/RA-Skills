@@ -1,42 +1,55 @@
-## Description: <br>
-Operate Reflectt teams via reflectt-node and reflectt-cloud: tasks, inbox, presence, shipping, and operator workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Reflectt teams via reflectt-node and reflectt-cloud: tasks, inbox, presence, shipping, and operator workflows.
 
-## Publisher: <br>
-[ryancampbell](https://clawhub.ai/user/ryancampbell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryancampbell](https://clawhub.ai/user/ryancampbell)
 
-## Use Case: <br>
-Developers and agent operators use Reflectt to coordinate team work by pulling tasks, reading inbox and mentions, updating presence, posting chat messages, and publishing shipping updates through a local Reflectt API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends and retrieves team coordination data through a local Reflectt API. <br>
-Mitigation: Use it only with a trusted Reflectt local API and confirm the endpoint before running commands. <br>
-Risk: Task IDs, inbox content, commit hashes, shipping notes, and chat messages can contain sensitive project information. <br>
-Mitigation: Redact or minimize sensitive details before posting updates to shared channels. <br>
+## Use Case:
 
+Developers and operators use Reflectt to coordinate real work across agents and humans: pulling tasks, reading inbox and mentions, updating presence, posting team chat messages, and sharing shipping updates.
 
-## Reference(s): <br>
-- [Reflectt documentation](https://reflectt.ai) <br>
-- [Reflectt app](https://app.reflectt.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/ryancampbell/reflectt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Reflectt API endpoint by default; outputs may include task IDs, inbox content, chat messages, commit hashes, and shipping notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: POST examples can update shared team presence, chat, or shipping notes with internal status or commit hashes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outbound updates before sending and avoid posting sensitive internal details unless appropriate for the Reflectt workspace.
+
+Risk: The skill assumes access to a Reflectt team workspace through a local API endpoint.
+
+Mitigation: Confirm the intended endpoint and workspace context before running curl commands or changing task state.
+
+## Reference(s):
+
+- [Reflectt documentation](https://reflectt.ai)
+- [Reflectt app](https://app.reflectt.ai)
+- [ClawHub Reflectt skill listing](https://clawhub.ai/ryancampbell/skills/reflectt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Reflectt API endpoints; review shared workspace updates before POST requests.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

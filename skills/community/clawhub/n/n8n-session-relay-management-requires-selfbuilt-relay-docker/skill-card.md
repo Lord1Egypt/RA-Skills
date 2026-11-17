@@ -1,41 +1,58 @@
-## Description: <br>
-Manage n8n workflows and automations via API for listing workflows, activating or deactivating them, checking execution status, manually triggering workflows, and debugging automation issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage n8n workflows and automations via API for listing workflows, activating or deactivating them, checking execution status, manually triggering workflows, and debugging automation issues.
 
-## Publisher: <br>
-[droidhackzor](https://clawhub.ai/user/droidhackzor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[droidhackzor](https://clawhub.ai/user/droidhackzor)
 
-## Use Case: <br>
-Developers and automation operators use this skill to inspect, create, validate, execute, monitor, and optimize n8n workflows against an n8n instance through its REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger and change live n8n automations, including commands described as dry-run testing. <br>
-Mitigation: Use a staging n8n instance or least-privilege API key where possible, review workflow JSON before creating or executing it, and treat tests as real workflow executions. <br>
-Risk: The required n8n API key may allow management of live workflows and connected systems. <br>
-Mitigation: Store credentials in OpenClaw settings or a secure secret manager, avoid shell startup files, and rotate or scope the API key according to the n8n environment. <br>
+## Use Case:
 
+Developers and automation operators use this skill to manage, validate, test, monitor, and optimize n8n workflows through API-backed commands and Python helpers.
 
-## Reference(s): <br>
-- [n8n API Reference](references/api.md) <br>
-- [n8n API documentation](https://docs.n8n.io/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands, Python examples, and JSON workflow or report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires N8N_API_KEY and N8N_BASE_URL to connect to an n8n instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Testing commands can execute real n8n workflows and may affect production automations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run and test-suite workflows against staging workflows with test credentials before using them on production.
+
+Risk: API keys can be exposed or over-privileged if configured carelessly.
+
+Mitigation: Use a trusted HTTPS n8n base URL, store credentials through OpenClaw settings or a secret manager, and use a narrowly scoped API key.
+
+Risk: Create, activate, execute, or delete operations can change live workflow behavior.
+
+Mitigation: Manually confirm each state-changing operation and prefer inactive deployment followed by monitored activation.
+
+## Reference(s):
+
+- [n8n API Reference](references/api.md)
+- [n8n API documentation](https://docs.n8n.io/api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python examples, JSON snippets, and plain-text reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include API responses, validation reports, dry-run results, workflow statistics, and optimization suggestions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

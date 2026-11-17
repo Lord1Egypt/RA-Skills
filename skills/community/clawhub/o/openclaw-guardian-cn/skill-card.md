@@ -1,42 +1,65 @@
-## Description: <br>
-OpenClaw Guardian CN monitors OpenClaw Gateway health, checks skills, channels, plugins, and system resources, and can attempt configured recovery actions such as restarting the Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Guardian CN helps an agent monitor OpenClaw Gateway health, run scheduled self-checks, and propose or execute recovery commands when common service issues are detected.
 
-## Publisher: <br>
-[shenbinxin](https://clawhub.ai/user/shenbinxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenbinxin](https://clawhub.ai/user/shenbinxin)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to run scheduled or manual health checks, detect Gateway and plugin issues, and receive recovery-oriented guidance or commands for restoring service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can set up persistent watchdog tasks and scheduled execution for OpenClaw monitoring. <br>
-Mitigation: Review cron or Windows Task Scheduler commands before enabling them, verify the referenced scripts and paths, and keep removal steps and log locations available. <br>
-Risk: Some Windows scheduled-task examples use elevated execution. <br>
-Mitigation: Avoid elevated setup unless it is required for the local OpenClaw installation and approved by the operator. <br>
-Risk: Automatic recovery commands may restart or start the OpenClaw Gateway. <br>
-Mitigation: Run the checks manually first, confirm the target OpenClaw command and installation path, and verify recovery results after each action. <br>
+## Use Case:
 
+Developers and operators use this skill to check OpenClaw Gateway status, configure periodic watchdog checks, review OpenClaw skill and channel health, and recover from stopped or disconnected Gateway processes.
 
-## Reference(s): <br>
-- [OpenClaw Guardian CN on ClawHub](https://clawhub.ai/shenbinxin/openclaw-guardian-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status reports with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can configure persistent cron or Scheduled Task watchdogs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each scheduled entry before enabling it and keep a documented command for disabling the watchdog.
+
+Risk: Recovery behavior can restart OpenClaw Gateway services without clear user opt-in.
+
+Mitigation: Require explicit operator approval before enabling automatic recovery or service restart behavior.
+
+Risk: The artifact includes an eval-based recovery example.
+
+Mitigation: Remove or replace eval usage with an allowlisted command dispatcher before deployment.
+
+Risk: Some state and log files are written under /tmp.
+
+Mitigation: Move persistent state and logs to an access-controlled OpenClaw data directory.
+
+Risk: Windows examples use RunLevel Highest for scheduled tasks.
+
+Mitigation: Avoid elevated scheduled task privileges unless the deployment requires them and the command has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenbinxin/skills/openclaw-guardian-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status reports with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduled task or cron instructions and recovery command results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

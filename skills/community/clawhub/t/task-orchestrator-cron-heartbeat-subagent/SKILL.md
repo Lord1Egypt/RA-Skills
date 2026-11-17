@@ -1,7 +1,7 @@
 ---
 name: task-orchestrator
-version: 2.3.0
-description: Unified Task Orchestration Hub v2.3 - Integrates Heartbeat, Cron, Subagent and Task Management. NEW: Channel Binding Configuration Guide. Provides task identification, standardized setup, execution tracking and best practice templates. Supports dynamic config loading, deadlock prevention and intelligent aggregation.
+version: 2.0.0
+description: Unified Task Orchestration Hub v2 - Integrates Heartbeat, Cron, Subagent and Task Management. Provides task identification, standardized setup, execution tracking and best practice templates. Supports dynamic config loading, deadlock prevention and intelligent aggregation.
 author: OpenClaw Community
 license: MIT
 tags:
@@ -11,172 +11,14 @@ tags:
   - subagent
   - orchestration
   - automation
-  - channel-binding
 metadata: {"openclaw":{"emoji":"🎯","requires":{"bins":["openclaw"]}}}
 ---
 
-# Task Orchestrator v2.3 - Unified Task Orchestration Hub
+# Task Orchestrator v2.0 - Unified Task Orchestration Hub
 
 > **Core Mission**: Enable agents to learn fundamental task creation and execution capabilities, including task identification, standardized setup, and execution tracking
 > 
-> **v2.3 New Features**: 
-> - ✅ **Channel Binding Configuration** - Teach agents to use correct account for sending messages
-> - ✅ **Cron Task Creation Checklist** - 6-step verification process
-> - ✅ **Configuration Check Script** - Automated validation tool
-> 
-> **v2.0 Features**: Dynamic configuration loading, deadlock prevention mechanism, intelligent aggregation rules, 4-level risk confirmation boundaries
-
----
-
-## 📡 Channel Binding Configuration Guide (v2.3 New) ⭐
-
-### Core Concepts
-
-Each Agent has its own **channel binding** in `openclaw.json`:
-
-```json
-{
-  "agentId": "kk",
-  "match": {
-    "channel": "feishu",
-    "accountId": "kk-feishu"
-  }
-}
-```
-
-**Meaning**:
-- kk agent's messages should be sent via `kk-feishu` account
-- Messages sent to `kk-feishu` account will be routed to kk agent
-- **Scheduled tasks MUST specify agentId and accountId, otherwise they default to main agent using default account**
-
-### Scheduled Task Configuration (❗Important)
-
-**When creating scheduled tasks, MUST specify**:
-
-```bash
-openclaw cron add \
-  --agentId "kk" \
-  --session "kk" \
-  --name "KK Heartbeat" \
-  --cron "*/10 * * * *" \
-  --channel feishu \
-  --to "user:ou_xxx" \
-  --accountId "kk-feishu" \
-  --message "Execute heartbeat check"
-```
-
-**Parameter Description**:
-| Parameter | Description | Required |
-|------|------|------|
-| `--agentId` | Specify which agent executes the task | ✅ Required |
-| `--session` | Use agent's dedicated session (inherits channel binding) | ✅ Required |
-| `--accountId` | Specify which Feishu account sends the message | ✅ Required |
-| `--channel` | Message channel (feishu/telegram/etc) | ✅ Required |
-| `--to` | Recipient user ID | ✅ Required |
-
-**Wrong Examples** (will cause messages to be sent from wrong bot):
-
-```bash
-# ❌ Wrong 1: No agentId specified, defaults to main execution
-openclaw cron add \
-  --session isolated \
-  --name "KK Heartbeat" \
-  ...
-
-# ❌ Wrong 2: Use isolated session, doesn't inherit agent binding
-openclaw cron add \
-  --session isolated \
-  --agentId "kk" \
-  ...
-
-# ❌ Wrong 3: No accountId specified, defaults to default account
-openclaw cron add \
-  --agentId "kk" \
-  --channel feishu \
-  ...  # Missing --accountId
-```
-
-### Find Your AccountId
-
-**Method 1: Check openclaw.json**
-```bash
-cat ~/.openclaw/openclaw.json | python3 -c "
-import sys, json
-d = json.load(sys.stdin)
-for b in d.get('bindings', []):
-    print(f\"Agent {b['agentId']}: {b['match']['accountId']}\")
-"
-```
-
-**Method 2: Check routing rules**
-```bash
-grep -A 3 '"agentId": "kk"' ~/.openclaw/openclaw.json
-```
-
-**Method 3: Use check script**
-```bash
-python3 ~/.openclaw/skills/task-orchestrator/scripts/check_cron_config.py
-```
-
-### Best Practices
-
-✅ **Recommended**:
-- Specify `--agentId` explicitly for scheduled tasks
-- Use agent's dedicated session (`--session kk`) instead of isolated
-- Specify `--accountId` explicitly to ensure messages send from correct account
-- Run check script to verify configuration before creating tasks
-
-❌ **Avoid**:
-- Not specifying agentId (defaults to main execution)
-- Using isolated session (doesn't inherit channel binding)
-- Relying on default accountId (defaults to default)
-- Creating tasks without verifying configuration
-
-### FAQ
-
-**Q1: Why are my messages sent from default bot instead of kk bot?**
-
-A: Because the scheduled task didn't specify `--agentId` and `--accountId`. By default:
-- No agentId specified → executed by main agent
-- No accountId specified → sent via default account
-
-Solution: Specify explicitly when creating task:
-```bash
-openclaw cron add \
-  --agentId "kk" \
-  --session "kk" \
-  --accountId "kk-feishu" \
-  ...
-```
-
-**Q2: What's the difference between isolated session and agent dedicated session?**
-
-A: 
-- `isolated` session: Temporary isolated session, **doesn't inherit** agent's channel binding
-- `kk` session: kk agent's dedicated session, **inherits** kk's channel binding (including accountId)
-
-If you want to use a specific agent's configuration, should use agent's dedicated session:
-```bash
---session "kk"  # ✅ Inherits kk's configuration
---session isolated  # ❌ Doesn't inherit any configuration
-```
-
-**Q3: How to verify scheduled task configuration is correct?**
-
-A: Use these commands to verify:
-```bash
-# 1. View task list
-openclaw cron list
-
-# 2. Run configuration check script
-python3 ~/.openclaw/skills/task-orchestrator/scripts/check_cron_config.py
-
-# 3. Test execution
-openclaw cron run {task_id}
-
-# 4. Check Feishu message
-# Confirm message is sent from correct bot
-```
+> **v2.0 New Features**: Dynamic configuration loading, deadlock prevention mechanism, intelligent aggregation rules, 4-level risk confirmation boundaries
 
 ---
 
@@ -407,27 +249,23 @@ Please confirm and I'll create this scheduled task ✓
 ```bash
 # One-time task
 openclaw cron add \
-  --agentId "{AGENT_ID}" \
-  --session "{AGENT_ID}" \
   --name "{Task Name}" \
   --at "{ISO time or relative time}" \
+  --session isolated \
   --channel feishu \
   --to "user:ou_642f1cb74d63462d1037375caac5ea2d" \
-  --accountId "{ACCOUNT_ID}" \
   --message "{Execution content}" \
   --tz "Asia/Shanghai" \
   --description "{Task description}"
 
 # Periodic task
 openclaw cron add \
-  --agentId "{AGENT_ID}" \
-  --session "{AGENT_ID}" \
   --name "{Task Name}" \
   --cron "{Cron expression}" \
   --tz "Asia/Shanghai" \
+  --session isolated \
   --channel feishu \
   --to "user:ou_642f1cb74d63462d1037375caac5ea2d" \
-  --accountId "{ACCOUNT_ID}" \
   --message "{Execution content}" \
   --description "{Task description}"
 ```
@@ -890,34 +728,16 @@ Every [progress_check_interval] minutes:
 
 ### Template 1: Daily News Push (Cron)
 
-**Standard Configuration**:
 ```bash
 openclaw cron add \
-  --agentId "main" \
-  --session "main" \
   --name "Daily News Push" \
   --cron "0 9 * * *" \
   --tz "Asia/Shanghai" \
+  --session isolated \
   --channel feishu \
   --to "user:ou_642f1cb74d63462d1037375caac5ea2d" \
-  --accountId "default" \
   --message "Search today's AI industry news, organize into briefing and push to me" \
   --description "Push AI industry news every day at 9am"
-```
-
-**KK Agent Configuration Example**:
-```bash
-openclaw cron add \
-  --agentId "kk" \
-  --session "kk" \
-  --name "KK Heartbeat 10min" \
-  --cron "*/10 * * * *" \
-  --tz "Asia/Shanghai" \
-  --channel feishu \
-  --to "user:ou_642f1cb74d63462d1037375caac5ea2d" \
-  --accountId "kk-feishu" \
-  --message "Execute heartbeat check" \
-  --description "Execute heartbeat check every 10 minutes"
 ```
 
 ---

@@ -1,39 +1,49 @@
-## Description: <br>
-Converts Markdown text into Feishu Post rich text JSON for message and bot workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts standard Markdown text into Feishu Post rich-text message JSON, including headings, inline styles, links, mentions, images, lists, code blocks, blockquotes, and horizontal rules.
 
-## Publisher: <br>
-[KillingJacky](https://clawhub.ai/user/KillingJacky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[killingjacky](https://clawhub.ai/user/killingjacky)
 
-## Use Case: <br>
-Developers and automation authors use this skill to convert Markdown content into Feishu Post JSON for rich-text messages, bots, and notification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted messages may mention users or everyone if the input includes Feishu at-mention tags. <br>
-Mitigation: Review generated JSON before sending it through a Feishu bot or API, especially content containing at-mentions. <br>
-Risk: Image elements require Feishu image keys rather than ordinary image URLs. <br>
-Mitigation: Upload images to Feishu first and provide valid image_key values before using generated image blocks. <br>
+## Use Case:
 
+Developers and automation builders use this skill to convert Markdown content into Feishu Post JSON for rich-text Feishu messages and bot message payloads.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Feishu Post JSON, pretty-printed or compact] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default locale key is zh_cn; compact mode produces single-line JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: Malformed Feishu at-mention input can cause conversion to hang.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid exposing the converter directly to untrusted message input until the parser is fixed, or wrap execution with input size limits and timeouts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/killingjacky/skills/markdown-to-feishu-post)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [Feishu Post JSON with optional Markdown usage guidance and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts direct Markdown text or a Markdown file path; compact single-line JSON output is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

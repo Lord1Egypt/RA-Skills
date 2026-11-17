@@ -1,48 +1,69 @@
-## Description: <br>
-Use when programming a UNIHIKER K10 board with PlatformIO CLI, creating or converting Arduino/C++ K10 projects to PlatformIO, building, uploading, monitoring serial output, diagnosing K10 PlatformIO setup, or preparing/installing offline PlatformIO support bundles for workshops where many students should not download toolchains at the same time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents program UNIHIKER K10 boards with PlatformIO CLI, create or convert Arduino/C++ projects, build, upload, monitor serial output, diagnose setup or ASR issues, and prepare offline workshop installers.
 
-## Publisher: <br>
-[rockets-cn](https://clawhub.ai/user/rockets-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockets-cn](https://clawhub.ai/user/rockets-cn)
 
-## Use Case: <br>
-Developers, educators, and workshop facilitators use this skill to create, convert, build, upload, and troubleshoot UNIHIKER K10 PlatformIO Arduino/C++ projects. It also helps prepare offline PlatformIO support bundles for classroom or workshop environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera, microphone, face recognition, speech recognition, or TTS examples may create privacy concerns in classrooms or shared spaces. <br>
-Mitigation: Get consent before using those examples, make camera and microphone activity obvious, and use the examples only in settings appropriate for participants. <br>
-Risk: Offline bundles are extracted into the PlatformIO tool directory and could overwrite or introduce local toolchain files if the bundle is untrusted. <br>
-Mitigation: Use only trusted offline bundles, prepare one bundle per OS and CPU architecture, and verify the installed PlatformIO packages before workshop use. <br>
-Risk: Incorrect OTA partition choices for AI projects can overwrite K10 model, voice data, or face-recognition regions. <br>
-Mitigation: Use the model-preserving partition guidance from the bundled K10 AI model flashing reference when a project uses built-in AI features. <br>
+## Use Case:
 
+Developers and workshop instructors use this skill to create, convert, build, upload, and troubleshoot PlatformIO-based Arduino/C++ projects for UNIHIKER K10 boards, including offline class setup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rockets-cn/unihiker-k10-platformio) <br>
-- [PlatformIO Workshop Notes for UNIHIKER K10](references/platformio-workshop.md) <br>
-- [K10 AI Model Flashing and Recovery](references/k10-ai-model-flash.md) <br>
-- [UNIHIKER K10 Arduino API](references/k10-arduino-api.md) <br>
-- [UNIHIKER K10 Arduino Examples](references/k10-arduino-examples.md) <br>
-- [DFRobot PlatformIO Platform for UNIHIKER](https://github.com/DFRobot/platform-unihiker.git) <br>
-- [PlatformIO Core Installer Script Documentation](https://docs.platformio.org/en/latest/core/installation/methods/installer-script.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, PlatformIO configuration, and C++ code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose project files, PlatformIO commands, offline bundle steps, and K10-specific implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Workshop installers and build setup can install or execute unchecked mutable code across user machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before workshop use, generate bundles from trusted sources, prefer pinned PlatformIO commits, and hash-verify Python wheels.
+
+Risk: Removing macOS quarantine can bypass an operating-system safety control.
+
+Mitigation: Remove quarantine only after verifying the installer source and distributing a freshly generated bundle.
+
+Risk: Examples may activate camera, microphone, face recognition, or firmware flashing behavior.
+
+Mitigation: Tell users before running those examples and confirm the selected workflow matches the board firmware and classroom policy.
+
+Risk: K10 AI, voice, TTS, face recognition, or OTA projects can overwrite factory model-data regions if generic partitions are used.
+
+Mitigation: Preserve the documented factory model, voice_data, and face-recognition flash offsets, and use separate USB initialization environments only when model recovery is needed.
+
+## Reference(s):
+
+- [PlatformIO Workshop Notes for UNIHIKER K10](references/platformio-workshop.md)
+- [K10 AI Model Flashing and Recovery](references/k10-ai-model-flash.md)
+- [K10 ASR Audio Troubleshooting](references/k10-asr-audio-troubleshooting.md)
+- [K10 Arduino API](references/k10-arduino-api.md)
+- [K10 Arduino Examples](references/k10-arduino-examples.md)
+- [DFRobot PlatformIO Platform](https://github.com/DFRobot/platform-unihiker.git)
+- [DFRobot Gravity ADS1115 Module](https://www.dfrobot.com.cn/goods-1734.html)
+- [UNIHIKER K10 Arduino/PIO Example](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_Example)
+- [UNIHIKER K10 Arduino/PIO API List](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_API_List)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash, PowerShell, INI, and C++ code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce PlatformIO project files, command wrappers, and offline bundle or installer preparation steps when invoked.]
+
+## Skill Version(s):
+
+0.1.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

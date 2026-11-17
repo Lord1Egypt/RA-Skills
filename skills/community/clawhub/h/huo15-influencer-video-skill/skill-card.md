@@ -1,49 +1,62 @@
-## Description: <br>
-Generates short first-person product promotion videos from product images and scripts using Volcengine Ark/Seedance, optional TTS, background music mixing, and burned-in subtitles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short first-person product marketing videos from a product image and JSON script, with TTS voiceover, optional background music mixing, subtitles, template selection, dry-run checks, and cost estimates.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Creators, marketers, and agent operators use this skill to turn a product image and short script into a vertical product promotion video with voiceover, background music, subtitles, and a selected presenter persona. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use billable Ark/Seedance and optional Volcengine TTS credentials. <br>
-Mitigation: Run dry-run first, review the estimated cost, and obtain user confirmation before full rendering. <br>
-Risk: Product images and scripts may be sent to external AI or TTS services. <br>
-Mitigation: Use only content approved for those services and avoid confidential or sensitive product material unless the user has authorized it. <br>
-Risk: Generated videos may use local background music assets with separate rights requirements. <br>
-Mitigation: Use properly licensed or royalty-free music and keep attribution where the music source requires it. <br>
-Risk: Local output paths could overwrite important files. <br>
-Mitigation: Choose explicit output paths in a working directory and review paths before running render commands. <br>
+## Use Case:
 
+External creators, marketers, and agents use this skill to prepare short product sales videos from a local product image and script. It supports persona templates, voiceover, background music, subtitles, dry-run validation, and cost-aware rendering before producing the final media file.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaobod1/huo15-influencer-video-skill) <br>
-- [Volcengine Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3) <br>
-- [ByteDance OpenSpeech TTS](https://openspeech.bytedance.com) <br>
-- [Pixabay Music](https://pixabay.com/music/) <br>
-- [Freesound](https://freesound.org/) <br>
-- [Incompetech royalty-free music](https://incompetech.com/music/royalty-free/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [MP4 video files, JSON script files, Markdown guidance, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include generated video files, voice audio, subtitles, cost estimates, token estimates, template selections, and local file paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Product images and scripts may be sent to external video and TTS services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive inputs, dedicated provider keys, and an isolated environment.
+
+Risk: FFmpeg processing and output paths use loosely validated, overwrite-capable inputs.
+
+Mitigation: Use a controlled output directory and review script JSON paths before execution.
+
+Risk: Full rendering can incur provider costs.
+
+Mitigation: Confirm estimated costs before rendering and use dry-run mode to validate scripts before paid video generation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zhaobod1/skills/huo15-influencer-video-skill)
+- [Volcano Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3)
+- [ByteDance OpenSpeech TTS endpoint](https://openspeech.bytedance.com)
+- [Pixabay Music](https://pixabay.com/music/)
+- [Freesound](https://freesound.org/)
+- [Incompetech Royalty-Free Music](https://incompetech.com/music/royalty-free/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with JSON script examples, shell commands, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create MP4 video, MP3 voice or mixed audio, SRT subtitles, token estimates, and cost estimates; dry-run avoids the paid video generation step.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

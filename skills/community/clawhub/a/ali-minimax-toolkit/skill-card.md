@@ -1,48 +1,61 @@
-## Description: <br>
-MiniMax multimodal generation toolkit for voice, music, image, image-to-image, and video generation via MiniMax APIs using cross-platform Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax multimodal generation via API for voice, music, image, image-to-image, and video generation using cross-platform Python scripts.
 
-## Publisher: <br>
-[yuan-huicheng](https://clawhub.ai/user/yuan-huicheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuan-huicheng](https://clawhub.ai/user/yuan-huicheng)
 
-## Use Case: <br>
-Developers and agents use this skill to generate and save MiniMax TTS, music, images, image-to-image outputs, and videos from prompts or media references, with optional Feishu delivery instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected media are sent to MiniMax and may contain sensitive images, voices, audio, or video references. <br>
-Mitigation: Use only approved, non-confidential inputs and obtain permission before uploading another person's face or voice. <br>
-Risk: The optional MiniMax API host override can send requests through a non-default endpoint. <br>
-Mitigation: Use the default MiniMax host unless the alternate host is trusted and approved. <br>
-Risk: Generated media may be prepared for Feishu delivery after creation. <br>
-Mitigation: Review generated files and destination chat IDs before sending content through Feishu. <br>
+## Use Case:
 
+Developers and agents use this skill to generate speech, music, images, image variations, and videos through MiniMax APIs, then save generated media files for downstream workflows. It is suited to multimodal content generation tasks where prompts and selected input media can be sent to MiniMax.
 
-## Reference(s): <br>
-- [Ali Minimax Toolkit on ClawHub](https://clawhub.ai/yuan-huicheng/ali-minimax-toolkit) <br>
-- [MiniMax Image Generation API](https://platform.minimaxi.com/docs/api-reference/image-generation-t2i) <br>
-- [MiniMax Image-to-Image API](https://platform.minimaxi.com/docs/api-reference/image-generation-i2i) <br>
-- [MiniMax Music Generation API](https://platform.minimaxi.com/docs/api-reference/music-generation) <br>
-- [MiniMax TTS Guide](references/tts-guide.md) <br>
-- [MiniMax Video Generation API Documentation](references/video-api.md) <br>
-- [MiniMax Video Prompt Writing Guide](references/video-prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is saved under minimax-output/ by convention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts, portraits, voice samples, and other selected media may be sent to MiniMax or to a custom API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default trusted MiniMax host unless a custom endpoint is explicitly trusted, and avoid uploading confidential or non-consensual media.
+
+Risk: The MiniMax API key is used for outbound API requests.
+
+Mitigation: Keep MINIMAX_API_KEY private, scope and rotate it according to local policy, and do not expose it in logs, prompts, or shared artifacts.
+
+## Reference(s):
+
+- [MiniMax Image Generation API (image-01)](references/image-api.md)
+- [MiniMax Music Generation API (music-2.5)](references/music-api.md)
+- [TTS Guide](references/tts-guide.md)
+- [TTS Voice Catalog](references/tts-voice-catalog.md)
+- [MiniMax Video Generation API Documentation](references/video-api.md)
+- [Video Prompt Writing Guide](references/video-prompt-guide.md)
+- [MiniMax image generation documentation](https://platform.minimaxi.com/docs/api-reference/image-generation-t2i)
+- [MiniMax image-to-image documentation](https://platform.minimaxi.com/docs/api-reference/image-generation-i2i)
+- [MiniMax music generation documentation](https://platform.minimaxi.com/docs/api-reference/music-generation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python snippets, shell commands, and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is saved under minimax-output/ by convention; Feishu delivery is represented as follow-up send instructions when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

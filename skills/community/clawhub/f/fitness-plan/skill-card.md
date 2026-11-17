@@ -1,41 +1,58 @@
-## Description: <br>
-Track workouts, calculate BMI/1RM, and access exercise science guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fitness Plan provides general exercise science reference guidance for workout planning, strength tracking, form safety, and nutrition.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users use this skill to plan gym training, review exercise-science guidance, estimate BMI or one-rep max values, and audit training splits for progression, recovery, and safety considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fitness and progression guidance can be inappropriate for users with injuries, medical conditions, pregnancy, new training status, or symptoms during exercise. <br>
-Mitigation: Use the guidance as general educational material and consult a qualified clinician, physical therapist, or coach before changing training in higher-risk situations. <br>
-Risk: Calculator outputs and training standards are estimates and may be misleading if treated as individualized prescriptions. <br>
-Mitigation: Review results against personal context, form quality, recovery, and professional advice before applying them. <br>
+## Use Case:
 
+External users and agents use Fitness Plan to answer workout planning questions, review training principles, and surface exercise safety, progression, and nutrition reference guidance for general fitness contexts.
 
-## Reference(s): <br>
-- [Fitness Plan on ClawHub](https://clawhub.ai/ckchzh/fitness-plan) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text guidance with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes fitness reference material, workout planning guidance, and calculator-style estimates; not a substitute for medical or clinical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Fitness guidance may be mistaken for medical care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as general exercise reference guidance and consult qualified professionals for injuries, medical conditions, or personalized clinical advice.
+
+Risk: Documented calculator and training-plan examples may not work with the bundled script.
+
+Mitigation: Confirm supported commands with `bash scripts/script.sh help` and use the available static reference sections until the publisher updates command support.
+
+Risk: The bundled script reports version 6.0.2 while the release evidence and skill frontmatter report 6.0.3.
+
+Mitigation: Use the server release version as the card version and verify the package contents before relying on the in-script version string.
+
+## Reference(s):
+
+- [Fitness Plan ClawHub listing](https://clawhub.ai/ckchzh/skills/fitness-plan)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local static reference output; documented calculate and plan examples may not work in this release.]
+
+## Skill Version(s):
+
+6.0.3 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

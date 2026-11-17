@@ -1,0 +1,64 @@
+{
+  "captured_at": "2026-10-02",
+  "source": "https://cnki.cqccjy.cn/api/paper/cnki/public/config?channel=pcnki",
+  "products": [
+    {
+      "productCode": "CNKI_UNDERGRADUATE",
+      "productName": "知网本科/专科检测",
+      "externalProductId": "dxscnki",
+      "pricingMode": "PER_ARTICLE",
+      "salePrice": "18.00",
+      "priceLabel": "￥18.00 / 篇",
+      "fileType": "doc,docx,txt,pdf",
+      "hintMinCount": 200,
+      "hintMaxCount": 80000,
+      "acceptTimeRequired": false
+    },
+    {
+      "productCode": "CNKI_GRADUATE",
+      "productName": "知网硕博检测",
+      "externalProductId": "yjscnki",
+      "pricingMode": "PER_ARTICLE",
+      "salePrice": "55.00",
+      "priceLabel": "￥55.00 / 篇",
+      "fileType": "doc,docx,txt,pdf",
+      "hintMinCount": 200,
+      "hintMaxCount": 300000,
+      "acceptTimeRequired": false
+    },
+    {
+      "productCode": "CNKI_JOURNAL",
+      "productName": "知网期刊检测",
+      "pricingMode": "PER_ARTICLE",
+      "salePrice": "35.00",
+      "priceLabel": "￥35.00 / 篇",
+      "fileType": "doc,docx,txt,pdf",
+      "hintMinCount": 200,
+      "hintMaxCount": 30000,
+      "acceptTimeRequired": false
+    },
+    {
+      "productCode": "CNKI_AIGC",
+      "productName": "知网AIGC检测",
+      "externalProductId": "cnkiaigc",
+      "pricingMode": "PER_ARTICLE",
+      "salePrice": "38.00",
+      "priceLabel": "￥38.00 / 篇",
+      "fileType": "doc,docx,txt,pdf",
+      "hintMinCount": 200,
+      "hintMaxCount": 80000,
+      "acceptTimeRequired": false
+    },
+    {
+      "productCode": "CNKI_AIGC_OVER_80000",
+      "productName": "知网AIGC检测（8万字及以上）",
+      "pricingMode": "PER_ARTICLE",
+      "salePrice": "65.00",
+      "priceLabel": "￥65.00 / 篇",
+      "fileType": "doc,docx,pdf",
+      "hintMinCount": 80000,
+      "hintMaxCount": 300000,
+      "acceptTimeRequired": false
+    }
+  ]
+}

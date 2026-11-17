@@ -7,8 +7,8 @@
 - **网关代理端点**：`POST /tiktokShop/developerProxy`
 - **Base URL**：`${LINKFOX_TOOL_GATEWAY}`（默认；可用环境变量 `TIKTOK_SHOP_API_BASE_URL` 覆盖）
 - **Content-Type**：`application/json`
-- **网关鉴权**：Header `Authorization: <api_key>`，读取环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY`
-- **达人令牌**：`ttsAccessToken` = 达人 access_token（`user_type=1`），由 `linkfox-tiktok-auth`（`appType=creator`）授权获得，对应上游请求头 `x-tts-access-token`
+- **网关鉴权**：Header `Authorization: <api_key>`，读取环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY`（如未配置 按 SKILL.md 的 **## 解决认证和积分问题** 处理）
+- **达人令牌**：`ttsAccessToken` = 达人 access_token（`user_type=1`），由 `linkfox-tiktok-video-auth` 授权获得，对应上游请求头 `x-tts-access-token`
 - **签名**：上游 `app_key` / `timestamp` / `sign` 由紫鸟代理自动注入，调用方**无需**传
 
 ### developerProxy 入参（通用）
@@ -92,6 +92,7 @@
 | 16501011 | 用户无权限访问该接口，请检查达人授权信息 |
 | 16504002 | 查询达人信息失败，请检查达人 EC 权限是否可用 |
 | 36009002 | 请求过于频繁（限流），请稍后重试 |
+| HTTP 402 | HTTP 402：按 SKILL.md 的 **## 解决认证和积分问题** 处理。 |
 
 ---
 

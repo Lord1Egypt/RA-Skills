@@ -1,41 +1,57 @@
-## Description: <br>
-Build transformer fine-tuning run plans with task settings, hyperparameters, and model-card outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build transformer fine-tuning run plans with task settings, hyperparameters, and model-card outputs.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Developers and machine learning engineers use this skill to create reproducible transformer fine-tuning run plans for Hugging Face or PyTorch workflows, including task settings, hyperparameters, evaluation cadence, and model-card skeletons. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled script reads local JSON input and writes local output files, which can create or overwrite artifacts at the requested path. <br>
-Mitigation: Use non-sensitive input files and choose a disposable output path before running the script. <br>
-Risk: The security evidence notes that dry-run labeling should not be relied on to prevent file creation or overwrites. <br>
-Mitigation: Treat dry-run output as informational and verify the destination path before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Finetune Guide](references/finetune-guide.md) <br>
-- [ClawHub release page](https://clawhub.ai/0x-Professor/dl-transformer-finetune) <br>
-- [Publisher profile](https://clawhub.ai/user/0x-Professor) <br>
+## Use Case:
 
+Developers and engineers use this skill to produce repeatable transformer fine-tuning run plans, including task settings, training hyperparameters, evaluation cadence, and model-card scaffolding for Hugging Face or PyTorch workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [JSON, Markdown, or CSV fine-tuning plan artifacts plus model-card skeleton content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON input and writes the requested output artifact path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review reports under-disclosed local file-write behavior in the helper script.
+
+Mitigation: Use explicit, non-sensitive output paths and review generated files before relying on them.
+
+Risk: The security review notes that --dry-run should not be relied on to avoid filesystem changes until fixed.
+
+Mitigation: Run the helper only in a controlled workspace and verify file changes after execution.
+
+Risk: The security review identifies CSV handling risk when inputs may come from untrusted sources.
+
+Mitigation: Prefer JSON or Markdown output for untrusted inputs and review CSV output before opening it in spreadsheet tools.
+
+## Reference(s):
+
+- [Finetune Guide](references/finetune-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/0x-professor/skills/dl-transformer-finetune)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [JSON, Markdown, or CSV fine-tuning plan files with human-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate deterministic plan artifacts and model-card skeleton content from optional JSON input.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

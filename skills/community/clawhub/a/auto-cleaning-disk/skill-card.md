@@ -1,42 +1,56 @@
-## Description: <br>
-Automatically clean disk space by removing temp files, browser cache, recycle bin or trash contents, and log files on Windows, Linux, and macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically clean disk space by removing temp files, browser cache, recycle bin or trash, and log files on Windows, Linux, and macOS.
 
-## Publisher: <br>
-[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahqazi-dev](https://clawhub.ai/user/ahqazi-dev)
 
-## Use Case: <br>
-External users and developers use this skill to free local disk space by running or being guided through OS-specific cleanup of temporary files, browser caches, trash, and logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delete broad local cache, log, trash, and system-managed folders. <br>
-Mitigation: Use Confirm Mode, review each target path before approval, and avoid running the skill as administrator or root. <br>
-Risk: The scripts do not fully enforce the stated safe-cleaning and older-than-one-day promises. <br>
-Mitigation: Do not rely on age-based protection claims; back up important data and skip any cleanup target whose contents are unclear. <br>
+## Use Case:
 
+External users and developers use this skill to free disk space by running operating-system-specific cleanup guidance or scripts for temporary files, browser caches, trash, and logs.
 
-## Reference(s): <br>
-- [Windows Disk Cleaner](artifact/windows-cleaner.md) <br>
-- [Linux Disk Cleaner](artifact/linux-cleaner.md) <br>
-- [macOS Disk Cleaner](artifact/mac-cleaner.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code and shell execution steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include interactive confirmation prompts and a cleanup summary showing categories cleaned, skipped items, and reported space freed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can permanently delete local files from broad cache, temp, log, browser-profile, trash, and Windows update-cache locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review targets before installing or running; avoid Auto Mode and administrator or root privileges unless paths are narrowed, file-age checks are enforced, and a dry-run preview with explicit confirmation is added.
+
+Risk: The skill's safety promises understate how much local data may be deleted.
+
+Mitigation: Use Confirm Mode, review each cleanup category, and skip any path or file set whose contents are unclear.
+
+## Reference(s):
+
+- [Auto Cleaning Disk on ClawHub](https://clawhub.ai/ahqazi-dev/skills/auto-cleaning-disk)
+- [Windows Disk Cleaner](artifact/windows-cleaner.md)
+- [Linux Disk Cleaner](artifact/linux-cleaner.md)
+- [macOS Disk Cleaner](artifact/mac-cleaner.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with Python cleanup commands or scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cleanup summaries showing space freed, categories cleaned, and skipped items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

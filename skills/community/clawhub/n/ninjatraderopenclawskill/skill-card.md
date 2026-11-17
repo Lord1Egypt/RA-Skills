@@ -1,42 +1,55 @@
-## Description: <br>
-NinjaTrader 8 NinjaScript development reference: using directives, lifecycle, indicators, order mgmt, compile errors, deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ninjatrader Dev provides a NinjaTrader 8 NinjaScript development reference for using directives, lifecycle state management, indicators, order management, compile errors, and deployment.
 
-## Publisher: <br>
-[gmdeep](https://clawhub.ai/user/gmdeep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmdeep](https://clawhub.ai/user/gmdeep)
 
-## Use Case: <br>
-Developers building NinjaTrader 8 NinjaScript strategies and indicators use this skill as a reference for C# using directives, lifecycle placement, indicator setup, order management, validation, and deployment checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment examples include remote-copy commands to a specific SSH/SCP host and a local NinjaTrader path. <br>
-Mitigation: Review all deployment commands before execution, replace the host and destination with an explicitly authorized target, and keep backups before overwriting strategy files. <br>
-Risk: Generated or edited NinjaScript strategy code can affect trading behavior if deployed without review. <br>
-Mitigation: Compile in the NinjaTrader 8 editor, address errors before enabling a strategy, and test on a chart or non-production setup before live use. <br>
+## Use Case:
 
+Developers and engineers use this skill when creating, validating, migrating, or deploying NinjaTrader 8 NinjaScript strategies and indicators. It helps structure code, avoid common compile errors, and review deployment steps before changes are applied.
 
-## Reference(s): <br>
-- [Source repository](https://github.com/GMDEEP/NinjatraderOpenClawSkill) <br>
-- [ClawHub skill page](https://clawhub.ai/gmdeep/ninjatraderopenclawskill) <br>
-- [Publisher profile](https://clawhub.ai/user/gmdeep) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with C# and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes checklists, reference tables, code templates, and deployment command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill includes SSH/SCP deployment examples that could copy or overwrite NinjaTrader strategy files on a remote machine if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace hostnames and paths with a user-approved destination, confirm the remote identity, check overwrite risk, and keep strategy activation or live trading as a separate approval step.
+
+Risk: NinjaScript strategy or order-management guidance can affect trading behavior if applied directly to live strategies.
+
+Mitigation: Compile and test changes in NinjaTrader 8 before deployment, review generated code manually, and require explicit approval before enabling strategies for live trading.
+
+## Reference(s):
+
+- [Source repository](https://github.com/GMDEEP/NinjatraderOpenClawSkill)
+- [ClawHub skill page](https://clawhub.ai/gmdeep/skills/ninjatraderopenclawskill)
+- [Publisher profile](https://clawhub.ai/user/gmdeep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with C# snippets, checklist items, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user review before applying generated code, deployment commands, or trading-strategy changes.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

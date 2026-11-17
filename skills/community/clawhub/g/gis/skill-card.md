@@ -1,39 +1,52 @@
-## Description: <br>
-Helps with GIS concepts, spatial data formats, projections, and spatial analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps with GIS concepts, spatial data formats, projections, and spatial analysis. Use when the user works with shapefiles, GeoJSON, coordinate reference systems, spatial indexes, or needs to design spatial queries and analysis workflows.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, GIS analysts, and data engineers use this skill to choose spatial data formats, reason about coordinate reference systems and projections, design spatial database queries, and plan common GIS analysis workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: GIS guidance can be misleading if the coordinate reference system, units, or coordinate order are assumed incorrectly.
+
+Mitigation: Confirm source and target CRS, units, and coordinate order before recommending transformations, measurements, spatial queries, or analysis workflows.
+
+Risk: The artifact's detailed guidance is written in Chinese, which may not match every user's preferred language.
+
+Mitigation: When language preference is unclear, respond in the user's language or ask whether they want the GIS guidance translated.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, and GIS practitioners use this skill for guidance on spatial data formats, coordinate reference systems, projections, spatial databases, and common spatial analysis workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated GIS commands, SQL, or data transformations may be incorrect for important datasets when coordinate systems, units, or coordinate order differ. <br>
-Mitigation: Review generated commands, SQL, and transformations before applying them; confirm the source CRS, target CRS, units, and coordinate order. <br>
+**Output Format:** [Markdown guidance with optional code, SQL, configuration, and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlang-cn/gis) <br>
-- [Publisher profile](https://clawhub.ai/user/openlang-cn) <br>
+**Other Properties Related to Output:** [Responses should be adapted to the user's GIS stack, coordinate reference system, units, and coordinate order.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown prose with GIS workflow guidance and optional command, SQL, or code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, privileged access, persistence, or code execution requested by the skill.] <br>
+1.0.0 (source: server release evidence and target metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

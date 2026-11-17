@@ -1,38 +1,48 @@
-## Description: <br>
-Produce a compact, complete context dump of the current session directly in chat. Use when the user wants the current conversation summarized for reference, asks for a context dump, says the chat is bloated or slow, or wants a concise session state without creating files or migrating to a new chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces a compact, complete context dump of the current session directly in chat for reference, handoff, or session-state recovery.
 
-## Publisher: <br>
-[vyctorbrzezowski](https://clawhub.ai/user/vyctorbrzezowski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[vyctorbrzezowski](https://clawhub.ai/user/vyctorbrzezowski)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to ask an agent to summarize the active conversation into a concise Markdown session brief. It is useful for preserving goals, decisions, current state, important references, blockers, and next steps without creating files unless requested.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may recap sensitive details already present in the chat.
+
+Mitigation: The skill instructs the agent to omit secrets, tokens, private credentials, and unnecessary personal data from the brief.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and other agent users use this skill to produce a concise Markdown summary of the current conversation state for handoff, reference, or reducing chat context noise. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A session summary could include sensitive conversation details if the user asks for them or if they were present in context. <br>
-Mitigation: Review the generated brief before sharing it and avoid including secrets, credentials, or sensitive personal details. <br>
+**Output Format:** [Markdown block returned in chat]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vyctorbrzezowski/session-brief) <br>
+**Other Properties Related to Output:** [No files are created unless the user explicitly requests one; the brief should omit secrets, tokens, private credentials, and unnecessary personal data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown block in chat] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not create files unless the user explicitly asks; excludes secrets, credentials, and unnecessary personal data.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+interface:
+  display_name: "元认知 × 科学创造力｜科研全流程搭档"
+  short_description: "从提出问题到回应审稿，用元认知调节策略，用科学创造力生成和检验构思"
+  default_prompt: 用 $scientific-ideation 帮我重构这个研究问题，并找出值得检验的机制。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

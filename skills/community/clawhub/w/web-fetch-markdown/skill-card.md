@@ -1,41 +1,50 @@
-## Description: <br>
-Fetches public web pages through jina.ai and returns reduced markdown content to conserve context tokens for long pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch web pages as reduced markdown via jina.ai for users who want condensed URL content and lower token usage.
 
-## Publisher: <br>
-[qidu](https://clawhub.ai/user/qidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qidu](https://clawhub.ai/user/qidu)
 
-## Use Case: <br>
-Developers and agents use this skill when they need a condensed markdown version of a public page, article, README, or documentation page to reduce token use during web research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive URLs or private page contents may be exposed to jina.ai when fetched through the proxy. <br>
-Mitigation: Use this skill for public pages only; avoid authenticated dashboards, intranet hosts, localhost, signed links, and URLs containing tokens unless that disclosure is intended. <br>
-Risk: Reduced markdown may omit page details that matter for high-stakes decisions. <br>
-Mitigation: Verify critical claims against the original source page before relying on the condensed output. <br>
+## Use Case:
 
+Developers, employees, and external agent users use this skill to fetch public web pages through jina.ai and return condensed Markdown when token conservation is important.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qidu/web-fetch-markdown) <br>
-- [jina.ai reader proxy pattern](https://r.jina.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown response from fetched public web content, with concise instructions for constructing the jina.ai proxy URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials were detected; output depends on jina.ai extraction and reduction of the source page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send full user-supplied URLs to jina.ai, including private or token-bearing links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with public URLs; do not use password reset links, signed download URLs, internal hosts, private documents, authenticated pages, or URLs containing secrets unless the skill adds blocking or confirmation controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qidu/skills/web-fetch-markdown)
+- [jina.ai markdown fetch endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Markdown content returned from a fetched public web page, with concise usage guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses jina.ai to extract and reduce page content before returning it to the user]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

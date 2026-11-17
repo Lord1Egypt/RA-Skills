@@ -1,47 +1,64 @@
-## Description: <br>
-Generates AI-integrated lesson plans with teaching steps, activities, assessment rubrics, and tool guidance for Hong Kong primary and secondary STEAM education. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI-integrated lesson plans for Hong Kong schools with EDB-aligned teaching steps, activities, assessment rubrics, and teacher setup guidance.
 
-## Publisher: <br>
-[lsistreamai-ai](https://clawhub.ai/user/lsistreamai-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lsistreamai-ai](https://clawhub.ai/user/lsistreamai-ai)
 
-## Use Case: <br>
-Teachers, curriculum coordinators, school administrators, and teacher trainers use this skill to draft AI-integrated lesson plans, assessment prompts, and classroom activity guidance aligned to Hong Kong primary and secondary school needs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with Hong Kong curriculum and EDB funding alignment <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student work, images, account details, or gallery content may be shared with third-party AI tools during lesson creation or assessment. <br>
-Mitigation: Use only school-approved AI platforms and accounts, remove student names and identifiers, and confirm consent and school policy before uploading portraits, student work, or other identifiable content. <br>
-Risk: Third-party AI platform retention, training, and sharing terms may not match classroom privacy requirements. <br>
-Mitigation: Check vendor retention and model-training terms before use, keep galleries private and access-restricted, and make sharing opt-in where student work is involved. <br>
-Risk: AI-generated assessment feedback may be incomplete, incorrect, or unsuitable for final grading. <br>
-Mitigation: Treat AI feedback as a teacher-reviewed draft only; educators should make the final assessment judgment before giving feedback or grades to students. <br>
+## Use Case:
 
+Primary and secondary teachers, curriculum coordinators, teacher trainers, and school administrators use this skill to create AI-integrated lesson plans, classroom activities, rubrics, and assessment prompts. The outputs are optimized for Hong Kong STEAM and cross-curricular teaching, including EDB-aligned AI teaching resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lsistreamai-ai/lsi-steam-lesson-generator) <br>
-- [README](artifact/README.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
-- [Primary 4 Science example](artifact/examples/P4_Science_Plant_Life_Cycle.md) <br>
-- [Secondary 2 English example](artifact/examples/S2_English_Descriptive_Writing.md) <br>
-- [Secondary 2 Visual Arts example](artifact/examples/S2_VisualArts_Digital_Portrait.md) <br>
+### Deployment Geography for Use:
 
+Global; optimized for Hong Kong primary and secondary education and EDB-aligned lesson resources.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown lesson plans with rubrics, prompts, checklists, and export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include bilingual English/Chinese output and optional PDF export guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json; changelog released 2026-04-04) <br>
+Risk: Student work or classroom materials may be shared with outside AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only school-approved AI platforms, remove or anonymize student identifiers, and avoid uploading student images or portraits unless consent and policy approvals are in place.
+
+Risk: Classroom account setup may lead to use of personal accounts or shared credentials.
+
+Mitigation: Use school-controlled accounts and do not share credentials between teachers or students.
+
+Risk: Blocked AI services may tempt users to bypass school network controls.
+
+Mitigation: Do not bypass blocked services with personal hotspots; prepare school-approved alternatives or offline materials instead.
+
+Risk: AI-assisted assessment can produce inaccurate or inappropriate feedback.
+
+Mitigation: Treat AI feedback as a draft only; teachers should review, adjust, and make the final assessment decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lsistreamai-ai/skills/lsi-steam-lesson-generator)
+- [Publisher profile](https://clawhub.ai/user/lsistreamai-ai)
+- [Canva Design School](https://www.canva.com/designschool/)
+- [HeyGen Help Center](https://www.heygen.com/help)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown lesson plan with tables, checklists, teaching steps, rubrics, and AI-assessment prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May offer PDF export; outputs include teacher setup guidance, classroom activity instructions, and AI-assisted assessment prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/CHANGELOG.md, released 2026-04-04)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

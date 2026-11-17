@@ -1,43 +1,52 @@
-## Description: <br>
-Coaches English speaking and writing by correcting grammar, improving fluency, expanding vocabulary, practicing conversations, preparing for IELTS/TOEFL writing, and polishing professional emails or essays, with emphasis on Chinese learners targeting professional English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when coaching English speaking or writing skills: correcting grammar, improving sentence fluency, expanding vocabulary, practicing conversations, preparing for IELTS/TOEFL writing, polishing emails or essays, and building daily English habits, with a focus on Chinese learners targeting professional English.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-External learners and professionals use this skill to receive structured English writing corrections, natural phrasing suggestions, speaking practice prompts, and IELTS/TOEFL writing coaching. It is especially oriented toward Chinese learners improving professional English. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learners may submit sensitive personal, business, or exam-confidential text for coaching. <br>
-Mitigation: Avoid submitting confidential material unless appropriate for the agent to process; anonymize sensitive names, companies, and details before requesting feedback. <br>
-Risk: Language coaching feedback can be imperfect or context-dependent, especially for exam scoring or high-stakes professional communication. <br>
-Mitigation: Review suggested corrections before use and confirm high-stakes exam, legal, employment, or business-critical wording with a qualified human reviewer. <br>
+## Use Case:
 
+External learners and coaches use this skill to improve English writing and speaking through grammar correction, natural phrasing, professional communication practice, IELTS/TOEFL writing coaching, and vocabulary-building routines.
 
-## Reference(s): <br>
-- [Common Chinese Learner Mistakes & Corrections](references/common-mistakes.md) <br>
-- [IELTS / TOEFL Writing Reference](references/ielts-toefl-writing.md) <br>
-- [English Speaking Practice Scripts](references/speaking-practice.md) <br>
-- [ClawHub skill page](https://clawhub.ai/goldath/language-tutor-en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text coaching feedback with corrections, explanations, examples, and practice prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only tutoring guidance; no code execution or credential access reported.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The coaching examples are tailored to Chinese-English transfer and may be less relevant for learners with a different language background.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to adapt corrections and examples to the learner's language background before applying the Chinese-specific guidance.
+
+## Reference(s):
+
+- [Common Chinese Learner Mistakes & Corrections](references/common-mistakes.md)
+- [IELTS / TOEFL Writing Reference](references/ielts-toefl-writing.md)
+- [English Speaking Practice Scripts](references/speaking-practice.md)
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/language-tutor-en)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with corrected examples, explanations, practice prompts, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, commands, network access, persistence, or credential handling are disclosed in the server security summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

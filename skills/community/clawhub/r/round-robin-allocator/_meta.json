@@ -1,6 +1,16 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "round-robin-allocator",
+  "name": "round-robin-allocator",
   "version": "1.6.0",
-  "publishedAt": 1782383044412
+  "description": "均匀轮转分配工具 — 将 N 个对象在 T 个轮次中按比例分配 K 种选项，最大化覆盖多样性，支持四种后处理模式调整重复分布。",
+  "author": "wUwproject",
+  "tags": [
+    "分配",
+    "轮转",
+    "round-robin",
+    "覆盖",
+    "后处理",
+    "可视化"
+  ],
+  "triggers": [],
+  "data_dir": "skills/.standardization/round-robin-allocator/data/"
 }

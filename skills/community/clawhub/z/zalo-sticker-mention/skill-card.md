@@ -1,43 +1,54 @@
-## Description: <br>
-Automatically tags the latest sender in Zalo group chats and lets the agent send a sticker by appending a keyword marker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patches the @openclaw/zalouser channel driver to add outgoing group-chat auto-mentions and keyword-triggered Zalo sticker delivery.
 
-## Publisher: <br>
-[tuanminhhole](https://clawhub.ai/user/tuanminhhole) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuanminhhole](https://clawhub.ai/user/tuanminhhole)
 
-## Use Case: <br>
-OpenClaw developers and bot operators use this skill to patch the Zalo channel driver so group chat replies can include automatic sender mentions, optional sticker keyword markers, and sticker search support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The patch can permanently modify installed @openclaw/zalouser driver files across discovered OpenClaw locations. <br>
-Mitigation: Review mentions.js before use, apply it only in an intended OpenClaw workspace, and keep the provided --restore workflow available. <br>
-Risk: The patch may affect multiple discovered Zalo driver installs without enough scoping or confirmation. <br>
-Mitigation: Test first in a disposable or non-production OpenClaw workspace and verify which driver paths are being patched. <br>
+## Use Case:
 
+Developers and OpenClaw bot managers use this skill to patch @openclaw/zalouser so group chat replies can mention the latest sender and trigger a Zalo sticker with a trailing keyword marker.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuanminhhole/zalo-sticker-mention) <br>
-- [Publisher profile](https://clawhub.ai/user/tuanminhhole) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and sticker keyword markers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to append at most one [Sticker: <keyword>] marker at the end of a Zalo reply.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and package.json) <br>
+Risk: The patch script rewrites installed Zalo channel driver files across OpenClaw paths without enough scoping or confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated or test OpenClaw workspace, inspect the target files before applying changes, and keep the restore command available.
+
+Risk: The publish helper is intended for maintainers and includes shell-command and unpinned-CLI risks.
+
+Mitigation: Do not run scripts/publish.js unless maintaining the package and after reviewing and fixing those release-workflow risks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tuanminhhole/skills/zalo-sticker-mention)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and trailing sticker marker syntax]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may include at most one trailing [Sticker: <keyword>] marker when contextually appropriate.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

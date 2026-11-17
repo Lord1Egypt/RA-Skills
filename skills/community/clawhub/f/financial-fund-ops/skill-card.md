@@ -1,43 +1,54 @@
-## Description: <br>
-Fund administration and finance operations skill for GL reconciliation, break tracing, accrual schedules, roll-forwards, variance commentary, and NAV tie-out workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fund administration and finance operations skill for GL reconciliation, break tracing, accrual schedules, roll-forwards, variance commentary, and NAV statement tie-out.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Fund accounting, finance operations, and controller teams use this skill to draft and review reconciliation reports, accrual schedules, roll-forwards, variance commentary, and NAV statement tie-outs before controlled approval steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require access to sensitive fund accounting, ledger, subledger, NAV, invoice, or statement data. <br>
-Mitigation: Install only in environments where the agent is authorized to read the relevant fund accounting data. <br>
-Risk: Draft journal entries, statement flags, and reconciliation actions could be mistaken for approved financial changes. <br>
-Mitigation: Keep ledger posting, statement editing, resolver actions, and other financial changes behind human approval or separate controlled tools. <br>
-Risk: Break classifications and variance drivers are diagnostic hypotheses that may be incorrect or incomplete. <br>
-Mitigation: Require controller, resolver, or finance operations review before acting on diagnoses, adjustments, suppressions, or external reporting. <br>
+## Use Case:
 
+Fund administration and finance operations teams use this skill to prepare reconciliation outputs, investigate breaks, draft accrual schedules, build close-package roll-forwards, write variance commentary, and check LP statement NAV tie-outs for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/financial-fund-ops) <br>
-- [Publisher profile](https://clawhub.ai/user/paudyyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown tables and narrative text, with JSON objects for traced reconciliation breaks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft schedules, diagnostics, commentary, and review flags; it does not post ledger entries, edit statements, or execute financial changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter, package.json, and server release metadata) <br>
+Risk: Draft journal entries, break classifications, variance drivers, or NAV flags may be incomplete or incorrect if the supplied finance data or policies are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as review drafts and require controller, resolver, or publisher approval before posting entries, changing statements, or taking operational action.
+
+Risk: The skill may read sensitive fund administration data such as GL, subledger, NAV, entity, and period information.
+
+Mitigation: Scope tool and data access to the relevant fund, entity, period, and workflow, and prefer read-only access where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/financial-fund-ops)
+- [Referenced financial-services repository in artifact](https://github.com/anthropics/financial-services)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown tables, narrative summaries, JSON objects, and draft journal-entry text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are drafts for review and do not post adjustments or edit source statements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

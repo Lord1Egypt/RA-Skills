@@ -1,38 +1,53 @@
-## Description: <br>
-Zhipu Search provides web search through the Zhipu AI API with selectable search engines, recency and domain filters, result counts, and content-size controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zhipu Search helps agents query Zhipu AI web search with selectable engines, result counts, recency and domain filters, and content detail controls.
 
-## Publisher: <br>
-[whyhit2005](https://clawhub.ai/user/whyhit2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[whyhit2005](https://clawhub.ai/user/whyhit2005)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve recent web information through Zhipu AI search, including standard, advanced, Sogou, and Quark-backed searches with optional recency, domain, count, and content-detail controls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and optional user_id values are sent to Zhipu AI. <br>
-Mitigation: Use a dedicated Zhipu API key, avoid sensitive private queries, and do not pass real names, emails, or account IDs as user_id values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whyhit2005/whyhit2005-zhipu-search) <br>
-- [Zhipu AI API endpoint](https://open.bigmodel.cn/api/paas/v4) <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent run web searches through Zhipu/BigModel when it needs current information, a supported search engine, time or domain filtering, or controlled result detail.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON search results with titles, summaries, links, source metadata, and optional search-intent details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; sends search queries and optional user_id values to Zhipu AI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries are sent to Zhipu/BigModel and may expose sensitive input.
+
+Mitigation: Do not include secrets, private internal text, or personal data in search queries.
+
+Risk: The optional user_id parameter can identify an end user.
+
+Mitigation: Omit user_id or use a pseudonymous value unless a specific workflow requires it.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/whyhit2005/skills/whyhit2005-zhipu-search)
+- [Zhipu/BigModel API base URL](https://open.bigmodel.cn/api/paas/v4)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Plain text search summaries or JSON search result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZHIPU_API_KEY; optional parameters control engine, intent recognition, result count, domain filter, recency filter, content size, request ID, and user ID.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

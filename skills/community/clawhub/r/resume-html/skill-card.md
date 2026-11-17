@@ -1,39 +1,53 @@
-## Description: <br>
-HTML-based resume generator with PDF export. Creates pixel-perfect resumes with advanced layouts, photo support, custom styling. Generates beautiful HTML resumes and exports to PDF. HTML简历、PDF简历、专业排版。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTML-based resume generator with PDF export that creates styled, editable resumes with advanced layouts, photo support, custom styling, Chinese and English presets, and optional PDF output.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to generate polished HTML resumes, optionally embed photos, and export the result to PDF. It supports Chinese and English resume presets for professional, academic, creative, and minimal layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML and PDF resumes can contain sensitive personal data such as contact details, work history, salary expectations, and photos. <br>
-Mitigation: Use a private workspace for generation, restrict access to generated files, and delete drafts that are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to generate professional HTML resumes and export them to PDF, including layouts with photos, custom styling, and Chinese or English presets.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tobewin/resume-html) <br>
-- [Publisher Profile](https://clawhub.ai/user/tobewin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with HTML, CSS, Python, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local resume HTML and PDF files; generated outputs may contain sensitive personal information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Generated resumes may include sensitive personal data such as photos, phone numbers, email addresses, locations, salary expectations, education, and work history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only information intended for sharing and review generated HTML and PDF files before distributing them.
+
+Risk: PDF export depends on Playwright and Chromium installation.
+
+Mitigation: Install browser dependencies in a sandbox where practical and use pinned versions for reproducible, lower-risk execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobewin/skills/resume-html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, Python, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local resume.html and optional resume.pdf files; PDF export depends on Python, Playwright, and Chromium.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter lists 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

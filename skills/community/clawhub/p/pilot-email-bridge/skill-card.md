@@ -1,40 +1,58 @@
-## Description: <br>
-Send and receive emails via Pilot Protocol messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive email notifications through Pilot Protocol messaging using SMTP and webhook relay workflows.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to connect Pilot agents with email workflows, including outbound notifications, inbound message handling, and file attachments through configured SMTP, IMAP, or webhook relays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Email relay configuration can send messages, message bodies, recipients, and attachments to external SMTP or webhook services. <br>
-Mitigation: Use trusted relays, review recipients, message bodies, attachment paths, and endpoints before sending, and prefer least-privileged email credentials. <br>
-Risk: Clearing the inbox can remove queued messages before they have been reviewed. <br>
-Mitigation: Review or export queued messages before running inbox clearing commands. <br>
+## Use Case:
 
+Developers and operators who use Pilot Protocol can send agent email notifications, receive emails as Pilot events, and integrate email-based workflows with configured SMTP or webhook relays.
 
-## Reference(s): <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume the pilotctl binary, a running Pilot daemon, and configured email relay credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Sensitive email content or attachments may be sent through the configured SMTP or webhook relay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Pilot Protocol and relay endpoint are trusted, prefer HTTPS endpoints, and minimize sensitive email content and attachments.
+
+Risk: Email credentials are required for relay workflows and could be exposed if handled inside prompts or skill content.
+
+Mitigation: Protect email credentials outside the skill and use the surrounding runtime or relay configuration for secret handling.
+
+Risk: Inbox cleanup commands can delete messages that may still be needed.
+
+Mitigation: Avoid running inbox clear operations until messages have been reviewed or retained elsewhere.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-email-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pilotctl command examples, JSON email payloads, webhook setup steps, and relay safety guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

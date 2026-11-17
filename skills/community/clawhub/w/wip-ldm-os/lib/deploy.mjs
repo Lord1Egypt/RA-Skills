@@ -19,6 +19,7 @@ import { join, basename, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { detectInterfaces, describeInterfaces, detectToolbox } from './detect.mjs';
 import { moveToTrash, appendToManifest } from './safe.mjs';
+import { configureSessionStartHook } from '../src/boot/installer.mjs';
 
 const HOME = process.env.HOME || '';
 const LDM_ROOT = join(HOME, '.ldm');
@@ -177,6 +178,14 @@ export function detectHarnesses() {
     skills: join(codexHome, 'skills'),
   };
 
+  // WIP agent skill compatibility directory
+  const agentsHome = join(HOME, '.agents');
+  harnesses['wip-agents'] = {
+    detected: existsSync(agentsHome),
+    home: agentsHome,
+    skills: join(agentsHome, 'skills'),
+  };
+
   // Cursor
   const cursorHome = join(HOME, '.cursor');
   harnesses['cursor'] = {
@@ -207,7 +216,7 @@ export function detectHarnesses() {
 function getHarnesses() {
   try {
     const config = readJSON(LDM_CONFIG_PATH) || {};
-    if (config.harnesses) {
+    if (config.harnesses && config.harnesses['wip-agents']) {
       const workspace = (config.workspace || '').replace('~', HOME);
       return { harnesses: config.harnesses, workspace };
     }
@@ -1097,18 +1106,52 @@ function registerMCP(repoPath, door, toolName) {
  *
  * Returns true if at least one door installed successfully.
  */
-function installClaudeCodeHook(repoPath, doorOrDoors) {
+function installClaudeCodeHook(repoPath, doorOrDoors, toolName = basename(repoPath)) {
   const doors = Array.isArray(doorOrDoors) ? doorOrDoors : [doorOrDoors];
   let anyOk = false;
   for (const door of doors) {
-    if (installClaudeCodeHookEvent(repoPath, door)) {
+    if (installClaudeCodeHookEvent(repoPath, door, toolName)) {
       anyOk = true;
     }
   }
   return anyOk;
 }
 
-function installClaudeCodeHookEvent(repoPath, door) {
+function installClaudeCodeHookEvent(repoPath, door, toolName = basename(repoPath)) {
+  // Boot hook special case: single-owner delegation.
+  //
+  // The SessionStart boot hook's deployed command lives in ~/.ldm/shared/boot,
+  // NOT under ~/.ldm/extensions/<toolName>/. The extension-dir ownership match
+  // below keys on `/<toolName>/` in the command string, so it can never
+  // recognize an existing boot entry and appends a fresh duplicate on every
+  // manifest-driven install (10 copies accumulated 2026-07-04, ~450KB of boot
+  // context per session). configureSessionStartHook() in src/boot/installer.mjs
+  // is the single canonical registrar: it owns the whole boot-hook set,
+  // collapses duplicates, canonicalizes the command to BOOT_DIR, persists, and
+  // no-ops when already correct. Route boot-hook doors there so there is one
+  // writer, not two. Discriminating on the command (not the event alone) keeps
+  // other SessionStart hooks, e.g. wip-branch-guard's, on the normal path.
+  //
+  // Ticket: ai/product/bugs/installer/open-tickets/2026-07-05--cc-mini--deploy-hook-ownership-misses-boot-hook.md
+  const declaredCommand = door.command || '';
+  const isBootHookDoor =
+    (door.event || 'PreToolUse') === 'SessionStart' &&
+    (declaredCommand.includes('boot-hook') || /shared[/\\]boot/.test(declaredCommand));
+  if (isBootHookDoor) {
+    if (DRY_RUN) {
+      ok('Claude Code: would configure SessionStart boot hook (single-owner)');
+      return true;
+    }
+    try {
+      const result = configureSessionStartHook();
+      ok(`Claude Code: ${result}`);
+      return true;
+    } catch (e) {
+      fail(`Claude Code: boot hook registration failed. ${e.message}`);
+      return false;
+    }
+  }
+
   const settingsPath = join(HOME, '.claude', 'settings.json');
   let settings = readJSON(settingsPath);
 
@@ -1117,7 +1160,6 @@ function installClaudeCodeHookEvent(repoPath, door) {
     return false;
   }
 
-  const toolName = basename(repoPath);
   const extDir = join(LDM_EXTENSIONS, toolName);
   const installedGuard = join(extDir, 'guard.mjs');
 
@@ -1237,11 +1279,77 @@ function installClaudeCodeHookEvent(repoPath, door) {
   }
 }
 
-function installSkill(repoPath, toolName) {
+function copySkillTree(skillDir, dest, copyFullFolder = false) {
+  mkdirSync(dest, { recursive: true });
+  if (copyFullFolder) {
+    cpSync(skillDir, dest, { recursive: true });
+    return;
+  }
+
+  cpSync(join(skillDir, 'SKILL.md'), join(dest, 'SKILL.md'));
+  for (const child of ['references', 'agents', 'scripts', 'assets']) {
+    const src = join(skillDir, child);
+    if (existsSync(src)) cpSync(src, join(dest, child), { recursive: true });
+  }
+}
+
+const SKILL_COMPANION_DIRS = ['references', 'agents', 'scripts', 'assets'];
+
+function listSkillCopyEntries(skillDir, copyFullFolder = false) {
+  if (copyFullFolder) {
+    try {
+      return readdirSync(skillDir)
+        .filter((entry) => entry !== '.DS_Store')
+        .sort();
+    } catch {
+      return ['SKILL.md'];
+    }
+  }
+
+  const entries = ['SKILL.md'];
+  for (const child of SKILL_COMPANION_DIRS) {
+    if (existsSync(join(skillDir, child))) entries.push(`${child}/`);
+  }
+  return entries;
+}
+
+function printSkillDryRunPlan({ sourceSkillDir, refsSrc, toolName, harnesses, workspace, entries }) {
+  const formatTargetEntries = (base) => entries.map((entry) => join(base, entry));
+  const harnessTargets = Object.entries(harnesses)
+    .filter(([, h]) => h.detected && h.skills)
+    .map(([name, h]) => ({ name, base: join(h.skills, toolName) }));
+
+  ok(`Skill: ${toolName}`);
+  log(`Source: ${sourceSkillDir}`);
+  log('Would copy:');
+  for (const entry of entries) log(`- ${entry}`);
+
+  const permanentBase = join(LDM_EXTENSIONS, toolName);
+  log('Permanent copy:');
+  for (const target of formatTargetEntries(permanentBase)) log(`- ${target}`);
+
+  if (harnessTargets.length > 0) {
+    log('Agent skill targets:');
+    for (const target of harnessTargets) {
+      log(`- ${target.name}: ${target.base}`);
+      for (const entryTarget of formatTargetEntries(target.base)) log(`  - ${entryTarget}`);
+    }
+  } else {
+    log('Agent skill targets: no detected skill harnesses');
+  }
+
+  if (existsSync(refsSrc) && workspace && existsSync(workspace)) {
+    const homeRefsDest = join(workspace, 'settings', 'docs', 'skills', toolName);
+    log('Workspace docs target:');
+    log(`- ${homeRefsDest} (references/ only)`);
+  }
+}
+
+function installSkillFolder(skillDir, toolName, opts = {}) {
   const { harnesses, workspace } = getHarnesses();
 
-  // Find SKILL.md source: repo path first, then permanent copy at ~/.ldm/extensions/
-  let skillSrc = join(repoPath, 'SKILL.md');
+  // Find SKILL.md source: skill dir first, then permanent copy at ~/.ldm/extensions/
+  let skillSrc = join(skillDir, 'SKILL.md');
   const permanentSkill = join(LDM_EXTENSIONS, toolName, 'SKILL.md');
   if (!existsSync(skillSrc) && existsSync(permanentSkill)) skillSrc = permanentSkill;
   if (!existsSync(skillSrc)) return false;
@@ -1252,14 +1360,16 @@ function installSkill(repoPath, toolName) {
     return false;
   }
 
-  // Find references/ source: repo path first, then permanent copy
-  let refsSrc = join(repoPath, 'references');
+  const sourceSkillDir = dirname(skillSrc);
+
+  // Find references/ source: skill dir first, then permanent copy
+  let refsSrc = join(skillDir, 'references');
   const permanentRefs = join(LDM_EXTENSIONS, toolName, 'references');
   if (!existsSync(refsSrc) && existsSync(permanentRefs)) refsSrc = permanentRefs;
 
   if (DRY_RUN) {
-    const targets = Object.entries(harnesses).filter(([,h]) => h.detected && h.skills).map(([name]) => name);
-    ok(`Skill: would deploy ${toolName} to ${targets.join(', ')} (dry run)`);
+    const entries = listSkillCopyEntries(sourceSkillDir, opts.copyFullFolder);
+    printSkillDryRunPlan({ sourceSkillDir, refsSrc, toolName, harnesses, workspace, entries });
     return true;
   }
 
@@ -1268,21 +1378,13 @@ function installSkill(repoPath, toolName) {
 
     // 1. Save permanent copy to ~/.ldm/extensions/<name>/ (survives tmp cleanup)
     const ldmSkillDir = join(LDM_EXTENSIONS, toolName);
-    mkdirSync(ldmSkillDir, { recursive: true });
-    cpSync(skillSrc, join(ldmSkillDir, 'SKILL.md'));
-    if (existsSync(refsSrc) && refsSrc !== permanentRefs) {
-      cpSync(refsSrc, join(ldmSkillDir, 'references'), { recursive: true });
-    }
+    copySkillTree(sourceSkillDir, ldmSkillDir, opts.copyFullFolder);
 
     // 2. Deploy to every detected harness that has a skills path
     for (const [name, harness] of Object.entries(harnesses)) {
       if (!harness.detected || !harness.skills) continue;
       const dest = join(harness.skills, toolName);
-      mkdirSync(dest, { recursive: true });
-      cpSync(skillSrc, join(dest, 'SKILL.md'));
-      if (existsSync(refsSrc)) {
-        cpSync(refsSrc, join(dest, 'references'), { recursive: true });
-      }
+      copySkillTree(sourceSkillDir, dest, opts.copyFullFolder);
       deployed.push(name);
     }
 
@@ -1300,6 +1402,18 @@ function installSkill(repoPath, toolName) {
     fail(`Skill: deploy failed. ${e.message}`);
     return false;
   }
+}
+
+function installSkill(repoPath, toolName, skillInfo = null) {
+  if (Array.isArray(skillInfo?.skills) && skillInfo.skills.length > 0) {
+    let installed = 0;
+    for (const skill of skillInfo.skills) {
+      if (installSkillFolder(skill.path, skill.name, { copyFullFolder: true })) installed++;
+    }
+    return installed > 0;
+  }
+
+  return installSkillFolder(repoPath, toolName);
 }
 
 // ── Single tool install ──
@@ -1362,6 +1476,10 @@ export function installSingleTool(toolPath) {
       }
     }
 
+    if (interfaces.skill) {
+      installSkill(toolPath, toolName, interfaces.skill);
+    }
+
     return ifaceNames.length;
   }
 
@@ -1422,7 +1540,7 @@ export function installSingleTool(toolPath) {
 
   if (interfaces.claudeCodeHook) {
     if (isEnabled || isAlreadyDeployed) {
-      if (installClaudeCodeHook(toolPath, interfaces.claudeCodeHook)) installed++;
+      if (installClaudeCodeHook(toolPath, interfaces.claudeCodeHook, toolName)) installed++;
     } else {
       skip(`Hook: ${toolName} not enabled`);
     }
@@ -1430,7 +1548,7 @@ export function installSingleTool(toolPath) {
 
   if (interfaces.skill) {
     // Skills always deploy. They're instruction files, not running code.
-    if (installSkill(toolPath, toolName)) installed++;
+    if (installSkill(toolPath, toolName, interfaces.skill)) installed++;
   }
 
   if (interfaces.module) {
@@ -1591,7 +1709,7 @@ export async function enableExtension(name) {
 
   if (interfaces.mcp) registerMCP(extPath, interfaces.mcp, name);
   if (interfaces.claudeCodeHook) installClaudeCodeHook(extPath, interfaces.claudeCodeHook);
-  if (interfaces.skill) installSkill(extPath, name);
+  if (interfaces.skill) installSkill(extPath, name, interfaces.skill);
 
   entry.enabled = true;
   entry.updatedAt = new Date().toISOString();
@@ -1619,4 +1737,4 @@ export function disableExtension(name) {
 
 // ── Exports for ldm CLI ──
 
-export { loadRegistry, saveRegistry, updateRegistry, readJSON, writeJSON, runBuildIfNeeded, resolveLocalDeps, buildSourceInfo, CORE_EXTENSIONS };
+export { loadRegistry, saveRegistry, updateRegistry, readJSON, writeJSON, runBuildIfNeeded, resolveLocalDeps, buildSourceInfo, CORE_EXTENSIONS, installClaudeCodeHook };

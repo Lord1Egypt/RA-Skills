@@ -1,50 +1,67 @@
-## Description: <br>
-Searches Bilibili videos, generates or runs yt-dlp download commands, and retrieves video metadata, comments, danmaku, and creator video lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search Bilibili, inspect video metadata, fetch comments or danmaku, and prepare or run yt-dlp-based video download workflows.
 
-## Publisher: <br>
-[epantrip](https://clawhub.ai/user/epantrip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[epantrip](https://clawhub.ai/user/epantrip)
 
-## Use Case: <br>
-External users and developers use this skill to search Bilibili, inspect video details, prepare downloads, and retrieve comments or danmaku while managing local dependencies such as yt-dlp and ffmpeg. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some scripts may run unintended local code or make system/account-affecting changes without enough user control. <br>
-Mitigation: Review scripts before installing, avoid administrator or root execution, and run them from a dedicated low-privilege download directory. <br>
-Risk: Comment and UP-video-list scripts accept inputs that security guidance says should not be trusted until input handling is fixed. <br>
-Mitigation: Do not run those scripts with untrusted or nonnumeric arguments. <br>
-Risk: Cookie files may grant access to a Bilibili account. <br>
-Mitigation: Treat cookies.txt like a password file and keep it out of shared directories and logs. <br>
-Risk: Automatic dependency installation can alter the local Python environment. <br>
-Mitigation: Install yt-dlp manually in a trusted environment and review dependency versions before use. <br>
+## Use Case:
 
+Developers and external users can use this skill to search for Bilibili videos, inspect metadata, generate download commands, and manage single or batch downloads through yt-dlp-based scripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/epantrip/bilibili-video-downloader) <br>
-- [README](artifact/README.md) <br>
-- [Installation Guide](artifact/INSTALL.md) <br>
-- [Permissions and Safety Notes](artifact/PERMISSIONS.md) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
-- [BBDown Releases](https://github.com/nilaoda/BBDown/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Files, Text] <br>
-**Output Format:** [Markdown with inline shell commands and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local video files, XML danmaku files, comment text, JSON-derived metadata, and dependency checks when scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The security scan reports exploitable script inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit and fix argument handling before installation; pass user input as data and test only in a low-privilege sandbox.
+
+Risk: The artifact includes guidance for administrator, sudo, or broad writable-directory execution.
+
+Mitigation: Avoid elevated execution and broad write grants; prefer user-run commands in a dedicated low-privilege workspace.
+
+Risk: Cookie-based downloads may expose real Bilibili session cookies if stored in the skill directory.
+
+Mitigation: Do not store real cookies in the skill directory; keep credentials outside the artifact and provide them only through user-controlled, temporary paths.
+
+Risk: Dependency installation is not pinned.
+
+Mitigation: Make dependency versions explicit and review Python, yt-dlp, and ffmpeg sources before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/epantrip/skills/bilibili-video-downloader)
+- [Artifact README](artifact/README.md)
+- [Installation guide](artifact/INSTALL.md)
+- [Permissions and safety notes](artifact/PERMISSIONS.md)
+- [yt-dlp project](https://github.com/yt-dlp/yt-dlp)
+- [yt-dlp usage guide](https://github.com/yt-dlp/yt-dlp#usage)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and short command-output summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may generate yt-dlp commands and can trigger local downloads when executed with write permissions; restricted or high-quality videos may require user-managed cookies.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact also contains a 1.0.0 changelog and v1.2 script notes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

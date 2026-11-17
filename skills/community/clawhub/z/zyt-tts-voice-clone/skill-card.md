@@ -1,42 +1,53 @@
-## Description: <br>
-Use Chanjing TTS API to synthesize speech from text, using user-provided voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Chanjing TTS API to synthesize speech from text, using user-provided voice.
 
-## Publisher: <br>
-[zuoyuting214](https://clawhub.ai/user/zuoyuting214) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuoyuting214](https://clawhub.ai/user/zuoyuting214)
 
-## Use Case: <br>
-Developers and external users use this skill to create a cloned voice from a publicly accessible reference audio URL, submit text for Chanjing text-to-speech synthesis, and retrieve the generated audio URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the reference voice URL and synthesis text to the Chanjing API. <br>
-Mitigation: Use only voice samples the user has permission to clone and avoid confidential or sensitive synthesis text. <br>
-Risk: The skill depends on local Chanjing credentials stored in a credentials file. <br>
-Mitigation: Store credentials with restrictive permissions and rotate the key when the skill is no longer used. <br>
+## Use Case:
 
+Developers and agents use this skill to create Chanjing custom voices from public reference audio URLs and generate speech from text with optional speech-rate and timestamp support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuoyuting214/zyt-tts-voice-clone) <br>
-- [Chanjing Open API](https://open-api.chanjing.cc) <br>
-- [Chanjing OpenAPI login](https://www.chanjing.cc/openapi/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with API request examples, shell commands, and generated audio URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return Chanjing voice IDs, task IDs, task status, subtitles, and generated audio download URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata) <br>
+Risk: The skill requires access to a Chanjing app_id and secret_key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the credential file private, use a dedicated Chanjing credential where possible, and avoid sharing cached tokens.
+
+Risk: Reference voice audio URLs and synthesis text are sent to Chanjing's API.
+
+Mitigation: Avoid sensitive text and only use voice samples that are authorized for cloning and synthesis.
+
+## Reference(s):
+
+- [Chanjing Open API](https://open-api.chanjing.cc)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and API request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Chanjing voice IDs, task IDs, status results, and generated audio download URLs when used with valid credentials.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

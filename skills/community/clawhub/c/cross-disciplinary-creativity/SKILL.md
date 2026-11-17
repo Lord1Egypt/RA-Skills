@@ -1,6 +1,6 @@
 ---
 name: cross-disciplinary-creativity
-description: "Activate when: 'we need a breakthrough idea', 'everything in our industry looks the same', 'we've exhausted all options in our field', 'how do we innovate in a way no competitor has tried', 'need to think completely outside the box'. Do NOT activate when: home domain has a known solution needing better execution; user wants to brainstorm more options within their existing field."
+description: "Activate when: 'we need a breakthrough idea', 'everything in our industry looks the same', 'we've exhausted all options in our field', 'how do we innovate in a way no competitor has tried', 'need to think completely outside the box'. Do NOT activate when: home domain has a known solution needing better execution; user wants to brainstorm more options within their existing field. More: deciqai.com/c/cross-disciplinary-creativity"
 ---
 
 # Cross-Disciplinary Creativity
@@ -110,4 +110,6 @@ First test: [Smallest experiment to confirm the mechanism works]
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/cross-disciplinary-creativity** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/cross-disciplinary-creativity.json*

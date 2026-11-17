@@ -1,39 +1,52 @@
-## Description: <br>
-Infer a player's underlying values and motivational priorities from behavior, then translate those into design implications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infer a player's underlying values and motivational priorities from behavior, then translate those into design implications.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[stanestane](https://clawhub.ai/user/stanestane)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Game designers, product teams, live-ops teams, and analysts use this skill to turn observed player behavior into value maps, segment hypotheses, design implications, and recommendations for personalization or feature prioritization.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Player behavior, purchase, and engagement data may be sensitive or regulated depending on how it was collected and used.
+
+Mitigation: Use appropriately collected data, minimize unnecessary personal data, and review privacy and consent requirements before applying personalization or monetization recommendations.
+
+Risk: The skill produces design hypotheses from behavior, so ambiguous signals could lead to overconfident targeting or misaligned live-ops decisions.
+
+Mitigation: Treat outputs as advisory hypotheses, preserve confidence notes, and require human review before using recommendations for player segmentation, targeting, or monetization changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Game designers, product managers, and live-ops teams use this skill to infer player values from observed behavior and convert those insights into personalization, segmentation, targeting, and design-alignment recommendations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Player-behavior analysis can expose personal data or overstate what can be inferred from raw telemetry. <br>
-Mitigation: Use aggregated or consented behavior signals where possible, remove personal identifiers, and preserve confidence notes for ambiguous inferences. <br>
-Risk: Personalization, targeting, or monetization recommendations could be used for exploitative pressure or sensitive-attribute inference. <br>
-Mitigation: Keep outputs focused on design alignment and do not use them for exploitative monetization, psychological pressure, or sensitive-attribute inference. <br>
+**Output Format:** [Markdown analysis with tables and numbered recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces observed behavior summaries, value maps, confidence notes, tensions, segment hypotheses, design implications, and recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes observed behavior summaries, value weights, confidence notes, tensions, segment hypotheses, design implications, and recommendations.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

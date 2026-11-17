@@ -1,40 +1,55 @@
-## Description: <br>
-Routes supported DeFi DApp and protocol-token prompts to the matching OKX plugin-store skill, installs that plugin when needed, and forwards the user's request for protocol-specific handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user prompts that name supported DeFi DApps or protocol-native tokens to the matching third-party plugin, installs it when needed, and forwards the original request.
 
-## Publisher: <br>
-[ok-james-01](https://clawhub.ai/user/ok-james-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ok-james-01](https://clawhub.ai/user/ok-james-01)
 
-## Use Case: <br>
-External users and developers use this skill to resolve named DeFi protocols or protocol-native tokens to the appropriate OKX plugin, then continue with trading, betting, staking, borrowing, transfer, or other protocol-specific workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add global crypto plugins and route trading, betting, transfer, approval, or staking requests to downstream plugins. <br>
-Mitigation: Review before installing, and confirm the downstream plugin, amounts, destination, wallet approval, and spending limits before executing or signing. <br>
-Risk: A routing error or ambiguous DApp request could send the user's prompt to an unintended protocol plugin. <br>
-Mitigation: Use the skill's confidence and clarification flow for ambiguous requests, and inspect the selected plugin's quickstart before continuing. <br>
+## Use Case:
 
+External users and developers use this skill to discover and launch OKX DeFi protocol plugins for swaps, staking, lending, prediction-market bets, perpetuals, and related actions when the prompt identifies a supported DApp or token.
 
-## Reference(s): <br>
-- [OKX Web3](https://web3.okx.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and routing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install downstream OKX plugin-store skills globally before forwarding the user's original request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release evidence and SKILL.md metadata) <br>
+Risk: The router can install and activate third-party DeFi plugins globally from mutable online sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before installing, pin the installer and plugin revision, prefer per-project installation where available, and provide an uninstall path.
+
+Risk: The skill forwards user requests to downstream plugins that may handle trades, bets, transfers, or other write actions.
+
+Mitigation: Review downstream plugin behavior before use and require explicit user confirmation before any trade, bet, transfer, or other write operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ok-james-01/skills/okx-dapp-discovery)
+- [OKX Web3](https://web3.okx.com)
+- [OKX plugin-store catalog endpoint](https://api.github.com/repos/okx/plugin-store/contents/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes to downstream plugins; downstream plugins own protocol-specific trade, bet, or transfer behavior.]
+
+## Skill Version(s):
+
+3.1.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

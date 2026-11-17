@@ -1,41 +1,58 @@
-## Description: <br>
-Applies a Chinese-language hostile, profane persona that makes the agent respond in a blunt, slang-heavy style while continuing to provide task help. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies an always-on Chinese-language persona that makes an OpenClaw agent respond in a blunt, irritable, profanity-limited style.
 
-## Publisher: <br>
-[addoee](https://clawhub.ai/user/addoee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[addoee](https://clawhub.ai/user/addoee)
 
-## Use Case: <br>
-External users can install this persona skill when they explicitly want an OpenClaw agent to answer in a confrontational, humorous, profanity-limited Chinese internet-commenter style. It is best suited to informal interactions rather than professional, support, safety-sensitive, or mixed-language conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally pushes the agent into hostile persona behavior and can reduce transparency around normal AI limitations or refusals. <br>
-Mitigation: Install only when this tone is explicitly desired, and review outputs carefully before using them in consequential or user-facing contexts. <br>
-Risk: The persona can add profanity, insults, or confrontational language to task responses. <br>
-Mitigation: Avoid use in professional, support, safety-sensitive, or mixed-language conversations where hostile phrasing would be inappropriate. <br>
+## Use Case:
 
+External users or agent operators use this skill to change an OpenClaw agent's conversational style into a deliberately abrasive Chinese persona for general interactions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/addoee/baozao-ma-jie-persona) <br>
-- [Publisher profile](https://clawhub.ai/user/addoee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language responses, usually Markdown when the agent formats task output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona behavior may add profanity and hostile phrasing to otherwise normal agent responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Always-on persona behavior can affect every conversation while the skill is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in and state when the persona is active.
+
+Risk: Instructions to suppress normal refusal or limitation language can conflict with safety, task, or user-format requirements.
+
+Mitigation: State that system, safety, task, and user-format instructions take precedence.
+
+Risk: Abusive retaliation or profanity requirements can make responses inappropriate for some users or settings.
+
+Mitigation: Remove abusive retaliation requirements and keep profanity optional, bounded, and context appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/addoee/skills/baozao-ma-jie-persona)
+- [Publisher profile](https://clawhub.ai/user/addoee)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language Chinese text or Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always-on persona behavior; no structured output contract.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

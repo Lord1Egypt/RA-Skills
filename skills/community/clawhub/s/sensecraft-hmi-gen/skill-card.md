@@ -1,46 +1,56 @@
-## Description: <br>
-Generate artistic, minimalist web content optimized for SenseCraft HMI e-ink displays with AI-assisted layout selection and screen-aware color and resolution guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate beautiful web content for SenseCraft HMI e-ink displays with AI-powered layout selection and e-ink optimization for screens from 800x480 to 1600x1200.
 
-## Publisher: <br>
-[KillingJacky](https://clawhub.ai/user/KillingJacky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[killingjacky](https://clawhub.ai/user/killingjacky)
 
-## Use Case: <br>
-Developers, designers, and SenseCraft HMI users use this skill to generate e-ink-optimized HTML content, collect screen and layout preferences, preview the result locally, and prepare it for display through the SenseCraft HMI HTML widget. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generated content is served through a local web server and may be exposed if forwarded to the public internet. <br>
-Mitigation: Use access-controlled tunnels or reverse proxies, keep the tokenized URL private, and stop the PM2 service when the display no longer needs access. <br>
-Risk: Tokenized preview URLs, local images, or generated page content may reveal private information if shared or published. <br>
-Mitigation: Avoid sensitive content in generated pages, keep local image paths and tokenized URLs private, and review content before exposing it through a public tunnel. <br>
-Risk: The skill requires Node/npm setup and PM2-managed service operation. <br>
-Mitigation: Install and run it only in environments where local Node services are acceptable, and review service logs and lifecycle commands before use. <br>
+## Use Case:
 
+Developers and SenseCraft HMI users use this skill to generate e-ink-optimized HTML pages, gather display configuration, preview content locally, and prepare content for the SenseCraft HMI HTML widget.
 
-## Reference(s): <br>
-- [SenseCraft HMI Web Content Generator on ClawHub](https://clawhub.ai/KillingJacky/sensecraft-hmi-gen) <br>
-- [SenseCraft HMI service](https://sensecraft.seeed.cc/hmi) <br>
-- [E-Ink Design Patterns](references/design-patterns.md) <br>
-- [E-Ink Layout Templates](references/layouts.md) <br>
-- [SenseCraft HMI Screen Specifications](references/screen-specs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated HTML/CSS/JavaScript, local configuration JSON, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated pages are intended to match selected e-ink display dimensions and color capabilities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and package.json) <br>
+Risk: The skill starts local Node/Express services and persists configuration and token files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before use, treat .wizard-config.json and token URLs as sensitive, and stop the PM2-managed service when finished.
+
+Risk: Forwarding the localhost server to the public internet can expose generated content with weak token-only access control.
+
+Mitigation: Use HTTPS, short-lived tokens, stronger authentication, and access restrictions before exposing the service outside localhost.
+
+## Reference(s):
+
+- [E-Ink Design Patterns](references/design-patterns.md)
+- [E-Ink Layout Templates](references/layouts.md)
+- [SenseCraft HMI Screen Specifications](references/screen-specs.md)
+- [SenseCraft HMI service](https://sensecraft.seeed.cc/hmi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated HTML/CSS/JavaScript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project files, display configuration, token files, image assets, and browser-previewable e-ink web content.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

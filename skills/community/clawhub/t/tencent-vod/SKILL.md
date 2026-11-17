@@ -1,8 +1,8 @@
 ---
 name: tencent-vod
-description: "腾讯云 VOD（云点播）操作命令生成专用助手。只要用户的请求涉及 VOD 的任何具体操作，必须触发此 Skill，包括但不限于：【上传】本地视频/音频/图片上传、URL拉取上传到VOD、设置过期时间/SessionId去重/存储路径/按应用名上传；【媒体处理】转码/极速高清/截图/雪碧图/视频增强/真人增强/漫剧增强/短剧场景转码/电商场景转码/场景转码/转封装/remux/转为HLS/MP4/GIF/自适应码流/审核/任务流/procedure；【媒体查询】根据FileId查询媒体详情/转码信息/字幕/封面/元数据；【AIGC】文生图/文生视频/图生视频（Kling/Kling 2.1/Hunyuan/Vidu/GEM/GEM 2.5/GV/Hailuo模型）、LLM对话/推理思考/JSON格式响应/视频URL理解/图片URL理解/多模态（GPT/Gemini/流式输出）、场景化AIGC生图/AI换衣/AI扩图/outpainting/商品图/产品展示/产品360度展示/场景化生视频、高级自定义主体/AIGC主体/image_refer/video_refer；【AIGC令牌】Token创建/查询/删除/AIGC令牌管理；【AIGC用量】生图/生视频/生文用量统计/Text/Image/Video用量查询；【搜索】名称/语义/知识库搜索/按标签/存储类型/审核结果/过期时间过滤；【知识库】导入知识库/语义搜索；【图片处理】图片超分/降噪/增强/理解；【子应用】子应用查询；【任务查询】查询任务状态/详情。触发关键词：VOD、上传、拉取上传、转码、截图、增强、审核、AIGC、生图、生视频、LLM、Gemini、GPT、Chat、FileId查询、媒体查询、知识库、自定义主体、任务流、转封装、remux、场景转码、视频增强、换衣、扩图、商品图、产品展示、图片超分、图片降噪、子应用、AIGC Token、AIGC令牌、AIGC用量、用量统计。不触发：MPS相关操作（画质增强/字幕提取/人声分离/去水印/精彩集锦/媒体质检）、COS直传、直播CSS、一般性咨询。"
+description: "腾讯云 VOD（云点播）操作命令生成专用助手。只要用户的请求涉及 VOD 的任何具体操作，必须触发此 Skill，包括但不限于：【上传】本地视频/音频/图片上传、URL拉取上传到VOD、设置过期时间/SessionId去重/存储路径/按应用名上传；【媒体处理】转码/极速高清/截图/雪碧图/视频增强/真人增强/漫剧增强/短剧场景转码/电商场景转码/场景转码/转封装/remux/转为HLS/MP4/GIF/自适应码流/审核/任务流/procedure；【媒体查询】根据FileId查询媒体详情/转码信息/字幕/封面/元数据；【AIGC】文生图/文生视频/图生视频（Kling/Hunyuan/Vidu/GG/GV/Hailuo/MJ/Qwen/SI/OG/Jimeng/Mingmou/OS/Seedance/PixVerse模型）、LLM对话/推理思考/JSON格式响应/视频URL理解/图片URL理解/多模态（GPT/Gemini/流式输出）、场景化AIGC生图/AI换衣/AI扩图/outpainting/商品图/产品展示/产品360度展示/场景化生视频、高级自定义主体/AIGC主体/image_refer/video_refer、文生音效/视频生音效/文生音乐/AI配乐/ASMR模式（Kling/MiniMaxMusic/GL模型）；【AIGC令牌】Token创建/查询/删除/AIGC令牌管理；【AIGC用量】生图/生视频/生文用量统计/Text/Image/Video用量查询；【搜索】名称/语义/知识库搜索/按标签/存储类型/审核结果/过期时间过滤；【知识库】导入知识库/语义搜索；【图片处理】图片超分/降噪/增强/理解；【子应用】子应用查询；【任务查询】查询任务状态/详情。触发关键词：VOD、上传、拉取上传、转码、截图、增强、审核、AIGC、生图、生视频、生音效、生音乐、配乐、LLM、Gemini、GPT、Chat、FileId查询、媒体查询、知识库、自定义主体、任务流、转封装、remux、场景转码、视频增强、换衣、扩图、商品图、产品展示、图片超分、图片降噪、子应用、AIGC Token、AIGC用量、用量统计。不触发：MPS相关操作（画质增强/字幕提取/人声分离/去水印/精彩集锦/媒体质检）、COS直传、直播CSS、一般性咨询。"
 metadata:
-  version: "1.0.9"
+  version: "1.1.3"
 ---
 
 # 腾讯云云点播（VOD）服务
@@ -14,19 +14,20 @@ metadata:
 ## 输出规范
 
 1. **只输出命令**，不要解释，不要废话
-2. 命令格式：`python scripts/<脚本名>.py [子命令] [参数]`
+2. 命令格式：`python3 scripts/<脚本名>.py [子命令] [参数]`
 3. 所有脚本支持 `--dry-run`（模拟执行）
 4. **任务完成后输出的链接（预签名下载链接、播放 URL 等）必须用 Markdown 超链接格式呈现**，即 `[描述文字](URL)`，不得以代码块或纯文本形式输出链接。
 
-> 💰 **费用提示**：本 Skill 调用腾讯云 VOD 服务会产生相应费用，包括转码费、AI 处理费、存储费等。当一个任务没有拿到结果时，不要自作主张重复发起相同的请求。具体计费标准请参考 [腾讯云 VOD 定价](https://cloud.tencent.com/document/product/266/2838)。每次调用**处理类脚本**（转码/增强/截图/AIGC/图片处理/知识库导入等）时，必须给出费用提示；查询类（vod_describe_task/vod_describe_media/vod_search_media/vod_describe_sub_app_ids）和上传类（vod_upload/vod_pull_upload）无需提示。**在执行任何处理类脚本前，必须先将确切的命令重新向用户陈述并获取明确确认（"继续？"）；当参数不确定或对于高成本操作（如 AIGC 视频生成、长视频转码、批量图片处理、知识库导入），优先使用 `--dry-run` 进行预览**。建议用户在 [腾讯云费用中心](https://console.cloud.tencent.com/expense/budget) 配置预算提醒和月度上限，防止费用失控。
+> 💰 **费用提示**：本 Skill 调用腾讯云 VOD 服务会产生相应费用，包括转码费、AI 处理费、存储费等。当一个任务没有拿到结果时，不要自作主张重复发起相同的请求。具体计费标准请参考 [腾讯云 VOD 定价](https://cloud.tencent.com/document/product/266/2838)。每次调用**处理类脚本**（转码/增强/截图/AIGC/图片处理/知识库导入等）时，必须给出费用提示；查询类（vod_describe_task/vod_describe_media/vod_search_media/vod_describe_sub_app_ids）和上传类（vod_upload/vod_pull_upload）无需提示。**在执行任何处理类脚本前，必须先将确切的命令重新向用户陈述并获取明确确认（"继续？"）；当参数不确定或对于高成本操作（如 AIGC 视频生成、长视频转码、批量图片处理、知识库导入），优先使用 `--dry-run` 进行预览**。建议用户在 [腾讯云费用中心](https://console.cloud.tencent.com/expense) 配置费用预警和月度上限，防止费用失控。
 
 通过腾讯云官方 Python SDK 调用 VOD API，所有脚本位于 `scripts/` 目录，均支持 `--help` 和 `--dry-run`。各脚本详细参数与示例见 `references/` 目录下对应的独立 md 文件（详见底部「详细文档」表格）。
 
 ## 环境配置
 
+
 检查环境变量：
 ```bash
-python scripts/vod_load_env.py --check-only
+python3 scripts/vod_load_env.py --check-only
 ```
 
 配置文件位置（任选其一，按顺序自动加载，已存在的变量不会被覆盖）：
@@ -53,7 +54,7 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 > - `requests`（PSF 官方）— 用于 AIGC LLM 流式响应（仅 `vod_aigc_chat.py` 使用）
 >
 > ```bash
-> pip install -r scripts/requirements.txt
+> python3 -m pip install -r scripts/requirements.txt
 > ```
 >
 
@@ -97,8 +98,9 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 | 【AIGC对话】LLM对话/大模型对话/AI对话/工具调用/多模态/GPT/Gemini/图片URL理解/音频理解/多模态 | `vod_aigc_chat.py` | [vod_aigc_chat.md](references/vod_aigc_chat.md) | `chat`/`stream`/`models` |
 | 【AIGC令牌】Token管理/令牌创建/令牌查询/令牌删除 | `vod_aigc_token.py` | [vod_aigc_token.md](references/vod_aigc_token.md) | `create`/`list`/`delete` |
 | 【AIGC用量】用量统计/生图用量/生视频用量/生文用量/Text用量/Image用量/Video用量 | `vod_aigc_token.py` | [vod_aigc_token.md](references/vod_aigc_token.md) | `usage --type Text/Image/Video`；**与令牌管理同一脚本** |
-| 【AI生图】文生图/图生图/AI绘画/全景图/查看生图支持的模型/查询生图任务状态 | `vod_aigc_image.py` | [vod_aigc_image.md](references/vod_aigc_image.md) | `create`/`models`/`query`；**模型名大写**；版本用 `--model-version`；Hunyuan 支持 `--scene-type 3d_panorama` 全景图；⚠️ **查看生图模型用 `vod_aigc_image.py models`** |
-| 【AI生视频】文生视频/图生视频/首尾帧生视频/音频生成/查看生视频支持的模型 | `vod_aigc_video.py` | [vod_aigc_video.md](references/vod_aigc_video.md) | `create`/`models`；支持 `--output-audio-generation`/`--procedure`/`--seed`；⚠️ **查看生视频模型用 `vod_aigc_video.py models`，不是 `vod_aigc_chat.py models`** |
+| 【AI生图】文生图/图生图/AI绘画/全景图/Kling多图主体/Kling扩图/SI多图输出/查看生图支持的模型/查询生图任务状态 | `vod_aigc_image.py` | [vod_aigc_image.md](references/vod_aigc_image.md) | `create`/`models`/`query`；**模型名大写**；版本用 `--model-version`；**Hunyuan 3.0** 自定义分辨率走 `--ext-info` 的 `size`，**3d_2.0 + `--scene-type 3d_panorama`** 全景图；**Kling 3.0-Omni / O1** 支持 4K + `auto` 宽高比 + 最多 10 张参考图（多图主体生图）；**Kling O1** 是旗舰版本（与 3.0-Omni 类似）；**SI 4.0** 多图输出走 `--ext-info '{"AdditionalParameters":"{\"sequential_image_generation\":\"auto\"}"}'`；**GG 3.1** 支持 512 分辨率 + 极端比例 `1:4/4:1/1:8/8:1`；**Qwen / Jimeng** 自定义分辨率走 `--ext-info` 的 `width/height`；**OG**（GPT-Image2）支持 `--output-image-count` 1-8 张、`--output-format` jpeg/png、`--reference-type mask` 蒙版编辑；**MJ** 用于 Midjourney 模型（接口名是 `MJ` 不是 `Midjourney`）；**GG** 别名 `GEM` 也被接口接受；⚠️ **查看生图模型用 `vod_aigc_image.py models`** |
+| 【AI生视频】文生视频/图生视频/首尾帧生视频/3D场景视频/Kling动作控制/Kling对口型/Kling数字人/PixVerse多图主体/PixVerse视频编辑/Seedance豆包视频/Hailuo长视频/Hailuo多模态生视频/参考音频生视频/参考视频生视频/Vidu参考生视频/Jimeng视频/查看生视频支持的模型 | `vod_aigc_video.py` | [vod_aigc_video.md](references/vod_aigc_video.md) | `create`/`models`；支持 `--output-audio-generation`/`--output-enhance-switch`/`--procedure`/`--seed`；**Hunyuan 3d_2.0 + `--scene-type 3d_scene`** 生 3D 场景视频；**Kling** 支持 `--scene-type motion_control/lip_sync/avatar_i2v` + `--ext-info` 透传 ExtInfo，**全版本接受 4K**；⚠️ **Kling 3.0/3.0-Omni 主体参考官方推荐用 `--subject-infos`**（新方案，优先于旧版 `--element-ids`）；⚠️ **Kling 视频编辑**用 `--file-category Video` + `--reference-type feature`（特征参考视频）或 `base`（待编辑视频，**不是** `subject`）；**PixVerse** 多图主体用 `--file-text` 命名 + `Usage=Reference`，视频编辑用 `--file-category Video` + `--reference-type subject/background`，**v5.6/v6/c1 都支持 4K**；**Seedance**（豆包视频）接口名是 `Seedance` 不是 `SV`，包含 1.0-pro-fast/1.5-pro（默认 1.5-pro）；**Vidu q3-mix/q3-drama** 必须传参考图且 `Usage=Reference`（纯文生会报错）；**Hailuo 02** 时长可达 20s+（早先文档误说 6/10s），**Hailuo H3**（MiniMax H3，原生多模态）支持参考图（≤9）/参考视频（≤3，`--file-category Video`）/参考音频（≤3，`--file-category Audio`）+ 首尾帧（`--file-usage FirstFrame/LastFrame`），⚠️ 首尾帧（i2va）与参考视频/音频（r2va）**互斥不可混用**；**Jimeng/Hunyuan/OS/Mingmou** 自定义分辨率走 `--ext-info` 的 `width/height/size`；⚠️ **查看生视频模型用 `vod_aigc_video.py models`，不是 `vod_aigc_chat.py models`** |
+| 【AI生音频】文生音效/视频生音效/文生音乐/AI配乐/ASMR模式/查看生音频支持的模型 | `vod_aigc_audio.py` | [vod_aigc_audio.md](references/vod_aigc_audio.md) | `create`/`models`；**Kling**（音效，`--scene-type sfx`）ModelVersion 建议留空；视频生音效用 `--video-url/--video-id`，配乐用 `--bgm-prompt`，ASMR 用 `--asmr-mode true`；**MiniMaxMusic**（版本 2.0/2.5/2.6/3.0）/**GL**（Google Lyria，版本 3.0-clip/3.0-pro）文生音乐用 `--scene-type music`，歌词用 `--lyrics`（GL 需自行拼接进 `--prompt`）；⚠️ **输出参数带 `--output-` 前缀，不是 `--duration`/`--format`**：时长用 `--output-duration`，音频格式用 `--output-audio-format`；⚠️ **查看生音频模型用 `vod_aigc_audio.py models`** |
 | 【图片超分/增强/降噪】图片放大/提升分辨率/图片增强/图片降噪/通用模板处理 | `vod_process_image.py` | [vod_process_image.md](references/vod_process_image.md) | `super-resolution`；standard/super类型；用 `--template-id` 指定模板 |
 | 【图片理解】智能识图/图片分析/Gemini识图 | `vod_process_image.py` | [vod_process_image.md](references/vod_process_image.md) | `understand` |
 | 【场景生图】AI换衣/商品图/扩图/场景化生图 | `vod_scene_aigc_image.py` | [vod_scene_aigc_image.md](references/vod_scene_aigc_image.md) | `generate`；**`change_clothes`/`product_image`/`outpainting`** |
@@ -116,7 +118,7 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 
 ## 生成命令的强制规则
 
-1. **脚本路径前缀**：所有生成的 python 命令必须包含 `scripts/` 路径前缀，格式为 `python scripts/vod_xxx.py ...`。禁止生成 `python vod_xxx.py ...`（缺少 scripts/ 前缀）的命令。
+1. **脚本路径前缀**：所有生成的 python 命令必须包含 `scripts/` 路径前缀，格式为 `python3 scripts/vod_xxx.py ...`。禁止生成 `python3 vod_xxx.py ...`（缺少 scripts/ 前缀）的命令。
 
 1.5. **🚨 参数值大小写与引号规范**：生成命令时，参数值的大小写必须**严格**与文档/脚本定义一致，不得擅自改变大小写。以下为常见枚举值，必须按原样输出：
    - `--output-storage-mode`：`Permanent` / `Temporary`（首字母大写，不得写成 `permanent` / `temporary`）
@@ -156,9 +158,9 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 ### 拉取上传 vs 本地上传
 
 > 🚨 **强制规则**：从 URL 拉取上传，**推荐且优先**使用专用脚本 `vod_pull_upload.py`（无子命令，直接跟参数）。
-> - ✅ 推荐：`python scripts/vod_pull_upload.py --url "https://..."`
-> - ⚠️ 可用但不推荐：`python scripts/vod_upload.py pull --url "https://..."` ← `vod_upload.py` 有 `pull` 子命令，功能相同，但推荐使用专用脚本
-> - ❌ 错误：`python scripts/vod_upload.py --url "https://..."` ← `vod_upload.py` 不接受直接的 `--url` 参数，必须加子命令
+> - ✅ 推荐：`python3 scripts/vod_pull_upload.py --url "https://..."`
+> - ⚠️ 可用但不推荐：`python3 scripts/vod_upload.py pull --url "https://..."` ← `vod_upload.py` 有 `pull` 子命令，功能相同，但推荐使用专用脚本
+> - ❌ 错误：`python3 scripts/vod_upload.py --url "https://..."` ← `vod_upload.py` 不接受直接的 `--url` 参数，必须加子命令
 >
 > `vod_pull_upload.py` **没有子命令**，直接跟参数 `--url`。
 
@@ -198,15 +200,15 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 ### AIGC 模型列表查询路由
 
 > ⚠️ **三个 `models` 子命令完全不同，不要混用：**
-> - **查看 LLM 对话支持的模型**（GPT/Gemini）→ `python scripts/vod_aigc_chat.py models`
-> - **查看 AIGC 生图支持的模型** → `python scripts/vod_aigc_image.py models`
-> - **查看 AIGC 生视频支持的模型** → `python scripts/vod_aigc_video.py models`
+> - **查看 LLM 对话支持的模型**（GPT/Gemini）→ `python3 scripts/vod_aigc_chat.py models`
+> - **查看 AIGC 生图支持的模型** → `python3 scripts/vod_aigc_image.py models`
+> - **查看 AIGC 生视频支持的模型** → `python3 scripts/vod_aigc_video.py models`
 
 ### AIGC 生图参数注意
 
-> ⚠️ **模型名称格式**：`--model` 参数使用大写开头的模型名（如 `Hunyuan`、`GEM`），版本号通过 `--model-version` 单独指定。不要把版本号拼在模型名里。
+> ⚠️ **模型名称格式**：`--model` 参数使用大写开头的模型名（如 `Hunyuan`、`GG`），版本号通过 `--model-version` 单独指定。不要把版本号拼在模型名里。
 
-> ✅ **Hunyuan 支持的版本**：`3.0`（默认）。用法：`--model Hunyuan --model-version 3.0`。Hunyuan 确实有 3.0 版本，这是有效版本号。
+> ✅ **Hunyuan 支持的版本**：`3.0`（默认，普通文生图/图生图）、`3d_2.0`（混元世界模型，配合 `--scene-type 3d_panorama` 生成 360° 全景图）。
 
 > ⚠️ **输出参数名称**：`vod_aigc_image.py` 的输出相关参数都带 `--output-` 前缀：`--output-resolution`、`--output-aspect-ratio`、`--output-storage-mode`、`--output-person-generation` 等。不要省略 `output-` 前缀。
 
@@ -221,6 +223,17 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 > 错误示例：`--model "Kling O1"` ❌
 
 > ⚠️ **场景类型**：Kling 支持 `motion_control`/`avatar_i2v`/`lip_sync`；Vidu 支持 `subject_reference`（固定主体场景）。通过 `--scene-type` 传入。
+
+### AIGC 生音频注意
+
+> ⚠️ **实测发现：视频生音效会同时返回音频+视频两类产物**。Kling `--scene-type sfx` 传入参考视频（`--video-url`/`--video-id`）时，任务完成后 `Output` 会同时包含 `AudioInfos`（独立音效音频文件）和 `VideoInfos`（原视频配上生成音效后的合成视频）。**只需要音频时从 `AudioInfos` 取**，不是"sfx 场景不产出视频"。
+
+> ⚠️ **GL（Google Lyria）歌词/风格拼接格式固定**，`--prompt` 必须严格按以下格式拼接（三选一，不能自创格式）：
+> - 有歌词+有风格：`{风格描述}\n\nLyrics:\n{歌词内容}`（注意精确的 `Lyrics:` 字面量+两个换行）
+> - 无歌词+有风格：`{风格描述}`
+> - 纯音乐+有风格：`{风格描述}, instrumental, no vocals.`
+
+> ⚠️ **MiniMaxMusic 版本严格校验**：`--model-version` 仅支持 `2.0/2.5/2.6/3.0`，传入其他值（如 `9.9`）脚本会在提交前直接报错拦截，不会等到调用 API 才失败。
 
 ### AIGC LLM 多轮对话
 
@@ -255,12 +268,16 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 
 **ElementId 获取流程**：创建时只返回 TaskId，ElementId 需等任务完成后通过 `vod_describe_task.py --task-id <id>` 查询获取（默认自动等待完成），自动合并保存到 `mem/elements.json`。
 
-### 使用主体生视频（含 --element-ids 参数时必读）
+### 使用主体生视频（--subject-infos 新方案 / --element-ids 旧方案）
 
-> ⚠️ **触发条件**：当用户描述中提及"使用主体生视频"、"用角色/形象生视频"、"使用自定义主体 ElementId"等意图时（适用于 Kling O1、Kling 3.0-Omni 等所有支持 `--element-ids` 的模型），AI 负责：
+> 🚨 **方案选择（最高优先级）**：Kling **3.0 / 3.0-Omni** 官方推荐使用 **`--subject-infos`**（新方案，`SubjectInfos`），**不要**默认使用 `--element-ids`/`--elements-file`（旧方案，走 `ExtInfo.element_list`，官方标注"不推荐"，仅 Kling O1 等不支持 SubjectInfos 的版本才使用）。
+> - `--subject-infos` 格式：`[{"Id":"<ElementId>"},{"Id":"<ElementId2>","Name":"<可选名称>"}]`，与 `--element-ids` 二选一，**不要同时传**
+> - 无论使用哪种方案，`--prompt` 中都必须用 `<<<element_1>>>`、`<<<element_2>>>` 占位符按顺序引用主体
+
+> ⚠️ **触发条件**：当用户描述中提及"使用主体生视频"、"用角色/形象生视频"、"使用自定义主体 ElementId"等意图时（适用于 Kling O1、Kling 3.0-Omni 等所有支持主体参考的模型），AI 负责：
 > 1. 询问用户提供 ElementId 列表（若未提供，引导用户先创建主体并查询任务获取 ElementId）
 > 2. 将用户的分段描述转换为带占位符的 Prompt 格式
-> 3. 调用脚本并传入 `--element-ids` 或 `--elements-file`
+> 3. **Kling 3.0/3.0-Omni** 调用脚本并传入 `--subject-infos`（优先）；**Kling O1** 等不支持 SubjectInfos 的模型传 `--element-ids` 或 `--elements-file`
 
 > 🚨 **强制规则（最高优先级）**：只要用户提供了 ElementId（通过 `--element-ids` 传入），`--prompt` 中**必须**将主体的称谓（"主体"、"角色"、"他"、"她"等）替换为 `<<<element_1>>>`（多主体依次为 `<<<element_2>>>` 等）。**严禁**直接在 prompt 中写"主体"、"角色"等词语而不加占位符。
 
@@ -295,6 +312,7 @@ TENCENTCLOUD_VOD_SUB_APP_ID=your-sub-app-id    # 子应用操作时使用
 | `vod_aigc_token.py` | [VOD AIGC Token 管理](https://cloud.tencent.com/document/api/266/128054) |
 | `vod_aigc_image.py` | [CreateAIGCTask (Image)](https://cloud.tencent.com/document/product/266/126240) |
 | `vod_aigc_video.py` | [CreateAIGCTask (Video)](https://cloud.tencent.com/document/product/266/126239) |
+| `vod_aigc_audio.py` | [CreateAigcAudioTask](https://cloud.tencent.com/document/api/266/126239) |
 | `vod_process_image.py` (super-resolution) | [ProcessImageAsync SuperResolution](https://cloud.tencent.com/document/api/266/127858) |
 | `vod_process_image.py` (understand) | [ProcessImageAsync Understand](https://cloud.tencent.com/document/api/266/127858) |
 | `vod_scene_aigc_image.py` | [CreateSceneAIGCImageTask](https://cloud.tencent.com/document/api/266/126968) |

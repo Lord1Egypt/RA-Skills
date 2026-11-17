@@ -1,53 +1,71 @@
-## Description: <br>
-Mobilerun lets agents control and automate connected Android devices through screenshots, UI state, taps, swipes, text entry, app management, and task execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mobilerun helps an agent control, automate, observe, and run tasks on Android phones or Mobilerun cloud devices through authenticated API calls.
 
-## Publisher: <br>
-[johnmalek312](https://clawhub.ai/user/johnmalek312) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnmalek312](https://clawhub.ai/user/johnmalek312)
 
-## Use Case: <br>
-Developers, QA engineers, and operators use Mobilerun to test Android apps, automate mobile workflows, and perform phone-control tasks on personal or cloud Android devices. Users should give precise instructions because the skill can operate live apps and device screens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent live visibility into and control over a connected Android device. <br>
-Mitigation: Install only when live device control is intended, give precise task instructions, and disconnect the Portal app or revoke Accessibility permission when finished. <br>
-Risk: Broad requests involving messages, public posts, purchases, banking, crypto, or account settings can expose sensitive data or cause irreversible actions. <br>
-Mitigation: Avoid broad requests in these areas and require explicit confirmation before irreversible or high-impact actions. <br>
-Risk: Screenshots and UI tree data can contain personal information visible on the device screen. <br>
-Mitigation: Use screen data only for the current task, do not share it beyond the user, and never display or log MOBILERUN_API_KEY. <br>
-Risk: Cloud devices consume credits while they are running. <br>
-Mitigation: Terminate cloud devices after tasks complete and wait for queued or running tasks to finish before termination. <br>
+## Use Case:
 
+Developers, QA engineers, and automation users can use this skill to interact with Android devices, inspect screenshots and UI state, manage apps, run mobile workflows, and submit Mobilerun AI agent tasks.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/johnmalek312/mobilerun) <br>
-- [Security & Privacy](references/security.md) <br>
-- [Setup & Billing](references/setup-and-billing.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Use Cases](references/use-cases.md) <br>
-- [Changelog](references/changelog.md) <br>
-- [Mobilerun API](https://api.mobilerun.ai/v1) <br>
-- [Mobilerun API Keys](https://cloud.mobilerun.ai/api-keys) <br>
-- [Mobilerun Billing](https://cloud.mobilerun.ai/billing) <br>
-- [Droidrun Portal Download](https://droidrun.ai/portal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline curl commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MOBILERUN_API_KEY plus curl and jq; may produce device actions through the Mobilerun API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can give Mobilerun remote control visibility into an Android device, including screenshots and UI state that may contain sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a test or cloud device for evaluation, avoid sensitive apps unless necessary, and keep screenshot or UI data limited to the current user task.
+
+Risk: The Android Portal app requires Accessibility Service permission, which enables screen reading and simulated taps, swipes, and text input.
+
+Mitigation: Grant the permission only on devices intended for this automation and revoke Accessibility permission when the task or evaluation is complete.
+
+Risk: The Portal APK is sideloaded outside the Play Store.
+
+Mitigation: Verify the Portal APK source independently before installation.
+
+Risk: Shell, destructive device actions, and automatic feedback payloads may have consequences beyond simple observation.
+
+Mitigation: Review destructive actions and feedback content before allowing them, and use values returned by trusted API responses when constructing commands.
+
+## Reference(s):
+
+- [Mobilerun ClawHub Skill](https://clawhub.ai/johnmalek312/skills/mobilerun)
+- [Mobilerun OpenAPI Schema](https://api.mobilerun.ai/v1/openapi.json)
+- [Mobilerun Quickstart](https://docs.mobilerun.ai/quickstart)
+- [Mobilerun Dashboard](https://cloud.mobilerun.ai)
+- [Droidrun Portal App](https://github.com/droidrun/droidrun-portal)
+- [Droidrun Framework](https://github.com/droidrun/droidrun)
+- [Setup & Billing](references/setup-and-billing.md)
+- [Security & Privacy](references/security.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Use Cases](references/use-cases.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands and JSON request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MOBILERUN_API_KEY plus curl and jq; may produce PNG screenshots when requested by the user's task.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

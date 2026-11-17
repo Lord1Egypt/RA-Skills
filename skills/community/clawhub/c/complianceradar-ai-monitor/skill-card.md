@@ -1,44 +1,61 @@
-## Description: <br>
-Monitor regulatory changes across SEC, FDA, FINRA, and GDPR with AI impact assessment. Use when the user needs compliance tracking, policy updates, audit trails, or automated regulatory notifications for financial/healthcare organizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors regulatory changes across SEC, FDA, FINRA, and GDPR and helps generate compliance tracking, policy updates, audit trails, and notifications for financial and healthcare organizations.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Compliance, legal, operations, and engineering teams use this skill to monitor regulatory sources, assess business impact, draft policy updates, and route compliance action items to collaboration and audit systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Compliance alerts, impact assessments, policy updates, and audit evidence may be incomplete or unsuitable for regulated decisions. <br>
-Mitigation: Treat all generated compliance materials as drafts and require review by qualified legal, compliance, privacy, or medical professionals before implementation. <br>
-Risk: External services and storage integrations may receive regulatory assessments or internal business context. <br>
-Mitigation: Use least-privilege API keys, a dedicated Slack webhook, and organization-approved destinations before sending data to OpenAI, Slack, Google Sheets, GitHub, Notion, Zapier, or other configured systems. <br>
-Risk: Monitoring latency, API limits, English-language coverage, and jurisdiction scope can leave gaps in regulatory tracking. <br>
-Mitigation: Subscribe to official agency alerts in parallel, review rate-limit behavior, and add manual or custom monitoring for non-English, state-level, or non-US/EU sources. <br>
+## Use Case:
 
+Compliance, legal, risk, and operations teams use this skill to track regulatory changes, assess likely business impact, draft policy updates, and route compliance action items. It is aimed at financial services and healthcare workflows that need audit-ready monitoring across multiple regulatory sources.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ncreighton/complianceradar-ai-monitor) <br>
-- [SEC EDGAR](https://www.sec.gov/cgi-bin/browse-edgar) <br>
-- [openFDA](https://open.fda.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text with configuration snippets, shell commands, compliance reports, policy drafts, alerts, and audit logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured API keys, curl, jq, and optional integrations such as Slack and Google Sheets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill connects sensitive compliance workflows to external services, including AI analysis and team notifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privilege API keys and webhooks, and avoid sending confidential customer data or legal strategy into prompts unless approved.
+
+Risk: Generated regulatory interpretations, policy updates, task creation, notifications, or audit evidence may be incomplete or incorrect.
+
+Mitigation: Require qualified human review before external notifications, task creation, policy publication, or audit evidence release.
+
+Risk: Regulatory monitoring can have latency and may miss time-sensitive obligations.
+
+Mitigation: Use official agency alerts and counsel-reviewed compliance processes in parallel for deadline-sensitive matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/complianceradar-ai-monitor)
+- [ComplianceRadar documentation](https://github.com/ncreighton/empire-skills/wiki/ComplianceRadar)
+- [SEC EDGAR access](https://www.sec.gov/cgi-bin/browse-edgar)
+- [openFDA](https://open.fda.gov/)
+- [FDA API status](https://api.fda.gov/status.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, policy drafts, checklists, tabular logs, configuration snippets, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured regulatory API keys, an OpenAI API key, Slack webhook access, curl, and jq; compliance-sensitive outputs should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

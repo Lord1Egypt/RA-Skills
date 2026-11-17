@@ -1,41 +1,59 @@
-## Description: <br>
-Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and parse news highlights from CCTV News Broadcast (Xinwen Lianbo) for a given date.
 
-## Publisher: <br>
-[litiao1224](https://clawhub.ai/user/litiao1224) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[litiao1224](https://clawhub.ai/user/litiao1224)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve CCTV News Broadcast highlights for a requested date and summarize the returned items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to retrieve news content. <br>
-Mitigation: Install only in environments where network access to CCTV news pages is expected, and review the requested date argument before execution. <br>
-Risk: Network access and expected domains are not declared as explicitly as the security guidance recommends. <br>
-Mitigation: Prefer a release that documents its outbound network behavior and expected domains before broader deployment. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve CCTV Xinwen Lianbo items for a requested date and have an agent summarize the returned titles and article content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/litiao1224/cctv-news-fetcher-litiao) <br>
-- [Example usage](examples/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [JSON from the crawler, summarized by the agent in Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a YYYYMMDD date argument; uses outbound HTTP requests to CCTV pages and depends on node-html-parser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The crawler can follow unvalidated article links from remote CCTV pages and may send a hardcoded cookie to unintended destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict article fetches and redirects to known CCTV hosts, and remove the hardcoded cookie unless it is strictly required.
+
+Risk: Installing dependencies without the lockfile can introduce unreviewed package changes.
+
+Mitigation: Install dependencies from the committed lockfile and review dependency changes before release.
+
+Risk: Running the skill in sensitive environments could expose private network access through outbound fetch behavior.
+
+Mitigation: Review the skill before installation in environments with private networks or sensitive internal services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/litiao1224/skills/cctv-news-fetcher-litiao)
+- [CCTV Xinwen Lianbo recent archive](https://tv.cctv.com/lm/xwlb/)
+- [CCTV Xinwen Lianbo legacy archive](https://cctv.cntv.cn/lm/xinwenlianbo/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary derived from JSON crawler results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill runs a Node/Bun crawler for a YYYYMMDD date and summarizes fetched title and content fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,52 @@
-## Description: <br>
-Dating Coach is an AI dating advice tool for people moving from first message to first date, exclusivity talks, and rejection recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dating Coach is an AI dating advice skill for moving from first messages to dates, navigating exclusivity talks, recovering from rejection, and making respectful dating decisions.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this skill for dating message analysis, date planning, dating app strategy, rejection recovery, and direct but respectful situation assessment. It helps an agent respond in the user's language with practical guidance, example replies, boundaries, and escalation to professional support when mental health or abuse concerns appear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share intimate relationship details while seeking coaching. <br>
-Mitigation: Avoid sharing unnecessary intimate details and apply the skill as lightweight guidance rather than a private relationship record. <br>
-Risk: The linked ReplyHer pro service is outside this skill and may have separate privacy practices. <br>
-Mitigation: Review ReplyHer separately before using it for ongoing coaching or relationship memory. <br>
-Risk: Dating advice can be misused to pressure, stalk, manipulate, or ignore boundaries. <br>
-Mitigation: Preserve the skill's safety boundaries: no stalking advice, no manipulation, no ignoring boundaries, and treat a clear no as final. <br>
+## Use Case:
 
+External users use this skill to get multilingual dating guidance for message analysis, date planning, dating app strategy, situation assessment, and rejection recovery.
 
-## Reference(s): <br>
-- [Dating Coach Skill on ClawHub](https://clawhub.ai/imwyvern/dating-coach) <br>
-- [Publisher profile: imwyvern](https://clawhub.ai/user/imwyvern) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted conversational advice with optional example messages and numbered action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and uses concise structured formats for message analysis and situation advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill instructions include a promotional ReplyHer pro link that may steer replies toward a commercial offering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove promotional content before deployment where vendor steering is not acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/dating-coach)
+- [Publisher profile](https://clawhub.ai/user/imwyvern)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with structured advice sections and example messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Replies in the user's language; may include interest ratings, timelines, don't-do guidance, and sample messages.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

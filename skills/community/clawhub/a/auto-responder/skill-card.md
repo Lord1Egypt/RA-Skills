@@ -1,43 +1,53 @@
-## Description: <br>
-Auto Responder helps agents react to messages in configured topics using keyword, exclusion, template, and cooldown rules to avoid duplicate or excessive replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Responder helps agents automatically reply to messages in configured topics using keyword, exclusion, template, and cooldown rules.
 
-## Publisher: <br>
-[lunaviva211-sketch](https://clawhub.ai/user/lunaviva211-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunaviva211-sketch](https://clawhub.ai/user/lunaviva211-sketch)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure autonomous topic-specific replies for OpenClaw agents. It is intended for agents that need to respond to inbound messages with controlled frequency and reusable response templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post automatically in group topics when wired into message hooks or heartbeats. <br>
-Mitigation: Enable it only in trusted topics, narrow keyword rules, and consider requiring mentions for higher-risk spaces. <br>
-Risk: The actual auto-responder executable or source is not included in the artifact evidence. <br>
-Mitigation: Obtain and review the executable or source before installation, and inspect the persistent cache at ~/.cache/auto-responder.json. <br>
-Risk: Loose templates or cooldown settings can create excessive or unwanted replies. <br>
-Mitigation: Use conservative cooldowns, max response limits, exclusion terms, and topic-specific templates before enabling autonomous posting. <br>
+## Use Case:
 
+Developers and agent operators use Auto Responder to configure autonomous replies for group topics, including keyword matching, exclusions, response templates, cooldowns, and hook or heartbeat integration.
 
-## Reference(s): <br>
-- [Auto Responder skill page](https://clawhub.ai/lunaviva211-sketch/auto-responder) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON, YAML, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces configurable response templates, topic rules, cooldown guidance, and installation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic replies may be sent in unsuitable topics or too frequently if matching rules, templates, mention requirements, or rate limits are too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the configured topics, keywords, exclusions, response templates, mention requirement, cooldowns, and rate limits for each agent before enabling the skill.
+
+Risk: The local response cache may retain message-derived metadata used to prevent duplicate replies.
+
+Mitigation: Periodically inspect or clear the cache, and enable the skill only where this metadata retention is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lunaviva211-sketch/skills/auto-responder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, YAML, and bash snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include topic rules, keywords, response templates, cooldown settings, and hook or heartbeat integration steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

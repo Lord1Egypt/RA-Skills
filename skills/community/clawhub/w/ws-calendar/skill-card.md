@@ -1,41 +1,53 @@
-## Description: <br>
-Helps users create schedules, set reminders, view calendar plans, and detect time conflicts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calendar helps users create events, set reminders, review upcoming schedules, and detect time conflicts.
 
-## Publisher: <br>
-[fhbillwer](https://clawhub.ai/user/fhbillwer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fhbillwer](https://clawhub.ai/user/fhbillwer)
 
-## Use Case: <br>
-External users and agent operators use this skill to manage calendar entries, reminders, schedule lookups, and basic conflict checks through natural-language calendar requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar events and reminder details may be saved locally under /workspace/data/calendar/. <br>
-Mitigation: Avoid entering sensitive schedule details unless local storage is acceptable for the deployment environment. <br>
-Risk: Broad time-related trigger phrases may activate the skill for ambiguous requests. <br>
-Mitigation: Use clear calendar commands and confirm create or reminder actions before committing them. <br>
+## Use Case:
 
+People using an agent for personal or work schedule management use this skill to create calendar entries, set reminders, check daily or weekly plans, and identify scheduling conflicts.
 
-## Reference(s): <br>
-- [Calendar on ClawHub](https://clawhub.ai/fhbillwer/ws-calendar) <br>
-- [Publisher profile: fhbillwer](https://clawhub.ai/user/fhbillwer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with calendar actions and schedule summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local calendar storage under /workspace/data/calendar/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad activation triggers could cause accidental calendar handling when the user did not intend to manage a schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger list before deployment and narrow or disable triggers where unexpected calendar actions would be disruptive.
+
+Risk: Calendar events may contain personal information stored locally in /workspace/data/calendar/.
+
+Mitigation: Confirm the local storage location, apply workspace access controls, and avoid storing sensitive details unless needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fhbillwer/skills/ws-calendar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Plain text or Markdown responses, with local calendar data records when events are saved.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store schedule data locally under /workspace/data/calendar/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

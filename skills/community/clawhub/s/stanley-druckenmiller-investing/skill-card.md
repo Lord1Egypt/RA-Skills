@@ -1,48 +1,59 @@
-## Description: <br>
-Stanley Druckenmiller's macro investing cognitive operating system - a practical trading framework built from 30 years of legendary returns, famous trades, and candid interviews for agents reasoning about global macro, concentrated bets, and position sizing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stanley Druckenmiller's macro investing cognitive operating system - a practical trading framework built from 30 years of legendary returns, famous trades, and candid interviews.
 
-## Publisher: <br>
-[talentedleo](https://clawhub.ai/user/talentedleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[talentedleo](https://clawhub.ai/user/talentedleo)
 
-## Use Case: <br>
-External users and agents use this skill to apply a Druckenmiller-style macro investing framework for market commentary, portfolio-construction discussion, position-sizing analysis, and risk-management prompts. It should be treated as investing guidance content, not as authority to place trades or make personalized financial decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce aggressive investing commentary about concentration, leverage, crypto, and purchases. <br>
-Mitigation: Use human review and separate financial-safety controls before any broker action, crypto purchase, leverage decision, or personalized portfolio change. <br>
-Risk: Market and portfolio claims may be outdated, incomplete, or unsuitable for a user's circumstances. <br>
-Mitigation: Independently verify current market data and treat responses as commentary rather than financial advice. <br>
+## Use Case:
 
+External users and agents use this skill to frame macro-investing discussions in the style of Stanley Druckenmiller, with emphasis on liquidity, concentration, position sizing, thesis monitoring, and risk management. It is educational analysis support, not personal financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/talentedleo/stanley-druckenmiller-investing) <br>
-- [01-Writings](references/01-writings.md) <br>
-- [02-Conversations](references/02-conversations.md) <br>
-- [03-Expression-DNA](references/03-expression-dna.md) <br>
-- [04-External-Views](references/04-external-views.md) <br>
-- [05-Decisions](references/05-decisions.md) <br>
-- [06-Timeline](references/06-timeline.md) <br>
-- [Morgan Stanley Hard Lessons interview](https://www.morganstanley.com/insights/videos/hard-lessons/duquesne-stan-druckenmiller-iliana-bouzali) <br>
-- [Duquesne Capital Management](https://en.wikipedia.org/wiki/Duquesne_Capital_Management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text investing-framework responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market commentary, portfolio framing, position-sizing rationale, and risk-management prompts; does not produce executable trading actions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can present aggressive leverage, concentrated allocation, and market-positioning language in a persuasive investing persona.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational macro-investing commentary only; require independent professional review and do not connect the skill directly to trading or portfolio execution workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/talentedleo/skills/stanley-druckenmiller-investing)
+- [01-Writings](artifact/references/01-writings.md)
+- [02-Conversations](artifact/references/02-conversations.md)
+- [03-Expression-DNA](artifact/references/03-expression-dna.md)
+- [04-External-Views](artifact/references/04-external-views.md)
+- [05-Decisions](artifact/references/05-decisions.md)
+- [06-Timeline](artifact/references/06-timeline.md)
+- [Morgan Stanley Hard Lessons interview](https://www.morganstanley.com/insights/videos/hard-lessons/duquesne-stan-druckenmiller-iliana-bouzali)
+- [Financial Times retirement letter](https://www.ft.com/content/6f1ca310-aaf8-11df-9e6b-00144feabdc0)
+- [Lost Tree Club speech](https://thescienceofhitting.com/p/im-here-to-tell-you-i-was-a-pig-4a9)
+- [What Makes A Great Investor](https://acquirersmultiple.com/2021/08/stanley-druckenmiller-what-makes-a-great-investor/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain-text investing framework guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style outputs should be reviewed for financial-advice risk before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

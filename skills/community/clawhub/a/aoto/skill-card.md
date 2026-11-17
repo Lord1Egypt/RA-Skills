@@ -1,48 +1,61 @@
-## Description: <br>
-Desktop automation via native OS accessibility trees using the agent-desktop CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Desktop automation via native OS accessibility trees using the agent-desktop CLI for observing, interacting with, and automating desktop applications.
 
-## Publisher: <br>
-[DarryEK](https://clawhub.ai/user/DarryEK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[darryek](https://clawhub.ai/user/darryek)
 
-## Use Case: <br>
-Developers and automation agents use this skill to observe and control macOS desktop applications through accessibility trees, including form filling, menu navigation, window management, notifications, screenshots, and clipboard operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can grant an agent broad control over local desktop applications. <br>
-Mitigation: Install it only for intentional desktop-control workflows and grant Accessibility permission from a dedicated terminal profile where possible. <br>
-Risk: The skill can expose sensitive local context through screenshots, clipboard access, notifications, and visible application state. <br>
-Mitigation: Keep sensitive applications closed and require explicit approval before reading screenshots, clipboard contents, notifications, or UI state from sensitive apps. <br>
-Risk: The skill can click destructive controls, submit data, close apps, or change settings. <br>
-Mitigation: Require review before actions that submit data, change settings, close applications, dismiss notifications, or activate destructive UI controls. <br>
-Risk: The installation flow depends on an external agent-desktop package. <br>
-Mitigation: Verify the external package before global installation and avoid using --trust unless its install scripts are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/DarryEK/aoto) <br>
-- [Observation Commands](references/commands-observation.md) <br>
-- [Interaction Commands](references/commands-interaction.md) <br>
-- [System Commands](references/commands-system.md) <br>
-- [Common Automation Workflows](references/workflows.md) <br>
-- [macOS Platform](references/macos.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide AI agents through desktop GUI automation tasks such as reading UI state, clicking controls, filling forms, handling windows, using the clipboard, and working with notifications. The documented workflow is macOS-focused and depends on the external agent-desktop CLI plus Accessibility permission.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS 12+ and Accessibility permission for desktop control.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill enables broad desktop observation and control through macOS Accessibility permissions.
+
+Mitigation: Use it only in a trusted desktop session, require explicit user approval before controlling sensitive apps or windows, and revoke Accessibility permission when finished.
+
+Risk: The documented install path uses an external CLI and includes an unpinned Bun trusted-install option.
+
+Mitigation: Prefer a pinned and verified CLI version, and avoid the Bun trusted install path unless the package has been audited.
+
+Risk: Automation commands can expose screenshots, clipboard contents, notifications, and sensitive UI state.
+
+Mitigation: Do not allow agents to read or act on screenshots, clipboard contents, notifications, or sensitive app windows without explicit user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/darryek/skills/aoto)
+- [Observation Commands](references/commands-observation.md)
+- [Interaction Commands](references/commands-interaction.md)
+- [System Commands](references/commands-system.md)
+- [Common Automation Workflows](references/workflows.md)
+- [macOS Platform](references/macos.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON output contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides use of an external CLI that returns JSON envelopes and may produce screenshots or clipboard-derived text when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

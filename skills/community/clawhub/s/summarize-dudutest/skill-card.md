@@ -1,41 +1,55 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 
-## Publisher: <br>
-[yinwuzhe](https://clawhub.ai/user/yinwuzhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinwuzhe](https://clawhub.ai/user/yinwuzhe)
 
-## Use Case: <br>
-Developers, analysts, and other external users use this skill to summarize web pages, local files, PDFs, images, audio, and YouTube links through the summarize CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send files, URLs, media, or extracted content to configured AI, extraction, or YouTube fallback providers. <br>
-Mitigation: Avoid confidential files, private URLs, regulated data, and sensitive media unless the configured providers' data-handling terms are acceptable. <br>
-Risk: The skill requires provider credentials and installs a CLI from a Homebrew package source. <br>
-Mitigation: Use limited-scope API keys where possible and install only when the Homebrew package source and configured providers are trusted. <br>
+## Use Case:
 
+Developers and external users use this skill to invoke the summarize CLI for concise summaries of URLs, local files, PDFs, images, audio, and YouTube links while selecting AI providers and optional extraction fallbacks.
 
-## Reference(s): <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/yinwuzhe/summarize-dudutest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can control summary length, maximum output tokens, extraction-only mode, provider model, and optional Firecrawl or YouTube fallback services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: Installing the skill depends on a Homebrew tap and the summarize CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the Homebrew tap and summarize CLI are trusted before installation.
+
+Risk: Summarized URLs or local files may be sent to the selected AI provider, and to Firecrawl or Apify when fallback extraction is enabled.
+
+Mitigation: Do not summarize sensitive content unless the configured providers and optional extraction services are approved for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinwuzhe/skills/summarize-dudutest)
+- [Publisher profile](https://clawhub.ai/user/yinwuzhe)
+- [Summarize homepage](https://summarize.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce machine-readable JSON when the summarize CLI is used with --json.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

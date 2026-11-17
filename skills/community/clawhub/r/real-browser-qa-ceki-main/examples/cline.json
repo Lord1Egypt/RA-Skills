@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "ceki-browser": {
+      "command": "ceki",
+      "args": ["mcp"],
+      "env": {
+        "CEKI_API_KEY": "your_key_here"
+      },
+      "alwaysAllow": [
+        "rent",
+        "navigate",
+        "snapshot",
+        "click",
+        "type",
+        "scroll",
+        "stop"
+      ]
+    }
+  }
+}

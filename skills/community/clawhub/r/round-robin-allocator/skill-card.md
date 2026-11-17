@@ -1,46 +1,61 @@
-## Description: <br>
-Allocates N objects across T rounds among K options according to proportions, maximizing coverage diversity and offering post-processing modes for repeat distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Allocates N objects across T rounds among K options by ratio, maximizing coverage diversity and supporting post-processing modes for repeat distribution.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Developers, planners, educators, and operations teams use this skill to turn natural-language allocation requests into proportional round-robin assignments and reports for projects, students, users, strategies, or similar recurring assignments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports load Chart.js and Plotly from jsdelivr when opened. <br>
-Mitigation: Use --no-html or --no-open for controlled or offline use, and review generated HTML before sharing. <br>
-Risk: The skill creates local report files such as Markdown, CSV, and HTML outputs. <br>
-Mitigation: Run it in an intended workspace and review output paths before retaining or distributing generated files. <br>
-Risk: The --always option can skip future confirmation tables. <br>
-Mitigation: Use --always only when future runs should intentionally bypass confirmation. <br>
+## Use Case:
 
+Developers and operations teams use this skill to create balanced recurring allocations for projects, students, users, or other objects across rounds and options. It produces allocation reports and visualizations for review, adjustment, and export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/round-robin-allocator) <br>
-- [Usage guide](references/usage.md) <br>
-- [Algorithm notes](references/algorithm.md) <br>
-- [FAQ](references/faq.md) <br>
-- [Changelog](references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown allocation reports, optional CSV exports, and HTML visualization files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML visualizations load Chart.js and Plotly from jsdelivr when opened.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release, frontmatter, _meta.json, changelog) <br>
+Risk: Generated HTML reports may expose users to script execution risks from unescaped custom labels and CDN-loaded JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid untrusted custom label text, inspect reports before opening, and use --no-html or --no-open for sensitive data until escaping, pinned local dependencies or SRI are added.
+
+Risk: Persistently bypassing confirmation can allow incorrect allocation parameters to run without review.
+
+Mitigation: Keep confirmation enabled for normal use and avoid --always unless the workflow and input source are trusted.
+
+Risk: Very large allocation inputs can reduce performance because hard input limits are not enforced by the security evidence.
+
+Mitigation: Stay within the documented operating range, such as N <= 1000 objects, T <= 52 rounds, and K <= 20 options, until hard limits are added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/round-robin-allocator)
+- [Usage guide](references/usage.md)
+- [Algorithm notes](references/algorithm.md)
+- [FAQ and troubleshooting](references/faq.md)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, HTML, CSV, Shell commands, Configuration]
+
+**Output Format:** [Markdown allocation report, optional CSV export, and interactive HTML visualization; may include CLI commands and configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python >= 3.8. HTML visualizations load Chart.js and Plotly.js from CDN unless HTML output is disabled.]
+
+## Skill Version(s):
+
+1.6.0 (source: release evidence, SKILL.md frontmatter, _meta.json, changelog released 2026-06-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Handle customer service, bills, reservations, and more via Pine AI - negotiate, cancel, dispute, book, and resolve from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle customer service, bills, reservations, and more via Pine AI: negotiate, cancel, dispute, book, and resolve from the terminal.
 
-## Publisher: <br>
-[bojieli](https://clawhub.ai/user/bojieli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bojieli](https://clawhub.ai/user/bojieli)
 
-## Use Case: <br>
-External users and their agents use Pine Assistant to delegate customer-service calls, billing negotiations, cancellations, reservations, disputes, and account follow-up through Pine's CLI while keeping each task in its own session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pine can act on sensitive accounts, payments, reservations, cancellations, and disputes. <br>
-Mitigation: Use narrow instructions, avoid unnecessary PINs and account details, and personally review payments or destructive actions before they proceed. <br>
-Risk: Pine credentials are stored locally at ~/.pine/config.json. <br>
-Mitigation: Protect the local credential file and remove or revoke Pine credentials when the integration is no longer needed. <br>
-Risk: Broad session lookup and raw event relay can expose task details or lead to confusing follow-up actions. <br>
-Mitigation: Keep session IDs separate, use session lookup only to resolve the user's request, and relay unfamiliar events for user review before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/bojieli/pine-assistant) <br>
-- [Pine Assistant Homepage](https://pineclaw.com) <br>
-- [Pine AI](https://19pine.ai) <br>
+## Use Case:
 
+External users and agents use Pine Assistant to create, monitor, and follow up on Pine AI sessions for customer service calls, bill negotiation, cancellations, disputes, reservations, appointments, outreach, and web-based account tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the pine CLI, JSON flags, session URLs, and local credential storage at ~/.pine/config.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can delegate real-world actions through calls, emails, browser automation, and account workflows.
+
+Mitigation: Confirm the intended task, session, payment state, and sensitive account details with the user before creating sessions, starting tasks, or sending information to Pine.
+
+Risk: The required pine CLI and local credential file can affect user accounts and task data.
+
+Mitigation: Install only from a trusted source, consider pinning or verifying pineai-cli, and protect ~/.pine/config.json.
+
+Risk: The security evidence marks the release as suspicious because it grants broad authority to inspect task history and start user-impacting actions.
+
+Mitigation: Review the skill before deployment and use it only for tasks where the user is comfortable sharing details with Pine and allowing delegated follow-up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bojieli/skills/pine-assistant)
+- [Pine Assistant homepage](https://pineclaw.com)
+- [Pine AI](https://19pine.ai)
+- [Pine privacy policy](https://www.19pine.ai/page/privacy-policy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Pine session links, JSON CLI commands, and prompts for user-provided account, payment, OTP, PIN, or scheduling information.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

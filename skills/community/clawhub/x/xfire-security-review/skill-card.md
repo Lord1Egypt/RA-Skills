@@ -1,42 +1,61 @@
-## Description: <br>
-Multi-agent adversarial security review: three AI agents debate each finding so only real vulnerabilities remain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent adversarial security review: three AI agents independently review code and debate findings so only supported vulnerabilities appear in the final report.
 
-## Publisher: <br>
-[Har1sh-k](https://clawhub.ai/user/Har1sh-k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[har1sh-k](https://clawhub.ai/user/har1sh-k)
 
-## Use Case: <br>
-Developers and security engineers use this skill to run AI-assisted security reviews for pull requests, diffs, commit ranges, or full repositories and to generate reports for local review or CI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Target code, diffs, and repository context may be shared with external AI providers. <br>
-Mitigation: Use the skill only on repositories and changes you are authorized to share with the selected providers. <br>
-Risk: Provider API keys, GitHub tokens, cache files, auth files, debug traces, or reports may contain sensitive information. <br>
-Mitigation: Use least-privilege credentials, avoid debug output on sensitive repositories unless needed, and review generated files before sharing or retaining them. <br>
-Risk: AI-assisted findings may include false positives or miss subtle vulnerabilities. <br>
-Mitigation: Treat output as security review guidance and validate findings with human review, testing, and formal audit processes where required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Har1sh-k/xfire-security-review) <br>
-- [xfire GitHub repository](https://github.com/Har1sh-k/xfire) <br>
+## Use Case:
 
+Developers and security engineers use this skill to review pull requests, diffs, and repositories for security vulnerabilities and receive reports in human-readable or CI-friendly formats.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and configuration examples; xfire can emit Markdown, JSON, or SARIF reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write reports, cache/auth files, debug traces, or GitHub PR comments when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may send repository code to selected external AI providers during analysis.
+
+Mitigation: Use it only for repositories where sharing code with the configured providers is acceptable.
+
+Risk: API keys and GitHub tokens are required for common workflows.
+
+Mitigation: Use narrowly scoped, preferably short-lived credentials and avoid exposing unnecessary provider keys.
+
+Risk: Cache, debug, or result files may contain sensitive code or findings.
+
+Mitigation: Keep generated cache, debug, and result files out of commits and CI artifacts.
+
+Risk: Installing the referenced package can execute third-party code in the user's environment.
+
+Mitigation: Pin or verify the xfire package version before installing and running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/har1sh-k/skills/xfire-security-review)
+- [xfire project homepage](https://github.com/Har1sh-k/xfire)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, sarif, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, or SARIF reports with optional shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can post pull request comments, emit CI-oriented SARIF, and write debug traces or cached context when configured.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

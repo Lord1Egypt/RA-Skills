@@ -1,41 +1,58 @@
-## Description: <br>
-Book Writer helps agents create AI-assisted book outlines and expanded chapter drafts from prompts, with optional formulas, charts, tables, code, and citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Writer is an OpenClaw skill that uses AI-assisted writing to generate book outlines from prompts and expand them into chapter content with formulas, charts, tables, and code elements.
 
-## Publisher: <br>
-[pyjhhh](https://clawhub.ai/user/pyjhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pyjhhh](https://clawhub.ai/user/pyjhhh)
 
-## Use Case: <br>
-Developers, writers, educators, and content teams use this skill to generate book outlines, expand chapters, and draft long-form content for academic, technical, fiction, and textbook projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Some generated file writes are not safely confined when output paths are user-controlled. <br>
-Mitigation: Treat output paths as trusted input and use normal filenames under generated_books until path normalization is added. <br>
-Risk: The dependency installer upgrades unpinned packages. <br>
-Mitigation: Install in a virtual environment and review or pin the dependency list before running the installer. <br>
-Risk: Prompts, manuscripts, and search requests may be sent to OpenAI or Google services when API credentials are configured. <br>
-Mitigation: Avoid sensitive prompts or manuscripts unless external API processing is acceptable for the use case. <br>
+## Use Case:
 
+External users and developers use this skill to draft structured books, textbooks, academic works, technical books, and fiction from a topic prompt, then expand selected chapters into formatted Markdown content.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown chapters, JSON outlines, generated book files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use OpenAI and Google API credentials from the environment and writes generated content under the configured output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review notes that scripts can fetch remote content and write files outside the expected output area.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in a virtualenv or sandbox, and review output paths and remote image or material URLs before use.
+
+Risk: The skill uses API keys for OpenAI and Google services.
+
+Mitigation: Use approved, non-sensitive API keys through environment variables and avoid placing secrets directly in prompts or generated content.
+
+Risk: The security verdict is suspicious and requires review before deployment.
+
+Mitigation: Review and scan the skill before deployment, and avoid running installers with administrator or root privileges.
+
+## Reference(s):
+
+- [Book Writer ClawHub listing](https://clawhub.ai/pyjhhh/skills/book-writer)
+- [Google Custom Search API endpoint referenced by the skill](https://www.googleapis.com/customsearch/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown files and JSON outlines with optional inline code, tables, formulas, references, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write generated book content, temporary files, and logs to configured local directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

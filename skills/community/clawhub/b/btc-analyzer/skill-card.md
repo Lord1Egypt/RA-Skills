@@ -1,41 +1,57 @@
-## Description: <br>
-Fetch live BTCUSDT 15m candles from Binance public API and analyze market direction UP/DOWN/SKIP using EMA20 and RSI14. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches live BTCUSDT 15-minute candles from Binance's public API and analyzes market direction as UP, DOWN, or SKIP using EMA20 and RSI14.
 
-## Publisher: <br>
-[newbienodes](https://clawhub.ai/user/newbienodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[newbienodes](https://clawhub.ai/user/newbienodes)
 
-## Use Case: <br>
-External users and developers use this skill to request a real-time BTCUSDT market-direction check and receive an UP, DOWN, or SKIP signal with confidence and reasoning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The reviewed package references an analyzer script that was not included in the submitted artifact. <br>
-Mitigation: Only run the skill after verifying that analyze.py is supplied by the same trusted source and inspecting it before execution. <br>
-Risk: UP, DOWN, or SKIP outputs could be mistaken for financial advice. <br>
-Mitigation: Treat signals as informational market analysis only and verify decisions with independent sources before acting. <br>
-Risk: Live Binance API access may fail or return unavailable data. <br>
-Mitigation: Surface the actual error or SKIP result and do not fabricate, cache, or reuse market values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newbienodes/btc-analyzer) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve live BTC market data, run the analyzer, and present BTCUSDT direction, confidence, price, and indicator context. It is for market analysis support and should not be treated as financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Strict JSON from the analyzer plus a concise user-facing summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and live access to the Binance public API; no API key is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill produces BTC trading direction signals that could be mistaken for financial advice.
+
+Mitigation: Present results as market-analysis support only, include confidence and reasoning, and avoid recommending trades, position sizing, or financial decisions.
+
+Risk: The analyzer is executed from a mutable global install path and the reviewed artifact did not include the Python script.
+
+Mitigation: Install only from a trusted source, verify the referenced analyzer script contents and permissions before execution, and run it with least privileges.
+
+Risk: Live Binance API calls can fail or return unavailable market data.
+
+Mitigation: Show the actual script error or SKIP result and do not fabricate prices, indicators, timestamps, or direction signals.
+
+## Reference(s):
+
+- [ClawHub BTC Analyzer Skill Page](https://clawhub.ai/newbienodes/skills/btc-analyzer)
+- [Publisher Profile: newbienodes](https://clawhub.ai/user/newbienodes)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Strict JSON from the analyzer followed by concise human-facing text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes UP, DOWN, or SKIP decision, confidence, reason, last close, EMA20, RSI14, and timestamp when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

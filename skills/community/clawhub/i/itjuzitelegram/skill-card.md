@@ -1,41 +1,59 @@
-## Description: <br>
-Queries ITjuzi venture-capital telegraph updates for today's events, recent investment activity, keyword-filtered event streams, and sector event flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries ITjuzi venture-capital bulletin events for today's updates, recent financing activity, keyword-filtered event streams, and sector news.
 
-## Publisher: <br>
-[skyentq-alt](https://clawhub.ai/user/skyentq-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skyentq-alt](https://clawhub.ai/user/skyentq-alt)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and summarize ITjuzi venture-capital bulletin items, including today's free summaries and member-only historical, keyword, event-type, pagination, and structured-detail views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional ITjuzi member tokens can be saved locally for reuse. <br>
-Mitigation: Prefer the ITJUZI_SKILL_TOKEN environment variable for temporary use, or remove the saved token when member access is no longer needed. <br>
-Risk: The token status command can expose a token prefix and token source in logs or transcripts. <br>
-Mitigation: Avoid running token status in shared logs or transcripts and treat status output as sensitive operational information. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve and summarize ITjuzi venture-capital bulletin updates, including today's investment news and member-only filters when a valid ITjuzi Skill Token is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skyentq-alt/itjuzitelegram) <br>
-- [ITjuzi telegraph API endpoint](https://www.itjuzi.com/api/telegraph/get_list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prose summarizing JSON API responses, with shell commands for API calls and token management.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl to call the ITjuzi telegraph API and may use ITJUZI_SKILL_TOKEN or a saved local token for member access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter and changelog report 2.1.0) <br>
+Risk: The skill can store an ITjuzi Skill Token under the user's home directory and show a token prefix.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ITJUZI_SKILL_TOKEN environment variable, avoid --show-token in logged sessions, and remove the saved token when it is no longer needed.
+
+Risk: The script contacts the external ITjuzi API with query parameters such as date scope, keyword, event type, page, and limit.
+
+Mitigation: Use the skill only in environments where calls to ITjuzi are allowed and avoid sending sensitive keywords.
+
+Risk: Free-user responses may include subscription messaging required by the artifact behavior.
+
+Mitigation: Review generated responses for appropriateness before using them in user-facing or regulated workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/skyentq-alt/skills/itjuzitelegram)
+- [ITjuzi Telegraph API](https://www.itjuzi.com/api/telegraph/get_list)
+- [ITjuzi Membership Page](https://www.itjuzi.com/order)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain-text summaries with inline shell commands and JSON-derived results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include subscription guidance for free users and token-management instructions for members.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter and changelog list 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

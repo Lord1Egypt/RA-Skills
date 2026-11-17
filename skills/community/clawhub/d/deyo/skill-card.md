@@ -1,43 +1,62 @@
-## Description: <br>
-Use this skill when the user wants to install, run, or troubleshoot the published `deyo` transcription CLI, including one-time API key login, output file selection, source selection, and user-visible progress updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent transcribe explicitly supplied media URLs or local audio and video files with Deyo, with optional cleaned text and summaries.
 
-## Publisher: <br>
-[casatwy](https://clawhub.ai/user/casatwy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casatwy](https://clawhub.ai/user/casatwy)
 
-## Use Case: <br>
-Developers, operators, and agent users use Deyo to install or configure the published transcription CLI, authenticate with a Deyo API key, transcribe supported links, choose output formats and files, and receive concise progress updates during longer runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install or upgrade the third-party @casatwy/deyo npm package and use the Deyo service. <br>
-Mitigation: Install only when the user trusts the Deyo service and npm package, and surface installation failures instead of silently working around them. <br>
-Risk: The skill stores a Deyo API key locally for future CLI use. <br>
-Mitigation: Check auth status first, reveal only the last four characters of an existing key, and ask before replacing stored credentials. <br>
-Risk: Transcription links and related content are sent to Deyo for processing. <br>
-Mitigation: Confirm the target URL and use the CLI defaults unless the user explicitly requests source, language, format, or output-file changes. <br>
+## Use Case:
 
+External users and developers use Deyo to transcribe media they explicitly identify, obtain cleaned or verbatim transcripts, captions, or structured results, and summarize explicitly requested batches.
 
-## Reference(s): <br>
-- [Deyo Skill Release Page](https://clawhub.ai/casatwy/deyo) <br>
-- [Deyo API Keys](https://deyo.miaobi.fun/me/api-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Markdown, Files] <br>
-**Output Format:** [Markdown or plain text with inline shell commands; CLI progress can be parsed from JSONL on stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce transcript text on stdout or transcript files in text, SRT, VTT, or JSON formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Authentication requires a Deyo API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request consent before login or saving a key; keep credentials private.
+
+Risk: Transcription uploads explicitly supplied media files or URLs and can consume Deyo minute balance.
+
+Mitigation: Confirm the exact inputs and minute-balance authorization before processing.
+
+Risk: Transcript delivery creates local output files.
+
+Mitigation: Confirm output locations and review paths before writing; avoid replacing existing files.
+
+Risk: Some cleaning prompts and summary headings are Chinese-specific.
+
+Mitigation: Check that the requested language and output style fit the workflow.
+
+## Reference(s):
+
+- [Deyo ClawHub release](https://clawhub.ai/casatwy/skills/deyo)
+- [Sequential transcription and summary](references/batch.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Plain text, Markdown, SRT, VTT, or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cleaned transcripts may be saved as .txt; requested batches can include per-item summaries and a cited overview.]
+
+## Skill Version(s):
+
+1.0.17 (source: ClawHub release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

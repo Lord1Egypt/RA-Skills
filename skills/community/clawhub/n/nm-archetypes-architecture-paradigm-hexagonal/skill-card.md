@@ -1,43 +1,58 @@
-## Description: <br>
-Applies hexagonal architecture isolating domain from infrastructure <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hexagonal ports-and-adapters architecture
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and architecture reviewers use this skill to apply hexagonal architecture, define ports and adapters, separate domain logic from infrastructure, and plan contract testing for systems with swappable dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The architecture guidance may add unnecessary port and adapter abstraction to small scripts or prototypes. <br>
-Mitigation: Use the skill for systems that need infrastructure independence or contract-tested integrations, and avoid applying it to small utilities without external dependencies. <br>
-Risk: Port interfaces can become too granular or expose transport details. <br>
-Mitigation: Group related operations around domain aggregates and keep port data structures domain-centered rather than tied to HTTP, database, or framework concerns. <br>
-Risk: Adapters can drift from the external systems they represent. <br>
-Mitigation: Maintain automated contract tests and validation checks that confirm adapters still satisfy their port expectations as schemas or APIs change. <br>
+## Use Case:
 
+Developers use this skill to decide when ports-and-adapters architecture fits and to plan domain ports, edge adapters, use cases, contract tests, and dependency rules. It also helps teams avoid unnecessary abstraction for small utilities and prototypes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-hexagonal) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with architecture steps, deliverables, and implementation vocabulary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter: 1.9.8) <br>
+Risk: Too many ports can increase maintenance overhead.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Group related operations into cohesive, higher-level ports, often around domain aggregates.
+
+Risk: Ports can leak transport details and couple the domain to infrastructure.
+
+Mitigation: Keep port interfaces domain-centered and use domain-focused data transfer objects instead of transport-specific fields.
+
+Risk: Adapters can drift out of sync with the external systems they represent.
+
+Mitigation: Regularly validate adapters against their contracts and check that changes such as database migrations still meet the persistence port's expectations.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-hexagonal)
+- [Project page from skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown prose with lists and architecture terminology]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

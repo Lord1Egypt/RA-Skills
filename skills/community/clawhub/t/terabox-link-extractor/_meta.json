@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn7a8bq36pjqtt668eapmmh2ss805ysv",
-  "slug": "terabox-link-extractor",
+  "name": "terabox-link-extractor",
   "version": "1.4.0",
-  "publishedAt": 1771066839319
+  "homepage": "https://github.com/abdul-karim-mia/terabox-link-extractor",
+  "description": "High-performance TeraBox direct link extractor using the XAPIverse protocol.",
+  "author": "Abdul Karim Mia",
+  "config": {
+    "TERABOX_API_KEY": {
+      "type": "string",
+      "description": "XAPIverse API Key",
+      "required": true
+    }
+  },
+  "metadata": {
+    "openclaw": {
+      "requires": {
+        "bins": [
+          "node"
+        ],
+        "env": [
+          "TERABOX_API_KEY"
+        ],
+        "config": []
+      },
+      "primaryEnv": "TERABOX_API_KEY"
+    }
+  }
 }

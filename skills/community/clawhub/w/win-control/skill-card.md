@@ -1,42 +1,60 @@
-## Description: <br>
-Control Windows mouse clicks and keyboard input through PowerShell scripts for desktop automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Windows mouse clicks and keyboard inputs via PowerShell scripts, supporting text, shortcuts, and customizable click actions.
 
-## Publisher: <br>
-[scottzhouzhou](https://clawhub.ai/user/scottzhouzhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottzhouzhou](https://clawhub.ai/user/scottzhouzhou)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Windows UI automation commands for mouse clicks, text entry, keyboard shortcuts, and DingTalk messaging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PowerShell commands can control the active Windows desktop and may click, type, or trigger shortcuts in the wrong application. <br>
-Mitigation: Confirm the active window, screen coordinates, and intended action before execution, and test first in a non-production session. <br>
-Risk: DingTalk automation may send messages from a logged-in account to an unintended recipient or with unintended content. <br>
-Mitigation: Review the recipient and message text immediately before running the command, and avoid sensitive or production accounts without manual approval. <br>
-Risk: The security evidence notes unavailable PowerShell scripts, so the exact installed behavior requires review. <br>
-Mitigation: Inspect the installed PowerShell scripts from the local skill directory before running any command. <br>
+## Use Case:
 
+Developers and automation operators use this skill to generate guidance and PowerShell commands for controlling Windows desktop mouse and keyboard actions, including DingTalk message workflows. Users should review targets and scripts before execution because the actions affect the active desktop and can send real messages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scottzhouzhou/win-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can affect the active Windows desktop session and logged-in applications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The documented PowerShell automation can control the active Windows desktop and send real DingTalk messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target window, recipient, and message content before execution, and test in a controlled environment first.
+
+Risk: The documented commands use PowerShell execution-policy bypass.
+
+Mitigation: Verify the exact scripts and remove or justify execution-policy bypass before running commands.
+
+Risk: Security evidence reports missing PowerShell automation scripts referenced by the documentation.
+
+Mitigation: Do not run documented commands until the referenced scripts are present and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottzhouzhou/skills/win-control)
+- [Publisher profile](https://clawhub.ai/user/scottzhouzhou)
+- [Artifact README](artifact/README.md)
+- [Artifact SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Windows desktop automation commands that affect the active window.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

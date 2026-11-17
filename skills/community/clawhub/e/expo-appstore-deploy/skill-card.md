@@ -1,38 +1,52 @@
-## Description: <br>
-Deploy Expo and React Native apps to the Apple App Store and Google Play Store using EAS Build and Submit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy Expo/React Native apps to Apple App Store and Google Play Store using EAS Build + Submit.
 
-## Publisher: <br>
-[jini92](https://clawhub.ai/user/jini92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jini92](https://clawhub.ai/user/jini92)
 
-## Use Case: <br>
-Developers and release engineers use this skill to run Expo/EAS production builds, submit iOS and Android apps to app stores, manage release prerequisites, and troubleshoot common EAS build or submission failures. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: EAS build, EAS submit, and auto-submit commands can use real account credentials and submit production app releases. <br>
-Mitigation: Review every generated or suggested command before execution, confirm the selected EAS profile, platform, app identifier, and target account, and run first-time credential setup interactively. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jini92/expo-appstore-deploy) <br>
-- [Publisher profile](https://clawhub.ai/user/jini92) <br>
+## Use Case:
 
+Developers and release engineers use this skill to build Expo and React Native production binaries with EAS Build, submit iOS and Android builds to app stores, manage signing prerequisites, and troubleshoot common release failures.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and troubleshooting tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include EAS build and submit commands that operate on real Expo, Apple Developer, and Google Play accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documents production build and app-store submission commands, including auto-submit, that can affect live release channels.
+
+Mitigation: Require human release approval before submission, avoid auto-submit unless explicitly approved, and run submissions with only the required credentials available.
+
+Risk: The documented commands invoke eas-cli through npx without pinning the CLI version.
+
+Mitigation: Pin eas-cli through the project lockfile or release tooling before using the deployment commands.
+
+## Reference(s):
+
+- [Expo App Store Deploy on ClawHub](https://clawhub.ai/jini92/skills/expo-appstore-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes EAS build and submit commands, prerequisite checks, common failure fixes, and app-store review guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

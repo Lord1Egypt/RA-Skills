@@ -1,43 +1,63 @@
-## Description: <br>
-Control macOS GUI apps visually — take screenshots, click, scroll, type. Use when the user asks to interact with any Mac desktop application's graphical interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control macOS GUI apps visually by taking screenshots, clicking, scrolling, and typing.
 
-## Publisher: <br>
-[kekejun](https://clawhub.ai/user/kekejun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kekejun](https://clawhub.ai/user/kekejun)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent inspect and control macOS desktop applications through a screenshot, OCR, action, and verification loop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can capture the Mac screen and control mouse and keyboard input. <br>
-Mitigation: Install it only when broad local GUI control is intended, avoid sensitive screens, and require explicit human approval before actions that send, buy, delete, approve, or change account or security settings. <br>
-Risk: Screenshots and OCR element maps are written to temporary files. <br>
-Mitigation: Delete /tmp/mac_use*.png and /tmp/mac_use_elements.json after use, especially after interacting with private applications. <br>
-Risk: The type command uses clipboard paste and can expose or overwrite clipboard contents. <br>
-Mitigation: Do not type passwords or secrets through the skill, and clear or restore the clipboard after use when needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an AI agent inspect and operate visible macOS desktop applications through a screenshot, OCR, action, and verification loop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kekejun/mac-use) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces annotated screenshot paths and element JSON from local macOS GUI interactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can read the screen and control mouse and keyboard input across macOS applications once permissions are granted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant Screen Recording and Accessibility only to a trusted host process, keep sensitive windows closed, and require explicit approval before send, purchase, delete, settings, account, or financial actions.
+
+Risk: Screenshots and OCR element maps are written to shared /tmp paths.
+
+Mitigation: Avoid displaying secrets while using the skill and clear temporary files after sessions that may expose sensitive information.
+
+Risk: The documented install command includes system-wide pip installation guidance.
+
+Mitigation: Prefer a virtual environment for dependency installation.
+
+Risk: The type command uses the system clipboard to paste text.
+
+Mitigation: Do not use the skill to type passwords, secrets, or other confidential values.
+
+## Reference(s):
+
+- [mac-use ClawHub page](https://clawhub.ai/kekejun/skills/mac-use)
+- [kekejun ClawHub publisher profile](https://clawhub.ai/user/kekejun)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper writes screenshots and OCR element maps to shared /tmp paths for agent inspection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

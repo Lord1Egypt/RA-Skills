@@ -1,38 +1,52 @@
-## Description: <br>
-Provides accurate answers with current date context and clickable numbered citations when source references are used. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides knowledge-answer response guidance that preserves the user's language and adds clickable numbered citations when answers rely on search results.
 
-## Publisher: <br>
-[alvinecarn](https://clawhub.ai/user/alvinecarn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alvinecarn](https://clawhub.ai/user/alvinecarn)
 
-## Use Case: <br>
-External users and developers use this skill to guide knowledge-answer responses so they preserve the user's language, account for the current date, and cite sourced claims with numbered clickable references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated answers may rely on cited sources that are incomplete, outdated, or misleading. <br>
-Mitigation: Review cited sources before relying on or redistributing generated answers. <br>
-Risk: Runtime template variables such as the current date may be unresolved if the host agent does not substitute them. <br>
-Mitigation: Confirm the agent runtime supplies the current date before using the skill for time-sensitive answers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and developers use this skill to guide knowledge-answer responses so they remain in the user's language and include numbered, clickable citation footnotes when search results are used.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with clickable numbered citation links and a reference list when sources are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains the user's language unless another language is requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Activation metadata may be affected by malformed or truncated frontmatter description text.
+
+Mitigation: Review the skill frontmatter before deployment and confirm the activation description is complete.
+
+Risk: Citation formatting guidance can still produce incorrect or unsupported references if source selection is weak.
+
+Mitigation: Review cited answers for source relevance and verify that each numbered link supports the sentence it follows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alvinecarn/skills/knowledge-answer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with clickable numbered citation links when sources are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains the user's language by default unless another language is explicitly requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

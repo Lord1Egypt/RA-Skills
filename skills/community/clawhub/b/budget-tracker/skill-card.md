@@ -1,41 +1,54 @@
-## Description: <br>
-Budget Tracker helps an agent record local income and expense entries, list recent transactions, and produce a basic financial summary from a local ledger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Budget Tracker helps agents record local income and expense entries, list recent transactions, and produce simple financial summaries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and agents use this skill for lightweight personal or project finance logging, recent transaction review, and basic local ledger summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation overstates budget and monthly report features, so financial summaries may be incomplete or misleading. <br>
-Mitigation: Use the skill for lightweight local logging only, verify reports against the ledger, and do not rely on it for accounting or financial decisions. <br>
-Risk: Income, expense categories, and notes are stored locally in a plain JSON ledger under the user's home directory. <br>
-Mitigation: Avoid entering secrets or sensitive account details in transaction notes and apply local file protections appropriate for personal finance data. <br>
+## Use Case:
 
+External users and developers can use this skill to keep a simple local ledger for personal expenses, project costs, or monthly spending review. It is best treated as a lightweight local tracker rather than a full budgeting, export, or multi-currency finance system.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/budget-tracker) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local JSON ledger at $HOME/.budget-tracker/ledger.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Sensitive ledger entries and notes are stored in plaintext under $HOME/.budget-tracker.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on $HOME/.budget-tracker and avoid entering sensitive notes unless plaintext local storage is acceptable.
+
+Risk: The release overstates finance capabilities such as reliable multi-currency support, budgeting, monthly reporting, or export workflows.
+
+Mitigation: Use it only as a simple local ledger and review generated summaries before relying on them for accounting or financial decisions.
+
+## Reference(s):
+
+- [ClawHub Budget Tracker Skill Page](https://clawhub.ai/ckchzh/skills/budget-tracker)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates a plaintext local JSON ledger at $HOME/.budget-tracker/ledger.json when the shell script is run.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

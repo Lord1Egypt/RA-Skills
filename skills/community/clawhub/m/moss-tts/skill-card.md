@@ -1,40 +1,58 @@
-## Description: <br>
-Voice-first OpenClaw skill powered by MOSS APIs for spoken replies in a preferred timbre from an existing voice_id or a reference audio clip. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice-first OpenClaw skill powered by MOSS APIs for spoken replies in a preferred timbre from an existing voice_id or a reference audio clip.
 
-## Publisher: <br>
-[xiami2019](https://clawhub.ai/user/xiami2019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiami2019](https://clawhub.ai/user/xiami2019)
 
-## Use Case: <br>
-External users and developers use this skill to generate text-to-speech audio with a preferred voice, either by reusing a stable voice_id or by providing permitted reference audio for cloning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Voice samples, cloned voices, and input text may contain sensitive personal data sent to an external MOSS service. <br>
-Mitigation: Use the skill only with trusted MOSS endpoints, permitted voice material, and non-sensitive text; prefer existing voice_id values when available. <br>
-Risk: API credentials can be exposed if logged or shared. <br>
-Mitigation: Store MOSI_API_KEY securely, use revocable credentials, and follow the artifact instruction to never print or log raw API keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiami2019/moss-tts) <br>
-- [MOSI Studio Service](https://studio.mosi.cn) <br>
+## Use Case:
 
+External users and developers use this skill to generate spoken responses with MOSS TTS, either by reusing a stable voice_id or cloning from a provided reference audio source.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration, files] <br>
-**Output Format:** [Markdown guidance with API request details and generated audio file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the voice_id used, output file path, duration, and a concise status message.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reference voice clips, local audio paths, and reference URLs may be sent to the external MOSS API.
+
+Mitigation: Use only audio and URLs that are approved for sharing with the provider, and avoid private or sensitive voice samples.
+
+Risk: The skill requires a MOSI_API_KEY for external API requests.
+
+Mitigation: Keep the API key protected and do not print or log raw credentials.
+
+Risk: Generated audio files may remain on local storage after use.
+
+Mitigation: Delete generated audio files when they are no longer needed.
+
+## Reference(s):
+
+- [MOSI Studio](https://studio.mosi.cn)
+- [ClawHub skill page](https://clawhub.ai/xiami2019/skills/moss-tts)
+- [Publisher profile](https://clawhub.ai/user/xiami2019)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Concise text or Markdown status with generated WAV file path, voice_id, duration, and usage details when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local WAV audio files and uses MOSI_API_KEY for external MOSS API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

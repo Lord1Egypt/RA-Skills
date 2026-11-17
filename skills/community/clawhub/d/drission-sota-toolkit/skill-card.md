@@ -1,42 +1,65 @@
-## Description: <br>
-Professional Web Intelligence & Automation Toolkit. Features Protocol Phantom (TLS/JA4), Local Socket Relaying, and Hardened physical gating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Web Intelligence & Automation Toolkit. Features Protocol Phantom (TLS/JA4), Local Socket Relaying, and Hardened physical gating.
 
-## Publisher: <br>
-[Biogod2020](https://clawhub.ai/user/Biogod2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biogod2020](https://clawhub.ai/user/biogod2020)
 
-## Use Case: <br>
-Developers and external automation operators use this skill for local browser-based web intelligence, search aggregation, Chrome/CDP control, and gated local relay workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-impact local Chrome/CDP control and anti-bot automation may affect logged-in browser sessions or protected third-party services. <br>
-Mitigation: Run only in an isolated VM or container with a disposable, non-logged-in browser profile, and use it only against services where you have authorization. <br>
-Risk: Declared metadata is partly inconsistent with the bundled high-risk browser and relay capabilities. <br>
-Mitigation: Require publisher metadata alignment and human review before deployment, including explicit per-action confirmation and allowlists for sensitive actions. <br>
+## Use Case:
 
+Developers and web automation users can use this skill for web search, web intelligence gathering, and controlled browser automation workflows. Its local browser-control utilities should be evaluated only in isolated test environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Biogod2020/drission-sota-toolkit) <br>
-- [Security explanation](artifact/SECURITY_EXPLAINED.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON files] <br>
-**Output Format:** [Markdown guidance, terminal output, Python code, configuration snippets, and local JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require local Chrome, Xvfb/dbus launch support, and declared Python packages for browser automation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.1.0 (source: server release evidence) <br>
+Risk: The skill combines ordinary web search with high-risk local browser-control features.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Evaluate it only in a disposable VM or container with no personal browser profile and no authenticated sessions.
+
+Risk: Registry metadata understates the bundled high-risk browser-control capabilities.
+
+Mitigation: Align the manifest with SKILL.md, declared dependencies, and autonomous invocation controls before publication or trusted use.
+
+Risk: CDP takeover and relay paths can control a local browser session.
+
+Mitigation: Expose Chrome DevTools only to a dedicated test browser, remove or strongly broker CDP takeover paths, and keep relay access constrained to loopback.
+
+Risk: Wrapper path validation, dependency drift, or disabled browser sandboxing could expand local execution risk.
+
+Mitigation: Fix wrapper path validation, pin dependencies, and keep Chromium sandboxing enabled before trusted use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biogod2020/skills/drission-sota-toolkit)
+- [Publisher profile](https://clawhub.ai/user/biogod2020)
+- [Skill definition](SKILL.md)
+- [Security explanation](SECURITY_EXPLAINED.md)
+- [Runtime requirements](requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local JSON report files under an assets directory when bundled scripts are run.]
+
+## Skill Version(s):
+
+7.1.0 (source: server release and SKILL.md version line)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

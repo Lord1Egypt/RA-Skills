@@ -1,42 +1,59 @@
-## Description: <br>
-Maximize CTR (Click-Through Rate) by leveraging emotional hooks and platform algorithms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maximize CTR (Click-Through Rate) by leveraging emotional hooks and platform algorithms.
 
-## Publisher: <br>
-[GXKIM](https://clawhub.ai/user/GXKIM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gxkim](https://clawhub.ai/user/gxkim)
 
-## Use Case: <br>
-External creators, marketers, and content operators use this skill to turn raw topics into Xiaohongshu/RedNote-style title candidates with strategy tags and a brief cover image suggestion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing titles may overstate urgency, outcomes, or product benefits in sensitive categories such as beauty, health, finance, or results-based claims. <br>
-Mitigation: Review every title before publishing and adjust claims to match the underlying product, evidence, and applicable advertising rules. <br>
-Risk: The skill intentionally produces emotional, platform-native copy that may not match a user's preferred language, brand voice, or compliance posture. <br>
-Mitigation: Provide explicit language, tone, category, and claim-boundary instructions when requesting titles. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/GXKIM/xiaohongshu-title) <br>
-- [GXKIM publisher profile](https://clawhub.ai/user/GXKIM) <br>
-- [Examples library](artifact/examples.md) <br>
-- [Strategic assets reference](artifact/references.md) <br>
+## Use Case:
 
+External creators and marketers use this skill to turn raw topics into five native Xiaohongshu/RedNote title options with strategy tags and brief cover image advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown list of title candidates with strategy tags and a brief cover image suggestion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces five short, platform-native title candidates after category mapping and filtering for length, banned words, and visual hooks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Engagement-optimized titles may overstate or reshape claims in persuasive marketing language.
+
+Mitigation: Use the skill only for Xiaohongshu/RedNote title ideation and review factual claims, product claims, and advertising compliance before publishing.
+
+Risk: Generated titles may include prohibited advertising terms, medical claims, or superstition-related phrasing if the input asks for them.
+
+Mitigation: Apply the artifact's blacklist and title validation rules, then perform human review for Chinese advertising-law and platform-policy compliance.
+
+Risk: The skill prioritizes CTR and emotional hooks over neutral or informational wording.
+
+Mitigation: Avoid this skill for contexts that require neutral, factual, or non-promotional titles.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/gxkim/skills/xiaohongshu-title)
+- [Few-shot examples library](artifact/examples.md)
+- [Strategic assets reference](artifact/references.md)
+- [Title validator logic](artifact/validator.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured list of five title options with strategy tags and brief cover image advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are filtered for title length, banned advertising terms, and visual hooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

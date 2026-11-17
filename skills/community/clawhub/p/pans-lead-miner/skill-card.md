@@ -1,40 +1,58 @@
-## Description: <br>
-Pans Lead Miner searches public lead sources through SearXNG to identify and rank companies with likely AI compute demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pans Lead Miner mines AI compute sales leads by searching a local SearXNG service across public funding, GitHub, LinkedIn, and news sources, then ranking prospects by funding stage and compute-demand signals.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Sales, business development, and go-to-market users use this skill to find companies that may need AI compute capacity and rank them by funding and compute-demand signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Synthetic demo leads may be mistaken for verified prospects when SearXNG is unavailable or demo mode is used. <br>
-Mitigation: Treat records with source=demo as sample data and independently verify companies before outreach or CRM import. <br>
-Risk: Search terms and exported lead files may expose prospecting strategy or unverified lead data. <br>
-Mitigation: Use a trusted local SearXNG instance, choose export paths deliberately, and review exported data before sharing or importing it into other systems. <br>
+## Use Case:
 
+External developers and sales operators use this skill to discover and prioritize companies with public signals of AI compute demand from funding, project, LinkedIn, and news search results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-lead-miner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Files] <br>
-**Output Format:** [Markdown table by default, with optional JSON, CSV, or exported file output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lead rows include company, stage, amount, region, signal score, source, URL, and snippet when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search results and snippets are untrusted web content and may be inaccurate or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review URLs and snippets before outreach or business decisions, and do not treat the heuristic signal score as verified demand.
+
+Risk: The tool can fall back to demo leads when SearXNG is unavailable, which may make sample records appear in normal output.
+
+Mitigation: Check source and demo indicators before using results, and rerun against a working local SearXNG service for real prospecting.
+
+Risk: Exported Markdown, JSON, or CSV lead files may persist locally and contain prospect data.
+
+Mitigation: Choose export paths deliberately and handle generated files according to local data-retention and access policies.
+
+## Reference(s):
+
+- [Pans Lead Miner on ClawHub](https://clawhub.ai/dashiming/skills/pans-lead-miner)
+- [dashiming publisher profile](https://clawhub.ai/user/dashiming)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV, files]
+
+**Output Format:** [Markdown table by default, JSON or CSV on request, optionally exported to a local file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are ranked by heuristic signal score and may come from local SearXNG search or demo fallback data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

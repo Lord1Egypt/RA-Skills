@@ -1,42 +1,51 @@
-## Description: <br>
-Queries MiniMax Token Plan remaining usage and reset times for text, speech, video, image, and music models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query MiniMax Token Plan usage and reset times for supported text, speech, video, image, and music models.
 
-## Publisher: <br>
-[alex-zxyz](https://clawhub.ai/user/alex-zxyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alex-zxyz](https://clawhub.ai/user/alex-zxyz)
 
-## Use Case: <br>
-Developers and MiniMax Token Plan subscribers use this skill to check remaining model usage and reset timing from an agent or Discord slash command without opening the MiniMax web console. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A MiniMax Token Plan API key is used to query account usage. <br>
-Mitigation: Install only where MINIMAX_API_KEY is intentionally available and avoid exposing command output or environment variables in shared logs. <br>
-Risk: The optional MINIMAX_API_HOST setting could direct the request away from the expected MiniMax endpoint. <br>
-Mitigation: Leave MINIMAX_API_HOST unset or set it only to an official MiniMax endpoint. <br>
+## Use Case:
 
+External users and developers use this skill to check MiniMax Token Plan remaining usage and reset times from an agent slash command without opening the MiniMax web console.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alex-zxyz/minimax-plan-usage) <br>
-- [MiniMax Token Plan](https://platform.minimax.io/subscribe/token-plan) <br>
-- [MiniMax Token Plan remains API](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON] <br>
-**Output Format:** [Markdown usage summary by default; JSON when requested by the script option.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax Token Plan API key and can query an alternate API host if MINIMAX_API_HOST is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The MiniMax API key can be sent to a configurable API host or exposed if passed as a command-line argument.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave MINIMAX_API_HOST unset or restrict it to the MiniMax HTTPS host, provide MINIMAX_API_KEY through a protected secret mechanism, and avoid passing the key with --api-key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alex-zxyz/skills/minimax-plan-usage)
+- [MiniMax Token Plan](https://platform.minimax.io/subscribe/token-plan)
+- [MiniMax coding plan remains API endpoint](https://www.minimaxi.com/v1/api/openplatform/coding_plan/remains)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON]
+
+**Output Format:** [Markdown usage summary by default, or JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and supports optional MINIMAX_API_HOST.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

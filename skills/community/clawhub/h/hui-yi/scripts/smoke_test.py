@@ -27,6 +27,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from core.common import resolve_memory_root  # noqa: E402
+from core.safe_fs import lexical_path, safe_exists
 
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -42,8 +43,11 @@ class SmokeFailure(Exception):
 def run_step(name: str, cmd: list[str]) -> subprocess.CompletedProcess[str]:
     print(f"\n== {name} ==")
     print("$ " + " ".join(cmd))
-    env = os.environ.copy()
-    env.setdefault("PYTHONIOENCODING", "utf-8")
+    # Only OS runtime essentials enter child checks; never forward credentials,
+    # provider tokens, PYTHONPATH or other interpreter injection settings.
+    allowed = {"systemroot", "windir", "temp", "tmp"}
+    env = {key: value for key, value in os.environ.items() if key.lower() in allowed}
+    env.update(PYTHONIOENCODING="utf-8", PYTHONNOUSERSITE="1", PYTHONDONTWRITEBYTECODE="1")
     proc = subprocess.run(
         cmd,
         cwd=SKILL_ROOT,
@@ -71,13 +75,13 @@ def main() -> int:
     args = parser.parse_args()
 
     memory_root = resolve_memory_root(args.memory_root)
-    config_path = Path(args.config).resolve() if args.config else memory_root / "schedule.json"
+    config_path = lexical_path(args.config) if args.config else memory_root / "schedule.json"
     print("Hui-Yi smoke test")
     print(f"skill root: {SKILL_ROOT}")
     print(f"memory root: {memory_root}")
     print(f"schedule config: {config_path}")
 
-    if not memory_root.exists():
+    if not safe_exists(memory_root, kind="directory"):
         print(f"ERROR: memory root not found: {memory_root}")
         return 1
 

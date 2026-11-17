@@ -1,45 +1,55 @@
-## Description: <br>
-Performs structured investment research for companies, stocks, ETFs, and sectors across fundamentals, industry context, valuation, technical analysis, catalysts, risks, and actionable reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform structured investment research for a company, stock, ETF, or sector using a repeatable framework covering fundamentals, technical analysis, industry context, valuation, catalysts, risks, and an actionable report.
 
-## Publisher: <br>
-[CaiJichang212](https://clawhub.ai/user/CaiJichang212) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caijichang212](https://clawhub.ai/user/caijichang212)
 
-## Use Case: <br>
-External users and analysts use this skill to produce repeatable investment research reports, compare securities or sectors, and separate sourced facts from assumptions and judgments. It is intended as research support and not as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses finance and search data tools that may require API credentials. <br>
-Mitigation: Use trusted qveris and Tavily credentials, keep API keys in environment variables, and do not print or share secrets. <br>
-Risk: Investment research prompts may expose confidential portfolio, client, or trading strategy details to third-party data or search tools. <br>
-Mitigation: Avoid submitting confidential financial information and review data-sharing constraints before using external tools. <br>
-Risk: Generated reports can be mistaken for financial advice or may rely on stale or unverifiable market data. <br>
-Mitigation: Treat outputs as research support, verify sources and dates, cross-check independent data sources, and preserve the skill's disclaimer. <br>
+## Use Case:
 
+External users and analysts use this skill to produce structured investment research reports for equities, ETFs, sectors, or comparable instruments. It helps separate facts, assumptions, and judgment while documenting valuation scenarios, technical levels, catalysts, risks, and follow-up actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CaiJichang212/investment-research) <br>
-- [Report template](references/report-template.md) <br>
-- [Indicator cheatsheet](references/indicator-cheatsheet.md) <br>
-- [Configuration guide](CONFIG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Configuration instructions] <br>
-**Output Format:** [Markdown research report with action checklist, cited facts, assumptions, judgments, risks, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include valuation ranges, bull/base/bear scenarios, technical levels, monitoring indicators, and tool configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata; artifact frontmatter reports 0.3.0) <br>
+Risk: The setup guide tells users to print full API keys, which can expose credentials in logs, screenshots, recordings, or shared terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify key presence with non-revealing checks, avoid printing secret values, and rotate any key that has already been displayed.
+
+Risk: Investment research output can be mistaken for personalized financial advice or overstate confidence in incomplete market data.
+
+Mitigation: Keep the disclaimer, require dated sources and cross-checks, and explicitly mark uncertain or unverifiable data as unknown or pending verification.
+
+## Reference(s):
+
+- [Investment Research Report Template](references/report-template.md)
+- [Fundamental & Technical Indicator Cheatsheet](references/indicator-cheatsheet.md)
+- [ClawHub Skill Page](https://clawhub.ai/caijichang212/skills/investment-research)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown research report with an action checklist, cited facts, assumptions, risks, and disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured finance and search data tools for current market data; reports should label source, date, and basis for cited facts.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata; artifact frontmatter and README show 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

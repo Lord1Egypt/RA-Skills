@@ -5,19 +5,32 @@
  *   node tests/schema-validator.js
  *
  * S9
+ *
+ * @module schema-validator
  */
 
 import { readFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { testLog } from '../scripts/zhihu-logger.js';
 
+/** @type {string} 当前文件目录 */
 const __dirname = dirname(fileURLToPath(import.meta.url));
+/** @type {string} API 端点配置路径 */
 const ENDPOINTS_PATH = resolve(__dirname, '..', 'config', 'api-endpoints.json');
 
 // ──────────────────────────────────────────
 // Schema 校验规则
 // ──────────────────────────────────────────
 
+/**
+ * @typedef {object} SchemaRule
+ * @property {string[]} required - 必需字段
+ * @property {Record<string, string>} types - 字段类型映射
+ * @property {Record<string, number>} [minItems] - 最小条目数
+ */
+
+/** @type {Record<string, SchemaRule>} */
 const SCHEMA_RULES = {
   hotList: {
     required: ['data'],
@@ -72,6 +85,12 @@ const SCHEMA_RULES = {
   },
 };
 
+/**
+ * 通过点路径获取对象值
+ * @param {object} obj - 源对象
+ * @param {string} path - 点路径（如 "data[0].name"）
+ * @returns {*} 路径对应的值
+ */
 function getValueByPath(obj, path) {
   const keys = path.replace(/\[(\d+)\]/g, '.$1').split('.');
   let current = obj;
@@ -82,17 +101,29 @@ function getValueByPath(obj, path) {
   return current;
 }
 
+/**
+ * 检测值的运行时类型
+ * @param {*} value - 任意值
+ * @returns {string} 类型字符串 ("array" | "string" | "number" | ...)
+ */
 function detectType(value) {
   if (Array.isArray(value)) return 'array';
   return typeof value;
 }
 
 /**
+ * @typedef {object} ValidationResult
+ * @property {boolean} valid - 是否通过校验
+ * @property {string[]} errors - 错误信息
+ * @property {string[]} warnings - 警告信息
+ */
+
+/**
  * 校验 API 响应数据是否符合预期 Schema
  *
  * @param {string} endpointName - 端点名称
  * @param {object} data - API 响应数据
- * @returns {{ valid: boolean, errors: string[], warnings: string[] }}
+ * @returns {ValidationResult} 校验结果
  */
 export function validateResponse(endpointName, data) {
   const rules = SCHEMA_RULES[endpointName];
@@ -100,7 +131,9 @@ export function validateResponse(endpointName, data) {
     return { valid: true, errors: [], warnings: [`未知端点: ${endpointName}`] };
   }
 
+  /** @type {string[]} */
   const errors = [];
+  /** @type {string[]} */
   const warnings = [];
 
   // 1. 检查必需字段
@@ -141,11 +174,16 @@ export function validateResponse(endpointName, data) {
 // CLI 模式
 // ──────────────────────────────────────────
 
+/**
+ * CLI 入口
+ * @returns {void}
+ */
 function main() {
   console.log('📋 API 响应 Schema 校验器');
   console.log('');
 
   if (!existsSync(ENDPOINTS_PATH)) {
+    testLog.error('api-endpoints.json 不存在', { path: ENDPOINTS_PATH });
     console.error('❌ 未找到 api-endpoints.json');
     process.exit(1);
   }
@@ -173,6 +211,7 @@ function main() {
 
     const requiredMatch = (rules.required || []).every(f => schemaInConfig[f]);
     if (!requiredMatch) {
+      testLog.warn('Schema 不一致', { endpoint: name });
       console.log(`   ⚠️  ${name}: Schema 与实际验证规则不一致`);
       allPass = false;
     } else {
@@ -182,8 +221,10 @@ function main() {
 
   console.log('');
   if (allPass) {
+    testLog.info('Schema 检查通过');
     console.log('✅ 所有端点 Schema 检查通过');
   } else {
+    testLog.warn('部分端点 Schema 需更新');
     console.warn('⚠️  部分端点 Schema 需更新');
   }
 }

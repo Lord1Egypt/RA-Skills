@@ -1,42 +1,49 @@
-## Description: <br>
-启动一个新的规划流程，创建新的规划文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Starts a new planning workflow and creates a new planning file.
 
-## Publisher: <br>
-[9talk](https://clawhub.ai/user/9talk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[9talk](https://clawhub.ai/user/9talk)
 
-## Use Case: <br>
-Developers and agents use this skill to start a new planning workflow, create a dated local planning Markdown file, and record an initial structured planning draft before handing off to the next planning step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill writes an initial planning draft to a local Markdown file immediately. <br>
-Mitigation: Review the generated planning file before using it in follow-on planning steps. <br>
-Risk: Planning requests may contain sensitive project details that would be persisted in the generated file. <br>
-Mitigation: Avoid including secrets or unnecessary sensitive information in the planning request. <br>
-Risk: The plan name is used in the generated file path. <br>
-Mitigation: Use a simple, descriptive plan name without sensitive content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/9talk/plan-i) <br>
-- [Publisher profile](https://clawhub.ai/user/9talk) <br>
+## Use Case:
 
+Developers and agents use this skill to initialize a Chinese-language planning document, capture an initial structured plan from the user's request, and hand off to a follow-up planning workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown planning file plus a concise handoff message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a dated file under plans/ and writes the initial planning draft before returning guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Plan names are used in generated Markdown filenames, and unusual characters could create confusing or unintended paths.
+
+Mitigation: Use simple kebab-case plan names without slashes, dots, shell metacharacters, or unusual characters until strict safe-name validation is added.
+
+## Reference(s):
+
+- [Plan I ClawHub release page](https://clawhub.ai/9talk/skills/plan-i)
+- [9talk publisher profile](https://clawhub.ai/user/9talk)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown planning file and concise user-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a dated planning document under the workspace plans directory.]
+
+## Skill Version(s):
+
+0.1.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

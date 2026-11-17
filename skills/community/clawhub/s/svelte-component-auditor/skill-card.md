@@ -1,39 +1,49 @@
-## Description: <br>
-Audit Svelte and SvelteKit components for performance, accessibility, reactive statement usage, store design, and SSR compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Svelte and SvelteKit components for performance, accessibility, reactive statement usage, store design, and SSR compatibility.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Svelte and SvelteKit projects before production, with emphasis on component quality, accessibility, rendering performance, store design, and SSR safety. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may require the agent to read source files, routes, stores, configuration files, and package metadata from the current project. <br>
-Mitigation: Run it only from the intended project directory and avoid exposing unrelated or sensitive repositories in the working tree. <br>
-Risk: Findings can be incomplete or include false positives because the skill relies on pattern-based review and agent judgment. <br>
-Mitigation: Validate recommendations with Svelte tooling, tests, and human code review before changing production code. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Svelte and SvelteKit codebases for production readiness, accessibility, SSR safety, rendering performance, and component design issues.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown audit report with prioritized findings, tables, recommendations, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only project inspection guidance; no files are modified by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Optional unpinned npx execution can introduce supply-chain exposure when run in sensitive repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a project-pinned svelte-check dev dependency and lockfile, or run a verified local copy before following the optional npx tip.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/svelte-component-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with prioritized findings, tables, shell command snippets, and fix recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file paths, severity labels, WCAG references, and concrete remediation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

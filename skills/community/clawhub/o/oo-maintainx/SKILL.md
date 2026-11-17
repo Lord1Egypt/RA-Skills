@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "MaintainX"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.5"
   services: ["maintainx"]
   icon: "https://static.oomol.com/logo/third-party/maintainx.svg"
 ---
@@ -44,10 +44,10 @@ Each action is listed below with a one-line description; actions that change sta
 - `delete_location` — Delete a MaintainX location by id. [destructive]
 - `get_location` — Retrieve one MaintainX location by id.
 - `get_user` — Retrieve one MaintainX user by id.
-- `get_work_order` — Retrieve one MaintainX work order by global id. [write]
+- `get_work_order` — Retrieve one MaintainX work order by global id.
 - `list_locations` — List MaintainX locations with official filters and cursor pagination.
 - `list_users` — List MaintainX users with official filters and cursor pagination.
-- `list_work_order_comments` — List comments on a MaintainX work order. [write]
+- `list_work_order_comments` — List comments on a MaintainX work order.
 - `list_work_orders` — List MaintainX work orders with official filters and cursor pagination.
 - `update_location` — Update a MaintainX location. [write]
 - `update_user` — Update a MaintainX user. [write]
@@ -83,11 +83,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — MaintainX is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=maintainx
+  https://console.oomol.com/connections/maintainx
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - MaintainX homepage: https://www.getmaintainx.com/
+- API documentation: https://api.getmaintainx.com/v1/docs

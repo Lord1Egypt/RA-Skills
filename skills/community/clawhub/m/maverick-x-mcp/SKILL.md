@@ -4,7 +4,7 @@ description: Search, read, and work with X posts, users, timelines, and search t
 homepage: https://docs.x.com/tools/mcp
 metadata:
   openclaw:
-    emoji: "𝕏"
+    emoji: '𝕏'
     requires:
       bins:
         - mcporter
@@ -20,7 +20,7 @@ metadata:
     install:
       - id: node
         kind: node
-        package: mcporter
+        package: mcporter@0.13.10
         bins:
           - mcporter
         label: Install mcporter (node)
@@ -75,5 +75,5 @@ Tool calls travel from the agent to mcporter, then to this skill's local XMCP se
 
 ## Dependencies
 
-- **`mcporter`** ([github.com/steipete/mcporter](https://github.com/steipete/mcporter)) — MCP CLI used to invoke the local MCP server. Auto-installed via `npm install -g --ignore-scripts mcporter` if missing on PATH (see `install` spec in frontmatter). The install spec uses unpinned `mcporter` (npm `latest`); operators with strict supply-chain controls should override the install to pin a specific version.
+- **`mcporter`** ([github.com/openclaw/mcporter](https://github.com/openclaw/mcporter)) — MCP CLI used to invoke the local MCP server. If it is missing from PATH, the frontmatter installs the exact `mcporter@0.13.10` package with npm install scripts disabled.
 - **`uv`** ([docs.astral.sh/uv](https://docs.astral.sh/uv/)) — runs the Python wrapper and local XMCP launcher from inline script metadata.

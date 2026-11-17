@@ -4,14 +4,15 @@ exports.queryCredits = queryCredits;
 const validator_1 = require("../validator");
 const error_handler_1 = require("../error-handler");
 const types_1 = require("../types");
+const i18n_1 = require("../i18n");
 async function queryCredits(params, client) {
     const apiResponse = await client.post("/open/queryCredits", {}, types_1.TIMEOUT_CONFIG.query);
     if (apiResponse.code !== types_1.ErrorCode.SUCCESS) {
-        return (0, error_handler_1.mapApiError)(apiResponse);
+        return (0, error_handler_1.mapApiError)(apiResponse, params.locale, params.region);
     }
     const result = {
         code: types_1.ErrorCode.SUCCESS,
-        message: "查询成功",
+        message: (0, i18n_1.localize)(params.locale, "查询成功", "Credits retrieved"),
         userNo: apiResponse.userNo,
         credits: apiResponse.credits,
     };

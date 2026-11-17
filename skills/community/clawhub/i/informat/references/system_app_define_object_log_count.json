@@ -1,0 +1,17 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_define_object_log_count",
+    "description": "Query the total number of designer model change logs for the current application.\n\nUse cases:\n- Check how many design change records exist for the current application\n- Count design change records by operation type\n- Get a total before paginating through change records\n\nNotes:\n- Reads only the current application\n- Does not modify data\n- Currently supports only the opt filter\n- Supported opt values include: Create, Update, Delete, GitSync, Install, Upgrade, Publish",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "opt": {
+          "type": "string",
+          "description": "Operation type filter. Supported values: Create, Update, Delete, GitSync, Install, Upgrade, Publish. Omit this field to count all design change records for the current application."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

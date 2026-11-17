@@ -1,43 +1,53 @@
-## Description: <br>
-Render and summarize a public X (Twitter) link when you need to read the tweet/article content without logging in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render and summarize a public X (Twitter) link when you need to read the tweet/article content without logging in.
 
-## Publisher: <br>
-[tylordius](https://clawhub.ai/user/tylordius) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[tylordius](https://clawhub.ai/user/tylordius)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to read publicly accessible X/Twitter permalinks and receive a concise Markdown summary of the tweet, thread replies, linked article content, links, timestamps, and media references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens public X links in Chromium with reduced browser isolation. <br>
-Mitigation: Use trusted public X URLs only, avoid sensitive browsing contexts, and ask the publisher to remove the no-sandbox flags or clearly document why they are required. <br>
-Risk: X page availability, login walls, or DOM changes can prevent extraction or produce incomplete summaries. <br>
-Mitigation: Confirm important summaries against the original public link and retest the skill when X changes its page structure. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to read public X/Twitter permalinks and convert the visible tweet, thread, linked article, and media details into a concise Markdown summary.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tylordius/x-read) <br>
-- [Publisher profile](https://clawhub.ai/user/tylordius) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown thread summary with source URL, author, timestamp, extracted text, links, and media references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only output for public X/Twitter content; results depend on public page availability and current X page structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: CHANGELOG, package.json, server release) <br>
+Risk: The security review reports that the skill can browse arbitrary URLs in an unsandboxed Chromium process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an isolated or hardened environment, restrict use to trusted X/Twitter permalinks, and prefer a release that validates allowed hosts, blocks local or private-network destinations and redirects, and restores browser sandboxing.
+
+Risk: The security review reports dependency and logging risks.
+
+Mitigation: Review dependencies before installation, update or pin dependencies as appropriate, and prefer a release that removes raw debug page logging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tylordius/skills/x-read)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown thread summary with source URL, author, timestamp, tweet text, linked article, media URLs, and ALT text when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads one public X/Twitter permalink per run and may include up to the main tweet plus three replies.]
+
+## Skill Version(s):
+
+1.0.1 (source: package.json, CHANGELOG, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

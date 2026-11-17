@@ -1,0 +1,936 @@
+{
+  "_meta": {
+    "version": "1.2.0",
+    "purpose": "GA11 键控事实槽（keyed slots）谓词归一真源：方面簇词表 + 互斥对 + 否定词 + 主体停用词",
+    "rule": "同槽键=(主体键, 方面aspect)，值=数值/枚举/极性；同键值冲突才计矛盾，相似度不参与",
+    "created": "2026-09-16",
+    "updated": "2026-10-01",
+    "aspects_count": 36
+  },
+  "aspects": {
+    "revenue": {
+      "zh": [
+        "营收",
+        "收入",
+        "营业额",
+        "营业收入",
+        "总营收",
+        "营收额",
+        "营收规模",
+        "总收入",
+        "销售额",
+        "营业总收入"
+      ],
+      "en": [
+        "revenue",
+        "total revenue",
+        "sales revenue",
+        "turnover"
+      ]
+    },
+    "profit": {
+      "zh": [
+        "利润",
+        "净利润",
+        "盈利",
+        "净利",
+        "纯利",
+        "利润额",
+        "归母净利润",
+        "扣非净利润",
+        "净利润额",
+        "税后利润"
+      ],
+      "en": [
+        "profit",
+        "net profit",
+        "net income",
+        "earnings"
+      ]
+    },
+    "loss": {
+      "zh": [
+        "亏损",
+        "净亏",
+        "亏空",
+        "赤字"
+      ],
+      "en": [
+        "loss",
+        "net loss",
+        "deficit"
+      ]
+    },
+    "trend_dir": {
+      "zh": [
+        "增长",
+        "上升",
+        "提升",
+        "增加",
+        "上涨",
+        "提高",
+        "走强",
+        "回升",
+        "下滑",
+        "下降",
+        "降低",
+        "减少",
+        "下跌",
+        "回落",
+        "走低",
+        "下降趋势"
+      ],
+      "en": [
+        "increase",
+        "rise",
+        "grow",
+        "growth",
+        "up",
+        "gain",
+        "climb",
+        "decrease",
+        "decline",
+        "drop",
+        "fall",
+        "down",
+        "reduce",
+        "slump"
+      ]
+    },
+    "open_source": {
+      "zh": [
+        "开源",
+        "开放源代码",
+        "开放源码",
+        "闭源",
+        "不开源",
+        "专有"
+      ],
+      "en": [
+        "open source",
+        "open-source",
+        "closed source",
+        "closed-source",
+        "proprietary"
+      ]
+    },
+    "profit_status": {
+      "zh": [
+        "盈利",
+        "亏损"
+      ],
+      "en": [
+        "profitable",
+        "unprofitable",
+        "in profit",
+        "in loss"
+      ]
+    },
+    "market_share": {
+      "zh": [
+        "市场份额",
+        "市占率",
+        "市场占比",
+        "份额",
+        "市占",
+        "占比",
+        "市场占有率",
+        "份额占比"
+      ],
+      "en": [
+        "market share",
+        "share of market"
+      ]
+    },
+    "valuation": {
+      "zh": [
+        "估值",
+        "市值",
+        "估值水平",
+        "公司价值"
+      ],
+      "en": [
+        "valuation",
+        "market value",
+        "market cap",
+        "estimated value"
+      ]
+    },
+    "headcount": {
+      "zh": [
+        "员工数",
+        "人数",
+        "员工",
+        "雇员",
+        "团队规模",
+        "月活跃用户",
+        "月活",
+        "日活跃用户",
+        "日活",
+        "活跃用户",
+        "用户数",
+        "注册用户",
+        "人员规模",
+        "员工总数",
+        "全职员工",
+        "职工人数"
+      ],
+      "en": [
+        "headcount",
+        "employees",
+        "staff",
+        "number of employees",
+        "monthly active users",
+        "mau",
+        "daily active users",
+        "dau",
+        "active users",
+        "user count",
+        "registered users"
+      ]
+    },
+    "founded_year": {
+      "zh": [
+        "成立",
+        "创立",
+        "创办",
+        "成立年份",
+        "成立时间"
+      ],
+      "en": [
+        "founded",
+        "founding year",
+        "established",
+        "incorporated"
+      ]
+    },
+    "release": {
+      "zh": [
+        "发布",
+        "推出",
+        "发行",
+        "上线",
+        "公布",
+        "停止",
+        "取消",
+        "搁置",
+        "推迟"
+      ],
+      "en": [
+        "release",
+        "launch",
+        "publish",
+        "announce",
+        "issue",
+        "stop",
+        "cancel",
+        "shelve",
+        "postpone",
+        "delay"
+      ]
+    },
+    "funding": {
+      "zh": [
+        "融资",
+        "募资",
+        "投资",
+        "轮融资",
+        "融资金额"
+      ],
+      "en": [
+        "funding",
+        "fundraising",
+        "financing",
+        "investment round",
+        "raised"
+      ]
+    },
+    "acquisition": {
+      "zh": [
+        "收购",
+        "并购",
+        "并入",
+        "出售",
+        "被收购"
+      ],
+      "en": [
+        "acquire",
+        "acquisition",
+        "merge",
+        "buy",
+        "sell",
+        "take over"
+      ]
+    },
+    "partnership": {
+      "zh": [
+        "合作",
+        "战略合作",
+        "结盟",
+        "伙伴关系",
+        "签约"
+      ],
+      "en": [
+        "partnership",
+        "cooperate",
+        "cooperation",
+        "collaborate",
+        "alliance",
+        "deal"
+      ]
+    },
+    "appointment": {
+      "zh": [
+        "任命",
+        "出任",
+        "担任",
+        "就任",
+        "离职",
+        "卸任",
+        "辞职",
+        "离开"
+      ],
+      "en": [
+        "appoint",
+        "join as",
+        "serve as",
+        "take office",
+        "leave",
+        "resign",
+        "step down",
+        "depart"
+      ]
+    },
+    "legal_status": {
+      "zh": [
+        "起诉",
+        "诉讼",
+        "违规",
+        "违法",
+        "处罚",
+        "罚款",
+        "合规",
+        "无罪",
+        "和解"
+      ],
+      "en": [
+        "sue",
+        "lawsuit",
+        "violate",
+        "illegal",
+        "fine",
+        "penalty",
+        "compliant",
+        "innocent",
+        "settle"
+      ]
+    },
+    "product_spec": {
+      "zh": [
+        "性能",
+        "参数",
+        "配置",
+        "规格",
+        "续航",
+        "容量",
+        "尺寸"
+      ],
+      "en": [
+        "spec",
+        "specification",
+        "performance",
+        "capacity",
+        "battery life",
+        "size"
+      ]
+    },
+    "location": {
+      "zh": [
+        "总部",
+        "位于",
+        "所在地",
+        "地址",
+        "坐落"
+      ],
+      "en": [
+        "headquartered",
+        "head office",
+        "based in",
+        "located in",
+        "location"
+      ]
+    },
+    "pricing": {
+      "zh": [
+        "价格",
+        "售价",
+        "定价",
+        "报价",
+        "单价",
+        "市场价",
+        "成交价",
+        "均价",
+        "单价水平"
+      ],
+      "en": [
+        "price",
+        "pricing",
+        "cost",
+        "unit price",
+        "sells for"
+      ]
+    },
+    "availability": {
+      "zh": [
+        "可用",
+        "上线",
+        "开售",
+        "提供",
+        "缺货",
+        "下架",
+        "停售",
+        "不可用"
+      ],
+      "en": [
+        "available",
+        "in stock",
+        "on sale",
+        "unavailable",
+        "out of stock",
+        "discontinued",
+        "offline"
+      ]
+    },
+    "analyst_rating": {
+      "zh": [
+        "评级",
+        "机构评级",
+        "投资评级",
+        "目标价",
+        "买入",
+        "卖出",
+        "增持",
+        "减持",
+        "中性",
+        "看多",
+        "看空"
+      ],
+      "en": [
+        "rating",
+        "price target",
+        "buy rating",
+        "sell rating",
+        "overweight",
+        "underweight",
+        "neutral",
+        "upgrade",
+        "downgrade"
+      ]
+    },
+    "sales_volume": {
+      "zh": [
+        "销量",
+        "销售量",
+        "出货量",
+        "交付量",
+        "订单量",
+        "产量销量",
+        "装机量",
+        "装机容量",
+        "成交量"
+      ],
+      "en": [
+        "sales volume",
+        "unit sales",
+        "shipments",
+        "deliveries",
+        "order volume"
+      ]
+    },
+    "listing_status": {
+      "zh": [
+        "上市",
+        "退市",
+        "招股",
+        "过会",
+        "摘牌",
+        "递交招股书"
+      ],
+      "en": [
+        "ipo",
+        "listed",
+        "delisted",
+        "go public",
+        "listing"
+      ]
+    },
+    "person_change": {
+      "zh": [
+        "董事长",
+        "创始人",
+        "法定代表人",
+        "总裁",
+        "首席执行官",
+        "高管",
+        "实际控制人"
+      ],
+      "en": [
+        "chairman",
+        "founder",
+        "chief executive",
+        "legal representative",
+        "controlling shareholder"
+      ]
+    },
+    "production_output": {
+      "zh": [
+        "产量",
+        "产出",
+        "年产量",
+        "月产量",
+        "产出量",
+        "产能产量"
+      ],
+      "en": []
+    },
+    "capacity": {
+      "zh": [
+        "产能",
+        "生产能力",
+        "年产能",
+        "设计产能",
+        "产能规模"
+      ],
+      "en": []
+    },
+    "user_scale": {
+      "zh": [
+        "用户数",
+        "活跃用户",
+        "月活",
+        "日活",
+        "用户规模",
+        "注册用户",
+        "付费用户",
+        "MAU",
+        "DAU"
+      ],
+      "en": []
+    },
+    "cost": {
+      "zh": [
+        "成本",
+        "总成本",
+        "营业成本",
+        "费用",
+        "研发费用",
+        "销售费用",
+        "单位成本"
+      ],
+      "en": []
+    },
+    "margin_rate": {
+      "zh": [
+        "毛利率",
+        "净利率",
+        "利润率",
+        "收益率",
+        "回报率",
+        "ROE",
+        "ROA"
+      ],
+      "en": []
+    },
+    "growth_rate": {
+      "zh": [
+        "增速",
+        "增长率",
+        "同比",
+        "环比",
+        "增幅",
+        "降幅",
+        "年复合增长率",
+        "CAGR"
+      ],
+      "en": []
+    },
+    "rank": {
+      "zh": [
+        "排名",
+        "第一",
+        "第二",
+        "榜首",
+        "位列",
+        "位居",
+        "行业第一",
+        "市场第一"
+      ],
+      "en": []
+    },
+    "policy_stance": {
+      "zh": [
+        "支持",
+        "鼓励",
+        "限制",
+        "禁止",
+        "监管",
+        "叫停",
+        "获批",
+        "批准"
+      ],
+      "en": []
+    },
+    "debt": {
+      "zh": [
+        "负债",
+        "债务",
+        "负债率",
+        "借款",
+        "有息负债",
+        "资产负债率"
+      ],
+      "en": []
+    },
+    "cash": {
+      "zh": [
+        "现金流",
+        "经营现金流",
+        "现金储备",
+        "账上现金",
+        "资金储备"
+      ],
+      "en": []
+    },
+    "dividend": {
+      "zh": [
+        "分红",
+        "派息",
+        "股息",
+        "股利",
+        "回购股份",
+        "股票回购"
+      ],
+      "en": []
+    },
+    "time_point": {
+      "zh": [
+        "时间",
+        "日期",
+        "什么时候",
+        "将于",
+        "预计",
+        "原定",
+        "推迟",
+        "延期"
+      ],
+      "en": []
+    }
+  },
+  "opposites": {
+    "open_source": [
+      [
+        "开源",
+        "闭源"
+      ],
+      [
+        "开源",
+        "专有"
+      ],
+      [
+        "open source",
+        "closed source"
+      ],
+      [
+        "open source",
+        "proprietary"
+      ],
+      [
+        "open-source",
+        "closed-source"
+      ]
+    ],
+    "analyst_rating": [
+      [
+        "买入",
+        "卖出"
+      ],
+      [
+        "增持",
+        "减持"
+      ],
+      [
+        "看多",
+        "看空"
+      ],
+      [
+        "buy",
+        "sell"
+      ],
+      [
+        "overweight",
+        "underweight"
+      ],
+      [
+        "upgrade",
+        "downgrade"
+      ]
+    ],
+    "profit_status": [
+      [
+        "盈利",
+        "亏损"
+      ],
+      [
+        "profitable",
+        "unprofitable"
+      ],
+      [
+        "profit",
+        "loss"
+      ]
+    ],
+    "trend_dir": [
+      [
+        "增长",
+        "下滑"
+      ],
+      [
+        "增长",
+        "下降"
+      ],
+      [
+        "上升",
+        "下降"
+      ],
+      [
+        "上涨",
+        "下跌"
+      ],
+      [
+        "提升",
+        "降低"
+      ],
+      [
+        "增加",
+        "减少"
+      ],
+      [
+        "回升",
+        "回落"
+      ],
+      [
+        "走强",
+        "走低"
+      ],
+      [
+        "increase",
+        "decrease"
+      ],
+      [
+        "rise",
+        "fall"
+      ],
+      [
+        "growth",
+        "decline"
+      ],
+      [
+        "up",
+        "down"
+      ],
+      [
+        "gain",
+        "drop"
+      ],
+      [
+        "climb",
+        "slump"
+      ]
+    ],
+    "release": [
+      [
+        "发布",
+        "停止"
+      ],
+      [
+        "发布",
+        "取消"
+      ],
+      [
+        "推出",
+        "搁置"
+      ],
+      [
+        "上线",
+        "下架"
+      ],
+      [
+        "release",
+        "cancel"
+      ],
+      [
+        "launch",
+        "shelve"
+      ],
+      [
+        "announce",
+        "postpone"
+      ]
+    ],
+    "acquisition": [
+      [
+        "收购",
+        "出售"
+      ],
+      [
+        "acquire",
+        "sell"
+      ]
+    ],
+    "appointment": [
+      [
+        "任命",
+        "离职"
+      ],
+      [
+        "出任",
+        "卸任"
+      ],
+      [
+        "担任",
+        "辞职"
+      ],
+      [
+        "appoint",
+        "resign"
+      ],
+      [
+        "join",
+        "leave"
+      ]
+    ],
+    "legal_status": [
+      [
+        "违规",
+        "合规"
+      ],
+      [
+        "违法",
+        "无罪"
+      ],
+      [
+        "处罚",
+        "和解"
+      ],
+      [
+        "violate",
+        "compliant"
+      ],
+      [
+        "sue",
+        "settle"
+      ]
+    ],
+    "availability": [
+      [
+        "可用",
+        "不可用"
+      ],
+      [
+        "上线",
+        "下架"
+      ],
+      [
+        "开售",
+        "停售"
+      ],
+      [
+        "缺货",
+        "在售"
+      ],
+      [
+        "available",
+        "unavailable"
+      ],
+      [
+        "in stock",
+        "out of stock"
+      ]
+    ]
+  },
+  "negation_zh": [
+    "不",
+    "否",
+    "非",
+    "无",
+    "未",
+    "没",
+    "别",
+    "莫",
+    "毋",
+    "弗",
+    "没有",
+    "并未"
+  ],
+  "negation_en": [
+    "not",
+    "no",
+    "never",
+    "without",
+    "none",
+    "fail",
+    "n't",
+    "deny",
+    "denied"
+  ],
+  "subject_stopwords": {
+    "zh": [
+      "公司",
+      "集团",
+      "企业",
+      "官方",
+      "方面",
+      "表示",
+      "称",
+      "透露",
+      "宣布",
+      "确认",
+      "指出",
+      "认为",
+      "记者",
+      "报道",
+      "新闻",
+      "消息",
+      "人士",
+      "季度",
+      "年度",
+      "数据",
+      "财报",
+      "显示",
+      "同比",
+      "环比"
+    ],
+    "en": [
+      "inc",
+      "ltd",
+      "corp",
+      "company",
+      "group",
+      "official",
+      "said",
+      "says",
+      "according",
+      "report",
+      "reports",
+      "quarter",
+      "year",
+      "announced",
+      "confirmed",
+      "stated",
+      "the",
+      "and",
+      "for",
+      "with"
+    ]
+  }
+}

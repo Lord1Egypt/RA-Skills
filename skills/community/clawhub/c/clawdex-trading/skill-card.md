@@ -1,41 +1,53 @@
-## Description: <br>
-Trade tokens on Solana using the ClawDex CLI. Use when the user asks to swap tokens, check balances, get quotes, or manage a Solana trading wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade tokens on Solana using the ClawDex CLI. Use when the user asks to swap tokens, check balances, get quotes, or manage a Solana trading wallet.
 
-## Publisher: <br>
-[JoelCCodes](https://clawhub.ai/user/JoelCCodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joelccodes](https://clawhub.ai/user/joelccodes)
 
-## Use Case: <br>
-Developers and external users use this skill to check Solana wallet balances, obtain swap quotes, simulate swaps, and execute token trades through the ClawDex CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to operate a Solana trading wallet and execute real swaps through non-interactive commands. <br>
-Mitigation: Use a dedicated low-balance wallet, simulate each swap first, set strict safety guardrails, and require explicit human confirmation before any real swap using `--yes`. <br>
-Risk: The skill installs or relies on an unpinned external ClawDex CLI package. <br>
-Mitigation: Verify and pin the CLI package before installation, and install only when the ClawDex CLI is trusted. <br>
-Risk: Wallet keys, API keys, or trading details could be exposed in logs or transcripts. <br>
-Mitigation: Avoid exposing wallet secrets and API keys in agent transcripts, shell logs, or shared outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JoelCCodes/clawdex-trading) <br>
+## Use Case:
 
+External developers and agents use this skill to quote Solana token swaps, check wallet balances, simulate trades, and execute swaps through the ClawDex CLI with JSON output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-oriented command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance emphasizes machine-parseable JSON output, simulation before execution, exit-code handling, and balance verification after swaps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install a mutable global ClawDex CLI and use wallet/API access.
+
+Mitigation: Install a pinned, verified ClawDex version and review the CLI before granting wallet or API access.
+
+Risk: The skill supports non-interactive live swaps with swap authority.
+
+Mitigation: Use an isolated low-value wallet or hardware/approval-based signer, simulate first, and execute only after confirming tokens, amount, slippage, route, destination, and fees.
+
+## Reference(s):
+
+- [ClawDex Trading on ClawHub](https://clawhub.ai/joelccodes/skills/clawdex-trading)
+- [Publisher profile: joelccodes](https://clawhub.ai/user/joelccodes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to request JSON output, parse balances as strings, check exit codes, and simulate swaps before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

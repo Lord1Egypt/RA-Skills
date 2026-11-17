@@ -1,0 +1,26 @@
+name: gc-minimal-zine-poster
+version: 1.0.0
+description: "Generate Minimal Zine Poster — turn a theme, sentence, object, mood, or photo into a quiet Japanese/Korean zine-like editorial poster (3:5 aged paper, large negative space, a single high-saturation color anchor, risograph/xerox texture) plus a generated raster image via ImageGen."
+category: 设计创意
+tags:
+  - poster
+  - zine
+  - minimal
+  - editorial
+  - image-generation
+  - typography
+license: MIT
+author: qingc
+entry: SKILL.md
+triggers:
+  - zine poster
+  - minimal poster
+  - zine style
+  - editorial poster
+  - poetry poster
+  - paper poster
+  - independent zine aesthetic
+requirements:
+  - tool: ImageGen
+  - runtime: python (optional, for packaging)
+notes: "Adapted from https://github.com/LiamGvchi/gc-minimal-zine-poster for the WorkBuddy skill runtime."

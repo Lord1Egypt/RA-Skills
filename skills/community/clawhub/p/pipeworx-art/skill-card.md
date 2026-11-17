@@ -1,42 +1,55 @@
-## Description: <br>
-Search and explore 500,000+ artworks in the Metropolitan Museum of Art's open-access collection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and explore 500,000+ artworks in the Metropolitan Museum of Art's open-access collection.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users and developers use this skill to search the Met Museum open-access collection, retrieve detailed artwork records, list departments, and build educational or recommendation workflows from structured art metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security guidance notes that some listed maintainer workflows can affect users or public content. <br>
-Mitigation: Install only when those workflows are intended for the agent, and review any moderation or public-content actions before execution. <br>
-Risk: The security guidance notes that autoreview workflows may default to a full-access nested review mode unless disabled. <br>
-Mitigation: Disable or constrain nested autoreview access unless full-access review behavior is explicitly required. <br>
+## Use Case:
 
+External users, educators, researchers, and developers use this skill to search Met Museum artworks, inspect object details, and retrieve structured metadata for educational content, recommendations, or collection comparison workflows.
 
-## Reference(s): <br>
-- [Pipeworx Art Pack](https://pipeworx.io/packs/art) <br>
-- [Pipeworx Art MCP Endpoint](https://gateway.pipeworx.io/art/mcp) <br>
-- [ClawHub Skill Page](https://clawhub.ai/brucegutman/pipeworx-art) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON responses with artwork metadata, plus Markdown guidance with command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for the documented example and an MCP remote endpoint; artwork records can include image URLs, object URLs, departments, culture, period, and medium.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The setup runs `mcp-remote@latest`, so installs may pick up unreviewed package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the `mcp-remote` version or use a controlled local install before deployment.
+
+Risk: The skill connects to a remote MCP gateway for artwork queries.
+
+Mitigation: Run the MCP process with only the filesystem, environment, and network access needed for the documented art-search workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-art)
+- [Pipeworx Art homepage](https://pipeworx.io/packs/art)
+- [Pipeworx Art MCP endpoint](https://gateway.pipeworx.io/art/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include artwork metadata such as titles, artists, dates, media, departments, image URLs, object URLs, gallery locations, provenance, and exhibition history.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

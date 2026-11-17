@@ -1,40 +1,54 @@
-## Description: <br>
-Scans project directories, extracts Python symbols and imports, and builds a searchable JSON codebase index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+代码库索引与理解系统。扫描项目目录，提取所有符号定义（类、函数、变量、导入），构建可搜索的 JSON 索引，支持按名称/类型/文件查询。
 
-## Publisher: <br>
-[lxr-666](https://clawhub.ai/user/lxr-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxr-666](https://clawhub.ai/user/lxr-666)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to create a local index of a project, then query symbols, files, and statistics while exploring or maintaining a codebase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated JSON index may contain sensitive code metadata such as file paths, docstrings, imports, symbol names, and limited variable value representations. <br>
-Mitigation: Run the indexer only on intended project directories and treat generated index files as sensitive project artifacts. <br>
-Risk: The skill reads local project files and writes an index file selected by the user. <br>
-Mitigation: Review scan targets and output paths before running the commands, especially in workspaces that contain private or regulated code. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan a project, build a searchable JSON symbol index, and query classes, functions, variables, imports, files, and summary statistics while navigating a codebase.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxr-666/codebase-index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated indexes are JSON and query results are terminal text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3. The indexer runs locally and does not require network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The scanner can follow symlinks outside the chosen project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid running it on untrusted repositories until symlink handling is fixed, and review the scan target before execution.
+
+Risk: Generated JSON indexes may reveal sensitive code metadata such as paths, docstrings, imports, and assigned-value snippets.
+
+Mitigation: Keep generated indexes private and avoid indexing repositories that contain secrets or sensitive implementation details unless sharing controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxr-666/skills/codebase-index)
+- [Publisher profile](https://clawhub.ai/user/lxr-666)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands; generated indexes are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated indexes may include file paths, docstrings, imports, symbol names, line numbers, and snippets of assigned values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

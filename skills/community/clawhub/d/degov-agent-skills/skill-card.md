@@ -1,44 +1,59 @@
-## Description: <br>
-Load this skill when users ask about Web3 DAO governance, using the Degov Agent API as the primary source for governance facts and recent activity with web search as a secondary layer when API coverage is missing, stale, or insufficient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load this skill when users ask about Web3 DAO governance. Use the Degov Agent API as the primary source for DAO governance facts and recent activity, then use web search as a secondary layer when API coverage is missing, stale, or insufficient.
 
-## Publisher: <br>
-[boundless-forest](https://clawhub.ai/user/boundless-forest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boundless-forest](https://clawhub.ai/user/boundless-forest)
 
-## Use Case: <br>
-External users and agents use this skill to answer Web3 DAO governance questions with recent Degov Agent API data, source follow-up, and clear explanations. It is suited for DAO activity summaries, proposal explanations, governance participation guidance, and recent governance research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid Degov Agent API calls require a local Base wallet with USDC for small x402 fees. <br>
-Mitigation: Ask for user consent before paid calls, use the dedicated wallet only for API payments, and fund it with only a small USDC amount. <br>
-Risk: The wallet and passphrase files are sensitive local custody material. <br>
-Mitigation: Keep the wallet and passphrase private, rely on encrypted wallet storage, and do not ask users to paste private keys. <br>
-Risk: DAO governance answers can be incomplete if API coverage is stale, missing, or too shallow. <br>
-Mitigation: Check data freshness when needed and use official DAO forums, proposal pages, governance portals, and web search as follow-up sources. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to answer Web3 DAO governance questions with current Degov Agent API data and source follow-up when API coverage is missing or needs verification.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/boundless-forest/degov-agent-skills) <br>
-- [Degov Agent API](https://agent-api.degov.ai) <br>
-- [Base Mainnet RPC](https://mainnet.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and source links when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paid API consent prompts, wallet setup steps, budget guidance, and DAO source links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.1 (source: frontmatter and server release metadata) <br>
+Risk: Paid Degov Agent API calls can authorize x402 wallet payments without strong local spending limits or endpoint controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before paid endpoints, keep only a small USDC balance in the dedicated Base wallet, check budget guidance before use, and avoid alternate API endpoints except trusted development systems.
+
+Risk: The local wallet and passphrase files are sensitive secrets.
+
+Mitigation: Use the generated wallet only for API payments, rely on encrypted wallet storage with restricted file permissions, and do not share wallet or passphrase files.
+
+Risk: DAO governance answers can become misleading if API coverage is stale, missing, or too shallow.
+
+Mitigation: Check data freshness when relevant and use official DAO forums, proposal pages, governance portals, or web follow-up before presenting important claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boundless-forest/skills/degov-agent-skills)
+- [Degov Agent API](https://agent-api.degov.ai)
+- [Base mainnet RPC endpoint](https://mainnet.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise prose, source links, and inline shell commands when wallet or API setup is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Degov Agent API data, web follow-up, wallet funding guidance, and payment settlement links; raw API payloads are avoided unless requested.]
+
+## Skill Version(s):
+
+0.6.1 (source: SKILL.md frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

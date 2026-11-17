@@ -1,47 +1,59 @@
-## Description: <br>
-Create new skills, modify and improve existing skills, measure skill performance, and manage skill distribution across agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Creator helps agents create, update, evaluate, improve, and manage skills across agent platforms.
 
-## Publisher: <br>
-[hulk-yin](https://clawhub.ai/user/hulk-yin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[hulk-yin](https://clawhub.ai/user/hulk-yin)
 
-## Use Case: <br>
-Developers and agent builders use this skill to scope, draft, evaluate, improve, optimize, package, and distribute agent skills. It supports iterative development workflows with test prompts, benchmark artifacts, review pages, and helper scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent skill files and package distributable skill archives. <br>
-Mitigation: Review generated skill directories and package contents before syncing or distributing them. <br>
-Risk: The evaluation workflow can run subprocesses, background tools, local review servers, and Claude or Anthropic service calls. <br>
-Mitigation: Run evaluations in a trusted workspace, use only intended credentials, monitor long-running processes, and prefer static review output or an unused localhost port. <br>
-Risk: Evaluation content may include sensitive prompts, outputs, or files that are exposed through review artifacts. <br>
-Mitigation: Avoid using secret-containing skills or eval sets, and remove sensitive data from generated reports, review pages, and feedback files before sharing. <br>
-Risk: The security guidance identifies an XLSX preview sanitization issue in the viewer. <br>
-Mitigation: Do not preview untrusted XLSX outputs until the viewer sanitization issue is fixed. <br>
+## Use Case:
 
+Developers and skill authors use this skill to turn intent into skill files, run qualitative and quantitative evaluation loops, improve skill triggering, and package or distribute skills.
 
-## Reference(s): <br>
-- [ClawHub release: Skill Creator](https://clawhub.ai/hulk-yin/skill-creator-usm) <br>
-- [Publisher profile: hulk-yin](https://clawhub.ai/user/hulk-yin) <br>
-- [Skill Manager ecosystem reference](https://github.com/ZiweiAxis/skill-manager) <br>
-- [Evaluation and benchmark schemas](references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with code blocks, JSON evaluation metadata, generated skill files, benchmark reports, and optional HTML review pages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent skill files, evaluation workspaces, packaged .skill archives, reports, and local or static review pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The bundled evaluation viewer can mishandle untrusted evaluation files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the viewer's HTML embedding and rendering paths before using it on untrusted outputs, and keep evaluation workspaces isolated.
+
+Risk: The bundled viewer can stop other local applications when it starts.
+
+Mitigation: Check for an unused port before launching the viewer, avoid elevated privileges, and do not run it in shared environments without operator awareness.
+
+Risk: Description optimization may send skill or evaluation content to Anthropic.
+
+Mitigation: Avoid running description optimization on sensitive or confidential skill content unless external processing is approved.
+
+## Reference(s):
+
+- [Skill Creator schemas](artifact/references/schemas.md)
+- [Skill Manager](https://github.com/ZiweiAxis/skill-manager)
+- [ClawHub Skill Creator release](https://clawhub.ai/hulk-yin/skills/skill-creator-usm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, code, configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or revise skill files and evaluation artifacts when used by an agent with filesystem access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

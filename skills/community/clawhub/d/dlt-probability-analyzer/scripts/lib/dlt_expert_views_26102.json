@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "target_period": "26102",
+    "last_updated": "2026-09-07 11:40",
+    "verified": true,
+    "note": "本期(26102)经WebSearch+WebFetch逐条核对真实来源文章, 每位含分析逻辑+推荐号+来源URL。专家推荐数学上无预测优势(no_edge), 仅作分析思路观察与逆向参考。"
+  },
+  "experts": [
+    {"expert": "林必立", "platform": "新浪体育", "front": [4, 5, 6, 10, 34], "back": [7, 11], "source_url": "https://sports.sina.com.cn/l/2026-09-07/doc-iniqyeue6452814.shtml", "verified": true, "analysis": "三区比分析: 前区一位看偶04、二位奇05、三位偶06、四位偶10、五位偶34(全偶回补); 后区07-11。5+2单注04,05,06,10,34+07,11。"},
+    {"expert": "刘星", "platform": "新浪体育", "front": [1, 7, 17, 18, 27], "back": [7, 9], "source_url": "https://sports.sina.com.cn/l/2026-09-07/doc-iniqyeua9680275.shtml", "verified": true, "analysis": "和值走势: 奇偶比看4:1; 012路0路温冷、1路走冷; 龙头凤尾01-27; 杀前08,09,12,14,25,29,30,32。单挑01,07,17,18,27+07,09。"},
+    {"expert": "山哥", "platform": "新浪体育", "front": [4, 16, 17, 26, 31], "back": [5, 7], "source_url": "https://sports.sina.com.cn/l/2026-09-07/doc-iniqyeua9675549.shtml", "verified": true, "analysis": "后区分析: 前区一位04/二位16/三位17/四位26/五位31; 后区看小大组合05-07; 小复式04,06,08,16,17,19,26,31,35+05,07,11。"},
+    {"expert": "高财", "platform": "新浪体育", "front": [11, 15, 18, 21, 23], "back": [6, 9], "source_url": "https://sports.sina.com.cn/l/2026-09-07/doc-iniqyeui0616072.shtml", "verified": true, "analysis": "跨度分析: 012路比看3:0:2; 一/二/三/四/五位精选11/15/18/21/23; 后区二区三区06-09。单注11,15,18,21,23+06,09。"},
+    {"expert": "元宝", "platform": "新浪体育", "front": [5, 12, 22, 28, 34], "back": [4, 11], "source_url": "https://sports.sina.com.cn/l/2026-09-07/doc-iniqyeuh5781660.shtml", "verified": true, "analysis": "三区比分析: 龙头一区05、凤尾三区34; 一区2个(05,12)/二区1个(22)/三区2个(28,34); 后区热热组合04-11。单挑05,12,22,28,34+04,11。"},
+    {"expert": "彩鱼", "platform": "新浪彩票", "front": [3, 6, 15, 20, 24], "back": [3, 4], "source_url": "https://lotto.sina.cn/2026-09-07/detail-iniqymaf0490130.d.html", "verified": true, "analysis": "小复式参考: 一位奇03/二位偶06/三位奇15/四位偶20/五位偶24; 后区和值看7、小尾跨度回补。单注03,06,15,20,24+03,04。"},
+    {"expert": "人民胆王", "platform": "乐彩网", "front": [7, 20, 29, 32, 34], "back": [1, 8], "source_url": "https://www.17500.cn/arts/detail-4507172.html", "verified": true, "analysis": "7注推荐(第一注07,20,29,32,34+01,08); 文章可查26099-26101逐期推荐与开奖对照, 均标注'错'未中头奖——印证无稳定预测力。"},
+    {"expert": "狂沙漫卷", "platform": "乐彩论坛", "front": [8, 9, 21, 26, 29], "back": [3, 10], "source_url": "https://bbs.17500.cn/thread-13528530-1-1.html", "verified": true, "analysis": "选号思路: 12前02,06,09,10,12,14,19,20,21,25,27,35; 前3胆21,25,27; 杀3前03,08,18; 5注第一注08,09,21,26,29+03,10。"},
+    {"expert": "刘雪日常", "platform": "一定牛", "front": [4, 8, 17, 28, 32], "back": [9], "source_url": "https://www.ydniu.com/info/dlt/zjtj/714820260905.html", "verified": true, "analysis": "杀号定胆: 前区五胆04,08,17,28,32、独胆32; 后区定一09; 杀前六码10,13,14,15,18,22。仅胆拖/杀号分析, 非5+2单注。"},
+    {"expert": "独胆散人", "platform": "一定牛", "front": [2, 8, 11, 12, 34], "back": [6], "source_url": "https://www.ydniu.com/info/dlt/zjtj/718220260905.html", "verified": true, "analysis": "杀号定胆: 前区五胆02,08,11,12,34、独胆08; 后区定一06; 杀前六码09,17,24,25,30,31。仅胆拖/杀号分析, 非5+2单注。"}
+  ]
+}

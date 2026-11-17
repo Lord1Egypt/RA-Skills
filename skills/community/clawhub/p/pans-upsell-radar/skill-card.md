@@ -1,40 +1,49 @@
-## Description: <br>
-Pans Upsell Radar helps AI compute sales teams identify GPU-usage, team-growth, model-launch, and business-growth signals, then score expansion opportunities and suggest follow-up timing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pans Upsell Radar helps sales teams identify AI compute expansion signals, score upsell opportunities, and generate follow-up recommendations.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dashiming](https://clawhub.ai/user/dashiming)
 
-## Use Case: <br>
-Sales and account teams use this skill to analyze local customer and signal data for AI compute upsell opportunities, expansion recommendations, and follow-up timing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores customer and opportunity data locally under ~/.qclaw, which may include confidential sales information. <br>
-Mitigation: Use only authorized customer data, review or replace the bundled sample records, and control access to the local skill data directory. <br>
-Risk: Broad scans can generate recommendations across customer lists without case-by-case review. <br>
-Mitigation: Prefer explicit customer analysis commands for sensitive accounts and review suggested actions before using them in customer communications. <br>
+## Use Case:
 
+Sales and account teams use this skill to scan customer GPU usage, team growth, queue time, model launch, and business growth signals, then prioritize follow-up and capacity-expansion discussions.
 
-## Reference(s): <br>
-- [Pans Upsell Radar on ClawHub](https://clawhub.ai/dashiming/pans-upsell-radar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain-text CLI reports with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes local JSON data under ~/.qclaw/skills/pans-upsell-radar/data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled or persisted customer-like commercial records may expose sensitive or non-public business information if they are real or derived from real customers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review bundled customer data before installation, replace it with clearly fictional examples when appropriate, and document retention, deletion, and file-permission controls for runtime data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dashiming/skills/pans-upsell-radar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text reports and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include customer names, detected signals, high/medium/low opportunity scores, suggested expansion actions, and follow-up timing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

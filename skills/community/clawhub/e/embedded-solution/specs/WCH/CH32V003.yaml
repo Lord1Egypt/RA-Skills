@@ -1,0 +1,41 @@
+part: CH32V003
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "WCH CH32V003 \u2014 8-pin low-cost RISC-V MCU"
+main_page: https://www.wch-ic.com/products/CH32V003.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH32V003_datasheet.pdf
+datasheet_source_url: https://akizukidenshi.com/goodsaffix/CH32V003.pdf
+datasheet_source_note: akizukidenshi mirror of WCH CH32V003 datasheet (V1.3, 17 pages, 583 KB). wch-ic.com itself is a JS
+  SPA that does not serve PDFs to plain curl; akizukidenshi.com hosts the same PDF as a goods-affix mirror.
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores: QingKe RV2A
+  wireless: none
+  package:
+  - QFN7
+  - QFN20
+  - TSSOP20
+  clock_mhz_max: 48
+  flash: 16 KB
+  ram: 2 KB
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 extracted 6 spec fields from datasheet."
+- "CH32V003 \u2014 the lowest-end WCH RISC-V MCU: 8-pin, cost-optimised, single-cycle RISC-V core."
+- 'Family differentiator vs CH32V103: smaller package, fewer peripherals, lowest cost.'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 6/8 spec fields matched
+  (75%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T10:07:33+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

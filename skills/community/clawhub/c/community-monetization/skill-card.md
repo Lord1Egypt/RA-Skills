@@ -1,40 +1,52 @@
-## Description: <br>
-该技能介绍如何通过社群变现实现变现；当你计划从事或优化社群变现时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+该技能介绍如何通过社群变现实现变现；当你计划从事或优化社群变现时调用。
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and teams use this skill for Chinese-language guidance on planning, validating, and operating a community monetization workflow with channel selection, MVP validation, conversion, fulfillment, review, and compliance checkpoints.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Business guidance may be applied without checking legal, tax, advertising, consumer-protection, or platform-policy obligations.
+
+Mitigation: Review monetization plans with qualified business, legal, tax, and platform-policy reviewers before execution.
+
+Risk: Community monetization workflows can create misleading promotion, unauthorized content use, or unclear delivery commitments if implemented carelessly.
+
+Mitigation: Require accurate promotional claims, documented content rights, clear contracts, invoices, and fulfillment quality checks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External creators, community operators, and small teams use this skill to plan a practical community monetization workflow, validate a minimum viable channel, track funnel metrics, and avoid common compliance and delivery mistakes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, text, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Community monetization advice can be misapplied in ways that violate platform policies, advertising rules, copyright, contract terms, or invoicing requirements. <br>
-Mitigation: Verify platform policies, advertising claims, copyright permissions, contracts, invoices, and local legal requirements before acting on the guidance. <br>
-Risk: The skill discusses growth and monetization channels where poor tracking, unclear pricing, or non-standard delivery can produce misleading results or customer harm. <br>
-Mitigation: Start with a minimum viable channel, track CAC, GMV, conversion, retention, LTV/CAC, and repeat purchase rate, then review results weekly before scaling. <br>
+**Output Format:** [Markdown guidance and checklist-style advisory text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/community-monetization) <br>
+**Other Properties Related to Output:** [Chinese-language business planning guidance; no executable code or hidden system access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with checklists, process steps, metrics, and action-plan bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; no code execution, account access, or private data handling is requested by the skill.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,48 @@
-## Description: <br>
-Use when profiling native macOS or iOS apps with Instruments/xctrace. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when profiling native macOS or iOS apps with Instruments/xctrace. Covers correct binary selection, CLI arguments, exports, and common gotchas.
 
-## Publisher: <br>
-[steipete](https://clawhub.ai/user/steipete) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[steipete](https://clawhub.ai/user/steipete)
 
-## Use Case: <br>
-Developers and engineers use this skill to profile native macOS and iOS applications with Instruments/xctrace, choose the correct app binary or process, record Time Profiler traces, export stack data, and avoid common profiling mistakes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Profiling the wrong application or process can produce misleading traces or capture unrelated activity. <br>
-Mitigation: Confirm the app binary path or PID before recording and verify that the trace process path matches the intended target. <br>
-Risk: Generated trace and XML export files can contain sensitive performance data. <br>
-Mitigation: Treat trace outputs as sensitive local artifacts and avoid profiling unrelated or sensitive processes. <br>
-Risk: Developer Tools permission grants xctrace additional local profiling access. <br>
-Mitigation: Grant Developer Tools permission only when needed for the profiling task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/steipete/instruments-profiling) <br>
+## Use Case:
 
+Developers and engineers use this skill to profile native macOS and iOS apps with Instruments and xctrace, select the intended binary or process, record traces, export stack data, and avoid common profiling mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance for local Apple Instruments/xctrace profiling workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Profiling may target the wrong installed app if LaunchServices resolves a different bundle than intended.
+
+Mitigation: Review the target app path before profiling, prefer a direct binary path or attach to a verified PID, and confirm the process path before trusting the trace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/steipete/skills/instruments-profiling)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, text]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include xctrace command examples, binary-selection checks, trace export steps, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

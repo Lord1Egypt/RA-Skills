@@ -1,37 +1,53 @@
-## Description: <br>
-Find nearby brunch spots. Invoke when user asks for brunch near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby brunch spots. Invoke when user asks for brunch near me.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-External users and location-aware agents use this skill to find nearby brunch spots from an authorized location, with support for radius, result limit, rating, price, and keyword filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Location-based brunch recommendations may expose sensitive user whereabouts if exact coordinates are shared or retained unnecessarily. <br>
-Mitigation: Request location authorization, prefer approximate or grid-obscured coordinates when exact precision is unnecessary, and keep any location-based cache short-lived. <br>
+## Use Case:
 
+External users invoke this skill to find brunch spots near a current location or specified city with filters such as radius, rating, price level, and open-now status.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Standardized POI list with brunch-spot category, query fields, and error codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses location, radius, limit, and optional filters; category is brunch-spots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill uses current location to find nearby brunch spots, which can expose precise coordinates if provider queries or caching are handled without privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request location only after user authorization, avoid retaining exact coordinates, use grid-based obfuscation where practical, and keep location-area caching short-lived.
+
+Risk: Place data providers can be unavailable or rate-limited, leading to incomplete or failed brunch recommendations.
+
+Mitigation: Surface explicit provider-unavailable and rate-limited errors, keep query radius within configured limits, and use short-term caching for repeated searches in the same area.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/brunch-spots)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Markdown or structured place-list response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a standardized point-of-interest list for the brunch-spots category.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

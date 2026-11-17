@@ -1,44 +1,63 @@
-## Description: <br>
-Explore and discover Instagram content at scale — search posts, Reels, hashtags, music, locations, and Explore sections to surface trends, audience signals, and high-engagement content opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover Instagram posts, Reels, hashtags, music, locations, and Explore sections to identify trends, engagement patterns, and audience signals.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-External users, developers, and content analysts use this skill to query KeyAPI's Instagram MCP service for post details, comments, hashtags, Reels, music, Explore sections, and location-based content discovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API tokens and fetched Instagram data may be stored locally in .env or .keyapi-cache. <br>
-Mitigation: Use a least-privilege KeyAPI token, keep the skill directory out of source control, and regularly delete .env and .keyapi-cache contents that should not be retained. <br>
-Risk: Exported API results can contain sensitive social-media data. <br>
-Mitigation: Review exported results before sharing or committing them and handle them according to the intended privacy and retention policy. <br>
-Risk: The bundled runner exposes broader MCP calling behavior than the Instagram-only purpose suggests. <br>
-Mitigation: Review tool invocations before execution and restrict use to the documented Instagram discovery workflow. <br>
+## Use Case:
 
+External analysts, marketers, and developers use this skill to query KeyAPI Instagram MCP tools for post, comment, hashtag, music, Reels, Explore, and location research, then synthesize content intelligence from returned data.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/lycici/keyapi-instagram-content-discovery) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Instagram MCP endpoint](https://mcp.keyapi.ai/instagram/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save API responses to a local .keyapi-cache directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The runner uses a token-bearing KeyAPI connection and the security review says its authority is broader than the skill description suggests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested tool calls before execution, run under a normal user account, and provide KEYAPI_TOKEN through the environment instead of storing it in the skill directory.
+
+Risk: KEYAPI_SERVER_URL can redirect the runner to an alternate MCP endpoint.
+
+Mitigation: Leave KEYAPI_SERVER_URL unset unless the endpoint is fully trusted and reviewed.
+
+Risk: Cached Instagram API responses may contain sensitive collected social data.
+
+Mitigation: Treat .keyapi-cache as sensitive, restrict access to it, and delete cached files when they are no longer needed.
+
+Risk: Dependencies are declared without a reviewed lockfile in the artifact evidence.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lycici/skills/keyapi-instagram-content-discovery)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Instagram MCP Endpoint](https://mcp.keyapi.ai/instagram/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API responses and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local .keyapi-cache JSON files when API calls are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

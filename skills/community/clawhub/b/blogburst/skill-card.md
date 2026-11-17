@@ -1,45 +1,69 @@
-## Description: <br>
-BlogBurst helps solo and bootstrapped founders turn real buyer questions into proof-led growth experiments with evidence-backed posts, safe publishing, and attribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn real buyer questions into proof-led growth experiments. BlogBurst helps solo and bootstrapped founders find buyer intent, write evidence-backed posts, publish safely, and track which content creates clicks and signups.
 
-## Publisher: <br>
-[shensi8312](https://clawhub.ai/user/shensi8312) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shensi8312](https://clawhub.ai/user/shensi8312)
 
-## Use Case: <br>
-External founders use BlogBurst to find buyer intent, generate grounded posts, apply quality gates before publishing, and track content-driven clicks, signups, and revenue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product, marketing, and performance data may be sent to BlogBurst during operator workflows. <br>
-Mitigation: Install and use the skill only when that data sharing is acceptable for the product and organization. <br>
-Risk: BLOGBURST_API_KEY can authorize account-specific actions if exposed. <br>
-Mitigation: Configure the key through OpenClaw's environment or secret store and never paste, print, echo, or log it. <br>
-Risk: Generated or scheduled content could be inaccurate, off-brand, or inappropriate for public communities. <br>
-Mitigation: Keep human review enabled before publishing from connected accounts, and use Reddit or Hacker News drafts for manual posting only. <br>
+## Use Case:
 
+External founders use BlogBurst to identify buyer questions, create evidence-backed content, apply quality gates before publishing, and track which posts produce clicks, signups, or revenue. It is best suited to solo and bootstrapped SaaS founders who need a repeatable, proof-led growth workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shensi8312/blogburst) <br>
-- [BlogBurst website](https://blogburst.ai) <br>
-- [BlogBurst API docs](https://api.blogburst.ai/docs) <br>
-- [Proof page](https://blogburst.ai/blog/ai-agent-marketing-30-days-results) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline text and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use public demo endpoints or authenticated BlogBurst API workflows when BLOGBURST_API_KEY is configured securely.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: server release metadata) <br>
+Risk: Using BlogBurst may send product, content, or account workflow data to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data sharing is acceptable, and provide only the information needed for the demo or account workflow.
+
+Risk: An exposed BLOGBURST_API_KEY could allow account-specific actions or disclosure of account context.
+
+Mitigation: Configure the key through the environment or a secret store, and do not paste, print, echo, log, or include it in visible command examples.
+
+Risk: Generated marketing content or vendor-provided claims could be inaccurate, overstated, or unsupported.
+
+Mitigation: Review content before publication and independently verify pricing, proof, growth, value, and product claims before relying on them.
+
+Risk: Automated promotion on Reddit or Hacker News could harm founder reputation or domain trust.
+
+Mitigation: Use BlogBurst only to draft useful replies for those communities, then review and post manually.
+
+Risk: The documented install command uses the latest package tag.
+
+Mitigation: Verify the publisher, release version, and package source before installation, and pin a known release when reproducibility is required.
+
+## Reference(s):
+
+- [BlogBurst website](https://blogburst.ai)
+- [BlogBurst API docs](https://api.blogburst.ai/docs)
+- [BlogBurst pricing](https://blogburst.ai/pricing)
+- [BlogBurst proof page](https://blogburst.ai/blog/ai-agent-marketing-30-days-results)
+- [ClawHub skill page](https://clawhub.ai/shensi8312/skills/blogburst)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls]
+
+**Output Format:** [Markdown guidance with curl command examples and API workflow notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public demo endpoints can be used without credentials; authenticated account actions require BLOGBURST_API_KEY configured through an environment or secret store.]
+
+## Skill Version(s):
+
+3.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

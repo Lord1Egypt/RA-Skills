@@ -1,44 +1,64 @@
-## Description: <br>
-Guides OpenClaw users through creating additional agents and binding each one to a Feishu bot or group chat by editing ~/.openclaw/openclaw.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates additional OpenClaw agents and binds them to Feishu bots or group chats for multi-bot routing, separate workspaces, and isolated conversation memory.
 
-## Publisher: <br>
-[Richardcoder849](https://clawhub.ai/user/Richardcoder849) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richardcoder849](https://clawhub.ai/user/richardcoder849)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to configure separate agents for different Feishu bots, group chats, or business lines. It helps route messages, separate conversation memory, and apply per-chat or per-user access controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup requires editing ~/.openclaw/openclaw.json, which can break existing OpenClaw routing if changed incorrectly. <br>
-Mitigation: Back up the configuration file before making changes and verify agent, account, and binding identifiers before restarting OpenClaw. <br>
-Risk: Feishu appSecret values and bot credentials are sensitive and may be exposed through configuration files, chats, logs, screenshots, or support requests. <br>
-Mitigation: Use least-privilege Feishu bots, restrict access to the configuration file, and redact appSecret values from shared material. <br>
-Risk: Using open access policies can expose bots or group chats to unintended users. <br>
-Mitigation: Prefer allowlists and review dmPolicy, allowFrom, groupPolicy, and groupAllowFrom settings for each bot or group. <br>
+## Use Case:
 
+Developers and operators use this skill to configure additional OpenClaw agents for separate Feishu bots or group chats, with per-agent workspaces, message routing, and access controls.
 
-## Reference(s): <br>
-- [config-template.json](references/config-template.json) <br>
-- [Feishu multiple bot configuration guide](https://docs.openclaw.ai/docs/feishu/multiple-bots) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to edit OpenClaw configuration, create a workspace directory, and restart the OpenClaw gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact changelog top entry is 1.0.0) <br>
+Risk: Feishu app secrets and OpenClaw configuration values are sensitive and may be exposed if copied into shared files or version control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep appSecret values private, avoid committing ~/.openclaw/openclaw.json, and store shared configuration examples with placeholders only.
+
+Risk: Incorrect agent, account, or binding IDs can route Feishu messages to the wrong OpenClaw agent or workspace.
+
+Mitigation: Verify JSON syntax, account IDs, agent IDs, and binding rules before restarting the OpenClaw gateway.
+
+Risk: Overly broad Feishu access settings can allow unintended users or groups to interact with a configured agent.
+
+Mitigation: Use restrictive allowlists for users and groups unless an open policy is explicitly required.
+
+Risk: Configuration mistakes may disrupt an existing OpenClaw gateway setup.
+
+Mitigation: Back up ~/.openclaw/openclaw.json before editing and restart the gateway only after reviewing the updated configuration.
+
+## Reference(s):
+
+- [Configuration template](references/config-template.json)
+- [Feishu multi-bot configuration guide](https://docs.openclaw.ai/docs/feishu/multiple-bots)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/richardcoder849/skills/multi-agent-bot-feishu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only setup guidance; no tool calls or executable scripts are bundled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

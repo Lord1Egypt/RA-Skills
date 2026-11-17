@@ -1,41 +1,57 @@
-## Description: <br>
-Generate sustainable fitness plans, daily workouts, and health routines based on user goals, time, and fitness level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate sustainable fitness plans, daily workouts, and health routines based on user goals, time, and fitness level.
 
-## Publisher: <br>
-[know-hub](https://clawhub.ai/user/know-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[know-hub](https://clawhub.ai/user/know-hub)
 
-## Use Case: <br>
-External users use this skill to request realistic weekly fitness plans, single workouts, and daily movement habits tailored to their goals, available time, equipment, and experience level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake general fitness routines for medical or individualized clinical advice. <br>
-Mitigation: Treat outputs as general workout information and consult a qualified medical or fitness professional before following plans when pain, injury, pregnancy, chronic conditions, or mobility limitations are present. <br>
-Risk: A routine may be too intense or unsuitable for a beginner if user context is incomplete. <br>
-Mitigation: Clarify goal, time, equipment, and experience level, and prefer simple, sustainable routines that avoid extreme calorie restriction and high-injury-risk exercises for beginners. <br>
+## Use Case:
 
+External users use this skill to generate practical weekly fitness plans, single workouts, and daily movement habits tailored to their goals, schedule, equipment, and experience level.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/know-hub/keep-fit) <br>
-- [Publisher Profile](https://clawhub.ai/user/know-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Shell commands] <br>
-**Output Format:** [Markdown or plain text with structured lists; the bundled shell script emits plain-text weekly plan output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat general fitness planning output as medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present recommendations as general wellness guidance and direct users with medical conditions, injuries, or unusual symptoms to a qualified health professional.
+
+Risk: A future version could add personalized health data handling, network access, or stronger automation.
+
+Mitigation: Review future releases and scanner results before installation or execution, especially if new data access or automation behavior appears.
+
+Risk: Workout recommendations may be too intense or unsuitable for a beginner's current ability.
+
+Mitigation: Tailor plans to stated experience level, available time, and equipment, and keep beginner guidance simple while avoiding risky exercises and extreme calorie restriction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/know-hub/skills/keep-fit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text fitness guidance with optional shell script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing fitness plans and routines; the included script prints a static weekly plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

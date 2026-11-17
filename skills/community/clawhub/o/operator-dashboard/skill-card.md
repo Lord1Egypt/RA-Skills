@@ -1,40 +1,58 @@
-## Description: <br>
-Zero-config OpenClaw gateway monitoring that runs health checks, sends daily concise summaries, alerts on critical issues, and offers fixes only with approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zero-config OpenClaw gateway monitoring that runs health checks, sends daily summaries, alerts on critical issues, and offers approved fixes in the current channel.
 
-## Publisher: <br>
-[lukeaustin13](https://clawhub.ai/user/lukeaustin13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lukeaustin13](https://clawhub.ai/user/lukeaustin13)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor an OpenClaw gateway, cron jobs, plugins, disk, memory, and sessions from the active conversation channel. It provides concise status summaries, critical alerts, and approval-gated operational fix suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose cleanup, restart, retry, reinstall, or deletion actions that affect local OpenClaw services or files. <br>
-Mitigation: Require exact-command confirmation before approving any fix action, and verify the result after execution. <br>
-Risk: Scheduled summaries and critical alerts can send operational status into the active conversation channel. <br>
-Mitigation: Review the channel before enabling scheduled reports and keep immediate alerts limited to disclosed critical conditions. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor an OpenClaw gateway, cron jobs, plugins, sessions, disk usage, and memory usage from an agent conversation. It is intended to provide concise status summaries, immediate critical alerts, and proposed operational fixes that require approval.
 
-## Reference(s): <br>
-- [Operator Dashboard on ClawHub](https://clawhub.ai/lukeaustin13/operator-dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Concise Markdown status messages with inline shell commands for proposed fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Daily summaries are limited to 5-6 lines; destructive or service-impacting actions require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, artifact metadata, and SKILL.md frontmatter) <br>
+Risk: The skill can inspect gateway state, sessions, cron jobs, plugins, and host resource usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where OpenClaw operational monitoring is desired and review reported status before acting on recommendations.
+
+Risk: Proposed fixes may restart services, retry cron jobs, reinstall plugins, or delete old logs.
+
+Mitigation: Require explicit user approval, show the exact command and risk before execution, and verify the result after any approved action.
+
+Risk: Critical alerts and scheduled summaries are sent in the active channel.
+
+Mitigation: Use the skill only in appropriate operational channels and review scheduled summary behavior before enabling recurring reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lukeaustin13/skills/operator-dashboard)
+- [Publisher profile](https://clawhub.ai/user/lukeaustin13)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise Markdown status summaries, alerts, detailed reports, and proposed shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the active conversation channel for replies and asks for approval before destructive or service-changing actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, clawhub.json, _meta.json, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

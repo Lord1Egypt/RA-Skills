@@ -1,39 +1,54 @@
-## Description: <br>
-Design intake forms, discovery interviews, onboarding workflows, and intake summaries for service relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design intake forms, discovery interviews, onboarding workflows, and intake summaries for service relationships before work starts with a client, patient, customer, student, tenant, or employee.
 
-## Publisher: <br>
-[ProjectSnowWork](https://clawhub.ai/user/ProjectSnowWork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[projectsnowwork](https://clawhub.ai/user/projectsnowwork)
 
-## Use Case: <br>
-External service providers, internal teams, and operators use this skill to design intake forms, discovery interviews, onboarding workflows, and intake summaries before starting a service relationship. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Intake workflows may request sensitive personal, health, financial, legal, employment, housing, student, or other regulated data. <br>
-Mitigation: Collect only necessary fields, explain why sensitive questions are asked, obtain appropriate consent, and store completed records in a secure system reviewed for the relevant jurisdiction or industry. <br>
-Risk: Outputs could be mistaken for legal, medical, financial, privacy, or regulatory advice in sensitive service contexts. <br>
-Mitigation: Treat outputs as intake design guidance and have qualified professionals review regulated workflows before production use. <br>
+## Use Case:
 
+External and internal service providers use this skill to design intake forms, discovery interviews, onboarding workflows, and summaries that collect relevant information before a service relationship begins.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, forms, interview guides, workflows, summaries, and audits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include privacy and compliance cautions for regulated or sensitive intake contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Intake designs for healthcare, legal, financial, employment, or other regulated settings can create privacy, consent, retention, or compliance obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafting help and have the final intake process reviewed for the applicable jurisdiction and regulated use case.
+
+Risk: Collecting sensitive information without a clear purpose or storage plan can increase privacy and operational risk.
+
+Mitigation: Collect only information that will be used, explain why sensitive questions are asked, and define storage, retention, and destruction practices before production use.
+
+## Reference(s):
+
+- [Intake skill page](https://clawhub.ai/projectsnowwork/skills/intake)
+- [Publisher profile](https://clawhub.ai/user/projectsnowwork)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured forms, interview guides, workflows, templates, or audit notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May flag privacy, consent, retention, and regulated-domain review needs when intake collects sensitive information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

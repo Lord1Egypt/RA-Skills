@@ -1,37 +1,54 @@
-## Description: <br>
-Research assistant using ReAct + Plan-and-Solve for web research, information synthesis, and report generation with citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research assistant using ReAct + Plan-and-Solve for web research, information synthesis, and report generation with citations.
 
-## Publisher: <br>
-[banxian87](https://clawhub.ai/user/banxian87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banxian87](https://clawhub.ai/user/banxian87)
 
-## Use Case: <br>
-Developers and agents use this skill to plan research, synthesize information, and produce structured reports with summaries, findings, analysis, and citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill advertises real web research while generating fake sources and citations. <br>
-Mitigation: Treat reports as drafts only; verify citations, source URLs, and credibility labels against real retrieval before relying on the output. <br>
+## Use Case:
 
+Developers and external users can use this skill to plan research, synthesize source material, and draft structured reports with summaries, findings, and citations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured research report with summary, findings, analysis, citations, and source metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Citation and source quality should be independently verified before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The implementation generates placeholder sources and citations instead of performing actual web search or verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reports before use and require real retrieval, source validation, and citation checks before relying on outputs as research.
+
+Risk: Prompts combine user topic, generated analysis, and source summaries without clear separation between instructions and evidence.
+
+Mitigation: Use safer prompt/data separation and validate source-derived content before passing it into report generation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banxian87/skills/ai-research-pro)
+- [Publisher profile](https://clawhub.ai/user/banxian87)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured report with summary, findings, analysis, citations, and source count]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Citation quality depends on real source retrieval and verification being added by the agent runtime.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact Version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

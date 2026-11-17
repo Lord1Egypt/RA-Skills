@@ -1,7 +1,7 @@
 ---
 name: "smyx-chinese-herbal-ingredient-trend-analysis"
 description: "AI-powered active-ingredient accumulation trend assessment for medicinal herbs (e.g. honeysuckle, wolfberry, astragalus, danshen). Uses high-resolution leaf images captured by fixed cameras or drones in TCM cultivation bases, analyzes leaf color saturation, hue angle, relative chlorophyll content (estimated via color indices) and leaf thickness (inferred from edge focus / silhouette), and compares against the cultivar's standard reference atlas (typical features at peak active-ingredient stage) to output an accumulation trend level (Low / Medium / High / Peak). Helps determine the optimal harvest window and improve herb quality. Scenarios: TCM planting bases, GAP bases, herb cooperatives, raw-material bases for pharmaceutical companies. | 通过中药种植基地的固定摄像头或无人机拍摄药用植物（如金银花、枸杞、黄芪、丹参等）叶片的高清图像，利用AI视觉分析技术评估叶片颜色饱和度、色相角、叶绿素相对含量（通过颜色指数估算）以及叶片厚度（通过边缘聚焦或侧影估算），与品种标准图谱（特定生长阶段/有效成分积累峰值期的典型特征）进行对比，输出有效成分积累趋势等级（低/中/高/峰值）。该技能有助于确定最佳采收期，提高药材品质。应用场景：中药种植基地、GAP种植基地、中药材合作社、药企原料基地。"
-version: "1.0.3"
+version: "1.0.18"
 license: "MIT-0"
 ---
 

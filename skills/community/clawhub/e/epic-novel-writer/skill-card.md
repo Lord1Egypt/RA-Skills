@@ -1,45 +1,60 @@
-## Description: <br>
-Novel writing full workflow from world-building and character design to chapter planning, manuscript writing, version archiving, and HTML guide generation for medium to super-long novels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel writing full workflow from world-building and character design to chapter planning, manuscript writing, validation, version archiving, and HTML guide generation for medium to super-long serialized novels.
 
-## Publisher: <br>
-[sunshinejnjn](https://clawhub.ai/user/sunshinejnjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshinejnjn](https://clawhub.ai/user/sunshinejnjn)
 
-## Use Case: <br>
-External writers and creative-writing agents use this skill to plan, draft, validate, and archive long-form serialized novels with consistent world-building, character records, chapter blueprints, and continuous chapter numbering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill edits project files and may create archive/version folders as part of the writing workflow. <br>
-Mitigation: Run it inside a project-specific directory and confirm archive creation before allowing baseline or version folders to be generated. <br>
-Risk: Novel planning, drafting, and validation guidance can introduce continuity, style, or factual errors into long manuscripts. <br>
-Mitigation: Review generated outlines, chapters, reports, character JSON, and HTML guides before treating them as final. <br>
+## Use Case:
 
+External writers, editors, and AI-assisted writing teams use this skill to structure long-form serialized novel projects, maintain global chapter numbering, draft and validate chapters, and create archive packages with character data and HTML navigation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunshinejnjn/epic-novel-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/sunshinejnjn) <br>
-- [Archive workflow template](artifact/references/archive-template.md) <br>
-- [Chapter blueprint template](artifact/references/chapter-blueprint-template.md) <br>
-- [Character card template](artifact/references/character-card-template.md) <br>
-- [World setting template](artifact/references/world-setting-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with project files, shell command examples, character JSON, and HTML archive guide output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a project work-in-progress directory for edits and creates read-only archive/version folders only when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: Archive and reverse-merge workflows can create many files or overwrite files under the active manuscript directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm archive and reverse-merge prompts carefully, verify the target scope and destination, and back up the active manuscript before reverse-merge.
+
+Risk: Archive operations may use shell commands with user-provided titles or paths.
+
+Mitigation: Sanitize titles with the documented allowlist, quote path expansions, verify destinations remain inside the archive root, and prefer file tools when practical.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshinejnjn/skills/epic-novel-writer)
+- [Project structure](references/project-structure.md)
+- [Lifecycle workflow](references/lifecycle.md)
+- [Naming rules](references/name-rules.md)
+- [Archive template](references/archive-template.md)
+- [World setting template](references/world-setting-template.md)
+- [Character card template](references/character-card-template.md)
+- [Chapter blueprint template](references/chapter-blueprint-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown project files, manuscript text, JSON character data, HTML guide files, validation reports, and shell command proposals.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs follow the user's project language; the workflow documentation is primarily Chinese with an English README.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

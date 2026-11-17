@@ -1,40 +1,54 @@
-## Description: <br>
-Provides system monitoring, performance analysis, and status information for NVIDIA Jetson devices, including GPU, CPU, memory, temperature, and JetPack version checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides system monitoring, performance analysis, and status information for NVIDIA Jetson devices, including GPU, CPU, memory, temperature, disk, and JetPack checks.
 
-## Publisher: <br>
-[wxd9199](https://clawhub.ai/user/wxd9199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxd9199](https://clawhub.ai/user/wxd9199)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect NVIDIA Jetson device status, monitor system performance, and gather GPU, CPU, memory, disk, temperature, and JetPack-related information during development or operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command output can expose hardware, system, and environment details that may be sensitive. <br>
-Mitigation: Avoid sharing Jetson status output publicly unless hardware and system details have been reviewed for sensitivity. <br>
-Risk: The skill depends on local Jetson utilities such as tegrastats and jetson_release. <br>
-Mitigation: Use Jetson and OS package sources you trust when installing or invoking these dependencies. <br>
+## Use Case:
 
+Developers and engineers working with NVIDIA Jetson devices use this skill to get local monitoring commands and checks for GPU, CPU, memory, disk, temperature, and JetPack status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wxd9199/jetson-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command-output-oriented guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local hardware and system status details from Jetson monitoring tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill depends on Jetson-specific local utilities and may provide incomplete command coverage when tegrastats or jetson_release is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on Jetson systems with the required utilities installed, and verify each generated command before relying on the output.
+
+Risk: Server quality evidence quarantined the release for moderation review due to low documentation quality.
+
+Mitigation: Review the skill documentation and script behavior before deployment, especially where command names are documented but not implemented in the artifact.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wxd9199/skills/jetson-tools)
+- [Publisher profile](https://clawhub.ai/user/wxd9199)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and local system status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Jetson utilities such as tegrastats and jetson_release for full coverage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Delete an OpenClaw child session cleanly by removing its transcript, trajectory files, and sessions.json index entry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delete an OpenClaw child session cleanly by removing its transcript, trajectory files, and sessions.json index entry.
 
-## Publisher: <br>
-[kid0114](https://clawhub.ai/user/kid0114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kid0114](https://clawhub.ai/user/kid0114)
 
-## Use Case: <br>
-Developers and operators use this skill to remove a selected OpenClaw child session from local transcript files and the sessions.json index after confirming the target session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Executing the skill deletes local OpenClaw session transcripts, trajectory files, and sessions.json records for the selected child session. <br>
-Mitigation: Run without --execute first, confirm the exact session key or session id, and back up important transcripts or sessions.json before executing. <br>
-Risk: A wrong or active session target could remove data that is still needed. <br>
-Mitigation: Do not guess the target session; stop and ask before deleting active or running sessions. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to remove a spawned child session from local session files and the sessions.json index after confirming the exact target session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kid0114/subsession-delete) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Markdown response with shell commands and JSON execution results from the deletion script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode reports candidate deletions; execute mode deletes matching local session files and updates sessions.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The deletion script can be steered outside the intended OpenClaw session folder by unchecked identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run mode first, use a verified session key, avoid elevated privileges, and use execute mode only after target paths are confirmed inside the intended OpenClaw sessions directory.
+
+Risk: The skill performs destructive local deletion when execute mode is used.
+
+Mitigation: Confirm the exact session target and avoid deleting active primary sessions unless the user explicitly approves.
+
+## Reference(s):
+
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run is available by default; execute mode deletes session files and updates sessions.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

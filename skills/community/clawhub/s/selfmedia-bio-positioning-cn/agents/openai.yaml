@@ -1,0 +1,8 @@
+interface:
+  display_name: "账号主页定位文案"
+  short_description: "用真实经历写清账号价值、内容栏目与三条置顶建议文案"
+  default_prompt: "使用 $selfmedia-bio-positioning-cn，根据我的真实资历、内容方向和目标受众写主页定位文案。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

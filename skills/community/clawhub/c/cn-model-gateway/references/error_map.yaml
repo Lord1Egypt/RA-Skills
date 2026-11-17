@@ -1,0 +1,304 @@
+# 统一错误映射表（外置 YAML，可热更新）
+# 格式: provider → pattern → {code, message, suggestion}
+# code: MCP 标准错误码
+# suggestion: 中文处置建议（v1.9.0 新增）
+
+deepseek:
+  invalid_api_key:
+    code: -32602
+    message: "DeepSeek API key 无效或已过期"
+    suggestion: "检查 config.json 中 deepseek.api_key 是否正确"
+  insufficient_quota:
+    code: -32002
+    message: "DeepSeek 额度不足"
+    suggestion: "检查余额页：https://platform.deepseek.com/"
+  rate_limit:
+    code: -32002
+    message: "DeepSeek 请求过于频繁，请稍后重试"
+    suggestion: "等待 60 秒后重试"
+  429:
+    code: -32002
+    message: "DeepSeek 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "DeepSeek 地区限制（451）"
+    suggestion: "检查地区设置，或联系 DeepSeek 客服"
+  balance_insufficient:
+    code: -32002
+    message: "DeepSeek 余额不足"
+    suggestion: "检查余额页：https://platform.deepseek.com/"
+  content_audit:
+    code: -32602
+    message: "DeepSeek 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+tongyi:
+  InvalidApiKey:
+    code: -32602
+    message: "通义 API key 无效"
+    suggestion: "检查 config.json 中 tongyi.api_key 是否正确"
+  Throttling.RateLimit:
+    code: -32002
+    message: "通义 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  Throttling:
+    code: -32002
+    message: "通义 请求被限流"
+    suggestion: "等待 60 秒后重试"
+  429:
+    code: -32002
+    message: "通义 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "通义 地区限制（451）"
+    suggestion: "检查地区设置，或联系通义客服"
+  balance_insufficient:
+    code: -32002
+    message: "通义 余额不足"
+    suggestion: "检查余额页：https://dashscope.console.aliyun.com/"
+  content_audit:
+    code: -32602
+    message: "通义 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+zhipu:
+  data_inspection_failed:
+    code: -32602
+    message: "智谱 内容审核未通过，请检查输入内容"
+    suggestion: "修改提示词重试，避免敏感内容"
+  invalid_api_key:
+    code: -32602
+    message: "智谱 API key 无效"
+    suggestion: "检查 config.json 中 zhipu.api_key 是否正确"
+  rate_limit_reached:
+    code: -32002
+    message: "智谱 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  429:
+    code: -32002
+    message: "智谱 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "智谱 地区限制（451）"
+    suggestion: "检查地区设置，或联系智谱客服"
+  balance_insufficient:
+    code: -32002
+    message: "智谱 余额不足"
+    suggestion: "检查余额页：https://open.bigmodel.cn/"
+  content_audit:
+    code: -32602
+    message: "智谱 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+kimi:
+  invalid_api_key:
+    code: -32602
+    message: "Kimi API key 无效"
+    suggestion: "检查 config.json 中 kimi.api_key 是否正确"
+  rate_limit_exceeded:
+    code: -32002
+    message: "Kimi 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  content_blocked:
+    code: -32602
+    message: "Kimi 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+  429:
+    code: -32002
+    message: "Kimi 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "Kimi 地区限制（451）"
+    suggestion: "检查地区设置，或联系 Kimi 客服"
+  balance_insufficient:
+    code: -32002
+    message: "Kimi 余额不足"
+    suggestion: "检查余额页：https://platform.moonshot.cn/"
+  content_audit:
+    code: -32602
+    message: "Kimi 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+hunyuan:
+  AuthFailure.SecretIdNotFound:
+    code: -32602
+    message: "混元 SecretId 无效"
+    suggestion: "检查 config.json 中 hunyuan.api_key 格式是否为 secret_id:secret_key"
+  AuthFailure.SignatureFailure:
+    code: -32602
+    message: "混元 签名失败，请检查 SecretKey"
+    suggestion: "检查 config.json 中 hunyuan.api_key 格式是否为 secret_id:secret_key"
+  LimitExceeded:
+    code: -32002
+    message: "混元 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  429:
+    code: -32002
+    message: "混元 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "混元 地区限制（451）"
+    suggestion: "检查地区设置，或联系混元客服"
+  balance_insufficient:
+    code: -32002
+    message: "混元 余额不足"
+    suggestion: "检查余额页：https://console.cloud.tencent.com/"
+  content_audit:
+    code: -32602
+    message: "混元 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+doubao:
+  AuthenticationError:
+    code: -32602
+    message: "豆包 API key 无效或 endpoint_id 错误"
+    suggestion: "检查 config.json 中 doubao.api_key 和 endpoint_id 是否正确"
+  RateLimitError:
+    code: -32002
+    message: "豆包 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  BadRequestError:
+    code: -32602
+    message: "豆包 请求参数错误"
+    suggestion: "检查请求参数格式"
+  429:
+    code: -32002
+    message: "豆包 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "豆包 地区限制（451）"
+    suggestion: "检查地区设置，或联系豆包客服"
+  balance_insufficient:
+    code: -32002
+    message: "豆包 余额不足"
+    suggestion: "检查余额页：https://console.volcengine.com/"
+  content_audit:
+    code: -32602
+    message: "豆包 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+minimax:
+  api_key_invalid:
+    code: -32602
+    message: "MiniMax API key 无效"
+    suggestion: "检查 config.json 中 minimax.api_key 是否正确"
+  insufficient_balance:
+    code: -32002
+    message: "MiniMax 余额不足"
+    suggestion: "检查余额页：https://api.minimax.chat/"
+  rate_limit:
+    code: -32002
+    message: "MiniMax 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  429:
+    code: -32002
+    message: "MiniMax 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "MiniMax 地区限制（451）"
+    suggestion: "检查地区设置，或联系 MiniMax 客服"
+  balance_insufficient:
+    code: -32002
+    message: "MiniMax 余额不足"
+    suggestion: "检查余额页：https://api.minimax.chat/"
+  content_audit:
+    code: -32602
+    message: "MiniMax 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+lingyi:
+  invalid_token:
+    code: -32602
+    message: "零一万物 API key 无效"
+    suggestion: "检查 config.json 中 lingyi.api_key 是否正确"
+  rate_limit_exceeded:
+    code: -32002
+    message: "零一万物 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  content_filter:
+    code: -32602
+    message: "零一万物 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+  429:
+    code: -32002
+    message: "零一万物 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "零一万物 地区限制（451）"
+    suggestion: "检查地区设置，或联系零一万物客服"
+  balance_insufficient:
+    code: -32002
+    message: "零一万物 余额不足"
+    suggestion: "检查余额页：https://platform.lingyiwanwu.com/"
+  content_audit:
+    code: -32602
+    message: "零一万物 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+baichuan:
+  invalid_apikey:
+    code: -32602
+    message: "百川智能 API key 无效"
+    suggestion: "检查 config.json 中 baichuan.api_key 是否正确"
+  quota_exceeded:
+    code: -32002
+    message: "百川智能 额度不足"
+    suggestion: "检查余额页：https://api.baichuan-ai.com/"
+  rate_limit:
+    code: -32002
+    message: "百川智能 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  429:
+    code: -32002
+    message: "百川智能 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "百川智能 地区限制（451）"
+    suggestion: "检查地区设置，或联系百川智能客服"
+  balance_insufficient:
+    code: -32002
+    message: "百川智能 余额不足"
+    suggestion: "检查余额页：https://api.baichuan-ai.com/"
+  content_audit:
+    code: -32602
+    message: "百川智能 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"
+
+stepfun:
+  auth_failed:
+    code: -32602
+    message: "阶跃星辰 API key 无效"
+    suggestion: "检查 config.json 中 stepfun.api_key 是否正确"
+  rate_limit:
+    code: -32002
+    message: "阶跃星辰 请求频率超限"
+    suggestion: "等待 60 秒后重试"
+  invalid_param:
+    code: -32602
+    message: "阶跃星辰 请求参数错误"
+    suggestion: "检查请求参数格式"
+  429:
+    code: -32002
+    message: "阶跃星辰 请求频率超限（429）"
+    suggestion: "等待 60 秒后重试，或降低调用频率"
+  451:
+    code: -32001
+    message: "阶跃星辰 地区限制（451）"
+    suggestion: "检查地区设置，或联系阶跃星辰客服"
+  balance_insufficient:
+    code: -32002
+    message: "阶跃星辰 余额不足"
+    suggestion: "检查余额页：https://platform.stepfun.com/"
+  content_audit:
+    code: -32602
+    message: "阶跃星辰 内容审核未通过"
+    suggestion: "修改提示词重试，避免敏感内容"

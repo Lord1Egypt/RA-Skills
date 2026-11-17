@@ -1,0 +1,1503 @@
+[
+  {
+    "modelId": "microsoft_gpt_image_2_5",
+    "modelName": "GPT Image 2.5",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "flare",
+          "key": "mode",
+          "options": [
+            {
+              "label": "flare",
+              "value": "flare"
+            },
+            {
+              "label": "sunburst",
+              "value": "sunburst"
+            }
+          ],
+          "requestKey": "mode"
+        },
+        {
+          "defaultValue": "medium",
+          "key": "quality",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            },
+            {
+              "label": "low",
+              "value": "low"
+            },
+            {
+              "label": "medium",
+              "value": "medium"
+            },
+            {
+              "label": "high",
+              "value": "high"
+            },
+            {
+              "label": "xhigh",
+              "value": "xhigh"
+            },
+            {
+              "label": "max",
+              "value": "max"
+            }
+          ],
+          "requestKey": "quality"
+        },
+        {
+          "defaultValue": "auto",
+          "key": "background",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            },
+            {
+              "label": "opaque",
+              "value": "opaque"
+            },
+            {
+              "label": "transparent",
+              "value": "transparent"
+            }
+          ],
+          "requestKey": "background"
+        },
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "4K",
+              "value": "4K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "1:2",
+              "value": "1:2"
+            },
+            {
+              "label": "2:1",
+              "value": "2:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "9:21",
+              "value": "9:21"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 16,
+      "modelId": "microsoft_gpt_image_2_5",
+      "modelName": "GPT Image 2.5",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "microsoft_gpt_image_2_5_flare",
+    "modelName": "GPT Image 2.5 Flare",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "flare",
+          "key": "mode",
+          "options": [
+            {
+              "label": "flare",
+              "value": "flare"
+            },
+            {
+              "label": "sunburst",
+              "value": "sunburst"
+            }
+          ],
+          "requestKey": "mode"
+        },
+        {
+          "defaultValue": "medium",
+          "key": "quality",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            },
+            {
+              "label": "low",
+              "value": "low"
+            },
+            {
+              "label": "medium",
+              "value": "medium"
+            },
+            {
+              "label": "high",
+              "value": "high"
+            },
+            {
+              "label": "xhigh",
+              "value": "xhigh"
+            },
+            {
+              "label": "max",
+              "value": "max"
+            }
+          ],
+          "requestKey": "quality"
+        },
+        {
+          "defaultValue": "auto",
+          "key": "background",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            },
+            {
+              "label": "opaque",
+              "value": "opaque"
+            },
+            {
+              "label": "transparent",
+              "value": "transparent"
+            }
+          ],
+          "requestKey": "background"
+        },
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "4K",
+              "value": "4K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "1:2",
+              "value": "1:2"
+            },
+            {
+              "label": "2:1",
+              "value": "2:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "9:21",
+              "value": "9:21"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 16,
+      "modelId": "microsoft_gpt_image_2_5_flare",
+      "modelName": "GPT Image 2.5 Flare",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "microsoft_gpt_image_2_5_sunburst",
+    "modelName": "GPT Image 2.5 Sunburst",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "sunburst",
+          "key": "mode",
+          "options": [
+            {
+              "label": "flare",
+              "value": "flare"
+            },
+            {
+              "label": "sunburst",
+              "value": "sunburst"
+            }
+          ],
+          "requestKey": "mode"
+        },
+        {
+          "defaultValue": "medium",
+          "key": "quality",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            },
+            {
+              "label": "low",
+              "value": "low"
+            },
+            {
+              "label": "medium",
+              "value": "medium"
+            },
+            {
+              "label": "high",
+              "value": "high"
+            },
+            {
+              "label": "xhigh",
+              "value": "xhigh"
+            },
+            {
+              "label": "max",
+              "value": "max"
+            }
+          ],
+          "requestKey": "quality"
+        },
+        {
+          "defaultValue": "auto",
+          "key": "background",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            },
+            {
+              "label": "opaque",
+              "value": "opaque"
+            },
+            {
+              "label": "transparent",
+              "value": "transparent"
+            }
+          ],
+          "requestKey": "background"
+        },
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "4K",
+              "value": "4K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "1:2",
+              "value": "1:2"
+            },
+            {
+              "label": "2:1",
+              "value": "2:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "9:21",
+              "value": "9:21"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 16,
+      "modelId": "microsoft_gpt_image_2_5_sunburst",
+      "modelName": "GPT Image 2.5 Sunburst",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "microsoft_gpt_image_2",
+    "modelName": "GPT Image 2",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "medium",
+          "key": "quality",
+          "options": [
+            {
+              "label": "low",
+              "value": "low"
+            },
+            {
+              "label": "medium",
+              "value": "medium"
+            },
+            {
+              "label": "high",
+              "value": "high"
+            }
+          ],
+          "requestKey": "quality"
+        },
+        {
+          "defaultValue": "auto",
+          "key": "background",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            },
+            {
+              "label": "opaque",
+              "value": "opaque"
+            },
+            {
+              "label": "transparent",
+              "value": "transparent"
+            }
+          ],
+          "requestKey": "background"
+        },
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "4K",
+              "value": "4K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "1:2",
+              "value": "1:2"
+            },
+            {
+              "label": "2:1",
+              "value": "2:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "9:21",
+              "value": "9:21"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 16,
+      "modelId": "microsoft_gpt_image_2",
+      "modelName": "GPT Image 2",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "nano_banana",
+    "modelName": "Nano Banana",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "fixedSettings": {
+        "resolution": "1K"
+      },
+      "maxInputReferenceImages": 3,
+      "modelId": "nano_banana",
+      "modelName": "Nano Banana",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "nano_banana_pro",
+    "modelName": "Nano Banana Pro",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "4K",
+              "value": "4K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 14,
+      "modelId": "nano_banana_pro",
+      "modelName": "Nano Banana Pro",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "nano_banana_2",
+    "modelName": "Nano Banana 2",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "0.5K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "0.5K",
+              "value": "0.5K"
+            },
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "4K",
+              "value": "4K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "1:4",
+              "value": "1:4"
+            },
+            {
+              "label": "1:8",
+              "value": "1:8"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "4:1",
+              "value": "4:1"
+            },
+            {
+              "label": "8:1",
+              "value": "8:1"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 14,
+      "modelId": "nano_banana_2",
+      "modelName": "Nano Banana 2",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "nano_banana_2_lite",
+    "modelName": "Nano Banana 2 Lite",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1K",
+          "disabled": true,
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "4:5",
+              "value": "4:5"
+            },
+            {
+              "label": "5:4",
+              "value": "5:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "1:4",
+              "value": "1:4"
+            },
+            {
+              "label": "4:1",
+              "value": "4:1"
+            },
+            {
+              "label": "1:8",
+              "value": "1:8"
+            },
+            {
+              "label": "8:1",
+              "value": "8:1"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 14,
+      "modelId": "nano_banana_2_lite",
+      "modelName": "Nano Banana 2 Lite",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "volces_seedream_4_0",
+    "modelName": "Seedream 4.0",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "2K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "3K",
+              "value": "3K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 14,
+      "modelId": "volces_seedream_4_0",
+      "modelName": "Seedream 4.0",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "volces_seedream_5",
+    "modelName": "Seedream 5.0 Lite",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "2K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "2K",
+              "value": "2K"
+            },
+            {
+              "label": "3K",
+              "value": "3K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 14,
+      "modelId": "volces_seedream_5",
+      "modelName": "Seedream 5.0 Lite",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "volces_seedream_5_pro",
+    "modelName": "Seedream 5.0 Pro",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "21:9",
+              "value": "21:9"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 10,
+      "modelId": "volces_seedream_5_pro",
+      "modelName": "Seedream 5.0 Pro",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "qwen_image",
+    "modelName": "Qwen Image",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "auto",
+          "disabled": true,
+          "key": "resolution",
+          "options": [
+            {
+              "label": "auto",
+              "value": "auto"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 3,
+      "modelId": "qwen_image",
+      "modelName": "Qwen Image",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "blackforestlabs_flux_2_pro",
+    "modelName": "Flux 2 Pro",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "9:21",
+              "value": "9:21"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 8,
+      "modelId": "blackforestlabs_flux_2_pro",
+      "modelName": "Flux 2 Pro",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "blackforestlabs_flux_11_pro",
+    "modelName": "Flux 1.1 Pro",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "21:9",
+              "value": "21:9"
+            },
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            },
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "9:21",
+              "value": "9:21"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 1,
+      "modelId": "blackforestlabs_flux_11_pro",
+      "modelName": "Flux 1.1 Pro",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "midjourney_niji_7",
+    "modelName": "Midjourney Niji 7",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "fixedSettings": {
+        "resolution": "1K"
+      },
+      "maxInputReferenceImages": 8,
+      "modelId": "midjourney_niji_7",
+      "modelName": "Midjourney Niji 7",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "midjourney_v7",
+    "modelName": "Midjourney V7",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "standard",
+          "key": "quality",
+          "options": [
+            {
+              "label": "standard",
+              "value": "standard"
+            },
+            {
+              "label": "high",
+              "value": "high"
+            }
+          ],
+          "requestKey": "quality"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "fixedSettings": {
+        "resolution": "1K"
+      },
+      "maxInputReferenceImages": 8,
+      "modelId": "midjourney_v7",
+      "modelName": "Midjourney V7",
+      "styleLibraryReferenceReservation": 2
+    }
+  },
+  {
+    "modelId": "midjourney_v8_1",
+    "modelName": "Midjourney V8.1",
+    "modelType": "image",
+    "settings": {
+      "controls": [
+        {
+          "defaultValue": "1K",
+          "key": "resolution",
+          "options": [
+            {
+              "label": "1K",
+              "value": "1K"
+            },
+            {
+              "label": "2K",
+              "value": "2K"
+            }
+          ],
+          "requestKey": "resolution"
+        },
+        {
+          "defaultValue": "1:1",
+          "key": "ratio",
+          "options": [
+            {
+              "label": "16:9",
+              "value": "16:9"
+            },
+            {
+              "label": "4:3",
+              "value": "4:3"
+            },
+            {
+              "label": "1:1",
+              "value": "1:1"
+            },
+            {
+              "label": "3:4",
+              "value": "3:4"
+            },
+            {
+              "label": "9:16",
+              "value": "9:16"
+            },
+            {
+              "label": "2:3",
+              "value": "2:3"
+            },
+            {
+              "label": "3:2",
+              "value": "3:2"
+            }
+          ],
+          "requestKey": "aspectRatio"
+        }
+      ],
+      "maxInputReferenceImages": 8,
+      "modelId": "midjourney_v8_1",
+      "modelName": "Midjourney V8.1",
+      "styleLibraryReferenceReservation": 2
+    }
+  }
+]

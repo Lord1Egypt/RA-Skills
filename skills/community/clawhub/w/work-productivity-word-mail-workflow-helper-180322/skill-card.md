@@ -1,45 +1,58 @@
-## Description: <br>
-Builds and troubleshoots Microsoft Word mail merge and DOCX template workflows with merge fields, content controls, document properties, repeated sections, data sources, and formatting preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and troubleshoot Microsoft Word mail merge and DOCX template workflows with merge fields, content controls, document properties, repeated sections, data sources, and formatting preservation.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Employees, operations teams, legal operations, HR teams, sales teams, administrators, and developers use this skill to plan, automate, and troubleshoot Word mail merge and DOCX template assembly without losing required formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked for adjacent Word or productivity requests because its trigger wording is broad. <br>
-Mitigation: Confirm the user needs Word mail merge or DOCX template workflow help before applying specialized guidance. <br>
-Risk: Generated workflow advice may be used with real HR, legal, sales, or administrative data. <br>
-Mitigation: Review template mappings, output filenames, generated documents, and any exported PDFs before using results in a live process. <br>
+## Use Case:
 
+Employees, administrative teams, legal operations, HR teams, and developers use this skill to plan, build, and troubleshoot Word mail merge and DOCX template assembly workflows while preserving formatting.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/work-productivity-word-mail-workflow-helper-180322) <br>
-- [SegmentFault: Word template and XML data source merge process](https://segmentfault.com/a/1190000023933964) <br>
-- [SegmentFault: Aspose.Words DOCX merge](https://segmentfault.com/a/1190000042001412) <br>
-- [SegmentFault: SAP CRM Word template support](https://segmentfault.com/a/1190000023893454) <br>
-- [SegmentFault: PHPWord template usage](https://segmentfault.com/a/1190000022674686) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, mappings, implementation snippets, and validation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May identify steps that require Word desktop field updates, PDF export, or manual review of generated documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated Word documents may contain unresolved fields, incorrect formatting, or unsuitable content for legal, HR, sales, or administrative use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated documents before use and validate field completion, formatting, page count, section breaks, table rows, filenames, and any required PDF export.
+
+Risk: The published trigger wording is broader and less polished than the actual skill instructions.
+
+Mitigation: Use the skill for Word mail merge or DOCX template automation only.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [Word template and XML data source merge process](https://segmentfault.com/a/1190000023933964)
+- [Aspose.Words DOCX merge example](https://segmentfault.com/a/1190000042001412)
+- [SAP CRM Word template with web service support](https://segmentfault.com/a/1190000023893454)
+- [PHPWord template usage](https://segmentfault.com/a/1190000022674686)
+- [Python-docx text extraction question](https://segmentfault.com/q/1010000042819314)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with optional code, shell command, and checklist blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include template/data mappings, generation workflows, validation checklists, and notes about Word desktop field updates or PDF export.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

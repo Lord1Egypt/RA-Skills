@@ -1,44 +1,61 @@
-## Description: <br>
-ResmoteConsole helps an agent start, stop, check, and validate a browser-accessible remote console for Claude Code or other CLI tools through ttyd and an SSH tunnel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Python-scripted commands to start, stop, check, and validate a ttyd plus SSH tunnel remote console for accessing Claude Code or other CLI tools from a phone or browser.
 
-## Publisher: <br>
-[HaibaraAiAPTX](https://clawhub.ai/user/HaibaraAiAPTX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haibaraaiaptx](https://clawhub.ai/user/haibaraaiaptx)
 
-## Use Case: <br>
-Developers use this skill to expose a local development shell in a mobile or browser workflow, then manage startup, shutdown, status checks, and configuration validation through bundled Python scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A browser-accessible ttyd console can expose interactive shell access to the host. <br>
-Mitigation: Use ttyd authentication and HTTPS, or restrict access through a VPN or firewall allowlist before starting the console. <br>
-Risk: The default configuration includes a claude-bypass command that can skip normal permission checks. <br>
-Mitigation: Remove the claude-bypass command and avoid using this skill with production systems or sensitive projects. <br>
-Risk: ttyd and SSH tunnel processes may remain active after a session. <br>
-Mitigation: Run the bundled status and stop scripts after each session to confirm the remote console and tunnel are stopped. <br>
+## Use Case:
 
+Developers and engineers use this skill to expose a configured project terminal through a browser-accessible remote console, mainly for mobile or tablet access to local CLI-based development workflows. It includes helper commands for launching, stopping, checking, and validating the remote console setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/HaibaraAiAPTX/remote-console) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Artifact config.json](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON status output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs the agent to use Python helper scripts for console lifecycle management and configuration validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose a writable browser terminal for a host environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that exposure is intentional, restrict access with VPN, firewall, loopback-only forwarding, or an authenticated proxy, and add TLS for browser access.
+
+Risk: The bundled claude-bypass preset can launch an agent with permission checks disabled.
+
+Mitigation: Remove the claude-bypass preset before use, or reserve it only for fully trusted private networks and non-sensitive personal projects.
+
+Risk: Public SSH GatewayPorts exposure could make the remote console reachable beyond the intended audience.
+
+Mitigation: Avoid public GatewayPorts exposure and prefer authenticated, limited network paths for the SSH tunnel.
+
+Risk: The stop helper may not close every SSH tunnel instance in all configurations.
+
+Mitigation: Verify after stopping that the ttyd and SSH tunnel processes are closed before assuming the console is offline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haibaraaiaptx/skills/remote-console)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run local Python helper scripts that start, stop, inspect, or validate ttyd and SSH tunnel processes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

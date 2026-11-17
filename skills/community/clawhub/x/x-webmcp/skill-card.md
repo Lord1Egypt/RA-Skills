@@ -1,44 +1,62 @@
-## Description: <br>
-Connects agents to X and Grok through the local-mcp X adapter and a fixed UXC link so they can read timelines, inspect tweets, post on X, and chat with Grok from an authenticated browser profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to X and Grok through the built-in local-mcp X adapter and one fixed UXC link. Use when the user wants to read timelines, inspect tweets, post on X, or chat with Grok from an authenticated browser profile.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate an authenticated X profile through local-mcp, including reading timelines and conversations, publishing tweets or articles after confirmation, and chatting with Grok. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect a live X account when directed to post, reply, publish an article, or upload files. <br>
-Mitigation: Use dry-run modes where available and require user review before any non-dry-run write, publish, or upload action. <br>
-Risk: Local file paths supplied for uploads or article publishing can send unintended files to X or Grok. <br>
-Mitigation: Use absolute paths only for files the user intentionally selected for upload or publishing. <br>
-Risk: An authenticated X profile may expose account data or actions beyond the immediate request. <br>
-Mitigation: Keep the X browser profile isolated and verify authentication state before using account-dependent tools. <br>
+## Use Case:
 
+Developers and agents use this skill to connect a dedicated authenticated X browser profile to local-mcp for reading X timelines, inspecting tweets, posting or replying on X, publishing articles, and chatting with Grok.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [X](https://x.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jolestar/x-webmcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON command output from x-webmcp-cli; write actions should be dry-run or explicitly reviewed before non-dry-run execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill can operate a persistent signed-in X profile, which may expose account access if the profile is shared or reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated isolated X profile and install only when agent access to that profile is intended.
+
+Risk: Tweet, reply, upload, and article publishing actions can create public content from the authenticated account.
+
+Mitigation: Require explicit user confirmation and dry-run review before any public write or publish action.
+
+Risk: Implicit invocation can make the bridge available without a direct user request naming the skill.
+
+Mitigation: Review invocation policy before install and keep write actions gated by confirmation.
+
+Risk: Browser automation dependencies and session state can drift over time.
+
+Mitigation: Prefer a pinned or lockfile-managed Playwright install and check authentication/session status before using tools.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Link Creation Helper](scripts/ensure-links.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command-output conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands target a persistent authenticated X browser profile and may require dry-run review before public write actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

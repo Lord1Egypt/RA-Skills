@@ -1,43 +1,56 @@
-## Description: <br>
-Agents can sign plugins, rotate credentials without losing identity, and publicly attest to behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agents can sign plugins, rotate credentials without losing identity, and publicly attest to behavior.
 
-## Publisher: <br>
-[0isone](https://clawhub.ai/user/0isone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0isone](https://clawhub.ai/user/0isone)
 
-## Use Case: <br>
-Developers and agent operators use 0.protocol to configure agents for signed identity claims, plugin behavior attestations, and authenticated handoffs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Claim and transfer payloads may become durable, public, and identity-linked records. <br>
-Mitigation: Avoid including secrets, private task context, or sensitive identifiers in signed claims or handoffs, especially when visibility is public. <br>
-Risk: The skill configures agents to use a remote MCP service for signed identity claims and handoffs. <br>
-Mitigation: Install it only when the agent is expected to use 0protocol's remote MCP service for those workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/0isone/0protocol) <br>
-- [README / Spec](https://github.com/0isone/0protocol) <br>
-- [API Reference](https://github.com/0isone/0protocol/blob/main/API.md) <br>
-- [Migration Guide](https://github.com/0isone/0protocol/blob/main/migration.md) <br>
-- [Why](https://github.com/0isone/0protocol/blob/main/WHY.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure 0protocol and call its tools for signed plugin claims, behavior attestations, wallet lookup, and authenticated task handoff.
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mcporter for the recommended setup path.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Use of a third-party MCP service can create persistent signed records.
+
+Mitigation: Use the skill only when persistent third-party records are acceptable, and do not send secrets, customer data, proprietary task context, or personal information.
+
+Risk: Examples can publish handoff context to an append-only public log.
+
+Mitigation: Prefer private or recipient-limited visibility, minimize payload context, and use public publication only when explicitly intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0isone/skills/0protocol)
+- [README / Spec](https://github.com/0isone/0protocol)
+- [API Reference](https://github.com/0isone/0protocol/blob/main/API.md)
+- [Migration Guide](https://github.com/0isone/0protocol/blob/main/migration.md)
+- [Why](https://github.com/0isone/0protocol/blob/main/WHY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide use of third-party MCP tools that can create persistent signed records.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

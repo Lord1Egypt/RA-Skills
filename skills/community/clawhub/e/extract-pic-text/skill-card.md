@@ -1,39 +1,51 @@
-## Description: <br>
-Extract specified-position text from image filenames using custom delimiters, supporting batch processing, sorting, deduplication, and multiple image formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts specified-position text from image filenames using custom delimiters, with support for batch processing, sorting, deduplication, and multiple image formats.
 
-## Publisher: <br>
-[Llyouc](https://clawhub.ai/user/Llyouc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[llyouc](https://clawhub.ai/user/llyouc)
 
-## Use Case: <br>
-Developers, data operators, and content teams use this skill to extract IDs, dates, SKU values, or other structured tokens from standardized image filenames during batch file organization and data preparation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Filename-derived values may contain sensitive identifiers and can be printed to stdout or written to a file. <br>
-Mitigation: Run the script only on intended image directories, review extracted values before sharing, and choose output paths deliberately. <br>
-Risk: Incorrect delimiter, position, or extension settings can omit files or extract the wrong filename segment. <br>
-Mitigation: Test the command on a small sample and review the reported invalid filenames before using the output in downstream workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Llyouc/extract-pic-text) <br>
+## Use Case:
+
+Developers, operations staff, and data workers use this skill to extract IDs, dates, SKU values, or other structured tokens from consistently named image files during batch organization or data preparation tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The optional output path writes a result file and can overwrite an existing file at that path.
+
+Mitigation: Review the output path before running the script and write to a temporary or dedicated results file when possible.
+
+Risk: The helper script reads filenames from directories supplied by the user and reports extracted filename tokens.
+
+Mitigation: Run it only on directories whose filenames are appropriate to disclose in command output or result files.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text values, optional output file, and stderr processing summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can sort and deduplicate extracted values; reports filenames that do not match the selected delimiter and position.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text or Markdown with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write extracted values to a user-specified output file or print comma-separated values to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

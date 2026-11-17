@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>96原则 · 实时选股工作台</title>
+<style>
+ :root{--accent:#2f5fe0;--ok:#1f9d57;--warn:#d98200;--bad:#d64545;--ink:#27313f;--muted:#7a8696;--line:#e8edf3;--soft:#f6f8fb;}
+ *{box-sizing:border-box}
+ body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#eaeef4;color:var(--ink);margin:0;padding:24px 14px;line-height:1.7;font-size:14px}
+ .wrap{max-width:1180px;margin:0 auto;background:#fff;border-radius:18px;padding:30px 34px;box-shadow:0 10px 40px rgba(30,50,90,.08)}
+ h1{font-size:24px;margin:0 0 4px;color:#16223a;font-weight:800;letter-spacing:.5px}
+ .sub{color:var(--muted);font-size:12.5px;margin-bottom:10px}
+ .statusbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:14px 0;font-size:12.5px}
+ .statusbar .pill{background:#fff;border:1px solid var(--line);border-radius:20px;padding:3px 12px;color:#46556b}
+ .statusbar .pill b{color:var(--accent)}
+ .badge-live{background:#e7f7ee;color:var(--ok);border:1px solid #bfe9cf}
+ .badge-snap{background:#fff4e6;color:var(--warn);border:1px solid #ffe0b0}
+ .btn{cursor:pointer;border:none;border-radius:10px;padding:9px 16px;font-size:13px;font-weight:700;color:#fff;background:var(--accent);transition:.15s}
+ .btn:hover{filter:brightness(1.07)}
+ .btn:disabled{opacity:.6;cursor:wait}
+ .btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+ .note{margin:14px 0;padding:10px 16px;border-left:4px solid var(--warn);background:#fff8ee;color:#8a5a00;border-radius:0 10px 10px 0;font-size:12.5px}
+ .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:16px 0}
+ .kpi{background:linear-gradient(135deg,#f3f6fd,#eaf0fc);border:1px solid #e2e9f7;border-radius:14px;padding:14px 10px;text-align:center}
+ .kpi .num{font-size:26px;font-weight:800;color:var(--accent);line-height:1.1}
+ .kpi .num.bad{color:var(--bad)} .kpi .num.ok{color:var(--ok)}
+ .kpi .lab{font-size:11.5px;color:var(--muted);margin-top:4px}
+ .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 6px}
+ .tabs{display:flex;gap:6px}
+ .tab{cursor:pointer;padding:6px 14px;border-radius:20px;background:var(--soft);border:1px solid var(--line);font-size:13px;color:#46556b;font-weight:600}
+ .tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+ .tab .ct{opacity:.7;font-weight:400;margin-left:3px}
+ .search{flex:1;min-width:160px;padding:8px 12px;border:1px solid var(--line);border-radius:9px;font-size:13px;outline:none}
+ .search:focus{border-color:var(--accent)}
+ select{padding:8px 10px;border:1px solid var(--line);border-radius:9px;font-size:13px;background:#fff;outline:none}
+ table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+ th,td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line)}
+ th{background:var(--soft);color:#46556b;font-weight:600;font-size:12px;cursor:pointer;user-select:none;white-space:nowrap}
+ th[data-sort]:hover{color:var(--accent)}
+ td.l,th.l{text-align:left}
+ tbody tr{cursor:pointer}
+ tbody tr:hover{background:#f5f9ff}
+ .b{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700;color:#fff}
+ .ok{background:var(--ok)}.warn{background:var(--warn)}.bad{background:var(--bad)}
+ .strength{font-size:11px}
+ .strength .v{font-weight:800}
+ .v-ok{color:var(--ok)}.v-warn{color:var(--warn)}.v-bad{color:var(--bad)}
+ .eye{color:var(--muted)}
+ .legend{font-size:12px;color:var(--muted);margin:4px 0 8px}
+ /* drawer */
+ .mask{position:fixed;inset:0;background:rgba(20,30,50,.45);display:none;z-index:50}
+ .mask.show{display:block}
+ .drawer{position:fixed;top:0;right:0;height:100%;width:min(640px,92vw);background:#fff;box-shadow:-10px 0 40px rgba(0,0,0,.18);transform:translateX(100%);transition:.25s;z-index:51;overflow-y:auto;padding:24px 26px}
+ .drawer.show{transform:translateX(0)}
+ .drawer .x{cursor:pointer;float:right;font-size:22px;color:var(--muted)}
+ .card{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:14px;padding:16px 18px;margin:14px 0;background:#fff}
+ .card-h{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+ .cname{font-size:17px;font-weight:800;color:#16223a}
+ .ccode{font-size:12px;color:var(--muted);margin-left:4px}
+ .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+ .blk{background:var(--soft);border-radius:10px;padding:11px 13px;font-size:12.5px;color:#3a4658}
+ .blk.full{grid-column:1/-1}
+ .blk-t{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:6px}
+ .blk.concl{background:#eef6ef;border-left:3px solid var(--ok)}
+ .blk.concl.bad{background:#fdeaea;border-left:3px solid var(--bad)}
+ .blk.concl.warn{background:#fff8ee;border-left:3px solid var(--warn)}
+ .blk.sell{background:#fff7f0;border-left:3px solid var(--warn)}
+.blk.trade{background:#f4f8ff;border-left:3px solid var(--accent,#2f6fed)}
+.rule{font-size:12px;color:#3a4658;background:#eef3ff;padding:8px 10px;border-radius:6px;line-height:1.7;margin-bottom:8px}
+.tp-action{font-size:14px;margin:4px 0 6px}
+.tp-reason{font-size:12px;color:#3a4658;margin-bottom:8px;line-height:1.5}
+.tp-sigs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tp-sig{display:flex;align-items:center;gap:6px;font-size:12px;padding:5px 8px;border-radius:6px;background:#fafbfc;border:1px solid #eef0f3}
+.tp-sig .ic{font-weight:700;width:14px;text-align:center}
+.sig-ok .ic{color:#1aa86a}.sig-no .ic{color:#bbb}.sig-eye .ic{color:#e0a200}
+.tp-sig .nt{color:#8a93a0;font-size:11px}
+ .nine{margin:0;padding-left:18px} .nine li{margin:4px 0}
+ .foot{margin-top:30px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+ .loading{text-align:center;padding:40px;color:var(--muted)}
+ .err{color:var(--bad);padding:20px;text-align:center}
+ @media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <h1>K线短线选股 · 96原则实时工作台</h1>
+ <div class="sub">方法论：kline-shortterm-checklist 技能（下午2:30选股法 + 96原则）。「🔄 实时重新筛查」一键自取：东方财富初筛 + 新浪K线 + 东财分时强度（无需 Agent）。</div>
+
+ <div class="statusbar" id="statusbar"></div>
+
+ <div class="toolbar">
+   <button class="btn" id="runBtn" onclick="runLive()">🔄 实时重新筛查</button>
+   <button class="btn ghost" onclick="loadData()">↻ 刷新</button>
+   <div class="tabs" id="tabs"></div>
+   <input class="search" id="search" placeholder="搜索代码 / 名称…" oninput="render()">
+   <select id="sort" onchange="render()">
+     <option value="">排序：默认（量比↓）</option>
+     <option value="vr">量比 ↓</option>
+     <option value="chg">涨幅 ↓</option>
+     <option value="to">换手 ↓</option>
+     <option value="pe">PE ↓</option>
+     <option value="fm">流通市值 ↓</option>
+     <option value="code">代码 ↑</option>
+   </select>
+ </div>
+
+ <div class="kpis" id="kpis"></div>
+
+ <div id="content"><div class="loading">加载中…</div></div>
+
+ <div class="foot" id="foot"></div>
+</div>
+
+<div class="mask" id="mask" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer"></div>
+
+<script>
+const fmt=(x,d=2)=> (x===null||x===undefined||x==="")? "—" : Number(x).toFixed(d);
+let DATA=null, curTab="all";
+
+function loadData(){
+  const isFile = location.protocol === 'file:';
+  fetch('/api/data').then(r=>r.json()).then(d=>{DATA=d; render(); renderStatus();}).catch(e=>{
+    if(isFile){
+      document.getElementById('content').innerHTML =
+        '<div class="err"><b>⚠ 本页面必须通过本地服务器访问，不能直接双击（file://）打开。</b><br><br>'+
+        '正确打开方式：在浏览器地址栏输入 <code>http://127.0.0.1:8765/</code><br>'+
+        '（注意：是访问服务器根路径 <code>/</code>，不是打开这个 .html 文件本身）<br><br>'+
+        '若服务还没启动，在终端运行（先 cd 到你的工作目录）：<br>'+
+        '<code>python launch_workbench.py</code> 或 <code>python workbench_server.py 8765</code><br>'+
+        '（脚本随 kline-shortterm-checklist 技能提供）<br><br>'+
+        '<span style="color:#888">原始报错：'+e+'</span></div>';
+    } else {
+      document.getElementById('content').innerHTML='<div class="err">加载失败：'+e+'<br>请确认后端服务 <code>http://127.0.0.1:8765/</code> 正在运行。</div>';
+    }
+  });
+}
+function runLive(){
+  const btn=document.getElementById('runBtn');
+  btn.disabled=true; btn.textContent='⏳ 实时拉取中…（约60-120秒）';
+  document.getElementById('content').innerHTML='<div class="loading">正在实时自取：东方财富初筛 + 新浪K线 + 东财分时强度…<br>请稍候</div>';
+  fetch('/api/run',{method:'POST'}).then(r=>r.json()).then(d=>{
+    if(d.error){ document.getElementById('content').innerHTML='<div class="err">重跑出错：'+d.error+'</div>'; return; }
+    DATA=d; render(); renderStatus();
+  }).catch(e=>{
+    document.getElementById('content').innerHTML='<div class="err">重跑失败：'+e+'<br>请确认后端服务在运行。</div>';
+  }).finally(()=>{ btn.disabled=false; btn.textContent='🔄 实时重新筛查'; });
+}
+
+function renderStatus(){
+  const m=DATA.meta, w=DATA.wind;
+  const liveTag = m.run_mode==='live'
+     ? '<span class="pill badge-live">● 实时东财</span>'
+     : '<span class="pill badge-snap">● 快照</span>';
+  const idTag = `分时强度(东财自取) ${w.intraday_covered}/${w.total}`;
+  const annTag = (w.announcement_covered>0)
+     ? `公告核查(Wind) ${w.announcement_covered}/${w.total}`
+     : '公告核查：未跑（👁 需 Agent 执行 / 或回落人工项）';
+  document.getElementById('statusbar').innerHTML =
+    `${liveTag}<span class="pill">数据基准日：<b>${m.data_date}</b></span>`+
+    `<span class="pill">生成时间：<b>${m.generated_at}</b></span>`+
+    `<span class="pill badge-live">${idTag}</span><span class="pill">${annTag}</span>`;
+  document.getElementById('foot').innerHTML =
+    `数据来源：${m.source_note}。<br>本报告由 96原则实时工作台生成，仅供学习与复盘，<b>非投资建议</b>。`+
+    `分时强度已由工作台「实时重新筛查」<b>自取（东财）</b>，无需 Agent；<b>公告核查</b>仍由 Wind/Agent 跑完写盘（未跑则回落 👁），如需刷新请对 Agent 说「跑 Wind 核查」。`;
+}
+
+function render(){
+  if(!DATA) return;
+  // tabs
+  const cnt={all:DATA.rows.length, ok:0, warn:0, bad:0};
+  DATA.rows.forEach(r=>{cnt[r.verdict]=(cnt[r.verdict]||0)+1;});
+  document.getElementById('tabs').innerHTML =
+    ['all','ok','warn','bad'].map(t=>{
+      const lab={all:'全部',ok:'符合',warn:'观察',bad:'不买'}[t];
+      const cls={all:'',ok:'ok',warn:'warn',bad:'bad'}[t];
+      return `<span class="tab ${curTab===t?'active':''}" onclick="setTab('${t}')">`+
+             `<span class="b ${cls}" style="padding:1px 7px">${lab}</span><span class="ct">${cnt[t]}</span></span>`;
+    }).join('');
+  // kpis
+  const k=DATA.kpi;
+  document.getElementById('kpis').innerHTML = `
+    <div class="kpi"><div class="num">${k.total}</div><div class="lab">客观四层候选</div></div>
+    <div class="kpi"><div class="num bad">${k.excl}</div><div class="lab">九不买剔除</div></div>
+    <div class="kpi"><div class="num ok">${k.conf}</div><div class="lab">通过九不买量化</div></div>
+    <div class="kpi"><div class="num">${k.multi}</div><div class="lab">干净多头排列</div></div>
+    <div class="kpi"><div class="num">${DATA.intraday_dist.强||0}/${DATA.intraday_dist.中||0}/${DATA.intraday_dist.弱||0}</div><div class="lab">分时强/中/弱</div></div>`;
+  // table
+  let rows=DATA.rows.filter(r=>curTab==='all'||r.verdict===curTab);
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  if(q) rows=rows.filter(r=>(r.code+' '+r.name).toLowerCase().includes(q));
+  const sv=document.getElementById('sort').value;
+  if(sv){ rows=[...rows].sort((a,b)=> sv==='code'? (a.code>b.code?1:-1) : (b[sv]-a[sv])); }
+  else rows=[...rows].sort((a,b)=>(b.vr||0)-(a.vr||0));
+  const body=rows.map(r=>{
+    const cls={ok:'ok',warn:'warn',bad:'bad'}[r.verdict];
+    let sc='<span class="eye">👁</span>';
+    if(r.strength){ const v=r.strength.verdict; const vc={强:'v-ok',中:'v-warn',弱:'v-bad'}[v];
+      sc=`<span class="strength"><span class="v ${vc}">${v}</span><br>${r.strength.detail}</span>`; }
+    return `<tr onclick="openDeep('${r.code}')">
+      <td class="l">${r.code}</td><td class="l">${r.name}</td>
+      <td>${fmt(r.price)}</td><td>${fmt(r.chg)}</td><td>${fmt(r.vr)}</td>
+      <td>${fmt(r.to)}</td><td>${fmt(r.fm,1)}</td><td>${fmt(r.pe)}</td>
+      <td>${r.trend}</td><td>${sc}</td>
+      <td><span class="b ${cls}">${r.verdict}</span></td><td><span class="b ${r.trade_ac}">${r.trade_action}</span></td></tr>`;
+  }).join('');
+  document.getElementById('content').innerHTML =
+    `<div class="legend">标签：<span class="b ok">符合</span> 通过量化·待人工 ｜ <span class="b warn">观察</span> 估值偏高/业绩预减谨慎 ｜ <span class="b bad">不买</span> 减持/违规/亏损触发 ｜ 👁 需Wind核查</div>`+
+    `<table><thead><tr>
+      <th class="l" data-sort="code">代码</th><th class="l">名称</th>
+      <th data-sort="price">现价</th><th data-sort="chg">涨幅%</th>
+      <th data-sort="vr">量比</th><th data-sort="to">换手%</th>
+      <th data-sort="fm">流通亿</th><th data-sort="pe">PE</th>
+      <th>均线/趋势</th><th>分时强度</th><th>结论</th><th>买卖动作</th></tr></thead>
+      <tbody>${body||'<tr><td colspan=12 style="color:#999;padding:24px">无匹配</td></tr>'}</tbody></table>`;
+  document.querySelectorAll('th[data-sort]').forEach(th=>th.onclick=()=>{
+    const f=th.dataset.sort; const sel=document.getElementById('sort');
+    sel.value = (sel.value===f)? '' : f; render();
+  });
+}
+function setTab(t){curTab=t; render();}
+
+function openDeep(code){
+  const d=DATA.deep.find(x=>x.code===code);
+  const r=DATA.rows.find(x=>x.code===code);
+  const dr=document.getElementById('drawer');
+  if(!d){ dr.innerHTML='<span class="x" onclick="closeDrawer()">×</span><div class="loading">该标的暂无K线深度数据</div>'; }
+  else if(d.nokline){ dr.innerHTML='<span class="x" onclick="closeDrawer()">×</span><div class="loading">'+d.name+' 无K线数据</div>'; }
+  else{
+    const c=d.c,k=d.k;
+    const vcls={ok:'',warn:' warn',bad:' bad'}[d.v];
+    const nine=d.nine.map(([t,x])=>`<li><b>${t}</b>：${x}</li>`).join('');
+    const sell=d.sell_items.map(([t,x])=>`<div><b>${t}</b>：${x}</div>`).join('');
+    dr.innerHTML=`<span class="x" onclick="closeDrawer()">×</span>
+      <div class="card-h"><span class="cname">${d.name} <span class="ccode">${d.code}</span></span>
+        <span class="b ${d.v==='不买'?'bad':d.v==='观察'?'warn':'ok'}">${d.v}</span></div>
+      <div class="grid3">
+        <div class="blk"><div class="blk-t">客观指标</div>涨幅 ${fmt(c.chg)}%（3~5%达标）<br>量比 ${fmt(c.vr)}（≥1）<br>换手 ${fmt(c.to)}%（5~10%达标）<br>流通 ${fmt(c.fm,1)}亿（50~200达标）</div>
+        <div class="blk"><div class="blk-t">趋势/均线</div>MA5 ${fmt(k.ma5)} / MA10 ${fmt(k.ma10)} / MA20 ${fmt(k.ma20)}<br>多头排列：${d.multi_txt}<br>近20日 高 ${fmt(k.hh)} 低 ${fmt(k.ll)}<br>较20日前 ${fmt(k.chg20,1)}%，距高 ${fmt(k.near_high,1)}%</div>
+        <div class="blk"><div class="blk-t">量能/K线</div>近5/20日均量 ${fmt(k.vratio)}x → ${k.vlab}<br>${d.pat_html}</div>
+      </div>
+      <div class="blk full"><div class="blk-t">九不买逐条判定</div><ul class="nine">${nine}</ul></div>
+      <div class="blk full"><div class="blk-t">八层筛选（层5-8）</div>量能${k.vlab}（${k.vratio>=1.0?'量价配合尚可':'量能偏谨慎'}）；均线见上；${d.strength_txt}；题材 👁；<b>买点</b>：${d.buypt}。</div>
+      <div class="blk full concl${vcls}"><div class="blk-t">综合结论</div>${d.concl}${d.concl_suffix}</div>
+      <div class="blk full sell"><div class="blk-t">六不卖持有研判 + 下车信号</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px">${sell}</div>
+        客观命中 <b>${d.obj_hit}/4</b>，主观 2 项（题材/逻辑）待核 → <b>综合：${d.hold}</b><br>${d.exit_sig}
+      </div>
+      <div class="blk full trade"><div class="blk-t">买卖决策与仓位纪律</div>
+        <div class="rule">纪律：下跌末端·相对底部+金叉 → <b>建仓1成</b>；趋势反转上升 → <b>加2成</b>；高位浮盈≥10% → <b>减1/3</b>；跌破5日线 → <b>清仓</b>。<b>主力吸筹 / 浮盈≥10%</b> 需人工确认（👁）。</div>
+        <div class="tp-action">当前动作：<span class="b ${d.trade_plan.ac}">${d.trade_plan.action}</span>　<span style="color:#667">趋势：${d.trade_plan.trend_dir}　相对底部位置：${d.trade_plan.pos!=null? (d.trade_plan.pos*100).toFixed(0)+'%':'—'}</span></div>
+        <div class="tp-reason">${d.trade_plan.reason}</div>
+        <div class="tp-sigs">
+          ${d.trade_plan.sigs.map(([t,h,n])=>{const ic=h===true?'✓':(h===false?'✗':'👁');const cl=h===true?'sig-ok':(h===false?'sig-no':'sig-eye');return `<div class="tp-sig ${cl}"><span class="ic">${ic}</span><b>${t}</b><span class="nt">${n}</span></div>`;}).join('')}
+        </div>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:#999">⚠ 仅方法论演示，不构成投资建议。</div>`;
+  }
+  dr.classList.add('show'); document.getElementById('mask').classList.add('show');
+}
+function closeDrawer(){document.getElementById('drawer').classList.remove('show');document.getElementById('mask').classList.remove('show');}
+
+loadData();
+</script>
+</body>
+</html>

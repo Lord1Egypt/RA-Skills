@@ -1,43 +1,59 @@
-## Description: <br>
-Converts clear UI screenshots into editable frontend prototype code with brief implementation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user pastes a UI screenshot and needs an editable frontend code prototype.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and designers use this skill to turn clear PNG, JPG, or WebP UI screenshots into editable HTML/CSS or React/Vue prototypes and refine layout assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated frontend code may contain inaccurate layout, typography, spacing, or color assumptions from the screenshot. <br>
-Mitigation: Review and test the generated prototype before using it in a production workflow. <br>
-Risk: Artifact documentation includes generic API_KEY and write-mode examples that may not reflect actual required behavior. <br>
-Mitigation: Treat those examples as boilerplate unless the runtime environment independently requires credentials or file-writing actions. <br>
+## Use Case:
 
+Developers and designers use this skill to turn a clear UI screenshot into editable frontend prototype code. It helps identify layout regions, common UI components, typography, spacing, and color assumptions before producing HTML/CSS or framework-oriented code.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wangjipeng977/wangjipeng-screenshot-to-prototype) <br>
-- [Publisher profile](https://clawhub.ai/user/wangjipeng977) <br>
-- [Declared source repository](https://github.com/MiniMax-AI/skills) <br>
-- [Skill reference index](references/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, guidance] <br>
-**Output Format:** [Markdown with frontend code blocks and concise explanatory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions about layout, typography, spacing, colors, and framework choice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided UI screenshots may contain sensitive product, customer, or internal interface details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only screenshots intended for agent inspection and redact private information before using the skill.
+
+Risk: The README contains auto-generated placeholder guidance about read/write modes and API keys that may not match the actual skill behavior.
+
+Mitigation: Use SKILL.md and validated release metadata as the source for expected behavior, and avoid relying on placeholder README usage sections.
+
+Risk: Generated prototypes depend on visual estimation and may contain inaccurate spacing, styling, hierarchy, or interaction assumptions.
+
+Mitigation: Review and edit generated code before using it in production UI work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangjipeng977/skills/wangjipeng-screenshot-to-prototype)
+- [Metadata Source Repository](https://github.com/MiniMax-AI/skills)
+- [Local References Index](references/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown response with frontend prototype code and brief implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include HTML/CSS, React, or Vue code depending on the request and screenshot context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

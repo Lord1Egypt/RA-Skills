@@ -1,42 +1,57 @@
-## Description: <br>
-Gets local weather and generates a humorous good-morning greeting or cheesy pickup line based on the conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Greeting Bot gets local weather and writes a humorous Chinese morning greeting or pickup line matched to the forecast.
 
-## Publisher: <br>
-[wrencheski](https://clawhub.ai/user/wrencheski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wrencheski](https://clawhub.ai/user/wrencheski)
 
-## Use Case: <br>
-External users use this skill as a personal morning assistant that checks the day's local weather and turns it into a light, weather-aware greeting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookup may send the user's city to the configured weather service. <br>
-Mitigation: Use only city information appropriate for the configured service and disclose when weather data is being requested. <br>
-Risk: A broad or reused weather API key could increase exposure if it is mishandled. <br>
-Mitigation: Configure a limited weather API key for this skill and rotate it if access is no longer needed. <br>
-Risk: Network errors or invalid API credentials can prevent weather-aware output. <br>
-Mitigation: Tell the user when weather data cannot be retrieved and use the documented generic morning greeting fallback. <br>
+## Use Case:
 
+External users use this skill to ask an agent for a daily weather-aware morning greeting. The skill is intended for users who can provide a city and configure a weather API key for weather lookup.
 
-## Reference(s): <br>
-- [Daily Greeting Bot ClawHub page](https://clawhub.ai/wrencheski/daily-greeting-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style weather summary and short greeting text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include fallback greeting text when weather data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, target metadata, artifact frontmatter) <br>
+Risk: The skill uses a weather API key and city name through curl, so users may disclose location context to their chosen weather API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an approved weather API provider, keep WEATHER_API_KEY in the environment, and provide only location detail acceptable for the use case.
+
+Risk: Weather lookup can fail because of network errors, invalid API credentials, or API availability.
+
+Mitigation: Follow the artifact's fallback behavior by clearly explaining the lookup failure and returning a generic morning greeting.
+
+Risk: The default output is a Chinese greeting, which may not match every user's language expectations.
+
+Mitigation: Ask the agent to translate or adapt the greeting language when English or another language is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wrencheski/skills/daily-greeting-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style weather summary followed by a morning greeting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is normally in Chinese and depends on a user-provided city plus weather data from an API call.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

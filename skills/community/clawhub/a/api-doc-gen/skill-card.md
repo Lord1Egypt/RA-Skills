@@ -1,41 +1,59 @@
-## Description: <br>
-Generates API documentation from Flask, Django DRF, FastAPI, Express.js, NestJS, and generic code into Markdown, OpenAPI 3.0, or Postman Collection formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Api Doc Gen generates API documentation from Flask, Django DRF, FastAPI, Express.js, NestJS, and generic code, with Markdown, OpenAPI 3.0, YAML, and Postman Collection outputs.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to inspect API source code, infer routes and parameters, and generate consistent API documentation for implementation, review, and debugging workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated documentation may reveal internal API names, routes, parameters, or response shapes from the project being analyzed. <br>
-Mitigation: Run the skill only on project directories intended for documentation and review generated files before sharing them externally. <br>
-Risk: Dependency hygiene issues were noted for pytest and PyYAML. <br>
-Mitigation: Install the skill in an isolated environment and pin or lock pytest and PyYAML to reviewed versions before production use. <br>
+## Use Case:
 
+Developers and API teams use this skill to inspect local API source files or code snippets and produce shareable API documentation and API client artifacts. It is aimed at keeping framework routes, inferred parameters, and response templates aligned with generated Markdown, OpenAPI, and Postman outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shenghoo123-png/api-doc-gen) <br>
-- [Publisher Profile](https://clawhub.ai/user/shenghoo123-png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, OpenAPI 3.0 JSON, OpenAPI 3.0 YAML, or Postman Collection JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write generated documentation files or print generated output to standard output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated documentation can expose internal API routes, parameter names, response shapes, and other implementation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Markdown, OpenAPI, YAML, and Postman files before publishing or sharing them outside the intended team.
+
+Risk: Unpinned Python dependencies can change behavior or introduce supply-chain risk over time.
+
+Mitigation: Install in a virtual environment and pin or lock dependency versions before production use.
+
+Risk: Chinese-language CLI messages and documentation may be difficult for some operators to review accurately.
+
+Mitigation: Have a fluent reviewer check generated output, logs, and usage instructions until locale support is available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/api-doc-gen)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown, OpenAPI 3.0 JSON, OpenAPI 3.0 YAML, or Postman Collection JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write generated documentation to files or print it to standard output; batch mode writes one generated file per input source file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

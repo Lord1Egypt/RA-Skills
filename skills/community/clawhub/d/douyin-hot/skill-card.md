@@ -1,42 +1,58 @@
-## Description: <br>
-Fetches Douyin hot list and trending-search data, including ranks, topic titles, heat values, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Douyin hot-list and trending-search data and returns ranked items with titles, heat values, labels, and links.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-Developers, social media operators, analysts, and marketing teams use this skill to retrieve Douyin trending topics for hot topic tracking, trend analysis, content planning, and social operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled helper scripts can retain fetched trend history in a local SQLite database and generate an HTML report. <br>
-Mitigation: Review the helper scripts before installation, avoid sharing generated reports until output escaping and link validation are confirmed, and delete data/douyin.db when retained history is no longer needed. <br>
-Risk: The public Douyin web interface may change or rate-limit frequent requests. <br>
-Mitigation: Use reasonable request frequency and verify fetched results before relying on them for trend analysis or planning. <br>
+## Use Case:
 
+Developers, analysts, and social media operators use this skill to retrieve current Douyin trending topics for hot-topic tracking, trend analysis, marketing planning, and social media operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noah-1106/douyin-hot) <br>
-- [Publisher profile](https://clawhub.ai/user/noah-1106) <br>
-- [Douyin website](https://www.douyin.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, files] <br>
-**Output Format:** [Terminal text, JSON arrays, and optional local HTML reports containing rank, title, heat value, label, and link fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default fetch limit is 50 items; helper scripts can store trend history in a local SQLite database and generate a local HTML report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: ClawHub release metadata) <br>
+Risk: The HTML report path may render untrusted remote Douyin data in a browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the report generator before use by escaping text, validating links, and avoiding unsafe innerHTML behavior.
+
+Risk: The skill depends on Douyin web interfaces whose response shape and access controls may change or rate-limit frequent requests.
+
+Mitigation: Use reasonable request volumes, handle empty or changed responses, and review failures before relying on output for operational decisions.
+
+Risk: Local database and reporting scripts expand the skill beyond the basic fetch command.
+
+Mitigation: Review those scripts before enabling database storage or HTML reporting in a deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noah-1106/skills/douyin-hot)
+- [Douyin website](https://www.douyin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Shell commands, Files]
+
+**Output Format:** [Console text or JSON records; optional local SQLite data and HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Items may include rank, title, popularity, link, label, and type.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-wecomdrive helps agents operate WeCom Drive and WeCom Docs through the official web interface, including login QR capture, document export, local file processing, report generation, and upload back to WeCom Drive. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operates WeCom Docs and Drive through the official web interface for login checks, QR-code handoff, file export or download, local processing, report generation, and upload back to WeCom Drive.
 
-## Publisher: <br>
-[junjiantech](https://clawhub.ai/user/junjiantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junjiantech](https://clawhub.ai/user/junjiantech)
 
-## Use Case: <br>
-Developers and agents use this skill to access user-provided WeCom Drive or Docs links, preserve authenticated browser sessions, export files for local processing, generate reports, and upload finished files back through the WeCom web app. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain an authenticated enterprise browser session and local document artifacts. <br>
-Mitigation: Use the skill only on specific user-provided links, avoid highly sensitive documents unless local processing is acceptable, and delete the skill's .state and .outputs directories when saved sessions, QR screenshots, and reports should be cleared. <br>
-Risk: Browser-based access to a WeCom workspace can expose enterprise documents to local processing and generated outputs. <br>
-Mitigation: Review generated files before upload and confirm that the requested document handling is appropriate for the workspace and data sensitivity. <br>
+## Use Case:
 
+Developers and operators use this skill to work with WeCom Drive or Tencent Docs links when browser login, document export, local analysis, generated reports, or upload back to WeCom Drive are required.
 
-## Reference(s): <br>
-- [wecomdrive ClawHub release page](https://clawhub.ai/junjiantech/unianx-wecomdrive) <br>
-- [Publisher profile: junjiantech](https://clawhub.ai/user/junjiantech) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
-- [WeCom web notes](references/wecom-web-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON script output, screenshots, and generated local files such as HTML, DOCX, XLSX, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser-session state, QR-code screenshots, exported WeCom files, and generated analysis reports under local state or output directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The persistent browser helper can navigate to arbitrary URLs while logged in and return page details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for expected WeCom or Tencent Docs workflows and avoid passing non-WeCom URLs unless a domain allowlist is added.
+
+Risk: QR login screenshots, exported documents, generated reports, and uploaded results may contain private business content.
+
+Mitigation: Keep QR codes and generated files private, share them only with intended users, and remove local outputs when the workflow is finished.
+
+Risk: The local browser profile can preserve authenticated WeCom session state.
+
+Mitigation: Clear the .state browser profile after use or when moving the skill between users or machines.
+
+## Reference(s):
+
+- [WeCom web workflow notes](artifact/references/wecom-web-notes.md)
+- [WeCom Docs recent files](https://doc.weixin.qq.com/home/recent)
+- [ClawHub skill page](https://clawhub.ai/junjiantech/skills/unianx-wecomdrive)
+- [ClawHub homepage](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; helper scripts may produce JSON page summaries, QR screenshots, HTML reports, and DOCX reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and npm; browser automation uses a persistent local profile for WeCom web sessions.]
+
+## Skill Version(s):
+
+0.0.1 (source: ClawHub release evidence; artifact frontmatter says 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-AI Trend Hunter Pro helps creators scrape trend sources and generate social media drafts for X, Xiaohongshu, and LinkedIn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Trend Hunter Pro helps creators turn global trend and technology news into social media drafts for X, Xiaohongshu, and LinkedIn.
 
-## Publisher: <br>
-[traprapitalianazional-dev](https://clawhub.ai/user/traprapitalianazional-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Standard Commercial License <br>
+## Publisher:
 
+[traprapitalianazional-dev](https://clawhub.ai/user/traprapitalianazional-dev)
 
-## Use Case: <br>
-External creators, agencies, and digital entrepreneurs use this skill to monitor trend sources, generate persona-specific social post drafts, and review content before staging X actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Standard Commercial License
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill combines arbitrary scraping, third-party AI processing, local persistence, and X browser automation with under-specified controls. <br>
-Mitigation: Restrict source URLs, use least-privilege social accounts and API keys, review every draft before platform actions, and confirm where outputs and provider requests are stored or sent. <br>
-Risk: Automated social-content generation can create inaccurate, misleading, or off-brand posts. <br>
-Mitigation: Keep the workflow's human review step mandatory and verify topics, claims, tone, and links before approving any draft. <br>
+## Use Case:
 
+External creators, agencies, and digital entrepreneurs use this skill to monitor public trend sources, generate persona-driven social media drafts, review them, and optionally stage approved X drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/traprapitalianazional-dev/ai-hunter-pro) <br>
-- [DeepSeek chat completions endpoint](https://api.deepseek.com/v1/chat/completions) <br>
-- [Publisher profile](https://clawhub.ai/user/traprapitalianazional-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown draft files, JSON title lists, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires provider API credentials and human review before any X action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: manifest.json, workflow.json, server release evidence) <br>
+Risk: Under-scoped URL scraping may send scraped page text to DeepSeek, save it locally, and use it in X draft automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only against intended public news URLs, keep the human approval step enabled, and inspect both source content and final drafts before browser automation.
+
+## Reference(s):
+
+- [AI Trend Hunter Pro on ClawHub](https://clawhub.ai/traprapitalianazional-dev/skills/ai-hunter-pro)
+- [Publisher profile](https://clawhub.ai/user/traprapitalianazional-dev)
+- [DeepSeek chat completions endpoint](https://api.deepseek.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Markdown drafts with intermediate JSON title records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human review is expected before approved drafts are staged through browser automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: manifest.json, workflow.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

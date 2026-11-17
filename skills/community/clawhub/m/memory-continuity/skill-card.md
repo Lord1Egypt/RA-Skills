@@ -1,38 +1,53 @@
-## Description: <br>
-Provides asynchronous reflection and local memory continuity workflows for extracting structured memories, generating follow-up questions, and surfacing them in later sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real Memory Continuity helps agents reflect after sessions, extract structured memories with confidence scores, and surface follow-up questions when the user returns.
 
-## Publisher: <br>
-[Riley-Coyote](https://clawhub.ai/user/Riley-Coyote) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[riley-coyote](https://clawhub.ai/user/riley-coyote)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add local cross-session memory reflection: it can inspect a supplied session transcript, maintain identity and question files, report memory status, and surface unresolved follow-up questions when a user returns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and resurfaces local cross-session memory notes, which can be privacy-sensitive if transcripts or memories contain sensitive information. <br>
-Mitigation: Run reflection only on transcripts intended for retention, review the memory directory periodically, and enable heartbeat automation only when automatic post-session reflection is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Continuity Framework](references/framework.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Riley-Coyote/memory-continuity) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local continuity workflows that turn session activity into structured memory, identity notes, and follow-up questions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown and plain text CLI output, with optional JSON reflection logs and Markdown memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local memory, identity, question, and reflection files under the configured continuity memory directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist session-derived questions, identity notes, and reflection logs on local disk.
+
+Mitigation: Use it only when local memory persistence is intended, avoid sensitive transcripts unless persistence is acceptable, and delete stored files manually when needed.
+
+Risk: Heartbeat integration may trigger post-session reflection automatically after idle periods.
+
+Mitigation: Enable the heartbeat workflow only when automatic post-session reflection is desired.
+
+## Reference(s):
+
+- [The Continuity Framework](references/framework.md)
+- [ClawHub skill page](https://clawhub.ai/riley-coyote/skills/memory-continuity)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local questions, identity notes, and reflection logs under ~/clawd/memory or CONTINUITY_MEMORY_DIR.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Send Feishu/Lark direct messages and work follow-ups from OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Feishu/Lark direct messages and work follow-ups from OpenClaw. Use when the user wants to search for a person in Feishu/Lark, resolve a user, create a 1:1 chat, or send a bot-authored follow-up message about work done, status updates, reminders, or polite nudges.
 
-## Publisher: <br>
-[systransform88](https://clawhub.ai/user/systransform88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[systransform88](https://clawhub.ai/user/systransform88)
 
-## Use Case: <br>
-OpenClaw users and workspace operators use this skill to resolve Feishu/Lark contacts, cache recipient identifiers, create 1:1 chats on request, and send bot-authored direct messages or work follow-up nudges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can use Feishu/Lark bot authority to search employees and send workplace messages without an enforced confirmation step. <br>
-Mitigation: Install only for trusted publishers, configure the Feishu account explicitly, and set allowSend=false unless the runtime or operator provides a confirmation workflow. <br>
-Risk: The release bundles and persists contact cache data containing recipient identifiers and contact details. <br>
-Mitigation: Delete the bundled contact cache before use and avoid shared hosts where cached contact data could be exposed. <br>
-Risk: Tenant policy, app visibility, and bot availability may still block delivery even when Feishu/Lark scopes are granted. <br>
-Mitigation: Confirm required tenant scopes and delivery policy before relying on the skill for operational follow-ups. <br>
+## Use Case:
 
+Employees and developers use this skill to resolve Feishu/Lark contacts, create direct chats when requested, and send bot-authored work messages or follow-ups from OpenClaw.
 
-## Reference(s): <br>
-- [API notes](references/api-notes.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/systransform88/openclaw-feishu-message) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Guidance] <br>
-**Output Format:** [JSON-formatted text returned by the feishu_message tool, with Feishu/Lark messages sent through configured bot actions when sending is enabled.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return resolved contact identifiers, preview text, send results, or structured error details; dry_run actions return previews without sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence, package.json, openclaw.plugin.json) <br>
+Risk: Bundled plaintext contact-cache data can expose personal contact identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the bundled contact-cache data before distribution or installation and avoid storing sensitive contact details unless the deployment has an approved retention policy.
+
+Risk: The skill can send real Feishu/Lark messages, and sending is enabled by default when configured.
+
+Mitigation: Require preview and explicit confirmation before sending, and set sending to disabled until an operator intentionally enables it.
+
+Risk: Weak or ambiguous recipient resolution can send a message to the wrong person.
+
+Mitigation: Reject ambiguous recipient matches and require a confirmed unique recipient before sending.
+
+## Reference(s):
+
+- [API notes](references/api-notes.md)
+- [ClawHub skill page](https://clawhub.ai/systransform88/skills/openclaw-feishu-message)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API calls, Configuration, Guidance]
+
+**Output Format:** [Text responses with JSON-formatted tool results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can perform Feishu/Lark employee lookup, chat creation, message preview, and bot message sending when configured with tenant credentials and scopes.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Analyzes Kubernetes YAML manifests for security misconfigurations, best practices violations, and compliance risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Kubernetes YAML manifests for security misconfigurations, best practices violations, and compliance risks.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, DevOps engineers, platform security teams, and Kubernetes administrators use this skill to review Kubernetes YAML before deployment and identify security misconfigurations, best-practice violations, and compliance risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Kubernetes manifests may contain Secret values, tokens, passwords, internal hostnames, private registry paths, or other sensitive infrastructure details. <br>
-Mitigation: Redact sensitive values and confirm the provider's data handling terms before submitting production YAML to the external API. <br>
+## Use Case:
 
+Developers, DevOps engineers, platform security teams, and Kubernetes administrators use this skill to review Kubernetes YAML manifests before deployment and identify misconfigurations, best-practice violations, and compliance risks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/k8s-security-review) <br>
-- [Kubernetes Security Review API Endpoint](https://api.mkkpro.com/security/k8s-security-review) <br>
-- [Kubernetes Security Review API Docs](https://api.mkkpro.com:8022/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON analysis report with findings, severity ratings, recommendations, and summary counts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Kubernetes YAML content as input and sends selected manifest content to an external provider API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Kubernetes manifests submitted for review may contain Secrets, tokens, private keys, passwords, registry credentials, sensitive annotations, or internal hostnames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive values and remove private environment details before submitting manifests to the external review API.
+
+Risk: The release evidence does not provide clear retention, logging, deletion, or privacy commitments for data sent to the external service.
+
+Mitigation: Use the skill only with manifests approved for external processing, or obtain publisher privacy and retention assurances before using production data.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/k8s-security-review)
+- [Kubernetes Security Review API Docs](https://api.mkkpro.com:8022/docs)
+- [Kubernetes Security Review API Route](https://api.mkkpro.com/security/k8s-security-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON security analysis report with findings, severity ratings, recommendations, and summary statistics.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include manifest validity, categorized findings, affected resources, remediation recommendations, severity counts, and a compliance score.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

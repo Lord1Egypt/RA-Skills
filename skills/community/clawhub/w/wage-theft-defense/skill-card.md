@@ -1,45 +1,61 @@
-## Description: <br>
-Helps workers identify, document, and pursue recovery for suspected wage theft such as unpaid overtime, tip theft, minimum wage violations, off-the-clock work, misclassification, and improper deductions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tools for identifying, documenting, and recovering stolen wages when someone suspects unpaid overtime, tip theft, minimum wage violations, off-the-clock work, misclassification as an independent contractor, or paycheck deductions that seem wrong.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Workers, worker advocates, and support organizations use this skill to document suspected unpaid wages, calculate amounts owed, prepare demand letters, identify filing options, and find legal help. The skill requires jurisdiction-specific checks before giving wage and hour guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with jurisdiction-specific wage and hour law checks before advice. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask users to provide sensitive work, pay, schedule, and legal-claim details. <br>
-Mitigation: Keep records in personal storage, avoid work devices or work accounts, and share only the details needed for the task. <br>
-Risk: Wage and hour rules vary by jurisdiction and may affect the accuracy of legal guidance. <br>
-Mitigation: Confirm the user's jurisdiction, verify current local law and filing procedures, and consult a labor agency or legal aid when possible. <br>
-Risk: Generated demand letters or complaints may contain errors or omit important facts. <br>
-Mitigation: Review all letters, forms, calculations, and complaints before sending or filing them. <br>
+## Use Case:
 
+Workers, worker advocates, and agents assisting them use this skill to identify possible wage theft, organize supporting records, calculate unpaid wages, draft demand letters, and prepare labor board or related filings.
 
-## Reference(s): <br>
-- [Economic Policy Institute wage theft research](https://www.epi.org) <br>
-- [US Department of Labor Wage and Hour Division](https://www.dol.gov/agencies/whd) <br>
-- [National Employment Law Project](https://www.nelp.org) <br>
-- [Anthropic labor market impacts research](https://www.anthropic.com/research/labor-market-impacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text templates, checklists, calculations, and filing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include demand letters, time logs, complaint preparation steps, collective action guidance, and legal-aid resource suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installation commands that are not pinned or otherwise verified can expose users to supply-chain or installer hygiene issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or otherwise verified ClawHub installer and run installation with least privilege.
+
+Risk: Wage and hour rules vary by jurisdiction and can change, so generic legal guidance may be incomplete or stale.
+
+Mitigation: Detect the user's jurisdiction and verify specific advice against current official sources or legal aid before acting.
+
+Risk: Wage records may contain sensitive employment and personal information.
+
+Mitigation: Keep records on personal devices or accounts controlled by the worker, not employer-managed systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/howtousehumans/skills/wage-theft-defense)
+- [Economic Policy Institute](https://www.epi.org)
+- [U.S. Department of Labor Wage and Hour Division](https://www.dol.gov/agencies/whd)
+- [National Employment Law Project](https://www.nelp.org)
+- [Anthropic Labor Market Impacts of AI](https://www.anthropic.com/research/labor-market-impacts)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with templates, checklists, and calculation worksheets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include jurisdiction-specific guidance, demand letter drafts, documentation templates, and filing preparation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Natural language search for local files (100G-1T), supporting xlsx, pptx, pdf, docx, and related formats with source location information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Natural language search for local files (100G-1T). Supports xlsx, pptx, pdf, docx formats with location info. Triggered when user asks to search local/computer/folder content.
 
-## Publisher: <br>
-[gaoshuping99](https://clawhub.ai/user/gaoshuping99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoshuping99](https://clawhub.ai/user/gaoshuping99)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to configure, index, synchronize, and query local document collections through a Khoj-based RAG workflow. It is intended for local file search over selected folders, with optional cloud LLM chat over retrieved document excerpts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can index large private folders and keep processing files in the background through scheduled sync. <br>
-Mitigation: Index only intentional folders, avoid broad sensitive directories, and enable scheduled sync only after confirming the selected scope. <br>
-Risk: Document-derived queries or excerpts may leave the local machine when cloud chat mode or a non-local Khoj endpoint is configured. <br>
-Mitigation: Bind the service to 127.0.0.1, keep KHOJ_URL local unless a remote server is trusted, avoid anonymous mode for sensitive indexes, and review the configured LLM provider before use. <br>
+## Use Case:
 
+Employees, external users, developers, and engineers use this skill to convert and index selected local documents, then query them with natural language through a Khoj-backed local search workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gaoshuping99/local-ai-search) <br>
-- [Khoj Documentation](https://docs.khoj.dev/) <br>
-- [Khoj GitHub](https://github.com/khoj-ai/khoj) <br>
-- [MarkItDown GitHub](https://github.com/microsoft/markitdown) <br>
-- [DeepSeek API](https://platform.deepseek.com/) <br>
-- [OpenAI Platform](https://platform.openai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and plain-text search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local indexing commands, sync scheduling commands, and query responses with source file locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: ClawHub release evidence) <br>
+Risk: The Khoj service may expose indexed local documents if bound beyond trusted local access or run in anonymous mode on a reachable network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to 127.0.0.1, avoid anonymous mode on reachable networks, and use an authenticated trusted loopback or HTTPS KHOJ_URL.
+
+Risk: Selected local documents are indexed under ~/.khoj and query content can be sent to configured cloud LLM providers.
+
+Mitigation: Review files before indexing, avoid sensitive content unless approved, and confirm the configured LLM provider is acceptable for the data.
+
+Risk: Scheduled sync adds persistence and the security evidence flags the cron construction as needing review.
+
+Mitigation: Do not enable scheduled sync until the cron construction is fixed and reviewed; prefer manual sync for sensitive folders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaoshuping99/skills/local-ai-search)
+- [Khoj documentation](https://docs.khoj.dev/)
+- [Khoj GitHub repository](https://github.com/khoj-ai/khoj)
+- [MarkItDown GitHub repository](https://github.com/microsoft/markitdown)
+- [DeepSeek API documentation](https://platform.deepseek.com/)
+- [OpenAI API documentation](https://platform.openai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style responses with source snippets, file locations, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file names, approximate worksheet or slide locations, indexed content snippets, and optional JSON output from query scripts.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and artifact config.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

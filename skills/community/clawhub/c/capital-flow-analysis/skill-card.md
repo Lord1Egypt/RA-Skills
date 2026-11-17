@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes Chinese A-share capital flows using main-force net inflow and northbound holding data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Chinese A-share capital flows, including main-force net inflows, northbound holdings, and trading leaderboard signals.
 
-## Publisher: <br>
-[GBABYZS](https://clawhub.ai/user/GBABYZS) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gbabyzs](https://clawhub.ai/user/gbabyzs)
 
-## Use Case: <br>
-Developers and investment-analysis agents use this skill to query and summarize Chinese A-share capital-flow signals for stock research workflows. It supports main-force flow and northbound holding checks for a supplied stock code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock codes may be queried through akshare and its upstream market-data sources. <br>
-Mitigation: Use the skill only with stock codes that are appropriate to send to those data providers. <br>
-Risk: Dependencies are not version-pinned. <br>
-Mitigation: Pin and review akshare and pandas versions in the consuming environment before deployment. <br>
-Risk: The advertised Dragon Tiger List export appears missing in this version. <br>
-Mitigation: Use only the implemented analyze_main_force and analyze_northbound functions until the missing export is added or the manifest is corrected. <br>
+## Use Case:
 
+Developers and market-analysis agents use this skill to retrieve and summarize Chinese A-share capital-flow signals for stock research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBABYZS/capital-flow-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python dictionary results and agent-facing explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on akshare and upstream market-data availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and skill.json) <br>
+Risk: The skill fetches third-party financial data through akshare, which may be unsuitable for some environments or workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where third-party financial data access is acceptable and verify returned signals before use.
+
+Risk: Dependency behavior can change across akshare or pandas releases.
+
+Mitigation: Pin dependency versions before production use.
+
+Risk: Documentation and returned field names are Chinese-market specific and may be misunderstood outside that context.
+
+Mitigation: Confirm the Chinese documentation and financial signal meanings match the intended analysis workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gbabyzs/skills/capital-flow-analysis)
+- [Artifact Skill Documentation](artifact/SKILL.md)
+- [Artifact Skill Manifest](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Guidance]
+
+**Output Format:** [Markdown and Python dictionary outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses akshare and pandas to fetch third-party financial data when called.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

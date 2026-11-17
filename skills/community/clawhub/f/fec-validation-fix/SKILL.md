@@ -1,51 +1,51 @@
 ---
 name: fec-validation-fix
-description: Use when running existing project validation commands and fixing failures after code changes, including lint, type-check, unit/integration test, build, CI, or local script failures. Do not use when the task is to design or author new component/E2E tests; Chinese triggers include 验证, 检查失败, 修复失败, CI 失败.
+description: Use when running existing project validation commands and fixing failures after code changes, including lint, type-check, unit/integration test, build, CI, or local script failures. Do not use when the task is to design or author new component/E2E tests; Chinese triggers include validation, check failures, fix failures, CI failures.
 ---
 
-# 验证并修复
+# Verify and fix
 
 ## Purpose
 
-自动化执行已有验证命令，分析失败原因并安全修复，确保质量门禁达标。
+Automatically execute existing verification commands, analyze the reasons for failure and safely repair them to ensure that quality access control meets standards.
 
 ## Procedure
 
-1. 从 package.json 或仓库文档中识别可用命令。
-2. 优先按以下顺序执行：
+1. Identify available commands from package.json or repository documentation.
+2. Prioritize execution in the following order:
    - lint
    - type-check
    - unit/integration tests
    - build
-3. 仔细阅读失败输出。
-4. 将错误按文件、错误类型和依赖关系分组，优先处理阻塞后续诊断的根因。
-5. 一次只修复一类问题，并显示或记录关键错误上下文。
-6. 每次关键修复后重新执行受影响命令，确认错误是否减少。
-7. 如果同一错误连续三次修复仍失败，停止扩大改动并报告阻塞。
-8. 最后按 `Expected Output` 总结执行结果、修复内容和剩余风险。
+3. Read the failure output carefully.
+4. Group errors by file, error type and dependency, prioritizing root causes that block subsequent diagnosis.
+5. Fix one type of problem at a time and display or log critical error context.
+6. After each critical repair, re-execute the affected command to confirm whether the error is reduced.
+7. If the same error still fails to be repaired three times in a row, stop expanding changes and report blocking.
+8. Finally, press `Expected Output` to summarize the execution results, repair content and remaining risks.
 
 ## Failure Triage
 
-- 先修最早出现且会级联的错误，例如缺失类型、导入失败、配置解析失败。
-- 区分真实产品 bug、测试环境问题、快照漂移、依赖版本变化和 flaky。
-- 对 CI 专属失败记录 Node 版本、包管理器、环境变量、路径大小写和工作目录差异。
-- 修复测试时优先修产品代码或测试等待方式，不用删除断言掩盖真实回归。
+- Fix the earliest errors that will cascade first, such as missing types, import failures, and configuration parsing failures.
+- Differentiate between real product bugs, test environment issues, snapshot drift, dependency version changes and flaky.
+- Log Node version, package manager, environment variables, path case, and working directory differences for CI-specific failures.
+- When fixing tests, give priority to fixing product code or testing waiting methods, instead of deleting assertions to cover up real regressions.
 
 ## Constraints
 
-- 不要盲目关闭规则来消除报错
-- 除非有明确理由，不要为了通过检查而降低类型安全
-- 不要因为附近测试失败就顺手重写无关模块
-- 不要一次性修改多个无关根因
-- 不要删除失败测试来让验证通过
-- 不要只运行失败命令的片段就声称整体验证通过
+- Do not blindly turn off rules to eliminate errors
+- Don't compromise type safety to pass checks unless there is a clear reason to do so
+- Don’t rewrite irrelevant modules just because a nearby test fails
+- Do not modify multiple irrelevant root causes at once
+- Don't remove failing tests to make validation pass
+- Don't just run a fragment of the failed command and claim that the overall validation passed
 
-## 详细参考
+## Detailed reference
 
-撰写验证修复报告时，加载 [references/report-template.md](references/report-template.md)。
+When writing a verification fix report, load [references/report-template.md](references/report-template.md).
 
 ## Expected Output
 
-- lint / type-check / test / build 等验证命令全部通过
-- 失败项已修复或给出明确原因和后续行动
-- 修复报告保存为 `reports/validation-fix-YYYY-MM-DD-HHmmss.md`
+- All verification commands such as lint/type-check/test/build passed
+- Failed items have been fixed or given clear reasons and follow-up actions
+- The fix report is saved as `reports/validation-fix-YYYY-MM-DD-HHmmss.md`

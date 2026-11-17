@@ -1,43 +1,59 @@
-## Description: <br>
-Converts text to speech with Microsoft edge-tts or an OpenAI-compatible TTS API, including OGG/Opus output for Feishu voice messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts text to speech using Microsoft edge-tts or an OpenAI-compatible TTS API, with support for OGG/Opus output for Feishu voice messages.
 
-## Publisher: <br>
-[moroiser](https://clawhub.ai/user/moroiser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moroiser](https://clawhub.ai/user/moroiser)
 
-## Use Case: <br>
-Developers and agents use this skill to synthesize spoken audio from text, choose voices and speech settings, and produce files suitable for Feishu voice messages or general playback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for synthesis may be sent to Microsoft edge-tts or to the configured OpenAI-compatible API endpoint. <br>
-Mitigation: Avoid synthesizing secrets or confidential text, and use only trusted TTS endpoints for sensitive workflows. <br>
-Risk: API mode requires sensitive credentials. <br>
-Mitigation: Keep API keys scoped, provide them through trusted configuration, and rotate them if exposed. <br>
-Risk: Generated audio files are saved in the OpenClaw workspace output directory by default. <br>
-Mitigation: Choose explicit output paths when needed and review generated audio files before sharing or sending them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to synthesize spoken audio from text, choose TTS voices, and generate Feishu-ready OGG/Opus files or general MP3 output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/moroiser/tts-synthesizer) <br>
-- [Publisher profile](https://clawhub.ai/user/moroiser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated audio files are OGG/Opus or MP3 depending on the script and engine.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call online TTS services and may write generated audio files under the OpenClaw workspace output directory unless another output path is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: TTS input text may be sent to Microsoft edge-tts or to the configured OpenAI-compatible API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets or private regulated data for synthesis, and install the skill only when the configured provider is acceptable for the intended data.
+
+Risk: API mode sends credentials and requests to the configured TTS endpoint.
+
+Mitigation: Use a trusted HTTPS API URL and prefer environment variables over command-line API keys.
+
+Risk: Dependency changes could affect runtime behavior or provider communication.
+
+Mitigation: Pin dependencies in a virtual environment before use when reproducibility or change control matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moroiser/skills/tts-synthesizer)
+- [Publisher profile](https://clawhub.ai/user/moroiser)
+- [OpenAI-compatible API base URL example](https://api.openai.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands and generated audio file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces OGG/Opus audio for Feishu voice messages through tts_simple.py and MP3 audio through tts_edge.py.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

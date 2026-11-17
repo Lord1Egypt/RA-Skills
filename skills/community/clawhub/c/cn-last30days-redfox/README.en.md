@@ -43,7 +43,7 @@ Search real discussions from Xiaohongshu (RED), Douyin (TikTok China), and WeCha
 
 - This skill includes a built-in free public Key and works out of the box—no configuration needed.
 - For higher quotas, you can obtain a personal `REDFOX_API_KEY`:
-  - `REDFOX_API_KEY` is issued by [RedFoxHub](https://redfox.hk/settings/api-keys?source=clawhub) (`https://redfox.hk`).
+  - `REDFOX_API_KEY` is issued by [RedFoxHub](https://redfox.hk/settings/api-keys?source=clawhub) (`https://redfox.hk`?source=clawhub).
   - Register at [RedFoxHub](https://redfox.hk?source=clawhub) to obtain `REDFOX_API_KEY`.
   - Configure `REDFOX_API_KEY` on your device before using this skill.
 - Before providing your key, confirm its source, scope, validity period, and whether it can be reset or revoked.
@@ -70,7 +70,7 @@ Simply describe the topic you want to research in natural language—no fixed co
 After research, you'll see a report like this (illustrative):
 
 ```
-🇨🇳 cn-last30days v2.0.0 · 2026-06-10
+🇨🇳 cn-last30days v2.1.0 · 2026-06-10
 
 My findings:
 

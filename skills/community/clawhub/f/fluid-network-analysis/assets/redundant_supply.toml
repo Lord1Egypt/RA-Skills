@@ -1,0 +1,99 @@
+schema_version = "1.0"
+
+[network]
+id = "redundant-supply"
+name = "Main and backup supply network"
+pressure_reference = "gauge"
+units_system = "SI"
+
+[[nodes]]
+id = "main_source"
+kind = "pressure_boundary"
+pressure_pa = 300000.0
+boundary_role = "source"
+
+[[nodes]]
+id = "backup_source"
+kind = "pressure_boundary"
+pressure_pa = 260000.0
+boundary_role = "source"
+
+[[nodes]]
+id = "load_inlet"
+kind = "load"
+function_id = "environmental_control"
+measurement_edge_id = "load_restriction"
+min_inlet_pressure_pa = 170000.0
+min_flow_m3_s = 0.003
+
+[[nodes]]
+id = "ambient"
+kind = "pressure_boundary"
+pressure_pa = 0.0
+boundary_role = "sink"
+
+[[edges]]
+id = "main_valve"
+from = "main_source"
+to = "load_inlet"
+kind = "valve"
+resistance_model = "quadratic"
+resistance = 5.0e9
+diameter_m = 0.04
+enabled = true
+
+[[edges]]
+id = "backup_valve"
+from = "backup_source"
+to = "load_inlet"
+kind = "valve"
+resistance_model = "quadratic"
+resistance = 8.0e9
+diameter_m = 0.04
+enabled = false
+
+[[edges]]
+id = "load_restriction"
+from = "load_inlet"
+to = "ambient"
+kind = "pipe"
+resistance_model = "quadratic"
+resistance = 2.0e10
+diameter_m = 0.02
+enabled = true
+
+[[scenarios]]
+id = "normal"
+description = "Main supply active"
+
+[[scenarios]]
+id = "backup"
+description = "Main supply failed; backup active"
+
+[[scenarios.actions]]
+target_type = "edge"
+target_id = "main_valve"
+attribute = "enabled"
+value = false
+
+[[scenarios.actions]]
+target_type = "edge"
+target_id = "backup_valve"
+attribute = "enabled"
+value = true
+
+[[scenarios]]
+id = "total_loss"
+description = "Both supply paths unavailable"
+
+[[scenarios.actions]]
+target_type = "edge"
+target_id = "main_valve"
+attribute = "enabled"
+value = false
+
+[[scenarios.actions]]
+target_type = "edge"
+target_id = "backup_valve"
+attribute = "enabled"
+value = false

@@ -1,0 +1,2 @@
+pdfplumber==0.11.7
+pytest==8.3.5

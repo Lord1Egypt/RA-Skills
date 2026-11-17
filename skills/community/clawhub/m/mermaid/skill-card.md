@@ -1,42 +1,55 @@
-## Description: <br>
-Generate and render diagrams from Mermaid syntax into PNG, SVG, or PDF using customizable themes and common Mermaid diagram types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and render diagrams from Mermaid syntax into PNG, SVG, or PDF using customizable themes and common diagram types.
 
-## Publisher: <br>
-[jarekbird](https://clawhub.ai/user/jarekbird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarekbird](https://clawhub.ai/user/jarekbird)
 
-## Use Case: <br>
-Developers, engineers, and technical writers use this skill to create Mermaid diagram definitions and render flowcharts, sequence diagrams, Gantt charts, ER diagrams, and related visuals for documentation and planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local Mermaid CLI installation. <br>
-Mitigation: Install @mermaid-js/mermaid-cli from the official npm package source and avoid unnecessary administrator privileges. <br>
-Risk: Generated diagram files may remain in temporary folders. <br>
-Mitigation: Clean up temporary .mmd and rendered output files when they are no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Mermaid Diagrams Skill](https://clawhub.ai/jarekbird/mermaid) <br>
-- [Official Mermaid Docs](https://mermaid.js.org/) <br>
-- [Mermaid Live Editor](https://mermaid.live/) <br>
-- [Mermaid Syntax Reference](https://mermaid.js.org/intro/syntax-reference.html) <br>
+## Use Case:
 
+Developers and technical writers use this skill to create Mermaid diagram source, render diagrams with Mermaid CLI, and return image or vector outputs for documentation, planning, architecture, and workflow explanations.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown with Mermaid code blocks, inline bash commands, and rendered PNG, SVG, or PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Mermaid CLI options for theme, background, dimensions, scale, and optional config JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned third-party Mermaid CLI package globally.
+
+Mitigation: Use a pinned local installation of @mermaid-js/mermaid-cli where possible, review npm package provenance, and avoid global npm installs with elevated privileges.
+
+Risk: Generated diagrams can be incomplete or misleading if the Mermaid source does not accurately reflect the intended system, workflow, or data model.
+
+Mitigation: Review the Mermaid source and rendered output before publishing or using diagrams for decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jarekbird/skills/mermaid)
+- [Official Mermaid Docs](https://mermaid.js.org/)
+- [Mermaid Live Editor](https://mermaid.live/)
+- [Mermaid Syntax Reference](https://mermaid.js.org/intro/syntax-reference.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Mermaid code blocks, Mermaid CLI commands, and references to generated PNG, SVG, or PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rendered output depends on a working @mermaid-js/mermaid-cli installation and the selected theme, size, scale, and background options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

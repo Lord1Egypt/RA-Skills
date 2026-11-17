@@ -1,0 +1,1124 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Meta（Facebook）账户诊断报告</title>
+
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.min.js"></script>
+    <style>
+      :root {
+        --bg: #f4f6fb;
+        --surface: #ffffff;
+        --surface-2: #f8fafc;
+        --surface-hover: #f1f5f9;
+        --border: rgba(15, 23, 42, 0.08);
+        --border-strong: rgba(15, 23, 42, 0.14);
+        --text: #0f172a;
+        --text-dim: #475569;
+        --muted: #94a3b8;
+        --blue: #1877f2;
+        --blue-deep: #0c5cd4;
+        --purple: #8b5cf6;
+        --cyan: #06b6d4;
+        --green: #10b981;
+        --green-deep: #047857;
+        --yellow: #f59e0b;
+        --orange: #f97316;
+        --red: #ef4444;
+        --red-deep: #b91c1c;
+        --accent: var(--blue);
+        --radius-lg: 16px;
+        --radius-md: 12px;
+        --radius-sm: 8px;
+        --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 26px -14px rgba(15, 23, 42, 0.12);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Segoe UI",
+          -apple-system,
+          "PingFang SC",
+          "Microsoft YaHei",
+          sans-serif;
+        background:
+          radial-gradient(1100px 560px at 8% -8%, rgba(24, 119, 242, 0.07), transparent 60%),
+          radial-gradient(900px 480px at 104% 0%, rgba(139, 92, 246, 0.08), transparent 55%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 32px 20px 90px;
+      }
+
+      /* ── Hero ── */
+      .hero {
+        position: relative;
+        background: linear-gradient(155deg, #eef4ff 0%, #ffffff 55%, #ffffff 100%);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 34px 36px;
+        margin-bottom: 26px;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+        animation: fadeInUp 0.5s ease both;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: -40% -20% auto auto;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(circle, rgba(24, 119, 242, 0.12), transparent 70%);
+        pointer-events: none;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        color: var(--blue-deep);
+        background: rgba(24, 119, 242, 0.12);
+        border: 1px solid rgba(12, 92, 212, 0.22);
+        border-radius: 999px;
+        padding: 4px 12px 4px 10px;
+        margin-bottom: 14px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--purple);
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+      }
+      .hero h1 {
+        position: relative;
+        margin: 0 0 14px;
+        font-size: 1.95rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+      }
+      .meta-chips {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .meta-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        color: var(--text-dim);
+        background: rgba(15, 23, 42, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 5px 12px;
+      }
+      .meta-chip b {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .kpi-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(146px, 1fr));
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .kpi {
+        position: relative;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 15px 16px 14px;
+        overflow: hidden;
+        transition:
+          transform 0.15s ease,
+          border-color 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+      .kpi::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--kpi-color, var(--blue));
+      }
+      .kpi:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-strong);
+        box-shadow: 0 8px 18px -10px rgba(15, 23, 42, 0.18);
+      }
+      .kpi .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--kpi-color, var(--blue));
+        margin-right: 6px;
+        vertical-align: middle;
+      }
+      .kpi .l {
+        font-size: 0.72rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        display: flex;
+        align-items: center;
+      }
+      .kpi .v {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-top: 6px;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -0.01em;
+      }
+      .kpi .d {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        margin-top: 8px;
+        padding: 2px 7px;
+        border-radius: 999px;
+      }
+      .kpi .d.up {
+        color: var(--green-deep);
+        background: rgba(16, 185, 129, 0.12);
+      }
+      .kpi .d.down {
+        color: var(--red-deep);
+        background: rgba(239, 68, 68, 0.12);
+      }
+
+      /* ── Quick nav ── */
+      .toc {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 22px 0 6px;
+      }
+      .toc a {
+        color: var(--text-dim);
+        text-decoration: none;
+        font-size: 0.79rem;
+        font-weight: 500;
+        padding: 6px 13px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        transition: all 0.15s ease;
+        scroll-margin-top: 16px;
+      }
+      .toc a:hover {
+        color: var(--text);
+        border-color: var(--border-strong);
+        background: var(--surface-hover);
+      }
+      .toc a.active {
+        color: #fff;
+        background: linear-gradient(135deg, var(--blue), var(--purple));
+        border-color: transparent;
+      }
+
+      /* ── Sections ── */
+      section {
+        margin-bottom: 34px;
+        scroll-margin-top: 14px;
+        animation: fadeInUp 0.5s ease both;
+      }
+      .sec-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        margin: 30px 0 14px;
+      }
+      .sec-num {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        background: linear-gradient(135deg, var(--blue), var(--purple));
+        color: #fff;
+        font-size: 0.82rem;
+        font-weight: 800;
+        margin-top: 2px;
+      }
+      .sec-head h2 {
+        margin: 0;
+        font-size: 1.22rem;
+        font-weight: 700;
+        letter-spacing: -0.005em;
+        color: var(--text);
+      }
+      .sec-desc {
+        margin: 3px 0 0;
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 22px 24px;
+        margin-bottom: 14px;
+        box-shadow: var(--shadow-card);
+      }
+      .card-title-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 4px;
+      }
+      .card-title-row h3 {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text-dim);
+      }
+      .card-title-row .hint {
+        font-size: 0.74rem;
+        color: var(--muted);
+      }
+      .chart-box {
+        position: relative;
+        height: 300px;
+        margin: 10px 0 4px;
+      }
+
+      /* ── NA badge ── */
+      .na-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--muted);
+        background: var(--surface-2);
+        border: 1px dashed var(--border-strong);
+        border-radius: var(--radius-sm);
+        padding: 10px 14px;
+      }
+      .na-badge::before {
+        content: "⛔";
+        font-size: 0.85rem;
+      }
+
+      /* ── Insight / suggestion callouts ── */
+      .insight {
+        font-size: 0.9rem;
+        color: var(--text-dim);
+        border: 1px solid transparent;
+        border-left: 3px solid var(--blue);
+        padding: 13px 16px;
+        background: rgba(24, 119, 242, 0.05);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        margin-top: 14px;
+      }
+      .insight strong {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--blue-deep);
+        font-size: 0.82rem;
+        letter-spacing: 0.02em;
+        margin-bottom: 6px;
+      }
+      .insight.suggestion {
+        border-left-color: var(--green);
+        background: rgba(16, 185, 129, 0.06);
+      }
+      .insight.suggestion strong {
+        color: var(--green-deep);
+      }
+      .insight ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .insight li {
+        margin-bottom: 5px;
+      }
+      .insight li:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ── Tables ── */
+      .table-wrap {
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.86rem;
+      }
+      th,
+      td {
+        padding: 11px 14px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap;
+      }
+      td {
+        color: var(--text-dim);
+      }
+      th {
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        background: var(--surface-2);
+      }
+      th.num,
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      tbody tr:nth-child(even) td {
+        background: rgba(15, 23, 42, 0.015);
+      }
+      tbody tr:hover td {
+        background: rgba(24, 119, 242, 0.05);
+        color: var(--text);
+      }
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* ── Recommendations ── */
+      .recommendation-list {
+        display: grid;
+        gap: 12px;
+      }
+      .rec-card {
+        position: relative;
+        display: flex;
+        gap: 14px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 16px 18px;
+        background: var(--surface-2);
+      }
+      .rec-num {
+        flex: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(16, 185, 129, 0.14);
+        color: var(--green-deep);
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+      .rec-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .rec-card .rec-title {
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: var(--green-deep);
+        font-size: 0.92rem;
+      }
+      .rec-card .rec-content {
+        color: var(--text-dim);
+        font-size: 0.9rem;
+      }
+
+      .excluded-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .excluded-chip {
+        font-size: 0.78rem;
+        color: var(--text-dim);
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 5px 12px;
+      }
+
+      .footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-top: 50px;
+        padding-top: 22px;
+        border-top: 1px solid var(--border);
+      }
+      .footer .brand {
+        color: var(--text-dim);
+        font-weight: 600;
+      }
+
+      .empty-note {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.86rem;
+        padding: 14px 16px;
+        border: 1px dashed var(--border-strong);
+        border-radius: var(--radius-sm);
+        background: var(--surface-2);
+      }
+      .empty-note::before {
+        content: "•";
+        color: var(--muted);
+        flex: none;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @supports (padding: env(safe-area-inset-bottom)) {
+        body {
+          padding-left: env(safe-area-inset-left, 0);
+          padding-right: env(safe-area-inset-right, 0);
+          padding-bottom: env(safe-area-inset-bottom, 0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          -webkit-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+        }
+        body {
+          overflow-x: clip;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .wrap {
+          padding: max(12px, env(safe-area-inset-left, 0px))
+            max(12px, env(safe-area-inset-right, 0px)) max(40px, env(safe-area-inset-bottom, 0px));
+        }
+        .hero {
+          padding: 20px 18px;
+          border-radius: 14px;
+        }
+        .hero h1 {
+          font-size: clamp(1.15rem, 5.2vw, 1.4rem);
+          line-height: 1.4;
+          word-break: break-word;
+        }
+        .meta-chip {
+          font-size: 0.72rem;
+        }
+        .kpi-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+        .kpi {
+          padding: 12px 12px 11px;
+        }
+        .kpi .v {
+          font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+        }
+        .sec-head h2 {
+          font-size: clamp(1rem, 4.2vw, 1.12rem);
+        }
+        .card {
+          padding: 16px 14px;
+          border-radius: 12px;
+        }
+        .chart-box {
+          height: clamp(220px, 56vw, 260px);
+        }
+        .recommendation-list {
+          grid-template-columns: 1fr !important;
+        }
+        .card:has(table) {
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+        .card:has(table)::before {
+          display: block;
+          text-align: center;
+          font-size: 12px;
+          color: var(--muted);
+          padding: 0 0 8px;
+          content: "左右滑动查看表格";
+        }
+        .card table {
+          min-width: 520px;
+          font-size: 0.82rem;
+        }
+        th,
+        td {
+          padding: 9px 11px;
+        }
+      }
+
+      @media (min-width: 769px) {
+        .card:has(table)::before {
+          display: none;
+          content: none;
+        }
+      }
+
+      @media print {
+        html {
+          scroll-behavior: auto;
+        }
+        .toc {
+          display: none;
+        }
+        section,
+        .hero,
+        .kpi {
+          animation: none !important;
+        }
+        .card:has(table)::before {
+          display: none !important;
+          content: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="report-root" class="wrap"></div>
+    <script>
+      window.__META_DIAGNOSIS_REPORT__ = window.__META_DIAGNOSIS_REPORT__ || null;
+    </script>
+    <script>
+      /**
+       * Meta（Facebook）账户诊断 HTML 报告运行时
+       * 数据源：window.__META_DIAGNOSIS_REPORT__（Agent 撰写 JSON，由 `facebook-analysis diagnosis-render` 注入）
+       * 本文件不由 Agent 生成或修改；渲染逻辑固定，Agent 只提供 JSON 数据。
+       */
+      (function () {
+        "use strict";
+
+        const PALETTE = [
+          "#1877f2",
+          "#8b5cf6",
+          "#06b6d4",
+          "#10b981",
+          "#f59e0b",
+          "#f97316",
+          "#ef4444",
+        ];
+        const AXIS_COLOR = "#64748b";
+        const SPLIT_LINE_COLOR = "rgba(15,23,42,0.08)";
+        const TOOLTIP_STYLE = {
+          backgroundColor: "#ffffff",
+          borderColor: "rgba(15,23,42,0.10)",
+          borderWidth: 1,
+          textStyle: { color: "#0f172a", fontSize: 12 },
+          extraCssText:
+            "box-shadow:0 10px 28px -12px rgba(15,23,42,.18);border-radius:10px;padding:9px 12px;",
+        };
+
+        function escapeHtml(s) {
+          return String(s ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function int(v) {
+          const n = Number(v);
+          return Number.isFinite(n) ? Math.round(n).toLocaleString("en-US") : "—";
+        }
+
+        function money(v, currency) {
+          const n = Number(v);
+          if (!Number.isFinite(n)) return "—";
+          const sym = currency && currency !== "CNY" ? currency + " " : "¥";
+          return sym + n.toFixed(2);
+        }
+
+        function pct(v) {
+          const n = Number(v);
+          if (!Number.isFinite(n)) return "—";
+          return (n * 100).toFixed(2) + "%";
+        }
+
+        function num2(v) {
+          const n = Number(v);
+          return Number.isFinite(n) ? n.toFixed(2) : "—";
+        }
+
+        function deltaLabel(current, previous) {
+          const c = Number(current);
+          const p = Number(previous);
+          if (!Number.isFinite(c) || !Number.isFinite(p) || p === 0) return "";
+          const change = ((c - p) / Math.abs(p)) * 100;
+          const cls = change >= 0 ? "up" : "down";
+          const arrow = change >= 0 ? "▲" : "▼";
+          return `<span class="d ${cls}">${arrow} ${Math.abs(change).toFixed(1)}% 环比</span>`;
+        }
+
+        function sectionHead(num, title, desc) {
+          return `
+<div class="sec-head">
+  <span class="sec-num">${num}</span>
+  <div>
+    <h2>${escapeHtml(title)}</h2>
+    ${desc ? `<p class="sec-desc">${escapeHtml(desc)}</p>` : ""}
+  </div>
+</div>`;
+        }
+
+        function analysisBlock(section) {
+          if (section?.notAvailable === true) {
+            return `<div class="na-badge">本媒体接口未提供：${escapeHtml(section.notAvailableReason || "该维度")}</div>`;
+          }
+          const analysis = Array.isArray(section?.analysis) ? section.analysis : [];
+          const suggestions = Array.isArray(section?.suggestions) ? section.suggestions : [];
+          const parts = [];
+          if (analysis.length > 0) {
+            parts.push(
+              `<div class="insight"><strong>分析</strong><ul>${analysis
+                .map((a) => `<li>${escapeHtml(a)}</li>`)
+                .join("")}</ul></div>`,
+            );
+          } else {
+            parts.push('<div class="empty-note">数据不可用：本节暂无分析</div>');
+          }
+          if (suggestions.length > 0) {
+            parts.push(
+              `<div class="insight suggestion"><strong>建议</strong><ul>${suggestions
+                .map((s) => `<li>${escapeHtml(s)}</li>`)
+                .join("")}</ul></div>`,
+            );
+          }
+          return parts.join("");
+        }
+
+        function metricRow(cols) {
+          return `<tr>${cols.join("")}</tr>`;
+        }
+
+        function renderHero(data) {
+          const meta = data.meta || {};
+          const kpis = data.kpis || {};
+          const prev = kpis.previousPeriod || {};
+          const currency = meta.currency || kpis.currency || "USD";
+          const period =
+            meta.startDate && meta.endDate
+              ? `${meta.startDate} ~ ${meta.endDate}`
+              : "统计区间未提供";
+          const kpiDefs = [
+            { key: "spend", label: "消耗", fmt: (v) => money(v, currency) },
+            { key: "impressions", label: "展示次数", fmt: int },
+            { key: "clicks", label: "点击次数", fmt: int },
+            { key: "results", label: "转化/结果", fmt: int },
+            { key: "ctr", label: "点击率 CTR", fmt: pct },
+            { key: "costPerResult", label: "每次结果成本", fmt: (v) => money(v, currency) },
+            { key: "reach", label: "覆盖人数", fmt: int },
+            { key: "frequency", label: "频次", fmt: num2 },
+          ];
+          const kpiHtml = kpiDefs
+            .map((def, i) => {
+              const v = kpis[def.key];
+              const p = prev[def.key];
+              const color = PALETTE[i % PALETTE.length];
+              return `<div class="kpi" style="--kpi-color:${color}">
+  <div class="l"><span class="dot"></span>${def.label}</div>
+  <div class="v">${def.fmt(v)}</div>
+  ${deltaLabel(v, p)}
+</div>`;
+            })
+            .join("");
+          return `
+<div class="hero">
+  <div class="eyebrow">META ADS · 账户诊断报告</div>
+  <h1>${escapeHtml(meta.accountName || "Meta 广告账户")}</h1>
+  <div class="meta-chips">
+    <span class="meta-chip">📅 <b>${escapeHtml(period)}</b></span>
+    <span class="meta-chip">账户 <b>${escapeHtml(meta.accountId || "—")}</b></span>
+    <span class="meta-chip">货币 <b>${escapeHtml(currency)}</b></span>
+  </div>
+  <div class="kpi-grid">${kpiHtml}</div>
+  <div class="toc">
+    <a href="#sec-profile">账户画像</a>
+    <a href="#sec-metrics">核心指标</a>
+    <a href="#sec-structure">账户结构</a>
+    <a href="#sec-health">健康度</a>
+    <a href="#sec-types">系列类型</a>
+    <a href="#sec-compare">维度对比</a>
+    <a href="#sec-trend">转化趋势</a>
+    <a href="#sec-platform">平台地域受众</a>
+    <a href="#sec-creative">创意</a>
+    <a href="#sec-material">素材</a>
+    <a href="#sec-quality">质量得分</a>
+    <a href="#sec-summary">总结与行动项</a>
+  </div>
+</div>`;
+        }
+
+        function simpleSection(id, num, title, desc, sectionKey, data) {
+          return `
+<section id="${id}">
+  ${sectionHead(num, title, desc)}
+  <div class="card">
+    ${analysisBlock(data.narrative?.sections?.[sectionKey])}
+  </div>
+</section>`;
+        }
+
+        function renderCoreMetrics(data) {
+          return simpleSection(
+            "sec-metrics",
+            "02",
+            "核心指标快照",
+            "本期 vs 上期：消耗/展示/点击/CTR/结果/单次成本/覆盖/频次",
+            "coreMetrics",
+            data,
+          );
+        }
+
+        function renderPlatformGeoAudience(data) {
+          const currency = data.meta?.currency || "USD";
+          const platform = Array.isArray(data.tables?.platform) ? data.tables.platform : [];
+          const country = Array.isArray(data.tables?.country) ? data.tables.country : [];
+          const audience = Array.isArray(data.tables?.audience) ? data.tables.audience : [];
+          const head = sectionHead("08", "平台、地域、受众", "版位/国家/受众的花费与效果分布");
+
+          const table = (title, rows, cols) => {
+            if (rows.length === 0) {
+              return `<div class="card-title-row"><h3>${escapeHtml(title)}</h3></div><div class="empty-note">数据不可用：未拉取</div>`;
+            }
+            const sorted = [...rows].sort(
+              (a, b) => (Number(b.spend) || 0) - (Number(a.spend) || 0),
+            );
+            const body = sorted.map((r) => metricRow(cols.map((c) => c.render(r)))).join("");
+            return `<div class="card-title-row"><h3>${escapeHtml(title)}</h3></div>
+<div class="table-wrap"><table>
+  <thead><tr>${cols.map((c) => `<th${c.num ? ' class="num"' : ""}>${escapeHtml(c.label)}</th>`).join("")}</tr></thead>
+  <tbody>${body}</tbody>
+</table></div>`;
+          };
+
+          const platformTable = table("投放平台 × 版位", platform, [
+            {
+              label: "平台",
+              render: (r) => `<td>${escapeHtml(r.publisherPlatform || r.network || "—")}</td>`,
+            },
+            { label: "版位", render: (r) => `<td>${escapeHtml(r.platformPosition || "—")}</td>` },
+            {
+              label: "消耗",
+              num: true,
+              render: (r) => `<td class="num">${money(r.spend, currency)}</td>`,
+            },
+            { label: "结果", num: true, render: (r) => `<td class="num">${int(r.results)}</td>` },
+            {
+              label: "单次成本",
+              num: true,
+              render: (r) => `<td class="num">${money(r.costPerResult, currency)}</td>`,
+            },
+          ]);
+
+          const countryTable = table("国家/地区", country, [
+            {
+              label: "国家/地区",
+              render: (r) => `<td>${escapeHtml(r.countryOrRegion || "—")}</td>`,
+            },
+            {
+              label: "消耗",
+              num: true,
+              render: (r) => `<td class="num">${money(r.spend, currency)}</td>`,
+            },
+            { label: "结果", num: true, render: (r) => `<td class="num">${int(r.results)}</td>` },
+            {
+              label: "单次成本",
+              num: true,
+              render: (r) => `<td class="num">${money(r.costPerResult, currency)}</td>`,
+            },
+          ]);
+
+          const audienceTable = table("受众（年龄 × 性别）", audience, [
+            { label: "年龄", render: (r) => `<td>${escapeHtml(r.age || "—")}</td>` },
+            { label: "性别", render: (r) => `<td>${escapeHtml(r.gender || "—")}</td>` },
+            {
+              label: "消耗",
+              num: true,
+              render: (r) => `<td class="num">${money(r.spend, currency)}</td>`,
+            },
+            { label: "结果", num: true, render: (r) => `<td class="num">${int(r.results)}</td>` },
+            {
+              label: "单次成本",
+              num: true,
+              render: (r) => `<td class="num">${money(r.costPerResult, currency)}</td>`,
+            },
+          ]);
+
+          return `
+<section id="sec-platform">
+  ${head}
+  <div class="card">${platformTable}</div>
+  <div class="card">${countryTable}</div>
+  <div class="card">
+    ${audienceTable}
+    ${analysisBlock(data.narrative?.sections?.platformGeoAudience)}
+  </div>
+</section>`;
+        }
+
+        function renderCreative(data) {
+          const currency = data.meta?.currency || "USD";
+          const rows = Array.isArray(data.tables?.creative) ? data.tables.creative : [];
+          const head = sectionHead(
+            "09",
+            "创意（替代搜索词+搜索广告）",
+            "Top 创意 / 低效创意，按消耗排序",
+          );
+          const sorted = [...rows].sort((a, b) => (Number(b.spend) || 0) - (Number(a.spend) || 0));
+          const body = sorted
+            .slice(0, 30)
+            .map((r) =>
+              metricRow([
+                `<td>${escapeHtml(r.creativeName || r.title || "—")}</td>`,
+                `<td class="num">${money(r.spend, currency)}</td>`,
+                `<td class="num">${int(r.impressions)}</td>`,
+                `<td class="num">${int(r.clicks)}</td>`,
+                `<td class="num">${pct(r.ctr)}</td>`,
+                `<td class="num">${int(r.results)}</td>`,
+                `<td class="num">${money(r.costPerResult, currency)}</td>`,
+              ]),
+            )
+            .join("");
+          const table =
+            sorted.length > 0
+              ? `<div class="table-wrap"><table>
+  <thead><tr><th>创意</th><th class="num">消耗</th><th class="num">展示</th><th class="num">点击</th><th class="num">CTR</th><th class="num">结果</th><th class="num">单次成本</th></tr></thead>
+  <tbody>${body}</tbody>
+</table></div>`
+              : '<div class="empty-note">数据不可用：creative 未拉取</div>';
+          return `
+<section id="sec-creative">
+  ${head}
+  <div class="card">
+    ${table}
+    ${analysisBlock(data.narrative?.sections?.creative)}
+  </div>
+</section>`;
+        }
+
+        function renderMaterial(data) {
+          const currency = data.meta?.currency || "USD";
+          const rows = Array.isArray(data.tables?.material) ? data.tables.material : [];
+          const head = sectionHead("10", "素材", "Dynamic Creative 素材维度（标准账户常为空）");
+          const sorted = [...rows].sort((a, b) => (Number(b.spend) || 0) - (Number(a.spend) || 0));
+          const body = sorted
+            .slice(0, 30)
+            .map((r) =>
+              metricRow([
+                `<td>${escapeHtml(r.materialName || r.assetId || "—")}</td>`,
+                `<td class="num">${money(r.spend, currency)}</td>`,
+                `<td class="num">${int(r.impressions)}</td>`,
+                `<td class="num">${int(r.results)}</td>`,
+              ]),
+            )
+            .join("");
+          const table =
+            sorted.length > 0
+              ? `<div class="table-wrap"><table>
+  <thead><tr><th>素材</th><th class="num">消耗</th><th class="num">展示</th><th class="num">结果</th></tr></thead>
+  <tbody>${body}</tbody>
+</table></div>`
+              : '<div class="empty-note">数据不可用：material 未拉取（标准账户无 Dynamic Creative 时属正常）</div>';
+          return `
+<section id="sec-material">
+  ${head}
+  <div class="card">
+    ${table}
+    ${analysisBlock(data.narrative?.sections?.material)}
+  </div>
+</section>`;
+        }
+
+        function renderRecommendations(data) {
+          const recs = Array.isArray(data.narrative?.recommendations)
+            ? data.narrative.recommendations
+            : [];
+          const excluded = Array.isArray(data.narrative?.excludedChecks)
+            ? data.narrative.excludedChecks
+            : [];
+          const cards = recs
+            .map((r, i) => {
+              const numBadge = `<span class="rec-num">${i + 1}</span>`;
+              if (typeof r === "string") {
+                return `<div class="rec-card">${numBadge}<div class="rec-body"><div class="rec-content">${escapeHtml(r)}</div></div></div>`;
+              }
+              const title = r?.title ? `<div class="rec-title">${escapeHtml(r.title)}</div>` : "";
+              return `<div class="rec-card">${numBadge}<div class="rec-body">${title}<div class="rec-content">${escapeHtml(r?.content || "")}</div></div></div>`;
+            })
+            .join("");
+          const body =
+            recs.length > 0
+              ? `<div class="recommendation-list">${cards}</div>`
+              : '<div class="empty-note">（待 Agent 撰写行动项）</div>';
+          const excludedHtml =
+            excluded.length > 0
+              ? `<div class="excluded-list">${excluded
+                  .map((e) => `<span class="excluded-chip">已排除：${escapeHtml(e)}</span>`)
+                  .join("")}</div>`
+              : "";
+          return `
+<section id="sec-summary">
+  ${sectionHead("12", "总结与行动项", "综合以上数据的可执行改进建议；列出已排除的 Google-only 检查项")}
+  <div class="card">${body}${excludedHtml}</div>
+</section>`;
+        }
+
+        function renderExecutiveSummary(data) {
+          const summary = Array.isArray(data.narrative?.executiveSummary)
+            ? data.narrative.executiveSummary
+            : [];
+          return summary.length > 0 ? summary.map((p) => `<p>${escapeHtml(p)}</p>`).join("") : "";
+        }
+
+        function renderFooter(data) {
+          const generatedAt = data.meta?.generatedAt || new Date().toISOString();
+          return `<div class="footer"><span class="brand">siluzan-tso</span> · Meta（Facebook）账户诊断报告 · ${escapeHtml(generatedAt)} · 数据来源 facebook-analysis</div>`;
+        }
+
+        function render() {
+          const data = window.__META_DIAGNOSIS_REPORT__;
+          const root = document.getElementById("report-root");
+          if (!data) {
+            root.innerHTML =
+              '<div class="card">未找到报告数据（window.__META_DIAGNOSIS_REPORT__ 为空），请通过 `facebook-analysis diagnosis-render` 生成本文件。</div>';
+            return;
+          }
+          const summaryHtml = renderExecutiveSummary(data);
+          root.innerHTML = [
+            renderHero(data),
+            summaryHtml
+              ? `<section id="sec-exec"><div class="card">${summaryHtml}</div></section>`
+              : "",
+            simpleSection(
+              "sec-profile",
+              "01",
+              "账户画像",
+              "账户名称、状态、落地页线索",
+              "accountProfile",
+              data,
+            ),
+            renderCoreMetrics(data),
+            simpleSection(
+              "sec-structure",
+              "03",
+              "账户结构",
+              "广告组/系列/在投创意数量级",
+              "accountStructure",
+              data,
+            ),
+            simpleSection(
+              "sec-health",
+              "04",
+              "健康度 / 黄金账户",
+              "整体投放健康度评估",
+              "healthGrade",
+              data,
+            ),
+            simpleSection(
+              "sec-types",
+              "05",
+              "系列类型分布",
+              "各系列类型占比或创意类型分布",
+              "campaignTypes",
+              data,
+            ),
+            simpleSection(
+              "sec-compare",
+              "06",
+              "重点维度对比（本期 vs 上期）",
+              "广告组/国家/平台的本期排行",
+              "keyComparisons",
+              data,
+            ),
+            simpleSection(
+              "sec-trend",
+              "07",
+              "转化成本趋势",
+              "按日 CPA/转化数趋势",
+              "conversionTrend",
+              data,
+            ),
+            renderPlatformGeoAudience(data),
+            renderCreative(data),
+            renderMaterial(data),
+            simpleSection(
+              "sec-quality",
+              "11",
+              "质量得分",
+              "广告质量/相关性评分",
+              "qualityScore",
+              data,
+            ),
+            renderRecommendations(data),
+            renderFooter(data),
+          ].join("\n");
+          setupScrollSpy();
+        }
+
+        function setupScrollSpy() {
+          const links = Array.from(document.querySelectorAll(".toc a"));
+          if (links.length === 0 || typeof IntersectionObserver === "undefined") return;
+          const targets = links
+            .map((a) => document.querySelector(a.getAttribute("href")))
+            .filter(Boolean);
+          const setActive = (id) => {
+            links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === `#${id}`));
+          };
+          const observer = new IntersectionObserver(
+            (entries) => {
+              const visible = entries.filter((e) => e.isIntersecting);
+              if (visible.length > 0) setActive(visible[0].target.id);
+            },
+            { rootMargin: "-20% 0px -70% 0px" },
+          );
+          targets.forEach((el) => observer.observe(el));
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", render);
+        } else {
+          render();
+        }
+      })();
+    </script>
+  </body>
+</html>

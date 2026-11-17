@@ -1,42 +1,63 @@
-## Description: <br>
-Delegate coding tasks to Claude Code CLI via background process for feature work, PR review, refactoring, and iterative coding that needs file exploration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Claude Code CLI via background process. Use when: building features, reviewing PRs, refactoring codebases, or iterative coding that needs file exploration. Supports interactive PTY mode for confirmations/permissions and headless pipe mode for automation. NOT for: simple one-liner fixes (just edit), reading code (use read tool), or any work in ~/.openclaw/ workspace.
 
-## Publisher: <br>
-[AtelyPham](https://clawhub.ai/user/AtelyPham) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atelypham](https://clawhub.ai/user/atelypham)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate scoped coding, refactoring, PR review, and automation tasks to Claude Code CLI from OpenClaw. It supports interactive PTY sessions, headless structured-output runs, session resumption, and background task monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Delegating coding work to Claude Code can run commands and edit files in the selected workspace. <br>
-Mitigation: Use clean git worktrees or temporary clones, avoid sensitive directories and ~/.openclaw, and review all diffs before pushing or opening PRs. <br>
-Risk: Unattended or background Claude Code sessions can consume budget, stall on permissions, or continue longer than intended. <br>
-Mitigation: Prefer plan mode for review, set budgets and timeouts for unattended runs, monitor background sessions, and avoid permission-bypass modes. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate substantial coding work, PR review, refactoring, and long-running implementation tasks to Claude Code CLI from OpenClaw while managing PTY, headless, session, and permission-mode workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AtelyPham/claude-code-cli) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON or stream-json CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the claude binary; guidance covers PTY, headless pipe mode, permission modes, budgets, sessions, and background monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill launches Claude Code with project-level coding authority and includes high-impact background execution patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted tools and explicit work directories, monitor or stop background sessions, and reserve broad edit permissions for intentional coding tasks.
+
+Risk: Shell-command examples can become unsafe if untrusted text is copied directly into command strings.
+
+Mitigation: Avoid interpolating untrusted text into shell commands and review command arguments before execution.
+
+Risk: Unpinned installation of Claude Code can change behavior across releases.
+
+Mitigation: Consider pinning the Claude Code package version and reviewing release changes before updating.
+
+Risk: Long-running handoff and cleanup workflows can resume stale state or target the wrong temporary path.
+
+Mitigation: Review HANDOFF.md before resuming and verify temporary paths before cleanup.
+
+## Reference(s):
+
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/atelypham/skills/claude-code-cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PTY, background-session, permission-mode, budget-cap, and tool-restriction guidance for Claude Code CLI execution.]
+
+## Skill Version(s):
+
+0.2.0 (source: ClawHub release metadata; artifact frontmatter states 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

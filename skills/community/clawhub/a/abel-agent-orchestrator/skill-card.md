@@ -1,42 +1,59 @@
-## Description: <br>
-Meta-agent skill for orchestrating complex tasks through autonomous sub-agents by decomposing work, spawning specialized agents, coordinating file-based communication, and consolidating results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-agent skill for orchestrating complex tasks through autonomous sub-agents by decomposing work into subtasks, spawning specialized agents, coordinating file-based communication, consolidating results, and dissolving agents upon completion.
 
-## Publisher: <br>
-[abeltennyson](https://clawhub.ai/user/abeltennyson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abeltennyson](https://clawhub.ai/user/abeltennyson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to break complex work into parallel sub-agent tasks, define per-agent workspaces and handoffs, monitor completion, and merge the resulting deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous multi-agent delegation can grant spawned agents broad file, command, and third-party API capabilities. <br>
-Mitigation: Use a dedicated workspace, review generated sub-agent instructions before dispatch, and set explicit limits on tools, paths, runtime, and agent count. <br>
-Risk: Sub-agents may send sensitive task data to a third-party AI service when SKILLBOSS_API_KEY is provided. <br>
-Mitigation: Provide the API key and sensitive inputs only when third-party processing by SkillBoss is acceptable for the task. <br>
+## Use Case:
 
+Developers and technical teams use this skill to split complex work into independent sub-agent tasks, create task-specific agent workspaces, coordinate file-based handoffs, and consolidate results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abeltennyson/abel-agent-orchestrator) <br>
-- [File-Based Communication Protocol](references/communication-protocol.md) <br>
-- [Sub-Agent Templates](references/sub-agent-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks, JSON snippets, file paths, and task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce generated SKILL.md content, inbox/outbox workspace layouts, status.json conventions, and final consolidation summaries; AI-backed sub-agents require SKILLBOSS_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Autonomous sub-agents can create workspaces, copy task files, and proceed with limited oversight.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the input scope, exclude confidential or regulated data, and require explicit approval or redaction before dispatching agents.
+
+Risk: Sub-agent templates can send task content to a third-party AI API through SKILLBOSS_API_KEY.
+
+Mitigation: Use only approved data, manage the API key as a secret, and add consent, redaction, or local-only controls before processing sensitive material.
+
+Risk: Parallel agents can produce conflicting or incorrect outputs during consolidation.
+
+Mitigation: Validate deliverables against success criteria and review merged results before relying on them.
+
+## Reference(s):
+
+- [File-Based Communication Protocol](references/communication-protocol.md)
+- [Sub-Agent Templates](references/sub-agent-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/abeltennyson/skills/abel-agent-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, JSON examples, and file layout templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create task-specific SKILL.md files, inbox/outbox workspaces, status.json tracking files, and consolidated summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

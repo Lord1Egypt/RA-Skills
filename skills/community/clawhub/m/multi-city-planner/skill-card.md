@@ -1,47 +1,63 @@
-## Description: <br>
-Plans and compares multi-destination trips across multi-city, open-jaw, round-trip, and single-segment options, optimizes city order, and produces standardized HTML itinerary reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi City Planner helps agents compare multi-city, open-jaw, round-trip, and single-segment travel plans and produce standardized HTML itinerary reports.
 
-## Publisher: <br>
-[danshaniusha](https://clawhub.ai/user/danshaniusha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danshaniusha](https://clawhub.ai/user/danshaniusha)
 
-## Use Case: <br>
-External travel planners and agents use this skill to compare multi-city routes, transportation modes, prices, schedules, budgets, and itinerary options, then generate a shareable HTML travel-planning report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted itinerary text could cause unintended local command execution through shell-string handling in the bundled scripts. <br>
-Mitigation: Run only with trusted itinerary input, review before installation, and prefer a fixed version that uses spawn or execFile argument arrays plus strict city and date validation. <br>
-Risk: Bundled HTML examples and live travel searches may show stale or unavailable prices, schedules, or booking options. <br>
-Mitigation: Treat generated reports as planning aids, verify current prices and availability with the travel provider before booking, and regenerate reports close to the purchase time. <br>
-Risk: Use of the external FlyAI service and optional API key can expose trip details to that service. <br>
-Mitigation: Avoid sensitive itinerary text when possible, configure only necessary credentials, and follow local credential-handling policies for FLYAI_API_KEY. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search and compare multi-destination travel options, optimize route order, and produce HTML reports with pricing, transportation comparisons, budgets, and trip notes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/danshaniusha/multi-city-planner) <br>
-- [FlyAI Homepage](https://open.fly.ai/) <br>
-- [Usage Guide](references/usage.md) <br>
-- [FlyAI Flight Search Reference](skills/flyai/references/search-flight.md) <br>
-- [FlyAI Hotel Search Reference](skills/flyai/references/search-hotel.md) <br>
-- [FlyAI POI Search Reference](skills/flyai/references/search-poi.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, HTML, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries and generated HTML reports with comparison tables, route details, budgets, checklists, and travel notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and flyai-cli; travel prices and availability are time-sensitive and may depend on an external FlyAI service or optional API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: User-supplied city and date values are passed into shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a restricted environment and avoid untrusted trip strings until command execution uses safe argument handling.
+
+Risk: The skill depends on a broad globally installed FlyAI CLI.
+
+Mitigation: Use a pinned local FlyAI CLI installation and review updates before deployment.
+
+Risk: Live travel results can include booking links and time-sensitive prices.
+
+Mitigation: Validate booking URLs and have users confirm prices, schedules, baggage rules, and visa requirements before purchase.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/danshaniusha/skills/multi-city-planner)
+- [FlyAI Homepage](https://open.fly.ai/)
+- [Usage Guide](references/usage.md)
+- [FlyAI Flight Search Reference](skills/flyai/references/search-flight.md)
+- [FlyAI Hotel Search Reference](skills/flyai/references/search-hotel.md)
+- [FlyAI POI Search Reference](skills/flyai/references/search-poi.md)
+- [FlyAI Keyword Search Reference](skills/flyai/references/keyword-search.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style console output and generated HTML itinerary reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live travel-search results when FlyAI CLI is available; prices, schedules, and booking links may change.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill frontmatter metadata, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

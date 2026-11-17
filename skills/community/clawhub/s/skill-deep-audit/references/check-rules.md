@@ -65,8 +65,8 @@
 ## Table of contents
 - [D1 Process closure & idempotency (13 pts)](#d1-process-closure--idempotency-13-pts)
 - [D2 Tool & command conventions (10 pts)](#d2-tool--command-conventions-10-pts)
-- [D3 Portability & defense (15 pts)](#d3-portability--defense-15-pts)
-- [D4 Skill usability conventions (21 pts)](#d4-skill-usability-conventions-21-pts)
+- [D3 Portability & defense (18 pts)](#d3-portability--defense-18-pts)
+- [D4 Skill usability conventions (23 pts)](#d4-skill-usability-conventions-23-pts)
 - [D5 Security & op risk (21 pts)](#d5-security--op-risk-21-pts)
 - [D6 Code & doc quality (31 pts)](#d6-code--doc-quality-31-pts)
 - [D7 Dependency & footprint health (4 pts)](#d7-dependency--footprint-health-4-pts)
@@ -75,27 +75,38 @@
 
 ## Scoring system
 
-**Total 115 points**
+**Total 120 points**
 
 | Dim | Max | L1 applicable max | L2 (dryRun) applicable max | Core question |
 |-----|-----|-------------------|----------------------------|---------------|
 | D1 Process closure & idempotency | 13 | 13 | 13 | Will the run be correct? Is rerunning safe? |
 | D2 Tool & command conventions | 10 | 10 | 10 | Are command calls safe and auditable? |
-| D3 Portability & defense | 15 | 13 (D3-W2 skipped) | 15 | Will it run on someone else's machine? |
-| D4 Skill usability conventions | 21 | 21 | 21 | Can a new user actually pick it up? |
+| D3 Portability & defense | 18 | 16 (D3-W2 skipped) | 18 | Will it run on someone else's machine? |
+| D4 Skill usability conventions | 23 | 23 | 23 | Can a new user actually pick it up? |
 | D5 Security & op risk | 21 | 21 | 21 | Is it safe after the run? Are high-risk ops protected? |
 | D6 Code & doc quality | 31 | 31 | 31 | Is the code right? Does the doc match the code? |
 | D7 Dependency & footprint health | 4 | 3 (D7-W1 skipped) | 4 | Is the overall architecture healthy? |
-| **Total** | **115** | **112** | **115** | |
+| **Total** | **120** | **117** | **120** | |
 
 > 📊 **Scoring convention**: ①**ERR is uniformly 3 pts** — a hit means FAIL,
 > the value is symbolic and not meant to encode false granularity;
+> **exception: four 0-point ERRs (D3-E4 / D3-E5 / D3-E6 / D4-E6)** consume no
+> budget and deduct nothing — they rely solely on the "zero ERR" half of the
+> pass test, which is why the total stays 120 and D3 stays 18 / D4 stays 23;
 > ②**WARN uses three real priority tiers** (high 3 / mid 2 / low 1) — the
 > difference is meant to guide fix order.
-> Note: the L1 applicable max already deducts skipped items (L1 max is 112,
+> Note: the L1 applicable max already deducts skipped items (L1 max is 117,
 > with D3-W2(2) + D7-W1(1) skipped). L2 (dryRun) absorbs L1 + Hub check +
 > dependency existence + branch reachability simulation — the most complete
 > depth. **L1 and L2 share pass line 90.**
+
+> ⚠️ **Why 0-point ERRs exist**: each of the four detects a failure mode that
+> produces **no error message** — a wrong path silently resolves elsewhere, a
+> missing file silently becomes empty input, an over-long SKILL.md silently
+> gets skimmed. "Deduct N points" is the wrong instrument for defects whose
+> whole nature is invisibility: they must block, not shave a score. Keeping
+> them at 0 also means adopting them **cannot lower any existing skill's
+> score** — the numeric system is untouched.
 
 ## Design principles
 
@@ -114,12 +125,12 @@ toward the actual max):
 
 | Depth | Actual max | Pass line | Skipped items |
 |-------|-----------|-----------|---------------|
-| L1 static | 112 | **≥ 90** | D7-W1 (1), D3-W2 (2) |
-| L2 dryRun | 115 | **≥ 90** | none |
+| L1 static | 117 | **≥ 90** | D7-W1 (1), D3-W2 (2) |
+| L2 dryRun | 120 | **≥ 90** | none |
 
-> ⚠️ **L1 max is only 112** (skips Hub check D7-W1, branch simulation D3-W2,
+> ⚠️ **L1 max is only 117** (skips Hub check D7-W1, branch simulation D3-W2,
 > etc. that need external systems), but the **pass line is still
-> uniformly 90**. L2 dryRun max is 115 and the pass line is also 90.
+> uniformly 90**. L2 dryRun max is 120 and the pass line is also 90.
 > L2 dryRun does **read-only queries / reachability checks only** (file
 > existence, env reachability, simulated unhit branches, Hub query); it
 > performs **no writes or updates**.
@@ -316,7 +327,7 @@ is not traceable by static scans.
 
 ---
 
-## D3 Portability & defense (15 pts)
+## D3 Portability & defense (18 pts)
 
 ### D3-E1 No hardcoded local absolute paths (3 pts, ERR, L1)
 
@@ -433,7 +444,285 @@ error / oops" and no guidance, users have no idea what to do next.
 
 ---
 
-## D4 Skill usability conventions (21 pts)
+### D3-E4 Cross-skill references must declare their resolution base (**0 pts, ERR (does not consume budget)**, L1)
+
+**Why**: writing `python3 skills/other-skill/scripts/run.py` in SKILL.md is a
+**bare relative path** with no stated anchor — "relative to what?" is never
+said. It happens to work when the agent's working directory lines up, but the
+moment the skill is invoked from a different cwd (a temp checkout, a sandbox,
+another host agent) it either fails outright or silently resolves to a
+**different, possibly outdated copy** of that script.
+
+This is the blind spot of D3-E1: that rule only scans **absolute** paths
+starting with `/home/`, `/Users/`, `C:\` — it cannot see bare relative paths.
+
+**Scan scope**: `SKILL.md` and `references/*.md` — both bash code blocks and
+prose instructions.
+
+```bash
+# Bare skills/ relative references with no declared resolution base
+# NOTE: must cover references/ too — the common case is a long SKILL.md whose
+# commands were moved into references/, taking the bare paths along with them.
+grep -rnE "(^|[^/{[:alnum:]_-])skills/[a-zA-Z0-9_-]+/" \
+  <skill-path>/SKILL.md <skill-path>/references/ 2>/dev/null
+```
+
+**Decision**: a cross-skill path is referenced without stating the base it
+resolves against → **ERR**. Any one of the following counts as declared:
+
+| Form | Example |
+|------|---------|
+| Placeholder with a documented meaning | `{SKILLS_DIR}/other-skill/scripts/run.py` + a line defining `{SKILLS_DIR}` |
+| Env var | `"$SKILLS_DIR/other-skill/scripts/run.py"` |
+| Runtime discovery | resolve via a marker file (see D3-E5), then descend |
+| Explicit prose anchor | "paths below are relative to the skills root, i.e. the parent of this skill's directory" |
+
+**Exceptions (not ERR)**:
+- Example code inside `> note`, `<!-- -->`, or an explicitly-labelled
+  "anti-pattern / ❌" block — the doc is demonstrating the wrong way
+- Read-only probes (`ls` / `cat` / `find`) used to illustrate directory layout
+- Paths pointing inside the audited skill's **own** directory
+- **Prose/illustrative mentions** that are not executable instructions —
+  e.g. "such as `skills/my-tool/`", "consider a shared `skills/shared/scripts/`
+  directory". The test is whether an agent would copy the line and run it.
+- The rule document itself, when quoting the pattern to define this rule
+
+> ⚠️ **Review hits by hand — do not treat grep output as the ERR list.**
+> Measured on a real audit skill: 5 hits, **all** prose examples, 0 real ERRs.
+> The question is always "would an agent execute this path?" — command → judge;
+> narration → skip. When unsure, mark "needs human confirmation".
+
+**Fix suggestion**: introduce a placeholder or env var and define it once near
+the top of SKILL.md, or resolve the base at runtime via a marker file.
+
+---
+
+### D3-E5 Path derivation must survive relocation (**0 pts, ERR (does not consume budget)**, L1)
+
+**Why**: a script that locates its own resources by **counting `.parent`
+hops**, or by pinning an absolute user-home layout, breaks the moment the
+skill is renamed, nested one level deeper, or copied to a temp directory by a
+runner. The home-pinned form is the nastiest: it keeps resolving to the
+*original* install, so the script reads **another copy** of its data —
+possibly an older version — and never reports a problem.
+
+**Decision**:
+- ① The endpoint of a `Path(__file__)` `.parent` chain (including literal
+  directory segments appended to it) **falls outside the audited skill's root**
+  → **ERR**. Endpoint inside the skill (root included) → **not judged**,
+  regardless of hop count.
+- ② `Path.home()` / `expanduser("~")` composed into a fixed
+  workspace/skills layout **and used to locate skills, scripts, or runtime
+  artifacts** → **ERR**.
+
+  > 📌 **The criterion is the endpoint, not the hop count.** Hop count is a
+  > *relative* depth: the same number means completely different locations for
+  > scripts at different nesting depths, so counting hops fails in both
+  > directions:
+  >
+  > | Form | Hop-count verdict | Boundary verdict | Reality |
+  > |------|------------------|------------------|---------|
+  > | `sub/scripts/x.py` 3 hops → its own skill root | ❌ ERR | ✅ pass | **false positive** — semantically identical to 2 hops from a shallower script |
+  > | Deeply nested script, 4 hops → its own skill root | ❌ ERR | ✅ pass | **false positive** — the deeper the nesting, the more unfair |
+  > | Script at skill root, 2 hops → out, into a sibling skill | ✅ pass | ❌ ERR | **missed** — genuinely escapes; breaks in a relocated checkout |
+  > | Chain split across two lines, 4 hops total, escapes | ✅ pass | ❌ ERR | **missed** — a single-line grep cannot see it |
+  >
+  > Measured impact when switching criteria (47 real chain hits across 124
+  > skills): 1 false positive removed, 1 previously-missed real escape caught,
+  > **0 new ERRs** — no existing skill lost points.
+
+  **How to run** — use the bundled checker (handles hop count, nesting depth,
+  literal tail segments, and the split-line blind spot):
+
+  ```bash
+  python3 <this-skill>/scripts/check_path_boundary.py <skill-path>
+  # exit 0 = no ERR; exit 1 = ERR (prints file:line, endpoint, boundary)
+  ```
+
+  The checker covers `.py` only. For `.sh` / `.js` etc., verify endpoints by
+  hand with the greps below — **using the same "does it escape the skill
+  boundary" criterion**, never hop counting.
+
+  **Dependencies**: Python 3 standard library only (`re` / `json` / `sys` /
+  `pathlib`) — no `pip install`, runs offline; strictly read-only, never
+  modifies the audited skill.
+
+  **Known coverage limits** (the checker is regex-based static analysis, not a
+  full AST evaluation — the forms below are **not guaranteed** to be caught, so
+  "no hits" is not proof of safety):
+
+  | Form | Behaviour |
+  |------|-----------|
+  | Single-hop variable relay in the same file (`A = Path(__file__)...` → `B = A.parent`) | ✅ covered; a rebind to a non-`__file__` value invalidates the stale binding |
+  | Multi-hop relay (`A → B → C`, three levels or more) | ⚠️ line-by-line only; no cross-function scope tracking |
+  | Tail segments built from variables or `os.path.join` | ⚠️ literal segments only; variable segments skipped |
+  | Paths determined at runtime (`sys.argv`, env, config) | ❌ statically undecidable — verify by hand |
+  | Cross-file propagation (module A computes, module B consumes) | ❌ not tracked |
+
+  So: a hit → ERR is trustworthy; **no hit ≠ exempt**.
+
+```bash
+# Recursive scan — do NOT use scripts/*.py globbing, it misses nested dirs
+FILES=$(find <skill-path> -type f \( -name "*.py" -o -name "*.sh" -o -name "*.js" \
+  -o -name "*.cjs" -o -name "*.mjs" -o -name "*.ts" \) \
+  | grep -v __pycache__ | grep -v node_modules)
+
+# ① hop chains (endpoint still has to be judged — see the checker)
+echo "$FILES" | xargs -r grep -nE "Path\(__file__\)[^#]*(\.parent){3,}"
+echo "$FILES" | xargs -r grep -nE "(dirname\(){3,}|(os\.path\.dirname\(){3,}"
+
+# ② home-pinned workspace/skills layout — all three spellings
+echo "$FILES" | xargs -r grep -nE "Path\.home\(\)[^#]*[\"'][^\"']*[\"']?\s*/?\s*[\"']?(workspace|skills)"
+echo "$FILES" | xargs -r grep -nE "expanduser\([\"']~/"
+```
+
+> 📌 **② must cover all spellings**: matching only
+> `Path.home() / "a/b"` **misses the segmented form**
+> `Path.home() / 'a' / 'b'` — which is the form most commonly written in
+> practice. Missing it makes the rule silently useless on real code.
+>
+> ① likewise must not pin `(\.resolve\(\))?`:
+> `Path(__file__).parent.parent.parent` (no `resolve()`) and
+> `Path(__file__).absolute().parent×3` both need catching, hence `[^#]*`.
+
+**Correct pattern (anchor on a marker, don't count hops)**:
+
+```python
+import os
+from pathlib import Path
+
+def skill_root() -> Path:
+    """Walk up to the directory containing SKILL.md = the skill root.
+    Holds no matter how deeply the script is nested or where the skill lives."""
+    p = Path(__file__).resolve()
+    for d in [p, *p.parents]:
+        if (d / "SKILL.md").exists():
+            return d
+    raise SystemExit(f"❌ skill root not found (no SKILL.md above): {p}")
+
+BASE = skill_root()
+MAPPING_FILE = BASE / "references" / "mapping.json"      # bundled resource
+OUT_ROOT = Path(os.environ.get("MY_OUT_DIR", Path.cwd() / "out"))  # runtime output via env
+```
+
+> ⚠️ **"Endpoint inside the skill" ≠ "hop counting is fine".** The rule only
+> judges boundary escape, but **fixed-hop derivation inside the skill is still
+> fragile** — it hard-codes which directory level the script sits at. Measured:
+> `.parent.parent` from `scripts/x.py` reaches the skill root fine; move the
+> same code to `scripts/lib/x.py` and it points at `scripts/`, so reading
+> `references/` lands on a nonexistent path. That case is **not an ERR** (harm
+> is contained within the skill, and the form is widespread in existing code —
+> deliberately **not tightened**), but new scripts should use the marker
+> pattern above. See D3-W4 for the WARN-level counterpart.
+>
+> Also, **splitting the chain across lines is not a fix**:
+> ```python
+> SKILL_DIR = Path(__file__).resolve().parent.parent   # 2 hops
+> WORKSPACE = SKILL_DIR.parent.parent                  # 2 more, 4 total
+> ```
+> This escapes the skill boundary, so under the endpoint criterion it **is an
+> ERR** — a single-line grep merely failed to see it. The bundled checker
+> reconstructs single-hop variable relays, so splitting no longer evades it.
+
+---
+
+### D3-E6 File reads and writes must handle failure (**0 pts, ERR (does not consume budget)**, L1)
+
+**Why**: "what if the file isn't there? — unspecified, so treat it as absent"
+is how a skill ends up fabricating data. A run that silently substitutes empty
+or stale input still exits 0 and still produces a report, so nobody notices
+until the numbers are wrong downstream. Existing coverage is partial: D6-E3
+handles HTTP status codes, D6-E7 handles parsed column formats — **nothing**
+covers "does this file read/write have a failure branch at all".
+
+**Scope**: any read or write of a specific path in `.md` or in scripts
+(`.py` / `.sh` / `.js` / `.cjs` / `.mjs` / `.ts`) with no failure handling
+(halt with a message, or hand off to a human) → hit.
+
+**① Script layer**
+
+```bash
+# File I/O call sites (recursive — scripts/* globbing misses nested dirs)
+find <skill-path> -type f \( -name "*.py" -o -name "*.sh" -o -name "*.js" \
+  -o -name "*.cjs" -o -name "*.mjs" -o -name "*.ts" \) \
+  | grep -v __pycache__ | grep -v node_modules \
+  | xargs -r grep -nE "open\(|pd\.read_(excel|csv)|load_workbook|json\.load\(|yaml\.safe_load\(|\.to_excel\(|\.to_csv\(|\.save\(|Path\([^)]*\)\.(read|write)_(text|bytes)"
+```
+
+**Decision**: the call is **not** inside `try/except` (for `.sh`: `set -e` /
+`|| exit` / `if [ -f ]`) **and** has no preceding `.exists()` /
+`os.path.isfile` guard → **ERR**.
+
+> 💡 **Check per function, not per file.** "Function A guards, function B
+> doesn't" is a common shape (measured: one report generator guarded its main
+> input with an explicit exit, while a sibling loader read two CSVs with no
+> guard at all). **Do not** pass a whole file just because `try/except` appears
+> somewhere in it — locate each I/O call site and judge that call.
+
+**② SKILL.md layer**
+
+```bash
+# Verb and path often sit on different lines (e.g. "outputs are saved to:"
+# followed by a bulleted path list), so don't require them on one line —
+# collect lines containing file paths, then read the surrounding context.
+grep -rnE "(\{[A-Z_]+\}|~/|\./)?[A-Za-z0-9_./-]+\.(md|json|csv|xlsx?|ya?ml|txt)\b" \
+  <skill-path>/SKILL.md <skill-path>/references/ 2>/dev/null
+
+# Then list failure-branch keywords to compare per Step block
+grep -nE "not found|does not exist|read failure|fails? →|abort|halt|stop|hand off|ask the user|exit 1" \
+  <skill-path>/SKILL.md
+```
+
+**Decision**: a Step instructs "read / load / write / save {some path}" but
+that Step gives **no** failure branch → **ERR**. A failure branch must carry
+one of: not-found, read-failure, abort/halt, hand-off-to-human, notify user,
+exit code 1.
+
+> ⚠️ **The unit of judgement is the Step block, not the whole document.**
+> Finding a failure keyword *somewhere* in the file does not mean the Step
+> containing the I/O has one. Split by Step heading and compare block by block,
+> otherwise a single "hand off to a human" anywhere makes every read in the
+> document look compliant (a silent miss).
+
+**③ Exceptions (not ERR)**
+
+| Case | Rationale |
+|------|-----------|
+| Optional cache / best-effort telemetry writes, where degradation is explicitly documented and surfaced to the user | Intentional degradation, not silent |
+| Reads whose failure is immediately fatal anyway (`set -e` at the top of a shell script) | The shell aborts for you |
+| A guarded probe whose purpose *is* existence checking (`if [ -f x ]; then … else … fi`) | The branch is the handling |
+
+**Anti-pattern that stays an ERR**: `except: pass`, or falling back to a
+previous run's output on failure. A loud failure is recoverable; a silent one
+corrupts results downstream.
+
+---
+
+### D3-W4 Fixed-hop path derivation inside the skill (3 pts, WARN, L1)
+
+**Why**: the WARN-level counterpart to D3-E5. When a `.parent` chain's
+endpoint stays **inside** the skill, nothing breaks today — but the code has
+hard-coded which directory level the script lives at. Move the script one
+level deeper and it silently resolves to the wrong directory.
+
+**Decision**: a `Path(__file__)` chain (or `os.path.dirname` nest) whose
+endpoint is inside the skill root **and** which uses fixed hop counts to reach
+the skill root → **WARN**: recommend the marker-file pattern from D3-E5.
+
+- Not judged: single `.parent` (own directory — always safe).
+- Not judged: already using a marker-file / env-var resolution.
+
+**Measured**: `.parent.parent` from `scripts/x.py` reaches the skill root
+correctly; the identical line in `scripts/lib/x.py` points at `scripts/`, so a
+`references/` read lands on a path that does not exist.
+
+**Fix suggestion**: replace with the `skill_root()` marker walk (D3-E5). This
+is a WARN, not an ERR — existing skills use this form widely and it works as
+long as the layout is untouched.
+
+---
+
+## D4 Skill usability conventions (23 pts)
 
 > Core question: can a user (including non-technical) pick up this skill
 > and actually use it?
@@ -582,6 +871,69 @@ runs.
 **Output form**: in the report, list under "🟡 Vague-instruction advisories"
 the hit wording + the step it's in + an improvement suggestion. **No
 deduction.**
+
+---
+
+### D4-W6 SKILL.md length is within budget (2 pts, WARN, L1)
+
+**Why**: the soft tier of D4-E6 below. An over-long SKILL.md degrades agent
+execution *silently* — the agent skims, misses instructions buried mid-file, or
+burns its context before reaching the action steps. There is no error message;
+quality just quietly drops.
+
+**Decision**: `wc -l <skill-path>/SKILL.md`
+
+| Lines | Verdict |
+|-------|---------|
+| ≤ 400 | pass |
+| 401 – 500 | **WARN** — note "could be trimmed"; suggest which sections to move into `references/` |
+| 501 – 600 | **WARN** — recommend splitting; give a quantified plan (which sections, how many lines each, projected remainder) |
+| > 600 | handled by **D4-E6** (ERR) — do not double-report here |
+
+**Fix suggestion**: move implementation detail into `references/*.md` and leave
+a pointer in the body. **Never** move the items listed under "must stay in the
+body" in D4-E6.
+
+---
+
+### D4-E6 SKILL.md length control (**0 pts, ERR (does not consume budget)**, L1)
+
+**Why**: past ~600 lines the failure mode stops being "slightly verbose" and
+becomes "the agent no longer reliably reads the whole thing". Because the
+degradation is silent, a length limit needs teeth — but length is a structural
+property, not a defect worth a numeric penalty, so this is a **0-point ERR**:
+it consumes no budget yet a hit means the skill does not pass.
+
+**Decision**: `wc -l <skill-path>/SKILL.md` > **600 lines** → **ERR**
+(this item fails → overall **FAIL**; score unchanged, 0 deducted).
+
+**Report requirements on a hit**:
+- Call it out separately in the summary (it is not visible in the score).
+- File under "needs human confirmation" — a split changes document structure
+  and must be confirmed, never applied automatically.
+- Provide a **quantified** split plan: which sections, line counts, target
+  file for each, and the projected body length afterwards.
+- State explicitly: "trim below 600 lines for this item to pass; below 400 to
+  be comfortably within budget".
+
+**Must stay in the body — never moved into `references/`** (guardrail
+visibility outranks brevity):
+
+| Category | Rationale |
+|----------|-----------|
+| Red lines / NEVER DO / MUST DO | If the agent has to open another file to learn what's forbidden, the guardrail is already bypassed |
+| Failure handling and abort conditions | Needed at the moment of failure, not after a lazy-load |
+| User-confirmation requirements for high-risk ops | Must be unmissable |
+| Preconditions for destructive or irreversible actions | Same |
+| Step sequence and each Step's entry condition | The execution skeleton itself |
+
+Only **implementation detail** may move: command bodies, output templates,
+long tables, examples, rule definitions, changelogs.
+
+**After moving, leave a pointer.** The body must still say *when to read which
+file* (e.g. "for the archive procedure → read `references/archive.md`").
+Moving content out without a pointer is itself a defect (see D6-E5: referenced
+paths must exist and be reachable).
 
 ---
 

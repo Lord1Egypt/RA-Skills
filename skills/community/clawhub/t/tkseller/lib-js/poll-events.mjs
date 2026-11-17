@@ -97,6 +97,13 @@ async function handleEvent(event) {
       return { terminal: true };
     }
 
+    if (eventType === 'publish_failed') {
+      const short = ct.findShortIdByVideo(videoId) || '?';
+      const error = data.error || '未知错误';
+      await ct.sendText(`❌ 视频 #${short} 发布失败：${error}\n可以重新点"✅ 通过"重试发布。`);
+      return { terminal: true };
+    }
+
     if (eventType === 'no_match') {
       await ct.sendText('😅 这轮没找到合适的视频，稍后再试或换个 URL。');
       return { terminal: true };
@@ -111,8 +118,18 @@ async function handleEvent(event) {
         return { skipped_empty_error: true };
       }
       const msg = rawMsg || '未知错误';
+      const short = ct.findShortIdByVideo(videoId) || '?';
+      // 按环节给用户可操作的提示（而不是干巴巴的技术错误）
+      const STEP_HINT = {
+        generate_storyboard: `❌ 视频 #${short} 分镜生成失败了，请重新点「✅ 做分镜 #${short}」重试。`,
+        generate_video: `❌ 视频 #${short} 视频生成失败了，请重新点「✅ 分镜通过 #${short}」重试。`,
+        change_product: `❌ 视频 #${short} 换商品失败了，请重试。`,
+        change_video: `❌ 视频 #${short} 换视频失败了，请重试。`,
+      };
       if (etype === 'quota_exhausted') {
-        await ct.sendText(`⚠️ API 余额不足，无法继续生成。请充值后重试。\n错误详情：${msg}`);
+        await ct.sendText(`⚠️ API 余额不足，无法继续生成。请充值后重试。\n\n错误详情：${msg}`);
+      } else if (STEP_HINT[etype]) {
+        await ct.sendText(`${STEP_HINT[etype]}\n\n（原因：${msg}）`);
       } else if (etype) {
         await ct.sendText(`⚠️ 流程异常（${etype}）：${msg}`);
       } else {
@@ -165,14 +182,8 @@ export async function main() {
       continue;
     }
 
-    // 跳过轮询启动之前的旧事件，直接 ack
-    const evTime = ev.created_at ? new Date(ev.created_at).getTime() / 1000 : 0;
-    if (evTime && startedAt && evTime < startedAt) {
-      ct.markEventProcessed(eid);
-      try { await api.eventAck(eid); } catch { /* */ }
-      duped++;
-      continue;
-    }
+    // 注意：不再按 started_at 时间过滤，只靠 processed_events.json 去重
+    // 后端 created_at 时区不确定，时间比较容易误杀新事件
 
     try {
       const result = await handleEvent(ev);
@@ -201,12 +212,20 @@ export async function main() {
 }
 
 // CLI 入口
+// 被 exec 跑一轮时：只输出本轮处理攒在 buffer 的内容。
+// 不读 pending 文件——积压内容由 poll-loop 自己重试 sessions_send 推送，
+// 若这里也倒 pending 会把历史积压混进本次操作结果（用户困惑）。
 if (process.argv[1] && process.argv[1].includes('poll-events.mjs')) {
+  const _collectOutput = () => {
+    try { return (ct.webchatFlush() || '').trim(); } catch { return ''; }
+  };
   main().then(() => {
-    console.log('OUTPUT_AS_REPLY:✅ 收到');
+    const out = _collectOutput();
+    console.log(out ? 'OUTPUT_AS_REPLY:' + out : 'NO_REPLY');
     process.exit(0);
-  }).catch(e => {
-    console.log('OUTPUT_AS_REPLY:✅ 收到');
+  }).catch(() => {
+    const out = _collectOutput();
+    console.log(out ? 'OUTPUT_AS_REPLY:' + out : 'NO_REPLY');
     process.exit(1);
   });
 }

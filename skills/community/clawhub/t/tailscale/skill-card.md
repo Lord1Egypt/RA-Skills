@@ -1,42 +1,60 @@
-## Description: <br>
-Manage Tailscale tailnet via CLI and API for status checks, device management, file transfer, service exposure, SSH, auth keys, DNS, and ACL tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Tailscale tailnet operations through local Tailscale CLI commands and tailnet-wide API helper commands.
 
-## Publisher: <br>
-[jmagar](https://clawhub.ai/user/jmagar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jmagar](https://clawhub.ai/user/jmagar)
 
-## Use Case: <br>
-Developers, administrators, and operators use this skill to inspect and manage a Tailscale tailnet through local CLI commands and tailnet-wide API operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help administer a Tailscale tailnet, including actions that expose services, remove devices, change MagicDNS or ACL access, or create auth keys. <br>
-Mitigation: Review commands before running them and use extra care with Funnel, device deletion, MagicDNS changes, ACL changes, and auth key creation. <br>
-Risk: Tailnet-wide API operations require a Tailscale API key. <br>
-Mitigation: Keep the API key protected, scope it narrowly, and store it only in the documented credentials file or environment variable. <br>
+## Use Case:
 
+Developers, operators, and Tailscale administrators use this skill to inspect tailnet status, test connectivity, transfer files, expose services, and manage devices, auth keys, DNS, and ACL validation from an agent-assisted workflow.
 
-## Reference(s): <br>
-- [Tailscale Admin Console API Keys](https://login.tailscale.com/admin/settings/keys) <br>
-- [Tailscale Download](https://tailscale.com/download) <br>
-- [ClawHub Tailscale Skill Page](https://clawhub.ai/jmagar/tailscale) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON output from Tailscale CLI or API helper commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can perform powerful tailnet administration actions, including deleting devices or auth keys and changing device, DNS, or ACL-related settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review write and delete commands before execution, and manually verify device IDs, key IDs, tags, ports, and target tailnet details.
+
+Risk: API access requires a Tailscale API key that could administer tailnet-wide resources if over-scoped or exposed.
+
+Mitigation: Use a narrowly scoped, short-lived API key where possible, store credentials with restrictive permissions, and avoid printing or sharing secrets.
+
+Risk: Tailscale Funnel commands can expose a local service to the public internet.
+
+Mitigation: Confirm that public exposure is intended, verify the service and port, and disable Funnel when public access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Tailscale Skill](https://clawhub.ai/jmagar/skills/tailscale)
+- [Tailscale Admin Console API Keys](https://login.tailscale.com/admin/settings/keys)
+- [Tailscale Download](https://tailscale.com/download)
+- [Tailscale API v2 Endpoint](https://api.tailscale.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Tailscale CLI commands and API helper commands whose API responses are JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

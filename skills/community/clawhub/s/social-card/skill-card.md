@@ -1,44 +1,56 @@
-## Description: <br>
-Generate social preview images (OG, Twitter, GitHub) with a fluent builder API. Single dependency - Pillow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate social preview images (OG, Twitter, GitHub) with a fluent builder API. Single dependency - Pillow.
 
-## Publisher: <br>
-[vveerrgg](https://clawhub.ai/user/vveerrgg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vveerrgg](https://clawhub.ai/user/vveerrgg)
 
-## Use Case: <br>
-Developers, content publishers, and automation agents use this skill to generate local Open Graph, Twitter/X, GitHub, square, and custom social preview images from titles, subtitles, tags, themes, and brand colors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and imports the external `social-card` Python package. <br>
-Mitigation: Install from a trusted package source, pin the expected version where appropriate, and review the package before using it in sensitive publishing workflows. <br>
-Risk: Generated social preview images can misrepresent a project, page, or entity if prompts or source text are wrong. <br>
-Mitigation: Review generated cards before publication, especially for branded, legal, financial, or customer-facing content. <br>
+## Use Case:
 
+Developers, operators, and content teams use this skill to generate branded social preview images for websites, repositories, profiles, and automated publishing workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vveerrgg/social-card) <br>
-- [Publisher Profile](https://clawhub.ai/user/vveerrgg) <br>
-- [GitHub Repository](https://github.com/HumanjavaEnterprises/huje.socialcard.OC-python.src) <br>
-- [PyPI Package](https://pypi.org/project/social-card/) <br>
-- [huje.tools](https://huje.tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The underlying package renders image files or raw PNG, JPEG, and WEBP bytes locally using Pillow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: Installing the skill requires trusting the current social-card package from PyPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin the package version before use.
+
+Risk: Rendering writes image files to local paths, which can overwrite existing files if a target path is reused.
+
+Mitigation: Render to a controlled output directory and avoid paths where replacing an existing image would matter.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vveerrgg/skills/social-card)
+- [GitHub Repository](https://github.com/HumanjavaEnterprises/huje.socialcard.OC-python.src)
+- [PyPI Package](https://pypi.org/project/social-card/)
+- [huje.tools](https://huje.tools)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration instructions, Files, Guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks, plus generated image files or image bytes when used by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local social preview images in PNG, JPEG, or WEBP formats through the social-card Python package.]
+
+## Skill Version(s):
+
+0.2.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

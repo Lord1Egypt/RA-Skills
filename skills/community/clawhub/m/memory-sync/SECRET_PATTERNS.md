@@ -33,7 +33,7 @@ The patterns are organized into three tiers:
 
 | Service | Pattern | Example | Redaction Type |
 |---------|---------|---------|----------------|
-| Access Key | `AKIA[A-Z0-9]{16}` | `AKIAIOSFODNN7EXAMPLE` | `AWS-ACCESS-KEY` |
+| Access Key | `AKIA[A-Z0-9]{16}` | `REDACTED-SECRET` | `AWS-ACCESS-KEY` |
 | Session Key | `ASIA[A-Z0-9]{16}` | `ASIAXYZ...` | `AWS-SESSION-KEY` |
 
 ### Communication / Channels

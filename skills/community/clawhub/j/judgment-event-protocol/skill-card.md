@@ -1,38 +1,57 @@
-## Description: <br>
-Record and verify cryptographically signed, tamper-proof judgment, delegation, termination, and verification events for AI agent decision audits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify JEP Core 0.7 signed event records and guide local creation or independent implementation testing.
 
-## Publisher: <br>
-[schchit](https://clawhub.ai/user/schchit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[schchit](https://clawhub.ai/user/schchit)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create or verify signed audit events for decisions, delegations, terminations, and verification chains. It is intended for accountability trails where private signing keys are supplied from a secure environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Protocol Documentation](https://github.com/hjs-spec) <br>
-- [HJS Foundation](https://humanjudgment.org) <br>
+Developers and engineers use this skill to verify JEP records, create signed records locally, and check implementation interoperability against conformance guidance.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce signed JEP receipt JSON when the agent runs user-approved code with user-provided keys; use a pinned jep-protocol package and provide signing keys only from secure secret storage.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Installing an unverified package or running examples in an existing environment could expose local resources.
+
+Mitigation: Verify the pinned package source and run examples in a fresh environment.
+
+Risk: A valid signature alone does not establish truth, identity, or authorization for a real record.
+
+Mitigation: Specify the actor, statement, and trust/profile rules before creating records; protect signing keys and apply acceptance checks before acting.
+
+## Reference(s):
+
+- [JEP Core homepage](https://github.com/hjs-spec/jep-core)
+- [Local creation and independent verification example](https://github.com/hjs-spec/jep-agent-sdk#local-create--export--independent-verification)
+- [BYOI conformance guidance](https://github.com/hjs-spec/jep-core/blob/main/docs/BYOI-CONFORMANCE.md)
+- [Specification source map](https://github.com/hjs-spec/jep-core/blob/main/docs/SPECIFICATION-SOURCES.md)
+- [ClawHub skill release](https://clawhub.ai/schchit/skills/judgment-event-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Verification and conformance guidance; no bundled executable code.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

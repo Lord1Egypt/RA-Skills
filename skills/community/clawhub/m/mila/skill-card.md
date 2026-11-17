@@ -1,46 +1,63 @@
-## Description: <br>
-Create, read, update, and delete documents, spreadsheets, and slide presentations in Mila via the REST API or MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, read, update, and delete documents, spreadsheets, and slide presentations in Mila via the REST API or MCP tools.
 
-## Publisher: <br>
-[freddyjd](https://clawhub.ai/user/freddyjd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freddyjd](https://clawhub.ai/user/freddyjd)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Mila documents, spreadsheets, slide decks, and collaborative workspaces through documented REST API calls or MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create, update, replace, or delete Mila documents, sheets, slides, and workspace content. <br>
-Mitigation: Use a dedicated least-privilege API key, prefer read-only scopes unless writes are needed, and require confirmation of the exact title, ID, and workspace before any update, replacement, or delete action. <br>
-Risk: Mila API keys are credentials that grant access according to their scopes. <br>
-Mitigation: Keep MCP client configuration files private and avoid exposing API keys in shared prompts, logs, or repositories. <br>
+## Use Case:
 
+Developers and agent users use this skill to manage Mila collaborative documents, workbooks, slide decks, and server-organized content through documented REST endpoints or MCP tools.
 
-## Reference(s): <br>
-- [Mila homepage](https://mila.gg) <br>
-- [Mila API documentation](https://mila.gg/docs) <br>
-- [Mila MCP integration guide](https://mila.gg/mcp) <br>
-- [Documents reference](references/DOCUMENTS.md) <br>
-- [Sheets reference](references/SHEETS.md) <br>
-- [Slides reference](references/SLIDES.md) <br>
-- [Servers reference](references/SERVERS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include REST API examples, MCP tool names, and client configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and frontmatter) <br>
+Risk: The skill can access documents, sheets, slide content, and server metadata available to the configured Mila API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Mila is trusted with that content and use the narrowest available API scopes.
+
+Risk: Broad team API keys in MCP configuration can expose more collaborative content than the immediate task requires.
+
+Mitigation: Prefer individual or narrowly scoped keys and avoid placing broad team keys into shared MCP configs.
+
+Risk: Delete operations and full-content replacement can permanently remove or overwrite collaborative content.
+
+Mitigation: Require explicit confirmation before delete or full replacement operations, and verify resource IDs before execution.
+
+## Reference(s):
+
+- [Mila homepage](https://mila.gg)
+- [Mila API documentation](https://mila.gg/docs)
+- [Mila MCP integration guide](https://mila.gg/mcp)
+- [Documents reference](references/DOCUMENTS.md)
+- [Sheets reference](references/SHEETS.md)
+- [Slides reference](references/SLIDES.md)
+- [Servers reference](references/SERVERS.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST request examples, MCP tool names, and resource identifiers supplied by the user.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

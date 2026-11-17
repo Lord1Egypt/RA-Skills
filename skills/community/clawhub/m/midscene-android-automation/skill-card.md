@@ -1,46 +1,65 @@
-## Description: <br>
-Vision-driven Android device automation using Midscene that controls visible Android UI from screenshots through ADB-backed commands for taps, swipes, text input, app launches, screenshots, assertions, and shell operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vision-driven Android device automation using Midscene that operates from screenshots to control Android devices with natural language commands over ADB.
 
-## Publisher: <br>
-[quanru](https://clawhub.ai/user/quanru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanru](https://clawhub.ai/user/quanru)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to automate Android app workflows, inspect visible mobile UI state, and verify behavior on an emulator or connected test device. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over a connected Android device. <br>
-Mitigation: Use an emulator or dedicated test device with test accounts, avoid sensitive screens, and keep the target app visually confirmed before automation. <br>
-Risk: Raw ADB shell commands, installs, uninstalls, deletion, settings changes, purchases, form submissions, or actions affecting real accounts can have high impact. <br>
-Mitigation: Require explicit user approval before running those operations, and prefer bounded UI actions or assertions when lower-level device control is not necessary. <br>
-Risk: The skill requires model API credentials for Midscene. <br>
-Mitigation: Keep API keys private, use local environment configuration, and do not expose credentials in prompts, screenshots, logs, or generated reports. <br>
+## Use Case:
 
+Developers, QA engineers, and automation agents use this skill to connect to Android devices or emulators, launch apps or URLs, inspect screenshots, perform UI actions, run assertions, and summarize mobile test results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quanru/midscene-android-automation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/quanru) <br>
-- [Midscene.js](https://midscenejs.com) <br>
-- [Midscene model configuration](https://midscenejs.com/model-common-config) <br>
-- [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and optional generated report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference screenshots, logs, and Midscene report files produced during Android automation runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and target metadata) <br>
+Risk: The skill can give an agent broad control over a connected Android device or emulator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated test device or emulator and avoid sensitive accounts, private screens, and production data.
+
+Risk: Raw ADB shell actions can make lower-level device changes outside visible UI automation.
+
+Mitigation: Require explicit human confirmation before running raw ADB shell commands and review the exact command string.
+
+Risk: Repeated npx -y execution can fetch mutable package code at runtime.
+
+Mitigation: Prefer a pinned, audited Midscene package version or a locked project installation.
+
+Risk: Screenshots and generated reports may capture sensitive screen content.
+
+Mitigation: Store artifacts in controlled locations, review them before sharing, and delete unneeded screenshots, logs, and reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/quanru/skills/midscene-android-automation)
+- [ClawHub publisher profile](https://clawhub.ai/user/quanru)
+- [Midscene.js](https://midscenejs.com)
+- [Midscene model configuration](https://midscenejs.com/model-common-config)
+- [Android SDK Platform Tools](https://developer.android.com/tools/releases/platform-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include screenshot, report, log, or converted report file paths generated during Android automation runs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

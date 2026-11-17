@@ -1,5 +1,5 @@
 ---
-name: docs-organization
+name: brainharness-docs
 description: >-
   Organize project documentation by size, audience, and freshness. Trigger when
   setting up docs for a new project, restructuring existing documentation, slimming
@@ -9,18 +9,18 @@ description: >-
   Triggers on: organize docs, reorganize documentation, slim CLAUDE.md, AGENTS.md
   too long, where to put docs, docs structure, doc best practices, set up
   documentation, docs are messy, flatten docs, doc migration.
-version: 1.1.0
+version: 1.2.0
 metadata:
   author: zning1994
   openclaw:
-    homepage: https://github.com/zning1994/docs-organization
+    homepage: https://github.com/zning1994/brainharness-docs
     os:
       - macos
       - linux
       - windows
 ---
 
-# Documentation Organization
+# BrainHarness Docs
 
 A practical guide for organizing project documentation so that every fact has one home,
 AI agents load only what they need, and humans can find things without grep.

@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    Image Caption 模板
+    用途: 图文说明页——大图区域+下方说明文字，适合产品截图/场景图展示
+    适用场景: 产品界面演示、功能截图说明、场景展示、案例图示
+    布局: 上方60%大图占位区（虚线框+提示文字） + 下方40%文字说明区
+    -->
+
+    <defs>
+        <!-- 背景渐变 -->
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F8F9FA;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#EEF1F5;stop-opacity:1" />
+        </linearGradient>
+
+        <!-- 卡片阴影 -->
+        <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+            <feOffset dx="0" dy="3" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.12"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- 图片区域渐变（示意用） -->
+        <linearGradient id="imgAreaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#EEF1F5;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#E3EAF0;stop-opacity:1" />
+        </linearGradient>
+
+        <!-- 标题下划线渐变 -->
+        <linearGradient id="underlineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2196F3;stop-opacity:0" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="1280" height="720" fill="url(#bgGrad)"/>
+
+    <!-- ===================== 上方60%：图片占位区 ===================== -->
+    <g filter="url(#cardShadow)">
+        <!-- 图片区域主背景 -->
+        <rect x="48" y="36" width="1184" height="392" rx="14" fill="url(#imgAreaGrad)"/>
+
+        <!-- 虚线边框 -->
+        <rect x="64" y="52" width="1152" height="360" rx="8"
+              fill="none"
+              stroke="#BDC3C7" stroke-width="2"
+              stroke-dasharray="12,8"/>
+
+        <!-- 中央图标（相机/图片线框） -->
+        <!-- 相机外框 -->
+        <rect x="588" y="168" width="104" height="80" rx="10"
+              fill="none" stroke="#BDC3C7" stroke-width="2.5"/>
+        <!-- 相机镜头圆 -->
+        <circle cx="640" cy="208" r="24"
+                fill="none" stroke="#BDC3C7" stroke-width="2.5"/>
+        <!-- 相机取景器小方块 -->
+        <rect x="596" y="158" width="26" height="14" rx="4"
+              fill="none" stroke="#BDC3C7" stroke-width="2"/>
+        <!-- 相机闪光灯点 -->
+        <circle cx="676" cy="177" r="5" fill="#BDC3C7"/>
+
+        <!-- 占位提示文字 -->
+        <text x="640" y="290" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="18" fill="#BDC3C7">
+            <tspan>图片 / 截图区域</tspan>
+        </text>
+        <text x="640" y="318" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="14" fill="#D5D8DC">
+            <tspan>Drag or paste your image here · Recommended 1184×360px</tspan>
+        </text>
+
+        <!-- 左下角图片小标签 -->
+        <rect x="64" y="372" width="120" height="28" rx="6" fill="#FFFFFF" fill-opacity="0.7"/>
+        <text x="124" y="390" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="12" fill="#7F8C8D">
+            <tspan>图1 · 产品截图</tspan>
+        </text>
+
+        <!-- 右下角角标（画面比例提示） -->
+        <rect x="1076" y="372" width="140" height="28" rx="6" fill="#FFFFFF" fill-opacity="0.7"/>
+        <text x="1146" y="390" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="12" fill="#7F8C8D">
+            <tspan>16:5  ·  1184×360</tspan>
+        </text>
+    </g>
+
+    <!-- ===================== 下方40%：文字说明区 ===================== -->
+
+    <!-- 下方区域白色卡片底 -->
+    <rect x="48" y="444" width="1184" height="236" rx="14" fill="#FFFFFF" filter="url(#cardShadow)"/>
+
+    <!-- 左侧主标题+说明区（占约70%宽度） -->
+
+    <!-- 主标题 -->
+    <text x="80" y="504"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="28" font-weight="700" fill="#1A252F" letter-spacing="-0.3">
+        <tspan>智能推荐系统 2.0 — 实时个性化体验</tspan>
+    </text>
+
+    <!-- 标题下装饰线 -->
+    <rect x="80" y="514" width="280" height="3" rx="1.5" fill="url(#underlineGrad)"/>
+
+    <!-- 说明文字第1行 -->
+    <text x="80" y="550"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="17" fill="#5F6368" letter-spacing="0.2">
+        <tspan>基于深度学习的实时推荐引擎，综合用户行为、偏好标签和上下文信号，</tspan>
+    </text>
+
+    <!-- 说明文字第2行 -->
+    <text x="80" y="578"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="17" fill="#5F6368" letter-spacing="0.2">
+        <tspan>毫秒级响应个性化内容，平均点击率提升</tspan>
+        <tspan font-weight="700" fill="#2196F3"> 34%</tspan>
+        <tspan>，用户停留时长提升</tspan>
+        <tspan font-weight="700" fill="#2196F3"> 22%</tspan>
+        <tspan>。</tspan>
+    </text>
+
+    <!-- 说明文字第3行 -->
+    <text x="80" y="606"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="15" fill="#9AA0A6">
+        <tspan>模型训练数据：过去90天 · 样本量：1.2亿条用户行为记录</tspan>
+    </text>
+
+    <!-- 分隔线 -->
+    <line x1="80" y1="628" x2="820" y2="628" stroke="#E8EAED" stroke-width="1"/>
+
+    <!-- 底部标签行 -->
+    <rect x="80" y="644" width="78" height="26" rx="13" fill="#E3F2FD"/>
+    <text x="119" y="661" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="12" font-weight="600" fill="#1565C0">
+        <tspan>产品特性</tspan>
+    </text>
+
+    <rect x="170" y="644" width="78" height="26" rx="13" fill="#E8F5E9"/>
+    <text x="209" y="661" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="12" font-weight="600" fill="#1B5E20">
+        <tspan>2025 Q4</tspan>
+    </text>
+
+    <rect x="260" y="644" width="88" height="26" rx="13" fill="#FFF3E0"/>
+    <text x="304" y="661" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="12" font-weight="600" fill="#E65100">
+        <tspan>技术亮点</tspan>
+    </text>
+
+    <!-- 右侧数据来源/注释（右下角对齐） -->
+    <text x="1188" y="661" text-anchor="end"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="13" fill="#9AA0A6">
+        <tspan>数据来源：算法团队内部报告 · 截至2025年12月</tspan>
+    </text>
+</svg>

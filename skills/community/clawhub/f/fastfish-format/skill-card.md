@@ -1,43 +1,54 @@
-## Description: <br>
-Formats and beautifies WeChat public account and Xiaohongshu articles with Markdown rendering, 30 preset styles, style selection, and image workflow guidance; it does not publish content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Formats and beautifies WeChat official-account and Xiaohongshu articles with 30 preset styles, Markdown-to-HTML rendering, style selection, and image-workflow guidance; it does not publish content.
 
-## Publisher: <br>
-[superxs777](https://clawhub.ai/user/superxs777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superxs777](https://clawhub.ai/user/superxs777)
 
-## Use Case: <br>
-External users and content creators use this skill to normalize WeChat and Xiaohongshu article drafts, render Markdown into styled HTML, list available styles, and get image workflow guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the formatter executes third-party Python code and dependencies. <br>
-Mitigation: Verify the linked project and requirements, pin a release tag, and run it in an isolated Python environment or container without root privileges. <br>
-Risk: Optional image workflows may require OpenAI, Google, or DashScope API keys. <br>
-Mitigation: Configure only the keys needed for those workflows, keep them out of chat and version control, and avoid commands that print environment files. <br>
-Risk: Shell execution could be misused if expanded beyond the documented formatter script. <br>
-Mitigation: Use only the documented ffformat_cli.py JSON commands and prefer content files for longer input. <br>
+## Use Case:
 
+Content creators, marketers, and developers use this skill to normalize WeChat and Xiaohongshu article text, render Markdown into styled HTML, inspect available formatting styles, and get image-workflow guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/superxs777/fastfish-format) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/superxs777) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON command examples and formatter responses that can include Markdown or HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python CLI commands; optional image workflows may require separately configured API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Installing the external formatter can execute third-party Python code and dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced repository and dependencies, pin installation to a reviewed commit or trusted release, and run it in a virtual environment or container without root privileges.
+
+Risk: Optional image-generation workflows may involve API keys.
+
+Mitigation: Keep credentials out of command output and chat responses, store them only in appropriate environment configuration, and avoid commands that print secret values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/superxs777/skills/fastfish-format)
+- [fastfish-format repository](https://github.com/superxs777/fastfish-format)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and JSON-backed CLI results with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include rendered HTML, style identifiers, normalized article text, and image-workflow guidance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

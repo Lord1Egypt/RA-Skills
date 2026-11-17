@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "id": "local-production-example",
+  "frame_rate": 30,
+  "script": {
+    "opening": {
+      "speech": "The battery lasts three days",
+      "display": "The battery lasts three days"
+    }
+  },
+  "direction": {
+    "presenter": {
+      "instruction": "Reuse the user's selected presenter and voice."
+    },
+    "captions": {
+      "color": "white"
+    }
+  },
+  "events": [
+    {
+      "id": "battery-reveal",
+      "segment": "opening",
+      "quote": "The battery lasts three days",
+      "type": "range"
+    }
+  ],
+  "outputs": {
+    "speaker": {
+      "kind": "video",
+      "uses": [
+        "script.opening.speech",
+        "direction.presenter"
+      ],
+      "recipe": {
+        "tool": "local",
+        "instruction": "Obtain actual performance media within current authorization and available capabilities. Before execution, declare the actual request or production files in files."
+      }
+    },
+    "final": {
+      "kind": "video",
+      "uses": [
+        "script.opening.display",
+        "direction.captions",
+        "events"
+      ],
+      "depends_on": [
+        "speaker"
+      ],
+      "files": [
+        "events.json"
+      ],
+      "recipe": {
+        "tool": "local",
+        "instruction": "Pass adopted media and bound events to the actual render project. Add project files to files, then run the original tool and review the export."
+      }
+    }
+  }
+}

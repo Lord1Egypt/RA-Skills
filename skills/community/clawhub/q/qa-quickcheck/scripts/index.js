@@ -29,7 +29,7 @@ module.exports = async function handler(input, context) {
     },
     scripts: {
       "http-test-runner": "scripts/http-test-runner.js",
-      "security-headers-check": "scripts/security-headers-check.js",
+      "config-check": "scripts/security-headers-check.js",
       "data-factory": "scripts/data-factory.js"
     },
     project_path: project_path || process.cwd()

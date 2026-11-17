@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel2Insights — Demo Report Preview</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f1f5f9; font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; padding: 30px; color: #1e293b; }
+.container { max-width: 900px; margin: 0 auto; }
+.header { background: linear-gradient(135deg, #1e293b, #2b6af6); color: #fff; border-radius: 12px; padding: 32px; margin-bottom: 24px; }
+.header h1 { font-size: 28px; margin-bottom: 8px; }
+.header p { color: #cbd5e1; font-size: 14px; }
+.header .badge { display: inline-block; background: rgba(255,255,255,0.15); border-radius: 20px; padding: 4px 14px; font-size: 12px; margin-right: 8px; margin-top: 12px; }
+.card { background: #fff; border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.card h2 { font-size: 18px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #2b6af6; color: #1e293b; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 12px 0; }
+.metric { background: #f8fafc; border-radius: 8px; padding: 14px; text-align: center; border-left: 3px solid #2b6af6; }
+.metric .value { font-size: 24px; font-weight: 700; color: #2b6af6; }
+.metric .label { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+th, td { padding: 8px 12px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+th { background: #f1f5f9; font-weight: 600; font-size: 12px; }
+tr:last-child td { border-bottom: none; }
+.chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 16px; margin: 16px 0; }
+.chart-card { background: #fafafa; border-radius: 8px; padding: 12px; border: 1px solid #e2e8f0; }
+.chart-card .chart-label { font-size: 13px; font-weight: 600; margin-bottom: 8px; color: #475569; }
+.chart-card .placeholder { background: linear-gradient(135deg, #eef2ff, #e0e7ff); border-radius: 6px; height: 200px; display: flex; align-items: center; justify-content: center; color: #6366f1; font-size: 13px; }
+.charts-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.chart-placeholder { background: #eef2ff; border-radius: 8px; padding: 40px 20px; text-align: center; flex: 1; min-width: 200px; border: 2px dashed #c7d2fe; }
+.chart-placeholder .icon { font-size: 32px; margin-bottom: 8px; }
+.chart-placeholder .title { font-size: 14px; font-weight: 600; color: #4338ca; }
+.insight-list { list-style: none; }
+.insight-list li { padding: 10px 14px; margin: 6px 0; border-radius: 8px; font-size: 14px; background: #f8fafc; border-left: 3px solid #2b6af6; }
+.insight-list li.highlight { background: #ecfdf5; border-left-color: #06d6a0; }
+.insight-list li .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-right: 8px; }
+.tag-blue { background: #dbeafe; color: #2563eb; }
+.tag-green { background: #d1fae5; color: #059669; }
+.tag-yellow { background: #fef3c7; color: #d97706; }
+.footer { text-align: center; color: #94a3b8; font-size: 12px; padding: 20px; }
+.terminal { background: #0f172a; color: #e2e8f0; border-radius: 8px; padding: 16px 20px; font-family: 'Consolas', 'Menlo', monospace; font-size: 13px; line-height: 1.6; margin: 12px 0; }
+.terminal .prompt { color: #06d6a0; }
+.terminal .output { color: #94a3b8; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>Excel2Insights — Demo Report</h1>
+<p>基于 sample_sales_data.csv 的自动分析结果预览</p>
+<span class="badge">📊 26 行 × 7 列</span>
+<span class="badge">📈 0 缺失值</span>
+<span class="badge">🔗 2 数值列</span>
+</div>
+
+<div class="card">
+<h2>📋 数据集概览</h2>
+<div class="metric-grid">
+<div class="metric"><div class="value">26</div><div class="label">数据行数</div></div>
+<div class="metric"><div class="value">7</div><div class="label">字段数</div></div>
+<div class="metric"><div class="value">0</div><div class="label">缺失值</div></div>
+<div class="metric"><div class="value">0</div><div class="label">重复行</div></div>
+<div class="metric"><div class="value">$8,315</div><div class="label">平均收入</div></div>
+<div class="metric"><div class="value">0.997</div><div class="label">收入-数量相关系数</div></div>
+</div>
+
+<div class="charts-row" style="margin-top: 20px;">
+<div class="chart-placeholder">
+<div class="icon">📊</div>
+<div class="title">Revenue Distribution</div>
+<div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">直方图 · 偏左分布 · 范围 $2,100 - $17,200</div>
+</div>
+<div class="chart-placeholder">
+<div class="icon">📈</div>
+<div class="title">Monthly Revenue Trend</div>
+<div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">折线图 · 2月低谷 · 6月峰值</div>
+</div>
+<div class="chart-placeholder">
+<div class="icon">🗺️</div>
+<div class="title">Correlation Heatmap</div>
+<div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">revenue × quantity = 0.997</div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>📊 逐列分析</h2>
+<table>
+<tr><th>列名</th><th>类型</th><th>非空</th><th>唯一值</th><th>关键指标</th></tr>
+<tr><td>date</td><td>datetime</td><td>26</td><td>26</td><td>2024-01-05 ~ 2024-06-29</td></tr>
+<tr><td>product</td><td>categorical</td><td>26</td><td>5</td><td>Widget A: 7, Widget B: 6, Gadget X: 5...</td></tr>
+<tr><td>category</td><td>categorical</td><td>26</td><td>2</td><td>Electronics: 13, Accessories: 13</td></tr>
+<tr><td>region</td><td>categorical</td><td>26</td><td>4</td><td>North: 7, South: 5, East: 4, West: 3</td></tr>
+<tr><td>revenue</td><td>numeric</td><td>26</td><td>26</td><td>均值 $8,315 · 中位 $5,700 · 范围 $2,100-$17,200</td></tr>
+<tr><td>quantity</td><td>numeric</td><td>26</td><td>17</td><td>均值 31.5 · 中位 29 · 范围 11-62</td></tr>
+<tr><td>customer_segment</td><td>categorical</td><td>26</td><td>3</td><td>Enterprise: 12, SMB: 10, Startup: 4</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>🏆 关键洞察</h2>
+<ul class="insight-list">
+<li><span class="tag tag-green">TOP</span> <strong>Widget A 贡献最高收入</strong> — 7条记录合计 $98,600，占总 revenue 的 45.6%</li>
+<li><span class="tag tag-blue">趋势</span> <strong>Q2 收入持续增长</strong> — 从 2月低谷 $8,700 增长至 6月峰值 $17,200</li>
+<li><span class="tag tag-yellow">注意</span> <strong>Startup 客户订单量小</strong> — 平均每单 $2,475，远低于 Enterprise ($13,200)</li>
+<li><span class="tag tag-green">强相关</span> <strong>revenue 与 quantity 高度线性相关</strong> (0.997) — 收入主要由销量驱动</li>
+<li><span class="tag tag-blue">分布</span> <strong>North 区域最活跃</strong> — 7条记录覆盖 3 种产品和所有客户类型</li>
+<li class="highlight"><span class="tag tag-green">✅</span> <strong>数据质量良好</strong> — 无缺失值、无重复行、无异常值</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🖥️ 终端效果</h2>
+<p style="font-size: 13px; color: #64748b; margin-bottom: 12px;">运行 auto-pipeline 的实际输出效果：</p>
+<div class="terminal">
+<span class="prompt">$</span> python3 scripts/auto-pipeline.py --file assets/sample_sales_data.csv --charts histogram,bar,heatmap,line<br>
+<span class="output">==================================================</span><br>
+<span class="output">Excel2Insights — Auto Pipeline</span><br>
+<span class="output">==================================================</span><br>
+<br>
+<span class="prompt">[1/4]</span> Loading file...<br>
+<span class="output">  Rows: 26 | Columns: 7</span><br>
+<span class="output">  Numeric: 2 | Categorical: 4</span><br>
+<br>
+<span class="prompt">[2/4]</span> Running statistical analysis...<br>
+<span class="output">  Analysis saved: output/analysis.json</span><br>
+<br>
+<span class="prompt">[3/4]</span> Generating charts (histogram,bar,heatmap,line)...<br>
+<span class="output">  Charts generated: 6</span><br>
+<br>
+<span class="prompt">[4/4]</span> Generating HTML report...<br>
+<span class="output">  Report saved: output/report.html</span><br>
+<br>
+<span class="prompt">✅</span> Pipeline complete!<br>
+<span class="output">  Output directory: /Users/wwumit/project/output</span><br>
+<span class="output">  Charts: 6</span><br>
+<span class="output">  Report: output/report.html</span>
+</div>
+</div>
+
+<div class="card">
+<h2>⚡ 快速使用</h2>
+<div class="terminal">
+<span class="prompt"># 一键全流程</span><br>
+$ python3 scripts/auto-pipeline.py --file assets/sample_sales_data.csv<br>
+<br>
+<span class="prompt"># 只是扫一眼</span><br>
+$ python3 scripts/excel-reader.py --file my_data.csv<br>
+<br>
+<span class="prompt"># 自定义图表</span><br>
+$ python3 scripts/chart-generator.py --file my_data.csv --charts histogram,bar,scatter --columns revenue,quantity
+</div>
+</div>
+
+<div class="footer">
+Excel2Insights v2.0.0 · 数据洞察，从 Excel 开始
+</div>
+
+</div>
+</body>
+</html>

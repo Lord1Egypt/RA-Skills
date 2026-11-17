@@ -1,43 +1,52 @@
-## Description: <br>
-港股 AI 概念板块专属投研顾问。结合宏观流动性、南向资金博弈与 AI 产业基本面，提供深度的个股挖掘与风控策略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+港股 AI 概念板块专属投研顾问。结合宏观流动性、南向资金博弈与 AI 产业基本面，提供深度的个股挖掘与风控策略。
 
-## Publisher: <br>
-[yangwenxin160-cpu](https://clawhub.ai/user/yangwenxin160-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yangwenxin160-cpu](https://clawhub.ai/user/yangwenxin160-cpu)
 
-## Use Case: <br>
-External users can use this skill to structure Hong Kong AI-sector equity research around macro liquidity, southbound capital flows, industry catalysts, stock fundamentals, technical levels, and risk controls. It is intended for analytical support and data summarization, not licensed investment advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated equity research or action plans may be mistaken for licensed financial advice. <br>
-Mitigation: Keep the artifact's investment-advice disclaimer visible and require users to verify conclusions with primary market data and qualified financial professionals. <br>
-Risk: Market data, liquidity signals, and technical levels can be stale, incomplete, or provider-specific. <br>
-Mitigation: Cross-check outputs against primary or trusted sources such as HKEX filings, official company reports, and current market-data providers before acting. <br>
-Risk: The skill declares market-data and OpenAI API key environment variables. <br>
-Mitigation: Use least-privilege credentials, avoid pasting secrets into prompts, and rotate keys if exposed. <br>
-Risk: Read-only file access can still expose sensitive user-provided documents to analysis. <br>
-Mitigation: Limit accessible files to documents intentionally selected for research and remove confidential material that is not needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangwenxin160-cpu/hk-ai-stock-expert) <br>
+## Use Case:
 
+External research users use this skill to structure Hong Kong AI-sector equity analysis around liquidity, southbound capital flows, catalysts, fundamentals, technical levels, and risk controls. Outputs are research support and must not be treated as direct investment advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research analysis with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference market data sources and read-only user-provided files when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests raw API credentials, including MARKET_DATA_API_KEY and OPENAI_API_KEY, without documenting a specific need for each credential.
+
+Mitigation: Review before installing, use a dedicated low-privilege market-data key when needed, and avoid granting OPENAI_API_KEY unless the publisher documents why it is required.
+
+Risk: The skill produces finance research that could be mistaken for direct trading advice.
+
+Mitigation: Treat outputs as research support only, verify claims against current market data, and preserve the skill's non-advisory investment disclaimer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangwenxin160-cpu/skills/hk-ai-stock-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research analysis with structured sections and disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference market data sources and user-provided tickers; outputs should remain analytical and non-advisory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,82 @@
+# starter pack · 通用（组织/人员/地点/时间）
+# 来源：参考 GB/T 48000.3 概念层与 schema.org 常用类型命名（非符合性声明），跨领域可复用
+pack:
+  id: general
+  name: 通用基础
+  version: '0.1'
+  source: 参考 GB/T 48000.3 概念层与 schema.org（非符合性声明）
+  aligns:
+  - 命名参考 GB/T 48000.3 概念层（结构对齐≠标准符合，见 references/standards.md）
+  - schema.org/Organization
+  - schema.org/Person
+  - schema.org/Place
+  usage: python scripts/guide_model.py init --model partial.yaml --scope scope.yaml --session session.json --pack starter_packs/general.yaml
+ontology:
+  entities:
+  - uid: ent_organization
+    name: 组织
+    cn: 组织
+    xref: schema.org/Organization
+    attributes:
+    - name: 组织类型
+      value_type: enum
+      values: [企业, 政府机构, 事业单位, 社会团体]
+    - name: 统一社会信用代码
+      value_type: string
+    note: 一行一个组织主体
+    evidence:
+      source: user_provided
+  - uid: ent_person
+    name: 人员
+    cn: 人员
+    xref: schema.org/Person
+    attributes:
+    - name: 姓名
+      value_type: string
+    - name: 证件号
+      value_type: string
+      sensitive: true
+    note: 一行一个自然人；证件号属敏感属性，投影时必须标记 sensitive
+    evidence:
+      source: user_provided
+  - uid: ent_location
+    name: 地点
+    cn: 地点
+    xref: schema.org/Place
+    attributes:
+    - name: 行政区划
+      value_type: enum
+      values: [省, 市, 区县, 乡镇街道]
+    - name: 地址
+      value_type: string
+    note: 一行一个地点/区划
+    evidence:
+      source: user_provided
+  - uid: ent_time_period
+    name: 时间段
+    cn: 时间段
+    xref: schema.org/Duration
+    attributes:
+    - name: 粒度
+      value_type: enum
+      values: [日, 周, 月, 季, 年]
+    note: 统计时间口径的显式声明，避免"本月/当季"歧义
+    evidence:
+      source: model_inferred
+  relations:
+  - id: rel_organization_person
+    from: 组织
+    to: 人员
+    predicate: 雇佣
+    mapping: equi_key
+  - id: rel_organization_location
+    from: 组织
+    to: 地点
+    predicate: 位于
+    mapping: equi_key
+  - id: rel_person_location
+    from: 人员
+    to: 地点
+    predicate: 居住于
+    mapping: weak
+    note: 居住地多源且易过期，弱匹配需人工确认口径

@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn72et46wtbqgsy6q04qzm12nx8310v8",
-  "slug": "god-of-all-browsers",
-  "version": "1.0.6",
-  "publishedAt": 1773943433937
+    "slug": "god-of-all-browsers",
+    "displayName": "God of all Browsers",
+    "summary": "AI-native browser automation via custom Puppeteer engine. Features: AI-optimized snapshots, session persistence, and human-like interaction.",
+    "version": "1.1.0",
+    "publishedAt": 1773092600000
 }

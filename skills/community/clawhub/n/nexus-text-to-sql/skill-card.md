@@ -1,49 +1,60 @@
-## Description: <br>
-Convert natural language to optimized SQL queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert natural language to optimized SQL queries.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and analysts use this skill to turn natural-language database questions into optimized SQL query text through the hosted NEXUS service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, schema details, and payment proof credentials may be sent to a third-party hosted service. <br>
-Mitigation: Use sandbox_test first, avoid secrets or private database data in prompts, and install only if you trust NEXUS. <br>
-Risk: Automatic invocation could submit paid requests or spend payment credentials without clear per-call controls. <br>
-Mitigation: Configure agent-level confirmation, budget, and spending limits before enabling automatic invocation. <br>
-Risk: Generated SQL can be incorrect or unsafe for a target database. <br>
-Mitigation: Review generated queries before execution and test against non-production data before using them on live systems. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert natural-language requests into optimized SQL queries through the hosted NEXUS text-to-SQL service.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cyberforexblockchain/nexus-text-to-sql) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [Text-to-SQL API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/text-to-sql) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [JSON object with a result string containing SQL-oriented text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or a supported payment credential; sandbox_test is documented for testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Text-to-SQL prompts, payment proof data, and any schema details included in prompts are sent to the hosted NEXUS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending credentials, personal data, proprietary schema details, or sensitive records unless the organization has approved the external processing and payment flow.
+
+Risk: Normal use may incur paid requests through supported payment protocols and currencies.
+
+Mitigation: Confirm the payment credential, network, asset, and expected cost before use; use the documented sandbox path for testing when appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/skills/nexus-text-to-sql)
+- [NEXUS platform](https://ai-service-hub-15.emergent.host)
+- [Text-to-SQL API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/text-to-sql)
+- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+
+## Skill Output:
+
+**Output Type(s):** [text, code]
+
+**Output Format:** [JSON object containing a result string with generated SQL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a payment proof or supported x402/MPP payment credential for paid requests.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

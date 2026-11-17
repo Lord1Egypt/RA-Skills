@@ -1,46 +1,56 @@
-## Description: <br>
-Create terminal screenshots, animated GIFs, or videos using VHS scripts for documentation, demos, and reproducible CLI visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create terminal screenshots, animated GIFs, or videos using VHS scripts for documentation, demos, and reproducible CLI visuals.
 
-## Publisher: <br>
-[ricardodantas](https://clawhub.ai/user/ricardodantas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 <br>
+## Publisher:
 
+[ricardodantas](https://clawhub.ai/user/ricardodantas)
 
-## Use Case: <br>
-Developers and technical writers use this skill to create reproducible terminal screenshots, animated CLI demos, and video walkthroughs for documentation and tutorials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: A tape file can hide setup or cleanup commands from the recording while still executing them. <br>
-Mitigation: Review every .tape file before running it, especially sections between Hide and Show. <br>
-Risk: Terminal recordings may expose tokens, private paths, production data, or other secrets. <br>
-Mitigation: Use disposable working directories and avoid recording terminals that contain sensitive values or private environment context. <br>
-Risk: Cleanup examples can remove local files if copied into a real project without adjustment. <br>
-Mitigation: Replace cleanup commands with harmless placeholders or commands scoped to temporary directories. <br>
+## Use Case:
 
+Developers and technical writers use this skill to create reproducible terminal screenshots, animated CLI demos, and tutorial recordings for documentation and product examples.
 
-## Reference(s): <br>
-- [VHS GitHub](https://github.com/charmbracelet/vhs) <br>
-- [VHS Themes](https://github.com/charmbracelet/vhs/blob/main/THEMES.md) <br>
-- [VHS Example Tapes](https://github.com/charmbracelet/vhs/tree/main/examples) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ricardodantas/terminal-screenshots) <br>
-- [Publisher Profile](https://clawhub.ai/user/ricardodantas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and tape code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of .tape files and VHS commands that generate image, GIF, or video artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing VHS through package managers, sudo commands, or Docker images can introduce supply-chain and privilege risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted package managers or container images and approve sudo or Docker commands explicitly before use.
+
+Risk: VHS tape files execute typed commands, including commands hidden from the final recording with Hide.
+
+Mitigation: Review tape files before running them and confirm hidden setup or cleanup commands are expected.
+
+## Reference(s):
+
+- [terminal-screenshots on ClawHub](https://clawhub.ai/ricardodantas/skills/terminal-screenshots)
+- [VHS GitHub](https://github.com/charmbracelet/vhs)
+- [VHS Themes](https://github.com/charmbracelet/vhs/blob/main/THEMES.md)
+- [VHS Example Tapes](https://github.com/charmbracelet/vhs/tree/main/examples)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash and tape code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces VHS tape syntax, command examples, installation guidance, and workflow recommendations for generating screenshots, GIFs, videos, or PNG frame sequences.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

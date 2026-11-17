@@ -1,46 +1,63 @@
-## Description: <br>
-Nuwa (女娲) researches a public person or topic, extracts thinking frameworks, decision heuristics, and expression patterns, and generates a runnable perspective skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nuwa (女娲) researches a named person, extracts thinking frameworks, mental models, decision heuristics, and expression DNA, and generates a runnable perspective skill.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-Developers and agent users use this skill to create perspective skills from public information for thinking-advisor, decision-reference, or role-play workflows. It is intended for deliberate research on public figures or clearly appropriate topics, with review before enabling generated skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated perspective skills may be mistaken for the real person's views or overstate what public information can support. <br>
-Mitigation: Keep a visible simulated-perspective label, preserve honesty boundaries, and review the generated research and SKILL.md before enabling the skill. <br>
-Risk: Broad triggers or persona behavior could steer an agent into unsuitable regulated, financial, account, purchase, or private-data workflows. <br>
-Mitigation: Narrow activation triggers and avoid using generated personas for regulated advice or actions involving money, accounts, purchases, or private personal data. <br>
-Risk: Research-based outputs can include incorrect, stale, or misleading claims about a person or topic. <br>
-Mitigation: Review source notes, source credibility, contradictions, and research dates before relying on the generated perspective skill. <br>
+## Use Case:
 
+Developers and agent users use Nuwa to create or update public-figure perspective skills that answer from documented cognitive frameworks rather than repeating quotes. It is useful for thinking advisors, decision reference, and persona-style analysis when generated outputs are reviewed before deployment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alchaincyf/nuwa-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/alchaincyf) <br>
-- [README](README.md) <br>
-- [Extraction framework](references/extraction-framework.md) <br>
-- [Skill template](references/skill-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown skill files, research notes, source indexes, and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated perspective skills should retain source notes, honesty boundaries, and review checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated persona skills may speak in first person as public figures with limited disclosure, which can confuse users about attribution or endorsement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated SKILL.md files before enabling them, especially disclosure text, trigger phrases, and role-play rules.
+
+Risk: The skill creates or updates local skill directories and stores research notes.
+
+Mitigation: Run it only in a workspace where file creation is expected, and review generated files before installation or use.
+
+Risk: The install command in the evidence is not pinned.
+
+Mitigation: Pin or verify the installer source and release version before installation.
+
+## Reference(s):
+
+- [Nuwa README](artifact/README.md)
+- [Nuwa Skill Definition](artifact/SKILL.md)
+- [Extraction Framework](artifact/references/extraction-framework.md)
+- [Skill Template](artifact/references/skill-template.md)
+- [Naval Perspective Example](artifact/examples/naval-perspective/SKILL.md)
+- [Elon Musk Perspective Example](artifact/examples/elon-musk-perspective/SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/alchaincyf/skills/nuwa-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown skill files, research notes, concise text guidance, and occasional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated perspective skills should include source notes, honesty boundaries, and validation results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

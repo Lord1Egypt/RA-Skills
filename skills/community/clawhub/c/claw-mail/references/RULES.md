@@ -105,7 +105,7 @@ has_attachments: true
   sender_pattern: "alerts@|monitoring@"
   actions: [tag, webhook]
   tag: alert
-  webhook_url: "https://hooks.slack.com/services/T00/B00/xxx"
+  webhook_url: "REDACTED-SECRET"
   priority: 50
 ```
 

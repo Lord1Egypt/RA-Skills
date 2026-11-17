@@ -1,39 +1,54 @@
-## Description: <br>
-ClawBrain Recall helps an agent retrieve prior conversations and decisions using keyword and semantic search with source annotations and relevance ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBrain Recall helps OpenClaw agents retrieve prior conversations and decisions with keyword and semantic search, relevance scores, and source labels.
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an OpenClaw agent to find prior conversation details, decisions, and related context after the immediate chat context is no longer available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search and reuse prior conversation memory, which can surface sensitive or stale information in later answers. <br>
-Mitigation: Avoid storing highly sensitive information in the connected memory system and review recalled context before relying on it. <br>
+## Use Case:
 
+External OpenClaw users use this skill to let an agent search prior conversation memory for entities, relationships, decisions, and related context when recall-style prompts are used.
 
-## Reference(s): <br>
-- [ClawBrain](https://clawbrain.dev) <br>
-- [ClawHub skill page](https://clawhub.ai/michaelfeng/clawbrain-pro-recall) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text recall results with source labels and relevance cues] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source type labels and relevance percentages for recalled memories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill can surface information from prior conversation memory when recall-style prompts are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where automatic memory lookup is acceptable, and disable or avoid it when prior conversation recall would be unwelcome.
+
+Risk: Recall output may include both original statements and AI-generated summaries, which can differ in reliability.
+
+Mitigation: Use source labels and relevance percentages to judge results, and confirm important decisions against original context when needed.
+
+## Reference(s):
+
+- [ClawBrain website](https://clawbrain.dev)
+- [ClawHub skill page](https://clawhub.ai/michaelfeng/skills/clawbrain-pro-recall)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text recall guidance with sourced result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include relevance percentages and source labels; behavior depends on available prior conversation memory.]
+
+## Skill Version(s):
+
+1.2.0 (source: target metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

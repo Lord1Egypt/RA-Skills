@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-wan-2-2-fast
 description: Wan 2.2 Fast video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `wan2.2-text-to-video-fast`, `wan2.2-image-to-video-fast`, fast text-to-video, image-to-video, first/last-frame images, 480p, 720p, seed control, task submission, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/wan2.2-text-to-video-fast","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/wan-2-2-fast","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Wan 2.2 Fast Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/wan-2-2-fast>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/wan2.2-text-to-video-fast>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Wan 2.2 Fast video jobs on PoYo. It helps agents prepare text-to-video and image-to-video payloads, submit async tasks, and explain polling or webhook follow-up.
 

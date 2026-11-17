@@ -1,0 +1,67 @@
+<!doctype html>
+<!--
+================================================================
+  html-slides 样板页 · 方式 A(绝对定位)· 原型 8「要点列表」
+  演示:页骨架绝对定位 + action title + 裸排要点 + 满填画布。
+  设计契约(分区/字号阶/去 AI 味):reference/design-principles.md
+  页面形态选择:reference/page-archetypes.md
+  转换契约:reference/html-spec.md
+  复制本文件 → 改内容 → 保持结构与标记不变 → validate 零 ERROR
+================================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>页面标题 · 要点列表</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<!-- 画布:必须 1920x1080 + relative + hidden -->
+<div class="slide-container" style="background:var(--off-white);">
+
+  <!-- ── 页码(页脚与页码二选一,本页用页码) ─────────────── -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1720px;top:92px;width:100px;text-align:right;z-index:10;">
+    <div class="num" style="font-size:16px;font-weight:600;color:var(--text-tertiary);letter-spacing:2px;">02 / 12</div>
+  </div>
+
+  <!-- ── action title:标题即结论,可两行(不要 kicker 三件套) ── -->
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:60px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      结论式标题:这一页只讲一个道理,<br>标题把它说完
+    </div>
+  </div>
+
+  <!-- ══ 要点列表:4 条裸排,细线分隔,均匀铺满内容区(320-940) ══
+       每条 = 独立 data-object(绝对定位):粗体引导词 + 说明。
+       条数变化时重算 top:3 条 → top 320/530/740 高 200px(字号 28px);
+       4 条 → top 320/475/630/785 高 150px(字号 26px)。 -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:320px;width:1720px;height:150px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;z-index:1;">
+    <div style="font-size:26px;line-height:1.5;color:var(--text-primary);">
+      <span style="font-weight:700;color:var(--charcoal);">判断一:</span>一句话说清这个判断,不超过两行;需要强调的词用<span style="color:var(--lenovo-red);font-weight:700;">主色加粗</span>(全页至多一处)
+    </div>
+  </div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:475px;width:1720px;height:150px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;z-index:1;">
+    <div style="font-size:26px;line-height:1.5;color:var(--text-primary);">
+      <span style="font-weight:700;color:var(--charcoal);">判断二:</span>要点之间靠细线和留白分层,不装卡片、不套序号圆圈
+    </div>
+  </div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:630px;width:1720px;height:150px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;z-index:1;">
+    <div style="font-size:26px;line-height:1.5;color:var(--text-primary);">
+      <span style="font-weight:700;color:var(--charcoal);">判断三:</span>内容少则放大字号与行距撑满内容区,而不是留白在底部
+    </div>
+  </div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:100px;top:785px;width:1720px;height:150px;display:flex;align-items:center;z-index:1;">
+    <div style="font-size:26px;line-height:1.5;color:var(--text-primary);">
+      <span style="font-weight:700;color:var(--charcoal);">判断四:</span>末条无底线;底边 935px,落在内容区下沿(≥880)
+    </div>
+  </div>
+
+</div>
+
+<!-- 演讲者备注(可选):写入 PPTX 备注区,不出现在画面 -->
+<template data-slide-notes>
+【核心逻辑】这页演示方式 A + 原型 8:action title + 裸排要点列表,坐标全部绝对定位。
+【版式自检】内容带 320→935(利用率 ≥85%);正文 26px(演讲档 24-28);全页高亮 1 处;无 kicker/卡片/徽章。
+</template>
+</body>
+</html>

@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, Optional
 
 # API配置
-MINIMAX_KEY = os.environ.get('MINIMAX_KEY', 'sk-y9avgZsHEoTQ9be4jBVvmaEjWAvmJgfAs7ZCJ1lMRUrMNqvr')
+MINIMAX_KEY = os.environ.get('MINIMAX_KEY', 'REDACTED-SECRET')
 MINIMAX_URL = "https://api.sfkey.cn/v1/chat/completions"
 
 

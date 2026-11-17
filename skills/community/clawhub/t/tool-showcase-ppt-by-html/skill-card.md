@@ -1,41 +1,53 @@
-## Description: <br>
-Generate single-file HTML presentation decks for showcasing tools or applications, with horizontal page navigation, product-focused layouts, dynamic backgrounds, theme presets, and screenshot fallbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates single-file HTML web presentation decks for showcasing tools or apps, with horizontal slides, product-focused layouts, theme presets, animated backgrounds, and screenshot fallback handling.
 
-## Publisher: <br>
-[suenkv](https://clawhub.ai/user/suenkv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suenkv](https://clawhub.ai/user/suenkv)
 
-## Use Case: <br>
-Developers, makers, and product teams use this skill to create polished web-based product showcase decks for launches, demos, internal sharing, GitHub Pages, and tool reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing, installation, or testimonial copy may be unsafe, deceptive, or unverified. <br>
-Mitigation: Review generated claims, endorsements, and installation instructions before publishing; do not present fabricated testimonials as real and verify binary source, publisher, and integrity before sharing bypass instructions. <br>
+## Use Case:
 
+Developers, product makers, and content creators use this skill to turn tool or app details, screenshots, links, and product messaging into polished browser-based showcase decks for launches, demos, GitHub Pages, README-adjacent promotion, and internal sharing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/suenkv/tool-showcase-ppt-by-html) <br>
-- [Quality checklist](references/checklist.md) <br>
-- [Layout library](references/layouts.md) <br>
-- [Theme presets](references/themes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML code and shell commands; generated single-file HTML deck] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local images and uses screenshot placeholders when images are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated decks automatically load mutable third-party JavaScript and external fonts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated decks before sharing or opening them in sensitive contexts; prefer vendoring a pinned Lucide release, using local or system fonts, or adding exact version and integrity controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/suenkv/skills/tool-showcase-ppt-by-html)
+- [Template HTML](artifact/assets/template.html)
+- [Checklist](artifact/references/checklist.md)
+- [Layouts](artifact/references/layouts.md)
+- [Themes](artifact/references/themes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, CSS, and JavaScript snippets for a single-file presentation deck]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks may reference local image assets under an images directory and can include fallback placeholders for missing screenshots.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

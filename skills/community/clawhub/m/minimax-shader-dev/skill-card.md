@@ -1,40 +1,53 @@
-## Description: <br>
-Comprehensive GLSL shader techniques for creating visual effects, including ray marching, SDF modeling, fluid simulation, particle systems, procedural generation, lighting, and post-processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive GLSL shader techniques for creating visual effects, including ray marching, SDF modeling, fluid simulation, particle systems, procedural generation, lighting, and post-processing.
 
-## Publisher: <br>
-[daidai8910g](https://clawhub.ai/user/daidai8910g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daidai8910g](https://clawhub.ai/user/daidai8910g)
 
-## Use Case: <br>
-Developers and shader authors use this skill to choose GLSL techniques and generate or adapt ShaderToy-style effects for WebGL2 and standalone HTML shader outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some referenced technique and reference files are not included in the package, so the skill may provide less complete coverage than its index implies. <br>
-Mitigation: Treat unavailable technique files as missing context and review generated shader guidance against the included WebGL2 rules before use. <br>
-Risk: Generated shader code can fail or perform poorly if GLSL/WebGL2 constraints are missed. <br>
-Mitigation: Compile and run generated shaders, check browser console errors, and keep loop counts within the performance limits described by the skill. <br>
+## Use Case:
 
+Developers and technical artists use this skill to plan and generate ShaderToy-style GLSL/WebGL2 shader effects, choose relevant rendering techniques, and adapt shader code into standalone HTML outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daidai8910g/minimax-shader-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with GLSL, JavaScript, and HTML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include WebGL2 adaptation rules, shader debugging guidance, and performance constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The inspected artifact references technique and reference files that were not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the missing files are supplied elsewhere before relying on linked technique guides or code templates.
+
+Risk: Generated shader code can contain GLSL/WebGL2 errors or performance-heavy loops.
+
+Mitigation: Compile and test generated shaders in the target WebGL2 environment and apply the skill's documented performance limits before deployment.
+
+## Reference(s):
+
+- [MiniMax Shader Dev ClawHub listing](https://clawhub.ai/daidai8910g/skills/minimax-shader-dev)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with GLSL, JavaScript, HTML, and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce WebGL2 adaptation guidance, shader debugging steps, and standalone HTML shader implementation details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

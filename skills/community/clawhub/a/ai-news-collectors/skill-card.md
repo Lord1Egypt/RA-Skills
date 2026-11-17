@@ -1,40 +1,48 @@
-## Description: <br>
-AI news aggregation and heat-ranking helper that collects current AI product launches, research papers, industry updates, funding news, open-source project updates, community viral events, and popular AI tool or agent projects, then outputs Chinese summaries with source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 新闻聚合与热度排序工具，用于收集新产品发布、研究论文、行业动态、融资新闻、开源项目更新、社区病毒传播现象和 AI 工具/Agent 热门项目，并输出按热度排序的中文摘要列表和原文链接。
 
-## Publisher: <br>
-[kenxcomp](https://clawhub.ai/user/kenxcomp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kenxcomp](https://clawhub.ai/user/kenxcomp)
 
-## Use Case: <br>
-External users and developers use this skill to gather recent AI news across newsletters, media, forums, research sources, funding coverage, and policy sources. It helps produce a ranked Chinese digest with links for readers who want a quick view of notable AI developments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on public web searches and external pages, so prompts may be exposed through search queries or page retrieval. <br>
-Mitigation: Avoid including private details in news prompts and use public-interest queries only. <br>
-Risk: Current-news summaries can contain incorrect or outdated claims from source material. <br>
-Mitigation: Verify important claims through the source links included in the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI news source recommendations](references/sources.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kenxcomp/ai-news-collectors) <br>
+## Use Case:
 
+External users and developers use this skill to request current AI-news briefings in Chinese. The skill guides an agent through multi-source web research, cross-checking, deduplication, heat ranking, and concise source-linked reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown summary list with ranked news items and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ranks 15-25 news items by heat and includes collection count, search count, covered dimensions, and update time.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on broad web searches and external sources, so briefings may include incomplete, low-quality, inaccessible, or rapidly outdated information.
+
+Mitigation: Cross-check high-impact items across multiple sources, prefer original or authoritative links, mark paywalled or inaccessible material, and review the final briefing before reuse.
+
+## Reference(s):
+
+- [AI 新闻源推荐列表](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown news briefing with ranked items and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normally 15-25 deduplicated news items grouped by heat level, with collection count, search count, covered dimensions, and update time.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

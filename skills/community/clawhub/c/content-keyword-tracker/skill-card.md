@@ -1,43 +1,59 @@
-## Description: <br>
-An OpenClaw skill for tracking keyword trends and generating structured reports using Tavily search, local report storage, and optional webhook delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An OpenClaw skill for tracking keyword trends and generating structured reports.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Content strategists, market researchers, and automation users use this skill to monitor configured keywords, collect search results, and generate recurring markdown trend reports that can be saved locally or sent to a webhook. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keywords and generated reports may be sent to Tavily and, when configured, to a webhook provider. <br>
-Mitigation: Use non-sensitive keywords where possible and send reports only to trusted HTTPS webhook endpoints. <br>
-Risk: The skill requires a Tavily API key, which is a sensitive credential. <br>
-Mitigation: Use a dedicated Tavily key stored in environment variables and rotate or revoke it if exposed. <br>
-Risk: The artifact describes running node index.js, but the provided artifact does not include that runtime implementation. <br>
-Mitigation: Verify the installed files and runtime entry point before executing the skill. <br>
+## Use Case:
 
+Content strategists, market researchers, and developers use this skill to monitor configured keywords, collect search results, and produce structured trend reports for planning or competitive analysis.
 
-## Reference(s): <br>
-- [Content Keyword Tracker on ClawHub](https://clawhub.ai/yesong-hue/content-keyword-tracker) <br>
-- [Tavily API](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with keyword sections, result tables, summary statistics, and trend indicators.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are described as timestamped local files with optional webhook delivery when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and frontmatter) <br>
+Risk: Configured search keywords are sent to Tavily for external search.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review keyword sensitivity and Tavily terms before use; avoid submitting confidential or regulated terms unless approved.
+
+Risk: Webhook delivery can send generated report contents to the configured endpoint.
+
+Mitigation: Use only trusted HTTPS webhook URLs and verify the destination before enabling WEBHOOK_URL.
+
+Risk: The packaged artifact does not include the referenced node index.js runtime file.
+
+Mitigation: Confirm the executable implementation is available and reviewed before relying on the documented node-based workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yesong-hue/skills/content-keyword-tracker)
+- [ClawHub Metadata Homepage](https://clawhub.ai/yesong-Hue/content-keyword-tracker)
+- [Tavily API](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports with keyword sections, result tables, summary statistics, and optional webhook delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are generated from keywords configured one per line and require a Tavily API key.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-This skill lets agents use MiniMax tools to analyze images and run web searches for current information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides MiniMax-backed image understanding and web search for agents when users ask to analyze images or retrieve current online information.
 
-## Publisher: <br>
-[OujaKivi](https://clawhub.ai/user/OujaKivi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oujakivi](https://clawhub.ai/user/oujakivi)
 
-## Use Case: <br>
-Developers and agent users use this skill to route image-understanding requests and web-search queries through MiniMax MCP tools from an OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, prompts, and search queries may be sent to MiniMax through the MCP package. <br>
-Mitigation: Avoid sending sensitive local images or confidential queries unless they are approved for MiniMax processing. <br>
-Risk: The MiniMax API key may be stored in a plaintext configuration file. <br>
-Mitigation: Prefer an environment variable or secret manager, and restrict permissions on any local config file. <br>
-Risk: Setup relies on uv or uvx to install and run the minimax-coding-plan-mcp package. <br>
-Mitigation: Verify the uv installer and MCP package before running them, and pin versions where possible. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route image-analysis and online-search requests through MiniMax tools after configuring a MiniMax API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OujaKivi/minimax-tools) <br>
-- [MiniMax API host](https://api.minimaxi.com) <br>
-- [MiniMax coding plan subscription](https://platform.minimaxi.com/subscribe/coding-plan?code=GjuAjhGKqQ&source=link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [JSON or plain text emitted by Python helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MINIMAX_API_KEY and the uvx-run minimax-coding-plan-mcp package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The install and runtime path relies on unverified shell installers and unpinned external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use verified and pinned installation sources for uv and minimax-coding-plan-mcp, and review the skill before installing.
+
+Risk: The MiniMax tools receive credentials and inherit the runtime environment.
+
+Mitigation: Use a scoped MiniMax API key and avoid running the skill in an environment that contains unrelated secrets.
+
+Risk: Image references, prompts, and search queries may be sent to the configured MiniMax service.
+
+Mitigation: Avoid submitting sensitive inputs unless the configured MiniMax account and service terms are appropriate for that data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oujakivi/skills/minimax-tools)
+- [Publisher profile](https://clawhub.ai/user/oujakivi)
+- [MiniMax API host](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON-formatted tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured MiniMax API key; image references, prompts, and search queries may be sent to the configured MiniMax service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

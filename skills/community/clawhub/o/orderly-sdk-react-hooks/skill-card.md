@@ -1,39 +1,48 @@
-## Description: <br>
-Reference guide for using Orderly React SDK hooks - useOrderEntry, usePositionStream, useOrderbookStream, useCollateral, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference guide for using Orderly React SDK hooks - useOrderEntry, usePositionStream, useOrderbookStream, useCollateral, and more.
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers building React applications with Orderly use this skill as a quick reference for hook setup, signatures, return values, and example integration code. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The examples can be adapted into live trading, deposit, withdrawal, leverage, or order-management flows involving real funds. <br>
-Mitigation: Start on testnet or sandbox, add explicit confirmations, and validate symbol, size, price, token, chain, address, allowance, leverage, and withdrawal destination before using with real funds. <br>
-Risk: Dependency or SDK behavior may differ across installed package versions. <br>
-Mitigation: Pin and verify the Orderly SDK dependencies used by the application before relying on the examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-sdk-react-hooks) <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for integrating Orderly Network React hooks into React applications, including account, wallet, trading, market data, balance, deposit, withdrawal, and leverage workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with TypeScript and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference output; examples require user review before use with live trading accounts or real funds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes copy-pastable live trading and fund-movement examples, including order submission, cancel-all actions, deposits, withdrawals, and leverage changes.
+
+Mitigation: Review generated production code before use, require explicit user confirmations, validate symbols, prices, amounts, token addresses, chain IDs, and destination addresses, prefer testnet first, and avoid automatic approvals or financial actions without clear user review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tarnadas/skills/orderly-sdk-react-hooks)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript/React examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

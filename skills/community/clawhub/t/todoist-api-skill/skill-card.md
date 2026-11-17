@@ -1,46 +1,61 @@
-## Description: <br>
-Manages Todoist tasks, projects, sections, labels, comments, completed-task reports, activity logs, ID migration, project templates, and sync workflows through Todoist API v1. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Todoist tasks, projects, sections, labels, comments, completed-task reports, activity logs, ID migration, project templates, and sync workflows through Todoist API v1.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to automate Todoist task capture, triage, reporting, project setup, and bulk maintenance through a non-interactive CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change Todoist account data when provided a token. <br>
-Mitigation: Install it only when Todoist account operation is intended, and use a dedicated or revocable Todoist token where possible. <br>
-Risk: Bulk, raw, sync, delete, archive, close, reopen, backup, and email-in-address operations can cause broad or sensitive account changes. <br>
-Mitigation: Require dry-run review before these operations and use confirmation controls for execution. <br>
-Risk: Changing the Todoist API endpoint can redirect requests away from the expected service. <br>
-Mitigation: Keep the default Todoist API endpoint unless there is a specific, reviewed reason to override it. <br>
+## Use Case:
 
+Developers, agents, and Todoist power users use this skill to inspect, capture, organize, bulk-update, and report on Todoist work through a non-interactive CLI with JSON output and dry-run controls.
 
-## Reference(s): <br>
-- [Todoist API Skill Page](https://clawhub.ai/tristanmanchester/todoist-api-skill) <br>
-- [Todoist API endpoint](https://api.todoist.com/api/v1) <br>
-- [Reference](references/REFERENCE.md) <br>
-- [Recipes](references/RECIPES.md) <br>
-- [Gotchas](references/GOTCHAS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON or summary command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output can be written to files for large Todoist API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: A Todoist token can be sent to a caller-chosen API base URL if --base-url is overridden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment-based token injection, keep --base-url at the official Todoist HTTPS API, and remove or allowlist --base-url before broader deployment.
+
+Risk: Bulk, raw, sync, or destructive operations can change many Todoist objects.
+
+Mitigation: Start with read-only commands, resolve names to IDs, require --dry-run previews, and execute only with explicit --confirm after user review.
+
+Risk: Large paginated API responses can exceed an agent's working context or obscure relevant results.
+
+Mitigation: Use --limit, --max-items, cursors, and --output FILE for large payloads.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tristanmanchester/skills/todoist-api-skill)
+- [Todoist API v1 endpoint](https://api.todoist.com/api/v1)
+- [Command reference](references/REFERENCE.md)
+- [Recipes](references/RECIPES.md)
+- [Gotchas](references/GOTCHAS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON or summary output from the Todoist CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI defaults to structured JSON envelopes, supports summary output, and can write full results to a file for large responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

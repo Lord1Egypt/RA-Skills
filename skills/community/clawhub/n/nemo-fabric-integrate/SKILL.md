@@ -1,0 +1,443 @@
+---
+name: nemo-fabric-integrate
+description: Use this skill when integrating NVIDIA NeMo Fabric into a consumer application, service, evaluation harness, or platform through the typed Python SDK — translating the consumer's own application, job, or deployment config into an in-memory FabricConfig, choosing the single-invocation convenience API or an explicitly started runtime, validating with plan and doctor, and consuming normalized results, artifacts, and telemetry.
+license: Apache-2.0
+metadata:
+  author: NVIDIA Corporation and Affiliates
+---
+
+# Integrate NVIDIA NeMo Fabric Through The Python SDK
+
+Use this skill when a consumer codebase — an application, service, evaluation
+harness, or platform — needs to run agent harnesses through NeMo Fabric's typed
+Python SDK. The consumer owns its own configuration object and translates it
+into an in-memory `FabricConfig`; NeMo Fabric owns adapter selection, the runtime
+lifecycle, and normalized results.
+
+## Integration Boundary
+
+Use the public, in-memory contract. These rules keep a consumer integration
+supported and upgrade-safe:
+
+- Import only from the public `nemo_fabric` package. Never import `_native` or
+  any adapter-internal module.
+- Build configuration as a typed `FabricConfig` in memory and pass it directly to
+  NeMo Fabric. Create every deployment or evaluation variant with ordinary Python
+  functions and `model_copy(deep=True)`. A platform integration can serialize
+  the typed config inside a private transient run specification when it crosses
+  a process boundary; that transport is not a public authoring format.
+- Let NeMo Fabric own harness control. Do not reimplement start, invoke, or stop
+  logic, and do not manage adapter threads, sessions, or processes directly.
+- Treat `runtime_id`, `invocation_id`, and `request_id` as opaque correlation
+  strings, not parsable or reusable state.
+
+Refer to [config-mapping.md](references/config-mapping.md) for how to translate a
+consumer config object into `FabricConfig`, and for the full list of mechanics
+that stay hidden behind this boundary.
+
+## Install And Set Up The Environment
+
+The consumer or its execution environment owns installation; NeMo Fabric validates
+runtime assumptions but never installs harnesses or credentials at run time.
+
+- Choose supported Python interpreters for the runtime, Harbor, and adapter
+  environments from the
+  [installation guide](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/getting-started/install.mdx).
+- Install the runtime with `uv pip install nemo-fabric` (add the `harbor` extra
+  for the Harbor integration).
+- Select the harness adapter through `HarnessConfig.adapter_id`. To install the
+  NeMo Fabric runtime, adapter, and supported harness in one environment, use
+  `nemo-fabric[claude]`, `nemo-fabric[codex]`,
+  or `nemo-fabric[deepagents]`.
+- Install Hermes Agent separately from the Fabric adapter. Follow the
+  [Hermes integration guide](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/integrations/harness/hermes.mdx)
+  for the current compatible interpreter, source checkout, Relay dependencies,
+  and adapter installation. The `nemo-fabric[hermes-agent]` extra does not
+  install Hermes Agent.
+- In a separate adapter environment, install
+  `nemo-fabric-adapters-<adapter>[harness]`. This installs the adapter and
+  supported harness dependencies without the NeMo Fabric runtime. Use `full`
+  instead when that adapter package provides package-installable optional
+  integrations.
+- Point the runtime to a separate adapter environment with `ADAPTER_PYTHON`.
+  Use matching NeMo Fabric release versions for the runtime and adapter package
+  unless a different pairing has been explicitly validated.
+- If the adapter environment already manages a compatible harness, install the
+  bare `nemo-fabric-adapters-<adapter>` distribution. Bare adapter
+  distributions contain only adapter-owned runtime dependencies.
+- LangChain Deep Agents and Hermes adapter packages provide `relay` and include
+  the NeMo Relay Python package in `full`. Claude and Codex do not provide
+  `relay`; their `harness` and `full` extras install the supported `nemo-relay`
+  CLI alongside the harness SDK.
+- Provide model credentials through environment variables named by the config
+  (`ModelConfig.api_key_env`), never as literals in code.
+- Forward other existing variables with `EnvironmentConfig.env_names`; only names are stored in configuration and run plans. `EnvironmentConfig.env` supplies literal values and does not expand `$NAME` references. Neither field loads a `.env` file.
+- Keep named environment values unchanged while a runtime or service is active. NeMo Fabric rejects changed or unset values before invocation; restart the runtime and any associated service after changing them. With Harbor, deliver values into the task environment through Harbor's managed environment first.
+- Confirm the native extension is importable; SDK calls raise
+  `FabricNativeUnavailableError` when it is missing.
+- For descriptor inspection without harness SDKs, install the separate `nemo-fabric-adapter-catalog` package and call `nemo_fabric_adapter_catalog.get_adapter_descriptor(adapter_id)` or `get_target_descriptor(target_id)`. Refer to the [catalog guide](https://github.com/NVIDIA/NeMo-Fabric/blob/main/sdk/python/nemo-fabric-adapter-catalog/README.md). Catalog resources do not register execution runners; unknown IDs raise `KeyError`. Validate against the task environment's descriptor before relying on a snapshot claim. Catalog source versions and fingerprints are not runtime-observed provenance.
+
+## Build The Typed Config From Consumer Config
+
+Map the consumer's application, job, or deployment object into a `FabricConfig`
+with the public models and helper methods:
+
+```python
+from nemo_fabric import (
+    FabricConfig,
+    HarnessConfig,
+    InstructionConfig,
+    InstructionsConfig,
+    MetadataConfig,
+    ModelConfig,
+    RuntimeConfig,
+    ToolsConfig,
+)
+
+
+def to_tools_config(job) -> ToolsConfig | None:
+    enabled = job.enabled_tools
+    blocked = list(job.blocked_tools)
+    if enabled is None and not blocked:
+        return None
+    return ToolsConfig(
+        enabled=None if enabled is None else list(enabled),
+        blocked=blocked,
+    )
+
+
+def to_fabric_config(job) -> FabricConfig:
+    config = FabricConfig(
+        metadata=MetadataConfig(name=job.name),
+        harness=HarnessConfig(adapter_id=job.adapter_id, resolution="preinstalled"),
+        models={
+            "default": ModelConfig(
+                provider=job.provider,
+                model=job.model,
+                api_key_env=job.api_key_env,
+                base_url=job.base_url,
+            )
+        },
+        instructions=(
+            InstructionsConfig(
+                system=InstructionConfig(
+                    content=job.system_instruction,
+                    mode=job.system_instruction_mode,
+                ),
+            )
+            if job.system_instruction is not None
+            else None
+        ),
+        runtime=RuntimeConfig(
+            input_schema="chat",
+            output_schema="message",
+            timeout_seconds=job.timeout_seconds,
+            max_turns=job.max_turns,
+        ),
+        tools=to_tools_config(job),
+    )
+    config.add_skill_path(job.skill_dir)
+    config.add_mcp_server(
+        "github",
+        transport="streamable-http",
+        url="${GITHUB_MCP_URL}",
+        exposure="harness_native",
+    )
+    return config
+```
+
+- Shape capabilities with `ToolsConfig`, `add_tool_definition`, `block_tools`, `add_skill_path`,
+  `remove_skill_path`,
+  `add_mcp_server`, `remove_mcp_server`, and `enable_relay`.
+- Use `add_tool_definition` only when the selected adapter accepts
+  `tools.definitions` and publishes a `tool_definition_schema`.
+- Use a restricted `allowed_tools` list or non-empty `blocked_tools` on
+  `add_mcp_server` only when the selected adapter declares both `mcp` and
+  `mcp.tool_filters`. An unfiltered server requires only `mcp`.
+  `allowed_tools=None` exposes every discovered tool, while an empty list
+  exposes none; blocked tools are removed after applying that allowlist. Tool
+  names must be non-blank, and planning rejects a tool that appears in both
+  lists.
+- Configure MCP authentication only when the selected adapter declares
+  `mcp.auth.oauth2` or `mcp.auth.service_account`, matching the authentication
+  type.
+- Create deployment or evaluation variants with `model_copy(deep=True)` and
+  ordinary Python functions; each copy plans and runs independently.
+- Pass `base_dir=...` to any `Fabric` call when the config uses relative paths,
+  so skills, workspaces, and artifacts anchor to the consumer's own layout.
+
+The repository [`code_review_agent` example](https://github.com/NVIDIA/NeMo-Fabric/tree/main/examples/code_review_agent)
+shows this pattern end to end with complete Hermes Agent, Codex, Deep Agents,
+environment, MCP, and telemetry variants. Reuse it rather than duplicating config
+construction.
+
+## Choose A Lifecycle
+
+For Deep Agents, mini-SWE-agent, and the LangGraph custom-agent example, pass the same UUID string through `RunRequest.relay_session_root` on each conversation turn to group Relay trajectories under one session. Core forwards the typed field as `AgentRunRequest.relay_session_root`; context keys do not control Relay propagation. An unusable UUID preserves per-request behavior. The remaining adapters do not consume this field.
+
+Pick the smallest lifecycle the consumer needs:
+
+- **Single invocation** — one input, no retained state after the call.
+  `await Fabric().run(config, input=...)` runs the full start, invoke, and stop
+  cycle and returns a `RunResult`. Pass
+  `request=RunRequest(...)` instead of `input=...` when the invocation needs a
+  caller-owned request ID or context (the two are mutually exclusive).
+- **Stateful runtime** — ordered turns over one logical harness lifecycle. Start it with
+  `start_runtime(...)` and use the returned `Runtime` as an async context
+  manager so cleanup runs on exit — shutdown is attempted, not guaranteed
+  (`stop()` can raise `FabricRuntimeError`; see Consume Results And Handle
+  Errors). A runtime accepts one active invocation at a time; overlapping calls
+  raise `FabricStateError`.
+- **Native OpenAI stream** — adapter-native OpenAI Chat Completions chunks plus
+  a separate terminal normalized result. Check
+  `runtime.supports_openai_streaming`, call
+  `runtime.invoke_openai_stream(...)`, iterate the returned
+  `OpenAIInvokeStream`, and then await `stream.result()`. The selected adapter
+  descriptor must declare `capabilities.streaming`. Each yielded mapping has
+  `object == "chat.completion.chunk"`; an empty stream is valid. If iteration
+  stops early, call `await stream.aclose()` to drain without cancelling the
+  target invocation. This path does not require NeMo Relay or
+  `streaming=True`.
+- **NVIDIA NeMo Relay stream** — live, raw ATOF records plus a terminal normalized
+  result. Install `nemo-fabric[streaming]` to include the matching collector for
+  the default embedded streaming path. Enable NeMo Relay, pass `streaming=True`
+  to `start_runtime(...)`, call
+  `runtime.invoke_stream(...)`, iterate the returned `InvokeStream`, and then
+  await `stream.result()`. Iteration ending does not indicate invocation
+  success; invocation exceptions raise from `result()`, while harness-reported
+  failures remain normalized `RunResult` values. If iteration stops early,
+  call `await stream.aclose()` before starting another turn. `aclose()` waits
+  for the turn to finish; it does not cancel the harness invocation. The SDK
+  intentionally exposes only ATOF records generated by NeMo Relay. This path is
+  independent of native OpenAI streaming. The collector registers the request
+  before the agent is invoked, then routes the matching ATOF root scope and its
+  descendants by request ID and UUID ancestry. By default, streaming starts an
+  embedded collector. Set `launch_collector=False` to use an externally managed
+  collector; configure its base URL as the `nemo-fabric-stream` sink with
+  `transport="ndjson"`. The runtime directs Relay to `<base-url>/v1/atof` and
+  uses the collector control and stream endpoints. The bundled Pi adapter requires
+  the embedded collector. Do not set `launch_collector=False` for Pi streaming.
+  The embedded collector waits up to `completion_wait_timeout` seconds (1.0 by
+  default) for a late `agent_settled` marker. The collector limits each record to
+  1 MiB and each request queue to 1,024 records or 16 MiB of encoded
+  data. The `streaming=True` flag does not enable NeMo Relay by itself. Without
+  `streaming=True`, startup leaves the NeMo Relay configuration unchanged.
+
+For explicit environment management, call `prepare_environment(config)` or
+`attach_environment(config, reference)`, then `start_runtime_in(config, environment)`.
+Use typed `EnvironmentHandle` and `EnvironmentReference` objects. Stop the
+runtime before calling `release_environment(environment)` separately. Provider
+availability and reuse limits vary; task paths must remain strings for non-local
+environments. See the [environment lifecycle guide](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/sdk/python.mdx#explicit-environment-lifecycle).
+
+The selected adapter owns the execution topology. The bundled Claude, Codex,
+Deep Agents, and Hermes Agent adapters retain their native client, graph/checkpointer,
+or agent/database inside one local host for the full runtime. Local `process`
+and `python` adapters use this host lifecycle; consumers do not select another
+local execution mechanism in `FabricConfig`. Do not replay an invocation after
+a runtime failure. Stop the failed runtime and explicitly start a new one
+according to the application's retry policy.
+
+The lifecycle fragment below shows the available forms. It assumes the caller
+has already set `config = to_fabric_config(job)` and chosen `base`, as described
+in the configuration example above:
+
+```python
+import asyncio
+
+from nemo_fabric import Fabric
+
+
+async def main() -> None:
+    fabric = Fabric()
+
+    # Single invocation
+    result = await fabric.run(config, base_dir=base, input="Review the changes.")
+
+    # Multi-turn
+    async with await fabric.start_runtime(config, base_dir=base) as runtime:
+        first = await runtime.invoke(input="Inspect the repository")
+        second = await runtime.invoke(input="Now review the latest patch")
+
+    # Adapter-native OpenAI Chat Completions chunks
+    async with await fabric.start_runtime(config, base_dir=base) as runtime:
+        if runtime.supports_openai_streaming:
+            stream = runtime.invoke_openai_stream(input="Review the latest patch")
+            async for chunk in stream:
+                print(chunk)
+            openai_streamed_result = await stream.result()
+
+    # NeMo Relay streaming
+    streaming_config = config.model_copy(deep=True).enable_relay()
+    async with await fabric.start_runtime(
+        streaming_config,
+        base_dir=base,
+        streaming=True,
+    ) as runtime:
+        stream = runtime.invoke_stream(input="Review the latest patch")
+        async for record in stream:
+            print(record)
+        streamed_result = await stream.result()
+
+
+asyncio.run(main())
+```
+
+NeMo Fabric owns no application scheduling queue, worker pool, retry policy, or
+global concurrency policy. Each runtime still permits only one active
+invocation; start independent runtimes for parallel work. The NeMo Relay
+streaming path uses an internal bounded transport queue and TCP backpressure
+only to carry one invocation's ATOF records. Treat `stream.result()` as
+authoritative, and reconstruct nested work from ATOF `uuid` and `parent_uuid`
+fields rather than stream order.
+
+For native OpenAI streaming, the SDK owns the authenticated loopback HTTP
+transport, chunked NDJSON framing, and correlation values. Consumer code
+supplies no listener or credentials. The adapter executes exactly one
+invocation, and the terminal `RunResult` remains separate from the chunk stream.
+Fully consume the stream or call `await stream.aclose()` before starting another
+turn. Awaiting `stream.result()` also drains and discards unread native OpenAI
+chunks, so consume the iterator first when the application needs every chunk.
+
+## Validate Before Running
+
+Resolve and diagnose before spending work on a runtime, especially in a new
+environment or before relying on an optional capability:
+
+```python
+fabric = Fabric()
+plan = fabric.plan(config, base_dir=base)             # sync: adapter + capabilities
+report = await fabric.doctor(config, base_dir=base)   # async: preflight checks
+
+print(plan.adapter.adapter_id, report.status)
+```
+
+- Use `plan(...)` to confirm adapter selection and capability routing before
+  running. Planning validates `harness.settings` against the exact resolved
+  Adapter Descriptor and, when present, `workflow.settings` against the exact
+  resolved Adapter Target Descriptor.
+- Use `doctor(...)` to check adapter availability, resolution, environment
+  context, and declared requirements such as required environment variables. Its
+  aggregate `status` is `pass`, `warn`, or `fail`. Invalid, unknown, or
+  misspelled adapter settings fail before diagnostics or runtime startup. A
+  resolved descriptor without a settings schema accepts only an empty settings
+  map.
+- For a separate admission host, call public `inspect_adapter(config, descriptor)`
+  with matching catalog or canonical external metadata. The immutable
+  `AdapterCapabilityProfile` has `adapter_id`, `descriptor_sha256`, `skills`,
+  `mcp`, and `atif` fields. It does not import harness SDKs or read task-local
+  discovery paths. Missing metadata makes conservative claims and rejects
+  requested optional features. Pass `expected_descriptor_sha256=profile.descriptor_sha256`
+  to task-side `run()` or `start_runtime()` to reject descriptor drift before
+  startup. For a registered workflow, also pass
+  `target_descriptor=get_target_descriptor(config.workflow.target_id)` from the
+  matching catalog or canonical external metadata. The fingerprint then binds
+  both normalized descriptors, including the target factory and settings schema;
+  missing or mismatched metadata fails admission. Standalone fingerprints stay
+  unchanged. Attached services need separate admission. Declared support is not
+  runtime provenance or proof of an artifact.
+
+## Consume Results And Handle Errors
+
+Every invocation that reaches the adapter boundary returns a normalized
+`RunResult`, even when the harness invocation itself failed. Inspect the failure
+fields before reading output:
+
+```python
+result = await fabric.run(config, base_dir=base, input="Review the changes.")
+
+if result.status == "succeeded":
+    use_output(result.output, result.artifacts, result.telemetry)
+else:
+    handle_failure(result.status, result.error, result.events)  # failed, cancelled, ...
+```
+
+- Treat `status == "succeeded"` as the only success. Other terminal values
+  (`failed`, `cancelled`) are unsuccessful, so branch on `status`, not on
+  `error`. Read `status`, `error`, and `events` before processing `output`.
+- Capture `artifacts` and `telemetry` references as the returned evidence for
+  platforms and evaluations. Store and log `runtime_id`, `invocation_id`, and
+  `request_id` separately as opaque strings.
+- Catch `FabricError` subclasses for lifecycle failures that prevent a
+  normalized result: `FabricConfigError`, `FabricCapabilityError`,
+  `FabricRuntimeError`, `FabricStateError`, and `FabricNativeUnavailableError`.
+- The consumer owns retries and failure policy; NeMo Fabric does not retry by
+  default. `run(...)` and `async with` runtimes attempt cleanup automatically,
+  so prefer them over manual `stop()` — but shutdown is not guaranteed: `stop()`,
+  including the automatic call when an `async with` block exits, can raise
+  `FabricRuntimeError`. On a normal exit that error propagates; after an
+  invocation error the cleanup failure is attached to the original exception. Be
+  ready to handle a shutdown failure.
+
+Refer to [results-and-errors.md](references/results-and-errors.md) for the full
+result-field and error inventory, and
+[sdk-api-inventory.md](references/sdk-api-inventory.md) for when to use each
+`Fabric` and `Runtime` method.
+
+## Test And Validate The Integration
+
+- Write focused integration tests that build the consumer's `FabricConfig`,
+  assert `plan(...)` selects the expected adapter and capabilities, and — where
+  a harness and credentials are available — run one invocation and assert the
+  `RunResult` status and evidence.
+- `plan(...)` is credential-free — use it as the CI gate that validates adapter
+  selection and capability routing without a model or secrets. `doctor(...)` also
+  runs without calling a model, but it checks declared environment requirements
+  (such as required API-key variables) and returns `fail` when they are unset, so
+  run it where the environment is provisioned and read its per-check results.
+- Run the consumer project's own build and test commands. For a source checkout
+  of NeMo Fabric, `just build-all` rebuilds the native extension and
+  `just test-python` runs the Python suite.
+- Confirm the typed config is passed directly to NeMo Fabric and no non-public
+  imports were added.
+
+## Checklist
+
+- [ ] The consumer config object is translated directly into an in-memory `FabricConfig`.
+- [ ] Only public `nemo_fabric` symbols are imported; no `_native` or adapter internals.
+- [ ] The consumer config is built in memory and passed directly to NeMo Fabric.
+- [ ] The right lifecycle is chosen: `run(...)` for a single invocation,
+  `start_runtime(...)` with `async with` for multi-turn,
+  `invoke_openai_stream(...)` for descriptor-gated OpenAI chunks, or
+  `invoke_stream(...)` for raw NeMo Relay ATOF.
+- [ ] `plan(...)` and `doctor(...)` validate adapter selection, capabilities, and environment before execution.
+- [ ] Installation, adapter dependencies, and credentials are owned by the environment, not consumer code.
+- [ ] `RunResult` status, error, and events are inspected before output; artifacts and telemetry are captured.
+- [ ] `FabricError` subclasses are handled, including a `FabricRuntimeError` raised by shutdown; cleanup is delegated to `run(...)` or `async with` (attempted, not guaranteed).
+- [ ] Correlation IDs are stored and logged as opaque strings.
+- [ ] Focused integration tests pass and NeMo Fabric validation (`plan`/`doctor`, tests) succeeds.
+
+## Related Documentation
+
+Link to these canonical sources instead of duplicating them:
+
+- [Python SDK guide](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/sdk/python.mdx)
+- [Resource usage and stats](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/sdk/system-stats.mdx) for collection controls, local and remote scope, sample quality, and repeatable code-review and Harbor examples. Harbor accepts the SDK configuration through `fabric_system_stats`; omission uses before/after collection, and explicit null disables invocation stats.
+- [NeMo Fabric overview](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/about-nemo-fabric/overview.mdx) and
+  [installation guide](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/getting-started/install.mdx)
+- Generated API reference (public API index; the installed `nemo_fabric` type
+  stubs are authoritative for exact signatures, fields, and defaults):
+  [client](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/reference/api/python-library-reference/nemo_fabric.client.md),
+  [runtime](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/reference/api/python-library-reference/nemo_fabric.runtime.md),
+  [native OpenAI streaming](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/reference/api/python-library-reference/nemo_fabric.openai_streaming.md),
+  [Relay streaming](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/reference/api/python-library-reference/nemo_fabric.streaming.md),
+  [models](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/reference/api/python-library-reference/nemo_fabric.models.md),
+  [types](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/reference/api/python-library-reference/nemo_fabric.types.md),
+  [errors](https://github.com/NVIDIA/NeMo-Fabric/blob/main/docs/reference/api/python-library-reference/nemo_fabric.errors.md)
+- Canonical in-memory config example:
+  [examples/code_review_agent](https://github.com/NVIDIA/NeMo-Fabric/tree/main/examples/code_review_agent)
+- Platform and evaluation-harness integration:
+  [examples/harbor](https://github.com/NVIDIA/NeMo-Fabric/tree/main/examples/harbor) and
+  [nemo_fabric.integrations.harbor](https://github.com/NVIDIA/NeMo-Fabric/tree/main/sdk/python/nemo-fabric-runtime/src/nemo_fabric/integrations/harbor).
+  Omit `fabric_model_provider` to retain provider inference from the model name. Override it only when the selected adapter requires a different value; an OpenAI-compatible endpoint alone is not a reason to set `openai`. For example, keep the inferred `nvidia` provider for Mini-SWE and OpenHands with `nvidia/nemotron-3-ultra-550b-a55b`: both adapters add the LiteLLM `nvidia_nim/` dispatch prefix. Overriding with `openai` passes this model ID unchanged to LiteLLM, which cannot infer its provider.
+  Use `fabric_model_settings` for adapter-declared `models.default.settings`;
+  a model is required and its descriptor still validates those settings. Keep
+  model credentials in Harbor's managed environment variables.
+  Harbor constructs a typed config from explicit agent inputs and transports it
+  inside a private transient run specification at the task-process boundary.
+  Follow the code-review example for consumer integration code; Harbor's
+  transport representation is an internal process-boundary contract.
+
+### Software Evidence
+
+Inspect optional `RunResult.execution` for selected software inventories. Preserve full version values, status/reasons, source, origin and original `observed_at` when forwarding. Context refs are result-local; participants describe installation users. Use `FabricConfig.provenance=ProvenanceConfig(enabled=False)` before startup to disable collectors on host and guest. Explicit owner snapshots use typed `ProvenanceConfig.reports` through existing configuration dispatch; guests never inspect the caller installation. Old results can omit execution evidence. Unknown or incomplete reports are not proof of equal environments.

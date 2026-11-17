@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 InvAssistant — 飞书推送脚本
 通过飞书群机器人 Webhook 推送投资信号检查结果。

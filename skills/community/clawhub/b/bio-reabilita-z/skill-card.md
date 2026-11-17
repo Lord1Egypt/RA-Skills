@@ -1,39 +1,50 @@
-## Description: <br>
-Bio Reabilita Z provides a Portuguese AI-assisted rehabilitation protocol for complex physical injuries using biometric analysis, pain-management concepts, nootropics, and advanced physiotherapy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Portuguese AI-assisted bio-rehabilitation manual for complex injuries that combines biometric analysis, pain-management concepts, nootropics, advanced physiotherapy, and bio-hormonal protocol ideas.
 
-## Publisher: <br>
-[Zbreda](https://clawhub.ai/user/Zbreda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zbreda](https://clawhub.ai/user/zbreda)
 
-## Use Case: <br>
-Patients, caregivers, clinicians, and support agents can use this skill as informational rehabilitation support when discussing complex injury recovery concepts. It should not be used as medical advice or as a substitute for qualified clinical supervision. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contains treatment-oriented rehabilitation instructions involving sensitive health data and experimental or high-risk interventions. <br>
-Mitigation: Use it only as informational support and do not act on treatment suggestions without qualified medical supervision. <br>
-Risk: The skill may prompt sharing biometric, pain, medication, supplement, hormone, or diagnosis details. <br>
-Mitigation: Avoid sharing sensitive health details unless the user understands how their agent stores and handles that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zbreda/bio-reabilita-z) <br>
+## Use Case:
 
+External readers and agent users use this skill to draft or discuss a Portuguese rehabilitation protocol for complex sciatic nerve and hip osteonecrosis scenarios. Because the security evidence flags medical, hormone, and experimental-compound risk, outputs should be treated as informational drafting support requiring clinician review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance in Portuguese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational medical-rehabilitation content; users should review with qualified medical professionals before acting on it.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can produce medical rehabilitation, hormone, or experimental-compound guidance without clear safety limits.
+
+Mitigation: Treat outputs as informational drafting support only, require qualified clinician review, and make supervision, emergency-care boundaries, drug and hormone risks, and investigational status explicit before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zbreda/skills/bio-reabilita-z)
+- [Publisher profile](https://clawhub.ai/user/zbreda)
+- [Packaged skill artifact](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language medical rehabilitation guidance that should be reviewed by qualified clinicians before use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

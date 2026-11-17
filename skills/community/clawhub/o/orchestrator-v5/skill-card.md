@@ -1,43 +1,54 @@
-## Description: <br>
-AI Orchestrator V5 routes user requests to specialist agents and coordinates multi-agent workflows using confidence scoring, fallback chains, checkpoints, and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Orchestrator V5 routes user requests to specialist agents, scores selection confidence, and coordinates direct, sequential, parallel, review, or hybrid workflows.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to classify broad work requests, select suitable specialist agents, and coordinate direct, sequential, parallel, review, or hybrid workflows. It is intended for multi-agent planning, routing, checkpointing, and validation rather than executing hidden code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad delegation can route sensitive, regulated, payment, crypto, legal, healthcare, or security work to specialist agents without enough user review. <br>
-Mitigation: Require explicit user approval before delegating sensitive tasks or work in regulated domains. <br>
-Risk: Generated routing plans or specialist recommendations may be incorrect or misleading. <br>
-Mitigation: Review proposed agent selections, fallback chains, and execution plans before acting on them. <br>
-Risk: Checkpointing can preserve private context if sensitive information is included in the session. <br>
-Mitigation: Avoid saving sensitive context in checkpoints and review checkpoint contents before reuse. <br>
+## Use Case:
 
+External users and developers use this skill to select appropriate specialist agents, plan multi-agent workflows, and introduce checkpoints for complex software, product, research, and operations tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/orchestrator-v5) <br>
-- [Full Agent Catalog](artifact/references/catalog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured routing tables, plans, checkpoints, and validation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose specialist-agent delegation, fallback chains, human approval checkpoints, and recovery checkpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may route a sensitive or high-impact request to an unsuitable specialist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected agents, confidence scores, and fallback choices before acting on recommendations.
+
+Risk: Checkpoint or session-memory workflows may retain private task context.
+
+Mitigation: Avoid or clear checkpoints for confidential work unless the surrounding agent environment has approved retention controls.
+
+## Reference(s):
+
+- [Full Agent Catalog](references/catalog.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/orchestrator-v5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with routing tables, execution plans, checkpoints, and phase summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; recommendations should be reviewed before sensitive or high-impact work.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

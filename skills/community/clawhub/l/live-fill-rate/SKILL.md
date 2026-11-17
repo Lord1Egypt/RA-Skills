@@ -1,69 +1,21 @@
 ---
 name: live-fill-rate
-description: Live grid fill rate across all pairs — measures execution efficiency
+description: Retired signal. No longer sold.
 metadata:
   openclaw:
-    requires:
-      env:
-        - EVM_PRIVATE_KEY
-    primaryEnv: EVM_PRIVATE_KEY
     homepage: https://apexrunner.ai/signals/live-fill-rate
     emoji: "⚙️"
 ---
-# live-fill-rate
+# live-fill-rate — retired
 
-## What It Does
-Live grid fill rate across all pairs — measures execution efficiency. This signal is computed in real time from APEX Runner's live autonomous trading system operating across Kraken, Coinbase Advanced Trade, and Hyperliquid — not from backtests or third-party aggregators.
+**This signal is retired and is no longer sold.**
 
-## When to Use
-- To monitor grid execution efficiency
-- To detect liquidity degradation
-- When diagnosing underperforming grids
+`https://apexrunner.ai/signals/live-fill-rate` answers **HTTP 410 Gone**. No payment is
+requested and none can be made. Do not configure an agent to call it.
 
-## How to Use
-The agent makes an x402-authenticated GET request to:
+It used to provide: live grid fill rate across all pairs — measures execution efficiency.
 
-```
-https://apexrunner.ai/signals/live-fill-rate
-```
-
-The x402 client handles payment authorisation automatically. No API key, no account, no subscription required — just an EVM wallet with USDC on Base mainnet.
-
-```python
-# Example using the x402-python client
-from x402.client import x402_get
-
-response = x402_get(
-    url="https://apexrunner.ai/signals/live-fill-rate",
-    private_key=os.environ["EVM_PRIVATE_KEY"]
-)
-print(response.json())
-```
-
-## Example Response
-```json
-{
-  "fill_rate_pct": 84,
-  "period_hours": 24,
-  "pairs": {"BTC": 91, "ETH": 79, "SOL": 82, "AVAX": 84}
-}
-```
-
-## Pricing
-**$1.50/call** — standard price
-
-Early adopters automatically receive 30% off ($1.05/call) until 2026-09-21. Discount tiers apply automatically based on wallet call history:
-- Early Adopter (0–9 calls): 30% off
-- Engaged (10–49 calls): 15% off
-- Loyal (50–199 calls): 15% permanent
-- VIP (200+ calls): 20% permanent
-
-Check your tier: `https://apexrunner.ai/signals/my-pricing`
-
-## Related Signals
-- [grid-health](https://apexrunner.ai/signals/grid-health)
-- [live-atr-sizing](https://apexrunner.ai/signals/live-atr-sizing)
-- [execution-window-optimizer](https://apexrunner.ai/signals/execution-window-optimizer)
+There is no direct replacement.
 
 ---
-*APEX Runner — autonomous AI crypto trading signals. [apexrunner.ai](https://apexrunner.ai)*
+*APEX Runner — [apexrunner.ai](https://apexrunner.ai)*

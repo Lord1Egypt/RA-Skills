@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "feature-priority",
+  "workflow": "product",
+  "focus": "priorities",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

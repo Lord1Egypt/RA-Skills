@@ -1,43 +1,63 @@
-## Description: <br>
-Maintains an argument ledger and premise consistency report for drafted sections so an agent can check narrative linkage, closed section-level argument loops, and stable definitions before merge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains an argument ledger and premise consistency report for drafted sections to check paragraph argument moves, narrative linkage, and premise hygiene before merge.
 
-## Publisher: <br>
-[WILLOSCAR](https://clawhub.ai/user/WILLOSCAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willoscar](https://clawhub.ai/user/willoscar)
 
-## Use Case: <br>
-Developers, researchers, and writing agents use this skill during prose drafting to check whether research-paper sections have explicit paragraph roles, stable premises, and actionable revision tasks. It is most relevant after draft sections exist and before those sections are merged into a final document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release bundles broad research workflow pipelines and runner code in addition to the advertised argument checker. <br>
-Mitigation: Install it only when the broader pipeline bundle is desired, not when a narrow argument-checking prompt is enough. <br>
-Risk: Running the bundled pipeline helpers can create or update workspace output files. <br>
-Mitigation: Run it in a version-controlled workspace and review generated files and diffs before accepting changes. <br>
-Risk: Automatic routing or shell-backed pipeline execution may make workspace-wide changes. <br>
-Mitigation: Avoid enabling those execution paths unless the operator understands the pipeline contract and expected output changes. <br>
+## Use Case:
 
+Developers, researchers, and writing agents use this skill during prose drafting to self-check section-level argument continuity, premise stability, and paragraph roles before merging draft sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WILLOSCAR/argument-selfloop) <br>
-- [WILLOSCAR publisher profile](https://clawhub.ai/user/WILLOSCAR) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Files, Shell commands] <br>
-**Output Format:** [Markdown reports, JSONL ledger records, and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces intermediate argument-check artifacts such as ARGUMENT_SELFLOOP_TODO.md, SECTION_ARGUMENT_SUMMARIES.jsonl, and ARGUMENT_SKELETON.md; these artifacts are not intended to be inserted into the final draft.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata; bundled skill frontmatter reports 0.1.0) <br>
+Risk: Unsafe output path handling can write reports outside the chosen workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a controlled workspace, restrict outputs to expected workspace-local report paths, and review generated paths until output handling is fixed.
+
+Risk: The bundled package contains unrelated pipeline files with broad routing hints.
+
+Mitigation: Confirm whether the target OpenClaw environment activates bundled pipeline files, and remove or isolate unrelated workflows before production use.
+
+Risk: The PASS result should not be treated as a real quality gate until the ledger schema is enforced and an argument-selfloop validator exists.
+
+Mitigation: Manually review ARGUMENT_SELFLOOP_TODO.md, SECTION_ARGUMENT_SUMMARIES.jsonl, and ARGUMENT_SKELETON.md before relying on the skill's pass/fail status.
+
+Risk: Server-resolved provenance is unavailable for this release.
+
+Mitigation: Do not infer GitHub or upstream repository provenance from skill text; verify source history separately before enterprise deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/willoscar/skills/argument-selfloop)
+- [Publisher profile](https://clawhub.ai/user/willoscar)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Files, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, JSONL ledger records, section edits, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes argument reports under configured output paths; review path handling before use because scan evidence flags unsafe output handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

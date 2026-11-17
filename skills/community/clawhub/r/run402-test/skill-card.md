@@ -1,37 +1,60 @@
-## Description: <br>
-Test skill for Run402 — provision AI-native Postgres databases with REST API, auth, and row-level security using x402 micropayments on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test skill for Run402: provision AI-native Postgres databases with REST API, auth, and row-level security using x402 micropayments on Base.
 
-## Publisher: <br>
-[MajorTal](https://clawhub.ai/user/MajorTal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[majortal](https://clawhub.ai/user/majortal)
 
-## Use Case: <br>
-Developers and engineers use this skill to provision Run402 Postgres projects, create tables through the admin SQL endpoint, and query project data over REST. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an admin SQL endpoint with a service key, which can change or damage database state if pointed at the wrong project or SQL statement. <br>
-Mitigation: Treat SERVICE_KEY as an admin secret, verify the project ID and SQL before execution, and use backups and explicit review before touching production or valuable data. <br>
+## Use Case:
 
+Developers and engineers use this skill to provision Run402 Postgres projects, create tables, and query data through REST-backed workflows paid through x402 micropayments.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may produce or rely on project identifiers, anonymous keys, service keys, and SQL statements that require review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Provisioning workflows may create paid Run402 resources or send x402 payment headers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before provisioning projects or sending payment headers; confirm tier, lease, and price first.
+
+Risk: SERVICE_KEY is an admin secret that can authorize arbitrary SQL against a project.
+
+Mitigation: Treat SERVICE_KEY as a high-privilege credential, avoid exposing it in logs, and require approval before running SQL.
+
+Risk: The helper script can read local Run402 credentials from ~/.config/run402/projects.json and submit SQL.
+
+Mitigation: Review or remove sql2.mjs when local credential access is not intended; run it only with an approved project ID and approved SQL.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/majortal/skills/run402-test)
+- [Run402 project provisioning API](https://api.run402.com/v1/projects)
+- [Run402 admin SQL API](https://api.run402.com/admin/v1/projects/$PROJECT_ID/sql)
+- [Run402 REST query API](https://api.run402.com/rest/v1/todos?done=eq.false)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with fenced shell commands, API calls, and JSON field names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes workflows that may create paid resources, expose service keys, or execute admin SQL and therefore require explicit approval before use.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

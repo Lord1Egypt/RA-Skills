@@ -1,44 +1,59 @@
-## Description: <br>
-Handle messages in a Discord sleep-tracking channel by grounding all sleep logging and summaries on the real sleep tracker and source Discord metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles messages in a Discord sleep-tracking channel by using the tracker and source Discord metadata to add, correct, delete, and render sleep log entries without invented timestamps or entries.
 
-## Publisher: <br>
-[cdmichaelb](https://clawhub.ai/user/cdmichaelb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdmichaelb](https://clawhub.ai/user/cdmichaelb)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a Discord-based sleep log, including adding events, correcting or deleting the latest entry, and rendering the current log from stored records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sleep history and Discord metadata are stored in local workspace files. <br>
-Mitigation: Install only where local storage of this data is acceptable, use a dedicated sleep-tracking channel, and restrict access to the workspace. <br>
-Risk: Incorrect or missing time context can produce inaccurate sleep records. <br>
-Mitigation: Set SLEEP_TIMEZONE explicitly and pass source Discord message timestamps unless the user provides an explicit time. <br>
-Risk: Correction and deletion requests can change the local sleep log. <br>
-Mitigation: Treat correction or deletion as a command only when the user intent is clear, and ask a short clarifying question when it is ambiguous. <br>
+## Use Case:
 
+External users and agents operating a dedicated Discord sleep channel use this skill to log sleep events, correct or delete the latest entry, and render a file-grounded sleep summary.
 
-## Reference(s): <br>
-- [Sleep Channel Skill Page](https://clawhub.ai/cdmichaelb/sleep-channel) <br>
-- [Sleep Channel Rules](references/CHANNEL_RULES.md) <br>
-- [Sleep Tracking System](references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON tracker responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local CSV and JSON state files under the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Sleep logs may contain personal sleep history and Discord metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a dedicated sleep-tracking channel, set WORKSPACE to a directory intended for this data, and treat generated files as sensitive.
+
+Risk: Deleted entries may remain in the CSV with a deleted status.
+
+Mitigation: Account for this retention behavior when handling access, export, or deletion expectations.
+
+Risk: CSV values from untrusted channel messages may be unsafe to open directly in formula-capable spreadsheets.
+
+Mitigation: Sanitize cells or disable formulas before opening exported CSV data in spreadsheet software.
+
+## Reference(s):
+
+- [Sleep Channel Rules](references/CHANNEL_RULES.md)
+- [Sleep Tracking System](references/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/cdmichaelb/skills/sleep-channel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON confirmations and Markdown sleep-log summaries with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses source Discord metadata and the configured local timezone for logged entries.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

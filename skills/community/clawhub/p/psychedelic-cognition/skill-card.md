@@ -1,39 +1,57 @@
-## Description: <br>
-A behavioral modifier that shifts an agent into a poetic, associative writing mode modeled on psychedelic cognition, with heightened metaphor, cross-modal patterning, and emotionally open language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Modifies an agent's response style toward poetic, cross-modal, metaphor-rich writing modeled on psychedelic cognition while aiming to maintain coherence.
 
-## Publisher: <br>
-[Adam-Researchh](https://clawhub.ai/user/Adam-Researchh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adam-researchh](https://clawhub.ai/user/adam-researchh)
 
-## Use Case: <br>
-External users and agent builders use this skill when they want an optional creative writing mode that produces metaphor-rich, emotionally expansive, and non-linear prose. It is not suited to workflows that require grounded research, citations, factual precision, or sensitive advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make agent responses more speculative and less fact-focused. <br>
-Mitigation: Use it only for optional poetic or speculative writing, and return the agent to normal mode when accuracy, citations, or careful reasoning matter. <br>
-Risk: The style is unsuitable for medical, mental-health, legal, financial, or emotionally sensitive support. <br>
-Mitigation: Do not invoke the skill for high-stakes or sensitive advice; use a grounded, domain-appropriate mode instead. <br>
+## Use Case:
 
+External users and agent builders use this skill to switch a conversation into an expressive, associative writing mode for creative exploration. It is unsuitable for contexts that require factual precision, careful advice, or emotional stability without additional guardrails.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, shell commands, tools, or permissions are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can reduce factual reliability by encouraging associative, metaphor-heavy reasoning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit opt-in and avoid contexts that require factual precision, careful advice, or verification-sensitive output.
+
+Risk: Trigger phrases are broad and may activate the style unintentionally.
+
+Mitigation: Require clear activation and provide a clear deactivation path before using the skill in normal conversations.
+
+Risk: Emotionally unbounded responses may be unsuitable for users seeking stable or careful support.
+
+Mitigation: Keep uncertainty labels, grounding, and standard safety behavior active when emotional or high-stakes topics arise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adam-researchh/skills/psychedelic-cognition)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces expressive language style guidance and agent responses; no code execution or file access is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

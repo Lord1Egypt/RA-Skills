@@ -1,45 +1,64 @@
-## Description: <br>
-Spec-driven development framework for OpenClaw. Propose features, generate specs, spawn coding agents, validate implementations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spec-driven development framework for OpenClaw. Propose features, generate specs, spawn coding agents, validate implementations.
 
-## Publisher: <br>
-[chanbistec](https://clawhub.ai/user/chanbistec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chanbistec](https://clawhub.ai/user/chanbistec)
 
-## Use Case: <br>
-Developers and engineering agents use SpecClaw to manage spec-driven code changes from proposal through planning, delegated implementation, verification, status tracking, and archive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change code, run shell commands, create branches or worktrees, and spawn implementation agents with broad authority. <br>
-Mitigation: Use it only in trusted repositories, review .specclaw task files and target paths before build or verify actions, and require explicit human approval for code-changing phases. <br>
-Risk: Configured test, lint, build, and verification commands execute as shell actions. <br>
-Mitigation: Review config.yaml and task-provided commands as executable code before running them, especially in autonomous or scheduled workflows. <br>
-Risk: GitHub synchronization can publish proposal, task, and verification content and may use repository credentials. <br>
-Mitigation: Keep github.sync disabled unless publication is intended, and use least-privilege GitHub credentials when enabling it. <br>
+## Use Case:
 
+Developers and engineering teams use SpecClaw to manage spec-driven software changes from proposal through planning, agent execution, verification, and archive. It is suited for repositories where agents may create structured change files, run configured checks, and coordinate implementation tasks.
 
-## Reference(s): <br>
-- [SpecClaw ClawHub Page](https://clawhub.ai/chanbistec/specclaw) <br>
-- [Agent Prompt Templates](references/agent-prompts.md) <br>
-- [Build Engine](references/build-engine.md) <br>
-- [Workflow Examples](references/workflow-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown workflow files, shell command sequences, JSON task/config summaries, and agent prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project workflow files under .specclaw and may spawn task-specific coding or verification agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.1 (source: server release evidence) <br>
+Risk: The skill can modify repositories, run shell commands, spawn agents, and perform git operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it first in a disposable or well-backed-up repository and review generated specs, tasks, and diffs before accepting changes.
+
+Risk: Configured test, lint, and build commands may execute project-defined shell commands during build or verification.
+
+Mitigation: Review .specclaw/config.yaml before build or verify, and avoid running the skill on untrusted projects.
+
+Risk: Optional GitHub sync can create or update issues using GitHub credentials.
+
+Mitigation: Keep GitHub sync disabled unless needed, prefer authenticated gh CLI over stored tokens, and avoid storing personal access tokens in config.yaml.
+
+Risk: Autonomous mode can continue proposal, planning, build, and verification workflows with limited human intervention.
+
+Mitigation: Keep automation.auto_mode disabled unless the repository, configuration, and planned task scope have been reviewed.
+
+## Reference(s):
+
+- [Agent Prompt Templates](references/agent-prompts.md)
+- [Build Engine Architecture & Reference](references/build-engine.md)
+- [Workflow Examples](references/workflow-examples.md)
+- [SpecClaw ClawHub Release](https://clawhub.ai/chanbistec/skills/specclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, generated project files, JSON script output, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write .specclaw project files, update task/status records, spawn implementation or verification agents, and run configured repository checks.]
+
+## Skill Version(s):
+
+0.6.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

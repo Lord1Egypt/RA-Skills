@@ -1,40 +1,53 @@
-## Description: <br>
-每日唐诗 provides one Tang poem line with explanation, evening recitation checks, spaced-review questions, and poet-affinity summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日唐诗 provides a daily Tang poem line with explanation, evening recitation verification, Ebbinghaus-style review questions, and poet-affinity summaries.
 
-## Publisher: <br>
-[Romanluoman00007](https://clawhub.ai/user/Romanluoman00007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[romanluoman00007](https://clawhub.ai/user/romanluoman00007)
 
-## Use Case: <br>
-External users use this skill to receive daily Tang poetry learning content, practice recitation, review previously passed lines, and view poet-affinity summaries in Chinese. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The remote API receives poem requests, recitation or review answers, and any optional API key or user ID configured by the user. <br>
-Mitigation: Review the default API endpoint before installation and use a random or pseudonymous user ID instead of personal contact details. <br>
-Risk: Progress-based review depends on optional remote tracking tied to DAILY_TANG_POEM_USER_ID. <br>
-Mitigation: Configure DAILY_TANG_POEM_USER_ID only when progress-based review is desired; leave it unset to skip progress recording. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Romanluoman00007/daily-tang-poem) <br>
-- [Default Tang poetry API endpoint](https://daily-tang-poem-nqbl.vercel.app) <br>
+## Use Case:
 
+Chinese-language learners and poetry enthusiasts use this skill to receive a daily Tang poem line with a short explanation, verify recitation, review previously passed lines, and explore recurring poets.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Chinese conversational Markdown with API-backed poem, recitation, review, and poet-affinity responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured remote API; optional API key and user ID enable authenticated progress tracking.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and manifest.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Poem requests, recitation attempts, review answers, activity dates, and a stable user identifier are sent to the configured external backend.
+
+Mitigation: Install only when this data sharing is acceptable, and use a random UUID for DAILY_TANG_POEM_USER_ID instead of a chat ID, phone-related value, username, or reused identifier.
+
+Risk: The skill documents optional API keys being appended to URLs, which can expose keys in request logs or browser and proxy history.
+
+Mitigation: Avoid configuring DAILY_TANG_POEM_API_KEY unless the service changes to header-based authentication or URL-based exposure is acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/romanluoman00007/skills/daily-tang-poem)
+- [Default Daily Tang Poem API](https://daily-tang-poem-nqbl.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Chinese Markdown responses with short prose, poem text, recitation feedback, review questions, and configuration guidance when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a configured backend API for poem selection, recitation validation, review questions, progress recording, and poet-affinity summaries.]
+
+## Skill Version(s):
+
+1.1.1 (source: manifest.yaml and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

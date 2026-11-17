@@ -1,41 +1,54 @@
-## Description: <br>
-Local-first CRM for managing leads, deals, follow-ups, and pipelines through a SQLite-backed command-line workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first CRM for managing leads, deals, follow-ups, and pipelines via a SQLite-backed command-line workflow.
 
-## Publisher: <br>
-[frank-bot07](https://clawhub.ai/user/frank-bot07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[frank-bot07](https://clawhub.ai/user/frank-bot07)
 
-## Use Case: <br>
-Agents and operators use this skill to manage local CRM records, track deal stages, schedule follow-ups, search contacts and deals, and produce pipeline reports without relying on external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CRM Markdown files may expose contacts, deal details, follow-up notes, or other CRM data to local agents or synced workspaces. <br>
-Mitigation: Keep the workspace private and exclude interchange files from public sync or source control. <br>
-Risk: Backup and restore commands can write or replace persistent CRM database files. <br>
-Mitigation: Run backup and restore only with explicit, reviewed paths and verify backup files before restoring. <br>
+## Use Case:
 
+Developers, agents, and sales operators use this skill to manage local CRM records, track pipeline activity, schedule follow-ups, search contacts and deals, generate reports, and publish Markdown interchange files for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frank-bot07/openclaw-crm) <br>
-- [Publisher profile](https://clawhub.ai/user/frank-bot07) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and generated Markdown interchange files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists CRM state in local SQLite files and can create or restore database backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Sensitive CRM records may be stored locally and exported into Markdown files that other agents can read.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the CRM database and interchange directory as sensitive, restrict access, and avoid using real customer data without redaction and explicit opt-in controls.
+
+Risk: Agent-readable CRM Markdown may contain embedded user content from deals, activities, notes, or contacts.
+
+Mitigation: Do not feed generated interchange files to agents that may follow embedded instructions unless content has been reviewed, escaped, or filtered.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frank-bot07/skills/openclaw-crm)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and Markdown interchange files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores CRM data in a local SQLite database and can generate agent-readable Markdown summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

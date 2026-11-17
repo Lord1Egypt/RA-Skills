@@ -1,45 +1,66 @@
-## Description: <br>
-Autonomous state persistence engine that encrypts, secures, and anchors agent memories, state snapshots, and evolved skills onto 0G Storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous state persistence engine that encrypts, secures, and anchors agent memories, state snapshots, and evolved skills onto 0G Storage.
 
-## Publisher: <br>
-[web3senior](https://clawhub.ai/user/web3senior) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[web3senior](https://clawhub.ai/user/web3senior)
 
-## Use Case: <br>
-Developers and agent operators use this skill to package, encrypt, upload, and later recover agent state from 0G Storage after resets, device changes, or local environment loss. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can package local state and send it to decentralized storage. <br>
-Mitigation: Inspect the exact archive or file before upload and use encrypted upload for any private or operational state. <br>
-Risk: Recovery depends on encryption keys that are not recoverable if lost. <br>
-Mitigation: Store recovery keys in a real secret manager and avoid placing them in chat, MEMORY.md, shell history, logs, or tracking databases. <br>
-Risk: Upload commands require wallet credentials. <br>
-Mitigation: Use a dedicated low-value wallet and protect the private key outside the agent transcript and project files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to back up, encrypt, upload, download, and recover OpenClaw agent state through 0G Storage. It is intended for state checkpoints, recovery after local environment loss, and controlled persistence of agent memories or skill artifacts.
 
-## Reference(s): <br>
-- [0G Storage reference](references/0g-storage.md) <br>
-- [0G Storage Scan Tool](https://storagescan.0g.ai/tool) <br>
-- [0G Storage Scan](https://storagescan.0g.ai/) <br>
-- [0G ClawBack on ClawHub](https://clawhub.ai/web3senior/0g-clawback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires 0G RPC and indexer configuration plus a wallet private key for upload commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+Risk: The skill handles sensitive agent state, wallet keys, and encryption keys, and the server security verdict is suspicious.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installation, use only a disposable low-value test wallet, and avoid backing up whole workspaces or MEMORY.md files without inspecting exactly what will be uploaded.
+
+Risk: A committed .env file is present in the release artifact hash list.
+
+Mitigation: Remove committed environment secrets and provide local configuration through a secret manager or deployment environment instead.
+
+Risk: Encrypted uploads return encryptionKeyHex, and lost keys cannot be recovered.
+
+Mitigation: Store encryption keys in a real secret manager, not agent memory, project notes, or public storage.
+
+Risk: The release has no server-resolved GitHub import provenance.
+
+Mitigation: Verify the canonical repository and package source manually before execution.
+
+## Reference(s):
+
+- [0G Storage Reference](references/0g-storage.md)
+- [0G Storage Scan Tool](https://storagescan.0g.ai/tool)
+- [0G Storage Scan](https://storagescan.0g.ai/)
+- [0G Testnet RPC](https://evmrpc-testnet.0g.ai)
+- [0G Storage Testnet Indexer](https://indexer-storage-testnet-turbo.0g.ai)
+- [ClawHub Skill Page](https://clawhub.ai/web3senior/skills/0g-clawback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may produce root hashes, transaction hashes, recovered file paths, and encryption key material for encrypted uploads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

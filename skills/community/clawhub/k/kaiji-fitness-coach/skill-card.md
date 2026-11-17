@@ -1,45 +1,60 @@
-## Description: <br>
-Kaiji Fitness Coach helps agents provide fitness coaching guidance for workout planning, exercise teaching, training-data analysis, nutrition basics, and progression planning using a referenced exercise database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides personalized workout planning, exercise instruction, training analysis, progression, and nutrition using an exercise database.
 
-## Publisher: <br>
-[kaiji-z](https://clawhub.ai/user/kaiji-z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiji-z](https://clawhub.ai/user/kaiji-z)
 
-## Use Case: <br>
-External users and agents use this skill to collect relevant fitness context, generate or adjust workout plans, explain exercises, review training reports, and provide general fitness nutrition guidance. It is intended for normal fitness coaching support, not medical diagnosis or individualized clinical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask users for body metrics, injuries, goals, and training history to personalize fitness guidance. <br>
-Mitigation: Collect only fitness details needed for the current request, and treat outputs as general coaching guidance rather than medical advice. <br>
-Risk: The local database setup downloads an exercise database and --force can replace the local database folder. <br>
-Mitigation: Run setup only from the installed skill directory and use --force only when intentionally replacing that exercise database. <br>
+## Use Case:
 
+People seeking fitness guidance use this skill to build or adjust training plans, learn exercises, interpret workout reports, and get nutrition and progression advice. It can produce plans for Workout Timer App import.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaiji-z/kaiji-fitness-coach) <br>
-- [free-exercise-db](https://gitee.com/kaiji1126/free-exercise-db) <br>
-- [Exercise database schema](references/exercise-db-schema.md) <br>
-- [Plan generator reference](references/plan-generator.md) <br>
-- [Exercise teaching reference](references/exercise-teaching.md) <br>
-- [Nutrition advisor reference](references/nutrition-advisor.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance, Markdown tables, JSON workout plans, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workout-plan JSON should use database exercise names and the target-muscle schema described by the skill references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Database setup and updates retrieve exercise data from Gitee without pinned integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup or updates only when you trust the data source.
+
+Risk: Injury, body, and diet details can be sensitive if stored in the agent environment.
+
+Mitigation: Avoid persisting those details unless comfortable with the environment's data handling.
+
+Risk: Fitness plans may be unsuitable for a person's injuries or limitations.
+
+Mitigation: Review plans against individual goals, equipment, and injuries; prioritize safe movement and conservative adjustments.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kaiji-z/skills/kaiji-fitness-coach)
+- [Free Exercise DB](https://gitee.com/kaiji1126/free-exercise-db)
+- [Exercise database schema](references/exercise-db-schema.md)
+- [Workout Timer App integration](references/workout-timer-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Fitness guidance, Training plans, Workout analysis, JSON configuration]
+
+**Output Format:** [Markdown tables and prose, or plain JSON for app import]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [App plans use standard English exercise names from the database.]
+
+## Skill Version(s):
+
+2.2.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

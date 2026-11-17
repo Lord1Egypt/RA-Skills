@@ -1,0 +1,2224 @@
+{
+  "A1": {
+    "code": "A1",
+    "label": "瑞士极简",
+    "en": "SWISS MINIMAL",
+    "family": "order",
+    "family_label": "秩序极简",
+    "school": "瑞士国际主义排版",
+    "mood": "克制的秩序，让内容自己说话",
+    "tone": "light",
+    "tokens": {
+      "bg": "#ffffff",
+      "ink": "#111111",
+      "ac": "#E30513",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#E30513",
+      "#999",
+      "#f0f0f0",
+      "#ccc",
+      "#fff",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "2px"
+    },
+    "typography": {
+      "size_range": "标题 56px",
+      "weights": [
+        400,
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "企业简介",
+      "产品发布",
+      "数据汇报",
+      "学术报告"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A2": {
+    "code": "A2",
+    "label": "同色浮雕",
+    "en": "NEUMORPHISM",
+    "family": "organic",
+    "family_label": "有机触感",
+    "school": "同色浮雕（Neumorphism）",
+    "mood": "温柔的同色光影，安静而细腻",
+    "tone": "light",
+    "tokens": {
+      "bg": "#E0E5EC",
+      "ink": "#4A5570",
+      "ac": "#6D5DFB",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#6D5DFB",
+      "#fff",
+      "#FF2D95",
+      "#7C5CFF",
+      "#46E6A0",
+      "#FFC53D"
+    ],
+    "shapes": {
+      "圆角": "22px"
+    },
+    "typography": {
+      "size_range": "标题 36px",
+      "weights": [
+        400,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "健康应用",
+      "生活方式",
+      "轻量工具",
+      "会员体系"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A3": {
+    "code": "A3",
+    "label": "磨砂玻璃",
+    "en": "FROSTED GLASS",
+    "family": "glass",
+    "family_label": "玻璃光影",
+    "school": "磨砂玻璃（Frosted Glass）",
+    "mood": "通透的毛玻璃，光影在呼吸",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#1b1633",
+      "ink": "#fff",
+      "ac": "#8A6DF2",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#8A6DF2",
+      "#0d1226",
+      "#060812",
+      "#FF2D95",
+      "#7C5CFF",
+      "#46E6A0"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 48px",
+      "weights": [
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "科技新品",
+      "App 发布",
+      "SaaS 产品",
+      "开发者大会"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A4": {
+    "code": "A4",
+    "label": "粗野主义",
+    "en": "BRUTALISM",
+    "family": "bold",
+    "family_label": "大胆撞色",
+    "school": "粗野主义（Brutalism）",
+    "mood": "不装了，就是硬刚",
+    "tone": "light",
+    "tokens": {
+      "bg": "#fff",
+      "ink": "#000",
+      "ac": "#FF2D55",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#FF2D55",
+      "#333",
+      "#EFEFEF",
+      "#FF2D95",
+      "#7C5CFF",
+      "#46E6A0"
+    ],
+    "shapes": {
+      "圆角": null
+    },
+    "typography": {
+      "size_range": "标题 48px",
+      "weights": [
+        700,
+        900
+      ]
+    },
+    "scenes": [
+      "创意提案",
+      "品牌宣言",
+      "独立工作室",
+      "先锋活动"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A5": {
+    "code": "A5",
+    "label": "立体超真",
+    "en": "HYPERREAL",
+    "family": "bold",
+    "family_label": "大胆撞色",
+    "school": "立体超真（Hyperreal）",
+    "mood": "立体到能伸手摸",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#1E1C2E",
+      "ink": "#F5F3FF",
+      "ac": "#6B5CE8",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#6B5CE8",
+      "#FFEAA7",
+      "#FD79A8",
+      "#28263B",
+      "#A29BFC",
+      "#4F42BA"
+    ],
+    "shapes": {
+      "圆角": "14px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "数据大屏",
+      "游戏/电竞",
+      "年度报告",
+      "沉浸式展示"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A6": {
+    "code": "A6",
+    "label": "撞色方块",
+    "en": "COLORBLOCK",
+    "family": "bold",
+    "family_label": "大胆撞色",
+    "school": "撞色方块（Colorblock）",
+    "mood": "明快的撞色，爽利直接",
+    "tone": "light",
+    "tokens": {
+      "bg": "#fff",
+      "ink": "#222",
+      "ac": "#FF5E5B",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#FF5E5B",
+      "#858585",
+      "#5D6BCA",
+      "#3CBBB1",
+      "#EFEFEF",
+      "#DDDDDD"
+    ],
+    "shapes": {
+      "圆角": "10px"
+    },
+    "typography": {
+      "size_range": "标题 40px",
+      "weights": [
+        600,
+        700,
+        800
+      ]
+    },
+    "scenes": [
+      "教育课件",
+      "活动海报",
+      "市场推广",
+      "年轻品牌"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A7": {
+    "code": "A7",
+    "label": "墨黑纯屏",
+    "en": "INK BLACK",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "墨黑纯屏（Ink Black）",
+    "mood": "纯粹的黑，只剩焦点",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#000",
+      "ink": "#F5F5F7",
+      "ac": "#0A84FF",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#0A84FF",
+      "#111",
+      "#8E8E93",
+      "#1A1A1A",
+      "#2A9D8F",
+      "#FF375F"
+    ],
+    "shapes": {
+      "圆角": "10px"
+    },
+    "typography": {
+      "size_range": "标题 38px",
+      "weights": [
+        600,
+        700,
+        800
+      ]
+    },
+    "scenes": [
+      "移动端展示",
+      "夜间模式",
+      "高端品牌",
+      "聚焦演讲"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A8": {
+    "code": "A8",
+    "label": "无碍包容",
+    "en": "ACCESSIBLE",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "无碍包容（Accessible）",
+    "mood": "所有人都能顺畅读完",
+    "tone": "light",
+    "tokens": {
+      "bg": "#fff",
+      "ink": "#1A1A1A",
+      "ac": "#005ECC",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#005ECC",
+      "#818181",
+      "#C5C5C5",
+      "#EFEFEF",
+      "#B0B0B0",
+      "#E30613"
+    ],
+    "shapes": {
+      "圆角": null
+    },
+    "typography": {
+      "size_range": "标题 40px",
+      "weights": [
+        600,
+        700,
+        800
+      ]
+    },
+    "scenes": [
+      "政务公开",
+      "公共信息",
+      "企业合规",
+      "全员培训"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A9": {
+    "code": "A9",
+    "label": "充气黏土",
+    "en": "CLAY",
+    "family": "organic",
+    "family_label": "有机触感",
+    "school": "充气黏土（Claymorphism）",
+    "mood": "软乎乎的陶土，亲和可爱",
+    "tone": "light",
+    "tokens": {
+      "bg": "#E8DCC4",
+      "ink": "#5B3A29",
+      "ac": "#C97B4A",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#C97B4A",
+      "#8C4E2B",
+      "#fff",
+      "#FFF7EC",
+      "#E7D8BE",
+      "#3B3B3B"
+    ],
+    "shapes": {
+      "圆角": "25px"
+    },
+    "typography": {
+      "size_range": "标题 52px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "亲子教育",
+      "生活方式",
+      "文创产品",
+      "SaaS 入门"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A10": {
+    "code": "A10",
+    "label": "极光晕彩",
+    "en": "AURORA",
+    "family": "glass",
+    "family_label": "玻璃光影",
+    "school": "极光晕彩（Aurora）",
+    "mood": "极光在夜空流动",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#0F172A",
+      "ink": "#fff",
+      "ac": "#6366F1",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#6366F1",
+      "#9396A0",
+      "#1C2334",
+      "#4B5160",
+      "#C4B5FD",
+      "#A855F7"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 38px",
+      "weights": [
+        600,
+        700,
+        800
+      ]
+    },
+    "scenes": [
+      "品牌视觉",
+      "年度盛典",
+      "创意发布",
+      "设计展示"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A11": {
+    "code": "A11",
+    "label": "复古未来",
+    "en": "RETRO-FUTURISM",
+    "family": "retro",
+    "family_label": "复古怀旧",
+    "school": "复古未来（Retro-futurism）",
+    "mood": "复古的科技，时间的刻度",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#264657",
+      "ink": "#EAECF0",
+      "ac": "#E76F51",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#E76F51",
+      "#9DB3B3",
+      "#304C5C",
+      "#2A9D8F",
+      "#1B3344",
+      "#E9C46A"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 56px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "复古活动",
+      "科幻主题",
+      "技术博客",
+      "年度回顾"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A12": {
+    "code": "A12",
+    "label": "扁平无影",
+    "en": "FLAT DESIGN",
+    "family": "order",
+    "family_label": "秩序极简",
+    "school": "扁平无影（Flat Design）",
+    "mood": "干净利落，一目了然",
+    "tone": "light",
+    "tokens": {
+      "bg": "#fff",
+      "ink": "#2C3E50",
+      "ac": "#3497DB",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#3497DB",
+      "#8A949E",
+      "#EFEFEF",
+      "#CACED4",
+      "#F1C40F",
+      "#E64C3C"
+    ],
+    "shapes": {
+      "圆角": "14px"
+    },
+    "typography": {
+      "size_range": "标题 32px",
+      "weights": [
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "工具类产品",
+      "说明文档",
+      "入门教程",
+      "内部系统"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A13": {
+    "code": "A13",
+    "label": "仿真实物",
+    "en": "SKEUOMORPHISM",
+    "family": "retro",
+    "family_label": "复古怀旧",
+    "school": "仿真实物（Skeuomorphism）",
+    "mood": "真实到有触感",
+    "tone": "light",
+    "tokens": {
+      "bg": "#fff",
+      "ink": "#F5F5DC",
+      "ac": "#D4AF37",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#D4AF37",
+      "#8B4513",
+      "#708090",
+      "#111",
+      "#3E2723",
+      "#E30613"
+    ],
+    "shapes": {
+      "圆角": "12px"
+    },
+    "typography": {
+      "size_range": "标题 36px",
+      "weights": [
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "高端品牌",
+      "老牌企业",
+      "收藏展示",
+      "经典产品"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A14": {
+    "code": "A14",
+    "label": "液态玻璃",
+    "en": "LIQUID GLASS",
+    "family": "glass",
+    "family_label": "玻璃光影",
+    "school": "液态玻璃（Liquid Glass）",
+    "mood": "液态的玻璃，未来感",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#000",
+      "ink": "#fff",
+      "ac": "#29A1FF",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#29A1FF",
+      "#0A0A0A",
+      "#D90429",
+      "#FF2D95",
+      "#7C5CFF",
+      "#46E6A0"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 32px",
+      "weights": [
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "Apple 生态",
+      "高端科技",
+      "产品发布",
+      "旗舰宣传"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A15": {
+    "code": "A15",
+    "label": "动势流转",
+    "en": "KINETIC FLOW",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "动势流转（Kinetic Flow）",
+    "mood": "动起来，别停",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#556270",
+      "ink": "#F7FFF7",
+      "ac": "#4ECD98",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#4ECD98",
+      "#5A6570",
+      "#FF6B6B",
+      "#AEBBB8",
+      "#2B373F",
+      "#4A5553"
+    ],
+    "shapes": {
+      "圆角": "16px"
+    },
+    "typography": {
+      "size_range": "标题 34px",
+      "weights": [
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "运动品牌",
+      "动态展示",
+      "科技演示",
+      "创新发布"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A16": {
+    "code": "A16",
+    "label": "微态响应",
+    "en": "MICRO INTERACTIONS",
+    "family": "organic",
+    "family_label": "有机触感",
+    "school": "微态响应（Micro Interactions）",
+    "mood": "每一处细节都有回应",
+    "tone": "light",
+    "tokens": {
+      "bg": "#ECF0F2",
+      "ink": "#2C3E50",
+      "ac": "#1ABC9C",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#1ABC9C",
+      "#828E98",
+      "#fff",
+      "#DFE2E4",
+      "#D90429",
+      "#BCC4C8"
+    ],
+    "shapes": {
+      "圆角": "24px"
+    },
+    "typography": {
+      "size_range": "标题 30px",
+      "weights": [
+        400,
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "精致产品",
+      "设计系统",
+      "交互演示",
+      "体验讲解"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A17": {
+    "code": "A17",
+    "label": "包容无界",
+    "en": "INCLUSIVE",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "包容无界（Inclusive）",
+    "mood": "温和而包容，谁都能用",
+    "tone": "light",
+    "tokens": {
+      "bg": "#F0F4F8",
+      "ink": "#102A43",
+      "ac": "#2680C2",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#2680C2",
+      "#E2E6E9",
+      "#B8C1CA",
+      "#486581",
+      "#fff",
+      "#829AB1"
+    ],
+    "shapes": {
+      "圆角": "6px"
+    },
+    "typography": {
+      "size_range": "标题 44px",
+      "weights": [
+        500,
+        700,
+        900
+      ]
+    },
+    "scenes": [
+      "多人群产品",
+      "教育公平",
+      "公共服务",
+      "企业文化"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A18": {
+    "code": "A18",
+    "label": "隐于无形",
+    "en": "ZERO INTERFACE",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "隐于无形（Zero Interface）",
+    "mood": "少到极致，内容即界面",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#1B1B1F",
+      "ink": "#E8EAEC",
+      "ac": "#3498DB",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#3498DB",
+      "#6E6E78",
+      "#fff",
+      "#27272A",
+      "#4E4E52",
+      "#2E2E33"
+    ],
+    "shapes": {
+      "圆角": "16px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "概念展示",
+      "高端演讲",
+      "艺术表达",
+      "冥想主题"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A19": {
+    "code": "A19",
+    "label": "柔光软塑",
+    "en": "SOFT PLASTIC",
+    "family": "glass",
+    "family_label": "玻璃光影",
+    "school": "柔光软塑（Soft Plastic）",
+    "mood": "柔光软塑，舒服妥帖",
+    "tone": "light",
+    "tokens": {
+      "bg": "#F5F7FA",
+      "ink": "#4A5568",
+      "ac": "#667EEA",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#667EEA",
+      "#fff",
+      "#CACED5",
+      "#969DA9",
+      "#E2E6EC",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "14px"
+    },
+    "typography": {
+      "size_range": "标题 36px",
+      "weights": [
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "健康管理",
+      "母婴产品",
+      "生活工具",
+      "温和品牌"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A20": {
+    "code": "A20",
+    "label": "硬边糖果",
+    "en": "HARD CANDY",
+    "family": "bold",
+    "family_label": "大胆撞色",
+    "school": "硬边糖果（Hard Candy）",
+    "mood": "俏皮的糖果色",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FDF0D5",
+      "ink": "#111111",
+      "ac": "#FFDE00",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#FFDE00",
+      "#fff",
+      "#000",
+      "#111",
+      "#7B7569",
+      "#EEE2CA"
+    ],
+    "shapes": {
+      "圆角": null
+    },
+    "typography": {
+      "size_range": "标题 32px",
+      "weights": [
+        500,
+        900
+      ]
+    },
+    "scenes": [
+      "儿童教育",
+      "潮玩品牌",
+      "节日活动",
+      "娱乐内容"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A21": {
+    "code": "A21",
+    "label": "便当拼盒",
+    "en": "BENTO BOX",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "便当拼盒（Bento Box）",
+    "mood": "便当盒式陈列，规整又丰富",
+    "tone": "light",
+    "tokens": {
+      "bg": "#F5F5F7",
+      "ink": "#1D1D1F",
+      "ac": "#0071E3",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#0071E3",
+      "#7E7E80",
+      "#fff",
+      "#E6E6E8",
+      "#FF453A",
+      "#FBFBFD"
+    ],
+    "shapes": {
+      "圆角": "18px"
+    },
+    "typography": {
+      "size_range": "标题 48px",
+      "weights": [
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "产品总览",
+      "功能展示",
+      "数据面板",
+      "多维度汇报"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A22": {
+    "code": "A22",
+    "label": "千禧幻彩",
+    "en": "Y2K CHROME",
+    "family": "tech",
+    "family_label": "科技霓虹",
+    "school": "千禧幻彩（Y2K Chrome）",
+    "mood": "千禧的炫彩金属",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#1E1E2E",
+      "ink": "#F5F5FA",
+      "ac": "#8D46AD",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#8D46AD",
+      "#fff",
+      "#B5B5BE",
+      "#E8E8EF",
+      "#B0B0BD",
+      "#6A6A80"
+    ],
+    "shapes": {
+      "圆角": "14px"
+    },
+    "typography": {
+      "size_range": "标题 56px",
+      "weights": [
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "潮流品牌",
+      "音乐活动",
+      "时尚发布",
+      "青年文化"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A23": {
+    "code": "A23",
+    "label": "赛博朋克",
+    "en": "CYBERPUNK",
+    "family": "tech",
+    "family_label": "科技霓虹",
+    "school": "赛博朋克（Cyberpunk）",
+    "mood": "霓虹闪烁的赛博夜",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#0A0A12",
+      "ink": "#D1F7FF",
+      "ac": "#05D9E8",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#05D9E8",
+      "#FF296B",
+      "#FAF003",
+      "#FF2D95",
+      "#7C5CFF",
+      "#46E6A0"
+    ],
+    "shapes": {
+      "圆角": "6px"
+    },
+    "typography": {
+      "size_range": "标题 48px",
+      "weights": [
+        500,
+        700,
+        800
+      ]
+    },
+    "scenes": [
+      "游戏/电竞",
+      "科技峰会",
+      "科幻主题",
+      "沉浸体验"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A24": {
+    "code": "A24",
+    "label": "自然有机",
+    "en": "ORGANIC",
+    "family": "organic",
+    "family_label": "有机触感",
+    "school": "自然有机（Organic）",
+    "mood": "自然的曲线与呼吸",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#2A9D8F",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#2A9D8F",
+      "#7C7C7C",
+      "#EFEFEF",
+      "#C3C3C3",
+      "#E30613",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 32px",
+      "weights": [
+        400,
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "环保主题",
+      "健康品牌",
+      "自然教育",
+      "生活美学"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A25": {
+    "code": "A25",
+    "label": "原生智能",
+    "en": "NATIVE AI",
+    "family": "glass",
+    "family_label": "玻璃光影",
+    "school": "原生智能（Native AI）",
+    "mood": "AI 的温润质感",
+    "tone": "light",
+    "tokens": {
+      "bg": "#eef1fb",
+      "ink": "#111",
+      "ac": "#7C6CFF",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#7C6CFF",
+      "#f4f0fb",
+      "#fbf3ec",
+      "#1C1C1E",
+      "#8A8A8E",
+      "#FFFFFF"
+    ],
+    "shapes": {
+      "圆角": "30px"
+    },
+    "typography": {
+      "size_range": "标题 52px",
+      "weights": [
+        500,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "AI 产品",
+      "智能助手",
+      "技术演示",
+      "未来概念"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A26": {
+    "code": "A26",
+    "label": "孟菲斯彩",
+    "en": "MEMPHIS",
+    "family": "bold",
+    "family_label": "大胆撞色",
+    "school": "孟菲斯彩（Memphis）",
+    "mood": "孟菲斯的几何狂欢",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#E30613",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#E30613",
+      "#7C7C7C",
+      "#3498DB",
+      "#F5C518",
+      "#2A9D8F",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "10px"
+    },
+    "typography": {
+      "size_range": "标题 56px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "创意设计",
+      "艺术展览",
+      "年轻品牌",
+      "潮流活动"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A27": {
+    "code": "A27",
+    "label": "蒸汽幻紫",
+    "en": "VAPORWAVE",
+    "family": "tech",
+    "family_label": "科技霓虹",
+    "school": "蒸汽幻紫（Vaporwave）",
+    "mood": "蒸汽波的紫粉梦境",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#FF71CE",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#FF71CE",
+      "#B967FF",
+      "#01CDFE",
+      "#7C7C7C",
+      "#EFEFEF",
+      "#FFE66D"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "音乐节",
+      "艺术展",
+      "复古文化",
+      "创意主题"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A28": {
+    "code": "A28",
+    "label": "维度层叠",
+    "en": "DIMENSIONAL",
+    "family": "tech",
+    "family_label": "科技霓虹",
+    "school": "维度层叠（Dimensional）",
+    "mood": "层层堆叠的纵深",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#141E30",
+      "ink": "#FFFFFF",
+      "ac": "#0072FF",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#0072FF",
+      "#9599A1",
+      "#00C6FF",
+      "#202939",
+      "#2A3550",
+      "#0B1220"
+    ],
+    "shapes": {
+      "圆角": "40px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "数据可视化",
+      "技术发布",
+      "空间概念",
+      "创新展示"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A29": {
+    "code": "A29",
+    "label": "极致留白",
+    "en": "MINIMAL",
+    "family": "order",
+    "family_label": "秩序极简",
+    "school": "极致留白（Minimal）",
+    "mood": "极致的留白与高级",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#1A1A1A",
+      "ac": "#C9A227",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#C9A227",
+      "#9A9A9A",
+      "#E6E6E6",
+      "#BDBDBD",
+      "#FF2D95",
+      "#7C5CFF"
+    ],
+    "shapes": {
+      "圆角": "2px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        200,
+        300,
+        400
+      ]
+    },
+    "scenes": [
+      "高端品牌",
+      "奢侈品",
+      "艺术画廊",
+      "精品内容"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A30": {
+    "code": "A30",
+    "label": "流动字态",
+    "en": "FLUID TYPOGRAPHY",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "流动字态（Fluid Typography）",
+    "mood": "字即视觉，排山倒海",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#1A1A1A",
+      "ink": "#FFFFFF",
+      "ac": "#3499DB",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#3499DB",
+      "#9A9A9A",
+      "#5DADE2",
+      "#2A2A2A",
+      "#3A3A3A",
+      "#000"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "创意演讲",
+      "品牌宣言",
+      "艺术展",
+      "先锋发布"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A31": {
+    "code": "A31",
+    "label": "视差叙事",
+    "en": "PARALLAX NARRATIVE",
+    "family": "retro",
+    "family_label": "复古怀旧",
+    "school": "视差叙事（Parallax Narrative）",
+    "mood": "视差叙事的沉浸",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#0F2027",
+      "ink": "#F1FAEE",
+      "ac": "#3499DB",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#3499DB",
+      "#8B9794",
+      "#5DADE2",
+      "#1C2B31",
+      "#475658",
+      "#3498DB"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        500,
+        700
+      ]
+    },
+    "scenes": [
+      "品牌故事",
+      "叙事汇报",
+      "沉浸展示",
+      "长篇内容"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A32": {
+    "code": "A32",
+    "label": "瑞士新章",
+    "en": "SWISS NEW CHAPTER",
+    "family": "order",
+    "family_label": "秩序极简",
+    "school": "瑞士新章（Swiss New Chapter）",
+    "mood": "红黑白的锐利现代",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#1A1A1A",
+      "ac": "#E30613",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#E30613",
+      "#818181",
+      "#C5C5C5",
+      "#EFEFEF",
+      "#3498DB",
+      "#2A9D8F"
+    ],
+    "shapes": {
+      "圆角": null
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "品牌手册",
+      "设计提案",
+      "文化机构",
+      "出版物"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A33": {
+    "code": "A33",
+    "label": "抬显科幻",
+    "en": "HUD SCIFI",
+    "family": "tech",
+    "family_label": "科技霓虹",
+    "school": "抬显科幻（HUD Sci-fi）",
+    "mood": "HUD 数据化的科幻",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#00141F",
+      "ink": "#FFFFFF",
+      "ac": "#3498DB",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#3498DB",
+      "#0F202A",
+      "#8C959A",
+      "#3F4E57",
+      "#E30613",
+      "#061823"
+    ],
+    "shapes": {
+      "圆角": "10px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "数据大屏",
+      "科幻主题",
+      "技术监控",
+      "未来产品"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A34": {
+    "code": "A34",
+    "label": "像素艺术",
+    "en": "PIXEL ART",
+    "family": "retro",
+    "family_label": "复古怀旧",
+    "school": "像素艺术（Pixel Art）",
+    "mood": "8bit 像素的怀旧",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#0000BC",
+      "ink": "#FFFFFF",
+      "ac": "#F8B800",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#F8B800",
+      "#000000",
+      "#F7B800",
+      "#000090",
+      "#8C8C8C",
+      "#F878F8"
+    ],
+    "shapes": {
+      "圆角": null
+    },
+    "typography": {
+      "size_range": "标题 40px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "游戏主题",
+      "怀旧活动",
+      "独立游戏",
+      "复古展"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A35": {
+    "code": "A35",
+    "label": "网格便当",
+    "en": "BENTO GRID",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "网格便当（Bento Grid）",
+    "mood": "规整的网格便当",
+    "tone": "light",
+    "tokens": {
+      "bg": "#F5F5F7",
+      "ink": "#1D1D1F",
+      "ac": "#0071E3",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#0071E3",
+      "#86868B",
+      "#FFFFFF",
+      "#BFBFC1",
+      "#E30613",
+      "#E6E6E8"
+    ],
+    "shapes": {
+      "圆角": "18px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "数据面板",
+      "功能总览",
+      "多模块汇报",
+      "产品介绍"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A36": {
+    "code": "A36",
+    "label": "空间浮窗",
+    "en": "FLOATING",
+    "family": "retro",
+    "family_label": "复古怀旧",
+    "school": "空间浮窗（Floating）",
+    "mood": "轻盈悬浮的空间",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#1A1A1A",
+      "ac": "#8B5CF6",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#8B5CF6",
+      "#EFEFEF",
+      "#6B6B6B",
+      "#E30613",
+      "#2A9D8F",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "概念展示",
+      "精品内容",
+      "高端汇报",
+      "创意提案"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A37": {
+    "code": "A37",
+    "label": "电子墨水",
+    "en": "E-INK",
+    "family": "retro",
+    "family_label": "复古怀旧",
+    "school": "电子墨水（E-ink）",
+    "mood": "如纸的电子墨水",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#E30613",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#E30613",
+      "#C3C3C3",
+      "#7C7C7C",
+      "#FBFBFB",
+      "#F3F3F3",
+      "#fff"
+    ],
+    "shapes": {
+      "圆角": "10px"
+    },
+    "typography": {
+      "size_range": "标题 50px",
+      "weights": [
+        400,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "阅读类",
+      "文档汇报",
+      "纸质质感",
+      "沉稳内容"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A38": {
+    "code": "A38",
+    "label": "世代极繁",
+    "en": "Y2K MAXIMALISM",
+    "family": "bold",
+    "family_label": "大胆撞色",
+    "school": "世代极繁（Y2K Maximalism）",
+    "mood": "极繁的世代狂欢",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#3498DB",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#3498DB",
+      "#FFD100",
+      "#2A9D8F",
+      "#E30613",
+      "#FF2D95",
+      "#7C5CFF"
+    ],
+    "shapes": {
+      "圆角": "10px"
+    },
+    "typography": {
+      "size_range": "标题 56px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "潮流活动",
+      "音乐现场",
+      "青年文化",
+      "张扬品牌"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A39": {
+    "code": "A39",
+    "label": "细胞仿生",
+    "en": "CELLULAR",
+    "family": "organic",
+    "family_label": "有机触感",
+    "school": "细胞仿生（Cellular）",
+    "mood": "仿生的细胞生长",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#3498DB",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#3498DB",
+      "#C3C3C3",
+      "#EFEFEF",
+      "#E30613",
+      "#2A9D8F",
+      "#7C7C7C"
+    ],
+    "shapes": {
+      "圆角": "28px"
+    },
+    "typography": {
+      "size_range": "标题 52px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "生物科技",
+      "健康医疗",
+      "环保主题",
+      "创新研究"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A40": {
+    "code": "A40",
+    "label": "粗粝原始",
+    "en": "TERMINAL-RAW",
+    "family": "bold",
+    "family_label": "大胆撞色",
+    "school": "粗粝原始（Terminal Raw）",
+    "mood": "终端的粗粝极客",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#E30613",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#E30613",
+      "#C3C3C3",
+      "#7C7C7C",
+      "#F5F5F5",
+      "#3498DB",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "8px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "开发者大会",
+      "极客文化",
+      "技术博客",
+      "黑客主题"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A41": {
+    "code": "A41",
+    "label": "触感果冻",
+    "en": "TACTILE JELLY",
+    "family": "organic",
+    "family_label": "有机触感",
+    "school": "触感果冻（Tactile Jelly）",
+    "mood": "Q 弹的果冻触感",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#3498DB",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#3498DB",
+      "#EFEFEF",
+      "#7C7C7C",
+      "#E30613",
+      "#2A9D8F",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 52px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "趣味产品",
+      "娱乐应用",
+      "年轻品牌",
+      "互动展示"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A42": {
+    "code": "A42",
+    "label": "自然凝练",
+    "en": "ORGANIC EDITORIAL",
+    "family": "order",
+    "family_label": "秩序极简",
+    "school": "自然凝练（Organic Editorial）",
+    "mood": "米色纸张的自然编辑",
+    "tone": "light",
+    "tokens": {
+      "bg": "#F4EFE5",
+      "ink": "#3D405B",
+      "ac": "#C97B4A",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#C97B4A",
+      "#EDE4D2",
+      "#fff",
+      "#FBF8F1",
+      "#999485",
+      "#8A9B6E"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 64px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "杂志风格",
+      "精品内容",
+      "文化品牌",
+      "生活方式"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A43": {
+    "code": "A43",
+    "label": "磁吸光标",
+    "en": "MAGNETIC CURSOR",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "磁吸光标（Magnetic Cursor）",
+    "mood": "磁吸光标的跟随感",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#1A1A1E",
+      "ink": "#fff",
+      "ac": "#FF4D6D",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#FF4D6D",
+      "#A0A0A8",
+      "#383840",
+      "#262626",
+      "#FFD166",
+      "#1A1A1A"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        400,
+        700
+      ]
+    },
+    "scenes": [
+      "高端展示",
+      "交互演示",
+      "创意提案",
+      "先锋品牌"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A44": {
+    "code": "A44",
+    "label": "语音优先",
+    "en": "VOICE-FIRST",
+    "family": "functional",
+    "family_label": "功能前沿",
+    "school": "语音优先（Voice First）",
+    "mood": "语音优先的对话",
+    "tone": "light",
+    "tokens": {
+      "bg": "#fff",
+      "ink": "#1A1A2E",
+      "ac": "#7B2FF7",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#7B2FF7",
+      "#F4F1F8",
+      "#7C7C7C",
+      "#F107A3",
+      "#FF2D95",
+      "#7C5CFF"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 64px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "语音产品",
+      "智能助手",
+      "对话式演示",
+      "AI 展示"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A45": {
+    "code": "A45",
+    "label": "产品立体",
+    "en": "PRODUCT RENDER",
+    "family": "glass",
+    "family_label": "玻璃光影",
+    "school": "产品立体（Product Render）",
+    "mood": "产品渲染的质感",
+    "tone": "light",
+    "tokens": {
+      "bg": "#FFFFFF",
+      "ink": "#111111",
+      "ac": "#0071E3",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#0071E3",
+      "#EFEFEF",
+      "#F5F5F7",
+      "#EFEFF4",
+      "#7C7C7C",
+      "#FF9500"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 56px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "产品发布",
+      "硬件展示",
+      "电商精品",
+      "旗舰宣传"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A46": {
+    "code": "A46",
+    "label": "流彩网格",
+    "en": "FLOW NEON",
+    "family": "tech",
+    "family_label": "科技霓虹",
+    "school": "流彩网格（Flow Neon）",
+    "mood": "流彩的霓虹网格",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#0F0F1A",
+      "ink": "#FFFFFF",
+      "ac": "#FF2D95",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#FF2D95",
+      "#181826",
+      "#262638",
+      "#00E5FF",
+      "#7C4DFF",
+      "#2979FF"
+    ],
+    "shapes": {
+      "圆角": "90px"
+    },
+    "typography": {
+      "size_range": "标题 64px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "科技发布",
+      "数据大屏",
+      "沉浸展示",
+      "创意活动"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A47": {
+    "code": "A47",
+    "label": "杂志编辑",
+    "en": "MAGAZINE EDITORIAL",
+    "family": "order",
+    "family_label": "秩序极简",
+    "school": "杂志编辑（Magazine Editorial）",
+    "mood": "杂志的编辑排版",
+    "tone": "light",
+    "tokens": {
+      "bg": "#F7F4EF",
+      "ink": "#1A1A1A",
+      "ac": "#B76E2E",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#B76E2E",
+      "#8B0000",
+      "#2C3E50",
+      "#FFFFFF",
+      "#8B3B2E",
+      "#FF2D95"
+    ],
+    "shapes": {
+      "圆角": "999px"
+    },
+    "typography": {
+      "size_range": "标题 72px",
+      "weights": [
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "杂志内容",
+      "出版物",
+      "品牌故事",
+      "深度报道"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  },
+  "A48": {
+    "code": "A48",
+    "label": "色散重影",
+    "en": "CHROMATIC GHOST",
+    "family": "tech",
+    "family_label": "科技霓虹",
+    "school": "色散重影（Chromatic Ghost）",
+    "mood": "色散重影的迷幻",
+    "tone": "dark",
+    "tokens": {
+      "bg": "#1A0A2E",
+      "ink": "#FFFFFF",
+      "ac": "#00E5FF",
+      "card": "#1B1B23",
+      "line": "#34343A",
+      "mu": "#888888"
+    },
+    "series": [
+      "#00E5FF",
+      "#210D38",
+      "#9980BF",
+      "#FF0040",
+      "#000",
+      "#FF0066"
+    ],
+    "shapes": {
+      "圆角": "6px"
+    },
+    "typography": {
+      "size_range": "标题 64px",
+      "weights": [
+        700
+      ]
+    },
+    "scenes": [
+      "音乐视觉",
+      "艺术展",
+      "先锋品牌",
+      "沉浸体验"
+    ],
+    "taboos": [
+      "不用于打印：暗底大面积输出耗墨且失真"
+    ]
+  },
+  "A49": {
+    "code": "A49",
+    "label": "复古胶片",
+    "en": "FILM RETRO",
+    "family": "retro",
+    "family_label": "复古怀旧",
+    "school": "复古胶片（Film Retro）",
+    "mood": "胶片的暖色怀旧",
+    "tone": "light",
+    "tokens": {
+      "bg": "#F5EDD1",
+      "ink": "#4D3322",
+      "ac": "#BF3830",
+      "card": "#FFFFFF",
+      "line": "#E5E5E5",
+      "mu": "#666666"
+    },
+    "series": [
+      "#BF3830",
+      "#E8DEBD",
+      "#DBD1B0",
+      "#F4E3C2",
+      "#EBC9A1",
+      "#806B52"
+    ],
+    "shapes": {
+      "圆角": "20px"
+    },
+    "typography": {
+      "size_range": "标题 60px",
+      "weights": [
+        400,
+        600,
+        700
+      ]
+    },
+    "scenes": [
+      "怀旧主题",
+      "电影感",
+      "品牌故事",
+      "生活方式"
+    ],
+    "taboos": [
+      "不适合暗场沉浸：浅底在暗环境投屏偏亮"
+    ]
+  }
+}

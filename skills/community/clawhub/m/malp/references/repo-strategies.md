@@ -15,9 +15,7 @@ Do nothing. `.malp/` sits in the working tree as an untracked directory. Git sho
 
 Add `.malp/` to `.git/info/exclude`. This is a per-clone gitignore that isn't committed or shared with other contributors.
 
-```
-echo '.malp/' >> .git/info/exclude
-```
+Use a scoped file edit to add `.malp/` to `.git/info/exclude` without duplicating an existing entry.
 
 **Pros:** Invisible to other contributors. No repo changes.
 **Cons:** Per-clone — must redo after fresh clones. Easy to forget.
@@ -26,9 +24,7 @@ echo '.malp/' >> .git/info/exclude
 
 Add `.malp/` to your global gitignore (e.g., `~/.config/git/ignore` or whatever `core.excludesFile` points to). Applies to all repos on this machine.
 
-```
-echo '.malp/' >> ~/.config/git/ignore
-```
+Resolve `core.excludesFile`, then use a scoped file edit to add `.malp/` without duplicating an existing entry. Writing outside the workspace may require approval.
 
 **Pros:** One-time setup, covers all repos.
 **Cons:** If you ever *want* to track a `.malp/`, you have to override.
@@ -37,9 +33,7 @@ echo '.malp/' >> ~/.config/git/ignore
 
 Add `.malp/` to the repo's `.gitignore`. This is committed and shared with all contributors.
 
-```
-echo '.malp/' >> .gitignore
-```
+Use a scoped file edit to add `.malp/` to the project `.gitignore` without disturbing existing rules.
 
 **Pros:** Everyone on the project gets the benefit.
 **Cons:** Requires a commit. Team may ask "what's a malp?" (which could be a feature, not a bug).

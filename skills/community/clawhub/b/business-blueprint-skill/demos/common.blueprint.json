@@ -673,7 +673,7 @@
       "label": "执行"
     },
     {
-      "id": "rel-cap-risk-control-actor-risk-analyst",
+      "id": "rel-cap-riREDACTED-SECRET",
       "type": "owned-by",
       "from": "cap-risk-control",
       "to": "actor-risk-analyst",
@@ -729,7 +729,7 @@
       "label": "→"
     },
     {
-      "id": "rel-flow-flow-risk-assessment-flow-compliance-check",
+      "id": "rel-flow-flow-riREDACTED-SECRET",
       "type": "flows-to",
       "from": "flow-risk-assessment",
       "to": "flow-compliance-check",

@@ -1,40 +1,52 @@
-## Description: <br>
-Daily Wakapi (WakaTime-compatible) summary to local CSV files; fetches today's stats and appends or updates CSVs for totals, top projects, and top languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches today's Wakapi coding statistics and appends or updates local CSV summaries for totals, top projects, and top languages.
 
-## Publisher: <br>
-[cosformula](https://clawhub.ai/user/cosformula) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cosformula](https://clawhub.ai/user/cosformula)
 
-## Use Case: <br>
-Developers and personal analytics users use this skill to export daily Wakapi coding activity into local CSV datasets for reporting, dashboards, or archival workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Wakapi API key. <br>
-Mitigation: Use a trusted Wakapi instance, prefer HTTPS for WAKAPI_URL, and provide only the API key needed for this export workflow. <br>
-Risk: The script creates or replaces its named CSV files in the configured output folder. <br>
-Mitigation: Set WAKAPI_OUT_DIR to a dedicated directory for this skill and review or back up existing CSV files before first use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cosformula/wakapi-sync-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/cosformula) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to automate daily exports of Wakapi or WakaTime-compatible activity data into local CSV files for personal analytics, reporting, or downstream processing.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, API calls, Text] <br>
-**Output Format:** [CSV files plus console status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily-total.csv, daily-top-projects.csv, and daily-top-languages.csv in WAKAPI_OUT_DIR.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Wakapi API key to fetch activity data from the configured server.
+
+Mitigation: Set WAKAPI_URL to a trusted HTTPS Wakapi server and prefer a read-only or least-privileged API key if available.
+
+Risk: The skill writes CSV files to the configured output directory, and generated CSVs may be opened by spreadsheet applications that evaluate formulas.
+
+Mitigation: Use a trusted WAKAPI_OUT_DIR and be cautious when opening generated CSV files in spreadsheet applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cosformula/skills/wakapi-sync-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Text]
+
+**Output Format:** [CSV files and plain-text status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WAKAPI_URL, WAKAPI_API_KEY, and WAKAPI_OUT_DIR; writes daily-total.csv, daily-top-projects.csv, and daily-top-languages.csv.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

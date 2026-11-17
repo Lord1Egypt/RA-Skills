@@ -1,44 +1,56 @@
-## Description: <br>
-Use when managing Alibaba Cloud Data Lake Formation (DlfNext) via OpenAPI/SDK, including DLF Next catalog and governance resource operations, listing resources, create/update flows, status checks, and troubleshooting metadata workflow issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Alibaba Cloud Data Lake Formation (DlfNext) resources through OpenAPI/SDK workflows, including discovery, create/update flows, status checks, and troubleshooting.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Alibaba Cloud Data Lake Formation Next resources through OpenAPI or SDK workflows, including inventory, configuration changes, status checks, and metadata troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real Alibaba Cloud DLF Next resource changes when used with cloud credentials. <br>
-Mitigation: Use least-privilege credentials and require explicit confirmation of the account, region, resource IDs, and intended action before any create, update, modify, set, or other mutating API call. <br>
-Risk: Using an incorrect region or resource identifier can lead to misleading results or changes in the wrong environment. <br>
-Mitigation: Confirm region and resource identifiers before execution, and verify outcomes with describe or list APIs after each operation. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inventory, configure, and troubleshoot Alibaba Cloud Data Lake Formation (DlfNext) catalog and governance resources through OpenAPI metadata, SDK calls, and OpenAPI Explorer workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-dlf-manage-next) <br>
-- [Sources](references/sources.md) <br>
-- [Alibaba Cloud DlfNext OpenAPI product page](https://api.aliyun.com/product/DlfNext) <br>
-- [DlfNext API metadata list](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/api-docs.json) <br>
-- [DlfNext API definition template](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/apis/{ApiName}/api.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown with inline shell commands, configuration guidance, Python helper scripts, and saved JSON or Markdown artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated artifacts and API response summaries should be saved under output/aliyun-dlf-manage-next/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Create, update, modify, or set operations may change Alibaba Cloud DlfNext resource state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review before mutating operations and confirm the target region, resource identifiers, and intended action.
+
+Risk: Overbroad or misdirected cloud credentials can expose resources outside the intended task.
+
+Mitigation: Use least-privilege Alibaba Cloud credentials and verify credential source and region before executing API calls.
+
+## Reference(s):
+
+- [Sources](references/sources.md)
+- [Alibaba Cloud OpenAPI DlfNext product page](https://api.aliyun.com/product/DlfNext)
+- [DlfNext OpenAPI metadata API list](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/api-docs.json)
+- [DlfNext single API definition metadata](https://api.aliyun.com/meta/v1/products/DlfNext/versions/2025-03-10/apis/{ApiName}/api.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON or Markdown artifact files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated API inventory artifacts are written under output/aliyun-dlf-manage-next/ when the metadata discovery script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

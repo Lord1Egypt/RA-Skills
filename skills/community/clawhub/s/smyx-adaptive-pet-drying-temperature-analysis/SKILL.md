@@ -1,7 +1,7 @@
 ---
 name: "smyx-adaptive-pet-drying-temperature-analysis"
 description: "Triggers when a user provides a full-body image/video of a pet (multi-angle preferred) for analysis; supports local uploads or network URLs to call server-side APIs for breed/body-type recognition and fur-density estimation (sparse / medium / dense), then outputs a recommended drying temperature curve (temperature in ℃ + time in minutes) for personalized care to reduce scald risk (not a medical recommendation). Application scenarios: pet drying boxes, pet grooming salons, smart pet care devices. | 当用户提供宠物全身图像/视频（多角度最佳）时，触发本技能进行品种识别与毛发密度估算（稀疏/中等/浓密），输出个性化烘干温度曲线（温度 ℃ + 时长 分钟）参数，实现个性化护理，减少烫伤风险（不提供医疗建议）。应用场景：宠物烘干箱、宠物美容店、智能宠物护理设备。"
-version: "1.0.3"
+version: "1.0.18"
 license: "MIT-0"
 ---
 

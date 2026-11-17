@@ -1,53 +1,68 @@
-## Description: <br>
-Autopilot is a high-autonomy agent mode that proactively plans, executes, follows through, and uses memory-informed context fusion when privacy rules allow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autopilot is a high-autonomy agent mode that plans, executes, reviews, and follows through on user tasks using memory-aware context fusion, proactive idea generation, editorial judgment, and scheduled automation when available.
 
-## Publisher: <br>
-[hendr15k](https://clawhub.ai/user/hendr15k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hendr15k](https://clawhub.ai/user/hendr15k)
 
-## Use Case: <br>
-External users and developers use Autopilot when they want an agent to handle open-ended work end to end, including planning, execution, proactive follow-through, memory-aware context use when allowed, and concise status reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables very broad autonomous planning, execution, scheduling, memory access, and persistence behavior. <br>
-Mitigation: Install it only when high autonomy is intended, and restrict accessible memory files, directories, scheduling tools, persistent logs, and write scopes before activation. <br>
-Risk: Autonomous actions could modify files, create or delete scheduled jobs, store long-term memory, or act on ideas the user did not directly request. <br>
-Mitigation: Require explicit confirmation for file modifications, scheduled-job changes, long-term memory writes, and proactive actions outside the user's direct request. <br>
-Risk: Memory-informed operation can expose private context if workspace privacy boundaries are not enforced. <br>
-Mitigation: Permit memory reads only in contexts where the relevant private or shared memory files are allowed, and block private memory access in shared or group contexts. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to handle work end to end, including planning, execution, status reporting, quality review, proactive recommendations, and follow-up scheduling.
 
-## Reference(s): <br>
-- [Autonomous Operations](references/autonomous-operations.md) <br>
-- [Memory Mining](references/memory-mining.md) <br>
-- [Generative Intelligence](references/generative-intelligence.md) <br>
-- [Proactivity Catalog](references/proactivity-catalog.md) <br>
-- [Editorial Intelligence](references/editorial-intelligence.md) <br>
-- [Decision Matrix](references/decision-matrix.md) <br>
-- [Strategic Commissioning](references/strategic-commissioning.md) <br>
-- [Transparent Execution](references/transparent-execution.md) <br>
-- [Capability Building](references/capability-building.md) <br>
-- [Creative Engine](references/creative-engine.md) <br>
-- [Error Recovery](references/error-recovery.md) <br>
-- [Slash Commands](references/slash-commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with optional code blocks, shell commands, configuration snippets, and file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; concrete outputs depend on the user's task and available agent tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.0.1 (source: server release metadata) <br>
+Risk: The skill is designed for broad and persistent autonomy across memory, filesystem, cron, worklog, and profile context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where that scope is acceptable, and require explicit confirmation before file changes, cron changes, or future autonomous actions.
+
+Risk: Full-memory review can expose private or stale context if used in shared or sensitive environments.
+
+Mitigation: Limit activation to contexts with appropriate privacy boundaries, skip private memory in shared spaces, and review memory-derived conclusions before acting on them.
+
+Risk: Proactive execution and scheduled automation can continue work beyond the user's immediate prompt.
+
+Mitigation: Keep autonomous follow-through visible through status updates and logs, and disable or pause autonomy when ongoing action is not desired.
+
+## Reference(s):
+
+- [Autopilot Autonomous Operations Reference v9](references/autonomous-operations.md)
+- [Autopilot Memory Mining Reference v9.1](references/memory-mining.md)
+- [Autopilot Slash Command Reference v9](references/slash-commands.md)
+- [Autopilot Transparent Execution Reference v9](references/transparent-execution.md)
+- [Autopilot Generative Intelligence Reference v9](references/generative-intelligence.md)
+- [Autopilot Proactivity Catalog v9](references/proactivity-catalog.md)
+- [Autopilot Editorial Intelligence Reference v9](references/editorial-intelligence.md)
+- [Autopilot Decision Matrix v9](references/decision-matrix.md)
+- [Autopilot Strategic Commissioning Reference v9](references/strategic-commissioning.md)
+- [Autopilot Creative Engine Reference v8](references/creative-engine.md)
+- [Autopilot Capability Building Reference v9](references/capability-building.md)
+- [Autopilot Error Recovery Playbook v9](references/error-recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline commands, code blocks, file edits, plans, status updates, and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify files, maintain worklog and profile notes, propose or manage scheduled follow-ups, and continue autonomously within applicable system and privacy constraints.]
+
+## Skill Version(s):
+
+9.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

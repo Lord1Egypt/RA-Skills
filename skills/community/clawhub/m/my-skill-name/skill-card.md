@@ -1,39 +1,54 @@
-## Description: <br>
-Create, edit, improve, or audit AgentSkills and skill directories. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, improve, audit, validate, and package AgentSkills.
 
-## Publisher: <br>
-[crystal-k](https://clawhub.ai/user/crystal-k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crystal-k](https://clawhub.ai/user/crystal-k)
 
-## Use Case: <br>
-Developers and skill authors use this skill to create, edit, audit, validate, and package AgentSkills for Codex workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify local skill folders, scripts, and packaged archives. <br>
-Mitigation: Review target paths and generated files before running validation or packaging steps. <br>
-Risk: Bundled helper scripts may be run as part of skill validation and packaging workflows. <br>
-Mitigation: Run the workflow in a trusted workspace and review newly created scripts before execution. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design new AgentSkills, improve existing SKILL.md files, restructure skill resources, run lightweight validation, and package skills for distribution.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local skill folders, SKILL.md files, scripts, and .skill archives when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Generated or modified skills can contain incorrect, stale, or misleading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diffs to SKILL.md and bundled resources before packaging or installing generated skills.
+
+Risk: Packaging the wrong directory can include unrelated private files in a .skill archive.
+
+Mitigation: Point packaging only at the intended skill directory and inspect the package contents before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crystal-k/skills/my-skill-name)
+- [Publisher profile](https://clawhub.ai/user/crystal-k)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify skill directories and package .skill archives when the user requests implementation.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

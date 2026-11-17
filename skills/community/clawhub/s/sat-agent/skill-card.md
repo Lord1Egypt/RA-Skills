@@ -1,41 +1,59 @@
-## Description: <br>
-Run the pure-LLM variant of the QLCoder workflow for both CVE samples and local Web App repositories, with multi-profile taint-flow analysis for Java Web and Python Web projects without CodeQL/database build steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run the pure-LLM variant of the QLCoder workflow for both CVE samples and local Web App repositories, with multi-profile taint-flow source, sink, and sanitizer typing for Java Web and Python Web projects without CodeQL/database build steps.
 
-## Publisher: <br>
-[setg-git](https://clawhub.ai/user/setg-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[setg-git](https://clawhub.ai/user/setg-git)
 
-## Use Case: <br>
-Developers and security engineers use this skill to run pure-LLM CVE sample analysis or local Java/Python web application taint-flow triage. It helps produce source, sink, sanitizer, and prioritized finding summaries for manual security review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads repositories selected for analysis and may produce reports containing local code, dependency, or configuration details. <br>
-Mitigation: Run it only on repositories intended for scanning and review generated reports before sharing them. <br>
-Risk: The taint-flow and finding summaries are candidate analysis and may include false positives or miss exploitable paths. <br>
-Mitigation: Verify findings with manual tracing, targeted tests, or other security validation before relying on the results. <br>
+## Use Case:
 
+Developers and security engineers use this skill to run QLCoder pure-LLM analysis on CVE samples or local Java/Python web repositories and review generated taint-flow leads for XSS, SQL injection, and broken-access-control risks.
 
-## Reference(s): <br>
-- [Workflow](references/workflow.md) <br>
-- [Taint Profiles](references/taint_profiles.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON, markdown] <br>
-**Output Format:** [Markdown instructions with shell commands; generated analysis artifacts are JSON and Markdown reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON artifacts are treated as the source of truth, with Markdown reports for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Private source code may be included in prompts or generated reports depending on the local QLCoder configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the workflow only on repositories approved for that analysis environment and review generated artifacts before sharing them.
+
+Risk: Findings are heuristic taint-flow leads and may be incomplete or false positive, especially outside Ruoyi-style Java projects.
+
+Mitigation: Confirm exploitability with targeted trace review and tests before acting on or reporting a finding.
+
+Risk: The pure-LLM workflow does not provide CodeQL compilation, database analysis, or full dataflow proof.
+
+Mitigation: Use CodeQL or another validated analysis path when formal dataflow confirmation is required.
+
+## Reference(s):
+
+- [Workflow](artifact/references/workflow.md)
+- [Taint Profiles](artifact/references/taint_profiles.md)
+- [ClawHub Skill Page](https://clawhub.ai/setg-git/skills/sat-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Analysis, Markdown, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON/Markdown analysis artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are draft candidate analyses and report artifacts under runs/.../pure-llm/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

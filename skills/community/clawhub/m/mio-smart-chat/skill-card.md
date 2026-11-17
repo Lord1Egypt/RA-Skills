@@ -1,38 +1,55 @@
-## Description: <br>
-Mio智能聊天 learns user chat habits, detects likely idle states, starts proactive conversations, and routes task-like requests to sub-agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mio智能聊天 is a Chinese-language chat helper that learns local habit signals, detects idle states, starts proactive conversations, and classifies task-like requests for delegation.
 
-## Publisher: <br>
-[libaiqwq](https://clawhub.ai/user/libaiqwq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[libaiqwq](https://clawhub.ai/user/libaiqwq)
 
-## Use Case: <br>
-Users who want a Chinese chat companion can use this skill to receive proactive conversation prompts and have task-like messages classified for sub-agent handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently profiles chat timing, topics, and habits, which can expose sensitive behavioral patterns without clear user controls. <br>
-Mitigation: Install only after confirming the user consents to habit learning, can disable proactive messages, and can delete stored habit data. <br>
+## Use Case:
 
+External users and agent developers use this skill to provide Chinese-language companion chat, lightweight habit-aware idle detection, and task-intent routing to sub-agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/libaiqwq/mio-smart-chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text with structured task, status, and proactive-message responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store local habit and pending-task data for later chat and routing decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Habit learning can retain local chat-time, active-hour, topic, and mood-pattern history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or clear artifact/data/habits.json and disable habitLearning or freeDetection if local habit retention is not desired.
+
+Risk: Proactive chat and intent routing can activate unexpectedly or treat casual language as a task.
+
+Mitigation: Narrow triggers and disable taskDistribution or proactive settings when unexpected activation or delegation would be disruptive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/libaiqwq/skills/mio-smart-chat)
+- [Publisher profile](https://clawhub.ai/user/libaiqwq)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Chinese-language text responses with structured task, status, and initiation data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store local habit and task data when habit learning or task distribution is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

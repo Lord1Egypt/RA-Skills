@@ -1,43 +1,54 @@
-## Description: <br>
-Automate hospital appointment booking on the 医联 (Yilian) Android app using uiautomator2, covering hospital search, department selection, date/time slot selection, and confirmation without Appium. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through booking appointments at Shanghai municipal hospitals using the hospital platform in WeChat on a USB-connected Android phone.
 
-## Publisher: <br>
-[openlittlebear](https://clawhub.ai/user/openlittlebear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlittlebear](https://clawhub.ai/user/openlittlebear)
 
-## Use Case: <br>
-Developers and automation engineers use this skill to guide an agent through Android ADB/uiautomator2 workflows for booking doctor appointments in the 医联 (Yilian) app, including navigation, text input, schedule selection, SMS-code handling, and final confirmation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to submit a real medical appointment. <br>
-Mitigation: Require manual confirmation of the hospital, department, patient, date/time slot, SMS code, and final '确定预约' action before submission. <br>
-Risk: The setup may force-stop the 12306 app to avoid Android accessibility service conflicts. <br>
-Mitigation: Use only on a device where stopping 12306 is acceptable, and warn the user before running the force-stop command. <br>
-Risk: Android UI state, availability, or clickable containers may differ from the documented flow. <br>
-Mitigation: Inspect the current UI hierarchy or screenshot before each action, poll for schedule loading, and stop for user review when expected elements are missing. <br>
+## Use Case:
 
+People booking care in Shanghai and their authorized agents can use this skill to select a hospital, department and appointment slot, then confirm the booking with the user's visit card and SMS code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlittlebear/hospital-android-adb) <br>
-- [Publisher profile](https://clawhub.ai/user/openlittlebear) <br>
+### Deployment Geography for Use:
 
+Shanghai, China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing procedural guidance for controlling an Android device; final appointment submission should require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The agent can submit a real hospital appointment with a selected visit card, time slot and fee.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the user confirm the hospital, department, date, visit card and fee before final submission.
+
+Risk: Screenshots and logs may expose patient identity, medical details or SMS verification codes.
+
+Mitigation: Ask the user for the SMS code directly and avoid retaining screenshots or logs with names, ID numbers, phone numbers or codes.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/openlittlebear/skills/hospital-android-adb)
+- [Shanghai municipal hospital appointment platform](https://internethospital.shdc.org.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Text]
+
+**Output Format:** [Markdown and command-line text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appointment details and confirmation status should be reviewed with the user before submission.]
+
+## Skill Version(s):
+
+2.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

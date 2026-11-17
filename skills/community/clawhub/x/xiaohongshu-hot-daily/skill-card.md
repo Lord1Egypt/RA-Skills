@@ -1,41 +1,54 @@
-## Description: <br>
-Xiaohongshu Hot Daily fetches public Xiaohongshu Explore trending notes with a browser, categorizes them by topic, prints a ranked daily summary, and can export JSON reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public Xiaohongshu trending-note data with browser automation and can produce daily reports, summaries, and JSON exports for content operations.
 
-## Publisher: <br>
-[qq853632587](https://clawhub.ai/user/qq853632587) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mkt-agents](https://clawhub.ai/user/mkt-agents)
 
-## Use Case: <br>
-Content operators, analysts, and automation agents use this skill to collect a daily snapshot of public Xiaohongshu trending notes, categorize topics, and export summaries for editorial planning or lightweight trend monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser fetch failures can produce simulated fallback results that resemble a normal report. <br>
-Mitigation: Run the skill manually first, check stderr for the simulated-data message, and label or verify the data source before using exported reports for decisions. <br>
-Risk: The skill opens a public Xiaohongshu page with agent-browser/Chromium. <br>
-Mitigation: Use it only in environments where browser access to public webpages is acceptable, and follow site terms and local data-use policy. <br>
+## Use Case:
 
+External users and content operators use this skill to collect public Xiaohongshu trending notes, classify topics, generate concise summaries, and save trend data for daily monitoring.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qq853632587/xiaohongshu-hot-daily) <br>
-- [Xiaohongshu Explore](https://www.xiaohongshu.com/explore) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Console text with optional JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include ranked note titles, authors, like counts, categories, source URLs, timestamps, and an optional summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release metadata and package.json) <br>
+Risk: Mutable global npm tooling and an unpinned browser automation runtime can change behavior between installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment and pin package and browser-runtime versions where possible before operational use.
+
+Risk: Fallback reports may use simulated data when browser automation fails.
+
+Mitigation: Check run logs and saved report metadata before treating exported trend data as live Xiaohongshu data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mkt-agents/skills/xiaohongshu-hot-daily)
+- [Xiaohongshu public explore page](https://www.xiaohongshu.com/explore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown-style summaries, and optional JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include fetched note rank, title, author, like count, URL, category, timestamp, and summary text.]
+
+## Skill Version(s):
+
+3.1.0 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -71,6 +71,8 @@ mp2rss auth status -o json    # Agent 解析
   "source": "config",
   "apiUrl": "https://mp2rss.bugcode.dev",
   "feedKeyMasked": "abcdef***",
+  "name": "张三",
+  "email": "user@example.com",
   "lastLoginAt": 1705000000000,
   "lastVerifyAt": 1705000001000
 }
@@ -94,6 +96,8 @@ mp2rss auth status -o json    # Agent 解析
 | `source` | string | `"env"` / `"config"` / `"none"` |
 | `apiUrl` | string | 当前生效的 API URL |
 | `feedKeyMasked` | string | 已脱敏 Feed Key（仅前几位 + `***`） |
+| `name` | string? | 账号昵称；仅浏览器登录回调成功时落盘，`-k` / `--no-browser` 流程没有，`omitempty` 省略 |
+| `email` | string? | 账号邮箱；同 `name`，仅浏览器登录流程有 |
 | `lastLoginAt` | int64 | 最近登录时间，unix 毫秒 |
 | `lastVerifyAt` | int64 | 最近一次验证时间，unix 毫秒 |
 

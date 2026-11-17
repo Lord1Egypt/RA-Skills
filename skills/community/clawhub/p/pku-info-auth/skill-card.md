@@ -1,41 +1,49 @@
-## Description: <br>
-PKU unified credential management CLI (统一凭据管理) for authenticating with PKU services, managing stored credentials, and checking session status across related service CLIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PKU Info Auth helps agents and users authenticate with PKU services, manage stored credentials, and check session status without exposing passwords to the agent.
 
-## Publisher: <br>
-[wjsoj](https://clawhub.ai/user/wjsoj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wjsoj](https://clawhub.ai/user/wjsoj)
 
-## Use Case: <br>
-External users and agents use this skill to set up and check PKU authentication without exposing passwords to the agent. It guides secure credential storage through the OS keyring and helps agents trigger login flows for PKU services when sessions are missing or expired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles authentication setup for PKU services and may involve sensitive credentials or SMS codes. <br>
-Mitigation: Use `info-auth store` with the OS keyring, provide SMS codes only for the immediate login command, and avoid storing passwords in shell profiles, logs, or long-lived environment variables. <br>
-Risk: Environment-variable credentials can be exposed through process environments, shell history, or logs. <br>
-Mitigation: Prefer OS keyring-backed credentials and reserve `PKU_USERNAME`, `PKU_PASSWORD`, and `PKU_SMS_CODE` for short-lived automation where exposure is controlled. <br>
+## Use Case:
 
+Developers, students, and agents working with PKU CLI tools use this skill to set up credential storage, check PKU service sessions, and trigger auto-login flows while keeping passwords out of agent-visible prompts and command arguments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wjsoj/pku-info-auth) <br>
-- [Publisher profile](https://clawhub.ai/user/wjsoj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance should avoid exposing passwords and should prefer OS keyring storage over long-lived environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Stored PKU credentials could be used for unintended service logins if an agent is allowed to proceed without user awareness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run initial credential storage manually, confirm which PKU service an agent is logging into, and clear stored credentials with info-auth clear when they are no longer needed.
+
+## Reference(s):
+
+- [PKU Info Auth ClawHub listing](https://clawhub.ai/wjsoj/skills/pku-info-auth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and credential-handling rules]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is included in the skill artifact; guidance focuses on OS keyring storage, session checks, and user-controlled credential entry.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,60 @@
-## Description: <br>
-Generates professional investor-ready business plan sections including executive summary, market analysis, financial projections, and operations strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional business plan sections, including executive summary, market analysis, financial projections, and operations and go-to-market strategy, from user-supplied business details.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Founders, small business owners, freelancers, and students use this skill to draft business plan sections for lending, fundraising, grants, client proposals, and coursework. It provides structured prompts for executive summaries, market analysis, financial projections, and operations or go-to-market planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated market, competitive, and financial claims may be incomplete, outdated, or incorrect. <br>
-Mitigation: Verify market data, assumptions, financial projections, and citations independently before submitting a business plan to lenders, investors, or grant reviewers. <br>
-Risk: The optional paid done-for-you service may involve sharing nonpublic business details with the publisher. <br>
-Mitigation: Use that service only if the publisher is trusted and share only information appropriate for third-party review. <br>
-Risk: Investor-ready wording can make a plan sound more certain than the underlying evidence supports. <br>
-Mitigation: Review the final plan for balanced claims, realistic assumptions, and clear disclosure of uncertainty. <br>
+## Use Case:
 
+Entrepreneurs, founders, small business owners, students, and freelancers use this skill to draft investor- or lender-facing business plan sections from structured business inputs. The generated sections are drafts that should be reviewed for factual accuracy, calculations, legal requirements, and investor or lender expectations before real-world use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/business-plan-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/gitflopez) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Executive summary prompt](artifact/prompts/executive-summary.md) <br>
-- [Market analysis prompt](artifact/prompts/market-analysis.md) <br>
-- [Financial projections prompt](artifact/prompts/financial-projections.md) <br>
-- [Operations and go-to-market prompt](artifact/prompts/operations-gtm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown business plan sections generated from user-filled prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; users provide business details in bracketed fields and review generated content before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md, package.json) <br>
+Risk: Generated financial projections, market sizing, competitor analysis, or funding claims may be inaccurate, unsupported, or unsuitable for a real loan or investment process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as drafts and verify sources, assumptions, calculations, legal requirements, and lender or investor expectations before using them externally.
+
+Risk: Users may rely on polished business-plan prose without validating whether it reflects their actual business operations, traction, costs, or risks.
+
+Mitigation: Review every generated section against current business records and replace assumptions with documented facts before sharing the plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/business-plan-generator)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+- [README.md](README.md)
+- [SKILL.md](SKILL.md)
+- [Executive summary prompt](prompts/executive-summary.md)
+- [Market analysis prompt](prompts/market-analysis.md)
+- [Financial projections prompt](prompts/financial-projections.md)
+- [Operations and go-to-market prompt](prompts/operations-gtm.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown business-plan sections with headings, bullets, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; generated market and financial claims require user review before use in funding, loan, or legal contexts.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

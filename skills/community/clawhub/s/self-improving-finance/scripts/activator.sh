@@ -16,6 +16,6 @@ After completing this finance task, evaluate if extractable knowledge emerged:
 - Control weakness or regulatory gap? → LEARNINGS.md (control_weakness / regulatory_gap)
 
 ALWAYS ANONYMIZE: No real account numbers, bank details, client names, or specific figures.
-If recurring pattern (3+ periods/entities): promote to close checklist or control matrix.
+If a recurring pattern (3+ periods/entities): propose promotion to close checklist or control matrix.; apply only after explicit user approval.
 </finance-self-improvement-reminder>
 EOF

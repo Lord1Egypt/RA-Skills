@@ -1,37 +1,58 @@
-## Description: <br>
-Securely share your workspace with your owner via a remote VS Code environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Securely share a workspace through a temporary browser-based VS Code environment for remote inspection.
 
-## Publisher: <br>
-[mrbeandev](https://clawhub.ai/user/mrbeandev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrbeandev](https://clawhub.ai/user/mrbeandev)
 
-## Use Case: <br>
-Developers and operators use this skill to give a trusted owner temporary browser-based VS Code access for live inspection of a selected workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives remote browser-based access to a local workspace through a public tunnel and relies on external runtime code that is not included in the reviewed package. <br>
-Mitigation: Use it only when a trusted person needs access; review the external repository and start script first, serve the smallest sanitized directory, remove secrets and credentials, share the URL and password only with the intended recipient, and stop the tunnel immediately when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrbeandev/workspace-explorer) <br>
+## Use Case:
 
+Developers and agents use this skill to expose a chosen workspace in a browser-based IDE when the owner needs temporary live access to inspect files, install IDE extensions, or review code.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and terminal output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May provide a temporary public tunnel URL and generated password when the workspace server is started.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose the selected workspace through a public tunnel and remote IDE session.
+
+Mitigation: Use it only with workspaces that do not contain sensitive repositories, secrets, credentials, or private data, and stop the session promptly after inspection.
+
+Risk: The skill relies on remote code and downloaded binaries at run time.
+
+Mitigation: Prefer reviewed versions that bundle code, pin exact dependency versions, and verify downloaded binaries with checksums or signatures before use.
+
+Risk: A tunnel left active longer than intended can extend remote access to the workspace.
+
+Mitigation: Use the status check and heartbeat behavior to monitor active sessions and remind the owner when a session has been running too long.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrbeandev/skills/workspace-explorer)
+- [Publisher profile](https://clawhub.ai/user/mrbeandev)
+- [Repository listed in skill artifact](https://github.com/mrbeandev/workspace-explorer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and status guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a temporary public workspace URL and password when its referenced start script is run.]
+
+## Skill Version(s):
+
+1.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

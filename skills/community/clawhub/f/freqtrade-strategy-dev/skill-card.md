@@ -1,42 +1,56 @@
-## Description: <br>
-Develop, iterate, and improve Freqtrade cryptocurrency trading strategies by writing, analyzing, and refining strategy logic, indicators, entry and exit rules, and testing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develops, iterates, and improves Freqtrade cryptocurrency trading strategies with guidance for strategy anatomy, configuration, entry and exit rules, indicators, backtesting, and dry-run validation.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and traders use this skill to create, backtest, diagnose, and iterate Freqtrade cryptocurrency trading strategies before considering dry-run or live trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live cryptocurrency trading can lose funds through market movement, fees, latency, slippage, or incorrect strategy behavior. <br>
-Mitigation: Use the skill for writing, backtesting, and dry-run testing first; move to live trading only after explicit review and with limited position sizes. <br>
-Risk: Backtest results and indicator examples may not predict future market behavior. <br>
-Mitigation: Test strategies across bull, bear, and sideways markets, compare against a baseline, and review drawdown, win rate, average loss, and slippage before relying on results. <br>
+## Use Case:
 
+Developers and Freqtrade users use this skill to draft, diagnose, and refine cryptocurrency trading strategies through indicator selection, risk controls, backtesting, and dry-run iteration.
 
-## Reference(s): <br>
-- [Indicators Guide](references/indicators-guide.md) <br>
-- [Strategy Iteration Workflow](references/iteration-workflow.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djc00p/freqtrade-strategy-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes Freqtrade is run with Docker or docker-compose and emphasizes backtesting, dry-run testing, and versioned strategy iteration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Trading examples may be mistaken for ready-to-run live trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as educational starting points and require backtesting, dry-run validation, and human review before live use.
+
+Risk: Generic trigger phrases may activate the skill for unrelated strategy questions.
+
+Mitigation: Narrow activation phrases to Freqtrade-specific strategy development requests.
+
+## Reference(s):
+
+- [Indicators Guide](references/indicators-guide.md)
+- [Strategy Iteration Workflow](references/iteration-workflow.md)
+- [ClawHub Skill Page](https://clawhub.ai/djc00p/skills/freqtrade-strategy-dev)
+- [Publisher Profile](https://clawhub.ai/user/djc00p)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Freqtrade strategy code, configuration snippets, indicator choices, backtesting commands, and iteration checklists.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

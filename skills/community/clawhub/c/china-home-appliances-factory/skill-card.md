@@ -1,40 +1,51 @@
-## Description: <br>
-Comprehensive home appliances industry factory guide for international buyers - provides detailed information about China's major appliances, kitchen appliances, and small appliances manufacturing clusters, supply chain structure, regional specializations, and industry trends (2026 updated). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive home appliances industry factory guide for international buyers - provides detailed information about China's major appliances, kitchen appliances, and small appliances manufacturing clusters, supply chain structure, regional specializations, and industry trends (2026 updated).
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's home-appliances manufacturing clusters, supply chain structure, subsector patterns, and supplier evaluation considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the release suspicious and describes high-impact maintainer or moderation workflows with an autoreview helper that may bypass normal safeguards. <br>
-Mitigation: Install only in a trusted maintainer or developer environment; review helper behavior before running it and require explicit confirmation before moderation, publishing, or GitHub write actions. <br>
-Risk: The skill provides sourcing and market intelligence that may influence supplier decisions. <br>
-Mitigation: Verify market data, supplier claims, certifications, and compliance requirements against current authoritative sources before commercial action. <br>
+## Use Case:
 
+External buyers and sourcing teams use this skill to understand China's home-appliance manufacturing clusters, supply-chain structure, subsector coverage, and supplier evaluation considerations. Agents can answer natural-language sourcing questions using bundled static reference data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-home-appliances-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, structured data] <br>
-**Output Format:** [Markdown or JSON-like structured responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cluster-level industry intelligence without individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Industry figures, supplier advice, certifications, and regulatory requirements may be stale or incomplete because the skill uses static bundled data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as reference guidance and independently verify market data, suppliers, certifications, and regulatory requirements before purchasing or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-home-appliances-factory)
+- [Bundled home-appliances data](artifact/data.json)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text responses from bundled JSON reference data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static cluster-level industry intelligence; no individual factory contacts are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Provides healthcare software development guidance for interoperability, regulatory compliance, EHR/EMR systems, medical device integration, and healthcare analytics and AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a healthcare technology specialist with deep expertise in medical software development, regulatory compliance, interoperability.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft and review healthcare software patterns involving FHIR, HL7, DICOM, EHR integrations, compliance controls, medical devices, and healthcare analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Healthcare software guidance can be incomplete or misapplied in regulated environments. <br>
-Mitigation: Validate recommendations with qualified security, privacy, legal, compliance, and clinical reviewers before deployment. <br>
-Risk: Example code may not be production-ready for handling protected health information. <br>
-Mitigation: Review PHI logging, credential handling, encryption, retention, access controls, and audit behavior before adapting examples. <br>
-Risk: Healthcare compliance and consent requirements vary by jurisdiction and use case. <br>
-Mitigation: Confirm HIPAA, GDPR, telemedicine recording consent, and other regional requirements for the intended deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill for healthcare software development guidance across interoperability, regulatory compliance, EHR/EMR systems, medical device integration, telemedicine, analytics, and clinical AI workflows.
 
-## Reference(s): <br>
-- [Healthcare Dev code examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-healthcare-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with explanatory text and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include healthcare architecture, compliance, interoperability, security, and implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Examples and generated guidance may appear production-ready while handling patient data, recordings, billing, and clinical records with missing or overstated safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as illustrative reference material; qualified security, clinical, legal, and compliance experts should review and harden any healthcare implementation before it touches real patient data or operational systems.
+
+Risk: Clinical decision support, medication checks, imaging, and telemedicine workflows can create patient-safety and regulatory exposure if implemented without validation.
+
+Mitigation: Validate clinical logic, consent handling, audit trails, de-identification, billing behavior, and jurisdiction-specific compliance requirements before deployment.
+
+## Reference(s):
+
+- [Healthcare Dev Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-healthcare-dev)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with TypeScript code examples and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Healthcare code and architecture guidance should be reviewed before use with patient data or regulated workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

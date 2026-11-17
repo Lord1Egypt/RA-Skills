@@ -1,42 +1,52 @@
-## Description: <br>
-Feishu At Mention helps agents format Feishu @ mentions correctly for text, rich text, and interactive card messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in formatting Feishu @mentions for text, rich text, and interactive card messages so mentions trigger correctly.
 
-## Publisher: <br>
-[vision-qiu](https://clawhub.ai/user/vision-qiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[vision-qiu](https://clawhub.ai/user/vision-qiu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators who prepare Feishu bot or app messages use this skill to choose the correct @mention syntax for text, rich text, and interactive card messages, including mentions of specific members or everyone in a chat.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Looking up Feishu chat members when an open_id is missing can expose chat member identity data to the active Feishu integration.
+
+Mitigation: Use the skill only in workspaces where the agent is allowed to prepare Feishu messages and access member identity data for the target chat.
+
+Risk: Using @everyone or the wrong mention format may fail or notify a broader group than intended.
+
+Mitigation: Confirm the target message type, recipient identifiers, and chat permissions before sending Feishu messages that include mentions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and automation agents use this skill when composing Feishu messages that need to mention a specific group member or all members. It provides the correct mention syntax for text, rich text, and interactive card message payloads. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Text, Markdown, JSON, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Using @all may notify an entire Feishu group. <br>
-Mitigation: Use @all only when broad notification is intended and the group permissions allow it. <br>
-Risk: open_id values or member lookup results may expose identifiers outside the intended workflow. <br>
-Mitigation: Limit member lookups and share open_id values only within the relevant Feishu automation flow. <br>
-Risk: Mixing mention formats across text, rich text, and card messages can prevent the mention notification from working. <br>
-Mitigation: Choose the mention tag format that matches the Feishu message type before sending. <br>
+**Output Format:** [Markdown guidance with JSON snippets and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vision-qiu/feishu-at-mention) <br>
+**Other Properties Related to Output:** [Includes separate Feishu mention formats for text, rich text, and interactive card messages.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no executable behavior is included in the artifact.] <br>
+0.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,6 @@
 ---
 name: tcm-face-tongue
 description: 中医面舌辨证。调用 RageHealth 开放接口，对人脸 / 舌头图片做中医辨证。包含「望面」(`face-tcm-analyse`)、「望舌」(`tongue-diagnosis`)、「面舌辨证」(`comprehensive-interpretation`) 三个子接口，输出体质（平和/气虚/阳虚/阴虚/痰湿/湿热/血瘀/气郁/特禀/气阴两虚）、五脏（心肝脾肺肾）阴阳得分、症状、面色/舌象分类、推荐食谱、综合解读等。当用户上传人脸/舌头照片要求"中医辨证"、"看体质"、"望面望舌"、"面诊舌诊"、"五脏分析"时使用此技能。
-version: 1.0.0
 ---
 
 # 中医面舌辨证（tcm-face-tongue）
@@ -18,7 +17,7 @@ version: 1.0.0
 3. 只有舌头 → **tongue**
 
 ## 接口元数据
-- **网关**：`https://facepro.ragehealth.cn/openapi-test`（**测试环境**，正式环境为 `https://gateway.ragehealth.cn/openapi-prod`）
+- **网关**：https://gateway.ragehealth.cn/openapi-prod
 - **请求方式**：`POST` + `multipart/form-data`
 - **认证头**：`AccessKey`、`Signature`（每次调用前重新生成）
 - **三个接口**：
@@ -73,7 +72,7 @@ python scripts/call_tcm.py combined \
   --output combined.json
 ```
 
-凭证由脚本自动从环境变量 `TCM_AK` / `TCM_SK` 读取，**不要**作为参数传入。首次使用前需前往 <https://chayan-test.ragehealth.cn/client> 注册申请 AK/SK，写入 `scripts/.env`（可与 skin-pro 共用同一对凭证）。脚本内部会生成 `Signature` 并以 `multipart/form-data` 提交。
+凭证由脚本自动从环境变量 `TCM_AK` / `TCM_SK` 读取，**不要**作为参数传入。首次使用前需前往 <https://ragehealth.cn/client> 注册申请 AK/SK，写入 `scripts/.env`（可与 skin-pro 共用同一对凭证）。脚本内部会生成 `Signature` 并以 `multipart/form-data` 提交。
 
 ## 执行步骤
 

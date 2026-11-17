@@ -1,6 +1,39 @@
 {
-  "ownerId": "kn74jky1rsvtnqetbyxq14xyg982xf8k",
-  "slug": "memory-workflow",
+  "name": "memory-workflow",
   "version": "1.0.1",
-  "publishedAt": 1773552429451
+  "description": "记忆管理工作流 - 会话读档、每日摘要、实时写入，解决 AI 助手'失忆'问题",
+  "homepage": "https://github.com/openclaw/openclaw",
+  "author": "小吴 (ENFP 快乐小狗)",
+  "license": "MIT",
+  "keywords": ["memory", "workflow", "productivity", "assistant"],
+  "emoji": "📒",
+  "requires": {
+    "bins": ["bash", "cron"]
+  },
+  "install": [
+    {
+      "id": "setup",
+      "kind": "script",
+      "script": "scripts/install.sh",
+      "label": "配置记忆管理工作流"
+    }
+  ],
+  "files": [
+    "SKILL.md",
+    "scripts/install.sh",
+    "scripts/daily-summary.sh",
+    "scripts/weekly-review.sh",
+    "templates/daily-note-template.md"
+  ],
+  "changelog": {
+    "1.0.0": {
+      "date": "2026-03-15",
+      "changes": [
+        "初始版本发布",
+        "包含会话读档、每日摘要、实时写入、记忆维护四大核心机制",
+        "支持可配置的执行时间和超时机制",
+        "提供完整的安装脚本和文档"
+      ]
+    }
+  }
 }

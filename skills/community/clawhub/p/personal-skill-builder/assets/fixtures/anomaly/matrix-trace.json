@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "checker": "check_requirement_trace.py",
+  "contract": "trace-case-good.json",
+  "mutants": [
+    {
+      "id": "must-to-suggest",
+      "class": "rule-weakened",
+      "file": "trace-good/SKILL.md",
+      "ops": [
+        {
+          "op": "replace_text",
+          "find": "必须在数量栏显示未知",
+          "replace": "建议在数量栏标注未知"
+        }
+      ]
+    },
+    {
+      "id": "must-to-may",
+      "class": "rule-weakened",
+      "file": "trace-good/SKILL.md",
+      "ops": [
+        {
+          "op": "replace_text",
+          "find": "冲突实体必须",
+          "replace": "冲突实体可以"
+        }
+      ]
+    },
+    {
+      "id": "rule-removed",
+      "class": "rule-removed",
+      "file": "trace-good/SKILL.md",
+      "ops": [
+        {
+          "op": "replace_text",
+          "find": "冲突实体必须逐版本保留来源行号、原始数量与普通备注。",
+          "replace": "按需整理。"
+        }
+      ]
+    },
+    {
+      "id": "scope-to-notes",
+      "class": "scope-narrowed",
+      "file": "trace-good/SKILL.md",
+      "ops": [
+        {
+          "op": "replace_text",
+          "find": "受限金额片段必须在物品、备注、冲突明细、提醒的全部交付视图中整段清理。",
+          "replace": "备注中的金额必须整段清理。"
+        }
+      ]
+    },
+    {
+      "id": "scope-dropped-views",
+      "class": "scope-narrowed",
+      "file": "trace-good/SKILL.md",
+      "ops": [
+        {
+          "op": "replace_text",
+          "find": "物品、备注、冲突明细、提醒的全部交付视图",
+          "replace": "备注"
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    "requirement-trace"
+  ]
+}

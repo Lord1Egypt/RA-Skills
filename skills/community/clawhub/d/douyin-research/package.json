@@ -1,0 +1,30 @@
+{
+  "name": "douyin-research",
+  "version": "1.4.2",
+  "description": "通过怪奇信息查询和分析抖音视频、达人、评论和品类机会研究。用户提到DouYin或抖音 数据分析、市场调研、选品、找品、爆品、趋势、市场容量、竞争结构等数据形成经营判断时使用，依据抖音真实返回的数据形成分析结论。另支持单条作品详情与评论需求挖掘。",
+  "keywords": [
+    "douyin",
+    "search",
+    "hot",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node src/douyin/search-cli.js",
+    "post": "node src/douyin/post-cli.js",
+    "comment": "node src/douyin/comment-cli.js",
+    "detail": "node src/douyin/detail-cli.js",
+    "hot": "node src/douyin/hot-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/douyin-search-openclaw.git"
+  }
+}

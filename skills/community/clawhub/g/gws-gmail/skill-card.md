@@ -1,40 +1,54 @@
-## Description: <br>
-Gmail: Send, read, and manage email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gmail: Send, read, and manage email.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Agents and users use this skill to inspect Gmail commands, send and read messages, manage drafts, labels, settings, threads, and mailbox watches through the `gws` CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authenticated Gmail mailbox control. <br>
-Mitigation: Install only if the `gws` CLI is trusted, verify the Gmail account and OAuth scopes in use, and require explicit confirmation before sending, forwarding, replying, changing settings, deleting mail, or watching a mailbox. <br>
-Risk: Mailbox watch or streaming setup can continue after the immediate task is complete. <br>
-Mitigation: Disable watch or streaming configuration when it is no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect Gmail commands and operate Gmail resources through the gws CLI, including sending, reading, triaging, forwarding, watching, and managing mailbox resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/gws-gmail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the `gws` CLI and an authenticated Gmail account with appropriate OAuth scopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.14 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The skill can let the gws CLI access and modify Gmail data, including real mailbox state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts where Gmail access is intended, and review the Google account and OAuth scopes configured for gws before use.
+
+Risk: Send, settings, watch, forwarding, and reply operations can affect live email behavior.
+
+Mitigation: Inspect command schemas before execution, review generated parameters, and require human approval for outbound or mailbox-changing actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-gmail)
+- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and appropriate Google Workspace or Gmail account authorization.]
+
+## Skill Version(s):
+
+1.0.14 (source: server release metadata); artifact metadata version 0.22.5
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Humanize French ecommerce copy to remove generic AI tone while preserving clarity, persuasion, and compliance awareness for product pages, ads, customer replies, and ecommerce captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanize French ecommerce copy to remove generic AI tone while preserving clarity, persuasion, and compliance awareness. Best for product pages, ads, customer replies, and ecommerce captions written in French.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, marketers, and support teams use this skill to rewrite French product, ad, caption, and customer-reply copy so it sounds more natural while preserving offer intent and safer wording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten ecommerce copy can introduce inaccurate claims, exaggerated benefits, or wording that does not fit a brand, platform, or regulated-product requirement. <br>
-Mitigation: Review generated copy before use for factual accuracy, truthful advertising claims, brand fit, and applicable compliance requirements. <br>
+## Use Case:
 
+External ecommerce operators, marketers, and support teams use this skill to make French product pages, ads, captions, and customer replies sound more natural while preserving the core offer and safer wording.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown sections with rewritten French copy, alternatives, tone issues, and safer wording swaps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [French-language ecommerce copy only; users should review factual claims, brand fit, and platform or regulated-product requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat the skill as translation, bilingual localization, or regulated compliance review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for French ecommerce copy humanization and route legal, medical, or other high-stakes claims to separate qualified review.
+
+Risk: Humanizing copy can accidentally exaggerate product benefits or introduce unsupported claims.
+
+Mitigation: Preserve the original offer and proof direction, avoid claim invention, and use the skill's risk-safe wording swaps to soften risky phrases.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sections with French copy rewrites, alternatives, risk-safe wording swaps, and usage notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output should remain in French and should not be used for translation, bilingual localization, or regulated compliance review.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

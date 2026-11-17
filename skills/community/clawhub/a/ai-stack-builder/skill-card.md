@@ -1,39 +1,53 @@
-## Description: <br>
-Builds a personalized AI tool stack based on a user's role, goals, workflows, and budget. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a personalized AI tool stack based on role, goals, workflows, and budget, with specific free and paid recommendations by category.
 
-## Publisher: <br>
-[RogerYelvington](https://clawhub.ai/user/RogerYelvington) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogeryelvington](https://clawhub.ai/user/rogeryelvington)
 
-## Use Case: <br>
-External users, employees, creators, founders, and developers use this skill to choose a focused AI productivity stack for their role, workflows, and monthly budget. It collects a short profile, recommends one tool per relevant category, and returns a copy-pasteable stack with costs and setup steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations include third-party AI services and pricing that may change. <br>
-Mitigation: Verify current pricing, privacy terms, and vendor fit before acting on recommendations. <br>
-Risk: Users may enter confidential, regulated, copyrighted, customer, or third-party material into external AI tools. <br>
-Mitigation: Use only approved vendors and authorized data, and avoid sharing sensitive content with external AI services. <br>
+## Use Case:
 
+External users and professionals use this skill to choose a focused AI tool stack for their role, workflows, and monthly budget. It is intended for users starting from scratch, changing roles, or replacing existing productivity tools.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendation with tables, setup steps, and short guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include budget estimates and third-party tool links; values should be checked before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter is 1.0.0) <br>
+Risk: The skill contains opinionated default vendor suggestions that may over-promote specific tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against the user's role, workflows, budget, and current market requirements before acting on them.
+
+Risk: Recommended services may handle inboxes, calendars, meeting transcripts, code, customer conversations, notes, SOPs, or videos.
+
+Mitigation: Review each service's privacy, retention, model-training, and compliance terms before connecting sensitive personal or business data.
+
+## Reference(s):
+
+- [Ai Stack Builder on ClawHub](https://clawhub.ai/rogeryelvington/skills/ai-stack-builder)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown recommendation with tables, setup steps, budget totals, and concise tool rationale]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include free and paid third-party tool recommendations, estimated monthly spend, quick-start actions, and optional tool deep dives.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence; artifact frontmatter version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Creates OpenClaw cron jobs for goal-driven reminders that prompt an agent to act and then delete the cron job when complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal Task helps an agent create a delayed, goal-oriented cron task, act on the task when triggered, and delete the cron job after completion.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and operators use this skill to schedule delayed or recurring goal reminders for an OpenClaw agent, such as follow-ups that should continue until the objective is complete and the cron job is removed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local OpenClaw gateway token and can create persistent recurring jobs. <br>
-Mitigation: Install only when this token use is acceptable, retain returned job IDs, and remove jobs promptly after completion. <br>
-Risk: Incorrect AGENT_SESSION_KEY or FEISHU_GROUP_ID values can schedule reminders for the wrong agent or group. <br>
-Mitigation: Verify both values before creating a goal task. <br>
-Risk: Untrusted task text may be passed into shell-generated JSON. <br>
-Mitigation: Avoid untrusted task descriptions until input handling safely encodes all values. <br>
+## Use Case:
 
+Developers and agent operators use this skill to schedule delayed follow-up tasks or reminders for an OpenClaw agent, then remove the cron job once the goal is complete.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/axelhu/goal-task) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown guidance with shell command examples and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates OpenClaw cron jobs and returns job identifiers that must be retained for cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version and artifact _meta.json) <br>
+Risk: The helper reads the local OpenClaw gateway token and can create, update, and delete persistent remote cron jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where that token access and remote scheduling behavior are acceptable, and check for stale goal-task cron jobs after use.
+
+Risk: Crafted task text can cause unintended local code execution during the script's JSON/Python construction.
+
+Mitigation: Do not pass untrusted task text to goal_task until the JSON/Python construction is fixed.
+
+## Reference(s):
+
+- [Goal Task on ClawHub](https://clawhub.ai/axelhu/skills/goal-task)
+- [axelhu ClawHub publisher profile](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command output strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The sourced shell helper returns a cron job ID for created goal tasks and an ok/error-style result for deletion.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Generates unit tests by analyzing code logic and creating test cases for pytest, JUnit, Jest, and other common frameworks, with support for coverage reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates unit tests by analyzing code logic and producing pytest, JUnit, Jest, and related framework test cases, with support for coverage report generation.
 
-## Publisher: <br>
-[zgbin](https://clawhub.ai/user/zgbin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zgbin](https://clawhub.ai/user/zgbin)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate unit tests, boundary-condition checks, exception tests, test documentation, and coverage-report commands for new, legacy, or refactored code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated tests or coverage commands can write project files or introduce misleading assertions if accepted without review. <br>
-Mitigation: Use dry-run first, scope the path and output directory carefully, and review generated tests before running coverage or committing changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate unit tests and coverage reports for new features, legacy code, refactoring, and code review workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zgbin/auto-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide generation of test files and coverage reports; review generated tests before running coverage or committing changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated tests or coverage reports may write files into a project workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in dry-run or preview mode first, then review diffs before committing generated tests or reports.
+
+Risk: Generated tests may not fully capture intended behavior or edge-case expectations.
+
+Mitigation: Review generated assertions and add project-specific cases before relying on the tests in CI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zgbin/skills/auto-test)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with generated test code examples, shell commands, configuration options, and coverage report guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create test files and coverage reports in the target workspace; preview generated changes with dry-run before committing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

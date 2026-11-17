@@ -1,6 +1,50 @@
 {
-  "ownerId": "kn738d2e8mv17rqpeh0p4j3gm182xx55",
-  "slug": "a-stock-research",
+  "name": "a-stock-research",
+  "description": "Comprehensive A-share (A 股) information gathering and analysis skills for Chinese stock market.",
+  "author": "托马斯",
   "version": "1.0.0",
-  "publishedAt": 1774960066861
+  "installed_skills": [
+    {
+      "name": "akshare-stock",
+      "slug": "akshare-stock",
+      "rating": 1.086,
+      "data_source": "AkShare (开源)",
+      "features": ["A 股行情", "财务数据", "板块信息"]
+    },
+    {
+      "name": "china-stock-analysis",
+      "slug": "china-stock-analysis",
+      "rating": 3.590,
+      "data_source": "中国金融市场",
+      "features": ["A 股/港股分析", "投资建议", "市场趋势"]
+    },
+    {
+      "name": "stock-watcher",
+      "slug": "stock-watcher",
+      "rating": 3.649,
+      "data_source": "10jqka.com.cn",
+      "features": ["自选股管理", "性能总结", "实时监控"]
+    },
+    {
+      "name": "stock-analysis",
+      "slug": "stock-analysis",
+      "rating": 3.699,
+      "data_source": "Yahoo Finance",
+      "features": ["投资组合", "评分系统", "趋势检测"]
+    }
+  ],
+  "commands": {
+    "akshare": "npx akshare-stock get_price/financials/sector_info",
+    "china": "npx china-stock-analysis query/analyze/full_report",
+    "watcher": "npx stock-watcher add/list/summary",
+    "analysis": "npx stock-analysis portfolio/sentiment"
+  },
+  "data_sources": ["AkShare", "10jqka.com.cn", "Yahoo Finance", "中国金融市场"],
+  "use_cases": [
+    "查询股票实时行情",
+    "分析财务数据",
+    "监控自选股",
+    "投资组合管理",
+    "市场趋势分析"
+  ]
 }

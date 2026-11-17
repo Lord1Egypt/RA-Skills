@@ -1,41 +1,56 @@
-## Description: <br>
-Check for co-authorship conflicts between authors and suggested reviewers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check for co-authorship conflicts between authors and suggested reviewers.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Editors, journal staff, and researchers use this skill to compare proposed reviewers against manuscript authors using supplied names and optional publication CSV records before making peer-review assignments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill processes reviewer, author, and publication data in a local workspace.
+
+Mitigation: Run it in a controlled workspace and avoid sharing generated conflict reports in public or collaborative locations.
+
+Risk: Conflict results are advisory and may be affected by documented reliability issues in the demo path and unused institutional check.
+
+Mitigation: Have an editor or reviewer verify flagged and unflagged conflicts against authoritative publication and institutional records before making decisions.
+
+Risk: The publications option reads a user-supplied local CSV path.
+
+Mitigation: Use a controlled CSV path and review input files before execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Editors, journal staff, and research workflow operators use this skill to compare submitted authors with suggested reviewers and flag potential co-authorship conflicts before peer review assignments. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that an autoreview helper can default to broad full-access agent execution and may share local diffs with fallback reviewers. <br>
-Mitigation: Review the helper before installation or invocation, run it with --no-yolo or AUTOREVIEW_YOLO=0, and disable automatic fallback reviewers for sensitive repositories. <br>
-Risk: Local diffs or input files may contain sensitive information. <br>
-Mitigation: Avoid running the skill where sensitive local changes or private review data are present, and restrict use of moderation commands to authorized staff with explicit targets and reasons. <br>
+**Output Format:** [Plain-text CLI report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Conflict Of Interest Checker on ClawHub](https://clawhub.ai/AIPOCH-AI/conflict-of-interest-checker) <br>
-- [AIPOCH-AI publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
+**Other Properties Related to Output:** [Advisory conflict findings and reviewer recommendations based on provided author, reviewer, and publication inputs.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text report with conflict findings and reviewer recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts comma-separated authors and reviewers, with an optional CSV publication file.] <br>
+0.1.4 (source: server release evidence; artifact frontmatter lists 1.0.0)
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

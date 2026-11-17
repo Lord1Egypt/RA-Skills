@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Payment Policy"
+  short_description: "Validate paid output before agents accept it"
+  default_prompt: "Use $agent-payment-policy to bind and validate a buyer-owned output contract for this paid agent request."

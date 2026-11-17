@@ -1,40 +1,54 @@
-## Description: <br>
-定期监控投资组合，检查持仓公司基本面变化，生成周报 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+定期监控投资组合，检查持仓公司基本面变化，生成周报。
 
-## Publisher: <br>
-[jearrylee](https://clawhub.ai/user/jearrylee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jearrylee](https://clawhub.ai/user/jearrylee)
 
-## Use Case: <br>
-Investors and portfolio owners use this skill to review holdings, monitor company fundamentals, valuation changes, weekly news, and risk signals, and generate recurring portfolio reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive portfolio holdings and may produce buy, sell, or allocation suggestions. <br>
-Mitigation: Keep recurring checks under user control and treat suggestions as research input rather than professional financial advice. <br>
-Risk: The skill may rely on external market, filing, or news data sources selected by the agent. <br>
-Mitigation: Confirm which external sources are queried and review the data before acting on generated reports. <br>
+## Use Case:
 
+External users can use this skill to review portfolio holdings, monitor fundamentals, valuation changes, weekly news, risk signals, and suggested portfolio adjustments. It is intended to produce informational investment monitoring reports, not automatic trading actions.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/jearrylee/j-portfolio-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown portfolio monitoring report with tables and checklist-style findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include portfolio summaries, holding-level analysis, valuation comparisons, news monitoring, risk alerts, and add/reduce position suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill may process sensitive portfolio holdings and investment preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm with the user before sharing holdings or other sensitive financial information with external financial or news providers.
+
+Risk: Generated buy, sell, add, reduce, or hold suggestions may be mistaken for automatic trading instructions.
+
+Mitigation: Treat recommendations as informational analysis and require user review before any portfolio action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jearrylee/skills/j-portfolio-monitor)
+- [Publisher profile](https://clawhub.ai/user/jearrylee)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown portfolio monitoring report with tables and checklist-style findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include holdings summaries, valuation comparisons, news impact summaries, risk alerts, and informational add/reduce/hold suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

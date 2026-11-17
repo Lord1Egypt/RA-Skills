@@ -1,42 +1,57 @@
-## Description: <br>
-Operates Trello through the OOMOL oo CLI for reading, creating, updating, and deleting Trello data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trello (trello.com). Use this skill for ANY Trello request — reading, creating, updating, and deleting data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate their Trello boards, lists, cards, labels, members, comments, and checklists through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform write and destructive Trello actions through an authenticated OOMOL connection. <br>
-Mitigation: Confirm the exact target, payload, and expected effect with the user before changing or removing Trello data. <br>
-Risk: First-time use may fail if the oo CLI is not installed, the user is not signed in, or Trello is not connected. <br>
-Mitigation: Run setup steps only after an auth, connection, or missing-command failure and direct the user to complete the matching OOMOL setup. <br>
+## Use Case:
 
+Trello users use this skill to search and read boards, cards, members, and checklists, or to create and update them through their connected account. Confirm the exact payload and effect before writes, and get explicit approval before destructive actions.
 
-## Reference(s): <br>
-- [ClawHub Trello skill listing](https://clawhub.ai/oomol/oo-trello) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Trello homepage](https://trello.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for Trello connector actions and confirmation handling; connector responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Setup can run an unverified remote installer automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the CLI before installation, and check its automatic agent-skill installation behavior.
+
+Risk: Changes made through Trello actions can alter or remove board data.
+
+Mitigation: Keep the skill's approval requirements: confirm the exact payload and effect before writes, and get explicit approval before destructive actions.
+
+## Reference(s):
+
+- [Trello](https://trello.com)
+- [Trello REST API documentation](https://developer.atlassian.com/cloud/trello/rest/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [OOMOL Trello connection setup](https://console.oomol.com/connections/trello)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON data, Guidance]
+
+**Output Format:** [oo CLI commands with JSON payloads and JSON connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read actions return Trello data; write and destructive actions require confirmation as described in the skill.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

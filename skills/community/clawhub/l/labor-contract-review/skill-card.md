@@ -1,43 +1,55 @@
-## Description: <br>
-Reviews labor contract clauses for compliance and risk, including required terms, probation, salary, non-compete, and termination clauses, then produces a structured audit report with risk levels and suggested revisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Chinese-language labor contracts clause by clause, marks compliance and risk issues, and produces structured modification suggestions for PRC labor-contract scenarios.
 
-## Publisher: <br>
-[wangyue71](https://clawhub.ai/user/wangyue71) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyue71](https://clawhub.ai/user/wangyue71)
 
-## Use Case: <br>
-Employees, workers, and their advisors use this skill to review PRC labor contracts before signing or during employment risk checks. It identifies missing required terms, flags risky clauses, and suggests edits for a structured contract review report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with analysis focused on PRC labor contract contexts <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contracts may contain personal identifiers or confidential employment details. <br>
-Mitigation: Redact unnecessary personal details before use, especially ID numbers, addresses, signatures, bank details, phone numbers, and email addresses. <br>
-Risk: The skill may produce legal-risk guidance that is incomplete, outdated, or unsuitable for a specific dispute. <br>
-Mitigation: Use the output for clause-level review only and consult a qualified lawyer or public legal service before making legal decisions. <br>
+## Use Case:
 
+External users and employees use this skill to review PRC labor contracts before signing or during employment, checking required terms, trial periods, salary clauses, non-compete terms, termination language, and related risk clauses.
 
-## Reference(s): <br>
-- [Contract Review Guide](references/contract_review_guide.md) <br>
-- [Risk Clauses Reference](references/risk_clauses.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangyue71/skills/labor-contract-review) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangyue71) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes clause-level findings, risk levels, issue descriptions, and suggested revisions; not a substitute for legal advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Labor contracts may contain ID numbers, addresses, salary, employer details, and other sensitive personal or employment data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the contract details needed for review and redact unnecessary sensitive information before using the skill.
+
+Risk: The skill is written for Chinese-language labor-contract review and appears based on PRC labor-law concepts, so outputs may not apply to every jurisdiction or current legal circumstance.
+
+Mitigation: Treat outputs as informational and verify important legal decisions with a qualified lawyer or official legal service.
+
+## Reference(s):
+
+- [Contract Review Guide](references/contract_review_guide.md)
+- [Risk Clauses](references/risk_clauses.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangyue71/skills/labor-contract-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown report with tables, risk levels, issue descriptions, and suggested modifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational legal review guidance; important legal decisions should be verified with a qualified lawyer or official legal service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

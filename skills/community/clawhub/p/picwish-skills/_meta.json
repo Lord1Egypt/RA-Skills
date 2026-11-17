@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn76a14nfymn6vk51men5c1yhh83xexw",
+  "ownerId": "s1761mkjb8a5nqjyz7a7etnpwd83x4zh",
   "slug": "picwish-skills",
   "version": "1.0.7",
-  "publishedAt": 1774862002864
+  "publishedAt": 0,
+  "credentials": [
+    {
+      "name": "PICWISH_API_KEY",
+      "required": true,
+      "description": "PicWish API Key. Get yours at https://picwish.com/open-api",
+      "source": "env | openclaw-config:skills.entries.picwish.apiKey"
+    },
+    {
+      "name": "PICWISH_REGION",
+      "required": false,
+      "default": "global",
+      "description": "Set to 'cn' for China mainland users, defaults to 'global'",
+      "source": "env | openclaw-config:skills.entries.picwish.region"
+    }
+  ]
 }

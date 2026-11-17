@@ -1,50 +1,62 @@
-## Description: <br>
-AI Agent marketing operating system with a Virtual CMO for market analysis and strategy and a Marketing Operator for campaign planning, execution tracking, and feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent 营销操作系统 — 包含 Virtual CMO（战略大脑）和 Marketing Operator（执行引擎），提供市场分析、策略制定、Campaign 规划与执行追踪全链路能力。
 
-## Publisher: <br>
-[forevercrab321-svg](https://clawhub.ai/user/forevercrab321-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forevercrab321-svg](https://clawhub.ai/user/forevercrab321-svg)
 
-## Use Case: <br>
-Marketing teams, growth operators, and agent developers use this skill to turn business context and market signals into scored opportunities, structured campaign plans, execution tasks, metrics, and feedback loops. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store campaign state, learnings, logs, and market insight data that may include sensitive customer or business information. <br>
-Mitigation: Review and purge memory and logs periodically, avoid storing unnecessary sensitive data, and apply retention controls before connecting production sources. <br>
-Risk: Optional CRM, content, and analytics adapters could write to external systems or publish campaign content when enabled. <br>
-Mitigation: Keep adapters disabled unless needed, use least-privilege credentials, and require human approval for publishing, CRM writes, paid campaigns, budget changes, and external integrations. <br>
-Risk: Autonomous workflow execution could act on weak market signals or incomplete data. <br>
-Mitigation: Keep auto_mode off until tested, enforce confidence thresholds and schema validation, and require review gates for campaign planning and execution sprints. <br>
+## Use Case:
 
+Marketing teams, operators, and agent developers use this skill to analyze market signals, identify and score opportunities, generate go-to-market strategy, plan campaigns, track execution, and feed measured learnings back into future strategy.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/forevercrab321-svg/marketing-os) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Runtime configuration](artifact/configs/system.config.json) <br>
-- [CMO output schema](artifact/schemas/cmo_output.schema.json) <br>
-- [CMO to Operator schema](artifact/schemas/cmo_to_operator.schema.json) <br>
-- [Campaign schema](artifact/schemas/campaign.schema.json) <br>
-- [Feedback schema](artifact/schemas/feedback.schema.json) <br>
-- [Operator task schema](artifact/schemas/operator_task.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Structured JSON objects and Markdown guidance for strategy, campaign plans, task records, metrics, and feedback.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to follow bundled JSON schemas and distinguish facts, inferences, recommendations, confidence, risks, and data gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can persist market insights, campaign records, and learnings that may contain confidential strategy or customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use retention, redaction, and data-boundary controls before supplying customer PII or confidential business strategy to workflows.
+
+Risk: Configured adapters can enable external CRM, content, and data-source actions.
+
+Mitigation: Keep external adapters disabled until scoped credentials, approval gates, and intended endpoints are configured.
+
+Risk: Automated campaign execution can affect publishing, CRM writes, and budget-sensitive decisions.
+
+Mitigation: Run with auto_mode off by default and require human approval for publishing, CRM writes, budget or spend changes, and memory promotion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/forevercrab321-svg/skills/marketing-os)
+- [Marketing OS README](artifact/README.md)
+- [Runtime configuration](artifact/configs/system.config.json)
+- [CMO to Operator schema](artifact/schemas/cmo_to_operator.schema.json)
+- [Campaign schema](artifact/schemas/campaign.schema.json)
+- [Feedback schema](artifact/schemas/feedback.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Structured Markdown and JSON-compatible campaign, task, strategy, and feedback objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses schema-shaped outputs for market analysis, mission briefs, campaign records, task plans, execution metrics, and feedback.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

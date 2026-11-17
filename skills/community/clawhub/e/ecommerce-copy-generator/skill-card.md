@@ -1,40 +1,53 @@
-## Description: <br>
-Generates platform-specific shopping and recommendation copy for ecommerce products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate platform-specific shopping and recommendation copy for ecommerce products.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Marketing writers, ecommerce operators, and agents use this skill to draft shopping and recommendation copy for product listings and social platforms such as Xiaohongshu, Douyin, WeChat Moments, and Zhihu. Users should verify product facts and claims before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ecommerce copy may include inaccurate or unsupported product claims. <br>
-Mitigation: Review and edit all claims against real product facts, prices, user experience, and substantiation before publishing. <br>
-Risk: Template wording, hashtags, or recommendations may not fit a specific platform policy, audience, or brand requirement. <br>
-Mitigation: Adapt tone, disclosures, hashtags, and purchase advice to the target channel and the publisher's compliance requirements. <br>
+## Use Case:
 
+Marketing and ecommerce operators use this skill to draft Chinese social-commerce copy for product recommendations across Xiaohongshu, Douyin, WeChat Moments, and Zhihu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesong-hue/ecommerce-copy-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured text and Markdown-style copy snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy is based on product details and optional platform, style, and length choices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Generated promotional claims may be inaccurate or unsupported when based on minimal product information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review product claims, prices, recommendations, and suitability statements against authoritative product information before posting.
+
+Risk: Social-commerce copy may need to comply with platform policies and advertising rules.
+
+Mitigation: Check generated posts for required disclosures, prohibited claims, and advertising compliance before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/ecommerce-copy-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Platform-specific ecommerce copy in plain text or Markdown-style post structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces social-commerce titles, post bodies, hashtags, short-video scripts, and purchase recommendations from product details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

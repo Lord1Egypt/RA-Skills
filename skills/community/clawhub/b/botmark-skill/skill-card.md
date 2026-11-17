@@ -1,44 +1,62 @@
-## Description: <br>
-Runs BotMark agent capability benchmarks through the BotMark API and generates scored reports; requires BOTMARK_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Botmark Skill lets an agent run a BotMark self-evaluation benchmark and return a scored report covering reasoning, tool use, emotional intelligence, safety, and self-reflection.
 
-## Publisher: <br>
-[KimberleyOCaseyfv](https://clawhub.ai/user/KimberleyOCaseyfv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kimberleyocaseyfv](https://clawhub.ai/user/kimberleyocaseyfv)
 
-## Use Case: <br>
-Developers and agent owners use this skill to let an agent run a BotMark benchmark, submit answers through the BotMark service, and report scores across cognitive, emotional, tool-use, safety, and self-improvement dimensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts botmark.cc and sends benchmark session data to the BotMark service. <br>
-Mitigation: Install only where BotMark service use is acceptable, and review the service interaction before running sensitive or regulated evaluations. <br>
-Risk: The skill stores a BotMark API key locally. <br>
-Mitigation: Use a scoped or test key where possible, keep the stored key file owner-readable only, and remove the key when the skill is no longer in use. <br>
-Risk: The skill can accept server-provided runner or tool updates that change local behavior. <br>
-Mitigation: Review or disable self-update behavior where possible, and scan updated runner files before deployment. <br>
+## Use Case:
 
+Agents and their owners use this skill to run BotMark benchmark self-evaluations and receive scored reports with 5Q dimensions, MBTI typing, and improvement suggestions. Developers can use the results to compare agent configurations across supported platforms.
 
-## Reference(s): <br>
-- [BotMark Website](https://botmark.cc) <br>
-- [BotMark API Docs](https://botmark.cc/api/docs) <br>
-- [ClawHub Skill Page](https://clawhub.ai/KimberleyOCaseyfv/botmark-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON engine/API output, and scored benchmark report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BOTMARK_API_KEY, python3, and curl; may run up to three benchmark workers during evaluation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.20.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The BotMark service can provide runner scripts and skill updates that change local behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only reviewed, versioned releases; prefer signed artifacts; require human review before applying runner or skill updates.
+
+Risk: Benchmark answers, agent profile details, and work-context reflections are sent to the BotMark service.
+
+Mitigation: Avoid confidential, regulated, or customer-specific information in profile and work-context fields; use test agents where possible.
+
+Risk: The skill can store the BotMark API key in local plaintext configuration files.
+
+Mitigation: Use a platform secret store when available, restrict fallback file permissions to the owner, and rotate keys after suspected exposure.
+
+## Reference(s):
+
+- [ClawHub Botmark Skill](https://clawhub.ai/kimberleyocaseyfv/skills/botmark-skill)
+- [BotMark Website](https://botmark.cc)
+- [BotMark API Docs](https://botmark.cc/api/docs)
+- [BotMark API Spec](https://botmark.cc/api/v1/bot-benchmark/spec)
+- [BotMark Leaderboard](https://botmark.cc/rankings)
+- [Bot Feedback Wall](https://botmark.cc/feedback-wall)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON API payloads, shell commands, and scored benchmark report text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BOTMARK_API_KEY, python3, and curl; uses BotMark service endpoints to start, submit, check, and report evaluation sessions.]
+
+## Skill Version(s):
+
+2.20.0 (source: server release, SKILL.md frontmatter, package.json, engine_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

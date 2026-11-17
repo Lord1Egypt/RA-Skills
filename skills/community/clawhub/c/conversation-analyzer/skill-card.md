@@ -1,44 +1,57 @@
-## Description: <br>
-Intelligent conversation analysis, summarization, and conclusion recording. Analyzes user personality, tracks tasks, checks incomplete tasks, and writes to memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent conversation analysis, summarization, and conclusion recording. Analyzes user personality, tracks tasks, checks incomplete tasks, and writes to memory files.
 
-## Publisher: <br>
-[opendolph](https://clawhub.ai/user/opendolph) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[opendolph](https://clawhub.ai/user/opendolph)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to analyze conversations, maintain user and task memory, detect incomplete work, and generate reminder content for follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation profiling and persistent memory can capture sensitive or inaccurate personal and work information. <br>
-Mitigation: Enable the skill only when this analysis is intended, then regularly review USER.md, MEMORY.md, and HEARTBEAT.md and correct or delete sensitive or inaccurate entries. <br>
-Risk: Task reminders may expose work details through Feishu notification content. <br>
-Mitigation: Confirm recipients and message routing before enabling Feishu reminders, and review the notification content produced by the skill. <br>
-Risk: Scheduled analysis can repeatedly process conversations without a fresh manual review. <br>
-Mitigation: Use manual runs or a narrowly scoped cron schedule until retention, review, and deletion practices are clear. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to analyze conversation history, maintain user profile and memory notes, track requested work, and surface incomplete tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/opendolph/conversation-analyzer) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, Markdown memory updates, cron commands, and notification text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes or guides updates to USER.md, MEMORY.md, and HEARTBEAT.md; may generate Feishu reminder content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill analyzes private, work, customer, or personal conversation content and retains chat-derived profile and memory information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the information captured in USER.md and MEMORY.md before enabling the skill, and establish clear review and deletion controls for retained records.
+
+Risk: Scheduled execution can repeatedly analyze conversations without an explicit per-run prompt.
+
+Mitigation: Keep cron or automatic triggers disabled until the intended scope, frequency, and retention behavior are approved.
+
+Risk: Incomplete-task reminders may be sent externally through Feishu.
+
+Mitigation: Configure notification recipients carefully and disable external notifications until recipient controls are verified.
+
+## Reference(s):
+
+- [Conversation Analyzer ClawHub listing](https://clawhub.ai/opendolph/skills/conversation-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown memory updates, console text, task-notification text, and Node.js command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Updates USER.md, MEMORY.md, and HEARTBEAT.md; may produce Feishu task notification content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

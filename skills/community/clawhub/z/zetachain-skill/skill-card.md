@@ -1,43 +1,58 @@
-## Description: <br>
-ZetaChain skill for querying omnichain assets, tracking CCTX cross-chain transactions, generating zEVM deployment guidance, and indexing technical documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZetaChain skill for querying omnichain asset balances, tracking CCTX cross-chain transactions, and guiding zEVM development workflows.
 
-## Publisher: <br>
-[mango-ice-cat](https://clawhub.ai/user/mango-ice-cat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mango-ice-cat](https://clawhub.ai/user/mango-ice-cat)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect ZetaChain-related wallet balances, track cross-chain transaction status, and produce development guidance for zEVM workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make live RPC requests to public blockchain endpoints and return balance, gas, or transaction-status data that can be incomplete, delayed, or endpoint-dependent. <br>
-Mitigation: Use explicit trusted RPC or Alchemy endpoints for reliability and treat balance, gas, and transaction analysis as informational rather than financial advice. <br>
-Risk: Users may be tempted to provide sensitive wallet material while investigating addresses or transactions. <br>
-Mitigation: Do not enter wallet private keys or seed phrases; use public wallet addresses and transaction hashes only. <br>
+## Use Case:
 
+External developers and ZetaChain users can use this skill to inspect public-chain balances, check gas context, track cross-chain transaction status, and receive operational guidance for ZetaChain workflows.
 
-## Reference(s): <br>
-- [ZetaChain RPC endpoint](https://zetachain.rpc.thirdweb.com) <br>
-- [ZetaChain BlockPI RPC endpoint](https://zetachain-evm.blockpi.network/v1/rpc/public) <br>
-- [ZetaChain BlockPI LCD endpoint](https://zetachain.blockpi.network/lcd/v1/public) <br>
-- [ClawHub skill page](https://clawhub.ai/mango-ice-cat/zetachain-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May make live read-only RPC requests to public blockchain endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Wallet addresses and CCTX hashes may be sent to public RPC or API providers during lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only addresses and hashes that are appropriate to query through public blockchain infrastructure.
+
+Risk: Suggested deposit, refuel, or liquidity actions could be mistaken for financial advice or authoritative transaction instructions.
+
+Mitigation: Verify any deposit or TSS address against official ZetaChain sources before moving funds and treat action suggestions as informational.
+
+Risk: The release evidence notes privacy and documentation gaps.
+
+Mitigation: Review the skill's behavior and public endpoint usage before deployment in environments with sensitive wallet activity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mango-ice-cat/skills/zetachain-skill)
+- [Publisher Profile](https://clawhub.ai/user/mango-ice-cat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query public blockchain RPC and API providers for balances, gas prices, and CCTX status.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

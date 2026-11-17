@@ -1,44 +1,59 @@
-## Description: <br>
-Run Promarkia AI squads via the Promarkia API for social media posts, copywriting, SEO, ads, lead generation, image and video creation, campaign planning, and related marketing automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users inspect Promarkia capabilities and connections, submit a specifically approved marketing run, and retrieve its results and artifacts.
 
-## Publisher: <br>
-[dominiclachance](https://clawhub.ai/user/dominiclachance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dominiclachance](https://clawhub.ai/user/dominiclachance)
 
-## Use Case: <br>
-External users and developers use this skill to run Promarkia squads from an agent or command line, including one-off marketing jobs and scheduled recurring automations. It requires a Promarkia API key and may operate connected publishing, analytics, lead generation, or content accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run paid Promarkia automations and deduct credits from the user's account. <br>
-Mitigation: Use a dedicated API key, monitor credit usage, and review task prompts before submitting long-running or recurring work. <br>
-Risk: Publishing-capable squads can post through connected social, document, lead generation, or video accounts. <br>
-Mitigation: Connect only the accounts needed for the intended workflow, keep permissions least-privileged, and review outputs before enabling publish-capable tasks. <br>
-Risk: Recurring cron tasks can continue operating without ongoing manual review. <br>
-Mitigation: Regularly list and remove unneeded cron jobs, and require periodic review for any recurring automation. <br>
+## Use Case:
 
+OpenClaw users and marketing teams use this skill to inspect approved Promarkia squads and connections, request a single approved marketing task, and review run status, artifacts, and action receipts. It does not provide recurring automation.
 
-## Reference(s): <br>
-- [ClawHub Promarkia Skill Page](https://clawhub.ai/dominiclachance/promarkia) <br>
-- [Promarkia Website](https://www.promarkia.com) <br>
-- [Promarkia Blog and Documentation](https://blog.promarkia.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown and terminal output from Promarkia API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return squad results, run IDs, credit and token usage, errors, or status messages for long-running tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Prompts sent to Promarkia may expose sensitive information and consume credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain approval for the exact run and credit use; remove secrets, private files, and unrelated personal data before submission.
+
+Risk: Publishing or outreach through connected accounts can create unintended external effects.
+
+Mitigation: Confirm the exact action, destination, audience, connected account ID, and provider receipt; use draft-only mode when no external action is intended.
+
+Risk: A timed-out local request may leave a remote run active, making a retry costly or duplicative.
+
+Mitigation: Retrieve the original run ID and check its status before starting another run.
+
+## Reference(s):
+
+- [Promarkia external API contract v2](references/api-contract-v2.md)
+- [Promarkia](https://www.promarkia.com)
+- [Promarkia skill on ClawHub](https://clawhub.ai/dominiclachance/skills/promarkia)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Marketing drafts and guidance, with structured run status, artifact metadata, and action receipts when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One approved run per submission; outputs and artifacts depend on the selected squad and server capabilities.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata, artifact README and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

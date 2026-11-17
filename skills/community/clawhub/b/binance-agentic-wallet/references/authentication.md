@@ -11,6 +11,17 @@ Authentication flow:
 
 ---
 
+## Sign-in troubleshooting
+
+Sign-in has a few failure modes that the happy path above doesn't cover. Handle them explicitly instead of leaving the user stuck.
+
+- **Keep `signin` / `verify` running until they finish.** `auth verify` is a foreground, blocking call — it must stay running until the user confirms in the App. If the process is killed or backgrounded before it returns, the authentication may **not land locally even if the App shows success**. Do not start `verify` and then abandon it. If you're an agent that would otherwise reap a long-blocking child, keep it alive until it returns or times out.
+- **QR / pairing code expires (~5 min).** If `auth verify` returns an error like `AUTH_REJECTED` ("QR code does not exist or expired"), the code is stale. **Do not keep retrying `verify` with the same `qrCodeId`** — start over: run `baw auth signin --json` again to get a fresh code, show it, then `verify` the new `qrCodeId`.
+- **App shows "signed in" but CLI still `UNCONNECTED`.** This intermediate state can happen (e.g. `verify` returned `SUCCESS` but `wallet status` is still `UNCONNECTED`, or the blocking `verify` was interrupted). Re-check with `baw wallet status --json`; if still unconnected, **restart the flow from `auth signin`** (fresh code) rather than assuming the App's "success" means the CLI is connected. Confirm connection via `wallet status`, not via the App screen.
+- **Confirm with `wallet status`, not the App.** The source of truth for "am I connected" is `baw wallet status --json`, not what the Binance App displays.
+
+---
+
 ## `auth signin`
 
 Start the sign-in flow. Open the returned `urlForWeb` in the browser so the user can scan the QR code with the Binance Wallet App.

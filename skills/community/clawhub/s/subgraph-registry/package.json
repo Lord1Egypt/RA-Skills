@@ -1,8 +1,8 @@
 {
   "name": "subgraph-registry-mcp",
-  "version": "0.8.10",
+  "version": "0.13.6",
   "mcpName": "io.github.PaulieB14/subgraph-registry-mcp",
-  "description": "MCP server for agent-friendly subgraph discovery on The Graph Network. 14,733 classified subgraphs with x402 query URLs ($0.01 USDC on Base, no API key required), reliability scoring, and protocol classification.",
+  "description": "MCP server for agent-friendly subgraph discovery and opt-in querying on The Graph Network. Better search than official subgraph-MCP, real 30-day query volume, contract-first lookup, plus opt-in schema and execute_query. Search/recommend stay discovery and never auto-query. No private key in the package.",
   "type": "module",
   "bin": {
     "subgraph-registry-mcp": "src/index.js"
@@ -11,13 +11,18 @@
     "src/",
     "data/registry.db",
     "data/openapi.json",
-    "data/models/all-MiniLM-L6-v2/**",
+    "data/models/Xenova/all-MiniLM-L6-v2/**",
     "openapi.yaml"
   ],
   "scripts": {
     "start": "node src/index.js",
     "start:http": "node src/index.js --http",
-    "start:http-only": "node src/index.js --http-only"
+    "start:http-only": "node src/index.js --http-only",
+    "test": "node --test test/*.test.mjs",
+    "sync:server": "node scripts/sync-server-json.js",
+    "version": "node scripts/sync-server-json.js && node scripts/gen-openapi.js && git add server.json openapi.yaml data/openapi.json",
+    "smoke": "node scripts/smoke-bin.mjs",
+    "eval:recommend": "node scripts/eval-recommend.mjs"
   },
   "keywords": [
     "mcp",
@@ -37,9 +42,10 @@
   "author": "PaulieB14",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.1",
-    "@xenova/transformers": "^2.17.2",
-    "better-sqlite3": "^11.8.2",
-    "express": "^4.21.0"
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@xenova/transformers": "2.17.2",
+    "better-sqlite3": "11.10.0",
+    "express": "4.22.3",
+    "graphql": "16.15.0"
   }
 }

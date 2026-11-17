@@ -1,40 +1,53 @@
-## Description: <br>
-Personal knowledge base support for vector search, entity relationships, and note management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A personal knowledge-base skill for storing, searching, and organizing notes with vector retrieval and entity relationship management.
 
-## Publisher: <br>
-[tangepier-crypto](https://clawhub.ai/user/tangepier-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangepier-crypto](https://clawhub.ai/user/tangepier-crypto)
 
-## Use Case: <br>
-External users and developers use this skill to save selected text, entity relationships, and note files into a local personal knowledge base, then search or inspect that stored knowledge later. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-selected conversations or files can become searchable later in the local knowledge base. <br>
-Mitigation: Use explicit save commands and avoid storing private content unless it is intended to remain searchable. <br>
-Risk: The referenced vector_kb.py script is outside the artifact and should not be trusted blindly. <br>
-Mitigation: Review the referenced script before relying on the workflow. <br>
+## Use Case:
 
+External users and developers use this skill to store knowledge, add note files, search indexed content, and review knowledge-base statistics in a local personal knowledge workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangepier-crypto/taizi-knowledge-base) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands reference a local knowledge-base workflow for adding, searching, summarizing, and indexing user-selected content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can persist and index local user content, including note files, which may accidentally include sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for approved personal knowledge content, avoid secrets or private files, and require explicit confirmation before storage or add-file actions.
+
+Risk: Shell-style commands for text and file operations can be unsafe if arguments are interpolated directly.
+
+Mitigation: Run commands through a safe wrapper that passes arguments without shell interpolation and limits file indexing to approved directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangepier-crypto/skills/taizi-knowledge-base)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist indexed content and notes in local OpenClaw knowledge, ontology, and notes directories when storage actions are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+issue_levels:
+  A: 重大问题
+  B: 重要问题
+  C: 一般问题
+  D: 提示事项
+format_terms:
+  - 如下表所示
+  - 详见上文
+  - 详见下表
+absolute_terms:
+  - 全部
+  - 均
+  - 不存在
+  - 未发生

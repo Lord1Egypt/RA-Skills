@@ -1,101 +1,17 @@
-# Alert Management
+# Alert and Incident Inspection
 
-Manage alert policies, conditions, and notification channels via CLI.
+Inspect alert state and incident telemetry with supported read-only New Relic CLI commands.
 
----
-
-## List Alert Policies
-
-```bash
-newrelic alerts policy list
-```
-
-## Get a Policy
-
-```bash
-newrelic alerts policy get --policyId <ID>
-```
-
-## Create a Policy
-
-```bash
-newrelic alerts policy create \
-  --name "My App - Performance" \
-  --incidentPreference "PER_CONDITION_AND_TARGET"
-```
-
-Incident preference options:
-- `PER_POLICY` — one incident per policy breach
-- `PER_CONDITION` — one incident per condition
-- `PER_CONDITION_AND_TARGET` — most granular, one per condition+entity
+The CLI has no alert-management command tree. Configure policies, conditions, and notification channels through a supported New Relic API or the New Relic UI instead.
 
 ---
 
-## Alert Conditions
+## View Recently Opened Incident Events
 
-### List Conditions for a Policy
-
-```bash
-newrelic alerts conditions list --policyId <POLICY_ID>
-```
-
-### Create an APM Metric Condition
+Query incident events through the supported `nrql query` command:
 
 ```bash
-newrelic alerts apmCondition create \
-  --policyId <POLICY_ID> \
-  --name "High Response Time" \
-  --type "apm_app_metric" \
-  --metric "response_time_web" \
-  --conditionScope "application" \
-  --violationCloseTimer 24 \
-  --threshold 2.0 \
-  --thresholdDuration 5 \
-  --thresholdOccurrences "ALL"
-```
-
-### Delete a Condition
-
-```bash
-newrelic alerts conditions delete --conditionId <ID>
-```
-
----
-
-## NRQL Alert Conditions
-
-```bash
-newrelic alerts nrqlCondition static create \
-  --policyId <POLICY_ID> \
-  --name "Error Rate > 5%" \
-  --query "SELECT percentage(count(*), WHERE error IS true) FROM Transaction WHERE appName='my-app'" \
-  --threshold 5 \
-  --thresholdDuration 5 \
-  --thresholdOccurrences "ALL" \
-  --violationTimeLimitSeconds 86400
-```
-
----
-
-## Notification Channels
-
-```bash
-# List channels
-newrelic alerts channel list
-
-# Create email channel
-newrelic alerts channel create \
-  --name "On-Call Email" \
-  --type email \
-  --configuration '{"recipients": "team@example.com", "include_json_attachment": false}'
-```
-
----
-
-## View Open Incidents
-
-```bash
-newrelic nrql query --accountId $NEW_RELIC_ACCOUNT_ID --query "
+newrelic nrql query --accountId "$NEW_RELIC_ACCOUNT_ID" --query "
   SELECT *
   FROM NrAiIncident
   WHERE event = 'open'
@@ -103,6 +19,25 @@ newrelic nrql query --accountId $NEW_RELIC_ACCOUNT_ID --query "
   LIMIT 20
 "
 ```
+
+This is read-only and reports `open` events recorded in the last 24 hours, not the current
+state of every incident. It can include an incident that later closed and omit an older
+incident that remains open. Incident event availability and attributes depend on the data
+retained in the selected account.
+
+## Review Recent Incident Activity
+
+```bash
+newrelic nrql query --accountId "$NEW_RELIC_ACCOUNT_ID" --query "
+  SELECT count(*)
+  FROM NrAiIncident
+  FACET event, priority
+  SINCE 1 week ago
+  LIMIT MAX
+"
+```
+
+Use this to summarize recent incident events without changing alert configuration or incident state.
 
 ---
 
@@ -113,4 +48,4 @@ newrelic entity search --name "my-app" --type APPLICATION --domain APM | \
   jq '.[] | {name, alertSeverity}'
 ```
 
-Severity values: `NOT_CONFIGURED`, `NOT_ALERTING`, `WARNING`, `CRITICAL`
+Severity values include `NOT_CONFIGURED`, `NOT_ALERTING`, `WARNING`, and `CRITICAL`. Entity search is read-only; use `newrelic apm application get --guid <GUID>` when you need details for an exact APM application returned by the search.

@@ -1,38 +1,63 @@
-## Description: <br>
-BestCoffer AI Redaction helps an agent upload a user-selected document with natural language redaction instructions and return a BestCoffer task link for progress tracking and result download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bestcoffer Ai Redaction helps an agent guide personal users through uploading a document, collecting redaction instructions, and returning a task link for AI-assisted file redaction.
 
-## Publisher: <br>
-[marsxh](https://clawhub.ai/user/marsxh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marsxh](https://clawhub.ai/user/marsxh)
 
-## Use Case: <br>
-External users and agents use this skill to redact sensitive information from a single uploaded PDF, Word, Excel, TXT, PNG, JPG, or JPEG file. The user supplies the redaction instruction, confirms execution, and receives a task URL for status and result download. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marsxh/bestcoffer-ai-redaction) <br>
-- [BestCoffer API console](https://apiconsole.bestcoffer.com.cn/) <br>
+Personal users and agents use this skill to redact sensitive information from PDFs, Word files, images, spreadsheets, and text files using natural-language instructions or user-provided redaction rules. The workflow requires an API key, user confirmation before processing, and returns a link for status and result download.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result with taskUrl and errorMessage fields, plus concise user-facing status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and npm, an API key configured as a secret or environment variable, a single input file up to 10MB, and a user-provided redaction instruction. Review before installing because selected documents and instructions are uploaded to BestCoffer, returned task URLs are sensitive, and debug logs may persist local paths, instructions, and task links.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata; artifact frontmatter lists 1.0.1) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Files and redaction instructions are sent to BestCoffer's external service.
+
+Mitigation: Use only when that external processing is acceptable for the document's sensitivity and applicable policy requirements.
+
+Risk: API keys can be exposed if pasted into chat or handled outside the platform secret mechanism.
+
+Mitigation: Configure the API key through the platform's secret or environment-variable mechanism.
+
+Risk: Returned task URLs may grant access to processing status or redacted results.
+
+Mitigation: Treat task URLs as sensitive and share them only with authorized users.
+
+Risk: Local debug logs may retain filenames, file paths, redaction instructions, and result links.
+
+Mitigation: Review log retention and access controls before use with sensitive files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marsxh/skills/bestcoffer-ai-redaction)
+- [Publisher profile](https://clawhub.ai/user/marsxh)
+- [BestCoffer API console](https://apiconsole.bestcoffer.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with a runtime command and JSON result containing taskUrl and errorMessage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, and a configured API key; processes one file up to 10MB and returns a task URL for status and download.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

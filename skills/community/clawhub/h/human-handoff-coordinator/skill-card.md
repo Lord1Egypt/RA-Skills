@@ -1,39 +1,53 @@
-## Description: <br>
-Escalate automation conversations to human ad experts for Meta (Facebook/Instagram), Google Ads, TikTok Ads, and YouTube Ads operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Escalate automation conversations to human ad experts for Meta (Facebook/Instagram), Google Ads, TikTok Ads, and YouTube Ads operations.
 
-## Publisher: <br>
-[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danyangliu-sandwichlab](https://clawhub.ai/user/danyangliu-sandwichlab)
 
-## Use Case: <br>
-Marketing operators, agencies, and agent builders use this skill to triage ad platform issues, prepare action checklists, and assemble escalation handoff packets for Meta, Google Ads, TikTok Ads, and YouTube Ads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Advertising recommendations may affect spend, delivery, policy handling, or campaign performance if applied without review. <br>
-Mitigation: Review budget, pause, cap, policy, and campaign recommendations before applying them in an ad platform, and use rollback or stop-loss conditions for spend-risk decisions. <br>
-Risk: Escalation packets can include sensitive account, campaign, billing, or business context. <br>
-Mitigation: Share only the minimum details needed for triage and avoid including sensitive business data that is not required for the issue. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/human-handoff-coordinator) <br>
+## Use Case:
 
+External advertising operators and support teams use this skill to triage campaign, platform, spend, policy, billing, tracking, and delivery issues, then prepare concise escalation packets for human ad experts when risk or uncertainty is high.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, JSON] <br>
-**Output Format:** [Markdown with structured sections and optional JSON handoff payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes direct answers, root-cause hypotheses, immediate actions, escalation criteria, follow-up questions, and rollback or stop-loss conditions when spend risk exists.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may provide broad advertising, budget, and platform-action advice before escalating to a human.
+
+Mitigation: Treat recommendations as preliminary and require human review before changing budgets, bids, campaigns, approvals, or account settings.
+
+Risk: High-spend, billing, account-lock, tracking, or policy issues can materially affect account access, spend safety, or campaign performance.
+
+Mitigation: Use the skill to prepare triage notes and handoff packets, then route the issue to a qualified human owner before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danyangliu-sandwichlab/skills/human-handoff-coordinator)
+- [Publisher profile](https://clawhub.ai/user/danyangliu-sandwichlab)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with optional JSON handoff payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs direct answers, root-cause hypotheses, immediate action checklists, escalation criteria, follow-up questions, and structured handoff payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

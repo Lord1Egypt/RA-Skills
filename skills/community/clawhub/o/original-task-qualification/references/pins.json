@@ -1,0 +1,15 @@
+{
+  "schema": "samedaydesk.original-task-qualification-pins.v1",
+  "node": ">=22",
+  "discovery": {
+    "origin": "https://samedaydesk.com",
+    "pathname": "/discovery/original-task-correspondence.json"
+  },
+  "archive": {
+    "pathname": "/for-agents/original-task/original-task-client.tar.gz",
+    "sha256": "9b5b9bf82119d7c8c0d4e277e34e85f6e9c0711ed4cfc84017c7a79b47bed887",
+    "bytes": 23811
+  },
+  "basePath": "/api/correspondence",
+  "client": "server/lib/original-task/cli.mjs"
+}

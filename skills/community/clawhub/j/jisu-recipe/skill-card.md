@@ -1,40 +1,55 @@
-## Description: <br>
-Looks up recipes by keyword or category through JisuAPI and returns recipe categories, recipe lists, and recipe details for cooking questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+按关键词或分类检索菜谱，可查分类与菜谱详情。当用户说：糖醋排骨怎么做？来个家常豆腐菜谱，或类似做菜问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Developers and agents use this skill to answer cooking questions by searching recipes, browsing recipe categories, and retrieving detailed ingredients and steps from JisuAPI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using a JisuAPI AppKey for recipe searches and detail lookups can consume external API quota or billing. <br>
-Mitigation: Use a dedicated JisuAPI key for this skill and monitor quota or billing for recipe API usage. <br>
+## Use Case:
 
+External users and developers use this skill to search JisuAPI recipe data by keyword or category, inspect recipe classes, and retrieve full recipe details for cooking questions. It supports agents that answer recipe requests with ingredients, steps, tags, and related dish recommendations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisuapi/jisu-recipe) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI Recipe API](https://www.jisuapi.com/api/recipe/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; recipe lookup responses depend on the external JisuAPI service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill sends the configured JisuAPI AppKey and recipe lookup inputs to JisuAPI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable sharing those values with JisuAPI, and provide the key through the JISU_API_KEY environment variable.
+
+Risk: Recipe results may include remote image URLs, including plain HTTP URLs.
+
+Mitigation: Treat returned media URLs as untrusted and avoid automatically rendering them in sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/jisu-recipe)
+- [JisuAPI recipe API documentation](https://www.jisuapi.com/api/recipe/)
+- [JisuAPI website](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON returned from command-line API calls, usually summarized by the agent as text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

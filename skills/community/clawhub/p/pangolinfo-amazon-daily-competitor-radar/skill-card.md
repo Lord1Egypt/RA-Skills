@@ -1,46 +1,62 @@
-## Description: <br>
-Monitors an Amazon ASIN, nearby SERP competitors, category movers, reviews, and related web reputation signals to produce a daily competitor-radar report with defensive or counter-action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors an Amazon ASIN against nearby competitors, search ranking, category bestsellers, new entrants, and review or visibility signals to produce a daily market radar with action recommendations.
 
-## Publisher: <br>
-[pangolinfo](https://clawhub.ai/user/pangolinfo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pangolinfo](https://clawhub.ai/user/pangolinfo)
 
-## Use Case: <br>
-Amazon sellers, growth operators, and commerce analysts use this skill to monitor a product ASIN against close competitors, category entrants, Buy Box changes, review movement, and ranking shifts. It helps produce concise daily market pulse reports and up to three action recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Pangolinfo API key. <br>
-Mitigation: Store the key in the intended environment or MCP configuration, avoid pasting it into chat, and rotate it if it is exposed. <br>
-Risk: Daily scheduled runs may consume Pangolinfo credits over time. <br>
-Mitigation: Confirm the schedule, expected budget, and Full-mode checks before enabling recurring monitoring. <br>
-Risk: ASIN baseline snapshots may be kept on disk for comparisons. <br>
-Mitigation: Review the baseline path and retention expectations before using the skill in shared or sensitive environments. <br>
-Risk: Market reports and action recommendations may be incomplete when upstream product, SERP, or review data is missing or stale. <br>
-Mitigation: Review source-tool fields for numeric claims and validate important commercial decisions before acting. <br>
+## Use Case:
 
+External Amazon sellers and commerce operators use this skill to monitor an owned ASIN, compare it with adjacent competitors, identify category movement, and decide daily defensive or counter-positioning actions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/pangolinfo/pangolinfo-amazon-daily-competitor-radar) <br>
-- [Pangolinfo publisher profile](https://clawhub.ai/user/pangolinfo) <br>
-- [Pangolinfo API setup](https://www.pangolinfo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional shell command and configuration snippets; local ASIN baselines are JSON snapshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are budget-aware, may ask for confirmation before slower or higher-cost checks, and should cite source tools for numeric claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release evidence) <br>
+Risk: The skill may use Pangolinfo API calls that consume paid credits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected Fast or Full mode, expected credit use, and any budget notice before allowing the agent to continue.
+
+Risk: The skill may write persistent ASIN baseline snapshots under ~/.pangolinfo.
+
+Mitigation: Use it only where local product monitoring history is acceptable, and periodically review or delete stored baseline files if they are no longer needed.
+
+Risk: The skill can propose optional daily scheduling for repeated monitoring.
+
+Mitigation: Review any cron, n8n, or scheduler command before accepting it, including frequency, target ASINs, and credential exposure.
+
+Risk: The skill documentation mentions API-key handling patterns that can expose credentials in URLs.
+
+Mitigation: Prefer environment variables or Authorization headers, and avoid passing API keys in query strings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pangolinfo/skills/pangolinfo-amazon-daily-competitor-radar)
+- [Pangolinfo console](https://www.pangolinfo.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with concise action recommendations and optional shell or scheduling snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local ASIN baseline snapshots and propose optional recurring schedules.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

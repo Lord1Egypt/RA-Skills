@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes one public fund from a natural-language question and returns a structured Markdown diagnostic report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides single-fund diagnostic analysis for public mutual fund questions and returns a structured Markdown report covering overall judgment, holding considerations, and risk and return characteristics.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-External users and agents use this skill for broad, single-fund diagnosis questions such as whether a fund is suitable to hold, how risky it is, or how its performance and holdings look. It is intended for one fund at a time and not for backtesting, portfolio optimization, data export, or multi-fund comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an EastMoney API key and sends fund questions to EastMoney for analysis. <br>
-Mitigation: Install only if the EastMoney service is trusted, keep EM_API_KEY revocable, and avoid including account numbers, personal identifiers, or full portfolio details in queries. <br>
-Risk: Generated fund reports may be saved locally by default. <br>
-Mitigation: Use --no-save when local Markdown report files should not be retained. <br>
+## Use Case:
 
+External users and financial-analysis agents use this skill to answer broad questions about a single public mutual fund, such as whether it is suitable to continue holding and what its risk and return profile looks like. It is not intended for multi-fund comparison, backtesting, portfolio optimization, or quantitative modeling workflows.
 
-## Reference(s): <br>
-- [ClawHub fund-diagnosis release page](https://clawhub.ai/financial-ai-analyst/fund-diagnosis) <br>
-- [Financial AI Analyst publisher profile](https://clawhub.ai/user/financial-ai-analyst) <br>
-- [EastMoney MiaoXiang service](https://ai.eastmoney.com/mxClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional local Markdown file output and concise error text when the service fails.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY and sends a single natural-language fund question to EastMoney for analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fund questions and the EM_API_KEY are sent to Eastmoney's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data transfer is acceptable, keep the API key revocable, and keep the key out of logs, prompts, and shared files.
+
+Risk: Returned fund diagnostics may be mistaken for investment advice.
+
+Mitigation: Present the report as reference-only analysis and include a risk notice that it does not constitute investment advice.
+
+Risk: Markdown reports may be saved locally by default and retained longer than intended.
+
+Mitigation: Use --no-save for sensitive analyses or manage the generated report files according to the user's retention needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/fund-diagnosis)
+- [Eastmoney Miaoxiang service](https://ai.eastmoney.com/mxClaw)
+- [Eastmoney fund-analysis API endpoint](https://ai-saas.eastmoney.com/proxy/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report, optionally saved as a local .md file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The visible answer should use the API-returned Markdown as the primary content and should not invent a report when the API returns an error or empty body.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

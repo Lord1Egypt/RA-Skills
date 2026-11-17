@@ -2,7 +2,7 @@
 name: spec-writing
 description: |
   Creates clear, testable specifications from feature descriptions with user stories
-version: 1.9.8
+version: 1.10.3
 triggers:
   - speckit
   - specification
@@ -15,7 +15,7 @@ source: claude-night-market
 source_plugin: spec-kit
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/spec-kit](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/spec-kit](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Spec Writing
@@ -37,7 +37,7 @@ Create clear, complete, and testable specifications from natural language featur
 
 ## Core Principles
 
-Focus on user value and business needs rather than implementation details. Avoid specifying technology choices in requirement definitions unless strictly necessary. Ensure every requirement is testable and verifiable with measurable criteria. Limit clarification markers; make informed assumptions based on industry standards and document them explicitly.
+Focus on user value and business needs rather than implementation details. Avoid specifying technology choices in requirement definitions unless strictly necessary. Ensure every requirement is testable and verifiable with measurable criteria. Limit clarification markers. Make informed assumptions based on industry standards and document them explicitly.
 
 ## Specification Structure
 
@@ -86,4 +86,25 @@ Focus on user value and business needs rather than implementation details. Avoid
 
 ### Common Issues
 
-If specifications are too vague, use the `success-criteria-patterns` module to enforce measurable outcomes. If implementation details leak into specs, review against the "Core Principles" and refactor to focus on user behavior.
+If specifications are too vague, use the `success-criteria-patterns`
+module to enforce measurable outcomes. If implementation details leak
+into specs, review against the "Core Principles" and refactor to focus
+on user behavior.
+
+## Exit Criteria
+
+- [ ] Spec document contains all 4 mandatory sections: Overview/Context,
+      User Scenarios, Functional Requirements, and Success Criteria
+- [ ] All success criteria are user-focused and measurable (e.g. "Users
+      complete checkout in under 3 minutes") not implementation metrics
+      (e.g. "API response under 200ms")
+- [ ] For a spec of a system that already exists, statements follow
+      `modules/spec-register.md`: no "will", status tagged on planned
+      behavior, and normative keyword case matches whether the spec
+      adopts RFC 8174
+- [ ] Quality checklist passes: no implementation details present,
+      requirements unambiguous, edge cases identified, scope bounded
+- [ ] No technology choices appear in requirements unless the spec
+      explicitly marks them as strictly necessary constraints
+- [ ] Each functional requirement has at least one testable acceptance
+      criterion that can be verified from outside the system

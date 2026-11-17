@@ -1,42 +1,54 @@
-## Description: <br>
-Turn OpenClaw into a PUA-driven execution workflow that pushes past shallow answers, explores real alternatives, and continues until evidence-backed completion or a hard blocker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn OpenClaw into a PUA-driven breakthrough execution agent that pushes past shallow answers, expands real solution paths, and keeps moving until there is evidence-backed completion or a hard blocker.
 
-## Publisher: <br>
-[LUO-2Q](https://clawhub.ai/user/LUO-2Q) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luo-2q](https://clawhub.ai/user/luo-2q)
 
-## Use Case: <br>
-Developers, researchers, and other agent users use this skill to make coding, debugging, research, planning, and analysis tasks more persistent, evidence-driven, and bounded by explicit stop conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally encourages stronger task persistence, which can lead to over-extension if the agent ignores safety policies, user confirmations, budgets, or high-impact-task caution. <br>
-Mitigation: Treat the skill as a workflow aid only; preserve safety policies, required confirmations, cost limits, and extra care for medical, legal, financial, account-changing, or other high-impact tasks. <br>
-Risk: Persistent execution can produce misleading momentum if the agent continues without adequate evidence. <br>
-Mitigation: Require the agent to distinguish facts, inferences, and hypotheses, collect evidence from available inputs or tools, and stop when the task is complete, hard-blocked, or further search has low expected value. <br>
+## Use Case:
 
+Developers and agent users use this skill to make an agent more persistent, evidence-driven, and willing to explore alternate paths during coding, debugging, research, planning, and analysis tasks.
 
-## Reference(s): <br>
-- [AI Potential Driver Framework](references/framework.md) <br>
-- [Prompt Templates](references/prompt-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/LUO-2Q/ai-potential-driver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or structured text guidance for agent progress and final responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools or credentials are declared; output is bounded by the user task, evidence, and explicit stop conditions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The workflow may make an agent more proactive or persistent on high-stakes or underspecified tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stronger clarification, explicit stop conditions, and human review for medical, legal, financial, or other high-stakes decisions.
+
+Risk: Persistent execution can amplify unsupported assumptions if the task lacks reliable evidence.
+
+Mitigation: Require the agent to distinguish facts, inferences, and hypotheses, and to stop when evidence is insufficient.
+
+## Reference(s):
+
+- [AI Potential Driver Framework](artifact/references/framework.md)
+- [Prompt Templates](artifact/references/prompt-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or concise text guidance for agent planning, execution loops, and final responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only workflow; no code execution, credentials, or persistent state]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

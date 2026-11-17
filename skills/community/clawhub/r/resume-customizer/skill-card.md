@@ -1,47 +1,70 @@
-## Description: <br>
-Tailors resumes to match specific job descriptions with multi-format parsing, ATS optimization, keyword analysis, skill matching, and Chinese or English output support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tailors resumes to match specific job descriptions with multi-format resume and JD parsing, ATS optimization, keyword analysis, skill matching, and Chinese and English resume support.
 
-## Publisher: <br>
-[agjvsxgm](https://clawhub.ai/user/agjvsxgm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agjvsxgm](https://clawhub.ai/user/agjvsxgm)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to tailor existing resumes or draft new resumes against a target job description, then produce ATS-oriented resume files and a matching analysis for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated resume edits may add job-description skills or keywords in a way that overstates the user's actual qualifications. <br>
-Mitigation: Review every generated resume change against the original resume and keep only truthful, verifiable claims before submitting to employers. <br>
-Risk: The release requests unrelated financial-authority and purchase capability labels. <br>
-Mitigation: Install and run with least privilege, and do not grant elevated financial or purchase permissions unless the package has been reviewed and the permission need is confirmed. <br>
-Risk: Parsing job descriptions from URLs can expose private or internal job links to network access. <br>
-Mitigation: Prefer pasted local JD text or trusted public job URLs, and avoid internal or private URLs. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to tailor existing resumes or generate new resumes for target job descriptions. It parses resumes and JDs, analyzes skill and keyword gaps, suggests improvements, and exports resume files in formats such as DOCX, PDF, Markdown, HTML, and text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agjvsxgm/resume-customizer) <br>
-- [README](README.md) <br>
-- [ATS Optimization Guide](references/ats_optimization.md) <br>
-- [Resume Best Practices](references/best_practices.md) <br>
-- [Resume Structures](references/resume_structures.md) <br>
-- [Industry Keywords](references/industry_keywords.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance plus structured resume data and generated resume files such as DOCX, PDF, Markdown, HTML, or plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese and English resumes, optional templates, ATS optimization, keyword density settings, and industry-specific keyword matching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill handles sensitive resume and career data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process resumes only in trusted environments and avoid sharing personal data beyond what is needed for the target job application.
+
+Risk: The skill can fetch job descriptions from arbitrary URLs.
+
+Mitigation: Prefer pasted JD text or trusted local files, and review any URL source before allowing the skill to retrieve it.
+
+Risk: HTML export may include resume content without sanitization.
+
+Mitigation: Avoid exporting attacker-supplied or untrusted content to HTML, and review generated HTML before opening or publishing it.
+
+Risk: Resume tailoring can overstate qualifications if generated changes are accepted blindly.
+
+Mitigation: Review all customized resume content before submission and remove any claim not supported by the user's actual experience.
+
+Risk: Dependencies are listed without version pins.
+
+Mitigation: Pin and review dependencies before installing the skill in production or shared environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agjvsxgm/skills/resume-customizer)
+- [README.md](README.md)
+- [ATS Optimization Guide](references/ats_optimization.md)
+- [Resume Best Practices](references/best_practices.md)
+- [Resume Structures](references/resume_structures.md)
+- [Industry Keywords](references/industry_keywords.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON intermediates and exported resume files in DOCX, PDF, Markdown, HTML, or plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English resumes, configurable output format, template, ATS optimization, industry focus, keyword density, and language.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

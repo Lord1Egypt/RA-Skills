@@ -1,41 +1,63 @@
-## Description: <br>
-Recommends tracks and playlist concepts for a user's mood, activity, BPM, energy, or genre using Spotify, Last.fm-style, and MusicBrainz-style music metadata. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends music tracks and playlist concepts tailored to mood, activity, BPM, energy, or genre using Spotify and Last.fm-style metadata workflows.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users and agents use this skill to turn a listening context, mood, activity, or seed preference into grounded music picks and playlist outlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command arguments can contain sensitive listening preferences or credentials and may be saved in a local JSON history file. <br>
-Mitigation: Avoid passing secrets or highly sensitive personal details as command arguments; use Spotify OAuth only when API-backed recommendations are needed. <br>
+## Use Case:
 
+External users and agents use this skill to generate mood-aware music recommendations, playlist sketches, and concise rationale for tracks that fit a listening context. It is intended for discovery workflows grounded in API results or user-provided taste information.
 
-## Reference(s): <br>
-- [Music Discovery Guide](references/music_discovery_guide.md) <br>
-- [Spotify Web API](https://developer.spotify.com/documentation/web-api) <br>
-- [MusicBrainz API](https://musicbrainz.org/doc/MusicBrainz_API) <br>
-- [Spotipy Python Client](https://github.com/spotipy-dev/spotipy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown recommendation reports and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Ground music claims in API results or user-stated taste; mark unavailable fields instead of guessing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled command records music-related inputs locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing secrets, account tokens, or sensitive listening preferences as command arguments, and review or clear the local data file after use.
+
+Risk: The skill asks for unnecessary unpinned Python packages.
+
+Mitigation: Remove unused dependencies or pin approved package versions before installation.
+
+Risk: The described recommendation behavior is broader than the bundled CLI behavior.
+
+Mitigation: Validate recommendations against real API results or user-provided data and mark unavailable fields instead of guessing.
+
+## Reference(s):
+
+- [Music Discovery guide](references/music_discovery_guide.md)
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api)
+- [MusicBrainz API](https://musicbrainz.org/doc/MusicBrainz_API)
+- [Spotipy Python client](https://github.com/spotipy-dev/spotipy)
+- [Daily Reddit digest OpenClaw use case](https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/daily-reddit-digest.md)
+- [Hacker News mood-based music ML discussion](https://news.ycombinator.com/item?id=42457780)
+- [Reddit Spotify music recommender discussion](https://www.reddit.com/r/spotify/comments/1014b31yyz/music_recommender_ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with optional JSON command output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May record command inputs locally in the bundled data file when the CLI is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

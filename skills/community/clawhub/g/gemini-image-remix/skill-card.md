@@ -1,40 +1,57 @@
-## Description: <br>
-Generate or remix images using Gemini models with text prompts and multiple input images, supporting various styles, resolutions, and advanced model options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced image generation and remixing using Gemini, supporting Gemini 2.5 Flash Image by default and Gemini 3.0 Pro image preview for advanced tasks.
 
-## Publisher: <br>
-[rdeangel](https://clawhub.ai/user/rdeangel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rdeangel](https://clawhub.ai/user/rdeangel)
 
-## Use Case: <br>
-Developers, creators, and other external users use this skill to generate new images, remix existing images, and compose multiple reference images through Gemini image models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected input images are sent to Google Gemini for processing. <br>
-Mitigation: Use only prompts and images that are appropriate for the configured Gemini account and data-handling terms. <br>
-Risk: A Gemini API key is required to run the skill. <br>
-Mitigation: Keep GEMINI_API_KEY scoped, revocable, and out of shared logs or checked-in files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Gemini Image Remix on ClawHub](https://clawhub.ai/rdeangel/gemini-image-remix) <br>
-- [Publisher profile: rdeangel](https://clawhub.ai/user/rdeangel) <br>
+## Use Case:
 
+External users and developers use this skill to generate new images from prompts, remix one or more reference images, and save the generated result as a PNG file through a Gemini-powered command-line workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated PNG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv, Python 3.10 or newer, and a GEMINI_API_KEY; generated media is written as PNG files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and selected images are sent to Gemini/Google for generation or editing.
+
+Mitigation: Use the skill only for content approved for that service, and avoid confidential or regulated images unless the use has been reviewed.
+
+Risk: API keys can be exposed if passed directly on the command line.
+
+Mitigation: Provide credentials through GEMINI_API_KEY instead of the --api-key option.
+
+Risk: Dependencies are installed through uv without a lockfile in the artifact.
+
+Mitigation: Run in an environment with pinned dependencies or a reviewed lockfile before broader deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rdeangel/skills/gemini-image-remix)
+- [Publisher profile](https://clawhub.ai/user/rdeangel)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Configuration instructions]
+
+**Output Format:** [PNG image files with command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and GEMINI_API_KEY; accepts prompt, output filename, optional input images, resolution, aspect ratio, and model selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

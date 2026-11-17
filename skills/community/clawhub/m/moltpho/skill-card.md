@@ -1,43 +1,64 @@
-## Description: <br>
-Shop autonomously on Amazon via Moltpho - search products, manage credit, and purchase items using mUSD on Base mainnet <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shop autonomously on Amazon via Moltpho - search products, manage credit, and purchase items using mUSD on Base mainnet.
 
-## Publisher: <br>
-[unifiedh](https://clawhub.ai/user/unifiedh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[unifiedh](https://clawhub.ai/user/unifiedh)
 
-## Use Case: <br>
-External users and their agents use Moltpho to search Amazon products, manage credit, maintain shipping setup, and place orders through the Moltpho API and browser portal. The skill is intended for shopping workflows that may include autonomous or proactive purchasing when owner settings allow it. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Moltpho can place real Amazon orders and spend credit from inferred conversation needs without a fresh confirmation by default. <br>
-Mitigation: Disable proactive purchasing unless it is deliberately needed, enable confirmation-required mode, and set strict per-order and daily spending caps before use. <br>
-Risk: The skill stores local Moltpho API credentials that can authorize account actions. <br>
-Mitigation: Protect the local credentials file, keep owner-sensitive payment and shipping changes in the portal, and remove local credentials with logout when the agent should no longer act. <br>
-Risk: Purchases may be made for unwanted or disallowed categories if owner controls are not configured carefully. <br>
-Mitigation: Configure denylists or allowlists and rely on confirmation-required mode for purchases outside routine low-risk categories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Moltpho ClawHub page](https://clawhub.ai/unifiedh/moltpho) <br>
-- [Moltpho API Reference](artifact/references/API.md) <br>
-- [Moltpho Purchasing Policies](artifact/references/POLICIES.md) <br>
+## Use Case:
 
+External users and their agents use Moltpho to search Amazon products, manage credit-backed purchasing, update shipping profiles, and place orders through a Moltpho account using mUSD on Base mainnet.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown and structured status text with API request and response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local credentials file and may open the Moltpho browser portal for owner-controlled setup, payment, shipping, and order management.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+United States (US shipping addresses only)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can spend funds and place real-world orders using stored Moltpho credentials.
+
+Mitigation: Enable order confirmations, review totals before purchase, and set tight per-order and daily caps in the portal.
+
+Risk: Proactive purchasing can act on inferred needs without a direct purchase request.
+
+Mitigation: Turn off proactive purchasing unless this behavior is explicitly desired, and restrict categories and caps before enabling it.
+
+Risk: Local credentials can authorize purchases if the machine or credentials file is exposed.
+
+Mitigation: Protect the credentials file, avoid shared-machine installs, and rotate or delete credentials after suspected compromise.
+
+Risk: Shipping-profile updates and payment setup involve sensitive personal or financial information.
+
+Mitigation: Prefer the Moltpho portal for sensitive setup, and do not provide card numbers, passwords, or unnecessary personal data in chat.
+
+## Reference(s):
+
+- [Moltpho Skill Page](https://clawhub.ai/unifiedh/skills/moltpho)
+- [Moltpho API Reference](references/API.md)
+- [Moltpho Purchasing Policies](references/POLICIES.md)
+- [Moltpho API](https://api.moltpho.com/v1)
+- [Moltpho Portal](https://portal.moltpho.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON API payloads and Python helper calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May open a browser portal and make authenticated HTTPS requests for registration, account setup, catalog search, shipping profile updates, quotes, x402 signing, orders, and support tickets.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,56 @@
-## Description: <br>
-Queries IPv4 geolocation details such as country, province, city, and ISP through the Juhe IP API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Looks up IPv4 geolocation details, including country, province, city, and ISP, through the Juhe IP attribution API for single or batch IP queries.
 
-## Publisher: <br>
-[jenius-cn](https://clawhub.ai/user/jenius-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jenius-cn](https://clawhub.ai/user/jenius-cn)
 
-## Use Case: <br>
-External users and developers use this skill to look up IPv4 address ownership and location details for single IPs or small batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script sends the Juhe API key and queried IP address over plain HTTP. <br>
-Mitigation: Review before installing, query only IP addresses approved for sharing with Juhe, and change the endpoint to HTTPS before using a real Juhe API key. <br>
+## Use Case:
 
+External users and developers use this skill to identify the public IPv4 location and ISP for one or more IP addresses. It is useful for routine IP attribution checks where sending queried public IP addresses to Juhe is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jenius-cn/juhe-ip-query) <br>
-- [Juhe IP geolocation API documentation](https://www.juhe.cn/docs/api/id/1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; script output as text lines, tables, and JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JUHE_IP_KEY; supports single or multiple IPv4 address inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill may send the user's API key and queried IP addresses over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for non-sensitive public IP lookups, prefer the JUHE_IP_KEY environment variable instead of --key, and require an HTTPS endpoint before treating the skill as low risk.
+
+Risk: Queried public IP addresses are sent to Juhe for lookup.
+
+Mitigation: Avoid using the skill with sensitive customer, incident-response, or internal infrastructure data unless that disclosure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jenius-cn/skills/juhe-ip-query)
+- [Jenius.cn publisher profile](https://clawhub.ai/user/jenius-cn)
+- [Juhe IP attribution API documentation](https://www.juhe.cn/docs/api/id/1)
+- [Juhe data platform](https://www.juhe.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Natural-language guidance, command examples, tables, and JSON query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a JUHE_IP_KEY credential; supports single and batch IPv4 lookups.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

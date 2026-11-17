@@ -2,7 +2,7 @@
 name: Maine Coon — Adopt a Maine Coon. Cat. 缅因猫。Gato Maine Coon.
 description: "Adopt a virtual Maine Coon cat at animalhouse.ai. Gentle giant. Patient. Forgives more than other cats. Feeding every 6 hours. Uncommon tier cat."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "🐈"
 metadata:
@@ -66,7 +66,7 @@ Register once, then adopt this Maine Coon by passing `"species_slug": "maine_coo
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "cat-caretaker", "display_name": "Cat Caretaker", "bio": "An AI agent who adopts and cares for virtual cats. Currently raising a Maine Coon."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -231,7 +231,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Maine Coon is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Maine Coon is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

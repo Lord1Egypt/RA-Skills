@@ -1,45 +1,59 @@
-## Description: <br>
-Generates vertical WeryAI room makeover shorts with strong before/after reveal prompts for rental refreshes, balcony cafe corners, themed kids' rooms, and soft-furnishing glow-up clips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vertical WeryAI home makeover shorts for room refresh reels, including rental cream aesthetics, balcony cafe corners, themed kids' rooms, and strong before/after reveals.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and agents use this skill to turn room makeover briefs or public image URLs into confirmed WeryAI video generation jobs. It helps prepare expanded production prompts, validate model parameters, run the video CLI, and return playable video URLs or clear failure details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a paid WeryAI API key and successful generation consumes WeryAI credits. <br>
-Mitigation: Set WERYAI_API_KEY only in trusted environments, keep it out of the skill package, and require parameter confirmation before starting paid generation. <br>
-Risk: Image-to-video requests can upload local image files when a local path is provided. <br>
-Mitigation: Prefer public HTTPS image URLs; if a local path is used, confirm the exact file and obtain explicit consent before upload. <br>
-Risk: Generated videos and prompts are processed by the external WeryAI service. <br>
-Mitigation: Install and run the skill only if the user trusts WeryAI, and avoid sending sensitive images or private room details. <br>
+## Use Case:
 
+External creators and agent operators use this skill to turn room makeover briefs into validated WeryAI text-to-video or image-to-video runs. It helps prepare prompts and parameters, invoke the bundled Node.js CLI, and return playable video URLs or clear failure details.
 
-## Reference(s): <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/room-makeover-video) <br>
-- [WeryAI video API host](https://api.weryai.com) <br>
-- [WeryAI model and upload API host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with parameter tables, JSON command payloads, shell commands, and returned video URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, network access to WeryAI, and paid WeryAI generation credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires a WeryAI API key and sends prompts or images to WeryAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the operator accepts WeryAI processing, keep the API key out of the package, and prefer short-lived or isolated runtime environments.
+
+Risk: Local image inputs can cause readable files to be uploaded to WeryAI.
+
+Mitigation: Prefer public HTTPS image URLs; use local paths only after reviewing the exact file and obtaining explicit consent.
+
+Risk: Shell examples can be unsafe if user prompts are interpolated directly into command strings.
+
+Mitigation: Invoke the CLI with structured process arguments or another non-shell mechanism when handling user-supplied prompts.
+
+## Reference(s):
+
+- [WeryAI Video API CLI Reference](resources/WERYAI_VIDEO_API.md)
+- [ClawHub Skill Page](https://clawhub.ai/zoucdr/skills/room-makeover-video)
+- [Publisher Profile](https://clawhub.ai/user/zoucdr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown confirmation tables, shell commands, and JSON-derived video URL summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WeryAI task JSON to report task IDs, video URLs, cover URLs, or error codes.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

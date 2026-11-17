@@ -1,7 +1,5 @@
-# Google 广告关键词持续优化指南
+﻿# Google 广告关键词持续优化指南
 
-> 所属 skill：`siluzan-tso`。
->
 > 适用场景：已有投放数据后，基于效果数据**迭代优化**关键词。
 > 首次生成关键词见 `references/google-ads-keyword-strategy.md`；
 > 合规规则见 `references/google-ads-compliance.md`。
@@ -493,7 +491,7 @@ siluzan-tso ad keyword-negative-create --keywords "free,jobs,DIY" ...
 siluzan-tso ad keyword-create --keywords "[高转化词1],[高转化词2]" ...
 
 # 暂停低效词
-# （通过网页端或 ad keyword-update 操作）
+# （通过网页端或 ad keyword-edit 操作）
 ```
 
 ### 13.2 月度审计流程

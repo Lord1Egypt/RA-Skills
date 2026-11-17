@@ -1,43 +1,54 @@
-## Description: <br>
-Automates a weekly meeting Excel follow-up workflow by finding the latest workbook, creating a dated copy, updating the date column, and sending the file to a configured Meixin work group. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每周一 09:00 自动处理周例会 Excel 跟进表，更新日期列，并将结果发送到指定美信工作群。
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Employees responsible for Smart Equipment Institute weekly meetings use this skill to prepare a dated Excel follow-up sheet and send it to the designated Meixin work group on a weekly schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically modify and upload a local business Excel file on a weekly schedule. <br>
-Mitigation: Require preview or approval before sending, verify the recipient group, and narrow the watched directory to the intended workbook location. <br>
-Risk: The reviewed package references PowerShell and batch scripts that are not included in the artifact. <br>
-Mitigation: Inspect the local scripts before installation and pin expected paths or hashes before allowing scheduled execution. <br>
-Risk: The workflow depends on mx-im authorization and file-upload permissions. <br>
-Mitigation: Use a least-privileged account and confirm Meixin upload and group-message permissions before enabling the cron task. <br>
+## Use Case:
 
+Operations staff or developers use this skill to automate a recurring weekly meeting workflow: find the latest scoped Excel follow-up sheet, create the current-week version, update the date column, and share it to the configured Meixin work group.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paudyyin/weekly-meeting-automation) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or chat text with command snippets, configuration details, and execution status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify a dated Excel workbook and send it to a configured group when the referenced local scripts and account permissions are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill performs scheduled file creation or modification under D:\00OPENCLAWSPACE\.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target directory, filename pattern, and Monday 09:00 Asia/Shanghai schedule before enabling the cron task.
+
+Risk: The skill sends the generated Excel file to a configured Meixin group.
+
+Mitigation: Confirm the group ID, account permissions, and file sensitivity before allowing outbound sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paudyyin/skills/weekly-meeting-automation)
+- [Publisher profile](https://clawhub.ai/user/paudyyin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text with command snippets and cron configuration JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces status-oriented agent guidance for a Windows Excel and Meixin group-send workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,47 @@
-## Description: <br>
-Provides guidance for using pywayne.cv.camera_model to load camera model YAML files, inspect camera parameters, run 2D/3D projection operations, and export parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Camera model wrapper for the camera_models C++ library via pybind11 that helps agents guide use of pywayne.cv.camera_model to load YAML camera configurations, inspect camera properties, perform projection operations, and export parameters.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and engineers use this skill when working with Pywayne camera models to load YAML camera configurations, inspect supported camera parameters, perform projection operations, and generate example Python usage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The camera_models dependency may run compiled native code locally when installed or invoked. <br>
-Mitigation: Confirm the gettool-managed native dependency source and local execution requirements before installing or using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/camera-model) <br>
+## Use Case:
+
+Developers and engineers use this skill for guidance on pywayne.cv.camera_model workflows, including loading camera model YAML files, inspecting camera parameters, and using 2D/3D projection methods.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill documents automatically downloading a native camera_models library without explaining the source or integrity checks.
+
+Mitigation: Before installation or use, confirm the gettool download source, pin the exact native library version, and verify a checksum or signature before loading the library.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with Python code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local native camera_models dependencies managed through gettool.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Code, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include YAML camera configuration examples and pywayne.cv.camera_model usage snippets.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Provides Chinese medicine constitution assessment, herb and formula reference, acupoint wellness guidance, and non-diagnostic symptom-pattern analysis for educational health maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Medicine CN provides Chinese-language educational guidance for traditional Chinese medicine constitution assessment, herbs, formulas, acupoints, syndrome associations, and compatibility safety checks.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External users interested in Chinese medicine use this skill to learn about constitutions, herbs, formulas, acupoints, seasonal wellness, and compatibility cautions. It is for cultural education and daily wellness reference, not diagnosis, treatment, prescription, or medication decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat herb, formula, acupoint, or dosage references as personal medical advice. <br>
-Mitigation: Keep responses framed as educational Chinese medicine reference and direct users to licensed medical professionals for diagnosis, treatment, dosing, formulas, pregnancy, child, liver, kidney, medication-interaction, or urgent-symptom decisions. <br>
-Risk: Users may use compatibility or contraindication information to self-manage medications or prepare herbal formulas. <br>
-Mitigation: Use compatibility scans only as cautionary reference, highlight contraindications, and advise professional review before combining herbs, changing medications, or using formulas. <br>
+## Use Case:
 
+People interested in traditional Chinese medicine use this skill to learn about constitution patterns, herbs, classic formulas, acupoint wellness practices, seasonal health preservation, and non-diagnostic symptom-pattern associations. The skill is intended for cultural and educational reference, with health-related outputs directed back to licensed clinicians for medical decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/chinese-medicine-cn) <br>
-- [Constitution database](artifact/references/constitution_db.json) <br>
-- [Syndrome rules](artifact/references/syndrome_rules.json) <br>
-- [Acupoints database](artifact/references/acupoints.json) <br>
-- [Herbs database](artifact/references/herbs_db.json) <br>
-- [Formulas database](artifact/references/formulas.json) <br>
-- [Contraindications database](artifact/references/contraindications.json) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style Chinese-language responses with structured sections, cautions, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Health-related responses must stay educational and include medical-professional consultation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can expose exact herbal doses, preparation details, and formula modifications despite stating that it does not prescribe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat herb and formula content as educational reference only; suppress personalized dosing, preparation, and modification guidance in consumer responses and direct users to licensed clinicians for treatment decisions.
+
+Risk: The skill can expose needle insertion and moxibustion procedure details for acupoints.
+
+Mitigation: Limit consumer-facing acupoint responses to general wellness or acupressure context, preserve contraindication warnings, and refer needling or moxibustion decisions to qualified practitioners.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/chinese-medicine-cn)
+- [constitution_db.json](artifact/references/constitution_db.json)
+- [syndrome_rules.json](artifact/references/syndrome_rules.json)
+- [acupoints.json](artifact/references/acupoints.json)
+- [herbs_db.json](artifact/references/herbs_db.json)
+- [formulas.json](artifact/references/formulas.json)
+- [contraindications.json](artifact/references/contraindications.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown-style responses with structured sections and safety disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include constitution summaries, herb or formula explanations, acupoint wellness guidance, symptom-pattern associations, and compatibility safety reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

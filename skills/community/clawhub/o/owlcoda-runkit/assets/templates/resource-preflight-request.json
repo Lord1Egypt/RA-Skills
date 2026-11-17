@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "OwlCodaRunKitResourcePreflightRequestV1",
+  "preflightId": "resource-preflight-001",
+  "verificationPlanPath": ".owlcoda/runkit/executions/replace-run-id/verification-plans/replace-plan-id.json",
+  "verificationPlanSha256": "replace-with-lowercase-sha256",
+  "policy": {
+    "gateMode": "model_required",
+    "maxObservationAgeMs": 300000,
+    "unknownHandling": {
+      "availability": "fail_closed",
+      "quota": "fail_closed",
+      "resetTime": "fail_open",
+      "pricing": "fail_closed"
+    },
+    "limits": {
+      "maxCalls": 100,
+      "maxTotalTokens": 1000000,
+      "maxElapsedMs": 3600000,
+      "maxCostUsd": 10
+    }
+  },
+  "observations": [
+    {
+      "providerId": "replace-provider",
+      "modelId": "replace-model",
+      "adapter": {
+        "id": "owlcoda-model-resource-adapter",
+        "kind": "owlcoda_runtime",
+        "evidenceRef": "artifact:sha256:replace-with-source-reference",
+        "evidenceSha256": "replace-with-lowercase-sha256",
+        "observedAt": "2026-01-01T00:00:00.000Z"
+      },
+      "availability": {
+        "status": "unknown",
+        "reason": "adapter_has_no_verified_live_probe"
+      },
+      "quota": {
+        "remainingCalls": { "status": "unknown", "reason": "provider_not_exposed" },
+        "remainingTokens": { "status": "unknown", "reason": "provider_not_exposed" },
+        "resetAt": { "status": "unknown", "reason": "provider_not_exposed" }
+      },
+      "pricing": { "status": "unknown", "reason": "project_pricing_not_declared" }
+    }
+  ],
+  "workloads": [
+    {
+      "id": "replace-model-workload",
+      "providerId": "replace-provider",
+      "modelId": "replace-model",
+      "calls": 1,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "elapsedMs": 0
+    }
+  ]
+}

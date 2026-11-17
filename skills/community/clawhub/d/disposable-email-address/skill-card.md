@@ -1,43 +1,55 @@
-## Description: <br>
-Disposable Email Address creates temporary 24-hour email addresses, checks inboxes, and lists active addresses for AgentPMT-hosted workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create 24-hour disposable email addresses, read their inboxes, and list active addresses for signups and verification workflows.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to create short-lived inboxes for service signups, verification links, one-time codes, automated testing, and temporary communications without exposing a permanent email address. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary inbox messages and verification codes may be visible to other agents sharing the same AgentPMT budget. <br>
-Mitigation: Use the skill only for low-risk temporary workflows and avoid important accounts, password resets, financial services, private communications, or sensitive verification codes. <br>
-Risk: Remote calls may return full email content, including sender, subject, body, and received timestamp. <br>
-Mitigation: Keep tool inputs scoped to the task and avoid routing private or sensitive communications through disposable inboxes. <br>
+## Use Case:
 
+Developers and agents use temporary inboxes for service registrations, verification emails, and automated testing without supplying a permanent email address.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/disposable-email-address) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/disposable-email-address) <br>
-- [Disposable Email Address Schema](schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, API calls, Text] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote tool responses may include temporary email addresses, inbox message counts, full message contents, timestamps, and active-address lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: Other agents on the same budget may read inbox contents, including verification links and one-time codes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid personal, financial, production, or high-value accounts; isolate agent groups or budgets when inbox privacy matters.
+
+Risk: Generic email requests could expose sensitive messages to a shared disposable inbox.
+
+Mitigation: Use this skill only for explicit temporary-inbox requests and keep messages and credentials out of prompts and logs.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/agentpmt/skills/disposable-email-address)
+- [AgentPMT marketplace listing](https://www.agentpmt.com/marketplace/disposable-email-address)
+- [AgentPMT account setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON tool calls]
+
+**Output Format:** [Text with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool responses can include temporary addresses, expiry times, and complete inbox messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

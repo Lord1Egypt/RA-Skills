@@ -1,44 +1,55 @@
-## Description: <br>
-Watchboard Intelligence queries watchboard.dev for structured tracker data, KPIs, contested claims, recent events, and daily digests across conflict, politics, culture, science, space, and historical topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Watchboard intelligence dashboards for structured event data, casualty figures, KPIs, contested claims, and daily digests across trackers covering conflicts, politics, culture, science, and space.
 
-## Publisher: <br>
-[artemiopadilla](https://clawhub.ai/user/artemiopadilla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[artemiopadilla](https://clawhub.ai/user/artemiopadilla)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve structured Watchboard intelligence for covered trackers, including briefings, casualty figures, KPIs, contested claims, breaking tracker summaries, recent events, search results, and RSS fallbacks. It is best suited to topics covered by Watchboard and should not be treated as authoritative for breaking news less than about 24 hours old. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Watchboard responses are external intelligence content and may include contested or outdated claims. <br>
-Mitigation: Verify high-stakes claims with primary sources and review contested KPI notes before relying on the output. <br>
-Risk: The skill contacts watchboard.dev and stores temporary public API or RSS responses in /tmp/watchboard-cache. <br>
-Mitigation: Use only in environments where outbound access to watchboard.dev and temporary local caching of public responses are acceptable. <br>
-Risk: The artifact notes that Watchboard is not intended for breaking news less than about 24 hours old. <br>
-Mitigation: Use the skill for covered trackers with daily or periodic updates, and supplement very recent events with primary or time-sensitive sources. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to retrieve structured Watchboard tracker summaries, KPIs, recent events, search results, RSS fallback data, and briefings when a topic is covered by Watchboard.
 
-## Reference(s): <br>
-- [Watchboard](https://watchboard.dev) <br>
-- [Watchboard API v1](https://watchboard.dev/api/v1/) <br>
-- [ClawHub release page](https://clawhub.ai/artemiopadilla/watchboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Terminal text summaries or raw JSON from a Python CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries public Watchboard API and RSS endpoints, supports optional JSON mode, and caches public responses locally in /tmp/watchboard-cache for one hour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Queries are sent to watchboard.dev and responses are cached under /tmp/watchboard-cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data flow is acceptable, avoid elevated privileges, and prefer a private per-user cache with restrictive permissions on shared systems.
+
+Risk: The shared temporary cache creates a local file-safety and cache-poisoning risk.
+
+Mitigation: Review cache handling before deployment and isolate or harden the cache location when multiple users can access the same system.
+
+## Reference(s):
+
+- [Watchboard](https://watchboard.dev)
+- [Watchboard API v1](https://watchboard.dev/api/v1/)
+- [ClawHub Skill Release](https://clawhub.ai/artemiopadilla/skills/watchboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Watchboard API responses and caches fetched data locally for 1 hour.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

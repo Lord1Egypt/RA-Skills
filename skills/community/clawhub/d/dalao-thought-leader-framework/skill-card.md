@@ -1,45 +1,58 @@
-## Description: <br>
-A Chinese-language thought-leader simulation framework for generating labeled AI-inferred discussions, individual opinions, and meeting participation outputs from role personas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona-simulation framework for generating clearly labeled simulated discussions, individual viewpoints, and meeting participation reports using role pools and decision-chain checks.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Employees, consultants, and strategy teams can use this skill to structure simulated Chinese-language debates, single-persona viewpoints, and meeting participation around AI, hospitality, investment, or business strategy questions. Outputs should be treated as AI inference, not as real statements by the named people. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can support building personas of real colleagues or public figures from workplace chats, private messages, documents, emails, and browser/API access. <br>
-Mitigation: Use it only with explicit authorization from the people and workspace involved, and avoid private messages or confidential documents unless clearly permitted. <br>
-Risk: Simulated viewpoints could be mistaken for real statements or used publicly without authorization. <br>
-Mitigation: Keep the required AI-simulation labels and legal disclaimers, do not claim generated content is a real person's statement, and obtain authorization before public or commercial use of persona outputs. <br>
-Risk: Generated persona files or stored knowledge can retain sensitive coworker or company information. <br>
-Mitigation: Review generated persona files before use and delete stored knowledge or profile files when they are no longer needed. <br>
+## Use Case:
 
+External users and employees can use this skill to produce structured, clearly disclosed AI simulations of thought-leader discussions, single-person perspective reports, or meeting-style comments for private analysis and planning. It is not appropriate for attributed quotes, public statements, news copy, or interviews representing real people.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chaoliuzhu/dalao-thought-leader-framework) <br>
-- [README](README.md) <br>
-- [Dezhang AI Native strategy guide](guides/dezhang-ai-native.md) <br>
-- [Dezhang AI Native competitive background](guides/background-de-zhang.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and shell-command prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs must label simulated viewpoints and include the legal disclaimers required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.0 (source: server release metadata) <br>
+Risk: The skill simulates real people and could be mistaken for authentic statements if labels are removed or ignored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep viewpoint-simulation labels and compliance notices in generated output, and do not use the output as public statements, interviews, news copy, or attributed quotes.
+
+Risk: Private chats, meetings, or company materials could be exposed if supplied without authorization.
+
+Mitigation: Use only authorized materials and avoid feeding private or company-confidential content unless the user has permission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chaoliuzhu/skills/dalao-thought-leader-framework)
+- [Publisher Profile](https://clawhub.ai/user/chaoliuzhu)
+- [README](README.md)
+- [Dezhang AI Native Strategic Background](guides/dezhang-ai-native.md)
+- [Dezhang AI Native Competitive Background](guides/background-de-zhang.md)
+- [Personas Directory Notes](personas/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and short shell command prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should label simulated viewpoints, include legal compliance notices, and avoid presenting simulated content as real statements.]
+
+## Skill Version(s):
+
+3.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

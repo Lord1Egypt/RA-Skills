@@ -1,39 +1,58 @@
-## Description: <br>
-Guides agents through incremental synchronization of local content into Feishu documents, including table replacement, positioned inserts, header-row creation, column widths, and diff-based updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Doc Sync helps agents synchronize local documents to Feishu Docs and operate Feishu document tables, including delete-and-insert table updates, header-row creation, insert positioning, column-width handling, and three-phase diff sync.
 
-## Publisher: <br>
-[deadblue22](https://clawhub.ai/user/deadblue22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deadblue22](https://clawhub.ai/user/deadblue22)
 
-## Use Case: <br>
-Developers and agents use this skill to read, create, update, and synchronize Feishu documents and Docx tables while preserving structure and formatting where possible. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to make persistent edits to Feishu documents. <br>
-Mitigation: Confirm the target document, requested operation, and permissions before allowing write, append, insert, delete, or table operations. <br>
-Risk: The artifact describes reading local Feishu app credentials and using raw API calls outside the declared tool workflow. <br>
-Mitigation: Do not use the raw API/header-row workflow unless explicitly approved, and keep credential access behind a vetted user-approved tool. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deadblue22/feishu-doc-sync) <br>
+## Use Case:
 
+Developers and agents use this skill to read, write, append, insert, and incrementally synchronize Feishu document content while preserving table placement and formatting constraints.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples, shell command examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Feishu document actions that create persistent document changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to read Feishu app credentials and create tenant tokens for direct authenticated API calls.
+
+Mitigation: Keep authentication inside the approved Feishu document tool where possible and avoid exposing app secrets to general agent context.
+
+Risk: The skill includes replace, delete, and insert workflows that can mutate Feishu documents.
+
+Mitigation: Require explicit user approval for destructive or broad document changes and compare current document content before writing.
+
+Risk: The skill recommends running git pull before reading local repository files.
+
+Mitigation: Require explicit approval before mutating the local workspace and review incoming repository changes before syncing them to Feishu.
+
+## Reference(s):
+
+- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu Docx block children API endpoint](https://open.feishu.cn/open-apis/docx/v1/documents/{doc_token}/blocks/{doc_token}/children?document_revision_id=-1)
+- [ClawHub skill page](https://clawhub.ai/deadblue22/skills/feishu-doc-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON action examples, bash commands, and YAML configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu document action patterns, table update workflows, synchronization heuristics, and permission notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-DeepSop TK工作台 guides an agent through DeepSOP Toby workflows for AI-generating TikTok videos, scheduling posts, and returning video performance metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepSop TK工作台 helps an agent turn natural-language TikTok video requests into DeepSOP Toby tasks that generate AI videos, schedule TikTok publishing, and return playback, like, comment, share, and video-link results.
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-Creators, operators, and marketing teams use this skill through an agent to turn natural-language TikTok campaign requests into DeepSOP Toby task submissions, scheduled publishing, and later performance summaries. It is intended for users who already have a DeepSOP API key and authorized TikTok accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit tasks that generate, schedule, and publish content to real TikTok accounts. <br>
-Mitigation: Verify the selected TikTok account, generated prompt, privacy level, and posting schedule before task submission. <br>
-Risk: The skill requires a DeepSOP API key and can interact with account balance or package purchase flows. <br>
-Mitigation: Install only when the agent is expected to use the DeepSOP API key, and review any package or K-coin purchase choice before approving it. <br>
+## Use Case:
 
+Employees and operators use this skill to generate AI video content, configure TikTok account publishing parameters, submit DeepSOP Toby tasks, and retrieve publishing analytics. The skill is intended for workflows where the user has authority to use the configured DeepSOP API key and TikTok accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kukuoai/deepsop-tiktokflow) <br>
-- [Publisher profile](https://clawhub.ai/user/kukuoai) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [DeepSOP platform](https://ai.deepsop.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPSOP_API_KEY and user confirmation before submitting TikTok posting tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can use a DeepSOP API key to submit TikTok publishing tasks and query video analytics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with approved DeepSOP and TikTok accounts, keep DEEPSOP_API_KEY controlled, and confirm the selected account, prompt, privacy level, schedule, and publishing counts before submission.
+
+Risk: Security evidence identifies weak controls around scheduled callbacks and payload validation.
+
+Mitigation: Review callback provenance handling before deployment and enforce strict validation of account IDs, publish counts, intervals, times, and unknown fields.
+
+Risk: The skill can participate in DeepSOP package purchase flow steps.
+
+Mitigation: Require explicit user confirmation and a fresh balance check before any package purchase action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuoai/skills/deepsop-tiktokflow)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+- [DeepSOP login](https://ai.deepsop.com/login?source=5)
+- [DeepSOP registration](https://ai.deepsop.com/register?source=5)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON request bodies and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit DeepSOP API requests using DEEPSOP_API_KEY and may schedule a one-time result query callback.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

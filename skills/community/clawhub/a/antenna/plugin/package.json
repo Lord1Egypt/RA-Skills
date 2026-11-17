@@ -1,0 +1,52 @@
+{
+  "name": "@clawreefantenna/antenna-plugin",
+  "version": "1.6.9",
+  "description": "Antenna for OpenClaw: signed messaging between approved conversations on compatible OpenClaw and Hermes peers.",
+  "homepage": "https://clawreef.io/",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "bin": {
+    "antenna-plugin": "./cli.mjs"
+  },
+  "files": [
+    "LICENSE",
+    "OPTIONAL-KITS.md",
+    "README.md",
+    "RULESETS.md",
+    "antenna-replay.sh",
+    "capacity.mjs",
+    "cli.mjs",
+    "config-write.mjs",
+    "doctor.mjs",
+    "dumb-worker.mjs",
+    "envelope.mjs",
+    "inbox.mjs",
+    "index.mjs",
+    "limits.mjs",
+    "migration-warning.mjs",
+    "openclaw.plugin.json",
+    "operator-auth.mjs",
+    "pairing.mjs",
+    "policy.mjs",
+    "recovery-validate.mjs",
+    "rules/default.json",
+    "ruleset.mjs",
+    "runtime.mjs",
+    "scanners.mjs",
+    "send.mjs",
+    "smart.mjs",
+    "transport.mjs"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.mjs"
+    ]
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.9.5"
+  },
+  "scripts": {
+    "test": "node tests/cli-writes.mjs && node tests/config-write.mjs && node tests/operator-auth.mjs && node tests/loopback.mjs && node tests/ingress-boundary.mjs && node tests/verdict-contract.mjs && node tests/package.mjs && node tests/flow.mjs && node tests/native-doctor.mjs && node tests/native-companion.mjs && node tests/resources.mjs"
+  }
+}

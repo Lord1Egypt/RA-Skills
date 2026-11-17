@@ -1,41 +1,53 @@
-## Description: <br>
-Send automatic notifications when the OpenClaw gateway starts up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send automatic notifications when the OpenClaw gateway starts up. Supports Telegram, WhatsApp, Discord, Slack, Signal, iMessage, IRC, Google Chat, Line, WeChat, Feishu (Lark), and QQ Bot. Triggers on phrases like 'gateway restart notification', 'notify me when gateway starts', 'startup alert'. Run setup script to configure channel and recipient.
 
-## Publisher: <br>
-[keaneyan](https://clawhub.ai/user/keaneyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keaneyan](https://clawhub.ai/user/keaneyan)
 
-## Use Case: <br>
-Developers and OpenClaw gateway operators use this skill to configure startup notifications to a chosen messaging channel so gateway restarts are visible without manually checking service status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gateway startup details may be sent to an unintended or overly broad chat target. <br>
-Mitigation: Use a private or least-privilege recipient and review the generated config.json before restarting the gateway. <br>
-Risk: The installed startup hook continues sending notifications until it is disabled or removed. <br>
-Mitigation: Disable or remove the gateway-notify hook when automatic notifications are no longer needed. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to configure a gateway startup hook that sends notifications to a selected messaging channel when the OpenClaw gateway starts.
 
-## Reference(s): <br>
-- [Channel Reference](references/CHANNELS.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/keaneyan/gateway-startup-notify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files] <br>
-**Output Format:** [Markdown instructions with bash commands and generated OpenClaw hook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The setup flow writes HOOK.md, config.json, and handler.ts under ~/.openclaw/hooks/gateway-notify.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release metadata) <br>
+Risk: The skill installs a persistent OpenClaw hook that automatically sends gateway startup metadata to a configured messaging service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that notification behavior is intended, and review the generated config.json and handler.ts before restarting the gateway.
+
+Risk: The uninstall instructions remove the gateway-notify hook directory.
+
+Mitigation: Verify ~/.openclaw/hooks/gateway-notify before using the deletion command.
+
+## Reference(s):
+
+- [Channel Reference](references/CHANNELS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated hook configuration/code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configures a persistent OpenClaw hook for one selected messaging channel and recipient.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Openclaw Codex Collaboration provides guidance for coordinating Codex development runs, including invocation patterns, canary checks, task folders, prompt templates, validation, and handoff records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language OpenClaw workflow for coordinating Codex development tasks, canary checks, run logging, prompt templates, validation, and structured handoffs.
 
-## Publisher: <br>
-[kmpanda011172](https://clawhub.ai/user/kmpanda011172) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kmpanda011172](https://clawhub.ai/user/kmpanda011172)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to guide agents running Codex against local repositories with pre-run canary checks, standardized prompts, run logs, validation checklists, and OpenClaw/Codex handoff records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Codex automation can modify local repositories and save prompts, diffs, logs, and test output in local run records. <br>
-Mitigation: Use the skill only in repositories where workspace-write Codex automation is acceptable, run the documented canary check first, and review saved records before sharing or relying on them. <br>
-Risk: Incorrect Codex command ordering or skipped validation can block execution or mark failed work as complete. <br>
-Mitigation: Keep the documented argument order, require non-empty canary and result files, and treat nonzero exits or empty outputs as blocked. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate OpenClaw handoffs to Codex for repository-scoped development work, including command invocation, canary verification, task records, and completion checks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and directory templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands for canary checks and local run records; review saved prompts, diffs, and logs before sharing or relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata and SKILL.md frontmatter) <br>
+Risk: The workflow is designed for Codex runs with repository write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target repository, task prompt, and allowed scope before running workspace-write commands.
+
+Risk: Incorrect Codex CLI parameter ordering can cause failed or stalled executions.
+
+Mitigation: Run the documented read-only canary check before development tasks and stop if the canary output or exit code is invalid.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kmpanda011172/skills/codex-dev-collaboration)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command snippets and structured task templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

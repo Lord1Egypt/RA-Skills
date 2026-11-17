@@ -1,44 +1,55 @@
-## Description: <br>
-Export webpages into clean local TXT, DOCX, and PDF files with source metadata, fallback extraction logic, and browser-assisted recovery for difficult pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export webpages into clean local TXT, DOCX, and PDF files with source metadata, fallback extraction logic, and browser-assisted recovery for difficult pages.
 
-## Publisher: <br>
-[lilw-yezi](https://clawhub.ai/user/lilw-yezi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lilw-yezi](https://clawhub.ai/user/lilw-yezi)
 
-## Use Case: <br>
-Developers, researchers, and analysts use this skill to archive or share webpage content as local text, Word, PDF, and metadata outputs before downstream review, analysis, or delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-provided URLs and writes local export files, which can expose internal or sensitive pages if the agent is pointed at them. <br>
-Mitigation: Use explicit trusted URLs and output folders; avoid localhost, private-network, file, cloud-metadata, or sensitive logged-in pages unless that access is intended. <br>
-Risk: Browser-assisted fallback may execute page JavaScript through local Chrome, Chromium, Node, or Playwright. <br>
-Mitigation: Use browser fallback only when needed, rely on trusted local runtime installations, and review metadata warnings before treating outputs as complete. <br>
-Risk: Dynamic, blocked, or anti-bot pages may produce partial extraction or incomplete PDF output. <br>
-Mitigation: Treat TXT plus JSON metadata as the baseline record, inspect extraction quality and warnings, and avoid relying on PDF alone for accuracy-sensitive work. <br>
+## Use Case:
 
+Developers and agents use this skill to archive or prepare webpage content for downstream analysis, sharing, or citation while preserving source metadata and extraction quality signals.
 
-## Reference(s): <br>
-- [Accuracy and Fallbacks](references/accuracy-and-fallbacks.md) <br>
-- [Chrome PDF Guide](references/chrome-pdf-guide.md) <br>
-- [Delivery Rules](references/delivery-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Local TXT, DOCX, PDF, and JSON metadata files with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [TXT is the baseline extracted record; JSON metadata records paths, extraction quality, warnings, and partial-failure status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: The skill can fetch arbitrary URLs from the local machine and render pages with a headless browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on trusted public webpages, disable browser or PDF fallback for untrusted URLs or shared environments, and prefer network isolation when browser rendering is necessary.
+
+Risk: The skill writes exported content and metadata to local paths, which can be risky in shared workspaces or when filenames are user-controlled.
+
+Mitigation: Choose a dedicated output directory and avoid user-controlled basename values.
+
+## Reference(s):
+
+- [Accuracy and Fallbacks](references/accuracy-and-fallbacks.md)
+- [Chrome PDF Guide](references/chrome-pdf-guide.md)
+- [Delivery Rules](references/delivery-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local TXT, DOCX, PDF, and JSON metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emits extraction quality, warnings, output paths, and partial-failure status in a metadata JSON file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

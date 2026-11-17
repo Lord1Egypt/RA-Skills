@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/get-kol-fans-distribution/v1 for Douyin Creator Marketplace (Xingtu) Follower Distribution through JustOneAPI with kolId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/get-kol-fans-distribution/v1 for Douyin Creator Marketplace (Xingtu) Follower Distribution through JustOneAPI with kolId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and external users use this skill to request Douyin/Xingtu follower distribution data for a specified creator, including audience demographics, interests, and distribution metrics for creator evaluation, campaign planning, and marketplace research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized or inappropriate requests for Douyin/Xingtu audience analytics could expose creator-related marketplace data outside the user's allowed use. <br>
-Mitigation: Use the skill only when you trust JustOneAPI and are authorized to request analytics for the submitted creator IDs. <br>
-Risk: JUST_ONE_API_TOKEN may be exposed through chat, logs, screenshots, or full request URLs. <br>
-Mitigation: Treat JUST_ONE_API_TOKEN as a secret, avoid logging full request URLs, and rotate the token if it is exposed. <br>
+## Use Case:
 
+External developers, analysts, and marketplace operators use this skill to retrieve Douyin Creator Marketplace (Xingtu) follower distribution data for a specified KOL ID. The returned audience demographics, interests, and distribution metrics can support creator evaluation, campaign planning, and marketplace research.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-get-kol-fans-distribution) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_fans_distribution&utm_content=project_link) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_fans_distribution&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON response data when the endpoint succeeds] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a kolId query parameter; optional fansType and acceptCache parameters refine the request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, published 2026-04-25T07:49:31Z) <br>
+Risk: The JustOneAPI token can be exposed through command-line arguments, URLs, process telemetry, proxy logs, or request logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token where possible, avoid environments that log full command lines or URLs, and rotate the token if exposure is suspected.
+
+Risk: Follower distribution data from the backend can be incomplete, stale, or unsuitable for campaign decisions without review.
+
+Mitigation: Confirm the kolId and fansType inputs, review backend errors and raw JSON, and validate important findings before using the data for creator evaluation or campaign planning.
+
+## Reference(s):
+
+- [Generated operation reference](generated/operations.md)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_fans_distribution&utm_content=project_link)
+- [JustOneAPI API homepage](https://api.justoneapi.com)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-get-kol-fans-distribution)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [Concise Markdown summary followed by raw JSON when requested or after endpoint-specific summarization]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and a kolId query parameter; optional fansType and acceptCache query parameters are supported.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

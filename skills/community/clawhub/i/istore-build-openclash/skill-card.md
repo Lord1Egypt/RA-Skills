@@ -1,41 +1,55 @@
-## Description: <br>
-Creates an OpenClash GitHub Actions build workflow and pushes it directly to a user's GitHub repository. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and pushes a GitHub Actions workflow that builds OpenClash installer packages for a user's iStoreOS fork.
 
-## Publisher: <br>
-[veelove](https://clawhub.ai/user/veelove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veelove](https://clawhub.ai/user/veelove)
 
-## Use Case: <br>
-Developers and router maintainers use this skill to add an OpenClash build workflow to a forked iStoreOS repository, trigger GitHub Actions builds, and retrieve the generated router installer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for GitHub repository credentials and changes repository Actions permissions. <br>
-Mitigation: Use a fine-grained, short-lived token limited to the target repository, revoke it after use, and avoid enabling pull request review approval unless it is explicitly needed. <br>
-Risk: The generated installer can make privileged router changes, including installing packages, writing system files, enabling OpenClash, and reloading firewall or web services. <br>
-Mitigation: Inspect the workflow and generated installer before running it on a router, and test in a non-critical environment before using it on production devices. <br>
+## Use Case:
 
+Developers maintaining iStoreOS forks use this skill to add a GitHub Actions workflow that builds OpenClash .run installer artifacts and publishes them from their repository.
 
-## Reference(s): <br>
-- [OpenClash build workflow](references/build-openclash.yml) <br>
-- [OpenClash latest release API](https://api.github.com/repos/vernesong/OpenClash/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML workflow content and shell/API commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitHub repository URL and personal access token; may create a workflow file and change Actions workflow permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks for GitHub credentials and enables write-capable workflow permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained, single-repository, short-lived token or make the repository changes manually; avoid enabling repository-wide write permissions or workflow pull request approvals.
+
+Risk: The workflow can publish privileged router installer binaries built from downloaded remote content.
+
+Mitigation: Inspect the workflow before running it, pin and verify downloaded binaries, and review generated installers before using them on a router.
+
+## Reference(s):
+
+- [Build OpenClash workflow](references/build-openclash.yml)
+- [ClawHub skill page](https://clawhub.ai/veelove/skills/istore-build-openclash)
+- [OpenClash releases API](https://api.github.com/repos/vernesong/OpenClash/releases)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash commands and YAML workflow content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GitHub repository URL and GitHub token from the user; the generated workflow creates .run installer artifacts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

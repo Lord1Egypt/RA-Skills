@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn72tdgbef93xfnpqsjvtkyv9d82p85v",
   "slug": "ping-me",
+  "name": "ping-me",
   "version": "1.0.3",
-  "publishedAt": 1773287792393
+  "emoji": "⏰",
+  "description": "One-shot reminders via natural language. Auto-detects channel and timezone. Say 'remind me...' in any language and get pinged when it's time.",
+  "keywords": [
+    "reminder", "alarm", "ping", "cron", "timer",
+    "multilingual", "multi-channel", "timezone",
+    "提醒", "闹钟", "リマインダー", "rappel"
+  ],
+  "requires": {
+    "bins": ["openclaw", "python3"],
+    "env": []
+  },
+  "publishedAt": 1741737600000
 }

@@ -1,44 +1,58 @@
-## Description: <br>
-Provides China Welfare Lottery Double Color Ball latest draw lookup, historical result lookup, and frequency-based number analysis for entertainment-only prediction references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides China Welfare Lottery Double Color Ball draw lookup, recent history, and frequency-based reference predictions for Chinese-language lottery queries.
 
-## Publisher: <br>
-[tiandaox](https://clawhub.ai/user/tiandaox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiandaox](https://clawhub.ai/user/tiandaox)
 
-## Use Case: <br>
-External users and agents use this skill to fetch public China Welfare Lottery Double Color Ball draw results, inspect recent history, and generate clearly caveated frequency-analysis references for future-number discussion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lottery predictions can be mistaken for financial or purchasing advice. <br>
-Mitigation: Present predictions only as entertainment-oriented frequency analysis and keep the rational lottery-use disclaimer with prediction outputs. <br>
-Risk: Live public draw data can be stale, unavailable, or malformed at retrieval time. <br>
-Mitigation: Verify important draw results against the official China Welfare Lottery source before relying on them. <br>
-Risk: The skill has no reviewed need for credentials or personal data. <br>
-Mitigation: Do not provide credentials or personal data when using the skill. <br>
+## Use Case:
 
+External Chinese-locale users and agents use this skill to query latest and historical China Welfare Lottery Double Color Ball results and generate frequency-based entertainment-only number references.
 
-## Reference(s): <br>
-- [China Welfare Lottery draw notice endpoint](https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice?name=ssq&issueCount=30&pageNo=1&pageSize=30&systemType=PC) <br>
-- [ClawHub skill page](https://clawhub.ai/tiandaox/welfare-lottery) <br>
-- [Publisher profile](https://clawhub.ai/user/tiandaox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown-style formatted lottery results and tables; helper scripts emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include latest draw data, historical records, frequency statistics, predicted-number reference sets, and rational lottery-use disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _skillhub_meta.json) <br>
+Risk: Users may mistake frequency-based lottery predictions for advice or reliable forecasts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep prediction results clearly labeled as entertainment-only references and include rational-purchasing disclaimers.
+
+Risk: The skill may activate on broad Chinese lottery phrases in contexts where lottery assistance was not intended.
+
+Mitigation: Install and enable it only for workflows that intentionally support China Welfare Lottery queries, and review trigger behavior before deployment.
+
+Risk: Results depend on availability and freshness of the public China Welfare Lottery endpoint.
+
+Mitigation: Surface data-load errors clearly and direct users to verify important results against the official lottery source.
+
+## Reference(s):
+
+- [China Welfare Lottery draw notice endpoint](https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice?name=ssq&issueCount=30&pageNo=1&pageSize=30&systemType=PC)
+- [ClawHub skill page](https://clawhub.ai/tiandaox/skills/welfare-lottery)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Chinese-language Markdown-style text and helper-script JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lottery predictions are entertainment-only references based on recent frequency analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_skillhub_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

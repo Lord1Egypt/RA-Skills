@@ -1,45 +1,71 @@
-## Description: <br>
-Write and publish Kit broadcasts with AI using YouMind knowledge-base research, creator-profile-aware drafting, Markdown-to-HTML conversion, and publishing through the user's Kit account connected in YouMind. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and publish Kit broadcasts with AI using YouMind knowledge-base research, creator-profile-aware drafting, Markdown-to-HTML conversion, and Kit publishing through the user's connected YouMind account.
 
-## Publisher: <br>
-[mindy-youmind](https://clawhub.ai/user/mindy-youmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindy-youmind](https://clawhub.ai/user/mindy-youmind)
 
-## Use Case: <br>
-Creators, operators, and marketing teams use this skill to draft, adapt, preview, and publish Kit broadcasts from topics or existing Markdown while using YouMind as the credential and publishing gateway. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive YouMind API credentials and can act on a connected live Kit account. <br>
-Mitigation: Install only in trusted environments, keep credentials in the documented YouMind config location, validate the account connection before publishing, and review generated content before live actions. <br>
-Risk: The skill exposes broad Kit account operations, including deleting broadcasts, without strong safeguards in the scan summary. <br>
-Mitigation: Avoid deletion unless the exact broadcast ID has been verified, prefer draft or private review flows first, and require explicit user confirmation before publishing or deleting. <br>
+## Use Case:
 
+External creators, newsletter operators, and publishing teams use this skill to draft, adapt, preview, and publish Kit broadcasts through YouMind. It is intended for workflows that need topic research, Kit-native subject and preview writing, Markdown-to-HTML conversion, template discovery, and result links for public or private broadcasts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindy-youmind/youmind-kit-article) <br>
-- [YouMind Kit OpenAPI Reference](references/api-reference.md) <br>
-- [Kit Pipeline](references/pipeline.md) <br>
-- [Kit Platform DNA](references/platform-dna.md) <br>
-- [Publishing Guidelines](shared/PUBLISHING.md) <br>
-- [YouMind Home Directory](shared/YOUMIND_HOME.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown drafts, command snippets, configuration guidance, HTML publishing payloads, and result links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local YouMind API key and may create, list, publish, update, or delete Kit broadcasts through the connected YouMind account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can send local content and a YouMind API key to a configurable API origin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the base URL on the official YouMind endpoint, protect the ~/.youmind config files, and only use trusted account credentials.
+
+Risk: Publishing, updating, and deleting broadcasts can make real changes to the connected Kit account.
+
+Mitigation: Validate the connection first, use private drafts or a test account for validation, and require user approval before publish or delete actions.
+
+Risk: Local Markdown preview can expose unsafe content if generated from untrusted Markdown.
+
+Mitigation: Preview only trusted Markdown or review/sanitize imported content before generating local HTML previews.
+
+Risk: Deep-check workflows exercise remote publishing and cleanup paths.
+
+Mitigation: Do not run deep-check against production accounts unless the operator accepts test broadcast creation and deletion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mindy-youmind/skills/youmind-kit-article)
+- [YouMind Kit OpenAPI Reference](references/api-reference.md)
+- [Kit Pipeline](references/pipeline.md)
+- [Kit Platform DNA](references/platform-dna.md)
+- [Content Generation Playbook](references/content-generation-playbook.md)
+- [Content Adaptation Playbook](references/content-adaptation-playbook.md)
+- [YouMind Home Directory](shared/YOUMIND_HOME.md)
+- [Dispatch Integration Protocol](shared/DISPATCH_CONTRACT.md)
+- [YouMind API Keys](https://youmind.com/settings/api-keys?utm_source=youmind-kit-article)
+- [YouMind Connector Settings](https://youmind.com/settings/connector)
+- [Kit Campaigns](https://app.kit.com/campaigns)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, local draft files, HTML previews, and Kit publish result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm; uses a local YouMind API key and a Kit account connected in YouMind for publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

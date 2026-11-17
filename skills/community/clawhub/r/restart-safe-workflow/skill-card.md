@@ -1,42 +1,56 @@
-## Description: <br>
-Safe OpenClaw gateway restart workflow with doctor precheck, checkpoint, restart-health-resume chain, task continuation, reconcile, and user-visible notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safe OpenClaw gateway restart workflow with doctor precheck, checkpoint, restart-health-resume chain, task continuation, reconcile, and user-visible notifications.
 
-## Publisher: <br>
-[who-ohw](https://clawhub.ai/user/who-ohw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[who-ohw](https://clawhub.ai/user/who-ohw)
 
-## Use Case: <br>
-Developers and operators responsible for OpenClaw gateway availability use this skill to plan, validate, execute, and recover restart workflows with prechecks, checkpoints, resume actions, notifications, reconciliation, and diagnostics. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can run plan-supplied shell commands and scripts during restart recovery. <br>
-Mitigation: Install only for trusted agents and operators, review queued actions before running, keep ACTION_ALLOWLIST_FILE narrow, and avoid command or script actions from untrusted plans. <br>
-Risk: Detached restart or acceptance runs can continue outside the calling session. <br>
-Mitigation: Monitor ./state/restart logs and reports after detached runs, and use report or diagnose commands to confirm completion before treating a restart as done. <br>
-Risk: Gateway restarts can interrupt service if prerequisites or recovery actions fail. <br>
-Mitigation: Use the built-in doctor precheck, checkpoint, health check, resume status, notification gates, and reconcile workflow before closing the task. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw restart-safe SOP](references/restart-safe-sop.md) <br>
-- [ClawHub skill page](https://clawhub.ai/who-ohw/restart-safe-workflow) <br>
+## Use Case:
 
+Developers and operators use this skill to plan and run OpenClaw gateway restarts with prechecks, checkpointing, health checks, resume actions, reconciliation, reports, and notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON status reports, notifications] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON state or report outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses task IDs, optional notification settings, action allowlists, retry/backoff environment variables, and state files under ./state/restart.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsafe shell execution could run unintended commands with the user's OpenClaw privileges.
+
+Mitigation: Review before installing, use only in a trusted local OpenClaw environment, avoid untrusted --next values and task plan files, and prefer removing cmd:/script: execution or replacing bash -lc with strict argument-array execution.
+
+Risk: Detached restart or acceptance runners can continue after the caller exits or after a gateway restart interrupts the session.
+
+Mitigation: Use the workflow only where detached local execution is expected, monitor the recorded runner log and state files, and run without real restart behavior unless the environment is trusted.
+
+Risk: Custom ACTION_ALLOWLIST_FILE, GATEWAY_RESTART_CMD, task IDs, or notification arguments can change what the workflow executes or where results are sent.
+
+Mitigation: Keep these values controlled by trusted operators, validate task plans before running, and avoid accepting these settings from untrusted input.
+
+## Reference(s):
+
+- [OpenClaw Restart Safe SOP](references/restart-safe-sop.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON status or report output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes restart state under state/restart and can send OpenClaw notifications when configured.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

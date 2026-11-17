@@ -1,40 +1,50 @@
-## Description: <br>
-Advanced filesystem operations for listing, searching, batch processing, and directory analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent-facing filesystem operations for listing, searching, batch copying, tree display, and directory analysis.
 
-## Publisher: <br>
-[gtrusler](https://clawhub.ai/user/gtrusler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gtrusler](https://clawhub.ai/user/gtrusler)
 
-## Use Case: <br>
-Developers and automation users use this skill to inspect local directories, search file names or contents, analyze storage patterns, and prepare controlled copy operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to inspect and copy local files, so broad paths or sensitive directories can expose or move data unintentionally. <br>
-Mitigation: Keep paths narrow, avoid sensitive directories unless intended, and use dry-run mode before copy operations. <br>
-Risk: The security evidence notes that the scanned artifact set did not include the runnable filesystem binary. <br>
-Mitigation: Review the actual CLI implementation from the resolved package or source before executing it in a trusted environment. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect directories, search filenames or file contents, copy matched files with dry-run safeguards, and summarize filesystem structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gtrusler/clawdbot-filesystem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text with inline shell commands and optional JSON output from the filesystem CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and local filesystem access; dry-run mode is recommended before copy operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and package.json) <br>
+Risk: The skill requests broad read-write local filesystem access, including search and copy behavior that can touch private or unintended directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry runs before copy operations, verify destination paths carefully, avoid broad recursive searches over sensitive directories, and treat overwrite operations as requiring explicit review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gtrusler/skills/clawdbot-filesystem)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with command examples and optional table, list, tree, or JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file lists, search matches with context, copy previews, tree output, and directory statistics.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

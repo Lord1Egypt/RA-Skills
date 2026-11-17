@@ -1,42 +1,55 @@
-## Description: <br>
-Prompt Engineer helps agents design and optimize prompts, retrieval-augmented generation systems, fine-tuning workflows, evaluation methods, and safety practices for LLM applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides prompt engineering guidance for large language model optimization, retrieval-augmented generation systems, fine-tuning, chain-of-thought and few-shot learning, model evaluation, and benchmarking.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and AI practitioners use this skill for prompt design, RAG implementation planning, fine-tuning guidance, model evaluation, and LLM application safety review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled examples include an unsafe calculator pattern that could execute arbitrary code if copied into a real agent tool. <br>
-Mitigation: Replace the eval-based calculator example with a safe arithmetic parser or vetted calculator tool before operational use. <br>
-Risk: Examples involving API calls, search, embeddings, or vector stores may process private data or credentials if copied without review. <br>
-Mitigation: Review copied examples for data handling, credential management, and access-control requirements before using private inputs or secrets. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, evaluate, and refine prompts, RAG workflows, fine-tuning plans, and LLM application patterns.
 
-## Reference(s): <br>
-- [Prompt Engineer Code Examples](references/examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-prompt-engineer) <br>
-- [Publisher Profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with explanatory text and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes prompt templates, RAG and fine-tuning examples, evaluation guidance, and safety considerations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Example agent code includes a calculator pattern that could execute arbitrary Python if copied into an operational agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat examples as illustrative only and replace dynamic evaluation with a constrained expression parser or vetted calculator tool before deployment.
+
+Risk: API, RAG, web-search, and fine-tuning snippets may expose sensitive prompts, documents, or training data to external providers if adapted directly.
+
+Mitigation: Redact sensitive data, review provider data handling, and apply data access controls before using the snippets in production workflows.
+
+## Reference(s):
+
+- [Prompt Engineer Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-prompt-engineer)
+- [Publisher Profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with explanatory prose and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include illustrative API, RAG, web-search, fine-tuning, and evaluation snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

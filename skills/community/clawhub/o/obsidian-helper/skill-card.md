@@ -1,42 +1,57 @@
-## Description: <br>
-Operate Obsidian vaults from the command line for listing, searching, creating, reading, editing, deleting, and managing daily notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian Helper helps agents operate Obsidian vaults from the command line, including listing, searching, creating, reading, editing, deleting, and daily-note workflows.
 
-## Publisher: <br>
-[547895019](https://clawhub.ai/user/547895019) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[547895019](https://clawhub.ai/user/547895019)
 
-## Use Case: <br>
-Developers and note-taking users use this skill to operate Obsidian vaults through command-line workflows for note discovery, creation, editing, deletion, and daily-note management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is marked suspicious because it is incomplete and tries to install a missing helper command. <br>
-Mitigation: Review the package before installing and confirm the expected helper command is included and executable. <br>
-Risk: The installer may make persistent shell changes. <br>
-Mitigation: Require explicit user confirmation before modifying shell startup files such as ~/.bashrc. <br>
-Risk: The skill advertises editing and deleting private notes. <br>
-Mitigation: Require confirmation before destructive note actions and document backup or trash behavior before use. <br>
+## Use Case:
 
+Developers and note-taking users use this skill to have an agent manage local Obsidian Markdown notes through command-line operations such as listing, searching, creating, reading, editing, deleting, and daily notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/547895019/obsidian-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Obsidian helper command and an OBSIDIAN_VAULT path; edit and delete workflows can change vault files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The installer modifies the user's shell profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install script before running it and confirm PATH changes in the shell profile.
+
+Risk: The artifact does not include the obsidian command script referenced by the installer.
+
+Mitigation: Confirm the missing command script is supplied before relying on the installed command.
+
+Risk: Edit and delete operations can change or remove Obsidian vault files.
+
+Mitigation: Set OBSIDIAN_VAULT explicitly and use backups or version control before running edit or delete workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/547895019/skills/obsidian-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, command-line text, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local Obsidian command and OBSIDIAN_VAULT; operations can modify or delete vault files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

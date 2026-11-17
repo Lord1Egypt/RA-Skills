@@ -1,42 +1,58 @@
-## Description: <br>
-Generate publication-ready scientific articles in PDF format with AI-powered research and citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate publication-ready scientific articles in PDF format with AI-powered research and citations.
 
-## Publisher: <br>
-[galizki](https://clawhub.ai/user/galizki) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[galizki](https://clawhub.ai/user/galizki)
 
-## Use Case: <br>
-External users and developers use this skill to collect article inputs, submit them to Paper.EvoWeb.ai, and obtain a publication-ready scientific article PDF with optional citations, research, and charts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Drafts, product facts, URLs, and research parameters are sent to Paper.EvoWeb.ai for remote processing. <br>
-Mitigation: Do not submit secrets, unpublished research, personal data, or proprietary material unless authorized and comfortable with the provider's data handling terms. <br>
-Risk: Generated scientific articles, citations, and charts may contain inaccuracies or unsupported claims. <br>
-Mitigation: Review the PDF before publication and verify claims, references, charts, and product statements against authoritative sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/galizki/paper-evoweb-ai) <br>
-- [Paper.EvoWeb.ai Homepage](https://paper.evoweb.ai/) <br>
-- [Paper.EvoWeb.ai API Base](https://paper.evoweb.ai) <br>
-- [Paper.EvoWeb.ai API Key Registration](https://hub.oto.dev/app/register?utm_source=claw&utm_medium=skill&utm_campaign=paper&utm_content=v1.0.0) <br>
+## Use Case:
 
+External users and developers use this skill to gather article inputs, submit them to Paper.EvoWeb.ai, and receive scientific article PDFs with optional research, citations, and charts.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Files] <br>
-**Output Format:** [Markdown instructions and form-urlencoded API requests; PDF binary response from the remote service] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVOWEB_API_KEY; remote generation typically takes 2-5 minutes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Drafts, product facts, URLs, and research context are sent to the external Paper.EvoWeb.ai API.
+
+Mitigation: Confirm the user is allowed to share the material with Paper.EvoWeb.ai before submission, especially for confidential, regulated, or unpublished content.
+
+Risk: Generated scientific claims, citations, and charts may require review before publication.
+
+Mitigation: Have a qualified reviewer check the PDF content, cited sources, and any visualized data before relying on or publishing the article.
+
+Risk: Each generation can consume account credits.
+
+Mitigation: Confirm generation options and expected credit use before submitting requests that may take 2-5 minutes to complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/galizki/skills/paper-evoweb-ai)
+- [Paper.EvoWeb.ai Homepage](https://paper.evoweb.ai/)
+- [Paper.EvoWeb.ai API Key Registration](https://hub.oto.dev/app/register?utm_source=claw&utm_medium=skill&utm_campaign=paper&utm_content=v1.0.0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, text, markdown, Files]
+
+**Output Format:** [Markdown guidance with form-urlencoded API request details and binary PDF file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EVOWEB_API_KEY; typical PDF generation takes 2-5 minutes and consumes account credits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

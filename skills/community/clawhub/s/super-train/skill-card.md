@@ -1,44 +1,54 @@
-## Description: <br>
-火车票智能中转方案推荐助手。查火车票/高铁票/动车票/12306余票，智能拼接中转换乘方案，学习用户偏好（坐席策略、时间偏好、中转约束）。火车票查询/余票/车次/预订/中转换乘/坐席偏好。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Flyai Super Train helps agents search Chinese train availability, compare direct and transfer routes, apply seat and time preferences, and present booking options using flyai search-train.
 
-## Publisher: <br>
-[zhangxchao](https://clawhub.ai/user/zhangxchao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangxchao](https://clawhub.ai/user/zhangxchao)
 
-## Use Case: <br>
-Travelers and travel-assistant agents use this skill to query China Railway train availability, compare direct and transfer options, apply seat and time preferences, and present booking links from flyai search-train results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local travel preferences and trip history, which may reveal sensitive travel plans. <br>
-Mitigation: Use only when comfortable with local preference and history storage; clear assets/history.json and avoid saved defaults for sensitive trips. <br>
-Risk: The skill depends on the external flyai CLI and may send train-search details and optional API credentials to that provider. <br>
-Mitigation: Review the installed flyai CLI and API-key provider before use, and avoid configuring FLYAI_API_KEY unless the provider is acceptable. <br>
-Risk: Booking recommendations can be stale or incorrect if search conditions change or API results are misunderstood. <br>
-Mitigation: Re-run searches whenever date, route, time, seat, or transfer constraints change, and verify returned details before booking. <br>
+## Use Case:
 
+External users and travel assistants use this skill to collect train search parameters, check availability, compare direct and transfer itineraries, and recommend options based on seat, time, transfer, price, and booking-link details.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhangxchao/super-train) <br>
-- [flyai search-train command reference](references/flyai-cli-reference.md) <br>
-- [FlyAI Open Platform](https://flyai.open.fliggy.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai search-train results and may update local preference and trip-history JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can persist travel routes, dates, seat choices, and booking decisions in local preference and history files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local data files before installation, clear or disable persistent personalization when it is not desired, and avoid storing sensitive travel history unnecessarily.
+
+Risk: The skill relies on an unpinned globally installed third-party flyai CLI.
+
+Mitigation: Use a pinned, locally managed CLI version where possible, review the CLI source and package provenance, and avoid running npm installation commands with elevated privileges.
+
+## Reference(s):
+
+- [flyai CLI command reference](references/flyai-cli-reference.md)
+- [FlyAI Open Platform](https://flyai.open.fliggy.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with itinerary tables, recommendation text, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local preference and history JSON files when the user confirms persistent personalization.]
+
+## Skill Version(s):
+
+1.0.4 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

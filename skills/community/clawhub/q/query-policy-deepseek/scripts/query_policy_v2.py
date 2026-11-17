@@ -6,7 +6,7 @@ import os
 import re
 import time
 
-api_key = 'sk-134d7a53ebab42e4ac5af93ea28e5f13'
+api_key = 'REDACTED-SECRET'
 
 # 文件路径 - 已更新为 zfm_demo_02
 REGIONS_FILE = r'C:\Users\zhufangming\Desktop\zfm_demo_02\地区.txt'

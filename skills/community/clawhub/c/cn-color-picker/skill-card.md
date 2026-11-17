@@ -1,41 +1,54 @@
-## Description: <br>
-颜色选择与转换工具，帮助代理处理基础颜色格式识别与转换，并指导用户运行随附的本地 Python 辅助脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cn Color Picker helps agents inspect and convert colors with a local Python helper, with current verified behavior focused on 6-digit HEX input converted to RGB, HSL, and HSV output.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to parse common web color values, convert supported formats, and produce local command examples for color conversion workflows. It is best suited for lightweight color assistance where Python standard-library execution is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented feature set is broader than the current packaged script, so palette, gradient, or some format-specific commands may not work as described. <br>
-Mitigation: Verify required commands against the packaged script before relying on them, and prefer the confirmed basic HEX parsing path unless additional behavior is tested. <br>
-Risk: Unsupported or malformed color input can produce an error response instead of a conversion. <br>
-Mitigation: Validate color values before passing them to the script and handle JSON error responses in the agent workflow. <br>
+## Use Case:
 
+Designers and front-end developers can use this skill through an agent to convert color values during UI work. The release is best suited for workflows where Chinese-language documentation and command output are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-color-picker) <br>
-- [Packaged skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON or text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Python standard-library helper script; no API key is required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata) <br>
+Risk: The current script is narrower than the documentation advertises and handles direct 6-digit HEX input rather than the documented palette, gradient, or command-style conversions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate expected color operations before relying on the skill, and use it primarily for direct HEX-to-RGB/HSL/HSV conversion unless the artifact is updated.
+
+Risk: Documentation and error output are Chinese-language.
+
+Mitigation: Install and use the skill only in workflows where Chinese-language documentation and output are acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freedompixels/skills/cn-color-picker)
+- [Publisher Profile](https://clawhub.ai/user/freedompixels)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON/text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local Python standard-library script with no external dependencies or API keys.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

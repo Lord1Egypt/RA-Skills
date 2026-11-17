@@ -1,45 +1,62 @@
-## Description: <br>
-Creates local project snapshots with retention, restore, list, checksums, and safer backup behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dev Backup creates named project snapshots for rollback and provides explicit backup, list, and destructive restore commands.
 
-## Publisher: <br>
-[vincsta](https://clawhub.ai/user/vincsta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincsta](https://clawhub.ai/user/vincsta)
 
-## Use Case: <br>
-Developers and agents use this skill to create, list, and restore local snapshots of development projects before risky changes or refactoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restore can overwrite files in the target project. <br>
-Mitigation: Inspect the selected snapshot first and restore only when overwriting the target project is acceptable. <br>
-Risk: Retention can delete older snapshots. <br>
-Mitigation: Set an explicit --keep value and use --list before backup operations when older snapshots must be preserved. <br>
-Risk: The fallback copy path may include files that documentation says are excluded, including .env. <br>
-Mitigation: Prefer systems with rsync available, set explicit project and output directories, and review snapshot contents before sharing or restoring. <br>
-Risk: Checksum output is informational and should not be treated as restore-time verification. <br>
-Mitigation: Verify important restored files independently before relying on the restored project state. <br>
+## Use Case:
 
+Developers and engineers use Dev Backup to create rollback snapshots before risky changes or refactoring, list existing snapshots, and restore a selected project snapshot after an explicit request.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincsta/dev-backup) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local filesystem snapshot output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates numbered project snapshots, maintains a .latest symlink, supports retention with --keep, and records SHA256 checksum summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Restore operations can overwrite local project files and may not remove files created after a snapshot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run restore only on trusted project paths, preview with --dry-run first, and keep an independent copy of important unsaved work before confirming restore.
+
+Risk: Backups and restores read and write whole project directories.
+
+Mitigation: Limit use to intended development project directories and review the target project and output paths before running commands.
+
+Risk: Snapshots with missing or mismatched checksums may be corrupted or altered.
+
+Mitigation: Avoid restoring snapshots when checksum verification is missing or reports a mismatch unless the project owner has manually inspected the snapshot.
+
+Risk: The tar fallback and local shell execution path can carry file-safety and command-execution risk.
+
+Mitigation: Prefer environments with rsync available, inspect commands before execution, and use the skill only from trusted releases.
+
+## Reference(s):
+
+- [Dev Backup README](artifact/README.md)
+- [ClawHub Dev Backup release page](https://clawhub.ai/vincsta/skills/dev-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with bash commands and local snapshot directories]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates project snapshot directories, maintains a .latest symlink, and reports checksum status for snapshots.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

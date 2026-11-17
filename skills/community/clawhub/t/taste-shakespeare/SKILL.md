@@ -2,6 +2,9 @@
 
 > Eloquent, dramatic verse and prose, rich with rhetorical flourish, vivid imagery, and profound human conflict.
 
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo)
+
+
 ## Overview
 
 | Property | Value |
@@ -88,3 +91,23 @@ Speak with elevated language, employing rhetorical questions, vivid metaphors, a
 
 ---
 *Distilled by InspiredHub Taste Engine from 3 primary texts in the InspiredHub Library. Each style token is grounded in actual verse and prose analysis.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-shakespeare)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

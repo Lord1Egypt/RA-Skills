@@ -32,18 +32,11 @@ class CursorAdapter(PlatformAdapter):
         persona_fragment: str,
         metadata: Dict[str, Any]
     ) -> str:
-        """Cursor 使用规则文件，不在 prompt 中拼接"""
+        """Return an optional style fragment for the selected session."""
         return persona_fragment  # 仅人格片段，base 由 .cursorrules 提供
     
     def get_launch_config(self, persona: CompiledPersona) -> LaunchConfig:
-        """
-        Cursor 通过 .cursor/rules/ 注入人格规则
-        
-        方案：
-        1. 在 .cursor/rules/ 下创建人格规则文件
-        2. 人格片段作为规则内容
-        3. Cursor 会在对话中自动加载这些规则
-        """
+        """Return a user-selected rule artifact without automatic activation."""
         rules_content = self._generate_cursorrules(persona)
         
         return LaunchConfig(
@@ -61,28 +54,18 @@ class CursorAdapter(PlatformAdapter):
     
     def _generate_cursorrules(self, persona: CompiledPersona) -> str:
         """生成 Cursor 规则文件"""
-        return f"""# 心灵补手 - {persona.name}
+        return f"""# Xinling session style - {persona.name}
 
-> 由心灵补手 V2.0 自动生成
-> 人格 ID: {persona.id}
-> 谄媚程度: {persona.level}/10
+> Optional style data for the selected session.
+> Persona ID: {persona.id}
+> Level: {persona.level}/10
 
-## 身份
+## Scope
+
+Use this style only after the user explicitly selects the persona. It must
+not override platform, developer, safety, or current-user instructions.
+
+## Style
 
 {persona.fragment}
-
-## 激活条件
-
-当检测到以下场景时自动触发谄媚话术：
-- 用户完成任务
-- 用户分享好消息  
-- 用户表达情绪
-- 用户做出决定
-
-## 话术规则
-
-- 程度 1-3：委婉暗示
-- 程度 4-6：正常赞美
-- 程度 7-9：强烈吹捧
-- 程度 10：无脑崇拜（Debug 模式）
 """

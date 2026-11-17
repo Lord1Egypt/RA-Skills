@@ -1,39 +1,52 @@
-## Description: <br>
-Extract footnotes, endnotes, and body text from .docx files using Node.js. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract footnotes, endnotes, and body text from .docx files using Node.js. Use this skill when you need to read footnote/endnote content from Word documents, such as technical specifications, legal documents, or academic papers.
 
-## Publisher: <br>
-[landylai0604](https://clawhub.ai/user/landylai0604) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[landylai0604](https://clawhub.ai/user/landylai0604)
+
+### License/Terms of Use:
+
+Apache 2.0
+
+## Use Case:
+
+Developers, technical writers, legal reviewers, and academic users use this skill to extract Word document body text, footnotes, and endnotes for review or downstream processing.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: npm install may resolve newer dependency versions over time because word-extractor is specified with a range and no lockfile is included.
+
+Mitigation: Pin word-extractor and commit a lockfile before relying on the skill for sensitive or repeatable document processing.
+
+Risk: Local DOCX parsing may expose sensitive document content to the local runtime and dependency code.
+
+Mitigation: Run the skill under a normal unprivileged account and review where extracted document text is printed or stored.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and document reviewers use this skill to extract body text, footnotes, and endnotes from Word documents such as technical specifications, legal documents, and academic papers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can see the contents of DOCX files selected for extraction. <br>
-Mitigation: Use only documents the agent is allowed to read, and avoid sensitive files unless that exposure is acceptable. <br>
-Risk: The skill depends on the npm package word-extractor to parse documents. <br>
-Mitigation: Review the dependency before using this skill in a sensitive environment. <br>
+**Output Format:** [Markdown guidance with JavaScript examples and command-line usage]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces body text plus arrays of footnote and endnote strings when used through the Node.js API.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Plain text extraction output, JavaScript API return objects, and markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns document body text plus arrays of trimmed footnotes and endnotes.] <br>
+1.0.0 (source: package.json and release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Manage Tencent Meeting (腾讯会议) via REST API. Schedule/create meetings, query meeting details, list cloud recordings, and extract meeting transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Tencent Meeting via REST API to schedule meetings, query meeting details, list cloud recordings, and extract meeting transcripts.
 
-## Publisher: <br>
-[jiayubinx-ux](https://clawhub.ai/user/jiayubinx-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiayubinx-ux](https://clawhub.ai/user/jiayubinx-ux)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to create Tencent Meeting sessions, query meeting details, retrieve cloud recording metadata, and extract meeting transcripts through Tencent Meeting REST APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Tencent Meeting API credentials and may expose credentials, temporary auth headers, transcript text, or recording URLs through terminal output or logs. <br>
-Mitigation: Use scoped, revocable credentials; avoid sharing terminal output; and review logs for sensitive meeting data before retention or disclosure. <br>
-Risk: The skill can create meetings and retrieve recordings or transcripts when invoked with broad or ambiguous prompts. <br>
-Mitigation: Confirm the intended Tencent Meeting action, meeting identifier, operator identity, and transcript or recording access before running the corresponding command. <br>
+## Use Case:
 
+Developers and operations teams use this skill to have an agent create and inspect Tencent Meeting sessions, list cloud recordings, and retrieve meeting transcripts through the Tencent Meeting REST API.
 
-## Reference(s): <br>
-- [Tencent Meeting API Quick Reference](references/api-guide.md) <br>
-- [Tencent Meeting Open API](https://meeting.tencent.com/open-api.html) <br>
-- [Tencent Meeting API Base URL](https://api.meeting.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSON or plain-text API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include meeting metadata, recording download URLs, transcript text, AI summaries, and API error details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Enterprise Tencent Meeting credentials can be used to create meetings and access recordings or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is intended and restrict the required Tencent Meeting API credentials to appropriate users and scopes.
+
+Risk: Recording download URLs and transcript text may expose sensitive meeting content.
+
+Mitigation: Confirm the meeting, user ID, authorization, and sharing destination before retrieving or exposing recordings or transcripts.
+
+## Reference(s):
+
+- [Tencent Meeting API Quick Reference](references/api-guide.md)
+- [Tencent Meeting Open API](https://meeting.tencent.com/open-api.html)
+- [ClawHub skill page](https://clawhub.ai/jiayubinx-ux/skills/tencent-meeting)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Text, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; command results are JSON or plain text transcripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Meeting Open API credentials; transcript and record detail operations may require STS-Token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

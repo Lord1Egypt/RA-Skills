@@ -1,37 +1,49 @@
-## Description: <br>
-Create a recurring Google Calendar event with attendees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a recurring Google Calendar event with attendees.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and workspace operators use this recipe to create a weekly Google Calendar event with attendees and verify it appears on the agenda. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the sample command unchanged can create a recurring event on the primary calendar and invite the sample attendee. <br>
-Mitigation: Confirm gws is authenticated to the intended Google account and replace the calendar, time, recurrence rule, timezone, and attendee email before execution. <br>
+## Use Case:
 
+Employees and agents use this skill to create a recurring Google Calendar meeting on the primary calendar and invite attendees, then verify the event appears in the agenda.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws CLI, Google Workspace authentication for the intended account, and the gws-calendar skill before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: release evidence); artifact metadata version 0.22.5 <br>
+Risk: The skill can create a recurring event on the user's primary Google Calendar and invite an attendee without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require confirmation of the calendar, event title, start and end time, recurrence rule, attendee list, and notification intent before executing the insert command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/recipe-schedule-recurring-event)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command and the gws-calendar skill; commands can create a recurring event on the user's primary Google Calendar.]
+
+## Skill Version(s):
+
+1.0.12 (source: server-resolved release metadata); skill metadata version 0.22.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

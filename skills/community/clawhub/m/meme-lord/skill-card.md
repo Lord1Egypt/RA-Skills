@@ -1,40 +1,57 @@
-## Description: <br>
-Meme Lord helps agents explain, create, continue, and blend Chinese internet memes, using web lookup for source and trend checks when needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meme Lord helps agents explain, create, continue, and combine Chinese internet memes, using web search for meme origins and trend checks when needed.
 
-## Publisher: <br>
-[dox012](https://clawhub.ai/user/dox012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dox012](https://clawhub.ai/user/dox012)
 
-## Use Case: <br>
-External users and agents use this skill to decode Chinese internet memes with source and confidence notes, generate meme-style responses, continue known meme phrases, and summarize current trending memes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meme lookup requests may send private, unreleased, personal, or confidential phrases to external search or hot-list sites. <br>
-Mitigation: Use only non-sensitive meme text for lookup and avoid confidential phrases when requesting source or trend checks. <br>
-Risk: Broad meme-related triggers may activate the skill when meme handling was not intended. <br>
-Mitigation: Invoke the skill with explicit meme-related wording and review the generated explanation or meme content before use. <br>
+## Use Case:
 
+External users and developers use this skill to help an agent decode Chinese internet memes, generate meme-style phrasing, continue meme chains, combine meme formats, and summarize trending meme topics with confidence labels and references when search is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dox012/meme-lord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text with source links, examples, and confidence labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web search or hot-list lookup for meme origins and trending meme requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Search queries for meme origins or trends may disclose user-provided text to external search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending private, confidential, or sensitive text for lookup; review or redact search terms before using web search.
+
+Risk: Meme origins, meanings, and trend status can be inaccurate, stale, or based on incomplete search results.
+
+Mitigation: Use the skill's confidence labels and source references, and verify important claims with current sources before relying on them.
+
+Risk: Meme generation or continuation can drift into discriminatory, political, abusive, or minor-inappropriate content.
+
+Mitigation: Apply the skill's documented boundaries and decline or redirect requests involving protected-class attacks, political sensitivity, malicious targeting, or inappropriate minor-related content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dox012/skills/meme-lord)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text responses with meme explanations, examples, confidence labels, and source references when search is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external-source links, confidence labels, and freshness labels for meme trend checks.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,67 @@
-## Description: <br>
-xCloud Docker Deploy v1.4.1 is a confirmation-gated skill for preparing projects for xCloud by generating Docker and GHCR deployment files, fixing xCloud port rules, and routing live API work only after separate explicit token consent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+xCloud Docker Deploy helps agents prepare projects for xCloud by detecting application stacks, generating Docker and GHCR deployment files, normalizing xCloud port rules, and gating live API work behind explicit user consent.
 
-## Publisher: <br>
-[asif2bd](https://clawhub.ai/user/asif2bd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[asif2bd](https://clawhub.ai/user/asif2bd)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to inspect application projects, decide whether xCloud native deployment or Custom Docker is appropriate, and prepare xCloud-ready Docker Compose, GHCR workflow, and environment guidance after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated deployment files, workflows, hooks, or deployment steps could affect a real xCloud environment if applied without review. <br>
-Mitigation: Review the exact generated files, use a branch or pull request, confirm staging versus production, and verify backups before applying changes. <br>
-Risk: API tokens, webhook secrets, or deployment credentials could enable live actions if added casually. <br>
-Mitigation: Add secrets only for a specifically approved deployment action, prefer least-privilege short-lived credentials, and do not print, store, log, or commit tokens. <br>
+## Use Case:
 
+Developers and engineers use this skill to adapt applications and existing Docker Compose projects for xCloud deployment. It helps prepare compose files, Dockerfile guidance, GitHub Actions workflows, environment templates, and xCloud deployment steps after user confirmation.
 
-## Reference(s): <br>
-- [GitHub Repository](https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill) <br>
-- [Latest Release](https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill/releases/tag/v1.4.1) <br>
-- [xCloud Agent Skills](https://app.xcloud.host/agent/skills) <br>
-- [xCloud API Docs](https://app.xcloud.host/api/v1/docs) <br>
-- [Security Notes](https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill/blob/main/SECURITY.md) <br>
-- [xCloud Constraints](references/xcloud-constraints.md) <br>
-- [xCloud Deploy Paths](references/xcloud-deploy-paths.md) <br>
-- [Scenario: Build From Source](references/scenario-build-source.md) <br>
-- [Scenario: Proxy Conflict](references/scenario-proxy-conflict.md) <br>
-- [Scenario: Multi-Service Build](references/scenario-multi-service-build.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML, Docker Compose, GitHub Actions, environment-variable examples, shell commands, and deployment steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable deployment-preparation output and does not deploy or call live APIs by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: frontmatter and server release evidence) <br>
+Risk: Generated GitHub Actions workflows can publish container images or trigger deployments with insufficient review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin external actions to reviewed commit SHAs and require protected environments or manual approvals before production deploys.
+
+Risk: Deployment webhooks or xCloud API tokens could be exposed or used beyond the intended operation.
+
+Mitigation: Pass secrets through environment variables or secret stores, request least-privilege tokens only for named live operations, and avoid direct shell interpolation.
+
+Risk: Production deploys, migrations, or cache changes can affect live sites and data.
+
+Mitigation: Verify backups, prefer staging validation, and require a final confirmation before production-impacting actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/asif2bd/skills/xcloud-docker-deploy)
+- [GitHub Repository](https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill)
+- [Latest Release](https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill/releases/tag/v1.4.1)
+- [Security Notes](https://github.com/Asif2BD/xCloud-Docker-Deploy-Skill/blob/main/SECURITY.md)
+- [xCloud Agent Skills](https://app.xcloud.host/agent/skills)
+- [xCloud API Docs](https://app.xcloud.host/api/v1/docs)
+- [xCloud Docker Deployment Constraints](references/xcloud-constraints.md)
+- [xCloud Deployment Paths](references/xcloud-deploy-paths.md)
+- [Build-from-Source Scenario](references/scenario-build-source.md)
+- [Proxy and Multi-Port Scenario](references/scenario-proxy-conflict.md)
+- [Multi-Service Build Scenario](references/scenario-multi-service-build.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML, Dockerfile, shell command, and step-by-step deployment sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Docker Compose files, GitHub Actions workflows, .env.example templates, and xCloud deployment steps for review before use.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence, frontmatter, skill.json, and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Captures Amazon ASIN detail pages as PNG screenshots, packages them into a ZIP file, and emails the archive to a user-provided campsnail.com address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures Amazon ASIN product pages, packages the screenshots into a ZIP file, and emails the archive to an approved recipient address.
 
-## Publisher: <br>
-[328786889](https://clawhub.ai/user/328786889) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[328786889](https://clawhub.ai/user/328786889)
 
-## Use Case: <br>
-Employees or operators use this skill to collect screenshots of Amazon product pages for supplied ASINs and receive the captured images as a ZIP attachment by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports stealth browser automation, stored browser sessions, and an embedded SMTP password. <br>
-Mitigation: Install only in an environment where the publisher and shared accounts are trusted; rotate or remove the embedded SMTP password before use. <br>
-Risk: Screenshots may expose Amazon account, address, or product context from the persisted browser profile. <br>
-Mitigation: Use a dedicated low-privilege Amazon browser profile and review screenshots before distribution. <br>
-Risk: Automated verification and stealth behavior may be inappropriate without authorization for the target sites. <br>
-Mitigation: Confirm that the automation behavior is authorized for the Amazon accounts and pages being accessed. <br>
+## Use Case:
 
+Operators use this skill to collect screenshots of Amazon product detail pages for one or more ASINs and receive the results as a ZIP archive by email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/328786889/amazon-screenshot) <br>
-- [Publisher profile](https://clawhub.ai/user/328786889) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Console status text plus PNG screenshots packaged as a ZIP email attachment] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ASIN inputs and a campsnail.com recipient email; generated screenshots and ZIP files are temporary and are deleted after successful email delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The release embeds a mail account password.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the exposed credential and move mail authentication into an approved secret store before use.
+
+Risk: The workflow uses persistent logged-in browser state.
+
+Mitigation: Use an isolated or ephemeral browser profile unless users explicitly approve persistent state.
+
+Risk: The workflow includes anti-detection and CAPTCHA bypass behavior.
+
+Mitigation: Remove this behavior or obtain formal approval before deployment.
+
+Risk: Email recipient and batching behavior may affect data handling expectations.
+
+Mitigation: Clarify allowed recipients and batching rules before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/328786889/skills/amazon-screenshot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files]
+
+**Output Format:** [Text guidance with generated PNG screenshots and ZIP archives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Temporary screenshot and ZIP files are deleted after successful email delivery.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1217 @@
+# Lance v15 reference - indexes and distributed builds (sections 11-12)
+
+Part of the Lance v15 reference (`lance-format/lance@v15.0.0-beta.10`; stable pin `v14.0.2`).
+Citations are `path:line` relative to the repo root; build a permalink as
+`https://github.com/lance-format/lance/blob/v15.0.0-beta.10/<path>`. Line numbers drift between
+tags - treat them as approximate. Cross-references written as "section N" use the original
+16-section numbering; `lance-reference.md` maps every number to its file.
+
+## Contents
+
+- [11. Indexes](#11-indexes)
+  - [11.1 Vector indexes](#111-vector-indexes)
+  - [11.2 Scalar indexes](#112-scalar-indexes)
+  - [11.3 Full-text search](#113-full-text-search)
+  - [11.4 Geo / RTree](#114-geo--rtree)
+  - [11.5 Index updates and reindexing](#115-index-updates-and-reindexing)
+- [12. Distributed write and indexing](#12-distributed-write-and-indexing)
+
+Other files: `format-file.md` (1-4), `format-table.md` (5-10), `ops.md` (13, 15, 16),
+`changelog-v7-v15.md` (14).
+
+---
+
+## 11. Indexes
+
+Lance treats indexes as **independent, redundant structures layered on top of row
+identifiers** - the file format has no built-in search structures, so index formats evolve
+independently (`docs/src/format/index/index.md`). Three categories: scalar, vector, system.
+
+Index design: loaded on demand (a dataset opens without loading any index), loaded
+progressively, immutable once written. An index is composed of **segments**, each with a
+UUID, each covering a disjoint subset of fragments recorded in a `fragment_bitmap`. **Segments
+need not cover all fragments** - an index can lag; engines split queries into indexed and
+unindexed subplans and merge results. When a column has **no index at all**, both vector
+search and full-text search transparently fall back to a flat scan rather than erroring
+(`rust/lance/src/dataset/scanner.rs:3419,3697`). Index content lives at `_indices/{UUID}`.
+`IndexMetadata` carries `uuid`, `name`, `fields`, `fragment_bitmap`, `index_details` (a typed
+`Any`), `version`, and - since v11 - `covering_fields` (proto field 11).
+
+**Covering indexes / carried columns** (v11, PR #8535; reworded at v13 by #8856, then
+**re-specified by #9159**, labeled breaking, in `v13.0.0`; manifest flag
+`FLAG_COVERED_INDEX_METADATA = 128`, section 7). `covering_fields` names the columns an index
+carries values for, letting a query that only projects those columns be answered without a
+fragment take.
+
+**Which contract applies is decided by a second manifest bit, and the live one is still the trailing
+suffix.** The beta-era "subset of `fields`, no id repeats" wording is gone. Without bit 13
+(`FLAG_INDEPENDENT_COVERING_FIELDS = 1 << 13`), "the legacy contract applies: the carried columns
+form the trailing suffix of `fields` in emission order. A column the index is both keyed on and
+carries appears twice, once as a key and once in the carried suffix" (`protos/table.proto:433-436`).
+With bit 13, `fields` "contains only key fields" (`:357-359`) and `covering_fields` "is independent
+of `fields` and has no positional relationship to it", may overlap it, and the dependency set is the
+union of both (`:426-431`). Bit 13 is reserved, not live: this build masks it out
+(`mark_supported(&mut supported, FLAG_INDEPENDENT_COVERING_FIELDS, false)`,
+`rust/lance-table/src/feature_flags.rs:487`), so a dataset carrying it is refused. The code follows
+the suffix rule: `keyed_fields()` returns `fields[..len(fields) - len(covering_fields)]`
+(saturating, `rust/lance-table/src/format/index.rs:290-293`). Activation is specified as one atomic
+manifest change that normalizes every entry to its key prefix, and the two bits are then retained
+together (`references/docs/format/index/index.md:138-182`). "Every id in `covering_fields` names a
+top-level field. Covering a struct column carries the whole struct, its children included, as one
+column" (`index.md:227-228`). The declaration is "not authoritative for what the segment can serve":
+the segment's storage schema is, and an engine falls back to a base-table take for any declared
+column it cannot verify (`index.md:184-204`). A reader without bit 7 would select an index by plain
+membership of `fields` and answer a query on a merely-carried column with an index keyed on a
+different one - wrong neighbours, no error - which is why both reader and writer must refuse a
+covering dataset without the bit.
+
+**Carried values have a specified storage, per segment.** The v11-era "no index builder writes
+carried values yet" is gone from the spec. V3 IVF auxiliary files can hold them, and "a reader
+discovers carried columns by exclusion, not by position: any column in the auxiliary file's
+schema that is not one of the quantizer's internal columns is a carried column", bound to source
+fields by a `covering_field_ids` schema-metadata key. A merge "must not combine shards whose
+carried columns disagree on these ids, even when those columns match by name and type". Coverage
+is therefore a per-segment property: "one logical index may hold values for some of its segments
+and not others", depending on "the index type, on the writer that produced the segment, and on
+what later maintenance did to it".
+
+Query-side, `VectorQueryProto.covering_projection` (field 15) reserves the narrowing tag as a
+message rather than a bare list, because empty is meaningful: "absent: no narrowing computed;
+materialize every covering column declared. present and empty: materialize nothing, though the
+index does declare covering. present and non-empty: materialize exactly these."
+
+**The fence is deliberately not permanent, which is why the flag costs nothing today.** Bit 128
+is set only while some index actually carries values:
+
+```rust
+if final_indices.iter().any(|index| !index.covering_fields.is_empty()) {
+    manifest.reader_feature_flags |= FLAG_COVERED_INDEX_METADATA;
+    manifest.writer_feature_flags |= FLAG_COVERED_INDEX_METADATA;
+}
+```
+
+(`rust/lance-table/src/transaction/manifest_build.rs:2052-2058`.) Upstream un-sets it rather than
+inheriting it, precisely so the fence lifts again: "fence by simply not setting it again.
+Inheriting it from the previous manifest instead would make the fence permanent." The practical
+consequence is that because no in-tree builder writes `covering_fields` - still true at
+`v15.0.0-beta.10`, where a test says outright "Nothing writes a covering declaration yet"
+(`rust/lance/src/index/scalar/inverted.rs:1294`) - the bit is never set in normal operation, so
+datasets written by these builds stay openable by older builds despite the flag existing.
+
+### 11.1 Vector indexes
+
+Every vector index has **three orthogonal parts: clustering, sub-index, quantization**, named
+`{clustering}_{sub_index}_{quantization}` (`docs/src/format/index/vector/index.md`).
+
+- **Clustering** - only **IVF** (Inverted File): k-means partitioning; search examines only
+  the most relevant clusters.
+- **Sub-index** - `FLAT` (exact, scans all vectors) or `HNSW` (approximate graph search).
+- **Quantization** - `FLAT` (none, exact), `PQ` (Product Quantization), `SQ` (Scalar
+  Quantization), `RQ` (RaBitQ - random rotation + binary quantization).
+
+The seven documented combinations: `IVF_FLAT`, `IVF_PQ`, `IVF_SQ`, `IVF_RQ`,
+`IVF_HNSW_FLAT`, `IVF_HNSW_SQ`, `IVF_HNSW_PQ`.
+
+`protos/index.proto:115` also carries a **`DiskAnn`** stage message. It is part of the persisted
+wire format rather than one of the seven documented builder combinations - expect to encounter
+it when reading index protos, not when choosing an index type.
+
+**Distance metrics** (`VectorMetricType`): `L2` (0), `Cosine` (1), `Dot` (2), `Hamming` (3).
+SIMD kernels in `lance-linalg`; the `fp16kernels` feature compiles C SIMD kernels for fp16.
+
+**Compression** (bytes per vector vs float32):
+
+| Quantization | Storage | Ratio |
+|--------------|---------|-------|
+| FLAT | `dimension * 4` | 1x (exact) |
+| SQ (8-bit) | `dimension` | ~4x |
+| PQ | `num_sub_vectors` (one uint8 code per sub-vector) | ~`(dimension*4)/m` |
+| RQ (RaBitQ, `num_bits` bits/dim) | `ceil(dimension * num_bits / 8)` + correction factors | ~32x at 1 bit; ~6.5x at the 5-bit default |
+
+**IVF_RQ requires the vector dimension to be divisible by 8** - enforced with the error
+"vector dimension must be divisible by 8 for IVF_RQ" (`rust/lance-index/src/vector/bq/builder.rs`).
+**RaBitQ is now multi-bit** (new in v8, PR #7038): `num_bits` is "in the range 1..=9"
+(`docs/src/format/index/vector/index.md:358`). IVF_RQ always stores the 1-bit binary sign
+code in `_rabit_codes`; for `num_bits > 1`, the remaining `num_bits - 1` ex-code bits are stored
+in a separate column instead of widening the binary code path, alongside `__add_factors_ex` /
+`__scale_factors_ex` correction columns.
+
+**The ex-code column was renamed in v11** (#8407). Writers now emit **`__blocked_ex_codes`**,
+sized `next_multiple_of(code_dim, 64) * (num_bits - 1) / 8`. The old column is still readable:
+"Indexes written before the blocked ex-code layout store the same bits in `__ex_codes`, sized
+`ceil(dimension * (num_bits - 1) / 8)`. Readers still accept that column and repack it at load
+time; writers no longer emit it" (`docs/src/format/index/vector/index.md:293-296`). Two sibling
+sizing corrections landed with it: `__pq_code` is
+`list<uint8>[num_sub_vectors * num_bits / 8]` (not `[m]`), and `_rabit_codes` is
+`ceil(code_dim / 8)` (not `dimension / 8`). Every vector-index storage column is also now
+declared **nullable**, and the RQ rows gained a separate "Present when" column.
+A new `query_estimator` metadata field selects the distance-estimator layout: "`residual_query`
+or `raw_query`. Missing values are read as `residual_query` for compatibility with released
+1-bit IVF_RQ indexes" (`index.md:361`); raw-query search (PR #7078) adds an `__error_factors`
+column "for raw-query lower-bound pruning" (`index.md:288`). The metadata schema also carries
+`code_dim` (u32, the rotated-vector dimension).
+
+**`num_bits` now defaults to 5, not 1** (#8936, `v12.0.0-beta.12`) - the PR carries a
+conventional-commit `!` but no `breaking-change` label, so the release bot did not count it.
+`RABIT_DEFAULT_NUM_BITS: u8 = 5` (`rust/lance-index/src/vector/bq.rs`) drives both
+`RQBuildParams::default` and `RabitBuildParams::default`, and the Python `build_rq_model` stub
+default moved with it. Per-row storage (`docs/src/guide/performance.md:620-627`):
+
+- 1-bit: `dimension / 8 + 20` bytes
+- Multi-bit: `dimension / 8 + round_up(dimension, 64) * (num_bits - 1) / 8 + 28` bytes
+
+"Every bit width stores a 1-bit sign code plus three 4-byte correction factors." Multi-bit adds
+the `__blocked_ex_codes` and ex-factor columns on top of the sign code.
+
+**Budget for a ~4.4x jump if you relied on the default.** Upstream's own worked example moved
+from `100M * (768 / 8 + 16) = ~10.8 GiB` to
+`100M * (768 / 8 + 768 * 4 / 8 + 28) = ~47.3 GiB`. The escape hatch is explicit and documented:
+"`Fast` search mode uses only the 1-bit sign code even when the index stores additional bits. Set
+`num_bits=1` explicitly to minimize index size and build I/O; the same 100M-row example uses about
+10.8 GiB, but searches cannot use the multi-bit distance estimate and may have lower recall."
+So `Fast` mode gains nothing from the wider default while paying its full storage cost.
+
+**A separate multi-bit correctness fix landed at beta.15**: RaBitQ FastScan above 1024 rotated
+dimensions overflowed its accumulator (#8842) - "the scalar path saturates and the AVX2/AVX-512/NEON
+kernels wrap, so a distance becomes `true_sum % 65536` and the ranking collapses. At rotated dim
+4096 a full-range sum reaches 261120, four times the ceiling." Query-time only, so it heals on
+upgrade - but any recall figure measured on an affected index before the fix is invalid.
+
+**bfloat16 is not usable for vector indexes**, despite the docs recommending it as an embedding
+type directly above an IVF_RQ `create_index` example (`docs/src/guide/data_types.md:415-424`). The
+`lance.bfloat16` extension stores as `FixedSizeBinary(2)`, and the accepted element types are
+only `Float16 | Float32 | Float64 | UInt8 | Int8`
+(`rust/lance/src/index/vector/utils.rs:244`). The rejection fires on **both** the index-build
+and the query path (`scanner.rs:1647`, `knn.rs:397`), so it is not a build-time-only limit. The
+in-tree error message is itself stale - it omits `Int8` from the list it actually accepts.
+
+**Approx mode** (new in `v8.0.0-beta.10`, PR #7179). Vector search takes a public
+`approx_mode` with three values - "`fast`, `normal`, and `accurate`" - to pick the
+speed/accuracy tradeoff "when the backing index supports it" (RaBitQ today). "The public API
+avoids exposing RaBitQ/HACC terminology" (commit `e25620710`). It threads through the Rust
+scanner, the ANN proto, and Python query parsing; serialized as `VectorApproxMode approx_mode`
+(`protos/ann.proto:16,45`) - a **breaking ANN-proto change**, so any consumer matching Lance's
+serialized ANN query proto must regenerate. Multi-bit RaBitQ ex-code reranking also got
+dedicated SIMD kernels (PR #7205, `rust/lance-index/src/vector/bq/ex_dot.rs`). **IVF_RQ now
+defaults `target_partition_size` to 4096** (was the generic fallback, PR #7273).
+
+**Query-time knobs: `nprobes` and `refine_factor`.** Distinct from the build-time parameters
+above, and the two the docs put front-and-center for tuning a live query: "The latency vs recall
+is tunable via: **nprobes**: how many IVF partitions to search / **refine_factor**: determines
+how many vectors are retrieved during re-ranking"
+(`docs/src/quickstart/vector-search.md:97-99`). `nprobes` trades read volume for recall by
+widening the partition sweep; `refine_factor` over-fetches quantized candidates and re-ranks
+them against full-precision vectors, so it recovers accuracy lost to PQ/SQ/RQ compression at the
+cost of extra `take`s. Reach for these before rebuilding an index with different parameters -
+they need no reindex.
+
+**Default probing moved twice without a breaking label - re-measure default-setting latency and
+recall on upgrade.** `v13.0.0` (#9184, labeled `bug`) keeps probe settings "unset until explicitly
+configured so dataset and MemWAL queries inherit adaptive defaults", while `nprobes(N)` is kept "as
+an exact minimum/maximum setting"; #9467 (also `v13.0.0`) recalibrated dot-product Auto probing for
+Float32 IVF_FLAT queries at k <= 100 (before it, one Wiki workload "searches one partition at k=1
+but every partition at k=10/100"). `v14.0.0-beta.12` (#9798) extends the calibrated profiles
+"through k=100000 across IVF index types" (previously Auto "stopped using calibrated profiles above
+k=100") and adds **`search_effort`**, a value in [0, 1] whose unset default resolves to 0.5 (Auto):
+"Setting any effort, including 0.5, ignores [`Self::nprobes`] regardless of setter order. Explicit
+minimum and maximum bounds remain effective" (`rust/lance/src/dataset/scanner.rs:2481-2483`; Python
+`nearest={..., "search_effort": 0.75}` or `ScannerBuilder.nearest(..., search_effort=)`; proto
+`search_effort = 16`, `protos/ann.proto:75`). It is "not a recall guarantee". The Python binding's
+`DEFAULT_NPROBES = 1` constant (`python/src/dataset.rs:127` at `v13.0.0`) is gone at
+`v14.0.0-beta.14`. Separately, `fast_search()` no longer adds `_rowid` to the output (#9699,
+`v14.0.0-beta.5`): FTS and vector queries projecting only `id` used to get an extra `_rowid` column.
+Code that relied on it must request row ids explicitly (`with_row_id`, or `_rowid` in the
+projection).
+
+**The v15 guide makes IVF_RQ the default recommendation**: "**Start with `IVF_RQ` for most
+vector-search workloads.** It provides compact storage and multi-bit distance estimates without
+requiring PQ sub-vector configuration. Use `IVF_PQ` when its smaller index footprint or
+GPU-accelerated training is important" (`docs/src/guide/vector_search.md:97`); the guide's
+examples switched from IVF_PQ to IVF_RQ. Nothing in the builder defaults changed with it -
+`index_type` is still required.
+
+**v15 vector-query and maintenance changes** (none in the v14 line unless noted):
+
+- **HNSW search `ef` is floored at 256** (#9073, `v15.0.0-beta.2`, no breaking label). Unset
+  `ef` was `1.5 * k`, i.e. 15 at k=10, and because `IVF_HNSW_*` defaults to `target_partition_size
+  = 1 << 20` any table under roughly two million rows has one partition, so the graph is the only
+  pruning. Now "A query that leaves it unset gets `1.5 * k * refine_factor`, floored at 256"
+  (`DEFAULT_MIN_EF`, `rust/lance-index/src/vector/hnsw/builder.rs:1488`). Measured at k=10, one
+  partition: GIST1M recall@10 0.567 -> 0.925 (p50 1.0 -> 3.5 ms), SIFT1M 0.828 -> 0.980 (0.8 ->
+  1.7 ms), against 0.953 / 0.981 for an exhaustive scan of the same codes. Default-setting HNSW
+  latency rises on upgrade; an explicit `ef` keeps precedence, and `Scanner::ef` now warns when
+  called before `nearest` (it used to drop the value silently).
+- **`num_partitions` now records a target partition size** (#10154, `v15.0.0-beta.4`, labeled
+  breaking). An IVF index built with `num_partitions` recorded none, so `optimize_indices` split
+  and joined it against the type's default target: "Partitions built smaller than a quarter of
+  that default (under 1,024 vectors for IVF_FLAT and IVF_RQ, 2,048 for IVF_PQ) are all joined, and
+  an optimize with nothing new to index can leave the index with a single partition". Whole-table
+  builds now record `ceil(vectors indexed / partitions trained)`. "Existing indexes are unchanged
+  until they are rebuilt", so a v14-built small-partition index still collapses on optimize; the
+  Rust break is a new public `num_vectors_shuffled` field on `VectorIndexBuildSummary`.
+- **Quantized refinement** (#8741, `v15.0.0-beta.8`, opt-in): `quantized_refine_factor` (Python
+  `nearest`, Rust `Scanner::quantized_refine`, Java `setQuantizedRefineFactor`) overfetches
+  `factor * k` candidates with 1-bit RQ scores and reranks them with the index's accurate
+  multi-bit RQ data, so indexed candidates "do not read their original vectors" - unlike
+  `refine_factor`, it costs no `take` against remote storage. Flat IVF_RQ only; combinable with
+  exact refinement (`python/python/lance/_dataset/scanner.py:520-526`).
+- **Prefilter skips provably empty segments** (#10485, `v15.0.0-beta.8`): ANN and FTS searches
+  compare the prefilter mask with each segment's coverage and skip segments that cannot match.
+  FTS "preserves the original scoring statistics and vocabulary". Query-time only.
+- **Consolidating vector segments without retraining** (#10335, `v15.0.0-beta.2`):
+  `OptimizeOptions::consolidate(max_rows)` (`rust/lance-index/src/optimize.rs:137`) folds a suffix
+  of complete segments within a physical-row budget even when their centroids or quantizers
+  differ, re-encoding only the selected coverage with the newest segment's model; it "never
+  trains". Not supported for legacy formats, shallow-clone sources or tagged fragment reuse.
+- **PCA pre-transform for IVF_RQ** (experimental): model, training and query pre-transform in
+  `lance-index` (#9967, `v14.0.0-beta.24`, so in `v14.0.0`), storage spec #9968
+  (`v15.0.0-beta.6`, `docs/src/format/index/vector/index.md` "PCA Pre-transform"): L2 only, index
+  metadata version 4 so non-PCA readers skip it, model in `index.idx` under `lance:pca`, "The
+  stored model may change incompatibly without a separate vote". No `lance`, Python or Java
+  index-creation option exposes it at this tag.
+
+On-disk layout (format V3): each vector index is two Lance files - an **index file**
+(`index.idx`, the search structure: IVF metadata, HNSW graph) and an **auxiliary file**
+(`auxiliary.idx`, quantized vector storage). HNSW construction defaults: `max_level` 7, `m`
+20, `ef_construction` 150. The PQ codebook and the RaBitQ rotation matrix are stored as
+tensors in the auxiliary file's global buffer.
+
+**HNSW construction changed in v11 (PR #8188, BREAKING).** Three things at once:
+`OnlineHnswBuilder::with_capacity` is `#[deprecated]` in favour of a fallible
+`try_with_capacity` that runs shared parameter validation
+(`rust/lance-index/src/vector/hnsw/online.rs:161,174`); **`m < 4` is now rejected** ("must be at
+least {MIN_HNSW_M} to avoid severely fragmented graphs", `builder.rs:144`); and the persisted
+level layout was corrected from `max_level` offsets to `max_level + 1`, because "truncating
+persisted levels to the sampled height also broke version-1 readers that index the configured
+level count directly". `HnswBuildParams::default()` is unchanged (`m: 20`). **Expect different
+graphs and different recall from the same inputs** after upgrading. Separately, greedy descent
+now stops before level 0 - "the greedy (ef=1) descent should cover only levels `max_level-1`
+down to 1; level 0 must be searched solely by the ef-bounded beam search" (PR #8035,
+`builder.rs:396,546`) - worth +3.7% recall@10 at ef=16.
+
+Minor v11 fix: `QuantizationType`'s `FromStr` now accepts `"RQ"` as well as `"RABIT"`
+(`rust/lance-index/src/vector/quantizer.rs:86`, PR #8214) - `Display` wrote `"RQ"` but `FromStr`
+rejected it, so the two never round-tripped.
+
+**"partition N is empty, skipping" is benign by design.** During an IVF build, an empty
+partition emits `log::warn!("partition {} is empty, skipping", part_id)`
+(`rust/lance/src/index/vector/builder.rs:1174`) and then registers a zero-sized partition in both
+the storage and index IVF models and continues the merge loop (`:1176-1180`). There is no
+`Result::Err` and no exception to catch, so on a skewed or sparse dataset this floods logs
+without indicating a failure - suppress it with a scoped tracing filter rather than hunting a
+bug. (The one genuine error mentioning empty partitions is a guarded inconsistency case at
+`:1100`, reachable only when a partition reports a non-zero size yet reads back `None`.)
+
+**Typed index details.** A vector index records a typed `VectorIndexDetails` message in the
+manifest's `index_details` field (`protos/index.proto:188-241`; moved out of `table.proto`
+in `v7.1.0-beta.1`): `metric_type`, `target_partition_size` (0 = unset), an optional
+`HnswParameters` (`max_connections` = M, `construction_ef`, `max_level`), a `compression`
+oneof (`ProductQuantization` / `ScalarQuantization` / `RabitQuantization` with a `FAST` or
+`MATRIX` rotation / `FlatCompression`), and a free-form `runtime_hints` string map. Hint
+keys use reverse-DNS namespacing (e.g. `lance.ivf.max_iters`) and unrecognized keys must be
+silently ignored by all runtimes.
+
+**Build prerequisites.** A vector index cannot be built on an empty table -
+`build_empty_vector_index` returns `not_supported` ("Creating empty vector indices with
+train=False is not yet implemented", `rust/lance/src/index/vector.rs:1437`). PQ training
+needs at least `2^num_bits` rows for its codebook centroids, so a default 8-bit PQ index
+hard-errors below **256 rows** ("Not enough rows to train PQ. Requires {n} rows but only {m}
+available", `rust/lance-index/src/vector/pq/builder.rs:177`); IVF k-means separately needs at
+least `num_partitions` rows. Build vector indexes lazily, once the table holds data.
+
+**Batched vector queries** (PR #6828). `Scanner::nearest` accepts a batch of query vectors on
+a fixed-size-list column - there is no separate `nearest_batch` API. Batched results carry a
+synthetic 0-based `query_index` discriminator column (`QUERY_INDEX_COL`) so each result row is
+attributable to its source query (`rust/lance/src/dataset/scanner.rs:104,1972`).
+
+**Streaming IVF k-means training** (PR #6913). For bounded-memory IVF training on large
+datasets, the IVF builder exposes `streaming_sample_rate`, `streaming_coreset_rate`, and
+`streaming_refine_passes` (exposed through Python). When set, training loads at most
+`num_partitions * streaming_sample_rate` vectors and keeps the total sampled set bounded
+(`rust/lance-index/src/vector/ivf/builder.rs:44-51`).
+
+**ACORN-1 prefiltered HNSW traversal (v10, PR #7927).** A prefilter-aware graph traversal for
+HNSW, **opt-in only**: it is gated on `ApproxMode::Fast` (Python `approx_mode="fast"`), with no
+env var. "`Normal` (the default) and `Accurate` keep the existing traversal, so default behavior
+is unchanged." Do not reach for it reflexively - upstream documents a real regression on
+low-selectivity uniform-random masks: "uniform random masks at 2% selectivity drop recall (0.775
+vs 0.975 on GIST1M), and at 50% random the waypoint bookkeeping makes it slower than the current
+traversal (15.3 vs 4.1 ms)." It pays off on *clustered* prefilters, not random ones. Its
+constants are not tunable: 16 mask-sampled seeds (`ACORN_SEED_COUNT`,
+`rust/lance-index/src/vector/graph.rs:550`) and a `4 * ef` waypoint budget. Narrow API break: the
+all-public `HnswQueryParams` gained a required `use_acorn: bool` field
+(`rust/lance-index/src/vector/hnsw/builder.rs:1104`), so struct-literal construction no longer
+compiles.
+
+Two runtime escapes make `approx_mode="fast"` weaker than "ACORN is on": even when requested,
+ACORN is **skipped** when the mask passes all rows or when fewer than 10% of rows survive it,
+and an under-delivering traversal falls back to `search_basic`
+(`rust/lance-index/src/vector/hnsw/builder.rs:1367-1388`). So a benchmark that sees no change
+from `fast` may simply never have entered the ACORN path. The opt-in gate itself is unchanged in
+v11 despite the surrounding HNSW rework (PRs #8188, #8035 both leave `use_acorn: query.approx_mode
+== ApproxMode::Fast` at `:1170` intact).
+
+**Vector index append across heterogeneous models (v10, PR #8047).** Appending to a vector index
+whose segments were trained with different IVF/quantizer models previously failed. Append now
+writes **one** new segment over the unindexed fragments, using the manifest-suffix segment's
+model. Explicit `OptimizeOptions::retrain` remains the only operation that rebuilds from source
+and unifies models.
+
+**v9 vector changes.** `as_vector_index` was **removed from the public `Index` trait**
+(PR #7392) - downcast via `as_any()` instead. A new **hamming clustering** utility (PR #7379,
+`rust/lance-linalg` + `rust/lance`) does SIMD-accelerated (AVX-512/AVX2) pairwise Hamming
+distance over 64-bit binary hashes plus union-find grouping for near-duplicate detection:
+`pairwise_hamming_distance[_parallel]`, `UnionFind`, and `hamming_clustering_for_ivf_partition`
+/ `_for_sample` / `_for_range` / `_from_hashes` returning a `RecordBatchReader` of clusters.
+This is a clustering *utility* over binary vectors, distinct from the `Hamming` distance
+*metric* already listed above. Separately, `COUNT(*)` pushdown now works on **stable-row-id**
+datasets (PR #7360) - the `CountFromMaskExec` fast path no longer falls back to a full scan
+when stable row IDs are enabled. A vector-search correctness fix also accounts for the SQ
+offset in dot-distance (PR #7481).
+
+**Duplicate-pair enumeration from a vector index (v13, #9493).**
+`lance.vector.find_duplicate_pairs(dataset, column, distance_threshold, *, memory_limit=None,
+max_concurrency=None)` streams every unordered pair whose index-representation distance
+is `<= distance_threshold` as a `RecordBatchReader` of `row_id_a`, `row_id_b`, `distance`
+(`python/python/lance/vector.py:787`; per-partition variant `find_duplicate_pairs_in_partition`,
+Rust `DuplicatePairsOptions`). It needs exactly one current-format vector index covering all
+fragments, and pairs are found only **within** a partition: "cross-partition and cross-segment pairs
+are omitted". `memory_limit` defaults to 256 MiB of staged codes (0 forces spill) and
+`max_concurrency` to the CPU pool size. #9551 (labeled breaking, also `v13.0.0`) changed two
+outputs: pairs now come in tile order (partition, anchor batch, candidate batch, anchor row,
+candidate row) instead of each anchor's pairs being contiguous, and quantized cosine distances are
+`1 - cos` of the renormalized reconstructions - roughly half what unrefined ANN search reports for
+the same pair. Code written against an intermediate beta must not assume per-anchor grouping.
+
+**Dot-metric k-means centroids are normalized from `v13.0.0` (#9451).** Unconstrained centroid
+means let "large-norm centers ... attract vectors even when their directions were a worse
+match". Training changes only: "Existing indexes are not rewritten; observing the training change
+requires retraining/rebuilding the index." Upstream measured "a large Wiki improvement and mixed
+DPR results", so retraining a dot-metric IVF index is optional and worth benchmarking, not a
+correctness repair.
+
+### 11.2 Scalar indexes
+
+`docs/src/format/index/scalar/`. Results are **exact** (BTREE, BITMAP, LABEL_LIST) or
+**inexact / AtMost** (BLOOM_FILTER, NGRAM, ZONEMAP, RTREE) - except that ZONEMAP and
+BLOOM_FILTER now answer **`IS NULL` exactly** (see the `null_bitmap` note below).
+
+| Index | For | Structure |
+|-------|-----|-----------|
+| BTREE | Range queries, sorted access, high-cardinality columns | Two-level: in-memory page lookup + on-disk sorted leaves, default 4096 rows/page |
+| BITMAP | Low-cardinality columns, fast set membership | One bitmap (serialized `RowAddrTreeMap`) per distinct value |
+| LABEL_LIST | Multi-value / tag columns | Built on a bitmap index; supports `array_has`/`_all`/`_any` |
+| NGRAM | Substring matching | Overlapping trigrams (ASCII-folded, lowercased); query `contains`. Since v9 also accelerates regex and infix `LIKE` (PR #7139) |
+| ZONEMAP | Scan pruning / predicate pushdown | Per-zone min/max/null stats (default 8192 rows/zone); a *primary skipping structure* |
+| BLOOM_FILTER | Probabilistic membership | Zone-based Split Block Bloom Filters (xxHash64; default 8192 items/zone, FPP 0.00057) |
+| FM_INDEX | Substring / prefix / regex search on raw bytes | Compressed BWT index over raw byte arrays; built on the Segmented Index architecture (see 11.5). New in v8 |
+| RTREE | 2D spatial pruning | See 11.4 |
+| MINHASH_LSH | Near-duplicate text (estimated Jaccard) | MinHash signatures + LSH band buckets; **experimental**, new in v13 (see below) |
+
+NGRAM, ZONEMAP, and BLOOM_FILTER are newer additions.
+
+**The JSON index is a wrapper with no files of its own** (spec page new in the v14 betas,
+`references/docs/format/index/scalar/json.md`). It decodes the value at one path out of each
+JSONB document into a single Arrow array and hands it to an ordinary *target* scalar index:
+"Its files are exactly the files of its target index" (`json.md:59-60`). A reader decodes
+`JsonIndexDetails` (`path`, `target_details` as an `Any`, `protos/index.proto:296-331`), selects
+the target implementation from the `type_url` of `target_details`, then reads the target as a
+standalone index at **`target_index_version`** (field 4, #9721, `v15.0.0-beta.6`): before it,
+`load_index` passed the target plugin's current max version rather than the version the target
+was persisted at - wrong for any target whose format version has moved (BTree v1 and Bitmap v1,
+11.5). "If `target_index_version`
+is absent on a JSON index then we assume that index was built before this field existed.
+Readers should use version 1 for a label list index and version 0 for all other indexes"
+(`json.md:37-39`). #9303 (`v14.0.0-beta.8`) added `JsonTargetDataType target_data_type = 3`
+(`BOOLEAN`/`INT64`/`FLOAT64`/`UTF8`) so a rebuild "reproduces the original type instead of
+re-inferring it from whatever rows the rebuild happens to see"; `UNSPECIFIED` marks an index
+built before the field existed. Anything that rewrites the details without retraining "must
+preserve a recorded type exactly", including values it does not recognize. Two creation-time
+rejections narrow what can be built: an inverted (FTS) target is refused with `NotSupported`
+(#8813, `v13.0.0`), and since `v14.0.0-beta.2` (#9727) a path whose values are arrays or
+objects fails with `InvalidInput` (`JSON_TARGET_DATA_TYPE_LARGE_BINARY = 5` is deprecated: "No
+query can be served by an index of this type").
+
+**As of v13, only four UDFs reach a JSON index** (#9101). The routing allow-list was cut from
+six names to `json_get_int`, `json_get_float`, `json_get_bool` and `json_get_string`;
+**`json_extract` and `json_get` are no longer routed at all** and fall back to a full scan. This
+was a correctness fix, not a regression - the three symptoms it removed were a predicate that
+"searched for a quoted key and matched nothing, where the unindexed scan matched", a `Utf8`
+literal pushed into an `Int64` btree that "panicked", and a range that "returned every row"
+because "quoting is not order-preserving (`ab` < `ab!` but `"ab"` > `"ab!"`), so a decoded-key
+btree cannot answer a text-ordered range, and its page min/max pruning is unsound for one". The
+cost lands silently: the query still succeeds, just without the index. Rewrite `json_extract`
+predicates onto the typed accessors if they were carrying an index. The new spec page makes this
+normative and adds a second condition: "Only the typed accessor functions are routed to a JSON
+index, and only when their path argument is a literal equal to the indexed `path`"
+(`json.md:72-73`; allow-list in `rust/lance-index/src/scalar/json.rs`). Once
+routed, exactness and supported query types are the target index's.
+
+One more routing prerequisite, easy to miss and now doubly load-bearing: a DataFusion JSON
+predicate only reaches the index if the UDF the planner parsed is the **same `ScalarUDF` object**
+Lance registered. Register Lance's functions on the same `SessionContext` that owns the table
+provider; otherwise the name matches, the object does not, and the predicate is evaluated
+post-scan with no error. Since v9, **BTREE and ZONEMAP accept `large_string`
+(`LargeUtf8`) columns** (PR #7525), not just `Utf8`. A ZoneMap index also exposes a column's
+global **min/max without a scan** via `zonemap_value_range(column)` (`DatasetIndexExt`;
+`ZoneMapIndex::value_range` / `value_range_over(segments)`, PR #7463) - cheap stats and a
+range-pruning planning input.
+
+As of v9.1, both **ZONEMAP and BLOOM_FILTER carry a `null_bitmap`** (a serialized
+`RowAddrTreeMap` of null rows) that upgrades **`IS NULL` from inexact to Exact** - "since
+finding NULLs is a common query pattern, the index also maintains a bitmap of null rows which
+allows it to return exact results for IS NULL queries" (`docs/src/format/index/scalar/bloom_filter.md`,
+`.../zonemap.md`). Other predicates on these indexes stay inexact/`AtMost`.
+
+**For SBBF internals, read the spec page directly.** `references/docs/format/index/scalar/bloom_filter.md`
+carries the block structure ("The SBBF divides the bit array into blocks of 256 bits, where each
+block consists of 8 contiguous 32-bit words"), the 8 salt constants, and the binary-search sizing
+algorithm behind the FPP figure. None of that is restated here - go to the mirror when you need to
+reimplement or validate a filter rather than just use one.
+
+**In v11 that capability became wire-explicit and grew a second half** (PR #8088). The zone-map
+details proto gained `optional bool has_null_bitmap = 3` (`protos/index_old.proto:52`),
+documented as: "Absent or false means legacy format: null positions are not tracked and IS NULL
+searches fall back to approximate zone-level statistics. Present true means IS NULL is exact
+**and IS NOT NULL can be answered without a full scan**" (`:46-51`; field 2 is `use_seeds`). The flag is set from
+`builder.null_rows.is_some()`, so an index built before v11 keeps the legacy behaviour until
+rebuilt - check the flag before assuming exactness.
+
+**ZoneMap index version 1** (format #9986, runtime #10217, `v15.0.0-beta.4`). V0 "uses `max =
++NaN` to mark any zone containing NaNs, including negative NaNs. This hides the ordinary maximum
+and does not tell the reader which NaN signs are present". V1 adds a non-null
+`negative_nan_count` column, keeps `min`/`max` as NaN-free bounds in Arrow Rust ordering
+(infinities included; null bounds mean unknown, not empty), and is what new segments are written
+with (`ZoneMapIndexVersion::CURRENT = V1`, `rust/lance-index/src/scalar/zonemap.rs:95-125`); a
+build that does not know the version errors instead of guessing. Old segments are read
+conservatively and are not upgraded in place: "Do not relabel V0 files as V1: recovering missing
+statistics can require scanning the column values" (`docs/src/format/index/scalar/zonemap.md:76-77`),
+so rebuild to get tighter float pruning. **The null bitmap is now optional** (#10165,
+`v15.0.0-beta.6`): ZoneMap creation can reuse the data files' zone write seeds (section 7, bit 16)
+instead of scanning, and can omit the row-level bitmap for cheap coarse-grained zone maps - and
+then "Null queries are exact only when an exact null bitmap is present" (`zonemap.md:107`); without
+it `IS NULL` uses null counts and rechecks (`AtMost`). The exact-`IS NULL` claim at the top of
+11.2 therefore holds only for segments with `has_null_bitmap = true`.
+
+**Zone maps now cover every data type, including nested ones** (PR #8017): "We are using zonemap
+as our 'statistics' and it is also important for recording nullability bitmaps. As a result, we
+need it to support all types. For nested types we don't track the min/max but we still track the
+nullability bitmap and the null count." For List, FixedSizeList, Struct, and Map columns, min and
+max are stored as typed null values (`rust/lance-index/src/scalar/zonemap.rs`) - so a zone map on
+a nested column buys null statistics and nothing range-related.
+
+**Scalar-index pushdown is volume-independent.** The planner emits a `ScalarIndexQuery` whenever
+an index exists for the column - `apply_scalar_indices` is driven purely by whether
+`index_info.get_index(col)` answers (`rust/lance-index/src/scalar/expression.rs:2612`), with no
+row-count, cardinality, or selectivity heuristic anywhere in the module. The plan for a 4-row
+table and a 2000-row table is identical. Only two non-volume gates exist: `use_scalar_index` is
+suppressed for a non-prefiltered vector search (`let use_scalar_index = self.use_scalar_index &&
+(self.prefilter || self.nearest.is_none())`, `rust/lance/src/dataset/scanner.rs:2812`), and
+scalar indexes are skipped entirely when any fragment lacks `physical_rows` metadata ("We need
+row counts to use scalar indices", `scanner.rs:2668`) - that is metadata *presence*, not
+magnitude. Practical consequence: "indexes only pay off at scale" is false here; a scalar index
+on a small table is used, for better or worse.
+
+**FM-Index** (new in v8, `docs/src/format/index/scalar/fmindex.md`,
+`protos/index.proto:251` `FMIndexDetails` - **renamed from `FMIndexIndexDetails` in v9**,
+PR #7397, a **breaking change that makes existing FM indexes unreadable**; the rename also
+dropped the `get_plugin_name_from_details_name` `fmindex`->`fm` special-case). The
+Ferragina-Manzini index is "a compressed
+substring index based on the Burrows-Wheeler Transform (BWT)" that "enables efficient
+**arbitrary substring search**, **prefix match**, and **suffix/regular-expression search**
+directly on raw bytes" (`fmindex.md:3`) - unlike the NGRAM index (fixed trigrams) or FTS
+(distinct words). It indexes columns of strings or binary as raw byte arrays, so it is
+**normalization-independent by design**: any case-folding / Unicode / stemming normalization
+is the caller's job and must be applied identically to the column at build time and to the
+query (`fmindex.md`). Two bytes are reserved as BWT sentinels (`\x00` terminator, `\xFF`
+row separator) and any incoming `\x00`/`\xFF` are sanitized to space (`\x20`) at build time.
+Because a BWT suffix array cannot be merged by concatenation, FM-Index is partitioned via
+the Segmented Index architecture: a `num_segments` parameter (set at index creation) splits
+fragments into disjoint subsets, each a self-contained FM-Index; appends build a new segment
+over the unindexed fragments, and `merge_segments` re-reads the covered fragments' raw text
+to rebuild a unified segment (`fmindex.md:53`). Queries (`CONTAINS(column, "...")`) return an
+inexact candidate set; the engine verifies.
+
+**Sizing and residency, field-measured - `num_segments` does not bound query memory.** An
+FM-Index is roughly **1:1 on disk with the raw column** it covers (measured: a 2,793.8 MiB text
+column produced a 2,617 MiB index, 0.937x), so it roughly doubles the footprint of the data it
+indexes rather than compressing it, and peak build RSS exceeded the column size (~3.1 GB). More
+surprising at query time: the wavelet-tree blocks are **heap-resident, not mmap'd**, `prewarm()`
+calls `wavelet.load_all()`, and `prewarm_partitions` warms **every** partition
+(`rust/lance-index/src/scalar/fmindex.rs:1146,1546`, concurrently via `buffer_unordered`). So
+`num_segments` lowers *build* RSS per segment but **not** query RSS - one `CONTAINS` can pull the
+whole index resident, per process, unshared. On object storage that is also a full cold download
+on first query. The practical mitigation is to index a narrow materialized column rather than a
+wide blob.
+
+**Choosing between NGRAM, FM-Index, and FTS for substring work.** These three are not
+interchangeable, and two column-level constraints decide the choice before performance does:
+
+- **NGRAM requires a real text column.** "A ngram index can only be created on a Utf8 or
+  LargeUtf8 field" (`rust/lance-index/src/scalar/ngram.rs:1690-1692`) - a `LargeBinary` column
+  (a JSONB/`lance.json` column, for instance) is rejected outright. FM-Index *will* build on
+  binary, but DataFusion's `contains` refuses to coerce `LargeBinary` to `Utf8`, so the query
+  cannot reach it; a `CAST(... AS VARCHAR)` makes the plan legal but defeats index pushdown and
+  falls back to a full scan. If you need substring search on a column, store it as text.
+- **NGRAM and FM-Index disagree on matching semantics, silently.** NGRAM is always case- and
+  accent-insensitive: "Currently we ALWAYS use trigrams with ascii folding and lower casing. We
+  may want to make this configurable in the future" (`ngram.rs:93`), applied through the shared
+  `TEXT_PREPPER` (`LowerCaser` + `AsciiFoldingFilter`, `:87-91`) on **both** the build and query
+  paths (`:1150`, `:507`). FM-Index has no case handling at all - queries go straight to
+  `search_string_contains(pattern.as_bytes())` (`fmindex.rs:1638`). The same needle therefore
+  returns different result sets from the two indexes, with no warning.
+- **FTS answers a different question.** It matches whole tokens, so it is the wrong tool for
+  identifier or mid-token lookup: a needle that appears inside larger tokens matches nothing
+  under FTS while NGRAM/FM find it, and a needle that is also a common token can match orders of
+  magnitude more rows than the exact substring occurrences.
+
+**MinHash LSH - near-duplicate text search, experimental** (spec #9076, impl
+#9114, both `v13.0.0`; `IndexType::MinHashLsh = 12`, `rust/lance-index-core/src/lib.rs:80`). It
+answers "which rows are copies of this one" by **estimated Jaccard similarity** of token-shingle
+sets - not term relevance (FTS) and not meaning (vectors). Each row gets a `num_hashes`-value
+16-bit signature split into `num_bands` band keys; rows sharing a band key become candidates and
+are ranked by signature agreement, so rows below the threshold `(1 / num_bands) ^ (num_bands /
+num_hashes)` "are usually not found" (defaults 128 / 16, threshold ~0.71, 456 bytes per row;
+`shingle_size` 3; stemming and stop words off by default). Per segment it writes
+`signatures.lance` and `bands.lance`; unindexed fragments are signed on the fly at query time
+unless `fast_search` is set. The warning is load-bearing: "Its details message and its files may
+change incompatibly without a separate vote; after such a change the index must be rebuilt"
+(`references/docs/format/index/scalar/minhash_lsh.md:5-7`). Creating it sets no feature flag, so
+an older reader just ignores the index. Tokenizers that load deployment dictionaries (`jieba/*`,
+`lindera/*`) are rejected; use `ngram` or `icu` for CJK. Python, as in upstream's test:
+
+```python
+from lance.indices import IndexConfig
+from lance.query import MinHashQuery
+
+ds.create_scalar_index(
+    "text",
+    IndexConfig(
+        index_type="minhashlsh",
+        parameters={"num_hashes": 128, "num_bands": 16, "shingle_size": 3},
+    ),
+)
+# _distance = 1 - estimated Jaccard similarity, ascending
+dups = ds.to_table(nearest=MinHashQuery("text of the row to match", "text"), limit=10)
+```
+
+**v10 scalar-index changes.** BTREE + ZONEMAP `large_string` support (v9) is joined by
+**LABEL_LIST accepting `LargeList`** (PR #7884) - previously a `LargeList` LABEL_LIST filter
+silently fell back to a full scan because `ScalarValue::LargeList` was not accepted. Two
+planner fixes: same-column range predicates with *differing* index fragment coverage were
+merged unconditionally, claiming coverage they did not have - `index_type` is now part of the
+merge key (PR #6782); and an index built from a stale handle and committed after a concurrent
+`Operation::Update` no longer retains coverage over fragments whose indexed column changed -
+"The fix applies to all index types" (PR #8011). A new optimizer rule drops an exact
+`IS NOT NULL` when another exact same-index query is already null-intolerant (disabled under
+`NOT`). Two new per-query metrics, `index_cache_hits` / `index_cache_misses`, surface in
+EXPLAIN ANALYZE, `ExecutionSummaryCounts`, Python `ScanStatistics`, and Java `ScanStats`
+(PR #7862) - with a caveat: "IVF v2 streaming scans and legacy v1 IVF partitions run
+`load_partition` with `write_cache=false`. Those loads always execute the loader and never write
+the result back, so they are reported as a miss on every call."
+
+**Scalar-index fast search** (PR #6784). `fast_search` now routes through scalar/BTREE-indexed
+fragments and skips unindexed ones, so a filtered query can return from the index without a
+flat scan of recently appended (still-unindexed) fragments. Not supported on the legacy file
+version (`LanceFileVersion::Legacy`). This mirrors the long-standing vector `fast_search`
+behavior - both return only what the index covers, trading completeness for latency until
+`optimize_indices` folds the new fragments in.
+
+**LABEL_LIST on stable-row-id datasets: rebuild indexes optimized before `v13.0.0`** (#9352).
+`LabelListIndex::update` discarded `old_data_filter`, so after an `update` or `merge_insert`
+changed a list value, `optimize_indices()` kept the old membership and `array_has_any` matched the
+row on its *previous* label (upstream's repro: an ACL label revoked from one of 50 rows, count back
+to 50 after `optimize`). Only stable-row-id datasets were affected. The fix "does not
+automatically repair an index that already contains them"; recreate with
+`create_scalar_index(col, "LABEL_LIST", replace=True)`.
+
+**Scalar index plugins: `load_index` gained `index_version`** (#9518, labeled breaking - the PR
+that re-rooted the line to 14, first in `v14.0.0-beta.1`). `ScalarIndexPlugin::load_index` and
+`load_index_with_remapping` now take `index_version: u32` after `index_details`
+(`rust/lance-index/src/scalar/registry.rs:169-197`): "this segment's own persisted format version
+(its `IndexMetadata::index_version`), not [`Self::version`]", so a plugin whose on-disk format
+changed can read an older segment correctly. Any out-of-tree implementation must add the
+parameter; most can ignore its value.
+
+**External plugins can now be registered with datasets** (#10111, `v15.0.0-beta.1`). Before it,
+dataset operations used a fixed registry of builtin plugins; now
+`lance::index::register_scalar_index_plugin::<MyIndexDetails, MyIndexPlugin>()?` - once per
+process, before any default registry is built - lets statically linked Rust plugins use the
+normal creation, segment-commit, reopen and cache paths. Duplicates, builtin collisions and late
+registration error. It is "an unstable Rust interface tied to the application's Lance version",
+and on stable-row-ID tables an unknown plugin's coverage of rewritten fragments is dropped after
+compaction or row-rewrite updates, so "Those rows are scanned until the index is rebuilt" (11.5).
+
+**Other v15 scalar-index API additions:**
+
+- **`ScalarIndex::lookup(keys, metrics)`** (#9875, `v15.0.0-beta.2`) streams `(key_index, row)`
+  batches for exact-match keys - the first step of an indexed `merge_insert` that joins sources
+  against the index without reading target data. Nulls never match; rows are not filtered by
+  deletions.
+- **Ignore named scalar indexes per scan** (#9034, `v15.0.0-beta.8`): Rust
+  `with_ignored_scalar_indices`, Python `ignored_scalar_indices`, Java `ignoredScalarIndices`. For
+  external planners that already used the index on a driver and hand workers an explicit row or
+  fragment selection; the filter is still evaluated.
+- **FM-Index from Python** (#10196, `v15.0.0-beta.2`): `create_scalar_index(col, "FM")`
+  (`python/python/lance/dataset.py:3139`).
+
+### 11.3 Full-text search
+
+The FTS (inverted) index maps terms to documents with **BM25** scoring
+(`docs/src/format/index/scalar/fts.md`). It is **Lance-native** - there is no Tantivy
+dependency; the tokenizer stack lives in the `lance-tokenizer` crate (one tokenizer, the
+ngram tokenizer, is noted as adapted from Tantivy, but the FTS engine is Lance's own).
+
+Storage: `tokens.lance` (dictionary), `docs.lance` (doc metadata), `invert.lance`
+(compressed posting lists, optional positions), `metadata.lance`. An FTS index may be
+**partitioned** - every partition is searched at query time and results combined.
+
+**On-disk format version (v9, breaking).** Newly created FTS / inverted indexes now default to
+**format v2** (PR #7512, `docs/src/guide/migration.md:18-36` for the current text): "Newly created FTS / inverted
+indexes now default to format v2 instead of v1. The `LANCE_FTS_FORMAT_VERSION` environment
+variable no longer controls the format used for newly created indexes ... pass the index
+creation parameter `format_version` explicitly." Pass `format_version=1` (accepts `1`/`2`/`"v1"`
+/`"v2"`, `create_scalar_index("text", "INVERTED", format_version=1)`) when older Lance readers
+must read the index - "older Lance readers may not be able to read them" otherwise. Existing v1
+indexes stay queryable and are **maintained as v1**: "append, incremental indexing, optimize,
+and mem-wal maintained-index flush ... continue preserving the v1 format." The env var came back
+in v9.1 (#7866) as a rollout-wide override: "set `format_version` in the index creation
+parameters, or set `LANCE_FTS_FORMAT_VERSION` for a rollout-wide override", where "an explicit
+`format_version` takes precedence over the environment variable" - and a code-analyzer index
+cannot use v1/v2, so with the variable at `1` or `2` creating one "fails unless
+`format_version=3` is passed explicitly" (`migration.md:24-31`).
+
+**Configurable posting `block_size` (v9.1, breaking, PR #7466).** FTS index creation takes a
+`block_size` param - documents per compressed posting block, "must be 128 or 256" (default
+128; missing values in older indexes read as 128; unsupported values like 512 are rejected by
+`validate_format_version_block_size`, `rust/lance-index/src/scalar/inverted/builder.rs:229`).
+"`256` is experimental and may introduce breaking changes." Both `block_size=256` and the new
+**code analyzer** require FTS on-disk **format v3** (the capability gate moved to v3, PR #7866):
+"The code analyzer and `block_size=256` require format v3, so readers must support v3 before an
+index using either option is created" (`docs/src/guide/migration.md`). As of v11 there is a
+**third** v3 trigger, independent of the other two: "`document_granularity=\"list_element\"`
+requires v3 reader capability, independently of the posting format" (now its own "11.0.0" entry,
+`docs/src/guide/migration.md:13-16`).
+
+**Document granularity (v11, PR #7788).** FTS gained an explicit document-boundary axis. The
+index details proto carries `DocumentGranularity document_granularity = 14` with values
+`ROW = 0` / `LIST_ELEMENT = 1` - "The logical FTS document boundary. The protobuf default
+preserves the legacy row-document behavior when this field is absent"
+(`protos/index_old.proto:96-97`) - so existing indexes keep row-granularity semantics with no
+migration. `LIST_ELEMENT` treats each element of a list column as its own document, which
+changes what BM25 scores and what a phrase can span. A companion output column
+`_doc_index` (`DOC_INDEX_COL`, storage prefix `_doc_index_`,
+`rust/lance-index/src/scalar/inverted/index.rs:140-141`) identifies which element matched.
+Exposed as `create_scalar_index(..., document_granularity=...)` plus `MatchQuery` / `PhraseQuery`
+parameters in Python (`python/python/lance/query.py:25,108,169`), and
+`InvertedIndexParams.Builder.documentGranularity(..)` with `FullTextQuery` overloads in Java.
+Rust callers note: `load_segments` gained a third `document_granularity` parameter.
+
+The same PR added **`posting_format_version = 15`**, deliberately separate from `index_version`:
+"The posting-list payload format. This is separate from index_version, which identifies the
+overall inverted-index layout" (`protos/index_old.proto:99-100`). Do not conflate the two when
+reasoning about reader compatibility - the maximum inverted-list format is still V3.
+
+**Nested-field FTS (PR #7686).** FTS can now index leaf fields inside nested columns
+(e.g. `data.text`), not just top-level string columns. Query-side bulk paths were added too:
+impact-skip data for posting lists (#7602), a bulk MAXSCORE top-k path for disjunctions
+(#7603), and a bulk conjunction path for AND / phrase queries (#7624).
+
+**v10 FTS changes.** Format versions at this tag are V1/V2/V3; the **written default is still
+V2**, max supported is V3, and `block_size=256` still requires `format_version=3` ("FTS
+format_version={} is incompatible with block_size=256; use format_version=3",
+`rust/lance-index/src/scalar/inverted/index.rs:101,279`). Compatibility fixtures pin v1 and v2
+only - "FTS v3 is intentionally deferred until it is written by a stable release" (PR #7890) -
+and readers must keep tolerating the retired `skip_merge` parameter written by Lance 3.0.1.
+
+- **Optional `total_tokens` metadata key** (PR #7863): "Partitioned `docs.lance` files may
+  include the optional schema metadata key `total_tokens`. Its decimal `UInt64` value is the sum
+  of `_num_tokens` in that file" (`docs/src/format/index/scalar/fts.md:40-41`); when absent,
+  readers compute the sum. Back-compatible on-disk addition, no format bump.
+- **`LANCE_FTS_SEARCH_CHUNK`** (PR #7950) - partitions searched per CPU-pool task, default
+  **16**, minimum 1, non-numeric values ignored (`inverted/index.rs:115`). Chunking stops query
+  concurrency from flooding the pool with one small task per partition; `=1` restores the old
+  per-partition shape. Measured 227 -> 428 qps at concurrency 16.
+- **Row-id resolution moved after the global top-k merge** (PR #7897) - at most `limit` lookups
+  per query instead of per-partition resolution: 4.1 -> 107.7 qps (26x), 3.9 s -> 148 ms on a
+  100M-doc benchmark. The cost is that each partition's ROW_ID column is now its own weighed
+  index-cache entry (~8 bytes/doc per partition; ~800 MB for a 100M-doc index), and it now
+  counts against `index_cache_size_bytes` - budget for it.
+- **Deterministic tie ordering** - compound FTS ties are now ordered `_score DESC, _rowid ASC`
+  (PR #8073), which also fixed nested `MultiMatchQuery` taking its fetch limit from the ambient
+  scanner limit instead of the recursive FTS params (omitting the true top-k under
+  MUST/SHOULD/BoostQuery).
+- **BREAKING (Rust)**: public `InvertedPartition::bm25_search` was removed, split into private
+  `bm25_search_legacy` / `bm25_search_modern` (PR #7863). New legacy indexes are no longer
+  written; `metadata.lance` is unchanged. New public
+  `MatchQueryExec::new_with_segment_uuids` / `PhraseQueryExec::new_with_segment_uuids` plus an
+  `fts_segment_bind_duration` metric (PR #7976).
+
+Tokenizer pipeline (`InvertedIndexParams`): a base tokenizer (`simple`, `whitespace`, `raw`,
+`ngram`, `icu`, `icu/split`, `code` (the v9.1 code analyzer / `CodeLexTokenizer` +
+`WordDelimiterFilter`, PR #7681 - splits identifiers like `getUserName`/`snake_case`),
+`jieba/*` for Chinese, `lindera/*` for Japanese) followed by
+token filters (`RemoveLong`, `LowerCase`, `Stemmer`, `StopWords`, `AsciiFolding`) - stop
+words can now be **mixed-language** (PR #7324). The `icu` tokenizer
+(PR #6956) does ICU4X dictionary-based Unicode word segmentation with **bundled segmenter
+data** - unlike jieba/lindera it needs no external language model; the v9 **`icu/split`**
+variant (PR #7474) applies ICU segmentation with simple-style delimiter splitting
+(`rust/lance-index/src/scalar/inverted/tokenizer.rs:390`, `docs/src/guide/tokenizer.md:1`). The
+default base tokenizer remains **`simple`** (`tokenizer.rs:187`); a PR making ICU the default
+(#6968) was reverted (#7006) because "ICU showed behavior differences that are too large for
+the default path." Config keys:
+`base_tokenizer`, `language`, `with_position` (store positions for phrase queries),
+`lower_case`, `stem`, `remove_stop_words`, `ascii_folding`, ngram `min_gram`/`max_gram`/
+`prefix_only`.
+
+**The 18 stemming / stop-word languages**, in full: Arabic, Danish, Dutch, English, Finnish,
+French, German, Greek, Hungarian, Italian, Norwegian, Portuguese, Romanian, Russian, Spanish,
+Swedish, Tamil, Turkish (`docs/src/format/index/scalar/fts.md:159-161`). Anything outside that set
+needs a base tokenizer that segments it (`icu`, `jieba/*`, `lindera/*`) rather than a stemmer.
+
+**Rebuild FTS indexes that remove stop words when moving to v14.** Seven PRs rewrote the built-in
+stop-word lists, all in `v14.0.0` (#10046 at `v14.0.0-beta.19`, the rest at `v14.0.0-rc.1`):
+#10045 for the 14 Latin-script languages ("The ICU stop-word union removes English content such
+as war, van, son and want because those strings are grammatical words in other languages"), and
+#10046 (Chinese, Japanese), #10048 (Korean, whose list had put every ASCII and fullwidth single
+digit into the ICU union, so isolated numbers were discarded in any language),
+#10049 (Arabic), #10050 (Greek), #10051 (Russian), #10052 (Tamil). The lists are not versioned on
+disk: "Built-in word-list versions are not persisted, so query tokenization for older indices
+can disagree with their stored terms" (#10046). Any index built before `v14.0.0` with
+`remove_stop_words` (or an ICU analyzer for these languages) can miss matches until rebuilt:
+"Existing FTS indices must be rebuilt to align stored terms with the updated tokenizer. No
+relevance or performance improvement was measured" (#10045).
+
+**User dictionaries and custom language models.** The jieba and lindera tokenizers both accept
+**user dictionaries** to override segmentation of domain terms, and the guide has a dedicated
+"Create your own language model" procedure (`docs/src/guide/tokenizer.md:153,185,197`) for building
+a model Lance can load from disk. This is the escape hatch when the bundled Chinese/Japanese
+models split your vocabulary wrongly - reach for it before abandoning FTS for ngram.
+
+**Two document types, two tokenization rules.** "Lance supports 2 kinds of documents: text and
+json. Different document types have different tokenization rules, and parse tokens in different
+format" (`docs/src/format/index/scalar/fts.md:165-166`). FTS over JSON documents breaks them
+into `path,type,value` triplet tokens rather than plain terms, so a JSON-typed FTS index and a
+text FTS index over the same bytes are not query-compatible. The spec also covers distributed
+training for FTS at `fts.md:262`.
+
+Query types (all inexact): `contains_tokens`, `match` (AND/OR), `phrase` (requires
+`with_position`), `boolean` (must/should/must_not), `multi_match`, `boost`, and since `v13.0.0`
+`combined_fields`.
+
+**BM25F cross-field search: `combined_fields` (v13, #7905, labeled breaking).** `multi_match`
+is Elasticsearch `best_fields`: each column is scored against its own statistics and the best
+column wins. `CombinedFieldsQuery` "treats the target columns as one virtual field and combines
+their statistics into a single BM25F score", so a term rare in one column and common in another
+scores consistently, and with `operator=AND` the terms may be spread across columns
+(`references/docs/quickstart/full-text-search.md:246-311`). For Rust callers, `FtsQuery`
+gained a `CombinedFields` variant (`rust/lance-index/src/scalar/inverted/query.rs:167`) and is not
+`#[non_exhaustive]`, so exhaustive matches stop compiling. Constraints: every target column must
+share one tokenizer and index configuration (mixing raises an error naming the columns), at
+least one target column needs an FTS index, each `boosts` weight must be at least 1, and a column
+indexed only with `document_granularity="list_element"` is rejected (row granularity only, no
+`_doc_index`). The first cut errored on fragments a target column had not indexed; #9444 (also
+`v13.0.0`) replaced that with a flat scan that shares corpus statistics with the indexed side.
+
+```python
+from lance.query import CombinedFieldsQuery, FullTextOperator
+
+tbl = ds.to_table(
+    full_text_query=CombinedFieldsQuery(
+        "john smith",
+        ["first_name", "last_name"],
+        boosts=[1.0, 1.0],
+        operator=FullTextOperator.AND,
+    )
+)
+```
+
+**Compound scoring core (v11, PRs #8092-#8094, #8131, #8299).** Compound FTS queries moved onto
+a posting-backed scoring core: an internal `ComposableScorer` protocol, a cross-partition
+`TopKCollector`, incremental `WandCursor` support, and `CompoundQueryExec` integration
+(`rust/lance-index/src/scalar/inverted/compound.rs`, new in v11). Semantics to know:
+
+- **Boolean composition** - `SHOULD` clauses sum scores; `MUST` clauses intersect membership
+  while preserving the existing first-`MUST` scoring contract; `MUST NOT` filters confirmed
+  matches. Concretely, at the query level: "Every query combined with `AND` becomes a scoring
+  `MUST` clause: all clauses must match, and every matching clause contributes to the final
+  `_score`" (`docs/src/quickstart/full-text-search.md:160-161`) - so adding an `AND` term changes
+  ranking, not just filtering.
+- **Phrase leaves** use a two-phase `matches()` hook for positional confirmation, so
+  **phrase-containing compound queries require an index built `with_position`**.
+- **Boost** composes as a nested node inside same-column Boolean/Phrase scorer trees, with
+  signed score bounds; match and boost multipliers "are rejected unless finite and non-negative".
+- **`CompoundQueryExec` is now public** (`rust/lance/src/io/exec/fts.rs:378-478`) with an
+  injectable base scorer and `new_with_segments` / `new_with_segment_uuids` constructors, for
+  distributed engines driving FTS themselves.
+- Conjunction approximations are ordered by iterator cost (#8299): "Keep scorer children in query
+  order so score summation, score bounds, document keys, and ties remain bit-for-bit stable" -
+  1.50x fewer comparisons, 1.12x speedup, with results unchanged.
+- Conjunction confirmations are ordered by `match_cost` (#8354), measured **200 -> 120**
+  two-phase `matches()` calls per query; same-column `MUST + SHOULD` scores the optional side
+  lazily, "only touch[ing] the optional side when it can change competitiveness or an exact
+  score is requested" (#8448).
+
+**When the posting-backed scorer bails out.** `CompoundQueryExec` refuses the fast path and
+reverts to the materializing hash-join plan whenever the table has **any unindexed fragment**,
+the query spans **more than one column**, granularity is **`ListElement`**, or the overlay plan
+is not `Unchanged` (`rust/lance/src/dataset/scanner.rs:3940-3948`). The first condition is the
+one that bites in practice: a table with an unindexed tail silently gets the slower plan, so
+benchmark compound FTS only after the backlog is folded in.
+
+#### Inspecting tokenization (v11)
+
+`lance.tokenize(...)` previews the tokens a full-text query will produce **without creating a
+dataset or index** (#8415): "Use `lance.tokenize` to inspect the tokens that a full-text query
+will produce without creating a dataset or index" (`docs/src/guide/tokenizer.md:17-18`). It
+returns `lance.FtsToken(text, position)`. On the query side, `analyze_plan` appends
+`tokenized_query=` to FTS leaves (#8414); `explain_plan` is deliberately unchanged.
+
+**`max_token_length` is the one tri-state option.** Every other analyzer option treats `None` as
+"use the analyzer default"; this one does not: omitting it "keeps the default length limit of 40
+UTF-8 bytes, while `max_token_length=None` disables the limit". The limit is **exclusive and in
+bytes** (#10320, documentation only - "Runtime tokenization and index behavior are unchanged"):
+"Tokens whose encoded length is at least the limit are removed. With the default of 40, `"x" *
+39` is retained, but `"x" * 40` is removed. Multibyte characters reach the limit sooner"
+(`tokenizer.md:50-53`): 20 two-byte characters are 40 bytes and are removed too. Set 41 to keep a
+40-byte token; the boundary applies to the text and code analyzers alike.
+
+**`InvertedIndexParams` is a closed set.** It exposes base-tokenizer selection, ngram range,
+`lower_case`, `ascii_folding`, and stemming - there is **no** hook for a custom token filter and
+**no non-English stemmer**. If your corpus needs either (camelCase splitting, a non-English
+language), Lance FTS cannot be configured for it; the options are to pre-tokenize into your own
+column or to use ngrams.
+
+**The `Fixed32` empty-segment merge failure.** A fold whose batch contributes zero tokens - an
+all-NULL tail, but also empty or whitespace-only documents - still writes a delta segment. On
+read-back, `posting_tail_codec()` aggregates over partitions and a partitionless segment falls
+back to `PostingTailCodec::default()` (`VarintDelta`) rather than reading its file metadata
+(`rust/lance-index/src/scalar/inverted/index/inverted_index.rs:72`). The root cause is two
+disagreeing defaults: the `Default` impl is `VarintDelta` while `parse_posting_tail_codec`
+defaults to `Fixed32` when the key is absent. **Scope: this only bites `Fixed32` indexes** - FTS
+`format_version=1` or legacy indexes missing the `posting_tail_codec` key. The V2 default is
+`VarintDelta`, which happens to match the `Default` impl, so a default-configured FTS index never
+trips it. Where it applies, once delta segments reach the merge threshold with an empty one among
+them, `merge_segments` fails deterministically every time. Guard by skipping the fold when the
+unindexed tail has no non-null, non-empty values.
+
+**The `fts()` table function does not declare `_score`.** `FtsTableProvider` declares its logical
+schema as dataset columns plus optional `_rowid`/`_rowaddr` and never `_score`
+(`rust/lance/src/dataset/udtf.rs:39`), while the scan's scoring autoprojection force-appends
+`_score` physically. So `COUNT(*)` and `GROUP BY` over `fts()` are **rejected by DataFusion**
+(the logical and physical column counts disagree), and `_score` cannot be named in a projection
+or ordered by. Plain `SELECT` shapes work only because nothing downstream validates - the
+`_score` you see is the undeclared column leaking through.
+
+### 11.4 Geo / RTree
+
+New in v7. The **RTREE** index is a static immutable 2D spatial index on bounding boxes
+(`docs/src/format/index/scalar/rtree.md`): a multi-level packed hierarchy, items sorted by
+**Hilbert curve** value, leaf pages of `(bbox, rowid)`. Files: `page_data.lance` (all pages)
+and `nulls.lance`. Accelerated queries return a candidate set (AtMost), with exact geometry
+verification done by the engine: `Intersects`, `Contains`, `Within`, `Touches`, `Crosses`,
+`Overlaps`, `Covers`, `CoveredBy`.
+
+Geospatial UDFs - measurement (`Area`, `Distance`, `Length`), relationships (`Contains`,
+`Intersects`, `Within`, ...), and validation (`IsValid`) - come from `geodatafusion` and
+`geoarrow`, gated behind the `geo` feature. Since #10251 (`v15.0.0-beta.2`) `lance-datafusion`
+registers them itself and the `st_*` relate-predicate wrappers live in
+`rust/lance-datafusion/src/udf/geo.rs`; `lance-geo` keeps only the bbox logic and has no
+DataFusion dependency, and `lance_geo::register_functions` is gone
+(`lance_datafusion::udf::register_functions` still registers everything). On the v14 line the
+UDFs are registered from `lance-geo`.
+
+### 11.5 Index updates and reindexing
+
+There is no monolithic delta-index format - new data is folded in at the **segment** level. A
+new index segment covers new fragments; engines query indexed and unindexed subplans and
+merge. In-place updates to an indexed column remove the affected fragment IDs from the
+covering segment's `fragment_bitmap`, flagging them for reindexing. **The rule keys off every
+column the index depends on, not just the keyed one** (widened in v11, restated for #9159): the
+engine "must remove the affected fragment IDs from the `fragment_bitmap` field of any index
+segment whose `fields` or `covering_fields` include that column"
+(`references/docs/format/index/index.md:116-118`), because "a carried column can be updated
+while the keyed column is untouched" (`:286-287`). The same union governs overlay exclusion:
+"only overlays covering a column in the union of the index's `fields` and `covering_fields`
+matter" (`:295-296`).
+
+After compaction, three strategies handle changed row addresses: do nothing (segment stops
+covering those fragments), rewrite segments with remapped addresses, or use a **fragment reuse
+index** (remap in memory at read time). **Stable row IDs no longer avoid that work.** The v15
+guide says it outright: "Secondary indexes currently reference physical row addresses. Stable
+row IDs preserve logical identity for applications, but they do not make index maintenance
+unnecessary. Compaction still needs to remap or rebuild affected indexes"
+(`docs/src/guide/row_ids.md:193`). See "Row-address domain" below for which index versions this
+covers.
+
+**Row-address domain: scalar and vector indexes are migrating from stable row ids to physical
+row addresses** (`fragment_id << 32 | offset`), one index version at a time. Until now a
+row-id-domain index on a stable-row-id table stored the logical `_rowid` and could not coexist
+with a live FRI ("an FRI applied to raw row ids would silently corrupt them", #9481). The new
+versions apply **only to segments built on a stable-row-id table** - "without stable row ids a
+row id and a row address are the same value, so the pre-migration version is kept and old builds
+see no forward-compatibility impact" (#9814). Each segment's `IndexMetadata::index_version`
+records its domain, both versions stay readable, and segments of different domains are never
+merged.
+
+| Index | Address-domain version | Status at `v15.0.0-beta.10` |
+|-------|------------------------|-----------------------------|
+| BTree | v1 (`BTREE_ROW_ADDR_DOMAIN_VERSION`, `rust/lance-index/src/scalar/btree.rs:119`) | **Implemented**, #9481 (`v14.0.0-beta.16`, so in `v14.0.0`; labeled breaking and `format-change`) |
+| Bitmap | v1 (`bitmap.rs:118`) | Implemented, #9814 (`v15.0.0-beta.2`) |
+| LabelList | v2 (`label_list.rs:75`; v1 is the list-null-metadata floor) | Implemented, #9814 |
+| FTS (inverted) | v4 (`docs.lance._rowaddr`) | **Spec only** - code max is `INVERTED_INDEX_VERSION_V3` (`inverted/index/format.rs:13`) |
+| NGram, RTree, MinHash LSH | v1 | **Spec only** - `NGRAM_INDEX_VERSION = 0` (`ngram.rs:70`), `RTREE_INDEX_VERSION = 0` (`rtree.rs:61`), `MINHASH_LSH_INDEX_VERSION = 0` (`minhash_lsh/mod.rs:110`) |
+| Vector (IVF_*) | v3 (`_rowaddr` in the auxiliary file; PCA uses v4) | **Spec only** - `VECTOR_INDEX_VERSION = 1`, `IVF_RQ_INDEX_VERSION = 2` (`rust/lance-index/src/lib.rs:45-47`) |
+
+The spec-only rows come from #10299 (`v15.0.0-beta.6`), which says "**No implementation changes
+are included**" (it touches `docs/src/format` only), so the mirrored `format/index/scalar/{fts,ngram,
+rtree,minhash_lsh}.md` and `vector/index.md` describe formats no release writes yet. Consumer
+impact of the implemented ones:
+
+- **External builders must change.** A BTree built outside this crate (Spark, custom
+  pipelines) must now write `_rowaddr` values, not row ids, on stable-row-id tables: "This change
+  will be disruptive for those users as they will need to change the column name and ensure they
+  are reading row addrs and not row ids" (#9481).
+- **Older builds skip, then can corrupt.** A pre-v14 reader skips a v1 BTree segment and scans
+  the data, which is only slower. A pre-v15 *writer* is worse: "Older writers skip version 1
+  B-tree segments but still extend their fragment coverage as if the stored identifiers were
+  stable row IDs. An update to another column can then suppress fallback scans for moved rows and
+  silently lose matches" (#10352, `critical-fix`, `v15.0.0-beta.7`). #10352 adds the writer-only
+  manifest flag **`FLAG_ROW_ADDR_INDICES` (`1 << 18`)** for stable-row-id tables carrying
+  address-domain BTree/Bitmap/LabelList segments, set and cleared automatically from the index
+  list (section 7). It is **not on the v14 line** (absent through `v14.0.3-rc.1`), so a v13 writer
+  can still damage a table indexed by `v14.0.x`. And it "applies to newly written manifests; it
+  does not modify historical snapshots or repair index coverage already corrupted by an older
+  writer. Such an index must be rebuilt."
+- **Plugin results.** `ScalarIndex::lookup` (#9875) names its row column `_rowaddr` or `_rowid`
+  after the segment's result domain.
+
+**A BTree on `_rowid` as a persisted reverse lookup** (#10150, `v15.0.0-beta.2`, spec only - "Runtime
+implementation is separate"). "An ordinary BTree may index the logical `_rowid` column of a
+table" when stable row IDs are on, `IndexMetadata.fields` is the single reserved field id `-3`,
+`_rowid` is a non-nullable `UInt64`, and the index is address-domain v1+
+(`docs/src/format/index/scalar/btree.md:49-60`). Keys are stable IDs, payloads physical
+addresses; coverage may be partial, so "An index miss alone cannot distinguish an absent row from
+an uncovered row" (`docs/src/format/table/row_id_lineage.md:296`). The same PR
+states that opening a table does not require building the full in-memory row-ID map.
+
+**Address-domain indexes under compaction on a stable-row-id dataset** (v11 fix). Stable row IDs
+keep *row ids* stable across a rewrite, but not row *addresses* - so an index whose payload is
+address-domain cannot simply follow its data. The Rewrite commit path branches on
+`index.results_are_row_addrs()` - true for ZoneMap, BloomFilter and FM-Index details, and since
+the migration above for **BTree v1+, Bitmap v1+ and LabelList v2+** segments
+(`rust/lance-table/src/format/index.rs:192-207,252-262`): a row-id-domain index gets
+`recalculate_fragment_bitmap` and follows its data to the new fragments, while an address-domain
+index the commit did not remap gets `drop_rewritten_fragments`, because "its stored addresses may
+point into fragments the rewrite dropped. Claiming coverage of the new fragments would make it
+answer queries with addresses that no longer resolve, so drop the rewritten fragments from its
+coverage instead and let the scanner fall back to a full scan for them"
+(`rust/lance-table/src/transaction/manifest_build.rs:1279-1297`). The same drop now applies to a
+registered external plugin "whose identifier domain is unknown" (#10111). Since
+`v14.0.0-beta.1` (#9514) the drop is skipped when there is an FRI (`results_are_row_addrs &&
+deferred_remap`): the FRI translates the old addresses, so the bitmap is recalculated instead.
+FRI on a stable-row-id table is still debug-build-only (bit 9, section 7), so release builds
+take the drop path. The difference among the address-domain types is remap support: "A type
+whose index supports remap (BTree) can still be rewritten in place; a type that cannot (ZoneMap,
+BloomFilter, FM) instead loses coverage of the rewritten fragments until it is rebuilt"
+(`index.rs:180-184`).
+
+**Three scalar indexes cannot remap at all.** Each returns `results_are_row_addresses() -> true`
+and `can_remap() -> false`, and its `remap()` refuses: ZoneMap
+(`rust/lance-index/src/scalar/zonemap.rs:1161,1165,1176`), BloomFilter (`bloomfilter.rs:548,552,562`,
+"BloomFilter does not support remap") and FM-Index (`fmindex.rs:1670,1674,1679`, "Fm does not
+support remap"). So the drop-and-full-scan behavior above applies to all three (FM-Index rows are
+translated through a deferred-compaction FRI since #10559, below). Two consequences
+worth planning around: before v11 the bitmap was advanced unconditionally - and FM-Index was only
+declared address-domain in v12 (#8855) - so a compacted address-domain index claimed fragments it
+had no entries for. **That damage is not repaired by upgrading, and such an index must be
+recreated**. After v11 the compacted fragments read as *unindexed* instead, so an incremental
+`optimize_indices(append)` picks them up on the next maintenance pass rather than no-oping.
+
+The caller-facing API for folding new data in is `optimize_indices(&OptimizeOptions)`
+(`rust/lance/src/index/api.rs:297`). `OptimizeOptions` (`rust/lance-index/src/optimize.rs:65`)
+has three constructors: `append()` adds a new delta segment over the new fragments;
+`merge(N)` folds the delta updates plus the latest N segments into one; `retrain()` rebuilds
+the whole index from current data (v3 vector indices only). This is incremental maintenance -
+distinct from dropping and recreating an index from scratch.
+
+**`append()` never collapses anything.** It sets `num_indices_to_merge: Some(0)`
+(`rust/lance-index/src/optimize.rs:79-80`), and the merge path short-circuits on
+`num_to_merge == 0` (`rust/lance/src/index/append.rs:408`) - "append mode (`num_to_merge == 0`)
+defers cleanup to a real merge". The *default* `OptimizeOptions` is more useful than that:
+`num_indices_to_merge` unset means `unwrap_or(1)`, so a plain `optimize_indices` collapses the
+trailing segment on every call (`append.rs:400-403`). `retrain: true` ignores
+`num_indices_to_merge` entirely and merges everything into one. Critically, **no automatic
+count- or size-based collapse threshold exists anywhere in the codebase** - nothing stops delta
+segments accumulating if a pipeline only ever calls `append()`. Bounding segment count is the
+caller's responsibility; see `performance.md` Part B for the operational consequences.
+
+**A fragment reuse index is not per-index coverage.** `unindexed_fragments` is computed purely
+from the union of each index's own `fragment_bitmap` and does not consult the FRI at all
+(`rust/lance/src/index.rs:2977-2985`). With `defer_index_remap = true` the remapper is `None`,
+so `rewritten_indices` is empty and `handle_rewrite_indices` is a no-op - the per-index bitmaps
+keep the *old* fragment ids while the FRI is appended separately as its own index entry
+(`rust/lance-table/src/transaction/index_maintenance.rs:338`). Consequence: deferring remap does **not**
+stop `unindexed_fragments(<idx>)` from reporting the new fragments, so a "is my index caught up?"
+check built on that call will still see churn after every compaction. The FRI removes the cost of
+*rewriting* index entries, not the bookkeeping that says an index does not cover a fragment.
+
+**Two `v13.0.0` remap fixes that leave already-written indexes wrong - rebuild if the trigger
+applies.** Both fixes change how a remap is computed, not existing index files.
+
+- **#9421 - merge after a deferred-remap compaction emptied the index.** Building segments,
+  compacting with `defer_index_remap: true`, then `merge_existing_index_segments` "produces an
+  empty index. This affected five of eight scalar families": in the issue's repro (#9270) BTree,
+  ZoneMap, BloomFilter, FM-index and LabelList returned 0 of 4 rows, while Bitmap, NGram and
+  Inverted were fine (RTree and vector untested). Silent - queries read the merged index directly.
+  After the fix, coverage shrinks where no mapping applies rather than over-claiming, so the
+  uncovered rows cost a flat scan instead of vanishing.
+- **#9203 - a fully deleted rewrite group starting at fragment 0.** `MissingAddrs` used address
+  `0` as its exhaustion sentinel, but `0` is fragment 0 row 0, so Direct remapping dropped that
+  row's deletion mapping and the index kept "an index entry pointing at fragment 0 row 0 after
+  that fragment is removed" (#9200).
+
+**v15 index-correctness fixes** (all `critical-fix` except #9755; none backported to v14.0.x).
+Rebuild only where noted - the rest are query-time and heal on upgrade:
+
+- **#9785 (BTree and other scalar) and #9872 (FTS), `v15.0.0-beta.2` - multi-segment indexes on
+  stable-row-id tables returned stale rows.** After an update moves a row (same row id, new
+  fragment) and `optimize_indices(append)` gives the new fragment its own segment, query masking
+  used the union of all segments' coverage, so the old segment's posting passed: `WHERE id = 0`
+  "through the index returns 1 row, a full scan returns 0", and FTS could "return the row for text
+  it no longer contains, and can return it twice". Each segment is now restricted to its own
+  coverage. **FTS: rebuild any index whose segments were merged before the fix** -
+  merging "carries the stale posting into the merged segment, where it can no longer be filtered
+  out".
+- **#9755 (`v15.0.0-beta.2`) - accelerator-trained cosine IVF_PQ had very low recall** ("0.387 vs
+  1.000 on 500k x 2048-d embeddings with CUDA"): the torch path trained the PQ codebook with
+  cosine k-means on unnormalized residuals. The codebook is persisted, so **rebuild cosine IVF_PQ
+  indexes built with `accelerator=`**; L2 and dot are unaffected.
+- **#10408 (`v15.0.0-beta.8`) - FTS OR queries (WAND) could omit documents scoring above the
+  returned top-k boundary.** Query-time.
+- **#10559 (`v15.0.0-beta.9`) - FM-Index after a deferred-remap compaction** "remapped FM-index
+  coverage while the loaded index still returned addresses in retired fragments, silently losing
+  matches". The remapper is now applied to each partition's addresses. Query-time.
+- **#9638 (`v15.0.0-beta.6`) - shared-scan batch IVF search returned stale vectors** after an
+  in-place vector update plus `optimize_indices(append)`; single-query search was already correct.
+  Query-time.
+
+**The FRI has an operational cost model the spec page states and this file does not restate.**
+`references/docs/format/index/system/frag_reuse.md` covers index *load* cost - every reader pays
+remap work proportional to the accumulated history - and the cleanup duty. An FRI left untrimmed
+is a slow, silent tax on open, so read that page before running compaction continuously.
+
+**The cleanup rule changed at v13 and is stricter than the old one.** The v11-era text ("Once all
+scalar and vector indices have been rebuilt past a given reuse version, that version is no longer
+needed and can be trimmed") is **gone**. Rebuilding past a version is no longer sufficient on its
+own: "Cleanup must retain intermediate transitions still needed to translate old addresses", and
+a second rule now governs the external payloads - "External mapping files can be deleted only
+when no retained dataset version references them." A trimming job written against the old
+sentence can delete a transition a retained version still needs.
+
+**The FRI became a versioned format at v13** (#9136), with a second use case. `InlineContent`
+field 1 is now `legacy_versions` and tagged `transitions` arrived at field 2 under
+`index_version >= 1`, as a oneof of `OrderedCompaction` or `StablePartition`. The new one covers
+**reclustering**: "A stable partition assigns source rows to destination fragments while
+preserving their relative source order within each destination. This lets FRI reuse existing
+indices after reclustering." Its payload is an immutable row-map Lance file with `uint16` labels
+and an `LSPC`-magic counts matrix. Two constraints to plan around: "Tables using stable row IDs
+do not support tagged histories; writers must not publish `index_version >= 1` on them", and the
+advertising manifest bit (1024, `FLAG_FRAGMENT_REUSE_INDEX`) is supported from `v13.0.0` (#9420
+moved `FLAG_UNKNOWN` off it) - section 7. Upstream also
+walked back the conflict claim: "FRI does not remove conflicts between overlapping rewrites."
+
+---
+
+## 12. Distributed write and indexing
+
+Lance exposes APIs for distributed work but provides **no scheduler** - the caller drives the
+workflow (Ray and Spark integrations exist for the common cases). How a table is handed to a
+remote executor is `TableIdentifier` (`protos/table_identifier.proto`) - two modes, see
+`ops.md` section 16.
+
+**Substrait.** `lance-datafusion` parses Substrait filter and aggregate expressions
+(`parse_substrait` / `parse_substrait_aggregate`, `rust/lance-datafusion/src/substrait.rs:385,473`),
+exposed through the Python bindings and the filtered-read exec node. This is the path for
+handing Lance a language-agnostic serialized predicate rather than a SQL string - useful when
+the planner producing the filter is not itself Rust or Python.
+
+**Two-phase distributed write** (`docs/src/guide/distributed_write.md`):
+
+1. **Parallel writes** - each worker generates `LanceFragment`s in parallel via
+   `write_fragments(data, data_uri, schema=)`, returning `FragmentMetadata`.
+2. **Commit** - gather all `FragmentMetadata` on one worker, serialize via
+   `FragmentMetadata.to_json`/`from_json`, and commit in a single `LanceOperation`
+   (`Overwrite`, `Append`, `Merge`, or `Update`) via `lance.LanceDataset.commit(uri, op,
+   read_version=)`.
+
+**Distributed indexing** (`docs/src/guide/distributed_indexing.md`). v8 unifies **all** index
+builds onto one segment-based lifecycle: workers each build an index **segment** for a
+fragment subset via `create_index_builder(...).fragments(...).execute_uncommitted()` (Rust;
+`create_index_uncommitted(..., fragment_ids=)` in Python), writing under
+`_indices/<segment_uuid>/`. The caller then commits segments as-is via
+`commit_existing_index_segments(...)` or groups and merges them via
+`merge_existing_index_segments(...)`. Within one commit, segments must have **disjoint
+fragment coverage**. Uncommitted staging directories are cleaned by `cleanup_old_versions`.
+The standalone `IndexSegmentBuilder` API (and its `build_all()` / `target_segment_bytes`
+size-based grouping) was **removed in v8** from Rust, Python, and Java (PR #6997); use the
+`execute_uncommitted` path above. Distributed BTree and bitmap builds were folded into this
+same framework (PR #7013, #6869) - the old Python Bitmap shard path
+(`create_scalar_index(..., fragment_ids=)` + `merge_index_metadata(..., "BITMAP")`) is gone.
+
+**Segment grouping is a separate decision from worker build, and it is yours to make.** The guide
+is explicit that the two are not the same knob: "The grouping decision is separate from worker
+build. Workers only build segments; Lance applies the segment build policy when it plans physical
+segments." Grouping sets commit granularity - how many logical builds land per physical segment -
+so it drives both commit count and later merge cost. Full treatment in
+`references/docs/guide/distributed_indexing.md` ("Segment Grouping").
+
+**v10 extends the segment lifecycle to the rest of the scalar family.** BLOOMFILTER (PR #7925),
+RTREE (PR #7932), NGRAM (PR #7244), and LABEL_LIST (PR #7884) all gained segment-native
+build/merge/commit, giving Python this cumulative segment-native set:
+`BTREE, BITMAP, INVERTED, FTS, NGRAM, RTREE, ZONEMAP, BLOOMFILTER, LABEL_LIST`
+(`python/python/lance/dataset.py:3301`). Consequences:
+
+- **`IndexSegment::new` is BREAKING** - 4 params to 6 (adds `fields` and `dataset_version`) plus
+  a second generic; `into_parts` widens from a 4-tuple to a 6-tuple; new accessors
+  `fields() -> &[i32]` and `dataset_version() -> u64` (`rust/lance/src/index/api.rs:74,95`).
+- Merged segments now inherit the **minimum** source `dataset_version` rather than the current
+  manifest version (PR #7925) - so a merged segment's coverage claim stays honest.
+- **NGRAM has a hard ordering constraint**: "NGRAM segments built before a deferred compaction
+  must be merged before commit so their postings can be rebuilt against current row addresses"
+  (`python/python/lance/dataset.py:4305`). Creating an NGram index also now raises a *retryable*
+  conflict against a concurrent deferred rewrite over overlapping fragments.
+- Segment commit now issues its LIST calls concurrently (`buffered(io_parallelism)`,
+  `rust/lance/src/index.rs:319`, PR #7657) - measured ~8x faster against remote storage
+  (2837 ms -> 350 ms at 128 segments / 20 ms RTT).
+
+`merge_existing_index_segments(...)` "currently supports vector, inverted, bitmap, BTree, and
+zone map segments" (`distributed_indexing.md:130-131`); other scalar families can still be
+committed without merging. **Vector model scope**: workers may share one trained IVF/PQ model
+*or* use **independent segment models** - "each worker trains the IVF/PQ model for its own
+`fragment_ids`. The resulting segments can be committed together as one logical index without
+sharing centroids or codebooks" (`distributed_indexing.md:145`, PR #7148). Distributed builds
+cover vector indexes, bitmap, segmented btree, segmented inverted (FTS), zone map, and
+**LabelList** (added in v9, PR #7223); the
+`filtered_read` proto serializes the `FilteredReadExec` scan operator for plan-then-execute
+distributed scans.
+
+**`optimize_indices` is distributable** (#9871, `v14.0.0-beta.21`, so in `v14.0.0`). It runs as
+four phases - "plan (driver) -> execute (worker) -> merge (worker) -> commit (driver)" - over
+serializable units: `plan_optimize_indices(dataset, options) -> OptimizeIndicesPlan { tasks,
+merges }`, `OptimizeIndexTask::execute`, `OptimizeIndexMerge::execute`, and
+`commit_optimize_indices` (`rust/lance/src/index/optimize.rs:283,526,1361`). The single-process
+`optimize_indices` now runs the same four phases in one process, so "both paths share one
+implementation and cannot drift apart". `OptimizeOptions` gains `max_rows_per_task` and
+`max_rows_per_segment` packing targets. The commit is anchored at the plan's `read_version`:
+appends and deletes after the plan are accepted, a concurrent commit to the same index or a
+rewrite of indexed fragments is a retryable conflict, and a failed task just leaves its
+fragments unindexed for the next optimize. Python got the bindings in #10328
+(`v15.0.0-beta.10`): `OptimizeIndices.plan(dataset, {"max_rows_per_task": n})`, then
+`task.execute(dataset)` / `merge.execute(dataset, built)` on workers and
+`OptimizeIndices.commit(dataset, merged)`, with units pickling through their JSON form.
+
+**Global BM25 statistics for distributed FTS** (#8938, `v15.0.0-beta.8`): a versioned protobuf
+contract plus Rust/JNI/Java APIs that collect corpus-wide BM25 statistics across all committed FTS
+segments, so an external engine can score shards consistently. "V1 supports one corpus with
+Match/Phrase leaves. Executor-side payload consumption remains follow-up work." No Python API.

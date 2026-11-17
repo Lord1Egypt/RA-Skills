@@ -1,46 +1,64 @@
-## Description: <br>
-Complete offline voice-to-voice AI assistant for OpenClaw (Whisper.cpp STT + Pocket-TTS). 100% local processing, no cloud APIs, no costs. Use for hands-free operation, voice commands, accessibility, or custom voice cloning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete offline voice-to-voice AI assistant for OpenClaw (Whisper.cpp STT + Pocket-TTS). 100% local processing, no cloud APIs, no costs. Use for hands-free operation, voice commands, accessibility, or custom voice cloning.
 
-## Publisher: <br>
-[pinological](https://clawhub.ai/user/pinological) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinological](https://clawhub.ai/user/pinological)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add local speech-to-text, AI response handling, and text-to-speech workflows for hands-free commands, accessibility, voice notes, and conversational operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads microphone or audio-file input and can create transcripts, generated speech, cache files, temporary files, or logs that may contain private information. <br>
-Mitigation: Review cache and logging settings before use, disable caching for sensitive content, and clear local transcript or audio artifacts when they are no longer needed. <br>
-Risk: Generated text is sent to the configured TTS server, and privacy depends on where that server is hosted. <br>
-Mitigation: Keep the TTS URL set to localhost unless a remote server is explicitly trusted and approved for the data being spoken. <br>
-Risk: Exposing Pocket-TTS on a broad network interface can make generated voice services reachable outside the local machine. <br>
-Mitigation: Bind Pocket-TTS to localhost for normal use and avoid 0.0.0.0 unless network access is intentional and access controls are in place. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to add local speech-to-text, AI response handling, and text-to-speech workflows for hands-free commands, voice notes, accessibility, and interactive voice conversations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pinological/local-voice-agent) <br>
-- [Whisper.cpp repository](https://github.com/ggerganov/whisper.cpp) <br>
-- [Pocket-TTS repository](https://github.com/kyutai-labs/pocket-tts) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or reference local transcript, cache, log, and generated audio files when the installed scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Unsafe configuration, network, and dependency practices may expose local voice workflows to avoidable security risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the skill before installation, remove shell eval usage, pin downloaded dependencies and models, and keep the TTS service bound to localhost.
+
+Risk: Remote or untrusted TTS endpoints can receive text derived from voice commands or transcriptions.
+
+Mitigation: Use a trusted local Pocket-TTS service by default and only configure remote HTTP TTS endpoints after explicit trust review.
+
+Risk: Microphone recordings, transcriptions, generated speech, and cached outputs can contain sensitive local data.
+
+Mitigation: Treat local audio artifacts and caches as sensitive data, limit file access, and clear caches or temporary recordings when no longer needed.
+
+Risk: The skill's privacy and completeness claims may be overstated for deployments that use remote services or incomplete local setup.
+
+Mitigation: Confirm the actual runtime configuration, installed dependencies, and service endpoints before relying on offline-processing claims.
+
+## Reference(s):
+
+- [Whisper.cpp](https://github.com/ggerganov/whisper.cpp)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw Discord](https://discord.com/invite/clawd)
+- [ClawHub Skill Page](https://clawhub.ai/pinological/skills/local-voice-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and generated text or audio-file paths from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can transcribe local audio, send text through an OpenClaw workflow, request speech synthesis from a configured Pocket-TTS service, and cache local audio-derived outputs when enabled.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

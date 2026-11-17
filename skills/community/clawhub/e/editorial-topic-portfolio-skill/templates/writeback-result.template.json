@@ -1,0 +1,14 @@
+{
+  "run_id": "",
+  "dry_run": true,
+  "status": "preview",
+  "target_database": "private",
+  "attempted": [],
+  "succeeded": [],
+  "failed": [],
+  "skipped": [],
+  "readback": {
+    "status": "pending",
+    "mismatches": []
+  }
+}

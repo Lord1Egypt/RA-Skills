@@ -1,17 +1,17 @@
 ---
 name: dlazy-grok-4.2
-version: 1.2.0
-description: 使用 Grok 4.2 文本大模型，进行高效的文本生成、对话问答与逻辑推理。
+version: 1.3.4
+description: "使用 Grok 4.2 文本大模型，进行高效的文本生成、对话问答与逻辑推理。"
 metadata:
   {
     'clawdbot':
       {
         'emoji': '🤖',
         'requires': { 'bins': ['npm', 'npx'] },
-        'install': 'npm install -g @dlazy/cli@latest',
-        'installAlternative': 'npx @dlazy/cli@latest',
-        'homepage': 'https://github.com/dlazyai/cli',
-        'source': 'https://github.com/dlazyai/cli',
+        'install': 'npm install -g @dlazy/cli@1.2.3',
+        'installAlternative': 'npx @dlazy/cli@1.2.3',
+        'homepage': 'https://github.com/dlazy-ai/cli',
+        'source': 'https://github.com/dlazy-ai/cli',
         'author': 'dlazyai',
         'license': 'see-repo',
         'npm': 'https://www.npmjs.com/package/@dlazy/cli',
@@ -22,7 +22,7 @@ metadata:
   }
 ---
 
-# dlazy-grok-4.2
+# 文本生成 Grok 4.2
 
 [English](./SKILL.md) · [中文](./SKILL-cn.md)
 
@@ -65,18 +65,18 @@ CLI 会把 key 保存在你的用户配置目录（macOS/Linux 上为 `~/.dlazy/
 
 ## 关于与来源 (Provenance)
 
-- **CLI 源代码**: [github.com/dlazyai/cli](https://github.com/dlazyai/cli)
+- **CLI 源代码**: [github.com/dlazy-ai/cli](https://github.com/dlazy-ai/cli)
 - **维护者**: dlazyai
-- **npm 包名**: `@dlazy/cli`（本技能 install 字段固定到 `1.0.9` 版本）
+- **npm 包名**: `@dlazy/cli`（本技能 install 字段固定到 `1.2.3` 版本）
 - **官网**: [dlazy.com](https://dlazy.com)
 
 如果你不希望在系统上长期保留一个全局 CLI，可以按需运行：
 
 ```bash
-npx @dlazy/cli@latest <command>
+npx @dlazy/cli@1.2.3 <command>
 ```
 
-如选择全局安装，技能的 `metadata.clawdbot.install` 字段已固定到 `npm install -g @dlazy/cli@latest`。安装前建议先到 GitHub 仓库审阅源码。
+如选择全局安装，技能的 `metadata.clawdbot.install` 字段已固定到 `npm install -g @dlazy/cli@1.2.3`。安装前建议先到 GitHub 仓库审阅源码。
 
 ## 工作原理
 

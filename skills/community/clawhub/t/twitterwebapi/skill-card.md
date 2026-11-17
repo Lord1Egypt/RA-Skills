@@ -1,43 +1,56 @@
-## Description: <br>
-调用 Twitter/X 推文详情和搜索时间线接口，获取推文内容、作者信息、互动数据和搜索结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Twitter/X tweet detail and search timeline requests that return tweet content, author information, timestamps, engagement data, and search results.
 
-## Publisher: <br>
-[kyriswu](https://clawhub.ai/user/kyriswu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyriswu](https://clawhub.ai/user/kyriswu)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch tweet details or search Twitter/X timelines, then present tweet content, author metadata, timestamps, interaction counts, links, and request status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tweet IDs, search terms, cursors, and any supplied AZT_API_KEY are sent to the disclosed third-party service coze-js-api.devtool.uk. <br>
-Mitigation: Use free mode when possible, prefer a dedicated paid key, and avoid sensitive searches or high-value credentials. <br>
-Risk: The third-party API may return errors, quota-limit messages, or unavailable data. <br>
-Mitigation: Check the returned status and error message before relying on results, and retry or adjust credentials only when appropriate. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch a single Twitter/X tweet by ID, search timelines by keyword, and present returned tweet data or request failure details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyriswu/twitterwebapi) <br>
-- [Twitter detail API endpoint](https://coze-js-api.devtool.uk/twitter/fetch_tweet_detail) <br>
-- [Twitter search timeline API endpoint](https://coze-js-api.devtool.uk/twitter/fetch_search_timeline) <br>
-- [Devtool API key page](https://devtool.uk/plugin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summary or raw JSON response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can report request success or failure, API key source, normalized tweet details, search results, and remaining quota messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Tweet IDs, search terms, cursors, and any provided AZT_API_KEY are sent to coze-js-api.devtool.uk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the third-party service path before installation, avoid sensitive Twitter/X searches, and provide AZT_API_KEY through a protected environment secret.
+
+Risk: The documented command-line AZT_API_KEY pattern can expose keys through prompts, logs, shell history, or process listings.
+
+Mitigation: Prefer AZT_API_KEY from a protected environment secret and omit key values from prompts, logs, and command arguments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyriswu/skills/twitterwebapi)
+- [Twitter tweet detail endpoint](https://coze-js-api.devtool.uk/twitter/fetch_tweet_detail)
+- [Twitter search timeline endpoint](https://coze-js-api.devtool.uk/twitter/fetch_search_timeline)
+- [DevTool plugin page](https://devtool.uk/plugin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Markdown summaries with optional raw JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normalizes tweet detail and search responses into human-readable status, tweet, author, timestamp, engagement, link, and error fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

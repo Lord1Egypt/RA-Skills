@@ -1,41 +1,51 @@
-## Description: <br>
-Living ADR helps developers draft, number, update, and supersede Architecture Decision Record Markdown files from git diffs, PR descriptions, or plain-English decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Living ADR helps agents draft, number, and update architecture decision records from git diffs, PR descriptions, or plain-English decisions.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to keep ADR documentation current by generating proposed ADR files, marking superseded decisions, and maintaining an ADR index from repository context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ADRs, supersession edits, or README index changes may misstate a team's architecture decisions. <br>
-Mitigation: Review all generated Markdown and repository diffs before committing. <br>
-Risk: The skill inspects repository context and git history to infer architectural decisions. <br>
-Mitigation: Use it only in repositories where that local context is appropriate for agent review. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to keep architecture decision records current as code, pull requests, or plain-language decisions introduce architectural changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-living-adr) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown ADR drafts and status summaries with inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update docs/adr/*.md and docs/adr/README.md when used by an agent with file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill metadata) <br>
+Risk: Generated ADRs or supersession edits may document a decision incorrectly if the input is broad, ambiguous, or inferred from incomplete code changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated ADR content and any superseded ADR updates before committing them.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-living-adr)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown ADR files and concise Markdown status summaries with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local docs/adr/ content with sequential ADR numbering when applied by an agent.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

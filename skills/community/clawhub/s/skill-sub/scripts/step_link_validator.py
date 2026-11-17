@@ -242,6 +242,147 @@ def validate_link(step_a_interface, step_b_interface, step_a_name="A", step_b_na
     }
 
 
+def _types_compatible(from_type, to_type):
+    """检查两个 I/O 类型是否兼容（复用 _TYPE_COMPATIBILITY）"""
+    compatible = _TYPE_COMPATIBILITY.get(from_type, ["other"])
+    return to_type in compatible
+
+
+def validate_chain(validated_steps):
+    """全链 DAG 连通性验证（v1.30.0 新增）
+
+    对整条调用链做全局 I/O 流图分析：
+      1. 每个 produces 是否有下游 consumes 匹配
+      2. 每个 consumes 是否有上游 produces 匹配
+      3. 标记孤儿 I/O、断链、缺声明步骤
+
+    参数：
+        validated_steps: list[dict] — 按执行顺序排列的步骤列表，
+            每项须含 interface（consumes/produces 各含 type+desc 列表）
+
+    返回：
+        dict — {
+            "connected": bool,           # 是否连通
+            "total_steps": int,          # 总步骤数
+            "declared_steps": int,       # 有 I/O 声明的步骤数
+            "orphan_produces": list,     # 无下游消费的输出
+            "missing_consumes": list,    # 无上游产出的输入
+            "warnings": list[str],       # 人类可读警告
+            "chain_score": float,        # 总体连通率 0.0~1.0
+        }
+    """
+    if not validated_steps:
+        return {
+            "connected": True,
+            "total_steps": 0,
+            "declared_steps": 0,
+            "orphan_produces": [],
+            "missing_consumes": [],
+            "warnings": ["空链，无需验证"],
+            "chain_score": 1.0,
+        }
+
+    # 构建全局 I/O 索引
+    all_produces = []   # {step_idx, desc, type}
+    all_consumes = []   # {step_idx, desc, type}
+    declared_count = 0
+
+    for i, step in enumerate(validated_steps):
+        iface = step.get("interface", {})
+        prods = iface.get("produces", [])
+        cons = iface.get("consumes", [])
+
+        if prods or cons:
+            declared_count += 1
+
+        for p in prods:
+            all_produces.append({
+                "step_idx": i,
+                "desc": p.get("desc", ""),
+                "type": p.get("type", "other"),
+                "step_name": step.get("step_name", f"步骤{i+1}"),
+            })
+        for c in cons:
+            all_consumes.append({
+                "step_idx": i,
+                "desc": c.get("desc", ""),
+                "type": c.get("type", "other"),
+                "step_name": step.get("step_name", f"步骤{i+1}"),
+            })
+
+    warnings = []
+    orphan_produces = []
+    missing_consumes = []
+
+    # 检查孤儿 produces：无下游步骤消费
+    for p in all_produces:
+        matched_downstream = any(
+            c["step_idx"] > p["step_idx"]
+            and _types_compatible(p["type"], c["type"])
+            for c in all_consumes
+        )
+        if not matched_downstream:
+            # 最后一步的输出不算孤儿（最终产出物）
+            is_last_step = p["step_idx"] == len(validated_steps) - 1
+            entry = {
+                "step_idx": p["step_idx"],
+                "step_name": p["step_name"],
+                "type": p["type"],
+                "desc": p["desc"],
+                "is_final_output": is_last_step,
+            }
+            orphan_produces.append(entry)
+            if not is_last_step:
+                warnings.append(
+                    f"步骤{p['step_idx']+1}「{p['step_name']}」的输出"
+                    f"「{p['desc']}」无下游步骤消费"
+                )
+
+    # 检查断链 consumes：无上游 produces 匹配
+    for c in all_consumes:
+        matched_upstream = any(
+            p["step_idx"] < c["step_idx"]
+            and _types_compatible(p["type"], c["type"])
+            for p in all_produces
+        )
+        if not matched_upstream:
+            # 第一步的输入不算断链（外部输入）
+            is_first_step = c["step_idx"] == 0
+            entry = {
+                "step_idx": c["step_idx"],
+                "step_name": c["step_name"],
+                "type": c["type"],
+                "desc": c["desc"],
+                "is_external_input": is_first_step,
+            }
+            missing_consumes.append(entry)
+            if not is_first_step:
+                warnings.append(
+                    f"步骤{c['step_idx']+1}「{c['step_name']}」的输入"
+                    f"「{c['desc']}」无上游步骤产出"
+                )
+
+    # 计算连通率
+    total_io = len(all_produces) + len(all_consumes)
+    orphan_count = len([o for o in orphan_produces if not o.get("is_final_output")])
+    missing_count = len([m for m in missing_consumes if not m.get("is_external_input")])
+    chain_score = 1.0 - (orphan_count + missing_count) / max(total_io, 1)
+
+    if declared_count == 0:
+        warnings.append("所有步骤均未声明 I/O 接口，链级连通性无法验证")
+        chain_score = 0.5
+
+    return {
+        "connected": orphan_count == 0 and missing_count == 0,
+        "total_steps": len(validated_steps),
+        "declared_steps": declared_count,
+        "orphan_produces": orphan_produces,
+        "missing_consumes": missing_consumes,
+        "warnings": warnings,
+        "chain_score": round(chain_score, 2),
+    }
+
+
 def _calc_semantic_similarity(text_a, text_b):
     """计算两个文本间的语义相似度（基于关键词重叠）"""
     if not text_a or not text_b:
@@ -408,6 +549,11 @@ def main():
     to_group.add_argument("--to-step", help="步骤B 步骤ID（从 step_index 读取）")
     p_check.add_argument("--json", action="store_true", help="JSON 格式输出")
 
+    # check-chain (v1.30.0)
+    p_chain = subparsers.add_parser("check-chain", help="校验整条链的 I/O 连通性")
+    p_chain.add_argument("--steps-json", required=True, help="步骤列表 JSON 字符串或文件路径")
+    p_chain.add_argument("--json", action="store_true", help="JSON 格式输出")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -416,6 +562,8 @@ def main():
 
     if args.command == "check":
         return _cmd_check(args)
+    elif args.command == "check-chain":
+        return _cmd_check_chain(args)
 
     parser.print_help()
     return 1
@@ -523,6 +671,62 @@ def _print_result(result):
             print(f"    {i}. [{sol['mode']}] {sol['description'][:80]}")
 
     print()
+
+
+def _print_chain_result(result):
+    """打印链级校验结果"""
+    print(f"📋 全链 I/O 连通性验证结果")
+    print(f"{'='*50}")
+    print(f"  连通状态: {'✅ 连通' if result['connected'] else '❌ 断链'}")
+    print(f"  连通率: {result['chain_score']}")
+    print(f"  步骤总数: {result['total_steps']}")
+    print(f"  I/O 声明步数: {result['declared_steps']}/{result['total_steps']}")
+    print()
+
+    if result["orphan_produces"]:
+        print(f"📤 孤儿输出 ({len(result['orphan_produces'])} 项):")
+        for o in result["orphan_produces"]:
+            tag = "（最终产出）" if o.get("is_final_output") else "⚠️"
+            print(f"  {tag} 步骤{o['step_idx']+1}「{o['step_name']}」: {o['desc']}")
+
+    if result["missing_consumes"]:
+        print(f"\n📥 断链输入 ({len(result['missing_consumes'])} 项):")
+        for m in result["missing_consumes"]:
+            tag = "（外部输入）" if m.get("is_external_input") else "⚠️"
+            print(f"  {tag} 步骤{m['step_idx']+1}「{m['step_name']}」: {m['desc']}")
+
+    if result["warnings"]:
+        print(f"\n⚠️ 警告 ({len(result['warnings'])} 条):")
+        for w in result["warnings"]:
+            print(f"  - {w}")
+
+    print()
+
+
+def _cmd_check_chain(args):
+    """处理 check-chain 命令"""
+    steps_json = args.steps_json
+
+    # 判断是文件路径还是 JSON 字符串
+    steps_path = Path(steps_json)
+    if steps_path.exists():
+        with open(steps_path, "r", encoding="utf-8") as f:
+            steps = json.load(f)
+    else:
+        try:
+            steps = json.loads(steps_json)
+        except json.JSONDecodeError:
+            print(f"❌ 无法解析 steps-json，既不是有效文件路径也不是有效 JSON")
+            return 1
+
+    result = validate_chain(steps)
+
+    if args.json:
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    else:
+        _print_chain_result(result)
+
+    return 0 if result["connected"] else 1
 
 
 if __name__ == "__main__":

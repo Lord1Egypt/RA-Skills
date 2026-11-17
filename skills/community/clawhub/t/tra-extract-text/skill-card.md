@@ -1,42 +1,53 @@
-## Description: <br>
-Extract text content from web pages using trafilatura CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract readable text, markdown, HTML, JSON, or XML content from web pages using the trafilatura CLI tool with optional metadata and output formatting.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Developers and content-processing agents use this skill to extract readable text, Markdown, HTML, JSON, or XML from web pages and optionally save extracted content to a file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches user-specified URLs, which can expose private-network or sensitive pages if targets are not chosen deliberately. <br>
-Mitigation: Use only URLs that are authorized for extraction and avoid localhost, private-network, or sensitive pages unless access is intentional. <br>
-Risk: The skill can write extracted content to files, which can overwrite or place content in unintended paths. <br>
-Mitigation: Review output paths before saving extracted content. <br>
-Risk: The skill depends on the external trafilatura CLI package. <br>
-Mitigation: Install trafilatura from a trusted Python package source, preferably in a virtual environment. <br>
+## Use Case:
 
+Developers, researchers, and content workflows use this skill to extract readable page content from a URL and return it as markdown, plain text, HTML, JSON, or XML.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/tra-extract-text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and extracted content examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include metadata fields such as title, author, and date when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches user-provided URLs over the network, which can expose private, internal, or sensitive URLs if supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled environment and avoid providing internal, private, or sensitive URLs unless network retrieval is intended.
+
+Risk: The skill depends on the locally installed trafilatura package, so behavior can vary by package version.
+
+Mitigation: Install in a virtual environment where possible, and pin and review the trafilatura package version before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/tra-extract-text)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, JSON, XML, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with trafilatura CLI commands and extracted content in markdown, plain text, HTML, JSON, or XML.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write extracted content to a file and include page metadata when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn761zmwvbgx2jng3xppm1qxxd85hxw9",
-  "slug": "logseq-bridge",
+  "name": "logseq-bridge",
+  "description": "Pure file-based interaction with a local Logseq graph. Read, write, search, and manage Logseq journals and pages via direct .md file operations. No plugins or HTTP APIs needed.",
   "version": "2.0.0",
-  "publishedAt": 1777098802873
+  "author": "@pygmybutterfly",
+  "updated": "2026-04-25",
+  "deprecated": false,
+  "requires": ["filesystem access to Logseq graph directory"],
+  "tags": ["logseq", "notes", "knowledge-graph", "markdown", "journal"],
+  "changelog": "v2.0.0 - Complete rewrite: direct .md read/write for Logseq journals/pages. No plugins, no HTTP APIs needed."
 }

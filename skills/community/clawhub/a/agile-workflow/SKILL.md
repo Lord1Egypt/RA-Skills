@@ -515,7 +515,7 @@ write_04 (依赖 outline_04)  ← 不等待 write_03
 
 ### 相关脚本
 
-- **依赖生成器**: `scripts/task-dependency-generator.js`
+- **依赖生成器**: `scripts/taREDACTED-SECRET.js`
 - **任务修复**: `scripts/repair-task-states.js`
 - **依赖检查**: `core/dependency-manager.js`
 

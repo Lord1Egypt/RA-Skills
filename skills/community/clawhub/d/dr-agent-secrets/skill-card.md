@@ -1,41 +1,49 @@
-## Description: <br>
-Manage persistent local OpenClaw secrets safely. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent local secret setup, rotation, inspection, and recovery with SecretRefs, protected env fragments, redaction, and restart safety.
 
-## Publisher: <br>
-[daniel-refahi-ikara](https://clawhub.ai/user/daniel-refahi-ikara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daniel-refahi-ikara](https://clawhub.ai/user/daniel-refahi-ikara)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up, inspect, validate, and troubleshoot persistent local OpenClaw secrets or environment variables without exposing secret values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Secret values could be exposed through chat, logs, diagnostics, screenshots, memory files, or final reports. <br>
-Mitigation: Report only key names, paths, presence or absence, permissions, and validation results; redact values and never copy tokens, passwords, private keys, or full environment contents. <br>
-Risk: Changing credential mechanisms, secret paths, permissions, or restarting the OpenClaw gateway could interrupt active work or weaken local secret handling. <br>
-Mitigation: Ask before changing credential mechanisms, paths, permissions policy, or restarting active services; apply changes additively and validate feature behavior after approved reloads or restarts. <br>
+## Use Case:
 
+Developers and operators use this skill to set up, inspect, rotate, and recover persistent credentials for OpenClaw agents while keeping secret values out of durable text and checking that services can use them safely.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/daniel-refahi-ikara/skills/dr-agent-secrets) <br>
-- [Publisher profile](https://clawhub.ai/user/daniel-refahi-ikara) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and configuration code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only procedure; outputs should redact secret values and report paths, permissions, reload or restart status, validation results, and remaining approvals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Credential values or sensitive diagnostics could be exposed, and changes to persistent service settings could disrupt existing consumers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep secret values out of chat and durable records, report key names and presence only, preserve unrelated service settings and files, follow the documented permission and approval safeguards, and review dr-runtime-contract separately before using it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/daniel-refahi-ikara/skills/dr-agent-secrets)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Redacted status summaries]
+
+**Output Format:** [Markdown guidance with shell commands, configuration steps, and redacted validation receipts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Secret values are excluded; reports contain paths, key names, permissions, and validation status only.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,109 @@
+'''
+38获取当日新股新债信息
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+get_ipo_data-获取当日新股新债信息
+用法： get_ipo_data([,type])
+
+释义： 获取当日新股新债信息，返回结果为一个字典,包括新股申购代码,申购名称,最大申购数量,最小申购数量等数据
+
+参数：
+
+type：为空时返回新股新债信息，type="STOCK"时只返回新股申购信息，type="BOND"时只返回新债申购信息
+示例：
+
+
+#coding:gbk
+def init(ContextInfo):
+    ipoData=get_ipo_data()# 返回新股新债信息
+    ipoStock=get_ipo_data("STOCK")# 返回新股信息
+    ipoCB=get_ipo_data("BOND")# 返回新债申购信息
+get_new_purchase_limit-获取账户新股申购额度
+用法： get_new_purchase_limit(accid)
+
+释义： 获取账户新股申购额度，返回结果为一个字典,包括上海主板,深圳市场,上海科创版的申购额度
+
+参数：
+
+accid：资金账号，必须时股票账号或者信用账号
+示例：
+
+
+def init(ContextInfo):
+    ContextInfo.accid="10000001"# 返回新股新债信息
+    purchase_limit=get_new_purchase_limit(ContextInfo.accid)
+get_value_by_order_id-根据委托号获取委托或成交信息
+调用方法get_value_by_order_id(orderId, accountID, strAccountType, strDatatype)
+
+参数
+
+参数名	类型	含义	说明
+orderId	string	委托号	必填
+accountID	string	资金账号	必填
+strAccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+strDatatype	string	要查询数据类型 可选：
+'ORDER'：委托
+'DEAL' ：成交	必填
+返回
+
+委托对象 或 成交对象
+
+示例
+
+python返回值
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'
+
+def handlebar(ContextInfo):
+    orderid = get_last_order_id(ContextInfo.accid, 'stock', 'order')
+    print(orderid)
+    obj = get_value_by_order_id(orderid,ContextInfo.accid, 'stock', 'order')
+    print(obj.m_strInstrumentID)
+调用方法
+
+python
+
+# 区分策略，添加策略名称参数 strategyName
+get_last_order_id(accountID, strAccountType, strDatatype, strategyName)
+
+# 不区分策略
+get_last_order_id(accountID, strAccountType, strDatatype)
+参数
+
+参数名	类型	含义	说明
+accountID	string	资金账号	必填
+strAccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+strDatatype	string	要查询数据类型 可选：
+'ORDER'：委托
+'DEAL' ：成交	必填
+strategyName	string	策略 当用passorder下单时指定了strategyName 参数时，当查询成交和委托时传入同样的strageName，则可以只返回包含strategyName的委托子集或成交子集	选填
+返回
+
+String，委托号，如果没找到返回 '-1'。
+
+示例
+
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'
+
+def handlebar(ContextInfo):
+    orderid = get_last_order_id(ContextInfo.accid, 'stock', 'order')
+    print(orderid)
+    obj = get_value_by_order_id(orderid,ContextInfo.accid, 'stock', 'order')
+    print(obj.m_strInstrumentID)

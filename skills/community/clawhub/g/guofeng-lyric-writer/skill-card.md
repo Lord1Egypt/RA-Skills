@@ -1,43 +1,54 @@
-## Description: <br>
-Creates traditional Chinese-style Guofeng lyrics using classical imagery, vocabulary substitution, rhyme schemes, and poetic structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create traditional Chinese-style Guofeng lyrics with classical imagery, vocabulary substitution, rhyme schemes, and poetic techniques.
 
-## Publisher: <br>
-[followaf](https://clawhub.ai/user/followaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[followaf](https://clawhub.ai/user/followaf)
 
-## Use Case: <br>
-Writers, musicians, and creative agents use this skill to draft, refine, or study Guofeng-style Chinese lyrics with classical imagery, rhyme, emotional progression, and vocabulary choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled examples quote and analyze existing songs, which may influence outputs toward recognizable lyrics or close style imitation. <br>
-Mitigation: Review generated lyrics for originality and copyright or style-imitation concerns before public or commercial reuse. <br>
+## Use Case:
 
+External creators and agents use this skill to draft traditional Chinese-style song lyrics, adapt classical poetic techniques into modern lyrics, and explain Guofeng composition choices such as imagery, rhyme, rhythm, and emotional progression.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/followaf/guofeng-lyric-writer) <br>
-- [Guofeng Lyric Creation Workflow](artifact/references/workflow.md) <br>
-- [Guofeng Lyric Imagery Dictionary](artifact/references/imagery.md) <br>
-- [Guofeng Vocabulary Substitution Dictionary](artifact/references/vocabulary.md) <br>
-- [Guofeng Lyric Rhyme & Rhythm Guide](artifact/references/rhyme.md) <br>
-- [Classic Guofeng Lyrics Analysis](artifact/references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text lyrics with a brief creation note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese lyric sections, theme, core imagery, rhyme scheme, and emotional progression notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is optimized for Chinese Guofeng lyrics, so commentary or final output may not use another language unless requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the desired language for commentary or final output when invoking the skill.
+
+## Reference(s):
+
+- [Guofeng Lyric Writer skill page](https://clawhub.ai/followaf/skills/guofeng-lyric-writer)
+- [Examples](references/examples.md)
+- [Imagery](references/imagery.md)
+- [Rhyme](references/rhyme.md)
+- [Vocabulary](references/vocabulary.md)
+- [Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text lyric drafts with optional creation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a title, verse sections, chorus or bridge sections, and concise notes on theme, imagery, rhyme scheme, and emotional progression.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

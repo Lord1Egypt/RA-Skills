@@ -1,41 +1,54 @@
-## Description: <br>
-Daily Journal helps users write, review, search, summarize, and export personal journal entries stored locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Journal helps agents manage a local personal journal with daily entries, mood logs, gratitude notes, prompts, search, statistics, and exports.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users use this skill to keep a local daily journal, log moods and gratitude, search past entries, view statistics, and export entries for backup or review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Journal entries, mood logs, gratitude logs, search results, statistics, and exports may contain personal information. <br>
-Mitigation: Use only in a trusted local environment, review terminal output before sharing agent sessions, and protect or relocate the journal directory when handling sensitive content. <br>
-Risk: The skill stores personal journal data under ~/.journal by default. <br>
-Mitigation: Set JOURNAL_DIR to a controlled location when a different storage path, backup policy, or retention boundary is needed. <br>
+## Use Case:
 
+External users and agents use this skill to create, view, search, summarize, and export a private local daily journal without external accounts or services.
 
-## Reference(s): <br>
-- [Daily Journal ClawHub page](https://clawhub.ai/ckchzh/daily-journal) <br>
-- [Daily Journal tips](tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Terminal text, Markdown entries, and optional Markdown, JSON, or HTML export output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes journal, mood, and gratitude files under ~/.journal by default, unless JOURNAL_DIR is set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Journal entries, mood logs, gratitude notes, and exports may contain sensitive personal information stored on local disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on ~/.journal or the configured JOURNAL_DIR and treat exported files as sensitive.
+
+Risk: The security evidence reports a path-handling flaw that can become code execution if the environment is manipulated.
+
+Mitigation: Do not set JOURNAL_DIR from untrusted input, and review the environment before running the shell script.
+
+## Reference(s):
+
+- [Daily Journal ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/daily-journal)
+- [Tips for Daily Journal](artifact/tips.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files]
+
+**Output Format:** [Plain text command output, Markdown journal entries, and optional Markdown, JSON, or HTML exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local journal data under JOURNAL_DIR, defaulting to ~/.journal.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

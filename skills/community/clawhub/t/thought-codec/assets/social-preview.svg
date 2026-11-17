@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">ThoughtCodec Social Preview</title>
+  <desc id="desc">GitHub social preview for ThoughtCodec using a flat negative-space codec aperture mark.</desc>
+  <rect width="1280" height="640" fill="#0f172a"/>
+  <g transform="translate(132 146)">
+    <text x="0" y="82" fill="#f8fafc" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="850">ThoughtCodec</text>
+    <text x="4" y="146" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="35" font-weight="650">思维编解码</text>
+    <text x="4" y="232" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="33">Compress experience into skills.</text>
+    <text x="4" y="282" fill="#cbd5e1" font-family="Inter, Arial, sans-serif" font-size="33">Decompress intent into execution.</text>
+    <text x="4" y="350" fill="#94a3b8" font-family="Inter, Arial, sans-serif" font-size="22">Bilingual AI skill library for agentic engineering workflows</text>
+  </g>
+  <g transform="translate(850 128)">
+    <rect x="-34" y="-34" width="392" height="392" rx="72" fill="#111827" stroke="#334155" stroke-width="3"/>
+    <g transform="scale(.6328125)" fill="#67e8f9">
+      <path d="M128 112h256v72h-84l-44 40-44-40h-84z"/>
+      <path d="M128 400h256v-72h-84l-44-40-44 40h-84z"/>
+      <path d="M128 208 196 256l-68 48z"/>
+      <path d="M384 208 316 256l68 48z"/>
+    </g>
+    <path fill="#e0f2fe" d="M151 151h23v23h-23z"/>
+  </g>
+</svg>

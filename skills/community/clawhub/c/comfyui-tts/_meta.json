@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7b6nvf7fzbeybqypfnxa87c9813adn",
-  "slug": "comfyui-tts",
+  "id": "comfyui-tts",
+  "name": "ComfyUI TTS",
   "version": "1.0.0",
-  "publishedAt": 1771022102903
+  "description": "Generate speech audio using ComfyUI Qwen-TTS service",
+  "author": "YHSI5358",
+  "tags": ["tts", "audio", "comfyui", "qwen", "voice"],
+  "entry": {
+    "script": "scripts/tts.sh"
+  }
 }

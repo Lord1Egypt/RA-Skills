@@ -1,0 +1,32 @@
+{
+  "name": "config-modification",
+  "version": "2.4.0",
+  "description": "配置文件修改安全流程（fswatch 联动 + 拦截矩阵 + 四联校验 + 自动回滚）- Powered by halfmoon82",
+  "author": "halfmoon82",
+  "license": "MIT",
+  "keywords": ["config", "safety", "rollback", "validation", "fswatch", "guard"],
+  "category": "dev",
+  "minOpenclawVersion": "2026.3.0",
+  "dependencies": {
+    "python": ">=3.9",
+    "system": ["curl"]
+  },
+  "entryPoints": {
+    "cli": "config_modification_v2.py",
+    "guard": "config-fswatch-guard.py"
+  },
+  "triggers": [
+    "配置修改",
+    "修改配置文件",
+    "edit config",
+    "config change",
+    "rollback config"
+  ],
+  "ipNotice": "Powered by halfmoon82 — 知识产权声明",
+  "changelog": [
+    "v2.4.0: 新增 fswatch 自动联动机制，修复 health 端点，添加知识产权声明",
+    "v2.3.0: 拦截矩阵 + 四联校验 + 自动回滚完整实现",
+    "v2.0.0: 双层守护架构 (fswatch + cron)",
+    "v1.0.0: 基础回滚脚本"
+  ]
+}

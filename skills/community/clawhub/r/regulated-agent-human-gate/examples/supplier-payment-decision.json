@@ -1,0 +1,82 @@
+{
+  "schema_version": "2.0",
+  "decision_id": "dec_supplier_8000_001",
+  "action_hash": "sha256:29a918d0341fc6c5fa77914b24525c23becdeef3de7db8e6171f2ebeecc8bf2b",
+  "decision": "HUMAN_APPROVAL",
+  "authorization_status": "APPROVED",
+  "risk_level": "HIGH",
+  "reason_codes": [
+    "HIGH_VALUE_TRANSACTION",
+    "NEW_BENEFICIARY"
+  ],
+  "required_controls": [
+    "standard_audit_logging",
+    "user_confirmation",
+    "identity_verification",
+    "authority_verification",
+    "beneficiary_verification",
+    "independent_human_approval"
+  ],
+  "satisfied_controls": [
+    "standard_audit_logging",
+    "user_confirmation",
+    "identity_verification",
+    "authority_verification",
+    "beneficiary_verification",
+    "independent_human_approval"
+  ],
+  "control_evidence": [
+    {
+      "control": "standard_audit_logging",
+      "status": "PASSED",
+      "actor_type": "system",
+      "actor_id": "audit_service",
+      "evidence_reference": "evidence:audit-reservation:001",
+      "completed_at": "2026-07-17T07:59:00Z"
+    },
+    {
+      "control": "user_confirmation",
+      "status": "PASSED",
+      "actor_type": "user",
+      "actor_id": "user_001",
+      "evidence_reference": "evidence:user-confirmation:001",
+      "completed_at": "2026-07-17T07:59:05Z"
+    },
+    {
+      "control": "identity_verification",
+      "status": "PASSED",
+      "actor_type": "provider",
+      "actor_id": "identity_provider",
+      "evidence_reference": "evidence:identity-check:001",
+      "completed_at": "2026-07-17T07:59:10Z"
+    },
+    {
+      "control": "authority_verification",
+      "status": "PASSED",
+      "actor_type": "provider",
+      "actor_id": "authority_service",
+      "evidence_reference": "evidence:authority-check:001",
+      "completed_at": "2026-07-17T07:59:15Z"
+    },
+    {
+      "control": "beneficiary_verification",
+      "status": "PASSED",
+      "actor_type": "provider",
+      "actor_id": "beneficiary_service",
+      "evidence_reference": "evidence:beneficiary-check:001",
+      "completed_at": "2026-07-17T07:59:20Z"
+    },
+    {
+      "control": "independent_human_approval",
+      "status": "PASSED",
+      "actor_type": "human",
+      "actor_id": "finance_manager_007",
+      "evidence_reference": "evidence:human-approval:001",
+      "completed_at": "2026-07-17T07:59:25Z"
+    }
+  ],
+  "blocked_actions": [],
+  "policy_version": "2.0.0",
+  "receipt_ttl_seconds": 300,
+  "evaluated_at": "2026-07-17T07:59:30Z"
+}

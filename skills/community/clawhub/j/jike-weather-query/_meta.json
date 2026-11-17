@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72cqttfa4en7epyybjca4m2x85ppvj",
+  "owner": "jikeapi",
   "slug": "jike-weather-query",
   "version": "1.0.0",
-  "publishedAt": 1777376839028
+  "title": "天气查询 - 即刻数据",
+  "description": "根据省份、城市、区县查询当前天气实况、未来7天和未来15天天气预报。",
+  "env": "JIKE_WEATHER_QUERY_KEY",
+  "api_url": "https://api.jikeapi.cn/v1/weather/query/by-area",
+  "homepage": "https://www.jikeapi.cn/"
 }

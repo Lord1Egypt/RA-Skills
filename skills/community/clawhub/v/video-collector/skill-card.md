@@ -1,41 +1,57 @@
-## Description: <br>
-抖音/B站视频收藏入库：接收视频链接，自动抓取信息、生成总结、分类，并写入飞书多维表格。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Douyin and Bilibili video links, fetches video details, summarizes and categorizes the content, and writes the result to a Feishu Bitable.
 
-## Publisher: <br>
-[keson1521](https://clawhub.ai/user/keson1521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keson1521](https://clawhub.ai/user/keson1521)
 
-## Use Case: <br>
-Employees, creators, and knowledge workers use this skill to collect Douyin or Bilibili video links, summarize and categorize the content, and store structured records in Feishu Bitable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broader local command authority than the video-to-Feishu workflow requires. <br>
-Mitigation: Review before installing, use trusted sources for dokobot and lark-cli, and remove unused permissions such as node and rm when the agent supports narrowing allowed tools. <br>
-Risk: The workflow writes persistent records to Feishu without a clearly defined review step. <br>
-Mitigation: Use a dedicated or least-privilege Feishu Base and verify table sharing settings before storing private or access-controlled video links. <br>
+## Use Case:
 
+Individuals and teams use this skill to save Douyin and Bilibili videos into a Feishu Bitable with extracted metadata, content summaries, categories, topics, and watch-status tags.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keson1521/video-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/keson1521) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON record structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Feishu Bitable record proposal and confirmation text after writing the video entry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Shell-based URL handling can mishandle or expose user-supplied video links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Douyin and Bilibili links, validate exact HTTPS hosts before fetching, and avoid shell interpolation for untrusted URL values.
+
+Risk: The skill can write records to Feishu Bitable using user-provided workspace configuration.
+
+Mitigation: Require explicit confirmation before Feishu writes and verify the Base Token, Table ID, and field schema before running the write command.
+
+Risk: Declared tool access may not fully match the commands described by the skill.
+
+Mitigation: Review and align allowed tools with the commands the skill actually requires before installation or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keson1521/skills/video-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown confirmation with extracted video metadata, summary, category, topic tags, and Feishu write status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare a JSON record for Feishu Bitable and uses configured Base Token and Table ID values supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Track, analyze, and report business KPIs with targets, status flags, trend analysis, and root cause prompts using configurable JSON files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track, analyze, and report business KPIs with targets, status flags, trend analysis, and root cause prompts using configurable JSON files.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business operators, founders, and teams use this skill to define KPIs, record metric values, generate weekly or monthly status reports, and identify off-track metrics that need investigation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: KPI configuration, historical data, and saved reports can contain sensitive business records. <br>
-Mitigation: Install only in workspaces where KPI data should be stored, and review access to kpi-config.json, kpi-data.json, and saved reports. <br>
-Risk: Scheduled delivery or messaging integrations could distribute KPI summaries beyond the intended audience. <br>
-Mitigation: Review any cron, Slack, Telegram, or other automation integration before enabling scheduled reports. <br>
+## Use Case:
 
+Business operators, founders, and teams use this skill to define KPIs, record metric values, generate weekly or monthly status reports, and identify off-track metrics that need investigation.
 
-## Reference(s): <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown reports and JSON configuration or data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write kpi-config.json, kpi-data.json, and optional reports/kpi-YYYY-MM-DD.md files in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: KPI configuration, history, and reports can contain sensitive business performance data stored in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in workspaces where local storage of KPI data is acceptable, and review generated reports before sharing them.
+
+Risk: Scheduled reports or messaging integrations can distribute KPI summaries beyond the local workspace.
+
+Mitigation: Review any cron, Slack, Telegram, or similar automation yourself before enabling it, and use explicit requests when saving data or reports.
+
+## Reference(s):
+
+- [KPI Tracker on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-kpi-tracker)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON configuration and data files, and concise natural-language analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read kpi-config.json, write kpi-data.json, and optionally save reports under reports/.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

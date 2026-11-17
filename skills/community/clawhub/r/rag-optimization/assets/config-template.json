@@ -1,24 +1,27 @@
 {
   "rag_optimization_config": {
     "comment": "RAG优化配置模板 - 根据你的场景调整参数",
-    
     "chunking": {
       "strategy": "small_to_big",
-      "strategies_available": ["fixed", "semantic", "small_to_big", "proposition", "contextual_header"],
-      
+      "strategies_available": [
+        "fixed",
+        "semantic",
+        "small_to_big",
+        "proposition",
+        "contextual_header"
+      ],
       "fixed_chunking": {
         "chunk_size": 500,
         "overlap": 50,
         "comment": "适用于简单场景，不推荐"
       },
-      
       "semantic_chunking": {
         "similarity_threshold": 0.7,
         "min_chunk_size": 100,
         "max_chunk_size": 1000,
-        "comment": "适用于需要保持语义完整性的场景"
+        "comment": "语义边界分块。无嵌入模型时退化为结构性分块（段落+句子边界）；有嵌入模型时使用真实语义相似度按 similarity_threshold 切分。支持通过 llm_client.load_embedding_from_env() 或配置 _embedding_client 自动启用。",
+        "_status": "IMPLEMENTED (fallback: structural; NVIDIA embedding model activates similarity-based)"
       },
-      
       "small_to_big": {
         "child_chunk_size": 150,
         "child_overlap": 30,
@@ -26,7 +29,6 @@
         "parent_overlap": 100,
         "comment": "推荐首选，准确率提升最明显"
       },
-      
       "proposition_chunking": {
         "min_proposition_length": 15,
         "max_proposition_length": 150,
@@ -35,66 +37,72 @@
         "similarity_threshold": 0.9,
         "comment": "命题分块，适合精确问答场景"
       },
-      
       "contextual_header": {
         "header_format": "natural",
         "max_header_length": 100,
         "enable_llm_extraction": true,
         "comment": "上下文头增强，提升召回率"
-      }
+      },
+      "_status": "IMPLEMENTED (fixed/semantic/small_to_big/proposition + contextual_header extension)"
     },
-    
     "retrieval": {
       "strategy": "hybrid",
-      "strategies_available": ["vector", "bm25", "hybrid"],
-      
+      "strategies_available": [
+        "vector",
+        "bm25",
+        "hybrid"
+      ],
       "vector_retrieval": {
-        "embedding_model": "text-embedding-3-small",
+        "embedding_model": "BAAI/bge-m3",
         "top_k": 10,
-        "comment": "纯语义检索，适合概念性问题"
+        "comment": "语义检索。中文/多语言混合文档推荐 BAAI/bge-m3；纯英文场景可换 text-embedding-3-small"
       },
-      
       "bm25_retrieval": {
         "top_k": 10,
         "comment": "纯关键词检索，适合精确匹配"
       },
-      
       "hybrid_retrieval": {
         "vector_weight": 0.7,
         "bm25_weight": 0.3,
         "first_stage_k": 50,
         "comment": "推荐，结合语义和关键词优势"
-      }
+      },
+      "_status": "BM25+HYBRID IMPLEMENTED; VECTOR needs external embedding model"
     },
-    
     "query_optimization": {
       "enabled": true,
       "mode": "auto",
-      "modes_available": ["expand", "decompose", "hyde", "auto"],
-      
+      "modes_available": [
+        "expand",
+        "decompose",
+        "hyde",
+        "auto"
+      ],
       "expand": {
         "num_variants": 3,
         "comment": "生成多个查询变体，提高召回"
       },
-      
       "decompose": {
         "max_sub_queries": 5,
         "comment": "拆解复杂问题"
       },
-      
       "hyde": {
         "max_hypothetical_length": 300,
         "comment": "生成假设答案用于检索"
       },
-      
       "auto_rules": {
         "short_query_threshold": 5,
         "short_query_strategy": "hyde",
-        "complex_query_keywords": ["和", "以及", "同时", "比较"],
+        "complex_query_keywords": [
+          "和",
+          "以及",
+          "同时",
+          "比较"
+        ],
         "complex_query_strategy": "decompose"
-      }
+      },
+      "_status": "IMPLEMENTED (auto mode: hyde/expand/decompose)"
     },
-    
     "reranking": {
       "enabled": true,
       "model": "BAAI/bge-reranker-large",
@@ -105,26 +113,33 @@
         "BAAI/bge-reranker-large"
       ],
       "final_k": 5,
-      "comment": "重排序可提升准确率约0.2"
+      "comment": "重排序可提升准确率约0.2",
+      "_status": "IMPLEMENTED (BM25 fallback; full Cross-Encoder needs external model)"
     },
-    
     "segment_extraction": {
       "enabled": false,
       "granularity": "sentence",
-      "granularity_options": ["sentence", "sliding_window", "semantic"],
+      "granularity_options": [
+        "sentence",
+        "sliding_window",
+        "semantic"
+      ],
       "window_size": 100,
       "stride": 50,
       "score_mode": "hybrid",
       "max_segments": 10,
       "min_relevance": 0.4,
       "enable_resolution": true,
-      "comment": "相关片段提取，减少噪声、节省Token"
+      "comment": "相关片段提取，减少噪声、节省Token",
+      "_status": "PARTIAL - code exists (segment_extractor.py), needs LLM client for scoring"
     },
-    
     "self_rag": {
       "enabled": false,
       "mode": "corrective",
-      "modes_available": ["corrective", "self"],
+      "modes_available": [
+        "corrective",
+        "self"
+      ],
       "max_retries": 3,
       "high_relevance_threshold": 0.7,
       "low_relevance_threshold": 0.3,
@@ -132,101 +147,127 @@
       "hallucination_threshold": 0.5,
       "enable_retrieval_decision": true,
       "enable_segment_labeling": true,
-      "comment": "Self-RAG/CRAG自我纠错，降低幻觉"
+      "comment": "Self-RAG/CRAG自我纠错，降低幻觉",
+      "_status": "PARTIAL - CorrectiveRAG fully implemented; needs LLM client"
     },
-    
     "context_compression": {
       "enabled": true,
       "mode": "hybrid",
-      "modes_available": ["extractive", "abstractive", "hybrid"],
+      "modes_available": [
+        "extractive",
+        "abstractive",
+        "hybrid"
+      ],
       "compression_ratio": 0.5,
       "max_output_length": 2000,
       "min_output_length": 200,
       "preserve_entities": true,
-      "comment": "压缩上下文，节省Token，提高信噪比"
+      "comment": "压缩上下文，节省Token，提高信噪比",
+      "_status": "IMPLEMENTED (extractive); abstractive needs LLM client"
     },
-    
     "citation_tracking": {
       "enabled": true,
       "format": "footnote",
-      "formats_available": ["inline", "footnote", "detailed", "json"],
+      "formats_available": [
+        "inline",
+        "footnote",
+        "detailed",
+        "json"
+      ],
       "min_confidence": 0.5,
       "include_credibility_score": true,
-      "comment": "引用溯源，提升答案可信度"
+      "comment": "引用溯源，提升答案可信度",
+      "_status": "IMPLEMENTED (4 formats: inline/footnote/detailed/json)"
     },
-    
     "query_intent": {
       "enabled": true,
       "auto_strategy_routing": true,
       "colloquial_normalization": true,
-      "comment": "查询意图识别，自动选择最优策略"
+      "comment": "查询意图识别，自动选择最优策略",
+      "_status": "IMPLEMENTED (rule mode works; LLM mode needs client)"
     },
-    
     "multi_hop": {
       "enabled": false,
       "max_hops": 3,
       "top_k_per_hop": 5,
       "termination_check": "llm",
-      "comment": "多跳检索，适合复杂推理问题"
+      "comment": "多跳检索，适合复杂推理问题",
+      "_status": "PARTIAL - implemented (multi_hop_retriever.py); rule mode works without LLM"
     },
-    
     "document_preprocessing": {
       "enabled": true,
-      "supported_formats": ["pdf", "docx", "xlsx", "html", "md", "txt", "image"],
+      "supported_formats": [
+        "pdf",
+        "docx",
+        "xlsx",
+        "html",
+        "md",
+        "txt",
+        "image"
+      ],
       "ocr_enabled": false,
       "table_extraction": true,
       "section_parsing": true,
-      "comment": "文档预处理，统一多源数据格式"
+      "comment": "文档预处理，统一多源数据格式",
+      "_status": "IMPLEMENTED (txt/md/html); PDF/DOCX need optional deps"
     },
-    
     "advanced_features": {
       "graph_rag": {
         "enabled": false,
-        "entity_types": ["Person", "Organization", "Location", "Concept"],
-        "comment": "启用知识图谱，适合关系密集场景"
+        "entity_types": [
+          "Person",
+          "Organization",
+          "Location",
+          "Concept"
+        ],
+        "comment": "启用知识图谱，适合关系密集场景",
+        "_status": "IMPLEMENTED (graph_rag.py: 实体提取/关系构建/图遍历检索)"
       },
-      
       "routing": {
-        "enabled": false,
-        "categories": [],
-        "comment": "启用分层路由，适合多知识库场景"
-      },
-      
-      "hallucination_detection": {
         "enabled": true,
+        "categories": [],
+        "comment": "启用分层路由，适合多知识库场景",
+        "_status": "IMPLEMENTED (query_router.py)"
+      },
+      "hallucination_detection": {
+        "enabled": false,
         "threshold": 0.7,
-        "comment": "检测答案是否有幻觉"
+        "comment": "检测答案是否有幻觉。H17：原 enabled=true 与 _status 自相矛盾——各 preset 的 note 一致写着 'hallucination_detection disabled'，说明本意就是关闭，故改为 false。",
+        "_status": "NOT YET IMPLEMENTED (covered indirectly by Self-RAG)"
       }
     },
-    
     "evaluation": {
-      "metrics": [
-        "recall_at_5",
-        "recall_at_10",
-        "precision_at_5",
-        "mrr",
-        "answer_relevance",
-        "answer_faithfulness",
-        "citation_coverage",
-        "credibility_score"
-      ],
+      "comment": "评估配置 - 键名与 scripts/evaluate.py 实际消费的 metrics 配置一致",
+      "metrics": {
+        "recall_k": [
+          5,
+          10
+        ],
+        "precision_k": [
+          5
+        ],
+        "use_llm_judge": true,
+        "llm_model": "nvidia/nemotron-3-super-120b-a12b"
+      },
       "test_dataset_path": "./data/test_cases.json",
-      "evaluation_frequency": "weekly"
+      "evaluation_frequency": "weekly",
+      "_status": "IMPLEMENTED (recall/precision/MRR); LLM Judge needs client"
     },
-    
     "performance": {
       "cache": {
         "query_cache_enabled": true,
         "embedding_cache_enabled": true,
-        "cache_ttl_seconds": 3600
+        "cache_ttl_seconds": 3600,
+        "_status": "IMPLEMENTED (LRU query cache, max 128 entries, TTL enforced — see bm25_retriever._cache_ttl_seconds)"
       },
       "async": {
-        "enabled": true,
-        "max_concurrent": 10
+        "enabled": false,
+        "max_concurrent": 10,
+        "comment": "H18：原 enabled=true 且无 _status 标注，但全项目无任何异步实现（无 asyncio/线程池）。改为 false 并显式标注未实现，避免用户以为并发已生效。",
+        "_status": "NOT IMPLEMENTED (synchronous architecture)"
       }
     }
   },
-  
   "presets": {
     "quick_start": {
       "description": "快速上手，基础优化",
@@ -235,9 +276,9 @@
         "retrieval.strategy": "hybrid",
         "reranking.enabled": false,
         "query_optimization.enabled": false
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     },
-    
     "production": {
       "description": "生产环境推荐配置",
       "config": {
@@ -247,9 +288,9 @@
         "query_optimization.enabled": true,
         "context_compression.enabled": true,
         "citation_tracking.enabled": true
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     },
-    
     "high_accuracy": {
       "description": "追求最高准确率",
       "config": {
@@ -263,10 +304,10 @@
         "self_rag.mode": "self",
         "context_compression.enabled": true,
         "citation_tracking.enabled": true,
-        "advanced_features.hallucination_detection.enabled": true
-      }
+        "advanced_features.hallucination_detection.enabled": false
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented). self_rag.mode='self' currently uses CorrectiveRAG implementation."
     },
-    
     "fact_qa": {
       "description": "精确问答场景（FAQ/知识库）",
       "config": {
@@ -277,9 +318,9 @@
         "self_rag.enabled": true,
         "self_rag.mode": "corrective",
         "citation_tracking.enabled": true
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     },
-    
     "long_document": {
       "description": "长文档处理场景",
       "config": {
@@ -289,9 +330,9 @@
         "segment_extraction.enabled": true,
         "segment_extraction.granularity": "semantic",
         "context_compression.enabled": true
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     },
-    
     "legal_documents": {
       "description": "法律文档专用",
       "config": {
@@ -302,9 +343,9 @@
         "citation_tracking.enabled": true,
         "citation_tracking.format": "footnote",
         "self_rag.enabled": true
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     },
-    
     "research_papers": {
       "description": "学术论文专用",
       "config": {
@@ -314,9 +355,9 @@
         "multi_hop.enabled": true,
         "segment_extraction.enabled": true,
         "citation_tracking.enabled": true
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     },
-    
     "complex_reasoning": {
       "description": "复杂推理场景",
       "config": {
@@ -327,9 +368,9 @@
         "multi_hop.enabled": true,
         "multi_hop.max_hops": 3,
         "self_rag.enabled": true
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     },
-    
     "customer_service": {
       "description": "客服问答场景",
       "config": {
@@ -340,7 +381,8 @@
         "reranking.enabled": true,
         "context_compression.enabled": true,
         "citation_tracking.enabled": true
-      }
+      },
+      "note": " hallucination_detection disabled (not yet independently implemented)."
     }
   }
 }

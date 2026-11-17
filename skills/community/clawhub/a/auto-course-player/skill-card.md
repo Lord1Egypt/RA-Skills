@@ -1,45 +1,56 @@
-## Description: <br>
-Automates online course video playback in Chrome, detects video completion, advances to the next video, and supports pause, resume, progress checks, and study-time reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Course Player helps an agent automate playback of online course videos in Chrome, including muting videos, detecting completion, switching to the next video, and reporting progress.
 
-## Publisher: <br>
-[quanfuda](https://clawhub.ai/user/quanfuda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quanfuda](https://clawhub.ai/user/quanfuda)
 
-## Use Case: <br>
-External users and agents use this skill to automate playback and progress tracking for web-based course videos in Chrome. It is intended for environments where the course platform, school, and account owner explicitly allow this form of automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can advance course progress in a logged-in education account and may affect attendance, completion credit, assessments, submissions, payments, or official records. <br>
-Mitigation: Use only when the course platform, school, and account owner explicitly allow automation, and avoid use where official records or assessed work could be affected. <br>
-Risk: The artifact includes anti-detection guidance and broad auto-clicking behavior for course pages and dialogs. <br>
-Mitigation: Review and narrow the Tampermonkey match scope before use, remove anti-detection behavior, and keep human review for confirmations, captchas, and unexpected dialogs. <br>
+## Use Case:
 
+External users and developers use this skill to control Chrome or a Tampermonkey userscript for sequential online course video playback, progress checks, pause/resume control, and learning-time reporting. It is intended only for authorized use that complies with the applicable course platform rules and academic integrity requirements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/quanfuda/auto-course-player) <br>
-- [README](artifact/README.md) <br>
-- [Installation Guide](artifact/INSTALL.md) <br>
-- [Tampermonkey Userscript](artifact/scripts/course-autoplay.user.js) <br>
-- [Tampermonkey](http://tampermonkey.net/) <br>
-- [Target Course Platform](https://studentjxjyzx.qdu.edu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JavaScript userscript code, browser configuration steps, and Markdown progress reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update a local course-progress Markdown file and browser-side automation state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill automates course video playback and completion behavior on a logged-in university course site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when the user is authorized to automate the platform and the use complies with school rules and academic integrity requirements.
+
+Risk: The browser automation includes broad automatic clicking and generic popup-confirmation behavior.
+
+Mitigation: Review the Tampermonkey match scope and disable or narrow generic popup-confirmation logic before using it on logged-in university pages.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/quanfuda/skills/auto-course-player)
+- [Publisher Profile](https://clawhub.ai/user/quanfuda)
+- [Target Course Platform](https://studentjxjyzx.qdu.edu.cn/)
+- [Tampermonkey Namespace](http://tampermonkey.net/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript userscript or bookmarklet snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local markdown progress file for course playback status.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

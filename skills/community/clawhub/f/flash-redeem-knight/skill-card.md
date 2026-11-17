@@ -1,42 +1,56 @@
-## Description: <br>
-Universal browser automation for prepaid H5 coupon redemption (food, beverage, pickup vouchers). Use when a user provides a prepaid redemption link and wants automatic store selection, option selection, final code extraction, and screenshot proof without extra payment risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal browser automation for prepaid H5 coupon redemption links that helps select stores and options, extract the final code, and provide screenshot proof without extra payment risk.
 
-## Publisher: <br>
-[vshen009](https://clawhub.ai/user/vshen009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vshen009](https://clawhub.ai/user/vshen009)
 
-## Use Case: <br>
-External users use this skill to redeem already-paid H5 food, beverage, and pickup coupon links by selecting the intended store and options, confirming redemption, and extracting the final pickup or verification code with screenshot proof. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may consume a prepaid coupon or choose the wrong store or items if preferences or page state are misunderstood. <br>
-Mitigation: Verify user authorization, store, item selections, and pickup mode before final confirmation, and pause when there is ambiguity. <br>
-Risk: A redemption page may introduce unexpected extra payment or a non-prepaid checkout path. <br>
-Mitigation: Confirm that the coupon is already paid and no extra payment is required before redeeming; stop and ask for confirmation if payment risk appears. <br>
-Risk: Saved preferences may allow coupon consumption without fresh confirmation. <br>
-Mitigation: Use persistent redemption preferences cautiously and require fresh confirmation for possible extra payment or material changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Coupon Redemption Profile Template](references/profile-template.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/vshen009/flash-redeem-knight) <br>
+## Use Case:
 
+Users with prepaid H5 coupon links use this skill to redeem eligible food, beverage, or pickup vouchers through browser automation, selecting the intended store and options and returning the final pickup or redemption code with proof. The workflow is intended for coupons the user is authorized to consume and stops for invalid, expired, already-used, or extra-payment states.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown receipt with redemption status, code, store, item summary, amount, and screenshot reference] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a final-page screenshot when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may redeem a prepaid coupon irreversibly or choose the wrong store or pickup option.
+
+Mitigation: Confirm the user is authorized to consume the coupon and verify the intended store and pickup choices before final redemption.
+
+Risk: A redemption page may request extra payment or show a state such as invalid, used, or expired.
+
+Mitigation: Stop before any extra payment and report invalid, used, expired, or uncertain states instead of continuing by guesswork.
+
+Risk: Redemption codes and screenshots can expose usable coupon information.
+
+Mitigation: Treat final codes and screenshots as sensitive until the coupon has been used.
+
+## Reference(s):
+
+- [Coupon Redemption Profile Template](references/profile-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown receipt with redemption status, code, store, item summary, amount details, and screenshot reference when available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser navigation guidance and final-page screenshot proof; redemption codes and screenshots should be treated as sensitive until used.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

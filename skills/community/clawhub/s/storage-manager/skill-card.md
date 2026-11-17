@@ -1,44 +1,55 @@
-## Description: <br>
-Storage Manager helps agents manage item locations in Feishu Bitable with smart location matching, item search, location updates, and optional item and location image uploads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Storage Manager helps agents manage Feishu Bitable-backed inventory records with item storage, smart location matching, location photo labels, item lookup, and location updates.
 
-## Publisher: <br>
-[ruoruochen](https://clawhub.ai/user/ruoruochen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruoruochen](https://clawhub.ai/user/ruoruochen)
 
-## Use Case: <br>
-External users and their agents use the skill to record where household or personal items are stored, search those records, update locations, and attach photos in Feishu Bitable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports real-looking embedded Feishu credentials and table identifiers. <br>
-Mitigation: Remove embedded credentials and table identifiers, rotate any exposed values, require user-provided configuration, and fail closed when credentials are missing. <br>
-Risk: The skill can perform remote reads, writes, and uploads involving item names, locations, and selected photos. <br>
-Mitigation: Use a dedicated low-privilege Feishu app and table, and make users aware that item, location, and photo data may be uploaded to Feishu. <br>
-Risk: Automatic location matching can create or update persistent remote records without an explicit confirmation step. <br>
-Mitigation: Require review or confirmation before remote writes when a location is newly created, changed, or matched near the similarity threshold. <br>
+## Use Case:
 
+Developers and end users use this skill to record personal or household item locations, attach item and location images, search stored items, and update storage locations through Feishu Bitable.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ruoruochen/storage-manager) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with command examples and JSON-like result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, create, update, and upload item, location, and selected photo data in Feishu when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The release includes hardcoded Feishu credentials and fixed table identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled credentials and table IDs, rotate the exposed Feishu secret, and require FEISHU_APP_ID, FEISHU_APP_SECRET, FEISHU_BITABLE_TOKEN, and FEISHU_TABLE_ID to be explicitly configured before use.
+
+Risk: If default Feishu values remain, the skill can read, write, or upload to a preset Feishu table.
+
+Mitigation: Verify the tool fails closed without user-owned Feishu configuration and test it only against an isolated Feishu app and table.
+
+## Reference(s):
+
+- [ClawHub Storage Manager Skill Page](https://clawhub.ai/ruoruochen/skills/storage-manager)
+- [Artifact README](README.md)
+- [Feishu Tenant Access Token API Endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger Feishu Bitable read, write, and upload actions when configured with Feishu credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

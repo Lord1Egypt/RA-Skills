@@ -1,10 +1,11 @@
 {
   "name": "Claw Post",
   "slug": "clawpost",
-  "tagline": "Secure, agent-native social posting — X, LinkedIn, Facebook Groups, TikTok. No platform credentials shared.",
-  "description": "Claw Post — secure social posting infrastructure for OpenClaw agents. Post to X (Twitter), LinkedIn, Facebook (feed + groups with automated search/join), and TikTok using your real Chrome browser session via a paired extension. No OAuth tokens or social-platform API keys are ever shared with the agent or service. Human-like posting with lower ban risk than traditional API tools. Full Facebook Groups automation: search by keyword, evaluate relevance, join, and post. One API endpoint, one API key, four platforms. Free tier included.",
+  "version": "2.3.0",
+  "tagline": "Your AI agent's social media brand ambassador. Post and reply from the user's logged-in Chrome: X, LinkedIn, Facebook, TikTok, Instagram, Reddit comments, LinkedIn DMs.",
+  "description": "Claw Post: secure social posting for OpenClaw agents. Post to X, LinkedIn, Facebook (feed + groups), TikTok, and Instagram from the user's real Chrome session via a paired extension. Comment/reply on X, Facebook, LinkedIn, and Reddit. LinkedIn DMs (20/day). Notification checks. Join a Facebook group when the user asks (5/day); do not auto-join. No social-platform API keys. Plans differ only by monthly post count; Free includes 25 posts. MCP at mcp.clawpost.net with 17 tools.",
   "category": "social",
-  "tags": ["social", "twitter", "x", "linkedin", "facebook", "facebook-groups", "tiktok", "posting", "chrome-extension", "automation", "zero-credential"],
+  "tags": ["social", "twitter", "x", "linkedin", "facebook", "facebook-groups", "tiktok", "instagram", "reddit", "posting", "comments", "replies", "dms", "chrome-extension", "automation", "zero-credential", "mcp"],
   "env": {
     "CLAWPOST_API_KEY": {
       "required": true,
@@ -13,6 +14,6 @@
     }
   },
   "homepage": "https://clawpost.net/api-docs",
-  "support": "https://clawpost.net",
+  "support": "https://clawpost.net/faq",
   "license": "MIT-0"
 }

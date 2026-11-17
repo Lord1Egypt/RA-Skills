@@ -1,43 +1,59 @@
-## Description: <br>
-Installs ClawHub skills through fallback methods when the ClawHub CLI is rate-limited or unavailable, including GitHub clone, ClawHub ZIP download, and manual guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs ClawHub skills through fallback paths when the ClawHub CLI is rate-limited or fails, including GitHub search and clone, ClawHub zip download, and manual guidance.
 
-## Publisher: <br>
-[shensiglea-collab](https://clawhub.ai/user/shensiglea-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shensiglea-collab](https://clawhub.ai/user/shensiglea-collab)
 
-## Use Case: <br>
-Developers and agent users use this skill to install ClawHub skills when the normal CLI install path is blocked by rate limits or failures. It provides automated fallback installation attempts plus manual installation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically install unverified third-party skills into the agent skills directory. <br>
-Mitigation: Use it only when the exact skill source is already trusted, verify the GitHub owner/repo or ClawHub download page, and review the installed SKILL.md before agent use. <br>
-Risk: Batch installs, path-like skill names, or broad custom install directories can expand the impact of a mistaken or malicious install. <br>
-Mitigation: Avoid batch installs for untrusted sources, avoid path-like skill names, and use a narrow, expected skills directory. <br>
+## Use Case:
 
+Developers and engineers use this skill when a normal ClawHub CLI install is rate-limited or fails and they need fallback instructions or commands to install a ClawHub skill. It helps attempt GitHub clone, ClawHub zip download, and manual installation flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shensiglea-collab/fly-install) <br>
-- [Publisher profile](https://clawhub.ai/user/shensiglea-collab) <br>
-- [GitHub repository listed in README](https://github.com/shensiglea-collab/fly-install) <br>
-- [ClawHub skills directory](https://clawhub.ai/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose network downloads, repository clones, ZIP extraction, and local skill-directory changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The installer may trust unverified search or download results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only verified skill names and trusted sources, and prefer official or pinned installs where the repository owner, commit, and package integrity can be checked.
+
+Risk: Skill names or paths may be handled unsafely by the installation flow.
+
+Mitigation: Do not pass names or paths containing slashes or '..', and avoid running the installer with administrator privileges.
+
+Risk: The skill downloads and installs other skills into the local skills directory.
+
+Mitigation: Review the target skill and its security scan results before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shensiglea-collab/skills/fly-install)
+- [Publisher Profile](https://clawhub.ai/user/shensiglea-collab)
+- [ClawHub Skills Directory](https://clawhub.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose downloads, Git clone operations, zip extraction, and writes to the configured skills directory.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

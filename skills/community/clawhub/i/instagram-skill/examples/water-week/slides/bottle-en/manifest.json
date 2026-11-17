@@ -1,0 +1,52 @@
+{
+  "slides": 6,
+  "size": "1080x1350",
+  "ratio": "4:5",
+  "files": [
+    {
+      "path": "slide-01.jpg",
+      "bytes": 501952,
+      "type": "cover",
+      "alt": "Cover over a NASA photo of Earth: all of Earth's water in a 1-liter bottle. How much of it would be river?",
+      "text": "How much of it would be river? All of Earth's water in a 1-liter bottle"
+    },
+    {
+      "path": "slide-02.jpg",
+      "bytes": 104886,
+      "type": "stat",
+      "alt": "Put all of Earth's water in a 1-liter bottle and pour out the oceans: 35 ml is left. Source: USGS.",
+      "text": "35 ml is all that's left of a 1-liter bottle of Earth's water once you pour out the oceans"
+    },
+    {
+      "path": "slide-03.jpg",
+      "bytes": 150890,
+      "type": "list",
+      "alt": "Where those 35 ml are: ice caps and glaciers 17.4 ml, groundwater 16.9 ml (more than half salty), ground ice and permafrost 0.22 ml, lakes 0.13 ml, soil, air, swamps, rivers and living things 0.03 ml.",
+      "text": "Where those 35 ml are Ice caps and glaciers: 17.4 ml Groundwater: 16.9 ml, more than half of it salty Ground ice and permafrost: 0.22 ml Lakes: 0.13 ml Soil, air, swamps, rivers and living things: 0.03 ml"
+    },
+    {
+      "path": "slide-04.jpg",
+      "bytes": 93448,
+      "type": "stat",
+      "alt": "25 ml of the bottle is fresh water: 17.4 ml is ice and 7.6 ml is underground. Source: USGS.",
+      "text": "25 ml of the bottle is fresh water: 17.4 ml is ice and 7.6 ml is underground"
+    },
+    {
+      "path": "slide-05.jpg",
+      "bytes": 96238,
+      "type": "stat",
+      "alt": "0.002 ml for every river on Earth: less than a tenth of one drop. Source: USGS.",
+      "text": "0.002 ml for every river on Earth: less than a tenth of one drop"
+    },
+    {
+      "path": "slide-06.jpg",
+      "bytes": 67083,
+      "type": "cta",
+      "alt": "Save this for your next quiz night.",
+      "text": "Save this for your next quiz night"
+    }
+  ],
+  "contactSheet": "contact-sheet.png",
+  "coverGrid": "cover-grid.png",
+  "warnings": []
+}

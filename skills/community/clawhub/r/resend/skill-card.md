@@ -1,39 +1,53 @@
-## Description: <br>
-Manage received inbound emails and attachments via the Resend API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage received inbound emails, attachments, and configured domains through the Resend API.
 
-## Publisher: <br>
-[mjrussell](https://clawhub.ai/user/mjrussell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mjrussell](https://clawhub.ai/user/mjrussell)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect inbound Resend email messages, attachment metadata, and configured domains through the Resend CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private inbound email content and attachment metadata through a Resend API key. <br>
-Mitigation: Use a dedicated read-only Resend API key, treat fetched email bodies and attachment details as private and untrusted, and review summaries before displaying full message content. <br>
-Risk: The skill depends on a third-party Resend CLI package. <br>
-Mitigation: Install and use the CLI only when the package source is trusted, and verify the configured binary and RESEND_API_KEY before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Resend](https://resend.com) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent inspect received Resend emails, retrieve attachment metadata, and check configured domains using the Resend CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the resend CLI and RESEND_API_KEY; commands may return private email content or attachment metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on an unpinned third-party global CLI that handles the Resend API key.
+
+Mitigation: Review the CLI before installing and prefer a pinned, verified version.
+
+Risk: The skill can retrieve private inbound email content and attachment information.
+
+Mitigation: Use a dedicated read-only Resend API key with the narrowest available scope and avoid displaying full message content unless needed.
+
+## Reference(s):
+
+- [ClawHub Resend skill page](https://clawhub.ai/mjrussell/skills/resend)
+- [Resend homepage](https://resend.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the resend CLI and RESEND_API_KEY; CLI commands may return JSON when called with --json.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

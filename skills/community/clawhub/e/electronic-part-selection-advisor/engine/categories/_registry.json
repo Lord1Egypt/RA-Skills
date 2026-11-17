@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "kind": "ppj-category-registry",
+  "engine": "../engine.json",
+  "categories": [
+    {
+      "id": "semiconductor",
+      "file": "semiconductor.json",
+      "display": "半导体 / 集成电路",
+      "verdict_prefix": "PP",
+      "normative_source": "references/pin-to-pin-judgment.md",
+      "status": "active"
+    },
+    {
+      "id": "connector",
+      "file": "connector.json",
+      "display": "连接器",
+      "verdict_prefix": "CP",
+      "normative_source": "references/connector-pin-to-pin-judgment.md",
+      "status": "active"
+    },
+    {
+      "id": "power",
+      "file": "power.json",
+      "display": "电源管理 / 开关稳压",
+      "verdict_prefix": "PM",
+      "normative_source": "references/power-pin-to-pin-judgment.md",
+      "status": "active"
+    }
+  ],
+  "resolution_rule": "未知品类且无法归类 → 不得套用任一现成品类的阈值；判『未核实』并请需求方明确品类。",
+  "extension_note": "新增品类 = 复制任一品类文件，改 id、verdict_prefix、各闸内容，并在本数组追加一条；引擎通用层（engine.json）无需改动。若新品类含结构化前置闸（极性 / 沟道 / 输出结构等），须在判定运行层补对应实现——「只加品类文件即可」对引擎通用层成立、对运行层不成立。"
+}

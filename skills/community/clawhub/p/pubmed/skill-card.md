@@ -1,38 +1,52 @@
-## Description: <br>
-Search and evaluate biomedical literature with effective queries, filters, and critical appraisal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and evaluate biomedical literature with effective queries, filters, and critical appraisal.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, researchers, clinicians, and developers use this skill to structure PubMed searches, apply relevant filters, and critically appraise biomedical literature. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Biomedical literature summaries or appraisal guidance can be mistaken for clinical advice. <br>
-Mitigation: Treat outputs as informational support and consult qualified professionals for clinical decisions. <br>
-Risk: The skill can surface general search and appraisal heuristics, but individual papers may still be outdated, retracted, biased, or low quality. <br>
-Mitigation: Review methods, results, conflicts of interest, publication status, and higher-level evidence before relying on findings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Researchers, clinicians, students, and developers use this skill to plan PubMed searches, apply biomedical literature filters, and critically appraise study quality and relevance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only biomedical literature search and appraisal support; no code execution, credentials, or external tool access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Language filters can exclude relevant non-English biomedical evidence.
+
+Mitigation: Apply language filters only when they fit the research question and available translation resources.
+
+Risk: Search and appraisal guidance can still lead to incomplete or overstated evidence conclusions if users rely on a single paper or weak study design.
+
+Mitigation: Prioritize systematic reviews, meta-analyses, appropriate clinical study designs, replication, and methods review before treating findings as decision-ready.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/pubmed)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance for biomedical literature search and appraisal]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential handling, or hidden behavior is present in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

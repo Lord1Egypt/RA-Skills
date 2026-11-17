@@ -1,0 +1,15 @@
+{
+  "name": "project-daily-recap",
+  "displayName": "Project Daily Recap",
+  "version": "1.0.0",
+  "description": "零LLM依赖的项目进度定时复盘推送技能，每晚8点自动推微信，cron触发",
+  "author": "lynnsudo",
+  "license": "MIT",
+  "pricing": {
+    "model": "one-time",
+    "price": 100
+  },
+  "tags": ["reminder", "weixin", "project-management", "automation", "daily-recap"],
+  "categories": ["productivity", "automation"],
+  "repository": ""
+}

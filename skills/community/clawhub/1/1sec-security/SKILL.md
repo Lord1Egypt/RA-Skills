@@ -191,7 +191,7 @@ intentional for unattended deployments but requires careful validation first.
 1sec enforce dry-run off
 
 # Optional: configure notifications
-1sec config set webhook-url https://hooks.slack.com/services/YOUR/WEBHOOK --template slack
+1sec config set webhook-url REDACTED-SECRET --template slack
 ```
 
 **If you need to reduce enforcement** (e.g., false positive tuning):
@@ -349,7 +349,7 @@ Key config sections: `server`, `bus`, `modules`, `enforcement`, `escalation`,
 # In 1sec.yaml
 alerts:
   webhook_urls:
-    - "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+    - "REDACTED-SECRET"
 
 # Enforcement webhooks support templates:
 # pagerduty, slack, teams, discord, telegram, generic

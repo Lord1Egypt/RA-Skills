@@ -1,0 +1,20 @@
+# Optional comparison vocabulary. Configure only when structured comparison is useful.
+# Categories below are suggestions, not required fields. Add custom categories and criteria
+# that reflect how buyers evaluate this particular product, service, or commercial offer.
+version: 1
+categories:
+  - core_capabilities
+  - service_components
+  - quality_or_performance
+  - access_and_availability
+  - delivery_and_fulfilment
+  - support_and_service_levels
+  - customisation
+  - capacity_or_usage_limits
+  - commercial_terms
+
+attributes: []                    # e.g. {id, category, label, comparison_criterion, evidence_needed}
+comparison_criteria: []           # User-defined criteria; include none if comparison is not applicable
+features: []                      # Optional script-compatible rows: {id, group, ours, desc}
+offering_attributes: []            # Optional mapping to offering.yaml; status may be yes/partial/no
+conjoint: []                      # Optional attribute IDs selected for a choice study

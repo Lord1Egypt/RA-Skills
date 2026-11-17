@@ -1,42 +1,55 @@
-## Description: <br>
-Performs real-time web searches to retrieve up-to-date online information, news, research data, and fact-checking results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smartsearch helps agents search the web through Cloudsway SmartSearch to retrieve up-to-date online information, news, research data, and fact-checking results.
 
-## Publisher: <br>
-[prismheart](https://clawhub.ai/user/prismheart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[prismheart](https://clawhub.ai/user/prismheart)
 
-## Use Case: <br>
-AI agents and LLM systems use this skill to search the web for current information, news, research sources, documentation, and fact checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and API usage are sent to Cloudsway. <br>
-Mitigation: Avoid sending secrets, private customer data, or highly sensitive topics in search requests. <br>
-Risk: The CLOUDSWAYS_AK API key is required to use the service. <br>
-Mitigation: Store the key securely and avoid exposing it in shared logs, screenshots, or troubleshooting output. <br>
+## Use Case:
 
+Developers and AI agent builders use this skill to search the web, retrieve current news and research, verify facts, and optionally fetch webpage text through the Cloudsway API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/prismheart/cloudsway-smartsearch) <br>
-- [Cloudsway homepage](https://cloudsway.ai) <br>
-- [Cloudsway SmartSearch API endpoint](https://aisearchapi.cloudsway.net/api/search/smart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [JSON search results with titles, URLs, snippets, dates, and optional extracted page text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLOUDSWAYS_AK, curl, and jq; query, count, freshness, pagination, and content extraction options are supplied as JSON input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: release metadata) <br>
+Risk: Search queries, filters, and optionally extracted web content are sent to the Cloudsway service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, proprietary context, or personal data in searches.
+
+Risk: Troubleshooting commands that print the API key can expose credentials.
+
+Mitigation: Use a presence check instead of printing the CLOUDSWAYS_AK value.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/prismheart/skills/cloudsway-smartsearch)
+- [Cloudsway homepage](https://cloudsway.ai)
+- [Cloudsway SmartSearch API endpoint](https://aisearchapi.cloudsway.net/api/search/smart)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON search results and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLOUDSWAYS_AK; optional response fields can include snippets, extracted content, main text, URLs, and publication dates.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

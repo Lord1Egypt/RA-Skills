@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents create and optimize in-app paywalls, upgrade screens, upsell modals, and feature gates for free-to-paid, trial-to-paid, and tier-upgrade conversion moments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users create or optimize in-app paywalls, upgrade screens, upsell modals, feature gates, and related free-to-paid conversion moments after users have experienced product value.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Product, growth, and design practitioners use this skill to shape in-product upgrade moments after users have experienced value. It provides guidance for feature gates, usage-limit screens, trial-expiration screens, upgrade prompts, paywall copy, frequency rules, and A/B testing ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may apply broad paywall and upgrade guidance outside its intended in-app conversion scope. <br>
-Mitigation: Use it for paywall, upgrade, upsell, feature-gate, usage-limit, and trial-expiration moments; route pricing strategy, billing disputes, and public pricing pages to more specific skills. <br>
-Risk: Local product-marketing context can influence recommendations for conversion messaging and positioning. <br>
-Mitigation: Review any local product-marketing context file before using its contents to tailor paywall or upgrade advice. <br>
+## Use Case:
 
+Product teams, growth marketers, designers, and developers use this skill to design and improve in-product upgrade prompts for freemium, trial, tier-upgrade, feature-gate, and usage-limit flows. It helps structure paywall timing, copy, value demonstration, plan comparison, A/B tests, and anti-pattern checks.
 
-## Reference(s): <br>
-- [Paywall Experiment Ideas](references/experiments.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-paywall-upgrade-cro) <br>
-- [Publisher profile](https://clawhub.ai/user/mariokarras) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Markdown guidance with structured recommendations, examples, and test ideas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend reading local product-marketing context before tailoring advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; source frontmatter reports 1.1.0) <br>
+Risk: The skill may read local product marketing context files to tailor paywall guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, regulated data, or sensitive customer information in product marketing context files.
+
+Risk: Paywall recommendations can harm user trust if implemented with excessive frequency, hidden dismissal, confusing plan choices, or other pressure tactics.
+
+Mitigation: Use clear escape hatches, frequency caps, honest plan comparisons, and post-launch monitoring for churn, complaints, and annoyance signals.
+
+## Reference(s):
+
+- [Paywall Experiment Ideas](references/experiments.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-paywall-upgrade-cro)
+- [Publisher Profile](https://clawhub.ai/user/mariokarras)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown guidance with structured recommendations, examples, checklists, and copy suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations using local product marketing context when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

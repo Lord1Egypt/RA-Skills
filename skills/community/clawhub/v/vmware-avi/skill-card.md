@@ -1,46 +1,54 @@
-## Description: <br>
-VMware AVI helps agents manage AVI/NSX Advanced Load Balancer virtual services, pool members, SSL checks, analytics, service engine health, and AKO Kubernetes troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages VMware AVI virtual services, pool members, certificates, analytics, and service engines, and troubleshoots AKO Kubernetes operations.
 
-## Publisher: <br>
-[zw008](https://clawhub.ai/user/zw008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zw008](https://clawhub.ai/user/zw008)
 
-## Use Case: <br>
-Platform engineers, SREs, and developers use this skill to inspect and administer VMware AVI/NSX ALB load balancing and AKO ingress environments, including traffic-affecting maintenance workflows and diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This skill can administer live AVI/NSX ALB and AKO environments, including actions that affect application traffic. <br>
-Mitigation: Install it only for intended infrastructure operators, use least-privilege AVI and Kubernetes accounts, and require reviewers to inspect confirmation prompts before traffic-affecting actions. <br>
-Risk: Controller passwords and Kubernetes access may expose sensitive infrastructure if stored or handled casually. <br>
-Mitigation: Prefer a secret manager over plaintext .env files, avoid entering passwords in shell commands, and keep credential files restricted to authorized users. <br>
-Risk: Disabling TLS verification can hide controller impersonation or interception in production environments. <br>
-Mitigation: Keep TLS verification enabled for production and use valid controller certificates. <br>
+## Use Case:
 
+Infrastructure engineers and Kubernetes operators use this skill to inspect and manage AVI load balancing and diagnose AKO ingress, pod, configuration, and synchronization issues.
 
-## Reference(s): <br>
-- [VMware AVI ClawHub Skill Page](https://clawhub.ai/zw008/skills/vmware-avi) <br>
-- [VMware AVI project homepage](https://github.com/zw008/VMware-AVI) <br>
-- [VMware AVI Capabilities](references/capabilities.md) <br>
-- [VMware AVI CLI Reference](references/cli-reference.md) <br>
-- [VMware AVI Setup Guide](references/setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, analysis] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke CLI or MCP tools that inspect or modify AVI Controller and Kubernetes AKO resources when the user has configured credentials and approved write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.3 (source: server release evidence) <br>
+Risk: Controller credentials and Kubernetes access can expose infrastructure data and enable changes to live traffic or AKO configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the intended controller and cluster access, inspect the target and change preview, and confirm before applying state changes. Review the image reference when using a container deployment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zw008/skills/vmware-avi)
+- [Project homepage (release metadata)](https://github.com/vmware-skills/VMware-AVI)
+- [Setup guide](artifact/references/setup-guide.md)
+- [Capabilities and risk gates](artifact/references/capabilities.md)
+- [CLI reference](artifact/references/cli-reference.md)
+- [Agent guardrails](artifact/references/agent-guardrails.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with command examples and operational findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings depend on the configured AVI Controller and Kubernetes context; state-changing actions use confirmation gates.]
+
+## Skill Version(s):
+
+2.5.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

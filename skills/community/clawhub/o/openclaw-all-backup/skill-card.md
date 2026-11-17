@@ -1,40 +1,53 @@
-## Description: <br>
-Creates timestamped full backups of the local OpenClaw configuration directory, including hidden files, credentials, logs, and workspace data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up the local OpenClaw configuration directory, including hidden files, to a timestamped sibling directory.
 
-## Publisher: <br>
-[lijiangtai](https://clawhub.ai/user/lijiangtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijiangtai](https://clawhub.ai/user/lijiangtai)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create local snapshots of their OpenClaw state before changes, migration, or recovery work. It provides backup and restore guidance around the ~/.openclaw directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup directories can contain credentials, logs, workspace files, and other sensitive OpenClaw state. <br>
-Mitigation: Protect each timestamped backup like the original ~/.openclaw directory and avoid sharing or syncing it unintentionally. <br>
-Risk: Restore commands can replace or move the active OpenClaw configuration directory. <br>
-Mitigation: Verify source and destination paths before running restore commands, and keep a separate copy of the current configuration until recovery is confirmed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create a full timestamped local snapshot of ~/.openclaw before changes, migration, or recovery work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lijiangtai/openclaw-all-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a timestamped local backup directory under the user's home directory when the backup script is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The backup may contain credentials, logs, workspace files, and agent state copied from ~/.openclaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat backup directories as sensitive, preserve restrictive permissions, and avoid sharing them.
+
+Risk: A backup that is assumed valid without checking may not support a later restore.
+
+Mitigation: Verify backup contents and integrity before relying on a snapshot for recovery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lijiangtai/skills/openclaw-all-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local backup instructions and command output for timestamped OpenClaw snapshots.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Access US Census international trade data for imports, exports, trade balances, and monthly trends by commodity and country. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access detailed US international trade data including imports, exports, trade balance, and trends by commodity and country.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[brucegutman](https://clawhub.ai/user/brucegutman)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and analysts use this skill to query US Census international trade data through a Pipeworx-hosted MCP service for imports, exports, trade balance, and monthly trends by commodity or country.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Trade query details are sent to a third-party Pipeworx-hosted MCP service.
+
+Mitigation: Avoid including secrets, personal data, or unrelated conversation context in queries.
+
+Risk: Returned trade data is remote service output rather than locally verified Census data.
+
+Mitigation: Validate important figures against authoritative Census sources before relying on them for decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents use this skill to look up US Census international trade information, including import and export values, trade balances with a country, and month-by-month trade trends for a commodity or country. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, API Calls, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: Trade lookup queries are sent to an external Pipeworx-hosted MCP service. <br>
-Mitigation: Do not include confidential business plans, customer data, or sensitive internal context in trade queries unless the Pipeworx provider is trusted for that use. <br>
+**Output Format:** [Markdown or plain text responses from a remote MCP service]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Routes Census trade query details to a third-party Pipeworx endpoint.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown text with JSON MCP configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns read-only trade lookup results from the configured Census Trade MCP server.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

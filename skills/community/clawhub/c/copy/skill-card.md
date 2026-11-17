@@ -1,38 +1,54 @@
-## Description: <br>
-Copy operations reference - file duplication, rsync patterns, CoW, buffer strategies, and cross-platform sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Copy operations reference for file duplication, rsync patterns, copy-on-write behavior, buffer strategies, and cross-platform synchronization.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operators use this skill as a quick reference for duplicating files, syncing directories, setting up backups or mirrors, and choosing copy-on-write or performance-oriented copy patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copy, mirror, delete, raw disk, sudo, remote sync, and source-removal examples can overwrite, remove, or move the wrong data if used with incorrect paths or hosts. <br>
-Mitigation: Verify source and destination paths before execution, prefer dry runs where available, and keep backups for important data. <br>
+## Use Case:
 
+Developers and engineers use this skill as a command-reference guide for duplicating files, synchronizing directories, planning backups or mirrors, and troubleshooting copy-related errors.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style reference text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command examples are printed for review; the skill does not run copy operations automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Copy and synchronization examples can overwrite, delete, or move data if adapted with the wrong paths or destructive options.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source and destination paths, use dry-run modes where available, and keep recoverable backups before running commands such as rsync --delete, dd, or source-file removal.
+
+Risk: Commands involving sudo or remote SSH targets can affect privileged files or systems outside the local workspace.
+
+Mitigation: Confirm the target host, account, permissions, and command flags before execution, and prefer least-privilege access.
+
+## Reference(s):
+
+- [Copy skill on ClawHub](https://clawhub.ai/bytesagain-lab/skills/copy)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-reference output; review generated copy or sync commands before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

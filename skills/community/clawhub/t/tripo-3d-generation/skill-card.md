@@ -1,45 +1,62 @@
-## Description: <br>
-Tripo 3d turns text or images into 3D models and supports rigging, animation, stylization, texturing, and format conversion workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate 3D models from text or images, including characters, objects, scenes, game assets, e-commerce products, architecture models, 3D printing files, rigged characters, animations, stylized models, and exports to GLB, FBX, OBJ, STL, USDZ, and 3MF.
 
-## Publisher: <br>
-[meterlong](https://clawhub.ai/user/meterlong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meterlong](https://clawhub.ai/user/meterlong)
 
-## Use Case: <br>
-External users, developers, and creators use this skill to generate 3D assets from text prompts, images, or file references, then rig, animate, stylize, texture, or convert those assets for games, AR, e-commerce, architecture, and 3D printing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: 3D prompts, public image URLs or file references, task metadata, and an anonymous quota ID are sent to Tripo or the listed proxy for generation workflows. <br>
-Mitigation: Use the skill only when external processing is approved, and avoid confidential designs or private images unless the external service path has been reviewed. <br>
-Risk: Free-tier use relies on the listed proxy, which adds proxy and privacy tradeoffs beyond direct Tripo API usage. <br>
-Mitigation: Configure a personal Tripo API key when direct Tripo routing is preferred. <br>
-Risk: The free-tier anonymous quota identifier can persist locally across runs. <br>
-Mitigation: Delete ~/.tripo-skill-id when you need to reset the free-tier identifier. <br>
+## Use Case:
 
+Developers, designers, and creators use this skill to request text-to-3D or image-to-3D generation, poll task status, retrieve model download links, and perform post-processing such as rigging, animation, stylization, texture generation, and format conversion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meterlong/tripo-3d-generation) <br>
-- [Tripo AI](https://www.tripo3d.ai/) <br>
-- [Tripo API keys](https://platform.tripo3d.ai/api-keys) <br>
-- [Tripo platform](https://platform.tripo3d.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Structured JSON-like responses with task identifiers, status fields, progress messages, and generated model download URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated assets may be exposed as GLB, FBX, OBJ, STL, USDZ, 3MF, rendered image, or PBR model URLs depending on the requested workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release metadata and artifact manifest.json) <br>
+Risk: 3D prompts, image URLs, task IDs, and uploaded file URLs are sent to Tripo or, for free-tier use, to the operator proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit sensitive prompts or private asset URLs; use TRIPO_API_KEY when direct routing to Tripo is preferred over the free-tier proxy.
+
+Risk: Free-tier use relies on a local anonymous identifier stored at ~/.tripo-skill-id when possible.
+
+Mitigation: Delete ~/.tripo-skill-id to reset the local free-tier identifier, or use TRIPO_API_KEY for account-based usage.
+
+Risk: Generated or converted 3D assets may require review before production, printing, game-engine import, or animation use.
+
+Mitigation: Inspect mesh quality, scale, file format, rigging, and animation results before using generated assets in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meterlong/skills/tripo-3d-generation)
+- [Publisher profile](https://clawhub.ai/user/meterlong)
+- [Tripo website](https://www.tripo3d.ai/)
+- [Tripo API platform](https://platform.tripo3d.ai/)
+- [Tripo API documentation](https://platform.tripo3d.ai/docs/generation)
+- [Tripo API keys](https://platform.tripo3d.ai/api-keys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with JSON-like task results, status fields, model download URLs, and inline shell configuration commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return task IDs, generation status, progress, credit information, Tripo model URLs, rendered image URLs, and setup guidance for TRIPO_API_KEY or TRIPO_PROXY_SECRET.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

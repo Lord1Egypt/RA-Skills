@@ -1,40 +1,56 @@
-## Description: <br>
-Simple local security check (firewall, updates, ssh status) without external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple local security check (firewall, updates, ssh status) without external dependencies.
 
-## Publisher: <br>
-[fedrov2025](https://clawhub.ai/user/fedrov2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fedrov2025](https://clawhub.ai/user/fedrov2025)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and system operators use this skill to run a small local health check on macOS or Linux hosts and capture firewall, open-port, software-update, and SSH daemon status in a report.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may prompt for sudo while checking firewall status, open ports, and available updates.
+
+Mitigation: Review check.sh before use, run it from a trusted directory, and approve only the expected local inspection commands.
+
+Risk: The generated report records host-security details such as firewall, listening-port, update, and SSH status in a predictable local file.
+
+Mitigation: Keep the report in a controlled workspace, restrict access to it, and avoid sharing it publicly.
+
+Risk: Running the entire script as root would broaden the impact of any local path or report-file issue.
+
+Mitigation: Run the skill as a normal user and allow sudo only for individual commands when prompted.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, administrators, and local users use this skill to create a quick macOS or Linux security snapshot covering firewall status, listening ports, available software updates, and SSH daemon state. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The local health report may reveal sensitive system details such as open ports, firewall state, update status, and SSH daemon status. <br>
-Mitigation: Treat the generated report as sensitive and share it only with trusted reviewers or administrators. <br>
-Risk: Some checks may request elevated privileges through sudo. <br>
-Mitigation: Review each sudo prompt before approving it and run the skill only when a local machine security snapshot is intended. <br>
+**Output Format:** [Markdown report with local command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fedrov2025/local-healthcheck) <br>
+**Other Properties Related to Output:** [Writes a dated report to memory/healthcheck-YYYY-MM-DD.md and may prompt for sudo during local inspection commands.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a dated local report to memory/healthcheck-YYYY-MM-DD.md.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-Comprehensive travel planning, booking, and management skill for China trips, multi-destination itineraries, family travel logistics, cost optimization, and travel document preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive travel planning, booking, and management skill for planning China trips, managing multi-destination itineraries, coordinating family travel logistics, optimizing travel costs, and preparing travel documents.
 
-## Publisher: <br>
-[newlux](https://clawhub.ai/user/newlux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newlux](https://clawhub.ai/user/newlux)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to plan China travel, compare routes and costs, coordinate bookings, and prepare family travel documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel requirements, visa rules, health requirements, cancellation policies, and booking conditions can change. <br>
-Mitigation: Confirm current requirements and policies with official or trusted sources before making reservations or travel decisions. <br>
-Risk: Travel planning may involve sensitive passport, visa, health, or family details. <br>
-Mitigation: Share sensitive details only when necessary for the specific trip and avoid retaining them in unrelated prompts or artifacts. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to plan China-focused trips, compare routes and costs, prepare travel documents, and coordinate flights, hotels, attractions, tour packages, and family travel needs.
 
-## Reference(s): <br>
-- [China Travel Skill Page](https://clawhub.ai/newlux/china-travel) <br>
-- [Family Travel Checklist](references/family-travel-checklist.md) <br>
-- [International Travel Documents](references/travel-documents.md) <br>
-- [Travel Consultants](references/agents.md) <br>
-- [Hotel Recommendations](references/hotels.md) <br>
-- [Attractions and Sights](references/sights.md) <br>
-- [Flights](references/flights.md) <br>
-- [Tour Packages and Vacations](references/vacations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code or credential handling is included in the skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Broad travel requests may activate the skill even when the user needs destination-specific or official policy guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination, traveler details, dates, and required level of official verification before relying on recommendations.
+
+Risk: Travel document and visa details can be incomplete or outdated.
+
+Mitigation: Verify passport, visa, health, and entry requirements with official government or carrier sources before booking or travel.
+
+Risk: Much of the supporting guidance is in Chinese and may be less accessible to users who do not read Chinese.
+
+Mitigation: Translate or summarize reference guidance for the user before asking them to act on it.
+
+## Reference(s):
+
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Document Requirements](references/travel-documents.md)
+- [Travel Consultants](references/agents.md)
+- [Hotel Recommendations](references/hotels.md)
+- [Attractions and Sights](references/sights.md)
+- [Flights](references/flights.md)
+- [Tour Packages and Vacations](references/vacations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown travel-planning guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual or Chinese-language travel recommendations depending on the referenced material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

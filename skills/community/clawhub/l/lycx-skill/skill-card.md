@@ -1,38 +1,53 @@
-## Description: <br>
-Summarizes long text and extracts key points for documents, conversations, meetings, and reports while preserving the original meaning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes long texts, articles, conversations, meeting notes, and reports by extracting concise summaries and key points without altering the original meaning.
 
-## Publisher: <br>
-[yrqian](https://clawhub.ai/user/yrqian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yrqian](https://clawhub.ai/user/yrqian)
 
-## Use Case: <br>
-External users and developers can use this skill to condense long text, meeting notes, articles, or reports into concise summaries and key-point lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The trigger wording is broad and the bundled helper behaves like a demo stub, so it may summarize unintended or sensitive text if invoked carelessly. <br>
-Mitigation: Review the input context before invocation, avoid sensitive text unless the agent environment is trusted, and validate summaries against the source text before relying on them. <br>
+## Use Case:
 
+Developers and agent users can use this skill to summarize provided Chinese text, documents, meetings, and reports into concise summaries and key-point lists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yrqian/lycx-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured text with a summary, key_points list, and length metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact supports an optional length setting: short, normal, or detail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chinese trigger phrases may route ordinary summarization requests to this skill unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger scope before deployment and limit activation to intended summarization workflows.
+
+Risk: The included implementation is placeholder-style summarization rather than a complete model integration.
+
+Mitigation: Connect it to an approved summarization model or service and test output quality before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yrqian/skills/lycx-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text]
+
+**Output Format:** [Structured text with summary, key_points, original_length, and output_length fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-only summarization output; length mode can be short, normal, or detail]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,64 @@
-## Description: <br>
-openpd automatically collects WTI crude oil and gold price data, analyzes overnight market news, and sends a weekday opening-market prediction report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+openpd automatically collects WTI crude oil and gold market data, analyzes overnight news, and sends a weekday opening-market forecast report.
 
-## Publisher: <br>
-[linshengyyy](https://clawhub.ai/user/linshengyyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linshengyyy](https://clawhub.ai/user/linshengyyy)
 
-## Use Case: <br>
-External users and developers use openpd to automate weekday morning WTI crude oil and gold opening-market reports. The skill combines commodity price data and overnight news into a Markdown report and sends it through OpenClaw messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install persistent weekday cron jobs that continue collecting data and sending market reports. <br>
-Mitigation: Review the exact cron entries before installation and use the documented status or uninstall flow to disable scheduled jobs when they are no longer needed. <br>
-Risk: Commodity and news API keys may be stored in plaintext Python source or configuration files. <br>
-Mitigation: Keep the skill directory private and prefer environment variables or a locked-down secrets file instead of committing credentials into source files. <br>
-Risk: Market-opening predictions can be wrong or misleading if price feeds, news search results, or simple sentiment rules are incomplete. <br>
-Mitigation: Treat reports as informational automation only, review the underlying data before acting, and preserve the documented warning that predictions are not investment advice. <br>
-Risk: Reports are pushed through OpenClaw messaging to configured users or channels. <br>
-Mitigation: Confirm the target user and channel before enabling scheduled sends to avoid disclosing market analysis or operational details to the wrong recipient. <br>
+## Use Case:
 
+External users and developers use this skill to automate weekday collection of commodity prices and news, generate WTI crude oil and gold opening-market outlooks, and push reports through OpenClaw messaging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linshengyyy/market-open-analysis) <br>
-- [README.md](artifact/README.md) <br>
-- [API_KEY.example.md](artifact/API_KEY.example.md) <br>
-- [INSTALL.md](artifact/INSTALL.md) <br>
-- [CommodityPriceAPI](https://commoditypriceapi.com) <br>
-- [CommodityPriceAPI rates endpoint](https://api.commoditypriceapi.com/v2) <br>
-- [East Money Miaoxiang news search endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown market report, JSON price data files, logs, and setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied CommodityPriceAPI, East Money Miaoxiang news API, and OpenClaw messaging configuration; may install weekday cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and user changelog) <br>
+Risk: Recurring weekday cron jobs can run automatically without further user interaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact cron entries before enabling the installer, use the status and uninstall commands to audit or remove them, and do not run the installer as root.
+
+Risk: The skill sends generated market reports through OpenClaw messaging to a configured target and channel.
+
+Mitigation: Confirm the delivery channel and recipient before allowing automated pushes, especially when using shared messaging workspaces.
+
+Risk: API keys are configured in local source files by the provided setup flow.
+
+Mitigation: Store API keys outside the skill source when possible, restrict file permissions, and rotate keys if they are copied into committed or shared files.
+
+Risk: Opening-market predictions may be incorrect or delayed and should not be treated as investment advice.
+
+Mitigation: Use the generated reports as informational summaries only and review the underlying market and news sources before making trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linshengyyy/skills/market-open-analysis)
+- [Artifact README](artifact/README.md)
+- [API key configuration guide](artifact/API_KEY.example.md)
+- [CommodityPriceAPI](https://commoditypriceapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON price snapshots, and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided API keys and OpenClaw messaging configuration; scheduled runs write local data, logs, and reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

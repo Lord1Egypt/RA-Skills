@@ -1,47 +1,62 @@
-## Description: <br>
-Multi-platform video transcript extraction and AI-powered summarization for YouTube, Bilibili, channel scans, and daily video digests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-platform video transcript extraction and AI-powered summarization for YouTube, Bilibili, channel scans, and daily video digests.
 
-## Publisher: <br>
-[mcdowell8023](https://clawhub.ai/user/mcdowell8023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcdowell8023](https://clawhub.ai/user/mcdowell8023)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to extract video transcripts, summarize individual videos or channel batches, and produce daily digest outputs. It is useful when an agent needs structured video metadata, transcript availability, Markdown summaries, and file paths for generated transcript or frame artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Chrome browser cookies while downloading or processing videos. <br>
-Mitigation: Install only after deciding whether browser-cookie access is acceptable, and avoid account-restricted videos unless the operator understands and accepts that access pattern. <br>
-Risk: Transcript text may be sent to external LLM services for summary generation. <br>
-Mitigation: Avoid private or confidential videos unless using a controlled LLM endpoint, and limit environment tokens available to the process. <br>
-Risk: Generated media, transcript, and frame files may remain on disk after processing. <br>
-Mitigation: Choose safe output locations and clean up generated files after use, especially for sensitive video content. <br>
+## Use Case:
 
+Developers and agent users use this skill to extract video transcripts, summarize individual videos, scan channels, and generate scheduled video digest outputs for downstream workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcdowell8023/wansan-video-summarizer) <br>
-- [Source repository metadata](https://github.com/mcdowell8023/oc-youtube-summarizer) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
-- [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api) <br>
-- [innertube](https://github.com/tombulled/innertube) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Text, Files] <br>
-**Output Format:** [JSON file containing video metadata, transcript status, statistics, generated Markdown summaries, and paths to transcript or frame files when produced.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text-only, auto-insert, and ai-review modes; Bilibili processing may also produce local transcript and keyframe files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Transcript excerpts may be sent to configured LLM services or Pollinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with public or non-sensitive videos unless the configured LLM endpoint is trusted for that content.
+
+Risk: Bilibili mode may allow yt-dlp to use Chrome browser cookies.
+
+Mitigation: Avoid Bilibili mode unless cookie use is intended; prefer an isolated environment or a dedicated browser profile.
+
+Risk: Certificate checking may be disabled during Bilibili video retrieval.
+
+Mitigation: Review and remove the no-certificate-check behavior before use in production or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcdowell8023/skills/wansan-video-summarizer)
+- [Publisher profile](https://clawhub.ai/user/mcdowell8023)
+- [Author-provided repository metadata](https://github.com/mcdowell8023/oc-youtube-summarizer)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api)
+- [innertube](https://github.com/tombulled/innertube)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [JSON files containing video metadata, transcript status, markdown summaries, run statistics, and optional extracted frame paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports text-only, automatic frame insertion, and AI-assisted frame review modes; output path is configurable.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

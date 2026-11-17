@@ -1,41 +1,58 @@
-## Description: <br>
-Agent Emacs provides a unified persistent text-based Emacs environment for AI agents that need to maintain state across sessions, perform structural code editing, or manage remote nodes with TRAMP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Emacs gives agents a persistent Emacs daemon for stateful context, structural code editing, Magit workflows, and remote node management through TRAMP.
 
-## Publisher: <br>
-[PiTZE](https://clawhub.ai/user/PiTZE) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pitze](https://clawhub.ai/user/pitze)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run AI coding agents inside a persistent Emacs daemon so they can keep buffers and workspace state across turns, perform structural edits through Emacs Lisp, and manage remote files with TRAMP. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad local and remote control through a persistent Emacs daemon and TRAMP sessions without clear safety boundaries. <br>
-Mitigation: Install only in a trusted or sandboxed workspace, restrict SSH access to approved least-privilege hosts, require explicit user approval for remote commands, and know how to stop the daemon and clear persistent buffers or TRAMP sessions. <br>
-Risk: The bootstrap script expects an agent-init.el dependency that is not present in the artifact evidence. <br>
-Mitigation: Review scripts/bootstrap.sh before execution and fix or verify the missing dependency before using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Usage Guide: Emacs-Agent Interaction](references/usage.md) <br>
-- [Advanced Agent Workflows in Emacs](references/agent-workflows.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to run AI coding agents inside a persistent Emacs daemon that keeps buffers, terminals, remote sessions, and project context available across turns.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell and Emacs Lisp examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational guidance for persistent buffers, TRAMP remote access, Magit workflows, and daemon bootstrap commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent Emacs daemon state can retain buffers, terminals, remote sessions, and memory files after a task ends.
+
+Mitigation: Use the skill only where persistent agent state is intended, and define a cleanup process for daemon buffers, remote sessions, and memory files after each task.
+
+Risk: TRAMP and shell-command workflows can give agents broad persistent authority over remote systems.
+
+Mitigation: Restrict use to approved hosts and accounts, scope SSH credentials and remote permissions tightly, and review remote commands before execution in sensitive environments.
+
+Risk: The bootstrap script starts an Emacs daemon and may copy an init file into the user's Emacs configuration.
+
+Mitigation: Run scripts/bootstrap.sh only from trusted artifact directories and verify the Emacs init file source before installation.
+
+## Reference(s):
+
+- [Usage Guide: Emacs-Agent Interaction](references/usage.md)
+- [Advanced Agent Workflows in Emacs](references/agent-workflows.md)
+- [ClawHub Skill Page](https://clawhub.ai/pitze/skills/agent-emacs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell and Emacs Lisp examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that start or interact with a persistent Emacs daemon, local buffers, TRAMP remote sessions, Magit, and REPL workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

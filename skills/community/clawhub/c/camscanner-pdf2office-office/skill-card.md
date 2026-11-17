@@ -1,40 +1,55 @@
-## Description: <br>
-Use CamScanner to convert PDF documents to editable Word (.docx) or Excel (.xlsx) files with content recognition and format preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use CamScanner to convert PDF documents to editable Word (.docx) or Excel (.xlsx) format while preserving the original formatting where supported.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-Users and agents use this skill to turn selected PDF documents into editable Office files by following CamScanner's upload, convert, and download workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs are uploaded to CamScanner for conversion, which may expose confidential, regulated, or highly sensitive document contents to a third-party service. <br>
-Mitigation: Only send PDFs that are appropriate for CamScanner processing, and avoid confidential, regulated, or highly sensitive documents unless CamScanner's privacy, retention, and compliance terms meet the user's requirements. <br>
+## Use Case:
 
+External users and developers use this skill when they need command-line guidance to upload a PDF to CamScanner, convert it into an editable Word or Excel file, and download the result locally.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/camscanner-ai/camscanner-pdf2office-office) <br>
-- [CamScanner Homepage](https://www.camscanner.com) <br>
-- [CamScanner API Base](https://ai-tools.camscanner.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides conversion to local .docx or .xlsx output files selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata; artifact frontmatter version 1.0) <br>
+Risk: The workflow sends user PDFs to CamScanner's third-party servers for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm third-party document processing is allowed before use, and avoid confidential, regulated, or policy-restricted PDFs unless approved.
+
+Risk: Incorrect input or output paths could upload the wrong document or overwrite an unintended local file.
+
+Mitigation: Review the selected input PDF and output path before running the generated commands.
+
+## Reference(s):
+
+- [CamScanner Homepage](https://www.camscanner.com)
+- [CamScanner PDF conversion API base URL](https://ai-tools.camscanner.com)
+- [ClawHub skill listing](https://clawhub.ai/camscanner-ai/skills/camscanner-pdf2office-office)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command examples for upload, conversion, download, output extension selection, and basic error checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Provides real-time portfolio heat, liquidation pressure, and position exposure risk metrics from APEX Runner's live trading system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.007 USDC per call on Base. Returns 4 signals in one call — liquidation pressure + liquidation magnet + portfolio heat + whale sentiment.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External agents and developers use this skill before large position changes, for periodic risk monitoring, or when building crypto risk dashboards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each use may trigger a paid x402 request to APEX Runner. <br>
-Mitigation: Confirm the per-call cost before use and treat each invocation as a potential paid request. <br>
-Risk: The skill uses an EVM wallet for payment authorization. <br>
-Mitigation: Use a dedicated low-balance wallet rather than a primary wallet. <br>
+## Use Case:
 
+Developers and crypto market participants can retrieve a paid bundle of four market risk signals for dashboards, periodic monitoring, or additional context before position changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/risk-assessment-bundle) <br>
-- [APEX Runner Risk Assessment Bundle](https://apexrunner.ai/signals/risk-assessment-bundle) <br>
-- [APEX Runner Pricing Tier Check](https://apexrunner.ai/signals/my-pricing) <br>
-- [APEX Runner Portfolio Heat Signal](https://apexrunner.ai/signals/portfolio-heat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance] <br>
-**Output Format:** [JSON response with concise usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an x402-authenticated GET request and requires an EVM wallet with USDC on Base mainnet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The x402 client uses EVM_PRIVATE_KEY to sign USDC payments for endpoint calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key in a secret store, use a wallet funded only for intended calls, and retain a strict maximum-payment policy.
+
+Risk: Market signals may be used to inform position changes, and the response states that it is valid for 300 seconds.
+
+Mitigation: Treat the signals as time-sensitive supporting information and independently verify current market conditions before acting.
+
+## Reference(s):
+
+- [APEX Runner Risk Assessment Bundle endpoint](https://apexrunner.ai/signals/risk-assessment-bundle)
+- [ClawHub release page](https://clawhub.ai/kynto2001-ctrl/skills/risk-assessment-bundle)
+- [APEX Runner Trading Intelligence Bundle](https://apexrunner.ai/signals/trading-intelligence-bundle)
+- [APEX Runner Portfolio Heat](https://apexrunner.ai/signals/portfolio-heat)
+- [APEX Runner Agent Stress Index](https://apexrunner.ai/signals/agent-stress-index)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON data]
+
+**Output Format:** [JSON response from the paid endpoint]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Four market signals per call; the response states a 300-second validity period.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

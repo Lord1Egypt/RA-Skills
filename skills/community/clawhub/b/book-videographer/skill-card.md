@@ -1,40 +1,53 @@
-## Description: <br>
-Book videographer services through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Videographer helps agents search for videographer services, check availability, and create bookings through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for videographer services, check provider availability, and create a booking through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The booking flow can involve personal details such as name, email, phone number, location, schedule, and service preferences. <br>
-Mitigation: Review booking details with the user before creating a booking through Lokuli. <br>
-Risk: The skill relies on Lokuli as a third-party booking service. <br>
-Mitigation: Install and use it only when the user accepts Lokuli as the service handling the booking request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-videographer) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to find videographer providers, check available service times, and create a booking through Lokuli when they are ready to share contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Markdown and JSON-RPC tool call arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include booking details such as provider, service, time slot, customer contact information, location, schedule, and service preferences.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details and create an external booking without clear consent or confirmation instructions.
+
+Mitigation: Before creating a booking, confirm the selected provider, service, time, customer name, email, phone number, and the user's intent to book.
+
+Risk: The skill depends on a third-party booking service outside NVIDIA's control.
+
+Mitigation: Review the skill before installing and use it only when the user intends to contact or book a videographer through Lokuli.
+
+## Reference(s):
+
+- [Book Videographer on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-videographer)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown with JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider search criteria, availability checks, and booking details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

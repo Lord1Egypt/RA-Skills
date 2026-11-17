@@ -1,7 +1,7 @@
 ---
 name: "pet-breed-individual-recognition-analysis"
 description: "Accurately identifies cat and dog breeds and supports distinguishing between different individuals in multi-pet households; an essential assistant for intelligent pet butlers. | 宠物品种个体识别技能，精准识别猫狗宠物品种，支持多宠家庭区分不同独立个体，智能宠物管家好帮手"
-version: "1.0.5"
+version: "1.0.24"
 license: "MIT-0"
 ---
 

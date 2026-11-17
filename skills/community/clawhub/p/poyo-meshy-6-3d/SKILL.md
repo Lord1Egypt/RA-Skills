@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-meshy-6-3d
 description: Meshy 6 3D asset generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `meshy-6-text-to-3d`, `meshy-6-image-to-3d`, `meshy-6-multi-image-to-3d`, prompt-to-3D assets, image-to-3D, polling, and webhook integration.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/3d-series/meshy-6-3d","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/meshy-6-3d","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Meshy 6 3D Asset Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/meshy-6-3d>
+- API docs: <https://docs.poyo.ai/api-manual/3d-series/meshy-6-3d>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Meshy 6 3D jobs on PoYo. It helps agents prepare text-to-3D, image-to-3D, and multi-image-to-3D payloads, submit async tasks, and explain polling or webhook follow-up.
 

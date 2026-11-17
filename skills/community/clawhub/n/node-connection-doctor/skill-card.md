@@ -1,45 +1,59 @@
-## Description: <br>
-Diagnoses OpenClaw node connection failures, recommends targeted CLI fixes, and can run confirmed repair steps for pairing tokens and gateway service issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses OpenClaw node connection issues, generates repair guidance, and can optionally run local fixes such as token reset and gateway restart.
 
-## Publisher: <br>
-[huoxinjiang](https://clawhub.ai/user/huoxinjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huoxinjiang](https://clawhub.ai/user/huoxinjiang)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to troubleshoot failed node pairing, gateway status problems, VPN or connectivity failures, and related configuration errors. It provides diagnosis, command guidance, diagnostic reports, and optional confirmed repairs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic repair mode can reset pairing tokens and restart the OpenClaw gateway, interrupting pairing or active connectivity. <br>
-Mitigation: Run diagnosis first, keep repair confirmation enabled, and back up OpenClaw configuration before applying fixes. <br>
-Risk: The skill requests background scheduling permission. <br>
-Mitigation: Grant cron or background permission only when scheduled monitoring is deliberately needed. <br>
-Risk: Network, VPN, firewall, or certificate problems may require manual operator action. <br>
-Mitigation: Use the diagnostic recommendations to verify VPN, Tailscale, firewall, DNS, and system time settings before running repair commands. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to troubleshoot node pairing, gateway status, VPN/Tailscale, and configuration issues, then receive specific commands or an optional guided repair flow.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/huoxinjiang/node-connection-doctor) <br>
-- [Publisher profile](https://clawhub.ai/user/huoxinjiang) <br>
-- [Validation guide](references/validation-guide.md) <br>
-- [FAQ](references/faq.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown and console-style diagnostic guidance with inline shell commands and optional JSON or HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute OpenClaw CLI repair commands when the user confirms fix mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill requests system:cron permission even though the provided diagnostic and repair scripts do not show a scheduled-check requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the cron permission or document the scheduled behavior before installation or publication.
+
+Risk: Repair mode can change OpenClaw configuration by clearing pairing tokens, generating new tokens, and restarting the gateway.
+
+Mitigation: Require an explicit preview and user confirmation, back up relevant configuration first, and provide rollback guidance before applying fixes.
+
+Risk: Documentation mentions silent or automatic repair behavior for system-changing operations.
+
+Mitigation: Avoid silent repair mode until the skill reliably confirms changes and supports recovery if a token reset or gateway restart fails.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huoxinjiang/skills/node-connection-doctor)
+- [Validation Guide](artifact/references/validation-guide.md)
+- [FAQ](artifact/references/faq.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown documentation, CLI command suggestions, and optional HTML or JSON diagnostic reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can execute local OpenClaw CLI repair steps when fix mode is confirmed by the user.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

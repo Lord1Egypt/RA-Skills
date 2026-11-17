@@ -1,39 +1,56 @@
-## Description: <br>
-Backs up personalized OpenClaw configuration and user data to a GitHub repository with dry-run preview and restore support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up personalized OpenClaw configuration and user data to a GitHub repository and can restore that state to a fresh OpenClaw installation.
 
-## Publisher: <br>
-[fangbb-coder](https://clawhub.ai/user/fangbb-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangbb-coder](https://clawhub.ai/user/fangbb-coder)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to back up personalized configuration, memory, identity, task, and custom script files to a GitHub repository, then restore them onto a fresh installation when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups can upload sensitive OpenClaw memory, identity, profile, configuration, and optional credential files to GitHub. <br>
-Mitigation: Use a private repository, set a fine-grained token limited to that repository, run dry-run first, review the file list, and exclude credentials unless they are encrypted. <br>
-Risk: Restore can overwrite existing OpenClaw memory and configuration. <br>
-Mitigation: Treat restore as a high-impact operation, confirm the target repository and latest backup before restoring, and keep a separate local copy of current files before proceeding. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to migrate or recover personalized OpenClaw configuration, memory, profile, scheduled tasks, and selected custom files through a GitHub backup repository.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports backup, restore, and dry-run workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can send sensitive OpenClaw memory, profile, persona, configuration, scheduled tasks, and optional credential files to GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated private repository, configure a fine-grained GitHub token, avoid command-line tokens, and review dry-run output before backing up.
+
+Risk: Restore can overwrite persistent local OpenClaw state from repository content.
+
+Mitigation: Restore only after verifying the repository content and commit, and keep a separate local copy of important files before proceeding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangbb-coder/skills/backup-2-github)
+- [Publisher profile](https://clawhub.ai/user/fangbb-coder)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write backup data to GitHub and overwrite local OpenClaw state during restore when executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

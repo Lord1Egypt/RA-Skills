@@ -1,0 +1,13 @@
+{
+  "composition": {"width": 1080, "height": 608, "fps": 30},
+  "scenes": [{
+    "id": "opening",
+    "durationInFrames": 180,
+    "background": "assets/plates/replace-me.png",
+    "caption": {"title": "Replace this title", "subtitle": "Use independent PNG layers"},
+    "layers": [
+      {"src": "assets/layers/hero.png", "role": "primary", "x": 350, "y": 70, "width": 420, "delay": 12, "z": 5, "from": "bottom"},
+      {"src": "assets/layers/support.png", "role": "secondary", "x": 110, "y": 250, "width": 250, "delay": 42, "z": 4, "from": "left"}
+    ]
+  }]
+}

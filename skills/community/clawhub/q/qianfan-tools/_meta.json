@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7egnap9tcqtfkatnaety3p2182e5dq",
-  "slug": "qianfan-tools",
-  "version": "1.1.0",
-  "publishedAt": 1772914069067
+  "author": "寇助理",
+  "description": "百度千帆工具箱 - 集成百度千帆平台多种免费 API",
+  "id": "qianfan-tools",
+  "name": "qianfan-tools",
+  "tags": ["qianfan", "baidu", "search", "ai", "tools", "text-generation"],
+  "version": "1.1.0"
 }

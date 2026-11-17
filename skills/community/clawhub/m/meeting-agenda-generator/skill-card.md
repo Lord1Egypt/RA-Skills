@@ -1,38 +1,52 @@
-## Description: <br>
-Create structured, productive meeting agendas that respect everyone's time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meeting Agenda Generator creates structured, productive meeting agendas that respect participants' time for team leads, project managers, and meeting facilitators.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and external users who lead meetings use this skill to draft agendas for daily standups, weekly team syncs, brainstorms, reviews, and 1-on-1s with objectives, roles, timing, and action items.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated agendas may include incorrect details or omit important meeting context.
+
+Mitigation: Review each agenda before sharing and confirm objectives, attendees, timing, owners, dates, and next steps.
+
+Risk: Meeting prompts or agenda drafts may contain confidential names, dates, project details, or business context.
+
+Mitigation: Avoid placing sensitive information in the working context unless it is appropriate for the agent environment being used.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Team leads, project managers, managers, and meeting facilitators use this skill to draft time-boxed agendas for standups, team syncs, brainstorms, one-on-ones, and general meetings. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting details can include confidential participant, project, scheduling, or organizational information. <br>
-Mitigation: Avoid providing sensitive meeting details unless they are appropriate for the agent environment, and review generated agendas before sharing them. <br>
+**Output Format:** [Markdown agenda templates and concise planning guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huajianjiu000/meeting-agenda-generator) <br>
+**Other Properties Related to Output:** [Produces structured agendas with objectives, timed topics, roles, action items, and next-meeting placeholders.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown agenda templates and concise facilitation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, network access, install hooks, or hidden behavior reported by the security evidence.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

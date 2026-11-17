@@ -1,42 +1,55 @@
-## Description: <br>
-Operates Docparser through an OOMOL-connected account for reading, creating, and updating Docparser data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, and update Docparser data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to work with Docparser through the OOMOL connector, including importing documents, retrieving parser data and parsed results, checking document status, and scheduling reprocessing or integration queue work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some Docparser import, reparse, reintegrate, or enqueue actions can change remote service state. <br>
-Mitigation: Before executing those actions, show the exact action name and payload and get user confirmation. <br>
-Risk: The skill requires a connected Docparser account and sensitive credentials handled by the OOMOL connector. <br>
-Mitigation: Use the connector-authenticated account only for intended Docparser tasks and follow the setup flow only after an authentication or connection failure. <br>
+## Use Case:
 
+External users and developers use this skill to inspect parsers, retrieve parsed document results and status, and submit supported document uploads or processing requests through a connected Docparser account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-docparser) <br>
-- [Docparser homepage](https://docparser.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live connector schema before action execution and returns connector responses as JSON when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Document imports send a URL to a destination parser and process its contents through the connected OOMOL account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm every import, including its URL and destination parser, and review which documents the connected account may access.
+
+Risk: CLI setup can run downloaded installation scripts, and the security review notes automatic skill installation may occur without separate confirmation.
+
+Mitigation: Use a reviewed CLI release and confirm local installation behavior before running setup scripts.
+
+## Reference(s):
+
+- [Docparser API documentation](https://docparser.com/api/)
+- [Docparser](https://docparser.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON API responses and concise text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

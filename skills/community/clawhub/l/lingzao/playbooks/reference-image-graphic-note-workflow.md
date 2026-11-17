@@ -35,7 +35,7 @@ When the user provides a reference image or benchmark visual, output a complete 
 6. 每页文案：cover/page text, not just topic names
 7. 图片 prompt：for generating or designing each page
 8. 正文文案：caption/body copy
-9. 评论区引导：guide users to comment, ask for topic, send data, or request the next version
+9. 合规安全的置顶/互动建议：do not use comment-gated resources, WeChat/private-contact guidance, or off-platform diversion
 10. 发布后复盘入口：ask user to send the published note link or data screenshot
 
 ## 4-Page Default Structure
@@ -64,7 +64,7 @@ Use when the user wants more complete teaching:
 4. 参考内容怎么筛：收藏、评论、低粉爆款、近期内容
 5. 选题怎么判断：能不能持续、能不能系列化、适不适合自己
 6. 今天先发哪几条：3-5 个可测试选题
-7. 评论引导 / 下一步：让用户评论方向、发链接、回传数据
+7. 置顶/下一步：把方法直接留在正文或图片里，给一个低风险后续动作
 
 ## Visual Direction Rules
 
@@ -93,14 +93,28 @@ If the current task is inside a keyword-to-content package and the user says
 "直接做图", use the selected topic, cover copy, page text, and publishing
 keywords as the image-generation brief.
 
-## Comment Guidance
+## Compliance-Safe Follow-Up Guidance
 
-Every graphic-note package should include one comment prompt, such as:
+Before returning page text, prompt text, caption, keywords, or pinned content,
+run `xhs-platform-management-risk-baseline.md` and
+`xhs-content-compliance-risk-gate.md`. Every graphic-note package may include
+one low-risk pinned note idea, but it must not gate resources behind comments,
+private messages, WeChat, follows, likes, saves, or QR codes. For
+product-related graphic notes, keep the first page focused on public value and
+move product names or service mentions behind the reader benefit.
+
+Good examples:
+
+- 这篇把 4 步直接写在图里，可以先按第 3 页自查。
+- 下一篇继续拆具体案例，先把这一篇的方法跑一遍。
+- 如果你已经发过类似内容，先对照标题、封面、前三行和关键词这 4 项检查。
+
+Bad examples:
 
 - 评论「选题」我发你 3 个适合你的方向
 - 评论你想做的赛道，我帮你拆关键词
-- 把你想模仿的账号发来，我帮你看能不能学
-- 发出去后把链接丢回来，我帮你看标题、封面和数据问题
+- 关注后私信发你
+- 加微信拿模板
 
 ## Follow-Up
 

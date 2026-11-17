@@ -1,41 +1,54 @@
-## Description: <br>
-Generates platform-specific ad copy for Facebook, Google Search, TikTok, and LinkedIn, including headlines, hooks, body copy, CTAs, scripts, responsive search ad components, and A/B test variants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates advertising headlines, hooks, body copy, calls to action, and platform-specific variants for Facebook, Google, TikTok, and LinkedIn.
 
-## Publisher: <br>
-[cofi295](https://clawhub.ai/user/cofi295) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cofi295](https://clawhub.ai/user/cofi295)
 
-## Use Case: <br>
-External marketers, founders, and agencies use this skill to draft campaign-ready ad copy and creative variants for common advertising platforms. Users should review generated claims for accuracy, substantiation, and platform policy compliance before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated advertising copy may include health, weight-loss, supplement, finance, or similar claims that are inaccurate, unsubstantiated, or not allowed by an ad platform. <br>
-Mitigation: Review all compliance-sensitive copy for truthfulness, evidence, required disclosures, and platform policy compliance before use. <br>
-Risk: The skill advertises an off-platform Pro package with additional files and Python scripts that were not part of the reviewed artifact. <br>
-Mitigation: Treat the Telegram Pro package and any advertised scripts as separate, unreviewed material and evaluate them independently before purchasing, installing, or running them. <br>
+## Use Case:
 
+External marketers, founders, agencies, and business teams use this skill to draft platform-specific ad copy, hooks, calls to action, and A/B test variants for campaign development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cofi295/ad-copy-generator-pro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/cofi295) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text ad copy with platform-specific sections, examples, CTA suggestions, and variant lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketing claims and campaign suggestions that require human review for accuracy and advertising compliance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated ad copy may include inaccurate, unsupported, or noncompliant claims, especially for health, supplements, finance, employment, testimonials, and quantified results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify all factual claims and review each ad against the relevant platform policies and jurisdiction rules before publication.
+
+Risk: The artifact promotes an off-platform Telegram Pro purchase.
+
+Mitigation: Evaluate the off-platform offer separately before paying or sharing information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cofi295/skills/ad-copy-generator-pro)
+- [Publisher profile](https://clawhub.ai/user/cofi295)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text ad copy variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces copywriting suggestions that require human review for factual claims, advertising compliance, and platform policy fit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

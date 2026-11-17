@@ -1,5 +1,7 @@
 {
+  "mode": "architecture",
   "title": "Service Map",
+  "summary": "One local request path with async work and model access.",
   "show_grid": false,
   "nodes": [
     {

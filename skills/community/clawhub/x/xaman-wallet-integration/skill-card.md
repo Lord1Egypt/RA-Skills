@@ -1,42 +1,53 @@
-## Description: <br>
-Integrate Xaman wallet (formerly Xumm) for XRP Ledger authentication and transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Xaman wallet SDK to authenticate users, connect wallets, request XRP payments, and manage sessions on the XRP Ledger.
 
-## Publisher: <br>
-[HarleysCodes](https://clawhub.ai/user/HarleysCodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harleyscodes](https://clawhub.ai/user/harleyscodes)
 
-## Use Case: <br>
-Developers use this skill to add Xaman wallet connection, sign-in, session handling, and XRP Ledger payment or signature request flows to web applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet sessions and JWT persistence can expose user account state on shared or compromised devices. <br>
-Mitigation: Configure API key origins and redirect URLs tightly, consider disabling persistent sessions or using custom storage for sensitive apps, and provide logout on shared devices. <br>
-Risk: Payment or signature requests may be misused if users cannot clearly inspect what they are approving. <br>
-Mitigation: Require clear user confirmation for every payment or signature request and harden the app against XSS before using the wallet flow. <br>
-Risk: The integration depends on the external Xaman SDK source. <br>
-Mitigation: Use the SDK only when the application owner trusts the Xaman SDK source and its operational availability. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Xaman Developer Dashboard](https://xumm.app/dashboard/developer) <br>
-- [XummPkce SDK CDN](https://xumm.app/assets/cdn/xumm-oauth2-pkce.min.js) <br>
+## Use Case:
 
+Developers use this skill to add Xaman/Xumm wallet connection, sign-in, session recovery, and XRP Ledger payment or signature request guidance to a web application.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with inline HTML and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [References NEXT_PUBLIC_XAMAN_API_KEY, redirect URL configuration, and Xaman SDK session options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet integration guidance can lead to unsafe session persistence or unclear transaction approval flows if copied without review.
+
+Mitigation: Review SDK delivery and session storage choices, avoid unnecessary persistent browser sessions, and require users to verify transaction details in Xaman.
+
+Risk: Loading the wallet SDK from an external CDN makes the application depend on third-party SDK delivery.
+
+Mitigation: Review the SDK delivery method and vendor-provided SDK path before deployment.
+
+## Reference(s):
+
+- [XummPkce SDK CDN](https://xumm.app/assets/cdn/xumm-oauth2-pkce.min.js)
+- [Xaman Developer Dashboard](https://xumm.app/dashboard/developer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration]
+
+**Output Format:** [Markdown with TypeScript and HTML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API key environment variable guidance and wallet-session handling notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

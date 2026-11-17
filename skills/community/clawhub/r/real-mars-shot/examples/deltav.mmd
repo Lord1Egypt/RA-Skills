@@ -1,0 +1,8 @@
+flowchart LR
+  earth["Earth surface ~9.4 km/s to LEO (estimate, with losses)"] --> leo["LEO"]
+  leo -->|"TLI ~3.15 km/s"| tli["Trans-lunar"]
+  tli -->|"LOI ~0.9"| llo["Low lunar orbit"]
+  llo -->|"descent ~1.9, no atmosphere"| moon["Lunar surface"]
+  leo -->|"TMI ~3.6 km/s min-energy"| tmi["Trans-Mars"]
+  tmi -->|"aerocapture + ~0.6 terminal (estimate)"| mars["Mars surface"]
+  note["DRA 5.0 aggregate: Moon ~9.5 km/s LEO to surface and back; Mars 12-14 km/s"]

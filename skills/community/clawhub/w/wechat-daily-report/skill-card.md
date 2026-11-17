@@ -1,39 +1,53 @@
-## Description: <br>
-Generates mobile-resolution PNG daily report images from WeChat group chat exports by combining chat statistics with AI-generated summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a mobile-resolution PNG daily report from WeChat group chat logs by analyzing chat statistics and AI-generated summary content.
 
-## Publisher: <br>
-[justao](https://clawhub.ai/user/justao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[justao](https://clawhub.ai/user/justao)
 
-## Use Case: <br>
-People analyzing WeChat group chats use this skill to turn authorized chat export JSON into statistics, AI-written summaries, and a phone-sized PNG daily report. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can expose private WeChat chat text, names, secrets, or sensitive messages during AI analysis. <br>
-Mitigation: Use only chat exports you are authorized to process, redact sensitive content before analysis, prefer a local or approved AI provider, and delete generated chat-text and report artifacts when no longer needed. <br>
-Risk: The server security verdict marks this release suspicious and recommends review before installation. <br>
-Mitigation: Review the artifact and generated outputs before deployment, and scan the skill in the target environment before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justao/wechat-daily-report) <br>
+## Use Case:
 
+Developers and operators with authorized WeChat group chat exports use this skill to analyze message activity, prepare AI summary content, and generate a daily PNG report for mobile viewing.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, JSON, Files] <br>
-**Output Format:** [Markdown instructions with bash commands; generated artifacts include JSON, text, and PNG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Final report output is a mobile-resolution PNG long image; intermediate files include stats.json, simplified_chat.txt, and ai_content.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles full private WeChat group chat text, which may include personal or sensitive content.
+
+Mitigation: Use only authorized chat exports, redact sensitive names or messages before processing, and control access to intermediate text, JSON, and PNG report outputs.
+
+Risk: The security evidence flags the release as suspicious because localized metadata is misleading and expected scripts or prompt sources are missing from the artifact.
+
+Mitigation: Review the skill before installation, run it in an isolated environment, and verify the required scripts and prompt source before following install or execution commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justao/skills/wechat-daily-report)
+- [ClawHub publisher profile](https://clawhub.ai/user/justao)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON, Files]
+
+**Output Format:** [Markdown guidance with bash commands, JSON intermediate data, and a PNG report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described workflow produces stats.json, simplified_chat.txt, ai_content.json, and a mobile-resolution PNG report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

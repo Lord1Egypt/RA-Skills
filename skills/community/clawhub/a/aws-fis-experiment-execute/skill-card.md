@@ -1,44 +1,59 @@
-## Description: <br>
-Use when the user wants to run a prepared AWS FIS experiment where the CloudFormation stack has already been deployed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies that a prepared AWS FIS experiment stack is already deployed, runs the experiment after explicit confirmation, monitors progress, and generates a results report.
 
-## Publisher: <br>
-[panlm](https://clawhub.ai/user/panlm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panlm](https://clawhub.ai/user/panlm)
 
-## Use Case: <br>
-Developers and cloud reliability engineers use this skill to validate an existing AWS FIS experiment setup, run the experiment after explicit confirmation, monitor affected services, collect logs, and produce a results report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AWS FIS experiments can affect live cloud resources. <br>
-Mitigation: Use only for approved chaos-engineering work, verify account, region, target resources, stop conditions, and maintenance window, and require explicit confirmation before starting. <br>
-Risk: Default Kubernetes and application log collection may capture secrets, customer data, or regulated information. <br>
-Mitigation: Review the app-service-log-analysis behavior before use and avoid default log collection where sensitive data may appear. <br>
-Risk: Cleanup commands can remove experiment-related cloud resources. <br>
-Mitigation: Run cleanup only after a separate explicit review using least-privilege AWS credentials. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to execute already prepared AWS Fault Injection Simulator experiments, verify stack and resource readiness, collect logs, monitor impact, and create a post-experiment report. It is intended for controlled chaos testing workflows where infrastructure deployment has already happened.
 
-## Reference(s): <br>
-- [README.md](README.md) <br>
-- [CLI Commands Reference](references/cli-commands.md) <br>
-- [Experiment Results Report Template](references/report-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and a local markdown results report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Matches the user's conversation language and writes the final experiment report into the experiment directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can start real AWS fault-injection experiments that affect production resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit user confirmation, review affected resources and stop conditions before execution, and verify all targeted resources are healthy before starting.
+
+Risk: The skill can use broad AWS and Kubernetes permissions to inspect EKS workloads and collect logs.
+
+Mitigation: Run with least-privilege AWS IAM and Kubernetes RBAC, avoid Secret-read permissions where possible, and treat generated logs and reports as sensitive artifacts.
+
+Risk: The workflow depends on the runtime-resolved app-service-log-analysis skill for application discovery and log analysis.
+
+Mitigation: Review the resolved app-service-log-analysis skill before use and confirm its behavior is acceptable in the target environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/panlm/skills/aws-fis-experiment-execute)
+- [CLI Commands Reference](references/cli-commands.md)
+- [Experiment Results Report Template](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report, terminal guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a timestamped experiment results report in the prepared experiment directory and may reference collected log files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

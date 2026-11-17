@@ -1,0 +1,2 @@
+# Text-PDF input only; no TeX or PDF rendering dependencies.
+pypdf>=5,<7

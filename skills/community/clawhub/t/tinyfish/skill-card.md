@@ -1,42 +1,57 @@
-## Description: <br>
-Tinyfish helps agents search the web, fetch URLs, read pages, extract information, and automate browser interactions when live web content is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TinyFish helps agents search the web, fetch page content, produce source-backed research, extract data, and automate browser interactions through the TinyFish CLI.
 
-## Publisher: <br>
-[tinyfish](https://clawhub.ai/user/tinyfish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinyfish](https://clawhub.ai/user/tinyfish)
 
-## Use Case: <br>
-Developers and agents use Tinyfish to gather current web information, read pages, produce source-backed answers, extract structured data, and automate websites through the TinyFish CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authority to use API-authenticated web search and browser automation. <br>
-Mitigation: Use it only in contexts where authenticated web access is acceptable, and review planned website interactions before execution. <br>
-Risk: Browser automation may affect accounts, private pages, forms, purchases, or other sensitive workflows. <br>
-Mitigation: Require explicit user confirmation before login, form submission, account changes, purchases, automated scraping, or actions on private pages. <br>
-Risk: The skill requires sensitive TinyFish credentials. <br>
-Mitigation: Provide credentials through approved secret handling, avoid exposing API keys in prompts or logs, and rotate credentials if disclosure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current web information, inspect URLs, summarize pages, extract structured data, and automate browser-based workflows when static page fetching is insufficient.
 
-## Reference(s): <br>
-- [ClawHub Tinyfish release page](https://clawhub.ai/tinyfish/tinyfish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, JSON, and command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TinyFish CLI authentication through TINYFISH_API_KEY or login for API-authenticated web search and browser automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Remote browsing and form interaction can expose sensitive account content, private URLs, or credentials to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering passwords, API keys, payment data, private URLs, or sensitive account content unless that exposure has been separately reviewed and accepted.
+
+Risk: The documented global CLI installation can broaden local execution and update risk.
+
+Mitigation: Prefer a pinned or isolated CLI installation and review the package before installing or upgrading.
+
+Risk: Browser automation can submit forms, click controls, or perform actions on live websites.
+
+Mitigation: Use narrowly scoped goals, review intended actions before execution where possible, and avoid destructive or account-changing workflows without explicit approval.
+
+## Reference(s):
+
+- [Tinyfish ClawHub skill page](https://clawhub.ai/tinyfish/skills/tinyfish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include URLs, citations, extracted page content, structured JSON, and TinyFish CLI commands.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

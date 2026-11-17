@@ -1,0 +1,35 @@
+# Interview Question Kit - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+role_title: ""
+panel_roles:
+  - ""
+time_limit_minutes: 45
+competencies:
+  - competency: ""
+    must_have_outcome: ""
+    weight: 1
+stages:
+  - name: "phone screen"
+    minutes: 20
+    questions:
+      - question: ""
+        competency: ""
+        follow_ups:
+          - ""
+  - name: "panel interview"
+    minutes: 45
+    questions:
+      - question: ""
+        competency: ""
+        follow_ups:
+          - ""
+rubric:
+  - competency: ""
+    score_1_evidence: ""
+    score_3_evidence: ""
+    score_5_evidence: ""
+do_not_ask:
+  - question: ""
+    reason: ""
+legal_review_flags:
+  - ""

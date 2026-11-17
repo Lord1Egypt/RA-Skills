@@ -1,39 +1,53 @@
-## Description: <br>
-Create and configure OpenClaw cron jobs with correct scheduling, execution modes, and delivery patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and configure OpenClaw cron jobs with correct scheduling, execution modes, and delivery patterns.
 
-## Publisher: <br>
-[kjvarga](https://clawhub.ai/user/kjvarga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kjvarga](https://clawhub.ai/user/kjvarga)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent to define OpenClaw scheduled jobs, including recurring tasks, one-shot reminders, execution mode, delivery mode, and post-creation checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled jobs can persist and run later with the selected agent, session mode, delivery target, or webhook. <br>
-Mitigation: Confirm the schedule, target agent, session mode, delivery target, webhook URL if used, and one-shot versus recurring behavior before adding or testing a job. <br>
-Risk: Outdated or unnecessary cron jobs can continue running after they are no longer needed. <br>
-Mitigation: Periodically review existing cron jobs and delete old jobs that should no longer run. <br>
+## Use Case:
 
+Developers and operators use this skill to create and document OpenClaw scheduled tasks, including recurring jobs, one-shot reminders, execution modes, and delivery settings.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces human-readable setup steps and command examples for OpenClaw cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can create persistent scheduled jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the schedule, agent binding, delivery target, webhook URL, and one-shot deletion settings before allowing a job to run.
+
+Risk: The skill may force immediate execution during testing.
+
+Mitigation: Confirm whether immediate execution is intended before running test commands such as forced cron execution.
+
+## Reference(s):
+
+- [Create Cron Job on ClawHub](https://clawhub.ai/kjvarga/skills/create-cron-job)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and a configuration checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces proposed OpenClaw cron commands and documentation guidance; commands require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

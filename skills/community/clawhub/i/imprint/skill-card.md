@@ -1,44 +1,60 @@
-## Description: <br>
-Adaptive operator modeling for AI agents. Your agent learns who you are by watching, not by being told, and builds a predictive model of your preferences, patterns, and decision style across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive operator modeling for AI agents that builds a local model of operator preferences, patterns, and decision style across sessions.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers and agent operators use Imprint to let an OpenClaw-style agent build and maintain a local behavioral profile from derived interaction signals, then adapt communication, context loading, and prediction behavior over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally builds a local profile of the user's work style, which is privacy-sensitive. <br>
-Mitigation: Use it only in workspaces where this behavior is expected, keep observations to derived behavioral signals, and periodically review, delete, or reset imprint/operator-model.json and imprint/observations/. <br>
-Risk: Shared workspaces can expose operator-model data to other collaborators or agents with workspace access. <br>
-Mitigation: Avoid shared workspaces unless everyone understands the profiling behavior, and keep the model local to the workspace with no network/API pre-fetching. <br>
+## Use Case:
 
+External agent users and developers use Imprint to let an agent observe interaction patterns, maintain a local operator model, and adapt response style, autonomy, and context preparation over time.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TheShadowRose/imprint) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [Implementation guide](artifact/imprint.md) <br>
-- [Operator model schema](artifact/operator-model-schema.json) <br>
-- [Example operator model](artifact/example-model.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown instructions with JSON schema and example model files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local workspace guidance for maintaining imprint/operator-model.json and imprint/observations/ without network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: The skill can silently build a persistent behavioral profile from operator interaction patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear opt-in, expose the model for inspection, and provide reset, edit, and retention controls before enabling persistent learning.
+
+Risk: The skill may read predicted workspace files without clear approval.
+
+Mitigation: Limit pre-loading to the current workspace, avoid sensitive shared workspaces by default, and require explicit file-scope controls for proactive reads.
+
+Risk: Inferred preferences could be used to justify silent autonomy or tool use.
+
+Mitigation: Treat learned preferences as advisory only; never let them override explicit instructions, security policy, or required user approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/imprint)
+- [Implementation guide](artifact/imprint.md)
+- [Operator model schema](artifact/operator-model-schema.json)
+- [Example operator model](artifact/example-model.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, markdown, json]
+
+**Output Format:** [Markdown guidance with JSON schema and example model files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local operator-modeling guidance and file formats for agents; no external API or network output is described.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Detect unexpected system reboots and alert when the system comes back online. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect unexpected system reboots and alert when the system comes back online. Tracks boot history and flags suspicious restarts.
 
-## Publisher: <br>
-[hostilespider](https://clawhub.ai/user/hostilespider) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[hostilespider](https://clawhub.ai/user/hostilespider)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to check whether a host rebooted since the last recorded boot time and to surface reboot status in startup, cron, or heartbeat workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Custom state or history paths can write reboot state into unexpected or shared writable locations.
+
+Mitigation: Run the script as an unprivileged user, prefer the default home-directory state files, and do not pass custom --state, STATE_FILE, or HISTORY_FILE values from untrusted sources.
+
+Risk: Running the reboot check as root from cron can broaden the impact of file writes.
+
+Mitigation: Schedule the check under an unprivileged account unless elevated privileges are explicitly required by the deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to check a local host for unexpected reboots, view boot history, and integrate reboot alerts into cron or heartbeat workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, json, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The reboot checker writes local state and history files and may be scheduled through cron or heartbeat systems. <br>
-Mitigation: Review the shell script before scheduling it, run it as a normal user when possible, and use explicit state, history, and log paths for integrations. <br>
-Risk: Resetting state marks the current boot as known and removes the stored reboot marker. <br>
-Mitigation: Use the reset option only when intentionally accepting the current boot as the baseline. <br>
+**Output Format:** [Plain text status lines or JSON status objects, with bash command examples in the skill documentation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The script writes reboot state and history files locally and exits nonzero when it detects a reboot.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text status lines or JSON from the Bash script, with Markdown guidance in the skill instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reboot state and history to user-configurable local files.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Orchestrate a virtual AI software team to build features, fix bugs, or complete software tasks through a local TeamClaw controller. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a virtual AI software team to build features, fix bugs, or complete software tasks.
 
-## Publisher: <br>
-[topcheer](https://clawhub.ai/user/topcheer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[topcheer](https://clawhub.ai/user/topcheer)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to submit software requirements to TeamClaw, monitor worker progress, review deliverables, answer clarifications, and create or route tasks by role. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad coding requests may be routed to a local TeamClaw controller and workers without clear confirmation or data-use warnings. <br>
-Mitigation: Use the skill only when delegation to TeamClaw is intended; confirm the controller and workers are trusted before submitting intake requests. <br>
-Risk: Sensitive project data or secrets could be sent to TeamClaw workers during orchestration. <br>
-Mitigation: Avoid sending secrets or sensitive project data unless TeamClaw storage, logs, and workspace file access controls have been reviewed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to delegate software implementation, bug fixing, status review, result review, and worker clarifications to a TeamClaw controller and its role-based workers.
 
-## Reference(s): <br>
-- [TeamClaw API Quick Reference](references/api-quick-ref.md) <br>
-- [TeamClaw Repository](https://github.com/topcheer/teamclaw) <br>
-- [TeamClaw Documentation](https://github.com/topcheer/teamclaw/blob/main/README.md) <br>
-- [TeamClaw Releases](https://github.com/topcheer/teamclaw/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize controller status, task progress, deliverables, clarifications, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Broad auto-activation may delegate ordinary build requests to TeamClaw unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when TeamClaw delegation is intended, confirm the controller is trusted, and review what requirements or files may be shared with workers.
+
+Risk: Documented shell examples may encourage pasting user-provided text into JSON payloads.
+
+Mitigation: Avoid sending secrets and prefer safe JSON serialization with jq or a structured HTTP client when submitting user-provided content.
+
+Risk: Controller access can expose team status, task details, messages, clarifications, and workspace file endpoints.
+
+Mitigation: Keep the controller bound to trusted local access and review task results and file interactions before relying on them.
+
+## Reference(s):
+
+- [TeamClaw API Quick Reference](references/api-quick-ref.md)
+- [TeamClaw Repository](https://github.com/topcheer/teamclaw)
+- [TeamClaw Documentation](https://github.com/topcheer/teamclaw/blob/main/README.md)
+- [TeamClaw Changelog](https://github.com/topcheer/teamclaw/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task summaries, status tables, clarification prompts, deliverable reviews, and suggested next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

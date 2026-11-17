@@ -1,57 +1,34 @@
 # Setup — NextJS
 
-Read this when no `~/nextjs/memory.md` exists. Start naturally — don't mention setup.
+Read this when no `~/Clawic/data/nextjs/memory.md` exists. Its job is to establish project context and write the initial memory file.
 
-## Your Attitude
+## Operating stance
 
-You're a Next.js expert who's helped ship hundreds of production apps. You're practical, not theoretical — focus on patterns that work in real codebases. Get excited about helping them build something solid.
+Apply the Core Rules from `SKILL.md`. Prefer inferring context from the codebase over asking; ask only when a decision genuinely depends on the answer.
 
-## Priority Order
+## Establish context
 
-### 1. First: Integration
+Infer as much as possible from the project before asking anything:
 
-Within the first few exchanges, understand how they want Next.js help:
-- "Want me to jump in whenever you're working on Next.js, or only when you ask?"
-- "Should I flag potential issues proactively (caching gotchas, performance), or just help when asked?"
-- "Any specific patterns or conventions you want me to enforce?"
+- **Version and router** — read `package.json` for the `next` version; check for `app/` vs `pages/`.
+- **Stack** — TypeScript, ORM (Prisma/Drizzle), auth library, styling — read the dependencies and config files.
+- **Deployment target** — look for `vercel.json`, `Dockerfile`, or `output` in `next.config.*`.
 
-Save this to their main memory so other sessions know when to activate.
+Record what you cannot infer as `Configuration` variables (see `SKILL.md`) with their defaults, and update them when the user states a preference. Do not interrogate the user for units, schedule, goals, or conventions up front — capture preferences as they surface during real work.
 
-### 2. Then: Understand Their Project
+## What to save
 
-Get the big picture:
-- What are you building? (SaaS, e-commerce, blog, dashboard)
-- Which Next.js version? (13/14/15, App Router or Pages?)
-- What's your stack? (TypeScript? Prisma? Auth?)
-- Deployment target? (Vercel, self-hosted, Docker)
+Write to `~/Clawic/data/nextjs/memory.md`:
 
-### 3. Finally: Conventions (if they want)
-
-Some teams have strong opinions:
-- Component naming (`PascalCase.tsx` vs `kebab-case.tsx`)
-- File organization (feature folders vs type folders)
-- State management (none, Zustand, context)
-- Styling (Tailwind, CSS modules, styled-components)
-
-Only dig into these if they mention conventions matter to them.
-
-## Feedback After Each Response
-
-When they share project info, connect it to how you'll help:
-- "Next.js 15 with App Router and Prisma — nice stack. I'll keep an eye on server/client boundaries and help you avoid the Prisma gotchas with Server Components."
-- "E-commerce with heavy caching — got it. I'll flag when ISR makes sense vs on-demand revalidation."
-
-## What You're Saving (internally)
-
-After learning about their setup, save to `~/nextjs/memory.md`:
 - Next.js version and router type
 - Key dependencies (Prisma, Auth.js, etc.)
 - Deployment target
-- Any explicit conventions they mentioned
-- How proactive they want you to be
+- Any `Configuration` variables the user has set away from their defaults
+- Explicit conventions the user has stated
+- How proactive the user wants you to be (default: flag caching/boundary/performance issues; adjust on request)
 
-For project-specific patterns, use `~/nextjs/projects/{name}.md`.
+For project-specific patterns, use `~/Clawic/data/nextjs/projects/{name}.md`.
 
-## When Done
+## When done
 
-Once you know their stack and how they want help, you're ready. Everything else builds naturally through working together.
+Once the stack and integration preferences are recorded in memory, setup is complete. Remaining preferences accrue through ongoing work.

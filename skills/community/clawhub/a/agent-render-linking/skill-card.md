@@ -1,44 +1,55 @@
-## Description: <br>
-Creates zero-retention agent-render.com links for markdown, code, diffs, CSV, or JSON artifacts so agents can share browser-rendered artifacts instead of raw chat content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates zero-retention agent-render.com links for markdown, code, diffs, CSV, or JSON artifacts so agents can share browser-rendered artifacts instead of raw chat content.
 
-## Publisher: <br>
-[baanish](https://clawhub.ai/user/baanish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baanish](https://clawhub.ai/user/baanish)
 
-## Use Case: <br>
-Developers and agents use this skill to package markdown, code, diffs, CSV, or JSON into Agent Render URLs for browser viewing. It is intended for sharing non-sensitive artifacts through supported chat surfaces or as raw URLs when linked text is unreliable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated URLs contain the artifact content, so anyone with the full link may be able to view the shared artifact. <br>
-Mitigation: Use this workflow only for non-sensitive artifacts and avoid secrets, credentials, confidential files, or regulated data unless the user explicitly accepts that sharing model. <br>
-Risk: Large artifacts may exceed practical URL-fragment or chat-surface budgets. <br>
-Mitigation: Measure available encodings, choose the shortest valid codec, keep artifacts focused, and return a clear budget failure instead of silently truncating content. <br>
-Risk: Linked-text syntax can render incorrectly on chat surfaces that do not support the chosen format. <br>
-Mitigation: Use provider-specific link syntax only where it is supported; otherwise provide a short summary followed by the raw URL. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to package markdown, code, diffs, CSV, or JSON artifacts into agent-render.com links for browser review across chat platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/baanish/agent-render-linking) <br>
-- [Agent Render viewer](https://agent-render.com/) <br>
-- [Agent Render ARX dictionary](https://agent-render.com/arx-dictionary.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown link text, raw URLs, and JSON envelope guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses URL fragments for artifact transport, prefers shortest valid codec, and provides budget-aware failure guidance instead of silent truncation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Generated links can expose private artifacts to anyone who receives the URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets, credentials, confidential code, private customer data, or other sensitive content unless sharing the URL is intentional; use a self-hosted viewer or confirm before generating links for sensitive workflows.
+
+Risk: Large artifacts can exceed practical URL or chat-platform budgets.
+
+Mitigation: Use the shortest supported codec, packed wire mode, and focused artifacts; return a clear budget failure instead of silently truncating content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baanish/skills/agent-render-linking)
+- [Agent Render public viewer](https://agent-render.com)
+- [Agent Render ARX dictionary](https://agent-render.com/arx-dictionary.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or platform-specific linked text containing agent-render.com URLs and concise summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Payload content remains in URL fragments; raw URLs are used when linked text is not reliable for the target chat surface.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

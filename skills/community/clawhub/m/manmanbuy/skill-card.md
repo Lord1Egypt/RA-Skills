@@ -1,41 +1,52 @@
-## Description: <br>
-慢慢买历史价格查询与比价工具，提供商品全网历史价格走势图、真假促销识别和购买时机建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+慢慢买历史价格查询与比价工具，提供商品全网历史价格走势图、真假促销识别和购买时机建议。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Consumers and shopping assistants use this skill to check product price history, compare current prices, identify possible fake promotions, and generate purchase-timing guidance for Chinese shopping contexts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Purchase-timing or rebate guidance may be based on stale, incomplete, or incentive-biased information.
+
+Mitigation: Verify prices, historical lows, promotion claims, and rebate terms independently before making a purchase.
+
+Risk: Future versions that add reminders, account access, or automated tracking could introduce privacy or account-access risk.
+
+Mitigation: Review and rescan future versions before deployment, especially when new automation or account-related behavior is added.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External shoppers use this skill to compare product prices, review historical price trends, identify likely false promotions, and decide whether to buy now or wait. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generic shopping-price phrases may activate the skill unexpectedly. <br>
-Mitigation: Use the skill only for price-history and comparison advice, and confirm that it is relevant before relying on its output. <br>
-Risk: Affiliate, rebate, price-reminder, or final purchase recommendations may be incomplete or incorrect. <br>
-Mitigation: Verify affiliate terms, rebate details, reminder behavior, and final purchase decisions independently before acting. <br>
+**Output Format:** [Markdown price-comparison report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/manmanbuy) <br>
-- [Publisher profile](https://clawhub.ai/user/fangshan101-coder) <br>
+**Other Properties Related to Output:** [Includes product name, current price, historical high and low prices, recent average price, promotion assessment, and buying advice.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown price-comparison report with product, current price, historical prices, promotion assessment, and purchase advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include price-history analysis, suspected false-promotion flags, and buy-or-wait recommendations.] <br>
+0.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

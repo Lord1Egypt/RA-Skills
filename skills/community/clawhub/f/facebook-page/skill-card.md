@@ -1,44 +1,57 @@
-## Description: <br>
-Facebook Page manager for posting, scheduling, replying, moderation, insights, and other Meta Graph API actions using local Page credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook Page manager: post, schedule, reply, get insights, and manage page interactions through Meta Graph API calls using PowerShell.
 
-## Publisher: <br>
-[seph1709](https://clawhub.ai/user/seph1709) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[seph1709](https://clawhub.ai/user/seph1709)
 
-## Use Case: <br>
-Developers, page operators, and automation agents use this skill to manage a Facebook Page through Meta Graph API calls, including content publishing, comment handling, event operations, and insights lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can post, schedule, delete, hide, publish, and moderate public Facebook Page content. <br>
-Mitigation: Manually confirm any action that changes public content or moderation state before execution. <br>
-Risk: The skill uses long-lived local Page credentials stored in ~/.config/fb-page/credentials.json. <br>
-Mitigation: Restrict the credentials file, avoid synced or shared folders, remove FB_APP_SECRET after setup, and rotate the Page token if exposed or the host is compromised. <br>
-Risk: Broad Meta permissions can expand the impact of a mistaken or unauthorized action. <br>
-Mitigation: Grant only the minimum Meta permissions required for the intended workflow. <br>
+## Use Case:
 
+External users and developers use this skill to operate Facebook Pages from an agent, including publishing or scheduling posts, reading insights, handling comments, and setting up the required page token credentials.
 
-## Reference(s): <br>
-- [Published ClawHub Skill](https://clawhub.ai/seph1709/facebook-page) <br>
-- [Meta for Developers](https://developers.facebook.com/apps/) <br>
-- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline PowerShell commands and Meta Graph API request patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces inline API-call guidance; the artifact includes no standalone scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.16 (source: server release metadata, published 2026-03-01) <br>
+Risk: Long-lived Facebook Page credentials could allow broad page access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant only the minimum Meta permissions, remove FB_APP_SECRET after setup, keep credentials out of backups and repositories, and rotate or revoke tokens regularly.
+
+Risk: The skill can perform public-facing or destructive Page actions allowed by the token, including publishing, deletion, and moderation.
+
+Mitigation: Use it only for Pages where this agent access is acceptable and manually confirm destructive or public-facing actions before execution.
+
+## Reference(s):
+
+- [ClawHub Facebook Page skill](https://clawhub.ai/seph1709/skills/facebook-page)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Meta for Developers Apps](https://developers.facebook.com/apps/)
+- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+- [Meta Graph API v25.0 endpoint](https://graph.facebook.com/v25.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline PowerShell examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Meta Graph API v25.0 and a local credentials file at ~/.config/fb-page/credentials.json.]
+
+## Skill Version(s):
+
+1.0.16 (source: ClawHub release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

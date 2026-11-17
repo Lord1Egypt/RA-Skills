@@ -1,45 +1,61 @@
-## Description: <br>
-Operate and troubleshoot the AIHealingMe CLI through the npm package (`aihealingmecli`) for auth, user, audio, plan, chat, emotion, subscription, payload-shaping, command-diagnostic, and API failure-handling workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate and troubleshoot the AIHealingMe CLI through the npm package (`aihealingmecli`). Use when tasks involve auth/user/audio/plan/chat/emotion/subscription workflows, payload shaping, command diagnostics, and API failure handling.
 
-## Publisher: <br>
-[bebetterest](https://clawhub.ai/user/bebetterest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bebetterest](https://clawhub.ai/user/bebetterest)
 
-## Use Case: <br>
-Developers and operators use this skill to run and troubleshoot AIHealingMe CLI commands, shape JSON payloads, diagnose command and API errors, and verify account, healing, chat, emotion, subscription, and raw API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through account, billing, raw API, and sensitive emotional-health workflows. <br>
-Mitigation: Use test accounts where possible, verify `whoami`, region, and API base before mutation, and require explicit human approval before account, billing, delete, notification, raw API, chat, emotion, memory, or behavior actions. <br>
-Risk: Bearer tokens or passwords may be exposed when passed directly on command lines. <br>
-Mitigation: Avoid passing real passwords or bearer tokens on the command line; prefer scoped test credentials and confirm token state with safe inspection commands. <br>
-Risk: The skill depends on the external `aihealingmecli` npm package and live AIHealingMe service behavior. <br>
-Mitigation: Install only if the package is trusted, run smoke checks before operational use, and confirm API target, locale, region, and network behavior before executing state-changing commands. <br>
+## Use Case:
 
+Developers and agents use this skill to operate AIHealingMe CLI workflows, shape command payloads, diagnose failures, and verify command coverage for authentication, healing content, chat, emotion, subscription, memory, behavior, and raw API tasks.
 
-## Reference(s): <br>
-- [Command Map](references/command-map.md) <br>
-- [Error Playbook](references/error-playbook.md) <br>
-- [AIHealingMe](https://aihealing.me/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bebetterest/aiheal-cli-operator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include CLI command sequences, payload-file recommendations, troubleshooting steps, and validation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Unpinned one-shot npm execution could run an unexpected `aihealingmecli` version on sensitive machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a vetted and pinned `aihealingmecli` version or a trusted global install before running commands.
+
+Risk: CLI workflows can affect billing, credentials, uploads/downloads, raw API requests, memory, behavior, chat, and emotional-health data.
+
+Mitigation: Use least-privilege or test credentials and require explicit human approval before sensitive or mutable operations.
+
+Risk: Command failures or validation errors could lead to incorrect retries or unintended requests.
+
+Mitigation: Inspect `ok`, `error.code`, `error.status`, and `error.issues[]` before retrying, and prefer payload files for complex JSON.
+
+## Reference(s):
+
+- [Command Map](references/command-map.md)
+- [Error Playbook](references/error-playbook.md)
+- [AIHealingMe](https://aihealing.me/)
+- [AIHealingMe API](https://aihealing.me/api)
+- [ClawHub Skill Page](https://clawhub.ai/bebetterest/skills/aiheal-cli-operator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands that affect auth, billing, uploads/downloads, raw API requests, memory, behavior, chat, or emotional-health data and should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

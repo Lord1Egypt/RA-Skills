@@ -1,46 +1,60 @@
-## Description: <br>
-Adds cheap OpenRouter model aliases to an OpenClaw setup, advises when to switch models by task complexity, and estimates cost savings without changing the default model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds lower-cost OpenRouter model aliases to an OpenClaw setup and advises when to switch models based on task complexity.
 
-## Publisher: <br>
-[jeffjhunter](https://clawhub.ai/user/jeffjhunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffjhunter](https://clawhub.ai/user/jeffjhunter)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to add OpenRouter model aliases, pick cost-focused presets, receive model-switching guidance, and estimate or track savings for agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add or remove OpenClaw model aliases and restart the OpenClaw gateway. <br>
-Mitigation: Review each approval prompt, confirm the selected preset or alias before execution, and remove aliases that are no longer wanted. <br>
-Risk: The skill uses the user's OpenRouter account and requires OpenRouter credentials through OpenClaw. <br>
-Mitigation: Use OpenClaw's auth wizard instead of pasting API keys into chat, and monitor OpenRouter usage or billing after enabling aliases. <br>
-Risk: The cost tracker keeps a local task and savings log under ~/.openclaw. <br>
-Mitigation: Reset or delete the tracker if local task history should not be retained. <br>
+## Use Case:
 
+External developers and OpenClaw users use this skill to add task-specific model aliases, estimate model costs, and receive guidance on when to switch between cheaper or more capable OpenRouter models.
 
-## Reference(s): <br>
-- [OpenClaw Cost Optimizer on ClawHub](https://clawhub.ai/jeffjhunter/openclaw-cost-optimizer) <br>
-- [Publisher profile: jeffjhunter](https://clawhub.ai/user/jeffjhunter) <br>
-- [Model reference](MODEL-REFERENCE.md) <br>
-- [OpenRouter](https://openrouter.ai) <br>
-- [Jeff J Hunter](https://jeffjhunter.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and chat commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenClaw, OPENROUTER_API_KEY, and user approval for OpenClaw alias, auth, and gateway commands; may write a local savings log under ~/.openclaw.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill asks the agent to run local OpenClaw commands and can make changes to model aliases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed command before approval and only approve expected OpenClaw model or gateway commands.
+
+Risk: The cost tracker may write task descriptions to ~/.openclaw/cost-tracker.md and could expose sensitive task, customer, or project details.
+
+Mitigation: Avoid using tracker features with sensitive work, or disable/reset the tracker when sensitive context may be recorded.
+
+Risk: The security summary flags tracker append/reset behavior as unsafe because shell interpolation could execute unintended commands from task text.
+
+Mitigation: Treat tracker-writing behavior as high risk until it is changed to write safely without shell interpolation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jeffjhunter/skills/openclaw-cost-optimizer)
+- [Publisher Profile](https://clawhub.ai/user/jeffjhunter)
+- [OpenRouter](https://openrouter.ai)
+- [Model Reference](artifact/MODEL-REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and chat commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a local cost tracker at ~/.openclaw/cost-tracker.md.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

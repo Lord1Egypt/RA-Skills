@@ -1,37 +1,52 @@
-## Description: <br>
-Break impulse buying habits with spending streaks, urge tracking, and savings milestones <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Break impulse buying habits with spending streaks, urge tracking, and savings milestones
 
-## Publisher: <br>
-[jhillin8](https://clawhub.ai/user/jhillin8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhillin8](https://clawhub.ai/user/jhillin8)
 
-## Use Case: <br>
-External users use this skill to track no-spend streaks, log buying urges, monitor resisted-purchase savings, and set savings goals while working to reduce impulse spending. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt users to record sensitive spending, debt, habit, or emotional-trigger details. <br>
-Mitigation: Keep entries limited to what is useful, avoid unnecessary sensitive detail, and confirm local storage and deletion controls when privacy matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jhillin8/quit-overspending) <br>
+## Use Case:
 
+External users use this skill to track no-spend streaks, log impulse-buying urges, monitor money saved from resisted purchases, and review spending-trigger patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured tracking prompts and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local personal spending, urge, trigger, and savings-goal details supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The assistant may help track spending urges, savings goals, and related habit notes that users could consider sensitive.
+
+Mitigation: Use the skill only when comfortable storing those notes locally, and avoid recording unnecessary sensitive financial or personal details.
+
+Risk: The 'stop overspending' trigger could be confused with a cancellation-style command in some environments.
+
+Mitigation: Confirm the user's intent before treating cancellation-like language as a request to use this skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhillin8/skills/quit-overspending)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and habit-tracking prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Helps structure local notes about no-spend streaks, shopping urges, savings goals, and resisted purchases.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

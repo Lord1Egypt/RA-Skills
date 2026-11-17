@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn78r3ca13npsxrn5f905res8n821ssm",
-  "slug": "qiniu-kodo",
-  "version": "1.0.3",
-  "publishedAt": 1772817015394
+  "name": "qiniu-kodo",
+  "version": "1.0.0",
+  "description": "七牛云 KODO 对象存储技能",
+  "author": "33",
+  "created": "2026-03-06",
+  "tags": ["qiniu", "kodo", "oss", "cloud", "storage"],
+  "requirements": {
+    "bins": ["node", "npm"],
+    "packages": ["qiniu"]
+  },
+  "config": {
+    "configFile": "config/qiniu-config.json"
+  }
 }

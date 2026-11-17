@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "brands": [
+    {"official": "ASUS", "aliases": ["ASUS", "华硕"]},
+    {"official": "GIGABYTE", "aliases": ["GIGABYTE", "技嘉"]},
+    {"official": "MSI", "aliases": ["MSI", "微星"]},
+    {"official": "ASRock", "aliases": ["ASROCK", "华擎"]},
+    {"official": "Colorful", "aliases": ["COLORFUL", "七彩虹"]},
+    {"official": "ZOTAC", "aliases": ["ZOTAC", "索泰"]},
+    {"official": "GALAX", "aliases": ["GALAX", "影驰"]},
+    {"official": "SAPPHIRE", "aliases": ["SAPPHIRE", "蓝宝石"]},
+    {"official": "PowerColor", "aliases": ["POWERCOLOR", "撼讯"]},
+    {"official": "PNY", "aliases": ["PNY"]},
+    {"official": "Intel", "aliases": ["INTEL", "英特尔"]},
+    {"official": "AMD", "aliases": ["AMD"]},
+    {"official": "NVIDIA", "aliases": ["NVIDIA", "英伟达"]}
+  ],
+  "series": [
+    {"brand": "GIGABYTE", "official": "AORUS", "categories": ["gpu", "mb"], "patterns": ["AORUS", "大雕", "超级雕", "小雕"]},
+    {"brand": "GIGABYTE", "official": "AERO", "categories": ["gpu", "mb"], "patterns": ["AERO", "雪鹰"]},
+    {"brand": "GIGABYTE", "official": "EAGLE", "categories": ["gpu", "mb"], "patterns": ["\\bEAGLE\\b", "猎鹰"]},
+    {"brand": "GIGABYTE", "official": "GAMING OC", "categories": ["gpu"], "patterns": ["GAMING\\s*OC", "魔鹰(?!X)"]},
+    {"brand": "GIGABYTE", "official": "WINDFORCE", "categories": ["gpu"], "patterns": ["WINDFORCE", "风魔"]},
+    {"brand": "GIGABYTE", "official": "GAMING X", "categories": ["mb"], "patterns": ["GAMING\\s*X", "魔鹰X"]}
+  ]
+}

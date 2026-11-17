@@ -1,40 +1,57 @@
-## Description: <br>
-Complete online shopping purchases on online stores through the Credpay Checkout API with x402 payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete online shopping purchases on any online store using the Credpay Checkout API with x402 payments.
 
-## Publisher: <br>
-[jelilat](https://clawhub.ai/user/jelilat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jelilat](https://clawhub.ai/user/jelilat)
 
-## Use Case: <br>
-Agents assisting users with online purchases use this skill to collect required checkout details, request a quote, submit an x402 payment-backed checkout, and report order status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The checkout flow can send personal shipping and contact details to a third-party Credpay endpoint. <br>
-Mitigation: Confirm the merchant, item, quantity, total price, destination address, and contact details with the user before submitting checkout data. <br>
-Risk: The skill can trigger payment-linked checkout and may require additional authorization if the order total exceeds the quote. <br>
-Mitigation: Require an explicit user confirmation step for initial and additional x402 payment authorization, and stop instead of blind-retrying failed orders. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jelilat/shopify-checkout) <br>
-- [Credpay Checkout API endpoint](https://checkout-agent.credpay.xyz) <br>
+## Use Case:
 
+External users use this skill to complete online purchases by providing product, contact, shipping, and payment details so an agent can request a quote, submit checkout, and report order status.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and JSON status responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns checkout request IDs, polling status, completed order details, or failure codes and messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may share email, phone, shipping address, product details, and payment information with Credpay.
+
+Mitigation: Show the user the personal and checkout data that will be sent and obtain confirmation before submitting checkout requests.
+
+Risk: The skill may authorize USDC payments on Base, including an additional payment if the final order total exceeds the quoted amount.
+
+Mitigation: Require explicit user confirmation of the recipient, token, chain, total amount, maximum payment amount, and any extra charge before sending an x402 payment.
+
+Risk: Creating more than one checkout for the same intent can duplicate purchase attempts.
+
+Mitigation: Track the active requestId and do not start another checkout for the same user intent until the current request completes or fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jelilat/skills/shopify-checkout)
+- [Credpay Checkout API base URL](https://checkout-agent.credpay.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and JSON checkout status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires product details, email, shipping address, goods total, and explicit x402 payment authorization; checkout status is polled until completion, failure, or timeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-ABI lifecycle management for smart contract projects, including ABI generation, drift detection, proxy ABI handling, and typed frontend integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ABI Toolchain helps developers manage smart contract ABI lifecycle tasks, including ABI syncing, ABI drift checks, proxy ABI handling, and typed frontend integration.
 
-## Publisher: <br>
-[old-greggyboy](https://clawhub.ai/user/old-greggyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[old-greggyboy](https://clawhub.ai/user/old-greggyboy)
 
-## Use Case: <br>
-Developers and engineers use this skill to keep smart contract ABIs synchronized with frontend code, compare ABI changes, and apply Foundry, Hardhat, Viem, Wagmi, and proxy ABI patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sync script can write outside the intended ABI destination and has a fallback command-safety issue. <br>
-Mitigation: Review or patch scripts/sync-abi.sh before CI or automatic build-hook use; run it only in trusted repositories, validate .abi-sync entries, constrain output paths under ABI_DEST, and prefer passing file paths to Python as arguments. <br>
+## Use Case:
 
+Developers and engineers use this skill to keep smart contract ABIs synchronized with frontend code, compare ABI changes, and configure type generation or CI checks for Foundry, Hardhat, Viem, and Wagmi workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/old-greggyboy/abi-toolchain) <br>
-- [ABI formats reference](references/abi-formats.md) <br>
-- [Viem ABI types](https://viem.sh/docs/glossary/types#abi) <br>
-- [Wagmi CLI](https://wagmi.sh/cli/getting-started) <br>
-- [Foundry forge build artifacts](https://book.getfoundry.sh/reference/forge/forge-build) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell, JSON, TypeScript, JavaScript, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scripts for ABI synchronization and ABI diffing; users should review script behavior before CI or build-hook use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The bundled sync script can overwrite unintended files through unsafe path handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run sync-abi.sh only in trusted repositories, keep ABI_DEST and contract mappings under review, and inspect generated file changes before committing or deploying.
+
+Risk: Crafted artifact paths can influence the Python fallback used when jq is unavailable.
+
+Mitigation: Prefer jq for ABI extraction and avoid running the fallback against untrusted artifact trees or untrusted .abi-sync and ABI_CONTRACTS values.
+
+Risk: Generated CI guidance can introduce unreviewed toolchain dependencies.
+
+Mitigation: Pin and review Wagmi CLI and related dependencies before adopting generated CI commands.
+
+## Reference(s):
+
+- [ABI Formats Reference](references/abi-formats.md)
+- [Viem ABI Types](https://viem.sh/docs/glossary/types#abi)
+- [Wagmi CLI](https://wagmi.sh/cli/getting-started)
+- [Foundry Forge Build](https://book.getfoundry.sh/reference/forge/forge-build)
+- [ClawHub Skill Page](https://clawhub.ai/old-greggyboy/skills/abi-toolchain)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code examples, shell commands, JSON snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose CI checks and script usage for ABI synchronization and comparison.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

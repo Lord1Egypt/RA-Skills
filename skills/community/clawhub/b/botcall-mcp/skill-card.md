@@ -1,44 +1,59 @@
-## Description: <br>
-Give your AI agent a real phone number for SMS verification. Provisions numbers, receives SMS, and extracts verification codes via the botcall API. Requires a BOTCALL_API_KEY from botcall.io. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your AI agent a real phone number for SMS verification. Provisions numbers, receives SMS, and extracts verification codes via the botcall API. Requires a BOTCALL_API_KEY from botcall.io.
 
-## Publisher: <br>
-[danecodes](https://clawhub.ai/user/danecodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danecodes](https://clawhub.ai/user/danecodes)
 
-## Use Case: <br>
-Developers and AI-agent users use botcall-mcp to connect an MCP-capable agent to Botcall so it can provision phone numbers, read SMS messages, and retrieve verification codes for authorized workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to Botcall phone numbers and SMS messages, including verification codes. <br>
-Mitigation: Use it only for accounts and services you are authorized to manage, and avoid exposing verification codes in prompts or logs. <br>
-Risk: BOTCALL_API_KEY is required and can authorize Botcall API usage. <br>
-Mitigation: Protect BOTCALL_API_KEY like a password, store it in environment configuration, and rotate it if it is exposed. <br>
-Risk: The release is installed through an npm package before the MCP server runs. <br>
-Mitigation: Review the npm package before running it in environments where phone numbers, SMS messages, or account workflows are sensitive. <br>
+## Use Case:
 
+Developers and external users use this MCP server to provision phone numbers, retrieve SMS messages, and extract verification codes for accounts and services they are authorized to verify.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danecodes/botcall-mcp) <br>
-- [Botcall](https://botcall.io) <br>
-- [npm package](https://www.npmjs.com/package/botcall-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown setup guidance and MCP tool outputs containing phone numbers, SMS messages, verification codes, and usage data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BOTCALL_API_KEY; get_code may long-poll for up to 30 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill gives an agent access to phone-number provisioning, SMS messages, and verification codes, which can expose sensitive account verification material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for accounts and services the user is authorized to verify, and treat SMS contents and verification codes as sensitive.
+
+Risk: The documented setup installs an unpinned third-party MCP package.
+
+Mitigation: Prefer a pinned or otherwise vetted package version before deployment.
+
+Risk: Botcall API usage may incur plan charges and relies on an API key.
+
+Mitigation: Monitor Botcall plan usage and avoid storing broad or long-lived API keys in configuration files.
+
+## Reference(s):
+
+- [botcall.io](https://botcall.io)
+- [botcall-mcp npm package](https://www.npmjs.com/package/botcall-mcp)
+- [ClawHub skill page](https://clawhub.ai/danecodes/skills/botcall-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide installation of an unpinned third-party MCP package and handling of sensitive SMS verification content.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

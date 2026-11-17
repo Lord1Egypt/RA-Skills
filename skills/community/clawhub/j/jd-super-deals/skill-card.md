@@ -1,43 +1,57 @@
-## Description: <br>
-Provides a JD Super Deals shopping search tool for finding JD self-operated subsidized products with keyword, price, rating, sorting, and pagination filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询京东超级补贴频道商品，筛选京东自营、高好评商品，并支持关键词、价格、补贴力度排序和分页浏览。
 
-## Publisher: <br>
-[cn-shopping](https://clawhub.ai/user/cn-shopping) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-shopping](https://clawhub.ai/user/cn-shopping)
 
-## Use Case: <br>
-External users and shopping agents use this skill to search JD Super Deals products, compare prices and subsidy amounts, filter by category or budget, and receive structured product details with purchase links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping searches, price filters, and pagination requests are sent through the publisher's Tencent cloud proxy. <br>
-Mitigation: Avoid entering sensitive personal data in search terms and install only when this proxy data flow is acceptable. <br>
-Risk: Returned purchase links may be affiliate or tracking links, and product availability or prices can change after retrieval. <br>
-Mitigation: Review the destination link and confirm final merchant, price, subsidy, and terms on JD before buying. <br>
-Risk: The security summary warns not to assume every result is exclusively JD self-operated despite the skill description. <br>
-Mitigation: Treat product metadata as advisory and verify seller status on the product page before purchase. <br>
+## Use Case:
 
+External shoppers use this skill to find JD.com self-operated Super Subsidy products by category, budget, quality threshold, and discount strength. Agents can return product summaries, prices, image URLs, and purchase links for comparison and shopping guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/cn-shopping/jd-super-deals) <br>
-- [Publisher profile](https://clawhub.ai/user/cn-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Markdown, Guidance] <br>
-**Output Format:** [JSON response containing a summary string and structured product list suitable for Markdown rendering with product images and links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include product name, image URL, price, coupon price, subsidy amount, shop and brand names, category fields, sales, rating, and buy URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Search terms and query parameters are sent through the publisher's Tencent Cloud proxy, and the remote proxy's filtering and data-handling behavior is outside the local skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher and proxy trust model before installation, avoid sending sensitive queries, and monitor or restrict outbound access according to deployment policy.
+
+Risk: The package includes a reusable proxy token, which could permit unintended use of the remote service if shared broadly.
+
+Mitigation: Replace the bundled token with a deployment-specific secret where supported and rotate credentials if the package is redistributed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-shopping/skills/jd-super-deals)
+- [Publisher profile](https://clawhub.ai/user/cn-shopping)
+- [京东自营新品首发](https://clawhub.ai/cn-shopping/jd-new-arrivals)
+- [京东自营历史最低价](https://clawhub.ai/cn-shopping/jd-lowest-price)
+- [购物比价助手](https://clawhub.ai/cn-shopping/best-price)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [JSON string with human-readable summary and product data suitable for Markdown rendering]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product entries may include names, prices, discount percentages, shop and brand fields, image URLs, purchase URLs, categories, order counts, and good-comment rates.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

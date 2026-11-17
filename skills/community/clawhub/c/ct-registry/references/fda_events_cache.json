@@ -1,0 +1,11 @@
+{
+  "_meta": {
+    "description": "Local FDA events cache for ct-registry aggregate.py. Exported from OpenFDA public data. Update quarterly.",
+    "source": "https://open.fda.gov/",
+    "last_updated": null,
+    "version": "1.0"
+  },
+  "drug_approvals": [],
+  "shortages": [],
+  "recalls": []
+}

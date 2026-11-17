@@ -1,43 +1,55 @@
-## Description: <br>
-Create a clear, polished immigration law firm handout with visuals, FAQs, and next steps to educate clients effectively. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a clear, polished immigration law firm handout with visuals, FAQs, and next steps to educate clients effectively.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Immigration attorneys and legal operations teams use this skill to draft client education handouts with explanations, FAQs, visuals, and next steps. The output is for educational drafting support and should be reviewed by a licensed immigration attorney before client delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares Bash and local file-read access that is not explained by its handout-drafting purpose. <br>
-Mitigation: Install only if that access is acceptable, run it in a constrained workspace, and review any proposed tool use before allowing shell or file access. <br>
-Risk: Generated immigration-law education content may be inaccurate, incomplete, or mistaken for legal advice. <br>
-Mitigation: Use outputs as general educational drafts only and require review by a licensed immigration attorney before sending materials to clients. <br>
-Risk: Client or case-specific information may be exposed if unnecessary source material is provided. <br>
-Mitigation: Provide only the minimum source material needed for drafting and avoid including sensitive case details unless approved for the execution environment. <br>
+## Use Case:
 
+Immigration attorneys and legal operations teams use this skill to draft client education handouts with visuals, FAQs, and clear next steps. Outputs should be reviewed by an attorney before client delivery or treatment as legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-generate-immigration-law-firm-client-education-handout) <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-immigration-law-firm-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FAQ sections, visual suggestions, and next-step language; attorney review is required before client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests Bash and broad Read access even though its core purpose is handout generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and remove Bash and broad Read access, or restrict access to user-selected documents only.
+
+Risk: Immigration-law education drafts may be mistaken for client-specific legal advice.
+
+Mitigation: Treat outputs as drafts for attorney review before sending to clients or relying on them for legal guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-generate-immigration-law-firm-client-education-handout)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-immigration-law-firm-client-education-handout)
+- [SkillBoss setup guide](https://skillboss.co/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown handout draft with FAQ content, visual guidance, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include image-generation guidance; attorney review is required before client use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

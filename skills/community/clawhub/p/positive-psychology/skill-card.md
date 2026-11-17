@@ -1,38 +1,53 @@
-## Description: <br>
-Positive Psychology is a mindful companion skill that uses Adlerian teleology and positive psychology principles to help users move from anxiety, self-doubt, procrastination, confusion, or helplessness toward small present-moment actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Positive Psychology is a Chinese-language companion skill that uses Adlerian teleology and positive psychology to provide acceptance, encouragement, and small-step action guidance for users expressing anxiety, self-doubt, procrastination, confusion, or helplessness.
 
-## Publisher: <br>
-[shizhouchanga](https://clawhub.ai/user/shizhouchanga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shizhouchanga](https://clawhub.ai/user/shizhouchanga)
 
-## Use Case: <br>
-External users and agent builders use this skill to guide supportive coaching-style conversations that acknowledge difficult emotions, explore purpose behind avoidance or self-doubt, and identify a small next action. It is not a substitute for qualified mental health care or emergency support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encounter users in emotional distress, including crisis language, without a complete safety path. <br>
-Mitigation: Review before installation and add a crisis-safety protocol that directs users with emergencies, self-harm thoughts, or serious mental health situations to immediate human, local emergency, or qualified professional support. <br>
+## Use Case:
 
+External users and assistant builders use this skill to respond empathetically to anxiety, self-doubt, procrastination, confusion, and helplessness. It guides the agent to acknowledge feelings, explore purpose, reframe the situation, and suggest a small present-moment action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shizhouchanga/positive-psychology) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language guidance and example response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only emotional support guidance with no tool, API, or credential requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may respond to self-harm, suicidality, or immediate-danger language with ordinary coaching rather than crisis support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add explicit crisis handling that pauses ordinary coaching, encourages local emergency support or crisis lines, and suggests contacting a trusted person nearby.
+
+Risk: Users may mistake supportive coaching for professional mental-health care.
+
+Mitigation: Keep the existing non-clinical framing and route serious psychological issues to qualified professional help.
+
+## Reference(s):
+
+- [Positive Psychology on ClawHub](https://clawhub.ai/shizhouchanga/skills/positive-psychology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, shell commands, credential access, persistence, or external tool behavior is described in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

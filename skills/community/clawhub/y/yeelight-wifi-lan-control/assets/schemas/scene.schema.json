@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yeelight.com/schemas/yeelight-wifi-lan-control/scene.schema.json",
+  "title": "Yeelight WiFi LAN scene",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "source", "scope", "actions", "revision", "payloadHash"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1, "maxLength": 160},
+    "name": {"type": "string", "minLength": 1, "maxLength": 80},
+    "source": {"enum": ["recommended", "custom", "snapshot"]},
+    "recommendedId": {"type": "string", "maxLength": 80},
+    "provenance": {"type": "string", "maxLength": 240},
+    "description": {"type": "string", "maxLength": 500},
+    "readonly": {"type": "boolean"},
+    "scope": {"$ref": "#/$defs/scope"},
+    "actions": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"$ref": "#/$defs/action"}},
+    "snapshotDeviceIds": {"type": "array", "minItems": 1, "maxItems": 256, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 160}},
+    "deviceIds": {"type": "array", "minItems": 1, "maxItems": 256, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 160}},
+    "revision": {"type": "integer", "minimum": 1},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "updatedAt": {"type": "string", "format": "date-time"},
+    "payloadHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "scope": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"enum": ["home", "room", "group", "device", "subset"]},
+        "id": {"type": "string", "maxLength": 160},
+        "deviceIds": {"type": "array", "minItems": 1, "maxItems": 256, "uniqueItems": true, "items": {"type": "string", "maxLength": 160}}
+      },
+      "additionalProperties": false
+    },
+    "action": {
+      "type": "object",
+      "required": ["set"],
+      "properties": {
+        "target": {"$ref": "#/$defs/scope"},
+        "rank": {"type": "integer"},
+        "set": {"type": "object", "minProperties": 1, "additionalProperties": true}
+      },
+      "additionalProperties": false
+    }
+  }
+}

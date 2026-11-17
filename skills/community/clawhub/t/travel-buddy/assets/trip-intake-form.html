@@ -1,0 +1,1496 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title data-i18n="page.title">Travel Buddy · 开始规划旅行</title>
+  <style>
+    :root { --ink:#162235; --muted:#5d6b7c; --paper:#f7f9fc; --card:#fff; --accent:#0b6e69; --soft:#e4f4f1; --line:#d9e2ec; --warn:#8a4b08; --warn-bg:#fff5df; --radius:16px; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; } main { max-width:1000px; margin:auto; padding:28px 18px 56px; }
+    h1 { margin:0 0 8px; font-size:clamp(2rem,5vw,3.35rem); line-height:1.06; letter-spacing:-.04em; } h2 { margin:0 0 12px; font-size:1.28rem; } p { margin:0 0 10px; } .hero,.section,.output { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:0 8px 24px rgb(20 40 65 / .05); } .hero { padding:26px; background:linear-gradient(135deg,#fff,var(--soft)); margin-bottom:18px; } .section,.output { padding:20px; margin:16px 0; }
+    .eyebrow,.hint { color:var(--muted); font-size:.92rem; } .eyebrow { color:var(--accent); font-weight:800; letter-spacing:.08em; text-transform:uppercase; } .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); } label { display:block; font-weight:750; margin:0 0 5px; } label span { color:var(--muted); font-weight:400; } input,select,textarea { width:100%; border:1px solid #b9c7d6; border-radius:10px; padding:10px 11px; color:var(--ink); background:#fff; font:inherit; } textarea { min-height:72px; resize:vertical; }
+    fieldset { margin:12px 0 0; border:1px solid var(--line); border-radius:11px; padding:12px; } legend { padding:0 6px; font-weight:750; } .checks { display:flex; flex-wrap:wrap; gap:8px 14px; } .checks label { display:flex; align-items:flex-start; gap:7px; font-weight:500; } .checks input { width:auto; margin-top:5px; }
+    .notice { border-left:4px solid var(--warn); background:var(--warn-bg); border-radius:0 10px 10px 0; padding:13px; } button { border:0; border-radius:10px; background:var(--accent); color:#fff; padding:10px 14px; font:inherit; font-weight:800; cursor:pointer; } button.ghost { background:#e8eef4; color:var(--ink); } button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid #79c8c2; outline-offset:2px; } .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; } .status { min-height:24px; color:#075952; font-weight:700; margin-top:10px; } .error { color:#a72525; } pre { max-height:380px; overflow:auto; margin:0; padding:14px; border-radius:10px; background:#101b2a; color:#e9f2ff; font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre-wrap; word-break:break-word; }
+    @media (max-width:600px) { main { padding:18px 12px 36px; } .hero,.section,.output { padding:17px; } }
+  </style>
+  <style>
+    :root { --ink:#132238; --muted:#627086; --paper:#f6f1e9; --card:#fffdfa; --accent:#0f766e; --accent-deep:#075c58; --accent-soft:#dff3ee; --sky:#dbe9ef; --line:#d9d9d1; --warm:#ee8d4a; --warm-soft:#fff0e3; --shadow:0 20px 54px rgb(26 42 57 / .10); --radius:22px; }
+    body { background:radial-gradient(circle at 8% -8%,#d5ede8 0 13%,transparent 32%),radial-gradient(circle at 100% 5%,#f9dfc3 0 12%,transparent 29%),var(--paper); }
+    main { max-width:1080px; padding:36px 22px 72px; }
+    .hero { position:relative; isolation:isolate; overflow:hidden; margin:0; padding:clamp(30px,5vw,54px); border:0; border-radius:30px; color:#f8fffd; background:linear-gradient(135deg,#102c43 0%,#105f63 57%,#0d776e 100%); box-shadow:0 24px 60px rgb(10 41 55 / .22); }
+    .hero::before { content:""; position:absolute; z-index:-1; width:420px; height:420px; right:-150px; top:-245px; border:1px solid rgb(255 255 255 / .22); border-radius:50%; box-shadow:0 0 0 36px rgb(255 255 255 / .06),0 0 0 98px rgb(255 255 255 / .04); }
+    .hero::after { content:"02"; position:absolute; z-index:-1; right:30px; bottom:-52px; color:rgb(255 255 255 / .10); font:800 clamp(9rem,24vw,17rem)/1 ui-serif,Georgia,serif; letter-spacing:-.1em; }
+    .hero h1 { max-width:720px; margin-bottom:14px; color:#fff; } .hero p { max-width:700px; color:#e3f5f1; font-size:1.03rem; } .hero .eyebrow { color:#b6e9df; } .hero .hint { color:#c7e7e2; }
+    .journey-rail { display:flex; align-items:center; gap:10px; margin:16px 0 20px; padding:10px 12px; border:1px solid rgb(19 34 56 / .09); border-radius:16px; background:rgb(255 253 250 / .72); backdrop-filter:blur(12px); }
+    .journey-step { display:flex; align-items:center; gap:8px; min-width:0; color:var(--muted); font-size:.87rem; font-weight:750; } .journey-step b { display:grid; width:28px; height:28px; place-items:center; border-radius:50%; background:#e6e9e8; color:#647077; font-size:.72rem; } .journey-step.complete { color:var(--accent-deep); } .journey-step.complete b { background:var(--accent-soft); color:var(--accent-deep); } .journey-step.active { color:var(--ink); } .journey-step.active b { background:var(--accent); color:#fff; box-shadow:0 5px 12px rgb(15 118 110 / .25); } .journey-line { flex:1; min-width:22px; height:1px; background:linear-gradient(90deg,var(--accent),#d4d9d6); }
+    .notice { margin:0 0 18px; border:1px solid #f1c99f; border-left:0; border-radius:18px; padding:15px 17px 15px 19px; color:#744016; background:linear-gradient(100deg,#fff7ed,#fff0e2); box-shadow:0 10px 22px rgb(99 67 32 / .06); } .notice strong { color:#9b4a14; }
+    .section,.output { border:1px solid rgb(19 34 56 / .10); border-radius:var(--radius); background:rgb(255 253 250 / .92); box-shadow:var(--shadow); } .section { padding:clamp(22px,3vw,30px); margin:18px 0; } h2 { color:var(--ink); letter-spacing:-.02em; } .section > h2 { display:flex; align-items:center; gap:10px; } .section > h2::before { content:""; width:9px; height:9px; border-radius:50%; background:var(--warm); box-shadow:0 0 0 5px #fff0e3; }
+    label { color:#25364b; margin-bottom:7px; } label span,.hint { color:var(--muted); } .grid { gap:18px; } input,select,textarea { min-height:48px; border:1px solid #cbd5d4; border-radius:13px; padding:11px 13px; background:#fff; box-shadow:inset 0 1px 0 rgb(19 34 56 / .03); transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease; } textarea { min-height:106px; } input:hover,select:hover,textarea:hover { border-color:#9fbab7; } input:focus,select:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 4px rgb(15 118 110 / .13); outline:0; }
+    fieldset { margin-top:16px; padding:15px; border:1px solid #d9e4e2; border-radius:16px; background:#f8fbfa; } legend { color:var(--ink); font-size:.94rem; } .checks { gap:9px; } .checks label { margin:0; padding:8px 11px; border:1px solid #d6e2e0; border-radius:999px; background:#fff; transition:background .18s ease,border-color .18s ease; } .checks label:has(input:checked) { border-color:#74bdb4; background:var(--accent-soft); color:var(--accent-deep); } .checks input { accent-color:var(--accent); }
+    .actions { gap:11px; margin-top:20px; } button { min-height:46px; border-radius:13px; padding:11px 17px; background:linear-gradient(135deg,var(--accent),#138b80); box-shadow:0 10px 18px rgb(15 118 110 / .20); transition:transform .18s ease,box-shadow .18s ease,filter .18s ease; } button:hover { filter:brightness(1.03); transform:translateY(-1px); box-shadow:0 14px 23px rgb(15 118 110 / .25); } button.ghost { background:#edf1ef; box-shadow:none; } button.ghost:hover { background:#e1e8e5; } .status { padding:4px 0 0; } .output { margin-top:24px; overflow:hidden; } .output h2 { padding-bottom:12px; border-bottom:1px solid #e1e6e3; } pre { border-radius:14px; background:#132238; box-shadow:inset 0 1px 0 rgb(255 255 255 / .06); }
+    @media (max-width:600px) { main { padding:20px 13px 46px; } .hero { border-radius:24px; padding:29px 23px 38px; } .journey-rail { overflow:auto; } .journey-step { white-space:nowrap; } .section,.output { padding:19px; } .checks label { width:100%; } }
+  </style>
+  <style>
+    /* A label that wraps to two lines used to push its control below the rest of the row. */
+    .grid > div { display:flex; flex-direction:column; }
+    .grid > div > input,.grid > div > select,.grid > div > textarea { margin-top:auto; }
+    .optional-block { margin-top:16px; border:1px solid #d9e4e2; border-radius:16px; background:#f8fbfa; }
+    .optional-block > summary { padding:13px 15px; color:var(--accent-deep); font-weight:750; cursor:pointer; list-style:none; }
+    .optional-block > summary::-webkit-details-marker { display:none; }
+    .optional-block > summary::before { content:"＋ "; font-weight:800; }
+    .optional-block[open] > summary::before { content:"− "; }
+    .optional-block > .optional-body { padding:0 15px 15px; }
+    .optional-block .hint { margin:0 0 10px; }
+    .field-error { border-color:#c0392b !important; box-shadow:0 0 0 4px rgb(192 57 43 / .12) !important; }
+    .error-summary { margin:14px 0 0; padding:13px 15px; border:1px solid #e8b4ad; border-left:4px solid #c0392b; border-radius:0 14px 14px 0; background:#fdf1ef; color:#8e2b1e; font-weight:600; }
+    .error-summary ul { margin:7px 0 0; padding-left:20px; font-weight:500; }
+    .draft-note { margin-top:10px; color:var(--muted); font-size:.88rem; }
+    /* `.grid > div { display:flex }` above outranks the browser's own [hidden] rule, so every
+       follow-up question inside a grid was on screen whatever the script decided. */
+    [hidden] { display:none !important; }
+    /* Translatable text inside a label is wrapped in span.t so a language switch can replace it
+       without deleting the input beside it; it keeps the label's own weight and colour, not the
+       muted hint style every other span in a label gets. */
+    label span.t { color:inherit; font-weight:inherit; }
+    .hero-top { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 14px; margin-bottom:10px; }
+    .hero-top .eyebrow { margin:0; }
+    .lang-toggle { min-height:36px; padding:6px 15px; border:1px solid rgb(255 255 255 / .42); border-radius:999px; background:rgb(255 255 255 / .12); color:#fff; font-size:.9rem; box-shadow:none; }
+    .lang-toggle:hover { background:rgb(255 255 255 / .22); box-shadow:none; }
+    /* On a phone each step could shrink below its own label, so the connector lines ran through
+       the text and the badges squashed into ovals -- in English at 390px, in Chinese below ~360px.
+       Steps keep their width; the decorative lines go, and a step that does not fit wraps rather
+       than being clipped behind a scroll. */
+    @media (max-width:600px) {
+      .journey-rail { flex-wrap:wrap; justify-content:space-between; gap:6px 10px; }
+      .journey-step { flex-shrink:0; }
+      .journey-line { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero"><div class="hero-top"><p class="eyebrow">Travel Buddy · Trip discovery</p><button type="button" id="lang-toggle" class="lang-toggle" lang="en">English</button></div><h1 data-i18n="hero.title">先找到适合你的目的地</h1><p data-i18n="hero.lead">填写本次旅行的关键条件。提交后信息会回传到当前电脑的 Travel Buddy 终端，用于筛选和比较目的地；它不会创建订单、登录或付款。</p><p class="hint" data-i18n-html="hero.hint">带 <b>必填</b> 的是影响可行性的问题，其余可以留空。折叠区里的细节可以等选定目的地之后再补。</p><p id="saved-profile-note" class="hint" hidden></p></header>
+    <nav class="journey-rail" aria-label="旅行规划流程" data-i18n-aria-label="rail.aria"><span class="journey-step complete"><b>01</b><span class="t" data-i18n="rail.profile">旅行档案</span></span><span class="journey-line" aria-hidden="true"></span><span class="journey-step active"><b>02</b><span class="t" data-i18n="rail.trip">本次需求</span></span><span class="journey-line" aria-hidden="true"></span><span class="journey-step"><b>03</b><span class="t" data-i18n="rail.destinations">目的地方案</span></span></nav>
+    <div class="notice" data-i18n-html="notice.privacy"><strong>提示：</strong>请勿填写护照号、证件照片、支付信息或精确住址。若有已保存的旅行档案，系统会在后续复用稳定偏好，不必重复填写。</div>
+    <form id="trip-form" class="trip-flow" novalidate>
+
+      <section class="section"><h2 data-i18n="section.origin">1. 从哪里出发、何时出发</h2>
+        <div class="grid">
+          <div><label for="city"><span class="t" data-i18n="label.city">出发城市</span> <span data-i18n="hint.required">必填</span></label><input id="city" required placeholder="例如：上海" data-i18n-placeholder="ph.city"></div>
+          <div><label for="country"><span class="t" data-i18n="label.country">出发国家/地区</span> <span data-i18n="hint.required">必填</span></label><input id="country" required placeholder="例如：中国" data-i18n-placeholder="ph.country"></div>
+          <div><label for="start-date"><span class="t" data-i18n="label.start-date">确定的出发日期</span> <span data-i18n="hint.start-date">已定日期就填这里</span></label><input id="start-date" type="date"></div>
+          <div><label for="end-date"><span class="t" data-i18n="label.end-date">确定的返回日期</span> <span data-i18n="hint.end-date">与出发日期成对填写</span></label><input id="end-date" type="date"></div>
+          <div><label for="month"><span class="t" data-i18n="label.month">还没定日期？填月份或季节</span> <span data-i18n="hint.month">与上面二选一</span></label><input id="month" placeholder="例如：2026-10 或 10 月" data-i18n-placeholder="ph.month"></div>
+          <div><label for="days"><span class="t" data-i18n="label.days">预计几天</span> <span data-i18n="hint.days">未填确定日期时必填</span></label><input id="days" type="number" min="1" max="60" placeholder="例如：7" data-i18n-placeholder="ph.days"></div>
+          <div><label for="flexibility" data-i18n="label.flexibility">日期灵活度</label><select id="flexibility"><option value="" data-i18n="option.unspecified">未指定</option><option value="固定" data-i18n="option.flexibility.2">固定</option><option value="± 1–2 天" data-i18n="option.flexibility.3">± 1–2 天</option><option value="一周内" data-i18n="option.flexibility.4">一周内</option><option value="只看季节" data-i18n="option.flexibility.5">只看季节</option></select></div>
+          <div><label for="booked-already"><span class="t" data-i18n="label.booked-already">已经订好的部分</span> <span data-i18n="hint.booked-already">必填——订了什么决定这趟还能改什么</span></label><select id="booked-already"><option value="" data-i18n="option.choose">请选择</option><option value="nothing" data-i18n="option.booked-already.nothing">都还没订</option><option value="transport" data-i18n="option.booked-already.transport">去程/回程交通已订</option><option value="lodging" data-i18n="option.booked-already.lodging">住宿已订</option><option value="both" data-i18n="option.booked-already.both">交通和住宿都订了</option><option value="other" data-i18n="option.booked-already.other">其他已订（票、租车等）</option></select></div>
+          <div id="booked-detail-wrap" hidden><label for="booked-detail"><span class="t" data-i18n="label.booked-detail">↳ 订了什么，写清楚</span> <span data-i18n="hint.booked-detail">必填——航班号、酒店名、日期、能不能退改</span></label><input id="booked-detail" placeholder="如：CX270 4/17 阿姆→香港，不可退；尖沙咀某酒店 4/17–4/23 免费取消至 4/10" data-i18n-placeholder="ph.booked-detail"></div>
+          <div><label for="fixed-commitments"><span class="t" data-i18n="label.fixed-commitments">必须迁就的固定安排</span> <span data-i18n="hint.optional">可选</span></label><input id="fixed-commitments" placeholder="例如：10 月 12 日必须回来上班；朋友婚礼在 10 月 11 日" data-i18n-placeholder="ph.fixed-commitments"></div>
+          <div><label for="airports"><span class="t" data-i18n="label.airports">可接受的机场</span> <span data-i18n="hint.comma-optional">逗号分隔，可选</span></label><input id="airports" placeholder="例如：PVG, SHA" data-i18n-placeholder="ph.airports"></div>
+        </div>
+      </section>
+
+      <section class="section"><h2 data-i18n="section.destination">2. 想去哪里</h2>
+        <div class="grid">
+          <div><label for="scope"><span class="t" data-i18n="label.scope">目的地状态</span> <span data-i18n="hint.required">必填</span></label><select id="scope" required><option value="" data-i18n="option.choose">请选择</option><option value="fixed" data-i18n="option.scope.fixed">已定到具体城市或地区（例如：京都、马略卡、劳德代尔堡）</option><option value="anchored" data-i18n="option.scope.anchored">国家或大区定了，城市还没定（例如：日本、美国、加州）</option><option value="continent" data-i18n="option.scope.continent">只限定大洲/大区域（例如：东南亚、南欧）</option><option value="open" data-i18n="option.scope.open">完全开放，帮我推荐</option></select></div>
+          <div><label for="places"><span class="t" data-i18n="label.places">具体是哪里</span> <span id="places-hint" data-i18n="hint.comma">逗号分隔</span></label><input id="places" placeholder="例如：意大利, 日本关西" data-i18n-placeholder="ph.places"></div>
+          <div><label for="trip-shape"><span class="t" data-i18n="label.trip-shape">这趟想怎么走</span> <span data-i18n="hint.trip-shape">必填——决定整份行程的结构</span></label><select id="trip-shape" required><option value="" data-i18n="option.choose">请选择</option><option value="single_base" data-i18n="option.trip-shape.single_base">住一个地方，当天来回玩周边</option><option value="multi_city" data-i18n="option.trip-shape.multi_city">分几站走，每站住几晚</option><option value="planner_decides" data-i18n="option.trip-shape.planner_decides">我只给范围，你来决定分几站</option></select></div>
+          <div id="multi-stop-wrap" hidden>
+            <div><label for="max-stops"><span class="t" data-i18n="label.max-stops">↳ 最多分几站</span> <span data-i18n="hint.max-stops">必填，含第一站</span></label><input id="max-stops" type="number" min="2" max="8" placeholder="例如：3" data-i18n-placeholder="ph.max-stops"></div>
+            <div><label for="min-nights-per-stop"><span class="t" data-i18n="label.min-nights-per-stop">↳ 每站至少住几晚</span> <span data-i18n="hint.min-nights-per-stop">必填——填 1 会得到一份天天换酒店的行程</span></label><input id="min-nights-per-stop" type="number" min="1" max="14" placeholder="例如：2" data-i18n-placeholder="ph.min-nights-per-stop"></div>
+            <div><label for="return-to-first"><span class="t" data-i18n="label.return-to-first">↳ 最后要回到第一站离境吗</span> <span data-i18n="hint.return-to-first">必填——决定要不要留出回程那一段</span></label><select id="return-to-first"><option value="" data-i18n="option.choose">请选择</option><option value="yes" data-i18n="option.return-to-first.yes">要，从第一站回程</option><option value="no" data-i18n="option.return-to-first.no">不用，从最后一站直接走</option><option value="either" data-i18n="option.return-to-first.either">都行，你按票价和时间定</option></select></div>
+          </div>
+          <div><label for="excluded"><span class="t" data-i18n="label.excluded">本次不想去的地方</span> <span data-i18n="hint.comma-optional">逗号分隔，可选</span></label><input id="excluded" placeholder="例如：海岛, 某国家" data-i18n-placeholder="ph.excluded"></div>
+          <div><label for="purpose" data-i18n="label.purpose">这趟旅行的主要目的</label><select id="purpose"><option value="" data-i18n="option.unspecified">未指定</option><option value="leisure" data-i18n="option.purpose.leisure">纯度假放松</option><option value="sightseeing" data-i18n="option.purpose.sightseeing">观光探索</option><option value="food" data-i18n="option.purpose.food">吃喝为主</option><option value="outdoor" data-i18n="option.purpose.outdoor">户外/运动</option><option value="family" data-i18n="option.purpose.family">带家人/亲子</option><option value="visiting" data-i18n="option.purpose.visiting">探亲访友</option><option value="celebration" data-i18n="option.purpose.celebration">纪念日/蜜月/庆祝</option><option value="work_adjacent" data-i18n="option.purpose.work_adjacent">出差顺带</option><option value="other" data-i18n="option.purpose.other">其他</option></select></div>
+        </div>
+      </section>
+
+      <section class="section"><h2 data-i18n="section.party-budget">3. 同行人和预算</h2>
+        <div class="grid">
+          <div><label for="count"><span class="t" data-i18n="label.count">同行人数</span> <span data-i18n="hint.required">必填</span></label><input id="count" required type="number" min="1" max="20" placeholder="例如：2" data-i18n-placeholder="ph.count"></div>
+          <div><label for="composition" data-i18n="label.composition">同行构成</label><select id="composition"><option value="" data-i18n="option.unspecified">未指定</option><option value="独自" data-i18n="option.composition.2">独自</option><option value="情侣/两人" data-i18n="option.composition.3">情侣/两人</option><option value="朋友" data-i18n="option.composition.4">朋友</option><option value="家庭" data-i18n="option.composition.5">家庭</option><option value="多人团体" data-i18n="option.composition.6">多人团体</option></select></div>
+          <div><label for="ages" data-i18n="label.ages">相关年龄或需求</label><input id="ages" placeholder="例如：两位成人；或 1 位 6 岁儿童" data-i18n-placeholder="ph.ages"></div>
+          <div><label for="mobility" data-i18n="label.mobility">行动便利/照护需求</label><input id="mobility" placeholder="例如：避免长距离步行" data-i18n-placeholder="ph.mobility"></div>
+          <div><label for="dietary"><span class="t" data-i18n="label.dietary">饮食限制或忌口</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="dietary" placeholder="例如：素食, 清真, 花生过敏, 不吃辣" data-i18n-placeholder="ph.dietary"></div>
+          <div><label for="currency"><span class="t" data-i18n="label.currency">预算币种</span> <span data-i18n="hint.required">必填</span></label><select id="currency" required><option value="" data-i18n="option.choose">请选择</option><option value="CNY" data-i18n="option.currency.CNY">CNY 人民币</option><option value="EUR" data-i18n="option.currency.EUR">EUR 欧元</option><option value="USD" data-i18n="option.currency.USD">USD 美元</option><option value="GBP" data-i18n="option.currency.GBP">GBP 英镑</option><option value="JPY" data-i18n="option.currency.JPY">JPY 日元</option><option value="KRW" data-i18n="option.currency.KRW">KRW 韩元</option><option value="HKD" data-i18n="option.currency.HKD">HKD 港币</option><option value="TWD" data-i18n="option.currency.TWD">TWD 新台币</option><option value="SGD" data-i18n="option.currency.SGD">SGD 新加坡元</option><option value="AUD" data-i18n="option.currency.AUD">AUD 澳元</option><option value="CAD" data-i18n="option.currency.CAD">CAD 加元</option><option value="THB" data-i18n="option.currency.THB">THB 泰铢</option><option value="OTHER" data-i18n="option.currency.OTHER">其他币种（自定义）</option></select></div>
+          <div id="custom-currency-wrap" hidden><label for="custom-currency"><span class="t" data-i18n="label.custom-currency">币种代码</span> <span data-i18n="hint.custom-currency">三位字母，例如 CHF</span></label><input id="custom-currency" maxlength="3" placeholder="例如：CHF" data-i18n-placeholder="ph.custom-currency"></div>
+          <div><label for="budget-range"><span class="t" data-i18n="label.budget-range">人均预算范围</span> <span data-i18n="hint.required">必填</span></label><select id="budget-range" required disabled><option value="" data-i18n="msg.range-pick-currency">请先选择预算币种</option></select><p id="range-help" class="hint" data-i18n="hint.range-help">范围为每位旅行者的人均预算；也可选择自定义。</p></div>
+          <div id="custom-budget-wrap" hidden><label for="custom-budget"><span class="t" data-i18n="label.custom-budget">↳ 填写具体数字</span> <span data-i18n="hint.custom-budget">承接上一栏的「自定义范围」</span></label><input id="custom-budget" placeholder="例如：600–750" data-i18n-placeholder="ph.custom-budget"></div>
+          <div><label for="coverage"><span class="t" data-i18n="label.coverage">人均预算是否包含交通和住宿</span> <span data-i18n="hint.required">必填</span></label><select id="coverage" required><option value="" data-i18n="option.choose">请选择</option><option value="all_in" data-i18n="option.coverage.all_in">交通、住宿和当地开销</option><option value="transport_and_stay" data-i18n="option.coverage.transport_and_stay">交通和住宿</option><option value="land_only" data-i18n="option.coverage.land_only">不含往返交通</option><option value="unknown" data-i18n="option.coverage.unknown">暂未确定</option></select></div>
+          <div><label for="comfort" data-i18n="label.comfort">住宿舒适度</label><select id="comfort"><option value="" data-i18n="option.unspecified">未指定</option><option value="经济实用" data-i18n="option.comfort.2">经济实用</option><option value="舒适中档" data-i18n="option.comfort.3">舒适中档</option><option value="精品/特色" data-i18n="option.comfort.4">精品/特色</option><option value="高端" data-i18n="option.comfort.5">高端</option></select></div>
+        </div>
+      </section>
+
+      <section class="section"><h2 data-i18n="section.range-transport-climate">4. 出行范围、交通与气候条件</h2>
+        <p class="hint" data-i18n="hint.section-4">国内旅行不需要填写入境信息；只有可能出境时才收集国籍、合法居留地和可接受签证方式。无论国内或海外，都会比较飞机、铁路、长途巴士、轮渡和自驾等实际可行的方式。</p>
+        <div class="grid">
+          <div><label for="travel-scope"><span class="t" data-i18n="label.travel-scope">这趟需要现办签证吗</span> <span data-i18n="hint.required">必填</span></label><select id="travel-scope" required><option value="" data-i18n="option.choose">请选择</option><option value="no_new_visa_needed" data-i18n="option.travel-scope.no_new_visa_needed">不需要——想去的地方我现在就能入境（免签、已持有效签证/居留，或就在常住国内）</option><option value="any_including_visa" data-i18n="option.travel-scope.any_including_visa">需要——愿意为这趟提前去办签证</option></select></div>
+          <div id="held-visa-wrap" hidden><label for="held-visas"><span class="t" data-i18n="label.held-visas">↳ 凭什么可以入境</span> <span data-i18n="hint.held-visas">必填，越具体越省事——这一栏决定这趟能不能成行</span></label><input id="held-visas" placeholder="如：日本三年多次签、申根居留卡、目的地免签；国内出行填「不出境」" data-i18n-placeholder="ph.held-visas"></div>
+          <div id="held-passport-wrap" hidden><label for="held-passport-validity"><span class="t" data-i18n="label.held-passport-validity">↳ 护照在行程结束后是否仍有效 6 个月</span> <span data-i18n="hint.held-passport-validity">必填，不要填号码或日期</span></label><select id="held-passport-validity"><option value="" data-i18n="option.choose">请选择</option><option value="valid_through_trip" data-i18n="option.held-passport-validity.valid_through_trip">是，所有同行人都满足</option><option value="not_sure" data-i18n="option.held-passport-validity.not_sure">不确定，需要核对</option><option value="needs_renewal" data-i18n="option.held-passport-validity.needs_renewal">否，有人需要换发</option><option value="not_applicable_domestic" data-i18n="option.held-passport-validity.not_applicable_domestic">本次不出境，用不上护照</option></select></div>
+          <div id="visa-effort-wrap" hidden><label for="visa-tolerance"><span class="t" data-i18n="label.visa-tolerance">↳ 能接受到什么程度</span> <span data-i18n="hint.visa-tolerance">承接上一栏</span></label><select id="visa-tolerance"><option value="evisa_acceptable" data-i18n="option.visa-tolerance.evisa_acceptable">只接受电子签/落地签</option><option value="visa_process_acceptable" data-i18n="option.visa-tolerance.visa_process_acceptable">可以提前去办正式签证</option></select></div>
+          <div><label for="travel-time"><span class="t" data-i18n="label.travel-time">可接受的最长单程总时长</span> <span data-i18n="hint.travel-time">必填，含候车/转机/地面接驳</span></label><select id="travel-time" required><option value="" data-i18n="option.choose">请选择</option><option value="不超过 3 小时" data-i18n="option.travel-time.2">不超过 3 小时</option><option value="不超过 6 小时" data-i18n="option.travel-time.3">不超过 6 小时</option><option value="不超过 10 小时" data-i18n="option.travel-time.4">不超过 10 小时</option><option value="不超过 15 小时" data-i18n="option.travel-time.5">不超过 15 小时</option><option value="不超过 24 小时" data-i18n="option.travel-time.6">不超过 24 小时</option><option value="无明确上限，以舒适为准" data-i18n="option.travel-time.7">无明确上限，以舒适为准</option></select></div>
+          <div><label for="transport-priority" data-i18n="label.transport-priority">跨城交通优先级</label><select id="transport-priority"><option value="" data-i18n="option.transport-priority.1">综合比较</option><option value="shortest_total_time" data-i18n="option.transport-priority.shortest_total_time">总耗时最短</option><option value="lowest_reasonable_cost" data-i18n="option.transport-priority.lowest_reasonable_cost">合理价格优先</option><option value="fewest_transfers" data-i18n="option.transport-priority.fewest_transfers">少换乘优先</option><option value="comfort_and_scenery" data-i18n="option.transport-priority.comfort_and_scenery">舒适/沿途景观优先</option></select></div>
+        </div>
+        <div id="entry-requirements" hidden>
+          <p class="notice" data-i18n-html="notice.entry"><strong>出国时才需要：</strong>只用于判断哪些国家不用另办签证。每位同行人一行，只写国籍、现居国和在现居国的身份类别——<strong>不要</strong>填护照号、证件照片、签发/到期日或支付信息。有档案的话第一行会自动带入。</p>
+          <label for="traveler-entry"><span class="t" data-i18n="label.traveler-entry">每位同行人的身份</span> <span data-i18n="hint.traveler-entry">格式：称呼 | 护照国籍 | 现居国 | 身份类别</span></label><textarea id="traveler-entry" placeholder="例如：&#10;旅客 1 | 中国 | 荷兰 | 成员国居留卡&#10;旅客 2 | 荷兰 | 荷兰 | 欧盟公民" data-i18n-placeholder="ph.traveler-entry"></textarea>
+          <p class="hint" data-i18n="hint.residence-status">身份类别可写：欧盟公民、成员国居留卡、欧盟长期居留、短期签证、其他。不确定就写「不确定」。</p>
+          <div class="grid">
+            <div><label for="passport-validity"><span class="t" data-i18n="label.passport-validity">护照在行程结束后是否仍有效 6 个月</span> <span data-i18n="hint.passport-validity">必填，不要填号码或日期</span></label><select id="passport-validity"><option value="" data-i18n="option.choose">请选择</option><option value="valid_through_trip" data-i18n="option.held-passport-validity.valid_through_trip">是，所有同行人都满足</option><option value="not_sure" data-i18n="option.held-passport-validity.not_sure">不确定，需要核对</option><option value="needs_renewal" data-i18n="option.held-passport-validity.needs_renewal">否，有人需要换发</option></select></div>
+          </div>
+        </div>
+        <fieldset><legend><span class="t" data-i18n="legend.transport-mode">可接受的单程方式</span> <span class="hint" data-i18n="hint.transport-mode">至少选一项；可多选。国内会重点比较高铁/动车，欧洲等地区会同时比较火车和长途巴士。</span></legend><div class="checks"><label><input name="transport-mode" type="checkbox" value="high_speed_rail"><span class="t" data-i18n="check.transport-mode.high_speed_rail">高铁/动车</span></label><label><input name="transport-mode" type="checkbox" value="conventional_rail_or_overnight"><span class="t" data-i18n="check.transport-mode.conventional_rail_or_overnight">普速火车/夜火车</span></label><label><input name="transport-mode" type="checkbox" value="intercity_bus"><span class="t" data-i18n="check.transport-mode.intercity_bus">长途巴士</span></label><label><input name="transport-mode" type="checkbox" value="direct_flight"><span class="t" data-i18n="check.transport-mode.direct_flight">直飞</span></label><label><input name="transport-mode" type="checkbox" value="connecting_flight"><span class="t" data-i18n="check.transport-mode.connecting_flight">转机</span></label><label><input name="transport-mode" type="checkbox" value="ferry"><span class="t" data-i18n="check.transport-mode.ferry">轮渡/客船</span></label><label><input name="transport-mode" type="checkbox" value="self_drive"><span class="t" data-i18n="check.transport-mode.self_drive">自驾</span></label></div></fieldset>
+        <fieldset><legend><span class="t" data-i18n="legend.climate">当期气候偏好或禁忌</span> <span class="hint" data-i18n="hint.climate">例如九月底；不确定可不选</span></legend><div class="checks"><label><input name="climate" type="checkbox" value="避免频繁降雨/雨季"><span class="t" data-i18n="check.climate.1">不想下雨或雨季</span></label><label><input name="climate" type="checkbox" value="偏暖"><span class="t" data-i18n="check.climate.2">偏暖</span></label><label><input name="climate" type="checkbox" value="必须适合游泳"><span class="t" data-i18n="check.climate.3">必须能游泳</span></label><label><input name="climate" type="checkbox" value="避免酷热/高湿"><span class="t" data-i18n="check.climate.4">避开酷热/高湿</span></label><label><input name="climate" type="checkbox" value="避免寒冷/降雪"><span class="t" data-i18n="check.climate.5">避开寒冷/降雪</span></label><label><input name="climate" type="checkbox" value="无特别气候限制"><span class="t" data-i18n="check.climate.6">无特别气候限制</span></label></div></fieldset>
+        <label for="climate-notes"><span class="t" data-i18n="label.climate-notes">其他气候说明</span> <span data-i18n="hint.optional">可选</span></label><input id="climate-notes" placeholder="例如：9 月底白天最好 20°C 以上；可接受偶尔阵雨" data-i18n-placeholder="ph.climate-notes">
+      </section>
+
+      <section class="section"><h2 data-i18n="section.experience">5. 你想看到和体验什么</h2>
+        <div class="grid">
+          <div><label for="direction"><span class="t" data-i18n="label.direction">自然、人文还是平衡</span> <span data-i18n="hint.required">必填</span></label><select id="direction" required><option value="" data-i18n="option.choose">请选择</option><option value="natural" data-i18n="option.direction.natural">自然</option><option value="human_cultural" data-i18n="option.direction.human_cultural">人文/文化</option><option value="balance" data-i18n="option.direction.balance">平衡</option></select></div>
+          <div><label for="pace" data-i18n="label.pace">旅行节奏</label><select id="pace"><option value="" data-i18n="option.unspecified">未指定</option><option value="慢游/深度" data-i18n="option.pace.2">慢游/深度</option><option value="适中" data-i18n="option.pace.3">适中</option><option value="高密度多点" data-i18n="option.pace.4">高密度多点</option></select></div>
+          <div><label for="intensity" data-i18n="label.intensity">活动强度</label><select id="intensity"><option value="" data-i18n="option.unspecified">未指定</option><option value="以舒适观景为主" data-i18n="option.intensity.2">以舒适观景为主</option><option value="短距离步行" data-i18n="option.intensity.3">短距离步行</option><option value="日间徒步/活动" data-i18n="option.intensity.4">日间徒步/活动</option><option value="高强度户外" data-i18n="option.intensity.5">高强度户外</option></select></div>
+        </div>
+        <fieldset><legend><span class="t" data-i18n="legend.natural">自然景观</span> <span class="hint" data-i18n="hint.tick-any">按需勾选</span></legend><div class="checks"><label><input name="natural" type="checkbox" value="海岛/海岸"><span class="t" data-i18n="check.natural.1">海岛/海岸</span></label><label><input name="natural" type="checkbox" value="山地/徒步"><span class="t" data-i18n="check.natural.2">山地/徒步</span></label><label><input name="natural" type="checkbox" value="湖泊/森林"><span class="t" data-i18n="check.natural.3">湖泊/森林</span></label><label><input name="natural" type="checkbox" value="野生动物"><span class="t" data-i18n="check.natural.4">野生动物</span></label><label><input name="natural" type="checkbox" value="雪景/极光"><span class="t" data-i18n="check.natural.5">雪景/极光</span></label><label><input name="natural" type="checkbox" value="火山/地貌"><span class="t" data-i18n="check.natural.6">火山/地貌</span></label></div></fieldset>
+        <fieldset><legend><span class="t" data-i18n="legend.cultural">人文体验</span> <span class="hint" data-i18n="hint.tick-any">按需勾选</span></legend><div class="checks"><label><input name="cultural" type="checkbox" value="历史建筑/古城"><span class="t" data-i18n="check.cultural.1">历史建筑/古城</span></label><label><input name="cultural" type="checkbox" value="博物馆/艺术"><span class="t" data-i18n="check.cultural.2">博物馆/艺术</span></label><label><input name="cultural" type="checkbox" value="美食/市场"><span class="t" data-i18n="check.cultural.3">美食/市场</span></label><label><input name="cultural" type="checkbox" value="街区漫步"><span class="t" data-i18n="check.cultural.4">街区漫步</span></label><label><input name="cultural" type="checkbox" value="节庆/夜生活"><span class="t" data-i18n="check.cultural.5">节庆/夜生活</span></label></div></fieldset>
+        <div class="grid">
+          <div><label for="rank-1"><span class="t" data-i18n="label.rank-1">其中最重要的一项</span> <span data-i18n="hint.rank-1">从上面已勾选的项目里选</span></label><select id="rank-1"><option value="" data-i18n="msg.rank-tick-first">先在上面勾选，再回来排序</option></select></div>
+          <div><label for="rank-2" data-i18n="label.rank-2">其次重要的一项</label><select id="rank-2"><option value="" data-i18n="msg.rank-tick-first">先在上面勾选，再回来排序</option></select></div>
+        </div>
+        <label for="avoid"><span class="t" data-i18n="label.avoid">想避开的体验或条件</span> <span data-i18n="hint.avoid">逗号分隔；地点请填在第 2 节</span></label><input id="avoid" placeholder="例如：极端高温、红眼航班、频繁换酒店" data-i18n-placeholder="ph.avoid">
+      </section>
+
+      <details class="optional-block" id="detail-block">
+        <summary data-i18n="summary.detail-block">可选：住宿与交通细节（也可以等选定目的地后再定）</summary>
+        <div class="optional-body">
+          <p class="hint" data-i18n="hint.detail-block">这些不影响“去哪儿”的判断，只影响之后的具体行程与比价。留空也可以。</p>
+          <div class="grid">
+            <div><label for="room-count" data-i18n="label.room-count">需要几间房</label><input id="room-count" type="number" min="1" max="10" placeholder="例如：1" data-i18n-placeholder="ph.room-count"></div>
+            <div><label for="stay-location" data-i18n="label.stay-location">酒店位置优先级</label><select id="stay-location"><option value="" data-i18n="option.unspecified">未指定</option><option value="景点步行可达" data-i18n="option.stay-location.2">景点步行可达</option><option value="邻近地铁/车站" data-i18n="option.stay-location.3">邻近地铁/车站</option><option value="安静、安全" data-i18n="option.stay-location.4">安静、安全</option><option value="机场/交通枢纽便利" data-i18n="option.stay-location.5">机场/交通枢纽便利</option></select></div>
+            <div><label for="breakfast" data-i18n="label.breakfast">早餐偏好</label><select id="breakfast"><option value="" data-i18n="option.unspecified">未指定</option><option value="必须含早" data-i18n="option.breakfast.2">必须含早</option><option value="最好含早" data-i18n="option.breakfast.3">最好含早</option><option value="不需要" data-i18n="option.breakfast.4">不需要</option></select></div>
+            <div><label for="cancellation" data-i18n="label.cancellation">取消政策偏好</label><select id="cancellation"><option value="" data-i18n="option.unspecified">未指定</option><option value="必须可免费取消" data-i18n="option.cancellation.2">必须可免费取消</option><option value="优先可取消" data-i18n="option.cancellation.3">优先可取消</option><option value="价格优先，可接受不可退" data-i18n="option.cancellation.4">价格优先，可接受不可退</option></select></div>
+            <div><label for="rail-preference" data-i18n="label.rail-preference">铁路偏好</label><select id="rail-preference"><option value="" data-i18n="option.unspecified">未指定</option><option value="高铁/动车优先" data-i18n="option.rail-preference.2">高铁/动车优先</option><option value="可接受普速火车" data-i18n="option.rail-preference.3">可接受普速火车</option><option value="可接受夜火车/卧铺" data-i18n="option.rail-preference.4">可接受夜火车/卧铺</option><option value="优先少换乘和固定座位" data-i18n="option.rail-preference.5">优先少换乘和固定座位</option></select></div>
+            <div><label for="bus-comfort" data-i18n="label.bus-comfort">长途巴士接受度</label><select id="bus-comfort"><option value="" data-i18n="option.unspecified">未指定</option><option value="仅短途接驳（约 3 小时内）" data-i18n="option.bus-comfort.2">仅短途接驳（约 3 小时内）</option><option value="可接受白天长途巴士" data-i18n="option.bus-comfort.3">可接受白天长途巴士</option><option value="可接受夜巴/卧铺巴士" data-i18n="option.bus-comfort.4">可接受夜巴/卧铺巴士</option></select></div>
+            <div><label for="cabin" data-i18n="label.cabin">舱位偏好</label><select id="cabin"><option value="" data-i18n="option.unspecified">未指定</option><option value="经济舱优先" data-i18n="option.cabin.2">经济舱优先</option><option value="优先舒适/高级经济舱" data-i18n="option.cabin.3">优先舒适/高级经济舱</option><option value="商务舱可比较" data-i18n="option.cabin.4">商务舱可比较</option></select></div>
+            <div><label for="baggage" data-i18n="label.baggage">行李需求</label><select id="baggage"><option value="" data-i18n="option.unspecified">未指定</option><option value="仅随身行李" data-i18n="option.baggage.2">仅随身行李</option><option value="每人 1 件托运行李" data-i18n="option.baggage.3">每人 1 件托运行李</option><option value="多件/大件行李" data-i18n="option.baggage.4">多件/大件行李</option></select></div>
+            <div><label for="flight-time" data-i18n="label.flight-time">航班时间偏好</label><select id="flight-time"><option value="" data-i18n="option.unspecified">未指定</option><option value="避免红眼/深夜抵达" data-i18n="option.flight-time.2">避免红眼/深夜抵达</option><option value="优先白天起降" data-i18n="option.flight-time.3">优先白天起降</option><option value="时间灵活" data-i18n="option.flight-time.4">时间灵活</option></select></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="optional-block" id="service-block">
+        <summary data-i18n="summary.service-block">可选：地图与预订服务可用性</summary>
+        <div class="optional-body">
+          <p class="hint" data-i18n="hint.service-block">用于选择真正能在旅途中正常打开的地图、交通和比较平台；不会索取账号、支付信息，也不会建议使用 VPN 或代理。已保存档案的话这里会自动带入。</p>
+          <div class="grid">
+            <div><label for="google-services-access" data-i18n="label.google-services-access">Google 服务的正常可用性</label><select id="google-services-access"><option value="unknown" data-i18n="option.google-services-access.unknown">不确定/按目的地判断</option><option value="available" data-i18n="option.google-services-access.available">可正常使用（不使用 VPN 或代理）</option><option value="unavailable" data-i18n="option.google-services-access.unavailable">不要使用 Google 服务</option></select></div>
+            <div><label for="preferred-map-apps"><span class="t" data-i18n="label.preferred-map-apps">常用地图/导航应用</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="preferred-map-apps" placeholder="例如：高德地图, Google Maps" data-i18n-placeholder="ph.preferred-map-apps"></div>
+            <div><label for="preferred-booking-platforms"><span class="t" data-i18n="label.preferred-booking-platforms">可接受的比较平台</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="preferred-booking-platforms" placeholder="例如：携程, Trip.com, Booking.com" data-i18n-placeholder="ph.preferred-booking-platforms"></div>
+            <div><label for="services-to-avoid"><span class="t" data-i18n="label.services-to-avoid">不想使用的服务</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="services-to-avoid" placeholder="例如：仅限英文、需 VPN 的服务" data-i18n-placeholder="ph.services-to-avoid"></div>
+          </div>
+          <label for="service-access-notes" data-i18n="label.service-access-notes">其他说明</label><input id="service-access-notes" placeholder="例如：中国大陆路线用高德；海外按当地可用地图" data-i18n-placeholder="ph.service-access-notes">
+        </div>
+      </details>
+
+      <section class="section"><h2 data-i18n="section.submit">提交本次旅行需求</h2>
+        <p data-i18n="section.submit-lead">提交后，终端会读取并保存这份本次旅行的初始信息，再开始筛选目的地。你仍可以在之后随时修改条件。</p>
+        <div class="actions"><button type="submit" data-i18n="button.submit">提交并开始目的地筛选</button><button class="ghost" id="fill-example" type="button" data-i18n="button.fill-example">填入示例</button><button class="ghost" type="reset" data-i18n="button.reset">清空</button></div>
+        <p id="error-summary" class="error-summary" hidden></p>
+        <p id="status" class="status" aria-live="polite"></p>
+        <p id="draft-note" class="draft-note"></p>
+      </section>
+
+      <details class="optional-block"><summary data-i18n="summary.preview">查看将要提交的数据（JSON）</summary><div class="optional-body"><pre id="preview"></pre></div></details>
+    </form>
+  </main>
+  <script type="application/json" id="tb-i18n">
+{
+ "zh": {
+  "page.title": "Travel Buddy · 开始规划旅行",
+  "hero.title": "先找到适合你的目的地",
+  "hero.lead": "填写本次旅行的关键条件。提交后信息会回传到当前电脑的 Travel Buddy 终端，用于筛选和比较目的地；它不会创建订单、登录或付款。",
+  "hero.hint": "带 <b>必填</b> 的是影响可行性的问题，其余可以留空。折叠区里的细节可以等选定目的地之后再补。",
+  "rail.profile": "旅行档案",
+  "rail.trip": "本次需求",
+  "rail.destinations": "目的地方案",
+  "rail.aria": "旅行规划流程",
+  "notice.privacy": "<strong>提示：</strong>请勿填写护照号、证件照片、支付信息或精确住址。若有已保存的旅行档案，系统会在后续复用稳定偏好，不必重复填写。",
+  "section.origin": "1. 从哪里出发、何时出发",
+  "hint.required": "必填",
+  "label.city": "出发城市",
+  "ph.city": "例如：上海",
+  "label.country": "出发国家/地区",
+  "ph.country": "例如：中国",
+  "hint.start-date": "已定日期就填这里",
+  "label.start-date": "确定的出发日期",
+  "hint.end-date": "与出发日期成对填写",
+  "label.end-date": "确定的返回日期",
+  "hint.month": "与上面二选一",
+  "label.month": "还没定日期？填月份或季节",
+  "ph.month": "例如：2026-10 或 10 月",
+  "hint.days": "未填确定日期时必填",
+  "label.days": "预计几天",
+  "ph.days": "例如：7",
+  "label.flexibility": "日期灵活度",
+  "option.unspecified": "未指定",
+  "option.flexibility.2": "固定",
+  "option.flexibility.3": "± 1–2 天",
+  "option.flexibility.4": "一周内",
+  "option.flexibility.5": "只看季节",
+  "hint.booked-already": "必填——订了什么决定这趟还能改什么",
+  "label.booked-already": "已经订好的部分",
+  "option.choose": "请选择",
+  "option.booked-already.nothing": "都还没订",
+  "option.booked-already.transport": "去程/回程交通已订",
+  "option.booked-already.lodging": "住宿已订",
+  "option.booked-already.both": "交通和住宿都订了",
+  "option.booked-already.other": "其他已订（票、租车等）",
+  "hint.booked-detail": "必填——航班号、酒店名、日期、能不能退改",
+  "label.booked-detail": "↳ 订了什么，写清楚",
+  "ph.booked-detail": "如：CX270 4/17 阿姆→香港，不可退；尖沙咀某酒店 4/17–4/23 免费取消至 4/10",
+  "hint.optional": "可选",
+  "label.fixed-commitments": "必须迁就的固定安排",
+  "ph.fixed-commitments": "例如：10 月 12 日必须回来上班；朋友婚礼在 10 月 11 日",
+  "hint.comma-optional": "逗号分隔，可选",
+  "label.airports": "可接受的机场",
+  "ph.airports": "例如：PVG, SHA",
+  "section.destination": "2. 想去哪里",
+  "label.scope": "目的地状态",
+  "option.scope.fixed": "已定到具体城市或地区（例如：京都、马略卡、劳德代尔堡）",
+  "option.scope.anchored": "国家或大区定了，城市还没定（例如：日本、美国、加州）",
+  "option.scope.continent": "只限定大洲/大区域（例如：东南亚、南欧）",
+  "option.scope.open": "完全开放，帮我推荐",
+  "hint.comma": "逗号分隔",
+  "label.places": "具体是哪里",
+  "ph.places": "例如：意大利, 日本关西",
+  "hint.trip-shape": "必填——决定整份行程的结构",
+  "label.trip-shape": "这趟想怎么走",
+  "option.trip-shape.single_base": "住一个地方，当天来回玩周边",
+  "option.trip-shape.multi_city": "分几站走，每站住几晚",
+  "option.trip-shape.planner_decides": "我只给范围，你来决定分几站",
+  "hint.max-stops": "必填，含第一站",
+  "label.max-stops": "↳ 最多分几站",
+  "ph.max-stops": "例如：3",
+  "hint.min-nights-per-stop": "必填——填 1 会得到一份天天换酒店的行程",
+  "label.min-nights-per-stop": "↳ 每站至少住几晚",
+  "ph.min-nights-per-stop": "例如：2",
+  "hint.return-to-first": "必填——决定要不要留出回程那一段",
+  "label.return-to-first": "↳ 最后要回到第一站离境吗",
+  "option.return-to-first.yes": "要，从第一站回程",
+  "option.return-to-first.no": "不用，从最后一站直接走",
+  "option.return-to-first.either": "都行，你按票价和时间定",
+  "label.excluded": "本次不想去的地方",
+  "ph.excluded": "例如：海岛, 某国家",
+  "label.purpose": "这趟旅行的主要目的",
+  "option.purpose.leisure": "纯度假放松",
+  "option.purpose.sightseeing": "观光探索",
+  "option.purpose.food": "吃喝为主",
+  "option.purpose.outdoor": "户外/运动",
+  "option.purpose.family": "带家人/亲子",
+  "option.purpose.visiting": "探亲访友",
+  "option.purpose.celebration": "纪念日/蜜月/庆祝",
+  "option.purpose.work_adjacent": "出差顺带",
+  "option.purpose.other": "其他",
+  "section.party-budget": "3. 同行人和预算",
+  "label.count": "同行人数",
+  "ph.count": "例如：2",
+  "label.composition": "同行构成",
+  "option.composition.2": "独自",
+  "option.composition.3": "情侣/两人",
+  "option.composition.4": "朋友",
+  "option.composition.5": "家庭",
+  "option.composition.6": "多人团体",
+  "label.ages": "相关年龄或需求",
+  "ph.ages": "例如：两位成人；或 1 位 6 岁儿童",
+  "label.mobility": "行动便利/照护需求",
+  "ph.mobility": "例如：避免长距离步行",
+  "label.dietary": "饮食限制或忌口",
+  "ph.dietary": "例如：素食, 清真, 花生过敏, 不吃辣",
+  "label.currency": "预算币种",
+  "option.currency.CNY": "CNY 人民币",
+  "option.currency.EUR": "EUR 欧元",
+  "option.currency.USD": "USD 美元",
+  "option.currency.GBP": "GBP 英镑",
+  "option.currency.JPY": "JPY 日元",
+  "option.currency.KRW": "KRW 韩元",
+  "option.currency.HKD": "HKD 港币",
+  "option.currency.TWD": "TWD 新台币",
+  "option.currency.SGD": "SGD 新加坡元",
+  "option.currency.AUD": "AUD 澳元",
+  "option.currency.CAD": "CAD 加元",
+  "option.currency.THB": "THB 泰铢",
+  "option.currency.OTHER": "其他币种（自定义）",
+  "hint.custom-currency": "三位字母，例如 CHF",
+  "label.custom-currency": "币种代码",
+  "ph.custom-currency": "例如：CHF",
+  "label.budget-range": "人均预算范围",
+  "msg.range-pick-currency": "请先选择预算币种",
+  "hint.range-help": "范围为每位旅行者的人均预算；也可选择自定义。",
+  "hint.custom-budget": "承接上一栏的「自定义范围」",
+  "label.custom-budget": "↳ 填写具体数字",
+  "ph.custom-budget": "例如：600–750",
+  "label.coverage": "人均预算是否包含交通和住宿",
+  "option.coverage.all_in": "交通、住宿和当地开销",
+  "option.coverage.transport_and_stay": "交通和住宿",
+  "option.coverage.land_only": "不含往返交通",
+  "option.coverage.unknown": "暂未确定",
+  "label.comfort": "住宿舒适度",
+  "option.comfort.2": "经济实用",
+  "option.comfort.3": "舒适中档",
+  "option.comfort.4": "精品/特色",
+  "option.comfort.5": "高端",
+  "section.range-transport-climate": "4. 出行范围、交通与气候条件",
+  "hint.section-4": "国内旅行不需要填写入境信息；只有可能出境时才收集国籍、合法居留地和可接受签证方式。无论国内或海外，都会比较飞机、铁路、长途巴士、轮渡和自驾等实际可行的方式。",
+  "label.travel-scope": "这趟需要现办签证吗",
+  "option.travel-scope.no_new_visa_needed": "不需要——想去的地方我现在就能入境（免签、已持有效签证/居留，或就在常住国内）",
+  "option.travel-scope.any_including_visa": "需要——愿意为这趟提前去办签证",
+  "hint.held-visas": "必填，越具体越省事——这一栏决定这趟能不能成行",
+  "label.held-visas": "↳ 凭什么可以入境",
+  "ph.held-visas": "如：日本三年多次签、申根居留卡、目的地免签；国内出行填「不出境」",
+  "hint.held-passport-validity": "必填，不要填号码或日期",
+  "label.held-passport-validity": "↳ 护照在行程结束后是否仍有效 6 个月",
+  "option.held-passport-validity.valid_through_trip": "是，所有同行人都满足",
+  "option.held-passport-validity.not_sure": "不确定，需要核对",
+  "option.held-passport-validity.needs_renewal": "否，有人需要换发",
+  "option.held-passport-validity.not_applicable_domestic": "本次不出境，用不上护照",
+  "hint.visa-tolerance": "承接上一栏",
+  "label.visa-tolerance": "↳ 能接受到什么程度",
+  "option.visa-tolerance.evisa_acceptable": "只接受电子签/落地签",
+  "option.visa-tolerance.visa_process_acceptable": "可以提前去办正式签证",
+  "hint.travel-time": "必填，含候车/转机/地面接驳",
+  "label.travel-time": "可接受的最长单程总时长",
+  "option.travel-time.2": "不超过 3 小时",
+  "option.travel-time.3": "不超过 6 小时",
+  "option.travel-time.4": "不超过 10 小时",
+  "option.travel-time.5": "不超过 15 小时",
+  "option.travel-time.6": "不超过 24 小时",
+  "option.travel-time.7": "无明确上限，以舒适为准",
+  "label.transport-priority": "跨城交通优先级",
+  "option.transport-priority.1": "综合比较",
+  "option.transport-priority.shortest_total_time": "总耗时最短",
+  "option.transport-priority.lowest_reasonable_cost": "合理价格优先",
+  "option.transport-priority.fewest_transfers": "少换乘优先",
+  "option.transport-priority.comfort_and_scenery": "舒适/沿途景观优先",
+  "notice.entry": "<strong>出国时才需要：</strong>只用于判断哪些国家不用另办签证。每位同行人一行，只写国籍、现居国和在现居国的身份类别——<strong>不要</strong>填护照号、证件照片、签发/到期日或支付信息。有档案的话第一行会自动带入。",
+  "hint.traveler-entry": "格式：称呼 | 护照国籍 | 现居国 | 身份类别",
+  "label.traveler-entry": "每位同行人的身份",
+  "ph.traveler-entry": "例如：\n旅客 1 | 中国 | 荷兰 | 成员国居留卡\n旅客 2 | 荷兰 | 荷兰 | 欧盟公民",
+  "hint.residence-status": "身份类别可写：欧盟公民、成员国居留卡、欧盟长期居留、短期签证、其他。不确定就写「不确定」。",
+  "hint.passport-validity": "必填，不要填号码或日期",
+  "label.passport-validity": "护照在行程结束后是否仍有效 6 个月",
+  "hint.transport-mode": "至少选一项；可多选。国内会重点比较高铁/动车，欧洲等地区会同时比较火车和长途巴士。",
+  "legend.transport-mode": "可接受的单程方式",
+  "check.transport-mode.high_speed_rail": "高铁/动车",
+  "check.transport-mode.conventional_rail_or_overnight": "普速火车/夜火车",
+  "check.transport-mode.intercity_bus": "长途巴士",
+  "check.transport-mode.direct_flight": "直飞",
+  "check.transport-mode.connecting_flight": "转机",
+  "check.transport-mode.ferry": "轮渡/客船",
+  "check.transport-mode.self_drive": "自驾",
+  "hint.climate": "例如九月底；不确定可不选",
+  "legend.climate": "当期气候偏好或禁忌",
+  "check.climate.1": "不想下雨或雨季",
+  "check.climate.2": "偏暖",
+  "check.climate.3": "必须能游泳",
+  "check.climate.4": "避开酷热/高湿",
+  "check.climate.5": "避开寒冷/降雪",
+  "check.climate.6": "无特别气候限制",
+  "label.climate-notes": "其他气候说明",
+  "ph.climate-notes": "例如：9 月底白天最好 20°C 以上；可接受偶尔阵雨",
+  "section.experience": "5. 你想看到和体验什么",
+  "label.direction": "自然、人文还是平衡",
+  "option.direction.natural": "自然",
+  "option.direction.human_cultural": "人文/文化",
+  "option.direction.balance": "平衡",
+  "label.pace": "旅行节奏",
+  "option.pace.2": "慢游/深度",
+  "option.pace.3": "适中",
+  "option.pace.4": "高密度多点",
+  "label.intensity": "活动强度",
+  "option.intensity.2": "以舒适观景为主",
+  "option.intensity.3": "短距离步行",
+  "option.intensity.4": "日间徒步/活动",
+  "option.intensity.5": "高强度户外",
+  "hint.tick-any": "按需勾选",
+  "legend.natural": "自然景观",
+  "check.natural.1": "海岛/海岸",
+  "check.natural.2": "山地/徒步",
+  "check.natural.3": "湖泊/森林",
+  "check.natural.4": "野生动物",
+  "check.natural.5": "雪景/极光",
+  "check.natural.6": "火山/地貌",
+  "legend.cultural": "人文体验",
+  "check.cultural.1": "历史建筑/古城",
+  "check.cultural.2": "博物馆/艺术",
+  "check.cultural.3": "美食/市场",
+  "check.cultural.4": "街区漫步",
+  "check.cultural.5": "节庆/夜生活",
+  "hint.rank-1": "从上面已勾选的项目里选",
+  "label.rank-1": "其中最重要的一项",
+  "msg.rank-tick-first": "先在上面勾选，再回来排序",
+  "label.rank-2": "其次重要的一项",
+  "hint.avoid": "逗号分隔；地点请填在第 2 节",
+  "label.avoid": "想避开的体验或条件",
+  "ph.avoid": "例如：极端高温、红眼航班、频繁换酒店",
+  "summary.detail-block": "可选：住宿与交通细节（也可以等选定目的地后再定）",
+  "hint.detail-block": "这些不影响“去哪儿”的判断，只影响之后的具体行程与比价。留空也可以。",
+  "label.room-count": "需要几间房",
+  "ph.room-count": "例如：1",
+  "label.stay-location": "酒店位置优先级",
+  "option.stay-location.2": "景点步行可达",
+  "option.stay-location.3": "邻近地铁/车站",
+  "option.stay-location.4": "安静、安全",
+  "option.stay-location.5": "机场/交通枢纽便利",
+  "label.breakfast": "早餐偏好",
+  "option.breakfast.2": "必须含早",
+  "option.breakfast.3": "最好含早",
+  "option.breakfast.4": "不需要",
+  "label.cancellation": "取消政策偏好",
+  "option.cancellation.2": "必须可免费取消",
+  "option.cancellation.3": "优先可取消",
+  "option.cancellation.4": "价格优先，可接受不可退",
+  "label.rail-preference": "铁路偏好",
+  "option.rail-preference.2": "高铁/动车优先",
+  "option.rail-preference.3": "可接受普速火车",
+  "option.rail-preference.4": "可接受夜火车/卧铺",
+  "option.rail-preference.5": "优先少换乘和固定座位",
+  "label.bus-comfort": "长途巴士接受度",
+  "option.bus-comfort.2": "仅短途接驳（约 3 小时内）",
+  "option.bus-comfort.3": "可接受白天长途巴士",
+  "option.bus-comfort.4": "可接受夜巴/卧铺巴士",
+  "label.cabin": "舱位偏好",
+  "option.cabin.2": "经济舱优先",
+  "option.cabin.3": "优先舒适/高级经济舱",
+  "option.cabin.4": "商务舱可比较",
+  "label.baggage": "行李需求",
+  "option.baggage.2": "仅随身行李",
+  "option.baggage.3": "每人 1 件托运行李",
+  "option.baggage.4": "多件/大件行李",
+  "label.flight-time": "航班时间偏好",
+  "option.flight-time.2": "避免红眼/深夜抵达",
+  "option.flight-time.3": "优先白天起降",
+  "option.flight-time.4": "时间灵活",
+  "summary.service-block": "可选：地图与预订服务可用性",
+  "hint.service-block": "用于选择真正能在旅途中正常打开的地图、交通和比较平台；不会索取账号、支付信息，也不会建议使用 VPN 或代理。已保存档案的话这里会自动带入。",
+  "label.google-services-access": "Google 服务的正常可用性",
+  "option.google-services-access.unknown": "不确定/按目的地判断",
+  "option.google-services-access.available": "可正常使用（不使用 VPN 或代理）",
+  "option.google-services-access.unavailable": "不要使用 Google 服务",
+  "label.preferred-map-apps": "常用地图/导航应用",
+  "ph.preferred-map-apps": "例如：高德地图, Google Maps",
+  "label.preferred-booking-platforms": "可接受的比较平台",
+  "ph.preferred-booking-platforms": "例如：携程, Trip.com, Booking.com",
+  "label.services-to-avoid": "不想使用的服务",
+  "ph.services-to-avoid": "例如：仅限英文、需 VPN 的服务",
+  "label.service-access-notes": "其他说明",
+  "ph.service-access-notes": "例如：中国大陆路线用高德；海外按当地可用地图",
+  "section.submit": "提交本次旅行需求",
+  "section.submit-lead": "提交后，终端会读取并保存这份本次旅行的初始信息，再开始筛选目的地。你仍可以在之后随时修改条件。",
+  "button.submit": "提交并开始目的地筛选",
+  "button.fill-example": "填入示例",
+  "button.reset": "清空",
+  "summary.preview": "查看将要提交的数据（JSON）",
+  "msg.range-choose": "请选择人均预算范围",
+  "msg.range-custom": "自定义范围…",
+  "msg.range-help-no-currency": "先选择预算币种，再选择范围。",
+  "msg.range-help-ranges": "按 {code} 显示每位旅行者的人均预算范围；可选“自定义范围”。",
+  "msg.range-help-no-presets": "{code} 没有预设区间，请选择“自定义范围”并填写数字。",
+  "msg.budget-missing": "请选择人均预算范围；如选择自定义，请填写数字范围。",
+  "msg.budget-invalid": "人均预算范围应为正数，且上限不能低于下限。",
+  "msg.entry-missing": "跨境或海外筛选需要每位同行人的国籍与合法居留地。",
+  "msg.entry-row-format": "第 {n} 位同行人的格式应为：称呼 | 护照国籍 | 现居国 | 身份类别（身份类别可留空）。",
+  "msg.places-hint-fixed": "必填。填你会住下来的那个城市或地区；如果这里只填得出国家名，请把上面改选「国家或大区定了，城市还没定」",
+  "msg.places-hint-anchored": "必填，逗号分隔。填国家或大区就行，城市由后续比较决定",
+  "msg.end-date-missing": "填写了出发日期就请一并填写返回日期。",
+  "msg.start-date-missing": "填写了返回日期就请一并填写出发日期。",
+  "msg.end-before-start": "返回日期不能早于出发日期。",
+  "msg.trip-too-long": "单次行程请控制在 60 天以内。",
+  "msg.days-mismatch": "确定日期对应 {duration} 天，与填写的 {days} 天不一致；请修改其中一个。",
+  "msg.dates-or-month": "请填写确定的出发/返回日期，或填写大致的月份/季节。",
+  "msg.days-range": "未填写确定日期时，请填写 1–60 之间的预计天数。",
+  "sep.clause": "；",
+  "sep.comma": "，",
+  "sep.list": "、",
+  "status.eu_eea_ch_citizen": "欧盟公民",
+  "status.member_state_residence_permit": "成员国居留卡",
+  "status.eu_long_term_resident": "欧盟长期居留",
+  "status.short_stay_visa_or_visa_free": "短期签证",
+  "status.other_or_unspecified": "其他",
+  "status.unsure": "不确定",
+  "msg.traveller-label": "旅客 {n}",
+  "msg.profile-self-drive": "自驾偏好：{value}",
+  "msg.profile-never": "已带入不推荐地点：{places}",
+  "msg.profile-dietary": "已带入饮食限制：{items}",
+  "msg.profile-loaded": "已载入旅行档案“{id}”的稳定偏好并作为默认值；本次填写始终优先。出行范围、日期、同行人、预算和实际可接受交通方式必须以本次选择为准。",
+  "msg.profile-carried": "{items}。",
+  "req.city": "出发城市",
+  "req.country": "出发国家/地区",
+  "req.count": "同行人数",
+  "req.currency": "预算币种",
+  "req.coverage": "人均预算涵盖范围",
+  "req.travel-scope": "本次出行范围",
+  "req.travel-time": "最长单程总时长",
+  "req.scope": "目的地状态",
+  "req.direction": "景色方向",
+  "req.trip-shape": "这趟想怎么走",
+  "req.max-stops": "最多分几站",
+  "req.min-nights-per-stop": "每站至少住几晚",
+  "req.return-to-first": "是否回到第一站离境",
+  "req.booked-already": "已经订好的部分",
+  "req.booked-detail": "已订部分的具体内容",
+  "req.passport-validity": "护照有效期确认",
+  "req.held-visas": "你凭什么证件入境",
+  "msg.missing": "请补充：{fields}",
+  "msg.max-stops-invalid": "最多分几站必须是不小于 2 的整数；只有一站请改选「住一个地方」。",
+  "msg.min-nights-invalid": "每站至少住几晚必须是大于 0 的整数。",
+  "msg.custom-currency-invalid": "自定义币种请填写三位字母代码，例如 CHF。",
+  "msg.places-missing": "选择了已固定或有偏好的目的地时，请填写具体是哪里。",
+  "msg.count-invalid": "同行人数必须是大于 0 的整数。",
+  "msg.entry-count-mismatch": "请为每位同行人提供一行国籍/居留地；当前人数为 {count}。",
+  "msg.rooms-invalid": "房间数必须是大于 0 的整数。",
+  "msg.modes-missing": "请至少选择一种可接受的单程出行方式。",
+  "msg.climate-conflict": "“无特别气候限制”不能与其他气候偏好同时选择。",
+  "msg.draft-saved": "草稿已在本机浏览器保存，误关页面后重新打开可继续填写。",
+  "msg.draft-restored": "已恢复上次未提交的草稿。点击“清空”可以重新开始。",
+  "msg.open-from-terminal": "请从终端显示的 Travel Buddy 本机链接打开此表单。",
+  "msg.sending": "正在把本次旅行信息回传到本机终端…",
+  "msg.submit-failed": "提交失败。",
+  "msg.saved-started": "已保存，并已在终端启动 {assistant} 目的地筛选；无需再输入“继续”。请保持终端运行，结果会直接显示。",
+  "msg.saved-skipped": "已保存；当前设置为只保存，不会自动启动目的地筛选。",
+  "msg.saved-failed-start": "已保存，但自动筛选未能启动：{reason}",
+  "msg.see-terminal": "请查看终端提示。",
+  "msg.submitted": "已提交。终端已保存本次旅行需求。",
+  "msg.preview-empty": "填写后点击“提交并开始目的地筛选”。",
+  "example.city": "上海",
+  "example.country": "中国",
+  "example.dietary": "不吃辣",
+  "example.avoid": "频繁换酒店",
+  "example.held-visas": "不出境",
+  "example.map-apps": "高德地图",
+  "example.booking-platforms": "携程, Trip.com",
+  "example.services-to-avoid": "需要 VPN 的服务",
+  "example.service-notes": "中国大陆路线优先高德地图；海外根据目的地选择本地服务",
+  "msg.example-filled": "已填入国内旅行示例；如考虑出境，请按实际情况重新回答“这趟需要现办签证吗”。",
+  "profile.self-drive.public-first": "优先公共交通",
+  "profile.self-drive.fine": "可接受自驾",
+  "profile.self-drive.prefer": "偏好自驾",
+  "profile.self-drive.none": "不自驾"
+ },
+ "en": {
+  "page.title": "Travel Buddy · Plan a trip",
+  "hero.title": "Find a destination that fits you",
+  "hero.lead": "Fill in the key conditions for this trip. When you submit, your answers go back to the Travel Buddy terminal on this computer, which uses them to shortlist and compare destinations. Nothing here books, logs in or pays for anything.",
+  "hero.hint": "Questions marked <b>Required</b> decide whether a trip is possible; everything else can stay blank. The details in the collapsed sections can wait until you have picked a destination.",
+  "rail.profile": "Profile",
+  "rail.trip": "This trip",
+  "rail.destinations": "Destinations",
+  "rail.aria": "Trip planning steps",
+  "notice.privacy": "<strong>Note:</strong> please don't enter passport numbers, ID photos, payment details or an exact home address. If you have a saved travel profile, its lasting preferences are reused later, so there is no need to repeat them.",
+  "section.origin": "1. Where and when you leave",
+  "hint.required": "Required",
+  "label.city": "Departure city",
+  "ph.city": "e.g. London",
+  "label.country": "Departure country/region",
+  "ph.country": "e.g. United Kingdom",
+  "hint.start-date": "if your dates are set, fill them in here",
+  "label.start-date": "Fixed departure date",
+  "hint.end-date": "fill in together with the departure date",
+  "label.end-date": "Fixed return date",
+  "hint.month": "instead of the dates above",
+  "label.month": "No dates yet? Give a month or season",
+  "ph.month": "e.g. 2026-10 or October",
+  "hint.days": "required if you have no fixed dates",
+  "label.days": "How many days",
+  "ph.days": "e.g. 7",
+  "label.flexibility": "Date flexibility",
+  "option.unspecified": "Not specified",
+  "option.flexibility.2": "Fixed",
+  "option.flexibility.3": "± 1–2 days",
+  "option.flexibility.4": "Within a week",
+  "option.flexibility.5": "Season only",
+  "hint.booked-already": "Required — what is booked decides what can still change",
+  "label.booked-already": "Already booked",
+  "option.choose": "Choose…",
+  "option.booked-already.nothing": "Nothing yet",
+  "option.booked-already.transport": "Outbound or return transport",
+  "option.booked-already.lodging": "Accommodation",
+  "option.booked-already.both": "Both transport and accommodation",
+  "option.booked-already.other": "Something else (tickets, car hire…)",
+  "hint.booked-detail": "Required — flight numbers, hotel names, dates, whether it can be changed or refunded",
+  "label.booked-detail": "↳ What exactly is booked",
+  "ph.booked-detail": "e.g. CX270 17 Apr Amsterdam→Hong Kong, non-refundable; a Tsim Sha Tsui hotel 17–23 Apr, free cancellation until 10 Apr",
+  "hint.optional": "optional",
+  "label.fixed-commitments": "Fixed commitments to plan around",
+  "ph.fixed-commitments": "e.g. back at work on 12 October; a friend's wedding on 11 October",
+  "hint.comma-optional": "comma-separated, optional",
+  "label.airports": "Acceptable airports",
+  "ph.airports": "e.g. LHR, LGW",
+  "section.destination": "2. Where you want to go",
+  "label.scope": "Destination status",
+  "option.scope.fixed": "A specific city or area is settled (e.g. Kyoto, Mallorca, Fort Lauderdale)",
+  "option.scope.anchored": "The country or region is settled, the city is not (e.g. Japan, the USA, California)",
+  "option.scope.continent": "Only a continent or broad region (e.g. Southeast Asia, southern Europe)",
+  "option.scope.open": "Completely open — recommend something",
+  "hint.comma": "comma-separated",
+  "label.places": "Which places exactly",
+  "ph.places": "e.g. Italy, Kansai (Japan)",
+  "hint.trip-shape": "Required — this sets the structure of the whole itinerary",
+  "label.trip-shape": "How the trip should be shaped",
+  "option.trip-shape.single_base": "Stay in one place and do day trips",
+  "option.trip-shape.multi_city": "Move between several stops, a few nights each",
+  "option.trip-shape.planner_decides": "I give the area, you decide the stops",
+  "hint.max-stops": "Required, counting the first stop",
+  "label.max-stops": "↳ Maximum number of stops",
+  "ph.max-stops": "e.g. 3",
+  "hint.min-nights-per-stop": "Required — 1 gives you an itinerary that changes hotel every night",
+  "label.min-nights-per-stop": "↳ Minimum nights per stop",
+  "ph.min-nights-per-stop": "e.g. 2",
+  "hint.return-to-first": "Required — decides whether to leave room for the leg back",
+  "label.return-to-first": "↳ Leave from the first stop at the end?",
+  "option.return-to-first.yes": "Yes, head home from the first stop",
+  "option.return-to-first.no": "No, leave straight from the last stop",
+  "option.return-to-first.either": "Either — decide by fares and times",
+  "label.excluded": "Places to avoid this time",
+  "ph.excluded": "e.g. islands, a particular country",
+  "label.purpose": "Main purpose of the trip",
+  "option.purpose.leisure": "Pure rest and relaxation",
+  "option.purpose.sightseeing": "Sightseeing and exploring",
+  "option.purpose.food": "Mostly food and drink",
+  "option.purpose.outdoor": "Outdoors / sport",
+  "option.purpose.family": "Family / with children",
+  "option.purpose.visiting": "Visiting family or friends",
+  "option.purpose.celebration": "Anniversary / honeymoon / celebration",
+  "option.purpose.work_adjacent": "Added on to a work trip",
+  "option.purpose.other": "Other",
+  "section.party-budget": "3. Who is going, and the budget",
+  "label.count": "Number of travellers",
+  "ph.count": "e.g. 2",
+  "label.composition": "Who is travelling",
+  "option.composition.2": "Solo",
+  "option.composition.3": "Couple / two people",
+  "option.composition.4": "Friends",
+  "option.composition.5": "Family",
+  "option.composition.6": "Larger group",
+  "label.ages": "Relevant ages or needs",
+  "ph.ages": "e.g. two adults; or one child aged 6",
+  "label.mobility": "Mobility or care needs",
+  "ph.mobility": "e.g. avoid long walks",
+  "label.dietary": "Dietary restrictions",
+  "ph.dietary": "e.g. vegetarian, halal, peanut allergy, no spicy food",
+  "label.currency": "Budget currency",
+  "option.currency.CNY": "CNY Chinese yuan",
+  "option.currency.EUR": "EUR Euro",
+  "option.currency.USD": "USD US dollar",
+  "option.currency.GBP": "GBP British pound",
+  "option.currency.JPY": "JPY Japanese yen",
+  "option.currency.KRW": "KRW South Korean won",
+  "option.currency.HKD": "HKD Hong Kong dollar",
+  "option.currency.TWD": "TWD New Taiwan dollar",
+  "option.currency.SGD": "SGD Singapore dollar",
+  "option.currency.AUD": "AUD Australian dollar",
+  "option.currency.CAD": "CAD Canadian dollar",
+  "option.currency.THB": "THB Thai baht",
+  "option.currency.OTHER": "Another currency (enter its code)",
+  "hint.custom-currency": "three letters, e.g. CHF",
+  "label.custom-currency": "Currency code",
+  "ph.custom-currency": "e.g. CHF",
+  "label.budget-range": "Budget per person",
+  "msg.range-pick-currency": "Choose a currency first",
+  "hint.range-help": "Ranges are per traveller; you can also choose a custom range.",
+  "hint.custom-budget": "for the “Custom range” chosen above",
+  "label.custom-budget": "↳ Enter the figures",
+  "ph.custom-budget": "e.g. 600–750",
+  "label.coverage": "Does the per-person budget include transport and accommodation?",
+  "option.coverage.all_in": "Transport, accommodation and spending on the ground",
+  "option.coverage.transport_and_stay": "Transport and accommodation",
+  "option.coverage.land_only": "Everything except getting there and back",
+  "option.coverage.unknown": "Not decided yet",
+  "label.comfort": "Accommodation comfort",
+  "option.comfort.2": "Budget and practical",
+  "option.comfort.3": "Comfortable mid-range",
+  "option.comfort.4": "Boutique / characterful",
+  "option.comfort.5": "High-end",
+  "section.range-transport-climate": "4. Travel range, transport and climate",
+  "hint.section-4": "A domestic trip needs no entry details; nationality, legal residence and acceptable visa routes are only collected if you might leave the country. At home or abroad, every realistic way to travel is compared: flights, rail, long-distance coaches, ferries and driving.",
+  "label.travel-scope": "Will you need to get a visa for this trip?",
+  "option.travel-scope.no_new_visa_needed": "No — I can already enter the places I have in mind (visa-free, a valid visa or residence permit, or a trip inside my country of residence)",
+  "option.travel-scope.any_including_visa": "Yes — I'm willing to apply for a visa in advance for this trip",
+  "hint.held-visas": "Required; the more specific, the less back-and-forth — this decides whether the trip can happen",
+  "label.held-visas": "↳ What lets you enter",
+  "ph.held-visas": "e.g. Japan 3-year multiple-entry visa, Schengen residence permit, visa-free for the destination; for a domestic trip, write “not leaving the country”",
+  "hint.held-passport-validity": "Required; don't enter the number or any dates",
+  "label.held-passport-validity": "↳ Will your passport still be valid 6 months after the trip?",
+  "option.held-passport-validity.valid_through_trip": "Yes, for every traveller",
+  "option.held-passport-validity.not_sure": "Not sure, needs checking",
+  "option.held-passport-validity.needs_renewal": "No, someone needs a new passport",
+  "option.held-passport-validity.not_applicable_domestic": "Not leaving the country, so no passport needed",
+  "hint.visa-tolerance": "follows from the answer above",
+  "label.visa-tolerance": "↳ How far you're willing to go",
+  "option.visa-tolerance.evisa_acceptable": "Only an e-visa or visa on arrival",
+  "option.visa-tolerance.visa_process_acceptable": "I can apply for a full visa in advance",
+  "hint.travel-time": "Required, including waiting, connections and ground transfers",
+  "label.travel-time": "Longest acceptable one-way journey",
+  "option.travel-time.2": "Up to 3 hours",
+  "option.travel-time.3": "Up to 6 hours",
+  "option.travel-time.4": "Up to 10 hours",
+  "option.travel-time.5": "Up to 15 hours",
+  "option.travel-time.6": "Up to 24 hours",
+  "option.travel-time.7": "No fixed limit, as long as it's comfortable",
+  "label.transport-priority": "Priority for travel between cities",
+  "option.transport-priority.1": "Balanced comparison",
+  "option.transport-priority.shortest_total_time": "Shortest total time",
+  "option.transport-priority.lowest_reasonable_cost": "Reasonable price first",
+  "option.transport-priority.fewest_transfers": "Fewest changes",
+  "option.transport-priority.comfort_and_scenery": "Comfort and scenery first",
+  "notice.entry": "<strong>Only needed for trips abroad:</strong> used only to work out which countries need no separate visa. One line per traveller, with just nationality, country of residence and residence status there — do <strong>not</strong> enter passport numbers, ID photos, issue or expiry dates, or payment details. If you have a profile, the first line is filled in for you.",
+  "hint.traveler-entry": "format: name | passport nationality | country of residence | residence status",
+  "label.traveler-entry": "Each traveller's status",
+  "ph.traveler-entry": "e.g.\nTraveller 1 | China | Netherlands | EU residence permit\nTraveller 2 | Netherlands | Netherlands | EU citizen",
+  "hint.residence-status": "Residence status can be: EU citizen, EU residence permit, EU long-term resident, Short-stay visa, Other. If unsure, write “Not sure”.",
+  "hint.passport-validity": "Required; don't enter the number or any dates",
+  "label.passport-validity": "Will your passport still be valid 6 months after the trip?",
+  "hint.transport-mode": "Pick at least one; several is fine. Domestic trips in China focus on high-speed rail; in Europe and similar regions, trains and coaches are compared side by side.",
+  "legend.transport-mode": "Acceptable ways to travel one way",
+  "check.transport-mode.high_speed_rail": "High-speed rail",
+  "check.transport-mode.conventional_rail_or_overnight": "Regular or night train",
+  "check.transport-mode.intercity_bus": "Long-distance coach",
+  "check.transport-mode.direct_flight": "Direct flight",
+  "check.transport-mode.connecting_flight": "Connecting flight",
+  "check.transport-mode.ferry": "Ferry / passenger boat",
+  "check.transport-mode.self_drive": "Driving yourself",
+  "hint.climate": "e.g. late September; leave blank if unsure",
+  "legend.climate": "Climate wishes or deal-breakers for those dates",
+  "check.climate.1": "No rain or rainy season",
+  "check.climate.2": "On the warm side",
+  "check.climate.3": "Must be warm enough to swim",
+  "check.climate.4": "Avoid intense heat or humidity",
+  "check.climate.5": "Avoid cold or snow",
+  "check.climate.6": "No particular climate needs",
+  "label.climate-notes": "Other climate notes",
+  "ph.climate-notes": "e.g. late September, ideally above 20°C by day; the odd shower is fine",
+  "section.experience": "5. What you want to see and do",
+  "label.direction": "Nature, culture or a balance",
+  "option.direction.natural": "Nature",
+  "option.direction.human_cultural": "People and culture",
+  "option.direction.balance": "A balance",
+  "label.pace": "Pace",
+  "option.pace.2": "Slow and in depth",
+  "option.pace.3": "Moderate",
+  "option.pace.4": "Packed, many places",
+  "label.intensity": "Activity level",
+  "option.intensity.2": "Mostly comfortable sightseeing",
+  "option.intensity.3": "Short walks",
+  "option.intensity.4": "Day hikes and activities",
+  "option.intensity.5": "Strenuous outdoors",
+  "hint.tick-any": "tick any that apply",
+  "legend.natural": "Natural scenery",
+  "check.natural.1": "Islands / coast",
+  "check.natural.2": "Mountains / hiking",
+  "check.natural.3": "Lakes / forests",
+  "check.natural.4": "Wildlife",
+  "check.natural.5": "Snow / northern lights",
+  "check.natural.6": "Volcanoes / landforms",
+  "legend.cultural": "Culture and people",
+  "check.cultural.1": "Historic buildings / old towns",
+  "check.cultural.2": "Museums / art",
+  "check.cultural.3": "Food / markets",
+  "check.cultural.4": "Neighbourhood walks",
+  "check.cultural.5": "Festivals / nightlife",
+  "hint.rank-1": "pick from what you ticked above",
+  "label.rank-1": "The most important of these",
+  "msg.rank-tick-first": "Tick some above first, then rank them here",
+  "label.rank-2": "The next most important",
+  "hint.avoid": "comma-separated; put places in section 2",
+  "label.avoid": "Experiences or conditions to avoid",
+  "ph.avoid": "e.g. extreme heat, red-eye flights, changing hotels often",
+  "summary.detail-block": "Optional: accommodation and transport details (can wait until a destination is chosen)",
+  "hint.detail-block": "These don't affect where to go, only the detailed itinerary and price comparisons later. Blank is fine.",
+  "label.room-count": "Rooms needed",
+  "ph.room-count": "e.g. 1",
+  "label.stay-location": "Hotel location priority",
+  "option.stay-location.2": "Walking distance to the sights",
+  "option.stay-location.3": "Near a metro or train station",
+  "option.stay-location.4": "Quiet and safe",
+  "option.stay-location.5": "Easy airport or transport-hub access",
+  "label.breakfast": "Breakfast",
+  "option.breakfast.2": "Must be included",
+  "option.breakfast.3": "Included if possible",
+  "option.breakfast.4": "Not needed",
+  "label.cancellation": "Cancellation policy",
+  "option.cancellation.2": "Free cancellation required",
+  "option.cancellation.3": "Cancellable preferred",
+  "option.cancellation.4": "Price first; non-refundable is fine",
+  "label.rail-preference": "Rail preference",
+  "option.rail-preference.2": "High-speed rail first",
+  "option.rail-preference.3": "Regular trains are fine",
+  "option.rail-preference.4": "Night trains / sleepers are fine",
+  "option.rail-preference.5": "Fewer changes and reserved seats first",
+  "label.bus-comfort": "Long-distance coaches",
+  "option.bus-comfort.2": "Short transfers only (about 3 hours or less)",
+  "option.bus-comfort.3": "Daytime long-distance coaches are fine",
+  "option.bus-comfort.4": "Night or sleeper coaches are fine",
+  "label.cabin": "Cabin class",
+  "option.cabin.2": "Economy first",
+  "option.cabin.3": "Comfort or premium economy first",
+  "option.cabin.4": "Include business class in comparisons",
+  "label.baggage": "Luggage",
+  "option.baggage.2": "Hand luggage only",
+  "option.baggage.3": "One checked bag each",
+  "option.baggage.4": "Several or oversized bags",
+  "label.flight-time": "Flight times",
+  "option.flight-time.2": "Avoid red-eyes and late-night arrivals",
+  "option.flight-time.3": "Daytime departures and arrivals first",
+  "option.flight-time.4": "Flexible",
+  "summary.service-block": "Optional: which map and booking services work for you",
+  "hint.service-block": "Used to pick maps, transport and comparison sites that will actually open for you on the trip. No accounts or payment details are asked for, and no VPN or proxy is ever suggested. If you have a saved profile, this is filled in for you.",
+  "label.google-services-access": "Can you use Google services normally?",
+  "option.google-services-access.unknown": "Not sure / depends on the destination",
+  "option.google-services-access.available": "Yes, normally (without a VPN or proxy)",
+  "option.google-services-access.unavailable": "Don't use Google services",
+  "label.preferred-map-apps": "Map or navigation apps you use",
+  "ph.preferred-map-apps": "e.g. Google Maps, Apple Maps",
+  "label.preferred-booking-platforms": "Comparison sites you're happy with",
+  "ph.preferred-booking-platforms": "e.g. Trip.com, Booking.com",
+  "label.services-to-avoid": "Services you'd rather avoid",
+  "ph.services-to-avoid": "e.g. sites that need a local phone number, anything that needs a VPN",
+  "label.service-access-notes": "Other notes",
+  "ph.service-access-notes": "e.g. Amap for mainland China routes; local maps abroad",
+  "section.submit": "Submit this trip",
+  "section.submit-lead": "After you submit, the terminal reads and saves these starting details, then begins shortlisting destinations. You can still change any of it later.",
+  "button.submit": "Submit and start shortlisting",
+  "button.fill-example": "Fill in an example",
+  "button.reset": "Clear",
+  "summary.preview": "See the data that will be submitted (JSON)",
+  "msg.range-choose": "Choose a per-person range",
+  "msg.range-custom": "Custom range…",
+  "msg.range-help-no-currency": "Choose a currency first, then a range.",
+  "msg.range-help-ranges": "Ranges per traveller in {code}; you can also choose “Custom range”.",
+  "msg.range-help-no-presets": "There are no preset ranges for {code}; choose “Custom range” and enter the figures.",
+  "msg.budget-missing": "Choose a per-person budget range; for a custom range, enter the figures.",
+  "msg.budget-invalid": "The per-person budget must be positive, and the upper figure cannot be below the lower one.",
+  "msg.entry-missing": "To shortlist trips abroad, we need each traveller's nationality and legal residence.",
+  "msg.entry-row-format": "Traveller {n} should be written as: name | passport nationality | country of residence | residence status (the status can be left blank).",
+  "msg.places-hint-fixed": "Required. Name the city or area you will stay in; if all you can name here is a country, change the answer above to “The country or region is settled, the city is not”.",
+  "msg.places-hint-anchored": "Required, comma-separated. A country or region is enough; the city is decided by the comparison later.",
+  "msg.end-date-missing": "You gave a departure date, so please add the return date too.",
+  "msg.start-date-missing": "You gave a return date, so please add the departure date too.",
+  "msg.end-before-start": "The return date cannot be before the departure date.",
+  "msg.trip-too-long": "Please keep a single trip to 60 days or fewer.",
+  "msg.days-mismatch": "Your dates cover {duration} days, but you entered {days}; please change one of them.",
+  "msg.dates-or-month": "Please give fixed departure and return dates, or a rough month or season.",
+  "msg.days-range": "Without fixed dates, please enter an expected length between 1 and 60 days.",
+  "sep.clause": "; ",
+  "sep.comma": ", ",
+  "sep.list": ", ",
+  "status.eu_eea_ch_citizen": "EU citizen",
+  "status.member_state_residence_permit": "EU residence permit",
+  "status.eu_long_term_resident": "EU long-term resident",
+  "status.short_stay_visa_or_visa_free": "Short-stay visa",
+  "status.other_or_unspecified": "Other",
+  "status.unsure": "Not sure",
+  "msg.traveller-label": "Traveller {n}",
+  "msg.profile-self-drive": "Self-drive preference: {value}",
+  "msg.profile-never": "Places never to recommend, carried over: {places}",
+  "msg.profile-dietary": "Dietary needs carried over: {items}",
+  "msg.profile-loaded": "Loaded the lasting preferences from travel profile “{id}” as defaults; what you enter here always wins. Travel range, dates, travellers, budget and acceptable transport must come from this trip's answers.",
+  "msg.profile-carried": "{items}.",
+  "req.city": "Departure city",
+  "req.country": "Departure country/region",
+  "req.count": "Number of travellers",
+  "req.currency": "Budget currency",
+  "req.coverage": "What the per-person budget covers",
+  "req.travel-scope": "Whether you need a visa for this trip",
+  "req.travel-time": "Longest one-way journey",
+  "req.scope": "Destination status",
+  "req.direction": "Nature or culture preference",
+  "req.trip-shape": "How the trip should be shaped",
+  "req.max-stops": "Maximum number of stops",
+  "req.min-nights-per-stop": "Minimum nights per stop",
+  "req.return-to-first": "Whether to leave from the first stop",
+  "req.booked-already": "What is already booked",
+  "req.booked-detail": "Details of what is booked",
+  "req.passport-validity": "Passport validity",
+  "req.held-visas": "What you will enter on",
+  "msg.missing": "Please fill in: {fields}",
+  "msg.max-stops-invalid": "The maximum number of stops must be a whole number of at least 2; for a single stop, choose “Stay in one place” instead.",
+  "msg.min-nights-invalid": "The minimum nights per stop must be a whole number above 0.",
+  "msg.custom-currency-invalid": "For another currency, enter its three-letter code, e.g. CHF.",
+  "msg.places-missing": "You said the destination is settled or narrowed down, so please say where.",
+  "msg.count-invalid": "The number of travellers must be a whole number above 0.",
+  "msg.entry-count-mismatch": "Please give one line of nationality and residence per traveller; you said there are {count}.",
+  "msg.rooms-invalid": "The number of rooms must be a whole number above 0.",
+  "msg.modes-missing": "Please choose at least one acceptable way to travel.",
+  "msg.climate-conflict": "“No particular climate needs” cannot be combined with other climate choices.",
+  "msg.draft-saved": "Draft saved in this browser; if you close the page by accident, reopen it to carry on.",
+  "msg.draft-restored": "Restored your unsubmitted draft. Press “Clear” to start again.",
+  "msg.open-from-terminal": "Please open this form from the local Travel Buddy link shown in the terminal.",
+  "msg.sending": "Sending your trip details to the terminal on this computer…",
+  "msg.submit-failed": "Submission failed.",
+  "msg.saved-started": "Saved, and {assistant} has started shortlisting destinations in the terminal; there is no need to type “continue”. Keep the terminal running and the results will appear there.",
+  "msg.saved-skipped": "Saved. This setup only saves, so destination shortlisting will not start automatically.",
+  "msg.saved-failed-start": "Saved, but automatic shortlisting could not start: {reason}",
+  "msg.see-terminal": "Check the terminal for details.",
+  "msg.submitted": "Submitted. The terminal has saved this trip's details.",
+  "msg.preview-empty": "Fill in the form, then press “Submit and start shortlisting”.",
+  "example.city": "Shanghai",
+  "example.country": "China",
+  "example.dietary": "no spicy food",
+  "example.avoid": "changing hotels often",
+  "example.held-visas": "Not leaving the country",
+  "example.map-apps": "Amap",
+  "example.booking-platforms": "Trip.com, Booking.com",
+  "example.services-to-avoid": "services that need a VPN",
+  "example.service-notes": "Amap first for mainland China routes; local services abroad, depending on the destination",
+  "msg.example-filled": "Filled in an example domestic trip. If you might go abroad, answer “Will you need to get a visa for this trip?” for your own situation.",
+  "profile.self-drive.public-first": "Public transport first",
+  "profile.self-drive.fine": "Driving is fine",
+  "profile.self-drive.prefer": "Prefer to drive",
+  "profile.self-drive.none": "No driving"
+ }
+}
+  </script>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const tripConfig = window.TRAVEL_BUDDY_TRIP_INTAKE || {};
+      // One page, two languages. Every string a traveller reads comes from the tb-i18n dictionary;
+      // every VALUE the intake stores is the same in both, so the same answers given in English or
+      // in Chinese submit the same intake (tests/test_intake_form.js holds that).
+      const I18N = JSON.parse($("tb-i18n").textContent);
+      const LANGUAGE_NAMES = { zh:"中文", en:"English" };
+      let LANG = tripConfig.language === "en" ? "en" : "zh";
+      function t(key, vars) {
+        const text = (I18N[LANG] && I18N[LANG][key]) || I18N.zh[key] || key;
+        if (!vars) return text;
+        return text.replace(/\{(\w+)\}/g, (_, name) => {
+          const value = typeof vars[name] === "function" ? vars[name]() : vars[name];
+          return value === undefined || value === null ? "" : String(value);
+        });
+      }
+      // Text the script writes -- status lines, errors, hints that follow an answer -- is kept as a
+      // render function per element, so a language switch re-renders it instead of leaving it in the
+      // language the page just left.
+      const live = new Map();
+      function show(node, render) {
+        if (render) live.set(node, render); else live.delete(node);
+        node.textContent = render ? render() : "";
+      }
+      function say(node, key, vars) { show(node, key ? () => t(key, vars) : null); }
+      const endpoint = tripConfig.submit_url || window.TRAVEL_BUDDY_SUBMIT_URL || "";
+      const profileDefaults = tripConfig.profile_defaults || {};
+      const status = $("status");
+      const preview = $("preview");
+      const errorSummary = $("error-summary");
+      const rangeSelect = $("budget-range");
+      const DRAFT_KEY = "travel-buddy.trip-intake.draft";
+
+      const text = (id) => $(id).value.trim();
+      const list = (id) => text(id).split(/[,，、]/).map((item) => item.trim()).filter(Boolean);
+      const checked = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map((item) => item.value);
+
+      const ranges = { CNY:[["3000|6000","¥3,000–6,000"],["6000|10000","¥6,000–10,000"],["10000|16000","¥10,000–16,000"],["16000|25000","¥16,000–25,000"],["25000|40000","¥25,000–40,000"],["40000|80000","¥40,000–80,000"]], EUR:[["300|500","€300–500"],["500|600","€500–600"],["600|750","€600–750"],["750|1000","€750–1,000"],["1000|1500","€1,000–1,500"],["1500|2500","€1,500–2,500"],["2500|5000","€2,500–5,000"]], USD:[["300|500","$300–500"],["500|750","$500–750"],["750|1200","$750–1,200"],["1200|1800","$1,200–1,800"],["1800|3000","$1,800–3,000"],["3000|5000","$3,000–5,000"]], GBP:[["250|400","£250–400"],["400|600","£400–600"],["600|900","£600–900"],["900|1400","£900–1,400"],["1400|2200","£1,400–2,200"]], JPY:[["40000|70000","¥40,000–70,000"],["70000|120000","¥70,000–120,000"],["120000|180000","¥120,000–180,000"],["180000|280000","¥180,000–280,000"]], KRW:[["500000|900000","₩500,000–900,000"],["900000|1500000","₩900,000–1,500,000"],["1500000|2500000","₩1,500,000–2,500,000"]], HKD:[["3000|6000","HK$3,000–6,000"],["6000|11000","HK$6,000–11,000"],["11000|18000","HK$11,000–18,000"],["18000|30000","HK$18,000–30,000"]], TWD:[["12000|22000","NT$12,000–22,000"],["22000|40000","NT$22,000–40,000"],["40000|65000","NT$40,000–65,000"],["65000|110000","NT$65,000–110,000"]], SGD:[["500|900","S$500–900"],["900|1500","S$900–1,500"],["1500|2500","S$1,500–2,500"],["2500|4000","S$2,500–4,000"]], AUD:[["600|1000","A$600–1,000"],["1000|1700","A$1,000–1,700"],["1700|2800","A$1,700–2,800"],["2800|4500","A$2,800–4,500"]], CAD:[["600|1000","C$600–1,000"],["1000|1700","C$1,000–1,700"],["1700|2800","C$1,700–2,800"],["2800|4500","C$2,800–4,500"]], THB:[["10000|20000","฿10,000–20,000"],["20000|35000","฿20,000–35,000"],["35000|60000","฿35,000–60,000"],["60000|100000","฿60,000–100,000"]] };
+      const coverageCategories = { all_in:["flight","accommodation","food","local_transport","attractions"], transport_and_stay:["flight","accommodation"], land_only:["accommodation","food","local_transport","attractions"], unknown:[] };
+
+      function currencyCode() { const selected = text("currency"); return selected === "OTHER" ? text("custom-currency").toUpperCase() : selected; }
+
+      function updateRanges() {
+        const code = currencyCode();
+        const options = ranges[code] || [];
+        rangeSelect.innerHTML = "";
+        rangeSelect.append(new Option(t(code ? "msg.range-choose" : "msg.range-pick-currency"), ""));
+        for (const [value, label] of options) rangeSelect.append(new Option(label, value));
+        rangeSelect.append(new Option(t("msg.range-custom"), "custom"));
+        rangeSelect.disabled = !code;
+        say($("range-help"), !code ? "msg.range-help-no-currency"
+          : options.length ? "msg.range-help-ranges" : "msg.range-help-no-presets", { code });
+        updateCustomBudget();
+      }
+      function updateCustomBudget() { $("custom-budget-wrap").hidden = rangeSelect.value !== "custom"; }
+      function updateCurrencyMode() { $("custom-currency-wrap").hidden = text("currency") !== "OTHER"; updateRanges(); }
+
+      function budgetInfo() {
+        const raw = rangeSelect.value === "custom" ? text("custom-budget") : rangeSelect.value;
+        const label = rangeSelect.value === "custom" ? raw : rangeSelect.options[rangeSelect.selectedIndex]?.text || "";
+        const values = raw.match(/\d+(?:\.\d+)?/g) || [];
+        if (!raw || !values.length) throw fieldError(rangeSelect.value === "custom" ? "custom-budget" : "budget-range", "msg.budget-missing");
+        const low = Number(values[0]);
+        const high = values[1] ? Number(values[1]) : low;
+        if (!Number.isFinite(low) || !Number.isFinite(high) || low <= 0 || high < low) throw fieldError("custom-budget", "msg.budget-invalid");
+        return { calculation_basis:"per_person", target_amount: label, hard_cap_amount: high, range_low_amount: low, range_high_amount: high, range_label: label };
+      }
+
+      // An error carries its key as well as its text, so the summary can be re-rendered in the
+      // other language if the traveller switches while it is on screen.
+      function fieldError(id, key, vars) {
+        const error = new Error(t(key, vars));
+        error.fieldId = id;
+        error.render = () => t(key, vars);
+        return error;
+      }
+      // Geography no longer stands in for visa burden: entry is assessed whenever the
+      // trip may leave the country of residence, and how much visa effort is acceptable
+      // follows from the same answer instead of being a separate question.
+      // Only "I need to get a visa" triggers the full entry panel. A traveller who says they
+      // can already enter is asked one thing instead — what they enter ON — because that is
+      // the fact worth verifying. Re-deriving eligibility from nationality when the traveller
+      // already holds the visa is how a whole research branch gets spent and then voided.
+      function requiresEntryAssessment() { return text("travel-scope") === "any_including_visa"; }
+      function visaTolerance() {
+        const scope = text("travel-scope");
+        if (scope === "any_including_visa") return text("visa-tolerance") || "visa_process_acceptable";
+        if (scope === "visa_free_only") return "visa_free_only";
+        return "no_new_visa_needed";
+      }
+
+      function entryProfiles(required) {
+        if (!required) return [];
+        const rows = text("traveler-entry").split(/\r?\n/).map((row) => row.trim()).filter(Boolean);
+        if (!rows.length) throw fieldError("traveler-entry", "msg.entry-missing");
+        return rows.map((row, index) => {
+          const parts = row.split(/[|｜]/).map((part) => part.trim());
+          if (parts.length < 3 || !parts[0] || !parts[1] || !parts[2]) throw fieldError("traveler-entry", "msg.entry-row-format", { n: index + 1 });
+          return { traveler_label:parts[0], passport_nationality:parts[1], legal_residence:parts[2], residence_status:residenceStatus(parts[3]) };
+        });
+      }
+
+      // The status words the hint offers are what the intake has always stored. The English hint
+      // teaches the same categories in English, and those spellings are stored as the same words,
+      // so the planner reads one vocabulary whichever language the form was filled in. Anything
+      // else is kept exactly as typed, as it always was. Only exact translations are mapped: a bare
+      // "residence permit" could be any country's, so it is not assumed to be an EU one.
+      const STATUS_SPELLINGS = {
+        "欧盟公民": ["eu citizen", "eu/eea/swiss citizen"],
+        "成员国居留卡": ["eu residence permit", "member-state residence permit", "member state residence permit"],
+        "欧盟长期居留": ["eu long-term resident", "eu long term resident"],
+        "短期签证": ["short-stay visa", "short stay visa"],
+        "其他": ["other"],
+        "不确定": ["not sure", "unsure"],
+      };
+      function residenceStatus(word) {
+        if (!word) return null;
+        const folded = word.toLowerCase().replace(/\s+/g, " ").trim();
+        return Object.keys(STATUS_SPELLINGS).find((stored) => STATUS_SPELLINGS[stored].includes(folded)) || word;
+      }
+
+      function connectionTolerance(modes) {
+        if (modes.includes("direct_flight") && modes.includes("connecting_flight")) return "优先直飞，可接受转机";
+        if (modes.includes("direct_flight")) return "仅接受直飞";
+        if (modes.includes("connecting_flight")) return "可接受转机";
+        return "未使用航班";
+      }
+
+      function updateConditionalPanels() {
+        const entryNeeded = requiresEntryAssessment();
+        $("entry-requirements").hidden = !entryNeeded;
+        $("visa-effort-wrap").hidden = text("travel-scope") !== "any_including_visa";
+        // A held visa does not make an expired passport board a plane, so validity is still
+        // asked here — with an explicit domestic opt-out, since this branch also covers
+        // "I am not leaving the country". Skipping it would delete a denial-of-boarding check.
+        const heldBranch = text("travel-scope") === "no_new_visa_needed";
+        $("held-visa-wrap").hidden = !heldBranch;
+        $("held-passport-wrap").hidden = !heldBranch;
+        // The third disqualifier. references/research-budget.md rule 1 names three questions
+        // worth asking before any research at all -- entry permission, whether the dates can
+        // move, and whether anything is already booked -- because each "yes" deletes a whole
+        // branch. The form collected the first two and not the third, so on a measured run it was
+        // asked in chat instead: the round trip the rule exists to prevent. It asks WHAT is booked
+        // rather than whether, because "flights booked" and "hotel booked" delete different
+        // branches and a yes/no would only push the follow-up one step later.
+        // Multi-stop is a shape question, not a preference: it decides whether the plan has one
+        // stay group or several, whether there is a ticketed intercity leg to compare, and whether
+        // the return leg starts where the outbound landed. None of that is derivable from a
+        // destination scope -- "一个国家" is equally true of one base and of five stops -- so it is
+        // asked once, here, rather than discovered halfway through design.
+        const multiStop = ["multi_city", "planner_decides"].includes(text("trip-shape"));
+        $("multi-stop-wrap").hidden = !multiStop;
+        const somethingBooked = text("booked-already") && text("booked-already") !== "nothing";
+        $("booked-detail-wrap").hidden = !somethingBooked;
+        // The hint has to say what to type at the moment of typing, because `fixed` and
+        // `anchored` differ by exactly one thing -- whether a CITY is settled -- and the option
+        // used to read "已固定城市/国家", which is both answers at once. A real run answered
+        // `fixed` with the single word 「美国」; the form recorded mode=construction and the
+        // assistant was one step away from writing an eight-day itinerary for a whole country.
+        const scopeNow = text("scope");
+        const anchored = ["fixed", "anchored"].includes(scopeNow);
+        say($("places-hint"), scopeNow === "fixed" ? "msg.places-hint-fixed"
+          : scopeNow === "anchored" ? "msg.places-hint-anchored"
+          : "hint.comma-optional");
+        refreshRanking();
+      }
+
+      // The taxonomy checkboxes say what matters; these two selects say what matters MOST,
+      // which is what `ranked_must_haves` is supposed to carry. An item is stored by its checkbox
+      // VALUE and shown by the checkbox's label, so it reads in the page's language.
+      function boxLabel(name, value) {
+        const box = [...document.querySelectorAll(`input[name="${name}"]`)].find((input) => input.value === value);
+        const label = box && box.labels && box.labels[0];
+        return label ? label.textContent.trim() : value;
+      }
+      function refreshRanking() {
+        const picked = [...checked("natural").map((value) => ["natural", value]), ...checked("cultural").map((value) => ["cultural", value])];
+        const values = picked.map(([, value]) => value);
+        for (const id of ["rank-1", "rank-2"]) {
+          const select = $(id);
+          const previous = select.value;
+          select.innerHTML = "";
+          select.append(new Option(t(values.length ? "option.unspecified" : "msg.rank-tick-first"), ""));
+          for (const [name, value] of picked) select.append(new Option(boxLabel(name, value), value));
+          select.value = values.includes(previous) ? previous : "";
+        }
+      }
+
+      function travelWindow() {
+        const start = text("start-date");
+        const end = text("end-date");
+        const monthText = text("month");
+        const daysText = text("days");
+        if (start && !end) throw fieldError("end-date", "msg.end-date-missing");
+        if (end && !start) throw fieldError("start-date", "msg.start-date-missing");
+        if (start && end) {
+          const startDate = new Date(`${start}T00:00:00`);
+          const endDate = new Date(`${end}T00:00:00`);
+          if (endDate < startDate) throw fieldError("end-date", "msg.end-before-start");
+          const duration = Math.round((endDate - startDate) / 86400000) + 1;
+          if (duration > 60) throw fieldError("end-date", "msg.trip-too-long");
+          if (daysText && Number(daysText) !== duration) throw fieldError("days", "msg.days-mismatch", { duration, days: daysText });
+          return { start_date:start, end_date:end, month_or_season: monthText || start.slice(0, 7), duration_days: duration, duration_nights: duration - 1, date_flexibility: text("flexibility") || "固定" };
+        }
+        if (!monthText) throw fieldError("month", "msg.dates-or-month");
+        const duration = Number(daysText);
+        if (!Number.isInteger(duration) || duration < 1 || duration > 60) throw fieldError("days", "msg.days-range");
+        return { start_date:null, end_date:null, month_or_season: monthText, duration_days: duration, duration_nights: null, date_flexibility: text("flexibility") || null };
+      }
+
+      function setIfBlank(id, value) { if (!text(id) && typeof value === "string" && value.trim()) $(id).value = value.trim(); }
+      function selectIfBlank(id, value) { if (!text(id) && typeof value === "string" && [...$(id).options].some((option) => option.value === value)) $(id).value = value; }
+      function selectMappedIfBlank(id, value, mapping) { selectIfBlank(id, mapping[value] || value); }
+      function listIfBlank(id, values) { if (!text(id) && Array.isArray(values)) $(id).value = values.filter((item) => typeof item === "string" && item.trim()).join(", "); }
+      function checkProfileInterests(name, values, mapping) {
+        if (checked(name).length || !Array.isArray(values)) return;
+        const desired = values.map((value) => mapping[value] || value).filter(Boolean);
+        document.querySelectorAll(`input[name="${name}"]`).forEach((input) => { input.checked = desired.includes(input.value); });
+      }
+
+      // The profile stores its self-drive answer as the Chinese option VALUE -- stored values never
+      // change with the language -- so the note has to say it in the page's language. A value no
+      // form offers (a hand-edited profile) is shown as written.
+      const SELF_DRIVE_LABELS = { "优先公共交通":"profile.self-drive.public-first", "可接受自驾":"profile.self-drive.fine", "偏好自驾":"profile.self-drive.prefer", "不自驾":"profile.self-drive.none" };
+      function selfDriveLabel(value) { return SELF_DRIVE_LABELS[value] ? t(SELF_DRIVE_LABELS[value]) : value; }
+
+      function applyProfileDefaults() {
+        const locationMap = { "交通枢纽":"机场/交通枢纽便利", "景点步行范围":"景点步行可达", "安静安全":"安静、安全" };
+        const naturalMap = { "海岸/海岛":"海岛/海岸", "山地徒步":"山地/徒步" };
+        const culturalMap = { "历史建筑":"历史建筑/古城", "当地美食":"美食/市场" };
+        setIfBlank("city", profileDefaults.home_city);
+        setIfBlank("country", profileDefaults.home_country);
+        selectIfBlank("currency", profileDefaults.currency);
+        setIfBlank("pace", profileDefaults.pace);
+        setIfBlank("comfort", profileDefaults.comfort_preference);
+        setIfBlank("mobility", Array.isArray(profileDefaults.accessibility_needs) ? profileDefaults.accessibility_needs.filter((item) => typeof item === "string" && item.trim()).join(t("sep.clause")) : "");
+        listIfBlank("dietary", profileDefaults.dietary_preferences);
+        setIfBlank("avoid", Array.isArray(profileDefaults.avoid_list) ? profileDefaults.avoid_list.filter((item) => typeof item === "string" && item.trim()).join(t("sep.comma")) : "");
+        selectIfBlank("direction", profileDefaults.experience_direction);
+        selectMappedIfBlank("stay-location", profileDefaults.location_priority, locationMap);
+        selectIfBlank("cabin", profileDefaults.typical_cabin_or_seat_preference);
+        listIfBlank("airports", profileDefaults.acceptable_departure_airports);
+        listIfBlank("preferred-map-apps", profileDefaults.preferred_map_apps);
+        listIfBlank("preferred-booking-platforms", profileDefaults.preferred_booking_platforms);
+        listIfBlank("services-to-avoid", profileDefaults.services_to_avoid);
+        // A saved `never_recommend` place is a hard filter, so it must reach this trip's
+        // intake rather than sitting in a profile file the shortlist may never open.
+        listIfBlank("excluded", profileDefaults.never_recommend_places);
+        checkProfileInterests("natural", profileDefaults.natural_subtypes, naturalMap);
+        checkProfileInterests("cultural", profileDefaults.human_cultural_subtypes, culturalMap);
+        selectIfBlank("google-services-access", profileDefaults.google_services_access);
+        const savedServiceNotes = [profileDefaults.regional_service_notes, profileDefaults.booking_access_notes].filter((value) => typeof value === "string" && value.trim()).join(t("sep.clause"));
+        setIfBlank("service-access-notes", savedServiceNotes);
+        const statusLabels = { eu_eea_ch_citizen:"status.eu_eea_ch_citizen", member_state_residence_permit:"status.member_state_residence_permit", eu_long_term_resident:"status.eu_long_term_resident", short_stay_visa_or_visa_free:"status.short_stay_visa_or_visa_free", other_or_unspecified:"status.other_or_unspecified" };
+        const residenceCountry = profileDefaults.residence_country || profileDefaults.legal_residence;
+        if (!text("traveler-entry") && typeof profileDefaults.passport_nationality === "string" && profileDefaults.passport_nationality.trim() && typeof residenceCountry === "string" && residenceCountry.trim()) {
+          const label = t(statusLabels[profileDefaults.residence_status] || "status.unsure");
+          $("traveler-entry").value = `${t("msg.traveller-label", { n: 1 })} | ${profileDefaults.passport_nationality.trim()} | ${residenceCountry.trim()} | ${label}`;
+        }
+        if (typeof profileDefaults.profile_id === "string" && profileDefaults.profile_id) {
+          const note = $("saved-profile-note");
+          note.hidden = false;
+          show(note, () => {
+            const carried = [
+              profileDefaults.self_drive_preference ? t("msg.profile-self-drive", { value: () => selfDriveLabel(profileDefaults.self_drive_preference) }) : "",
+              Array.isArray(profileDefaults.never_recommend_places) && profileDefaults.never_recommend_places.length ? t("msg.profile-never", { places: profileDefaults.never_recommend_places.join(t("sep.list")) }) : "",
+              Array.isArray(profileDefaults.dietary_preferences) && profileDefaults.dietary_preferences.length ? t("msg.profile-dietary", { items: profileDefaults.dietary_preferences.join(t("sep.list")) }) : "",
+            ].filter(Boolean).join(t("sep.clause"));
+            return [t("msg.profile-loaded", { id: profileDefaults.profile_id }), carried ? t("msg.profile-carried", { items: carried }) : ""].filter(Boolean).join(" ");
+          });
+        }
+      }
+
+      function build() {
+        const tripScope = text("travel-scope");
+        const entryNeeded = requiresEntryAssessment();
+        const required = [["city", "req.city"], ["country", "req.country"], ["count", "req.count"], ["currency", "req.currency"], ["coverage", "req.coverage"], ["travel-scope", "req.travel-scope"], ["travel-time", "req.travel-time"], ["scope", "req.scope"], ["direction", "req.direction"]];
+        required.push(["trip-shape", "req.trip-shape"]);
+        // Both bounds are required rather than defaulted. A missing max turns "you decide" into an
+        // unbounded plan, and a missing minimum is how a multi-city trip becomes a different hotel
+        // every night -- the two failure modes this shape has, neither of them recoverable later.
+        if (["multi_city", "planner_decides"].includes(text("trip-shape"))) {
+          required.push(["max-stops", "req.max-stops"]);
+          required.push(["min-nights-per-stop", "req.min-nights-per-stop"]);
+          required.push(["return-to-first", "req.return-to-first"]);
+        }
+        required.push(["booked-already", "req.booked-already"]);
+        // Required, and the detail box required as soon as anything IS booked, because an
+        // optional field on a disqualifier comes back null and the question gets asked in chat
+        // anyway -- which is exactly what happened to held_entry_documents.
+        if (text("booked-already") && text("booked-already") !== "nothing")
+          required.push(["booked-detail", "req.booked-detail"]);
+        if (entryNeeded) required.push(["passport-validity", "req.passport-validity"]);
+        else if (text("travel-scope") === "no_new_visa_needed") {
+          // Both fields, not one. SKILL.md says this branch collects TWO things -- what the
+          // traveller enters ON, and passport validity -- and only the second was required here,
+          // so held_entry_documents came back null on a real run. The assistant then had to ask
+          // in chat, which is a round trip the form exists to remove; worse, the answer ("中国护照,
+          // 从荷兰出发") was what turned an asserted "no visa needed" into a trip-blocking finding.
+          // A field that decides whether the trip is possible is not an optional one.
+          required.push(["held-passport-validity", "req.passport-validity"]);
+          required.push(["held-visas", "req.held-visas"]);
+        }
+        const missing = required.filter(([id]) => !text(id));
+        // Parsed and checked the way traveler_count is, rather than coerced: Number("两") is NaN,
+        // and a NaN that reaches the JSON is a bound nothing downstream can act on while looking
+        // like an answer. Only read once the required check above has confirmed they are present.
+        let maxStops = null, minNights = null;
+        if (["multi_city", "planner_decides"].includes(text("trip-shape")) && !required.filter(([id]) => !text(id)).length) {
+          maxStops = Number(text("max-stops"));
+          minNights = Number(text("min-nights-per-stop"));
+          if (!Number.isInteger(maxStops) || maxStops < 2)
+            throw fieldError("max-stops", "msg.max-stops-invalid");
+          if (!Number.isInteger(minNights) || minNights < 1)
+            throw fieldError("min-nights-per-stop", "msg.min-nights-invalid");
+        }
+        if (missing.length) throw fieldError(missing[0][0], "msg.missing", { fields: () => missing.map(([, key]) => t(key)).join(t("sep.list")) });
+        if (text("currency") === "OTHER" && !/^[A-Za-z]{3}$/.test(text("custom-currency"))) throw fieldError("custom-currency", "msg.custom-currency-invalid");
+
+        const scopeState = text("scope");
+        const namedPlaces = list("places");
+        // A "fixed" scope with no place produced a Construction handoff for a destination
+        // that was never named.
+        if (["fixed", "anchored"].includes(scopeState) && !namedPlaces.length) throw fieldError("places", "msg.places-missing");
+
+        const travelerCount = Number(text("count"));
+        if (!Number.isInteger(travelerCount) || travelerCount < 1) throw fieldError("count", "msg.count-invalid");
+        const window_ = travelWindow();
+        const travelers = entryProfiles(entryNeeded);
+        if (entryNeeded && travelers.length !== travelerCount) throw fieldError("traveler-entry", "msg.entry-count-mismatch", { count: travelerCount });
+        const roomsRaw = text("room-count");
+        const roomCount = roomsRaw ? Number(roomsRaw) : null;
+        if (roomCount !== null && (!Number.isInteger(roomCount) || roomCount < 1)) throw fieldError("room-count", "msg.rooms-invalid");
+
+        const modes = checked("transport-mode");
+        if (!modes.length) throw fieldError("travel-time", "msg.modes-missing");
+        const climate = checked("climate");
+        if (climate.includes("无特别气候限制") && climate.length > 1) throw fieldError("climate-notes", "msg.climate-conflict");
+        const climateNotes = text("climate-notes");
+        if (climateNotes) climate.push(climateNotes);
+
+        const budget = budgetInfo();
+        const primaryTraveler = travelers[0] || {};
+        const rankedMustHaves = [text("rank-1"), text("rank-2")].filter(Boolean).filter((value, index, all) => all.indexOf(value) === index);
+        const commitment = scopeState === "fixed" ? "必须去" : scopeState === "anchored" ? "强偏好" : null;
+        // The work mode follows from the destination-scope answer (SKILL.md "Work mode");
+        // hard-coding "discovery" made a fixed destination look like an open search.
+        // Keep this mapping in step with SCOPE_WORK_MODES in scripts/serve_trip_intake.py,
+        // which rejects a submission whose mode contradicts its scope.
+        const workMode = scopeState === "fixed" ? "construction"
+          : scopeState === "anchored" ? "constrained_discovery"
+          : "discovery";
+
+        return {
+          profile_version:"1.0", mode:workMode, intake_status:"complete",
+          trip_geography:{ scope:tripScope, entry_assessment_required:entryNeeded },
+          trip_purpose:text("purpose") || null,
+          origin:{ home_city:text("city"), country:text("country"), acceptable_departure_airports:list("airports"), nearby_airport_ground_transfer_tolerance:null, max_one_way_travel_time:text("travel-time"), connection_tolerance:connectionTolerance(modes) },
+          travel_window:{ ...window_, fixed_commitments:text("fixed-commitments") || null },
+          party:{ traveler_count:travelerCount, composition:text("composition") || null, relevant_ages:text("ages") ? [text("ages")] : [], mobility_or_access_needs:text("mobility") ? [text("mobility")] : [] },
+          budget:{ ...budget, currency:currencyCode(), coverage:text("coverage"), included_categories:coverageCategories[text("coverage")] || [], comfort_preference:text("comfort") || null },
+          existing_bookings:{ state:text("booked-already") || null, details:text("booked-detail") || null },
+          destination_scope:{ state:scopeState, named_places:namedPlaces, commitment,
+            trip_shape:{ state:text("trip-shape") || null, max_stops:maxStops,
+                         min_nights_per_stop:minNights,
+                         return_to_first_stop:text("return-to-first") || null }, excluded_places:list("excluded") },
+          experience:{ direction:text("direction"), natural_subtypes:checked("natural"), human_cultural_subtypes:checked("cultural"), ranked_must_haves:rankedMustHaves, intensity_or_activity_tolerance:text("intensity") || null, pace:text("pace") || null, avoid_list:list("avoid") },
+          transport_preferences:{ preferred_modes:modes, priority:text("transport-priority") || null, willing_to_self_drive:modes.includes("self_drive"), luggage_or_baggage_needs:text("baggage") || null, cabin_preference:text("cabin") || null, flight_time_preference:text("flight-time") || null, rail_preference:text("rail-preference") || null, bus_comfort_tolerance:text("bus-comfort") || null, ferry_acceptable:modes.includes("ferry") },
+          regional_service_access:{ selection_preference:"auto_by_destination", preferred_map_apps:list("preferred-map-apps"), preferred_booking_platforms:list("preferred-booking-platforms"), services_to_avoid:list("services-to-avoid"), google_services_access:text("google-services-access") || "unknown", notes:text("service-access-notes") || null },
+          stay_preferences:{ room_count:roomCount, lodging_style:text("comfort") || null, location_priority:text("stay-location") || null, breakfast_preference:text("breakfast") || null, cancellation_preference:text("cancellation") || null },
+          feasibility:{ entry_assessment_required:entryNeeded, traveler_entry_profiles:travelers, passport_nationality:primaryTraveler.passport_nationality || null, legal_residence:primaryTraveler.legal_residence || null, residence_status:primaryTraveler.residence_status || profileDefaults.residence_status || null, passport_validity_status:entryNeeded ? text("passport-validity") : (text("held-passport-validity") || "not_applicable_domestic"), entry_status:entryNeeded ? "unknown" : "traveler_asserts_can_enter", held_entry_documents:text("held-visas") || null, visa_tolerance:visaTolerance(), climate_preferences:climate, dietary_or_religious_needs:list("dietary"), safety_or_connectivity_needs:[] },
+          constraint_registry:[], open_questions:[], assumptions:[]
+        };
+      }
+
+      const FIELD_IDS = ["city","country","start-date","end-date","month","days","flexibility","booked-already","booked-detail","trip-shape","max-stops","min-nights-per-stop","return-to-first","fixed-commitments","airports","scope","places","excluded","purpose","count","composition","ages","mobility","dietary","currency","custom-currency","budget-range","custom-budget","coverage","comfort","travel-scope","travel-time","transport-priority","traveler-entry","visa-tolerance","passport-validity","held-passport-validity","held-visas","climate-notes","direction","pace","intensity","rank-1","rank-2","avoid","room-count","stay-location","breakfast","cancellation","rail-preference","bus-comfort","cabin","baggage","flight-time","google-services-access","preferred-map-apps","preferred-booking-platforms","services-to-avoid","service-access-notes"];
+
+      let draftTimer = null;
+      // `change` alone only fires on blur, so anything typed and not yet left behind
+      // was missing from the draft. Debounced `input` keeps free-text fields safe.
+      function scheduleDraftSave() { window.clearTimeout(draftTimer); draftTimer = window.setTimeout(saveDraft, 400); }
+      function saveDraft() {
+        try {
+          const values = Object.fromEntries(FIELD_IDS.map((id) => [id, $(id) ? $(id).value : ""]));
+          const boxes = Object.fromEntries(["transport-mode","climate","natural","cultural"].map((name) => [name, checked(name)]));
+          localStorage.setItem(DRAFT_KEY, JSON.stringify({ values, boxes, saved_at: new Date().toISOString() }));
+          say($("draft-note"), "msg.draft-saved");
+        } catch (error) { /* private mode or storage disabled: drafts are a convenience only */ }
+      }
+      function restoreDraft() {
+        try {
+          const draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
+          if (!draft || !draft.values) return;
+          for (const [id, value] of Object.entries(draft.values)) if ($(id) && value) $(id).value = value;
+          updateCurrencyMode();
+          // Re-apply after the option list is rebuilt, then sync the dependent input.
+          if (draft.values["budget-range"]) $("budget-range").value = draft.values["budget-range"];
+          if (draft.values["custom-budget"]) $("custom-budget").value = draft.values["custom-budget"];
+          updateCustomBudget();
+          for (const [name, values] of Object.entries(draft.boxes || {})) {
+            document.querySelectorAll(`input[name="${name}"]`).forEach((input) => { input.checked = values.includes(input.value); });
+          }
+          say($("draft-note"), "msg.draft-restored");
+        } catch (error) { /* ignore an unreadable draft */ }
+      }
+
+      function showError(error) {
+        errorSummary.hidden = false;
+        show(errorSummary, error.render || (() => error.message));
+        document.querySelectorAll(".field-error").forEach((node) => node.classList.remove("field-error"));
+        const field = error.fieldId ? $(error.fieldId) : null;
+        if (field) {
+          const container = field.closest("details.optional-block");
+          if (container) container.open = true;
+          field.classList.add("field-error");
+          field.scrollIntoView({ behavior:"smooth", block:"center" });
+          field.focus({ preventScroll:true });
+        } else {
+          errorSummary.scrollIntoView({ behavior:"smooth", block:"center" });
+        }
+      }
+
+      $("currency").addEventListener("change", updateCurrencyMode);
+      $("custom-currency").addEventListener("input", updateRanges);
+      rangeSelect.addEventListener("change", updateCustomBudget);
+      $("travel-scope").addEventListener("change", updateConditionalPanels);
+      $("scope").addEventListener("change", updateConditionalPanels);
+      $("booked-already").addEventListener("change", updateConditionalPanels);
+      // Nothing listened to this one: choosing "several stops" never revealed the two REQUIRED
+      // bounds, which went unnoticed while a CSS rule was showing every hidden panel anyway.
+      $("trip-shape").addEventListener("change", updateConditionalPanels);
+      document.querySelectorAll('input[name="natural"],input[name="cultural"]').forEach((input) => input.addEventListener("change", refreshRanking));
+      document.querySelectorAll("input,select,textarea").forEach((input) => {
+        input.addEventListener("change", saveDraft);
+        input.addEventListener("input", scheduleDraftSave);
+      });
+      // Static text from the dictionary, then everything the script builds, re-rendered in `lang`.
+      function applyLanguage(lang) {
+        LANG = lang === "en" ? "en" : "zh";
+        document.documentElement.lang = LANG === "en" ? "en" : "zh-CN";
+        document.querySelectorAll("[data-i18n]").forEach((node) => { node.textContent = t(node.dataset.i18n); });
+        document.querySelectorAll("[data-i18n-html]").forEach((node) => { node.innerHTML = t(node.dataset.i18nHtml); });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => { node.placeholder = t(node.dataset.i18nPlaceholder); });
+        document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => { node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel)); });
+        document.querySelectorAll("[data-i18n-title]").forEach((node) => { node.title = t(node.dataset.i18nTitle); });
+        // The switch names the other language in that language, so it can be found by someone who
+        // cannot read the page they are on.
+        const other = LANG === "en" ? "zh" : "en";
+        const toggle = $("lang-toggle");
+        toggle.textContent = LANGUAGE_NAMES[other];
+        toggle.lang = other === "en" ? "en" : "zh-CN";
+        // The lists the script builds are rebuilt in the new language and keep their selection.
+        const range = rangeSelect.value;
+        updateRanges();
+        if ([...rangeSelect.options].some((option) => option.value === range)) rangeSelect.value = range;
+        updateCustomBudget();
+        updateConditionalPanels();
+        live.forEach((render, node) => { node.textContent = render(); });
+      }
+
+      applyProfileDefaults();
+      updateCurrencyMode();
+      // restoreDraft must run last: updateCurrencyMode() rebuilds the budget-range
+      // options, which silently cleared a just-restored selection.
+      restoreDraft();
+      updateConditionalPanels();
+      say(preview, "msg.preview-empty");
+      applyLanguage(LANG);
+      $("lang-toggle").addEventListener("click", () => applyLanguage(LANG === "en" ? "zh" : "en"));
+
+      $("trip-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        try {
+          const data = build();
+          errorSummary.hidden = true;
+          document.querySelectorAll(".field-error").forEach((node) => node.classList.remove("field-error"));
+          const payload = JSON.stringify(data, null, 2);
+          show(preview, () => payload);
+          if (!endpoint) throw fieldError(null, "msg.open-from-terminal");
+          status.className = "status";
+          say(status, "msg.sending");
+          // The page's CURRENT language, so the server answers in it and the intake records it.
+          const response = await fetch(endpoint, { method:"POST", headers:{"Content-Type":"application/json", "X-Travel-Buddy-Language":LANG}, body:JSON.stringify(data) });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || t("msg.submit-failed"));
+          try { localStorage.removeItem(DRAFT_KEY); } catch (error) { /* nothing to clean up */ }
+          say($("draft-note"), null);
+          const automatic = result.automatic_discovery || {};
+          if (automatic.status === "started") say(status, "msg.saved-started", { assistant: automatic.assistant || "" });
+          else if (automatic.status === "skipped") say(status, "msg.saved-skipped");
+          else if (automatic.status === "failed_to_start") say(status, "msg.saved-failed-start", { reason: () => automatic.reason || t("msg.see-terminal") });
+          else say(status, "msg.submitted");
+        } catch (error) {
+          status.className = "status error";
+          say(status, null);
+          showError(error);
+        }
+      });
+
+      $("trip-form").addEventListener("reset", () => {
+        say(preview, "msg.preview-empty");
+        say(status, null);
+        errorSummary.hidden = true;
+        try { localStorage.removeItem(DRAFT_KEY); } catch (error) { /* nothing to clean up */ }
+        say($("draft-note"), null);
+        document.querySelectorAll(".field-error").forEach((node) => node.classList.remove("field-error"));
+        setTimeout(() => { updateCurrencyMode(); updateConditionalPanels(); }, 0);
+      });
+
+      $("fill-example").addEventListener("click", () => {
+        document.querySelectorAll('input[type="checkbox"]').forEach((input) => { input.checked = false; });
+        $("city").value = t("example.city"); $("country").value = t("example.country"); $("airports").value = "PVG, SHA";
+        $("start-date").value = ""; $("end-date").value = ""; $("month").value = "2026-10"; $("days").value = "7"; $("flexibility").value = "± 1–2 天"; $("booked-already").value = "nothing"; $("trip-shape").value = "single_base";
+        $("fixed-commitments").value = "";
+        $("scope").value = "open"; $("places").value = ""; $("excluded").value = ""; $("purpose").value = "sightseeing";
+        $("count").value = "2"; $("composition").value = "情侣/两人"; $("ages").value = ""; $("mobility").value = ""; $("dietary").value = t("example.dietary");
+        $("currency").value = "CNY"; updateCurrencyMode(); rangeSelect.value = "6000|10000"; updateCustomBudget();
+        $("coverage").value = "all_in"; $("comfort").value = "舒适中档";
+        // A domestic example answers the entry question the way the form now asks it; the old
+        // "visa_free_only" is not an option any more, so a browser left the question blank and the
+        // example could never be submitted.
+        $("travel-scope").value = "no_new_visa_needed"; $("held-visas").value = t("example.held-visas"); $("held-passport-validity").value = "not_applicable_domestic";
+        $("travel-time").value = "不超过 10 小时"; $("transport-priority").value = "fewest_transfers";
+        $("direction").value = "balance"; $("pace").value = "适中"; $("intensity").value = "短距离步行"; $("avoid").value = t("example.avoid");
+        $("room-count").value = "1"; $("stay-location").value = "邻近地铁/车站"; $("breakfast").value = "最好含早"; $("cancellation").value = "优先可取消";
+        $("rail-preference").value = "高铁/动车优先"; $("bus-comfort").value = "仅短途接驳（约 3 小时内）";
+        $("google-services-access").value = "unavailable"; $("preferred-map-apps").value = t("example.map-apps"); $("preferred-booking-platforms").value = t("example.booking-platforms");
+        $("services-to-avoid").value = t("example.services-to-avoid"); $("service-access-notes").value = t("example.service-notes");
+        document.querySelector('input[name="transport-mode"][value="high_speed_rail"]').checked = true;
+        document.querySelector('input[name="transport-mode"][value="direct_flight"]').checked = true;
+        document.querySelector('input[name="climate"][value="偏暖"]').checked = true;
+        document.querySelector('input[name="natural"][value="山地/徒步"]').checked = true;
+        document.querySelector('input[name="cultural"][value="美食/市场"]').checked = true;
+        updateConditionalPanels();
+        $("rank-1").value = "美食/市场"; $("rank-2").value = "山地/徒步";
+        errorSummary.hidden = true;
+        status.className = "status";
+        say(status, "msg.example-filled");
+      });
+    })();
+  </script>
+</body>
+</html>

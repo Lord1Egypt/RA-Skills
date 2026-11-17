@@ -1,0 +1,4 @@
+/fixture/nvm/node/v22.11.0/lib
+├── corepack@0.29.0
+├── npm@10.9.0
+└── typescript@5.7.2

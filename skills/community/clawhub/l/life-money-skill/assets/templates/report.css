@@ -1,0 +1,208 @@
+/* ══════════════════════════════════════════════════════════════
+   Life Money Report — 样式系统
+   设计依据：references/report-design.md（设计 tokens 与章节版式规则）
+   约束：单文件离线使用；无外部请求；无 JS 依赖；打印友好
+   ══════════════════════════════════════════════════════════════ */
+
+:root{
+  --canvas:#faf9f5; --surface-soft:#f5f0e8; --surface-card:#efe9de;
+  --hairline:#e6dfd8; --hairline-soft:#ebe6df;
+  --ink:#141413; --body:#3d3d3a; --muted:#6c6a64; --muted-soft:#8e8b82;
+  --primary:#cc785c; --primary-active:#a9583e; --primary-soft:rgba(204,120,92,.09);
+  --teal:#5db8a6; --amber:#e8a55a; --success:#5db872; --error:#c64545;
+  --dark:#181715; --dark-elev:#252320; --dark-soft:#1f1e1b;
+  --on-dark:#faf9f5; --on-dark-soft:#a09d96;
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC",SimSun,serif;
+  --sans:"Inter","Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:var(--canvas);color:var(--body);font-family:var(--sans);font-size:16px;line-height:1.7}
+
+.band{width:100%}
+.band--soft{background:var(--surface-soft)}
+.band--dark{background:var(--dark);color:var(--on-dark)}
+.band__inner{max-width:1080px;margin:0 auto;padding:0 56px}
+section.block{padding:88px 0}
+
+/* ── 封面 ─────────────────────────────────────────── */
+.cover{padding:120px 0 72px;position:relative}
+.cover__eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cover h1{font-family:var(--serif);font-weight:400;font-size:54px;line-height:1.16;color:var(--ink);margin:26px 0 18px}
+.cover__sub{font-size:16px;color:var(--muted)}
+.cover__rule{width:64px;height:2px;background:var(--primary);margin:30px 0}
+.cover__meta{display:flex;gap:28px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.spike{position:absolute;top:126px;right:56px}
+
+/* ── 章节头 ───────────────────────────────────────── */
+.sec-head{margin-bottom:44px}
+.sec-head__num{font-family:var(--serif);font-size:19px;color:var(--muted)}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.28;color:var(--ink);margin-top:6px}
+.sec-head__lead{margin-top:12px;color:var(--muted);font-size:15px;max-width:720px}
+.sec-head::after{content:"";display:block;height:1px;background:var(--hairline);margin-top:30px}
+
+/* ── 摘要 ─────────────────────────────────────────── */
+.hl{counter-reset:none}
+.hl__item{display:flex;gap:22px;padding:22px 0;border-bottom:1px solid var(--hairline-soft)}
+.hl__item:last-child{border-bottom:none}
+.hl__no{font-family:var(--serif);font-size:21px;color:var(--primary);min-width:38px;line-height:1.5}
+.hl__t{font-size:16.5px;color:var(--ink);line-height:1.75}
+.note{border:1px solid var(--hairline);border-radius:12px;padding:18px 24px;font-size:13px;color:var(--muted);margin-top:32px;line-height:1.8}
+.note b{color:var(--body);font-weight:500}
+
+/* ── 卡片 ─────────────────────────────────────────── */
+.card{background:var(--surface-card);border-radius:12px;padding:32px}
+.band--soft .card{background:var(--canvas)}
+.card--outline{background:transparent;border:1px solid var(--hairline)}
+.band--soft .card--outline{background:transparent}
+
+/* 隐藏技能 */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.skill{display:flex;flex-direction:column;gap:12px}
+.skill__name{font-size:18px;font-weight:500;color:var(--ink);line-height:1.45}
+.skill__row{font-size:14px;line-height:1.75}
+.skill__row b{display:inline-block;min-width:72px;color:var(--muted);font-weight:500;font-size:13px}
+.skill__ev{font-size:13px;color:var(--muted);border-top:1px solid var(--hairline-soft);padding-top:10px;margin-top:2px}
+
+/* 收入机会 */
+.opps{display:grid;gap:24px;margin-top:8px}
+.opp__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+.opp__title{font-size:18px;font-weight:500;color:var(--ink)}
+.opp__no{font-family:var(--serif);font-size:17px;color:var(--muted-soft)}
+.opp__desc{font-size:14.5px;margin-top:10px}
+.opp__attrs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-top:1px solid var(--hairline-soft);margin-top:16px;padding-top:16px}
+.attr__k{display:block;font-size:12px;color:var(--muted);margin-bottom:2px}
+.attr__v{font-size:13.5px;color:var(--ink)}
+.opp__step{background:var(--primary-soft);border-left:2px solid var(--primary);border-radius:6px;padding:10px 14px;font-size:13.5px;margin-top:16px}
+.opp__step b{color:var(--primary-active);font-weight:500;margin-right:6px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.dot--low{background:var(--success)}.dot--mid{background:var(--amber)}.dot--high{background:var(--error)}
+
+/* 变现路径 */
+.paths{display:grid;gap:40px}
+.paths__group h3{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--ink);margin-bottom:16px}
+.paths__group h3 span{font-family:var(--sans);font-size:13px;color:var(--muted);margin-left:12px}
+.path-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.path__name{font-size:16.5px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.path__desc{font-size:14px}
+.path__meta{margin-top:12px;font-size:13px;color:var(--muted)}
+.path__meta b{color:var(--body);font-weight:500}
+
+/* 杠杆 */
+.lev-main{background:var(--primary);color:#fff;border-radius:16px;padding:48px}
+.lev-main__k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);font-weight:500}
+.lev-main h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.35;margin:14px 0 16px}
+.lev-main p{color:rgba(255,255,255,.94);font-size:15.5px}
+.lev-sub{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.lev-sub__rank{font-size:12.5px;color:var(--muted);font-weight:500;margin-bottom:8px}
+.lev-sub h4{font-size:17px;font-weight:500;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.lev-sub p{font-size:14px}
+
+/* 高薪方向 */
+.roles{margin-top:40px}
+.role{display:grid;grid-template-columns:260px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid var(--hairline-soft)}
+.role:first-child{border-top:1px solid var(--hairline-soft)}
+.role__l h3{font-size:17px;font-weight:500;color:var(--ink);line-height:1.5;margin-bottom:10px}
+.role__why{font-size:14.5px}
+.role__qual{font-size:13.5px;color:var(--muted);margin-top:8px}
+.role__qual b{color:var(--body);font-weight:500;margin-right:6px}
+
+/* AI 副业 */
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.svc__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.svc__name{font-size:17px;font-weight:500;color:var(--ink);line-height:1.5}
+.svc__desc{font-size:14px;margin-top:10px}
+.svc__price{font-size:13px;color:var(--muted);margin-top:12px;border-top:1px solid var(--hairline-soft);padding-top:10px}
+
+/* 90 天计划 */
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.tl{border-top:2px solid var(--hairline);padding-top:22px;position:relative}
+.tl__dot{position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:50%;background:var(--ink)}
+.tl--first .tl__dot{background:var(--primary)}
+.tl__name{font-size:14px;font-weight:500;color:var(--ink)}
+.tl__focus{font-size:14.5px;margin-top:8px;color:var(--body)}
+.tl__acts{list-style:none;margin-top:12px}
+.tl__acts li{font-size:13.5px;color:var(--body);padding-left:16px;position:relative;margin-bottom:6px}
+.tl__acts li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--muted-soft)}
+.tl__ms{margin-top:14px;font-size:12.5px;line-height:1.6}
+
+/* 附录 A — 提示词（深色） */
+.prompts{margin-top:8px}
+.prompt{background:var(--dark-soft);border-radius:12px;padding:24px 28px;margin-bottom:16px}
+.prompt__hd{display:flex;gap:14px;align-items:baseline;margin-bottom:10px}
+.prompt__no{font-family:var(--mono);font-size:13px;color:var(--teal);letter-spacing:.06em}
+.prompt__t{color:var(--on-dark);font-weight:500;font-size:15.5px}
+.prompt__q{color:var(--on-dark-soft);font-size:14.5px;line-height:1.9}
+.prompts__cap{margin-top:20px;font-size:12.5px;color:var(--on-dark-soft)}
+
+/* 图表 */
+.chart{margin-top:36px}
+.chart svg{width:100%;height:auto;display:block}
+.chart__cap{margin-top:12px;font-size:12px;color:var(--muted);line-height:1.7}
+.mleg{display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;margin-top:20px}
+.mleg__i{font-size:13px;color:var(--body);line-height:1.9}
+.mleg__i b{font-family:var(--mono);font-size:12px;color:var(--muted);margin-right:6px;font-weight:400}
+.mleg__i em{font-style:normal;color:var(--muted);font-size:12.5px}
+.mleg__i.quick{}
+.mleg__i.quick b{color:var(--primary);font-weight:600}
+
+/* ── 徽章 / 标签 ──────────────────────────────────── */
+.pill{display:inline-block;background:var(--surface-card);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:500;color:var(--ink)}
+.band--soft .pill{background:var(--canvas)}
+.pill--coral{background:var(--primary);color:#fff}
+.band--soft .pill--coral{background:var(--primary)}
+.pill--outline{background:transparent;border:1px solid var(--hairline);color:var(--muted);font-weight:400}
+.band--soft .pill--outline{background:transparent}
+
+/* ── 页脚 ─────────────────────────────────────────── */
+.footer{background:var(--dark);color:var(--on-dark-soft)}
+.footer__inner{max-width:1080px;margin:0 auto;padding:56px 56px 64px}
+.footer__brand{display:flex;align-items:center;gap:12px;color:var(--on-dark);font-size:14px;font-weight:500;margin-bottom:16px}
+.footer p{font-size:12.5px;line-height:1.9}
+.footer .sep{height:1px;background:var(--dark-elev);margin:20px 0}
+.src-list{list-style:none;margin-top:8px}
+.src-list li{font-size:12.5px;line-height:1.9}
+.src-list b{color:var(--on-dark);font-weight:500}
+
+/* ── 响应式（窄屏降级） ───────────────────────────── */
+@media (max-width: 900px){
+  .band__inner{padding:0 24px}
+  .cover{padding:72px 0 48px}
+  .cover h1{font-size:34px}
+  .spike{top:76px;right:24px;width:28px;height:28px}
+  .sec-head h2{font-size:28px}
+  section.block{padding:56px 0}
+  .grid-2,.svc,.lev-sub,.path-row,.mleg{grid-template-columns:1fr}
+  .opp__attrs{grid-template-columns:repeat(2,1fr)}
+  .role{grid-template-columns:1fr;gap:12px}
+  .timeline{grid-template-columns:1fr;gap:36px}
+}
+
+/* ── 打印 ─────────────────────────────────────────── */
+@page{size:A4;margin:14mm}
+@media print{
+  body{font-size:12.5px}
+  .band__inner{padding:0 8mm;max-width:none}
+  section.block{padding:28px 0}
+  .cover{padding:40px 0 24px}
+  .cover h1{font-size:40px}
+  .card,.prompt,.lev-main,.tl,.role,.hl__item{break-inside:avoid}
+  .sec-head{break-after:avoid}
+  .chart svg{max-height:82mm}
+  .footer__inner{padding:28px 8mm}
+}
+
+/* ── 深色区块内章节头 ─────────────────────────────── */
+.band--dark .sec-head__num{color:var(--on-dark-soft)}
+.band--dark .sec-head h2{color:var(--on-dark)}
+.band--dark .sec-head::after{background:var(--dark-elev)}
+.band--dark .sec-head__lead{color:var(--on-dark-soft)}
+
+/* ── 附录 B ───────────────────────────────────────── */
+.sources{list-style:none}
+.sources li{font-size:13px;color:var(--muted);line-height:1.9;padding-left:14px;position:relative}
+.sources li::before{content:"";position:absolute;left:0;top:11px;width:4px;height:4px;border-radius:50%;background:var(--muted-soft)}
+.disc{font-size:13px;color:var(--muted);line-height:1.9;margin-top:20px;border-top:1px solid var(--hairline-soft);padding-top:20px}
+

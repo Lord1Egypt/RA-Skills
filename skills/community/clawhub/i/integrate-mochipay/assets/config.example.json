@@ -1,0 +1,19 @@
+{
+  "integration": "custom",
+  "base_url": "https://mochi.bz",
+  "payment_mode": "ON_SITE",
+  "unique_amount_direction": "UP",
+  "payment_methods": [
+    "USDT_TRC20",
+    "USDC_ERC20",
+    "BTC_BITCOIN",
+    "ETH_ERC20",
+    "SOL_SOLANA","TRX_TRON"
+  ],
+  "active_wallet_methods": [],
+  "api_key_configured": false,
+  "api_secret_configured": false,
+  "subscription_active": false,
+  "notify_url": "https://example.com/payments/mochipay/notify",
+  "redirect_url": "https://example.com/payments/mochipay/return"
+}

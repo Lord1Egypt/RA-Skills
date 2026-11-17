@@ -1,41 +1,54 @@
-## Description: <br>
-ExpenseLog helps users record expenses conversationally, categorize spending, track budgets, generate monthly reports, and export CSV data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ExpenseLog lets agents record conversational expense entries, categorize spending, track budgets, produce monthly reports, and export CSV data.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent log personal spending, summarize monthly totals by category, compare against budgets, and export CSV records for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Expense records can contain sensitive financial details and are stored locally on disk. <br>
-Mitigation: Use the skill only in trusted workspaces, avoid entering unnecessary sensitive details on shared machines, and keep independent backups of important data. <br>
-Risk: Ambiguous prompts may create unintended state-changing expense entries. <br>
-Mitigation: Use explicit phrases such as "log this expense" when adding records and review logged entries before relying on reports or exports. <br>
+## Use Case:
 
+External users and personal finance assistants use this skill to log expenses from natural-language statements, review monthly category totals, monitor budgets, and export records for tax preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/expense-log) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files] <br>
-**Output Format:** [Plain text or Markdown summaries, JSON-like expense records, and CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores expense records in a local expenses.json file when used through the included JavaScript module.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Personal expense details are stored in a local JSON file and may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an intentional local storage location, restrict file access, review logged entries for mistakes, and keep independent backups.
+
+Risk: CSV exports can carry formula-like values that may execute when opened in spreadsheet software.
+
+Mitigation: Sanitize formula-leading characters before opening exported CSV files in spreadsheet tools.
+
+## Reference(s):
+
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/expense-log)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, CSV]
+
+**Output Format:** [Conversational text, markdown-style reports, JSON-like expense records, and CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores expense records locally and can summarize monthly totals by category.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

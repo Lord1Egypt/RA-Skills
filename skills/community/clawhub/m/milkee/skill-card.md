@@ -1,45 +1,56 @@
-## Description: <br>
-MILKEE Swiss Accounting integrates with MILKEE accounting for Swiss businesses to manage projects, customers, time tracking, tasks, products, daily time summaries, and fuzzy project matching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete MILKEE accounting integration for Swiss businesses, covering projects, customers, time tracking, tasks, products, daily summaries, and fuzzy project matching.
 
-## Publisher: <br>
-[xenofex7](https://clawhub.ai/user/xenofex7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xenofex7](https://clawhub.ai/user/xenofex7)
 
-## Use Case: <br>
-External users and developers with MILKEE accounts use this skill to let an agent run accounting and time-tracking workflows, including listing and updating projects, customers, tasks, products, and time entries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a MILKEE API token and company ID that can grant access to business accounting data. <br>
-Mitigation: Install only from a trusted publisher, use a dedicated or least-privileged token if MILKEE supports it, keep credentials out of git, logs, screenshots, and shell history, and rotate any exposed token. <br>
-Risk: Documentation includes realistic API-token examples that users could copy or accidentally expose. <br>
-Mitigation: Replace all example values with real secrets only in private environment variables or local configuration, and never commit copied examples as active credentials. <br>
-Risk: Create, update, and time-logging commands can change MILKEE account records. <br>
-Mitigation: Review project, customer, task, product, and time-entry actions before allowing an agent to execute them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/xenofex7/milkee) <br>
-- [MILKEE API documentation](https://apidocs.milkee.ch/api) <br>
-- [MILKEE authentication documentation](https://apidocs.milkee.ch/api/authentifizierung.html) <br>
-- [MILKEE API v2 Endpoints Reference](references/api-endpoints.md) <br>
-- [MILKEE Configuration Guide](references/configuration.md) <br>
+## Use Case:
 
+Swiss business operators, consultants, and agents use this skill to read and modify MILKEE accounting records, including customers, projects, products, tasks, and billable time entries.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Text] <br>
-**Output Format:** [Plain text CLI output and Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MILKEE_API_TOKEN and MILKEE_COMPANY_ID environment variables; timer state may be stored in ~/.milkee_timer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md author/version line) <br>
+Switzerland
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read and modify MILKEE business records such as customers, projects, products, tasks, and time entries.
+
+Mitigation: Install only with a MILKEE account whose API token has the intended authority, and review proposed record-changing actions before execution.
+
+Risk: The documentation includes realistic credential examples that could be copied into logs, chat, shell history, or committed configuration.
+
+Mitigation: Use only your own MILKEE token, treat it as a secret, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xenofex7/skills/milkee)
+- [MILKEE API Documentation](https://apidocs.milkee.ch/api)
+- [MILKEE Authentication Documentation](https://apidocs.milkee.ch/api/authentifizierung.html)
+- [API Endpoints Reference](references/api-endpoints.md)
+- [Configuration Guide](references/configuration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text output with Markdown setup documentation and inline shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MILKEE_API_TOKEN and MILKEE_COMPANY_ID environment variables; stores local timer state in ~/.milkee_timer.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

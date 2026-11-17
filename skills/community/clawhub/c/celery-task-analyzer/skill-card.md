@@ -1,37 +1,53 @@
-## Description: <br>
-Analyzes Celery task configurations for reliability, performance, debugging, and production readiness across tasks, routing, serialization, result backends, workers, and beat schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Celery task configurations for reliability, performance, and debugging across retry policies, routing, serialization, result backends, worker settings, beat schedules, and task design patterns.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit Celery applications for reliability, performance, security-sensitive configuration, scheduling, and worker tuning issues before deployment or during troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect Celery configuration files that contain broker passwords, backend credentials, tokens, or production connection strings. <br>
-Mitigation: Point the agent at the smallest relevant repository or subdirectory and redact or exclude secret-bearing configuration before analysis. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit Celery applications for task reliability, queue routing, serialization safety, result backend configuration, worker tuning, beat scheduling, and remediation steps before production changes.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with findings, scores, remediation guidance, and code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include health scores, category scores, critical issues, per-task analysis, routing maps, beat schedule timelines, worker tuning recommendations, remediation code, and a priority matrix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill may read Celery project files, logs, or metrics that include private application or infrastructure details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Point the agent only at the intended project scope and redact unrelated private code, secrets, logs, or metrics before sharing inputs.
+
+Risk: Remediation snippets and configuration recommendations could change task delivery, retry, routing, or worker behavior if applied without review.
+
+Mitigation: Review proposed changes with the owning engineering team and validate them in staging before applying them to production Celery deployments.
+
+## Reference(s):
+
+- [Celery Task Analyzer - ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/celery-task-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with inline code blocks and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes prioritized findings, health scoring, Celery configuration recommendations, and remediation examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

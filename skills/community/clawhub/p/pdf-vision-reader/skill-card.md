@@ -1,44 +1,57 @@
-## Description: <br>
-PDF视觉阅读器 converts PDF pages into images and uses an AI vision model to understand, analyze, and summarize slide-based, image-based, or scanned PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF视觉阅读器将 PDF 页面转换为高清 PNG 图片，并帮助 AI 视觉模型理解、分析和总结 PDF 内容。
 
-## Publisher: <br>
-[itixobepafi130-ctrl](https://clawhub.ai/user/itixobepafi130-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itixobepafi130-ctrl](https://clawhub.ai/user/itixobepafi130-ctrl)
 
-## Use Case: <br>
-External users, developers, and document analysts use this skill when they need an agent to inspect PDFs whose contents may be image-based, slide-based, scanned, or layout-heavy. It renders pages to PNG images, analyzes them with a configured vision model, and returns page-level descriptions, key points, and follow-up summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF contents are rendered into local PNG images and may be processed by the configured AI vision model. <br>
-Mitigation: Use only PDFs suitable for that processing path, confirm the model provider's data handling terms, and remove generated page images when they are no longer needed. <br>
-Risk: Sensitive information from confidential, legal, medical, financial, or proprietary PDFs may be retained if analysis is archived. <br>
-Mitigation: Limit analysis to needed pages and avoid memory archiving unless derived content should be retained. <br>
-Risk: Very long PDFs can exceed practical vision-model context or token limits. <br>
-Mitigation: Analyze table-of-contents pages and selected priority pages first, or process pages in small batches. <br>
+## Use Case:
 
+Developers, operators, and document-review agents use this skill when a user provides a PDF path or PDF file that needs visual understanding, especially slide decks, image-based PDFs, and scanned documents. It supports page-by-page visual analysis, summary generation, key-point extraction, and optional knowledge archiving.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itixobepafi130-ctrl/pdf-vision-reader) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional shell commands and generated PNG file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local PNG page images before the agent synthesizes visual analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and _meta.json) <br>
+Risk: PDFs may contain sensitive document contents that are rendered to images and then processed by the current AI vision environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with PDFs that are appropriate for that environment, and archive extracted or analyzed contents only when the user explicitly requests it.
+
+Risk: The artifact documents package names but does not pin dependency versions.
+
+Mitigation: Install dependencies in an isolated environment and pin or review package versions before production use.
+
+Risk: PDF page rendering creates PNG files in the selected output directory.
+
+Mitigation: Choose an appropriate output directory and remove generated page images after analysis when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itixobepafi130-ctrl/skills/pdf-vision-reader)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with generated PNG page-image files and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The extraction script writes one PNG file per selected PDF page and prints the generated image paths for downstream visual analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

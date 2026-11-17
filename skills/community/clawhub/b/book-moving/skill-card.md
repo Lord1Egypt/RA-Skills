@@ -1,41 +1,54 @@
-## Description: <br>
-Book Moving helps an agent search for moving providers, check availability, and create bookings through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book moving services through Lokuli MCP.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-People planning a move can use this skill through an agent to find moving services near a ZIP code, check provider availability, and prepare a booking after confirming the provider, time, price, cancellation terms, and contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can submit personal contact details and booking details to Lokuli and connected moving providers. <br>
-Mitigation: Confirm the provider, appointment time, price, cancellation terms, and the user's consent to share name, email, phone number, and booking details before creating a booking. <br>
-Risk: Availability, pricing, and cancellation terms may depend on external providers returned by the Lokuli MCP endpoint. <br>
-Mitigation: Use the skill to check availability and present provider-specific terms to the user before treating a booking as final. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-moving) <br>
-- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+## Use Case:
 
+External users can ask an agent to search for moving providers, check availability, and book a moving service through Lokuli's MCP service. The agent should confirm before sending contact details or booking selections to the external service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON-RPC API calls, guidance] <br>
-**Output Format:** [Plain text or Markdown with JSON-RPC request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before submitting booking details to Lokuli or connected providers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send personal contact details, ZIP code, moving date, and booking choices to an external booking service.
+
+Mitigation: Ask for explicit user confirmation before sending name, email, phone number, ZIP code, date, or booking selections to the Lokuli MCP service.
+
+Risk: The security verdict is suspicious because consent and privacy instructions are not clear in the artifact.
+
+Mitigation: Review before installing and use the skill only when the user intentionally wants to search or book moving services through Lokuli.
+
+## Reference(s):
+
+- [Book Moving on ClawHub](https://clawhub.ai/edwardrodriguez703-design/skills/book-moving)
+- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, configuration]
+
+**Output Format:** [Markdown with JSON-RPC request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool-call guidance for search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

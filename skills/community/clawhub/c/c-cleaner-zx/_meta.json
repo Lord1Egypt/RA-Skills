@@ -1,6 +1,39 @@
 {
-  "ownerId": "kn7dk4dbthr5gprtqk18f7b0j18285t2",
+  "name": "C 盘清理助手",
   "slug": "c-cleaner-zx",
   "version": "1.0.5",
-  "publishedAt": 1779264071290
+  "description": "Windows C 盘清理助手 - 安全扫描、汇报、清理、迁移",
+  "descriptionEn": "Windows C Drive Cleaner - Safe scanning, reporting, cleanup, and migration",
+  "summary": "C 盘清理 Skill，采用混合模式：只扫描和汇报，任何删除/迁移操作都需要用户确认，确保 C 盘数据安全",
+  "summaryEn": "C Drive cleanup skill with safety-first approach: scan and report only, all delete/migrate operations require user confirmation",
+  "author": "Roxy",
+  "tags": ["windows", "cleanup", "c-drive", "security", "migration"],
+  "requiredBinaries": ["powershell", "pwsh"],
+  "requiredEnvVars": [
+    "WINRM_HOST - Windows target hostname or IP address",
+    "WINRM_USER - Windows username for WinRM authentication",
+    "WINRM_PASS - Windows password for WinRM authentication (use secure storage)",
+    "MIGRATION_TARGET - Server path for file migration"
+  ],
+  "requirements": {
+    "powershell": "PowerShell 5.1+ or PowerShell 7+ on Windows target",
+    "winrm": "WinRM configured on Windows target (HTTPS recommended)",
+    "network": "Network access between agent and Windows target",
+    "server": "Migration target server must be accessible (SSH/SMB/WinRM)"
+  },
+  "securityNotes": [
+    "All delete/migrate operations require explicit user confirmation",
+    "Protected paths whitelist prevents accidental deletion of system files",
+    "WinRM over HTTPS recommended (not AllowUnencrypted or Basic auth)",
+    "All operations are logged to upload-log.jsonl",
+    "Credentials should be stored securely (not in plaintext)",
+    "Migration target path is on the agent server, not the Windows target",
+    "WARNING: Migration transfers files from Windows host to agent server (data export)",
+    "Use scan-only mode if you do not want files to leave the target machine"
+  ],
+  "pathAssumptions": {
+    "windowsTarget": "C: drive on remote Windows host (accessed via WinRM)",
+    "migrationTarget": "/path/to/migration-target/ on the agent server (Linux)",
+    "transferMethod": "Files are transferred from Windows to agent server via WinRM/SCP/SMB"
+  }
 }

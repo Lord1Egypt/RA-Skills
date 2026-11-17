@@ -1,0 +1,52 @@
+{
+  "_说明": [
+    "示例数据目录的 bench.json（虚构标的，仅供跑通校验器）。",
+    "实盘：cp templates/bench.example.json $STOCK_DATA_DIR/bench.json 后按你的标的填写。",
+    "本文件数值与示例台账 §0.1/§3/§4 逐项一致（改一处必须同步另两处）。"
+  ],
+  "constants": {
+    "retrace_min": 0.25,
+    "pb_pctl_max": 75.0,
+    "pe_pctl_3y_max": 50.0,
+    "kf_ratio_min": 90.0,
+    "atr_period": 20,
+    "atr_mult": 2.0,
+    "a1_base_date": "2026-01-02"
+  },
+  "stock": {
+    "600000": {
+      "direction": "示例行业甲",
+      "bench_pt": 3.5,
+      "pb_pctl": 42.0,
+      "pe_pctl_3y": 35.0,
+      "kf_ratio": 96.0,
+      "a1": [
+        12.5,
+        8.0,
+        15.0
+      ],
+      "a1_note": "示例：扣非+12.5%；现金流8.00亿(+15.0%)",
+      "a2_hard": null
+    },
+    "600001": {
+      "direction": "示例行业甲",
+      "bench_pt": -3.5,
+      "pb_pctl": 88.0,
+      "pe_pctl_3y": 62.0,
+      "kf_ratio": 91.5,
+      "a1": [
+        "TURNAROUND",
+        3.2,
+        null
+      ],
+      "a1_note": "示例：扣非扭亏；现金流3.20亿转正",
+      "a2_hard": null
+    }
+  },
+  "bench_base": {
+    "示例行业甲": [
+      "2026-01-01",
+      "2026-01-02"
+    ]
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "职业分析报告数据格式模板 - SKILL.md 步骤14 输出标准",
+  "$comment_tables": "数据结构与报告表格对应关系：job_tasks→表1（工作任务分析表），typical_tasks→表2（典型工作任务汇总表）+表3（典型工作任务分析），action_domains→表4-6，abilities→表7-8，learning_domains→表9-10，learning_situations→表11",
+  
+  "major_info": {
+    "$comment": "专业基本信息",
+    "major_code": "710202",
+    "major_name": "计算机网络技术",
+    "education_level": "中等职业教育",
+    "career_orientation": "面向...职业，...岗位（群）",
+    "training_goal": "本专业培养..."
+  },
+  
+  "occupations": {
+    "$comment": "职业信息（来源于职业大典2022）",
+    "type": "array",
+    "items": [
+      {
+        "code": "2-02-10-04",
+        "name": "计算机网络工程技术人员",
+        "definition": "从事...的人员",
+        "tasks": ["任务1", "任务2"],
+        "source": "职业大典2022"
+      }
+    ]
+  },
+  
+  "jobs": {
+    "$comment": "岗位信息（专业教学标准中的职业面向）",
+    "type": "array",
+    "items": [
+      {
+        "name": "网络管理与维护",
+        "related_occupation": "2-02-10-04"
+      }
+    ]
+  },
+  
+  "job_tasks": {
+    "$comment_table1": "表1：工作任务分析表 - 每个职业的每个工作任务必须有完整的五个维度分析",
+    "$comment_source": "数据来源：occupations[].tasks 展开，为每个职业的每个任务生成详细分析",
+    "type": "array",
+    "items": [
+      {
+        "id": "T001",
+        "occupation_code": "2-02-10-04",
+        "occupation_name": "计算机网络工程技术人员",
+        "task_name": "进行网络需求调研与分析",
+        "work_object": "用户业务需求、网络应用环境",
+        "tools_materials": "调研问卷、网络分析工具、文档模板",
+        "work_method": "需求访谈→现场勘察→需求文档编写→方案评审",
+        "labor_organization": "团队协作（与项目经理、用户沟通）",
+        "work_result": "网络需求规格说明书、网络拓扑规划方案",
+        "difficulty_level": "简单",
+        "$comment_fields": "表1字段映射：工作任务=task_name, 工作内容=work_object+work_method组合, 工作条件=tools_materials, 工作成果=work_result"
+      },
+      {
+        "id": "T002",
+        "occupation_code": "2-02-10-04",
+        "occupation_name": "计算机网络工程技术人员",
+        "task_name": "进行网络设备配置与调试",
+        "work_object": "路由器、交换机、防火墙等网络设备",
+        "tools_materials": "Console线缆、网线、网络测试仪、设备管理软件",
+        "work_method": "设备连接→登录配置→参数设置→功能测试→文档记录",
+        "labor_organization": "独立完成或小组协作",
+        "work_result": "配置完成的网络设备、测试报告",
+        "difficulty_level": "中等"
+      }
+    ]
+  },
+  
+  "typical_tasks": {
+    "$comment_table2_3": "表2：典型工作任务汇总表 + 表3：典型工作任务分析",
+    "$comment_source": "数据来源：从job_tasks中筛选提炼的典型任务，每个典型任务需有完整的分析维度",
+    "type": "array",
+    "items": [
+      {
+        "id": "TT001",
+        "name": "网络设备配置与管理",
+        "related_job": "网络管理与维护",
+        "related_tasks": ["T001", "T002"],
+        "difficulty_level": "中级",
+        "skill_category": "网络配置",
+        "work_object": "路由器、交换机等网络设备",
+        "tools_materials": "配置线、终端软件、网络设备",
+        "work_method": "设备连接→参数配置→功能测试",
+        "labor_organization": "独立完成或小组协作",
+        "work_requirements": "能独立完成常见网络设备的基本配置",
+        "$comment_fields": "表2字段映射：典型工作任务=name, 对应岗位=related_job, 工作对象=work_object, 工作难度=difficulty_level；表3字段映射：工作对象、工具/材料、工作方法、劳动组织、工作要求"
+      }
+    ]
+  },
+  
+  "action_domains": {
+    "$comment_table4_6": "表4：行动领域表 + 表5：行动领域分析 + 表6：行动领域职业能力分析汇总表",
+    "type": "array",
+    "items": [
+      {
+        "id": "AD001",
+        "name": "网络设备配置与管理",
+        "tasks": ["TT001"],
+        "skill_level": "初级→中级→高级",
+        "reference_hours": 72,
+        "clustering_principle": "工作对象相似（网络设备），难度梯度（初级→中级→高级）",
+        "abilities": {
+          "professional": [
+            {
+              "code": "Z001",
+              "name": "网络设备配置能力",
+              "description": "能配置路由器、交换机等常见网络设备的基本参数",
+              "knowledge": ["网络基础知识", "设备配置命令"],
+              "skill": ["设备连接操作", "参数配置操作"],
+              "attitude": ["认真细致", "规范操作"]
+            }
+          ],
+          "methodological": [
+            {
+              "code": "F001",
+              "name": "问题分析与解决能力",
+              "description": "能分析问题原因，制定解决方案"
+            }
+          ],
+          "social": [
+            {
+              "code": "S001",
+              "name": "沟通协作能力",
+              "description": "能与团队成员有效沟通，协作完成任务"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  
+  "abilities": {
+    "$comment_table7_8": "表7：职业能力一览表 + 表8：职业能力解构表",
+    "professional": [
+      {"code": "Z001", "name": "网络设备配置能力", "description": "能配置..."}
+    ],
+    "methodological": [
+      {"code": "F001", "name": "问题分析能力", "description": "能分析..."}
+    ],
+    "social": [
+      {"code": "S001", "name": "沟通协作能力", "description": "能与..."}
+    ]
+  },
+  
+  "learning_domains": {
+    "$comment_table9_10": "表9：学习领域汇总表 + 表10：学习领域描述表",
+    "type": "array",
+    "items": [
+      {
+        "id": "LD001",
+        "name": "网络设备配置与管理",
+        "reference_hours": 72,
+        "learning_objective": "掌握常见网络设备的基本配置方法",
+        "learning_content": "路由器配置、交换机配置、VLAN配置",
+        "related_action_domain": "AD001",
+        "methods": ["项目教学法", "任务驱动法"],
+        "assessment": ["过程评价", "成果评价"]
+      }
+    ]
+  },
+  
+  "learning_situations": {
+    "$comment_table11": "表11：学习情境表",
+    "type": "array",
+    "items": [
+      {
+        "id": "S001",
+        "name": "小型办公网络设备配置",
+        "domain_id": "LD001",
+        "hours": 24,
+        "learning_objective": "能独立完成小型办公网络设备的安装、配置和调试",
+        "learning_content": "网络拓扑设计、设备选型、路由器配置、交换机配置",
+        "teaching_method": "项目教学法",
+        "evaluation_method": "过程评价（40%）+成果评价（60%）"
+      }
+    ]
+  },
+  
+  "hours_summary": {
+    "$comment": "学时统计信息",
+    "total_hours": 1440,
+    "learning_domains_count": 12,
+    "average_hours_per_domain": 120
+  },
+  
+  "metadata": {
+    "education_level": "中等职业教育",
+    "major_code": "710202",
+    "major_name": "计算机网络技术",
+    "created_date": "2026-04-05",
+    "version": "2.0",
+    "$comment_version": "v2.0 新增 job_tasks 结构，明确表1/表2/表3数据源分离"
+  },
+  
+  "appendix": {
+    "expert_review_notice": "本报告需经行业专家审核验证后方可用于专业建设",
+    "review_items": [
+      "职业面向是否符合行业发展趋势",
+      "典型工作任务是否覆盖主要工作内容",
+      "行动领域划分是否合理",
+      "能力分析是否准确完整",
+      "学习领域转换是否符合教育规律",
+      "学时分配是否科学合理"
+    ],
+    "review_recommendations": [
+      "建议邀请行业企业专家、高校专业教师组成审核小组",
+      "审核周期建议为2-4周",
+      "审核完成后需形成专家审核意见书"
+    ],
+    "data_sources": [
+      "专业教学标准：教育部职业教育专业教学标准",
+      "职业大典：中国职业分类大典（2022版）",
+      "国际数据：ESCO、O*NET"
+    ],
+    "table_data_mapping": {
+      "表1": "job_tasks（每个职业的所有工作任务分析）",
+      "表2": "typical_tasks（典型工作任务汇总）",
+      "表3": "typical_tasks（典型工作任务详细分析）",
+      "表4": "action_domains（行动领域划分）",
+      "表5": "action_domains（行动领域描述）",
+      "表6": "action_domains（职业能力汇总）",
+      "表7": "abilities（职业能力一览）",
+      "表8": "abilities（职业能力解构）",
+      "表9": "learning_domains（学习领域汇总）",
+      "表10": "learning_domains（学习领域描述）",
+      "表11": "learning_situations（学习情境设计）"
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "card_id": "WQ-SCI-004",
+  "source_type": "paper",
+  "source_file": "12 Development and evaluation of short form of constitution in Chinese.pdf",
+  "title": "Development and evaluation of short form of constitution in Chinese medicine questionnaire: a national epidemiological survey data of 21 948 cases",
+  "authors": [
+    "BAI Minghua",
+    "WONG Wendy",
+    "HOU Shujuan",
+    "ZHENG Yanfei",
+    "LI Qianru",
+    "LI ZhuQing",
+    "ZHANG Yan",
+    "LI Lingru",
+    "WANG Ji",
+    "WANG Qi"
+  ],
+  "year": 2022,
+  "journal": "constitution in Chinese medicine questionnaire (CCMQ)",
+  "language": "en",
+  "abstract": "OBJECTIVE: To develop the best short form of constitution in Chinese medicine questionnaire (CCMQ) and evaluate its psychometric properties in Chinese population.",
+  "keywords": [
+    "constitution in Chinese medicine questionnaire"
+  ],
+  "doi": "10.19852/j.cnki.jtcm.20211228.001",
+  "research_focus": {
+    "constitution_type": [
+      "气虚质",
+      "阳虚质",
+      "阴虚质",
+      "痰湿质",
+      "湿热质",
+      "血瘀质",
+      "气郁质",
+      "特禀质"
+    ],
+    "disease": [],
+    "topic": []
+  },
+  "methods": {
+    "sample_size": 948,
+    "study_design": "横断面研究"
+  },
+  "results": {},
+  "conclusions": "",
+  "knowledge_points": [
+    {
+      "category": "method",
+      "content": "OBJECTIVE: To develop the best short form of constitution in Chinese medicine questionnaire (CCMQ) and evaluate its psychometric properties in Chinese population",
+      "importance": "high",
+      "evidence_level": "B"
+    }
+  ],
+  "related_constitutions": [
+    "气虚质",
+    "阳虚质",
+    "阴虚质",
+    "痰湿质",
+    "湿热质",
+    "血瘀质",
+    "气郁质",
+    "特禀质"
+  ],
+  "related_diseases": [],
+  "evidence_sentences": [],
+  "page_info": {
+    "total_pages": 10,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      },
+      "introduction": {
+        "start": 1,
+        "end": 10
+      },
+      "methods": {
+        "start": 1,
+        "end": 2
+      },
+      "results": {
+        "start": 1,
+        "end": 8
+      },
+      "discussion": {
+        "start": 5,
+        "end": 10
+      }
+    }
+  },
+  "created_at": "2026-04-25T09:39:10.334670",
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "doi": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "keywords": {
+      "confidence": 0.65,
+      "source": "migrated",
+      "level": "low",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "abstract": {
+      "confidence": 0.7,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 1,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.420341",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.420348"
+  }
+}

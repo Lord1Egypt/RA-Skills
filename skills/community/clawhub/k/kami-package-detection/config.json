@@ -2,11 +2,11 @@
   "cameras": [
     {
       "rtsp_url": "rtsp://admin:xxx@192.168.XXX/stream1",
-      "device_id": "yuanqu"
+      "device_id": "camera1"
     },
     {
       "rtsp_url": "rtsp://admin:xxx@192.168.xxx/stream1",
-      "device_id": "bangongshi"
+      "device_id": "camera2"
     }
   ],
   "conf_threshold": 0.25,

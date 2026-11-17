@@ -1,43 +1,57 @@
-## Description: <br>
-Pkuhb Openclaw Skill provides a beginner guide to OpenClaw, covering product positioning, architecture, deployment configuration, Skills development, and safety practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese introductory guide to OpenClaw covering product positioning, architecture, core capabilities, setup configuration, skill development, model selection, and security practices.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Developers, agent builders, and OpenClaw learners use this skill as a concise onboarding guide for understanding OpenClaw concepts, setup, model selection, Skills development, and security practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup commands and package references may lead users to install OpenClaw packages, Docker images, or third-party skills. <br>
-Mitigation: Verify packages, images, and installed skills before use; keep authentication enabled, limit mounted directories, and use command restrictions where available. <br>
-Risk: Installed OpenClaw skills may receive local access when users follow the guide. <br>
-Mitigation: Review and scan skills before deployment, install from trusted sources, and apply least-privilege access controls. <br>
+## Use Case:
 
+External users, developers, and AI agent learners use this skill to understand OpenClaw's platform concepts, deployment options, workspace configuration, Skills development workflow, model choices, and security practices.
 
-## Reference(s): <br>
-- [OpenClaw official site](https://openclaw.ai) <br>
-- [ClawHub marketplace](https://clawhub.ai) <br>
-- [OpenClawmp](https://openclawmp.stepfun.com) <br>
-- [Beijing University OpenClaw course chapter index](references/章节索引.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with tables and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release evidence) <br>
+Risk: The guide includes user-run setup examples that install packages or run containers from external package sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify official OpenClaw package sources before use, prefer pinned versions or Docker digests where available, and avoid unnecessary global installs.
+
+Risk: Deployment or configuration choices could grant an agent broader local or container permissions than intended.
+
+Mitigation: Run OpenClaw with only necessary directory mounts, avoid unnecessary container privileges, and review workspace security settings before deployment.
+
+## Reference(s):
+
+- [Beijing University OpenClaw Chapter Index](references/章节索引.md)
+- [OpenClaw Official Website](https://openclaw.ai)
+- [ClawHub Marketplace](https://clawhub.ai)
+- [OpenClawmp](https://openclawmp.stepfun.com)
+- [Pkuhb Openclaw Skill on ClawHub](https://clawhub.ai/ruiyongwang/skills/pkuhb-openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no hidden or automatic execution behavior is reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

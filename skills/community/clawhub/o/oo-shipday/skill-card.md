@@ -1,46 +1,59 @@
-## Description: <br>
-Operate Shipday delivery-order workflows through the OOMOL Shipday connector using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Shipday through an OOMOL-connected account to read, create, update, and delete delivery data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Teams that use Shipday can ask an agent to inspect action schemas and run delivery-order workflows, including creating, editing, retrieving, deleting, tracking progress, and listing active orders or carriers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Create, edit, and delete actions can change live Shipday order data. <br>
-Mitigation: Confirm the exact payload, target order, and intended effect with the user before running write or destructive actions. <br>
-Risk: The skill requires a connected Shipday account and API-key-backed credentials. <br>
-Mitigation: Use a Shipday API key with the minimum permissions needed and reauthenticate or reconnect only after an auth, scope, or credential error. <br>
-Risk: Connector schemas or required payload fields may change over time. <br>
-Mitigation: Inspect the live action schema with the oo CLI before constructing payloads for connector actions. <br>
+## Use Case:
 
+External users of a Shipday account can ask an agent to retrieve orders and carrier information, track delivery progress, and manage delivery orders through the oo CLI connector.
 
-## Reference(s): <br>
-- [ClawHub Shipday skill page](https://clawhub.ai/oomol/oo-shipday) <br>
-- [Shipday homepage](https://www.shipday.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [OOMOL Shipday connection setup](https://console.oomol.com/app-connections?provider=shipday) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands run through the oo CLI and may return JSON responses from Shipday connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: Setup can run an unverified remote installer, and its dependency may change other agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release before enabling the skill, and review or disable automatic agent-skill synchronization.
+
+Risk: Order creation and edits change Shipday data, while deletion removes an order.
+
+Mitigation: Keep approval for the exact payload and effect of each order change, and require explicit approval for the deletion target.
+
+Risk: Delivery data passes through OOMOL.
+
+Mitigation: Confirm this data flow is acceptable for the connected Shipday account.
+
+## Reference(s):
+
+- [Shipday](https://www.shipday.com/)
+- [Shipday API documentation](https://docs.shipday.com/reference)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Shell commands, Guidance]
+
+**Output Format:** [Natural language responses, oo CLI commands, and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Order creation and edits require user approval; deletions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

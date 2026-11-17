@@ -1,44 +1,60 @@
-## Description: <br>
-Provides Xiaohongshu account management, login checks, content publishing, feed search/detail lookup, comments and replies, user profile lookup, and local MCP server management through a Python CLI and MCP REST API client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Xiaohongshu MCP client skill for managing accounts, login state, content publishing, feed retrieval, comments, replies, user profiles, and local MCP service operations through CLI and REST API workflows.
 
-## Publisher: <br>
-[cn-p5](https://clawhub.ai/user/cn-p5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-p5](https://clawhub.ai/user/cn-p5)
 
-## Use Case: <br>
-Developers, automation builders, and social media operators use this skill to manage Xiaohongshu sessions and accounts, publish notes or videos, retrieve feed and user data, and perform comment interactions from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Xiaohongshu login cookies and uses xsec tokens for account actions. <br>
-Mitigation: Treat user_cookies.json, cookies.json, and xsec tokens like passwords, keep them out of shared directories, and remove them when no longer needed. <br>
-Risk: The skill can publish content and post or reply to comments on live Xiaohongshu accounts. <br>
-Mitigation: Confirm the active account and review the exact content before running publish, comment, or reply commands. <br>
-Risk: The skill can download and run a local MCP server binary from an upstream release source. <br>
-Mitigation: Use only trusted release sources, review the downloaded server binary provenance, and run the service from an isolated working directory where possible. <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill to automate Xiaohongshu account workflows, login checks, content publishing, feed search and detail retrieval, comments, replies, profile lookup, and MCP service management.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-p5/xiaohongshu-aio) <br>
-- [Publisher profile](https://clawhub.ai/user/cn-p5) <br>
-- [Upstream Xiaohongshu MCP project](https://github.com/xpzouying/xiaohongshu-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, configuration values, and API-oriented instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require XHS_MCP_BASE_URL, python, uv, a running Xiaohongshu MCP server, and Xiaohongshu login cookies for account-specific actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.6 (source: server release evidence and pyproject.toml) <br>
+Risk: The skill can download, start, and restart unverified third-party native MCP binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, run only in a dedicated directory, avoid elevated privileges, and treat MCP download/start/restart as execution of unverified third-party native code.
+
+Risk: The skill can store account cookies in plaintext JSON files.
+
+Mitigation: Use a test account where possible, do not casually store or share cookie JSON files, and restrict access to the working directory.
+
+Risk: The skill can perform real account and platform actions such as publishing content, commenting, logging out, and switching accounts.
+
+Mitigation: Confirm the target account and content before any publish, comment, logout, or account-switch action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cn-p5/skills/xiaohongshu-aio)
+- [README.md](artifact/README.md)
+- [README.zh-CN.md](artifact/README.zh-CN.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands, environment variable names, local file paths, and account or content workflow guidance.]
+
+## Skill Version(s):
+
+0.1.6 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

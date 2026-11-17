@@ -1,43 +1,52 @@
-## Description: <br>
-Command-line helper for searching global network assets with ZoomEye AI, including advanced queries for asset discovery, CVE correlation, and bug bounty research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZoomEye AI cyberspace search engine CLI for searching global network assets, querying ZoomEye data, building ZoomEye AI dork queries, and conducting security research for asset discovery, vulnerability impact assessment, Bug Bounty, and CVE correlation.
 
-## Publisher: <br>
-[jjbondone](https://clawhub.ai/user/jjbondone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjbondone](https://clawhub.ai/user/jjbondone)
 
-## Use Case: <br>
-Security researchers, developers, and bug bounty teams use this skill to convert natural-language asset discovery goals into ZoomEye AI dork queries and CLI commands. It supports CVE impact checks, new or changed asset monitoring, and scoped searches across services, geographies, organizations, and bug bounty sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a ZoomEye API key and the security summary says the artifact asks users to paste that key into chat. <br>
-Mitigation: Configure the API key locally through the CLI or a secret/environment mechanism, do not paste it into chat, and rotate the key if it was exposed. <br>
-Risk: ZoomEye searches can consume account quota or run broad asset queries. <br>
-Mitigation: Confirm intended scope before execution and start with small pages or facet probes before larger searches. <br>
+## Use Case:
 
+Security researchers, developers, and engineers use this skill to form ZoomEye AI search queries, check CLI readiness, and run cyberspace asset searches for CVE impact analysis, Bug Bounty discovery, and recent asset-change monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jjbondone/zoomeye-ai-search) <br>
-- [Publisher profile](https://clawhub.ai/user/jjbondone) <br>
-- [ZoomEye AI](https://www.zoomeye.ai) <br>
-- [ZoomEye AI profile and API key page](https://www.zoomeye.ai/profile) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline dork syntax and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ZoomEye query strings, CLI setup steps, quota-aware search workflows, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review reports that the skill asks users to share a ZoomEye API key in chat and have the agent place it on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste API keys into agent chat; configure secrets locally with private secret-handling, use an isolated environment where practical, review or pin the zoomeyeai package before installation, and rotate any key already shared this way.
+
+## Reference(s):
+
+- [ZoomEye AI](https://www.zoomeye.ai)
+- [ZoomEye AI Profile](https://www.zoomeye.ai/profile)
+- [ClawHub skill page](https://clawhub.ai/jjbondone/skills/zoomeye-ai-search)
+- [Publisher profile](https://clawhub.ai/user/jjbondone)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and ZoomEye dork query strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI setup guidance, query syntax, search options, and quota-aware execution steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

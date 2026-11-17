@@ -1,0 +1,40 @@
+{
+  "standard": "ISO/IEC 27701:2019 隐私信息管理体系(PIMS)",
+  "clause_keywords": {
+    "4": ["组织环境", "隐私", "PII"],
+    "5": ["领导作用", "隐私方针", "角色"],
+    "6": ["策划", "隐私风险", "合规"],
+    "7": ["支持", "能力", "意识", "PII处理"],
+    "8": ["运行", "PII处理", "控制", "共享转移"],
+    "9": ["绩效评价", "隐私审计", "内部审核"],
+    "10": ["改进", "不符合", "纠正措施"]
+  },
+  "high_voltage_lines": [
+    {"id": "hv-priv-role", "name_zh": "PII控制者/处理者角色明确", "name_en": "Controller/Processor roles",
+     "keywords_zh": ["控制者", "处理者", "PII控制者", "PII处理者"], "keywords_en": ["controller", "processor"],
+     "description_zh": "须明确本组织作为PII控制者和/或处理者的角色及相应义务。",
+     "compliance_statement": ["已识别组织在PII处理中的角色", "角色对应义务已落实"]},
+    {"id": "hv-priv-lawful", "name_zh": "处理的合法性基础与同意", "name_en": "Lawful basis",
+     "keywords_zh": ["合法性基础", "同意", "告知", "隐私通知"], "keywords_en": ["lawful basis", "consent", "notice"],
+     "description_zh": "须有合法的处理依据（同意/合同等）并向数据主体告知。",
+     "compliance_statement": ["已确定每类处理的合法性基础", "隐私通知已公示"]},
+    {"id": "hv-priv-rights", "name_zh": "数据主体权利保障", "name_en": "Data subject rights",
+     "keywords_zh": ["数据主体权利", "查询", "更正", "删除", "可携带"], "keywords_en": ["data subject rights"],
+     "description_zh": "须建立机制响应数据主体的访问、更正、删除、携带等请求。",
+     "compliance_statement": ["已建立主体权利响应流程", "请求在时限内处理"]},
+    {"id": "hv-priv-transfer", "name_zh": "PII共享与跨境转移控制", "name_en": "Sharing & transfer",
+     "keywords_zh": ["共享", "跨境", "转移", "第三方"], "keywords_en": ["transfer", "sharing", "cross-border"],
+     "description_zh": "须管控PII向第三方提供及跨境转移，确保具备合规机制。",
+     "compliance_statement": ["第三方处理有协议与评估", "跨境转移满足要求"]}
+  ],
+  "required_procedures": [
+    {"id": "GP-DOC", "name": "文件控制程序", "clause": "7.5", "match_keywords": ["文件控制"], "priority": "high"},
+    {"id": "GP-REC", "name": "记录控制程序", "clause": "7.5", "match_keywords": ["记录控制"], "priority": "high"},
+    {"id": "GP-CAP", "name": "不合格与纠正措施控制程序", "clause": "10.2", "match_keywords": ["纠正措施"], "priority": "high"},
+    {"id": "GP-IA", "name": "内部审核程序", "clause": "9.2", "match_keywords": ["内部审核", "隐私审计"], "priority": "high"},
+    {"id": "GP-MR", "name": "管理评审程序", "clause": "9.3", "match_keywords": ["管理评审"], "priority": "high"},
+    {"id": "SP-PR-001", "name": "PII处理与合法性基础管理程序", "clause": "6.3/8", "match_keywords": ["合法性基础", "PII处理", "同意"], "priority": "high"},
+    {"id": "SP-PR-002", "name": "数据主体权利响应程序", "clause": "8", "match_keywords": ["数据主体权利", "删除", "查询"], "priority": "high"},
+    {"id": "SP-PR-003", "name": "PII共享与跨境转移控制程序", "clause": "8", "match_keywords": ["共享", "跨境", "转移"], "priority": "high"}
+  ]
+}

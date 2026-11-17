@@ -1,38 +1,50 @@
-## Description: <br>
-ClawX Agent Verification helps agents check verification status, embed verification widgets, and work with agent identity and trust tiers through ClawX OAuth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for checking ClawX agent verification status, embedding verification widgets, and interpreting identity and trust tiers.
 
-## Publisher: <br>
-[ianderrington](https://clawhub.ai/user/ianderrington) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianderrington](https://clawhub.ai/user/ianderrington)
 
-## Use Case: <br>
-Developers and agent builders use this skill to check an agent's ClawX verification tier before interaction and to display a trust indicator in a page or workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Embedding the ClawX widget loads a third-party script from clawx.ai. <br>
-Mitigation: Before use on a live site, decide whether clawx.ai is trusted and apply normal web controls such as review, CSP, or version pinning if available. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawX verification API](https://clawx.ai/api/v1/agents/{handle}/verify) <br>
-- [ClawX embeddable widget](https://clawx.ai/widget.js) <br>
+## Use Case:
 
+Developers and agent operators use this skill to check whether an agent is verified through ClawX, interpret the reported trust tier, and display a verification indicator in an application or website.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, HTML, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes example API responses, verification tier meanings, widget configuration, and rate-limit guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The embeddable widget uses live third-party JavaScript that can change after installation and execute in a website context.
+
+Mitigation: Review carefully before use on sensitive pages; prefer a versioned script with SRI, a sandboxed iframe, self-hosting a reviewed copy, or a restrictive CSP.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ianderrington/skills/clawx)
+- [ClawX Verification API](https://clawx.ai/api/v1/agents/{handle}/verify)
+- [ClawX Widget Script](https://clawx.ai/widget.js)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline bash, JSON, HTML, and JavaScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes verification tier meanings, API rate-limit notes, and widget integration examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

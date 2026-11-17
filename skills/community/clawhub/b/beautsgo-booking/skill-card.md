@@ -1,50 +1,63 @@
-## Description: <br>
-Beautsgo Booking helps agents match users to Korean dermatology and plastic surgery clinics, provide booking guidance, open clinic resources, look up prices, and submit appointment requests through BeautsGO/Yestokr services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Beautsgo Booking helps an AI assistant match users with Korean dermatology, plastic surgery, and aesthetic clinics, then provide booking guidance, price lookup, live consultation links, or appointment submission.
 
-## Publisher: <br>
-[beautsgo](https://clawhub.ai/user/beautsgo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beautsgo](https://clawhub.ai/user/beautsgo)
 
-## Use Case: <br>
-External users and assistants use this skill to find Korean aesthetic clinics, compare appointment options, request prices, contact customer service, and submit booking details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; appointments target clinics in South Korea. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send appointment details, including clinic choice, appointment timing, party size, and contact information, to BeautsGO/Yestokr services. <br>
-Mitigation: Use only when the user explicitly wants to submit a booking request and has confirmed the details to be sent. <br>
-Risk: The artifact includes exposed API credentials. <br>
-Mitigation: Remove or rotate exposed credentials before deployment and avoid embedding secrets in released skill files. <br>
-Risk: Bundled developer scripts can have filesystem, account, publishing, or repository side effects. <br>
-Mitigation: Review scripts before execution and run only the commands required for the intended workflow. <br>
-Risk: Contact payloads may be logged during booking submission. <br>
-Mitigation: Stop logging contact payloads and redact sensitive appointment details from diagnostics. <br>
-Risk: Shell-based URL opening can be riskier than argument-based process execution. <br>
-Mitigation: Replace shell-interpolated URL opening with safer argument-based process execution. <br>
+## Use Case:
 
+External users use this skill through an AI assistant to find Korean beauty and medical aesthetic clinics, compare booking or price options, and submit appointment requests when they provide the required details.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/beautsgo/beautsgo-booking) <br>
-- [BeautsGO official site](https://beautsgo.com) <br>
-- [Clinic pages](https://beautsgo.github.io/beautsgo-booking/) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill manifest](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, API calls] <br>
-**Output Format:** [Markdown text with booking instructions, status messages, links, and appointment summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit appointment details to external BeautsGO/Yestokr services after collecting clinic, timing, party size, and contact information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: The skill can send appointment details, including contact information, to BeautsGO-related services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation immediately before submission and disclose the clinic, date, party size, and contact information that will be sent.
+
+Risk: The security evidence flags browser URL opening as not safely controlled.
+
+Mitigation: Review and constrain browser-opening behavior before approval, and only allow expected BeautsGO destinations.
+
+Risk: The security evidence recommends removing or redacting logs that may contain personal information.
+
+Mitigation: Redact contact details and appointment payloads from logs before deployment.
+
+Risk: Unpinned install commands can resolve to newer dependency versions.
+
+Mitigation: Use pinned install instructions or lockfile-based installation for reviewed releases.
+
+## Reference(s):
+
+- [Beautsgo Booking ClawHub page](https://clawhub.ai/beautsgo/skills/beautsgo-booking)
+- [BeautsGO publisher profile](https://clawhub.ai/user/beautsgo)
+- [BeautsGO clinic pages](https://beautsgo.github.io/beautsgo-booking/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown booking guidance with optional browser-opening commands and appointment submission summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May request clinic, party size, preferred date or time, and contact information before appointment submission.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

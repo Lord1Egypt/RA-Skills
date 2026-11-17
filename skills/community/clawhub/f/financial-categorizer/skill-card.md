@@ -1,45 +1,49 @@
-## Description: <br>
-Process bank transaction CSV exports (Nordea, ICA), auto-categorize transactions using configurable rules, manage transaction links, and generate analytical database views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process bank transaction CSV exports (Nordea, ICA), auto-categorize transactions using configurable rules, manage transaction links, and generate analytical database views.
 
-## Publisher: <br>
-[patello](https://clawhub.ai/user/patello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[patello](https://clawhub.ai/user/patello)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a local personal-finance CLI for importing bank CSV exports, maintaining categorization rules, linking transfers or reimbursements, and generating SQLite-backed financial summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads bank CSV exports and stores sensitive personal-finance data in a local SQLite database. <br>
-Mitigation: Keep the database outside the skill directory with appropriate local access controls and back it up before imports or cleanup operations. <br>
-Risk: Commands that clean up, link, delete, or recalculate records can change transaction history or adjusted amounts. <br>
-Mitigation: Use dry-run options where available, review previews before applying changes, and require explicit confirmation or the documented --yes flag for destructive non-interactive runs. <br>
-Risk: Automatic categorization and linking rules can misclassify transactions, transfers, or reimbursements. <br>
-Mitigation: Preview rule matches, inspect uncategorized and non-zero adjusted transactions, and manually correct categories or links when reports look inconsistent. <br>
+## Use Case:
 
+People managing personal finances use this skill to import bank CSVs, categorize transactions, link transfers and reimbursements, and review spending in a local SQLite database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/patello/skills/financial-categorizer) <br>
-- [Publisher profile](https://clawhub.ai/user/patello) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQLite database paths, CLI flags, category names, match rules, account names, and dry-run or confirmation options supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: ClawHub release evidence) <br>
+Risk: Cleanup, auto-linking, recurring discovery, category deletion, and other mutating commands can change or remove records in the local finance database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the database first, preview with dry-run options when available, and review changes before using --yes.
+
+## Reference(s):
+
+- [Financial Categorizer on ClawHub](https://clawhub.ai/patello/skills/financial-categorizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with CLI commands and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on a user-selected local SQLite database.]
+
+## Skill Version(s):
+
+1.16.0 (source: server-resolved ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

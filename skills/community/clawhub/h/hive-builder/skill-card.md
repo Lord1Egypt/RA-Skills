@@ -1,41 +1,58 @@
-## Description: <br>
-Design, scaffold, and carefully activate a Hive-style one-person company inside OpenClaw using an orchestrator pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hive Builder designs, scaffolds, and carefully activates a Hive-style one-person company in OpenClaw using an orchestrator pattern for CEO, governance, and specialist roles.
 
-## Publisher: <br>
-[moonpoem](https://clawhub.ai/user/moonpoem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moonpoem](https://clawhub.ai/user/moonpoem)
 
-## Use Case: <br>
-External users and developers use this skill to design and scaffold a Hive-style multi-role OpenClaw workspace while keeping planning, validation, and activation separate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hive setup could be mistaken for immediate live activation of a multi-role workspace. <br>
-Mitigation: Confirm the requested mode first, scaffold under the contained hive directory, and require explicit user approval before activation or specialist session use. <br>
-Risk: Scaffolding in an existing workspace could disrupt established core files or workflows. <br>
-Mitigation: Keep existing core workspace files unchanged unless the user explicitly approves edits, and document what is planned versus active. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to plan or scaffold a contained Hive subsystem, define CEO, HRM, OPS, and specialist role boundaries, and decide when to validate or activate multi-agent routing.
 
-## Reference(s): <br>
-- [Hive Builder ClawHub release](https://clawhub.ai/moonpoem/hive-builder) <br>
-- [README.md](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with scaffold plans, role templates, activation checklists, and optional file or command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve explicit approval boundaries before live activation or specialist execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: A Hive scaffold or activation plan could change how a workspace is organized or how tasks are routed if adopted too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with planning or a contained scaffold under the workspace's hive directory, and require explicit confirmation before live activation or routing changes.
+
+Risk: Specialist execution could add unnecessary complexity if role separation has not been validated.
+
+Mitigation: Use main-session handling or contained manual validation first, then use sessions_spawn only after the role split is reusable and approved.
+
+Risk: Generated role templates or setup notes may not match an existing workspace's established files and practices.
+
+Mitigation: Review generated role definitions, setup notes, task-state contracts, and security scan results before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moonpoem/skills/hive-builder)
+- [Package README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with scaffold plans, role templates, activation checklists, and optional file or shell-command instructions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to separate planning, scaffolding, validation, and activation, with live routing or specialist spawning gated by explicit user approval.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

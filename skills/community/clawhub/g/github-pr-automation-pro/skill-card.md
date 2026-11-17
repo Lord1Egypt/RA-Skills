@@ -1,42 +1,56 @@
-## Description: <br>
-Automate GitHub pull request workflows including creation, monitoring, PR templates, auto-labeling, CI status checks, and review automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate GitHub pull request workflows for creating templated PRs, applying branch-based labels, and monitoring review, merge, and CI status through the GitHub CLI.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to create pull requests with standardized templates, check PR readiness, assign labels and reviewers, and monitor CI and review state in GitHub repositories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated GitHub CLI commands can create or edit pull requests, and the security review recommends fixing shell command handling before use. <br>
-Mitigation: Review command construction before installation, use a least-privilege GitHub account or token, test in a non-sensitive repository, and avoid untrusted PR input values. <br>
-Risk: The advertised auto-merge and batch-review commands are not supplied in the artifact. <br>
-Mitigation: Do not rely on those workflows unless the missing scripts are supplied and reviewed. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create GitHub pull requests from templates, add labels based on branch naming, and check whether a pull request is ready to merge. Review unsupported advertised workflows before relying on auto-merge, approval, batch, or metrics behavior.
 
-## Reference(s): <br>
-- [Automation rules](references/automation_rules.json) <br>
-- [Bugfix PR template](references/pr_templates/bugfix.md) <br>
-- [Feature PR template](references/pr_templates/feature.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON configuration, and PR status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated GitHub CLI for repository operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports unvalidated user input in shell-string command execution while using an authenticated GitHub CLI session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix scripts before use by replacing shell-string execution with argument-array execution, validating PR numbers and branch, template, and label inputs, and using least-privileged GitHub credentials.
+
+Risk: The artifact advertises auto-merge, approval, batch processing, and metrics workflows that are not supported by the bundled scripts.
+
+Mitigation: Treat those workflows as unavailable unless corresponding reviewed scripts or integrations are added and validated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dagangtj/skills/github-pr-automation-pro)
+- [automation_rules.json](references/automation_rules.json)
+- [feature.md](references/pr_templates/feature.md)
+- [bugfix.md](references/pr_templates/bugfix.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GitHub CLI commands and local PR templates; authenticated GitHub access is required for script execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

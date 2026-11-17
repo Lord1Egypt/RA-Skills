@@ -1,44 +1,61 @@
-## Description: <br>
-Guides Russian-speaking users through free or low-cost third-party AI model providers and an OpenClaw configuration example. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Russian-speaking users through free or low-cost AI model providers including OpenRouter, SiliconFlow, Groq, and Modal, with an OpenClaw configuration example.
 
-## Publisher: <br>
-[maerolove](https://clawhub.ai/user/maerolove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maerolove](https://clawhub.ai/user/maerolove)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to identify third-party AI providers offering free or inexpensive models and to draft a basic OpenClaw API-key configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Free-model availability, limits, and provider links may change after publication. <br>
-Mitigation: Confirm current provider pages and pricing before using the configuration. <br>
-Risk: Prompts, files, and outputs may be processed by the selected third-party provider. <br>
-Mitigation: Use providers appropriate for the data sensitivity and prefer a dedicated low-risk API key. <br>
+## Use Case:
 
+External users and developers use this skill as a quick reference for comparing free or low-cost AI model providers and configuring OpenClaw to use one of those models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maerolove/free-models-ru) <br>
-- [OpenRouter API keys](https://openrouter.ai/keys) <br>
-- [SiliconFlow registration](https://cloud.siliconflow.cn/i/ihj5inat) <br>
-- [Groq Console](https://console.groq.com) <br>
-- [Modal](https://modal.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown with JSON configuration example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text guide only; no executable code or hidden automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Provider availability, free-tier terms, rate limits, and regional legal or terms-of-service requirements may change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the current provider documentation and terms before relying on the guide.
+
+Risk: The SiliconFlow registration URL may be a referral link.
+
+Mitigation: Review the destination and account terms before registering through the link.
+
+Risk: API keys could be pasted into configuration that the user has not reviewed.
+
+Mitigation: Only insert personal API keys into OpenClaw configuration that the user understands and intends to use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maerolove/skills/free-models-ru)
+- [OpenRouter API keys](https://openrouter.ai/keys)
+- [SiliconFlow registration](https://cloud.siliconflow.cn/i/ihj5inat)
+- [Groq console](https://console.groq.com)
+- [Modal](https://modal.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables and a JSON configuration example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes provider names, model examples, rate-limit notes, API-key links, and an OpenClaw configuration snippet.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

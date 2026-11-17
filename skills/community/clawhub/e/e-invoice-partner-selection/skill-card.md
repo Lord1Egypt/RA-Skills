@@ -1,46 +1,63 @@
-## Description: <br>
-Helps teams identify, screen, evaluate, and negotiate with local e-invoicing compliance channel partners for a target country. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global E-Invoice Partner Selection helps agents identify, filter, score, and recommend local e-invoicing compliance channel partners for a target country, including POC acceptance criteria and commercial negotiation guidance.
 
-## Publisher: <br>
-[tangxf0927](https://clawhub.ai/user/tangxf0927) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangxf0927](https://clawhub.ai/user/tangxf0927)
 
-## Use Case: <br>
-Procurement, product, and compliance teams use this skill to research local e-invoicing access partners, filter candidates against white-label and BPO requirements, and prepare POC and negotiation plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs live web research and reads bundled reference files, so outputs can reflect stale, incomplete, or changing regulatory sources. <br>
-Mitigation: Verify official registries and current e-invoicing regulations before making partner or launch decisions. <br>
-Risk: Partner recommendations and POC criteria may influence procurement and compliance decisions. <br>
-Mitigation: Treat the report as procurement research, not legal approval, and route final decisions through legal, compliance, and procurement review. <br>
-Risk: Candidate materials may include registration copies, organization charts, contact details, and written POC responses. <br>
-Mitigation: Handle candidate data under company privacy, procurement, and retention rules. <br>
+## Use Case:
 
+External users and business, product, compliance, and engineering teams use this skill to evaluate local e-invoicing access-point, service-provider, T-VAN, PJAP, or SDI intermediary partners for international expansion. It produces a traceable partner-selection workflow with named eliminations, tiered recommendations, POC scripts, and negotiation terms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangxf0927/e-invoice-partner-selection) <br>
-- [Publisher profile](https://clawhub.ai/user/tangxf0927) <br>
-- [Country regulatory reference](reference/country_regulatory_reference.md) <br>
-- [Partner scoring matrix](reference/partner_scoring_matrix.md) <br>
-- [POC acceptance scripts](reference/poc_acceptance_scripts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured report content intended for a docx partner-selection deliverable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes traceable candidate filtering, scored recommendations, POC acceptance criteria, and negotiation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill relies on market reference data that can become outdated for current e-invoicing regulations and certified-provider lists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify official regulator and access-point registry sources during each use, and treat bundled country data as starting material only.
+
+Risk: Partner recommendations may influence compliance or production market-entry decisions.
+
+Mitigation: Require legal confirmation for proxy submission, data localization, and local operating obligations before production rollout.
+
+Risk: The workflow is Chinese-first and may not fit teams expecting an English-first partner research process.
+
+Mitigation: Confirm language and review expectations before installation or operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangxf0927/skills/e-invoice-partner-selection)
+- [Country regulatory reference](reference/country_regulatory_reference.md)
+- [Partner scoring matrix](reference/partner_scoring_matrix.md)
+- [POC acceptance scripts](reference/poc_acceptance_scripts.md)
+- [OpenPeppol Malaysia member directory](https://peppol.org/members/?country=Malaysia)
+- [OpenPeppol Singapore and Malaysia authority page](https://peppol.org/peppolauthority/singapore-and-malaysia/)
+- [IMDA nationwide e-invoicing framework](https://www.imda.gov.sg/how-we-can-help/nationwide-e-invoicing-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Structured Chinese-language analysis that can be consolidated into a .docx report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include official registry URLs, candidate tables, multi-round filtering, scored recommendations, POC acceptance criteria, and negotiation guidance.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence; skill frontmatter is 1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

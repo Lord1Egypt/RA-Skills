@@ -1,46 +1,61 @@
-## Description: <br>
-SQL Generator helps agents produce SQL queries, explanations, optimization suggestions, DDL, mock data, migration-oriented templates, and SQL reference guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Generator helps agents draft SQL queries, explanations, optimizations, DDL, seed data, migration-oriented snippets, and quick SQL reference material.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, database users, and agents use this skill to draft SQL statements, schema templates, indexes, test data, and concise SQL learning or troubleshooting guidance before review and execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL may be incorrect, inefficient, or unsafe for a production schema. <br>
-Mitigation: Review and test generated SQL before executing it against production databases. <br>
-Risk: scripts/script.sh can store command arguments in a local history log. <br>
-Mitigation: Do not pass secrets, private query text, tokens, or sensitive file paths to scripts/script.sh. <br>
-Risk: The artifact includes local shell scripts from a third-party publisher. <br>
-Mitigation: Install and run the scripts only after reviewing the artifact and accepting the publisher risk. <br>
+## Use Case:
 
+Developers, data practitioners, and technical teams use this skill to generate SQL examples, table definitions, indexes, mock INSERT data, and optimization guidance for common database tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/sql-generator) <br>
-- [Publisher Profile](https://clawhub.ai/user/ckchzh) <br>
-- [Homepage](https://bytesagain.com) <br>
-- [Source](https://github.com/bytesagain/ai-skills) <br>
-- [tips.md](artifact/tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with SQL code blocks and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated SQL and shell output should be reviewed before use against production databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.7 (source: server release metadata) <br>
+Risk: Generated SQL can include DDL, INSERT, index, migration, UPDATE, DELETE, DROP, or ALTER statements that may be incorrect or destructive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated statement before execution, test in staging first, keep backups, use transactions where appropriate, and run with least-privileged database accounts.
+
+Risk: The bundled sql-generator wrapper records command history locally, which may expose sensitive SQL, customer identifiers, credentials, or private file paths.
+
+Mitigation: Avoid passing sensitive inputs to the wrapper unless local history logging is acceptable; clear local history files according to organizational policy.
+
+Risk: Server security evidence flags mismatched scripts and unsafe SQL text generation from unvalidated names.
+
+Mitigation: Inspect the installed scripts before use and validate table names, column names, and generated identifiers before running any output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/sql-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/ckchzh)
+- [tips.md](artifact/tips.md)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain feedback](https://bytesagain.com/feedback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with SQL and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated examples and recommendations that should be reviewed before use against real databases.]
+
+## Skill Version(s):
+
+2.3.7 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

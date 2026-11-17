@@ -1,41 +1,54 @@
-## Description: <br>
-Draws a four-card Tarot spread with cryptographic randomness to help agents choose a direction when a prompt is vague or multiple approaches are equally valid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draw Tarot cards using cryptographic randomness to guide low-stakes planning when prompts are vague, ambiguous, or explicitly ask fate to decide.
 
-## Publisher: <br>
-[kc0bfv](https://clawhub.ai/user/kc0bfv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kc0bfv](https://clawhub.ai/user/kc0bfv)
 
-## Use Case: <br>
-Agents use this skill as a low-stakes tie-breaker when a user delegates the approach, asks to let fate decide, or gives an ambiguous prompt with several reasonable paths. It should guide framing and next steps, not override clear instructions, safety, or correctness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Tarot reading may be mistaken for authority in consequential decisions. <br>
-Mitigation: Use it only for casual, low-stakes tie-breaking and do not rely on it for security, data integrity, production deployment, financial, legal, medical, or other consequential decisions. <br>
-Risk: Broad activation language could influence an agent even when the user has provided clear instructions. <br>
-Mitigation: Skip the skill when the task has a clear path or the user asks not to use Tarot, and keep user instructions, safety, and correctness ahead of the card interpretation. <br>
-Risk: Repeated draws can be used to rationalize a preferred answer. <br>
-Mitigation: Use one draw per decision point; if the drawing script fails, report the failure and do not invent cards. <br>
+## Use Case:
 
+Developers and agent users use this skill as a low-stakes tie-breaker when prompts are intentionally vague, nonchalant, or equally valid paths exist. It should not guide security-sensitive, production, financial, or data-integrity decisions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with an optional shell command and JSON card-draw output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The draw produces four cards and relative card-file paths; the agent should not simulate a draw if the script fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Broad trigger wording may let a random tie-breaker influence ambiguous or casual requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for low-stakes planning or equally valid approaches, and keep it out of security-sensitive, production, financial, and data-integrity decisions.
+
+Risk: The inspected artifact references drawing scripts and card or interpretation files that were not included.
+
+Mitigation: Verify required files are present before relying on the skill; if the draw cannot run or files are missing, report the limitation instead of inventing cards.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kc0bfv/skills/let-fate-decide-test)
+- [Source-mentioned let-fate-decide plugin reference](https://github.com/theexpensiveexperience/Claude-Code_Audit-Research/tree/main/plugins/let-fate-decide)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with optional inline shell commands and JSON card-draw output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a four-card spread; referenced helper script and card/reference files were not included in the inspected artifact.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

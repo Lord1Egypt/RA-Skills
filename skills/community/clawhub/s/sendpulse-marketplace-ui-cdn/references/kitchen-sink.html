@@ -1,0 +1,308 @@
+<!doctype html>
+<!--
+  Every load-bearing component in the bundle, rendered correctly, in one page. Open it in a
+  browser (both themes — the switch is bottom-right) and copy the markup you need: this file is
+  the answer to "what does the right markup look like", which prose can only describe.
+
+  It uses nothing but bundle classes plus references/tokens.css and references/bundle-fixes.css,
+  and `node verify.mjs file://…/kitchen-sink.html --app-prefix ref-` reports it clean (the `ref-*`
+  page furniture below is this file's own, not part of the pattern) — so a finding against your own
+  page is about your page.
+-->
+<html lang="en" class="ma-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SendPulse UI — reference page</title>
+    <link id="sp-theme-light" rel="stylesheet"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=light" />
+    <link id="sp-theme-dark" rel="stylesheet" media="not all"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=dark" />
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="bundle-fixes.css" />
+    <style>
+      /* Page furniture for this reference only — not part of the pattern. */
+      /* 796px with no side padding simulates the marketplace *settings* frame, so the panel is
+         as wide here as it would be there. A widget window is a different size — which is why an
+         embedded integration declares none of this. Page furniture for browsing only. */
+      .ref-page { max-width: 796px; margin: 0 auto; padding: 24px 0; }
+      .ref-switch { position: fixed; right: 16px; bottom: 16px; z-index: 10; }
+      .ref-col { max-width: 364px; } /* the design's control width — these fields are consecutive,
+                                         so one wrapper stands in for a cap per .form-group */
+      .ref-static-modal { position: static; display: block; margin-top: 24px; }
+    </style>
+  </head>
+
+  <body>
+    <div class="ref-page">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2 class="spacing-bottom-sm">SendPulse UI reference</h2>
+
+          <!-- Account line: one muted line, the provider mark is an identity so it earns its glyph -->
+          <p class="text-muted spacing-bottom-lg">
+            <i class="sp-icon icon-user-4 margin-right-5" aria-hidden="true"></i>
+            seller-eu@example.com
+            <button type="button" class="btn btn-link padding-0 margin-left-10">Change account</button>
+          </p>
+
+          <!-- Tabs. Needs the .nav foundation from bundle-fixes.css or this stacks vertically. -->
+          <ul class="nav nav-tabs spacing-bottom-lg">
+            <li class="active"><a href="#">Settings</a></li>
+            <li><a href="#">Marketplaces</a></li>
+            <!-- A count in a tab is a plain .badge: the bundle already nudges it with
+                 `.nav-tabs > li > a .badge{margin-top:-1px}`. Not .badge-counter, which is
+                 position:absolute and belongs on an icon-shaped control. -->
+            <li><a href="#">Log <span class="badge">7</span></a></li>
+          </ul>
+
+          <!-- Plan gate: one per screen, at the top of what it restricts. -->
+          <div class="alert alert-paid has-paid-badge spacing-bottom-lg">
+            <span class="badge badge-paid">&nbsp;</span>
+            Importing orders as CRM deals needs a CRM plan.
+            <a href="https://login.sendpulse.com/crm/plans" target="_blank" rel="noreferrer">upgrade your pricing plan</a>
+          </div>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">Form controls</h6>
+
+          <div class="ref-col">
+            <div class="form-group spacing-bottom-lg">
+              <label class="control-label" for="ks-name">Integration name</label>
+              <input id="ks-name" class="form-control" type="text" value="Amazon EU" />
+              <span class="help-block">Shown in the integration list and in deal history.</span>
+            </div>
+
+            <div class="form-group has-error spacing-bottom-lg">
+              <label class="control-label" for="ks-mail">Notification email</label>
+              <input id="ks-mail" class="form-control" type="email" value="not-an-address" />
+              <span class="help-block">Enter a valid address.</span>
+            </div>
+
+            <!-- Native select is the sanctioned control; its popup follows color-scheme (tokens.css) -->
+            <div class="form-group spacing-bottom-lg">
+              <label class="control-label" for="ks-pipeline">Pipeline</label>
+              <select id="ks-pipeline" class="form-control">
+                <option>Sales</option>
+                <option>Fulfilment</option>
+                <option>Returns</option>
+              </select>
+            </div>
+
+            <!-- A rich row needs no plugin: the bundle styles a dropdown trigger to look like an input -->
+            <div class="form-group spacing-bottom-lg">
+              <label class="control-label" for="ks-manager">Responsible manager</label>
+              <div class="dropdown">
+                <button id="ks-manager" type="button" class="form-control dropdown-toggle text-left" data-toggle="dropdown">
+                  <span class="avatar avatar-24 margin-right-5"></span> Valerii Sereda
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-wide">
+                  <li><a href="#"><span class="avatar avatar-24"></span> Olena Bondar</a></li>
+                  <li><a href="#"><span class="avatar avatar-24"></span> Marek Nowak</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- A number and its unit are ONE control: one .input-group, joined, no gap -->
+            <div class="form-group spacing-bottom-lg">
+              <label class="control-label" for="ks-every">Check for new orders</label>
+              <div class="input-group input-group-fit">
+                <input id="ks-every" class="form-control input-group-number" type="number" value="15" min="5" />
+                <select class="form-control input-group-unit" aria-label="Unit">
+                  <option>minutes</option>
+                  <option>hours</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progressive disclosure: bold label, indented block while it is on. Reveal, don't disable. -->
+          <div class="checkbox">
+            <label class="font-weight-bold"><input type="checkbox" checked /> Import new orders</label>
+          </div>
+          <div class="checkbox-val spacing-bottom-md">
+            <div class="checkbox">
+              <label class="font-weight-bold">
+                <input type="checkbox" disabled /> Import orders as CRM deals
+                <span class="badge badge-paid badge-paid-sm">&nbsp;</span>
+              </label>
+            </div>
+            <span class="help-block">Each order becomes a deal in the pipeline you choose.</span>
+          </div>
+
+          <!-- A whole feature on/off sits at the right edge of its row -->
+          <div class="switcher-flex-holder spacing-bottom-lg">
+            <div>
+              <p class="margin-0 font-weight-bold">Two-way sync</p>
+              <span class="help-block margin-0">Push deal status changes back to Amazon.</span>
+            </div>
+            <!-- The knob is drawn on `.switcher-toggle + label`, so the input comes first, the
+                 label is its sibling, and they are tied by for/id. There is no inner span. -->
+            <div class="switcher">
+              <input class="switcher-toggle" id="ks-sync" type="checkbox" checked />
+              <label for="ks-sync" aria-label="Two-way sync"></label>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">Repeating rows</h6>
+          <!-- Rows the user adds more of. Both controls here are glyphs on purpose: the remove is
+               the control, and the plus is the house pattern for "add another". The label carries
+               the dashed underline on its own span, so the rule stops at the text. -->
+          <div class="d-flex align-items-center gap-5 spacing-bottom-sm">
+            <select class="form-control" aria-label="Amazon field 1">
+              <option>Buyer name</option>
+              <option>Buyer email</option>
+            </select>
+            <span class="text-muted">to</span>
+            <select class="form-control" aria-label="SendPulse variable 1">
+              <option>Name</option>
+              <option>Email</option>
+            </select>
+            <button type="button" class="btn btn-icon" aria-label="Remove mapping 1">
+              <i class="sp-icon icon-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+          <p class="spacing-bottom-lg">
+            <button type="button" class="btn btn-link">
+              <i class="sp-icon icon-plus-add" aria-hidden="true"></i>
+              <span class="dashed">Add variable</span>
+            </button>
+          </p>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">Buttons</h6>
+          <p class="spacing-bottom-lg">
+            <button type="button" class="btn btn-primary margin-right-5">Primary</button>
+            <button type="button" class="btn btn-default margin-right-5">Default</button>
+            <button type="button" class="btn btn-success margin-right-5">Success</button>
+            <button type="button" class="btn btn-danger margin-right-5">Disconnect</button>
+            <button type="button" class="btn btn-default btn-sm margin-right-5">Small</button>
+            <button type="button" class="btn btn-primary margin-right-5" disabled>Disabled</button>
+            <button type="button" class="btn btn-link">Link</button>
+          </p>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">Status, labels, alerts</h6>
+          <p class="spacing-bottom-sm">
+            <span class="badge badge-status badge-status-success"></span> Connected
+            <span class="badge badge-status badge-status-warning margin-left-10"></span> Pending
+            <span class="badge badge-status badge-status-danger margin-left-10"></span> Failed
+            <span class="badge badge-status status-donut margin-left-10"></span> Disabled
+          </p>
+          <p class="spacing-bottom-sm">
+            <span class="label label-primary">primary</span>
+            <span class="label label-success">success</span>
+            <span class="label label-danger">danger</span>
+            <span class="label label-outlined">outlined</span>
+          </p>
+          <div class="alert alert-info alert-sm spacing-bottom-sm">Orders are imported every 15 minutes.</div>
+          <div class="alert alert-danger alert-sm spacing-bottom-lg">Amazon rejected the last request.</div>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">Table — rows with no status</h6>
+          <div class="table-responsive spacing-bottom-lg">
+            <table class="table table-vcenter table-without-border">
+              <thead><tr><th>Order</th><th>Marketplace</th><th>Imported</th><th>Deal</th></tr></thead>
+              <tbody>
+                <tr><td>112-7788</td><td>Amazon.com</td><td>11:38</td><td><a href="#">Deal #418</a></td></tr>
+                <tr><td>112-7790</td><td>Amazon.de</td><td>11:36</td><td><a href="#">Deal #417</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">List — rows with state</h6>
+          <div class="list-group spacing-bottom-lg">
+            <div class="list-group-item d-flex align-items-center">
+              <div class="flex-fill">
+                <p class="margin-0"><span class="badge badge-status badge-status-success"></span> Amazon.com</p>
+                <p class="margin-0 text-muted">Seller ID: A1B2C3 · Last order: 11:38</p>
+              </div>
+              <div class="dropdown">
+                <button type="button" class="btn btn-more-action dropdown-toggle" data-toggle="dropdown" aria-label="Amazon.com actions">
+                  <i class="sp-icon icon-ellipsis" aria-hidden="true"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a href="#" role="button">Pause sync</a></li>
+                  <li><a href="#" role="button">Disconnect</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="list-group-item d-flex align-items-center">
+              <div class="flex-fill">
+                <p class="margin-0"><span class="badge badge-status badge-status-danger"></span> Amazon.co.uk</p>
+                <p class="margin-0 text-muted"><span class="text-danger margin-right-30">Sync stopped</span> Last order: yesterday</p>
+              </div>
+            </div>
+          </div>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">Selector boxes</h6>
+          <div class="selector-boxes spacing-bottom-lg">
+            <div class="selector-box">
+              <div class="selector-box-icon selector-box-icon-marine"><i class="sp-icon icon-crm" aria-hidden="true"></i></div>
+              <div class="selector-box-title">Create deals</div>
+              <div class="selector-box-descr">Every order becomes a CRM deal.</div>
+            </div>
+            <div class="selector-box selector-box-disabled">
+              <div class="selector-box-icon selector-box-icon-purple"><i class="sp-icon icon-mail" aria-hidden="true"></i></div>
+              <div class="selector-box-title">Email only</div>
+              <div class="selector-box-descr">Send a notification and nothing else.</div>
+            </div>
+          </div>
+
+          <h6 class="text-uppercase font-size-13 text-muted spacing-bottom-xs">Well</h6>
+          <div class="well">A recessed grey block. Use <code>.panel</code> for a raised card instead.</div>
+        </div>
+
+        <div class="panel-footer">
+          <button type="button" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+
+      <!-- Modal. The bundle ships no JS, so display, the backdrop element and body.modal-open
+           are yours. Pinned in the flow here (.ref-static-modal) only so this page can show it;
+           a real one is position:fixed over a .modal-backdrop.fade.in. -->
+      <div class="modal fade in ref-static-modal" data-sp-audit-ignore role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Change Amazon account?</h4>
+            </div>
+            <div class="modal-body">
+              <p class="margin-0">Re-authorising stops the order sync until the new account is connected.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default">Cancel</button>
+              <button type="button" class="btn btn-primary">Change account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" data-sp-audit-ignore class="btn btn-default btn-sm ref-switch" onclick="setTheme(document.documentElement.classList.contains('ma-dark') ? 'light' : 'dark')">
+      Toggle theme
+    </button>
+
+    <script>
+      function setTheme(theme) {
+        var dark = theme === "dark";
+        document.getElementById("sp-theme-light").media = dark ? "not all" : "all";
+        document.getElementById("sp-theme-dark").media = dark ? "all" : "not all";
+        document.documentElement.classList.toggle("ma-dark", dark);
+        document.documentElement.classList.toggle("ma-light", !dark);
+      }
+      // Minimal dropdown behaviour, because the CDN ships no JS.
+      document.addEventListener("click", function (e) {
+        var toggle = e.target.closest('[data-toggle="dropdown"]');
+        document.querySelectorAll(".dropdown.open").forEach(function (d) {
+          if (!toggle || d !== toggle.parentElement) d.classList.remove("open");
+        });
+        if (toggle) toggle.parentElement.classList.toggle("open");
+      });
+
+      // Also honour the host's own contract, so ?theme=dark works here exactly as it does in an
+      // integration — and so verify.mjs can drive this page the way it drives a real app.
+      if (new URLSearchParams(location.search).get("theme") === "dark") setTheme("dark");
+    </script>
+  </body>
+</html>

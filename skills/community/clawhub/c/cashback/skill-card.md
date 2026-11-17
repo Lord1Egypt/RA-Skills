@@ -1,44 +1,58 @@
-## Description: <br>
-Cashback helps users generate affiliate cashback links, check rebate rates for supported overseas merchants, and review personal cashback orders through the feima-lab affiliate API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cashback helps users create cashback short links, check rebate rates, and review personal rebate orders for supported overseas brand stores through Duomai affiliate channels.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External users use this skill to turn supported Adidas, Space NK NL, and designwebstore DE shopping links into cashback links, query merchant rebate rates, and check recent cashback order status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsupported merchant links, shopping queries, and order-related data may be sent to an external affiliate API. <br>
-Mitigation: Use the skill only for supported merchants, avoid sending sensitive shopping or order details unless comfortable sharing them with the provider, and review outputs before relying on cashback status. <br>
-Risk: The skill requires a sensitive FX_AI_API_KEY credential and a separate fx-base dependency. <br>
-Mitigation: Keep FX_AI_API_KEY private, install fx-base only from a trusted source, and review the dependency before use. <br>
+## Use Case:
 
+External shoppers and agents use this skill to convert supported Adidas, Space NK NL, and designwebstore DE links into cashback links, check merchant rebate rates, and query personal cashback orders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/cashback) <br>
-- [feima-lab Open Platform](https://platform.feima.ai/) <br>
-- [link-convert output template](references/link-convert-output.md) <br>
-- [store-rebate output template](references/store-rebate-output.md) <br>
-- [order-query output template](references/order-query-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown responses populated from JSON API results, with shell command invocations for the skill scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, the FX_AI_API_KEY environment variable, and the fx-base dependency installed alongside the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: frontmatter and server release evidence) <br>
+Risk: Executable scripts can accept broader merchant names or URLs than the documented three-merchant scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm inputs are limited to Adidas, Space NK NL, and designwebstore DE before invoking scripts, and do not send unsupported merchant URLs.
+
+Risk: Product links, merchant queries, and order lookups are sent to the feima-lab API service and require FX_AI_API_KEY plus the separately installed fx-base dependency.
+
+Mitigation: Use the skill only when the publisher, API service, and a reviewed or version-pinned fx-base dependency are trusted; avoid URLs containing private tokens.
+
+## Reference(s):
+
+- [Cashback ClawHub Release](https://clawhub.ai/fangshan101-coder/skills/cashback)
+- [feima-lab Open Platform](https://platform.feima.ai/)
+- [feima-lab API Service](https://api-ai-brain.fenxianglife.com)
+- [Link Convert Output Template](references/link-convert-output.md)
+- [Order Query Output Template](references/order-query-output.md)
+- [Store Rebate Output Template](references/store-rebate-output.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown responses backed by JSON API results and Node.js command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, FX_AI_API_KEY, and the separately installed fx-base skill.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

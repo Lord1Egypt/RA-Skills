@@ -1,0 +1,41 @@
+{
+  "id": "rural-user-all-ages",
+  "label": "Rural User (All Ages)",
+  "emoji": "🌾",
+  "demographics": {
+    "gender": "any",
+    "age_range": [15, 80],
+    "tier": "mixed"
+  },
+  "active_hours": {
+    "description": "Daytime — early to bed, early to rise",
+    "peak": [5, 8, 12, 14, 17, 20],
+    "off_peak_min": 7
+  },
+  "typing": {
+    "description": "Moderate-slow, less familiar with keyboards",
+    "wpm": { "min": 40, "max": 70 },
+    "profile": "careful",
+    "think_prob": 0.025,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.05
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Moderate speed, reads fully before interacting",
+    "speed_px_per_ms": { "min": 12, "max": 35 },
+    "pause_between_passes_ms": { "min": 800, "max": 3000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 5000 },
+    "pre_click_pause_ms": { "min": 300, "max": 1000 },
+    "inter_action_pause_ms": { "min": 500, "max": 2000 }
+  },
+  "mouse": {
+    "speed": 0.6,
+    "curvature": 0.18,
+    "jitter": 0.3,
+    "description": "Slower, less precise"
+  }
+}

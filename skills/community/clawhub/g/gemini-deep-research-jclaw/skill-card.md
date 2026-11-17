@@ -1,42 +1,59 @@
-## Description: <br>
-Runs a Gemini CLI deep research workflow to generate market, industry, or technical research reports from a user-provided topic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gemini Deep Research runs a Gemini CLI deep-research MCP workflow for deep topic research, market or industry analysis, and comprehensive report generation.
 
-## Publisher: <br>
-[skywalker-lili](https://clawhub.ai/user/skywalker-lili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skywalker-lili](https://clawhub.ai/user/skywalker-lili)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to send a research topic to the Gemini Deep Research MCP extension, choose a report format, and save a Markdown report for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics, filters, and report options are sent to an external report provider. <br>
-Mitigation: Avoid confidential, regulated, or proprietary topics unless approved for that provider. <br>
-Risk: The helper can save generated Markdown reports to a user-selected path. <br>
-Mitigation: Review the destination path before running the workflow and inspect the report before relying on it. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to delegate long-running Gemini Deep Research tasks, choose a report format, and save the resulting research report to disk.
 
-## Reference(s): <br>
-- [Gemini Deep Research Setup Guide](references/setup-guide.md) <br>
-- [gemini-cli-deep-research Extension](https://github.com/allenhutchison/gemini-cli-deep-research) <br>
-- [Google AI Studio API Keys](https://aistudio.google.com/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report file with JSON status from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Gemini CLI, the gemini-deep-research extension, Node.js 18+, and a paid Google AI API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Research topics and report parameters are sent to Gemini through a third-party deep-research extension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive topics or secrets unless the organization permits that data flow.
+
+Risk: The local extension can change over time when auto-update is enabled.
+
+Mitigation: Pin the extension to a reviewed version and disable auto-update before use in controlled environments.
+
+Risk: The workflow writes generated reports to disk.
+
+Mitigation: Restrict output paths to a dedicated reports folder and review saved content before sharing.
+
+## Reference(s):
+
+- [Gemini Deep Research Setup Guide](references/setup-guide.md)
+- [gemini-cli-deep-research extension](https://github.com/allenhutchison/gemini-cli-deep-research)
+- [Google AI Studio API keys](https://aistudio.google.com/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown research report saved to a file, with JSON status output from the helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Comprehensive Research Report, Executive Brief, and Technical Deep Dive formats; default timeout is 15 minutes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Provides web search, URL crawling, news, sitemap discovery, trending topics, and reasoning workflows through the Search1API s1 CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live web search, page retrieval, news, sitemap discovery, and trending topics through Search1API.
 
-## Publisher: <br>
-[fatwang2](https://clawhub.ai/user/fatwang2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fatwang2](https://clawhub.ai/user/fatwang2)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve current web information, summarize URLs, inspect site links, gather news, explore trending topics, and synthesize research from Search1API CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, URLs, crawled pages, or reasoning prompts may be sent to Search1API as a third-party web access provider. <br>
-Mitigation: Use a dedicated API key where possible and avoid sending credentials, confidential documents, regulated data, private URLs, or sensitive personal information unless that transfer is intentional. <br>
-Risk: The skill depends on a third-party npm CLI and paid API credits. <br>
-Mitigation: Verify the search1api-cli package before global installation and monitor API usage or credit costs. <br>
+## Use Case:
 
+Developers and agent users use Search1API to perform live web search, retrieve and summarize pages, check current news, discover site links, explore trending topics, and synthesize cited research through MCP tools or the s1 CLI.
 
-## Reference(s): <br>
-- [Usage examples](reference/examples.md) <br>
-- [Search1API](https://search1api.com) <br>
-- [ClawHub skill page](https://clawhub.ai/fatwang2/s1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the s1 CLI and SEARCH1API_KEY; Search1API commands may return human-readable output or raw JSON with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Installation guidance includes curl-to-bash and unpinned global npm commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a connected MCP tool or verified, pinned CLI installation.
+
+Risk: Search queries and URLs may be sent to Search1API and selected search providers.
+
+Mitigation: Do not submit secrets, signed URLs, private or internal links, regulated data, confidential research terms, or other sensitive material unless that sharing is acceptable.
+
+Risk: API keys can be exposed through chat, logs, or shell history.
+
+Mitigation: Use browser login where possible and keep keys out of chat, logs, and shell history.
+
+## Reference(s):
+
+- [Search1API skill page](https://clawhub.ai/fatwang2/skills/s1)
+- [Usage examples](artifact/reference/examples.md)
+- [Search1API CLI installer](https://cli.search1api.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and cited source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use Search1API MCP tools or the s1 CLI; server metadata declares s1 as a required binary for CLI fallback.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Trades Polymarket prediction markets on elections, referendums, and democratic events worldwide using election-system heuristics, regional information-lag signals, and configurable trading safeguards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on elections, referendums, and democratic events worldwide using electoral-system heuristics and regional polling-lag signals.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and agent operators use this skill to discover global election-related Polymarket opportunities, size positions from configurable thresholds, and run trades in paper mode by default or live mode when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades and create financial loss. <br>
-Mitigation: Start in paper mode, keep position limits low, and enable --live only after accepting the real-money trading risk. <br>
-Risk: SIMMER_API_KEY grants trading authority and is a sensitive credential. <br>
-Mitigation: Use a revocable or scoped key where possible, store it securely, and rotate it if exposure is suspected. <br>
-Risk: The skill depends on the external simmer-sdk package for market and trade operations. <br>
-Mitigation: Verify the simmer-sdk package source before installation and review updates before running live trades. <br>
+## Use Case:
 
+External developers and trading agents use this skill to discover global election-related prediction markets, evaluate them with configurable election-bias rules, and place paper or explicitly enabled live trades through Simmer and Polymarket.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-global-elections-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk source repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Console text plus Simmer/Polymarket trading actions configured through environment variables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trading requires the --live flag, SIMMER_API_KEY, and user-controlled position, liquidity, spread, and timing limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: Live trading can place real USDC orders when explicitly enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in paper mode first and enable --live only after reviewing the trading logic and configured limits.
+
+Risk: The server security summary reports weaker live-trading risk controls than documented.
+
+Mitigation: Do not rely on the documented minimum-volume or maximum-open-position safeguards until they are fixed; enforce independent limits before live use.
+
+Risk: The server security summary reports an unpinned simmer-sdk dependency.
+
+Mitigation: Pin or review the simmer-sdk version before installing or running the skill.
+
+Risk: SIMMER_API_KEY provides trading authority.
+
+Mitigation: Use tightly scoped Simmer and Polymarket credentials and rotate them if exposed.
+
+## Reference(s):
+
+- [Polymarket Global Elections Trader on ClawHub](https://clawhub.ai/diagnostikon/skills/polymarket-global-elections-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python code, shell invocation, configuration values, and runtime status logs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY. Defaults to paper trading; live Polymarket trading requires an explicit --live flag.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

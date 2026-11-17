@@ -1,41 +1,54 @@
-## Description: <br>
-Use when the HPD lab needs a repeatable Planner -> Designer -> conditional Developer -> Tester flow for an approved idea, with Lobster-first and sequential fallback behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HPD Pipeline guides an agent through a Planner, Designer, conditional Developer, and Tester workflow for approved HPD lab ideas, with Lobster-first orchestration and sequential fallback.
 
-## Publisher: <br>
-[omermesebuken1](https://clawhub.ai/user/omermesebuken1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omermesebuken1](https://clawhub.ai/user/omermesebuken1)
 
-## Use Case: <br>
-HPD lab users and project builders use this skill to turn an approved idea into a structured Turkish-language project package with planning, design, conditional development, testing, and handoff sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs the agent to use an unspecified Gemini API fallback for image generation, which may run unclear code or send project details outside the workspace. <br>
-Mitigation: Review the fallback script, account or API key, and data sharing behavior before allowing the agent to run it. <br>
-Risk: The release security verdict is suspicious. <br>
-Mitigation: Review before installing and only deploy after confirming the image-generation path and any external service usage. <br>
+## Use Case:
 
+Developers and HPD lab operators use this skill to turn approved ideas into Turkish-first project briefs, BOMs, cost estimates, assembly plans, render prompts, optional software specifications, tester reports, artifact manifests, and completion summaries.
 
-## Reference(s): <br>
-- [HPD Pipeline project contract](references/project-pipeline.md) <br>
-- [ClawHub skill page](https://clawhub.ai/omermesebuken1/hpd-pipeline) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Notion-first Markdown sections in Turkish, with artifact paths and code snippets when produced.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include mandatory HPD sections; render images, CAD, source code, and firmware paths are only reported when actually produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated project plans, BOMs, cost estimates, render prompts, CAD concepts, code, or tester reports may be incomplete or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated artifacts before use and rely on the skill's tester report and actual-vs-conceptual artifact checks before owner handoff.
+
+Risk: The workflow may call image-generation tooling or a configured Gemini workflow when renders are requested.
+
+Mitigation: Confirm tool configuration and review generated render outputs before treating them as deliverables.
+
+## Reference(s):
+
+- [HPD pipeline project contract](references/project-pipeline.md)
+- [ClawHub skill page](https://clawhub.ai/omermesebuken1/skills/hpd-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured sections and artifact paths when files are actually produced]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are Notion-first and primarily Turkish; render prompts may remain in English for image-generation tools.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

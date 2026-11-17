@@ -1,40 +1,54 @@
-## Description: <br>
-Improve a Skool community's public discovery page for search clarity, trust signals, and free-course activation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Improve a Skool community's public discovery page for search clarity, trust signals, and free-course activation. Use when the user wants a better Skool name, About copy, hero text, category promise, membership questions, or profile CTA without promising joins or revenue.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Community creators and operators use this skill to improve public Skool discovery copy, including the community name, one-line promise, About copy, hero text, membership questions, profile CTA, keywords, and a 7-day optimization checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide private member data, paid content, credentials, payment details, or unconsented testimonials while asking for copy improvements. <br>
-Mitigation: Use only public Skool page text, creator-approved notes, synthetic examples, or explicitly consented testimonials; exclude credentials, payment information, private exports, and paid or hidden community content. <br>
-Risk: Generated copy may imply unsupported affiliation or promise joins, revenue, rankings, or other outcomes. <br>
-Mitigation: Review final copy for clear platform relationship language and remove guarantees about growth, income, conversion, rank, legal, health, financial, or education outcomes. <br>
+## Use Case:
 
+External creators and community operators use this skill to rewrite public Skool discovery copy, including the community name, promise, About text, hero copy, membership questions, profile CTA, keywords, and a 7-day optimization checklist.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/skool-discovery-page-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured copy recommendations and checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces public-page copy suggestions and does not require executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Users could paste private member data, paid lessons, DMs, credentials, or platform exports into copywriting prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public or creator-owned materials, synthetic examples, or explicitly consented testimonials; do not include credentials, private exports, DMs, paid lessons, or private member data.
+
+Risk: Generated public copy could imply unsupported revenue, ranking, health, legal, financial, education, growth, or conversion outcomes.
+
+Mitigation: Review copy before publication and remove unsupported outcome claims, promises of joins or revenue, and unclear platform affiliation language.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/skills/skool-discovery-page-optimizer)
+- [Publisher Profile](https://clawhub.ai/user/zack-dev-cm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured copy recommendations and checklist items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces public-page copy guidance and avoids private member data, credentials, unsupported claims, and unlicensed affiliation language.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

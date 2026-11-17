@@ -1,40 +1,53 @@
-## Description: <br>
-Adds memory trust validation rules for OpenClaw 4.2 so an agent verifies stale or decision-relevant memory before acting on it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds memory trust validation guidance for OpenClaw 4.2 so an agent verifies memory-derived file, code, and configuration claims before acting on them.
 
-## Publisher: <br>
-[nicshliu](https://clawhub.ai/user/nicshliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicshliu](https://clawhub.ai/user/nicshliu)
 
-## Use Case: <br>
-Developers and agent users can use this skill to add a prompt-level validation workflow for OpenClaw memory before changing code, making decisions, or sending messages based on remembered files, functions, or configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes persistent OpenClaw agent behavior through system prompt configuration. <br>
-Mitigation: Review the exact prompt text before adding it to OpenClaw configuration. <br>
-Risk: The validation workflow may run local file and text searches for paths or symbols mentioned in memory. <br>
-Mitigation: Limit checks to paths and symbols relevant to the current workspace and review commands before execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add memory trust checks to OpenClaw behavior before an agent edits code, answers from remembered implementation details, or sends messages based on potentially stale memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicshliu/openclaw-trust-validation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-level rules intended for OpenClaw system prompt configuration] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to persistently change OpenClaw system prompt behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the persistent prompt changes before installing and apply them only when the user wants memory-validation behavior across sessions.
+
+Risk: The skill includes shell-command templates that use memory-derived file paths, functions, variables, and configuration names.
+
+Mitigation: Revise command examples to use structured arguments, quoted values, -- option termination, and workspace-bound path checks before operational use.
+
+## Reference(s):
+
+- [OpenClaw: trust validation ClawHub page](https://clawhub.ai/nicshliu/skills/openclaw-trust-validation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes suggested file, code, and configuration verification commands before using memory-derived claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

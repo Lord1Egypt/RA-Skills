@@ -1,44 +1,59 @@
-## Description: <br>
-Promptbuddy Lite is a zero-dependency Shell skill that rewrites user prompts into a four-layer HMAW-style structure for role, task, format, and constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Promptbuddy Lite is a zero-dependency Shell skill that rewrites user requests into structured four-layer prompts using role, task, format, and constraint templates.
 
-## Publisher: <br>
-[steventsang18](https://clawhub.ai/user/steventsang18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steventsang18](https://clawhub.ai/user/steventsang18)
 
-## Use Case: <br>
-Developers and agent users use this skill to pre-process broad chat requests into structured prompts before sending them to an assistant. It is suited to lightweight prompt optimization workflows on Linux or macOS where a local Shell implementation is preferred. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The preprocessing wrapper can automatically rewrite broad chat input before it reaches the assistant. <br>
-Mitigation: Review the generated structured prompt before relying on it, and disable or bypass preprocessing for prompts where exact wording must be preserved. <br>
-Risk: The installer writes commands under /usr/local/bin and requires sudo. <br>
-Mitigation: Inspect the installer before execution and install only in environments where system-wide command placement is acceptable. <br>
-Risk: The feedback path can invoke an undeclared promptbuddy-optimizer helper when present. <br>
-Mitigation: Enable feedback collection only after reviewing the helper skill and confirming its local data handling. <br>
+## Use Case:
 
+Developers and agent users use this skill to optimize chat requests into structured prompts before model execution. It is intended for lightweight prompt refinement on Linux and macOS environments without additional runtime dependencies.
 
-## Reference(s): <br>
-- [Promptbuddy Lite on ClawHub](https://clawhub.ai/steventsang18/promptbuddy-lite) <br>
-- [HMAW: Hierarchical Multi-Agent Workflows for Zero-Shot Prompt Optimization](https://arxiv.org/abs/2405.20252) <br>
-- [The Prompt Report](https://arxiv.org/abs/2406.06608) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the core command and Markdown-like structured prompt text from the preprocessing wrapper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Shell execution; may store prompt-optimization metadata for feedback without preserving the original user input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may automatically rewrite chat prompts before model execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user opt-in for prompt rewriting and show when rewritten prompt text is being used.
+
+Risk: The installer requests sudo and writes global commands.
+
+Mitigation: Prefer a user-scoped installation path and review installed scripts before granting elevated privileges.
+
+Risk: The feedback workflow can treat a later '1' or '2' reply as feedback and can invoke code from another local skill directory if present.
+
+Mitigation: Use safer per-session feedback state and only call bundled or verified feedback collectors.
+
+## Reference(s):
+
+- [Promptbuddy Lite ClawHub skill page](https://clawhub.ai/steventsang18/skills/promptbuddy-lite)
+- [HMAW: Hierarchical Multi-Agent Workflows for Zero-Shot Prompt Optimization](https://arxiv.org/abs/2405.20252)
+- [The Prompt Report](https://arxiv.org/abs/2406.06608)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text and JSON with structured prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces optimized prompt text and lightweight feedback prompts; no model weights or binary artifacts are produced.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

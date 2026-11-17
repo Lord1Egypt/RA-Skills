@@ -2,9 +2,9 @@
 
 | API | Line |
 |-----|------|
-| OpenWeather | 2 |
-| Mapbox | 61 |
-| Google Maps Platform | 124 |
+| OpenWeather | 11 |
+| Mapbox | 70 |
+| Google Maps Platform | 133 |
 
 ---
 

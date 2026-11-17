@@ -1,42 +1,54 @@
-## Description: <br>
-Forward Pilot Protocol events to HTTP webhooks for Slack, Discord, PagerDuty, and custom integrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forward Pilot Protocol events to HTTP webhooks for Slack, Discord, PagerDuty, and custom integrations.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to forward Pilot Protocol events to external webhook-based services such as Slack, Discord, PagerDuty, Datadog, Microsoft Teams, and custom HTTP endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pilot event data may be sent to external webhook providers. <br>
-Mitigation: Use HTTPS endpoints you control or trust, prefer selective source and topic subscriptions, and clear global webhook configuration when it is no longer needed. <br>
-Risk: Forwarded events may contain secrets, personal data, or sensitive operational details. <br>
-Mitigation: Redact sensitive values before forwarding and review event payloads before connecting production sources to third-party services. <br>
+## Use Case:
 
+Developers and operators use this skill to forward Pilot Protocol event streams to team communications, alerting, monitoring, and workflow webhooks.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-webhook-bridge) <br>
-- [Publisher Profile](https://clawhub.ai/user/teoslayer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces webhook configuration and forwarding command examples; it does not generate persistent files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Pilot event data can leave the user's environment when forwarded to external webhook services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved private destinations and redact secrets, personal data, customer data, and internal-only details before forwarding.
+
+Risk: A global webhook can forward more events than intended.
+
+Mitigation: Prefer selective subscriptions scoped to the required source, topic, and timeout.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-webhook-bridge)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash command examples and integration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces webhook setup and selective forwarding patterns for Pilot events.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

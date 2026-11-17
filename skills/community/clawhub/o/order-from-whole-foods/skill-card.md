@@ -1,43 +1,54 @@
-## Description: <br>
-Order groceries from Whole Foods using browser automation and a saved purchase policy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Order groceries from Whole Foods using browser automation and a saved purchase policy.
 
-## Publisher: <br>
-[chadnewbry](https://clawhub.ai/user/chadnewbry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chadnewbry](https://clawhub.ai/user/chadnewbry)
 
-## Use Case: <br>
-External users use this skill to turn a grocery list into a Whole Foods cart or order through OpenClaw browser automation while enforcing saved spending, confirmation, delivery-window, and calendar preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Amazon/Whole Foods browser session and may place an order when saved policy allows. <br>
-Mitigation: For first use, set purchase_mode to add_to_cart_only or confirm_before_buy to true, choose a low max_auto_spend, and require manual login in the browser session. <br>
-Risk: Incorrect item matches, substitutions, totals, or delivery slots could materially change the order. <br>
-Mitigation: Stop for unresolved ambiguity, unknown totals, out-of-window delivery slots, account or payment uncertainty, or policy conflicts, and report only observed cart and checkout state. <br>
-Risk: Calendar blocking can add delivery or pickup events automatically when enabled. <br>
-Mitigation: Leave calendar_blocking_enabled false unless automatic calendar events are desired. <br>
+## Use Case:
 
+External users use this skill to turn a grocery list into a Whole Foods online cart or order while following their saved purchase, delivery-window, and calendar preferences.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chadnewbry/order-from-whole-foods) <br>
-- [Whole Foods Amazon Storefront](https://www.amazon.com/alm/storefront?almBrandId=VUZHIFdob2xlIEZvb2Rz&ref=nav_cs_dsk_grfl_stfr_wf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Concise Markdown status updates with observed cart, total, delivery-window, and blocker details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include order state labels such as order placed, cart ready for review, or blocked; it should not invent prices, delivery windows, or cart state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill can place Whole Foods orders automatically when saved policy allows, which may create charges without a per-order review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use add_to_cart_only or confirm_before_buy:true for final approval, and set max_auto_spend conservatively.
+
+Risk: Confirmed delivery or pickup windows may be written to the user's calendar when calendar blocking is enabled.
+
+Mitigation: Disable calendar_blocking_enabled if delivery details should not be added to the calendar.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chadnewbry/skills/order-from-whole-foods)
+- [Whole Foods Amazon storefront](https://www.amazon.com/alm/storefront?almBrandId=VUZHIFdob2xlIEZvb2Rz&ref=nav_cs_dsk_grfl_stfr_wf)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions, Browser actions, Markdown]
+
+**Output Format:** [Concise Markdown status summary with setup questions, cart or order details, and blocker recovery steps when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report order placed, cart ready for review, or blocked; does not invent prices, delivery windows, or cart state.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-上传单词到 K241 班单词自学网站 (k241.wooomooo.com)，支持自动获取翻译和拼音。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uploads vocabulary words to the K241 class self-study website and can fetch translations and pinyin automatically.
 
-## Publisher: <br>
-[veelove](https://clawhub.ai/user/veelove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veelove](https://clawhub.ai/user/veelove)
 
-## Use Case: <br>
-External site administrators use this skill to add or update K241 vocabulary records, including translations and pinyin, on the class self-study website. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a shared login and could allow unauthorized access if credentials are reused. <br>
-Mitigation: Use only with authorization, rotate the exposed password, and prefer a version that requests credentials securely at runtime. <br>
-Risk: The skill gives agents direct ability to upload or update live website records. <br>
-Mitigation: Require confirmation before changing records and review uploaded or updated entries after execution. <br>
+## Use Case:
 
+External users use this skill to add or update vocabulary entries on the K241 class word self-study website, including translations and pinyin when needed.
 
-## Reference(s): <br>
-- [K241 word site](https://k241.wooomooo.com) <br>
-- [K241 单词拼音参考表](references/pinyin.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with HTTP request examples and workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in changes to live vocabulary records when an authorized agent follows the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Published reusable website credentials could allow unauthorized access to the K241 website.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the listed password as compromised, rotate it, and replace embedded credentials with per-user or secret-managed authentication.
+
+Risk: The skill can make authenticated remote changes to class vocabulary data.
+
+Mitigation: Require explicit user confirmation before any upload or update operation.
+
+Risk: Loose trigger language could activate the skill when the user did not intend to change the K241 website.
+
+Mitigation: Limit activation to requests that clearly mention uploading or updating vocabulary on the K241 website.
+
+## Reference(s):
+
+- [K241 Word Upload skill page](https://clawhub.ai/veelove/skills/k241-word-upload)
+- [Publisher profile](https://clawhub.ai/user/veelove)
+- [K241 word self-study website](https://k241.wooomooo.com)
+- [K241 word pinyin reference](references/pinyin.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with HTTP request examples and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include website login, upload, verification, and update steps for K241 vocabulary entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

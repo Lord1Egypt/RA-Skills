@@ -1,47 +1,66 @@
-## Description: <br>
-Create professional cinematic scripts for AI video generation with character consistency, cinematography guidance, export options, and optional storage integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create professional cinematic scripts for AI video generation with character consistency, cinematography guidance, prompt generation, export options, and optional storage integration.
 
-## Publisher: <br>
-[praveenspeaks](https://clawhub.ai/user/praveenspeaks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[praveenspeaks](https://clawhub.ai/user/praveenspeaks)
 
-## Use Case: <br>
-Creators, developers, and video teams use this skill to draft cinematic stories, scene scripts, image/video prompts, character and voice consistency references, cinematography choices, and YouTube metadata for AI-assisted video production. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project content can be uploaded to Google Drive when the user connects Google Drive and chooses to save. <br>
-Mitigation: Connect Google Drive only for projects intended for cloud storage, review generated content before saving, and disconnect storage when it is no longer needed. <br>
-Risk: The skill stores story context, character details, and generated scripts in agent memory. <br>
-Mitigation: Avoid entering secrets or private production information into story contexts, and clear or delete contexts that should not persist. <br>
-Risk: Bundled examples and templates include capabilities beyond the active cinematic-writing workflow. <br>
-Mitigation: Deploy only the cinematic-script-writer skill unless the additional examples are intentionally reviewed and enabled. <br>
+## Use Case:
 
+Developers, creators, and agents use this skill to create story contexts, character references, cinematic scripts, AI image and video prompts, and YouTube metadata for animated or comic video projects. It also helps validate era consistency and save project outputs locally or to Google Drive when configured.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/praveenspeaks/openclawskills) <br>
-- [Publisher profile](https://clawhub.ai/user/praveenspeaks) <br>
-- [Skill README](artifact/skills/cinematic-script-writer/README.md) <br>
-- [Skill usage guide](artifact/skills/cinematic-script-writer/SKILL.md) <br>
-- [Storage example](artifact/skills/cinematic-script-writer/EXAMPLE-STORAGE.md) <br>
-- [ClawHub skill manifest schema](https://clawhub.ai/schemas/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON, or plain text script exports with prompts, reference sheets, voice guidelines, storage choices, and video metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Google Drive share links when the user connects Google Drive and saves generated content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The skill stores story contexts, character details, scripts, and related project state in agent memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when memory access is acceptable for the story projects being created, and avoid entering sensitive story or credential material unless the workspace policy permits it.
+
+Risk: The skill can upload generated project files to Google Drive when authorized.
+
+Mitigation: Use a Google OAuth client and scope appropriate to drive.file, review content before upload, and authorize only the storage destination intended for the project.
+
+Risk: The artifact includes bundled example and template skill manifests that could be auto-discovered by downstream tooling.
+
+Mitigation: Remove or ignore bundled example/template skills when redistributing or using automatic skill discovery.
+
+Risk: Development-tooling dependencies may age over time.
+
+Mitigation: Update and review development dependencies before maintaining or republishing the package.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/praveenspeaks/skills/openclawskills)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Cinematic Script Writer README](artifact/skills/cinematic-script-writer/README.md)
+- [Storage Example](artifact/skills/cinematic-script-writer/EXAMPLE-STORAGE.md)
+- [Consistency Example](artifact/skills/cinematic-script-writer/EXAMPLE-CONSISTENCY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, plain text, and TypeScript-oriented command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can generate scripts, image and video prompts, character and voice guides, YouTube metadata, and organized project files.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata and artifact root frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

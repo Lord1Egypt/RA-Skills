@@ -1,44 +1,60 @@
-## Description: <br>
-Crypto trading signal, price prediction, and market analysis for Binance pairs using market data, news sentiment, scoring, verification, and reporting commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides crypto trading signals, price prediction, and market analysis for Binance pairs using market data, news, and macro-event triggers.
 
-## Publisher: <br>
-[k2-l](https://clawhub.ai/user/k2-l) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[k2-l](https://clawhub.ai/user/k2-l)
 
-## Use Case: <br>
-Developers and crypto analysts use this skill to fetch Binance market data and crypto news, generate BUY/SELL/HOLD signal summaries, verify outcomes after 30 minutes, and review hit-rate history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes third-party market and news API calls that can consume quota or depend on revocable API keys. <br>
-Mitigation: Use revocable API keys, configure only the credentials needed, and monitor NewsAPI usage limits. <br>
-Risk: The scheduler can continue polling and consuming API quota if started unintentionally. <br>
-Mitigation: Run the scheduler only intentionally, prefer dry-run first, and stop it when active monitoring is no longer needed. <br>
-Risk: Crypto signal outputs may be mistaken for guaranteed trading outcomes. <br>
-Mitigation: Treat generated BUY/SELL/HOLD results as research signals, review the summarized factors, and avoid adding exchange credentials unless needed. <br>
+## Use Case:
 
+Developers and external users use this skill to run a crypto signal pipeline for Binance symbols, combining technical indicators and news sentiment into BUY, SELL, or HOLD summaries. Outputs should be treated as informational analysis, not financial advice or automated trading authority.
 
-## Reference(s): <br>
-- [Binance API endpoint](https://api.binance.com/api/v3) <br>
-- [CryptoPanic API endpoint](https://cryptopanic.com/api/v1/posts/) <br>
-- [NewsAPI endpoint](https://newsapi.org/v2/everything) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown-facing guidance with shell commands and generated local JSON signal records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes market, news, signal, budget, verification, and report records locally; the scheduler can keep polling APIs until stopped.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill contacts market and news APIs and may use a configured proxy with user-provided credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those third-party service calls and credential requirements are acceptable; prefer environment variables or the chmod 600 credentials file described by the skill.
+
+Risk: BUY, SELL, and HOLD outputs could be mistaken for automated trading authority or financial advice.
+
+Mitigation: Use outputs as informational analysis only and require human review before making trading decisions.
+
+Risk: Generated market data, signal records, and verification history are stored on disk.
+
+Mitigation: Review local retention and sharing practices for the generated data, signals, and records directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/k2-l/skills/my-crypto-signal-skill)
+- [Binance API base endpoint](https://api.binance.com/api/v3)
+- [CryptoPanic posts API endpoint](https://cryptopanic.com/api/v1/posts/)
+- [NewsAPI everything endpoint](https://newsapi.org/v2/everything)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown summaries with shell commands and JSON-backed signal records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local data, signals, and records files; requires a NewsAPI key and may use optional CryptoPanic, Binance, and proxy credentials.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

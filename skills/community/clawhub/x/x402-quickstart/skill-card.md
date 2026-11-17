@@ -1,42 +1,59 @@
-## Description: <br>
-Deploy x402 pay-per-call API endpoints in minutes, turning an OpenClaw skill or service into a monetized endpoint accepting USDC on Base with payment verification, pricing, and Cloudflare Tunnel integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy x402 pay-per-call API endpoints in minutes.
 
-## Publisher: <br>
-[jimmyclanker](https://clawhub.ai/user/jimmyclanker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimmyclanker](https://clawhub.ai/user/jimmyclanker)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold paid API endpoints that accept USDC on Base, verify payment transactions, and expose the resulting service through local or tunneled deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated endpoints can become publicly reachable when exposed through Cloudflare Tunnel or registered with Spraay. <br>
-Mitigation: Review the generated server, add rate limits and input validation, and only publish the tunnel or gateway registration when the endpoint and metadata are intended to be public. <br>
-Risk: Payment setup depends on the configured recipient wallet and on-chain verification behavior. <br>
-Mitigation: Use only a public recipient wallet address and verify the generated payment logic before relying on the endpoint for paid access. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold x402-compatible Express API endpoints that charge AI agents USDC on Base for pay-per-call access.
 
-## Reference(s): <br>
-- [x402 Quickstart skill page](https://clawhub.ai/jimmyclanker/x402-quickstart) <br>
-- [Spraay Gateway](https://gateway.spraay.app) <br>
-- [Base public RPC endpoint](https://mainnet.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and generated Node.js/Express project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The scaffold creates package.json, .env, .gitignore, and server.js files for a pay-per-call endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The generated scaffold should be treated as prototype payment infrastructure rather than production-ready payment enforcement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before installation or deployment, then add production authentication, rate limits, logging, and payment enforcement controls.
+
+Risk: Payment replay or weak payment binding could allow access without a fresh, endpoint-specific payment.
+
+Mitigation: Add proper invoice or nonce-based payment binding with persistent atomic replay protection before public use.
+
+Risk: Public tunnel exposure can make unfinished endpoints reachable on the internet.
+
+Mitigation: Expose endpoints publicly only after validating project names, wallet configuration, access controls, and monitoring.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jimmyclanker/skills/x402-quickstart)
+- [Publisher profile](https://clawhub.ai/user/jimmyclanker)
+- [Spraay Gateway](https://gateway.spraay.app)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, JavaScript, JSON, and environment variable snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a scaffolded Express project with x402 payment middleware when the included shell script is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

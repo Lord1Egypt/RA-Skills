@@ -1,38 +1,51 @@
-## Description: <br>
-Deploy and tune Meilisearch with indexing, filtering, and production configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and tune Meilisearch with indexing, filtering, and production configuration.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as practical Meilisearch guidance for configuring indexes, managing search behavior, protecting API keys, and planning production operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Production Meilisearch changes can affect availability or data exposure, especially key settings, exposed endpoints, index reconfiguration, and reindexing operations. <br>
-Mitigation: Review production Meilisearch changes before applying them, and verify key settings, exposed endpoints, index changes, and reindexing plans. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/meilisearch) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+Developers and operators use this skill for concise operational guidance on configuring Meilisearch indexes, search behavior, API keys, backups, and production limits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Incorrect production key handling could expose privileged Meilisearch access.
+
+Mitigation: Verify master key configuration, use search-only frontend keys, and avoid exposing privileged keys in client-side code.
+
+Risk: Operational guidance may not match a user's deployment constraints for backups, reindexing, or capacity.
+
+Mitigation: Review backup schedules, settings changes, batch sizes, and RAM requirements against the target environment before applying changes.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; informational guidance only.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Guidance, Configuration instructions]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plain-text operational checklist; no executable files or tool calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

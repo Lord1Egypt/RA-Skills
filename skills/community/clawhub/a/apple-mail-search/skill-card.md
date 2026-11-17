@@ -1,41 +1,54 @@
-## Description: <br>
-Fast Apple Mail search via SQLite on macOS. Search emails by subject, sender, date, attachments - results in ~50ms vs 8+ minutes with AppleScript. Use when asked to find, search, or list emails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast Apple Mail search via SQLite on macOS. Search emails by subject, sender, date, attachments - results in ~50ms vs 8+ minutes with AppleScript. Use when asked to find, search, or list emails.
 
-## Publisher: <br>
-[mneves75](https://clawhub.ai/user/mneves75) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mneves75](https://clawhub.ai/user/mneves75)
 
-## Use Case: <br>
-Developers and macOS users use this skill to have an agent search local Apple Mail metadata quickly by subject, sender, recipient, date, unread status, and attachments. It is intended for finding, listing, opening, or exporting Apple Mail search results from the local Mail database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Apple Mail search results and exports can contain private email metadata. <br>
-Mitigation: Keep result limits narrow and review JSON or CSV exports before sharing them. <br>
-Risk: The skill depends on a separate local mail-search executable with access to Apple Mail metadata. <br>
-Mitigation: Verify the executable before copying it into /usr/local/bin and install only on Macs where local Apple Mail search is intended. <br>
+## Use Case:
 
+Employees, external users, developers, and engineers use this skill to search local Apple Mail metadata quickly by subject, sender, recipient, date range, unread status, and attachments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mneves75/apple-mail-search) <br>
-- [Skill homepage](https://github.com/steipete/clawdbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON or CSV command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide bounded searches with result limits and optional database path selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can reveal private local Apple Mail metadata such as subjects, addresses, dates, and attachment names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow searches and small limits, and review results before sharing or exporting them.
+
+Risk: CSV or JSON exports may persist sensitive email metadata outside Apple Mail.
+
+Mitigation: Create exports only when needed, store them carefully, and delete exported files when they are no longer required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mneves75/skills/apple-mail-search)
+- [Project homepage](https://github.com/steipete/clawdbot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide JSON or CSV export through the underlying mail-search command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

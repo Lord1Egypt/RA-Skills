@@ -1,55 +1,71 @@
-## Description: <br>
-Autonomously plans, drafts, audits, and optimizes SEO content with omnichannel research, GEO targeting, internal linking, schema, analytics integration, and WordPress publishing support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+M.A.D. SEO CONTENT helps agents plan, draft, audit, optimize, repurpose, analyze, and publish SEO content with omnichannel research, GEO targeting, schema generation, analytics integration, and WordPress draft creation.
 
-## Publisher: <br>
-[mazgalesc](https://clawhub.ai/user/mazgalesc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mazgalesc](https://clawhub.ai/user/mazgalesc)
 
-## Use Case: <br>
-Content, SEO, and growth teams use this skill to build SEO strategy, draft and audit articles, generate schema, plan editorial calendars, repurpose content, analyze visibility, and create WordPress drafts. It is intended for workflows where the user can review generated content, credentials, dependencies, and publishing actions before production use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores WordPress application credentials in a local shared M.A.D. SEO folder. <br>
-Mitigation: Use a dedicated low-privilege WordPress account, restrict access to the shared workspace, and revoke or rotate the application password after use. <br>
-Risk: Broad triggers could activate the skill outside a clearly SEO-specific request. <br>
-Mitigation: Invoke it only for intended SEO and WordPress workflows, and review the planned action before allowing credential use, file writes, or publishing steps. <br>
-Risk: Network operations and WordPress integrations depend on external skills or plugins. <br>
-Mitigation: Review the dependent skills and any recommended WordPress plugin before connecting a production site. <br>
+## Use Case:
 
+External marketers, SEO operators, and content teams use this skill to run WordPress-oriented SEO workflows, including research, content planning, drafting, quality audits, structured data generation, internal linking, analytics review, repurposing, and draft publication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mazgalesc/mad-seo-content) <br>
-- [Engine Strategy](artifact/references/engine_strategy.md) <br>
-- [Writer Quality](artifact/references/writer_quality.md) <br>
-- [Content Structure Templates](artifact/references/content-structure-templates.md) <br>
-- [Title Formulas](artifact/references/title-formulas.md) <br>
-- [Schema Architect Logic](artifact/references/schema-architect-logic.md) <br>
-- [Author EEAT Benchmarks](artifact/references/author-eeat-benchmarks.md) <br>
-- [GEO Sync Logic](artifact/references/geo-sync-logic.md) <br>
-- [Roadmap Strategy](artifact/references/roadmap-strategy.md) <br>
-- [Local Compliance Benchmarks](artifact/references/local-compliance-benchmarks.md) <br>
-- [Funnel Strategy](artifact/references/funnel-strategy.md) <br>
-- [Database Schema](artifact/references/db-schema.md) <br>
-- [Humanizer Configuration](artifact/references/humanizer_config.json) <br>
-- [Rank Math API Manager](https://github.com/Devora-AS/rank-math-api-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or text guidance with optional HTML, JSON-LD, SQL, API payloads, and local file outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce WordPress draft instructions, editorial plans, audit reports, schema snippets, and local workspace artifacts under the configured M.A.D. SEO folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence and artifact/skill.json) <br>
+Risk: The skill can ask users to store reusable WordPress publishing credentials in local shared project state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege WordPress account, prefer HTTPS-only sites, avoid administrator credentials, and rotate or revoke the application password after use.
+
+Risk: The skill can create WordPress drafts and therefore has authority to stage content in a live publishing system.
+
+Mitigation: Review generated content, SEO metadata, categories, media, and preview URLs before publication or promotion.
+
+Risk: The workflow relies on network-capable dependencies for analytics, browsing, scraping, and plugin-mediated SEO metadata updates.
+
+Mitigation: Install only trusted dependencies, review external dependency behavior before production use, and validate the Rank Math API Manager plugin before connecting production sites.
+
+## Reference(s):
+
+- [Skill overview](SKILL.md)
+- [Engine strategy](references/engine_strategy.md)
+- [Writer quality standards](references/writer_quality.md)
+- [Content structure templates](references/content-structure-templates.md)
+- [Title formulas](references/title-formulas.md)
+- [Schema architect logic](references/schema-architect-logic.md)
+- [Author EEAT benchmarks](references/author-eeat-benchmarks.md)
+- [GEO sync logic](references/geo-sync-logic.md)
+- [Roadmap strategy](references/roadmap-strategy.md)
+- [Local compliance benchmarks](references/local-compliance-benchmarks.md)
+- [Funnel strategy](references/funnel-strategy.md)
+- [Database schema](references/db-schema.md)
+- [Humanizer configuration](references/humanizer_config.json)
+- [Rank Math API Manager](https://github.com/Devora-AS/rank-math-api-manager)
+- [ClawHub skill page](https://clawhub.ai/mazgalesc/skills/mad-seo-content)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, HTML-ready content, JSON-LD snippets, configuration records, audit summaries, strategy plans, and publication instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare local shared-state files, SQLite content-calendar records, structured SEO payloads, and WordPress draft publication details for agent-mediated review and execution.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

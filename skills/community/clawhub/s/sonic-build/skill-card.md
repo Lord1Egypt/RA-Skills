@@ -1,45 +1,62 @@
-## Description: <br>
-Build SONiC (Software for Open Networking in the Cloud) switch images from sonic-buildimage for VS/ASIC platforms while configuring build parallelism, memory, caching, troubleshooting, submodules, cleanup, and build performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build SONiC switch images from sonic-buildimage across VS and ASIC platforms while configuring build resources, caching, troubleshooting, submodules, cleanup, and build performance.
 
-## Publisher: <br>
-[rustiqly](https://clawhub.ai/user/rustiqly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rustiqly](https://clawhub.ai/user/rustiqly)
 
-## Use Case: <br>
-Developers and network engineers use this skill to build and troubleshoot SONiC switch images, prepare host prerequisites, tune build performance, manage clean rebuilds, and test VS platform images. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled prerequisites script uses sudo, installs packages and Docker, adds an external apt repository, changes Docker group membership, and clones external source code. <br>
-Mitigation: Review scripts/prerequisites.sh before execution and run it only on a dedicated VM or build host intended for SONiC image builds. <br>
-Risk: Cleanup guidance such as removing target artifacts and Docker images can delete local build outputs or shared Docker resources. <br>
-Mitigation: Confirm the working directory and inspect Docker resources before running cleanup commands. <br>
-Risk: The VS platform notes document a default VM password. <br>
-Mitigation: Change or isolate any VS VM that uses the documented default password before exposing it beyond a trusted local test environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SONiC Image Build skill instructions](SKILL.md) <br>
-- [Prerequisites](references/prerequisites.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [VS Platform Notes](references/vs-platform.md) <br>
-- [ClawHub skill page](https://clawhub.ai/rustiqly/sonic-build) <br>
+## Use Case:
 
+Developers and network engineers use this skill to build SONiC switch images from sonic-buildimage, tune build resources, troubleshoot failures, and prepare VS or ASIC platform images.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and Makefile configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes host setup and build commands for SONiC images; no API keys or MCP tools are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may guide host-level package, Docker, and group membership changes.
+
+Mitigation: Review setup commands and the bundled prerequisites script before execution, and prefer running them on a dedicated build host or disposable environment.
+
+Risk: Cleanup guidance can delete build artifacts with commands such as removing target contents.
+
+Mitigation: Verify the SONiC repository working directory before running cleanup commands and avoid broad deletion outside the intended build tree.
+
+Risk: Docker cleanup commands can remove local images system-wide.
+
+Mitigation: Inspect Docker disk usage and image lists before pruning or removing images, and run cleanup only when the loss of local images is intended.
+
+Risk: Unpinned package and tool installation can change over time.
+
+Mitigation: Prefer pinned dependencies where practical and review installed package sources before using the build environment for release work.
+
+## Reference(s):
+
+- [Prerequisites](references/prerequisites.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [VS Platform Notes](references/vs-platform.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and makefile code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include host setup, Docker, build, cleanup, and troubleshooting commands for SONiC build environments.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

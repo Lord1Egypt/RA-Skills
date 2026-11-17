@@ -1,44 +1,57 @@
-## Description: <br>
-Make OpenClaw agent workflows restart-safe with local checkpoint files, idempotent step tracking, wake/resume handoff, and stale-checkpoint monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make OpenClaw agent workflows restart-safe using checkpoint files, idempotent step tracking, wake/resume handoff, and stale-checkpoint monitoring for recovery and progress preservation across restarts.
 
-## Publisher: <br>
-[stanrails](https://clawhub.ai/user/stanrails) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanrails](https://clawhub.ai/user/stanrails)
 
-## Use Case: <br>
-Developers and agents use this skill to preserve progress across restart-prone operations such as config updates, service restarts, and long multi-step jobs, then resume unfinished work from validated checkpoint files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkpoint notes may expose sensitive workflow details if users place secrets or tokens in local checkpoint files. <br>
-Mitigation: Do not store secrets in checkpoint notes, and keep checkpoint files in controlled workspace storage. <br>
-Risk: Optional cron, systemd, or launchd setup can create recurring local stale-checkpoint checks. <br>
-Mitigation: Review any scheduler configuration before enabling it and log alerts locally for audit. <br>
-Risk: Unfinished checkpoints can cause duplicate side effects if resumed without idempotency controls. <br>
-Mitigation: Use an idempotency key for each workflow and acquire a resume lock before continuing unfinished work. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add checkpoint, restart, wake, and resume workflows around restart-prone operations such as updates, service restarts, and long-running jobs.
 
-## Reference(s): <br>
-- [Restart Recovery Skill Page](https://clawhub.ai/stanrails/restart-recovery) <br>
-- [checkpoint-schema.json](references/checkpoint-schema.json) <br>
-- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON checkpoint files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local memory/checkpoints JSON files; no network output is indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The checkpoint script can write outside the intended checkpoint directory when workflow IDs are untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted workflow IDs and trusted workspaces until path confinement is fixed.
+
+Risk: Resume does not validate checkpoint schema or checkpoint hash as documented, so untrusted or corrupted checkpoints may be resumed.
+
+Mitigation: Review checkpoint files before resume and add schema and hash validation before deploying in sensitive workflows.
+
+Risk: Checkpoint files can expose sensitive workflow details if operators place secrets or tokens in checkpoint fields.
+
+Mitigation: Keep secrets and tokens out of checkpoint files and review checkpoint retention and cleanup policies.
+
+## Reference(s):
+
+- [Checkpoint schema](references/checkpoint-schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON checkpoint files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a checkpoint JSON schema, local Python helper scripts, and stale-checkpoint alert output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

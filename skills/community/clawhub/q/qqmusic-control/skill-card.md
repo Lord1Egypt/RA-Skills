@@ -1,37 +1,50 @@
-## Description: <br>
-Control QQ Music play/pause/next/prev via system media keys (AutoHotkey) on Windows. No window focus required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control QQ Music play/pause/next/prev via system media keys (AutoHotkey) on Windows. No window focus required.
 
-## Publisher: <br>
-[chenxundaozu](https://clawhub.ai/user/chenxundaozu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenxundaozu](https://clawhub.ai/user/chenxundaozu)
 
-## Use Case: <br>
-Windows users can use this skill to have an agent provide AutoHotkey commands for controlling QQ Music playback through system media keys while QQ Music is already running. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The AutoHotkey helper script referenced by the skill is not included in the artifact. <br>
-Mitigation: Review or create the helper script from a trusted source before running it, and install the skill only when AutoHotkey-based QQ Music controls are intended. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for QQ Music playback controls on Windows through AutoHotkey media-key commands.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands assume AutoHotkey v2 on Windows and a trusted qqmusic_media_keys.ahk helper script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill references a local AutoHotkey script that was not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm AutoHotkey v2 is installed and inspect scripts/qqmusic_media_keys.ahk locally before running the generated commands.
+
+## Reference(s):
+
+- [Qqmusic Control on ClawHub](https://clawhub.ai/chenxundaozu/skills/qqmusic-control)
+- [chenxundaozu publisher profile](https://clawhub.ai/user/chenxundaozu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require AutoHotkey v2 and a local qqmusic_media_keys.ahk script.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

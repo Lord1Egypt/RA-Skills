@@ -18,7 +18,7 @@
         "component_name": "Agent",
         "params": {
           "llm_id": "your-chat-model@provider",
-          "sys_prompt": "You are a helpful assistant. Use the retrieval tool when the user asks about private knowledge.",
+          "sys_prompt": "You are a helpful assistant. Use retrieval only for questions about the configured dataset's subject matter or when the user explicitly asks to search that dataset. Do not retrieve for unrelated personal questions or general questions outside that dataset.",
           "prompts": [
             {
               "role": "user",
@@ -127,7 +127,7 @@
           "name": "agent_0",
           "form": {
             "llm_id": "your-chat-model@provider",
-            "sys_prompt": "You are a helpful assistant. Use the retrieval tool when the user asks about private knowledge.",
+            "sys_prompt": "You are a helpful assistant. Use retrieval only for questions about the configured dataset's subject matter or when the user explicitly asks to search that dataset. Do not retrieve for unrelated personal questions or general questions outside that dataset.",
             "prompts": [
               {
                 "role": "user",

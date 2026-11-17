@@ -1,42 +1,61 @@
-## Description: <br>
-Builds, rewrites, audits, and troubleshoots prompts for Doubao Seedance 2.0 video generation and editing across text, image, video, audio, storyboard, and prompt-diagnosis workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, rewrites, audits, and troubleshoots prompts for Doubao Seedance 2.0 video generation and editing.
 
-## Publisher: <br>
-[juneliu1999](https://clawhub.ai/user/juneliu1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juneliu1999](https://clawhub.ai/user/juneliu1999)
 
-## Use Case: <br>
-Developers, creators, and video production teams use this skill to turn Seedance 2.0 goals and multimodal assets into stable prompts, prompt audits, storyboard sequences, and routing guidance for generation, editing, extension, and track-completion tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juneliu1999/seedance-prompt-builder) <br>
-- [Bundled Seedance official guide](references/official-guide.md) <br>
-- [Task routing reference](references/task-routing.md) <br>
-- [Prompt formulas reference](references/prompt-formulas.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
-- [Examples reference](references/examples.md) <br>
+External users and developers use this skill to create, rewrite, audit, and troubleshoot Seedance 2.0 prompts for text-to-video, referenced video, video editing, video extension, track completion, storyboard, subtitle, speech, and multimodal asset workflows.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown prompts, audits, storyboard sections, concise guidance, and optional JSON linter output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled references for Seedance routing, prompt structure, examples, and troubleshooting; optional linter runs locally on user-selected prompt files.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may steer Seedance prompts toward Chinese wording unless English is requested.
+
+Mitigation: Review language requirements before use and explicitly request English-only prompts for English-only workflows.
+
+Risk: Using reference-video phrasing for edit or extension tasks can route the task incorrectly.
+
+Mitigation: Use direct edit or extension phrasing such as strictly edit videoN or extend videoN, and run the prompt audit or linter for routing conflicts.
+
+Risk: Generated prompts may still lead to unwanted subtitles, logos, identity drift, style drift, or continuity jumps in downstream video generation.
+
+Mitigation: Add explicit constraints, define subjects consistently, use suitable reference assets, and review generated outputs before publication.
+
+## Reference(s):
+
+- [Official Guide](references/official-guide.md)
+- [Task Routing](references/task-routing.md)
+- [Prompt Formulas](references/prompt-formulas.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Plain text or Markdown prompts and audits, with optional JSON issue reports from the prompt linter.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prefer Chinese wording for Seedance unless English is requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

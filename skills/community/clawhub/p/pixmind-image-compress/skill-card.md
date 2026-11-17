@@ -1,45 +1,60 @@
-## Description: <br>
-Cloud-powered image compression and resize for JPG, PNG, WebP, and HEIC images using Pixmind's API and Tencent Cloud COS imageMogr2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud-powered image compression and resize: compress JPG/PNG/WebP/HEIC to WebP/AVIF, resize images, and batch process folders using Pixmind API and Tencent Cloud COS imageMogr2.
 
-## Publisher: <br>
-[fuyunzhishang](https://clawhub.ai/user/fuyunzhishang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fuyunzhishang](https://clawhub.ai/user/fuyunzhishang)
 
-## Use Case: <br>
-Developers, designers, and content operators use this skill to compress, resize, convert, and batch-process images for websites, social sharing, email, thumbnails, and archival workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads user-selected images to Pixmind/Tencent Cloud for processing. <br>
-Mitigation: Use it only for images acceptable to send to that provider and avoid confidential, regulated, or sensitive personal material unless provider terms and policy allow it. <br>
-Risk: The skill requires a Pixmind API key. <br>
-Mitigation: Use a dedicated, revocable key through PIXMIND_API_KEY and rotate it if exposed. <br>
-Risk: Recursive batch processing can upload more files than intended. <br>
-Mitigation: Review folder scope before running batch commands with recursive processing. <br>
+## Use Case:
 
+External users, developers, and content teams use this skill to compress, resize, and convert individual images or image folders for web, social, email, thumbnail, and archival workflows.
 
-## Reference(s): <br>
-- [Pixmind](https://www.pixmind.io) <br>
-- [Pixmind API Keys](https://www.pixmind.io/api-keys) <br>
-- [Tencent Cloud COS imageMogr2](https://cloud.tencent.com/document/product/460/36540) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fuyunzhishang/pixmind-image-compress) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create compressed image files in a local output directory when the generated command is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Selected images are uploaded to Pixmind/Tencent-backed cloud processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for images that are appropriate to send to the cloud service, and confirm the input set before compression.
+
+Risk: Recursive batch mode can include more local files than intended, especially from untrusted archives or shared folders.
+
+Mitigation: Avoid recursive batch mode on untrusted folders and review the files to be processed before running the command.
+
+Risk: Remote image download handling can access network locations beyond the original input.
+
+Mitigation: Prefer trusted image URLs and review generated outputs before using or distributing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fuyunzhishang/skills/pixmind-image-compress)
+- [Pixmind](https://www.pixmind.io)
+- [Tencent Cloud COS imageMogr2](https://cloud.tencent.com/document/product/460/36540)
+- [Pixmind API Platform Keys](https://www.pixmind.io/api-platform/dashboard/keys)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands; compressed image files are written to the configured output directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PIXMIND_API_KEY. Local image inputs may be uploaded to Pixmind/Tencent-backed cloud processing.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

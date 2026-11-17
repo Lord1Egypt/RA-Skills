@@ -1,37 +1,51 @@
-## Description: <br>
-Tests configured models for availability and reports pass/fail results with durations and error details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Test all configured models for availability.
 
-## Publisher: <br>
-[xmanrui](https://clawhub.ai/user/xmanrui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xmanrui](https://clawhub.ai/user/xmanrui)
 
-## Use Case: <br>
-Developers and operators use this skill to check whether one specified model or all configured provider/model combinations are available, with a concise summary of failures for follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Testing multiple configured models can consume API resources, hit rate limits, or disclose model error details in the result summary. <br>
-Mitigation: Ask for a single model or confirm all-model checks first when cost, rate limits, or error-detail disclosure matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xmanrui/model-healthcheck) <br>
+## Use Case:
+
+Developers and operators use this skill to check whether configured model providers respond successfully and to identify failed models, timeouts, or provider errors.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Running the healthcheck can contact every configured model provider and may consume quota or create provider-side logs.
+
+Mitigation: Use the single-model option when cost, scope, or logging exposure should be limited.
+
+Risk: The healthcheck reports provider errors, authentication failures, and timeouts that may need operational follow-up.
+
+Mitigation: Review failed model names and error messages before changing configuration or credentials.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown list with status, duration, error details, and final tally] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can test one specified model or all configured models; concurrent all-model checks may consume API resources.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown list with pass/fail status, duration, error details, and a final tally]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May contact each configured model provider unless the user requests a single model.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

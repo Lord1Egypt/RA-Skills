@@ -1,45 +1,62 @@
-## Description: <br>
-Manage authenticated browser sessions for any website with Oto, enabling agents to save, list, delete, and automate multiple accounts without re-authenticating. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Oto Sessions helps agents save, list, delete, and reuse authenticated browser sessions across websites and accounts through the Oto framework.
 
-## Publisher: <br>
-[mbahar](https://clawhub.ai/user/mbahar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbahar](https://clawhub.ai/user/mbahar)
 
-## Use Case: <br>
-Developers and automation agents use this skill to save, reuse, inspect, delete, and launch authenticated browser sessions for websites and multiple account profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved browser sessions can function like credentials for logged-in accounts. <br>
-Mitigation: Use the skill only on a trusted, single-user machine and avoid banking, email, admin, or other high-value accounts unless the user fully accepts the risk. <br>
-Risk: Session files, logs, or debug details may expose authenticated access if shared or committed. <br>
-Mitigation: Do not share or commit saved session files or logs, keep session storage local, and delete saved sessions when they are no longer needed. <br>
-Risk: Browser-control commands can act with the privileges of the saved account. <br>
-Mitigation: Review commands and target accounts before execution, and prefer the least-privileged account appropriate for the task. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage reusable logged-in browser sessions for automation workflows that need authenticated access. It supports saving sessions after manual login, checking and listing sessions, deleting sessions, launching browsers with saved state, and switching between multiple accounts.
 
-## Reference(s): <br>
-- [Setup Guide](references/SETUP.md) <br>
-- [Integration Guide](references/INTEGRATION.md) <br>
-- [Oto Framework Repository](https://github.com/mbahar/oto) <br>
-- [Playwright Documentation](https://playwright.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown documentation with shell commands, JavaScript snippets, and JSON CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some wrappers return process exit codes and session metadata for automation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Saved browser sessions can function like sensitive credentials if exposed or reused without consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep session files in a trusted local directory, avoid shared or synced folders, and require explicit user approval before creating or reusing sessions for high-value accounts.
+
+Risk: The setup flow installs and runs external Oto code that handles authenticated sessions.
+
+Mitigation: Pin and review the Oto commit and npm dependency tree before installation or use.
+
+Risk: A user-controlled OTO_PATH can redirect wrappers to a different local Oto installation.
+
+Mitigation: Restrict OTO_PATH to a trusted directory and review it before running session commands.
+
+## Reference(s):
+
+- [Setup Guide](references/SETUP.md)
+- [Integration Guide](references/INTEGRATION.md)
+- [Oto GitHub](https://github.com/mbahar/oto)
+- [Playwright Docs](https://playwright.dev)
+- [ClawHub Skill Page](https://clawhub.ai/mbahar/skills/oto-sessions)
+- [Publisher Profile](https://clawhub.ai/user/mbahar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that create, reuse, inspect, or delete local browser session files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

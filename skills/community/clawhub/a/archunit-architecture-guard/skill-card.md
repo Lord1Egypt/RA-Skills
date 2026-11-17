@@ -1,43 +1,57 @@
-## Description: <br>
-Scans Java/Kotlin projects to identify architecture patterns and smells, then provides refactoring guidance and ArchUnit guard tests that freeze existing violations while blocking new architecture drift. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Java/Kotlin projects to identify architecture patterns and smells, then generates ArchUnit guard tests and baseline guidance that help prevent new architecture violations.
 
-## Publisher: <br>
-[terryking1992](https://clawhub.ai/user/terryking1992) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terryking1992](https://clawhub.ai/user/terryking1992)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze JVM project structure, detect architecture erosion, and add ArchUnit tests that preserve intended boundaries while allowing existing violations to be frozen as a baseline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can generate or modify architecture tests and recommendations across a repository, and its trigger wording may be broader than ideal. <br>
-Mitigation: Invoke it with a clear target path, review proposed findings and generated tests before committing them, and confirm before allowing repository-wide changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to review Java/Kotlin project architecture, identify dependency and packaging problems, and generate ArchUnit tests that freeze existing violations while blocking new ones.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/terryking1992/archunit-architecture-guard) <br>
-- [ArchUnit](https://github.com/TNG/ArchUnit) <br>
-- [ArchUnit Cookbook](references/archunit-cookbook.md) <br>
-- [Pattern Detection](references/pattern-detection.md) <br>
-- [Architecture Smell Catalog](references/smell-catalog.md) <br>
-- [Package Scanner](references/scan_packages.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with Java/Kotlin-oriented code blocks, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create ArchUnit test files and archunit.properties when operating on a local project; defaults to frozen baselines for existing violations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated ArchUnit rules and baseline files can change future test and CI behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated rules, freeze configuration, and baseline store before committing them.
+
+Risk: The skill reads the local Java/Kotlin source tree to build an architecture map.
+
+Mitigation: Run it only in repositories intended for architecture review and avoid sharing reports that expose sensitive package or class names.
+
+## Reference(s):
+
+- [ArchUnit](https://github.com/TNG/ArchUnit)
+- [ArchUnit cookbook](references/archunit-cookbook.md)
+- [Architecture pattern detection reference](references/pattern-detection.md)
+- [Architecture smell catalog](references/smell-catalog.md)
+- [Package scanning helper](references/scan_packages.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Java/Kotlin code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write ArchUnit test files and archunit.properties into the user's repository when a project is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

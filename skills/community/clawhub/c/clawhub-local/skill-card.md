@@ -1,43 +1,59 @@
-## Description: <br>
-Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com.
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Developers and agents use this skill to manage ClawHub skills from the command line, including search, install, update, list, authentication, and publish workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Global npm installation and registry selection can install unexpected CLI code or use an unintended registry. <br>
-Mitigation: Review the package name and registry before installing or running commands, and override the registry only when it is trusted. <br>
-Risk: Forced or all-skill updates can change installed skill behavior across a workspace. <br>
-Mitigation: Avoid forced all-skill updates unless installed skills are trusted and review resolved versions before applying updates. <br>
-Risk: Publish commands can upload local skill content to ClawHub. <br>
-Mitigation: Confirm authentication state and review publish arguments and local skill contents before publishing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage ClawHub skills through the ClawHub CLI, including search, install, update, list, authentication, and publish workflows.
 
-## Reference(s): <br>
-- [Clawhub Local listing](https://clawhub.ai/andy27725/clawhub-local) <br>
-- [ClawHub registry](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the npm-installed clawhub CLI binary for command execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Forced or non-interactive bulk updates can overwrite local skill state or introduce unintended versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the target directory, registry, and intended version before using `update --all`, `--force`, or `--no-input`; prefer pinned versions in controlled environments.
+
+Risk: Publishing commands can upload unintended skill files or metadata.
+
+Mitigation: Review the skill folder, slug, version, changelog, and files to be uploaded before running `clawhub publish`.
+
+Risk: CLI-based skill management gives an agent meaningful write access to local skill directories.
+
+Mitigation: Run without elevated privileges and install only when the ClawHub CLI source and registry are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andy27725/skills/clawhub-local)
+- [ClawHub registry](https://clawhub.com)
+- [Publisher profile](https://clawhub.ai/user/andy27725)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the npm-installed clawhub CLI; commands can modify local skill files or publish skill content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

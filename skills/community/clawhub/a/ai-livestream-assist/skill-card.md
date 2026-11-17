@@ -1,40 +1,54 @@
-## Description: <br>
-直播辅助，弹幕管理 + 数据分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides livestream assistance for chat management, gift acknowledgments, interaction games, replay generation, and live data analysis.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External streamers, operators, and developers use this skill to support livestream chat management, gift acknowledgments, live analytics, interactive games, and replay generation for commerce, gaming, education, and event streams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Livestream automation may post incorrect auto-replies, mishandle giveaways, or create unwanted clips in a public stream. <br>
-Mitigation: Test auto-replies, giveaways, and clipping privately before production use, and keep human oversight enabled for public or commercial streams. <br>
-Risk: Using platform credentials with external livestream code can expose account or API access if permissions are too broad. <br>
-Mitigation: Inspect the referenced repository and requirements before installation, and use scoped or limited platform credentials. <br>
+## Use Case:
 
+External livestream creators, sellers, educators, and event teams use this skill to plan or run livestream assistant workflows for automated chat responses, gift thanks, audience interaction, replay generation, and live analytics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-livestream-assist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill describes livestream assistant workflows; execution against platform APIs depends on external code, credentials, and user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The release asks users to run code from a mutable remote repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository before execution, pin a specific commit, and run setup in an isolated virtual environment or container.
+
+Risk: The skill under-discloses livestream platform automation and data handling for chat, gift, replay, and analytics workflows.
+
+Mitigation: Connect livestream accounts only after confirming what data the application can access, store, analyze, or modify.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-livestream-assist)
+- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include livestream platform automation guidance, analytics guidance, and setup commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

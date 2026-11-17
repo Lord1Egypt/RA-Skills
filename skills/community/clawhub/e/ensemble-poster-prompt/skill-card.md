@@ -1,40 +1,49 @@
-## Description: <br>
-Generates Chinese-language ensemble poster prompts for film, television, literature, and other story worlds, including character descriptions, visual style, composition, poster text, and quality constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入影视剧或文学作品名，自动生成群像海报提示词。白描手法忠实还原人物外貌与经典穿搭，风格自动适配作品年代调性，海报级构图设计，文字元素双引号独立标注。
 
-## Publisher: <br>
-[lllyandy](https://clawhub.ai/user/lllyandy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lllyandy](https://clawhub.ai/user/lllyandy)
 
-## Use Case: <br>
-Users provide a work title or ensemble scene, and the skill guides an agent to produce a structured poster prompt. It is intended for prompt-writing workflows that need character-specific visual descriptions, composition guidance, quoted poster text, and image-quality constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated prompt can include inaccurate character appearance, clothing, or scene details when the source work is ambiguous or unfamiliar. <br>
-Mitigation: Review the output against the source material before using it for final image generation. <br>
-Risk: The skill is Chinese-first and uses a fixed poster-prompt structure that may not fit every image model or workflow. <br>
-Mitigation: Adapt wording, language, and section detail to the target image model and production requirements. <br>
+## Use Case:
 
+External creators and prompt writers use this skill to turn a film, television, literary work, or ensemble scene into a structured image-generation prompt for a group-poster composition.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lllyandy/ensemble-poster-prompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Chinese Markdown prompt template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first output with fixed sections for work, style, characters, composition, poster text, and aesthetic requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated character descriptions may be inaccurate or unsuitable for downstream image-generation use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated character descriptions before using them with an image-generation service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lllyandy/skills/ensemble-poster-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-language prompt sections for work identification, visual style, 3-6 character descriptions, composition, poster text, and aesthetic requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

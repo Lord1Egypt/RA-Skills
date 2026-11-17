@@ -1,44 +1,56 @@
-## Description: <br>
-Queries Jike API for zodiac sign characteristics, ruling house, polarity, ruling planet, lucky color, lucky number, date range, and gender-specific traits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+输入星座名称后，查询星座特征、守护宫、阴阳性、守护星、幸运色、幸运数字、日期区间和男女特点，并返回中文文本或 JSON。
 
-## Publisher: <br>
-[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jikeapi-cn](https://clawhub.ai/user/jikeapi-cn)
 
-## Use Case: <br>
-External users and AI agents use this skill to look up zodiac sign information for traditional culture, everyday reference, or compatibility-related questions. It runs a Python helper that returns readable Chinese text by default or raw JSON when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Zodiac lookup terms and the Jike AppKey are sent to Jike's API. <br>
-Mitigation: Install only when that data sharing is acceptable and prefer a dedicated AppKey for this skill. <br>
-Risk: Passing the AppKey with --key may expose it through shell history. <br>
-Mitigation: Provide the key through JIKE_ZODIAC_SIGN_QUERY_KEY or JIKE_APPKEY instead of command-line arguments. <br>
-Risk: The optional JIKE_API_BASE_URL override can redirect requests and credentials to another endpoint. <br>
-Mitigation: Leave JIKE_API_BASE_URL unset unless intentionally using a trusted compatible endpoint. <br>
+## Use Case:
 
+External users and agent workflows use this skill to look up Chinese-language zodiac sign profile information from the Jike API when answering traditional culture, lifestyle, or compatibility questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/jike-zodiac-sign-query) <br>
-- [Jike API homepage](https://www.jikeapi.cn/) <br>
-- [Jike zodiac sign API endpoint](https://api.jikeapi.cn/v1/zodiac_sign) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese text or JSON from a command-line Python helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a Jike AppKey provided through JIKE_ZODIAC_SIGN_QUERY_KEY or JIKE_APPKEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The API host can be overridden, which could send the user's Jike API key to a different server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, avoid setting JIKE_API_BASE_URL, and prefer a version that pins or validates the API host.
+
+Risk: The AppKey is sent as a URL query parameter.
+
+Mitigation: Use only a Jike API key appropriate for this integration and prefer a version that avoids placing the AppKey in the URL query string.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jikeapi-cn/skills/jike-zodiac-sign-query)
+- [Publisher profile](https://clawhub.ai/user/jikeapi-cn)
+- [Jike API homepage](https://www.jikeapi.cn/)
+- [Jike zodiac API endpoint](https://api.jikeapi.cn/v1/zodiac_sign)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Chinese plain text by default, or JSON when invoked with --json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Jike API key through JIKE_ZODIAC_SIGN_QUERY_KEY, JIKE_APPKEY, or the --key argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

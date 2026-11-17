@@ -70,7 +70,7 @@ OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxx
 
 ```python
 # 绝对不要这样做！
-api_key = "AIzaSyAfHE4vctPhMF2mVn96aEZZp8WuURlaGpM"
+api_key = "REDACTED-SECRET"
 ```
 
 **✅ 正确做法**（从环境变量读取）：

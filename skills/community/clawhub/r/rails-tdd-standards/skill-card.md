@@ -1,40 +1,58 @@
-## Description: <br>
-RSpec testing standards and best practices for Rails applications, covering new specs, test review, factory errors, FactoryBot setup, and single-expectation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rails TDD Standards provides RSpec testing standards and best practices for Rails applications, including FactoryBot setup, test structure, Rails 8 gotchas, service specs, ActionCable specs, external service stubs, serializer specs, and test commands.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to write, review, and debug RSpec tests for Rails applications, including FactoryBot usage, Rails 8 testing gotchas, CI database setup, callbacks, token authentication, ActionCable, external service stubs, and serializers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated changes involving database setup, RAILS_ENV, or disabling forgery protection can affect test and CI behavior if applied without review. <br>
-Mitigation: Review generated changes before applying them and keep the guidance scoped to Rails test code and CI workflows. <br>
-Risk: The skill provides testing advice and example code that may not match a project's exact Rails, RSpec, FactoryBot, or authentication implementation. <br>
-Mitigation: Adapt examples to the local application conventions and verify them by running the relevant test suite. <br>
+## Use Case:
 
+Developers and engineers use this skill to write, review, and debug Rails RSpec tests with consistent conventions for factories, callbacks, authentication, channels, external service stubs, serializers, and CI test database setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djc00p/rails-tdd-standards) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Ruby, YAML, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bundle for Rails/RSpec-related commands; ClawHub metadata lists linux, darwin, and win32 support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill may activate for general test-writing requests where Rails and RSpec conventions are not applicable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target project uses Rails and RSpec before applying its testing conventions.
+
+Risk: Generated Rails database commands could affect a non-test environment if run without review.
+
+Mitigation: Review database commands and environment variables before execution, and run CI database setup only against the test environment.
+
+Risk: Example external service stubs and token patterns can be misapplied to real API calls or credentials.
+
+Mitigation: Keep external service examples as test doubles or HTTP stubs, and avoid using production tokens or live network calls in tests.
+
+## Reference(s):
+
+- [Rails TDD Standards on ClawHub](https://clawhub.ai/djc00p/skills/rails-tdd-standards)
+- [Publisher profile: djc00p](https://clawhub.ai/user/djc00p)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Ruby, YAML, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; guidance assumes a Rails project with RSpec and Bundle-managed dependencies.]
+
+## Skill Version(s):
+
+1.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

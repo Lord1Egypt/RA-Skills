@@ -1,42 +1,60 @@
-## Description: <br>
-Cc Statusline helps Claude Code users preview, install, switch, customize, troubleshoot, and remove statusline configurations across Windows, macOS, and Linux. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cc Statusline helps Claude Code users preview, install, switch, customize, troubleshoot, and remove statusline layouts across Windows, macOS, and Linux.
 
-## Publisher: <br>
-[Miluer-tcq](https://clawhub.ai/user/Miluer-tcq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miluer-tcq](https://clawhub.ai/user/miluer-tcq)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to configure a Claude Code statusline, choose preset or custom layouts, switch themes and icon styles, and restore or troubleshoot statusline setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup can modify ~/.claude/settings.json and install a persistent Claude Code statusline command. <br>
-Mitigation: Review the preview, target path, and statusLine change before activation; confirm that only the intended statusLine entry is changed. <br>
-Risk: The setup can automatically install jq with sudo or download a jq executable. <br>
-Mitigation: Prefer installing jq from a trusted source before using the skill, and avoid approving automatic sudo, package-manager, or binary-download steps unless the source is trusted. <br>
+## Use Case:
 
+Developers using Claude Code use this skill to configure preset or custom statuslines, choose themes, icons, and modules, and restore or troubleshoot statusLine settings.
 
-## Reference(s): <br>
-- [README.en.md](README.en.md) <br>
-- [Modules](references/modules.md) <br>
-- [Trigger phrases](references/trigger-phrases.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or activate statusline scripts and update the Claude Code statusLine setting after preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Generated or activated statusline scripts persist a Claude Code statusLine command that can run whenever the statusline refreshes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target script and settings change before activation, and uninstall by removing only the statusLine entry when the behavior is no longer wanted.
+
+Risk: Automatic jq installation may download or install dependencies during setup.
+
+Mitigation: Prefer a trusted system-installed jq and avoid automatic dependency installation paths when operating in controlled environments.
+
+Risk: Untrusted custom layout, theme, icon, or target-path arguments can affect generated shell scripts or activation behavior.
+
+Mitigation: Use known preset, theme, icon, and path values, and review generated scripts before enabling them.
+
+## Reference(s):
+
+- [Modules](references/modules.md)
+- [Trigger phrases](references/trigger-phrases.md)
+- [ClawHub skill page](https://clawhub.ai/miluer-tcq/skills/cc-statusline)
+- [ClawHub publisher profile](https://clawhub.ai/user/miluer-tcq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate or activate shell scripts that update Claude Code statusLine settings.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

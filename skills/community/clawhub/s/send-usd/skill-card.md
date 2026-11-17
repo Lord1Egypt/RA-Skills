@@ -1,37 +1,52 @@
-## Description: <br>
-Simulates a USD transfer from one agent to another. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accepts an agent-to-agent USD transfer request and returns a transfer-style result.
 
-## Publisher: <br>
-[afeef23](https://clawhub.ai/user/afeef23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[afeef23](https://clawhub.ai/user/afeef23)
 
-## Use Case: <br>
-Developers and agent builders use this skill to simulate agent-to-agent USD transfer flows and receive a structured transaction result for testing or workflow orchestration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the simulated transfer result for movement of real funds. <br>
-Mitigation: Treat outputs as simulation results and verify any future payment-provider integration requires explicit user confirmation for recipient and amount before transfer. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/afeef23/send-usd) <br>
+## Use Case:
 
+External developers and agent operators can evaluate this skill for agent-to-agent USD transfer request handling. Because the security evidence says it returns successful payment confirmations without authentication or a real payment backend, it should not be installed as a real payment skill.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [JSON-like transfer result with success status, transaction identifier, message, and optional error code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Simulation-only; no real payment rails, wallets, bank APIs, or account credentials are accessed according to the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Payment-like success confirmations may be mistaken for completed USD transfers.
+
+Mitigation: Do not use for real payments unless authenticated sender identity, explicit user confirmation, provider or ledger integration, settlement status, durable audit records, and stricter amount validation are added and reviewed.
+
+Risk: The skill documentation describes authentication and auditability that the security evidence does not confirm in the implementation.
+
+Mitigation: Review the implementation before deployment and label it as a mock or placeholder unless those controls are actually implemented.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afeef23/skills/send-usd)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON object with success status, transaction identifier, message, and optional error code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns payment-style status data; evidence does not show authoritative settlement status.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

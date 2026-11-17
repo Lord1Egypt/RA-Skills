@@ -1,0 +1,19 @@
+<svg viewBox="0 0 680 680" width="680" height="680" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>研墨 sz-ink 图标：墨滴与朱砂印</title>
+  <desc>宣纸底色上一滴墨，右下角盖一枚刻着研字的朱砂方印</desc>
+  <rect x="0" y="0" width="680" height="680" rx="104" fill="#F5F0E6"/>
+  <line x1="48" y1="196" x2="632" y2="196" stroke="#E9E1D2" stroke-width="3"/>
+  <line x1="48" y1="228" x2="632" y2="228" stroke="#ECE5D7" stroke-width="2"/>
+  <line x1="48" y1="452" x2="632" y2="452" stroke="#ECE5D7" stroke-width="2"/>
+  <line x1="48" y1="484" x2="632" y2="484" stroke="#E9E1D2" stroke-width="3"/>
+  <path d="M 330 132 C 330 132 190 282 190 330 C 190 412 252 476 330 476 C 408 476 470 412 470 330 C 470 282 330 132 330 132 Z" fill="#1C1C1E"/>
+  <ellipse cx="272" cy="318" rx="20" ry="36" fill="#F5F0E6" transform="rotate(-18 272 318)"/>
+  <path d="M 240 560 C 280 588 360 588 400 560" fill="none" stroke="#B4B2A9" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+  <g>
+    <rect x="442" y="442" width="148" height="148" rx="22" fill="#C13B2A"/>
+    <rect x="454" y="454" width="124" height="124" rx="14" fill="none" stroke="#F5F0E6" stroke-width="3" opacity="0.85"/>
+    <text x="516" y="552" text-anchor="middle" font-family="KaiTi, STKaiti, 'Kaiti SC', serif" font-size="92" fill="#F5F0E6">研</text>
+  </g>
+  <text x="120" y="486" text-anchor="middle" font-family="KaiTi, STKaiti, 'Kaiti SC', serif" font-size="42" fill="#6B6B6B">研</text>
+  <text x="120" y="546" text-anchor="middle" font-family="KaiTi, STKaiti, 'Kaiti SC', serif" font-size="42" fill="#6B6B6B">墨</text>
+</svg>

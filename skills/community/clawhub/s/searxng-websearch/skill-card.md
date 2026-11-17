@@ -1,40 +1,53 @@
-## Description: <br>
-Searches the web, fetches pages, and gathers research context through a configured self-hosted SearXNG instance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebSearch-Openclaw helps agents search the web, fetch webpage text, and perform multi-query research through a self-hosted SearXNG instance.
 
-## Publisher: <br>
-[mr-ds-ml-85](https://clawhub.ai/user/mr-ds-ml-85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mr-ds-ml-85](https://clawhub.ai/user/mr-ds-ml-85)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run SearXNG-backed web searches, fetch webpage text, and collect ranked research notes for tasks that need current external information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs network requests through a configured SearXNG service and fetches webpage text that may be untrusted or misleading. <br>
-Mitigation: Use a trusted SearXNG endpoint, prefer HTTPS for remote services, and treat fetched webpage text as evidence to verify rather than instructions to follow. <br>
-Risk: The optional installer creates command shims and may add ~/.local/bin to shell startup files. <br>
-Mitigation: Review install.sh before running it, or invoke the Python scripts directly when PATH changes are not desired. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve current web information, fetch readable page text, and compile lightweight research summaries using a configured SearXNG service.
 
-## Reference(s): <br>
-- [SearXNG Documentation](https://docs.searxng.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text, Markdown, or JSON search and research results, with shell commands for invocation and setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the configured SearXNG instance, selected search options, network availability, and per-command character limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can make outbound web requests and fetch arbitrary URLs from the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where outbound web access is acceptable, avoid private or sensitive URLs and queries, and restrict egress when handling sensitive work.
+
+Risk: The installer creates persistent command shims and may edit shell startup files.
+
+Mitigation: Review install.sh before running it, or use direct script execution or an isolated environment with pinned dependencies.
+
+## Reference(s):
+
+- [SearXNG Documentation](https://docs.searxng.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, text, JSON, and agent-oriented plain text depending on script options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include ranked search results, fetched page excerpts, source URLs, snippets, and domain frequency summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

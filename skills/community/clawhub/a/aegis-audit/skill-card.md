@@ -1,44 +1,61 @@
-## Description: <br>
-Aegis Audit performs behavioral security audits for AI agent skills and MCP tools using deterministic static analysis, cryptographic lockfile generation, and optional LLM-powered intent analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep behavioral security audit for AI agent skills and MCP tools that performs deterministic static analysis, cryptographic lockfile generation, and optional LLM-powered intent analysis.
 
-## Publisher: <br>
-[sanguineseal](https://clawhub.ai/user/sanguineseal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 or commercial enterprise license <br>
+## Publisher:
 
+[sanguineseal](https://clawhub.ai/user/sanguineseal)
 
-## Use Case: <br>
-Developers, security reviewers, and teams responsible for agent governance use this skill to inspect skills, tools, plugins, or MCP servers before installation or approval. It helps produce line-referenced security reports, risk scoring, capability summaries, and lockfile verification workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0 with commercial enterprise licensing available
 
-## Known Risks and Mitigations: <br>
-Risk: Optional LLM mode can send scanned code to third-party providers when enabled. <br>
-Mitigation: Keep LLM analysis disabled for private or regulated code unless the provider and data handling terms are approved. <br>
-Risk: Scanning repositories that contain secrets or credentials can expose sensitive material if optional LLM analysis is enabled. <br>
-Mitigation: Run deterministic offline scans with `--no-llm` and avoid scanning secrets or credentials with third-party LLM analysis. <br>
+## Use Case:
 
+Developers, security reviewers, and agent platform operators use this skill to audit AI agent skills, tools, plugins, and MCP servers before installation, approval, or release. It helps produce risk-scored findings, lockfile verification guidance, and CI-friendly security reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sanguineseal/aegis-audit) <br>
-- [Aegis project homepage](https://github.com/Aegis-Scan/aegis-scan) <br>
-- [Aegis Audit package](https://pypi.org/project/aegis-audit/) <br>
-- [Aegis Skill Developer Best Practices](https://github.com/Aegis-Scan/aegis-scan/blob/main/docs/SKILL_DEVELOPER_GUIDE.md) <br>
-- [Aegis licensing](https://github.com/Aegis-Scan/aegis-scan/blob/main/aegis-core/LICENSING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON report workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic scans run offline by default; optional LLM analysis requires explicit provider configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.10 (source: frontmatter, changelog, ClawHub release evidence) <br>
+Risk: The skill installs and runs an external PyPI command-line package over target directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the aegis-audit package version, verify the PyPI publisher and source, and run scans in a least-privileged workspace.
+
+Risk: Optional LLM analysis can send scanned code to a configured third-party provider.
+
+Mitigation: Keep LLM analysis disabled for sensitive repositories unless the selected provider and data handling are acceptable.
+
+Risk: Audit findings and generated commands can influence installation or release decisions.
+
+Mitigation: Review reports before acting on them and treat the skill as an aid to human security review rather than an automatic approval gate.
+
+## Reference(s):
+
+- [Aegis source repository](https://github.com/Aegis-Scan/aegis-scan)
+- [Aegis Audit PyPI package](https://pypi.org/project/aegis-audit/)
+- [Skill Developer Best Practices](https://github.com/Aegis-Scan/aegis-scan/blob/main/docs/SKILL_DEVELOPER_GUIDE.md)
+- [Aegis licensing details](https://github.com/Aegis-Scan/aegis-scan/blob/main/aegis-core/LICENSING.md)
+- [ClawHub skill page](https://clawhub.ai/sanguineseal/skills/aegis-audit)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON snippets, and report descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation of signed lockfiles, CI JSON reports, badge markdown, and MCP configuration.]
+
+## Skill Version(s):
+
+0.1.10 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

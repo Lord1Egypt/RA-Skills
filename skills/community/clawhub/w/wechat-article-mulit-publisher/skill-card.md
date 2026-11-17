@@ -1,40 +1,58 @@
-## Description: <br>
-Extracts articles from Markdown files or web page links and publishes them to WeChat Official Accounts, with multi-account management, standard and viral templates, automatic cover image generation, and draft publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts articles from Markdown files or web links and prepares or publishes them to WeChat Official Accounts with multi-account support, standard and viral templates, cover image generation, and draft publishing.
 
-## Publisher: <br>
-[diwuwudi123](https://clawhub.ai/user/diwuwudi123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diwuwudi123](https://clawhub.ai/user/diwuwudi123)
 
-## Use Case: <br>
-Developers and operators use this skill to configure one or more WeChat Official Accounts, preview rendered articles, create drafts, upload images, publish content, query status, and manage drafts from an agent-assisted workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses WeChat Official Account credentials and can create drafts, upload images, publish articles, and delete drafts. <br>
-Mitigation: Keep config.json out of shared repositories, use --dry-run before API actions, and verify the selected account, publish intent, and media_id before publishing or deleting content. <br>
-Risk: The skill can fetch and upload article or image URLs supplied to it. <br>
-Mitigation: Avoid untrusted article and image URLs, and review fetched content before using publish or upload operations. <br>
+## Use Case:
 
+Developers and content operators use this skill to convert trusted Markdown files or article URLs into WeChat Official Account previews, drafts, material uploads, or publish submissions across configured accounts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diwuwudi123/wechat-article-mulit-publisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local HTML previews and may invoke WeChat API operations when run outside dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: ClawHub release evidence) <br>
+Risk: The skill can publish or delete content in a real WeChat Official Account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution, run with --dry-run first, and use --publish or --delete-draft only after confirming the target account and media ID.
+
+Risk: Trusted input boundaries matter because Markdown or HTML can reference local image paths or remote URLs that the script may upload or fetch.
+
+Mitigation: Use trusted article inputs in a dedicated, low-privilege working directory and avoid processing untrusted Markdown or HTML.
+
+Risk: Remote and local content upload behavior can expose unintended material to the WeChat account.
+
+Mitigation: Inspect generated preview HTML and resolved image sources before running non-dry-run publish or material upload commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diwuwudi123/skills/wechat-article-mulit-publisher)
+- [Publisher profile](https://clawhub.ai/user/diwuwudi123)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON runtime results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write preview HTML files and can create, publish, list, or delete WeChat drafts and upload image materials when the corresponding commands are run.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

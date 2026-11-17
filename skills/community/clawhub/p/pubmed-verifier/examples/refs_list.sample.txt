@@ -1,0 +1,4 @@
+[1] Gattorno M, Hofer M, Federici S. Classification criteria for autoinflammatory recurrent fevers. Ann Rheum Dis. 2019;78(8):1025-1032. PMID: 31018962
+[2] An HS, Kim GB. The occurrence of coronary artery lesions in Kawasaki disease based on C-reactive protein levels: a retrospective cohort study. Pediatric Rheumatology. 2021;19(1):75. https://doi.org/10.1186/s12969-021-00566-6
+[3]Obokata H. Stimulus-triggered fate conversion of somatic cells into pluripotency. Nature. 2014;511(7510):540-545.
+[4] And a deliberately broken line without any usable metadata.

@@ -1,45 +1,58 @@
-## Description: <br>
-Skulk Email lets an agent read, search, and send email through DreamHost webmail and IMAP, with optional shared Gmail inbox reading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skulk Email lets agents read inboxes, send email, and search messages through DreamHost Roundcube over HTTPS, with optional shared Gmail inbox access through IMAP.
 
-## Publisher: <br>
-[AdaInTheLab](https://clawhub.ai/user/AdaInTheLab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adainthelab](https://clawhub.ai/user/adainthelab)
 
-## Use Case: <br>
-Agents, developers, and operators use this skill to set up mailbox credentials, check inboxes, search or read messages, and send email through DreamHost when direct SMTP access is unavailable. It is intended for controlled mailbox workflows where an agent is explicitly allowed to access and send email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent sensitive mailbox access and the ability to send email using stored mailbox passwords. <br>
-Mitigation: Install it only for a mailbox the agent is allowed to access, prefer a dedicated low-privilege mailbox or app password, and require manual review before outgoing email is sent. <br>
-Risk: Local credential files can expose DreamHost or Gmail mailbox access if file permissions or workstation access are weak. <br>
-Mitigation: Store credentials only in the documented local path with restrictive directory and file permissions, avoid storing unused Gmail credentials, and keep the file out of source control. <br>
-Risk: Automated email sending can create unintended or excessive outbound messages. <br>
-Mitigation: Limit send volume, review recipients and message bodies before execution, and use a mailbox dedicated to agent workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to configure mailbox credentials, read DreamHost or optional Gmail inboxes, search messages, and send email from environments where SMTP may be blocked.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AdaInTheLab/skulk-email) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Email Script](artifact/scripts/skulk-email.sh) <br>
-- [DreamHost Webmail](https://webmail.dreamhost.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown setup and command guidance with plaintext email command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, curl, jq, a DreamHost mailbox, and a local credentials file; command output can include email metadata, message content, unread counts, and send status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill gives an agent mailbox read access and outbound sending authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated mailbox or app-specific password, restrict the credential file to the intended user, and require review for recipients, subject lines, and message bodies before sending.
+
+Risk: Reusable mailbox credentials can create account-compromise risk if the host is shared or compromised.
+
+Mitigation: Keep credentials in a local file with 700 directory and 600 file permissions, avoid shared hosts, rotate credentials if exposure is suspected, and limit mailbox privileges where possible.
+
+Risk: Credential handling and temporary webmail cookies may expose secrets locally.
+
+Mitigation: Harden the script before sensitive deployments so secrets are not passed in process arguments and webmail cookies are created with mktemp-style restricted temporary files.
+
+## Reference(s):
+
+- [Skulk Email on ClawHub](https://clawhub.ai/adainthelab/skills/skulk-email)
+- [The Human Pattern Lab](https://thehumanpatternlab.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local DreamHost mailbox credentials and host dependencies python3, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

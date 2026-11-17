@@ -1,0 +1,13 @@
+# citation-coverage-check
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`。
+
+## 关键文件
+
+- [SKILL.md](SKILL.md)：主说明书（frontmatter + 触发条件 + 执行步骤）
+- [AGENTS.md](AGENTS.md)：AI 代理说明书
+- [README.md](README.md)：人类总览（如存在）
+
+## 一句话定位
+
+citation-coverage-check — 扫描文章中含数字/日期/论断的句子，统计带来源标注（据/来源/source/链接/文献）的比例；低于阈值 rc=1，逐句列出缺出处清单。

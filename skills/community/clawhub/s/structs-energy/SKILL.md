@@ -1,332 +1,149 @@
 ---
+title: "Energy skill: capacity, load, infusion"
+meta_description: Load above capacity means offline, and offline means you cannot act. Capacity management, substations, allocations, and reactor infusion.
 name: structs-energy
-description: Manages energy capacity in Structs. Covers increasing capacity (reactor infusion, generator infusion, buying agreements), selling surplus energy (creating providers), and diagnosing power problems. Use when capacity is too low, going offline, need more power for new structs, want to sell energy, or asking "how do I get more energy?"
+description: "Power and capacity in Structs — getting more energy, fixing \"I'm offline\", substations and allocations, load budgeting, and reactor/generator infusion for your own capacity. Use when capacity is too low, a player or struct won't come online, you're load > capacity (offline), planning power for new builds, or wiring substations. For selling energy on the market, see structs-commerce."
+level: core
+domain: energy
 ---
 
-# Structs Energy Management
+# Energy skill: capacity, load, infusion
 
-## Safety
+Every online struct draws power continuously, and **load > capacity = offline = you cannot act**. Energy is therefore the substrate of everything: no power, no mining, no building, no defense. This skill is "I need power / I'm offline / how do I budget power" — raising your own capacity (infusion), distributing it (substations/allocations), and recovering from overload. *Earning* from energy (running providers, selling, the flywheel) lives in [`structs-commerce`](https://structs.ai/skills/structs-commerce/SKILL).
 
-See [SAFETY.md](https://structs.ai/SAFETY) for the trust contract. In this skill:
+Conventions (TX_FLAGS, `--` rule, charge bar, one-tx-at-a-time) are in [`conventions.md`](https://structs.ai/skills/conventions). **Interface:** if Structs Desktop MCP is connected, prefer `structs_intel` (power/economy reads) and `structs_action` (infuse, connect) — the `structsd` commands below are the complete fallback. See [interface routing](https://structs.ai/skills/conventions#choosing-your-interface-capability-aware).
 
-- **`reactor-infuse`** (Tier 1) — *"Your alpha locks into the reactor; commission rate is captured permanently. Defusion has a cooldown."* Surface the validator address, commission, and ualpha amount.
-- **`struct-generator-infuse`** (Tier 2 — irreversible) — *"Alpha Matter is annihilated in the conversion. And the generator is raidable — if it falls, the infused matter falls with it."* Confirm the generator's defense posture (shield, PDC, defenders) before infusing.
-- **`agreement-open`** (Tier 1) — *"You pay upfront for the full duration. Closing early may trigger a cancellation penalty."* Surface rate, duration in blocks, and total cost.
-- **`reactor-defuse`** (Tier 2 — cooldown lock-in) — *"Your alpha is suspended between reactor and wallet during the cooldown."*
-- **Denomination footgun** — `reactor-infuse` and `struct-generator-infuse` require the `ualpha` denomination suffix on the amount (e.g. `60000000ualpha`, not `60000000`). Missing denom = failed tx.
+> **Denomination footgun**: infusion amounts must carry the `ualpha` suffix — `60000000ualpha`, not `60000000`. Missing denom = failed tx.
 
-## Decision Tree
+## When to use it
 
-```
-Need more capacity?
-├── Have Alpha Matter?
-│   ├── Infuse into a reactor (safest, immediate, 1g ≈ 1kW minus commission)
-│   │   → See "Reactor Infusion" below
-│   └── Infuse into a generator (higher ratio, IRREVERSIBLE, vulnerable to raids)
-│       → See "Generator Infusion" below
-└── No Alpha Matter?
-    └── Buy energy from a provider via agreement
-        → See "Buy Energy" below
+- A struct won't go online, or you went offline (load exceeded capacity).
+- You're about to build and need to confirm power headroom.
+- You want more capacity (you have Alpha to infuse).
+- You're setting up substations/allocations to distribute power.
 
-Have surplus energy?
-└── Sell it by creating a provider
-    → See "Sell Energy" below
-```
+## Decisions
 
----
-
-## Reactor Infusion (most common path)
-
-Infusing Alpha Matter (ualpha) into a reactor immediately increases the player's capacity. This is the safest and most common way to get more energy.
-
-### How It Works
-
-When you infuse ualpha into a reactor, the system generates power equal to the amount infused. This power is split between you and the reactor based on the reactor's **commission rate**:
-
-- **Player receives**: `power * (1 - commission)`
-- **Reactor receives**: `power * commission`
-
-The player's capacity increases automatically — no allocation or substation setup needed.
-
-### Example
-
-Infusing 3,000,000 ualpha into a reactor with 4% commission:
-
-```json
-{
-  "destinationType": "reactor",
-  "destinationId": "3-1",
-  "fuel": "3000000",
-  "power": "3000000",
-  "commission": "0.040000000000000000",
-  "playerId": "1-33"
-}
-```
-
-- `fuel`: 3,000,000 ualpha infused
-- `power`: 3,000,000 mW generated (1 ualpha = 1 mW = 0.001 W)
-- Reactor keeps 4%: 120,000 mW (120 W)
-- Player receives 96%: 2,880,000 mW (2,880 W) added to capacity
-
-### Procedure
-
-1. Check current capacity: `structsd query structs player [id]`
-2. Choose a reactor (usually your guild's): `structsd query structs reactor [id]` — note the `commission` field
-3. Infuse (the CLI will prompt for confirmation — review reactor commission, ualpha amount, and validator address before accepting):
+### "I need more capacity" decision tree
 
 ```
-structsd tx structs reactor-infuse [your-address] [validator-address] [amount]ualpha --from [key-name] --gas auto --gas-adjustment 1.5
+Have Alpha Matter?
+├── Yes → Infuse a reactor   → safest, immediate, reversible (cooldown), 1g ≈ 1 kW − commission   [default]
+│         or Infuse a generator → 2-10 kW/g but IRREVERSIBLE and raidable (only with defense in place)
+└── No  → Buy capacity via an agreement from a provider → ongoing cost; see structs-commerce
 ```
 
-**Important**: The amount **must include the denomination**, e.g. `60000000ualpha` (not just `60000000`). Omitting the denom will cause the transaction to fail.
+**Beginner default**: infuse your **guild's reactor**. Capacity rises automatically — no substation wiring needed for your own use. Pick the lowest commission you can.
 
-4. Verify: re-query player, confirm capacity increased
+> **Infusing a reactor powers *you*, not the guild substation.** Infusion adds ~96% (at 4% commission) to **your own** `capacity` and the commission to the reactor — it does **not** raise any substation's capacity or other members' `capacitySecondary`. To feed the shared guild pool, someone must route capacity in with an **allocation** (below). See [energy.md — infusion](https://structs.ai/knowledge/mechanics/energy#creating-capacity-infusion-splits-964).
 
-### Choosing a Reactor
+**Reactor vs generator**: reactor is the safe default (reversible via a defusion cooldown, not raidable). Generators give far more kW per gram but the Alpha is **annihilated** (no defusion) and a raided generator takes the infused matter with it — only infuse generators you can defend (they're armoured with higher HP, but still a target). Decisions live in [`playbooks/situations/resource-rich`](https://structs.ai/playbooks/situations/resource-rich).
 
-- Your guild's reactor is the default choice — it strengthens the guild and you benefit from guild infrastructure
-- Lower commission = more capacity for you
-- Check commission before infusing: `structsd query structs reactor [id]`
-- You can infuse into any reactor, not just your guild's
-- The `reactor-infuse` command takes the **validator address** (`structsvaloper1...`), not the reactor ID. Find it in the reactor query output's `validator` field
+### "Am I about to go offline?"
 
-### Undoing Infusion
+Online requires `(load + structsLoad) ≤ (capacity + capacitySecondary)`. Player passive draw is 25,000 mW; each online struct adds its `passiveDraw`. Before building, confirm headroom — `scripts/power-budget.sh [player-id] --type [struct-type-id]` projects headroom-after-activation in one call. If you're already offline, that's an emergency (recovery below).
 
-- `structsd tx structs reactor-defuse [reactor-id]` — starts a cooldown period before ualpha is returned
-- `structsd tx structs reactor-cancel-defusion [reactor-id]` — cancel defusion and re-stake
-- `structsd tx structs reactor-begin-migration [player-address] [source-validator-address] [dest-validator-address] [amount]` — move stake to a different reactor (takes addresses, not IDs)
-
----
-
-## Generator Infusion
-
-Generators convert Alpha Matter to energy at higher ratios than reactors, but the infusion is **irreversible** and the generator is vulnerable to raids.
-
-### Conversion Rates
-
-| Generator | Type ID | Rate | Risk |
-|-----------|---------|------|------|
-| Field Generator | 20 | 1g = 2 kW | High — vulnerable to raids, irreversible |
-| Continental Power Plant | 21 | 1g = 5 kW | High — vulnerable to raids, irreversible |
-| World Engine | 22 | 1g = 10 kW | High — vulnerable to raids, irreversible |
-
-### Procedure
-
-1. Identify your generator struct: `structsd query structs struct [id]` — must be type 20, 21, or 22
-2. **Approval Block** — generator infusion is **Tier 2 (irreversible)**. Before signing, confirm:
-
-   - `struct-id` is the generator you intend
-   - `amount` of ualpha (this Alpha is annihilated on success — no defusion exists)
-   - Generator's current defense posture: shield > 0, PDC online, no inbound fleet
-   - `--from` key is the player who owns the generator
-
-3. Infuse (CLI prompts for confirmation — review one more time on the prompt):
+## Power math
 
 ```
-structsd tx structs struct-generator-infuse [struct-id] [amount]ualpha --from [key-name] --gas auto --gas-adjustment 1.5
+availablePower = (capacity + capacitySecondary) - (load + structsLoad)
+online         = (load + structsLoad) <= (capacity + capacitySecondary)
 ```
 
-**Important**: Amount must include denomination, e.g. `5000000ualpha`.
+- `capacity` — your own generation (infusions); the only part you can allocate out.
+- `capacitySecondary` — received from a substation you're connected to.
+- `load` — power you've allocated to others.
+- `structsLoad` — player passive (25,000 mW) + sum of `passiveDraw` of your online structs.
 
-3. Verify: query player for capacity increase
+Units are milliwatts (1 W = 1,000 mW; 1 ualpha = 1 mW).
 
-### When to Use Generators
+### Worked load budget
 
-- You need maximum energy efficiency per gram of Alpha Matter
-- You have defense in place (shields, PDC, defenders) to protect the generator
-- You accept the risk that if the generator is destroyed, the infused Alpha is lost forever
+Command Ship (50,000 mW) + Ore Extractor (500,000) + Ore Refinery (500,000) + player passive (25,000) = **1,075,000 mW** of `structsLoad`. To keep all online you need `capacity + capacitySecondary ≥ 1,075,000`. Infusing ~1,120,000 ualpha into a 4%-commission reactor nets ~1,075,000 mW to you — just enough; leave a margin.
 
-**Do not infuse generators without adequate defense.**
+## Procedure — raise your own capacity (reactor infusion)
 
----
+1. Check capacity: `structsd query structs player [id]`.
+2. Pick a reactor and read its commission and **validator address**: `structsd query structs reactor [id]` (the `validator` field, `structsvaloper1...` — the command takes the validator address, not the reactor ID). A jailed validator produces **zero** energy from infusions until it is unjailed; `reactor-restart` resyncs after that.
+3. Infuse (CLI prompts — review validator, commission, amount):
+   ```
+   structsd tx structs reactor-infuse TX_FLAGS -- [your-address] [validator-address] [amount]ualpha
+   ```
+   `reactor-infuse` is Tier 1 — commission is locked permanently for that infusion. Defusion takes the same three arguments as infusion (`reactor-defuse -- [your-address] [validator-address] [amount]ualpha`) and starts a cooldown before Alpha returns; `reactor-cancel-defusion` re-stakes during that cooldown.
+4. Verify: re-query player; capacity increased.
 
-## Buy Energy (Agreement Path)
+## Procedure — generator infusion (Tier 2, irreversible)
 
-If you have no Alpha Matter to infuse, you can buy energy from another player who is running a provider.
-
-### Procedure
-
-1. **Find a provider**: Query available providers:
-
-```
-structsd query structs provider-all
-```
-
-Or check your guild's providers. Look for one with acceptable `rateAmount`, `capacityMaximum`, and `durationMaximum`.
-
-2. **Open an agreement** (CLI prompts — review rate × duration × capacity for the total upfront cost before accepting):
+Only with defense in place. **Approval Block**: struct id is your generator (type 20/21/22, online); amount is annihilated on success (no defusion); generator's defense posture is sound (shield up, defenders/PDC, no inbound fleet); `--from` owns it.
 
 ```
-structsd tx structs agreement-open [provider-id] [duration-in-blocks] [capacity] --from [key-name] --gas auto --gas-adjustment 1.5
+structsd tx structs struct-generator-infuse TX_FLAGS -- [struct-id] [amount]ualpha
 ```
 
-The agreement automatically creates an allocation.
+Rates: Field Generator 2 kW/g, Continental Power Plant 5 kW/g, World Engine 10 kW/g.
 
-3. **Connect the allocation to a substation**:
+## Procedure — distribute power (substations & allocations)
 
-```
-structsd tx structs substation-allocation-connect [substation-id] [allocation-id] --from [key-name] --gas auto --gas-adjustment 1.5
-```
+For pooling power across structs/players (e.g. a guild powering members). Cascading deletes can knock players offline mid-operation — these are Tier 2.
 
-Connect to your guild's substation to benefit the guild, or create your own substation for independent energy management.
+1. Create an allocation from your source: `structsd tx structs allocation-create --allocation-type static|dynamic|automated TX_FLAGS -- [source-id] [power]` (`--controller [player-id]` optional). Automated allocations auto-grow with capacity — **one per source**.
+2. Create a substation: `structsd tx structs substation-create TX_FLAGS -- [owner-id] [allocation-id]`.
+3. Connect/disconnect sources: `substation-allocation-connect|disconnect -- [substation-id] [allocation-id]`.
+4. Connect/disconnect players: `substation-player-connect|disconnect -- [substation-id] [player-id]`.
+5. Migrate players: `substation-player-migrate -- [substation-id] [player-id,player-id2,...]` (destination substation + player CSV; there is **no** source-substation argument).
 
-4. **Verify**: Query player to confirm capacity increased.
+> **Connecting/migrating another player needs `PermSubstationConnection` (1024) on the player too — not just the substation.** Connect and migrate run the same two checks (`1024` on the destination substation AND on each target player) and both call `MigrateSubstation`. A player object is owned by itself, so **owning the substation is not enough to move other members**: either the member **self-connects** (they own themselves; gate the substation with `permission-guild-rank-set [sub] [guild] 1024 [rank]`), or they grant you `permission-grant-on-object [player] [you] 1024` first. Repointing the guild entry substation (`guild-update-entry-substation-id`) only reroutes **new** join-proxy members — existing members are not auto-migrated. See [energy.md](https://structs.ai/knowledge/mechanics/energy).
 
-### Agreement Management
+**Three things that bite when pooling** (full detail in [energy.md](https://structs.ai/knowledge/mechanics/energy)):
 
-- Increase capacity: `agreement-capacity-increase [agreement-id] [additional-capacity]`
-- Decrease capacity: `agreement-capacity-decrease [agreement-id] [reduce-by]`
-- Extend duration: `agreement-duration-increase [agreement-id] [additional-blocks]`
-- Close: `agreement-close [agreement-id]` — may incur cancellation penalty
+- **A substation dilutes evenly.** Each connected player gets `connectionCapacity = (capacity − load) / connectionCount`, recomputed on every connect/disconnect. Every new player connection shrinks everyone's share — plan the pool against `connectionCount`, not a fixed per-member figure.
+- **Anyone can contribute to any substation.** `substation-allocation-connect` checks permission only on **your own allocation**, not the destination substation's owner — no guild-owner veto, no membership needed. Contributing is open, but a contributed allocation raises *your own* connection by only `1/connectionCount`, so it's community behavior, not self-growth.
+- **Over-committing triggers a brownout.** If an object's `load` exceeds its `capacity` (e.g. a substation loses a feed), the grid **destroys that object's outgoing allocations in creation order** until load fits — cascading downstream and knocking dependents offline. Leave headroom.
 
----
+## Offline recovery (emergency)
 
-## Sell Energy (Energy Commerce Pipeline)
+1. **Free power now** — `struct-deactivate` non-essential structs until `load + structsLoad ≤ capacity + capacitySecondary`. Keep the **Command Ship online** if at all possible (offline CMD ship makes your planet raidable).
+2. **Raise capacity** — infuse a reactor (fastest) or open an agreement.
+3. **Reactivate** in priority order: Command Ship → defense → production.
+4. Note: a player on a substation pool can show `capacity=0` while structs run fine — `structsLoad > 0` is the real "functioning" signal, not `capacity > 0`.
 
-If you have surplus capacity, you can sell energy to other players through the reactor-allocation-substation-provider pipeline. This is the core of Structs economic gameplay.
-
-### Full Pipeline (Step by Step)
-
-1. **Accumulate Alpha** -- Mine ore, refine immediately. Consolidate ualpha to the account that will manage energy commerce.
-
-2. **Infuse into reactor** -- Increases your player capacity. Use your guild's reactor for simplicity:
-
-```
-structsd tx structs reactor-infuse [your-address] [validator-address] [amount]ualpha --from [key-name] --gas auto
-```
-
-The `validator-address` is `structsvaloper1...` (find it in `structsd query structs reactor [id]` under the `validator` field). Commission is locked at infusion time and permanent for that infusion.
-
-3. **Create automated allocation** -- Routes your capacity to a substation. Use `automated` type so it auto-grows when you infuse more alpha:
-
-```
-structsd tx structs allocation-create --allocation-type automated --from [key-name] --gas auto -- [your-player-id] [power-amount]
-```
-
-4. **Create substation** -- The distribution node for your energy:
-
-```
-structsd tx structs substation-create --from [key-name] --gas auto -- [your-player-id] [allocation-id]
-```
-
-5. **Create provider** -- Your marketplace storefront:
-
-```
-structsd tx structs provider-create --from [key-name] --gas auto -- [substation-id] [rate] [access-policy] [provider-penalty] [consumer-penalty] [cap-min] [cap-max] [dur-min] [dur-max]
-```
-
-| Parameter | Purpose | Recommendation |
-|-----------|---------|----------------|
-| `rate` | Price per unit capacity per block | `1uguild.0-1` (guild tokens create demand for your guild's currency) |
-| `access-policy` | Who can buy | `open-market` for maximum revenue |
-| `provider-penalty` | Penalty you pay if you cancel | `0` initially |
-| `consumer-penalty` | Penalty buyer pays if they cancel | `0` to lower friction |
-| `cap-min` / `cap-max` | Capacity range per agreement | `1000` to `1000000000` |
-| `dur-min` / `dur-max` | Duration range in blocks | `100` to `1000000` |
-
-6. **Monitor agreements** -- Buyers open agreements against your provider:
-
-```
-structsd query structs provider [provider-id]
-```
-
-7. **Withdraw earnings periodically**:
-
-```
-structsd tx structs provider-withdraw-balance --from [key-name] --gas auto -- [provider-id]
-```
-
-### How Agreements Work (Payment Flow)
-
-When a buyer opens an agreement:
-1. Buyer pays `capacity * rate * duration` upfront in the rate denomination
-2. Payment goes into the provider's **collateral address** (escrow)
-3. System auto-creates a `provider-agreement` allocation (energy flows immediately)
-4. Revenue **drips** from collateral to the provider's **earnings address** as blocks pass
-5. Provider withdraws accumulated earnings at any time
-6. On expiry (endBlock reached), the allocation is released
-
-Agreement lifecycle: **OPEN -> ACTIVE -> EXPIRED** (or **CLOSED** early with cancellation penalties).
-
-### The Energy Flywheel
-
-The most powerful economic strategy in Structs is compounding energy:
-
-1. Mine ore from planets
-2. Refine ore into Alpha immediately
-3. Infuse Alpha into the guild reactor
-4. Automated allocation grows substation capacity
-5. Sell energy via provider, earning guild tokens
-6. Reinvest guild tokens (via `guild-bank-redeem` for alpha, or trade)
-
-Each cycle compounds: more alpha = more capacity = more energy to sell = more tokens = more economic power.
-
-### Important Notes
-
-- **Defusion cooldown**: Infused alpha is not immediately liquid. `reactor-defuse` starts a cooldown period. Don't infuse alpha you may need for short-term operations (fleet rebuilds, emergency purchases).
-- **Commission is locked**: The reactor's commission rate at infusion time is permanent for that specific infusion. Check commission before infusing.
-- **Automated allocations**: Limited to **one per source**. They auto-grow with your capacity -- no manual adjustment needed after creation. If you attempt to create a second automated allocation from the same source, the transaction will error. Delete the existing one first, or use `dynamic` type for additional allocations.
-- **Provider-agreement allocations**: Auto-created by the system when agreements open. Do not create or modify these manually.
-
-### Provider Management
-
-- Grant guild members access (for `guild-market` providers): `permission-guild-rank-set [provider-id] [guild-id] 262144 [rank]` (PermProviderOpen -- guild members at or above the specified rank can open agreements)
-- Revoke guild access: `permission-guild-rank-revoke [provider-id] [guild-id] 262144`
-- Update terms: `provider-update-capacity-maximum`, `provider-update-duration-minimum`, etc.
-- Delete provider: `provider-delete [provider-id]` (close agreements first)
-
----
-
-## Quick Reference
-
-| Situation | Action |
-|-----------|--------|
-| Low capacity, have Alpha | Infuse into guild reactor |
-| Need maximum kW per gram | Infuse into generator (irreversible) |
-| No Alpha, need capacity | Open agreement with a provider |
-| Surplus capacity | Create provider to sell energy |
-| Going offline (load > capacity) | Deactivate structs immediately, then increase capacity |
-| Check commission rate | `structsd query structs reactor [id]` |
-| Check your capacity | `structsd query structs player [id]` |
-
-## Commands Reference
+## Commands reference
 
 | Action | Command |
 |--------|---------|
-| Reactor infuse | `structsd tx structs reactor-infuse [your-addr] [validator-addr] [amount-ualpha]` (validator = `structsvaloper1...`, NOT reactor ID) |
-| Reactor defuse | `structsd tx structs reactor-defuse [reactor-id]` |
-| Reactor migrate | `structsd tx structs reactor-begin-migration [player-addr] [src-validator-addr] [dest-validator-addr] [amount]` |
-| Generator infuse | `structsd tx structs struct-generator-infuse [struct-id] [amount-ualpha]` |
-| Open agreement | `structsd tx structs agreement-open [provider-id] [duration] [capacity]` |
-| Close agreement | `structsd tx structs agreement-close [agreement-id]` |
-| Create provider | `structsd tx structs provider-create [substation-id] [rate] [access] [prov-pen] [cons-pen] [cap-min] [cap-max] [dur-min] [dur-max]` |
-| Delete provider | `structsd tx structs provider-delete [provider-id]` |
-| Withdraw earnings | `structsd tx structs provider-withdraw-balance [provider-id]` |
-| Connect allocation | `structsd tx structs substation-allocation-connect [substation-id] [allocation-id]` |
+| Reactor infuse | `structsd tx structs reactor-infuse TX_FLAGS -- [your-addr] [validator-addr] [amount]ualpha` |
+| Reactor restart | `structsd tx structs reactor-restart TX_FLAGS -- [reactor-address]` |
+| Reactor defuse | `structsd tx structs reactor-defuse TX_FLAGS -- [your-addr] [validator-addr] [amount]ualpha` |
+| Reactor cancel defusion | `structsd tx structs reactor-cancel-defusion TX_FLAGS -- [your-addr] [validator-addr] [amount]ualpha [creation-height]` |
+| Reactor migrate | `structsd tx structs reactor-begin-migration TX_FLAGS -- [player-addr] [src-val] [dest-val] [amount]ualpha` |
+| Generator infuse (Tier 2) | `structsd tx structs struct-generator-infuse TX_FLAGS -- [struct-id] [amount]ualpha` |
+| Allocation create / update / delete | `structsd tx structs allocation-create --allocation-type [t] TX_FLAGS -- [source-id] [power]` (and `allocation-update`/`allocation-delete -- [allocation-id] ...`) |
+| Substation create / delete | `structsd tx structs substation-create \| substation-delete TX_FLAGS -- ...` |
+| Substation allocation connect/disconnect | `structsd tx structs substation-allocation-connect \| disconnect TX_FLAGS -- [sub-id] [alloc-id]` |
+| Substation player connect/disconnect/migrate | `structsd tx structs substation-player-connect \| disconnect \| migrate TX_FLAGS -- ...` |
 | Query player power | `structsd query structs player [id]` |
 | Query reactor | `structsd query structs reactor [id]` |
-| Query providers | `structsd query structs provider-all` |
+| Query substation / allocations | `structsd query structs substation [id]` / `allocation-all-by-source [id]` |
 
-**TX_FLAGS** (interactive — the CLI prompts you to confirm): `--from [key-name] --gas auto --gas-adjustment 1.5`
+`TX_FLAGS` per [`conventions.md`](https://structs.ai/skills/conventions); power ops cascade, so default to interactive even on routine ones. **Requires** [`structsd`](https://structs.ai/skills/structsd-install/SKILL) on PATH and a signing key.
 
-**TX_FLAGS_APPROVED** (only after commander approval; suppresses the prompt): TX_FLAGS plus `-y`. See [SAFETY.md](https://structs.ai/SAFETY) "The `-y` Rule." `reactor-infuse` and `struct-generator-infuse` are Tier 1/Tier 2 — always default to interactive so you see the validator, commission, amount, and (for generators) the irreversibility warning.
+## Verification
 
-**Requires**: [`structsd`](https://structs.ai/skills/structsd-install/SKILL) on PATH and a configured signing key.
+- `structsd query structs player [id]` — `capacity`/`capacitySecondary`/`load`/`structsLoad`, online status.
+- `structsd query structs substation [id]` — connected allocations/players.
 
-**Important**: Entity IDs containing dashes (like `3-1`, `4-5`) are misinterpreted as flags by the CLI parser. Always place `--` between flags and positional args: `structsd tx structs command --from key --gas auto -- [entity-id] [other-args]`
+## Errors
 
-## Error Handling
+- **Going offline** — load > capacity; deactivate structs, then infuse/buy capacity.
+- **"insufficient balance"** — not enough ualpha; refine ore first or buy via agreement.
+- **"generator infuse failed"** — struct isn't a generator (20/21/22) or is offline.
+- **Allocation exceeds source** — source capacity too small; allocate less or add capacity.
+- **Automated allocation limit** — one automated per source; use static/dynamic for more.
 
-- **Going offline** — Load exceeds capacity. Immediately deactivate non-essential structs (`struct-deactivate`), then increase capacity via reactor infusion or agreement.
-- **"insufficient balance"** — Not enough ualpha. Mine and refine ore first, or buy energy via agreement instead.
-- **"generator infuse failed"** — Verify the struct is a generator type (20, 21, or 22) and is online.
-- **Commission too high** — Check other reactors. You can infuse into any reactor, not just your guild's.
-- **No providers available** — Ask guild members to create providers, or infuse your own reactor.
+## See also
 
-## See Also
-
-- [structs-economy skill](https://structs.ai/skills/structs-economy/SKILL) — Full economic operations (all allocation types, token transfers)
-- [structs-power skill](https://structs.ai/skills/structs-power/SKILL) — Substations, player connections, power monitoring
-- [knowledge/mechanics/power](https://structs.ai/knowledge/mechanics/power) — Capacity formulas, load calculations, online status
-- [knowledge/economy/energy-market](https://structs.ai/knowledge/economy/energy-market) — Provider/agreement mechanics, pricing
-- [knowledge/mechanics/resources](https://structs.ai/knowledge/mechanics/resources) — Alpha Matter conversion rates
+- [knowledge/mechanics/energy](https://structs.ai/knowledge/mechanics/energy) — full energy system: units, infusion split, substation dilution, allocations, brownout
+- [knowledge/mechanics/power](https://structs.ai/knowledge/mechanics/power) — capacity/load/online quick formula card
+- [knowledge/mechanics/resources](https://structs.ai/knowledge/mechanics/resources) — Alpha → energy conversion rates
+- [playbooks/situations/resource-rich](https://structs.ai/playbooks/situations/resource-rich) — infusion strategy
+- [structs-commerce](https://structs.ai/skills/structs-commerce/SKILL) — selling energy, buying via agreement, the flywheel; [structs-building](https://structs.ai/skills/structs-building/SKILL) — power pre-check

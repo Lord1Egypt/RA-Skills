@@ -1,39 +1,53 @@
-## Description: <br>
-Workflow for building and modifying content management systems across WordPress, Shopify, Wix, Squarespace, Drupal, WooCommerce, Joomla, HubSpot CMS Hub, Webflow, Adobe Experience Manager, and similar platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow for building and modifying content management systems across WordPress, Shopify, Wix, Squarespace, Drupal, WooCommerce, Joomla, HubSpot CMS Hub, Webflow, Adobe Experience Manager, and similar platforms.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose the correct CMS extension seam before changing themes, plugins, admin/editor behavior, media handling, content models, markdown rendering, or static export workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CMS changes can affect production content, commerce flows, uploads, redirects, or publishing behavior. <br>
-Mitigation: Review CMS code, content model, upload, and deployment changes before applying them to production, especially on hosted or commerce platforms. <br>
+## Use Case:
 
+Developers and engineers use this skill to identify the correct CMS implementation seam before changing themes, plugins, modules, admin/editor surfaces, media handling, content models, markdown pipelines, or static export workflows.
 
-## Reference(s): <br>
-- [CMS Platform Workflows](references/cms-platform-workflows.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jhauga/content-management-systems) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with code, configuration, and command suggestions when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow skill; no executable code, install hooks, credential handling, or hidden behavior were identified in the release security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The broad CMS trigger can activate for custom admin, editor, or content systems that resemble a CMS, not only named CMS platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the platform or CMS-like responsibility map before applying platform-specific guidance.
+
+Risk: CMS guidance applied to the wrong implementation seam can create fragile theme, plugin, media, or content-model changes.
+
+Mitigation: Locate the owning theme, extension, admin, media, content model, or render pipeline seam before editing, and keep changes minimal.
+
+## Reference(s):
+
+- [CMS Platform Workflows](references/cms-platform-workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with implementation recommendations and code or configuration changes when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no hidden execution, credentials, persistence, or destructive behavior identified in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

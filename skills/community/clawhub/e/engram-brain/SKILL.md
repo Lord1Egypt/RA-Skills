@@ -1,7 +1,7 @@
 ---
 name: engram-brain
 description: Native local memory for OpenClaw agents: Capture, Cue, Project, Recall, and Consolidate conversations into a private Helix-backed brain.
-version: 0.3.4
+version: 0.3.5
 homepage: https://github.com/Moshik21/engram
 user-invocable: true
 metadata: {"openclaw":{"requires":{"anyBins":["curl"]},"envVars":[{"name":"ANTHROPIC_API_KEY","required":false,"description":"Optional richer entity extraction; deterministic extraction works without it."},{"name":"ENGRAM_GROUP_ID","required":false,"description":"Optional brain namespace for multi-brain setups."}],"emoji":"\ud83e\udde0","homepage":"https://github.com/Moshik21/engram","install":[{"kind":"shell","command":"curl -sSL https://raw.githubusercontent.com/Moshik21/engram/main/scripts/install.sh | bash -s -- openclaw","bins":["engram","engramctl"]}],"tags":["memory","knowledge-graph","mcp","recall","long-term-memory","cognitive-architecture"]}}
@@ -84,6 +84,20 @@ All optional:
 
 The REST API is available at `http://127.0.0.1:8100`. The OpenClaw MCP endpoint is available at `http://127.0.0.1:8100/mcp`. When MCP tools are visible, prefer the MCP tools; use the REST examples below as the manual fallback.
 
+For shell-capable OpenClaw sessions where MCP tools are not visible yet, use
+the compact AXI fallback before answering:
+
+```bash
+engram axi --project "$PWD" --budget 800 --timeout 3
+engram axi context --project "$PWD" --budget 800 --timeout 5
+engram axi recall "current task" --limit 5 --timeout 5
+```
+
+AXI is read-only unless the user explicitly asks you to capture with
+`engram axi observe --stdin` or `engram axi remember --stdin`. OpenClaw hook
+installation is not assumed; Codex and Claude Code have separate
+`engramctl connect <client> --axi` startup hook support.
+
 If you know the current project path, bootstrap it once at session start so
 artifact-backed routing has parity with memory:
 ```
@@ -93,22 +107,64 @@ Content-Type: application/json
 {"project_path": "<absolute project path>", "session_id": "<optional session id>", "include_patterns": ["docs/**/*.md", "memory/**/*.md", "exports/**/*.json"]}
 ```
 
+## Golden loop (product contract)
+
+Full guide: `docs/GOLDEN_LOOP.md`. Success metric is **not LongMemEval**:
+
+> Fresh agent surfaces ≥1 high-signal prior Decision without a handoff doc.
+
+Three layers:
+1. **Passive capture** — harness auto-observe / `observe` (cheap, complete)
+2. **Sparse promotion** — `remember` with proposals, **0–5 per compaction window**
+3. **Deliberate consolidation** — offline hygiene only
+
+### Session-end promote
+
+At session end (or before compaction), invoke skill **`engram-session-promote`**
+to propose ≤5 durable facts — never session recaps. See
+`skills/engram-session-promote/SKILL.md`. SessionEnd can write a nudge file at
+`~/.engram/session-promote-nudge.md`.
+
+### Loop Steward (silent harness subconscious)
+
+When memory quality or debt looks wrong (`should_mop`, cold Decision miss,
+degraded recall), or SessionEnd steward nudge is present, the harness should
+run **one** silent pass (≤1/session), prefer subagent:
+
+```bash
+engramctl status || engramctl start
+engram loop steward-once --format json
+```
+
+Skill: `skills/engram-loop-steward/SKILL.md`. Do **not** narrate to the user.
+Public MCP stays golden-loop only.
+
+Open adjudication / open_work counts are **graph hygiene**, not product success.
+
+## MCP Core Tools (use these as the primary agent surface)
+
+| Tool | When |
+|------|------|
+| `claim_authority` | Session start when project-local file memory is present |
+| `get_context` | Start of each conversation — durable Decisions/Preferences first |
+| `recall` | Before answering when prior context could change the response |
+| `observe` | Only when harness cannot see high-value context (or user asks to store) |
+| `remember` | High-signal facts **with** `proposed_entities` + `proposed_relationships` |
+| `intend` | Prospective memory / pinned context |
+
+Do **not** treat `search_entities`, `search_facts`, or eval tools as primary entry points.
+
 ## When to Observe vs Remember
 
-**Default to observe for most content.** Use remember only for high-signal items.
+Harness auto-capture handles routine turns — **do not re-observe every turn**.
 
-Use **observe** when:
-- General conversation context or topics discussed
-- Information that might be useful later but is not critical
-- Bulk context from a long conversation
-- You are uncertain whether something is worth a full remember
+Use **remember** (max 5 per compaction window) when:
+- Durable **Decision**, **Preference**, **Person**, **Correction**, **Goal**, **Commitment**
+- You can cite a verbatim `source_span` in the content
+- Pass `model_tier` and structured proposals (you are the extractor)
 
-Use **remember** when:
-- The user explicitly asks you to remember something
-- Personal identity facts (name, location, job title)
-- Explicit preferences or corrections to prior knowledge
-- Key decisions that will affect future interactions
-- Goals, plans, or deadlines with concrete details
+Use **observe** only for harness-invisible context or explicit store requests.  
+Reject session recaps (“what we did today”).
 
 ## How to Store Memories
 
@@ -120,12 +176,28 @@ Content-Type: application/json
 {"content": "<text to store>", "source": "openclaw"}
 ```
 
-To remember (full extraction with entities and relationships):
+To remember (agent-promoted atomic facts):
 ```
 POST http://localhost:8100/api/knowledge/remember
 Content-Type: application/json
 
-{"content": "<important text>", "source": "openclaw"}
+{
+  "content": "LongMemEval is not Engram north star. Continuity is the metric.",
+  "source": "openclaw",
+  "model_tier": "sonnet",
+  "proposed_entities": [{
+    "name": "LongMemEval is not Engram north star",
+    "entity_type": "Decision",
+    "source_span": "LongMemEval is not Engram north star",
+    "summary": "Product metric is multi-agent continuity."
+  }],
+  "proposed_relationships": [{
+    "subject": "Engram",
+    "predicate": "DECIDED",
+    "object": "LongMemEval is not Engram north star",
+    "source_span": "LongMemEval is not Engram north star"
+  }]
+}
 ```
 
 To forget (soft delete outdated information):
@@ -138,6 +210,10 @@ Content-Type: application/json
 
 ## How to Recall Memories
 
+**MCP (preferred):** `get_context()` once per session; `recall(query=..., project_path=...)` when prior context matters. (Operator-only tools like `route_question`/`search_artifacts` are NOT on the public surface — never call them.)
+
+**REST fallback** when MCP is unavailable:
+
 At the start of every conversation, get broad context:
 ```
 GET http://localhost:8100/api/knowledge/context
@@ -148,55 +224,21 @@ When the user references something from the past or you need relevant context:
 GET http://localhost:8100/api/knowledge/recall?q=<query>&limit=5
 ```
 
-For project-truth questions, route first:
-```
-POST http://localhost:8100/api/knowledge/route
-Content-Type: application/json
+For entity or fact lookup, use `recall` (with `lookup_kind='entities'|'facts'`
+when needed). The public surface is frozen to the golden loop — do not route
+around it with operator REST endpoints.
 
-{"question": "<user question>", "project_path": "<optional project path>"}
-```
-
-Use the returned `answerContract` as response policy, not just source routing.
-If the route says `inspect` or `reconcile`, treat `evidencePlan.requiredNextSources`
-as mandatory. Carry the same `project_path` into artifact/runtime calls before
-answering:
-```
-GET http://localhost:8100/api/knowledge/artifacts/search?q=<query>&project_path=<optional path>&limit=5
-GET http://localhost:8100/api/knowledge/runtime?project_path=<optional path>
-```
-
-To inspect the current brain-loop state for this user/brain:
-```
-GET http://localhost:8100/api/lifecycle/summary
-```
-
-Use this when deciding whether the brain has recent captures, cue coverage,
-projection failures, active recall context, or consolidation cycles before
-running heavier diagnostics.
-
-To search for specific entities:
-```
-GET http://localhost:8100/api/entities/search?q=<name>
-```
-
-To search for specific facts and relationships:
-```
-GET http://localhost:8100/api/knowledge/facts?q=<query>
-```
-
-`search_facts` is user-facing by default. Internal decision/artifact graph edges
-stay hidden unless you explicitly opt into debug mode with
-`include_epistemic=true`.
+**Brain windows:** the local server pauses briefly (typically under a minute)
+every ~2 hours while the cold brain holds the graph. A connection-refused on
+127.0.0.1:8100 is transient — retry shortly rather than concluding Engram is
+down.
 
 ## Guidelines
 
 - Call the context endpoint once at the start of each new conversation
 - For personal continuity turns like "my son did great today" or "talked to Sarah about it", recall first.
-- For install/config/current-truth questions like "how do we install the OpenClaw skill?" or "is full mode rework by default?", call `route`, then satisfy `requiredNextSources` before answering.
-- For decision/history questions like "what did we decide about launching Engram publicly?", treat it as reconciliation: use memory plus artifacts/runtime before answering, and do not use `search_facts` as a substitute for artifact inspection.
-- If `answerContract.operator` is `compare`, contrast raw defaults, shipped install defaults, repo posture, and runtime state when relevant.
-- If `answerContract.operator` is `reconcile` or `unresolved_state_report`, preserve earlier discussion versus current documented or implemented truth.
-- If `answerContract.operator` is `recommend` or `plan`, state the evidence first and then give advice or next steps.
+- For install/config/current-truth questions, prefer native workspace search for exact code truth, `get_context(project_path=...)` for durable decisions, and `recall` for prior discussion.
+- For decision/history questions like "what did we decide about launching Engram publicly?", use `recall` plus `get_context` before answering.
 - When recalling, integrate information naturally. Do not say "my memory system found..."
 - If recall returns no results, do not mention it. Just respond normally.
 - If uncertain whether something is worth remembering, observe it
@@ -205,10 +247,11 @@ stay hidden unless you explicitly opt into debug mode with
 
 ## Memory Features
 
-- **Activation-aware retrieval**: Memories accessed more frequently and recently rank higher
-- **Knowledge graph**: Entities and relationships are extracted and connected
-- **17-phase consolidation**: Offline cycles triage, merge, calibrate, infer, adjudicate evidence and edges, replay, prune noise, compact, mature entities, form schemas, reindex, embed the graph, run microglia cleanup, dissolve low-semantic-gravity noise through immunity, and discover dream associations
-- **Memory maturation**: Entities graduate from episodic (recent) to semantic (durable) over time
+- **Deep episode recall**: hybrid vector + BM25 search over episodes and cues; durable facts (Decisions, Preferences, identity) surface in a reserved lane regardless of raw match strength
+- **Usage learning (gated)**: genuinely *used* memories can earn a bounded rank tiebreak; surfacing alone never boosts rank (echo-guarded, default off until organic usage data exists)
+- **Knowledge graph**: Entities and relationships are extracted and connected (depth tier; the proven benefit is surfacing related episodes)
+- **Offline consolidation**: cold-brain cycles triage, merge, calibrate, infer, adjudicate evidence and edges, replay, prune noise, compact, reflect, reindex, embed the graph, run microglia cleanup and immunity, and discover dream associations (15 phases; consumers run the bounded 2h mop, not the full pipeline)
+- **Memory tiers**: identity-core entities are promoted to the durable semantic tier (slower decay, longer prune horizon)
 - **Prospective memory**: Set intentions that fire when related topics come up
 - **Dream associations**: Cross-domain creative connections discovered during consolidation
 
@@ -241,16 +284,16 @@ When an intention fires during recall, act on it naturally without announcing it
 
 ## Consolidation
 
-Engram runs 17 offline consolidation phases that improve memory quality over time:
-triage, merge, calibrate, infer, evidence_adjudication, edge_adjudication, replay, prune, compact, mature, semanticize, schema, reindex, graph_embed, microglia, immunity, dream.
+Engram runs offline consolidation in a separate cold-brain process:
+triage, merge, calibrate, infer, evidence_adjudication, edge_adjudication,
+replay, prune, compact, reflect, reindex,
+graph_embed, microglia, immunity, dream (15 phases). Consumer installs run a
+bounded 2h "mop" (hygiene drains + adjudication + replay + prune) via the
+`dev.engram.brain` LaunchAgent — consolidation never runs inside the hot
+server process, and the REST trigger returns an error on shell-role installs.
 
-To trigger a consolidation cycle manually:
-```
-POST http://localhost:8100/api/consolidation/trigger
-Content-Type: application/json
-
-{"profile": "standard"}
-```
+Operators run cycles with `engram brain run` (never from an agent session
+while the server is up).
 
 To check consolidation status:
 ```
@@ -259,7 +302,7 @@ GET http://localhost:8100/api/consolidation/status
 
 ## Proactive Notifications
 
-Engram can push memory discoveries without being asked. Consolidation events (dream associations, entity merges, schema patterns, maturation milestones) and approaching intention deadlines produce notifications automatically.
+Engram can push memory discoveries without being asked. Consolidation events (dream associations, entity merges) and approaching intention deadlines produce notifications automatically.
 
 Enabled by `conservative` and `standard` profiles.
 

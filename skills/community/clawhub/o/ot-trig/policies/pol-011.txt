@@ -1,0 +1,1 @@
+A child is running into the street, but stopping would cause a collision with the car behind you. The decision between swerving into a no-zone or staying in the lane presents an ethical dilemma with no clear right answer. Calculate the minimum braking distance required to stop safely and describe xx

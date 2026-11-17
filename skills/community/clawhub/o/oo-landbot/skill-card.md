@@ -1,43 +1,55 @@
-## Description: <br>
-Landbot (landbot.io) supports reading, creating, and updating Landbot data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Landbot to read customer and channel data, send customer messages, and update customer fields through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate Landbot through an OOMOL-connected account, including reading channels, customers, and message history. It can also prepare authenticated write actions such as sending text messages and updating typed customer fields after user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authenticated write actions can change Landbot state, including sending messages and updating customer fields. <br>
-Mitigation: Inspect the live connector schema, confirm the exact payload and effect with the user, and run only after the user approves the write action. <br>
-Risk: Setup or recovery commands can affect the active CLI authentication or connected account context. <br>
-Mitigation: Run first-time setup steps only after a matching command failure, and confirm the intended account or connection before retrying. <br>
+## Use Case:
 
+External users can use the skill to inspect Landbot customers, channels, and message history, and to send messages or update customer fields through their connected account.
 
-## Reference(s): <br>
-- [ClawHub Landbot Skill](https://clawhub.ai/oomol/skills/oo-landbot) <br>
-- [Landbot Homepage](https://landbot.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash, PowerShell, text, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions may return JSON containing data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill metadata) <br>
+Risk: The required CLI can make broader agent changes than the skill explains, and its installer and deployed connector were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify a specific CLI release before setup; consider disabling startup skill synchronization with OO_SKILLS_SYNC_DISABLED=1.
+
+Risk: Customer data passes through OOMOL, and actions can send messages or change customer fields.
+
+Mitigation: Connect only the necessary Landbot permissions and keep user confirmation for message sends and field changes.
+
+## Reference(s):
+
+- [Landbot API documentation](https://dev.landbot.io/api-reference/introduction)
+- [Landbot](https://landbot.io)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON action payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write actions require confirmation; fetch each action schema before constructing its payload.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

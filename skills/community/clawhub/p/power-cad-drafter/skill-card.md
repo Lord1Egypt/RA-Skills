@@ -1,40 +1,58 @@
-## Description: <br>
-Auto-generate electrical CAD drawings from survey data and auto-audit against power codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generate electrical CAD drawings from survey data and auto-audit against power codes.
 
-## Publisher: <br>
-[powerzzjohn](https://clawhub.ai/user/powerzzjohn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[powerzzjohn](https://clawhub.ai/user/powerzzjohn)
 
-## Use Case: <br>
-Electrical designers and engineers use this skill to turn survey data, sketches, or task briefs for 10kV-and-below power distribution projects into draft CAD drawings, inferred design parameters, equipment lists, and audit reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CAD and report files may be written to unintended locations or overwrite existing project outputs. <br>
-Mitigation: Run the scripts only in an intended project workspace, choose an explicit output directory, and check for existing files before execution. <br>
-Risk: Generated drawings, inferred design parameters, and audit reports may be incomplete or incorrect for a regulated electrical project. <br>
-Mitigation: Treat outputs as draft engineering assistance and require qualified professional review against applicable company and national codes before use. <br>
+## Use Case:
 
+Electrical designers and engineering teams use this skill to turn survey data, sketches, or project briefs into draft 10kV-and-below power distribution CAD packages and preliminary audit reports.
 
-## Reference(s): <br>
-- [Drawing Symbols Reference](references/drawing_symbols.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, JSON, CSV, Shell commands, Guidance] <br>
-**Output Format:** [DXF drawings, JSON design parameters, Markdown audit report, CSV equipment list, and ZIP package] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ezdxf and pyyaml; generated drawings and audit reports should be reviewed before engineering use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The automated electrical code audit is underimplemented and can falsely pass a safety-relevant design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the audit as an authoritative compliance check; require independent engineering review for all generated designs.
+
+Risk: A transformer-capacity logic error is identified in the security guidance.
+
+Mitigation: Fix and retest the transformer-capacity rule before using the skill for design approval or compliance workflows.
+
+Risk: The end-to-end workflow and dependency versions are not fully reliable for unattended installation.
+
+Mitigation: Document the complete workflow, pin dependencies, and review the skill before installation or operational use.
+
+## Reference(s):
+
+- [Drawing Symbols](references/drawing_symbols.md)
+- [ClawHub skill page](https://clawhub.ai/powerzzjohn/skills/power-cad-drafter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated DXF, JSON, CSV, and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ezdxf and pyyaml; generated electrical designs and audit results require independent engineering review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

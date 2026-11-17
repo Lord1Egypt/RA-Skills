@@ -1,43 +1,60 @@
-## Description: <br>
-Java/Maven single-module deep documentation generator that creates L3 file-level and L2 module-level business logic documentation with parallel subagent processing, context compression, checkpoint resume, and retry support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Java/Maven single-module deep documentation generator. Generates L3(file-level) to L2(module-level) business logic docs for specified module. Supports multi-subagent parallel processing, context compression, checkpoint resume, and auto-retry.
 
-## Publisher: <br>
-[endcy](https://clawhub.ai/user/endcy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[endcy](https://clawhub.ai/user/endcy)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze a single Java/Maven module and generate source-derived L3 file documentation plus an L2 module overview. The generated documentation explains business responsibilities, flows, dependencies, configuration, and skip decisions in human-facing prose. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Java module source files and creates documentation, logs, and checkpoint files in the project. <br>
-Mitigation: Run it on a controlled branch and review generated files before committing or sharing them. <br>
-Risk: Server security evidence flags inconsistent guidance about shell fallbacks and security-restricted file access. <br>
-Mitigation: Follow platform file access restrictions, require confirmation before migrations, overwrites, or cleanup, and do not run the package.json PowerShell generate script unless the missing helper script is supplied and reviewed. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate or update natural-language business logic documentation for a single Java/Maven module. It supports onboarding, code review preparation, legacy code understanding, and incremental documentation updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/endcy/module-analyzer-generate-doc) <br>
-- [L2 module documentation template](references/l2-module-template.md) <br>
-- [L3 file documentation template](references/l3-file-template.md) <br>
-- [Task execution guide](references/task-execution-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation and execution guidance with command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces source-derived L3 file docs, an L2 module overview, progress logs, and checkpoint state under .ai-doc when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill reads the target module's source code and generates documentation, state, and logs under .ai-doc.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on source trees the agent is allowed to inspect, review generated .ai-doc content, and keep the project under version control before execution.
+
+Risk: The skill may ask to persist its operating rules in TOOLS.md.
+
+Mitigation: Do not allow TOOLS.md changes unless persistent defaults for future agent sessions are explicitly desired.
+
+Risk: The package metadata includes an npm generate command that invokes PowerShell with ExecutionPolicy Bypass.
+
+Mitigation: Avoid npm run generate until that command is removed or replaced with a reviewed script.
+
+## Reference(s):
+
+- [L3 File Documentation Template](references/l3-file-template.md)
+- [L2 Module Documentation Template](references/l2-module-template.md)
+- [Task Execution Guide](references/task-execution-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/endcy/skills/module-analyzer-generate-doc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation files and progress/status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates L3 file-level docs, an L2 module-level index, task state, and logs under the target project's .ai-doc directory.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence; changelog released 2026-07-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

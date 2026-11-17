@@ -1,84 +1,90 @@
 ---
 name: tob-competitor-snip
-description: When a client mentions a competitor, quickly generate a differentiation comparison + counter-talking points card. Pure rules engine — no external dependencies.
+slug: tob-competitor-snip
+displayName: 竞品狙击卡片
+version: 1.0.0
+description: ToB竞品狙击卡片。输入竞品名称/行业/客户关注点，输出差异化对比+狙击话术。基于ToB项目经验萃取的规则（去敏），不编造案例。
 priority: high
 source: experience-backed
-tags: [tob, sales, competitor, presales]
-metadata:
-  openclaw:
-    requires:
-      bins: [node]
+workers: [sales, pm]
+created: 2026-05-30
+updated: 2026-07-06
+tags: [tob, sales, competitor, snip, presales]
 ---
 
-# 🔪 tob-competitor-snip — Competitor Snip Assistant
+# tob-competitor-snip — 竞品狙击助手
 
-> Client mentions a competitor? 30 seconds to a counter card.
+> 客户提竞品？30秒出狙击卡片。
 
-## When to Use
+当销售在跟客户时客户提到竞品（"X家说他们有Y功能"、"X家比你们便宜30%"），快速输出：
+- 竞品 vs 我们 的差异化对比
+- 一句话狙击话术（销售可直接说出口）
+- 从真实项目经验中萃取的规则（去敏），不是通用 AI 话术
 
-Use when:
-- Client says "X company has Y feature"
-- Client says "X is 30% cheaper than you"
-- Client asks for a feature-by-feature comparison
-- You're preparing a proposal and need to understand competitive landscape
+## 使用方式
 
-## Usage
+### 交互模式（推荐）
 
-### Interactive Mode
 ```bash
-node {baseDir}/src/generator.js
+tob-competitor-snip
 ```
 
-### Quick Mode
+### 快速模式
+
 ```bash
-node {baseDir}/src/generator.js --competitor "Some Vendor" --concern "cheaper price"
+tob-competitor-snip --competitor "某AI客服厂商" --industry "零售" \
+  --concern "他们说支持多轮对话和工单联动，价格比我们低30%"
 ```
 
-### Full Mode
+### 简模式
+
 ```bash
-node {baseDir}/src/generator.js --competitor "Some Vendor" --industry "retail" --concern "they support multi-turn dialogue"
+tob-competitor-snip --quick --competitor "X公司" --concern "价格便宜"
 ```
 
-## Output: 4-Module Card
+## 输出结构
 
-### Module 1: Competitor Profile
-- Name, known strengths/weaknesses (based on experience rules)
-- If no record: "暂无交手记录" (no交手 record yet)
+**竞品狙击卡片**（Markdown），4 模块：
 
-### Module 2: Differentiation Comparison
-| Dimension | Competitor | Us | Client Value |
-|-----------|-----------|----|-------------|
+### 模块 1：竞品画像
+- 竞品定位/强项/弱项（基于真实项目交手经验，去敏）
+- 如无真实交手记录：「暂无该竞品交手记录，建议人工补充」
 
-Dimensions: feature depth, industry know-how, delivery speed, after-sales, TCO, extensibility
+### 模块 2：差异化对比表
+| 维度 | 竞品 | 我们 | 客户价值 |
+|------|------|------|----------|
 
-### Module 3: Counter Talking Points
-- **Price war**: reframe from "first-year price" to "3-year TCO"
-- **Feature comparison**: reframe from "feature count" to "real adoption rate"
-- **Brand trust**: reframe from "brand size" to "customer renewal rate"
+维度覆盖：功能深度、行业Know-how、交付速度、售后服务、TCO（总拥有成本）、扩展性
 
-### Module 4: Case References
-- Industry-agnostic case patterns
-- Never fabricate specific client names or data
+### 模块 3：狙击话术
+- **价格战场景** → 萃取自零售项目实战：「您说的便宜是首年报价，隐性成本在实施质量...」
+- **功能对比场景** → 萃取自零售项目实战：「功能清单大家都能列，关键是日均10万单时能不能扛住...」
+- **品牌信任场景** → 萃取自项目实战：「品牌大确实放心，但您的项目排第几优先级？」
 
-## Scenario Rules
+### 模块 4：实战建议
+- 先承认，再翻转
+- 用问题反击
+- 给案例不给结论
+- 引导 POC
 
-| Trigger Keywords | Scenario | Rule Set |
-|-----------------|----------|----------|
-| 便宜/低价/价格/报价/成本/预算 | Price War | TCO reframe framework |
-| 功能/多轮/工单/对话/自动化/AI | Feature Gap | Adoption rate reframe |
-| 品牌/大公司/上市/规模 | Brand Trust | Renewal rate reframe |
-| (none matched) | General | POC suggestion framework |
+## 规则来源
 
-## Field Principles
+本 Skill 的规则萃取自 ToB 真实项目经验（去敏）：
+- 零售行业规则来自某零售 IT 服务商项目：价格战翻转话术、功能对比反问策略
+- 金融行业规则来自某系统集成商项目：安全合规优先、AI 准确率要求
+- 政务行业规则来自某政务集成项目：领导看板优先、政治风险意识
 
-1. **Acknowledge, then pivot** — Never dismiss the competitor
-2. **Reframe the question** — Turn their concern into a risk
-3. **Cases, not conclusions** — Use patterns, not fabricated specifics
-4. **Price = TCO** — First-year quote ≠ 3-year cost
-5. **No fabrication** — When no experience, say so and offer a POC framework
+**不编造案例，不泄露客户信息。**
 
-## Post-Use
+## 实战原则
 
-After a real competitive engagement:
-- Record the actual outcome (win/loss) for future reference
-- Feed lessons learned back into your knowledge base
+1. **先承认，再翻转** — 不要否定竞品，先说"他们确实在XX方面不错"，然后翻转
+2. **用客户的话反击** — 把客户说的竞品优势重新翻译成风险
+3. **给案例不给结论** — "XX客户对比后选了我们"比"我们更好"有效10倍
+4. **价格=TCO** — 客户说的"便宜"通常是首年报价，算3年TCO
+5. **无记录时不编** — 明确说"暂无交手记录"，给通用狙击框架
+
+## 联用
+
+- 提案前跑 `tob-competitor-snip` 了解竞品，再跑 `tob-sales-proposal` 生成提案
+- 丢单后跑 `tob-win-loss-review` 复盘，结果沉淀回知识库

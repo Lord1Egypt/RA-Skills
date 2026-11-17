@@ -1,47 +1,60 @@
-## Description: <br>
-Access X (Twitter) via API v2 for user profiles, timelines, threads, search, bookmarks, likes, and posting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads profiles, posts, search results, and signed-in account activity on X, and previews user-requested posts before publishing them through the X API v2.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-Developers and agents use this skill to query X API v2 for public account and post data, extract recent threads and search results, and perform OAuth-authorized user actions such as reading bookmarks or posting tweets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth mode can read private account data and post publicly from the user's X account. <br>
-Mitigation: Use bearer-token mode for public read-only lookups, enable OAuth only when bookmarks, likes, or posting are required, and require explicit approval before posting. <br>
-Risk: Stored X API credentials and OAuth tokens can grant account access if exposed. <br>
-Mitigation: Protect ~/.openclaw/x with restrictive permissions and avoid sharing credential or token files. <br>
-Risk: X API usage can incur charges and rate limits. <br>
-Mitigation: Set X API spending limits, monitor usage, cache results when appropriate, and design workflows to respect rate limits. <br>
+## Use Case:
 
+People and agents use this skill to look up X profiles and posts, search recent posts, read their signed-in account's home timeline, bookmarks, and likes, or draft and publish an approved post.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/odrobnik/x-api-v2) <br>
-- [X API setup guide](SETUP.md) <br>
-- [X API pricing reference](references/pricing.md) <br>
-- [X API quick reference](references/quickstart.md) <br>
-- [X Developer Platform](https://developer.x.com) <br>
-- [X Developer Portal](https://developer.x.com/en/portal/projects-and-apps) <br>
-- [X API usage endpoint](https://api.x.com/2/usage/tweets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output with Markdown setup and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and X API credentials; OAuth mode enables private data access and posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Access to X developer credentials and private signed-in account data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep configuration and sign-in tokens private; share private account data only as requested, and log out or revoke the connected app when finished.
+
+Risk: Publishing unintended content to the signed-in X account.
+
+Mitigation: Review the exact post preview and obtain explicit approval before publishing.
+
+Risk: X API requests may incur charges.
+
+Mitigation: Set X API spending limits and keep requests limited to what is needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/odrobnik/skills/x-api-v2)
+- [Publisher-listed skill homepage](https://github.com/odrobnik/x-skill)
+- [Setup guide](SETUP.md)
+- [X API pricing guide](references/pricing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Text or JSON responses and Markdown instructions with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Post preview requires explicit approval before publication; X API usage may incur charges.]
+
+## Skill Version(s):
+
+1.2.0 (source: skill frontmatter and ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

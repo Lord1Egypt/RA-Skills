@@ -1,39 +1,58 @@
-## Description: <br>
-Use the arXiv API for academic paper discovery, relevance screening, and structured output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the arXiv API for academic paper discovery, relevance screening, and structured citation-oriented Markdown output.
 
-## Publisher: <br>
-[xxxxxxxxxxxxxxxxxxx20gex](https://clawhub.ai/user/xxxxxxxxxxxxxxxxxxx20gex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xxxxxxxxxxxxxxxxxxx20gex](https://clawhub.ai/user/xxxxxxxxxxxxxxxxxxx20gex)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to search arXiv for papers by topic, date preference, result count, and output goal, then format retrieved metadata and abstracts into a consistent paper-discovery report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to arXiv and could expose confidential project names, private identifiers, unpublished research details, or personal information. <br>
-Mitigation: Avoid including sensitive or private terms in searches unless sharing those terms with arXiv is acceptable. <br>
+## Use Case:
 
+Researchers, developers, and external users use this skill to search arXiv for papers by topic, recency, and result count, then receive structured paper summaries and citation-oriented output based on returned arXiv data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xxxxxxxxxxxxxxxxxxx20gex/arxiv-scholar-search) <br>
-- [arXiv API query endpoint](https://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with paper metadata, links, research-content summaries, and contribution bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are constrained to arXiv-returned metadata, abstracts, and links; missing fields are marked unknown or missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill makes external arXiv API requests for paper searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy with expected outbound access to https://export.arxiv.org/api/query and no special local permissions or credentials.
+
+Risk: Returned papers may be incomplete, sparse, or off topic for a user's query.
+
+Mitigation: Use the skill's quality-control loop, retry with broader or rewritten keywords when needed, and mark missing fields explicitly.
+
+Risk: Paper summaries could become misleading if they go beyond returned source metadata or abstracts.
+
+Mitigation: Keep output grounded in arXiv-returned metadata, abstracts, and links; do not fabricate venue, date, links, citation counts, or unsupported conclusions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xxxxxxxxxxxxxxxxxxx20gex/skills/arxiv-scholar-search)
+- [arXiv API Query Endpoint](https://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown paper list with headings, paper metadata, source links, research summaries, and contribution bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content is constrained to arXiv-returned metadata, abstracts, links, and explicit missing-field markers.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

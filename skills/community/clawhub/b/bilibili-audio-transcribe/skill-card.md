@@ -1,40 +1,54 @@
-## Description: <br>
-Download audio from Bilibili or b23.tv links and transcribe it into txt, srt, and segment JSON with yt-dlp, ffmpeg, and faster-whisper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download audio from Bilibili or b23.tv links and transcribe it into txt, srt, and segment JSON with yt-dlp, ffmpeg, and faster-whisper.
 
-## Publisher: <br>
-[yizh4ng](https://clawhub.ai/user/yizh4ng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yizh4ng](https://clawhub.ai/user/yizh4ng)
 
-## Use Case: <br>
-Developers and agents use this skill to turn Bilibili or b23.tv video links into local transcript text, subtitles, and segment metadata, especially for Chinese-language speech-to-text workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads media and writes local audio and transcript files that may contain user-provided or sensitive content. <br>
-Mitigation: Use a virtual environment, process only links the user is allowed to download, and delete downloaded audio and transcript files when they are no longer needed. <br>
-Risk: Transcription quality can vary with language, model size, VAD behavior, and long CPU-bound runs. <br>
-Mitigation: Review generated transcript files before relying on them; rerun with automatic language detection, a larger model, or adjusted VAD settings when quality is weak. <br>
+## Use Case:
 
+Developers and agent users use this skill to convert Bilibili or b23.tv video links into local transcript, subtitle, and segment metadata files, especially for Chinese-language speech-to-text workflows.
 
-## Reference(s): <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, plus generated .txt, .srt, and .segments.json transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local transcript artifacts and progress messages; downloaded audio and transcripts remain on disk until removed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill downloads media from Bilibili or b23.tv and creates local transcript and media files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended Bilibili or b23.tv URLs and choose an output directory appropriate for any sensitive transcript content.
+
+Risk: The bootstrap workflow installs Python dependencies and troubleshooting may involve system package installation for ffmpeg.
+
+Mitigation: Review or pin dependency versions before bootstrapping, and run system package-manager commands only when system-wide ffmpeg installation is intended.
+
+## Reference(s):
+
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/yizh4ng/skills/bilibili-audio-transcribe)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated transcript files in txt, srt, and JSON formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local transcript text, SRT subtitles, and segment JSON under the selected output directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

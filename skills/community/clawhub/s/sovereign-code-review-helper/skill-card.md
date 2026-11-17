@@ -1,42 +1,54 @@
-## Description: <br>
-Generates file-type-specific code review checklists covering security, performance, style, and testing best practices for pull requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates file-type-specific code review checklists covering security, performance, style, and testing best practices for pull requests.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and reviewers use this skill inside git repositories to produce pull request review checklists, findings summaries, and reusable review templates. It helps make security, performance, style, and test coverage review steps more consistent across common programming languages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Bash script reads changed files and diffs in the local git repository. <br>
-Mitigation: Run it only in the intended repository and review the selected base branch, head ref, and file filter before execution. <br>
-Risk: The --output-file option writes the generated report or template to a provided path. <br>
-Mitigation: Use explicit, reviewed output paths and avoid overwriting important files. <br>
-Risk: The --files option is handled as a grep regular expression filter rather than a shell glob. <br>
-Mitigation: Use regex-compatible patterns or omit the filter when unsure about the intended review scope. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to generate pull request review checklists, review templates, and reports tailored to changed file types. It is useful for review preparation and consistency, but should not be relied on as the sole approval or merge gate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryudi84/sovereign-code-review-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, text, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, or plain text code review checklist/report; optional PR review template.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write output to a user-specified file and exits nonzero when critical findings are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The packaged security checks and CI-blocking behavior are not trustworthy as a merge approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the generated checklist as review support only, and require human review plus established security tooling before approving or merging changes.
+
+Risk: The output-file option may overwrite an existing file at the requested path.
+
+Mitigation: Write reports to a disposable or prechecked path, and avoid pointing output-file at important project files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ryudi84/skills/sovereign-code-review-helper)
+- [Publisher profile](https://clawhub.ai/user/ryudi84)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown, JSON, or plain text review reports; Markdown PR review templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write reports or templates to a requested output path; critical findings may produce a nonzero exit status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill.json, script header, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,61 @@
-## Description: <br>
-Fetches public X/Twitter data through Apify actors for tweet search, user profiles, specific tweets, replies, and local caching to reduce repeated API costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch X/Twitter data via Apify actors. Search tweets, get user profiles, retrieve specific tweets with replies. Features local caching to save API costs. Works from any IP via Apify's proxy infrastructure.
 
-## Publisher: <br>
-[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robbyczgw-cla](https://clawhub.ai/user/robbyczgw-cla)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve public X/Twitter search results, user timelines, and individual tweet threads through Apify-backed helper scripts. It is useful when an agent needs current public social media data in JSON or concise summary form while controlling API cost with local caching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: X/Twitter searches, usernames, and tweet URLs are sent to Apify and the selected actor. <br>
-Mitigation: Avoid sensitive lookups, use a dedicated Apify token where possible, and use --no-cache or --clear-cache for sensitive sessions. <br>
-Risk: Apify actor runs can consume account credits. <br>
-Mitigation: Monitor Apify credit usage, keep result limits appropriate, and use the built-in local cache for repeat queries. <br>
-Risk: The documented default actor and the code's default actor may differ. <br>
-Mitigation: Verify the selected actor before use and set APIFY_ACTOR_ID explicitly when actor behavior, pricing, or data fields matter. <br>
-Risk: Cached results may retain queried public social data on disk. <br>
-Mitigation: Use --no-cache for one-off sensitive lookups, clear cached results after use, and keep X_APIFY_CACHE_DIR inside the skill directory. <br>
+## Use Case:
 
+Developers and agents use this skill to search public X/Twitter posts, fetch user timelines, and retrieve tweet data through Apify actors with local caching to reduce repeat API usage.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/robbyczgw-cla/x-apify) <br>
-- [Apify Pricing](https://apify.com/pricing) <br>
-- [Apify API Token Setup](https://console.apify.com/account/integrations) <br>
-- [Twitter Scraper Actor](https://apify.com/quacker/twitter-scraper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; helper script output is JSON or human-readable summary text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the requests library, and APIFY_API_TOKEN; optional APIFY_ACTOR_ID and X_APIFY_CACHE_DIR configure actor selection and local cache behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence, package.json, and changelog; frontmatter still lists 1.0.5) <br>
+Risk: The skill can spend paid Apify credits and does not enforce a hard account-level spending cap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an Apify account with spending limits, keep --max-results conservative, and monitor Apify billing.
+
+Risk: URL mode can forward unintended X/Twitter URLs or query strings to Apify.
+
+Mitigation: Pass only x.com or twitter.com tweet URLs and avoid URLs that contain secrets or sensitive query parameters.
+
+Risk: Cached searches may store sensitive query context on disk.
+
+Mitigation: Use --no-cache for sensitive searches or set X_APIFY_CACHE_DIR to a private cache directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robbyczgw-cla/skills/x-apify)
+- [Tweet Scraper V2 actor](https://apify.com/apidojo/tweet-scraper)
+- [Apify pricing](https://apify.com/pricing)
+- [Apify API token settings](https://console.apify.com/account/integrations)
+- [Twitter advanced search query reference](https://github.com/igorbrigadir/twitter-advanced-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, markdown, shell commands, configuration, files]
+
+**Output Format:** [JSON by default, human-readable text summary on request, or saved output files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normalized tweet records include id, text, author, author_name, created_at, likes, retweets, replies, and url.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

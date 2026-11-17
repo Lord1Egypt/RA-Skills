@@ -1,0 +1,4 @@
+interface:
+  display_name: "Set up Open Agent Search"
+  short_description: "Connect local search tools to your coding agent"
+  default_prompt: "Use $open-agent-search-setup to connect Open Agent Search in this project."

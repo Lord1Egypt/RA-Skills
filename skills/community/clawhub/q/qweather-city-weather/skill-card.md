@@ -1,39 +1,53 @@
-## Description: <br>
-Query QWeather city codes and real-time weather with bundled executable scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query QWeather city codes and real-time weather with bundled executable scripts for resolving city names to QWeather location IDs or adcodes and fetching current conditions.
 
-## Publisher: <br>
-[RichLiao1112](https://clawhub.ai/user/RichLiao1112) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[richliao1112](https://clawhub.ai/user/richliao1112)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to resolve city names to QWeather location IDs or adcodes and retrieve current weather with a configured QWeather API host and API key. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled Python script for QWeather lookups. <br>
-Mitigation: Install and run it only after reviewing the bundled script and confirming it fits the target environment. <br>
-Risk: Using an untrusted QWeather API host or exposing the API key can leak credentials or query data. <br>
-Mitigation: Set QWEATHER_API_HOST only to an official or trusted QWeather endpoint, protect QWEATHER_API_KEY, and avoid sharing the key in logs or transcripts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QWeather HTTP API Contract](references/qweather-http-contract.md) <br>
+## Use Case:
 
+Developers and agents use this skill to resolve city names into QWeather identifiers and fetch current weather through the bundled Python script using a configured QWeather API host and key.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QWEATHER_API_HOST and QWEATHER_API_KEY; successful script calls return JSON with success: true.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The configured QWeather API key can be sent to any HTTPS host supplied as QWEATHER_API_HOST or --api-host.
+
+Mitigation: Use a trusted official QWeather API host and review the host value before running the skill.
+
+Risk: Passing the QWeather API key on the command line can expose it through shell history or logs.
+
+Mitigation: Prefer protected environment or secret-manager injection and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [QWeather HTTP API Contract](artifact/references/qweather-http-contract.md)
+- [ClawHub Skill Page](https://clawhub.ai/richliao1112/skills/qweather-city-weather)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results with Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns success or failure JSON payloads and requires QWEATHER_API_KEY plus QWEATHER_API_HOST.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

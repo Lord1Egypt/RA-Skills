@@ -1,41 +1,50 @@
-## Description: <br>
-Distill decision contexts, options, trade-offs, and outcomes into structured decision records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decision Distiller turns informal choices into structured decision records that capture context, options, criteria, rationale, trade-offs, outcomes, and lessons.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to document decisions, compare options, capture rationale and trade-offs, and review past decision records for patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can create local Markdown files containing decision details in the default data folder or in a directory set by DECISION_DATA_DIR. <br>
-Mitigation: Review the storage location before use and avoid recording sensitive personal or business decisions in an untrusted or shared directory. <br>
-Risk: Decision records, summaries, and pattern analyses can preserve incomplete assumptions or misleading rationale if the input conversation is incomplete. <br>
-Mitigation: Review generated records before relying on them and update outcomes and lessons as new information becomes available. <br>
+## Use Case:
 
+Developers, teams, and individual users use this skill to document decisions, compare options before deciding, and review past decisions for patterns and lessons.
 
-## Reference(s): <br>
-- [Decision Templates](references/decision-templates.md) <br>
-- [Decision Analysis Frameworks](references/analysis-frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown decision records, summaries, pattern analyses, status reports, and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local Markdown decision files in the default skill data folder or in DECISION_DATA_DIR when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Decision records may persist sensitive personal or business information as local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated records before keeping or sharing them, and avoid recording sensitive information unless local persistence is intended.
+
+## Reference(s):
+
+- [Decision Templates](references/decision-templates.md)
+- [Decision Analysis Frameworks](references/analysis-frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown decision records, summaries, pattern analyses, status reports, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or list local Markdown decision records when its helper scripts are used.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

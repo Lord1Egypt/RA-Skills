@@ -1,40 +1,53 @@
-## Description: <br>
-Helper for using the Docker CLI to build, run, stop, inspect, and manage containers and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helper for using the Docker CLI to build, run, stop, inspect, and manage containers and images. Use when the user wants to perform container-related tasks from the command line, such as building images, running services, cleaning up resources, or checking logs.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-Developers and operators use this skill for Docker CLI tasks such as building images, running containers, checking logs, inspecting resources, and cleaning up local Docker state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Docker cleanup commands and remove operations can delete containers, images, volumes, or other local resources. <br>
-Mitigation: Review proposed rm, rmi, prune, and volume commands before running them, and use destructive cleanup only when the intended resources are clear. <br>
-Risk: Host volume mounts can expose sensitive local files to a container. <br>
-Mitigation: Avoid mounting sensitive paths such as home directories, SSH keys, configuration folders, or the filesystem root; use read-only mounts with :ro when practical. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Docker CLI guidance for building images, running containers, inspecting Docker resources, viewing logs, troubleshooting common issues, and cleaning up resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlang-cn/docker-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed before execution, especially cleanup operations, detached containers, port mappings, and host volume mounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Docker run commands can mount host paths, expose ports, or run third-party images with local permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review image sources, volume mounts, port mappings, and runtime flags before approving execution.
+
+Risk: Cleanup commands such as docker rm, docker rmi, docker volume rm, and docker system prune can delete containers, images, volumes, networks, or cached build resources.
+
+Mitigation: Use read-only inspection commands first and require explicit confirmation before destructive cleanup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/docker-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Docker commands are user-reviewed suggestions before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

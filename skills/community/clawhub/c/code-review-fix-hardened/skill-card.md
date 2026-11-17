@@ -1,45 +1,63 @@
-## Description: <br>
-Automated code review with fix suggestions and in-place code repairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated code review with fix suggestions and in-place code repairs.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and engineers use this skill to scan code for bugs, security issues, style problems, and performance concerns, then optionally apply simple in-place fixes. It also supports an explain mode for learning-oriented review output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal review commands can trigger third-party SkillPay billing with a local user identifier and a hardcoded billing key. <br>
-Mitigation: Review or replace the billing key before installation, set an explicit SKILLPAY_USER_ID when billing is used, and install only where SkillPay billing is acceptable. <br>
-Risk: The --fix mode can modify the reviewed source file in place. <br>
-Mitigation: Run --fix only in a version-controlled worktree and inspect the resulting diff before committing or deploying changes. <br>
-Risk: The skill keeps local usage state in .code-review-fix-state.json. <br>
-Mitigation: Review the state file behavior and avoid sharing the file if local user identifiers or billing history should remain private. <br>
+## Use Case:
 
+Developers and engineers use this skill to review source files for bugs, security risks, performance issues, and style problems, then receive fix suggestions or in-place repairs when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/snazar-faberlens/code-review-fix-hardened) <br>
-- [Publisher profile](https://clawhub.ai/user/snazar-faberlens) <br>
-- [Faberlens safety evaluation](https://faberlens.ai) <br>
-- [SkillPay billing service](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Terminal-oriented text and Markdown-style review output, with optional file modifications when --fix is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write fixed code back to the reviewed file and stores local usage state in .code-review-fix-state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill includes monetized billing behavior that contacts skillpay.me, stores local usage state, and may send a username-derived identifier externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the billing integration and hardcoded billing key, require explicit charge confirmation, and disclose any external billing calls before use.
+
+Risk: The skill can write in-place code repairs when fix mode is used.
+
+Mitigation: Require explicit approval in the current conversation, show proposed changes before writing, and confine reviewed and modified paths to the project root.
+
+Risk: The artifact includes examples and guardrails related to transmitting code or review findings to external services.
+
+Mitigation: Keep review output local unless the user has approved an internal sharing channel, and avoid uploading sensitive source code to external LLMs or paste services.
+
+Risk: Reviewed files may contain secrets that could persist in logs or terminal history if echoed.
+
+Mitigation: Report secret presence and location without printing secret values, and recommend rotation when exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/code-review-fix-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/code-review-fix)
+- [SkillPay](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown, Code, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown or terminal text with issue lists, fix suggestions, and optional in-place file edits.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write code changes when fix mode is used; review proposed changes and billing behavior before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

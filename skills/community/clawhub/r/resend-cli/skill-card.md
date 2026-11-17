@@ -1,42 +1,58 @@
-## Description: <br>
-Send and manage emails via the Resend CLI, including emails, domains, contacts, segments, broadcasts, templates, topics, webhooks, and API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and manage emails via the Resend CLI, including domains, contacts, segments, broadcasts, templates, topics, webhooks, and API keys.
 
-## Publisher: <br>
-[maciejlis](https://clawhub.ai/user/maciejlis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maciejlis](https://clawhub.ai/user/maciejlis)
 
-## Use Case: <br>
-Developers and operators use this skill to operate the Resend CLI for email sending, account resource management, webhook setup, and automation with structured JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send emails and change Resend account resources when credentials are available. <br>
-Mitigation: Use the least-privileged Resend API key available and require explicit confirmation before sending, broadcasting, deleting, changing API keys, changing webhooks, or modifying scheduled emails. <br>
-Risk: Automation may send messages to unintended recipients or audiences. <br>
-Mitigation: Verify recipients, segments, broadcasts, and scheduled-send parameters before execution. <br>
+## Use Case:
 
+Developers and operators use this skill to run Resend CLI workflows for sending email, managing sender domains, maintaining audiences, handling templates and broadcasts, configuring webhooks, and administering API keys.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maciejlis/resend-cli) <br>
-- [Resend CLI repository](https://github.com/resend/resend-cli) <br>
-- [Resend](https://resend.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends --json or --quiet for non-interactive agent usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill enables an agent to send or forward email from a Resend account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recipients and message content before sends or forwards, and use JSON or quiet output for non-interactive runs.
+
+Risk: A broad API key could allow account-management actions beyond routine sending.
+
+Mitigation: Prefer a domain-scoped sending_access key for automation and avoid full-access keys unless the workflow requires them.
+
+Risk: Delete commands using --yes can remove email resources or access immediately.
+
+Mitigation: Treat every --yes delete as deliberate, review the target identifier, and confirm the operational impact before execution.
+
+## Reference(s):
+
+- [Resend CLI Repository](https://github.com/resend/resend-cli)
+- [Resend](https://resend.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts agents to use JSON or quiet CLI output for non-interactive execution.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

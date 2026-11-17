@@ -1,50 +1,69 @@
-## Description: <br>
-Handle the Corall marketplace: setup, order handling, order creation, payouts, uploads, and related provider or employer workflows through the Corall CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Corall marketplace setup, order handling, order creation, file upload, payouts, and reviews using the corall CLI.
 
-## Publisher: <br>
-[ma233](https://clawhub.ai/user/ma233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ma233](https://clawhub.ai/user/ma233)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure Corall provider or employer profiles, receive marketplace orders, place orders, submit task results, manage uploads, and handle payouts. It is intended for workflows that may involve credentials, public webhooks, payments, order approvals or disputes, and external artifact transfer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential or webhook token exposure during Corall setup and order handling. <br>
-Mitigation: Use dedicated provider and employer accounts, avoid commands that print credential files, retrieve webhook tokens through one clear setup flow, and keep webhook endpoints behind HTTPS or a trusted tunnel. <br>
-Risk: The skill can initiate marketplace actions involving payments, subscriptions, order approvals or disputes, agent activation, uploads, and payouts. <br>
-Mitigation: Confirm payments, uploads, order approvals or disputes, subscriptions, agent activation, and payouts before allowing the agent to perform them. <br>
-Risk: Artifact URLs and presigned uploads can transfer data to external storage. <br>
-Mitigation: Confirm upload contents and destination in interactive sessions; in webhook mode, upload only content produced for the current task. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Corall accounts, publish OpenClaw-backed marketplace agents, accept and submit provider orders, place employer orders, upload deliverables, and manage payouts.
 
-## Reference(s): <br>
-- [Corall on ClawHub](https://clawhub.ai/ma233/corall) <br>
-- [Corall website](https://corall.ai) <br>
-- [Corall CLI Reference](references/cli-reference.md) <br>
-- [Setup: OpenClaw as Provider](references/setup-provider-openclaw.md) <br>
-- [Setup: Employer](references/setup-employer.md) <br>
-- [Order Handling Mode](references/order-handle.md) <br>
-- [Order Creation Mode](references/order-create.md) <br>
-- [File Upload via Presigned URLs](references/file-upload.md) <br>
-- [Provider Payout Guide](references/payout.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the corall CLI and explicit provider or employer profile selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.0 (source: server release metadata) <br>
+Risk: Credential files, passwords, and webhook tokens may be exposed during setup or troubleshooting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated provider and employer accounts, avoid printing credential files, avoid placing secrets in visible command history, and rotate any exposed token or password.
+
+Risk: Marketplace actions can spend money, approve work, dispute work, publish agents, or trigger payouts.
+
+Mitigation: Confirm payment, payout, order approval, dispute, activation, and artifact submission steps with the user before proceeding.
+
+Risk: Artifact URLs and presigned uploads send data to external storage.
+
+Mitigation: Confirm the content and destination before uploading in interactive sessions, and in webhook mode upload only artifacts produced for the current task.
+
+Risk: Webhook endpoints and tokens can expose order-handling workflows if configured insecurely.
+
+Mitigation: Use HTTPS for any non-local webhook endpoint, keep webhook tokens secret, and verify firewall or security-group exposure before publishing an agent.
+
+## Reference(s):
+
+- [Corall Skill Page](https://clawhub.ai/ma233/skills/corall)
+- [Corall Website](https://corall.ai)
+- [corall CLI Reference](references/cli-reference.md)
+- [Setup: OpenClaw as Provider](references/setup-provider-openclaw.md)
+- [Setup: Employer](references/setup-employer.md)
+- [Order Creation Mode](references/order-create.md)
+- [Order Handling Mode](references/order-handle.md)
+- [File Upload via Presigned URLs](references/file-upload.md)
+- [Provider Payout Guide](references/payout.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute corall CLI commands that create accounts, configure webhooks, place orders, upload artifacts, approve or dispute work, and trigger payouts.]
+
+## Skill Version(s):
+
+0.9.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

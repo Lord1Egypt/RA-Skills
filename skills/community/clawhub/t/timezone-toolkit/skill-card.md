@@ -1,41 +1,49 @@
-## Description: <br>
-Convert times between timezones, show world clocks, find meeting overlap across zones, and look up UTC offsets and DST status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Timezone Toolkit converts times between timezones, shows world clocks, finds meeting overlap across zones, and looks up UTC offsets and DST status using Python's built-in zoneinfo.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers, distributed teams, and agents use this skill to convert times, compare current times across locations, find overlapping meeting hours, and inspect UTC offsets or DST status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an executable Python CLI when invoked. <br>
-Mitigation: Review proposed commands before running them and execute only expected timezone utility commands. <br>
-Risk: Timezone aliases such as EST or PST can be ambiguous around daylight saving transitions. <br>
-Mitigation: Prefer full IANA timezone names for time-sensitive scheduling and verify converted times when DST changes matter. <br>
+## Use Case:
 
+Developers and agents use this skill to run local timezone conversions, compare world clocks, plan meetings across zones, and inspect UTC offsets or DST status without external dependencies.
 
-## Reference(s): <br>
-- [Timezone Toolkit on ClawHub](https://clawhub.ai/Johnnywang2001/timezone-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/Johnnywang2001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Self-contained Python 3.9+ timezone calculations using the standard zoneinfo database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Timezone abbreviations such as EST or PST are mapped to regional IANA zones, so date-specific daylight saving behavior can affect conversion results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use full IANA timezone names and include explicit dates for time-sensitive conversions.
+
+## Reference(s):
+
+- [Timezone Toolkit on ClawHub](https://clawhub.ai/johnnywang2001/skills/timezone-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local CLI output only; no network, credential, persistence, or destructive behavior identified in server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

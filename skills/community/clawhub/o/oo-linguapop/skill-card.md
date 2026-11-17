@@ -1,45 +1,60 @@
-## Description: <br>
-Linguapop (linguapop.eu). Use this skill for reading, creating, and updating Linguapop data through an OOMOL-connected account instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linguapop (linguapop.eu). Use this skill for ANY Linguapop request — reading, creating, and updating data. Whenever a task involves Linguapop, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and business users use this skill to inspect Linguapop connector schemas, list available placement-test languages, and create placement-test invitations through an OOMOL-connected Linguapop account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OOMOL-connected Linguapop account and may access account-backed data or credentials handled by OOMOL. <br>
-Mitigation: Install and use it only when the user intends to let the agent operate the connected Linguapop account. <br>
-Risk: The send_invitation action changes Linguapop state by creating placement-test invitations and may send email or configure callback and return URLs. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: The optional first-time setup includes pipe-to-shell CLI install commands. <br>
-Mitigation: Avoid running the installer unless the user trusts OOMOL's CLI distribution path or has verified it through official install guidance. <br>
+## Use Case:
 
+External users and developers can use the skill to look up available Linguapop placement-test languages and create candidate invitations. It can also send invitation emails and configure kiosk codes or callback and return URLs.
 
-## Reference(s): <br>
-- [ClawHub Linguapop skill page](https://clawhub.ai/oomol/oo-linguapop) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Linguapop homepage](https://www.linguapop.eu/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses from connector actions are JSON objects with data and meta execution identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: First-time setup may execute downloaded CLI code, and the installer has not been inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately; prefer a pinned release with verified integrity.
+
+Risk: OOMOL mediates Linguapop requests and connected credentials.
+
+Mitigation: Use the connected account only for intended Linguapop tasks and review the requested action details before running it.
+
+Risk: Invitations can email candidates and can configure callback or return destinations.
+
+Mitigation: Confirm candidate details, email delivery, and callback destinations before sending an invitation.
+
+## Reference(s):
+
+- [Linguapop](https://www.linguapop.eu/)
+- [Linguapop API documentation](https://docs.linguapop.eu/api/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-linguapop)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Connector action results as JSON, with shell commands and JSON payloads for actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may read available languages or create placement-test invitations, optionally sending email or setting kiosk and callback details.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Daily inspirational quotes from ZenQuotes.io. Get daily wisdom, random quotes, quote images. Supports automated daily delivery via cron scheduling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily inspirational quotes from ZenQuotes.io. Get daily wisdom, random quotes, quote images. Supports automated daily delivery via cron scheduling.
 
-## Publisher: <br>
-[chrisluo5311](https://clawhub.ai/user/chrisluo5311) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrisluo5311](https://clawhub.ai/user/chrisluo5311)
 
-## Use Case: <br>
-OpenClaw users and agents use ZenQuote to fetch daily, random, or multiple inspirational quotes and quote images from ZenQuotes.io. Users can also configure optional recurring Telegram delivery for daily quote messages or images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running setup enables recurring daily Telegram delivery. <br>
-Mitigation: Run setup only when recurring delivery is desired, verify the chat ID and account ID before use, and remove the generated ~/.openclaw/cron/zenquote-daily-*.json file to stop delivery. <br>
-Risk: The skill depends on an external quote API and its documented rate limits. <br>
-Mitigation: Expect network/API availability constraints and keep requests within the documented 5 requests per 30 seconds limit. <br>
+## Use Case:
 
+External users and developers use this skill to fetch daily, random, multiple, or image-based inspirational quotes from ZenQuotes.io and optionally configure daily delivery.
 
-## Reference(s): <br>
-- [ClawHub ZenQuote Skill](https://clawhub.ai/chrisluo5311/zenquote) <br>
-- [ZenQuotes API Documentation](https://docs.zenquotes.io/) <br>
-- [ZenQuotes API](https://zenquotes.io/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown text for quotes, JSON for image and setup responses, and cron configuration for scheduled delivery.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the ZenQuotes.io free API with attribution in outputs; documented API limits are 5 requests per 30 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server-resolved release metadata) <br>
+Risk: Daily delivery setup persists chat_id and account_id values into an automated agent job without identifier validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only with trusted identifiers, inspect ~/.openclaw/cron after setup, and prefer validation and JSON-safe escaping before deployment.
+
+Risk: Quote image mode writes to a fixed temporary path.
+
+Mitigation: Use a private temporary image path and remove generated image files after delivery.
+
+## Reference(s):
+
+- [ZenQuote skill page](https://clawhub.ai/chrisluo5311/skills/zenquote)
+- [ZenQuotes API documentation](https://docs.zenquotes.io/)
+- [ZenQuotes website](https://zenquotes.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown text, JSON status objects, and local cron configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quote image mode returns a local image path and caption; setup mode writes a daily delivery configuration.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

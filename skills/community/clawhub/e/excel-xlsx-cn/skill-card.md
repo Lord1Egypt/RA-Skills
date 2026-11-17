@@ -1,43 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[linbo405](https://clawhub.ai/user/linbo405) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linbo405](https://clawhub.ai/user/linbo405)
 
-## Use Case: <br>
-Developers, analysts, and spreadsheet-focused agents use this skill when they need to create, inspect, or modify Excel workbooks while preserving formulas, dates, data types, formatting, recalculation behavior, and workbook structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Important spreadsheets can be damaged by incorrect edits, stale formula values, or unintended workbook changes. <br>
-Mitigation: Use copies of important workbooks, preserve workbook structure, and review formulas, recalculation state, and formatting before delivery. <br>
-Risk: Sensitive workbook contents may be exposed if shared unnecessarily during agent workflows. <br>
-Mitigation: Avoid sharing sensitive spreadsheet contents unless required for the task, and limit copied data to the minimum needed. <br>
-Risk: Macro-enabled Excel files can carry executable behavior outside the agent environment. <br>
-Mitigation: Treat .xlsm files as potentially risky when opened elsewhere and review macros before enabling or distributing them. <br>
+## Use Case:
 
+Developers and spreadsheet-focused agents use this skill to create, inspect, and safely update Excel, XLSX, XLSM, XLS, CSV, and TSV files when formulas, formatting, dates, data types, workbook structure, or compatibility matter.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linbo405/excel-xlsx-cn) <br>
-- [Skill homepage](https://clawic.com/skills/excel-xlsx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with optional code blocks, shell commands, and spreadsheet file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No required binaries; OS metadata lists Linux, macOS, and Windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Spreadsheet edits can unintentionally affect formulas, hidden sheets, formatting, or important workbook structure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep backups and review formulas, hidden sheets, and formatting after edits.
+
+Risk: Cached formula values or copied formulas can be stale or incorrect after workbook changes.
+
+Mitigation: Recalculate and review representative formulas before relying on the final workbook.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linbo405/skills/excel-xlsx-cn)
+- [Skill Homepage](https://clawic.com/skills/excel-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Text or Markdown with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation or modification of spreadsheet files while preserving formulas, formatting, workbook structure, and data types.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Use when implementing WhatsApp messaging via Meta Cloud API, or diagnosing failures like message not delivered, template rejected, webhook issues, phone not registered, token errors, rate limiting, 24-hour window violations, quality rating drops, or setup mistakes on the WhatsApp Business API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when implementing WhatsApp messaging via Meta Cloud API, or diagnosing failures like message not delivered, template rejected, webhook issues, phone not registered, token errors, rate limiting, 24-hour window violations, quality rating drops, or setup mistakes on the WhatsApp Business API.
 
-## Publisher: <br>
-[RomanBaz](https://clawhub.ai/user/RomanBaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[romanbaz](https://clawhub.ai/user/romanbaz)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement WhatsApp Cloud API messaging and troubleshoot setup, delivery, template, webhook, token, rate limit, and 24-hour conversation window issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A helper for checking WhatsApp registration can send a real message while presenting itself as a validation check. <br>
-Mitigation: Do not use probe-by-message validation; use the documented contacts lookup or verified opt-in records before sending. <br>
-Risk: WhatsApp Cloud API integrations handle access tokens, phone numbers, webhook payloads, and message contents. <br>
-Mitigation: Store Meta System User tokens in a secret manager, avoid logging message contents or full phone numbers, secure webhook verification, and message only opted-in recipients. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RomanBaz/whatsapp-cloud-api-reference) <br>
-- [Meta Graph API versions endpoint](https://graph.facebook.com/versions) <br>
+## Use Case:
 
+Developers and engineers use this skill as a practical reference for setting up Meta WhatsApp Cloud API messaging, sending template and media messages, configuring webhooks, and troubleshooting common delivery, token, rate-limit, and account-health failures.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes WhatsApp Cloud API request examples, webhook patterns, troubleshooting checklists, and operational constraints; the skill itself does not generate files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The reference may encourage use of overpowered or long-lived WhatsApp API credentials.
+
+Mitigation: Use scoped non-admin credentials where possible, store secrets outside prompts and shell history, rotate tokens, and review credential permissions before production use.
+
+Risk: Copy-paste examples may expose real phone numbers, message bodies, or tokens in logs, URLs, or command history.
+
+Mitigation: Redact message contents and recipient identifiers from logs, avoid placing tokens in URLs or copied shell commands, and use a secrets manager for local and deployed environments.
+
+Risk: Recipient validation or test sends can accidentally message real users or contact people without consent.
+
+Mitigation: Validate recipients through a non-messaging path where possible, require documented opt-in before sending, and test against approved sandbox or consenting numbers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romanbaz/skills/whatsapp-cloud-api-reference)
+- [Publisher profile](https://clawhub.ai/user/romanbaz)
+- [Meta Graph API versions endpoint](https://graph.facebook.com/versions)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup checklists, API payload examples, webhook patterns, troubleshooting tables, and operational constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

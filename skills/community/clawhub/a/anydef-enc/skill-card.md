@@ -1,44 +1,55 @@
-## Description: <br>
-Local-only agent data encryption toolkit with an MK->KEK->DEK hierarchy for browser-based OpenClaw data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anydef Enc provides local-only agent data encryption using an MK-to-KEK-to-DEK hierarchy.
 
-## Publisher: <br>
-[anydefai](https://clawhub.ai/user/anydefai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anydefai](https://clawhub.ai/user/anydefai)
 
-## Use Case: <br>
-Developers and OpenClaw agent operators use this skill to encrypt local agent memory, history, assets, and other scoped data with passphrase-derived keys while keeping encryption operations local. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the advertised key-rotation helper does not actually rotate keys. <br>
-Mitigation: Do not rely on the rotation helper for incident response or passphrase compromise until key rotation is implemented and tested. <br>
-Risk: Encrypted data is unrecoverable if the passphrase is lost. <br>
-Mitigation: Maintain passphrase recovery procedures and backups before using the skill for important data. <br>
-Risk: Storage confidentiality depends on how the OpenClaw environment implements window.storage. <br>
-Mitigation: Confirm whether storage is local, synced, or shared before storing sensitive encrypted data. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local browser-based encryption for selected agent data such as memory, history, assets, and audit data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anydefai/anydef-enc) <br>
-- [Local Encryption Architecture](references/full-implementation.md) <br>
-- [Storage Keys Dictionary](references/storage-keys.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance, Text] <br>
-**Output Format:** [JavaScript module APIs and encrypted string payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses browser SubtleCrypto and window.storage; no required credentials are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence and metadata.json) <br>
+Risk: The security evidence reports extractable key material held in memory without a clear lock mechanism.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for strong same-page script compromise protection, clear in-memory key state on lock, logout, or session expiry, and prefer non-extractable operational keys where feasible.
+
+Risk: The skill is zero-knowledge and does not provide password reset or passphrase recovery.
+
+Mitigation: Use an operational process for passphrase retention and communicate that forgotten passphrases make encrypted data inaccessible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anydefai/skills/anydef-enc)
+- [Local Encryption Architecture](references/full-implementation.md)
+- [Storage Keys Dictionary](references/storage-keys.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [JavaScript modules and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser Web Crypto and window.storage; no external credentials are required.]
+
+## Skill Version(s):
+
+2.1.1 (source: release evidence and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

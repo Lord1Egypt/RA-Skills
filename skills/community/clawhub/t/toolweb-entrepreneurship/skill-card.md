@@ -1,40 +1,56 @@
-## Description: <br>
-Generate personalized entrepreneurship career roadmaps based on user assessment data, skills, experience, and professional goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized entrepreneurship career roadmaps based on user assessment data, skills, experience, and professional goals.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, career coaches, educational institutions, training programs, and accelerators use this skill to request structured entrepreneurship roadmaps, specializations, and learning paths from the provider API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends entrepreneurship assessment details, including experience, skills, goals, session IDs, and optional user IDs, to an external provider API. <br>
-Mitigation: Omit userId when possible, use pseudonymous session identifiers, avoid secrets and highly sensitive personal information, and confirm the provider's privacy and retention terms before use with real users. <br>
+## Use Case:
 
+External users, developers, career coaches, educators, training programs, and accelerators use this skill to call an external API that generates personalized entrepreneurship roadmaps and retrieves specialization and learning-path information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-entrepreneurship) <br>
-- [Entrepreneurship API route](https://api.mkkpro.com/career/entrepreneurship) <br>
-- [Entrepreneurship API docs](https://api.mkkpro.com:8191/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API calls, guidance] <br>
-**Output Format:** [JSON responses containing roadmap phases, milestones, skill gaps, specializations, and learning paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on user-provided assessment data and the provider API availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and openapi.json info.version) <br>
+Risk: Requests can include career assessment details, skills, experience, goals, optional user identifiers, and business objectives sent to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Omit userId when possible and avoid sending sensitive personal, employer-confidential, financial, or proprietary business information in free-form assessment fields.
+
+Risk: Roadmap output may be unsuitable if the assessment data is incomplete, inaccurate, or too sensitive to share externally.
+
+Mitigation: Review generated roadmap guidance before acting on it, and limit submitted assessment data to information needed for the entrepreneurship planning task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-entrepreneurship)
+- [OpenAPI Specification](artifact/openapi.json)
+- [API Docs](https://api.mkkpro.com:8191/docs)
+- [Kong Route](https://api.mkkpro.com/career/entrepreneurship)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, JSON, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include personalized roadmap phases, milestones, skill gaps, specialization options, and recommended learning resources returned by the external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

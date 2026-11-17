@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7ax5z74zbmyeya8hjxk5dmdd83ma9w",
-  "slug": "prd-to-prototype-yinin",
+  "id": 378623320145994,
   "version": "1.0.0",
-  "publishedAt": 1774510673140
+  "name": "prd-to-prototype",
+  "updated_at": 1773990754313,
+  "platform": "minimax"
 }

@@ -1,43 +1,59 @@
-## Description: <br>
-Activates Sport Mode to temporarily increase OpenClaw heartbeat frequency, write a monitoring task to HEARTBEAT.md, and reset cleanup when finished. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activate "Sport Mode" for high-frequency monitoring (default 3m heartbeat) and auto-cleanup. Use when supervising intense tasks (Codex, builds, migrations).
 
-## Publisher: <br>
-[l1veIn](https://clawhub.ai/user/l1veIn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[l1vein](https://clawhub.ai/user/l1vein)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to supervise long-running builds, coding agents, migrations, or other tasks that need short-interval heartbeat checks and a clear auto-off condition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: High-frequency heartbeat settings can keep OpenClaw checking a task more often than intended. <br>
-Mitigation: Include a clear stop condition in the task and run sport-mode off when monitoring is finished. <br>
-Risk: Sport Mode writes to HEARTBEAT.md and clears it when turned off. <br>
-Mitigation: Back up or review any existing HEARTBEAT.md before activating the skill. <br>
-Risk: Task text can influence active agent behavior. <br>
-Mitigation: Do not put secrets or untrusted instructions in the monitoring task. <br>
+## Use Case:
 
+Developers and agent operators use Sport Mode to temporarily increase OpenClaw heartbeat frequency for monitoring long-running builds, coding-agent work, deployments, or turn-based workflows, then return heartbeat behavior to the default interval when complete.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/l1veIn/sport-mode) <br>
-- [Publisher Profile](https://clawhub.ai/user/l1veIn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and generated HEARTBEAT.md content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a task for on mode; accepts an optional heartbeat interval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill can persistently increase heartbeat frequency and repeatedly execute instructions from HEARTBEAT.md without a built-in stop limit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit, narrow tasks with a termination condition, and include a command or instruction to run sport-mode off when the task completes.
+
+Risk: Activating the skill overwrites HEARTBEAT.md, which can discard existing heartbeat instructions.
+
+Mitigation: Back up or review any existing HEARTBEAT.md content before enabling Sport Mode.
+
+Risk: Broad autonomous tasks can authorize actions such as commits or deployments if the user writes them into the heartbeat task.
+
+Mitigation: Avoid tasks that authorize commits, deployments, or other high-impact actions unless that autonomy is intended and bounded.
+
+## Reference(s):
+
+- [ClawHub Sport Mode skill page](https://clawhub.ai/l1vein/skills/sport-mode)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and HEARTBEAT.md task content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw heartbeat configuration and write or clear HEARTBEAT.md during use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

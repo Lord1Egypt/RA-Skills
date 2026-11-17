@@ -1,40 +1,53 @@
-## Description: <br>
-Deploy HTML content to EdgeOne Pages, return the public URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy HTML content to EdgeOne Pages, return the public URL.
 
-## Publisher: <br>
-[mcp](https://clawhub.ai/user/mcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcp](https://clawhub.ai/user/mcp)
 
-## Use Case: <br>
-Developers and agents use this skill to publish provided HTML or text to EdgeOne Pages and receive a public URL for the deployed content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted HTML or text is deployed to a public URL. <br>
-Mitigation: Deploy only content intended for public access, and exclude secrets, tokens, proprietary code, private notes, and internal files. <br>
-Risk: The skill relies on mcporter and an EdgeOne deployment endpoint to publish content. <br>
-Mitigation: Use it only in environments where mcporter and the EdgeOne endpoint are approved, and review the content before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to publish supplied HTML or text content to EdgeOne Pages and receive a public URL for access.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcp/edgeone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with shell commands and returned URL text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Publishes the submitted HTML or text as publicly accessible content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill publishes supplied content to a public URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not deploy secrets, credentials, private documents, or internal data through this skill.
+
+Risk: The install path relies on the current npm release of mcporter rather than a pinned package version.
+
+Mitigation: Review the npm package before use and prefer pinning a trusted version in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mcp/skills/edgeone)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment commands and guidance that result in a public URL for submitted content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

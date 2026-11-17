@@ -1,40 +1,49 @@
-## Description: <br>
-Analyze staged changes and generate semantic commit messages automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze staged changes and generate semantic commit messages automatically.
 
-## Publisher: <br>
-[afine907](https://clawhub.ai/user/afine907) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afine907](https://clawhub.ai/user/afine907)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect staged Git changes, draft Conventional Commit messages, and optionally create or amend commits after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads staged diffs, which may contain secrets or sensitive implementation details. <br>
-Mitigation: Review staged files for sensitive data before invoking the skill, and inspect the proposed message before committing. <br>
-Risk: Commit and amend commands change repository history when executed. <br>
-Mitigation: Use --dry-run to preview output and use --amend only when intentionally modifying the previous commit, especially on shared branches. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect staged Git changes, propose conventional commit messages, and optionally create or amend commits from reviewed staged changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afine907/ai-commit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with commit message text and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose git commit or amend commands; dry-run mode previews the message without committing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can create a real Git commit or amend the latest commit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review staged changes with git diff --staged and use /commit --dry-run when only a proposed message is desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afine907/skills/ai-commit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and conventional commit message text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or amend Git commits when the user chooses an executing command rather than a dry run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

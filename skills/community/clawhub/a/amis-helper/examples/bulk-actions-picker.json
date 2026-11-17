@@ -1,0 +1,61 @@
+{
+  "type": "button",
+  "label": "Bind Items",
+  "level": "primary",
+  "icon": "fa fa-plus",
+  "actionType": "dialog",
+  "dialog": {
+    "title": "Select Items - Bind to Group ${groupCode}",
+    "size": "lg",
+    "actions": [],
+    "body": {
+      "type": "crud",
+      "loadDataOnce": true,
+      "keepItemSelectionOnPageChange": true,
+      "selectable": true,
+      "api": {
+        "method": "get",
+        "url": "/XXX/XXXX/item/list",
+        "adaptor": "return { status: payload.code === 200 ? 0 : payload.code, data: { items: payload.data } };"
+      },
+      "syncLocation": false,
+      "defaultParams": { "perPage": 20, "page": 1 },
+      "perPageAvailable": [20, 50, 100],
+      "filter": {
+        "title": "",
+        "body": [
+          { "type": "input-text", "name": "keyword", "label": "Keyword", "placeholder": "Code / Name" }
+        ]
+      },
+      "bulkActions": [
+        {
+          "type": "button",
+          "label": "Add Selected (${selectedItems.length})",
+          "level": "primary",
+          "actionType": "ajax",
+          "disabledOn": "!${selectedItems.length}",
+          "api": {
+            "method": "put",
+            "url": "/XXX/XXXX/group/bind-item",
+            "data": {
+              "itemCodeList": "${selectedItems|pick:code}",
+              "groupCode": "${groupCode}",
+              "groupId": "${groupId}"
+            }
+          },
+          "close": true,
+          "reload": "mainCrud"
+        }
+      ],
+      "columns": [
+        { "name": "code", "label": "Code" },
+        { "name": "name", "label": "Name" },
+        { "name": "type", "label": "Type" }
+      ],
+      "footerToolbar": [
+        "switch-per-page",
+        "pagination"
+      ]
+    }
+  }
+}

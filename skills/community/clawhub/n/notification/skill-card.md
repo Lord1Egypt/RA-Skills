@@ -1,41 +1,55 @@
-## Description: <br>
-Manage terminal notifications with scheduling, filtering, and delivery tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A terminal utility for recording notification-related command entries locally and reviewing recent activity, status, search results, and exports.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and terminal users can use this skill for local command-line notification-style logging, search, status checks, and exports. Review it as a local logging utility rather than a functional notification delivery system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is presented as a notification manager, but the authoritative security summary says it mainly stores arbitrary command text in local log files rather than sending or tracking notifications. <br>
-Mitigation: Treat it as a local logging utility and verify any actual notification delivery or alerting requirements outside this skill. <br>
-Risk: Command text may be stored under ~/.local/share/notification and may be exported later. <br>
-Mitigation: Do not pass secrets, private messages, operational alerts, tokens, or sensitive identifiers to its commands unless local storage and later export are acceptable. <br>
+## Use Case:
 
+Developers and terminal users can use this skill to keep local plaintext records of notification-related commands and inspect or export those records. It should not be relied on for real alert delivery, scheduling, filtering, or delivery confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/notification) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create, query, search, and export local log files under ~/.local/share/notification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: The release is flagged as suspicious because the shipped script mainly stores arbitrary command inputs in local log files and does not implement the advertised scheduling, alert delivery, filtering, or delivery tracking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the artifact before installation and treat it only as a local plaintext logging utility.
+
+Risk: Notification content entered through the CLI may be stored in plaintext under ~/.local/share/notification.
+
+Mitigation: Avoid entering secrets or sensitive notification content and inspect or remove ~/.local/share/notification after testing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/notification)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain3)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with local JSON, CSV, or plain text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local plaintext logs under ~/.local/share/notification.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

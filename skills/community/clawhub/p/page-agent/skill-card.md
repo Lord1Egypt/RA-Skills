@@ -1,41 +1,58 @@
-## Description: <br>
-Enhances browser automation by injecting PageAgent's page-controller into controlled web pages for DOM extraction, indexed element detection, clicking, typing, scrolling, form filling, and page-structure inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PageAgent Browser Enhancement injects PageAgent's page-controller into browser pages so agents can extract DOM state and interact with indexed elements for clicking, typing, scrolling, form filling, and page-structure reads.
 
-## Publisher: <br>
-[DongDongBear](https://clawhub.ai/user/DongDongBear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dongdongbear](https://clawhub.ai/user/dongdongbear)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect and operate controlled browser pages with finer DOM-level actions than basic browser controls. It is suited for page testing, form interaction, UI iteration, and reading simplified page structure during browser-driven workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unrestricted JavaScript execution can read or change state inside any controlled web page. <br>
-Mitigation: Use an isolated OpenClaw browser profile and avoid banking, admin, production, email, or other sensitive authenticated sites unless that level of access is explicitly intended. <br>
-Risk: CDP injection gives the agent powerful control over the selected browser target. <br>
-Mitigation: Confirm the intended target page before injection, review generated actions before execution, and re-read page state after actions that change the DOM. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect and operate web pages with precise DOM-based actions, especially when basic browser actions are insufficient for frontend testing or iterative design-to-code workflows.
 
-## Reference(s): <br>
-- [PageAgent Browser Enhancement on ClawHub](https://clawhub.ai/DongDongBear/page-agent) <br>
-- [alibaba/page-agent](https://github.com/alibaba/page-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JavaScript snippets; runtime page state may be returned as text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a controlled browser target and reinjection after full page reloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill injects powerful JavaScript into selected webpages and can execute page scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted target pages and avoid banking, admin, production, email, or other sensitive authenticated sites unless the browser profile is isolated.
+
+Risk: The alternate shell wrapper accepts command arguments and the security guidance recommends avoiding it with untrusted input.
+
+Mitigation: Prefer the documented inject-cdp.mjs path and pass only trusted target identifiers and CDP endpoints.
+
+Risk: Unpinned local server dependencies can change behavior between installs.
+
+Mitigation: Pin or preinstall local server dependencies instead of relying on unpinned npx resolution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongdongbear/skills/page-agent)
+- [Alibaba PageAgent](https://github.com/alibaba/page-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, guidance]
+
+**Output Format:** [Markdown with shell commands and JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces DOM-state text and browser-operation snippets for targeted pages after injection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

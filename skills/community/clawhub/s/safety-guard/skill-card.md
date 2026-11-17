@@ -1,43 +1,55 @@
-## Description: <br>
-OpenClaw Safety Guard helps agents use the safety-guard CLI to scan URLs, local files, and YouTube links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the safety-guard CLI to scan URLs, local files, and YouTube links with configurable AI providers.
 
-## Publisher: <br>
-[John-niu-07](https://clawhub.ai/user/John-niu-07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[john-niu-07](https://clawhub.ai/user/john-niu-07)
 
-## Use Case: <br>
-Developers and external users can use this skill to run safety checks on web pages, local PDFs, images, audio files, and YouTube links with a configurable model provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact metadata slug does not match the server-resolved release slug. <br>
-Mitigation: Verify the ClawHub release, publisher handle, and Homebrew formula before installing or recommending the package. <br>
-Risk: URLs, files, audio, images, or YouTube content may be sent to configured third-party model or extraction services. <br>
-Mitigation: Use limited-scope API keys and avoid confidential files or private URLs unless third-party processing is acceptable. <br>
-Risk: Optional Firecrawl and Apify fallback services can expand the set of third-party processors involved. <br>
-Mitigation: Disable Firecrawl or Apify fallback modes when they are not required. <br>
+## Use Case:
 
+Developers and external users use this skill to invoke the safety-guard CLI from an agent for scanning URLs, local documents, media files, and YouTube links with configurable model providers and optional structured output.
 
-## Reference(s): <br>
-- [Safety Guard homepage](https://safety-guard.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/John-niu-07/safety-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on configured provider API keys and optional Firecrawl or Apify services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Use may send selected URLs, files, and YouTube content to configured AI providers or optional extraction services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private, regulated, or confidential material unless the selected providers, services, and tokens are approved for that data.
+
+Risk: Installation depends on a third-party Homebrew tap for the safety-guard binary.
+
+Mitigation: Install only when the safety-guard Homebrew tap and publisher are trusted.
+
+## Reference(s):
+
+- [Safety Guard homepage](https://safety-guard.sh)
+- [OpenClaw Safety Guard on ClawHub](https://clawhub.ai/john-niu-07/skills/safety-guard)
+- [john-niu-07 publisher profile](https://clawhub.ai/user/john-niu-07)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash and JSON examples; CLI output may be plain text or JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports configurable output length, token limits, extraction-only mode, and optional fallback extraction services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Enforces UX quality standards on visual and frontend work by requiring state coverage before design review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core pack for visual work that enforces UX quality standards on screens, flows, forms, and dashboards so frontend states are not omitted.
 
-## Publisher: <br>
-[aa-on-ai](https://clawhub.ai/user/aa-on-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aa-on-ai](https://clawhub.ai/user/aa-on-ai)
 
-## Use Case: <br>
-Developers and design reviewers use this skill to check frontend screens, flows, forms, and dashboards for missing data, interaction, form, responsive, accessibility, and edge-case states before shipping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make UX review stricter and surface missing states that delay frontend changes. <br>
-Mitigation: Use the documented quick pass for small component work and the full pass for pages, flows, and shipping features. <br>
+## Use Case:
 
+Developers and design reviewers use this skill to check frontend work for data, interaction, form, responsive, accessibility, and edge-case states before design review or release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aa-on-ai/ux-baseline-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown checklist guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, sensitive access, persistence, or data sharing shown in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may cause agents to apply a strict UX checklist across broad visual tasks, which can add work when a lighter review is intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower activation wording or explicitly scope the check when only a quick UX pass is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aa-on-ai/skills/ux-baseline-check)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown checklist and concise review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential handling, or hidden data flows are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

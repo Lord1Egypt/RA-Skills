@@ -1,0 +1,41 @@
+{
+  // Keep the real value in the OpenClaw Gateway environment or SecretRef.
+  // This file intentionally contains no credential.
+  models: {
+    mode: "merge",
+    providers: {
+      novelai: {
+        // The /oa path is the OpenAI-compatible NovelAI text route.
+        // Verify it with a safe smoke test on the target OpenClaw version.
+        baseUrl: "https://text.novelai.net/oa",
+        api: "openai-completions",
+        apiKey: "${NOVELAI_TOKEN}",
+        models: [
+          { id: "xialong-v1", name: "NovelAI Xialong", input: ["text"] },
+          { id: "glm-4-6", name: "NovelAI GLM-4.6", input: ["text"] },
+        ],
+      },
+    },
+  },
+  mcp: {
+    servers: {
+      "novelai-image": {
+        command: "uvx",
+        // Pin the audited upstream release; do not silently follow latest.
+        args: ["--from", "novelai-image-mcp==0.4.0", "novelai-image-mcp", "serve"],
+        env: {
+          NOVELAI_TOKEN: "${NOVELAI_TOKEN}",
+        },
+      },
+    },
+  },
+  // Required when the agent uses a sandbox and the MCP server is configured
+  // through mcp.servers.
+  tools: {
+    sandbox: {
+      tools: {
+        alsoAllow: ["bundle-mcp"],
+      },
+    },
+  },
+}

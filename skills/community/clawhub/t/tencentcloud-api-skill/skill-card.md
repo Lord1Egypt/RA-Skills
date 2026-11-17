@@ -1,48 +1,61 @@
-## Description: <br>
-Helps an agent use Tencent Cloud's tccli and Cloud API documentation to query, create, modify, and delete Tencent Cloud resources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use Tencent Cloud's tccli to discover Cloud API documentation and query, create, modify, or delete Tencent Cloud resources.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to plan and execute Tencent Cloud API operations through tccli, including resource discovery, configuration, and managed create/modify/delete workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help operate Tencent Cloud resources, including create, modify, and delete actions. <br>
-Mitigation: Use least-privilege CAM permissions and review exact tccli commands before approving write operations. <br>
-Risk: Credential handling is required for tccli authentication. <br>
-Mitigation: Complete OAuth login directly in the browser and do not paste SecretId, SecretKey, or other cloud secrets into chat. <br>
-Risk: API output is JSON data that could be misread or treated as executable content. <br>
-Mitigation: Treat tccli responses as data for review and avoid executing content returned by cloud APIs. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Tencent Cloud resources and automate Cloud API operations through tccli after checking Tencent Cloud API documentation and credential state.
 
-## Reference(s): <br>
-- [Tencent Cloud API documentation index](https://cloudcache.tencentcs.com/capi/refs/services.md) <br>
-- [Tencent Cloud CLI source and installation reference](https://github.com/TencentCloud/tencentcloud-cli.git) <br>
-- [Credential configuration reference](references/auth.md) <br>
-- [TCCLI installation reference](references/install.md) <br>
-- [API reference lookup steps](references/refs.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tencent-adm/tencentcloud-api-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/tencent-adm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose tccli commands and interpret JSON API responses; write operations should be explicitly reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Commands can create, modify, or delete Tencent Cloud resources and may affect production services or cost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every create, modify, or delete tccli command and confirm the target region, resource IDs, parameters, permissions, and cost impact before execution.
+
+Risk: Credential handling can expose Tencent Cloud secrets if local credential files or configuration output are printed.
+
+Mitigation: Use browser-based tccli auth login, prefer least-privilege CAM credentials, and avoid commands that display local credential material.
+
+Risk: High-volume API calls can hit Tencent Cloud rate limits or unintentionally amplify operational changes.
+
+Mitigation: Run bulk operations serially or with deliberate delays, and handle RequestLimitExceeded responses before retrying.
+
+## Reference(s):
+
+- [TCCLI installation guide](references/install.md)
+- [TCCLI authentication guide](references/auth.md)
+- [Tencent Cloud API reference workflow](references/refs.md)
+- [Tencent Cloud API services index](https://cloudcache.tencentcs.com/capi/refs/services.md)
+- [TencentCloud CLI source installation reference](https://github.com/TencentCloud/tencentcloud-cli.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON response interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose tccli API calls that return JSON from Tencent Cloud; destructive create, modify, or delete operations require user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

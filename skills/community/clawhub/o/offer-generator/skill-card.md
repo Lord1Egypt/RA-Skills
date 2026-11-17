@@ -1,40 +1,49 @@
-## Description: <br>
-Generates a simple, quick-to-launch digital product offer with name, benefits, price, and urgency based on your skill or idea. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a simple, quick-to-launch digital product offer with a name, promise, benefits, price, delivery format, and urgency angle based on a user's skill or idea.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-Creators, developers, and entrepreneurs use this skill to turn a skill, idea, or niche into a lightweight digital product offer with a clear promise, benefits, price, delivery format, and urgency angle. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated offer copy may include incorrect, vague, or misleading marketing claims. <br>
-Mitigation: Review and edit the generated claims before publishing or selling the offer. <br>
-Risk: Inputs may reveal proprietary business ideas or sensitive product plans. <br>
-Mitigation: Avoid entering confidential ideas unless they are appropriate to use in generated output. <br>
+## Use Case:
 
+External users and creators use this skill to turn a skill, idea, or niche into a small digital product offer that can be launched quickly. It is intended for brainstorming concise offer copy, pricing, benefits, and delivery format rather than job search advice or broad motivation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/offer-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured markdown with labeled sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product name, offer promise, target problem, benefits, price, delivery format, and urgency angle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can trigger broadly for online monetization or skill-to-product brainstorming and may produce generic or unsuitable offer ideas if the user's niche is underspecified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated offer for audience fit, realistic delivery within 24 hours, and clear, non-vague benefits before using it publicly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/offer-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured text with labeled sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes product name, offer promise, target problem, three benefits, price, delivery format, and urgency angle.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

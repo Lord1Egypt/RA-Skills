@@ -1,44 +1,54 @@
-## Description: <br>
-Court Records, Case Law & Litigation helps AI agents search US court opinions and case law by keyword via CourtListener for lawsuits, precedent, due diligence, legal research, and risk checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Court records, case law, and litigation search for AI agents that searches US court opinions and case law by keyword via CourtListener for due diligence, legal research, and risk checks.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-External agents and developers use this skill to search US court opinions and case law by keyword, including litigation checks for companies, people, or topics during due diligence and legal research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external provider receives search keywords submitted through the lookup endpoint. <br>
-Mitigation: Confirm that keyword disclosure to the provider is acceptable before use, especially for sensitive legal or due diligence queries. <br>
-Risk: The x402 wallet may make small USDC payments for each lookup. <br>
-Mitigation: Review wallet configuration, spending limits, and expected per-call cost before enabling automated use. <br>
-Risk: Returned court records and case law are legal research leads, not legal advice. <br>
-Mitigation: Have qualified legal reviewers validate results before relying on them for legal conclusions or decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to search US court opinions by keyword, find litigation involving a company or person, and retrieve case-law signals for due diligence, legal research, and risk checks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/colinhughes2121/court-records-case-law-litigation) <br>
-- [GoCreative Agent Compliance & Data API](https://api.gocreativeai.com) <br>
-- [Case law lookup endpoint](https://api.gocreativeai.com/v1/lookup/case-law/{keyword}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTPS GET endpoint details and JSON service responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an x402 pay-per-call flow in USDC; no API key or signup is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Search keywords are sent to GoCreative's API and may include sensitive client, company, or personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential facts, secrets, or unnecessary personal data in lookup terms unless sharing them with the provider is acceptable.
+
+Risk: Each lookup may trigger a small USDC x402 payment.
+
+Mitigation: Review payment behavior and wallet configuration before enabling repeated or automated lookups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinhughes2121/skills/court-records-case-law-litigation)
+- [GoCreative case-law lookup API](https://api.gocreativeai.com/v1/lookup/case-law/{keyword})
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown guidance describing HTTPS GET calls and JSON lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lookup keywords are sent to GoCreative's API and may trigger a small USDC x402 payment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

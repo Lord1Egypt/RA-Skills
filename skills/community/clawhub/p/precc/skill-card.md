@@ -1,47 +1,56 @@
-## Description: <br>
-Predictive Error Correction for Claude Code corrects bash commands before execution, predicts token costs with a trained ML oracle, and captures opt-in counterfactual telemetry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predictive Error Correction for Claude Code — corrects bash commands before execution, predicts token costs via a trained ML oracle, and captures opt-in counterfactual telemetry.
 
-## Publisher: <br>
-[yijunyu](https://clawhub.ai/user/yijunyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yijunyu](https://clawhub.ai/user/yijunyu)
 
-## Use Case: <br>
-Developers and engineers use PRECC to reduce failed shell commands, compress command and context output, and estimate token costs while working in Claude Code. The skill is intended for local command-correction and productivity workflows that can tolerate a shell hook reviewing proposed Bash commands before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PRECC persistently configures Claude Code shell-command hooks that can intercept and potentially rewrite Bash commands in later sessions. <br>
-Mitigation: Review the exact changes to ~/.claude/settings.json, confirm the hook path points to the expected binary, and understand how to disable or remove the hook before relying on it. <br>
-Risk: The installer behavior may be broader than the skill page fully explains. <br>
-Mitigation: Inspect the installation path, downloaded binaries, and checksum verification before installing, especially in shared or sensitive development environments. <br>
-Risk: Counterfactual telemetry can record would-have-run and did-run command outcomes if explicitly enabled. <br>
-Mitigation: Keep telemetry disabled unless intentionally needed, review consent.toml before enabling it, and confirm where local telemetry stores are written. <br>
+## Use Case:
 
+Developers using Claude Code or the DeepSeek Harness can use PRECC to correct Bash commands, reduce verbose tool output, search code semantically, compress context files, and estimate token costs.
 
-## Reference(s): <br>
-- [PRECC ClawHub skill page](https://clawhub.ai/yijunyu/skills/precc) <br>
-- [PRECC repository](https://github.com/peri-a-i/precc-cc) <br>
-- [PRECC releases](https://github.com/peri-a-i/precc-cc/releases) <br>
-- [cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) <br>
-- [cocoindex-code on PyPI](https://pypi.org/project/cocoindex-code/) <br>
-- [RTK](https://github.com/rtk-ai/rtk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the precc and precc-hook binaries; may modify Claude Code settings and local PRECC data files; PRECC_LICENSE_KEY is optional for premium features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.108 (source: server release metadata and release changelog; artifact frontmatter reports 1.1.0) <br>
+Risk: The install instructions pipe a remote script directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and verify its source and contents before running it.
+
+Risk: The security review reports session-history mining and capabilities beyond the stated purpose, and the scan was partial because a referenced local path was missing.
+
+Mitigation: Review the installer's and skill's data access before installation, and treat the available scan as incomplete.
+
+## Reference(s):
+
+- [PRECC project repository](https://github.com/peri-a-i/precc-cc)
+- [PRECC releases](https://github.com/peri-a-i/precc-cc/releases)
+- [cocoindex-code project](https://github.com/cocoindex-io/cocoindex-code)
+- [RTK project](https://github.com/rtk-ai/rtk)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Bash commands and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose corrected commands and compressed command output; behavior depends on local PRECC configuration and learned history.]
+
+## Skill Version(s):
+
+0.3.112 (source: server-resolved release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

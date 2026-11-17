@@ -33,6 +33,89 @@ hersona export personality/tsundere speech/keigo --format langchain_system_messa
 
 `--plain` で rich テーブルを無効化（TTY がない cron / テスト経路で使う）。
 
+## naturalness (AI 臭) スコア + 自己点検リカバリループ
+
+`docs/IMPROVEMENT_PLAN_2026-07-11_humanize.md` P1/P2b。intensity (口調の強さ)
+とは別軸で、定型句・翻訳調・構造的な「AI っぽさ」を決定的に (LLM 呼び出しなし) 採点する。
+
+```bash
+# 1. 応答を生成 → naturalness を測る
+hersona measure personality/tsundere speech/keigo --weight strong --text "<応答>" --naturalness
+# → intensity レポートに続けて `Naturalness score: NN.N / 100 (A=.. B=.. C=.. D=..)` を表示
+
+# 2. スコアが低ければ、自己点検プロンプトに AI 臭チェック項目を追加して再注入
+hersona measure personality/tsundere speech/keigo --weight strong --check-prompt --naturalness
+# → 通常の self-audit prompt の末尾に「人間に AI っぽいと指摘された」想定の
+#   4 項目チェックリスト (定型句/リズム反復/不要な構造/没個性) を追加
+
+# --strict 併用時は under/over の復旧プロンプト (stderr) にも同じ節が付く
+hersona measure personality/tsundere speech/keigo --weight strong --text "<応答>" --strict --naturalness
+```
+
+A(定型句)/B(構文リズム)/D(構造的habits) の 3 カテゴリのみを自己点検の観察点にしている
+(C=翻訳調の代理指標は文長・漢語連続など自己監査では判断しにくいため対象外)。
+リカバリループ全体: 生成 → `--naturalness` で採点 → 閾値未満なら 2. のプロンプトを
+末尾に再注入 → 再生成。プロンプトキャッシュの prefix は壊さない (末尾追加のみ)。
+
+## v1.7.1 追加 — `hersona personas` (Persona Pack レシピ集)
+
+PR-B W1 (設計: `docs/PERSONA_PACKS_DESIGN.md`) で追加された、Hermes 特化の
+「出来合いペルソナ」を 1 コマンドで導入するサブコマンド群。パックは
+`personas/<name>.yaml` (= blend + weight + use_case のレシピ) として
+**14 本** 同梱されている。
+
+```bash
+# 一覧 (i18n 対応、--json で機械可読)
+hersona personas list --lang ja
+hersona personas list --json | jq '.[].persona_name'
+
+# 詳細 + 注入ブロックプレビュー
+hersona personas show keigo_support --lang ja
+
+# 1 件インストール (config.yaml 追記用ブロック表示)
+hersona personas install keigo_support --dry-run
+
+# 複数一括インストール (--auto-config で安全書込、--apply は最後の 1 件に適用)
+hersona personas install keigo_support british_pm --auto-config
+hersona personas install keigo_support british_pm gyaru_community --apply
+
+# active personality 切替 (registry 内の名前を指定、未 install の名前は警告のみ)
+hersona personas use keigo_support
+
+# recommend ブリッジ (診断 → 登録 を 1 コマンドで)
+hersona recommend --install-persona my_pack --lang ja
+# → 診断結果 blend + weight_suggestion を agent.personalities.my_pack に登録
+```
+
+5 件以上を一括 install すると合計サイズが warning 表示される
+(§11 リスク「config.yaml 肥大」対応)。SOUL.md は pack には焼かない設計のため、
+同梱パックの install では `without_soul=True` が既定。SOUL.md も欲しいなら
+`--with-soul` を付ける (単一 profile 1 枚の原則があるので、複数パック同時
+指定時の挙動は `hersona personas --help` を参照)。
+
+`tests/test_personas.py::test_all_shipped_personas_validate_clean` が
+**全 14 本が validate_persona() エラー 0** を CI で恒久担保している
+(= ブレンドの conflict 漏れ・属性 / use_case の存在漏れが CI で必ず落ちる)。
+
+## Self-introduction memory keys (guides)
+
+Cross-persona rules: `docs/guides/self-introduction.ja.md` / `docs/guides/self-introduction.md`.
+Skill pointer: `references/self-introduction.md`.
+
+```bash
+# Lint before publishing (exit 0 = pass)
+hersona lint-intro --text "..." --allow-handle hersona_agent --canonical
+hersona lint-intro --input intro-draft.txt --json
+
+# SOUL memory template
+hersona soul personality/kuudere speech/soft \
+  --memory-file examples/sona-self-intro-memory.json \
+  --with-self-intro-guide \
+  --lint-self-intro-strict --allow-handle hersona_agent --force
+```
+
+Reserved `--memory` keys: `self_intro_canonical`, `self_intro_style`, `privacy_inner_circle`, `self_intro_canonical_ref` (see `docs/soul_md_persistence.md` §12).
+
 ## Verification Checklist
 
 ### single / multi モード
@@ -64,6 +147,9 @@ hersona export personality/tsundere speech/keigo --format langchain_system_messa
 - [ ] `hersona measure --check-prompt` がレポートを抑制しプロンプトのみ表示
 - [ ] `hersona soul --memory '<json>'` で 16 keys / 512 chars を超えると `ValueError`
 - [ ] `hersona export --format <5 形式>` がすべて valid parseable output を返す
+- [ ] `hersona lint-intro` が同じ入力で同じ pass/fail を返す (決定性)
+- [ ] `hersona measure --naturalness` が intensity レポートに `Naturalness score` 行を追加する
+- [ ] `hersona measure --check-prompt --naturalness` / `--strict --naturalness` が自己点検プロンプト末尾に AI 臭チェック節を追加する (naturalness=False 時は追加されない)
 
 ### validate.py による静的検証
 
@@ -114,6 +200,35 @@ hersona recommend --answers distance=1,speech=0,role=1 --apply --explain --json
 # --explain で各採用属性の根拠 (rationale) + 落選の代替案 + サマリを表示
 # v1.4.0 から --apply 時に intensity_baseline が記録される
 ```
+
+### 診断結果をそのまま成果物にする (recommend → export / SOUL.md / preset)
+
+推薦ブレンドを `hersona export` / `hersona soul` / `hersona save` に手入力し直す
+必要はない。`recommend` から直結できる:
+
+```bash
+# 推薦ブレンドを 5 形式のいずれかでエクスポート (stdout は成果物のみ = パイプ可)
+hersona recommend --answers distance=1,speech=0 --export openai_assistants > assistant.json
+hersona recommend --answers distance=1,speech=0 --export markdown   # 注入ブロック素文
+
+# --output でファイルへ (この場合は人間向けサマリも表示される)
+hersona recommend --answers distance=1,speech=0 --export json --output blend.json
+
+# SOUL.md へ直接書き出し (~/.hermes/profiles/<profile>/SOUL.md)
+hersona recommend --answers distance=1,speech=0 --soul --profile myagent
+hersona recommend --answers distance=1,speech=0 --soul --dry-run     # 書かずに内容確認
+hersona recommend --answers distance=1,speech=0 --soul --force      # 既存を上書き
+# 出力先の明示指定は --soul-output、Name セクションは --soul-name
+
+# 名前付きプリセットとして保存 → 後で hersona load で再生
+hersona recommend --answers distance=1,speech=0 --save from_quiz
+
+# 強度は --weight 指定 > 適合度スコアからの自動推定 の順で決まる
+# 注意: --json とは併用不可 / memory 注入など高度な SOUL.md 制御は hersona soul を使う
+```
+
+MCP でも同様: `recommend_blend` ツールに `export_format` を渡すと
+戻り値の `export` キーにエクスポート文字列が入る。
 
 ### 人格を他フレームワークへエクスポート (v1.4.0 で 5 形式)
 

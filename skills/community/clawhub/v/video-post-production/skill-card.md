@@ -1,46 +1,58 @@
-## Description: <br>
-End-to-end short-video post-production from one raw talking-head video: transcribes speech, builds timed subtitles with highlights, adds SFX or BGM when available, and renders a final video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end short-video post-production from one raw talking-head video: transcribe speech, build timed subtitle phrases, highlight key words, place sound effects (SFX), choose background music (BGM), and render a polished final video.
 
-## Publisher: <br>
-[tiepige8](https://clawhub.ai/user/tiepige8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiepige8](https://clawhub.ai/user/tiepige8)
 
-## Use Case: <br>
-External users and creators use this skill to turn one spoken raw video into a short-form edit with readable subtitles, keyword highlights, sparse sound effects, optional background music, and a rendered MP4 output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local ffmpeg and Python commands and writes output files beside the source video. <br>
-Mitigation: Use it only on videos intended for processing and review the generated working directory and final render before distribution. <br>
-Risk: The workflow may prompt installation of faster-whisper if transcription support is missing. <br>
-Mitigation: Review any dependency-install prompt and install packages only from trusted package sources in an appropriate environment. <br>
-Risk: Default language, subtitle style, BGM, or SFX choices may be inappropriate for some videos. <br>
-Mitigation: Specify language, output, subtitle style, BGM, and SFX preferences when defaults are not appropriate. <br>
+## Use Case:
 
+Developers and video creators use this skill to turn a single spoken raw video into a short-form edited video with timed subtitles, meaningful keyword highlights, optional SFX, optional BGM, and a rendered MP4 export.
 
-## Reference(s): <br>
-- [ASS Subtitle Effects Reference](references/ass_effects.md) <br>
-- [Audio Resources & Douyin Ad Audio Design Guide](references/audio_resources.md) <br>
-- [Skill page](https://clawhub.ai/tiepige8/video-post-production) <br>
-- [Mixkit commercial music](https://mixkit.co/free-stock-music/tag/commercial/) <br>
-- [Mixkit whoosh sound effects](https://mixkit.co/free-sound-effects/whoosh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a working directory beside the input video with alignment.json, production_plan.json, subtitles.ass, and final.mp4.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Crafted production plans may cause weak path validation to pull SFX audio from outside the intended SFX folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources, keep inputs and outputs in a dedicated workspace, avoid arbitrary SFX type values, and review production_plan.json before rendering.
+
+Risk: FFmpeg and Python media tooling can overwrite files or process untrusted media inputs locally.
+
+Mitigation: Run the workflow in a virtual environment with pinned dependencies and review generated subtitles, output paths, and publish-ready media before release.
+
+## Reference(s):
+
+- [ASS Subtitle Effects Reference](references/ass_effects.md)
+- [Audio Resources and Douyin Ad Audio Design Guide](references/audio_resources.md)
+- [Mixkit Commercial Music](https://mixkit.co/free-stock-music/tag/commercial/)
+- [Mixkit Whoosh Sound Effects](https://mixkit.co/free-sound-effects/whoosh/)
+- [Pixabay Music](https://pixabay.com/music/)
+- [Incompetech](https://incompetech.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON production plans, ASS subtitle files, and MP4 video outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a video-specific output directory containing alignment.json, production_plan.json, subtitles.ass, and final.mp4 when the workflow is executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

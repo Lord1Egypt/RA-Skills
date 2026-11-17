@@ -1,41 +1,58 @@
-## Description: <br>
-Automated high-quality video generation for text-to-video and image-to-video workflows via a local jimeng-api Docker service with native OpenClaw image interception that lets users send chat images directly for video generation without a UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated high-quality video generation (text-to-video, image-to-video) via a local jimeng-api Docker service. Features native OpenClaw image interception, allowing users to send images directly in chat to generate videos without any UI.
 
-## Publisher: <br>
-[jiahuamld](https://clawhub.ai/user/jiahuamld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiahuamld](https://clawhub.ai/user/jiahuamld)
 
-## Use Case: <br>
-Developers and automation users use this skill to generate short videos from prompts and local images through a local Jimeng API service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process chat-supplied images and prompts through a local Jimeng service, which may expose user content or generated video links. <br>
-Mitigation: Use only images and prompts the user intentionally wants processed, avoid sensitive content, and confirm how the local service stores or forwards submitted data. <br>
-Risk: The bundled script includes a cached session token and can install a dependency during normal execution. <br>
-Mitigation: Remove the embedded token, require an explicit user-provided session, and install dependencies through a normal pinned setup step before running the skill. <br>
-Risk: Broad automation over local image files may process unintended files if paths are not reviewed. <br>
-Mitigation: Limit inputs to intended temporary files, review file paths before execution, and run the skill in a constrained workspace. <br>
+## Use Case:
 
+Developers and automation users use this skill to generate short videos from text prompts or chat-provided images through a local jimeng-api service. The skill guides an agent to submit prompts and local image files, monitor generation, and return status or an MP4 result link.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated video result text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local jimeng-api service, a user-provided session token, a local image path for image-to-video use, and sufficient Jimeng credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: A reusable session token is embedded in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the embedded token, rotate the affected credential, and require credentials from a protected source before use.
+
+Risk: The skill installs an npm package during normal execution.
+
+Mitigation: Package and pin required dependencies ahead of time instead of installing them at runtime.
+
+Risk: The skill gives broad automatic image-handling instructions for chat-provided images.
+
+Mitigation: Require explicit user confirmation before saving or sending each chat image to the Jimeng service, and avoid use with private images until reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiahuamld/skills/uni-vision-engine)
+- [ClawHub publisher profile](https://clawhub.ai/user/jiahuamld)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and generated video task responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, service status messages, and MP4 links returned by the local jimeng-api service.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

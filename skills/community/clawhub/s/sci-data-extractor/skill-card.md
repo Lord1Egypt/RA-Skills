@@ -1,44 +1,65 @@
-## Description: <br>
-AI-powered tool for extracting structured data from scientific literature PDFs. <br>
+## Description:
 
-This skill is for research and development only. <br>
+AI-powered tool for extracting structured data from scientific literature PDFs
 
-## Publisher: <br>
-[JackKuo666](https://clawhub.ai/user/JackKuo666) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY 4.0 <br>
+## Publisher:
 
+[jackkuo666](https://clawhub.ai/user/jackkuo666)
 
-## Use Case: <br>
-Researchers and developers use this skill to extract structured values, tables, and literature-review fields from scientific paper PDFs into Markdown or CSV for research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: PDF content may be sent to the configured LLM provider and to Mathpix when Mathpix OCR is enabled. <br>
-Mitigation: Use the skill only with documents allowed by the relevant provider terms, and avoid confidential or unpublished papers unless those terms permit the upload. <br>
-Risk: Installer commands that pipe remote scripts into a shell can reduce install hygiene. <br>
-Mitigation: Use a virtual environment and prefer safer dependency installation methods where practical. <br>
-Risk: AI-extracted scientific data may be incomplete or incorrect. <br>
-Mitigation: Validate extracted results against the original literature before using them in downstream research or publications. <br>
+## Use Case:
 
+Researchers, developers, and external users use this skill to extract structured data from scientific literature PDFs into Markdown tables or CSV files for research workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JackKuo666/sci-data-extractor) <br>
-- [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/) <br>
-- [Mathpix OCR API](https://api.mathpix.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; extraction outputs are Markdown tables or CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured LLM providers and optional Mathpix OCR; users should validate extracted data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Scientific PDFs may be sent to the configured LLM provider or Mathpix during extraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only process documents approved for those providers, verify the configured base URL, and avoid confidential or regulated PDFs unless the endpoint and provider policy are approved.
+
+Risk: Installation instructions include fetching an external installer with curl piped to a shell.
+
+Mitigation: Prefer the documented venv, pip, or conda setup path, and pin or verify installation sources before installing dependencies.
+
+Risk: AI-extracted scientific data may be incomplete or inaccurate.
+
+Mitigation: Manually validate extracted values against the original literature before using them in research outputs or downstream datasets.
+
+Risk: Batch extraction can process many documents through cloud services.
+
+Mitigation: Use a dedicated API key with limits and review document sensitivity before enabling batch mode.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jackkuo666/skills/sci-data-extractor)
+- [Mathpix API](https://api.mathpix.com/)
+- [Claude Code Skills Documentation](https://docs.anthropic.com/en/docs/claude-code/skills)
+- [Original Project: Automated Enzyme Kinetics Extractor](https://huggingface.co/spaces/jackkuo/Automated-Enzyme-Kinetics-Extractor)
+- [Related Paper: Enzyme Co-Scientist](https://www.biorxiv.org/content/10.1101/2025.03.02.153459v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown tables or CSV files, with shell commands and configuration guidance for setup and extraction.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an LLM API key for extraction; optional Mathpix credentials enable OCR.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

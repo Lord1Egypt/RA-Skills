@@ -1,38 +1,54 @@
-## Description: <br>
-Forward/reverse geocoding and great-circle distance calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forward/reverse geocoding and great-circle distance calculations.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-External users and developers use this skill to look up coordinates from addresses, resolve coordinates back to addresses, and calculate great-circle distances between locations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Location lookups are sent to an external geocoding service. <br>
-Mitigation: Use it for public or non-sensitive locations, and confirm user consent before sending a home address, workplace address, or precise personal coordinates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Geocode Lookup on ClawHub](https://clawhub.ai/CutTheMustard/geocode-lookup) <br>
-- [Geocode service homepage](https://geocode.agentutil.net) <br>
+## Use Case:
 
+Developers and agents use this skill to turn addresses into coordinates, turn coordinates into addresses, and calculate great-circle distances between locations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces HTTP API usage guidance for forward geocoding, reverse geocoding, and distance calculation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Address or coordinate queries are sent to an external geocoding service.
+
+Mitigation: Avoid sending private home addresses or sensitive locations unless the user has explicitly consented.
+
+Risk: The service's no-logging statement is a publisher claim rather than a verified property of the artifact.
+
+Mitigation: Treat the service as an external data processor and avoid including sensitive location details unless necessary.
+
+## Reference(s):
+
+- [Geocode Lookup on ClawHub](https://clawhub.ai/cutthemustard/skills/geocode-lookup)
+- [CutTheMustard publisher profile](https://clawhub.ai/user/cutthemustard)
+- [Geocode service homepage](https://geocode.agentutil.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls, JSON]
+
+**Output Format:** [Markdown instructions with curl examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls an external geocoding service; the publisher describes a free tier of 10 queries per day and optional paid usage via x402.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

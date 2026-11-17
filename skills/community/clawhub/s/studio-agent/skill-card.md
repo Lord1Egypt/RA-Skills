@@ -1,41 +1,62 @@
-## Description: <br>
-Use this for ClickZetta Studio requests such as querying tasks, listing workspaces, checking projects, and creating or running ClickZetta jobs from a single JDBC secret configured in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this for ClickZetta Studio requests such as querying tasks, listing workspaces, checking projects, and creating or running ClickZetta jobs from a single JDBC secret configured in OpenClaw.
 
-## Publisher: <br>
-[luketalent](https://clawhub.ai/user/luketalent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luketalent](https://clawhub.ai/user/luketalent)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent work with ClickZetta Studio tasks, workspaces, projects, jobs, and SQL workflows through a configured JDBC secret. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act through a configured ClickZetta account and may automatically approve some remote action requests. <br>
-Mitigation: Install only for trusted publishers, use a least-privileged ClickZetta credential, and review or disable automatic interrupt approval before mutating workflows. <br>
-Risk: The skill stores local session tokens for ClickZetta Studio access. <br>
-Mitigation: Avoid shared machines and clear the local OpenClaw cache when the session is no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to work with ClickZetta Studio from OpenClaw, including task, job, project, workspace, and SQL workflows through a configured JDBC secret.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luketalent/studio-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/luketalent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text responses with JSON runner results and inline shell commands when needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and CZ_STUDIO_JDBC_URL; acts through the configured ClickZetta account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server-resolved release metadata) <br>
+Risk: The skill can operate on live ClickZetta workspaces using a stored JDBC credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted ClickZetta environments and use a least-privileged ClickZetta account for the JDBC secret.
+
+Risk: Auto-approval or always-allow behavior can permit remote actions without case-by-case review.
+
+Mitigation: Avoid enabling always-allow or auto-approve modes unless the workspace and requested operations are already trusted.
+
+Risk: Discovery caches can contain sensitive session or workspace material locally.
+
+Mitigation: Inspect local cache and configuration permissions and clear cached state when access should be revoked.
+
+Risk: SQL, job, and task requests can consume compute or change data.
+
+Mitigation: Review user requests before execution and constrain the configured account to the intended projects and workspaces.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luketalent/skills/studio-agent)
+- [ClawHub publisher profile](https://clawhub.ai/user/luketalent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON runner results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run a Node.js one-shot runner that returns a single JSON object with success content or structured error details.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

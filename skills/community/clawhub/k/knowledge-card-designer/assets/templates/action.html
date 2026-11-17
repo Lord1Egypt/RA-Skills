@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <title>行动指南 · 普通人应对策略</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 1080px;
+            height: 1350px;
+            min-height: 1350px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+        body {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            background-color: #0f0f1a;
+        }
+        .card {
+            width: 1080px;
+            height: 1350px;
+            padding: 45px 50px 40px 50px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .page-num {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 120px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.08);
+            line-height: 1;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            margin-top: 10px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(239,68,68,0.2);
+            border: 1px solid rgba(239,68,68,0.5);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #ef4444;
+            margin-bottom: 16px;
+        }
+        .title {
+            font-size: 56px;
+            font-weight: 800;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 24px;
+            color: rgba(255,255,255,0.6);
+        }
+        .groups {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin: 10px 0;
+        }
+        .group {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 4px solid;
+        }
+        .group-1 { border-color: #38bdf8; }
+        .group-2 { border-color: #fbbf24; }
+        .group-3 { border-color: #a78bfa; }
+        .group-4 { border-color: #4ade80; }
+        .group-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .group-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        .group-text {
+            font-size: 20px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.5;
+        }
+        .spacer { flex: 1; min-height: 20px; }
+        .footer {
+            padding: 20px 24px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            border-left: 4px solid #ef4444;
+            margin-bottom: 25px;
+        }
+        .footer-title {
+            font-size: 17px;
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .footer-text {
+            font-size: 22px;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+            font-weight: 600;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="page-num">10</div>
+        <div class="header">
+            <div class="tag">行动指南</div>
+            <h1 class="title">普通人如何应对</h1>
+            <p class="subtitle">不同人群的行动指南</p>
+        </div>
+        
+        <div class="groups">
+            <div class="group group-1">
+                <div class="group-icon">💼</div>
+                <div class="group-title">职场人</div>
+                <div class="group-text">简历必加<span style="color:#ef4444">"熟练使用AI工具"</span>，主动学习AI，成为"会用AI的人"</div>
+            </div>
+            
+            <div class="group group-2">
+                <div class="group-icon">🎒</div>
+                <div class="group-title">学生</div>
+                <div class="group-text">重点培养AI无法替代的能力：<span style="color:#ef4444">创造力、同理心、复杂决策</span></div>
+            </div>
+            
+            <div class="group group-3">
+                <div class="group-icon">🚀</div>
+                <div class="group-title">创业者</div>
+                <div class="group-text">Agent工具链创业红利期，解决AI落地<span style="color:#ef4444">"最后一公里"</span></div>
+            </div>
+            
+            <div class="group group-4">
+                <div class="group-icon">📈</div>
+                <div class="group-title">投资者</div>
+                <div class="group-text">AI算力链长期受益，关注<span style="color:#ef4444">国产替代</span>赛道机会</div>
+            </div>
+        </div>
+        
+        <div class="spacer"></div>
+        
+        <div class="footer">
+            <div class="footer-title">🎫 一句话总结</div>
+            <div class="footer-text">AI不是来替代你的，是来替代"不用AI的你"。上船还是观望，选择权在你。</div>
+        </div>
+        <div class="watermark">GTC 2026 深度解读</div>
+    </div>
+</body>
+</html>

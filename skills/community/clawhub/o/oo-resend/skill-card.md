@@ -1,45 +1,59 @@
-## Description: <br>
-Enables an agent to operate Resend through an OOMOL-connected account using the oo CLI instead of calling the Resend API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Resend connector through the oo CLI to read email, send messages, retrieve attachments, and manage scheduled delivery.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to send email through Resend from an OOMOL-connected account after inspecting the live connector schema and confirming write payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send email through Resend, which can contact external recipients or send incorrect content if the payload is wrong. <br>
-Mitigation: Approve the exact recipient, content, and payload before running the write action. <br>
-Risk: The skill depends on an OOMOL-connected Resend account and sensitive credential handling. <br>
-Mitigation: Confirm the user is comfortable connecting Resend through OOMOL and rely on OOMOL server-side credential injection rather than exposing raw tokens. <br>
-Risk: First-time setup commands install or authenticate the oo CLI and should not be run automatically during normal use. <br>
-Mitigation: Treat install, login, connection, and billing commands as one-time setup steps used only after matching command failures. <br>
+## Use Case:
 
+Developers and email operators use this skill to inspect sent and received email, retrieve attachments, send messages, and manage scheduled delivery through a connected Resend account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-resend) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
-- [Resend Homepage](https://resend.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live connector schema inspection before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: CLI setup runs downloaded software that may install additional agent skills; the installer contents and exact installed release are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI setup separately. If startup skill-directory writes are unwanted, set OO_SKILLS_SYNC_DISABLED=1 before running the CLI.
+
+Risk: Sending email, changing scheduled delivery, and canceling scheduled email can affect communications or delivery state.
+
+Mitigation: Confirm the exact payload and effect before send or update actions, and confirm the target before cancellation.
+
+Risk: Using the connected account exposes email data and attachments to the connector provider.
+
+Mitigation: Use only a trusted OOMOL connection and review access to email content and attachments.
+
+## Reference(s):
+
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [Resend](https://resend.com)
+- [Resend API documentation](https://resend.com/docs/api-reference/introduction)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples; connector results are returned as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions that send, update, or cancel messages require user confirmation.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter; server release 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

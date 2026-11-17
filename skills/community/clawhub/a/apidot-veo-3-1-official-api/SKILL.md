@@ -20,6 +20,15 @@ This skill is for routing Veo 3.1 Official questions to the right APIDot docs, m
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Veo 3.1 Official model page: https://apidot.ai/models/veo-3-1-official
+- Read Veo 3.1 Official API docs: https://apidot.ai/docs/veo-3-1-official
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

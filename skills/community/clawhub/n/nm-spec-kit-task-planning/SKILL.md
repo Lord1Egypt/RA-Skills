@@ -1,8 +1,8 @@
 ---
 name: task-planning
 description: |
-  Generates phased, dependency-ordered implementation tasks from specifications. Use after spec is complete and before starting implementation
-version: 1.9.8
+  Generates phased, dependency-ordered tasks from a specification. Use after the spec, before implementation
+version: 1.10.3
 triggers:
   - speckit
   - tasks
@@ -14,14 +14,14 @@ source: claude-night-market
 source_plugin: spec-kit
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/spec-kit](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/spec-kit](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Task Planning
 
 ## Overview
 
-Transforms specifications and implementation plans into actionable, dependency-ordered tasks. Creates phased breakdowns that guide systematic implementation.
+Transforms specifications and implementation plans into concrete, dependency-ordered tasks. Creates phased breakdowns that guide systematic implementation.
 
 ## When To Use
 
@@ -38,18 +38,18 @@ Transforms specifications and implementation plans into actionable, dependency-o
 
 Tasks follow a 5-phase structure from setup through polish:
 
-- **Phase 0: Setup** - Project initialization, dependencies, configuration
-- **Phase 1: Foundation** - Data models, interfaces, test infrastructure
-- **Phase 2: Core Implementation** - Business logic, APIs, services
-- **Phase 3: Integration** - External services, middleware, logging
-- **Phase 4: Polish** - Optimization, documentation, final testing
+- **Phase 1: Setup** - Project initialization, dependencies, configuration
+- **Phase 2: Foundation** - Data models, interfaces, test infrastructure
+- **Phase 3: Core Implementation** - Business logic, APIs, services
+- **Phase 4: Integration** - External services, middleware, logging
+- **Phase 5: Polish** - Optimization, documentation, final testing
 
 For detailed phase definitions, selection guidelines, and anti-patterns, see `modules/phase-structure.md`.
 
 ## Task Format
 
 Each task includes:
-- **ID**: Unique identifier (TASK-001)
+- **ID**: Unique identifier (T001)
 - **Description**: Clear action statement
 - **Phase**: Which phase it belongs to
 - **Dependencies**: Tasks that must complete first
@@ -79,10 +79,10 @@ For fan-out/fan-in patterns, task ID conventions, and validation rules, see `mod
 ## Example Task Entry
 
 ```markdown
-## Phase 2: Core Implementation
+## Phase 3: Core Implementation
 
-### TASK-007 - Implement user authentication service [P]
-**Dependencies**: TASK-003, TASK-004
+### T007 - Implement user authentication service [P]
+**Dependencies**: T003, T004
 **Files**: src/services/auth.ts, src/types/user.ts
 **Criteria**: All auth tests pass, tokens are valid JWT
 ```
@@ -100,3 +100,17 @@ For fan-out/fan-in patterns, task ID conventions, and validation rules, see `mod
 
 - `spec-writing`: Creating source specifications
 - `speckit-orchestrator`: Workflow coordination
+
+## Exit Criteria
+
+- [ ] Every task has a unique ID in `TNNN` format (T001) and includes
+      Description, Phase (1-5), Dependencies list, Parallel marker
+      (`[P]` or sequential), Files, and Criteria fields
+- [ ] Tasks marked `[P]` pass all 5 nonconflicting criteria: no file
+      overlap, no shared state, dependencies satisfied, no merge
+      conflicts possible, no output dependency on each other
+- [ ] Every functional requirement from the source spec is mapped to
+      at least one task; unmapped requirements are flagged
+- [ ] Quality checklist passes all items before output is finalized
+- [ ] Tasks within each phase are ordered so that no task depends on
+      one with a higher task number within the same phase

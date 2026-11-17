@@ -1,51 +1,62 @@
-## Description: <br>
-Query Tencent Cloud RUM data, analyze Web performance (LCP/FCP/WebVitals), troubleshoot JS/Promise errors, analyze API latency & error rates, diagnose slow static resource loading, and view PV/UV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Tencent Cloud RUM data to analyze web performance, JavaScript and Promise errors, API latency and error rates, static resource loading, PV/UV, and RUM-APM correlation.
 
-## Publisher: <br>
-[lauraytwu-create](https://clawhub.ai/user/lauraytwu-create) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lauraytwu-create](https://clawhub.ai/user/lauraytwu-create)
 
-## Use Case: <br>
-Developers and engineers use this skill to query Tencent Cloud RUM metrics and logs, diagnose frontend performance and error issues, and produce actionable analysis reports. It supports Web RUM workflows including page performance, API stability, static-resource loading, PV/UV review, and RUM-APM correlation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive Tencent Cloud credentials. <br>
-Mitigation: Use a dedicated least-privilege Tencent Cloud key, keep generated mcporter configuration private, and rotate credentials if exposure is suspected. <br>
-Risk: The skill can query detailed RUM telemetry, including user-related logs. <br>
-Mitigation: Use it only for authorized applications and avoid user-targeted log searches unless they are necessary and approved. <br>
-Risk: The skill connects an agent to the disclosed Tencent Cloud RUM MCP endpoint. <br>
-Mitigation: Install it only when the agent is intended to query Tencent Cloud RUM data through that endpoint. <br>
+## Use Case:
 
+Developers and frontend performance engineers use this skill to query Tencent Cloud RUM metrics and logs, then produce performance, exception, API stability, resource loading, and APM correlation analysis.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/lauraytwu-create/tencent-cloud-rum-skill) <br>
-- [Tencent Cloud RUM Console](https://console.tencentcloud.com/rum) <br>
-- [Tencent Cloud API Key Management](https://console.tencentcloud.com/cam/capi) <br>
-- [Tencent Cloud RUM Product Overview](https://www.tencentcloud.com/document/product/1131/44486) <br>
-- [Tencent Cloud RUM Application Integration Guide](https://www.tencentcloud.com/zh/document/product/1131/44496) <br>
-- [Tencent Cloud RUM Web SDK Connection Guide](https://www.tencentcloud.com/document/product/1131/44517) <br>
-- [Tencent Cloud RUM Getting Started](https://www.tencentcloud.com/document/product/1131/44493) <br>
-- [Tencent Cloud RUM MCP Tool Parameter Reference](references/rum_tools_docs.md) <br>
-- [RUM-WEB Problem Analysis Workflows](references/common_queries.md) <br>
-- [APM Correlation Analysis Guide](references/apm_analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown analysis and guidance with optional shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should attribute queried data to Tencent Cloud RUM MCP and avoid exposing SecretId, SecretKey, or user telemetry beyond the authorized analysis need.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Setup stores reusable Tencent Cloud SecretId and SecretKey values in the user mcporter configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Tencent Cloud key limited to required RUM/APM read access, restrict access to the mcporter config, and rotate the key if the file may have been exposed.
+
+Risk: The setup script can globally install the mcporter npm package.
+
+Mitigation: Review the setup script and install or pin mcporter in a controlled environment before running it on shared or production systems.
+
+## Reference(s):
+
+- [Tencent Cloud RUM Console](https://console.tencentcloud.com/rum)
+- [Tencent Cloud RUM Product Overview](https://www.tencentcloud.com/document/product/1131/44486)
+- [Tencent Cloud RUM Getting Started](https://www.tencentcloud.com/document/product/1131/44493)
+- [Tencent Cloud RUM Application Integration Guide](https://www.tencentcloud.com/zh/document/product/1131/44496)
+- [Tencent Cloud RUM Web SDK Connection Guide](https://www.tencentcloud.com/document/product/1131/44517)
+- [Tencent Cloud API Key Management](https://console.tencentcloud.com/cam/capi)
+- [Tencent Cloud RUM MCP Endpoint](https://app.rumt-zh.com/sse)
+- [RUM Tool Parameter Reference](artifact/references/rum_tools_docs.md)
+- [RUM-WEB Problem Analysis Workflows](artifact/references/common_queries.md)
+- [APM Correlation Analysis Guide](artifact/references/apm_analysis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis reports with query recommendations and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Tencent Cloud RUM MCP data and should attribute Tencent Cloud RUM MCP as the data source.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Generate, manage, and track QR codes via the CodeBox API, including dynamic QR codes, style templates, scan analytics, batch generation, and lifecycle actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, manage, and track QR codes via CodeBox API, including dynamic QR codes with style templates, scan analytics, batch generation, and lifecycle management.
 
-## Publisher: <br>
-[gdfsdjj145](https://clawhub.ai/user/gdfsdjj145) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdfsdjj145](https://clawhub.ai/user/gdfsdjj145)
 
-## Use Case: <br>
-Developers and operators use this skill to create styled QR codes, manage dynamic QR destinations, inspect scan analytics, and export scan events through CodeBox. It is suited for QR campaigns where the user has a CodeBox API key and accepts CodeBox credit and tracking behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scan analytics and exported scan events can include device, location, and time data. <br>
-Mitigation: Collect and export only the analytics needed for the task, obtain consent where required, and avoid sharing unnecessary scan data. <br>
-Risk: Deleting or changing dynamic QR codes can disrupt live QR campaigns or redirect users to the wrong destination. <br>
-Mitigation: Confirm the QR code ID, target URL, and campaign impact before update or delete actions, especially for live campaigns. <br>
-Risk: Dynamic QR generation consumes CodeBox credits. <br>
-Mitigation: Use static QR codes when tracking is not needed and batch generation only after confirming the requested list. <br>
+## Use Case:
 
+External users, developers, and operators use this skill to create styled QR codes, batch-generate codes, update or delete dynamic QR codes, and retrieve scan analytics through the CodeBox API.
 
-## Reference(s): <br>
-- [CodeBox website](https://www.codebox.club) <br>
-- [CodeBox API docs](https://www.codebox.club/docs/api) <br>
-- [CodeBox API Reference](references/api.md) <br>
-- [CodeBox SDK](https://www.codebox.club/docs/sdk) <br>
-- [CodeBox MCP server](https://www.codebox.club/docs/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/gdfsdjj145/codebox-qrcode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CODEBOX_API_KEY and curl for API-backed actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Dynamic QR codes are trackable and may collect scan analytics such as device, time, and location-derived information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use static QR codes when tracking is unnecessary and disclose analytics collection where appropriate.
+
+Risk: Dynamic QR code generation consumes CodeBox credits.
+
+Mitigation: Confirm dynamic mode and expected volume before creating important or large batches of QR codes.
+
+Risk: The CodeBox API key grants access to QR code generation and management actions.
+
+Mitigation: Keep CODEBOX_API_KEY in the environment, avoid sharing it inline, and verify update or delete operations before execution.
+
+## Reference(s):
+
+- [CodeBox API Reference](references/api.md)
+- [CodeBox Website](https://www.codebox.club)
+- [CodeBox API Docs](https://www.codebox.club/docs/api)
+- [CodeBox SDK](https://www.codebox.club/docs/sdk)
+- [CodeBox MCP Server](https://www.codebox.club/docs/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/gdfsdjj145/skills/codebox-qrcode)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CodeBox API URLs, QR code image URLs, short URLs, and analytics summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

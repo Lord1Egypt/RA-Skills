@@ -1,44 +1,59 @@
-## Description: <br>
-Drafts Chinese government-style documents, reports, speeches, policy materials, implementation plans, research reports, summaries, notices, and meeting records from user-provided requirements and source material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gov Doc Skill helps agents draft, format, explain, and review Chinese government documents such as work reports, speeches, policy files, implementation plans, notices, and research reports.
 
-## Publisher: <br>
-[boboy-j](https://clawhub.ai/user/boboy-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boboy-j](https://clawhub.ai/user/boboy-j)
 
-## Use Case: <br>
-Government office staff, policy researchers, and administrative teams use this skill to plan, draft, format, and review Chinese government-style documents. It is intended for drafting workflows that still require human review of facts, policy language, confidentiality, and official approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask users to provide classified, internal-only, personal, unpublished, or legally restricted government material. <br>
-Mitigation: Use only in an organization-approved AI environment; prefer anonymized summaries and placeholders, and avoid restricted material unless approved retention and confidentiality rules permit it. <br>
-Risk: Generated government-style drafts may contain inaccurate policy references, political phrasing, data, formatting, or approval language. <br>
-Mitigation: Require human policy, legal, confidentiality, and editorial review before official use; verify all figures, sources, citations, classifications, and publication requirements. <br>
+## Use Case:
 
+Government-office staff, policy researchers, and document drafters use this skill to turn user-provided requirements and source materials into complete Chinese government-document drafts. The skill also provides writing plans, format notes, and review checklists so users can verify document type, wording, data, and approval needs before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boboy-j/gov-doc-skill) <br>
-- [README](artifact/README.md) <br>
-- [Knowledge base](artifact/knowledge-base.md) <br>
-- [Output templates](artifact/output-templates.md) <br>
-- [Input schema](artifact/schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include writing plans, full draft documents, format notes, writing explanations, review checklists, and placeholders for user-verified facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill invites drafting with internal, sensitive, or classified government materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive or properly redacted materials unless the skill runs in an approved secure environment for government work.
+
+Risk: Generated drafts may contain incorrect, outdated, or unsupported policy language if users do not provide authoritative references.
+
+Mitigation: Require users to verify policy citations, leadership statements, data, confidentiality labels, and approval routing before any official use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boboy-j/skills/gov-doc-skill)
+- [Publisher profile](https://clawhub.ai/user/boboy-j)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [knowledge-base.md](artifact/knowledge-base.md)
+- [output-templates.md](artifact/output-templates.md)
+- [schema.json](artifact/schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown document drafts with writing plans, format notes, and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for human review and may include placeholders where users must supply real data, policy references, approval details, or confidentiality handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

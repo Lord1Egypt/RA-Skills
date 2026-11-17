@@ -1,54 +1,55 @@
-﻿<!--
-Copyright (c) 2026 杨鹏飞 / 微信公众号「叉车技术老炮」
-Licensed under CC BY-NC 4.0 + 附加条款 - 严禁商用 - 完整协议见 ../LICENSE.md
+<!--
+Copyright (c) 2026 Yang Pengfei / WeChat Official Account "Forklift Veteran"
+Licensed under the MIT License - See the complete license at LICENSE.md
 -->
-# 作者信息
+# Author Information
 
-## 作者
+## Author
 
-**杨鹏飞**
+**Yang Pengfei**
 
-微信公众号:**叉车技术老炮**
+WeChat Official Account: **Forklift Veteran**
 
-## 公众号简介
+## About the Official Account
 
-"叉车技术老炮" 是一个聚焦叉车与工程机械行业的微信公众号,主要内容方向:
+"Forklift Veteran" is a WeChat Official Account focused on the forklift and construction equipment industries. Its main topics include:
 
-- **行业数据**:月度销量、出口/内销分析、锂电渗透率等
-- **技术解读**:GB/ISO 标准、电池/电机/液压技术原理
-- **市场动态**:新品发布、企业财报、政策影响
-- **实操经验**:维修案例、选型建议、TCO 分析
+- **Industry data:** monthly sales, export and domestic sales analysis, lithium-battery penetration, and more
+- **Technical explainers:** GB/ISO standards and battery, motor, and hydraulic principles
+- **Market updates:** product launches, company earnings, and policy impacts
+- **Practical experience:** repair cases, equipment selection, and total cost of ownership (TCO) analysis
 
-## 作者声明
+## Author's Statement
 
-1. 本 Skill 包(`forklift-expert`)的所有内容,包括但不限于:
-   - SKILL.md
-   - references/ 目录下的全部 .md 文件
-   - 今后任何版本更新
+1. All content in this Skill package (`forklift-expert`), including but not limited to:
+   - `SKILL.md`
+   - All `.md` files in the `references/` directory
+   - Any future version updates
 
-   著作权归 **杨鹏飞** 所有,首发于微信公众号"叉车技术老炮"。
+   is copyrighted by **Yang Pengfei** and was first published through the WeChat Official Account "Forklift Veteran."
 
-2. 本 Skill 内的具体型号参数、市场数据、技术标准编号等,部分内容
-   来自公开渠道(国家标准全文公开系统、工标网、CITA 工业车辆分会、
-   海关总署、上市公司公告、品牌官网等),这些公共数据本身不受版权
-   限制,但**整理、编排、解读方式**的著作权归杨鹏飞所有。
+2. Some model specifications, market data, and technical standard identifiers in this Skill come from public sources, including the National Standards Full-text Publicity System, CSRES, the CITA Industrial Truck Branch, the General Administration of Customs, listed-company disclosures, and brand websites. The public data itself is not subject to copyright restrictions, but the **selection, organization, and interpretation** are copyrighted by Yang Pengfei.
 
-3. 数据准确性免责声明:
-   - 行业数据有月度/季度/年度时效性,使用前请通过 web_search 核对最新值
-   - 标准号、起草单位、实施日期以国标委原文为准
-   - 品牌具体型号参数以厂商最新手册为准
-   - 本 Skill 不承担因数据时效性造成的使用责任
+3. **Data accuracy disclaimer:**
+   - Industry data is updated monthly, quarterly, or annually. Use `web_search` to verify current values before relying on it.
+   - Confirm standard numbers, drafting organizations, and effective dates against the official national standards authority publication.
+   - Confirm exact brand and model specifications against the manufacturer's latest manual.
+   - This Skill assumes no responsibility for use of data that has become outdated.
 
-4. 联系与授权:
-   - 非商用使用(包括个人学习、团队内部培训、自媒体内容引用)
-     需保留作者署名(杨鹏飞 / 叉车技术老炮)和公众号信息
-   - **任何商用行为需事先获得作者书面授权**,联系方式通过
-     微信公众号"叉车技术老炮"获取
-   - 商用场景包括但不限于:商业产品集成、商业培训收费、出售本
-     Skill 副本或衍生品、嵌入付费服务、用于商业咨询报告等
+4. **License terms (MIT License adopted starting with v2.3):**
+   - **Only mandatory condition:** retain the notice `Copyright (c) 2026 Yang Pengfei` and the full MIT License text.
+   - **Permitted:** commercial use, modification, closed-source derivatives, embedding in paid products, and AI training (open-source or commercial).
+   - **Strongly recommended but not required:** prominently credit the author as "Yang Pengfei / Forklift Veteran."
+   - **No prior permission required:** commercial use, closed-source modification, product embedding, and commercial AI training.
+   - **Historical versions:** v2.2 and earlier used CC BY-NC-4.0 plus additional terms prohibiting commercial use. Users who still use those versions remain subject to their original license.
 
-## 版本
+5. **Contact and feedback:**
+   - Leave a message on the "Forklift Veteran" WeChat Official Account to request contact details.
+   - Corrections to data, module suggestions, and notices about standard updates are welcome.
 
-- 文档版本:v2.1
-- 最后更新:2026-06
-- 配套 Skill 版本:forklift-expert v2.1
+## Version
+
+- Document version: v2.8
+- Last updated: 2026-10-31
+- Corresponding Skill version: forklift-expert v2.8
+

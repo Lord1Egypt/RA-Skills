@@ -1,0 +1,28 @@
+{
+  "url": "https://nlp.stanford.edu/IR-book/html/htmledition/an-example-information-retrieval-problem-1.html",
+  "title": "An example information retrieval problem",
+  "observed_at": "2026-10-09T13:08:51.308Z",
+  "method": "Playwright JavaScript library / visible Google Chrome",
+  "excerpts": [
+    "list that records which documents"
+  ],
+  "sections": [
+    {
+      "section": null,
+      "locator": "p filtered by /This idea is central to/",
+      "excerpt": "list that records which documents",
+      "screenshot": "inverted-index.png",
+      "visible": true
+    }
+  ],
+  "claims_basis": {
+    "mapping": {
+      "summary": "倒排索引从词项关联到出现该词项的文档或出现位置。",
+      "kind": "paraphrase of observed definition"
+    },
+    "components": {
+      "summary": "基本结构包含词项词典，以及记录每个词项出现在哪些文档中的倒排列表；列表中的一项称为 posting。",
+      "kind": "paraphrase of observed definition"
+    }
+  }
+}

@@ -1,43 +1,53 @@
-## Description: <br>
-An autonomous agent for monitoring corporate earnings and analyzing financial statements using yfinance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An autonomous agent for monitoring corporate earnings and analyzing financial statements using yfinance.
 
-## Publisher: <br>
-[assix](https://clawhub.ai/user/assix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[assix](https://clawhub.ai/user/assix)
 
-## Use Case: <br>
-Developers and financial analysts use this local Python skill to retrieve public earnings calendars and recent financial statement metrics for ticker-based financial analysis. The output should support analysis workflows and should not be treated as financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill retrieves public stock data through yfinance, so results can be delayed, incomplete, or different from official filings. <br>
-Mitigation: Use the output as supporting data and verify material decisions against official company filings or trusted market data sources. <br>
-Risk: Installing an unpinned Python dependency can reduce reproducibility or introduce unexpected dependency changes. <br>
-Mitigation: Install in a virtual environment and pin yfinance to a reviewed version where reproducible behavior is required. <br>
-Risk: Financial summaries may be mistaken for investment advice. <br>
-Mitigation: Present outputs as data analysis only and require human review before acting on investment, trading, or compliance decisions. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to retrieve public earnings calendar data and quarterly financial metrics for stock tickers. The results support earnings summaries, company comparisons, ratio checks, cash-flow review, growth trend analysis, and dividend health checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/assix/earnings-financials-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/assix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown instructions with local Python command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, pip, and the yfinance Python package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The unpinned yfinance dependency can change behavior across installs or introduce unexpected dependency changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in an isolated virtual environment and pin yfinance to a reviewed version before use.
+
+Risk: Financial data retrieval and summaries can be incomplete, delayed, or misread as investment advice.
+
+Mitigation: Treat outputs as analysis support only and review important financial conclusions against authoritative filings or market data sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/assix/skills/earnings-financials-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the local Python tool calls, with agent-facing prose or Markdown guidance for setup and analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and pip; uses yfinance for public market data retrieval.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

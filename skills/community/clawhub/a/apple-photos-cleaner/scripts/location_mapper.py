@@ -7,9 +7,33 @@ Cluster GPS coordinates into locations, identify trips, find most-photographed p
 import math
 import sys
 from collections import defaultdict
-from typing import Any, Optional
+from typing import Any
 
-from _common import PhotosDB, coredata_to_datetime, detect_face_schema, format_size, run_script, validate_year
+from _common import (
+    PhotosDB,
+    coredata_to_local,
+    detect_face_schema,
+    format_size,
+    has_timezone_offset,
+    local_datetime_sql,
+    run_script,
+    tz_offset_sql,
+    validate_year,
+)
+from _schema import FACES, FILE_SIZE, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFAVORITE",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZKIND",
+    "ZASSET.ZLATITUDE",
+    "ZASSET.ZLONGITUDE",
+    "ZASSET.ZTRASHEDSTATE",
+    *FILE_SIZE,
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {"people": FACES}
 
 # ---------------------------------------------------------------------------
 # Offline reverse geocoding: maps lat/lon to approximate place names using
@@ -125,7 +149,7 @@ KNOWN_PLACES: list[tuple[float, float, str, str]] = [
 REVERSE_GEO_THRESHOLD_KM = 50
 
 
-def reverse_geocode(lat: float, lon: float) -> Optional[str]:
+def reverse_geocode(lat: float, lon: float) -> str | None:
     """
     Offline reverse geocode: return "City, Country" for a coordinate,
     or None if no known place is within the threshold distance.
@@ -205,9 +229,9 @@ def cluster_locations(
 
 
 def analyze_locations(
-    db_path: Optional[str] = None,
+    db_path: str | None = None,
     cluster_radius_km: float = 1.0,
-    year: Optional[str] = None,
+    year: str | None = None,
     min_photos: int = 3,
 ) -> dict[str, Any]:
     """
@@ -222,9 +246,12 @@ def analyze_locations(
     Returns:
         Location analysis dictionary
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Location mapping") as conn:
         cursor = conn.cursor()
         schema = detect_face_schema(cursor)
+        degraded = Degradation(get_schema(conn))
+        has_faces = degraded.check("people", *OPTIONAL_COLUMNS["people"])
+        tz_available = has_timezone_offset(cursor)
 
         where_clauses = [
             "a.ZTRASHEDSTATE != 1",
@@ -237,7 +264,7 @@ def analyze_locations(
 
         if year:
             year = validate_year(year)
-            where_clauses.append("strftime('%Y', datetime(a.ZDATECREATED + 978307200, 'unixepoch')) = ?")
+            where_clauses.append(f"strftime('%Y', {local_datetime_sql(tz_available)}) = ?")
             params.append(year)
 
         query = f"""
@@ -249,7 +276,8 @@ def analyze_locations(
                 a.ZLATITUDE,
                 a.ZLONGITUDE,
                 a.ZFAVORITE,
-                aa.ZORIGINALFILESIZE
+                aa.ZORIGINALFILESIZE,
+                {tz_offset_sql(tz_available)} AS tz_offset
             FROM ZASSET a
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
             WHERE {" AND ".join(where_clauses)}
@@ -262,7 +290,7 @@ def analyze_locations(
         total_assets = 0
 
         for row in cursor.fetchall():
-            created = coredata_to_datetime(row["ZDATECREATED"])
+            created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
             photos_with_location.append(
                 {
                     "id": row["Z_PK"],
@@ -302,7 +330,7 @@ def analyze_locations(
             last = max(dates) if dates else None
 
             # Count by year-month
-            by_month = defaultdict(int)
+            by_month: defaultdict[str, int] = defaultdict(int)
             for p in cluster_photos:
                 if p["created_dt"]:
                     key = p["created_dt"].strftime("%Y-%m")
@@ -319,15 +347,16 @@ def analyze_locations(
 
             # Get people at this location
             photo_ids = [p["id"] for p in cluster_photos]
-            people_at_location = []
-            if photo_ids:
+            # None (not []) when this library has no face data to ask
+            people_at_location: list[dict[str, Any]] | None = [] if has_faces else None
+            if photo_ids and has_faces:
                 placeholders = ",".join("?" * len(photo_ids))
                 cursor.execute(
                     f"""
-                    SELECT DISTINCT p.ZFULLNAME, COUNT(df.{schema['asset_fk']}) as count
+                    SELECT DISTINCT p.ZFULLNAME, COUNT(df.{schema["asset_fk"]}) as count
                     FROM ZPERSON p
-                    JOIN ZDETECTEDFACE df ON p.Z_PK = df.{schema['person_fk']}
-                    WHERE df.{schema['asset_fk']} IN ({placeholders})
+                    JOIN ZDETECTEDFACE df ON p.Z_PK = df.{schema["person_fk"]}
+                    WHERE df.{schema["asset_fk"]} IN ({placeholders})
                     AND p.ZFULLNAME IS NOT NULL AND p.ZFULLNAME != ''
                     GROUP BY p.Z_PK
                     ORDER BY count DESC
@@ -363,6 +392,7 @@ def analyze_locations(
         trips = [loc for loc in locations if loc["is_trip"]]
 
         return {
+            "degraded": degraded.entries,
             "locations": locations,
             "trips": trips,
             "summary": {
@@ -421,7 +451,7 @@ def format_summary(data: dict[str, Any]) -> str:
 def main():
     def add_args(parser):
         parser.add_argument("--radius", type=float, default=1.0, help="Cluster radius in km (default: 1.0)")
-        parser.add_argument("--year", help="Filter to specific year (YYYY)")
+        parser.add_argument("--year", help="Filter to specific year (YYYY, local capture time)")
         parser.add_argument(
             "--min-photos", type=int, default=3, help="Minimum photos per location cluster (default: 3)"
         )

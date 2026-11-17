@@ -1,37 +1,54 @@
-## Description: <br>
-Guides AI agents to produce Feishu frontend technical documents with stable Markdown heading hierarchy, fixed section order, Mermaid flows, tables, and readable structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to produce structured Chinese Feishu frontend technical documents with stable Markdown heading hierarchy, fixed section order, Mermaid diagrams, tables, and readable formatting.
 
-## Publisher: <br>
-[kelaner](https://clawhub.ai/user/kelaner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelaner](https://clawhub.ai/user/kelaner)
 
-## Use Case: <br>
-Frontend developers and technical writers use this skill to make AI-generated Feishu technical plans follow a consistent frontend documentation template. It is suited for activity or feature planning documents that need ordered sections, structured module breakdowns, tracking tables, testing information, and acceptance details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kelaner/frontend-tech-doc-guide) <br>
+Developers and product teams use this skill to have an agent draft Chinese Feishu-style frontend technical plans for activity projects. It is most useful when the output needs a strict section order, structured module breakdowns, acceptance information, tracking tables, and Mermaid flow diagrams.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown document with headings, lists, tables, and Mermaid code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs the final document only, without explanations, alternate versions, or empty sections.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill strongly steers matching document-generation tasks toward Chinese Feishu headings and final Markdown-only output.
+
+Mitigation: Use it for Chinese Feishu-style frontend technical plans, and provide explicit language or format requirements when a different document style is needed.
+
+Risk: The fixed section order and required Mermaid/table structure may not match every team's project template.
+
+Mitigation: Review generated documents against project-specific requirements before sharing or using them for delivery planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelaner/skills/frontend-tech-doc-guide)
+- [Publisher profile](https://clawhub.ai/user/kelaner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables and Mermaid diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final document only; no explanatory preface, no alternate versions, and incomplete sections should be marked as pending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

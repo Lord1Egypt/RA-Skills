@@ -1,42 +1,57 @@
-## Description: <br>
-Manage persistent VMs on exe.dev. Create VMs, configure HTTP proxies, share access, and set up custom domains. Use when working with exe.dev VMs for hosting, development, or running persistent services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage persistent VMs on exe.dev. Create VMs, configure HTTP proxies, share access, and set up custom domains. Use when working with exe.dev VMs for hosting, development, or running persistent services.
 
-## Publisher: <br>
-[bjesuiter](https://clawhub.ai/user/bjesuiter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bjesuiter](https://clawhub.ai/user/bjesuiter)
 
-## Use Case: <br>
-Developers and engineers use this skill as a command reference for managing exe.dev VMs used for hosting, development, persistent services, HTTP proxy configuration, sharing, and custom domains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commands can create VMs or change exe.dev resources, which may affect cost or resource state. <br>
-Mitigation: Before execution, require the agent to show the exact command and confirm the target VM and expected cost or resource impact. <br>
-Risk: Sharing, public access, custom domains, and port changes can expose services to broader audiences. <br>
-Mitigation: Confirm the intended audience, target VM, port, and exposure level before running commands that modify access. <br>
-Risk: The artifact describes the skill as auto-built from documentation and not yet tested. <br>
-Mitigation: Treat outputs as command proposals and verify them against current exe.dev documentation before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [exe.dev VM Service Reference](artifact/references/exe-dev-vm-service.md) <br>
-- [exe.dev Documentation](https://exe.dev/docs/all.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to manage exe.dev persistent VMs for hosting, development, HTTP proxy setup, sharing access, custom domains, and Shelley agent access.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only reference; commands should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sharing commands can expose VM services, reachable application data, or public links.
+
+Mitigation: Verify the VM, exposed port, application data, and intended recipients before sharing; revoke public access or links when they are no longer needed.
+
+Risk: Authentication headers contain user identity data that may be logged or used in authorization decisions.
+
+Mitigation: Treat X-ExeDev-UserID and X-ExeDev-Email as sensitive data, minimize logging, and validate authorization logic before relying on those headers.
+
+Risk: The skill was auto-built from exe.dev documentation and is marked as not yet tested.
+
+Mitigation: Review the generated guidance against the exe.dev documentation and test commands in a controlled VM before operational use.
+
+## Reference(s):
+
+- [exe.dev VM service reference](artifact/references/exe-dev-vm-service.md)
+- [exe.dev documentation](https://exe.dev/docs/all.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and URL patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may affect live exe.dev VMs, HTTP exposure, sharing links, and identity headers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

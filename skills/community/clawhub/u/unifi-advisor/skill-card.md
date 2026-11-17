@@ -1,42 +1,56 @@
-## Description: <br>
-Read-only UniFi network advisor for querying Site Manager and Network Integration API data about devices, clients, networks, firewall policies, VPN tunnels, ISP metrics, and related state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read-only UniFi network advisor covering the Site Manager cloud API and the Network Integration API for devices, clients, networks, firewall policy, VPN, DPI, ISP metrics, and related UniFi state.
 
-## Publisher: <br>
-[arseni-mik](https://clawhub.ai/user/arseni-mik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arseni-mik](https://clawhub.ai/user/arseni-mik)
 
-## Use Case: <br>
-Network administrators and support engineers use this skill to inspect UniFi environments, answer status and configuration questions, and get read-only troubleshooting guidance without making changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a UniFi API key that can read network inventory through api.ui.com. <br>
-Mitigation: Use the least-privilege key available, avoid shared machines for sensitive environments, and do not expose API keys in responses. <br>
-Risk: The skill caches site metadata locally at ~/.openclaw/unifi-skill.json. <br>
-Mitigation: Delete the cache file when local site metadata should not remain on disk and protect the host account where the cache is stored. <br>
+## Use Case:
 
+Network operators, IT administrators, and support engineers use this skill to inspect UniFi environments, query read-only API state, and receive guidance about device health, clients, firewall policy, VPN status, ISP metrics, and related network configuration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arseni-mik/unifi-advisor) <br>
-- [UniFi API Endpoint](https://api.ui.com) <br>
-- [UniFi Account and API Key Setup](https://unifi.ui.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses GET-only UniFi API calls through python3 and requires UNIFI_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill can expose sensitive UniFi account, network inventory, client, firewall, VPN, voucher, IP address, and firmware information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where read access to the UniFi cloud account and returned network details are acceptable, and treat outputs as confidential.
+
+Risk: Site inventory metadata is cached locally for about 15 minutes without explicit permission hardening by the script.
+
+Mitigation: Use the skill on trusted hosts and account profiles where local cache files are protected by the surrounding operating system permissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arseni-mik/skills/unifi-advisor)
+- [OpenClaw](https://openclaw.ai)
+- [UniFi Portal](https://unifi.ui.com)
+- [UniFi API Host](https://api.ui.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline shell commands and summarized JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sensitive network inventory, client, firewall, VPN, IP address, voucher, firmware, and performance details from the user's UniFi account.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

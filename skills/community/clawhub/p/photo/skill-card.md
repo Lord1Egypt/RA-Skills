@@ -1,37 +1,52 @@
-## Description: <br>
-The Universal Imaging & Optical Sovereignty Protocol is a high-fidelity standard for the generation, authentication, and preservation of light-based and synthetic visual assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Universal Imaging and Optical Sovereignty Protocol is a high-fidelity standard for the generation, authentication, and preservation of light-based and synthetic visual assets.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users, developers, archivists, and forensic reviewers can use this skill as conceptual guidance for describing provenance, authentication, preservation, and rights considerations for visual assets. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the protocol language for a working image-authenticity or provenance verification system. <br>
-Mitigation: Treat outputs as conceptual guidance and require separate trusted tooling before making authenticity, copyright, or provenance claims. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Photo skill page](https://clawhub.ai/AGIstack/photo) <br>
+## Use Case:
 
+External developers and reviewers use this skill as conceptual guidance for photo provenance, authentication, and preservation considerations for light-based and synthetic visual assets.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown prose with a protocol-style example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Conceptual guidance only; no executable tooling or verification workflow is included.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is abstract and may not provide practical photo tooling by itself.
+
+Mitigation: Pair it with implementation files or workflows before relying on it for operational image provenance tasks.
+
+Risk: Server-resolved GitHub import provenance is unavailable for this version.
+
+Mitigation: Do not infer repository provenance from the skill text; verify source origin separately before compliance-sensitive deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agistack/skills/photo)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown prose with a small illustrative protocol snippet]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable descriptive skill; no commands or configuration are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

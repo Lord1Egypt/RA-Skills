@@ -1,43 +1,54 @@
-## Description: <br>
-Academic Deep Research guides an agent through transparent, rigorous research using clarifying checkpoints, approved research plans, repeated web search and fetch cycles, evidence hierarchy, APA citations, and contradiction analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Deep Research guides agents through transparent multi-cycle research with user checkpoints, APA 7th citations, evidence hierarchy, and contradiction analysis for rigorous investigations.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Researchers, analysts, and teams use this skill to plan and execute exhaustive literature reviews, competitive intelligence, and complex multi-source investigations with visible methodology, citations, and user approval checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may perform many web searches, fetch external pages, consult prior memory, and spawn parallel research helpers after the user approves a plan. <br>
-Mitigation: Review the plan before approving execution, and avoid providing secrets, private documents, or sensitive internal topics unless that external research and memory use is acceptable. <br>
-Risk: Long research reports can still contain incorrect or misleading conclusions when sources are weak, incomplete, or contradictory. <br>
-Mitigation: Review citations, confidence labels, contradiction analysis, and stated limitations before relying on the final report. <br>
+## Use Case:
 
+External users, researchers, analysts, and developers use this skill to plan and conduct deep research workflows for literature reviews, competitive intelligence, trend analysis, and other topics requiring reproducible methodology. It is designed for multi-source investigation with explicit user checkpoints, evidence tracking, contradiction analysis, and cited narrative reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-academic-deep-research) <br>
-- [README](README.md) <br>
-- [Quick Reference](quickref.md) <br>
-- [Example Workflow](example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research plans and narrative reports with APA-style citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approved web search and fetch steps, evidence trails, confidence labels, contradictions, limitations, and APA references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Research topics may include confidential business plans, regulated data, personal information, or sensitive security context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scope before installation and avoid using sensitive details unless the platform web search, web fetch, sub-agent, and memory behavior is acceptable for the topic.
+
+Risk: The skill can use web research, parallel sub-agents, and memory lookup in ways that may not be obvious to every user.
+
+Mitigation: Ask the agent to show planned search queries before outbound research, avoid persistent memory for sensitive topics, and keep the approved research plan narrow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-academic-deep-research)
+- [Skill homepage declared in artifact](https://github.com/kesslerio/academic-deep-research-clawhub-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown research plans, checkpoint prompts, source-grounded analysis, and final narrative reports with APA-style citations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user checkpoints before research planning and execution; final reports emphasize prose, citations, limitations, and contradiction handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

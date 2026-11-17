@@ -1,40 +1,48 @@
-## Description: <br>
-OpenClaw automation workflow guide for creating scheduled and event-triggered tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw automation workflow guidance for configuring scheduled tasks, event triggers, automated replies, classification, forwarding, and monitoring.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this guide to configure recurring and event-driven automations such as briefings, price monitoring, content publishing, message handling, webhooks, file processing, and workflow monitoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Automation examples for publishing, forwarding, email, webhooks, and file processing may perform unintended outward-facing actions or process untrusted inputs.
+
+Mitigation: Limit the accounts and folders involved, test with dry runs, authenticate webhooks, add rate limits and logging, and require human review for outward-facing or financial actions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill as a configuration guide for scheduled jobs, message triggers, webhook triggers, file triggers, automated replies, classification, forwarding, and automation monitoring. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Copied examples can schedule recurring actions or publish, forward, and notify external channels. <br>
-Mitigation: Treat examples as templates, test automations manually, allowlist destinations, and disable scheduled jobs that are no longer needed. <br>
-Risk: File-trigger examples can process local folders if users enable them. <br>
-Mitigation: Use dedicated non-sensitive folders and review payloads before publishing, forwarding, or otherwise acting on file contents. <br>
+**Output Format:** [Markdown guide with YAML and bash examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-automation-guide) <br>
+**Other Properties Related to Output:** [Produces guidance for OpenClaw automation configuration; no required external binaries are declared in metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown with YAML and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; users choose whether to copy and enable examples in their own OpenClaw setup.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

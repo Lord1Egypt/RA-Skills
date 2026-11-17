@@ -1,40 +1,53 @@
-## Description: <br>
-基于 COSMIC 标准的工作量拆分工作流。将需求文档自动拆解为功能点与子过程明细（E/R/W/X 数据移动），生成拆解表格与 CSV 文件。当用户要求进行 COSMIC 拆分、功能点分析、COSMIC 工作量拆解时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 COSMIC 标准的工作量拆分工作流，将需求文档拆解为功能点与 E/R/W/X 数据移动明细，并生成拆解表格和 CSV 文件。
 
-## Publisher: <br>
-[wed840313](https://clawhub.ai/user/wed840313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wed840313](https://clawhub.ai/user/wed840313)
 
-## Use Case: <br>
-Developers, analysts, and delivery teams use this skill to decompose requirements documents into COSMIC function points and E/R/W/X data-movement subprocesses. It supports review of Markdown breakdowns and CSV export for downstream estimation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to run a simple local shell command for output validation or CSV conversion. <br>
-Mitigation: Review the prompted command before execution, especially in restricted environments. <br>
-Risk: COSMIC decomposition results may be incomplete or misleading if the input requirements are ambiguous or insufficient. <br>
-Mitigation: Use the built-in review and confirmation steps before relying on the generated Markdown or CSV outputs. <br>
+## Use Case:
 
+Business analysts, product teams, and implementation engineers use this skill to turn Markdown or DOCX requirements documents into COSMIC CFP decomposition artifacts for review and estimation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wed840313/wenwei-cosmic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and CSV files, with concise progress and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the agent to run a local Python conversion command after the Markdown breakdown has been reviewed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-supplied requirement document paths may be passed into shell commands during workspace preparation and CSV export.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a restricted workspace, avoid paths or filenames containing shell metacharacters, and prefer a patched release that uses safe filesystem APIs for path handling.
+
+Risk: Generated CSV files may reflect untrusted or malformed requirement content.
+
+Mitigation: Review generated CSV files before opening them in spreadsheet software or sharing them downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wed840313/skills/wenwei-cosmic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown decomposition documents, progress text, shell commands, and CSV export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces requirements discovery and COSMIC decomposition Markdown files, then exports reviewed decomposition tables to UTF-8 BOM CSV.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,64 @@
-## Description: <br>
-A sleep and relaxation skill that sends AI-generated bedtime audio stories mixed with ambient background music as a voice message on WhatsApp, WeChat, or Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A sleep and relaxation skill that sends AI-generated bedtime audio stories mixed with ambient background music as a voice message on WhatsApp, WeChat, or Feishu.
 
-## Publisher: <br>
-[tiansyao](https://clawhub.ai/user/tiansyao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiansyao](https://clawhub.ai/user/tiansyao)
 
-## Use Case: <br>
-External users use this skill to request bedtime stories, ambient sounds, music-only tracks, or children's sleep content through linked chat platforms. The agent selects from the DozyTale theme catalog, prepares an audio track with ffmpeg, and sends the result as a chat voice message. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local OpenClaw WeChat account context files to identify a message target. <br>
-Mitigation: Install only after confirming the linked chat account is appropriate, and verify the target account before enabling scheduled sends. <br>
-Risk: The skill can create an ongoing daily scheduled sender named dozytale-nightly. <br>
-Mitigation: Confirm the delivery time before setup, and use OpenClaw cron listing and removal commands to audit or disable the job. <br>
-Risk: The skill downloads audio assets and sends media through linked WhatsApp, WeChat, or Feishu accounts. <br>
-Mitigation: Use it only in environments where external audio downloads and chat-account message delivery are acceptable. <br>
+## Use Case:
 
+External users use this skill to request a calming bedtime story, ambient music, white noise, or children's sleep content through chat. The agent selects a theme, prepares mixed audio when possible, and sends it through a connected OpenClaw chat channel.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/tiansyao/dozytale-skill) <br>
-- [DozyTale](https://dozytale.ai) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/skills) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with bash command blocks and generated audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates temporary MP3 or OGG audio files and may configure a daily OpenClaw cron job for scheduled bedtime delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create a daily recurring OpenClaw task for bedtime messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit scheduling consent, state the schedule clearly, and provide an easy stop command before enabling recurring delivery.
+
+Risk: The skill reads local WeChat account context files to infer a message recipient.
+
+Mitigation: Avoid context-token file access when possible and require the user to confirm the recipient before sending proactive messages.
+
+Risk: The skill sends media and text through connected chat channels.
+
+Mitigation: Review the destination channel and generated message before sending, especially when multiple chat channels are connected.
+
+Risk: The skill appends promotional tracked DozyTale links after delivery.
+
+Mitigation: Disclose promotional links and make marketing follow-up optional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tiansyao/skills/dozytale-skill)
+- [OpenClaw skills documentation](https://docs.openclaw.ai/skills)
+- [OpenClaw](https://openclaw.ai)
+- [DozyTale](https://dozytale.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, audio file, chat messages]
+
+**Output Format:** [Chat text with inline shell commands and generated OGG or MP3 media output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses ffmpeg and ffprobe to mix or convert audio; can send media and text through connected OpenClaw channels.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact frontmatter declares 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

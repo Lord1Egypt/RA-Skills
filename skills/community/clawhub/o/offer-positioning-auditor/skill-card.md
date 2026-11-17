@@ -1,40 +1,49 @@
-## Description: <br>
-Audits a product or service offer for clarity, differentiation, buying friction, positioning, promise, audience fit, and conversion before launch or selling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits a product or service offer for clarity, differentiation, buying friction, audience fit, and conversion readiness before launch or sales outreach.
 
-## Publisher: <br>
-[kyoiii](https://clawhub.ai/user/kyoiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyoiii](https://clawhub.ai/user/kyoiii)
 
-## Use Case: <br>
-Marketing teams, founders, consultants, and other external users use this skill to tighten offers before selling or launching. It helps identify the strongest angle, weakest positioning point, clearer one-line offer, and concrete edits that improve sales clarity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may produce business-positioning advice that is incomplete or not predictive of sales results. <br>
-Mitigation: Review recommendations against customer evidence, pricing, legal claims, and market context before relying on them. <br>
-Risk: Offer details may include confidential business information. <br>
-Mitigation: Avoid sharing sensitive business data in the agent session unless it is approved for that environment. <br>
+## Use Case:
 
+External business, marketing, and product users apply this skill to tighten an offer before selling it by identifying the strongest angle, weakest positioning point, a cleaner one-line offer, and concrete edits that improve sales clarity.
 
-## Reference(s): <br>
-- [Checklist](artifact/references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a strongest angle, weakest positioning point, cleaner one-line offer, and three concrete edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Offer, pricing, audience, or business details may be sensitive when shared for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only information suitable for the current chat context and review recommendations before using them in customer-facing materials.
+
+## Reference(s):
+
+- [Checklist](references/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with concise audit findings and concrete positioning edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces text-only marketing-positioning recommendations; no code, external access, persistence, or hidden authority is indicated by the security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

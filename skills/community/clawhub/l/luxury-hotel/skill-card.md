@@ -1,44 +1,61 @@
-## Description: <br>
-Discovers premium 5-star hotels and luxury resorts through flyai CLI searches, with booking links and real-time pricing when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discovers premium 5-star hotels and luxury resorts using flyai CLI results, with support for related Fliggy travel services such as flights, train tickets, itinerary planning, visas, insurance, and car rental.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travel users and agents use this skill to collect destination and date parameters, run flyai hotel searches, and present top-rated luxury hotel options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party flyai CLI and may install it globally before answering travel requests. <br>
-Mitigation: Review and install a trusted flyai CLI version before use; do not allow automatic global installs unless approved. <br>
-Risk: Travel queries and command activity may be sent to the flyai service and saved locally in an execution log. <br>
-Mitigation: Use only when sharing travel-search details with the provider is acceptable, and disable or delete `.flyai-execution-log.json` when those details are sensitive. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to retrieve real-time luxury hotel recommendations, compare options, and return booking-ready Markdown sourced from flyai CLI output.
 
-## Reference(s): <br>
-- [Luxury Hotel ClawHub page](https://clawhub.ai/dingtom336-gif/luxury-hotel) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Luxury hotel playbooks](references/playbooks.md) <br>
-- [Hotel-search fallbacks](references/fallbacks.md) <br>
-- [Execution log runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown response with hotel comparison tables, booking links, and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output as the data source; may append execution logs when file-system writes are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on an unpinned globally installed third-party travel CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in an isolated environment, review the package and version before use, and avoid granting broader system access than needed.
+
+Risk: User travel details are turned into shell commands for live lookup.
+
+Mitigation: Validate destination, date, price, and keyword values before command execution and avoid including sensitive personal or payment information.
+
+Risk: The runbook describes optional persistence of raw request logs.
+
+Mitigation: Disable or remove the local execution log unless retention is explicitly required, and avoid storing sensitive travel details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/luxury-hotel)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, concise guidance, and inline shell commands when setup or retries are needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI results; hotel recommendations must include booking links and a flyai-powered brand tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

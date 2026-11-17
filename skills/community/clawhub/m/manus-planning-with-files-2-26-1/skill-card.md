@@ -1,43 +1,59 @@
-## Description: <br>
-Implements Manus-style file-based planning to organize and track progress on complex tasks by creating task_plan.md, findings.md, and progress.md. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements Manus-style file-based planning to organize and track progress on complex tasks by creating task_plan.md, findings.md, and progress.md, with support for session recovery after context clears.
 
-## Publisher: <br>
-[kakaxiazai](https://clawhub.ai/user/kakaxiazai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kakaxiazai](https://clawhub.ai/user/kakaxiazai)
 
-## Use Case: <br>
-Developers and agent users use this skill to plan, track, and resume complex multi-step work with persistent markdown files in the project directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session recovery reads and prints prior Claude session content, which may expose sensitive information if prior conversations contained secrets. <br>
-Mitigation: Avoid putting secrets in planning files or related conversations, and review recovery output before continuing work. <br>
-Risk: Planning files are repeatedly shown to the agent, so sensitive or instruction-like content in those files can influence future actions. <br>
-Mitigation: Review task_plan.md, findings.md, and progress.md before resuming work; keep untrusted external content out of task_plan.md. <br>
+## Use Case:
 
+Developers and agent users use this skill to keep multi-step work organized across long sessions by maintaining persistent planning, findings, and progress files in the project workspace.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kakaxiazai/manus-planning-with-files-2-26-1) <br>
-- [Publisher profile](https://clawhub.ai/user/kakaxiazai) <br>
-- [Manus Context Engineering Principles](references/reference.md) <br>
-- [Planning With Files Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with inline shell commands and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates task_plan.md, findings.md, and progress.md in the project directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata); artifact metadata version 2.26.1 <br>
+Risk: Project plan text may be repeatedly injected into the agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted workspaces and review existing task_plan.md content before enabling it.
+
+Risk: Session catch-up may expose prior conversation content, including sensitive prompts, credentials, or private file paths.
+
+Mitigation: Disable or avoid session catch-up when previous sessions may contain sensitive information, and review any catch-up output before using it.
+
+Risk: Planning files can contain untrusted web or repository content that later influences agent behavior.
+
+Mitigation: Keep external findings in findings.md, treat fetched content as untrusted, and avoid copying instruction-like external text into task_plan.md.
+
+## Reference(s):
+
+- [Manus Context Engineering Principles](references/reference.md)
+- [Planning with Files Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/kakaxiazai/skills/manus-planning-with-files-2-26-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown planning files with inline shell commands and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates task_plan.md, findings.md, and progress.md in the active project workspace.]
+
+## Skill Version(s):
+
+2.26.1 (source: skill metadata); ClawHub release 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

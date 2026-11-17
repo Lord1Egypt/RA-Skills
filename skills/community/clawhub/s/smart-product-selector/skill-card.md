@@ -1,39 +1,50 @@
-## Description: <br>
-Smart Product Selector helps Amazon sellers, export teams, and product developers evaluate product opportunities through trend, competition, profit, and seasonality analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language, data-driven e-commerce product selection guidance by analyzing trends, competition, profit potential, seasonality, and producing professional product research reports.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External sellers, product research teams, and new product developers use this skill to structure market research, competition review, margin analysis, and seasonal demand assessment before choosing products to source or list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product and profit recommendations may be incomplete or inaccurate if market demand, platform fees, supplier claims, patents, certifications, or import rules are not verified. <br>
-Mitigation: Independently validate key commercial, legal, and supplier assumptions before purchasing inventory or launching a product. <br>
+## Use Case:
 
+External e-commerce sellers, trade teams, and product development teams use this skill to structure product research, score product opportunities, estimate profitability, and prepare product selection reports.
 
-## Reference(s): <br>
-- [Trend Analysis Framework](references/trend-analysis-framework.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/smart-product-selector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown product-selection analysis and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business guidance; users should independently verify market demand, platform fees, supplier claims, patents, certifications, and import rules before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Product selection scores and templates could be mistaken for definitive financial, legal, patent, supplier, or market advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the outputs as decision support only and verify current market, fee, legal, patent, and supplier data with authoritative sources before spending money.
+
+## Reference(s):
+
+- [Product Selection Analysis Framework](references/trend-analysis-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/skills/smart-product-selector)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown product research report guidance and scoring templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential use, or hidden high-impact behavior was reported by security evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Warehouse Optimization helps e-commerce operators analyze inventory health, calculate safety stock and reorder points, perform ABC analysis, evaluate fulfillment costs, and improve fulfillment efficiency across major fulfillment models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E-commerce warehouse and inventory optimization advisor that analyzes inventory health, calculates safety stock and reorder points, performs ABC analysis, evaluates fulfillment costs, and provides actionable recommendations for improving efficiency across major fulfillment models.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External e-commerce operators use this skill to audit warehouse and fulfillment operations, calculate inventory planning metrics, compare fulfillment models, and prioritize cost and stockout reduction actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Warehouse, SKU, order volume, cost, and fulfillment details may be commercially sensitive. <br>
-Mitigation: Share only information appropriate for the conversation and remove confidential identifiers or sensitive financial detail when possible. <br>
-Risk: The skill provides advisory calculations and benchmark-based recommendations without access to live inventory systems, WMS data, or marketplace APIs. <br>
-Mitigation: Validate calculations and recommendations against current operational data before changing purchasing, storage, or fulfillment processes. <br>
+## Use Case:
 
+External e-commerce operators and business teams use this skill to audit warehouse, inventory, and fulfillment operations, then receive calculations and prioritized recommendations for reducing stockouts, overstock, and fulfillment costs.
 
-## Reference(s): <br>
-- [Nexscope](https://www.nexscope.ai/) <br>
-- [Amazon Skills](https://github.com/nexscope-ai/Amazon-Skills) <br>
-- [eCommerce Skills](https://github.com/nexscope-ai/eCommerce-Skills) <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/warehouse-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, formulas, calculations, and prioritized recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, API calls, credential access, or system integration; recommendations depend on user-provided warehouse, SKU, order volume, cost, and fulfillment details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The documented install command runs unpinned remote software and installs globally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or replace the install command before use; prefer a pinned CLI version, immutable skill source, and non-global installation.
+
+Risk: Warehouse, marketplace, and fulfillment benchmark figures may become stale or differ from current platform fee schedules.
+
+Mitigation: Verify business-critical calculations against current marketplace, carrier, 3PL, and internal system data before acting.
+
+Risk: The skill cannot access real-time inventory systems, WMS data, or marketplace APIs.
+
+Mitigation: Provide current operational data manually and treat recommendations as decision support rather than live system state.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/warehouse-optimization)
+- [Publisher Profile](https://clawhub.ai/user/phheng)
+- [Nexscope](https://www.nexscope.ai/)
+- [Amazon Skills](https://github.com/nexscope-ai/Amazon-Skills)
+- [eCommerce Skills](https://github.com/nexscope-ai/eCommerce-Skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reports with tables, calculations, recommendations, and occasional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key required; relies on user-provided operational data and static guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

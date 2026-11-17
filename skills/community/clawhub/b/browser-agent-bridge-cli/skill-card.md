@@ -1,43 +1,63 @@
-## Description: <br>
-Use this skill when you need to control or make actions on the user's Chrome tab. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when you need to control or make actions on the user's chrome tab.
 
-## Publisher: <br>
-[NmadeleiDev](https://clawhub.ai/user/NmadeleiDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nmadeleidev](https://clawhub.ai/user/nmadeleidev)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an agent-operated CLI to a live Chrome tab for browser observation, navigation, clicking, typing, key presses, scrolling, and troubleshooting bridge connectivity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to control a live Chrome tab and grants broad browser authority with limited scoping and cleanup guidance. <br>
-Mitigation: Install only when live browser control is intended; use a separate Chrome profile or test account, confirm sensitive actions before execution, and stop the bridge and disconnect the extension when finished. <br>
-Risk: Operator and shared tokens can authorize bridge access if exposed or reused. <br>
-Mitigation: Generate fresh strong tokens per session, keep the operator token private, pass it only through trusted channels, and use TLS for non-local deployments. <br>
-Risk: The skill depends on an external CLI and Chrome extension outside the artifact bundle. <br>
-Mitigation: Review the external CLI and extension source, pin trusted versions where possible, and install only versions that match the intended release. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent-controlled CLI to a live local Chrome tab for observation, navigation, clicking, typing, scrolling, and troubleshooting browser connection state.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/NmadeleiDev/browser-agent-bridge-cli) <br>
-- [Browser Agent Bridge project link from skill artifact](https://github.com/NmadeleiDev/browser_agent_bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs guide an agent through installing and operating a browser bridge CLI; browser actions affect the connected live Chrome tab.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can give an agent broad read and control access to a live Chrome session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with tabs intended for agent inspection or control, run observe before actions, and stop the server and disable the extension when finished.
+
+Risk: Weak or reused tokens could expose the bridge to unauthorized local control.
+
+Mitigation: Generate fresh strong shared and operator tokens for each setup, keep the operator token private, and avoid copying example token values.
+
+Risk: Non-local deployment can expose browser-control traffic if transport and secrets are not hardened.
+
+Mitigation: Keep the bridge bound to localhost for normal use; if deployed beyond localhost, use TLS WebSocket connections and strong secrets.
+
+Risk: Using unverified bridge components can increase supply-chain risk.
+
+Mitigation: Prefer pinned, verified releases of the CLI and extension before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nmadeleidev/skills/browser-agent-bridge-cli)
+- [Publisher profile](https://clawhub.ai/user/nmadeleidev)
+- [Project repository](https://github.com/NmadeleiDev/browser_agent_bridge)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides setup and operation of a local browser bridge using generated tokens, localhost WebSocket endpoints, and repeated observe/action verification steps.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

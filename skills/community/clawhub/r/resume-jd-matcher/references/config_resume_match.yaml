@@ -36,7 +36,7 @@ api:
     # 腾讯 - Hunyuan-T1
     tencent:
       name: "腾讯"
-      api_key: "sk-sp-sq7Y7eo9L0vgFpuESFLq5YsQB8qumjDnwOPeciB9v3F0BSKv"
+      api_key: "REDACTED-SECRET"
       api_url: "https://api.lkeap.cloud.tencent.com/coding/anthropic/v1/messages"
       model: "hunyuan-t1"
       description: "腾讯 Hunyuan-T1，适合长文本分析"
@@ -44,7 +44,7 @@ api:
     # 阿里 - 通义千问
     alibaba:
       name: "阿里"
-      api_key: "sk-sp-3e0faf520b904151914a663bdbc884f7"
+      api_key: "REDACTED-SECRET"
       api_url: "https://coding.dashscope.aliyuncs.com/v1"
       model: "qwen3.5-plus"
       description: "阿里通义千问 3.5 Plus，性价比高"

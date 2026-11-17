@@ -1,41 +1,53 @@
-## Description: <br>
-Helps plan skill development through travel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps plan skill development through travel.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to turn travel plans into structured skill-development guidance, including gap analysis, destination learning plans, transfer strategies, and post-trip integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, destination, provider, visa, booking, safety, weather, or availability details may be incomplete or outdated. <br>
-Mitigation: Use the skill as an informational planning aid and verify actionable travel details with official or current sources before acting. <br>
-Risk: Broad travel or personal-growth prompts may trigger guidance when professional or regulated advice is needed. <br>
-Mitigation: Consult qualified professionals or official sources for medical, legal, financial, safety, visa, and booking decisions. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to turn trips into structured skill-development plans, including pre-trip preparation, in-trip learning, and post-trip transfer back into daily life or career materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/travel-skill-transfer-planner) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance, text] <br>
-**Output Format:** [JSON string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive planning output; no live bookings, API calls, network requests, or real-time data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports v1.1.0 and skill.json reports 1.0.0) <br>
+Risk: Travel guidance may be outdated or incomplete because the skill does not use real-time data for prices, availability, safety, weather, or cultural context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify destinations, providers, costs, safety conditions, and cultural guidance with official or current sources before acting on recommendations.
+
+Risk: Users may mistake informational planning output for booking, legal, financial, medical, or other professional advice.
+
+Mitigation: Treat the output as planning guidance only and consult official providers or qualified professionals for bookings and specialized decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/travel-skill-transfer-planner)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [JSON string with travel skill analysis, recommendations, frameworks, checklists, considerations, next steps, and disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational planning output only; it does not book travel, call external APIs, or use real-time data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports v1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

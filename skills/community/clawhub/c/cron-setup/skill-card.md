@@ -1,37 +1,52 @@
-## Description: <br>
-Create and manage OpenClaw cron jobs following our conventions. Use when setting up periodic tasks, reminders, automated checks, or any scheduled work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage OpenClaw cron jobs following established conventions for periodic tasks, reminders, automated checks, and scheduled work.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and operators use this skill to define scheduled OpenClaw agent work, including recurring checks, reminders, digests, and notification jobs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Scheduled jobs can grant recurring command-execution authority and route results to external message destinations. <br>
-Mitigation: Review each scheduled payload before enabling it, avoid secrets or private workspace data in messages, and require user-controlled destinations plus explicit approval for recurring jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BrennerSpear/cron-setup) <br>
+## Use Case:
 
+Developers and operators use this skill to draft and manage OpenClaw cron job configurations for recurring checks, reminders, notifications, and maintenance tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, code] <br>
-**Output Format:** [Markdown with JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cron schedule patterns, job templates, model guidance, delivery mode guidance, and notification conventions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated cron jobs may repeatedly send workspace data or task output to a fixed Telegram destination.
+
+Mitigation: Review each cron job before enabling it, replace the Telegram target with a destination you control, and avoid sending secrets or private workspace data.
+
+Risk: Recurring jobs created from this skill may continue running after their purpose or recipient changes.
+
+Mitigation: Audit enabled cron jobs regularly and delete or disable jobs whose schedule, task message, or delivery target is no longer explicitly intended.
+
+## Reference(s):
+
+- [Cron Setup on ClawHub](https://clawhub.ai/brennerspear/skills/cron-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON configuration examples and inline command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated cron job guidance should be reviewed before enabling recurring execution or external delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

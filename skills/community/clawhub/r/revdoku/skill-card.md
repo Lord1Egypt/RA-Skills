@@ -1,44 +1,60 @@
-## Description: <br>
-Create, update, and publish websites with Revdoku buckets, including interactive app sites backed by a per-bucket server database, while storing files privately until the user asks for a public or protected link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to Revdoku mailboxes to read and reply to email, manage attachments, and store or share authorized files.
 
-## Publisher: <br>
-[emirn](https://clawhub.ai/user/emirn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emirn](https://clawhub.ai/user/emirn)
 
-## Use Case: <br>
-Developers and agents use this skill to publish local folders or bucket files as Revdoku websites, including static sites, protected sites, and app sites with per-bucket database actions. It guides when to use the Revdoku CLI, MCP tools, or REST flows and when to require user confirmation for publishing or lifecycle actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish local folders live and may reuse saved Revdoku credentials. <br>
-Mitigation: Use draft publishing until ready, verify publication status before sharing a live URL, and require explicit user confirmation for publish, unpublish, archive, restore, grant exchange, and permanent delete actions. <br>
-Risk: The helper script can download and execute an unpinned Revdoku CLI. <br>
-Mitigation: Review the helper script before first use and prefer an already installed or pinned Revdoku CLI when available. <br>
-Risk: Published websites may include analytics or browser-side event tracking. <br>
-Mitigation: Disable analytics or tracking when the user does not want those signals collected. <br>
+## Use Case:
 
+Agents and their users manage incoming email, attachments, and cloud files in authorized Revdoku mailboxes, including replies, uploads, and approved account or mailbox changes.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/emirn/revdoku) <br>
-- [Revdoku app](https://app.revdoku.com) <br>
-- [Revdoku app templates](https://github.com/revdoku/revdoku/tree/main/templates) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and implementation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to publish, draft, protect, unpublish, archive, restore, or delete Revdoku bucket content only with the user confirmations described by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Connecting the skill saves a local credential and grants access to selected mail and files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intended Revdoku access, authorize the selected mailbox, and keep credentials private.
+
+Risk: Recursive uploads can include private files in a selected folder.
+
+Mitigation: Preview uploads with dry-run and select only files intended for transfer.
+
+Risk: Sending email, configuring webhooks, archiving, or deleting can affect external recipients or stored data.
+
+Mitigation: Review exact recipients and targets before acting; require explicit approval for permanent deletion.
+
+## Reference(s):
+
+- [Revdoku homepage](https://revdoku.com)
+- [Revdoku API documentation](https://revdoku.com/api.md)
+- [Revdoku first email workflow](https://revdoku.com/docs.md#first-email-workflow)
+- [Revdoku ClawHub release](https://clawhub.ai/emirn/skills/revdoku)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown responses, CLI output, and downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include mailbox summaries, file links, and action confirmations.]
+
+## Skill Version(s):
+
+1.0.566 (source: ClawHub release, VERSION)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

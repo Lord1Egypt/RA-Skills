@@ -1,42 +1,55 @@
-## Description: <br>
-Manage B2B sales pipelines by tracking deals, forecasting revenue, logging activity, alerting on stale deals, qualifying leads, and drafting outreach while storing data locally in JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your B2B sales pipeline end-to-end. Track deals through stages, forecast revenue, log activities, and monitor pipeline health. Weighted forecasting by deal stage. All data stored locally in JSON database. No API keys required.
 
-## Publisher: <br>
-[cunningham050503-ops](https://clawhub.ai/user/cunningham050503-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cunningham050503-ops](https://clawhub.ai/user/cunningham050503-ops)
 
-## Use Case: <br>
-Sales teams, founders, and revenue operators use this agent to maintain a local B2B pipeline, inspect forecasts, track deal activity, qualify leads, and draft sales outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deleting a deal permanently removes that record from the local pipeline database. <br>
-Mitigation: Back up pipeline.json before using delete commands and verify deal IDs before updates or deletion. <br>
-Risk: Deal notes and contact fields could contain secrets or regulated customer data. <br>
-Mitigation: Avoid storing secrets or regulated customer data in deal notes or contact records. <br>
+## Use Case:
 
+Sales teams and operators use this skill to maintain a local B2B deal pipeline, track activity, forecast weighted revenue, identify stale opportunities, qualify inbound leads, and draft outreach.
 
-## Reference(s): <br>
-- [Sales Methodology Reference](artifact/references/sales_methodology.md) <br>
-- [Outreach Templates by Stage](artifact/references/outreach_templates.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/cunningham050503-ops/sales-pipeline-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance, shell command examples, drafted outreach text, and JSON command results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and updates a local pipeline JSON database under ~/.openclaw/workspace/sales-pipeline-agent/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sales pipeline records may include contact names, email addresses, deal values, and notes stored in a local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines and handle ~/.openclaw/workspace/sales-pipeline-agent/pipeline.json according to your organization's data handling rules.
+
+Risk: Deleting a deal permanently removes the record without a confirmation step.
+
+Mitigation: Back up the local pipeline JSON file before relying on the skill and review deal IDs carefully before delete actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cunningham050503-ops/skills/sales-pipeline-agent)
+- [Sales Methodology Reference](artifact/references/sales_methodology.md)
+- [Outreach Templates by Stage](artifact/references/outreach_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-formatted local pipeline records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local JSON database at ~/.openclaw/workspace/sales-pipeline-agent/pipeline.json; no API keys are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

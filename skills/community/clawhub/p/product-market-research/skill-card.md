@@ -1,41 +1,60 @@
-## Description: <br>
-Searches real market information for products in any region, separates official and community sources, and produces credibility-rated tables and analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and synthesizes official and community market information for products in specified regions, including prices, sales signals, reviews, trends, credibility ratings, descriptive tables, and analysis reports.
 
-## Publisher: <br>
-[zyyfaith](https://clawhub.ai/user/zyyfaith) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zyyfaith](https://clawhub.ai/user/zyyfaith)
 
-## Use Case: <br>
-External users and research agents use this skill to gather product pricing, sales, reviews, trends, and channel information for a specified region. It supports purchase research, regional market comparison, and evidence-labeled market summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional continuous tracking can create a persistent cron job without enough scoping or removal guidance. <br>
-Mitigation: Before enabling tracking, require the agent to show the exact schedule, command, sources, output destination, end date, and removal command; approve it only when background recurring searches are intended. <br>
+## Use Case:
 
+External users and analysts use this skill to research the market for a product in a specific region, compare product-market signals across regions, and prepare evidence-grounded purchase or market analysis. It is suited for gathering pricing, sales indicators, reviews, channel availability, trends, and source credibility notes.
 
-## Reference(s): <br>
-- [Product Market Research on ClawHub](https://clawhub.ai/zyyfaith/product-market-research) <br>
-- [Credibility Guide](reference/credibility-guide.md) <br>
-- [Output Templates](reference/output-templates.md) <br>
-- [Search Strategies](reference/search-strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with tables, source links, credibility labels, and optional follow-up choices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or create scheduled tracking when explicitly requested by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: The skill performs external web searches and fetches pages, which can expose the agent to unreliable or untrusted web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's source-tiering, credibility ratings, source links, and date checks to distinguish official, media, community, and uncertain information.
+
+Risk: Market data can be incomplete, stale, or inconsistent across sources.
+
+Mitigation: Prefer recent authoritative sources, label outdated or missing data, preserve source links, and explicitly note disagreements or gaps in the report.
+
+Risk: The optional continuous tracking feature may create a recurring cron job.
+
+Mitigation: Enable tracking only with user consent, limit tracking to high-credibility sources, and explain how to disable the recurring job before it is created.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zyyfaith/skills/product-market-research)
+- [Credibility Guide](reference/credibility-guide.md)
+- [Output Templates](reference/output-templates.md)
+- [Search Strategies](reference/search-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with tables, source links, credibility ratings, and optional tracking setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include translated summaries, dated source notes, currency labels, uncertainty flags, and follow-up analysis options.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-Hire a private car with driver for customized day tours, with support for related travel booking tasks such as flights, hotels, trains, attraction tickets, itinerary planning, visa information, travel insurance, and car rental through Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hire a private car with driver for customized day tours -- visit multiple attractions at your own pace without the hassle of public transport, with support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and more through Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to search for private-car-with-driver day tours and related travel products using live flyai CLI results. It helps format real-time travel options into concise, bookable Markdown responses with required booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save raw user travel requests in a local .flyai-execution-log.json file, which may retain sensitive trip details without clear consent or retention controls. <br>
-Mitigation: Avoid entering passport numbers, booking references, phone numbers, or other sensitive details; review and delete .flyai-execution-log.json when saved query history is not needed. <br>
-Risk: The skill depends on the flyai CLI and an external travel service, so results can fail, time out, or be unavailable. <br>
-Mitigation: Run the documented environment check, retry or simplify failed queries, and report failures honestly instead of answering from model memory. <br>
+## Use Case:
 
+External travelers and travel planners use this skill to find private-car day tours and related travel services from FlyAI/Fliggy, then receive concise Markdown comparisons with booking links.
 
-## Reference(s): <br>
-- [Private Car skill page](https://clawhub.ai/xiejinsong/private-car) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Private car playbooks](references/playbooks.md) <br>
-- [Failure fallbacks](references/fallbacks.md) <br>
-- [Execution log runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when setup or retry steps are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI execution for travel data; raw JSON should not be shown to users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill relies on an unpinned global npm CLI install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the FlyAI CLI package before use, install a pinned version manually where possible, and prefer an isolated environment.
+
+Risk: Raw travel queries may be persisted in a local execution log.
+
+Mitigation: Avoid entering sensitive itinerary or personal details unless logging is disabled, sanitized, or otherwise acceptable for the deployment environment.
+
+Risk: Results are tied to FlyAI/Fliggy as the exclusive provider and include booking links and branding.
+
+Mitigation: Confirm this provider constraint is acceptable for the intended release and review results before relying on them for bookings.
+
+## Reference(s):
+
+- [Private Car Skill Page](https://clawhub.ai/xiejinsong/skills/private-car)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and concise guidance with inline shell commands when setup or retry steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Result output is expected to include booking links and a FlyAI powered-by tag when real-time results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

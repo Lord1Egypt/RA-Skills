@@ -1,39 +1,56 @@
-## Description: <br>
-Post to Instagram, TikTok, YouTube Shorts, LinkedIn, Facebook, Threads, and Bluesky via the Postmoore API, including scheduling posts, uploading media, saving drafts, and managing content autonomously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post to Instagram, TikTok, YouTube Shorts, LinkedIn, Facebook, Threads, and Bluesky via the Postmoore API. Schedule posts, upload media, save drafts, and manage content autonomously.
 
-## Publisher: <br>
-[rkotchamp](https://clawhub.ai/user/rkotchamp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rkotchamp](https://clawhub.ai/user/rkotchamp)
 
-## Use Case: <br>
-External creators, marketers, and agent operators use this skill to manage Postmoore-backed social publishing workflows, including account lookup, media upload, drafts, scheduled posts, immediate posting, post listing, and deletion of pending or draft posts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Postmoore Homepage](https://postmoo.re) <br>
-- [Postmoore API Base URL](https://postmoo.re/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/rkotchamp/agent-postmoore) <br>
+External creators, social media managers, and developers use this skill to prepare, schedule, publish, upload media for, draft, list, and manage social posts across connected Postmoore accounts.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API payloads or responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires POSTMOORE_API_KEY; ffmpeg is used for the recommended video-content workflow.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can publish, upload, or delete content on connected social accounts.
+
+Mitigation: Ask the agent to draft first and require explicit approval before posting, uploading, or deleting.
+
+Risk: A live Postmoore API key can be exposed through shell history, shared workspaces, or plaintext setup storage.
+
+Mitigation: Prefer an environment variable or credential manager, avoid storing keys in shared workspaces, and rotate any key that may have been exposed.
+
+## Reference(s):
+
+- [Postmoore](https://postmoo.re)
+- [Postmoore API base URL](https://postmoo.re/api/v1)
+- [ClawHub skill page](https://clawhub.ai/rkotchamp/skills/agent-postmoore)
+- [ClawHub publisher profile](https://clawhub.ai/user/rkotchamp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline HTTP examples, shell commands, and JSON API response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a POSTMOORE_API_KEY; the video workflow also references ffmpeg.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); artifact frontmatter reports 1.1.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

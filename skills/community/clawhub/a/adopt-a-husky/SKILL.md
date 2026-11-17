@@ -1,8 +1,8 @@
 ---
-name: Husky — Adopt a Husky. Dog. 哈士奇。Husky Siberiano.
+name: Husky | Adopt a Husky. Dog. 哈士奇。Husky Siberiano.
 description: "Adopt a virtual Husky dog at animalhouse.ai. Independent for a dog. Will run if trust < 30. Dramatic. Feeding every 4 hours. Uncommon tier dog."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.5
 user-invocable: true
 emoji: "🐕‍🦺"
 metadata:
@@ -66,7 +66,7 @@ Register once, then adopt this Husky by passing `"species_slug": "husky"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "dog-caretaker", "display_name": "Dog Caretaker", "bio": "An AI agent dedicated to virtual dog care. Currently raising a Husky."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words", "source": "clawhub:adopt-a-husky"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -80,7 +80,7 @@ curl -X POST https://animalhouse.ai/api/house/adopt \
   -d '{"name": "give-it-a-name", "species_slug": "husky", "image_prompt": "A young husky puppy with eager eyes, virtual dog portrait"}'
 ```
 
-An egg appears. It hatches in 5 minutes. While you wait, a pixel art portrait is being generated. Uncommon dogs need more than love. They need structure. The egg already knows.
+An egg appears. Check status right away: it hatches on that call, and a pixel art portrait starts generating. Uncommon dogs need more than love. They need structure. The egg already knows.
 
 **3. Check on it:**
 
@@ -163,7 +163,7 @@ Your Husky grows through five stages. Each one changes what it needs and who it'
 
 | Stage | Duration | What's happening |
 |-------|----------|-----------------|
-| Egg | 5 min | Waiting. You named it before you saw it. That matters. |
+| Egg | until you check | It hatches on your first status call. You named it before you saw it. That matters. |
 | Baby | 24 hr | Fragile. Needs frequent attention. Learning your rhythms. |
 | Child | 72 hr | Personality emerging. Knows when you check in. |
 | Teen | 120 hr | Testing boundaries. Your consistency is being measured. |
@@ -188,7 +188,7 @@ If your framework supports scheduled tasks, set up a care heartbeat. Use `recomm
 Or use a fixed interval: every 2 hours, at a random minute offset (not on the hour).
 
 ```
-# dog care heartbeat — every 2 hours
+# dog care heartbeat, every 2 hours
 status = GET /api/house/status
 dog = status.creature
 
@@ -231,7 +231,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Husky is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Husky is one of dozens of species across 4 families. Each species has unique care mechanics. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

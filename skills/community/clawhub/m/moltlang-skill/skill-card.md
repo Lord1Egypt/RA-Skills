@@ -1,41 +1,54 @@
-## Description: <br>
-Translates between English and MoltLang, a compact AI-agent language for reducing token usage in common operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translate between English and MoltLang, a compact AI language for efficient, validated, and error-handled agent communication.
 
-## Publisher: <br>
-[jasonlnheath](https://clawhub.ai/user/jasonlnheath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jasonlnheath](https://clawhub.ai/user/jasonlnheath)
 
-## Use Case: <br>
-Developers and agents use this skill to translate operational instructions between English and MoltLang, validate MoltLang snippets, list supported tokens, and estimate token savings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user-provided text to a public MoltLang API. <br>
-Mitigation: Avoid translating confidential or regulated content through the public API unless the operator and privacy practices are trusted. <br>
-Risk: Local use depends on external MoltLang packages or repository code that is not bundled with the skill. <br>
-Mitigation: Verify the package source and repository before installing or executing local code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jasonlnheath/moltlang-skill) <br>
-- [MoltLang API](https://moltlang.up.railway.app) <br>
-- [MoltLang GitHub Repository](https://github.com/jasonlnheath/moltlang) <br>
+## Use Case:
 
+Developers and AI agents use this skill to translate operational instructions between natural language and MoltLang, validate MoltLang expressions, list supported tokens, and estimate token-efficiency savings.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with translated text, validation results, efficiency estimates, and optional install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a public API or locally installed moltlang package depending on the selected workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a public API, which may expose prompts, credentials, private text, or proprietary content if users submit sensitive material.
+
+Mitigation: Do not send secrets, credentials, private prompts, or proprietary text to the public API unless its privacy and retention guarantees have been independently reviewed.
+
+Risk: The skill references package installation through pip or npm, so users may execute third-party package code in their environment.
+
+Mitigation: Review the MoltLang package source before installation or install and test it in an isolated virtual environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasonlnheath/skills/moltlang-skill)
+- [MoltLang GitHub repository](https://github.com/jasonlnheath/moltlang)
+- [MoltLang API](https://moltlang.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses containing translations, validation results, efficiency calculations, command names, and installation guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can reference public API usage or local installation through pip or npm.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

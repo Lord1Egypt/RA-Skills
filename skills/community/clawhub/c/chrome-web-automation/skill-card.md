@@ -1,41 +1,53 @@
-## Description: <br>
-Automates an existing Chrome session to inspect tabs, click, fill forms, capture screenshots, and debug web flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants browser automation in an existing Chrome session: click, fill, inspect tabs, capture screenshots, or debug web flows.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive a live Chrome session for web app debugging, form filling, screenshot capture, and reproducing UI issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may view or operate sensitive content in active Chrome tabs. <br>
-Mitigation: Close sensitive tabs or use a separate browser profile, and specify the exact site or tab the agent should use. <br>
-Risk: Browser automation can perform sensitive actions such as submitting forms, purchases, posts, deletions, or account changes. <br>
-Mitigation: Require explicit approval before any sensitive browser action is submitted or confirmed. <br>
-Risk: Page changes can make element references stale and cause actions to target the wrong page state. <br>
-Mitigation: Re-snapshot after navigation or large DOM updates before continuing interaction. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect a live Chrome session, automate browser interactions, reproduce web flow issues, and capture screenshots or notes from the resulting page state.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown notes with screenshot or evidence artifacts when captured] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser interaction transcripts, screenshots, and reproduction notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser automation may interact with sensitive tabs or logged-in sites in the user's existing Chrome session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, close or move away from sensitive tabs and give precise instructions for any clicking, typing, or form submission.
+
+Risk: Actions can target stale or changed page elements after navigation or dynamic updates.
+
+Mitigation: Inspect the current tab, capture page state before interaction, and re-snapshot after navigation or significant DOM changes.
+
+## Reference(s):
+
+- [Chrome Web Automation release page](https://clawhub.ai/wimi321/skills/chrome-web-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with browser action steps, screenshots or evidence references, and reproduction notes when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser interaction transcripts and captured artifacts when the user requests evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

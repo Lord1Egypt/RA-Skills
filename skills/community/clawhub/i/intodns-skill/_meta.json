@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn75tpaat5dvyj7sy4ez5dztrn805qtx",
-  "slug": "intodns-skill",
-  "version": "2.1.0",
-  "publishedAt": 1777829321485
+  "owner": "rosconl",
+  "slug": "intodns",
+  "displayName": "IntoDNS.ai",
+  "latest": {
+    "version": "2.1.0",
+    "publishedAt": 1777809544716,
+    "commit": "https://github.com/RoscoNL/intodns-skill"
+  },
+  "history": []
 }

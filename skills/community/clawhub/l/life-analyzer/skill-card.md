@@ -1,38 +1,53 @@
-## Description: <br>
-Analyzes thoughts or journal entries to identify emotional tone, recurring patterns, blind spots, root issues, and specific improvement steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes thoughts or journal entries to identify emotional tone, recurring patterns, root issues, blind spots, and specific improvement steps.
 
-## Publisher: <br>
-[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theshimaw-svg](https://clawhub.ai/user/theshimaw-svg)
 
-## Use Case: <br>
-People and agents use this skill to turn user-provided reflections, problems, or journal-style text into structured self-improvement feedback with concrete action steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive personal reflections and produce blunt self-improvement feedback that is inappropriate for crisis, self-harm, medical, or mental-health treatment situations. <br>
-Mitigation: Invoke it explicitly only for non-clinical self-reflection, avoid crisis or treatment use cases, and review the output before acting on it. <br>
+## Use Case:
 
+External users can use this skill to get structured self-reflection on thoughts, problems, or journal entries they choose to share. It is intended for personal clarity and self-improvement, not therapy, crisis support, medical advice, or professional mental health guidance.
 
-## Reference(s): <br>
-- [Life Analyzer on ClawHub](https://clawhub.ai/theshimaw-svg/life-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown-style sections with bullet points and numbered action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs CORE PATTERN, ROOT ISSUE, BLIND SPOTS, and three ACTION STEPS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat blunt self-reflection as therapy, crisis support, medical advice, or a substitute for a qualified professional.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for personal reflection on text the user chooses to share, and seek qualified professional support for health, mental health, or crisis needs.
+
+Risk: The skill may produce direct personal interpretations that feel overly certain or uncomfortable.
+
+Mitigation: Review outputs critically, treat them as prompts for reflection, and avoid relying on them as the sole basis for important personal decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshimaw-svg/skills/life-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured text with labeled sections and numbered action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill returns a core pattern, root issue, blind spots, and three action steps tailored to the user's input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

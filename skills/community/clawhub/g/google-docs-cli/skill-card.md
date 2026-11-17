@@ -1,44 +1,58 @@
-## Description: <br>
-Google Docs Secure Management. Use when the user wants to create, read, or edit Google Docs content; or manage sharing, permissions, renames, and deletes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Docs Secure Management. Use when the user wants to create, read, or edit Google Docs content; or manage sharing, permissions, renames, and deletes.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Developers and agents use this skill to operate Google Docs through the PortEden CLI, including creating, reading, editing, sharing, renaming, and trashing documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The PortEden CLI may access Google Docs and Drive using sensitive credentials or persisted keyring tokens. <br>
-Mitigation: Install only from trusted PortEden sources, use the minimum required Google account and Drive scopes, and remove stored credentials when access is no longer needed. <br>
-Risk: Share, edit, rename, and delete commands can change document content, permissions, or file state. <br>
-Mitigation: Review generated commands before execution, confirm target file identifiers, and require explicit confirmation before sharing publicly or deleting documents. <br>
-Risk: Environment variables such as PE_API_KEY can expose API credentials if logged or shared. <br>
-Mitigation: Keep credential environment variables out of transcripts, logs, and committed files; prefer scoped credentials and rotate keys after suspected exposure. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Google Docs through the PortEden CLI, including document creation, reads, edits, downloads, sharing, permission checks, renames, and trash operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/porteden/google-docs-cli) <br>
-- [PortEden homepage](https://porteden.com) <br>
-- [PortEden publisher profile](https://clawhub.ai/user/porteden) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON operation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of compact JSON CLI output flags and Google Docs file identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: frontmatter and server release metadata) <br>
+Risk: The skill installs and uses an unpinned third-party CLI for access to a high-impact document account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and prefer a pinned or verified PortEden release instead of an unverified tap or @latest install.
+
+Risk: Direct token login can expose credentials through shell history or process visibility.
+
+Mitigation: Prefer browser login, or use the narrowest possible token and Drive scopes when a token is required.
+
+Risk: Sharing and trash operations can expose or remove Google Docs files.
+
+Mitigation: Confirm sharing, permission, and delete commands manually before execution.
+
+## Reference(s):
+
+- [PortEden](https://porteden.com)
+- [ClawHub Google Docs Skill](https://clawhub.ai/porteden/skills/google-docs-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include compact JSON-oriented command flags, provider-prefixed Google file IDs, and credential or sharing cautions.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

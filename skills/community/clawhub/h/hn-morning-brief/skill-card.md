@@ -1,41 +1,54 @@
-## Description: <br>
-Fetches Hacker News front-page stories, ranks them using saved user interests and HN points, presents a concise briefing, and summarizes selected stories on request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user explicitly mentions Hacker News or HN to fetch, rank, present, and optionally summarize Hacker News stories.
 
-## Publisher: <br>
-[ken7y](https://clawhub.ai/user/ken7y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ken7y](https://clawhub.ai/user/ken7y)
 
-## Use Case: <br>
-Hacker News readers use this skill to get a personalized morning briefing of top HN stories and quickly drill into a chosen article with a short summary and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches live Hacker News RSS data and opens article URLs, so external content can change, fail to load, or contain misleading information. <br>
-Mitigation: Treat briefings and article summaries as current web content, and confirm important claims against the linked article or HN discussion. <br>
-Risk: Personalized ranking uses saved interests, which may over-prioritize stale or incorrect preferences. <br>
-Mitigation: Ask the agent to ignore saved interests or rank by HN points only when the briefing feels irrelevant. <br>
+## Use Case:
 
+External users and agent operators use this skill to get a concise Hacker News briefing that is ranked by stored interests when available and can be followed by deeper article summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ken7y/hn-morning-brief) <br>
-- [Hacker News RSS front page](https://hnrss.org/frontpage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown briefing and summaries, with JSON story data fetched by the bundled Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes article URLs, HN discussion URLs, domains, authors, points, and comment counts when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill uses stored interests and preferences to rank Hacker News stories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when interest-based ranking is acceptable, and fall back to points-based ranking when no clear interests are available.
+
+Risk: The skill opens article URLs from Hacker News when the user asks for deeper summaries.
+
+Mitigation: Review destination links and treat paywalled, PDF, or unavailable articles transparently before summarizing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ken7y/skills/hn-morning-brief)
+- [Hacker News RSS front page feed](https://hnrss.org/frontpage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown briefing with article and discussion links; helper script returns JSON story data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses up to 20 fetched Hacker News stories, ranks 8-12 items for the briefing, and may summarize selected article URLs on request.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

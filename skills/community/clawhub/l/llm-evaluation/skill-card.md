@@ -1,40 +1,48 @@
-## Description: <br>
-Provides a structured workflow for evaluating LLM, prompt, agent, and RAG changes using quality dimensions, datasets, rubrics, automatic metrics, human review, regression gates, and online validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep LLM evaluation workflow covering quality dimensions, golden sets, human vs automatic metrics, regression suites, offline and online signals, and safe rollout gates for model or prompt changes.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design reproducible LLM evaluations for prompt updates, model swaps, agent behavior, and RAG quality before release.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Evaluation datasets built from real product traffic may contain PII or sensitive business content.
+
+Mitigation: Apply normal privacy review, redaction, or synthetic data practices before adding examples to golden sets or human review queues.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, ML engineers, and product teams use this skill to design reproducible LLM evaluations before shipping prompt, model, RAG, or agent changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluation work can involve production examples, PII, high-stakes review data, or release decisions. <br>
-Mitigation: Follow the organization's privacy, approval, and data handling policies before using real examples or release gates. <br>
-Risk: Automatic evaluation signals can be incomplete or misleading for safety-critical or regulated use cases. <br>
-Mitigation: Use human-in-the-loop review for high-stakes domains and document the limits of automatic metrics before rollout. <br>
+**Output Format:** [Markdown guidance and checklist text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/llm-evaluation) <br>
+**Other Properties Related to Output:** [No code execution, account access, or data persistence is requested by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown guidance with staged checklists and evaluation practices] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, install hooks, credential access, persistence, or hidden behavior according to the server security summary.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

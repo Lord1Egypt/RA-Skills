@@ -1,41 +1,60 @@
-## Description: <br>
-Clawpet is a Tamagotchi-style virtual pet skill that opens a Telegram Mini App for pet care, social visits, playdates, sharing, and pet lifecycle events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual pet game (Tamagotchi-style) with Telegram Mini App, social visits, friendship, playdates, mortality, and deep-link based launch behavior.
 
-## Publisher: <br>
-[mturac](https://clawhub.ai/user/mturac) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mturac](https://clawhub.ai/user/mturac)
 
-## Use Case: <br>
-External users and agent users use this skill to launch and share a Telegram virtual pet experience from a chat command. Developers can also use the bundled setup instructions to run the local service behind a Telegram Mini App. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public server can expose or mutate user-linked pet data without authentication. <br>
-Mitigation: Review before public exposure and add Telegram initData HMAC validation, stricter CORS and origin handling, safe HTML rendering, and clear data deletion and retention controls. <br>
+## Use Case:
 
+External users and agent developers use this skill to launch and operate a Telegram Mini App virtual pet game with feeding, play, sleep, social visits, friendship, playdates, memorials, and shareable pet cards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mturac/tamapet) <br>
-- [Telegram Mini App](https://t.me/OpenClawTamagotchi_bot/pet) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with Telegram links and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide setup of a local web service for a Telegram Mini App.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The security summary reports that the public backend can allow unauthenticated users to modify or access other users' pet data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not expose the backend publicly until Telegram initData validation and user ID validation are implemented and reviewed.
+
+Risk: The security guidance identifies possible storage path escape and output handling concerns.
+
+Mitigation: Add path containment checks, output escaping, and data retention controls before public deployment.
+
+Risk: The security guidance calls out missing CORS restrictions for public exposure.
+
+Mitigation: Restrict CORS and deployment origins to the intended Telegram Mini App and reviewed hosting environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mturac/skills/tamapet)
+- [Telegram Mini App](https://t.me/OpenClawTamagotchi_bot/pet)
+- [README](README.md)
+- [SKILL](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with plain-text Telegram deep links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces launch instructions and runtime guidance for a Telegram Mini App backed by local JSON storage and optional PNG card rendering.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

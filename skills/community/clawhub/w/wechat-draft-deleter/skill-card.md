@@ -1,44 +1,58 @@
-## Description: <br>
-Deletes drafts from a WeChat Official Account draft box, including single draft deletion and batch deletion by Media ID. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deletes WeChat Official Account drafts by Media ID, including single-item, comma-separated batch, and file-based batch deletion.
 
-## Publisher: <br>
-[Bigkingcn](https://clawhub.ai/user/Bigkingcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bigkingcn](https://clawhub.ai/user/bigkingcn)
 
-## Use Case: <br>
-Developers and WeChat Official Account operators use this skill to remove test, obsolete, or batch-listed drafts by Media ID through the WeChat Official Account API. It is suited to controlled cleanup and automation workflows where draft deletion is intended. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill performs irreversible deletion of WeChat Official Account drafts. <br>
-Mitigation: Verify every Media ID list before execution, keep confirmation enabled for routine use, and reserve --force for separately approved automation. <br>
-Risk: The skill uses WeChat account credentials and the artifact includes unsafe credential-handling examples. <br>
-Mitigation: Use only credentials for accounts where draft deletion is intended, keep AppSecret values out of scripts, logs, and source control, and replace examples with placeholders. <br>
-Risk: Automated or batch deletion can remove more drafts than intended if the input file is stale or generated incorrectly. <br>
-Mitigation: Review generated input files, run a dry approval step before deletion, and check result summaries after execution. <br>
+## Use Case:
 
+External developers and WeChat Official Account operators use this skill to clean test drafts, remove old draft versions, and automate bulk draft cleanup through the WeChat draft deletion API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Bigkingcn/wechat-draft-deleter) <br>
-- [Publisher profile](https://clawhub.ai/user/Bigkingcn) <br>
-- [WeChat draft delete API endpoint](https://api.weixin.qq.com/cgi-bin/draft/delete) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration, Text] <br>
-**Output Format:** [Markdown with shell command examples and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeChat AppID and AppSecret credentials and Media IDs supplied by argument or file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill performs destructive WeChat draft deletion that may be irreversible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only against Media IDs that are backed up or confirmed for removal, and test the workflow before using it on important drafts.
+
+Risk: Evidence security guidance reports real-looking credentials in examples.
+
+Mitigation: Replace example credentials with placeholders and rotate any credentials that may have been exposed.
+
+Risk: Evidence security guidance flags installer and dependency behavior that needs review.
+
+Mitigation: Avoid elevated privileges during installation and prefer a virtual environment with pinned Python dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bigkingcn/skills/wechat-draft-deleter)
+- [WeChat draft delete API endpoint](https://api.weixin.qq.com/cgi-bin/draft/delete)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes credential setup guidance, Media ID input options, confirmation behavior, and deletion result summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

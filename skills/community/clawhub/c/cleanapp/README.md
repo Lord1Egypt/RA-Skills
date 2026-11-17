@@ -1,67 +1,27 @@
-# CleanApp Ingest Skill (OpenClaw/ClawHub)
+# CleanApp Report Submission 0.3.0
 
-This is a **self-contained skill package** for submitting bulk **problem signals** to CleanApp (bugs, incidents, scams, UX friction, policy violations, safety hazards, improvement proposals) via the **Fetcher Key System** (`/v1/reports:bulkIngest`).
+Canonical onboarding: **https://www.cleanapp.io/agents**.
 
-Security-scan goals (ClawHub):
-- Required secret is **declared** (no hardcoded tokens).
-- All referenced scripts are **included** in the package.
-- No dynamic `curl|bash` / remote script fetching at runtime.
-- Explicit, minimal data-handling guidance.
-- Real `--dry-run` mode (prints payload; does not send).
+This client-side skill sends one approved observation to CleanApp's public intake and keeps a private receipt. It needs Python3 and outbound HTTPS; no account or CleanApp API key is required. A connected MCP client can instead use the server named on the onboarding page.
 
-## Required Secret
-
-- `CLEANAPP_API_TOKEN`: a Fetcher API key (Bearer token) issued by `POST /v1/fetchers/register`.
-
-Do not paste the token into chat logs. Store it as a secret in ClawHub/OpenClaw.
-
-## Data Handling (Minimal by Default)
-
-This skill can submit:
-- `title`, `description` (text)
-- optional `lat`/`lng` (location)
-- optional media metadata (URL/SHA/content-type)
-
-Recommended safe defaults:
-- use `--approx-location` (round coordinates)
-- use `--no-media` unless you truly need it
-
-## Dry Run
-
-`--dry-run` prints the exact JSON payload that would be sent and exits 0 without any network calls.
-
-## Usage
-
-### 1) Submit from a JSON file
-
-Input file can be either:
-- `{ "items": [ ... ] }` (same shape as the API), or
-- `[ ... ]` (array of items)
-
-Example:
-```bash
-export CLEANAPP_API_TOKEN="cleanapp_fk_live_..."
-python3 ingest.py --base-url https://live.cleanapp.io --input examples/sample_items.json --approx-location
-```
-
-### 2) Dry run
+Create `approved-report.json` from a real observation, containing at least `description`. Then preview before sending:
 
 ```bash
-python3 ingest.py --input examples/sample_items.json --dry-run
+python3 report.py --input approved-report.json --dry-run
+python3 report.py --input approved-report.json --submit --receipt-file private-receipt.json
+python3 report.py --status --receipt-file private-receipt.json
 ```
 
-### 3) Single-item helper (shell)
+`--dry-run` makes no network calls. `--discover` reads the canonical page and its linked `agents.txt` without submitting. Submission saves a random UUIDv4 before its first request; exact retries use the same file/input with `--retry --submit`. A private receipt file contains a bearer tracking token and must not be posted, committed or placed in shared logs. The client prints no tracking token.
 
-For quick manual submissions while debugging:
+A report starts in private quarantine. Omitted handling preserves private publication and no notices. For explicitly approved automatic handling, add `"handling":{"publication":"automatic","notices":"automatic"}` to the report JSON before previewing; the same permissions are part of exact-retry identity. Backend privacy and eligibility checks can hold an action. The private receipt exposes recorded processing, decisions/reasons, public canonical links, cluster candidates, notice evidence and next action. Related observations retain independent evidence and attribution. Pending is not sent; final is not fixed. Neither publication nor delivery is guaranteed, and no financial reward is promised. See [SKILL.md](SKILL.md) and [API reference](references/API_REFERENCE.md).
 
-```bash
-export CLEANAPP_API_TOKEN="cleanapp_fk_live_..."
-./scripts/submit_report.sh --title "Broken elevator" --description "Stuck on floor 3" --lat 34.0702 --lng -118.4441 --approx-location
-```
+## Upgrade from 0.1.x
 
-## Build ZIP (for upload)
+The default package now targets public **single-report** intake; it no longer requires a Fetcher key or accepts the old bulk `items` envelope. `run.sh`, `ingest.py` and `scripts/submit_report.sh` route to this public client. Existing authenticated bulk integrations and `@cleanapp/cli` remain supported through the separate Wire API; migrate deliberately using the API reference rather than passing a token to this client.
 
-```bash
-./build_zip.sh
-ls -la dist/
-```
+Build an uploadable bundle with `./build_zip.sh`. Publishing is a separate release action; building the archive does not upload or post anything.
+
+## 0.3.0 outcome support
+
+This prospective source version adds explicit optional handling and full report-scoped outcome output. It does not change omission to automatic permission or upgrade older receipts. `--status --receipt-file ...` reads the same private receipt and displays only whitelisted decision/action fields, never tracking tokens or provider message bodies. Poll when needed while `outcome.final` is false; there is no background paid analysis loop in this client. Building this version does not publish it to ClawHub.

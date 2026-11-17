@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-gemini-3-api
 description: Gemini 3 Series chat on PoYo / poyo.ai via `https://api.poyo.ai/v1/chat/completions` and Gemini Native Format; use for `gemini-3-flash-preview`, `gemini-3-pro-preview`, `gemini-3.1-pro-preview`, chat completions, native generateContent, streaming, multimodal prompt structure, generation config, and server-side integration.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/chat-series/gemini-native-format","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/gemini-3-api","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Gemini 3 Series Chat
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/gemini-3-api>
+- API docs: <https://docs.poyo.ai/api-manual/chat-series/gemini-native-format>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Gemini 3 Series chat requests on PoYo. It helps agents prepare OpenAI-compatible chat payloads, Gemini Native Format payloads, streaming calls, multimodal prompt structures, and server-side integration notes.
 

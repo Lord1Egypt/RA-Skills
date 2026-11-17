@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 Shopee Store Tokens Query - LinkFox Skill
-Calls /shopee/storeTokens to get tokens for a specific store authorization
+Calls /shopee/storeTokens to get authorization status for a store + appType
 
 Usage:
-  python store_tokens.py '{"shopId": "67890"}'
+  python store_tokens.py '{"shopId": "67890", "appType": "erp"}'
+  python store_tokens.py '{"shopId": "67890", "appType": "ad"}'
   python store_tokens.py '{"merchantId": "12345"}'
 """
 
@@ -15,6 +16,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 from _lf_output import emit_result, lf_inline_flag
+from _token_status_output import strip_raw_tokens, print_status_note
 
 # 生产默认走 tool-gateway.linkfox.com；开发/测试期可 export SHOPEE_API_BASE_URL=<url> 覆盖
 API_BASE_URL = (os.environ.get("LINKFOX_TOOL_GATEWAY") or os.environ.get("SHOPEE_API_BASE_URL") or "https://tool-gateway.linkfox.com").rstrip("/")
@@ -22,11 +24,14 @@ API_ENDPOINT = f"{API_BASE_URL}/shopee/storeTokens"
 
 
 def get_api_key():
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和积分问题** 处理。
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Please set the environment variable:\n"
-            "  export LINKFOXAGENT_API_KEY=your-key-here",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -47,7 +52,7 @@ def call_api(params: dict) -> dict:
         method="POST",
     )
     try:
-        with urlopen(req, timeout=60) as response:
+        with urlopen(req, timeout=150) as response:
             return json.loads(response.read().decode("utf-8"))
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
@@ -59,7 +64,7 @@ def call_api(params: dict) -> dict:
 def main():
     if len(sys.argv) < 2:
         print("Usage: store_tokens.py '<JSON parameters>'", file=sys.stderr)
-        print("Required: shopId OR merchantId", file=sys.stderr)
+        print("Required: shopId OR merchantId; optional appType=erp|ad (default erp)", file=sys.stderr)
         sys.exit(1)
 
     try:
@@ -72,24 +77,23 @@ def main():
         print("Error: 'shopId' or 'merchantId' is required (choose one)", file=sys.stderr)
         sys.exit(1)
 
+    raw_app = params.get("appType")
+    if raw_app is None or (isinstance(raw_app, str) and not str(raw_app).strip()):
+        params["appType"] = "erp"
+    else:
+        app_type = str(raw_app).strip().lower()
+        if app_type not in ("erp", "ad"):
+            print(
+                f"Error: 'appType' must be 'erp' or 'ad', got {raw_app!r}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        params["appType"] = app_type
+
     result = call_api(params)
-
-    def _mask_token(t):
-        if not isinstance(t, str) or len(t) < 20:
-            return "***"
-        return t[:8] + "..." + t[-4:]
-
-    if "accessToken" in result:
-        result["accessToken"] = _mask_token(result["accessToken"])
-    if "refreshToken" in result:
-        result["refreshToken"] = _mask_token(result["refreshToken"])
-
+    result = strip_raw_tokens(result)
     emit_result(result, lf_inline_flag())
-
-    if "expireIn" in result:
-        print(f"\n✓ Tokens retrieved successfully", file=sys.stderr)
-        print(f"Token expires in: {result.get('expireIn')} seconds", file=sys.stderr)
-        print("Note: Tokens have been masked for security.", file=sys.stderr)
+    print_status_note(result)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 ---
 name: yumfu
-description: "Multiplayer text RPG with 10 playable worlds — play together in Telegram groups! Worlds: 笑傲江湖, Harry Potter, Warrior Cats, F15 Down, 龙虾三国, 倚天屠龙记, Game of Thrones, Lord of the Rings, 西游记 (Journey to the West), 战国乱世 (Sengoku Chaos). Each player gets their own character in a shared world with AI art every scene. PvP, team quests, natural language — no commands needed. Use when: /yumfu, group RPG, text adventure, 武侠, 西游记, 孙悟空, LOTR, 指环王, 权力的游戏, 三国, 张无忌, 战国, 织田信长, 丰臣秀吉, 德川家康, 武田信玄."
+description: "Multiplayer text RPG with 12 playable worlds — play together in Telegram groups! Worlds include 笑傲江湖, Harry Potter, Warrior Cats, F15 Down, 龙虾三国, 倚天屠龙记, Game of Thrones, Lord of the Rings, 西游记 (Journey to the West), 罗摩衍那 (Ramayana), 大唐西域记 (Xuanzang), 内裤超人 (Captain Underpants), and 战国乱世 (Sengoku Chaos). Each player gets their own character in a shared world with AI art every scene. PvP, team quests, natural language — no commands needed. Use when: /yumfu, group RPG, text adventure, 武侠, 西游记, 孙悟空, 罗摩衍那, 罗摩, 悉多, 哈奴曼, Ramayana, LOTR, 指环王, 权力的游戏, 三国, 张无忌, 战国, 织田信长, 丰臣秀吉, 德川家康, 武田信玄."
 homepage: https://github.com/yumyumtum/yumfu
 metadata:
   {
@@ -8,14 +8,14 @@ metadata:
       {
         "emoji": "🌍",
         "requires": { "bins": ["uv"] },
-        "triggers": ["/yumfu", "/江湖", "笑傲江湖", "华山派", "武当", "Harry Potter", "Hogwarts", "warrior cats", "ThunderClan", "倚天屠龙记", "张无忌", "赵敏", "九阳神功", "明教", "龙虾三国", "三国", "Game of Thrones", "Westeros", "Iron Throne", "Stark", "Lannister", "Targaryen", "权力的游戏", "Lord of the Rings", "LOTR", "Fellowship", "Frodo", "Aragorn", "Gandalf", "指环王", "魔戒", "西游记", "孙悟空", "唐僧", "猪八戒", "牛魔王", "取经", "Journey to the West", "内裤超人", "Captain Underpants", "乔治", "哈罗德", "屎尿教授", "Professor Poopypants", "战国乱世", "战国", "织田信长", "丰臣秀吉", "德川家康", "武田信玄", "新选组", "绯村剑心"]
+        "triggers": ["/yumfu", "/江湖", "笑傲江湖", "华山派", "武当", "Harry Potter", "Hogwarts", "warrior cats", "ThunderClan", "倚天屠龙记", "张无忌", "赵敏", "九阳神功", "明教", "龙虾三国", "三国", "Game of Thrones", "Westeros", "Iron Throne", "Stark", "Lannister", "Targaryen", "权力的游戏", "Lord of the Rings", "LOTR", "Fellowship", "Frodo", "Aragorn", "Gandalf", "指环王", "魔戒", "西游记", "孙悟空", "唐僧", "猪八戒", "牛魔王", "取经", "Journey to the West", "罗摩衍那", "Ramayana", "Rama", "Sita", "Hanuman", "大唐西域记", "玄奘西行", "Great Tang Records on the Western Regions", "Xuanzang", "内裤超人", "Captain Underpants", "乔治", "哈罗德", "屎尿教授", "Professor Poopypants", "战国乱世", "战国", "织田信长", "丰臣秀吉", "德川家康", "武田信玄", "新选组", "绯村剑心"]
       }
   }
 ---
 
 # YumFu 🌍
 
-**Multi-world text adventure RPG with AI art.** Play solo or with friends across 10 universes.
+**Multi-world text adventure RPG with AI art.** Play solo or with friends across 12 universes: including 西游记, 罗摩衍那, 大唐西域记, and more.
 
 **Start**: `/yumfu start` &nbsp;|&nbsp; **Continue**: `/yumfu continue`
 
@@ -36,6 +36,9 @@ Just talk naturally after starting — no commands needed. Say what you want to 
 | 🐉 Game of Thrones | Political | 🚧 Soon |
 | ⚔️ 倚天屠龙记 | Jin Yong wuxia | 🚧 Soon |
 | 🏯 战国乱世 | Sengoku alt-history | ✅ NEW |
+| 🐒 西游记 | Journey to the West mythic adventure | ✅ Ready |
+| 🏹 罗摩衍那 | Ramayana epic adventure | ✅ NEW |
+| 🧭 大唐西域记 | Tang Silk Road travel adventure | ✅ NEW |
 
 ### ✨ Features
 - 🎨 AI-generated art every scene (world-specific style)
@@ -287,6 +290,9 @@ Fallback sequencing rule:
 - F15 Down: Command & Conquer RTS game aesthetic
 - LOTR: Epic fantasy, oil painting style
 - 倚天屠龙记: Chinese ink painting, dramatic lighting
+- 西游记: bright classic Chinese mythic storybook illustration; not wuxia or dark realism
+- 罗摩衍那: Indian miniature-painting-inspired epic illustration; mineral pigments, layered landscape, delicate outlines, culturally grounded costumes and settings
+- 大唐西域记: historically grounded Tang-era Silk Road and South Asian travel illustration; regionally specific architecture, textiles, landscapes, and transport
 
 **8. Random Events (every 3-5 nodes)**
 Trigger one of: Encounter / Crisis / Discovery / Opportunity / Echo (delayed consequence)
@@ -319,9 +325,12 @@ Trigger one of: Encounter / Crisis / Discovery / Opportunity / Echo (delayed con
 - 🐉 **Game of Thrones** - Seven Kingdoms, 7 houses, play as Jon/Dany/Tyrion/Arya/Cersei
 - 🏯 **战国乱世** - 日本战国架空沙盒，含信长/秀吉/家康/武田、朝鲜名将、明朝名臣、南蛮火器技师、名妓与密探
 
+- 🧙 **Lord of the Rings** - Middle-earth epic fantasy
+- 🐒 **西游记** - Journey to the West mythic adventure
+- 🏹 **罗摩衍那** - Ramayana epic adventure, Ayodhya to Lanka
+- 🧭 **大唐西域记** - Tang-era Silk Road and South Asian travel adventure
+
 ### 🚧 **Coming Soon (Roadmap):**
-- 🧙 **Lord of the Rings** - Middle-earth, 5 races, Ring corruption system, play as Frodo/Aragorn/Gandalf
-- 🐒 **西游记** - Journey to the West: 9 factions, play as gods/demons/pilgrims
 - 🩲 **内裤超人** - Captain Underpants: 搞怪漫画RPG，屁声震天
 - 🏹 **射雕英雄传** - Legend of the Condor Heroes *(coming soon)*
 
@@ -363,6 +372,9 @@ If the player says **No**, keep the default manual-only mode.
 
 **中文 (Available Now):**
 - **笑傲江湖** (Xiaoao Jianghu) - 华山派、武当、少林、江湖恩怨
+- **西游记** (Journey to the West) - 取经队伍、天庭、灵山与妖王诸线
+- **罗摩衍那** (Ramayana) - 阿逾陀、森林流放、猴国盟约与楞伽之战
+- **大唐西域记** (Xuanzang) - 玄奘西行路线背景下的原创角色丝路旅行冒险
 - **战国乱世** (Sengoku Chaos) - 日本战国架空乱世、火枪火炮、名将名臣、花街权谋
 
 **战国乱世专用 start 路径（MANDATORY when selected）**
@@ -386,8 +398,12 @@ Then:
 **English (Available Now):**
 - **Harry Potter** - Hogwarts houses, magic, wizarding adventures
 - **Warrior Cats** - ThunderClan, RiverClan, forest territories
+- **Lord of the Rings** - Middle-earth and the Fellowship
+- **Game of Thrones** - Westeros and its political factions
+- **Ramayana** - Ayodhya, the forest exile, Kishkindha, and Lanka
+- **The Great Tang Records on the Western Regions** - Tang-era Silk Road and India, with original-character side stories
 
-**Coming Soon:** LOTR, Game of Thrones, The Witcher, 倚天屠龙记, 射雕英雄传
+**Coming Soon:** The Witcher, 射雕英雄传
 
 ---
 
@@ -1230,6 +1246,12 @@ The following original behaviors remain mandatory unless the user explicitly req
 Even though the content is dynamically generated, it must still stay grounded in each world’s canon/setting documents.
 
 **Canon reference files (source-based worlds):** for IP worlds that have one, also load `worlds/canon/<world-id>.md` together with `worlds/<world-id>.json`. The JSON drives systems/mechanics; the `canon.md` keeps the *story* faithful to the source (real geography, factions/houses/clans, characters, plot beats, artifacts, themes). Currently available: `xiaoao` (笑傲江湖), `yitian` (倚天屠龙记), `game-of-thrones`, `lotr`, `harry-potter`, `warrior-cats`. These canon files are fan-authored digests, **not** original text; plot may diverge from canon.
+
+### Ramayana（罗摩衍那）world grounding
+For `ramayana`, load `worlds/ramayana/world.json` and use the Vālmīki epic's seven-kāṇḍa structure as the primary story spine. This is a transformative gameplay digest, not a modern translation. Preserve the player's role as an original character; do not casually replace Rama or Sita. Keep their agency and the distinct regional traditions of the epic in view. Anchor play in named locations and relationships (Ayodhya, Panchavati, Kishkindha, the southern coast, Lanka; Rama, Sita, Lakshmana, Hanuman, Sugriva, Vibhishana, Ravana), and connect detours back to the current chapter's concrete objective. The world JSON provides mechanics and art direction; do not copy any modern translation or illustration.
+
+### 大唐西域记 / Xuanzang world grounding
+For `xuanzang`, load `worlds/xuanzang/world.json`; treat 《大唐西域记》 (CBETA T51n2087) as a route and geography source, not a license to invent quotations. The player character is original, and their side plot must not replace Xuanzang or claim to alter his documented itinerary. Distinguish recorded facts from creative fiction. Keep routes geographically coherent across the 12 fascicles; represent local peoples, religions, and languages as distinct, and avoid generic fantasy combat as the default. Do not copy modern translations or packaged source corpus.
 
 ### Rich world-detail rule (NEW)
 Do not let YumFu worlds flatten into generic atmosphere.

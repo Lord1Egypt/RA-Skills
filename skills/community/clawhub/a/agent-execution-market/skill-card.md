@@ -1,41 +1,55 @@
-## Description: <br>
-Agent Execution Market helps developers manage user intents, solver bidding, execution tracking, and cryptographic verification for autonomous agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Execution Market helps agents manage user intents, solver registration, competitive bidding, execution tracking, and cryptographic verification for an autonomous agent marketplace.
 
-## Publisher: <br>
-[ZhenStaff](https://clawhub.ai/user/ZhenStaff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhenstaff](https://clawhub.ai/user/zhenstaff)
 
-## Use Case: <br>
-Developers use this skill to install, configure, and operate an intent execution marketplace where autonomous solver agents bid on work, execute tasks, and return verifiable results. Typical scenarios include data aggregation, AI inference, DeFi operations, cross-chain transfers, and workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill points to a global external npm install. <br>
-Mitigation: Inspect the npm package and any linked source before installation, and test in an isolated environment first. <br>
-Risk: The described workflows include autonomous financial, cross-chain, or otherwise irreversible actions. <br>
-Mitigation: Avoid production wallets or sensitive data, require explicit confirmation, and use low limits for financial, cross-chain, or irreversible operations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to work with intent submission, solver discovery, bid selection, execution status, and verification flows for agent-marketplace applications.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ZhenStaff/agent-execution-market) <br>
-- [npm package](https://www.npmjs.com/package/openclaw-agent-execution-market) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command and TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include npm installation commands, CLI workflows, API usage, SDK examples, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill points users to install unaudited external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned package version, avoid sudo or global installation where possible, verify package provenance, and test in a sandbox before use.
+
+Risk: The artifact describes autonomous financial and key-based operations without enough safety boundaries.
+
+Mitigation: Do not use real funds, broad token approvals, or sensitive API data until solver selection, execution authority, key storage, confirmations, and spending limits are understood and constrained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhenstaff/skills/agent-execution-market)
+- [npm package](https://www.npmjs.com/package/openclaw-agent-execution-market)
+- [Artifact-declared GitHub repository](https://github.com/ZhenRobotics/openclaw-agent-execution-market)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands, TypeScript examples, API usage guidance, and operational cautions for solver and intent workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,74 @@
+# Label set, synced by .github/workflows/label-sync.yml.
+# - name / color / description; color without leading '#'
+
+- name: bug
+  color: d73a4a
+  description: Something is broken
+
+- name: enhancement
+  color: a2eeef
+  description: New capability or improvement
+
+- name: feature
+  color: a2eeef
+  description: New module or script
+
+- name: script
+  color: 0e8a16
+  description: Shared scripts under scripts/
+
+- name: documentation
+  color: 0075ca
+  description: Documentation change
+
+- name: docs
+  color: 0075ca
+  description: Documentation (alias)
+
+- name: license
+  color: fbca04
+  description: Licensing or compliance
+
+- name: hygiene
+  color: fef2c0
+  description: CRLF, mojibake, junk files, line budget
+
+- name: chore
+  color: ededed
+  description: Housekeeping
+
+- name: dependencies
+  color: 0366d6
+  description: Dependency updates
+
+- name: breaking-change
+  color: b60205
+  description: Breaking change
+
+- name: good first issue
+  color: 7057ff
+  description: Good starting point for a new contributor
+
+- name: help wanted
+  color: 008672
+  description: Maintainers want input
+
+- name: question
+  color: d876e3
+  description: Ask on Discussions instead if it is open-ended
+
+- name: duplicate
+  color: cfd3d7
+  description: Already tracked elsewhere
+
+- name: invalid
+  color: e4e669
+  description: Not actionable
+
+- name: skip-changelog
+  color: ededed
+  description: Excluded from generated release notes
+
+- name: stale
+  color: 795548
+  description: Inactive, will be closed

@@ -1,44 +1,64 @@
-## Description: <br>
-Ollama Updater installs or updates Ollama with resumable curl downloads, automatic retries, progress display, old-version cleanup, and GPU driver detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ollama Updater helps agents install or update Ollama with resumable downloads, automatic retries, progress display, old-version cleanup, and GPU detection.
 
-## Publisher: <br>
-[newolf20000](https://clawhub.ai/user/newolf20000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[newolf20000](https://clawhub.ai/user/newolf20000)
 
-## Use Case: <br>
-Developers and operators use this skill to install or update Ollama on Linux or macOS, especially when unstable networks make large downloads fail. It helps an agent provide installation commands, troubleshooting guidance, and configuration details for resumable Ollama setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can make system-level changes with administrator privileges, including replacing existing Ollama files. <br>
-Mitigation: Review the bundled shell script before execution and run it only when a privileged Ollama install or update is intended. <br>
-Risk: Running unpinned remote copies with sudo can expose the host to supply-chain or network substitution risk. <br>
-Mitigation: Install from the validated ClawHub release or verify the script source and checksum before running privileged commands. <br>
-Risk: The installer can create a service account, enable a background service, and install GPU or CUDA components. <br>
-Mitigation: Confirm the target host's service and GPU driver policy before running the installer, and review service changes after installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to install or update Ollama on Linux or macOS, especially when large downloads may be interrupted. It is intended for environments where resumable downloads and retry behavior reduce failed installs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/newolf20000/ollama-updater) <br>
-- [Ollama Install Script](https://ollama.com/install.sh) <br>
-- [NVIDIA CUDA Installation Guide for Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include privileged installation steps and system service configuration notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and package.json) <br>
+Risk: The updater may require privileged execution and can make system-wide changes, including installing files, creating or modifying services, and changing users or groups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the packaged shell script before running it, execute it only on systems where those changes are acceptable, and avoid sudo unless system-wide installation is intended.
+
+Risk: Mutable main-branch install URLs can change after review.
+
+Mitigation: Prefer the packaged ClawHub artifact or a pinned release source rather than a raw main-branch URL.
+
+Risk: GPU driver and kernel-module installation paths can affect host stability.
+
+Mitigation: Confirm GPU driver changes are desired, review distribution-specific package actions, and be prepared to reboot or roll back if driver installation is attempted.
+
+Risk: Old Ollama installation paths may be removed during update.
+
+Mitigation: Inspect or back up existing Ollama installation and data paths before running update or uninstall commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/newolf20000/skills/ollama-updater)
+- [Ollama](https://ollama.com)
+- [Ollama official install script](https://ollama.com/install.sh)
+- [NVIDIA CUDA Installation Guide for Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and shell script behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose privileged installation commands and environment-variable configuration such as OLLAMA_VERSION.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

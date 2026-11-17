@@ -1,45 +1,58 @@
-## Description: <br>
-Geo Seo is a Generative Engine Optimization reference for optimizing websites for AI search engines, including llms.txt, GEO checklists, AI bot tracking, answer engine optimization, citation monitoring, and content strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO SEO is a Generative Engine Optimization reference for optimizing websites for AI search engines, covering llms.txt, GEO checklists, automated scanning, AI bot tracking, answer engine optimization, citation monitoring, and content strategy.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External website owners, developers, and SEO practitioners use this skill to review GEO practices, generate implementation snippets, and plan monitoring for AI search visibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Monitoring examples can send domains or search queries to third-party services. <br>
-Mitigation: Avoid confidential domains, unreleased campaigns, or competitive research queries when copying these snippets. <br>
-Risk: Automation examples include recurring cron-style scans. <br>
-Mitigation: Only add scheduled scans when recurring monitoring is intentional and review the target, frequency, and output location first. <br>
-Risk: Examples reference an external GEO toolkit and web monitoring commands. <br>
-Mitigation: Review external toolkit code and copied shell commands before execution in production environments. <br>
+## Use Case:
 
+Developers, site owners, and SEO practitioners use this skill to plan GEO and AEO improvements, generate llms.txt guidance, review optimization checklists, and set up example monitoring for AI crawler activity and AI-search citations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/geo-seo) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [geo-llms-toolkit repository](https://github.com/aronhy/geo-llms-toolkit.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown-style guidance with shell, Python, PHP, nginx, robots.txt, and JSON-LD snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference output for intro, llms, checklist, monitor, tracking, and aeo topics] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence; artifact frontmatter reports 1.2.0) <br>
+Risk: Example automation can run unverified third-party code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review, pin, and inspect third-party repositories before running the suggested automation.
+
+Risk: Scheduled monitoring can create persistent jobs with elevated impact if run as root.
+
+Mitigation: Run cron jobs as a least-privileged user and review scheduled commands before enabling them.
+
+Risk: Generated reports and analytics logs can be stored in weakly protected locations.
+
+Mitigation: Store reports in private user-owned directories and keep WordPress analytics outside the public web root or protect them with server rules.
+
+## Reference(s):
+
+- [Geo Seo on ClawHub](https://clawhub.ai/ckchzh/skills/geo-seo)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with inline code examples, shell commands, configuration snippets, and checklist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference output for intro, llms, checklist, monitor, tracking, and aeo topics]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

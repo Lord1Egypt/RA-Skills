@@ -1,38 +1,58 @@
-## Description: <br>
-Monitor host system health (Disk, RAM, CPU). Returns structured JSON status for predictive maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor host system health (Disk, RAM, CPU). Returns structured JSON status for predictive maintenance.
 
-## Publisher: <br>
-[numbpill3d](https://clawhub.ai/user/numbpill3d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[numbpill3d](https://clawhub.ai/user/numbpill3d)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent run a local host health check and report disk, memory, and CPU load status before resource exhaustion causes failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local disk, memory, and CPU load metrics may be sensitive if exposed in agent output or logs. <br>
-Mitigation: Use this skill only where host health metrics are permitted to be collected and logged, and avoid sharing outputs outside approved operational contexts. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local host health check and receive structured status about disk, memory, and load conditions before resource exhaustion causes failures.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/numbpill3d/system-vigil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands] <br>
-**Output Format:** [JSON object printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports overall status, disk usage percent, memory usage percent, 15-minute load average, and warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and release metadata) <br>
+Risk: The skill reads basic local host resource information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where reading disk, memory, and load metrics is acceptable.
+
+Risk: The CPU metric is load average rather than CPU percentage.
+
+Mitigation: Interpret the reported CPU value as 15-minute load average and avoid comparing it directly to percentage thresholds.
+
+Risk: The documented example output does not exactly match the script's actual JSON shape.
+
+Mitigation: Integrations should parse the script's actual top-level status, metrics, and warnings fields.
+
+## Reference(s):
+
+- [System Vigil on ClawHub](https://clawhub.ai/numbpill3d/skills/system-vigil)
+- [Publisher profile: numbpill3d](https://clawhub.ai/user/numbpill3d)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON report printed by a Python script, with Markdown usage guidance for the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local access to standard Linux utilities: df, free, and uptime.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

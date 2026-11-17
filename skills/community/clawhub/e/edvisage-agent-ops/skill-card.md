@@ -1,42 +1,55 @@
-## Description: <br>
-Edvisage Agent Ops helps an AI agent track estimated API costs, log significant actions, produce daily operations summaries, and flag unusual spending or model-routing opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edvisage Agent Ops helps agents track estimated API costs, log actions, generate daily operations summaries, and flag unusual spending patterns.
 
-## Publisher: <br>
-[edvisage](https://clawhub.ai/user/edvisage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edvisage](https://clawhub.ai/user/edvisage)
 
-## Use Case: <br>
-Developers, operators, and agent owners use this skill to add operational visibility to an AI agent through cost tracking, action logs, daily summaries, cost alerts, and model-routing awareness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent cost and action logs can contain sensitive operational details if the agent records secrets, private targets, or overly specific activity. <br>
-Mitigation: Keep log entries high-level, redact secrets and private targets, and periodically clear old logs. <br>
-Risk: The free version provides cost alerts and reporting but should not be treated as spending-limit enforcement. <br>
-Mitigation: Use this skill for visibility and alerts, and rely on external budget controls or the appropriate paid capability for enforcement. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to have an agent keep cost and action records, surface spending alerts, and produce daily operations summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/edvisage/edvisage-agent-ops) <br>
-- [Edvisage Publisher Profile](https://clawhub.ai/user/edvisage) <br>
-- [Edvisage AI Tools](https://edvisageglobal.com/ai-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown logs, tables, summaries, alerts, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent operational logs that should avoid secrets, private targets, and unnecessary sensitive detail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Persistent action and cost logs can capture sensitive prompts, secrets, personal data, full paths, API endpoints, private resource names, or detailed notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using the skill on sensitive projects, configure the agent to avoid logging sensitive details and to redact or omit private identifiers.
+
+Risk: The skill does not define clear privacy limits, retention periods, or log-clearing controls.
+
+Mitigation: Set a project-specific logging scope and periodically clear retained logs.
+
+## Reference(s):
+
+- [Edvisage Agent Ops on ClawHub](https://clawhub.ai/edvisage/skills/edvisage-agent-ops)
+- [Edvisage AI Tools](https://edvisageglobal.com/ai-tools)
+- [Agent Ops Pro Upgrade](https://edvisage.gumroad.com/l/roatk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with log and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cost logs, action logs, summary reports, spending alerts, and model-routing notes when the agent follows the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md frontmatter and server release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

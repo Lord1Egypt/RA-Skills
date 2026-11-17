@@ -1,43 +1,56 @@
-## Description: <br>
-Jimeng AI (volcengine.com) connector skill for reading, creating, and updating Jimeng AI tasks through the OOMOL `oo` CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jimeng AI (volcengine.com). Use this skill for ANY Jimeng AI request — reading, creating, and updating data. Whenever a task involves Jimeng AI, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to submit Jimeng AI image and video generation jobs, inspect action schemas, and retrieve asynchronous task results through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write actions may create Jimeng AI generation tasks or affect paid account usage. <br>
-Mitigation: Require clear user intent and confirm the exact payload and expected effect before running actions tagged [write]. <br>
-Risk: A missing or expired Jimeng AI connection can cause authentication, scope, or billing failures. <br>
-Mitigation: Run setup, reconnection, or billing recovery steps only after a command returns the matching error. <br>
+## Use Case:
 
+External users and developers use this skill to submit Jimeng image and video generation or upscaling jobs, then check their results through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [Jimeng AI skill page](https://clawhub.ai/oomol/oo-jimeng-ai) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Jimeng AI homepage](https://www.volcengine.com/product/jimeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live connector schema before constructing action payloads; asynchronous submit actions return execution metadata for later result retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill frontmatter) <br>
+Risk: Initial CLI setup can execute a changing online installer whose effects were not inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer, use a verified release, and explicitly approve local changes.
+
+Risk: Generation inputs pass through OOMOL to the connected provider, and submitted jobs may consume credit.
+
+Mitigation: Review prompts and payloads before submission, confirm state-changing jobs, and check expected credit use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/oomol/skills/oo-jimeng-ai)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Jimeng AI product page](https://www.volcengine.com/product/jimeng)
+- [Volcengine API documentation](https://api.volcengine.com/api-docs/?serviceCode=cv&version=2024-06-06)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON payloads, API calls, Guidance, Image and video results]
+
+**Output Format:** [Markdown instructions with oo CLI examples and JSON inputs; action results are returned through the connected service.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation and processing jobs are asynchronous; separate result actions retrieve completed job results.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

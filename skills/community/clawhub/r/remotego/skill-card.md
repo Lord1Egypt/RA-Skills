@@ -1,42 +1,54 @@
-## Description: <br>
-Expose local command-line tools as browser-accessible public web terminal sessions through a tunnel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expose any CLI tool as a public web terminal via tunnel. Mirror bash, vim, python, node, or any command in a browser for remote access and collaboration.
 
-## Publisher: <br>
-[topcheer](https://clawhub.ai/user/topcheer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[topcheer](https://clawhub.ai/user/topcheer)
 
-## Use Case: <br>
-Developers and operators use this skill to share, access, or collaborate on local CLI sessions from a browser when they intentionally need remote terminal access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes a local interactive terminal through a public web link, which can grant high-impact access if shared unintentionally or run from a privileged environment. <br>
-Mitigation: Treat the session URL like a password, avoid privileged shells or secret-bearing directories, prefer a restricted working directory or disposable VM/container, and stop the tunnel immediately when finished. <br>
-Risk: The remote terminal package is installed or run from npm before use. <br>
-Mitigation: Verify the npm package and command source before running it, then install only in environments where remote interactive access is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to expose a local CLI session through a browser-accessible public tunnel for remote access or collaboration.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/topcheer/remotego) <br>
-- [Project Homepage](https://github.com/topcheer/claude-remoting) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and option tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes npm and npx commands, tunnel options, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: evidence release and skill frontmatter) <br>
+Risk: A local terminal can become reachable from the internet through a public link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in least-privileged, non-sensitive sessions; avoid privileged shells, production hosts, sensitive repositories, and environments with secrets.
+
+Risk: The skill instructions do not add enough safeguards for public terminal access.
+
+Mitigation: Review the package and command before running, prefer a pinned reviewed package version, and run under a sandboxed or least-privileged account.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/topcheer/claude-remoting)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes npm or npx commands, CLI options, and operational cautions for macOS and Linux systems with Node.js.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

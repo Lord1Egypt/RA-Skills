@@ -1,41 +1,57 @@
-## Description: <br>
-Coordinates ad-production workflows by creating, starting, pausing, resuming, canceling, and monitoring dependent task steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+工作流编排中心 - 协调全流程，管理任务依赖和状态
 
-## Publisher: <br>
-[JEyeshield](https://clawhub.ai/user/JEyeshield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeyeshield](https://clawhub.ai/user/jeyeshield)
 
-## Use Case: <br>
-External developers and operators use this skill to define and run multi-step ad-production workflows, coordinate other OpenClaw skills, manage dependencies, and inspect workflow state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically launch multi-step workflows from OpenClaw events and workflow definitions without clear scoping or confirmation. <br>
-Mitigation: Review workflow definitions before use, restrict connected event sources, and avoid production publishing or distribution accounts until approvals or allowlists are configured. <br>
-Risk: Automatic demand.approved workflow starts may create costly or unintended downstream automation. <br>
-Mitigation: Monitor or disable automatic demand.approved starts unless the event source and downstream skills are trusted. <br>
+## Use Case:
 
+Developers and workflow authors use this skill to create, start, pause, resume, cancel, and monitor multi-step ad-production workflows. It coordinates dependent skill commands and includes a standard advertising production workflow template.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JEyeshield/ad-production-workflow-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/JEyeshield) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance, Configuration] <br>
-**Output Format:** [JSON command responses and workflow status objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates in-memory workflow records and can invoke configured OpenClaw skill commands during workflow execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release evidence) <br>
+Risk: Workflow definitions can proxy commands to other skills with limited scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit allowlists for callable skills and commands before production use.
+
+Risk: Automatic event-triggered workflows can start advertising production and distribution actions without enough user control.
+
+Mitigation: Require confirmation for distribution or paid-resource actions and restrict trusted workflow authors and event emitters.
+
+Risk: Workflow arguments and event payloads may contain sensitive campaign or business data.
+
+Mitigation: Validate workflow definitions and event payloads, and redact workflow arguments from logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeyeshield/skills/ad-production-workflow-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command responses and workflow status objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns workflow identifiers, status summaries, execution histories, statistics, and success or error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,9 +1,9 @@
 # REST-Only Agents
 
 > Members of this family cannot speak MCP, or the deployment environment blocks
-> long-lived connections. They consume the same 12 tools via the universal REST
+> long-lived connections. They consume the same 14 tools via the universal REST
 > envelope at `POST /api/universal/[category]/[name]`. **All protocol details
-> (12 tools, error codes, billing) live in [`../SKILL.md`](../SKILL.md) — do not duplicate.**
+> (14 tools, error codes, billing) live in [`../SKILL.md`](../SKILL.md) — do not duplicate.**
 
 ## Verified members
 
@@ -14,7 +14,7 @@ listed under [Unverified members](#unverified-members) — see the policy in
 | Agent | Transport | Verified on | Known quirks |
 |-------|-----------|-------------|--------------|
 | LangChain (no MCP) | Python `requests` / JS `fetch` | 2026-06-17 | Map each tool to a `StructuredTool`; set HTTP timeout ≥130s |
-| Coze (webhook / plugin HTTP) | HTTP POST + plugin schema | 2026-06-17 | Plugin manifest must mirror the 12 tool names; auth via `x-api-key` header (not `Authorization`) |
+| Coze (webhook / plugin HTTP) | HTTP POST + plugin schema | 2026-06-17 | Plugin manifest must mirror the 14 tool names; auth via `x-api-key` header (not `Authorization`) |
 
 ## Unverified members
 
@@ -29,7 +29,7 @@ listed under [Unverified members](#unverified-members) — see the policy in
 
 ## Common setup (any member)
 
-1. Discover the 12 tool list by reading [`../SKILL.md`](../SKILL.md) §3 — the
+1. Discover the 14 tool list by reading [`../SKILL.md`](../SKILL.md) §3 — the
    `category/name` pair is the URL path (e.g. `fortune/bazi_basic_analysis`).
 2. Each request is `POST https://fortunehub.lighttune.com.au/api/universal/<category>/<name>` with
    `Content-Type: application/json` and `Authorization: Bearer <api_key>` (or
@@ -38,7 +38,7 @@ listed under [Unverified members](#unverified-members) — see the policy in
 3. Response envelope is `{ success, data, credits_deducted }` on success,
    `{ success:false, error:{code,message,details?} }` on failure. (Live remaining
    free quota is **not** in the envelope — read it from m2 `get_user_credits`.)
-4. **No `job_id` polling** — the synchronous contract says all 12 tools are synchronous. Set HTTP client
+4. **No `job_id` polling** — the synchronous contract says all 14 tools are synchronous. Set HTTP client
    timeout to **≥120s** to absorb t4 jitter.
 
 ## Agent-specific snippets
@@ -85,15 +85,15 @@ bazi_basic_analysis = StructuredTool.from_function(
 )
 ```
 
-For the full 12-tool contract, error codes, and billing, see [`../SKILL.md`](../SKILL.md) §3–§5.
+For the full 14-tool contract, error codes, and billing, see [`../SKILL.md`](../SKILL.md) §3–§5.
 
-### Coze (webhook plugin) — manifest mirrors the 12 tool names
+### Coze (webhook plugin) — manifest mirrors the 14 tool names
 
 Coze plugin manifest (`plugin.yaml` or the equivalent UI export):
 
 ```yaml
 name: fortune-hub
-version: 0.3.0
+version: 0.4.0
 auth:
   type: service
   service:

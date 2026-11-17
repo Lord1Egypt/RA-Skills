@@ -1,44 +1,53 @@
-## Description: <br>
-Lightweight two-stage input safety guard for agents. Use this skill when an agent must screen user input before answering, block prompt injection or prompt leakage attempts, classify risky requests, and either return a safe answer or an interception response. The workflow is stage1 deterministic prefilter plus stage2 agent-native semantic review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight two-stage input safety guard for agents. Use this skill when an agent must screen user input before answering, block prompt injection or prompt leakage attempts, classify risky requests, and either return a safe answer or an interception response.
 
-## Publisher: <br>
-[skywingswang](https://clawhub.ai/user/skywingswang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skywingswang](https://clawhub.ai/user/skywingswang)
 
-## Use Case: <br>
-Developers and agent builders use this skill to screen raw user input before an agent answers, combining deterministic prompt-safety rules with agent-native semantic review. It is suited for flows that need configurable blocking, review, and safe-response routing before downstream prompt construction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default, strict, and relaxed profiles can block normal prompt-security discussions or trusted development workflows if left untuned. <br>
-Mitigation: Review the rule profiles before installing, test them against the target agent flow, and choose or adjust the profile that fits the deployment context. <br>
-Risk: The guard inspects raw user messages, which may include sensitive user-provided content. <br>
-Mitigation: Ensure host classifiers, telemetry, and logs handle user input according to the deployment's privacy and retention requirements. <br>
+## Use Case:
 
+Developers and engineers use this skill to screen raw user input before an agent responds, combining deterministic prefilter rules with agent-native semantic review. It is intended for agents that need configurable handling for prompt injection, prompt leakage, privacy extraction, role-play abuse, and related unsafe request categories.
 
-## Reference(s): <br>
-- [Input Safety Guard on ClawHub](https://clawhub.ai/skywingswang/input-safety-guard) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Default rules profile](artifact/config/default_rules.yaml) <br>
-- [Strict rules profile](artifact/config/default_rules.strict.yaml) <br>
-- [Relaxed rules profile](artifact/config/default_rules.relaxed.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Plain text replies with structured safety decision metadata and configurable rule profiles] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can return safety-only decisions, full handling metadata, or final user-visible text depending on the runtime entry point.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Implementation flaws could allow unsafe messages to bypass the guard, and the package should not be treated as a robust security boundary in high-trust or high-impact agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use stronger stage-2 data boundaries or structured model messages, and require the result parser to reject duplicate, unknown, or malformed fields.
+
+Risk: Profile selection and prompt-based semantic review can create false positives or false negatives for ambiguous requests.
+
+Mitigation: Test the selected profile with representative traffic and preserve the documented flow of running stage 1 before stage 2 and answering only after a final allow decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skywingswang/skills/input-safety-guard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, Python API return values, JSON-like structured metadata, and shell command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports default, strict, and relaxed profiles; blocked requests return an interception response instead of the requested content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,52 @@
-## Description: <br>
-Query free financial data APIs -- stocks, crypto, macro, SEC filings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query free financial data APIs for stocks, crypto, macroeconomic data, SEC filings, and related market data.
 
-## Publisher: <br>
-[anotb](https://clawhub.ai/user/anotb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anotb](https://clawhub.ai/user/anotb)
 
-## Use Case: <br>
-Developers and analysts use this skill to ask an agent for `omd` commands that retrieve market, crypto, macroeconomic, SEC filing, and related financial data from free external providers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the third-party `open-market-data` npm package and its `omd` executable. <br>
-Mitigation: Install only when the package and linked project are trusted for the intended environment. <br>
-Risk: Configured provider credentials may be exposed if terminal output from `omd config show` is shared. <br>
-Mitigation: Prefer environment variables for API keys and avoid sharing command output that displays configuration values. <br>
-Risk: Automatic routing and fallback can send a query to different external data providers. <br>
-Mitigation: Use `--source` when the agent or operator needs to control which provider receives a query. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anotb/open-market-data) <br>
-- [open-market-data project homepage](https://github.com/anotb/open-market-data) <br>
-- [Publisher profile](https://clawhub.ai/user/anotb) <br>
+## Use Case:
 
+Developers and financial-data users use this skill to query market, crypto, macroeconomic, SEC filing, and company financial data through the open-market-data CLI. It helps agents produce commands, configuration guidance, and parseable CLI workflows for supported providers.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text, JSON] <br>
-**Output Format:** [Markdown with bash command examples and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include provider selection flags, API-key configuration guidance, and commands that call external financial-data services.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on installing the open-market-data npm package, and the release evidence notes that the package is unpinned.
+
+Mitigation: Use a pinned or reviewed package version, especially in sensitive environments.
+
+Risk: The CLI can store or use financial-data API keys.
+
+Mitigation: Configure API keys only in environments where the CLI package and local storage behavior have been reviewed.
+
+## Reference(s):
+
+- [open-market-data homepage](https://github.com/anotb/open-market-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash examples; CLI commands may emit text, JSON, or plain output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require node, the omd binary, and optional provider API keys.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

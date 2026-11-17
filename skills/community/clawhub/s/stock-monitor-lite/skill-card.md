@@ -1,47 +1,63 @@
-## Description: <br>
-Monitors a configured stock watchlist and produces Chinese-language market alerts using cost, price movement, volume, moving-average, RSI, MACD, Bollinger Band, OBV, gap, trailing-stop, and ATR signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Monitor Lite monitors a configured China-focused stock, ETF, and gold watchlist for cost, price-move, volume, technical-indicator, gap, trailing-stop, and volatility alerts.
 
-## Publisher: <br>
-[skytodmoon](https://clawhub.ai/user/skytodmoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skytodmoon](https://clawhub.ai/user/skytodmoon)
 
-## Use Case: <br>
-External users and agents use this skill to run scheduled monitoring of configured stocks and receive informational alerts with technical indicators, news sentiment, and suggested watch points. It is intended for market awareness and does not provide professional financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled watchlist symbols and cost values may disclose sensitive personal portfolio information. <br>
-Mitigation: Review or replace the bundled watchlist and cost values before use, and keep the configuration and alert channel private. <br>
-Risk: Generated stock alerts and suggestions may be incomplete, stale, or unsuitable as trading advice. <br>
-Mitigation: Treat all generated suggestions as informational, verify data independently, and consult qualified financial advice before making trading decisions. <br>
-Risk: The skill depends on public market and news endpoints plus local Python dependencies, so availability and data quality can vary. <br>
-Mitigation: Install dependencies from trusted sources and review alert output when market-data providers are unavailable or return unexpected data. <br>
+## Use Case:
 
+External users use this skill to run scheduled OpenClaw monitoring of configured stocks, ETFs, and gold instruments and receive alert reports with market signals and informational suggestions. It is intended for notification and review workflows, not automated trading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skytodmoon/stock-monitor-lite) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Sina Finance quote endpoint](https://hq.sinajs.cn) <br>
-- [Eastmoney K-line endpoint](https://push2his.eastmoney.com/api/qt/stock/kline/get) <br>
-- [Eastmoney search endpoint](https://searchapi.eastmoney.com/api/suggest/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language text report with lightweight HTML and Markdown-style formatting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the configured watchlist and public market/news data to produce informational alerts, not professional financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The bundled watchlist includes private-looking cost basis values that may expose portfolio positions or trading context in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace the watchlist and all cost values before installing or scheduling the skill.
+
+Risk: Recurring OpenClaw tasks and channel pushes can repeatedly send stock symbols, names, cost basis values, and profit/loss reports through the configured notification channel.
+
+Mitigation: Enable scheduled runs and channel delivery only after confirming the selected channel is appropriate for this information.
+
+Risk: The skill queries Sina and Eastmoney for market and news data, which discloses the configured symbols to external data services.
+
+Mitigation: Use only symbols that are acceptable to share with those data sources and keep the watchlist minimal.
+
+Risk: Generated trading suggestions may be misleading or over-weight lagging technical indicators.
+
+Mitigation: Treat reports as informational alerts and review signals independently before making any investment decision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skytodmoon/skills/stock-monitor-lite)
+- [Sina Finance quote endpoint](https://hq.sinajs.cn)
+- [Eastmoney K-line endpoint](https://push2his.eastmoney.com/api/qt/stock/kline/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language text or Markdown-style alert report with inline HTML bold tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include configured cost basis, profit/loss percentages, market data source labels, and an informational-only notice.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

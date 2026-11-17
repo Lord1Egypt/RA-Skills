@@ -1,44 +1,55 @@
-## Description: <br>
-Create, modify, generate, and deploy websites, web apps, dashboards, SaaS products, internal tools, interactive web pages, Weixin mini programs, and games on the Baidu Medo platform using natural-language instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, modify, generate, and deploy websites, web apps, dashboards, SaaS products, internal tools, interactive web pages, Weixin mini programs, and games on the Baidu Medo platform using natural-language instructions.
 
-## Publisher: <br>
-[seiriosplus](https://clawhub.ai/user/seiriosplus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seiriosplus](https://clawhub.ai/user/seiriosplus)
 
-## Use Case: <br>
-Developers and product teams use this skill to create, iterate on, generate, and publish Medo web apps from natural-language requests through the packaged CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a Medo API key to create, modify, inspect, generate, and publish applications in the user's Medo account. <br>
-Mitigation: Use a revocable least-privilege API key, avoid committing the key to files, and review account access before installation. <br>
-Risk: Generation or publishing can produce publicly accessible applications without a clearly required final user confirmation step. <br>
-Mitigation: Instruct the agent to ask before running generate-app or publish, inspect the app before publication, and use publish status checks to verify the result. <br>
-Risk: Using an unexpected Medo API endpoint could send application prompts or account actions to the wrong service. <br>
-Mitigation: Verify the default API endpoint with Medo before use and avoid overriding it unless the alternate endpoint is trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to create, iterate on, inspect, generate, and publish Medo-hosted web products from natural-language requirements. It is intended for websites, web apps, dashboards, SaaS products, internal tools, landing pages, interactive pages, Weixin mini programs, and browser games.
 
-## Reference(s): <br>
-- [Medo Official Website](https://www.medo.dev) <br>
-- [ClawHub Skill Page](https://clawhub.ai/seiriosplus/medo-app-builder) <br>
-- [Publisher Profile](https://clawhub.ai/user/seiriosplus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON or URL command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and MEDO_API_KEY; command results may include app identifiers, conversation identifiers, deployment status, and production URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can send the Medo API key and project instructions to any configured API host if MEDO_BASE_URL or --base-url is changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a temporary or narrowly scoped Medo API key and avoid overriding the default API host unless the destination is fully trusted.
+
+Risk: The skill documentation suggests weak key storage patterns and publishing can make generated apps publicly available.
+
+Mitigation: Do not store the key in the skill directory .env file, review generated work before publishing, and publish only when public access is intended.
+
+## Reference(s):
+
+- [Medo official website](https://www.medo.dev)
+- [ClawHub skill page](https://clawhub.ai/seiriosplus/skills/medo-app-builder)
+- [Publisher profile](https://clawhub.ai/user/seiriosplus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and MEDO_API_KEY; can create and publish public Medo applications through the packaged CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

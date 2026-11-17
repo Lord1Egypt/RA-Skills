@@ -1,41 +1,53 @@
-## Description: <br>
-同程旅行助手 lets an agent search Tongcheng travel options across hotels, flights, trains, buses, attraction tickets, multimodal transport, and vacation packages, returning current options with prices and booking links when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Tongcheng travel inventory across hotels, flights, trains, buses, attraction tickets, transport options, and vacation packages, returning prices, details, and booking links.
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-Travel-focused agents and end users use this skill to compare Tongcheng travel search results for lodging, transport, attractions, and packaged trips. It is useful for itinerary planning and option discovery before the user completes any booking or payment on Tongcheng. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel search terms, dates, destinations, and preferences are sent to the skill publisher's cloud proxy. <br>
-Mitigation: Avoid entering highly sensitive itinerary details unless the publisher's proxy is trusted. <br>
-Risk: Prices, availability, and booking links may change after the skill returns results. <br>
-Mitigation: Confirm current details and complete booking or payment only on the official Tongcheng page reached from returned links. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search Tongcheng travel products and compare prices, schedules, ratings, availability, and booking links. It supports lookup and comparison only; booking and payment are completed on Tongcheng pages reached from returned links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/tongcheng-travel-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted travel search results with prices, schedules, ratings, availability summaries, and booking links when returned by the service.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are bounded result lists for Tongcheng travel categories; prices and availability can change, and booking or payment is completed outside the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: evidence.release.version and artifact/version) <br>
+Risk: Travel search details, including cities, dates, and free-form preferences, are sent to a cloud proxy before reaching Tongcheng APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enter sensitive personal details in free-form fields, and review returned booking links before leaving the agent.
+
+Risk: Prices and availability can change before checkout.
+
+Mitigation: Confirm final prices, availability, and terms on the official Tongcheng booking page before booking or payment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/tongcheng-travel-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown text with travel result lists, prices, ratings, schedules, and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are limited by category, commonly returning the top 8 to 15 items.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

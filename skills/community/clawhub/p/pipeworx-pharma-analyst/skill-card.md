@@ -1,41 +1,57 @@
-## Description: <br>
-Pipeworx Pharma Analyst helps agents query integrated clinical trial, FDA drug, and RxNorm sources through an external Pipeworx MCP gateway for pharma analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access integrated clinical trial, FDA drug, and RxNorm data for pharmaceutical research analysis, including drug profiles, pipeline scans, safety reports, and trial lookups.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Pharma analysts, researchers, and agent builders use this skill to inspect drug profiles, clinical trial pipelines, safety reports, FDA drug records, and RxNorm drug metadata from public biomedical data sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pharma research queries are sent to Pipeworx's external MCP gateway. <br>
-Mitigation: Use the skill only for queries that are appropriate to share with that external service. <br>
-Risk: Confidential drug strategy, proprietary sponsor questions, sensitive findings, or intentionally retained memory content may expose information beyond the local agent session. <br>
-Mitigation: Avoid entering sensitive information, and use remember/recall only for information that should be retained. <br>
+## Use Case:
 
+External users and developers use this skill to connect an agent to Pipeworx's pharmaceutical research MCP gateway for drug, clinical trial, safety, approval, label, recall, and RxNorm-oriented analysis. It is intended to help gather and compare public pharmaceutical data, with medical and regulatory conclusions verified against authoritative sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-pharma-analyst) <br>
-- [Pipeworx pharma analysis MCP gateway](https://gateway.pipeworx.io/mcp?task=pharma%20analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and MCP configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces pharma data lookups and analysis summaries from external MCP tools; does not request local files, credentials, or destructive authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Pharmaceutical research queries are sent through Pipeworx's third-party MCP gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-confidential queries and avoid patient identifiers, proprietary research, and sensitive business data.
+
+Risk: Clinical, safety, and regulatory outputs may be incomplete, outdated, or unsuitable as a sole decision source.
+
+Mitigation: Verify medical and regulatory conclusions against official sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-pharma-analyst)
+- [Publisher profile](https://clawhub.ai/user/brucegutman)
+- [ClinicalTrials.gov](https://clinicaltrials.gov/)
+- [openFDA](https://open.fda.gov/)
+- [RxNav API](https://lhncbc.nlm.nih.gov/RxNav/APIs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or text responses with JSON MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on third-party gateway availability and the upstream public data sources queried.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

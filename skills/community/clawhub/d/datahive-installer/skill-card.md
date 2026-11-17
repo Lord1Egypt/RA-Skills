@@ -1,42 +1,59 @@
-## Description: <br>
-Automates DataHive sign-in using a magic link workflow: requests the link, retrieves it from Gmail via gog, and opens it in a Chrome DevTools tab. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates DataHive sign-in using a magic link workflow: requests the link, retrieves it from Gmail via gog, and opens it in a Chrome DevTools tab.
 
-## Publisher: <br>
-[tuleyko](https://clawhub.ai/user/tuleyko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuleyko](https://clawhub.ai/user/tuleyko)
 
-## Use Case: <br>
-External users and operators use this skill to automate DataHive dashboard authentication through a magic-link flow. It is limited to login setup and does not manage DataHive datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer applies persistent, privileged Chrome policy changes and creates local Chrome profile state. <br>
-Mitigation: Run only on a trusted machine, review the managed Chrome extension policy before use, and document how to remove the policy and ~/.chrome-datahive state afterward. <br>
-Risk: The skill leaves Chrome running with a local DevTools endpoint and opens short-lived magic-link tokens. <br>
-Mitigation: Use a dedicated browser profile and Gmail account where possible, keep magic links private, and stop the Chrome supervisor when the login flow is complete. <br>
+## Use Case:
 
+Operators and developers use this skill to automate DataHive dashboard authentication by installing browser prerequisites, requesting a magic link, retrieving it through an authenticated gog Gmail account, and opening it in Chrome.
 
-## Reference(s): <br>
-- [DataHive Installer on ClawHub](https://clawhub.ai/tuleyko/datahive-installer) <br>
-- [DataHive dashboard authentication endpoint](https://dashboard.datahive.ai/auth) <br>
-- [DataHive magic-link request endpoint](https://api.datahive.ai/api/auth/magic-link/request) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gog, curl, and websocat; opens the retrieved magic link in a Chrome DevTools tab.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version) <br>
+Risk: The skill installs packages and applies managed Chrome policy using administrative privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before execution and run only on hosts where sudo package installation and browser-policy changes are acceptable.
+
+Risk: The skill launches persistent Chrome with DevTools remote debugging enabled on localhost.
+
+Mitigation: Keep the debugging endpoint local, use a trusted machine, and stop the browser supervisor after the login flow is complete.
+
+Risk: Magic links are login secrets retrieved from Gmail and passed to a browser tab.
+
+Mitigation: Treat magic links as secrets, avoid logging or sharing them, and rerun the request flow when links expire.
+
+## Reference(s):
+
+- [ClawHub Skill: DataHive Installer](https://clawhub.ai/tuleyko/skills/datahive-installer)
+- [Publisher Profile: tuleyko](https://clawhub.ai/user/tuleyko)
+- [DataHive Dashboard](https://dashboard.datahive.ai/auth)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gog, curl, websocat, Chrome, and Ubuntu or macOS; handles short-lived magic login links.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

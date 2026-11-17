@@ -1,43 +1,59 @@
-## Description: <br>
-Free keyword research using Google PAA, Autocomplete, Reddit discussions, and Bing. No paid API needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free keyword research using Google PAA, Autocomplete, Reddit discussions, and Bing. No paid API needed.
 
-## Publisher: <br>
-[lal24886695](https://clawhub.ai/user/lal24886695) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lal24886695](https://clawhub.ai/user/lal24886695)
 
-## Use Case: <br>
-SEO practitioners, content strategists, and developers use this skill to gather free keyword ideas, user questions, related searches, Reddit discussion signals, clusters, and topic ideas from public sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Seed keywords and expanded queries are sent to external public search and Reddit services. <br>
-Mitigation: Avoid confidential or sensitive seed keywords and review generated reports before sharing them. <br>
-Risk: The bundled Reddit mining behavior searches adult and relationship-focused subreddits regardless of the seed topic. <br>
-Mitigation: Review or edit the Reddit source list before use, especially for workplace, brand-sensitive, or regulated research. <br>
-Risk: The skill installs and runs Python dependencies from the local environment. <br>
-Mitigation: Install dependencies in a virtual environment and run the tool with normal least-privilege user permissions. <br>
+## Use Case:
 
+External developers, SEO practitioners, and content strategists use this skill to run no-cost keyword research from public Google, Reddit, and Bing sources for content planning, keyword clustering, topic ideation, and competitive content gap analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lal24886695/free-keyword-miner) <br>
-- [Publisher profile](https://clawhub.ai/user/lal24886695) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and a JSON report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated JSON can include Google PAA questions, autocomplete suggestions, Reddit topics, Bing related terms, keyword clusters, topic ideas, and total keyword counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Reddit mode can return unexpected adult or sensitive content because the scanned release searches sexual and relationship subreddits by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-Reddit sources when that content is inappropriate, review outputs before sharing them, and run the tool only in workspaces approved for this type of content.
+
+Risk: The skill makes outbound requests to public Google, Reddit, and Bing endpoints and may encounter rate limits, blocks, or unavailable results.
+
+Mitigation: Run it in a low-privilege environment, expect partial results, and avoid high-volume use without confirming the relevant service terms and limits.
+
+Risk: The command writes a local JSON file to the path provided by the caller.
+
+Mitigation: Choose an output path that will not overwrite important files and review the generated JSON before using it in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lal24886695/skills/free-keyword-miner)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and a JSON results file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes keyword results to a caller-selected local JSON path; network results depend on public Google, Reddit, and Bing availability and rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

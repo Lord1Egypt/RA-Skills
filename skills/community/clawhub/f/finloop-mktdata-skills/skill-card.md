@@ -1,42 +1,58 @@
-## Description: <br>
-Provides OpenClaw agents with direct HTTP guidance for querying global financial market data, including equities, indices, funds, bonds, company fundamentals, and real-time or historical quotes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+F-AI 金融数据 helps agents query Finloop market-data APIs for real-time and historical prices, fund and bond data, and company fundamentals.
 
-## Publisher: <br>
-[CZZLEGEND](https://clawhub.ai/user/CZZLEGEND) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[czzlegend](https://clawhub.ai/user/czzlegend)
 
-## Use Case: <br>
-External users and agent developers use this skill to query Finloop market-data endpoints directly for market monitoring, instrument lookup, and basic company or asset research across equities, funds, bonds, commodities, foreign exchange, and virtual assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External Finloop API requests may expose confidential portfolio, customer, or internal business information. <br>
-Mitigation: Use the skill only for intended market-data lookups and avoid sending confidential or internal data to the external API. <br>
-Risk: The manifest lacks a repository or source URL, making package provenance harder to verify before installation. <br>
-Mitigation: Verify the npm package name and publisher before installing or running the package. <br>
+## Use Case:
 
+Developers and agents use this skill to answer market-data and fundamental-analysis questions by issuing direct HTTP POST requests to Finloop endpoints for stocks, indices, funds, bonds, and companies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CZZLEGEND/finloop-mktdata-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/CZZLEGEND) <br>
-- [Finloop market-data interface reference](artifact/.agents/skills/finloop-mktdata-skill/references/REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with direct HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include curl, fetch, or axios request snippets and guidance to avoid creating wrapper files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill manifest) <br>
+Risk: Installer behavior can write outside the intended skills folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an expected workspace and review the target .agents/skills path before allowing overwrite.
+
+Risk: The install command runs an unpinned npm package.
+
+Mitigation: Use a pinned, trusted package version when installing.
+
+Risk: API calls go to Finloop's UAT service.
+
+Mitigation: Do not include confidential portfolio, account, or personal data unless that service has been approved for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/czzlegend/skills/finloop-mktdata-skills)
+- [Finloop market data API reference](artifact/.agents/skills/finloop-mktdata-skill/references/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with HTTP request examples and response-field interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include direct fetch, axios, or curl requests to Finloop API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

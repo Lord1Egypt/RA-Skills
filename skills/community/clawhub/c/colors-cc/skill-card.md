@@ -1,44 +1,60 @@
-## Description: <br>
-A native UI asset and color toolset for OpenClaw and other AI Agents. Generate SVG placeholders, animated gradients, theme-based palettes, and perform color conversions without hallucination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A native UI asset and color toolset for OpenClaw and other AI Agents. Generate SVG placeholders, animated gradients, theme-based palettes, and perform color conversions without hallucination.
 
-## Publisher: <br>
-[douxc](https://clawhub.ai/user/douxc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[douxc](https://clawhub.ai/user/douxc)
 
-## Use Case: <br>
-Developers and agents use Colors CC to generate SVG placeholders, animated gradients, palettes, and color conversions for UI mockups, design assets, and sample data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Placeholder text and query parameters are sent to the external colors-cc.top service. <br>
-Mitigation: Avoid confidential project names, private user text, secrets, and internal identifiers in generated URLs. <br>
-Risk: Public-facing mockups may unintentionally include the default colors-cc.top watermark. <br>
-Mitigation: Use the documented attribution parameter deliberately and review rendered placeholders before publication. <br>
+## Use Case:
 
+Developers, designers, and agents use Colors CC to create SVG placeholders, animated gradients, theme palettes, color conversions, and CSS color-name lookups for UI mockups and generated application assets.
 
-## Reference(s): <br>
-- [Colors CC Skill Page](https://clawhub.ai/douxc/colors-cc) <br>
-- [douxc Publisher Profile](https://clawhub.ai/user/douxc) <br>
-- [Colors CC LLM Documentation](https://colors-cc.top/llms.txt) <br>
-- [Colors CC OpenAPI Specification](https://colors-cc.top/openapi.json) <br>
-- [Colors CC Live Site](https://colors-cc.top/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with URLs, HTML image snippets, JavaScript examples, and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include external colors-cc.top API URLs with URL-encoded color and text parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata) <br>
+Risk: Generated placeholder and API URLs contact a third-party remote service and may expose URL text or internal identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include confidential text or internal identifiers in placeholder URLs.
+
+Risk: Remote placeholders may be unsuitable when output integrity, privacy, or offline use is required.
+
+Mitigation: Disable attribution where appropriate and use local or self-hosted assets for privacy-sensitive or offline workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/douxc/skills/colors-cc)
+- [Colors CC live site](https://colors-cc.top/)
+- [LLM-optimized documentation](https://colors-cc.top/llms.txt)
+- [OpenAPI specification](https://colors-cc.top/openapi.json)
+- [Universal Color Converter](https://colors-cc.top/tools/converter)
+- [Random Palette Generator](https://colors-cc.top/tools/random-palette)
+- [CSS Color Names Reference](https://colors-cc.top/tools/color-names)
+- [Fluid Gradient Placeholder](https://colors-cc.top/tools/fluid-placeholder)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, API calls, Guidance]
+
+**Output Format:** [Markdown with inline HTML, JavaScript examples, API URLs, and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include third-party service URLs; placeholder dimensions are clamped and placeholder text is truncated by the service.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

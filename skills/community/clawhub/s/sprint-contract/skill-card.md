@@ -1,41 +1,51 @@
-## Description: <br>
-Multi-agent development workflow with Sprint Contracts and independent QA evaluation for feature work, bug fixes, code reviews, and coding-agent handoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sprint Contract is a multi-agent development workflow that uses explicit completion criteria and independent QA evaluation for feature builds, complex bug fixes, and code reviews.
 
-## Publisher: <br>
-[mrpixelraf](https://clawhub.ai/user/mrpixelraf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrpixelraf](https://clawhub.ai/user/mrpixelraf)
 
-## Use Case: <br>
-Developers and engineering teams use Sprint Contract to plan and delegate development work with explicit completion criteria, then have an independent evaluator check functionality, UX, visuals, and code quality before shipping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BRIEF.md or HANDOFF.md may include secrets or unnecessary private details. <br>
-Mitigation: Avoid putting secrets or unnecessary private details into handoff files, and redact sensitive content before sharing or committing them. <br>
-Risk: Sub-agent outputs may still contain incorrect changes or incomplete quality checks. <br>
-Mitigation: Review evaluator findings and sub-agent outputs before committing or shipping changes. <br>
+## Use Case:
 
+Developers and engineering teams use Sprint Contract to plan, execute, and independently evaluate medium or complex development tasks with explicit completion criteria, file-based handoffs, and a QA decision gate.
 
-## Reference(s): <br>
-- [Sprint Contract Examples](references/contract-examples.md) <br>
-- [Anthropic harness design for long-running apps](https://www.anthropic.com/engineering/harness-design-long-running-apps) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Files] <br>
-**Output Format:** [Markdown instructions and checklist-style templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes file handoff conventions for BRIEF.md and HANDOFF.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The trigger description is broad, so the skill may be invoked for many coding tasks where multi-agent coordination adds overhead.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it deliberately for medium or complex development work where a separate builder and evaluator are worth the added coordination.
+
+## Reference(s):
+
+- [Sprint Contract Examples](references/contract-examples.md)
+- [Anthropic harness design for long-running apps](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+- [Sprint Contract on ClawHub](https://clawhub.ai/mrpixelraf/skills/sprint-contract)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown instructions, checklists, and evaluator prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce BRIEF.md and HANDOFF.md workflow artifacts when applied by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

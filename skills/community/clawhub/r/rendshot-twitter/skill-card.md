@@ -1,42 +1,55 @@
-## Description: <br>
-Create high-performing Twitter/X content images, including post images, thread headers, link preview cards, and profile banners. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Twitter/X content images for post graphics, thread headers, link preview cards, and profile banners using platform strategy, visual design guidance, and Rendshot image generation.
 
-## Publisher: <br>
-[zoohero500](https://clawhub.ai/user/zoohero500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoohero500](https://clawhub.ai/user/zoohero500)
 
-## Use Case: <br>
-External creators, marketers, founders, and developers use this skill to plan and generate Twitter/X-ready visual assets for posts, threads, link previews, announcements, and branded content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image-generation prompts may include sensitive business plans, brand assets, credentials, or customer data. <br>
-Mitigation: Avoid placing confidential or sensitive data into generation prompts unless the workspace policy allows use of the configured image-generation service. <br>
+## Use Case:
 
+External creators, marketers, founders, and developers use this skill to draft Twitter/X-ready image prompts, thread headers, link cards, and reusable Rendshot templates for social content.
 
-## Reference(s): <br>
-- [Twitter/X Algorithm & Content Strategy](references/algorithm.md) <br>
-- [Twitter/X Visual Design Guide](references/design-style.md) <br>
-- [Twitter/X Recommended Templates](references/templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/zoohero500/rendshot-twitter) <br>
-- [Publisher profile](https://clawhub.ai/user/zoohero500) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline image-generation and template API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompts, platform preset guidance, template-selection instructions, and optional template configuration for Twitter/X image assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Examples default to English and Twitter/X-specific dark-mode design assumptions, which may not fit every audience or locale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adjust locale, wording, platform assumptions, and visual style for the intended audience before publishing generated content.
+
+Risk: Saved templates can carry forward outdated copy, audience assumptions, or brand choices.
+
+Mitigation: Review saved templates before reuse and update variables, text, and style details for the current campaign.
+
+## Reference(s):
+
+- [Algorithm and engagement optimization](references/algorithm.md)
+- [Visual design guide](references/design-style.md)
+- [Recommended templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON-like Rendshot tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompts, platform presets, template variables, and saved-template guidance for Twitter/X image generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

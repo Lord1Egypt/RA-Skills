@@ -1,45 +1,63 @@
-## Description: <br>
-MarriottAI helps agents search, compare, and book Marriott hotels, hotel packages, nearby attractions, and train tickets through the FlyAI travel CLI with real-time pricing and structured results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MarriottAI helps agents search and present Marriott hotels, hotel packages, attractions, and train tickets using the FlyAI travel platform.
 
-## Publisher: <br>
-[birkhoff-china](https://clawhub.ai/user/birkhoff-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[birkhoff-china](https://clawhub.ai/user/birkhoff-china)
 
-## Use Case: <br>
-External travel users and travel-support agents use this skill to find Marriott stays, package offers, nearby attractions, and train options, then present booking-oriented comparisons and itinerary guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and uses a third-party FlyAI npm CLI that may handle travel search details and optional API credentials. <br>
-Mitigation: Install only when comfortable with that data flow, and use a limited FLYAI_API_KEY where possible. <br>
-Risk: Returned prices, package details, and booking links may reflect a limited source set or change before purchase. <br>
-Mitigation: Compare prices, terms, and availability with other sources before booking when neutrality or broad market coverage matters. <br>
+## Use Case:
 
+Travel-focused agents use this skill to answer external user requests for Marriott stays, hotel packages, local attractions, and train options, including comparison, itinerary planning, and booking-link presentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/birkhoff-china/marriott-ai) <br>
-- [FlyAI homepage](https://open.fly.ai/) <br>
-- [Marriott hotel search reference](references/search-marriott-hotel.md) <br>
-- [Marriott package search reference](references/search-marriott-package.md) <br>
-- [POI and attraction search reference](references/search-poi.md) <br>
-- [Train search reference](references/search-train.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Single-line JSON from CLI commands, with Markdown result summaries for users.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and the @fly-ai/flyai-cli package; FLYAI_API_KEY is optional for enhanced results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill relies on an unpinned global third-party FlyAI CLI whose executable code is outside the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the FlyAI CLI publisher; prefer a pinned, locally scoped, or sandboxed installation before using it for travel decisions.
+
+Risk: Optional FLYAI_API_KEY configuration may expose credentials to the third-party CLI.
+
+Mitigation: Configure FLYAI_API_KEY only if you trust how the CLI stores and uses the key, and prefer scoped or disposable credentials where possible.
+
+Risk: Returned prices, availability, and booking links may change and may reflect Marriott/Fliggy-focused inventory with China-oriented locale defaults.
+
+Mitigation: Treat results as booking guidance and confirm final prices, policies, and availability on the linked provider pages before purchase.
+
+## Reference(s):
+
+- [MarriottAI ClawHub Skill Page](https://clawhub.ai/birkhoff-china/skills/marriott-ai)
+- [birkhoff-china Publisher Profile](https://clawhub.ai/user/birkhoff-china)
+- [FlyAI Homepage](https://open.fly.ai/)
+- [search-marriott-hotel reference](artifact/references/search-marriott-hotel.md)
+- [search-marriott-package reference](artifact/references/search-marriott-package.md)
+- [search-poi reference](artifact/references/search-poi.md)
+- [search-train reference](artifact/references/search-train.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Single-line JSON from FlyAI CLI commands, followed by Markdown travel summaries with images and booking links when data is available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command results may include real-time prices, images, booking URLs, itinerary details, and optional API-key configuration.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Exponential Growth System helps AI agents turn solved problems into reusable skills through tool-decision mapping, error pattern logging, evolution journals, and skill creation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent growth methodology and Node.js helper package for recording problem-solving patterns, tool decisions, evolution logs, and reusable skill creation workflows.
 
-## Publisher: <br>
-[126shitou](https://clawhub.ai/user/126shitou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[126shitou](https://clawhub.ai/user/126shitou)
 
-## Use Case: <br>
-Developers and agent builders use this skill to initialize and maintain a local growth system for capturing problem-solving lessons, reusable practices, tool decisions, and evolution notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local learning journals can accidentally capture API keys, personal data, internal URLs, or confidential task details. <br>
-Mitigation: Review EVOLUTION.md and .learnings before sharing, importing, or exporting them, and avoid recording secrets or confidential details. <br>
-Risk: Initialization and update scripts write files in the current workspace. <br>
-Mitigation: Run the scripts only in the intended workspace and review generated files before committing or publishing them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to establish a structured self-improvement workflow for capturing errors, best practices, tool-selection decisions, and evolution notes as reusable knowledge.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/126shitou/exponential-growth-system) <br>
-- [Publisher profile](https://clawhub.ai/user/126shitou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local generated files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local workspace files such as .learnings, EVOLUTION.md, growth-config.json, and skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server evidence) <br>
+Risk: Generated growth logs and knowledge files may include task history or sensitive user context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated files before sharing, exporting, publishing, or connecting scheduled automation.
+
+Risk: The package creates and appends local workspace files when its Node.js scripts are run.
+
+Mitigation: Run the scripts in the intended workspace and inspect the created .learnings, EVOLUTION.md, and configuration files.
+
+Risk: The instructions and generated materials are primarily Chinese-language.
+
+Mitigation: Install and operate the skill only when the user or reviewer can understand the Chinese-language workflow and outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/126shitou/skills/exponential-growth-system)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with inline shell commands and Node.js scripts that create or append local workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local knowledge files such as .learnings entries, EVOLUTION.md, and growth-config.json when its bundled scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter, package.json, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Helps content creators systematically generate high-quality topic ideas using eight ideation methods and five-dimension validation for blogs, social media, video, and similar content channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps content creators systematically generate high-quality topic ideas using eight ideation methods and five-dimensional validation for blogs, social media, and video content.
 
-## Publisher: <br>
-[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024)
 
-## Use Case: <br>
-External content creators, marketers, and publishing teams use this skill to turn an audience, platform, and content format into batches of validated topic ideas, title angles, and content-planning guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate unintentionally because some trigger phrases are broad, such as users saying they have no ideas or do not know what to write. <br>
-Mitigation: Use clearer activation wording in multi-skill environments, or confirm the user's intent before applying the content-ideation workflow. <br>
+## Use Case:
 
+Content creators, marketers, and editorial teams use this skill to gather audience and platform context, generate 10-15 topic ideas, validate topic potential, and optimize titles, angles, and content plans.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/limingdev-tech-2024/content-idea-gen) <br>
-- [Publisher Profile](https://clawhub.ai/user/limingdev-tech-2024) <br>
-- [README](artifact/README.md) <br>
-- [Usage Examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with topic lists, scoring tables, templates, and short planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically asks for domain, target audience, content type, and platform before producing 10-15 topic ideas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow is Chinese-oriented and may default to Chinese examples or China-focused content platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the desired language, locale, audience, and platform when those requirements are not explicit.
+
+Risk: Broad trigger wording may invoke the skill for general content-planning requests where the user wanted a different workflow.
+
+Mitigation: Confirm the requested output before applying the ideation workflow when the user's intent is ambiguous.
+
+Risk: Generated topic ideas, trend angles, and example performance claims may be unsuitable or unsupported for publication as-is.
+
+Mitigation: Review proposed topics against current platform data, brand requirements, audience needs, and available evidence before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/limingdev-tech-2024/skills/content-idea-gen)
+- [Publisher Profile](https://clawhub.ai/user/limingdev-tech-2024)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown topic lists, validation tables, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific topic templates, scoring dimensions, title suggestions, and content planning prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

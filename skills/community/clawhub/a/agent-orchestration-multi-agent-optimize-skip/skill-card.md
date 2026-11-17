@@ -1,40 +1,52 @@
-## Description: <br>
-Optimize multi-agent systems with coordinated profiling, workload distribution, and cost-aware orchestration. Use when improving agent performance, throughput, or reliability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize multi-agent systems with coordinated profiling, workload distribution, and cost-aware orchestration.
 
-## Publisher: <br>
-[huang-shao](https://clawhub.ai/user/huang-shao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[huang-shao](https://clawhub.ai/user/huang-shao)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to profile multi-agent workflows, identify orchestration bottlenecks, tune workload distribution, and manage cost, context usage, throughput, latency, and reliability.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Optimization recommendations may be applied too broadly and cause performance or reliability regressions in a real multi-agent system.
+
+Mitigation: Define the target scope, measure baseline metrics, apply changes incrementally, run regression tests, and roll out gradually with rollback plans.
+
+Risk: Cost, latency, or context-window changes may trade off quality if target metrics and acceptance thresholds are unclear.
+
+Mitigation: Set performance goals, budget constraints, and quality metrics before applying orchestration changes, then compare before-and-after results.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to profile multi-agent workflows, identify coordination bottlenecks, and apply cost-aware orchestration improvements with validation and rollback planning. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Optimization recommendations could cause production regressions if applied without measurable baselines or rollback plans. <br>
-Mitigation: Define performance goals, validate changes with repeatable tests, and keep rollback plans before production rollout. <br>
-Risk: Profiling and memoization can expose or retain sensitive operational context. <br>
-Mitigation: Only profile systems the operator is authorized to inspect and limit caching or memoization of sensitive context. <br>
+**Output Format:** [Markdown guidance with code examples and optimization workflows]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huang-shao/agent-orchestration-multi-agent-optimize-skip) <br>
+**Other Properties Related to Output:** [Advisory optimization output should be reviewed against baseline metrics before implementation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with example code blocks and implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces optimization recommendations, profiling approaches, orchestration patterns, and safety considerations for agent workflows.] <br>
+1.0.0 (source: server release metadata and artifact _meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-Controls Home Assistant smart home devices through the Assist (Conversation) API by forwarding natural-language requests to Home Assistant for intent parsing and execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Home Assistant smart-home devices by passing natural-language requests to the Assist (Conversation) API for intent parsing, entity resolution, execution, and response handling.
 
-## Publisher: <br>
-[DevelopmentCats](https://clawhub.ai/user/DevelopmentCats) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[developmentcats](https://clawhub.ai/user/developmentcats)
 
-## Use Case: <br>
-External users and smart-home operators use this skill to let an OpenClaw agent control or query Home Assistant devices such as lights, switches, thermostats, covers, vacuums, and media players through Home Assistant Assist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent send broad, fire-and-forget commands to real Home Assistant devices. <br>
-Mitigation: Require manual confirmation before commands that affect locks, doors, alarms, covers, climate controls, appliances, or other safety-sensitive devices. <br>
-Risk: The Home Assistant token may allow more access than the agent needs. <br>
-Mitigation: Use a dedicated least-privilege Home Assistant token and restrict which entities Assist can control. <br>
-Risk: Home Assistant API traffic or credentials could be exposed if configured insecurely. <br>
-Mitigation: Prefer HTTPS for HASS_SERVER and keep HASS_TOKEN out of chats, transcripts, and logs. <br>
+## Use Case:
 
+External users and developers use this skill to let an OpenClaw agent control or query Home Assistant smart-home devices through Home Assistant's Assist API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DevelopmentCats/homeassistant-assist) <br>
-- [Publisher profile](https://clawhub.ai/user/DevelopmentCats) <br>
-- [Home Assistant Conversation API documentation](https://developers.home-assistant.io/docs/intent_conversation_api/) <br>
-- [Home Assistant long-lived access token documentation](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and relayed Home Assistant response text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl plus HASS_SERVER and HASS_TOKEN environment variables; forwards natural-language commands to the Home Assistant Assist API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: release metadata and changelog, released 2026-02-23) <br>
+Risk: The skill gives an agent broad smart-home control through Home Assistant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and avoid using it for locks, alarms, garage doors, or other high-risk devices unless additional confirmation is added.
+
+Risk: The skill relies on a long-lived Home Assistant token.
+
+Mitigation: Use a dedicated Home Assistant token with the least access available and protect the OpenClaw config file that stores it.
+
+Risk: Requests may be sent to a Home Assistant server over an insecure transport if HASS_SERVER is misconfigured.
+
+Mitigation: Prefer HTTPS for HASS_SERVER.
+
+Risk: Concurrent or ambiguous smart-home commands can create unsafe device actions.
+
+Mitigation: Add confirmation and safe request serialization before enabling control of high-risk devices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/developmentcats/skills/homeassistant-assist)
+- [Home Assistant Conversation API Docs](https://developers.home-assistant.io/docs/intent_conversation_api/)
+- [Home Assistant Long-Lived Access Tokens](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API Calls, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HASS_SERVER, HASS_TOKEN, and curl.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and CHANGELOG, released 2026-02-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

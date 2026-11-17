@@ -1,44 +1,69 @@
-## Description: <br>
-Use when updating outdated content, fixing traffic/ranking decay, refreshing stats, adding new sections, or improving freshness signals. 内容更新/排名恢复 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Writer drafts new SEO/GEO content and refreshes existing pages by producing keyword-aligned copy, content-decay analysis, update plans, republishing guidance, and evidence-safe handoff summaries.
 
-## Publisher: <br>
-[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-he-zhu](https://clawhub.ai/user/aaron-he-zhu)
 
-## Use Case: <br>
-External content, SEO, and publishing teams use this skill to diagnose outdated pages, prioritize refresh work, and produce update plans for declining traffic, ranking decay, freshness improvements, and republishing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connected analytics, Search Console, SEO tool data, or saved audit notes may include sensitive business strategy or private performance data. <br>
-Mitigation: Connect only data the user intends the agent to analyze and approve saved memory or audit notes only when they exclude sensitive business strategy and private performance data. <br>
-Risk: Refresh recommendations could lead to misleading content changes or unwanted edits on live pages if applied without review. <br>
-Mitigation: Review recommendations, source updates, and republishing guidance before changing live pages. <br>
+## Use Case:
 
+Marketing, SEO, and content teams use this skill to draft keyword-targeted articles, blog posts, landing pages, and product descriptions, or to refresh existing pages that show ranking, traffic, freshness, or competitor-displacement decay. It helps produce human-facing content deliverables, SEO checks, refresh reports, and handoff summaries for later content-quality review.
 
-## Reference(s): <br>
-- [Content Decay Signals](references/content-decay-signals.md) <br>
-- [Refresh Templates](references/refresh-templates.md) <br>
-- [Refresh Example & Checklist](references/refresh-example.md) <br>
-- [Project homepage](https://github.com/aaron-he-zhu/seo-geo-claude-skills) <br>
-- [ClawHub release page](https://clawhub.ai/aaron-he-zhu/content-refresher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with scored diagnosis, prioritized refresh plan, content update drafts, and handoff summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an optional saved audit summary when the user approves storing results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release evidence and skill frontmatter) <br>
+Risk: Supplied briefs, SEO exports, competitor examples, URLs, or CSV content may contain untrusted instructions or misleading data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat external content as data, ignore embedded instructions, and label metrics as measured, user-provided, calculated, estimated, proxy, or unknown.
+
+Risk: Drafts or refresh recommendations may include incorrect claims, stale facts, unsupported metrics, or overconfident SEO guidance.
+
+Mitigation: Require citations or [needs source] markers for material claims and route finished copy through the content-quality auditor before publishing.
+
+Risk: Republishing, index-push, cache, sitemap, or Search Console recommendations can affect live site visibility.
+
+Mitigation: Review all publication and indexing actions before applying them to a live site, and use live push commands only for final published URLs.
+
+Risk: Optional memory saves may retain summaries from the session for future use.
+
+Mitigation: Save dated content summaries only after explicit user permission.
+
+## Reference(s):
+
+- [Content Writer on ClawHub](https://clawhub.ai/aaron-he-zhu/skills/content-writer)
+- [Project Homepage](https://github.com/aaron-he-zhu/aaron-marketing-skills)
+- [Instructions Detail](artifact/references/instructions-detail.md)
+- [SEO Writing Checklist](artifact/references/seo-writing-checklist.md)
+- [Title Formulas](artifact/references/title-formulas.md)
+- [Content Structure Templates](artifact/references/content-structure-templates.md)
+- [Content Decay Signals](artifact/references/content-decay-signals.md)
+- [Refresh Templates](artifact/references/refresh-templates.md)
+- [Refresh Example and Checklist](artifact/references/refresh-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured drafts, tables, checklists, link recommendations, refresh plans, and optional shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Metrics should be labeled by source quality, unsupported claims should be cited or marked [needs source], and memory saves require user permission.]
+
+## Skill Version(s):
+
+19.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

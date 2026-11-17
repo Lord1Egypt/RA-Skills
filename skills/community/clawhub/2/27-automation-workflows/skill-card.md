@@ -1,40 +1,52 @@
-## Description: <br>
-Helps solopreneurs identify, design, test, and maintain no-code automation workflows across tools such as Zapier, Make, and n8n. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and implement automation workflows to save time and scale operations as a solopreneur.
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Solopreneurs and small-business operators use this skill to identify repetitive operational tasks, choose no-code automation tools, design workflows, test automations, and maintain them over time.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Connected apps, data sources, posting actions, email campaigns, CRM updates, or accounting updates may affect real business records if enabled without review.
+
+Mitigation: Review each connected app, data source, and business-record update before turning a workflow on.
+
+Risk: Workflow failures can create missing notifications, incorrect data, or missed customer tasks.
+
+Mitigation: Configure error notifications and review workflow logs weekly.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Solopreneurs and small-business operators use this skill to find repetitive tasks, compare no-code automation tools, map triggers and actions, test workflows, and maintain live automations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration instructions]
 
-## Known Risks and Mitigations: <br>
-Risk: Automations may move personal, customer, or business data between third-party services. <br>
-Mitigation: Use lawfully collected data, minimize fields shared between services, test with non-production data, and keep audit logs. <br>
-Risk: Live workflows that update CRMs, send campaigns, issue invoices, or process payments can create business-impacting changes. <br>
-Mitigation: Require human approval and rollback paths before enabling workflows that write to CRM, billing, payment, or outbound campaign systems. <br>
+**Output Format:** [Markdown guidance with checklists, tables, and workflow templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallkeyboy/27-automation-workflows) <br>
+**Other Properties Related to Output:** [No code execution; users adapt the guidance to external automation platforms.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; may mention external automation tools and account connections but does not execute workflows.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

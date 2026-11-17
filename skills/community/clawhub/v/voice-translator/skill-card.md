@@ -1,46 +1,61 @@
-## Description: <br>
-Voice Translator helps users speak Chinese and receive spoken translations in English, Japanese, Korean, and other supported languages, with scenario-aware translation, bidirectional conversation mode, and saved phrase favorites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice Translator helps agents turn spoken Chinese into spoken output in English, Japanese, or Korean, with scenario-aware translation, bidirectional conversation mode, and saved phrase favorites.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External users and travelers use this skill to turn spoken Chinese into natural target-language speech for restaurants, airports, hotels, taxis, shopping, medical visits, and other daily communication scenarios. Developers can adapt the included Python and curl examples to connect SenseAudio ASR/TTS and their chosen LLM translation provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recorded speech, transcripts, and translated text may be sent to SenseAudio and any LLM provider connected by the user. <br>
-Mitigation: Use the skill only for conversations appropriate for those providers, and review provider privacy terms before using it for sensitive speech. <br>
-Risk: The SENSEAUDIO_API_KEY is required for API calls. <br>
-Mitigation: Protect the API key in environment or secret storage and avoid committing it to files or logs. <br>
-Risk: Saved favorites can leave phrases on local or synced storage. <br>
-Mitigation: Avoid saving favorites on shared or synced devices unless retaining those phrases is acceptable. <br>
+## Use Case:
 
+External users and developers can use this skill to guide an agent through speech recognition, context-aware translation, text-to-speech playback, bidirectional conversation, and phrase favorites for travel and daily communication scenarios.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scikkk/voice-translator) <br>
-- [SenseAudio Documentation](https://senseaudio.cn/docs) <br>
-- [SenseAudio ASR API](https://senseaudio.cn/docs/asr_api) <br>
-- [SenseAudio TTS API](https://senseaudio.cn/docs/text_to_speech_api) <br>
-- [SenseAudio Language Support](https://senseaudio.cn/docs/asr_api#language-support) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY, curl, and python3; runtime behavior may call external ASR, LLM translation, and TTS services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Recorded speech and translated text may be sent to SenseAudio and any configured LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for conversations where that cloud processing is acceptable, and avoid highly sensitive medical, financial, or private content unless provider handling has been reviewed.
+
+Risk: Saved favorites and generated audio files can remain as local records.
+
+Mitigation: Review, protect, and delete local favorites and temporary audio files according to the user's retention needs.
+
+Risk: The skill requires a SenseAudio API key.
+
+Mitigation: Provide the key through SENSEAUDIO_API_KEY and avoid placing credentials in prompts, source files, or shared logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scikkk/skills/voice-translator)
+- [SenseAudio documentation](https://senseaudio.cn/docs)
+- [SenseAudio ASR API](https://senseaudio.cn/docs/asr_api)
+- [SenseAudio TTS API](https://senseaudio.cn/docs/text_to_speech_api)
+- [SenseAudio language support](https://senseaudio.cn/docs/asr_api#language-support)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY and local curl and python3; may produce translated text, synthesized audio files, and saved favorites.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

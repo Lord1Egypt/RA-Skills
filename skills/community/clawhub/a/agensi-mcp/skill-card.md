@@ -1,43 +1,51 @@
-## Description: <br>
-Connect your agent to the Agensi marketplace. Search, discover, and browse AI agent skills from agensi.io directly in your terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your agent to the Agensi marketplace. Search, discover, and browse AI agent skills from agensi.io directly in your terminal.
 
-## Publisher: <br>
-[badmenfinance](https://clawhub.ai/user/badmenfinance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[badmenfinance](https://clawhub.ai/user/badmenfinance)
 
-## Use Case: <br>
-Developers and AI coding agent users use this integration to connect MCP-capable agents to the Agensi marketplace, search and browse SKILL.md skills, inspect creator profiles, and retrieve marketplace skill details from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace searches and browsing requests are sent to Agensi's remote MCP service. <br>
-Mitigation: Avoid sending sensitive prompts, private repository details, confidential search terms, or proprietary project context through the marketplace tools. <br>
-Risk: Returned skill listings, details, or install instructions may require judgment before use. <br>
-Mitigation: Review returned marketplace content and installation guidance before acting on it, especially before adding new skills to an agent environment. <br>
+## Use Case:
 
+Developers and agent users use this skill to connect MCP-capable coding agents to the Agensi marketplace, then search, browse, and inspect community-built SKILL.md skills from their terminal.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/badmenfinance/agensi-mcp) <br>
-- [Agensi marketplace](https://agensi.io/skills) <br>
-- [Agensi MCP server](https://mcp.agensi.io) <br>
-- [BadMenFinance publisher profile](https://clawhub.ai/user/badmenfinance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance, text] <br>
-**Output Format:** [Markdown with JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides setup guidance and marketplace query examples; the connected MCP service returns search results, skill details, category lists, creator profiles, and community request listings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Marketplace searches and skill lookups are sent to the remote Agensi MCP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what the agent sends to the MCP service and remove the Agensi MCP server entry from the agent configuration when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/badmenfinance/skills/agensi-mcp)
+- [Agensi marketplace](https://agensi.io/skills)
+- [Agensi MCP server](https://mcp.agensi.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with MCP configuration snippets and marketplace lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access to the remote Agensi MCP service.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

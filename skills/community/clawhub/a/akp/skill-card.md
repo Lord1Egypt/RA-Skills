@@ -1,46 +1,58 @@
-## Description: <br>
-Agent Knowledge Protocol connects projects to a decentralized peer-reviewed knowledge network for setup, contribution, query, and review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Knowledge Protocol connects AI agents to a decentralized, peer-reviewed knowledge network for setup, contribution, query, and review workflows.
 
-## Publisher: <br>
-[patacka](https://clawhub.ai/user/patacka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patacka](https://clawhub.ai/user/patacka)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect a workspace to an AKP node, query decentralized Knowledge Units, and publish or review claims after explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start a background AKP node that joins a public peer-to-peer network and exposes a local dashboard. <br>
-Mitigation: Install only when the user wants an AKP node, explain network exposure before setup, and start the node only after explicit confirmation. <br>
-Risk: Knowledge Unit contributions and reviews may become public on the AKP network. <br>
-Mitigation: Show the exact title, summary, claims, domain, and sources before publishing, and submit only after explicit user approval. <br>
-Risk: The workflow may install the `agent-knowledge-protocol` npm package globally if the `akp` CLI is missing. <br>
-Mitigation: Ask for confirmation before global installation and encourage review of the npm package before running it. <br>
-Risk: AKP_API_KEY protects access to the local AKP node. <br>
-Mitigation: Do not expose the API key in shared logs or published Knowledge Units, and use AKP_URL only with trusted endpoints. <br>
+## Use Case:
 
+Developers and AI agents use this skill to connect a project to AKP, run a local node, publish opt-in Knowledge Units, query existing Knowledge Units, and submit reviews.
 
-## Reference(s): <br>
-- [AKP ClawHub page](https://clawhub.ai/patacka/akp) <br>
-- [Publisher profile: patacka](https://clawhub.ai/user/patacka) <br>
-- [AKP homepage](https://github.com/Patacka/akp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and natural-language guidance with inline shell commands and JSON-RPC payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, Node.js, npm, and AKP_API_KEY for authenticated local node requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill can install mutable global npm software and start a persistent local AKP node that joins a public P2P network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package source and version before installation, prefer an isolated or pinned install, and know how to stop the node and remove stored state.
+
+Risk: Knowledge Unit contributions are published to a public decentralized network and may expose private or sensitive project information.
+
+Mitigation: Publish only after showing the exact title, summary, and claims to the user and receiving explicit approval; avoid private, proprietary, or sensitive details.
+
+Risk: Running or publicly exposing the node may disclose network presence such as IP address and port.
+
+Mitigation: Keep the service local unless public reachability is intended, and review any public HTTP or sync URL configuration before use.
+
+## Reference(s):
+
+- [AKP GitHub repository](https://github.com/Patacka/akp)
+- [ClawHub AKP skill page](https://clawhub.ai/patacka/skills/akp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-RPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require AKP_API_KEY; public network publishing actions are described as opt-in and require explicit user confirmation.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata; artifact frontmatter is 0.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Review an OpenClaw skill for token efficiency, scriptability, and clean action boundaries; back up first, then improve the skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review an OpenClaw skill for token efficiency, scriptability, and clean action boundaries; back up first, then improve the skill.
 
-## Publisher: <br>
-[kid0114](https://clawhub.ai/user/kid0114) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kid0114](https://clawhub.ai/user/kid0114)
 
-## Use Case: <br>
-Developers and skill maintainers use this meta-skill to review and improve OpenClaw skills for token efficiency, scriptability, and clearer action boundaries. It is intended for local skill-review workflows where backing up target files before modification is required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect and modify local skill folders, including SKILL.md, references, scripts, and other local skill files. <br>
-Mitigation: Back up target skill files before making changes, review proposed edits, and show backup paths plus modification evidence after changes. <br>
-Risk: Review output may be Chinese-language, which may not fit every workflow. <br>
-Mitigation: Install only where Chinese-language review output is acceptable, or adjust the skill instructions before use. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to review OpenClaw skills for token efficiency, scriptability, clean action boundaries, and safer change workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kid0114/master-skill-review) <br>
-- [Skill Review Checklist](references/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown review output with optional shell commands and checklist-style guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review output may be in Chinese and may include suggested changes, backup paths, and evidence of modifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may inspect and modify other installed skills using high local permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for trusted local skills and start in a read-only review mode before allowing edits.
+
+Risk: The skill can make changes without sufficiently clear target boundaries.
+
+Mitigation: Require an explicit diff, confirmed target path, backup location, and confirmation that every changed file is inside the intended skill directory before allowing writes.
+
+## Reference(s):
+
+- [Skill Review Checklist](artifact/references/checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/kid0114/skills/master-skill-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown review notes with shell commands and proposed file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include backup paths, changed-file summaries, review findings, optimization suggestions, and final evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

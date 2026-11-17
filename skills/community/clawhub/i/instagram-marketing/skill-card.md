@@ -1,43 +1,49 @@
-## Description: <br>
-Generate Instagram marketing content from product URLs, including product information, image suggestions, captions, hashtags, and story or reel ideas optimized for engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Instagram marketing content from product URLs, including image suggestions, captions, hashtags, and format-specific posting guidance.
 
-## Publisher: <br>
-[insight68](https://clawhub.ai/user/insight68) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[insight68](https://clawhub.ai/user/insight68)
 
-## Use Case: <br>
-External marketers, creators, and ecommerce sellers use this skill to turn public product URLs into Instagram content packages for feed posts, carousels, stories, reels, and campaigns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fetching a user-provided product URL can expose private, internal, admin, cart, or token-bearing pages if the wrong URL is supplied. <br>
-Mitigation: Use only public product pages that are safe to fetch from the execution environment. <br>
-Risk: Generated marketing copy may include inaccurate product claims or unsupported promotional language. <br>
-Mitigation: Review product details, pricing, claims, captions, and calls to action before publishing. <br>
-Risk: Automated product extraction can fail or return incomplete details for some ecommerce pages. <br>
-Mitigation: Use the manual extraction fallback and verify product name, price, features, audience, and visual assets against the source page. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/insight68/instagram-marketing) <br>
-- [Instagram Hashtag Strategy](references/HASHTAG_STRATEGY.md) <br>
-- [Instagram Content Package Output Template](templates/OUTPUT_TEMPLATE.md) <br>
+## Use Case:
 
+External marketers, creators, and commerce teams use this skill to turn public product URLs into ready-to-adapt Instagram feed, carousel, story, reel, caption, hashtag, and posting-strategy content.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown content package with optional JSON product extraction output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes product overview, content format rationale, image or video brief, caption, hashtags, posting strategy, engagement preparation, metrics, and repurposing ideas.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script can make outbound web requests to user-supplied URLs without URL validation or redirect/IP-range protections.
+
+Mitigation: Use ordinary public product URLs only, avoid internal or private URLs, and run the skill in a network-restricted sandbox until validation and redirect/IP-range protections are added.
+
+## Reference(s):
+
+- [Instagram Hashtag Strategy](references/HASHTAG_STRATEGY.md)
+- [Instagram Content Package Output Template](templates/OUTPUT_TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown content package with optional JSON product extraction output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product overview, image or video brief, caption, hashtag strategy, posting strategy, engagement preparation, success metrics, and repurposing ideas.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

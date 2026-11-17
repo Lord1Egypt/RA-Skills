@@ -1,43 +1,63 @@
-## Description: <br>
-Safely operate the nova CLI wallet for authentication, balance checks, sending funds, withdrawals, and key management across mainnet and testnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely operate the nova CLI wallet for authentication, balance checks, sending funds, withdrawals, and key management across mainnet and testnet.
 
-## Publisher: <br>
-[SynthLuvr](https://clawhub.ai/user/SynthLuvr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[synthluvr](https://clawhub.ai/user/synthluvr)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent assist with nova CLI wallet workflows, including login, balance checks, transfers, withdrawals, claim links, and key management while preserving explicit human confirmation for financial actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet operations can move real funds or create claim links. <br>
-Mitigation: Before any send or withdrawal, personally verify the network, amount, recipient, blockchain, and stablecoin; use dry-run previews where supported and never retry non-idempotent sends blindly. <br>
-Risk: Wallet secrets, login codes, recovery phrases, private keys, and claim links can expose funds if shared or logged. <br>
-Mitigation: Keep secrets out of shared chats, tickets, logs, and long-term agent memory, and warn users before any export operation. <br>
-Risk: The skill relies on the upstream nova CLI package for wallet behavior. <br>
-Mitigation: Install and use this skill only when you trust the upstream nova CLI package and intend to let an agent assist with wallet operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Nova CLI Reference](artifact/references/REFERENCE.md) <br>
-- [Nova GitHub Project](https://github.com/MynthAI/nova) <br>
-- [Nova npm Package](https://www.npmjs.com/package/@mynthai/nova) <br>
+## Use Case:
 
+Developers and agents use this skill to operate the nova wallet CLI for balance checks, authentication, stablecoin transfers, claim links, withdrawals, and key management while applying confirmations, structured-output parsing, and secret-handling safeguards.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and structured JSON or TOON parsing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent outputs should confirm exit codes and structured status fields before treating nova CLI results as successful.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run an unpinned third-party wallet CLI that can move funds and handle wallet secrets.
+
+Mitigation: Review the nova CLI package and publisher trust before installing; prefer a pinned, reviewed version and avoid global installation where possible.
+
+Risk: Send and withdrawal commands can submit real financial transactions and may be non-idempotent.
+
+Mitigation: Use dry runs first, confirm amount, destination, blockchain, and network with the user, and never retry financial commands blindly.
+
+Risk: Private keys, seed phrases, and claim URLs expose wallet access or funds if logged or shared.
+
+Mitigation: Do not store, log, or paste secrets into shared or persistent contexts; warn before export operations and treat claim URLs as credentials.
+
+Risk: The selected network persists across sessions and mainnet/testnet confusion can affect real funds.
+
+Mitigation: Check `nova config get network` before any financial action and require explicit confirmation of the intended network.
+
+## Reference(s):
+
+- [nova CLI reference](references/REFERENCE.md)
+- [Nova project homepage](https://github.com/MynthAI/nova)
+- [Nova npm package](https://www.npmjs.com/package/@mynthai/nova)
+- [ClawHub Nova skill page](https://clawhub.ai/synthluvr/skills/nova)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and structured JSON/TOON parsing expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 24+ and internet access; emphasizes dry runs, explicit confirmations, exit-code checks, and secret handling.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

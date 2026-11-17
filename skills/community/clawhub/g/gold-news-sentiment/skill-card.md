@@ -1,45 +1,60 @@
-## Description: <br>
-Use this skill when users want to pull recent global gold-related news, assess short-term or medium-term market sentiment for gold, connect macro drivers like Fed policy, US yields, USD, inflation, geopolitics, and ETF flows to gold, and produce a structured conclusion such as 看涨, 看跌, or 观望 with confidence and risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pulls recent global gold-related news, connects it to macro drivers such as rates, yields, the dollar, inflation, geopolitics, and ETF flows, and returns a structured bullish, bearish, or wait-and-see sentiment read with confidence and risks.
 
-## Publisher: <br>
-[cyecho-io](https://clawhub.ai/user/cyecho-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyecho-io](https://clawhub.ai/user/cyecho-io)
 
-## Use Case: <br>
-External users and agents use this skill to refresh recent gold-related news, deduplicate weak or repeated signals, and produce a structured gold sentiment report with short-term and medium-term direction, confidence, drivers, news links, and risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled Python scripts query public Google and Bing News endpoints and write local cache files for faster future sentiment reports. <br>
-Mitigation: Run refreshes only when news retrieval is needed, review the configured schedule for recurring updates, and inspect generated cache files before relying on them. <br>
-Risk: Gold sentiment output may be mistaken for financial advice or a trading recommendation. <br>
-Mitigation: Treat reports as market analysis support, preserve uncertainty and invalidation notes, and require independent review before investment decisions. <br>
-Risk: A partial or failed news retrieval can make the evidence base too thin for a reliable conclusion. <br>
-Mitigation: Do not fabricate a sentiment call when retrieval fails; report insufficient evidence or rerun with a narrower query. <br>
+## Use Case:
 
+External users, analysts, and agents use this skill to gather recent gold-market news, remove weak or repeated signals, and produce a concise sentiment read for short-term and medium-term market context. The skill is analysis support and not investment advice.
 
-## Reference(s): <br>
-- [Gold News Sentiment ClawHub Release](https://clawhub.ai/cyecho-io/gold-news-sentiment) <br>
-- [Automation Template](references/automation-template.md) <br>
-- [Scoring Rules](references/scoring-rules.md) <br>
-- [Source List](references/source-list.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown sentiment report with optional JSON news snapshots and local cache files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should include explicit timeframe, bullish and bearish evidence, confidence, core drivers, relevant links, uncertainty, and invalidation risks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Public news requests expose queries to external news providers and may fail or return incomplete results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the retrieval status and item counts before drawing conclusions, and report insufficient data when usable evidence is sparse.
+
+Risk: Fetched headlines, sources, and links are untrusted content and may contain misleading market framing.
+
+Mitigation: Treat fetched items as quoted evidence, prefer original high-credibility sources, and verify important financial conclusions independently.
+
+Risk: Local cached snapshots can become stale while market-sensitive gold drivers change quickly.
+
+Mitigation: Apply the documented freshness window and refresh the snapshot when the cache is stale or the user requests current analysis.
+
+## Reference(s):
+
+- [Automation Template](references/automation-template.md)
+- [Scoring Rules](references/scoring-rules.md)
+- [Source List](references/source-list.md)
+- [Gold News Sentiment on ClawHub](https://clawhub.ai/cyecho-io/skills/gold-news-sentiment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with optional JSON news snapshots and digest files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include explicit timeframe, confidence, core drivers, key news items, uncertainty, and risk notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

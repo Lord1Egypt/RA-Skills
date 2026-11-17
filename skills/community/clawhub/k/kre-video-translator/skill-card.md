@@ -1,43 +1,64 @@
-## Description: <br>
-Translate local audio or video files into multilingual .srt subtitles with KreTrans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates local media or video URLs through Kre Video Translator, tracks progress, and helps review and export subtitles or subtitled video.
 
-## Publisher: <br>
-[skz7s](https://clawhub.ai/user/skz7s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skz7s](https://clawhub.ai/user/skz7s)
 
-## Use Case: <br>
-External users and developers use this skill to translate local audio or video files into subtitle files, including workflows where a URL or magnet source is downloaded first and then processed as a local media file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected media audio, filenames, and language settings are sent to KreTrans for translation. <br>
-Mitigation: Use a revocable KreTrans API key and avoid highly sensitive recordings unless the user trusts the service. <br>
-Risk: URL or magnet inputs require external download tools before translation. <br>
-Mitigation: Confirm the source and download tooling before processing, or ask the user to provide a local media file instead. <br>
+## Use Case:
 
+Developers and other agent users translate local media or video URLs into reviewed, timed subtitles and optionally burn subtitles into a video.
 
-## Reference(s): <br>
-- [Setup](references/setup.md) <br>
-- [KreTrans Homepage](https://kretrans.com) <br>
-- [KreTrans API Documentation](https://kretrans.com/api-docs) <br>
-- [KreTrans API Key Management](https://kretrans.com/console#api-management) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated .srt subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates one primary .srt subtitle output for the selected target language; translation jobs are asynchronous and require KRETRANS_API_KEY, ffmpeg, Python, and requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release metadata) <br>
+Risk: Source media, filenames, language settings, prompts, and optional subtitle references are sent to Kre's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is comfortable sharing those materials before submitting a translation.
+
+Risk: API keys grant account and translation-task access.
+
+Mitigation: Use the local key setup flow; do not request or paste keys in chat.
+
+Risk: Optional dependency installation may invoke a local package manager or sudo.
+
+Mitigation: Ask for separate approval before using --allow-install-tools.
+
+Risk: Translated subtitles may contain meaning or timing errors.
+
+Mitigation: Review translation completeness, meaning, timing, and line breaks before export.
+
+## Reference(s):
+
+- [Kre Video Translator on ClawHub](https://clawhub.ai/skz7s/skills/kre-video-translator)
+- [Kre Video Translator Agent Skill overview](https://kretrans.com/en/video-translation-agent-skill/)
+- [Kre Video Translator API](https://kretrans.com/api)
+- [Runtime and recovery guidance](references/setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files]
+
+**Output Format:** [Task progress and subtitle JSON; exported SRT subtitles or MP4 video]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include word timestamps; video export requires the original video and FFmpeg with libass.]
+
+## Skill Version(s):
+
+1.0.7 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

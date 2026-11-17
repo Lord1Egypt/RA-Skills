@@ -1,42 +1,57 @@
-## Description: <br>
-QR code generator for text, URLs, WiFi, vCards, and other data, with support for custom colors, sizes, logos, and PNG or SVG output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QR code generator for text, URLs, WiFi, vCards, and other data with support for custom colors, sizes, logos, and PNG/SVG output.
 
-## Publisher: <br>
-[tobewin](https://clawhub.ai/user/tobewin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate local QR code assets for common payloads such as links, WiFi credentials, contact cards, email, SMS, phone numbers, and geographic coordinates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR codes can expose encoded sensitive data such as WiFi passwords, private URLs, or contact details to anyone who scans them. <br>
-Mitigation: Review QR payloads before generation and treat generated QR images as shareable copies of the encoded data. <br>
-Risk: Generated files may be written to unintended locations if output paths are chosen carelessly. <br>
-Mitigation: Choose output paths intentionally and prefer the current workspace or another trusted local directory. <br>
-Risk: The skill depends on Python packages for QR code and image generation. <br>
-Mitigation: Install dependencies from a trusted Python package source before executing generated commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate QR code images for text, URLs, WiFi credentials, vCards, email, SMS, phone, and location data. It is useful when a workflow needs local QR generation with basic styling and optional logo embedding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobewin/qr-code-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples that generate local QR image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local PNG, SVG, or PDF QR code files when the generated commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: WiFi QR codes can expose credentials or grant network access if shared too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Generate WiFi QR codes only for intended recipients and prefer guest-network credentials when possible.
+
+Risk: The skill documentation claims broader format support than the security guidance confirms for the provided implementation.
+
+Mitigation: Expect PNG output from the provided implementation and verify any SVG or PDF requirement before relying on it.
+
+Risk: The skill depends on local Python packages for QR generation and image processing.
+
+Mitigation: Install and run the dependencies in an isolated Python environment where practical.
+
+## Reference(s):
+
+- [Qr Generator ClawHub Skill](https://clawhub.ai/tobewin/skills/qr-code-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local QR code image files through generated Python commands; server security guidance notes that the provided implementation should be expected to produce PNG output.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

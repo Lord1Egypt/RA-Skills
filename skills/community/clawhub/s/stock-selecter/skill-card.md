@@ -1,44 +1,59 @@
-## Description: <br>
-Stock Selecter screens A-share stocks with 14 configurable fundamental, technical, and market microstructure strategies, supporting single-strategy runs, combined strategy modes, concurrent execution, and report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Selecter screens A-share stocks with configurable fundamental, technical, market-flow, and analyst-target strategies, supporting single-strategy and combined AND, OR, and SCORE ranking modes.
 
-## Publisher: <br>
-[alan1121-j](https://clawhub.ai/user/alan1121-j) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alan1121-j](https://clawhub.ai/user/alan1121-j)
 
-## Use Case: <br>
-Developers and market analysts can use this skill to run configurable A-share stock screens across valuation, profitability, trend, volume, shareholder, cash-flow, and analyst-target signals. It is intended to produce candidate lists and reports for review, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports that the skill sends the Tushare token over plain HTTP. <br>
-Mitigation: Avoid using the package with sensitive tokens until the API transport is HTTPS or otherwise secured. <br>
-Risk: Security evidence reports local result-file creation by default. <br>
-Mitigation: Set save=false or provide an explicit output_dir before running in environments where file creation should be controlled. <br>
-Risk: Security evidence reports that the shareholder_buyback strategy may rank company repurchase records as shareholder or manager buying signals. <br>
-Mitigation: Review shareholder_buyback outputs manually before relying on those results. <br>
+## Use Case:
 
+External users and developers use this skill to screen A-share equities with configurable strategy thresholds, combine strategy results, and review ranked outputs. Outputs should be treated as research support rather than investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alan1121-j/stock-selecter) <br>
-- [Tushare Pro registration](https://tushare.pro/register) <br>
-- [Tushare Pro API documentation](https://tushare.pro/document/2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; runtime output may include JSON, CSV, and HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Tushare token; saves result files by default unless configured otherwise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.2 (source: server release evidence) <br>
+Risk: The security evidence flags insecure handling of a user API token and an HTTP API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the API endpoint before use, avoid sending tokens over HTTP, and rotate any Tushare token previously used with this release.
+
+Risk: The security evidence flags misleading financial-strategy logic.
+
+Mitigation: Treat generated rankings and reports as research inputs only, and independently review strategy logic before acting on results.
+
+Risk: The skill can save JSON, CSV, and HTML outputs to a configured directory.
+
+Mitigation: Control the output directory and review saved files before sharing or using them in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alan1121-j/skills/stock-selecter)
+- [Tushare Pro registration](https://tushare.pro/register)
+- [Tushare Pro documentation](https://tushare.pro/document/2)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, CSV, HTML report, guidance]
+
+**Output Format:** [JSON result object with optional CSV export and optional HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save timestamped screening outputs to a configured output directory.]
+
+## Skill Version(s):
+
+3.3.2 (source: ClawHub release evidence; artifact frontmatter and config report 3.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

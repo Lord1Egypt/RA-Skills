@@ -1,42 +1,52 @@
-## Description: <br>
-Analyzes Git commit frequency, categories, and timing to assess autonomous operation health and detect idle or breakthrough periods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes git commit frequency, categories, and timing to assess autonomous operation health and detect idle or breakthrough periods.
 
-## Publisher: <br>
-[bobrenze-bot](https://clawhub.ai/user/bobrenze-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[bobrenze-bot](https://clawhub.ai/user/bobrenze-bot)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and agent operators use this skill to inspect local git commit patterns, summarize work distribution, and identify low-activity or idle periods in autonomous operation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Numeric days or hours parameters are handled unsafely enough to warrant review before use.
+
+Mitigation: Install only from a specific reviewed commit or release, and avoid passing untrusted text into numeric parameters until bounded positive integer validation is added.
+
+Risk: Generated reports may expose local commit messages in terminal output.
+
+Mitigation: Run the analyzer only in repositories whose commit history may be shown to the current operator or downstream log consumers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill in Git repositories to inspect commit cadence, category mix, and idle gaps so they can monitor autonomous operation health and spot potential blockers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Git commit history and can surface repository activity patterns that may be sensitive. <br>
-Mitigation: Run it only in repositories whose commit history you intend to analyze. <br>
-Risk: Heartbeat logging can store commit-health summaries in local agent memory. <br>
-Mitigation: Enable heartbeat logging only when those summaries are appropriate to retain locally. <br>
-Risk: Health labels are based on commit-pattern thresholds and can be misleading for teams with different workflows. <br>
-Mitigation: Treat recommendations as diagnostic signals and review the underlying commit history before taking action. <br>
+**Output Format:** [Terminal text reports with optional JSON health-check output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Commit Analyzer ClawHub listing](https://clawhub.ai/bobrenze-bot/commit-analyzer) <br>
+**Other Properties Related to Output:** [Reads local git history and may display commit messages in terminal output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text reports or JSON health-check output, with Markdown guidance for agent use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local Git history in the current repository; optional --json output is available for health checks.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Copy a Google Docs template, fill in content, and share with collaborators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Copy a Google Docs template, fill in content, and share with collaborators.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers, operators, and Google Workspace users use this recipe to create a new Google Doc from a template, add initial content, and share it with collaborators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe can copy, edit, and share Google Drive documents through authenticated tooling. <br>
-Mitigation: Review the target template ID, generated document ID, content, role, recipient type, and email address before running the commands. <br>
-Risk: The required gws CLI and Google Workspace skills may affect real workspace state. <br>
-Mitigation: Use the skill only in a trusted environment with the intended Google account and workspace permissions. <br>
+## Use Case:
 
+Developers and workspace automation users use this recipe to copy a Google Docs template, add specified content, and share the resulting document with collaborators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-create-doc-from-template) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the gws CLI and the gws-drive and gws-docs skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: Placeholder template or document IDs could be left unchanged or replaced with the wrong Google Doc target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace TEMPLATE_DOC_ID and NEW_DOC_ID with the intended document IDs before execution.
+
+Risk: Granting writer access to the wrong collaborator can expose or alter document contents.
+
+Mitigation: Confirm the collaborator email and that writer access is appropriate before creating the permission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/recipe-create-doc-from-template)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws command and the gws-drive and gws-docs skills; uses placeholder document IDs, content, and collaborator email values.]
+
+## Skill Version(s):
+
+1.0.12 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

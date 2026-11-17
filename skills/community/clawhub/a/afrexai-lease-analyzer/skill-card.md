@@ -1,41 +1,57 @@
-## Description: <br>
-Analyze commercial leases for hidden costs, unfavorable terms, and negotiation leverage using cost breakdowns, escalation modeling, clause review, and market benchmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes commercial leases for hidden costs, unfavorable terms, negotiation leverage, cost projections, clause risks, and multi-option comparisons.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Business owners, real estate teams, CFOs, property managers, and startups use this skill to review new or renewal commercial leases, compare lease options, model occupancy costs, and prioritize negotiation points. <br>
-
-### Deployment Geography for Use: <br>
-Global, with market benchmark examples focused on major U.S. markets. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lease, financial, or business details provided to an agent environment may be confidential. <br>
-Mitigation: Avoid sharing confidential lease or financial details unless the user is comfortable exposing them to the agent environment. <br>
-Risk: Lease analysis can be mistaken for legal, accounting, or real-estate advice. <br>
-Mitigation: Treat outputs as decision support and have material lease, accounting, or negotiation decisions reviewed by qualified professionals. <br>
-Risk: Market benchmarks and lease norms may not match the user's specific location, asset class, or current market conditions. <br>
-Mitigation: Validate benchmark assumptions against current local market data before relying on cost comparisons or negotiation priorities. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/1kalin/afrexai-lease-analyzer) <br>
+## Use Case:
 
+Business owners, real estate teams, CFOs, property managers, and startups use this skill to review, renegotiate, audit, or compare commercial leases across office, retail, industrial, warehouse, and related lease types.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with cost breakdowns, projection tables, clause flags, comparison matrices, and negotiation priorities.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision-support output for lease review; it should not be treated as legal, accounting, or real-estate advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Market benchmarks and lease-risk labels may be incomplete, outdated, or mismatched to a specific local market.
+
+Mitigation: Verify current local comparables and treat the skill's benchmarks as guidance before making lease decisions.
+
+Risk: Commercial lease clauses can require legal or real estate interpretation beyond an agent's analysis.
+
+Mitigation: Consult qualified legal or real estate counsel before signing, renegotiating, or rejecting a commercial lease.
+
+Risk: Financial projections depend on the accuracy of user-provided rent, square footage, pass-through cost, escalation, and term assumptions.
+
+Mitigation: Confirm source lease data and document projection assumptions before relying on totals or savings estimates.
+
+## Reference(s):
+
+- [Commercial Lease Analyzer on ClawHub](https://clawhub.ai/1kalin/skills/afrexai-lease-analyzer)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown lease analysis with cost breakdowns, tables, clause risk flags, financial summaries, and negotiation priorities.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include year-by-year projections, market benchmark comparisons, and side-by-side lease option matrices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

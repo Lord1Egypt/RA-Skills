@@ -1,44 +1,65 @@
-## Description: <br>
-NEPSE stock market analyst for Nepal that helps with stock prices, technical analysis, market alerts, stock screening, watchlists, portfolio tracking, and Nepal investing questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NEPSE Analyst helps agents answer Nepal stock market questions with price checks, technical analysis, fundamentals, watchlists, and market alerts.
 
-## Publisher: <br>
-[uddin-rajaul](https://clawhub.ai/user/uddin-rajaul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uddin-rajaul](https://clawhub.ai/user/uddin-rajaul)
 
-## Use Case: <br>
-External users and developers use this skill to analyze Nepal Stock Exchange equities, check prices, manage watchlists, and configure alerts with NEPSE-specific technical and fundamental signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with analysis focused on Nepal Stock Exchange market data. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens, chat IDs, stock symbols, prices, and alert thresholds may be exposed if credentials are pasted into logged setup flows or broad shell startup files. <br>
-Mitigation: Use a dedicated Telegram bot and chat, store credentials in OpenClaw-scoped secret configuration, and avoid storing tokens in ~/.bashrc. <br>
-Risk: Watchlists and alert thresholds are stored locally and may reveal investment interests. <br>
-Mitigation: Keep the skill data directory private and avoid sharing generated watchlist, alert, or history files. <br>
-Risk: Scraped market data may be stale or unavailable, and indicators can be unreliable for stocks with limited trading history or low liquidity. <br>
-Mitigation: Confirm data freshness, review the skill's data quality notes, and treat outputs as analysis only rather than trading instructions. <br>
+## Use Case:
 
+External users and agents use this skill to inspect NEPSE stock prices, fundamentals, technical indicators, watchlists, and price alerts. It supports market-analysis responses while requiring clear risk notes for volatile Nepal equity trading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/uddin-rajaul/nepse-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/uddin-rajaul) <br>
-- [Merolagani company detail data source](https://merolagani.com/CompanyDetail.aspx?symbol={symbol}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with structured market analysis and inline shell commands when setup or alert automation is needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes data quality notes, risk disclaimers, optional watchlist and alert state, and optional Telegram alert delivery when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Telegram credentials may be displayed by the installer or stored in shell configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering Telegram secrets into the installer; store a narrowly scoped bot token and chat ID in a dedicated secret mechanism.
+
+Risk: Watchlist symbols, prices, and alert thresholds may be sent to Telegram when alerts are enabled.
+
+Mitigation: Enable Telegram only for information you are comfortable sharing with that bot and chat, and disclose this behavior to users.
+
+Risk: The setup flow installs Python packages with a broad pip command.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions and do not run setup with elevated privileges.
+
+Risk: Market analysis depends on scraped third-party data that may be stale, unavailable, or incomplete.
+
+Mitigation: Tell users when data is unavailable or limited and keep the skill's analysis-only risk note in user-facing responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uddin-rajaul/skills/nepse-skill)
+- [Publisher profile](https://clawhub.ai/user/uddin-rajaul)
+- [Merolagani data source](https://merolagani.com)
+- [Sharesansar fallback data source](https://www.sharesansar.com)
+- [Telegram Bot API integration endpoint](https://api.telegram.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis and concise confirmations based on JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local watchlist, alert, and RSI history JSON files and may send Telegram notifications when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Applies a Chinese crosstalk-style supportive persona to agent responses, adding short setup lines and optional closing remarks while preserving the user's requested answer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Makes an agent respond as a Chinese xiangsheng-style supportive partner, adding short comedic lead-ins before normal answers across chat, coding, and research tasks.
 
-## Publisher: <br>
-[dataelf](https://clawhub.ai/user/dataelf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataelf](https://clawhub.ai/user/dataelf)
 
-## Use Case: <br>
-External users and developers use this skill when they want an assistant to answer with brief Chinese crosstalk-style encouragement while still completing ordinary work such as coding, research, planning, or conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The crosstalk-style tone can be inappropriate for formal writing, non-Chinese conversations, serious incidents, or situations where exact tone and brevity matter. <br>
-Mitigation: Enable the skill only where this tone is desired, and disable or bypass it for formal, non-Chinese, serious, or highly concise workflows. <br>
-Risk: Persona text can add prefaces or closing remarks that distract from technical answers or reduce brevity. <br>
-Mitigation: Review outputs for task fit and keep persona text short; the artifact directs the agent not to insert persona content inside code or technical answers and to answer directly in urgent cases. <br>
+## Use Case:
 
+External users, developers, and coordinating agents use this skill to add a brief Chinese xiangsheng-style penggen voice while keeping the underlying task answer intact. It is suited to informal productivity workflows where an upbeat supporting tone is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataelf/penggen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with task-specific code blocks when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tone-shaping persona; the skill directs the agent to answer directly for serious or urgent situations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill broadly changes the agent's response style and may be unsuitable for neutral, highly formal, or strict language-matching workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workflows where a Chinese xiangsheng-style tone is acceptable, and override or disable the style for formal, urgent, or tone-sensitive tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataelf/skills/penggen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Natural-language or Markdown responses with concise Chinese xiangsheng-style lead-ins when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can bypass the persona for urgent production or emergency requests according to the artifact behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

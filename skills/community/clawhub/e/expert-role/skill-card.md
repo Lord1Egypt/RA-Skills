@@ -1,43 +1,53 @@
-## Description: <br>
-A response-style skill that helps an agent adopt a relevant domain expert role for deep professional analysis, using structured self-review to produce clear, rigorous, and useful guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Role dynamically adopts a relevant expert persona to provide deep, structured analysis with critique, quality checks, and practical conclusions.
 
-## Publisher: <br>
-[zcz-user](https://clawhub.ai/user/zcz-user) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zcz-user](https://clawhub.ai/user/zcz-user)
 
-## Use Case: <br>
-External users and developers use this skill to get structured, expert-style analysis for complex domain questions, decision support, and critical review. It is best suited for improving response depth, clarity, and reasoning style, not for credentialed professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's expert persona could be mistaken for real credentials or authoritative professional advice. <br>
-Mitigation: Treat outputs as response-style guidance and verify high-impact financial, legal, medical, security, or similar claims with reliable sources or qualified professionals. <br>
-Risk: Expert-style analysis may still contain incorrect or misleading claims. <br>
-Mitigation: Review important outputs before acting on them, especially when the answer affects operational, safety, compliance, or financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill when a complex question needs domain-specific framing, multi-angle analysis, and a polished expert-style answer. It is suited for advisory, analytical, and decision-support responses where structure and rigor matter.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zcz-user/expert-role) <br>
-- [Expert Roles](artifact/expert-roles.md) <br>
-- [Prompt](artifact/prompt.md) <br>
-- [Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with headings, lists, and optional tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts to the user's language; no code execution or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can make ordinary answers sound like expert advice, which may overstate confidence on high-stakes or uncertain topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review domain-sensitive responses for uncertainty, source quality, and appropriate disclaimers before relying on them.
+
+Risk: Most bundled documentation is in Chinese, which can make independent review harder for non-Chinese readers.
+
+Mitigation: Use translation during review so the prompt behavior, limitations, and quality checklist are understood before deployment.
+
+## Reference(s):
+
+- [Expert Role on ClawHub](https://clawhub.ai/zcz-user/skills/expert-role)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's language and structures responses with an expert identity, key insight, deep analysis, and conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

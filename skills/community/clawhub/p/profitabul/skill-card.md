@@ -1,44 +1,59 @@
-## Description: <br>
-Real-time futures market intelligence, GEX/options flow analysis, trading signals, paper trading, backtesting, and live execution via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time futures market intelligence, GEX/options flow analysis, trading signals, paper trading, backtesting, and live execution via MCP. Covers ES, NQ, SPX, NDX, QQQ, IWM, GC, SI, CL, and more.
 
-## Publisher: <br>
-[codeurge](https://clawhub.ai/user/codeurge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeurge](https://clawhub.ai/user/codeurge)
 
-## Use Case: <br>
-External developers and trading-focused agent users use this skill to retrieve market context, GEX-derived levels, historical analysis, backtests, and paper or live trade operations through a Profitabul MCP endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable real futures trades through an agent, including live order, position, and cancellation operations. <br>
-Mitigation: Use paper trading or read-only workflows by default and require explicit human approval before any live order, position change, or cancellation. <br>
-Risk: The skill depends on a private Profitabul API key. <br>
-Mitigation: Keep PROFITABUL_API_KEY private, scope it to the least privilege available, and avoid exposing it in prompts, logs, or shared configuration. <br>
-Risk: Trading signals and market analysis can be incorrect, incomplete, delayed, or financially risky. <br>
-Mitigation: Treat outputs as decision support, review them independently, and apply the user's own risk limits before acting. <br>
+## Use Case:
 
+External developers and traders use this skill to connect agents to Profitabul market intelligence, GEX-derived levels, trading signals, historical analysis, backtesting, paper trading, and optionally live futures execution.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/codeurge/profitabul) <br>
-- [Profitabul homepage](https://profitabul.ai) <br>
-- [Profitabul API documentation](https://profitabul.ai/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PROFITABUL_API_KEY and may return market data, signal summaries, backtest results, paper trade state, or live execution responses from the MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release evidence) <br>
+Risk: The skill can enable live brokerage actions when configured, and the security evidence flags insufficient user-facing safeguards or warnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default to paper trading, require explicit confirmation before live trade tools, use broker-side limits, and keep live execution disabled unless intentionally enabled.
+
+Risk: The Profitabul API key grants access to the MCP endpoint and may be exposed through chats, logs, or commits.
+
+Mitigation: Store PROFITABUL_API_KEY only in local environment configuration, avoid sharing it in prompts or source control, and rotate it if exposed.
+
+Risk: Market signals and backtests can be misleading or unsuitable for a user's financial situation.
+
+Mitigation: Treat outputs as analysis inputs rather than financial advice and review strategy assumptions before acting.
+
+## Reference(s):
+
+- [Profitabul Platform](https://profitabul.com)
+- [Profitabul API Documentation](https://profitabul.ai/docs)
+- [Profitabul Skill on ClawHub](https://clawhub.ai/codeurge/skills/profitabul)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; MCP tool results may include market data, signals, reports, backtests, and trade status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PROFITABUL_API_KEY; live execution depends on broker enablement.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release metadata; artifact frontmatter lists 0.2.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

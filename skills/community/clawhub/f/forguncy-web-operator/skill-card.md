@@ -1,41 +1,50 @@
-## Description: <br>
-Provides functionality to interact with SpreadJS tables in the web applications built by Forguncy (aka 活字格), specifically for extracting table data and column headers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides functionality to interact with SpreadJS tables in web applications built by Forguncy (aka 活字格), specifically for extracting table data and column headers by dynamically identifying the table's fgcname attribute.
 
-## Publisher: <br>
-[kadbbz](https://clawhub.ai/user/kadbbz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kadbbz](https://clawhub.ai/user/kadbbz)
 
-## Use Case: <br>
-Developers and operators use this skill to read table names, CSV table contents, and column headers from authorized Forguncy web application pages opened in the browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can return complete table contents from Forguncy pages the agent can access. <br>
-Mitigation: Use it only on authorized pages and avoid extracting full tables that contain sensitive data unless that data is intended to be shared with the agent. <br>
-Risk: Selecting the wrong Forguncy table name may extract unrelated page data. <br>
-Mitigation: Deliberately inspect and choose the intended fgcname before running the table data or header extraction snippets. <br>
+## Use Case:
 
+Developers and operators use this skill to read table names, table data, and column headers from authenticated Forguncy web pages that expose SpreadJS list views.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kadbbz/forguncy-web-operator) <br>
-- [Publisher profile](https://clawhub.ai/user/kadbbz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with JavaScript snippets and browser execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return complete table contents from pages the agent can access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can bulk-read table contents from an authenticated Forguncy page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for tables the user is authorized to access, avoid exporting more rows or columns than needed, and review extracted data before sharing it elsewhere.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kadbbz/skills/forguncy-web-operator)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Markdown with JavaScript snippets and short procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The JavaScript snippets can return table identifiers, CSV table data, or column-header arrays when evaluated in an authorized Forguncy browser context.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

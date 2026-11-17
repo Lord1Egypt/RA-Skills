@@ -1,41 +1,61 @@
-## Description: <br>
-Provides Chinese-language startup guidance for validating ideas, designing MVPs, planning growth, preparing fundraising materials, and evolving the founder role in AI-era companies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language startup coaching handbook for validating startup ideas, designing MVPs, planning growth, preparing fundraising work, and evolving the founder role in AI-era companies.
 
-## Publisher: <br>
-[perrykono-debug](https://clawhub.ai/user/perrykono-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[perrykono-debug](https://clawhub.ai/user/perrykono-debug)
 
-## Use Case: <br>
-External founders, startup operators, and agents assisting them use this skill to structure business validation, MVP planning, growth strategy, fundraising preparation, and founder operating-system decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad mandatory activation wording may cause the skill to be invoked in many startup or business-planning conversations. <br>
-Mitigation: Use it when the user is asking for founder methodology, validation, MVP, growth, fundraising, or founder-role guidance, and treat its business advice as advisory rather than authoritative. <br>
+## Use Case:
 
+External founders, startup operators, and advisors use this skill to structure entrepreneurship discussions around idea validation, MVP scope, growth strategy, fundraising readiness, and founder operating model changes. It is especially suited to Chinese-language coaching workflows where the agent should prioritize validation before execution.
 
-## Reference(s): <br>
-- [Idea stage methodology](references/idea-stage.md) <br>
-- [MVP design framework](references/mvp-design.md) <br>
-- [Growth strategy guide](references/growth-strategies.md) <br>
-- [Founder role transformation](references/founder-transformation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown prose with checklists and occasional prompt or code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language advisory output; no artifact-backed hidden code execution, credential handling, persistence, or destructive behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata and artifact _meta.json) <br>
+Risk: The skill uses broad activation wording and may be invoked across many entrepreneurship discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants Chinese-language startup coaching before applying the handbook, especially when the request is only loosely related to entrepreneurship.
+
+Risk: The skill provides business strategy guidance that may be incomplete or unsuitable for a specific market, company stage, or legal context.
+
+Mitigation: Treat recommendations as advisory frameworks and validate major business, financing, legal, or operational decisions with domain experts and current market evidence.
+
+Risk: The artifact does not provide multilingual alternatives.
+
+Mitigation: Tell users when the available guidance is Chinese-language focused and adapt or translate only when doing so preserves the original meaning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/perrykono-debug/skills/anthropic-founder-handbook)
+- [Idea-stage methodology](references/idea-stage.md)
+- [MVP design framework](references/mvp-design.md)
+- [Growth strategy guide](references/growth-strategies.md)
+- [Founder role transformation](references/founder-transformation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance, checklists, frameworks, and prompt examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language entrepreneurship advice; no hidden execution or credential handling indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: _meta.json and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

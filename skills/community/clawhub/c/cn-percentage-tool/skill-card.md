@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a pure Python standard-library percentage calculator for common percentage, reverse-percentage, part-of-whole, and change calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language percentage calculator implemented with the Python standard library and no API key requirement.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to produce shell commands, code-oriented guidance, or direct text results for percentage calculations using a dependency-free Python CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is tagged as requiring sensitive credentials and the security guidance notes possible account-impacting workflows. <br>
-Mitigation: Keep confirmation prompts enabled, verify exact targets before sensitive actions, and use least-privilege tokens. <br>
-Risk: The security guidance notes workflows that may run external CLIs, package installs, CI jobs, or proof jobs. <br>
-Mitigation: Run the skill only in trusted workspaces and review commands before allowing external tools or install steps. <br>
+## Use Case:
 
+Developers and agents use this skill to run a local Chinese-language Python CLI for percentage, reverse-percentage, part-of-whole, and percentage-change calculations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-percentage-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text calculation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pure Python standard-library CLI with configurable decimal precision and optional formatted numeric output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata) <br>
+Risk: Documentation includes promotional external links that may be mistaken for runtime dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those links as documentation only; the tool itself does not require credentials or network access.
+
+Risk: Zero denominators or zero percentages produce command-line errors.
+
+Mitigation: Validate numeric inputs before using the tool in automated workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-percentage-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language CLI; Python standard library only; no credentials or network access required.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

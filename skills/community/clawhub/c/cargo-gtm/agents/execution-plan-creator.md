@@ -15,40 +15,58 @@ For goals matching an existing recipe in `../recipes/`, **use the recipe directl
 A structured plan with:
 
 1. **Goal restatement** — one sentence confirming intent.
-2. **Stage breakdown** — each step labelled with stage (SOURCE / DEDUPE / ENRICH / SIGNAL / CONTACT / VERIFY / BACKFILL / WRITE-BACK / SEQUENCE / SYNC).
-3. **Per-step provider + action slug + cost** — anchored in the priority stack where possible; long-tail providers only when priority can't serve the criteria.
-4. **Total credit budget** — sum across steps, by record-count assumptions.
-5. **Open questions for the user** — anything ambiguous (segment source, contact volume per company, write-back destination).
+2. **Assumptions defined operationally** — every judgment call spelled out as a testable rule (not "best contact" but "highest-ranked current employee matching RevOps/GTM-ops titles, weighted Chief > VP > Head > Director > Lead > Manager"), plus data decisions already made and the cost trade-off chosen.
+3. **Stage breakdown** — each step labelled with stage (SOURCE / DEDUPE / ENRICH / SIGNAL / CONTACT / VERIFY / BACKFILL / WRITE-BACK / SEQUENCE / SYNC), with provider + action slug + cost per step — anchored in the priority stack where possible; long-tail providers only when priority can't serve the criteria.
+4. **Sample step + budget reconciliation** — the plan's first executed step is always a sample: 1–3 rows when the plan is a single action, **10–20 records when any step fans out as a batch** (a 2-row sample can't produce a hit-rate, and hit-rate drives the estimate). The full-run estimate is grounded in the sample's observed per-row cost, states **how many records** the full run enrolls, and is reconciled against the actual balance (`billing subscription get`). If the estimate exceeds the balance, the plan says so up front.
+5. **Approval question with 3 shaped choices** — run-until-cap / top-up-then-run / trim-scope-to-fit (with a proposed trimming heuristic). Never bare yes/no.
+6. **Open questions for the user** — anything ambiguous (segment source, contact volume per company, write-back destination).
 
 ## Plan template
 
 ```
 GOAL: <one sentence>
 
-ASSUMPTIONS (call out anything the user should confirm):
+ASSUMPTIONS (operational definitions — anything the user should confirm):
   - Volume: ~N records
   - ICP: <one-line>
+  - "<judgment call>" = <testable rule>
+  - Dropped/fixed in the input: <rows dropped and why, domains corrected>
+  - Cost trade-off: <e.g. cheap email chain (0.14 cr) over premium play (1.4 cr) — why>
   - Output: <model write-back / CSV / CRM push>
 
 PLAN:
 
+  Step 0 — SAMPLE (always first)
+    Run steps 1–N on a slice of the exact input:
+      1–3 rows for a single action · 10–20 records before any batch.
+    Report: credits spent, per-row cost, hit-rate, output preview.
+    Then ask to enroll the rest — stating the record count AND the estimate.
+
   Step 1 — SOURCE
     Provider: salesNavigator.searchAccounts (priority)
-    Cost: 0.05 × N = X credits
+    Cost: 0.2 × N = X credits (billed per returned account)
     Why this provider: ...
 
   Step 2 — DEDUPE
-    Provider: cargo.matchBusiness (priority)
-    Cost: 0.5 × N = X credits
+    Provider: storage query against the existing Companies model (free)
+    Cost: 0 — a read, not an action
 
   Step 3 — ENRICH (firmographics)
-    Provider: cargo.enrichBusinessFirmographics (priority)
-    Cost: 0.5 × N (matched) = X credits
-    Fallback for unmatched: waterfall.enrichCompany (1 × M = Y credits)
+    Provider: aiArk.enrichCompany (priority)
+    Cost: 0.01 × N = X credits
+    Fallback for thin/empty rows: companyEnrich.enrichByDomain (0.25 × M),
+      then waterfall.enrichCompany (1 × M2 = Y credits)
 
   ... (steps continue)
 
-TOTAL BUDGET: ~X credits
+TOTAL BUDGET: ~X credits for N records (catalog estimate — refine from the sample's observed per-row cost)
+BALANCE CHECK: remaining credits = subscriptionAvailableCreditsCount + additionalAvailableCreditsCount − subscriptionCreditsUsedCount
+  → covers the run? If short, say by how much BEFORE running.
+
+APPROVE FULL RUN? (pick one)
+  1. Run until the cap — ~K of N rows fit the current balance; resumable, keeps successful rows.
+  2. Top up first, then run all N clean.
+  3. Trim to the best ~M rows so the budget covers everything (heuristic: <e.g. funded + RevOps ≥ 2 first>).
 
 OPEN QUESTIONS:
   - Should we cap contacts per company at K?
@@ -59,19 +77,19 @@ OPEN QUESTIONS:
 
 When choosing between providers for a stage, the agent applies these rules in order:
 
-1. **Match the priority stack first.** If salesNavigator / cargo / waterfall / FullEnrich / theirStack / peopleDataLabs can express the user's filter, use them.
+1. **Match the priority stack first.** If salesNavigator / cargo / aiArk / waterfall / FullEnrich / apolloio / theirStack / peopleDataLabs can express the user's filter, use them. With a **LinkedIn URL** in hand, `aiArk.enrichPerson` (0.1, profile + verified email) is the cheapest enrich rung in the stack; `apolloio` (1) is the niche-coverage rung, planned on the residue, not the full list.
 2. **Pick by stage-action-map.** If the priority stack misses, consult [`../references/stage-action-map.md`](../references/stage-action-map.md) for the cheapest credible alternative.
 3. **Consider rate limits & coverage**. Some providers have low rate limits (~10 RPS); for large batches > 1000 records, prefer providers with higher throughput.
 4. **Confirm authentication.** Run `cargo-ai connection connector list --integration-slug <slug>` to confirm the provider is authenticated before locking it into the plan. If not, surface to the user.
 
 ## Cost discipline
 
-Always present a cost estimate **before executing**. The user gets to approve / modify before the agent fans out across N records. Never skip this step for runs > 50 records.
+The plan IS the approval gate: pilot first, estimate reconciled against the balance, 3 shaped choices, and no paid fan-out until the user picks one. Full rules (receipts, 1.4×N over-provision, count-first sizing, the phone guard): [`../references/cost-discipline.md`](../references/cost-discipline.md).
 
 ## Action shape rule (critical)
 
-Every recipe step must use the canonical action shape: `{"kind":"connector","integrationSlug":"<slug>","actionSlug":"<slug>","config":{}}`. **No `connectorUuid` in `config`.** See [`../../cargo-orchestration/references/actions.md`](../../cargo-orchestration/references/actions.md).
+Every recipe step must use the canonical action shape: `{"kind":"connector","integrationSlug":"<slug>","actionSlug":"<slug>"}`. **No `connectorUuid` in `config`.** See [`../../cargo-orchestration/references/examples/actions.md`](../../cargo-orchestration/references/examples/actions.md).
 
 ## Output retrieval
 
-Final step of every plan ends with `cargo-ai orchestration run download-outputs --workflow-uuid <uuid> --output-node-slug <slug>` — the canonical way to retrieve action results. See [`../references/output-retrieval.md`](../references/output-retrieval.md).
+Final step of every plan ends with `cargo-ai orchestration run download-outputs --workflow-uuid <uuid> --output-node-slug <slug>` — the canonical way to retrieve action results from a saved tool or play. A direct `action execute-batch` has no workflow: retrieve its rows with `cargo-ai orchestration batch download --uuid <batch-uuid>` (a signed CSV URL; output keys land in `cargo_<key>` columns). See [`../references/output-retrieval.md`](../references/output-retrieval.md).

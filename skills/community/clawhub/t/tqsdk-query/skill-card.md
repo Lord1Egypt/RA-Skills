@@ -1,43 +1,54 @@
-## Description: <br>
-TqSdk Query retrieves Tianqin/TQSDK futures and options quotes, live K-line series, and historical K-line data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TqSdk Query retrieves real-time quotes, current K-line series, and historical K-line data for Chinese futures and options through TqSdk.
 
-## Publisher: <br>
-[gaingush](https://clawhub.ai/user/gaingush) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaingush](https://clawhub.ai/user/gaingush)
 
-## Use Case: <br>
-Developers and trading or research users use this skill to query Tianqin/TQSDK market data for Chinese futures and options, including quotes, recent K-line data, and historical K-line ranges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Tianqin/TQSDK credentials through environment variables. <br>
-Mitigation: Use credentials limited to market-data access and scope TQ_USERNAME and TQ_PASSWORD to this skill. <br>
-Risk: The package depends on external Python libraries and the security guidance notes an unresolved tqsdk_client import. <br>
-Mitigation: Pin dependency versions for reproducible deployments and verify or remove the missing import before relying on the skill. <br>
-Risk: Historical K-line access may require a Tianqin professional account and valid time ranges. <br>
-Mitigation: Confirm account permissions and query limits before using historical-data actions in production workflows. <br>
+## Use Case:
 
+External users and developers use this skill to query TqSdk market data for contract symbols, including live quotes, recent K-line summaries, and bounded historical K-line records. It requires TQ_USERNAME and TQ_PASSWORD environment variables for account authentication.
 
-## Reference(s): <br>
-- [TQSDK homepage](https://www.shinnytech.com/tqsdk/) <br>
-- [ClawHub skill page](https://clawhub.ai/gaingush/tqsdk-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Dictionary containing a text summary and result or error fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include quote fields, the latest K-line record, or historical K-line records depending on the selected action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, frontmatter) <br>
+Risk: TqSdk account credentials are required and must remain confidential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide TQ_USERNAME and TQ_PASSWORD only through isolated runtime environment variables that are accessible to this skill.
+
+Risk: Dependencies are declared without a lockfile, which can change installed package versions over time.
+
+Mitigation: Pin and review tqsdk and pandas versions before deployment in production environments.
+
+## Reference(s):
+
+- [TqSdk homepage](https://www.shinnytech.com/tqsdk/)
+- [ClawHub skill page](https://clawhub.ai/gaingush/skills/tqsdk-query)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Text summary with JSON result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on valid TqSdk credentials, contract symbols, account entitlements, and market-data availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

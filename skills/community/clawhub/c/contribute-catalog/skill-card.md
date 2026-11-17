@@ -1,43 +1,59 @@
-## Description: <br>
-Guides contributors through planning, scaffolding, building, validating, previewing, and submitting a HyperFrames registry block or component as an upstream pull request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Author a new HyperFrames registry block (caption style, VFX block, transition, lower third) or component (text effect, overlay, snippet) and ship it as an upstream PR to the hyperframes repo.
 
-## Publisher: <br>
-[lucas-kay8](https://clawhub.ai/user/lucas-kay8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucas-kay8](https://clawhub.ai/user/lucas-kay8)
 
-## Use Case: <br>
-External contributors and developers use this skill when they want to add a new public HyperFrames catalog block or component, such as a caption style, VFX block, transition, lower third, text effect, overlay, or snippet. It walks them from intent clarification through validation, preview publishing, and PR creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow includes publishing previews, pushing branches, opening pull requests, and optionally uploading catalog images. <br>
-Mitigation: Review generated files and preview assets for sensitive content, confirm remote targets, and run publish, upload, push, and PR commands only after explicit user approval. <br>
-Risk: The AWS catalog-image upload path is intended only for authorized HeyGen internal contributors. <br>
-Mitigation: Use the AWS upload step only with authorized internal credentials; external contributors should attach the preview MP4 to the pull request for maintainer handling. <br>
+## Use Case:
 
+Developers and designers use this skill to create, validate, preview, and submit new HyperFrames catalog blocks or components as upstream pull requests.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucas-kay8/contribute-catalog) <br>
-- [HyperFrames registry item schema](https://hyperframes.heygen.com/schema/registry-item.json) <br>
-- [GSAP distribution](https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js) <br>
-- [Google Fonts Montserrat stylesheet](https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON, HTML, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces contribution instructions and starter templates; generated project files and external publishing actions require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow asks users to run contribution and publishing commands that may affect a checkout or remote project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before execution and run the workflow in a clean checkout or container.
+
+Risk: Generated templates load third-party scripts from public CDNs.
+
+Mitigation: Vendor dependencies or add integrity controls before using generated templates in stricter environments.
+
+Risk: Unpinned external tooling can change behavior over time.
+
+Mitigation: Use locked or pinned project dependencies for hyperframes, oxfmt, and tsx.
+
+## Reference(s):
+
+- [Contribute Templates](templates.md)
+- [HyperFrames registry item schema](https://hyperframes.heygen.com/schema/registry-item.json)
+- [ClawHub skill page](https://clawhub.ai/lucas-kay8/skills/contribute-catalog)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON, HTML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scaffold patterns, validation steps, preview guidance, and pull request instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

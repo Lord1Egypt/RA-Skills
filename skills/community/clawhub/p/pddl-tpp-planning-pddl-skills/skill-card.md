@@ -1,41 +1,52 @@
-## Description: <br>
-Automated Planning utilities for loading PDDL domains and problems, generating plans using classical planners, validating plans, and saving plan outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated Planning utilities for loading PDDL domains and problems, generating plans using classical planners, validating plans, and saving plan outputs, with support for standard PDDL parsing, plan synthesis, and correctness verification.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lnj22](https://clawhub.ai/user/lnj22)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and planning engineers use this skill to build reproducible PDDL benchmark workflows that load domain and problem files, synthesize a classical plan, validate goal satisfaction, and save plan outputs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads user-selected PDDL files and can write a plan file to a chosen output path.
+
+Mitigation: Run it in a constrained workspace and review the output path before saving generated plans.
+
+Risk: The provided artifact references proprietary LICENSE.txt terms that were not included in the evidence, while server release metadata reports MIT-0.
+
+Mitigation: Confirm the exact release license and any referenced terms before deployment or redistribution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and planning practitioners use this skill to load PDDL domain and problem files, generate sequential classical plans, validate plan correctness, and save plan outputs for benchmark or automation workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Code, Guidance, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted or unpinned planning dependencies can affect planning behavior in the local environment. <br>
-Mitigation: Install only trusted planning dependencies, preferably pinned versions, in an isolated project environment. <br>
-Risk: Saving plans to a user-specified output path can overwrite an existing file. <br>
-Mitigation: Use project-local output directories and review the output path before saving plan files. <br>
-Risk: Invalid or mismatched PDDL domain and problem files can produce parse errors, failed planning, or invalid plans. <br>
-Mitigation: Check that problem files reference the correct domain and validate every generated plan before relying on it. <br>
+**Output Format:** [Markdown with inline Python examples and plan-file output descriptions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May read user-selected PDDL files and write a plan file to the requested output path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Files] <br>
-**Output Format:** [Markdown with Python code examples and PDDL plan text files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save plan output to a user-specified local path; validation returns boolean status.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

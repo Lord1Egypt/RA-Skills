@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a Norman Mailer-inspired perspective for cultural analysis and political criticism, emphasizing lived experience, power dynamics, and literary action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language cultural analysis and political criticism in a Norman Mailer-inspired style, emphasizing lived experience, power dynamics, literary action, and contemporary AI-era cultural questions.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Developers, writers, and analysts use this skill to generate Norman Mailer-inspired cultural criticism, political analysis, and writing guidance while keeping stated limits around race, gender, AI, and historical extrapolation in view. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A polemical literary and political voice may influence responses to sensitive cultural, race, gender, or politics-related prompts. <br>
-Mitigation: Review outputs before relying on them in sensitive contexts, and treat the style as an analytical lens rather than a neutral authority. <br>
-Risk: The artifact extrapolates Norman Mailer frameworks into AI-era topics and states that some boundaries are uncertain. <br>
-Mitigation: Label outputs as Norman Mailer-inspired analysis, verify factual claims separately, and avoid presenting generated responses as the historical author's own views. <br>
+## Use Case:
 
+External users and writers use this skill to obtain Norman Mailer-inspired literary, cultural, political, and AI-era criticism, especially in Chinese-language conversations. It helps frame topics through persona-driven mental models, heuristics, and critique boundaries rather than executing code or accessing data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/norman-mailer-expert) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or prose responses in a Norman Mailer-inspired analytical style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable; may produce polemical literary and political commentary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata) <br>
+Risk: The skill intentionally shapes responses through a strong literary and political persona, which can make critique sound more authoritative or provocative than the underlying evidence supports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for analysis and drafting assistance, and review outputs for factual accuracy, tone, and suitability before publication or operational use.
+
+Risk: The artifact includes explicit limitations around gender, race, cultural appropriation, and extending Norman Mailer's historical frameworks to generative AI-era topics.
+
+Mitigation: Keep those limitations visible in use, and avoid treating the persona framework as a neutral or comprehensive account of those topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/norman-mailer-expert)
+- [Publisher profile](https://clawhub.ai/user/ruiyongwang)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, analysis, markdown, text]
+
+**Output Format:** [Markdown or plain text conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language persona-driven analysis by default; no code execution, data access, persistence, or hidden execution behavior indicated by security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

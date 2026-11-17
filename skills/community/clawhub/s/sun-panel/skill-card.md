@@ -1,40 +1,55 @@
-## Description: <br>
-Manage Sun-Panel navigation by adding websites, creating and editing shortcut groups, and recommending icons for bookmarks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Sun-Panel navigation by adding websites, creating and editing shortcut groups, and getting icon recommendations for bookmarks.
 
-## Publisher: <br>
-[meichuanyi](https://clawhub.ai/user/meichuanyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meichuanyi](https://clawhub.ai/user/meichuanyi)
 
-## Use Case: <br>
-Developers, NAS administrators, and homelab users use this skill to configure Sun-Panel shortcuts, groups, favicons, and Iconify icons through the Sun-Panel API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the Sun-Panel URL, username, and password in a local plaintext config file. <br>
-Mitigation: Use a limited-permission Sun-Panel account where possible, restrict permissions on ~/.openclaw/skills/sun-panel/config.json, and rotate or delete the password when no longer needed. <br>
-Risk: Generated commands send credentials and tokens to the configured Sun-Panel host. <br>
-Mitigation: Configure only trusted Sun-Panel hosts and use HTTPS when available before running generated API commands. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent configure Sun-Panel navigation entries, groups, icons, and favicon-based bookmark shortcuts.
 
-## Reference(s): <br>
-- [Iconify icon sets](https://icon-sets.iconify.design/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include curl commands and JSON payloads that target a user-configured Sun-Panel instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores a reusable Sun-Panel password in plaintext and may send it over unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege Sun-Panel account, prefer HTTPS, avoid shared machines, and restrict config-file permissions manually if used.
+
+Risk: The skill can make authenticated changes to Sun-Panel navigation groups and shortcuts.
+
+Mitigation: Confirm every add or edit operation before allowing the agent to change the panel.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meichuanyi/skills/sun-panel)
+- [ClawHub publisher profile](https://clawhub.ai/user/meichuanyi)
+- [Iconify icon sets](https://icon-sets.iconify.design/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides local configuration, authenticated Sun-Panel API calls, group management, bookmark creation, favicon retrieval, and icon selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

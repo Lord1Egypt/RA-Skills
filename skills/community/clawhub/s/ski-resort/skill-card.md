@@ -1,45 +1,66 @@
-## Description: <br>
-Finds ski resorts and snowboarding destinations, including trail maps, difficulty levels, lift pass prices, equipment rental, snow conditions, and related travel booking support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find ski resorts and snowboarding destinations, including trail maps, difficulty levels, lift pass prices, equipment rental, snow conditions, and related travel services powered by Fliggy.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search for ski and snowboarding destinations, compare resort details, and produce booking-oriented Markdown responses from FlyAI/Fliggy CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an unpinned global FlyAI CLI before handling a request. <br>
-Mitigation: Approve and pin the CLI installation yourself, preferably in an isolated environment. <br>
-Risk: Travel queries may be sent to FlyAI/Fliggy services. <br>
-Mitigation: Use the skill only when sharing the travel query with FlyAI/Fliggy is acceptable. <br>
-Risk: The skill may persist raw user queries in a hidden local execution log. <br>
-Mitigation: Ask the agent not to create the log, or delete it after use when queries include personal travel details. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to retrieve ski resort and snowboarding destination options from the flyai CLI, then present concise Markdown comparisons with booking links.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FlyAI CLI output as the data source; successful result responses include booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and release evidence) <br>
+Risk: The skill may install and run an unpinned global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source, prefer a pinned package version, and require review before installation in managed environments.
+
+Risk: Travel queries are converted into CLI commands and may include user-provided city or keyword values.
+
+Mitigation: Use only documented parameters, sanitize command arguments, and inspect generated commands before execution.
+
+Risk: The skill requires booking links in normal responses.
+
+Mitigation: Use only CLI-provided detailUrl values and validate booking-link domains before presenting them to users.
+
+Risk: The artifact describes optional local persistence of raw execution logs.
+
+Mitigation: Disable persistent logs where possible, or redact personal travel details before writing local log files.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/xiejinsong/skills/ski-resort)
+- [Publisher profile](https://clawhub.ai/user/xiejinsong)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, brief guidance, and inline shell commands when setup or retries are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should mirror the user's language and include only CLI-sourced travel results with detailUrl booking links.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Use this skill when the user wants to discover the best USDC vaults with LI.FI Earn, ask an agent to choose a safe vault on Base/Arbitrum/Ethereum, prepare a Composer-compatible deposit, execute the deposit with an Agentic Wallet, and explain which receipt token was received after deposit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to discover the best USDC vaults with LI.FI Earn, ask an agent to choose a safe vault on Base/Arbitrum/Ethereum, prepare a Composer-compatible deposit, execute the deposit with an Agentic Wallet, and explain which receipt token was received after deposit.
 
-## Publisher: <br>
-[richard7463](https://clawhub.ai/user/richard7463) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richard7463](https://clawhub.ai/user/richard7463)
 
-## Use Case: <br>
-External users and agents use this skill to discover USDC vaults on Base, Arbitrum, or Ethereum with LI.FI Earn, prepare Composer deposit quotes, execute deposits with an Agentic Wallet, and explain receipt tokens after deposit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real wallet approvals and deposits without requiring a mandatory final transaction-specific confirmation step. <br>
-Mitigation: Require explicit confirmation before every approval and deposit, showing the exact amount, chain, vault, token, spender address, and expected receipt token before signing. <br>
-Risk: Vault discovery or quote guidance could lead to incorrect or misleading deposit decisions if the user assumes all results are live and safe. <br>
-Mitigation: Base recommendations on returned API data, disclose seeded or fallback vault data when present, and ask the user to review the selected vault before execution. <br>
+## Use Case:
 
+External users use this skill to ask an agent to discover USDC yield vaults, recommend a suitable vault, prepare a LI.FI Composer deposit, and explain the resulting receipt token. It is intended for wallet-connected yield workflows on Base, Arbitrum, and Ethereum.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/richard7463/miraix-lifi-earn-agent) <br>
-- [Publisher Profile](https://clawhub.ai/user/richard7463) <br>
-- [Miraix Earn Discovery API](https://app.miraix.fun/api/earn/chat) <br>
-- [Miraix Composer Quote API](https://app.miraix.fun/api/earn/quote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Action-oriented vault recommendations, Composer quote preparation, execution guidance, and receipt-token explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Wallet approval and deposit steps could move user funds without enough explicit confirmation or transaction validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before each approval and deposit, show decoded transaction details, verify contract addresses, limit approvals, and simulate transactions before signing.
+
+Risk: A wrong vault, chain, amount, or insufficient gas balance could produce financial loss or failed execution.
+
+Mitigation: Use small amounts and a wallet prepared for risk, confirm the selected vault and chain with the user, and verify native gas availability before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richard7463/skills/miraix-lifi-earn-agent)
+- [Miraix Earn discovery API](https://app.miraix.fun/api/earn/chat)
+- [Miraix Composer quote API](https://app.miraix.fun/api/earn/quote)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with plain-language recommendations and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include vault name, chain, protocol, APY, rationale, deposit status, gas guidance, and receipt token explanation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

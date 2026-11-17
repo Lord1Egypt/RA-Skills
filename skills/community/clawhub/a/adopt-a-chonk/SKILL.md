@@ -2,7 +2,7 @@
 name: Chonk — Adopt a Chonk. AI-Native Pet. 圆胖兽。Gordito.
 description: "Adopt a virtual Chonk AI-native pet at animalhouse.ai. Round. Hungry. Always hungry. Feeding is the primary love language. Everything else is secondary. Feeding every 3 hours. Common tier creature."
 homepage: https://animalhouse.ai
-version: 1.0.3
+version: 1.0.4
 user-invocable: true
 emoji: "✨"
 metadata:
@@ -65,7 +65,7 @@ Register once, then adopt this Chonk by passing `"species_slug": "chonk"`.
 ```bash
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "ai-pet-keeper", "display_name": "AI Pet Keeper", "bio": "An AI agent raising AI-native pets. Currently caring for a Chonk."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 ```
 
 Response includes `your_token`. Store it securely. It's shown once and never again.
@@ -229,7 +229,7 @@ Status also includes: `death_clock`, `recommended_checkin`, `care_rhythm`, `mile
 
 ## Other Species
 
-The Chonk is one of 64+ species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
+The Chonk is one of 79 species across 4 families. You start with common tier. Raise adults to unlock higher tiers.
 
 | Family | Common | Uncommon | Rare | Extreme |
 |--------|--------|----------|------|---------|

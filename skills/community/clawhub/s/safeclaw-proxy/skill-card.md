@@ -1,41 +1,57 @@
-## Description: <br>
-Install and verify the SafeClaw safety proxy for OpenClaw and other OpenAI-compatible clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and verify the SafeClaw safety proxy for OpenClaw and other OpenAI-compatible clients, including setup, traffic routing, dashboard debugging, and adaptation for provider configs, agent models.json, or shell-launched clients.
 
-## Publisher: <br>
-[aceteam-ai](https://clawhub.ai/user/aceteam-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aceteam-ai](https://clawhub.ai/user/aceteam-ai)
 
-## Use Case: <br>
-Developers and engineers use this skill to install or connect to a SafeClaw proxy, route OpenClaw or OpenAI-compatible client traffic through it, and verify that calls appear in the dashboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reroute model traffic, edit local model-routing configuration, and start a proxy service. <br>
-Mitigation: Review intended configuration changes before execution, keep backups for edited files, and verify which client path is actually routed through the proxy. <br>
-Risk: API keys may be passed to a container, hosted proxy URL, or test call. <br>
-Mitigation: Require explicit approval before sharing credentials, prefer trusted local endpoints, and avoid sending secrets to unverified hosted services. <br>
-Risk: The skill may request elevated execution or create long-running background services. <br>
-Mitigation: Approve privilege changes separately, prefer pinned image or package versions, and ask for rollback commands for every file or setting changed. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up a local or hosted SafeClaw proxy, route OpenClaw or OpenAI-compatible client traffic through it, and verify that traffic appears in the dashboard.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include setup status, health-check results, routing notes, and rollback-relevant details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill has broad setup authority and may directly change OpenClaw, agent model, or shell routing configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the identified routing mode and changed files before relying on the setup; keep backups of edited configuration files and confirm whether a restart or new session is required.
+
+Risk: Credentials and model traffic may pass through mutable third-party proxy components.
+
+Mitigation: Use pinned and verified proxy artifacts where possible, avoid production API keys during setup validation, and confirm the proxy endpoint before routing real clients through it.
+
+Risk: Wildcard elevated execution could grant more authority than the setup requires.
+
+Mitigation: Do not enable wildcard elevated execution by default; scope elevated permissions to the active provider and only for commands needed to start or verify the proxy.
+
+## Reference(s):
+
+- [Safeclaw Proxy ClawHub listing](https://clawhub.ai/aceteam-ai/skills/safeclaw-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include the proxy URL, dashboard URL, configured routing path, safety test result, dashboard call status, files changed, and restart requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

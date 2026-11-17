@@ -1,0 +1,39 @@
+{
+  "name": "arc4plus1",
+  "version": "1.1.0",
+  "description": "软件架构 4+1 视图自动生成器 - 分析代码并生成逻辑/过程/物理/开发/场景五类 Mermaid 架构图",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "skill",
+    "architecture",
+    "4+1-views",
+    "mermaid",
+    "uml",
+    "diagram",
+    "code-analysis"
+  ],
+  "author": {
+    "name": "OpenClaw Community",
+    "email": "support@openclaw.ai"
+  },
+  "homepage": "https://github.com/openclaw/openclaw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/openclaw"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts/"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "openclaw": ">=1.0.0"
+  },
+  "config": {},
+  "scripts": {
+    "test": "python scripts/find_blocks.py check",
+    "lint": "python scripts/find_blocks.py check"
+  }
+}

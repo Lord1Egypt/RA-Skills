@@ -1,40 +1,49 @@
-## Description: <br>
-A general-purpose document merge and checking skill for combining Word documents in order, normalizing formatting, and checking whether each document includes required sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents to merge Word .docx files in a specified order, normalize document formatting, and check required sections for missing content.
 
-## Publisher: <br>
-[x2534817519](https://clawhub.ai/user/x2534817519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x2534817519](https://clawhub.ai/user/x2534817519)
 
-## Use Case: <br>
-External users, employees, and document-processing agents use this skill to consolidate homework, reports, papers, or similar Word documents, check required sections, standardize document formatting, and produce a missing-section report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated output files or formatting operations may replace or alter important Word documents. <br>
-Mitigation: Use a new output filename and back up important documents before running merge or formatting workflows. <br>
-Risk: Automated section checks may miss content stored as images, tables, or unusual formatting. <br>
-Mitigation: Review the missing-section report manually when documents may contain non-text or specially formatted content. <br>
+## Use Case:
 
+Students, educators, and report coordinators use this skill to consolidate Word documents, standardize formatting, and produce a report of missing required sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x2534817519/doc-merge-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for .docx merge, required-section checking, formatting configuration, and missing-section reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated merged or formatted Word documents may have formatting, pagination, or missing-section errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep original documents, write to a separate output filename, and review the generated document and missing-section report before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x2534817519/skills/doc-merge-check)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown guidance with Python code snippets and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a merged Word document path and a missing-section report when the referenced document-processing workflow is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

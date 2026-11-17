@@ -1,42 +1,60 @@
-## Description: <br>
-Downloads and monitors Bilibili favorite folders with incremental checks, MP4 merging, and optional Telegram notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads and monitors Bilibili favorite folders using a cookie file and favorite-folder ID, with optional scheduled checks and Telegram notifications.
 
-## Publisher: <br>
-[name8266](https://clawhub.ai/user/name8266) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[name8266](https://clawhub.ai/user/name8266)
 
-## Use Case: <br>
-External users and developers use this skill to configure authenticated Bilibili favorite-folder downloads, run one-time or scheduled checks, and receive optional Telegram notifications when new videos are downloaded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cookie guide contains a credential-handling mismatch by directing users toward Douyin cookies instead of cookies for the intended Bilibili domain. <br>
-Mitigation: Only export cookies for the exact Bilibili domain being used, keep cookie files private with restrictive permissions, and avoid sharing cookies in chat or logs. <br>
-Risk: The setup flow may install packages or downloaded binaries system-wide. <br>
-Mitigation: Review the setup script before running sudo or installing downloaded binaries, and prefer trusted package-manager or pinned installation paths where possible. <br>
+## Use Case:
 
+External users and developers use this skill to configure an agent to download videos from a Bilibili favorites folder, discover the required favorite ID, manage cookie-based access, and optionally set up scheduled checks and Telegram notifications.
 
-## Reference(s): <br>
-- [Bilibili Fav Downloader on ClawHub](https://clawhub.ai/name8266/bilibili-fav-downloader) <br>
-- [Bilibili Cookie Guide](references/cookie-guide.md) <br>
-- [Bilibili Favorite ID Guide](references/favorite-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Python or shell script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The runtime downloader can create MP4 files, logs, and state files in user-configured output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Cookie collection guidance may direct users to unrelated Douyin cookies or broad browser cookie exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the minimum Bilibili cookies needed for the downloader, keep the cookie file private with restrictive permissions, and do not follow Douyin-specific cookie steps for this Bilibili workflow.
+
+Risk: The setup path can install dependencies broadly at the system level.
+
+Mitigation: Prefer a user-local or virtual-environment install with pinned, verified dependencies before enabling automated runs.
+
+Risk: Scheduled downloads and Telegram notifications can repeatedly access private favorites data or send download status to a third-party service.
+
+Mitigation: Enable cron and Telegram only after confirming that the schedule and notification destination fit the user's privacy and operational requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/name8266/skills/bilibili-fav-downloader)
+- [Bilibili Cookie Guide](references/cookie-guide.md)
+- [Bilibili Favorite ID Guide](references/favorite-guide.md)
+- [yt-dlp GitHub releases](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local paths, environment variables, crontab entries, and commands that download files or install dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

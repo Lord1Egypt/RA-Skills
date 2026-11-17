@@ -1,43 +1,55 @@
-## Description: <br>
-Professional security configuration generator for Cisco Firepower Threat Defense based on CIS Benchmark v1.0.0. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional security configuration generator for Cisco Firepower Threat Defense based on CIS Benchmark v1.0.0.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams and network administrators use this skill to request standards-aligned Cisco Firepower Threat Defense hardening configurations. It helps generate draft CLI commands and policy XML for review before firewall changes are applied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated firewall configurations could affect sensitive network operations if applied without review. <br>
-Mitigation: Treat generated configurations as drafts, test them in a non-production environment, and keep backups, rollback steps, and out-of-band management access ready. <br>
-Risk: Requests to the external API may disclose sensitive topology or organization identifiers. <br>
-Mitigation: Avoid sending sensitive infrastructure details unless the external API operator is trusted, and minimize session or user identifiers where possible. <br>
+## Use Case:
 
+Security teams and network administrators use this skill to generate draft Cisco Firepower Threat Defense hardening configurations aligned with CIS Benchmark v1.0.0 for review, testing, and controlled deployment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-cisco-ftd-hardening) <br>
-- [Cisco FTD hardening API route](https://api.mkkpro.com/hardening/cisco-ftd) <br>
-- [Cisco FTD hardening API docs](https://api.mkkpro.com:8141/docs) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON responses containing hardening status, generated CLI commands, and policy XML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests include hardeningOptions, sessionId, and timestamp, with optional userId for attribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI info.version) <br>
+Risk: Requests are sent to a provider-hosted API and may include session or user identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive identifiers unless required, and handle request metadata according to organizational data handling policies.
+
+Risk: Generated Cisco Firepower configurations may affect production network security or availability if applied without review.
+
+Mitigation: Treat generated configurations as draft change material; review, test in a lab or maintenance window, keep backups, and prepare rollback steps before production use.
+
+## Reference(s):
+
+- [Cisco FTD Hardening Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-cisco-ftd-hardening)
+- [Hosted API Documentation](https://api.mkkpro.com:8141/docs)
+- [Hosted API Route](https://api.mkkpro.com/hardening/cisco-ftd)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration, Shell commands, Code, Guidance]
+
+**Output Format:** [JSON responses containing generated CLI commands, policy XML, applied controls, and compliance metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests are sent to the provider's hosted API and may include session and user identifiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

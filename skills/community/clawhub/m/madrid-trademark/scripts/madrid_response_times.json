@@ -1,0 +1,240 @@
+{
+  "meta": {
+    "source": "https://www.wipo.int/web/madrid-system/members/provisional-refusal-time-limits-to-respond",
+    "rule": "Rule 17(7) of the Regulations under the Madrid Protocol",
+    "page_last_update": "2026-08-28",
+    "table_last_update": "2025-02-07",
+    "captured": "2026-09-25",
+    "coverage": "该表仅收录 38 个成员（马德里共 117 个成员）。未列名不等于没有答复期限，只表示 WIPO 汇总表未收录，须查该成员 eMadrid 会员档案与驳回通知正文。",
+    "human_readable": "references/madrid-declarations.md §4e-i（全表）与 §4e-ii（起算基准 6 种）",
+    "maintenance": "修改本文件后须同步 references/madrid-declarations.md §4e，并运行 py -B scripts/selftest.py 通过「答复期限数据」用例。"
+  },
+  "basis_glossary": {
+    "holder_receipt_wipo": "注册人收到 WIPO 转交通知之日（可观察）",
+    "holder_receipt": "注册人收到通知之日（可观察）",
+    "holder_receipt_by_holder": "注册人收到通知之日（可观察；原文措辞为 date of receipt ... by the holder）",
+    "wipo_transmit": "WIPO 向注册人转交之日（以 WIPO 转交记录为准，注册人通常可在 eMadrid 查见）",
+    "office_issue": "局发出通知之日（注册人不可直接观察）",
+    "office_transmit_to_wipo": "局向 WIPO 发出通知之日（注册人不可直接观察；美国依职权驳回采用此基准）",
+    "wipo_receive": "WIPO 收到通知之日（不可观察）",
+    "day14_after_office_issue": "局发出通知之日起第 14 日（不可观察）",
+    "ttab_order": "TTAB 确定证据开示与庭审日期的命令之日"
+  },
+  "basis_phrasings_en": {
+    "holder_receipt_wipo": ["From the date on which the holder receives the notification from WIPO"],
+    "holder_receipt": ["From the date on which the holder receives the notification"],
+    "holder_receipt_by_holder": ["From the date of receipt of the notification by the holder"],
+    "wipo_transmit": ["From the date on which WIPO transmits the notification to the holder"],
+    "office_issue": ["From the date on which the Office issues the notification"],
+    "office_transmit_to_wipo": ["From the date on which the Office transmits the notification to WIPO"],
+    "wipo_receive": ["From the date on which WIPO receives the notification"],
+    "day14_after_office_issue": ["from the 14th day following the date on which the Office issues the notification"],
+    "ttab_order": ["From the date of the Trademark Trial and Appeal Board (TTAB) order setting discovery and trial dates"]
+  },
+  "observable_bases": ["holder_receipt_wipo", "holder_receipt", "holder_receipt_by_holder"],
+  "lim_type_labels": {
+    "ex_officio": "依职权驳回",
+    "opposition": "异议类驳回"
+  },
+  "members": {
+    "AL": {
+      "name_en": "Albania", "name_zh": "阿尔巴尼亚",
+      "ex_officio": { "value": 4, "unit": "months", "basis": "holder_receipt" },
+      "opposition": { "value": 2, "unit": "months", "basis": "holder_receipt", "special": "appoint_local_representative" }
+    },
+    "AM": {
+      "name_en": "Armenia", "name_zh": "亚美尼亚",
+      "ex_officio": { "value": 2, "unit": "months", "basis": "holder_receipt" },
+      "opposition": { "value": 2, "unit": "months", "basis": "holder_receipt" }
+    },
+    "BH": {
+      "name_en": "Bahrain", "name_zh": "巴林",
+      "ex_officio": { "value": 60, "unit": "days", "basis": "office_issue" },
+      "opposition": { "value": 60, "unit": "days", "basis": "office_issue" }
+    },
+    "BY": {
+      "name_en": "Belarus", "name_zh": "白俄罗斯",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "holder_receipt" },
+      "opposition": { "applicable": false }
+    },
+    "BX": {
+      "name_en": "Benelux (Belgium, Luxembourg, Netherlands)", "name_zh": "比荷卢",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 1, "unit": "months", "basis": "office_issue" }
+    },
+    "CA": {
+      "name_en": "Canada", "name_zh": "加拿大",
+      "ex_officio": { "value": 6, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 2, "unit": "months", "basis": "office_issue" }
+    },
+    "CN": {
+      "name_en": "China", "name_zh": "中国",
+      "ex_officio": { "value": 15, "unit": "days", "basis": "holder_receipt_wipo" },
+      "opposition": { "value": 30, "unit": "days", "basis": "holder_receipt_wipo" },
+      "domestic_law": "15 日 → 《商标法》第 34 条（自收到通知之日起）；30 日 → 《商标法实施条例》第 45 条第 3 款（异议答辩，自收到国际局转发的驳回通知书之日起）",
+      "deemed_service": {
+        "days": 15,
+        "legal_basis": "《商标法实施条例》第十条：以数据电文方式送达的，自文件发出之日起满 15 日视为送达",
+        "note": "收件日不明/不可考时，视为 WIPO 发出通知之日起满 15 日送达，再起算答复期限。就依职权驳回而言：15 日（视为送达）+ 15 日（复审期）= 自发文日 30 日——这正是实务中「马德里指定中国驳回 30 日复审」的由来。若已确定实际收件日，应以「实际收件日 + 15 日」与「发文日 + 30 日」中的较早者控制风险。"
+      }
+    },
+    "CU": {
+      "name_en": "Cuba", "name_zh": "古巴",
+      "ex_officio": { "value": 60, "unit": "days", "basis": "wipo_transmit" },
+      "opposition": { "value": 60, "unit": "days", "basis": "wipo_transmit" }
+    },
+    "CZ": {
+      "name_en": "Czech Republic", "name_zh": "捷克",
+      "ex_officio": { "value": 6, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 6, "unit": "months", "basis": "office_issue" }
+    },
+    "DK": {
+      "name_en": "Denmark", "name_zh": "丹麦",
+      "ex_officio": { "value": 4, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 4, "unit": "months", "basis": "office_issue" }
+    },
+    "EE": {
+      "name_en": "Estonia", "name_zh": "爱沙尼亚",
+      "ex_officio": { "value": 4, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 2, "unit": "months", "basis": "office_issue", "qualifier": "at_least" }
+    },
+    "FR": {
+      "name_en": "France", "name_zh": "法国",
+      "ex_officio": { "value": 1, "unit": "months", "basis": "wipo_transmit" },
+      "opposition": { "value": 2, "unit": "months", "basis": "wipo_transmit" }
+    },
+    "DE": {
+      "name_en": "Germany", "name_zh": "德国",
+      "ex_officio": { "value": 4, "unit": "months", "basis": "wipo_transmit", "alternative": 2,
+        "footnote": "注册人住所在德国、主要营业地在德国或在德国设有机构时为 2 个月；三者均无时为 4 个月" },
+      "opposition": { "value": 4, "unit": "months", "basis": "wipo_transmit", "alternative": 2,
+        "footnote": "同左" }
+    },
+    "GH": {
+      "name_en": "Ghana", "name_zh": "加纳",
+      "ex_officio": { "value": 2, "unit": "months", "basis": "wipo_transmit" },
+      "opposition": { "value": 2, "unit": "months", "basis": "wipo_transmit" }
+    },
+    "GR": {
+      "name_en": "Greece", "name_zh": "希腊",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "wipo_receive" },
+      "opposition": { "value": 3, "unit": "months", "basis": "wipo_receive" }
+    },
+    "HU": {
+      "name_en": "Hungary", "name_zh": "匈牙利",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "day14_after_office_issue" },
+      "opposition": { "value": 3, "unit": "months", "basis": "day14_after_office_issue" }
+    },
+    "IS": {
+      "name_en": "Iceland", "name_zh": "冰岛",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 3, "unit": "months", "basis": "office_issue" }
+    },
+    "IR": {
+      "name_en": "Iran (Islamic Republic of)", "name_zh": "伊朗",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "wipo_transmit" },
+      "opposition": { "value": 60, "unit": "days", "basis": "wipo_transmit" }
+    },
+    "IE": {
+      "name_en": "Ireland", "name_zh": "爱尔兰",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 3, "unit": "months", "basis": "office_issue" }
+    },
+    "JP": {
+      "name_en": "Japan", "name_zh": "日本",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "office_issue" },
+      "opposition": { "applicable": false }
+    },
+    "KZ": {
+      "name_en": "Kazakhstan", "name_zh": "哈萨克斯坦",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "wipo_transmit" },
+      "opposition": { "applicable": false }
+    },
+    "LV": {
+      "name_en": "Latvia", "name_zh": "拉脱维亚",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "wipo_transmit" },
+      "opposition": { "value": 3, "unit": "months", "basis": "wipo_transmit" }
+    },
+    "LI": {
+      "name_en": "Liechtenstein", "name_zh": "列支敦士登",
+      "ex_officio": { "value": 5, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 3, "unit": "months", "basis": "office_issue" }
+    },
+    "LT": {
+      "name_en": "Lithuania", "name_zh": "立陶宛",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "office_issue", "alternative": 2,
+        "footnote": "驳回理由涉及商品和服务说明及/或集体商标时为 2 个月；存在绝对理由时为 3 个月" },
+      "opposition": { "value": 2, "unit": "months", "basis": "office_issue" }
+    },
+    "MK": {
+      "name_en": "North Macedonia", "name_zh": "北马其顿",
+      "ex_officio": { "value": 60, "unit": "days", "basis": "wipo_transmit" },
+      "opposition": { "value": 2, "unit": "months", "basis": "holder_receipt" }
+    },
+    "NO": {
+      "name_en": "Norway", "name_zh": "挪威",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 2, "unit": "months", "basis": "office_issue" }
+    },
+    "QA": {
+      "name_en": "Qatar", "name_zh": "卡塔尔",
+      "ex_officio": { "value": 60, "unit": "days", "basis": "holder_receipt" },
+      "opposition": { "value": 60, "unit": "days", "basis": "holder_receipt" }
+    },
+    "MD": {
+      "name_en": "Republic of Moldova", "name_zh": "摩尔多瓦",
+      "ex_officio": { "value": 2, "unit": "months", "basis": "holder_receipt" },
+      "opposition": { "value": 2, "unit": "months", "basis": "holder_receipt" }
+    },
+    "RU": {
+      "name_en": "Russian Federation", "name_zh": "俄罗斯",
+      "ex_officio": { "value": 6, "unit": "months", "basis": "office_issue" },
+      "opposition": { "applicable": false }
+    },
+    "RW": {
+      "name_en": "Rwanda", "name_zh": "卢旺达",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "wipo_transmit" },
+      "opposition": { "value": 60, "unit": "days", "basis": "wipo_transmit" }
+    },
+    "WS": {
+      "name_en": "Samoa", "name_zh": "萨摩亚",
+      "ex_officio": { "value": 6, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 2, "unit": "months", "basis": "office_issue" }
+    },
+    "RS": {
+      "name_en": "Serbia", "name_zh": "塞尔维亚",
+      "ex_officio": { "value": 6, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 2, "unit": "months", "basis": "holder_receipt_wipo" }
+    },
+    "SG": {
+      "name_en": "Singapore", "name_zh": "新加坡",
+      "ex_officio": { "value": 4, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 4, "unit": "months", "basis": "office_issue" }
+    },
+    "ES": {
+      "name_en": "Spain", "name_zh": "西班牙",
+      "ex_officio": { "value": 4, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 4, "unit": "months", "basis": "office_issue" }
+    },
+    "SE": {
+      "name_en": "Sweden", "name_zh": "瑞典",
+      "ex_officio": { "value": 3, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 2, "unit": "months", "basis": "office_issue" }
+    },
+    "TH": {
+      "name_en": "Thailand", "name_zh": "泰国",
+      "ex_officio": { "value": 90, "unit": "days", "basis": "office_issue" },
+      "opposition": { "value": 90, "unit": "days", "basis": "office_issue" }
+    },
+    "GB": {
+      "name_en": "United Kingdom", "name_zh": "英国",
+      "ex_officio": { "value": 2, "unit": "months", "basis": "office_issue" },
+      "opposition": { "value": 2, "unit": "months", "basis": "office_issue" }
+    },
+    "US": {
+      "name_en": "United States of America", "name_zh": "美国",
+      "ex_officio": { "value": 6, "unit": "months", "basis": "office_transmit_to_wipo" },
+      "opposition": { "value": 40, "unit": "days", "basis": "ttab_order" }
+    }
+  }
+}

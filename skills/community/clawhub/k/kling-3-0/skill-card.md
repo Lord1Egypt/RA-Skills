@@ -1,45 +1,65 @@
-## Description: <br>
-Kling 3.0 video generation on RunComfy, covering Standard, Pro, and 4K text-to-video and image-to-video endpoints through the local RunComfy CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kling 3.0 — Pro Pack on RunComfy helps agents choose and invoke RunComfy CLI endpoints for Kling 3.0 text-to-video and image-to-video generation across Standard, Pro, and 4K tiers.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers and creative operators use this skill to choose a Kling 3.0 tier and invoke RunComfy jobs for cinematic text-to-video or image-to-video generation. It is suited for previews, social clips, 1080p hero clips, native 4K masters, and image animation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RunComfy jobs can incur paid video-generation costs, especially for longer clips, audio, or 4K output. <br>
-Mitigation: Confirm tier, duration, audio settings, and expected cost before submitting jobs; iterate with lower-cost Standard settings when possible. <br>
-Risk: The skill requires a RunComfy token and may store or read credentials from the local RunComfy configuration. <br>
-Mitigation: Protect RUNCOMFY_TOKEN and ~/.config/runcomfy, avoid sharing credentials, and use scoped or revocable tokens where available. <br>
-Risk: Prompts and image URLs are processed by RunComfy and upstream model infrastructure. <br>
-Mitigation: Avoid confidential prompts or private image URLs unless provider-side processing is acceptable for the intended use. <br>
+## Use Case:
 
+External creators, developers, and automation agents use this skill to generate or animate cinematic video through RunComfy's Kling 3.0 endpoints. It guides tier and mode selection, input shaping, and CLI invocation for draft previews, hero 1080p clips, native 4K masters, and image-to-video animation.
 
-## Reference(s): <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction) <br>
-- [Kling 3.0 on RunComfy](https://www.runcomfy.com/models/kling/kling-3.0) <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/kling-3-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown guidance with inline JSON and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces RunComfy CLI invocation guidance; generated media files are produced by the external RunComfy service, not by the skill text itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill requires RunComfy authentication through a local login or RUNCOMFY_TOKEN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token scoped to RunComfy, keep unrelated secrets out of the same shell, and prefer a pinned or locally installed CLI version.
+
+Risk: Kling 3.0 generation sends prompts and image URLs to RunComfy for remote processing.
+
+Mitigation: Avoid submitting sensitive prompts or private image URLs unless that data is appropriate for the RunComfy service boundary.
+
+Risk: Generated videos, especially 4K outputs, can be large and are downloaded into the selected output directory.
+
+Mitigation: Choose output directories deliberately and confirm available disk and bandwidth before batch or 4K runs.
+
+Risk: Image-to-video mode requires a publicly fetchable HTTPS image URL.
+
+Mitigation: Use trusted image hosts and avoid exposing private assets through public URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/permew/skills/kling-3-0)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI introduction](https://docs.runcomfy.com/cli/introduction)
+- [RunComfy Kling 3.0 model page](https://www.runcomfy.com/models/kling/kling-3.0)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with bash commands and JSON input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce RunComfy CLI invocations, endpoint choices, input schemas, pricing notes, and output-directory guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,20 @@
+name: aimegeo-knowledge-distill
+slug: aimegeo-knowledge-distill
+display_name: 资料蒸馏为可用问答
+description: "将企业资料、教程、课程或经验记录整理成有原文出处的客户问答、资料索引与冲突缺口清单。适合复用知识和准备Agent参考资料；结合免费的aimeGeo，让已核对问答继续成为项目文章、配图和多平台发布的事实依据。"
+version: "1.0.2"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-knowledge-distill"
+tags:
+  - 知识蒸馏
+  - 客户问答
+  - 资料溯源
+  - 课程整理
+  - Agent知识库
+trigger_words:
+  - 把这份资料整理成客户常问的问题
+  - 从教程提炼问答并标明出处
+  - 把课程变成Agent参考资料
+  - 找出说明文档中的冲突和待补信息
+self_test: python3 scripts/self_test.py

@@ -1,48 +1,57 @@
-## Description: <br>
-Query Google Analytics GA4 properties for realtime and historical user metrics, dimensions, and metadata using the official Data API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Google Analytics GA4 properties for realtime and historical user metrics, dimensions, and metadata using the official Data API.
 
-## Publisher: <br>
-[Whosc](https://clawhub.ai/user/Whosc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whosc](https://clawhub.ai/user/whosc)
 
-## Use Case: <br>
-Developers and analytics operators use this skill to configure service-account access and run command-line GA4 realtime, historical, and metadata queries. It supports Markdown reports by default and optional JSON output for downstream automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires read access to the selected GA4 property through a service-account key. <br>
-Mitigation: Use a dedicated service account with the minimum Viewer role and grant access only to intended GA4 properties. <br>
-Risk: A leaked service-account JSON key could expose analytics data to unauthorized users. <br>
-Mitigation: Keep the key out of shared folders and repositories, and rotate it immediately if exposed. <br>
-Risk: Optional DingTalk delivery can send analytics reports to external chat channels. <br>
-Mitigation: Set DingTalk webhook variables only for channels approved to receive the relevant analytics data. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to run GA4 realtime, historical, metadata, and traffic-source queries from an agent or shell workflow. It helps inspect site and product analytics through Markdown tables, JSON responses, and generated report files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Whosc/google-analytics-ga4) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/README.md](artifact/README.md) <br>
-- [artifact/EXAMPLES.md](artifact/EXAMPLES.md) <br>
-- [Google Analytics Data API v1](https://developers.google.com/analytics/devguides/reporting/data/v1) <br>
-- [GA4 dimensions and metrics schema](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema) <br>
-- [Google Analytics Data API Python client](https://github.com/googleapis/google-analytics-data-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown tables by default, optional JSON responses, shell command examples, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GA4 property ID and Google service-account credentials; optional DingTalk delivery uses approved webhook environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Service-account credentials can expose GA4 data if stored in the skill directory or committed to source control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped Viewer service account, keep the JSON key outside the skill when possible, and apply ignore and secret-scanning protections.
+
+Risk: Analytics reports can be sent to an arbitrary DingTalk webhook when webhook environment variables are configured.
+
+Mitigation: Set DINGTALK_WEBHOOK only after verifying the destination and confirming that the report content is acceptable to send there.
+
+## Reference(s):
+
+- [GA4 Data API documentation](https://developers.google.com/analytics/devguides/reporting/data/v1)
+- [GA4 dimensions and metrics schema](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema)
+- [GA4 Data API authorization](https://developers.google.com/analytics/devguides/reporting/data/v1/authorization)
+- [Google Analytics Data API Python client](https://github.com/googleapis/google-analytics-data-python)
+- [ClawHub skill page](https://clawhub.ai/whosc/skills/google-analytics-ga4)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables by default, optional JSON, generated Markdown reports, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GA4 property ID and Google service-account credentials or application default credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

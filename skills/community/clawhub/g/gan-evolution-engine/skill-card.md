@@ -1,43 +1,61 @@
-## Description: <br>
-GAN Evolution Engine uses a GAN-like loop to generate, evaluate, select, and save evolved variants of AI agent skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generative Adversarial Evolution for AI Agent Skills uses a GAN-like loop to create, evaluate, and select skill variants for iterative capability improvement.
 
-## Publisher: <br>
-[sudabg](https://clawhub.ai/user/sudabg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sudabg](https://clawhub.ai/user/sudabg)
 
-## Use Case: <br>
-Developers and engineers use this skill to evolve target agent skills by generating candidate variants, benchmarking fitness, selecting elite variants, and optionally publishing evolution results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill directly executes generated or target-skill code on the host. <br>
-Mitigation: Run it only in an isolated workspace or container, review generated variants before use, and avoid mounting sensitive files or secrets. <br>
-Risk: The security evidence says the skill reads local credential files and may send target skill code to OpenRouter. <br>
-Mitigation: Do not use it on proprietary or secret-bearing skills unless that disclosure path is acceptable, and review OpenRouter and EvoMap credential paths before enabling publishing. <br>
+## Use Case:
 
+Developers and agent engineers use this skill to generate and benchmark variants of an existing agent skill, then select higher-fitness outputs for review, promotion, or publishing.
 
-## Reference(s): <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Manifest](artifact/manifest.json) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/sudabg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown skill variants, JSON evolution history, benchmark results, and optional shell command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces evolved skill directories and may invoke OpenRouter and EvoMap workflows when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill runs and writes untrusted generated variant code without reliable isolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test only in a disposable container or virtual machine with network access disabled and no valuable workspace files.
+
+Risk: Credential handling is flagged as unsafe by the server security evidence.
+
+Mitigation: Remove inherited API keys, rotate the exposed EvoMap secret, and redact credential logging before installation or execution.
+
+Risk: Bundled evolved skill outputs and hooks may introduce behavior outside the core GAN evolution workflow.
+
+Mitigation: Remove or isolate bundled evolved outputs and hooks, then review the remaining files before use.
+
+Risk: Dependency and path handling require review before normal workspace use.
+
+Mitigation: Pin dependencies and validate generated paths before executing the skill on any non-disposable target.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sudabg/skills/gan-evolution-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands, generated skill files, JSON evolution history, and optional publishing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces evolved skill variants under an output directory and records fitness history for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

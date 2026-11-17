@@ -1,42 +1,53 @@
-## Description: <br>
-Guides structured help for Email Reply Assistant using clear templates, checks, and safe defaults (category: Communication). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Email Reply Assistant using clear templates, checks, and safe defaults (category: Communication).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-External users and teams use this skill to produce structured email-reply assistance with concise plans, reusable checklists, next actions, and editable draft copy blocks while avoiding secret or unnecessary personal-data collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste passwords, one-time codes, private keys, or unnecessary personal information into email-reply prompts. <br>
-Mitigation: Keep pasted inputs minimal and exclude secrets or unnecessary personal data before using the skill. <br>
-Risk: Draft email guidance may be inaccurate, unclear, or unsuitable for the intended audience. <br>
-Mitigation: Review and edit generated plans, checklists, next actions, and draft copy before sending or sharing them. <br>
-Risk: The PayPal donation link could be mistaken for a required part of using the skill. <br>
-Mitigation: Treat donation links as optional and separate from installing or using the skill. <br>
+## Use Case:
 
+External users use this skill to draft, critique, and structure email or communication replies with concise plans, reusable checklists, next actions, and editable draft copy while minimizing unnecessary personal data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abdullah944/email-reply-assistant-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise plans, numbered checklists, next-action lists, and optional editable draft copy blocks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, metadata, release evidence) <br>
+Risk: The activation wording is broad, which could lead users to apply the skill outside email or communication drafting contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when email or communication-drafting assistance is intended, and review outputs before sending.
+
+Risk: Email drafting can expose secrets, private data, or unnecessary personal information if users paste sensitive source material.
+
+Mitigation: Avoid pasting passwords, OTPs, private keys, session secrets, or unnecessary personal information; provide only the minimum context needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/email-reply-assistant-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with concise plans, numbered checklists, next actions, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential use, or hidden data access is indicated by the security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and metadata changelog, released 2026-05-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

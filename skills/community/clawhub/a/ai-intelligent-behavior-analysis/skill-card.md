@@ -1,41 +1,52 @@
-## Description: <br>
-Behavior analysis for action recognition, anomaly detection, crowd analysis, trajectory analysis, and real-time warning notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides behavior analysis for action recognition and anomaly detection.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to analyze video for action classification, anomalies such as fighting or falls, crowd movement, trajectories, and real-time alerts in security, factory safety, elderly care, and campus safety scenarios.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Install steps may execute unreviewed remote code and dependencies.
+
+Mitigation: Review the repository and dependency set before installation, and run the skill in an isolated environment with limited filesystem, credential, camera/video, and network access.
+
+Risk: Behavior monitoring can create legal, privacy, and operational risks if used without consent, retention controls, or alert review procedures.
+
+Mitigation: Confirm lawful consent, retention rules, alert review procedures, and false-positive handling before real-world monitoring use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operations teams use this skill to support video behavior analysis workflows for security monitoring, factory safety, elder care, and campus safety. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used with private or sensitive video streams in security, factory, elder care, or campus settings. <br>
-Mitigation: Review requested tools, environment variables, data access, and deployment permissions before using it with private video data. <br>
-Risk: Action recognition and anomaly detection outputs can be incorrect or context-dependent. <br>
-Mitigation: Use human review and operational validation before acting on warnings in safety or monitoring workflows. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-behavior-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+**Other Properties Related to Output:** [Describes setup and operational guidance for a video behavior analysis application.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide setup for Python, FastAPI, behavior recognition models, video analysis, and real-time alerts.] <br>
+1.0.0 (source: frontmatter, release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

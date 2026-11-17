@@ -1,43 +1,62 @@
-## Description: <br>
-Content Fetch Skill uses Playwright browser automation to fetch articles, posts, images, screenshots, and structured JSON from Twitter/X, Zhihu, WeChat public articles, Toutiao, Huxiu, and general web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches article, social post, and general webpage content from supported sites using Playwright, producing structured JSON, screenshots, and downloaded images.
 
-## Publisher: <br>
-[gjbmail](https://clawhub.ai/user/gjbmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gjbmail](https://clawhub.ai/user/gjbmail)
 
-## Use Case: <br>
-Developers and external users use this skill to archive or analyze web content from supported article and social platforms when they need structured local copies of page text, images, screenshots, and metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate under logged-in browser sessions using provided cookies. <br>
-Mitigation: Use dedicated or low-privilege accounts, provide cookies only for sites the user is authorized to archive, and delete cookie, session, and output files when finished. <br>
-Risk: The skill includes anti-detection and security-bypass browser settings. <br>
-Mitigation: Review the browser settings before deployment and run the skill only in environments where that behavior is approved. <br>
-Risk: The skill may fetch content from sites with access restrictions or terms governing scraping and proxy use. <br>
-Mitigation: Use it only for authorized content collection and review proxy use against the target site's terms before running. <br>
+## Use Case:
 
+Developers and content operations users use this skill to archive or extract web articles, posts, and images from Twitter/X, Zhihu, WeChat public articles, Toutiao, Huxiu, and generic webpages. It is intended for user-authorized and site-compliant content collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gjbmail/content-fetch-skill) <br>
-- [Twitter/X.com troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON result files with downloaded image files and page screenshots, plus command and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates per-task output directories under fetch_data/{site}/{task_id}; cookie and proxy inputs may be required for some sites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can use cookie files or browser sessions to access web content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated, low-privilege environment and treat cookie files as account credentials.
+
+Risk: The skill accepts broad web targets and can scrape internal or sensitive URLs if pointed at them.
+
+Mitigation: Restrict use to authorized public or approved URLs and avoid internal, private, or sensitive targets.
+
+Risk: Scraped text, screenshots, images, and configuration can remain on disk under the skill directory.
+
+Mitigation: Review and clean fetch_data, cookies, and configuration files after use.
+
+Risk: Some browser launch settings weaken browser security protections to support scraping.
+
+Mitigation: Use a disposable browser context and limit network access to intended targets.
+
+## Reference(s):
+
+- [Troubleshooting Guide](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/gjbmail/skills/content-fetch-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance plus JSON result files, screenshots, and downloaded image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes task output under fetch_data/{site}/{task_id}/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

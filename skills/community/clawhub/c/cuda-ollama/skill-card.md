@@ -1,47 +1,62 @@
-## Description: <br>
-CUDA Ollama routes Ollama LLM inference across NVIDIA GPUs with automatic CUDA load balancing, 7-signal scoring, vRAM-aware fallback, and auto-retry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cuda Ollama helps agents route Ollama LLM inference across NVIDIA CUDA GPU fleets with load-aware scoring, vRAM-aware fallback, auto-retry, monitoring, and OpenAI-compatible endpoints.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and operate an Ollama inference router across local NVIDIA CUDA GPU machines. It helps route requests, monitor fleet health, and apply safe operational controls for model downloads and deletions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing or running the referenced router package from public package sources could introduce supply-chain risk. <br>
-Mitigation: Verify the ollama-herd PyPI package and linked GitHub project before installation. <br>
-Risk: A local inference router may expose GPU-backed model endpoints to unintended hosts if network access is broad. <br>
-Mitigation: Run the router only on trusted machines and scope API or firewall access to intended hosts. <br>
-Risk: Systemd or Windows environment changes can alter local Ollama behavior across sessions. <br>
-Mitigation: Review sudo, systemd, and Windows environment changes before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and operate an Ollama router across multiple NVIDIA CUDA GPU machines. It provides commands, API examples, monitoring endpoints, and configuration guidance for local fleet inference.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/twinsgeeks/cuda-ollama) <br>
-- [Ollama Herd GitHub repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Ollama Herd PyPI package](https://pypi.org/project/ollama-herd/) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
-- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md) <br>
-- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, curl, and PowerShell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no hidden code or credential collection reported by ClawScan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Installing and running the Ollama router package changes the local execution environment and starts local router or node services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or low-privilege account, review the package source, and pin a trusted version before use.
+
+Risk: The Linux systemd commands can change the host Ollama service configuration.
+
+Mitigation: Run those commands only when the operator intentionally wants to change the host Ollama service and has reviewed the service override.
+
+Risk: Model downloads can consume substantial storage and model deletion can remove local assets.
+
+Mitigation: Require explicit user confirmation for downloads and deletions, and keep automatic pulls disabled unless intentionally opted in.
+
+## Reference(s):
+
+- [Cuda Ollama ClawHub Skill](https://clawhub.ai/twinsgeeks/skills/cuda-ollama)
+- [Ollama Herd GitHub Repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Ollama Herd PyPI Package](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+- [API Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/api-reference.md)
+- [Configuration Reference](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/configuration-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, Python, curl, and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local service commands, API request examples, monitoring endpoints, and safety guardrails for model operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

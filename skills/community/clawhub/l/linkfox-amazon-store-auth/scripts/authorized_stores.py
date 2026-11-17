@@ -24,12 +24,15 @@ API_ENDPOINT = f"{API_BASE_URL}/spApi/authorizedStores"
 
 
 def get_api_key():
-    """Retrieve the API key from environment, with a friendly prompt if missing."""
+    """
+    获取配置在环境变量的API Key。
+    如果获取不到，按 SKILL.md 的 **## 解决认证和算力问题** 处理。
+    Retrieve the API key from environment, with a friendly prompt if missing.
+    """
     key = os.environ.get("LINKFOX_AGENT_API_KEY") or os.environ.get("LINKFOXAGENT_API_KEY")
     if not key:
         print(
-            "API Key not configured. Please set the environment variable:\n"
-            "  export LINKFOXAGENT_API_KEY=your-key-here",
+            "API Key 未配置",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -52,8 +55,12 @@ def call_api() -> dict:
     )
 
     try:
-        with urlopen(req, timeout=30) as response:
-            return json.loads(response.read().decode("utf-8"))
+        with urlopen(req, timeout=150) as response:
+            result = json.loads(response.read().decode("utf-8"))
+            error_code = str(result.get("errcode", ""))
+            if error_code.isdigit() and 1500 <= int(error_code) <= 1599:
+                raise SystemExit(json.dumps(result, ensure_ascii=False))
+            return result
     except HTTPError as e:
         body = e.read().decode("utf-8") if e.fp else ""
         return {"error": f"HTTP {e.code}: {e.reason}", "details": body}

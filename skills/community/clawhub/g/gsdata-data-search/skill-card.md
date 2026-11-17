@@ -1,40 +1,56 @@
-## Description: <br>
-Parses Chinese natural-language ES search requests, calls a local social-media/news search API, and returns matching results as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses natural-language search requests into ES search parameters, calls an ES search API for social media and news data, and returns formatted results.
 
-## Publisher: <br>
-[urhd528](https://clawhub.ai/user/urhd528) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urhd528](https://clawhub.ai/user/urhd528)
 
-## Use Case: <br>
-Developers and analysts use this skill to convert Chinese natural-language search requests into ES API parameters and retrieve social-media or news records by keyword, platform, time range, and sentiment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores app_key credentials in a local config.json file and can display that configuration. <br>
-Mitigation: Use a limited-purpose app_key, avoid sharing --show-config output, and clear config.json when finished. <br>
-Risk: Search terms and app-key-based headers are sent to the configured local ES search service during normal API mode. <br>
-Mitigation: Install only when that service is expected and approved for the data being searched. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urhd528/gsdata-data-search) <br>
-- [Publisher profile](https://clawhub.ai/user/urhd528) <br>
+## Use Case:
 
+Developers, analysts, and agent operators use this skill to search social media and news content by keyword, platform, sentiment, and date range from a natural-language request.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown search-result table or JSON search parameters, with plain-text error guidance when configuration or API calls fail] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads or writes local config.json for app_key credentials; default API mode sends search terms and app-key-derived headers to a local ES search service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Credential handling and authentication documentation need review before installation.
+
+Mitigation: Use only with a trusted local ES API service, confirm the required authentication flow, and review the skill before deployment.
+
+Risk: Credentials may be stored or displayed in plaintext configuration.
+
+Mitigation: Use a low-scope app_key that can be rotated, avoid storing unnecessary tokens, and do not run --show-config in shared logs or screen-sharing sessions.
+
+Risk: Dependency versions are not pinned.
+
+Mitigation: Pin dependencies and review updates before installing the skill in managed environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/urhd528/skills/gsdata-data-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown search results, JSON parameter previews, or plain-text status and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a trusted local ES API service and read or write config.json for app_key and optional token settings.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

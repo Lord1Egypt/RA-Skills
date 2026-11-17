@@ -1,42 +1,57 @@
-## Description: <br>
-Creates and pushes date-based GitHub release tags, and matching GitHub Releases, for one or more configured microservice repositories from a selected branch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and pushes date-based release tags, and matching GitHub releases, for one or more configured microservice repositories from a selected branch.
 
-## Publisher: <br>
-[sunyang777](https://clawhub.ai/user/sunyang777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunyang777](https://clawhub.ai/user/sunyang777)
 
-## Use Case: <br>
-Developers and release engineers use this skill to prepare and execute release tagging for configured service repositories, including selecting services, branches, date-based or explicit tag names, and optional dry-run review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled credentials and unrelated Feishu/Jenkins configuration may expose secrets or enable unintended access. <br>
-Mitigation: Remove bundled credentials, rotate any exposed GitHub, Feishu, and Jenkins secrets, and require user-supplied least-privilege credentials before installation or use. <br>
-Risk: The skill can create remote tags and GitHub Releases, and its script can operate across all configured repositories when no service scope is supplied. <br>
-Mitigation: Confirm the exact repositories, branch, tag, and release behavior before execution; use dry-run mode for review when the user has not explicitly authorized the final write. <br>
-Risk: Release creation or backfill behavior may surprise users who only expect tag creation. <br>
-Mitigation: State that matching GitHub Releases are created or backfilled as part of the operation before running the script. <br>
+## Use Case:
 
+Developers and release engineers use this skill to prepare release tag operations for configured services, choose the target branch or explicit tag name, run dry runs when needed, and report tag, release, and pull request details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunyang777/tag-release) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized script results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include processed service names, branch, tag name, dry-run status, tag links, release links, PR metadata, and failure reasons.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The release evidence reports plaintext service credentials in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install or run the package as-is; rotate exposed credentials and replace bundled secrets with placeholders or runtime secret loading before use.
+
+Risk: The release evidence reports broad write behavior for multi-repository tag and release creation.
+
+Mitigation: Require explicit service selection or a separate confirmed bulk flag before any non-dry-run operation.
+
+Risk: The skill performs real remote GitHub tag and release writes.
+
+Mitigation: Use dry-run mode first and review the selected services, branch, tag name, and target commits before allowing writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunyang777/skills/tag-release)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summary with shell command invocations and release operation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include processed service names, target branch, tag name, dry-run status, tag and release links, latest pull request details, and failure reasons.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

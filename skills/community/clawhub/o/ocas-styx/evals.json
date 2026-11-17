@@ -1,0 +1,17 @@
+{
+  "skill": "ocas-styx",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-styx",
+  "evals": [
+    {
+      "input": "Show me my spending at Amazon this month",
+      "expected_output": "Returns categorized spending data for Amazon transactions",
+      "description": "Spending analysis"
+    },
+    {
+      "input": "What are my top merchants by spending?",
+      "expected_output": "Returns ranked list of merchants with spending totals",
+      "description": "Merchant ranking"
+    }
+  ]
+}

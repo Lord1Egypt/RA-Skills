@@ -1,0 +1,19 @@
+{
+  "name": "mealie-recipe-import",
+  "version": "1.0.0",
+  "description": "Import recipes into a self-hosted Mealie instance from a photo, text, or URL, with AI ingredient parsing, food/unit creation, and cover image upload.",
+  "keywords": [
+    "mealie",
+    "recipe",
+    "recipes",
+    "cooking",
+    "self-hosted",
+    "api",
+    "import",
+    "ocr",
+    "ingredients",
+    "meal-planning"
+  ],
+  "author": "MaikiMolto",
+  "license": "MIT"
+}

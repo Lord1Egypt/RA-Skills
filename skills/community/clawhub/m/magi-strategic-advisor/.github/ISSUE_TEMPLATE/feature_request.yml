@@ -1,0 +1,51 @@
+name: Feature request
+description: Suggest an improvement to the skill package, scripts, or documentation
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement. Please complete the fields
+        below. Check existing issues first to avoid duplicates.
+
+  - type: textarea
+    id: scenario
+    attributes:
+      label: User scenario
+      description: Describe the situation in which the improvement is needed.
+      placeholder: |
+        As a user of the MAGI Strategic Advisor, I want to ... so that ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the change you would like to see, in concrete terms.
+    validations:
+      required: true
+
+  - type: textarea
+    id: benefit
+    attributes:
+      label: Expected benefit
+      description: Who benefits from this change, and how?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you considered and why they are weaker.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: willingness
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to submit a pull request for this change.
+          required: false

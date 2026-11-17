@@ -1,47 +1,64 @@
-## Description: <br>
-Helps agents use Fabric.so's `fabric` CLI for setup checks, workspace search, saving notes, links, and files, task management, assistant queries, shell completion, JSON workflows, and persistent agent memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through safe Fabric.so CLI workflows for setup, search, browsing, saving notes, links, and files, task and workspace management, shell completion, JSON output, and persistent agent memory.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and agent users use this skill to operate the Fabric.so CLI from a shell, including searching or browsing a Fabric library, saving workspace content, managing tasks and workspaces, checking setup, and using Fabric as a persistent memory layer. It is intended for Fabric.so `fabric`, not Microsoft Fabric `fab` or other unrelated Fabric tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to read, write, and persist data in a remote Fabric workspace. <br>
-Mitigation: Review write, upload, workspace switch, installer, authentication, and memory actions before execution; require explicit confirmation for destructive or hard-to-reverse operations. <br>
-Risk: Fabric memory and file uploads may expose secrets or sensitive personal data if used carelessly. <br>
-Mitigation: Do not store secrets, credential files, private keys, browser profiles, raw transcripts, or sensitive personal data in Fabric; redact tokens and prefer secure authentication routes. <br>
+## Use Case:
 
+Developers and command-line agents use this skill to operate the Fabric.so CLI for knowledge workspace search, content capture, task management, workspace selection, assistant queries, setup diagnostics, and persistent project memory while respecting consent and secret-handling boundaries.
 
-## Reference(s): <br>
-- [Fabric User Guide: CLI usage](https://user-guide.fabric.so/ai-tools/CLI-usage) <br>
-- [Fabric CLI download page](https://fabric.so/download/cli) <br>
-- [Sources and provenance](references/sources.md) <br>
-- [Command reference](references/command-reference.md) <br>
-- [Workflow playbook](references/workflows.md) <br>
-- [Security and consent guide](references/security-and-consent.md) <br>
-- [Agent memory guide](references/agent-memory.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON command plans, and structured note templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live CLI help checks when syntax may vary and prefers JSON output for parseable Fabric CLI responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata version: 2.0.0) <br>
+Risk: The installer workflow can execute mutable remote code on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download and inspect the complete installer before execution, prefer a versioned or signed package when available, and run installation only after explicit user approval.
+
+Risk: Fabric CLI write operations can change a remote workspace.
+
+Mitigation: Confirm the active workspace before writes and require a clear user request for note, link, file, folder, task, workspace, authentication, or other state-changing commands.
+
+Risk: Uploaded files, saved notes, or persistent memory can expose credentials or sensitive information.
+
+Mitigation: Avoid credential-bearing files and secret text, redact tokens from summaries and memory notes, and only save persistent memory when the user has opted in.
+
+## Reference(s):
+
+- [Fabric User Guide CLI Usage](https://user-guide.fabric.so/ai-tools/CLI-usage)
+- [Fabric CLI Download](https://fabric.so/download/cli)
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/fabric-cli)
+- [Sources and provenance](references/sources.md)
+- [Fabric.so CLI command reference](references/command-reference.md)
+- [Security and consent guide](references/security-and-consent.md)
+- [Fabric.so CLI workflow playbook](references/workflows.md)
+- [Using Fabric.so CLI as persistent agent memory](references/agent-memory.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON-oriented command plans, and generated note templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for agent execution planning and user-facing summaries; live Fabric CLI results depend on installed CLI version, authentication, workspace, and network access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release; artifact metadata version 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

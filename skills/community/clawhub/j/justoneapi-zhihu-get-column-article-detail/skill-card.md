@@ -1,41 +1,51 @@
-## Description: <br>
-Call GET /api/zhihu/get-column-article-detail/v1 for Zhihu Column Article Details through JustOneAPI with id. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/zhihu/get-column-article-detail/v1 for Zhihu Column Article Details through JustOneAPI with id.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Zhihu column article details by article ID through JustOneAPI. It supports article archiving and content research workflows that need title, author, and content data from the documented endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a JustOneAPI token and the requested Zhihu article id to api.justoneapi.com. <br>
-Mitigation: Use a restricted, rotatable token where possible, avoid shared machines, and do not paste token values into chat messages, screenshots, or logs. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve Zhihu column article details by article id through JustOneAPI, supporting article archiving and content research workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-zhihu-get-column-article-detail) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_detail&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_detail&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with JSON response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a Zhihu article id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The JustOneAPI token can be exposed through command arguments, request URLs, shell tracing, or process and proxy logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped or low-risk token when available, avoid logging full commands or URLs, restrict access to process and proxy logs, and rotate the token if it may have been exposed.
+
+## Reference(s):
+
+- [JustOneAPI API Homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_detail&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_zhihu_get_column_article_detail&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and a Zhihu article id.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

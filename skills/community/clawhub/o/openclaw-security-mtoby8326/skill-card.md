@@ -1,46 +1,58 @@
-## Description: <br>
-OpenClaw Security scans OpenClaw session content for sensitive personal data across CN, US, AU, UK, DE, FR, SG, MY, TH, and ID regions and records masked local audit events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Security scans OpenClaw session content for sensitive personal data across ten regions and writes local NDJSON audit records.
 
-## Publisher: <br>
-[mtoby8326](https://clawhub.ai/user/mtoby8326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtoby8326](https://clawhub.ai/user/mtoby8326)
 
-## Use Case: <br>
-Developers and agents use this skill to audit user input, prompts, conversation context, and knowledge-base content for PII before or during OpenClaw workflows. It is intended for local privacy audits where masked findings, risk level, source type, and audit status need to be retained as NDJSON records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session, prompt, context, or knowledge-base content may contain sensitive personal data. <br>
-Mitigation: Enable the skill only for authorized content sources and review audit scope before starting background scans. <br>
-Risk: Passing sensitive content through command-line arguments can expose it in process metadata. <br>
-Mitigation: Use file-based scans with --delete-after-read for background or automated audits; reserve --text for short manual tests. <br>
-Risk: Sampling and cache behavior can skip repeated or sampled content when full coverage is required. <br>
-Mitigation: Use --no-cache when complete scan coverage matters. <br>
-Risk: Local audit records and retention settings may not match the deployment's privacy requirements. <br>
-Mitigation: Review the audit directory, configure retention, and run cleanup.py --dry-run before deleting records. <br>
-Risk: Inputs longer than 32,768 characters are truncated before scanning. <br>
-Mitigation: Split larger content into smaller authorized files when full-content scanning is required. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to audit user input, prompts, conversation context, and knowledge base content for sensitive personal data while keeping a local audit trail for review.
 
-## Reference(s): <br>
-- [Detection Patterns Reference](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [JSON scan summaries, local NDJSON audit records, and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only audit records store masked previews and content hashes; input is capped at 32,768 characters and audit retention defaults to 7 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Audit logs and .scan-cache.json may contain sensitive audit metadata and masked PII previews.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat audit output as sensitive local data, restrict access to the audit directory, and use retention cleanup.
+
+Risk: File and directory deletion features can remove unintended data if pointed at broad or unrelated paths.
+
+Mitigation: Use --delete-after-read only for scan-specific temporary files and run cleanup.py with --dry-run before deleting audit data.
+
+Risk: Passing PII with --text can expose sensitive content through process metadata.
+
+Mitigation: Use --file for automated or background scans and remove temporary input files after the scan.
+
+## Reference(s):
+
+- [Detection Patterns Reference](artifact/references/patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtoby8326/skills/openclaw-security-mtoby8326)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands; CLI status text or JSON summaries; local NDJSON audit records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local audit records and .scan-cache.json; input is capped at 32,768 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

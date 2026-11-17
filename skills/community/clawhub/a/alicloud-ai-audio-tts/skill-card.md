@@ -1,47 +1,60 @@
-## Description: <br>
-Generate human-like speech audio with Model Studio DashScope Qwen TTS models (qwen3-tts-flash, qwen3-tts-instruct-flash). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate human-like speech audio with Model Studio DashScope Qwen TTS models (qwen3-tts-flash, qwen3-tts-instruct-flash). Use when converting text to speech, producing voice lines for short drama/news videos, or documenting TTS request/response fields for DashScope.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and content teams use this skill to convert text into speech with Alibaba Cloud DashScope Qwen TTS models, including voice lines for short drama or news videos. It also helps document request and response fields for DashScope text-to-speech workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Request JSON can include a base_url value, which may send DashScope API credentials to a non-official endpoint. <br>
-Mitigation: Use only official DashScope endpoints and do not pass untrusted request JSON containing base_url. <br>
-Risk: The helper downloads an audio URL returned by the service without independent URL validation. <br>
-Mitigation: Only process responses from official DashScope endpoints, keep outputs in controlled directories, and review generated files before sharing them. <br>
-Risk: Text prompts and generated audio may contain sensitive information handled by an external cloud service. <br>
-Mitigation: Avoid sending or storing sensitive text or audio unless your Alibaba Cloud data-handling requirements allow it. <br>
+## Use Case:
 
+Developers and content production teams use this skill to generate Alibaba Cloud DashScope Qwen TTS audio from text, prepare request payloads, and understand non-streaming and streaming response fields.
 
-## Reference(s): <br>
-- [Skill Page](https://clawhub.ai/cinience/alicloud-ai-audio-tts) <br>
-- [Publisher Profile](https://clawhub.ai/user/cinience) <br>
-- [DashScope SDK Reference](references/api_reference.md) <br>
-- [Source List](references/sources.md) <br>
-- [DashScope Beijing API Endpoint](https://dashscope.aliyuncs.com/api/v1) <br>
-- [DashScope International API Endpoint](https://dashscope-intl.aliyuncs.com/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples plus optional generated audio files and JSON response metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is saved under output/alicloud-ai-audio-tts/audio/ by default, or under OUTPUT_DIR when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Request data can change the API endpoint before the DashScope API key is used, which could expose the key and submitted text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted request files, avoid any base_url override, and run with a tightly scoped DashScope API key.
+
+Risk: Generated request and audio artifacts can contain private text or voice content.
+
+Mitigation: Keep outputs in a dedicated directory and delete saved request or audio artifacts that contain sensitive content.
+
+Risk: Unpinned SDK dependencies can change behavior over time.
+
+Mitigation: Pin the DashScope SDK version before operational use.
+
+## Reference(s):
+
+- [DashScope SDK Reference (Qwen TTS)](artifact/references/api_reference.md)
+- [Official documentation source list](artifact/references/sources.md)
+- [DashScope API endpoint](https://dashscope.aliyuncs.com/api/v1)
+- [DashScope international API endpoint](https://dashscope-intl.aliyuncs.com/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash and Python snippets, plus generated audio files and optional JSON response data when the helper script is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DashScope API key; generated audio defaults to output/ai-audio-tts/audio/.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

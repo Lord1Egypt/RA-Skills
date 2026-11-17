@@ -1,42 +1,52 @@
-## Description: <br>
-Converts Markdown (.md) files to Word (.docx), PDF, and styled HTML, including support for Chinese text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Markdown (.md) files to Word (.docx), PDF, and styled HTML in one shot.
 
-## Publisher: <br>
-[kelley99](https://clawhub.ai/user/kelley99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kelley99](https://clawhub.ai/user/kelley99)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and document authors use this skill to convert Markdown files into shareable Word, PDF, or styled HTML documents, including documents with Chinese text.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: HTML conversion of untrusted Markdown may preserve unsafe raw HTML or script content.
+
+Mitigation: Do not use the HTML converter on untrusted Markdown unless the output is sanitized or raw HTML and script content are disabled.
+
+Risk: Unpinned Python dependencies can change behavior across environments.
+
+Mitigation: Install dependencies in a normal user environment or virtual environment, and prefer pinned dependency versions when maintaining the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, writers, and other external users can use this skill to convert Markdown documents into shareable HTML, Word, or PDF outputs from local files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided Markdown files and writes converted outputs, so it may process sensitive document contents. <br>
-Mitigation: Use it only on files intended for conversion and review output paths before sharing generated documents. <br>
-Risk: DOCX and PDF conversion require local Python dependencies that may need to be installed or run locally. <br>
-Mitigation: Review package-install commands before running them and install dependencies from trusted package indexes. <br>
-Risk: Generated conversions may not preserve every Markdown feature identically across HTML, DOCX, and PDF. <br>
-Mitigation: Review converted files before relying on or distributing them. <br>
+**Output Format:** [Markdown guidance with inline shell commands and generated document files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kelley99/md-converter) <br>
+**Other Properties Related to Output:** [Produces HTML, DOCX, PDF, or all three from a Markdown input; DOCX and PDF conversion require Python dependencies.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated HTML, DOCX, and PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads user-provided Markdown files and writes converted output files; DOCX and PDF conversion require local Python dependencies.] <br>
+1.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -12,9 +12,9 @@
 
 ---
 
-## 工作机制
+## 启动时自动检查
 
-### 1. 启动时检查
+### 1. 检查行为
 
 每次执行任意 `kugou-cli` 命令时，**后台异步**检查 npm registry 上的最新版本。
 
@@ -27,7 +27,6 @@
 
 ### 2. 检查频率限制
 
-- 缓存文件：`~/.config/kugou-cli/update_check.json`
 - 缓存有效期：**24 小时**
 - 24 小时内不会重复访问 npm registry
 
@@ -45,6 +44,8 @@
 ```bash
 kugou-cli update --check
 ```
+
+> **绕过 24h 缓存**：显式调用 `kugou-cli update [--check]` **总是**绕过本地 24h 缓存，强制访问 npm registry。这与"启动时被动检查"的语义不同——启动检查走缓存（24h 内不重复访问 npm），显式 `update` 命令不走缓存。
 
 **输出示例**：
 

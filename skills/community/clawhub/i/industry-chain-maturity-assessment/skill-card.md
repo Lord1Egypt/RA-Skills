@@ -1,40 +1,53 @@
-## Description: <br>
-Assesses industry-chain maturity and growth potential across chain structure, enterprise clustering, coordination, leading enterprises, innovation resources, and ecosystem maturity. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Assesses industry-chain maturity by analyzing chain structure, enterprise clustering, collaboration, leading-enterprise influence, innovation resources, ecosystem maturity, and improvement paths.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Researchers, planners, and industry strategy teams use this skill to generate industry-chain maturity assessment reports for a named industry chain and optional region, including scoring, shortfall analysis, and chain-strengthening or investment-attraction recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated maturity scores or investment recommendations may be inaccurate or misleading if public data is incomplete or stale. <br>
-Mitigation: Verify key claims, cited sources, and scoring assumptions against public evidence before using the report for decisions. <br>
-Risk: Industry or regional inputs may include confidential business strategy or market intelligence. <br>
-Mitigation: Avoid supplying confidential business data unless it is acceptable to process it in the agent session. <br>
+## Use Case:
 
+Developers, analysts, and industrial strategy teams use this skill to produce Chinese-language industry-chain maturity assessment reports for a target industry and region, including maturity scoring, weak-link diagnosis, and chain-strengthening or investment-attraction recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/industry-chain-maturity-assessment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown industry-chain maturity assessment report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses target industry chain, assessment region, time range, and remediation preference to structure the report; relies on public web and industry data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Business decisions may be affected by incomplete, outdated, or unavailable public data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the cited sources, assumptions, and data gaps before using the report for investment, planning, or procurement decisions.
+
+Risk: The skill performs current web research and produces strategy recommendations that may require local market context.
+
+Mitigation: Validate findings with domain experts and current regional policy or market evidence before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/industry-chain-maturity-assessment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language report with cited public sources, maturity scoring, risk notes, and decision-support recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "name": "same-name-count sample dataset",
+    "description": "内置示例姓名频率数据集（示例数据，非权威户籍统计），按 姓名/性别/省份 记录人数，可复现、可替换。",
+    "note": "counts are demo figures for a reproducible offline demo only; replace with an authorised data source for real use",
+    "version": "2026.10",
+    "provinces": ["北京", "上海", "广东", "浙江", "江苏", "山东", "河南", "四川"]
+  },
+  "genders": ["男", "女"],
+  "provinces": ["北京", "上海", "广东", "浙江", "江苏", "山东", "河南", "四川"],
+  "records": [
+    {"name": "王伟", "gender": "男", "province": "北京", "count": 1288},
+    {"name": "王伟", "gender": "男", "province": "上海", "count": 966},
+    {"name": "王伟", "gender": "男", "province": "广东", "count": 1532},
+    {"name": "王伟", "gender": "男", "province": "江苏", "count": 720},
+    {"name": "王伟", "gender": "男", "province": "山东", "count": 845},
+
+    {"name": "张伟", "gender": "男", "province": "北京", "count": 1345},
+    {"name": "张伟", "gender": "男", "province": "上海", "count": 1102},
+    {"name": "张伟", "gender": "男", "province": "广东", "count": 1688},
+    {"name": "张伟", "gender": "男", "province": "浙江", "count": 934},
+    {"name": "张伟", "gender": "男", "province": "江苏", "count": 812},
+    {"name": "张伟", "gender": "男", "province": "河南", "count": 1020},
+
+    {"name": "李强", "gender": "男", "province": "北京", "count": 512},
+    {"name": "李强", "gender": "男", "province": "广东", "count": 640},
+    {"name": "李强", "gender": "男", "province": "四川", "count": 388},
+
+    {"name": "刘洋", "gender": "男", "province": "北京", "count": 720},
+    {"name": "刘洋", "gender": "男", "province": "上海", "count": 610},
+    {"name": "刘洋", "gender": "男", "province": "广东", "count": 880},
+
+    {"name": "陈杰", "gender": "男", "province": "浙江", "count": 498},
+    {"name": "陈杰", "gender": "男", "province": "江苏", "count": 456},
+    {"name": "陈杰", "gender": "男", "province": "河南", "count": 402},
+
+    {"name": "杨帆", "gender": "男", "province": "上海", "count": 530},
+    {"name": "杨帆", "gender": "男", "province": "山东", "count": 470},
+    {"name": "杨帆", "gender": "男", "province": "河南", "count": 388},
+
+    {"name": "赵磊", "gender": "男", "province": "北京", "count": 476},
+    {"name": "赵磊", "gender": "男", "province": "广东", "count": 556},
+    {"name": "赵磊", "gender": "男", "province": "四川", "count": 344},
+
+    {"name": "孙浩", "gender": "男", "province": "江苏", "count": 402},
+    {"name": "孙浩", "gender": "男", "province": "山东", "count": 366},
+    {"name": "孙浩", "gender": "男", "province": "河南", "count": 320},
+
+    {"name": "周军", "gender": "男", "province": "四川", "count": 288},
+    {"name": "周军", "gender": "男", "province": "广东", "count": 344},
+    {"name": "周军", "gender": "男", "province": "北京", "count": 260},
+
+    {"name": "李娜", "gender": "女", "province": "北京", "count": 998},
+    {"name": "李娜", "gender": "女", "province": "上海", "count": 872},
+    {"name": "李娜", "gender": "女", "province": "广东", "count": 1240},
+    {"name": "李娜", "gender": "女", "province": "山东", "count": 660},
+    {"name": "李娜", "gender": "女", "province": "四川", "count": 540},
+
+    {"name": "王芳", "gender": "女", "province": "北京", "count": 760},
+    {"name": "王芳", "gender": "女", "province": "江苏", "count": 620},
+    {"name": "王芳", "gender": "女", "province": "河南", "count": 580},
+
+    {"name": "张敏", "gender": "女", "province": "上海", "count": 688},
+    {"name": "张敏", "gender": "女", "province": "浙江", "count": 604},
+    {"name": "张敏", "gender": "女", "province": "广东", "count": 812},
+
+    {"name": "刘洋", "gender": "女", "province": "北京", "count": 690},
+    {"name": "刘洋", "gender": "女", "province": "上海", "count": 588},
+    {"name": "刘洋", "gender": "女", "province": "广东", "count": 830},
+
+    {"name": "陈静", "gender": "女", "province": "浙江", "count": 566},
+    {"name": "陈静", "gender": "女", "province": "江苏", "count": 520},
+    {"name": "陈静", "gender": "女", "province": "四川", "count": 432},
+
+    {"name": "杨丽", "gender": "女", "province": "山东", "count": 498},
+    {"name": "杨丽", "gender": "女", "province": "河南", "count": 452},
+    {"name": "杨丽", "gender": "女", "province": "上海", "count": 470},
+
+    {"name": "赵婷", "gender": "女", "province": "北京", "count": 402},
+    {"name": "赵婷", "gender": "女", "province": "广东", "count": 512},
+    {"name": "赵婷", "gender": "女", "province": "四川", "count": 350},
+
+    {"name": "周雨", "gender": "女", "province": "上海", "count": 388},
+    {"name": "周雨", "gender": "女", "province": "浙江", "count": 342},
+    {"name": "周雨", "gender": "女", "province": "江苏", "count": 366},
+
+    {"name": "孙悦", "gender": "女", "province": "山东", "count": 356},
+    {"name": "孙悦", "gender": "女", "province": "河南", "count": 322},
+    {"name": "孙悦", "gender": "女", "province": "四川", "count": 300}
+  ]
+}

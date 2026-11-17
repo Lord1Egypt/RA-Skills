@@ -1,49 +1,61 @@
-## Description: <br>
-Helps agents read OK Computer NFT data and build Bankr-compatible transactions for onchain messages, pages, Ring Gates transmissions, and Net Protocol storage on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an AI agent toolkit for OK Computers, Ring Gates inter-computer messaging, and Net Protocol onchain storage on Base.
 
-## Publisher: <br>
-[potdealer](https://clawhub.ai/user/potdealer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[potdealer](https://clawhub.ai/user/potdealer)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect OK Computers, compose onchain social messages and direct messages, manage token pages and usernames, and assemble or shard Ring Gates transmissions. It is intended for agents that need guidance, commands, JavaScript code, or transaction JSON for Base blockchain workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Onchain writes and signatures can create irreversible Base blockchain transactions. <br>
-Mitigation: Use a limited wallet or API key, keep Base ETH exposure low, and inspect every transaction and signature request before submission. <br>
-Risk: The Bankr API key can authorize transaction submission or signing through Bankr endpoints. <br>
-Mitigation: Store BANKR_API_KEY only in the runtime environment, avoid sharing it in prompts or onchain data, and rotate it if exposed. <br>
-Risk: The Net Protocol loader can execute content returned through a JSONP relay. <br>
-Mitigation: Use the JSONP loader only with trusted relay content and avoid loading untrusted pages or scripts. <br>
-Risk: Public onchain storage can expose messages, pages, and data permanently. <br>
-Mitigation: Do not store private data, secrets, or sensitive content onchain. <br>
+## Use Case:
 
+Developers and AI agents use this skill to read OK Computer NFT state and build transaction payloads for posting messages, sending DMs, setting names or pages, and storing or assembling onchain web content on Base.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/potdealer/ok-computers) <br>
-- [OK Computers project site](https://okcomputers.xyz) <br>
-- [Base blockchain](https://base.org) <br>
-- [Net Protocol](https://netprotocol.app) <br>
-- [Ring Gates protocol specification](RING-GATES.md) <br>
-- [Agent skill guide](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript examples, shell commands, configuration notes, and JSON transaction objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Bankr-compatible transaction JSON for user review and submission; read-only operations produce formatted blockchain data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: ClawHub release evidence and package.json) <br>
+Risk: The skill can prepare and submit blockchain transactions that create permanent public onchain writes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination, calldata, value, chain, content, and token ownership before signing or submitting any transaction.
+
+Risk: The Bankr API key can authorize signing or transaction submission workflows.
+
+Mitigation: Keep BANKR_API_KEY tightly scoped, stored outside shared prompts or logs, and available only to agents allowed to perform write operations.
+
+Risk: The Net Protocol loader can execute mutable remote or onchain HTML in the page context through a relay.
+
+Mitigation: Use the loader only with trusted relay endpoints and trusted stored content, preferably in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/potdealer/skills/ok-computers)
+- [OK Computers](https://okcomputers.xyz)
+- [Base](https://base.org)
+- [Net Protocol](https://netprotocol.app)
+- [Ring Gates Protocol Specification](artifact/RING-GATES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript examples, JSON transaction payloads, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Bankr-compatible transaction JSON for review before signing or submission.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

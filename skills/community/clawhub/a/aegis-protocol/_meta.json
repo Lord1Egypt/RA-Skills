@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7716k7fpe6ad36cdrmaj25s181wm6x",
-  "slug": "aegis-protocol",
-  "version": "0.12.9",
-  "publishedAt": 1775479922726
+  "name": "aegis-protocol",
+  "version": "0.12.6",
+  "description": "Self-healing stability monitor for AI agents. 20-dimension monitoring, auto-recovery, health scoring.",
+  "author": "Dream <dream@openclaw>",
+  "license": "MIT",
+  "created_at": "2026-04-05T13:50:00Z",
+  "updated_at": "2026-04-05T14:18:00Z",
+  "tags": ["monitoring", "stability", "self-healing", "watchdog", "openclaw", "ai-agent"],
+  "dependencies": ["python3", "pm2", "openclaw-cli"],
+  "files": ["aegis-protocol.py", "README.md", "SKILL.md", "SECURITY.md", "CHANGELOG.md", "ROADMAP.md", "_meta.json"],
+  "clawhub_ready": true,
+  "test_status": "passing",
+  "coverage": "82%",
+  "type_coverage": ">90%",
+  "python_version": "3.10+",
+  "homepage": "https://github.com/mrring88/aegis-protocol",
+  "repository": "https://github.com/mrring88/aegis-protocol.git"
 }

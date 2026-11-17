@@ -167,7 +167,7 @@ aliyun dataworks-public list-downstream-task-instances \
 ### Query Task Instance Operation Logs
 
 ```bash
-aliyun dataworks-public list-task-instance-operation-logs \
+aliyun dataworks-public list-taREDACTED-SECRET \
   --region <REGION> \
   --id <TASK_INSTANCE_ID> \
   [--date <UNIX_TIMESTAMP_MS>] \

@@ -1,39 +1,55 @@
-## Description: <br>
-Gaokao Essay helps agents generate Gaokao essay drafts, openings, endings, writing materials, structure suggestions, and scoring-style feedback from local templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gaokao Essay helps agents generate and return Chinese Gaokao essay drafts, openings, endings, writing materials, structures, and scoring tips from bundled local templates.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External learners, educators, and agents use this skill to draft Gaokao essay responses and retrieve Chinese writing templates, openings, endings, and topic-material suggestions for exam preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports an undocumented generic helper that can persist user-supplied text and command history locally. <br>
-Mitigation: Use the documented scripts/essay.sh workflow for essay generation, avoid passing sensitive text to scripts/script.sh, and review or clear the local Gaokao Essay data directory when needed. <br>
+## Use Case:
 
+Students, educators, and Chinese-language writing assistants use this skill to prepare Gaokao essay material, including draft essays, reusable openings and endings, topic materials, structures, and scoring-oriented tips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/gaokao-essay) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain terminal text from local shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated locally from built-in templates; auxiliary utility behavior may write local files under the configured Gaokao Essay data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: The bundled utility can persist user text and command history locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using scripts/script.sh with private drafts or personal data unless local storage under the skill data directory is acceptable.
+
+Risk: Generated essay guidance may be generic, inaccurate, or unsuitable for a specific exam prompt.
+
+Mitigation: Review generated drafts and tips before use, and treat them as writing support rather than authoritative scoring or exam advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/gaokao-essay)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text returned from local shell script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content is template-based and local; an additional bundled utility may save user entries and command history on disk.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

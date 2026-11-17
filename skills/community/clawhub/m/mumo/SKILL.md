@@ -1,18 +1,18 @@
 ---
 name: mumo
-description: Runs structured multi-model deliberations across frontier AI panels (Claude, GPT, Gemini, Grok, Qwen, GLM, Kimi) via mumo's MCP server. Use when independent perspectives are needed on architecture/product decisions, design and plan review before implementation, pre-launch pressure tests, tradeoffs with multiple defensible framings, or explicit user requests for a mumo panel. Especially valuable for pre-implementation review of anything touching auth, security, tokens, payments, data exposure, or migrations. Requires a mumo platform API key (mmo_live_*) registered with `openclaw mcp set mumo`.
+description: Runs a multi-model deliberation across models from different labs (Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more) via mumo's MCP server, returning full responses plus typed cross-model reactions. Use when independent perspectives are needed on architecture/product decisions, design and plan review before implementation, pre-launch pressure tests, tradeoffs with multiple defensible framings, or explicit user requests for a mumo panel. Especially valuable for pre-implementation review of anything touching auth, security, tokens, payments, data exposure, or migrations. Requires a mumo platform API key (mmo_live_*) registered with `openclaw mcp set mumo`.
 metadata: {"openclaw": {"category": "agents", "tags": ["deliberation", "multi-model", "mcp", "decision-support"]}}
 ---
 
 # mumo
 
-mumo runs deliberations across multiple AI models. Use it when independent perspectives are useful — especially for high-regret decisions where a single model's confidence is a real risk.
+mumo runs a deliberation across models from different labs (Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more) and returns their full responses plus typed cross-model reactions: each model says, in its own words, what it keeps, challenges, or wants explored in the others' claims. Use it when independent perspectives are useful — especially for high-regret decisions where a single model's confidence is a real risk.
 
 ## Setup
 
-The mumo MCP server is registered via `openclaw mcp set mumo '<json>'` and stored in `~/.openclaw/openclaw.json` under `mcp.servers.mumo`. See `config/mumo.example.json` in this skill's directory for the canonical config payload (reference only — OpenClaw doesn't auto-load this file; it's the JSON shape to paste into the CLI command).
+The mumo MCP server is registered via `openclaw mcp set mumo '<json>'` and stored in `~/.openclaw/openclaw.json` under `mcp.servers.mumo`. The registered block references `${MUMO_API_KEY}`, which OpenClaw resolves from the environment or `~/.openclaw/.env`. See `config/mumo.example.json` in this skill's directory for the canonical config payload (reference only — OpenClaw doesn't auto-load this file; it's the JSON shape to paste into the CLI command).
 
-If tools return auth errors, the API key is missing or invalid. Direct the user to https://mumo.chat/settings/api-keys to create one (keys start with `mmo_live_`), then re-run `openclaw mcp set mumo` with the new value and restart OpenClaw.
+If tools return auth errors, the API key is missing or invalid. Check that `MUMO_API_KEY` is set in `~/.openclaw/.env` — when it is not, OpenClaw emits a startup configuration warning naming the missing variable at `mcp.servers.mumo.headers.Authorization`. Direct the user to https://mumo.chat/settings/api-keys to create one (keys start with `mmo_live_`). Rotating the key means updating `.env` and restarting OpenClaw; the registered server config itself does not change.
 
 ## When to use
 
@@ -39,13 +39,13 @@ If none clearly fits, use this kernel only.
 
 ## User preferences
 
-These are defaults. If the user prefers more autonomy (e.g., "don't ask before appending" or "always use GPT-5.5 and Gemini"), follow their preferences over this guidance.
+These are defaults. If the user prefers more autonomy (e.g., "don't ask before appending" or "always include a GPT and a Gemini model"), follow their preferences over this guidance.
 
 ## Basic loop
 
-1. Call `create_deliberation` with the user's problem. Set `application` to `"OpenClaw"`. Set `moderator_name` to your own model identity (e.g., the model OpenClaw is currently running as — visible in your status line, often "openai/gpt-5.4-nano" or "openai/gpt-5.5") for audit clarity — not the user's name; their identity is already on the session. Optionally set `recap_round: true` for a structured round 0 summary — see [Recap and synthesis](#recap-and-synthesis-opt-in).
-2. **Verify the response contains `session_id` and `round_id`, and keep those exact returned IDs for downstream calls.** UUID shape is a sanity check; identity continuity is the real check. If fields are missing, malformed, or inconsistent with `list_sessions`, recover via [Verifying the call actually fired](#verifying-the-call-actually-fired) before proceeding.
-3. Call `wait_for_round` with the returned `session_id` and `round_id`. **Long waits are normal** — frontier-model panels typically take 15–120s, and 60+ seconds isn't a failure signal. Tell the user upfront ("running a panel — expect ~30–60s") so the wait doesn't feel broken.
+1. Call `create_deliberation` with the user's problem. Set `application` to `"OpenClaw"`. Set `moderator_name` to your own model identity (e.g., the model OpenClaw is currently running as — visible in your status line, often "openai/gpt-5.4-nano" or "openai/gpt-5.5") for audit clarity — not the user's name; their identity is already on the session. Optionally set `takeaway: true` for a structured round 0 Takeaway — see [Takeaway](#takeaway-opt-in).
+2. **Verify the response contains a `session_id`, and keep that exact returned ID for every downstream call.** UUID shape is a sanity check; identity continuity is the real check. If it is missing, malformed, or inconsistent with `list_sessions`, recover via [Verifying the call actually fired](#verifying-the-call-actually-fired) before proceeding.
+3. Call `wait_for_round` with the `session_id`. That alone is enough — a session has at most one round in flight, so it resolves to the round you just started; pass `round_id` only when you want an earlier round. **Long waits are normal** — frontier-model panels typically take 15–120s, and 60+ seconds isn't a failure signal. Tell the user upfront ("running a panel — expect ~30–60s") so the wait doesn't feel broken.
 4. Branch on the response's `structuredContent.recommended_client_action` rather than parsing prose. The 5-value enum tells you exactly what to do:
 
    | Action | What it means | What to do |
@@ -58,9 +58,9 @@ These are defaults. If the user prefers more autonomy (e.g., "don't ask before a
 
    The server derives this from `round_status` + per-model `error_code` — it's the canonical "what next?" signal. Treat transport / tool-call errors separately from mumo round status: catch transport failures around the call; branch on `recommended_client_action` for everything else.
 
-5. On a usable round, read the **claim map first**, then relevant participant prose. The claim map is the navigation layer; prose is the supporting evidence.
+5. On a usable round, read the **claim map first**, then relevant participant prose. The claim map is the navigation layer; prose is the supporting evidence. It's also your privileged preview — participants haven't seen each other's reactions, you have (see [Reactions are in the ledger](#reactions-are-in-the-ledger-responses-are-on-the-record)).
 6. Create snippets as your primary response to the round. Optionally add a round prompt for broad steering.
-7. Call `append_round` if another round would help. Optionally set `recap_round: true` for a per-round summary, or `recap_session: true` on the round you intend as the final round to trigger session-level synthesis (cascade — see [Recap and synthesis](#recap-and-synthesis-opt-in)). Otherwise stop and synthesize for the user yourself.
+7. Call `append_round` if another round would help. Optionally set `takeaway: true` for a per-round Takeaway (see [Takeaway](#takeaway-opt-in)). Otherwise stop and synthesize for the user yourself.
 
 ## Prompt voice
 
@@ -68,13 +68,13 @@ You are an extension of the operator, not a third party setting up a scenario. W
 
 ## Verifying the call actually fired
 
-Autonomous agent loops occasionally fabricate tool-call results — reporting a deliberation as sent when it wasn't. If you suspect this (the response is missing the expected `session_id` / `round_id`, or the values you're about to pass downstream don't match what `create_deliberation` actually returned), treat the call as not successfully established and recover:
+Autonomous agent loops occasionally fabricate tool-call results — reporting a deliberation as sent when it wasn't. If you suspect this (the response is missing the expected `session_id`, or the value you're about to pass downstream doesn't match what `create_deliberation` actually returned), treat the call as not successfully established and recover:
 
 1. Call `list_sessions`. Match by prompt content to confirm whether your `create_deliberation` actually ran.
 2. If it's not there, fire `create_deliberation` again — don't continue downstream as if the session exists.
 3. If it IS there, use the IDs `list_sessions` returned (not whatever was in your context) for the next call.
 
-mumo's `session_id` and `round_id` are UUIDs as a service contract — a returned value that doesn't match UUID format is one signal something is off, but **identity continuity matters more than format**. The strongest check is whether the `session_id` your subsequent calls reference matches what `create_deliberation` actually returned in its response.
+mumo's `session_id` (and `round_id`, when you use it) are UUIDs as a service contract — a returned value that doesn't match UUID format is one signal something is off, but **identity continuity matters more than format**. The strongest check is whether the `session_id` your subsequent calls reference matches what `create_deliberation` actually returned in its response.
 
 ## Framing prompts for the panel
 
@@ -134,6 +134,15 @@ Reading discipline:
 
 The claim map is not a verdict. It compresses argumentative structure but loses rhetorical nuance and confidence texture. Use it to navigate; read prose to understand.
 
+## Reactions are in the ledger, responses are on the record
+
+Participants never see each other's reactions. Each model's prior-round reactions return only to their author, as private notes, with an instruction to weave the ones that matter into its next response — in its own words, in prose. Peers see that prose, not the underlying reactions. Frontier panels carry forward most of what matters this way, but the carry is the author's choice, not a guarantee.
+
+This makes the claim map your privileged preview: reading it after a round, you see the full reaction ledger before any participant has responded to it. Two consequences:
+
+- **Only prose is on the record.** A reaction survives only if its author weaves it forward — and you steer before that choice is made. Snippeting a reaction guarantees the panel sees it rather than betting on the author's carry. Your snippets are the one path that puts ledger content directly in front of the panel.
+- **Steer at the gaps.** Scan for CHALLENGEs the challenged model is positioned to sidestep and EXPLOREs nobody owns. Those are your highest-leverage snippets.
+
 ## Confidence scores
 
 If responses include `claim_confidence` or `snippets[].comment_confidence`, these are self-reported and not calibrated across models. Surface the `confidence_disclaimer` string if displaying scores.
@@ -149,33 +158,32 @@ Mumo surfaces fault lines and supporting arguments; it does not produce the deci
 
 ## Recovery: lost session context
 
-If you lose track of `session_id` or `round_id` mid-conversation (long chats, context compaction, dropped tool result), recover before starting a new deliberation:
+If you lose track of the `session_id` mid-conversation (long chats, context compaction, dropped tool result), recover before starting a new deliberation:
 
 1. Call `list_sessions` to find your latest sessions. Match by prompt content.
-2. Call `get_session` with the recovered ID for full state, or `wait_for_round(session_id, round_id)` if you suspect a round is still in flight.
+2. Call `get_session` with the recovered ID for full state, or `wait_for_round(session_id)` if you suspect a round is still in flight — it resolves to the latest round on its own.
 3. Don't fire a fresh `create_deliberation` if the original is recoverable — duplicate sessions waste tokens and produce confusing parallel state.
 
-## Recap and synthesis (opt-in)
+## Takeaway (opt-in)
 
-Two optional flags request LLM-curated summaries on top of the raw round output:
+One optional flag requests an LLM-curated summary on top of the raw round output:
 
-- **`recap_round`** (default `false`) — accepted on `create_deliberation` AND `append_round`. Generates `round_recap` for that round; surfaces on `get_session`.
-- **`recap_session`** (default `false`) — accepted on `append_round` ONLY (rejected on `create_deliberation`). Generates session-level `session_synthesis`. **Setting this on round N backfills `round_recap` for every prior round that doesn't have one** — cost adds up on long sessions; check expectations first.
+- **`takeaway`** (default `false`) — accepted on `create_deliberation` AND `append_round`. Generates a per-round **Takeaway** (`round_takeaway`: `bottom_line` + `items[]` of question / answer / consensus with claim references) for that round; surfaces on `get_session`.
 
-Set `recap_round` liberally when round-level summaries may matter. Set `recap_session` only on the round you intend as the final round. Both bill through the standard credit wallet.
+Set it liberally when round-level summaries may matter — it bills at cost (no markup) through the standard credit wallet.
 
-Full mechanics, cost detail, and artifact field reference: `references/recap.md`.
+Full mechanics and artifact field reference: `references/takeaway.md`.
 
 ## After each round
 
-After each usable round you have one job before deciding whether to continue: synthesize what the panel said for the user. There are two paths, and which one applies depends on whether you opted into a recap when you called the tool:
+After each usable round you have one job before deciding whether to continue: synthesize what the panel said for the user. There are two paths, and which one applies depends on whether you opted into a Takeaway when you called the tool:
 
-- **If you set `recap_round: true` on this round**, `get_session` returns a structured `round_recap` (`title`, `tldr`, `agenda`, `sections`). Use it as your read path — it's produced for agent consumption and saves you from re-summarizing prose.
+- **If you set `takeaway: true` on this round**, `get_session` returns a structured `round_takeaway` (`bottom_line` + `items[]` of question / answer / consensus, with claim references). Use it as your read path — it's produced for agent consumption and saves you from re-summarizing prose.
 - **If you didn't**, synthesize from the claim map and participant prose. State the consensus or split clearly, offer your own assessment marked as yours, organize by importance rather than forcing a recommendation.
 
 Either way, don't dump the transcript. Mumo produces structure; your job is to translate it into "here's what the panel thinks and what to do next." Surface the round's `claim_map_url` so the user can open the claim map directly — an owner-only link to their session.
 
-Then align with the user on whether to append a round. If the user signals they're done deliberating and wants a session-level takeaway, your final `append_round` is the right place to set `recap_session: true` — but not earlier (see [Recap and synthesis](#recap-and-synthesis-opt-in)).
+Then align with the user on whether to append a round.
 
 More at `references/synthesis.md`.
 
@@ -197,6 +205,8 @@ Stop when:
 
 The panel does not need to converge. Sometimes the right output is a clear map of why the decision remains contested — that's actionable for the user, even without a verdict.
 
+**Pacing:** positions develop across rounds, not within them — a reaction gets woven into the next round's prose, which draws reactions of its own a round later.
+
 ## Tools
 
 | Need | Tool |
@@ -205,6 +215,7 @@ The panel does not need to converge. Sometimes the right output is a clear map o
 | Wait for model responses | `wait_for_round` |
 | Add a follow-up round | `append_round` |
 | Recover/read full state | `get_session` |
+| Share a session at a public link | `share_session` |
 | Find prior sessions | `list_sessions` |
 | Confirm model IDs | `list_models` |
 | Check wallet balance | `get_credit` |
@@ -219,7 +230,7 @@ If the user names specific models, call `list_models` first. Otherwise omit `mod
 - REST API: https://mumo.chat/docs/api
 - Install guide: https://mumo.chat/install/openclaw
 - Claim map guidance: `references/claim-maps.md`
-- Recap and synthesis mechanics: `references/recap.md`
+- Takeaway mechanics: `references/takeaway.md`
 - Snippet examples: `references/snippets.md`
 - Model selection: `references/model-selection.md`
 - Synthesis guidance: `references/synthesis.md`

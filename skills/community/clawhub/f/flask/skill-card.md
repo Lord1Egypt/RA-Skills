@@ -1,37 +1,53 @@
-## Description: <br>
-Avoid common Flask mistakes — context errors, circular imports, session configuration, and production gotchas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common Flask mistakes - context errors, circular imports, session configuration, and production gotchas.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Flask reference aid for avoiding common application-context, request-context, import, session, SQLAlchemy, and production deployment mistakes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Flask production and security guidance may not match a user's exact Flask version, deployment model, or application requirements. <br>
-Mitigation: Validate recommendations against the deployed Flask version, hosting environment, and application security requirements before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/flask) <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for avoiding common Flask context, import, session, SQLAlchemy, and production deployment mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No hidden actions, data access, or persistence are indicated by the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Developers may apply development-only Flask settings in production.
+
+Mitigation: Review production configuration before deployment, especially debug mode, SECRET_KEY, SESSION_COOKIE_SECURE, and SESSION_COOKIE_HTTPONLY.
+
+Risk: Reference guidance may not match every Flask application version or deployment environment.
+
+Mitigation: Validate the generated advice against the target application's Flask, extension, and hosting configuration before making changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/flask)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with inline Flask code and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; concise reference guidance for Flask development and production settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-02-10)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

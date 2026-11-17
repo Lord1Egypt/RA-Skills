@@ -1,40 +1,52 @@
-## Description: <br>
-Converts pasted PySpark `.show()` output into tab-separated text that can be copied directly into Excel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts pasted PySpark .show() output into tab-separated text that can be copied directly into Excel.
 
-## Publisher: <br>
-[dilicloud11](https://clawhub.ai/user/dilicloud11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dilicloud11](https://clawhub.ai/user/dilicloud11)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and data engineers use this skill to reformat PySpark .show() table output into tab-separated rows for Excel without analyzing or changing the data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad spreadsheet-formatting trigger phrases may invoke the skill for inputs that are not PySpark .show() tables.
+
+Mitigation: Use it with explicit PySpark .show() output and review the tab-separated result before pasting into Excel.
+
+Risk: The skill formats table text only and does not validate, analyze, or correct the underlying data.
+
+Mitigation: Perform any data validation or analysis separately before relying on the pasted spreadsheet content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, data engineers, and analysts use this skill to convert PySpark `.show()` table output into a tab-delimited format for Excel. The skill is intended for formatting only and does not analyze or modify the data values. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad table-formatting phrases and transform pasted table text that was not intended for conversion. <br>
-Mitigation: Review the pasted input before use and apply the skill only to PySpark `.show()` output that should be converted to tab-separated text. <br>
-Risk: Pasted table data is processed in the chat context, which may expose sensitive values to the agent session. <br>
-Mitigation: Avoid pasting sensitive data, or sanitize the table before asking the agent to format it. <br>
+**Output Format:** [Markdown code block containing tab-separated text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dilicloud11/pyspark-to-excel) <br>
+**Other Properties Related to Output:** [Removes PySpark table border lines and trailing only-showing row notices; preserves the table content as formatted text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown fenced code block containing tab-separated text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Formatting-only conversion; strips PySpark table border lines and trailing row-count notices.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

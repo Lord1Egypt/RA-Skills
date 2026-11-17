@@ -1,0 +1,16 @@
+{
+  "blacklist": [
+    {
+      "id": "example_failed_parameter",
+      "reason": "Describe why this parameter/approach failed, with the observed symptom.",
+      "permanent_ban": true,
+      "alternative": "Describe the verified alternative to use instead.",
+      "test_ref": "test_or_doc_reference",
+      "judge": "ai",
+      "scope": "character",
+      "status": "active"
+    }
+  ],
+  "last_updated": "{{DATE}}",
+  "note": "permanent_ban=true entries must never be used directly. Keep entries small and specific; mark replaced entries with superseded_by instead of deleting."
+}

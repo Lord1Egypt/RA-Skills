@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "learning-roadmap",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "study",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "学习路线",
+      "goal": "把目标拆成可调整的阶段、练习和检查点。",
+      "optionalInputs": [
+        {
+          "key": "goal",
+          "question": "希望学会什么，有没有明确的成果？"
+        },
+        {
+          "key": "baseline",
+          "question": "目前基础和已经完成的内容有哪些？"
+        },
+        {
+          "key": "availability",
+          "question": "每周可投入多少时间，有没有期限？"
+        },
+        {
+          "key": "constraints",
+          "question": "有哪些资源、偏好或现实限制？"
+        }
+      ],
+      "sections": [
+        "目标与起点",
+        "阶段路线",
+        "每周安排",
+        "实践与检查点",
+        "调整和复盘"
+      ],
+      "qualityChecks": [
+        "未给时间时先生成可调整阶段，不杜撰每日空闲时段。",
+        "依赖关系和复习时间要可见，勾选或改时间后进度计算一致。",
+        "不保证固定天数必然掌握，个人进度与共享班级进度明确区分。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Learning roadmap",
+      "goal": "Break a goal into adjustable stages, exercises and checkpoints.",
+      "optionalInputs": [
+        {
+          "key": "goal",
+          "question": "What should you learn and what output would demonstrate it?"
+        },
+        {
+          "key": "baseline",
+          "question": "What do you already know or have completed?"
+        },
+        {
+          "key": "availability",
+          "question": "How much time is available each week and is there a deadline?"
+        },
+        {
+          "key": "constraints",
+          "question": "Which resources, preferences or practical constraints matter?"
+        }
+      ],
+      "sections": [
+        "Goal and baseline",
+        "Stages",
+        "Weekly schedule",
+        "Practice and checkpoints",
+        "Adjust and reflect"
+      ],
+      "qualityChecks": [
+        "Without an availability estimate, create adjustable stages instead of inventing a daily calendar.",
+        "Expose prerequisites and review time; progress must recalculate after edits.",
+        "Do not promise mastery in a fixed number of days; distinguish personal and class progress."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

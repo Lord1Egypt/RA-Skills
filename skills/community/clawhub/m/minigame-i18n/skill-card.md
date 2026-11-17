@@ -1,50 +1,68 @@
-## Description: <br>
-Helps developers localize WeChat mini-games for international markets by scanning Chinese text, planning terminology, generating translations and language packs, replacing localized text and images, and validating the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through localizing WeChat mini-games from Chinese into target languages, including text scanning, glossary planning, translation, resource application, optional image translation, and verification.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-Developers and localization engineers use this skill to internationalize WeChat mini-games from Chinese into target languages. It guides scanning, terminology review, translation generation, language-pack creation, source and asset replacement, and quality verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically modify source files and assets. <br>
-Mitigation: Install on a clean branch, review generated plans and diffs, and run dry-run and verification steps before accepting replacements. <br>
-Risk: The skill can install npm dependencies and read or store MCP credentials in IDE configuration files. <br>
-Mitigation: Use explicit credentials, limit where tokens are written, and review MCP configuration files before use. <br>
-Risk: Image translation can upload game images to an external service. <br>
-Mitigation: Skip image translation for sensitive assets or confirm upload approval before enabling that stage. <br>
+## Use Case:
 
+Developers and localization engineers use this skill to prepare WeChat mini-game projects for international markets by finding Chinese text, planning terminology, generating translations, applying language resources, and checking localization quality.
 
-## Reference(s): <br>
-- [Skill workflow](SKILL.md) <br>
-- [Skill - Scan analysis](references/scan-analysis.md) <br>
-- [Skill - Execution plan and glossary generation](references/plan-glossary.md) <br>
-- [Skill - Execute translation](references/execute-translation.md) <br>
-- [Skill - Apply localization resources](references/apply-resources.md) <br>
-- [Skill - Localization quality verification](references/quality-verification.md) <br>
-- [MCP image translation interface](references/mcp-image-translation.md) <br>
-- [Scan report schema](references/scan-report-schema.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/tencent-adm/minigame-i18n) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands plus JSON and file artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create scan reports, translation JSON files, language packs, backups, replacement reports, and verification reports in the user's project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Project images may be uploaded when image translation is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable image translation only for assets approved for upload, and provide MCP credentials explicitly over HTTPS.
+
+Risk: The workflow can rewrite project files while applying text, language-pack, and image changes.
+
+Mitigation: Run in an isolated workspace, keep backups, review dry-run results, and verify replacement reports before accepting changes.
+
+Risk: The workflow may install Node dependencies and execute local helper scripts.
+
+Mitigation: Review the artifact before installation and install dependencies only in the skill scripts directory or another isolated environment.
+
+Risk: Stored MCP credentials may be read from IDE configuration files.
+
+Mitigation: Use scoped credentials, avoid broadly copying tokens across IDE configs, and prefer explicit credential arguments where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tencent-adm/skills/minigame-i18n)
+- [Scan analysis workflow](artifact/references/scan-analysis.md)
+- [Execution plan and glossary workflow](artifact/references/plan-glossary.md)
+- [Translation execution workflow](artifact/references/execute-translation.md)
+- [Apply localization resources workflow](artifact/references/apply-resources.md)
+- [Quality verification workflow](artifact/references/quality-verification.md)
+- [Scan report schema](artifact/references/scan-report-schema.md)
+- [MCP image translation reference](artifact/references/mcp-image-translation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON reports, generated language-pack files, code edits, configuration updates, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project-local i18n files, translation tables, replacement reports, verification reports, backups, and optional translated image assets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

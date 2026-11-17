@@ -1,40 +1,52 @@
-## Description: <br>
-This skill compares Claude Code and OpenClaw skill directories, reports in-sync, missing, and conflicting skills, and performs bidirectional synchronization with user confirmation before changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Claude Code and OpenClaw skill directories, compares SKILL.md contents, and helps synchronize missing or conflicting skills with user confirmation.
 
-## Publisher: <br>
-[rushingai](https://clawhub.ai/user/rushingai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[rushingai](https://clawhub.ai/user/rushingai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to compare local Claude Code and OpenClaw skill folders, review missing or divergent skills, and copy selected skill files between the two environments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can persist unreviewed skill instructions into active Claude Code or OpenClaw skill folders.
+
+Mitigation: Install only when skill-folder syncing is intended, review source skills before syncing, and avoid bulk actions for unknown skills.
+
+Risk: Copied skill files can affect future agent sessions after synchronization.
+
+Mitigation: Confirm conflicts deliberately and scan copied skills before deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to compare and synchronize local Claude Code and OpenClaw skill directories while reviewing a report before any copy or overwrite action is applied. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, files, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk approval can copy unfamiliar or untrusted skills into an active skill directory. <br>
-Mitigation: Review the sync report before approving changes and avoid bulk 'all' approval for skills you have not inspected. <br>
-Risk: Conflict resolution can overwrite local SKILL.md content. <br>
-Mitigation: Use the conflict preview and skip any conflict until the preferred version has been reviewed. <br>
+**Output Format:** [Markdown reports and prompts with file updates after confirmation]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rushingai/claude-skill-sync) <br>
+**Other Properties Related to Output:** [Writes SKILL.md and _meta.json files only for sync actions the user confirms.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown report with interactive confirmation prompts and JSON metadata files when syncing to OpenClaw] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs sync summaries and may write SKILL.md plus OpenClaw _meta.json files after user approval.] <br>
+1.0.0 (source: frontmatter, _meta.json, server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

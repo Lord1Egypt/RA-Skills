@@ -1,43 +1,57 @@
-## Description: <br>
-Social Sentiment guides agents through collecting and analyzing public posts from Twitter, Reddit, and Instagram to monitor brand and product sentiment, reputation themes, and potential PR issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes public social-media posts from Twitter, Reddit, and Instagram to monitor brand and product sentiment, reputation trends, complaints, praise, and crisis signals at scale.
 
-## Publisher: <br>
-[atyachin](https://clawhub.ai/user/atyachin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atyachin](https://clawhub.ai/user/atyachin)
 
-## Use Case: <br>
-External brand, marketing, product, and market-research teams use this skill to query social platforms, export large post datasets, classify sentiment, identify themes, and summarize high-engagement complaints or praise. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Xpoz authorization and the mcporter npm binary introduce account-access and package-trust exposure. <br>
-Mitigation: Authorize only the intended Xpoz account, install mcporter from a trusted registry source, and keep access scoped through the xpoz-setup workflow. <br>
-Risk: Exported social posts may contain personal or sensitive data. <br>
-Mitigation: Keep searches narrow, store CSV exports in protected locations, and delete or aggregate raw exports when they are no longer needed. <br>
-Risk: Keyword-based sentiment scoring can misclassify context, sarcasm, or domain-specific language. <br>
-Mitigation: Review representative samples and customize positive and negative keyword lists before relying on reports for decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/atyachin/social-sentiment) <br>
-- [Xpoz](https://xpoz.ai) <br>
-- [Publisher Profile](https://clawhub.ai/user/atyachin) <br>
+## Use Case:
 
+External users, marketers, analysts, and developers use this skill to query Xpoz social data, export posts, classify sentiment, identify themes, and prepare brand-monitoring reports.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses mcporter, Xpoz account authorization, network access to mcp.xpoz.ai, and optional CSV exports for pandas analysis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends brand and search queries to Xpoz and stores exported social-media CSVs locally.
+
+Mitigation: Use it only where Xpoz use and the OAuth setup flow are approved, and treat downloaded CSVs as sensitive business or compliance data.
+
+Risk: The skill depends on the mcporter npm package and the xpoz-setup authentication flow.
+
+Mitigation: Review or pin mcporter in stricter environments and verify Xpoz access before running collection commands.
+
+Risk: The example sentiment classifier is keyword-based and can misclassify nuanced, sarcastic, or context-dependent posts.
+
+Mitigation: Review sample outputs, tune keywords for the brand and domain, and validate important conclusions before using them in reports.
+
+## Reference(s):
+
+- [Social Sentiment ClawHub Skill Page](https://clawhub.ai/atyachin/skills/social-sentiment)
+- [Xpoz](https://xpoz.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python snippets, CSV handling steps, and report examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sentiment summaries, theme extraction guidance, viral-post review guidance, and local CSV export handling notes.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

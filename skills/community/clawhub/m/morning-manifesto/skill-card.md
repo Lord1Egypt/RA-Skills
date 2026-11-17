@@ -1,40 +1,56 @@
-## Description: <br>
-Daily morning reflection workflow with task sync to Obsidian, Apple Reminders, and Linear. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily morning reflection workflow with task sync to Obsidian, Apple Reminders, and Linear.
 
-## Publisher: <br>
-[MarcBickel](https://clawhub.ai/user/MarcBickel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcbickel](https://clawhub.ai/user/marcbickel)
 
-## Use Case: <br>
-Users who want a daily planning routine use this skill to collect morning reflections, append a structured entry to an Obsidian daily note, sync tasks with Apple Reminders, and summarize urgent Linear issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and update notes, reminders, and Linear-related task information. <br>
-Mitigation: Install only when those tool actions are expected, and review parsed tasks and destinations before allowing sync actions. <br>
-Risk: Ambiguous dates, names, or work items in a morning response could be synced incorrectly. <br>
-Mitigation: Confirm detected tasks, due dates, and target systems before creating or updating reminders and summaries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/MarcBickel/morning-manifesto) <br>
-- [Skill source](artifact/SKILL.md) <br>
+## Use Case:
 
+Individuals using ClawHub agents use this skill to run a morning reflection routine that records daily notes, extracts tasks, syncs Apple Reminders, and summarizes urgent Linear issues.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain-text planning summaries with structured note content and task-sync instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read a text or transcribed audio response, update Obsidian notes, sync Apple Reminders, and query Linear when the host agent has those integrations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Morning reflections may contain personal or sensitive information that the workflow saves into an Obsidian daily note.
+
+Mitigation: Install only when saving those reflections to the configured Obsidian vault is intended.
+
+Risk: Tentative or sensitive commitments in a reply may be interpreted as tasks and created or updated in Apple Reminders.
+
+Mitigation: Review generated tasks and due dates before relying on the reminder changes.
+
+Risk: The workflow queries urgent Linear issues across all teams available to the agent.
+
+Mitigation: Use it only in workspaces where all-team urgent issue visibility is appropriate for the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcbickel/skills/morning-manifesto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown journal sections with a text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append to an Obsidian daily note, create or update Apple Reminders, and report urgent Linear issues available to the agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

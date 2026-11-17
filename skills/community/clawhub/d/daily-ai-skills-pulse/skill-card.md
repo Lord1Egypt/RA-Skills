@@ -1,41 +1,54 @@
-## Description: <br>
-Generate a daily AI ecosystem pulse on Claude Code skills and agent-skill trends by scanning ClawHub trending skills, Hacker News activity, and X/Twitter builder chatter, then producing a 5-bullet Markdown brief with sentiment tags and draft replies for opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a daily AI ecosystem pulse on Claude Code skills and agent-skill trends; scan ClawHub trending skills, Hacker News, and X/Twitter chatter; and output a 5-bullet Markdown brief with sentiment tags and draft replies for opportunities.
 
-## Publisher: <br>
-[rabgpt](https://clawhub.ai/user/rabgpt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rabgpt](https://clawhub.ai/user/rabgpt)
 
-## Use Case: <br>
-Founders, builders, and developer relations teams use this skill to monitor Claude Code skills and agent-skill ecosystem activity across public channels and turn the most relevant signals into a concise morning briefing. It helps identify trending skills, active discussions, concerns, and engagement opportunities without manually checking each source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated briefs summarize public web and social content and may contain stale, incorrect, or misleading information. <br>
-Mitigation: Review the generated brief and source links before sharing it to Slack, email, dashboards, or public channels. <br>
-Risk: The artifact includes a promotional curl-to-bash Implexa install command. <br>
-Mitigation: Do not run the install command unless the source has been independently verified and trusted. <br>
+## Use Case:
 
+Developers, founders, and skill builders use this agent skill to collect a daily public-source briefing on Claude Code, ClawHub, Hacker News, and X/Twitter activity related to agent skills. It helps them identify ecosystem trends, engagement opportunities, and noteworthy safety or adoption signals without manually checking each channel.
 
-## Reference(s): <br>
-- [Daily Ai Skills Pulse on ClawHub](https://clawhub.ai/rabgpt/daily-ai-skills-pulse) <br>
-- [Implexa homepage](https://implexa.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown brief with sentiment-tagged bullets, source URLs, optional draft replies, and a coverage note] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected to produce exactly 5 prioritized bullets when enough signal-rich items are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill includes an optional remote installer command that pipes downloaded code into bash.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the installer command unless the installer source has been reviewed, the publisher is trusted, and the local machine changes are understood.
+
+Risk: The daily pulse depends on live public search results from ClawHub, Hacker News, and X/Twitter, so items may be incomplete, stale, or noisy.
+
+Mitigation: Review cited source URLs and fallback notes before acting on the brief or posting draft replies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rabgpt/skills/daily-ai-skills-pulse)
+- [Implexa homepage](https://implexa.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a dated 5-bullet brief with sentiment tags, source URLs, optional draft replies for opportunity items, and a short coverage or fallback note.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

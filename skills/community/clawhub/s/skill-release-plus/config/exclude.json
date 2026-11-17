@@ -41,6 +41,9 @@
         ".env.local",
         "sign.key",
         ".sign-key",
+        "LICENSE",
+        ".gitignore",
+        ".gitattributes",
         "__skill_meta__.json"
     ],
     "exts": [

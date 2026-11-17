@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn73qbchnr9xa146yh7vd8vdss81vj6f",
-  "slug": "auto-memory-keeper",
-  "version": "1.0.2",
-  "publishedAt": 1773270518855
+  "name": "auto-memory-keeper",
+  "version": "1.0.0",
+  "description": "Auto-capture hourly session highlights and update daily memory files. Keeps long-term memory continuous without manual recording. Triggered by cron or manual 'remember this'.",
+  "author": "Ray",
+  "tags": ["memory", "daily", "log", "session", "automation"],
+  "platform": "openclaw"
 }

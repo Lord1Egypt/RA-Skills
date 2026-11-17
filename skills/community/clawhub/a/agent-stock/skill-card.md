@@ -1,47 +1,61 @@
-## Description: <br>
-Agent Stock helps agents retrieve real-time stock data, screen candidates, analyze holdings, and produce short-term trading or quantitative decision guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Stock helps agents retrieve real-time stock market data for stock screening, trading decisions, holdings analysis, and quantitative trading decision workflows.
 
-## Publisher: <br>
-[anoyix](https://clawhub.ai/user/anoyix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anoyix](https://clawhub.ai/user/anoyix)
 
-## Use Case: <br>
-External users and agents use this skill to support stock screening, individual stock trade analysis, quantitative decision workflows, and portfolio holdings reviews. It is oriented toward short-term trading workflows that combine market data, risk checks, and markdown report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading recommendations may be incorrect, incomplete, or unsuitable for the user's financial situation. <br>
-Mitigation: Treat outputs as decision support only, independently verify market data and risk, and consult appropriate financial expertise before acting. <br>
-Risk: Holdings, balances, trading plans, or other sensitive financial details may be saved in local markdown reports under dist/. <br>
-Mitigation: Avoid providing brokerage passwords, API keys, or unnecessary personal financial details, and delete or protect saved reports when they include sensitive information. <br>
-Risk: The workflow depends on the external agent-stock Python package and stock command behavior. <br>
-Mitigation: Install only from trusted package sources and review the package and generated commands before use in sensitive environments. <br>
+## Use Case:
 
+External users and agents use this skill to screen stocks, analyze individual symbols or current holdings, and produce short-term, risk-aware trading decision reports from real-time market data. Outputs should be treated as informational and independently verified before any trading action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anoyix/agent-stock) <br>
-- [Stock screening workflow](references/screen.md) <br>
-- [Stock trade decision workflow](references/trade.md) <br>
-- [Quantitative trade decision workflow](references/quant.md) <br>
-- [Quantitative scoring rules](references/quant_rule.md) <br>
-- [Holdings analysis workflow](references/holdings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown reports with stock command usage and structured decision tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local markdown reports under dist/ for screening, trade decisions, quantitative analysis, and holdings reviews.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.8 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to install unpinned third-party Python package code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted package source and review the package before use.
+
+Risk: Trading guidance may be incorrect, incomplete, or misleading.
+
+Mitigation: Treat all outputs as informational and independently verify them before any trading action.
+
+Risk: Holdings and trading reports may contain sensitive account or portfolio information.
+
+Mitigation: Avoid providing brokerage credentials or unnecessary account details, and require explicit confirmation before saving reports locally.
+
+## Reference(s):
+
+- [Holdings analysis workflow](references/holdings.md)
+- [Quantitative trading decision workflow](references/quant.md)
+- [Quantitative scoring rules](references/quant_rule.md)
+- [Stock screening workflow](references/screen.md)
+- [Individual stock trading decision workflow](references/trade.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with tables, concise trading guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save screening, trading, quantitative, or holdings reports under dist/.]
+
+## Skill Version(s):
+
+0.2.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

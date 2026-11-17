@@ -1,38 +1,54 @@
-## Description: <br>
-AI-powered WeChat Official Account content generator for viral articles, product reviews, monetized posts, affiliate marketing, and sponsored content formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered WeChat Official Account (公众号) content generator that creates viral articles, product reviews, and monetized content optimized for the WeChat ecosystem.
 
-## Publisher: <br>
-[guozifen](https://clawhub.ai/user/guozifen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guozifen](https://clawhub.ai/user/guozifen)
 
-## Use Case: <br>
-External creators, marketers, and agents use this skill to draft WeChat Official Account articles, product reviews, listicles, how-to guides, content calendars, and monetization-oriented post structures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated product reviews, affiliate posts, or sponsored content could fail to disclose paid relationships or imply independent personal experience when that is not true. <br>
-Mitigation: Review generated posts before publication and clearly label affiliate links, sponsored placements, and paid relationships. <br>
+## Use Case:
 
+External creators, marketers, and agents use this skill to draft Chinese WeChat Official Account articles, product reviews, viral listicles, how-to posts, and content calendars with monetization-oriented structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guozifen/wechat-content-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured article text with examples, content plans, tables, calls to action, and Chinese-language templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include affiliate-link placeholders, sponsored-content framing, product comparisons, and WeChat posting recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated promotional drafts may contain unverified personal-use, repurchase, product-performance, or link-placement claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit claims before publishing so they match substantiated user experience, product facts, and actual publishing flow.
+
+Risk: Affiliate links, sponsored posts, and monetized recommendations may require disclosure.
+
+Mitigation: Add sponsorship or affiliate disclosures where required before publishing WeChat content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guozifen/skills/wechat-content-generator)
+- [Publisher profile](https://clawhub.ai/user/guozifen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown articles, outlines, content calendars, and tabular recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language WeChat article drafts, affiliate-style calls to action, product comparisons, and monetization guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Converts Word, Excel, PowerPoint, PDF, and Markdown documents into Markdown and saves them to an Obsidian-style knowledge base, with optional image upload links or Base64 fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Importer converts Word, Excel, PowerPoint, PDF, and Markdown documents into Markdown files for an Obsidian knowledge base, with optional image extraction and image-host links.
 
-## Publisher: <br>
-[sunshinegw](https://clawhub.ai/user/sunshinegw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshinegw](https://clawhub.ai/user/sunshinegw)
 
-## Use Case: <br>
-Developers and knowledge-base users use this skill to import local documents into a Markdown knowledge base, preserving tables and optionally extracting images for hosted links or embedded fallback content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted documents are saved into the configured knowledge-base folder. <br>
-Mitigation: Configure the knowledge-base path deliberately and test imports with non-sensitive files before processing confidential material. <br>
-Risk: Extracted images may be uploaded to a configured image host. <br>
-Mitigation: Use a trusted or local image host and avoid importing confidential documents unless those images are intended to be stored there. <br>
+## Use Case:
 
+Developers and knowledge-base users use this skill to import supported office, PDF, and Markdown documents into an Obsidian vault as Markdown, preserving tables and optionally converting embedded images to external image-host links or Base64 data URLs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunshinegw/knowledge-importer) <br>
-- [Publisher profile](https://clawhub.ai/user/sunshinegw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files and command/configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save converted documents into the configured knowledge-base folder and can upload extracted images to a configured image host.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Converted documents may be saved into the configured Obsidian knowledge-base path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated or reviewed vault path and verify output location before importing sensitive documents.
+
+Risk: Extracted document images may be uploaded to a configured image host, including hosts using plain HTTP.
+
+Mitigation: Use a trusted HTTPS image host and avoid confidential documents unless uploads are disabled or made local-only.
+
+Risk: Extracted images may remain in temporary asset folders after conversion.
+
+Mitigation: Clean temporary asset folders after use and run the importer in an isolated environment when processing untrusted files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunshinegw/skills/knowledge-importer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/sunshinegw)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown files with command-line and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes converted files to a configured knowledge-base path and may upload extracted images to a configured image host.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

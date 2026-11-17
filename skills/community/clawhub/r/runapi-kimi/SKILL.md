@@ -1,6 +1,6 @@
 ---
 name: kimi
-description: Call the Kimi API (kimi-k2.6, kimi-k2.5) through RunAPI using the official OpenAI SDK or compatible clients. Use when the user asks for Kimi chat, streaming completions, Anthropic or Gemini protocol compatibility, or when they want to point an existing OpenAI SDK setup at RunAPI as the base URL.
+description: Call the Kimi API (kimi-k3, kimi-k2.7-code, kimi-k2.6, kimi-k2.5) through RunAPI using OpenAI-compatible Chat Completions. Use for Kimi text chat, streaming, or an existing compatibility client that needs the conditional reference.
 documentation: https://runapi.ai/models/kimi.md
 provider_page: https://runapi.ai/providers/moonshot-ai.md
 catalog: https://runapi.ai/models.md
@@ -9,137 +9,67 @@ metadata:
     homepage: https://runapi.ai/models/kimi
     primaryEnv: OPENAI_API_KEY
     requires:
-      env:
-      - OPENAI_API_KEY
-      - OPENAI_BASE_URL
+      env: [OPENAI_API_KEY, OPENAI_BASE_URL]
     envVars:
-    - name: OPENAI_API_KEY
-      required: true
-      description: RunAPI API key used by OpenAI-compatible Kimi clients.
-    - name: OPENAI_BASE_URL
-      required: true
-      description: Set to https://runapi.ai/v1 for Kimi on RunAPI.
+    - {name: OPENAI_API_KEY, required: true, description: RunAPI API key used by OpenAI-compatible Kimi clients.}
+    - {name: OPENAI_BASE_URL, required: true, description: Set to https://runapi.ai/v1 for Kimi on RunAPI.}
 ---
 
 # Kimi on RunAPI
 
-Use the official **OpenAI SDK** or any OpenAI-compatible HTTP client and switch
-the base URL to `https://runapi.ai/v1`. The primary endpoint is Chat
-Completions (`POST /v1/chat/completions`).
+Use OpenAI-compatible Chat Completions at `https://runapi.ai/v1` as the primary protocol.
 
-## Setup
+## Primary protocol recipe
 
-```dotenv
-OPENAI_API_KEY=YOUR_RUNAPI_TOKEN
-OPENAI_BASE_URL=https://runapi.ai/v1
-```
+### Authenticate
 
-Get a RunAPI API Key at <https://runapi.ai/api_keys>.
+Set `OPENAI_API_KEY` to a RunAPI API key and `OPENAI_BASE_URL` to `https://runapi.ai/v1`.
 
-## Core recipe - Chat Completions
+### Send request
 
 ```python
 from openai import OpenAI
-
-client = OpenAI(
-    api_key="YOUR_RUNAPI_TOKEN",
-    base_url="https://runapi.ai/v1",
-)
-
+client = OpenAI(api_key="YOUR_RUNAPI_TOKEN", base_url="https://runapi.ai/v1")
 response = client.chat.completions.create(
-    model="kimi-k2.6",
-    messages=[{"role": "user", "content": "Explain this code review finding."}],
+    model="kimi-k3",
+    messages=[{"role": "user", "content": "Explain this finding."}],
 )
 print(response.choices[0].message.content)
 print(response.usage)
 ```
 
-```typescript
-import OpenAI from "openai";
+For long output, set `stream=True` and
+`stream_options={"include_usage": True}`; consume through `[DONE]`.
 
-const client = new OpenAI({
-  apiKey: "YOUR_RUNAPI_TOKEN",
-  baseURL: "https://runapi.ai/v1",
-});
+### Verify result
 
-const response = await client.chat.completions.create({
-  model: "kimi-k2.6",
-  messages: [{ role: "user", content: "Explain this code review finding." }],
-});
-```
+Require final assistant content, `finish_reason`, and authoritative `usage`.
+Use the returned final answer rather than raw reasoning content.
 
-## Streaming
+### Stop boundaries
 
-```python
-stream = client.chat.completions.create(
-    model="kimi-k2.5",
-    messages=[{"role": "user", "content": "Write a compact changelog."}],
-    stream=True,
-)
-for chunk in stream:
-    delta = chunk.choices[0].delta.content
-    if delta:
-        print(delta, end="", flush=True)
-```
+Correct a rejected shape once using the structured error. Retry transport once
+only before any response or Usage and when replay is safe. Record a terminal
+error and stop without changing model or protocol. For `kimi-k3` and
+`kimi-k2.7-code`, start with text history and final answers; add tools,
+multimodal input, reasoning controls, cache controls, or continuation only when
+the current RunAPI contract explicitly verifies the exact shape.
 
-Streaming runs through a regional edge proxy so the request does not hold a
-Rails/Puma thread. Long generations should always stream.
+## Compatibility protocols
 
-## Protocol compatibility
-
-Kimi models are also available through RunAPI's Anthropic-compatible and Gemini
-`contents` client surfaces. RunAPI bridges those request and response shapes to
-the OpenAI-compatible chat request format, so use these protocol paths only when an
-existing tool expects those formats:
-
-```bash
-curl -X POST "https://runapi.ai/v1/messages" \
-  -H "x-api-key: YOUR_RUNAPI_TOKEN" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "kimi-k2.6",
-    "max_tokens": 1024,
-    "messages": [{"role": "user", "content": "Draft a concise answer."}]
-  }'
-```
-
-```bash
-curl -X POST \
-  "https://runapi.ai/v1beta/models/kimi-k2.6:streamGenerateContent" \
-  -H "x-goog-api-key: YOUR_RUNAPI_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"contents":[{"role":"user","parts":[{"text":"Hello!"}]}]}'
-```
-
-For new app code, prefer the OpenAI-compatible setup.
-
-## List models
-
-```bash
-curl https://runapi.ai/v1/models \
-  -H "Authorization: Bearer YOUR_RUNAPI_TOKEN"
-```
+Load [compatibility protocols](references/compatibility-protocols.md) only when an existing client requires Anthropic Messages or Gemini contents.
 
 ## Supported models
 
 | Model ID | Use when |
 |---|---|
-| `kimi-k2.6` | Latest Kimi K2 chat workloads |
+| `kimi-k3` | Current flagship basic text requests |
+| `kimi-k2.7-code` | Dedicated coding requests |
+| `kimi-k2.6` | Recent Kimi K2 chat workloads |
 | `kimi-k2.5` | Kimi K2.5 compatibility |
 
 ## References
 
-- Model overview, pricing, and rate limits: https://runapi.ai/models/kimi.md
-- Provider comparison: https://runapi.ai/providers/moonshot-ai.md
-- Catalog: https://runapi.ai/models.md
-
-## Agent rules
-
-- Keep API keys in `OPENAI_API_KEY`, `RUNAPI_TOKEN`, or a secret manager; never
-  inline them in commits or shell history.
-- Default new integrations to the OpenAI-compatible client at
-  `https://runapi.ai/v1`.
-- Use streaming for responses longer than a few hundred tokens.
-- For pricing, rate-limit, and commercial-usage answers, link to
-  https://runapi.ai/models/kimi.md rather than copying values.
+- <https://runapi.ai/models/kimi.md>
+- <https://runapi.ai/providers/moonshot-ai.md>
+- <https://runapi.ai/models.md>

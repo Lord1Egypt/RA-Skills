@@ -1,45 +1,56 @@
-## Description: <br>
-Kling 3.0 video generation on PoYo / poyo.ai via https://api.poyo.ai/api/generate/submit for standard or pro text-to-video, image-to-video, multi-shot, reference-element, polling, and webhook workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kling 3.0 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-3.0/standard`, `kling-3.0/pro`, text-to-video, image-to-video, multi-shot prompts, element references, sound-enabled output, polling, and webhooks.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare PoYo Kling 3.0 video-generation payloads, submit trusted payload files with curl, and track follow-up polling or webhook handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo receives generation prompts, reference image URLs, callback URLs, and submitted requests. <br>
-Mitigation: Use the skill only when the user intends to use PoYo Kling 3.0, and avoid private or proprietary inputs unless the user trusts PoYo and any webhook receiver. <br>
-Risk: The PoYo API key is required for live submission. <br>
-Mitigation: Keep POYO_API_KEY server-side in an environment variable or secret manager, and do not expose it in browser code, logs, screenshots, repositories, command-line arguments, or chat output. <br>
-Risk: The helper can make live network requests to the PoYo generation API. <br>
-Mitigation: Submit only trusted payload files from a safe shell environment after the user explicitly asks for a live API call. <br>
+## Use Case:
 
+Developers and agent users use this skill to prepare or submit PoYo Kling 3.0 text-to-video, image-to-video, multi-shot, and element-referenced generation requests, then track returned task IDs through polling or webhooks.
 
-## Reference(s): <br>
-- [PoYo Kling 3.0 API Reference](references/api.md) <br>
-- [PoYo Kling 3.0 documentation](https://docs.poyo.ai/api-manual/video-series/kling-3-0) <br>
-- [PoYo Kling 3.0 model page](https://poyo.ai/models/kling-3-0) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/kling-3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model id, request mode, payload summary, reference-image or element usage, returned task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, image URLs, callback URLs, and generation metadata are sent to PoYo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user trusts PoYo for the submitted content, and avoid confidential prompts, source image URLs, or private callback endpoints.
+
+Risk: The PoYo API key may be exposed through process arguments when using the submit script.
+
+Mitigation: Keep POYO_API_KEY in a protected server-side environment and prefer a safer client or revised submission path that avoids exposing bearer tokens in process arguments.
+
+## Reference(s):
+
+- [PoYo Kling 3.0 API Reference](references/api.md)
+- [PoYo Kling 3 API model page](https://poyo.ai/models/kling-3-api)
+- [PoYo Kling 3.0 API documentation](https://docs.poyo.ai/api-manual/video-series/kling-3-0)
+- [ClawHub Kling 3 skill page](https://clawhub.ai/coolhackboy/skills/kling-3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON payloads and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model id, generation mode, payload summary or full payload, reference image or element details, returned task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

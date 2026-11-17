@@ -1,42 +1,60 @@
-## Description: <br>
-Tracks ClawHub skill search ranking across keywords, with single and batch checks, competitor comparison, top-results views, and JSON export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and monitor the search ranking position of a ClawHub skill across one or more keywords, with support for top results, competitor context, and JSON export.
 
-## Publisher: <br>
-[tjefferson](https://clawhub.ai/user/tjefferson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tjefferson](https://clawhub.ai/user/tjefferson)
 
-## Use Case: <br>
-Developers and ClawHub skill publishers use this skill to check where a skill appears for search keywords, compare nearby competitors, and export ranking snapshots for ongoing search performance monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords and skill slugs are sent to ClawHub when rank checks are run. <br>
-Mitigation: Avoid secrets, private project details, and personal data in queries; review keywords before execution. <br>
-Risk: Rankings are real-time snapshots and may change as ClawHub search results change. <br>
-Mitigation: Treat results as point-in-time signals and use JSON exports for repeated comparisons over time. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to check how a ClawHub skill ranks for target keywords, compare nearby competitors, and export ranking snapshots for tracking over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tjefferson/skills-rank) <br>
-- [ClawHub Search API Reference](references/api-docs.md) <br>
-- [ClawHub Search API endpoint](https://clawhub.ai/api/search?q={keyword}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text summaries, markdown tables, and optional structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rank positions, total result counts, nearby competitors, top results, scores, timestamps, and per-keyword error messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and CHANGELOG.md, released 2026-03-17) <br>
+Risk: Queried skill slugs and keywords are sent to ClawHub's public search API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for ClawHub ranking checks and avoid submitting sensitive or private keywords.
+
+Risk: Verbose or competitor output may display remote search result text in the terminal.
+
+Mitigation: Review terminal output before sharing logs or reports outside the intended audience.
+
+Risk: Search rankings are real-time snapshots and may fluctuate as ClawHub search behavior changes.
+
+Mitigation: Use JSON exports for repeated measurements and compare trends rather than relying on a single run.
+
+## Reference(s):
+
+- [ClawHub Skills Rank](https://clawhub.ai/tjefferson/skills/skills-rank)
+- [Publisher profile](https://clawhub.ai/user/tjefferson)
+- [ClawHub Search API Reference](references/api-docs.md)
+- [ClawHub search API endpoint](https://clawhub.ai/api/search?q={keyword})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summary tables, terminal text, and optional JSON output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are real-time ClawHub search snapshots and are limited by the public search API result window.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog, released 2026-03-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

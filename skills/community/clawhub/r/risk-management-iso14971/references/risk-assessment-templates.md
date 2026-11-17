@@ -1,4 +1,4 @@
-# risk-management-specialist reference
+# riREDACTED-SECRET reference
 
 ## Risk Assessment Templates
 

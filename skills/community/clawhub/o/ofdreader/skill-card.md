@@ -1,42 +1,60 @@
-## Description: <br>
-Ofd Reader extracts text from OFD (Open Fixed-layout Document) files and converts document content into Markdown with basic headings, paragraphs, and tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ofd Reader extracts text from OFD (Open Fixed-layout Document) files and converts document content to Markdown with basic paragraph, heading, and table structure.
 
-## Publisher: <br>
-[zhanjian1972](https://clawhub.ai/user/zhanjian1972) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhanjian1972](https://clawhub.ai/user/zhanjian1972)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to locally extract text from OFD files or convert OFD content into Markdown for review, archival workflows, or downstream editing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Converted output may contain sensitive text from user-selected OFD documents. <br>
-Mitigation: Process only documents the user is allowed to handle and protect generated text or Markdown like the source document. <br>
-Risk: The optional dependency installer invokes pip to install an external package. <br>
-Mitigation: Use the standard-library conversion scripts by default and run the installer only when the Python package source is trusted. <br>
-Risk: Complex OFD layout, table, heading, or scanned image-only content may not convert completely. <br>
-Mitigation: Review converted output against the source document before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OFD file format reference](references/ofd-format.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhanjian1972/ofdreader) <br>
+## Use Case:
 
+Developers and agents use this skill to extract text from OFD documents or convert OFD content to Markdown for review, indexing, and downstream editing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Plain text or Markdown written to stdout or an output file, with shell commands for invoking the bundled scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local OFD input path and optional output path; extracted content may include sensitive document text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The optional dependency installer invokes pip to install an external package.
+
+Mitigation: Run the installer only when the optional dependency is needed and review the package source and environment policy first.
+
+Risk: Processing untrusted OFD files may expose the agent environment to malformed ZIP or XML inputs.
+
+Mitigation: Prefer trusted documents and process unknown files in a constrained workspace.
+
+Risk: Supplying an output path can overwrite or create local files.
+
+Mitigation: Choose deliberate output paths and review existing files before writing converted text or Markdown.
+
+Risk: OFD layout, complex tables, and heuristic heading detection may not convert perfectly.
+
+Mitigation: Review generated text or Markdown before using it as an authoritative representation of the source document.
+
+## Reference(s):
+
+- [OFD Format Reference](references/ofd-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown, with optional file output paths and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The conversion may write extracted text or Markdown to a caller-specified local output file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

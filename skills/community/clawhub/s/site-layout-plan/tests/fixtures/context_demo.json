@@ -1,0 +1,57 @@
+{
+  "schema": "site-context/v1",
+  "project": "合成示例项目",
+  "coord_unit": "m",
+  "notes": "合成脱敏数据；仅用于回归，不代表任何真实项目。",
+  "constraints": [
+    {
+      "id": "CTX-HV-01",
+      "type": "high_voltage",
+      "name": "东侧 10kV 架空线（合成）",
+      "geometry": {"type": "line", "points": [[112, 0], [112, 60]]},
+      "buffer_m": 8,
+      "severity": "hard",
+      "voltage_kv": 10
+    },
+    {
+      "id": "CTX-RES-01",
+      "type": "residential",
+      "name": "北侧居民楼（合成）",
+      "geometry": {"type": "point", "points": [[50, 82]]},
+      "buffer_m": 10,
+      "severity": "hard"
+    },
+    {
+      "id": "CTX-RIV-01",
+      "type": "river",
+      "name": "西侧河道蓝线（合成）",
+      "geometry": {"type": "line", "points": [[-25, 0], [-25, 60]]},
+      "buffer_m": 15,
+      "severity": "hard"
+    },
+    {
+      "id": "CTX-PIPE-01",
+      "type": "municipal_pipeline",
+      "name": "南侧市政给水干管（合成）",
+      "geometry": {"type": "line", "points": [[0, -6], [100, -6]]},
+      "buffer_m": 3,
+      "severity": "hard"
+    },
+    {
+      "id": "CTX-SEN-01",
+      "type": "sensitive_receptor",
+      "name": "东北侧学校（合成）",
+      "geometry": {"type": "point", "points": [[118, 70]]},
+      "buffer_m": 20,
+      "severity": "soft"
+    }
+  ],
+  "existing_roads": [
+    {
+      "id": "ER-01",
+      "name": "南侧既有市政道路（合成）",
+      "geometry": {"type": "line", "points": [[-5, -4], [105, -4]]},
+      "width_m": 7.0
+    }
+  ]
+}

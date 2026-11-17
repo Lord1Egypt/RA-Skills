@@ -1,43 +1,58 @@
-## Description: <br>
-Advanced desktop automation with mouse, keyboard, screen capture, window management, clipboard, and image-recognition controls for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced desktop automation with mouse, keyboard, screen, window, clipboard, and task-level control for agent workflows.
 
-## Publisher: <br>
-[alexbingquanxu-cpu](https://clawhub.ai/user/alexbingquanxu-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexbingquanxu-cpu](https://clawhub.ai/user/alexbingquanxu-cpu)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let an OpenClaw agent automate local desktop workflows through mouse movement, keyboard input, screenshots, window control, clipboard access, and higher-level task execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad control over the active desktop, including mouse, keyboard, clipboard, screenshots, app launches, and window operations. <br>
-Mitigation: Install only when this level of local desktop control is intended, keep failsafe enabled, and use approval mode where possible. <br>
-Risk: Desktop automation can expose passwords, private documents, chats, admin tools, or sensitive clipboard data if it runs in the wrong context. <br>
-Mitigation: Avoid running it while sensitive information is visible or present in the clipboard, and manually review form submissions, file modifications, app launches, and public posts before they happen. <br>
+## Use Case:
 
+Developers and automation builders use this skill to let an agent inspect the desktop, move the mouse, type, trigger hotkeys, manage windows, use the clipboard, capture screenshots, and execute simple autonomous desktop tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alexbingquanxu-cpu/desktop-control-custom) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [AI agent guide](artifact/AI_AGENT_GUIDE.md) <br>
-- [Quick reference](artifact/QUICK_REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown documentation with Python examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local desktop actions, screenshots, clipboard reads and writes, logs, and Python return values when invoked by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The skill grants an agent live control over the mouse, keyboard, windows, screen capture, and clipboard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled environment, keep failsafe enabled, avoid administrator execution unless required, and use approval mode or code review before autonomous workflows.
+
+Risk: Screenshots, window titles, and clipboard reads can expose sensitive information from the active desktop session.
+
+Mitigation: Run the skill away from sensitive screens and clipboard contents, and clear or isolate sensitive data before allowing screen or clipboard operations.
+
+Risk: Autonomous desktop tasks can interact with the wrong application or perform unintended clicks, typing, hotkeys, or file operations.
+
+Mitigation: Use explicit task scopes, verify the active window before execution, set reasonable step limits, and review action logs or captured screenshots after runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexbingquanxu-cpu/skills/desktop-control-custom)
+- [Publisher profile](https://clawhub.ai/user/alexbingquanxu-cpu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Python snippets, shell commands, and runtime action results such as screenshots, window titles, clipboard text, and status dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce desktop side effects through mouse, keyboard, clipboard, screenshots, and window focus changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

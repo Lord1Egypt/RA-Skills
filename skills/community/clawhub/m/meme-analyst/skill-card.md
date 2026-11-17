@@ -1,42 +1,57 @@
-## Description: <br>
-Analyzes memes, screenshots, and Telegram media by decomposing visual and text elements, researching cultural references in their original language, and explaining the humor and context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes memes, screenshots, and Telegram media by decomposing visual and textual elements, researching cultural references in the original language, and explaining humor mechanisms and irony depth.
 
-## Publisher: <br>
-[antibagr](https://clawhub.ai/user/antibagr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[antibagr](https://clawhub.ai/user/antibagr)
 
-## Use Case: <br>
-External users and agents use this skill to explain image memes, screenshots, and jokes, especially Russian-language and Telegram-distributed memes that require cultural research. It can also support scheduled Telegram meme ingestion and maintain reusable memory about meme templates, references, and channel profiles. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can ingest Telegram media and channel content automatically. <br>
-Mitigation: Limit ingestion to approved public or authorized channels and keep human review around any channel configuration or downloaded media processing. <br>
-Risk: The skill can persist user explanations and channel profiles without explicit retention boundaries. <br>
-Mitigation: Configure the agent to ask before saving user-provided explanations or long-term channel profiles, and periodically review stored memory for retention and consent concerns. <br>
-Risk: Private screenshots or meme text may be searched externally during analysis. <br>
-Mitigation: Avoid using the skill on private or sensitive screenshots unless external search is acceptable for that content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/antibagr/meme-analyst) <br>
-- [Publisher profile](https://clawhub.ai/user/antibagr) <br>
+## Use Case:
 
+External users and developers use this skill to explain image memes, screenshots, jokes, and Telegram-channel meme media. It helps identify cultural references, especially Russian-language references, and produce concise human-facing humor analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with structured meme analysis and optional memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce reference, twist, humor, irony, and context explanations; in ingestion mode it may also propose or update memory files for templates, references, channel profiles, and summaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private screenshots, sensitive chats, or Telegram channel media may be sent through external search or analysis flows.
+
+Mitigation: Use only with sources where that processing is acceptable, and add consent, redaction, or source restrictions before handling sensitive content.
+
+Risk: User or channel-derived meme content may be persisted in meme-analysis memory without clear retention limits.
+
+Mitigation: Review and limit what is saved under memory/memes, and define retention or deletion practices before deployment.
+
+Risk: Automated Telegram media ingestion can broaden collection beyond an interactive user request.
+
+Mitigation: Enable cron ingestion only for approved channels and review channel configuration, media scope, and batch outputs.
+
+## Reference(s):
+
+- [Meme Analyst ClawHub Skill Page](https://clawhub.ai/antibagr/skills/meme-analyst)
+- [antibagr Publisher Profile](https://clawhub.ai/user/antibagr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown analysis with reference, twist, humor, irony, and context details when appropriate.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update meme-analysis memory files for templates, references, humor patterns, channels, and daily summaries.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

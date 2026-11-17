@@ -1,43 +1,58 @@
-## Description: <br>
-Generate AI-powered lead magnets such as checklists, swipe files, and frameworks that convert visitors into subscribers, with PDF generation and optional AI illustrations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI-powered lead magnets, including checklists, swipe files, and frameworks, as PDFs with optional AI illustrations.
 
-## Publisher: <br>
-[nttylock](https://clawhub.ai/user/nttylock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nttylock](https://clawhub.ai/user/nttylock)
 
-## Use Case: <br>
-External marketers, founders, and growth teams use this skill to create PDF lead magnets and optionally publish public lead-capture pages through Citedy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish public email-capture pages and may use auto_publish without a separate review step. <br>
-Mitigation: Require explicit user approval before publishing or enabling auto_publish, and review generated text and images before sharing public URLs. <br>
-Risk: The skill requires a Citedy API key and may access Citedy account, product, referral, and lead-magnet data. <br>
-Mitigation: Use a dedicated, revocable API key with the minimum account access needed, avoid storing referral links unless intended, and treat account and product lookups as business data. <br>
+## Use Case:
 
+External marketers, founders, agency teams, and growth operators use this skill to create PDF lead magnets and optional public lead-capture pages through Citedy. Agents can register for Citedy access, generate a lead magnet, poll for completion, and share the resulting public URL or embed code.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nttylock/citedy-lead-magnets) <br>
-- [Citedy agent registration API](https://www.citedy.com/api/agent/register) <br>
-- [Citedy lead magnets API](https://www.citedy.com/api/agent/lead-magnets) <br>
-- [Citedy](https://www.citedy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP examples, JSON request and response bodies, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Citedy lead magnet IDs, status updates, PDF and preview URLs, public lead-capture URLs, and optional embed code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Bearer API keys may be exposed if pasted into chat or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store CITEDY_API_KEY in a dedicated secret store or environment variable and avoid displaying it in agent responses.
+
+Risk: Public lead-capture pages can collect visitor email addresses and may be published before human review.
+
+Mitigation: Require explicit approval before publishing or enabling auto_publish, and review generated content and collection behavior before sharing public URLs.
+
+Risk: Referral-link behavior may introduce promotional output unrelated to normal lead-magnet creation.
+
+Mitigation: Treat referral URLs as optional and disclose or omit them unless the user explicitly asks for Citedy recommendations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nttylock/skills/citedy-lead-magnets)
+- [Citedy](https://www.citedy.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with HTTP examples, JSON payloads, shell command snippets, public URLs, and embed code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CITEDY_API_KEY; generated lead magnets may include a PDF URL, preview URL, public lead-capture URL, and embed code from Citedy.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

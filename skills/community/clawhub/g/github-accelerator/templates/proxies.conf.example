@@ -1,0 +1,17 @@
+# gh-accelerator 本地私有代理配置模板
+# Local private proxy configuration template for gh-accelerator
+# 复制到 ~/.config/gh-accelerator/proxies.conf（路径可用环境变量 GH_ACCEL_CONFIG 覆盖）
+# Copy to ~/.config/gh-accelerator/proxies.conf (override with GH_ACCEL_CONFIG)
+# 每行一条，# 为注释；支持裸域名（自动补 https://）；本地代理自动优先于内置公共镜像。
+# One entry per line; # marks comments. Bare domains get https:// automatically;
+# local proxies always rank ahead of the built-in public mirrors.
+# ⚠️ 机器本地文件，禁止提交到任何仓库。
+# Machine-local file: never commit it to any repository.
+
+# 自建下载加速（gh-proxy 类前缀服务）
+# Self-hosted download accelerator (gh-proxy style prefix service)
+#DOWNLOAD_PROXY=https://your-proxy.example.com
+
+# 自建 clone 加速（需支持 /https://github.com 前缀透传）
+# Self-hosted clone accelerator (must support /https://github.com prefix passthrough)
+#CLONE_PROXY=https://your-proxy.example.com/https://github.com

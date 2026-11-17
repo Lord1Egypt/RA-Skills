@@ -1,40 +1,59 @@
-## Description: <br>
-Analyze memory logs to detect recurring patterns and suggest automations such as cron jobs, skills, workflow shortcuts, or monitoring proposals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow Crystallizer analyzes memory logs to detect recurring patterns and suggest automations such as cron jobs, skills, workflow shortcuts, and monitors.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-Developers and power users use this skill to analyze OpenClaw memory logs for recurring workflows and receive actionable proposals for cron jobs, skill drafts, workflow shortcuts, or monitors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw memory logs and stores derived workflow suggestions, which can expose sensitive workflow history. <br>
-Mitigation: Install only where local memory-log analysis is acceptable, review generated suggestions before applying them, and reset or delete state.json when retained analysis history is not desired. <br>
+## Use Case:
 
+Developers and agent operators use this skill to mine OpenClaw memory logs for repeated requests, multi-step workflows, and time-correlated tasks, then review suggested automations before adopting them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/newageinvestments25-byte/workflow-crystallizer) <br>
-- [Pattern Types - Detection Logic](references/pattern-types.md) <br>
-- [Suggestion Templates](references/suggestion-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown reports with JSON cron definitions, draft SKILL.md snippets, saved-prompt suggestions, and monitoring proposals.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits reports to at most 3 new suggestions per run at a 60% confidence threshold and stores derived suggestion history in state.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads memory logs and keeps a local plaintext cache of memory-derived excerpts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where memory-log access is acceptable, keep state files local, and review state.json periodically.
+
+Risk: Generated cron definitions, skill drafts, and workflow shortcuts may reflect untrusted or misleading memory content.
+
+Mitigation: Treat all generated automations as drafts and review or scan them before approval or deployment.
+
+Risk: Automatic scheduled use may surface broad or noisy suggestions before triggers are narrowed.
+
+Mitigation: Avoid unattended scheduled runs until confidence thresholds, input scope, and reporting expectations are tuned.
+
+## Reference(s):
+
+- [ClawHub Release Page](https://clawhub.ai/newageinvestments25-byte/skills/workflow-crystallizer)
+- [Pattern Types - Detection Logic](artifact/references/pattern-types.md)
+- [Suggestion Templates](artifact/references/suggestion-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with JSON suggestion records and ready-to-review code or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Caches memory-derived events and suggestion status locally; reports up to three high-confidence suggestions per run by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

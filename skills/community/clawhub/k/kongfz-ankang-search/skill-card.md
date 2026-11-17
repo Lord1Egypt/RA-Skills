@@ -1,45 +1,60 @@
-## Description: <br>
-孔夫子旧书网拍卖栏目检索技能，自动搜索安康、来鹿堂、兴安府三个关键词相关文献拍品。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Kongfz auction listings for Ankang-related books and documents using the fixed keywords Ankang, Lai Lu Tang, and Xing'an Prefecture.
 
-## Publisher: <br>
-[tobemsk](https://clawhub.ai/user/tobemsk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobemsk](https://clawhub.ai/user/tobemsk)
 
-## Use Case: <br>
-External users and collectors use this skill to search Kongfz auction listings for Ankang-related books, documents, and local-history materials. It guides browser-based searches, extracts listing text, and classifies matches by relevance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a local browser through xbrowser and opens Kongfz search pages, which may use the browser profile's existing cookies. <br>
-Mitigation: Run it with a separate or logged-out browser profile when existing Kongfz session data should not be used. <br>
-Risk: The provided script accepts one keyword per run even though the release advertises three fixed keywords. <br>
-Mitigation: Run or orchestrate separate searches for 安康, 来鹿堂, and 兴安府, then compare the grouped results. <br>
-Risk: Kongfz page structure and element references can change, causing stale browser automation selectors. <br>
-Mitigation: Refresh the xbrowser snapshot before filling fields and update the element reference when the page structure changes. <br>
+## Use Case:
 
+External users and agents use this skill to search Kongfz auction pages for Ankang-region literature, books, and historical-document listings, then summarize and prioritize relevant results.
 
-## Reference(s): <br>
-- [Kongfz site structure reference](references/kongfz_structure.md) <br>
-- [Kongfz actual structure update](references/kongfz_actual_structure.md) <br>
-- [Kongfz auction advanced search](https://search.kongfz.com/adv.html?type=pm) <br>
-- [Kongfz auction search result format](https://search.kongfz.com/pm-search-web/pc/auction/search?key=关键词) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style search summaries with inline shell command examples and prioritized listing details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are grouped by keyword and relevance priority when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill automates Kongfz pages through xbrowser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated, logged-out browser profile and review browser actions before using the skill with accounts or sensitive sessions.
+
+Risk: Weak keyword input handling may make command construction or page interaction unreliable.
+
+Mitigation: Restrict keywords to the intended search terms or escape user-provided input before running the included script.
+
+Risk: Installation guidance is imprecise.
+
+Mitigation: Pin the installer and repository source before installation and review the installed files against the release evidence.
+
+## Reference(s):
+
+- [Kongfz Structure Reference](references/kongfz_structure.md)
+- [Kongfz Actual Structure Update](references/kongfz_actual_structure.md)
+- [Kongfz Skill Page](https://clawhub.ai/tobemsk/skills/kongfz-ankang-search)
+- [Kongfz Advanced Auction Search](https://search.kongfz.com/adv.html?type=pm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown search summaries with optional shell command templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries classify auction results by relevance and may include title, location, price, time remaining, and listing links when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

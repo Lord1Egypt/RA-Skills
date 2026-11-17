@@ -1,46 +1,63 @@
-## Description: <br>
-NadMail gives AI agents wallet-authenticated email identities on Monad, with support for registration, sending, inbox access, credits, and payment-linked emo-buy boosts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NadMail gives AI agents a wallet-authenticated @nadmail.ai email identity for registering, sending mail, reading an inbox, and optionally boosting internal messages with MON-based emo-buy transactions.
 
-## Publisher: <br>
-[daaab](https://clawhub.ai/user/daaab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daaab](https://clawhub.ai/user/daaab)
 
-## Use Case: <br>
-Developers and AI-agent operators use this skill to register and operate NadMail email accounts, send and receive mail, and manage payment-linked features for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet private keys and NadMail auth tokens are used by the skill. <br>
-Mitigation: Use a dedicated low-value wallet, prefer environment variables for private keys, and protect ~/.nadmail/token.json and private-key.enc with local file permissions. <br>
-Risk: Payment-linked email actions can spend MON through micro-buys, emo-buy boosts, and credit purchases. <br>
-Mitigation: Review emo-buy costs and daily caps before allowing autonomous sending, and require explicit operator approval for payment-bearing workflows. <br>
-Risk: Password entry for encrypted wallet use may be exposed in recorded, shared, or monitored terminals. <br>
-Mitigation: Avoid entering wallet passwords in shared or recorded sessions and rotate credentials if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to equip an agent with a NadMail address, wallet-based SIWE registration, email sending, inbox access, and optional MON-backed boosts for internal NadMail messages.
 
-## Reference(s): <br>
-- [NadMail website](https://nadmail.ai) <br>
-- [NadMail API](https://api.nadmail.ai) <br>
-- [NadMail API docs](https://api.nadmail.ai/api/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/daaab/nadmail) <br>
-- [Publisher profile](https://clawhub.ai/user/daaab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents through local Node.js scripts that call NadMail APIs and read or write local NadMail configuration files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill handles wallet identity material and local NadMail auth tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, prefer environment variables or encrypted storage, keep local NadMail files out of version control, and avoid entering wallet passwords in shared or recorded terminals.
+
+Risk: Sending and inbox operations transmit email and inbox data to api.nadmail.ai.
+
+Mitigation: Use the skill only for email content appropriate for the NadMail service and review recipients, subjects, and message bodies before sending sensitive information.
+
+Risk: Emo-buy and credit workflows can involve MON spending, and the security guidance says not to rely on the local emo-buy cap as a hard financial limit.
+
+Mitigation: Review each spending prompt, keep wallet balances low, monitor external credit purchases and emo-buy amounts, and treat local caps as convenience controls rather than complete financial safeguards.
+
+Risk: The authoritative security verdict is suspicious because the skill handles wallet secrets and financial actions with weak safeguards.
+
+Mitigation: Review and update dependencies before serious use, scan the artifact before deployment, and limit execution to trusted environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daaab/skills/nadmail)
+- [NadMail Website](https://nadmail.ai)
+- [NadMail API Docs](https://api.nadmail.ai/api/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No structured post-processing required.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0 and package.json reports 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

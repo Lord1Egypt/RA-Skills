@@ -1,41 +1,52 @@
-## Description: <br>
-Cleans and normalizes extra spaces, newlines, and tabs in Chinese text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans and normalizes extra spaces, newlines, and tabs in Chinese text.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[freedompixels](https://clawhub.ai/user/freedompixels)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and content operators use this skill to normalize whitespace in Chinese text supplied directly or from a file.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: When file mode is used, the selected output path may be overwritten.
+
+Mitigation: Choose a new or disposable output path and review the destination before running the command.
+
+Risk: The skill documentation and script messages are in Chinese.
+
+Mitigation: Use it only where Chinese-language instructions and command output are acceptable for the operator.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, content editors, and agents can use this skill to tidy Chinese text by collapsing repeated whitespace, tabs, and line breaks before publishing or further processing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: An explicit output path can overwrite existing content. <br>
-Mitigation: Choose output paths deliberately and keep backups for files that should not be replaced. <br>
-Risk: Running the cleaner on unintended files may alter meaningful whitespace. <br>
-Mitigation: Use it on text where whitespace normalization is desired and review results before publishing. <br>
+**Output Format:** [Markdown with inline shell commands and plain-text normalized output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-whitespace-cleaner) <br>
-- [Publisher profile](https://clawhub.ai/user/freedompixels) <br>
+**Other Properties Related to Output:** [Can read user-provided text or files and write normalized text to a user-selected output path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [Plain text output or UTF-8 text file, with Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Python standard-library processing and can read from an input file or write to an explicit output path.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

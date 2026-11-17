@@ -1,45 +1,59 @@
-## Description: <br>
-MNS helps agents manage an investment portfolio with CLI-driven position tracking, CNN Fear & Greed sentiment checks, contrarian strategy suggestions, backtesting, and daily strategy reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MNS (Money Never Sleeps) is a CLI operations manual that guides agents through local portfolio ledger review, already-executed trade recording, market sentiment checks, target-weight rebalancing reports, strategy parameter inspection, and backtesting.
 
-## Publisher: <br>
-[sopaco](https://clawhub.ai/user/sopaco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sopaco](https://clawhub.ai/user/sopaco)
 
-## Use Case: <br>
-External investors, developers, and agent operators use this skill to inspect portfolio state, record manual buy and sell activity, update prices, tune contrarian strategy parameters, run backtests, and generate market-sentiment-based strategy reports. It supports investment tracking and suggestions only, not broker connectivity or automated trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated strategy suggestions may be mistaken for financial advice or used to authorize real brokerage activity. <br>
-Mitigation: Treat all reports as informational suggestions, keep broker execution manual, and do not grant an agent authority to place real trades from these outputs. <br>
-Risk: Portfolio records and strategy reports can expose sensitive personal financial information on disk. <br>
-Mitigation: Review local data storage under ~/.mns and report output under ./reports, restrict workspace access, and remove generated reports when they are no longer needed. <br>
-Risk: Market sentiment and price-update flows depend on network data that may be delayed, unavailable, or inaccurate. <br>
-Mitigation: Verify current market data from trusted sources before making decisions and retry or fall back to cached/manual data when network calls fail. <br>
+## Use Case:
 
+External users and agents use this skill to operate the MNS CLI for local portfolio bookkeeping, daily or weekly strategy reporting, manual price and configuration workflows, and backtest review. The skill is for recording user-confirmed transactions and explaining rule-based outputs, not for executing broker trades or making investment decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sopaco/money-never-sleep) <br>
-- [GitHub Project Homepage](https://github.com/sopaco/money-never-sleep) <br>
-- [MNS CLI Command Reference](references/commands.md) <br>
-- [MNS Strategy Parameters Reference](references/strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI command sequences, configuration examples, portfolio summaries, and strategy report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can read and write local MNS configuration, SQLite portfolio data, and report files; sentiment and price-update flows may make network calls for market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.10 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install and run an unpinned third-party npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and publisher before installation, prefer a pinned audited version, and run it in an isolated environment when possible.
+
+Risk: The CLI can mutate local financial ledger records, including recording trades and resetting data.
+
+Mitigation: Only record trades or reset data after explicit user confirmation of the real-world transaction or destructive action.
+
+Risk: Rule-based rebalancing reports may be mistaken for investment advice.
+
+Mitigation: Present reports as mechanical calculations, avoid making buy or sell decisions for the user, and preserve the skill's stated limitations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sopaco/skills/money-never-sleep)
+- [Project homepage](https://github.com/sopaco/money-never-sleep)
+- [OpenClaw source link](https://github.com/sopaco/money-never-sleep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command-output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should distinguish bookkeeping from investment advice and use command output as the source for portfolio figures.]
+
+## Skill Version(s):
+
+0.6.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

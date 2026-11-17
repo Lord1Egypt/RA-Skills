@@ -1,42 +1,50 @@
-## Description: <br>
-FlyAI Flight Tracker helps agents query live FlyAI flight-search data to compare flight prices across date ranges and identify booking windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track flight prices across a date range, show day-by-day comparison charts to identify trends and booking windows, and support related Fliggy-powered travel workflows including flight booking, hotel reservations, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, and car rental.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-focused agents use this skill to track flight price trends, compare departure dates, and produce booking-oriented summaries from live FlyAI CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install an unpinned global npm package. <br>
-Mitigation: Install a reviewed, pinned FlyAI CLI version in a contained environment before enabling the skill, and do not allow autonomous global installation. <br>
-Risk: Flight searches may share travel details with the FlyAI or Fliggy service. <br>
-Mitigation: Inform users before sending itinerary details to the service and avoid submitting sensitive travel information unless it is required for the task. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to run flyai CLI searches, compare flight prices across date ranges, and present booking-window guidance with booking links. It can also guide related Fliggy-powered travel workflows such as hotels, train tickets, attractions, itinerary planning, visa information, insurance, and car rental.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/flyai-flight-tracker) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on FlyAI CLI results and include detailUrl-based booking links when presenting travel options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.2.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill instructs agents to install and run an unpinned global third-party npm CLI and may send itinerary details such as cities and dates to the flyai/Fliggy service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a pinned CLI version, request explicit approval before installation, and use a sandboxed or project-local install path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/flyai-flight-tracker)
+- [Parent flyai skill](https://github.com/alibaba-flyai/flyai-skill/tree/main/skills/flyai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI results and booking links; raw JSON is not an intended output.]
+
+## Skill Version(s):
+
+v3.2.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

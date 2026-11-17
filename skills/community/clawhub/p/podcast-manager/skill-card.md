@@ -1,43 +1,49 @@
-## Description: <br>
-Find, subscribe to, track, and summarize podcast episodes using public RSS feeds and lightweight local tracking files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, subscribe to, track, and summarize podcast episodes using public RSS feeds and lightweight local tracking files.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-External users and developers use this skill to manage podcast subscriptions, check for new or unheard episodes, track listening state, and produce concise episode summaries or action notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public podcast websites or RSS hosts and stores subscription and listening records locally. <br>
-Mitigation: Use official feed URLs when available and delete files under memory/podcasts to clear retained podcast history. <br>
-Risk: Malformed XML feeds, non-podcast URLs, or unexpected feed metadata may cause failed parsing or misleading episode details. <br>
-Mitigation: Validate HTTP/HTTPS feed URLs, require XML/RSS/Atom-like responses, reject suspicious XML constructs, and report incomplete metadata instead of fabricating details. <br>
+## Use Case:
 
+External users and developers use this skill to manage podcast subscriptions, check recent RSS or Atom episodes, track listening state, bookmark episodes, and produce concise catch-up notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/podcast-manager) <br>
-- [README](artifact/README.md) <br>
-- [Security Review](artifact/SECURITY_REVIEW.md) <br>
-- [Feed Probe Helper](artifact/scripts/feed_probe.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON files, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with local JSON tracking files and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps podcast state under memory/podcasts, limits routine episode listings to the newest 3-10 entries unless the user asks for more, and uses compact summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bundled feed-checking script can be tricked into contacting private or internal network addresses when arbitrary feed URLs are supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing where untrusted feed URLs may be fetched; use trusted podcast feed URLs and prefer versions that revalidate redirect targets or restrict fetching to known public podcast hosts.
+
+## Reference(s):
+
+- [Podcast Manager ClawHub listing](https://clawhub.ai/ppopen/skills/podcast-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown responses, JSON tracking files, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local podcast subscription, state, and notes files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Creates ClawHub-ready OpenClaw skill scaffolds with the expected structure, scanner criteria, security rules, and publishing checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create ClawhHub-ready OpenClaw skills with correct structure, scanner criteria, security rules and a publish checklist.
 
-## Publisher: <br>
-[seph1709](https://clawhub.ai/user/seph1709) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seph1709](https://clawhub.ai/user/seph1709)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to create OpenClaw skill directories containing SKILL.md and _meta.json with ClawHub scanner expectations, security guidance, and validation checklist content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated skill files can contain inaccurate security declarations if the scaffold is not adapted to the real credentials, APIs, background workers, and data flows of the new skill. <br>
-Mitigation: Review the generated SKILL.md and _meta.json against the validation checklist and scan results before publishing. <br>
-Risk: The included gh repo edit example is a publishing aid and may target the wrong repository if used unchanged. <br>
-Mitigation: Replace the repository and homepage values with the publisher's actual repository and ClawHub page before running the command. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seph1709/clawhub-skill-forge) <br>
-- [Publisher profile](https://clawhub.ai/user/seph1709) <br>
+## Use Case:
 
+Developers and skill authors use this skill to scaffold ClawHub-ready OpenClaw skills and check that generated skill files address registry structure, scanner, security and publishing requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown guidance with file templates, JSON configuration examples, checklists, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scaffold instructions for two files only: SKILL.md and _meta.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The publishing guidance contains a hardcoded third-party GitHub and ClawHub namespace.
+
+Mitigation: Before running any post-publish repository command, replace the owner, repository, homepage URL and exact changes with values the user has confirmed.
+
+Risk: The skill generates new skill files whose instructions could introduce incorrect or misleading guidance.
+
+Mitigation: Review generated SKILL.md and _meta.json files and run the relevant ClawHub scan before publishing or deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seph1709/skills/clawhub-skill-forge)
+- [Publisher profile](https://clawhub.ai/user/seph1709)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown skill instructions with file templates, JSON configuration examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces SKILL.md and _meta.json guidance for agent-authored OpenClaw skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

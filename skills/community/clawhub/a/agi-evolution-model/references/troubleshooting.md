@@ -16,10 +16,10 @@
 | 初始化失败 | `is_first_interaction` 一直为 `True` | 权限不足 | 检查 `agi_memory` 目录权限：`chmod 755 ./agi_memory` |
 | C扩展未启用 | 性能下降15-28倍 | 路径错误 | 检查 `scripts/personality_core/` 目录是否存在 |
 | 人格文件损坏 | JSON 解析错误 | 原子写入失败 | 删除文件重新初始化：`rm ./agi_memory/personality.json` |
-| Shell调用慢 | 初始化耗时>1秒 | 重复调用 | 使用 `--auto-init` 参数替代多次调用 |
+| Shell调用慢 | 初始化耗时>1秒 | 重复调用 | 使用 `--default` 一次性初始化，替代多次调用 |
 | 并发初始化冲突 | 初始化失败或数据损坏 | 多进程同时写入 | 使用文件锁机制（代码已实现） |
 | 磁盘空间不足 | 保存失败 | 存储空间不足 | 清理磁盘空间或更换存储路径 |
-| CLI工具执行失败 | 返回错误状态码 | 命令语法错误 | 检查命令语法，参考 [CLI工具箱完整指南](cli-tools-guide.md) |
+| 工具节点执行失败 | 返回错误状态码 | 命令语法错误 | 检查命令语法，经感知接口调用 toolnode（见 [感知接口工具箱约束规范](perception-node.md)） |
 | 进程终止失败 | 进程仍然运行 | 权限不足 | 使用 `--signal KILL` 强制终止 |
 | 文件搜索超时 | 命令长时间无响应 | 搜索范围过大 | 限制搜索路径或文件模式 |
 
@@ -45,7 +45,7 @@ print(f"C扩展已启用: {USE_C_EXT}")
 
 ### 手动测试初始化
 ```bash
-python3 scripts/init_dialogue_optimized.py --auto-init --memory-dir ./agi_memory
+python3 scripts/init_dialogue_optimized.py --default --memory-dir ./agi_memory
 ```
 
 ### 查看系统日志
@@ -57,16 +57,17 @@ tail -f /var/log/syslog
 Get-EventLog -LogName Application -Newest 50
 ```
 
-### 测试CLI工具
+### 测试工具节点（toolnode）
 ```bash
+# 语法：toolnode.py <group> <op> --params '<json>'
 # 测试文件操作
-python3 scripts/cli_file_operations.py --action list --path ./
+python3 scripts/toolnode.py fs list --params '{"path": "./"}'
 
 # 测试系统信息
-python3 scripts/cli_system_info.py --action system
+python3 scripts/toolnode.py sys all --params '{}'
 
 # 测试进程管理
-python3 scripts/cli_process_manager.py --action list
+python3 scripts/toolnode.py proc list --params '{}'
 ```
 
 ### 检查Python环境
@@ -89,9 +90,9 @@ python3 -c "import aiofiles; print('aiofiles已安装')"
 - [架构文档](architecture.md) - 理解整体架构设计
 - [初始化指南](init_dialogue_optimized_guide.md) - 详细的初始化流程说明
 - [C扩展使用说明](c_extension_usage.md) - C扩展的加载和降级机制
-- [智能体响应规则](intelligence-agent-response-rules.md) - 响应流程和错误处理
+- [智能体响应规则](behavior-baseline.md) - 响应流程和错误处理
 - [使用示例](usage-examples.md) - 典型使用场景和示例
-- [CLI工具箱完整指南](cli-tools-guide.md) - CLI工具的完整API文档
+- [感知接口工具箱约束规范](perception-node.md) - 工具节点（toolnode）约束与调用方式
 
 ### 环境要求
 - Python 3.11+

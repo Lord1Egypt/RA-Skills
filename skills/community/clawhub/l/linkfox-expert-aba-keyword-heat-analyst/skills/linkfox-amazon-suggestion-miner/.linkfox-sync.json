@@ -1,0 +1,10 @@
+{
+  "eventId" : "76db3b58-6de2-41d0-8843-cb1c535aac52",
+  "operation" : "UPSERT",
+  "groupId" : "2067496336427061249",
+  "memberId" : "2067496336469004289",
+  "slug" : "linkfox-amazon-suggestion-miner",
+  "agentId" : "6vEPAJHQtYbHgPMkSCFVyP",
+  "version" : 1786279120417,
+  "syncedAt" : "2026-08-09T12:38:41.740082661Z"
+}

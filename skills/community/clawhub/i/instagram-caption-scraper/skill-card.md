@@ -1,41 +1,49 @@
-## Description: <br>
-Scrapes and returns captions from public Instagram post or reel URLs so an agent can display, summarize, translate, or analyze the caption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes and returns the caption from any public Instagram post or reel URL.
 
-## Publisher: <br>
-[rdk14](https://clawhub.ai/user/rdk14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rdk14](https://clawhub.ai/user/rdk14)
 
-## Use Case: <br>
-External users and agents use this skill when a public Instagram post or reel URL is provided and the user needs the raw caption, basic post metadata, or a follow-on summary or translation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential exposure if users add Instagram usernames or passwords directly to the scraper script. <br>
-Mitigation: Use the skill only for public Instagram posts unless the credential flow is redesigned, and do not hardcode Instagram credentials in the script. <br>
-Risk: Unsafe command construction could occur if a user-provided Instagram URL is interpolated into a shell command. <br>
-Mitigation: Invoke the URL as a quoted or structured argument and avoid raw shell interpolation. <br>
+## Use Case:
 
+External users and agents use this skill when an Instagram post or reel URL is provided and the user wants the caption extracted before summarization, translation, rewriting, or analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rdk14/instagram-caption-scraper) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text caption with post metadata or an error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+ and instaloader==4.14.1; intended for public Instagram post and reel URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The artifact suggests adding Instagram login credentials to the script for authenticated access, which could expose plaintext credentials and broaden access beyond public posts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for public Instagram links; do not embed usernames or passwords in the script, and require protected secret or session handling with explicit consent if authenticated access is ever added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rdk14/skills/instagram-caption-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text string prefixed with CAPTION or ERROR, with caption metadata on success.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public Instagram post and reel captions; private, deleted, invalid, or inaccessible posts are reported as errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

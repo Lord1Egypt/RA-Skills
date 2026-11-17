@@ -1,47 +1,69 @@
-## Description: <br>
-Uses Laiye ADP to recognize Chinese motor vehicle driving licenses and extract front- and back-page fields into structured JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于来也科技ADP平台的中国机动车驾驶证智能识别与信息抽取Skill。支持驾驶证正副页全量字段的精准抽取：驾驶证证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期始至、签发机构、档案编号，输出结构化JSON，零配置开箱即用，适用于驾驶员资质核验、网约车/货运司机准入审核等场景。
 
-## Publisher: <br>
-[laiye-adp](https://clawhub.ai/user/laiye-adp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Commercial License Agreement <br>
+## Publisher:
 
+[laiye-adp](https://clawhub.ai/user/laiye-adp)
 
-## Use Case: <br>
-External developers and operations teams use this skill to automate Chinese driving-license data capture for driver qualification checks, ride-hailing or freight onboarding, and business-system intake workflows. It guides agents through ADP CLI setup, credential configuration, app-id selection, extraction commands, and JSON result handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial License Agreement
 
-## Known Risks and Mitigations: <br>
-Risk: Driving-license images and extracted fields contain sensitive identity data. <br>
-Mitigation: Use trusted ADP accounts only, protect API keys and exported result files, and redact PII before logging, displaying, or sharing outputs. <br>
-Risk: The bundled ADP documentation covers broader CLI and custom-app administration capabilities beyond the driving-license workflow. <br>
-Mitigation: Restrict agent use to the driving-license OOTB app_id and avoid generic parse or custom-app commands unless that broader administration is intentional. <br>
-Risk: Pipe-to-shell installers can execute remote scripts during setup. <br>
-Mitigation: Prefer npm installation or a verified release artifact over curl or PowerShell pipe-to-shell installation paths. <br>
+## Use Case:
 
+External users and developers use this skill to guide ADP CLI setup and extract structured JSON fields from Chinese motor vehicle driving license images, PDFs, URLs, local files, Base64 input, or batches. The primary use cases are driver qualification verification, ride-hailing or freight onboarding checks, and license data entry workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laiye-adp/adp-driving-license-recognition-and-extract) <br>
-- [ADP China Mainland Portal](https://adp.laiye.com/?utm_source=clawhub) <br>
-- [ADP Global Portal](https://adp-global.laiye.com/?utm_source=clawhub) <br>
-- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc) <br>
-- [ADP Open API User Guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc) <br>
-- [ADP CLI Releases](https://github.com/laiye-ai/adp-cli/releases) <br>
+### Deployment Geography for Use:
 
+Global, with China mainland and overseas ADP service endpoints documented separately
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured JSON extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ADP API key and produces sensitive driving-license identity fields that should be protected and redacted when logged or shared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Driving license extraction handles personal data such as license numbers, names, birth dates, addresses, and file numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Mask or omit PII in logs, console output, files, user interfaces, and downstream sharing; send only documents the user is authorized to process.
+
+Risk: API keys and service credentials are required for ADP access.
+
+Mitigation: Use least-privilege accounts where available, avoid exposing API keys in chat or logs, and prefer environment or secure local configuration over repeated plaintext entry.
+
+Risk: The artifact includes curl-to-shell and PowerShell iex installer options that execute remote scripts.
+
+Mitigation: Prefer the npm package or versioned release binaries, and review installer scripts before using remote script installation.
+
+Risk: The ADP CLI supports broader custom-app and generic document commands beyond the driving-license workflow.
+
+Mitigation: Use the documented out-of-the-box driving-license app flow, especially app-type 0 discovery and extract commands, unless the user intentionally requests wider ADP CLI capabilities.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/laiye-adp/skills/adp-driving-license-recognition-and-extract)
+- [ADP China Mainland Portal](https://adp.laiye.com/?utm_source=clawhub)
+- [ADP Global Portal](https://adp-global.laiye.com/?utm_source=clawhub)
+- [ADP CLI User Guide](https://laiye-tech.feishu.cn/wiki/Hz3Vw1IQki3YQtk33gLcSdwSndc)
+- [Open API User Guide](https://laiye-tech.feishu.cn/wiki/PO9Jw4cH3iV2ThkMPW2c539pnkc)
+- [ADP Public Cloud Operation Manual](https://laiye-tech.feishu.cn/wiki/UDYIwG42pisBbFkJI39ctpeKnWh)
+- [ADP CLI Releases](https://github.com/laiye-ai/adp-cli/releases)
+- [ADP CLI Issues](https://github.com/laiye-ai/adp-cli/issues)
+- [Laiye ADP Product Page](https://laiye.com/product/adp-platform)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; extraction results are structured JSON from the ADP CLI.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers single-file, batch, URL, Base64, and asynchronous CLI workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

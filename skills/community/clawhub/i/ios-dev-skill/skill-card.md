@@ -1,51 +1,62 @@
-## Description: <br>
-Provides SwiftUI, UIKit, Xcode, Swift language, app architecture, networking, testing, persistence, widgets, localization, and App Store distribution reference guidance for iOS and macOS development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language reference skill for iOS/macOS development with SwiftUI, UIKit, Swift 6.3 syntax, concurrency, testing, persistence, and App Store distribution guidance.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer Swift, SwiftUI, UIKit, Xcode, iOS architecture, networking, testing, persistence, widget, localization, and distribution questions with concise implementation guidance and code examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly for Swift-related questions and may prefer Chinese-style structured answers. <br>
-Mitigation: Users should explicitly request the desired language, scope, and response format when they need a different style or a narrower answer. <br>
+## Use Case:
 
+Developers and engineers use this skill as a Chinese-language iOS, macOS, SwiftUI, UIKit, and Swift reference when asking for implementation guidance, code examples, architectural patterns, testing advice, persistence guidance, and App Store release steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yhongm/ios-dev-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/yhongm) <br>
-- [SwiftUI Documentation](https://developer.apple.com/documentation/swiftui) <br>
-- [UIKit Documentation](https://developer.apple.com/documentation/uikit) <br>
-- [Xcode Documentation](https://developer.apple.com/documentation/xcode) <br>
-- [Combine Documentation](https://developer.apple.com/documentation/combine) <br>
-- [The Swift Programming Language](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/) <br>
-- [SwiftUI Basics Reference](references/swiftui-basics.md) <br>
-- [SwiftUI Advanced Reference](references/swiftui-advanced.md) <br>
-- [UIKit Basics Reference](references/uikit-basics.md) <br>
-- [UIKit Advanced Reference](references/uikit-advanced.md) <br>
-- [Swift Concurrency Reference](references/swift-concurrency.md) <br>
-- [App Store Distribution Reference](references/app-store-distribution.md) <br>
-- [Widget Development Reference](references/widget.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Swift and shell code blocks when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May follow a concise Chinese-style response structure unless the user requests another language or format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The broad trigger list can activate the skill for many Swift or iOS-related questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the skill is relevant to the user's request before relying on its guidance.
+
+Risk: The skill provides opinionated iOS and Swift implementation guidance that may not fit every project or platform version.
+
+Mitigation: Review generated recommendations against project requirements, Apple documentation, and target OS constraints before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yhongm/skills/ios-dev-skill)
+- [SwiftUI documentation](https://developer.apple.com/documentation/swiftui)
+- [UIKit documentation](https://developer.apple.com/documentation/uikit)
+- [Xcode documentation](https://developer.apple.com/documentation/xcode)
+- [Combine documentation](https://developer.apple.com/documentation/combine)
+- [The Swift Programming Language](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/)
+- [Swift Concurrency reference](references/swift-concurrency.md)
+- [SwiftUI basics reference](references/swiftui-basics.md)
+- [UIKit advanced reference](references/uikit-advanced.md)
+- [App Store distribution reference](references/app-store-distribution.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration, Shell commands]
+
+**Output Format:** [Markdown with Swift, SwiftUI, UIKit, and occasional shell or configuration code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in a direct guidance style with complete runnable examples when code is needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact hermes.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,24 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:瀑布桥图单柱(浮空增减柱 + 柱顶数值 + 连接虚线)—— 原型 34
+  参数:
+    {{X}}        柱左边(柱宽 180,柱距 60 → x 步进 240)
+    {{TOP}}      柱顶 y —— **减项**:= 前柱累计位置;**增项**:= 前柱累计位置 - 本柱高
+    {{H}}        柱高 = |值| × 标尺(全柱共用一把尺;算出 <4px 时取 4px 下限)
+    {{BG}}       起止柱 var(--brand-dark) / 减项 var(--brand-primary) / 增项 var(--brand-dark-soft)
+    {{VALUE}}    数值(带符号:-8.4 / +1.2)  {{VALUE_COLOR}} 与柱同色
+    {{LINK_X}}   连接虚线左端 = 前柱右缘;{{LINK_TOP}} = 前柱顶 y - 1
+    {{LABEL}}    X 轴标签(两行,<br> 分行)
+  基线 y=820(0 刻度);数值标在柱顶外侧上方 42px 处
+  ⚠️ **搭完必须验算**:起始 + 各增减 = 结束。不闭合的瀑布是错图,
+     宁可退回原型 18(一根趋势线 + 文字说明主因)也别画错。
+  纪律: 连接虚线让"桥"成立,没有它就是一堆散柱;
+        ❌ 柱内渐变、❌ 圆角柱、❌ 3D 立体柱、❌ 红绿对立配色
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{LINK_X}}px;top:{{LINK_TOP}}px;width:60px;height:0;border-top:2px dashed var(--border-medium);"></div>
+<div data-object="true" data-object-type="shape" style="position:absolute;left:{{X}}px;top:{{TOP}}px;width:180px;height:{{H}}px;background:{{BG}};"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{X}}px;top:{{VALUE_TOP}}px;width:180px;text-align:center;">
+  <div class="num" style="font-size:30px;font-weight:800;color:{{VALUE_COLOR}};line-height:36px;">{{VALUE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:{{X}}px;top:838px;width:180px;text-align:center;">
+  <div style="font-size:22px;font-weight:600;line-height:1.35;color:var(--text-secondary);">{{LABEL}}</div>
+</div>

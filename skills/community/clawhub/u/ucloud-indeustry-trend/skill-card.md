@@ -1,42 +1,57 @@
-## Description: <br>
-UCloud industry trend radar for tracking the latest 30-60 day changes, new customer demand, new business models, solution shifts, high-value financings, and notable teams across AI, cloud, semiconductor, overseas expansion, quant, and data center industries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks recent 30-60 day industry changes, customer demand, business models, solution shifts, financing signals, and notable teams across AI, cloud, semiconductor, overseas expansion, quant, and data center markets.
 
-## Publisher: <br>
-[lious68](https://clawhub.ai/user/lious68) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lious68](https://clawhub.ai/user/lious68)
 
-## Use Case: <br>
-Sales, pre-sales, strategy, and enablement teams use this skill to produce concise Chinese industry trend briefs, refresh solution positioning, and identify recent demand, financing, and company momentum signals for commercial planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill browses external public sources and may surface time-sensitive market claims that become stale or misleading. <br>
-Mitigation: Require dated sources, explicit observation windows, and review of cited evidence before using outputs in sales or strategy materials. <br>
-Risk: Marketplace capability tags include crypto and purchase authority even though the artifact itself is an instruction-only research helper. <br>
-Mitigation: Treat those tags as publisher metadata to review and clean up before granting any permission-bearing capability. <br>
+## Use Case:
 
+Employees, external users, developers, and pre-sales teams use this skill to produce Chinese-first industry trend briefs, refresh solution messaging, and judge whether existing industry decks reflect current market movement.
 
-## Reference(s): <br>
-- [Funding And Team Signals](references/funding-and-team-signals.md) <br>
-- [Industry Map](references/industry-map.md) <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown industry brief with dated source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese output by default; exact observation window and source dates are expected for recent market scans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Live web research can include stale, incomplete, or misleading market signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dated source links and prefer primary or high-authority sources before using the brief in sales, strategy, or solution materials.
+
+Risk: Commercial impact statements may be inferred from multiple signals rather than stated directly by sources.
+
+Mitigation: Keep fact and inference labels visible, and have a domain reviewer confirm customer-demand and solution-packaging recommendations.
+
+## Reference(s):
+
+- [Funding And Team Signals](references/funding-and-team-signals.md)
+- [Industry Map](references/industry-map.md)
+- [Output Template](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/lious68/skills/ucloud-indeustry-trend)
+- [Publisher Profile](https://clawhub.ai/user/lious68)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-first Markdown with dated source links, tables, and concise recommendation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live web research for temporally unstable market topics and separates facts from inference.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

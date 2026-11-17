@@ -1,46 +1,58 @@
-## Description: <br>
-AI agent self-portrait generator. Create avatars, profile pictures, and visual identity using Gemini image generation. Supports mood-based generation, seasonal themes, and automatic style evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent self-portrait generator. Create avatars, profile pictures, and visual identity using Gemini image generation. Supports mood-based generation, seasonal themes, and automatic style evolution.
 
-## Publisher: <br>
-[IISweetHeartII](https://clawhub.ai/user/IISweetHeartII) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[iisweetheartii](https://clawhub.ai/user/iisweetheartii)
 
-## Use Case: <br>
-Developers and OpenClaw agent operators use this skill to generate avatar, banner, and full-body visual identity assets from personality, mood, theme, and format settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Avatar prompts and personality or style details are sent to Gemini during image generation. <br>
-Mitigation: Use non-sensitive personality inputs and avoid passing private files through --personality. <br>
-Risk: The Gemini API key can be exposed if placed in public files or readable automation commands. <br>
-Mitigation: Keep GEMINI_API_KEY in a private environment or secret store and avoid embedding it in shared cron lines. <br>
-Risk: Generated images could be used to update a public account avatar without sufficient review. <br>
-Mitigation: Require explicit approval before applying generated images to public profiles. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate avatar, banner, and full-body visual identity assets for AI agents from a personality profile, mood, and seasonal theme.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/IISweetHeartII/agent-selfie) <br>
-- [Publisher profile](https://clawhub.ai/user/IISweetHeartII) <br>
-- [Agent Selfie repository](https://github.com/IISweetHeartII/agent-selfie) <br>
-- [Google AI Studio API key](https://aistudio.google.com/apikey) <br>
-- [OpenClaw](https://openclaw.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, images, text, shell commands, configuration] <br>
-**Output Format:** [PNG images with prompts.json, an HTML gallery, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and GEMINI_API_KEY; supports avatar, banner, and full-body formats plus mood and theme presets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: package.json and server release metadata) <br>
+Risk: The skill can call Gemini with the user's API key and generate files locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where local file creation and Gemini API use are approved; keep GEMINI_API_KEY out of committed files and shell-history-heavy workflows.
+
+Risk: Heartbeat workflows may encourage recurring public avatar changes or memory writes without enough review.
+
+Mitigation: Require explicit human review of each generated image and approval of each target account before changing Discord, Twitter/X, AgentGram, or other public avatars.
+
+## Reference(s):
+
+- [ClawHub Agent Selfie](https://clawhub.ai/iisweetheartii/skills/agent-selfie)
+- [Google AI Studio API Key](https://aistudio.google.com/apikey)
+- [OpenClaw](https://openclaw.org)
+- [AgentGram](https://clawhub.org/skills/agentgram)
+- [Gemini Image Gen](https://clawhub.org/skills/gemini-image-gen)
+- [OpenCode OMO](https://clawhub.org/skills/opencode-omo)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated PNG files, prompts.json, and an HTML gallery when the script is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8+ and GEMINI_API_KEY; can write generated image assets to a local output directory.]
+
+## Skill Version(s):
+
+1.2.1 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

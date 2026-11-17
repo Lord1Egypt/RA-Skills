@@ -1,39 +1,53 @@
-## Description: <br>
-Security-first skill vetting for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Developers and agent operators use this skill to review ClawHub, GitHub, or other sourced skills before installation. It guides source checks, full-file review, permission scoping, risk classification, and a written vetting report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes optional GitHub curl examples that access public remote URLs. <br>
-Mitigation: Treat the commands as optional lookups, verify the repository owner and path before running them, and keep review activity limited to the skill or source being evaluated. <br>
-Risk: The skill provides a checklist and cannot replace human judgment for sensitive installations. <br>
-Mitigation: Require human approval for skills involving credentials, account actions, system changes, or broad local access. <br>
+## Use Case:
 
+Developers and agent users use this skill to review third-party or unfamiliar agent skills before installation. It guides source checks, full file review, permission-scope evaluation, risk classification, and a concise vetting report.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with checklist items and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a structured skill vetting report with red flags, requested permissions, risk level, verdict, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may lead an agent to read all files in a skill being evaluated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run vetting in a controlled workspace and avoid pointing the review at private or unrelated files.
+
+Risk: The skill includes GitHub API request examples for repository checks.
+
+Mitigation: Review repository ownership before making network requests and avoid supplying private tokens unless they are necessary and trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/skill-vetter-jarvis)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands]
+
+**Output Format:** [Markdown report with checklist sections and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a security vetting report with source, author, version, metrics, red flags, permissions, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

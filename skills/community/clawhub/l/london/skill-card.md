@@ -1,40 +1,56 @@
-## Description: <br>
-Navigate London as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, safety, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate London as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, safety, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users ask about visiting, moving to, studying in, working in, or starting a business in London. The skill helps an agent answer with practical guidance on neighborhoods, transport, costs, safety, food, weather, local services, and career context. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Costs, visa rules, transit prices, and safety details may become outdated. <br>
-Mitigation: Verify important decisions against official sources before relying on the guidance. <br>
-Risk: The student section mentions a questionable book-source recommendation. <br>
-Mitigation: Avoid piracy-linked or untrusted book sites and use legitimate academic or library sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/london) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to get practical London guidance for visits, relocation, work, study, neighborhoods, transport, costs, safety, food, and startup planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational guidance; users should verify time-sensitive facts before making important decisions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prices, fares, salary ranges, housing costs, and similar local data may become outdated.
+
+Mitigation: Verify time-sensitive amounts against current official, provider, or venue sources before making plans or commitments.
+
+Risk: Visa, healthcare, safety, and dietary guidance may be incomplete or may change after release.
+
+Mitigation: Use the skill as a starting point and confirm sensitive advice with current official sources or the relevant institution or venue.
+
+Risk: One artifact references Z-library as a way to find books.
+
+Mitigation: Avoid relying on that reference and use lawful library, university, retailer, or publisher channels instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/london)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces informational guidance only; no executable behavior or external tool requirements are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

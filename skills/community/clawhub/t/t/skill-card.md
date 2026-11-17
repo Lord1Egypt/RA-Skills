@@ -1,42 +1,54 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[RainSakuraWetc](https://clawhub.ai/user/RainSakuraWetc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rainsakurawetc](https://clawhub.ai/user/rainsakurawetc)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for installable skills, present relevant options, and guide installation when a task may benefit from a specialized skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to install third-party skills globally while skipping confirmation prompts. <br>
-Mitigation: Review the exact skill name, source, publisher, and installation reason before installing; prefer manual confirmation for unfamiliar publishers. <br>
-Risk: Global skill installation can affect future agent sessions. <br>
-Mitigation: Install only trusted skills globally and review installed skills periodically. <br>
+## Use Case:
 
+Developers and agent users use this skill to identify relevant installable skills, compare options, and receive appropriate Skills CLI search or installation commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RainSakuraWetc/t) <br>
-- [Skills directory](https://skills.sh/) <br>
-- [Example skill listing](https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill names, install commands, and reference links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can recommend installing third-party agent skills globally while skipping confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact package, publisher, destination, and install command before use; avoid global installation and confirmation skipping unless necessary.
+
+Risk: Unpinned third-party skill or CLI references may change between review and installation.
+
+Mitigation: Prefer pinned CLI versions and immutable skill references, and scan selected skills before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rainsakurawetc/skills/t)
+- [Skills CLI directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party skill recommendations and installation commands for user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

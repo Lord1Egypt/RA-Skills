@@ -1,0 +1,33 @@
+{
+  "name": "vibo-selfdeed",
+  "version": "1.0.13",
+  "description": "One product, two stages: GRILL (front door, plan card + owner gate) + MISSION engine. Self-improving agent skill with built-in DEMO memory (20 facts).",
+  "license": "SEE LICENSE IN EULA.md",
+  "author": "Viacheslav Bochkarev",
+  "keywords": [
+    "vibo",
+    "memory",
+    "agent",
+    "skill",
+    "self-improving",
+    "mission",
+    "clawhub"
+  ],
+  "files": [
+    "SKILL.md",
+    "TASK.md",
+    "INSTALL.md",
+    "EULA.md",
+    "lib_vibo.py",
+    "safety.py",
+    "run_mission.sh",
+    "telegram_mission.py",
+    "examples"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "vibo-mission": "./run_mission.sh"
+  }
+}

@@ -1,47 +1,59 @@
-## Description: <br>
-Aha Skills Finder helps agents surface hard-to-find skill and capability candidates across registries, packages, repositories, MCP catalogs, and provider surfaces while preserving raw signals for later review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs to surface skill/capability candidates that first-pass registry, package, or search queries would likely miss.
 
-## Publisher: <br>
-[its-how](https://clawhub.ai/user/its-how) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[its-how](https://clawhub.ai/user/its-how)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need broad, traceable discovery of candidate skills, MCPs, CLIs, plugins, registries, extensions, SaaS/provider routes, repo tools, or native runtime capabilities before a separate adoption or safety review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad search expansion can include irrelevant source surfaces or unintended language and region assumptions. <br>
-Mitigation: Set explicit runtime, platform, language, and region constraints before use, and review source gaps and false positives in the generated artifacts. <br>
-Risk: Find-stage outputs are raw candidate signals and do not prove candidate safety, maintenance, source quality, or adoption fit. <br>
-Mitigation: Run a separate source, security, permission, maintenance, and install-readiness review before adopting, installing, enabling, or configuring any discovered candidate. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run find-stage discovery for skills, MCPs, CLIs, plugins, registries, extensions, SaaS/provider routes, repo tools, and native runtime capabilities. It helps produce traceable candidate pools, source gaps, query branches, and raw signals for later review.
 
-## Reference(s): <br>
-- [Aha Skills Finder repository](https://github.com/its-How/aha-skills-finder) <br>
-- [ClawHub skill page](https://clawhub.ai/its-how/skills/aha-skills-finder) <br>
-- [Candidate Pool Contract](artifact/references/candidate-pool-contract.md) <br>
-- [Research Brief Contract](artifact/references/research-brief-contract.md) <br>
-- [Source-family checklist](artifact/sources.yaml) <br>
-- [Curated and adjacent discovery-source registry](artifact/source-registries/curated-skill-lists.yaml) <br>
-- [skills.sh API documentation](https://www.skills.sh/docs/api) <br>
-- [ClawHub public search API example](https://clawhub.ai/api/v1/search?q={query}&limit=10) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown research brief and candidate pool records with structured fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Find-stage artifacts preserve raw source signals, source gaps, false positives, and deferred adoption-review boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, server release metadata) <br>
+Risk: Candidate pools and raw signals may be mistaken for adoption, safety, or maintenance recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as find-stage evidence only and review each candidate separately before installation, enablement, or operational use.
+
+Risk: The documented upgrade routes include unpinned npx usage and unrestricted git pull commands.
+
+Mitigation: Review the source and changes, and run upgrade commands only when the publisher and target repository are trusted.
+
+## Reference(s):
+
+- [Candidate Pool Contract](references/candidate-pool-contract.md)
+- [Research Brief Contract](references/research-brief-contract.md)
+- [Source Family Checklist](sources.yaml)
+- [Curated Discovery-Source Registry](source-registries/curated-skill-lists.yaml)
+- [Repository](https://github.com/its-How/aha-skills-finder)
+- [ClawHub Skill Page](https://clawhub.ai/its-how/skills/aha-skills-finder)
+- [Publisher Profile](https://clawhub.ai/user/its-how)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or JSON-compatible research brief and candidate pool artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Find-stage output preserves source gaps, false positives, query branches, candidate identities, and raw signals without ranking candidates for adoption.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

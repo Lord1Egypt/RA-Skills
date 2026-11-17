@@ -12,7 +12,14 @@ import sys
 import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed, wait as futures_wait
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set
+
+try:
+    import requests as _requests
+except ImportError:
+    _requests = None
+
 
 def _first_of(*values, default=None):
     """Return first value that is not None."""
@@ -21,7 +28,7 @@ def _first_of(*values, default=None):
             return v
     return default
 
-from . import dates, http, log
+from . import http, log
 
 SCRAPECREATORS_BASE = "https://api.scrapecreators.com/v1/reddit"
 
@@ -67,6 +74,14 @@ NOISE_WORDS = frozenset({
 
 def _log(msg: str):
     log.source_log("Reddit", msg, tty_only=False)
+
+
+def _sc_headers(token: str) -> Dict[str, str]:
+    """Build ScrapeCreators request headers."""
+    return {
+        "x-api-key": token,
+        "Content-Type": "application/json",
+    }
 
 
 def _extract_core_subject(topic: str) -> str:
@@ -197,16 +212,27 @@ def _parse_date(value) -> Optional[str]:
 
     Global search returns ``created_at`` as an ISO string
     (e.g. "2018-05-03T01:09:17.620000+0000"); subreddit search returns
-    ``created_utc`` as a Unix timestamp. dates.parse_date() handles both,
-    plus edge cases like Z suffix and +0000 (no colon) offset.
-
-    Falsy inputs (None, "", 0) return None, matching the original behavior
-    where a Unix timestamp of 0 meant "no date" rather than epoch 0.
+    ``created_utc`` as a Unix timestamp.  Handle both.
     """
     if not value:
         return None
-    dt = dates.parse_date(str(value))
-    return dt.strftime("%Y-%m-%d") if dt else None
+    # ISO-8601 string (contains 'T' or '-')
+    if isinstance(value, str) and ("T" in value or "-" in value):
+        try:
+            # Strip trailing offset variations (+0000, Z) for fromisoformat
+            clean = value.replace("Z", "+00:00")
+            if clean.endswith("+0000"):
+                clean = clean[:-5] + "+00:00"
+            dt = datetime.fromisoformat(clean)
+            return dt.strftime("%Y-%m-%d")
+        except (ValueError, TypeError):
+            pass
+    # Unix timestamp (int or float or numeric string)
+    try:
+        dt = datetime.fromtimestamp(float(value), tz=timezone.utc)
+        return dt.strftime("%Y-%m-%d")
+    except (ValueError, TypeError, OSError):
+        return None
 
 
 def _extract_subreddit_name(value: Any) -> str:
@@ -324,18 +350,39 @@ def _global_search(
     Returns:
         List of post dicts
     """
+    if not _requests:
+        _log("requests library not installed, falling back to urllib")
+        # Use stdlib http module as fallback
+        try:
+            from urllib.parse import urlencode
+            params = urlencode({"query": query, "sort": sort, "timeframe": timeframe})
+            url = f"{SCRAPECREATORS_BASE}/search?{params}"
+            headers = _sc_headers(token)
+            headers["User-Agent"] = http.USER_AGENT
+            data = http.get(url, headers=headers, timeout=30, retries=2)
+            return data.get("posts", data.get("data", []))
+        except http.HTTPError as e:
+            if e.status_code and e.status_code in (401, 403):
+                raise
+            _log(f"Global search error (urllib): {e}")
+            return []
+        except Exception as e:
+            _log(f"Global search error (urllib): {e}")
+            return []
+
     try:
-        data = http.get(
+        resp = _requests.get(
             f"{SCRAPECREATORS_BASE}/search",
-            headers=http.scrapecreators_headers(token),
             params={"query": query, "sort": sort, "timeframe": timeframe},
+            headers=_sc_headers(token),
             timeout=30,
-            retries=2,
         )
+        resp.raise_for_status()
+        data = resp.json()
         return data.get("posts", data.get("data", []))
-    except http.HTTPError as e:
-        if e.status_code in (401, 403):
-            raise
+    except _requests.exceptions.HTTPError as e:
+        if e.response is not None and e.response.status_code in (401, 403):
+            raise http.HTTPError(f"Auth error: {e}", e.response.status_code)
         _log(f"Global search error: {e}")
         return []
     except Exception as e:
@@ -362,19 +409,36 @@ def _subreddit_search(
     Returns:
         List of post dicts
     """
+    if not _requests:
+        try:
+            from urllib.parse import urlencode
+            params = urlencode({
+                "subreddit": subreddit, "query": query,
+                "sort": sort, "timeframe": timeframe,
+            })
+            url = f"{SCRAPECREATORS_BASE}/subreddit/search?{params}"
+            headers = _sc_headers(token)
+            headers["User-Agent"] = http.USER_AGENT
+            data = http.get(url, headers=headers, timeout=30, retries=2)
+            return data.get("posts", data.get("data", []))
+        except Exception as e:
+            _log(f"Subreddit search error (urllib) for r/{subreddit}: {e}")
+            return []
+
     try:
-        data = http.get(
+        resp = _requests.get(
             f"{SCRAPECREATORS_BASE}/subreddit/search",
-            headers=http.scrapecreators_headers(token),
             params={
                 "subreddit": subreddit,
                 "query": query,
                 "sort": sort,
                 "timeframe": timeframe,
             },
+            headers=_sc_headers(token),
             timeout=30,
-            retries=2,
         )
+        resp.raise_for_status()
+        data = resp.json()
         return data.get("posts", data.get("data", []))
     except Exception as e:
         _log(f"Subreddit search error for r/{subreddit}: {e}")
@@ -394,14 +458,28 @@ def fetch_post_comments(
     Returns:
         List of comment dicts with score, author, body, etc.
     """
+    if not _requests:
+        try:
+            from urllib.parse import urlencode
+            params = urlencode({"url": url})
+            api_url = f"{SCRAPECREATORS_BASE}/post/comments?{params}"
+            headers = _sc_headers(token)
+            headers["User-Agent"] = http.USER_AGENT
+            data = http.get(api_url, headers=headers, timeout=30, retries=2)
+            return data.get("comments", data.get("data", []))
+        except Exception as e:
+            _log(f"Comment fetch error (urllib): {e}")
+            return []
+
     try:
-        data = http.get(
+        resp = _requests.get(
             f"{SCRAPECREATORS_BASE}/post/comments",
-            headers=http.scrapecreators_headers(token),
             params={"url": url},
+            headers=_sc_headers(token),
             timeout=30,
-            retries=2,
         )
+        resp.raise_for_status()
+        data = resp.json()
         return data.get("comments", data.get("data", []))
     except Exception as e:
         _log(f"Comment fetch error: {e}")

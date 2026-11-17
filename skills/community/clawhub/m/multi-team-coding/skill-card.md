@@ -1,47 +1,66 @@
-## Description: <br>
-An AI-driven coding workflow for orchestrating parallel coding agents, one-person-company development automation, Playwright testing, and automated PR management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Team Coding provides an AI-driven coding workflow for parallel agent teams, one-person-company automation, Playwright testing, and PR management.
 
-## Publisher: <br>
-[LongFer](https://clawhub.ai/user/LongFer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[longfer](https://clawhub.ai/user/longfer)
 
-## Use Case: <br>
-Developers, engineering leads, independent builders, startup teams, and open-source maintainers use this skill to coordinate multiple coding agents across isolated worktrees, generate and run Playwright tests, and manage GitHub issue-to-PR workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow gives agents broad repository and GitHub authority, including creating branches, pushing code, opening PRs, and merging successful checks. <br>
-Mitigation: Start in a disposable fork, use least-privilege GitHub credentials, require protected branches and CI, and keep human approval in front of push and merge steps. <br>
-Risk: Autonomous coding teams may introduce incorrect code, incomplete tests, or conflicts while working in parallel. <br>
-Mitigation: Limit concurrency, isolate each team in a worktree, review diffs and generated tests before integration, and require CI plus manual review before accepting changes. <br>
-Risk: Playwright authentication state, logs, reports, and notifications can expose sensitive test data or credentials. <br>
-Mitigation: Keep auth state and reports out of shared or public locations, avoid publishing notification contents with secrets, and rotate any credentials used during testing. <br>
+## Use Case:
 
+Developers, independent maintainers, and startup teams use this skill to coordinate multiple coding agents across git worktrees, generate and run Playwright tests, and manage pull requests from GitHub issues.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/LongFer/multi-team-coding) <br>
-- [README.md](README.md) <br>
-- [One-Person Company Guide](ONE-PERSON-COMPANY.md) <br>
-- [Playwright Automation Guide](PLAYWRIGHT-AUTOMATION.md) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw Repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown with bash, TypeScript, JSON, and workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent prompts, Git and GitHub CLI commands, Playwright configuration and test snippets, status dashboards, and report templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Unattended agents can read GitHub issues, edit repository files, commit, push, open pull requests, and merge changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a test repository or fork first, restrict GitHub tokens, and require human review before any push or merge.
+
+Risk: Cleanup and rollback commands can remove worktrees or reset repository state.
+
+Mitigation: Review and remove or rewrite destructive cleanup commands before running the scripts on valuable work.
+
+Risk: Playwright authentication state files can contain reusable session data.
+
+Mitigation: Ignore Playwright auth state files and avoid committing saved authentication artifacts.
+
+Risk: Automation dependencies and agent behavior may vary across environments.
+
+Mitigation: Pin dependencies, run in isolated workspaces, and inspect generated diffs and test results before integrating changes.
+
+## Reference(s):
+
+- [Multi Team Coding ClawHub release](https://clawhub.ai/longfer/skills/multi-team-coding)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw)
+- [Quick reference](README.md)
+- [One-person-company guide](ONE-PERSON-COMPANY.md)
+- [Playwright automation guide](PLAYWRIGHT-AUTOMATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash, TypeScript, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example automation scripts for Claude Code, Codex, OpenCode, GitHub CLI, OpenClaw, and Playwright.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

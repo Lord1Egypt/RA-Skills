@@ -1,49 +1,63 @@
-## Description: <br>
-Runs the GIGO Lobster benchmark in share-page mode, producing a personal result page without entering the leaderboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs the GIGO Lobster benchmark in share-page mode, generating a personal result page and certificate without entering the leaderboard.
 
-## Publisher: <br>
-[gigolab](https://clawhub.ai/user/gigolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gigolab](https://clawhub.ai/user/gigolab)
 
-## Use Case: <br>
-OpenClaw users use this skill to run a full GIGO Lobster agent benchmark and publish a shareable personal result page without leaderboard entry. It is intended for users who want benchmark evidence and share links rather than competitive ranking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may execute benchmark tests and commands with local workspace authority. <br>
-Mitigation: Run it in a dedicated workspace or container and review generated logs and outputs before sharing results. <br>
-Risk: The skill can read broad local profile or secrets files while preparing a benchmark run. <br>
-Mitigation: Remove broad secrets.env files and unnecessary credentials from the workspace before running the skill. <br>
-Risk: The skill may contact GIGO cloud services and upload benchmark responses to create a share page. <br>
-Mitigation: Use it only when cloud registration is intended, and choose a local or skip-upload mode in companion tools when upload is not desired. <br>
-Risk: External agent execution may be enabled through GIGO_V2_AGENT_COMMAND. <br>
-Mitigation: Leave GIGO_V2_AGENT_COMMAND unset unless intentionally launching a specific external agent command. <br>
+## Use Case:
 
+OpenClaw users use this skill to run the GIGO Lobster agent benchmark, register a personal share page, and produce local result artifacts without opting into the public leaderboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gigolab/gigo-lobster-register) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gigolab) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [GIGO Lobster skill family README](artifact/README.md) <br>
-- [GIGO Lobster Taster v2 task bundle](artifact/bundle/README.md) <br>
-- [Task bundle integration guide](artifact/bundle/INTEGRATION.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command shapes and generated benchmark result artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs may create local logs, reports, certificates, and share-page registration output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence and artifact manifest) <br>
+Risk: The skill runs a long benchmark and may execute benchmark tasks that modify temporary workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated workspace and review the generated log, report, and certificate before sharing results.
+
+Risk: The register mode contacts the GIGO API and sends benchmark responses and results to create a share page.
+
+Mitigation: Use this mode only when sharing benchmark results is acceptable, and avoid running it on sensitive prompts or private work.
+
+Risk: Security evidence says the skill can read local profile data such as SOUL.md and may load broad local secrets.
+
+Mitigation: Keep unrelated API keys out of the OpenClaw secrets environment and run with minimal local profile data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gigolab/skills/gigo-lobster-register)
+- [Publisher Profile](https://clawhub.ai/user/gigolab)
+- [README](artifact/README.md)
+- [GIGO Lobster Taster v2 Bundle README](artifact/bundle/README.md)
+- [Integration Guide](artifact/bundle/INTEGRATION.md)
+- [Task Schema](artifact/bundle/specs/task-schema.md)
+- [Scoring Specification](artifact/bundle/specs/scoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Text, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local report, certificate, and log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a long benchmark and writes outputs under the configured OpenClaw workspace output directory.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

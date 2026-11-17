@@ -1,44 +1,58 @@
-## Description: <br>
-Implement secure Solidity smart contracts with tests and safety patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement secure Solidity smart contracts with tests and safety patterns.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft Solidity contracts, tests, validation commands, and security notes for ERC-20, ERC-721, ERC-1155, or custom smart contracts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated smart contracts may contain exploitable logic or security mistakes. <br>
-Mitigation: Treat generated contracts as draft code, run tests and static analysis, and obtain an independent audit before using contracts that control real assets. <br>
-Risk: Deployment commands may affect live networks or assets if used without review. <br>
-Mitigation: Review deployment commands manually and require a local or testnet dry run plus explicit user confirmation before mainnet deployment. <br>
-Risk: Private keys, mnemonics, or RPC secrets could be exposed if supplied during contract work. <br>
-Mitigation: Do not provide secrets to the skill or embed them in generated code, tests, configuration, or commands. <br>
-Risk: Trigger metadata is not explicit in the packaged manifest. <br>
-Mitigation: Fix the trigger metadata before installation so activation behavior is clear and intentional. <br>
+## Use Case:
 
+Developers and engineers use this skill to design Solidity smart contracts, generate tests, and produce validation commands with explicit security controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-solidity-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with contract file paths, test file paths, validation commands, and security notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated smart contract outputs include assumptions and risk areas for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, skill.yml) <br>
+Risk: Generated contracts or tests may contain security defects if requirements, roles, invariants, or external-call behavior are underspecified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated contracts, tests, deployment parameters, and security assumptions before using the output.
+
+Risk: Validation commands may use ambient or unpinned Hardhat or Foundry dependencies.
+
+Mitigation: Prefer project-local or pinned dependencies when compiling, testing, and running static checks.
+
+Risk: Mainnet deployment can cause irreversible financial or operational impact.
+
+Mitigation: Require explicit user approval and complete a dry-run on local or testnet infrastructure before mainnet deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mzfshark/skills/axodus-solidity-dev)
+- [Publisher Profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Solidity source paths, test paths, validation commands, and security notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mainnet deployment requires explicit user confirmation and prior local or testnet dry-run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

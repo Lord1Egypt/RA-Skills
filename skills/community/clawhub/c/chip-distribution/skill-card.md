@@ -1,43 +1,59 @@
-## Description: <br>
-筹码分布分析 — 基于东方财富筹码分布数据（CYQ），分析成本分布、集中度、套牢盘与支撑阻力。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language stock chip-distribution analysis using Eastmoney CYQ concepts to assess cost distribution, concentration, trapped positions, and support or resistance.
 
-## Publisher: <br>
-[danpian1](https://clawhub.ai/user/danpian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danpian1](https://clawhub.ai/user/danpian1)
 
-## Use Case: <br>
-Developers, analysts, and external users can use this skill to interpret Eastern Wealth CYQ chip-distribution data, including cost concentration, trapped funds, support, and resistance. It is intended as informational stock-analysis guidance rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-market signal explanations may be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis only and make investment decisions using independent review. <br>
-Risk: Live or recent market data may be stale, unavailable, or externally sourced. <br>
-Mitigation: Verify current CYQ and price data separately before relying on the analysis. <br>
-Risk: Chip-distribution signals have limited value for newly listed stocks with less than one year of history. <br>
-Mitigation: Use additional indicators and manual review when analyzing new listings. <br>
+## Use Case:
 
+Developers and external users can use this skill to have an agent explain Chinese stock chip-distribution patterns, concentration levels, trapped positions, and likely support or resistance zones from CYQ-style indicators.
 
-## Reference(s): <br>
-- [筹码分析速查](references/chip-analysis.md) <br>
-- [ClawHub skill page](https://clawhub.ai/danpian1/chip-distribution) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis and explanatory guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided or separately verified CYQ market data; does not execute code or access credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Buy, sell, and hold signals may be mistaken for financial advice or automated trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as analytical heuristics only and require human review before any investment decision.
+
+Risk: Chip-distribution data may be stale because the artifact notes that chip data updates after market close.
+
+Mitigation: Check current market data and the data timestamp before relying on the analysis.
+
+Risk: Chip-distribution patterns may be less reliable for newly listed stocks.
+
+Mitigation: Apply extra caution or avoid relying on the skill for stocks listed for less than one year.
+
+## Reference(s):
+
+- [筹码分析速查](references/chip-analysis.md)
+- [ClawHub skill page](https://clawhub.ai/danpian1/skills/chip-distribution)
+- [Publisher profile](https://clawhub.ai/user/danpian1)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown text with indicator explanations, signal tables, and support or resistance guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, credential access, persistence, or hidden behavior is present in the artifact evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

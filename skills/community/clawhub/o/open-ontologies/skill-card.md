@@ -1,44 +1,55 @@
-## Description: <br>
-Open Ontologies helps agents build, validate, query, and govern RDF/OWL ontologies and knowledge graphs with 39+ MCP tools backed by an in-memory Oxigraph triple store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Open Ontologies helps agents build, validate, query, and govern RDF/OWL ontologies and knowledge graphs through MCP tools backed by an in-memory Oxigraph triple store.
 
-## Publisher: <br>
-[fabio-rovai](https://clawhub.ai/user/fabio-rovai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fabio-rovai](https://clawhub.ai/user/fabio-rovai)
 
-## Use Case: <br>
-Developers, ontology engineers, and knowledge-graph practitioners use this skill to generate, validate, query, evolve, align, and persist RDF/OWL ontologies through the Open Ontologies MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external Open Ontologies MCP server binary. <br>
-Mitigation: Install the server only from the intended cargo package or GitHub release, and review the binary before using it with sensitive data. <br>
-Risk: User-directed pull and push actions can contact remote ontology URLs or SPARQL endpoints. <br>
-Mitigation: Require explicit confirmation before fetching from remote sources or pushing triples to a SPARQL endpoint. <br>
-Risk: Ontology lifecycle actions can save datasets, create versions, or apply production ontology changes. <br>
-Mitigation: Review planned changes and avoid saving, versioning, or applying sensitive or production datasets without approval. <br>
+## Use Case:
 
+Developers, ontology engineers, and data teams use this skill to generate, validate, query, align, and evolve RDF/OWL ontologies and knowledge graphs with MCP-backed ontology tooling.
 
-## Reference(s): <br>
-- [Open Ontologies ClawHub page](https://clawhub.ai/fabio-rovai/open-ontologies) <br>
-- [Open Ontologies releases](https://github.com/fabio-rovai/open-ontologies/releases) <br>
-- [W3C OWL Wine ontology example](https://www.w3.org/TR/owl-guide/wine.rdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code, ontology, SPARQL, shell, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local MCP server; ontology files or versions are persisted only when the user requests save or version actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill depends on an external open-ontologies MCP server binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned 0.5.1 version with locked dependencies where possible, and verify downloaded release artifacts when checksums or signatures are available.
+
+Risk: User-triggered ontology pull and push operations can use outbound network access to user-provided URLs or SPARQL endpoints.
+
+Mitigation: Run the MCP server with only the network access needed for the task, and use trusted endpoints when fetching or sending ontology data.
+
+## Reference(s):
+
+- [Open Ontologies ClawHub Page](https://clawhub.ai/fabio-rovai/skills/open-ontologies)
+- [fabio-rovai ClawHub Profile](https://clawhub.ai/user/fabio-rovai)
+- [Open Ontologies GitHub Releases](https://github.com/fabio-rovai/open-ontologies/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Turtle, SPARQL, JSON configuration, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call the open-ontologies MCP server and may produce or update ontology files when the user requests persistence.]
+
+## Skill Version(s):
+
+0.5.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

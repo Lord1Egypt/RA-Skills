@@ -1,47 +1,57 @@
-## Description: <br>
-Plant Doctor helps agents identify plants, diagnose plant health issues, provide care advice, manage watering schedules, and flag pet or child toxicity risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert botany assistant for plant identification, health diagnosis, care advice, watering schedules, propagation, and safe indoor gardening tips.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users and agents use this skill to identify houseplants from photos, diagnose visible plant problems, generate care cards, calculate watering schedules, and track a local plant collection. It is also useful for plant placement recommendations that account for light conditions, user experience level, and pet or child safety. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist plant names, room or location details, care history, and related notes in a local plants/ folder. <br>
-Mitigation: Install only in a private workspace, restrict permissions on the plants/ directory, and avoid enabling memory unless persistent plant data is desired. <br>
-Risk: Plant photos can include home interiors, documents, people, or other sensitive background information. <br>
-Mitigation: Review photos before sharing them with the agent and crop or retake images that include sensitive background details. <br>
-Risk: The optional dashboard can move plant data, photos, schedules, and health history into remote storage. <br>
-Mitigation: Use private storage, authentication, row-level security, and environment variables for credentials before deploying the dashboard. <br>
+## Use Case:
 
+Plant owners and indoor gardeners use this skill to identify plants from photos, diagnose visible health problems, generate care cards, track watering schedules, and receive pet or child toxicity warnings.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nollio/plant-doctor) <br>
-- [Publisher Profile](https://clawhub.ai/user/nollio) <br>
-- [README](artifact/README.md) <br>
-- [Security Guidance](artifact/SECURITY.md) <br>
-- [Plant Care Templates](artifact/config/care-templates.md) <br>
-- [Dashboard Companion Kit](artifact/dashboard-kit/DASHBOARD-SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown responses, JSON plant records, and Markdown care schedules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local files under plants/ for collection records and care schedules; optional dashboard materials describe database and UI configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent memory and local plant tracking can retain room details, photo context, and care history longer than a user expects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask before writing or bulk-updating plant files, keep writes scoped to plants/, and avoid storing sensitive room or photo details unless the user explicitly wants long-term retention.
+
+Risk: The optional dashboard can expose plant photos, home interior details, schedules, or health logs if deployed without access controls.
+
+Mitigation: Add user ownership columns, enable explicit row-level security policies, require authentication, keep image storage private, and use environment variables for dashboard credentials before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/plant-doctor)
+- [Artifact README](artifact/README.md)
+- [Security guidance](artifact/SECURITY.md)
+- [Dashboard companion specification](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+- [Plant care templates](artifact/config/care-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON plant records, local file updates, setup commands, and dashboard configuration details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local plant collection and care schedule files under plants/ when the user asks the agent to track plants or watering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

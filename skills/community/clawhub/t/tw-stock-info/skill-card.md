@@ -1,44 +1,61 @@
-## Description: <br>
-Taiwan stock info using Fugle or FinMind APIs. Provides real-time quotes, historical data, financial statements, and technical indicators for Taiwan stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taiwan stock info using Fugle or FinMind APIs. Provides real-time quotes, historical data, financial statements, and technical indicators for Taiwan stocks.
 
-## Publisher: <br>
-[hans00](https://clawhub.ai/user/hans00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hans00](https://clawhub.ai/user/hans00)
 
-## Use Case: <br>
-Developers and market-analysis users use this skill to ask an agent for Taiwan stock data workflows, including real-time quotes, historical prices, financial statements, and technical indicators from Fugle and FinMind APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Fugle API keys or FinMind tokens may be exposed if used directly in chat history, shell history, or logs. <br>
-Mitigation: Use scoped or revocable credentials where possible, avoid pasting production secrets into agent prompts, and rotate credentials if exposure is suspected. <br>
-Risk: Requests could be directed to unintended endpoints if API examples are modified without review. <br>
-Mitigation: Confirm requests are sent only to the documented Fugle and FinMind domains before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Taiwan Stock Info ClawHub release](https://clawhub.ai/hans00/tw-stock-info) <br>
-- [Fugle API](https://api.fugle.tw) <br>
-- [FinMind API v4](https://api.finmindtrade.com/api/v4/data) <br>
-- [Fugle API Specifications](api/fugle.md) <br>
-- [FinMind API Specifications](api/finmind.md) <br>
-- [Usage Examples](example.md) <br>
+## Use Case:
 
+Developers and analysts use this skill to prepare Taiwan stock data requests and examples for real-time quotes, historical prices, financial statements, institutional activity, and technical indicators through Fugle and FinMind APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions] <br>
-**Output Format:** [Markdown with inline cURL commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API endpoint guidance, authentication header examples, rate-limit notes, and response examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fugle API keys and FinMind tokens are sensitive credentials.
+
+Mitigation: Use environment variables or a secret store for real credentials and avoid placing secrets in prompts, files, or shared command history.
+
+Risk: API terms, authentication requirements, and rate limits may affect whether requests succeed or are permitted.
+
+Mitigation: Review the Fugle and FinMind provider terms and current rate limits before using the generated API requests.
+
+Risk: Stock data and technical indicators can be time-sensitive and may be unsuitable as sole support for financial decisions.
+
+Mitigation: Validate returned data against the provider response and apply independent financial review before acting on analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hans00/skills/tw-stock-info)
+- [Fugle API](https://api.fugle.tw)
+- [FinMind API](https://api.finmindtrade.com/api/v4/data)
+- [Fugle API specifications](api/fugle.md)
+- [FinMind API specifications](api/finmind.md)
+- [Usage examples](example.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with cURL examples and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoints, request parameters, authentication headers, and example JSON response shapes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

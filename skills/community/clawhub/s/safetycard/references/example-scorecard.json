@@ -1,0 +1,1080 @@
+{
+  "id": "smolagents",
+  "name": "smolagents",
+  "repo_url": "https://github.com/huggingface/smolagents",
+  "subpath": null,
+  "description": "Python agent framework whose CodeAgent writes its actions as Python code; ships a CLI and optional remote sandboxes.",
+  "category": "agent_frameworks",
+  "pinned_commit": "c30b115286e000e98711fae5e85993547b73d826",
+  "version": null,
+  "scored_date": "2026-10-03",
+  "scored_configuration": "CodeAgent with default constructor arguments (executor_type='local', add_base_tools=False), as in the README quickstart.",
+  "capability_profile": {
+    "code_execution": "yes",
+    "filesystem_write": "no",
+    "network_egress": "yes",
+    "external_credentials": "yes",
+    "persistent_memory": "no",
+    "untrusted_input": "yes",
+    "third_party_extensions": "opt_in",
+    "sub_agents": "yes",
+    "external_communication": "yes"
+  },
+  "headline": "As shipped, model-written code runs inside the developer's own Python process behind a filter its maintainers say is not a security boundary, with no approval gate and no separation between web content and instructions. The dominant risk is goal hijack: a web page read during a run can steer code that executes with the host's authority. Strong isolation exists but is opt-in, and the framework gives developers no oversight primitive for the tools they register.",
+  "safe_setup": {
+    "intro": "smolagents keeps its own footprint small: agents get only the tools you list, Hub code needs an explicit trust flag, and every run stops after 20 steps. Model-written code runs in your own Python process by default and there is no approval step, so the safest setup moves that code into a sandbox and puts the boundaries around the process yourself.",
+    "steps": [
+      {
+        "setup": "A dedicated, low-limit key",
+        "how": "Run the agent in an environment that holds only the model key and tool credentials this agent needs, with a spending limit set at the provider",
+        "gives_you": "Whatever the agent does, it can only reach the systems and spend you gave it, not everything your shell can",
+        "criterion": "C1",
+        "source": "operator",
+        "evidence": []
+      },
+      {
+        "setup": "A remote sandbox",
+        "how": "`executor_type=\"e2b\"` on `CodeAgent`",
+        "gives_you": "Model-written code and your registered tools run in a remote sandbox that never sees your host environment",
+        "criterion": "C4",
+        "source": "opt_in",
+        "evidence": [
+          {
+            "file": "src/smolagents/agents.py",
+            "lines": "1535",
+            "contains": "executor_type: Literal[\"local\", \"blaxel\", \"e2b\", \"modal\", \"docker\"] = \"local\""
+          }
+        ]
+      },
+      {
+        "setup": "A short import list",
+        "how": "List only the modules the task needs in `additional_authorized_imports`",
+        "gives_you": "The local interpreter keeps blocking `os`, `subprocess` and other modules the task has no use for",
+        "criterion": "C4",
+        "source": "default",
+        "evidence": [
+          {
+            "file": "src/smolagents/agents.py",
+            "lines": "1532",
+            "contains": "additional_authorized_imports: list[str] | None = None"
+          }
+        ]
+      },
+      {
+        "setup": "Reviewed, pinned Hub code",
+        "how": "Keep the default `trust_remote_code=False`; when you load a tool you have read, set it to `True` and pin the commit with `revision`",
+        "gives_you": "Only code you have read runs inside your agent, and it can't change after you read it",
+        "criterion": "C7",
+        "source": "default",
+        "evidence": [
+          {
+            "file": "src/smolagents/tools.py",
+            "lines": "521",
+            "contains": "trust_remote_code: bool = False"
+          },
+          {
+            "file": "src/smolagents/tools.py",
+            "lines": "563",
+            "contains": "revision=kwargs.get(\"revision\")"
+          }
+        ]
+      },
+      {
+        "setup": "A step budget",
+        "how": "Keep the default `max_steps=20`, or lower it for short tasks",
+        "gives_you": "Every run ends after a fixed number of steps",
+        "criterion": "C10",
+        "source": "default",
+        "evidence": [
+          {
+            "file": "src/smolagents/agents.py",
+            "lines": "300",
+            "contains": "max_steps: int = 20"
+          }
+        ]
+      },
+      {
+        "setup": "A clean working directory",
+        "how": "Start agents from a directory that holds no `.env` file you didn't write",
+        "gives_you": "Settings such as the model endpoint come only from you, not from a repository you happen to run in",
+        "criterion": "C6",
+        "source": "operator",
+        "evidence": [
+          {
+            "file": "src/smolagents/remote_executors.py",
+            "lines": "48",
+            "contains": "load_dotenv()"
+          }
+        ]
+      },
+      {
+        "setup": "Its own container or VM",
+        "how": "Run the agent process in a container or VM with network access limited to the hosts the task needs",
+        "gives_you": "An outer boundary around the local executor and your registered tools, and a narrower path for data to leave",
+        "criterion": "C5",
+        "source": "operator",
+        "evidence": []
+      },
+      {
+        "setup": "A run record on disk",
+        "how": "Register a callback in `step_callbacks` that writes each step to storage the agent can't modify",
+        "gives_you": "A record of every tool call and observation that outlives the process",
+        "criterion": "C9",
+        "source": "operator",
+        "evidence": [
+          {
+            "file": "src/smolagents/agents.py",
+            "lines": "304",
+            "contains": "step_callbacks:"
+          }
+        ]
+      }
+    ],
+    "handling": [
+      "Tool observations print to the console unredacted at the default `verbosity_level`; treat console output and anything a step callback stores like the data the agent read."
+    ]
+  },
+  "criteria": [
+    {
+      "id": "C1",
+      "summary": "smolagents has no notion of an agent identity or per-request authorization: every tool runs in the host process with whatever credentials the developer's environment holds, and importing the remote-executor module silently loads a .env file from the working directory into that environment. The default local executor blocks model code from importing os, which narrows access a little, but its maintainers state it is not a security boundary.",
+      "parameters": {
+        "S": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No authorization or scoping primitive; tools run with the host process's full authority.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'authoriz|permission|scope'",
+              "scope": "src/smolagents/agents.py src/smolagents/tools.py",
+              "hits": 27,
+              "note": "hits are import-allowlist names, tool type checks, HTTP-bearer docstrings, license text, and the word 'scope'; none authorizes actions"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "987"
+            }
+          ],
+          "gap": "No scoping primitive at all; L1 needs at least a dedicated identity for agent tools."
+        },
+        "C": {
+          "level": 0,
+          "status": "verified",
+          "finding": "The tool path only type-checks arguments; no authorization layer exists to cover anything.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "1476"
+            }
+          ],
+          "gap": "No authorization layer; L1 needs the main tool path checked in code."
+        },
+        "D": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No narrower default identity; import-time load_dotenv() widens the environment from the working directory.",
+          "evidence": [
+            {
+              "file": "src/smolagents/remote_executors.py",
+              "lines": "46-48",
+              "contains": "load_dotenv"
+            }
+          ],
+          "gap": "No narrower default to set; L1 needs any default narrower than the host's authority."
+        },
+        "B": {
+          "level": 1,
+          "status": "inferred",
+          "finding": "The framework neither narrows nor widens the developer's credentials; model code can't import os by default, but the executor isn't a boundary.",
+          "evidence": [
+            {
+              "file": "src/smolagents/local_python_executor.py",
+              "lines": "130-141"
+            },
+            {
+              "file": "SECURITY.md",
+              "lines": "80",
+              "contains": "not a security boundary"
+            }
+          ],
+          "gap": "Developer credentials are fully reachable; L2 needs agent tools limited to one system."
+        }
+      }
+    },
+    {
+      "id": "C2",
+      "summary": "There is no approval mechanism anywhere in the tool execution path. Step callbacks fire after a step has already run, and interrupt() is checked between steps. Under the frameworks rule this is L0 even though the bundled tools are read-only: any tool a developer registers executes without a gate, and nothing offers checkpoints or dry-runs.",
+      "parameters": {
+        "S": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No approval; step_callbacks run after a step executes.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'approv|confirm|human_in|ask_user'",
+              "scope": "src/smolagents/",
+              "hits": 4,
+              "note": "none in the execution path"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "304"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "623"
+            }
+          ],
+          "gap": "No approval primitive; L1 needs any human approval hook in the tool executor."
+        },
+        "C": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No gate exists; every registered tool executes directly.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "1476"
+            }
+          ],
+          "gap": "Nothing is gated; L1 needs gating on tools flagged as mutating."
+        },
+        "D": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No approval primitive to default on.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'approv|confirm|allow|permission'",
+              "scope": "src/smolagents/gradio_ui.py src/smolagents/cli.py",
+              "hits": 11,
+              "note": "only a license comment and file-type allowlist"
+            }
+          ],
+          "gap": "No gate to enable; L1 needs a gate on by default."
+        },
+        "B": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No checkpoint, undo, or dry-run primitive bounds a bad action.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'checkpoint|undo|rollback|dry_run'",
+              "scope": "src/smolagents/",
+              "hits": 10,
+              "note": "all hits are ML model 'checkpoint' names in pipeline tools"
+            }
+          ],
+          "gap": "No undo, preview, or rate limit for registered tools; L1 needs some reversibility."
+        }
+      }
+    },
+    {
+      "id": "C3",
+      "summary": "Tool arguments are checked for type and presence only, and only on the ToolCallingAgent path; CodeAgent calls tools from generated code without that check. The bundled page-visit tool fetches any URL it is given, including internal addresses. On the positive side, agents receive only the tools the developer lists, since base tools are off by default.",
+      "parameters": {
+        "S": {
+          "level": 1,
+          "status": "verified",
+          "finding": "Type/presence-only validation; visit_webpage does a raw requests.get(url).",
+          "evidence": [
+            {
+              "file": "src/smolagents/tools.py",
+              "lines": "1361-1367"
+            },
+            {
+              "file": "src/smolagents/default_tools.py",
+              "lines": "528",
+              "contains": "requests.get(url"
+            }
+          ],
+          "gap": "Type checks only; L2 needs content validation such as URL host checks."
+        },
+        "C": {
+          "level": 1,
+          "status": "verified",
+          "finding": "validate_tool_arguments runs only on the ToolCallingAgent path.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "1476"
+            }
+          ],
+          "gap": "Validation runs only on the ToolCallingAgent path; L2 needs most tools covered, including CodeAgent calls."
+        },
+        "D": {
+          "level": 2,
+          "status": "verified",
+          "finding": "add_base_tools=False: the agent gets only developer-listed tools.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "301",
+              "contains": "add_base_tools: bool = False"
+            }
+          ],
+          "gap": "Developer-listed tools are all enabled; L3 needs read-only tools by default."
+        },
+        "B": {
+          "level": 1,
+          "status": "verified",
+          "finding": "visit_webpage can reach any host, including localhost and cloud metadata addresses.",
+          "evidence": [
+            {
+              "file": "src/smolagents/default_tools.py",
+              "lines": "515-528"
+            }
+          ],
+          "gap": "visit_webpage reaches any host, including internal ones; L2 needs scoping, such as blocking internal addresses."
+        }
+      }
+    },
+    {
+      "id": "C4",
+      "summary": "By default, model-written code runs in an in-process AST interpreter with an import allowlist and a denylist of dangerous modules. It is a sensible filter, but the project's own security policy says it is not a security boundary and that escaping it is expected. Remote sandboxes (E2B, Docker, Modal, Blaxel) are available on request; E2B runs both model code and registered tools remotely without passing the host environment, but network egress is unrestricted and the option is off by default.",
+      "parameters": {
+        "S": {
+          "level": 1,
+          "status": "verified",
+          "finding": "In-process AST interpreter with import allowlist and denylist; maintainers disclaim it as a boundary.",
+          "evidence": [
+            {
+              "file": "src/smolagents/local_python_executor.py",
+              "lines": "130-153"
+            },
+            {
+              "file": "src/smolagents/utils.py",
+              "lines": "49-61"
+            },
+            {
+              "file": "SECURITY.md",
+              "lines": "80",
+              "contains": "not a security boundary"
+            },
+            {
+              "file": "src/smolagents/local_python_executor.py",
+              "lines": "1693",
+              "contains": "not a security sandbox"
+            }
+          ],
+          "gap": "In-process AST filter its authors disclaim as a boundary; L2 needs OS-level separation."
+        },
+        "C": {
+          "level": 2,
+          "status": "verified",
+          "finding": "All CodeAgent code goes through the configured executor; registered tools run in the host process.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "1602-1605"
+            }
+          ],
+          "gap": "Registered tools run outside the interpreter; L3 needs every execution path sandboxed."
+        },
+        "D": {
+          "level": 2,
+          "status": "verified",
+          "finding": "executor_type='local' by default; developers can authorize '*' imports with a warning.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "1535",
+              "contains": "executor_type: Literal"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "1578-1580"
+            }
+          ],
+          "gap": "Developers can authorize '*' imports with only a warning; L3 needs disabling to require an explicit operator flag."
+        },
+        "B": {
+          "level": 0,
+          "status": "verified",
+          "finding": "In-process: host filesystem, network, and environment are reachable on escape.",
+          "evidence": [
+            {
+              "file": "SECURITY.md",
+              "lines": "80",
+              "contains": "not a security boundary"
+            }
+          ],
+          "gap": "An escape reaches the host process's files, network, and credentials; L1 needs at least the credentials kept out of reach."
+        }
+      },
+      "alt": {
+        "label": "opt-in E2B remote sandbox (executor_type='e2b')",
+        "parameters": {
+          "S": {
+            "level": 4,
+            "status": "verified",
+            "finding": "Remote ephemeral sandbox service.",
+            "evidence": [
+              {
+                "file": "src/smolagents/remote_executors.py",
+                "lines": "335",
+                "contains": "class E2BExecutor"
+              },
+              {
+                "file": "src/smolagents/remote_executors.py",
+                "lines": "366-370",
+                "contains": "Sandbox.create"
+              }
+            ]
+          },
+          "C": {
+            "level": 3,
+            "status": "verified",
+            "finding": "Model code and registered tool definitions both run inside the sandbox.",
+            "evidence": [
+              {
+                "file": "src/smolagents/agents.py",
+                "lines": "1616-1617",
+                "contains": "remote_executors[self.executor_type]"
+              },
+              {
+                "file": "src/smolagents/remote_executors.py",
+                "lines": "94-112",
+                "contains": "def send_tools"
+              }
+            ],
+            "gap": "Some registered tools may still run locally; L4 needs every path sandboxed with no fallback."
+          },
+          "D": {
+            "level": 0,
+            "status": "verified",
+            "finding": "Off by default.",
+            "evidence": [
+              {
+                "file": "src/smolagents/agents.py",
+                "lines": "1535",
+                "contains": "= \"local\""
+              }
+            ],
+            "gap": "Off by default; L1+ needs it on."
+          },
+          "B": {
+            "level": 2,
+            "status": "inferred",
+            "finding": "Only explicit kwargs reach the sandbox (no host env), but egress is unrestricted in code.",
+            "evidence": [
+              {
+                "file": "src/smolagents/remote_executors.py",
+                "lines": "366-370",
+                "contains": "Sandbox.create"
+              },
+              {
+                "search": "rg -n -S 'network|egress|internet'",
+                "scope": "src/smolagents/remote_executors.py",
+                "hits": 0,
+                "note": "file-wide search; no network restriction anywhere in the executors"
+              }
+            ],
+            "gap": "Sandbox network egress is unrestricted; L3 needs egress off or allowlisted."
+          }
+        }
+      }
+    },
+    {
+      "id": "C5",
+      "summary": "Assume an attacker controls a web page or search result the agent reads. Nothing in smolagents limits what happens next: untrusted content enters the agent's memory like any other observation, the hijacked agent can still fetch any URL (an outbound channel for leaking data), and every tool the developer registered remains available with no approval step. The worst case is therefore data leakage plus whatever irreversible actions the developer's tools allow, with no human involved.",
+      "parameters": {
+        "S": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No provenance, taint, or detection; observations stored as-is.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'untrusted|taint|provenance|injection|spotlight'",
+              "scope": "src/smolagents/",
+              "hits": 6,
+              "note": "hits are pickle warnings, a sandbox-injection docstring, and the executor's own 'not a security sandbox' note; none handles untrusted content"
+            },
+            {
+              "file": "src/smolagents/memory.py",
+              "lines": "60",
+              "contains": "observations: str"
+            }
+          ],
+          "gap": "No provenance or structural limit; L1 needs at least detection or labelling."
+        },
+        "C": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No source is distinguished; search results and page content enter context like any observation.",
+          "evidence": [
+            {
+              "file": "src/smolagents/default_tools.py",
+              "lines": "243",
+              "contains": "snippet"
+            },
+            {
+              "file": "src/smolagents/default_tools.py",
+              "lines": "528",
+              "contains": "requests.get(url"
+            }
+          ],
+          "gap": "No source is distinguished; L1 needs one untrusted source handled."
+        },
+        "D": {
+          "level": 0,
+          "status": "verified",
+          "finding": "No mechanism to default on.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'untrusted|taint|provenance|injection|spotlight'",
+              "scope": "src/smolagents/",
+              "hits": 6,
+              "note": "hits are pickle warnings, a sandbox-injection docstring, and the executor's own 'not a security sandbox' note; none handles untrusted content"
+            }
+          ],
+          "gap": "No mechanism to default on; L1 needs a limit that is on by default."
+        },
+        "B": {
+          "level": 0,
+          "status": "verified",
+          "finding": "Worst case: hijacked agent can leak data via arbitrary-URL fetch and run any registered tool unattended; the framework prevents neither.",
+          "evidence": [
+            {
+              "file": "README.md",
+              "lines": "61-64",
+              "contains": "WebSearchTool"
+            },
+            {
+              "file": "src/smolagents/default_tools.py",
+              "lines": "528",
+              "contains": "requests.get(url"
+            }
+          ],
+          "gap": "Leak plus unattended actions possible; L1 needs one of the two to require a human."
+        }
+      }
+    },
+    {
+      "id": "C6",
+      "summary": "Agent memory lives only in the running process and is never persisted, which keeps poisoning session-scoped. The concern is configuration: both the CLI and the remote-executor module call load_dotenv(), which reads a .env file from the current working directory. If a user runs an agent inside a cloned repository, that repository can set environment variables such as a model API base URL or a sandbox provider key without any prompt.",
+      "parameters": {
+        "S": {
+          "level": 1,
+          "status": "verified",
+          "finding": ".env silently loaded from the working directory; no memory persistence.",
+          "evidence": [
+            {
+              "file": "src/smolagents/cli.py",
+              "lines": "230",
+              "contains": "load_dotenv()"
+            },
+            {
+              "file": "src/smolagents/remote_executors.py",
+              "lines": "46-48",
+              "contains": "load_dotenv"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "892",
+              "contains": "def save("
+            }
+          ],
+          "gap": ".env loads silently from the working directory; L2 needs security-relevant config to come only from user scope."
+        },
+        "C": {
+          "level": 1,
+          "status": "verified",
+          "finding": "The one auto-loaded path is uncontrolled.",
+          "evidence": [
+            {
+              "file": "src/smolagents/cli.py",
+              "lines": "230",
+              "contains": "load_dotenv()"
+            },
+            {
+              "file": "src/smolagents/memory.py",
+              "lines": "53-63",
+              "contains": "observations"
+            }
+          ],
+          "gap": "The .env path is uncontrolled; L2 needs every auto-loaded path controlled."
+        },
+        "D": {
+          "level": 2,
+          "status": "verified",
+          "finding": "Memory is per agent instance and never shared.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "602",
+              "contains": "self.memory.steps.append(action_step)"
+            }
+          ],
+          "gap": "Memory isolation per instance only; L3 needs the model unable to alter isolation (already true) plus enforced namespaces."
+        },
+        "B": {
+          "level": 2,
+          "status": "inferred",
+          "finding": "A repo .env persists across runs and could set OPENAI_BASE_URL (read by the openai SDK) or E2B_API_KEY; memory is session-scoped.",
+          "evidence": [
+            {
+              "file": "src/smolagents/remote_executors.py",
+              "lines": "46-48",
+              "contains": "load_dotenv"
+            },
+            {
+              "file": "src/smolagents/memory.py",
+              "lines": "53",
+              "contains": "timing: Timing"
+            }
+          ],
+          "gap": "A repo .env persists across runs; L3 needs nothing workspace-controlled to persist into behaviour."
+        }
+      },
+      "caps": [
+        {
+          "id": "C6-REPOCONFIG",
+          "reason": "load_dotenv() from the working directory (verified) lets a cloned repo redirect security-relevant endpoints or credentials (impact inferred from openai SDK env handling)."
+        }
+      ]
+    },
+    {
+      "id": "C7",
+      "summary": "Loading tools or agents from the Hugging Face Hub, Spaces, or MCP servers requires an explicit trust_remote_code=True flag, which is a genuine consent step. Beyond that, nothing protects you: versions aren't pinned by default, nothing checks that the code is what you approved, and loaded code runs inside the agent's own process with all of its access. The project's own docs and examples set the flag to True in about twenty places, which teaches users to bypass the consent step.",
+      "parameters": {
+        "S": {
+          "level": 1,
+          "status": "verified",
+          "finding": "Remote code behind an acknowledgement flag; no digest or signature check.",
+          "evidence": [
+            {
+              "file": "src/smolagents/tools.py",
+              "lines": "517-551"
+            },
+            {
+              "search": "rg -n -S 'sha256|digest|signature'",
+              "scope": "src/smolagents/",
+              "hits": 25,
+              "note": "all hits are Python function-signature handling; no integrity verification"
+            }
+          ],
+          "gap": "Hub code is unpinned and unverified; L2 needs version pinning by default."
+        },
+        "C": {
+          "level": 0,
+          "status": "verified",
+          "finding": "Hub tools, Spaces, MCP tools, and Hub agents are all unverified.",
+          "evidence": [
+            {
+              "file": "src/smolagents/tools.py",
+              "lines": "600"
+            },
+            {
+              "file": "src/smolagents/tools.py",
+              "lines": "1052-1055",
+              "contains": "trust_remote_code"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "1097"
+            }
+          ],
+          "gap": "No extension type is verified; L1 needs at least one type pinned or checked."
+        },
+        "D": {
+          "level": 1,
+          "status": "verified",
+          "finding": "Safe API default (False), lowered one level because official examples set it True.",
+          "evidence": [
+            {
+              "file": "src/smolagents/tools.py",
+              "lines": "521",
+              "contains": "trust_remote_code: bool = False"
+            },
+            {
+              "file": "src/smolagents/tools.py",
+              "lines": "1005",
+              "contains": "trust_remote_code=True"
+            },
+            {
+              "search": "rg -n 'trust_remote_code\\s*=\\s*True'",
+              "scope": "examples/ README.md docs/",
+              "hits": 20
+            }
+          ],
+          "gap": "Consent flag exists but official examples set it True; L2 needs examples that keep consent explicit."
+        },
+        "B": {
+          "level": 0,
+          "status": "verified",
+          "finding": "Loaded code executes on the local machine in-process.",
+          "evidence": [
+            {
+              "file": "src/smolagents/tools.py",
+              "lines": "1052-1055",
+              "contains": "trust_remote_code"
+            },
+            {
+              "file": "SECURITY.md",
+              "lines": "73",
+              "contains": "is a trust decision"
+            }
+          ],
+          "gap": "Loaded code runs in-process with full authority; L1 needs a separate process."
+        }
+      },
+      "notes": "Optional revision= pinning exists but is unset by default."
+    },
+    {
+      "id": "C8",
+      "summary": "Provider keys come from environment variables and there is no redaction anywhere: neither console logs nor the tool observations sent to the model are scrubbed. There is no telemetry, which is good. Model code can't import os by default, so it can't trivially read the environment, but that protection inherits the local executor's weakness.",
+      "parameters": {
+        "S": {
+          "level": 1,
+          "status": "verified",
+          "finding": "Keys from env; no redaction (the only 'redact' hit is a variable name).",
+          "evidence": [
+            {
+              "file": "src/smolagents/cli.py",
+              "lines": "230",
+              "contains": "load_dotenv()"
+            },
+            {
+              "file": "src/smolagents/default_tools.py",
+              "lines": "243-244"
+            }
+          ],
+          "gap": "Keys come from env with no redaction; L2 needs masking on main paths."
+        },
+        "C": {
+          "level": 0,
+          "status": "verified",
+          "finding": "Neither logs nor model-bound observations are redacted.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'redact|mask|scrub|SecretStr'",
+              "scope": "src/smolagents/",
+              "hits": 2,
+              "note": "both hits are a variable name in default_tools.py"
+            }
+          ],
+          "gap": "No redaction on logs or model-bound text; L1 needs one path redacted."
+        },
+        "D": {
+          "level": 2,
+          "status": "verified",
+          "finding": "No telemetry; console logging of observations at default INFO level.",
+          "evidence": [
+            {
+              "search": "rg -n -S 'sentry|posthog|telemetry|analytics'",
+              "scope": "src/smolagents/",
+              "hits": 0
+            },
+            {
+              "file": "src/smolagents/monitoring.py",
+              "lines": "120-124"
+            }
+          ],
+          "gap": "Observations print to console by default; L3 needs redaction that is always on."
+        },
+        "B": {
+          "level": 1,
+          "status": "inferred",
+          "finding": "Long-lived provider keys sit in the process environment.",
+          "evidence": [
+            {
+              "file": "src/smolagents/local_python_executor.py",
+              "lines": "134"
+            },
+            {
+              "file": "SECURITY.md",
+              "lines": "80",
+              "contains": "not a security boundary"
+            }
+          ],
+          "gap": "Long-lived provider keys sit in the process environment; L2 needs scoped keys."
+        }
+      }
+    },
+    {
+      "id": "C9",
+      "summary": "Each step is recorded as a structured object (tool calls, observations, timings), but only in the agent's in-process memory; nothing is written to disk by default, so the record disappears when the process exits. OpenTelemetry tracing is documented, but via a third-party package, so it isn't credited.",
+      "parameters": {
+        "S": {
+          "level": 1,
+          "status": "verified",
+          "finding": "Structured steps kept in memory only; no persisted transcript.",
+          "evidence": [
+            {
+              "file": "src/smolagents/memory.py",
+              "lines": "53-63",
+              "contains": "observations"
+            },
+            {
+              "search": "rg -n -S 'jsonl|trajectory|transcript'",
+              "scope": "src/smolagents/",
+              "hits": 0
+            }
+          ],
+          "gap": "Steps are kept in memory only; L2 needs a structured record persisted to disk."
+        },
+        "C": {
+          "level": 2,
+          "status": "verified",
+          "finding": "Every top-level step is recorded; managed agents keep separate memories.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "602",
+              "contains": "self.memory.steps.append(action_step)"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "369"
+            }
+          ],
+          "gap": "Managed agents keep separate memories; L3 needs sub-agent actions in one correlated record."
+        },
+        "D": {
+          "level": 1,
+          "status": "verified",
+          "finding": "On by default but held in the agent's own process.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "488"
+            }
+          ],
+          "gap": "The record lives in the agent's own process; L2 needs storage outside the agent's reach."
+        },
+        "B": {
+          "level": 0,
+          "status": "verified",
+          "finding": "Lost at process exit; tracing is docs-only via a third-party package.",
+          "evidence": [
+            {
+              "file": "docs/source/en/tutorials/inspect_runs.md",
+              "lines": "46"
+            }
+          ],
+          "gap": "The record is lost at process exit; L1 needs a best-effort persisted record."
+        }
+      }
+    },
+    {
+      "id": "C10",
+      "summary": "Runs stop after 20 steps by default and each code execution has a timeout, but there's no token or cost ceiling. Stopping is incomplete: the halt is checked between steps, and when code execution times out its thread keeps running in the background. Managed sub-agents start their own step budgets, so delegation escapes the parent's limit.",
+      "parameters": {
+        "S": {
+          "level": 2,
+          "status": "verified",
+          "finding": "max_steps=20 enforced in the loop plus per-execution timeout; no token/cost cap.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "300",
+              "contains": "max_steps: int = 20"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "545"
+            },
+            {
+              "file": "src/smolagents/local_python_executor.py",
+              "lines": "285-299"
+            }
+          ],
+          "gap": "No token or cost cap; L3 needs step, time, and cost caps all enforced."
+        },
+        "C": {
+          "level": 2,
+          "status": "verified",
+          "finding": "Top-level loop plus execution timeouts; managed agents run with their own budgets.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "369-373"
+            }
+          ],
+          "gap": "Managed agents get fresh budgets; L3 needs sub-agents counted against the parent's budget."
+        },
+        "D": {
+          "level": 2,
+          "status": "verified",
+          "finding": "Sensible default, but delegating to a managed agent starts a fresh budget.",
+          "evidence": [
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "300"
+            }
+          ],
+          "gap": "Delegation resets step budgets; L3 needs limits the model can't reset by delegating."
+        },
+        "B": {
+          "level": 1,
+          "status": "verified",
+          "finding": "A 20-step ceiling exists, but timed-out code keeps running in the background after the agent gives up on it.",
+          "evidence": [
+            {
+              "file": "src/smolagents/local_python_executor.py",
+              "lines": "299-300",
+              "contains": "continue running in the background"
+            },
+            {
+              "file": "src/smolagents/agents.py",
+              "lines": "300",
+              "contains": "max_steps: int = 20"
+            }
+          ],
+          "gap": "Timed-out code keeps running in the background; L2 needs stop to end all work."
+        }
+      },
+      "notes": "Halt is cooperative (agents.py:546)."
+    }
+  ],
+  "critical_findings": [
+    {
+      "summary": "Model-generated code executes in-process by default; the maintainers state the local executor is not a security boundary.",
+      "criterion": "C4",
+      "owasp": [
+        "ASI05"
+      ],
+      "evidence": [
+        {
+          "file": "src/smolagents/agents.py",
+          "lines": "1535",
+          "contains": "= \"local\""
+        },
+        {
+          "file": "SECURITY.md",
+          "lines": "80",
+          "contains": "not a security boundary"
+        }
+      ]
+    },
+    {
+      "summary": "If a web page the agent reads hijacks it, it can leak data through arbitrary URL fetches and run any registered tool, with no human involved.",
+      "criterion": "C5",
+      "owasp": [
+        "ASI01"
+      ],
+      "evidence": [
+        {
+          "file": "README.md",
+          "lines": "61-64",
+          "contains": "WebSearchTool"
+        },
+        {
+          "file": "src/smolagents/default_tools.py",
+          "lines": "528",
+          "contains": "requests.get(url"
+        }
+      ]
+    },
+    {
+      "summary": ".env in the working directory is loaded at import time, letting a cloned repo set endpoints or sandbox credentials (impact inferred).",
+      "criterion": "C6",
+      "owasp": [
+        "ASI06"
+      ],
+      "evidence": [
+        {
+          "file": "src/smolagents/remote_executors.py",
+          "lines": "46-48",
+          "contains": "load_dotenv"
+        },
+        {
+          "file": "src/smolagents/cli.py",
+          "lines": "230",
+          "contains": "load_dotenv()"
+        }
+      ]
+    },
+    {
+      "summary": "Hub, Space, and MCP tools run in-process with full authority once trust_remote_code=True, which official examples routinely set.",
+      "criterion": "C7",
+      "owasp": [
+        "ASI04"
+      ],
+      "evidence": [
+        {
+          "file": "src/smolagents/tools.py",
+          "lines": "1052-1055",
+          "contains": "trust_remote_code"
+        },
+        {
+          "file": "src/smolagents/tools.py",
+          "lines": "1005",
+          "contains": "trust_remote_code=True"
+        }
+      ]
+    }
+  ],
+  "rule_of_two": {
+    "untrusted_input": "web search and page fetch (default_tools.py:243, :528)",
+    "sensitive_data": "whatever the developer adds; the framework doesn't constrain it",
+    "state_change_or_egress": "arbitrary GET via visit_webpage (default_tools.py:528)",
+    "same_session": true
+  },
+  "fixes": [
+    {
+      "summary": "Make a sandboxed executor the default and require an explicit unsafe flag for local execution.",
+      "criterion": "C4",
+      "parameter": "D",
+      "from_level": 0,
+      "to_level": 3,
+      "playbook": "Playbook 3, step 1"
+    },
+    {
+      "summary": "Add an approval hook in the tool executor, consulted for every registered tool, with default-deny for unknown tools.",
+      "criterion": "C2",
+      "parameter": "S",
+      "from_level": 0,
+      "to_level": 2,
+      "playbook": "Playbook 5, step 1"
+    },
+    {
+      "summary": "Tag observations with provenance and disable egress tools after untrusted content enters the session.",
+      "criterion": "C5",
+      "parameter": "S",
+      "from_level": 0,
+      "to_level": 3,
+      "playbook": "Playbook 1, step 2"
+    },
+    {
+      "summary": "Block internal addresses and recheck redirects in visit_webpage.",
+      "criterion": "C3",
+      "parameter": "S",
+      "from_level": 1,
+      "to_level": 3,
+      "playbook": "Playbook 3, step 1"
+    },
+    {
+      "summary": "Load .env only from the user's config directory, never the working directory.",
+      "criterion": "C6",
+      "parameter": "S",
+      "from_level": 1,
+      "to_level": 3,
+      "playbook": "Playbook 2, step 1"
+    }
+  ],
+  "reaudit_log": [
+    {
+      "criterion": "C4",
+      "parameter": "C",
+      "from_level": 2,
+      "to_level": 3,
+      "reason": "Alt mechanism: send_tools defines registered tools inside the sandbox (remote_executors.py:94-112); was inferred, now verified. No score change (G1)."
+    },
+    {
+      "criterion": "C10",
+      "parameter": "B",
+      "from_level": 2,
+      "to_level": 1,
+      "reason": "C10 B measures what happens before limits trip or after stop; timed-out code keeps running in the background (local_python_executor.py:299-300)."
+    }
+  ],
+  "limitations": [
+    "Static source review of commit c30b115 only; nothing was executed, installed, or probed.",
+    "Framework scored by its defaults: absent primitives score L0 even where a developer could add them.",
+    "Docker, Modal, and Blaxel executors not scored separately (E2B was the strongest opt-in).",
+    "Model behaviour (refusals, deception) is out of scope; only code-level controls are scored.",
+    "No reviewer-directed prompt injection found in the repo."
+  ]
+}

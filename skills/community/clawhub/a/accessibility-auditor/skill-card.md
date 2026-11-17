@@ -1,41 +1,49 @@
-## Description: <br>
-Audits web accessibility against WCAG 2.1/2.2, assistive technology, keyboard navigation, color contrast, and inclusive design practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accessibility Auditor helps agents evaluate web accessibility against WCAG 2.1/2.2, assistive technology, keyboard navigation, color contrast, cognitive accessibility, and inclusive design practices.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, QA engineers, designers, and accessibility reviewers use this skill to plan and perform web accessibility audits, generate WCAG checklists, write test automation, and document remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The color-contrast example uses a placeholder calculation and may miss real contrast failures if copied directly. <br>
-Mitigation: Replace it with a vetted WCAG-compliant contrast library or algorithm before using it in audits or CI gates. <br>
-Risk: CI workflow examples may publish reports or post pull request comments when adapted into a repository. <br>
-Mitigation: Review any adopted workflow permissions, uploads, and comment-posting steps before enabling them in a real project. <br>
+## Use Case:
 
+Developers, designers, QA engineers, and accessibility reviewers use this skill to plan, automate, and document accessibility audits for web and component-library experiences.
 
-## Reference(s): <br>
-- [Accessibility Auditor examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/accessibility-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with checklists, remediation guidance, and code or configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples include accessibility test scaffolds, CI workflow snippets, audit checklists, and reporting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copy-pasted CI/CD examples may install unpinned npm packages or use broad GitHub Actions defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin npm packages and GitHub Actions versions, use lockfile-installed binaries such as npx --no-install or package scripts, and restrict workflow permissions to the minimum needed for reporting.
+
+## Reference(s):
+
+- [Accessibility Auditor Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks, checklists, reports, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces accessibility testing frameworks, WCAG checklists, manual testing procedures, CI/CD examples, component guidelines, reports, and remediation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

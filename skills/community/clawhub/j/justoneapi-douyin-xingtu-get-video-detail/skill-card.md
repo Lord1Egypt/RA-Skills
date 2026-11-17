@@ -1,43 +1,57 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/get-video-detail/v1 for Douyin Creator Marketplace (Xingtu) Video Details through JustOneAPI with detailId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/get-video-detail/v1 for Douyin Creator Marketplace (Xingtu) Video Details through JustOneAPI with detailId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call a focused JustOneAPI endpoint that retrieves Douyin Creator Marketplace (Xingtu) video detail data by detailId for content review and integration compatibility workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required JustOneAPI token is sent as a URL query parameter and may be captured by infrastructure logs. <br>
-Mitigation: Keep JUST_ONE_API_TOKEN in the agent environment, avoid sharing request URLs or logs, and rotate the token if exposure is suspected. <br>
-Risk: The skill sends Douyin video detail IDs to JustOneAPI. <br>
-Mitigation: Install and run it only when the user trusts JustOneAPI with the token and submitted video detail IDs. <br>
+## Use Case:
 
+Developers and external integrators use this skill to call JustOneAPI's Douyin Creator Marketplace (Xingtu) video detail endpoint for a specific detailId and summarize the returned performance-oriented video data.
 
-## Reference(s): <br>
-- [Endpoint Operations Reference](generated/operations.md) <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_video_detail&utm_content=project_link) <br>
-- [ClawHub Skill Page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-get-video-detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Short Markdown summary followed by raw JSON from the JustOneAPI endpoint] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JUST_ONE_API_TOKEN and a detailId; endpoint errors include the backend payload and operation ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token may be exposed through command-line process metadata or URL logs because authentication is passed into a query-token API flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing when the token has quota, billing, or data access; rotate and tightly scope the token if this API flow is required.
+
+Risk: The endpoint sends requests to an external JustOneAPI service and depends on user-provided detailId values.
+
+Mitigation: Confirm required parameters before execution, keep user-provided IDs unchanged, and review backend errors before sharing results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-get-video-detail)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_video_detail&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_video_detail&utm_content=project_link)
+- [Generated operation reference](generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; output guidance asks agents to summarize the endpoint-specific result before returning raw JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

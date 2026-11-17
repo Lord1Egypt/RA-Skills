@@ -1,40 +1,48 @@
-## Description: <br>
-Monitor system health including disk space, memory usage, process status, and evolution metrics to detect potential issues early. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor system health including disk space, memory usage, process status, and evolution metrics to detect potential issues early.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to run local health checks for disk space, memory usage, process status, evolution-cycle freshness, and installed skill counts during diagnostics, heartbeat checks, and alerting workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads local system metrics and local workspace logs or skills directories for health reporting.
+
+Mitigation: Install and run it only in environments where local health-reporting access to those paths is acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill for local heartbeat checks, pre-change health verification, diagnostics, and alerting around disk space, memory pressure, process status, evolution cycles, and installed skill counts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated health reports can expose local system and workspace details such as disk usage, memory usage, platform, uptime, Node version, evolution-cycle status, and installed-skill counts. <br>
-Mitigation: Review and redact health reports before sharing them outside the intended operational context. <br>
-Risk: The skill reads local diagnostic files and directories from the current workspace, so missing or stale local state can make evolution and skill-count checks incomplete. <br>
-Mitigation: Run it from the intended workspace and treat warning or missing-check results as prompts for follow-up inspection rather than definitive root-cause analysis. <br>
+**Output Format:** [JavaScript API results and human-readable formatted health reports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-system-health-monitor) <br>
+**Other Properties Related to Output:** [Status levels include healthy, warning, and critical; checks may include local disk, memory, process, logs, and skills directory information.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [JSON-compatible JavaScript object or human-readable text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes health status, individual checks, issues, and a timestamp; reports may include local system and workspace details.] <br>
+1.0.0 (source: release metadata and package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

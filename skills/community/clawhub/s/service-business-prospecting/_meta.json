@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7bvjemep4f88gga7t6mwwgnx85px2f",
-  "slug": "service-business-prospecting",
+  "id": 378680790331469,
   "version": "1.0.0",
-  "publishedAt": 1777391962132
+  "name": "service-business-prospecting",
+  "updated_at": 1774005042876,
+  "platform": "minimax"
 }

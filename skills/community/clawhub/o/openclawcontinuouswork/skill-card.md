@@ -1,51 +1,67 @@
-## Description: <br>
-Guides OpenClaw agents to continuously advance optimization and multi-step project work through planning, progress reporting, verification, and closure rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes OpenClaw conversation workflows by guiding continuous task execution, validation, progress reporting, and closure.
 
-## Publisher: <br>
-[KarasawaYikiho](https://clawhub.ai/user/KarasawaYikiho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[karasawayikiho](https://clawhub.ai/user/karasawayikiho)
 
-## Use Case: <br>
-Developers and operators use this skill to keep OpenClaw agents moving through multi-step optimization, project, and troubleshooting tasks until there is a verified outcome or a clearly stated blocker. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad continuous-work triggers can cause an agent to keep editing or optimizing beyond the user's intended scope. <br>
-Mitigation: Specify the exact target directory and desired stopping condition before invoking the skill. <br>
-Risk: Optimization workflows may include file changes, generated reports, and broad rewrites. <br>
-Mitigation: Require a plan before edits and explicit approval before deletions or large rewrites. <br>
-Risk: The skill's completion rules can keep the agent active after technical work is complete. <br>
-Mitigation: Tell the agent to stop after the final summary when no further follow-up is desired. <br>
+## Use Case:
 
+Developers and OpenClaw skill maintainers use this skill to keep multi-step optimization and maintenance work moving through scope definition, implementation, validation, and completion reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KarasawaYikiho/openclawcontinuouswork) <br>
-- [Reference Map](References/ReferenceMap.md) <br>
-- [General Continuous Work Rules](References/GeneralRules.md) <br>
-- [Continuous Execution Directive](References/ContinuousExecutionDirective.md) <br>
-- [Optimization Rules](References/OptimizationRules.md) <br>
-- [Optimization Directive](References/OptimizationDirective.md) <br>
-- [Optimization Checklist](References/OptimizationChecklist.md) <br>
-- [Acceptance Template](References/AcceptanceTemplate.md) <br>
-- [Quality Scoring Rubric](References/QualityRubric.md) <br>
-- [Module System](References/ModuleSystem.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with optional shell commands, generated reports, JSON configuration, and Python utility script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update skill reference files and generated reports when an agent follows the optimization workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger terms can start continuous work when the user's intent is not precise.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only for intentional continuous-work sessions and require an explicit scope before acting on repository content.
+
+Risk: Open-ended authority to keep working and change or delete files can affect more content than intended.
+
+Mitigation: Require confirmation for file edits or deletions, work in version control, and review diffs before accepting changes.
+
+Risk: Helper scripts can read target trees and rewrite generated skill files.
+
+Mitigation: Run scripts only against intended local paths and review generated Markdown, JSON, and encoding changes before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/karasawayikiho/skills/openclawcontinuouswork)
+- [Reference Map](References/ReferenceMap.md)
+- [General Continuous Work Rules](References/GeneralRules.md)
+- [Continuous Execution Directive](References/ContinuousExecutionDirective.md)
+- [Optimization Rules](References/OptimizationRules.md)
+- [Optimization Directive](References/OptimizationDirective.md)
+- [Optimization Checklist](References/OptimizationChecklist.md)
+- [Reporting Template](References/ReportingTemplate.md)
+- [Acceptance Template](References/AcceptanceTemplate.md)
+- [Quality Scoring Rubric](References/QualityRubric.md)
+- [Module System](References/ModuleSystem.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, plus optional generated Markdown and JSON reports from helper scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform repository edits when the host agent permits file changes; helper scripts can read target trees and rewrite generated skill files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

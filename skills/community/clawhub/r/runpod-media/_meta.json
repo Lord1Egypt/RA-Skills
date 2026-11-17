@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn78gh4k75zgy5r5s8p5ss36xs82cbcq",
   "slug": "runpod-media",
+  "name": "RunPod Media",
   "version": "1.1.2",
-  "publishedAt": 1772899190487
+  "description": "Generate images from text, edit images, animate to video, and generate video from text — all via RunPod public AI endpoints. Supports P-Image, Google Nano Banana, WAN, Kling, Sora 2, Seedance, InfiniteTalk and more.",
+  "author": "ItamarCoh3n",
+  "tags": ["image", "video", "ai", "runpod", "generation", "media"],
+  "requires": {
+    "bins": ["uv"]
+  },
+  "secrets": {
+    "required": [
+      {
+        "path": "/runpod/apiKey",
+        "description": "RunPod API key — get from https://www.runpod.io/console/user/settings"
+      },
+      {
+        "path": "/cloudflare/r2/accessKeyId",
+        "description": "Cloudflare R2 Access Key ID — used to upload local images as temporary presigned URLs (1 min) before passing to RunPod. Create an R2 API token at dash.cloudflare.com > R2 > Manage API Tokens."
+      },
+      {
+        "path": "/cloudflare/r2/secretAccessKey",
+        "description": "Cloudflare R2 Secret Access Key — paired with accessKeyId above."
+      },
+      {
+        "path": "/cloudflare/r2/endpoint",
+        "description": "Cloudflare R2 endpoint URL — format: https://<accountId>.r2.cloudflarestorage.com"
+      },
+      {
+        "path": "/cloudflare/r2/bucket",
+        "description": "R2 bucket name to use for temporary uploads (e.g. 'openclaw')."
+      }
+    ]
+  }
 }

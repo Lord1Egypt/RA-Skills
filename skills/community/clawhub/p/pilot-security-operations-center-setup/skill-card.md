@@ -1,43 +1,58 @@
-## Description: <br>
-Deploys a four-agent security operations center pipeline for collecting security events, analyzing threats, enforcing responses, and showing dashboard visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a four-agent security operations center pipeline for collecting events, analyzing threats, enforcing responses, and monitoring security posture.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and security engineers use this skill to configure a Pilot Protocol SOC pipeline across collector, analyzer, enforcer, and dashboard agents. It helps establish event flows, trust handshakes, enforcement actions, and monitoring commands for a multi-agent security setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic blocking and quarantine actions can disrupt legitimate agents or network traffic if threat verdicts are wrong. <br>
-Mitigation: Test in monitor-only or a lab network first, define rollback and unquarantine procedures, and review enforcement rules before production use. <br>
-Risk: Security events and enforcement notifications may expose sensitive operational data through Slack or webhook integrations. <br>
-Mitigation: Limit Slack and webhook payloads to approved non-sensitive fields and route notifications only to trusted destinations. <br>
-Risk: Agent handshakes and event sharing expand the trust boundary of the SOC deployment. <br>
-Mitigation: Review each dependent pilot-* skill and approve only the collector, analyzer, enforcer, and dashboard peers required for the deployment. <br>
+## Use Case:
 
+Developers and security engineers use this skill to configure a multi-agent SOC workflow with log collection, threat analysis, enforcement, and dashboard roles. It guides installation, hostname setup, trust handshakes, data-flow configuration, and sample event publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-security-operations-center-setup) <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, clawhub, dependent pilot-* skills, and a running Pilot daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0) <br>
+Risk: The skill coordinates broad Bash-driven setup across multiple agents, including dependency installation and hostname changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and use reviewed, pinned dependency versions in a controlled deployment environment.
+
+Risk: Automatic blocklisting, quarantine, Slack reporting, and webhook actions can affect availability or disclose incident information if enabled too broadly.
+
+Mitigation: Disable or tightly scope enforcement and external reporting until the workflow has been tested with expected event data.
+
+Risk: Trust handshakes between agents could connect the wrong peers if names or identities are not checked.
+
+Mitigation: Validate the deployment prefix as a hostname-safe value and confirm peer identities before approving handshakes.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-security-operations-center-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup steps, manifests, handshake commands, and verification examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

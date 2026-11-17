@@ -1,45 +1,57 @@
-## Description: <br>
-Ingest Paper guides an agent through extracting research materials, classifying them, generating Chinese structured summaries, and saving knowledge-base pages to a per-user Gitea repository with optional Feishu synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingest Paper helps an agent analyze user-provided research materials and store structured summaries, concepts, and resource pages in a personal knowledge base.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and research teams use this skill to ingest arXiv papers, GitHub repositories, web pages, uploaded documents, spreadsheets, Markdown/text files, and typed notes into a personal research knowledge base. The agent creates Chinese summaries, concept pages, resource pages, duplicate checks, catalog updates, and optional Feishu table records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Gitea site-admin token, which is broader access than normal repository ingestion should need. <br>
-Mitigation: Install only for a controlled Gitea instance, store the token securely, and prefer a dedicated least-privilege bot token if the deployment can be changed to support narrower permissions. <br>
-Risk: Saved research summaries, uploaded PDFs, catalog entries, and log.md entries may expose sensitive research material or user activity to anyone with repository access. <br>
-Mitigation: Review access to each target Gitea repository and the system-config repository before deployment, and periodically audit generated log and catalog files. <br>
-Risk: Optional Feishu synchronization can send document metadata to an external table. <br>
-Mitigation: Enable Feishu sync only after user opt-in and verify the configured app token, table ID, and table permissions. <br>
+## Use Case:
 
+Developers and research teams use this skill to ingest papers, technical documents, project pages, meeting notes, and similar materials into a Gitea-backed research knowledge base with Chinese summaries and cross-linked concept or resource pages.
 
-## Reference(s): <br>
-- [ClawHub skill page: Ingest Paper](https://clawhub.ai/myd2002/ingest-paper) <br>
-- [Publisher profile: myd2002](https://clawhub.ai/user/myd2002) <br>
-- [arXiv](https://arxiv.org/) <br>
-- [arXiv API query endpoint](http://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Chinese-language Markdown pages, JSON script results, shell commands, configuration notes, and concise user-facing status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes temporary extraction and draft files under /tmp/paperkb and saves summaries, PDFs, concept pages, resource pages, catalog entries, indexes, and logs to the configured Gitea knowledge base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server evidence release.version and artifact _meta.json) <br>
+Risk: The release evidence reports plaintext HTTP Gitea configuration and an over-privileged Gitea admin token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only after changing GITEA_URL to HTTPS and replacing the site-admin token with the narrowest service credential that supports the required repository operations.
+
+Risk: The release evidence reports broad file-read and persistence behavior for uploaded source files and generated knowledge-base content.
+
+Mitigation: Run in a controlled environment, review what user materials may be persisted, and confirm that remote logs and uploaded source files are acceptable for the intended data.
+
+Risk: Dependency installation and document parsing run locally against user-provided files.
+
+Mitigation: Install dependencies in a pinned virtual environment and scan the skill before deployment, following the release evidence security guidance.
+
+## Reference(s):
+
+- [Ingest Paper ClawHub skill page](https://clawhub.ai/myd2002/skills/ingest-paper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-producing helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese structured summaries, catalog updates, optional PDF archival links, concept/resource pages, and optional Feishu table records.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

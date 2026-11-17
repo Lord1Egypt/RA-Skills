@@ -1,45 +1,62 @@
-## Description: <br>
-Use this skill when the task should be done through the twexapi command-line client, including installing the CLI, configuring app or profile auth, previewing requests, and calling twexapi endpoints through convenience commands or raw paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the task should be done through the twexapi command-line client, including installing the CLI, configuring app or profile auth, previewing requests, and calling twexapi endpoints through convenience commands or raw paths.
 
-## Publisher: <br>
-[yeahjjyy](https://clawhub.ai/user/yeahjjyy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeahjjyy](https://clawhub.ai/user/yeahjjyy)
 
-## Use Case: <br>
-Developers and agents use this skill to install, configure, preview, and run twexapi CLI requests for supported X/Twitter account, tweet, search, follower, list, and profile workflows. It is especially useful when the task should use the published CLI and its dry-run behavior instead of reimplementing request construction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved app and profile configuration can contain API keys, cookies, auth_token values, or ct0 values in local JSON config. <br>
-Mitigation: Use an isolated --config-dir or TWEXAPI_CONFIG_DIR, avoid shared machines and CI for long-lived credentials, and do not echo raw credentials in logs or prompts. <br>
-Risk: Write actions can post, like, follow, unfollow, or create lists through configured social-account credentials. <br>
-Mitigation: Use --dry-run before write commands and execute real write requests only after the user clearly confirms the action. <br>
-Risk: The generic raw path form can send saved credentials with unexpected request targets if misused. <br>
-Mitigation: Prefer convenience commands and avoid full external URLs while credentials are configured. <br>
-Risk: The auth cookie workflow places auth_token material in a request path, which can be exposed through logs or traces. <br>
-Mitigation: Treat command traces, terminal history, and network logs as sensitive when using auth cookie, and prefer credential isolation for testing. <br>
+## Use Case:
 
+Developers and operators use this skill to install and run the twexapi CLI, configure API keys or Twitter/X session profiles, preview requests, and call supported Twexapi endpoints through convenience commands or raw paths.
 
-## Reference(s): <br>
-- [Twexapi dashboard](https://twexapi.io/dashboard) <br>
-- [ClawHub release page](https://clawhub.ai/yeahjjyy/twexapi-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide dry-run previews, credential configuration, and twexapi command selection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: package.json and server release evidence) <br>
+Risk: The CLI stores Twexapi API keys and Twitter/X session material locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated config directories on shared machines or CI, keep config directories private, and avoid saving long-lived profiles where unnecessary.
+
+Risk: The CLI can send authenticated write requests on behalf of a configured profile.
+
+Mitigation: Use --dry-run before write actions and execute real requests only after the user clearly confirms the intended action.
+
+Risk: The auth cookie flow places auth_token material in a request path, which can expose secrets in logs or traces.
+
+Mitigation: Avoid logging raw command lines or request paths that contain auth_token values and treat related traces as sensitive.
+
+Risk: Custom base URLs and generic full-URL requests can direct authenticated requests outside the expected Twexapi service boundary.
+
+Mitigation: Do not use untrusted --base-url values and avoid generic full-URL requests when credentials are configured.
+
+## Reference(s):
+
+- [Twexapi dashboard](https://twexapi.io/dashboard)
+- [ClawHub skill page](https://clawhub.ai/yeahjjyy/skills/twexapi-cli)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output when requests are executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may guide authenticated CLI requests and dry-run previews; responses depend on Twexapi endpoints and local credentials.]
+
+## Skill Version(s):
+
+0.1.1 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

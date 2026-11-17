@@ -1,42 +1,58 @@
-## Description: <br>
-Enforce a Human-in-the-Right-Loop (HITRL) lifecycle for remote agents with plan approval before execution, evidence-logged execution, and result sign-off before closure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces a Human-in-the-Right-Loop lifecycle for remote agent tasks with plan approval, evidence-logged execution, and result sign-off gates.
 
-## Publisher: <br>
-[toliuweijing](https://clawhub.ai/user/toliuweijing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toliuweijing](https://clawhub.ai/user/toliuweijing)
 
-## Use Case: <br>
-Developers and remote-agent operators use this skill to add structured human review gates to complex agent tasks. It guides agents to create Draft task journals, request approval before acting, log non-sensitive execution evidence, and wait for final sign-off. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task journals are stored in Draft and may be published through Draft links. <br>
-Mitigation: Keep journal entries limited to status, decisions, non-sensitive file names, and artifact links; do not include secrets, private personal data, proprietary code dumps, or sensitive command output. <br>
-Risk: The workflow depends on the Draft CLI and invite-code settings for publishing. <br>
-Mitigation: Confirm Draft CLI installation, verify a healthy headless runtime before use, and review invite-code settings before using the skill for confidential work. <br>
-Risk: Skipping the approval or sign-off gates could allow agent work to proceed without the intended human oversight. <br>
-Mitigation: Require explicit chat approval before execution and explicit chat sign-off before closure; do not rely on remote Draft page comments as approval. <br>
+## Use Case:
 
+Developers and agent operators use this skill when they need structured human oversight for remote agent work, including approval before execution and explicit sign-off before task closure.
 
-## Reference(s): <br>
-- [Draft CLI dependency](https://clawhub.ai/toliuweijing/draft-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Draft task journal structure, approval prompts, execution log entries, and sign-off guidance; avoids recording secrets, PII, raw command output, or sensitive file contents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: frontmatter and release evidence) <br>
+Risk: Task journals are persisted in Draft pages and may be published for review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets, tokens, sensitive personal data, or raw command output in plans, logs, and result summaries.
+
+Risk: The skill depends on an external, unpinned draft-cli installation.
+
+Mitigation: Use a pinned or otherwise verified draft-cli dependency in higher-risk environments.
+
+Risk: Approval gates can be bypassed if the agent proceeds without explicit chat confirmation.
+
+Mitigation: Require approval and sign-off phrases in chat before moving between planning, execution, and closure phases.
+
+## Reference(s):
+
+- [Draft Agent Loop on ClawHub](https://clawhub.ai/toliuweijing/skills/draft-agent-loop)
+- [draft-cli dependency on ClawHub](https://clawhub.ai/toliuweijing/draft-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and task-journal templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the draft CLI and may use GLOBAL_INVITE_CODE for publishing Draft pages.]
+
+## Skill Version(s):
+
+1.6.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,55 @@
-## Description: <br>
-Auto-generates Claude Code harness files for iOS/Swift projects, including CLAUDE.md, docs, README quick-cards, and .claude/rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generates a Claude Code harness for iOS and Swift projects, including CLAUDE.md, docs files, README quick-cards, and .claude/rules guidance.
 
-## Publisher: <br>
-[lidian6864677](https://clawhub.ai/user/lidian6864677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lidian6864677](https://clawhub.ai/user/lidian6864677)
 
-## Use Case: <br>
-Developers maintaining iOS/Swift projects use this skill to scan project structure and generate or update a Claude Code harness. The generated harness helps agents route future project work through concise documentation, module README quick-cards, and targeted rule files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad changes across an iOS project, including documentation, routing files, module READMEs, and rule files. <br>
-Mitigation: Run it on a clean branch, prefer single-module mode when possible, and review all generated diffs before committing. <br>
-Risk: The skill includes a persistent memory-writing step without a clear approval step. <br>
-Mitigation: Require explicit user approval before allowing memory files to be created or updated. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to scan iOS and Swift projects and generate a compact Claude Code harness for project navigation, module documentation, coding rules, quality checks, and build guidance.
 
-## Reference(s): <br>
-- [Skill source](SKILL.md) <br>
-- [iOS Project Scan Procedures](references/scan-procedures.md) <br>
-- [Harness Output Templates](references/templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/lidian6864677/harness-generate-ios) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, rule/configuration files, and summary text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates or updates project files such as CLAUDE.md, docs, module READMEs, .claude/rules, and a memory entry.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can scan an entire iOS project and write or merge harness documentation and rule files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a workspace where generated changes can be reviewed, and inspect all generated or merged files before keeping them.
+
+Risk: The skill includes post-generation memory-writing behavior that can affect future agent sessions without a clear opt-in.
+
+Mitigation: Remove or disable the memory-writing section unless persistent harness-maintenance guidance is explicitly desired.
+
+## Reference(s):
+
+- [iOS Project Scan Procedures](references/scan-procedures.md)
+- [Output File Templates](references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/lidian6864677/skills/harness-generate-ios)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files and inline shell-command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or updates CLAUDE.md, docs files, README quick-cards, .claude/rules files, and an optional memory entry; generated files are marked for review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Remove AI tells from any LinkedIn post or comment draft by scrubbing common AI vocabulary, punctuation patterns, formulaic structure, and uniform sentence rhythm while preserving the user's claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrub AI tells from text drafts or audit finished LinkedIn posts against heuristic checks for length, hook, CTA, format penalties, AI vocabulary, emoji patterns, and detector disagreement.
 
-## Publisher: <br>
-[sergebulaev](https://clawhub.ai/user/sergebulaev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sergebulaev](https://clawhub.ai/user/sergebulaev)
 
-## Use Case: <br>
-External users use this skill to revise LinkedIn posts, comments, replies, and DMs so drafts read less formulaic before publishing. The skill is intended as an editing aid and should not be used to invent facts or bypass platform authenticity expectations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to make AI-written LinkedIn content look human and pass detector checks. <br>
-Mitigation: Use it only as an editing aid for content the user is comfortable publishing, and do not use it to bypass disclosure rules, platform authenticity expectations, or AI-detection systems. <br>
-Risk: Humanizing changes can add facts, numbers, anecdotes, or voice details that were not present in the original draft. <br>
-Mitigation: Require explicit approval for any added facts, numbers, anecdotes, or voice details, and ask the user for missing specifics instead of fabricating them. <br>
-Risk: LinkedIn drafts, comments, replies, and DMs can contain sensitive or private information. <br>
-Mitigation: Avoid pasting sensitive DMs or private details unless necessary for the edit. <br>
+## Use Case:
 
+External users and content teams use this skill to revise AI-drafted LinkedIn posts, audit publish readiness, preserve the writer's voice, and document disagreement across AI-detection tools before publication.
 
-## Reference(s): <br>
-- [Scrub Rules](references/scrub-rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sergebulaev/linkedin-humanizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with rewritten text, change rationale, per-sentence estimates, and a confidence label] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for missing specific numbers, anecdotes, or source details rather than fabricating them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The detector-testing path can upload complete drafts to third-party AI detector services when API keys are configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use audit or demo mode for local-only review, avoid API mode for confidential drafts, and require explicit provider selection and consent before detector uploads.
+
+Risk: The skill aggressively rewrites LinkedIn drafts, which can alter tone or remove stylistic choices the author intended to keep.
+
+Mitigation: Review the diff before publishing, preserve the user's stated claims, and ask for missing numbers or anecdotes instead of fabricating details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sergebulaev/skills/linkedin-humanizer)
+- [Scrub Rules](references/scrub-rules.md)
+- [Voice Fingerprint](references/voice-fingerprint.md)
+- [Tier Rationale](references/tier-rationale.md)
+- [Rule Explainer](references/rules-explainer.md)
+- [Emoji Patterns](references/emoji-patterns.md)
+- [Supported AI Detectors](references/detector-list.md)
+- [Audit Checklist](references/audit-checklist.md)
+- [Audit AI Tells](references/audit-ai-tells.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with rewritten text, diffs, audit findings, detector-spread reports, and inline shell commands when detector scripts are used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence labels, applied tier, blockers, warnings, suggested fixes, and detector-score spread summaries.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

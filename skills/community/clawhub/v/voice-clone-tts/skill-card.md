@@ -1,44 +1,61 @@
-## Description: <br>
-Voice Clone TTS guides agents through cloning a voice from audio samples and generating speech with MiniMax, ElevenLabs, Fish Audio, Azure TTS, or OpenAI TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice Clone TTS helps agents clone voiceprints from audio samples and synthesize speech with cloned or preset voices across MiniMax, ElevenLabs, Fish Audio, Azure TTS, and OpenAI TTS.
 
-## Publisher: <br>
-[OliviaPp8](https://clawhub.ai/user/OliviaPp8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oliviapp8](https://clawhub.ai/user/oliviapp8)
 
-## Use Case: <br>
-External creators and developers use this skill to clone consented voices or synthesize narration for audio and video workflows, including batch generation from scene scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice samples, scripts, provider API keys, and voice IDs may be sensitive and may be sent to the selected TTS provider. <br>
-Mitigation: Use only providers whose retention and deletion policies are acceptable, protect API keys and voice IDs, and avoid uploading sensitive audio unless that sharing is intended. <br>
-Risk: Voice cloning can enable impersonation or misleading public content when used without permission. <br>
-Mitigation: Use only voices the operator owns or has explicit consent to clone, and avoid deceptive or unauthorized impersonation. <br>
+## Use Case:
 
+Developers, creators, and production teams use this skill to clone permitted voices, generate narration or voiceover audio, and batch-produce scene-level speech assets for downstream video or avatar workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/OliviaPp8/voice-clone-tts) <br>
-- [Backend setup guide](references/backend-setup.md) <br>
-- [ElevenLabs API reference](https://docs.elevenlabs.io/api-reference) <br>
-- [Fish Audio documentation](https://docs.fish.audio/) <br>
-- [OpenAI speech API example](https://api.openai.com/v1/audio/speech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML and JSON examples plus bash API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Voice cloning returns voice IDs; speech synthesis returns audio file paths and batch audio lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Voice cloning can enable misleading or unauthorized impersonation if samples are uploaded without consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for voices the operator owns or has explicit permission to clone, and avoid creating deceptive content.
+
+Risk: Audio samples and synthesized text may be sent to third-party TTS providers with different retention, privacy, and commercial-use terms.
+
+Mitigation: Check the selected provider's retention, privacy, and commercial-use terms before uploading samples or sensitive text.
+
+Risk: The skill does not require a consent checkpoint before cloning a speaker's voice.
+
+Mitigation: Add a human review step that confirms speaker authorization before executing any clone workflow.
+
+## Reference(s):
+
+- [Backend Setup Guide](references/backend-setup.md)
+- [ElevenLabs API Reference](https://docs.elevenlabs.io/api-reference)
+- [Fish Audio Documentation](https://docs.fish.audio/)
+- [MiniMax Platform](https://www.minimax.chat/)
+- [OpenAI Platform](https://platform.openai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce voice identifiers, audio file paths, batch audio manifests, backend configuration snippets, and provider API call examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,57 @@
-## Description: <br>
-Generate identity-consistent selfies, group photos, and other SFW images for OpenClaw characters via the tuqu.ai API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate identity-consistent selfies, group photos, and other SFW images for OpenClaw characters via the tuqu.ai API.
 
-## Publisher: <br>
-[zhouyi531](https://clawhub.ai/user/zhouyi531) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouyi531](https://clawhub.ai/user/zhouyi531)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to generate character-consistent selfies, portraits, group photos, preset-based images, and SFW image edits through Tuqu API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, face photos, and role-specific service keys may be sent to the Tuqu provider. <br>
-Mitigation: Install only if the Tuqu provider is trusted, keep service keys explicit per role, and clarify retention and deletion expectations before uploading real face photos. <br>
-Risk: Service keys may be exposed if callers use absolute URLs, custom base URLs, or query-string credentials. <br>
-Mitigation: Use the documented Tuqu hosts by default and avoid absolute URLs, custom base URLs, and query-string credentials unless the destination has been reviewed. <br>
-Risk: Paid generation, recharge, and deletion workflows can spend credits or remove stored data. <br>
-Mitigation: Require explicit user confirmation before paid generation, recharge, or deletion, and check pricing or balance before cost-sensitive requests. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to generate character-consistent portraits, selfies, group images, preset-based images, and SFW edit-only images through tuqu.ai.
 
-## Reference(s): <br>
-- [OpenClaw Selfie on ClawHub](https://clawhub.ai/zhouyi531/openclaw-selfie) <br>
-- [Publisher profile](https://clawhub.ai/user/zhouyi531) <br>
-- [tuqu.ai](https://tuqu.ai) <br>
-- [Tuqu API Notes](TUQU_API.md) <br>
-- [Endpoint Reference](references/endpoints.md) <br>
-- [Workflow Recipes](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide authenticated API calls that return JSON fields such as imageUrl, promptUsed, model, remainingBalance, transactionId, historyItem, checkoutUrl, or payment artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Service keys and image data can be sent to custom hosts through base URL overrides or absolute endpoint paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default tuqu.ai hosts unless there is a documented trusted-host reason, and protect role-specific service keys.
+
+Risk: Deletion, recharge, and payment flows can affect saved characters, history, balances, or checkout state.
+
+Mitigation: Require manual confirmation before delete, recharge, or payment actions, and preserve returned IDs and payment artifacts for review.
+
+## Reference(s):
+
+- [OpenClaw Selfie on ClawHub](https://clawhub.ai/zhouyi531/skills/openclaw-selfie)
+- [Tuqu API Notes](TUQU_API.md)
+- [Endpoint Reference](references/endpoints.md)
+- [Workflow Recipes](references/workflows.md)
+- [tuqu.ai](https://tuqu.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request or response fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to call tuqu.ai photo and billing endpoints with a role-specific service key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

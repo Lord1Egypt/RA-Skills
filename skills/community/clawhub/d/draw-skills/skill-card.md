@@ -1,43 +1,53 @@
-## Description: <br>
-Academic figure generation assistant that analyzes research papers or figure requests and produces detailed natural-language prompts for nanobanana and similar drawing tools to create publication-quality scientific figures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic figure generation assistant that helps researchers plan publication figures and generate detailed natural-language prompts for AI drawing tools.
 
-## Publisher: <br>
-[memory555](https://clawhub.ai/user/memory555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[memory555](https://clawhub.ai/user/memory555)
 
-## Use Case: <br>
-External researchers, students, and developers use this skill to plan paper figures, improve existing diagrams, and generate English image-generation prompts with captions for scientific domains such as biology, systems engineering, AI, and computer vision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Papers, images, or reference figures may be shared with the agent runtime or a downstream image-generation service. <br>
-Mitigation: Use the skill only with content appropriate for those services and review applicable data-handling requirements before submitting sensitive material. <br>
-Risk: Broad trigger keywords could activate the skill in contexts where figure generation was not intended. <br>
-Mitigation: Prefer explicit invocation such as /draw-skills or narrow activation rules in environments that auto-trigger skills. <br>
-Risk: Generated figure prompts or captions may misstate scientific details if the source paper is ambiguous or incomplete. <br>
-Mitigation: Have a domain expert review generated prompts, labels, and captions before using them in a manuscript or presentation. <br>
+## Use Case:
 
+External researchers, academic authors, and research assistants use this skill to analyze papers, identify useful figure concepts, improve figure plans, and produce detailed prompts and captions for scientific illustrations across multiple domains.
 
-## Reference(s): <br>
-- [draw-skills ClawHub release page](https://clawhub.ai/memory555/draw-skills) <br>
-- [PROMPT.md](artifact/PROMPT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown figure plans and prompt blocks with English prompts, bilingual captions, and generation tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes checkpoints for figure-plan and style confirmation before final prompt generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated figure prompts and captions may include specific details from a user's paper, including confidential manuscript content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting confidential drafts into external drawing tools unless sharing that content is approved; remove sensitive details before using generated prompts externally.
+
+Risk: The default bilingual caption behavior may not match a manuscript or venue that requires only one language.
+
+Mitigation: Override the caption language preference or remove the unwanted caption language before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/memory555/skills/draw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown with figure plans, English drawing prompts, style notes, captions, and generation tips.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual English and Chinese captions; does not execute code or call external services by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; skill frontmatter reports 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

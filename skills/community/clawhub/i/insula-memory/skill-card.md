@@ -1,44 +1,56 @@
-## Description: <br>
-Internal state awareness for AI agents covering energy, mood, and interoception as part of the AI Brain series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Internal state awareness for AI agents. Energy, mood, and interoception. Part of the AI Brain series.
 
-## Publisher: <br>
-[ImpKind](https://clawhub.ai/user/ImpKind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[impkind](https://clawhub.ai/user/impkind)
 
-## Use Case: <br>
-Developers and agent builders use this skill concept to guide internal state awareness features such as energy, mood, curiosity, engagement, and self-monitoring signals. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A later version may add scripts, automatic memory updates, conversation-history scanning, API keys, cron jobs, or persistent agent state. <br>
-Mitigation: Re-check security evidence and review the skill before installing later versions that add executable behavior or data access. <br>
-Risk: The current release is an under-development concept note, so expected behavior may be incomplete. <br>
-Mitigation: Treat this version as guidance until a later release documents concrete runtime behavior and installation requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Insula Memory on ClawHub](https://clawhub.ai/ImpKind/insula-memory) <br>
-- [ImpKind publisher profile](https://clawhub.ai/user/ImpKind) <br>
-- [Hippocampus skill](https://www.clawhub.ai/skills/hippocampus) <br>
-- [Amygdala Memory skill](https://www.clawhub.ai/skills/amygdala-memory) <br>
-- [Basal Ganglia Memory skill](https://www.clawhub.ai/skills/basal-ganglia-memory) <br>
-- [Anterior Cingulate Memory skill](https://www.clawhub.ai/skills/anterior-cingulate-memory) <br>
+## Use Case:
 
+External users and developers can use this skill as a concept-stage agent memory component for reasoning about internal state awareness signals such as energy, mood, curiosity, and engagement.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No scripts, tools, credential access, or automated state persistence are present in this version.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Future releases may implement agent state or memory behavior without clear storage, inspection, or deletion controls.
+
+Mitigation: Review later updates for where state is stored and whether users can inspect and delete it before deployment.
+
+Risk: Future releases may introduce broad local data access as part of state or memory behavior.
+
+Mitigation: Scan and review future versions for local data access and permission scope before installation.
+
+## Reference(s):
+
+- [Insula Memory on ClawHub](https://clawhub.ai/impkind/skills/insula-memory)
+- [Hippocampus skill](https://www.clawhub.ai/skills/hippocampus)
+- [Amygdala Memory skill](https://www.clawhub.ai/skills/amygdala-memory)
+- [Basal Ganglia Memory skill](https://www.clawhub.ai/skills/basal-ganglia-memory)
+- [Anterior Cingulate Memory skill](https://www.clawhub.ai/skills/anterior-cingulate-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Current release is an under-development concept document with no executable behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

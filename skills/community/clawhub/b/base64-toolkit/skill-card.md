@@ -1,42 +1,49 @@
-## Description: <br>
-Base64 encoding and decoding toolkit. Encode/decode text, URL-safe Base64, and image to Base64 conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Base64 encoding and decoding toolkit. Encode/decode text, URL-safe Base64, and image to Base64 conversion.
 
-## Publisher: <br>
-[freeter226](https://clawhub.ai/user/freeter226) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeter226](https://clawhub.ai/user/freeter226)
 
-## Use Case: <br>
-Developers and engineers use this skill to encode and decode Base64 text, work with URL-safe Base64 strings, and convert image files into Base64 data URIs for API, URL, and embedding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Base64 output may expose credentials, tokens, private files, or JWT payloads when copied into shared terminals, logs, or tickets. <br>
-Mitigation: Use the tool only with data safe to display, and avoid processing secrets or private files in shared environments. <br>
-Risk: Base64 encoding may be mistaken for encryption. <br>
-Mitigation: Treat encoded output as reversible text and use appropriate encryption or secret-management controls for sensitive data. <br>
+## Use Case:
 
+Developers and engineers use this skill to encode and decode Base64 text, generate URL-safe Base64 strings, and convert intended image files into Base64 data URIs for API authentication, data transmission, URL parameters, and embedding workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeter226/base64-toolkit) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands] <br>
-**Output Format:** [JSON printed to stdout with encoded or decoded strings, URL-safe strings, or image data URIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes only user-provided strings or local files; no external dependencies are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The image conversion command can expose readable local files because it does not verify that the input path is an intended image.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use image-encode and --file only with reviewed, non-sensitive paths; avoid keys, tokens, configuration files, and private documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freeter226/skills/base64-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled Python utility prints JSON results for encode, decode, URL-safe encode/decode, and image-to-data-URI actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

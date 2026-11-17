@@ -1,48 +1,62 @@
-## Description: <br>
-Control Rhino 3D via AI agents with tools for geometry, transforms, booleans, PBR materials, Grasshopper automation, VisualARQ BIM objects, viewport control, parametric modeling, architectural layouts, and IFC export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Rhino 3D via the RhinoClaw plugin over TCP to create, modify, query, measure, or render 3D geometry, manage layers and materials, run Boolean and transform operations, drive Grasshopper definitions, work with VisualARQ BIM objects, or batch multiple steps as one atomic operation.
 
-## Publisher: <br>
-[McMuff86](https://clawhub.ai/user/McMuff86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcmuff86](https://clawhub.ai/user/mcmuff86)
 
-## Use Case: <br>
-Developers, designers, and engineers use RhinoClaw to automate Rhino 3D modeling workflows from an agent, including CAD geometry creation, object transforms, rendering, Grasshopper definition execution, and optional VisualARQ BIM workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad model-editing authority can modify or damage active Rhino files. <br>
-Mitigation: Use the skill only with trusted prompts and recoverable Rhino files, and keep backups before running commands that create, delete, transform, save, import, or export model content. <br>
-Risk: Python execution and raw command paths can be unsafe when driven by untrusted prompts or scripts. <br>
-Mitigation: Review generated Python, shell commands, and RhinoClaw command arguments before execution, especially script execution, Grasshopper automation, file operations, and destructive object edits. <br>
-Risk: Remote exposure of the RhinoClaw TCP port can expand access to the running Rhino session. <br>
-Mitigation: Prefer local-only access where possible and avoid exposing the TCP port beyond trusted local, WSL, LAN, or VPN environments. <br>
-Risk: Screenshots and renders may reveal hidden or sensitive model content. <br>
-Mitigation: Inspect the Rhino scene and capture settings before sharing generated screenshots or rendered files. <br>
+## Use Case:
 
+Developers, designers, and automation agents use RhinoClaw to automate live Rhino 3D sessions for modeling, scene inspection, rendering, Grasshopper execution, and VisualARQ BIM workflows. It is intended for environments where Rhino 7 or 8 and the RhinoClaw plugin server are already running.
 
-## Reference(s): <br>
-- [RhinoClaw Skill Page](https://clawhub.ai/McMuff86/rhinoclaw) <br>
-- [McMuff86 Publisher Profile](https://clawhub.ai/user/McMuff86) <br>
-- [RhinoClaw Command Reference](artifact/references/commands.md) <br>
-- [VisualARQ API Learnings](artifact/references/visualarq-learnings.md) <br>
-- [GH Script Templates](artifact/templates/ghscripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python command invocations, JSON configuration, and generated CAD automation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may direct RhinoClaw scripts to modify an active Rhino document, run Grasshopper definitions, export files, or capture viewport images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: server release evidence; artifact frontmatter lists 0.2.5) <br>
+Risk: The skill can mutate a live Rhino model and may clear, delete, save, export, run Boolean or solid edits, execute native commands, or run arbitrary scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation for destructive or high-impact operations and keep backups or saved copies of important models before agent-driven changes.
+
+Risk: The skill communicates with a Rhino plugin server over TCP and can be misconfigured or exposed without adequate authentication.
+
+Mitigation: Use a RhinoClaw auth token, run preflight before other operations, and only proceed when the connection and authentication state is ready.
+
+Risk: Raw scripting and native commands can bypass the safer typed helper layer.
+
+Mitigation: Prefer typed helpers and batch operations, reserving RhinoScript, RhinoCommon, or native-command execution for cases where no typed helper covers the task.
+
+## Reference(s):
+
+- [RhinoClaw Command Reference](artifact/references/commands.md)
+- [RhinoClaw project repository](https://github.com/McMuff86/rhinoclaw)
+- [RhinoClaw release repository](https://github.com/McMuff86/rhinoclaw-release)
+- [RhinoCommon API](https://developer.rhino3d.com/api/rhinocommon/)
+- [Rhino.Python guide](https://developer.rhino3d.com/guides/rhinopython/)
+- [RhinoScriptSyntax API](https://developer.rhino3d.com/api/RhinoScriptSyntax/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline shell commands, Python snippets, and JSON command payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue live Rhino TCP commands through typed helpers, batch operations, Grasshopper workflows, native commands, or Rhino Python execution.]
+
+## Skill Version(s):
+
+0.7.5 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

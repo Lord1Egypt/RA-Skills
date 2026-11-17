@@ -1,42 +1,56 @@
-## Description: <br>
-Fetch China A-share stock market data (bars, realtime quotes, tick-by-tick transactions) via mootdx/TDX protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch China A-share stock market data, including bars, realtime quotes, and tick-by-tick transactions, through the mootdx/TDX protocol.
 
-## Publisher: <br>
-[wangdinglu](https://clawhub.ai/user/wangdinglu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangdinglu](https://clawhub.ai/user/wangdinglu)
 
-## Use Case: <br>
-Developers and market-data analysts use this skill to generate guidance, code examples, shell commands, and configuration steps for retrieving China A-share bars, quotes, and tick-by-tick transaction data with mootdx/TDX. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup script can install Python packages into the active environment. <br>
-Mitigation: Run setup and verification in a virtual environment or disposable agent runtime before using it in a shared environment. <br>
-Risk: The skill depends on outbound connectivity to third-party TDX market-data servers. <br>
-Mitigation: Use only in environments where this network access is allowed, and handle empty or unavailable responses as normal data-quality conditions. <br>
-Risk: The trading-hour bypass can produce data outside mootdx's built-in trading-time checks. <br>
-Mitigation: Treat returned data as market-data assistance, validate trading days and timestamps, and avoid relying on it as a guarantee for trading decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangdinglu/free-a-share-real-time-data) <br>
-- [Mootdx API Reference](api-reference.md) <br>
+## Use Case:
 
+Developers and data engineers use this skill to build or operate agent workflows that retrieve China A-share market bars, realtime quotes, batch quotes, and tick-by-tick transaction data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market-data caveats for trading hours, stock-code formats, unsupported Beijing Stock Exchange symbols, and network connectivity to third-party TDX servers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency installation and live market-data connectivity can introduce setup, availability, and supply-chain risk.
+
+Mitigation: Install in a virtual environment or container and prefer pinned, hash-verified dependencies for production use.
+
+Risk: The trading-hour bypass can prevent empty transaction results caused by timezone checks, but it does not prove that returned data is valid for every timestamp.
+
+Mitigation: Treat the bypass as a data-quality choice, validate dates against a trading calendar, and verify timestamps against Beijing trading sessions.
+
+Risk: Unsupported Beijing Stock Exchange symbols or non-trading-day queries can return empty or misleading data.
+
+Mitigation: Filter out .BJ symbols before calling mootdx and check weekend or holiday dates before querying historical data.
+
+## Reference(s):
+
+- [Detailed mootdx API Reference](api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API call patterns, stock-code conversion rules, and data-quality cautions for market-calendar, timezone, and unsupported-exchange cases.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

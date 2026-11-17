@@ -1,43 +1,63 @@
-## Description: <br>
-BlindNav Assistant helps blind, low-vision, and mobility-impaired users use Gaode map services for voice-first location lookup, nearby-place search, accessible-facility search, walking and transit route planning, and SOS location assistance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于高德地图开放平台的 AI 盲人无障碍出行 Skill，支持周边搜索、无障碍设施查询、步行与公交路线规划、当前定位与一键紧急求助，输出面向语音播报优化。
 
-## Publisher: <br>
-[wukongmazi](https://clawhub.ai/user/wukongmazi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wukongmazi](https://clawhub.ai/user/wukongmazi)
 
-## Use Case: <br>
-External users who rely on speech-first navigation can ask an agent for their current location, nearby services, accessible facilities, walking directions, public-transit options, or emergency location assistance. The skill is intended for accessible travel workflows where concise TTS-ready output is more useful than raw map data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses precise live location and sends coordinates to Gaode map services for navigation and place search. <br>
-Mitigation: Install only with clear user consent for live-location use, provide the required GAODE_API_KEY only in intended deployments, and limit use to contexts where external map-service processing is acceptable. <br>
-Risk: The SOS flow can process precise location on broad help phrases without a clear confirmation step. <br>
-Mitigation: Review or disable SOS behavior unless the user has intentionally opted into immediate emergency location sharing; add a confirmation step when the deployment requires explicit consent. <br>
+## Use Case:
 
+External users who are blind, have low vision, or need mobility support use this skill to request location-aware navigation, nearby facility search, transit summaries, accessibility-oriented searches, and SOS location messages through voice-first responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wukongmazi/blind-nav-gaode) <br>
-- [Publisher profile](https://clawhub.ai/user/wukongmazi) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
-- [Artifact README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global, subject to Gaode Maps service coverage and local requirements for location sharing and emergency assistance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON strings containing TTS-oriented voice_friendly, voice_summary, or voice_alert text for agent narration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GAODE_API_KEY and user location inputs; outputs are optimized for speech and should not be read as raw JSON to end users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill handles precise user location and sends coordinates to Gaode services for navigation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require clear user consent for location use and disclose that Gaode receives coordinates before live navigation or search calls.
+
+Risk: SOS behavior can disclose precise location with weak user control.
+
+Mitigation: Require explicit consent before SOS or location disclosure unless a separately reviewed emergency policy permits immediate sharing.
+
+Risk: Accessibility-priority routing claims may exceed implemented route-planning behavior.
+
+Mitigation: Describe routes as suggested navigation from available map data and avoid claiming guaranteed accessible paths unless that routing is implemented and tested.
+
+Risk: Raw API failures or emergency-tool import problems could affect safety-critical use.
+
+Mitigation: Test emergency tool imports before release and sanitize API error messages shown or spoken to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wukongmazi/skills/blind-nav-gaode)
+- [ClawHub publisher profile](https://clawhub.ai/user/wukongmazi)
+- [Gaode Web Services API endpoint](https://restapi.amap.com/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON strings containing voice_friendly, voice_summary, or voice_alert text for TTS-oriented agent responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GAODE_API_KEY and user location inputs for live navigation results.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

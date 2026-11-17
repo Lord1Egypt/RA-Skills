@@ -1,43 +1,53 @@
-## Description: <br>
-TOTP-based OTP verification for sensitive operations (env vars, gateway restarts, backup deletions, critical config changes). Uses otplib with window:2 (1 minute tolerance). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TOTP-based OTP verification for sensitive operations such as environment variables, gateway restarts, backup deletions, and critical configuration changes.
 
-## Publisher: <br>
-[diegofcornejo](https://clawhub.ai/user/diegofcornejo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[diegofcornejo](https://clawhub.ai/user/diegofcornejo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add TOTP checks before sensitive OpenClaw operations such as reading environment variables, restarting gateways, deleting backups, changing critical configuration, or handling external API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: TOTP setup output and qr.png can enroll an authenticator if exposed. <br>
-Mitigation: Keep setup output private, send the QR through a secure channel, and delete qr.png immediately after enrollment. <br>
-Risk: A valid OTP confirms possession of the configured authenticator but does not by itself confirm intent for destructive actions. <br>
-Mitigation: Confirm destructive actions separately after a valid OTP before proceeding. <br>
-Risk: Disclosure of TOTP_SECRET would allow unauthorized OTP generation. <br>
-Mitigation: Protect TOTP_SECRET and install the skill only in a trusted workspace. <br>
+## Use Case:
 
+Developers and operators use this skill to require a time-based one-time password before an agent proceeds with sensitive OpenClaw operations such as reading secrets, restarting gateways, deleting backups, or changing critical configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diegofcornejo/totp) <br>
-- [Publisher profile](https://clawhub.ai/user/diegofcornejo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and plain-text verifier status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The verifier emits OTP_VALID or OTP_INVALID and exits with status 0 or 1.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: package.json and server release metadata) <br>
+Risk: The reusable TOTP seed can be exposed through console output, qr.png, .env files, shared terminal transcripts, or CI logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run enrollment in a private terminal, share qr.png only through a trusted channel, delete it immediately, restrict .env access, and rotate TOTP_SECRET after any suspected exposure.
+
+Risk: A valid OTP is a supplemental check and may not be sufficient as the only approval boundary for destructive or account-level operations.
+
+Mitigation: Require separate review or authorization for destructive or account-level actions, and treat OTP verification as one control in a broader approval process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diegofcornejo/skills/totp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command-line status strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TOTP_SECRET; setup can generate qr.png for authenticator enrollment.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

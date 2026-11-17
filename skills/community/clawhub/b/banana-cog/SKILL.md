@@ -1,5 +1,5 @@
 ---
-name: banana-cog
+name: nano-banana-image-cellcog
 description: "AI multi-image generation powered by CellCog via Nano Banana. 10-20 coherent images in one prompt, character consistency across scenes, production-grade composition. Nano Banana AI, Nano Banana Pro, Gemini image generation."
 metadata:
   openclaw:
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Banana Cog — Nano Banana × CellCog
+# Nano Banana Image — Nano Banana × CellCog
 
 **Nano Banana × CellCog.** Complex multi-image jobs, executed perfectly, from a single prompt.
 
@@ -104,15 +104,16 @@ Transform and enhance existing images:
 
 ---
 
-## Chat Mode
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single images, quick edits | `"agent"` |
-| Character-consistent series, complex compositions | `"agent"` |
-| Large sets with brand guidelines | `"agent team"` |
+| Scenario | Recommended |
+|----------|-------------|
+| Quick generations and edits | `chat_mode="agent"` (defaults to the `"core"` tier) |
+| Large sets with strict brand guidelines | `chat_mode="agent", chat_tier="max"` |
 
-**Use `"agent"` for most image work.**
+**The core tier is the default and handles most image work well**, balanced speed and depth. **Upgrade to `chat_tier="max"`** when quality disappoints or the work is genuinely complex: just re-run the same prompt with `chat_tier="max"`.
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — don't use it for image work.
 
 ---
 
@@ -132,6 +133,7 @@ Transform and enhance existing images:
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

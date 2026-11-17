@@ -1,45 +1,60 @@
-## Description: <br>
-Poyo Nano Banana Pro helps agents prepare Nano Banana Pro image generation and editing workflows on PoYo, including model selection, payload construction, polling guidance, and output options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Poyo Nano Banana Pro helps agents prepare PoYo Nano Banana Pro image generation and editing requests for text-to-image, image editing, multi-reference workflows, output format control, and 1K/2K/4K outputs.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers, operators, and creative teams use this skill to prepare Nano Banana Pro generation or editing requests, choose PoYo model parameters, and submit trusted payloads when a server-side API key is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys, private prompts, source image URLs, and callback URLs can be exposed if included in browser code, public repositories, logs, screenshots, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in a server-side environment variable or secret manager, avoid logging sensitive request data, and review payloads before sharing or submitting them. <br>
-Risk: Submitting a prepared payload can make a live outbound PoYo API request and start an image generation or editing task. <br>
-Mitigation: Run the submit script only from a trusted shell, only after explicit user approval, and report the returned task_id so the task can be tracked by polling or webhook. <br>
-Risk: PoYo model fields and supported options may change over time. <br>
-Mitigation: Verify current field support in the PoYo documentation before relying on model-specific options such as size, resolution, output_format, or enable_web_search. <br>
+## Use Case:
 
+Developers and agents use this skill to configure, prepare, and optionally submit PoYo Nano Banana Pro image generation or editing jobs, including production-oriented payloads, polling, and webhook guidance.
 
-## Reference(s): <br>
-- [PoYo Nano Banana Pro API Reference](references/api.md) <br>
-- [PoYo Nano Banana Pro Documentation](https://docs.poyo.ai/api-manual/image-series/nano-banana-2) <br>
-- [PoYo Nano Banana Pro Model Page](https://poyo.ai/models/nano-banana-2-api) <br>
-- [PoYo Nano Banana Pro Example Repository](https://github.com/PoyoAPI/nano-banana-pro-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a PoYo task_id when a live submission is explicitly requested and succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: PoYo API requests can send prompts, image URLs, callback URLs, or other sensitive workflow data to a hosted third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review payloads before submission and avoid including private prompts, private image URLs, callback URLs, or other sensitive data unless the user accepts sending them to PoYo.
+
+Risk: The skill requires a PoYo API key.
+
+Mitigation: Store POYO_API_KEY only in server-side environment variables or a secret manager, and do not expose it in browser code, public repositories, logs, screenshots, or chat output.
+
+Risk: Live submissions may create external API activity.
+
+Mitigation: Submit requests only when the user explicitly asks and provides a safe server-side environment.
+
+## Reference(s):
+
+- [PoYo Nano Banana Pro API Reference](references/api.md)
+- [PoYo Nano Banana Pro model page](https://poyo.ai/models/nano-banana-2-api)
+- [PoYo Nano Banana Pro API docs](https://docs.poyo.ai/api-manual/image-series/nano-banana-2)
+- [Poyo Nano Banana Pro on ClawHub](https://clawhub.ai/coolhackboy/skills/poyo-nano-banana-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON payloads and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model selection, request payloads, curl commands, task IDs, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

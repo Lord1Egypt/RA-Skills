@@ -1,41 +1,62 @@
-## Description: <br>
-深入回答周易、四柱八字、子平/奇门命理、调候与经典源流问题时使用。涵盖典籍脉络、取用神步骤、理气/格局解析与现代化表述建议，需引用 references/ 下的整理笔记。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured Chinese-language reference guidance for Zhouyi, Bazi, Zi Ping, Qimen Dunjia, classical metaphysics texts, use-god reasoning, pattern analysis, and modern interpretation.
 
-## Publisher: <br>
-[zhanglinghao01-rakuten](https://clawhub.ai/user/zhanglinghao01-rakuten) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhanglinghao01-rakuten](https://clawhub.ai/user/zhanglinghao01-rakuten)
 
-## Use Case: <br>
-External users and agents use this skill to answer questions about Zhouyi, Bazi, Zi Ping, Qi Men, and related Chinese metaphysics texts using curated reference notes. It supports interpretive explanation, source context, learning recommendations, and modern wording, but does not provide built-in chart calculation or live analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Divination or metaphysics output may be mistaken for professional advice. <br>
-Mitigation: Present output as cultural or interpretive reference material and direct medical, legal, financial, psychological, or safety decisions to qualified professionals. <br>
-Risk: Users may request chart casting or live analysis that the artifact does not implement. <br>
-Mitigation: State that the skill is reference-only and has no built-in chart calculation or live analysis capability. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Zhouyi Bazi Analysis on ClawHub](https://clawhub.ai/zhanglinghao01-rakuten/zhouyi-bazi) <br>
-- [classic_texts.md](references/classic_texts.md) <br>
-- [qimen_texts.md](references/qimen_texts.md) <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about Zhouyi, four-pillar Bazi, Zi Ping methods, Qimen Dunjia, and related classical sources with structured summaries, modern framing, and source references. It is intended for cultural and interpretive reference, not professional medical, legal, financial, or life-critical advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with structured summaries and citations to bundled reference notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only output; no code execution, credentials, persistence, hidden system access, built-in chart calculation, or live analysis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat divination or fortune-telling content as medical, legal, financial, or life-critical advice.
+
+Mitigation: Present Zhouyi, Bazi, and Qimen interpretations as cultural or interpretive reference and direct users to qualified professionals for high-stakes decisions.
+
+Risk: Users may expect live chart calculation or automated chart casting.
+
+Mitigation: State that the skill is reference-only and does not include a script or charting tool when a request requires live calculation.
+
+## Reference(s):
+
+- [classic_texts.md](references/classic_texts.md)
+- [qimen_texts.md](references/qimen_texts.md)
+- [Baidu Baike - Yuanhai Ziping](https://baike.baidu.com/item/%E6%B8%8A%E6%B5%B7%E5%AD%90%E5%B9%B3/6456620)
+- [Baidu Baike - Sanming Tonghui](https://baike.baidu.com/item/%E4%B8%89%E5%91%BD%E9%80%9A%E4%BC%9A/360415)
+- [Baidu Baike - Ditian Sui](https://baike.baidu.com/item/%E6%BB%B4%E5%A4%A9%E9%AB%93/6165128)
+- [Baidu Baike - Ziping Zhenquan](https://baike.baidu.com/item/%E5%AD%90%E5%B9%B3%E7%9C%9F%E8%AF%A0/6455635)
+- [Baidu Baike - Qiongtong Baojian](https://baike.baidu.com/item/%E7%A9%B7%E9%80%9A%E5%AE%9D%E9%89%B4/360938)
+- [Shuge - Yanbo Diaosou Ge](https://old.shuge.org/ebook/yan-bo-diao-sou-ge/)
+- [Baidu Baike - Yuding Qimen Baojian](https://baike.baidu.com/item/%E5%BE%A1%E5%AE%9A%E5%A5%87%E9%97%A8%E5%AE%9D%E9%89%B4)
+- [Baidu Baike - Qimen Dunjia Miji Daquan](https://baike.baidu.com/item/%E5%A5%87%E9%97%A8%E9%81%81%E7%94%B2%E7%A7%98%E7%AC%88%E5%A4%A7%E5%85%A8)
+- [Baidu Baike - Dunjia Yanyi](https://baike.baidu.com/item/%E9%81%81%E7%94%B2%E6%BC%94%E4%B9%89)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured summaries, citations, and boundary reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or privileged behavior; reference-only responses based on bundled notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

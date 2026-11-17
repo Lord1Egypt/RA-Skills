@@ -1,37 +1,62 @@
-## Description: <br>
-Converts local PDF files into Markdown with OCR, layout, tables, formulas, and extracted images preserved by running MinerU on a Modal L4 GPU. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document OCR and parsing skill that converts local PDF files and images to Markdown on a remote Modal L4 GPU while preserving layout, tables, formulas, and OCR text.
 
-## Publisher: <br>
-[speech2srt](https://clawhub.ai/user/speech2srt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[speech2srt](https://clawhub.ai/user/speech2srt)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to OCR selected PDFs and retrieve Markdown outputs with associated images and auxiliary parsing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs are uploaded to Modal-managed remote infrastructure and may remain in Modal volumes after processing. <br>
-Mitigation: Use a unique slug for each job, avoid highly sensitive documents unless Modal storage is acceptable, and delete uploaded inputs and outputs from the Modal volume after processing. <br>
+## Use Case:
 
+Developers and document-processing users use this skill to upload PDFs to a Modal-backed OCR pipeline, run MinerU parsing, and retrieve Markdown plus extracted images and auxiliary layout outputs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files with extracted image folders and auxiliary JSON/PDF outputs; agent guidance may include shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are organized under a slug-specific Modal volume path and downloaded as a preserved directory tree.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Documents are uploaded to persistent Modal storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents suitable for upload to Modal, keep OCR work in isolated volumes, and delete remote data when processing is complete.
+
+Risk: Unsafe task-name handling can access or write outside the intended job folder.
+
+Mitigation: Use simple slugs containing only letters, numbers, and dashes, and validate slugs before running the workflow.
+
+Risk: Shared volumes can mix unrelated OCR jobs or data.
+
+Mitigation: Avoid sharing volumes with unrelated jobs and document retention and cleanup expectations before deployment.
+
+Risk: Unpinned runtime dependencies can change OCR behavior or risk profile.
+
+Mitigation: Pin dependencies and review the build image before treating the skill as low risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/speech2srt/skills/ocr2markdown)
+- [Publisher profile](https://clawhub.ai/user/speech2srt)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with extracted image folders, auxiliary PDF/JSON files, and concise shell-command workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are stored under a slug-specific output directory and already-processed PDFs are skipped on rerun.]
+
+## Skill Version(s):
+
+v1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

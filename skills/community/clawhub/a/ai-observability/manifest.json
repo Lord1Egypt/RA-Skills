@@ -1,0 +1,76 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "AI可观测性监控",
+  "version": "1.0.0",
+  "author": "注册老炮",
+  "year": "2026",
+  "timestamp_utc": "2026-08-27T17:20:59.588385+00:00",
+  "timestamp_local": "2026-08-28T01:20:59.588394",
+  "package_fingerprint_sha256": "4f64d36f280e1ebb2cfc443c28e6a92ae0c54235d476409e64ee59fcd394206f",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "e8a66e30b55e997de5fca2cb78bbf2bdabd1a50bc739145dcac48e08b748843d"
+    },
+    {
+      "path": "SECURITY_AUDIT.md",
+      "sha256": "b674f92a8e9126a8d9628b38e2c5e22a44a6f2ce9183a892395515c1b655c668"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "83c0ac384383bc3dad6fea9481625c014138a9b034174f480b7dbcb7aaf1f22c"
+    },
+    {
+      "path": "references/01-可观测性全景.md",
+      "sha256": "8611d2ee0537d31a6d9ab8252e4eb7be2e31f8cfe2eb2facea929eea2fef9365"
+    },
+    {
+      "path": "references/02-调用追踪与日志.md",
+      "sha256": "acdbf87606b90a65758a4911dc6e5b4c019f28f261d2f1b0993edd4d7cebae39"
+    },
+    {
+      "path": "references/03-质量监控指标.md",
+      "sha256": "be2c9a4bd22e2876d94bb592a2308c6bd7cb888071e8374f69022caed5f35b03"
+    },
+    {
+      "path": "references/04-性能与成本监控.md",
+      "sha256": "7988c59d63fc55c4cf842ccb74f034bcd7df59419b1fb6b52730046a8437cdec"
+    },
+    {
+      "path": "references/05-护栏与安全监控.md",
+      "sha256": "90f034ae8efd5a10a3181b45b531763cbe81e984bfcf2b2e1a9e6f00a71e634f"
+    },
+    {
+      "path": "references/06-告警体系.md",
+      "sha256": "2a2d66ec19c87a0424df02f8ae0c66dffcc1917330dbf11fbae6b0ec158845c0"
+    },
+    {
+      "path": "references/07-平台与落地.md",
+      "sha256": "668d404bf73169700e2fe2f4ccc76a479deb03435c6c55a587f5085e3adb0331"
+    },
+    {
+      "path": "references/08-FAQ.md",
+      "sha256": "f28e820649b7718d5e23202590c42c9429ac8f566564a74ae6c7e48a210c54c8"
+    },
+    {
+      "path": "tools/observability_toolkit.py",
+      "sha256": "fbfb3a62f253e962d98c805cfa29c58d1d870bd7f90399bc4853ae2b4c43be56"
+    },
+    {
+      "path": "verify/gen_security_radar.py",
+      "sha256": "a4be195ba8aea3c9c106988d03efcf41818a2052ed59380b41e758c49e073556"
+    },
+    {
+      "path": "verify/observability_quality_test.py",
+      "sha256": "3c315bc3ce4c3dd333d7a7d9d95ca50b71aca95fb71fb130a664a25aa16da14d"
+    },
+    {
+      "path": "verify/security-radar.svg",
+      "sha256": "a2715009ef3779db3460f6d61866421750030b17a426007f7793ef0d4205ae05"
+    },
+    {
+      "path": "verify/security_results.json",
+      "sha256": "6a4c53a1a011f15d7cd8f1ed7ed06f6d009f94498355f64db3c815f1a8667c53"
+    }
+  ]
+}

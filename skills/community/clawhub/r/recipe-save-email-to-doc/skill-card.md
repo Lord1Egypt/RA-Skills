@@ -1,41 +1,53 @@
-## Description: <br>
-Save a Gmail message body into a Google Doc for archival or reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save a Gmail message body into a Google Doc for archival or reference.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and productivity-focused agents use this recipe to find a selected Gmail message, retrieve its content, and save the email body into a Google Doc for archival or reference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The selected Gmail message may contain sensitive or regulated content. <br>
-Mitigation: Confirm the email is the intended one and avoid copying unnecessary sensitive or regulated content into the document. <br>
-Risk: The created Google Doc may expose retained email content through document permissions or retention settings. <br>
-Mitigation: Review the created document's sharing permissions and retention expectations after writing the email body. <br>
+## Use Case:
 
+Employees and workspace users use this skill to save selected Gmail message content into a Google Doc for archival or later reference.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-save-email-to-doc) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown recipe with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires gws plus the gws-gmail and gws-docs skills; uses a selected Gmail message ID and Google Docs document ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The skill can copy sensitive email content into a persistent Google Doc.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the selected Gmail message, redact sensitive content where possible, and check the destination document sharing settings before saving.
+
+Risk: The recipe shows a shell command pattern where email text could be interpolated directly into a command.
+
+Mitigation: Avoid executing commands that directly interpolate untrusted email text; review and safely quote or sanitize content before passing it to shell commands.
+
+## Reference(s):
+
+- [Recipe Save Email To Doc on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/recipe-save-email-to-doc)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, text]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gws plus the gws-gmail and gws-docs skills; copies selected email body text into a Google Doc.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

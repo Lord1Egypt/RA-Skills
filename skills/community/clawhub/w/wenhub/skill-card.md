@@ -1,51 +1,61 @@
-## Description: <br>
-WenHub provides a three-court AI agent collaboration governance workflow for task assignment, task grading, quality control, reporting, knowledge reuse, security controls, and violation handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WenHub provides a three-court AI agent collaboration governance framework for task assignment, task grading, quality control, standardized reporting, knowledge reuse, security controls, and violation handling.
 
-## Publisher: <br>
-[18505298102](https://clawhub.ai/user/18505298102) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18505298102](https://clawhub.ai/user/18505298102)
 
-## Use Case: <br>
-Developers, agent operators, and team leads use this skill to establish a structured multi-agent governance process with separate planning, execution, and quality review roles. It is intended for workspaces that need repeatable task grading, quality scoring, reporting, security handling, and knowledge reuse practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages a persistent multi-agent governance process and workspace files that can influence future agent behavior. <br>
-Mitigation: Install it only in projects where that persistent governance model is desired, and review the generated or referenced governance files before relying on them. <br>
-Risk: SOUL.md, AGENTS.md, and .wenhub files may become places where users are tempted to store private project information. <br>
-Mitigation: Do not place secrets, credentials, customer data, or other private data in those files; use existing secret-management and access-control practices instead. <br>
-Risk: Optional templates are obtained from the referenced WenHub website rather than included in the release artifact. <br>
-Mitigation: Review downloaded templates separately before adding them to a workspace. <br>
+## Use Case:
 
+Developers, team leads, and agent operators use this skill to structure multi-agent work into planning, execution, and independent quality review workflows. It is intended for teams that need repeatable governance rules, reporting templates, task grading, and security review practices for agent-assisted work.
 
-## Reference(s): <br>
-- [WenHub ClawHub release page](https://clawhub.ai/18505298102/wenhub) <br>
-- [Publisher profile](https://clawhub.ai/user/18505298102) <br>
-- [WenHub official website](https://wenhub.huawen-inc.com) <br>
-- [Three-court collaboration protocol](references/three-courts.md) <br>
-- [Task grading and execution controls](references/task-grading.md) <br>
-- [Quality scoring system](references/quality-system.md) <br>
-- [Reporting and communication guidelines](references/reporting.md) <br>
-- [Security rules](references/security-rules.md) <br>
-- [Violation handling system](references/violation-system.md) <br>
-- [Karpathy coding principles](references/karpathy-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown guidance with file and process instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation or use of persistent workspace governance files such as SOUL.md, AGENTS.md, and .wenhub rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may shape persistent workspace-level agent governance by asking users to add SOUL.md, AGENTS.md, IDENTITY.md, or .wenhub rule files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full contents of every proposed instruction or rule file, keep backups of existing instruction files, and install only changes that match the intended governance model.
+
+Risk: The server security verdict is suspicious because the skill directs users toward remote templates for persistent agent instruction files.
+
+Mitigation: Avoid installing mutable website templates unless the publisher provides versioned releases with hashes or signatures.
+
+## Reference(s):
+
+- [WenHub website](https://wenhub.huawen-inc.com)
+- [WenHub ClawHub release](https://clawhub.ai/18505298102/skills/wenhub)
+- [Three-court collaboration protocol](references/three-courts.md)
+- [Task grading and execution controls](references/task-grading.md)
+- [Quality scoring system](references/quality-system.md)
+- [Reporting and communication standards](references/reporting.md)
+- [Security rules](references/security-rules.md)
+- [Violation handling system](references/violation-system.md)
+- [Karpathy coding principles](references/karpathy-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance, structured checklists, reporting templates, and workspace governance configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend persistent workspace instruction files and governance rules that should be reviewed before installation.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

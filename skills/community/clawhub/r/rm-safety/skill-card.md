@@ -1,45 +1,55 @@
-## Description: <br>
-Intercepts risky rm commands to assess impact, confirm user intent, and suggest safer alternatives before execution to prevent accidental data loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intercepts risky rm commands to assess impact, confirm user intent, and suggest safer alternatives before execution to prevent accidental data loss.
 
-## Publisher: <br>
-[caesaryp](https://clawhub.ai/user/caesaryp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caesaryp](https://clawhub.ai/user/caesaryp)
 
-## Use Case: <br>
-Developers, agent operators, and CLI users use this skill to add a confirmation layer around file deletion commands, inspect deletion impact, and choose safer alternatives such as trash or backup before execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A user may approve deletion of the wrong path or an important user folder. <br>
-Mitigation: Check the absolute target path, file counts, and whether the target is inside a critical folder before approving execution. <br>
-Risk: Permanent rm deletion may be difficult to recover. <br>
-Mitigation: Prefer the trash option when recoverability matters, or choose backup before executing the original deletion command. <br>
-Risk: Creating a backup can place a temporary local copy under /tmp. <br>
-Mitigation: Review whether the files are sensitive before choosing backup and remove temporary copies when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to add an extra confirmation step before destructive file deletion commands, including impact assessment and safer alternatives such as trash, backup, or moving files to a temporary location.
 
-## Reference(s): <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/caesaryp/rm-safety) <br>
-- [OpenClaw Docs](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with confirmation prompts and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese guidance; confirmation options include execute, cancel, backup, and trash.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: Mutable latest/default-branch installation instructions can change the installed code over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned ClawHub CLI version or a reviewed release or commit before installation.
+
+Risk: A destructive delete command can still proceed if the user confirms without reviewing the target and impact assessment.
+
+Mitigation: Review the resolved target path and deletion impact carefully, and prefer trash or backup options when recovery may be needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/caesaryp/skills/rm-safety)
+- [Publisher Profile](https://clawhub.ai/user/caesaryp)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown confirmation prompts with inline shell commands and structured safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual English and Chinese user-facing confirmation text.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

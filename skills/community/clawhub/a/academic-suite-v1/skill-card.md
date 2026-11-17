@@ -1,45 +1,62 @@
-## Description: <br>
-Academic Suite v1 is a meta-skill for installing and coordinating an academic research and writing pipeline with literature search, research, drafting, integrity checking, peer review, de-AI rewriting, and final formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Academic Research & Writing Suite: one-click installation for the Academic Pipeline ecosystem with literature search, research, drafting, review, integrity checking, humanization, and publication formatting dependencies.
 
-## Publisher: <br>
-[eric-promax](https://clawhub.ai/user/eric-promax) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eric-promax](https://clawhub.ai/user/eric-promax)
 
-## Use Case: <br>
-External users and developers use this skill to install and run a multi-skill academic writing workflow for papers, theses, literature reviews, review and revision, integrity verification, and publication formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The suite updates multiple unpinned agent-skill dependencies during installation, which can change behavior across releases. <br>
-Mitigation: Review the dependency list before installation, install only from a trusted publisher, and avoid forced replacement unless intentionally overwriting existing skills. <br>
-Risk: The workflow may use sensitive API credentials or knowledge-base paths for literature and knowledge-base access. <br>
-Mitigation: Provide only narrowly scoped credentials and paths needed for the current research task. <br>
-Risk: Generated academic content can contain incorrect citations, facts, or undeclared AI assistance. <br>
-Mitigation: Independently verify citations, data, and facts, and follow institutional or publisher AI-disclosure rules before using outputs. <br>
-Risk: The mandatory de-AI rewriting stage may affect academic transparency or alter wording after review. <br>
-Mitigation: Use rewriting for style only after integrity review, preserve citations and data, and keep a process record for disclosure and review. <br>
+## Use Case:
 
+External users, developers, and academic writers use this meta-skill to install and start a full academic research and writing workflow. It helps coordinate literature search, deep research, paper drafting, integrity checks, peer review, revision, humanization, and final document generation through dependent skills.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/eric-promax/academic-suite-v1) <br>
-- [Full usage guide](https://feishu.cn/docx/GRb7dGij9olddExTBsCcpoaCnWg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell command examples, configuration prompts, and generated academic workflow artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request research configuration, knowledge-base paths, API credentials, and user confirmation at gated workflow stages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata reports 3.5.0) <br>
+Risk: The installer can replace multiple local OpenClaw skills through forced installation of unpinned dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each dependency separately and avoid forced installation unless replacing existing skills is intended.
+
+Risk: The workflow includes a mandatory de-AI or humanization stage that could be misused to conceal AI assistance in academic work.
+
+Mitigation: Use humanization only for style editing and follow institutional disclosure and academic integrity requirements.
+
+Risk: Research topics, drafts, uploaded files, IMA paths, and API-backed searches may contain sensitive information.
+
+Mitigation: Treat those inputs as sensitive and review dependency privacy controls before using the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eric-promax/skills/academic-suite-v1)
+- [Publisher profile](https://clawhub.ai/user/eric-promax)
+- [Complete usage guide](https://feishu.cn/docx/GRb7dGij9olddExTBsCcpoaCnWg)
+- [GitHub repository](https://github.com/eric-promax/academic-agents.git)
+- [GitHub issues](https://github.com/eric-promax/academic-agents/issues)
+- [ClawHub discussions](https://clawhub.ai/eric-promax/academic-suite/discussions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and conversational guidance with inline shell commands and configuration prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can guide multi-stage academic workflows and final document generation through installed dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports suite version 3.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

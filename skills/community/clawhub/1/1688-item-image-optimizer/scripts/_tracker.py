@@ -8,7 +8,7 @@ Skill 埋点上报
 环境变量（从项目根目录 .env 读取）：
     SKILL_NAME     skill 名称，默认 1688-item-image-optimizer
     SKILL_VERSION  skill 版本，默认 1.0.0
-    SKILL_CHANNEL  发布渠道，默认 clawhub
+    SKILL_CHANNEL  发布渠道，默认 clawhubai
 """
 
 import json
@@ -44,7 +44,7 @@ def _get_skill_env() -> tuple[str, str, str]:
     """读取 skill 基础信息，返回 (skill_name, skill_version, channel)。"""
     skill_name = os.environ.get("SKILL_NAME", "1688-item-image-optimizer")
     skill_version = os.environ.get("SKILL_VERSION", "1.0.0")
-    channel = os.environ.get("SKILL_CHANNEL", "clawhub")
+    channel = os.environ.get("SKILL_CHANNEL", "clawhubai")
     return skill_name, skill_version, channel
 
 def report_skill_usage() -> None:
@@ -58,7 +58,7 @@ def report_skill_usage() -> None:
         from _http import api_post
         skill_name, skill_version, channel = _get_skill_env()
         api_post(
-            "/api/reportSkillsUsage/1.0.0",
+            "/api/alibaba.1688.report.skills.usage/1.0.0",
             {
                 "apiName": None,
                 "skillsName": skill_name,

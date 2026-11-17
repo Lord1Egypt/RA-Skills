@@ -1,0 +1,45 @@
+#coding:gbk
+
+def after_init(C):
+        etf_code = '510050.SH' #etf品种代码
+        option_codes =C.get_option_undl_data(etf_code)
+        print('期权合约列表', option_codes)
+        all_option_list = []
+        for code in option_codes:
+                #print(code, C.get_stock_name(code), C.get_option_detail_data(code)['ExpireDate'])
+                detail = C.get_option_detail_data(code)
+                #print(detail)
+                exp_date = detail['ExpireDate']
+                strike_price = detail['OptExercisePrice']
+                opt_type = detail['optType']
+                name = C.get_stock_name(code)
+                line = [code, exp_date, strike_price, opt_type, name]
+                all_option_list.append(line)
+        all_dates = list(set([i[1] for i in all_option_list]))
+        all_dates.sort()
+        current_month = all_dates[0]
+        next_month = all_dates[1]
+        current_month_call = [i for i in all_option_list if i[1] == current_month and i[3] == 'CALL']
+        current_month_put = [i for i in all_option_list if i[1] == current_month and i[3] == 'PUT']
+        next_month_call = [i for i in all_option_list if i[1] == next_month and i[3] == 'CALL']
+        next_month_put = [i for i in all_option_list if i[1] == next_month and i[3] == 'PUT']
+        current_month_call.sort(key = lambda x:x[2])
+        current_month_put.sort(key = lambda x:x[2])
+        next_month_call.sort(key = lambda x:x[2])
+        next_month_put.sort(key = lambda x:x[2])
+        current_month, next_month = str(current_month), str(next_month)
+        print(current_month, '当月认购', current_month_call)
+        print(current_month, '当月认沽', current_month_put)
+        print(next_month,'下月认购', next_month_call)
+        print(next_month,'下月认沽', next_month_put)
+        
+        #获取etf当前价格
+        full_tick =  C.get_full_tick([etf_code])
+        etf_price = full_tick[etf_code]['lastPrice']
+        
+        in_the_money_call = [i for i in current_month_call if i[2] <= etf_price]
+        out_the_money_call = [i for i in current_month_call if i[2] > etf_price]
+        in_the_money_put = [i for i in current_month_put if i[2] >= etf_price]
+        out_the_money_put = [i for i in current_month_put if i[2] < etf_price]
+        print('当月实值认购', in_the_money_call, '虚值认购', out_the_money_call)
+        print('当月实值认沽', in_the_money_put, '虚值认沽', out_the_money_put)

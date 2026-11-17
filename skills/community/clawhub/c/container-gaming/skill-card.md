@@ -1,45 +1,58 @@
-## Description: <br>
-Container-based gaming setup on Linux using Podman, Distrobox, Flatpak gaming apps, Wine/Proton containers, and Sunshine streaming. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Container-based gaming setup on Linux covering Podman, Distrobox, Flatpak gaming, Wine/Proton containers, Sunshine streaming, and related troubleshooting.
 
-## Publisher: <br>
-[silverod](https://clawhub.ai/user/silverod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[silverod](https://clawhub.ai/user/silverod)
 
-## Use Case: <br>
-Developers, Linux users, and gaming-focused operators use this skill to set up and troubleshoot containerized Linux gaming workflows, Flatpak gaming apps, Wine/Proton launchers, and Sunshine/Moonlight streaming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote installation commands can run privileged code during setup. <br>
-Mitigation: Prefer distro or package-manager installation for Distrobox; review any remote script before running it with sudo. <br>
-Risk: Unpinned container images can change behavior between runs. <br>
-Mitigation: Use trusted container images and pin tags or digests when possible. <br>
-Risk: Flatpak and container permissions can expose more host resources than a game requires. <br>
-Mitigation: Limit device, filesystem, and socket permissions to the specific game or application need. <br>
-Risk: Sunshine and Tailscale serving commands can expose local streaming services to other devices. <br>
-Mitigation: Use trusted devices with authentication and ACLs, and stop or disable Sunshine or Tailscale serving when streaming is no longer needed. <br>
+## Use Case:
 
+Developers, engineers, and Linux gamers use this skill to set up and troubleshoot containerized gaming workflows, Flatpak game apps, Wine/Proton tooling, and Sunshine/Moonlight streaming.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/silverod/container-gaming) <br>
-- [Distrobox install script referenced by skill](https://raw.githubusercontent.com/89luca89/distrobox/main/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Linux-focused operational guidance for local containers, Flatpak applications, Wine/Proton tools, and Sunshine streaming.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Remote installer commands run as administrator can execute unreviewed or changing internet-hosted code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer distro packages or pinned, verified installers, and review commands before execution.
+
+Risk: Unpinned container images can change unexpectedly and may broaden access when host paths or display sockets are shared.
+
+Mitigation: Use pinned and verified images, mount only a dedicated game directory, and avoid X11 sharing where possible.
+
+Risk: Game-streaming services can expose local services or desktops if opened before authentication and access controls are configured.
+
+Mitigation: Configure Sunshine authentication first, limit remote access to trusted devices, and expose services over Tailscale only after those controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/silverod/skills/container-gaming)
+- [ClawHub publisher profile](https://clawhub.ai/user/silverod)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Linux-focused guidance; many workflows require Podman, Flatpak, or Distrobox.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

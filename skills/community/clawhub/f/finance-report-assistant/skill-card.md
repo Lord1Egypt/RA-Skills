@@ -1,40 +1,54 @@
-## Description: <br>
-Helps finance teams organize finance shared-services reporting materials, decompose leadership instructions, draft formal reports, suggest charts, and track progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finance Report Assistant helps organize and analyze finance shared-services reporting materials, decompose leadership instructions, draft professional report content, and suggest progress tracking and data visualization outputs.
 
-## Publisher: <br>
-[wus6008](https://clawhub.ai/user/wus6008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wus6008](https://clawhub.ai/user/wus6008)
 
-## Use Case: <br>
-Finance shared-services staff and report authors use this skill to turn leadership instructions, prior materials, operations data, and planning documents into structured executive reporting drafts, progress plans, and visualization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read sensitive finance, leadership, or operational materials from shared folders. <br>
-Mitigation: Use it only with authorized materials and point the agent at a narrow folder containing the specific report inputs. <br>
-Risk: Report drafts and chart recommendations may contain incorrect interpretations or unsupported claims. <br>
-Mitigation: Review generated reporting content against source materials before sharing or using it for decisions. <br>
+## Use Case:
 
+Finance shared-services teams and report preparers use this skill to turn work files, leadership instructions, operating data, and planning materials into structured finance shared-services report drafts, task breakdowns, chart suggestions, and progress-management outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wus6008/finance-report-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and structured narrative text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report outlines, formal draft sections, task breakdowns, progress reminders, and chart recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Finance reporting materials may contain sensitive business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Scope file access to the relevant project folder and provide only the materials needed for the report.
+
+Risk: Generated reports, figures, task breakdowns, or visualization suggestions may contain mistakes or unsupported interpretations.
+
+Mitigation: Review generated reports and figures against the source materials before using them in business settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wus6008/skills/finance-report-assistant)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown report drafts, task lists, and chart recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed against source materials before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

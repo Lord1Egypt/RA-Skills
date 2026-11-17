@@ -75,13 +75,35 @@ export async function swapETHtoUSDC(wallet, amountETH = null) {
   const router = new ethers.Contract(SWAP_ROUTER, SWAP_ROUTER_ABI, wallet);
   const usdcBefore = await getUSDCBalance(wallet.address);
 
+  // SECURITY: Calculate minimum output with slippage protection
+  // Query rough ETH/USDC price via pool, apply 3% slippage tolerance
+  let amountOutMinimum = 0n;
+  try {
+    // Use Uniswap Quoter to get expected output
+    const QUOTER_ABI = [
+      'function quoteExactInputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint160 sqrtPriceLimitX96) external returns (uint256 amountOut)',
+    ];
+    const QUOTER_ADDRESS = '0x3d4e44Eb1374240CE5F1B871ab261CD16335B76a'; // Uniswap V3 Quoter on Base
+    const quoter = new ethers.Contract(QUOTER_ADDRESS, QUOTER_ABI, wallet.provider);
+    const expectedOut = await quoter.quoteExactInputSingle.staticCall(
+      WETH_ADDRESS, USDC_ADDRESS, 500, amountIn, 0
+    );
+    // Allow 3% slippage
+    amountOutMinimum = expectedOut * 97n / 100n;
+  } catch {
+    // Fallback: use rough price estimate (ETH ~$2500, USDC 6 decimals)
+    // Conservative: assume $2000/ETH minimum
+    const roughUSDC = amountIn * 2000n / ethers.parseEther('1');
+    amountOutMinimum = roughUSDC * 90n / 100n; // 10% slippage on fallback
+  }
+
   const tx = await router.exactInputSingle({
     tokenIn: WETH_ADDRESS,
     tokenOut: USDC_ADDRESS,
     fee: 500, // 0.05% pool (deepest liquidity for ETH/USDC on Base)
     recipient: wallet.address,
     amountIn,
-    amountOutMinimum: 0,
+    amountOutMinimum,
     sqrtPriceLimitX96: 0,
   }, { value: amountIn });
 

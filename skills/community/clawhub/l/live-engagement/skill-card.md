@@ -1,46 +1,57 @@
-## Description: <br>
-Design high-converting TikTok Shop live selling sessions with optimized show structure, engagement hooks, product sequencing, and real-time viewer interaction strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design high-converting TikTok Shop live selling sessions with optimized show structure, engagement hooks, product sequencing, and real-time viewer interaction strategies.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External sellers, creators, and commerce teams use this skill to plan TikTok Shop livestreams, structure product sequencing, create engagement moments, and analyze post-show performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Promotional tactics could create misleading urgency, discounts, scarcity, or advertising claims. <br>
-Mitigation: Follow TikTok Shop and advertising rules, keep scarcity and discounts truthful, and review planned claims before using them live. <br>
-Risk: Pricing, discount codes, or product links could be changed incorrectly before or during a sales session. <br>
-Mitigation: Manually approve pricing and product-link changes, verify TikTok Shop configuration with a test cart, and keep a responsible operator accountable for final checks. <br>
-Risk: Giveaway handling and livestream operations may expose account access, business metrics, or winner fulfillment details. <br>
-Mitigation: Protect account sessions and business metrics, and handle giveaway fulfillment through secure official channels. <br>
+## Use Case:
 
+External sellers, livestream commerce teams, and agencies use this skill to plan TikTok Shop live selling sessions, create run sheets, sequence products, design engagement beats, and review post-show performance metrics.
 
-## Reference(s): <br>
-- [Live Engagement ClawHub Release](https://clawhub.ai/leooooooow/live-engagement) <br>
-- [Engagement Tactics Playbook for TikTok Shop Livestreams](artifact/engagement-tactics-playbook.md) <br>
-- [Show Structure Guide for TikTok Shop Livestreams](artifact/show-structure-guide.md) <br>
-- [Live Show Run Sheet Template](artifact/output-template.md) <br>
-- [Live Show Quality Checklist](artifact/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown plans, run sheets, checklists, and post-show reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tables, timelines, product sequencing, engagement triggers, pricing notes, and operational checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Livestream planning may involve audience metrics, giveaway entries, or viewer contact details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Collect only the metrics needed for post-show analysis, avoid unnecessary storage of personal audience data, and contact giveaway winners through official platform workflows.
+
+Risk: Promotions, giveaways, scarcity claims, and live selling tactics can create consumer-promotion or platform-policy risk if used incorrectly.
+
+Mitigation: Follow TikTok policies and applicable privacy and consumer-promotion rules; use accurate inventory, pricing, and giveaway terms.
+
+## Reference(s):
+
+- [Live Engagement Skill Source](artifact/SKILL.md)
+- [Engagement Tactics Playbook](artifact/engagement-tactics-playbook.md)
+- [Show Structure Guide](artifact/show-structure-guide.md)
+- [Live Show Run Sheet Template](artifact/output-template.md)
+- [Live Show Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown planning guidance, run sheets, checklists, and post-show analysis templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; guidance may include operational recommendations for TikTok Shop livestream selling sessions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

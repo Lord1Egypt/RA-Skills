@@ -1,43 +1,67 @@
-## Description: <br>
-Drift detection + baseline integrity guard for agent workspace files with automatic alerting support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drift detection and baseline integrity guard for agent workspace files with automatic alerting support.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenClaw agent workspace files for unexpected drift, review patch evidence, and optionally restore protected prompt or instruction files to an approved baseline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Restore mode can overwrite protected workspace files. <br>
-Mitigation: Start with read-only or dry-run checks, review drift output, and require explicit approval before enabling restore actions. <br>
-Risk: Optional cron or launchd scheduling can create persistent workspace monitoring. <br>
-Mitigation: Inspect generated schedule, LaunchAgent label, script path, and state directory before enabling any background job. <br>
-Risk: Local state may contain approved snapshots, diffs, and quarantine copies of sensitive workspace files. <br>
-Mitigation: Use a dedicated external state directory with restrictive permissions and avoid using the skill on sensitive workspaces unless local copies are acceptable. <br>
+## Use Case:
 
+Developers and agent operators use Soul Guardian to monitor OpenClaw workspace prompt and instruction files for unexpected drift, produce reviewable diffs and audit records, and optionally restore protected files to approved baselines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-openclaw-soul-guardian) <br>
-- [Project homepage](https://clawsec.prompt.security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with shell commands and local status or alert text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local audit, patch, baseline, and quarantine files when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.9 (source: frontmatter, release evidence, changelog) <br>
+Risk: The release scanner marked the skill suspicious because its filesystem and install behavior can affect files outside the intended workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it only in workspaces and state directories you control, and avoid broad or untrusted policy.json entries.
+
+Risk: Restore mode intentionally overwrites protected workspace files back to approved baselines.
+
+Mitigation: Limit restore-mode targets to critical files, use alert-only checks or --no-restore when reviewing behavior, and approve intentional edits before recurring checks run.
+
+Risk: The guardian state directory can contain sensitive snapshots, diffs, audit records, and quarantined copies.
+
+Mitigation: Store state outside the workspace when possible and apply restrictive permissions such as chmod 700 or chmod go-rwx.
+
+Risk: Cron or launchd scheduling can create recurring background checks.
+
+Mitigation: Keep scheduling opt-in, inspect generated cron or launchd configuration before enabling it, and verify the workspace, state directory, and log paths.
+
+Risk: An unpinned npx install command is documented for convenience.
+
+Mitigation: Prefer the signed-release verification path before trusting or extracting SKILL.md, skill.json, or the release archive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-openclaw-soul-guardian)
+- [Project homepage](https://clawsec.prompt.security)
+- [Publisher profile](https://clawhub.ai/user/davida-ps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local text or JSON command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local baseline, audit, patch, quarantine, and launchd plist files when invoked.]
+
+## Skill Version(s):
+
+0.0.9 (source: server release, SKILL.md frontmatter, skill.json, CHANGELOG released 2026-06-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

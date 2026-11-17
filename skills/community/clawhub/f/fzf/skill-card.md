@@ -1,45 +1,60 @@
-## Description: <br>
-Guides an agent in installing, configuring, and using fzf for command-line fuzzy finding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fzf helps agents guide users through installing, configuring, troubleshooting, and using the fzf command-line fuzzy finder.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and command-line users use this skill to install and configure fzf, learn fuzzy-search syntax, and build shell, Git, Docker, and content-search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose persistent shell profile changes for fzf integration. <br>
-Mitigation: Show the exact lines before editing, back up the affected shell profile, and apply changes only after user approval. <br>
-Risk: The skill includes process-kill, Git mutation, Docker stop, and Docker log workflows that can disrupt running work or expose sensitive output. <br>
-Mitigation: Require deliberate confirmation before running those commands, and present the selected target and full command first. <br>
-Risk: Installation guidance may download or install packages and binaries. <br>
-Mitigation: Prefer trusted package managers or the referenced fzf release source, verify the platform choice, and avoid elevated privileges unless required. <br>
+## Use Case:
 
+Developers and command-line users use this skill to learn fzf workflows, configure shell integration, build reusable search commands, and troubleshoot common installation or usage issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/fzf) <br>
-- [fzf project homepage](https://github.com/junegunn/fzf) <br>
-- [fzf wiki](https://github.com/junegunn/fzf/wiki) <br>
-- [fzf examples](https://github.com/junegunn/fzf/wiki/examples) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent shell profile edits and operational commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can guide agents to install software or edit persistent shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package sources and inspect exact shell configuration diffs before applying changes.
+
+Risk: Examples include process, container, stash, checkout, and file operations that may be destructive.
+
+Mitigation: Require explicit user confirmation before running commands that kill processes, stop containers, alter Git state, or delete files.
+
+Risk: Download commands that use latest release URLs may retrieve unverified binaries.
+
+Mitigation: Prefer trusted package managers or verify release artifacts before installation.
+
+## Reference(s):
+
+- [fzf GitHub Project](https://github.com/junegunn/fzf)
+- [fzf Wiki](https://github.com/junegunn/fzf/wiki)
+- [fzf Wiki Examples](https://github.com/junegunn/fzf/wiki/examples)
+- [ClawHub Fzf Skill](https://clawhub.ai/cn-big-cabbage/skills/fzf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that install tools, edit shell startup files, or perform destructive command-line operations.]
+
+## Skill Version(s):
+
+0.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

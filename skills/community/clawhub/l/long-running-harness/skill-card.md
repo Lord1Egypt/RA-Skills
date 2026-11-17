@@ -1,45 +1,60 @@
-## Description: <br>
-A long-running agent project workflow framework for creating, managing, and resuming multi-session project work with persistent project files, feature tracking, progress logs, and verification routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language workflow harness that helps agents create, manage, delegate, resume, and report progress on long-running project tasks across multiple context windows.
 
-## Publisher: <br>
-[aowind](https://clawhub.ai/user/aowind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aowind](https://clawhub.ai/user/aowind)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to structure long-running agent work across context windows, initialize project tracking files, select and verify one feature at a time, delegate self-contained tasks to subagents, and report progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can guide agents to edit files, run setup scripts, commit changes, spawn subagents, or schedule recurring checks in the selected workspace. <br>
-Mitigation: Use the skill in a clearly scoped project directory, review git status and diffs before commits, and enable recurring checks only when explicitly intended. <br>
-Risk: Generated setup scripts or dependency files may run project initialization commands. <br>
-Mitigation: Review generated init.sh and dependency files before allowing execution. <br>
-Risk: Progress and feature tracking files may capture sensitive project details or secrets. <br>
-Mitigation: Avoid storing secrets in progress.md, features.json, or related project tracking files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up persistent project state, track feature completion, standardize session start and end routines, delegate scoped subagent work, schedule progress checks, and generate project status reports.
 
-## Reference(s): <br>
-- [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) <br>
-- [Feature List Template](references/feature-list-template.md) <br>
-- [Init Script Template](references/init-template.md) <br>
-- [Progress Log Template](references/progress-log-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project files such as PROJECT.md, progress.md, features.json, and optional init.sh when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: The workflow normalizes running initialization scripts, installing dependencies, initializing databases, and starting background services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect dependency manifests, init.sh, init_db.sh, npm scripts, and service commands before execution; require explicit approval for installs, database changes, and background services.
+
+Risk: Delegated subagent work and recurring scheduled agent turns can continue project activity without enough user control.
+
+Mitigation: Review delegated task payloads and cron schedules before use; keep scopes narrow, use timeouts, and require explicit approval for recurring scheduled agent turns.
+
+Risk: The skill relies on project state files that may become stale, incomplete, or incorrectly marked as passing.
+
+Mitigation: Read progress.md, features.json, and recent git history at session start, then run the documented validation steps before marking any feature as complete.
+
+## Reference(s):
+
+- [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+- [feature-list-template.md](references/feature-list-template.md)
+- [init-template.md](references/init-template.md)
+- [progress-log-template.md](references/progress-log-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON structures and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project workflow files, status summaries, task delegation prompts, and operational routines when applied by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

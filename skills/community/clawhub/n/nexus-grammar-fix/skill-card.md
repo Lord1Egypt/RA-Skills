@@ -1,46 +1,61 @@
-## Description: <br>
-Fix grammar, spelling, and improve writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix grammar, spelling, and improve writing.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and external users use this skill to send text to the NEXUS grammar-fixing service and receive corrected or improved writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted text is sent to the NEXUS service for processing. <br>
-Mitigation: Avoid submitting secrets, credentials, regulated data, private contracts, or sensitive drafts unless NEXUS privacy and retention terms meet your needs. <br>
-Risk: Requests use a paid payment flow when NEXUS_PAYMENT_PROOF is configured. <br>
-Mitigation: Monitor usage and payment configuration because requests are priced per call. <br>
+## Use Case:
 
+External users and agents use this skill to send text to a remote NEXUS service for grammar, spelling, and writing improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-grammar-fix) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON object with a result string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and a NEXUS_PAYMENT_PROOF value for paid requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: User text is sent to a remote NEXUS service for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private regulated data, or proprietary drafts unless policy allows use of the remote service.
+
+Risk: The skill uses a paid payment flow and payment credentials.
+
+Mitigation: Configure payment credentials with clear spending limits or approval expectations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/cyberforexblockchain/skills/nexus-grammar-fix)
+- [NEXUS platform](https://ai-service-hub-15.emergent.host)
+- [Grammar Fix API endpoint](https://ai-service-hub-15.emergent.host/api/original-services/grammar-fix)
+- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [A2A agent card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON object with a result string]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and a NEXUS payment proof or payment credential.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

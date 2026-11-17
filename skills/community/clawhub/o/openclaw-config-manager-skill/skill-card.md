@@ -1,40 +1,57 @@
-## Description: <br>
-Provides OpenClaw configuration backup, restore, migration, Git version control, encryption, and permission management guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw configuration backup, restore, migration, Git version control, encryption, permission management, scheduling, change detection, and health-check guidance.
 
-## Publisher: <br>
-[wisdom-wozoy](https://clawhub.ai/user/wisdom-wozoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[wisdom-wozoy](https://clawhub.ai/user/wisdom-wozoy)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to plan and run configuration backups, restores, migrations, Git-based version control, and secret-handling workflows across environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration backups can copy private settings or secrets into Git or other backup storage. <br>
-Mitigation: Use a private backup repository, explicit secret exclusions, reviewed encryption, and least-privilege Git credentials before enabling Git backup or auto-push. <br>
-Risk: Restore, migration, force-push, sudo, collaborator, or restart operations can overwrite live environments or change access. <br>
-Mitigation: Require manual approval, take a fresh backup first, inspect the target files, and keep scheduled auto-push disabled until the backup scope has been reviewed. <br>
+## Use Case:
 
+Developers and operators use this skill to manage OpenClaw configuration backups, restores, migrations, Git-based change history, encrypted secret handling, and recovery workflows across environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wisdom-wozoy/openclaw-config-manager-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include backup, restore, migration, Git, secrets, validation, and troubleshooting commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Backup, remote sync, and auto-push workflows can expose sensitive configuration or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private reviewed Git remote, exclude or encrypt secrets before backup, and test push behavior before enabling automation.
+
+Risk: Restore and migration workflows can overwrite files or change permissions, especially when run with elevated privileges.
+
+Mitigation: Preview restores in a staging directory, inspect affected files before applying changes, and avoid sudo restore unless the target files are known.
+
+Risk: Scheduled backup and change-detection automation can preserve or propagate incorrect configuration state.
+
+Mitigation: Start with manual backups, verify restore integrity, and add review gates before automatic pushes or scheduled production restores.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wisdom-wozoy/skills/openclaw-config-manager-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell command, JSON, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include backup, restore, migration, Git, secret-management, validation, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

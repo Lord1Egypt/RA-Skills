@@ -1,13 +1,15 @@
 # Bridge, Faucet, And Agent Automation
 
+> **Legacy network examples:** The Mina and Zeko-M endpoints, faucet and Bridge CLI commands in this reference target the earlier Mina-backed deployment. For Ethereum-backed Zeko, start with the [current bridge guide](https://docs.zeko.io/users/guides/zeko-bridge) and use the selected deployment configuration. Keep `o1js` API names and B62 key formats unchanged.
+
 Use this file for unattended bridge execution, programmatic bridge integrations, and faucet funding.
 
 ## Official docs
 
 - Bridge CLI docs: `https://docs.zeko.io/developers/tools/bridge-cli`
-- Bridge SDK docs: `https://docs.zeko.io/developers/guides/bridge-sdk`
-- Faucet CLI docs: `https://docs.zeko.io/developers/guides/faucet-cli`
-- User bridge walkthrough: `https://docs.zeko.io/users/guides/using-zeko-bridge`
+- Bridge SDK docs: `https://docs.zeko.io/developers/tools/bridge-sdk`
+- Faucet CLI docs: `https://docs.zeko.io/developers/tools/faucet-cli`
+- User bridge walkthrough: `https://docs.zeko.io/users/guides/zeko-bridge`
 
 ## Agent defaults
 

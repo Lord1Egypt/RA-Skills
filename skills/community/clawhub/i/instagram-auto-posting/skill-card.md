@@ -1,44 +1,59 @@
-## Description: <br>
-Automate creation and direct posting of promotional images to Instagram Business accounts using Meta Graph API without third-party schedulers or paid tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates creation and direct publishing of promotional images to Instagram Business accounts using the Meta Graph API, Cloudinary uploads, and user-provided credentials.
 
-## Publisher: <br>
-[pawanshekhawat](https://clawhub.ai/user/pawanshekhawat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pawanshekhawat](https://clawhub.ai/user/pawanshekhawat)
 
-## Use Case: <br>
-External users and developers use this skill to create promotional Instagram creatives, upload them for public hosting, and publish them to Instagram Business accounts with user-provided Meta and Cloudinary credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish publicly to an Instagram Business account once credentials and posting inputs are provided. <br>
-Mitigation: Use least-privilege or test Meta credentials and manually confirm the target account, image URL, and caption before running the posting script. <br>
-Risk: Cloudinary uploads may expose generated media through a public URL used for Instagram publishing. <br>
-Mitigation: Restrict Cloudinary upload presets and review uploaded media before sharing its URL with the posting step. <br>
-Risk: The optional scraper may extract public business details, including contact information, from a user-provided website URL. <br>
-Mitigation: Only provide public business URLs, avoid internal or private URLs, and review scraped details before using them in promotional content. <br>
+## Use Case:
 
+External users, business owners, marketers, and developers use this skill to create promotional images, optionally extract public business details from a user-provided website, upload images to Cloudinary, and publish them to an Instagram Business account through the Meta Graph API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pawanshekhawat/instagram-auto-posting) <br>
-- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer/) <br>
-- [Cloudinary](https://cloudinary.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When the bundled scripts are run, they can create image files, upload media, scrape a user-provided public website URL, and publish to Instagram through external APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The skill can publish content directly to an Instagram Business account using user-provided credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Meta tokens, start with a test account, and review generated images and captions before running the post command.
+
+Risk: The optional scraping step makes outbound requests to user-provided URLs and may extract public contact details.
+
+Mitigation: Only provide public website URLs and avoid internal or private URLs; the artifact documents DNS, private-IP, scheme, TLS, and redirect controls.
+
+Risk: Uploaded images become publicly hosted through Cloudinary before Instagram publishing.
+
+Mitigation: Use signed or restricted Cloudinary upload presets and avoid uploading private or sensitive creative assets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pawanshekhawat/skills/instagram-auto-posting)
+- [Meta Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+- [Cloudinary](https://cloudinary.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime outputs include PNG image files, Cloudinary URLs, and Instagram post URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Meta Graph API and Cloudinary credentials; generated promotional images are 1080x1350 PNG files.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

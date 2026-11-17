@@ -1,44 +1,64 @@
-## Description: <br>
-Linsoai Track helps agents create, schedule, monitor, and manage recurring or one-time tasks from natural language, with optional notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linsoai Track helps agents create, schedule, monitor, and manage cron, interval, and one-time tasks from natural language, with automated execution and notification routing.
 
-## Publisher: <br>
-[kylvia](https://clawhub.ai/user/kylvia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylvia](https://clawhub.ai/user/kylvia)
 
-## Use Case: <br>
-External users and developers use this skill to turn natural-language scheduling requests into managed OpenClaw tasks, including cron schedules, interval jobs, one-time reminders, task management actions, and notification routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent scheduled jobs may continue running after they are no longer needed. <br>
-Mitigation: Regularly list, pause, or delete tasks that are stale, incorrect, or no longer useful. <br>
-Risk: Task notifications may send information to external channels, webhook URLs, or email systems. <br>
-Mitigation: Review notification destinations, webhook URLs, and task message content before enabling or importing tasks. <br>
-Risk: Secrets can be exposed if users place credentials in task descriptions or notification bodies. <br>
-Mitigation: Keep secrets out of task text and protect bot tokens, SMTP credentials, and webhook authentication values through the host platform's credential controls. <br>
+## Use Case:
 
+External users and developers use this skill to turn natural-language scheduling requests into OpenClaw tasks, then inspect, pause, resume, edit, delete, or manually run those tasks. It is suited for recurring monitoring, reminders, reports, migration from Linso Track task descriptions, and notification workflows across IM, email, or webhook channels.
 
-## Reference(s): <br>
-- [Scheduling frequency guide](references/SCHEDULING.md) <br>
-- [Notification channel guide](references/NOTIFICATIONS.md) <br>
-- [Task template library](references/TEMPLATES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and natural-language task instructions with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cron expressions, interval schedules, one-time timestamps, time zones, notification routing, and task management actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill can create or change persistent automated jobs that continue running after setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated schedule, time zone, task message, and notification condition before enabling the task.
+
+Risk: Scheduled task output may be sent to external notification channels such as IM, email, or webhooks.
+
+Mitigation: Confirm notification targets explicitly and avoid placing secrets or sensitive output in task messages or notifications.
+
+Risk: Bulk-imported natural-language task descriptions may create unintended jobs or unsafe actions.
+
+Mitigation: Avoid bulk-importing untrusted task descriptions and inspect imported jobs before allowing them to run.
+
+Risk: Management actions such as delete, edit, manual run, webhook, email, and backup cleanup can have destructive or externally visible effects.
+
+Mitigation: Require explicit confirmation before executing those actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kylvia/skills/linsoai-track)
+- [Notification Channel Configuration Guide](artifact/references/NOTIFICATIONS.md)
+- [Scheduling Frequency Quick Reference](artifact/references/SCHEDULING.md)
+- [Task Template Library](artifact/references/TEMPLATES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with cron expressions, task management tables, notification instructions, and inline shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scheduled task names, frequencies, time zones, task messages, notification targets, and management actions.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

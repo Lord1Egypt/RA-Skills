@@ -1,40 +1,52 @@
-## Description: <br>
-Calculate economic value added and shareholder return. Use for investment analysis, valuation, and capital allocation decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate economic value added and shareholder return. Use for investment analysis, valuation, and capital allocation decisions.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Finance, strategy, and investment-analysis users use this skill to structure shareholder value added, economic profit, valuation, and capital-allocation analyses.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Outputs may be mistaken for professional investment advice.
+
+Mitigation: Present results as an analytical template and require qualified review before making investment, valuation, or capital-allocation decisions.
+
+Risk: SVA and economic-profit conclusions can be highly sensitive to market-value, WACC, and terminal-value assumptions.
+
+Mitigation: Ask users to document assumptions, test scenarios, and compare results across reasonable cost-of-capital and valuation ranges.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and analysts use this skill to structure shareholder value, economic profit, valuation, and capital allocation analysis from financial inputs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis output could be mistaken for investment advice or used with unverified assumptions. <br>
-Mitigation: Treat outputs as analytical assistance and independently verify assumptions, formulas, market data, and recommendations before real capital allocation decisions. <br>
-Risk: Broad finance-related triggers could activate the skill more often than intended. <br>
-Mitigation: Confirm the requested scope before relying on the analysis and avoid applying the skill to unrelated financial questions. <br>
+**Output Format:** [Markdown analysis with calculation tables and recommendation sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Shareholder Value release page](https://clawhub.ai/linuszz/shareholder-value) <br>
+**Other Properties Related to Output:** [Requires user-provided financial statement data, market valuation inputs, cost-of-capital assumptions, and project metrics.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial assumptions, source data, formulas, and recommendations should be reviewed before use in capital allocation decisions.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

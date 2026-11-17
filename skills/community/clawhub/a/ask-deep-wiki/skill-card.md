@@ -1,40 +1,59 @@
-## Description: <br>
-For questions about Light Protocol's SDK, smart contracts and Solana development, Claude Code features, or agent skills. AI-powered answers grounded in repository context via DeepWiki MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answers technical questions about Light Protocol, Solana development, Claude Code, and agent skills using local repository context and DeepWiki MCP.
 
-## Publisher: <br>
-[tilo-14](https://clawhub.ai/user/tilo-14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tilo-14](https://clawhub.ai/user/tilo-14)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer technical questions about Light Protocol, Solana development, Claude Code, and agent skills by combining local repository reads with public DeepWiki and documentation searches. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local project files and may send question context to MCP or search providers. <br>
-Mitigation: Use it only in workspaces where agent-readable files are appropriate, and avoid asking questions that include secrets, private keys, wallet credentials, unreleased confidential code, or other sensitive local data. <br>
-Risk: Repository-grounded answers can still be incomplete or outdated if public wiki, documentation, or search context is missing. <br>
-Mitigation: Review cited sources, file references, and code examples before applying the guidance in production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZK Compression documentation](https://zkcompression.com/) <br>
-- [Light Protocol audits](https://github.com/Lightprotocol/light-protocol/tree/main/audits) <br>
+## Use Case:
 
+Developers and technical users use this skill to answer repository-grounded questions about Light Protocol, Solana development, Claude Code, and agent skill patterns. It gathers local file context, consults public research sources when allowed, and returns precise Markdown answers with code examples or source references when relevant.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with code examples and source references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP-backed repository citations, file paths, and line references when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Questions and summarized context may be used with external research tools.
+
+Mitigation: Avoid including secrets, private keys, access tokens, customer data, proprietary source code, or other sensitive material in prompts.
+
+Risk: Repository-grounded answers may still contain incorrect or stale technical guidance.
+
+Mitigation: Verify cited source references, code examples, and commands before applying them to production work.
+
+Risk: The release has no server-resolved GitHub import provenance.
+
+Mitigation: Verify the publisher profile and any install source before installing or relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tilo-14/skills/ask-deep-wiki)
+- [ZK Compression documentation](https://zkcompression.com/)
+- [Light Protocol GitHub organization](https://github.com/Lightprotocol)
+- [Light Protocol audits](https://github.com/Lightprotocol/light-protocol/tree/main/audits)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with source references and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not directly write files or execute shell commands; answers may be informed by public MCP or web research tools.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

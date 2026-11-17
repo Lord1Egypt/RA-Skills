@@ -1,46 +1,62 @@
-## Description: <br>
-Recover working OpenClaw Telegram voice messaging after upgrades or rebuilds by restoring the local faster-whisper transcription helper, keeping native inbound/outbound voice routing, and applying the Microsoft TTS provider configuration fix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restores an OpenClaw Telegram voice-messaging setup by reinstalling local faster-whisper voice helpers and documenting the Microsoft TTS configuration needed after upgrades or rebuilds.
 
-## Publisher: <br>
-[stephenredmond-straiteis](https://clawhub.ai/user/stephenredmond-straiteis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenredmond-straiteis](https://clawhub.ai/user/stephenredmond-straiteis)
 
-## Use Case: <br>
-Developers and operators use this skill to recover OpenClaw Telegram voice-note transcription and outbound voice replies after upgrades or rebuilds. It focuses on local helper runtime restoration and the Microsoft TTS/OpenClaw configuration needed when inbound transcription works but outbound audio replies fail. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TTS reply text may be sent to Microsoft/Edge TTS despite offline/local framing. <br>
-Mitigation: Review and accept hosted TTS handling before installation, and avoid sending sensitive reply text through the TTS path unless that is permitted. <br>
-Risk: Generated audio may remain cached under ~/.openclaw/tts. <br>
-Mitigation: Treat the cache directory as containing potentially sensitive audio and clear or protect it according to local retention requirements. <br>
-Risk: Audio path handling includes an unsafe shell=True ffmpeg call. <br>
-Mitigation: Patch the ffmpeg invocation before processing untrusted Telegram or OpenClaw media paths. <br>
-Risk: The installer pulls dependencies and expects a transcribe-audio helper that is absent from the artifact file list. <br>
-Mitigation: Pin or vet dependencies before deployment and confirm the transcribe-audio helper is supplied in the target environment. <br>
+## Use Case:
 
+Developers and operators use this skill to recover OpenClaw Telegram voice note transcription and outbound audio replies after an upgrade, rebuild, or provider-registration failure.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/stephenredmond-straiteis/lessac-offline-voice-system) <br>
-- [Recovery Notes](references/recovery-notes.md) <br>
-- [Voice Models Reference](references/voice_models.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce installation, restart, testing, and OpenClaw configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The server security summary reports serious unsafe execution concerns and advises against running the skill as root or against untrusted audio paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the command-execution and temporary-file handling issues before installation, and run only with least-privilege permissions.
+
+Risk: The server security guidance notes network downloads and hosted Edge/Microsoft TTS behavior that may send synthesis text to a remote service.
+
+Mitigation: Pin and review dependencies before installation, and avoid sending sensitive text through the hosted TTS path unless that data flow is acceptable.
+
+Risk: The evidence identifies local caching of generated audio as a behavior users should review.
+
+Mitigation: Treat generated audio cache files as potentially sensitive and define retention, access, and cleanup controls before use.
+
+Risk: The server security guidance says the expected transcribe-audio artifact is missing.
+
+Mitigation: Resolve the missing artifact and confirm the installed transcription command exists before relying on the recovery workflow.
+
+## Reference(s):
+
+- [Recovery Notes](references/recovery-notes.md)
+- [Voice Models Reference](references/voice_models.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install local helper scripts, Python packages, runtime directories, and cached generated audio when executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

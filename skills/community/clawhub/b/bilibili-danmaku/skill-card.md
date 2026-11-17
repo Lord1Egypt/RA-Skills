@@ -1,44 +1,58 @@
-## Description: <br>
-Fetches Bilibili video danmaku from a video URL or BVID and produces keyword frequency, a PNG word cloud, sentiment distribution, and a Markdown public-opinion report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Bilibili video danmaku from a video URL or BVID and analyzes keyword frequency, word clouds, sentiment distribution, and public-opinion reports.
 
-## Publisher: <br>
-[Smartloe](https://clawhub.ai/user/Smartloe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[smartloe](https://clawhub.ai/user/smartloe)
 
-## Use Case: <br>
-Developers, analysts, and content operations teams use this skill to collect public Bilibili bullet comments and turn them into review-ready keyword, sentiment, word-cloud, and public-opinion artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and runs a local Python environment with third-party packages. <br>
-Mitigation: Run it in an isolated virtual environment, review requirements.txt before installation, and install dependencies only from trusted package sources. <br>
-Risk: Fetched danmaku and generated reports may contain user-generated public comments that should not be overshared without review. <br>
-Mitigation: Use the skill for public Bilibili videos, choose the output directory deliberately, and review generated datasets and reports before sharing them. <br>
-Risk: SnowNLP sentiment and keyword analysis can misread short comments, slang, memes, or domain-specific language. <br>
-Mitigation: Treat outputs as rapid trend signals, manually review high-impact conclusions, and expand samples across pages or videos for stronger decisions. <br>
+## Use Case:
 
+Developers, analysts, and content operations teams use this skill to collect public Bilibili danmaku and turn it into review-ready keyword, sentiment, word-cloud, and opinion-report outputs.
 
-## Reference(s): <br>
-- [Methodology](references/methodology.md) <br>
-- [Default Stopwords](references/stopwords.default.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Smartloe/bilibili-danmaku) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [CSV, JSON, TXT, PNG, and Markdown files generated under the selected output directory] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch output includes danmaku CSV/JSON/TXT and metadata JSON; analysis output includes top-word JSON, sentiment JSON, word-cloud PNG, and report Markdown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill installs Python dependencies and the release evidence does not provide a reviewed lockfile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a normal non-privileged environment and pin or review dependencies before routine use.
+
+Risk: The skill contacts public Bilibili endpoints and writes files under the selected output directory.
+
+Mitigation: Use it only for permitted public-data analysis and choose an output directory where generated CSV, JSON, TXT, PNG, and Markdown files are expected.
+
+Risk: Generated Markdown reports may include public-content output that is unsafe to trust blindly.
+
+Mitigation: Review generated Markdown before sharing it or opening it in renderers that load remote images or raw HTML.
+
+## Reference(s):
+
+- [Bilibili Danmaku ClawHub Skill](https://clawhub.ai/smartloe/skills/bilibili-danmaku)
+- [Methodology](references/methodology.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; runtime artifacts include CSV, JSON, TXT, PNG, and Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports and charts should be reviewed before business decisions or publication.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

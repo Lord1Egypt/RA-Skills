@@ -1,43 +1,57 @@
-## Description: <br>
-Reviews Remix v2 form code for manual fetch() mutations, native <form> misuse, wrong useNavigation/useFetcher choice, missing pending state, unbounded uploads, and intent-pattern violations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Remix v2 form code for manual fetch() mutations, native <form> misuse, wrong useNavigation/useFetcher choice, missing pending state, unbounded uploads, and intent-pattern violations.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and code reviewers use this skill to inspect Remix v2 form and mutation code for framework-specific correctness, progressive enhancement, pending-state handling, upload safety, and validation issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent to inspect application source code during review. <br>
-Mitigation: Use it only in repositories where code review access is authorized and appropriate. <br>
-Risk: Review findings can be misleading if Remix context-sensitive exceptions are skipped. <br>
-Mitigation: Require file-location evidence, exemption checks, form-method checks, and the referenced review verification protocol before acting on findings. <br>
+## Use Case:
 
+Developers and code reviewers use this skill to review Remix v2 form and mutation code for lifecycle, pending-state, upload-validation, and multi-action route issues.
 
-## Reference(s): <br>
-- [Form vs Fetcher Misuse](references/form-vs-fetcher.md) <br>
-- [Pending State Anti-patterns](references/pending-state.md) <br>
-- [Uploads, FormData Validation & Optimistic State](references/uploads-validation.md) <br>
-- [Multi-action Routes & Method Choice](references/multi-action-routes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review findings with file locations, verification notes, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings should be supported by direct location evidence and context-sensitive exemption checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks agents to consult sibling Remix v2 form-review documentation that may be absent or untrusted in a local skill set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the referenced sibling documentation is installed and trusted before relying on cross-referenced patterns.
+
+Risk: Review guidance can produce false positives if applied without route, form method, and exemption evidence.
+
+Mitigation: Require concrete file locations, POST or non-GET method confirmation, and exemption checks before reporting findings.
+
+## Reference(s):
+
+- [Form vs Fetcher Misuse](references/form-vs-fetcher.md)
+- [Pending State Anti-patterns](references/pending-state.md)
+- [Uploads, FormData Validation & Optimistic State](references/uploads-validation.md)
+- [Multi-action Routes & Method Choice](references/multi-action-routes.md)
+- [Canonical Remix V2 Forms Patterns](../remix-v2-forms/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown code-review findings with optional code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should include file locations, exemption checks, and concise remediation guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

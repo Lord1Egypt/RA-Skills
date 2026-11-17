@@ -1,42 +1,68 @@
-## Description: <br>
-SocialVault helps OpenClaw agents acquire, encrypt, store, monitor, and refresh social-platform login sessions, including cookie import, session checks, adapter creation, and browser fingerprint management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SocialVault helps agents manage social platform account credentials by importing sessions, storing them encrypted, checking login health, and refreshing sessions.
 
-## Publisher: <br>
-[2019-02-18](https://clawhub.ai/user/2019-02-18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2019-02-18](https://clawhub.ai/user/2019-02-18)
 
-## Use Case: <br>
-External OpenClaw users and developers use SocialVault to manage social-media account credentials for supported platforms, verify session health, refresh sessions, and load credentials into browser-based agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide live social-platform cookies or tokens and stores them for later reuse. <br>
-Mitigation: Treat pasted cookies like passwords, use a dedicated low-risk account where possible, and revoke or log out sessions if credentials were pasted into the wrong place. <br>
-Risk: The skill can reuse stored sessions for automated account actions and scheduled refreshes. <br>
-Mitigation: Avoid write-capable tokens unless needed, disable or closely monitor automatic refresh, and confirm account activity remains within the user's intended platform usage. <br>
+## Use Case:
 
+Developers and operators use SocialVault to add, verify, list, update, and remove social platform account sessions for agent workflows. It supports built-in adapters for Xiaohongshu, Bilibili, Zhihu, and Baidu Tieba, plus custom adapter creation.
 
-## Reference(s): <br>
-- [ClawHub SocialVault listing](https://clawhub.ai/2019-02-18/social-vault) <br>
-- [SocialVault README](artifact/README.md) <br>
-- [Platform adapter specification](artifact/adapters/_spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration steps, status reports, and local file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update encrypted vault files, account metadata, adapter files, browser profile settings, and session health reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata; artifact frontmatter and package.json report 0.1.0) <br>
+Risk: The skill handles live social-platform session cookies that may authorize account actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, low-risk account where possible and only provide credentials for accounts the user intends the agent to operate.
+
+Risk: Cookie paste and command-line workflows can expose secrets if users paste credentials into general chat, shell history, or logs.
+
+Mitigation: Paste credentials only into the skill's requested flow, avoid unrelated terminals or chats, and verify that displayed values remain redacted.
+
+Risk: Scheduled health checks and refresh tasks create persistent account-use authority.
+
+Mitigation: Review the scheduled tasks before enabling them and disable or remove managed accounts when ongoing access is no longer needed.
+
+Risk: Long-lived or cross-service cookies, including BDUSS, can increase account impact if mishandled.
+
+Mitigation: Prefer narrowly scoped or short-lived sessions when available and rotate or revoke cookies after sensitive work.
+
+## Reference(s):
+
+- [ClawHub SocialVault release page](https://clawhub.ai/2019-02-18/skills/social-vault)
+- [README.md](README.md)
+- [clawhub.json](clawhub.json)
+- [Platform adapter specification](adapters/_spec.md)
+- [Bilibili cookie export guide](guides/cookie-export-bilibili.md)
+- [Xiaohongshu cookie export guide](guides/cookie-export-xiaohongshu.md)
+- [Zhihu cookie export guide](guides/cookie-export-zhihu.md)
+- [Tieba cookie export guide](guides/cookie-export-tieba.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status reports, tables, prompts, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Redacts full credential values in user-facing output and persists runtime credential material in local encrypted vault files.]
+
+## Skill Version(s):
+
+0.1.7 (source: server release evidence; artifact SKILL.md, package.json, and clawhub.json show 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

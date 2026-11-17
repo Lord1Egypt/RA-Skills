@@ -1,50 +1,66 @@
-## Description: <br>
-Admapix Repo is an ad intelligence and app analytics assistant for searching ad creatives, analyzing apps, exploring rankings, tracking download and revenue estimates, and summarizing market insights via SkillBoss/AdMapix APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AdMapix is an ad intelligence and app analytics assistant for searching ad creatives, analyzing apps, viewing rankings, tracking download and revenue estimates, and generating market insights through the AdMapix/SkillBoss API.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users, marketers, app developers, and analysts use this skill to query ad creative, app ranking, download and revenue estimate, distribution, and market intelligence data in English or Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends ad-search keywords, app names, and analysis requests to the AdMapix/SkillBoss service using a configured API key. <br>
-Mitigation: Use a dedicated provider API key, avoid confidential queries, and rotate or revoke the key if exposure is suspected. <br>
-Risk: Generated H5 result links may expose analysis context or query results when shared. <br>
-Mitigation: Share generated links only with intended recipients and avoid using sensitive query terms. <br>
-Risk: Download and revenue figures are third-party estimates rather than official data. <br>
-Mitigation: Label these figures as estimates and avoid treating them as audited business metrics. <br>
+## Use Case:
 
+Developers, marketers, and app growth teams use this skill to query ad creative libraries, app metadata, rankings, download and revenue estimates, advertising distribution, and market-level competitive intelligence from natural-language prompts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/alvis-admapix) <br>
-- [SkillBoss](https://www.skillboss.co) <br>
-- [Creative Search API](references/api-creative.md) <br>
-- [Product & Company API](references/api-product.md) <br>
-- [Ranking API](references/api-ranking.md) <br>
-- [Download & Revenue API](references/api-download-revenue.md) <br>
-- [App Distribution API](references/api-distribution.md) <br>
-- [Market Analysis API](references/api-market.md) <br>
-- [Parameter Mapping Reference](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, tables, summaries, H5 result links, and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English/Chinese output; download and revenue figures are presented as third-party estimates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Ad-analysis queries, app names, filters, and the configured API key are sent to the AdMapix/SkillBoss service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, avoid personal identifiers or confidential campaign names in prompts, and keep the API key in the configured environment variable.
+
+Risk: Download and revenue figures are third-party estimates and may be mistaken for official app performance data.
+
+Mitigation: Clearly label download and revenue outputs as third-party estimates whenever presenting or using them.
+
+Risk: Unpinned installation in controlled environments can make provenance and repeatability harder to verify.
+
+Mitigation: Use a pinned or otherwise verified install command for controlled deployments.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/alvisdunlop/skills/alvis-admapix)
+- [AdMapix website](https://www.admapix.com)
+- [SkillBoss website](https://www.skillboss.co)
+- [Creative Search API](artifact/references/api-creative.md)
+- [Product & Company API](artifact/references/api-product.md)
+- [Ranking API](artifact/references/api-ranking.md)
+- [Download & Revenue API](artifact/references/api-download-revenue.md)
+- [App Distribution API](artifact/references/api-distribution.md)
+- [Market Analysis API](artifact/references/api-market.md)
+- [Parameter Mapping Reference](artifact/references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, tables, structured reports, H5 result links, and inline shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should match the user's language and label download or revenue figures as third-party estimates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

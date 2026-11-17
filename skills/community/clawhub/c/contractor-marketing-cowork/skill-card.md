@@ -1,46 +1,62 @@
-## Description: <br>
-Cowork Plugin: AI marketing department for contractors and home service businesses, with slash commands and background skills for local SEO, ads, social media, proposals, job costing, competitor audits, email follow-up, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI marketing support for contractors and home service businesses, including local SEO, ads, social content, proposals, job costing, competitor audits, review responses, and follow-up workflows.
 
-## Publisher: <br>
-[blueprintstudioco](https://clawhub.ai/user/blueprintstudioco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blueprintstudioco](https://clawhub.ai/user/blueprintstudioco)
 
-## Use Case: <br>
-External users at contractor and home service businesses use this skill as an agent-assisted marketing workspace for local SEO, ad creative, social content, review responses, reports, proposals, job costing, email sequences, and lead follow-up. It is intended for operational marketing workflows that may connect to real business accounts and should be reviewed before publication or account changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate against live marketing and business accounts, including Google Business Profile, Meta Ads, Google Ads, email tools, scheduling tools, analytics, directories, and CRM systems. <br>
-Mitigation: Use least-privilege accounts and a dedicated browser profile, and require explicit approval before publishing, replying, importing, scheduling, activating sequences, changing budgets, or updating account settings. <br>
-Risk: The onboarding workflow creates a business-profile.md file that can contain private business, customer, pricing, equipment, service-area, and account workflow information. <br>
-Mitigation: Keep business-profile.md private, avoid committing or sharing it, and remove unnecessary sensitive details before using it in shared environments. <br>
-Risk: Generated ad campaigns, email sequences, social posts, review replies, and proposals may create customer-facing commitments or marketing claims. <br>
-Mitigation: Treat generated content as drafts and review for accuracy, compliance, pricing, scope, tone, and customer consent before external use. <br>
-Risk: Scheduled marketing tasks may repeatedly act on stale data or publish without timely human review. <br>
-Mitigation: Prefer draft-only scheduled workflows and check each scheduled output before it goes live. <br>
+## Use Case:
 
+External contractors and home service business operators use this skill to create marketing content, reports, proposals, cost analyses, campaigns, and customer follow-up material. It can also guide or perform supervised posting, scheduling, and account updates through connected business services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blueprintstudioco/contractor-marketing-cowork) <br>
-- [Heavy Metric strategy library](https://heavymetric.com/strategies) <br>
-- [Publisher profile](https://clawhub.ai/user/blueprintstudioco) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, generated marketing copy, reports, templates, HTML proposal drafts, calculations, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be used as drafts for external posting, emails, ads, scheduled tasks, and business account updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can draft, publish, queue, or schedule customer-facing content and account changes in live business services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve every public post, review reply, ad campaign, email sequence, CSV import, and scheduled task before it touches a live account.
+
+Risk: Onboarding, reporting, proposals, lead follow-up, and CRM imports can expose sensitive business, customer, employee, property, or financial data.
+
+Mitigation: Share only necessary details, keep business-profile.md out of source control and shared folders, and review any imported CSV or exported report before use.
+
+Risk: Automated outreach or review-response workflows may contact customers in ways that require consent, opt-out handling, or local compliance review.
+
+Mitigation: Confirm consent and account permissions before activating sequences, preserve unsubscribe and stop rules, and supervise messages before sending.
+
+Risk: Unpinned installation can change behavior across releases.
+
+Mitigation: Prefer a pinned installer version and re-review the skill after upgrades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blueprintstudioco/skills/contractor-marketing-cowork)
+- [Heavy Metric strategy library](https://heavymetric.com/strategies)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text, with occasional HTML proposal output and shell or browser-action steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a local business-profile.md file and may draft or queue customer-facing posts, review replies, campaigns, emails, reports, proposals, and scheduled tasks for human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

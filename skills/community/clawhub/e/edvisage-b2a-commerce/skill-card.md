@@ -1,44 +1,60 @@
-## Description: <br>
-Provides OpenClaw agents with x402 payment safety protocols for validating payments, enforcing spending limits, protecting wallets, and logging transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides payment-safety guidance for OpenClaw agents using x402, including pre-transaction checks, spending limits, wallet-safety practices, transaction logging, and payment attack recognition.
 
-## Publisher: <br>
-[edvisage](https://clawhub.ai/user/edvisage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edvisage](https://clawhub.ai/user/edvisage)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give payment-enabled OpenClaw agents safety guidance for x402 transactions, including service verification, spend limits, wallet isolation, human approval thresholds, and transaction logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A funded wallet could spend beyond the user's intended limits during autonomous x402 payments. <br>
-Mitigation: Use a dedicated low-balance wallet, configure strict daily and per-transaction spending limits, and require human approval above the configured threshold. <br>
-Risk: Payment activity and transaction logs can expose sensitive operational or financial information. <br>
-Mitigation: Decide where transaction logs and weekly summaries are stored, who receives them, and how long they are retained before enabling real transactions. <br>
-Risk: An agent could pay an unapproved or spoofed service. <br>
-Mitigation: Whitelist approved services and verify the service domain, amount, currency, and recipient wallet before signing a payment. <br>
+## Use Case:
 
+External developers and agent operators use this skill to prepare payment-capable agents for safer business-to-agent transactions. It helps agents check service identity, payment scope, spending limits, wallet exposure, logs, and payment-specific attack patterns before committing funds.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/edvisage/edvisage-b2a-commerce) <br>
-- [Edvisage publisher profile](https://clawhub.ai/user/edvisage) <br>
-- [Edvisage Global AI tools](https://edvisageglobal.com/ai-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with inline configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only safety guidance; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md; package.json says 1.0.0) <br>
+Risk: Payment-safety guidance may be mistaken for a complete transaction implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat it as guidance and independently validate wallet, payment, approval, and spending-limit logic before enabling real transactions.
+
+Risk: A payment-capable agent could exceed intended spending or pay unapproved services.
+
+Mitigation: Use internally consistent daily and per-transaction limits, human approval thresholds, and an approved-service whitelist before funding the wallet.
+
+Risk: Wallet secrets or sensitive wallet material could be exposed through logs or agent-visible output.
+
+Mitigation: Keep the wallet minimally funded and verify that logs, messages, API responses, and memory summaries never include private keys or sensitive wallet data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edvisage/skills/edvisage-b2a-commerce)
+- [Edvisage publisher profile](https://clawhub.ai/user/edvisage)
+- [Edvisage AI tools](https://edvisageglobal.com/ai-tools)
+- [Pro version upgrade](https://edvisage.gumroad.com/l/ijjjud)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only safety guidance; does not provide a complete payment implementation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and SKILL.md; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,66 +1,147 @@
 ---
 name: rag-hallucination-governor
-description: Diagnose and govern hallucination risk in production RAG systems. Use when users need practical RAG controls, retrieval threshold tuning, refusal or human-handoff rules, citation coverage checks, Top1 pollution handling, conflict detection, or production observability for RAG reliability.
-priority: high
-source: lining-field-experience
-workers: [tech, checker, main]
-created: 2026-06-02
-tags: [rag, hallucination, ai, reliability, production, retrieval]
+description: RAG幻觉治理工具。输入RAG系统当前指标/症状/检索日志片段，输出根因诊断+阈值调参建议+治理方案。基于10+生产RAG交付实战经验，不是通用RAG教程。
+priority: critical
+source: experience-backed
+workers: [tech, pm]
+created: 2026-06-01
+version: 1.0.0
+tags: [tob, rag, hallucination, governance, production, ai]
 ---
 
-# rag-hallucination-governor
+# rag-hallucination-governor — RAG 幻觉治理
 
-Production RAG hallucination governance assistant.
+> RAG 上了线，客户说"AI 经常胡说"？30 秒出诊断报告。
 
-Before producing advice, read `ANTI_TEMPLATE_STANDARD.md`.
+## 解决什么问题
 
-Use for:
-- wrong answers with plausible citations
-- weak or conflicting retrieval evidence
-- Top1 pollution and high-similarity wrong hits
-- query rewrite drift
-- wrong knowledge-base or intent routing
-- permission, scope, or version mismatch
-- threshold, rerank, reject-band, or fallback design
-- citation coverage and groundedness checks
-- human handoff routing for low-confidence answers
+交付了 RAG 系统，客户反馈"AI 回答不准确/瞎编"。销售或交付团队需要快速定位：
+- 是检索层问题（召回不够/噪声太大）还是生成层问题（LLM 没用好上下文）
+- 阈值该怎么调
+- 有没有架构层面的硬伤需要重构
 
-Do not output generic RAG education unless the user asks for it.
+## 核心价值（反模板标准）
 
-Use `src/generator.js` for quick deterministic triage. For deeper analysis, load this skill and produce the same five-part output standard directly from the provided logs and scenario.
+### ✅ 来自实战经验的规则（≥70%）
+- Top-1 污染效应：检索第一名如果是错的，LLM 几乎必然跟错
+- 双命中策略的适用边界：不是所有场景都适合，有检索性能代价
+- 意图路由的三层分类法：事实型/操作型/闲聊型的不同处理路径
+- 低置信度转人工的阈值选择：0.6 还是 0.75？看场景
+- **绝不承诺虚假准确率**——"95% 准确率"在 RAG 里是伪命题
+- 知识库质量 > 算法调参——80% 的幻觉源于知识源本身脏乱
+- 混合检索权重不是 50/50——不同行业有完全不同的最优配比
 
-## Required Output Standard
+### ❌ 通用 AI 能力（本 Skill 不做）
+- RAG 架构科普、向量数据库选型对比
+- Embedding 模型评测报告
+- 通用 Prompt Engineering 技巧
 
-Every recommendation must answer:
-1. What signal triggered the risk?
-2. What production failure may happen?
-3. Which control should be changed?
-4. What metric should be watched after the change?
-5. When should the answer be refused or routed to a human?
+## 使用方式
 
-## Quick Mode
-
-```bash
-node {baseDir}/src/generator.js --symptom "Top1相似度很高但答案经常错" --scenario "客服知识库"
-```
-
-## Self-Test
-
-Run at least one real-scenario smoke test before reporting status:
+### 交互模式（推荐）
 
 ```bash
-node {baseDir}/src/generator.js --symptom "引用了错误政策但看起来有出处" --scenario "企业制度问答" --quick
+rag-hallucination-governor
 ```
 
-For more examples, read `TEST_CASES.md`.
+### 快速模式
 
-## Review Notes
+```bash
+rag-hallucination-governor --symptom "客户说AI经常编造不存在的政策条款" \
+  --industry "政务" --hitRate "0.4" --firstHitAccuracy "0.3"
+```
 
-For synthetic ToB delivery scenarios, read `FIELD_SCENARIOS.md`.
+### 日志分析模式
 
-## Field Rules
+```bash
+rag-hallucination-governor --log-file /path/to/retrieval_log.json --top-n 20
+```
 
-- Prefer controls that can be tested in logs.
-- Never invent project metrics, customer names, corpus snippets, or exact improvement numbers.
-- If retrieval evidence is missing, say what logs are needed.
-- Treat refusal and human handoff as valid outcomes.
+## 输出结构
+
+**RAG 幻觉诊断报告**（Markdown），5 模块：
+
+### 模块 1：症状归类
+- 幻觉类型判断：知识缺失型 / 检索噪声型 / 上下文拼接型 / LLM 编造型
+- 严重程度分级：P0（不可用）/ P1（偶发）/ P2（可容忍）
+
+### 模块 2：根因诊断
+- 检索层诊断：召回率、Top-1 准确率、Top-K 噪声率
+- 知识库诊断：文档碎片化、过期内容、格式噪声
+- LLM 层诊断：上下文窗口利用、指令跟随、温度设置
+
+### 模块 3：阈值调参建议
+- 相似度阈值（当前 → 建议值 + 理由）
+- Top-K 参数调整
+- 混合检索权重（BM25 vs Vector）
+- 重排序模型是否值得加
+
+### 模块 4：架构层建议
+- 意图路由是否需要
+- 是否需要双命中策略
+- 低置信度转人工阈值
+
+### 模块 5：立即可执行的 3 步修复
+
+## 规则设计原则
+
+1. **Top-1 定生死** — 如果 Top-1 是错的，LLM 有 80%+ 概率跟错。优化 Top-1 准确率比提高 K 更有效
+2. **知识库质量 > 算法调参** — 80% 幻觉的根因是知识源本身：过期、碎片化、格式混乱
+3. **混合检索不是 50/50** — 政务偏向 BM25（70%+），技术文档偏向向量（70%+），零售居中
+4. **低置信 ≠ 低质量** — 0.6-0.7 区间的结果不一定差，要看行业基线
+5. **双命中有代价** — 召回率高了 15-20%，但延迟增加 30-50%，延迟敏感场景慎用
+6. **意图路由分三层**：事实型（直接检索）/ 操作型（检索+动作）/ 闲聊型（不检索直接答）
+
+## 输出模板（结构化格式）
+
+```markdown
+## RAG 幻觉诊断报告
+
+### 1. 症状归类
+- 幻觉类型：知识缺失型 / 检索噪声型 / 上下文拼接型 / LLM 编造型
+- 严重程度：P0（不可用） / P1（偶发） / P2（可容忍）
+- 依据诊断：
+
+### 2. 根因分析
+- 检索层：召回率 __% | Top-1 准确率 __% | Top-K 噪声率 __%
+- 知识库层：碎片化程度 | 过期比率 | 格式一致性
+- LLM 层：上下文利用率 | 指令遵从 | 温度设置
+
+### 3. 调参建议
+| 参数 | 当前值 | 建议值 | 理由 |
+|------|--------|--------|------|
+| 相似度阈值 | |||
+| Top-K | |||
+| 混合检索权重(BM25:Vector) | |||
+| 重排序 | |||
+
+### 4. 架构建议
+- 意图路由：需要/不需要（理由）
+- 双命中策略：启用/禁用（理由）
+- 转人工阈值：建议值 + 场景说明
+
+### 5. 紧急 3 步修复
+1. 立即可做：
+2. 今日内完成：
+3. 本周计划：
+```
+
+## 边界声明
+
+1. **不替代知识库治理** — 调参无法解决脏数据，必须先清洗知识源
+2. **不承诺具体指标** — 不输出无法验证的准确率数字（如「95%准确率」）
+3. **不编造日志数据** — 如果用户未提供检索日志，只做症状归类不出根因分析
+4. **不替代人工审核** — 低置信场景转人工是非功能建议，不保证转人工后正确
+5. **不提供通用 RAG 教程** — 只输出针对具体输入的分析，不做 RAG 科普
+6. **不承诺治理效果** — 输出为建议方案，实际效果需复测验证
+
+## 触发词
+
+当用户提到以下关键词时，应使用本技能：
+- RAG 幻觉 / 胡说 / 乱回答 / 不准确
+- HitRate / 命中率 / 召回率 / Top-1 准确率
+- 检索日志 / 知识库质量
+- 阈值调优 / 调参 / 双命中
+- 转人工 / 低置信度
+
+## 联用

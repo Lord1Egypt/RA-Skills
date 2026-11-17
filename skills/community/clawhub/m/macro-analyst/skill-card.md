@@ -1,37 +1,52 @@
-## Description: <br>
-Provides a Chinese-language macroeconomic analysis workflow using AKShare GDP, CPI, PMI, interest-rate, exchange-rate, earnings, and global market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+宏观经济分析工具集 - 基于AKShare的GDP/CPI/PMI/利率/汇率数据
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-External users and developers use this skill to gather macroeconomic indicators, inspect market and earnings context, and produce daily or weekly macro outlooks and risk notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Examples rely on separate local finance and trading scripts plus the AKShare dependency. <br>
-Mitigation: Confirm those local scripts and dependencies are trusted and installed from acceptable sources before running the examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lanyasheng/macro-analyst) <br>
+## Use Case:
 
+Developers and analysts use this skill to gather AKShare-based GDP, CPI, PMI, money supply, earnings, market, and exchange-rate inputs and produce China-focused macro daily or weekly analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Depends on trusted local finance and trading scripts plus AKShare-compatible data access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on local companion scripts and an AKShare environment that are not bundled in the artifact.
+
+Mitigation: Confirm the referenced scripts and AKShare installation are present and trusted before running analysis commands.
+
+Risk: Macro and market analysis can be inaccurate if source data is incomplete, stale, or interpreted without review.
+
+Mitigation: Review generated reports against current source data before relying on conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/macro-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local companion scripts and an AKShare environment when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

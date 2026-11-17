@@ -2,10 +2,10 @@
 
 PMax **潜在客户表单**（`LEAD_FORM`）有两种挂载方式：
 
-| 方式 | 何时用 | 入口 |
-| ---- | ------ | ---- |
+| 方式                   | 何时用                              | 入口                                                                                  |
+| ---------------------- | ----------------------------------- | ------------------------------------------------------------------------------------- |
 | **A（推荐·新建活动）** | `pmax-create` 一次性创建系列 + 扩展 | `pmax-create` JSON 的 `campaignExtensions.leadForm`（见 `pmax-create-template.json`） |
-| **B（存量补挂）** | 活动已存在、需单独加/改表单 | 本文件 + `ad extension lead-form` |
+| **B（存量补挂）**      | 活动已存在、需单独加/改表单         | 本文件 + `ad extension lead-form`                                                     |
 
 **Lead Gen / B2B 询盘类 PMax 方案**：默认在 `campaignExtensions` 中包含 `leadForm`；用户明确不要表单时才省略。
 
@@ -36,19 +36,19 @@ siluzan-tso ad extension update -a <accountId> --id <extensionId> --config-file 
 
 ## 字段说明
 
-| 字段                               | 类型     | 必填 | 说明                                                           |
-| ---------------------------------- | -------- | :--: | -------------------------------------------------------------- |
-| `account`                          | string   |  ✅  | Google 媒体客户 ID                                             |
-| `campaignId`                       | string   |  ✅  | PMax 活动 ID（`channelTypeV2=PERFORMANCE_MAX`）                |
-| `leadForm.businessName`            | string   |  ✅  | 商家名称                                                       |
-| `leadForm.headline`                | string   |  ✅  | 表单标题                                                       |
-| `leadForm.description`             | string   |  ✅  | 表单描述                                                       |
-| `leadForm.privacyPolicyUrl`        | string   |  ✅  | 隐私政策 URL                                                   |
-| `leadForm.finalUrl`                | string   |  ✅  | 落地页 URL                                                     |
-| `leadForm.callToActionType`        | string   |      | 默认 `LEARN_MORE`                                              |
-| `leadForm.callToActionDescription` | string   |      | 默认 `Contact us`                                              |
-| `leadForm.fields`                  | object[] |  ✅  | 至少 1 项；`inputType` 如 `FULL_NAME`、`EMAIL`、`PHONE_NUMBER` |
-| `leadForm.webhook`                 | object   |      | 写入 Google 的 Webhook（非平台接收端）                         |
+| 字段                               | 类型     | 必填 | 说明                                                                               |
+| ---------------------------------- | -------- | :--: | ---------------------------------------------------------------------------------- |
+| `account`                          | string   |  ✅  | Google 媒体客户 ID                                                                 |
+| `campaignId`                       | string   |  ✅  | PMax 活动 ID（`channelTypeV2=PERFORMANCE_MAX`）                                    |
+| `leadForm.businessName`            | string   |  ✅  | 商家名称（≤25 字符）                                                               |
+| `leadForm.headline`                | string   |  ✅  | 表单标题（**≤30 字符**，超长网关常直接 HTTP 400）                                  |
+| `leadForm.description`             | string   |  ✅  | 表单描述（≤200 字符）                                                              |
+| `leadForm.privacyPolicyUrl`        | string   |  ✅  | 隐私政策 URL                                                                       |
+| `leadForm.finalUrl`                | string   |  ✅  | 落地页 URL                                                                         |
+| `leadForm.callToActionType`        | string   |      | 默认 `LEARN_MORE`                                                                  |
+| `leadForm.callToActionDescription` | string   |      | 默认 `Contact us`（≤30 字符）                                                      |
+| `leadForm.fields`                  | object[] |  ✅  | 至少 1 项；`inputType` 如 `FULL_NAME`、`EMAIL`、`PHONE_NUMBER`（**无** `MESSAGE`） |
+| `leadForm.webhook`                 | object   |      | 写入 Google 的 Webhook（非平台接收端）                                             |
 
 ---
 

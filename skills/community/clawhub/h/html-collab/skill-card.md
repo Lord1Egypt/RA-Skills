@@ -1,44 +1,58 @@
-## Description: <br>
-Creates, reads, and revises HTML documents designed for iterative LLM-human review cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for HTML documents that will go through LLM-human review cycles, including drafting reviewable documents, reading annotated html-collab files, and revising them from embedded comments and edits.
 
-## Publisher: <br>
-[ljn-hust](https://clawhub.ai/user/ljn-hust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljn-hust](https://clawhub.ai/user/ljn-hust)
 
-## Use Case: <br>
-Developers, writers, and reviewers use this skill to create self-contained HTML review drafts, extract human feedback from annotated documents, and produce revised HTML versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or overwrite local HTML documents during review workflows. <br>
-Mitigation: Confirm the target path before writing, keep revisions in a versioned folder, and save sensitive or uncertain revisions to a new file instead of overwriting the original. <br>
-Risk: Full document text, reviewer comments, edits, and screenshot summaries may appear in the chat transcript. <br>
-Mitigation: For sensitive documents, summarize instead of pasting full contents and avoid including raw screenshot or base64 data in the conversation. <br>
-Risk: html-collab can become the default format for review drafts, which may be inappropriate for finished presentation HTML. <br>
-Mitigation: Use plain HTML mode when the user asks for a clean final document or does not want collab-data, review UI, data-cid attributes, or the engine script. <br>
+## Use Case:
 
+Developers, writers, and reviewers use this skill to create self-contained HTML documents that preserve block-level IDs, reviewer comments, proposed edits, and document metadata for iterative LLM-human review. It can also read annotated html-collab files and produce revised HTML that incorporates recorded feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljn-hust/html-collab) <br>
-- [html-collab live demo](https://ljn-hust.github.io/html-collab/) <br>
-- [Bundled HTML template](artifact/assets/template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Self-contained HTML files, markdown context blocks, and occasional shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated and revised documents use collab-data JSON, stable data-cid block identifiers, and screenshot handling that avoids pasting raw base64 in text-only contexts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill broadly auto-activates for document drafting and annotated HTML workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only when the html-collab review workflow is desired; use /html-collab off when clean presentation HTML is needed.
+
+Risk: Generated files may include AI bootstrap metadata and embedded image references that affect browser or agent behavior.
+
+Mitigation: Open and process html-collab files only from trusted sources, and require explicit user consent before fetching external skill instructions.
+
+Risk: Revision workflows can overwrite reviewed files.
+
+Mitigation: Keep backups or versioned copies before applying revisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljn-hust/skills/html-collab)
+- [html-collab live demo](https://ljn-hust.github.io/html-collab/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and complete self-contained HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated html-collab files include block-level data-cid attributes, collab-data JSON metadata, comments, edits, and optional base64 image attachments.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

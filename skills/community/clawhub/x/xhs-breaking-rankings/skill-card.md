@@ -1,44 +1,63 @@
-## Description: <br>
-小红书低粉爆款笔记 helps agents find Xiaohongshu posts from accounts with fewer than 5,000 followers and more than 500 likes, then summarize ranking data and viral content patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书低粉爆款笔记挖掘小红书平台上粉丝量低于 5000 且点赞数超过 500 的高互动笔记，并输出榜单与爆款规律分析。
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-External creators, content operators, brands, MCNs, and content strategy analysts use this skill to monitor low-follower, high-engagement Xiaohongshu notes by category and date, study title and topic patterns, and export findings for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and may read shell profile files to find credentials. <br>
-Mitigation: Provide the key explicitly for the current session or through a secret manager, and avoid allowing the skill to scan or edit shell profile files. <br>
-Risk: Generated cache, report, and export files may contain retrieved Xiaohongshu data or operational context. <br>
-Mitigation: Review generated files after use and remove any outputs that should not be retained or shared. <br>
-Risk: The release includes a daily subscription workflow that creates recurring outputs. <br>
-Mitigation: Use subscription behavior only after confirming how to pause or cancel it. <br>
+## Use Case:
 
+External Xiaohongshu creators, content operators, MCN agencies, brand teams, and content strategists use this skill to find low-follower high-engagement notes, monitor category trends, discover rising creators, and export shareable reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/xhs-breaking-rankings) <br>
-- [API specification](references/api-spec.md) <br>
-- [RedFoxHub API keys](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown reports with ranking tables and analysis, plus optional JSON cache files and HTML exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RedFox API key. Security review flagged this release as suspicious because it handles API credentials and recurring outputs; use explicit session-scoped secrets, avoid scanning or editing shell profile files, review generated cache/report files, and confirm cancellation behavior before using subscriptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill handles RedFox API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable, low-scope REDFOX_API_KEY and prefer setting it directly in the current environment.
+
+Risk: Shell-profile discovery can broaden where credentials are read from.
+
+Mitigation: Avoid relying on shell-profile discovery when possible and review local profile files before use.
+
+Risk: Generated HTML exports may execute browser code from remote or cached fields and CDN scripts.
+
+Mitigation: Open generated HTML only from trusted runs and review exports before sharing or opening them in sensitive browser contexts.
+
+Risk: Server security evidence marks the release as suspicious because credential handling and generated HTML need review before use.
+
+Mitigation: Review and scan the skill before installation or deployment.
+
+## Reference(s):
+
+- [小红书低粉爆款笔记 API 接口规范](artifact/references/api-spec.md)
+- [RedFoxHub](https://redfox.hk/)
+- [ClawHub skill page](https://clawhub.ai/if530770/skills/xhs-breaking-rankings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with ranking tables and analysis, JSON cache files, and optional HTML export.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a REDFOX_API_KEY; results depend on RedFoxHub data availability, selected category, and selected date.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

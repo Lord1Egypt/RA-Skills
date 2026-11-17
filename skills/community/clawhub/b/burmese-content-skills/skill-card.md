@@ -1,42 +1,50 @@
-## Description: <br>
-Rewrite Burmese AI-generated text into natural conversational Burmese that sounds emotional, social-media friendly, and less formal or robotic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites AI-generated Burmese text into natural, conversational Burmese for social media, motivation, storytelling, tech, and knowledge-sharing content.
 
-## Publisher: <br>
-[isaactalb](https://clawhub.ai/user/isaactalb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isaactalb](https://clawhub.ai/user/isaactalb)
 
-## Use Case: <br>
-Writers, community managers, and developers use this skill to revise Burmese drafts for social posts, motivation content, storytelling, tech writing, and knowledge-sharing content. It helps convert formal or AI-like Burmese into a more conversational style for public-facing publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A rewrite may change nuance, factual meaning, or publication tone in Burmese content. <br>
-Mitigation: Review the final Burmese for tone, accuracy, and publication suitability before using it publicly. <br>
+## Use Case:
 
+Burmese content creators, marketers, and developers use this skill to rewrite formal or AI-generated Burmese into conversational posts, motivation copy, storytelling, tech writing, and knowledge-sharing content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isaactalb/burmese-content-skills) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [WARP.md](artifact/WARP.md) <br>
-- [Creator website](https://isaac.duckcloud.info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text Burmese rewrites with editing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review final Burmese for tone, accuracy, and publication suitability before public use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill intentionally changes formality, tone, and wording choices in Burmese content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rewritten content before publishing to ensure meaning, audience fit, and brand voice are preserved.
+
+## Reference(s):
+
+- [Burmese Content Skills on ClawHub](https://clawhub.ai/isaactalb/skills/burmese-content-skills)
+- [Creator Website](https://isaac.duckcloud.info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text Burmese rewrites with concise editing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review rewritten content before publishing because tone, formality, and wording are intentionally changed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

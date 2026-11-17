@@ -1,44 +1,58 @@
-## Description: <br>
-Provides a customer-service persona for Daozheji Grill that answers questions about hours, locations, dishes, prices, delivery, promotions, membership, parking, and Wi-Fi using bundled restaurant reference files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daozheji Grill Skill helps an agent answer customer questions about Daozheji Grill locations, hours, dishes, prices, delivery, group-buying packages, membership benefits, parking, Wi-Fi, reservations, and food-safety topics.
 
-## Publisher: <br>
-[liubuq-sys](https://clawhub.ai/user/liubuq-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liubuq-sys](https://clawhub.ai/user/liubuq-sys)
 
-## Use Case: <br>
-External users and restaurant operators use this skill to provide natural-language customer support for Daozheji Grill, including menu recommendations, store logistics, delivery details, promotions, reservations, and allergy-sensitive answers grounded in the bundled reference files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the restaurant information is specific to Daozheji Grill locations in Nanchang, Jiangxi, China. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installers configure automatic daily background updates and can overwrite an existing local Daozheji Grill skill directory. <br>
-Mitigation: Review the installer before use, back up any existing skill directory, and prefer manual installation or remove the cron and Scheduled Task auto-update lines. <br>
+## Use Case:
 
+External customer-service agents use this skill to answer restaurant guest questions with a warm, conversational style while grounding operational details in the bundled reference files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liubuq-sys/daozheji-grill-skill) <br>
-- [README](README.md) <br>
-- [Brand Information](references/brand.md) <br>
-- [Business Information](references/business-info.md) <br>
-- [FAQ](references/faq.md) <br>
-- [Promotions](references/promotions.md) <br>
-- [Services](references/services.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language responses grounded in Markdown reference files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the bundled references/ files to be readable at query time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Installers recommend direct remote script execution and configure unattended daily updates from a mutable branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer a pinned release or reviewed local copy, and avoid or remove the default cron job or Windows Scheduled Task unless unattended future updates are acceptable.
+
+Risk: Restaurant details such as prices, promotions, allergens, delivery terms, and hours can become stale or be answered incorrectly if the reference files are unavailable.
+
+Mitigation: Keep the bundled reference files current and readable at query time, and confirm time-sensitive promotions or safety questions with the restaurant when accuracy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liubuq-sys/skills/daozheji-grill-skill)
+- [Business information](artifact/references/business-info.md)
+- [Menu and services](artifact/references/services.md)
+- [Promotions](artifact/references/promotions.md)
+- [FAQ](artifact/references/faq.md)
+- [Brand information](artifact/references/brand.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Natural-language Markdown responses grounded in bundled reference files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the restaurant reference files to be readable at query time.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact CHANGELOG.md and version.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

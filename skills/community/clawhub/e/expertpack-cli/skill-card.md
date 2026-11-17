@@ -1,44 +1,55 @@
-## Description: <br>
-Run local ExpertPack CLI tools for validating, fixing, graphing, and deploying packs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run local ExpertPack CLI tools to validate, repair, graph, strip frontmatter from, and prepare ExpertPacks for deployment.
 
-## Publisher: <br>
-[brianhearn](https://clawhub.ai/user/brianhearn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brianhearn](https://clawhub.ai/user/brianhearn)
 
-## Use Case: <br>
-Developers and engineers use this skill to run ExpertPack validation, repair, graph export, frontmatter stripping, and deployment-prep commands against local pack files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to run tools from a separate local ExpertPack repository. <br>
-Mitigation: Confirm that the local ExpertPack repository is trusted before running its tools. <br>
-Risk: Doctor and wikilink-fix commands can modify local pack files when apply flags are used. <br>
-Mitigation: Run dry-run modes first and inspect proposed changes before applying fixes. <br>
-Risk: Adding pack paths to OpenClaw memory search can make local pack content available for retrieval. <br>
-Mitigation: Add only intended pack paths to memory search configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to run ExpertPack validation, repair, graph export, frontmatter stripping, and deployment preparation commands against local packs.
 
-## Reference(s): <br>
-- [ExpertPack CLI Commands Reference](references/cli-commands.md) <br>
-- [ClawHub ExpertPack CLI Release](https://clawhub.ai/brianhearn/expertpack-cli) <br>
-- [ExpertPack Tool Repository](https://github.com/brianhearn/ExpertPack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides local-file operations and does not bundle executable tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill directs agents to run mutable third-party Python tools without a pinned version or integrity check.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the ExpertPack repository to a known commit and verify scripts and copied configuration before use.
+
+Risk: Doctor and fixer commands can modify local pack files.
+
+Mitigation: Run dry-run previews or use a disposable clean working tree first, then inspect diffs before committing changes.
+
+## Reference(s):
+
+- [ExpertPack CLI Commands Reference](references/cli-commands.md)
+- [ExpertPack repository](https://github.com/brianhearn/ExpertPack)
+- [ExpertPack CLI ClawHub release](https://clawhub.ai/brianhearn/skills/expertpack-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands operate on local files and may produce changed files, validation reports, graph metadata, or deployment copies depending on the selected ExpertPack tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

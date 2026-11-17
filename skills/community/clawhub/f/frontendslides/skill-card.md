@@ -1,48 +1,59 @@
-## Description: <br>
-Create animation-rich HTML presentations from scratch or by converting PowerPoint files, with visual style discovery for users who want polished web slide decks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-External users, developers, and presenters use this skill to create self-contained browser presentations, enhance existing HTML decks, or convert PPTX content into styled web slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PPTX conversion can extract slide text, images, and speaker notes into local files. <br>
-Mitigation: Use a dedicated project folder and avoid converting confidential decks into synced or public directories. <br>
-Risk: Optional Python packages may be installed to support PPTX conversion. <br>
-Mitigation: Install optional dependencies in a virtual environment before running conversion commands. <br>
-Risk: Generated presentations may reference CDN-hosted fonts. <br>
-Mitigation: Use local or system fonts, or remove CDN font links, when decks must work offline or avoid third-party font requests. <br>
+## Use Case:
 
+Developers, presenters, educators, and other external users use this skill to create browser-based HTML slide decks, enhance existing presentations, or convert PPT/PPTX files into web slides with guided visual style selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liberalchang/frontendslides) <br>
-- [README](artifact/README.md) <br>
-- [Style presets reference](artifact/STYLE_PRESETS.md) <br>
-- [HTML template reference](artifact/html-template.md) <br>
-- [Animation patterns reference](artifact/animation-patterns.md) <br>
-- [Viewport base CSS](artifact/viewport-base.css) <br>
-- [PPTX extraction script](artifact/scripts/extract-pptx.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with generated HTML, CSS, JavaScript, JSON extraction data, and local asset files when converting PPTX decks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces self-contained HTML presentations and may create local preview, asset, and extracted-slide files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated decks may load fonts from third-party CDNs, which can expose network requests when a presentation is opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or replace remote font links before opening sensitive decks or presenting in environments where network privacy matters.
+
+Risk: Optional inline editing stores slide text in browser localStorage.
+
+Mitigation: Avoid enabling inline editing for confidential slide content on shared browsers, or clear localStorage after use.
+
+Risk: PPT and image workflows may require unpinned Python packages.
+
+Mitigation: Install Python dependencies in a virtual environment and review package versions before processing decks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liberalchang/skills/frontendslides)
+- [Skill demo deck](https://github.com/user-attachments/assets/ef57333e-f879-432a-afb9-180388982478)
+- [OpenAI Harness Engineering](https://openai.com/index/harness-engineering/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated HTML, CSS, JavaScript, and JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce self-contained HTML presentation files, extracted PPT content JSON, local image assets, and optional browser-editing behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

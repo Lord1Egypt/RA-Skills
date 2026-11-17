@@ -1,41 +1,53 @@
-## Description: <br>
-Help users identify stress sources, sort controllable vs uncontrollable pressure, and choose practical daily coping strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users identify stress sources, sort controllable vs uncontrollable pressure, and choose practical daily coping strategies.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill for everyday stress support: naming stressors, separating urgent pressure from chronic pressure, identifying controllable factors, and choosing a practical next step for today or this week. It is not for diagnosis, psychotherapy, medical treatment, crisis intervention, legal advice, or financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake everyday stress guidance for medical, therapy, or crisis support. <br>
-Mitigation: Present the skill as general stress support only and escalate severe distress, self-harm thoughts, or inability to stay safe to qualified professionals or emergency resources. <br>
-Risk: Financial-stress examples may influence debt or household finance decisions. <br>
-Mitigation: Keep financial suggestions as coping-plan prompts and encourage qualified financial or legal advice before decisions involving debt, credit, or household finances. <br>
+## Use Case:
 
+External users use this skill for everyday stress support: identifying stressors, separating controllable from uncontrollable pressure, and choosing practical short-term coping steps. It is not intended for diagnosis, psychotherapy, medical advice, or crisis intervention.
 
-## Reference(s): <br>
-- [Stress Manager ClawHub page](https://clawhub.ai/harrylabsj/stress-manager) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text stress-coping guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stress maps, one-day coping plans, boundary-setting language, recovery actions, and safety escalation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Users may treat everyday stress-support guidance as a substitute for professional mental-health care or crisis support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill framed as non-clinical support and direct users with crisis, self-harm, or severe distress signals to local emergency services or licensed professionals.
+
+Risk: China-specific examples and resources may be unsuitable for users in other locations.
+
+Mitigation: Ask users outside that locale for their location and suggest local support resources instead of applying China-specific services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/stress-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, analysis]
+
+**Output Format:** [Markdown conversational guidance, stress maps, and short coping plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language stress-support guidance with disclosed non-clinical limits]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

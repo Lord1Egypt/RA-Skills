@@ -1,44 +1,57 @@
-## Description: <br>
-Stop before you break: four mandatory checks before every operation, covering search, rollback, testing, and scope. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop before you break - four mandatory checks before every operation: search, rollback, test, scope.
 
-## Publisher: <br>
-[p9sgr2rnrj-ux](https://clawhub.ai/user/p9sgr2rnrj-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[p9sgr2rnrj-ux](https://clawhub.ai/user/p9sgr2rnrj-ux)
 
-## Use Case: <br>
-Developers, agent users, and teams use this skill to pause before commands, deployments, configuration changes, or unfamiliar operations and confirm search, rollback, validation, and impact scope before proceeding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package can make persistent shell startup changes through install.sh. <br>
-Mitigation: Review install.sh before running it, especially PATH edits, or install manually into an explicit directory. <br>
-Risk: publish.sh can use a logged-in ClawHub session to publish this package. <br>
-Mitigation: Do not run publish.sh unless publication is intentional and the active ClawHub account is correct. <br>
-Risk: The workflow could trigger when the user did not intend to start a preflight gate. <br>
-Mitigation: Use an explicit command-style trigger for agent workflows before applying the checklist. <br>
+## Use Case:
 
+Developers, engineers, and agent users use this skill to run a four-question preflight check before commands, deployments, configuration changes, or unfamiliar operations. It helps confirm prior research, rollback planning, validation, and impact scope before proceeding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/p9sgr2rnrj-ux/preflight-workflow) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional interactive shell prompts and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive checklist flow; the CLI script exits non-zero when any required preflight check fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The installer can make persistent shell startup changes by appending the preflight install directory to the user's PATH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before running it and consider adding PATH entries manually.
+
+Risk: Custom install paths may be unsafe if they contain shell metacharacters.
+
+Mitigation: Use simple trusted install paths and review the command before execution.
+
+Risk: publish.sh is release tooling that can publish to ClawHub with a configured owner account.
+
+Mitigation: Do not run publish.sh unless you intend to publish this package and have verified the target account and owner settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/p9sgr2rnrj-ux/skills/preflight-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell command prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI path is interactive and blocks when any preflight check fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

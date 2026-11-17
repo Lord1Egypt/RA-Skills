@@ -1,5 +1,9 @@
 # Reverse-Engineering Chart Colors from Reference Images
 
+> **何时读我**：从参考图/期刊截图反推配色。
+> **最短路径**：直接跑文中的取色脚本。
+> **回 INDEX**：SKILL.md「文件索引与 30 秒路由」。
+
 When a user says "match the colors/style of this chart," do NOT eyeball it.
 Extract exact pixel values programmatically. This technique was used to
 derive the `glm` theme for `academic-figures`.

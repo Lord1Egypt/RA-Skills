@@ -1,44 +1,58 @@
-## Description: <br>
-Skill Router is a centralized index and router that helps an agent identify installed skills, load matching specialized skills, and report skill usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Router centralizes an index of installed skills, routes user questions to relevant specialized skills, and asks the agent to report skill usage.
 
-## Publisher: <br>
-[yunzhouli-hub](https://clawhub.ai/user/yunzhouli-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunzhouli-hub](https://clawhub.ai/user/yunzhouli-hub)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep an installed skill set discoverable, route user requests to relevant skills, and make skill usage visible after responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill attempts to act as an always-on router for every question, which can influence responses beyond narrow skill-routing tasks. <br>
-Mitigation: Install it only when a global router is intended, and narrow the activation language if only explicit skill-routing behavior is desired. <br>
-Risk: Generated skill indexes and usage reports may expose local skill names, descriptions, or usage patterns more broadly than expected. <br>
-Mitigation: Review generated SKILL.md content before sharing or deployment, and avoid publishing indexes that reveal sensitive local skill metadata. <br>
-Risk: Automatic routing may load extra skills that are unnecessary for a task. <br>
-Mitigation: Review routing rules and adjust match criteria so skills load only for clear matches. <br>
+## Use Case:
 
+Developers and Claude users use this skill to maintain a local index of installed skills, route user questions to matching specialized skills, and report which skills were used after a response.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yunzhouli-hub/skill-router-hub) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yunzhouli-hub) <br>
-- [Anthropic skills repository](https://github.com/anthropics/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated skill-index content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate or update a SKILL.md index from local installed-skill metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Global routing behavior can affect every agent response and may over-route or misroute requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where global skill routing is desired, and review the routing rules before enabling the skill.
+
+Risk: The generator scans local skill directories and can persist names and descriptions of installed or private skills into the generated router file.
+
+Mitigation: Run the generator only against intended skill directories, review generated indexes before use, and avoid publishing router files that reveal private installed capabilities.
+
+Risk: The skill requires a skill usage report after every response, which can add disclosure or operational noise.
+
+Mitigation: Use it only in environments where per-response skill reporting is acceptable and expected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yunzhouli-hub/skills/skill-router-hub)
+- [Anthropic skills repository](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and generated SKILL.md content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a generated skill index based on locally installed skills and a usage-report directive for agent responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

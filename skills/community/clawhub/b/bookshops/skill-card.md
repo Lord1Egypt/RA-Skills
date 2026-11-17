@@ -1,40 +1,52 @@
-## Description: <br>
-Find nearby bookshops. Invoke when user asks for bookstores near me. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby bookshops when the user asks for bookstores near them.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[clawkk](https://clawhub.ai/user/clawkk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and application agents use this skill to find nearby bookshops, second-hand book stores, and reading spaces from an authorized location or city.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses precise or user-authorized location data to find nearby bookshops.
+
+Mitigation: Request location only after user authorization, avoid retaining precise coordinates, and use grid-based obfuscation when exact coordinates are not required.
+
+Risk: Repeated nearby searches may increase provider rate-limit exposure or unnecessary location processing.
+
+Mitigation: Use short-lived caching for the same location, category, and radius, and handle provider unavailable or rate-limited responses explicitly.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to find nearby bookshops, secondhand bookstores, and reading spaces from an authorized location or city query with consistent filters and error handling. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Precise user location could be over-collected or retained longer than needed. <br>
-Mitigation: Use the least precise location that satisfies the request, prefer approximate location when possible, and keep any location-based cache short-lived. <br>
-Risk: Provider outages or rate limits can prevent reliable nearby-bookshop results. <br>
-Mitigation: Return the documented PROVIDER_UNAVAILABLE or RATE_LIMITED error instead of inventing results, and retry only within the provider's limits. <br>
+**Output Format:** [Markdown guidance with standardized POI response expectations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawkk/bookshops) <br>
+**Other Properties Related to Output:** [Outputs should follow a standardized point-of-interest list for the bookshops category.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Markdown or JSON-style standardized POI list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes location, radius, limit, and optional filters such as open_now, min_rating, and keywords.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

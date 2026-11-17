@@ -1,0 +1,92 @@
+# OpenClaw on an Agentgates computer: a confidential VM, or a plain VM for a
+# worker with nothing secret on it.
+#
+# Send this file as the "compose" of POST https://api.agentgates.ai/api/compute/deployments.
+# The gateway answers at the machine's endpoint (host port 8080).
+#
+# Sealed env (the create call's "env"; never write them into this file):
+#   OPENCLAW_GATEWAY_TOKEN  required: the gateway's bearer, 64 random hex characters
+#   AGENTGATES_API_KEY      required: an Agentgates inference key (ag_...) on a prepaid balance
+#   AGENTGATES_MODEL        optional: a model id from GET https://api.agentgates.ai/api/inference/catalog
+#   OPENCLAW_TRUSTED_PROXIES  plain VM only: the private range its https name's proxy reaches
+#                           the gateway from, 172.16.0.0/12 (the skill's script sends it)
+#
+# The settings below are merged from the env into OpenClaw's own file on every
+# boot. Sessions, memory
+# and the workspace live in the two volumes, on the machine's disk (encrypted
+# on a confidential plan).
+services:
+  openclaw:
+    image: ghcr.io/openclaw/openclaw:2026.11.1@sha256:db0e0809fbd0df375445e9eea8daf2a278ac7ac3a263fa6bfce8fb344ad3ad77
+    restart: unless-stopped
+    environment:
+      HOME: /home/node
+      OPENCLAW_HOME: /home/node
+      OPENCLAW_STATE_DIR: /home/node/.openclaw
+      OPENCLAW_CONFIG_PATH: /home/node/.openclaw/openclaw.json
+      OPENCLAW_WORKSPACE_DIR: /home/node/.openclaw/workspace
+      OPENCLAW_GATEWAY_PORT: "18789"
+      OPENCLAW_DISABLE_BONJOUR: "1"
+      OPENCLAW_GATEWAY_TOKEN: ${OPENCLAW_GATEWAY_TOKEN:-}
+      AGENTGATES_API_KEY: ${AGENTGATES_API_KEY:-}
+      AGENTGATES_MODEL: ${AGENTGATES_MODEL:-glm-5-3-flash}
+      AGENTGATES_BASE_URL: ${AGENTGATES_BASE_URL:-https://api.agentgates.ai/api/inference/v1}
+      OPENCLAW_TRUSTED_PROXIES: ${OPENCLAW_TRUSTED_PROXIES:-}
+      TZ: UTC
+    volumes:
+      - openclaw-state:/home/node/.openclaw
+      - openclaw-keys:/home/node/.config/openclaw
+    ports:
+      - "8080:18789"
+    cap_drop:
+      - NET_RAW
+      - NET_ADMIN
+    security_opt:
+      - no-new-privileges:true
+    command:
+      - sh
+      - -c
+      - |
+        node -e '
+        const fs = require("fs");
+        const env = process.env;
+        for (const name of ["OPENCLAW_GATEWAY_TOKEN", "AGENTGATES_API_KEY"]) {
+          if (!env[name]) { console.error(name + " is missing from the machine env"); process.exit(1); }
+        }
+        const model = env.AGENTGATES_MODEL;
+        const proxies = (env.OPENCLAW_TRUSTED_PROXIES || "").split(",").map((p) => p.trim()).filter(Boolean);
+        // Merged into the file OpenClaw keeps: it sets aside an edit that
+        // shrinks the file it last wrote, so a new value sent later is kept.
+        // Its last good copy stands in while the file itself is being rotated.
+        let config = {};
+        for (const path of [env.OPENCLAW_CONFIG_PATH, env.OPENCLAW_CONFIG_PATH + ".last-good"]) {
+          try { config = JSON.parse(fs.readFileSync(path, "utf8")); break; } catch (e) { config = {}; }
+        }
+        if (!config || typeof config !== "object" || Array.isArray(config)) config = {};
+        const gateway = config.gateway || {};
+        gateway.mode = "local";
+        gateway.bind = "lan";
+        gateway.port = 18789;
+        gateway.auth = Object.assign({}, gateway.auth, { mode: "token" });
+        gateway.http = Object.assign({}, gateway.http, { endpoints: Object.assign({}, (gateway.http || {}).endpoints, { chatCompletions: { enabled: true } }) });
+        if (proxies.length) gateway.trustedProxies = proxies; else delete gateway.trustedProxies;
+        config.gateway = gateway;
+        config.agents = Object.assign({}, config.agents, { defaults: Object.assign({}, (config.agents || {}).defaults, { model: { primary: "agentgates/" + model } }) });
+        const providers = Object.assign({}, (config.models || {}).providers, {
+          agentgates: {
+            baseUrl: env.AGENTGATES_BASE_URL,
+            apiKey: { source: "env", provider: "default", id: "AGENTGATES_API_KEY" },
+            api: "openai-completions",
+            models: [{ id: model, name: model, contextWindow: 131072, maxTokens: 8192 }]
+          }
+        });
+        config.models = Object.assign({}, config.models, { mode: "merge", providers: providers });
+        fs.mkdirSync(env.OPENCLAW_STATE_DIR, { recursive: true });
+        fs.writeFileSync(env.OPENCLAW_CONFIG_PATH, JSON.stringify(config, null, 2) + "\n");
+        console.log("agentgates: settings written for model " + model);
+        '
+        exec node /app/docker-entrypoint.mjs node openclaw.mjs gateway --bind lan --port 18789
+
+volumes:
+  openclaw-state:
+  openclaw-keys:

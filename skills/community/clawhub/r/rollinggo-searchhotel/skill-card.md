@@ -1,40 +1,59 @@
-## Description: <br>
-Helps agents search hotels, refine filters, inspect hotel details and pricing, and retrieve hotel tags through the RollingGo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RollingGo Search Hotel helps an agent search hotels, compare options, check live room pricing, guide hotel booking, and retrieve hotel order information through the RollingGo hotel CLI.
 
-## Publisher: <br>
-[dreamtzlong](https://clawhub.ai/user/dreamtzlong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dreamtzlong](https://clawhub.ai/user/dreamtzlong)
 
-## Use Case: <br>
-External users and developers use this skill to search for hotel candidates, compare current room pricing and availability, inspect hotel detail pages, and prepare booking links through the RollingGo CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dreamtzlong/rollinggo-searchhotel) <br>
-- [RollingGo service homepage](https://mcp.agentichotel.cn) <br>
-- [RollingGo NPX Reference](references/rollinggo-npx.md) <br>
-- [RollingGo UV Reference](references/rollinggo-uv.md) <br>
+External users and travel-support agents use this skill to find accommodations, compare hotel attributes and prices, inspect room availability, create payable hotel orders, and review existing hotel bookings.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI result interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI result payloads are JSON by default; search results can also be shown as tables. Prefer setting RollingGo_API_KEY through an environment variable or secret manager instead of passing an API key on the command line.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill installs mutable external executables from npm or latest GitHub releases.
+
+Mitigation: Use only trusted RollingGo distribution channels, avoid administrator/root installs, and prefer a pinned, checksum-verified CLI package or binary.
+
+Risk: The skill can create real hotel bookings, payment links, and order-history lookups.
+
+Mitigation: Require explicit user consent before booking, payment-link generation, updates, or order retrieval, and confirm guest and contact details before purchase actions.
+
+Risk: The skill may silently check remote content for version updates.
+
+Mitigation: Review network behavior before deployment and ensure users or operators approve update checks in controlled environments.
+
+## Reference(s):
+
+- [CLI parameter reference](references/cli-params.md)
+- [ClawHub skill page](https://clawhub.ai/dreamtzlong/skills/rollinggo-searchhotel)
+- [RollingGo hotel CLI release downloads](https://github.com/RollingGo-AI/oauth-hotel-cli/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown hotel summaries, room-price summaries, booking status text, payment links, and selected shell command invocations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include hotel images, prices, cancellation policies, authorization links, payment links, and order details when returned by the RollingGo CLI.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

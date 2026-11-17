@@ -1,42 +1,58 @@
-## Description: <br>
-Manages household inventory through the local xiwu CLI, including search, item updates, expiration alerts, and purchase-suggestion context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xiwu Inventory helps an agent manage a local home inventory through the xiwu CLI, including item lookup, add, consume, update, expiry alerts, and purchase-suggestion context.
 
-## Publisher: <br>
-[johnqxu](https://clawhub.ai/user/johnqxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnqxu](https://clawhub.ai/user/johnqxu)
 
-## Use Case: <br>
-External users use this skill to query and maintain household inventory, track expiring items, and produce structured context for alerts or restocking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically run a global pnpm or npm install for xiwu-niangzi when xiwu is missing. <br>
-Mitigation: Install and verify the xiwu CLI manually first, or require explicit user approval before any global package installation. <br>
-Risk: Household inventory records can reveal sensitive home, food, medicine, or purchasing details. <br>
-Mitigation: Avoid storing sensitive household details unless you are comfortable with them being used in local alerts and purchase-suggestion workflows. <br>
-Risk: Update and delete workflows can change or remove local inventory records. <br>
-Mitigation: Review item IDs, quantities, and delete confirmations carefully before allowing write, update, or remove commands to run. <br>
+## Use Case:
 
+External users and agents use this skill to query, update, and summarize household inventory stored in a local xiwu database. It supports routine inventory management, expiry review, and purchase-planning context without choosing notification channels or calling commerce services.
 
-## Reference(s): <br>
-- [Xiwu Inventory on ClawHub](https://clawhub.ai/johnqxu/xiwu-inventory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Natural-language responses and structured JSON from xiwu CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the local xiwu command; inventory data is stored in the local xiwu database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can automatically install an unpinned global xiwu-niangzi package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the package source; prefer a release that pins and verifies dependencies or requires explicit user-managed installation.
+
+Risk: The skill can modify a local inventory database through shell commands built from user-provided inventory fields.
+
+Mitigation: Review write operations before execution, use safe structured command execution for user-provided fields, and keep the skill's confirmation steps for updates and deletes.
+
+Risk: Broad natural-language triggers may activate inventory actions in unintended conversations.
+
+Mitigation: Narrow activation triggers and require explicit confirmation before destructive or quantity-changing actions.
+
+## Reference(s):
+
+- [Xiwu Inventory on ClawHub](https://clawhub.ai/johnqxu/skills/xiwu-inventory)
+- [johnqxu Publisher Profile](https://clawhub.ai/user/johnqxu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, guidance]
+
+**Output Format:** [Natural language responses and structured JSON from xiwu CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the xiwu command-line tool and uses --json for CLI calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

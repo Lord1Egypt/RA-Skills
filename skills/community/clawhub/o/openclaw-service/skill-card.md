@@ -1,39 +1,54 @@
-## Description: <br>
-Simon's OpenClaw technical service offering for AI assistant customization, automation, deployment, and consulting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simon's OpenClaw technical service offering - AI assistant customization, automation, deployment and consulting.
 
-## Publisher: <br>
-[lauka](https://clawhub.ai/user/lauka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lauka](https://clawhub.ai/user/lauka)
 
-## Use Case: <br>
-External customers and developers use this skill to understand OpenClaw service offerings for assistant deployment, channel integration, workflow automation, knowledge base setup, custom assistant development, and technical consulting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes third-party consulting services and may lead to off-platform contact, payment, deployment access, or credential sharing. <br>
-Mitigation: Verify the provider independently and treat any follow-up engagement, payment, account access, or credential sharing as a separate business decision. <br>
+## Use Case:
 
+External users and developers can use this skill to understand and request OpenClaw deployment, automation, knowledge-base setup, AI assistant customization, and technical consulting services.
 
-## Reference(s): <br>
-- [OpenClaw 技术服务 on ClawHub](https://clawhub.ai/lauka/openclaw-service) <br>
-- [lauka publisher profile](https://clawhub.ai/user/lauka) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown service overview with package details, pricing ranges, delivery expectations, and contact guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; output is descriptive service information for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Users may treat the skill as executable automation even though the security evidence describes it as a service advertisement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service scope before installation or engagement and do not expect the artifact to perform deployment or automation by itself.
+
+Risk: Consulting or deployment services may require sharing credentials, private documents, server access, or business data.
+
+Mitigation: Confirm trust, scope, and access boundaries with the provider before sharing sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lauka/skills/openclaw-service)
+- [ClawHub publisher profile](https://clawhub.ai/user/lauka)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration instructions]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language service listing with no executable code or hidden automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

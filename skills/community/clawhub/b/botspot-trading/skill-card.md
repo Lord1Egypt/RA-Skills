@@ -1,43 +1,60 @@
-## Description: <br>
-Build, backtest, and deploy algorithmic trading strategies using BotSpot's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, backtest, and deploy algorithmic trading strategies using BotSpot's MCP server.
 
-## Publisher: <br>
-[grzesir](https://clawhub.ai/user/grzesir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grzesir](https://clawhub.ai/user/grzesir)
 
-## Use Case: <br>
-External users and developers use this skill to describe trading strategies in plain English, generate strategy code, run historical backtests, analyze results, and deploy strategies through supported brokers when appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead to live broker-connected trading without enough documented confirmation, limits, or stop controls. <br>
-Mitigation: Use paper trading or a limited account first, require explicit confirmation before live deployment, set strict broker-side risk limits, and verify how to stop bots and revoke BotSpot or broker OAuth access. <br>
-Risk: Generated strategy code or backtest results may be treated as reliable without sufficient review. <br>
-Mitigation: Inspect generated strategy code, review actual backtest artifacts and metrics, avoid fabricated performance claims, and remind users that past performance does not guarantee future results. <br>
+## Use Case:
 
+External users and developers use this skill to create trading strategies from plain English, backtest them on historical market data, analyze performance, and prepare broker deployment through BotSpot.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/grzesir/botspot-trading) <br>
-- [BotSpot website](https://botspot.trade) <br>
-- [BotSpot agents setup](https://botspot.trade/agents) <br>
-- [BotSpot MCP connector endpoint](https://mcp.botspot.trade/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text with generated strategy code, backtest summaries, metrics, chart references, and connector setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require OAuth access to BotSpot or broker accounts and may consume BotSpot free-tier generation and backtesting limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Live broker deployment can affect real money and may cause rapid financial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper trading or a sandbox account first, and require explicit approval of the strategy, position sizing, risk limits, and order behavior before live deployment.
+
+Risk: OAuth broker access may grant permissions on the wrong account or with broader trading authority than intended.
+
+Mitigation: Confirm the exact broker account and permissions granted through OAuth before using deployment tools.
+
+Risk: Backtest results and generated performance summaries can be mistaken for future-return guarantees.
+
+Mitigation: Show actual backtest outputs only, avoid fabricated performance numbers, and remind users that past performance does not guarantee future results.
+
+## Reference(s):
+
+- [BotSpot Trading on ClawHub](https://clawhub.ai/grzesir/skills/botspot-trading)
+- [BotSpot Website](https://botspot.trade)
+- [BotSpot Agents Setup](https://botspot.trade/agents)
+- [BotSpot MCP Connector](https://mcp.botspot.trade/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated strategy code, backtest summaries, and deployment instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses BotSpot MCP tools for strategy generation, backtesting, artifact retrieval, chart data, marketplace browsing, account status checks, and deployment workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

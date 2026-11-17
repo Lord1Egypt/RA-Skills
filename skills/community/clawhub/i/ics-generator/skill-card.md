@@ -1,36 +1,52 @@
-## Description: <br>
-Generates Google Calendar-compatible .ics files from structured event data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Google Calendar-compatible .ics files from structured event data.
 
-## Publisher: <br>
-[zhengqunkoo](https://clawhub.ai/user/zhengqunkoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhengqunkoo](https://clawhub.ai/user/zhengqunkoo)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to turn schedules, study plans, or task lists into importable iCalendar content for Google Calendar and compatible calendar clients.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unsanitized event text may produce malformed calendar content because iCalendar escaping and validation are not documented as implemented.
+
+Mitigation: Use trusted or sanitized event data and review generated .ics content before importing or distributing it.
+
+Risk: The documented lastDate date-shifting behavior may not work as written.
+
+Mitigation: Confirm event dates in the generated calendar output when using chunked or sequential schedules.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to convert structured schedules, study plans, or task lists into importable iCalendar files for Google Calendar and compatible clients. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text]
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+**Output Format:** [iCalendar (.ics) string]
 
-## Reference(s): <br>
+**Output Parameters:** [1D]
 
+**Other Properties Related to Output:** [Normalizes event times to UTC and generates unique event identifiers.]
 
-## Skill Output: <br>
-**Output Type(s):** [text, code] <br>
-**Output Format:** [iCalendar .ics string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns complete VCALENDAR text with VEVENT blocks, UTC-formatted dates, UUID-derived event identifiers, optional descriptions, and optional Google Calendar color fields.] <br>
+## Skill Version(s):
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+1.0.0 (source: server release metadata and package.json)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

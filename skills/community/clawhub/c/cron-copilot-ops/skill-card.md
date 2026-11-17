@@ -1,43 +1,66 @@
-## Description: <br>
-Install, configure, and operate CronCopilot, a Python-based scheduled task management system for cron jobs, scripts, monitoring, and alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install, configure, and operate CronCopilot, a Python-based scheduled task management system for cron jobs, scripts, monitoring, and alerts.
 
-## Publisher: <br>
-[eden2f](https://clawhub.ai/user/eden2f) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eden2f](https://clawhub.ai/user/eden2f)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to install CronCopilot, configure scheduled tasks, manage scripts, monitor execution history, and troubleshoot scheduler failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides an agent through local scheduler setup, daemon control, task removal, and script deletion operations that can affect host availability or remove files. <br>
-Mitigation: Run under a least-privileged account, register only trusted scripts, and require explicit confirmation before service setup, forced task removal, or script deletion with --delete-file. <br>
-Risk: CronCopilot alert configuration can include SMTP credentials in local config files. <br>
-Mitigation: Protect configuration files, avoid exposing SMTP passwords in chat or logs, and rotate credentials if they are shared inadvertently. <br>
+## Use Case:
 
+Developers and operators use this skill to install CronCopilot, manage scheduled tasks and scripts, monitor execution history, configure alerts, and troubleshoot failed or stuck jobs.
 
-## Reference(s): <br>
-- [CronCopilot Skill Page](https://clawhub.ai/eden2f/cron-copilot-ops) <br>
-- [CronCopilot GitHub Repository](https://github.com/eden2f/cron-copilot) <br>
-- [CronCopilot Gitee Repository](https://gitee.com/eden2f/cron-copilot) <br>
-- [CronCopilot Detailed Reference](REFERENCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions for CronCopilot setup, task management, monitoring, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can guide an agent to create or modify scheduled jobs that run scripts on a recurring basis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed job schedule, script path, runtime user, timeout, retry behavior, and rollback step before enabling it.
+
+Risk: Daemon or service setup can make CronCopilot persist across sessions or system restarts.
+
+Mitigation: Inspect generated service files, startup entries, PID paths, and stop commands before enabling daemon, systemd, launchd, or WSL2 startup modes.
+
+Risk: Package installation and upgrades can change the local runtime environment.
+
+Mitigation: Use pinned releases and isolated virtual environments, and test upgrades before restarting the scheduler.
+
+Risk: Alert configuration examples include SMTP credentials stored in configuration files.
+
+Mitigation: Store credentials in a secret manager or a tightly permissioned file rather than ordinary YAML config.
+
+Risk: Force deletion options may remove task registrations or script files.
+
+Mitigation: Confirm the exact task or script target before using force removal or file deletion options.
+
+## Reference(s):
+
+- [CronCopilot Detailed Reference](artifact/REFERENCE.md)
+- [ClawHub skill page](https://clawhub.ai/eden2f/skills/cron-copilot-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational checklists, command sequences, and configuration examples for local scheduled task management.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter metadata is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

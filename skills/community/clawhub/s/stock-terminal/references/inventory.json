@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "2.0",
+  "scope": "references except inventory.json; SKILL.md separate",
+  "files": [
+    {
+      "path": "references/app-shell.md",
+      "sha256": "ee3ad284cc60e8bcaffcfbad39692bcebc47d53897397aed91d7b2fcff561d9a"
+    },
+    {
+      "path": "references/blocks-and-rendering.md",
+      "sha256": "cc66889fd72d7bd391a4e37fc9b6d9552eb0f8e19660c4533098bf7f507038f2"
+    },
+    {
+      "path": "references/build-in-an-afternoon.md",
+      "sha256": "40a42aea3317d84ebc1e24d8e8ae1b4b087cdfc111dfea296ecd6bce924e0f3b"
+    },
+    {
+      "path": "references/canvas-grammar.md",
+      "sha256": "e0c29ce297cab635367f1259f5ed85f98e3c2b0d9ede68d567a5e87c788d5732"
+    },
+    {
+      "path": "references/commands-and-data.md",
+      "sha256": "5bab21a7eba84a10c1b50af5090ba873e778c7330b24a5549eb743ca299d004c"
+    },
+    {
+      "path": "references/contracts/canvas.schema.json",
+      "sha256": "be076faecfa2f2c4876e3e162c62986c4c9f23ceae0927cee8a1dcad84bace5a"
+    },
+    {
+      "path": "references/contracts/commands.json",
+      "sha256": "5c5770ff8413a431acbd63f58b6a7d711434dba114397e7497b6fde5ee7c021e"
+    },
+    {
+      "path": "references/contracts/events.schema.json",
+      "sha256": "1465b67adfe7fca48b6afde2ee8c12632883ae95d4821552d66005df8076ab6c"
+    },
+    {
+      "path": "references/fixtures/compare.xml",
+      "sha256": "a65b5b601b7c80446ab3d4567bbc59d15685120cbbea468f09acea6aa16336e8"
+    },
+    {
+      "path": "references/fixtures/daily-brief.xml",
+      "sha256": "44681deb27c4ac6a0b7bbc3c5750bc6b63b62ec74009a1d5694d51c806e837f4"
+    },
+    {
+      "path": "references/fixtures/invalid-canvases.json",
+      "sha256": "c60fa552a534d9812c5a2d63fa5adeff4bdc114c7e31d6f34ae7e8d8a1d47482"
+    },
+    {
+      "path": "references/fixtures/stock-snapshot.xml",
+      "sha256": "ec131b935f6f9a2166d57498e8904b6c3f0145bbdb463567fd4f4da99b00cda6"
+    },
+    {
+      "path": "references/fixtures/turns.json",
+      "sha256": "811c641a78effe12eb523e80138b8487cc48de2505a1cdebc1c390cc8228dc19"
+    },
+    {
+      "path": "references/runtime/canvas-validator.mjs",
+      "sha256": "f142d5283d21dd9de4d124476edc282cff3901203b56d2c536dbaec7b7335d31"
+    },
+    {
+      "path": "references/runtime/request-cache.mjs",
+      "sha256": "5477fa7db7ec3724b674042e9caf9c32d9da0d92cd1211e3578a66302dfbc73b"
+    },
+    {
+      "path": "references/runtime/snapshot-adapters.mjs",
+      "sha256": "90108bba0aba24a34799fc2bac894c820b2faa2d83cf661e8900d58fc33ca34f"
+    },
+    {
+      "path": "references/runtime/stream-reducer.mjs",
+      "sha256": "951b030ba584b6b4a6847075cd262244bc37e76a70c50557090749f39f437e7e"
+    },
+    {
+      "path": "references/runtime-and-stream.md",
+      "sha256": "d70c929450b6d76f598beed2fc11479ccc20ab4fd3827d56f36f18de57e827df"
+    },
+    {
+      "path": "references/verification.md",
+      "sha256": "39549ca5cf6e9e2cc427d8814fe8715a0e2f0ff1c67735ac521fcfaf4595f754"
+    }
+  ]
+}

@@ -1,49 +1,61 @@
-## Description: <br>
-Reading intelligence that helps an agent log books, capture quotes, and surface relevant reading context from local markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reading intelligence that logs books, captures quotes, and surfaces saved reads when they are relevant.
 
-## Publisher: <br>
-[ilyabelikin](https://clawhub.ai/user/ilyabelikin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ilyabelikin](https://clawhub.ai/user/ilyabelikin)
 
-## Use Case: <br>
-External users and developers use Pages to give an agent a private, searchable reading memory: books, quotes, notes, ratings, recommendations, and topic-based recall stored as local markdown files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local book notes, ratings, quotes, and recommendation trails can contain sensitive personal reflections that may be resurfaced in later conversations. <br>
-Mitigation: Keep sensitive reflections out of Pages unless the user is comfortable with future recall, and review local files before sharing or syncing the workspace. <br>
-Risk: Optional web lookups and cover-image fetching can disclose reading interests or spend extra tokens. <br>
-Mitigation: Ask before web or image lookups and keep the default image setting disabled unless the user explicitly enables it. <br>
-Risk: Heartbeat or cron reminders can create recurring agent activity that the user may not expect. <br>
-Mitigation: Confirm before adding Pages checks to HEARTBEAT.md or cron, and make the schedule visible to the user. <br>
-Risk: Peeps integration may write recommendation details into personal-network files. <br>
-Mitigation: Ask before cross-writing to Peeps files and keep recommendation links limited to information the user provided. <br>
-Risk: Replacing the skill from an unpinned GitHub main URL can pull unreviewed changes. <br>
-Mitigation: Prefer reviewed ClawHub releases or pinned source revisions when updating the skill. <br>
+## Use Case:
 
+External users use Pages to maintain a private, local reading log that helps their agent save books, quotes, recommendations, and relevant reading context during conversations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ilyabelikin/pages) <br>
-- [Publisher profile](https://clawhub.ai/user/ilyabelikin) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files and concise conversational guidance with optional shell commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local files under mind/pages/ and may suggest optional reminder or integration changes when the user approves.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Unverified self-update instructions and README install examples can replace skill content from a moving upstream source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned, reviewed release and avoid replacing SKILL.md directly from the main branch.
+
+Risk: Reading logs may contain sensitive personal notes, recommendations, and relationship context.
+
+Mitigation: Keep notes local by default and review before enabling web lookups or Peeps and Haah integrations.
+
+Risk: Recurring HEARTBEAT or cron checks can surface reading context unexpectedly.
+
+Mitigation: Enable recurring checks only after explicit approval and review the schedule and output behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ilyabelikin/skills/pages)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Haah integration](https://github.com/haah-ing/haah-skill)
+- [Peeps integration](https://github.com/haah-ing/peeps-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reading-log entries, brief confirmations, grep or shell commands, and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local files under mind/pages/; optional web lookups, Peeps or Haah integrations, and recurring checks should be explicitly approved.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

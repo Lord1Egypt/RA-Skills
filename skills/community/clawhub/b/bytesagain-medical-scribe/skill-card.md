@@ -1,41 +1,57 @@
-## Description: <br>
-Generate medical documents from clinical notes. Input: patient info, symptoms, diagnosis. Output: SOAP notes, discharge summaries, referral letters, prescription drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate medical documents from clinical notes. Input: patient info, symptoms, diagnosis. Output: SOAP notes, discharge summaries, referral letters, prescription drafts.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Clinicians and healthcare staff use this skill to turn raw clinical notes into draft SOAP notes, discharge summaries, referral letters, and prescription drafts for review before EHR entry. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient-identifying or sensitive clinical information may be exposed through command-line arguments, shell history, process listings, or generated drafts. <br>
-Mitigation: Use only in an approved clinical environment, avoid unnecessary real patient identifiers, and follow local privacy controls for generated drafts. <br>
-Risk: Generated diagnoses, medication details, doses, interactions, or EHR-ready content may be clinically incomplete or incorrect. <br>
-Mitigation: Have a licensed medical professional verify diagnoses, medications, doses, interactions, and all EHR content before use. <br>
+## Use Case:
 
+Clinicians and clinical support staff use this skill to draft SOAP notes, discharge summaries, referral letters, and prescription drafts from patient details and clinical notes. Outputs are drafts only and require licensed professional review before clinical use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/loutai0307-prog/bytesagain-medical-scribe) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Structured plain text medical document drafts emitted by a Bash command-line script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output; licensed medical professional review is required before clinical use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated clinical documents may be incorrect, incomplete, or unsuitable for a patient's actual care context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review, correction, and approval by a licensed medical professional before use in clinical workflows.
+
+Risk: Draft output includes built-in vendor branding that may be inappropriate in EHR, referral, prescription, or discharge records.
+
+Mitigation: Remove the vendor footer before pasting generated content into clinical records.
+
+Risk: Command-line inputs may include sensitive patient information.
+
+Mitigation: Use only in environments approved for the clinical workflow and handle inputs according to applicable privacy and data-handling policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-medical-scribe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Structured plain text medical document drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft SOAP notes, discharge summaries, referral letters, prescription drafts, and template listings include visible review warnings and vendor branding.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

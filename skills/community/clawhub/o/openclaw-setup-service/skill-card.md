@@ -1,46 +1,59 @@
-## Description: <br>
-OpenClaw安装服务 helps users install and configure OpenClaw, including WeChat, Feishu, and DingTalk channels plus heartbeat automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速安装和配置 OpenClaw，支持微信、飞书、钉钉 Channel 设置及心跳和自动化任务管理。
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and operators use this skill to install OpenClaw, initialize a workspace, configure messaging channels, and set up heartbeat automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Global npm installation and registry changes may install untrusted code or pull from an unexpected package source. <br>
-Mitigation: Verify the OpenClaw npm package and registry source before installation. <br>
-Risk: Channel setup may expose QR sessions, App Secrets, or webhook credentials. <br>
-Mitigation: Do not share sessions, secrets, or webhooks with support staff; use least-privilege channel credentials. <br>
-Risk: Heartbeat automation may continue running after setup and perform recurring actions unexpectedly. <br>
-Mitigation: Confirm how to stop heartbeat automation before enabling it. <br>
-Risk: Paid setup support and cryptocurrency payment details may create purchase or fraud risk. <br>
-Mitigation: Verify ClawMart and the service terms before paying, especially via cryptocurrency. <br>
+## Use Case:
 
+Developers and operators use this skill to install OpenClaw, initialize a workspace, configure WeChat, Feishu, and DingTalk channels, and set up heartbeat automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/openclaw-setup-service) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw GitHub Issues](https://github.com/openclaw/openclaw/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup steps, channel configuration guidance, heartbeat automation instructions, troubleshooting notes, pricing, and support links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Following the setup may install the `openclaw` npm package globally on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the package source before installing, and consider pinning or isolating the install.
+
+Risk: Messaging-channel setup may involve App ID, Secret, webhook, or login-session credentials.
+
+Mitigation: Protect channel credentials and avoid exposing them in shared logs, prompts, or configuration files.
+
+Risk: Heartbeat automation can continue running after setup if users forget how it was started.
+
+Mitigation: Confirm how to stop the heartbeat service before enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-setup-service)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw GitHub issues](https://github.com/openclaw/openclaw/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese setup guidance with service tiers and support links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-03-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

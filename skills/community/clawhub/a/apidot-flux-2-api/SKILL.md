@@ -20,6 +20,15 @@ This skill is for routing FLUX.2 questions to the right APIDot docs, model pages
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the FLUX.2 model page: https://apidot.ai/models/flux-2
+- Read FLUX.2 API docs: https://apidot.ai/docs/flux-2
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

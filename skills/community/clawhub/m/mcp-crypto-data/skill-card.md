@@ -1,42 +1,59 @@
-## Description: <br>
-Real-time cryptocurrency prices, network fee estimates, and Lightning Network statistics via L402 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Real-time cryptocurrency prices, network fee estimates, and Lightning Network statistics via L402 API.
 
-## Publisher: <br>
-[haveblue997](https://clawhub.ai/user/haveblue997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haveblue997](https://clawhub.ai/user/haveblue997)
 
-## Use Case: <br>
-Developers and agents use this MCP skill to retrieve crypto market prices, estimate transaction fees, and check Lightning Network health for portfolio monitoring, fee planning, and market-data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package, tool-name, and environment-variable mismatches could cause agents to install or configure a different package than intended. <br>
-Mitigation: Verify the intended npm package name before installation, pin the npx package version when possible, and use the environment variable expected by the runtime. <br>
-Risk: API requests may be metered through L402 micropayments. <br>
-Mitigation: Review pricing and usage expectations before enabling the skill in workflows that can make repeated requests. <br>
+## Use Case:
 
+Developers and external agents use this skill to retrieve cryptocurrency prices, network fee estimates, and Lightning Network statistics for portfolio checks, transaction planning, market-data workflows, and network health monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haveblue997/mcp-crypto-data) <br>
-- [Blue-Trianon-Ventures GitHub profile](https://github.com/Blue-Trianon-Ventures) <br>
-- [NautDev API base URL](https://api.nautdev.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API Calls, configuration] <br>
-**Output Format:** [MCP tool responses containing JSON-formatted text, plus MCP server configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides price lookup by coin identifier and parameterless fee and Lightning Network statistics tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and package.json) <br>
+Risk: Install instructions execute an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the package to a reviewed exact version before installing or deploying the MCP server.
+
+Risk: Package names, tool names, and environment variables differ across the artifact files.
+
+Mitigation: Confirm the authoritative package name and base URL environment variable, then align client configuration before use.
+
+Risk: Tool calls contact an external crypto API and may incur L402 micropayment charges.
+
+Mitigation: Review pricing and trust the API provider before enabling the skill in cost-sensitive or production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haveblue997/skills/mcp-crypto-data)
+- [Blue-Trianon-Ventures](https://github.com/Blue-Trianon-Ventures)
+- [Nautdev API base URL](https://api.nautdev.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Text containing JSON-formatted cryptocurrency API results or JSON-formatted error objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool calls contact an external crypto API and may involve metered L402 micropayments.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

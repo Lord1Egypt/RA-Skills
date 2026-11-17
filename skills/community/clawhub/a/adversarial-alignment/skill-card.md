@@ -1,38 +1,53 @@
-## Description: <br>
-Maintain calibrated tension with Morpheus/Trinity/RedHat by producing adversarial signals that harden plans without damaging system integrity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintain calibrated tension with Morpheus/Trinity/RedHat by producing adversarial signals that harden plans without damaging system integrity.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Agents and operators use this skill to review upstream plans, identify fragile assumptions or governance unknowns, and return a structured challenge, block, or accept verdict before action is taken. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic planning phrases may invoke the skill in broader planning conversations. <br>
-Mitigation: Invoke it by name when a deliberate adversarial review is needed. <br>
+## Use Case:
 
+Agents, developers, and reviewers use this skill to challenge upstream plans, surface weak assumptions, and request clarifications before execution. It is intended for planning review, not for autonomous execution or financial recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/adversarial-alignment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Structured text with a verdict, objections, required clarifications, unknowns, and response draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool execution, persistence, hidden access, or data collection was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger phrases may invoke the skill more often than expected during planning conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when adversarial planning review is desired, and review generated objections before acting on them.
+
+Risk: Adversarial feedback can introduce incorrect or misleading objections into a plan review.
+
+Mitigation: Treat outputs as review guidance and confirm objections, unknowns, and block decisions against governance and safety requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/adversarial-alignment)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown or structured text containing an adversarial_alignment_result with verdict, objections, required clarifications, unknowns, and a response draft.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is bounded by the skill policy, including max_objections and max_words when supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

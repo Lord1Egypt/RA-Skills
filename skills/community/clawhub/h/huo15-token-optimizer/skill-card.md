@@ -1,46 +1,61 @@
-## Description: <br>
-Huo15 Token Optimizer scans, reports, monitors, and can clean OpenClaw workspace token usage with dry-run previews and backup-first file changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+辉火 Token 优化器 — 在不降低 OpenClaw 性能的前提下，系统化扫描、清理、监控工作区 token 消耗。安全模式：默认 dry-run，备份先行，AGENTS 永不自动替换。
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect OpenClaw workspace context files, estimate token usage, generate token reports, monitor oversized workspace files, and preview cleanup actions before modifying files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forced cleanup can truncate DREAMS.md files in OpenClaw workspaces. <br>
-Mitigation: Run scan and clean --dry-run first, inspect the preview, and use --force only after confirming the proposed truncation and backup location. <br>
-Risk: The artifact contains an AGENTS.md replacement path guarded by auto_replace_agents, while the public safety text says AGENTS.md is never automatically replaced. <br>
-Mitigation: Keep auto_replace_agents set to false, review config changes before use, and manually inspect any AGENTS.md action before accepting cleanup. <br>
-Risk: Backups are written under ~/.openclaw/.token-opt-backups and restoration depends on date-based backup folders. <br>
-Mitigation: Confirm the backup directory exists after cleanup and retain the backup date needed for clean.py --restore. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to scan workspace memory and instruction files, preview token cleanup actions, generate token reports, monitor size thresholds, and restore files from backups.
 
-## Reference(s): <br>
-- [Token Best Practices](references/token-best-practices.md) <br>
-- [OpenClaw Configuration Guide](references/openclaw-config-guide.md) <br>
-- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) <br>
-- [DeepSeek Context Caching](https://api-docs.deepseek.com/guides/context_caching) <br>
-- [OpenClaw Configuration Reference](https://docs.openclaw.ai/gateway/configuration-reference.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON scan output, and Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cleanup defaults to dry-run unless --force is supplied; reports and monitoring alerts are generated from local OpenClaw workspace files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can modify persistent OpenClaw workspace memory files, including DREAMS.md, after confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dry-run output before execution, keep an independent backup, and use forced cleanup only after confirming the proposed file changes.
+
+Risk: Custom workspace or restore paths can increase the chance of unintended file changes.
+
+Mitigation: Avoid custom --workspace and --restore paths unless they have been manually checked against the intended OpenClaw workspace.
+
+Risk: Replacing AGENTS.md could alter user-specific instructions or rules.
+
+Mitigation: Keep auto_replace_agents false and review AGENTS.md changes manually; the artifact states AGENTS.md is never automatically replaced by default.
+
+## Reference(s):
+
+- [Token Best Practices](references/token-best-practices.md)
+- [OpenClaw Configuration Guide](references/openclaw-config-guide.md)
+- [Anthropic Prompt Caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)
+- [DeepSeek Context Caching](https://api-docs.deepseek.com/guides/context_caching)
+- [OpenClaw Configuration Reference](https://docs.openclaw.ai/gateway/configuration-reference.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script-generated JSON or Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cleanup defaults to dry-run and requires explicit force execution; restore uses dated backups.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

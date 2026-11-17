@@ -1,43 +1,61 @@
-## Description: <br>
-连接时间之河（timehe.com）时间胶囊平台，帮助用户创建时间胶囊、每日写作、查看胶囊、管理团队胶囊和使用扫码写信亭。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+连接时间之河（timehe.com）时间胶囊平台，帮助用户创建时间胶囊、每日写作、查看胶囊、参与团队胶囊和使用扫码写信亭。
 
-## Publisher: <br>
-[yigenyecao-afk](https://clawhub.ai/user/yigenyecao-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yigenyecao-afk](https://clawhub.ai/user/yigenyecao-afk)
 
-## Use Case: <br>
-External users use this skill to connect an agent to Timehe's time-capsule service, create and review personal or team capsules, answer daily writing prompts, and guide emotional writing workflows for future recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may handle personal messages, recipient details, and future unlock dates that users expect to remain private. <br>
-Mitigation: Treat capsule content and recipient metadata as sensitive; confirm recipient, unlock date, and message content before create or submit actions. <br>
-Risk: Authenticated operations require a Timehe access token. <br>
-Mitigation: Provide only a Timehe-specific token through a secure environment variable, and do not paste tokens into chat or screenshots. <br>
+## Use Case:
 
+External users use this skill to manage Timehe time capsules through an agent, including creating capsules, retrieving writing prompts, submitting entries, viewing capsule status, and contributing to team capsules. It is intended for personal, family, partner, future-self, and team memory workflows connected to the Timehe service.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yigenyecao-afk/timehe) <br>
-- [Timehe Website](https://www.timehe.com) <br>
-- [Timehe API Base](https://www.timehe.com/api) <br>
-- [Timehe Booth](https://www.timehe.com/booth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration] <br>
-**Output Format:** [Markdown with JSON examples and API request descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated capsule operations require a TIMEHE_TOKEN; some team contribution and article-reading flows are described as public.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release metadata) <br>
+Risk: The skill may process intimate personal, family, partner, team, or future-self messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm user intent before sending sensitive capsule text to Timehe and avoid exposing capsule contents to third parties.
+
+Risk: Authenticated actions may use a Timehe bearer token.
+
+Mitigation: Use only tokens the user is comfortable granting to Timehe-related actions, avoid displaying tokens, and do not ask users to paste tokens unnecessarily.
+
+Risk: Broad trigger wording could activate the skill during emotionally sensitive writing tasks.
+
+Mitigation: Keep responses scoped to the user's requested Timehe action and ask for confirmation before creating capsules or submitting entries.
+
+## Reference(s):
+
+- [Timehe website](https://www.timehe.com)
+- [Timehe API base](https://www.timehe.com/api)
+- [Timehe booth](https://www.timehe.com/booth)
+- [ClawHub skill page](https://clawhub.ai/yigenyecao-afk/skills/timehe)
+- [ClawHub publisher profile](https://clawhub.ai/user/yigenyecao-afk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline JSON examples and API endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use the optional TIMEHE_TOKEN environment variable for authenticated Timehe API actions.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

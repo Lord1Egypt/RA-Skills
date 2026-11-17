@@ -1,51 +1,68 @@
-## Description: <br>
-A meta-framework for designing, building, and orchestrating an ecosystem of strategically-aligned agent skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A meta-framework for designing, building, and orchestrating an ecosystem of strategically-aligned agent skills.
 
-## Publisher: <br>
-[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielfoojunwei](https://clawhub.ai/user/danielfoojunwei)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design, govern, register, and orchestrate related agent skills around shared intent, data contracts, decision logging, and ecosystem-level workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow conditions in the orchestrator can run arbitrary Python when evaluated. <br>
-Mitigation: Do not run the orchestrator on untrusted workflow definitions; remove eval or replace it with a constrained condition parser before operational use. <br>
-Risk: The framework can guide registry changes, self-modification, and high-impact multi-skill workflows. <br>
-Mitigation: Require explicit user approval before registry updates, recursive skill changes, purchases, crypto-related activity, or other high-impact workflows. <br>
-Risk: Audit and decision logs may capture secrets, personal data, or exact prompts. <br>
-Mitigation: Redact sensitive values and avoid storing secrets, personal data, and exact prompts in logs. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to design, register, and orchestrate related agent skills with shared intent, data contracts, workflow patterns, and audit templates. It is intended for building governable multi-skill ecosystems rather than completing a single narrow task.
 
-## Reference(s): <br>
-- [Intent-Engineering Skill Page](https://clawhub.ai/danielfoojunwei/intent-engineer) <br>
-- [Agent Decision Framework: How the Agent Operates](references/agent_decision_framework.md) <br>
-- [Data Contracts Guide: Defining Machine-Readable Skill Interfaces](references/data_contracts_guide.md) <br>
-- [Ecosystem Governance: Managing the Skill Ecosystem](references/ecosystem_governance.md) <br>
-- [Integration Patterns: Composing Skills into Workflows](references/integration_patterns.md) <br>
-- [Recursive Skill Development: How the Agent Improves Itself](references/recursive_skill_development.md) <br>
-- [Shared Intent Framework: Organization-Wide Goals and Values](references/shared_intent.md) <br>
-- [Skill Registry](references/skill_registry.json) <br>
-- [Phase 1: Deconstruct Intent Worksheet](references/deconstruct-intent-worksheet.md) <br>
-- [Phase 2: Workflow Design Template](references/workflow-design-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON schemas, Python snippets, templates, and shell commands when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce workflow definitions, registry entries, data contracts, and audit or decision logs for skill ecosystems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The orchestration script includes unsafe eval-based condition handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not run the orchestrator on untrusted workflow configurations; remove or replace eval-based condition handling before deployment.
+
+Risk: The skill asks the agent to broadly govern behavior, expand scope, log decisions, and update skills recursively.
+
+Mitigation: Require explicit user approval for scope expansion, logging, recursive framework updates, and changes to existing skills.
+
+Risk: The security verdict is suspicious.
+
+Mitigation: Review the skill before installing and deploy it only when a broad governance framework is specifically needed.
+
+## Reference(s):
+
+- [Agent Decision Framework](references/agent_decision_framework.md)
+- [Data Contracts Guide](references/data_contracts_guide.md)
+- [Support Ticket Data Contract](references/data_contracts_support_ticket.json)
+- [Sentiment Response Data Contract](references/data_contracts_sentiment_response.json)
+- [Deconstruct Intent Worksheet](references/deconstruct-intent-worksheet.md)
+- [Ecosystem Governance](references/ecosystem_governance.md)
+- [Integration Patterns](references/integration_patterns.md)
+- [Recursive Skill Development](references/recursive_skill_development.md)
+- [Shared Intent Framework](references/shared_intent.md)
+- [Skill Registry](references/skill_registry.json)
+- [Workflow Design Template](references/workflow-design-template.md)
+- [JSON Schema Draft 7](http://json-schema.org/draft-07/schema#)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with referenced JSON schemas, Python scripts, and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or modify skill files, workflow definitions, data contract schemas, registry entries, and audit logs when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

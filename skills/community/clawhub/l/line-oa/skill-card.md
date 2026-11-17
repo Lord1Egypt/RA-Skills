@@ -1,45 +1,56 @@
-## Description: <br>
-Operate LINE Official Account Manager (chat.line.biz) via browser automation to check LINE messages, reply to LINE customers, and manage the LINE OA chat interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate LINE Official Account Manager (chat.line.biz) via browser automation to check messages, reply to customers, and manage the LINE OA chat interface.
 
-## Publisher: <br>
-[PicSeeInc](https://clawhub.ai/user/PicSeeInc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[picseeinc](https://clawhub.ai/user/picseeinc)
 
-## Use Case: <br>
-Employees or support agents use this skill to operate a LINE Official Account through an isolated OpenClaw browser session, including checking unread customer chats, reading conversation history, replying to customers, and managing account chat notes or tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read customer chat content from a LINE Official Account. <br>
-Mitigation: Install and use it only for accounts where the agent is authorized to view customer messages. <br>
-Risk: The skill can send live replies and change notes or tags in the LINE OA chat interface. <br>
-Mitigation: Supervise the agent and require confirmation before sending replies or making chat metadata changes. <br>
-Risk: The skill can forward customer images outside LINE. <br>
-Mitigation: Forward customer images only when there is a clear business need and the handling is allowed by the account's data policy. <br>
-Risk: An active browser session can keep LINE OA access available after use. <br>
-Mitigation: Log out or stop the OpenClaw browser service when the session should no longer be available. <br>
+## Use Case:
 
+Customer support and operations teams use this skill to work with LINE Official Account Manager through an agent-controlled browser. It helps check unread chats, review message history, reply to customers, manage notes and tags, and switch official accounts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/PicSeeInc/line-oa) <br>
-- [LINE Official Account Manager](https://chat.line.biz/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline browser actions, shell commands, JavaScript snippets, and structured chat summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return chat names, message previews, timestamps, unread status, recent message text, image presence, and setup configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata and artifact _meta.json) <br>
+Risk: Customer chat content can be accessed or exported from a logged-in LINE OA browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with authorized LINE OA accounts, require explicit confirmation before exporting customer images, and use a skill-specific download folder.
+
+Risk: The skill can send replies and manage notes or tags in a live business account.
+
+Mitigation: Require human confirmation before customer-facing replies or account-record changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/picseeinc/skills/line-oa)
+- [Publisher profile](https://clawhub.ai/user/picseeinc)
+- [LINE Official Account Manager](https://chat.line.biz/)
+- [LINE Official Account Manager entry](https://manager.line.biz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with JavaScript snippets, browser actions, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize LINE OA chat data and guide browser actions in an isolated OpenClaw session.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

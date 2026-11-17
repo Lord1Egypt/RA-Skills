@@ -1,43 +1,53 @@
-## Description: <br>
-Dada helps developers integrate with the Dada instant delivery API for order creation, status queries, cancellation, fee estimation, callback handling, merchant onboarding, and store management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dada is a same-city delivery guide for platform selection, merchant integration, delivery API workflows, order lifecycle handling, fee estimation, callbacks, and shipping constraints.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and integration engineers use this skill to plan and implement Dada delivery workflows, including API authentication, delivery order lifecycle handling, callbacks, and operational error handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API secrets or delivery personal data could be exposed in chats, prompts, or logs during integration work. <br>
-Mitigation: Keep API secrets out of chats and logs, and redact or minimize customer and courier names, phone numbers, addresses, coordinates, signatures, and order identifiers. <br>
-Risk: Live order creation, cancellation, or callback processing could affect real delivery operations if tested carelessly. <br>
-Mitigation: Test against the QA endpoint first, confirm before live order or cancellation actions, protect callback endpoints, and validate callback signatures. <br>
+## Use Case:
 
+Developers and merchants use this skill to understand Dada same-city delivery scenarios, compare delivery options, and plan API integration for order creation, status queries, cancellations, fee estimates, callback handling, merchant registration, and shop setup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhangifonly/dada) <br>
-- [Dada Production API Endpoint](https://newopen.imdada.cn) <br>
-- [Dada QA API Endpoint](https://newopen.qa.imdada.cn) <br>
-- [Dada Add Order Endpoint](https://newopen.imdada.cn/api/order/addOrder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown with API examples and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes request examples, signature guidance, callback handling notes, and status tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The skill recommends recording all API request and response logs, which can expose customer names, phone numbers, addresses, coordinates, callback URLs, signatures, and secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Log only allowlisted operational fields, redact personal data and credentials, restrict log access, and use short retention for delivery API logs.
+
+## Reference(s):
+
+- [Dada Open Platform production API](https://newopen.imdada.cn)
+- [Dada Open Platform test API](https://newopen.qa.imdada.cn)
+- [Dada add order endpoint](https://newopen.imdada.cn/api/order/addOrder)
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/dada)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, API Calls, Configuration]
+
+**Output Format:** [Markdown with API examples and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include delivery API request examples, callback handling guidance, order status mappings, and integration recommendations.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

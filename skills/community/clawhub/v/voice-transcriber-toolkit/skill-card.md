@@ -1,45 +1,56 @@
-## Description: <br>
-Voice Transcriber Toolkit supports speech recognition with Whisper and Vosk engines, batch audio transcription, audio conversion, and SRT/VTT subtitle export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice-to-text transcription toolkit supporting Whisper and Vosk engines, batch processing, audio conversion, and SRT/VTT subtitle export.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and automation agents use this skill to transcribe local audio files, process batches of recordings, convert audio to WAV, and generate subtitle files for meetings, media, or documentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the skill requires ffmpeg and Python media/transcription packages, which introduce ordinary dependency and media-processing risks. <br>
-Mitigation: Install only in an environment where those dependencies are acceptable, and use pinned dependencies or a sandbox when reproducible or isolated execution is required. <br>
-Risk: Audio files may contain sensitive speech content. <br>
-Mitigation: Process sensitive audio only in an approved local environment and review storage, retention, and sharing practices for generated transcripts and subtitles. <br>
-Risk: Audio conversion outputs can overwrite existing files when directed at an important output path. <br>
-Mitigation: Choose non-critical output paths and review conversion targets before running ffmpeg-based conversion. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio files, process batches of recordings, convert audio to WAV, inspect audio metadata, and export transcript segments as SRT or WebVTT subtitles.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/voice-transcriber-toolkit) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [requirements.txt](requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code snippets, shell commands, and structured transcription outputs such as text, JSON-like dictionaries, SRT, and WebVTT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local transcription results and optional subtitle exports; audio conversion depends on ffmpeg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can return fabricated transcript text as a successful-looking result when Whisper or Vosk is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For high-reliability workflows, remove the mock fallback or require the agent to check the returned note, model, and status before trusting transcript text.
+
+Risk: The skill processes local audio files through Python speech libraries and ffmpeg.
+
+Mitigation: Install and run it only in an isolated environment with pinned dependencies when handling sensitive or production audio.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/voice-transcriber-toolkit)
+- [Publisher profile](https://clawhub.ai/user/kaiyuelv)
+- [README](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; runtime helpers return dictionaries, subtitle strings, and audio metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports WAV, MP3, M4A, FLAC, OGG, and WEBM inputs, Whisper or Vosk engines, batch transcription, ffmpeg-based conversion, and SRT/VTT subtitle export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -3,7 +3,7 @@ name: maverick-confluence-mcp
 description: Work with Confluence workspace content through Atlassian Rovo's hosted MCP server. Thin pass-through to Atlassian's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about Confluence pages, spaces, docs, comments, or knowledge-base updates.
 metadata:
   openclaw:
-    emoji: "📘"
+    emoji: '📘'
     homepage: https://support.atlassian.com/atlassian-rovo-mcp-server/docs/setting-up-clients/
     primaryEnv: MAVERICK_CONFLUENCE_MCP_REFRESH_TOKEN
     requires:

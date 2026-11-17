@@ -1,41 +1,59 @@
-## Description: <br>
-Control the Niri Wayland compositor on Linux via its IPC (`niri msg --json` / $NIRI_SOCKET) to query compositor state or perform desktop actions from an OpenClaw agent running inside a Niri session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control the Niri Wayland compositor on Linux via its IPC (`niri msg --json` / `$NIRI_SOCKET`) to query compositor state and perform actions such as focusing, moving, or closing windows, switching workspaces, spawning commands, and reloading configuration from an OpenClaw agent running in a Niri session.
 
-## Publisher: <br>
-[AtefR](https://clawhub.ai/user/AtefR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atefr](https://clawhub.ai/user/atefr)
 
-## Use Case: <br>
-Developers and desktop automation users use this skill to inspect Niri outputs, workspaces, windows, focused state, and event streams, then issue compositor actions such as focusing, moving, or closing windows. It is intended for agents operating in a Linux Niri desktop session with explicit access to the compositor IPC interface. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes broad desktop IPC authority, including actions that can close windows, reload compositor configuration, or affect monitor and workspace state. <br>
-Mitigation: Require explicit user approval before state-changing compositor actions and prefer read-only queries when gathering context. <br>
-Risk: Raw IPC and spawn-sh access can execute powerful operations inside the active desktop session. <br>
-Mitigation: Avoid unattended automation, review raw IPC payloads before sending them, and require approval before spawning commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Niri IPC quick reference](references/ipc.md) <br>
-- [Upstream niri-ipc crate documentation](https://yalter.github.io/niri/niri_ipc/) <br>
-- [ClawHub skill page](https://clawhub.ai/AtefR/niri-ipc) <br>
+## Use Case:
 
+Developers and desktop automation users use this skill to let an agent inspect and control a local Niri Wayland compositor session. It supports querying outputs, workspaces, windows, and focused state, then issuing compositor actions through `niri msg --json` or direct `$NIRI_SOCKET` IPC.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands, Python helper invocations, and JSON IPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include normalized JSON from Niri IPC queries or event streams.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can give an agent broad control of the active Niri desktop session, including focus changes, window movement, close-window actions, output changes, and config reloads.
+
+Mitigation: Review planned compositor actions before execution, prefer read-only queries first, and use exact window IDs or precise workspace names for actions that change or close windows.
+
+Risk: Raw IPC and `spawn-sh` can execute high-impact requests or shell commands in the user's desktop session.
+
+Mitigation: Avoid raw IPC and shell-spawn paths unless necessary; inspect command arguments and JSON requests before running them.
+
+Risk: Substring-based window matching can affect the wrong window when titles or app IDs overlap.
+
+Mitigation: List matching windows first, refine the query, and prefer exact IDs for destructive operations.
+
+## Reference(s):
+
+- [Niri IPC quick reference](references/ipc.md)
+- [Upstream niri-ipc crate docs](https://yalter.github.io/niri/niri_ipc/)
+- [ClawHub skill page](https://clawhub.ai/atefr/skills/niri-ipc)
+- [ClawHub publisher profile](https://clawhub.ai/user/atefr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON IPC examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or forward JSON replies and event-stream lines from Niri IPC commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Organizes public Fantasy Westward Journey updates, events, tournaments, rules, and official announcements without offering cheating, account services, or private-data handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes public Fantasy Westward Journey updates, events, tournaments, rules, and official announcements.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Players, community managers, and content reviewers use this skill to summarize public Fantasy Westward Journey announcements, activity schedules, rewards, tournament information, account-safety guidance, and community rules with source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Game dates, rewards, rules, and event details may change after a summary is produced. <br>
-Mitigation: Verify time-sensitive details against the cited official pages before relying on them. <br>
-Risk: Requests may ask for account trading, cheating, payment bypass, anti-addiction bypass, or private player data. <br>
-Mitigation: Limit use to public official information and refuse prohibited account, cheating, bypass, or private-data assistance. <br>
+## Use Case:
 
+External users and developers use this skill to summarize public Fantasy Westward Journey official pages, activity pages, event announcements, tournament information, and community rules with dates and source links.
 
-## Reference(s): <br>
-- [Fantasy Westward Journey Official Site](https://xyq.163.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CodeKungfu/fantasy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, tables, and checklists with source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve dates and source links because game events and rules change frequently.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill could be misused for requests involving login credentials, private account data, cheating, account trading, payment bypass, or rule evasion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep use limited to public official and community-rule information, and refuse requests involving credentials, private data, cheating, account trading, payment bypass, or evasion guidance.
+
+Risk: Fantasy Westward Journey events, rewards, and rules can change frequently, making summaries stale or incomplete.
+
+Mitigation: Include dates and source links in outputs so users can verify the current official announcement or rule page.
+
+## Reference(s):
+
+- [Fantasy Westward Journey Official Site](https://xyq.163.com/)
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/fantasy)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/codekungfu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, tables, and checklists with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Public information only; outputs should retain dates and source links for time-sensitive game updates.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -24,6 +24,7 @@ The setup writes `.zhizhi-math-coach/config.json`:
 
 ## Recommended Schedule
 
+- Opt-in photo archival: every 5 minutes, claim at most one queued photo batch in an isolated multimodal session; see `photo-intake.md`.
 - Daily 20:30 local time: due review reminders, pending upload reminders, and stale short-term observations.
 - Sunday 20:00 local time: weekly progress review and next-week suggestions.
 - End of semester: generate a summary and holiday review pool.
@@ -50,3 +51,15 @@ For push delivery, use a channel adapter. Feishu/Lark is the default v1 recommen
 - Do not infer new mastery status from time alone.
 - Do not schedule automatic worksheet generation by default.
 - Do not auto-create cron jobs merely because the skill was installed; require an explicit setup trigger or existing automation config.
+
+## Photo Archive Worker
+
+```bash
+python3 {baseDir}/scripts/setup_scheduled_tasks.py \
+  --workspace <personal-learning-workspace> \
+  --enable-config --photo-worker --auto-register --timezone Asia/Shanghai
+```
+
+`--photo-worker` sets `automation.allow_photo_archive: true` and adds a `*/5 * * * *` isolated worker. Its write authorization applies only to explicitly queued photo batches. General reminder tasks remain read-only unless `allow_record_writes` is separately enabled. The worker documents all questions and updates per-knowledge-point evidence through `photo_jobs.py finish`; it does not enable automatic worksheet creation or publishing.
+
+The queue has leases, heartbeat, capped retries and persistent failure details. Configure a multimodal model that can open the saved local images; a text-only cron model cannot perform the task. If the CLI/gateway is unavailable, printed commands are setup instructions, not a registered or running worker. Verify a real image run in the target environment.

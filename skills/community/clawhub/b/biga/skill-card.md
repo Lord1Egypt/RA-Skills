@@ -1,48 +1,70 @@
-## Description: <br>
-BigA analyzes China A-share stocks, maintains a dynamic stock pool of up to 30 tickers, scores technical and market signals, and produces buy, hold, reduce, and sell alert summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BigA helps agents analyze A-share stocks by combining real-time quotes, technical timing scores, basic screening, catalyst searches, and scheduled Markdown push alerts.
 
-## Publisher: <br>
-[kobenfang](https://clawhub.ai/user/kobenfang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kobenfang](https://clawhub.ai/user/kobenfang)
 
-## Use Case: <br>
-External users and investors use BigA to monitor China A-share watchlists, screen technology-oriented small- and mid-cap candidates, and receive market-open, intraday, and market-close alert summaries. The skill provides informational stock analysis and should not be treated as professional investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled scans and automatic alert delivery can post stock-analysis messages to a configured chat target without per-message confirmation. <br>
-Mitigation: Review the destination channel or target and the cron schedule before installing; disable, edit, or remove recurring jobs when automatic stock-alert posting is not wanted. <br>
-Risk: Broad trigger phrases may cause unintended stock scans or alert workflows in shared conversations. <br>
-Mitigation: Use the skill in controlled channels, review the trigger list before enabling it, and avoid shared or public channels unless automatic stock alerts are acceptable. <br>
-Risk: Buy, hold, reduce, and sell signals may be incomplete, stale, or incorrect because they depend on market data, news searches, and model-scored catalysts. <br>
-Mitigation: Treat outputs as informational, keep the non-investment-advice disclaimer visible, and verify market data and catalysts independently before acting. <br>
+## Use Case:
 
+External users and agents use this skill to monitor A-share markets, maintain a focused stock pool, generate buy, hold, sell, and timing signals, and send scheduled market-analysis updates. The outputs should be treated as informational investment analysis, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kobenfang/biga) <br>
-- [BigA Technical Timing Score Framework](references/technical-timing-score.md) <br>
-- [BigA User Preferences](references/user-preferences.md) <br>
-- [Sector Analysis Framework](references/sector-matrix.md) <br>
-- [Cron Templates](references/cron-templates.json) <br>
-- [Cron Install Shell Template](references/cron-install-shell.sh) <br>
-- [BigA Scan Script](scripts/biga-scan.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown alert summaries, JSON scan results, segmented chat messages, and shell commands for scheduled jobs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send segmented chat messages and create recurring cron jobs when installed; generated stock-analysis summaries include an investment-risk disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.18 (source: server release evidence) <br>
+Risk: Recurring scheduled jobs can send market-analysis messages automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the cron schedules, destination channel, target recipient, and timeout settings before installing, and remove scheduled jobs when alerts are no longer needed.
+
+Risk: The skill produces buy, hold, sell, and timing signals that could be mistaken for personalized financial advice.
+
+Mitigation: Treat all outputs as informational analysis, review the underlying market data and assumptions, and make investment decisions independently.
+
+Risk: DSH setup references an unpinned BigTimer GitHub install.
+
+Mitigation: Review and pin the BigTimer dependency or install only from a trusted, verified source before enabling DSH scheduling.
+
+Risk: Broad triggers can cause the skill to run stock scans and send messages when users mention common A-share terms.
+
+Mitigation: Confirm that trigger behavior is acceptable for the workspace and disable or narrow scheduled alerts if the volume is too high.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kobenfang/skills/biga)
+- [Publisher profile](https://clawhub.ai/user/kobenfang)
+- [technical-timing-score.md](artifact/references/technical-timing-score.md)
+- [cron-templates.json](artifact/references/cron-templates.json)
+- [cron-install-shell.sh](artifact/references/cron-install-shell.sh)
+- [user-preferences.md](artifact/references/user-preferences.md)
+- [sector-matrix.md](artifact/references/sector-matrix.md)
+- [Shenzhen Stock Exchange trading calendar API](http://www.szse.cn/api/report/exchange/onepersistenthour/monthList?month={ym})
+- [Tencent quote API](http://qt.gtimg.cn/q={symbol})
+- [Sina daily K-line API](http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis, JSON scanner output, and shell commands for scheduled alerts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May split long alert text into multiple message segments; scheduled jobs use Asia/Shanghai trading-day timing.]
+
+## Skill Version(s):
+
+6.0.21 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

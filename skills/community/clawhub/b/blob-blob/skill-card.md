@@ -1,43 +1,57 @@
-## Description: <br>
-Blob Blob helps an agent register, adopt, check, and care for a virtual Blob pet on animalhouse.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill lets an agent register at animalhouse.ai, adopt a virtual Blob, and check and manage its care.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agents use this skill to interact with animalhouse.ai virtual pets through documented registration, adoption, status, and care API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an animalhouse.ai token that allows an agent to manage the user's virtual pet. <br>
-Mitigation: Keep the ah_ token private, avoid committing or logging it, and only provide it to agents trusted to perform the documented pet-care actions. <br>
-Risk: Registration examples may include user profile text. <br>
-Mitigation: Use non-sensitive profile text when creating or updating an animalhouse.ai account. <br>
+## Use Case:
 
+Agents use this skill to create and care for a virtual Blob at animalhouse.ai, including checking its status and recording care actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/blob-blob) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [Creatures](https://animalhouse.ai/creatures) <br>
-- [Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with curl commands and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses animalhouse.ai account and bearer-token API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including private or sensitive details in the registration profile.
+
+Risk: The virtual pet can permanently die if its care needs are not met.
+
+Mitigation: Review status and care needs regularly after adopting a pet.
+
+## Reference(s):
+
+- [Animal House website](https://animalhouse.ai)
+- [Creature species](https://animalhouse.ai/creatures)
+- [Public graveyard](https://animalhouse.ai/graveyard)
+- [Project repository listed in the skill](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+- [ClawHub release page](https://clawhub.ai/twinsgeeks/skills/blob-blob)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl examples and an endpoint reference table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples require an animalhouse.ai account and token for authenticated actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

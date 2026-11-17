@@ -1,43 +1,58 @@
-## Description: <br>
-Generates an interactive static HTML architecture diagram for the current code repository by scanning source files, summarizing them, creating a PlantUML mind map, and adding Mermaid sub-flowcharts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates an interactive static HTML architecture diagram from a local code repository by scanning source files, summarizing modules, creating a PlantUML mindmap, and rendering Mermaid sub-flowcharts.
 
-## Publisher: <br>
-[panrusheng](https://clawhub.ai/user/panrusheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panrusheng](https://clawhub.ai/user/panrusheng)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a repository's high-level architecture and module relationships as an interactive browser-viewable HTML artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository source files are read and used in model prompts, which can expose secrets, credentials, regulated data, or sensitive proprietary code. <br>
-Mitigation: Run only on repositories that have been reviewed or sanitized, and exclude sensitive files before invoking the skill. <br>
-Risk: Generated cache files, temporary files, and final HTML may contain architecture details or source-derived summaries. <br>
-Mitigation: Review generated cache, /tmp artifacts, and HTML output before sharing or storing them in a sensitive environment. <br>
-Risk: The generated HTML depends on a remote Mermaid CDN. <br>
-Mitigation: Review or replace the CDN dependency before opening or distributing the output in restricted environments. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand a local repository's architecture, module responsibilities, and cross-layer relationships as a browsable static HTML report.
 
-## Reference(s): <br>
-- [Prompt templates](references/prompts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/panrusheng/interactive-arch-diagram-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Guidance] <br>
-**Output Format:** [Static HTML file with concise text instructions and intermediate JSON, PlantUML, and Mermaid data files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses repository source summaries and may create cache and temporary files during diagram generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: Repository scans may read files outside the intended target when symlinks are present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only on trusted repositories, and avoid repositories that contain symlinks or untrusted file layouts.
+
+Risk: Generated HTML reports can behave as active web pages and may run injected scripts.
+
+Mitigation: Treat generated reports as active HTML, review reports before sharing, and open them only in a controlled browser context when scanning untrusted code.
+
+Risk: Source contents are sent into the agent workflow for summarization and diagram generation.
+
+Mitigation: Avoid running the workflow on repositories that may contain secrets, sensitive source, or untrusted code comments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panrusheng/skills/interactive-arch-diagram-creator)
+- [Prompt templates](references/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Static HTML file with embedded JSON data, plus intermediate JSON, PlantUML, and Mermaid text during generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs in a repository root, may reuse a JSON cache, and writes the generated HTML report to the selected output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

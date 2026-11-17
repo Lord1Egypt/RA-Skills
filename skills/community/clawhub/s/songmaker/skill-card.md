@@ -1,39 +1,59 @@
-## Description: <br>
-Songmaker generates complete songs from text descriptions or supplied lyrics by using SenseAudio to write lyrics and compose music. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a complete song from a text description by drafting lyrics, composing music, and returning downloadable audio and cover art links.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-External users and developers use this skill to turn a song idea, lyrics, or style preferences into generated lyrics, audio, and cover art through SenseAudio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Song prompts, lyrics, titles, and style preferences are sent to SenseAudio using the user's API key. <br>
-Mitigation: Avoid submitting private, proprietary, or sensitive lyrics unless you accept SenseAudio's handling of that data. <br>
+## Use Case:
 
+External users and agents use this skill to create songs, background music, or audio from a description or supplied lyrics through SenseAudio.
 
-## Reference(s): <br>
-- [SenseAudio homepage](https://senseaudio.cn) <br>
-- [SenseAudio API key page](https://senseaudio.cn/platform/api-key) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with shell command snippets and generated song links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns generated lyrics for review and, on success, downloadable audio and cover art links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Shell examples insert user-supplied prompts, lyrics, titles, and style text directly into command payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rewrite command examples to construct JSON with jq or another serializer before using untrusted user text.
+
+Risk: Prompts and lyrics may contain sensitive or private material sent to an external song-generation service.
+
+Mitigation: Use the skill only with non-sensitive prompts and lyrics unless the user has reviewed and accepted the service handling requirements.
+
+Risk: Literal use of the snippets with untrusted inputs could expose API keys or local files through shell injection.
+
+Mitigation: Treat snippets as examples, quote variables safely, avoid shell evaluation of user text, and keep SENSEAUDIO_API_KEY out of logs and shared output.
+
+## Reference(s):
+
+- [SenseAudio homepage](https://senseaudio.cn)
+- [SenseAudio API key page](https://senseaudio.cn/platform/api-key)
+- [ClawHub Songmaker skill page](https://clawhub.ai/scikkk/skills/songmaker)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Guidance, Text]
+
+**Output Format:** [Markdown with bash command examples and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY; returns song status, title, duration, audio URL, and cover art URL on success.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

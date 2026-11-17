@@ -1,0 +1,27 @@
+{
+  "name": "tiktok-comment-consumer-insights",
+  "version": "1.1.1",
+  "description": "从TikTok评论和相关内容中归纳用户问题、消费者问题、购买顾虑、使用反馈、需求词和情绪证据，用于评论区洞察、用户反馈总结、产品改进和客服话术准备。TikTok 达人/博主公开作品、关键词搜索、视频评论数据获取，输出结构化 JSON，供 AI 直接做选题、竞品监控与舆情分析。",
+  "keywords": [
+    "tiktok",
+    "search",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node scripts/tiktok/search-cli.js",
+    "post": "node scripts/tiktok/post-cli.js",
+    "comment": "node scripts/tiktok/comment-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/tiktok-skill.git"
+  }
+}

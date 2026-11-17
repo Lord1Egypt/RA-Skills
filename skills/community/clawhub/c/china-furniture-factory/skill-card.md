@@ -1,38 +1,54 @@
-## Description: <br>
-Comprehensive furniture industry factory guide for international buyers that provides information about China's residential, office, hotel, outdoor, and custom furniture manufacturing clusters, supply chain structure, regional specializations, and industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive furniture industry factory guide for international buyers that provides information about China's residential, office, hotel, outdoor, and custom furniture manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's furniture manufacturing clusters, supply chain structure, subsectors, and supplier evaluation practices before engaging factories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sourcing decisions may depend on supplier names, certifications, market figures, or payment terms that require current verification. <br>
-Mitigation: Independently verify supplier identities, certifications, market data, and payment terms before making purchasing decisions. <br>
+## Use Case:
 
+External buyers and sourcing teams use this skill to understand China's furniture manufacturing regions, subsectors, supply chain structure, and supplier-evaluation considerations before engaging factories.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-furniture-factory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language guidance with structured data summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bundled local data and provides cluster-level intelligence without individual factory contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Market figures, regional cluster details, and supplier examples may be incomplete or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market data and supplier leads independently before making sourcing, purchasing, or compliance decisions.
+
+Risk: Static sourcing guidance may be mistaken for supplier due diligence.
+
+Mitigation: Use the skill as an informational starting point and perform direct factory verification, certification checks, and commercial review before engagement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/findhappy7/skills/china-furniture-factory)
+- [Publisher profile](https://clawhub.ai/user/findhappy7)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Code]
+
+**Output Format:** [Markdown-style guidance and Python dictionary data from bundled JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static bundled reference data; no external network calls are described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

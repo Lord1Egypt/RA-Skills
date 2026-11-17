@@ -1,42 +1,49 @@
-## Description: <br>
-Check Markdown files and websites for broken links, including dead links, documentation URLs, README audits, and link health checks with zero dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Markdown files and websites for broken links. Use when asked to find dead links, validate URLs in docs, check if links still work, audit a README, or run a link health check. Zero dependencies.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers, documentation maintainers, and CI automation agents use this skill to audit Markdown files, documentation directories, and websites for broken local or external links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checking external links or crawling a website contacts URLs found in the target content, which can expose sensitive or internal link destinations. <br>
-Mitigation: Review confidential documents before running external checks, disable external URL validation unless needed, and scope website crawling to intended targets. <br>
-Risk: Recursive directory checks and website crawling can read many local files or make many outbound requests. <br>
-Mitigation: Use narrow paths, conservative crawl depth, timeouts, and worker limits in automated runs. <br>
+## Use Case:
 
+Developers and documentation maintainers use this skill to check Markdown files, documentation folders, and websites for broken local or external links before publishing or in CI.
 
-## Reference(s): <br>
-- [Deadlinks README](artifact/README.md) <br>
-- [Deadlinks skill definition](artifact/SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/rogue-agent1/deadlinks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and optional text or JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CI-friendly exit codes; optional JSON output for automation] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: External URL checks and website crawl mode can make outbound requests from the execution environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit paths, shallow crawl depth, reasonable timeouts, and network controls when running against untrusted documents or from sensitive internal networks.
+
+## Reference(s):
+
+- [README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional plain-text or JSON link-check reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CI-friendly exit codes; optional external URL checks and crawl mode may make outbound HTTP requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

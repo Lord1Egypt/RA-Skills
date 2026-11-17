@@ -1,0 +1,27 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:情景分析单栏(档名 + 关键数字 + 副指标 + 驱动说明)—— 原型 39
+  参数:
+    {{TIER}}         档名:悲观 / 基准(采用) / 乐观
+                     —— **采用的那一案要标"(采用)"**,读者第一个问题就是这个
+    {{BG}}           **只有采用案**用 var(--brand-dark);其余 var(--card-bg)(高亮 ≤1 处)
+    {{TIER_COLOR}}   深底用 var(--on-navy-sub);浅底用 var(--text-tertiary)
+    {{VALUE}} {{UNIT}}   关键数字 + 单位(如 18 / 个月)
+    {{VALUE_COLOR}}  深底用 var(--white);浅底用 var(--charcoal)
+    {{SUB}}          副指标一行(如"回收期 · IRR 21.4%")
+    {{SUB_COLOR}}    深底用 var(--on-navy-sub);浅底用 var(--text-secondary)
+    {{BODY}}         驱动说明(什么假设导致这个结果)
+    {{BODY_COLOR}}   深底用 var(--on-navy-text);浅底用 var(--text-primary)
+  用法:放进 `data-layout="grid" data-layout-cols="3" data-layout-gap="32"`(y320 w1720),
+       本片段是**一个 grid 单元**(data-layout-h="400");三栏各复制一次。
+  ⚠️ 页面下方必须另配**关键假设行**:共同假设 + **切换触发条件**(可观测指标,
+     如"连续两季复购率 <36% 即切悲观预案")——
+     没有触发条件的情景分析只是三个孤立猜测(见原型 39 骨架末段)。
+  纪律: ❌ 三案三色(红/黄/绿情景是典型 AI 味);❌ 三栏等权重呈现(必须有主案);
+        每栏四层信息固定(档名/数字/副指标/说明),别加第五层
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-layout-h="400" style="background:{{BG}};padding:36px;">
+  <div style="font-size:20px;font-weight:700;letter-spacing:2px;color:{{TIER_COLOR}};">{{TIER}}</div>
+  <div class="num" style="font-size:64px;font-weight:800;line-height:1.05;color:{{VALUE_COLOR}};margin-top:16px;">{{VALUE}}<span style="font-size:24px;font-weight:600;">{{UNIT}}</span></div>
+  <div style="font-size:22px;line-height:1.4;color:{{SUB_COLOR}};margin-top:10px;">{{SUB}}</div>
+  <div style="font-size:24px;line-height:1.55;color:{{BODY_COLOR}};margin-top:24px;">{{BODY}}</div>
+</div>

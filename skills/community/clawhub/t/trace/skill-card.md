@@ -1,41 +1,50 @@
-## Description: <br>
-Trace provides plain-text reference documentation for trace-related devtools workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trace provides plain-text reference documentation for trace-related devtools workflows.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise reference material for Trace concepts, setup, patterns, debugging, performance, security, migration, and quick-reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic static reference guidance that may not match a user's specific Trace implementation or environment. <br>
-Mitigation: Review the generated reference text against the target toolchain, version, and internal operating procedures before applying it. <br>
-Risk: Security and migration guidance is informational and could be incomplete for regulated or production systems. <br>
-Mitigation: Have qualified reviewers validate security, access, backup, rollback, and compliance steps before use in production workflows. <br>
+## Use Case:
 
+Developers and engineers use Trace to retrieve concise reference material for trace concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets in devtools contexts.
 
-## Reference(s): <br>
-- [Trace ClawHub Page](https://clawhub.ai/xueyetianya/trace) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static documentation output; no credentials, network access, or environment modification expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill provides generic static reference content that could be mistaken for task-specific operational guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the trace command topics as reference material and review outputs before applying them to a production workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/trace)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown emitted by shell command heredocs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no API keys, credentials, network access, or external API calls are required.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

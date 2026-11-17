@@ -1,48 +1,60 @@
-## Description: <br>
-Collect latest technology and AI news from RSS feeds AND the TLDR.tech AI newsletter, merge them into a unified daily digest, and send via email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect latest technology and AI news from RSS feeds and the TLDR.tech AI newsletter, merge them into a unified daily digest, and send via email.
 
-## Publisher: <br>
-[juniarto-samsudin](https://clawhub.ai/user/juniarto-samsudin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juniarto-samsudin](https://clawhub.ai/user/juniarto-samsudin)
 
-## Use Case: <br>
-Employees and operators use this skill to gather current technology and AI stories, merge RSS and TLDR.tech AI newsletter items, and send a daily HTML bulletin to configured recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send outbound email from the user's SMTP account to hard-coded recipients. <br>
-Mitigation: Review and edit EMAIL_ADDRESSES before setting SMTP_EMAIL and SMTP_PASSWORD or running the skill. <br>
-Risk: The cron example can create recurring outbound email delivery. <br>
-Mitigation: Enable the cron job only when recurring bulletin delivery is intended. <br>
-Risk: RSS article text and feed content may be sent to a fixed HTTP Ollama summarizer endpoint. <br>
-Mitigation: Use only a trusted summarizer endpoint for this workflow or adjust the script before processing sensitive content. <br>
-Risk: Digest content is written to /tmp/openclaw-debug.log. <br>
-Mitigation: Treat the log as containing bulletin content until logging is reduced, redirected, or access-controlled. <br>
+## Use Case:
 
+Developers and operators use this skill to collect technology and AI news from RSS feeds and TLDR.tech AI, deduplicate and summarize articles, and send a daily HTML email bulletin to configured recipients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juniarto-samsudin/tech-news-bulletin) <br>
-- [Publisher profile](https://clawhub.ai/user/juniarto-samsudin) <br>
-- [TLDR.tech AI newsletter](https://tldr.tech/ai/) <br>
-- [TechCrunch RSS feed](https://techcrunch.com/feed/) <br>
-- [WIRED AI RSS feed](https://www.wired.com/feed/tag/ai/latest/rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, HTML, Shell commands, Configuration] <br>
-**Output Format:** [HTML email digest with Markdown setup and run instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches RSS and TLDR.tech AI items, deduplicates articles, summarizes RSS articles when the configured Ollama endpoint is available, and sends the digest through SMTP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can use a user's SMTP account to email hard-coded third-party recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace EMAIL_ADDRESSES before running, confirm intended recipients, and use least-privilege SMTP or app credentials.
+
+Risk: The skill fetches feed-controlled article URLs and sends article text to a configured Ollama endpoint.
+
+Mitigation: Restrict RSS sources, article fetching, and the Ollama endpoint to trusted destinations before installation or scheduled execution.
+
+Risk: Scheduled execution can repeatedly send the bulletin once enabled.
+
+Mitigation: Keep any cron job disabled until SMTP credentials, recipients, and content sources have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juniarto-samsudin/skills/tech-news-bulletin)
+- [TLDR AI newsletter](https://tldr.tech/ai/)
+- [TechCrunch RSS feed](https://techcrunch.com/feed/)
+- [WIRED AI RSS feed](https://www.wired.com/feed/tag/ai/latest/rss)
+
+## Skill Output:
+
+**Output Type(s):** [text, HTML, shell commands, configuration, guidance]
+
+**Output Format:** [HTML email digest with supporting Markdown and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured SMTP credentials and Python dependencies; may fall back to feed snippets if the local Ollama summarizer is unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

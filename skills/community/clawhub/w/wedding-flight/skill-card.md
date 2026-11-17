@@ -1,44 +1,61 @@
-## Description: <br>
-Book wedding and honeymoon flights with flexible date ranges and seat class options, powered by Fliggy through the flyai CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents search wedding and honeymoon flight options using the flyai CLI with flexible dates, seat class preferences, and booking-link output.
 
-## Publisher: <br>
-[liquanyu123](https://clawhub.ai/user/liquanyu123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liquanyu123](https://clawhub.ai/user/liquanyu123)
 
-## Use Case: <br>
-External users and travel-booking agents use this skill to collect wedding or honeymoon flight parameters, run real-time flyai searches, and present bookable flight options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to install and run an unpinned global third-party CLI. <br>
-Mitigation: Manually verify or pin the @fly-ai/flyai-cli package version before use, and run it in a contained environment. <br>
-Risk: Travel search details are sent to FlyAI/Fliggy through the CLI. <br>
-Mitigation: Use the skill only when sharing itinerary details with that provider is acceptable for the user and deployment context. <br>
+## Use Case:
 
+External users, travel planners, and agents use this skill to collect wedding or honeymoon flight parameters, run real-time flyai searches, and return concise flight comparisons with booking links.
 
-## Reference(s): <br>
-- [Parameter and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Fallback Procedures](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liquanyu123/wedding-flight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results must be derived from flyai CLI output and include booking links when presenting flight options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill instructs agents to install an unverified global npm CLI, which can change the global npm environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed flyai CLI version, prefer a project-local or sandboxed install, and require explicit approval before installation.
+
+Risk: User-filled shell command templates can be unsafe if dates or locations are passed through shell interpolation without validation.
+
+Mitigation: Validate date and location inputs and invoke the CLI with structured arguments instead of concatenated shell strings.
+
+Risk: Flight booking links depend on the flyai provider and may route users to transactions outside the agent environment.
+
+Mitigation: Verify that flyai is the intended Fliggy-backed provider and review booking links before users act on them.
+
+## Reference(s):
+
+- [Wedding Flight Skill](https://clawhub.ai/liquanyu123/skills/wedding-flight)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown flight comparisons with booking links and optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires flyai CLI results for flight data; each listed result should include a Book link sourced from detailUrl.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

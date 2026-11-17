@@ -1,42 +1,60 @@
-## Description: <br>
-SHIFT manages multi-identity delegation to specialized AI sub-agents for coding, research, and quick tasks, routing and synthesizing responses within one OpenClaw conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SHIFT routes coding, research, and quick tasks from one OpenClaw agent to specialized sub-identities, then synthesizes their responses in a single conversation.
 
-## Publisher: <br>
-[palxislabs](https://clawhub.ai/user/palxislabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[palxislabs](https://clawhub.ai/user/palxislabs)
 
-## Use Case: <br>
-Developers and OpenClaw users use SHIFT to route coding, research, analysis, and quick-task requests to configured specialist personas while keeping a single conversational interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegated model calls can receive recent chat history, selected workspace file content, and MEMORY.md excerpts. <br>
-Mitigation: Use transparent mode during evaluation, lower contextBridge.historyTurns, avoid sensitive files, and use trusted or self-hosted model providers for sensitive work. <br>
-Risk: Delegation is hidden by default, which can make it harder to see when additional model calls are made. <br>
-Mitigation: Switch to transparent mode before enabling routine use and review the configured personas, providers, and billing behavior. <br>
-Risk: Local session files under ~/.openclaw/workspace/.shift/sessions may contain delegated context and outputs. <br>
-Mitigation: Treat the .shift session directory as sensitive local data and configure shorter cleanup windows where appropriate. <br>
+## Use Case:
 
+External developers and OpenClaw users use SHIFT to route coding, research, analysis, and quick-answer requests to configured specialist model personas while keeping one conversational interface.
 
-## Reference(s): <br>
-- [SHIFT on ClawHub](https://clawhub.ai/palxislabs/shift) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline code blocks, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local delegation session files, persona configuration, and cost-tracking records under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Delegation can send selected chat history, MEMORY.md excerpts, and referenced file contents to the model providers configured for its personas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Reduce contextBridge.historyTurns, avoid delegating tasks that reference sensitive files, use transparent mode, and review each configured provider's data policy before sensitive work.
+
+Risk: Local .shift session files can retain delegation context, sub-identity outputs, consultation files, and cost-tracking data.
+
+Mitigation: Periodically purge the .shift session directory and set contextBridge.archiveAfterMinutes to a short retention window.
+
+Risk: Consultations and broad routing can trigger additional model calls and increase spend.
+
+Mitigation: Evaluate first with costManagement.trackOnly enabled, then enforce costBudgetPerHour and alertThreshold settings before routine use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/palxislabs/skills/shift)
+- [README](artifact/README.md)
+- [Specification](artifact/SPEC.md)
+- [Artifact Metadata](artifact/_meta.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional code blocks, shell commands, configuration snippets, and session file content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local session files, delegation context files, consultation outputs, and cost-tracking records under the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence; artifact _meta.json reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

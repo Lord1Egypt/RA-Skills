@@ -1,6 +1,6 @@
-# AI 生成指南（图片 & 视频）
+# AI 生成指南（图片 / 视频 / 音频 / 音乐 / 3D）
 
-本文档帮助 AI Agent 正确使用 WorkRally 的 AI 图片/视频生成能力。
+本文档帮助 AI Agent 正确使用 WorkRally 的 AI 图片、视频、音频、音乐与混元 3D 模型生成能力。
 
 ---
 
@@ -17,6 +17,12 @@ workrally generate image-models -o json
 
 # 生视频前必须先获取模型配置
 workrally generate video-models -o json
+
+# 提示词优化前必须先获取 gen_content 模型列表
+workrally generate content-models -o json
+
+# 画布生音频/音乐前必须先获取模型
+workrally generate audio-models -o json
 ```
 
 ---
@@ -30,15 +36,18 @@ workrally generate image-models -o json
 ```
 
 返回包含：
-- `models[]` — 每个模型的 `model_id`、`name`、`support_resolutions`、`kontext_config`
+- `models[]` — 每个模型的 `model_id`、`name`、`resolution_options`、`kontext_config`、`infer_quality_options`
 - `aspect_ratios[]` — 全局可用宽高比列表（如 "1:1", "16:9", "9:16" 等）
-- `resolutions[]` — 所有模型支持的分辨率并集
+- `resolution_options[]` — 所有模型支持的 protobuf 分辨率并集（**推荐**，传给 `--resolution`）
+- `resolutions[]` — 旧档位 0/1/2 并集（兼容）
 - `count_options[]` — 可选的生成数量
 
 **关键字段**：
 - `model_id` → 传给 `--model` 参数
 - `kontext_config.max_input_images` → 该模型允许的最大参考图数量（不同模型不同，不要写死）
-- `support_resolutions` → 该模型支持的分辨率列表
+- `resolution_options[]` → `{value, label}`，value 为 protobuf 枚举（常见 4=1080P、5=1440P、6=2160P）。**`generate image --resolution` 用这里的 value**
+- `kontext_config.support_resolutions` → 旧档位 0=1K / 1=2K / 2=4K（兼容已有脚本，新调用不要再用）
+- `infer_quality_options[]` → 推理质量选项（可能为空）。非空时才可传 `--quality=<value>`（如 `high`/`medium`/`low`）；空列表时不要传 `--quality`
 
 ### 2.2 纯文生图
 
@@ -89,12 +98,14 @@ workrally generate image \
 | `--prompt` | ✅ | — | 图片描述 |
 | `--model` | ✅ | — | 模型 ID（从 `image-models` 获取） |
 | `--aspect-ratio` | — | `16:9` | 宽高比 |
-| `--resolution` | — | `0` | 分辨率等级: 0=1K, 1=2K, 2=4K（各模型支持范围不同，以 `image-models` 返回的 `kontext_config.support_resolutions` 为准） |
+| `--resolution` | — | 模型首个可用 | **推荐** protobuf 枚举，取值来自 `image-models` 的 `resolution_options[].value`（常见 4=1080P、5=1440P、6=2160P）。兼容旧档位 0=1K、1=2K、2=4K。⚠️ 生图的 1/2 仍是 2K/4K，不是视频的 480P/540P |
+| `--quality` | — | 不下发 | 推理质量。取值必须来自该模型 `infer_quality_options[].value`；列表为空时不要传 |
 | `--count` | — | `1` | 生成数量 1-4（后端一个任务生成 1 张，count>1 会并发发起 N 个独立任务并返回 task_ids 数组） |
 | `--input-images` | — | — | 参考图 URL（逗号分隔） |
 | `--project-id` | — | — | 画布 ID（传入后自动创建占位节点） |
 | `--short-series-project-id` | — | — | 项目 ID |
 | `--name` | — | — | 素材名称 |
+| `--extra-params` | — | — | JSON 对象。CLI 传 MCP `extraParams`；服务端写入 `graph_input.extra_params` 且将每个 value 序列化为字符串。例如 MJ：`'{"midjourney":{"stylize":100}}'`。不要在 CLI 侧再 stringify 一层 |
 | `--poll` | — | false | 自动轮询直到完成 |
 | `--poll-interval` | — | `3` | 轮询间隔（秒） |
 
@@ -112,6 +123,10 @@ workrally generate video-models -o json
 - `text_providers[]` — Text（单图/纯文）模式
 - `first_last_frame_providers[]` — 首尾帧模式
 - `subject_to_video_providers[]` — 参考主体模式
+- `video_edit_providers[]` — 视频编辑模式（VideoEdit）
+- `smart_edit_providers[]` — 智能编辑模式（SmartEdit）
+
+参考主体模型还可能返回 `extend_duration_range`、`extend_video_max_duration`、文档限制与 `support_erase_subtitles`；只在配置明确支持时使用。
 
 每个模型包含：
 - `provider` → 传给 `--model` 参数
@@ -122,7 +137,7 @@ workrally generate video-models -o json
 - `max_image_count/video_count/audio_count` — 各类型最大数量
 - `support_audio` — 是否支持音效
 
-### 3.2 三种驱动模式
+### 3.2 四种驱动模式
 
 #### Text 模式（默认）— 纯文生视频 / 单图驱动
 
@@ -155,6 +170,43 @@ workrally generate video \
 
 > 可以只传首帧或只传尾帧（至少一个）。
 
+#### VideoEdit 模式 — 视频编辑
+
+`model` 必须来自 `video-models` 的 `video_edit_providers[]`。必须传 `--origin-video <原视频素材ID>`（asset_id，不是 URL）。
+
+参考图用 `--reference-assets`，且 `type` 只能是 `image`。服务端写入 `graph_input.ref_images`，不会把图片放进 `origin_video` 或 `ref_videos`。视频/音频/文档参考会被直接拒绝。
+
+Rally-Video-Edit-2.0（模型 ID `6cdvjhqm6e`）对齐画布协议：`graph_template=video_edit`，`mode=304`，带 `enable_sound`（不传则服务端默认 `true`，关闭用 `--no-enable-sound`），不写 `duration` / `resolution`。其他视频编辑模型在没传参考图时仍只有 `model` / `positive_prompt` / `origin_video`，不要给它们传音效参数。
+
+```bash
+workrally generate video \
+  --mode VideoEdit \
+  --prompt "将背景替换成蓝天，角色换成参考图" \
+  --model <video_edit_provider_id> \
+  --origin-video <asset_id> \
+  --reference-assets '[{"type":"image","asset_id":"<参考图asset_id>"}]' \
+  --poll
+```
+
+#### SmartEdit 里的视频编辑模型
+
+梦宝等 SmartEdit 模型仍走 `reference_to_video`：源片进 `ref_videos[0]`，参考图/视频/音频进对应数组，提示词可空。
+
+`smart_edit_providers[]` 里如果选到 `6cdvjhqm6e`，服务端改走上面的 `video_edit` 协议：源片写 `origin_video`，`--reference-assets` 只能是图片并写入 `ref_images`。提示词必填。再把参考视频放进 `reference_assets` 会被拒绝，不会提交成会被网关秒拒的 `ref_videos`。
+
+```bash
+workrally generate video \
+  --mode SmartEdit \
+  --prompt "把主角换成参考图里的造型" \
+  --model <smart_edit_provider_id> \
+  --source-video <asset_id> \
+  --source-width 1920 --source-height 1080 --source-duration 5000 \
+  --reference-assets '[{"type":"image","asset_id":"<参考图asset_id>"}]' \
+  --poll
+```
+
+模型 ID 以 `video-models` 当时返回的为准，不要把 `6cdvjhqm6e` 当成永久写死的值。它只是当前 Rally-Video-Edit-2.0 的 ID。
+
 #### SubjectToVideo 模式 — 参考主体驱动
 
 ```bash
@@ -170,14 +222,19 @@ workrally generate video \
 
 | 参数 | 必填 | 默认值 | 说明 |
 |------|------|--------|------|
-| `--prompt` | ✅ | — | 动画描述 |
+| `--prompt` | 通常必填 | — | SmartEdit/ExtendVideo 可省略 |
 | `--model` | ✅ | — | Provider ID（从 `video-models` 获取） |
-| `--mode` | — | `Text` | 驱动模式: Text/FirstLastFrame/SubjectToVideo |
+| `--mode` | — | `Text` | Text/FirstLastFrame/SubjectToVideo/VideoEdit/SmartEdit/ExtendVideo |
 | `--aspect-ratio` | — | `16:9` | 宽高比: 21:9 / 16:9 / 4:3 / 1:1 / 3:4 / 9:16 等 |
 | `--resolution` | — | 模型首个可用 | 分辨率枚举: 1=480P 2=540P 3=720P 4=1080P 5=1440P 6=2160P 7=4320P 8=360P（具体支持见 `video-models` 的 `resolution_options`） |
 | `--duration` | — | — | 视频时长（秒），可选值取决于模型 |
 | `--count` | — | `1` | 生成数量 1-4（后端一个任务生成 1 个视频，count>1 会并发发起 N 个独立任务并返回 task_ids 数组） |
-| `--enable-sound` | — | false | 生成音效（仅部分模型支持） |
+| `--enable-sound` | — | 服务端默认 true | 生成音效（仅部分模型支持）。**不传则默认开启**（与前端一致）；关闭请用 `--no-enable-sound`。旧 VideoEdit 模板不写该字段；`6cdvjhqm6e` 会写入 |
+
+SmartEdit 需传 `--source-video/--source-width/--source-height/--source-duration`；`source-duration` 单位毫秒。模型是 Rally-Video-Edit-2.0 时，参考图走 `--reference-assets` 的 image，服务端改写 `video_edit`。ExtendVideo 的 `--duration` 表示延长秒数。Wan 3.0 文档参考仅 SubjectToVideo 支持，`--reference-assets` 中传 `{"type":"file","asset_id":"...","name":"brief.pdf"}`。
+| `--no-enable-sound` | — | — | 显式关闭音效（`enable_sound=false`） |
+| `--extra-params` | — | — | JSON 对象。CLI 传 MCP `extraParams`；服务端写入 `graph_input.extra_params` 且将每个 value 序列化为字符串 |
+| `--draft` | — | — | 样片 JSON。仅 `video-models` 里 `support_draft=true` 的模型。样片 `{"enable":true}` 且 `--resolution 1`；转正片 `{"draft_id":"<样片素材ID>"}` 且 `--resolution 4`，模型不变。不是画布 `build-draft` |
 | `--project-id` | — | — | 画布 ID（传入后自动创建占位节点） |
 | `--short-series-project-id` | — | — | 项目 ID |
 | `--name` | — | — | 素材名称 |
@@ -198,9 +255,109 @@ workrally generate video \
 
 ---
 
-## 4. 任务轮询
+## 3.5 画布音频 / 音乐
 
-### 4.1 使用 --poll 自动轮询（推荐）
+对齐 Web 无限画布「生成音频」：`mode=audio`（台词/音效）或 `music`（文生音乐）。
+
+```bash
+workrally generate audio-models -o json
+# 返回 audio_models[] / music_models[]，is_minimax=true 的音频模型不要传 --ref-audios
+
+# 音频
+workrally generate audio --prompt "雨声和脚步" --model <audio_model_id> --poll
+
+# MiniMax：先读取 audio_models[].fields，再传动态字段
+workrally generate audio --prompt "你好" --model <minimax_id> \
+  --audio-fields '{"voice":"voice_id","audio_speech_rate":1.1}' --poll
+
+# 纯器乐
+workrally generate music --prompt "摇滚吉他" --model <music_model_id> --lyrics-mode none --poll
+
+# 传入歌词
+workrally generate music --prompt "流行" --model <id> --lyrics-mode input --lyrics "啦啦啦" --poll
+```
+
+传入 `--project-id`（画布 ID）时自动创建 audio 占位节点。场次批量配音请用 `shotlist generate-audio`，不要与画布音频混淆。
+
+---
+
+## 3.6 混元 3D 模型生成
+
+对齐 Web 关键帧结果里的混元 3D（`usePose` / `hunyuan3d`）。**不是** 3D 世界，也不是模型贴图。输入是已入库参考图 `asset_id`，模型固定 `hunyuan-3d-v3.0`。
+
+```bash
+workrally asset search --project-id <id> --type image -o json
+workrally generate 3d --asset-id <asset_id> --poll
+```
+
+成功后用 `generate task` 读 `output_assets` / `output_products`（网格模型 URL）。`--project-id` 是短番项目 ID。
+
+---
+
+## 4. 视频提示词优化（gen_content）
+
+用于视频延长/编辑前，把自然语言指令 + 可选参考视频/图片交给模型，生成适合下游视频生成的结构化提示词（如 `subject_definitions`）。
+
+> ⚠️ 这是**异步文本任务**，不是生视频。成功后读 `output_text`，**不会**返回 `output_assets`。
+> ⚠️ **model 必须来自 `generate content-models`**，严禁硬编码 MiniMax H3 等 ID。
+
+```bash
+# 1. 获取模型
+workrally generate content-models -o json
+
+# 2. 提交优化（建议 --poll）
+workrally generate optimize-prompt \
+  --prompt "将视频从尾帧延长5秒" \
+  --model <model_id> \
+  --video-url <参考视频CDN_URL> \
+  --first-frame-url <首帧CDN_URL> \
+  --last-frame-url <尾帧CDN_URL> \
+  --reference-image-urls "<参考图1>,<参考图2>" \
+  --audio-url <参考音频CDN_URL> \
+  --poll
+```
+
+媒体写入 `messages[0].contents`，**不是**生视频那套 `ref_images` / `frames`。图片语义在 `image_info.type`，音频在 `audio_info.url`：
+
+| CLI | graph_input |
+|-----|-------------|
+| `--video-url` | `contents.type=2` + `video_info.url` |
+| `--first-frame-url` | `contents.type=1` + `image_info.type="first_frame"` |
+| `--last-frame-url` | `contents.type=1` + `image_info.type="last_frame"` |
+| `--reference-image-urls` | 每张 `contents.type=1` + `image_info.type="reference_image"` |
+| `--image-url` | 兼容旧参数，等价于一张 `reference_image` |
+| `--audio-url` / `--audio-urls` | 每条 `contents.type=3` + `audio_info.url` |
+
+contents 顺序：文本 → 视频 → 首帧 → 尾帧 → 参考图 → 音频。
+
+| 参数 | 必填 | 说明 |
+|------|------|------|
+| `--prompt` | ✅ | 待优化的自然语言指令 |
+| `--model` | ✅ | 来自 `content-models` 的 `model_id` |
+| `--video-url` | — | 参考视频 CDN URL（官方媒资） |
+| `--first-frame-url` | — | 首帧图片 CDN URL |
+| `--last-frame-url` | — | 尾帧图片 CDN URL |
+| `--reference-image-urls` | — | 参考图 CDN URL，逗号分隔，可多张 |
+| `--image-url` | — | 单张参考图（兼容旧参数） |
+| `--audio-url` | — | 参考音频 CDN URL |
+| `--audio-urls` | — | 参考音频 CDN URL，逗号分隔，可多条 |
+| `--aspect-ratio` | — | 如 `16:9`（写入比例分量，不是像素） |
+| `--resolution` | — | **protobuf 枚举**（1=480P…），与 `generate image/video` 相同。生图另兼容旧档位 0/1/2 |
+| `--duration` | — | 目标时长秒数，不传服务端默认 5 |
+| `--temperature` | — | 采样温度（可选） |
+| `--seed` | — | 随机种子（可选） |
+| `--extra-params` | — | 扩展参数 JSON 对象 |
+| `--short-series-project-id` | — | 短番项目 ID |
+| `--name` | — | 任务名称 |
+| `--poll` | — | 完成后从结果读取 `output_text` |
+
+与 `polishing_prompt` / `generate_animation_prompt` 的区别：本命令走 TaskGateway `gen_content`，面向视频模型，产物为文本。
+
+---
+
+## 5. 任务轮询
+
+### 5.1 使用 --poll 自动轮询（推荐）
 
 ```bash
 workrally generate image --prompt "..." --model <id> --poll
@@ -212,7 +369,7 @@ workrally generate image --prompt "..." --model <id> --poll
 3. 显示进度条和状态（排队中/运行中/成功/失败）
 4. 完成后输出最终结果
 
-### 4.2 手动查询任务
+### 5.2 手动查询任务
 
 ```bash
 # 单次查询
@@ -222,24 +379,24 @@ workrally generate task <task_id> -o json
 workrally generate task <task_id> --poll
 ```
 
-### 4.3 任务状态
+### 5.3 任务状态
 
 | state | 含义 | 说明 |
 |-------|------|------|
 | 1 | 排队中 (QUEUED) | 等待资源 |
 | 2 | 运行中 (RUNNING) | 正在生成 |
 | 3 | 暂停 (PAUSED) | 暂停中 |
-| 4 | 成功 (SUCCESS) | `output_products` 包含结果 |
+| 4 | 成功 (SUCCESS) | 媒资任务看 `output_assets`（`output_type="assets"`）；文本任务（optimize-prompt）看 `output_text`（`output_type="text"`）。不要找已废弃的 `output_products` |
 | 5 | 失败 (FAILED) | `error_message` 包含错误信息 |
 | 6 | 已取消 (CANCELLED) | 用户取消 |
 
-### 4.4 多任务并发
+### 5.4 多任务并发
 
 后端「一个任务只生成 1 个素材」，当 `--count` > 1 时，CLI 会并发发起 N 个独立任务，返回的 `task_ids` 是长度为 N 的数组，每个 task 产出 1 个素材。使用 `--poll` 时 CLI 会自动并发轮询所有任务，总耗时约等于单任务耗时。
 
 ---
 
-## 5. 素材命名最佳实践
+## 6. 素材命名最佳实践
 
 ### 画布内生成
 
@@ -262,7 +419,7 @@ workrally generate image --prompt "一只可爱的橘猫在夕阳下奔跑" --mo
 
 ---
 
-## 6. 生成后素材处理
+## 7. 生成后素材处理
 
 AI 生成的图片/视频会**自动入库到媒资系统**（后台自动完成，无需额外调用 `asset create`）。
 

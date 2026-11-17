@@ -1,44 +1,57 @@
-## Description: <br>
-Provides rule-based content summaries and project reviews for daily reports, meetings, projects, articles, and general text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能内容总结和项目复盘工具。
 
-## Publisher: <br>
-[nidhov01](https://clawhub.ai/user/nidhov01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nidhov01](https://clawhub.ai/user/nidhov01)
 
-## Use Case: <br>
-Developers and end users use this skill to summarize work logs, meeting notes, project materials, articles, and general text, and to produce project review outputs such as goal achievement, issues, recommendations, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summarized content can be retained on local disk in ~/.ai_summary.db. <br>
-Mitigation: Avoid highly confidential inputs unless local disk retention is acceptable, and periodically manage or clear the local database. <br>
-Risk: Markdown exports can contain sensitive plaintext and may overwrite an existing destination file. <br>
-Mitigation: Review the export path and file contents before sharing or storing exported Markdown. <br>
-Risk: Rule-based summaries and project review suggestions may miss important context or produce incomplete conclusions. <br>
-Mitigation: Review generated summaries and recommendations against the source material before relying on them. <br>
+## Use Case:
 
+Developers, teams, and external users can use this skill to summarize daily reports, meetings, projects, articles, and general text, then identify key points, completion status, issues, lessons learned, and next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nidhov01/05) <br>
-- [Publisher profile](https://clawhub.ai/user/nidhov01) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured text or JSON-like Python dictionaries, with optional Markdown file export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store summarized content locally in ~/.ai_summary.db and may export plaintext Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Submitted summaries and original content may be stored persistently in a local searchable database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential notes or sensitive project data unless the local database is protected, reviewed, and cleaned up by the user.
+
+Risk: Markdown exports are written as plaintext files.
+
+Mitigation: Choose export locations carefully and apply normal file access controls before sharing or retaining exported summaries.
+
+Risk: Rule-based summaries and project review recommendations may omit context or produce generic conclusions.
+
+Mitigation: Review generated summaries, recommendations, and action items before using them for decisions or reporting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nidhov01/skills/05)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured text, JSON-like summary objects, and Markdown export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores submitted content locally in ~/.ai_summary.db when a titled summary is saved; Markdown exports are plaintext files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Reviews scientific and technological novelty search reports against GB/T scientific and technological novelty search practices, checking novelty-point interpretation, Chinese and English search terms, search strategy, literature selection, and conclusions while reporting only issues and actionable improvements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews scientific and technological novelty search reports against GB/T novelty-search guidance, focusing on novelty-point interpretation, search terms and translations, search strategy, literature selection, and conclusion quality.
 
-## Publisher: <br>
-[charliegates309-oss](https://clawhub.ai/user/charliegates309-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charliegates309-oss](https://clawhub.ai/user/charliegates309-oss)
 
-## Use Case: <br>
-External users and reviewers use this skill to audit Word-format scientific and technological novelty search reports for problems in novelty-point framing, search terms and translations, query construction, representative literature selection, and novelty conclusions. The skill returns only detected issues, priority fixes, and concrete revision suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided novelty report contents and may expose confidential project topics, keywords, or technical details to the agent session. <br>
-Mitigation: Use it only with reports the user is comfortable sharing with the agent, and avoid live search workflows when the project topic or technical details are confidential. <br>
-Risk: Fallback shell-based extraction of Word documents can process the wrong file if the path is ambiguous. <br>
-Mitigation: Confirm the exact document path before allowing shell-based extraction. <br>
-Risk: The skill may reference current Baidu Scholar search results, which may not reproduce a full systematic database search. <br>
-Mitigation: Treat search-supported findings as review guidance and validate final novelty conclusions against the required databases and institutional review process. <br>
+## Use Case:
 
+External users and report reviewers use this skill to audit novelty search reports for unclear novelty points, incomplete search terms or translations, weak search strategies, literature-selection gaps, and unsupported conclusions. It returns only identified problems and actionable improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charliegates309-oss/novelty-report-review) <br>
-- [Publisher profile](https://clawhub.ai/user/charliegates309-oss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with prioritized findings and revision suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shell-based document extraction commands only as an intermediate recovery method when direct Word document reading fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fallback document extraction may turn a user-supplied file path into executable Python.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted local report paths, or rewrite extraction commands to pass paths as arguments with validation and safe quoting before execution.
+
+Risk: The skill under-discloses a claimed Baidu Scholar research basis.
+
+Mitigation: Make any external Baidu Scholar checks explicit and user-approved, and record the search date, queries, and sources used.
+
+Risk: Reports may contain sensitive technical or proprietary information.
+
+Mitigation: Use the skill only in environments approved for the report's confidentiality and avoid processing sensitive reports unless that handling is permitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charliegates309-oss/skills/novelty-report-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown audit report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Problems-only review with prioritized fixes and suggested alternative wording or methods.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

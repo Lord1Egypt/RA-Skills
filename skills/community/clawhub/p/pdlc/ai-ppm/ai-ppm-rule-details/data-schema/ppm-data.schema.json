@@ -1,0 +1,31 @@
+{
+  "title": "AI-PPM Data",
+  "description": "Portfolio-scoped data shape for AI-PPM (Portfolio Management). One file for the whole portfolio.",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema":{"type":"string"},
+    "$schemaVersion":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy":{"type":"string","const":"AI-DFE"},
+    "$generatedOn":{"type":"string","format":"date-time"},
+    "$family":{"type":"string"},
+    "$package":{"type":"string","const":"ai-ppm"},
+    "data":{
+      "type":"object","required":["summary"],
+      "properties":{
+        "currentPhase":{"type":["string","null"]},
+        "currentStage":{"type":["string","null"]},
+        "lastActivity":{"type":["string","null"]},
+        "depthLevel":{"type":["string","null"]},
+        "activeExtensions":{"type":"array","items":{"type":"string"}},
+        "summary":{"type":["object","null"],"properties":{"totalProjects":{"type":["integer","null"]},"active":{"type":["integer","null"]},"paused":{"type":["integer","null"]},"retired":{"type":["integer","null"]},"pendingRegistration":{"type":["integer","null"]}}},
+        "lastRollUp":{"type":["object","null"],"properties":{"timestamp":{"type":["string","null"]},"projectsRefreshed":{"type":["integer","null"]},"anomaliesFlagged":{"type":["integer","null"]},"floStatus":{"type":["string","null"]}}},
+        "strategicObjectives":{"type":"array","items":{"type":"string"}},
+        "prioritization":{"type":["object","null"],"properties":{"model":{"type":["string","null"]},"lastRanked":{"type":["string","null"]}}},
+        "cadence":{"type":["object","null"],"properties":{"nextPortfolioSync":{"type":["string","null"]},"nextHealthReview":{"type":["string","null"]},"nextStrategicReview":{"type":["string","null"]}}},
+        "projects":{"type":"array","items":{"type":"object","properties":{"projectId":{"type":"string"},"name":{"type":["string","null"]},"status":{"type":["string","null"]},"priority":{"type":["string","integer","null"]},"healthRag":{"type":["string","null"]},"strategicAlignment":{"type":["string","number","null"]}}}},
+        "decisions":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"date":{"type":"string"},"summary":{"type":"string"},"status":{"type":"string"}}}}
+      }
+    }
+  }
+}

@@ -1,47 +1,62 @@
-## Description: <br>
-Astrology API helps agents call Astrology API endpoints for natal charts, compatibility, transits, horoscopes, tarot, numerology, Vedic and Chinese astrology, human design, kabbalah, astrocartography, palmistry, chart rendering, and related esoteric calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Astrology API helps agents call a third-party astrology API to generate astrological charts, horoscopes, compatibility readings, tarot and numerology outputs, and related reports.
 
-## Publisher: <br>
-[serslon](https://clawhub.ai/user/serslon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[serslon](https://clawhub.ai/user/serslon)
 
-## Use Case: <br>
-Developers and agent users use this skill to route astrology, horoscope, compatibility, tarot, numerology, chart rendering, and related requests to the Astrology API and summarize the results in user-facing language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive personal data such as names, birth details, relationship data, palm images, and wellness-related prompts to the Astrology API provider. <br>
-Mitigation: Use the skill only with data the user agrees to send to the provider, minimize optional personal fields, and avoid submitting sensitive prompts unless they are needed for the requested result. <br>
-Risk: The helper accepts caller-supplied endpoint paths and sends the configured API key with each request. <br>
-Mitigation: Use documented Astrology API endpoints only and prefer an allowlisted version before enabling the skill in workflows that may receive untrusted prompts. <br>
-Risk: Overriding ASTROLOGY_API_URL can redirect requests and the bearer token to another host. <br>
-Mitigation: Keep the default API host unless the replacement host is trusted and approved for receiving the API key and request data. <br>
+## Use Case:
 
+Developers and external users use this skill to answer astrology, horoscope, compatibility, tarot, numerology, and related esoteric requests by collecting the needed inputs, calling Astrology API endpoints, and summarizing results in plain language.
 
-## Reference(s): <br>
-- [Astrology API v3 endpoint reference](artifact/references/api-endpoints.md) <br>
-- [Use cases to API endpoints](artifact/references/use-cases.md) <br>
-- [Astrology API documentation](https://api.astrology-api.io/rapidoc) <br>
-- [Astrology API OpenAPI spec](https://api.astrology-api.io/api/v3/openapi.json) <br>
-- [Developer dashboard](https://dashboard.astrology-api.io/) <br>
-- [Homepage from ClawHub metadata](https://github.com/astro-api/astroapi-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown summaries with inline shell command examples; API responses may be JSON, SVG, PNG, or report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and ASTROLOGY_API_KEY; large API responses should be summarized before presentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: Sensitive personal data may be sent to a third-party astrology API, including precise birth details, relationship data, sensitive question topics, and palm images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only data the user is comfortable sending; avoid unnecessary names, emails, free-form notes, and images.
+
+Risk: The ASTROLOGY_API_URL override can redirect requests and expose the API key and request data to another destination.
+
+Mitigation: Leave ASTROLOGY_API_URL unset unless the destination is explicitly trusted and expected.
+
+Risk: The server security verdict is suspicious because data sharing is under-disclosed and the URL override can change where requests are sent.
+
+Mitigation: Review the skill before installation and execution, especially before using real personal data.
+
+## Reference(s):
+
+- [API Endpoint Reference](references/api-endpoints.md)
+- [Use Cases to API Endpoints](references/use-cases.md)
+- [Astrology API Documentation](https://api.astrology-api.io/rapidoc)
+- [Astrology API](https://api.astrology-api.io/)
+- [Astrology API Skill Homepage](https://github.com/astro-api/astroapi-skill)
+- [Astrology API Developer Dashboard](https://dashboard.astrology-api.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown summaries, JSON API responses, shell command snippets, and optional SVG, PNG, JPG, WebP, or PDF chart files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and ASTROLOGY_API_KEY; chart rendering requests may save image files for the user.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

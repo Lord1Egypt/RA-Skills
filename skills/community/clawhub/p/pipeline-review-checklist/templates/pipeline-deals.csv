@@ -1,0 +1,13 @@
+# Pipeline Review Checklist - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+deal_id,account,owner,stage,amount_usd,close_date,next_step,last_activity_date
+1,"Acme Corp","R. Patel","Discovery",24000,2026-01-31,"Send security overview",2026-01-05
+2,"Northwind Supply","S. Okafor","Evaluation",18500,2026-02-14,"Run ROI model with their numbers",2026-01-06
+3,"Harbor Logistics","T. Brooks","Proposal sent",62000,2026-02-28,"Legal review of MSA",2026-01-04
+4,"Steelworks Inc","R. Patel","Qualification",9000,2025-12-15,"Confirm budget owner",2025-11-20
+5,"Blue Ridge Equipment","K. Diaz","Discovery",0,2026-03-10,"Book technical discovery",2026-01-02
+6,"Lakeside Foods","S. Okafor","Negotiation",41000,2026-01-20,"Pricing approval",2026-01-07
+7,"Copperfield Co","T. Brooks","Discovery",15000,2026-03-05,"Send case study",2025-12-18
+8,"Granite Systems","K. Diaz","Proposal sent",28500,2026-02-20,"Procurement intro call",2026-01-06
+9,"Pinewood Clinics","R. Patel","Qualification",12000,2026-04-01,"Confirm compliance needs",2026-01-03
+10,"Redwood Manufacturing","T. Brooks","Evaluation",33000,2026-02-25,"Reference call with their IT",2025-12-30

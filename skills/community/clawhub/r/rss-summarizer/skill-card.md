@@ -1,40 +1,55 @@
-## Description: <br>
-Intelligent RSS subscription and summarization for subscribing to, fetching, filtering, and summarizing RSS or Atom feeds when users need to track news and blog updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RSS Summarizer helps an agent manage RSS/Atom subscriptions, fetch recent feed items, filter updates by keyword, and return summaries or feed updates.
 
-## Publisher: <br>
-[wanan9812](https://clawhub.ai/user/wanan9812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanan9812](https://clawhub.ai/user/wanan9812)
 
-## Use Case: <br>
-External users and developers use this skill to manage RSS or Atom subscriptions, fetch recent feed items, filter them by configured keywords, and return concise feed summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feed URLs and preferences are stored in local data files. <br>
-Mitigation: Avoid adding sensitive private feeds unless local storage of those URLs and preferences is acceptable. <br>
-Risk: Fetched feed titles, links, publication dates, and snippets may be returned to the agent for summarization. <br>
-Mitigation: Use public or approved feeds, and review configured subscriptions before fetching when confidential feed contents are possible. <br>
+## Use Case:
 
+Developers and agent users can use this skill to subscribe to RSS/Atom feeds, list and remove subscriptions, fetch recent entries, apply keyword filters, and produce feed updates for chat or document workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanan9812/rss-summarizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration] <br>
-**Output Format:** [JSON script responses containing RSS feed items, errors, configuration results, or markdown/plain-text summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores subscription URLs and preferences in local JSON data files; fetched feed titles, links, dates, and snippets may be returned to the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill fetches arbitrary user-supplied feed URLs without network-safety limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted feed URLs and add URL validation, egress controls, and blocks for localhost, private network, and cloud metadata addresses before broad deployment.
+
+Risk: Untrusted feed text is passed back to the agent.
+
+Mitigation: Treat feed titles, links, and snippets as untrusted data, isolate them from agent instructions, and review summaries before acting on feed content.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wanan9812/skills/rss-summarizer)
+- [Publisher Profile](https://clawhub.ai/user/wanan9812)
+- [rss-parser package](https://registry.npmjs.org/rss-parser/-/rss-parser-3.13.0.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON results containing markdown, plain text, or structured feed-item data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include feed titles, item titles, links, publication dates, snippets, errors, and saved subscription/configuration data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-全网商品比价工具，一键对比淘宝京东拼多多抖音等各平台同款商品价格，结合优惠券和返利计算真实最低到手价。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全网商品比价工具，一键对比淘宝京东拼多多抖音等各平台同款商品价格，结合优惠券和返利计算真实最低到手价。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-购物用户在下单前使用该技能对比多个电商平台的同款商品价格、优惠券、返利和历史价格，并获得按真实到手价排序的购买建议。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product names or shopping links may be used for searches across external commerce platforms. <br>
-Mitigation: Use plain product names where possible and avoid private account pages, order links, or URLs with sensitive tracking parameters. <br>
-Risk: Real-time prices, coupons, rebates, and historical-price data may be incomplete or change before purchase. <br>
-Mitigation: Verify final merchant pricing, coupon eligibility, rebate terms, and product identity before completing a transaction. <br>
+## Use Case:
 
+External shoppers use this skill before purchasing to compare prices, coupons, rebates, and price history across major Chinese commerce platforms and identify the lowest estimated final price.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/bijia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown price-comparison report with ranked platform results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform prices, coupon and rebate calculations, historical price notes, price differences, and a purchase recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad shopping and price-comparison triggers may activate the skill when the user did not intend to start a purchase workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review trigger terms before deployment and narrow them if accidental activation would disrupt normal shopping or research conversations.
+
+Risk: Price, coupon, rebate, and purchase recommendations may be incomplete or stale at buying time.
+
+Mitigation: Independently verify final seller price, coupon eligibility, rebate terms, shipping, and return conditions before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/bijia)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown price-comparison report with ranked platform prices and a purchase recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include listed price, coupon and rebate assumptions, price history, savings estimate, and recommendation rationale.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

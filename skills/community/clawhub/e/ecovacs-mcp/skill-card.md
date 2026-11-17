@@ -1,46 +1,60 @@
-## Description: <br>
-Control Ecovacs robot vacuums (DEEBOT series) via the official Ecovacs MCP server: start, stop, pause, or resume cleaning; send the robot to its dock; check battery and cleaning status; and list devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Ecovacs robot vacuums through the official Ecovacs MCP server to list devices, start, pause, resume, or stop cleaning, send a robot to its dock, and check battery, cleaning, charging, and station status.
 
-## Publisher: <br>
-[f-liva](https://clawhub.ai/user/f-liva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[f-liva](https://clawhub.ai/user/f-liva)
 
-## Use Case: <br>
-External users with Ecovacs DEEBOT robots use this skill to let an assistant configure and call the Ecovacs MCP server for vacuum control, docking, device listing, and real-time status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language triggers could cause an assistant to treat generic cleaning phrases as robot-vacuum control requests. <br>
-Mitigation: Configure the assistant to ask for explicit confirmation before starting, stopping, pausing, resuming, or docking the robot. <br>
-Risk: The Ecovacs API key grants access to robot-vacuum control through the MCP server. <br>
-Mitigation: Protect ECO_API_KEY as a secret and avoid exposing it in prompts, logs, or shared configuration. <br>
-Risk: The skill depends on the external ecovacs-robot-mcp package at runtime. <br>
-Mitigation: Verify or pin the ecovacs-robot-mcp package where possible before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to let an assistant operate Ecovacs DEEBOT robot vacuums through an MCP server, including cleaning control, docking, device discovery, and status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/f-liva/ecovacs-mcp) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/f-liva) <br>
-- [Official Ecovacs MCP server](https://github.com/ecovacs-ai/ecovacs-mcp) <br>
-- [Ecovacs Open Platform](https://open.ecovacs.com) <br>
-- [Ecovacs Open Platform China endpoint](https://open.ecovacs.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with MCP configuration JSON and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ECO_API_KEY and either uvx or python3 with ecovacs-robot-mcp available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The MCP server receives the user's Ecovacs API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user is comfortable granting the server access to the Ecovacs account, and keep the API key in the configured environment variable rather than exposing it in conversation.
+
+Risk: The skill can control a physical robot vacuum, including start, stop, pause, resume, and dock actions.
+
+Mitigation: Confirm robot-specific intent before taking control actions, especially for short or ambiguous requests.
+
+Risk: The configured MCP command runs the external ecovacs-robot-mcp package without a pinned package version.
+
+Mitigation: Pin or otherwise verify the ecovacs-robot-mcp package before running it in production settings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/f-liva/skills/ecovacs-mcp)
+- [Ecovacs MCP Server](https://github.com/ecovacs-ai/ecovacs-mcp)
+- [Ecovacs Open Platform](https://open.ecovacs.com)
+- [Ecovacs China Open Platform](https://open.ecovacs.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON configuration and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide MCP tool calls that control a physical robot vacuum when the Ecovacs API key and MCP server are configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

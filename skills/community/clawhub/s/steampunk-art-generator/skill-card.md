@@ -1,43 +1,56 @@
-## Description: <br>
-AI steampunk art generator that creates Victorian steampunk portraits, cyberpunk Victorian characters, brass-and-gears illustrations, cosplay reference art, and industrial fantasy scenes through the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI steampunk art generator - create Victorian steampunk portraits, cyberpunk Victorian characters, brass-and-gears illustrations, cosplay reference art, and industrial fantasy scenes via the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate steampunk-themed artwork from text prompts, optionally selecting image size and a reference image UUID for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the user-supplied Neta API token are sent to the TalesOfAI/Neta service. <br>
-Mitigation: Avoid sensitive prompts or reference IDs, and use short-lived or low-scope tokens where available. <br>
-Risk: Passing the Neta token on the command line can expose it through local process listings, shell history, or logs. <br>
-Mitigation: Run the command only in trusted environments and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+External users, creators, cosplayers, worldbuilders, and developers use this skill to generate steampunk-themed image URLs from text prompts through the Neta API. It supports selectable image dimensions and optional reference image UUIDs for style inheritance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/blammectrappora/steampunk-art-generator) <br>
-- [Neta token and API access](https://www.neta.art/open/) <br>
-- [TalesOfAI image generation API endpoint](https://api.talesofai.com/v3/make_image) <br>
-- [TalesOfAI task polling API endpoint](https://api.talesofai.com/v1/artifact/task/${taskUuid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime output is a direct image URL.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied Neta API token; supports portrait, landscape, square, and tall image dimensions plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Neta API tokens can be exposed through shell history, command logs, or process monitoring when passed directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value token, prefer environment-variable expansion over literal token text, and rotate the token if it may have been logged.
+
+Risk: Unpinned installation commands can retrieve a changed package version later.
+
+Mitigation: Install through ClawHub or another trusted pinned installer when possible, and review the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/skills/steampunk-art-generator)
+- [Publisher Profile](https://clawhub.ai/user/blammectrappora)
+- [Neta API Token Access](https://www.neta.art/open/)
+- [Neta Image Generation API Endpoint](https://api.talesofai.com/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; optional size and reference image UUID parameters influence generated image dimensions and style.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

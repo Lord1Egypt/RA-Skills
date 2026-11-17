@@ -1,42 +1,65 @@
-## Description: <br>
-Controls a Roon music system through a local REST API to search a music library and TIDAL, play tracks or albums, manage queues, adjust volume, shuffle, and control playback zones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls a Roon music system through API calls for library and TIDAL search, playback, queue management, volume, shuffle, playlists, and zone status.
 
-## Publisher: <br>
-[wegow](https://clawhub.ai/user/wegow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wegow](https://clawhub.ai/user/wegow)
 
-## Use Case: <br>
-Developers and power users use this skill to let an agent operate a Roon music setup through documented REST endpoints for playback, search, queue management, playlists, shuffle, and volume control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes unrelated long-term memory content with credential locations, private local details, and persistence notes. <br>
-Mitigation: Remove or sanitize MEMORY.md before installation and keep credentials in environment variables or secure storage instead of skill documentation. <br>
-Risk: Broad activation language and playback endpoints can cause live play, queue, volume, or transport changes that interrupt a listening session. <br>
-Mitigation: Narrow activation to explicit Roon or music-control requests and confirm disruptive actions such as Play Now, volume changes, and transport controls. <br>
-Risk: Hard-coded zone IDs and a local API host may not match the installing user's Roon environment. <br>
-Mitigation: Verify and replace zone IDs and the API base URL before issuing commands. <br>
+## Use Case:
 
+External users or personal automation agents use this skill to control a configured Roon music system, including finding music, starting playback, managing queues, adjusting volume, and checking playback state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wegow/archiv) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown with curl examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes endpoint selection guidance, zone configuration details, and live playback-control request examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release bundles unrelated long-term memory and credential-location guidance beyond the Roon control use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove MEMORY.md or ensure it cannot be imported as trusted memory before installation.
+
+Risk: Broad activation language could make the skill run for casual or ambiguous music requests.
+
+Mitigation: Narrow activation to explicit Roon-control requests.
+
+Risk: Playback actions can clear queues or change volume.
+
+Mitigation: Require user confirmation before queue-clearing playback actions or volume changes.
+
+Risk: Hardcoded local hostnames and zone IDs may expose private configuration or fail outside the original environment.
+
+Mitigation: Replace hostnames and zone IDs with local configuration before use.
+
+Risk: Unauthenticated or broadly reachable Roon API access could allow unintended media control.
+
+Mitigation: Protect the Roon API with authentication or network isolation.
+
+## Reference(s):
+
+- [ARCHIV ClawHub skill page](https://clawhub.ai/wegow/skills/archiv)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Roon API base URL and zone configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

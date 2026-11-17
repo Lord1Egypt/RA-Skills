@@ -1,42 +1,54 @@
-## Description: <br>
-Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation.
 
-## Publisher: <br>
-[qmao-hub](https://clawhub.ai/user/qmao-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qmao-hub](https://clawhub.ai/user/qmao-hub)
 
-## Use Case: <br>
-Developers, analysts, and automation agents use this skill when spreadsheet deliverables need dependable formulas, formatting, workbook structure, date handling, and type preservation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet edits can silently damage formulas, dates, identifiers, formatting, or workbook structure. <br>
-Mitigation: Review formulas, representative cells, data types, formatting, and workbook structure before delivery. <br>
-Risk: Formula caches may be stale after edits, and openpyxl preserves formulas without calculating them. <br>
-Mitigation: Recalculate in a spreadsheet engine when current values matter and verify that no formula errors remain. <br>
-Risk: Macro-enabled workbooks and legacy Excel formats can carry behavior or compatibility constraints outside normal XLSX editing. <br>
-Mitigation: Use trusted files, avoid executing macros unless explicitly required, and preserve macro-enabled or legacy formats only with appropriate tooling. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill when spreadsheet files must be created, inspected, or edited without losing formulas, dates, data types, formatting, workbook structure, or recalculation reliability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qmao-hub/excel-xlsx-bak) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional code snippets or shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on preserving workbook formulas, formatting, data types, and structure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Guidance can affect workbook contents, formulas, hidden sheets, formatting, and outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on intended files and review formulas, hidden sheets, formatting, and generated outputs before relying on the workbook.
+
+Risk: Spreadsheet edits can leave stale cached values or formula errors if recalculation and review are skipped.
+
+Mitigation: Recalculate and inspect representative formulas and visible workbook output before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qmao-hub/skills/excel-xlsx-bak)
+- [Skill homepage](https://clawic.com/skills/excel-xlsx)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown with code, commands, and spreadsheet handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide edits to workbook contents, formulas, formatting, and structure.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

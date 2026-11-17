@@ -611,10 +611,11 @@ GO"""
         self.assertIn('MyTable', result)
 
     def test_truncate_preserves_table_name(self):
-        """TRUNCATE转换保留表名"""
+        """TRUNCATE转换保留表名(dbo前缀被去掉)"""
         result = convert_sqlserver_to_dm('TRUNCATE TABLE dbo.transaction_log', 'generic')
         self.assertIn('DELETE FROM', result)
-        self.assertIn('dbo.transaction_log', result)
+        # 无schema_prefix时dbo.xxx变成xxx
+        self.assertIn('transaction_log', result)
 
 
 class TestEndingSemicolon(unittest.TestCase):
@@ -661,6 +662,60 @@ class TestEndingSemicolon(unittest.TestCase):
         # 结尾应该只有一个分号
         self.assertTrue(result.rstrip().endswith(';'))
         self.assertNotIn(';;', result)
+
+
+class TestSelectIntoConversion(unittest.TestCase):
+    """SELECT INTO → CTAS 创建GTT"""
+
+    def test_select_into_temp_table(self):
+        """SELECT INTO #临时表 → CREATE GLOBAL TEMPORARY TABLE AS SELECT"""
+        sql = "SELECT * INTO #VT_NEW FROM src_table WHERE 0=1;"
+        result = convert_sqlserver_to_dm(sql, 'procedure', schema_prefix='HRBI_Stage')
+        self.assertIn('CREATE GLOBAL TEMPORARY TABLE', result)
+        self.assertIn('tmp_VT_NEW', result)
+        self.assertNotIn('SELECT * INTO', result)
+
+    def test_select_into_no_prefix_drops_dbo(self):
+        """无schema_prefix时dbo.xxx变成xxx"""
+        sql = "SELECT * FROM dbo.MyTable;"
+        result = convert_sqlserver_to_dm(sql, 'procedure', schema_prefix='')
+        self.assertNotIn('dbo.', result)
+        self.assertIn('MyTable', result)
+
+    def test_select_into_with_prefix_replaces_dbo(self):
+        """dbo统一删除，不再替换为prefix(v3.5.3起)"""
+        sql = "SELECT * FROM dbo.MyTable;"
+        result = convert_sqlserver_to_dm(sql, 'procedure', schema_prefix='HRBI_Stage')
+        self.assertIn('MyTable', result)
+        self.assertNotIn('dbo.', result)
+        # dbo直接删除，不替换为prefix
+        self.assertNotIn('HRBI_Stage.MyTable', result)
+
+
+class TestDDLSemicolons(unittest.TestCase):
+    """过程体内DDL语句加分号"""
+
+    def test_drop_table_gets_semicolon(self):
+        """DROP TABLE缺分号自动补上"""
+        sql = "CREATE OR REPLACE PROCEDURE test AS BEGIN\nDROP TABLE tmp_xxx\nEND;"
+        result = convert_sqlserver_to_dm(sql, 'procedure')
+        # DROP TABLE行应该有分号
+        self.assertIn('DROP TABLE tmp_xxx;', result)
+
+    def test_create_gtt_multiline_semicolon(self):
+        """跨行CREATE GLOBAL TEMPORARY TABLE自动补分号"""
+        sql = "CREATE OR REPLACE PROCEDURE test AS BEGIN\nCREATE GLOBAL TEMPORARY TABLE tmp_x\n(id INT)\nEND;"
+        result = convert_sqlserver_to_dm(sql, 'procedure')
+        # INT会被映射成INTEGER，所以检查INTEGER); 
+        self.assertIn('INTEGER);', result)
+
+    def test_create_gtt_on_primary_removed(self):
+        """) ON PRIMARY 去掉并补分号"""
+        sql = "CREATE OR REPLACE PROCEDURE test AS BEGIN\nCREATE GLOBAL TEMPORARY TABLE tmp_x\n(id INT\n) ON PRIMARY\nEND;"
+        result = convert_sqlserver_to_dm(sql, 'procedure')
+        self.assertNotIn('ON PRIMARY', result)
+        # ON PRIMARY被替换为;，所以应该有 ); 或 INTEGER); 在结果中
+        self.assertTrue(');' in result or 'INTEGER);' in result)
 
 
 if __name__ == '__main__':

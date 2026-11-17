@@ -1,44 +1,55 @@
-## Description: <br>
-Abstract lets an agent validate email addresses through an OOMOL-connected Abstract account using the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate an email address through Abstract Email Validation using the OOMOL-connected Abstract account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to run Abstract email validation through an already connected OOMOL account. It guides the agent to inspect the live connector schema, submit a JSON payload, and return deliverability, quality, and risk check results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OOMOL-connected Abstract account and may rely on sensitive account credentials. <br>
-Mitigation: Connect credentials only through the documented OOMOL/Abstract flow and avoid exposing raw tokens to the agent. <br>
-Risk: Email validation queries are sent through OOMOL and Abstract services. <br>
-Mitigation: Use the skill only for email data approved for processing by those services. <br>
-Risk: First-time setup may require installing or authenticating an external CLI. <br>
-Mitigation: Review the oo CLI install and authentication steps before running setup commands, and run setup only after a relevant command fails. <br>
+## Use Case:
 
+External users and developers can check an email address's deliverability, quality, and risk signals through their connected Abstract account.
 
-## Reference(s): <br>
-- [Abstract homepage](https://www.abstractapi.com/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The connector response is JSON containing data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: The required CLI may persistently install other agent instructions without this skill disclosing that behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI dependency before installation and use a reviewed release. If only Abstract access is needed, set OO_SKILLS_SYNC_DISABLED=1 before invoking oo.
+
+Risk: Email addresses submitted for validation pass through OOMOL to Abstract.
+
+Mitigation: Submit only addresses appropriate for validation through these services.
+
+## Reference(s):
+
+- [Abstract API documentation](https://docs.abstractapi.com/api)
+- [Abstract](https://www.abstractapi.com/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands]
+
+**Output Format:** [Shell commands with JSON input and response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-action email validation results; no files generated.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

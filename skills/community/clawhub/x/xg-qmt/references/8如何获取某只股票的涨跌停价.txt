@@ -1,0 +1,17 @@
+【python分享8】如何获取某只股票的涨跌停价 
+59763
+发表于 2023-12-22 16:47:54
+|
+只看该作者
+只看大图
+阅读模式
+|
+qmt中，提供了获取当日和历史涨跌停价的接口，获取方法如下：
+
+1、获取当日的涨跌停价：
+#encoding:gbk
+import time
+def init(ContextInfo):
+    stock = '000001.SZ'
+    stock_info = ContextInfo.get_instrumentdetail(stock)
+    print(f'{time.strftime("%Y%m%d")} 当日涨停价:{stock_info["UpStopPrice"]}  当日跌停价:{stock_info["DownStopPrice"]}')

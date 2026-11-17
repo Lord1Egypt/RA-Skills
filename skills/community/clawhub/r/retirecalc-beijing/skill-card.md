@@ -1,49 +1,69 @@
-## Description: <br>
-仅适用于北京市企业职工基本养老保险退休金测算。支持依据北京政策参数计算基础养老金、个人账户养老金、过渡性养老金，并对未退休用户做未来缴费策略优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+仅适用于北京市企业职工基本养老保险退休金测算。支持依据北京政策参数计算基础养老金、个人账户养老金、过渡性养老金，并对未退休用户做未来缴费策略优化。
 
-## Publisher: <br>
-[park-william](https://clawhub.ai/user/park-william) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[park-william](https://clawhub.ai/user/park-william)
 
-## Use Case: <br>
-External users and agents use this skill to collect Beijing enterprise employee pension inputs, parse contribution records, calculate pension components, and compare future contribution strategies. It is scoped to Beijing enterprise employee basic pension rules, including flexible employment users under that pension framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Beijing pension policy context) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive pension, employment, and contribution records in local files. <br>
-Mitigation: Provide only files intended for calculation, keep processing local, and remove generated temporary JSON or Markdown outputs after use. <br>
-Risk: Pension policy parameters can become outdated or differ from the user's exact eligibility context. <br>
-Mitigation: Verify updated policy parameters against official Beijing or national sources before relying on a calculation. <br>
-Risk: OCR or table ingestion can misread contribution records and produce incorrect pension estimates. <br>
-Mitigation: Review low-confidence fields and confirmation forms before running final calculations or using strategy recommendations. <br>
-Risk: Running local scripts with broader permissions than needed could expose personal records or generated outputs. <br>
-Mitigation: Run without elevated privileges and store input and output files only in controlled local directories. <br>
+## Use Case:
 
+External users and agents use this skill to collect Beijing enterprise pension inputs, calculate pension components, and compare future contribution strategies for unretired users. It is limited to Beijing enterprise employee pension rules, including flexible workers covered under that pension channel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/park-william/retirecalc-beijing) <br>
-- [Beijing pension policy links](references/policy-links.md) <br>
-- [Beijing Basic Pension Insurance Regulation](https://www.beijing.gov.cn/gongkai/zfxxgk/zc/gz/202112/t20211216_2562734.html) <br>
-- [Beijing implementation notice for Basic Pension Insurance Regulation](https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/200804/t20080414_567067.html) <br>
-- [Beijing 2025 social insurance treatment parameters](https://rsj.beijing.gov.cn/xxgk/2024zcwj/202511/t20251107_4265291.html) <br>
-- [National gradual retirement age decision](https://www.gov.cn/yaowen/liebiao/202409/content_6974294.htm) <br>
+### Deployment Geography for Use:
 
+Beijing, China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, plus local JSON calculation outputs and Markdown confirmation forms.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local input files and writes generated JSON or Markdown outputs to user-selected paths or temporary working directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill processes and persists sensitive pension and contribution records locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted copies where possible, run the skill in a dedicated working directory, and delete generated temporary JSON and Markdown files after use.
+
+Risk: Local write behavior can create result files and update pension parameter data.
+
+Mitigation: Restrict parameter updates to the bundled data/beijing_params.json file and review parameter changes before reuse.
+
+Risk: Generated confirmation Markdown can contain user data and should not be treated as trusted instructions.
+
+Mitigation: Use confirmation forms only for human review and avoid feeding them back to an agent as authoritative directions.
+
+Risk: Dependency ranges are not fully pinned, which can affect reproducibility.
+
+Mitigation: Prefer pinned dependency versions when installing for repeatable calculations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/park-william/skills/retirecalc-beijing)
+- [Policy links bundled with the skill](artifact/references/policy-links.md)
+- [北京市基本养老保险规定](https://www.beijing.gov.cn/gongkai/zfxxgk/zc/gz/202112/t20211216_2562734.html)
+- [京劳社养发〔2007〕29号](https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/200804/t20080414_567067.html)
+- [京劳社养发〔2007〕21号](https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/200804/t20080414_567066.html)
+- [2025年度北京市参保人员社会保险待遇通告](https://rsj.beijing.gov.cn/xxgk/2024zcwj/202511/t20251107_4265291.html)
+- [2025年度北京市社保缴费工资基数上下限解读](https://rsj.beijing.gov.cn/xxgk/2024zcjd/202509/t20250918_4204887.html)
+- [渐进式延迟法定退休年龄决定](https://www.gov.cn/yaowen/liebiao/202409/content_6974294.htm)
+- [北京市灵活就业补贴说明](https://www.beijing.gov.cn/fuwu/bmfw/bmzt/lhjyry/202507/t20250709_4145233.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown explanations with JSON calculator results and generated confirmation forms]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include pension component amounts, source parameters, assumptions, missing-field review notes, and contribution strategy comparisons.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

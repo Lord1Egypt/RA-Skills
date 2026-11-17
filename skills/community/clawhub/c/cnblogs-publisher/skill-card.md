@@ -1,44 +1,59 @@
-## Description: <br>
-Manage CNBlogs (博客园) articles via MetaWeblog API, including saving drafts, publishing, updating, and deleting posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage CNBlogs (博客园) articles via MetaWeblog API. Supports save drafts, publish, update, and delete posts.
 
-## Publisher: <br>
-[suversal](https://clawhub.ai/user/suversal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suversal](https://clawhub.ai/user/suversal)
 
-## Use Case: <br>
-Developers and content publishers use this skill to manage CNBlogs posts from an agent-assisted command workflow, including drafting, listing, viewing, updating, publishing, and deleting articles through the MetaWeblog API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CNBlogs credentials could be exposed or reused unsafely. <br>
-Mitigation: Use only a revocable CNBlogs MetaWeblog token, rotate any token copied from this package, and avoid printing or committing tokens. <br>
-Risk: Live blog actions can publish, update, or delete real posts. <br>
-Mitigation: Review commands and target post IDs before execution, avoid running tests/test_all.sh, and test only against disposable content. <br>
-Risk: Some scripts disable HTTPS certificate verification. <br>
-Mitigation: Fix the scripts to use verified TLS before using this skill with a real blog account. <br>
+## Use Case:
 
+Developers and content authors use this skill to manage CNBlogs articles from an agent workflow, including drafting, listing, retrieving, updating, publishing, and deleting posts through the MetaWeblog API.
 
-## Reference(s): <br>
-- [CNBlogs Publisher on ClawHub](https://clawhub.ai/suversal/cnblogs-publisher) <br>
-- [CNBlogs Publisher README](README.md) <br>
-- [CNBlogs MetaWeblog Settings](https://i.cnblogs.com/settings#metaweblog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and command-line script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, publish, retrieve, or delete CNBlogs posts when run with valid CNBlogs credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The release evidence reports unsafe credential handling, including bundled test credentials and hardcoded account defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use bundled test credentials; rotate any exposed token and require credentials from environment variables or a managed secret store before use.
+
+Risk: The release evidence reports disabled HTTPS certificate verification during authenticated CNBlogs actions.
+
+Mitigation: Restore normal TLS certificate verification before using the skill with a real CNBlogs account.
+
+Risk: Publishing, updating, deleting, and the bundled test script can modify a live blog account.
+
+Mitigation: Review each write action before execution, require explicit confirmation for publishing or deletion, and avoid running tests/test_all.sh against a real account.
+
+## Reference(s):
+
+- [CNBlogs Publisher on ClawHub](https://clawhub.ai/suversal/skills/cnblogs-publisher)
+- [CNBlogs MetaWeblog settings](https://i.cnblogs.com/settings#metaweblog)
+- [MetaWeblog API reference](https://www.xmlrpc.com/metaWeblogApi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CNBLOGS_BLOG_URL, CNBLOGS_USERNAME, and CNBLOGS_TOKEN; authenticated actions can create, publish, update, or delete CNBlogs posts.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

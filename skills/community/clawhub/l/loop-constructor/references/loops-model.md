@@ -1,0 +1,409 @@
+# The operating model behind the shape (LOOPS.md)
+
+The D0–D7 procedure and the linter enforce the loop's *structure*. This file is the
+*operating model* the structure serves — the field-note rules that are **judgment,
+not schema**, and so live here (and in the fresh-reader pass) rather than in
+`lint_loop_design.mjs`. Cite them when they drive a design choice.
+
+Source: *Field Notes on Agents That Run for Days* (`loops.md`, v060726) — widely
+attributed to Karpathy; the attribution is not first-hand verified (KB evidence
+registry grade C), so cite the notes, not the author.
+Each rule below names where it lands in the design.
+
+## The nine rules → where each lands
+
+| # | Rule | Lands as |
+|---|------|----------|
+| I | Write the loop, not the prompt | the whole artifact — a runnable runbook, not a message |
+| II | **Separate the roles** | `roles.{planner,generator,evaluator}` — **linter-enforced** for staged |
+| III | **Negotiate the contract first** | `contract.assertions[]` — **linter-enforced** for staged |
+| IV | Write to disk, not to context | `harness_primitives` name the durable state set (below) |
+| V | **Let the loop restart; stop on a fixer signature** | `on_failure.action: "restart"` — **linter-accepted**; routing order escalate → re-plane → loopback → restart and the fixer-signature escalate triggers are judgment (below) |
+| VI | Score the subjective | a calibrated-rubric `feedback_signal.check` (below) — D2 |
+| VII | Read the traces | a debugging discipline + a harness primitive (below) |
+| VIII | Delete the harness | a two-way settlement pass at each model release (below); tune degrees-of-freedom to the model |
+| IX | The bottleneck always moves | name the current bottleneck in the report (below) |
+
+Rules II, III, V are **structure** — the linter binds them (see
+`loop-design-shape.md`); for V that is only the `restart` action's existence — its
+routing order and triggers are judgment. Rules IV, VI, VII, VIII, IX are
+**judgment** — the rest of this file, checked by the fresh-reader, not the linter.
+
+Disciplines from the skill-philosophy KB's H series (`guidelines/loops.md`
+H2/H4/H7/H8 + `rules/constitution.md` A45/A46) are folded into the sections they
+belong to rather than bolted on as a tenth rule: the **write-surface** half of role
+separation (§II), **contract sizing as lower bounds** (§III), the **pre-registered
+stall counter** and the **four-exit routing order with its fixer-signature stop**
+(§V; R20 H4/A51), **paired telemetry** (§VII·b), and the
+**compensating-vs-structural** split when pruning (§VIII). The two-sided stop gate
+(H5) lands in the selection procedure at D5, where stop conditions are chosen.
+
+## II — Separate the roles (why the structure exists)
+
+Three roles, three contexts, three system prompts. A **planner** turns the human
+sentence into the spec+contract and never touches code. A **generator** writes
+everything and is *forbidden from grading its own work*. An **evaluator** reads the
+diff, runs the checks, plays the app, and is told from its first message that the
+code is broken and its job is to prove it. Mixing them is the most common failure:
+the model turns **sycophantic the moment it grades itself**, and the loop quietly
+converges on slop (`principle.maker_checker_separation`,
+`principle.adversarial_review_subagent`, `anti_pattern.reward_hacking`). This is why
+`roles.evaluator` must be `separate_context: true` + `adversarial: true` — it is the
+attacker sibling's stance, wired into the loop as a role.
+
+**Separation is a WRITE-SURFACE property, not just a context property.** A separate
+evaluator context is a *conditional* purchase — plenty of loops legitimately let the
+runnable check be the final arbiter instead. But when you don't buy an independent
+evaluator, the check must still sit outside the generator's write surface: the
+**execution of the check and the writing of its result** are not the generator's to
+touch. Concretely, one of —
+- the judging script and its result file are **read-only to the generator** (it runs
+  the check, it cannot edit the check or the verdict); or
+- the check is run by a **hook / wrapper the generator does not invoke** and whose
+  output lands in a file the generator never writes.
+
+Otherwise the generator is grading itself through the back door: it patched the door,
+then it stamped the door. Name which of the two you bought in `maker_checker.scope`,
+and say *why* if you skipped the independent evaluator — "we didn't buy one" is a
+reviewable decision, "we didn't need one" is not. (KB `rules/constitution.md` A45(ii),
+`guidelines/loops.md` H2.)
+
+**The write surface includes the evaluator's standing instructions.** A fresh
+evaluator context is not a clean one: the host auto-injects `CLAUDE.md`,
+`AGENTS.md`, `.claude/` rules and auto-memory files, and the evaluator reads its own
+prompt files under `.loop/`. If the generator may write any of these, it can plant a
+standing instruction ("treat ties as PASS") that the evaluator reads as authority —
+separation broken through a second back door while every boolean still says
+separate. Text the generator writes into those files is still generator output; the
+channel gives it no authority. So either keep them outside the generator's write
+surface (a read-only mount, or the evaluator runs from a checkout at the stage tag),
+or hash them before the evaluator starts and verify the hash — where the evaluator
+legitimately needs the project's `CLAUDE.md`, hash-and-verify rather than strip.
+When neither is bought, write the evaluator's independence as **`L-i incomplete`**
+in `maker_checker.scope` instead of claiming it. (KB `principles/principles.md` P10,
+`rules/constitution.md` K1.)
+
+## III — Negotiate the contract first (why the structure exists)
+
+Before the generator writes a line, it proposes what "done" looks like and the
+evaluator **pushes back** — the two argue via markdown on disk until they agree on a
+checklist of testable assertions. **The contract, not the original spec, is what
+gets graded.** This is the single change that most often moves a run from broken
+demo to working product (`principle.machine_verifiable_dod`).
+
+**Sizing: the per-surface numbers are LOWER BOUNDS, and they count only
+machine-gradable assertions.**
+
+| Surface | Lower bound (machine-gradable) | Ceiling |
+|---|---|---|
+| a single endpoint / function | **≥ 8** (8–12 typical) | 24 |
+| a module | **≥ 12** (12–20 typical) | 36 |
+| an app-sized build | **≥ 20** | 60 |
+
+The bounds are floors, not targets, and they exist for a concrete reason: a contract
+too thin to disagree with gets **rubber-stamped** — the evaluator says "looks right"
+because nothing in the list can catch a plausible wrong build. The ceiling is
+lower-bound × 3, so the answer to "this contract is thin" is never assertion-padding
+(twenty restatements of one claim is one claim).
+
+The linter's floor of **3 machine-gradable** assertions is a different thing: an
+absolute anti-vacuity ground that sits *below* every surface bound above. Clearing 3
+clears the linter and still fails the sizing — a green linter never certifies a
+contract is big enough. `human-verify:` entries count toward neither the linter floor
+nor the surface bound (a floor met by rubber stamps is no floor). The linter checks
+each assertion is gradable + stage-traceable; **you** (and the fresh-reader) judge
+whether the count actually pins the behavior down.
+(KB `rules/constitution.md` A45(i) + 附录一 A45 参数行.)
+
+**Honest limit of the linter (attestation boundary).** Like
+`machine_verifiable: true`, the roles booleans (`separate_context`, `adversarial`)
+are **author-attested** — the linter gates on the flags, it does not NLP-judge the
+mandate prose. A design can set the booleans true while its mandates describe a
+generator grading itself; only the fresh-reader (and the reviewer) can catch that
+contradiction. The linter's job is to make the separation *impossible to omit
+silently*; making it *true* is the maker/checker's.
+
+## IV — Write to disk, not to context
+
+Context windows compact and rot; a file on disk does not. A loop that must survive a
+crash or a compaction keeps its state in a small, fixed set of files the agent
+re-reads on resume (`concept.external_state_memory`). Name them in
+`harness_primitives`:
+
+- **`contract.md`** — the negotiated assertions (the graded criteria).
+- **`progress.md`** / **`feature_list.json`** — what's done, what's next, per stage.
+- **`log.md`** — append-only, one line per operation: `## [YYYY-MM-DD] op | title`.
+
+The test: *the agent should be able to lose its session and pick up from these files
+alone.* If you can't describe the loop's state in three files, the state is too
+complicated. (This is also the compaction-survival contract — long runs re-read the
+artifacts, they do not trust the summary.)
+
+## V — Let the loop restart, and stop on a fixer signature (four exits, one order)
+
+The best behavior of current frontier models is the willingness to throw a
+sideways build away and ship a clean version two iterations later; older models
+patched until the codebase resembled archaeology. So `restart` is a first-class
+`on_failure` action, and **do not interrupt a restart of the stage's own stalled
+work with a human** — humans enter at the `escalate` exit below, not in the middle
+of a restart.
+
+The routing rule — each exit is named by **what the failure accuses**:
+- **`escalate`** — the failure accuses something the loop may not fix by itself:
+  the **contract** (the agreed assertions are wrong or unsatisfiable), the **task**
+  (impossible, or blocked on a permission/resource the loop cannot get), or the
+  **fixer** (one of the fixer signatures below fired). Stop the loop and hand it to
+  the owner — the only legitimate point where a human enters.
+- **re-plane** — the failure accuses the **execution plane of a judgment**: a call
+  whose verdict information is not in the string ("is this rewrite better?", "are
+  these two terms the same thing?") was put into a deterministic check (regex,
+  threshold, similarity score), and the audit keeps reading non-convergence.
+  Restarting in the same plane only re-commits the defect; the judgment has to move
+  to a model-read rubric / judgment card or to a human. Re-plane is **the owner's
+  (or gate's) disposition after an escalate stop — never an `on_failure` value the
+  loop may pick for itself**, because a self-chosen re-plane is a channel around the
+  round cap. There is deliberately no `re-plane` action in the schema.
+- **`loopback`** — the failure accuses an **upstream artifact**: the input this
+  stage consumed is wrong (a poisoned baseline, a stale plan). Reset that gate; your
+  own work may be fine.
+- **`restart`** — the failure accuses the stage's **own work** and patching has
+  stalled: same-class failures recurring across retries, fixes that only add
+  epicycles. Discard the stage's work, re-derive from the contract.
+
+**Order: escalate → re-plane → loopback → restart — the first exit whose trigger
+fires wins.** Accusing the contract, the task or the fixer comes before any way of
+fixing; a wrong plane comes before patching inside it. The order removes in-flight
+discretion when two triggers fire on one failure: "own work stalled" and "a P0
+inside the previous fix" together is an escalate, not a restart.
+
+**The fixer signatures — any ONE alone means escalate (stop).** Pre-register them
+as outer `stop_conditions.escalate` entries, ahead of the restart counters:
+- (i) a top-severity (P0/P1) defect lands inside the previous iteration's own fix —
+  or the fix area shows a new ≥P2 regression, or the defect moved into an adjacent
+  file;
+- (ii) the **fix area** (the scripts / tests / eval cases the fixes touched) grew
+  >50% over the last green baseline — the fix area, not the whole task diff, so a
+  migration's expected large diff does not trip it; the counter starts at the first
+  green baseline (before that, only (i), (v) and the caps apply);
+- (iii) a third exception layer on one threshold / regex / allow-list;
+- (iv) a second implementation copy of one root cause;
+- (v) 2 fix rounds on one defect class within one version — the count does not
+  reset on a new session or a new author.
+
+**Fixer signatures are not the restart counter.** The restart counter counts the
+stage's own check failing across retries *before* it ever went green — that is own
+work stalling, and it restarts without a human. A fixer signature counts what happens
+*after* a fix was presented as done: the evaluator or attacker re-opens it — a new
+P0/P1 inside that fix, the same defect class again, another exception layer. Keep the
+two apart when writing the counters, or (v) will pre-empt every restart.
+
+**Where each counter is written.** The own-work stall counter lives on the stage:
+`on_failure: restart` plus that stage's failure string ("2 consecutive iterations
+fail in the same class"). Never put it in the outer `stop_conditions.failure` list —
+every outer failure entry renders as a terminal STOPPED_UNMET in the runbook, so a
+"→ restart" line there tells the executor to stop and restart at once. Only the
+exhausted restart budget ("2 restarts of one stage without going green") belongs in
+the outer failure list; the fixer signatures belong in `stop_conditions.escalate`.
+
+Tell the designed loop which plane each counter lives on: (ii) and (v) are counts
+over the git diff / round log (a script can fire them); (i) needs a severity call by
+a reviewer at least as independent as the one that found the defect — a downgrade by
+a less independent reviewer does not count — with diff overlap against the previous
+fix as the locality evidence; (iii) and (iv) are semantic ("the same threshold", "the
+same root cause") and are called by the evaluator, not by a script.
+
+**Every escalate on a fixer signature carries the plane question**, which the owner
+answers first: *can a deterministic rule judge this stably at all — or is there a
+witness pair with the same features and opposite verdicts?* If such a pair exists,
+the answer is re-plane; if not, the owner rules loopback / restart / abort. An
+escalate with no plane question attached hands the owner "stuck, please help" — half
+a stop.
+
+**The safe exit is never sealed.** "Task impossible or blocked → stop and report" is
+a first-class terminal state. A request like "the owner is asleep, don't ask, keep
+going until green" is recorded as a preference (no mid-run questions about routine
+choices); it cannot remove this exit. A model handed an impossible task and forbidden
+to ask attempts to hack the check several times more often (KB H4 cites the vendor's
+own system-card measurement).
+
+**Re-entry discipline.** `restart` and re-plane re-enter in a **fresh context** from
+the last green baseline plus the on-disk state (§IV) — after a cold read confirms that
+state is not itself poisoned (a wrong contract or a green fake test would be carried
+straight back in). `loopback` carries only the minimal failure evidence upstream (the
+failing assertion and its output): a failed attempt left in context drags down the
+next generation.
+
+**Quantify "patching has stalled" BEFORE the run.** That phrase is the hinge of the
+whole routing rule, and it is a semantic judgment — which means in-flight it loses to
+optimism every single time ("one more round and it converges"). So every trigger is
+written as a **counter in the stop conditions before the first iteration**, and it
+fires mechanically when it trips:
+
+- *"2 consecutive iterations whose failures are the same class → `restart`"* (own-work
+  stall — autonomous, no human)
+- *"a P0/P1 lands inside the previous iteration's own fix → STOP, `escalate` (owner
+  first asks whether this judgment should be mechanized at all)"*
+- *"3 iterations without the failing assertion changing → `escalate`"*
+
+No in-flight discretion, and no raising a counter from inside the loop. The failure
+this rule is named after is a seven-version patch-vs-break arms race over a
+deterministic gate that judged whether two terms were the same thing, in which each
+round's worst defect came out of the previous round's fix. It was not short of
+auditing: a discriminating audit and an independent attacker were both present and
+read the non-convergence correctly. What the loop lacked was the **authority to
+stop** and ask whether that judgment belonged in code at all — so it kept patching in
+the same plane until the whole effort was reverted wholesale. Reading it as "needed
+more audit" or "needed a restart counter" prescribes the wrong medicine.
+(KB `guidelines/loops.md` H4 + H-series verdict 2, `rules/constitution.md` A51,
+`principles/principles.md` P13, `[SELF-caoliao军备赛]`.)
+
+## VI — Score the subjective (a rubric as a check)
+
+Taste is gradable if you write it down. When a stage's DoD is a **quality** judgment
+an objective check can't reach (visual design, prose voice, UX, "does this feel
+good"), the `feedback_signal.check` is a **rubric scorer**, not a test:
+
+- **Weighted axes**, stated up front (e.g. design · originality · craft ·
+  functionality), each 0–1.
+- **Calibrated on references** the evaluator is told are good vs slop — typically 3
+  exemplars each side — so the number means something.
+- Output is a **score + a paragraph** naming the gap, and the gate is a threshold on
+  that score.
+
+The rubric-scorer is still a runnable check (the evaluator, in its fresh context,
+runs it), so the anchor holds — but its `passing_but_wrong` is honest about the
+residual: a rubric converges toward the taste you wrote down, no further. When the
+best rubric is still gameable, mark that assertion `human-verify:` rather than
+overstating `machine_verifiable: true`.
+
+## VII — Read the traces
+
+Every debugging insight about a loop comes from reading the raw transcript, not from
+running another experiment. When a loop misbehaves: pipe the agent's output to a
+file, **grep for the moment its judgment diverged** from yours, edit the prompt (or
+the check, or the contract) for *that exact moment*, re-run. It is the same muscle as
+reading a stack trace — the trace is just written in English, and most of it is the
+model talking to itself. Make it possible: a **captured transcript / run-log** is a
+`harness_primitive`, not an afterthought. Tuning by vibe without reading the trace is
+the thing this rule forbids.
+
+### VII·b — Pair every telemetry number (what the run report must carry)
+
+Reading traces is how you debug a loop; **paired telemetry** is how you keep the loop
+honest when it reports on itself. The hard rule for the run report the loop emits when
+it stops: **no success/autonomy metric is reported without its integrity/damage
+counterpart standing next to it, or an explicit `not measured` tag.**
+
+| Success / autonomy side | Must be paired with |
+|---|---|
+| `task_success` / gates green | `reward_hack` — a diff audit (or sampled audit) for weakened assertions, deleted tests, hard-coded expectations |
+| `autonomous_resolution` (ran without a human) | `regression_escape` — what got through that the checks didn't catch |
+| throughput (changes/PRs/stages landed) | defect + rollback rate over the same window |
+| `iterations_to_acceptance` | read it **both ways**: too high = slow feedback or a wall; **too low = the check is too weak** and accepted on the first pass because it could not fail |
+
+An unpaired success number is not a small omission — it is the exact shape of slop
+("659 PRs merged, 4.3× faster" with no defect denominator). When the integrity side is
+genuinely too expensive to measure, the legal degradation is **sampled audit + a
+visible `not measured` tag on that line**; the illegal one is dropping the line. And a
+report carrying `not measured` on its load-bearing integrity metrics is not acceptance
+evidence — it is a partial run. Loop *benefit* claims ("this made us faster") are
+verified by external timing or a gate, never by the participants' self-assessment.
+(KB `guidelines/loops.md` H7, `rules/constitution.md` A46;
+`<kb>/templates/loop_run_report.template.md` is the report frame to fill.)
+
+## VIII — Delete the harness (and settle it both ways)
+
+The harness exists to compensate for the model, and every model release is a
+settlement day for it. Much of what you wrote last quarter becomes overhead — but
+point versions do not move monotonically: a newer version can regress on a specific
+behavior (progress reporting, parallel tool calls, stopping early), so the same
+release can make one part overhead and make a missing guard necessary. A harness
+that only ever **grows** is one you have stopped reading; one that only ever shrinks
+has stopped reading the release notes. Consequences for a design:
+
+- **Settle both ways at each release.** Re-read the harness against the new model:
+  **delete** what the model now does for free (context-resetting babysitting,
+  redundant step-by-step scaffolding, low-value per-task review) — a leaner runbook
+  that still passes its checks is a *better* deliverable, not a lazier one — **and
+  add back** the named failure modes from that version's behavior-difference notes
+  as explicit guards. For Claude 5.x the per-version list lives in KB
+  `adaptations/claude5-family.md` (as of 2026-09-24): cite it by path, don't copy its
+  facts into the design, they rot. Stamp every settlement change, deletion or
+  addition, with its **`model_baseline`** — the resolved model id + effort + harness
+  version the evidence was measured on (an alias such as "latest" does not qualify).
+  An added guard with no measured value yet is written as a named risk guard, not a
+  tuned number (§VIII·b). (KB `principles/principles.md` P11.)
+- **Match degrees-of-freedom to the model.** Give an open, well-understood task
+  high-freedom prose and trust the model; reserve low-freedom, precise scripting for
+  the genuinely fragile steps (the checks, the irreversible actions). Over-scaffolding
+  a capable model is the same waste as under-specifying a fragile step.
+- **Split the harness into COMPENSATING parts and STRUCTURAL parts before you delete
+  anything — they settle on different evidence.**
+  - **Compensating parts** encode "the model can't do this yet": context-reset
+    babysitting, step-by-step scaffolding, per-turn review, a loop-detection gate.
+    They are settled by **a bare-model comparison** — run the loop with and without
+    the part on the current model; persistent parity means the part is now overhead,
+    delete it and stamp the deletion with the `model_baseline` it was measured on.
+  - **Structural parts** encode an architectural constraint that does not expire with
+    a model release: state on disk, role separation, stop conditions, the runnable
+    check. They are settled by a different question — *"is the architectural
+    constraint still there?"* (does context still get lost across sessions? does a
+    model still grade its own work generously?) — not by a bare-model A/B, because
+    the constraint is about the *system*, not the model's skill.
+
+  Structural parts are **not** exempt from review; they just get reviewed with the
+  right question. And the classification is **not the designer's to declare** — a
+  builder who can self-label a component "structural" can exempt anything from
+  deletion review by naming it. The class goes into the review record and the
+  checker/gate confirms it. (KB `guidelines/loops.md` H8.)
+
+### VIII·b — The information-dimension rule (prospective): not yet measured → do not write
+
+Delete-the-harness prunes what the model no longer needs — retrospective, the
+time dimension. Its prospective counterpart, previously unnamed in this doctrine:
+**do not write a number nobody has measured.** An empirical magnitude — a
+ceiling, a timeout, a batch size, a sample size, an agreement bar — fixed at zero
+runs is imagination wearing pre-registration's clothes. The design fixes the
+**formula** (`parameter_provenance.derived`); the run produces the value.
+Decision numbers are exempt on purpose: caps, stall counters and drift thresholds
+encode *willingness*, not world-claims — pre-registration and calibration apply
+to different KINDS of numbers, which is why D7 classifies first.
+
+Two honesty clauses keep the rule from becoming its own disease:
+
+- **"Derived" is not a synonym for "true".** A fully truthful derivation over a
+  survivor-biased sample converges on an unfinishable bound: the expensive items
+  never complete, so they never enter the sample, so each re-derivation draws from
+  an ever-cheaper survivor set while true cost rises. Hence every derived
+  parameter's `sample_rule` states its censoring handling — **censored
+  observations (timeouts, non-completers) enter as LOWER BOUNDS; a sample that
+  silently drops non-completers is invalid** — and its `drift_policy.floor_trip`
+  bounds the conservative ratchet: when the fallback would make the design's
+  minimum-progress floor unattainable, the loop **escalates once at contract
+  level** instead of silently tightening forever. The floor-trip escalate rate is
+  telemetry (`metric.stop_gate_trigger_rate`): zero may mean a hollow gate that
+  cannot fire, a storm means the calibration machinery costs more than it earns.
+- **The machinery is mortal too.** The information-dimension machinery is not
+  exempt from the time-dimension rule: a derived parameter that lands on the same
+  value run after run is a constant wearing a derivation costume — delete the
+  derivation and file the number as fixed (with its class and why). The drift
+  tables self-evidence both directions: stability → the calibration stage is
+  deletable overhead; an escalate-storm → the machinery is the bottleneck. Prune
+  it like any other harness part.
+
+## IX — The bottleneck always moves
+
+When coding stops being the bottleneck, planning becomes it; when planning is solved,
+verification; when verification is automated, taste. You do not *finish* a loop — you
+find the next thing to fix, and the whole point of the loop is to make that next
+bottleneck **visible**. So the report names it: *given this design, where is the
+current bottleneck, and which stage/check is now the weakest link?* "Everything is
+smooth" means you are not looking carefully enough — say what you would harden next.
+
+## Grounding
+
+`principle.separate_planning_from_execution`, `principle.maker_checker_separation`,
+`principle.adversarial_review_subagent`, `concept.external_state_memory`,
+`principle.machine_verifiable_dod`, `anti_pattern.reward_hacking`,
+`anti_pattern.context_drift`, `procedure.canonical_loop`. Retrieval:
+`node <kb>/tools/query_kb.mjs "<topic>"`.

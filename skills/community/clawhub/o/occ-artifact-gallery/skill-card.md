@@ -1,41 +1,60 @@
-## Description: <br>
-Helps agents register generated local files and return mobile-accessible OCC/Tailscale artifact viewer links instead of filesystem paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent generates local files/folders and must return mobile-accessible OCC/Tailscale viewer links instead of filesystem paths.
 
-## Publisher: <br>
-[shadoprizm](https://clawhub.ai/user/shadoprizm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadoprizm](https://clawhub.ai/user/shadoprizm)
 
-## Use Case: <br>
-Agents and developers use this skill when generated files need to be shared through mobile or chat channels as stable viewer and download links rather than local filesystem paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Viewer and download links may expose registered generated outputs to anyone with access to the link or gallery network. <br>
-Mitigation: Register only intended files, avoid private or secret-bearing content, and verify gallery access controls before sharing links. <br>
-Risk: Registration can fail when paths are outside allowlisted roots or look credential-related. <br>
-Mitigation: Do not invent URLs or bypass gallery checks; fix the path or root, or report the failure. <br>
+## Use Case:
 
+Developers and agents use this skill to register generated files or folders and return mobile-accessible OCC/Tailscale viewer links instead of local filesystem paths.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shadoprizm/occ-artifact-gallery) <br>
-- [OCC Artifact Gallery UI](https://n2-pro.tail1c2e65.ts.net/artifacts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text with viewer_url and optional download_url fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include artifact type and size when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and manifest.yaml) <br>
+Risk: The skill depends on an unbundled local executable and broken manifest references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify artifact_gallery_tool.py, its ownership, permissions, manifest paths, and access controls in the intended OCC environment before installation.
+
+Risk: Generated artifact links may expose sensitive files if gallery controls are not correctly configured.
+
+Mitigation: Use the skill only after confirming the gallery root allowlist, secret-path rejection, authentication, and link visibility controls.
+
+Risk: If artifact registration fails, invented URLs could mislead users or bypass intended path checks.
+
+Mitigation: Report the registration failure or fix the path/root configuration instead of fabricating viewer or download URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shadoprizm/skills/occ-artifact-gallery)
+- [Publisher profile](https://clawhub.ai/user/shadoprizm)
+- [Gallery UI](https://n2-pro.tail1c2e65.ts.net/artifacts)
+- [Artifact viewer URL pattern](https://n2-pro.tail1c2e65.ts.net/artifacts/a/{artifact_id})
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and artifact viewer URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses should include a brief summary, viewer_url, optional download_url, and artifact type or size.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,58 @@
-## Description: <br>
-Track daily expenses in structured monthly markdown files with categories, tags, summaries, and spending analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track daily expenses in structured markdown files organized by month. Use when the user wants to log spending, view expense summaries, analyze spending patterns, or manage personal finance tracking.
 
-## Publisher: <br>
-[aholake](https://clawhub.ai/user/aholake) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aholake](https://clawhub.ai/user/aholake)
 
-## Use Case: <br>
-External users and agents use this skill to log personal spending, generate monthly summaries, and review category-level spending patterns in a local workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill writes personal spending records to local markdown files, which may contain sensitive financial or contextual details. <br>
-Mitigation: Keep entries free of sensitive details, review generated files for accuracy, and store the workspace in a trusted location. <br>
-Risk: Broad spending examples may cause an agent to log casual spending comments when the user did not intend persistent tracking. <br>
-Mitigation: Use explicit requests such as 'log this expense' before creating entries. <br>
-Risk: Custom workspace, date, or month values can direct writes or reads to unexpected locations or periods. <br>
-Mitigation: Use default paths and current dates unless the user explicitly provides trusted values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Expense Categories](references/categories.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aholake/aholake-expense-tracker) <br>
+## Use Case:
 
+Employees, external users, and personal finance users use this skill to log spending, maintain month-organized markdown expense records, and review category-level summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown files, terminal text, and optional JSON summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local monthly expense files under an expenses directory and can emit category summaries for a month.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores spending history in local markdown files, which may contain sensitive personal finance details.
+
+Mitigation: Avoid sensitive descriptions or tags, keep the workspace private, and review stored expense files before sharing or backing them up.
+
+Risk: Conversation-derived expenses may be ambiguous or incorrectly categorized before they are persisted.
+
+Mitigation: Confirm amount, category, date, and description with the user before logging expenses.
+
+Risk: The helper script may read or write markdown files outside the intended expenses folder if workspace or date/month inputs are misused.
+
+Mitigation: Use trusted input, prefer an explicit trusted workspace path, and harden date and month validation before shared or automated use.
+
+## Reference(s):
+
+- [Expense Categories](references/categories.md)
+- [ClawHub Skill Page](https://clawhub.ai/aholake/skills/aholake-expense-tracker)
+- [Publisher Profile](https://clawhub.ai/user/aholake)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; expense data is stored as markdown tables and summaries can be emitted as text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local monthly expense files under an expenses directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

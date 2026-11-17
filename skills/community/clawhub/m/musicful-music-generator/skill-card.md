@@ -1,44 +1,55 @@
-## Description: <br>
-Generates AI music, instrumental background tracks, lyrics, or task status responses from natural language through the Musicful API, returning preview and final audio links when available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI music or lyrics from natural language, with intent detection for vocal songs, instrumental background music, lyrics-only requests, and task status checks.
 
-## Publisher: <br>
-[boner-bbb](https://clawhub.ai/user/boner-bbb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boner-bbb](https://clawhub.ai/user/boner-bbb)
 
-## Use Case: <br>
-External users and developers use this skill to turn plain-language music requests into lyrics, instrumental tracks, vocal songs, or Musicful task status updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Music prompts, lyrics, task IDs, and generation metadata are sent to Musicful. <br>
-Mitigation: Avoid confidential or regulated content unless Musicful is approved for that use. <br>
-Risk: The skill requires a Musicful API key stored in environment configuration. <br>
-Mitigation: Use a revocable API key and keep the .env file private. <br>
-Risk: Python dependencies are declared with lower bounds rather than pinned versions. <br>
-Mitigation: Pin dependency versions in managed or production environments. <br>
+## Use Case:
 
+External users and creators use this skill to request vocal songs, instrumental background music, lyrics-only output, and task status updates from a natural language command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/boner-bbb/musicful-music-generator) <br>
-- [Musicful API key documentation](https://www.musicful.ai/api/authentication/interface-key/) <br>
-- [Musicful API service endpoint](https://api.musicful.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, shell commands] <br>
-**Output Format:** [Text or JSON-style command results containing lyrics, task status, preview links, and final audio links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MUSICFUL_API_KEY; sends prompts, lyrics, task IDs, and related generation metadata to Musicful.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: A modified or misconfigured MUSICFUL_BASE_URL can send the Musicful API key and prompts to an arbitrary server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the .env file before use, keep MUSICFUL_BASE_URL set to https://api.musicful.ai, and rotate the Musicful API key if the endpoint was unexpectedly changed.
+
+Risk: Prompts or lyrics submitted to the Musicful service may contain sensitive, regulated, or proprietary material.
+
+Mitigation: Do not submit secrets, private lyrics, regulated data, or proprietary material unless the user accepts Musicful's data handling terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/boner-bbb/skills/musicful-music-generator)
+- [Musicful API key setup](https://www.musicful.ai/api/authentication/interface-key/)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text and JSON status payloads with lyrics, task IDs, preview URLs, and final audio URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MUSICFUL_API_KEY; MUSICFUL_BASE_URL is optional and defaults to the official Musicful API host.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

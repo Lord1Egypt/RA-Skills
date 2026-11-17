@@ -1,39 +1,50 @@
-## Description: <br>
-Organize research - manage references, notes, and collaboration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize research: manage references, notes, and collaboration.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Researchers and teams use this skill to organize papers and notes in Google Drive, write summaries in Docs, track research data in Sheets, and coordinate peer review or collaborator updates through Gmail workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may help share research notes or documents by email without clear confirmation safeguards. <br>
-Mitigation: Before any send or file share, require the agent to show exact recipients, subject, message body, and documents, and approve each outbound action explicitly. <br>
+## Use Case:
 
+Researchers and collaborators use this persona to organize research papers, notes, datasets, and findings in Google Workspace, including Drive folders, Docs summaries, Sheets logs, and Gmail-based review requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/googleworkspace-bot/persona-researcher) <br>
-- [Publisher Profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with Google Workspace command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-drive, gws-docs, gws-sheets, and gws-gmail utility skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata); 0.22.5 (source: SKILL.md metadata.version) <br>
+Risk: Google Workspace sharing and Gmail actions may expose sensitive research notes, drafts, datasets, or internal documents to unintended recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recipients, shared links, and content sensitivity before allowing the agent to send messages or announce files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/persona-researcher)
+- [ClawHub publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Google Workspace CLI command examples and collaboration actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and the gws-drive, gws-docs, gws-sheets, and gws-gmail utility skills.]
+
+## Skill Version(s):
+
+0.22.5 (source: SKILL.md metadata); release 1.0.12 (source: server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

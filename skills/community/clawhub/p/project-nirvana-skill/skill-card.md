@@ -1,43 +1,54 @@
-## Description: <br>
-Nirvana Skill strips SOUL, USER, MEMORY, and chat history before cloud API calls for OpenClaw agents that use a local LLM first. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nirvana Skill strips private OpenClaw context such as SOUL, USER, MEMORY, and chat history before cloud API calls for teams that already operate a local LLM.
 
-## Publisher: <br>
-[shivaclaw](https://clawhub.ai/user/shivaclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shivaclaw](https://clawhub.ai/user/shivaclaw)
 
-## Use Case: <br>
-Developers and teams using OpenClaw agents with a local LLM use this skill to route prompts locally first and strip private context before optional cloud fallback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud fallback may send sanitized prompts outside the local environment despite the skill's privacy goals. <br>
-Mitigation: Disable cloud fallback for highly sensitive work unless it is explicitly needed and approved. <br>
-Risk: Audit logs and cached responses may retain sensitive workflow details if storage, deletion, or verbose logging behavior is not reviewed. <br>
-Mitigation: Verify where logs and cached responses are stored, how they are deleted, and whether verbose prompt logging can be turned off. <br>
-Risk: The security scan flagged mismatched install details and recommends confirming the exact package and publisher before installation. <br>
-Mitigation: Confirm the ClawHub package slug and publisher handle before installing or deploying the skill. <br>
+## Use Case:
 
+Developers and teams using OpenClaw agents with an existing local LLM use this skill to route requests locally first and strip private agent, user, memory, and chat-history context before cloud fallback calls.
 
-## Reference(s): <br>
-- [Nirvana Skill ClawHub Page](https://clawhub.ai/shivaclaw/project-nirvana-skill) <br>
-- [Publisher Profile](https://clawhub.ai/user/shivaclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an existing local LLM endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: The skill handles very private agent context while relying on an unreviewed external install and under-specified logging, caching, and network behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the actual shivaclaw/nirvana-local package, pin a known version before installing, and verify where audit logs, cached responses, and cloud fallback requests are stored and controlled.
+
+Risk: Remote or exposed local inference endpoints can expand the privacy boundary for sensitive context.
+
+Mitigation: Use loopback-only HTTP or HTTPS/authenticated tunneling for remote inference endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shivaclaw/skills/project-nirvana-skill)
+- [Publisher profile](https://clawhub.ai/user/shivaclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, configuration, audit, and operational guidance for privacy-preserving local-first routing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

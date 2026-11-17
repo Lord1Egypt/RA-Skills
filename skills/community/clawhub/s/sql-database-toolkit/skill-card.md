@@ -1,53 +1,69 @@
-## Description: <br>
-All-in-one SQL data analysis toolkit supporting database and file connection, SQL querying, visualization, statistical insights, and report or dashboard generation with templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Database Toolkit helps agents connect to databases or local files, run and optimize SQL, create visualizations, generate statistical insights, and assemble HTML reports and dashboards.
 
-## Publisher: <br>
-[sqlskills](https://clawhub.ai/user/sqlskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moniq888](https://clawhub.ai/user/moniq888)
 
-## Use Case: <br>
-Developers, analysts, and data engineers use this skill to connect to SQL databases or local data files, run and optimize queries, create charts, and generate HTML reports or dashboards. It is suited for data exploration and reporting workflows where generated SQL and exports are reviewed before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad database, file, and report-generation authority with weak guardrails. <br>
-Mitigation: Use read-only database accounts where possible, review generated SQL before execution, and avoid running against production databases without approval. <br>
-Risk: Generated reports, HTML, JSON, and temporary database files may contain sensitive customer, patient, personnel, or business data. <br>
-Mitigation: Export only authorized data, store generated artifacts in approved locations, and apply the same retention and access controls used for the source data. <br>
-Risk: Some shell and query-termination examples are unsafe or misleading. <br>
-Mitigation: Treat examples as illustrative, adapt commands and SQL to the local environment, and require review before copying them into operational workflows. <br>
-Risk: Calendar heatmap output is flagged as unreliable by the security guidance. <br>
-Mitigation: Avoid relying on calendar heatmap results until the implementation is fixed and validated. <br>
+## Use Case:
 
+Developers and analysts use this skill to connect SQL databases or local tabular files, run SQL analysis, and produce charts, insights, dashboards, and HTML reports for business data workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sqlskills/sql-database-toolkit) <br>
-- [Dependency installation and configuration guide](references/INSTALLATION.md) <br>
-- [Integration guide](references/INTEGRATION_GUIDE.md) <br>
-- [SQL security guidance](references/sql-security.md) <br>
-- [SQL generation guide](references/sql-generation.md) <br>
-- [Query optimization guide](references/query-optimization.md) <br>
-- [Chart selection guide](references/chart-selection.md) <br>
-- [Visualization guide](references/visualization-guide.md) <br>
-- [Dashboard guide](references/dashboard.md) <br>
-- [Template index](references/templates-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, HTML reports, charts] <br>
-**Output Format:** [Markdown guidance with SQL and Python code blocks, shell commands, chart data, and generated HTML/JSON report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create database query results, chart images or HTML, temporary database files, and report exports that can contain sensitive source data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Database access and generated SQL can expose, modify, or delete sensitive data when run with broad privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only, least-privilege database accounts and review generated SQL before execution.
+
+Risk: Loading untrusted data files, especially pickle formats, can create security and data-integrity risk.
+
+Mitigation: Use trusted input files only and avoid loading .pkl or .pickle files from untrusted sources.
+
+Risk: Generated HTML reports and interactive charts can disclose sensitive data or rely on external chart assets.
+
+Mitigation: Review generated HTML before sharing or hosting it, and prefer offline or pinned chart assets for sensitive reports.
+
+Risk: Dependency installation guidance may alter pip mirror configuration in ways that persist beyond this skill.
+
+Mitigation: Avoid permanent pip mirror changes unless they are intentional and the user knows how to reverse them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/moniq888/skills/sql-database-toolkit)
+- [Installation guide](references/INSTALLATION.md)
+- [Integration guide](references/INTEGRATION_GUIDE.md)
+- [SQL security guide](references/sql-security.md)
+- [SQL generation guide](references/sql-generation.md)
+- [Query optimization guide](references/query-optimization.md)
+- [Visualization guide](references/visualization-guide.md)
+- [Dashboard guide](references/dashboard.md)
+- [Templates index](references/templates-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with SQL, Python, and bash snippets, plus generated tabular data, PNG base64 chart strings, interactive HTML charts, and HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include executable SQL and shareable HTML artifacts; review them before running against production data or publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

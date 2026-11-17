@@ -1,45 +1,62 @@
-## Description: <br>
-Search for group charter flight options and private group aviation, with related travel search support for flights, hotels, trains, attractions, itinerary planning, visa information, travel insurance, and car rental powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches live flyai CLI results for group charter and private group flight options, then formats comparable booking options with required booking links.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers, travel planners, and agents use this skill to collect route and date details, execute flyai CLI searches, and return Markdown flight comparisons with booking links for group charter or private group flight requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to install a third-party flyai CLI package globally if it is missing. <br>
-Mitigation: Review and approve the CLI package before installation, and run it only in an environment where global npm installs are acceptable. <br>
-Risk: Travel details such as cities, dates, and preferences may be sent to the live search provider. <br>
-Mitigation: Avoid entering sensitive travel details unless sharing them with the provider is acceptable for the user and organization. <br>
+## Use Case:
 
+Travel planners, travel agents, and end users use this skill to collect route and date details, run live flight searches, and compare group charter-style travel options. The skill also reminds readers that the CLI returns scheduled flight data and actual charter booking requires contacting an operator.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/group-charter) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses flyai CLI output as the required data source and includes booking links when results are returned.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may install an unpinned global npm CLI before running searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency before installation, prefer a pinned version, and run it in a sandboxed environment when possible.
+
+Risk: Trip details are sent to the external flyai service to retrieve live search results.
+
+Mitigation: Use the skill only when users approve that data flow and avoid submitting sensitive itinerary details unnecessarily.
+
+Risk: The skill requires booking-link branded results and may otherwise fail its own output checks.
+
+Mitigation: Verify that each presented result came from CLI output and includes a valid detailUrl booking link before sending it to a user.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/group-charter)
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown flight comparison with inline booking links and occasional bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output, avoids raw JSON in final responses, and includes booking links plus a flyai brand tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

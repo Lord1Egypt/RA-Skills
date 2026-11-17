@@ -1,41 +1,50 @@
-## Description: <br>
-Cron解析 - 解析cron表达式，翻译为自然语言，计算下次执行时间，支持标准和扩展语法 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses cron expressions, explains them in natural language, validates syntax, computes upcoming run times, and provides common cron presets.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, engineers, and automation operators use this skill to understand, validate, describe, and generate cron schedules for task scheduling, monitoring, and scripted automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger word "cron" may activate this skill more often than intended. <br>
-Mitigation: Use explicit requests such as "parse this cron expression" or "explain this schedule" when invoking the skill. <br>
-Risk: Cron parsing and next-run examples may be misleading if the user expects a different cron dialect, timezone, or scheduler-specific extension. <br>
-Mitigation: Confirm the target scheduler syntax and timezone before using generated expressions in production automation. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to understand, validate, and generate cron schedules for automation, monitoring, and task scheduling workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-cron-parser) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with cron expressions, natural-language descriptions, Python code examples, and schedule guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated cron templates and next-run timestamps based on local datetime calculations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The embedded cron parser has robustness flaws and may mishandle invalid input or unsupported cron syntax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for lightweight assistance only, document supported syntax, harden validation, and test invalid inputs before using it for production scheduling, policy enforcement, or untrusted public input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-cron-parser)
+- [Publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with Python code examples and cron expression tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces cron explanations, validation results, upcoming execution times, and preset expressions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

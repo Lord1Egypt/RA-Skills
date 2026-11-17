@@ -4,26 +4,30 @@
 
 ## 功能特性
 
-- **双引擎渲染**：Mermaid（beautiful-mermaid）+ SVG（rsvg-convert）
-- **15 种 Mermaid 主题**：github-dark、tokyo-night、dracula、nord、catppuccin-mocha 等
+- **双引擎渲染**：Mermaid（官方 mmdc，与 Markdown 预览一致）+ SVG（rsvg-convert）
+- **16 种 Mermaid 主题**：github-dark、tokyo-night、dracula、nord、catppuccin-mocha 等（映射为 themeVariables）
 - **5 种 SVG 视觉风格**：Flat Icon、Dark Terminal、Blueprint、Notion Clean、Glassmorphism
 - **语义图形体系**：六边形 Agent、圆柱数据库、双边框 LLM 等 12 种组件图形
 - **40+ 产品图标**：OpenAI、Anthropic、PostgreSQL、Kafka、AWS 等
 - **SVG 5 层自动验证**：XML 语法、标签平衡、属性引号、marker 引用、rsvg-convert 验证
-- **mmdc 自动回退**：gantt、mindmap 等不支持的图表类型自动切换 mmdc 渲染
+- **官方渲染一致性**：PNG 与 GitHub / VS Code 的 mermaid 预览使用同一渲染器，样式一致
 
 ## 安装
 
 ### 前置要求
 
 - Node.js 16+
-- rsvg-convert（必需，用于 SVG → PNG 转换）
+- mmdc（Mermaid CLI，Mermaid 引擎必需）
+- rsvg-convert（SVG 引擎必需，用于 SVG → PNG 转换）
 
 ```bash
-# macOS
+# Mermaid CLI
+npm install -g @mermaid-js/mermaid-cli
+
+# librsvg（macOS）
 brew install librsvg
 
-# Debian / Ubuntu
+# librsvg（Debian / Ubuntu）
 apt-get install librsvg2-bin
 ```
 
@@ -31,8 +35,6 @@ apt-get install librsvg2-bin
 
 ```bash
 git clone https://github.com/zhouchang1988/code-to-diagram.git ~/.claude/skills/code-to-diagram
-cd ~/.claude/skills/code-to-diagram/scripts
-npm install
 ```
 
 也可以克隆到任意目录后创建软链接：
@@ -40,7 +42,6 @@ npm install
 ```bash
 git clone https://github.com/zhouchang1988/code-to-diagram.git ~/projects/code-to-diagram
 ln -s ~/projects/code-to-diagram ~/.claude/skills/code-to-diagram
-cd ~/projects/code-to-diagram/scripts && npm install
 ```
 
 ## 使用方法
@@ -48,7 +49,7 @@ cd ~/projects/code-to-diagram/scripts && npm install
 ### Mermaid 引擎
 
 ```bash
-# 基本用法（默认 github-dark 主题）
+# 基本用法（默认 markdown-preview 主题）
 node scripts/code_to_diagram.js render -f diagram.mmd -n output -o ./output
 
 # 指定主题
@@ -62,9 +63,6 @@ node scripts/code_to_diagram.js render -f diagram.mmd --transparent -n output
 
 # 自定义背景色
 node scripts/code_to_diagram.js render -f diagram.mmd --bg "#1a1b26" -n output
-
-# 强制使用 mmdc 渲染
-node scripts/code_to_diagram.js render -f diagram.mmd --renderer mmdc -n output
 ```
 
 ### SVG 引擎
@@ -88,11 +86,12 @@ node scripts/code_to_diagram.js render -e svg -f arch.svg --style notion-clean -
 | `--engine` | `-e` | mermaid \| svg | mermaid |
 | `--theme` | `-t` | 16 个内置主题 | markdown-preview |
 | `--style` | — | SVG 风格（5 种） | flat-icon |
-| `--renderer` | — | auto \| beautiful-mermaid \| mmdc | auto |
 | `--transparent` | — | 透明背景 | — |
 | `--bg` | `-b` | 自定义背景色 | — |
-| `--padding` | — | 画布内边距（px） | 40 |
-| `--font` | — | 自定义字体 | 系统字体 |
+| `--font` | — | 自定义字体 | 系统中文字体 |
+| `--width` | `-W` | 画布宽度（px） | 2400 |
+| `--height` | `-H` | 画布高度（px） | 4000 |
+| `--scale` | `-s` | 缩放系数 | 3 |
 
 ### 可用主题
 
@@ -127,14 +126,13 @@ Claude 会读取生成的 `.md` 文件，补充代码逻辑解释文字后，最
 终端 JSON 输出：
 
 ```json
-{"md":"/path/to/diagram.md","png":"/path/to/diagram.png","engine":"mermaid","theme":"markdown-preview","renderer":"beautiful-mermaid"}
+{"md":"/path/to/diagram.md","png":"/path/to/diagram.png","engine":"mermaid","theme":"markdown-preview","renderer":"mmdc"}
 ```
 
 ## 依赖
 
-- **beautiful-mermaid** — Mermaid 渲染引擎（主要，`npm install` 安装）
-- **rsvg-convert** — SVG → PNG 转换（必需，系统包）
-- **mmdc** — Mermaid CLI（可选，仅回退时使用）
+- **mmdc** — Mermaid CLI，官方 mermaid 渲染器（Mermaid 引擎必需，`npm install -g @mermaid-js/mermaid-cli` 安装）
+- **rsvg-convert** — SVG → PNG 转换（SVG 引擎必需，系统包）
 
 ## License
 

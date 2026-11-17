@@ -1,41 +1,52 @@
-## Description: <br>
-Predicts short-term direction and magnitude for on-exchange A-share ETFs by weighting the top holdings, analyzing component-stock technical signals and funds flow, and cross-checking against the ETF's own indicators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts short-term direction and magnitude for on-exchange A-share ETFs by weighting the top holdings, constituent technical signals, fund flows, and ETF-level cross-checks.
 
-## Publisher: <br>
-[bianchunhui](https://clawhub.ai/user/bianchunhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bianchunhui](https://clawhub.ai/user/bianchunhui)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and market analysts can ask an agent to generate a structured, non-binding ETF prediction report for A-share ETFs using top-holding weights, technical signals, fund-flow checks, and confidence scoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: ETF direction and magnitude predictions may be inaccurate, stale, or affected by delayed holdings data and market events.
+
+Mitigation: Treat outputs as informational, verify current market data independently, and avoid relying on the report as investment advice or trade execution guidance.
+
+Risk: Options-related suggestions may be interpreted as actionable trading advice.
+
+Mitigation: Keep options content framed as non-binding analysis and require human review before any trading decision.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and analysts use this skill to generate structured ETF market-analysis reports for A-share ETFs, including top-holding breakdowns, weighted short-term predictions, ETF signal cross-checks, confidence levels, and risk reminders. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Short-term ETF predictions may be interpreted as personalized trading advice. <br>
-Mitigation: Present the output as market analysis only, keep the investment-advice disclaimer visible, and encourage users to verify data before acting. <br>
-Risk: ETF holdings and weights can be stale or drift from reported top-holding data. <br>
-Mitigation: Verify current holdings and market data before relying on the weighted calculation, especially around reporting updates or major events. <br>
+**Output Format:** [Markdown report with tables and concise risk notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bianchunhui/etf-holdings-predictor) <br>
-- [Publisher profile](https://clawhub.ai/user/bianchunhui) <br>
+**Other Properties Related to Output:** [Includes ETF and constituent-stock analysis, weighted predictions, confidence ratings, and informational trading-risk reminders.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown report with tables and concise risk reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ETF code or name input and presents weighted prediction, ETF cross-check, confidence, and trading-risk context.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

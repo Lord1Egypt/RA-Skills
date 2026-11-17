@@ -1,43 +1,58 @@
-## Description: <br>
-Give OpenClaw a body: a tiny fluid glass ball desktop pet with voice cloning, 15+ eye expressions, desktop lyrics overlay, and 7 mood colors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives OpenClaw a tiny desktop companion with a fluid glass-ball presence, voice output, eye expressions, desktop lyrics overlay, and mood colors.
 
-## Publisher: <br>
-[kk43994](https://clawhub.ai/user/kk43994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kk43994](https://clawhub.ai/user/kk43994)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install and run a desktop companion that gives an OpenClaw agent a visual presence, speech output, desktop lyrics, mood colors, and optional Feishu/Lark synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run an external Electron project and install npm dependencies. <br>
-Mitigation: Install only from the referenced repository, review dependencies before use, and run without administrator privileges where possible. <br>
-Risk: Optional voice cloning can create consent and privacy concerns. <br>
-Mitigation: Use MiniMax voice cloning only with consent from the voice owner and review voice settings before enabling the feature. <br>
-Risk: Optional Feishu/Lark synchronization can expose sensitive workplace messages. <br>
-Mitigation: Enable chat synchronization only for approved workspaces and avoid syncing sensitive messages unless the organization permits it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and configure a desktop companion that displays agent presence, speech, expressions, and message overlays on the desktop.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/kk43994/desktop-pet) <br>
-- [GitHub repository](https://github.com/kk43994/claw-desktop-pet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes npm-based setup steps, optional MiniMax voice configuration, and OpenClaw gateway startup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Users run mutable external code and npm dependencies from a project repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source, pin to a known commit or release, and inspect dependencies before running npm install.
+
+Risk: MiniMax voice cloning and Feishu/Lark sync can send voice or message data to cloud services.
+
+Mitigation: Enable integrations only when needed, review their data handling, and avoid sending sensitive conversations or voice samples.
+
+Risk: The skill asks for an API key in local configuration.
+
+Mitigation: Keep API keys out of version control, use restricted credentials, and rotate them if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kk43994/skills/desktop-pet)
+- [Project homepage](https://github.com/kk43994/claw-desktop-pet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup commands, runtime guidance, and configuration examples for optional voice integration.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

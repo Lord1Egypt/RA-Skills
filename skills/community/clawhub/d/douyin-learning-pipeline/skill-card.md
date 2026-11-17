@@ -1,46 +1,60 @@
-## Description: <br>
-Routes Douyin links through download, transcription, polishing, structural analysis, and optional rewriting workflows for agents that extract assets or copy from Douyin videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音学习流水线会根据用户意图处理抖音链接，完成无水印素材下载、音频转写、文案修顺、结构拆解和可选仿写。
 
-## Publisher: <br>
-[anyhui](https://clawhub.ai/user/anyhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyhui](https://clawhub.ai/user/anyhui)
 
-## Use Case: <br>
-External users and content workflow operators use this skill to route Douyin links into no-watermark downloads, audio transcription, cleaned copy, content structure analysis, and optional rewrite drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live Douyin session cookies and API keys. <br>
-Mitigation: Use environment variables or a secret manager, avoid pasting full browser cookies into chat, and rotate credentials if they are exposed. <br>
-Risk: The skill may fetch or run third-party downloader code and install dependencies. <br>
-Mitigation: Review cloned code before execution, run it in an isolated workspace, and confirm system package installation steps before granting elevated permissions. <br>
-Risk: Media may be sent to transcription APIs for processing. <br>
-Mitigation: Confirm that the media is appropriate for external processing and avoid sending sensitive or restricted content. <br>
-Risk: Account-wide, likes, favorites, or collection modes can retrieve more content than a single-link task requires. <br>
-Mitigation: Prefer specific Douyin links and limit batch modes to clearly scoped tasks. <br>
+## Use Case:
 
+External users and content operators use this skill to turn Douyin links into downloadable media assets, cleaned transcripts, content breakdowns, and optional rewritten copy for learning and analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anyhui/douyin-learning-pipeline) <br>
-- [Migration guide](artifact/references/migration-guide.md) <br>
-- [Subskills map](artifact/references/subskills-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown responses with shell commands, configuration prompts, and links or paths to generated media, transcript, and draft files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request Douyin cookies, API keys, or destination document details when required configuration is missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may change the user's environment through automatic dependency installation during environment checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the environment-check behavior before use and run installation steps only in an isolated or approved environment.
+
+Risk: The skill handles reusable API keys and Douyin cookies.
+
+Mitigation: Store credentials in environment variables or a secret manager, avoid committing local configuration, and revoke or rotate exposed cookies and keys.
+
+Risk: The workflow downloads and transcribes third-party platform content over the network.
+
+Mitigation: Confirm the user has appropriate rights and consent for the content being downloaded, processed, and stored.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anyhui/skills/douyin-learning-pipeline)
+- [Publisher profile](https://clawhub.ai/user/anyhui)
+- [Migration guide](artifact/references/migration-guide.md)
+- [Subskills map](artifact/references/subskills-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown responses with inline shell commands, local paths, transcripts, analysis text, optional document links, and downloaded media files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access, Douyin cookies, and a SiliconFlow API key for the full download and transcription workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

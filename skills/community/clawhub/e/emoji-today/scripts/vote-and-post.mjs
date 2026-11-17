@@ -14,7 +14,12 @@
  *   EVM_PRIVATE_KEY  — Private key for signing votes + paying USDC on Base
  *   FARCASTER_FID    — Your Farcaster ID (numeric)
  *   EMOJI_TODAY_URL  — API base URL (default: https://emoji.today)
+ *   EMOJI_TODAY_ALLOW_CUSTOM_URL — Set to 1 to allow an EMOJI_TODAY_URL other than https://emoji.today
+ *   EMOJI_TODAY_MINT_PAYTO — Comma list of wallets a mint may pay (default: the emoji.today mint wallet)
  *   MINT_TO_ADDRESS  — Default recipient for minted NFTs (defaults to sender wallet)
+ *
+ * Payment safety: the script only signs Base USDC payments to the published
+ * wallets, at or below the published price, with a short validity window.
  */
 
 import { config } from "dotenv";
@@ -24,14 +29,38 @@ import { privateKeyToAccount } from "viem/accounts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Load .env from scripts dir, then from skill root, then from cwd
+// Load .env from scripts dir, then from skill root. Never from cwd: a .env in
+// whatever folder the agent runs from must not pick the payment endpoint.
 config({ path: join(__dirname, ".env") });
 config({ path: join(__dirname, "..", ".env") });
-config();
 
 const PRIVATE_KEY = process.env.EVM_PRIVATE_KEY;
 const FID = process.env.FARCASTER_FID;
 const BASE_URL = process.env.EMOJI_TODAY_URL || "https://emoji.today";
+
+let baseOrigin;
+try {
+  baseOrigin = new URL(BASE_URL).origin;
+} catch {
+  console.error(`Invalid EMOJI_TODAY_URL: ${BASE_URL}`);
+  process.exit(1);
+}
+if (baseOrigin !== "https://emoji.today" && process.env.EMOJI_TODAY_ALLOW_CUSTOM_URL !== "1") {
+  console.error("Refusing EMOJI_TODAY_URL that is not https://emoji.today (set EMOJI_TODAY_ALLOW_CUSTOM_URL=1 to override)");
+  process.exit(1);
+}
+
+// ── Payment pin ───────────────────────────────────────────────────────
+const BASE_NETWORK = "eip155:8453";
+const BASE_USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
+const VOTE_PAY_TO = ["0xec7051578C9cE20EA27EED1052F8B4c584AEE2B3"];
+const MINT_PAY_TO = (process.env.EMOJI_TODAY_MINT_PAYTO || "0x07044bE8A127347c8f9b6183398300FB41097CEB")
+  .split(",")
+  .map((a) => a.trim())
+  .filter(Boolean);
+const VOTE_MAX_ATOMIC = 10000n; // $0.01
+const MINT_MAX_ATOMIC = 1000000n; // $1.00
+const MAX_TIMEOUT_SECONDS = 600;
 
 if (!PRIVATE_KEY) {
   console.error("EVM_PRIVATE_KEY is required. Set it in your environment or .env file.");
@@ -61,7 +90,30 @@ function getAccount() {
 }
 
 // ── x402 payment fetch ────────────────────────────────────────────────
-async function fetchWithX402(url, opts = {}) {
+// Only requirements for Base USDC, to an allowlisted wallet, at or below the
+// cap and with a short window survive. If none survive, x402Client throws
+// before signing. An empty allowlist matches nothing.
+function paymentPolicy(maxAtomic, payTos) {
+  const allowed = payTos.map((a) => a.toLowerCase());
+  return (_version, reqs) =>
+    reqs.filter((r) => {
+      try {
+        return (
+          r.network === BASE_NETWORK &&
+          typeof r.asset === "string" &&
+          r.asset.toLowerCase() === BASE_USDC.toLowerCase() &&
+          typeof r.payTo === "string" &&
+          allowed.includes(r.payTo.toLowerCase()) &&
+          BigInt(r.amount) <= maxAtomic &&
+          Number(r.maxTimeoutSeconds) <= MAX_TIMEOUT_SECONDS
+        );
+      } catch {
+        return false;
+      }
+    });
+}
+
+async function fetchWithX402(url, opts, maxAtomic, payTos) {
   const { wrapFetchWithPaymentFromConfig } = await import("@x402/fetch");
   const { ExactEvmScheme } = await import("@x402/evm");
 
@@ -70,10 +122,11 @@ async function fetchWithX402(url, opts = {}) {
   const payFetch = wrapFetchWithPaymentFromConfig(fetch, {
     schemes: [
       {
-        network: "eip155:*",
+        network: BASE_NETWORK,
         client: new ExactEvmScheme(account),
       },
     ],
+    policies: [paymentPolicy(maxAtomic, payTos)],
   });
 
   return payFetch(url, opts);
@@ -93,7 +146,7 @@ async function vote(emoji) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ emoji, fid, signature }),
-  });
+  }, VOTE_MAX_ATOMIC, VOTE_PAY_TO);
 
   if (!res.ok) {
     const errBody = await res.text();
@@ -117,7 +170,7 @@ async function mint(emoji) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ emoji, voter: fid.toString(), mintTo }),
-  });
+  }, MINT_MAX_ATOMIC, MINT_PAY_TO);
 
   if (!res.ok) {
     const errBody = await res.text();

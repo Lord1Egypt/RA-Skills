@@ -12,7 +12,7 @@ const https = require('https');
 
 const CONFIG = {
   chatId: 'oc_c771930429ba9d9683b8a38fe3a9b3f9',
-  qverisApiKey: process.env.QVERIS_API_KEY || 'sk-pQbZOXNY3p1gPIg4cXPRiM7k6_SfXpw190ZRO7ac5Gs',
+  qverisApiKey: process.env.QVERIS_API_KEY || 'REDACTED-SECRET',
   qverisScript: '/root/.openclaw/workspace/skills/qveris-official/scripts/qveris_tool.mjs',
   // 记录连续失败次数
   stateFile: '/root/.openclaw/workspace/stock-monitor/data/failure-state.json',

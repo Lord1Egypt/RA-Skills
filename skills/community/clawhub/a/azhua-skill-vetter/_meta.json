@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7cmpprajmty3zaq8e6pm5zrh81p2rw",
   "slug": "azhua-skill-vetter",
   "version": "1.0.0",
-  "publishedAt": 1771925099870
+  "price": 0.01,
+  "wallet": "0x5e6CcE07A609D7550Ffd39beEa0d8B2eeF28FCd2",
+  "name": "Skill Vetter (by Azhua)",
+  "description": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
+  "category": "security"
 }

@@ -1,46 +1,58 @@
-## Description: <br>
-Asana API integration with managed OAuth for accessing tasks, projects, workspaces, users, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Asana tasks, projects, workspaces, users, and webhooks through a connected account.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-External users and developers use this skill to manage Asana work items, projects, workspaces, users, and webhooks through Maton-managed OAuth. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill brokers Asana API traffic through Maton and requires a Maton API key. <br>
-Mitigation: Install only if you trust Maton, connect only the intended Asana account, and keep MATON_API_KEY out of logs and shared terminals. <br>
-Risk: Create, update, delete, and webhook actions can modify Asana resources. <br>
-Mitigation: Confirm the target resource, account connection, and intended effect with the user before executing write or webhook operations. <br>
-Risk: Multiple Asana connections can route requests to the wrong account. <br>
-Mitigation: Specify the intended connection ID when more than one active Asana connection exists. <br>
+## Use Case:
 
+Employees and developers use this skill to find and manage Asana work items and projects, or set up approved workflow automations through Maton.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/asana-api) <br>
-- [Asana API Documentation](https://developers.asana.com) <br>
-- [Asana API Reference](https://developers.asana.com/reference) <br>
-- [Asana LLM Reference](https://developers.asana.com/llms.txt) <br>
-- [Maton CLI Manual](https://cli.maton.ai/manual) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CLI commands, API paths, JSON examples, and Python or JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATON_API_KEY and an active Asana OAuth connection; API responses are JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The integration can read or change data in a connected Asana account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer OAuth and least-privilege access; start with read-only operations and confirm the account, connection, and intended change before writes.
+
+Risk: Functions, triggers, destinations, and webhooks can keep running or forwarding data after setup.
+
+Mitigation: Obtain explicit approval for each automation and destination, review its recipient and scope, and remove it when no longer needed.
+
+## Reference(s):
+
+- [Asana API Documentation](https://developers.asana.com)
+- [Asana API Reference](https://developers.asana.com/reference)
+- [Maton](https://maton.ai)
+- [Maton Documentation](https://docs.maton.ai)
+- [Maton CLI Manual](https://cli.maton.ai/manual)
+- [Scheduled Trigger Reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asana operations use the user's authorized connection; writes require confirmation.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

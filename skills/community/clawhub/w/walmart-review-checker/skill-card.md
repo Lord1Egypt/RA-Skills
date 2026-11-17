@@ -1,44 +1,60 @@
-## Description: <br>
-Walmart Review Checker analyzes Walmart product reviews for suspicious patterns, rating manipulation, incentivized-review indicators, and WFS or verification signals without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Walmart review authenticity analyzer that checks review text and structured review data for suspicious patterns, rating manipulation, timing clusters, verified purchase signals, and incentivized-review indicators.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-E-commerce sellers, marketplace analysts, and developers use this skill to review product-review text or structured review data for authenticity signals and suspicious-review patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the Walmart-specific claims do not match the implementation, so results may reflect generic or Amazon-style review heuristics. <br>
-Mitigation: Treat scores and flags as directional review-assistance signals, not proof of fraud, and verify any suspicious findings against the original review data and marketplace context. <br>
-Risk: The security guidance says generated HTML reports can render untrusted review text unsafely. <br>
-Mitigation: Prefer plain text output for untrusted input, and only open generated HTML after the report renderer is fixed to escape user-controlled text or render it via textContent. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Review the package source and scanner evidence before installing or deploying the skill. <br>
+## Use Case:
 
+External sellers, marketplace analysts, and developers use this skill to review Walmart product feedback for authenticity signals and produce a concise risk-oriented report. The results should be treated as heuristic guidance rather than a definitive fraud determination.
 
-## Reference(s): <br>
-- [Walmart Review Checker on ClawHub](https://clawhub.ai/phheng/walmart-review-checker) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
-- [Chart.js CDN used by HTML report generator](https://cdn.jsdelivr.net/npm/chart.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text analysis reports, with optional JSON input and generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an authenticity score, risk level, detection results, suspicious-review indicators, and follow-up guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The package is flagged suspicious because the Walmart-specific claims do not match the Amazon-oriented implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate outputs against known Walmart review data and prefer a release that resolves the Walmart/Amazon mismatch before relying on the skill for business decisions.
+
+Risk: Generated HTML reports may expose browser-scripting risk when built from untrusted review data.
+
+Mitigation: Use the skill in an isolated local environment, avoid opening generated HTML from untrusted inputs, and prefer a release that escapes report content.
+
+Risk: Installation dependencies are not pinned in the release evidence.
+
+Mitigation: Review and pin dependencies before deployment in a shared or production environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/walmart-review-checker)
+- [Publisher Profile](https://clawhub.ai/user/phheng)
+- [Nexscope AI](https://www.nexscope.ai/)
+- [Chart.js](https://cdn.jsdelivr.net/npm/chart.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown report text with optional Python command examples and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces heuristic authenticity scores, risk levels, detection-dimension summaries, suspicious review snippets, and data-completeness hints.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

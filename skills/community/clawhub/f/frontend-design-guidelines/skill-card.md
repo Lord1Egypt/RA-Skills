@@ -1,41 +1,53 @@
-## Description: <br>
-Create distinctive, production-grade frontend interfaces that avoid generic AI slop aesthetics, with a focus on creative direction and memorable design choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics, focusing on creative direction and memorable design choices.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to plan and implement memorable frontend components, pages, landing sites, product interfaces, and redesigns where visual impact matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Using an external unpinned GitHub install path may fetch changed content over time. <br>
-Mitigation: Prefer the reviewed ClawHub install path; if using the external GitHub npx command, verify the repository and branch before installation. <br>
-Risk: Generated frontend designs may prioritize distinctiveness over accessibility, responsiveness, or product fit. <br>
-Mitigation: Review generated UI changes for accessibility, responsive behavior, and alignment with the target audience before deployment. <br>
+## Use Case:
 
+Developers and designers use this skill to guide frontend component, page, landing page, marketing site, and product UI work toward more distinctive typography, color, layout, motion, and interaction choices.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wpank/frontend-design-guidelines) <br>
-- [Publisher Profile](https://clawhub.ai/user/wpank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with CSS and implementation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution, credential access, or data handling behavior was identified in server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mutable `npx` installation commands may fetch changing package contents or run in an environment with sensitive secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a reviewed or pinned source when possible, and avoid running installation commands with elevated privileges or in environments containing sensitive secrets.
+
+Risk: Generated frontend guidance may introduce inaccessible, misleading, or poorly performing interface choices if applied without review.
+
+Mitigation: Review generated designs and code for accessibility, usability, performance, and project requirements before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/frontend-design-guidelines)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include frontend implementation recommendations, CSS examples, design direction, and installation commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

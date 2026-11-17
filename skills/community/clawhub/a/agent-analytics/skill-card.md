@@ -1,49 +1,62 @@
-## Description: <br>
-Product analytics with your AI agent: set up consent-based tracking, read funnels, paths, retention, experiments, and context, then recommend the smallest growth action using the official Agent Analytics CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents set up consent-based product tracking, analyze funnels, paths, retention, and experiments, and recommend a focused growth action.
 
-## Publisher: <br>
-[dannyshmueli](https://clawhub.ai/user/dannyshmueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannyshmueli](https://clawhub.ai/user/dannyshmueli)
 
-## Use Case: <br>
-Developers, product teams, and growth teams use this skill to install consent-based Agent Analytics tracking, query product behavior, diagnose funnels, paths, retention, and experiments, and choose a small next growth action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a pinned external npm CLI and browser-approved account access. <br>
-Mitigation: Install only when the publisher and pinned CLI are trusted, authorize only the intended account, and verify auth state before continuing. <br>
-Risk: Persistent auth configuration may contain sensitive account access data. <br>
-Mitigation: Keep `.openclaw/agent-analytics/config.json` private, store it outside committed source, and ensure the config path is ignored by version control. <br>
-Risk: Analytics context or instrumentation changes could expose PII, secrets, or unwanted tracking. <br>
-Mitigation: Review tracking changes before deployment, use consent-based events tied to product workflows, and avoid storing PII or secrets in analytics context. <br>
-Risk: Some analytics reads may require a paid upgrade. <br>
-Mitigation: Require explicit human approval before completing any paid upgrade and rerun the blocked command only after the account is confirmed. <br>
+## Use Case:
 
+Developers and product teams use this skill to instrument their own products with consent, interpret product analytics, and choose a measurable next growth action.
 
-## Reference(s): <br>
-- [Agent Analytics ClawHub page](https://clawhub.ai/dannyshmueli/agent-analytics) <br>
-- [Agent Analytics homepage](https://agentanalytics.sh) <br>
-- [Projects, surfaces, and portfolios guide](https://docs.agentanalytics.sh/guides/projects-surfaces-portfolios/) <br>
-- [Growth recipes](references/growth-recipes.md) <br>
-- [Product analytics operating model](references/product-analytics-operating-model.md) <br>
-- [Setup and auth reference](references/setup-auth.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, configuration guidance, and analytics recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the pinned official Agent Analytics CLI through npx and may produce setup, verification, analysis, and upgrade-handoff instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.33 (source: server release evidence and frontmatter) <br>
+Risk: The external analytics CLI requires browser-approved access to a product analytics account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the project goal and event plan before setup, and grant access only after reviewing the browser approval.
+
+Risk: Tracking changes could collect unnecessary user data or alter product code.
+
+Mitigation: Review tracker and code changes, collect only goal-linked events with consent, and verify the first useful event.
+
+Risk: Stored authentication or product context could disclose sensitive information.
+
+Mitigation: Keep .openclaw/agent-analytics/config.json out of git and exclude PII, secrets, and temporary notes from context.
+
+## Reference(s):
+
+- [Agent Analytics ClawHub release](https://clawhub.ai/dannyshmueli/skills/agent-analytics)
+- [Agent Analytics website](https://agentanalytics.sh)
+- [Projects, surfaces, and portfolios guide](https://docs.agentanalytics.sh/guides/projects-surfaces-portfolios/)
+- [Setup and authentication](references/setup-auth.md)
+- [Product analytics operating model](references/product-analytics-operating-model.md)
+- [Growth recipes](references/growth-recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with metrics, recommendations, and optional code or shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes metric definitions, evidence, caveats, and one bounded next action.]
+
+## Skill Version(s):
+
+4.0.37 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

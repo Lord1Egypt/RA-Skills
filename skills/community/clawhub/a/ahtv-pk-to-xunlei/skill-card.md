@@ -1,42 +1,60 @@
-## Description: <br>
-Find 安徽网络电视台《快乐无敌大PK》 full-episode pages from a user-provided date expression, extract each episode's real video URL, and save the episodes into 迅雷云盘. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds 安徽网络电视台《快乐无敌大PK》 full-episode pages from a user-provided date expression, extracts each episode's real video URL, and saves the episodes into 迅雷云盘.
 
-## Publisher: <br>
-[volumexxx](https://clawhub.ai/user/volumexxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volumexxx](https://clawhub.ai/user/volumexxx)
 
-## Use Case: <br>
-External users can ask an agent to resolve one or more 快乐无敌大PK episode dates, extract the matching AHTV media URLs, and add those files to the user's Xunlei Cloud account with deterministic filenames. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may require an SMS login and can add, move, or rename files in a logged-in Xunlei Cloud account. <br>
-Mitigation: Verify the browser is on the real Xunlei domain before entering SMS codes, and review the final added, skipped, moved, and renamed file list. <br>
-Risk: AHTV page structure or episode availability can change, causing missing or ambiguous episode resolution. <br>
-Mitigation: Use the resolver status values as authoritative for each date and report unresolved items instead of fabricating episode or media URLs. <br>
+## Use Case:
 
+External users can use this skill to resolve one or more 快乐无敌大PK episodes by date expression and add the resolved media links to Xunlei Cloud Drive with deterministic filenames and deduplication.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/volumexxx/ahtv-pk-to-xunlei) <br>
-- [AHTV 快乐无敌大PK channel](https://www.ahtv.cn/pindao/ahzh/pk) <br>
-- [Xunlei Cloud](https://pan.xunlei.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, markdown, guidance] <br>
-**Output Format:** [Compact Markdown containing a JSON-like summary of resolved dates, add outcomes, URLs, filenames, and messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses resolver JSON as the source of truth and reports added, skipped, not-found, and failed items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow requires Xunlei phone-number and SMS-code login, which exposes sensitive account credentials during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide credentials only in the real Xunlei login flow and do not share SMS codes outside that flow.
+
+Risk: The agent may add, move, or rename files in the user's Xunlei Cloud Drive.
+
+Mitigation: Review each cloud-drive add, move, and rename action before it is completed.
+
+Risk: AHTV site changes or ambiguous search results can produce missing, ambiguous, or failed episode resolutions.
+
+Mitigation: Use the resolver output as the source of truth and report not-found, ambiguous, video-url-missing, or error statuses rather than fabricating URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volumexxx/skills/ahtv-pk-to-xunlei)
+- [AHTV search](https://www.ahtv.cn/search)
+- [AHTV 快乐无敌大PK channel](https://www.ahtv.cn/pindao/ahzh/pk)
+- [Xunlei Cloud Drive](https://pan.xunlei.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown containing a compact JSON-like summary and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Final summaries include input_expr, expanded_dates, aggregate counts, per-date status, episode URL, video URL, target filename, Xunlei path, and message.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Build and run a behavior-first personal planning, triage, and decision agent that learns a user's values, goals, recurring problems, friction patterns, and decision standards over time, then gives strong recommendations for "what should I do now?", multi-problem triage, do-or-don't dilemmas, 3-6 month planning, weekly review, and proactive heartbeat follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and run a behavior-first personal planning, triage, and decision agent that learns a user's values, goals, recurring problems, friction patterns, and decision standards over time, then gives strong recommendations for immediate action, multi-problem triage, dilemmas, 3-6 month planning, weekly review, and proactive heartbeat follow-up.
 
-## Publisher: <br>
-[lakendocean](https://clawhub.ai/user/lakendocean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lakendocean](https://clawhub.ai/user/lakendocean)
 
-## Use Case: <br>
-Individuals use this agent to turn personal goals, values, recurring problems, and real-world tradeoffs into clear priorities, decisions, plans, reviews, and follow-up commitments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive personal goals, values, decisions, behavior patterns, and follow-up commitments in durable workspace files. <br>
-Mitigation: Review and prune generated files regularly, avoid storing highly sensitive journals or test results unless needed, and keep only information that improves future planning and judgment. <br>
-Risk: The skill may produce strong personal planning or decision guidance that could be mistaken for professional medical, legal, financial, or mental-health advice. <br>
-Mitigation: Use the guidance as personal planning support only, keep user agency explicit, and seek qualified professional advice for medical, legal, financial, or mental-health decisions. <br>
-Risk: Proactive heartbeat follow-up can become intrusive if cadence, stop conditions, or escalation rules are unclear. <br>
-Mitigation: Set clear heartbeat cadence, tone, escalation rules, and stop conditions before relying on recurring follow-up. <br>
+## Use Case:
 
+External users use this agent for long-term personal planning, decision support, prioritization, weekly review, and proactive follow-up. It is intended for behavior-first guidance that turns values, goals, and recurring patterns into near-term actions while preserving the user's agency.
 
-## Reference(s): <br>
-- [Bootstrap Questionnaire](references/bootstrap-questionnaire.md) <br>
-- [File Contracts](references/file-contracts.md) <br>
-- [Interaction Modes](references/interaction-modes.md) <br>
-- [Judgment System](references/judgment-system.md) <br>
-- [Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance and durable workspace file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update personal planning files such as USER.md, IDENTITY.md, GOALS.md, DECISION_RULES.md, DECISIONS.md, and HEARTBEAT.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The agent may store sensitive personal details in long-lived plaintext workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Decide what categories of personal information may be stored before use, review proposed durable file updates, and periodically delete or trim stored profile files.
+
+Risk: The agent may treat temporary moods or one-time statements as durable user facts.
+
+Mitigation: Keep identity and direction changes tentative until they are repeated or confirmed across later interactions.
+
+Risk: Personal planning recommendations can be over-relied on for serious life decisions.
+
+Mitigation: Use recommendations as decision support, preserve user agency, and seek qualified professional help where legal, medical, financial, mental health, or safety stakes are involved.
+
+## Reference(s):
+
+- [File Contracts](references/file-contracts.md)
+- [Judgment System](references/judgment-system.md)
+- [Bootstrap Questionnaire](references/bootstrap-questionnaire.md)
+- [Interaction Modes](references/interaction-modes.md)
+- [Templates](references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown responses and Markdown workspace files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose updates to durable workspace files such as USER.md, IDENTITY.md, GOALS.md, DECISION_RULES.md, DECISIONS.md, and HEARTBEAT.md.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

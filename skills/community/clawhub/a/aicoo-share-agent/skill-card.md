@@ -1,44 +1,60 @@
-## Description: <br>
-Creates and manages secure, shareable Aicoo agent links with scope, expiration, sign-in, permission, analytics, and revocation controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages secure, shareable links to an Aicoo agent, including sign-in requirements, scoped access, expiration, and link analytics.
 
-## Publisher: <br>
-[xisen-w](https://clawhub.ai/user/xisen-w) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xisen-w](https://clawhub.ai/user/xisen-w)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent create, update, review, and revoke Aicoo share links for selected folders or full-agent access. It is intended for controlled sharing with investors, prospects, partners, collaborators, or other recipients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive Aicoo API credentials to create and manage share links. <br>
-Mitigation: Install it only when the agent should manage Aicoo sharing, keep API keys scoped and protected, and confirm link creation or policy changes before execution. <br>
-Risk: Share links can expose agent context, folders, calendars, notes, visitor identity data, or note-backed policies. <br>
-Mitigation: Prefer folder-scoped, read-only links with sign-in required and short expirations; review exposed data before enabling anonymous, write, edit, calendar-write, or never-expiring access. <br>
-Risk: Updating or revoking links and patching policy notes can change remote Aicoo access behavior. <br>
-Mitigation: Review the target link, folder scope, notes permission, expiration, and policy note content before applying updates or revocations. <br>
+## Use Case:
 
+External users and developers use this skill to create, update, revoke, and inspect share links that let selected recipients talk to an Aicoo agent with controlled scope, permissions, expiration, and sign-in behavior.
 
-## Reference(s): <br>
-- [Share Agent API Reference](artifact/reference/API.md) <br>
-- [Basic Share Example](artifact/examples/basic-share.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xisen-w/aicoo-share-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl commands, JSON request payloads, and concise status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include share URLs, scope, permissions, expiration, sign-in requirement, sandboxing status, visitor analytics, and revocation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill can guide use of an Aicoo API token against notes search and note editing endpoints, which may affect sensitive notes or investor materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation, use folder-scoped access where possible, and verify the exact note ID and intended content before allowing note patches.
+
+Risk: Anonymous public links can expose agent content to recipients without sign-in.
+
+Mitigation: Keep links sign-in-required by default, use short expirations, and set requireSignIn:false only when the user explicitly wants public anonymous access.
+
+Risk: Write or edit notes access grants broader capabilities than read-only sharing.
+
+Mitigation: Use least-privilege permissions, prefer read-only links for confidential content, and revoke or expire links when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xisen-w/skills/aicoo-share-agent)
+- [Aicoo API Reference](reference/API.md)
+- [Basic Share Example](examples/basic-share.md)
+- [Aicoo API Base URL](https://www.aicoo.io/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated share URLs, link scope, notes and calendar permissions, expiration, sign-in status, and access sandboxing notes.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

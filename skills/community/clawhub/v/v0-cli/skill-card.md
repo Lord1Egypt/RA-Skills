@@ -1,44 +1,59 @@
-## Description: <br>
-v0-cli helps agents create, refine, and list v0.dev-generated websites from the terminal without interactive prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line reference for creating, refining, and listing AI-generated websites through the v0.dev API without interactive prompts.
 
-## Publisher: <br>
-[hlongvu](https://clawhub.ai/user/hlongvu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hlongvu](https://clawhub.ai/user/hlongvu)
 
-## Use Case: <br>
-Developers and coding agents use this skill to automate v0.dev website creation, continue existing v0 chats, and list generated projects from shell workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to operate a user's v0.dev account through V0_API_KEY. <br>
-Mitigation: Install only when account operation is intended, review the external npm CLI before use, and avoid including secrets, private code, customer data, or confidential business details in prompts. <br>
-Risk: Generated v0 projects may be public unless the user chooses private visibility. <br>
-Mitigation: Use --privacy private for non-public work and review project visibility before sharing generated links. <br>
-Risk: The v0 create command may time out after a project has already been created. <br>
-Mitigation: Run v0 list and continue with the created chat ID before retrying creation. <br>
+## Use Case:
 
+Developers and agent workflows use this skill to create new v0.dev websites, continue existing v0 chats, and list generated projects from the terminal without interactive prompts.
 
-## Reference(s): <br>
-- [v0.dev](https://v0.dev) <br>
-- [v0 API keys](https://v0.dev/chat/settings/keys) <br>
-- [ClawHub skill page](https://clawhub.ai/hlongvu/v0-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and CLI output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js >= 18 and V0_API_KEY; created v0 projects may be public unless private visibility is selected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow relies on an unaudited, unpinned third-party CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Audit or pin @hlongvu/v0-cli before installation and use it in a controlled environment.
+
+Risk: New v0.dev projects default to public visibility.
+
+Mitigation: Use --privacy private for sensitive work and avoid sending secrets or confidential source material to v0.dev.
+
+Risk: The skill requires a V0_API_KEY for CLI operations.
+
+Mitigation: Provide V0_API_KEY only to the command that needs it and keep the key out of shared logs, prompts, and shell history.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hlongvu/skills/v0-cli)
+- [v0.dev](https://v0.dev)
+- [v0 API keys](https://v0.dev/chat/settings/keys)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reference with bash command examples and terminal output patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires V0_API_KEY and may produce v0.dev chat IDs and preview URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

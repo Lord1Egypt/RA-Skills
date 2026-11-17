@@ -9,13 +9,18 @@
 ## 環境需求
 
 ```bash
+export INSURAI_API_KEY=your_api_key_here
+# Optional: override the production endpoint.
 export INSURAI_AGENT_URL=https://insurai.com.tw/insurai/agent
-export INSURAI_API_KEY=your_key_here
-export INSURAI_TLS_VERIFY=true
 ```
 
-> ⚠️ **正式機部署前確認**：執行 `python3 -c "import requests"` 確認 `requests` 庫已安裝。
-> 若無，安裝方式：`python3 -m pip install requests`。
+若尚未取得 `INSURAI_API_KEY`，請先至 https://insurai.com.tw 註冊會員，登入後申請 `INSURAI-API-KEY`，再設定 `INSURAI_API_KEY`。`INSURAI_AGENT_URL` 可省略，預設使用正式端點。
+
+> Privacy notice: insurance planning and lookup inputs may contain sensitive personal or financial information. Required request fields are transmitted to the configured `INSURAI_AGENT_URL`. Before the first API call in a conversation, inform users and obtain consent to continue. Submit only the minimum necessary data, and avoid unnecessary identifiers such as national ID numbers, contact details, full policy documents, payment data, or medical records.
+
+> TLS policy: `INSURAI_AGENT_URL` must be an HTTPS URL. Certificate verification is always required and cannot be disabled through this helper. The helper uses Python `requests` default TLS verification for all API traffic.
+
+> ⚠️ **正式機部署前確認**：執行 `python3 -c "import requests"` 確認 trusted runtime 已預先提供 `requests` 庫。
 
 ---
 
@@ -84,7 +89,7 @@ python3 scripts/insurai_api.py pdf_link \
 ### 3. batch_metadata 回傳順序隨機
 
 - 問題：用 `as_completed` 但直接 append，結果順序每次不同
-- 修復：預分配 `results: List[Dict] = [{}] * total`，以 index 寫入確保順序與輸入一致
+- 修復：預分配 `results: List[Dict] = [{} for _ in range(total)]`，以 index 寫入確保順序與輸入一致，避免多個元素共用同一個 dict 參照
 
 ### 4. 空 product-code 未驗證
 
@@ -99,7 +104,7 @@ python3 scripts/insurai_api.py pdf_link \
 ### 6. requests 庫未安裝時錯誤訊息不清
 
 - 問題：正式機若 `python3` 指向沒有 requests 的 Python，錯誤為 `No module named 'requests'`
-- 修復：腳本頂層做 `try/import requests` 檢查，失敗時清楚說明要安裝或使用完整路徑
+- 修復：腳本延遲載入 `requests`，失敗時清楚說明 trusted runtime 需預先提供 `requests`
 
 ### 7. batch_metadata 全錯時仍回傳 200（2025-06-15）
 
@@ -279,9 +284,6 @@ python3 scripts/insurai_api.py document \
 - 所有 `typing` 功能（`List`, `Dict`, `Tuple`, `Optional`）在 3.9 即齊備
 - `from __future__ import annotations` 已移除，不依賴任何 3.10+ 語法
 - 外部依賴：**`requests` 庫**（非標準庫，必須已安裝）
-  `INSURAI_TLS_VERIFY` 支援三種值：
+  `INSURAI_AGENT_URL` 必須使用 HTTPS；TLS 憑證驗證一律啟用，且不提供停用 TLS 驗證的環境變數。
 
-- `true` / `false`
-- CA bundle 檔案路徑（例如 `/etc/ssl/certs/custom-ca.pem`）
-
-正式環境預設應維持 `true`；只有在內部憑證尚未正確佈建時，才暫時改為 `false` 或指定 CA bundle。
+helper 使用 Python `requests` 預設 TLS 驗證設定，避免帶有 `X-API-KEY` 與保險資料的請求暴露於中間人攔截或竄改風險。

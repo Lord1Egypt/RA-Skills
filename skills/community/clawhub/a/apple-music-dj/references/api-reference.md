@@ -104,6 +104,42 @@ Content-Type: application/json
 GET /v1/me/library/playlists/{id}/tracks?limit=100
 ```
 
+### Recently Added
+```
+GET /v1/me/library/recently-added?limit=25
+```
+Albums and playlists recently added to the library. Albums carry `artistName` and
+`genreNames`; playlists don't, so the profiler skips them. Used as a "what I'm into now" signal.
+
+### Recent Radio Stations
+```
+GET /v1/me/recent/radio-stations?limit=10
+```
+Station resources have no genre attribute, so the profiler only picks up genres that appear
+in the station *title* (e.g. "Alternative Radio") and treats them as a very light signal.
+
+### Add Albums / Songs to Library
+```
+POST /v1/me/library?ids[albums]=ID1,ID2      (or ids[songs]=...)
+```
+No request body; answers `202` with an empty body (not JSON — call `call_api(..., raw=True)`).
+Wrapper: `apple_music_api.sh add-to-library <albums|songs> <ids> --yes`. **Writes to the account** (previews and exits 3 without `--yes`).
+
+### Add to Favorites
+```
+POST /v1/me/favorites?ids[songs]=ID1,ID2     (also albums, artists, playlists)
+```
+Empty-body response. Wrapper: `apple_music_api.sh favorite <type> <ids> --yes`. **Writes to the account** (needs `--yes`).
+Apple documents only this write endpoint — there is no documented way to *read* favorites,
+so the profiler keeps using ratings (loved/disliked) as its explicit-preference signal.
+
+### Rate a Song
+```
+PUT    /v1/me/ratings/songs/{id}     body: {"type":"rating","attributes":{"value":1}}   (1 = love, -1 = dislike)
+DELETE /v1/me/ratings/songs/{id}
+```
+Wrappers: `apple_music_api.sh rate <id> <1|-1> --yes` and `unrate <id> --yes`. **Writes to the account** (need `--yes`).
+
 ---
 
 ## Catalog Endpoints
@@ -138,6 +174,20 @@ GET /v1/catalog/{storefront}/songs/{id}?include=artists,albums
 ```
 GET /v1/catalog/{storefront}/genres?limit=40
 ```
+
+### Similar Artists
+```
+GET /v1/catalog/{storefront}/artists/{id}/view/similar-artists?limit=20
+```
+Wrapper: `apple_music_api.sh similar-artists <storefront> <artist_id>`.
+
+### Songs by ISRC
+```
+GET /v1/catalog/{storefront}/songs?filter[isrc]=ISRC1,ISRC2
+```
+Max 25 ISRCs per request. Each song's `attributes.isrc` identifies which input it matched; one ISRC
+can return several catalog songs (different albums), so importers take the first.
+Wrapper: `apple_music_api.sh songs-by-isrc <storefront> <isrcs>`.
 
 ---
 

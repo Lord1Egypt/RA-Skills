@@ -34,6 +34,14 @@ The command always goes after `--`. `--expect-every` (`30m`, `12h`, `1d`, `1w`) 
 
 A `💥 failed` means it ran and errored (show the output tail). A `🔇 overdue` means it never ran — the problem is upstream, not the command. That distinction alone saves hours of debugging.
 
+## Safety and scope
+
+- Runs only the command you give it, directly, never through a shell
+- Never edits your crontab or creates scheduled tasks: `crontab` just prints lines for you to add
+- No network access and no dependencies; runs as your normal user
+- State is kept in one owner-only file (`~/.cron-sentinel/state.json`)
+- Secret-looking values in captured output are masked before saving; use `--no-output-tail` to save no output at all
+
 ## Requirements
 
 - Python 3.8+ (standard library only). No API key, no external services.

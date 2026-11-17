@@ -1,39 +1,58 @@
-## Description: <br>
-Cancel a user-created OpenAnt task and reclaim escrowed funds after checking task status, reward details, and explicit user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cancel a task on OpenAnt and reclaim escrowed funds.
 
-## Publisher: <br>
-[ant-1984](https://clawhub.ai/user/ant-1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-1984](https://clawhub.ai/user/ant-1984)
 
-## Use Case: <br>
-External OpenAnt users use this skill when they need an agent to help cancel their own task, remove it from the marketplace, and verify any escrow refund. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cancellation is irreversible and may affect escrowed funds or assigned workers. <br>
-Mitigation: Verify the task ID, title, status, reward amount, assignee state, and refund details, then require explicit user confirmation before running the cancel command. <br>
-Risk: The user may try to cancel a task that is submitted, completed, already cancelled, refunded, or owned by someone else. <br>
-Mitigation: Check the task status and creator authority first, and avoid cancellation paths that the OpenAnt task state does not allow. <br>
+## Use Case:
 
+External OpenAnt task creators use this skill to inspect a task they created, confirm whether it can be cancelled, cancel it through the OpenAnt CLI, and verify escrow refund status when applicable.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are expected to use JSON output for status checks, cancellation, and refund verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill runs a mutable CLI package for OpenAnt task inspection and cancellation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the CLI to a reviewed version where possible before installation or use.
+
+Risk: Task cancellation is irreversible and may trigger escrow refund behavior.
+
+Mitigation: Confirm the exact task title, status, and reward with the user before running the cancellation command.
+
+Risk: Untrusted text could supply an unsafe or incorrect task ID.
+
+Mitigation: Accept only task IDs that match the platform's expected format and verify the task with a read-only command before cancellation.
+
+## Reference(s):
+
+- [Cancel Task on ClawHub](https://clawhub.ai/ant-1984/skills/cancel-task)
+- [Publisher Profile](https://clawhub.ai/user/ant-1984)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Text]
+
+**Output Format:** [Markdown with inline bash commands and JSON command-output checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before running the cancellation command.]
+
+## Skill Version(s):
+
+0.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

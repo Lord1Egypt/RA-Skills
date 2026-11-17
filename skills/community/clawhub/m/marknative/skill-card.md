@@ -1,41 +1,58 @@
-## Description: <br>
-Render Markdown into paginated PNG/SVG without a browser using marknative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render Markdown into paginated PNG/SVG without a browser using marknative.
 
-## Publisher: <br>
-[twoface2014](https://clawhub.ai/user/twoface2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twoface2014](https://clawhub.ai/user/twoface2014)
 
-## Use Case: <br>
-Developers and engineers use this skill to render Markdown into deterministic, paginated PNG or SVG output in Node/TypeScript-friendly environments without relying on Chromium. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing an unexpected npm package or version could change runtime behavior. <br>
-Mitigation: Verify the intended marknative and skia-canvas package versions and use a controlled project environment before installation. <br>
-Risk: Native rendering dependencies may fail on unsupported Node versions or system architectures. <br>
-Mitigation: Check Node version, system architecture, and skia-canvas compatibility before using the rendering workflow. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate Node/TypeScript guidance for converting Markdown into deterministic paginated PNG or SVG output without relying on a browser runtime.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/twoface2014/marknative) <br>
-- [README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: changelog and server release metadata) <br>
+Risk: The skill may propose installing the mutable npm package `marknative` and its rendering backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin `marknative` to a reviewed version and install it in a restricted project environment before use.
+
+Risk: Runtime setup can vary across Node, TypeScript, ESM, and `skia-canvas` system dependencies.
+
+Mitigation: Verify the minimal rendering example in the target environment before using the skill for batch exports.
+
+Risk: Some runtime instructions in the artifact are written in Chinese.
+
+Mitigation: Use the bundled README or a reviewed translation when the operator cannot read the original instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twoface2014/skills/marknative)
+- [Publisher profile](https://clawhub.ai/user/twoface2014)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with TypeScript examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend Markdown rendering options such as PNG or SVG output format and painter configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

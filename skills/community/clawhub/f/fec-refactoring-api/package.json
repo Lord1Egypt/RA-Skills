@@ -1,0 +1,39 @@
+{
+  "name": "@bovinphang/fec-refactoring-api",
+  "version": "2.9.0",
+  "description": "Use when behavior-preserving frontend refactoring focuses on function API shape, flags, dependencies, mutability, construction, or command/function trade-offs, and the selected technique needs family-specific mechanics, risks, and JavaScript/TypeScript/React/Vue adaptation.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-refactoring-api"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "review-quality",
+    "refactoring",
+    "api",
+    "parameters",
+    "dependencies"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,41 +1,53 @@
-## Description: <br>
-Analyzes recent international news to identify likely stock movers in A-share, Hong Kong, or U.S. markets, with reasons and source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes recent international news to identify A-share, Hong Kong, or U.S. stocks that may see unusual price movement, with reasons and news links.
 
-## Publisher: <br>
-[violin](https://clawhub.ai/user/violin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[violin](https://clawhub.ai/user/violin)
 
-## Use Case: <br>
-Investors, analysts, and market researchers use this skill to request news-based market commentary for A-shares, Hong Kong stocks, or U.S. stocks. It helps surface possible bullish or risk-sensitive movers while requiring users to verify sources and treat outputs as informational. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated stock predictions may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as informational market commentary, verify the cited news links, and avoid using the report as the sole basis for investment decisions. <br>
-Risk: Recent-news claims and linked sources can be stale, incomplete, or inaccurate. <br>
-Mitigation: Confirm publication dates, source credibility, and current market conditions before acting on any stock movement analysis. <br>
+## Use Case:
 
+External users, analysts, and developers can request a news-based market scan for A-shares, Hong Kong stocks, or U.S. stocks. The skill produces a structured informational report with key headlines, likely bullish or risk-sensitive movers, reasons, and source links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/violin/stock-recommend) <br>
-- [Publisher profile](https://clawhub.ai/user/violin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with news summaries, stock tables, links, and informational notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a market selection of A股, 港股, or 美股 and should include recent source links for user verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Market-movement predictions can be wrong or stale if public news is incomplete, outdated, or misinterpreted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the report as informational analysis only, verify cited links and current market conditions, and do not treat outputs as financial advice.
+
+Risk: The skill relies on recent public web searches, so link quality and publication recency may vary.
+
+Mitigation: Prefer authoritative news sources, check publication timestamps, and validate the cited evidence before acting on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/violin/skills/stock-recommend)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with news summary, stock-movement tables, source links, and investment notes]
+
+**Output Parameters:** [1D; market parameter accepts A股, 港股, or 美股]
+
+**Other Properties Related to Output:** [Requires current public-news search; informational only and not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

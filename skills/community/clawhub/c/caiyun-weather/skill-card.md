@@ -1,43 +1,56 @@
-## Description: <br>
-Queries Caiyun Weather for realtime weather, air quality, hourly and weekly forecasts, recent history, and weather alerts by Chinese or English city name or coordinates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天气查询 / Weather query. 实时查询天气、气温、空气质量（AQI/PM2.5）、逐小时预报、一周天气预报、历史天气和天气预警，支持中文城市名（北京/上海/深圳等）直接查询。Real-time weather, temperature, AQI, hourly/weekly forecast, historical weather and alerts via Caiyun Weather API. Supports Chinese city names directly. Requires CAIYUN_WEATHER_API_TOKEN.
 
-## Publisher: <br>
-[tjefferson](https://clawhub.ai/user/tjefferson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tjefferson](https://clawhub.ai/user/tjefferson)
 
-## Use Case: <br>
-External users and agents use this skill to answer weather questions for supported cities using Caiyun Weather data, including forecasts, AQI, recent history, and alerts. It is most useful when the user has configured a Caiyun Weather API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Caiyun Weather API token and sends requested city names or coordinates to online weather services. <br>
-Mitigation: Use only approved API tokens, avoid sensitive precise-location queries, and deploy only where sharing location queries with Caiyun Weather and OpenStreetMap Nominatim is acceptable. <br>
-Risk: Weather, forecast, AQI, history, and alert results depend on third-party API availability, limits, and data freshness. <br>
-Mitigation: Treat responses as informational, retry or verify when API calls fail, and use official or specialized sources for safety-critical, aviation, marine, or emergency decisions. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to query real-time weather, air quality, hourly and weekly forecasts, recent historical weather, and weather alerts for cities or coordinates. It is most useful for China-focused weather queries and supports Chinese city names directly.
 
-## Reference(s): <br>
-- [Caiyun Weather API Documentation](https://docs.caiyunapp.com/weather-api/) <br>
-- [Caiyun Weather API Endpoint](https://api.caiyunapp.com/v2.6) <br>
-- [OpenStreetMap Nominatim Search API](https://nominatim.openstreetmap.org/search) <br>
-- [ClawHub Skill Page](https://clawhub.ai/tjefferson/caiyun-weather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text weather reports with concise Markdown guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CAIYUN_WEATHER_API_TOKEN and may call Caiyun Weather and OpenStreetMap Nominatim over the network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Weather queries send requested cities or coordinates to Caiyun Weather, and unresolved city names may be sent to OpenStreetMap for geocoding.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing the queried location with those services is acceptable; prefer explicit coordinates for locations where geocoding disclosure should be controlled.
+
+Risk: The skill requires a Caiyun Weather API token.
+
+Mitigation: Provide the token through the CAIYUN_WEATHER_API_TOKEN environment variable and avoid placing it in prompts, logs, or checked-in files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tjefferson/skills/caiyun-weather)
+- [Caiyun Weather API documentation](https://docs.caiyunapp.com/weather-api/)
+- [Caiyun Weather API endpoint](https://api.caiyunapp.com/v2.6)
+- [OpenStreetMap Nominatim geocoding endpoint](https://nominatim.openstreetmap.org/search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text weather results and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and CAIYUN_WEATHER_API_TOKEN; unresolved city names may be geocoded through OpenStreetMap.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

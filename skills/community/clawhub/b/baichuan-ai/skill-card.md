@@ -1,43 +1,53 @@
-## Description: <br>
-整理并摘要百川大模型公开页面的模型能力、定价、文档目录与示例等信息，提供轻量级内容汇总服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents summarize public Baichuan AI product pages, documentation, model capability notes, pricing details, and example links.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and agents use this skill to summarize public Baichuan AI product, documentation, pricing, quota, and example information without account actions or API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public Baichuan AI pricing, quota, and model capability details may change after a summary is generated. <br>
-Mitigation: Verify those details against the original Baichuan AI pages before relying on the summary. <br>
-Risk: Automated collection from dynamic public pages can miss content if pages have not fully loaded. <br>
-Mitigation: Wait for page loading to complete and review extracted links and fields before using the output. <br>
-Risk: The skill is intended for public information only and could be misapplied to account or sensitive workflows. <br>
-Mitigation: Keep use limited to public pages and avoid credentials, account actions, API calls, and sensitive information. <br>
+## Use Case:
 
+External users and developers use this skill to gather lightweight summaries of publicly available Baichuan AI model, pricing, quota, documentation, and example-link information without account access or API operations.
 
-## Reference(s): <br>
-- [Baichuan AI homepage](https://www.baichuan.ai/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/baichuan-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise text or Markdown summaries and link lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No account operations, credential handling, API calls, or persistence are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Public pricing, quota, model capability, or service-status information may change after the agent summarizes a page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the current source webpage before relying on extracted pricing, quota, or availability details.
+
+Risk: Automated browsing of dynamic public pages can create excessive requests if used without limits.
+
+Mitigation: Use frequency controls and respect Baichuan AI platform access restrictions while collecting public page content.
+
+## Reference(s):
+
+- [Baichuan AI Homepage](https://www.baichuan.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries and link lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are based on public webpage content only and should be reviewed before relying on changing pricing or quota information.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

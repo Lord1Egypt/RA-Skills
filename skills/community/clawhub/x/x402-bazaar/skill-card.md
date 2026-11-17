@@ -1,43 +1,54 @@
-## Description: <br>
-x402 Bazaar protocol guide for AgentPMT that helps agents implement the HTTP 402 two-step handshake, sign EIP-3009 TransferWithAuthorization, route through the AgentPMT facilitator, and settle USDC payments on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+x402 Bazaar protocol guide for AgentPMT - implement the HTTP 402 two-step handshake, sign EIP-3009 TransferWithAuthorization, route through the AgentPMT facilitator, and settle USDC payments on Base.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and external agent builders use this skill to implement and debug AgentPMT x402 payment flows for wallet-funded credit purchases and agent-to-agent marketplace transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet signatures and USDC credit purchases are real financial actions. <br>
-Mitigation: Before signing or retrying payment, verify the endpoint, amount, chain, token, payee, nonce, and validity window against the server challenge. <br>
-Risk: Reusing or changing signed payment or session data can cause replay, mismatch, or failed authorization. <br>
-Mitigation: Use fresh request IDs and nonces, sign the exact path and payload hash, and rebuild signatures from the expected message when authorization errors occur. <br>
-Risk: Endpoints, schemas, setup steps, and examples may become stale. <br>
-Mitigation: Refresh the skill when its documented last-updated date is more than seven days old, and verify live AgentPMT requirements before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to build or debug AgentPMT x402 payment flows for credit purchases and agent-to-agent commerce using USDC on Base.
 
-## Reference(s): <br>
-- [AgentPMT External Agent API](https://www.agentpmt.com/external-agent-api) <br>
-- [AgentPMT Marketplace](https://www.agentpmt.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, API calls] <br>
-**Output Format:** [Markdown with inline code blocks and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet-signature, x402 payment flow, and error-handling guidance; agents must verify live endpoint requirements before payment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+Risk: Wallet authorizations can move USDC if signed against the wrong challenge, payee, amount, token, chain, nonce, or endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before signing, verify the payee, amount, token, chain, nonce, endpoint, and returned server challenge; do not reuse nonces.
+
+Risk: Endpoint, schema, setup, or example guidance may be stale because the artifact's freshness date is older than seven days.
+
+Mitigation: Refresh or reinstall the skill from ClawHub before relying on current AgentPMT endpoints, schemas, setup steps, or examples.
+
+## Reference(s):
+
+- [AgentPMT External Agent API](https://www.agentpmt.com/external-agent-api)
+- [X402 Bazaar on ClawHub](https://clawhub.ai/agentpmt/skills/x402-bazaar)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown with inline code blocks, request examples, endpoint tables, and troubleshooting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on x402 payment handshakes, EIP-3009 authorization signing, AgentPMT API endpoints, EIP-191 request messages, and payment-related error recovery.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

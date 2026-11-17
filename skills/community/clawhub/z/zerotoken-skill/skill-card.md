@@ -1,44 +1,63 @@
-## Description: <br>
-Default token-efficient assistant discipline: minimal prompts, concise context, and short actionable outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZeroToken guides agents toward concise, token-efficient task execution and includes optional utilities for environment detection, UTF-8-safe file handling, encoding conversion, and Windows PowerShell workflows.
 
-## Publisher: <br>
-[phoenixlucky](https://clawhub.ai/user/phoenixlucky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 <br>
+## Publisher:
 
+[phoenixlucky](https://clawhub.ai/user/phoenixlucky)
 
-## Use Case: <br>
-Developers and agent users use this skill to guide an assistant toward token-efficient work: classifying the task, reading only necessary context, producing concise outputs, and switching to more detailed handling when accuracy or user intent requires it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The prompt may default to Chinese-language behavior when an operator expects adaptive English responses. <br>
-Mitigation: Review the prompt before deployment and adjust language expectations for the target agent or user population. <br>
-Risk: Token-minimizing guidance can be over-applied to tasks that need more context, verification, or detailed explanation. <br>
-Mitigation: Apply the skill's documented exit conditions for detailed explanations, brainstorming, legal, medical, financial, and time-sensitive work. <br>
+## Use Case:
 
+Developers and agent users use ZeroToken to make assistants choose the right task mode, limit unnecessary context, produce concise answers, and apply platform-aware file and shell workflows when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phoenixlucky/zerotoken-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/phoenixlucky) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Concise Markdown with task-specific commands, code, configuration snippets, or direct guidance as needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes minimal necessary context and short actionable responses; exits compact mode for detailed explanations, brainstorming, high-stakes decisions, or time-sensitive accuracy needs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md metadata, package.json, README.md, CHANGELOG.md) <br>
+Risk: File and encoding utilities can modify project files or overwrite conversion targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before execution, use preview or backup modes for conversion and repair workflows, and run the bundled checks after changes.
+
+Risk: Local helper scripts and environment detection can create workspace state or adjust current-repository Git display settings on Windows.
+
+Mitigation: Install only when the concise-output and encoding workflow is desired, run utilities in trusted workspaces, and inspect repository-local configuration changes.
+
+Risk: External search tasks may send query terms to third-party search or browser services.
+
+Mitigation: Avoid external search for sensitive or non-public project details unless the user has confirmed the disclosure.
+
+## Reference(s):
+
+- [ZeroToken Skill](SKILL.md)
+- [README](README.md)
+- [Unicode Safety Encoding Specification](docs/unicode-encoding-spec.md)
+- [Windows / PowerShell Environment Adaptation](references/windows-powershell.md)
+- [Major Refactor / Architecture Adjustment Playbook](references/refactor-playbook.md)
+- [External Search Guidelines](references/search.md)
+- [Tool Mapping and Host-Specific Behavior](references/tool-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline commands, code snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise, task-mode-driven output; language follows the user's interaction language.]
+
+## Skill Version(s):
+
+1.17.0 (source: frontmatter, package.json, CHANGELOG, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

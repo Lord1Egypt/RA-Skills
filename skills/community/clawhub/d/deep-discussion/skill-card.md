@@ -1,43 +1,60 @@
-## Description: <br>
-Multi-agent deep discussion with Orchestrator coordination and agenda checklist tracking for complex problems that benefit from diverse expert perspectives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multi-agent expert discussions through an orchestrator, agenda checklist tracking, and three-round Diverge, Discuss, and Converge cycles for each agenda item.
 
-## Publisher: <br>
-[LuciusCao](https://clawhub.ai/user/LuciusCao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luciuscao](https://clawhub.ai/user/luciuscao)
 
-## Use Case: <br>
-Developers, product teams, researchers, and operators use this skill to run structured multi-agent expert discussions, track agenda progress, preserve full discussion logs, and produce reports and action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Subagents may receive the discussion context and the skill saves full expert responses in local discussion logs. <br>
-Mitigation: Do not include passwords, tokens, private customer data, or confidential material unless it is intended to appear in those logs; delete generated files after use when retention matters. <br>
+## Use Case:
 
+Developers and teams use this skill to run structured expert discussions for complex problems that benefit from multiple perspectives, agenda tracking, consensus building, and action planning.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/LuciusCao/deep-discussion) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Agenda tracking](artifact/references/agenda-tracking.md) <br>
-- [Discussion protocol](artifact/references/discussion-protocol.md) <br>
-- [Orchestrator logic](artifact/references/orchestrator-logic.md) <br>
-- [Output template](artifact/references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown files and conversational text with occasional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates agenda.md, discussion-log.md, report.md, and action-plan.md under workspace/deep-discussion/{topic-slug}; discussion-log.md preserves full expert responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; source skill frontmatter reports 3.3) <br>
+Risk: The skill saves complete discussion transcripts into workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when transcript retention is acceptable, and avoid secrets, credentials, regulated personal data, or confidential material unless that content may be written into reports.
+
+Risk: Long-running subagent activity can produce large discussion outputs that need review.
+
+Mitigation: Monitor the discussion workspace and review generated agenda, transcript, report, and action-plan files after the session.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luciuscao/skills/deep-discussion)
+- [Discussion Protocol](artifact/references/discussion-protocol.md)
+- [Agenda Checklist Guide](artifact/references/agenda-tracking.md)
+- [Orchestrator Facilitation Guide](artifact/references/facilitation-guide.md)
+- [Session Management Guide](artifact/references/session-management.md)
+- [Convergence Criteria](artifact/references/convergence-criteria.md)
+- [Deep Discussion Report Template](artifact/references/output-template.md)
+- [Expert Roles](artifact/references/expert-roles.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates agenda.md, discussion-log.md, report.md, and action-plan.md under workspace/deep-discussion/{topic-slug}/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, created 2026-03-14; artifact frontmatter version 3.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

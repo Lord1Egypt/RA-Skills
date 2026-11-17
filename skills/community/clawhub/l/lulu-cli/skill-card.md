@@ -1,46 +1,59 @@
-## Description: <br>
-Manage LuLu macOS firewall rules from the command line for diagnosing blocked connections, allowing or blocking domains, and reviewing firewall rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage LuLu macOS firewall rules from the command line for reviewing blocked connections and adding, deleting, enabling, disabling, or reloading firewall rules.
 
-## Publisher: <br>
-[woop](https://clawhub.ai/user/woop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woop](https://clawhub.ai/user/woop)
 
-## Use Case: <br>
-Developers and engineers use this skill on macOS systems to inspect LuLu firewall rules, diagnose blocked outbound connections, and propose precise allow or block rule changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose sudo-powered LuLu rule changes that affect outbound firewall behavior. <br>
-Mitigation: Review every `sudo lulu-cli` command before approval and apply only intentional rule changes. <br>
-Risk: Broad wildcard allow rules can weaken LuLu as a security boundary. <br>
-Mitigation: Prefer narrow application, domain, and port-specific rules over global wildcards. <br>
-Risk: The required `lulu-cli` binary is installed from an external Homebrew tap and is not included in the reviewed skill artifacts. <br>
-Mitigation: Verify the Homebrew tap and installed binary before relying on the skill. <br>
-Risk: Reloading LuLu restarts the system extension and briefly interrupts filtering. <br>
-Mitigation: Run reload only after deliberate add, delete, enable, or disable operations. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose LuLu-blocked outbound connections and manage allow or block rules for macOS firewall policy. It is most relevant when an agent or operator needs auditable command-line guidance for reviewing recent blocks, applying rule changes, and reloading LuLu.
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [LuLu macOS Firewall](https://objective-see.org/products/lulu.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/woop/lulu-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require macOS, LuLu, lulu-cli, and sudo approval for write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: release evidence) <br>
+Risk: The skill gives an agent broad sudo authority to make persistent LuLu firewall rule changes through an unpinned third-party CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when agent-administered firewall management is intended, verify the Homebrew tap and installed binary, and review every sudo lulu-cli command before execution.
+
+Risk: Over-permissive global allow-all rules for agent-reachable tools can weaken LuLu as a data-exfiltration boundary.
+
+Mitigation: Avoid global allow-all rules for node, python, curl, git, gh, browser automation, or other tools an agent can use to reach the internet; prefer domain-specific allowlists.
+
+Risk: Reloading LuLu restarts the system extension and creates a brief gap in filtering.
+
+Mitigation: Apply reloads deliberately after reviewing rule changes and account for the temporary filtering gap described by the artifact.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/woop/skills/lulu-cli)
+- [Objective-See LuLu](https://objective-see.org/products/lulu.html)
+- [Command Reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sudo lulu-cli commands that require operator review before execution.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

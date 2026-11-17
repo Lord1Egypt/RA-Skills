@@ -1,41 +1,56 @@
-## Description: <br>
-React and Next.js performance optimization patterns for writing, reviewing, or refactoring components, data fetching, bundle optimization, re-render reduction, and server component architecture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+React and Next.js performance optimization patterns for writing, reviewing, and refactoring components, data fetching, bundle optimization, re-render reduction, and server component architecture.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose and improve React and Next.js performance while writing new components, implementing data fetching, reviewing code, or reducing bundle size and render overhead. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Some examples include analytics or audit logging patterns, including a User-Agent logging snippet, without full privacy guidance. <br>
-Mitigation: Review copied examples before production use and apply project-specific privacy, retention, and consent requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Async Patterns - Eliminating Waterfalls](references/async-patterns.md) <br>
-- [Bundle Size Optimization](references/bundle-optimization.md) <br>
-- [Re-render Optimization](references/rerender-optimization.md) <br>
-- [Server Component Performance](references/server-components.md) <br>
-- [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect) <br>
+## Use Case:
 
+Developers and engineers use this skill to write, review, and refactor React and Next.js applications for better load time, rendering behavior, data fetching, bundle size, and server component performance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, CSS, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; examples should be reviewed before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable installation commands such as `npx`, `@latest`, or a GitHub `main` branch can execute code that changes after this review.
+
+Mitigation: Review installation commands before running them and prefer pinned package versions, commit SHAs, or reviewed release artifacts.
+
+Risk: Performance recommendations may be context-dependent and could introduce unnecessary complexity or regressions if applied mechanically.
+
+Mitigation: Apply recommendations against measured bottlenecks and review generated code changes before deployment.
+
+## Reference(s):
+
+- [Async Patterns - Eliminating Waterfalls](references/async-patterns.md)
+- [Bundle Size Optimization](references/bundle-optimization.md)
+- [Re-render Optimization](references/rerender-optimization.md)
+- [Server Component Performance](references/server-components.md)
+- [React: You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, TSX, CSS, JavaScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

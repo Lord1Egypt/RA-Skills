@@ -1,46 +1,55 @@
-## Description: <br>
-tophantppt helps an agent generate image-based PowerPoint presentations from specified slide content or raw source material, using required background reference images to guide visual style and layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates image-based PPTX presentation decks from specified slide content or source material using fixed background reference images for visual consistency.
 
-## Publisher: <br>
-[lizhedm](https://clawhub.ai/user/lizhedm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lizhedm](https://clawhub.ai/user/lizhedm)
 
-## Use Case: <br>
-External users and developers use this skill to turn specified slide plans or raw source material into polished, image-based PowerPoint decks. It is especially useful when the deck must follow a consistent visual language driven by provided background reference images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches external reference images during presentation generation. <br>
-Mitigation: Use it only in environments where fetching the listed reference images is acceptable, and review the fetched assets before final delivery. <br>
-Risk: The workflow creates local slide images, design markdown, and PPTX output files that could overwrite existing work. <br>
-Mitigation: Run the skill in a dedicated output folder and choose explicit filenames for generated files. <br>
-Risk: Generated slide images may contain unreadable text, layout issues, or content errors because the final deck is image-based. <br>
-Mitigation: Review each generated slide image for clarity and accuracy before merging the deck or sharing the PPTX. <br>
+## Use Case:
 
+Presentation creators and agents use this skill to turn user-provided slide outlines or raw source material into visually consistent, full-image PowerPoint decks. It is suited to producing slide images and assembling them into a PPTX when editability of individual text elements is not required.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lizhedm/tophantppt) <br>
-- [Publisher profile](https://clawhub.ai/user/lizhedm) <br>
-- [Skill homepage](https://clawic.com/skills/tophantppt) <br>
-- [Cover background reference image](https://github.com/lizhedm/tophantppt/blob/main/assets/cover_bg.png) <br>
-- [Default background reference image](https://github.com/lizhedm/tophantppt/blob/main/assets/moren.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown design plans, image-generation prompts, generated slide images, and a PPTX file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Automatic mode is constrained to no more than 40 slides; generated slide images are expected to be 16:9 and at least 1920x1080.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence and artifact frontmatter) <br>
+Risk: The skill fetches fixed background reference images from GitHub and may retry when retrieval fails, which can affect reliability and disclose usage context in restricted environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use in environments where remote image retrieval and image-generation workflows are permitted, and review or cache required reference images before offline or privacy-sensitive use.
+
+Risk: Generated slides are image-based, so text and visual details may be inaccurate or difficult to edit after generation.
+
+Mitigation: Review generated slide images for content accuracy, readability, and layout before sharing the final PPTX.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lizhedm/skills/tophantppt)
+- [Publisher profile](https://clawhub.ai/user/lizhedm)
+- [Skill homepage](https://clawic.com/skills/tophantppt)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions and generated PPTX/image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces full-image 16:9 slides, typically at 1920x1080 or higher, and merges them into a PPTX.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

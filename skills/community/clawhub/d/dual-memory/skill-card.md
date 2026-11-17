@@ -1,43 +1,56 @@
-## Description: <br>
-Dual Memory combines OpenClaw memory-core with external providers such as SuperMemory so agents can use local QMD search, MEMORY.md, dreaming consolidation, and cloud persistence from one memory slot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Combines OpenClaw's local memory-core with SuperMemory cloud memory in one memory plugin so agents can search local and cloud memories, keep MEMORY.md and dreaming support, and persist context across sessions.
 
-## Publisher: <br>
-[dobrinalexandru](https://clawhub.ai/user/dobrinalexandru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dobrinalexandru](https://clawhub.ai/user/dobrinalexandru)
 
-## Use Case: <br>
-Developers and OpenClaw users use this memory plugin to combine local memory-core recall and dreaming with SuperMemory cloud persistence through a single memory provider slot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud memory capture can store sensitive workspace or conversation content with SuperMemory when autoCapture or broad capture modes are enabled. <br>
-Mitigation: Avoid autoCapture or captureMode "everything" in workspaces containing secrets, customer data, proprietary code, or regulated information unless storing that material with the cloud provider is acceptable. <br>
-Risk: Cloud behavior is delegated to the sibling openclaw-supermemory extension. <br>
-Mitigation: Install and review the sibling openclaw-supermemory extension before enabling cloud memory. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run local memory-core and SuperMemory-backed cloud memory through one OpenClaw memory slot. It is intended for agents that need local MEMORY.md and dreaming support while also retaining cross-session or cross-device memory.
 
-## Reference(s): <br>
-- [Dual memory ClawHub release](https://clawhub.ai/dobrinalexandru/dual-memory) <br>
-- [README](README.md) <br>
-- [SuperMemory](https://supermemory.com) <br>
-- [SuperMemory ClawHub skill](https://clawhub.ai/skills/supermemory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Memory recall text, search result snippets, and OpenClaw configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May merge local memory-core results with SuperMemory cloud results when cloud memory is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata; artifact frontmatter is 1.0.7 and package.json is 1.0.5) <br>
+Risk: The skill enables cloud-backed memory capture and search through SuperMemory, which can send memory queries and captured conversation-derived content to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that data flow is acceptable, configure the SuperMemory API key deliberately, and disable autoCapture or narrow capture scope for sensitive work.
+
+Risk: The skill depends on a separately installed sibling SuperMemory extension with broad OpenClaw plugin privileges.
+
+Mitigation: Verify and pin the exact sibling extension version before deployment, and treat that extension as part of the trusted runtime.
+
+## Reference(s):
+
+- [Dual memory on ClawHub](https://clawhub.ai/dobrinalexandru/skills/dual-memory)
+- [dobrinalexandru publisher profile](https://clawhub.ai/user/dobrinalexandru)
+- [SuperMemory](https://supermemory.com)
+- [SuperMemory skill on ClawHub](https://clawhub.ai/skills/supermemory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenClaw plugin configuration and operational guidance for local and cloud memory behavior.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence; artifact frontmatter reports 1.0.7 and package.json reports 1.0.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

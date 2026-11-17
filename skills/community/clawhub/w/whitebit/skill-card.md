@@ -1,47 +1,67 @@
-## Description: <br>
-Build, install, update, and use a WhiteBIT trading guidance and training skill through ClawHub (clawhub.ai) for OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, install, update, and use a WhiteBIT trading guidance and training skill through ClawHub for OpenClaw, including trading workflow training, API behavior validation, and MCP-first execution planning.
 
-## Publisher: <br>
-[zonder](https://clawhub.ai/user/zonder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zonder](https://clawhub.ai/user/zonder)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to learn WhiteBIT spot trading workflows, validate documented API request parameters, and prepare execution-ready plans before using a separate trading executor. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake documentation-backed planning output for live trading capability. <br>
-Mitigation: Use the skill as a training and request-planning aid only; require a separate execution system for balances, order placement, cancellation, and order-status verification. <br>
-Risk: Trading API credentials could be exposed if copied into skill files or publish artifacts. <br>
-Mitigation: Keep WhiteBIT API keys only in a trusted external executor and review files before using ClawHub publish or sync commands. <br>
-Risk: A prepared request could be executed externally without adequate operator review. <br>
-Mitigation: Require human confirmation before any live order outside this skill and verify account state, fees, and order status through the external executor. <br>
+## Use Case:
 
+External developers, operators, and trading workflow trainers use this skill to install or manage the ClawHub WhiteBIT skill, teach WhiteBIT spot trading workflows, validate API request requirements, and prepare documented execution plans for a separate reviewed executor.
 
-## Reference(s): <br>
-- [ClawHub whitebit skill page](https://clawhub.ai/zonder/whitebit) <br>
-- [WhiteBIT Docs MCP server](https://docs.whitebit.com/mcp) <br>
-- [ClawHub CLI Reference](references/clawhub-cli.md) <br>
-- [MCP Setup](references/mcp-setup.md) <br>
-- [Trade Checklist](references/trade-checklist.md) <br>
-- [WhiteBIT API Basics](references/whitebit-api-basics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured sections and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces training walkthroughs, documented API request plans, lifecycle commands, validation checklists, and external execution verification guidance; it does not perform live trading by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Users may mistake documentation-based planning for live exchange execution or account verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill is documentation-only with whitebit-docs, require a separate reviewed executor for live trading, and require explicit human approval before any live trade.
+
+Risk: API keys or local credentials could be exposed during external executor setup or ClawHub publishing.
+
+Mitigation: Keep API keys out of skill files, exclude local credential artifacts before publishing, and rotate keys immediately if exposure occurs.
+
+Risk: Unverified global CLI installation or bulk updates could introduce unwanted skill or dependency changes.
+
+Mitigation: Verify or pin the ClawHub CLI package before global installation and use dry-run for bulk ClawHub operations.
+
+Risk: Incorrect symbols, order size, slippage, or retry handling could lead to harmful trades if copied into an execution system.
+
+Mitigation: Validate endpoint requirements through WhiteBIT documentation, require symbol, side, order type, size, and constraints, and reconcile uncertain order status before any retry.
+
+## Reference(s):
+
+- [ClawHub WhiteBIT Skill Homepage](https://clawhub.ai/zonder/whitebit)
+- [ClawHub WhiteBIT Skill Page](https://clawhub.ai/zonder/skills/whitebit)
+- [WhiteBIT Docs MCP Server](https://docs.whitebit.com/mcp)
+- [MCP Setup](references/mcp-setup.md)
+- [ClawHub CLI Reference](references/clawhub-cli.md)
+- [WhiteBIT API Basics](references/whitebit-api-basics.md)
+- [Trade Checklist](references/trade-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, API request details, and operator checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only for WhiteBIT access unless a separate execution system is configured; outputs should not claim live order placement or account verification.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

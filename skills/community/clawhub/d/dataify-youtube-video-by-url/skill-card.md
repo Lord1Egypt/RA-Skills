@@ -1,42 +1,54 @@
-## Description: <br>
-Submits YouTube video file collection jobs to Dataify Builder by URL and returns the created task ID and status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download or collect a YouTube video media file from a known video URL. Do not use for metadata, comments, transcripts, channel profiles, or keyword-based video discovery.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to submit Dataify Builder jobs that collect YouTube video files by URL and receive the resulting task_id and status. It also guides API TOKEN setup, parameter confirmation, and validation before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill submits Dataify Builder jobs using the user's Dataify API TOKEN. <br>
-Mitigation: Review all submitted parameters before execution and install only when Dataify Builder submissions are intended. <br>
-Risk: Persisting DATAIFY_API_TOKEN can allow future sessions to reuse the token. <br>
-Mitigation: Avoid saving DATAIFY_API_TOKEN persistently unless future session reuse is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify Builder jobs for YouTube video file collection from known YouTube video URLs and receive the final collected result after asynchronous task monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-youtube-video-by-url) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON task summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Dataify task_id/status after Builder submission; does not retrieve video files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The security review reports unsafe credential-handling ambiguity and an unaudited external Python module path that can receive the user's API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure DATAIFY_API_TOKEN locally, do not paste tokens into chat, rotate any token previously shared in conversation, and install or run the package only when the Dataify service and local skill package environment are trusted.
+
+Risk: Running the script may submit paid or quota-consuming Dataify jobs and retrieve results automatically.
+
+Mitigation: Confirm the requested URL scope before execution, preserve task IDs for resume flows, and use explicit no-wait behavior when only task submission is intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-youtube-video-by-url)
+- [Dataify Builder endpoint](https://scraperapi.dataify.com/builder?platform=1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance and shell commands, with JSON task summaries and collected results when the Dataify task succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May submit quota-consuming Dataify jobs, monitor asynchronous task status, and retrieve final results unless no-wait behavior is requested.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

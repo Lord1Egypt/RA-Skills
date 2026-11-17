@@ -1,40 +1,51 @@
-## Description: <br>
-Provides CLI commands to list, inspect, and check eligibility of moltbot skills and their requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides CLI reference guidance for listing, inspecting, and checking eligibility of moltbot skills and their requirements.
 
-## Publisher: <br>
-[mondilo1](https://clawhub.ai/user/mondilo1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mondilo1](https://clawhub.ai/user/mondilo1)
 
-## Use Case: <br>
-Developers and operators use this skill as a concise reference for inspecting installed, bundled, workspace, and managed moltbot skills, including eligibility and missing requirements. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Command output may be used to guide later changes outside this documentation skill. <br>
-Mitigation: Review `moltbot skills` output before making separate configuration, installation, or environment changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cli release page](https://clawhub.ai/mondilo1/cli) <br>
-- [Skills system](/tools/skills) <br>
-- [Skills config](/tools/skills-config) <br>
-- [ClawdHub installs](/tools/clawdhub) <br>
+## Use Case:
 
+Developers and agents use this skill to inspect available moltbot skills, check which skills are eligible to run, and debug missing binaries, environment variables, or configuration requirements.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short read-only CLI reference; command output should be reviewed before taking separate follow-up actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Running the documented check command may reveal local skill configuration or missing environment requirements.
+
+Mitigation: Run the command only in environments where local skill configuration details are appropriate to inspect.
+
+## Reference(s):
+
+- [Cli skill page](https://clawhub.ai/mondilo1/skills/cli)
+- [Skills system](/tools/skills)
+- [Skills config](/tools/skills-config)
+- [ClawdHub installs](/tools/clawdhub)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference guidance only; does not include executable code.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

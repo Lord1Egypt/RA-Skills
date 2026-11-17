@@ -1,45 +1,68 @@
-## Description: <br>
-抖音账号订阅追踪 lets an agent subscribe to Douyin account IDs, fetch recent works on a daily 9:00 schedule, and produce Markdown tables plus HTML reports with collection, comment, share, like, and publish-time data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Subscribes to Douyin account IDs, fetches recent works daily, and returns grouped Markdown tables plus generated HTML reports with engagement metrics.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Content operators, short-video creators, brands, and MCNs use this skill to monitor specified Douyin account IDs, receive daily content digests, and review account-level performance trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Redfox API key and sends monitored Douyin account IDs to Redfox, which may expose business or competitor-tracking interests. <br>
-Mitigation: Use a scoped and revocable API key where possible, verify the key source before use, and avoid monitoring account IDs that should not be shared with the service. <br>
-Risk: The skill can create or update recurring daily monitoring tasks. <br>
-Mitigation: Confirm each subscription and automation change with the user, and review created scheduled tasks after setup. <br>
-Risk: Release evidence states that local subscription storage under ~/.qoder/douyin_subscriptions.json is under-disclosed relative to the no-local-storage wording. <br>
-Mitigation: Review and clear that local subscription file when subscriptions should no longer persist on the machine. <br>
+## Use Case:
 
+Content operators, short-video creators, brands, and MCNs use this skill to monitor selected Douyin accounts, review recent works, and receive daily content digests for competitive or trend analysis.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/redfox-data/douyin-subscribe) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFoxHub](https://redfox.hk) <br>
-- [Douyin data API endpoint](https://redfox.hk/story/api/dyData/searchWorkList) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, terminal output, shell commands, and generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update recurring daily automation tasks and may generate local HTML report files when fetched works are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill creates recurring daily monitoring tasks for subscribed Douyin accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scheduled tasks after subscription and remove accounts or tasks that are no longer intended.
+
+Risk: Tracked Douyin account IDs are sent to redfox.hk for data retrieval.
+
+Mitigation: Subscribe only to account IDs the user intends to share with the RedFox service.
+
+Risk: Subscription and failure state may be stored locally under ~/.qoder.
+
+Mitigation: Inspect or remove ~/.qoder/douyin_subscriptions.json and ~/.qoder/douyin_subscribe_failures.json when changing subscriptions or uninstalling the skill.
+
+Risk: API keys can be exposed if passed on the command line or written into prompts, logs, or reports.
+
+Mitigation: Prefer REDFOX_API_KEY from a protected environment or secret store and avoid using --api-key.
+
+Risk: Generated HTML reports are opened automatically and the security guidance notes an unresolved report escaping issue.
+
+Mitigation: Treat generated reports as untrusted content and avoid opening them automatically until the escaping issue is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/douyin-subscribe)
+- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [Douyin work-by-account API test parameters](artifact/references/test_api_params.json)
+- [Douyin ID example image](https://lyy.redfox.hk/page/ljq.png)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables, generated HTML report files, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a REDFOX_API_KEY and a list of Douyin account IDs; generated reports are saved under a report directory or a caller-provided HTML path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

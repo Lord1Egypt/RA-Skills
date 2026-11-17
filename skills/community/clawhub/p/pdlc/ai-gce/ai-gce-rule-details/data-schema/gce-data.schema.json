@@ -1,0 +1,32 @@
+{
+  "title": "AI-GCE Data",
+  "description": "Per-project data shape for AI-GCE (Governance & Compliance Engine).",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema":{"type":"string"},
+    "$schemaVersion":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy":{"type":"string","const":"AI-DFE"},
+    "$generatedOn":{"type":"string","format":"date-time"},
+    "$family":{"type":"string"},
+    "$package":{"type":"string","const":"ai-gce"},
+    "data":{
+      "type":"object","required":["complianceTier"],
+      "properties":{
+        "projectName":{"type":["string","null"]},
+        "currentPhase":{"type":["string","null"]},
+        "complianceTier":{"type":["integer","null"]},
+        "startDate":{"type":["string","null"]},
+        "complianceScore":{"type":["number","null"]},
+        "lastAudit":{"type":["string","null"]},
+        "tierHistory":{"type":"array","items":{"type":"object","properties":{"tier":{"type":"integer"},"activatedDate":{"type":["string","null"]},"activatedBy":{"type":["string","null"]},"scoreAtActivation":{"type":["number","null"]}}}},
+        "nextTierReadiness":{"type":["object","null"],"properties":{"tier":{"type":["integer","null"]},"criteriaMetCount":{"type":["integer","null"]},"criteriaTotalCount":{"type":["integer","null"]},"blockers":{"type":"array","items":{"type":"string"}}}},
+        "dashboard":{"type":["object","null"],"properties":{"summary":{"type":["string","null"]},"scoreHistory":{"type":"array"}}},
+        "activeAgentCount":{"type":["integer","null"]},
+        "agents":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"agent":{"type":"string"},"type":{"type":["string","null"]},"trigger":{"type":["string","null"]},"tier":{"type":["integer","null"]},"status":{"type":["string","null"]}}}},
+        "lastAuditScore":{"type":["number","null"]},
+        "lastAuditRating":{"type":["string","null"]}
+      }
+    }
+  }
+}

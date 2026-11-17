@@ -1,42 +1,54 @@
-## Description: <br>
-Move reference tool. Use when working with move in blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Move is a third-party ClawHub skill advertised as a Move blockchain reference tool that provides command-driven Markdown reference sections.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and external users use this skill to request quick Move reference material, checklists, glossary entries, and operational guidance in blockchain contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may expect Move blockchain-specific help but receive generic finance, compliance, or operations guidance. <br>
-Mitigation: Review command output before relying on it and install only if that limited scope is acceptable. <br>
-Risk: Trust and reliability are limited by the low trust tier and suspicious security verdict. <br>
-Mitigation: Review the artifact and publisher context before deployment, and prefer an updated release that aligns behavior with the advertised Move purpose. <br>
+## Use Case:
 
+Developers and external users may use this skill for quick command-line reference material about Move in blockchain contexts. Reviewers should treat its guidance as unverified because the security evidence says the artifact content is generic and does not reliably support Move programming, blockchain audits, or financial/compliance decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/move) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command selection controls which static reference section is printed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is advertised as a Move blockchain reference, but the scanner reports generic finance and checklist content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on the generated reference sections for Move programming, blockchain audits, or financial/compliance decisions without independent review against authoritative Move documentation.
+
+Risk: The scanner verdict is suspicious even though no destructive behavior was reported.
+
+Mitigation: Review the shell script before installation and use it only as low-trust reference material until the publisher replaces placeholder content with accurate domain-specific guidance.
+
+## Reference(s):
+
+- [Move ClawHub skill page](https://clawhub.ai/bytesagain3/skills/move)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command variants include intro, formulas, regulations, risks, instruments, strategies, glossary, checklist, help, and version.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

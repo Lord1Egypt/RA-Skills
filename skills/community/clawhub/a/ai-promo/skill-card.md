@@ -1,47 +1,63 @@
-## Description: <br>
-查询大模型平台优惠信息，支持分类查询、订阅推送和提交优惠。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Promo helps agents query, submit, and manage subscriptions for large-model platform promotion information.
 
-## Publisher: <br>
-[destinyd](https://clawhub.ai/user/destinyd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[destinyd](https://clawhub.ai/user/destinyd)
 
-## Use Case: <br>
-External users and developers use this skill to look up current large-language-model platform promotions by category, subscribe to daily promo pushes, and submit new promo links for review. It is intended for promo discovery and submission workflows backed by a remote promo service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a locally generated user ID and promo query or submission data to a remote promo service. <br>
-Mitigation: Install only when this data flow is acceptable, and avoid submitting sensitive links or descriptions through the promo submission workflow. <br>
-Risk: The skill persists local state in the user's home directory for user identity, subscriptions, and push logs. <br>
-Mitigation: Review and remove ~/.promo_user_id, ~/.promo_subscribers.json, or ~/.promo_push.log when clearing local promo state or disabling the workflow. <br>
-Risk: Daily push behavior can be enabled through cron-style scheduling and may continue until explicitly disabled. <br>
-Mitigation: Enable push scheduling deliberately, review the subscription state, and disable the subscription or remove the scheduled job when the user no longer wants daily messages. <br>
-Risk: User-submitted promo links may be reviewed and later shown to other users. <br>
-Mitigation: Treat submitted promo URLs as public candidates, verify destinations before submission, and avoid submitting private or credential-bearing links. <br>
+## Use Case:
 
+External users and agents use AI Promo to find categorized large-model platform promotions, submit new offers for review, and manage daily promotional notifications.
 
-## Reference(s): <br>
-- [AI Promo on ClawHub](https://clawhub.ai/destinyd/ai-promo) <br>
-- [destinyd publisher profile](https://clawhub.ai/user/destinyd) <br>
-- [AI Promo landing page](https://cli.aipromo.workers.dev/landing) <br>
-- [AI Promo API endpoint](https://cli.aipromo.workers.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown-style promo listings, shell command invocations, and configuration guidance for subscription state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote promo service and local files for user ID, subscription state, and push logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill contacts cli.aipromo.workers.dev and can submit user-provided promotion data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service endpoint and submitted fields before use, and avoid sending private or sensitive promotion data.
+
+Risk: The skill stores a stable local user ID and subscription records in the user's home directory.
+
+Mitigation: Inspect or delete ~/.promo_user_id and ~/.promo_subscribers.json when tracking or subscription persistence is not desired.
+
+Risk: Daily push behavior may be enabled through cron-style scheduling.
+
+Mitigation: Review, disable, or remove any cron configuration before installation if recurring notifications are not desired.
+
+Risk: Some links are referral-style promotional links.
+
+Mitigation: Review destination URLs and referral implications before using or sharing them.
+
+## Reference(s):
+
+- [AI Promo ClawHub listing](https://clawhub.ai/destinyd/skills/ai-promo)
+- [AI Promo API](https://cli.aipromo.workers.dev)
+- [AI Promo landing page](https://cli.aipromo.workers.dev/landing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style text with shell command examples and promotion links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remote API results, locally cached fallback data, user IDs, subscription status, submitted promotion details, and referral-style links.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

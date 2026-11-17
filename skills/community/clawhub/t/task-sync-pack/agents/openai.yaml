@@ -1,0 +1,4 @@
+interface:
+  display_name: "任务同频器"
+  short_description: "一份合同生成给人和 AI 的同频任务包"
+  default_prompt: "把当前已确认的任务制作成一份可校验的同频任务包；缺失的完成判据列为待确认，不要猜。"

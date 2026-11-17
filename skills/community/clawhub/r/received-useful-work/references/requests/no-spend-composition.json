@@ -1,0 +1,16 @@
+{
+  "schema": "neomorphic.received-useful-work.request.v1",
+  "task": "caller-owned-no-spend-composition",
+  "inputs": {
+    "wallet": false,
+    "grant": false
+  },
+  "expectedOutput": "composition-decision",
+  "budget": {
+    "maxUsd": 0.04,
+    "pay": false,
+    "timeoutMs": 8000,
+    "bodyBytes": 65536,
+    "ceilingIsNotSpend": true
+  }
+}

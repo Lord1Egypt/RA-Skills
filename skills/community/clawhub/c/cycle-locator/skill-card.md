@@ -1,45 +1,56 @@
-## Description: <br>
-Helps users locate short- and long-term economic debt-cycle stages and produce macro asset-allocation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent identify short- and long-term economic debt-cycle stages and produce educational asset-allocation guidance.
 
-## Publisher: <br>
-[lj22503](https://clawhub.ai/user/lj22503) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lj22503](https://clawhub.ai/user/lj22503)
 
-## Use Case: <br>
-External users and analysts use this skill to evaluate economic-cycle position, debt-cycle signals, and broad asset-allocation posture from supplied macro indicators. It is intended for educational macro analysis rather than personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Asset-allocation guidance may be mistaken for personalized investment advice. <br>
-Mitigation: Treat stock, bond, cash, and gold allocation output as general educational analysis and verify suitability, jurisdiction, risk tolerance, and time horizon before making financial decisions. <br>
-Risk: Cycle assessments can be misleading when based on stale or incomplete macroeconomic data. <br>
-Mitigation: Use current data, record data sources and dates, and validate the analysis against country-specific conditions before acting on it. <br>
-Risk: Country differences may make a generic debt-cycle framework inaccurate for a specific market. <br>
-Mitigation: Analyze each country or region separately and account for institutional, policy, and development-stage differences. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to structure Chinese-language macroeconomic cycle assessments for a country or region using debt, rates, credit conditions, asset prices, and economic sentiment. It is intended for educational analysis and portfolio-allocation framing, not personalized investment, tax, legal, or trading advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lj22503/cycle-locator) <br>
-- [Dalio cycle framework reference](references/dalio-framework.md) <br>
-- [Cycle analysis template](templates/cycle-analysis-template.md) <br>
-- [China cycle analysis example](examples/china-cycle-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured tables and JSON-like fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-supplied macroeconomic indicators; allocation output should be treated as general analysis, not personalized investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and release evidence) <br>
+Risk: Asset-allocation labels may be mistaken for personalized financial, tax, legal, or trading advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational macroeconomic analysis and require users to consult qualified professionals before acting on portfolio decisions.
+
+Risk: Cycle classification may be misleading if the input data is stale, incomplete, or applied across countries without accounting for local conditions.
+
+Mitigation: Verify current data, country assumptions, and suitability before using the analysis in decision-making.
+
+## Reference(s):
+
+- [周期理论参考](references/dalio-framework.md)
+- [周期分析模板](templates/cycle-analysis-template.md)
+- [中国经济周期分析示例](examples/china-cycle-example.md)
+- [ClawHub skill page](https://clawhub.ai/lj22503/skills/cycle-locator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON-style analysis, guidance]
+
+**Output Format:** [Markdown analysis with tables and optional JSON-style structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces educational cycle-stage labels, indicator summaries, allocation labels, and risk notes; current data and suitability should be independently verified before decisions are made.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

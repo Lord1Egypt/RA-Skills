@@ -1,40 +1,54 @@
-## Description: <br>
-Coaches creators through launching and improving Patreon-style memberships, including tier design, pricing, launch planning, conversion, retention, platform selection, and migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coach creators through launching, growing, and sustaining Patreon-style membership businesses, including tier design, pricing, launch planning, audience conversion, retention, and platform migration.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-External creators and creator-business operators use this skill to plan, diagnose, or relaunch Patreon-style memberships, with guidance tailored to audience size, content format, tier design, pricing, retention, and platform migration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, platform migration, tax, legal, or revenue recommendations could affect real creator accounts and business outcomes. <br>
-Mitigation: Review recommendations before making financial, legal, platform, or account changes, and consult qualified business, tax, or legal advisors when stakes are material. <br>
-Risk: Platform fees, product capabilities, and membership terms may change after the skill content was authored. <br>
-Mitigation: Verify current platform pricing, policies, and capabilities directly with the relevant service before acting on a recommendation. <br>
+## Use Case:
 
+External creators and creator-economy operators use this skill to plan Patreon-style membership launches, design sustainable tiers and perks, diagnose stalled growth or churn, and evaluate migrations between membership platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/patreon-launch-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with plans, tables, checklists, and draft messaging] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tier recommendations, launch timelines, onboarding email sequences, churn diagnoses, platform comparisons, and milestone targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may activate during general membership or paid-tier discussions where creator-membership coaching is not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants creator-membership advice before applying the skill's Patreon-style launch and retention guidance.
+
+Risk: The skill provides business coaching for pricing, platform choice, conversion, and churn decisions that may depend on current platform terms and the creator's actual audience data.
+
+Mitigation: Review recommendations against current platform fees, policies, analytics, and business constraints before acting on them.
+
+## Reference(s):
+
+- [Skill source](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/patreon-launch-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coaching response with structured recommendations, plans, diagnostic findings, and milestone targets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; advice is generated from the conversation context and should be reviewed before business decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

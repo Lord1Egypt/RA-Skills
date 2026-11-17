@@ -1,41 +1,54 @@
-## Description: <br>
-Audits shell scripts for correctness, portability, and common pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits shell scripts for correctness, portability, and common pitfalls.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to review shell scripts used in CI/CD pipelines, hooks, wrappers, and build automation for reliability, portability, and safety issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad shell or CI-related wording outside the intended review context. <br>
-Mitigation: Use it when reviewing shell scripts and confirm the target files before acting on findings. <br>
-Risk: Suggested package-manager, ShellCheck, or formatting commands may change local tools or files. <br>
-Mitigation: Review proposed commands before execution and inspect any resulting file changes before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to review shell scripts used in CI/CD, hooks, wrappers, build automation, and pre-commit workflows for exit-code handling, portability, safety, and structure issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-shell-review) <br>
-- [Source homepage from package metadata](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown review with file references, categorized findings, recommendations, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are organized around scripts reviewed, exit-code behavior, portability, safety patterns, structure, and an approval recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Broad shell-related triggers may activate the skill in contexts where script review was not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for agents expected to review shell scripts, and confirm activation context before applying recommendations.
+
+Risk: Package-manager and xtrace snippets could be copied into CI or secret-handling scripts without enough review.
+
+Mitigation: Treat snippets as review examples; inspect and adapt commands before use, and avoid xtrace where secrets may appear in logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-shell-review)
+- [ClawHub metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review report with shell command examples and file:line findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a recommendation such as Approve, Approve with actions, or Block.]
+
+## Skill Version(s):
+
+1.9.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

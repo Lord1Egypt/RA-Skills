@@ -1,0 +1,16 @@
+{
+    "is_owner":{
+        "name":"get_customer",
+        "type":"rdb",
+        "db":"common",
+        "convert":{"code":2001, "to":111, "info":"no right"},
+        "sqls":[{
+            "name":"common",
+            "metas":"each",
+            "multi":false,
+            "merge":true,
+            "sql":"select customer from admins
+                 where user='@{#tokenAcc}' and customer=0"
+        }]
+    }
+}

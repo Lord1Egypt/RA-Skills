@@ -1,41 +1,59 @@
-## Description: <br>
-Sends plain text email through the 163 SMTP service with custom recipients, subject, and content from the command line or Python. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends plain text email through the 163 SMTP service with configurable recipients, subject, and body content.
 
-## Publisher: <br>
-[liubindashen](https://clawhub.ai/user/liubindashen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liubindashen](https://clawhub.ai/user/liubindashen)
 
-## Use Case: <br>
-Developers and agents use this skill to send notification or workflow emails from a configured 163 account via command line or Python code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real email from the configured 163 account and may expose account access if SMTP credentials are mishandled. <br>
-Mitigation: Use a dedicated or least-privilege sender account, keep CLAW_EMAIL_AUTH out of code, logs, and shell history, and rotate it if exposed. <br>
-Risk: Email recipients or message content may include sensitive information. <br>
-Mitigation: Review recipients and message content before sending sensitive or regulated information. <br>
+## Use Case:
 
+Developers and automation agents use this skill to send notification emails from a configured 163 mail account by CLI or Python import.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liubindashen/163email-skill) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration] <br>
-**Output Format:** [Plain text email content with CLI status text or Python Boolean return value] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAW_EMAIL and CLAW_EMAIL_AUTH; CLAW_SMTP_SERVER and CLAW_SMTP_PORT may override the default 163 SMTP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: The skill uses mail credentials to authenticate to the configured SMTP service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated SMTP authorization code rather than a primary account password, and scope the account to the intended automation workflow.
+
+Risk: Recipients, subjects, and message bodies are sent to the SMTP provider.
+
+Mitigation: Avoid sending secrets or regulated data unless the account, recipients, and provider use are approved for that content.
+
+Risk: An agent with access to this skill can send real emails from the configured account.
+
+Mitigation: Install only in workflows where outbound email is intended, and review recipients and message content before execution when user approval is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liubindashen/skills/163email-skill)
+- [Publisher profile](https://clawhub.ai/user/liubindashen)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration]
+
+**Output Format:** [Plain text email content, CLI output, and Python Boolean return values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLAW_EMAIL and CLAW_EMAIL_AUTH environment variables; uses smtp.163.com:465 by default.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter states 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

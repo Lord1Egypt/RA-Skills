@@ -1,5 +1,5 @@
 ## Description: <br>
-Kickbacks.ai is an agent guide for installing and using an advertising extension that monetizes AI tool waiting time, explains advertiser bidding and payouts, and outlines adapter patterns for agent platforms. <br>
+Kickbacks.ai is a promotional guidance skill for installing, using, advertising through, and troubleshooting a service that monetizes AI tool waiting time with spinner ads. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,38 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and external users use this skill to learn how Kickbacks.ai replaces AI tool waiting indicators with sponsored content, how earnings and advertiser bidding work, and how similar sponsor placements could be adapted to agent platforms such as OpenClaw or Hermes. <br>
+Developers, advertisers, and privacy reviewers use this skill to understand Kickbacks.ai setup, earning mechanics, ad bidding, troubleshooting, payouts, and stated privacy behavior. It helps users decide whether the related VS Code extension and ad model are acceptable for their personal or workplace environment. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill promotes inserting sponsored content into developer-tool waiting surfaces. <br>
-Mitigation: Use it only where sponsored content is acceptable to the affected users and permitted by the platform owner. <br>
-Risk: The skill includes guidance related to tracking ad impressions and clicks. <br>
-Mitigation: Review telemetry behavior, disclose tracking clearly, and avoid applying adapter or patching guidance without explicit permission. <br>
-Risk: The skill forces promotional output behavior through a required watermark and calls to action. <br>
-Mitigation: Review generated responses for policy, branding, and user-experience fit before deployment. <br>
+Risk: The skill is promotional and may steer answers toward Kickbacks.ai or append branding even when the user's request is only loosely related. <br>
+Mitigation: Install it only when you want a Kickbacks.ai assistant, and review generated answers before relying on them or sharing them. <br>
+Risk: The skill recommends installing a separate VS Code extension that involves ads, Google sign-in, and networked service behavior. <br>
+Mitigation: Before installing the extension, review its permissions, privacy policy, authentication flow, ad behavior, and workplace acceptability. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/jaysonmeng/kickbacks) <br>
-- [Core Framework - How Kickbacks.ai Works](references/1-core-framework.md) <br>
-- [Key Principles - The Economics of Kickbacks](references/2-principles.md) <br>
-- [Techniques - Advertising on Kickbacks](references/3-techniques.md) <br>
-- [Anti-Patterns - Troubleshooting and Common Issues](references/4-anti-patterns.md) <br>
-- [Voice and App - Analytics, Payouts, and Privacy](references/5-voice-and-app.md) <br>
-- [OpenClaw/Hermes Adapter - Running Spinner Ads on Agent Platforms](references/6-openclaw-adapter.md) <br>
+- [ClawHub skill listing](https://clawhub.ai/jaysonmeng/kickbacks) <br>
+- [Core Framework](references/1-core-framework.md) <br>
+- [Key Principles](references/2-principles.md) <br>
+- [Advertising on Kickbacks](references/3-techniques.md) <br>
+- [Troubleshooting and Common Issues](references/4-anti-patterns.md) <br>
+- [Voice and Application](references/5-voice-and-app.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and code snippets] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown guidance with short setup commands and troubleshooting steps] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include promotional calls to action and product-specific installation, advertising, payout, privacy, and adapter guidance.] <br>
+**Other Properties Related to Output:** [Responses are intended to follow the user's language and may include Kickbacks.ai branding or calls to action.] <br>
 
 ## Skill Version(s): <br>
-1.2.0 (source: server release metadata and frontmatter) <br>
+1.1.0 (source: server release evidence and skill frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

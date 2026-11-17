@@ -1,40 +1,51 @@
-## Description: <br>
-Audit OpenClaw/Clawdbot deployments for misconfigurations and attack vectors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit OpenClaw, Clawdbot, and Moltbot deployments for misconfigurations and attack vectors, including gateway exposure, control UI risk, skill safety, credential leakage, and hardening guidance.
 
-## Publisher: <br>
-[misirov](https://clawhub.ai/user/misirov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[misirov](https://clawhub.ai/user/misirov)
 
-## Use Case: <br>
-Developers and operators use this skill to review OpenClaw, Clawdbot, or Moltbot environments for gateway exposure, unsafe tool policy, credential leakage, persistence risks, and hardening gaps. It produces a read-only audit report with findings, impact, and remediation guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local system state, including logs, process listings, listener ports, and configuration paths. <br>
-Mitigation: Install it only when you want an agent to perform local security inspection, and review proposed commands before approval. <br>
-Risk: Security checks may encounter secrets or sensitive log data. <br>
-Mitigation: Report only redacted summaries or file paths, and do not expose secret values in output. <br>
-Risk: Remediation steps can change services, firewall rules, credentials, or permissions if the user asks for active fixes. <br>
-Mitigation: Keep the workflow read-only by default and require explicit confirmation before proposing or running active remediation commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and operators use this skill to perform read-only security reviews of OpenClaw, Clawdbot, or Moltbot environments and produce findings with impact explanations and fixes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The audit can expose sensitive host security details to the active agent session, including process, port, configuration, credential-path, service, cron, and log metadata.
+
+Mitigation: Run it only from a trusted session, avoid root unless necessary, and limit sensitive host details in shared outputs.
+
+Risk: Remediation guidance can include commands that affect services, credentials, firewall rules, or configuration when the user asks for fixes.
+
+Mitigation: Keep execution read-only by default and review proposed remediation commands before approving them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Terminal-style Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports OK, VULNERABLE, and UNKNOWN findings; redacts secrets; proposes active remediation only after explicit user approval.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown terminal-style security audit report with summarized command evidence and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; remediation commands are proposed only after explicit user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

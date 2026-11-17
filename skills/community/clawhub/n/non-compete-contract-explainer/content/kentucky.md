@@ -2,20 +2,22 @@
 jurisdiction: "Kentucky"
 slug: kentucky
 countryCode: US
-snapshotAsOf: "2026-06-08"
-lastReviewed: "2026-06-03"
-canonicalUrl: https://openagreements.org/legal/non-compete/kentucky
+content_packaged_at: "2026-09-05"
+law_checked_through: "2026-06-03"
+human_reviewed_at: null
+next_review_due: "2026-11-30"
+canonicalUrl: https://openagreements.org/practice-guides/non-compete/us/kentucky
 license: CC BY 4.0
 stale: false
 ---
 
 > [!IMPORTANT]
-> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice note,
+> **Informational only — not legal advice.** This is a snapshot of an OpenAgreements practice guide,
 > provided for general information. It is not legal advice, does not create an attorney-client
 > relationship, and is not a substitute for a licensed attorney in the relevant jurisdiction.
 > Laws change; verify against the canonical version before relying on it.
 >
-> **Canonical:** https://openagreements.org/legal/non-compete/kentucky · **Snapshot as of:** 2026-06-08 · License: CC BY 4.0 · © UseJunior
+> **Canonical:** https://openagreements.org/practice-guides/non-compete/us/kentucky · **Snapshot as of:** 2026-09-05 · License: CC BY 4.0 · © openagreements.org
 
 # Non-Competes in Kentucky[^about]
 
@@ -35,7 +37,7 @@ Kentucky enforces non-competes only when the restraint is reasonable under commo
 | **Restriction extended during a breach?** | Unsettled |
 | **Maximum length set by law** | No statutory cap |
 
-## Are employee non-compete agreements enforceable in Kentucky? {#employee-noncompetes}
+## Are employee non-compete agreements enforceable in Kentucky? {#employee-non-compete-enforceability}
 
 **Short answer.** Yes, sometimes. Kentucky is a reasonableness state, not a general ban state. A non-compete is enforceable only if it is supported by valid consideration and is reasonable — affording fair protection to a legitimate employer interest without being so broad as to harm the public or impose undue hardship on the employee [^kegel-reasonableness-test].
 
@@ -48,6 +50,11 @@ Kentucky has not enacted a general non-compete statute for the ordinary workforc
 >
 > Do not treat Kentucky as either a free-for-all or a ban state. Confirm there is valid consideration first, then test the restraint for reasonableness in time, territory, and scope before assuming a Kentucky covenant is enforceable [^kegel-reasonableness-test].
 
+> [!CAUTION]
+> **Drafting note.**
+>
+> Kentucky has no general non-compete statute, so every covenant in the agreement stands or falls on the common-law fair-protection standard: a restraint holds only where, considering the subject, the nature of the business, the situation of the parties, and the circumstances of the case, it affords only fair protection to the employer's interests without interfering with the public interests or imposing undue hardship on the party restricted [^kegel-reasonableness-test]. Each covenant clears that standard on its own footing — a defensible restraint is not saved by being bundled with a shakier one — and valid consideration establishes only that a covenant is supported, not that it is reasonable. A recital that a restraint is reasonable or that breach causes irreparable harm supports the showing but does not replace it, and a notice or enforcement step built on a covenant a Kentucky court would refuse to enforce, for missing consideration or overbreadth, exposes the employer to a tortious-interference claim.
+
 ## Is continued at-will employment enough consideration for a Kentucky non-compete? {#consideration}
 
 **Short answer.** No, not by itself, for an existing employee. Since *Charles T. Creech, Inc. v. Brown*, requiring a current employee to sign a non-compete without giving anything new — no raise, promotion, or other benefit — fails for lack of consideration [^creech-no-consideration][^creech-existing-employee-nothing].
@@ -59,7 +66,7 @@ The practical rule that emerges is a split between new hires and incumbents. An 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not rely on continued at-will employment alone when an existing Kentucky employee signs a new covenant. Tie the signature to identifiable new consideration and document it, because a bare recital of consideration did not save the agreement in *Creech* [^creech-no-consideration][^creech-existing-employee-nothing].
+> A Kentucky covenant an existing employee signs draws no consideration from continued at-will employment alone: since *Creech*, a covenant an incumbent signs for nothing new fails for lack of consideration, because the employer forbears no legal right and the employee gains no new benefit, and a bare recital of consideration did not save the agreement [^creech-no-consideration][^creech-existing-employee-nothing]. A covenant tied to identifiable new value documented at signing — a bonus, a raise, a promotion, or specialized training — carries its own exchange, while a covenant added later by amendment lands on a worker already employed and needs new consideration of its own; a routine refresh that gives the employee nothing new does not create an enforceable covenant.
 
 ## What legitimate business interests can support a Kentucky non-compete? {#protectable-interests}
 
@@ -72,9 +79,9 @@ The Kentucky Uniform Trade Secrets Act, codified at KRS 365.880 through 365.900,
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not use a Kentucky non-compete to block competition disconnected from a protectable interest. Tie the restraint to specific confidential information, trade secrets, or customer goodwill, and keep trade-secret remedies in a separate confidentiality and KUTSA strategy [^kutsa-trade-secret-definition].
+> A Kentucky non-compete that blocks competition disconnected from a protectable interest reaches beyond what the fair-protection standard allows: a restraint must guard specific confidential information, trade secrets, or customer goodwill rather than ordinary competition, and one untethered from a Protected Interest is exposed as an unlawful restraint on trade. Trade-secret protection runs on a separate track under the Kentucky Uniform Trade Secrets Act, so a confidentiality-plus-KUTSA strategy guards the trade-secret interest independent of any covenant, and a customer non-solicit — resting on contact with protected customers rather than the statutory trade-secret threshold — is often easier to enforce than a broad non-compete [^kutsa-trade-secret-definition].
 
-## What duration and geographic scope are reasonable for a Kentucky non-compete? {#duration-geography}
+## What duration and geographic scope are reasonable for a Kentucky non-compete? {#duration-limits}
 
 **Short answer.** There is no statutory cap. Kentucky courts weigh duration, geography, the employer's protectable interest, the burden on the employee, and the public effect as a whole, rather than applying fixed numbers [^q4-kegel-reasonableness].
 
@@ -85,7 +92,7 @@ Because the standard is holistic, geography and duration are evaluated together 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not copy a fixed term or radius from another form. Match the duration and territory to the employee's role and the employer's real market, because a Kentucky court evaluates the restraint as a whole and there is no safe-harbor number [^q4-kegel-reasonableness][^creech-consideration-only-issue].
+> A Kentucky court weighs duration and territory together against the employer's real market with no statutory cap and no safe-harbor number, so a term or radius copied from another form is measured against a market it was never sized to and is exposed as overbroad [^q4-kegel-reasonableness][^creech-consideration-only-issue]. The six-factor framework the Court of Appeals proposed during the *Creech* litigation is persuasive structure a trial court may consult rather than a checklist that guarantees enforcement, because the Kentucky Supreme Court resolved *Creech* on consideration alone and never adopted it. A non-compete confined to identified competitors is strong evidence that the restraint affords only fair protection, so a restraint keyed to the employee's actual role and the employer's actual footprint is far easier to defend than a long, open-ended, statewide ban.
 
 ## Will a Kentucky court blue-pencil or reform an overbroad non-compete? {#court-narrowing}
 
@@ -93,14 +100,20 @@ Because the standard is holistic, geography and duration are evaluated together 
 
 *Kegel v. Tillotson* states the rule directly: Kentucky courts are empowered to reform or amend restrictions in a non-compete clause when the initial terms are overly broad or burdensome [^kegel-blue-pencil]. *Hodges v. Todd* shows how far that power can reach — there, in the sale-of-a-business context, the court held that a trial court could enforce a covenant that omitted any geographic limit by establishing a reasonable one based on the parties' intent [^hodges-reformation-geography].
 
-That equitable power is not a license to overreach. Reformation is discretionary, and an employer that drafts an abusively broad covenant cannot assume a court will simply rewrite it into something enforceable.
+That equitable power is not a license to overreach. Reformation is discretionary, and an employer that drafts an abusively broad covenant cannot assume a court will simply rewrite it into something enforceable. For a clause-by-clause pass over a specific agreement against these drafting rules, the [Kentucky non-compete reviewer checklist](/checklists/non-compete/us/kentucky) walks the full covenant suite item by item with each requirement's force level.
 
 > [!CAUTION]
 > **Drafting note.**
 >
-> Do not rely on Kentucky's blue-pencil power as a safety net for an aggressive covenant. Draft tiered, severable, reasonable restraints, because reformation is discretionary and a court may decline to rescue a covenant it views as overreaching [^kegel-blue-pencil][^hodges-reformation-geography].
+> Kentucky's blue-pencil power is discretionary, not a safety net: its courts are empowered to reform or amend overly broad non-compete restrictions, and *Hodges* shows the power reaching as far as supplying a missing geographic limit in the sale-of-a-business context, but reformation is not automatic and a court may decline to rewrite a covenant it views as overreaching [^kegel-blue-pencil][^hodges-reformation-geography]. A covenant drafted as a tiered, severable, reasonable restraint from the start gives a court inclined to enforce workable text rather than a rescue request, while an abusively broad covenant risks being left unenforced.
 
-## Does a Kentucky non-compete toll or extend during breach or litigation? {#tolling-extension}
+## How does Kentucky treat employee non-solicitation covenants? {#employee-non-solicitation}
+
+**Short answer.** Kentucky has no on-point employee non-solicit decision in our review, so the covenant would be treated as an ordinary restrictive covenant judged under the same *Kegel* reasonableness test [^ky-ens-kegel] and supported by valid consideration under *Creech* [^ky-ens-creech].
+
+Under *Kegel*, the restraint must afford only fair protection to the employer's interest without harming the public or imposing undue hardship on the employee [^ky-ens-kegel]; under *Creech*, a covenant fails for lack of consideration when the employer gives up no legal right [^ky-ens-creech].
+
+## Does a Kentucky non-compete toll or extend during breach or litigation? {#extended-for-breach}
 
 **Short answer.** This is an open Kentucky question. No staged Kentucky statute or appellate decision squarely endorses automatically tolling or extending the restricted period while the former employee is in breach or while litigation is pending [^q6-kegel-reasonableness-backdrop][^q6-kegel-blue-pencil].
 
@@ -126,6 +139,11 @@ Outside that carve-out, Kentucky has no broad occupational exemptions for non-co
 >
 > Do not use ordinary reasonableness analysis to rescue a covenant that KRS 216.724 voids. For a temporary direct care staffer at a health care services agency, the statutory ban controls and the covenant is void regardless of how reasonable it looks [^krs-216-724-healthcare-ban][^krs-216-724-void].
 
+> [!CAUTION]
+> **Drafting note.**
+>
+> Kentucky imposes no general ban on physician non-competes; an ordinary physician or clinician is measured by the same fair-protection reasonableness and consideration rules as any other employee. The one categorical statutory ban turns on a different class: where the employer is a health care services agency and the worker is temporary direct care staff contracted with or employed by the agency, KRS 216.724 voids any restriction on the worker's employment opportunities, including contract buy-out and non-compete clauses, and a non-complying contract is an unfair trade practice and void [^krs-216-724-healthcare-ban][^krs-216-724-void]. The ban keys on the agency-and-temporary-staff relationship rather than a license or job title, and a 2023 amendment leaves the placement of permanent direct care staff outside it; no reasonableness analysis rescues a covenant the statute voids.
+
 ## Will a choice-of-law clause selecting Kentucky law be enforced? {#choice-of-law}
 
 **Short answer.** Often, yes. Kentucky's moderate reformation approach makes Kentucky law a common pick for multi-state covenants, and courts — even in states that reject blue-penciling — have applied a contractual Kentucky choice-of-law clause and found Kentucky's rule not contrary to the forum's public policy [^senture-applies-kentucky-law][^edwards-public-policy-not-repugnant].
@@ -138,6 +156,11 @@ The limit is public policy. A court applies the chosen law only when doing so do
 > **Practice note.**
 >
 > Do not treat a Kentucky choice-of-law clause as automatically dispositive. It is strongest when paired with a real connection to Kentucky and a covenant that is reasonable on its own terms, because a forum court will still test the clause against its own public policy before applying Kentucky law [^senture-applies-kentucky-law][^edwards-public-policy-not-repugnant].
+
+> [!CAUTION]
+> **Drafting note.**
+>
+> A clause selecting Kentucky law is strongest when it is paired with a genuine connection to Kentucky and a covenant reasonable on its own terms. Federal courts sitting elsewhere have honored a contractual Kentucky choice-of-law clause for a non-compete — one applying Kentucky law under the agreement's choice-of-law and forum-selection clause, another holding that applying Kentucky's blue-penciling rule was not repugnant enough to the forum's public policy to override the parties' choice [^senture-applies-kentucky-law][^edwards-public-policy-not-repugnant]. Those are federal trial-court rulings rather than binding Kentucky Supreme Court authority and remain subject to the forum's public-policy limit, so a choice-of-law clause paired with a real Kentucky connection carries weight while a bare label on an out-of-state relationship does not settle enforceability.
 
 ## Did the FTC's federal non-compete rule change Kentucky non-compete law? {#federal-ftc-overlay}
 
@@ -162,7 +185,7 @@ The enacted baseline therefore remains common-law reasonableness and considerati
 >
 > Treat House Bill 690 and Senate Bill 234 as monitoring items, not present Kentucky law. Recheck the Kentucky General Assembly bill status each session before changing forms or telling workers that Kentucky has enacted a wage-threshold or general non-compete ban [^hb690-wage-threshold].
 
-[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org) · Maintained by [UseJunior](https://usejunior.com). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Kentucky. This article synthesizes Kentucky primary law and is not legal advice from a Kentucky-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship.
+[^about]: By Steven Obiajulu, J.D. Published by [openagreements.org](https://openagreements.org). Last reviewed 2026-06-03. License: CC BY 4.0. Steven Obiajulu, J.D. is admitted in New York, not Kentucky. This article synthesizes Kentucky primary law and is not legal advice from a Kentucky-admitted attorney. This article is for informational purposes only and does not create an attorney-client relationship. CC BY 4.0. Cite as Steven Obiajulu, *Non-Competes in Kentucky*, OpenAgreements (last updated June 3, 2026), https://openagreements.org/practice-guides/non-compete/us/kentucky.
 
 [^kegel-reasonableness-test]: **Kegel v. Tillotson** — "agreements on restraint of trade are reasonable if, ‘on consideration of the subject, nature of the business, situation of the parties and circumstances of the particular case, the restriction is such only as to afford fair protection to the interests of the covenan-tee and is not so large as to interfere with the public interests or impose undue hardship on the party restricted." *Kegel v. Tillotson, 297 S.W.3d 908 (Ky. App. 2009).* <https://www.courtlistener.com/opinion/2169063/kegel-v-tillotson/#:~:text=agreements%20on%20restraint%20of%20trade,hardship%20on%20the%20party%20restricted.>
 
@@ -181,6 +204,10 @@ The enacted baseline therefore remains common-law reasonableness and considerati
 [^kegel-blue-pencil]: **Kegel v. Tillotson** — "our courts have adopted a ‘blue pencil’ rule, whereby we are empowered to reform or amend restrictions in a non-compete clause if the initial restrictions are overly broad or burdensome." *Kegel v. Tillotson, 297 S.W.3d 908 (Ky. App. 2009).* <https://www.courtlistener.com/opinion/2169063/kegel-v-tillotson/#:~:text=our%20courts%20have%20adopted%20a,are%20overly%20broad%20or%20burdensome.>
 
 [^hodges-reformation-geography]: **Hodges v. Todd** — "we hold that the trial court had the authority to enforce the covenant by establishing a reasonable geographical limitation based on the intention of the parties at the time the contract was executed." *Hodges v. Todd, 698 S.W.2d 317 (Ky. App. 1985).* <https://www.courtlistener.com/opinion/1781513/hodges-v-todd/#:~:text=we%20hold%20that%20the%20trial,time%20the%20contract%20was%20executed.>
+
+[^ky-ens-kegel]: **Kegel v. Tillotson** — "agreements on restraint of trade are reasonable if, ‘on consideration of the subject, nature of the business, situation of the parties and circumstances of the particular case, the restriction is such only as to afford fair protection to the interests of the covenan-tee and is not so large as to interfere with the public interests or impose undue hardship on the party restricted." *Kegel v. Tillotson, 297 S.W.3d 908 (Ky. App. 2009).* <https://www.courtlistener.com/opinion/2169063/kegel-v-tillotson/#:~:text=agreements%20on%20restraint%20of%20trade,hardship%20on%20the%20party%20restricted.>
+
+[^ky-ens-creech]: **Charles T. Creech, Inc. v. Brown** — "Because the Agreement did not require Creech to forbear the exercise of some legal right or otherwise result in some detriment to Creech, there was no consideration." *Charles T. Creech, Inc. v. Brown, 433 S.W.3d 345 (Ky. 2014).* <https://www.courtlistener.com/opinion/5444327/charles-t-creech-inc-v-brown/#:~:text=Because%20the%20Agreement%20did%20not,Creech%2C%20there%20was%20no%20consideration.>
 
 [^q6-kegel-reasonableness-backdrop]: **Kegel v. Tillotson** — "agreements on restraint of trade are reasonable if, ‘on consideration of the subject, nature of the business, situation of the parties and circumstances of the particular case, the restriction is such only as to afford fair protection to the interests of the covenan-tee and is not so large as to interfere with the public interests or impose undue hardship on the party restricted." *Kegel v. Tillotson, 297 S.W.3d 908 (Ky. App. 2009).* <https://www.courtlistener.com/opinion/2169063/kegel-v-tillotson/#:~:text=agreements%20on%20restraint%20of%20trade,hardship%20on%20the%20party%20restricted.>
 

@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-lexiang_api.py - 乐享客户端（连接器模式，零配置零 token）
+lexiang_api.py - 乐享目录、探活和独立附件客户端
 
-核心机制：复用 WorkBuddy / QClaw 等 Agent 内置乐享连接器的 OAuth 凭证，
-脚本直接调用乐享 MCP 端点（https://mcp.lexiang-app.com/mcp），
-鉴权头为 X-Oneid-Access-Token（从本地连接器 token 文件读取）。
+默认机制：复用 WorkBuddy / QClaw 等 Agent 内置乐享连接器的 OAuth 凭证，
+以 X-Oneid-Access-Token 调用乐享 MCP。显式选择 uploader 个人凭证时，
+改用带 company_from 的 MCP URL 与 Authorization: Bearer 鉴权。
 
-用户无需安装额外 skill、无需获取任何 app_key/secret —— 只要 Agent 里
-已经授权了乐享连接器，脚本就能直接用。
+降级机制：当 token 文件不可用（过期/不存在）时，自动检测 Agent 本地 MCP
+代理，通过代理调用乐享工具（无需 token）。代理模式从进程列表自动提取
+认证头，兼容 WorkBuddy / QClaw / CodeBuddy。
+
+本模块禁止实现 Markdown page 创建、覆盖或正文图片上传；这些能力统一由
+upload-markdown-to-lexiang 提供。
 
 token 文件发现：
   ~/.workbuddy/connectors/<profile>/tokens/lexiang-ol.txt   (WorkBuddy)
@@ -19,12 +23,23 @@ token 文件发现：
 import glob
 import json
 import os
+import re
 import time
+import urllib.parse
 import urllib.request
 import urllib.error
 import uuid
+from dataclasses import dataclass
+from pathlib import Path
 
 MCP_URL = "https://mcp.lexiang-app.com/mcp"
+DEFAULT_PERSONAL_CREDENTIALS = Path(
+    "~/.config/lexiang-upload/credentials.json"
+).expanduser()
+PERSONAL_PROFILE_DIR = Path(
+    "~/.config/lexiang-upload/profiles"
+).expanduser()
+PROFILE_RE = re.compile(r"^[A-Za-z0-9._-]+$")
 
 # token 文件搜索路径（按优先级），支持 WorkBuddy 多 profile
 TOKEN_GLOBS = [
@@ -46,6 +61,103 @@ class LexiangError(Exception):
         super().__init__(message)
         self.retryable = retryable
         self.code = code
+
+
+@dataclass(frozen=True)
+class PersonalCredentialSelector:
+    """已解析的个人凭证位置；不包含 token。"""
+
+    profile: str
+    path: Path
+
+
+def _validate_profile(profile):
+    value = str(profile).strip()
+    if not value or not PROFILE_RE.fullmatch(value):
+        raise LexiangError(
+            "乐享 profile 名称只能包含 A-Z、a-z、0-9、点、下划线和连字符，且不能为空"
+        )
+    return value
+
+
+def resolve_personal_credential_selector(
+        profile=None, credential_file=None, environ=None):
+    """
+    解析 sync 的个人凭证选择器。
+
+    优先级：显式 file > 显式 profile > 环境 file > 环境 profile。
+    与公共 uploader 不同，无任何选择时返回 None，以保留原连接器默认逻辑。
+    """
+    env = os.environ if environ is None else environ
+    explicit_file = str(credential_file or "").strip()
+    explicit_profile = None if profile is None else str(profile).strip()
+    if explicit_file and explicit_profile:
+        raise LexiangError(
+            "lexiang_profile 与 lexiang_credential_file 不能同时设置"
+        )
+    if explicit_file:
+        return PersonalCredentialSelector(
+            "", Path(explicit_file).expanduser()
+        )
+    if profile is not None:
+        selected = _validate_profile(profile)
+    else:
+        env_file = str(env.get("LEXIANG_UPLOAD_CREDENTIALS", "")).strip()
+        if env_file:
+            return PersonalCredentialSelector("", Path(env_file).expanduser())
+        env_profile = str(env.get("LEXIANG_UPLOAD_PROFILE", "")).strip()
+        if not env_profile:
+            return None
+        selected = _validate_profile(env_profile)
+    path = (
+        DEFAULT_PERSONAL_CREDENTIALS
+        if selected == "default"
+        else PERSONAL_PROFILE_DIR / f"{selected}.json"
+    )
+    return PersonalCredentialSelector(selected, path)
+
+
+def load_personal_credential(path):
+    """读取 uploader 兼容的 JSON 个人凭证，返回无额外字段的安全字典。"""
+    credential_path = Path(path).expanduser()
+    if not credential_path.is_file():
+        raise LexiangError(f"乐享个人凭证文件不存在: {credential_path}")
+    try:
+        data = json.loads(credential_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise LexiangError(f"乐享个人凭证文件无法读取: {credential_path}") from error
+    if not isinstance(data, dict):
+        raise LexiangError(f"乐享个人凭证格式无效: {credential_path}")
+    candidates = [data]
+    candidates.extend(
+        value
+        for key in ("mcp", "credential", "credentials", "auth")
+        if isinstance((value := data.get(key)), dict)
+    )
+
+    def pick(*keys):
+        for candidate in candidates:
+            for key in keys:
+                if candidate.get(key):
+                    return str(candidate[key]).strip()
+        return ""
+
+    token = pick("mcp_token", "access_token", "token", "LEXIANG_TOKEN")
+    company_from = pick("company_from", "mcp_company_from")
+    missing = [
+        name for name, value in (
+            ("mcp_token", token), ("company_from", company_from)
+        ) if not value
+    ]
+    if missing:
+        raise LexiangError(
+            f"乐享个人凭证缺少字段 {', '.join(missing)}: {credential_path}"
+        )
+    if not token.startswith("lxmcp_"):
+        raise LexiangError(
+            f"乐享个人凭证 mcp_token 格式无效: {credential_path}"
+        )
+    return {"mcp_token": token, "company_from": company_from}
 
 
 def _log(msg):
@@ -100,18 +212,134 @@ def discover_token():
     return pool[0][2], pool[0][3]
 
 
-class LexiangConnector:
-    """通过 WorkBuddy 内置连接器调用乐享 MCP（零配置）"""
+def _is_token_expired(token):
+    """检查 token 是否已过期（JWT exp 字段）。"""
+    exp = _decode_jwt_exp(token)
+    if exp == 0:
+        return False  # 无法解析，假设未过期（让服务端判断）
+    return exp < int(time.time()) + 30
 
-    def __init__(self, token=None, token_path=None):
-        if token:
-            self.token, self.token_path = token, token_path or "(explicit)"
-        else:
-            self.token, self.token_path = discover_token()
-        if not self.token:
+
+def discover_mcp_proxy():
+    """
+    自动检测 Agent 本地 MCP 代理 URL 和认证头（降级方案）。
+    从 WorkBuddy / QClaw / CodeBuddy 进程列表提取。
+
+    返回 (url, auth_headers_dict) 或 (None, None)。
+    auth_headers_dict 包含代理所需的 Authorization 和 X-*-Session-Id 头。
+    """
+    import subprocess, re
+
+    # 环境变量覆盖（仅 URL，不含认证头）
+    env_url = os.environ.get("LEXIANG_MCP_PROXY_URL", "").strip()
+    if env_url:
+        _log(f"   [代理] 使用环境变量 LEXIANG_MCP_PROXY_URL={env_url}")
+        return env_url, {}
+
+    # 从进程列表解析（macOS / Linux 通用）
+    try:
+        out = subprocess.check_output(["ps", "aux"], text=True, stderr=subprocess.DEVNULL)
+        for line in out.splitlines():
+            # 匹配 WorkBuddy / QClaw / CodeBuddy 进程，且包含 mcp-config
+            lower = line.lower()
+            if not ("mcp-config" in lower and
+                    any(k in lower for k in ("workbuddy", "qclaw", "codebuddy"))):
+                continue
+            url_m = re.search(r'"url"\s*:\s*"http://127\.0\.0\.1:\d+/mcp"', line)
+            auth_m = re.search(r'"Authorization"\s*:\s*"([^"]+)"', line)
+            sid_m = re.search(r'"X-WorkBuddy-Session-Id"\s*:\s*"([^"]+)"', line)
+            if url_m and auth_m and sid_m:
+                url = url_m.group(0).split('"')[3]
+                headers = {
+                    "Authorization": auth_m.group(1),
+                    "X-WorkBuddy-Session-Id": sid_m.group(1),
+                }
+                _log(f"   [代理] 从进程列表检测到: {url}")
+                return url, headers
+    except Exception as e:
+        _log(f"   [代理] 进程检测失败: {e}")
+
+    return None, None
+
+
+class LexiangConnector:
+    """通过个人凭证或 WorkBuddy / QClaw 连接器调用乐享 MCP。
+
+    鉴权优先级：
+      1. 显式个人凭证文件 / credential dict
+      2. 显式传入连接器 token
+      3. 环境变量 LEXIANG_ONEID_TOKEN / 磁盘 token 文件（原逻辑）
+      4. 自动检测 MCP 代理（降级方案，无需 token）
+    """
+
+    # 代理模式下的工具名前缀
+    _PROXY_TOOL_PREFIX = "lexiang_"
+
+    def __init__(self, token=None, token_path=None,
+                 personal_credential_file=None, credential=None):
+        if personal_credential_file and credential:
             raise LexiangError(
-                "未发现乐享连接器 token。请确认在 WorkBuddy/QClaw 中已授权乐享连接器。"
+                "personal_credential_file 与 credential 不能同时传入"
             )
+        personal = (
+            load_personal_credential(personal_credential_file)
+            if personal_credential_file else credential
+        )
+        self.personal_mode = bool(personal)
+        if personal:
+            personal_token = str(personal.get("mcp_token", "")).strip()
+            company_from = str(personal.get("company_from", "")).strip()
+            if not personal_token.startswith("lxmcp_") or not company_from:
+                raise LexiangError("乐享个人凭证缺少有效的 mcp_token/company_from")
+            self.token = personal_token
+            self.token_path = (
+                str(Path(personal_credential_file).expanduser())
+                if personal_credential_file else "(personal credential)"
+            )
+            self.use_proxy = False
+            self.mcp_url = (
+                f"{MCP_URL}?company_from="
+                f"{urllib.parse.quote(company_from, safe='')}"
+            )
+            self.proxy_headers = {}
+        elif token:
+            # 显式传入 token（最高优先级）
+            self.token = token
+            self.token_path = token_path or "(explicit)"
+            self.use_proxy = False
+            self.mcp_url = MCP_URL
+            self.proxy_headers = {}
+        else:
+            # 尝试发现 token（原逻辑，完全不变）
+            self.token, self.token_path = discover_token()
+
+            if self.token and not _is_token_expired(self.token):
+                # Token 有效，使用直连模式
+                self.use_proxy = False
+                self.mcp_url = MCP_URL
+                self.proxy_headers = {}
+            else:
+                # Token 不可用或已过期 → 降级到 MCP 代理
+                if self.token:
+                    _log(f"   [token] token 已过期（来源: {self.token_path}），尝试 MCP 代理模式")
+                else:
+                    _log(f"   [token] 未找到有效 token，尝试 MCP 代理模式")
+
+                proxy_url, proxy_headers = discover_mcp_proxy()
+                if proxy_url:
+                    self.use_proxy = True
+                    self.mcp_url = proxy_url
+                    self.proxy_headers = proxy_headers
+                    self.token = None
+                    self.token_path = f"(proxy: {proxy_url})"
+                    _log(f"   [代理模式] 使用 MCP 代理: {proxy_url}")
+                else:
+                    raise LexiangError(
+                        "未发现有效的乐享连接器 token，且未找到 MCP 代理。\n"
+                        "请确认在 WorkBuddy/QClaw 中已授权乐享连接器，"
+                        "或设置环境变量 LEXIANG_ONEID_TOKEN。"
+                    )
+
         self._session_id = None
         self._initialized = False
 
@@ -123,14 +351,21 @@ class LexiangConnector:
         if not notification:
             body["id"] = str(uuid.uuid4())
         headers = {
-            "X-Oneid-Access-Token": self.token,
             "Content-Type": "application/json",
             "Accept": "application/json, text/event-stream",
         }
+        if self.use_proxy:
+            # 代理模式：附加代理认证头
+            headers.update(self.proxy_headers)
+        elif self.personal_mode:
+            headers["Authorization"] = f"Bearer {self.token}"
+        else:
+            # 直连模式：附加乐享 OAuth token
+            headers["X-Oneid-Access-Token"] = self.token
         if self._session_id:
             headers["Mcp-Session-Id"] = self._session_id
         req = urllib.request.Request(
-            MCP_URL, data=json.dumps(body).encode("utf-8"),
+            self.mcp_url, data=json.dumps(body).encode("utf-8"),
             method="POST", headers=headers,
         )
         try:
@@ -152,8 +387,9 @@ class LexiangConnector:
             err = e.read().decode("utf-8", errors="replace")
             if e.code == 401:
                 # 鉴权问题，重试无意义
+                auth_name = "个人凭证" if self.personal_mode else "连接器 token"
                 raise LexiangError(
-                    "连接器 token 已过期或无效（401）。请在 WorkBuddy 中重新授权乐享连接器后重试。",
+                    f"乐享{auth_name}已过期或无效（401）。请重新授权后重试。",
                     retryable=False, code=401,
                 )
             retryable = e.code in RETRY_HTTP_CODES
@@ -190,7 +426,7 @@ class LexiangConnector:
         self._post("initialize", {
             "protocolVersion": "2024-11-05",
             "capabilities": {},
-            "clientInfo": {"name": "sync-obsidian-to-lexiang", "version": "2.0"},
+            "clientInfo": {"name": "sync-obsidian-to-lexiang", "version": "2.1"},
         })
         self._post("notifications/initialized", notification=True)
         self._initialized = True
@@ -198,7 +434,11 @@ class LexiangConnector:
     def _call_tool_once(self, name, arguments):
         """单次工具调用（_post 已含网络层重试；此处处理业务错误码）。"""
         self._ensure_init()
-        resp = self._post("tools/call", {"name": name, "arguments": arguments})
+        # 代理模式：工具名需要加连接器前缀（entry_create_entry → lexiang_entry_create_entry）
+        actual_name = name
+        if self.use_proxy and not name.startswith(self._PROXY_TOOL_PREFIX):
+            actual_name = self._PROXY_TOOL_PREFIX + name
+        resp = self._post("tools/call", {"name": actual_name, "arguments": arguments})
         if "error" in resp:
             raise LexiangError(f"工具 {name} 调用失败: {resp['error']}")
         result = resp.get("result", {})
@@ -245,6 +485,19 @@ class LexiangConnector:
     def whoami(self):
         return self.call_tool("whoami", {})
 
+    def get_space_info(self, space_id):
+        """获取知识库信息，返回 dict（含 root_entry_id 等）。"""
+        data = self.call_tool("space_describe_space", {"space_id": space_id})
+        return data.get("data", {}).get("space", {}) if isinstance(data, dict) else {}
+
+    def resolve_root_entry_id(self, space_id):
+        """获取知识库的 root_entry_id。失败时返回 None。"""
+        try:
+            space = self.get_space_info(space_id)
+            return space.get("root_entry_id") or None
+        except (LexiangError, KeyError, TypeError):
+            return None
+
     def create_folder(self, space_id, name, parent_id=None):
         args = {"entry_type": "folder", "name": name}
         if parent_id:
@@ -255,27 +508,6 @@ class LexiangConnector:
         if not eid:
             raise LexiangError(f"创建文件夹失败: {json.dumps(data, ensure_ascii=False)[:200]}")
         return eid
-
-    def create_page_with_content(self, space_id, name, content, parent_id=None,
-                                 content_type="markdown"):
-        """创建 page 并写入 markdown 内容（一步到位）。返回 entry_id"""
-        args = {"space_id": space_id, "name": name, "content": content,
-                "content_type": content_type}
-        if parent_id:
-            args["parent_id"] = parent_id
-        data = self.call_tool("entry_import_content", args)
-        entry = data.get("data", {}).get("entry", {}) if isinstance(data, dict) else {}
-        eid = entry.get("id")
-        if not eid:
-            raise LexiangError(f"创建文档失败: {json.dumps(data, ensure_ascii=False)[:200]}")
-        return eid
-
-    def update_page_content(self, entry_id, content, content_type="markdown",
-                            force_write=True):
-        """覆盖/追加更新已有 page 内容"""
-        args = {"entry_id": entry_id, "content": content,
-                "content_type": content_type, "force_write": force_write}
-        return self.call_tool("entry_import_content_to_entry", args)
 
     def describe_entry(self, entry_id):
         data = self.call_tool("entry_describe_entry",
@@ -395,130 +627,6 @@ class LexiangConnector:
         if not eid:
             raise LexiangError(f"上传文件 entry 失败: {json.dumps(entry, ensure_ascii=False)[:200]}")
         return eid
-
-    # ── 块级操作：图文混排（正文内嵌本地图片）────────────────────
-
-    def convert_to_blocks(self, content, content_type="markdown"):
-        """把 markdown/html 文本转成与 create_block_descendant 兼容的 block 列表。"""
-        data = self.call_tool("block_convert_content_to_blocks",
-                              {"content": content, "content_type": content_type})
-        return data.get("data", {}).get("descendant", []) if isinstance(data, dict) else []
-
-    def upload_block_image(self, entry_id, file_path):
-        """
-        上传一张正文内嵌图片（block 附件上传：apply → PUT → 返回 session_id）。
-        随后把 session_id 放进 image block 的 image.session_id 字段即可内嵌。
-        返回 session_id。失败抛 LexiangError。
-        """
-        import mimetypes
-        name = os.path.basename(file_path)
-        size = os.path.getsize(file_path)
-        mime = mimetypes.guess_type(name)[0] or "image/png"
-
-        apply = self.call_tool("block_apply_block_attachment_upload", {
-            "entry_id": entry_id, "name": name,
-            "size": str(size), "mime_type": mime,
-        })
-        d = apply.get("data", {}) if isinstance(apply, dict) else {}
-        session_id = d.get("session_id")
-        upload_url = d.get("upload_url")
-        if not (session_id and upload_url):
-            raise LexiangError(f"申请块图片上传失败: {json.dumps(apply, ensure_ascii=False)[:200]}")
-
-        with open(file_path, "rb") as f:
-            data_bytes = f.read()
-        put_req = urllib.request.Request(
-            upload_url, data=data_bytes, method="PUT",
-            headers={"Content-Type": mime, "Content-Length": str(len(data_bytes))},
-        )
-        try:
-            with urllib.request.urlopen(put_req, timeout=300) as r:
-                if r.status not in (200, 204):
-                    raise LexiangError(f"块图片 PUT 失败 status={r.status}")
-        except urllib.error.HTTPError as e:
-            raise LexiangError(
-                f"块图片 PUT 失败 [{e.code}]: {e.read().decode('utf-8','replace')[:200]}")
-        return session_id
-
-    def create_blocks(self, entry_id, descendant, index="-1", parent_block_id=None):
-        """在 entry（或指定父块）下按序创建一批 block。descendant 为有序数组。"""
-        if not descendant:
-            return {}
-        args = {"entry_id": entry_id, "descendant": descendant, "index": str(index)}
-        if parent_block_id:
-            args["parent_block_id"] = parent_block_id
-        return self.call_tool("block_create_block_descendant", args)
-
-    def clear_page(self, entry_id):
-        """清空 page 的全部 block（用于更新覆盖前）。逐个删除直接子块。"""
-        children = self.call_tool("block_list_block_children",
-                                  {"entry_id": entry_id, "with_descendants": False})
-        blocks = children.get("data", {}).get("blocks", []) if isinstance(children, dict) else []
-        for b in blocks:
-            bid = b.get("block_id")
-            if bid:
-                try:
-                    self.call_tool("block_delete_block", {"entry_id": entry_id, "block_id": bid})
-                except LexiangError:
-                    pass
-
-    def write_segments(self, entry_id, segments):
-        """
-        把有序的图文片段写入已存在的 page（追加到末尾，保持原始顺序）。
-
-        segments: converter.split_into_segments 的结果，每项有 .kind / .text /
-                  .image_abs_path / .image_alt。
-        - text 片段：convert_to_blocks 转成 block 数组
-        - image 片段：upload_block_image 拿 session_id → image block
-
-        为保证「文本 → 图片 → 文本」的顺序绝对正确，逐片段按序 append。
-        返回 (success_images, fail_images)。
-        """
-        img_ok = img_fail = 0
-        for seg in segments:
-            kind = getattr(seg, "kind", None) or seg.get("kind")
-            if kind == "text":
-                text = getattr(seg, "text", "") or seg.get("text", "")
-                if not text.strip():
-                    continue
-                blocks = self.convert_to_blocks(text, "markdown")
-                if blocks:
-                    self.create_blocks(entry_id, blocks, index="-1")
-            elif kind == "image":
-                path = getattr(seg, "image_abs_path", "") or seg.get("image_abs_path", "")
-                alt = getattr(seg, "image_alt", "") or seg.get("image_alt", "")
-                try:
-                    session_id = self.upload_block_image(entry_id, path)
-                    img_block = {"block_type": "image",
-                                 "image": {"session_id": session_id, "align": "center"}}
-                    if alt:
-                        img_block["image"]["caption"] = alt
-                    self.create_blocks(entry_id, [img_block], index="-1")
-                    img_ok += 1
-                except LexiangError:
-                    img_fail += 1
-        return img_ok, img_fail
-
-    def create_page_with_segments(self, space_id, name, segments, parent_id=None):
-        """
-        创建一篇图文混排 page：先建空 page，再按序写入文本/图片片段。
-        返回 (entry_id, img_ok, img_fail)。
-        """
-        # entry_import_content 要求 content 非空；用占位文本建骨架，随后清空，
-        # 保证后续完全由 write_segments 按序掌控（文本+图片）。
-        entry_id = self.create_page_with_content(space_id, name, "\u200b", parent_id)
-        try:
-            self.clear_page(entry_id)
-        except LexiangError:
-            pass
-        img_ok, img_fail = self.write_segments(entry_id, segments)
-        return entry_id, img_ok, img_fail
-
-    def update_page_with_segments(self, entry_id, segments):
-        """覆盖更新图文 page：清空后按序重写。返回 (img_ok, img_fail)。"""
-        self.clear_page(entry_id)
-        return self.write_segments(entry_id, segments)
-
 
 # 向后兼容别名
 LexiangAPI = LexiangConnector

@@ -1,42 +1,57 @@
-## Description: <br>
-High-accuracy web search and research via Parallel.ai API. Optimized for AI agents with rich excerpts and citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-accuracy web search and research via Parallel.ai API. Optimized for AI agents with rich excerpts and citations.
 
-## Publisher: <br>
-[pntrivedy](https://clawhub.ai/user/pntrivedy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pntrivedy](https://clawhub.ai/user/pntrivedy)
 
-## Use Case: <br>
-Developers and research agents use this skill to run web research, fact-checking, company and person research, and multi-hop search through Parallel.ai with cited results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A default Parallel.ai API key fallback is bundled in the artifact and could route searches through an unknown account. <br>
-Mitigation: Set PARALLEL_API_KEY to an account-controlled key before use, remove or override bundled fallback keys, and avoid relying on the included default key. <br>
-Risk: Search queries and task inputs are sent to Parallel.ai services. <br>
-Mitigation: Do not submit secrets, regulated data, or proprietary queries unless that external processing is approved for the use case. <br>
-Risk: The setup instructions install the Parallel Python SDK from the package ecosystem. <br>
-Mitigation: Pin and verify the Python dependency before installation in controlled environments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Parallel.ai documentation](https://docs.parallel.ai) <br>
-- [Parallel.ai platform](https://platform.parallel.ai) <br>
+## Use Case:
 
+Developers and agents use this skill to perform Parallel.ai-backed web research, fact-checking, and company or person research with citations and structured excerpts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted search results or JSON search result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include URLs, titles, excerpts, publish dates, search IDs, and API usage statistics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact embeds and silently falls back to a plaintext Parallel.ai API key.
+
+Mitigation: Remove and revoke the embedded key, and require users to provide their own PARALLEL_API_KEY before use.
+
+Risk: Queries are sent to Parallel.ai, a third-party service.
+
+Mitigation: Disclose third-party data handling clearly and avoid submitting secrets, private prompts, or proprietary data unless approved for that service.
+
+Risk: The Python dependency is not pinned in the setup instructions.
+
+Mitigation: Pin and review the parallel-web dependency version before deployment.
+
+## Reference(s):
+
+- [Parallel.ai Documentation](https://docs.parallel.ai)
+- [Parallel.ai Platform](https://platform.parallel.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration]
+
+**Output Format:** [Markdown search summaries or JSON result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source URLs, titles, excerpts, publish dates when available, search IDs, and API usage stats.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

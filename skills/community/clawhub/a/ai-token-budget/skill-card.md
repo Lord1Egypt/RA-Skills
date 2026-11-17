@@ -1,40 +1,57 @@
-## Description: <br>
-TokenBudget helps an agent estimate token use, enforce session budget limits, and choose lower-cost model tiers when budget is tight. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TokenBudget helps an agent check token budgets before LLM calls, choose lower-cost models when budgets are tight, and report budget status to the user.
 
-## Publisher: <br>
-[wenrl2006](https://clawhub.ai/user/wenrl2006) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenrl2006](https://clawhub.ai/user/wenrl2006)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add per-task token-budget checks, budget status commands, and model-tier selection guidance to agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence model choice and budget handling across the whole agent session. <br>
-Mitigation: Install it only when session-wide budget control is intended, and prefer explicit user confirmation before disabling budget limits. <br>
-Risk: The skill includes an automatic localhost TokenBroker health check and installation recommendation. <br>
-Mitigation: Review or remove the localhost broker behavior before use, especially in environments where local services or install prompts are restricted. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add session-scoped token budget checks, cost estimates, model selection guidance, and user-facing budget reports to an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wenrl2006/ai-token-budget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript helper code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces budget estimates, model-tier recommendations, budget status text, and session-scoped configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Automatic model downgrades may reduce response quality for budget-constrained tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat model recommendations as guidance and let users confirm high-impact or deep-reasoning work before downgrading.
+
+Risk: Budget enforcement can skip or block low-priority tasks when configured limits are reached.
+
+Mitigation: Expose budget status and allow explicit user commands to adjust or temporarily disable budget limits for the current session.
+
+Risk: The skill may recommend installing a TokenBroker gateway when local broker health checks are unavailable.
+
+Mitigation: Verify the package source before running suggested install commands, as recommended by the security guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenrl2006/skills/ai-token-budget)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline commands and TypeScript helper code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Session-scoped budget configuration, token estimates, model recommendations, and optional budget warning text.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

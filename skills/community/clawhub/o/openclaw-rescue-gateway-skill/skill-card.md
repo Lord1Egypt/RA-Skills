@@ -1,41 +1,57 @@
-## Description: <br>
-Configures a stable, maintainable OpenClaw rescue gateway with a second Discord bot, an independent port and launchd label, separated gateway lifecycle controls, and default full command execution without approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures a stable, maintainable OpenClaw rescue gateway with a separate Discord bot, port, launchd label, workspace, and execution posture.
 
-## Publisher: <br>
-[cchaojiejes](https://clawhub.ai/user/cchaojiejes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cchaojiejes](https://clawhub.ai/user/cchaojiejes)
 
-## Use Case: <br>
-Developers and operators who already run an OpenClaw gateway use this skill to configure a separate rescue gateway for Discord access, independent launchd management, and emergency operation when the primary gateway is unavailable. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs users to create a persistent Discord-controlled rescue gateway with full command execution and approvals disabled. <br>
-Mitigation: Install only when a break-glass OpenClaw rescue gateway is intentionally needed; keep execution approvals enabled unless there is a specific emergency reason. <br>
-Risk: Discord access to the rescue gateway can expose powerful operations to unintended users or channels. <br>
-Mitigation: Restrict the rescue Discord bot to trusted servers, channels, and users, and verify the independent launchd service can be stopped or unloaded after use. <br>
-Risk: Copying authentication profiles into the rescue agent can duplicate sensitive provider credentials. <br>
-Mitigation: Use separate scoped rescue credentials where possible and protect copied credential files with restrictive file permissions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cchaojiejes/openclaw-rescue-gateway-skill) <br>
+## Use Case:
 
+Developers and operators use this skill to configure a persistent OpenClaw rescue gateway that remains separate from the main gateway. It covers rescue bot setup, launchd service isolation, profile paths, validation commands, and day-to-day operations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON configuration snippets and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes OpenClaw profile settings, macOS launchd service guidance, diagnostic commands, and credential-copying steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends a persistent Discord-connected rescue gateway with full local command authority and approval prompts disabled.
+
+Mitigation: Install only when that posture is deliberate; prefer scoped rescue credentials, restrict Discord users and channels, and keep command approval enabled where possible.
+
+Risk: Copying primary agent auth profiles into the rescue agent can broaden credential exposure.
+
+Mitigation: Use separate low-privilege rescue credentials where possible and document token revocation procedures before deployment.
+
+Risk: A custom LaunchAgent can keep the rescue gateway running persistently after emergency use.
+
+Mitigation: Document stop commands, LaunchAgent removal steps, and token revocation as part of operational runbooks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cchaojiejes/skills/openclaw-rescue-gateway-skill)
+- [Publisher Profile](https://clawhub.ai/user/cchaojiejes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OpenClaw profile settings, launchd service guidance, operational commands, and credential-handling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

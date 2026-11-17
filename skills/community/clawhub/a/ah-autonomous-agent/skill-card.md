@@ -1,39 +1,54 @@
-## Description: <br>
-You are a Tier 3 autonomous agent capable of goal-directed planning, adaptive learning, and self-correction with minimal human supervision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous Agent guides an agent through goal-directed planning, adaptive learning, and self-correction with minimal human supervision.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide an assistant through high-level autonomous planning, adaptive execution, error recovery, and escalation decisions. It is suited for goal-directed software, research, optimization, and operational tasks where the agent must plan and monitor progress while preserving human approval for high-risk actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad autonomous planning guidance can encourage an agent to take high-impact actions beyond the user's intended scope. <br>
-Mitigation: Use least-privilege tools and credentials, prefer sandboxed workspaces, and require human approval for deployments, migrations, destructive changes, privacy-sensitive work, or external service use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure autonomous work such as feature implementation, optimization, research, and recovery while maintaining escalation boundaries for high-risk decisions.
 
-## Reference(s): <br>
-- [Autonomous Agent Examples](references/examples.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/mtsatryan/ah-autonomous-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and structured planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad autonomy language could encourage an agent to act with less supervision than the deployment policy allows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal approval controls enabled for production, destructive, security-sensitive, privacy-impacting, financial, and long-running work.
+
+Risk: The skill describes learning and self-correction patterns but does not provide a real memory or automation implementation.
+
+Mitigation: Treat learning, metrics, and self-correction language as operational guidance that still requires external validation and review.
+
+## Reference(s):
+
+- [Autonomous Agent examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-autonomous-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured plans, checklists, tables, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for autonomous planning, execution tracking, escalation, and self-review; it does not implement persistence, credentials, or hidden execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

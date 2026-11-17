@@ -1,44 +1,54 @@
-## Description: <br>
-Defluff analyzes pasted corporate email to classify likely authorship, infer AI prompts when applicable, triage urgency and intent, and identify common scam patterns while mirroring the email's language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reverse the AI in corporate email by classifying authorship, guessing likely LLM prompts when AI was involved, classifying urgency, extracting actual intent, and naming common scam patterns across single emails, threads, and batches.
 
-## Publisher: <br>
-[yozaz](https://clawhub.ai/user/yozaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yozaz](https://clawhub.ai/user/yozaz)
 
-## Use Case: <br>
-Email users and reviewers use Defluff to triage single messages, threads, or batches into terse authorship verdicts, action bullets, scam red flags, and response priority. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private or sensitive email content may be exposed to the configured agent or model during analysis. <br>
-Mitigation: Analyze only email content the user is permitted to process, and redact secrets, credentials, or unnecessary personal data before use. <br>
-Risk: The skill can over-apply email analysis to ordinary summaries or ambiguous pasted text. <br>
-Mitigation: Ask explicitly for the desired analysis type and output language; when the input is not clearly email, the skill asks whether it is a single email, thread, or batch. <br>
-Risk: Authorship, prompt-reversal, urgency, or scam classifications are probabilistic and may be wrong. <br>
-Mitigation: Treat verdicts as triage guidance and verify high-impact security, payment, hiring, or business decisions through independent channels. <br>
+## Use Case:
 
+Employees, external users, and developers use Defluff to triage corporate email by separating action, response, FYI, and noise while surfacing likely AI-authored messages and scam indicators.
 
-## Reference(s): <br>
-- [Defluff on ClawHub](https://clawhub.ai/yozaz/defluff) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/tools/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown with Authored, optional Prompt, Verdict, bullets, and thread or batch triage sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Mirrors the input email language; preserves names, numbers, dates, and amounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.9 (source: frontmatter and server release evidence) <br>
+Risk: Email content may contain sensitive or confidential information that the configured OpenClaw model will inspect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use only when comfortable sharing the provided email content with the configured local model or agent environment.
+
+Risk: AI-authorship labels, guessed prompts, urgency verdicts, and scam classifications can be wrong or incomplete.
+
+Mitigation: Treat outputs as triage signals and verify important decisions before replying, paying, clicking links, or escalating.
+
+## Reference(s):
+
+- [Openclaw](https://openclaw.ai)
+- [Openclaw skills docs](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured header lines and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Mirrors the input email language while keeping fixed line labels and verdict tokens in English.]
+
+## Skill Version(s):
+
+0.0.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

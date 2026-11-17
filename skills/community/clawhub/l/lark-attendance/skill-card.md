@@ -1,40 +1,49 @@
-## Description: <br>
-查询用户自己的飞书/Lark 考勤打卡记录。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书考勤打卡：查询自己的考勤打卡记录
 
-## Publisher: <br>
-[gu2003li](https://clawhub.ai/user/gu2003li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gu2003li](https://clawhub.ai/user/gu2003li)
 
-## Use Case: <br>
-Employees and authorized Feishu/Lark users use this skill to query their own attendance punch records through lark-cli. The skill guides the agent to inspect the attendance schema before calling the native API and to use fixed attendance query parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Attendance records may contain sensitive workplace data. <br>
-Mitigation: Use only with an authenticated Feishu/Lark account that is authorized to view the requested records, and limit disclosure of returned attendance data. <br>
-Risk: Incorrect attendance API parameters could query unintended data or fail unexpectedly. <br>
-Mitigation: Follow the fixed employee_type and empty user_ids rules, and inspect lark-cli schema output before calling the attendance API. <br>
+## Use Case:
 
+Employees and authorized Lark/Feishu users use this skill to query their own attendance punch records through lark-cli.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gu2003li/lark-attendance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON parameter examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses lark-cli and fixed query parameters: employee_type is employee_no and user_ids is an empty array.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can use an existing lark-cli session to query Feishu/Lark attendance records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm lark-cli is authenticated to the intended tenant and account, and keep queries limited to records the user is authorized to view.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gu2003li/skills/lark-attendance)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON parameter snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated lark-cli session with attendance:task:readonly scope; employee_type is fixed to employee_no and user_ids is fixed to an empty array.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

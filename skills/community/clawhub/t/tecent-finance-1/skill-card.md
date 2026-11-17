@@ -1,40 +1,49 @@
-## Description: <br>
-Get stock prices, quotes, and compare stocks using Tencent Finance API with no API key required, including US stocks, China A-shares, Hong Kong stocks, and crypto symbols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get stock prices, quotes, and compare stocks using Tencent Finance API. No API key required. Supports US stocks, China A-Shares, Hong Kong stocks. Optimized for use in mainland China.
 
-## Publisher: <br>
-[sunerw-dev](https://clawhub.ai/user/sunerw-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunerw-dev](https://clawhub.ai/user/sunerw-dev)
 
-## Use Case: <br>
-External users and developers use this skill to check market prices, detailed quotes, comparisons, and symbol searches through Tencent Finance-backed CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Stock symbols queried with this skill are sent to Tencent Finance. <br>
-Mitigation: Avoid submitting confidential watchlists or sensitive symbols unless that network disclosure is acceptable. <br>
-Risk: The optional global symlink can expose an executable as a system-wide command. <br>
-Mitigation: Create the symlink only after verifying the actual tfin executable or source obtained outside this documentation-only artifact. <br>
+## Use Case:
 
+External users and developers can use this skill to work with a Tencent Finance based CLI for stock price checks, detailed quotes, stock comparisons, and symbol searches across supported US, China A-share, Hong Kong, and cryptocurrency symbols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunerw-dev/tecent-finance-1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stock symbols and CLI command examples for Tencent Finance queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The referenced tfin executable is not included in the artifact, so the CLI's actual behavior cannot be reviewed from this package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the executable's provenance and contents before installation, avoid unspecified replacement binaries, and prefer a user-local or virtual-environment install with pinned, reviewed dependencies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunerw-dev/skills/tecent-finance-1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and symbol examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Execute multiple tasks in parallel with timeout protection, error isolation, and real-time progress feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute multiple tasks in parallel with timeout protection, error isolation, and real-time progress feedback.
 
-## Publisher: <br>
-[qiukui666](https://clawhub.ai/user/qiukui666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiukui666](https://clawhub.ai/user/qiukui666)
 
-## Use Case: <br>
-Developers and agent users use this skill to run independent tasks concurrently, with per-task timeout controls, status reporting, and isolated failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start multiple local Hermes agent sessions at once. <br>
-Mitigation: Use explicit, trusted task lists and avoid account-changing or destructive operations unless each task has been reviewed. <br>
-Risk: Concurrent tasks can write to shared files or shared state at the same time. <br>
-Mitigation: Avoid concurrent writes to shared files unless the task boundaries and ordering have been reviewed carefully. <br>
-Risk: Task text handling may allow task content to affect spawned Hermes CLI options. <br>
-Mitigation: Keep task descriptions trusted and update the executor to pass Hermes arguments as a structured array rather than building and splitting a command string. <br>
+## Use Case:
 
+Developers and agent users use this skill to run independent research, analysis, implementation, polling, or batch tasks concurrently while receiving timeout, error, and progress feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qiukui666/openclaw-skill-parallel-tasks) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal progress text, Markdown examples, and optional JSON task parsing output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task status, duration, timeout, failure summaries, and exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Parallel task dispatch can amplify unintended file-write, account-changing, or public-posting actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit task lists, keep concurrency low, and review the effects of spawned sessions before high-impact tasks.
+
+Risk: Broad activation can send ambiguous or dependent work into multiple sessions.
+
+Mitigation: Use this skill only for clearly independent tasks; keep dependent or shared-state work sequential.
+
+Risk: Long-running or excessive parallel work can consume local and agent-session resources.
+
+Mitigation: Set reasonable per-task timeouts and use the max-concurrency option to limit active sessions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/qiukui666/skills/openclaw-skill-parallel-tasks)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal progress output and Markdown-style summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Aggregates task status, duration, and error details; exits nonzero when any task fails or times out.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

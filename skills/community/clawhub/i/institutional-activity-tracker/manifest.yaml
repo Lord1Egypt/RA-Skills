@@ -1,0 +1,12 @@
+name: 牛股王机构动向
+slug: institutional-activity-tracker
+version: 1.0.0
+description: 牛股王独家研发的A股机构动向追踪工具，涵盖机构关注（分析师评级/研报）与机构调研（实地调研）两大维度，帮助投资者全面掌握机构资金的真实动向与深度关注方向。
+author: 牛股王 (niuguwang.com)
+category: 金融投资
+tags:
+  - A股
+  - 机构
+  - 研报
+  - 调研
+  - 牛股王

@@ -1,48 +1,62 @@
-## Description: <br>
-Create and configure AI agents, attach knowledge for RAG, manage MCP servers, and handle agent memories using the Cargo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Cargo AI agents that work on GTM data: picks the model, writes the prompt, attaches docs for retrieval (RAG), connects MCP tools, manages memories, and deploys releases.
 
-## Publisher: <br>
-[cargo-ai](https://clawhub.ai/user/cargo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cargo-ai](https://clawhub.ai/user/cargo-ai)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Cargo AI agent resources, configure and deploy agent releases, connect MCP servers, and maintain agent-scoped memories from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide commands that change, deploy, or delete live Cargo workspace resources. <br>
-Mitigation: Verify target UUIDs before remove or deploy commands and review draft release contents before making them live. <br>
-Risk: The skill requires Cargo authentication through browser sign-in or an API token. <br>
-Mitigation: Keep Cargo tokens out of shared logs and chats and use only the credentials intended for the target workspace. <br>
-Risk: Agent templates and workflows may support lead research or email-drafting use cases with privacy and anti-spam implications. <br>
-Mitigation: Apply privacy, consent, and anti-spam rules before using generated lead research or email-drafting configurations. <br>
+## Use Case:
 
+Developers and operators use this skill to create and configure Cargo AI agents, attach knowledge resources, connect MCP tools, manage agent memories, and deploy releases.
 
-## Reference(s): <br>
-- [Cargo skills homepage](https://github.com/getcargohq/cargo-skills) <br>
-- [Cargo Ai on ClawHub](https://clawhub.ai/cargo-ai/cargo-ai) <br>
-- [Response Shapes](references/response-shapes.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Agent Examples](references/examples/agents.md) <br>
-- [MCP Server Examples](references/examples/mcp-servers.md) <br>
-- [AI Template Examples](references/examples/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Cargo CLI commands, direct API curl examples, and JSON configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Deployment workflows may affect existing agent settings or live releases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target workspace and release payload, confirm how existing settings are preserved, and try changes on a nonproduction agent first.
+
+Risk: The skill includes chat and document operations beyond its described agent-resource tasks.
+
+Mitigation: Review these operations with the publisher and run only the commands needed for the intended task.
+
+Risk: The documented install command uses an unpinned CLI version.
+
+Mitigation: Select and verify a specific CLI version before installation.
+
+## Reference(s):
+
+- [Cargo skills repository](https://github.com/getcargohq/cargo-skills)
+- [ClawHub cargo-ai release](https://clawhub.ai/cargo-ai/skills/cargo-ai)
+- [Agent examples](artifact/references/examples/agents.md)
+- [MCP server examples](artifact/references/examples/mcp-servers.md)
+- [Response shapes](artifact/references/response-shapes.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown guidance, Shell commands, JSON configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Procedural guidance and examples for agent configuration, deployments, MCP connections, memories, and troubleshooting.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

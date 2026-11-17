@@ -1,46 +1,54 @@
-## Description: <br>
-This skill turns a user's Google Trends request into a confirmed Dataify Scraper API form submission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Trends for keyword interest and trend data through the Dataify Scraper API.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to convert natural-language Google Trends requests into validated Dataify API parameters, confirm the request, and call the bundled helper script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confirmed Google Trends query parameters are sent to Dataify. <br>
-Mitigation: Use the skill only when sending those parameters to Dataify is acceptable, and review the pre-call confirmation table before approving the request. <br>
-Risk: API tokens may be exposed if pasted into chat or command history. <br>
-Mitigation: Prefer the DATAIFY_API_TOKEN environment variable and avoid passing tokens directly in conversation or command-line arguments when possible. <br>
-Risk: Example values or undocumented defaults could produce an unintended query. <br>
-Mitigation: Ask for missing required parameters and rely on the reference document or preview helper for defaults before calling the API. <br>
+## Use Case:
 
+External users and developers use this skill to convert Google Trends requests into Dataify Scraper API calls and return the resulting trend data.
 
-## Reference(s): <br>
-- [Dataify Google Trends API Reference](references/google_trends_api.md) <br>
-- [Dataify API endpoint](https://scraperapi.dataify.com/request) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-google-trends) <br>
-- [Publisher profile](https://clawhub.ai/user/dataify-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown confirmation table, shell command invocation, and raw API response body] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before API calls and returns the API response body without summarizing or reshaping it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill sends Google Trends query parameters to Dataify's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive search terms and use the skill only when external submission to Dataify is acceptable.
+
+Risk: The skill requires a Dataify API token.
+
+Mitigation: Configure DATAIFY_API_TOKEN through the environment, never paste it into chat, and avoid displaying token values in outputs.
+
+## Reference(s):
+
+- [Dataify Google Trends API Reference](references/google_trends_api.md)
+- [Dataify Scraper API endpoint](https://scraperapi.dataify.com/request)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown or raw API response text, depending on the user's requested output mode]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON, HTML, CSV-oriented results, or a pre-call parameter table; token values should not be displayed.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

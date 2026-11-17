@@ -31,6 +31,8 @@ Create the appropriate agent instruction file first, then use it as the project 
    - If the selected file is missing, create it at the repository root unless the project already documents another location.
    - If it exists, update only the parts needed for project initialization.
    - Write concise, actionable instructions that future agents can follow without extra context.
+   - Do not guess, invent, or silently infer requirements, facts, project conventions, or technical choices that are not supported by explicit user input or verified workspace evidence.
+   - When any detail is uncertain or has more than one plausible interpretation, ask the user for confirmation before writing files, running mutating commands, or making implementation decisions.
    - Include concrete commands only after confirming they match the detected toolchain.
    - Require confirmation before proceeding on unclear or underspecified work, such as choosing a technology stack, runtime, database, package manager, deployment target, authentication method, or generated-file source.
    - Require the generated instruction file to tell future agents to ask the user to choose the technology stack before initializing a project when the stack is not already specified.
@@ -48,7 +50,7 @@ Create the appropriate agent instruction file first, then use it as the project 
 
 7. Deliver a concise handoff.
    - Summarize the instruction-file contract, initialized files, validation commands, and any known gaps.
-   - Mention unresolved assumptions only when they affect how the project should be used next.
+   - Mention unresolved unknowns and pending confirmations when they affect how the project should be used next.
 
 8. Include code review rules in the instruction file.
    - Define how agents should review code before or after implementation.
@@ -95,6 +97,9 @@ Use this shape unless the existing repository clearly needs another structure:
 1. Follow existing naming, layering, error handling, and formatting conventions.
 2. Keep changes scoped to the requested task.
 3. Do not overwrite unrelated user changes.
+4. Do not guess or invent missing requirements, facts, conventions, or technical decisions.
+5. Verify claims against explicit user input, repository files, configuration, documentation, or command output.
+6. If a relevant detail is uncertain, ambiguous, conflicting, or cannot be verified, stop and ask the user for confirmation before proceeding.
 
 ## Setup
 
@@ -115,7 +120,7 @@ Use this shape unless the existing repository clearly needs another structure:
 1. Review changes for correctness, regressions, security, maintainability, and test coverage.
 2. Lead with findings ordered by severity, using file and line references when possible.
 3. Keep summaries secondary to concrete issues; state clearly when no issues are found.
-4. Call out unverified behavior, missing tests, or assumptions that affect release risk.
+4. Call out unverified behavior, missing tests, or unresolved uncertainties that affect release risk.
 ```
 
 ## Initialization Rules
@@ -132,6 +137,8 @@ Use this shape unless the existing repository clearly needs another structure:
 
 ## When Details Are Missing
 
-- Make conservative assumptions from repository context when low risk.
-- Ask one direct question when the instruction-file language, active assistant, instruction filename, technology stack, target runtime, database, package manager, deployment target, destructive action, or generated-file source cannot be inferred safely.
+- Do not fill gaps with guesses or unverified assumptions, even when the perceived risk is low.
+- Distinguish verified facts from unknowns using explicit user input and inspectable workspace evidence.
+- Ask one direct question whenever a relevant detail is missing, uncertain, ambiguous, conflicting, or has multiple plausible interpretations.
+- Always obtain confirmation before deciding the instruction-file language, active assistant, instruction filename, technology stack, target runtime, database, package manager, deployment target, destructive action, generated-file source, or any other unspecified choice that affects the result.
 - If the user asks for a specific stack, use that stack even if the directory is otherwise empty.

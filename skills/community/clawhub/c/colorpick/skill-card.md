@@ -1,43 +1,51 @@
-## Description: <br>
-Colorpick helps agents convert color formats, generate palettes and harmonies, check contrast, and produce terminal-oriented color guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ColorPick helps agents convert color formats, generate palettes, find color harmonies, check contrast, and preview colors in terminal.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and designers use Colorpick to convert HEX, RGB, and HSL values, generate palette ideas, find complementary colors, and check WCAG contrast in shell-based design or CSS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Colorpick may persist user-provided command inputs in local history and export files. <br>
-Mitigation: Do not enter secrets, private prompts, client names, filenames, or internal design notes unless local persistence is acceptable. <br>
-Risk: Search and export behavior may expose previously saved colorpick inputs beyond the immediate command session. <br>
-Mitigation: Review generated local data before sharing exports, and prefer an isolated data directory when evaluating the skill. <br>
-Risk: The security scan reports that persistence is not clearly scoped or disclosed. <br>
-Mitigation: Require clear documentation, opt-in logging, configured data-directory handling, export fixes, and a purge command before broad deployment. <br>
+## Use Case:
 
+Developers and designers use this skill to choose palettes, convert HEX, RGB, and HSL values, generate color harmonies, and check WCAG contrast from shell-based tooling.
 
-## Reference(s): <br>
-- [Colorpick ClawHub listing](https://clawhub.ai/ckchzh/colorpick) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local history and export files when the bundled shell wrapper is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Commands may save user-provided color, palette, or design text into persistent local history, which could retain sensitive client or proprietary notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the scripts before installation, avoid sensitive inputs, and remove or make history logging opt-in with clear deletion controls before trusted use.
+
+## Reference(s):
+
+- [ColorPick ClawHub page](https://clawhub.ai/ckchzh/skills/colorpick)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands write local history and exports under the ColorPick data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

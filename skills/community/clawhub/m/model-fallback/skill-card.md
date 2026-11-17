@@ -1,38 +1,49 @@
-## Description: <br>
-Monitors model availability and falls back to backup MiniMax, Kimi, Zhipu, or other OpenAI-compatible models when the primary model fails, slows down, or hits rate limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-model automatic fallback system that monitors model availability and response conditions, then falls back to configured backup models when the primary model is unavailable, slow, or rate-limited.
 
-## Publisher: <br>
-[azure5100](https://clawhub.ai/user/azure5100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[azure5100](https://clawhub.ai/user/azure5100)
 
-## Use Case: <br>
-Developers and external OpenClaw users use this skill to configure automatic model failover, health checks, logging, and task routing across approved providers when primary models are unavailable, slow, rate-limited, or too expensive for simple tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Fallback may send prompts to alternate model providers. <br>
-Mitigation: Configure only approved providers for the intended data classification, and disable or narrow fallback for confidential or regulated prompts. <br>
+## Use Case:
 
+Developers and operators use this skill to configure AI agents with fallback chains across MiniMax, Kimi, Zhipu, and OpenAI-compatible model APIs for availability, latency, rate-limit, and cost-management scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/azure5100/model-fallback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference provider routing decisions, health checks, and fallback logs; provider configuration controls where prompts are sent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md Version section) <br>
+Risk: Fallback can route failed requests, including sensitive prompts or regulated data, to configured backup model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable fallback or restrict the fallback chain to approved providers for sensitive prompts, regulated workloads, or workloads that must remain with a single provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/azure5100/skills/model-fallback)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes fallback-chain configuration, health-check guidance, logging guidance, and manual control commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Visual Benchmarker guides an agent to extract project search keywords, call a Douyin video search skill, and return visual benchmark video cases for confirming visual and editing style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visual Benchmarker is a meta-skill that guides an agent to find Douyin benchmark videos and analyze visual style for a project.
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-Marketing, creative, and content strategy agents use this skill to turn project materials into search keywords, find Douyin reference videos through a dependent search skill, and produce a concise visual benchmarking report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow depends on a separate douyin-video-search skill and that dependency's TikHub API token configuration. <br>
-Mitigation: Review and configure the dependency before use, and confirm the external search service is acceptable for the project context. <br>
-Risk: Search keywords may reveal confidential strategy, product, or campaign details to an external search service. <br>
-Mitigation: Use only keywords that are safe to disclose, and summarize or generalize sensitive project details before searching. <br>
+## Use Case:
 
+Marketing, creative, and content teams use this skill to turn project or product materials into Douyin search keywords, retrieve candidate videos through a separate search skill, and compile visual-style benchmark cases for planning.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ahsbnb/visual-benchmarker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with recommended benchmark videos, links, visual analysis, and reusable creative notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a separate douyin-video-search skill and may pass extracted search keywords to that dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search keywords can expose confidential client, product, personal, or unreleased strategy details to the external search integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive information before extracting keywords or running Douyin searches; confirm keywords with the user when needed.
+
+Risk: Benchmark quality depends on keyword quality and the separate douyin-video-search integration.
+
+Mitigation: Review and adjust keyword sets before relying on selected videos for visual direction.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahsbnb/skills/visual-benchmarker)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Markdown]
+
+**Output Format:** [Markdown report with benchmark video links and concise visual analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes at least 3 recommended videos with links, highlights, and reusable visual elements.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

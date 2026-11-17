@@ -1,43 +1,62 @@
-## Description: <br>
-Manage projects and tasks with the Forge project management API via MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+XferOps Forge helps agents install the Forge MCP server and manage Forge project tasks, boards, columns, comments, and team membership through documented MCP workflows.
 
-## Publisher: <br>
-[parker-xferops](https://clawhub.ai/user/parker-xferops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parker-xferops](https://clawhub.ai/user/parker-xferops)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to configure Forge MCP access, manage Forge boards and team membership, and move development tickets through the daily workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill configures an npm-based Forge MCP adapter that can act on project data. <br>
-Mitigation: Install it only from a trusted environment after confirming trust in the Forge service, @xferops/forge-mcp package, and publisher. <br>
-Risk: Forge API tokens can authorize changes to tasks, boards, columns, and team membership. <br>
-Mitigation: Use a scoped, revocable token and store it only in trusted local configuration or a secret manager. <br>
-Risk: Some documented operations are destructive, including deleting projects, deleting columns, and changing team membership. <br>
-Mitigation: Require explicit confirmation before destructive actions and move or back up relevant project data before deletion. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to configure Forge MCP access, move tickets through the development workflow, add status comments, link pull requests, and administer Forge boards when appropriate.
 
-## Reference(s): <br>
-- [Forge service](https://forge.xferops.dev) <br>
-- [XferOps Forge on ClawHub](https://clawhub.ai/parker-xferops/xferops-forge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Forge MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The setup flow runs @xferops/forge-mcp through npx without a pinned package version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin @xferops/forge-mcp to a reviewed version before installation.
+
+Risk: Forge access depends on FORGE_TOKEN credentials.
+
+Mitigation: Use a least-privilege Forge token and rotate it if setup or usage exposes it.
+
+Risk: Board administration actions can delete projects or columns and add team members.
+
+Mitigation: Restrict board-admin use to authorized operators and review destructive actions before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parker-xferops/skills/xferops-forge)
+- [Forge API Service](https://forge.xferops.dev)
+- [Forge Skills Overview](artifact/SKILL.md)
+- [Forge Setup](artifact/forge-setup/SKILL.md)
+- [Forge Dev Workflow](artifact/forge-dev-workflow/SKILL.md)
+- [Forge Board Administration](artifact/forge-board-admin/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration snippets, and Forge MCP tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance and proposed MCP actions; execution requires a configured Forge endpoint and token.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "LP Setup"
+  short_description: "Verify LP data and execution tool readiness"
+  default_prompt: "Use $lp-setup to verify my chain connection and identify the tools needed for my first LP task."

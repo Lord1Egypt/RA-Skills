@@ -1,0 +1,30 @@
+{
+  "title": "AI-FLO Data",
+  "description": "Family-scoped data shape for AI-FLO (Flow Orchestrator). One file per family — tracks all projects.",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema": {"type":"string"},
+    "$schemaVersion": {"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy": {"type":"string","const":"AI-DFE"},
+    "$generatedOn": {"type":"string","format":"date-time"},
+    "$family": {"type":"string"},
+    "$package": {"type":"string","const":"ai-flo"},
+    "data": {
+      "type":"object",
+      "required":["topologyMode"],
+      "properties": {
+        "topologyMode": {"type":["integer","null"],"enum":[1,2,3,null]},
+        "version": {"type":["string","null"]},
+        "created": {"type":["string","null"]},
+        "lastUpdated": {"type":["string","null"]},
+        "configuration": {"type":["object","null"],"properties":{"holdTimeout":{"type":["string","null"]},"optionalFeedWait":{"type":["string","null"]},"stallThreshold":{"type":["string","null"]},"autoResolveRule":{"type":["string","null"]},"rollUpSchedule":{"type":["string","null"]}}},
+        "projects": {"type":"array","items":{"type":"object","required":["projectId"],"properties":{"projectId":{"type":"string"},"workspaceRef":{"type":["string","null"]},"currentPackage":{"type":["string","null"]},"currentStatus":{"type":["string","null"]},"nextHop":{"type":["string","null"]},"priority":{"type":["integer","null"]},"dispatched":{"type":["string","null"]},"lastActivity":{"type":["string","null"]},"profile":{"type":["string","null"]},"reworkCount":{"type":["integer","null"]},"toggles":{"type":"array","items":{"type":"object","properties":{"package":{"type":"string"},"status":{"type":"string"},"toggled":{"type":["string","null"]},"reason":{"type":["string","null"]},"operator":{"type":["string","null"]}}}},"positionHistory":{"type":"array","items":{"type":"object","properties":{"date":{"type":"string"},"from":{"type":["string","null"]},"to":{"type":"string"},"trigger":{"type":["string","null"]},"operator":{"type":["string","null"]}}}}}}},
+        "routes": {"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"from":{"type":"string"},"to":{"type":"string"},"type":{"type":"string"},"condition":{"type":["string","null"]},"active":{"type":"boolean"}}}},
+        "fanInRules": {"type":"array","items":{"type":"object","properties":{"target":{"type":"string"},"requiredFeeds":{"type":["string","null"]},"optionalFeeds":{"type":["string","null"]},"minimumReadiness":{"type":["string","null"]}}}},
+        "packageAvailability": {"type":"array","items":{"type":"object","properties":{"package":{"type":"string"},"detected":{"type":"boolean"},"markerLocation":{"type":["string","null"]}}}},
+        "routingLogEntryCount": {"type":["integer","null"]}
+      }
+    }
+  }
+}

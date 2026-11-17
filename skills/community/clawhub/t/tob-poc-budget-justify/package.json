@@ -1,0 +1,15 @@
+{
+  "name": "tob-poc-budget-justify",
+  "version": "1.0.0",
+  "description": "ToB POC预算论证助手。输入客户/行业/POC目标，输出POC范围界定+资源估算+预算论证。",
+  "main": "src/generator.js",
+  "bin": {
+    "tob-poc-budget-justify": "./cli.js"
+  },
+  "scripts": {
+    "start": "node src/generator.js",
+    "test": "node src/generator.js --client '测试' --industry '零售' --poc-goal '验证AI客服'"
+  },
+  "keywords": ["tob", "sales", "poc", "budget", "justify", "presales"],
+  "license": "MIT-0"
+}

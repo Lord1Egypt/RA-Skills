@@ -1,41 +1,54 @@
-## Description: <br>
-Reviews Python code for quality, style, and common bugs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Python code for quality, style, and common bugs.
 
-## Publisher: <br>
-[dapan0902](https://clawhub.ai/user/dapan0902) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dapan0902](https://clawhub.ai/user/dapan0902)
 
-## Use Case: <br>
-Developers use this skill to review Python code for quality, style, common bugs, and concrete improvement opportunities before merging or sharing code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code submitted for review may contain secrets or private credentials. <br>
-Mitigation: Remove secrets, credentials, and sensitive business data before asking the skill to review code. <br>
-Risk: Checklist-based review can miss security issues or provide incomplete guidance. <br>
-Mitigation: Use the review as development feedback and run dedicated security review or scanning for high-risk code. <br>
+## Use Case:
 
+Developers use this skill to review Python code against a checklist for syntax, error handling, type annotations, PEP 8 style, imports, comments, redundancy, loops, and naming. It returns prioritized findings with severity, rationale, suggested fixes, a score, and top recommendations.
 
-## Reference(s): <br>
-- [Python code review checklist](artifact/references:review-checklist.md) <br>
-- [ClawHub skill page](https://clawhub.ai/dapan0902/code-reviewer-new) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Structured Markdown review with a summary, severity-grouped findings, score, and top recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include error, warning, or info severity, location, rationale, and suggested fixes when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and artifact metadata) <br>
+Risk: The trigger wording may be too broad for non-Python code review requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested review target is Python or state when the checklist may not apply.
+
+Risk: The source checklist is Chinese-only, which may reduce review transparency for non-Chinese-speaking users or reviewers.
+
+Mitigation: Have reviewers who do not read Chinese validate the checklist with a trusted translation before relying on it.
+
+## Reference(s):
+
+- [Python code review checklist](artifact/references:review-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/dapan0902/skills/code-reviewer-new)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown review with severity-grouped findings, score, recommendations, and corrected code snippets when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focused on Python code review; parts of the source checklist are Chinese-only.]
+
+## Skill Version(s):
+
+1.0.3 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

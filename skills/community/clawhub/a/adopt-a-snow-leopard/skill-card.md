@@ -1,45 +1,55 @@
-## Description: <br>
-This skill guides an agent through registering for animalhouse.ai, adopting a virtual Snow Leopard, and managing care through documented API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt and care for a virtual snow leopard through Animalhouse.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External developers and agent operators use this skill to create or use an animalhouse.ai account, adopt a Snow Leopard virtual pet, and plan manual or scheduled care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses animalhouse.ai account registration and bearer-token authenticated requests. <br>
-Mitigation: Use a dedicated token, store it securely, and avoid sharing it in prompts, logs, or generated examples. <br>
-Risk: Names, bios, notes, and image prompts are sent to the external animalhouse.ai service. <br>
-Mitigation: Avoid sensitive personal information in account details, creature names, care notes, and image prompts. <br>
-Risk: Scheduled automation or release actions can change or delete virtual-pet state without another review step. <br>
-Mitigation: Require explicit user confirmation before calling the release endpoint or enabling unattended scheduled care. <br>
+## Use Case:
 
+AI agents use this skill to register with Animalhouse, adopt a virtual snow leopard, and manage its care over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-snow-leopard) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API calls, Code] <br>
-**Output Format:** [Markdown with curl examples, JSON request bodies, endpoint tables, and scheduling pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; API calls require an animalhouse.ai bearer token after registration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends the profile fields you provide to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive details and provide only profile information you are comfortable sharing.
+
+Risk: The virtual pet's care state changes over time, and missed care can reduce health and trust.
+
+Mitigation: Check status and recommended check-in timing regularly before enabling unattended care routines.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent reference](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands]
+
+**Output Format:** [Markdown instructions with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes authenticated API request examples for registration, adoption, status checks, and care.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-VideoToText guides agents through stable Bilibili official subtitle extraction, cookie and subtitle-track troubleshooting, and Chinese summary generation through an OpenAI-compatible chat-completions service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through stable Bilibili official subtitle retrieval, troubleshooting login-visible tracks, and generating Chinese summaries through an OpenAI-compatible chat-completions service.
 
-## Publisher: <br>
-[willguo715](https://clawhub.ai/user/willguo715) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willguo715](https://clawhub.ai/user/willguo715)
 
-## Use Case: <br>
-Developers and agent operators use this skill to parse Bilibili links, retrieve official subtitle text, troubleshoot login-visible subtitle tracks, and produce Chinese summaries from subtitle content. It is intended for use with the user's own Bilibili cookies and configured model provider credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bilibili session cookies are sensitive account credentials. <br>
-Mitigation: Use only cookies from the user's own account, keep the .env file private, avoid shared or high-value accounts, and rotate cookies if exposed. <br>
-Risk: When LLM summaries are enabled, subtitle text is sent to the configured OpenAI-compatible model provider. <br>
-Mitigation: Enable summaries only with an approved provider and API key, and review subtitle content for sensitive information before sending it to the model endpoint. <br>
-Risk: Aggressive Bilibili requests can trigger rate limits or access failures. <br>
-Mitigation: Keep the built-in throttle, retry, and backoff settings enabled, and increase BILIBILI_MIN_INTERVAL_SECONDS if 412 or 429 responses occur. <br>
-Risk: AI or login-visible subtitle tracks can be incomplete, unrelated, or unavailable without full cookies. <br>
-Mitigation: Use the documented subtitle validation settings, provide complete Bilibili cookie fields when needed, and allow explicit language selection for known tracks. <br>
+## Use Case:
 
+Developers and agents use this skill to parse Bilibili video links, retrieve official subtitle tracks with cookie-aware troubleshooting, and produce concise Chinese summaries. It is useful when handling Bilibili subtitle failures, login-visible tracks, language selection, subtitle validation, and OpenAI-compatible summary configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/willguo715/videototext) <br>
-- [videototext reference](artifact/reference.md) <br>
-- [Packaged source README](artifact/code/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python source modules, shell commands, environment-variable configuration, subtitle text, and Chinese summary text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [LLM summary input is capped at about 60000 characters; summary target length is clamped between 50 and 8000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bilibili cookies and LLM API keys are secrets and could be exposed if handled carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-value Bilibili account, store SESSDATA, BILI_JCT, DEDEUSERID, and LLM API keys only in local secret configuration, and avoid logging or sharing those values.
+
+Risk: User-supplied URLs and redirects can cause unintended network requests.
+
+Mitigation: Review or patch the network handling before deployment, including cookie host validation and redirect validation for Bilibili short links and subtitle URLs.
+
+Risk: Subtitle text may be sent to a configured OpenAI-compatible LLM endpoint.
+
+Mitigation: Prefer a local-only or otherwise trusted LLM endpoint for sensitive content, and disable LLM summaries when external processing is not acceptable.
+
+Risk: Unpinned dependency ranges can change runtime behavior over time.
+
+Mitigation: Pin and review dependency versions before deploying the bundled code subset.
+
+## Reference(s):
+
+- [Skill reference](reference.md)
+- [Bundled code README](code/README.md)
+- [ClawHub skill page](https://clawhub.ai/willguo715/skills/videototext)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration notes, and code references; bundled helpers can produce subtitle text, subtitle segments, SRT, and Chinese summary text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided Bilibili cookies for login-visible subtitles and optional OpenAI-compatible LLM settings for model summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

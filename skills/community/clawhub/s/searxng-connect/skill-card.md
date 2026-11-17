@@ -1,45 +1,58 @@
-## Description: <br>
-Connect to and search the web using SearXNG (privacy-focused meta search engine). No API keys needed - all searches go through your self-hosted SearXNG instance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to and search the web using SearXNG, a privacy-focused meta search engine, without API keys through a self-hosted SearXNG instance.
 
-## Publisher: <br>
-[rdeangel](https://clawhub.ai/user/rdeangel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rdeangel](https://clawhub.ai/user/rdeangel)
 
-## Use Case: <br>
-Developers and agents use this skill to search web, news, image, science, file, video, music, social media, and IT results through a configured SearXNG instance. It supports time filters, language settings, safe search, local result caching, rate limiting, and optional full-page content retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to the configured SearXNG instance. <br>
-Mitigation: Use a trusted SearXNG instance and avoid searching secrets, internal identifiers, or other sensitive content on untrusted instances. <br>
-Risk: The --full-content option makes direct requests to result websites. <br>
-Mitigation: Enable full-content retrieval only when those outbound requests and the resulting page content collection are acceptable. <br>
-Risk: Local caching can retain sensitive search results for the configured cache period. <br>
-Mitigation: Disable caching with --no-cache for sensitive searches or periodically clear the local cache. <br>
-Risk: Unsafe shell interpolation of user queries could allow command injection. <br>
-Mitigation: Pass query text and options as an argv list, or properly shell-escape query strings when only shell-string execution is available. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent search web, news, image, science, file, video, music, social media, and IT results through a configured SearXNG instance. It supports time filtering, language selection, safe-search control, optional full-content fetching, caching, and structured search output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rdeangel/searxng-connect) <br>
-- [Publisher profile](https://clawhub.ai/user/rdeangel) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results with metadata and error responses; Markdown guidance with inline shell commands in the skill documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include title, URL, snippet, image URL, engine, score, and optional fetched page text; local cache entries expire after the configured interval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill-config.json) <br>
+Risk: Searches and optional full-content fetching broaden the agent's network reach beyond the configured SearXNG instance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted SearXNG instance and avoid full-content mode in sensitive environments.
+
+Risk: Cached search results can retain local search history.
+
+Mitigation: Disable cache for confidential searches and treat cached results as locally retained browsing/search data.
+
+Risk: The security review flagged the release as suspicious because network reach and caching are not fully scoped by the privacy framing.
+
+Mitigation: Review the skill before installing and confirm the configured instance, cache settings, and search behavior match the deployment's risk tolerance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rdeangel/skills/searxng-connect)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search result or error object, with optional full-content text fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and Python 3.9+; connects to the configured SearXNG instance; local cache defaults to 1 hour.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill-config.json, README.md, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

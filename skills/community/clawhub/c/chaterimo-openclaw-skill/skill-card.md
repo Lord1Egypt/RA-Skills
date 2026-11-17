@@ -1,42 +1,55 @@
-## Description: <br>
-AI Customer Service for Shopify & E-commerce - Query conversations, analyze chatbot performance, and manage your Chaterimo AI assistant <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Customer Service for Shopify & E-commerce - Query conversations, analyze chatbot performance, and manage your Chaterimo AI assistant.
 
-## Publisher: <br>
-[Caebixus](https://clawhub.ai/user/Caebixus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[caebixus](https://clawhub.ai/user/caebixus)
 
-## Use Case: <br>
-External developers and e-commerce operators use this skill to connect an agent to Chaterimo, list chatbots, browse support conversations, and read redacted conversation transcripts for customer-service analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The configured API key may allow an agent to read Chaterimo chatbot and customer conversation data. <br>
-Mitigation: Use a read-only, least-privilege API key and revoke it when no longer needed. <br>
-Risk: Conversation text can contain sensitive customer information even when PII redaction is advertised. <br>
-Mitigation: Avoid exposing API keys or returned conversation data in prompts or logs, and treat all returned transcripts as sensitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Chaterimo skill page](https://clawhub.ai/Caebixus/chaterimo-openclaw-skill) <br>
-- [Chaterimo website](https://www.chaterimo.com) <br>
-- [Chaterimo API keys](https://www.chaterimo.com/account/api-keys/) <br>
-- [How to connect Chaterimo with Shopify](https://www.chaterimo.com/en/blog/shopify-ai-customer-service/) <br>
+## Use Case:
 
+External e-commerce operators and support teams use this skill to query Chaterimo chatbots, browse recent customer conversations, read transcripts, and analyze chatbot support activity across supported store platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown responses with Chaterimo API query results and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CHATERIMO_API_KEY; returned conversation text should be treated as sensitive.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read chatbot configuration and customer conversation content from the connected Chaterimo account.
+
+Mitigation: Install only where Chaterimo is trusted with this data, and use a scoped, revocable API key where possible.
+
+Risk: Conversation outputs may still contain sensitive business or customer context even when PII redaction is applied.
+
+Mitigation: Limit access to authorized users and review generated summaries before sharing them outside approved systems.
+
+## Reference(s):
+
+- [Chaterimo website](https://www.chaterimo.com)
+- [Chaterimo API keys](https://www.chaterimo.com/account/api-keys/)
+- [Shopify AI customer service guide](https://www.chaterimo.com/en/blog/shopify-ai-customer-service/)
+- [ClawHub skill page](https://clawhub.ai/caebixus/skills/chaterimo-openclaw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown responses with API-derived chatbot and conversation summaries plus setup guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CHATERIMO_API_KEY for account-scoped read access.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

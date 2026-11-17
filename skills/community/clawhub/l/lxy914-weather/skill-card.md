@@ -1,41 +1,50 @@
-## Description: <br>
-和风天气 API 查询服务，支持实时天气、天气预报和小时预报。使用城市名称进行查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+和风天气 API 查询服务，支持实时天气、天气预报和小时预报。使用城市名称进行查询。
 
-## Publisher: <br>
-[lxy914](https://clawhub.ai/user/lxy914) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxy914](https://clawhub.ai/user/lxy914)
 
-## Use Case: <br>
-Developers and agents use this skill to query QWeather for current conditions, daily forecasts, and hourly forecasts by city name or location ID. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured weather API host receives the QWeather API key with each request. <br>
-Mitigation: Use the official QWeather API host for the account and keep QWEATHER_API_KEY private. <br>
-Risk: Weather output may be delayed or constrained by service quota. <br>
-Mitigation: Account for the documented 5-20 minute real-time data delay and monitor QWeather request limits before relying on repeated queries. <br>
+## Use Case:
 
+Developers and agent users use this skill to query QWeather for current weather, daily forecasts, and hourly forecasts by city name or location ID.
 
-## Reference(s): <br>
-- [QWeather Developer Portal](https://dev.qweather.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lxy914/lxy914-weather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON weather results with Markdown usage guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QWEATHER_API_KEY and QWEATHER_BASE_URL environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The configured QWEATHER_BASE_URL receives the API key and city or location queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store QWEATHER_API_KEY as a secret environment variable and set QWEATHER_BASE_URL only to the official HTTPS QWeather host for the account.
+
+## Reference(s):
+
+- [QWeather Developer Portal](https://dev.qweather.com/)
+- [ClawHub Skill Release](https://clawhub.ai/lxy914/skills/lxy914-weather)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration guidance]
+
+**Output Format:** [Plain text or JSON from a Python command-line helper, with Markdown usage examples in the skill instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QWEATHER_API_KEY and QWEATHER_BASE_URL environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

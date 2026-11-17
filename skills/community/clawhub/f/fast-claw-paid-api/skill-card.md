@@ -1,42 +1,57 @@
-## Description: <br>
-为 Fast Claw 付费演示微服务获取、保存、充值并使用持久 API key。适用于需要发起购买或充值 checkout 流程、把返回的 API key 本地缓存、查询账户余额，或携带 API key 调用 Fast Claw 微服务的场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为 Fast Claw 付费演示微服务获取、保存、充值并使用持久 API key，支持发起购买或充值 checkout 流程、缓存 API key、查询账户余额，并携带 API key 调用 Fast Claw 微服务。
 
-## Publisher: <br>
-[coder-pig](https://clawhub.ai/user/coder-pig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coder-pig](https://clawhub.ai/user/coder-pig)
 
-## Use Case: <br>
-Developers and agent operators use this skill to purchase or top up Fast Claw credits, cache a local API key, check account status, and invoke the paid Fast Claw service through the bundled client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the Fast Claw API key locally in plaintext. <br>
-Mitigation: Treat the API-key file as a sensitive secret, set a controlled path when needed, and remove it with clear-api-key when no longer required. <br>
-Risk: The checkout flow can initiate paid Fast Claw purchases or top-ups. <br>
-Mitigation: Review the checkout page, credit amount, and service URL before completing payment. <br>
-Risk: A misconfigured service URL could send prompts or API keys to the wrong endpoint. <br>
-Mitigation: Verify FAST_CLAW_SERVICE_URL before invoking the service or starting checkout. <br>
+## Use Case:
 
+Developers and agents use this skill to manage a local Fast Claw API key, start purchase or top-up checkout flows, inspect account status, invoke the paid service, and poll longer-running report jobs.
 
-## Reference(s): <br>
-- [Fast Claw service API reference](references/service-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON service responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local plaintext API-key cache and a configurable Fast Claw service URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release evidence) <br>
+Risk: Reusable payment-service credentials are cached locally and can authorize paid Fast Claw requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat ~/.fast-claw/api-key.json and any path set through FAST_CLAW_API_KEY_PATH or FAST_CLAW_TOKEN_PATH as secrets; avoid sharing, logging, or storing them in synchronized folders.
+
+Risk: Configured service endpoints receive prompts and API keys, and paid actions can spend account credits.
+
+Mitigation: Use only a trusted HTTPS Fast Claw service URL and confirm before purchase, top-up, invoke, or report commands.
+
+Risk: Passing API keys as command-line arguments can expose them through shell history or process listings.
+
+Mitigation: Prefer existing local API key storage or controlled environment-specific secret handling instead of passing credentials directly on the command line.
+
+## Reference(s):
+
+- [Fast Claw 服务接口说明](references/service-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local API key status, checkout URLs, masked credentials, account balance responses, invocation responses, report job IDs, and completed report text.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

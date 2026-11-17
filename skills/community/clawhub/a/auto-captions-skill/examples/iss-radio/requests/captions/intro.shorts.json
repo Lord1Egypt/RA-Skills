@@ -1,0 +1,28 @@
+{
+ "content": [
+  {
+   "text": "16 orbits a day: that's life on the International Space Station. NASA astronaut Nichole Ayers says hello from orbit. #ISS #NASA #space",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId of captioned/intro/intro.vertical.en.mp4>"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-26T20:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "<connect this account>",
+   "title": "Hello from the ISS: 16 orbits a day",
+   "privacy": "public",
+   "madeForKids": false,
+   "category": "28"
+  }
+ ],
+ "autoDeleteMediaAfterPublish": false
+}

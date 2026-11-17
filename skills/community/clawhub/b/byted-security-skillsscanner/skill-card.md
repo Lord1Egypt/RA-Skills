@@ -1,45 +1,62 @@
-## Description: <br>
-Audits and scans OpenClaw skills for security risks by uploading a target skill directory or archive to a Volcengine scanning service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw skills for potential security risks by packaging a target skill and submitting it to a Volcengine or configured scan service.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to submit OpenClaw skill directories or archives for Volcengine security scanning and receive JSON results that can be summarized for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected skill or archive contents may be uploaded to Volcengine or another configured scan endpoint. <br>
-Mitigation: Review the target directory for secrets or proprietary data before scanning and use only approved scan endpoints. <br>
-Risk: Cloud scan credentials are used to sign API requests. <br>
-Mitigation: Use dedicated least-privilege Volcengine credentials and configure them through the approved OpenClaw configuration or environment mechanism. <br>
-Risk: Small upload bodies may be echoed in terminal or CI logs. <br>
-Mitigation: Avoid scanning sensitive small archives in shared terminals or CI, and review logs for accidental disclosure. <br>
-Risk: Untrusted archives are unpacked and repackaged before upload. <br>
-Mitigation: Inspect archives before scanning and avoid running the script on untrusted archive inputs. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan OpenClaw skill directories or archives during development and periodic audit workflows. It helps surface scan results and recommended remediation steps before deployment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/byted-security-skillsscanner) <br>
-- [Volcengine Access Key Guide](https://www.volcengine.com/docs/6291/65568?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON array from the scan script and Markdown security report text for the user] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a target skill name, an absolute skill or archive path, and Volcengine credentials or a configured scan endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Scanned skill archives can include secrets or sensitive files and may be uploaded to a Volcengine or configured scan service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove secrets and review target contents before scanning; use only approved service endpoints.
+
+Risk: Custom SCAN_BASE_URL or SCAN_SERVICE_HOST values can redirect uploaded scan content.
+
+Mitigation: Verify scan endpoint environment variables before running the scanner.
+
+Risk: Untrusted skill directories with symlinks may expose files outside the intended target.
+
+Mitigation: Avoid scanning untrusted skill directories with symlinks and inspect target paths before upload.
+
+Risk: Retained shell or CI logs may capture request-body previews or scan-related details.
+
+Mitigation: Run scans only in approved local shells or controlled environments where logs are protected.
+
+## Reference(s):
+
+- [Volcengine access key documentation](https://www.volcengine.com/docs/6291/65568?lang=zh)
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-security-skillsscanner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON scan results and Markdown security reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a target skill name and path plus Volcengine or configured scan service credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

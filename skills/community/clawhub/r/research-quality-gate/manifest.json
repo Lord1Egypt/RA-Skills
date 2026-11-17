@@ -1,0 +1,9 @@
+{
+  "name": "research-quality-gate",
+  "normalizedName": "research-quality-gate",
+  "description": "调研 / 情报产物的质量门禁与多 agent 协作规范，用于回答「这份调研报告靠不靠谱」「结论有没有过度推断」「怎么判断评估本身有没有偏」这类问题。给调研报告做「6 格证据卡」合理性检查、5 维 LLM-as-Judge 评分（含原子声明拆解与偏见控制），并规定专家团内部协作范式。全程按真实参照法执行——每条声明拆到原子级并核对来源，无来源不主张；评审记录按证据链审计留痕。含国际理论对齐表、ISO 5725 稳定性自证与治理对标；PDCA 顶层框架（Plan Brief → Do 并行 → Check 门禁 → Act 固化）与 ISO 9001 / 14001 / 27001 / 17025 同构；评估前置的范围边界核对（先对照既定范围，忌把范围外未做误判为做得不好）；R&R 实操模板（客观 grounding 率 + N=5 复跑 + 配置变体）并据 FACTS / Judge-Ben",
+  "author": "诺衡(Krites)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.7.0",
+  "license": "MIT"
+}

@@ -1,41 +1,56 @@
-## Description: <br>
-Provides a Fang Hongbo-inspired management perspective for strategic decisions, organizational restructuring, digital transformation, globalization, and professional manager development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language business-management persona that answers from a Fang Hongbo-inspired perspective for strategy, organization design, digital transformation, and globalization topics.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and business professionals use this skill to analyze management, strategy, organizational change, digital transformation, and globalization questions through a Fang Hongbo-style executive perspective. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the persona during generic management discussions. <br>
-Mitigation: Disable the skill or narrow trigger use when explicit opt-in behavior is preferred. <br>
-Risk: Persona-style business guidance may be mistaken for the real individual's views or for authoritative management advice. <br>
-Mitigation: Treat outputs as an analytical perspective based on public information and review recommendations before acting on them. <br>
+## Use Case:
 
+Business professionals, managers, and strategy teams use this skill to frame career-growth, strategic transformation, organization restructuring, digital transformation, and globalization questions through a concise Chinese-language management perspective.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/fang-hongbo-perspective-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/xiejianjun000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text business analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style responses may be triggered by broad management phrases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: Generic business-management phrases may activate the persona unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit activation wording such as "用方洪波的视角" when the perspective is intended.
+
+Risk: Persona guidance may be mistaken for the real person's current views or decisions.
+
+Mitigation: Treat outputs as a public-information-based perspective aid and review important business decisions against current primary sources and organizational context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/fang-hongbo-perspective-v2)
+- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md)
+- [CONNECTIONS.md](artifact/CONNECTIONS.md)
+- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Chinese-language Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style responses emphasize rational, direct, professional management guidance focused on performance, results, efficiency, learning, change, and long-term value.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

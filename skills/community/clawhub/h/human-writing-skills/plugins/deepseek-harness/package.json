@@ -1,0 +1,51 @@
+{
+  "name": "dsh-advanced-human-writing",
+  "version": "0.3.2",
+  "private": true,
+  "description": "Source adapter for the repository-root DSH writing bundle; publish the root package to include its Python runtime.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whh110112/human-writing-skills.git",
+    "directory": "plugins/deepseek-harness"
+  },
+  "homepage": "https://github.com/whh110112/human-writing-skills/tree/main/plugins/deepseek-harness",
+  "bugs": {
+    "url": "https://github.com/whh110112/human-writing-skills/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "plugin",
+    "mcp",
+    "writing",
+    "long-form-audit",
+    "novel-continuity",
+    "humanizer"
+  ],
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-mcp-client": ">=0.2.0-rc.2 <0.4.0 || >=0.2.0 <0.4.0",
+    "@deepseek-ai/dsh-system-prompt": ">=0.2.0-rc.2 <0.4.0 || >=0.2.0 <0.4.0"
+  }
+}

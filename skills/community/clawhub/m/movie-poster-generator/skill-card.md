@@ -1,41 +1,58 @@
-## Description: <br>
-Create AI-generated movie posters, film posters, and cinema artwork from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create movie posters, film posters, cinema artwork, event posters, fan-made film posters, and theatrical promotional art from text prompts via the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate poster-style image assets from short text descriptions, with optional size presets and reference image identifiers for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Poster prompts and optional reference identifiers are sent to the external TalesOfAI API. <br>
-Mitigation: Avoid including private, personal, regulated, or confidential information in prompts or reference identifiers. <br>
-Risk: The skill requires an API token and the artifact demonstrates passing it on the command line. <br>
-Mitigation: Use shell environment expansion or a secret manager where possible, and avoid storing raw tokens in shared command history, logs, or scripts. <br>
+## Use Case:
 
+External users and developers use this skill to generate movie-poster-style image outputs from text prompts, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/movie-poster-generator) <br>
-- [Neta AI API access](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token, a text prompt, and optional size or reference image parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and package.json) <br>
+Risk: Poster prompts, optional reference image identifiers, and the Neta API token are sent to Neta's service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and avoid prompts or references containing confidential material.
+
+Risk: Passing the API token directly on the command line can expose it through shared terminal history or recordings.
+
+Mitigation: Avoid running token-bearing commands in shared shells or recorded sessions, and rotate the token if exposure is possible.
+
+Risk: Generated poster imagery may be unsuitable for a specific brand, audience, or rights-sensitive use case.
+
+Mitigation: Review generated images before publication and apply the user's content, branding, and rights policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/omactiengartelle/skills/movie-poster-generator)
+- [Neta API token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports square, portrait, landscape, and tall image size presets plus an optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

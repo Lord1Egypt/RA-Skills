@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7epmnjc00p00p37zy9et8pyn80kzy0",
-  "slug": "video-upload-aioz-stream",
-  "version": "1.0.1",
-  "publishedAt": 1770626722904
+  "name": "w3stream-video-upload",
+  "description": "Upload videos to W3Stream API with custom encoding configurations",
+  "version": "1.0.0"
 }

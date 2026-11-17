@@ -1,42 +1,66 @@
-## Description: <br>
-Automated lead generation and enrichment for AI agents that helps find prospects, enrich them with contact and company data, and score them for prioritization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated lead generation and enrichment for AI agents that helps find prospects, enrich them with contact and company data, score them, and prepare them for CRM or outreach workflows.
 
-## Publisher: <br>
-[galacticpuffin](https://clawhub.ai/user/galacticpuffin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[galacticpuffin](https://clawhub.ai/user/galacticpuffin)
 
-## Use Case: <br>
-External users and developers use this skill to configure lead discovery, enrichment, scoring, export, CRM, and webhook workflows for B2B prospecting. It is intended for lawful, approved data sources and should be reviewed before any automated outreach or CRM write actions are enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides broad personal-data collection, enrichment, external exports, and automated outreach without enough built-in scoping or compliance controls. <br>
-Mitigation: Use only lawful, approved data sources; define opt-out, retention, deletion, and compliance rules for generated lead lists; and manually review workflows before operational use. <br>
-Risk: LinkedIn proxy scraping and other scraping-oriented discovery paths can create legal, platform-policy, and operational risk. <br>
-Mitigation: Avoid the LinkedIn proxy-scraping path and prefer approved APIs, public sources, or sources where the user has explicit authorization. <br>
-Risk: External enrichment vendors, webhooks, and CRM integrations can expose unnecessary lead data or write unreviewed records. <br>
-Mitigation: Use least-privileged test credentials, minimize fields sent to enrichment vendors and webhooks, and disable auto-outreach and CRM writes until manually reviewed. <br>
+## Use Case:
 
+Sales, growth, and operations users can use this skill for authorized B2B prospect discovery, enrichment, scoring, and CRM handoff. Agents use it to assemble targeted lead lists, prioritize prospects, and prepare compliant outreach inputs.
 
-## Reference(s): <br>
-- [Lead Hunter release page](https://clawhub.ai/galacticpuffin/lead-hunter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with YAML configuration examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes templates for ICP definitions, discovery sources, enrichment providers, scoring rules, exports, CRM integrations, and webhooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Broad scraping and enrichment workflows may collect personal or contact data without adequate authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized, compliant sources and approved enrichment providers; document permission and honor suppression lists before collecting or using lead data.
+
+Risk: LinkedIn proxy or evasion-oriented workflows may violate platform rules or organizational policy.
+
+Mitigation: Disable LinkedIn proxy or evasion guidance and rely on approved APIs, permitted exports, or other compliant discovery channels.
+
+Risk: Guessed or historical personal-email harvesting and SMTP pings can create privacy, consent, and deliverability risk.
+
+Mitigation: Do not use guessed or historical personal-email collection or SMTP ping validation; use approved verification providers and reject contacts that cannot be validated compliantly.
+
+Risk: Automatic outreach and full lead-record webhooks may send sensitive contact data to unintended recipients.
+
+Mitigation: Require documented outreach permission, keep human or policy approval in the outreach path, use vetted HTTPS webhook destinations, and send minimized fields rather than full lead records.
+
+## Reference(s):
+
+- [Lead Hunter on ClawHub](https://clawhub.ai/galacticpuffin/skills/lead-hunter)
+- [ICP Configuration](artifact/config/icp.md)
+- [Discovery Sources](artifact/discovery/sources.md)
+- [Email Discovery and Verification](artifact/enrichment/email-discovery.md)
+- [Output and Integrations](artifact/output/integrations.md)
+- [Lead Scoring](artifact/scoring/lead-scoring.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation with YAML configuration snippets, CLI examples, lead scoring guidance, and JSON/CSV export guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can prepare CRM-ready lead records and webhook payload guidance; contact fields should be minimized and handled only through approved destinations.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

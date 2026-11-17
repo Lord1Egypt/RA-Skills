@@ -1,42 +1,50 @@
-## Description: <br>
-Intent-based tool selection for OpenClaw agents that recommends relevant tools for the latest user message and returns a short usage hint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intent-based tool selection that recommends relevant OpenClaw tools for the latest user message and returns a short usage hint.
 
-## Publisher: <br>
-[Peter7397](https://clawhub.ai/user/Peter7397) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peter7397](https://clawhub.ai/user/peter7397)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to choose a small, relevant tool set for a user request before calling tools. It is especially aimed at Feishu and Ollama-style setups where reducing tool context can improve reliability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward shell, file, and Feishu tools with broad keyword matching. <br>
-Mitigation: Install only when intent-based tool selection is desired, and review or edit the mappings so sensitive tools such as exec, write, and Feishu management tools require explicit user intent. <br>
-Risk: The README describes optional OpenClaw bundle patching for gateway-level filtering. <br>
-Mitigation: Avoid applying the optional patch unless the exact change has been audited, tested, and can be rolled back. <br>
+## Use Case:
 
+Developers and OpenClaw agent operators use this skill to choose a smaller set of relevant tools for a user turn, especially in Feishu and Ollama-style setups where exposing all tools can increase context size and tool-loop risk.
 
-## Reference(s): <br>
-- [Dynamic Tool on ClawHub](https://clawhub.ai/Peter7397/tooldyn) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Configuration, Shell commands] <br>
-**Output Format:** [JSON object with recommended tool names, hint text, and a short explanatory message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keyword-based recommendations include exec by default and return at most 8 tool names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, manifest.json, clawhub.json) <br>
+Risk: The skill can recommend powerful shell or write-style tools too broadly, and its output could be mistaken for authorization to expose or execute those tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an independent allowlist and require explicit user intent before shell, file write, or Feishu mutation tools are exposed or called.
+
+## Reference(s):
+
+- [Dynamic Tool on ClawHub](https://clawhub.ai/peter7397/skills/tooldyn)
+- [Publisher profile](https://clawhub.ai/user/peter7397)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [JSON-like tool response with recommended tool names, a hint, and a short message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are keyword-based and capped at eight tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, manifest.json, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

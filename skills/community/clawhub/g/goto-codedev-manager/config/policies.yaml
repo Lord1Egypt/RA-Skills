@@ -1,0 +1,45 @@
+# 三级权限策略（沿用 goto-cloudserver-manager 写法）
+# readonly_allowed     —— 只读，自动执行
+# confirmation_required —— 写操作，先返回执行计划，用户确认后才执行
+# forbidden            —— 危险操作，直接拒绝并记审计日志
+#
+# 安全底线（实施思路第十五节）：代码可读、Diff 可析、Migration 可生成草案、测试可跑；
+# 但「改文件 / 写 Migration / 落测试库 / 提交」必须确认；「直连生产库 / 重置历史 / 强推」一律禁止。
+
+policies:
+  default:
+    readonly_allowed:
+      - list_adapters
+      - open_workspace
+      - read_project
+      - detect_stack
+      - read_project_context
+      - get_task_progress
+      - analyze_git_diff
+      - detect_entities
+      - detect_database_changes
+      - run_tests
+      - run_build
+      - generate_schema_contract
+      - generate_report
+
+    confirmation_required:
+      - assign_coding_task
+      - generate_migration
+      - apply_migration_local
+      - git_commit
+
+    forbidden:
+      - apply_migration_prod      # 直连生产库执行 Migration
+      - force_push                # git push --force
+      - drop_migration_history    # 删除/重置 EF Migration 历史
+      - reset_hard                # git reset --hard
+      - delete_branch             # 删除分支
+
+  test:
+    inherits: default
+
+  prod:
+    inherits: default
+    # 生产工作区：连提交也要确认（默认即如此），并禁止本地落库动作
+    confirmation_required_remove: []

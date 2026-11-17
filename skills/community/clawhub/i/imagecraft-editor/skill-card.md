@@ -1,45 +1,61 @@
-## Description: <br>
-Builds AI-powered image editing web applications that use StepFun's step-image-edit-2 API with a Flask backend and React frontend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build AI-powered image editing web applications with StepFun's step-image-edit-2 API for photo restoration, portrait retouching, landscape color grading, and artistic style transfer.
 
-## Publisher: <br>
-[kaiyuanjianghu](https://clawhub.ai/user/kaiyuanjianghu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuanjianghu](https://clawhub.ai/user/kaiyuanjianghu)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold an image editing web app with upload, feature selection, StepFun API calls, before/after comparison, and download support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded images are sent to StepFun for editing. <br>
-Mitigation: Use the skill only when users consent to third-party image processing and are told what service receives the images. <br>
-Risk: The template stores uploaded and generated images without strong disclosure, deletion, or retention controls. <br>
-Mitigation: Add visible consent, retention limits, and deletion controls before using the app with real user photos. <br>
-Risk: A configurable STEPFUN_BASE_URL could send images and credentials to an unapproved endpoint. <br>
-Mitigation: Restrict STEPFUN_BASE_URL to approved StepFun HTTPS endpoints and keep STEPFUN_API_KEY server-side. <br>
+## Use Case:
 
+Developers and external builders use this skill to create a Flask and React image editing application that uploads images, sends them to StepFun's image editing API, and returns downloadable edited results.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kaiyuanjianghu/imagecraft-editor) <br>
-- [StepFun API base URL](https://api.stepfun.com/v1) <br>
-- [StepFun Step Plan API base URL](https://api.stepfun.com/step_plan/v1) <br>
-- [StepFun image edit endpoint](https://api.stepfun.com/v1/images/edit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code and shell command snippets plus project template files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a server-side STEPFUN_API_KEY and sends image payloads to the configured StepFun endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Private or sensitive photos may be uploaded, stored locally, and sent to a third-party image processing API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose third-party processing to users, delete originals and results when no longer needed, and authenticate or expire image URLs.
+
+Risk: API keys and outbound image requests can be exposed or misused if the template is deployed without hardening.
+
+Mitigation: Keep the StepFun API key server-side, allowlist StepFun API hosts, add upload size and rate limits, and update or lock dependencies.
+
+Risk: Development defaults can increase exposure if used directly in production.
+
+Mitigation: Disable Flask debug mode and review the template before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuanjianghu/skills/imagecraft-editor)
+- [Publisher profile](https://clawhub.ai/user/kaiyuanjianghu)
+- [StepFun API base URL](https://api.stepfun.com/v1)
+- [StepFun Step Plan API base URL](https://api.stepfun.com/step_plan/v1)
+- [StepFun image edit endpoint](https://api.stepfun.com/v1/images/edit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, configuration values, and project template files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local web app template with a Flask backend, Vite React frontend, image upload flow, API integration, and download path for generated images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontend package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Use a local DDGS MCP server via mcporter to access web, news, image, video, and book search tools without API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use a local DDGS MCP server over SSE via mcporter to access web, news, image, video, and book search tools without API keys.
 
-## Publisher: <br>
-[firefrog-pepe](https://clawhub.ai/user/firefrog-pepe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firefrog-pepe](https://clawhub.ai/user/firefrog-pepe)
 
-## Use Case: <br>
-Developers and agents use this skill to run general web, news, image, video, and book searches through a local DDGS MCP server exposed via mcporter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on running a local DDGS search service and connecting mcporter to it. <br>
-Mitigation: Keep the service bound to localhost and verify the DDGS server and mcporter configuration before use. <br>
-Risk: Search queries may contain sensitive information and are sent to external search backends through DDGS. <br>
-Mitigation: Avoid sensitive searches and use explicit backend, region, safesearch, and result-limit settings when reproducibility or filtering matters. <br>
-Risk: The optional systemd service can keep the search server running across sessions. <br>
-Mitigation: Enable the persistent service only when intentionally needed, and disable or stop it when the local endpoint should not remain available. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure a local DDGS MCP endpoint and call mcporter-exposed search tools for general web, news, image, video, and book retrieval.
 
-## Reference(s): <br>
-- [Local DDGS API docs](http://localhost:8000/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash command examples and JSON tool-call output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local mcporter calls to DDGS MCP tools for text, news, images, videos, and books search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks users to install an unpinned third-party Python package and expose it through a local service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an on-demand or virtual-environment install, pin package versions for automation, and review the package before deployment.
+
+Risk: The optional systemd service keeps local web search infrastructure running persistently.
+
+Mitigation: Enable the service only when always-on search is required and add local disable, removal, and monitoring controls.
+
+Risk: Search queries are sent through the DDGS service and its configured search backends.
+
+Mitigation: Avoid sending sensitive queries unless the configured backends and local service posture are acceptable for the use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/firefrog-pepe/skills/websearch-ddgs-mcp)
+- [Publisher profile](https://clawhub.ai/user/firefrog-pepe)
+- [Local DDGS API docs](http://localhost:8000/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local service setup steps, mcporter commands, defaults, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

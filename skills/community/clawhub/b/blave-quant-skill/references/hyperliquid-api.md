@@ -6,7 +6,7 @@ All endpoints are prefixed with `https://api.blave.org/hyperliquid/`. Auth heade
 
 ## `GET /hyperliquid/leaderboard`
 
-`sort_by` — default `accountValue`; pass any window key (`week`, `month`, `allTime`) to sort by PnL.
+`sort_by` — default `accountValue`; pass a window key (`day`, `week`, `month`, `allTime`) to sort by PnL. Any other value returns 400 `{"error": "invalid_sort_by", "allowed": [...]}`.
 
 Returns top 100 traders:
 - `ethAddress` — wallet address
@@ -94,6 +94,7 @@ No params. Aggregates positions across top 100 leaderboard traders.
 ```
 
 Cached 5 min.
+If no data has been built yet (or the last rebuild failed and nothing older is kept), returns HTTP 503 `{"error": "top traders position unavailable"}` — retry in about a minute.
 
 ---
 
@@ -122,3 +123,4 @@ No params. Returns trader stats grouped by account size:
 Each bucket: `{stats: {count, profit_ratio, loss_ratio}, positions: {long, short}, long_exposure, short_exposure, net_exposure}`
 
 Returns `{"status": "warming_up"}` with HTTP 202 while cache is building — retry after a few seconds. Cached ~5 min.
+If the last build failed and no cached data exists, returns HTTP 503 `{"error": "bucket stats unavailable"}` — retry in about 3 minutes.

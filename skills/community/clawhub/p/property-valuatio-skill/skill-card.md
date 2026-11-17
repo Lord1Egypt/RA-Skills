@@ -1,40 +1,53 @@
-## Description: <br>
-Provides Canadian home sellers and buyers with data-driven property valuation estimates and tailored pricing strategy based on local market trends and comparable sales. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Canadian home sellers, buyers, and investors with data-driven property value estimates and pricing strategy based on property details, comparable sales, and market trends.
 
-## Publisher: <br>
-[allenweisongzhou-cpu](https://clawhub.ai/user/allenweisongzhou-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenweisongzhou-cpu](https://clawhub.ai/user/allenweisongzhou-cpu)
 
-## Use Case: <br>
-External users, including Canadian homeowners, FSBO sellers, real estate investors, and buyers, use this skill to estimate property value ranges and compare pricing strategies before listing, buying, selling, or negotiating a property. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Canada <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat valuation estimates as a formal appraisal, legal advice, financial advice, or a professional substitute. <br>
-Mitigation: Present outputs as informational estimates and advise users to consult a licensed real-estate professional or certified appraiser before listing, buying, selling, or negotiating. <br>
-Risk: Property valuations can be misleading when property details, comparable sales, or local market trends are incomplete or outdated. <br>
-Mitigation: Encourage users to verify inputs and compare outputs against recent local sales and current market conditions before acting on the guidance. <br>
+## Use Case:
 
+Canadian homeowners, FSBO sellers, real estate investors, and buyers use this skill to estimate market value ranges, compare pricing scenarios, and shape listing strategy. Outputs should support decision-making, not replace a formal appraisal or professional real-estate advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allenweisongzhou-cpu/property-valuatio-skill) <br>
+### Deployment Geography for Use:
 
+Canada
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with estimated value ranges, listing price guidance, scenarios, risks, and opportunities.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational real-estate estimates only; not a formal appraisal, legal advice, financial advice, or a substitute for a licensed professional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill may produce confident pricing estimates that are not formal appraisals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check outputs against current local comparable sales and qualified professional advice before making major buying or selling decisions.
+
+Risk: Pricing guidance can be wrong or stale when user inputs or market data are incomplete.
+
+Mitigation: Provide current property details and recent local market context, then review the estimate for assumptions and gaps.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allenweisongzhou-cpu/skills/property-valuatio-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text with numerical estimates and practical pricing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Estimated market value ranges, suggested listing prices, demand scenarios, and risk notes are based on user-provided property details and available comparable-market context.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,48 @@
-## Description: <br>
-Drafts a pre-development feasibility report for utility-scale, commercial-industrial, or community solar PV projects covering resource assessment, system sizing, interconnection, permitting, financial highlights, and risk flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts a pre-development feasibility report for utility-scale, commercial-industrial, or community solar PV projects, covering resource assessment, system sizing, interconnection, permitting, preliminary financial metrics, and key risks.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Solar developers, renewable energy analysts, project finance associates, and EPC engineers use this skill to create a structured draft feasibility report before capital commitment or advancement into full project development.
+
+### Deployment Geography for Use:
+
+United States
+
+## Known Risks and Mitigations:
+
+Risk: Preliminary feasibility outputs could be mistaken for investment-grade financial, engineering, environmental, permitting, tax, or interconnection conclusions.
+
+Mitigation: Keep outputs labeled as preliminary planning aids and require qualified professional review before business decisions or capital commitments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Solar developers, renewable energy analysts, project finance associates, and EPC engineers use this skill to assemble an early-stage feasibility report before capital commitment or full project development. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-United States <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated feasibility reports could be mistaken for investment-grade financial, tax, engineering, environmental, permitting, or interconnection conclusions. <br>
-Mitigation: Keep outputs labeled as draft preliminary estimates and require review by qualified finance, tax, engineering, environmental, permitting, and interconnection professionals before capital commitments. <br>
-Risk: Missing or estimated project data can affect resource, production, interconnection, permitting, and financial conclusions. <br>
-Mitigation: Record unknowns in the data-gap register, continue with explicit assumptions, and resolve deal-killer items before advancing the project. <br>
+**Output Format:** [Markdown draft feasibility report with tables, permitting and risk matrices, open questions, data gaps, and an unsigned review block.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/archlab-space/solar-project-feasibility-report) <br>
+**Other Properties Related to Output:** [All figures and conclusions are preliminary planning aids and require qualified professional review before business decisions or capital commitments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Draft Markdown report with tables, matrices, open questions, data gaps, and an unsigned review block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial figures must be labeled as preliminary estimates and the report requires qualified professional review before capital commitments.] <br>
+0.1.0 (source: server release evidence and changelog, released 2026-05-30)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence and CHANGELOG, released 2026-05-30) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

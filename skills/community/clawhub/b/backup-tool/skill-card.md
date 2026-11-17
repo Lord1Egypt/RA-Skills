@@ -1,41 +1,57 @@
-## Description: <br>
-Backup and restore files with compression and encryption. Use when user needs to backup important files, create scheduled backups, sync folders, encrypt sensitive backups, or restore from backup archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup Tool helps agents create, inspect, and restore compressed tar archives for file backups.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and operators can use this skill to create, list, and restore compressed tar backups from local paths, including scheduled backup command examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local files during restore operations. <br>
-Mitigation: Review restore destinations before execution and restore only archives from trusted sources. <br>
-Risk: The advertised encryption, incremental backup, and exclude features do not match the implementation. <br>
-Mitigation: Do not rely on those features until the implementation is fixed and verified. <br>
-Risk: Broad scheduled backup paths can capture more local data than intended. <br>
-Mitigation: Review cron entries and backup paths before scheduling automated runs. <br>
+## Use Case:
 
+Developers, operators, and external users can use this skill when an agent needs to create compressed file backups, list archive contents, or restore trusted backup archives.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local archive files when the generated commands are executed by an agent or user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release claims encryption, exclusions, incremental backup, and integrity protections that are not implemented as published.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated archives as plaintext compressed tar files, do not depend on --exclude or incremental behavior, and verify required protections before using the skill for sensitive backups.
+
+Risk: Restoring a crafted or untrusted archive can write outside the chosen destination.
+
+Mitigation: Only restore archives from trusted sources after inspecting their contents, and avoid unattended restores until archive extraction is hardened.
+
+Risk: Broad scheduled backups, such as backing up /home, can capture sensitive files without the documented protections.
+
+Mitigation: Use narrowly scoped source directories, manually confirm archive contents, and avoid unattended broad backups for sensitive systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/backup-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated backup archives, restore destinations, compression options, and security cautions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

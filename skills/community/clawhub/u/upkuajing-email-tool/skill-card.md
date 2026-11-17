@@ -1,48 +1,69 @@
-## Description: <br>
-Official skill for UpKuaJing that sends emails and tracks email task status through email sending, task list, and task record list APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run bulk corporate cold-email campaigns through the UpKuaJing Open Platform API and track task, delivery, open, click, and read status.
 
-## Publisher: <br>
-[upkuajing](https://clawhub.ai/user/upkuajing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upkuajing](https://clawhub.ai/user/upkuajing)
 
-## Use Case: <br>
-External teams, marketers, exporters, and sales users can use this skill to send personalized email campaigns, inspect campaign task lists, and review delivery, open, and click status for individual task records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends email content and recipient data to an external email provider. <br>
-Mitigation: Use only with recipient lists and message content approved for UpKuaJing processing, and confirm the target recipients before sending. <br>
-Risk: The security summary flags account, balance, recharge/payment, and background version-check behavior beyond basic email sending. <br>
-Mitigation: Review the requested action before execution and require explicit confirmation before any recharge, payment, or paid email-send operation. <br>
-Risk: The skill requires a sensitive API credential. <br>
-Mitigation: Store UPKUAJING_API_KEY only in the expected environment or user configuration file and avoid sharing logs or outputs that may expose account details. <br>
+## Use Case:
 
+External business users, exporters, sourcing agents, and sales teams use this skill to submit B2B email campaigns, inspect email task records, and review campaign performance signals through an UpKuaJing API account.
 
-## Reference(s): <br>
-- [Email Send API Reference](references/email-send-api.md) <br>
-- [Email Task List API Reference](references/email-task-list-api.md) <br>
-- [Email Task Record List API Reference](references/email-task-record-list-api.md) <br>
-- [UpKuaJing Homepage](https://www.upkuajing.com) <br>
-- [UpKuaJing Open Platform](https://developer.upkuajing.com/) <br>
-- [UpKuaJing OpenAPI Pricing](https://www.upkuajing.com/web/openapi/price.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/upkuajing/upkuajing-email-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and UPKUAJING_API_KEY; email sending may incur provider fees.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md metadata) <br>
+Risk: Email sending can incur account fees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm recipients, content, and current pricing before any send operation.
+
+Risk: API-key handling may expose credentials if keys are passed on the command line or stored loosely.
+
+Mitigation: Use UPKUAJING_API_KEY from a locked-down environment file and avoid command-line API-key arguments.
+
+Risk: Normal API use performs an automatic vendor version check.
+
+Mitigation: Install only in environments where this additional vendor network call is acceptable.
+
+Risk: Error reports can expose sensitive campaign data if submitted with email bodies, recipient lists, or secrets.
+
+Mitigation: Review and redact error-report context and request details before reporting failures.
+
+## Reference(s):
+
+- [UpKuaJing Skill Page](https://clawhub.ai/upkuajing/skills/upkuajing-email-tool)
+- [UpKuaJing Publisher Profile](https://clawhub.ai/user/upkuajing)
+- [UpKuaJing Homepage](https://www.upkuajing.com)
+- [UpKuaJing Open Platform](https://developer.upkuajing.com/)
+- [UpKuaJing OpenAPI Pricing](https://www.upkuajing.com/web/openapi/price.html)
+- [Email Send API](artifact/references/email-send-api.md)
+- [Email Task List API](artifact/references/email-task-list-api.md)
+- [Email Task Record List API](artifact/references/email-task-record-list-api.md)
+- [Skill Error Report API](artifact/references/skill-error-report-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and UPKUAJING_API_KEY; email sending may incur account fees.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

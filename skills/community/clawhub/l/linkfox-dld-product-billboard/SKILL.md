@@ -168,6 +168,20 @@ The DLD Product Billboard provides access to 1688 platform's product ranking dat
 - Logistics cost calculation or freight forwarding
 
 
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
+## 算力消耗规则
+
+消耗 9 算力。
+
+> 用户会因算力消耗而支付费用。请充分评估：当需要高频调用本技能，或用户对算力消耗量预期不足时，务必提醒用户，由用户决定是否继续。
+
 **Feedback:**
 
 Auto-detect and report feedback via the Feedback API when any of the following apply:

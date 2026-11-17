@@ -1,41 +1,62 @@
-## Description: <br>
-Autonomously provisions and configures an Aleph Cloud VM, installs OpenClaw, and prepares a spawned AI agent to operate on decentralized compute. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomously provision and configure a VM on Aleph Cloud, install the OpenClaw agent framework, and deploy an AI agent runtime.
 
-## Publisher: <br>
-[san-npm](https://clawhub.ai/user/san-npm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[san-npm](https://clawhub.ai/user/san-npm)
 
-## Use Case: <br>
-Developers and operators use this skill to create and configure remote Aleph Cloud instances for OpenClaw agents. It is intended for workflows that require automated VM provisioning, agent runtime setup, credential placement, and follow-on self-deployment capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can provision paid cloud infrastructure recursively through spawned remote agents. <br>
-Mitigation: Require manual approval before each new VM, use budget alerts and low-balance accounts, and maintain a documented shutdown process. <br>
-Risk: Aleph private keys and AI provider API keys may be copied to child VMs. <br>
-Mitigation: Use delegated or per-instance keys where possible, avoid production secrets, restrict file permissions, and rotate any shared keys after use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide an AI agent through creating an Aleph Cloud VM, installing OpenClaw, configuring credentials and gateway access, and transferring identity or skills to the new environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/san-npm/aleph-cloud-self-deployment) <br>
-- [Aleph account portal](https://account.aleph.im/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash, Python, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational setup steps for Aleph Cloud VMs, OpenClaw gateway configuration, credential handling, and shutdown guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2004 (source: server release evidence) <br>
+Risk: Autonomous provisioning can create paid cloud resources and recurring spend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated test account or VM, set hard spending and instance limits outside the agent, and require human approval before provisioning.
+
+Risk: Spawned VMs may receive broad Aleph account credentials or parent private keys.
+
+Mitigation: Use delegated per-child Aleph keys and avoid copying parent keys to child instances.
+
+Risk: Setup examples may expose secrets through command-line arguments, logs, copied files, or weak host verification.
+
+Mitigation: Avoid placing API keys or wallet keys in command-line arguments or logs, verify SSH host keys, and restrict credential files with explicit permissions.
+
+Risk: Dependency installation commands fetch packages and setup scripts at runtime.
+
+Mitigation: Pin and verify dependencies before use in a production or shared environment.
+
+## Reference(s):
+
+- [Aleph account portal](https://account.aleph.im/)
+- [ClawHub skill page](https://clawhub.ai/san-npm/skills/aleph-cloud-self-deployment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash, Python, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides procedural deployment guidance and example commands that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.2004 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

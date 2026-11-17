@@ -69,8 +69,15 @@ controlled browser-task stops and still exit `0`.
   terms, delete, or save account settings. Ask for approval before the
   exact final action unless a matching typed MagicPay approval already covers
   the unchanged page facts.
-- `failed` — runtime, model, browser, or tool failure. Inspect
-  `finalUrl` and the event stream before retrying.
+- `failed` — runtime, model, browser, or tool failure. Branch on
+  `failureCode` and the `retryable` flag before deciding anything:
+  `llm_provider_payment_required`, `llm_provider_auth`,
+  `llm_provider_forbidden`, and `llm_request_invalid` are hard stops that
+  need an account or configuration fix — do not retry them.
+  `max_failures` and `internal_error` come with `retryable: true` and may be
+  retried once. Every failure result carries `agentInstructions`; follow it
+  verbatim and hand the user the manual path at `finalUrl` instead of ending
+  the flow.
 - `max_steps` — the planner did not converge inside the step ceiling.
 - `cancelled` — the act was cancelled mid-run, usually by SIGINT or a
   caller abort.

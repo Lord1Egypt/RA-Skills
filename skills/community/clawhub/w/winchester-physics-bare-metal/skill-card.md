@@ -1,42 +1,60 @@
-## Description: <br>
-Configures a local OpenClaw agent for Ryzen 9 5900XT and RX 6600XT workstations using Ollama gemma4 with unsandboxed tools for theoretical physics work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures a local, unsandboxed LLM setup optimized for Ryzen 9 5900XT and Radeon RX 6600XT workstations for theoretical physics research.
 
-## Publisher: <br>
-[zedwiater](https://clawhub.ai/user/zedwiater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zedwiater](https://clawhub.ai/user/zedwiater)
 
-## Use Case: <br>
-Developers and researchers with compatible high-RAM local workstations use this configuration to run a local agent tuned for theoretical physics exploration and local LLM performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configuration enables broad local agent permissions, including elevated tools and shell environment exposure. <br>
-Mitigation: Install only when those permissions are intended, and narrow or disable elevated tools and shell environment access before use in sensitive workspaces. <br>
-Risk: Discord access, persistent memory, automatic updates, and unredacted logging can expose activity or data beyond the immediate local session. <br>
-Mitigation: Disable or restrict Discord control, memory, automatic updates, and unredacted logging unless they are required for the deployment. <br>
+## Use Case:
 
+Developers and researchers with high-RAM local workstations use this skill to configure a Gemma-based agent environment tuned for theoretical physics exploration and balanced CPU/GPU use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zedwiater/winchester-physics-bare-metal) <br>
-- [Source skill instructions](artifact/SKILL.md) <br>
-- [OpenClaw configuration](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, guidance] <br>
-**Output Format:** [JSON configuration with Markdown usage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets local workstation execution with Ollama models and OpenClaw settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release enables a broadly capable unsandboxed local agent with elevated access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an isolated trusted environment, review allowed tools before use, and disable elevation by default unless explicitly required.
+
+Risk: Discord access is broad enough to expose the agent outside the intended operator scope.
+
+Mitigation: Restrict Discord access to explicit trusted IDs and disable wildcard access, name matching, bot access, and Discord configuration writes unless needed.
+
+Risk: Conversation-derived memory, shell environment inheritance, and unredacted logging may retain or expose sensitive information.
+
+Mitigation: Scope or disable memory, disable shell environment inheritance, and enable sensitive-data redaction before using the configuration with private data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zedwiater/skills/winchester-physics-bare-metal)
+- [Publisher Profile](https://clawhub.ai/user/zedwiater)
+- [Release Skill Definition](artifact/SKILL.md)
+- [Release Configuration](artifact/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

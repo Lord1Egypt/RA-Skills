@@ -1,48 +1,59 @@
-## Description: <br>
-Secure API key management for OpenClaw that stores, lists, tests, and deletes API keys without exposing them in chat history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ipeaky helps OpenClaw users store, list, test, and delete API keys through local workflows that avoid exposing full key values in chat history.
 
-## Publisher: <br>
-[christiancattaneo](https://clawhub.ai/user/christiancattaneo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[christiancattaneo](https://clawhub.ai/user/christiancattaneo)
 
-## Use Case: <br>
-External users and developers use ipeaky to manage provider API keys for OpenClaw skills, including storing keys in OpenClaw config paths, listing masked keys, testing provider credentials, and deleting stored entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Credential-handling safety claims may be stronger than the reviewed behavior. <br>
-Mitigation: Review the credential-handling limits before installation and prefer the v3 single-key storage path over v4 until v4 avoids visible input and argv/env exposure. <br>
-Risk: Key tests send the supplied key to the selected provider API. <br>
-Mitigation: Run provider key tests only when intentional, and use test or least-privileged keys where possible. <br>
-Risk: Paid-tier Stripe scripts can store a Stripe secret and create checkout sessions. <br>
-Mitigation: Do not run the Stripe scripts unless billing setup is intended; review and customize checkout settings before using live credentials. <br>
-Risk: The secure input popup depends on macOS osascript. <br>
-Mitigation: Use the macOS flow where osascript is available; on Linux or Windows, rely on stdin-based input paths documented by the skill. <br>
+## Use Case:
 
+Developers and OpenClaw users use ipeaky to collect API keys through a local macOS secure input flow, store them in OpenClaw configuration, list masked keys, test provider access, and delete keys when no longer needed.
 
-## Reference(s): <br>
-- [ClawHub ipeaky release page](https://clawhub.ai/christiancattaneo/ipeaky) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [README](README.md) <br>
-- [Paid tier README](paid_tier/README-paid.md) <br>
-- [Stripe products dashboard](https://dashboard.stripe.com/products) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and OpenClaw config paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local shell scripts, OpenClaw config operations, and provider or Stripe API calls when the user chooses key testing or billing setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: server release metadata and clawhub.json) <br>
+Risk: API-key handling may expose or mishandle secrets in some scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and use only test or restricted API keys until command-line secret handling, AppleScript input sanitization, and plaintext backup handling are resolved.
+
+Risk: Stripe paid-tier scripts add payment-flow behavior that may not be appropriate for every installation.
+
+Mitigation: Separate, review, or disable the paid-tier scripts unless the Stripe integration is intentionally deployed.
+
+Risk: Stored keys can become available to other OpenClaw skills that request the same environment variable.
+
+Mitigation: Use scoped or restricted keys and verify which installed skills declare matching environment variables before relying on shared key injection.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.ai)
+- [Stripe Dashboard Products](https://dashboard.stripe.com/products)
+- [Stripe Checkout Sessions API](https://api.stripe.com/v1/checkout/sessions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and masked status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include masked key prefixes and provider test results; must not include full secret values.]
+
+## Skill Version(s):
+
+3.2.0 (source: clawhub.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

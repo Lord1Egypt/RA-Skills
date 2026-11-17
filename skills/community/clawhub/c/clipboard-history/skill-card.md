@@ -1,40 +1,53 @@
-## Description: <br>
-Manages clipboard history by saving copied content locally so users can view, search, and restore recent clipboard entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clipboard History helps an agent manage local clipboard history by saving recent copied items for later viewing, search, and restoration.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users and developers use this skill to retain a local clipboard history, then view, search, and restore recent copied content during everyday work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain sensitive clipboard contents in a local history file. <br>
-Mitigation: Treat the history file as sensitive storage, avoid copying passwords or tokens while it is active, and clear saved history regularly. <br>
-Risk: Broad trigger phrases could expose saved clipboard data unexpectedly. <br>
-Mitigation: Require explicit user confirmation before showing or restoring clipboard history, and prefer versions with clear opt-in and delete controls. <br>
+## Use Case:
 
+External users can use this skill to help an agent keep, search, and restore a short local history of copied clipboard content. It is most relevant for personal productivity workflows where retained clipboard data is acceptable.
 
-## Reference(s): <br>
-- [Clipboard History on ClawHub](https://clawhub.ai/534422530/clipboard-history) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses describing clipboard-history actions and results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May surface locally stored clipboard contents; no network use is claimed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Clipboard history can retain sensitive copied text such as passwords, tokens, private documents, or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with explicit consent, restrict or encrypt local storage, support exclusions for sensitive content, and provide a simple purge action.
+
+Risk: Merged and unrelated trigger/content sections may cause confusing or overly broad agent behavior.
+
+Mitigation: Review the skill before installation and remove unrelated learned content, noisy triggers, and irrelevant references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/clipboard-history)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with local configuration details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local clipboard-history behavior, search and restore actions, and local data-retention considerations.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

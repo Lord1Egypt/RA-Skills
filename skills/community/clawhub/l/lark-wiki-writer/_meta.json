@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn70mmv2ph3kbpvkrf6c73bfxs821n5e",
-  "slug": "lark-wiki-writer",
-  "version": "1.0.1",
-  "publishedAt": 1773196845468
+  "name": "lark-wiki-writer",
+  "version": "1.0.0",
+  "description": "飞书知识库文档写入器 - 支持 Markdown 解析、富文本、标题识别",
+  "author": "小满",
+  "tags": ["lark", "feishu", "wiki", "document", "writer", "markdown"],
+  "main": "lark_wiki_writer.py",
+  "license": "MIT"
 }

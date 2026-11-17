@@ -1,0 +1,22 @@
+# 数字资源元数据模板
+# 复制此模板到新资源中并填写相应字段
+
+name: "resource-identifier-here"
+description: "资源描述（10-200字，说明核心内容和用途）"
+metadata:
+  clawdbot:
+    emoji: "📄"
+    requires: []
+  author: "your-name"
+  created: "YYYY-MM-DD"
+  updated: "YYYY-MM-DD"
+  version: "1.0.0"
+  license: "MIT-0"
+  tags:
+    - "tag-1"
+    - "tag-2"
+    - "tag-3"
+  category: "guide|reference|template|data|media"
+  source: ""
+  dependencies: []
+  related: []

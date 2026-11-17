@@ -1,39 +1,58 @@
-## Description: <br>
-Design and implement automation workflows to save time and scale operations as a solopreneur. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automation Workflows helps solopreneurs identify repetitive tasks, choose no-code automation tools, design workflows, and test and maintain automations.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Solopreneurs and business operators use this skill to identify repetitive tasks, choose no-code automation tools, design workflows, test integrations, and maintain automations over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Connecting automation tools to business apps can expose customer, payment, or account data and may grant broad app permissions. <br>
-Mitigation: Review what each connected app can read or change, authorize only the minimum needed access, and avoid sending sensitive customer or payment data to spreadsheets or notifications unless necessary. <br>
-Risk: Automations can fail silently, duplicate actions, or move incorrect data if workflows are not tested and monitored. <br>
-Mitigation: Test with sample data first, add error notifications, review workflow logs, and turn off unused automations periodically. <br>
+## Use Case:
 
+External users and business operators use this skill to plan no-code automations for repetitive solopreneur workflows, including lead capture, reporting, invoicing, CRM updates, and content distribution.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and workflow templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not execute integrations, connect accounts, or call external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Connected automation tools may receive broader app permissions or more sensitive business data than needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege app permissions and test workflows with non-sensitive data before connecting production accounts.
+
+Risk: Automations that send emails, update CRMs, or touch invoices and payments can create customer-impacting mistakes if enabled without review.
+
+Mitigation: Manually review these workflows before activation, test edge cases, and confirm field mappings and payment-related actions.
+
+Risk: Workflow failures or duplicate triggers can cause missed tasks, repeated messages, or incorrect records.
+
+Mitigation: Add error notifications, duplicate checks, and regular log review before relying on a workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/sunshine-automation-workflows)
+- [Publisher profile](https://clawhub.ai/user/sunshine-del-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with checklists, tables, formulas, and workflow templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; examples require user configuration in external automation tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

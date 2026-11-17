@@ -1,39 +1,52 @@
-## Description: <br>
-Download and transcribe YouTube videos using yt-dlp and Whisper CLI, saving audio and transcripts for playback and summary from any YouTube URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download and transcribe YouTube videos using yt-dlp and Whisper CLI, saving audio and transcripts for playback and summary from any YouTube URL.
 
-## Publisher: <br>
-[ogdegenblaze](https://clawhub.ai/user/ogdegenblaze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ogdegenblaze](https://clawhub.ai/user/ogdegenblaze)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to ask an agent to download YouTube audio, transcribe it with Whisper CLI, and return or summarize the transcript while saving the source audio and transcript files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unvalidated URL text can influence local audio and transcript paths that are deleted and rewritten.
+
+Mitigation: Validate exact YouTube hosts and canonical 11-character video IDs before deleting or writing files.
+
+Risk: The skill makes outbound network requests and retains downloaded audio and transcript files in the workspace.
+
+Mitigation: Use only trusted YouTube URLs and review or remove retained audio and transcript files according to local data-handling requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to download audio from a YouTube URL, transcribe it locally with Whisper, and save the transcript for review or summarization. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads YouTube audio and stores both audio and transcripts on disk. <br>
-Mitigation: Use trusted YouTube links, monitor disk usage for long videos, and delete saved media or transcripts when they are no longer needed. <br>
-Risk: Local transcription can take several minutes and may produce imperfect text for long, noisy, or multilingual videos. <br>
-Mitigation: Check video length before running the workflow and review the transcript before relying on it for summaries or decisions. <br>
+**Output Format:** [Plain text transcript output with saved MP3 and TXT files; agent-facing responses may be Markdown with shell commands.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires yt-dlp and Whisper CLI; accepts a YouTube URL and optional language argument.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text transcript with shell command output and saved MP3/TXT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires yt-dlp and Whisper CLI; stores audio and transcript files under kai-yt-videos by video ID.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

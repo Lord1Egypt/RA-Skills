@@ -1,0 +1,22 @@
+# Blog Outline Writer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+outline:
+  working_title: <title>
+  target_keyword: <primary keyword>
+  supporting_keywords:
+    - <keyword>
+  reader: <who this is for>
+  reader_question: <the main question>
+  word_target: <number>
+  sections:
+    - heading: <section heading in question form>
+      points:
+        - <point with a fact>
+      word_budget: <number>
+      needs_source: <yes or no>
+  original_assets:
+    - <chart, dataset or interview>
+  internal_links:
+    - <path on this site>
+  cta: <one action>
+  reviewer: <name or role>

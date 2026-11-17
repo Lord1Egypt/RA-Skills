@@ -1,43 +1,60 @@
-## Description: <br>
-Structured morning briefing skill for daily summaries covering calendar, tasks, weather, news, and priorities, with cron, heartbeat, and on-demand triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured morning briefing skill - daily summaries covering calendar, tasks, weather, news, and priorities, with cron, heartbeat, and on-demand triggers.
 
-## Publisher: <br>
-[Clawdssen](https://clawhub.ai/user/Clawdssen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-NC-4.0 <br>
+## Publisher:
 
+[clawdssen](https://clawhub.ai/user/clawdssen)
 
-## Use Case: <br>
-External users and agent operators use this skill to configure an AI agent to assemble concise daily briefings from calendar, task, weather, news, and priority inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-NC-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated briefings can expose calendar, task, location, or news preferences in the configured delivery channel. <br>
-Mitigation: Review the briefing configuration, enabled data sources, and channel destination before enabling cron or heartbeat delivery. <br>
-Risk: Scheduled callbacks or stored configuration may continue running after setup if they are accepted without review. <br>
-Mitigation: Review scheduled delivery rules and any stored configuration before accepting changes, especially for user data and external delivery destinations. <br>
-Risk: News, weather, calendar, and task summaries may be incomplete or stale if integrations are unavailable. <br>
-Mitigation: Test an on-demand briefing after setup and verify missing sections, timezone, and enabled integrations before relying on automated delivery. <br>
+## Use Case:
 
+External users and agent operators use this skill to configure an AI agent that prepares concise morning briefings from calendar, weather, task, pending-item, news, and priority context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Clawdssen/agent-daily-briefing) <br>
-- [Daily Briefing Advanced Patterns](references/advanced-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown briefing and setup guidance with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Briefings are intended to stay concise, with standard sections for date context, weather, calendar, tasks, pending items, quick reads, and a closing line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release) <br>
+Risk: Briefings may summarize personal calendar, task, location, pending-item, and optional news context into messaging channels.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BRIEFING.md with private delivery channels, disable sections that are not needed, and avoid shared Discord or Telegram destinations for personal data.
+
+Risk: Advanced briefing analytics or memory logging can persist briefing history that contains sensitive personal or work context.
+
+Mitigation: Enable persistent memory logging only when briefing history is desired, and review workspace access and retention expectations before use.
+
+Risk: Weather, calendar, task, and news sections depend on the agent's connected tools and integrations and may be incomplete if those sources are unavailable.
+
+Mitigation: Test an on-demand briefing after setup, verify configured integrations, and disable sections that cannot be reliably sourced.
+
+## Reference(s):
+
+- [Daily Briefing Advanced Patterns](references/advanced-patterns.md)
+- [Agent Daily Briefing on ClawHub](https://clawhub.ai/clawdssen/skills/agent-daily-briefing)
+- [The Agent Ledger](https://www.theagentledger.com)
+- [memory-os dependency](https://clawhub.com/skills/memory-os)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown briefing guidance with configuration snippets and optional shell-style scheduling commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Briefings are intended to be concise, scannable, and typically under 300 words.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

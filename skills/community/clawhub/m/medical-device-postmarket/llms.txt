@@ -1,0 +1,37 @@
+# medical-device-postmarket
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+A hands-on playbook for medical device post-market surveillance (PMS) — four-market obligation comparison (US/EU/CN/JP) covering adverse event reporting, PSUR, FSCA/recall field safety corrective actions and PMCF post-market clinical follow-up, with report timelines and process checklists per market (US 21 CFR 803 30-day death/90-day serious injury, EU MDCG 2022-21 PSUR frequency, China 2018 Order No.1 timelines, Japan PMDA), PMS plan and PSUR writing frameworks, and the monitor-report-correct closed loop. Includes a zero-dependency local toolkit for obligation comparison, timeline queries and PMS/PSUR framework generation. Built for regulatory, quality and clinical leaders — one-stop continuous compliance after certification.
+
+医疗器械上市后监管（Post-Market Surveillance, PMS）实操手册——中美欧日四市场上市后义务对照（不良事件报告、PSUR 定期安全报告、FSCA/召回现场安全纠正、PMCF 上市后临床跟踪）、各市场报告时限与流程清单（美国 21 CFR 803 致死 30 天/严重 90 天、欧盟 MDCG 2022-21 PSUR 频率、中国 2018 年 1 号令报告时限、日本 PMDA）、PMS 计划与 PSUR 撰写框架、监测-报告-纠正闭环落地，附零依赖本地工具一键查询义务对照、报告时限与生成 PMS/PSUR 框架。面向医械法规、质量与临床负责人，拿证后的持续合规一站理清。
+
+## When to use / 什么时候用
+
+- 拿到证以后还要定期交什么报告
+- 客户投诉算不算不良事件要上报
+- 欧盟那个定期安全报告多久交一次
+- 海外客户反馈骨折了要不要召回
+- 经销商报上来的问题几天内得上报
+- 上市后临床跟踪还要不要接着做
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

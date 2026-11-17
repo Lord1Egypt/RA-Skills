@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze medical billing workflows, claim denials, revenue cycle KPIs, payer contracts, coding accuracy, compliance readiness, charge capture, and patient financial responsibility for healthcare billing operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent skill for medical billing analysis, claim denial management, revenue cycle optimization, and healthcare compliance.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Healthcare practices, revenue cycle management companies, billing departments, practice management consultants, and healthcare IT teams use this skill to review billing workflows, denial causes, payer contract issues, coding questions, compliance checklists, and revenue cycle benchmarks. It supports actionable recommendations and draft billing artifacts such as appeal letters, audit checklists, and fee schedule comparisons. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat medical billing, coding, payer contract, or compliance guidance as a vetted legal, compliance, or reimbursement determination. <br>
-Mitigation: Use the skill as reference guidance and have qualified billing, coding, compliance, or legal reviewers validate recommendations before operational use. <br>
-Risk: Users may enter PHI, payer credentials, or live billing-system data while asking for billing analysis. <br>
-Mitigation: Avoid entering PHI, payer credentials, or live production billing data unless the organization has approved the data handling workflow for this agent environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-medical-billing) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Healthcare practices, revenue cycle management companies, billing departments, consultants, and healthcare IT teams use this skill to analyze denial patterns, coding accuracy, payer contracts, revenue cycle KPIs, charge capture, patient responsibility workflows, and compliance readiness.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose, checklists, tables, and draft billing templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference user-provided specialty, payer mix, KPIs, denial codes, payer details, and problem areas; produces non-executable guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share patient-identifying data, claim numbers, member IDs, credentials, full payer contracts, or other sensitive records while asking for billing analysis.
+
+Mitigation: Use aggregated or de-identified information unless the organization has explicitly approved that workflow.
+
+Risk: Billing, coding, payer-contract, and compliance recommendations may be incorrect or incomplete for a specific practice, payer, specialty, or jurisdiction.
+
+Mitigation: Have qualified revenue cycle, coding, legal, or compliance staff review recommendations before changing claims, appeals, contracts, audits, or patient billing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-medical-billing)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text analysis, recommendations, checklists, benchmarks, and draft appeal language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include KPI analysis, denial root-cause summaries, payer contract comparison guidance, coding review prompts, audit checklists, and patient collections workflow recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

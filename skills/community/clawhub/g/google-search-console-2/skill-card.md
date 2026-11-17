@@ -1,42 +1,50 @@
-## Description: <br>
-Guides analysis of Google Search Console data, including search performance metrics, indexing, sitemaps, Core Web Vitals, rich results, and Search Console API usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides analysis of Google Search Console data, including search performance, indexing, sitemaps, Core Web Vitals, rich results, and Search Console API exports.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, SEO practitioners, and site operators use this skill to interpret Google Search Console reports, investigate search performance and indexing changes, and plan audits or follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Google Search Console data can expose site analytics or property-specific performance details. <br>
-Mitigation: Authorize only the intended Google property and avoid sharing exported analytics unless appropriate. <br>
-Risk: API exports, indexing requests, or disavow guidance can affect operational SEO workflows if acted on without review. <br>
-Mitigation: Confirm intended API exports and review indexing or disavow actions before execution. <br>
+## Use Case:
 
+External SEO practitioners, site owners, and developers use this skill to interpret Google Search Console reports or API exports, investigate search performance and indexing changes, and produce prioritized monitoring or remediation guidance.
 
-## Reference(s): <br>
-- [Search Console API](https://developers.google.com/webmaster-tools/about) <br>
-- [searchanalytics.query](https://developers.google.com/webmaster-tools/v1/how-tos/search_analytics) <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/google-search-console-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, API Calls] <br>
-**Output Format:** [Markdown with summaries, metrics, recommendations, action items, and optional API query guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference live Google Search Console data when the user has authorized the relevant property.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill may activate for nearby SEO questions outside Google Search Console analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for a different SEO skill or a narrower scope when the task is about title metadata, schema, traffic analysis, or other non-GSC SEO work.
+
+## Reference(s):
+
+- [Google Search Console API](https://developers.google.com/webmaster-tools/about)
+- [searchanalytics.query](https://developers.google.com/webmaster-tools/v1/how-tos/search_analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summaries, metrics, CTR analysis, title or meta opportunities, action items, correlation notes, and next steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact metadata reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

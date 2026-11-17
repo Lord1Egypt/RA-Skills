@@ -1,44 +1,56 @@
-## Description: <br>
-This skill helps agents fetch live Yahoo Finance market data through the yahoo-finance CLI for quotes, fundamentals, historical prices, options, movers, search, and portfolio value calculations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches live Yahoo Finance market data through a CLI and returns JSON for agent analysis.
 
-## Publisher: <br>
-[gddezero](https://clawhub.ai/user/gddezero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gddezero](https://clawhub.ai/user/gddezero)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill when an assistant needs current Yahoo Finance data instead of relying on memory. It supports quote lookup, fundamentals, historical OHLCV data, options chains, market screeners, ticker search, and portfolio value calculations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may treat market data or analyst fields as financial advice. <br>
-Mitigation: Present the tool output as market data only and avoid framing it as an investment recommendation. <br>
-Risk: The globally installed yahoo-finance command may not be the expected yahoo-finance2 package. <br>
-Mitigation: Confirm the installed command before use in environments where command provenance matters. <br>
-Risk: Yahoo Finance lookups can disclose requested symbols or portfolio holdings to an external data service. <br>
-Mitigation: Use the skill only when the user is comfortable sending those lookup terms to Yahoo Finance. <br>
-Risk: Invalid or incorrectly formatted symbols can produce undefined output or stale records instead of valid current JSON. <br>
-Mitigation: Validate symbols, apply documented exchange-specific formatting rules, and check returned market and price fields before relying on results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gddezero/yfinance-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/gddezero) <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve current quotes, fundamentals, historical prices, options chains, market movers, ETF holdings, and ticker search results from Yahoo Finance. It is intended for data lookup and analysis support, not standalone financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; CLI command output is JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires one symbol per CLI invocation; invalid symbols may return undefined instead of JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill relies on a globally installed, unpinned community npm package.
+
+Mitigation: Pin and review a specific yahoo-finance2 version, and prefer installation in a controlled local environment.
+
+Risk: Financial data from Yahoo Finance may be delayed, incomplete, or unsuitable as financial advice.
+
+Mitigation: Treat outputs as data lookup results, verify material decisions against authoritative sources, and avoid presenting results as financial advice.
+
+Risk: Invalid or incorrectly formatted symbols can produce non-JSON output or stale records.
+
+Mitigation: Validate symbols before analysis, handle undefined outputs, and verify market and price fields for Hong Kong symbols.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gddezero/skills/yfinance-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash snippets and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI returns one symbol per invocation; invalid symbols may return non-JSON undefined output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

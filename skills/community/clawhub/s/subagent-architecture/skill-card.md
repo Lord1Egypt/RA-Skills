@@ -1,48 +1,68 @@
-## Description: <br>
-Advanced patterns for specialized subagent orchestration with production-ready reference implementations for security isolation, phased implementation, peer collaboration, and cost-aware spawning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced patterns for specialized subagent orchestration with production-ready reference implementations. Security isolation, phased implementation, peer collaboration, and cost-aware spawning.
 
-## Publisher: <br>
-[donovanpankratz-del](https://clawhub.ai/user/donovanpankratz-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[donovanpankratz-del](https://clawhub.ai/user/donovanpankratz-del)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and implement specialized subagent orchestration patterns for security isolation, multi-source research, phased feature work, peer collaboration, cost estimation, and output quality review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional external collaboration and consultation patterns can disclose workspace content, sensitive task metadata, or secrets if configured carelessly. <br>
-Mitigation: Keep peer review and external model consultation disabled unless trusted endpoints are explicitly chosen, review exactly what leaves the workspace, and redact secrets, proprietary code, user data, and sensitive metadata. <br>
-Risk: The skill includes broad orchestration reference code and templates that should be reviewed before operational use. <br>
-Mitigation: Install only when advanced subagent orchestration is intended, review the reference libraries and templates before copying or running them, and apply local security scanning and approval gates. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, spawn, review, and score specialized subagents for security isolation, research synthesis, phased implementation, peer validation, and cost-aware orchestration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/donovanpankratz-del/subagent-architecture) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README_FIRST.md](artifact/README_FIRST.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
-- [SMITH_REVIEW_INTEGRATION.md](artifact/SMITH_REVIEW_INTEGRATION.md) <br>
-- [Security proxy template](artifact/templates/security-proxy.md) <br>
-- [Researcher specialist template](artifact/templates/researcher-specialist.md) <br>
-- [Phased implementation template](artifact/templates/phased-implementation.md) <br>
-- [Peer review specialist template](artifact/templates/peer-review-specialist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with JavaScript reference code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference libraries and templates are not auto-executed; optional external peer or model integrations require explicit user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.5 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The release security verdict is suspicious because its security-isolation helper and orchestration guidance may overstate controls that the shipped code does not enforce.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the JavaScript libraries before production use, and rely on runtime-enforced tool, filesystem, network, output-size, and cost limits for actual isolation.
+
+Risk: Optional peer-review and external-agent workflows can involve Discord webhooks or peer endpoints when users configure them.
+
+Mitigation: Keep these integrations opt-in, supply credentials manually, and sanitize review packages before sending data to external peers.
+
+Risk: The artifact includes runnable JavaScript reference libraries and examples.
+
+Mitigation: Treat the libraries as reference code, inspect them before copying into a workspace, and avoid executing examples against sensitive data without review.
+
+Risk: The security evidence specifically calls out an optional failure-tracer hook as needing review before scoring sensitive outputs.
+
+Mitigation: Review, disable, or remove the hook before using quality scoring with sensitive subagent output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/donovanpankratz-del/skills/subagent-architecture)
+- [Main skill documentation](artifact/SKILL.md)
+- [Security proxy pattern](artifact/templates/security-proxy.md)
+- [Researcher specialist pattern](artifact/templates/researcher-specialist.md)
+- [Phased implementation pattern](artifact/templates/phased-implementation.md)
+- [Peer review specialist pattern](artifact/templates/peer-review-specialist.md)
+- [Proxy recovery pattern](artifact/templates/proxy-recovery.md)
+- [Release changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript reference code, shell command examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional JavaScript reference libraries and templates that are not auto-executed on install.]
+
+## Skill Version(s):
+
+2.3.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

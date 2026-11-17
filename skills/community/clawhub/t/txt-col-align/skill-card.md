@@ -1,40 +1,53 @@
-## Description: <br>
-Aligns columns in plain text tables using specified or auto-detected delimiters for improved readability and consistent spacing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aligns columns in plain text tables using specified or auto-detected delimiters for improved readability and consistent spacing.
 
-## Publisher: <br>
-[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[albionaiinc-del](https://clawhub.ai/user/albionaiinc-del)
 
-## Use Case: <br>
-Developers, operators, and analysts use this skill to reformat delimiter-separated text, logs, and CSV-like data into aligned columns for easier reading and review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Piped input may fail until the stdin seek behavior is fixed. <br>
-Mitigation: Prefer direct file input or test stdin handling in the target environment before relying on piped workflows. <br>
-Risk: Server-resolved import provenance is unavailable for this version. <br>
-Mitigation: Review the publisher profile and release metadata before using the skill in provenance-sensitive environments. <br>
+## Use Case:
 
+Developers, data analysts, and operators use this skill to turn delimiter-separated text, logs, and CSV-like rows into aligned plain-text columns for easier reading and review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/txt-col-align) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The formatter reads a file path or stdin and writes aligned column text to stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Documented command names differ between the usage text and the script examples, which can cause invocation failures after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the installed entry point before use, or invoke the Python script directly with the intended delimiter and padding arguments.
+
+Risk: The server security guidance notes that the pipe example may not work without a code fix.
+
+Mitigation: Prefer file input for release validation, or test standard-input handling before relying on piped workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/albionaiinc-del/skills/txt-col-align)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces aligned plain-text columns from local file or standard-input data; no network output or persistent behavior is indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,57 @@
-## Description: <br>
-Persistent memory for AI agents via getmem.ai. Call mem.get() before each LLM call to inject context, and mem.ingest() after each turn to save the conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+getmem.ai Memory provides persistent memory for AI agents through getmem.ai by retrieving relevant context before model calls and ingesting conversation turns afterward.
 
-## Publisher: <br>
-[nimblev2023](https://clawhub.ai/user/nimblev2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimblev2023](https://clawhub.ai/user/nimblev2023)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent, queryable conversation memory through getmem.ai so agents can retrieve relevant context before a model call and save conversation turns afterward. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation turns may be sent to an external persistent memory service. <br>
-Mitigation: Use the skill only when getmem.ai is approved for the conversation data being processed and users have appropriate notice or consent. <br>
-Risk: Secrets, regulated data, or confidential conversations could be stored in persistent memory. <br>
-Mitigation: Disable the skill for sensitive sessions and filter or redact sensitive content before calling mem.ingest(). <br>
-Risk: The artifact states that memory persists indefinitely and provides no TTL or purge behavior. <br>
-Mitigation: Confirm deletion and export controls with getmem.ai before deployment and define an operational retention process. <br>
-Risk: The skill requires a GETMEM_API_KEY credential. <br>
-Mitigation: Store the key in a managed secret store or environment variable, rotate it on exposure, and avoid committing it to source files or logs. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add persistent, semantically retrieved memory to AI agents while reducing the need to send full conversation history on every turn.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nimblev2023/getmem) <br>
-- [getmem.ai website](https://getmem.ai) <br>
-- [getmem.ai platform](https://platform.getmem.ai) <br>
-- [getmem-ai on PyPI](https://pypi.org/project/getmem-ai/) <br>
-- [getmem on npm](https://npmjs.com/package/getmem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes environment variable setup for GETMEM_API_KEY and example calls to retrieve and ingest memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends conversation content to getmem.ai for indefinite third-party storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with appropriate consent, redaction, retention controls, and a way to inspect and delete stored memories.
+
+Risk: Retrieved memories are injected into a privileged prompt context and may influence future agent behavior.
+
+Mitigation: Review retrieved memory before privileged use and avoid storing credentials, regulated data, private customer data, or proprietary code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nimblev2023/skills/getmem)
+- [getmem.ai website](https://getmem.ai)
+- [getmem.ai platform](https://platform.getmem.ai)
+- [getmem-ai on PyPI](https://pypi.org/project/getmem-ai/)
+- [getmem on npm](https://npmjs.com/package/getmem)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes API key setup and examples for retrieving and ingesting memory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

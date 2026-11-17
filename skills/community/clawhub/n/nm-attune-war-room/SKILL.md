@@ -1,7 +1,7 @@
 ---
 name: war-room
 description: Convenes a multi-LLM expert panel to pressure-test hard-to-reverse decisions
-version: 1.9.8
+version: 1.10.3
 triggers:
   - deliberation
   - multi-llm
@@ -10,12 +10,12 @@ triggers:
   - council
   - reversibility
   - reversibility score is low and adversarial review is warranted
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/attune", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.conjure:delegation-core", "night-market.memory-palace:strategeion", "night-market.leyline:git-platform"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/attune", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.conjure:delegation-core", "night-market.leyline:git-platform"]}}}
 source: claude-night-market
 source_plugin: attune
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/attune](https://github.com/athola/claude-night-market/tree/master/plugins/attune). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 ## Overview
@@ -63,7 +63,7 @@ See `modules/reversibility-assessment.md` for full scoring guide.
 - Routine implementation tasks
 - Well-documented patterns with clear solutions
 - Time-critical decisions requiring immediate action
-- **Type 2 decisions** (RS ≤ 0.40) — use Express mode or skip War Room entirely
+- **Type 2 decisions** (RS ≤ 0.40): use Express mode or skip War Room entirely
 
 ## Expert Panel
 
@@ -81,11 +81,11 @@ See `modules/reversibility-assessment.md` for full scoring guide.
 |------|-------|---------|
 | Supreme Commander | Claude Opus | Final synthesis |
 | Chief Strategist | Claude Sonnet | Approach generation |
-| Intelligence Officer | Gemini 2.5 Pro | Large context analysis (1M+) |
-| Field Tactician | GLM-4.7 | Implementation feasibility |
-| Scout | Qwen Turbo | Quick data gathering |
-| Red Team Commander | Gemini Flash | Adversarial challenge |
-| Logistics Officer | Qwen Max | Resource estimation |
+| Intelligence Officer | Gemini 3.1 Pro (preview) | Large context analysis (1M) |
+| Field Tactician | GLM-5.3 | Implementation feasibility |
+| Scout | Qwen `coder-model` | Quick data gathering |
+| Red Team Commander | Gemini 3.8 Flash | Adversarial challenge |
+| Logistics Officer | Qwen `coder-model` | Resource estimation |
 
 ## Deliberation Protocol
 
@@ -155,7 +155,29 @@ Sessions persist to the **Strategeion** (War Palace):
 Experts are invoked via conjure delegation:
 - `conjure:gemini-delegation` for Gemini models
 - `conjure:qwen-delegation` for Qwen models
-- Direct CLI for GLM-4.7 (`ccgd` or `claude-glm --dangerously-skip-permissions`)
+- Direct CLI for GLM-5.3 (`ccgd` or `claude-glm`, via `get_glm_command()`)
+
+Delegation being on by default changes nothing here, because a War Room
+delegates by construction: a panel is external models or it is not a
+panel.
+
+What does change is the fallback. `conjure:delegation-core` now returns
+a `fallback_reason` instead of raising when no provider answers or when
+an operator has declined delegation, and Claude answering every seat is
+the wrong way to spend that result.
+
+**A panel that could not reach external models is not a panel.** When
+delegation is off or the chain is exhausted:
+
+1. Say so before deliberating, naming the reason and the providers tried.
+2. Do not fill the empty seats with Claude and present the output as a
+   multi-model panel. Seven roles played by one model produce agreement
+   that looks like consensus and is not.
+3. Offer the choice: run a single-model review labeled as one, or stop
+   until a provider is available.
+
+This is the one place in the repository where a silent local fallback
+would misrepresent the result rather than merely slow it down.
 
 ## Usage
 
@@ -279,6 +301,25 @@ Saved to Strategeion:
 - Premortem analysis
 - Final decision
 
+### Record the Tradeoff (decision journal)
+
+The Supreme Commander Decision is a tradeoff record by construction: a selected
+approach, the COAs weighed against it, and the dissenting views. Mirror it into
+`docs/tradeoffs.md` so the reasoning stays with the code, not only in
+Strategeion (draft and confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a tradeoff entry. Map directly: Selected Approach to `decision`, the RS and
+  rationale to a Y-statement, the rejected COAs to `options`, and Dissenting
+  Views to `consequences_negative`. Set `phase` to the originating phase (for
+  example `plan`). Record the RS in the entry links. Append on confirmation.
+- Fallback (leyline absent): append to `docs/tradeoffs.md` using the in-file
+  ENTRY TEMPLATE. Assign the next `TR-NNN` id.
+
+If the decision is architectural enough to warrant a numbered ADR in
+`docs/adr/`, write the ADR and reference its number from the tradeoff entry
+rather than duplicating it.
+
 ## Anonymization
 
 Expert contributions are anonymized during deliberation using Merkle-DAG:
@@ -321,93 +362,22 @@ Equally important: identify decisions being over-deliberated:
 
 ## Configuration
 
-### User Settings
-
-```json
-{
-  "war_room": {
-    "default_mode": "lightweight",
-    "auto_escalate": true,
-    "delphi_threshold": 0.85,
-    "max_delphi_rounds": 5
-  }
-}
-```
-
-### Hook Auto-Trigger
-
-War Room can be auto-suggested via hook when:
-- Keywords detected ("strategic decision", "trade-off", etc.)
-- Complexity score exceeds threshold (0.7)
-- User has opted in via settings
+User settings and the hook auto-trigger conditions:
+[`modules/configuration.md`](modules/configuration.md).
 
 ## Agent Teams Execution Mode
 
-### Overview
-
-When `--agent-teams` is specified (or auto-selected for Full Council / Delphi modes), the War Room uses Claude Code Agent Teams instead of sequential conjure delegation. Each expert runs as a persistent teammate with bidirectional messaging, enabling real-time deliberation instead of batch request/response cycles.
-
-**Requires**: Claude Code 2.1.32+, `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`, tmux installed.
-
-### When Agent Teams Helps
-
-| Mode | Without Agent Teams | With Agent Teams | Benefit |
-|------|-------------------|-----------------|---------|
-| Express | Sonnet direct call | N/A (overkill) | None — skip |
-| Lightweight | 3 sequential delegations | N/A (overhead exceeds benefit) | None — skip |
-| Full Council | 7 sequential/parallel delegations | 7 teammates with live inbox messaging | Experts can **react** to each other's COAs in real-time |
-| Delphi | Multiple delegation rounds | Persistent team iterates until convergence | No re-invocation cost per round; state preserved across rounds |
-
-**Rule of thumb**: Use agent teams only for Full Council and Delphi modes. Lightweight and Express modes don't generate enough inter-expert traffic to justify the coordination overhead.
-
-### Team Configuration
-
-```bash
-# War Room agent team structure
-Team: war-room-{session-id}
-  Lead: supreme-commander (Opus) — orchestrates phases, final synthesis
-  Teammates:
-    chief-strategist (Sonnet) — approach generation
-    intel-officer (Sonnet) — deep context analysis
-    field-tactician (Sonnet) — implementation feasibility
-    scout (Haiku) — rapid reconnaissance
-    red-team (Sonnet) — adversarial challenge
-    logistics (Haiku) — resource estimation
-```
-
-Note: In agent teams mode, all teammates run as Claude Code instances (Opus/Sonnet/Haiku). External LLM experts (Gemini, Qwen, GLM) are not used because agent teams requires the Claude CLI. The trade-off is losing model diversity but gaining real-time inter-expert messaging.
-
-### Deliberation Flow with Agent Teams
-
-1. **Lead creates team** → spawns teammates in tmux panes
-2. **Phase 1 (Intel)**: Lead assigns intel tasks to scout and intel-officer via inbox
-3. **Phase 3 (COA)**: Lead broadcasts situation assessment; teammates develop COAs independently; messaging allows clarifying questions mid-development
-4. **Phase 4 (Red Team)**: Red-team teammate receives all COAs, posts challenges; other teammates can **respond to challenges in real-time**
-5. **Phase 5 (Voting)**: Lead broadcasts ballot; teammates rank via inbox messages
-6. **Phase 6 (Premortem)**: All teammates receive selected COA; can build on each other's failure scenarios
-7. **Phase 7 (Synthesis)**: Lead collects all artifacts, produces decision
-8. **Phase 8 (Discussion Publishing)**: After the
-   Supreme Commander Decision document is finalized,
-   you MUST execute `modules/discussion-publishing.md`
-   to publish the decision to GitHub Discussions.
-   Publishing is the default. The user can decline
-   with "n". See the "Discussion Publishing (REQUIRED)"
-   section below for the full step-by-step workflow.
-
-### Falling Back to Conjure Delegation
-
-If agent teams fails (tmux unavailable, team creation error), the War Room automatically falls back to standard conjure delegation. The deliberation protocol is identical — only the execution backend differs.
-
-### Cost Considerations
-
-Agent teams is significantly more token-intensive than conjure delegation (each teammate maintains its own context window). Use only when the coordination value justifies the cost — typically Delphi mode where multiple rounds of revision make persistent teammates worthwhile.
+When the panel runs as a Claude Code agent team instead of conjure
+delegation, load `modules/agent-teams.md`. It covers when a team helps,
+its configuration, the deliberation flow, falling back to conjure, and
+cost.
 
 ### Discussion Publishing (REQUIRED)
 
 After Phase 7 synthesis completes (in any execution
 mode), you MUST execute the discussion publishing
-workflow. This is not optional unless the user
-explicitly declines.
+workflow. Publishing is the default, skipped only
+when the user explicitly declines.
 
 **Execute these steps in order:**
 
@@ -429,6 +399,16 @@ platform, Discussions disabled, `gh` not authenticated),
 warn the user and skip. Publishing failures never
 block the war room workflow.
 
+## Exit Criteria
+
+- [ ] A Reversibility Score and decision type are computed and recorded.
+- [ ] A Supreme Commander Decision document with a selected approach,
+  rationale, and dissenting views is produced.
+- [ ] The decision is mirrored to `docs/tradeoffs.md` (and to a numbered ADR
+  in `docs/adr/` if architectural).
+- [ ] Premortem watch points and, for Type 1 decisions, a reversal plan are
+  captured.
+
 ## Related Skills
 
 - `Skill(attune:project-brainstorming)` - Pre-War Room ideation
@@ -441,7 +421,6 @@ block the war room workflow.
 
 - `/attune:war-room` - Invoke this skill
 - `/attune:brainstorm` - Pre-War Room ideation
-- `/memory-palace:strategeion` - Access War Room history
 
 ## References
 

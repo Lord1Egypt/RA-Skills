@@ -1,38 +1,58 @@
-## Description: <br>
-Criticaster searches aggregated product reviews to help agents find product recommendations, reviews, comparisons, and purchase advice quickly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Criticaster's aggregated product reviews to quickly find the best products. Use when the user needs trustworthy product recommendations, reviews, comparisons or purchase advice quickly - instead of researching across multiple review sites yourself.
 
-## Publisher: <br>
-[gglucass](https://clawhub.ai/user/gglucass) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gglucass](https://clawhub.ai/user/gglucass)
 
-## Use Case: <br>
-External users and agents use this skill to answer product recommendation, review, comparison, and purchase-advice requests using Criticaster's review aggregation API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Product request and upvote flows can send a user's email address to Criticaster and may involve retrieving an email verification code. <br>
-Mitigation: Ask for explicit user consent before sending an email address, and have the user retrieve verification codes unless they have authorized mailbox access for that exact action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Criticaster homepage](https://www.criticaster.com) <br>
-- [ClawHub skill page](https://clawhub.ai/gglucass/criticaster) <br>
+## Use Case:
 
+External users and agents use this skill to answer product recommendation, review, comparison, and purchase-advice questions with Criticaster's aggregated review data. It is useful for best-product, budget-aware, product-comparison, and category-exploration workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown or text summaries with Criticaster API request guidance and product links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product scores, prices, review counts, pros and cons, comparisons, and links to Criticaster product pages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send a user's email address to Criticaster when submitting product requests or upvotes.
+
+Mitigation: Require explicit user approval before sending an email address for request or upvote flows.
+
+Risk: The artifact describes completing email-code verification autonomously when mailbox access is available.
+
+Mitigation: Do not grant mailbox access for this skill; have the user retrieve and provide verification codes manually.
+
+Risk: The security verdict is suspicious because request and upvote flows involve user email and verification handling.
+
+Mitigation: Use product search and browsing normally, but gate request and upvote POST actions behind user confirmation.
+
+## Reference(s):
+
+- [Criticaster homepage](https://www.criticaster.com)
+- [ClawHub Criticaster skill page](https://clawhub.ai/gglucass/skills/criticaster)
+- [Criticaster publisher profile](https://clawhub.ai/user/gglucass)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown with Criticaster API results and product links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include product scores, prices, review counts, pros and cons, comparisons, category picks, and links to Criticaster product pages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

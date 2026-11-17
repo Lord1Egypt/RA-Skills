@@ -1,45 +1,64 @@
-## Description: <br>
-Controls Daikin air conditioners over WiFi, including discovery, setup, status checks, and commands for power, mode, temperature, fan, swing, and advanced modes across multiple locations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Daikin air conditioners over WiFi. Use when the user wants to control their Daikin AC units - turn on/off, set temperature, mode, fan speed, swing, or query status. Supports multiple devices with custom names across multiple locations.
 
-## Publisher: <br>
-[leroylim](https://clawhub.ai/user/leroylim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 <br>
+## Publisher:
 
+[leroylim](https://clawhub.ai/user/leroylim)
 
-## Use Case: <br>
-External users and smart-home operators use this skill to discover, configure, monitor, and control Daikin air-conditioning units from an agent interface. It supports multi-device and multi-location setups where users need clear device selection and status feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved device configuration may contain internal IP addresses, API keys, or passwords. <br>
-Mitigation: Keep data/devices.json private, remove it before sharing the workspace, and rotate device credentials after uninstalling or exposure. <br>
-Risk: Network discovery can reveal local Daikin devices and related network details. <br>
-Mitigation: Run discovery only on trusted networks and prefer manual device entry when network scanning is not appropriate. <br>
-Risk: Control commands can change HVAC state for the wrong device when names are duplicated or ambiguous. <br>
-Mitigation: Confirm location or device identity before executing commands when multiple devices share similar names. <br>
+## Use Case:
 
+External users and smart-home operators use this skill through OpenClaw to discover, configure, monitor, and control their own Daikin air conditioners over local WiFi.
 
-## Reference(s): <br>
-- [Daikin Aircon OpenClaw Skill README](README.md) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [daikin-ts](https://github.com/leroylim/daikin-ts) <br>
-- [pydaikin](https://github.com/fredrike/pydaikin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Plain text or Markdown responses with structured tool parameters and device status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local device configuration and send local-network requests to configured Daikin devices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, skill.yaml, release metadata) <br>
+Risk: The skill can control HVAC devices on the local network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only on networks and Daikin devices you own or administer, and review requested control actions before execution.
+
+Risk: Device IP addresses and credentials such as API keys or passwords may be stored in a local JSON file.
+
+Mitigation: Avoid shared workspaces for real credentials, restrict local file permissions, and clear stored credentials when changing or removing devices.
+
+Risk: The skill can send network traffic to user-supplied addresses.
+
+Mitigation: Validate that configured addresses are expected local Daikin device addresses before adding or updating devices.
+
+Risk: Dependency versions are not fully pinned in package metadata.
+
+Mitigation: Review and pin dependencies before deployment in managed or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leroylim/skills/daikin-aircon)
+- [OpenClaw](https://openclaw.ai)
+- [daikin-ts](https://github.com/leroylim/daikin-ts)
+- [pydaikin](https://github.com/fredrike/pydaikin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration]
+
+**Output Format:** [Plain text status, confirmation, and error messages; JSON device configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist device IP addresses, API keys, and passwords in a local JSON file and send local network requests to configured Daikin devices.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, skill.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

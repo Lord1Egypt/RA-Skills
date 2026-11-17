@@ -1,42 +1,63 @@
-## Description: <br>
-Batch submits websites to AI tool and SEO directories to earn backlinks, using Playwright automation to check whether directories accept free submissions and fill submission forms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch submit websites to AI tool directories and SEO directories to earn backlinks, with Playwright automation that checks free submissions and fills forms.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-Developers, marketers, and site operators use this skill to prepare and run backlink directory submissions for a website while recording which directories are free, paid, login-gated, or failed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live runs can automatically submit website details and a contact email to external directory websites with limited user review. <br>
-Mitigation: Start with check-only behavior, manually limit the directory list, review target policies, and use a non-personal contact email before enabling submissions. <br>
-Risk: The quick-submit script has mismatched behavior and does not reliably require explicit user-provided target and data. <br>
-Mitigation: Do not run quick_submit.py unless it is fixed to accept explicit target and data inputs, then review those inputs before execution. <br>
+## Use Case:
 
+Developers, marketers, and site operators use this skill to check directory submission pages and batch submit website metadata to AI tool, developer, and SEO directories for backlink campaigns.
 
-## Reference(s): <br>
-- [Directory list](references/directories.txt) <br>
-- [Targets directory guide](targets/README.md) <br>
-- [ClawHub release page](https://clawhub.ai/kennyzir/seo-backlink-submitter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown instructions with inline shell commands and JSON result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch runs save timestamped JSON results that include check results, submission results, statuses, URLs, and errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can submit website and contact details to third-party directory sites, which may create public or irreversible listings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the directory list and all site/contact information before running submissions, and avoid sensitive personal email addresses.
+
+Risk: Submission controls are limited, so automated runs may target paid, login-gated, or unsuitable directories.
+
+Mitigation: Run batch_submit.py with --check-only first and review the detected status for each directory before submitting.
+
+Risk: quick_submit.py contains hardcoded sample data and destinations.
+
+Mitigation: Edit quick_submit.py data and URL values before execution, or use batch_submit.py with explicit reviewed inputs.
+
+Risk: The scripts install and run browser automation and HTTP dependencies.
+
+Mitigation: Install dependencies in an isolated environment before running the skill.
+
+## Reference(s):
+
+- [Directory targets list](artifact/references/directories.txt)
+- [Targets README](artifact/targets/README.md)
+- [ClawHub skill page](https://clawhub.ai/kennyzir/skills/seo-backlink-submitter)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped batch_result_*.json files when batch_submit.py runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

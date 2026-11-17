@@ -1,6 +1,6 @@
 ---
 name: xiaxiayouhui-deals
-version: 1.6.2
+version: 1.6.1
 description: 跨平台电商比价与优惠券聚合工具。当用户询问商品价格、查找优惠券、解析商品链接、寻找今日好价或本地生活优惠时调用。返回多个电商平台的同款商品价格对比和可用券信息。
 author: xiaxiayouhui.xyz
 homepage: https://xiaxiayouhui.xyz

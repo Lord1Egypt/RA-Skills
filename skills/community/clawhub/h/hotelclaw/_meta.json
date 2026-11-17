@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7bc8chgvfzqsf2s965yfwd4580pdvz",
-  "slug": "hotelclaw",
-  "version": "1.0.4",
-  "publishedAt": 1781611946942
+  "slug": "tuniu-hotel",
+  "version": "1.0.3",
+  "env": {
+    "TUNIU_API_KEY": {
+      "type": "string",
+      "description": "途牛开放平台 API key，用于 apiKey 请求头",
+      "required": true
+    }
+  },
+  "publishedAt": null
 }

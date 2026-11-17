@@ -13,7 +13,7 @@ metadata:
       env: []
     emoji: "🔭"
   agent_card:
-    capabilities: [capability-scope-expansion-detection, incremental-permission-drift, version-history-analysis, risk-class-contradiction-detection]
+    capabilities: [capability-scope-expansion-detection, incremental-permission-drift, version-history-analysis, riREDACTED-SECRET]
     attack_surface: [L1, L2]
     trust_dimension: attack-surface-coverage
     published:

@@ -1,44 +1,68 @@
-## Description: <br>
-Routes agents to Yingmi financial data tools and remote workflows for fund research, portfolio diagnostics, risk analysis, financial planning, charting, HTML reports, and PDF generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes fund, strategy, market news, asset allocation, portfolio diagnosis, risk backtesting, charting, and PDF reporting requests to Yingmi/Qieman data tools and remote workflows.
 
-## Publisher: <br>
-[yingmi-soc](https://clawhub.ai/user/yingmi-soc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yingmi-soc](https://clawhub.ai/user/yingmi-soc)
 
-## Use Case: <br>
-External users and agents use this skill to access Yingmi financial data workflows, including fund lookup, strategy research, portfolio diagnosis, risk backtesting, cash-flow analysis, and report generation. It acts as a local entry point that checks CLI readiness, chooses between atomic MCP tools and remote scenario skills, and applies the shared HTML report template when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install or update an unpinned CLI and can route execution into remote child-skill instructions. <br>
-Mitigation: Install only if you trust Yingmi and the yingmi-skill-cli supply chain; manually approve npm, sudo, and remote-skill commands, and verify the CLI source and version before use. <br>
-Risk: Financial workflows may involve phone codes, API keys, household details, or detailed financial data. <br>
-Mitigation: Enter sensitive values only when you intend to use this provider for the task, and avoid sharing unnecessary personal or financial information. <br>
+## Use Case:
 
+Developers and agents use this skill as a local entry point for Yingmi/Qieman finance workflows, including fund lookup, strategy analysis, portfolio diagnosis, wealth planning, financial news, charts, HTML reports, and PDF generation. It helps decide when to call MCP tools directly and when to enter remote scenario skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yingmi-soc/yingmi-skill) <br>
-- [CLI precheck workflow](artifact/references/CLI前置检查.md) <br>
-- [MCP data authenticity requirements](artifact/references/MCP数据真实性零容忍.md) <br>
-- [HTML report visual template](artifact/references/HTML视觉模板.md) <br>
-- [Demo report template](artifact/references/demo-report.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, markdown, HTML, PDF, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON tool inputs, and optional HTML or PDF report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an initialized yingmi-skill-cli environment and may route the agent to remote child skills for multi-step financial workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill delegates important behavior to mutable remote sub-skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before acting inside a remote workflow, list available remote skills, enter the server-reported skill name, and read that remote SKILL.md before executing task steps.
+
+Risk: The workflow asks users to install and update the yingmi-skill-cli package, including possible global or sudo installation paths.
+
+Mitigation: Install only from trusted package sources, avoid sudo or global installation where possible, and confirm the CLI version before invoking MCP or remote-skill commands.
+
+Risk: Initialization can involve phone numbers, SMS verification codes, and API keys.
+
+Mitigation: Treat phone numbers, SMS codes, and API keys as sensitive credentials; request them only when required and avoid exposing them in reports or logs.
+
+Risk: Generated HTML reports can load third-party fonts, scripts, or assets.
+
+Mitigation: Open generated reports with external resource loading enabled only when third-party asset and script loading is acceptable for the environment.
+
+Risk: Financial analysis can become misleading if values are estimated or inferred beyond MCP responses.
+
+Mitigation: Use only MCP-returned or user-provided data for quantitative claims, mark missing data explicitly, and avoid interpolating or inventing chart values.
+
+## Reference(s):
+
+- [CLI precheck workflow](references/CLI前置检查.md)
+- [HTML report visual template](references/HTML视觉模板.md)
+- [MCP data authenticity requirements](references/MCP数据真实性零容忍.md)
+- [Demo report HTML template](references/demo-report.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code]
+
+**Output Format:** [Markdown guidance with inline bash and JSON examples; may direct agents to produce HTML reports, charts, or PDFs through the referenced tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on live MCP tool responses and remote scenario-skill instructions; generated finance reports must use tool-returned or user-provided data.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

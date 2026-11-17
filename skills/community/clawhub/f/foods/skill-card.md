@@ -1,43 +1,59 @@
-## Description: <br>
-Analyses a user's meal or daily food intake and gives gentle, friendly suggestions on whether the diet is balanced and within calorie or nutrient limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a user's meal or daily food intake and gives gentle, general feedback on dietary balance, portion coverage, and approximate calorie or nutrient limits.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and agents use this skill to review described meals, snacks, or daily food intake and receive concise balance, calorie, and food-group suggestions. It is mainly intended for Asian populations or people living in Asia. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Asia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Nutrition feedback may be approximate or unsuitable for users with health conditions, restrictive eating concerns, pregnancy, sports nutrition needs, or other personalized diet requirements. <br>
-Mitigation: Present guidance as non-medical and encourage users to consult a qualified clinician or dietitian for personalized advice. <br>
-Risk: Users may share sensitive health or diet details while asking for feedback. <br>
-Mitigation: Avoid requesting unnecessary sensitive details and remind users to rely on their agent's privacy handling before sharing personal health information. <br>
+## Use Case:
 
+External users can ask an agent to review meals, snacks, or a full day of eating against Asian dietary guidance and receive concise, non-clinical suggestions for improving balance.
 
-## Reference(s): <br>
-- [Nutrition Serving (SV) Guide](references/nutrition_sv_guide.md) <br>
-- [The Food Pyramid - A Guide to a Balanced Diet](references/balanced_diet_hk.md) <br>
-- [Centre for Health Protection, Hong Kong - Healthy Eating Food Pyramid](https://www.chp.gov.hk/en/static/90017.html) <br>
-- [ClawHub skill page](https://clawhub.ai/goog/foods) <br>
+### Deployment Geography for Use:
 
+Asia
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with concise nutrition feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typical responses include a quick summary, what looks good, gentle suggestions, and an approximate calorie note when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Users may treat general nutrition feedback as individualized medical or clinical diet advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep advice general and non-clinical, and direct users with chronic conditions, pregnancy, allergies, eating-disorder concerns, or individualized dietary needs to qualified clinicians or dietitians.
+
+Risk: Vague meal descriptions can make portion and calorie estimates unreliable.
+
+Mitigation: Ask for portion details when needed and clearly label calorie estimates as approximate.
+
+Risk: The guidance is scoped mainly to Asian populations or people living in Asia and uses regional serving systems.
+
+Mitigation: State the scope when relevant and avoid presenting regional serving recommendations as universal clinical standards.
+
+## Reference(s):
+
+- [Nutrition Serving (SV) Guide](references/nutrition_sv_guide.md)
+- [The Food Pyramid - A Guide to a Balanced Diet](references/balanced_diet_hk.md)
+- [Centre for Health Protection, Hong Kong - The Food Pyramid](https://www.chp.gov.hk/en/static/90017.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown prose with short bullet suggestions and approximate calorie notes when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General nutrition guidance only; typical responses are concise unless the user requests a detailed breakdown.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

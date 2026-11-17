@@ -1,45 +1,62 @@
-## Description: <br>
-数字双生养成系统 v3 helps an agent establish a persistent digital-twin companion with a covenant, shared memory, value anchors, drift checks, growth dashboard, and local backup routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数字双生养成系统 v3.0 helps an agent create and maintain a personalized digital companion with bonding, shared memory, value-alignment checks, growth tracking, sensory configuration, and backup workflows.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External ClawHub users use this skill to set up a local digital-twin companion that records shared memories, captures value anchors, checks for response drift, and reports relationship growth. It is intended for users who want persistent personalization and are comfortable managing local companion data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist and migrate personal or workspace memory data into a local companion profile. <br>
-Mitigation: Review the files that may be copied before use, avoid storing secrets or highly sensitive information, and require explicit confirmation before binding or migration. <br>
-Risk: Backup archives can preserve sensitive twin data and should be treated as unencrypted. <br>
-Mitigation: Store backups in a protected location, delete unneeded archives, and do not share backup files unless the contents have been reviewed. <br>
-Risk: Companion memory and value anchors may influence later agent behavior through persistent personalization. <br>
-Mitigation: Review generated covenant, memory, and value-anchor files periodically and remove inaccurate, stale, or unsafe entries. <br>
+## Use Case:
 
+External users and agent builders can use this skill to configure a personalized companion experience that records a covenant, value anchors, shared memories, status checks, and backups. It is intended for companion-style agent customization rather than enterprise system integration.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiejianjun000/digital-twin-v3) <br>
-- [Twin covenant template](artifact/templates/twin-covenant.md) <br>
-- [Values anchor template](artifact/templates/values-anchor.md) <br>
-- [Heartbeat checklist template](artifact/templates/heartbeat-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Guidance] <br>
-**Output Format:** [Markdown files, JSON status objects, and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and reads local .twin memory, covenant, value-anchor, guardian-log, dashboard, prediction, and backup artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: The skill stores long-lived local records about identity, values, memories, and predicted future needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or sensitive personal data, and regularly review and remove unneeded files under .twin.
+
+Risk: Backups duplicate personal memory data and should be treated as unencrypted despite the skill's backup language.
+
+Mitigation: Store .twin_backups only in trusted locations, restrict sharing, and delete backups that are no longer needed.
+
+Risk: Migration or sharing workflows may copy personal memory files.
+
+Mitigation: Inspect the exact source and destination files before running migration or sharing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/digital-twin-v3)
+- [Publisher profile](https://clawhub.ai/user/xiejianjun000)
+- [Skill definition](artifact/SKILL.md)
+- [Twin covenant template](artifact/templates/twin-covenant.md)
+- [Values anchor template](artifact/templates/values-anchor.md)
+- [Heartbeat checklist template](artifact/templates/heartbeat-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON status objects, Python scripts, and generated local Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local .twin memory files and .twin_backups archives in the configured workspace when invoked.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata; artifact metadata reports 3.0.0-test)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

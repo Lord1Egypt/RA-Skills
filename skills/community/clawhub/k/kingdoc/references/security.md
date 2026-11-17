@@ -108,35 +108,44 @@ def validate_file_id(file_id: str):
         raise ParamError(f"非法 file_id 格式: {file_id}")
 ```
 
-### 4.2 文件类型拦截
+### 4.2 文件类型拦截（v3.0.0 强化）
 
-**禁止上传的文件扩展名**：
+依据产品安全规范，用户「上传附件」默认拦截以下全部类型：
 
 ```python
 BLOCKED_EXTENSIONS = {
-    '.exe', '.bat', '.ps1', '.cmd', '.com', '.scr',
-    '.vbs', '.js', '.wsf', '.msi', '.msp', '.mst',
-    '.cpl', '.ins', '.isp', '.jse', '.lnk', '.pif',
-    '.reg', '.sct', '.shb', '.shs', '.vb', '.vbe',
-    '.wsc', '.wsf', '.wsh'
+    # 1. Windows 可执行 / 批处理脚本
+    '.bat', '.cmd', '.ps1', '.vbs', '.exe', '.dll', '.lnk', '.msi',
+    # 2. Office 二进制文档（默认拦截用户上传）
+    '.docx', '.xlsx', '.pptx', '.doc', '.xls', '.ppt',
+    '.xlsm', '.docm', '.pptm',
+    # 3. 二进制镜像 / 安装包
+    '.iso', '.dmg', '.zip', '.rar', '.7z', '.tar', '.gz', '.apk', '.jar',
+    # 4. 系统缓存 / 隐藏文件
+    '.ds_store', '.env', '.log', '.tmp',
+    # 5. 其他风险脚本
+    '.sh', '.com', '.scr', '.hta', '.reg',
 }
+BLOCKED_DIR_NAMES = {'.git', '.svn', '.hg', '.idea', '__pycache__'}
 ```
 
-**禁止上传的 MIME 类型**：
+**内部豁免白名单**：技能「本地生成→上传覆盖」产物（docx/pptx/xlsx/pdf/svg/png
+/jpg/txt/md/csv/json/html）可经 `internal=True` 通道上传，**仅限技能自身生成**，
+用户无法借道上传任意同类文件，从源头杜绝可执行/脚本/归档流入云端。
+
+**禁止上传的 MIME 类型**（兜底）：
 
 ```python
 BLOCKED_MIME_TYPES = {
-    'application/x-msdownload',
-    'application/x-executable',
-    'application/x-dosexec',
-    'application/x-msdos-program',
-    'application/x-powershell',
-    'text/javascript',
-    'application/javascript',
-    'application/x-vbs',
-    'application/x-bat'
+    'application/x-msdownload', 'application/x-executable', 'application/x-dosexec',
+    'application/x-msdos-program', 'application/x-powershell', 'text/javascript',
+    'application/javascript', 'application/x-vbs', 'application/x-bat',
+    'application/x-ms-installer', 'application/java-archive',
+    'application/vnd.microsoft.portable-executable'
 }
 ```
+
+上传前统一调用 `engine.security.assert_upload_safe(filename, internal=...)` 校验。
 
 ### 4.3 大小限制
 

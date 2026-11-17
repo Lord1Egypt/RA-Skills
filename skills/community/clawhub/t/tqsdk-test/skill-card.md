@@ -1,41 +1,53 @@
-## Description: <br>
-天勤量化 - 期货实时行情与历史数据接口，提供国内期货、期权的实时报价、K线序列与历史数据查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+天勤量化 - 期货实时行情与历史数据接口，提供国内期货、期权的实时报价、K线序列与历史数据查询。
 
-## Publisher: <br>
-[qingyiyl](https://clawhub.ai/user/qingyiyl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qingyiyl](https://clawhub.ai/user/qingyiyl)
 
-## Use Case: <br>
-Traders, analysts, and developers use this skill to query Tianqin/TQSDK futures and options market data, including real-time quotes, recent K-line series, and historical K-line data for supported contract symbols. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Tianqin/TQSDK account credentials for market-data queries. <br>
-Mitigation: Configure TQ_USERNAME and TQ_PASSWORD through ClawHub secrets or environment settings, avoid pasting passwords into chat or ordinary parameters, and avoid credential reuse. <br>
-Risk: Unpinned dependency ranges can change installed package versions over time. <br>
-Mitigation: Use pinned dependency versions for controlled installs when deploying this skill in a production or regulated environment. <br>
+## Use Case:
 
+External developers and trading workflow builders use this skill to query Tianqin/TqSdk futures and options market data, including real-time quotes, K-line series, and historical K-line data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qingyiyl/tqsdk-test) <br>
-- [TQSDK homepage](https://www.shinnytech.com/tqsdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, API Calls, guidance] <br>
-**Output Format:** [Plain text summaries with structured JSON result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TQ_USERNAME and TQ_PASSWORD environment variables; historical K-line queries may require a Tianqin professional account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Users may place Tianqin account credentials in prompts, chat messages, README-style JSON examples, or normal skill request parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure TQ_USERNAME and TQ_PASSWORD only through protected secrets or environment variables, and remove credential fields from ordinary request examples before deployment.
+
+Risk: Runtime dependencies are specified with lower-bound version ranges.
+
+Mitigation: Review and pin dependency versions before using the skill in a sensitive environment.
+
+## Reference(s):
+
+- [TQSDK homepage](https://www.shinnytech.com/tqsdk/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [JSON object containing human-readable text and structured market-data results or errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Historical K-line queries may return many records and require a Tianqin professional account.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

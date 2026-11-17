@@ -1,40 +1,53 @@
-## Description: <br>
-Build a personal dating system for tracking connections, planning dates, and remembering details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal dating system for tracking connections, planning dates, and remembering details.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Individuals use this skill to maintain local markdown notes about dating contacts, date history, date ideas, and reflections so an agent can help plan future dates and surface remembered details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Dating profiles, date history, reflections, and details about other people may contain sensitive personal information stored on disk. <br>
-Mitigation: Store only necessary details in ~/dates/, review and delete old profiles, and protect shared or automatically backed-up devices. <br>
-Risk: Keeping notes about other people can retain information they no longer want stored. <br>
-Mitigation: Delete profiles cleanly when appropriate and avoid keeping unnecessary sensitive details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/dates) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to maintain a local personal dating organizer, including profiles, date history, date ideas, and reflections.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown notes and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local markdown files under ~/dates/ for profiles, date ideas, history, and reflections.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores dating profiles, reflections, birthdays, health details, and relationship history in local plaintext files.
+
+Mitigation: Keep ~/dates/ private with owner-only permissions, exclude it from backups or search indexing when appropriate, and delete profiles when they are no longer needed.
+
+Risk: Dating notes can affect privacy and relationships if shared or retained longer than intended.
+
+Mitigation: Review entries before saving sensitive details, avoid external sharing, and honor requests to stop keeping a profile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/dates)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and local file organization suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose plaintext Markdown files under ~/dates/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-02-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

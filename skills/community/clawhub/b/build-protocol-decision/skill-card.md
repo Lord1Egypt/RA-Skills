@@ -1,50 +1,59 @@
-## Description: <br>
-Build Protocol Decision guides agents through rigorous, auditable workflows for high-stakes decisions such as investments, major purchases, technology selection, supplier choice, and other hard-to-reverse commitments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through rigorous high-stakes decision analysis for investments, major purchases, technology selection, supplier choice, and other hard-to-reverse commitments.
 
-## Publisher: <br>
-[christianye](https://clawhub.ai/user/christianye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christianye](https://clawhub.ai/user/christianye)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to structure, compare, audit, and document consequential choices before committing money, time, or operational effort. It is especially oriented toward financial decisions, purchases, vendor selection, and buy-versus-build tradeoffs that require live data, explicit methodology, risk limits, and post-decision tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports consequential financial and operational decisions, so agent output could influence investment, purchase, vendor, or technology commitments. <br>
-Mitigation: Use independent judgment, review assumptions, and treat the workflow as decision support rather than an authority to commit funds or execute trades. <br>
-Risk: Market prices, vendor pricing, product listings, and other decision inputs can become stale quickly. <br>
-Mitigation: Fetch current data from live sources, record timestamps, and explicitly mark data as unavailable rather than substituting document or chat-history prices. <br>
-Risk: The optional audit script reads the decision document path supplied by the user and may surface sensitive decision details in local output. <br>
-Mitigation: Run the script only on intended local documents and review files for sensitive content before sharing audit output. <br>
-Risk: False precision can make estimates appear more reliable than the underlying data supports. <br>
-Mitigation: Label estimates, round uncertain numbers appropriately, show methodology, and include downside cases and exit conditions. <br>
+## Use Case:
 
+External users and developers use this skill to make high-stakes decisions with explicit constraints, current data checks, comparison matrices, transparent methodology, exit conditions, and follow-up tracking. It is especially suited to investment, purchase, vendor, and technology-selection workflows where stale data or unsupported conclusions would create financial or operational risk.
 
-## Reference(s): <br>
-- [Decision Workflow](references/decision-workflow.md) <br>
-- [Investment Playbook Template](references/investment-playbook-template.md) <br>
-- [Decision Audit Script](references/audit-script-decision.sh) <br>
-- [ClawHub Skill Page](https://clawhub.ai/christianye/build-protocol-decision) <br>
-- [Stooq Quote CSV Endpoint](https://stooq.com/q/l/?s=SYMBOL.us&f=sd2t2ohlcv&h&e=csv) <br>
-- [Yahoo Finance Chart Endpoint](https://query1.finance.yahoo.com/v8/finance/chart/SYMBOL) <br>
-- [CoinGecko Simple Price API](https://api.coingecko.com/api/v3/simple/price) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with checklists, decision matrices, templates, and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live data fetch commands, decision records, audit findings, risk controls, stop-loss rules, and P/L tracking templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Decision guidance may rely on stale or unavailable market, product, or vendor data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current prices, dates, and assumptions independently before spending money, signing contracts, or opening positions.
+
+Risk: The included audit script can miss context-specific financial or operational issues.
+
+Mitigation: Use the script as a checklist aid and require human review for methodology, data freshness, assumptions, and downside cases.
+
+## Reference(s):
+
+- [Decision Workflow](references/decision-workflow.md)
+- [Investment Playbook Template](references/investment-playbook-template.md)
+- [Decision Audit Script](references/audit-script-decision.sh)
+- [Skill Page](https://clawhub.ai/christianye/skills/build-protocol-decision)
+- [Stooq Market Data CSV](https://stooq.com/q/l/?s=SYMBOL.us&f=sd2t2ohlcv&h&e=csv)
+- [Yahoo Finance Chart API](https://query1.finance.yahoo.com/v8/finance/chart/SYMBOL)
+- [CoinGecko Simple Price API](https://api.coingecko.com/api/v3/simple/price)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with decision matrices, rationale, risk controls, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include current-data verification steps, stop-loss or exit conditions, position sizing, daily P/L tracking guidance, and audit findings.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

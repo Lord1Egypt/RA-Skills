@@ -1,46 +1,63 @@
-## Description: <br>
-Generate high-quality music on Apple Silicon Macs using ACE-Step 1.5 with MLX backend, supporting custom prompts, durations, and output formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality music on Apple Silicon Macs using ACE-Step 1.5 with an MLX backend, supporting custom prompts, durations, and output formats.
 
-## Publisher: <br>
-[RichmanDP](https://clawhub.ai/user/RichmanDP) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[richmandp](https://clawhub.ai/user/richmandp)
 
-## Use Case: <br>
-Developers and local-agent users on Apple Silicon Macs use this skill to install or call ACE-Step 1.5, generate audio from text prompts, and optionally route generated files or notifications through local or messaging workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installer and helper scripts can execute local shell commands and download external model or project assets. <br>
-Mitigation: Review scripts before running them, prefer documented manual install steps, and run inside a dedicated virtual environment. <br>
-Risk: The localhost API can generate files from caller-supplied prompts and output paths. <br>
-Mitigation: Bind and use the API only for trusted local callers, and keep generated output paths inside a dedicated music directory. <br>
-Risk: Optional Telegram, Discord, and Feishu workflows can share prompts or generated audio with third-party services. <br>
-Mitigation: Use messaging integrations only when the prompt and generated file are acceptable to share with the selected service. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RichmanDP/ace-step-music) <br>
-- [ACE-Step Project](https://github.com/ace-step/ACE-Step) <br>
-- [ACE-Step 1.5 Model](https://huggingface.co/ACE-Step/Ace-Step1.5) <br>
-- [Apple MLX Framework](https://github.com/ml-explore/mlx) <br>
-- [Skill Usage Documentation](artifact/AGENT_USAGE.md) <br>
-- [Music Sending Guide](artifact/SEND_GUIDE.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and run ACE-Step 1.5 on Apple Silicon Macs, generate music from text prompts, and expose local command, Python, or HTTP interfaces for agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, audio files, guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, JSON, and Docker configuration examples; generated music is saved as WAV audio.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets local macOS Apple Silicon environments; outputs default to ~/Music/ACE-Step and can be routed through optional messaging integrations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installer and deployment scripts can execute high-impact local setup steps.
+
+Mitigation: Review scripts before running them, avoid curl-to-bash execution, and use a dedicated virtual environment.
+
+Risk: Model and dependency downloads may change over time or be tampered with in transit or at the source.
+
+Mitigation: Pin dependency versions and verify downloaded artifacts with trusted hashes where possible.
+
+Risk: The local HTTP API or Docker deployment could expose generation controls beyond the intended machine.
+
+Mitigation: Bind services to localhost, avoid exposing Docker or HTTP ports externally, and add authentication before agent-to-agent use.
+
+Risk: Generated audio, prompts, chat IDs, tokens, or webhook URLs may be sent to external services.
+
+Mitigation: Share through Telegram, Discord, or Feishu only when intentional, and keep credentials in protected environment variables.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/richmandp/skills/ace-step-music)
+- [ACE-Step 1.5 GitHub Project](https://github.com/ace-step/ACE-Step-1.5)
+- [ACE-Step 1.5 Hugging Face Model](https://huggingface.co/ace-step/ACE-Step-1.5)
+- [Apple MLX Framework](https://github.com/ml-explore/mlx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Bash, Python, YAML, and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local audio file paths and commands for optional sharing through external messaging services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,54 @@
-## Description: <br>
-lol-analyst queries League of Legends summoner profiles, ranked stats, match history, champion mastery, and improvement-oriented analysis using the Riot Games API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+lol-analyst helps agents query Riot Games League of Legends data for summoner profiles, ranked stats, match history, champion mastery, and improvement-oriented analysis using a Riot Games API key.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Players, coaches, and agent users can query League of Legends account, ranked, match-history, and champion-mastery data, then receive generated reports and Chinese-language interpretation to guide gameplay improvement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Riot Games API key and can store it in plaintext at ~/.lol-analyst/config.json when setup mode is used. <br>
-Mitigation: Prefer RIOT_API_KEY in the environment for routine use; if setup mode is used, restrict access to the machine and rotate or remove the key after use. <br>
+## Use Case:
 
+External players, coaches, and agents use this skill to retrieve League of Legends account and match data and generate Chinese-language performance reports or improvement guidance for a Riot ID.
 
-## Reference(s): <br>
-- [Riot Developer Portal](https://developer.riotgames.com/) <br>
+### Deployment Geography for Use:
 
+Global, limited by Riot Games API regional availability and Riot API coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, html, json, shell commands, configuration] <br>
-**Output Format:** [CLI text plus local HTML or JSON report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RIOT_API_KEY or an API key provided through setup or CLI arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A Riot API key may be stored in plaintext in a local config file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the RIOT_API_KEY environment variable, avoid putting keys in shell history or logs, and review local config file permissions before use.
+
+Risk: The skill depends on a third-party Riot API client package.
+
+Mitigation: Install dependencies in an isolated virtual environment and review dependency versions before deployment.
+
+## Reference(s):
+
+- [Riot Developer Portal](https://developer.riotgames.com/)
+- [ClawHub skill release](https://clawhub.ai/bettermen/skills/lol-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, HTML files, JSON data, shell commands, configuration, guidance]
+
+**Output Format:** [Console text plus generated HTML or JSON reports; setup guidance may be Markdown with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RIOT_API_KEY or a local config file and queries Riot Games API regions supported by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

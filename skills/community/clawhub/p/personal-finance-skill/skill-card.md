@@ -1,46 +1,61 @@
-## Description: <br>
-Provides Chinese-language wealth-management Q&A and bank product-matching suggestions using local FAQ and product materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language wealth-management product explanations, product matching suggestions, and personal-finance Q&A for bank wealth products.
 
-## Publisher: <br>
-[krillingone](https://clawhub.ai/user/krillingone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krillingone](https://clawhub.ai/user/krillingone)
 
-## Use Case: <br>
-External users use this skill to ask Chinese-language questions about bank wealth-management products, yield rules, holding periods, holiday income behavior, and product-fit suggestions. It provides informational matching guidance and does not perform account actions or make purchases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat product-matching suggestions as independent financial advice or as a purchase decision. <br>
-Mitigation: Present responses as informational guidance, avoid deciding for the user, and direct users to verify suitability and risk disclosures before investing. <br>
-Risk: Product yields, rankings, dates, liquidity tags, or suitability details may become stale. <br>
-Mitigation: Check the latest official product page, sales page, and disclosure documents before relying on product information. <br>
-Risk: The skill appends a bank mini-program purchase prompt and loads a disclosed external image. <br>
-Mitigation: Disclose the prompt clearly and treat the image as an external resource rather than independent validation of a product. <br>
+## Use Case:
 
+External users use this skill to ask Chinese-language questions about bank wealth products, yield rules, holding periods, holiday earnings, and related policy or product concepts. The skill provides informational product matching suggestions but does not open accounts, transact, promise returns, or handle sensitive identity or account data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/krillingone/personal-finance-skill) <br>
-- [Mini-program purchase prompt image](https://static.hepei.club/contact.png) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Routing and response patterns](artifact/patterns.md) <br>
-- [Product source list](artifact/products/理财产品全量列表.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language informational responses with product-fit rationale, risk reminders, source freshness notes for product data, and a disclosed mini-program image prompt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.16 (source: server release evidence) <br>
+Risk: The security summary says the financial product data is expired and product files show information valid through 2026-03-30.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify product terms, availability, risk level, fees, redemption rules, and disclosures in an official bank channel before acting on any recommendation.
+
+Risk: The security summary says the skill always pushes users toward a remotely hosted purchase QR image.
+
+Mitigation: Review and allow-list the external image URL before deployment, and treat the purchase prompt as optional navigation rather than financial advice or an endorsement.
+
+Risk: The skill gives personal-finance and product-matching guidance in a regulated domain.
+
+Mitigation: Present responses as informational assistance only, avoid return promises or purchase decisions, and do not collect account, identity, phone, or password data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krillingone/skills/personal-finance-skill)
+- [Skill definition](artifact/SKILL.md)
+- [Routing and response patterns](artifact/patterns.md)
+- [Product catalog](artifact/products/理财产品全量列表.md)
+- [Referenced official mini-program QR image](https://static.hepei.club/contact.png)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown responses with explanations, product lists, risk notes, and an optional image link.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Product recommendation responses are expected to include concise risk reminders and product-data freshness context.]
+
+## Skill Version(s):
+
+1.0.16 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

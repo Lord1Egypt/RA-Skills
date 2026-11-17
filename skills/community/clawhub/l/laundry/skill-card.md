@@ -1,41 +1,59 @@
-## Description: <br>
-Track laundry loads, view usage stats, and export reports in multiple formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track laundry loads, view usage stats, and export reports in multiple formats. Use when logging wash cycles, reviewing patterns, exporting schedules.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and agents use this skill to log laundry activity, review laundry history and usage patterns, manage reminders and checklists, and export locally stored records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Laundry schedules, costs, reminders, and free-form notes are saved locally and may persist on shared or backup-synced machines. <br>
-Mitigation: Avoid entering highly sensitive notes, and delete ~/.local/share/laundry/ or generated exports when the records are no longer needed. <br>
-Risk: Exported JSON, CSV, or text reports can expose user-entered laundry records if shared or left in the data directory. <br>
-Mitigation: Review exported files before sharing and remove exports after use. <br>
+## Use Case:
 
+External users and home operators use this skill to log laundry activity, track household inventory and maintenance notes, review recent history and usage statistics, and export laundry records.
 
-## Reference(s): <br>
-- [Laundry ClawHub page](https://clawhub.ai/ckchzh/laundry) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; local JSON, CSV, or text exports when the CLI is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and exports user-entered laundry records under ~/.local/share/laundry/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Laundry and household entries are stored locally and may be included in exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal details and review exported files before sharing them.
+
+Risk: CSV exports can carry spreadsheet-opening risks if entries include formula-like content.
+
+Mitigation: Inspect CSV exports before opening them in spreadsheet software, especially on shared or managed machines.
+
+Risk: Local records under ~/.local/share/laundry may be visible to other users on shared systems depending on file permissions.
+
+Mitigation: Review local file permissions and machine access controls before storing household records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/laundry)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command suggestions and guidance for a local shell-based laundry tracker; exports may be JSON, CSV, or plain text.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

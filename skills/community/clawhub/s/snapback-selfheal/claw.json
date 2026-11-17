@@ -1,0 +1,33 @@
+{
+  "name": "snapback-selfheal",
+  "version": "1.8.4",
+  "title": "Snapback Self-Heal",
+  "description": "Your AI agent self-heals: on ANY error it auto-diagnoses against Snapback's curated library (46 infrastructure families, free, no LLM, <150ms) and applies the fix ONLY when it's high-confidence, library-sourced, and reversible (the three-factor gate) — otherwise escalates to a human. Never auto-applies a state-changing or destructive fix. 100% client-side, free diagnosis, no token required, zero dependencies.",
+  "author": "Snapback / RA1 Labs",
+  "license": "MIT",
+  "homepage": "https://snapback.sh/for-agents",
+  "repository": "https://github.com/ra1labsworkx-wq/snapback-selfheal",
+  "entry_point": "SKILL.md",
+  "keywords": ["self-healing", "error-recovery", "agentops", "diagnosis", "infrastructure", "mcp", "autonomous", "snapback"],
+  "permissions": {
+    "network": ["api.snapback.sh"],
+    "filesystem": "none",
+    "shell": "none",
+    "notes": "Text-only skill. Reads SKILL.md instructions and calls the free public diagnose_infra_error MCP endpoint. No local filesystem or shell access. Sends only the error string you pass; Snapback also scrubs server-side."
+  },
+  "requirements": {
+    "pip": "snapback-selfheal",
+    "env": {
+      "SNAPBACK_TOKEN": "optional — a vdk_ token from https://snapback.sh, only needed to meter diagnose_trace / report outcomes; the diagnosis tools are free and need no token",
+      "SNAPBACK_MCP": "https://api.snapback.sh/mcp (default)",
+      "SNAPBACK_CONF_MIN": "0.85 (the gate's confidence floor)"
+    }
+  },
+  "install": { "pip": "pip install snapback-selfheal" },
+  "usage": "from snapback_interceptor import SnapbackInterceptor\nheal = SnapbackInterceptor(auto_apply=True)\nresult = heal.run(my_tool_call, *args, **kwargs)   # auto-diagnose + safe-retry on error",
+  "safety": {
+    "client_side_only": true,
+    "zero_dependencies": true,
+    "gate_contract": "auto-apply ONLY when confidence>=0.85 AND source=='library' AND action_class in {retry,refetch,config}; NEVER auto-apply mutate/destructive; fails closed (escalate when unsure)"
+  }
+}

@@ -1,41 +1,55 @@
-## Description: <br>
-Roast Generator creates humorous roast text for entertainment, friendly banter, self-roasts, and battle-style prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates playful roast text in gentle, savage, friend, celebrity, self, and battle styles.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and creators use the skill to generate concise humorous roast text for casual entertainment, friendly banter, and self-deprecating jokes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: One included script can store command history and user-entered text under the local roast-generator data directory. <br>
-Mitigation: Review which script is installed or invoked and avoid entering private names, prompts, tokens, or sensitive text. <br>
-Risk: Generated roast content may be mean-spirited or inappropriate for some audiences. <br>
-Mitigation: Use the output only for consensual entertainment and review tone before sharing. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for humorous roast text or Markdown-ready joke output in several modes. Reviewers should account for the shipped local utility behavior described in the security evidence before deploying it in environments that handle sensitive text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/roast-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and stdout text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roast text is intended as entertainment and should be reviewed for tone before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The package may create local roast-generator data files and retain command arguments or added text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid passing secrets, private names, confidential workplace text, or sensitive search terms, and review local storage behavior before installation.
+
+Risk: The advertised roast generator is accompanied by an additional utility that stores and logs user-provided text locally.
+
+Mitigation: Review the shipped scripts and deploy only in environments where local data retention is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/skills/roast-generator)
+- [BytesAgain Homepage](https://bytesagain.com)
+- [Source link declared in skill metadata](https://github.com/bytesagain/ai-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and stdout text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Roast output is single-stream text; the additional utility may create local data and history logs.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

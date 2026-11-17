@@ -1,46 +1,59 @@
-## Description: <br>
-Download videos from YouTube, Twitter/X, TikTok, Douyin, Bilibili and upload to S3-compatible storage. Universal video downloader with smart quality selection and audio merging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads videos from YouTube, Twitter/X, TikTok, Douyin, Bilibili and other yt-dlp-supported sites, then uploads them to S3-compatible storage with quality selection and audio merging.
 
-## Publisher: <br>
-[aiastia](https://clawhub.ai/user/aiastia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiastia](https://clawhub.ai/user/aiastia)
 
-## Use Case: <br>
-Developers and media operators use this skill to download videos from supported public platforms, upload them to S3-compatible storage, and produce access URLs or S3 paths for archiving, backup, and team sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports unsafe shell command construction with user-supplied video URLs. <br>
-Mitigation: Review the local script before execution, avoid untrusted or attacker-supplied video URLs, and prefer a fixed version that avoids shell-string execution. <br>
-Risk: The skill reads S3 credentials and uploads media plus metadata to the configured bucket. <br>
-Mitigation: Use dedicated least-privilege S3 credentials limited to the required bucket or prefix, and avoid granting list or delete permissions unless those commands are needed. <br>
-Risk: The security verdict is suspicious because the workflow downloads remote media and handles cloud storage credentials with limited safeguards. <br>
-Mitigation: Install only after reviewing the code path and configuration, then run it in an environment appropriate for downloading remote media and handling storage secrets. <br>
+## Use Case:
 
+Developers and external users use this skill to archive, back up, or share videos from supported platforms through their own S3-compatible buckets. It helps configure storage, download media, upload files, and report resulting S3 access URLs and object paths.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiastia/youtube-s3-uploader) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Example configuration](example-config.yml) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Text, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, YAML configuration, status text, S3 URLs, and S3 object paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local video files temporarily, uploads media and metadata to configured S3-compatible storage, and may generate presigned access URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.5 (source: server release evidence and package.json) <br>
+Risk: Unsafe command handling could let a crafted video URL or S3 object path run commands on the user's machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted video URLs and S3 object keys, review commands before execution, and prefer a maintained release that replaces shell-string execution with argument-array process execution.
+
+Risk: The skill uses local S3 credentials and uploads media and metadata to configured storage.
+
+Mitigation: Use least-privilege storage credentials, protect the local configuration file, and apply bucket policies and short-lived presigned URLs where appropriate.
+
+Risk: Downloaded local copies may be deleted after successful upload unless kept by option.
+
+Mitigation: Use the keep-local option when a local copy is required and verify the uploaded object before relying on cleanup behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiastia/skills/youtube-s3-uploader)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Terminal output with S3 URLs and paths, plus YAML configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can upload media and metadata to configured S3-compatible storage and may delete downloaded local copies after successful upload unless kept by option.]
+
+## Skill Version(s):
+
+3.0.5 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

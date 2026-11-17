@@ -1,10 +1,16 @@
 ---
 name: poyo-elevenlabs-music
 description: Generate music on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `elevenlabs-music`, text-to-music, instrumental music, structured composition plans, section timing, audio output formats, async task submission, callbacks, and task status retrieval.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/music-series/elevenlabs-music","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/elevenlabs-music","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo ElevenLabs Music
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/elevenlabs-music>
+- API docs: <https://docs.poyo.ai/api-manual/music-series/elevenlabs-music>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for `elevenlabs-music` jobs on PoYo. It helps agents prepare text-to-music or structured composition-plan payloads, submit async tasks, and explain result retrieval through PoYo task status.
 

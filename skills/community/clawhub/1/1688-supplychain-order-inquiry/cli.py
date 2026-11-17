@@ -7,7 +7,6 @@
 
 Commands:
     inquiry_send    订单询盘    python3 cli.py inquiry_send -o "5116391244078005116" -q "什么时候能发货"
-    batch_inquiry   批量询盘    python3 cli.py batch_inquiry -t '[{"order_ids":["..."],"question":"..."}]'
     configure       配置AK      python3 cli.py configure YOUR_AK
 
 输出 JSON：{"success": bool, "markdown": str, "data": {...}}
@@ -72,7 +71,7 @@ def _usage(commands: dict):
         "success": False,
         "data": {},
         "markdown": "\n".join(lines),
-    }, ensure_ascii=False, indent=2))
+    }, ensure_ascii=False))
 
 
 def main():

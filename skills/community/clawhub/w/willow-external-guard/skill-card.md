@@ -1,41 +1,54 @@
-## Description: <br>
-Use when Willow is about to ingest, summarize, or act on external content; it wraps untrusted content in boundary markers and scans for prompt injection, role hijack, leak attacks, and approval-bypass attempts before KB writes or LLM passes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Willow External Guard scans and wraps untrusted external content before LLM processing to help detect prompt injection, role hijack, leak attacks, and approval-bypass attempts.
 
-## Publisher: <br>
-[rudi193-cmd](https://clawhub.ai/user/rudi193-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rudi193-cmd](https://clawhub.ai/user/rudi193-cmd)
 
-## Use Case: <br>
-Developers and operators use this skill to screen untrusted external content before Willow ingests, summarizes, or acts on it. It helps route clean, suspicious, and blocked content through wrap, confirm, or refuse decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner is a guardrail, not a complete security boundary for prompt-injection handling. <br>
-Mitigation: Check scan results and exit codes before passing wrapped content to an LLM or knowledge-base ingest path, and separately block BLOCKED results. <br>
-Risk: Guard events write local metadata logs for suspicious or blocked content. <br>
-Mitigation: Confirm local guard-event metadata logging is acceptable in the workspace and avoid logging raw flagged content. <br>
+## Use Case:
 
+Developers and operators maintaining Willow use this skill to check untrusted web, message, corpus, and sub-agent text before summarization, ingestion, or action. It helps route findings to proceed, confirm, or block decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rudi193-cmd/willow-external-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/rudi193-cmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and plain-text or JSON scanner results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 on Linux or Darwin; the scanner exits 0 for CLEAN, 1 for SUSPICIOUS, and 2 for BLOCKED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Wrap mode can still emit content after the scanner identifies a blocked pattern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run a scan first, check the verdict and exit code, and refuse BLOCKED content before sending it to an LLM or knowledge base.
+
+Risk: The guard is a helper scanner rather than a complete enforcement boundary.
+
+Mitigation: Use it as part of a defense-in-depth review process and keep human confirmation for suspicious content where the workflow calls for it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rudi193-cmd/skills/willow-external-guard)
+- [Publisher profile](https://clawhub.ai/user/rudi193-cmd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and scanner verdict text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce CLEAN, SUSPICIOUS, or BLOCKED verdicts and sandwich-wrapped text for downstream review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

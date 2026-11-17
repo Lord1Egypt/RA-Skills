@@ -1,43 +1,60 @@
-## Description: <br>
-PPTX Parse helps agents parse PowerPoint (.pptx) presentations into structured Markdown with MinerU while preserving slide organization and content hierarchy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPTX Parse helps agents parse PowerPoint (.pptx) presentations into structured Markdown with MinerU while preserving slide organization and content hierarchy.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers and content pipeline maintainers use this skill to extract organized Markdown from .pptx presentations, including slide structure, page ranges, and local-file or URL inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PPT files, URLs, and generated presentation content may be sent to an external parsing or generation service. <br>
-Mitigation: Use only documents approved for that provider, and avoid confidential corporate, legal, medical, or customer data unless the service is approved for the data. <br>
-Risk: Full parsing uses a MINERU_TOKEN credential. <br>
-Mitigation: Store the token in the environment or the CLI's authentication flow and avoid hard-coding it into prompts, files, or shared logs. <br>
+## Use Case:
 
+Developers and content pipeline builders use this skill to have an agent extract structure, slide text, and hierarchy from .pptx presentations for analysis or downstream Markdown workflows.
 
-## Reference(s): <br>
-- [PPTX Parse on ClawHub](https://clawhub.ai/mzlzyca/pptx-parse) <br>
-- [MinerU Homepage](https://mineru.net) <br>
-- [MinerU Token Management](https://mineru.net/apiManage/token) <br>
-- [MinerU Project Reference](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured Markdown from PPTX inputs; full parsing can require MINERU_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server-resolved release metadata) <br>
+Risk: PowerPoint decks may contain confidential or regulated information when processed with MinerU.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm MinerU's data handling is acceptable for the presentation contents before installing or running the parser.
+
+Risk: The external mineru-open-api dependency may change behavior or introduce supply-chain risk if installed without review.
+
+Mitigation: Prefer a pinned or reviewed mineru-open-api version before using the skill in routine workflows.
+
+Risk: Full parsing uses an authentication token and local presentation files.
+
+Mitigation: Run parsing with only the files and MINERU_TOKEN needed for the task.
+
+## Reference(s):
+
+- [PPTX Parse ClawHub release](https://clawhub.ai/mzlzyca/skills/pptx-parse)
+- [MinerU homepage](https://mineru.net)
+- [MinerU GitHub repository](https://github.com/opendatalab/MinerU)
+- [MinerU token management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; parsing output is structured Markdown from MinerU.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Full parsing requires MINERU_TOKEN; quick flash-extract works without a token and supports .pptx inputs from local files or URLs.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

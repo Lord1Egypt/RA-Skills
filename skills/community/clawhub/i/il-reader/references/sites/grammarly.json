@@ -1,0 +1,756 @@
+{
+  "version": "2.4.0",
+  "source_id": "grammarly",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:01:35.488Z",
+  "entry": {
+    "url": "https://www.grammarly.com/",
+    "final_url": "https://www.grammarly.com/",
+    "title": "Grammarly: Free AI Writing Assistance",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:01:35.488Z",
+    "identity": {
+      "declared_name": "Grammarly",
+      "hostname": "www.grammarly.com",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "3x\nfaster editing process\n\nTonya Fowler\nGlobal Research VP & Practice Leader\n\nLearn more",
+        "href": "https://www.grammarly.com/business/learn/frostandsullivan-case-study/",
+        "target": ""
+      },
+      {
+        "text": "Help center",
+        "href": "https://support.grammarly.com/hc/en-us",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Product",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Product",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Work",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Work",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Education",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Education",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Resources",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Resources",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Sign up with Google",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Sign up with Google",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Next",
+      "label": "",
+      "aria_label": "Next",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Next",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Paragraph rewrites, 1 of 5",
+      "label": "",
+      "aria_label": "Paragraph rewrites, 1 of 5",
+      "placeholder": null,
+      "name": null,
+      "id": "paragraph",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Paragraph rewrites, 1 of 5",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Tone suggestions, 2 of 5",
+      "label": "",
+      "aria_label": "Tone suggestions, 2 of 5",
+      "placeholder": null,
+      "name": null,
+      "id": "tone",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Tone suggestions, 2 of 5",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Proofreading, 3 of 5",
+      "label": "",
+      "aria_label": "Proofreading, 3 of 5",
+      "placeholder": null,
+      "name": null,
+      "id": "proofreading",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Proofreading, 3 of 5",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Humanizer agent, 4 of 5",
+      "label": "",
+      "aria_label": "Humanizer agent, 4 of 5",
+      "placeholder": null,
+      "name": null,
+      "id": "humanizer",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Humanizer agent, 4 of 5",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "AI Detector agent, 5 of 5",
+      "label": "",
+      "aria_label": "AI Detector agent, 5 of 5",
+      "placeholder": null,
+      "name": null,
+      "id": "ai-detector",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "AI Detector agent, 5 of 5",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Pause",
+      "label": "",
+      "aria_label": "Pause",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Pause",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Pause animation",
+      "label": "",
+      "aria_label": "Pause animation",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Pause animation",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Previous",
+      "label": "",
+      "aria_label": "Previous",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Previous",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Next",
+      "label": "",
+      "aria_label": "Next",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Next",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "Sign up with Google",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "Sign up with Google",
+        "exact": true
+      },
+      "observed_url": "https://www.grammarly.com/",
+      "observed_at": "2026-10-09T09:01:35.225Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "grammarly:record-lookup",
+      "source_id": "grammarly",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.grammarly.com/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Product",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Product",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Work",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Work",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Education",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Education",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Resources",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Resources",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Sign up with Google",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Sign up with Google",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Next",
+          "label": "",
+          "aria_label": "Next",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Next",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Paragraph rewrites, 1 of 5",
+          "label": "",
+          "aria_label": "Paragraph rewrites, 1 of 5",
+          "placeholder": null,
+          "name": null,
+          "id": "paragraph",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Paragraph rewrites, 1 of 5",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Tone suggestions, 2 of 5",
+          "label": "",
+          "aria_label": "Tone suggestions, 2 of 5",
+          "placeholder": null,
+          "name": null,
+          "id": "tone",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Tone suggestions, 2 of 5",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Proofreading, 3 of 5",
+          "label": "",
+          "aria_label": "Proofreading, 3 of 5",
+          "placeholder": null,
+          "name": null,
+          "id": "proofreading",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Proofreading, 3 of 5",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Humanizer agent, 4 of 5",
+          "label": "",
+          "aria_label": "Humanizer agent, 4 of 5",
+          "placeholder": null,
+          "name": null,
+          "id": "humanizer",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Humanizer agent, 4 of 5",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "AI Detector agent, 5 of 5",
+          "label": "",
+          "aria_label": "AI Detector agent, 5 of 5",
+          "placeholder": null,
+          "name": null,
+          "id": "ai-detector",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "AI Detector agent, 5 of 5",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Pause",
+          "label": "",
+          "aria_label": "Pause",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Pause",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Pause animation",
+          "label": "",
+          "aria_label": "Pause animation",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Pause animation",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Previous",
+          "label": "",
+          "aria_label": "Previous",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Previous",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Next",
+          "label": "",
+          "aria_label": "Next",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Next",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "Sign up with Google",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "Sign up with Google",
+            "exact": true
+          },
+          "observed_url": "https://www.grammarly.com/",
+          "observed_at": "2026-10-09T09:01:35.225Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "grammarly",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:35.488Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/grammarly-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/grammarly-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

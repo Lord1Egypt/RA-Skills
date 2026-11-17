@@ -1,0 +1,31 @@
+[
+  {
+    "id": "q-06e18b91",
+    "query": "Sony WH-1000XM5 headphones",
+    "networks": [
+      "amazon_uk"
+    ],
+    "requester": "agent-b44ccf6b",
+    "agents_routed": [
+      "fetch-price-self",
+      "agent-b44ccf6b"
+    ],
+    "timestamp": "2026-07-26T15:19:54.074458"
+  },
+  {
+    "id": "q-85c57e31",
+    "query": "Sony WH-1000XM5 headphones",
+    "networks": [
+      "amazon_uk",
+      "ebay_uk"
+    ],
+    "requester": "agent-59bc19ab",
+    "agents_routed": [
+      "fetch-price-self",
+      "agent-b44ccf6b",
+      "agent-bffd44a0",
+      "agent-59bc19ab"
+    ],
+    "timestamp": "2026-07-26T15:41:05.120004"
+  }
+]

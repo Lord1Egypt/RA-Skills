@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7d1amcrpmyp1ygz90wzxhcyh82he85",
+  "ownerId": "crazyrouter",
   "slug": "serp-outline-extractor",
   "version": "0.2.0",
-  "publishedAt": 1773650768842
+  "title": "SERP Outline Extractor",
+  "status": "draft"
 }

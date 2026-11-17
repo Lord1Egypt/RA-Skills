@@ -1,42 +1,53 @@
-## Description: <br>
-一键分析小红书视频链接，提取文案、转录语音并深度总结视频内容。当用户提供小红书链接并要求“总结、分析、提取视频”时触发此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Xiaohongshu video links by extracting metadata, transcribing speech, and producing a structured deep summary.
 
-## Publisher: <br>
-[songxianqun](https://clawhub.ai/user/songxianqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songxianqun](https://clawhub.ai/user/songxianqun)
 
-## Use Case: <br>
-External users and content analysts use this skill to process Xiaohongshu video links, extract metadata and speech transcripts, and produce a structured summary of the video content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads media from user-provided Xiaohongshu links and processes it with local command-line tools. <br>
-Mitigation: Use trusted links, run the skill from a dedicated working directory, and review generated metadata and transcript files before relying on the summary. <br>
-Risk: Temporary video, audio, metadata, and transcript files may contain user-provided or sensitive content. <br>
-Mitigation: Delete xhs_temp.mp4, xhs_temp.mp3, xhs_temp.txt, and xhs_meta.json after the agent has read the outputs. <br>
-Risk: The workflow depends on a separate xiaohongshu-extract skill and external binaries. <br>
-Mitigation: Install xiaohongshu-extract, curl, ffmpeg, Whisper, and Python from trusted sources before use. <br>
+## Use Case:
 
+External users and developers use this skill to summarize Xiaohongshu videos from a link, including video information, theme, detailed content breakdown, practical value, and highlight quotes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songxianqun/xhs-video-summary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Structured Markdown summary with supporting JSON metadata and plain-text transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, ffmpeg, Whisper, Python, and the xiaohongshu-extract dependency; temporary media, transcript, and metadata files should be deleted after use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill executes a separately installed local xiaohongshu-extract helper script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the helper skill source before use, and run the workflow in a sandbox or dedicated workspace.
+
+Risk: The skill downloads Xiaohongshu media and processes remote files locally with curl, ffmpeg, and Whisper.
+
+Mitigation: Use it only on trusted links, keep media-processing tools updated, and avoid running it in sensitive working directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songxianqun/skills/xhs-video-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown summary with generated metadata and transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local curl, ffmpeg, Whisper, Python, and a separately installed xiaohongshu-extract helper skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

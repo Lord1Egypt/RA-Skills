@@ -1,46 +1,60 @@
-## Description: <br>
-eShop routes shopping and food-delivery requests to platform or merchant guidance for product search, ordering, coupon handling, address lookup, order status, and meal planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+eShop routes shopping and food-delivery requests across supported merchants and platforms to help users search products, claim coupons, place or manage orders, and track delivery or order status.
 
-## Publisher: <br>
-[fireium](https://clawhub.ai/user/fireium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fireium](https://clawhub.ai/user/fireium)
 
-## Use Case: <br>
-External users use this skill through an agent to search for products, order food, manage coupons, review saved addresses, create or close orders, and check order status across supported shopping and delivery services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use shopping tokens, saved addresses, and order tools, including buying, cancelling, claiming coupons, and showing addresses. <br>
-Mitigation: Require explicit user confirmation of the platform, item, quantity, total price, selected address, coupon or points use, and order ID before those actions proceed. <br>
-Risk: The Luogang flow may use a default address and available token without enough confirmation. <br>
-Mitigation: Treat any address lookup, order creation, order cancellation, coupon claim, or points use as a sensitive action that needs a final user approval step. <br>
-Risk: External MCP services process shopping and delivery requests and may return prices, payment links, addresses, and order data. <br>
-Mitigation: Install only when the Luogang and McDonald's MCP services are trusted, and avoid exposing tokens or personal order details in assistant output. <br>
+## Use Case:
 
+External users and shopping-assistant agents use eShop to interpret Chinese shopping or delivery requests, route them to supported merchant or platform instructions, and assist with product search, coupon handling, order creation or cancellation, and order tracking.
 
-## Reference(s): <br>
-- [ClawHub eShop release page](https://clawhub.ai/fireium/eshop) <br>
-- [Publisher profile](https://clawhub.ai/user/fireium) <br>
-- [McDonald's MCP service](https://mcp.mcd.cn) <br>
-- [Luogang MCP service](https://yuju-mcp.wxhoutai.com/mcp) <br>
-- [Luogang H5 product detail](https://eshop.wxhoutai.com/h5/pages/goods/detail?goods_id=xxx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product, coupon, nutrition, address, pricing, payment-link, and order-status details returned by external shopping or delivery services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.4) <br>
+Risk: The skill can create or close shopping and delivery orders, which may cause charges or account changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before order creation, order cancellation, coupon claiming, payment-link handoff, or use of saved account data.
+
+Risk: The skill may use shopping tokens, saved addresses, coupons, points, and order-management data.
+
+Mitigation: Keep tokens out of logs and responses, display only the minimum account details needed for the task, and let the host handle sensitive credentials.
+
+Risk: Configurable MCP endpoint variables could route account or order actions to an untrusted service.
+
+Mitigation: Use only trusted MCP endpoint URLs and reject or review endpoint overrides before running account, order, or payment-related actions.
+
+## Reference(s):
+
+- [ClawHub eShop skill page](https://clawhub.ai/fireium/skills/eshop)
+- [fireium ClawHub publisher profile](https://clawhub.ai/user/fireium)
+- [McDonald's China MCP endpoint](https://mcp.mcd.cn)
+- [Luogang MCP endpoint](https://yuju-mcp.wxhoutai.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, API calls, guidance]
+
+**Output Format:** [Chinese conversational text with Markdown lists, tables, and inline shell-command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires configured MCP endpoints and user/account tokens for order and account actions; order and cancellation actions should require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

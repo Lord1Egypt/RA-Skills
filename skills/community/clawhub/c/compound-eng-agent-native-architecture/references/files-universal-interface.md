@@ -5,7 +5,7 @@ Files are the universal interface for agent-native applications. Agents are natu
 <why_files>
 ## Why Files
 
-Agents are naturally good at files. Claude Code works because bash + filesystem is the most battle-tested agent interface. When building agent-native apps, lean into this.
+Agents are naturally good at files. Claude Code works because bash + filesystem is the most proven agent interface. When building agent-native apps, lean into this.
 
 ### Agents Already Know How
 
@@ -190,11 +190,28 @@ If agents and users write to the same files, you need a conflict model.
 
 Most implementations use **last-write-wins** via atomic writes:
 
-```swift
-try data.write(to: url, options: [.atomic])
+```typescript
+import { randomUUID } from "node:crypto";
+import { open, rename, rm } from "node:fs/promises";
+import { dirname, join } from "node:path";
+
+async function replaceAtomically(path: string, data: Uint8Array): Promise<void> {
+  const temporary = join(dirname(path), `.${randomUUID()}.tmp`);
+  const handle = await open(temporary, "wx", 0o600);
+  try {
+    try {
+      await handle.writeFile(data);
+    } finally {
+      await handle.close();
+    }
+    await rename(temporary, path);
+  } finally {
+    await rm(temporary, { force: true });
+  }
+}
 ```
 
-This is simple but can lose changes.
+This Node.js example assumes a trusted destination on a POSIX filesystem. The temporary file and destination share a directory, so replacement is atomic. Atomic replacement alone neither checks revisions nor guarantees crash durability. It is simple but can lose changes from concurrent writers.
 
 ### Options
 
@@ -211,20 +228,21 @@ This is simple but can lose changes.
 **For files agents write frequently (logs, status):** Last-write-wins is fine. Conflicts are rare.
 
 **For files users edit (profiles, notes):** Consider explicit handling:
-- Agent checks modification time before overwriting
+- Use an expected revision checked atomically during replacement; a modification-time check alone races with later edits
 - Or keep agent output separate from user-editable content
 - Or use append-only pattern
 
 ### iCloud Considerations
 
-iCloud sync adds complexity. It creates `{filename} (conflict).md` files when sync conflicts occur. Monitor for these:
+Use the sync provider's unresolved-version or conflict metadata; do not infer conflicts from a filename convention. Native iCloud exposes unresolved file versions, not a guaranteed `(conflict).md` filename.
 
-```swift
-NotificationCenter.default.addObserver(
-    forName: .NSMetadataQueryDidUpdate,
-    ...
-)
-```
+1. Read availability and conflict state from the provider before opening the logical document URL.
+2. If content is remote, request its download and return pending until the provider reports local availability.
+3. If versions conflict, retain every version, record their identities, and pause replacement of the conflicted document.
+4. Compare or present the versions for an explicit merge decision. Save the chosen or merged result with revision-conditional persistence.
+5. Mark only the resolved provider versions as resolved after successful persistence; refresh both UI and agent context.
+
+Follow [mobile-storage.md](./mobile-storage.md) for the complete storage transaction contract. Test concurrent edits and offline reconnection with the selected provider.
 
 ### System Prompt Guidance
 

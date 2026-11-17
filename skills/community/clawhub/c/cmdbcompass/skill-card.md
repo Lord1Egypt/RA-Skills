@@ -1,41 +1,55 @@
-## Description: <br>
-The first CMDB governance skill for ServiceNow. Audit, remediate, and govern your CMDB from any AI agent. Health scoring, duplicate detection, relationship analysis, stale CI cleanup, and governed remediation with full rollback and audit trail on every write. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CMDB Compass helps agents audit, remediate, and govern ServiceNow CMDBs with health scoring, duplicate detection, relationship analysis, stale CI cleanup, rollback, and audit trails.
 
-## Publisher: <br>
-[nexecuteinc](https://clawhub.ai/user/nexecuteinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexecuteinc](https://clawhub.ai/user/nexecuteinc)
 
-## Use Case: <br>
-ServiceNow CMDB administrators, platform teams, and developers use this skill to audit CMDB health, find duplicates and stale configuration items, analyze relationships, and prepare governed remediation workflows through an MCP-compatible agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable broad ServiceNow CMDB changes through stored ServiceNow credentials. <br>
-Mitigation: Use a least-privilege ServiceNow service account, avoid production administrator credentials initially, and require explicit approval for merge, retire, bulk update, or relationship repair actions. <br>
-Risk: The installer installs external package code without pinning a trusted version. <br>
-Mitigation: Review the cmdb-compass package source or pin a trusted package version before installation. <br>
+## Use Case:
 
+Developers, ServiceNow administrators, and CMDB owners use this skill to connect an MCP-compatible agent to ServiceNow for CMDB health analysis, duplicate and relationship checks, stale CI cleanup, and governed remediation workflows.
 
-## Reference(s): <br>
-- [CMDB Compass ClawHub page](https://clawhub.ai/nexecuteinc/cmdbcompass) <br>
-- [CMDB Compass PyPI package](https://pypi.org/project/cmdb-compass) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide MCP setup and ServiceNow CMDB audit or remediation actions; write-capable actions should require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The install script upgrades an unpinned PyPI package that will run with access to ServiceNow credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package and dependencies before installing, and prefer a pinned, hash-verified package version.
+
+Risk: Write operations can merge, retire, bulk update, or repair CMDB records.
+
+Mitigation: Use a dedicated least-privilege ServiceNow account and require dry runs, explicit human approval, change control, and tested rollback for write workflows.
+
+## Reference(s):
+
+- [CMDB Compass ClawHub Skill Page](https://clawhub.ai/nexecuteinc/skills/cmdbcompass)
+- [CMDB Compass PyPI Package](https://pypi.org/project/cmdb-compass)
+- [CMDB Compass Documentation Repository](https://github.com/cmdbcompass/cmdbcompass)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ServiceNow MCP configuration snippets and operational guidance for read-only audits or approved write workflows.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

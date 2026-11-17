@@ -1,44 +1,50 @@
-## Description: <br>
-Nummo connects AI agents to the user's bank accounts via Plaid, enabling financial insights through natural language. More info at nummo.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nummo connects AI agents to the user's bank accounts via Plaid, enabling financial insights through natural language.
 
-## Publisher: <br>
-[nummo-ai](https://clawhub.ai/user/nummo-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nummo-ai](https://clawhub.ai/user/nummo-ai)
 
-## Use Case: <br>
-External users and agents use this skill to connect bank accounts, inspect account lists, review transactions, summarize spending and income, and manage Nummo subscription flows through the Nummo CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides access to Plaid-linked bank account and transaction data. <br>
-Mitigation: Ask for explicit user consent before each financial-data command and avoid broad history access such as `--all` unless it is necessary for the user's request. <br>
-Risk: The install path uses a remote shell installer. <br>
-Mitigation: Install only after trusting Nummo with local CLI execution; inspect the installer first or prefer a signed package with checksum verification. <br>
-Risk: Returned connection or payment URLs require user action outside the agent. <br>
-Mitigation: Present Plaid Link and Stripe checkout URLs clearly and tell the user they must open them in a browser to continue. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Install Reference](reference/install.md) <br>
-- [Nummo Installer](https://nummo.ai/install) <br>
-- [Nummo Skill Page](https://clawhub.ai/nummo-ai/nummo) <br>
-- [Nummo Publisher Profile](https://clawhub.ai/user/nummo-ai) <br>
+## Use Case:
 
+External users and their agents use this skill to authenticate with Nummo, connect bank accounts through Plaid, review accounts and transactions, summarize spending and income, and manage Nummo subscriptions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Plaid Link URLs, Stripe checkout URLs, account lists, transaction details, spending summaries, subscription status, and cancellation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install instructions use an unverified remote shell installer for a CLI that can access bank-account and transaction data.
+
+Mitigation: Review the installer before running it; prefer a versioned release, checksum or signature verification, or a download-then-inspect flow; connect bank accounts only with explicit user consent and trust in Nummo.
+
+## Reference(s):
+
+- [Nummo skill page](https://clawhub.ai/nummo-ai/skills/nummo)
+- [Install instructions](reference/install.md)
+- [Nummo installer](https://nummo.ai/install)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and user-facing URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May present Plaid Link, Stripe checkout, or subscription-change URLs for the user to open in a browser.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

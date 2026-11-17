@@ -1,46 +1,61 @@
-## Description: <br>
-Register and verify ERC-8004 AI agents on-chain using Pinata IPFS and Viem for blockchain transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Register and verify ERC-8004 AI agents on-chain using Pinata IPFS and Viem for blockchain transactions.
 
-## Publisher: <br>
-[pinata](https://clawhub.ai/user/pinata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinata](https://clawhub.ai/user/pinata)
 
-## Use Case: <br>
-Developers and operators use this skill to create, upload, register, inspect, update, and transfer ERC-8004 agent records using Pinata IPFS storage and Base network transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blockchain transactions and NFT transfers can spend funds or permanently change ownership. <br>
-Mitigation: Use a dedicated low-balance wallet and confirm the network, contract, token ID, destination address, and estimated cost before each transaction. <br>
-Risk: Pinata API credentials can upload or delete IPFS files and consume account quota. <br>
-Mitigation: Use a restricted or dedicated Pinata token and confirm uploads or deletions only after checking the CID, filename, network, and storage impact. <br>
-Risk: The skill requires sensitive credentials, including a wallet private key and Pinata token. <br>
-Mitigation: Keep credentials in environment variables, avoid exposing them in prompts or files, and use scoped accounts dedicated to agent registration. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create ERC-8004 agent metadata, upload agent cards and images to Pinata IPFS, register agents on-chain, and verify ownership and registration state.
 
-## Reference(s): <br>
-- [Pinata ERC-8004 skill page](https://clawhub.ai/pinata/pinata-erc-8004) <br>
-- [ERC-8004 specification](https://eips.ethereum.org/EIPS/eip-8004) <br>
-- [Pinata ERC-8004 guide](https://docs.pinata.cloud/tools/erc-8004/quickstart) <br>
-- [Pinata API documentation](https://docs.pinata.cloud) <br>
-- [Viem documentation](https://viem.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and inline Node.js/Viem command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PINATA_JWT, PINATA_GATEWAY_URL, PRIVATE_KEY, optional RPC_URL, and node when the user proceeds with supported workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The skill can use a wallet private key to sign irreversible blockchain transactions and transfer ERC-8004 agent NFTs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, keep only enough ETH for gas, and confirm the full network, contract address, destination address, token ID, and transaction purpose before signing.
+
+Risk: The Pinata token can upload files, delete files, and consume account storage quota.
+
+Mitigation: Use a dedicated or restricted Pinata key, review every CID and file name before upload or deletion, and audit stored files regularly.
+
+Risk: Untrusted IPFS, API, or conversation content could try to steer the agent toward malicious addresses, domains, token IDs, or destructive actions.
+
+Mitigation: Treat external data as untrusted, use only allowlisted domains and official ERC-8004 registry addresses, and require explicit confirmation for every write operation or destructive action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pinata/skills/pinata-erc-8004)
+- [ERC-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004)
+- [Pinata ERC-8004 Guide](https://docs.pinata.cloud/tools/erc-8004/quickstart)
+- [Pinata API Docs](https://docs.pinata.cloud)
+- [Viem Documentation](https://viem.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and JavaScript or Node.js command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose API calls, transaction steps, confirmation prompts, and validation checklists for Pinata IPFS and ERC-8004 workflows.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

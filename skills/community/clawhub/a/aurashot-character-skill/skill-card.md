@@ -1,45 +1,65 @@
-## Description: <br>
-AuraShot Character Skill helps agents create and edit identity-preserving character images from face references, including ID photos, scene and outfit generation, and natural-language edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Character-consistent AI image generation for agents that creates ID photos, new character scenes, and image edits from a face reference while preserving identity.
 
-## Publisher: <br>
-[whbzju](https://clawhub.ai/user/whbzju) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whbzju](https://clawhub.ai/user/whbzju)
 
-## Use Case: <br>
-External users, developers, and agent builders use this skill to guide character setup, manage local character assets, and call AuraShot commands for identity-preserving image generation and editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload face photos, reference images, and prompts to AuraShot and may receive hosted image URLs in return. <br>
-Mitigation: Use only images the user owns or has explicit consent to process, and tell users when local files must be uploaded to the external service. <br>
-Risk: API keys may be stored in `.aurashot.env` for local execution. <br>
-Mitigation: Keep `.aurashot.env` private, exclude it from version control, and avoid exposing keys in chat transcripts or generated files. <br>
-Risk: Identity-preserving image generation can be misused for deceptive, non-consensual, sexualized, or impersonation content involving real people. <br>
-Mitigation: Decline requests that lack consent or appear deceptive, sexualized, or impersonation-oriented for real people. <br>
+## Use Case:
 
+External users and agent developers use this skill to create and manage roleplay or design characters, generate identity baselines from face references, produce new outfit or scene images, and edit existing character images through AuraShot.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whbzju/aurashot-character-skill) <br>
-- [AuraShot homepage](https://www.aurashot.art) <br>
-- [AuraShot API documentation](https://www.aurashot.art/studio?tab=docs) <br>
-- [AuraShot Character Design API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language guidance with inline shell commands and JSON command results from the AuraShot CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local avatar directories, metadata JSON, downloaded image files, and references to hosted image URLs returned by AuraShot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends face photos, target images, clothing or scene references, prompts, and an AuraShot API key to the image-generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with images and prompts the user is comfortable uploading, get consent for real-person photos, and review AuraShot's handling of submitted data before deployment.
+
+Risk: The skill reads API keys from environment variables or a local .aurashot.env file.
+
+Mitigation: Protect .aurashot.env, keep it out of version control, and rotate the key if it is exposed.
+
+Risk: Custom base URLs or proxy settings can change where images, prompts, and credentials are sent.
+
+Mitigation: Use the default AuraShot endpoint unless a trusted operator explicitly approves the destination and proxy configuration.
+
+Risk: Generated avatars and downloaded gallery images may contain sensitive personal data.
+
+Mitigation: Store avatar folders in access-controlled locations and delete local character assets when they are no longer needed.
+
+## Reference(s):
+
+- [AuraShot API Reference](references/api.md)
+- [AuraShot Homepage](https://www.aurashot.art)
+- [AuraShot API Documentation](https://www.aurashot.art/studio?tab=docs)
+- [ClawHub Skill Page](https://clawhub.ai/whbzju/skills/aurashot-character-skill)
+- [Publisher Profile](https://clawhub.ai/user/whbzju)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON, Files]
+
+**Output Format:** [Markdown guidance with shell commands; CLI responses are JSON and generated images may be downloaded to local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and an AuraShot API key; image inputs may be local files or public HTTPS URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

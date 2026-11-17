@@ -1,43 +1,57 @@
-## Description: <br>
-WOS Literature Toolkit helps agents launch a web interface to search Web of Science, export literature metadata to Excel, and coordinate PDF downloads through configured academic and open-access sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WOS Literature Toolkit helps agents launch a local Web UI for Web of Science literature searches, Excel export, and multi-channel PDF batch downloads.
 
-## Publisher: <br>
-[grizzlyccc](https://clawhub.ai/user/grizzlyccc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grizzlyccc](https://clawhub.ai/user/grizzlyccc)
 
-## Use Case: <br>
-Researchers, librarians, and agents supporting literature reviews use this skill to run WOS searches, collect metadata exports, and coordinate batch PDF retrieval from one web interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation may use persistent institutional WOS session cookies. <br>
-Mitigation: Confirm the user intends to use WOS automation, review where cookies are stored, and delete saved cookies when institutional access should no longer persist. <br>
-Risk: Paper metadata and DOI queries may be sent to third-party PDF retrieval sources. <br>
-Mitigation: Confirm acceptable download sources with the user before batch retrieval and prefer scoped WOS-only or open-access requests when required. <br>
-Risk: Bulk crawling or downloading may exceed site, publisher, or institutional policies. <br>
-Mitigation: Require explicit user confirmation for crawl scope and output location before starting unattended crawling or bulk downloads. <br>
+## Use Case:
 
+Developers, research staff, and academic users can use this skill to guide Web of Science search crawling, export results to Excel, and batch-download PDFs through a local browser workflow. Use requires authorized WOS access and download rights.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/grizzlyccc/wos-literature-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/grizzlyccc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and web UI workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Excel metadata exports and PDF files in a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The workflow stores WOS login cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with authorized WOS access, understand where cookies are stored, and remove saved cookies when they are no longer needed.
+
+Risk: The PDF download flow includes Sci-Hub, which may be unacceptable under some legal, network, or institutional rules.
+
+Mitigation: Confirm download rights before use and prefer authorized publisher or open-access channels when Sci-Hub is not allowed.
+
+Risk: The skill installs and runs browser automation and web-request dependencies.
+
+Mitigation: Install dependencies in an isolated environment and review the skill carefully before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/grizzlyccc/skills/wos-literature-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides a local Web UI workflow that may produce Excel exports and downloaded PDF files.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

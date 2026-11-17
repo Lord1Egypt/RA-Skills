@@ -1,42 +1,54 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[susiemiles443](https://clawhub.ai/user/susiemiles443) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[susiemiles443](https://clawhub.ai/user/susiemiles443)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser-based workflows such as navigation, form filling, UI testing, page inspection, screenshots, recording, and data extraction through structured CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill can control browser sessions, including authenticated pages, cookies, local storage, uploads, recordings, screenshots, and saved state. <br>
-Mitigation: Use disposable sessions where possible, avoid sensitive logged-in accounts unless necessary, and require confirmation before credential entry, file upload, cookie or storage access, recording, screenshots, saved-state handling, or account-changing actions. <br>
-Risk: The skill depends on the upstream agent-browser package and grants broad browser-control authority once installed. <br>
-Mitigation: Install only when the upstream package is trusted, keep the package current, and review browser actions before execution in sensitive environments. <br>
+## Use Case:
 
+Developers and AI agents use this skill to automate browser navigation, UI testing, form filling, page snapshots, screenshots, session state, and structured data extraction through agent-browser CLI commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/susiemiles443/agent-browser-skipped) <br>
-- [agent-browser upstream repository](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser CLI skill issues](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, PDFs, video recordings, traces, and saved browser state files when those agent-browser commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser-control authority can expose sensitive accounts, pages, cookies, local storage, screenshots, recordings, traces, and network logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted, isolated environments; avoid sensitive accounts unless necessary; treat saved session files and capture artifacts as secrets and delete them when they are no longer needed.
+
+Risk: Mutable global installs such as latest npm packages can change behavior between reviews.
+
+Mitigation: Prefer pinned and reviewed agent-browser versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/susiemiles443/skills/agent-browser-skipped)
+- [agent-browser CLI repository](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create browser automation artifacts such as screenshots, PDFs, recordings, traces, saved session state, cookies, storage exports, or network logs when the referenced CLI commands are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

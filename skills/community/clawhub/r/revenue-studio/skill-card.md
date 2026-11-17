@@ -1,40 +1,53 @@
-## Description: <br>
-A revenue-first solofounder studio that watches markets, finds monetizable pain, validates offers, ships narrow products, and compounds commercial memory across launches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A revenue-first solofounder studio that watches markets, finds monetizable pain, validates offers, ships narrow products, and compounds commercial memory across launches.
 
-## Publisher: <br>
-[amoldericksoans](https://clawhub.ai/user/amoldericksoans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amoldericksoans](https://clawhub.ai/user/amoldericksoans)
 
-## Use Case: <br>
-External operators and developers use this skill to orchestrate OpenClaw agents for revenue research, opportunity scoring, offer validation, narrow product planning, and launch governance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script can launch multiple OpenClaw agents, which may consume network, tool, or execution quota. <br>
-Mitigation: Run the helper script intentionally and monitor agent activity and quota usage. <br>
-Risk: Generated theses, landing pages, offers, and outreach may be incomplete, inaccurate, or inappropriate for real customers. <br>
-Mitigation: Review and approve all generated business, launch, and outreach materials before publishing or contacting prospects. <br>
+## Use Case:
 
+Solofounders and startup operators use this skill to coordinate agents that collect market signals, score monetizable pain, validate offers, plan narrow builds, and prepare launch or portfolio decisions.
 
-## Reference(s): <br>
-- [Thesis Template](templates/thesis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch multiple OpenClaw agents and produce theses, council outputs, revenue-lab artifacts, governance records, signals, and scoring files under revenue-studio/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow may launch many parallel agent tasks for market collection and launch or outreach planning without concrete boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit operator controls for which sources may be queried, what data may be retained, and which outbound or launch actions require approval.
+
+Risk: External market collection can introduce untrusted or misleading signals into revenue decisions.
+
+Mitigation: Review collected signals and require human approval before using them to commit budget, contact prospects, or build a product.
+
+## Reference(s):
+
+- [Thesis Template](templates/thesis.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and reusable templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent task prompts, revenue thesis templates, scoring frameworks, governance checkpoints, and launch planning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

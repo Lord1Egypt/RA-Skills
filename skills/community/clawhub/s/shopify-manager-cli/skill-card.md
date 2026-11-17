@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Shopify store products, metafields, metaobjects, blogs, articles, and files through the Shopify Admin GraphQL API using a Python CLI wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Shopify store products, metafields, metaobjects, blogs, articles, and files via the Shopify Admin GraphQL API.
 
-## Publisher: <br>
-[Asenwang](https://clawhub.ai/user/Asenwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asenwang](https://clawhub.ai/user/asenwang)
 
-## Use Case: <br>
-Store operators and developers use this skill to let an agent run Shopify Admin GraphQL commands for catalog, content, metadata, and file-management tasks. It is intended for authenticated Shopify stores configured with the required Admin API scopes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, upload, or delete Shopify store data. <br>
-Mitigation: Use a dedicated least-privilege Admin API token and confirm destructive requests before execution. <br>
-Risk: Commands may target the wrong Shopify store if environment variables are misconfigured. <br>
-Mitigation: Verify SHOPIFY_STORE_URL before running commands and keep SHOPIFY_ACCESS_TOKEN in environment variables or a secret manager. <br>
-Risk: Upload commands can send local files to Shopify. <br>
-Mitigation: Review local file paths and file contents before allowing upload commands to run. <br>
+## Use Case:
 
+Developers and store operators use this skill to translate Shopify administration requests into Python CLI commands for listing, creating, updating, uploading, and deleting store resources through the Shopify Admin GraphQL API.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Asenwang/shopify-manager-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with shell commands, tables, and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Shopify environment variables for store URL, Admin API token, and API version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill handles a powerful Shopify Admin API token and can perform destructive store operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Shopify custom app token and require explicit human confirmation before deletes or other store-changing actions.
+
+Risk: A misconfigured store URL or file upload path could affect the wrong shop or expose sensitive local files.
+
+Mitigation: Set SHOPIFY_STORE_URL only to the exact shop domain and review local file paths before upload.
+
+Risk: The scanner notes under-scoped safeguards for use with valuable production store data.
+
+Mitigation: Review before installing on a production store and consider adding host validation plus force or dry-run safeguards.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/asenwang/skills/shopify-manager-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus SHOPIFY_STORE_URL, SHOPIFY_ACCESS_TOKEN, and SHOPIFY_API_VERSION environment variables.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

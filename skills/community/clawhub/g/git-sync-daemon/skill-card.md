@@ -1,44 +1,52 @@
-## Description: <br>
-Manage multiple git repositories with a daemon model for periodic add, commit, pull, and push workflows on macOS launchd or Linux systemd. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage multiple git repositories with a daemon model for periodic add, commit, pull, and push workflows on macOS launchd or Linux systemd.
 
-## Publisher: <br>
-[samwei12](https://clawhub.ai/user/samwei12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samwei12](https://clawhub.ai/user/samwei12)
 
-## Use Case: <br>
-Developers and operators use this skill to configure, run, and troubleshoot automated git syncing for multiple repositories, including repository registration and service lifecycle management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The daemon can persistently add, commit, pull, and push registered repositories, which can publish unintended unignored files or incorrect changes. <br>
-Mitigation: Run a one-time sync first, register only intended repositories, review ignore rules and pending changes, and add repositories gradually. <br>
-Risk: Linux service installation can create a persistent systemd unit and may run with elevated privileges if installed as root. <br>
-Mitigation: Prefer a least-privileged user service, avoid running the daemon as root unless explicitly intended, and review any service unit name override before installation. <br>
-Risk: Automated sync depends on non-interactive git and SSH credentials for the service identity. <br>
-Mitigation: Use the same service user that owns the repositories and credentials, verify git user configuration, and preconfigure trusted SSH host keys before enabling daemon mode. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Git Sync Daemon Skill Page](https://clawhub.ai/samwei12/git-sync-daemon) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Control CLI Script](artifact/scripts/git_sync_ctl.sh) <br>
-- [Daemon Script](artifact/scripts/git_sync_daemon.sh) <br>
+## Use Case:
 
+Developers and engineers use this skill to set up, run, and troubleshoot unattended synchronization for multiple git repositories with per-repository configuration and service lifecycle commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference bundled shell scripts, repository list entries, daemon runtime paths, and launchd or systemd service configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Linux systemd installer can create a persistent service that runs from a user-writable script path.
+
+Mitigation: Avoid the sudo systemd installer unless it is changed to use a dedicated unprivileged user, validate the unit name, and copy scripts to a protected root-owned location.
+
+Risk: The daemon can automatically commit and push changes from registered repositories.
+
+Mitigation: Use daemon mode only for intentionally trusted repositories, validate run-once behavior first, and register only clean repos with the intended branch and remote.
+
+## Reference(s):
+
+- [Git Sync Daemon skill page](https://clawhub.ai/samwei12/skills/git-sync-daemon)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service lifecycle guidance for launchd or systemd and repository registration steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

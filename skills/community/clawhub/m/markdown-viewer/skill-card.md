@@ -1,43 +1,58 @@
-## Description: <br>
-Live markdown viewer for AI pair-editing. When you collaborate, the updates render instantly. Works with any AI agent and web browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live markdown viewer for AI pair-editing. When you collaborate, the updates render instantly. Works with any AI agent and web browser.
 
-## Publisher: <br>
-[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[parkertoddbrooks](https://clawhub.ai/user/parkertoddbrooks)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to install and run a local Markdown preview server so Markdown files update live in a browser during pair-editing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The localhost viewer can read files addressed through the view path, which may expose sensitive local files if used broadly. <br>
-Mitigation: Start the server with a project root limit, such as mdview --root <your-project>, and only open files intended for preview. <br>
-Risk: The skill installs and runs the third-party npm package @wipcomputer/markdown-viewer. <br>
-Mitigation: Install only when the package publisher is trusted in the target environment. <br>
-Risk: The preview server may continue running in the background after use. <br>
-Mitigation: Stop the background server when the preview session is finished, especially on shared machines. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Markdown Viewer ClawHub page](https://clawhub.ai/parkertoddbrooks/markdown-viewer) <br>
-- [npm package @wipcomputer/markdown-viewer](https://www.npmjs.com/package/@wipcomputer/markdown-viewer) <br>
-- [Artifact-declared GitHub project](https://github.com/wipcomputer/wip-markdown-viewer) <br>
+## Use Case:
 
+Developers and AI pair-editing users use this skill to install and run a local Markdown preview server so Markdown files render live in a browser while an agent edits them.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes npm installation, localhost server startup, browser open commands, and operational notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install a mutable global npm command.
+
+Mitigation: Prefer a pinned or locally reviewed package version before installing.
+
+Risk: The local Markdown server can read broadly from the user's filesystem by default.
+
+Mitigation: Run it only for trusted workspaces and start it with --root set to the directory intended for preview.
+
+Risk: A background preview server may remain running after use.
+
+Mitigation: Stop the background server when the preview session is finished.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parkertoddbrooks/skills/markdown-viewer)
+- [wipcomputer/wip-markdown-viewer](https://github.com/wipcomputer/wip-markdown-viewer)
+- [@wipcomputer/markdown-viewer npm package](https://www.npmjs.com/package/@wipcomputer/markdown-viewer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation and browser-launch guidance for a local Markdown preview workflow.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Uses the Baidu Qianfan web search API to retrieve real-time web results for agents that need current facts, news, or verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Baidu Qianfan web search API for real-time web retrieval when the user needs current information, latest news, fact verification, or source-backed answers.
 
-## Publisher: <br>
-[liuhean2021](https://clawhub.ai/user/liuhean2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuhean2021](https://clawhub.ai/user/liuhean2021)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to run Baidu web searches through a configured Qianfan API key and answer current-information questions from structured results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Baidu and may disclose sensitive or private text. <br>
-Mitigation: Invoke the skill only when web lookup is intended and avoid placing sensitive or private information in search queries. <br>
-Risk: The Baidu Qianfan API key can be exposed if handled outside the dedicated search script. <br>
-Mitigation: Store BAIDU_API_KEY in private platform secrets or a protected local config and do not print, log, read aloud, or copy credential values. <br>
-Risk: Dependency behavior may drift in controlled environments without a lockfile. <br>
-Mitigation: Pin and update dependencies with a lockfile when deploying in managed or audited environments. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to run Baidu web searches for current events, factual verification, technical references, products, people, and places. The skill returns structured search results that an agent can synthesize into a concise, source-aware answer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuhean2021/baidu-web-search) <br>
-- [Baidu Qianfan API key documentation](https://cloud.baidu.com/doc/qianfan-api/s/Wmbq4z7e5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON search results with agent-facing guidance for answering from retrieved sources] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIDU_API_KEY or a local config.json apiKey; default result count is 20 and allowed range is 1-50.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill handles a Baidu API key and can also use a local config.json file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer platform-injected BAIDU_API_KEY, avoid exposing credential values in logs or messages, and verify local credential files are not shared or committed.
+
+Risk: Search queries are sent to Baidu and may include sensitive user-provided information.
+
+Mitigation: Do not submit private, regulated, or confidential information as search queries unless the deployment has approved that data flow.
+
+Risk: The release depends on a Node.js package and security evidence recommends review before installation.
+
+Mitigation: Review dependency lock or pinning practices and scan the installed package before deploying the skill.
+
+## Reference(s):
+
+- [Baidu Qianfan API documentation](https://cloud.baidu.com/doc/qianfan-api/s/Wmbq4z7e5)
+- [ClawHub skill page](https://clawhub.ai/liuhean2021/skills/baidu-web-search)
+- [ClawHub publisher profile](https://clawhub.ai/user/liuhean2021)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results from the script, typically synthesized by the agent into Markdown or plain-text answers with source references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a search query and optionally accepts a result count from 1 to 50; uses BAIDU_API_KEY when configured.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

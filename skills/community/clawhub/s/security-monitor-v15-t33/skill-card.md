@@ -1,44 +1,59 @@
-## Description: <br>
-Security Monitor V15 T33 helps agents audit Linux/Unix servers for suspicious processes, risky network exposure, file-permission issues, sensitive information in local files, anomalous logs, and process-tree concerns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Linux/Unix server security auditing for processes, network connections, open ports, file permissions, sensitive information exposure, logs, and process trees.
 
-## Publisher: <br>
-[t33-coder](https://clawhub.ai/user/t33-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t33-coder](https://clawhub.ai/user/t33-coder)
 
-## Use Case: <br>
-Developers and system administrators use this skill to inspect servers they administer, triage suspicious activity, and produce security audit findings that can guide follow-up remediation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security scan reports may expose host details, running processes, network endpoints, file paths, and potential secrets. <br>
-Mitigation: Restrict permissions on saved reports and logs, and redact sensitive findings before sharing them. <br>
-Risk: Running broad scans with elevated privileges can collect more sensitive system information than needed. <br>
-Mitigation: Use sudo only when required for the intended audit and prefer targeted directories or checks when a full-system scan is unnecessary. <br>
-Risk: Findings from heuristic process, port, log, and secret checks can include false positives. <br>
-Mitigation: Have an administrator validate findings before terminating processes, changing firewall rules, rotating credentials, or escalating an incident. <br>
+## Use Case:
 
+System administrators and security-minded developers use this skill to audit Linux/Unix servers, investigate suspicious activity, review exposed services, and produce findings that support follow-up remediation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/t33-coder/security-monitor-v15-t33) <br>
-- [Server Security Checklist](references/security-checklist.md) <br>
-- [Common Service Port Reference](references/common-ports.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python code blocks; the monitor script can also emit human-readable text and JSON-formatted results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Audit reports can contain sensitive host, process, network, path, and secret-finding details and should be stored and shared with restricted access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad host inspection can expose sensitive operational data in reports or scheduled logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on systems you administer, prefer targeted unprivileged checks first, and protect any report or cron log output.
+
+Risk: Some checks require elevated privileges to inspect complete process, network, log, and file-permission state.
+
+Mitigation: Use sudo only for checks that require it and review generated findings before taking remediation action.
+
+Risk: Findings for non-standard ports, high-resource processes, or secret-like strings can require human confirmation.
+
+Mitigation: Compare findings against expected services and rotate credentials only after confirming an exposure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/t33-coder/skills/security-monitor-v15-t33)
+- [Server Security Checklist](artifact/references/security-checklist.md)
+- [Common Service Port Reference](artifact/references/common-ports.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; the monitor script emits human-readable reports and JSON-formatted scan results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include process arguments, usernames, internal paths, log excerpts, and locations of suspected secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact docs describe the monitor tool as v1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-OpenClaw Token Saver provides token monitoring and practical strategies for reducing OpenClaw token usage through context management, tool configuration, caching, model controls, and local alternatives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Token Saver provides token monitoring, context slimming, tool optimization, caching, model-control, and local-alternative guidance for reducing OpenClaw token consumption.
 
-## Publisher: <br>
-[JX-76](https://clawhub.ai/user/JX-76) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jx-76](https://clawhub.ai/user/jx-76)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to monitor token consumption and get guidance, configuration examples, and command suggestions for reducing context size and token-related cost. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad tool-configuration examples could lead users to enable write, exec, web, or all-tool authority beyond what their workflow needs. <br>
-Mitigation: Apply only the minimum tool permissions needed for the current task and review configuration changes before enabling them. <br>
-Risk: The proxy-bypass suggestion could bypass normal service controls. <br>
-Mitigation: Avoid proxy-bypass patterns and use approved provider integrations that comply with applicable service terms. <br>
-Risk: Remote install and copy commands may introduce unreviewed skill or script content. <br>
-Mitigation: Review source files, hashes, and the security summary before installation, and run the monitor locally with minimal permissions. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to monitor token usage and choose token-saving actions such as compacting context, limiting tool output, setting token budgets, and using local model alternatives.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/JX-76/jx76-openclaw-token-saver) <br>
-- [OpenClaw website](https://openclaw.ai) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Token saver configuration](artifact/config/token-saver.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples; optional text reports from the token monitor script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes threshold-based token usage recommendations and optional OpenClaw configuration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The README recommends a remote installer command for Ollama.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify installer source and integrity separately before running curl-to-shell commands.
+
+Risk: Automatic compact or reset recommendations can discard useful conversation context if enabled without review.
+
+Mitigation: Keep compact/reset actions as explicit user-approved actions unless the deployment has validated how conversation state is preserved.
+
+Risk: Proxy-forwarding guidance may be unsupported or non-compliant with provider terms.
+
+Mitigation: Use proxy-forwarding only when the relevant provider explicitly permits that workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jx-76/skills/jx76-openclaw-token-saver)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, bash, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes threshold-based recommendations for compacting or resetting context, switching context modes, limiting tools, and configuring token budgets.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

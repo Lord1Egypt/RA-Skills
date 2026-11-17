@@ -1,41 +1,55 @@
-## Description: <br>
-Performs Google web searches using the Serper API and returns structured search results when provided a valid Serper API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs Google web searches through the Serper API when provided a valid Serper API key.
 
-## Publisher: <br>
-[OakcoderX](https://clawhub.ai/user/OakcoderX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oakcoderx](https://clawhub.ai/user/oakcoderx)
 
-## Use Case: <br>
-Developers and agents use this skill to run web searches through Serper when a user requests Google-style search results and a valid Serper API key is available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to a third-party Serper API. <br>
-Mitigation: Avoid searching for secrets, sensitive personal data, or internal-only project details. <br>
-Risk: The skill requires a Serper API key and examples include inline key usage. <br>
-Mitigation: Prefer setting SERPER_API_KEY as an environment variable instead of pasting keys directly into commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Serper website](https://serper.dev) <br>
-- [Serper Google Search API endpoint](https://google.serper.dev/search) <br>
-- [ClawHub skill page](https://clawhub.ai/OakcoderX/serper-web-search) <br>
+## Use Case:
 
+Developers and agents use this skill to issue web search queries through Serper and receive structured Google search results for user-requested research tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and SERPER_API_KEY; search requests are sent to Serper and responses include organic results, search parameters, and credit usage.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search queries are sent to Serper and Google, so sensitive or confidential query terms could leave the user's environment.
+
+Mitigation: Confirm the query is appropriate for an external search provider before use, and avoid searching for secrets, personal data, or confidential business terms.
+
+Risk: A Serper API key is required, and inline key examples can lead to accidental credential exposure in shell history or shared logs.
+
+Mitigation: Use the SERPER_API_KEY environment-variable form and avoid pasting real keys directly into commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/oakcoderx/skills/serper-web-search)
+- [Publisher Profile](https://clawhub.ai/user/oakcoderx)
+- [Serper API Endpoint](https://google.serper.dev/search)
+- [Serper](https://serper.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON search-result structure]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and SERPER_API_KEY; search responses include organic results, the original query, and API credit usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

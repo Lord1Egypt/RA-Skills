@@ -1,40 +1,58 @@
-## Description: <br>
-Reviews and improves an existing skill's directory structure, logical completeness, and agent compatibility when a user asks to optimize, review, or check a skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+审查和优化现有技能（Skill）结构质量，并在用户请求优化技能、审查技能或检查技能规范性时触发。
 
-## Publisher: <br>
-[linchuncheng](https://clawhub.ai/user/linchuncheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linchuncheng](https://clawhub.ai/user/linchuncheng)
 
-## Use Case: <br>
-Developers and skill authors use this skill to review skill folders for structure, workflow clarity, logical gaps, and agent portability before release or iteration. It produces a prioritized review report and actionable optimization guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The review-loop mode can modify the target skill folder by creating missing standard subdirectories. <br>
-Mitigation: Run the read-only analyze command first, and use review-loop only on a skill folder where creating scripts, references, or assets directories is acceptable. <br>
-Risk: Review recommendations may be incomplete or may not match a project's release requirements. <br>
-Mitigation: Have a maintainer review the generated report and proposed changes before publishing or deploying the revised skill. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to review an agent skill directory for structure, workflow clarity, logical consistency, and agent compatibility. It produces prioritized issues and concrete optimization steps for improving the skill.
 
-## Reference(s): <br>
-- [Structure optimization patterns](references/structure-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with optional shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prioritized issues, structural summaries, and concrete fix recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run local Python scripts against a skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on skill directories you intend to review, and inspect script actions before running automation.
+
+Risk: The optional review loop can create missing standard directories in the target skill.
+
+Mitigation: Use the single-pass analyzer for read-only review, and run the review loop only when those narrow filesystem changes are desired.
+
+Risk: The skill content and reports are primarily Chinese-language.
+
+Mitigation: Use reviewers who can evaluate the Chinese-language instructions and output before applying recommendations.
+
+## Reference(s):
+
+- [Structure Patterns](references/structure-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/linchuncheng/skills/skill-check)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown review report with issue tables, shell commands, and actionable remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally run a local review loop that creates missing standard directories in the target skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

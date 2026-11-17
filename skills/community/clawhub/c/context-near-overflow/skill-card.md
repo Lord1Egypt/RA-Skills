@@ -1,40 +1,54 @@
-## Description: <br>
-Context window is near capacity, causing the model to drop earlier content silently and produce degraded, partial, or inconsistent output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context window is near capacity, causing the model to drop earlier content silently and produce degraded, partial, or inconsistent output.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Agents and their operators use this skill to recognize context-window saturation and choose practical ways to split, summarize, or restart work so responses stay grounded in the relevant context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summaries or compressed context can omit important requirements or details. <br>
-Mitigation: Review summaries of important instructions or documents before relying on them, and re-inject critical source material when needed. <br>
-Risk: Context-window saturation can cause incomplete or inconsistent agent output without an explicit error. <br>
-Mitigation: Split large tasks into stages, keep only the context needed for the current step, and start a fresh session when prior context is no longer useful. <br>
+## Use Case:
 
+Developers, employees, and external users use this skill to recognize when a long agent conversation is losing earlier context and to choose practical next steps such as splitting work, summarizing prior material, or starting a fresh session.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mvogt99/context-near-overflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external tool access; provides context-management recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake the skill's guidance for an automated fix for context-window limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as workflow advice and manually decide when to split tasks, summarize context, or start a fresh session.
+
+Risk: Long conversations can still omit or distort earlier requirements after the skill identifies near-overflow symptoms.
+
+Mitigation: Re-inject only the current step's necessary instructions and source material before asking the agent to continue.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/context-near-overflow)
+- [Publisher profile](https://clawhub.ai/user/mvogt99)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, file changes, system setting changes, or data persistence are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

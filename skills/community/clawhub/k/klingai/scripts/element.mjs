@@ -11,7 +11,7 @@ import { parseArgs, getTokenOrExit, readMediaAsValue } from './shared/args.mjs';
 
 const API_PATH = '/v1/general/advanced-custom-elements';
 const API_PATH_PRESETS = '/v1/general/advanced-presets-elements';
-const API_PATH_DELETE = '/v1/general/delete-elements';
+const API_PATH_DELETE = '/v1/general/delete-advanced-elements';
 
 function getElementType(el) {
   return el?.reference_type || el?.element_type || el?.ref_type || 'unknown';
@@ -39,9 +39,9 @@ Create options:
   --description       Subject description (required, ≤100 chars)
   --ref_type          image_refer / video_refer (required)
   --frontal_image     Front reference image path or URL (required for image_refer)
-  --refer_images      Other reference images, comma-separated (optional, 1-3)
+  --refer_images      Other reference images, comma-separated (required for image_refer, 1-3)
   --video             Reference video path or URL (required for video_refer)
-  --voice_id          Voice ID (optional, video-based only)
+  --voice_id          Voice ID (optional; image_refer 仅人物/类人形象)
   --tags              Tag IDs, comma-separated (e.g. "o_102,o_108")
   --no-wait           Submit only, do not wait
 
@@ -56,8 +56,8 @@ Delete:
   --element_id        Subject ID to delete
 
 Env:
-  credentials file    ~/.config/kling/.credentials (access_key_id, secret_access_key)
-  KLING_TOKEN         Session-only Bearer (optional override)`);
+  credentials file    ~/.config/kling/.credentials (api_key)
+  KLING_API_KEY       Session-only Bearer (optional override)`);
 }
 
 async function actionCreate(args, token) {
@@ -79,12 +79,22 @@ async function actionCreate(args, token) {
     const imageList = {
       frontal_image: await readMediaAsValue(args.frontal_image),
     };
-    if (args.refer_images) {
-      const imgs = args.refer_images.split(',');
-      imageList.refer_images = [];
-      for (const img of imgs) {
-        imageList.refer_images.push({ image_url: await readMediaAsValue(img.trim()) });
-      }
+    if (!args.refer_images) {
+      console.error(
+        'Error / 错误: image_refer requires --refer_images (1-3 other images). '
+        + '官网要求其他参考图须与正面图有差异。不要静默用正面图补位；'
+        + '请询问用户是补其他角度图，还是显式把正面图再传给 --refer_images',
+      );
+      process.exit(1);
+    }
+    const imgs = args.refer_images.split(',').map((img) => img.trim()).filter(Boolean);
+    if (imgs.length < 1 || imgs.length > 3) {
+      console.error('Error / 错误: --refer_images must have 1-3 images / 其他参考图须为 1–3 张');
+      process.exit(1);
+    }
+    imageList.refer_images = [];
+    for (const img of imgs) {
+      imageList.refer_images.push({ image_url: await readMediaAsValue(img) });
     }
     payload.element_image_list = imageList;
   } else if (args.ref_type === 'video_refer') {

@@ -1,43 +1,59 @@
-## Description: <br>
-Debug Probe guides agents through hypothesis-driven runtime debugging with precise instrumentation, reproduction, root-cause convergence, fixes, and cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through hypothesis-driven runtime debugging with precise temporary instrumentation to diagnose bugs, confirm root causes, apply minimal fixes, and clean up diagnostics.
 
-## Publisher: <br>
-[zelixag](https://clawhub.ai/user/zelixag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zelixag](https://clawhub.ai/user/zelixag)
 
-## Use Case: <br>
-Developers and engineers use this skill when static code reading is insufficient to debug bugs, crashes, or unexpected behavior. It guides an agent through hypothesis generation, targeted instrumentation, reproduction, log review, root-cause fixes, verification, and cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary diagnostic logging and dump hooks may expose secrets, personal data, or sensitive runtime state if used carelessly. <br>
-Mitigation: Require explicit approval before instrumentation, log only minimal non-sensitive key=value pairs, and sanitize exported logs before sharing. <br>
-Risk: Temporary instrumentation may be left in the codebase after debugging. <br>
-Mitigation: Mark diagnostic code with DIAG cleanup comments, remove diagnostic imports and buffers after verification, and confirm the build passes with only the fix remaining. <br>
-Risk: Diagnostic code may affect application behavior or be deployed beyond the intended debugging session. <br>
-Mitigation: Use project-level installation on a clean branch, keep instrumentation narrow, and review changes before deployment. <br>
+## Use Case:
 
+Developers and coding agents use this skill to debug bugs, anomalies, and unexpected behavior when static code analysis is insufficient. It structures the workflow around hypotheses, targeted instrumentation, reproduction, log review, root-cause confirmation, minimal fixes, and cleanup.
 
-## Reference(s): <br>
-- [Debug Probe README](README.md) <br>
-- [Diagnostic Buffer Templates](TEMPLATES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with diagnostic code snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include temporary diagnostic instrumentation that must be removed after verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Diagnostic logging or dump endpoints could expose secrets, tokens, cookies, full payloads, or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local or non-production reproductions where possible, log only narrow key-value diagnostics, avoid sensitive values, and require strong access controls for any diagnostic export path.
+
+Risk: Temporary instrumentation can remain in deployed code after debugging.
+
+Mitigation: Require all temporary code to be marked for removal, search for those markers during cleanup, remove diagnostic imports and buffers, and verify the build after cleanup.
+
+Risk: The global unpinned install command can introduce supply-chain uncertainty.
+
+Mitigation: Prefer a reviewed local or project-level installation when evaluating or adopting the skill.
+
+## Reference(s):
+
+- [Debug Probe README](README.md)
+- [Diagnostic Buffer Templates](TEMPLATES.md)
+- [ClawHub Skill Page](https://clawhub.ai/zelixag/skills/debug-probe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Temporary diagnostic instrumentation should be removed after debugging.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

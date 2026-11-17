@@ -1,43 +1,62 @@
-## Description: <br>
-Polyglot code converter and language architect for converting mixed, ambiguous, pseudo, or multi-language code fragments into clean, idiomatic code in an appropriate target language and recommending languages for new projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts mixed, ambiguous, pseudo, or multi-language code fragments into idiomatic code in an appropriate target language and recommends languages for new projects when none is chosen.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert mixed-language or pseudocode fragments into idiomatic target-language code, select appropriate languages for new projects, and produce runnable code blocks with dependency guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated dependency installation commands or produced code may be unsuitable for a private or security-sensitive project. <br>
-Mitigation: Review generated commands and code before execution or deployment. <br>
-Risk: Ambiguous mixed-language input can lead to incorrect conversion assumptions or missing behavior. <br>
-Mitigation: Check conversion notes and resolve material ambiguities before using the generated code. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert mixed, pseudo, or polyglot code snippets into clean, runnable code in a target language. It also helps choose a practical language stack for new projects when the project context does not already dictate one.
 
-## Reference(s): <br>
-- [Tree-sitter](https://tree-sitter.github.io/tree-sitter) <br>
-- [GitHub Linguist](https://github.com/github-linguist/linguist) <br>
-- [Benchmarks Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame) <br>
-- [TIOBE Index](https://www.tiobe.com/tiobe-index) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with labeled code blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include conversion notes, assumptions, dependency installation commands, and optional next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The agent may inspect project files to infer the appropriate target language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the files and context shared with the agent before using the skill in sensitive repositories.
+
+Risk: Generated dependency installation commands may add packages or tooling to the user's environment.
+
+Mitigation: Review dependency commands before running them and prefer pinned, trusted packages when adopting generated code.
+
+Risk: Converted code may preserve misunderstood intent if the source fragment is ambiguous.
+
+Mitigation: Check the stated assumptions and test generated code before production use.
+
+## Reference(s):
+
+- [Tree-sitter](https://tree-sitter.github.io/tree-sitter)
+- [GitHub Linguist](https://github.com/github-linguist/linguist)
+- [Benchmarks Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame)
+- [TIOBE Index](https://www.tiobe.com/tiobe-index)
+- [ClawHub Skill Page](https://clawhub.ai/jhauga/skills/multi-lang-coder)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jhauga)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with labeled code blocks and dependency commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include conversion notes, language tradeoffs, assumptions, generated files or modules, and optional next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

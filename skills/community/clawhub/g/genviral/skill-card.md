@@ -1,50 +1,64 @@
-## Description: <br>
-Complete genviral Partner API automation. Create and schedule posts (video + slideshow) across TikTok, Instagram, and any supported platform. Includes slideshow generation, file uploads, template/pack management, analytics, and full content pipeline automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete genviral Partner API automation for creating and scheduling video or slideshow posts across TikTok, Instagram, and other supported platforms, with slideshow generation, file uploads, template and pack management, analytics, and content pipeline automation.
 
-## Publisher: <br>
-[ugenesys](https://clawhub.ai/user/ugenesys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ugenesys](https://clawhub.ai/user/ugenesys)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to manage Genviral Partner API workflows for generating slideshows or videos, scheduling posts, tracking analytics, and iterating social-media content strategy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The self-updater can replace reviewed skill-owned files from GitHub. <br>
-Mitigation: Disable the updater or run it only in dry-run mode until a human reviews the diff before applying changes. <br>
-Risk: Cron examples can schedule unattended generation, posting, analytics checks, and self-updates for connected accounts. <br>
-Mitigation: Avoid unattended posting until account targets, content quality gates, posting cadence, and privacy settings are verified. <br>
-Risk: GENVIRAL_API_KEY and any GitHub token used for updates are sensitive credentials. <br>
-Mitigation: Store credentials in approved secret handling, avoid printing them in logs, and rotate them if exposed. <br>
-Risk: The skill can create, schedule, update, and delete social-media content and related Genviral resources. <br>
-Mitigation: Use a Genviral account the user intends to let an agent manage, keep dashboard review enabled, and confirm destructive actions before execution. <br>
+## Use Case:
 
+Developers, creators, and marketing teams use this skill to operate a Genviral content workflow from account setup through slideshow or video generation, scheduling, posting, analytics review, and performance tracking.
 
-## Reference(s): <br>
-- [ClawHub Genviral skill page](https://clawhub.ai/ugenesys/genviral) <br>
-- [Genviral](https://genviral.io) <br>
-- [Genviral Partner API docs](https://docs.genviral.io) <br>
-- [Genviral skill homepage](https://github.com/fdarkaou/genviral-skill) <br>
-- [Analytics feedback loop](docs/references/analytics-loop.md) <br>
-- [Competitor research guide](docs/references/competitor-research.md) <br>
-- [Setup guide](docs/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Markdown, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON workspace records, configuration values, and Genviral API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, jq, a Genviral account with Partner API access, and GENVIRAL_API_KEY for authenticated API operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog) <br>
+Risk: The skill can self-update skill-owned instructions, scripts, and documentation from an unsigned remote branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable scheduled self-updates or run the updater in dry-run mode and review changes before applying them.
+
+Risk: The content pipeline can create, schedule, or publish posts to connected social accounts.
+
+Mitigation: Require explicit human approval and visual review before posting, and use draft modes where available for final platform-specific checks.
+
+Risk: The Genviral API key enables automation against connected accounts and uploaded media.
+
+Mitigation: Store the key in a controlled environment, avoid shared global environment files, and use only accounts that are approved for automated workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ugenesys/skills/genviral)
+- [Genviral](https://genviral.io)
+- [Genviral Partner API Documentation](https://docs.genviral.io)
+- [Setup Guide](docs/setup.md)
+- [Post Commands](docs/api/posts.md)
+- [Content Pipeline](docs/api/pipeline.md)
+- [Analytics Loop](docs/references/analytics-loop.md)
+- [Competitor Research](docs/references/competitor-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and JSON-oriented API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, jq, a Genviral Partner API key, and connected social accounts; may update workspace files and create or schedule posts through Genviral.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

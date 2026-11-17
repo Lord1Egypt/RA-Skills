@@ -1,49 +1,61 @@
-## Description: <br>
-A Chinese-language study aid that helps learners discuss Chapter 9, "Sexuality," from Rowland S. Miller's Intimate Relationships using scoped textbook references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study aid for learning Chapter 9, "Sexuality," from Rowland S. Miller's Intimate Relationships, using concise progressive disclosure and chapter reference files to explain sexual attitudes, behavior, satisfaction, safe sex, consent, and coercion.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students and readers studying intimate relationships use this skill to ask Chinese-language questions about sexual attitudes, sexual behavior, sexual satisfaction, safe sex, consent, and coercion. It frames answers as textbook study support rather than medical, legal, trauma, or emergency guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill discusses sexuality and intimate relationships, which may be inappropriate in some educational or workplace contexts. <br>
-Mitigation: Install and use it only where Chinese-language educational discussion of sexuality and intimate relationships is appropriate. <br>
-Risk: Users may mistake textbook study support for medical, legal, trauma, or emergency guidance. <br>
-Mitigation: Route medical, legal, trauma, or immediate safety concerns to qualified professionals or local emergency resources. <br>
+## Use Case:
 
+Students and educators use this agent skill to ask focused Chinese-language study questions about the sexuality chapter of Intimate Relationships. It helps distinguish concepts such as sexual attitudes, sexual behavior, sexual satisfaction, safe sex, consent, and sexual coercion while keeping sensitive topics academic and bounded.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/intimate-ch09-sexuality) <br>
-- [Attitudes And Culture](references/attitudes-and-culture.md) <br>
-- [Behavior And Desire](references/behavior-and-desire.md) <br>
-- [Common Misconceptions](references/common-misconceptions.md) <br>
-- [Examples](references/examples.md) <br>
-- [Infidelity And Safe Sex](references/infidelity-and-safe-sex.md) <br>
-- [Key Terms](references/key-terms.md) <br>
-- [Research](references/research.md) <br>
-- [Satisfaction Communication Coercion](references/satisfaction-communication-coercion.md) <br>
-- [Theories](references/theories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language conversational Markdown or plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses progressive disclosure and scoped markdown references; no tools, credentials, or system access are indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat educational discussion of sexuality, safe sex, consent, or coercion as medical, legal, therapy, or crisis advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses framed as textbook study support and direct users to qualified professionals or emergency resources for health, legal, trauma, or immediate-safety needs.
+
+Risk: Sensitive sexuality topics may be misunderstood or answered in a way that feels judgmental, explicit, or personally prescriptive.
+
+Mitigation: Use academic, neutral, respectful language; avoid erotic framing; distinguish textbook concepts from personal recommendations.
+
+## Reference(s):
+
+- [Attitudes And Culture](references/attitudes-and-culture.md)
+- [Behavior And Desire](references/behavior-and-desire.md)
+- [Common Misconceptions](references/common-misconceptions.md)
+- [Examples](references/examples.md)
+- [Infidelity And Safe Sex](references/infidelity-and-safe-sex.md)
+- [Key Terms](references/key-terms.md)
+- [Research](references/research.md)
+- [Satisfaction Communication And Coercion](references/satisfaction-communication-coercion.md)
+- [Theories And Models](references/theories.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language conversational Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses progressive disclosure; does not replace medical, legal, therapy, or crisis support.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

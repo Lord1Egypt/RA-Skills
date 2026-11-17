@@ -1,49 +1,61 @@
-## Description: <br>
-Produce, adapt, or review text for Bahasa Aceh with an offline-first regional-language workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tutur Aceh helps agents produce, adapt, or review Bahasa Aceh text with source-aware, offline-first guardrails for regional diction and cultural context.
 
-## Publisher: <br>
-[ramaaditya49](https://clawhub.ai/user/ramaaditya49) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramaaditya49](https://clawhub.ai/user/ramaaditya49)
 
-## Use Case: <br>
-External users and agents use this skill to draft, adapt, and review Bahasa Aceh wording for ordinary contexts while preserving uncertainty around dialect, register, and source coverage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Bahasa Aceh wording may be dialectally inappropriate, unsupported by sources, or too authoritative for public, legal, religious, ritual, educational, official, or dialect-sensitive use. <br>
-Mitigation: Verify important wording with KBDA Daring or a competent Acehnese speaker, preserve Indonesian where terms are uncertain, and mark uncertainty in the response. <br>
-Risk: The skill may over-localize Indonesian text by inserting Acehnese words into Indonesian grammar. <br>
-Mitigation: Use sourced examples, user-provided samples, and the review checklist to identify Indonesian-grammar interference before publishing output. <br>
+## Use Case:
 
+External users and developers use this skill to draft, adapt, or review Bahasa Aceh text while preserving names, facts, register, and source uncertainty. It is most appropriate for ordinary greetings, captions, community messages, and review of AI-generated local-language output.
 
-## Reference(s): <br>
-- [Sources](references/sources.md) <br>
-- [Style Guide](references/style-guide.md) <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Offline Brief](references/offline-brief.md) <br>
-- [Local Mirror](references/local-mirror.md) <br>
-- [Examples](references/examples.md) <br>
-- [Balai Bahasa Provinsi Aceh / Kemendikdasmen peta bahasa Aceh](https://repositori.kemendikdasmen.go.id/34837/) <br>
-- [KBDA Daring](https://kamusbbpa.kemendikdasmen.go.id/) <br>
-- [Glottolog Acehnese](https://glottolog.org/resource/languoid/id/achi1257) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ramaaditya49/tutur-aceh) <br>
+### Deployment Geography for Use:
 
+Global, with content focused on Aceh and Acehnese communities outside Aceh.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text with uncertainty notes when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; generated wording may require KBDA or competent speaker review for important use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Risk: The skill may produce uncertain or dialect-inappropriate Bahasa Aceh wording, especially for public, ritual, legal, educational, official, or dialect-sensitive use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as source-aware drafts, mark uncertain terms, preserve Indonesian where no verified Acehnese form is available, and request review by a competent speaker or Balai Bahasa resource.
+
+Risk: The skill may overstate translation confidence if source coverage is thin or the user's target community is unspecified.
+
+Mitigation: Use KBDA and the bundled source notes for word checks, ask for audience or dialect context when phrasing matters, and avoid claiming native-speaker or official authority.
+
+## Reference(s):
+
+- [Tutur Aceh skill page](https://clawhub.ai/ramaaditya49/skills/tutur-aceh)
+- [Balai Bahasa Provinsi Aceh / Kemendikdasmen peta bahasa Aceh](https://repositori.kemendikdasmen.go.id/34837/)
+- [KBDA Daring](https://kamusbbpa.kemendikdasmen.go.id/)
+- [Glottolog Acehnese entry](https://glottolog.org/resource/languoid/id/achi1257)
+- [Sources](references/sources.md)
+- [Offline Brief](references/offline-brief.md)
+- [Usage Patterns](references/usage-patterns.md)
+- [Style Guide](references/style-guide.md)
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with source notes, review findings, safer rewrites, and concise uncertainty caveats when relevant.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; public, ritual, legal, educational, official, or dialect-sensitive wording should be reviewed by a competent speaker or Balai Bahasa resource.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

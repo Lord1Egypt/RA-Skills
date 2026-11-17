@@ -1,40 +1,52 @@
-## Description: <br>
-Read and process GLM output files. Use when you need to extract temperature data from NetCDF output, convert depth coordinates, or calculate RMSE against observations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and process GLM output files. Use when you need to extract temperature data from NetCDF output, convert depth coordinates, or calculate RMSE against observations.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and lake-modeling analysts use this skill to read GLM NetCDF output, convert height coordinates to depth from surface, and compare simulated temperatures with observations using RMSE.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Incorrect lake depth or coordinate conversion can produce misleading temperature comparisons.
+
+Mitigation: Confirm the lake_depth value from glm3.nml and convert GLM z coordinates with lake_depth - z before comparing with observations.
+
+Risk: Example code reads local NetCDF and CSV files supplied by the user.
+
+Mitigation: Review file paths and input datasets before running the code examples.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to read GLM NetCDF output, convert layer heights into depths from the water surface, compare simulated temperatures with observations, and calculate RMSE. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect local paths, missing Python packages, lake depth, or simulation start date can produce failed runs or misleading temperature and RMSE results. <br>
-Mitigation: Verify NetCDF and observation file paths, install the required Python packages, and confirm lake depth plus the simulation start date against the local GLM configuration before using the example code. <br>
-Risk: Treating GLM z values as surface depth instead of height from the lake bottom can invert the coordinate conversion and distort comparisons with observations. <br>
-Mitigation: Use depth_from_surface = lake_depth - z and inspect matched datetime/depth counts before relying on calculated RMSE. <br>
+**Output Format:** [Markdown guidance with Python code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wu-uk/glm-lake-mendota-glm-output) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration guidance] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples assume local GLM NetCDF output, observation CSV files, Python data packages, and a lake depth value from glm3.nml.] <br>
+0.1.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

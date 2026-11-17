@@ -1,11 +1,11 @@
 # ISCH\_ProjectNetInfo interface
 
-工程网络属性
+Project net property
 
 ## Signature
 
 ```typescript
-interface ISCH_ProjectNetInfo 
+interface ISCH_ProjectNetInfo
 ```
 
 ## Properties
@@ -14,97 +14,77 @@ interface ISCH_ProjectNetInfo
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [boardName](./ISCH_ProjectNetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-板子名称
-
+Board name
 
 </td></tr>
 <tr><td>
 
 [nets](./ISCH_ProjectNetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 Array&lt;[ISCH\_NetInfo](./ISCH_NetInfo.md)<!-- -->&gt;
 
-
 </td><td>
 
-网络
-
+Net
 
 </td></tr>
 <tr><td>
 
 [schematicName](./ISCH_ProjectNetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图名称
-
+Schematic name
 
 </td></tr>
 <tr><td>
 
 [schematicUuid](./ISCH_ProjectNetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图 UUID
-
+Schematic UUID
 
 </td></tr>
 </tbody></table>
@@ -117,7 +97,7 @@ string
 
 # ISCH\_ProjectNetInfo.boardName property
 
-板子名称
+Board name
 
 ## Signature
 
@@ -129,7 +109,7 @@ boardName: string;
 
 # ISCH\_ProjectNetInfo.nets property
 
-网络
+Net
 
 ## Signature
 
@@ -141,7 +121,7 @@ nets: Array<ISCH_NetInfo>;
 
 # ISCH\_ProjectNetInfo.schematicName property
 
-原理图名称
+Schematic name
 
 ## Signature
 
@@ -153,7 +133,7 @@ schematicName: string;
 
 # ISCH\_ProjectNetInfo.schematicUuid property
 
-原理图 UUID
+Schematic UUID
 
 ## Signature
 

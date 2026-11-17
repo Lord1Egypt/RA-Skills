@@ -1,45 +1,55 @@
-## Description: <br>
-Interactive Infographic helps agents turn complex text, system architecture, workflows, knowledge bases, and long-form content into structured ContextWeave visualizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive Infographic helps agents turn complex text, knowledge, business processes, mind maps, and architecture descriptions into structured ContextWeave infographic generation requests and rendered visual assets.
 
-## Publisher: <br>
-[qhyw99](https://clawhub.ai/user/qhyw99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qhyw99](https://clawhub.ai/user/qhyw99)
 
-## Use Case: <br>
-Developers, engineers, analysts, and documentation authors use this skill to convert dense requirements, architecture descriptions, business processes, mind maps, and knowledge structures into visual diagrams. The agent prepares a structured request file, invokes the ContextWeave Node client, and returns the generated session and artifact details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the text, diagrams, or architecture details supplied for visualization to the ContextWeave backend at https://pptx.chenxitech.site. <br>
-Mitigation: Avoid sending secrets, regulated data, or proprietary content unless the backend is trusted for that data. <br>
-Risk: The local Node client uses CONTEXTWEAVE_MCP_API_KEY when present and otherwise falls back to an anonymous credential. <br>
-Mitigation: Use a scoped ContextWeave API key and avoid exposing unrelated credentials in the execution environment. <br>
-Risk: Generated visualizations may omit or misrepresent relationships if the input lacks clear definitions, hierarchy, or dependency direction. <br>
-Mitigation: Review generated diagrams against the source material before using them in documentation, planning, or decision workflows. <br>
+## Use Case:
 
+Developers, analysts, and knowledge workers use this skill to convert dense requirements, system relationships, process flows, and long-form content into structured infographic requests and generated visual assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qhyw99/interactive-infographic) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/qhyw99) <br>
-- [ContextWeave default backend](https://pptx.chenxitech.site) <br>
-- [ContextWeave API example endpoint](https://api.contextweave.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Files, Configuration] <br>
-**Output Format:** [Single JSON object with status, session_id, result, and error fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful generation returns a reusable ContextWeave session_id and result fields such as run_id or svg_url; export helpers can write diagram code or retrieve svg/pptx assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The skill uploads local input file contents and drawing requests to a third-party ContextWeave backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content that may be sent to that service, and avoid passing sensitive or symlinked files as input.
+
+Risk: The security guidance flags path-safety and credential-management issues, including reliance on an embedded anonymous credential when no API key is set.
+
+Mitigation: Set your own CONTEXTWEAVE_MCP_API_KEY before use, keep input files inside the active workspace, and review paths before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qhyw99/skills/interactive-infographic)
+- [ContextWeave Default Backend](https://pptx.chenxitech.site)
+- [ContextWeave Example API URL](https://api.contextweave.site)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Single JSON object with generation status, session_id, asset URLs or file paths, and error details when applicable.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; reads CONTEXTWEAVE_MCP_API_KEY when set; sends requested drawing content to the ContextWeave backend.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

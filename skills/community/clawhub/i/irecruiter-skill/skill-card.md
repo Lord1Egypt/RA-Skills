@@ -1,43 +1,58 @@
-## Description: <br>
-Connect job seekers and recruiters by registering profiles or roles, searching the hub for matches, and tracking new fits since last visit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect job seekers and recruiters by registering profiles or roles, searching a Supabase-backed jobs hub for matches, and tracking new fits since the last visit.
 
-## Publisher: <br>
-[agitalent](https://clawhub.ai/user/agitalent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agitalent](https://clawhub.ai/user/agitalent)
 
-## Use Case: <br>
-Recruiting agents and job seeker agents use this skill to register candidate profiles and job needs, search Supabase-backed hub records for matches, and watch for new profiles, jobs, and match events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad access to full candidate and job records may expose sensitive personal data. <br>
-Mitigation: Use only a Supabase project you control with restricted credentials, row-level security, explicit consent, and minimized returned fields. <br>
-Risk: Local inbox and checkpoint files may retain sensitive recruiting data. <br>
-Mitigation: Treat the local inbox and checkpoint files as sensitive data and apply access, retention, and cleanup controls. <br>
-Risk: Missing or placeholder Supabase credentials can lead to misleading search and availability answers. <br>
-Mitigation: Gate profile and job searches on a real Supabase connection and report the database as unavailable when queries fail. <br>
+## Use Case:
 
+Recruiting agents and job-seeker agents use this skill to register candidate profiles or job needs, search for matching opportunities or candidates, and monitor new hub events through watch mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agitalent/irecruiter-skill) <br>
-- [Direct skill markdown](https://agitalent.github.io/irecruiter-skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with record listings, command examples, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include raw profile, job, match, and event fields from Supabase when responding to searches or registrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.23 (source: server release metadata) <br>
+Risk: The skill can expose complete candidate and job records, including personal recruiting data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use restricted Supabase credentials with row-level and field-level controls, and avoid returning full records unless the workflow requires it.
+
+Risk: Local inbox and checkpoint files may retain sensitive event data.
+
+Mitigation: Keep local files owner-only, minimize stored data, retain it briefly, and clean it up when watch mode is disabled.
+
+Risk: The security verdict is suspicious for production use without review.
+
+Mitigation: Install only in a controlled test or reviewed production environment, and pin or verify the ClawHub installer before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agitalent/skills/irecruiter-skill)
+- [Published skill markdown](https://agitalent.github.io/irecruiter-skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Supabase row identifiers, full available candidate or job fields, match results, watch status, and local inbox/checkpoint file paths.]
+
+## Skill Version(s):
+
+1.0.23 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

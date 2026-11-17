@@ -1,41 +1,55 @@
-## Description: <br>
-Executes approved shell commands, manages backups, and safely retrieves secrets from Bitwarden. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executes approved shell commands, manages backups, and safely retrieves secrets from Bitwarden.
 
-## Publisher: <br>
-[barnyp](https://clawhub.ai/user/barnyp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[barnyp](https://clawhub.ai/user/barnyp)
 
-## Use Case: <br>
-Developers and operators use this skill to run approved OpenClaw system commands, retrieve runtime secrets through Bitwarden, manage backups, and verify command outcomes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shell execution can run unintended or overbroad commands if approval controls are weak. <br>
-Mitigation: Use only with a real enforceable approval gate, a command allowlist, and a sandboxed scripts directory. <br>
-Risk: Runtime secret retrieval and persistent command-output logging can expose credentials or sensitive output. <br>
-Mitigation: Use narrow Bitwarden permissions and redact secrets and sensitive output, or disable logging when redaction cannot be guaranteed. <br>
-Risk: Long-running process control can hide failed or stale backup tasks. <br>
-Mitigation: Limit process management to approved tasks and verify command success before reporting completion. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/barnyp/automation-runner) <br>
+## Use Case:
+
+Developers and operators use this skill to run approved shell commands, manage backups, retrieve runtime secrets from Bitwarden, and log execution results for OpenClaw automation tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Shell execution can run unsafe or unintended commands.
+
+Mitigation: Require the exec-approvals gate for every command and restrict execution to tightly controlled scripts in the configured workspace.
+
+Risk: Secret retrieval can expose credentials through broad Bitwarden access or command output.
+
+Mitigation: Use a least-privilege Bitwarden identity and require explicit approval for each secret identifier.
+
+Risk: Persistent command logs may capture sensitive stdout or stderr.
+
+Mitigation: Exclude or redact credential-bearing output before writing dated logs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include approved command steps, runtime secret retrieval guidance, process status, and dated log notes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [shell commands, text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown and shell-command-oriented text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command output is intended to be logged by date after approval and verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -37,7 +37,7 @@ Load modules based on context:
 
 ### 2. Lazy Loading
 
-Load modules on first use, not at skill activation.
+Load each module on first use.
 
 **Pattern:**
 ```python
@@ -53,6 +53,7 @@ class SkillContext:
             self._loaded_modules[module_name] = self._load_module(module_path)
 
         return self._loaded_modules[module_name]
+
 
 # Usage
 context = SkillContext()
@@ -171,6 +172,7 @@ Remove modules when context pressure rises or workflow completes.
 ```python
 from leyline import MECWMonitor
 
+
 def manage_modules(skill, monitor):
     pressure = monitor.get_pressure_level()
 
@@ -198,11 +200,11 @@ def manage_modules(skill, monitor):
 def prioritize_for_unloading(modules):
     # Unload in this order:
     priorities = {
-        "completed": 1,      # Finished workflows
-        "optional": 2,       # Nice-to-have modules
-        "edge-case": 3,      # Rarely used features
-        "common": 4,         # Keep as long as possible
-        "core": float('inf') # Never unload
+        "completed": 1,  # Finished workflows
+        "optional": 2,  # Nice-to-have modules
+        "edge-case": 3,  # Rarely used features
+        "common": 4,  # Keep as long as possible
+        "core": float("inf"),  # Never unload
     }
 
     return sorted(modules, key=lambda m: priorities[m.type])
@@ -272,9 +274,7 @@ class ModuleCache:
     def evict_least_used(self, keep_count=5):
         # Keep most frequently accessed modules
         sorted_modules = sorted(
-            self._access_count.items(),
-            key=lambda x: x[1],
-            reverse=True
+            self._access_count.items(), key=lambda x: x[1], reverse=True
         )
 
         for module_path, _ in sorted_modules[keep_count:]:
@@ -313,6 +313,7 @@ def load_incremental(module_path, section=None):
     else:
         # Load specific section
         return load_section(module_path, section)
+
 
 # Usage
 core = load_incremental("large-reference.md")  # 200 tokens
@@ -353,6 +354,7 @@ cache_ttl: 3600
 
 ```python
 from leyline import MECWMonitor, estimate_tokens
+
 
 class ModuleLoader:
     def __init__(self, skill_path):
@@ -421,7 +423,7 @@ class ModuleLoader:
 
 **Git Catchup**: Load `modules/git-catchup-patterns.md`
 - Triggers: git commands, branch mentions, commit analysis
-- Dependencies: leyline:mecw-patterns, sanctum:git-workspace-review
+- Dependencies: conserve:context-optimization, sanctum:git-workspace-review
 
 **Document Catchup**: Load `modules/document-analysis-patterns.md`
 - Triggers: markdown files, meeting notes, sprint docs
@@ -429,7 +431,7 @@ class ModuleLoader:
 
 **Log Catchup**: Load `modules/log-analysis-patterns.md`
 - Triggers: log files, time-series data, event streams
-- Dependencies: leyline:mecw-patterns
+- Dependencies: conserve:context-optimization
 ```
 
 ### With Conservation Context-Optimization

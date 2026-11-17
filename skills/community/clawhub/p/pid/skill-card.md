@@ -1,41 +1,58 @@
-## Description: <br>
-Provides command guidance for a local pid CLI that records, lists, searches, removes, exports, and configures plaintext entries under a user data directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pid is presented as a PID controller tuning and simulation tool, but the reviewed package behavior is a local record store for adding, listing, searching, removing, configuring, and exporting saved entries.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and external users can use this skill to invoke a simple local record manager for adding, listing, searching, deleting, exporting, and configuring entries. Security evidence indicates the artifacts do not implement PID controller tuning or simulation despite the package description. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release describes a PID tuning and simulation tool, but the security summary says the artifacts implement a local note or log manager instead. <br>
-Mitigation: Install only when the desired behavior is local record management, and verify artifact behavior before relying on it for control-system analysis. <br>
-Risk: User-provided entries, configuration values, and exports may be stored as plaintext under ~/.pid or PID_DIR. <br>
-Mitigation: Do not enter secrets, credentials, or sensitive operational data unless plaintext local storage, search, deletion, and export are acceptable. <br>
+## Use Case:
 
+Developers and external users can invoke this skill's shell commands to maintain a small local JSONL datastore, inspect status and statistics, search records, configure simple key-value settings, and export data as JSON or CSV. It should not be used as a PID controller tuning or simulation authority without separate review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/pid) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output as plaintext, JSONL, or CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local entries and configuration under PID_DIR, defaulting to ~/.pid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The stated PID tuning purpose does not match the reviewed local record-store behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on this package for PID controller tuning or simulation unless a separate technical review confirms those capabilities.
+
+Risk: The script writes records to PID_DIR or ~/.pid by default and includes a remove command that deletes saved records.
+
+Mitigation: Run with an explicit sandboxed PID_DIR and back up records before remove or config operations.
+
+Risk: CSV exports can contain values supplied through local entries.
+
+Mitigation: Inspect or sanitize exported CSV before opening it in spreadsheet software, especially when entries came from untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/pid)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; script output is plain text, JSONL, JSON, or CSV.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local data under PID_DIR or ~/.pid by default and can export pid-export.json or pid-export.csv in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

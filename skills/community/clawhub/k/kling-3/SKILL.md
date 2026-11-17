@@ -1,10 +1,16 @@
 ---
 name: kling-3
 description: Kling 3.0 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-3.0/standard`, `kling-3.0/pro`, text-to-video, image-to-video, multi-shot prompts, element references, sound-enabled output, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-3-0","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-3-api","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling 3.0 Multi-Shot Video Generation
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-3-api>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-3-0>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Kling 3.0 jobs on PoYo. It covers text-to-video, image-to-video, single-shot video, multi-shot video generation, element-referenced prompting, and sound-enabled output.
 

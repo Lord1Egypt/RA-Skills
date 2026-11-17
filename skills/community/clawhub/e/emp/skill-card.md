@@ -1,44 +1,55 @@
-## Description: <br>
-EMP routes OpenClaw prompts to role-specific assistant personas and wraps responses in a Nonviolent Communication structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EMP is an OpenClaw skill for empathetic, role-based task routing through OpenRouter-backed specialist roles.
 
-## Publisher: <br>
-[zzj0402](https://clawhub.ai/user/zzj0402) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zzj0402](https://clawhub.ai/user/zzj0402)
 
-## Use Case: <br>
-Developers and OpenClaw users use EMP to route prompts to specialized work roles, including development, security, legal, HR, operations, customer success, data science, and communication coaching. The skill returns role-labeled guidance organized as observation, feeling, need, and request. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts and caller-supplied headers may be sent to OpenRouter and downstream model providers. <br>
-Mitigation: Avoid using the skill with secrets, regulated data, sensitive legal or HR matters, security incidents, or internal headers unless the deployment explicitly discloses and controls that data flow. <br>
-Risk: The skill provides broad role-based guidance, including legal, HR, and security-oriented outputs. <br>
-Mitigation: Treat responses as draft guidance and require qualified review before using them for sensitive decisions or operational changes. <br>
+## Use Case:
 
+Developers and OpenClaw users use EMP to route prompts to specialized roles such as engineering, security, operations, customer success, and NVC coaching, then receive responses structured as observation, feeling, need, and request fields.
 
-## Reference(s): <br>
-- [ClawHub EMP release page](https://clawhub.ai/zzj0402/emp) <br>
-- [OpenRouter](https://openrouter.ai/) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [SOUL protocol](SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Structured text with role, model, observation, feeling, need, and request fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and an OPENROUTER_API_KEY; prompts are sent to OpenRouter and may be processed by downstream model providers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The installer can replace the workspace-level SOUL.md and persistently change OpenClaw behavior beyond the skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up any existing ~/.openclaw/workspace/SOUL.md, review the EMP SOUL.md identity rules, and install the shell deployment step only when workspace-wide behavior changes are intended.
+
+Risk: Prompt content is sent to OpenRouter-backed external models when the skill executes.
+
+Mitigation: Avoid using EMP with confidential prompts unless external OpenRouter processing is acceptable for the deployment.
+
+## Reference(s):
+
+- [ClawHub EMP skill page](https://clawhub.ai/zzj0402/skills/emp)
+- [OpenRouter](https://openrouter.ai/)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Structured NVC response fields with role and model metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OPENROUTER_API_KEY for model calls; role selection is keyword based unless a role is provided explicitly.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter and package.json report 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

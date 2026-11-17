@@ -1,40 +1,53 @@
-## Description: <br>
-通用视频下载工具，支持 YouTube、B站、抖音等主流平台。使用 yt-dlp 下载视频，自动选择分辨率、合并音视频、清理文件名。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Downloader helps agents download videos from yt-dlp-compatible platforms, select a preferred resolution, merge audio and video, and sanitize local filenames.
 
-## Publisher: <br>
-[jingrongx](https://clawhub.ai/user/jingrongx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingrongx](https://clawhub.ai/user/jingrongx)
 
-## Use Case: <br>
-Developers and end users use this skill to download videos from yt-dlp-compatible platforms, choose a target resolution, merge separated audio and video streams, and receive a local file path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads remote media using user-provided URLs. <br>
-Mitigation: Use trusted URLs only and follow the ClawScan guidance for yt-dlp and ffmpeg usage. <br>
-Risk: Downloaded videos can be large and a custom output directory may write outside the current workspace. <br>
-Mitigation: Choose an output folder with enough disk space and verify the output path before running the download. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch videos from YouTube, Bilibili, Douyin, and other yt-dlp-compatible sites into a local temporary or user-specified directory. It is useful when an agent workflow needs a local media file path for downstream processing or transfer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jingrongx/video-downloader-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands] <br>
-**Output Format:** [Plain text status messages and a local downloaded video file path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires yt-dlp and ffmpeg; accepts a video URL, optional resolution, and optional output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill fetches user-provided video URLs and may contact external sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid internal, localhost, or otherwise sensitive URLs, and only download from sources the user is authorized to access.
+
+Risk: Downloaded media files are written to a local output directory.
+
+Mitigation: Use a fresh, private output directory for each download and avoid shared or untrusted folders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jingrongx/skills/video-downloader-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text status messages and a local video file path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes downloaded media files to a temporary or user-specified local directory; requires yt-dlp and ffmpeg.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

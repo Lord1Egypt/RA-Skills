@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7drv3gjbt35ydcc4th7r05kx81n5sa",
-  "slug": "smar",
-  "version": "1.0.0",
-  "publishedAt": 1771771515476
+  "owner": "lijie420461340",
+  "slug": "smart-ocr",
+  "displayName": "Smart Ocr",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1769739351134,
+    "commit": "https://github.com/clawdbot/skills/commit/5a0c1932ee35578c9deb1c4a1fa527762945bc6d"
+  },
+  "history": []
 }

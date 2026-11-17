@@ -1,45 +1,60 @@
-## Description: <br>
-Provides automatic and manual failover between existing OpenClaw openai-codex OAuth profiles when usage remaining is low, usage or auth checks fail, or an operator requests a switch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codex Profile Failover helps OpenClaw operators rotate Codex OAuth profiles automatically or manually when usage is low, usage checks fail, or local token state indicates a problem.
 
-## Publisher: <br>
-[ugurinanc12](https://clawhub.ai/user/ugurinanc12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugurinanc12](https://clawhub.ai/user/ugurinanc12)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to install and run a Codex profile failover layer that monitors usage and auth health, recommends or applies session profile switches, and provides manual trigger commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works with OAuth-backed Codex profiles and local OpenClaw auth/session state. <br>
-Mitigation: Install only in workspaces where profile failover is intended, keep token and state files access-controlled, and verify that no personal identifiers are committed with published configs. <br>
-Risk: Apply-mode commands can change session authProfileOverride values and create state backups or event logs. <br>
-Mitigation: Run the threshold guard or watchdog in dry-run or once mode first, review the selected target sessions and candidate profiles, then use apply mode only after the result matches operator intent. <br>
-Risk: A long-running watchdog may repeatedly switch profiles when thresholds, token expiry, or usage errors are detected. <br>
-Mitigation: Use conservative thresholds, review watchdog and event-log paths, and monitor generated JSON status output after enabling the background process. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to install, configure, dry-run, and operate profile failover for Codex sessions that have multiple available OpenAI Codex OAuth profiles.
 
-## Reference(s): <br>
-- [Setup](references/setup.md) <br>
-- [Threshold config example](references/threshold-config.example.json) <br>
-- [Watchdog config example](references/watchdog-config.example.json) <br>
-- [ClawHub release page](https://clawhub.ai/ugurinanc12/codex-profile-failover) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Python scripts that emit JSON status payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write workspace-local configuration, event logs, backups, and session profile override updates when run with apply options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Applying failover can persistently change Codex session profile state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the threshold guard or watchdog in dry-run mode first, review the selected current and candidate profiles, and keep generated backups available before applying changes.
+
+Risk: A long-running watchdog can continue applying profile switches after initial setup.
+
+Mitigation: Start the watchdog only after defining an explicit stop procedure and reviewing the workspace-local log and event-log paths.
+
+Risk: The manual trigger's session-key output filter may imply narrower scope than the apply operation enforces.
+
+Mitigation: Do not rely on trigger_profile_failover.py --session-key as the only scope control unless the implementation is fixed to enforce that selection before changes are applied.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ugurinanc12/skills/codex-profile-failover)
+- [Setup](references/setup.md)
+- [Watchdog configuration example](references/watchdog-config.example.json)
+- [Threshold configuration example](references/threshold-config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python scripts, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run and apply modes; applying failover can update workspace session state and write event logs and backups.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,305 @@
+{
+  "title": "日报三千字",
+  "season": 1,
+  "episode": 1,
+  "durationTarget": 43,
+  "platform": "douyin",
+  "aspectRatio": "9:16",
+  "hook": "日报不满三千字算没上班",
+  "reversal": "老板自己那份三千一百九十字全是「降本增效」，被员工一句「那您那份也重写吗」当场噎住",
+  "characters": [
+    {
+      "name": "阿强",
+      "persona": "全公司最卷，卷的全是没用的事",
+      "voice": "云希-清亮少年",
+      "gender": "male"
+    },
+    {
+      "name": "老板",
+      "persona": "熊猫头，嘴上狼性，五点下班",
+      "voice": "云扬-沉稳男声",
+      "gender": "male"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "S1",
+      "title": "宣布规则",
+      "background": "工位",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.55,
+        "zoom": 1.0
+      },
+      "positions": {
+        "阿强": 0.3,
+        "老板": 0.68
+      }
+    },
+    {
+      "id": "S2",
+      "title": "交日报",
+      "background": "工位",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.55,
+        "zoom": 1.06
+      },
+      "positions": {
+        "阿强": 0.28,
+        "老板": 0.7
+      }
+    },
+    {
+      "id": "S3",
+      "title": "老板示范",
+      "background": "工位",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.55,
+        "zoom": 1.1
+      },
+      "positions": {
+        "阿强": 0.26,
+        "老板": 0.72
+      },
+      "poses": {
+        "老板": "坐"
+      }
+    },
+    {
+      "id": "S4",
+      "title": "一起加班",
+      "background": "工位",
+      "actors": [
+        "阿强",
+        "老板"
+      ],
+      "camera": {
+        "x": 0.5,
+        "y": 0.55,
+        "zoom": 1.06
+      },
+      "positions": {
+        "阿强": 0.3,
+        "老板": 0.7
+      },
+      "poses": {
+        "老板": "坐",
+        "阿强": "悲伤"
+      }
+    }
+  ],
+  "lines": [
+    {
+      "seq": 1,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "宣布个新规定。",
+      "emotion": "得意",
+      "sfx": "叮",
+      "scene": "S1"
+    },
+    {
+      "seq": 2,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "日报不满三千字，算没上班。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 3,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "三千字？我一天就三件事。",
+      "emotion": "无语",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 4,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "那就把三件事，写成三千字。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 5,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "明白。我写。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S1"
+    },
+    {
+      "seq": 6,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "第二天早上，阿强交了日报。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 7,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "这三千字，怎么全是赋能？",
+      "emotion": "愤怒",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 8,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "您要字数，没说要内容。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 9,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "重写。要有质量。",
+      "emotion": "无语",
+      "sfx": "咚",
+      "scene": "S2"
+    },
+    {
+      "seq": 10,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "明白。我加小标题了。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 11,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "小标题也是赋能？",
+      "emotion": "无语",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 12,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "小标题是，赋能的分类。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 13,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "算了，我示范一份。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S2"
+    },
+    {
+      "seq": 14,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "老板打了三个小时。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 15,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "您这份，三千二百字。",
+      "emotion": "惊讶",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 16,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "三千一百九十字，是降本增效。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 17,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "我这叫战略。",
+      "emotion": "得意",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 18,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "那我这叫执行。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 19,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "重写。",
+      "emotion": "得意",
+      "sfx": "咚",
+      "scene": "S3"
+    },
+    {
+      "seq": 20,
+      "speaker": "阿强",
+      "type": "dialogue",
+      "text": "明白。那您那份，也重写吗？",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S3"
+    },
+    {
+      "seq": 21,
+      "speaker": "老板",
+      "type": "dialogue",
+      "text": "……我这叫，亲自示范。",
+      "emotion": "无语",
+      "sfx": "乌鸦",
+      "scene": "S3"
+    },
+    {
+      "seq": 22,
+      "speaker": "旁白",
+      "type": "narration",
+      "text": "当天晚上，两个人一起写到十二点。",
+      "emotion": "平静",
+      "sfx": "",
+      "scene": "S4"
+    }
+  ]
+}

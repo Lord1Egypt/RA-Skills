@@ -1,13 +1,13 @@
 ---
 name: ber
-description: "Better Every Run: turn explicit /ber corrections into preferred future outcomes through a small fix, remember, and report flow."
+description: "Better Every Run: capture explicit /ber corrections, review them, and promote only the lessons that deserve durable memory, skill rules, or evals."
 user-invocable: true
 metadata:
-  version: "0.5.5"
+  version: "0.6.1"
 ---
 # Better Every Run
 
-Use this skill only when the user explicitly invokes `/ber`, names Better Every Run, or directly asks to persist a lesson for future runs. Do not auto-capture ordinary corrections, casual preferences, or words like "remember", "always", "never", or "next time" unless the user clearly wants durable learning.
+Use this skill only when the user explicitly invokes `/ber`, names Better Every Run, or directly asks to persist a lesson for future runs. BER turns deliberate corrections into reviewed lessons without silently converting ordinary chat into permanent memory. Do not auto-capture ordinary corrections, casual preferences, or words like "remember", "always", "never", or "next time" unless the user clearly wants durable learning.
 
 The human path is deliberately small:
 
@@ -81,3 +81,5 @@ Before publishing or packaging, verify:
 - lesson-card, lifecycle, and eval-fixture demos are generic and contain no private workspace paths, chat IDs, tokens, or hostnames
 - examples contain no private workspace paths, chat IDs, tokens, or hostnames
 - docs say activation is explicit-only and persistence is disclosed
+
+Promotion and eval helpers reject non-accepted or expired lessons and symlinked target paths. Cards bind the lesson content as well as the target hash; edit either and generate a fresh card. `/ber report` reports only the current project’s local store.

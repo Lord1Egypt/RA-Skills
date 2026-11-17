@@ -1,41 +1,54 @@
-## Description: <br>
-Pushes all branches in a stack and opens or updates one dependent PR per slice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pushes all branches in a stack and opens or updates one dependent PR per slice. Use after stack-create to publish the stack or after adding commits to a slice.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and maintainers use this skill to publish stacked Git branches and create or update a dependent GitHub pull request for each slice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to push branches, create draft pull requests, and post GitHub comments using the user's authenticated GitHub permissions. <br>
-Mitigation: Use it only when those repository changes are intended, keep pull requests as drafts until reviewed, and inspect generated commands before execution. <br>
-Risk: Stack publication can affect public review state if the wrong branches, bases, titles, or summaries are used. <br>
-Mitigation: Confirm the stack prefix, base branch, branch order, and pull request body content before publishing or updating the stack. <br>
+## Use Case:
 
+Developers use this skill after creating a committed branch stack or adding commits to publish stack branches, open or maintain a dependent pull request for each slice, and post a stack summary.
 
-## Reference(s): <br>
-- [Nm Sanctum Stack Push on ClawHub](https://clawhub.ai/athola/skills/nm-sanctum-stack-push) <br>
-- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides branch pushes, draft pull request creation, and stack summary comments for GitHub workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
+Risk: A broad push scope may publish bookmarks outside the requested stack, and the scan reports mismatches between advertised and reported behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected branches and publication targets before running; confirm the resulting pull requests and stack summary.
+
+Risk: The security scan was partial because one static analysis was degraded by a parser limit.
+
+Mitigation: Review the skill’s behavior and publication scope before installing.
+
+## Reference(s):
+
+- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-sanctum-stack-push)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Git and GitHub CLI operations with a Markdown stack summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an existing committed stack and authenticated GitHub CLI; pushes branches and posts a stack summary.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

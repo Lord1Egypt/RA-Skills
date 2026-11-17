@@ -1,41 +1,52 @@
-## Description: <br>
-Render JSON schemas to images and generate schemas from prompts using declare-render and AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render JSON schemas to images and generate schemas from prompts using declare-render and AI.
 
-## Publisher: <br>
-[cai-zhuo](https://clawhub.ai/user/cai-zhuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cai-zhuo](https://clawhub.ai/user/cai-zhuo)
 
-## Use Case: <br>
-Developers and automation agents use this skill to render declare-render JSON schemas to PNG or JPG images, generate schemas from natural-language prompts with OpenAI, and validate render-data schema files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an OpenAI API key and send prompt content to an external AI provider. <br>
-Mitigation: Use a limited API key and avoid submitting confidential data unless provider use is approved. <br>
-Risk: Installing or running an unpinned CLI package can execute unintended package versions. <br>
-Mitigation: Verify that materials-cli is the intended trusted package and prefer a pinned version before installation. <br>
-Risk: Passing secrets through command-line flags may expose them in shell history or process listings. <br>
-Mitigation: Provide credentials through approved environment variables or secret-management tooling instead of command-line arguments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cai-zhuo/test-materials) <br>
+## Use Case:
 
+Developers and engineers use this skill to render declare-render JSON schemas into PNG or JPG images, validate schema files, and generate renderable schemas from natural-language prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON schema guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference generated or validated declare-render JSON schema files and image outputs produced through materials-cli.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing or invoking an unverified npm package can introduce supply-chain risk.
+
+Mitigation: Verify the `materials-cli` package and publisher before use, and prefer a pinned or project-local install.
+
+Risk: Generation prompts and schema content may be sent to OpenAI or the configured base URL.
+
+Mitigation: Do not include secrets, credentials, or confidential data in prompts or schemas submitted through the AI generation workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cai-zhuo/skills/test-materials)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON schema examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce image-rendering commands and schema-generation guidance for PNG or JPG outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

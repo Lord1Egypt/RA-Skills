@@ -1,42 +1,54 @@
-## Description: <br>
-Chinese-language event-planning skill that helps agents create structured plans for 23 activity types, including venue options, timelines, budget allocation, execution checklists, practical tips, and backup plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language activity planning skill that helps users create structured plans for 23 common event types, including venue options, timelines, budget tables, execution checklists, and fallback plans.
 
-## Publisher: <br>
-[laozhang-tou](https://clawhub.ai/user/laozhang-tou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laozhang-tou](https://clawhub.ai/user/laozhang-tou)
 
-## Use Case: <br>
-External users and employees use this skill to turn Chinese natural-language requests for personal, workplace, social, or commercial events into actionable planning drafts. It is intended for event-planning guidance, including parameter collection, venue recommendations, schedule design, budget tables, execution checklists, and contingency planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad Chinese planning phrases such as requests for a方案 or活动. <br>
-Mitigation: Install and enable it where broad event-planning assistance is desired, and route unrelated planning or drafting workflows to a more specific skill when needed. <br>
-Risk: Event-planning prompts can include private attendee, family, workplace, budget, or location details. <br>
-Mitigation: Share only the details needed to draft the plan and remove sensitive personal or business information before use. <br>
-Risk: Generated venue, budget, safety, and schedule recommendations are planning drafts and may not reflect current availability, pricing, permits, weather, or site-specific requirements. <br>
-Mitigation: Verify costs, venue availability, permits, accessibility, and safety arrangements with real providers before executing an event plan. <br>
+## Use Case:
 
+External users use this skill to generate practical Chinese-language planning proposals for personal, workplace, social, and commercial events. It collects ordinary planning details such as budget, guest count, location, timing, and preferences, then returns an actionable plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laozhang-tou/cehua-zhuanjia) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Markdown planning document with tables and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes event basics, venue options, timeline, budget allocation, execution checklist, practical tips, and Plan B contingencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate on many Chinese event-planning requests and ask for ordinary planning details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the planning details needed for the event and avoid entering sensitive personal, financial, or confidential business information.
+
+Risk: Generated event plans may need local validation before use.
+
+Mitigation: Review venue, budget, safety, accessibility, weather, and cultural constraints before executing a plan.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laozhang-tou/skills/cehua-zhuanjia)
+- [Publisher profile](https://clawhub.ai/user/laozhang-tou)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown event plans with tables, timelines, budget allocations, execution checklists, and fallback plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output; may ask for budget, guest count, location, timing, and preferences before producing a plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

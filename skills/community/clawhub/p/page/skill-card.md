@@ -1,43 +1,57 @@
-## Description: <br>
-Generate and customize shareable personal pages from memory profiles that evolve with new experiences and can include rich media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and customize shareable personal pages from memory profiles that evolve with your experiences and include rich media.
 
-## Publisher: <br>
-[kkw-21](https://clawhub.ai/user/kkw-21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkw-21](https://clawhub.ai/user/kkw-21)
 
-## Use Case: <br>
-People maintaining memory profiles use this skill to generate, customize, and publish shareable personal pages with rich media and section-level visibility controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish sensitive memories, photos, voice memos, or locations to a public page. <br>
-Mitigation: Preview exactly what will be published, remove sensitive memories and media, and keep sections private by default until intentional review is complete. <br>
-Risk: Living pages may update as new memories are added, changing what becomes visible after initial publication. <br>
-Mitigation: Disable automatic future updates or require approval before new memories are added to a published page. <br>
-Risk: A public URL may be created or shared unintentionally. <br>
-Mitigation: Confirm the public URL and intended audience before publishing or embedding the page externally. <br>
+## Use Case:
 
+People who maintain memory profiles use this skill to generate, customize, publish, and embed shareable personal pages with visibility controls and rich media.
 
-## Reference(s): <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kkw-21/page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public URL publication guidance and visibility settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; target metadata agrees) <br>
+Risk: Memory-derived personal pages can expose sensitive identity details or rich media once published.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated sections and media before publishing, and set visibility for each section to the intended audience.
+
+Risk: Living pages may change as new memories are added, causing newly surfaced information to become visible.
+
+Mitigation: Recheck visibility and page contents after updates, especially before sharing or embedding the public URL.
+
+Risk: Public URLs and embedded widgets may be copied, indexed, or reshared outside the intended audience.
+
+Mitigation: Treat public publication as broadly shareable and avoid publishing content that should remain private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kkw-21/skills/page)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for generating, customizing, publishing, and embedding memory-derived personal pages.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

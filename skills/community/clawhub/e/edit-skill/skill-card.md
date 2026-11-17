@@ -1,37 +1,53 @@
-## Description: <br>
-Edit Skill helps agents review and tighten existing skill files while preserving behavior, trigger intent, safety boundaries, and host-compatible frontmatter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when asked to review, edit, tighten, shorten, deduplicate, clean up, or remove slop from an existing agent skill while preserving behavior.
 
-## Publisher: <br>
-[uncmatteth](https://clawhub.ai/user/uncmatteth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uncmatteth](https://clawhub.ai/user/uncmatteth)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to review or edit existing agent skills, remove duplicated or vague instructions, and preserve safety boundaries and host-specific frontmatter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Edits to skill instructions can change safety behavior, tool permissions, routing, or installation metadata. <br>
-Mitigation: Use review-only mode for security-sensitive skills and inspect diffs carefully before relying on edited skill files. <br>
+## Use Case:
 
+Developers and agent builders use this skill to review or edit existing agent skills while preserving behavior, trigger intent, safety boundaries, and host-compatible frontmatter.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown review notes, patch summaries, file edits, and validation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply edits in repository files when the user asks for an edit-in-repo workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence) <br>
+Risk: Edits to skill safety rules, routing metadata, permissions, or tool instructions could alter agent behavior in security-sensitive ways.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer review-only mode for security-sensitive skills and inspect diffs before accepting changes.
+
+Risk: A proposed skill rewrite could remove necessary behavior while shortening or deduplicating instructions.
+
+Mitigation: Preserve the skill's real job, trigger intent, hard safety boundaries, paths, commands, output contracts, and known failure fixes during review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uncmatteth/skills/edit-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries, edited skill text, patches, or concise verification notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May patch skill files directly for edit-in-repo requests after classifying the task.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

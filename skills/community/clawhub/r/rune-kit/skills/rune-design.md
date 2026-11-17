@@ -1,6 +1,6 @@
 # rune-design
 
-> Rune L2 Skill | creation | model: tier:mid
+> Rune L2 Skill | creation | model: tier:heavy
 
 
 # design
@@ -35,6 +35,7 @@ Design system reasoning layer. Converts a product description into a concrete de
 
 - `scout` (L2): detect existing design tokens, component library, platform targets
 - `asset-creator` (L3): generate base visual assets (logo, OG image) from design system
+- `browser-pilot` (L3): render the surface and inspect it before claiming any visual property holds (Step 5.4)
 - `review` (L2): accessibility violations found → flag for fix in next code review
 
 ## Called By (inbound)
@@ -65,6 +66,9 @@ Load the design knowledge base before reasoning:
 2. If no user override → read_file the baseline: `skills/design/DESIGN-REFERENCE.md` (shipped with Rune)
 3. The loaded reference provides: font pairings, chart selection, component architecture, color principles, UX checklist, interaction patterns, anti-pattern signatures
 4. Apply reference knowledge throughout Steps 3-5 (domain reasoning, token generation, checklist)
+5. **When the domain involves any UI motion** (transitions, animations, gestures, springs, micro-interactions) → also read_file `skills/design/MOTION-CRAFT.md`. It is the canonical motion authority: the should-it-animate frequency gate, easing/duration budgets (including peak-slope curve selection for large travel, and velocity continuity across keyframe joins), physicality (never `scale(0)`, origin-aware popovers), spring physics, gesture handoff, motion performance, the role→strategy reduced-motion framework, SVG-specific mechanics (user units, `pathLength`, SVGO), and a reverse-lookup vocabulary. Cite its exact values in the design-system motion section; never approximate curves or durations. **When MOTION-CRAFT.md and DESIGN-REFERENCE.md disagree on a motion detail (easing, duration, interaction timing), MOTION-CRAFT.md wins** — it is the deeper, motion-specific source; DESIGN-REFERENCE.md's Animation Timing / Interaction Patterns tables are the general baseline.
+
+> **Advisory motion-audit mode**: When asked to "improve the animations" / "make this feel better" / "what could be animated here", operate read-only — survey the motion surface against MOTION-CRAFT.md, report frequency-gated findings (and deliberately rejected candidates), and hand precise recipes to `cook`/`fix`. Suggesting motion everywhere is worse than useless; expect to reject most candidates.
 
 > **Why two layers**: The baseline ships "good enough" universal design knowledge. Users who care about aesthetics create their own `design-dna.md` with curated palettes, font pairings, and style preferences. The design skill works well with either — it just works _better_ with a curated reference.
 
@@ -190,6 +194,18 @@ If the design calls for an icon, illustration, or graphic that the agent cannot 
 - Use **Phosphor Icons** (`@phosphor-icons/react`) or **Huge Icons** as the library default. Never generate custom SVG for standard iconography.
 - For illustrations, reference a placeholder string (e.g., `[ILLUSTRATION: empty-state-dashboard]`) that a human or asset-creator pass fills in later.
 - Malformed SVG is the #1 AI tell. A clean labeled placeholder is honest and professional.
+
+**Placeholder Ownership (MANDATORY)**: every placeholder or intentionally inert element the design ships — `[ ICON: ... ]`, `[ILLUSTRATION: ...]`, `[ PLACEHOLDER: ... ]`, and any button/link/form rendered as visual-only (no behavior designed yet) — MUST be listed in `.rune/ui-spec.md` under a `## Unwired Elements` section:
+
+```markdown
+## Unwired Elements
+| Element | Location | Why unwired | Owner of wiring |
+|---------|----------|-------------|-----------------|
+| product-grid | ProductGrid.tsx | awaiting US-2 backend | US-2 Endpoint task |
+| [ ICON: dashboard ] | Sidebar.tsx | asset pass pending | asset-creator |
+```
+
+This list is how downstream gates tell **declared debt** from **accidental dead UI**: `preflight` skips these elements, `verification` reports them as INFO (visible, non-failing), and `converge` counts them as `missing` until wired. A placeholder NOT on this list that reaches implementation = a dead element with no owner — that's the bug this section exists to prevent.
 
 #### Rule 3 — Color Derivation via oklch(), not Manual Shading
 
@@ -470,20 +486,48 @@ sm: 6px | md: 8px | lg: 12px | xl: 16px | full: 9999px
 [detected library or "custom"]
 
 ## Pre-Delivery Checklist
-- [ ] Color contrast ≥ 4.5:1 for all text
-- [ ] Focus-visible ring on ALL interactive elements (never outline-none alone)
-- [ ] Touch targets ≥ 44×44px on mobile / ≥ 24×24px on desktop, with 8px gap between targets (matches Step 2.9 Rule 1)
+> Items marked 👁 describe what a human would SEE — tick them only from a render, or mark them ASSUMED (Step 5.4).
+- [ ] 👁 Color contrast ≥ 4.5:1 for all text
+- [ ] 👁 Focus-visible ring on ALL interactive elements (never outline-none alone)
+- [ ] 👁 Touch targets ≥ 44×44px on mobile / ≥ 24×24px on desktop, with 8px gap between targets (matches Step 2.9 Rule 1)
 - [ ] All icon-only buttons have aria-label
 - [ ] All inputs have associated <label> or aria-label
-- [ ] Empty state, error state, loading state for all async data
+- [ ] 👁 Empty state, error state, loading state for all async data
 - [ ] cursor-pointer on all clickable non-button elements
-- [ ] prefers-reduced-motion respected for all animations
+- [ ] Every animation has a named role (communicative / decorative) and one of the four reduce strategies — bail, snap to end state, collapse, reduce complexity (MOTION-CRAFT §10)
+- [ ] Motion preference is read live (`change` listener or library equivalent), not once at mount
+- [ ] 👁 Reduce path exercised, not grepped — meaning survives with the preference on
 - [ ] Dark mode support (or explicit reasoning why not)
-- [ ] Responsive tested at 375px / 768px / 1024px / 1440px
+- [ ] 👁 Responsive tested at 375px / 768px / 1024px / 1440px
 - [ ] No pure #000 or #fff in semantic tokens (use oklch neutrals)
 - [ ] No lorem ipsum / placeholder copy in shipped output (use real data or labelled `[ PLACEHOLDER: ... ]` blocks)
 - [ ] If multi-language: CJK-capable font listed FIRST in stack (`"Noto Sans SC", "Inter", ...`)
 ```
+
+### Step 5.4 — Render Blindness (advisory)
+
+A checklist item ticked from source is a prediction, not an observation. You emit markup and
+imagine the result, and **the imagined render is always flattering** — overflow, wrapping,
+contrast failure, misalignment and collision are invisible in source form. Every item in the
+checklist above that describes what a human would *see* is unverified until the surface is
+rendered and inspected, or the specific property is computed.
+
+| Claim | What source-reading proves | What actually settles it |
+|-------|---------------------------|--------------------------|
+| "Contrast ≥ 4.5:1" | The token values were chosen | Compute the ratio for the rendered pair — a token used on an unexpected background fails anyway |
+| "Responsive at 375px" | Breakpoints exist | Render at 375px and look: wrapping, overflow, tap-target collision |
+| "No overflow / clean alignment" | Nothing | Render — this class of failure has no textual signature |
+| "Focus ring visible" | The CSS rule exists | Tab through it; a parent `overflow:hidden` or a later rule can eat it |
+| "Empty / error / loading states work" | The branches exist | Render each one; the happy path is the only state most designs are ever seen in |
+
+**Advisory, not a gate.** When the runtime grants a browser, `browser-pilot` is the strongest
+check available and costs one call — take it, then report what was seen. When it does not,
+say so: mark the visual items **ASSUMED (not rendered)** rather than ticking them. A checklist
+of predictions labelled as observations is worse than a short one that is honest — see
+`completion-gate` → `references/claim-discipline.md`.
+
+Highest-yield renders, when budget allows only a few: narrowest breakpoint, longest realistic
+content string, empty state, dark mode.
 
 ### Step 5.5 — UI Design Contract (UI-SPEC.md)
 
@@ -533,7 +577,7 @@ Run a focused accessibility audit on the design system and any existing UI code.
 3. **Touch targets**: Search for buttons/links with explicit small sizing (`w-6 h-6`, `p-1` on interactive elements). Flag anything < 24x24px.
 4. **Missing labels**: Search for `<input` without adjacent `<label` or `aria-label`. Search for icon-only buttons without `aria-label`.
 5. **Semantic HTML**: Flag `<div onClick`, `<span onClick` (should be `<button>`). Flag missing `<nav>`, `<main>`, `<header>` landmarks.
-6. **Motion safety**: Check for animations/transitions without `prefers-reduced-motion` media query or Tailwind `motion-reduce:` variant.
+6. **Motion safety**: Check for animations/transitions without `prefers-reduced-motion` media query or Tailwind `motion-reduce:` variant. Where the guard *is* present, the check is not done — confirm the branch is reachable (no outer `if (reduced) return` before the end-state applicator) and that JS timelines (GSAP/Motion/Lenis) are gated too, since a CSS media query cannot stop them. **Touches ≠ reachable ≠ correct.**
 
 **Output**: Accessibility audit section in Design Report with pass/fail per check and specific file:line violations.
 
@@ -663,6 +707,7 @@ Trading/Fintech — Data-Dense Dark — Web
 11. MUST write measurable rules into design-system.md — never vague directives like "modern typography" or "tasteful spacing" (Step 2.9 Rule 4)
 12. MUST NOT use pure `#000` / `#fff` for default text or background, MUST NOT ship lorem ipsum (Step 2.9 Rule 5)
 13. MUST list CJK-capable font FIRST in stack if product targets Chinese/Japanese/Korean (Step 2.9 Rule 6)
+14. MUST list every intentionally inert/placeholder element in `.rune/ui-spec.md` under `## Unwired Elements` (element, location, why unwired, wiring owner) — Placeholder Ownership (Step 2.9 Rule 2)
 
 ## Mesh Gates (L1/L2 only)
 
@@ -678,6 +723,7 @@ Trading/Fintech — Data-Dense Dark — Web
 | oklch-Derivation Gate | All accent variants derived via `oklch(from ...)` | Rewrite manual hex shades as relative oklch |
 | Measurable-Constraints Gate | Every rule in design-system.md is testable (concrete units, hex/oklch, ratios) | Rewrite vague directives as measurable specs (Step 2.9 Rule 4 table) |
 | No-Pure-No-Lorem Gate | No `#000`/`#fff` in semantic tokens; no lorem ipsum in output | Swap to oklch neutrals; replace lorem with real data or labelled placeholder |
+| Placeholder-Ownership Gate | Every inert/placeholder element shipped is listed in `.rune/ui-spec.md` `## Unwired Elements` (element, location, why, wiring owner) | Add the missing rows before reporting done — an unlisted placeholder is a dead element with no owner |
 
 ## Returns
 
@@ -738,7 +784,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~2000-5000 tokens input, ~800-1500 tokens output. Sonnet for design reasoning quality.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

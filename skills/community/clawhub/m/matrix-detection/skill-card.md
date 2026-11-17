@@ -1,41 +1,54 @@
-## Description: <br>
-Identify illusions, hype, false narratives, and systemic manipulation; classify signal vs noise with evidence and risk tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify illusions, hype, false narratives, and systemic manipulation; classify signal vs noise with evidence and risk tags.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate narratives, opportunities, market claims, community movements, and strategic decisions for signal, noise, or manipulation. It prompts evidence-based reasoning, risk tagging, and concrete follow-up checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad narrative triggers can produce overconfident conclusions about financial, market, or community claims. <br>
-Mitigation: Treat conclusions as hypotheses, review the stated evidence chain, and verify incentives, sources, catalysts, liquidity, or other concrete checks before acting. <br>
-Risk: The skill may label a narrative as manipulation when intent is not established. <br>
-Mitigation: Require explicit evidence before assigning malicious intent and preserve uncertainty in the final assessment. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate opportunity, market, community, or strategic narratives for hype, false narratives, manipulation risk, and concrete verification steps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mzfshark/matrix-detection) <br>
-- [Publisher Profile](https://clawhub.ai/user/mzfshark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Structured text with classification, evidence-based reasoning, risk level, and next checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs classify narratives as signal, noise, or manipulation; risk levels are low, medium, or high.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Narratives may be over-framed through a hype or manipulation lens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat classifications as analytical judgments, verify evidence independently, and keep uncertainty explicit.
+
+Risk: A classification could imply malicious intent without enough support.
+
+Mitigation: Require evidence before assigning intent and use concrete next checks to validate or falsify the narrative.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/matrix-detection)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown response with structured fields for classification, reasoning, risk_level, and next_checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or network access; output should label uncertainty and avoid unsupported guarantees.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

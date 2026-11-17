@@ -1,40 +1,54 @@
-## Description: <br>
-AI Compact Protocol (AICP) - Token-efficient wire format for AI-to-AI communication with glossary compression. Reduces token usage by 50-65% for agent chatter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Compact Protocol (AICP) is a token-efficient wire format for AI-to-AI communication with glossary compression that reduces token usage for agent chatter.
 
-## Publisher: <br>
-[krischristen-hash](https://clawhub.ai/user/krischristen-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krischristen-hash](https://clawhub.ai/user/krischristen-hash)
 
-## Use Case: <br>
-Developers and engineers use this skill to encode, parse, and demonstrate compact AI-to-AI messages for multi-agent workflows. It is useful when agents need a lightweight wire format with glossary compression instead of verbose JSON-like chatter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AICP messages could trigger unintended create, update, delete, or query actions if connected directly to real agent operations. <br>
-Mitigation: Require sender validation and explicit approval before using parsed AICP messages for impactful operations. <br>
-Risk: Compact glossary terms can obscure intent when humans review an agent message. <br>
-Mitigation: Expand glossary terms into human-readable form before approval or audit. <br>
+## Use Case:
 
+Developers and agent builders use AICP Protocol to serialize, parse, and compare compact session messages for multi-agent workflows. It can also generate OpenClaw-oriented task, status, and completion payloads for agent-to-agent communication experiments or integrations.
 
-## Reference(s): <br>
-- [AICP Protocol homepage](https://github.com/christen-family/aicp-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; runtime helpers output wire-format text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; no external Python dependencies are listed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: AICP payload fields and structural delimiters are not hardened for authenticated or security-sensitive control flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate or encode fields, reject delimiter injection, and add adversarial parsing tests before using parsed messages in security-sensitive workflows.
+
+Risk: Downstream agents could over-trust parsed operations if AICP messages are treated as authority.
+
+Mitigation: Treat parsed operations as data and require separate authorization before an agent takes action.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krischristen-hash/skills/aicp-protocol)
+- [AICP Protocol Homepage](https://github.com/christen-family/aicp-protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, Python examples, shell commands, and AICP wire-format text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces compact line-oriented protocol strings and JSON-compatible parsed session structures.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

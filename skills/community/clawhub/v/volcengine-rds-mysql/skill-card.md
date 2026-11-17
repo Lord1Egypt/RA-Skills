@@ -1,44 +1,54 @@
-## Description: <br>
-Helps an agent use a Volcengine RDS MySQL helper script to query RDS MySQL instances, databases, accounts, parameters, VPCs, subnets, and pricing with user-provided Volcengine credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Volcengine RDS MySQL helps an agent query and explain RDS MySQL instance, database, account, parameter, VPC, subnet, and pricing information through the bundled command-line script.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers, cloud operators, and support engineers use this skill to inspect Volcengine RDS MySQL and related network metadata during operations and troubleshooting. The agent can prepare and run supported shell commands, then summarize JSON results and suggest follow-up checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Volcengine cloud credentials and can expose RDS, VPC, subnet, account, parameter, and pricing metadata to the agent session. <br>
-Mitigation: Use a dedicated least-privilege IAM key scoped to the needed read APIs and regions, and avoid sharing returned infrastructure details in untrusted contexts. <br>
-Risk: Live API responses can include operational details that may be sensitive for production environments. <br>
-Mitigation: Review command intent before execution and redact identifiers or configuration details before copying results outside trusted systems. <br>
-Risk: The Volcengine SDK dependency is specified with a lower bound, so future installs may resolve to newer SDK behavior. <br>
-Mitigation: Pin the SDK version in controlled deployments when reproducible behavior is required. <br>
+## Use Case:
 
+Developers and cloud operations teams use this skill to inspect Volcengine RDS MySQL resources from an agent conversation and turn API results into operational guidance. It is suited for read-oriented instance, database, account, parameter, network, and pricing lookups that require Volcengine credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volcengine-skills/volcengine-rds-mysql) <br>
-- [Volcengine RDS MySQL product page](https://www.volcengine.com/product/rds-mysql) <br>
-- [Volcengine access key user guide](https://www.volcengine.com/docs/6291/65568?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the user's Volcengine credentials, selected region, and live RDS or VPC API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses Volcengine cloud credentials and can expose RDS or VPC metadata if credentials are over-permissive or used in sensitive accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege read-only credentials and confirm cloud lookups before running commands in sensitive accounts.
+
+Risk: The script accepts a custom API endpoint, which could redirect signed requests if an untrusted endpoint is supplied.
+
+Mitigation: Avoid the custom endpoint option unless the destination is fully trusted and validated.
+
+## Reference(s):
+
+- [Volcengine RDS MySQL product page](https://www.volcengine.com/product/rds-mysql)
+- [Volcengine access credential guide](https://www.volcengine.com/docs/6291/65568?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv or Python, Volcengine access credentials, and network access to Volcengine APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

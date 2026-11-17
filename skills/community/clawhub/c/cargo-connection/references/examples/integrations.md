@@ -17,8 +17,8 @@ cargo-ai connection integration list --category enrichment
 # By name search
 cargo-ai connection integration list --search "hubspot"
 
-# By exact slug
-cargo-ai connection integration list --slug clearbit
+# By exact slug(s)
+cargo-ai connection integration list --slugs clearbit
 
 # Only those with actions (usable in workflow nodes)
 cargo-ai connection integration list --has-actions true
@@ -44,7 +44,7 @@ cargo-ai connection integration get clearbit
 # → Returns the full integration object with actions, extractors, and configuration schemas
 ```
 
-Use this to discover all available actions and extractors for an integration, including their `config.jsonSchema` for building workflow nodes.
+Use this to discover all available actions and extractors for an integration, including their `config.schema` (inputs) for building workflow nodes.
 
 ## Get integration documentation
 
@@ -59,8 +59,8 @@ Returns plain text documentation for the integration, including available action
 
 ```bash
 cargo-ai connection integration get hubspot
-# → Returns HubSpot-specific actions (e.g. "create_contact", "update_deal") and extractors
-# → Each action includes its config.jsonSchema for building workflow nodes
+# → Returns HubSpot-specific actions (e.g. "insertRecord", "updateRecords", "findRecords") and extractors
+# → Each action includes its config.schema (inputs) for building workflow nodes
 
 cargo-ai connection integration get-documentation hubspot
 # → Plain text overview of all HubSpot actions
@@ -88,11 +88,8 @@ Use `actionSlug` values in workflow node configs (see `cargo-orchestration/refer
 cargo-ai connection integration list --search "hubspot"
 # → Extract the "slug" value
 
-# 2. Create the connector
-cargo-ai connection connector create \
-  --integration-slug hubspot \
-  --slug hubspot_production \
-  --name "HubSpot - Production"
+# 2. Create the connector (hosted form; add --slug, --name and --config to skip the browser)
+cargo-ai connection connector create --integration-slug hubspot
 # → Note the returned connector UUID
 
 # 3. Get the integration details to discover available actions

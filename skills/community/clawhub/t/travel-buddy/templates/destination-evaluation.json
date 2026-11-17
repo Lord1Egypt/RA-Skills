@@ -1,0 +1,62 @@
+{
+  "_comment": "One candidate record inside a discovery-shortlist.json. Start every candidate from this file.",
+
+  "_enums": {
+    "_comment": "The checker reads these vocabularies from here rather than restating them, so a new state is a contract edit and the two cannot drift apart. recommendation_state is deliberately the same ladder render_final_trip_html.py enforces on the Construction side -- one word means one thing across both modes.",
+    "hard_filter_status": ["unknown", "passed", "failed", "not_pursued"],
+    "budget_fit": ["unknown", "within", "tight", "over"],
+    "price_confidence": ["unknown", "estimate", "researched"],
+    "research_status": ["not_started", "partial", "complete"],
+    "recommendation_state": ["idea", "researched", "held", "booked"]
+  },
+
+  "destination": {
+    "name": null,
+    "country_or_region": null,
+    "arrival_airports": []
+  },
+  "eligibility": {
+    "_comment": "hard_filter_status is the verdict every downstream reader trusts. 'unknown' is the honest default of an unfilled record, and it is never a pass -- a candidate recommended while carrying it was recommended without a filter. 'not_pursued' is the declared, non-demoting alternative: the constraint has a subject here but researching it would buy nothing, and not_pursued_reason says what was skipped. That is a different statement from 'nobody looked', and conflating the two is what makes a coverage rule fire on correct work.",
+    "hard_filter_status": "unknown",
+    "not_pursued_reason": null,
+    "confirmed_constraints": [],
+    "failed_constraints": [],
+    "unresolved_constraints": [],
+    "not_applicable_constraints": [],
+    "assumptions": []
+  },
+  "trip_context": {
+    "origin": null,
+    "date_range": null,
+    "party_size": null,
+    "currency": null,
+    "budget_scope": []
+  },
+  "cost_estimate": {
+    "_comment": "cost_basis travels with the figure rather than being declared once at the top of the document, because a single shared declaration cannot be contradicted by anything: a figure priced for the whole party lands under a per-person heading with no field able to disagree with it.",
+    "total_low": null,
+    "total_high": null,
+    "cost_basis": "per_person",
+    "not_priced_reason": null,
+    "included_categories": [],
+    "not_applicable_categories": [],
+    "unverified_categories": [],
+    "budget_fit": "unknown",
+    "budget_fit_unpriced_reason": null,
+    "price_confidence": "unknown",
+    "as_of": null,
+    "as_of_exception_reason": null
+  },
+  "fit": {
+    "experience_matches": [],
+    "tradeoffs": [],
+    "ranking_sensitivity": null,
+    "conditional_on_relaxation": null,
+    "score": null,
+    "score_dimensions": {},
+    "confidence": "unknown"
+  },
+  "evidence": [],
+  "research_status": "not_started",
+  "recommendation_state": "idea"
+}

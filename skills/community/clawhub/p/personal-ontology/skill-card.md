@@ -1,46 +1,61 @@
-## Description: <br>
-Help users build and maintain a Personal Ontology - a Palantir-style graph of Objects (identity, beliefs, predictions, goals) and Links (relationships between them) that enables AI-driven decision-making and life alignment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users build and maintain a Personal Ontology: a graph of identity, beliefs, predictions, goals, projects, and relationships that supports aligned agent assistance.
 
-## Publisher: <br>
-[levineam](https://clawhub.ai/user/levineam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[levineam](https://clawhub.ai/user/levineam)
 
-## Use Case: <br>
-External users and their agents use this skill to build and maintain a markdown-based personal ontology from notes, goals, beliefs, predictions, and projects. The ontology helps an agent surface alignment checks, stale predictions, contradictions, and goal-to-project relationships for user review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and summarize sensitive personal notes while building or maintaining the ontology. <br>
-Mitigation: Use a narrow folder scope, exclude sensitive journals or archives, and require user consent before bootstrap or passive scans. <br>
-Risk: Stored ontology suggestions and state files may preserve sensitive beliefs, goals, predictions, or personal history. <br>
-Mitigation: Keep suggestion and state file locations visible to the user, and document how to delete or disable them. <br>
-Risk: Ontology-derived guidance could steer future decisions using outdated, incorrect, or unreviewed personal data. <br>
-Mitigation: Require user review before every write and periodically surface stale predictions, contradictions, and orphaned goals or projects. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Personal Ontology ClawHub listing](https://clawhub.ai/levineam/personal-ontology) <br>
-- [README](artifact/README.md) <br>
-- [Setup Guide](artifact/SETUP.md) <br>
-- [Bootstrap Guide](artifact/bootstrap.md) <br>
-- [Heuristics](artifact/heuristics.md) <br>
-- [Guided Prompts](artifact/prompts.md) <br>
+## Use Case:
 
+External users and their agents use this skill to bootstrap and maintain a Markdown-based personal ontology from notes, goals, projects, and reflections. The skill helps agents surface candidate ontology objects, validate links, flag stale or contradictory entries, and produce reviewable updates before writing.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions, ontology templates, configuration guidance, and optional Mermaid graph output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review before committing ontology updates; optional Node script renders Mermaid, ASCII, or SVG views from ontology files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can prompt an agent to scan highly personal notes, journals, tasks, and calendar context.
+
+Mitigation: Limit access to selected folders and sources, exclude sensitive notes, and confirm consent before scanning.
+
+Risk: Ontology updates could preserve inaccurate or overly revealing interpretations of private material.
+
+Mitigation: Review all extracted candidates before writes, keep suggestions separate until confirmed, and avoid saving verbatim private quotes unless needed.
+
+Risk: Generated Mermaid or SVG views may include imported or shared note content.
+
+Mitigation: Treat rendered diagrams as untrusted when based on shared content and review them before opening or publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/levineam/skills/personal-ontology)
+- [README](artifact/README.md)
+- [Setup guide](artifact/SETUP.md)
+- [Bootstrap workflow](artifact/bootstrap.md)
+- [Categorization and validation heuristics](artifact/heuristics.md)
+- [Guided prompts](artifact/prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, ontology files, Mermaid graph code, and optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update local ontology Markdown files after user confirmation and can emit Mermaid, ASCII, or SVG visualization output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

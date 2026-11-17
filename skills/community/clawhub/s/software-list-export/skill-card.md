@@ -1,38 +1,53 @@
-## Description: <br>
-Export installed software to CSV with versions and likely download URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export installed software to CSV with versions and likely download URLs.
 
-## Publisher: <br>
-[auto-dog](https://clawhub.ai/user/auto-dog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auto-dog](https://clawhub.ai/user/auto-dog)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to prepare a machine inventory or reinstall checklist before migration to a new computer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A software inventory can reveal personal, workplace, or security-sensitive details about the machine. <br>
-Mitigation: Review the generated CSV before sharing it and remove entries or metadata that should not leave the machine. <br>
+## Use Case:
 
+Users preparing to migrate, reinstall, or audit a computer use this skill to create a reviewable inventory of installed applications, versions, likely reinstall locations, and uncertainty notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/auto-dog/software-list-export) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [CSV file plus a brief text message with the saved path] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CSV columns are name, version, download_url, and comments; comments should identify uncertainty in source data or reinstall URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated software inventory can reveal workplace tools, security products, and personal usage patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CSV before sharing it and remove sensitive entries that are not needed for migration or reinstall planning.
+
+Risk: Likely download URLs may be vendor or product pages rather than confirmed installer links.
+
+Mitigation: Treat unconfirmed URLs as starting points and verify download sources before reinstalling software.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/auto-dog/skills/software-list-export)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, CSV, guidance]
+
+**Output Format:** [CSV file with a brief text status message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV columns: name, version, download_url, comments.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

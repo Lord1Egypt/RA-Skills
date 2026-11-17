@@ -1,37 +1,59 @@
-## Description: <br>
-Manage cron jobs on macOS/Linux - list, add, remove, backup, and schedule recurring tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage cron jobs on macOS/Linux - list, add, remove, backup, and schedule recurring tasks.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect, add, remove, back up, restore, and manage scheduled cron tasks on macOS or Linux systems. Review proposed schedule changes carefully because the server security summary notes that this skill can create persistent scheduled commands, delete cron entries, and run sudo service-control actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppopen/openclaw-skill-cron-scheduler) <br>
+Developers, operators, and external users use this skill to inspect, create, remove, back up, restore, and manage recurring cron tasks on macOS and Linux systems.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose crontab edits, backup or restore actions, and cron service commands that should be reviewed before execution.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill can change persistent scheduled tasks and affect cron service state.
+
+Mitigation: Install only from a trusted source, review exact crontab changes before applying them, and avoid service start or stop actions unless system-level changes are intentional.
+
+Risk: A removal path can execute unintended local commands.
+
+Mitigation: Avoid broad pattern removals, review matching entries before deletion, and add stronger numeric validation and confirmation prompts before operational use.
+
+Risk: Crontab backups may contain operational commands or sensitive paths.
+
+Mitigation: Store backups with appropriate local permissions and review backup handling before using restore workflows.
+
+## Reference(s):
+
+- [Cron Scheduler README](README.md)
+- [Cron Scheduler Skill Definition](SKILL.md)
+- [ClawHub Skill Page](https://clawhub.ai/ppopen/skills/openclaw-skill-cron-scheduler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and crontab examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include crontab entries, backup paths, service status, schedule templates, and command usage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

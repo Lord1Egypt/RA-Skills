@@ -1,41 +1,54 @@
-## Description: <br>
-Cluster performs data clustering analysis with k-means and hierarchical algorithms for grouping, classifying, or segmenting numerical datasets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform data clustering analysis using k-means and hierarchical algorithms. Use when you need to group, classify, or segment datasets.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and data analysts use this skill to run local clustering on numeric CSV or JSONL datasets, evaluate cluster quality, assign new points, and export or visualize results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clustering history stored in ~/.cluster may retain source file paths, assignments, centroids, and metrics that reveal sensitive dataset details. <br>
-Mitigation: Avoid highly sensitive datasets unless local retention is acceptable, and delete ~/.cluster data when it is no longer needed. <br>
-Risk: The skill runs a local bash/Python script that reads input files and can write exports or configuration files. <br>
-Mitigation: Review the script before use and provide only intended local input, output, and configuration paths. <br>
+## Use Case:
 
+Developers, analysts, and data practitioners use this skill to run local k-means or hierarchical clustering on numerical CSV or JSONL datasets, inspect clustering metrics, and export or reuse clustering runs.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Cluster on ClawHub](https://clawhub.ai/ckchzh/cluster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Files] <br>
-**Output Format:** [Terminal text with optional JSON, CSV, or JSONL exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local numeric CSV or JSONL inputs and stores clustering history in ~/.cluster/data.jsonl with configuration in ~/.cluster/config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Clustering runs and source input paths are saved locally under ~/.cluster.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive datasets when local retention of run metadata is not acceptable, and clear local run records when they are no longer needed.
+
+Risk: Exports can overwrite an existing file when OUTPUT points to that path.
+
+Mitigation: Choose export paths deliberately and confirm that the target file can be replaced before running an export.
+
+## Reference(s):
+
+- [Cluster ClawHub release page](https://clawhub.ai/ckchzh/skills/cluster)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Terminal text with optional JSON, CSV, and JSONL exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores clustering run records and configuration locally under ~/.cluster.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,57 @@
-## Description: <br>
-Generate images using ChatGPT's GPT-Image-2 model via browser automation, then extract the generated image from the ChatGPT session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using ChatGPT's GPT-Image-2 model via browser automation, then extract the generated result from the browser session.
 
-## Publisher: <br>
-[mayf3](https://clawhub.ai/user/mayf3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayf3](https://clawhub.ai/user/mayf3)
 
-## Use Case: <br>
-Developers and agents use this skill when a user asks to generate an image through ChatGPT. It guides browser-based prompt entry, generation monitoring, image extraction, and delivery of the resulting image file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mayf3/gpt-image-gen) <br>
-- [ChatGPT](https://chatgpt.com/) <br>
+Developers and agent operators use this skill to generate images through ChatGPT in an existing Brave browser session, refine prompts, poll for completion, extract the resulting image, and optionally send it to a user.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, Python snippets, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces extracted image files under /tmp/openclaw and may send media through the configured message target.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill gives the agent broad control of an already-logged-in Brave browser session through remote debugging.
+
+Mitigation: Use a dedicated browser profile or isolated automation browser and review actions before running the workflow.
+
+Risk: Unsafe prompt-insertion instructions may mishandle untrusted prompt text.
+
+Mitigation: Avoid untrusted prompt text until prompt encoding is fixed and review prompt contents before submission.
+
+Risk: Generated media may be sent to an external Feishu destination.
+
+Mitigation: Confirm the destination before sending generated media.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mayf3/skills/gpt-image-gen)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Image files]
+
+**Output Format:** [Markdown guidance with bash and Python snippets; extracted generated image as a PNG file when execution succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a logged-in ChatGPT session in Brave with remote debugging on port 9222 and the websockets Python package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

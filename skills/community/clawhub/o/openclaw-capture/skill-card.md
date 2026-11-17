@@ -1,45 +1,60 @@
-## Description: <br>
-Wrap a local openclaw_capture_workflow checkout as an OpenClaw/ClawHub skill that captures links, text, images, and videos, routes STT by platform, and fans results out to Telegram and Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wrap a local openclaw_capture_workflow checkout as an OpenClaw/ClawHub skill that captures links, text, images, and videos, routes STT by platform, and fans results out to Telegram and Feishu.
 
-## Publisher: <br>
-[Etherstrings](https://clawhub.ai/user/Etherstrings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etherstrings](https://clawhub.ai/user/etherstrings)
 
-## Use Case: <br>
-Developers and agents use this skill to dispatch URL, pasted text, image, video, or mixed capture payloads into a local OpenClaw workflow while selecting speech-to-text and notification routing through environment settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Captured content, transcripts, or summaries may be sent to configured backend, model, Telegram, or Feishu services. <br>
-Mitigation: Use only trusted service endpoints and destinations, configure dedicated low-privilege credentials, and avoid submitting sensitive content unless those services are approved for it. <br>
-Risk: A configured local STT command can execute local software during transcription. <br>
-Mitigation: Set OPENCLAW_CAPTURE_LOCAL_STT_COMMAND only to a trusted executable or leave it unset to avoid local command execution. <br>
-Risk: Implicit invocation is enabled, so capture dispatch may run with less explicit user confirmation. <br>
-Mitigation: Prefer explicit invocation for deployments that handle sensitive content or route results to external notification channels. <br>
+## Use Case:
 
+Developers and operators use this skill to send links, pasted text, images, and videos into a local OpenClaw capture workflow while preserving the legacy payload contract and selecting STT and notification routes by environment.
 
-## Reference(s): <br>
-- [Runtime Profiles](references/runtime-profiles.md) <br>
-- [Module Matrix](references/module-matrix.md) <br>
-- [Payload Contract](references/payload-contract.md) <br>
-- [OpenClaw Capture on ClawHub](https://clawhub.ai/Etherstrings/openclaw-capture) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash snippets and JSON payloads; runtime output is a JSON job object plus text or Markdown summaries sent to configured destinations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires environment configuration for the local workflow, backend mode, model provider, STT routing, and Telegram or Feishu notification destinations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Capture payloads and summaries may be sent to configured HTTP backends, model APIs, Telegram, or Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted backend URLs, prefer HTTPS for remote services, scope API keys and bot tokens tightly, and dispatch private or proprietary content only when sharing with configured services is acceptable.
+
+Risk: A configured local STT command can process media inputs and receive templated runtime arguments.
+
+Mitigation: Enable only a reviewed, known-safe STT command and keep the default remote-only profile when a local command is not required.
+
+Risk: The skill allows implicit invocation, which may dispatch sensitive text, image references, videos, or chat identifiers automatically.
+
+Mitigation: Require review for sensitive capture requests and disable or constrain implicit invocation in environments that handle private or regulated content.
+
+## Reference(s):
+
+- [Runtime profiles and environment matrix](artifact/references/runtime-profiles.md)
+- [Module behavior and output fanout](artifact/references/module-matrix.md)
+- [Legacy payload contract and mixed-input rules](artifact/references/payload-contract.md)
+- [ClawHub skill page](https://clawhub.ai/etherstrings/skills/openclaw-capture)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Acknowledgement text, JSON job status, Markdown notes, and notification messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes capture payloads through configured local or HTTP backends and optional Telegram or Feishu outputs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

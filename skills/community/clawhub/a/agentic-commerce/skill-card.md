@@ -1,42 +1,53 @@
-## Description: <br>
-AI-powered shopping API for product search, shopping assistant responses, crypto order creation, and USDC checkout signing on Solana or Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered shopping API for product search, purchase order creation, and crypto checkout with USDC on Solana or Base.
 
-## Publisher: <br>
-[purch-agent](https://clawhub.ai/user/purch-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[purch-agent](https://clawhub.ai/user/purch-agent)
 
-## Use Case: <br>
-Developers and agent builders use this skill to search products, create orders, and integrate USDC checkout flows for Amazon and Shopify items on Solana or Base. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask for raw wallet private keys when using bundled signing scripts. <br>
-Mitigation: Prefer browser checkout or a trusted wallet/hardware-wallet flow; use only a dedicated low-balance wallet for testing. <br>
-Risk: Purchase and signing flows can send real irreversible USDC payments. <br>
-Mitigation: Before signing, independently verify the merchant, USDC amount, chain, recipient or contract, and fees. <br>
-Risk: Checkout requests send buyer email and shipping details to api.purch.xyz. <br>
-Mitigation: Review what personal shipping data is sent and provide only information appropriate for the purchase. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/purch-agent/agentic-commerce) <br>
-- [Purch API](https://api.purch.xyz) <br>
+## Use Case:
 
+Developers building shopping assistants or commerce automations use this skill to search Amazon and Shopify products, create purchase orders, and guide or execute USDC checkout on Solana or Base.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documentation with JSON examples, API calls, and Python or TypeScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the external Purch API and bundled Python/TypeScript scripts; purchase and signing flows can submit real blockchain transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bundled signing flows can expose wallet private keys and submit irreversible blockchain payments.
+
+Mitigation: Avoid private-key CLI signing with valuable wallets; prefer browser or hardware wallet signing and verify recipient, token, amount, and fees before approving.
+
+Risk: Order creation sends buyer email, shipping details, wallet address, and purchase information to api.purch.xyz.
+
+Mitigation: Use only data appropriate for the Purch API service and review the transaction and checkout details before submitting an order.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/purch-agent/skills/agentic-commerce)
+- [Purch API base URL](https://api.purch.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline JSON, Bash, Python, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, checkout parameters, transaction-signing commands, and fallback browser-checkout guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

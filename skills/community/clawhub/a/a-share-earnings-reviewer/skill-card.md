@@ -1,43 +1,53 @@
-## Description: <br>
-Reviews quarterly, half-year, and annual reports for covered A-share listed companies, updates financial models, and drafts institution-grade earnings update reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A China A-share earnings review assistant that analyzes quarterly, half-year, and annual reports for covered listed companies, reads financial statements and earnings call materials, updates financial models, and highlights investment-thesis changes in institution-style earnings update reports.
 
-## Publisher: <br>
-[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
 
-## Use Case: <br>
-Investment analysts and professional investors use this skill to draft A-share earnings review reports after quarterly, half-year, or annual results. It supports current filing review, consensus comparison, profit forecast revisions, and investment thesis updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial source links, filing dates, consensus estimates, or calculations may be incomplete or incorrect. <br>
-Mitigation: Verify source links, filing dates, consensus estimate sources, and calculations before making or sharing investment decisions. <br>
-Risk: Ratings, target prices, and valuation assumptions may be unsuitable if accepted without review. <br>
-Mitigation: Review ratings, target-price assumptions, forecast revisions, and valuation logic against authoritative market data and internal investment policy. <br>
+## Use Case:
 
+External financial analysts and professional investors use this skill to produce A-share earnings update reports after company disclosures. It focuses on earnings-surprise analysis, forecast revisions, valuation context, and updates to an existing investment thesis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/a-share-earnings-reviewer) <br>
-- [CNINFO disclosure platform](https://www.cninfo.com.cn/) <br>
-- [Shanghai Stock Exchange](https://www.sse.com.cn/) <br>
-- [Shenzhen Stock Exchange](https://www.szse.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or document-ready Chinese earnings review report with tables, chart guidance, and cited data sources.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Primary deliverable is a 6-10 page earnings update report; optional financial forecast model guidance may be produced when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: The skill may produce financial ratings, target prices, or thesis updates that readers could mistake for guaranteed investment outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research assistance, verify all sources and calculations, and apply human financial-review controls before relying on the report.
+
+Risk: The workflow depends on current filings, conference notes, consensus data, and market databases that may be stale, incomplete, or license-restricted.
+
+Mitigation: Use current authorized data sources, cite disclosure and query dates, and confirm data-license permissions before sharing generated reports.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yinfeihaaaaaaaaaaa/skills/a-share-earnings-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, configuration, guidance]
+
+**Output Format:** [Markdown or document-ready report prose with financial tables, chart guidance, source notes, and model-update instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected report length is 6-10 pages with 2,500-4,000 Chinese characters, 1-3 summary tables, and 6-10 charts when source data is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

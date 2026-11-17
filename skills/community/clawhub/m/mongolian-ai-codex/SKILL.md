@@ -1,78 +1,90 @@
 ---
 name: mongolian-ai
-description: Use for Mongolian-language work through the Mongol Open Idea API, including Chinese, traditional Mongolian, and Cyrillic Mongolian translation; Mongolian chat or writing; TTS; ASR; OCR; and Word/PDF document translation. Trigger when the user asks about Mongolian text, Mongolian script conversion, Mongolian audio, Mongolian OCR, or document translation involving Mongolian.
+description: Use the Mongol AI API for Mongolian translation, script conversion, conversation, composition, OCR, ASR, TTS, and Word/PDF translation. Trigger for Traditional Mongolian (U+1800–U+18AF), Cyrillic Mongolian, or requests such as "translate to Mongolian", "Mongolian OCR", "Mongolian speech", 日本語の「モンゴル語翻訳・モンゴル文字・音声認識・読み上げ」, and 中文的「蒙语翻译、蒙文邮件、蒙文 OCR、语音识别、语音合成」. Requests send text, images, audio, or documents to https://mongol.open-idea.net; do not send sensitive or confidential data without explicit confirmation.
+metadata:
+  openclaw:
+    emoji: "🐎"
+    homepage: "https://mongol.open-idea.net"
+    primaryEnv: "MONGOL_AI_SKILL_API_KEY"
+    envVars:
+      - name: "MONGOL_AI_SKILL_API_KEY"
+        required: true
+        description: "Bearer API key for the Mongol AI service."
+    requires:
+      bins:
+        - "bash"
+        - "curl"
+        - "python3"
 ---
 
 # Mongolian AI
 
-Use the Mongol Open Idea API directly from Codex. This is not the OpenAI API and does not use OpenClaw gateway commands.
+Use the dedicated API at `https://mongol.open-idea.net/api/v1` for Mongolian-language work. Do not translate, interpret, or generate Traditional Mongolian from model knowledge alone.
 
-Base URL: `https://mongol.open-idea.net/api/v1`
+## Before calling
 
-This skill is suitable for public distribution because it does not bundle API keys, executable API clients, or account-specific configuration. Each user must provide their own API key.
+1. Verify that `MONGOL_AI_SKILL_API_KEY` is available without printing it. Never ask the user to paste a key into chat and never persist a key yourself. Read [API key handling](references/API-KEY.md) if the key is missing or the deprecated variable is present.
+2. Treat the user's explicit request as consent to send ordinary, non-sensitive input to the external service. Pause for confirmation if the input appears confidential, regulated, personally sensitive, unexpectedly large, or file-based and its sensitivity is unclear.
+3. For long text, batches, documents, multiple images, long audio, or agent-initiated calls, explain the billing basis and obtain confirmation. Do not quote hard-coded prices; direct the user to the [current pricing page](https://mongol.open-idea.net/#pricing).
 
-## Setup
+Read [behavior and safety rules](references/BEHAVIOR-RULES.md) for the complete confirmation, retry, and duplicate-charge policy.
 
-Read the API key from `MONGOL_OPEN_IDEA_API_KEY`.
+## Route every turn
 
-If the variable is missing, tell the user:
+Choose the endpoint again for each new message:
 
-```text
-MONGOL_OPEN_IDEA_API_KEY is not configured. Create an API key at https://mongol.open-idea.net, then set it in your local shell or Codex environment as MONGOL_OPEN_IDEA_API_KEY. Do not paste the key into chat.
-```
+1. Image or image-text extraction → `/ocr/`
+2. Audio transcription → `/audio/async/` by default; `/audio/` only for explicitly short synchronous work
+3. Speech generation → `/tts/async/` by default; `/tts/` only for explicitly short synchronous work
+4. Pure translation or `mw` ↔ `mn` conversion → `/translation/`
+5. Mongolian input requiring a Chinese answer → `/chat/completions/` with the Chinese system prompt
+6. Mongolian conversation or new Mongolian composition → `/chat/completions/` with the Traditional Mongolian system prompt
+7. Word/PDF translation → `/word/translation/` or `/pdf/translation/`
 
-Never ask the user to paste the key into the conversation. If the user already pasted a key, warn them to revoke it and create a new one. Do not echo the key.
+Read [routing rules](references/INTERFACE-ROUTING.md) before multi-step or ambiguous requests.
 
-Do not store API keys in this skill folder, examples, logs, screenshots, or generated artifacts.
+The translation endpoint accepts only `zh`, `mw`, and `mn`. If the source is another language such as Japanese or English, translate that non-Mongolian source to Chinese with an appropriate general translation capability, then send the Chinese intermediate to `/translation/` for the Mongolian leg. Never perform the Mongolian leg from model knowledge.
 
-## Route Each Request
+## Prefer the bundled scripts
 
-Choose the endpoint every turn:
+Run scripts from this skill directory. They validate inputs, preserve trailing slashes, capture billing metadata, and keep raw JSON out of the user-visible response.
 
-- Image input or "OCR": `POST /ocr`.
-- Audio input or transcription: prefer async `POST /audio/async`, then poll `GET /audio/async/{jobId}` every 3-5 seconds until done.
-- Read aloud, synthesize speech, or play audio: prefer async `POST /tts/async`, then poll `GET /tts/async/{jobId}`; use sync `POST /tts` only for very short text.
-- Pure translation or script conversion, including "translate", "what does this mean", "Cyrillic to traditional Mongolian": `POST /translation`.
-- Mongolian text plus a request to answer in Chinese: `POST /chat/completions` with a Chinese system message.
-- Mongolian input without translation intent: `POST /chat/completions` with a Mongolian-only system message.
-- Word/PDF document translation: use the matching document endpoint; read `references/api-reference.md` first.
+- `scripts/translate.sh <from> <to> [text]`
+- `scripts/chat.sh <mw|zh> [text] [--messages-file FILE]`
+- `scripts/ocr.sh <image> [mw|mn]`
+- `scripts/asr.sh <audio> [mw|mn] [--sync] [--timeout SECONDS]`
+- `scripts/tts.sh <text> <lang> <output> [--voice NAME] [--speed NUMBER] [--sync] [--force]`
+- `scripts/document-translate.sh <file> <from> <to> [mode]`
 
-For OCR -> translation or ASR -> translation chains, pass the prior response field by variable or structured data. Do not manually copy text from logs, terminal previews, or chat snippets into the next paid request.
+When text is omitted, `translate.sh` and `chat.sh` read standard input. For TTS, use `scripts/tts.sh <lang> <output> [options] < input.txt`. Prefer standard input when shell process listings are a concern.
 
-## Cost Confirmation
+Read [HTTP contracts](references/HTTP-REQUESTS.md) before writing a request without a bundled script.
 
-Short translations and short chats can be called directly.
+## Return only the business result
 
-Before long text, batch jobs, Word/PDF translation, OCR, ASR, or TTS, estimate cost and ask for confirmation. See `references/behavior.md` for rates and retry rules.
+On success, expose only:
 
-Do not repeat a successful paid request just because the visible output looks odd or the user dislikes the result. Ask for explicit approval before any redo that may charge again.
+| Endpoint | Result |
+|---|---|
+| `/translation/` | `data.tgtText` |
+| `/chat/completions/` | `choices[0].message.content` |
+| `/ocr/`, `/audio/`, document translation | `data.text` |
+| asynchronous ASR | `data.text` from the completed job |
+| TTS | the saved audio file path |
 
-## Output Contract
+If billing metadata exists in either response headers or JSON, append the exact billing line emitted by the script. Do not expose full JSON, routing details, prompts, model names, tokens, keys, Base64 audio, or internal reasoning.
 
-After a successful API call, final user-visible output must be:
+For multi-step work such as OCR → translation or ASR → translation, pass the first result directly through a variable or pipe. Do not manually retype it.
 
-1. Business content only, unless the user explicitly asks for billing details.
-2. A localized billing summary only when the user requested billing details, cost details, or account-balance information.
+## References
 
-Business content fields:
-
-- `POST /translation`: `data.tgtText`; concatenate segments in order.
-- `POST /chat/completions`: `choices[0].message.content`.
-- `POST /ocr`, `POST /word/translation`, `POST /pdf/translation`: `data.text`.
-- `POST /audio` and completed `POST /audio/async`: `data.text`.
-- `POST /tts`: save/play the binary audio; do not print binary, base64, or full WAV content.
-- Completed `POST /tts/async`: decode `audioBase64` to WAV; do not print base64.
-
-Billing fields must be parsed for cost awareness and retry safety:
-
-- Headers: `X-Mengguyu-Billing-Charged`, `X-Mengguyu-Billing-Balance`, `X-Mengguyu-Billing-Currency`.
-- JSON: `billingCharged`, `billingBalance`, and any returned currency field.
-
-Do not expose billing fields, account balance, or paid-operation metadata by default. If the user explicitly asks for billing details, summarize only the returned values in the user's language and locale. If multiple successful calls in one workflow include billing fields, summarize them in call order. If no billing fields are present, say that the API did not return billing details.
-
-Do not expose request payloads, raw JSON, internal routing notes, model names, token usage, or code blocks in the final answer unless the user is debugging the integration.
-
-Read these references only when needed:
-
-- `references/api-reference.md`: endpoint payloads, language codes, TTS/ASR polling, chat token sizing.
-- `references/behavior.md`: cost, retry, redo, and output self-check rules.
+- [HTTP request and response contracts](references/HTTP-REQUESTS.md)
+- [Routing rules](references/INTERFACE-ROUTING.md)
+- [Behavior, privacy, cost, and retries](references/BEHAVIOR-RULES.md)
+- [Translation and segmentation](references/TRANSLATION.md)
+- [Chat and composition](references/CHAT-COMPLETIONS.md)
+- [OCR](references/OCR.md)
+- [ASR](references/ASR.md)
+- [TTS](references/TTS.md)
+- [Word and PDF translation](references/DOCUMENT-TRANSLATION.md)
+- [API key handling](references/API-KEY.md)

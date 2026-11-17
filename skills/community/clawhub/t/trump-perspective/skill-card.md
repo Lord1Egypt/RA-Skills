@@ -1,40 +1,57 @@
-## Description: <br>
-A Chinese-language agent skill that helps users analyze negotiation, power, communication, and public behavior through a Donald Trump-inspired perspective, with separate analyst and roleplay modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language prompt skill for analyzing or role-playing Donald Trump's negotiation, power, communication, and decision-making perspective using stated mental models and heuristics.
 
-## Publisher: <br>
-[alchaincyf](https://clawhub.ai/user/alchaincyf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alchaincyf](https://clawhub.ai/user/alchaincyf)
 
-## Use Case: <br>
-External users and agent operators use this skill for Trump-style political analysis, negotiation framing, behavior prediction, and clearly framed roleplay simulation. Outputs should be treated as commentary or simulation rather than factual verification or reliable forecasting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broad Trump-style political framing more often than users expect. <br>
-Mitigation: Install only when this framing is desired, and make the active analysis or roleplay mode clear to users. <br>
-Risk: Political analysis, roleplay, and predictions may be misleading if treated as verified facts. <br>
-Mitigation: Treat outputs as simulation and commentary, and independently verify factual or predictive claims. <br>
+## Use Case:
 
+External users and analysts use this skill to frame negotiation, power, media, personnel, domestic-politics, and foreign-policy questions through a Trump-perspective analysis mode or a disclosed roleplay mode.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alchaincyf/trump-perspective) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include analyst-mode probability estimates, confidence ratings, uncertainty notes, or roleplay-style responses depending on the user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Political predictions and current-event claims may be opinionated or time-sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat predictions as framing and independently verify time-sensitive political facts before relying on them.
+
+Risk: Roleplay of a public political figure can be mistaken for endorsement or exact representation.
+
+Mitigation: Preserve the skill's disclosure that responses are inferred from public records and are not the person's own views.
+
+Risk: Sensitive political or identity-related topics may invite inflammatory expansion beyond public record.
+
+Mitigation: Keep sensitive content within documented public positions and avoid adding new inflammatory claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alchaincyf/skills/trump-perspective)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown or plain text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; responses may include roleplay disclosure, probabilistic analysis, confidence ratings, and uncertainty notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

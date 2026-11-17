@@ -1,49 +1,65 @@
-## Description: <br>
-Guides AI coding agents and Go developers through spf13/viper configuration patterns, including layered precedence, flag and environment binding, config files, unmarshalling, hot reload, test isolation, and remote key-value configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Golang configuration library using spf13/viper - layered precedence (flag > env > file > KV > default), BindPFlag/BindPFlags, SetEnvPrefix + SetEnvKeyReplacer + AutomaticEnv, ReadInConfig + ConfigFileNotFoundError, Unmarshal + mapstructure struct tags, Sub for sub-trees, WatchConfig + OnConfigChange for hot reload, viper.New() for test isolation, and remote KV integration.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill when adding, debugging, or reviewing spf13/viper configuration in Go projects. It helps agents propose code and guidance for precedence rules, flags, environment variables, config files, struct unmarshalling, hot reload, and test isolation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated changes may alter configuration precedence, environment-variable bindings, dependency versions, remote configuration endpoints, or git state. <br>
-Mitigation: Review generated code changes before applying them, with extra attention to dependency updates, credential-bearing config keys, remote providers, and git operations. <br>
-Risk: Misconfigured viper usage can cause hidden runtime behavior, such as environment variables shadowing files or tests sharing global viper state. <br>
-Mitigation: Follow the skill's documented patterns for explicit binding, mapstructure tags, graceful config-file handling, per-test viper instances, and hot-reload testing. <br>
+## Use Case:
 
+Developers and engineers use this skill when adopting or maintaining spf13/viper configuration in Go projects. It guides layered configuration, environment and flag binding, config file loading, struct unmarshalling, hot reload, and test isolation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samber/golang-spf13-viper) <br>
-- [Publisher profile](https://clawhub.ai/user/samber) <br>
-- [Skill homepage](https://github.com/samber/cc-skills-golang) <br>
-- [spf13/viper package documentation](https://pkg.go.dev/github.com/spf13/viper) <br>
-- [spf13/viper repository](https://github.com/spf13/viper) <br>
-- [Viper Env Binding and Flag Binding](references/binding-and-env.md) <br>
-- [Viper Config Sources and File Formats](references/sources-and-formats.md) <br>
-- [Viper Test Isolation](references/testing-and-isolation.md) <br>
-- [Viper Unmarshal Patterns](references/unmarshal.md) <br>
-- [Viper Watch and Reload](references/watch-and-reload.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Go code examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concrete Go snippets, configuration advice, dependency commands, and review guidance for generated changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Dependency examples may use @latest, which can produce non-reproducible builds in production.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the spf13/viper dependency version when applying generated commands in production projects.
+
+Risk: Agent-proposed edits to Go configuration code can alter precedence, defaults, reload behavior, or tests.
+
+Mitigation: Review proposed file edits and run the relevant Go tests, linters, and race checks before merging.
+
+Risk: Configuration work can expose sensitive environment-derived values such as credential paths or secret settings.
+
+Mitigation: Avoid printing, committing, or logging sensitive configuration values while applying the skill's guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/samber/skills/golang-spf13-viper)
+- [Clawdis Homepage](https://github.com/samber/cc-skills-golang)
+- [pkg.go.dev spf13/viper](https://pkg.go.dev/github.com/spf13/viper)
+- [spf13/viper GitHub Repository](https://github.com/spf13/viper)
+- [Viper Config Sources and File Formats](references/sources-and-formats.md)
+- [Viper Env Binding and Flag Binding](references/binding-and-env.md)
+- [Viper Unmarshal and Struct Mapping](references/unmarshal.md)
+- [Viper WatchConfig and Hot Reload](references/watch-and-reload.md)
+- [Viper Test Isolation](references/testing-and-isolation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Go and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Go code edits and configuration patterns for projects that use github.com/spf13/viper.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

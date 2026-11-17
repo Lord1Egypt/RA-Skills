@@ -1,44 +1,59 @@
-## Description: <br>
-Build automated dispute resolution pipelines, Verifiable Intent-compatible evidence chains, and chargeback defense workflows for agent-to-agent transactions involving escrow, SLA enforcement, and trust verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Dispute Resolution & Chargeback Defense guides agents through automated dispute resolution pipelines, Verifiable Intent-compatible evidence chains, and chargeback defense for agent-to-agent transactions.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and operators use this guide to design agent-commerce dispute workflows, evidence packages, escrow controls, SLA monitoring, and chargeback defense patterns. The guidance is especially relevant for systems where autonomous agents initiate or respond to transactions that may affect funds or legal rights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide teaches autonomous escrow, dispute, refund, evidence-sharing, concession, and settlement workflows that can affect money or legal rights. <br>
-Mitigation: Require human approval for escrow release or cancellation, dispute filing or response, concessions, settlements, and any irreversible money movement. <br>
-Risk: Evidence bundles and dispute records may contain sensitive transaction, identity, authorization, or commercial information. <br>
-Mitigation: Redact evidence bundles, use least-privilege API keys, force sandbox endpoints by default, add audit logs, and apply transaction caps before production use. <br>
-Risk: Automated dispute and chargeback guidance may be misapplied without legal or compliance review. <br>
-Mitigation: Route production policies through legal and compliance review, and monitor decisions with tamper-evident logs and post-dispute review. <br>
+## Use Case:
 
+Developers and agent-commerce operators use this guide to design dispute, escrow, SLA, Verifiable Intent evidence, and chargeback-defense workflows for autonomous agent transactions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mirni/greenhelix-agent-dispute-resolution) <br>
-- [GreenHelix Sandbox](https://sandbox.greenhelix.net) <br>
-- [GreenHelix API](https://api.greenhelix.net/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guide with Python code examples and API call patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guide; examples should be adapted with sandbox endpoints, approval gates, redaction, caps, logging, and compliance review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: evidence release and frontmatter) <br>
+Risk: Examples may encourage credentialed production API use and consequential escrow or dispute automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox-only or narrowly scoped credentials, and require human approval for escrow release, dispute concessions, refunds, and other financial or legal-state changes.
+
+Risk: Evidence workflows may disclose more mandate detail than needed for a dispute.
+
+Mitigation: Redact full mandates unless explicitly approved, and share the minimum evidence needed for the dispute or chargeback process.
+
+Risk: Automated dispute and chargeback actions can affect funds or legal positions.
+
+Mitigation: Treat examples as educational patterns, test in sandbox, and add policy checks, audit logging, and reviewer gates before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/greenhelix-agent-dispute-resolution)
+- [GreenHelix sandbox](https://sandbox.greenhelix.net)
+- [GreenHelix API endpoint](https://api.greenhelix.net/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guide with Python code examples and REST API usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guide; examples reference GreenHelix sandbox and REST API flows.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

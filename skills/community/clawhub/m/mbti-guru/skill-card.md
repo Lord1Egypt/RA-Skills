@@ -1,45 +1,61 @@
-## Description: <br>
-Mbti Guru provides interactive MBTI personality tests in four lengths and generates bilingual personality, career, relationship, and PDF-style reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mbti Guru provides MBTI-style personality tests in four lengths and generates bilingual personality, career, relationship, and PDF reports.
 
-## Publisher: <br>
-[effeceee](https://clawhub.ai/user/effeceee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[effeceee](https://clawhub.ai/user/effeceee)
 
-## Use Case: <br>
-External users and operators use this skill to run MBTI-style personality assessments through a CLI or supported messaging channels, resume in-progress tests, and review saved bilingual reports. It is useful for self-assessment, coaching, team-development conversations, and report generation where MBTI-style outputs are acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MBTI answers, progress, and results may be stored locally under chat or user identifiers for resume and history features. <br>
-Mitigation: Operate the skill with a clear retention policy, limit access to the local data directory, and provide users a way to delete stored session and history data. <br>
-Risk: Personality reports can be mistaken for clinical, employment, or high-stakes assessment outputs. <br>
-Mitigation: Use the reports as informational self-assessment material and require human review before applying results to consequential decisions. <br>
+## Use Case:
 
+External users and channel operators use this skill to run guided MBTI-style questionnaires, resume in-progress tests, view history, and receive bilingual personality analysis reports. Results are intended as informational self-assessment output, not as a basis for major life, hiring, clinical, or other high-stakes decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/effeceee/mbti-guru) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/effeceee) <br>
-- [CLAWHUB metadata](artifact/CLAWHUB.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Design document](artifact/DESIGN.md) <br>
-- [Report specification](artifact/docs/report_spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Interactive prompts, bilingual text reports, JSON session/history files, and generated PDF report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 70, 93, 144, and 200-question test versions with local progress and history storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release evidence) <br>
+Risk: Local session and history storage can expose personality-test progress or results across users on shared or public bot deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in trusted single-tenant deployments until session ownership checks, access isolation, and retention cleanup are reviewed and fixed.
+
+Risk: Personality-test reports may be over-applied to consequential decisions.
+
+Mitigation: Present reports as informational self-assessment guidance and avoid using results for hiring, clinical, legal, or other high-stakes decisions.
+
+Risk: Saved test data can persist locally after completion or interruption.
+
+Mitigation: Document local data paths and establish deletion or retention procedures for data/sessions and data/history before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/effeceee/skills/mbti-guru)
+- [Publisher profile](https://clawhub.ai/user/effeceee)
+- [SKILL.md](artifact/SKILL.md)
+- [CLAWHUB.md](artifact/CLAWHUB.md)
+- [Report specification](artifact/docs/report_spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Interactive chat responses, Markdown-style reports, local JSON session/history files, and optional PDF reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores progress and completed result history locally under data/sessions and data/history.]
+
+## Skill Version(s):
+
+1.5.2 (source: server release evidence and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

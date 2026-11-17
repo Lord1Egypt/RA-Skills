@@ -1,42 +1,53 @@
-## Description: <br>
-Monitor NAS system health, disk usage, network status, and auto-alert via Feishu/Discord. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors local NAS disk usage, memory, and CPU temperature, printing threshold alerts for operators.
 
-## Publisher: <br>
-[SASAMITTRRR](https://clawhub.ai/user/SASAMITTRRR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sasamittrrr](https://clawhub.ai/user/sasamittrrr)
 
-## Use Case: <br>
-Developers and NAS administrators use this skill to set up or reason about a local NAS health monitor for disk usage, memory pressure, CPU temperature, and alert thresholds. It is best treated as a basic local monitoring aid unless the advertised network, SMART, service, and notification features are separately implemented and reviewed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release advertises network, SMART, service, DDoS, and chat notification features that are not implemented in the provided script. <br>
-Mitigation: Treat the artifact as a basic local disk, memory, and CPU temperature monitor until the missing capabilities are implemented, tested, and reviewed. <br>
-Risk: Documentation suggests configuring webhook secrets even though outbound alert delivery is not implemented. <br>
-Mitigation: Do not enter production webhook credentials until notification code exists and clearly documents what data it sends. <br>
-Risk: The script reads host system metrics and runs local system commands. <br>
-Mitigation: Run it only on systems where local metric access is intended, with the least privileges needed for the monitored files and commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SASAMITTRRR/nas-system-monitor) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/SASAMITTRRR) <br>
+## Use Case:
 
+Developers and NAS operators use this skill to run a local foreground monitor for Linux-based NAS health checks and review threshold alerts for disk, memory, and CPU temperature. It is not evidence-supported as a complete unattended remote alerting solution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and Python monitoring code context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local monitoring guidance and code-oriented setup steps; no structured API output is defined.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The release advertises Feishu, Discord, and Telegram notifications, but the artifact does not implement remote notification delivery.
+
+Mitigation: Treat the skill as local foreground monitoring unless notification delivery is implemented and tested before unattended use.
+
+Risk: The release advertises network, Docker container, and critical process monitoring beyond the checks implemented in the artifact.
+
+Mitigation: Validate required checks against the shipped code and add missing monitoring coverage before relying on the skill for NAS operations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/sasamittrrr/skills/nas-system-monitor)
+- [Publisher profile](https://clawhub.ai/user/sasamittrrr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and terminal alert text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a foreground local process; remote notification delivery is not implemented in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

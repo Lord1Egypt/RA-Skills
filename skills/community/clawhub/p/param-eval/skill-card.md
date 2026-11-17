@@ -1,40 +1,53 @@
-## Description: <br>
-Evaluates tender and procurement technical requirements item by item and produces a standardized requirement response table. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+招标/采购项目技术参数需求逐项评估，输出标准格式的需求响应表。
 
-## Publisher: <br>
-[iamdacai](https://clawhub.ai/user/iamdacai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamdacai](https://clawhub.ai/user/iamdacai)
 
-## Use Case: <br>
-Procurement, tender-response, and product teams use this skill to compare bidder requirements against recorded product materials, classify each requirement as fully met, partially met, or unmet, and produce a structured response report with cited source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may cause the skill to be used for general technical or product-comparison requests that are not procurement-related. <br>
-Mitigation: Confirm the task is a tender, procurement, or requirement-response evaluation before applying the skill. <br>
-Risk: Evaluations depend on the completeness and currency of the product materials available to the agent. <br>
-Mitigation: Ask for updated product documentation or clearly mark missing evidence when required product materials are incomplete. <br>
+## Use Case:
 
+Developers, proposal teams, and procurement support staff use this skill to evaluate tender or purchasing technical requirements against approved product materials and produce a requirements response table with cited evidence, fit ratings, deviations, and suggested resolutions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/iamdacai/param-eval) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and narrative evaluation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes requirement-level ratings, source citations, original text excerpts, deviation notes, and recommended next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Outdated or incomplete product documents can lead to incorrect procurement response guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that product documents in the referenced product directories are current and approved before using generated bid materials.
+
+Risk: Generated requirement responses may overstate fit if source citations or partial-match items are not reviewed.
+
+Mitigation: Review the response table, cited source text, and all partial or unmet items before reusing output in a tender or procurement submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iamdacai/skills/param-eval)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and Chinese prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided tender requirements and approved product documents; output should cite source files and chapters for each evaluation conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

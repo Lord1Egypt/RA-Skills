@@ -1,41 +1,59 @@
-## Description: <br>
-Securely input API keys and sensitive values into OpenClaw without typing them in chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SecretClaw helps agents collect API keys and other sensitive OpenClaw configuration values through a temporary HTTPS form instead of asking users to type secrets in chat.
 
-## Publisher: <br>
-[apsntian](https://clawhub.ai/user/apsntian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apsntian](https://clawhub.ai/user/apsntian)
 
-## Use Case: <br>
-Developers and OpenClaw users use SecretClaw to collect API keys, tokens, passwords, and other sensitive configuration values through a temporary HTTPS form instead of placing secrets in chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real secrets through a temporary Cloudflare tunnel, which may not fit every user's trust model. <br>
-Mitigation: Install only when the user trusts the skill source, local openclaw and cloudflared binaries, and Cloudflare Quick Tunnel for the specific secret being entered; use a local or manual configuration method when tunnel transit is unacceptable. <br>
-Risk: A generated secret-entry URL grants temporary access to submit a value for the configured key. <br>
-Mitigation: Treat the URL as sensitive temporary access, share it only with the intended user, and verify the config path before submitting a secret. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill when an agent needs to register API keys, tokens, passwords, or other sensitive configuration values without placing the secret directly in chat history.
 
-## Reference(s): <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Cloudflare Tunnel downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a temporary HTTPS secret-entry URL and saves the submitted value through openclaw config set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Secrets are submitted through a temporary Cloudflare-managed public tunnel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for lower-risk credentials when the user accepts Cloudflare tunnel transit, and avoid high-value credentials until the release clearly warns users about this path.
+
+Risk: Manipulated labels or configuration keys may affect the generated web form or where a submitted secret is saved.
+
+Mitigation: Escape dynamic HTML fields and validate configuration keys against expected OpenClaw paths before accepting submissions.
+
+Risk: Raw subprocess errors may reveal operational details in the browser response.
+
+Mitigation: Return a generic save failure to the browser and keep detailed errors in local logs for review.
+
+## Reference(s):
+
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Cloudflare Tunnel downloads](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/)
+- [SecretClaw ClawHub listing](https://clawhub.ai/apsntian/skills/secretclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and plain status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a temporary HTTPS form URL and saves the submitted value to OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

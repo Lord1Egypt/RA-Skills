@@ -1,45 +1,60 @@
-## Description: <br>
-Creates tasks from Chinese or English natural-language requests, extracts scheduling and organization details, and sends the task to a user's configured 2Do inbox by email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates tasks from Chinese or English natural language, extracts task title, due date or time, priority, list, and tags, then sends a formatted email to the user's configured 2Do inbox.
 
-## Publisher: <br>
-[chuckiefan](https://clawhub.ai/user/chuckiefan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chuckiefan](https://clawhub.ai/user/chuckiefan)
 
-## Use Case: <br>
-External users and developers use this skill to capture reminders, todos, and dated tasks from conversational input into 2Do. It is useful when an agent should turn natural-language task requests into 2Do email-capture messages with optional due dates, priority, list names, and tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Task text and metadata are sent through the configured SMTP provider to the user's 2Do email account. <br>
-Mitigation: Use a dedicated SMTP account or app-specific password, and avoid submitting sensitive task text unless that email path is acceptable. <br>
-Risk: The skill has broad natural-language trigger coverage and may send a task when a user did not intend to create one. <br>
-Mitigation: Configure the agent to invoke it only for explicit task-creation requests or add a confirmation step before sending email. <br>
-Risk: If the built dist/main.js file is missing, the launcher falls back to npx tsx at runtime. <br>
-Mitigation: Build the project before deployment and run the compiled dist/main.js path to avoid runtime package execution. <br>
+## Use Case:
 
+External users and developers use this skill to turn natural-language reminders, todos, and task requests into 2Do tasks through an SMTP mailbox configured for Email to 2Do capture.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chuckiefan/moltbot-plugin-2do) <br>
-- [Publisher profile](https://clawhub.ai/user/chuckiefan) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [2Do Email to 2Do knowledge base](https://www.2doapp.com/kb/category/ios/email-to-2do/44/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [CLI status text with task details sent through SMTP email] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and configured TWODO_EMAIL, SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASS environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: package.json, CHANGELOG, server release metadata) <br>
+Risk: Broad task triggers can send raw user messages through SMTP without a clear confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation to explicit task commands or add a preview and confirmation step before sending email.
+
+Risk: The skill requires SMTP credentials and a configured 2Do inbox address.
+
+Mitigation: Use an app-specific SMTP password, store credentials as environment secrets, and prefer a dedicated mailbox where possible.
+
+Risk: If the built dist/main.js file is missing, execution can fall back to npx-based TypeScript execution.
+
+Mitigation: Build the package before deployment so dist/main.js exists and avoid the npx fallback in production.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chuckiefan/moltbot-plugin-2do)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [2Do](https://www.2doapp.com)
+- [2Do Email to 2Do knowledge base](https://www.2doapp.com/kb/category/ios/email-to-2do/44/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and plain-text execution status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and SMTP/2Do environment variables; sends email as a side effect.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json, CHANGELOG, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+interface:
+  display_name: "FinXData"
+  short_description: "直接询问股价、公告、热门题材或龙虎榜；优先免 Key 免费查询金融数据。"
+  brand_color: "#2563EB"
+  default_prompt: "使用 $finxdata 帮我查 600519 的最新价格和涨跌幅，优先使用免 Key 接口，并说明数据时间。"
+policy:
+  allow_implicit_invocation: true

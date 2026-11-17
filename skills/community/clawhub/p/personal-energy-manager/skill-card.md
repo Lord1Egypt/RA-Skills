@@ -1,40 +1,53 @@
-## Description: <br>
-Helps users identify personal energy patterns and match daily tasks with recovery strategies to improve sustainable productivity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users identify personal energy patterns and plan tasks, recovery, and weekly adjustments around those patterns.
 
-## Publisher: <br>
-[kingofzhao](https://clawhub.ai/user/kingofzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingofzhao](https://clawhub.ai/user/kingofzhao)
 
-## Use Case: <br>
-Individuals and productivity-focused teams use this skill for general energy-management coaching, task scheduling, recovery planning, and weekly adjustment of personal energy patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat general energy-management coaching as medical guidance for chronic fatigue, illness symptoms, or mental health concerns. <br>
-Mitigation: Frame recommendations as general planning support and direct users to qualified medical professionals for health symptoms or persistent fatigue. <br>
-Risk: Energy tracking can involve sensitive personal routines, health context, or recovery logs. <br>
-Mitigation: Avoid sharing detailed health records or sensitive personal logs unless the chat environment's data handling is acceptable to the user. <br>
+## Use Case:
 
+External users use this skill for productivity and wellness coaching: tracking energy baselines, matching tasks to high- and low-energy periods, and choosing recovery strategies.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kingofzhao/personal-energy-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown text with structured recommendations and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General coaching only; not a substitute for medical advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat productivity and energy-management coaching as medical advice for persistent fatigue, sleep issues, dizziness, depression, worsening symptoms, or symptoms that impair daily functioning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for general productivity coaching and seek professional care for medical concerns or persistent symptoms.
+
+Risk: Personal energy patterns vary, so suggested schedules or recovery blocks may be a poor fit for an individual user.
+
+Mitigation: Establish a short tracking baseline, review outcomes weekly, and adjust task allocation and recovery strategies based on the user's observed response.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kingofzhao/skills/personal-energy-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text coaching guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include energy-tracking baselines, task-to-energy mappings, recovery options, and weekly review prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

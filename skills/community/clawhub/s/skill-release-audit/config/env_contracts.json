@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "note": "Platform env contracts for the env-var false-positive governance (v1.1). runtimeInjected: vars injected by the runtime platform, never user-config; process.ambient: always-present OS-level vars. Keep this list platform-neutral for the open-source edition — registry- or platform-specific injections belong in downstream forks.",
+  "multica": {
+    "runtimeInjected": []
+  },
+  "process": {
+    "ambient": ["HOME", "PATH", "PWD", "TMPDIR", "LANG", "CI"]
+  }
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Orchestrates topic monitoring, Polymarket odds lookups, and execution-pattern guidance to detect news-market probability gaps and produce alert-first arbitrage recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates monitoring, market odds, and execution proxy tools to detect news-market price gaps and emit arbitrage alerts with optional trade plans.
 
-## Publisher: <br>
-[h4gen](https://clawhub.ai/user/h4gen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h4gen](https://clawhub.ai/user/h4gen)
 
-## Use Case: <br>
-Developers and analysts use this skill to coordinate installed ClawHub skills for monitoring CEO/company event signals, comparing them with Polymarket probabilities, and producing alert-only or execution-plan recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can influence financial decisions and optional trade planning. <br>
-Mitigation: Use alert-only or dry-run mode by default, review recommendations manually, and require explicit user confirmation before any live trade. <br>
-Risk: Trade-capable execution depends on an external API key and installed dependency skills. <br>
-Mitigation: Provide SIMMER_API_KEY only when trade-capable workflows are intended, and review the topic-monitor, polymarket-odds, and simmer-weather skills before use. <br>
-Risk: Refreshing all local skills may change dependency behavior. <br>
-Mitigation: Avoid update --all unless the user intentionally wants dependency updates, and re-check installed skill versions after updating. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/h4gen/prediction-market-arbitrage) <br>
-- [Inspected upstream skills](references/inspected-skills.md) <br>
+## Use Case:
 
+Developers and market-analysis operators use this skill to coordinate news monitoring, Polymarket probability lookup, and guarded execution planning for prediction-market mispricing alerts. The workflow is alert-first and requires explicit user confirmation before any live trading step.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command blocks and structured signal fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include alert-only recommendations, dry-run execution plans, confidence deltas, and no-trade outcomes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable remote install commands and `update --all` can change unrelated installed skills or pull newer behavior than the skill was authored against.
+
+Mitigation: Review install steps before use, prefer pinned ClawHub and upstream skill versions, and avoid broad update commands in controlled environments.
+
+Risk: Trading credentials could be exposed or used during setup or execution planning.
+
+Mitigation: Run installation without `SIMMER_API_KEY` in the environment, treat execution-plan output as manual guidance, require a dry run, and obtain explicit confirmation before any live trade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/h4gen/skills/prediction-market-arbitrage)
+- [ClawHub publisher profile](https://clawhub.ai/user/h4gen)
+- [Inspected upstream skills](references/inspected-skills.md)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured fields and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include alert-only recommendations or manual execution plans; live trading requires explicit user opt-in.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

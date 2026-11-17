@@ -1,0 +1,8 @@
+{
+  "id": "brigade-handoffs",
+  "version": "0.1.1",
+  "tests": [
+    "bash ../../../tests/lint-skills.sh brigade-handoffs"
+  ],
+  "trust_level": "workspace"
+}

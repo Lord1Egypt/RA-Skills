@@ -1,39 +1,48 @@
-## Description: <br>
-Build comprehensive 3-5 year startup financial models with revenue projections, cost structures, cash flow analysis, headcount planning, fundraising scenarios, and scenario planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates startup financial modeling guidance for revenue projections, cost structures, cash flow analysis, hiring plans, scenario planning, and fundraising assumptions.
 
-## Publisher: <br>
-[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhengxinjipai](https://clawhub.ai/user/zhengxinjipai)
 
-## Use Case: <br>
-Startup founders, finance operators, and advisors use this skill to build 3-5 year financial projections, model burn rate and runway, calculate startup metrics, and prepare fundraising scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial projections may contain unsuitable assumptions or formulas for a specific company. <br>
-Mitigation: Review all assumptions, formulas, and outputs before using them for budgeting, fundraising, board materials, or investor communications. <br>
-Risk: The skill may receive sensitive business, financial, or fundraising information during modeling. <br>
-Mitigation: Share only the confidential data needed for the task and handle generated model outputs according to internal data-handling policies. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhengxinjipai/startup-financial-modeling) <br>
+## Use Case:
 
+Founders, operators, finance teams, and advisors use this skill to build and review 3-5 year startup financial models, including revenue forecasts, burn rate, runway, unit economics, hiring plans, scenario analysis, and fundraising plans.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, analysis, configuration] <br>
-**Output Format:** [Markdown guidance with formulas, checklists, example model structures, and planning steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces financial-modeling guidance and assumptions for review; it does not execute code or access external systems.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Financial projections may be treated as professional financial advice or used directly for fundraising and operating decisions.
+
+Mitigation: Treat assumptions as templates, verify projections against current business data, and obtain qualified financial review before using outputs for fundraising or operating decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhengxinjipai/skills/startup-financial-modeling)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with formulas, checklists, and structured planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only planning aid; no code execution, persistence, or hidden data access identified by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

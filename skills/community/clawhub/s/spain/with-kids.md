@@ -1,179 +1,179 @@
 # With Kids — Spain
 
-## Por Qué España Mola con Niños
+## Why Spain Is Great with Kids
 
-- Horarios tardíos = niños bienvenidos en cenas
-- Cultura muy familiar
-- Playas seguras
-- Parques en todas las ciudades
-- Comida que les gusta (tortilla, croquetas)
+- Late schedules = kids welcome at dinner
+- Very family-oriented culture
+- Safe beaches
+- Parks in every city
+- Food they like (tortilla, croquettes)
 
-## Mejores Destinos por Edad
+## Best Destinations by Age
 
-### Bebés (0-2)
+### Babies (0-2)
 
-| Destino | Por qué |
+| Destination | Why |
 |---------|---------|
-| Mallorca | Calas poco profundas, infraestructura |
-| Costa Brava | Calas tranquilas |
-| Canarias | Clima suave todo el año |
-| Madrid | Parques grandes, museos con salas bebés |
+| Mallorca | Shallow coves, infrastructure |
+| Costa Brava | Quiet coves |
+| Canaries | Mild climate year-round |
+| Madrid | Big parks, museums with baby rooms |
 
-### Pequeños (3-7)
+### Little Ones (3-7)
 
-| Destino | Por qué |
+| Destination | Why |
 |---------|---------|
-| Valencia | Oceanográfic, Bioparc, playa |
-| Barcelona | Aquarium, Zoo, playas |
-| Sevilla | Alcázar jardines, Isla Mágica |
-| Mallorca | Playas, Palma Aquarium |
+| Valencia | Oceanogràfic, Bioparc, beach |
+| Barcelona | Aquarium, Zoo, beaches |
+| Seville | Alcázar gardens, Isla Mágica |
+| Mallorca | Beaches, Palma Aquarium |
 
-### Mayores (8-14)
+### Older (8-14)
 
-| Destino | Por qué |
+| Destination | Why |
 |---------|---------|
-| PortAventura | Parque temático |
+| PortAventura | Theme park |
 | Madrid | Warner, Faunia, Bernabéu |
 | Tenerife | Loro Parque, Siam Park |
-| Costa Brava | Kayak, snorkel |
-| Asturias | Naturaleza, dinosaurios |
+| Costa Brava | Kayak, snorkeling |
+| Asturias | Nature, dinosaurs |
 
-## Parques Temáticos
+## Theme Parks
 
-| Parque | Dónde | Edades | Precio adulto |
+| Park | Where | Ages | Adult price |
 |--------|-------|--------|---------------|
 | PortAventura | Tarragona | 4+ | €55-65 |
 | Ferrari Land | Tarragona | 8+ | €55-65 |
 | Warner Madrid | Madrid | 6+ | €45-55 |
 | Parque de Atracciones | Madrid | 3+ | €30-35 |
 | Siam Park | Tenerife | 5+ | €40-45 |
-| Isla Mágica | Sevilla | 4+ | €35-40 |
+| Isla Mágica | Seville | 4+ | €35-40 |
 | Tibidabo | Barcelona | 3+ | €35 |
 | Terra Mítica | Benidorm | 5+ | €40 |
 
 **Tips:**
-- Comprar online más barato
-- Entre semana menos cola
-- Evitar agosto (colas eternas)
-- Pulseras identificación para peques
+- Buying online is cheaper
+- Weekdays fewer queues
+- Avoid August (endless lines)
+- ID wristbands for little ones
 
-## Mejores Playas para Niños
+## Best Beaches for Kids
 
-| Playa | Dónde | Por qué |
+| Beach | Where | Why |
 |-------|-------|---------|
-| Cala Galdana | Menorca | Poco profunda, tranquila |
-| Sa Coma | Mallorca | Arena fina, servicios |
-| Levante | Benidorm | Vigilada, infraestructura |
-| Malvarrosa | Valencia | Urbana, socorristas |
-| San Juan | Alicante | Grande, poco oleaje |
-| La Concha | San Sebastián | Bahía protegida |
-| Las Canteras | Gran Canaria | Piscinas naturales |
+| Cala Galdana | Menorca | Shallow, calm |
+| Sa Coma | Mallorca | Fine sand, amenities |
+| Levante | Benidorm | Lifeguarded, infrastructure |
+| Malvarrosa | Valencia | Urban, lifeguards |
+| San Juan | Alicante | Large, little surf |
+| La Concha | San Sebastián | Sheltered bay |
+| Las Canteras | Gran Canaria | Natural pools |
 
-**Evitar:** Playas con oleaje fuerte, corrientes (Tarifa, Galicia atlántica).
+**Avoid:** Beaches with strong surf, currents (Tarifa, Atlantic Galicia).
 
-## Acuarios y Zoos
+## Aquariums and Zoos
 
-| Lugar | Ciudad | Highlight |
+| Place | City | Highlight |
 |-------|--------|-----------|
-| Oceanográfic | Valencia | Mayor acuario Europa |
-| L'Aquàrium | Barcelona | Túnel tiburones |
-| Zoo Aquarium | Madrid | Pandas, delfines |
-| Bioparc | Valencia | Inmersivo, África |
-| Loro Parque | Tenerife | Orcas, loros |
-| Faunia | Madrid | Ecosistemas, pingüinos |
-| Zoo Barcelona | Barcelona | En Ciutadella |
+| Oceanogràfic | Valencia | Largest aquarium in Europe |
+| L'Aquàrium | Barcelona | Shark tunnel |
+| Zoo Aquarium | Madrid | Pandas, dolphins |
+| Bioparc | Valencia | Immersive, Africa |
+| Loro Parque | Tenerife | Orcas, parrots |
+| Faunia | Madrid | Ecosystems, penguins |
+| Zoo Barcelona | Barcelona | In Ciutadella |
 
-## Museos para Niños
+## Museums for Kids
 
-| Museo | Ciudad | Qué |
+| Museum | City | What |
 |-------|--------|-----|
-| CosmoCaixa | Barcelona | Ciencia interactivo |
-| Museo de Ciencias | Valencia | Ciudad Artes y Ciencias |
-| Museo Jurásico | Asturias | Dinosaurios |
-| Museo del Ferrocarril | Madrid | Trenes antiguos |
-| Museo de Cera | Madrid | Cera, divertido |
-| Planetario | Madrid | Shows, exposiciones |
-| MUNCYT | A Coruña | Ciencia y tecnología |
+| CosmoCaixa | Barcelona | Interactive science |
+| Science Museum | Valencia | City of Arts and Sciences |
+| Jurassic Museum | Asturias | Dinosaurs |
+| Railway Museum | Madrid | Old trains |
+| Wax Museum | Madrid | Wax, fun |
+| Planetarium | Madrid | Shows, exhibitions |
+| MUNCYT | A Coruña | Science and technology |
 
-## Comida (Lo Que Les Gusta)
+## Food (What They Like)
 
-| Plato | Descripción | Dónde encontrar |
+| Dish | Description | Where to find it |
 |-------|-------------|-----------------|
-| Tortilla de patatas | Siempre funciona | Todo bar |
-| Croquetas | Fritas, cremosas | Bares |
-| Patatas bravas | Patatas con salsa | Tapas |
-| Macarrones | Pasta | Menú niños |
-| Pollo empanado | San Jacobo, escalope | Menús |
-| Bocadillo de jamón | Clásico | Cualquier bar |
-| Churros con chocolate | Postre/merienda | Chocolaterías |
+| Tortilla de patatas | Always works | Any bar |
+| Croquettes | Fried, creamy | Bars |
+| Patatas bravas | Potatoes with sauce | Tapas |
+| Macaroni | Pasta | Kids' menu |
+| Breaded chicken | San Jacobo, schnitzel | Menus |
+| Ham sandwich | Classic | Any bar |
+| Churros with chocolate | Dessert/snack | Chocolate shops |
 
-**Menú infantil:** €6-10 en la mayoría de restaurantes.
+**Kids' menu:** €6-10 at most restaurants.
 
-## Horarios Adaptados
+## Adapted Schedules
 
-| Actividad | Horario típico | Con niños |
+| Activity | Typical time | With kids |
 |-----------|----------------|-----------|
-| Desayuno | 8-10 | Igual |
-| Comida | 14-16 | 13:00-13:30 (antes de siesta restaurantes) |
-| Merienda | 17-19 | Perfecta para helado |
-| Cena | 21-23 | 20:00 (pedir mesa pronto) |
+| Breakfast | 8-10 | Same |
+| Lunch | 14-16 | 13:00-13:30 (before the restaurant siesta) |
+| Afternoon snack | 17-19 | Perfect for ice cream |
+| Dinner | 21-23 | 20:00 (ask for a table early) |
 
-**Siesta:** España respeta la siesta. 14-17h es buen momento para que descansen.
+**Siesta:** Spain respects the siesta. 14-17h is a good time for them to rest.
 
-## Transporte con Niños
+## Transport with Kids
 
-| Tipo | Nota |
+| Type | Note |
 |------|------|
-| AVE | Gratis <4 años sin asiento. Descuentos niños. |
-| Metro | Gratis <4 años |
-| Autobús | Gratis <4 años |
-| Coche alquiler | Silla obligatoria hasta 135cm. Reservar en alquiler. |
-| Taxis | Sillas no obligatorias pero recomendables |
+| AVE | Free under 4 without a seat. Kids' discounts. |
+| Metro | Free under 4 |
+| Bus | Free under 4 |
+| Rental car | Car seat mandatory up to 135cm. Reserve with the rental. |
+| Taxis | Seats not mandatory but recommended |
 
-## Equipamiento
+## Gear
 
-**En farmacias españolas hay:**
-- Pañales (Dodot = marca principal)
-- Papillas (Nutribén, Hero)
-- Leches fórmula
-- Medicamentos básicos
+**Spanish pharmacies have:**
+- Diapers (Dodot = main brand)
+- Baby food (Nutribén, Hero)
+- Formula milk
+- Basic medicines
 
-**En supermercados:**
-- Potitos
-- Snacks infantiles
-- Protección solar
+**In supermarkets:**
+- Baby food jars
+- Kids' snacks
+- Sunscreen
 
-**Difícil de encontrar:**
-- Marcas específicas anglosajonas
-- Tallas grandes de pañales
+**Hard to find:**
+- Specific Anglo brands
+- Large diaper sizes
 
-## Alojamiento con Niños
+## Accommodation with Kids
 
-| Tipo | Pros | Contras |
+| Type | Pros | Cons |
 |------|------|---------|
-| Apartamento | Cocina, espacio | Sin servicio |
-| Hotel familiar | Piscina, kids club | Más caro |
-| Camping | Naturaleza, libertad | Incomodidad |
+| Apartment | Kitchen, space | No service |
+| Family hotel | Pool, kids club | More expensive |
+| Camping | Nature, freedom | Less comfort |
 
-**Apartamentos turísticos:** Verificar cunas, tronas disponibles.
+**Tourist apartments:** Check cribs, high chairs available.
 
-## Seguridad
+## Safety
 
-**España es muy segura para niños.** Pero:
+**Spain is very safe for kids.** But:
 
-- **Carteristas:** Cuidado en metro Barcelona con carritos
-- **Sol:** Protección SPF50, sombra 12-16h
-- **Playas:** Respetar banderas
-- **Tráfico:** Cruces complicados en ciudades grandes
-- **Piscinas:** Vigilar siempre (muchas sin socorrista)
+- **Pickpockets:** Watch out in the Barcelona metro with strollers
+- **Sun:** SPF50 protection, shade 12-16h
+- **Beaches:** Respect the flags
+- **Traffic:** Tricky crossings in big cities
+- **Pools:** Always watch (many without a lifeguard)
 
-## Itinerario Tipo (7 Días Familia)
+## Sample Itinerary (7-Day Family)
 
-| Día | Dónde | Actividad |
+| Day | Where | Activity |
 |-----|-------|-----------|
-| 1-2 | Barcelona | Aquarium, playa, Park Güell |
-| 3 | PortAventura | Parque temático |
-| 4-5 | Valencia | Oceanográfic, Bioparc, playa |
+| 1-2 | Barcelona | Aquarium, beach, Park Güell |
+| 3 | PortAventura | Theme park |
+| 4-5 | Valencia | Oceanogràfic, Bioparc, beach |
 | 6-7 | Madrid | Zoo, Parque Warner, Retiro |
 
-**Alternativamente:** Una semana en Mallorca/Menorca relajada.
+**Alternatively:** A relaxed week in Mallorca/Menorca.

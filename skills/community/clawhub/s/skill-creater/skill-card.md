@@ -1,41 +1,53 @@
-## Description: <br>
-Generate complete AgentSkills from user requirements, including SKILL.md, scripts, references, asset folders, and ready-to-upload ClawHub packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates complete AgentSkill packages from user requirements, including SKILL.md, scripts, references, asset folders, packaging, and ClawHub upload guidance.
 
-## Publisher: <br>
-[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timyljob2011-sudo](https://clawhub.ai/user/timyljob2011-sudo)
 
-## Use Case: <br>
-Developers and skill authors use this skill to clarify requirements, generate AgentSkill files and helper scripts, and package the result for ClawHub distribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local files and zip archives as part of normal packaging behavior. <br>
-Mitigation: Use it in a dedicated clean folder, then inspect generated files and archive contents before uploading or sharing them. <br>
-Risk: The included build script has a name/path mismatch noted by the security guidance. <br>
-Mitigation: Review and fix the build script before running it, or package the skill with the Python packager directly. <br>
+## Use Case:
 
+Developers and skill authors use this agent skill to turn a requested capability into a structured AgentSkill package with documentation, optional helper scripts, metadata, and packaging guidance for ClawHub distribution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/skill-creater) <br>
-- [Publisher profile](https://clawhub.ai/user/timyljob2011-sudo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with generated skill files, scripts, JSON configuration, and zip packaging output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local files and zip archives when its helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.json) <br>
+Risk: Packaging can accidentally include files outside the intended skill folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated empty workspace, inspect the skill folder for symlinks before packaging, and list generated ZIP contents before upload.
+
+Risk: Generated skill packages may contain placeholder or inaccurate documentation, metadata, or scripts.
+
+Mitigation: Review generated SKILL.md, manifest.json, scripts, and references before installing, publishing, or running the package.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timyljob2011-sudo/skills/skill-creater)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance, generated skill files, and ZIP package artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write SKILL.md, manifest.json, helper scripts, reference files, asset folders, README files, and ready-to-upload ZIP archives in the working directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact/manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

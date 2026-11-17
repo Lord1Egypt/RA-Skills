@@ -1,48 +1,62 @@
-## Description: <br>
-Automates LimeSurvey survey management through the RemoteControl 2 JSON-RPC API, including survey, participant, response, question, group, export, invitation, and reporting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates LimeSurvey survey, participant, response, question, and reporting operations through the RemoteControl 2 JSON-RPC API.
 
-## Publisher: <br>
-[olegantonov](https://clawhub.ai/user/olegantonov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olegantonov](https://clawhub.ai/user/olegantonov)
 
-## Use Case: <br>
-Developers and operators use this skill to automate LimeSurvey administration tasks, including survey lifecycle management, participant handling, response export, invitation delivery, and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can export sensitive survey responses, participant records, tokens, and email addresses. <br>
-Mitigation: Treat exported data as sensitive, avoid casual logging or printing, and store outputs only in approved locations. <br>
-Risk: The skill can send participant invitations and reminders or mutate survey records. <br>
-Mitigation: Use a dedicated least-privilege LimeSurvey service account and confirm survey IDs, recipient lists, and mutation intent before execution. <br>
-Risk: Delete, import, and activation workflows can affect production survey state. <br>
-Mitigation: Keep current backups and review changes before running destructive or state-changing operations in production. <br>
+## Use Case:
 
+Developers and survey operators use this skill to manage LimeSurvey instances, export response data, administer participants, and automate survey lifecycle tasks from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/olegantonov/limesurvey-openclaw-skill) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/olegantonov) <br>
-- [Metadata Homepage](https://github.com/olegantonov/limesurvey-openclaw-skill) <br>
-- [LimeSurvey RemoteControl 2 API Manual](https://www.limesurvey.org/manual/RemoteControl_2_API) <br>
-- [LimeSurvey RemoteControl API Reference](https://api.limesurvey.org/classes/remotecontrol-handle.html) <br>
-- [API Reference](references/api_reference.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell and Python examples; scripts may produce JSON, CSV, Excel, PDF, or decoded export files depending on the requested LimeSurvey operation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LIMESURVEY_URL, LIMESURVEY_USER, and LIMESURVEY_PASSWORD environment variables for authenticated RemoteControl API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: The skill can access sensitive survey responses and participant records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat response exports and participant files as sensitive data, limit local copies, and store outputs only in approved locations.
+
+Risk: The skill can change live survey content or send invitations and reminders.
+
+Mitigation: Confirm survey IDs, participant scopes, and recipient lists before activation, deletion, invitations, or reminders.
+
+Risk: Credential misuse could expose a LimeSurvey instance.
+
+Mitigation: Use a dedicated least-privilege service account, require HTTPS for the RemoteControl endpoint, and avoid full administrator credentials.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/olegantonov/skills/limesurvey-openclaw-skill)
+- [Project Homepage](https://github.com/olegantonov/limesurvey-openclaw-skill)
+- [API Reference](references/api_reference.md)
+- [Examples](references/examples.md)
+- [Official LimeSurvey API Documentation](https://api.limesurvey.org/classes/remotecontrol-handle.html)
+- [RemoteControl 2 Manual](https://www.limesurvey.org/manual/RemoteControl_2_API)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python examples, JSON snippets, and exported survey files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate LimeSurvey API calls that create, update, delete, export, activate, invite, or remind depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release metadata; artifact frontmatter reports 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

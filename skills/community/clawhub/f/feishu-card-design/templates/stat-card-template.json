@@ -1,0 +1,169 @@
+{
+  "_template_meta": {
+    "name": "stat-card-template",
+    "type": "stat",
+    "description": "统计类卡片模板（数据为主，3 列指标 + 表格摘要）",
+    "header_template": "indigo",
+    "color_scheme": "indigo 系邻近色环（blue-50 + yellow-50 + grey-50）",
+    "usage": "适合周报、月报、数据报告、运营统计"
+  },
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "{{YYYYMMDD}}-{{周报/月报/统计报告}}-{{关键信息1}}-{{关键信息2}}"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "{{YYYY-MM-DD}} · {{本周回顾 / 月度总结 / 数据周期}}"
+    },
+    "template": "indigo"
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "column_set",
+        "flex_mode": "trisect",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**{{数字1}}**\n\n{{指标1说明}}"
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**{{数字2}}**\n\n{{指标2说明}}"
+              }
+            ]
+          },
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "**{{数字3}}**\n\n{{指标3说明}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "blue-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "blue-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 📝 {{本周/本月干货}}\n\n- {{干货1}}\n- {{干货2}}\n- {{干货3}}\n- {{干货4}}\n- {{干货5}}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### ⚡ {{Aha 金句 / 关键洞察}}\n\n1. 「{{金句1}}」\n2. 「{{金句2}}」\n3. 「{{金句3}}」"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "### 📊 {{统计表}}\n\n| 维度 | 当前 | 阈值 | 状态 |\n|------|------|------|------|\n| {{维度1}} | {{数值1}} | {{阈值1}} | {{状态1}} |\n| {{维度2}} | {{数值2}} | {{阈值2}} | {{状态2}} |\n| {{维度3}} | {{数值3}} | {{阈值3}} | {{状态3}} |"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整{{周报/月报}}"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "{{文档URL}}"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 {{来源标识}} · {{触发时间}} 自动生成 · {{数据周期}}"
+      }
+    ]
+  }
+}

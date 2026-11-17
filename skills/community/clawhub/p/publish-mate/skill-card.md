@@ -1,46 +1,65 @@
-## Description: <br>
-Fetch global news from RSS/API sources, auto-generate articles with images, and publish to WordPress or custom CMS platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch global news from RSS/API sources, auto-generate articles with images, and publish to WordPress or custom CMS platforms.
 
-## Publisher: <br>
-[tankeito](https://clawhub.ai/user/tankeito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankeito](https://clawhub.ai/user/tankeito)
 
-## Use Case: <br>
-Content operators, site owners, and automation-focused developers use this skill to fetch news, draft article content with images, and publish or preview posts for WordPress or compatible CMS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live website content. <br>
-Mitigation: Run preview or dry-run mode first and set the default post status to draft before allowing live publication. <br>
-Risk: WordPress credentials may be exposed if TLS verification is bypassed. <br>
-Mitigation: Fix or remove the TLS verification bypass before production use and use a dedicated low-privilege WordPress application password. <br>
-Risk: Untrusted custom endpoints or direct image URLs can affect fetched content and media. <br>
-Mitigation: Use trusted RSS/API and image sources, and review generated posts and media before publication. <br>
+## Use Case:
 
+External users and developers use this skill to configure an automated news publishing workflow that fetches articles, sources images, composes posts, and publishes or previews them in WordPress or a custom CMS.
 
-## Reference(s): <br>
-- [Publish-Mate on ClawHub](https://clawhub.ai/tankeito/publish-mate) <br>
-- [Publisher profile](https://clawhub.ai/user/tankeito) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Example configuration](artifact/config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can execute scripts that fetch articles and images, write local logs and history, and publish or preview CMS posts based on user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish live CMS content from fetched news and image sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Default first runs to preview or draft and review generated articles before allowing live publication.
+
+Risk: Unsafe TLS handling and HTTP CMS URLs can weaken transport security.
+
+Mitigation: Require HTTPS with normal certificate validation and avoid HTTP CMS URLs before installation or publishing.
+
+Risk: Broad URL fetching can contact untrusted news, image, or custom API destinations.
+
+Mitigation: Restrict news, image, and custom API URLs to trusted public destinations.
+
+Risk: WordPress application passwords and API keys may grant publishing or external service access.
+
+Mitigation: Use a dedicated low-privilege WordPress application password and keep secrets in environment variables.
+
+## Reference(s):
+
+- [Publish-Mate ClawHub listing](https://clawhub.ai/tankeito/skills/publish-mate)
+- [Publisher profile](https://clawhub.ai/user/tankeito)
+- [Skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Configuration example](artifact/config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, and generated article content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create runtime config, logs, cached images, publishing history, CMS posts, uploaded media, and status reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

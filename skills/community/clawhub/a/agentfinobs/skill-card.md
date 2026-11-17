@@ -1,42 +1,53 @@
-## Description: <br>
-AI Agent Financial Observability for monitoring, budgeting, and analyzing spending across AI agents, including cost tracking, budget alerts, anomaly detection, and metrics exports across payment rails such as x402/USDC, Stripe/ACP, and Polymarket CLOB. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Financial Observability monitors, budgets, analyzes, and exports spending metrics across AI agents and payment rails.
 
-## Publisher: <br>
-[oc127](https://clawhub.ai/user/oc127) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[oc127](https://clawhub.ai/user/oc127)
 
-## Use Case: <br>
-Developers and engineers use this skill to add financial observability to AI agents, including spend tracking, budget enforcement, anomaly detection, dashboard views, and JSONL, webhook, or Prometheus exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard and Prometheus endpoints can expose sensitive agent spending telemetry if bound to untrusted networks without authentication. <br>
-Mitigation: Bind services to localhost where possible, firewall dashboard and metrics ports, or place them behind an authenticated reverse proxy before deployment. <br>
-Risk: Transaction descriptions, tags, error messages, JSONL files, and webhook exports may contain secrets, prompts, or sensitive business data. <br>
-Mitigation: Avoid recording secrets or sensitive prompts in telemetry fields, review exporter destinations, and restrict access to local logs and webhook receivers. <br>
+## Use Case:
 
+Developers and agent operators use Agentfinobs to record agent transactions, enforce spending budgets, detect unusual spend, compute financial metrics, and export observability data for dashboards or monitoring systems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oc127/agentfinobs) <br>
-- [README](README.md) <br>
-- [Publisher profile](https://clawhub.ai/user/oc127) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide agents to produce local JSONL records, HTTP dashboard output, webhook payloads, and Prometheus metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact pyproject.toml reports 0.1.0) <br>
+Risk: Dashboard and Prometheus endpoints can expose sensitive financial observability data if made reachable on a shared network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind endpoints to localhost where possible, or protect them with network controls and authentication before using them in cloud, container, LAN, or shared environments.
+
+Risk: JSONL files, webhook payloads, dashboard responses, and metrics may include agent IDs, task IDs, counterparties, descriptions, tags, amounts, revenue, PnL, and timing data.
+
+Mitigation: Treat exported and persisted records as sensitive financial data; restrict access, redact where appropriate, and send webhooks only to trusted endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oc127/skills/agentfinobs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces guidance for using a Python financial observability package that can emit JSONL records, webhook payloads, HTTP dashboard responses, and Prometheus metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Guides an agent to plan, calculate, schedule, track, and template coiled pine needle basket projects while the human performs harvesting, sorting, coiling, wrapping, and finishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to help a user make coiled pine needle baskets by identifying suitable needles, planning harvest and conditioning schedules, calculating coil dimensions, tracking progress, and producing templates for logs, tests, inventory, and barter.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and craft-focused agents use this skill to plan and track coiled pine needle basket production for foraging, storage, gifts, or trade. The agent provides species checks, coil calculations, schedules, templates, safety reminders, and progress logs while users perform all physical craft work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use photos or approximate location to help identify pine species and plan harvest timing. <br>
-Mitigation: Share approximate location rather than precise GPS when possible, and verify species identification independently before harvesting or using materials. <br>
-Risk: Foraging guidance can be wrong or incomplete for local rules, sprayed areas, or unsuitable plant material. <br>
-Mitigation: Check local foraging regulations yourself, avoid green, moldy, or sprayed needles, and do not use the skill if safe pine identification or clean dry needles are unavailable. <br>
-Risk: Basket making involves sharp tools, possible skin irritation, repetitive strain, and child-safety concerns. <br>
-Mitigation: Follow the safety notes for gloves, tool handling, rest breaks, rash or strain stop conditions, and direct adult supervision around children. <br>
-Risk: The agent cannot physically inspect, harvest, coil, or test the basket. <br>
-Mitigation: Treat agent outputs as planning and tracking guidance; keep all tactile, load-testing, and final safety decisions with the human user. <br>
+## Use Case:
 
+External craft users use this skill to plan and track coiled pine needle basket making while they perform the physical harvesting, sorting, coiling, wrapping, finishing, and testing themselves.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with inline templates, checklists, schedules, logs, and an install command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local progress tracking artifacts through filesystem use when the agent is configured to do so.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An unpinned installer command can expose users to supply-chain risk if the CLI or package source is not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and trusted ClawHub CLI version, or install and test the skill in a low-privilege environment before regular use.
+
+Risk: The workflow may use location data, photos, and local progress logs for pine identification and basket tracking.
+
+Mitigation: Share only the minimum location and photo detail needed, avoid sensitive background content in images, and store generated logs in an appropriate local workspace.
+
+Risk: Basket making involves physical hazards such as sharp tools, skin irritation, repetitive strain, unsuitable plant material, and local harvesting restrictions.
+
+Mitigation: Follow the skill's glove, tool-handling, patch-test, ergonomic break, and local regulation checks; stop the workflow when rash, strain, or uncertain plant identification occurs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/coiled-pine-needle-basket-making-basics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline templates and shell install command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local progress logs, harvest reports, inventory records, and barter text when the agent has filesystem access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

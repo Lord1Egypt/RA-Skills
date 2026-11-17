@@ -1,152 +1,228 @@
 ---
-name: quantinuumclaw
-description: Enables building and deploying quantum computing applications with Quantinuum, Guppy, Selene, and Fly.io. Use for the OpenClaw Clinical Hackathon, clinical or healthcare projects (drug discovery, treatment optimization, patient stratification, trial randomization), quantum-powered web apps, deploying quantum algorithms to the cloud, or integrating quantum results into user-facing interfaces.
+name: quantinuum
+description: Write and run quantum circuits using Quantinuum's Guppy language on the Selene emulator. Triggers on Guppy, Selene, Quantinuum, SWAP test, QSP/QSVT, Shor / modular exponentiation, quantum kernel, qubit circuits, parameter sweeps, the selene_run schema, or quantum topological data analysis (QTDA).
 ---
 
-# QuantinuumClaw – Quantum Guppy/Selene Stack
+# Quantinuum (Guppy + Selene)
 
-This skill provides everything needed to build production-ready quantum applications using **Quantinuum** (hardware/emulator), **Guppy** (quantum language), **Selene** (FastAPI backend), and **Fly.io** (deployment), with optional **Lovable** frontend. It is tuned for the **OpenClaw Clinical Hackathon** and general quantum web apps.
+Build real quantum circuits in Python with `@guppy`, compile them, and execute shots on the Selene emulator. Battle-tested in this repo's `quantum/qtda.py` QTDA pipeline and the `quantum/nadarasa_g*.py` Nadarasa frontier.
 
-## When to Use This Skill
-
-**Use when:**
-- Building for the OpenClaw Clinical Hackathon or any clinical/healthcare quantum project
-- Building web applications that use quantum computing (optimization, chemistry, ML, random, crypto)
-- Deploying quantum algorithms as REST APIs or creating dashboards for quantum results
-- User mentions: clinical, healthcare, drug discovery, treatment optimization, patient stratification, molecular simulation, clinical trials, Guppy, Selene, Fly.io
-
-**Example requests:** "Build a quantum portfolio optimizer with a web interface" · "Deploy my Guppy algorithm to the cloud" · "Create a clinical molecular simulation demo" · "Set up a quantum ML service on Fly.io"
-
-## Stack at a Glance
-
-| Component   | Role |
-|------------|------|
-| **Quantinuum** | Quantum hardware (H-series) or emulator |
-| **Guppy**      | Quantum programming (circuits, gates, measurement) |
-| **Selene**     | FastAPI backend that runs Guppy and exposes REST API |
-| **Fly.io**     | Hosts the Selene backend in the cloud |
-| **Lovable**    | React/TS frontend template; use `assets/lovable-template/` or any app that calls the Selene API |
-
-## Quick Start (One Command)
-
-From the repo root:
+## Install
 
 ```bash
-python3 scripts/create_quantum_app.py \
-  --app-name "clinical-demo" \
-  --use-case "chemistry" \
-  --description "Clinical molecular simulation" \
-  --deploy
+pip install "guppylang>=1.0"     # Python >= 3.12; Selene ships inside guppylang
+pip install pytket pytket-quantinuum   # only for the TKET compile lane (offline; no credentials, no HQCs)
 ```
 
-Then set `VITE_API_URL` in the frontend to your Fly.io app URL (e.g. `https://clinical-demo.fly.dev`).
+Guppy v1.0 is a breaking release (`output` replaces `result`, `measure(q).read()`, emulator builder). If you are touching any pre-v1 code or samples, read `references/guppy-v1-migration.md` first.
 
-**Clinical use-case → `--use-case` mapping:**
+Some sandboxes vendor Python deps under `.pydeps/` instead of system site-packages. When that convention is in use, install with `pip install --target .pydeps "guppylang>=1.0" numpy scipy` (add `pytket pytket-quantinuum` for the TKET lane) and invoke drivers as `PYTHONPATH=.pydeps PYTHONUNBUFFERED=1 python3 -m quantum.<driver>`. Reinstall it whenever the sandbox is recycled.
 
-| Clinical idea                     | `--use-case`   | Notes |
-|-----------------------------------|----------------|--------|
-| Drug discovery / molecular sim    | `chemistry`    | Molecules, energy, properties |
-| Treatment / resource optimization | `optimization` | QAOA-style optimization |
-| Patient stratification / ML       | `ml`           | Quantum ML models |
-| Trial randomization               | `random`       | Quantum RNG |
-| Secure keys / protocols           | `crypto`       | Quantum-safe crypto |
+## Critical gotchas (read first)
 
-General use cases (portfolio, finance, etc.) also use `optimization`, `chemistry`, `ml`, `random`, `crypto`, or `finance`. See `references/clinical-use-cases.md` for detailed clinical mappings.
+1. **`@guppy`-decorated functions must live in a real `.py` file on disk.** Guppy reads source via `inspect.getsource`, so functions defined in a REPL, `exec()` string, or Jupyter cell will fail. To parameterize kernels at runtime, generate a temp `.py` file and import it via `importlib.util` — see `references/driver-pattern.md`.
+2. **`angle(x)` is in HALFTURNS, not radians.** `angle(0.5)` = π/2 (S gate). For an arbitrary radian θ, write `angle(θ / math.pi)`. See `references/guppy-language.md` (§Angles).
+3. **Tomographic-equivalence threshold = `4·√(0.5/shots)`, not `3σ·√(p(1−p)/n)`.** The textbook form produces false FAILs near p = 0 or p = 1. See `references/tomographic-equivalence.md` (§Threshold).
+4. **No coherent / T1-T2 noise model ships with `selene_sim`.** Only `IdealErrorModel`, `DepolarizingErrorModel`, `SimpleLeakageErrorModel` exist. See `references/selene-runtime.md` (§Noise models).
+5. **Long sweeps MUST be resumable via a per-row JSON cache.** A single sandbox timeout otherwise wipes the whole run. Cache each row to `_cache_<name>/<row-tag>.json` before continuing, then wrap the driver in a `while [ $(ls cache | wc -l) -lt N ]; do timeout 580 python -m ...; done` loop. See `references/sweep-runner.md` (§Resumable sweeps).
+6. **Ship Selene results as committed JSON, not as a live server function.** The Lovable Cloudflare Worker runtime stubs `child_process` and blocks arbitrary filesystem reads, so `createServerFn` / `createFileRoute` handlers that shell out to Python or read the sweep cache will fail in prod. Run Python in the sandbox, write `src/data/demos/<experiment>.json`, and render a static view. See `references/selene-runtime.md` (§Shipping results to the frontend).
+7. **The QPDE / Trotter "evolution-time trick" is in radians; Guppy `angle()` is in halfturns.** If a paper says `t = π/(16 h₁)` so that `e^{-i(π/16)Z} = √T`, write `rz(q, angle(1/16))` — NOT `angle(math.pi/16)`, which is the S gate. Whenever the source formula contains an explicit `π`, divide it out before passing to `angle()`. See `references/qpde.md` and `references/guppy-language.md` (§Angles).
+8. **Vendor-realistic H2 noise numbers are published — use them.** `p_2q = 1.29e-3`, `p_r_01 = 0.9e-3`, `p_r_10 = 1.8e-3`, coherent memory `f = 4.3e-2 rad/s`, incoherent `g = 2.8e-3 /s`. Incoherent-memory + gate/readout dominate; dynamical decoupling neutralizes coherent memory. See `references/selene-runtime.md` (§Realistic H2 noise-parameter targets).
+9. **Recursive Gate Teleportation (RGT) terminates after `n_b − 2` rounds** for an `n_b`-bit rotation angle. Choose short binary-fraction angles (5 bits is usually enough) to keep pFT logical-rotation cost bounded. See `references/encoded-circuits.md`.
+10. **Lovable "internal error" on a Guppy/Selene turn = task rollback, not app crash.** Dev server stays healthy, `git status` clean, no artifacts persist. Trigger is turn-level context pressure (broad reads of `src/routeTree.gen.ts`, `_cache_*/`, `PQP_DIGEST.md`, uploaded PDFs > 1 MB, or ≥3 concurrent sub-agents). Recovery: work in atomic **gates** (one committable artifact per turn), cap sub-agents at 2, start each session with a tiny persistence canary edit. See `references/lovable-orchestration.md`.
+11. **`.pydeps/` must be in `.gitignore`.** An unignored multi-hundred-MB vendored dep tree makes the platform's turn-save time out, which surfaces as "An internal error occurred" and rolls the whole turn back. Ignore it, reinstall, then retry. See `references/lovable-orchestration.md`.
+12. **QPDE `k` values that put `2φ` at a multiple of π are aliasing controls**, not fit data — exclude them from the gap fit and report separately. See `references/qpde.md`.
+13. **Taylor-fit moment estimators are conditioning-limited, not shot-limited.** For `tr(e^{-iHτ})` moment fits, the τ grid and truncation order move σ(T_k) by ~4x while 4x shots only halves it. Tune the design offline against simulated binomial noise first, and report a model-free curve χ² alongside the fitted moments. See `references/laplacian-moments-tda.md`.
+14. **Cross-platform corroboration is the strongest validation layer.** A noisy-hardware result is most believable when it is reproduced on a different platform with an independent compiler and noise model. Within one platform, use at least two independent mitigation estimators (e.g. PEC + ZNE, or noise ladder + model-free curve check). See `references/cross-platform-validation.md`.
+15. **Only Clifford segments may go through the rule-(N/M/P) canonicaliser.** Split a variational/generated ansatz at its rotation boundaries: canonicalise the `{H, CZ, S}` frames, leave `Ry(θ)`/`Rz(θ)` cores opaque and verify them with the dense matrix oracle. Also: `CNOT · Rz(2θ) · CNOT` is `exp(-iθZ₀Z₁)`, NOT a single-excitation Givens rotation — always check a paper's decomposition against `expm` of the Pauli sum before writing the kernel. See `references/rewriter-composition.md`.
+16. **Guppy v1.0 breaks every pre-v1 driver.** `result(...)` → `output(...)`; `measure(q)` returns a `Measurement`, so write `measure(q).read()` (same for each element of `measure_array`); `selene_sim.build(compiled).run_shots(Quest(), ...)` aborts inside the Rust runtime against a v1 package — run through `program.emulator(n_qubits=N).with_shots(S).with_simulator(Quest()).with_error_model(...).with_seed(...).run()` and iterate `shot.entries`. Pass the `@guppy` program object, never `program.compile()`. Error models still come from `selene_sim`. v1 optimises on compile, so rewriter/gate-count benchmarks must pin `program.with_opt_level(OptimizationLevel.Classical)`. Python floor is 3.12. A one-file shim keeping the legacy `build(program).run_shots(...)` shape (see this repo's `quantum/emulate.py`) makes the migration a per-file import swap. See `references/guppy-v1-migration.md`.
+17. **TKET (pytket) is the cheapest independent check on a reduction claim.** Compile the same circuit offline with `QuantinuumBackend(device_name="H2-2", api_handler=QuantinuumAPIOffline())` — no credentials, no job, no HQCs — and compare 2q counts against the rewriter's reduced form. Gate every count on a global-phase-free unitary oracle (`||a − (⟨a,b⟩/|⟨a,b⟩|)·b|| ≤ 1e-9`), because an optimiser that changes semantics looks like the best optimiser in the table. TKET **drops idle wires**, so pad with `add_blank_wires` before comparing or sampling or the TVD reads 1.0. Native ops (`PhasedX`, `Rz`, `ZZPhase`, `ZZMax`) map one-to-one onto `guppylang.std.qsystem`, both in halfturns, so a compiled circuit round-trips onto Selene with no angle conversion. Never score approximation families (AQFT band truncation): a correctness-preserving compiler cannot find them. See `references/pytket.md`.
 
-## Full Workflow: Creating a Quantum Application
 
-### Step 1: Define the use case
-Identify the problem (optimization, simulation, ML, cryptography, clinical, etc.).
 
-### Step 2: Create Selene backend
+
+18. **Nexus distribution keys are int tuples indexed by qubit — calibrate before analysing.** `get_empirical_distribution()` (the deprecated `get_distribution()` still works) returns `{(0, 1, 0, …): p}` where `key[q]` is qubit `q` as an **int** (`key[8] == 0`, never `== "0"`), and Qiskit's convention is the exact reverse. Submit a one-gate X-probe job per backend/shape and assert the 1 lands where you expect, before trusting any downstream number. Nexus also refuses to execute an uncompiled ref: `start_compile_job(optimisation_level=…)` → execute the **compiled** ref → `download_result().get_empirical_distribution()`; `jobs.get(id=…)` is keyword-only. See `references/nexus-jobs.md`.
+19. **Noisy Nexus emulator jobs have a hard sizing cliff: ≤ ~17 qubits AND/OR ≤ 2048 shots.** A 25q × 8192-shot noisy job ran ~3 h then raised `TimeoutError` with no partial result. Noiseless backends (`H2-1LE`, `H1-1LE`) are far more forgiving. Also: `Helios-1E-lite` needs `HeliosConfig` with an explicit `system_name` and an `emulator_config` — every one of those omissions produces an error that reads like an access problem but is a config mistake. See `references/nexus-jobs.md` (§The Helios lane).
+20. **A multi-leg proof is the claim; a single leg is a rumour.** For any headline number, line up a NumPy exact-statevector oracle, a Selene run, a real Nexus job, and an independent simulator (e.g. Aer). Report all legs with shots + seed + job id, and record timeouts/reverts honestly with their cause. Corollary: run the **classical baseline before writing any quantum code** — position-only rotary encoding scoring a perfect 1.000 on every input pair was caught by the baseline, not by the circuit. See `references/cross-platform-validation.md`.
+21. **Post-selected fidelity can never exceed the ideal value.** Repetition-encoding each qubit (`|0_L⟩=|00⟩`, `|1_L⟩=|11⟩` via `ry` + `cx`) and post-selecting shots whose physical pairs agree recovers ~+0.03 at 9q and ~+0.06 at 17q (accept 91–95%) on a SWAP-test overlap — detection only, no correction, and recovery grows with depth. If `F_det > F_ideal`, the accept mask or bit order is wrong; fix it before reporting. Compute the `4·√(0.5/shots)` envelope on the **accepted** shot count. See `references/error-detected-inner-products.md`.
+22. **The QIR lane needs its own pinned environment and only accepts static kernels.** `guppylang==0.21.16` + `hugr-qir` + `pytket-qir` in a venv separate from the v1 execution env; validate locally with `qircheck` before any upload. Runtime-parameterized angles break emission (bake literals via the temp-module driver pattern) and `discard()` after `measure` aborts (measure-all instead). `qircheck` passing does **not** mean the job will run — QIR execution targets are access-restricted, so document the gap rather than implying it executed. See `references/qir-lane.md`.
+23. **pytket halfturns are verifiable in one line.** `Circuit(1).Ry(0.5).get_unitary()` is a π/2 rotation — `Ry`/`Rz`/`ZZPhase` params are half-turns exactly like Guppy's `angle()`, so never multiply by π when porting a formula between the two. See `references/pytket.md`.
+24. **Nexus quotas do not cover hardware — `max_cost` is the only real spend guard.** `qnx.quotas.QuotaName` is exactly `compilation | simulation | jupyterhub | database_usage` (CPU-seconds and stored MB); `check_quota("simulation") == True` says nothing about HQC affordability. Guard an H-series run with `max_cost=[…]` on `start_execute_job` (the `QuantinuumConfig.max_cost` field is deprecated), pre-estimate with `qnx.circuits.cost(...)` — which itself runs a billable costing job — and report the real figure from `qnx.jobs.cost(job)`, not a local formula. `Quota.quota` can be the literal string `'No quota set for user'`, so never do arithmetic on it unguarded. See `references/nexus-admin.md`.
+25. **`DEPLETED` is a budget outcome, not a circuit bug.** The full lifecycle is `SUBMITTED → QUEUED → RUNNING → COMPLETED | CANCELLED | ERROR | TERMINATED | DEPLETED` (+ `CANCELLING`, `RETRYING`). Report `DEPLETED` and `TIMEOUT` legs with their cause instead of dropping them. `wait_for` defaults to a websocket; pass `HybridStrategy`/`PollingStrategy` for anything that may queue past ~10 min or a dropped socket loses the run. Never resubmit to recover a result — `qnx.jobs.get_all(project=…, properties=…, job_status=[…])` then `jobs.results(job)[0].download_result()`. See `references/nexus-jobs.md`.
+26. **Stamp Nexus jobs with typed project properties or the sweep is unrecoverable.** Declare with `qnx.projects.add_property(name, property_type='string'|'int'|'float'|'bool')`, then set them per job (or via `qnx.context.using_properties(...)`); Nexus **propagates a job's properties onto the resources it creates**, so results inherit provenance for free and become queryable. Project names are unique **per user only** — carry `ProjectRef.id` across accounts. Up to 300 programs per job; batch a sweep instead of firing hundreds of jobs. See `references/nexus-jobs.md`.
+27. **Role and group semantics decide who can delete your evidence.** Roles are `Reader | Contributor | Maintainer | Administrator`, and where a user holds both a personal and a team role the **most permissive wins** — revoking the personal one changes nothing. Deleting a project deletes it for everyone. A *group* shares a quota (`user_group=` at submission); a *team* shares resources; they are not interchangeable. Hardware queue position is an admin-set priority 1–10, default 5. See `references/nexus-admin.md`.
+28. **A lost hardware sweep is re-attached, never re-run — and every job carries a meter.** Recover by job id, by the `execution` block of a shipped dump, or by property query (`--gate`), into an on-disk cache keyed by job id; make resume a command (`python -m quantum.resume`), because an ad-hoc script under pressure becomes a resubmission. Take the decode width from the job's stamped `n_qubits`, not from a driver constant that has moved on. Report a non-`COMPLETED` job with a plain reason and skip it — one `DEPLETED` id must not abandon the other nine — and fail loudly on an unknown id rather than silently executing the row and buying the shots twice. Emit one uniform meter per job (mode `emulator | dry | live | refetch`, device, job id, qubits, shots, seed, estimated + billed HQC, derived delta/ratio) into the dump's `execution` block: `None` must mean "this lane has no such value", so a re-fetch keeps its real `qnx.jobs.cost` even with no estimate, or a resumed sweep reports itself as free. `SweepRunner(resume_from=…)` consumes cached jobs per row and falls through to execution once they run out. See `references/sweep-runner.md` and `references/nexus-jobs.md`.
+29. **Run a known-fidelity Bell control beside every batch.** A `|Φ+⟩` pair in the same job costs almost nothing and is the only check that catches a *corrupted batch* rather than a wrong circuit: accept when `anti_correlated / shots <= 4*sqrt(0.5/shots)`, and **fail the whole batch** when it does not — a failed control reported as one bad row among twenty is decoration. Record `bell_anticorrelated` next to the target value in the dump so the check lives in the artefact, not the run log. See `references/evidence-integrity.md`.
+30. **Name the trust layer you are actually on.** L1 receipts (job id, shots, seed, committed JSON) → L2 independent arbiters (multi-engine agreement, matched splits, the Bell control) → L3 cryptographic verification on an untrusted server (verified blind computation arXiv:2410.24133, VBPEC arXiv:2607.25704, logical accreditation arXiv:2508.05523). Most work is L1 + part of L2. Never write "cryptographically verified", and never write "ran on the QPU" for an emulator lane whose name shares a prefix with hardware. See `references/evidence-integrity.md`.
+31. **Withdraw, don't soften — and run the dequantization gate first.** A result that fails to replicate at larger `n` is withdrawn outright and superseded, with the tool that serves it returning the negative and failing loud on a missing artefact rather than falling back to the flattering older one. Before any advantage claim, run the classical surrogate and report it either way (Born-Ultimatum, arXiv:2511.01845): if a classical method reproduces the distribution within error, the claim dissolves. The 128/512/2048 shot ladder is what separates "shot-noise-limited" from "classically equivalent" — flat metric with paired CIs crossing zero is the latter. See `references/evidence-integrity.md`.
+32. **A `code: 14` "you do not have access to this machine" on an *emulator* is a config bug until proven otherwise.** `HeliosConfig()` silently defaults to `system_name="Helios-1"` — the hardware QPU — so a bare config asks for a machine you have no entitlement for and the vendor error names access while the fault is a field you never set. Pass `system_name=<device>`, add `emulator_config=HeliosEmulatorConfig(n_qubits=N)` (both 400 if missing), upload **HUGR** and execute the ref directly because Helios and the `*LE` backends reject pytket circuits and `start_compile_job`, whitelist HUGR runtime ops (`QAlloc`, `QFree`, `Measure`, `MeasureFree`, `Reset`, `helios.*`) in any gate-set preflight, and decode `hugr.qsystem.result.QsysResult` via `result.results[i].entries` — it has no `get_empirical_distribution`. Diff every name field against the device you meant before writing "unreachable" into a results table. See `references/nexus-jobs.md`.
+
+33. **Circuit statistics come from a structural audit, never from recollection.** Compute gate count, CX fraction, depth and per-qubit idle windows from the compiled circuit and serve *that*. The idle windows are the useful part: a long ancilla idle band is the dynamical-decoupling insertion point, and a repeating parity-window cadence must match the encoding you think you compiled — if it does not, the compiler merged or dropped rounds and you will otherwise only see it as a mysteriously worse fidelity. Never let page copy hardcode a gate count the audit would contradict. See `references/agent-native-evidence.md`.
+34. **An execution *spec* is not an execution.** A tool may hand an agent the submission contract — builder path (pytket vs HUGR), device, shots, config class, verification discipline — but that response carries no credentials, no job id, no fidelity and no "verified" wording; tokens stay env-only on the runner that holds the session. Generate the spec from the same source the submission path reads, or it is fiction. See `references/agent-native-evidence.md`.
+35. **A Nexus account's backend widths are per-backend emulator ceilings, not the published QPU widths.** `H2-Emulator` exposes 26 qubits on an emulator-only account against a 56-qubit H2-1; `Helios-1E-lite` exposes 26 against a 98-qubit Helios-1. Read the width from the device record (or the backends page) and pin the datasheet figure only for the real QPU names. Same table, same trap: the config class is a *family* property — `QuantinuumConfig` for `H1-`/`H2-`, `HeliosConfig` for Helios, `AerConfig` / `QulacsConfig` / `SeleneConfig` for the hosted third-party simulators — and the wrong one fails as `code: 14`, which reads like an entitlement problem. See `references/nexus-jobs.md` (§Backend matrix).
+36. **Re-ingest the project brain before any build that touches evidence.** `public/llms-full.txt` is the single source of truth for Lovable and other LLM tools; stale context is the #1 source of wrong generated copy. If the file has changed since the last session, paste the whole thing into the chat or upload it as project knowledge before editing. The skill cards fire on task type; the corpus carries the certified numbers. See `references/lovable-output-hygiene.md`.
+37. **Generated copy must pass a certified/forbidden-language table.** Any quantum-advantage or result claim in Lovable output must be traceable to `public/llms-full.txt` or committed `src/data/demos/*.json`; a withdrawn or superseded result must be surfaced as the current state, never softened. End every build with the 8-convention checklist; if a line fails, report it in priority order and do not claim done. See `references/lovable-output-hygiene.md` (§The certified-state / forbidden-language table, §Close with a checklist).
+38. **A submitted job is already billed — write the cache row at submit time, not at result time.** The window between "Nexus accepted the job" and "shots came back" is where an environment reset costs real money and leaves a paid result orphaned in the web console. Persist the **`Ref` itself** with `qnx.filesystem.save` plus a `status: "submitted"` cache row carrying the job id, both through an `on_submit(job_id)` hook the moment the id exists — the id string only recovers the job while `jobs.get(id=…)` still resolves it, the saved Ref recovers it from disk, and make the driver's main loop re-attach those rows via `fetch_result` **before** it considers submitting anything. A cell that has a job id is never a cell to submit. See `references/nexus-jobs.md` (§Submit-time persistence) and `references/sweep-runner.md`.
+39. **Stamp the sweep coordinates, not just the run metadata.** `device / shots / seed / driver` identify a run; they do not identify *which cell* it measured. A recovered job without `band` and `noise_scale` (or whatever your sweep axes are) in its stamped properties can only be mapped back by submission order or by eyeballing which point of an accuracy curve it looks like — both are guessing, and guessing on a paid artefact is worse than losing it. Declare the axes in the job-property schema alongside the run metadata. See `references/nexus-jobs.md`.
+39b. **Namespace the saved `Ref`s per run, and stamp the run id into Nexus too.** A flat ref store keys on the job id alone, so a cell re-submitted after a reset — or two sweeps running at once — overwrites evidence that was already paid for. Mint one sortable run id per process (`<gate>-<driver>-<utc>-<hash>`, overridable by an env var so a resumed process keeps writing into the directory it started), file every `Ref` + sidecar under `_cache_refs/<run_id>/`, and add `run_id` to the declared job-property schema so an orphan found in the cloud names the local directory that owns it. Reads must search the active run, then other runs newest-first, then the legacy flat root — never break the store you already have on disk.
+
+40. **A property query returns COMPILE jobs next to your EXECUTE jobs.** Filtering only by project/property and then reading result fields raises `AttributeError` on the compile rows. Filter `job_type == EXECUTE` first, and read stamped metadata from `job.annotations.properties` — not from a top-level attribute. See `references/nexus-jobs.md`.
+41. **The device-authorization path drifts between `qnexus` releases.** `/device/authorize` answers `{"detail":"Not Found"}`; the working path at the time of writing is `/device/device_authorization`. Read the endpoint out of the installed `qnexus.client.auth` instead of a remembered URL, and run the poll loop **in the background** — a foreground poller races the command timeout and dies while the user is still clicking Allow. See `references/nexus-jobs.md` (§Device login).
+42. **Environment loss is the expected failure mode of a long cloud sweep, not an exception.** A sandbox reset wipes `.pydeps`, `/tmp`, and `~/.qnx/auth/token.json` while background workers may survive and keep blind-resubmitting against a dead session. Fixed recovery order: **kill the workers → reinstall deps → re-authenticate → purge guard-failure/dry-run rows → re-attach billed jobs → only then submit new cells.** Re-authenticating before killing the workers just lets them spend again. See `references/lovable-orchestration.md` (§Sandbox-reset recovery).
+43. **Write Quantinuum code against a crawled docs corpus, not recollection.** All nine sites (Nexus, Guppy, Selene, tket user-guide, tket api-docs, lambeq, Quantum Origin, InQuanto, Systems) are Sphinx and enumerate every page in `searchindex.js` — there is no `sitemap.xml` on any of them. Refresh with `python -m quantum.docs_crawler.{fetch,extract,audit}` (`--site <slug>`), 830 pages / 3 799 snippets in ~6 min. See `references/quantinuum-docs-corpus.md`.
+
+44. **Route every undocumented qnexus call through one pinned compat module.** The audit's drift list — `HeliosConfig`, `auth.login_with_token`, `auth.is_logged_in`, `devices.get_all`, `jobs.HybridStrategy`, `jobs.cost`, `jobs.get`, `users.get_self` — is exactly the cost-guard and resume surface. Undocumented does not mean unsupported, it means unversioned, and an upstream rename otherwise surfaces as a bare `AttributeError` deep inside a submission path *after* the HQCs are spent. Pin the client exactly (`qnexus==0.48.2`), fetch each drift symbol through a named accessor in `quantum/qnexus_compat.py` that raises a `QnexusDriftError` naming the symbol and both versions, call `assert_no_drift()` as a preflight so a moved symbol is fatal *before* submission, treat a version mismatch as a loud warning rather than a hard stop, and give the offline fake in `tests/fake_qnexus.py` a `__version__` matching the pin so the whole surface is exercised with zero submissions. Documented calls (`projects`, `circuits`, `hugr`, `filesystem`, `start_*_job`, `jobs.results`, `jobs.wait_for`) stay on plain `qnx.` — a compat layer that wraps everything stops being maintained.
+45. **Use the documented job primitives before hand-rolling them.** `qnx.filesystem.save/load` persists a job `Ref` to disk (a ready-made submit-time durability path), `qnx.context.using_properties(...)` nests so sweep axes can be stamped without threading kwargs through every call, `qnx.jobs.results(..., allow_incomplete=True)` harvests a partially finished batch, and `cancel` / `retry_submission(retry_status=..., remote_retry_strategy=FULL_RESTART)` / `delete` cover the recovery cases we previously improvised. `qnx.devices.supports_shots(config)` is a preflight; `SelenePlusConfig` is the hosted Selene lane for cross-checking a local sweep. See `references/quantinuum-docs-corpus.md`.
+46. **Only three Quantinuum docs sites expose `_sources`; the rest need an HTML path.** Nexus, tket and lambeq hand back the markdown/notebook twin at `/_sources/<filename>.txt`; **guppy, selene, inquanto, origin and systems 404 it** and must be scraped from rendered HTML. Take the article container, decompose nav/sidebar/footer, and re-fence each `div.highlight pre` using the parent `highlight-<lang>` class *before* stripping tags — a plain tag-strip keeps the prose and loses every code block, which is the only part worth auditing. Lambeq's 16 `.ipynb` sources still need the notebook flattener.
+47. **tket has no single docs root.** `tket/user-guide/` and `tket/api-docs/` are separate Sphinx builds with separate search indexes; `docs.quantinuum.com/tket/searchindex.js` 404s. Register them as two sites or the richest snippet source in the whole corpus (750 blocks from 28 user-guide pages) is silently missing.
+48. **Per-library drift is where the next gate hides.** Current audit: guppy clean but we ignore `guppy.load_pytket` and `guppy.nat_var`/`type_var` (generic-width kernels that would collapse our per-n kernel factories); tket documents `Backend.get_operator_expectation_value`, `pytket.utils.expectation_from_counts/shots` and `partition.measurement_reduction` that we reimplement by hand; selene's own examples use `selene_sim.result_handling.parse_shot` + `hugr.qsystem.result` where we hand-roll parsing; `selene_sim.build` is undocumented despite being our entry point. Quantum Origin is CLI/concept prose (5 snippets in 52 pages) — do not expect an importable Python API.
+
+49. **Diff the drift list against the docs automatically, or it rots in both directions.** The list lives twice — prose in the audit, executable truth in `DRIFT_SYMBOLS` — and neither notices when the vendor documents a symbol or a new gate adds an unguarded one. `quantum/docs_crawler/drift_watch.py` derives all three sets (crawled `api_surface.json`, real call sites, `DRIFT_SYMBOLS`) and grades each symbol `stable | newly-documented | undeclared | obsolete`; `--check` exits non-zero, `audit.py` renders the table into both reports, and `tests/test_drift_watch.py` fails the day it goes stale. Two traps make such a diff lie: it must count **compat-mediated** use (once a call is routed through the layer nothing writes `qnx.jobs.cost(` any more, so a direct-call scan grades the whole guarded surface `obsolete` and invites deleting the cost guard — keep a symbol→accessor map for this), and it must **tokenize before scanning** (a plain regex counts `qnexus.auth.login()` inside a docstring and invents an `undeclared` symbol). Stamp the state with the crawl's timestamp: a stale corpus produces confident, stale verdicts.
+
+50. **`max_cost` guards one job; a sweep needs a ledger, and both guards must run before the upload.** Two preflights belong ahead of every paid submission, on the dry-run path as well as the live one — a rehearsal that skips them proves nothing about the spend. First, `qnx.devices.supports_shots(config)`: a distribution-only backend happily accepts a shot-based job and then returns results the shot decoder cannot read, so the refusal has to land before the upload, not after the bill. Second, a per-process **spend ledger**: `max_cost` is enforced server-side per job, so thirty cells at the ceiling cost thirty ceilings; book the estimate the moment Nexus accepts the job (not when the result comes back — that window is exactly where a sandbox reset strands paid work), refuse the next cell when `estimated_total + next > NADARASA_MAX_TOTAL_HQC`, and add `qnx.jobs.cost` billed figures **alongside** the estimates so the dump shows both. `qnx.circuits.cost(...)` gives a truer pre-submission number but is itself billable — keep it opt-in (`NADARASA_COST_PROBE=1`) and let it override the local formula only when it answers. Surface the whole ledger (`budget / jobs / estimated / billed / remaining`) in the dump's `execution` block; `None` must keep meaning "this lane has no such value".
+
+51. **A snapshot audit can describe the API; only a committed baseline can catch it changing.** The expensive failure is a Guppy/Selene/tket/InQuanto symbol moving upstream and surfacing as a crash mid-way through a billed sweep. `quantum/docs_crawler/api_diff.py` snapshots each site's **imports + calls + page set** into `<slug>/api_baseline.json` and grades the next crawl `added | removed | moved | breaking`, where the only difference between `removed` and `breaking` is whether *our* code depends on the symbol; `--check` exits non-zero, `--accept` is a deliberate human sign-off, and the rows render into `AUDIT.md`. Four ways this goes wrong: keying on **calls alone** (the documented call surface is a third of the import surface — Guppy 13 vs 45 — and this repo touches Guppy almost only via `from guppylang.std.quantum import h`, so real removals grade as unused), a **stale `our_files`/`our_globs`** in `sites.py` (a new importer nobody added silently downgrades `breaking` to `removed` — widen the globs in the same commit that adds the import), **treating unknown as broken** (missing baseline, uncrawled site, or an empty `.pydeps` after a sandbox reset must stay silent, never `breaking`), and **over-confident rename inference** (pair a removal with an addition only when the match is unique — same leaf under a new parent, or exactly one out and one in under the same parent; anything ambiguous stays a plain removal). `--introspect` resolves used symbols against the installed packages with `importlib`, catching removals the docs still advertise.
+
+52. **Executing the documented examples is the only check that catches semantic drift — and the harness itself is the main source of fake failures.** `api_diff` proves `selene_sim.build` still exists; it cannot tell you the Selene user guide's `result("x", measure(q))` no longer compiles under Guppy 1.x (it doesn't — every emulation page in that guide fails, the same `measure().read()` migration as Gotcha #16). `quantum/docs_crawler/snippet_run.py` runs each page's blocks **in document order, in one namespace, written to a real `.py` file** — never `exec(code_string)`, because Guppy compiles kernels by reading their source back with `inspect.getsource` and a string-exec harness turns 34 healthy Guppy examples into `OSError: source code not available`; per-block attribution comes from a `_snip_mark(i)` line between blocks, which (unlike wrapping each block in `try:`) leaves the doc code unindented for `getsource`. Three more harness traps, each of which manufactures failures that look like upstream breakage: banning **all** sockets (Selene talks to its own emulator over loopback — block non-local `connect`/`getaddrinfo` only), leaving the **temp page path in the recorded reason** (every run then diffs against its own baseline — normalise it to `<page>`), and reading only stderr's last line (Guppy prints the real diagnostic to *stdout* and ends with the useless "Guppy compilation failed due to 1 previous error"). Grade causes apart: `fail` means a genuine breakage, `NameError`/`ModuleNotFoundError`/memory-cap kills are `blocked`, an absent library is `skipped`, and only `pass -> fail` is a regression. Prefilter anything naming `qnexus`, `start_execute_job`, `QuantinuumBackend` or an API key as `blocked` **before** it can run, and keep a committed test that re-derives that from the corpus — a docs pass must never spend money.
+
+54. **When the batch budget runs out, split the batch — don't throw the run away.** A ledger that only knows how to refuse turns a 19-cell sweep into zero cells the moment the 15th crosses `--budget-hqc`, and the operator's only recovery is to hand-slice the parameter list. Give the ledger a `budget_mode`: `halt` (default, unchanged refusal) and `split`, which submits the largest **prefix** that fits and raises `BudgetPaused` — a stop signal, not a failure. Four rules make this safe. Split on a *prefix*, never a knapsack: the deferred tail must be contiguous and resumable, not a scattered set the operator has to reconstruct by hand. A single job whose estimate alone exceeds the whole budget is a hard `BudgetExceeded` in **both** modes — splitting cannot rescue an indivisible cell. `BudgetPaused` subclasses the backend error, so every driver that writes an `"error"` row on `BackendError` must catch it **first** and re-raise: a paused cell has not run yet, and poisoning its cache row makes the remainder unresumable. And report it — `deferred_jobs`/`deferred_hqc`/`budget_mode` in the summary, the deferred coordinates in the dump, and one console line saying exactly what a re-run with a higher ceiling will pick up.
+
+55. **Reconcile spend per job, not per run — and make the record outlive the process.** A batch total answers "did we stay under `--budget-hqc`?" and nothing else; the question that costs money is *which cell* blew its estimate. Open a reconciliation entry on `SpendLedger` at `record_estimate` (submission time, when the money is committed) and close it at `record_billed` with the real `qnx.jobs.cost` figure, grading the pair with one shared function so the console during the run and the audit report afterwards can never disagree. Four rules. A missing bill is `unbilled`, never `on_budget` and never summed as `0.0` — coercing silence to zero flatters every rollup that touches it, so skip `None` in totals and let the total go `null` instead. Grade against a tolerance (10%) rather than exact equality: the local gate-count estimate is approximate by construction, and a zero-tolerance check cries wolf on every job. Stamp the closed entry into the job's `.meta.json` sidecar (`nexus_refs.stamp_cost`) and add `cost` to `VOLATILE_KEYS` — the bill lands *after* the record was checksummed at submission, so it must not make a healthy sidecar read as tampered-with. And print overages in `budget_line`, not only in JSON: an overage that only exists in a file nobody opens is an overage nobody reviews. The offline exporter (`python -m quantum.cost_report --dumps`) reads sidecars first and falls back to `budget.entries` in committed dumps, so a run whose sandbox was reset still reconciles.
+
+53. **A saved job `Ref` is only evidence if you can prove it is the file you wrote.** `qnx.filesystem.save` gives no checksum and no atomicity, so a sandbox reset mid-write leaves a truncated `.ref.json` that still parses — or does not — and `resume` will happily decode paid shots into whatever coordinates the sidecar claims. Write `schema` (`nexus-ref/1`), `ref_sha256`, `ref_bytes` and a self-excluding `meta_sha256` into the sidecar the instant the ref lands, and have `load_ref`/`saved_job_ids`/`resume` verify by default and **skip** (never guess) a record that fails. Four rules keep this honest: the meta digest must exclude **its own key and every volatile key** (`last_status`, `status_at`) or routine status polling reads as tampering; records written before the schema must grade `legacy` — trusted but unprovable — and be upgradable with an explicit `restamp` that never invents coordinates; a sidecar that is simply **absent** is `unverifiable`, not corrupt, and must not fail the ledger verdict; and `--skip-verify` has to exist as a loud emergency rescue, because refusing to read a slightly damaged store is a worse outcome than reading it under protest when real HQCs are on the other side. Surface the verdict per row in `/nexus/refs` — an integrity layer nobody can see is an integrity layer nobody trusts.
+
+56. **Print the shot-capability matrix before the sweep, and make `unknown` mean missing information.** `devices.supports_shots(config)` answers per *config object*, so a census that probes every backend has to build each one through its family's config class (`QuantinuumConfig` / `HeliosConfig` / `AerConfig` / `QulacsConfig` / `SeleneConfig`) — probe them all through one class and the answers are fiction. Build the matrix in the dry-run branch (`python -m quantum.device_matrix`, `_print_device_matrix`) so the devices a sweep would skip are named *before* submission, with the reason attached: `no` from the probe is `SKIP - distribution-only`, a width below `n_qubits` is `SKIP - too narrow`. The rule that keeps it safe is the third verdict: a device whose config class is absent from the installed client, or whose probe could not run because the session is down, grades **`unknown` and stays usable** (`usable is None`, never `False`) — deleting a working backend from an operator's options because a helper was missing is a worse failure than probing it again. Keep the matrix strictly **advisory**: cache it on the backend, surface it in `describe()` and as a committed no-claim dump, but never let it replace the per-submission `supports_shots` preflight, because a table generated minutes ago is not a promise about the job you are about to pay for. Never raise from the builder — degrade to the pinned table with a `source: "pinned"` note.
+
+57. **Make withdrawal structural, and close a question by counting closures.** "Withdraw, don't soften" (#31) is a policy a tired writer forgets; a resolver cannot forget. Put one manifest in charge of artefact state — `current | superseded | archived`, keyed by claim kind — and make every consumer (MCP tool, route loader, report builder, PDF) read *through* it rather than by filename, so a superseded dump is unreachable by construction and a resolution failure raises instead of falling back to the newest readable file. Two reporting rules travel with it. A negative result is not closed by one experiment: report the **count of independent closures** and name each one (Fourier wall / small-`n` simulation / real-kernel refusal / shot-floor / shot-scaling seal), because a single negative always invites "you didn't try hard enough". And a leg stopped by a platform limit is **`assessed-blocked`, not untried** — record the limit and the error string, or the row reads as a gap in the work and someone re-runs the thing that cannot run. See `references/evidence-integrity.md`.
+
+58. **One versioned receipt envelope per artefact, graded four ways.** Scattering shots in the meter, the commit in a provenance hash and the tolerance in a driver means nothing can audit them as a unit. Attach a named, versioned block (`qas/envelope/0.1`) to every result artefact: `claims` (sentences that could be false, not topics), `engine` **plus a separate `backend_qualifier`** so a device name can never be read as hardware, `shots`, `seed`, `commit`, the computed `envelope` (`4*sqrt(0.5/shots)`, stored so a later reader can re-decide the verdict), and `verdict`. Then grade every artefact with a script, and use four grades, not two: `PASS`, `GAP` (envelope present, a field missing — fill it, don't downgrade the claim), `STRUCTURAL` (no envelope at all — migrate or move it to the no-claim list), `FAIL` (envelope present and *contradicted* — block the build). The `GAP`/`FAIL` split is the whole point, and it is the same rule as the device matrix's `unknown` (#56): missing information is not a lie. The rule that holds even before the tooling exists — never display a number without its engine qualifier and shot count in the same view. See `references/receipt-envelope.md`.
+
+59. **The hosted Selene lane has a depth ceiling, and an agent's choice of observable is the thing no automated check validates.** `SelenePlus` runs 17-qubit *plain* circuits fine but dies on 17q with Toffoli/CSWAP depth with `Unexpected end of stream`, reproducibly across circuit structures — a server-side size limit, not a kernel bug: don't bisect your circuit, record the leg as assessed-blocked and re-certify on `H2-Emulator`. The companion lesson is the verification gap PASQAL demonstrated: an agent proposed a plausible-but-wrong observable and then a wrong *hardware* diagnosis to explain the result, and nothing downstream caught either, because every automated layer (envelope, Bell control, digest, verdict test) checks **consistency**, not correctness — a wrong observable measured perfectly passes them all. The observable is a scientific judgement wearing the clothes of a config field sitting next to `shots`, so the review gate belongs *before* execution, on the credential-free spec (`experiment_spec.json` is the same object #34 calls an execution spec — convergent design), with the observable, its baseline and its falsification criterion legible in one screen for a human who knows the physics. See `references/nexus-jobs.md` (§Sizing) and `references/agent-native-evidence.md` (§The verification gap).
+
+60. **A dependency-gated test proves nothing until you run it with the dependency actually gone.** The quickstart notebooks (`quantum/docs_crawler/notebooks.py`) have exactly one executable cell — an env check — and `pytest.importorskip` around it only ever exercises whatever `.pydeps` happens to hold that session, so the skip path is *assumed*, never observed; the first time the library is genuinely absent is the first time you learn the cell fails instead of skipping. The gate that works runs the real test in a **child pytest** with a `meta_path` finder raising `ModuleNotFoundError` for the target module and its submodules, and asserts on the reported outcomes: zero failures, exactly one skip, and a reason naming both the module and its install command. Four rules keep it honest — block the module in the **child**, never the parent session (a parent-side blocker leaks into every later test in the file); parametrise over the spec's *declared* `env_modules`, and keep a separate test re-deriving that list from the cell source, so a newly added import cannot silently escape the guard; a child that fails to start is a **skip carrying its stdout**, never a silent pass; and pair the whole thing with a **byte-level** regeneration check (`read_bytes()`, not nbformat object equality), because indentation, key order and the trailing newline drift between the committed `.ipynb` and a fresh build long before the parsed objects do. Same reasoning downstream: the `/skills` cards are parsed out of the generated markdown with deliberately defensive parsers, so a shape change empties them *silently* — the manifest test asserting non-empty topics and pitfalls is the only thing that notices. See `references/quickstart-notebooks.md`.
+
+61. **A Nexus submission is a four-step contract, and three of its four failure modes are pre-flight, not physics.** The contract is **upload → compile → execute the *compiled* ref → download**: `qnx.circuits.upload(circuit, name=…)` first, because `programs=` takes a Nexus ref and never a local `pytket.Circuit` — the step most copy-paste examples omit, so an agent starts from a `circuit_ref` it has no way to obtain. `programs=` is the current keyword; `circuits=` is its deprecated spelling and surfaces as a deprecation/schema error rather than a rename hint. The accessors are not interchangeable either: a compile job's `CompilationResultRef` gives `.get_output()` (the compiled ref), an execute job's `ExecutionResultRef` gives `.download_result()` → `.get_counts()` / `.get_empirical_distribution()`, and `ExecutionResultRef has no attribute 'get_output'` means a compile ref and an execute ref got crossed in a resume or re-attach path, not that qnexus is broken. Before the first API call, check four things in order — the interpreter that actually holds `qnexus` (the `.pydeps`/venv binary, never bare system python, else `ModuleNotFoundError: No module named 'qnexus'`), a live session, an **active project** resolved by name from `qnx.projects.get_all()` and set with `qnx.context.set_active_project(...)` (else `NoActiveProjectError` or a bare 403 several calls later), and the right config family. Independently corroborated device capacities: `H1-1LE` 20q, `H2-1LE` 56q, `Helios-1E-lite` 50q+. See `references/nexus-jobs.md` (§The compile → execute → download flow, §Pre-flight).
+
+
+
+
+
+
+
+
+## Navigation
+
+
+| Task | Read |
+| --- | --- |
+| Write a kernel (gates, qubits, measurement, controlled phase) | `references/guppy-language.md` |
+| SWAP test, Toffoli, CSWAP, amplitude encoding, controlled phase, coset-state QFT readout, parity windows, feed-forward, inverse-QFT-no-swap, CSWAP-chain shifts, host-side metrics | `references/circuit-patterns.md` |
+| Guppy v1 migration: renames, emulator builder, compatibility shim, optimisation levels | `references/guppy-v1-migration.md` |
+| Parameterized circuits over many inputs; angle hygiene; sys.path injection; `build(mod.program)` shim | `references/driver-pattern.md` |
+| Parameter sweeps as first-class objects (`SweepSpec` + `SweepRunner`); resumable per-row cache; per-job meters; resuming a paid hardware sweep | `references/sweep-runner.md` |
+| QSP/QSVT kernel + NumPy phase-finder loop recovering φ from a target polynomial | `references/qsp-qsvt.md` |
+| Real controlled `pow_const_mod` for small-N Shor (CSWAP-chain cyclic shifts) | `references/shor-modexp.md` |
+| Quantum Phase Difference Estimation (QPDE) + ethylene 2-qubit chemistry benchmark | `references/qpde.md` |
+| ADAPT-GQE: generative transformer + RL circuit synthesis for molecular ground states | `references/adapt-gqe.md` |
+| Nadarasa v0.4.2 reference stack (G16–G19: QPDE, noise + ZNE, TDA, Floquet validation) | `references/nadarasa-v042-stack.md` |
+| [[7,1,3]] Steane color code, RGT gadget, partial-FT gadget-insertion cadence | `references/encoded-circuits.md` |
+| Quantum-TDA Laplacian moments `T_k^(d)` + WL-indistinguishable synthetic dataset | `references/laplacian-moments-tda.md` |
+| Trust ladder (L1/L2/L3), per-batch Bell control, dequantization gate, withdrawal + supersession rules, forbidden phrasings | `references/evidence-integrity.md` |
+| Structural withdrawal (manifest as sole resolver), closure counting, `assessed-blocked` reporting | `references/evidence-integrity.md` (§Structural withdrawal, §Negative-result discipline) |
+| Receipt envelope `qas/envelope/0.1` and the PASS / GAP / STRUCTURAL / FAIL artefact grading | `references/receipt-envelope.md` |
+| Generated quickstart notebooks: spec shape, `--only`/`--out` CLI, env-check gating, byte-match test, `/skills` cards | `references/quickstart-notebooks.md` |
+
+
+| Cross-platform validation hierarchies (PEC + ZNE / QESEM, IBM ↔ Quantinuum corroboration) | `references/cross-platform-validation.md` |
+| TKET / pytket offline compile lane, native rebase, equivalence oracle, Selene round-trip | `references/pytket.md` |
+| Quantinuum hardware roadmap (Helios → Sol → Apollo → Lumos) — what runs where and when | `references/hardware-roadmap.md` |
+| Submitting real Nexus jobs: login, projects/properties, compile→execute→distribution, job lifecycle, cost control, backend matrix, sizing, bit-order calibration | `references/nexus-jobs.md` |
+| Helios lane: `system_name`, `emulator_config`, HUGR upload, `QsysResult` decoding, the code-14 misdiagnosis | `references/nexus-jobs.md` (§The Helios lane) |
+| Nexus accounts: organizations/groups/teams, roles and permissions, the four quotas, priority, usage reports, pre-spend checklist | `references/nexus-admin.md` |
+| QIR lane (Guppy → HUGR → QIR), pinned 0.21 venv, `qircheck` constraints, execution gap | `references/qir-lane.md` |
+| Error-detected inner products: repetition-encoded SWAP test + parity post-selection accounting | `references/error-detected-inner-products.md` |
+| Serving committed evidence to other agents (MCP tools, agent card, x402 gate, mock/real toggle) | `references/agent-native-evidence.md` |
+| Structural circuit audit (idle windows → DD points, parity cadence) and credential-free execution specs | `references/agent-native-evidence.md` (§Structural audit, §Execution specs) |
+| The verification gap: agent-chosen observables need pre-execution expert review | `references/agent-native-evidence.md` (§The verification gap) |
+
+| Lovable output hygiene: project brain, certified/forbidden language, 8-convention checklist, re-ingest rule | `references/lovable-output-hygiene.md` |
+| Skill-authoring hygiene: trigger-led descriptions, one job per skill, always-on rules, closing checklist | `references/lovable-orchestration.md` (§Writing and pruning this skill) |
+| Render any Selene experiment via the `selene_run` v1 schema + `<SeleneRunView />` | `references/selene-run-schema.md` |
+| Compile and run shots; multi-result decoding; mid-circuit measurement; ancilla reuse; noise models (depolarizing, leakage, realistic H2 targets); shipping results to the frontend | `references/selene-runtime.md` |
+| Tomographic equivalence proofs (18-cell 1q, 324-cell 2q) + conjecture-synthesis pipeline | `references/tomographic-equivalence.md` |
+| Edge-runtime mini-sim + live SSE shot stream from the Worker | `references/live-sampler.md` |
+| Legacy bespoke React wiring (pre-schema demos) | `references/frontend-integration.md` |
+| **Which primitive at which stage** — unified cheat sheet mapping Guppy / pytket / Selene / qnexus / Systems / InQuanto primitives onto the model→kernel→compile→verify→execute→recover→analyse→publish spine | `references/stack-cheatsheet.md` |
+| Crawled docs corpus for all nine Quantinuum sites, per-library API-drift audits, documented job/ref/property primitives | `references/quantinuum-docs-corpus.md` |
+| Generating the Guppy / Selene / tket / lambeq quickstart notebooks from the corpus (selection rules, prose-vs-code filter, pinning a bad pick) | `references/quantinuum-docs-corpus.md` (§Quickstart notebooks) |
+| API-surface diff across all nine sites: baselines, `breaking`/`moved` grading, `--accept` sign-off, `--introspect` | `references/quantinuum-docs-corpus.md` (§Catching upstream change) |
+
+| Composing a generated/variational ansatz with the Clifford canonicaliser (safe vs unsafe segments) | `references/rewriter-composition.md` |
+| Minimal smoke-test script | `scripts/qtda_template.py` |
+| Working around Lovable turn-rollback / "internal error" loops on Guppy/Selene experiments | `references/lovable-orchestration.md` |
+
+
+
+## Generative AI circuit synthesis
+
+ADAPT-GQE (arXiv:2607.22468) is a new route to quantum chemistry circuits: train a transformer on ADAPT-VQE references, then use RL to refine the generated circuits past the training-data accuracy. If a future task touches generative circuit synthesis, the practical notes are in `references/adapt-gqe.md`. The key takeaway: the generated circuit is still a Guppy kernel, so the same angle-hygiene, tomographic-verification, and committed-JSON rules apply.
+
+
+
+
+## Running as a team
+
+When the work is split across agent profiles or sub-agents (orchestrator / runner /
+analyst / scribe), keep the boundaries hard:
+
+- Long sweeps go to a **runner** that only executes and reports artefact paths. It does
+  not interpret, fit, or claim.
+- The **per-row JSON cache** is the hand-off artefact between runner and analyst — never
+  a chat summary of the numbers. If it isn't in `_cache_<name>/` or `src/data/demos/`,
+  it didn't happen.
+- No claim crosses a profile boundary without its verification evidence attached: the
+  shot count and `4*sqrt(0.5/shots)` verdict for a probability comparison, the 1e-9
+  unitary-oracle result for a gate-count reduction, the artefact path for anything else.
+- The writer cannot introduce a number that is not already in an artefact.
+
+See the `hermes-agent` skill for the profile mechanics behind this split.
+
+## Quick smoke test
+
 ```bash
-python3 scripts/setup_selene_service.py \
-  --app-name "my-quantum-app" \
-  --use-case "chemistry" \
-  --description "Quantum chemistry simulator"
+code--copy knowledge://skill/quantinuum/scripts/qtda_template.py /tmp/qtda_template.py
+code--exec python /tmp/qtda_template.py
 ```
-This creates a backend dir with FastAPI, health check, Dockerfile, and `fly.toml`.
 
-### Step 3: Implement your Guppy circuit
-Edit `my-quantum-app/main.py` → `QuantumService._run_real_quantum()`. Use `references/guppy_guide.md` for syntax. For clinical: chemistry (molecule, shots, precision), optimization (objective, constraints), ML (features, epochs).
+Should print a fidelity in `[0, 1]` for two amplitude-encoded states.
 
-### Step 4: Deploy to Fly.io
-```bash
-python3 scripts/flyio_deploy.py --app-name "my-quantum-app" --service-dir "my-quantum-app" --region "lhr"
-```
-Set secrets with `fly secrets set`; use emulator for demos if preferred.
+## Reference implementations
 
-### Step 5: Frontend
-Use `assets/lovable-template/` or run:
-```bash
-python3 scripts/lovable_integrate.py \
-  --app-name "my-frontend" \
-  --backend-url "https://my-quantum-app.fly.dev" \
-  --quantum-use-case "chemistry"
-```
-Then `npm install` and `npm run dev` in the frontend dir.
+- `quantum/qtda.py` — SWAP-test worked example: 8 patients, 28 pairs, Vietoris–Rips filtration, Betti numbers, JSON output consumed by the React routes.
+- `quantum/nadarasa_g1.py`, `g2.py`, `g3.py` (+ `*_lib.py`) — coset-state QFT readout, mid-circuit parity windows with ancilla reuse, Birthday-style host-side post-processing.
+- `quantum/nadarasa_g4.py` — feed-forward / mid-circuit `if measure(...)` branching.
+- `quantum/nadarasa_g8.py`, `g9.py` and `quantum/nadarasa_g1_via_sweep.py` — parameter sweeps via `quantum/sweep.py` (`SweepRunner`). G1-via-sweep is the byte-identical-headline-metrics parity check for the refactor.
+- `quantum/nadarasa_g10.py` + `quantum/nadarasa_g10_phasefinder.py` — QSP `qsp_sequence` kernel with hand-chosen φ and the SciPy Powell loop that recovers φ from a target polynomial (Chebyshev `sign(x)`, max |measured − target| < 0.05).
+- `quantum/nadarasa_g11.py` + `quantum/nadarasa_g11_real.py` — small-N Shor: compiled `f(x) = x mod 4` shortcut vs. real controlled `pow_const_mod` for `a=2, N=15` implemented as CSWAP-chain cyclic shifts on the orbit of `|1⟩`.
+- `quantum/pqp_frontier/tomography.py` + `conjectures.py` — 18-cell 1q tomographic equivalence harness and the driver that PASS-proved 11 conjectured gate identities.
+- `quantum/pqp_frontier/noise_resilience.py` + `noise_leakage.py` — `DepolarizingErrorModel` and `SimpleLeakageErrorModel` sweeps showing rewriter-stripped `AQFT_k1` beats full QFT under noise (G1, N ∈ {16, 32, 64}).
+- `quantum/pqp_frontier/noise_2q.py` — canonical resumable 2q noise sweep: per-cell cache under `_cache_2q_noise/`, static JSON dumped to `src/data/demos/pqp_frontier_noise_2q.json`, rendered by `src/routes/nadarasa.proofs.noise-2q.tsx` with no server function.
+- `quantum/qpde/model.py`, `kernel.py`, `sweep.py`, `validate.py` — full ethylene QPDE benchmark (G16): 20-cell resumable sweep (20/20 PASS), gap fit 0.8099 vs 0.8000 Ha, static JSON at `src/data/demos/qpde_ethylene_selene.json` rendered by `src/routes/nadarasa.g16.tsx`.
+- `quantum/qpde/noise.py` + `quantum/qpde/zne.py` — H2-class depolarizing ladder + Richardson quadratic ZNE on the QPDE gap fit (G17): `src/data/demos/qpde_ethylene_noise.json` + `qpde_ethylene_zne.json`, rendered by `src/routes/nadarasa.g17.tsx`.
+- `quantum/tda/dataset.py`, `moments.py`, `sweep.py` — Laplacian propagator trace estimator on a WL-indistinguishable C6 vs 2C3 pair (G18): 384-circuit resumable sweep, `src/data/demos/tda_laplacian_moments.json`, rendered by `src/routes/nadarasa.g18.tsx`.
+- `src/routes/nadarasa.g19.tsx` + `src/data/nadarasa/quantinuum-2026.ts` — reading note on Leviatan et al. 2026 heavy-hex Floquet QESEM result and cross-platform validation hierarchy.
+- `quantum/floquet/model.py`, `kernel.py`, `sweep.py`, `noise.py`, `zne.py` — mixed-field Ising Floquet native port (G20): 384 production cells across chain + heavy-hex-6, ideal-vs-ED max deviation 0.0495, H2 noise ladder + quadratic Richardson ZNE to <2% error, `src/data/demos/floquet_native_zne.json` rendered by `src/routes/nadarasa.g20.tsx`.
+- `quantum/adapt/adapt_h2_uccsd.py`, `kernel.py`, `smoke.py` — ADAPT-GQE composition (G21): H2 UCCSD single excitation verified by matrix oracle (1.1e-16), Clifford frames canonicalised by rule (M), 512-shot Selene agreement 0.018; `src/data/demos/adapt_gqe_composed.json` rendered by `src/routes/nadarasa.g21.tsx`.
+- `quantum/tket/circuits.py`, `compile.py`, `verify.py`, `selene.py`, `sweep.py` — TKET compile lane (G24): six circuit families in raw vs Nadarasa form, offline `QuantinuumBackend("H2-2")` compilation at levels 0/1/2, unitary-equivalence oracle gating every count, and a Selene round-trip of the compiled natives. TKET level 2 matches the reduced 2q counts on 4 of the 5 scored families; Simon (G23) is the one case where the rewriter stays ahead (3 vs 5 two-qubit gates, a non-local involution a peephole window cannot see). `src/data/demos/tket_compile.json` rendered by `src/routes/nadarasa.g24.tsx`.
+- `quantum/emulate.py` — the single execution entry point: Guppy v1 emulator builder behind the legacy `build(program).run_shots(Quest(), ...)` call shape, plus re-exported simulators, error models, and `OptimizationLevel`.
+- `quantum/backends.py` + `quantum/backend_selene.py` + `quantum/backend_nexus.py` — the emulator/hardware switch, device-capability preflight, HQC ceiling, and the `job_meter` record every lane emits.
+- `quantum/resume.py` — `python -m quantum.resume`: re-attach to Nexus jobs already billed, by id, by a dump's `execution` block, or by property query; caches shots + properties + meter under `quantum/_cache_resume/<job_id>.json` for `SweepRunner(resume_from=…)`. `tests/test_resume.py` + `tests/fake_qnexus.py` cover it offline, each test asserting the fake recorded zero submissions.
 
-### Step 6: Connect and test
-Point frontend `VITE_API_URL` to the Fly.io backend; hit `/health` to verify.
+- `quantum/pqp_frontier/dump_conjectures.ts` + `dump_conjectures_2q.ts` — TS-side matrix oracle, enumeration, structural rewriter, and matrix-canonical promotion (rule N / rule M) driving `/nadarasa/proofs/conjectures*`.
 
-## Clinical Use Case Cheat Sheet
 
-- **Drug discovery / molecular simulation:** `chemistry` — VQE-style energy/property in Guppy; expose molecule type and params via API.
-- **Treatment / resource optimization:** `optimization` — Define objective (cost, wait time); run QAOA in Selene; display results in UI.
-- **Patient stratification / classification:** `ml` — Map patient features to model inputs; return risk/stratum or classification.
-- **Randomization (e.g. trials):** `random` — Quantum RNG from Guppy; expose bits/shots in API.
-- **Security / key material:** `crypto` — Key generation or quantum-safe primitives; keep keys on backend only.
+For new demos, render results through the shared `selene_run` schema (`references/selene-run-schema.md`) instead of building a bespoke React page.
 
-## Data and Compliance (Clinical / Hackathon)
+## OpenClaw notes
 
-- **Demos:** Use synthetic or de-identified data only. Do not send real PHI to quantum backends or store in Fly.io without a compliance plan.
-- **API keys:** Store in Fly.io secrets (`fly secrets set`), never in code or frontend.
-- **Production:** Add auth, rate limiting, and consider HIPAA/DPA; restrict CORS in Selene.
-
-## Resources
-
-### scripts/
-- `create_quantum_app.py` — All-in-one: backend + deploy + frontend
-- `setup_selene_service.py` — Scaffold Selene backend
-- `flyio_deploy.py` — Deploy to Fly.io
-- `lovable_integrate.py` — Frontend wired to backend URL
-
-### references/
-- `guppy_guide.md` — Guppy syntax, gates, circuits, examples
-- `selene_api.md` — Endpoints, request/response, errors, jobs
-- `flyio_config.md` — Fly.io scaling, regions, secrets, monitoring
-- `lovable_patterns.md` — Frontend patterns, dashboard, API client
-- `clinical-use-cases.md` — Detailed clinical use-case mappings and compliance notes
-
-### assets/
-- `selene-template/` — Backend boilerplate (main.py, Dockerfile, fly.toml, .env.example)
-- `lovable-template/` — React/TS frontend with QuantumDashboard and API client
-
-## Advanced: Multi-Quantum Use Cases
-
-- **Optimization dashboard:** Selene + QAOA/VQE; Lovable with sliders; Fly.io with scaling.
-- **Chemistry explorer:** Guppy molecular simulations; 3D viewer; optional persistent storage.
-- **Quantum ML API:** Selene exposing QNN/QSVM; Lovable for training/predictions; Fly.io (GPU if needed).
-
-## Performance, Cost, and Security
-
-- **Queuing:** Use job queues for long-running quantum jobs; WebSockets or polling in frontend.
-- **Caching:** Cache identical computations to reduce quantum hardware cost.
-- **Fly.io:** Scale to zero when idle (`min_machines_running = 0`); use `references/flyio_config.md` for VM sizing.
-- **Security:** No API keys in frontend; rate limiting on Selene; HTTPS in production; see `references/selene_api.md` for auth patterns.
-
-## Troubleshooting
-
-- **Guppy import error:** `pip install guppy` in backend; or use mock mode for demos.
-- **Selene not starting:** Check `fly.toml`, `fly logs`, and env vars.
-- **Frontend can’t connect:** Verify `VITE_API_URL`, CORS in Selene, and `curl .../health`.
-- **Fly.io deploy fails:** `fly deploy --clean`; `fly logs --phase build`; ensure `fly auth login`.
-- **Quantum results wrong:** Validate circuit logic and measurement; test with emulator first.
-
-## Next Steps
-
-After initial setup: monitor quantum usage/costs; add auth to Selene if public; improve error handling and logging; consider persistence for job history.
-
----
-
-For detailed clinical use-case specs and compliance reminders, see `references/clinical-use-cases.md`.
+This skill is loaded on demand: OpenClaw advertises the path plus a `sha256` version marker and the model `read`s this file when the task matches. Keep edits in a managed copy under `~/.openclaw/skills/quantinuum/` so they survive updates. Gotcha 10 ("Lovable internal error = turn rollback") is Lovable-specific and can be ignored elsewhere; the underlying discipline — one committable artefact per gate, resumable caches — still applies to any long sweep.

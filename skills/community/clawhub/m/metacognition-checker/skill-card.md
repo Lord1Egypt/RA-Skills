@@ -1,41 +1,54 @@
-## Description: <br>
-Check whether a user truly understands a concept, decision, plan, or belief, or is only feeling familiar and overconfident. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check whether a user truly understands a concept, decision, plan, or belief, or is only feeling familiar and overconfident.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users, learners, and decision makers use this skill to test understanding, calibrate confidence, identify blind spots, and choose a minimum verification action before relying on a concept, plan, or belief. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chinese-only instructions and examples may be hard for some reviewers or users to evaluate. <br>
-Mitigation: Review the localized sections before deployment and provide translated or bilingual operating guidance when the target users do not read Chinese. <br>
-Risk: Metacognitive prompts can reveal blind spots but do not replace professional, domain-specific, or external review. <br>
-Mitigation: Use the skill as a self-checking aid and route high-impact educational, business, legal, medical, financial, or safety decisions to qualified review. <br>
+## Use Case:
 
+Employees, external users, developers, and learners use this skill to test understanding, review decisions for blind spots, analyze mistaken judgments, calibrate confidence, and identify a minimum verification action before proceeding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/metacognition-checker) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Concise Markdown or plain text checklist with a current claim, evidence-quality assessment, likely blind spot, one required question, and one smallest verification action.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No binaries, environment variables, API keys, MCP tools, or shell commands are required by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill may answer with Chinese phrasing from its examples even when the user expects another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the agent response language aligned with the user's requested language.
+
+Risk: The skill can surface coaching-style conclusions that may be mistaken for professional judgment.
+
+Mitigation: Use it for self-checking and verification planning, and seek qualified review for specialized professional decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/metacognition-checker)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown or plain text structured checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Short response by default, with an optional fuller audit when requested.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

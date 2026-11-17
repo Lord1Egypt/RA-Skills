@@ -1,41 +1,54 @@
-## Description: <br>
-Plan image-to-video briefs for Image to Video AI, including scene direction, camera movement, style notes, prompt variants, and QA checks for short AI video generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan image-to-video briefs for Image to Video AI, including scene direction, camera movement, style notes, prompt variants, and QA checks for short AI video generation.
 
-## Publisher: <br>
-[waeckerlinfederowicz66-sketch](https://clawhub.ai/user/waeckerlinfederowicz66-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waeckerlinfederowicz66-sketch](https://clawhub.ai/user/waeckerlinfederowicz66-sketch)
 
-## Use Case: <br>
-Creators, marketers, designers, and product teams use this skill to turn still images, product visuals, concept art, and campaign assets into structured motion briefs and prompt variants for short image-to-video generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated motion prompts may include private images, faces, logos, or commercial product assets intended for an external video service. <br>
-Mitigation: Review generated prompts before sending them to any external service and remove or revise sensitive asset details when needed. <br>
-Risk: Image-to-video generation can distort text, logos, product shapes, faces, hands, or fine details. <br>
-Mitigation: Use the skill's QA checklist to flag sensitive visual elements for post-generation review. <br>
+## Use Case:
 
+External creators, marketers, designers, and product teams use this skill to turn a still image or campaign asset into a structured motion brief with prompt variants and QA checks for image-to-video generation.
 
-## Reference(s): <br>
-- [Image to Video AI](https://imagetovideoai.pro/) <br>
-- [ClawHub skill page](https://clawhub.ai/waeckerlinfederowicz66-sketch/imagetovideoai-motion-brief-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown motion brief with assumptions, motion goal, prompt variants, negative constraints, and QA checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes practical review checks for preserving product shape, text, logos, faces, hands, and fine visual details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill references an external image-to-video service website.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the website as an external service reference and review that service's terms, privacy practices, and output behavior before submitting sensitive or commercial assets.
+
+Risk: Image-to-video outputs may distort text, logos, faces, hands, or fine product details.
+
+Mitigation: Use the skill's QA checklist to review generated videos for brand accuracy, subject consistency, and platform fit before publication.
+
+## Reference(s):
+
+- [Image to Video AI](https://imagetovideoai.pro/)
+- [ClawHub skill page](https://clawhub.ai/waeckerlinfederowicz66-sketch/skills/imagetovideoai-motion-brief-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with sections for assumptions, motion goal, image-to-video brief, prompt variants, negative constraints, and QA checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning guidance and prompt variants; it does not run code or call external services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

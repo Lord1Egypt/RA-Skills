@@ -1,46 +1,67 @@
-## Description: <br>
-English Oral Tutor is an OpenClaw agent skill for structured 30-minute English speaking practice with B1 middle-school learners, including topic selection, grammar correction, vocabulary teaching, session timing, and continuity notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+English Oral Tutor helps an OpenClaw agent run sustained 30-minute English speaking practice for a B1 middle-school learner, with timed lesson phases, grammar correction, vocabulary teaching, topic rotation, and session logging.
 
-## Publisher: <br>
-[zhiyicom](https://clawhub.ai/user/zhiyicom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhiyicom](https://clawhub.ai/user/zhiyicom)
 
-## Use Case: <br>
-External learners, tutors, and agent operators use this skill to run structured English oral-practice sessions for a B1 middle-school learner. It helps the agent lead timed conversations, rotate age-appropriate topics, correct grammar, introduce vocabulary, and maintain session history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores full tutoring conversations for a minor in local transcript and history files without clear consent, retention, deletion, or access-control rules. <br>
-Mitigation: Define consent, retention, deletion, and access controls before deployment; for a minor, prefer opt-in summaries over verbatim logging. <br>
-Risk: Hard-coded local paths can write sensitive lesson records into an unintended location or fail during installation. <br>
-Mitigation: Replace local paths with deployment-specific paths and review storage locations before enabling the timing plugin or transcript workflow. <br>
-Risk: The optional voice userscript uses microphone and browser speech features. <br>
-Mitigation: Disclose microphone and voice-script behavior before sessions and require explicit opt-in. <br>
+## Use Case:
 
+External OpenClaw users and tutoring teams use this skill to configure a conversation tutor for recurring English oral practice with a B1 learner. The skill guides lesson pacing, open-ended questioning, vocabulary teaching, grammar correction, topic deduplication, and end-of-session records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhiyicom/english-oral-tutor) <br>
-- [Share Bundle README](artifact/README.md) <br>
-- [Skill Design](artifact/SKILL.md) <br>
-- [Tutor Timing Plugin Manifest](artifact/plugin/tutor-timing/openclaw.plugin.json) <br>
-- [Topic Library](artifact/topic-library/topic-library.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational text, Markdown session records, shell commands, and JSON configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single-stream tutoring responses with optional local voice input/output support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The timing plugin can affect more than the intended tutor agent or session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and scope the timing plugin to the intended agent and session.
+
+Risk: The bundle can persist a child's lesson transcripts and conversation history without clear consent or retention controls.
+
+Mitigation: Add explicit consent, retention, and deletion controls before storing transcripts, especially for a child.
+
+Risk: The plugin includes a hard-coded hook log and developer-specific paths.
+
+Mitigation: Remove the hard-coded hook log and replace developer-specific paths before deployment.
+
+Risk: The optional browser voice userscript uses microphone input and text-to-speech output.
+
+Mitigation: Enable the userscript only when microphone and TTS use are acceptable for the learner and environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhiyicom/skills/english-oral-tutor)
+- [Share bundle README](README.md)
+- [Skill design](SKILL.md)
+- [Runtime prompt rules](workspace/SOUL.md)
+- [Topic library](topic-library/topic-library.md)
+- [Tutor timing plugin](plugin/tutor-timing/index.js)
+- [Optional voice userscript](voice/openclaw-voice-userscript.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions, prompt rules, JavaScript plugin code, browser userscript code, shell commands, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional browser voice controls and file-based session records for conversation history and teaching transcripts.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

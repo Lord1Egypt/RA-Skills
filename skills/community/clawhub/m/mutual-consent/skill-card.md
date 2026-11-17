@@ -1,37 +1,59 @@
-## Description: <br>
-Mutual Consent applies a consent and restraint framework so an agent continues interactions only while affected stakeholders remain within tolerable bounds of cost, risk, and relationship. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mutual Consent defines live consent boundaries for agents by keeping scope bounded, responding to friction, announcing state changes, and preserving safe exit.
 
-## Publisher: <br>
-[OtherPowers](https://clawhub.ai/user/OtherPowers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[otherpowers](https://clawhub.ai/user/otherpowers)
 
-## Use Case: <br>
-Agents use this skill to evaluate whether a request, interaction, memory practice, or coordination pattern should continue, narrow, pause, or dissolve under a consent-centered governance framework. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may make an agent more cautious and more likely to refuse, pause, or narrow work when consent boundaries are ambiguous. <br>
-Mitigation: Install it only when a broad consent and restraint framework is desired, and review agent behavior for fit before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to shape how an agent asks for consent, holds scope, responds to hesitation or silence, announces state changes, and exits without retaining or exploiting user data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/OtherPowers/mutual-consent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, configuration] <br>
-**Output Format:** [Markdown guidance with structured consent-state fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no code execution, credentials, persistence, or data access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill intentionally makes an agent more likely to pause, narrow scope, avoid persistence, and discuss exit or data portability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when those consent and boundary-checking behaviors are desired for the target agent.
+
+Risk: The artifact states that it does not replace legal consent, privacy law, or contractual terms.
+
+Mitigation: Review applicable legal and policy requirements separately before using this framework in regulated consent flows.
+
+## Reference(s):
+
+- [Mutual Consent on ClawHub](https://clawhub.ai/otherpowers/skills/mutual-consent)
+- [CARE Principles for Indigenous Data Governance](https://www.gida-global.org/careprinciples)
+- [Carroll et al. 2020, CARE Principles for Indigenous Data Governance](https://doi.org/10.5334/dsj-2020-043)
+- [Mia Mingus](https://en.wikipedia.org/wiki/Mia_Mingus)
+- [Patty Berne](https://en.wikipedia.org/wiki/Patricia_Berne)
+- [Alice Wong](https://en.wikipedia.org/wiki/Alice_Wong_(activist))
+- [Ida B. Wells](https://en.wikipedia.org/wiki/Ida_B._Wells)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with a compact YAML consent_eval form and structured consent output definitions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only governance skill; no executable code, install hooks, credential access, persistence mechanism, or hidden data flow.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

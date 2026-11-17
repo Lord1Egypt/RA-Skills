@@ -1,35 +1,58 @@
-## Description: <br>
-Provides agent guidance for scaffolding a Copilot team setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Initializes a multi-agent AI development framework that scaffolds agent roles, hooks, instructions, prompts, planning files, spec-flow directories, and memory templates for a new project.
 
-## Publisher: <br>
-[lrh07819](https://clawhub.ai/user/lrh07819) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lrh07819](https://clawhub.ai/user/lrh07819)
 
-## Use Case: <br>
-Developers and team leads use this skill to create a practical starting structure for Copilot collaboration workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+Developers and engineering teams use this skill when starting a project to scaffold a structured AI-assisted workflow with specialized agents, automated hooks, planning files, and task execution prompts.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.1 (source: target metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Automatic hooks can read prior session transcripts and inject recovered or local context into future agent sessions.
+
+Mitigation: Review the installed hooks before enabling them and remove transcript catchup or context injection where project privacy rules do not allow it.
+
+Risk: Global memory creation can affect future projects beyond the repository where the scaffold is installed.
+
+Mitigation: Approve global memory files manually and limit them to non-sensitive workflow rules.
+
+Risk: Validation hooks and AGENTS.md lifecycle gates can block or redirect normal development workflows.
+
+Mitigation: Install the scaffold in a test branch first, audit the hook configuration, and tune or disable gates that do not match the team's workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrh07819/skills/copilot-team-scaffold)
+- [Visual Studio Code Copilot hooks documentation](https://code.visualstudio.com/docs/copilot/customization/hooks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with generated project files, hook configurations, scripts, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a project scaffold under .github/, docs/sessions/, .spec-flow/, and optional memory files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

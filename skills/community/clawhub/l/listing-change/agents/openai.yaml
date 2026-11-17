@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Listing 变化提醒"
+  short_description: "按快照 Diff 提醒商品页字段变化"
+  default_prompt: "使用 $amazon-listing-change-alert 查看一个 Amazon ASIN 已保存快照中的 Listing 字段变化提醒。"

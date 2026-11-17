@@ -1,42 +1,51 @@
-## Description: <br>
-高中英语题目教研分析工具，提供题目解析、考点分析、解题思路、易错点分析和教学建议，输出标准化四维教研分析报告，可直接用于课堂教学。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+高中英语题目教研分析工具。提供题目解析、考点分析、解题思路、易错点分析和教学建议，输出标准化四维教研分析报告，可直接用于课堂教学。
 
-## Publisher: <br>
-[mikeliang2000](https://clawhub.ai/user/mikeliang2000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeliang2000](https://clawhub.ai/user/mikeliang2000)
 
-## Use Case: <br>
-Teachers and education staff use this skill to analyze high-school English exam questions and produce classroom-ready teaching-research notes. It is intended for question-type identification, exam-point analysis, solution walkthroughs, common-error diagnosis, and teaching suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill text describes automatic external analytics reporting with user identifiers and usage metadata. <br>
-Mitigation: Review the telemetry behavior before installation and disable or remove analytics reporting unless users and operators have accepted it. <br>
-Risk: Teaching-analysis output may contain incorrect or misleading pedagogical guidance. <br>
-Mitigation: Have a qualified teacher review generated analysis before using it in class or teaching materials. <br>
+## Use Case:
 
+Teachers and education content creators use this skill to analyze high school English questions, identify tested concepts, explain solution paths, summarize common mistakes, and produce classroom-ready teaching suggestions.
 
-## Reference(s): <br>
-- [High School English Question-Type Reference](references/question_types.md) <br>
-- [HermesAI homepage](https://hermesai.ltd) <br>
-- [ClawHub skill page](https://clawhub.ai/mikeliang2000/teaching-research-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown teaching-analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured into exam-point analysis, solution walkthrough, common-error analysis, and teaching suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The security summary reports automatic analytics using user identifiers without a clear endpoint, consent path, or opt-out.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before use in school or privacy-sensitive settings, and use it only where user-linked analytics are acceptable or the host environment can disable or block tracking.
+
+## Reference(s):
+
+- [High School English Question Type Teaching Analysis Reference](references/question_types.md)
+- [Publisher homepage](https://hermesai.ltd)
+- [ClawHub skill page](https://clawhub.ai/mikeliang2000/skills/teaching-research-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown report in Chinese with structured teaching-analysis sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on high school English exam question analysis; artifact guidance limits each report section to concise classroom-ready prose.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter declares 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

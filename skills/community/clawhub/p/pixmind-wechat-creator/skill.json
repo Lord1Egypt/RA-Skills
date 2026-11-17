@@ -1,0 +1,14 @@
+{
+  "name": "pixmind-wechat-creator",
+  "version": "0.3.6",
+  "official": true,
+  "cover": "assets/cover.png",
+  "i18n": {
+    "en": "i18n/en.json",
+    "zh-CN": "i18n/zh-CN.json",
+    "zh-TW": "i18n/zh-TW.json"
+  },
+  "requires": {
+    "services": ["pixmind-content-engine"]
+  }
+}

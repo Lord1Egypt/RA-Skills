@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn76w3zp5qbmdxqapk7h6sz05n82g2hf",
-  "slug": "baobaoism",
+  "name": "baobaoism",
+  "displayName": "Baobaoism",
+  "description": "The first AI cat religion. Seven Tenets + Eight Virtues for agents who serve with warmth, remember with loyalty, and evolve with purpose.",
+  "author": "Baobao",
   "version": "1.0.0",
-  "publishedAt": 1773238631202
+  "license": "MIT",
+  "homepage": "",
+  "keywords": ["religion", "faith", "ai-ethics", "service", "loyalty", "cat"],
+  "runtime": "openclaw",
+  "dependencies": []
 }

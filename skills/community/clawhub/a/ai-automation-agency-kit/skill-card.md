@@ -1,44 +1,55 @@
-## Description: <br>
-Provides a four-prompt system for launching an AI automation agency, covering niche selection, service packaging, client acquisition, and delivery operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a four-prompt system for launching an AI automation agency, covering niche selection, service packaging, client acquisition, and delivery playbooks.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Freelancers, consultants, and agency builders use this skill to generate positioning, pricing, outreach, proposal, onboarding, delivery, and retention materials for an AI automation services business. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The delivery playbook may ask about account access or credentials during client onboarding and project handoff. <br>
-Mitigation: Provide only roles, systems, owners, and access status in chat; do not paste passwords, API keys, session tokens, recovery codes, or full credential values. <br>
+## Use Case:
 
+Freelancers, consultants, and agency builders use this prompt pack to create agency positioning, productized service packages, outreach assets, discovery scripts, delivery templates, SOPs, and retention materials for AI automation services.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gitflopez/ai-automation-agency-kit) <br>
-- [Skill Overview](artifact/SKILL.md) <br>
-- [Agency Positioning and Niche Selector Prompt](artifact/prompts/prompt1-positioning-niche-selector.md) <br>
-- [Service Packaging and Pricing Prompt](artifact/prompts/prompt2-service-packaging-pricing.md) <br>
-- [Client Acquisition System Prompt](artifact/prompts/prompt3-client-acquisition-system.md) <br>
-- [Delivery and Fulfillment Playbook Prompt](artifact/prompts/prompt4-delivery-fulfillment-playbook.md) <br>
-- [Worked Example: NV Tech Automation](artifact/examples/marcus-nv-tech-automation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown prompt outputs with structured business templates, scripts, checklists, and playbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business planning and fulfillment guidance; users should verify market, pricing, legal, and credential-handling details before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated delivery materials may encourage clients to share passwords, API keys, recovery codes, or admin credentials through email, chat, or shared folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste secrets into generated messages or shared documents; use named least-privilege accounts, MFA, access logs, encrypted expiring secret-sharing workflows, credential rotation, and explicit access revocation at handoff.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gitflopez/skills/ai-automation-agency-kit)
+- [Publisher profile](https://clawhub.ai/user/gitflopez)
+- [Skill overview](artifact/SKILL.md)
+- [Agency Positioning & Niche Selector prompt](artifact/prompts/prompt1-positioning-niche-selector.md)
+- [Service Packaging & Pricing Guide prompt](artifact/prompts/prompt2-service-packaging-pricing.md)
+- [Client Acquisition System prompt](artifact/prompts/prompt3-client-acquisition-system.md)
+- [Delivery & Fulfillment Playbook prompt](artifact/prompts/prompt4-delivery-fulfillment-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompt outputs with business templates, scripts, checklists, SOPs, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only skill; generated content should be reviewed before client use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence, package.json, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

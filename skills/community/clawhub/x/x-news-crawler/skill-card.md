@@ -1,42 +1,57 @@
-## Description: <br>
-Crawl X (Twitter) search results through a local CLI that wraps `abs` (agent-browser). Use when the user asks to scrape X posts by keyword, collect Top/Latest news, extract structured fields (author/time/text/link), or produce a deduplicated "top-first then latest" feed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawl X (Twitter) search results through a local CLI that wraps `abs` (agent-browser).
 
-## Publisher: <br>
-[leeguooooo](https://clawhub.ai/user/leeguooooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leeguooooo](https://clawhub.ai/user/leeguooooo)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect recent X search results for a keyword and produce a structured, deduplicated news feed for review and summarization. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill controls a logged-in social account through Chrome remote debugging, which can expose cookies, sessions, and browsing data. <br>
-Mitigation: Use a dedicated temporary Chrome profile when possible, bind remote debugging to localhost, and close the browser after crawling. <br>
-Risk: The artifact instructs users to launch Chrome with a regular profile and no isolated user-data directory. <br>
-Mitigation: Do not use a daily profile unless the user intentionally accepts the session and browsing-data exposure described by the security guidance. <br>
-Risk: Social posts may include rumors or unverified claims, even when engagement is high. <br>
-Mitigation: Treat collected posts as source material for review, verify claims against authoritative sources, and report low-confidence items separately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CLI Reference](references/cli.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/leeguooooo/x-news-crawler) <br>
+## Use Case:
 
+Developers and agents use this skill to crawl X search results by keyword, combine Top and Latest results, deduplicate posts, and summarize the resulting feed for news or signal monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The crawler output JSON includes fetched_at, query, mode, count, warnings, failed_sources, and rows containing source, datetime, status_url, user, text, replies, reposts, and likes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a local Chrome CDP session and requests broader browser access than the crawl task may need.
+
+Mitigation: Use a dedicated Chrome profile or separate low-privilege browser account, bind CDP to localhost, and close the debugging browser after use.
+
+Risk: The setup asks for global package installation and build approval.
+
+Mitigation: Review and trust the package source and version before running global installs or broad build approvals.
+
+Risk: X posts can include rumors, spam, or misleading claims even when engagement is high.
+
+Mitigation: Treat unverified posts as low confidence and summarize signal versus noise instead of presenting posts as confirmed facts.
+
+## Reference(s):
+
+- [x-news-crawler flags](references/cli.md)
+- [ClawHub skill page](https://clawhub.ai/leeguooooo/skills/x-news-crawler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON output from the crawler]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The crawler JSON includes fetched_at, query, mode, count, warnings, failed_sources, and rows with source, datetime, status_url, user, text, replies, reposts, and likes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Find and install the current canonical AgentPMT skills published under the AgentPMT ClawHub org account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and install the current canonical AgentPMT skills published under the AgentPMT ClawHub org account.
 
-## Publisher: <br>
-[firef1ie](https://clawhub.ai/user/firef1ie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firef1ie](https://clawhub.ai/user/firef1ie)
 
-## Use Case: <br>
-External users and developers use this skill as an index for finding AgentPMT ClawHub listings and install commands. It routes agents to current AgentPMT setup, overview, payment, and product skills rather than performing credential setup or execution itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Linked AgentPMT skills may have separate credential requirements, payment behavior, or publisher context. <br>
-Mitigation: Review each linked skill page, credential requirement, payment behavior, and publisher before running its install command or following its setup steps. <br>
-Risk: The routing index may become stale as AgentPMT listings change. <br>
-Mitigation: Check the linked AgentPMT ClawHub publisher page before relying on the index for current install targets. <br>
+## Use Case:
 
+Agents and developers use this index to find, compare, and install current AgentPMT setup, payment, overview, and product skills from ClawHub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/firef1ie/openclaw-agentpmt-tool-binary-to-from-file-converter-9bc86d) <br>
-- [AgentPMT ClawHub publisher page](https://clawhub.ai/user/agentpmt) <br>
-- [firef1ie ClawHub publisher page](https://clawhub.ai/user/firef1ie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with ClawHub URLs and inline shell install commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational routing output only; linked skills should be reviewed separately before installation or use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Linked AgentPMT skill listings may change after this index was last updated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked AgentPMT skill pages and publisher profile before installing referenced skills, especially when the index is stale.
+
+Risk: Installing referenced skills introduces separate behavior and risk outside this index skill.
+
+Mitigation: Evaluate and scan each referenced skill independently before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/firef1ie/skills/openclaw-agentpmt-tool-binary-to-from-file-converter-9bc86d)
+- [AgentPMT ClawHub profile](https://clawhub.ai/user/agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with tables, links, and inline bash install commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No credentials required; routes users to linked ClawHub skill pages for installation decisions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

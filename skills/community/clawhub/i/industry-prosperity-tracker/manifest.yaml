@@ -1,0 +1,35 @@
+# ClawHub manifest for 板块景气度查询
+name: industry-prosperity-tracker
+display_name: 板块景气度查询
+version: 2.0.0
+description: >
+  跟踪任意行业景气度，用 A 股龙头股财务数据 + 宏观指标
+  （PMI/PPI/进出口）计算综合景气评分（0-100），判断行业处于
+  上行周期、下行周期还是拐点区域。支持内置行业（半导体、医药、
+  新能源、消费品）和任意自定义行业。
+author: independent-developer
+category: finance
+tags:
+  - industry-research
+  - macro-data
+  - stock-analysis
+  - prosperity-cycle
+  - 行业研究
+  - 宏观数据
+  - 景气周期
+triggers:
+  - 行业景气度
+  - 景气跟踪
+  - 景气分
+  - 行业周期
+  - prosperity tracker
+  - industry cycle
+  - boom indicator
+requirements:
+  python: ">=3.10"
+  packages:
+    - akshare
+permissions:
+  - read_files
+  - write_files
+  - run_scripts

@@ -1,43 +1,59 @@
-## Description: <br>
-QVeris helps agents discover API tools by capability and call selected tools for structured data or external capabilities using a QVERIS_API_KEY. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QVeris helps agents discover specialized API tools by capability and call selected tools for structured data, media, document, translation, and other external workflows using QVERIS_API_KEY.
 
-## Publisher: <br>
-[linfangw](https://clawhub.ai/user/linfangw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linfangw](https://clawhub.ai/user/linfangw)
 
-## Use Case: <br>
-External developers and agents use this skill to find API tools by capability, inspect candidates, and call a selected QVeris tool for structured data, media, extraction, translation, OCR, TTS, or similar external capabilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requests to QVeris and may invoke downstream external tools. <br>
-Mitigation: Install only when QVeris and relevant downstream providers are approved for the intended data; avoid confidential inputs unless that approval exists. <br>
-Risk: The QVERIS_API_KEY can authorize external tool discovery and execution. <br>
-Mitigation: Use a dedicated API key, store it in the environment, and monitor usage or billing. <br>
-Risk: Discovery finds API tools by capability, not factual answers, so poor queries or parameters can select the wrong tool or produce misleading results. <br>
-Mitigation: Use English capability descriptions, inspect candidate parameters, validate returned data, and fall back to web search for factual or qualitative questions. <br>
+## Use Case:
 
+Developers and agents use this skill to find API tools by capability, evaluate candidates, and call selected QVeris-backed tools for structured data or external processing tasks. It is suited for workflows that need tool discovery before execution rather than direct factual answering.
 
-## Reference(s): <br>
-- [QVeris](https://qveris.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/linfangw/qveris-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON API responses and shell commands when script execution is available] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires QVERIS_API_KEY; QVeris calls external APIs and large results may be returned as truncated content with a full-content URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Relevant task details and tool-call parameters are sent to QVeris under the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable under the applicable QVeris account and data handling expectations.
+
+Risk: Secrets or sensitive personal, medical, financial, or proprietary data could be included in discovery queries or tool parameters.
+
+Mitigation: Avoid sending sensitive data unless the specific use is approved for the QVeris account and workflow.
+
+Risk: Discovery identifies API tools by capability and does not directly answer factual questions.
+
+Mitigation: Use QVeris discovery for tool selection, then call the selected tool or use web search for factual and qualitative information needs.
+
+## Reference(s):
+
+- [QVeris Homepage](https://qveris.ai)
+- [ClawHub Skill Page](https://clawhub.ai/linfangw/skills/qveris-test)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/linfangw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires QVERIS_API_KEY and sends QVeris discovery queries and tool-call parameters to qveris.ai.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

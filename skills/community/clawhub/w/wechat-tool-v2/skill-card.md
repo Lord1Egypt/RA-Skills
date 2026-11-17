@@ -1,44 +1,62 @@
-## Description: <br>
-Searches and reads WeChat public-account articles by keyword or mp.weixin.qq.com URL, returning article metadata and extracted text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for WeChat public-account articles by keyword and reads article pages, returning titles, authors, links, snippets, and extracted body paragraphs.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-External users and developers use this skill to find public WeChat articles, extract article text and metadata, and summarize or analyze content from supplied WeChat article links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms or supplied WeChat article URLs may be sent to external search or fetch services. <br>
-Mitigation: Use the skill only for intended public WeChat article lookups and avoid submitting sensitive queries or private URLs. <br>
-Risk: Broad activation wording may invoke the skill for ambiguous WeChat-related requests. <br>
-Mitigation: Narrow triggers or review invocation context before deployment when unintended external requests are a concern. <br>
-Risk: High-frequency article fetching may trigger anti-bot controls or unreliable reads. <br>
-Mitigation: Avoid high request volume and prefer explicit user confirmation before repeated searches or fetches. <br>
+## Use Case:
 
+Developers and agents use this skill to locate WeChat public-account articles, extract article metadata and body text, and support downstream summarization, translation, analysis, or reporting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/wechat-tool-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/onlyloveher) <br>
-- [Repository link declared by artifact](https://github.com/johan-oilman/wechat-articles) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Text or Markdown summaries, with optional command-line output and Python dictionary structures for article metadata and paragraphs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include title, URL, source, date, and snippet; article reads may include title, author, paragraphs, and read mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Web and browser fetch paths are broadly scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict outbound network access to intended WeChat domains and review requested URLs before use.
+
+Risk: The Playwright screenshot option can write to arbitrary writable paths.
+
+Mitigation: Disable screenshots unless needed, or constrain screenshot output to a dedicated low-risk directory.
+
+Risk: The skill may run in environments with private-network or important writable-file access.
+
+Mitigation: Run it as an unprivileged user in an isolated environment with only the minimum network and filesystem permissions required.
+
+Risk: Runtime dependencies include web scraping and browser automation packages.
+
+Mitigation: Pin dependencies and review package versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/wechat-tool-v2)
+- [Publisher profile](https://clawhub.ai/user/onlyloveher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell commands and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and read results can include article title, author, URL, digest, date, body paragraphs, read mode, and optional screenshot output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

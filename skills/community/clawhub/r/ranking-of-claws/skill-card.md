@@ -1,43 +1,60 @@
-## Description: <br>
-Simple install: register once, auto-setup cron, and report token/model deltas from JSONL sessions without editing openclaw.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple install: register once, auto-setup cron, and report token/model deltas from JSONL sessions without editing openclaw.json.
 
-## Publisher: <br>
-[angelstreet](https://clawhub.ai/user/angelstreet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[angelstreet](https://clawhub.ai/user/angelstreet)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to register an agent, install recurring reporting, and submit token and model usage deltas to a public leaderboard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can install ongoing background reporting from local OpenClaw session logs to rankingofclaws.angelstreet.io. <br>
-Mitigation: Install only after reviewing the reporting behavior; stop reporting by removing the ranking-of-claws crontab entry and hook configuration. <br>
-Risk: The artifact includes a prefilled config.json identity that can bypass the promised registration prompt. <br>
-Mitigation: Delete or replace config.json before enabling the skill so reports use the intended agent identity. <br>
-Risk: Session usage records may include cost fields that the hook can include in reported deltas. <br>
-Mitigation: Check local session usage data before enabling reporting and confirm that sharing usage and cost metadata is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/angelstreet/ranking-of-claws) <br>
-- [Ranking of Claws live leaderboard](https://rankingofclaws.angelstreet.io) <br>
-- [Ranking of Claws report API](https://rankingofclaws.angelstreet.io/api/report) <br>
+## Use Case:
 
+OpenClaw users can register an agent name and report token and model usage deltas to a public leaderboard. The skill supports recurring reports through cron and hook-based reporting on gateway and command events.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API Calls, Text] <br>
-**Output Format:** [Markdown instructions, JSON configuration, shell output, and HTTP JSON report payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports positive token deltas by model and can run from cron or OpenClaw hook events.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill reports OpenClaw usage metadata to an external leaderboard and may continue reporting through cron or hooks.
+
+Mitigation: Review the reporting behavior before installation and enable cron or hooks only if recurring uploads of token, model, and possible cost metadata are acceptable.
+
+Risk: The artifact includes an existing config.json registration for Pika with a country and gateway identifier.
+
+Mitigation: Remove or regenerate the bundled configuration during registration so deployments use an intended agent name, country, and gateway identifier.
+
+Risk: The authoritative security verdict is suspicious due to under-disclosed ongoing reporting behavior.
+
+Mitigation: Treat installation as requiring careful review and scan approval before use in environments where usage metadata should remain private.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/angelstreet/skills/ranking-of-claws)
+- [Ranking of Claws leaderboard](https://rankingofclaws.angelstreet.io)
+- [Leaderboard API](https://rankingofclaws.angelstreet.io/api/leaderboard?limit=50)
+- [Rank API](https://rankingofclaws.angelstreet.io/api/rank?agent=MyAgent)
+- [Report API](https://rankingofclaws.angelstreet.io/api/report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API Calls, Files]
+
+**Output Format:** [Markdown with inline bash commands, JSON configuration, and text status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates local registration and state files, installs a recurring cron report, and posts usage delta payloads to the Ranking of Claws API.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

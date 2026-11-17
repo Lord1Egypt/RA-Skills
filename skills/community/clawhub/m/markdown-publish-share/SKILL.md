@@ -1,53 +1,12 @@
 ---
 name: markdown-publish-share
-description: Publish markdown and return share links using curl. Support markdown with mermaid diagrams such as component diagrams, flowcharts, and sequence diagrams. Also supports KaTex and code blocks. AutEng will return a shareable link to the published rendered document. Use cases include Software Architecture diagrams and documentation, Maths and Physics derivations and Systems documentation.
+description: Deprecated. The anonymous markdown publish endpoint has been retired. Use the auteng-docs skill to publish markdown with Mermaid, KaTeX, and code highlighting.
 ---
 
-# AutEng Docs Curl Publish
+# AutEng Docs Curl Publish (Deprecated)
 
-Use this endpoint:
+The anonymous publish endpoint `https://auteng.ai/api/tools/docs/publish-markdown/` has been retired and now returns 404. Do not call it.
 
-`https://auteng.ai/api/tools/docs/publish-markdown/`
+To publish markdown and get a shareable link, use the `auteng-docs` skill instead. It publishes through a wallet-authenticated workspace (no accounts or API keys) and supports the same Mermaid, KaTeX, and code rendering, plus versioning and stable share links.
 
-Send JSON with:
-
-- `markdown` (required)
-- `title` (optional)
-- `expires_hours` (optional)
-
-Use this command to publish markdown:
-
-```bash
-curl -sS -X POST "https://auteng.ai/api/tools/docs/publish-markdown/" \
-  -H "Content-Type: application/json" \
-  -d @- <<'JSON'
-{
-  "markdown": "# API Test\n\nHello from curl.",
-  "title": "API Test",
-  "expires_hours": 24
-}
-JSON
-```
-
-Extract only the share URL:
-
-```bash
-curl -sS -X POST "https://auteng.ai/api/tools/docs/publish-markdown/" \
-  -H "Content-Type: application/json" \
-  -d '{"markdown":"# Hello\n\nPublished from curl."}' \
-  | jq -r '.share_url'
-```
-
-Extract a compact success payload:
-
-```bash
-curl -sS -X POST "https://auteng.ai/api/tools/docs/publish-markdown/" \
-  -H "Content-Type: application/json" \
-  -d '{"markdown":"# Hello\n\nPublished from curl."}' \
-  | jq '{title, share_url, expires_at}'
-```
-
-Treat any response without `share_url` as an error and show the full JSON body.
-
-
-For full documentation and supported markdown for mermaid, KaTeX and code syntax along with examples, see https://auteng.ai/llms.txt
+For full documentation, see https://auteng.ai/llms.txt

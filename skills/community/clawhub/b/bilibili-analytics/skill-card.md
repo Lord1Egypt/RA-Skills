@@ -1,43 +1,59 @@
-## Description: <br>
-Searches public Bilibili video results for a keyword, extracts video metadata, and generates statistical reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bilibili Analytics searches Bilibili videos by keyword, scrapes public search result data, and generates statistical reports with video, author, playback, comment, and time-distribution summaries.
 
-## Publisher: <br>
-[pcjinglang](https://clawhub.ai/user/pcjinglang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pcjinglang](https://clawhub.ai/user/pcjinglang)
 
-## Use Case: <br>
-Developers, researchers, and social media analysts use this skill to collect public Bilibili search-result metadata for a keyword and produce Markdown statistics reports about authors, posting dates, play counts, and comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Bash/Python scripts and an external browser automation tool. <br>
-Mitigation: Review the scripts before execution, confirm agent-browser is installed, and use modest page counts. <br>
-Risk: Reports are based on public Bilibili pages whose contents can change over time. <br>
-Mitigation: Treat generated analysis as a snapshot of the collection time rather than a permanent dataset. <br>
-Risk: The skill creates local JSON and report files. <br>
-Mitigation: Run it in a working directory where generated files can be reviewed, retained, or removed intentionally. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to collect public Bilibili search results for a keyword, analyze video activity and engagement, and produce a Markdown report for trend or topic review.
 
-## Reference(s): <br>
-- [Usage Examples](references/usage-examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/pcjinglang/bilibili-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports and JSON data files, with shell commands for browser scraping and analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local data and report files from public Bilibili search pages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact package.json) <br>
+Risk: The skill uses browser automation to contact Bilibili and scrape public search result pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use conservative page counts and delays, respect Bilibili access policies, and stop if pages show blocking or anti-automation responses.
+
+Risk: Generated Markdown reports can include public web content such as titles and author names from scraped pages.
+
+Mitigation: Review generated Markdown before sharing or rendering it in trusted contexts.
+
+Risk: Global agent-browser installation or elevated install commands can broaden local execution risk.
+
+Mitigation: Prefer a pinned, project-local agent-browser installation and do not run install commands with sudo or root privileges.
+
+## Reference(s):
+
+- [Bilibili Analytics skill page](https://clawhub.ai/pcjinglang/skills/bilibili-analytics)
+- [Usage examples](references/usage-examples.md)
+- [Bilibili search endpoint used by the skill](https://search.bilibili.com/all?keyword={keyword})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON data files, and shell/Python command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces timestamped local JSON scrape files and Markdown reports from public Bilibili search result data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, clawhub.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

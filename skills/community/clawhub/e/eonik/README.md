@@ -1,42 +1,68 @@
-# eonik Agent Skill
+<div align="center">
+  <a href="https://www.eonik.ai">
+    <img src="https://www.eonik.ai/logo.svg" alt="eonik" width="160" />
+  </a>
+  <h1>eonik companion skill</h1>
+  <p><strong>Finished, on-brand ads — without the busywork.</strong></p>
+  <p>How Claude should work once it can see your eonik account: read first, draft from receipts, never spend. You approve every cut.</p>
+  <p>
+    <a href="https://www.eonik.ai">Website</a> ·
+    <a href="https://www.eonik.ai/download">Download for Mac</a> ·
+    <a href="https://github.com/eonik-ai/eonik-mcp">eonik-mcp</a> ·
+    <a href="https://www.eonik.ai/mcp">Setup</a>
+  </p>
+  <p>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT--0-18181B?style=flat-square" alt="MIT-0 license" /></a>
+    <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"><img src="https://img.shields.io/badge/Claude-Agent%20Skill-d97706?style=flat-square" alt="Claude Agent Skill" /></a>
+  </p>
+  <p>
+    <strong>English</strong> ·
+    <a href="docs/readme/README.es.md">Español</a> ·
+    <a href="docs/readme/README.pt-BR.md">Português</a> ·
+    <a href="docs/readme/README.fr.md">Français</a> ·
+    <a href="docs/readme/README.hi.md">हिन्दी</a> ·
+    <a href="docs/readme/README.zh-CN.md">简体中文</a> ·
+    <a href="docs/readme/README.ja.md">日本語</a> ·
+    <a href="docs/readme/README.ko.md">한국어</a>
+  </p>
+</div>
 
-The official eonik AI Agent Skill. Transform your generic AI into a world-class performance marketing agent equipped with the full power of the eonik Intelligence Engine.
+---
 
-## Architecture: Universal Compatibility
-This skill uses a **CLI-first architecture**. It ships with a lightweight, dependency-free Python wrapper (`scripts/cli.py`) that acts as a secure bridge to the eonik REST APIs. This guarantees that **any AI agent on any platform** can use eonik capabilities simply by running standard terminal commands, without needing to natively support MCP.
+eonik is a **Mac app for making ads**. This repo is **not** the Mac app and **not** the connector.
 
-## Features
-- 💸 **Analyze & Audit:** Stop budget leaks and halt creative decay across Meta, TikTok, and Google.
-- 🧠 **Ideate & Research:** Discover cultural trends and reverse-engineer competitor ad strategies via the Genome Matrix.
-- 🎬 **Produce & Generate:** Automatically generate highly-converting creative briefs, scripts, and video orchestration runs.
-- 🚀 **Deploy & Scale:** Launch new ad variations directly into your ad accounts.
+- **[eonik-mcp](https://github.com/eonik-ai/eonik-mcp)** connects Claude, Cursor, or Codex to your account.
+- **This skill** is the playbook those hosts load: ground in the brand, use the research archive, remember what you said, write briefs from facts. **Never launch ads or move budget.**
 
-## Quick Start
+## What it covers
 
-### 1. Requirements
-You only need an eonik API key and a standard Python 3 installation. No external packages required!
-```bash
-export EONIK_API_KEY="your_api_key_here"
-```
+| Goal | How |
+|------|-----|
+| Orient | Brand + notes you already saved |
+| Research | Competitor archive, ad breakdowns, how surviving ads are built |
+| Remember | Save your words verbatim |
+| Produce | Receipts in, **you** (or the assistant) author the brief |
 
-### 2. Run the CLI
-Your agent will automatically run these commands for you, but you can also test them manually:
-```bash
-# Check for budget leaks over the last 14 days
-python3 scripts/cli.py run_budget_audit --days 14
+There is no “deploy to Meta.” Upload stays a human click.
 
-# Discover TikTok trends
-python3 scripts/cli.py discover_trends --platform tiktok --query "skincare"
-```
+## Install
 
-### 3. Agent Instructions
-See `SKILL.md` for the exact instructions your AI agent follows to route requests and interact with the CLI.
+Clone into the host’s skills folder, or zip with **`SKILL.md` at the archive root**.
 
-## MCP Support (Optional)
-If you are using a modern AI agent that natively supports the Model Context Protocol (MCP) like Claude Desktop or Cursor, you can skip the CLI entirely! Just plug in our SSE endpoint into your client configuration:
+Connection is separate: install [eonik-mcp](https://github.com/eonik-ai/eonik-mcp) (or the hosted connector). This skill does not hold API keys.
 
-**Endpoint:** `https://api.eonik.ai/mcp/sse`
+Tool names for agents: [reference.md](reference.md).
 
-## Security
-- **Zero Heavy Dependencies:** We strictly use Python's standard library (`urllib`, `json`, `argparse`).
-- **Enterprise DLP Grade:** Your `EONIK_API_KEY` is strictly used for authentication and never logged.
+## The eonik family
+
+| | |
+|---|---|
+| Mac app | [Download](https://www.eonik.ai/download) · editor free · macOS 15+ · Apple silicon |
+| Connector | [eonik-mcp](https://github.com/eonik-ai/eonik-mcp) |
+| This playbook | [eonik-mcp-skill](https://github.com/eonik-ai/eonik-mcp-skill) |
+| Homebrew | [homebrew-tap](https://github.com/eonik-ai/homebrew-tap) |
+| Save ads you see | [Chrome extension](https://chromewebstore.google.com/detail/eonik/ikjbopcpohlogfbccbpcoglefjlbdcie) |
+
+## License
+
+MIT-0 — see [LICENSE](LICENSE).

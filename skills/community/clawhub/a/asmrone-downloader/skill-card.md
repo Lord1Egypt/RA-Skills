@@ -1,42 +1,58 @@
-## Description: <br>
-从 ASMR.one 下载音频作品，自动压缩，并生成发送列表。使用场景：下载 RJ 编号的 ASMR 音频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads ASMR.one audio works by RJ identifier, compresses audio for QQ-compatible sharing, and generates send lists and collection records.
 
-## Publisher: <br>
-[zx0018](https://clawhub.ai/user/zx0018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zx0018](https://clawhub.ai/user/zx0018)
 
-## Use Case: <br>
-External users and developers use this skill to search ASMR.one by keyword or RJ identifier, download audio works, compress them for QQ-compatible sharing, import local audio when offline, and maintain a local collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The filename-obfuscation option can obscure media names and may conflict with platform moderation expectations. <br>
-Mitigation: Review the skill before installing and avoid the obfuscation mode unless there is a legitimate local privacy need and the platform-policy implications are understood. <br>
-Risk: Downloaded or compressed media may carry platform-policy or content-rights implications when uploaded or shared. <br>
-Mitigation: Use the normal download and compression workflow only with media you are authorized to access and share, and check target platform rules before upload. <br>
+## Use Case:
 
+External users and developers use this skill to search ASMR.one, download ASMR audio by RJ identifier, compress audio for QQ-compatible transfer, import local audio when offline, and maintain collection records.
 
-## Reference(s): <br>
-- [ASMR.one](https://asmr.one) <br>
-- [ClawHub release page](https://clawhub.ai/zx0018/asmrone-downloader) <br>
-- [Publisher profile](https://clawhub.ai/user/zx0018) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local files such as audio files, manifests, configuration JSON, and collection records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded or imported audio files, compressed derivatives, QQ media path listings, manifest JSON, and local collection metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Remote-download and path handling may write outside the intended folder or consume local and network resources unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated output directory under a restricted user or workspace, monitor disk usage during downloads, and avoid running the tool on sensitive networks.
+
+Risk: Unexpected identifiers or local media inputs can broaden file and network activity.
+
+Mitigation: Only pass RJ identifiers matching RJ plus digits and review untrusted local media files before importing or compressing them.
+
+Risk: The obfuscation option changes filenames and can make review or cleanup harder.
+
+Mitigation: Use obfuscation only when needed and preserve the generated name map with the downloaded files.
+
+## Reference(s):
+
+- [ASMR.one](https://asmr.one)
+- [ClawHub skill page](https://clawhub.ai/zx0018/skills/asmrone-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, file paths, and generated audio or manifest files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses RJ identifiers, optional proxy and output-directory configuration, ffmpeg-based compression, and local collection metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

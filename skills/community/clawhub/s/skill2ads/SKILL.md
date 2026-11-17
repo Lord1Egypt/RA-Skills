@@ -25,7 +25,7 @@ export APIFY_TOKEN=your_apify_token
 export OPENAI_API_KEY=your_openai_key
 export CIVIC_AUTH_ENABLED=false
 export CIVIC_CLIENT_ID=your_civic_client_id
-export CIVIC_ACCESS_TOKEN=your_civic_access_token
+export CIVIC_ACCESS_TOKEN=eyJ...
 ```
 
 ## Output
@@ -36,4 +36,3 @@ Meta export behavior:
 - Anyone can generate and review ads.
 - If `CIVIC_AUTH_ENABLED=true`, exporting selected ads to Meta requires a valid Civic token.
 - For CLI demos, set `CIVIC_ACCESS_TOKEN` to skip token prompts.
-- Never commit real API keys or Civic access tokens to the repository.

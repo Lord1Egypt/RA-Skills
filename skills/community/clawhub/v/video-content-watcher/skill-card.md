@@ -1,41 +1,55 @@
-## Description: <br>
-Extract core content and generate structured analysis reports from YouTube, Bilibili, or local video files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract core content and generate structured analysis reports from YouTube, Bilibili, or local video files.
 
-## Publisher: <br>
-[franklinyung](https://clawhub.ai/user/franklinyung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[franklinyung](https://clawhub.ai/user/franklinyung)
 
-## Use Case: <br>
-Developers and agents use this skill to extract transcripts from YouTube, Bilibili, or local videos and turn them into concise structured Markdown analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill imports an unbundled local video-reader project while processing API keys and potentially private transcripts. <br>
-Mitigation: Review the separate video-reader project before installing or running the skill, and only provide MiniMax or Whisper credentials in trusted environments. <br>
-Risk: Video URLs, recordings, transcripts, and derived analysis may contain private, proprietary, or regulated information. <br>
-Mitigation: Avoid private meetings, proprietary recordings, regulated content, and sensitive URLs unless sharing derived content with configured services is acceptable. <br>
+## Use Case:
 
+Developers and content analysts use this skill to extract transcripts from online or local videos and produce structured Markdown summaries, key takeaways, viewpoints, pros and cons, and audience guidance.
 
-## Reference(s): <br>
-- [Video Reader Technical Reference](references/api_details.md) <br>
-- [ClawHub release page](https://clawhub.ai/franklinyung/video-content-watcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with summary, key takeaways, viewpoints, pros, cons, and target audience] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also print CLI usage or error text when required inputs, API keys, or dependencies are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill imports implementation code from a hard-coded local video-reader project path that is not bundled with the release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that local project is trusted, reviewed, and present at the expected path.
+
+Risk: Video, transcript, or raw text content may be sent to third-party MiniMax or OpenAI APIs depending on configuration.
+
+Mitigation: Avoid private, regulated, or confidential videos unless local transcription is confirmed and third-party data handling is acceptable.
+
+## Reference(s):
+
+- [Video Reader Technical Reference](artifact/references/api_details.md)
+- [MiniMax API endpoint](https://api.minimaxi.com/v1)
+- [ClawHub skill page](https://clawhub.ai/franklinyung/skills/video-content-watcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report with optional shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires video source input or raw text and configured MiniMax and optional Whisper credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

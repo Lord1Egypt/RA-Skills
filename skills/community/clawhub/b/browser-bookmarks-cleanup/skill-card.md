@@ -1,41 +1,57 @@
-## Description: <br>
-Analyze, organize, and clean browser bookmarks on macOS using on-disk bookmark and history files. Detects duplicates, stale bookmarks, tracking parameters, and folder issues. All writes are opt-in with backup and rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze, organize, and clean browser bookmarks on macOS using on-disk bookmark and history files. Detects duplicates, stale bookmarks, tracking parameters, and folder issues. All writes are opt-in with backup and rollback.
 
-## Publisher: <br>
-[makkoncept](https://clawhub.ai/user/makkoncept) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[makkoncept](https://clawhub.ai/user/makkoncept)
 
-## Use Case: <br>
-Developers and end users use this skill to inspect local Chrome and Firefox bookmark data, identify cleanup candidates, preview a conservative cleanup plan, and apply approved changes with backup and rollback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local browser bookmarks and history, which can contain private URLs, account labels, and browsing patterns. <br>
-Mitigation: Keep analysis output and plan files private, and install only when local bookmark and history inspection is acceptable. <br>
-Risk: Approved cleanup plans can delete, move, rename, or update bookmarks. <br>
-Mitigation: Run a dry-run first, review every planned operation, require explicit approval before writes, close the browser before using write mode, and retain the generated backup for rollback. <br>
-Risk: Cleanup recommendations may misclassify bookmarks as duplicates, stale, weakly named, or safe to update. <br>
-Mitigation: Treat findings as review prompts, not automatic decisions, and apply only operations the user has confirmed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cleanup Plan JSON Schema](references/plan-schema.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect local Chrome and Firefox bookmarks, identify duplicate, stale, weak, or poorly organized entries, and prepare conservative cleanup plans before making any changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON analysis or cleanup plan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local analysis reports, plan previews, dry-run results, and opt-in bookmark file updates with backup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive browser data, including local bookmark paths, URLs, history-derived visit signals, and possible account names or emails in discovery output.
+
+Mitigation: Review outputs locally, avoid including discovery results in shared logs or transcripts, and redact profile or account details before sharing reports.
+
+Risk: Cleanup plans can delete, move, rename, or update bookmarks if committed.
+
+Mitigation: Review generated plans carefully, run dry-runs first, separately export or back up bookmarks, close the browser before writing, and use the generated backup file for rollback.
+
+Risk: Duplicate, stale, or weak-name findings may be incomplete or misleading because they are based on local files and history availability.
+
+Mitigation: Treat findings as review candidates, verify important bookmarks manually, and prefer conservative operations when approving a plan.
+
+## Reference(s):
+
+- [Cleanup Plan JSON Schema](references/plan-schema.md)
+- [ClawHub skill page](https://clawhub.ai/makkoncept/skills/browser-bookmarks-cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON analysis, plan, and result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only analysis by default; write operations require an explicit --write flag and produce a backup path when committed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

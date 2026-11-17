@@ -1,47 +1,56 @@
-## Description: <br>
-Fetches Hong Kong Observatory weather data, forecasts, and warning signals and formats reports for OpenClaw and Discord-oriented workflows. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Fetches Hong Kong Observatory weather data, forecasts, and warning signals and formats weather updates for OpenClaw and Discord.
 
-## Publisher: <br>
-[firenai3424](https://clawhub.ai/user/firenai3424) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[firenai3424](https://clawhub.ai/user/firenai3424)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to retrieve Hong Kong current weather, forecasts, and warning information and publish concise bilingual or Traditional Chinese weather updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing to the wrong skill directory or overwriting an existing skill could affect an OpenClaw workspace. <br>
-Mitigation: Verify the install path before running the installer and review overwrite prompts before continuing. <br>
-Risk: Discord or scheduled posting can send weather updates to an unintended channel if configured incorrectly. <br>
-Mitigation: Enable Discord posting only for the intended channel and review channel IDs and posting intervals before use. <br>
-Risk: HKO weather data has attribution, disclaimer, and non-commercial-use requirements described in the artifact documentation. <br>
-Mitigation: Keep the HKO attribution and disclaimer in generated reports and obtain the required permission before commercial exploitation of HKO data. <br>
-Risk: Public weather API responses may be delayed, unavailable, or time-sensitive. <br>
-Mitigation: Use the documented timeout, retry, and 10-15 minute caching guidance, and include update times in displayed weather reports. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to retrieve Hong Kong weather conditions, forecasts, and warning signals, with Traditional Chinese output suitable for Discord weather updates.
 
-## Reference(s): <br>
-- [ClawHub HKO Weather listing](https://clawhub.ai/firenai3424/hko-weather) <br>
-- [HKO Open Data Portal](https://www.hko.gov.hk/tc/abouthko/opendata_intro.htm) <br>
-- [HKO Open Data API Documentation](https://www.hko.gov.hk/tc/weatherAPI/doc/files/HKO_Open_Data_API_Documentation.pdf) <br>
-- [DATA.GOV.HK HKO Datasets](https://data.gov.hk/tc-datasets/provider/hk-hko) <br>
+### Deployment Geography for Use:
 
+Global; weather coverage is Hong Kong.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown weather reports, command examples, configuration snippets, and JSON from the fetch script when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Weather reports may include Traditional Chinese or English text, Hong Kong time, Celsius temperatures, HKO attribution, and the HKO disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/clawhub.json) <br>
+Risk: Optional Discord posting, cron jobs, and auto-refresh settings can send weather messages externally on a schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Discord channel, auto_post setting, cron entries, and refresh interval before enabling scheduled posting.
+
+Risk: HKO weather data is subject to separate attribution, disclaimer, and non-commercial-use terms described in the artifacts.
+
+Mitigation: Keep HKO attribution and disclaimer text in displayed outputs and confirm intended use against HKO terms before using the data commercially.
+
+## Reference(s):
+
+- [HKO Weather Skill on ClawHub](https://clawhub.ai/firenai3424/skills/hko-weather)
+- [HKO Open Data Portal](https://www.hko.gov.hk/tc/abouthko/opendata_intro.htm)
+- [HKO Open Data API Documentation](https://www.hko.gov.hk/tc/weatherAPI/doc/files/HKO_Open_Data_API_Documentation.pdf)
+- [DATA.GOV.HK HKO Datasets](https://data.gov.hk/tc-datasets/provider/hk-hko)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown weather reports, JSON API responses, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Traditional Chinese and English weather output; optional Discord posting and scheduled refresh configuration]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

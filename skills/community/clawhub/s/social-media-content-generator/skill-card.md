@@ -1,40 +1,54 @@
-## Description: <br>
-Generates platform-tailored social media posts from a blog post, URL, or topic for Twitter/X, LinkedIn, Instagram, and Facebook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates platform-optimized social media drafts from user-provided blog posts, URLs, topics, or ideas for Twitter/X, LinkedIn, Instagram, and Facebook.
 
-## Publisher: <br>
-[noahcraft-open](https://clawhub.ai/user/noahcraft-open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noahcraft-open](https://clawhub.ai/user/noahcraft-open)
 
-## Use Case: <br>
-Marketers, founders, creators, and content teams use this skill to repurpose source material into channel-specific posts, captions, threads, hashtags, and calls to action. It supports multi-platform content planning and product or service promotion from a single content source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review evidence notes that a full artifact content review was unavailable in that environment. <br>
-Mitigation: Inspect the skill text and install metadata before installation, and provide credentials or sensitive local data only when the skill clearly explains why they are needed. <br>
-Risk: Generated social posts can contain inaccurate, unsupported, or misleading promotional claims if the source material is incomplete. <br>
-Mitigation: Review generated copy against the source material and applicable brand, legal, and platform requirements before publishing. <br>
+## Use Case:
 
+Marketing teams, creators, and agents use this skill to repurpose source content into channel-ready social media drafts across major platforms. It is suited for content reuse, product promotion, and weekly content planning.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/noahcraft-open/social-media-content-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style social media copy organized by platform sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific length, tone, hashtag, and call-to-action guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated posts may include inaccurate claims, unsuitable tone, or missing disclosures for the user's publishing context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit every draft for accuracy, brand fit, required disclosures, and audience expectations before publishing.
+
+Risk: Platform-specific length, hashtag, and formatting guidance may not match current platform rules or campaign requirements.
+
+Mitigation: Check drafts against the target platform's current rules and the campaign brief before scheduling or posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/noahcraft-open/skills/social-media-content-generator)
+- [Publisher profile](https://clawhub.ai/user/noahcraft-open)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown social media drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific sections for Twitter/X threads, LinkedIn posts, Instagram captions, Facebook posts, calls to action, and hashtags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

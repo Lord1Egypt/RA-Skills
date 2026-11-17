@@ -1,44 +1,63 @@
-## Description: <br>
-Manage Cursor CLI tasks via tmux with security hardening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Cursor CLI tasks via tmux with security hardening.
 
-## Publisher: <br>
-[brucezhu888](https://clawhub.ai/user/brucezhu888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucezhu888](https://clawhub.ai/user/brucezhu888)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to start, monitor, guide, and stop Cursor CLI coding tasks in tmux sessions. It supports long-running development work, status checks, follow-up instructions, and environment diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run trusted background agent commands through a shell and keep authenticated tmux sessions alive. <br>
-Mitigation: Install it only on trusted development machines and repositories where Cursor is allowed to access code, review task text and session names carefully, and clean up tmux sessions when finished. <br>
-Risk: Use on production systems, shared machines, or secret-heavy workspaces may expose sensitive code or credentials through agent execution or captured tmux output. <br>
-Mitigation: Avoid those environments for normal use; prefer a container or another isolated environment for sensitive work. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to start, monitor, control, and stop Cursor CLI coding tasks in tmux from OpenClaw workflows, including long-running refactors, reviews, and diagnostics.
 
-## Reference(s): <br>
-- [ClawHub Use Cursor release page](https://clawhub.ai/brucezhu888/use-cursor) <br>
-- [OpenClaw skills homepage](https://github.com/openclaw/skills) <br>
-- [Cursor documentation](https://cursor.com/docs) <br>
-- [tmux usage guide](https://github.com/tmux/tmux/wiki) <br>
-- [OpenClaw ACP documentation](https://docs.openclaw.ai/cli/acp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured tool responses and captured tmux text, often with shell command snippets or status data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include session names, task status, command output, and redacted diagnostic text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata; artifact frontmatter and package metadata report 1.0.4) <br>
+Risk: Broad terminal-control behavior can affect local tmux sessions or expose workspace output when used on sensitive machines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, preferably in a container or disposable development environment, and avoid machines with valuable secrets or unrelated tmux work.
+
+Risk: Normal operation can run Cursor through tmux with access to the working environment.
+
+Mitigation: Prefer isolated mode for sensitive projects and review task strings before sending them to a running session.
+
+Risk: Installer guidance may involve remote shell scripts.
+
+Mitigation: Independently verify installer commands before execution instead of following curl-to-bash guidance directly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucezhu888/skills/use-cursor)
+- [ClawHub publisher profile](https://clawhub.ai/user/brucezhu888)
+- [OpenClaw skills homepage](https://github.com/openclaw/skills)
+- [Cursor official docs](https://cursor.com/docs)
+- [Cursor CLI GitHub](https://github.com/getcursor/cursor)
+- [tmux usage guide](https://github.com/tmux/tmux/wiki)
+- [OpenClaw ACP docs](https://docs.openclaw.ai/cli/acp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON-like tool results and plain text status or output captured from tmux]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include session identifiers, task status, tmux output, and diagnostic results.]
+
+## Skill Version(s):
+
+1.0.11 (source: ClawHub release evidence; artifact files report 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

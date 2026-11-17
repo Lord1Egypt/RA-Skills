@@ -1,0 +1,145 @@
+{
+ "_chart_type": "rob",
+ "_command": "python3 scripts/gen_figure.py -t rob -d examples/realworld/evidence_quadas_diagnostic.json -o evidence_quadas_diagnostic.png --cjk",
+ "_note": "真实数据：robvis R 包 data_quadas（QUADAS-2 诊断准确性研究工具示例评估，12 项研究×4 域+Overall）。",
+ "domains": [
+  {
+   "key": "D1",
+   "label": "病例选择"
+  },
+  {
+   "key": "D2",
+   "label": "待评价试验"
+  },
+  {
+   "key": "D3",
+   "label": "参考标准"
+  },
+  {
+   "key": "D4",
+   "label": "流程与时点"
+  }
+ ],
+ "studies": [
+  {
+   "name": "Study 1",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "Low",
+    "Overall": "Low"
+   }
+  },
+  {
+   "name": "Study 2",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 3",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Low",
+    "D3": "Some concerns",
+    "D4": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 4",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "High",
+    "D4": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 5",
+   "judgements": {
+    "D1": "High",
+    "D2": "High",
+    "D3": "Low",
+    "D4": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 6",
+   "judgements": {
+    "D1": "Low",
+    "D2": "High",
+    "D3": "Some concerns",
+    "D4": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 7",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Some concerns",
+    "D3": "Some concerns",
+    "D4": "High",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 8",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Some concerns",
+    "D3": "Low",
+    "D4": "Low",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 9",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "High",
+    "D4": "Low",
+    "Overall": "High"
+   }
+  },
+  {
+   "name": "Study 10",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "No information",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 11",
+   "judgements": {
+    "D1": "Some concerns",
+    "D2": "High",
+    "D3": "Some concerns",
+    "D4": "Some concerns",
+    "Overall": "Some concerns"
+   }
+  },
+  {
+   "name": "Study 12",
+   "judgements": {
+    "D1": "Low",
+    "D2": "Low",
+    "D3": "Low",
+    "D4": "Low",
+    "Overall": "Low"
+   }
+  }
+ ]
+}

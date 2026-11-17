@@ -1,40 +1,56 @@
-## Description: <br>
-Professional career assessment and roadmap platform for cybersecurity professionals seeking personalized guidance and skill development recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional career assessment and roadmap platform for cybersecurity professionals seeking personalized guidance and skill development recommendations.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External career platforms, HR teams, training providers, and cybersecurity professionals use this skill to submit cybersecurity career assessment data and receive personalized skill-gap analysis, roadmap guidance, certification suggestions, target roles, and action items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The assessment request can include career-profile, name, email, company, candidate, or employee information sent to an external assessment service. <br>
-Mitigation: Use pseudonymous identifiers where possible, omit unnecessary personal or employer details, and confirm the provider's privacy practices before submitting sensitive employment information. <br>
+## Use Case:
 
+Career development platforms, security-focused HR teams, training providers, and cybersecurity professionals use this skill to assess experience, skills, interests, and goals, then generate career profiles, gap analysis, roadmaps, and action items.
 
-## Reference(s): <br>
-- [Cybersecurity Career API Docs](https://api.mkkpro.com:8046/docs) <br>
-- [Cybersecurity Career API Route](https://api.mkkpro.com/career/cybersecurity) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, guidance] <br>
-**Output Format:** [JSON career assessment response with profile, roadmap, certification recommendations, target roles, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires session and assessment data; user profile information is optional and should be minimized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and openapi.json) <br>
+Risk: Users may submit personal career and contact details to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only details needed for the career recommendation, omit optional name, email, and company fields unless necessary, and confirm the provider's privacy and retention practices before using real employee or applicant data.
+
+Risk: Career recommendations may influence development plans or HR decisions.
+
+Mitigation: Treat outputs as guidance and review recommendations with appropriate career, training, or security leadership before making consequential decisions.
+
+## Reference(s):
+
+- [OpenAPI specification](artifact/openapi.json)
+- [API Docs](https://api.mkkpro.com:8046/docs)
+- [Kong Route](https://api.mkkpro.com/career/cybersecurity)
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/cybersecurity-career)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON career assessment responses with recommended roadmaps and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include career profile, skills gap analysis, certification recommendations, target roles, and prioritized action items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

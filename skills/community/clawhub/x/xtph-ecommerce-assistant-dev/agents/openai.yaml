@@ -1,0 +1,4 @@
+interface:
+  display_name: "小天铺货AI助手（开发版）"
+  short_description: "测试环境授权、图片找同款和1688铺货"
+  default_prompt: "Use $xtph-ecommerce-assistant-dev for ecommerce intent such as providing a product image or image URL and asking to find 1688 same-style or lower-price sources, select products, preview them, or publish them. Show the first 10 returned products in order with the fixed title, price, and full 1688 link table; provide the optional compact HTML page as a manual link. When asked what this Skill can do, use its fixed seller-facing capability introduction."

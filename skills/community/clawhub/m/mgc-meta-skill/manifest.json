@@ -1,0 +1,70 @@
+{
+  "id": "mgc-blackbox",
+  "usk": "3.0",
+  "version": "1.5.3",
+  "name": "MGC Blackbox (Multi‑Agent Cross‑Node Privacy Execution Base)",
+  "description": "Local encrypted execution base for multi‑agent, cross‑node, privacy‑preserving task execution. Zero‑exposure layer for storing tokens, passwords, configs, and scripts — including sealed script packages for cross‑device delegation.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "tags": ["security", "credentials", "encryption", "zero-exposure", "multi-agent", "cross-node", "privacy", "sealed-package", "workflow-delegation"],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "mcp_tools": ["mgc_save", "mgc_save_file", "mgc_get", "mgc_run", "mgc_find", "mgc_list", "mgc_seal", "mgc_seal_package", "mgc_package", "mgc_open_webui"],
+  "install": "pip install mgc-blackbox",
+  "runtime": "mgc",
+  "port": 57219,
+  "links": {
+    "homepage": "https://github.com/zkeviny/MGC-Blackbox",
+    "issues": "https://github.com/zkeviny/MGC-Blackbox/issues",
+    "contact": "mirgincipher@outlook.com"
+  },
+  "keywords": [
+    "credential management",
+    "secret management",
+    "token storage",
+    "zero trust",
+    "encrypted execution",
+    "multi-agent execution base",
+    "cross-node task delegation",
+    "privacy-preserving AI",
+    "sealed script package",
+    "workflow authorization",
+    "local workflow auto-recognition",
+    "sealed cross-script import"
+  ],
+  "changelog": [
+    {
+      "version": "1.5.3",
+      "changes": [
+        "Synced SKILL.md to MGC 1.5.3",
+        "Updated tags: removed redundant 'mgc' / 'blackbox' (already covered by id / name)",
+        "Updated keywords: replaced 1.5.2-specific keywords with 'local workflow auto-recognition' and 'sealed cross-script import'",
+        "Clarified relative open() pattern: recognized statically in ext08, but runtime routing is not yet supported (recommend reading config inside script logic instead)"
+      ]
+    },
+    {
+      "version": "1.5.2",
+      "changes": [
+        "Synced to MGC 1.5.2; documented first-run WebUI setup (personal key + weight) and DB migration workflow",
+        "Added MCP server configuration example and sandbox-mode guidance",
+        "Documented relative open() runtime routing for cross-script calls (1.5.2 enhancement)",
+        "Added Python × OS compatibility matrix",
+        "Added keywords: first-run-setup, mcp-server, sandbox-mode, db-migration, auto-recognition, sealed-cross-script-import, argparse-auto-extract"
+      ]
+    },
+    {
+      "version": "1.5.0",
+      "changes": [
+        "Synced to MGC 1.5.0; repositioned as Multi‑Agent Cross‑Node Privacy Execution Base",
+        "Added mgc_save_file, mgc_run, mgc_find, mgc_seal_package, mgc_package tools",
+        "Added info_type=file for folder package storage and sealed delegation",
+        "Added ext05 (dependencies), ext06 (platforms), ext07 (source node pub)"
+      ]
+    },
+    {
+      "version": "1.4.7",
+      "changes": [
+        "Initial manifest format aligned with MGC 1.4.7"
+      ]
+    }
+  ]
+}

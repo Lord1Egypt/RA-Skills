@@ -1,40 +1,52 @@
-## Description: <br>
-Auto Doc AI helps developers generate Google Style docstrings for Python code by analyzing code structure with AST-based parsing and LLM assistance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Doc AI uses AST analysis and an LLM to generate Google Style docstrings for Python code.
 
-## Publisher: <br>
-[antonia-sz](https://clawhub.ai/user/antonia-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[antonia-sz](https://clawhub.ai/user/antonia-sz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to analyze Python 3.7+ files or directories and generate or update Google Style docstrings, including dry-run previews and overwrite workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The README includes direct clone and execution steps for an unpinned external repository that is not part of the reviewed artifact.
+
+Mitigation: Prefer the reviewed OpenClaw install path, or pin and verify the exact external repository commit before running it.
+
+Risk: Recursive and overwrite modes can modify many Python source files or replace existing docstrings.
+
+Mitigation: Run in dry-run mode first, review proposed changes, and keep source control or backups available before using overwrite.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to add or refresh Google Style docstrings across individual Python files or directories, with dry-run and overwrite modes for reviewable edits. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Recursive or overwrite runs can replace existing docstrings or modify many Python files. <br>
-Mitigation: Use dry-run first, keep code under version control, and review diffs before applying changes. <br>
-Risk: The clone-and-run option points to an external GitHub repository that is not confirmed by server-resolved provenance. <br>
-Mitigation: Prefer the ClawHub release when possible and separately inspect the external repository before executing it. <br>
+**Output Format:** [Markdown guidance with shell command examples and generated Python docstring code.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Auto Doc AI on ClawHub](https://clawhub.ai/antonia-sz/auto-doc-ai) <br>
+**Other Properties Related to Output:** [May modify Python source files when used outside dry-run mode.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Python docstring code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can modify Python source files when run without dry-run; supports recursive and overwrite modes.] <br>
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

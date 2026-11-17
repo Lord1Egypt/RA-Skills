@@ -37,7 +37,7 @@ Ensure version numbers are consistent in:
 ### 3. Test Skill
 
 ```bash
-cd /Users/chloe/Desktop/task-orchestrator-release
+cd /Users/chloe/Desktop/taREDACTED-SECRET
 
 # Test task identification
 python3 scripts/utils.py identify "Push news every day at 9am"
@@ -61,7 +61,7 @@ ls templates/
 clawhub login
 
 # 2. Navigate to skill directory
-cd /Users/chloe/Desktop/task-orchestrator-release
+cd /Users/chloe/Desktop/taREDACTED-SECRET
 
 # 3. Publish skill
 clawhub publish
@@ -74,7 +74,7 @@ clawhub search task-orchestrator
 
 ```bash
 # 1. Initialize Git repository
-cd /Users/chloe/Desktop/task-orchestrator-release
+cd /Users/chloe/Desktop/taREDACTED-SECRET
 git init
 
 # 2. Add all files

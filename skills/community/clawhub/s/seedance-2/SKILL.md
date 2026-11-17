@@ -1,10 +1,16 @@
 ---
 name: poyo-seedance-1-5-pro
 description: Use PoYo AI Seedance 1.5 Pro for higher-end image-to-video generation through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants longer 4s, 8s, or 12s clips, optional audio, fixed-lens control, broad aspect-ratio support, or PoYo payloads for `seedance-1.5-pro`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/video-series/seedance-1-5-pro", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage": "https://poyo.ai/models/seedance-1-5-pro", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Seedance 1.5 Pro Image-to-Video
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/seedance-1-5-pro>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/seedance-1-5-pro>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill to submit and track PoYo jobs for the Seedance 1.5 Pro family.
 
@@ -47,8 +53,3 @@ When helping with this model family, include:
 - whether reference images are involved
 - returned `task_id` if a request was actually submitted
 - next step: poll status or wait for webhook
-
-Notes:
-
-Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

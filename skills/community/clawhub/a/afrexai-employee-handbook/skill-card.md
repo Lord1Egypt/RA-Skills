@@ -1,39 +1,52 @@
-## Description: <br>
-Generates a comprehensive, customizable employee handbook covering policies, benefits, conduct, leave, work models, compliance, and legal requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a comprehensive, customizable employee handbook covering policies, benefits, conduct, leave, work models, compliance, and legal requirements tailored to company details.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-HR operators, founders, and managers use this skill to draft a customized employee handbook and related review materials for a company's jurisdiction, work model, policies, and benefits. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated HR or legal policy content may be incomplete or inaccurate for a specific jurisdiction or workplace. <br>
-Mitigation: Have HR or legal counsel review the handbook before distributing it to employees. <br>
-Risk: Company details shared with the agent may include sensitive operational or employment information. <br>
-Mitigation: Provide only company details that are appropriate to share with the agent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-employee-handbook) <br>
+## Use Case:
 
+HR, operations, and company leaders use this skill to draft an employee handbook, policy summary, acknowledgment form, and revision log from company size, location, work model, and policy preferences. The output is intended as a drafting aid that should be reviewed by qualified HR or legal counsel before use.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown handbook plus policy summary, acknowledgment form, and update log template.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed by HR or legal counsel before distribution to employees.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated handbook language may be incomplete or incorrect for specific jurisdictions or employment situations.
+
+Mitigation: Have qualified HR or legal counsel review wage and hour, leave, termination, privacy, anti-discrimination, contractor classification, benefits, and other jurisdiction-specific policies before use.
+
+Risk: The artifact includes external promotional links.
+
+Mitigation: Review external links separately before purchasing or adopting any linked products or services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-employee-handbook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown documents with policy summaries, forms, and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a full handbook, one-page policy summary, employee acknowledgment form, and update log template; jurisdiction-specific content requires review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

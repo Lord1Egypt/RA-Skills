@@ -1,41 +1,54 @@
-## Description: <br>
-Helps React frontend developers implement drag-and-drop, virtual scrolling, rich text editing, real-time collaboration, and Canvas/WebGL interactions with library choices and code examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements complex frontend interactions including drag-and-drop, virtual scrolling, rich text editors, real-time collaboration, Canvas/WebGL, and gesture handling.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers and engineers use this skill when building advanced React frontend interactions such as sortable boards, long-list rendering, rich text editors, collaborative editing, and Canvas/WebGL surfaces. It helps choose established libraries and produce implementation guidance, code snippets, shell commands, and configuration notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may trigger on broad UI-development phrases and provide specialized interaction guidance when general frontend assistance was intended. <br>
-Mitigation: Use explicit wording when requesting another skill or general coding help, and review generated guidance before applying it. <br>
+## Use Case:
 
+Developers use this skill to choose libraries and implementation patterns for complex React UI interactions, including drag-and-drop, virtualized lists, rich text editing, real-time collaboration, Canvas/WebGL rendering, and gestures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/complex-interaction) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact metadata homepage](https://github.com/wangzhiming1999/oliver-skill) <br>
-- [Artifact metadata support](https://github.com/wangzhiming1999/oliver-skill/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript/TSX and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides library recommendations, implementation steps, and common pitfalls for React frontend interaction work.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and clawhub.json) <br>
+Risk: The collaboration server example uses an unpinned npx package invocation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin y-websocket to a reviewed version or run it through a lockfile-managed local dependency before use.
+
+Risk: The skill declares a visible model override.
+
+Mitigation: Confirm the selected model's provider, data handling, and billing implications before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/skills/complex-interaction)
+- [Project Homepage](https://github.com/wangzhiming1999/oliver-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with TypeScript, TSX, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Frontend implementation recommendations and key code examples for React projects]
+
+## Skill Version(s):
+
+1.0.0 (source: target metadata, release evidence, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

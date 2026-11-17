@@ -1,45 +1,53 @@
-## Description: <br>
-帮助代理构建、维护、查询、归档和体检由 LLM 持续维护的 Markdown/Obsidian 知识 Wiki。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于构建、维护、查询、归档和体检一个由 LLM 持续维护的 Markdown / Obsidian 知识 Wiki。
 
-## Publisher: <br>
-[fengsusky](https://clawhub.ai/user/fengsusky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengsusky](https://clawhub.ai/user/fengsusky)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to initialize and maintain a Markdown/Obsidian knowledge vault, import source materials, update wiki pages, answer from the wiki, archive durable answers, and audit link, index, coverage, and encoding health. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bulk import, rename, or restructuring work can misplace notes, break wikilinks, or alter user-maintained organization. <br>
-Mitigation: Back up important notes, review proposed move or rename mappings before execution, and run the packaged audit script after changes. <br>
-Risk: Markdown wiki edits can introduce broken links, missing index entries, source coverage gaps, or UTF-8 encoding issues. <br>
-Mitigation: Use scripts/verify_wiki.py to check source coverage, broken wikilinks, index coverage, and UTF-8 issues, then manually review reported issues. <br>
-Risk: Optional web-sourced additions may mix unverified current information into stable knowledge pages. <br>
-Mitigation: Prefer official sources, papers, and original announcements, label externally verified facts, and keep them distinct from source-text claims. <br>
+## Use Case:
 
+External users and developers use this skill to initialize and maintain a Markdown / Obsidian Knowledge wiki, import source materials, update structured wiki pages, answer from the wiki, archive durable answers, and audit links, coverage, indexes, and encoding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengsusky/llm-wiki-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/fengsusky) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Wiki audit script](artifact/scripts/verify_wiki.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance, wikilinked file edits, structured check results, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and edits user-selected vault content; includes a local read-only audit script for coverage, broken links, index coverage, and UTF-8 checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can update a user-designated Knowledge wiki and may change curated notes if granted broad write access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to the intended Knowledge directory and keep source materials read-only unless you explicitly want them changed.
+
+Risk: Bulk renaming or restructuring can break wiki links, index coverage, or source-page mappings.
+
+Mitigation: Review restructuring plans before approval and run the packaged wiki verification script after batch imports, renames, or theme-map updates.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/fengsusky/skills/llm-wiki-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown wiki pages, concise text responses, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains Obsidian-style wikilinks, index/log entries, and verification reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

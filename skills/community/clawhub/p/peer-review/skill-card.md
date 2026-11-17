@@ -1,41 +1,52 @@
-## Description: <br>
-Multi-model peer review layer using local LLMs via Ollama to catch errors in cloud model output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-model peer review layer using local LLMs via Ollama to catch errors in cloud model output and synthesize consensus from multiple critiques.
 
-## Publisher: <br>
-[staybased](https://clawhub.ai/user/staybased) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[staybased](https://clawhub.ai/user/staybased)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route important model outputs through multiple local Ollama models, aggregate critique flags, and decide whether to publish, revise, or escalate for human review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on shell scripts that are referenced but not bundled with the artifact. <br>
-Mitigation: Verify the referenced workspace scripts before use and review their behavior before running them on important content. <br>
-Risk: Review content may be posted to Discord channels or retained in logs. <br>
-Mitigation: Avoid confidential, regulated, private-code, or unpublished business material unless explicit redaction and retention controls are added. <br>
-Risk: Local model critiques can produce false positives or miss domain-specific issues. <br>
-Mitigation: Use consensus flags as review signals, not final decisions, and require human review for high-stakes outputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/staybased/peer-review) <br>
+## Use Case:
 
+Developers, analysts, and agent builders use this skill to review high-stakes model outputs with local Ollama models, aggregate issue flags, and decide whether content should be published, revised, or escalated for human review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-shaped critique outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Peer review may add 30-60 seconds of latency and depends on local Ollama models plus unbundled workspace scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Review inputs and outputs may be posted or logged to named Discord channels, which can expose confidential, personal, customer, financial, or unpublished business content.
+
+Mitigation: Keep sensitive content out of this workflow unless Discord posting and logging are disabled, or an explicit approval and redaction process is in place.
+
+Risk: Local model critiques can produce false positives or miss issues, especially for short text, highly technical domains, or time-critical decisions.
+
+Mitigation: Treat consensus as advisory and require human review before publishing or acting on high-stakes conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/staybased/skills/peer-review)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with JSON issue objects and bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consensus outputs may include issue categories, confidence scores, and publish, revise, or flag_for_human recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter: 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

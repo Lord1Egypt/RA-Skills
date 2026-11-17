@@ -1,43 +1,62 @@
-## Description: <br>
-Ghostfetch is a CLI web search and page-fetching skill for LLM agents that can search common engines, fetch pages as markdown or JSON, and extract links without a browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI web search and page fetcher for LLM agents that searches DuckDuckGo, Brave, Bing, or Google, fetches pages as markdown, and extracts links without a browser.
 
-## Publisher: <br>
-[neothelobster](https://clawhub.ai/user/neothelobster) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neothelobster](https://clawhub.ai/user/neothelobster)
 
-## Use Case: <br>
-Developers and agent operators use Ghostfetch to gather web information during research workflows by running searches, converting pages to readable markdown or structured JSON, and extracting relevant links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup script builds an external binary from a pinned source commit. <br>
-Mitigation: Install only when you trust the pinned Ghostfetch source and are comfortable building a local binary. <br>
-Risk: Fetched pages, cookies, or captcha provider keys can expose private browsing context or secrets. <br>
-Mitigation: Use --no-cookies for stateless browsing, avoid private or internal URLs and pages containing secrets, and provide captcha API keys only when intentionally using those third-party services. <br>
-Risk: Outbound web requests go directly from the user's machine to selected websites and search engines. <br>
-Mitigation: Use Ghostfetch only in environments where outbound web access is allowed, and review fetched content before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neothelobster/ghostfetch) <br>
-- [Publisher profile](https://clawhub.ai/user/neothelobster) <br>
-- [Go downloads](https://go.dev/dl/) <br>
+## Use Case:
 
+Developers and agents use Ghostfetch to search the web, fetch page content as markdown or JSON, and extract links while gathering information from the web.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text, Markdown, JSON, or raw HTML depending on command flags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search result limits, request timeout, browser fingerprint, parallel fetch count, cookie persistence, and captcha-provider options are configurable through CLI flags.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs and runs an externally built binary that is not fully contained in the submitted package.
+
+Mitigation: Install only if comfortable building and running code from the referenced Ghostfetch repository; prefer the pinned setup path and audit upstream source when stronger assurance is required.
+
+Risk: Persisted cookies may expose sensitive browsing state.
+
+Mitigation: Avoid using persisted cookies for sensitive browsing and use the no-cookie mode where appropriate.
+
+Risk: CAPTCHA service API keys may be exposed on shared systems.
+
+Mitigation: Avoid passing CAPTCHA API keys on shared systems.
+
+Risk: Read-only and no-secret-leak claims are not independently verified by the submitted package.
+
+Mitigation: Treat those claims as unverified unless the upstream source is audited.
+
+## Reference(s):
+
+- [Ghostfetch ClawHub skill page](https://clawhub.ai/neothelobster/skills/ghostfetch)
+- [Ghostfetch source repository referenced by artifact](https://github.com/neothelobster/ghostfetch)
+- [Go downloads](https://go.dev/dl/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; Ghostfetch can return text, markdown, raw HTML, or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports web search, page fetching, link extraction, parallel fetches, browser fingerprint selection, optional cookie persistence, and optional CAPTCHA service credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Wayfound helps an agent add lightweight self-review by creating a SOUL.md rubric, setting up an optional daily OpenClaw review cron job, and writing concise review notes into memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight self-supervision that piggybacks on an existing memory system by adding a SOUL.md rubric and a daily review cron job.
 
-## Publisher: <br>
-[cburnette](https://clawhub.ai/user/cburnette) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cburnette](https://clawhub.ai/user/cburnette)
 
-## Use Case: <br>
-Developers and agent users use Wayfound to add an ongoing self-review habit to an OpenClaw agent, using daily memory review and a small rubric to surface recurring quality, safety, or workflow issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates an ongoing local self-review habit that can retain sensitive details in long-lived memory files. <br>
-Mitigation: Review generated memory files and SOUL.md updates periodically, and avoid storing credentials, personal data, or other sensitive details in review notes. <br>
-Risk: The daily review cron job changes agent behavior over time and may create duplicate scheduled jobs if configured repeatedly. <br>
-Mitigation: Require explicit user approval before setup, check the existing cron list first, confirm where review files are written, and document how to disable the job. <br>
-Risk: Self-review can miss blind spots or rationalize mistakes because the agent evaluates its own behavior. <br>
-Mitigation: Treat review notes as prompts for user-visible follow-up when issues recur or feel uncertain, rather than as independent assurance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wayfound homepage](https://wayfound.ai) <br>
-- [ClawHub listing](https://clawhub.ai/cburnette/wayfound) <br>
-- [Rubric Examples](references/rubric-examples.md) <br>
+## Use Case:
 
+External users and developers use Wayfound to add lightweight daily self-review to an OpenClaw agent, record findings in memory, and surface recurring quality or behavior issues for follow-up.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and review-file examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce short daily review notes in memory/review-YYYY-MM-DD.md when the user approves the cron setup.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sets up a persistent daily self-review agent through a cron job.
+
+Mitigation: Require explicit approval before enabling the cron job, review the exact job behavior, and document how to disable or delete it.
+
+Risk: Review results can lead to changes in long-term memory or identity files such as MEMORY.md and SOUL.md.
+
+Mitigation: Require explicit approval before applying changes to MEMORY.md or SOUL.md from review results.
+
+Risk: External alerting or Wayfound Enterprise use may involve additional data sharing.
+
+Mitigation: Treat those features as separate integrations requiring their own consent and privacy review.
+
+## Reference(s):
+
+- [Wayfound homepage](https://wayfound.ai)
+- [Wayfound on ClawHub](https://clawhub.ai/cburnette/skills/wayfound)
+- [Publisher profile](https://clawhub.ai/user/cburnette)
+- [Rubric examples](references/rubric-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily review output is intended to be short markdown, about 10-15 lines.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Formats and writes scripture commentary for religious or philosophical texts with original passages and explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Format and write scripture commentary for religious texts (Buddhist sutras, Daoist classics, Bible, etc.) with original text and explanations.
 
-## Publisher: <br>
-[siegrainwong](https://clawhub.ai/user/siegrainwong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[siegrainwong](https://clawhub.ai/user/siegrainwong)
 
-## Use Case: <br>
-External users or agents use this skill to explain, annotate, or write commentary for religious and philosophical source texts. It formats original passages with explanations, reports progress, and saves UTF-8 Markdown-style output to a user-approved path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided source URLs and text may expose sensitive reading targets or bring untrusted content into the agent workflow. <br>
-Mitigation: Use source URLs and text that are acceptable to share with the agent, and review generated commentary before relying on it. <br>
-Risk: Writing to a user-specified path can overwrite existing files if the overwrite prompt is approved unintentionally. <br>
-Mitigation: Confirm the output path and overwrite prompt carefully, and keep backups for important files. <br>
+## Use Case:
 
+External users and agents use this skill to create structured commentary for religious or philosophical scripture, preserving original passages while adding explanations. The skill asks for the source text or URL and an output path before writing the commentary file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/siegrainwong/sg-scripture-commentary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown-style scripture commentary with original text and explanatory prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses UTF-8 output, reports progress at 10% milestones, and asks before overwriting existing files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The agent may fetch or use a source URL that the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested source URL or provided text before processing begins.
+
+Risk: The agent writes commentary files and could overwrite existing work.
+
+Mitigation: Use a deliberate output path and confirm overwrites only when intended.
+
+Risk: Generated scripture commentary can be interpretive and may not reflect every doctrinal or scholarly view.
+
+Mitigation: Review generated commentary before relying on it for teaching, publication, or religious guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/siegrainwong/skills/sg-scripture-commentary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown commentary file with original text in inline code blocks and explanations below]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses UTF-8, writes to a user-specified path, asks before overwriting existing files, and reports progress at 10% milestones.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

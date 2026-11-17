@@ -16,7 +16,7 @@
   python3 soul_extract.py --input "对话内容"
   python3 soul_extract.py --mode status
 
-默认数据目录：~/.agent-commons/skills_data/soul-archive/
+默认数据目录：~/.agent-guild/skills_data/soul-archive/
 """
 
 

@@ -1,42 +1,56 @@
-## Description: <br>
-Learn Linux on LabEx through administration and command-line courses with sysadmin labs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn Linux on LabEx through administration and command-line courses with sysadmin labs, using Linux courses and labs from the MCP catalog while prioritizing public labex.io URLs for hands-on learners.
 
-## Publisher: <br>
-[huhuhang](https://clawhub.ai/user/huhuhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huhuhang](https://clawhub.ai/user/huhuhang)
 
-## Use Case: <br>
-Learners and instructors use this skill to find focused LabEx Linux courses and hands-on labs, then continue through public lab URLs in a browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations could drift outside the public Linux learning path or point users toward protected LabEx routes. <br>
-Mitigation: Use only the public Linux catalog routes and return public labex.io course or lab URLs. <br>
-Risk: A user may be asked for credentials or directed toward VM operations that are outside this skill's intended behavior. <br>
-Mitigation: Do not ask for LabEx credentials, do not use VM routes, and do not use protected routes. <br>
+## Use Case:
 
+External learners and agents use this skill to find LabEx Linux courses and hands-on labs, narrow recommendations by learning goal, and return public lab URLs that can be opened in a browser.
 
-## Reference(s): <br>
-- [Learn Linux on LabEx](https://labex.io/learn/linux) <br>
-- [LabEx Linux API Reference](references/api.md) <br>
-- [ClawHub Learn Linux Release](https://clawhub.ai/huhuhang/learn-linux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendations with public LabEx course and lab URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations stay within the Linux learning path and avoid credentials, VM routes, and protected routes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: release evidence) <br>
+Risk: Recommendations may be LabEx-centered and may reflect platform-authored marketing or testimonials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat favorable platform claims as LabEx-specific context and ask separately for neutral or non-LabEx alternatives when broader comparisons are needed.
+
+Risk: Using protected or VM-related routes could exceed the skill's intended public catalog scope.
+
+Mitigation: Use only the public Linux catalog and course-lab routes documented in artifact/references/api.md, and do not request credentials.
+
+## Reference(s):
+
+- [LabEx Linux API Reference](artifact/references/api.md)
+- [Learn Linux on LabEx](https://labex.io/learn/linux)
+- [LabEx](https://labex.io)
+- [Learn Linux skill page](https://clawhub.ai/huhuhang/skills/learn-linux)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls]
+
+**Output Format:** [Markdown with public LabEx course and lab URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps recommendations concise, stays within the Linux learning path, and avoids credentials, protected routes, and VM routes.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Explain GenLayer, the AI-native blockchain for trustless decision-making, including protocol architecture, consensus mechanics, positioning, staking, and ecosystem use cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explain and discuss GenLayer, the AI-native blockchain enabling trustless, consensus-based decision-making with intelligent contracts and multi-LLM validators.
 
-## Publisher: <br>
-[acastellana](https://clawhub.ai/user/acastellana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[acastellana](https://clawhub.ai/user/acastellana)
 
-## Use Case: <br>
-External users, developers, investors, and partners use this skill to understand and explain GenLayer's protocol, AI validator consensus, Intelligent Contracts, staking model, and practical application areas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: LLM, web-fetch, escrow, treasury, staking, or dispute-resolution examples could be mistaken for production-ready blockchain logic. <br>
-Mitigation: Treat examples as educational reference material and require independent security review before any production use. <br>
-Risk: Examples that trigger valuable actions or resolve disputes can create financial or governance impact if outputs are unbounded or unsupported. <br>
-Mitigation: Use validated data sources, bounded model outputs, human or governance approval for valuable actions, and clear rollback or appeal paths. <br>
+## Use Case:
 
+External users, developers, investors, and partners use this skill to understand and explain GenLayer's protocol, architecture, Optimistic Democracy consensus, intelligent-contract concepts, staking model, and ecosystem positioning. For writing or deploying contracts, the skill directs users to the companion GenLayer development skill.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/acastellana/genlayer) <br>
-- [GenLayer Documentation](https://docs.genlayer.com) <br>
-- [GenLayer SDK](https://sdk.genlayer.com) <br>
-- [GenLayer GitHub Organization](https://github.com/genlayerlabs) <br>
-- [GenVM Source](https://github.com/genlayerlabs/genvm) <br>
-- [Jury Theorem Simulator](https://jury-theorem.genlayer.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown prose with tables and occasional code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only explainer; not contract deployment automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter and changelog report 1.0.0) <br>
+Risk: Illustrative intelligent-contract snippets may be mistaken for production-ready contract code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before building from snippets, add strict authorization, allowlisted data sources, prompt-injection defenses, privacy review, bounded transfers, appeal or human-review paths, and failure handling.
+
+## Reference(s):
+
+- [GenLayer Documentation](https://docs.genlayer.com)
+- [GenLayer SDK](https://sdk.genlayer.com)
+- [GenLayer GitHub](https://github.com/genlayerlabs)
+- [GenVM](https://github.com/genlayerlabs/genvm)
+- [GenLayer Developer Documentation](https://docs.genlayer.com/developers)
+- [GenVM Example Contracts](https://github.com/genlayerlabs/genvm/tree/main/examples)
+- [Jury Theorem Simulator](https://jury-theorem.genlayer.com)
+- [Companion GenLayer Development Skill](https://github.com/acastellana/genlayer-dev-claw-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown prose with occasional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only knowledge output; does not execute tools or persist data.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

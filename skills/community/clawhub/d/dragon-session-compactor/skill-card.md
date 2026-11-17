@@ -1,41 +1,57 @@
-## Description: <br>
-Dragon Session Compactor helps an agent compact long local conversation sessions into summaries while preserving recent messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compacts long agent chat sessions into local summaries while preserving the most recent messages.
 
-## Publisher: <br>
-[xhmqq616](https://clawhub.ai/user/xhmqq616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhmqq616](https://clawhub.ai/user/xhmqq616)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage long OpenClaw-style chat sessions by checking session size, compacting older messages into summaries, and retaining recent context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation history may include secrets, credentials, regulated data, or private personal details that are summarized and persisted locally. <br>
-Mitigation: Review .clawsession.json after compaction and avoid using the skill on sensitive sessions unless local persistence is acceptable. <br>
-Risk: Automatic heartbeat or cron checks can compact sessions without a manual prompt. <br>
-Mitigation: Enable scheduled checks only when automatic compaction is intentional and expected for the workspace. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep long OpenClaw-style conversations within context limits by checking session size, summarizing older messages, and retaining recent turns.
 
-## Reference(s): <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [ClawHub release page](https://clawhub.ai/xhmqq616/dragon-session-compactor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries, CLI status text, and JSON session files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists compacted conversation state in .clawsession.json and may write a local compaction log when scheduled checks run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persist sensitive chat history in local session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with conversations suitable for local storage, redact sensitive content, and apply bounded retention.
+
+Risk: Automatic or scheduled compaction can rewrite retained conversation content into a system-role summary.
+
+Mitigation: Review before installing, avoid automatic or cron-based compaction unless the environment is trusted, and prefer storing summaries as non-system data when integrating.
+
+Risk: Summary-based compaction can omit or distort older context.
+
+Mitigation: Review generated summaries before relying on them for consequential work and keep recent original messages available.
+
+## Reference(s):
+
+- [Dragon Session Compactor on ClawHub](https://clawhub.ai/xhmqq616/skills/dragon-session-compactor)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Files, Guidance]
+
+**Output Format:** [CLI status text, Markdown-style summaries, and JSON session state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local session state to .clawsession.json; default behavior preserves the last 4 messages and compacts at about 80,000 estimated tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

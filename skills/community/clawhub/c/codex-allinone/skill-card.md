@@ -1,47 +1,64 @@
-## Description: <br>
-Configures and runs Codex CLI inside ArkClaw or OpenClaw with Ark AgentPlan, Coding Plan, Kimi, DeepSeek, Ark v3, or a custom OpenAI-compatible endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures Codex CLI inside ArkClaw/OpenClaw sandboxes with AgentPlan, Coding Plan, Kimi, DeepSeek, Ark v3, or custom OpenAI-compatible providers.
 
-## Publisher: <br>
-[bao2200220](https://clawhub.ai/user/bao2200220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bao2200220](https://clawhub.ai/user/bao2200220)
 
-## Use Case: <br>
-Developers and ArkClaw or OpenClaw users use this skill to install, configure, switch, health-check, and invoke Codex CLI against supported model providers or a custom OpenAI-compatible endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make lasting shell and Codex configuration changes, including writing entries under ~/.bashrc and ~/.codex. <br>
-Mitigation: Review the setup scripts before installation, run them in a controlled environment, and confirm rollback steps for removing shell entries, profile files, and backups. <br>
-Risk: The skill handles and stores sensitive provider API keys. <br>
-Mitigation: Use least-privilege keys where possible, avoid shared machines, rotate keys after testing, and remove stored keys when the skill is no longer needed. <br>
-Risk: The skill can start local background relay processes and route Codex traffic to the configured provider or custom endpoint. <br>
-Mitigation: Confirm the selected provider and endpoint before use, monitor or stop relay processes when finished, and avoid untrusted custom endpoints. <br>
-Risk: The skill may install or upgrade local packages needed for Codex CLI or relay behavior. <br>
-Mitigation: Review package installation commands before running the skill and use an isolated sandbox or disposable environment when evaluating it. <br>
+## Use Case:
 
+Developers using ArkClaw or OpenClaw use this skill to install, configure, switch, and troubleshoot Codex CLI model-provider profiles without manually editing Codex settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bao2200220/codex-allinone) <br>
-- [Routing Flow](artifact/references/routing-flow.md) <br>
-- [Third-Party Providers](artifact/references/thirdparty-providers.md) <br>
-- [Troubleshooting](artifact/references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and terminal-oriented guidance with shell commands and configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger local setup scripts, provider profile changes, background relay processes, and Codex CLI execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill persistently modifies shell startup and live Codex configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned configuration changes before installation, keep backups of existing Codex settings, and test in an isolated sandbox first.
+
+Risk: Provider API keys are stored in plaintext in user-local shell and Codex configuration files.
+
+Mitigation: Use disposable or tightly scoped API keys, rotate keys after testing, and avoid sharing the workspace or shell history.
+
+Risk: Future Codex traffic may be routed through selected or custom third-party endpoints.
+
+Mitigation: Use only trusted providers and avoid untrusted custom base URLs.
+
+Risk: The authoritative security scan reports unsafe command-injection paths.
+
+Mitigation: Do not run the setup scripts on sensitive systems until the shell-escaping and eval issues are fixed.
+
+## Reference(s):
+
+- [Routing Flow](references/routing-flow.md)
+- [Third-Party Provider Configuration](references/thirdparty-providers.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/bao2200220/skills/codex-allinone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated TOML configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install packages, update shell startup configuration, write Codex profile files, and run local relay setup commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Deploy web apps and APIs to a public URL with a single command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy web apps and APIs to a public URL with a single command.
 
-## Publisher: <br>
-[jpbonch](https://clawhub.ai/user/jpbonch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jpbonch](https://clawhub.ai/user/jpbonch)
 
-## Use Case: <br>
-Developers and engineers use AgentScale to register for an API key, package the current project, deploy web apps or APIs to a public URL, list services, and check account tier or credits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The deploy command packages and uploads the current project archive, which may expose files that should not be deployed. <br>
-Mitigation: Run deploy only from the intended project directory, review the project for secrets first, and rely on the documented exclusions only as a baseline. <br>
-Risk: The tool uses a locally stored API key and AGENTSCALE_API_URL can redirect API calls carrying that key. <br>
-Mitigation: Keep AGENTSCALE_API_URL unset unless the alternate endpoint is deliberately trusted, and install only from a trusted AgentScale npm package source. <br>
-Risk: Adding credits or using payment commands can spend money. <br>
-Mitigation: Require explicit approval before running payment, credit, or agentspend commands. <br>
+## Use Case:
 
+Developers and engineers use AgentScale to register for service access, package a local web app or API, deploy it to a public URL, and inspect deployed service or account status.
 
-## Reference(s): <br>
-- [AgentScale on ClawHub](https://clawhub.ai/jpbonch/agentscale) <br>
-- [Nixpacks](https://nixpacks.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create or read a local AgentScale API key and may upload a compressed project archive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata; artifact package.json reports 0.1.10) <br>
+Risk: The skill can upload the current project directory to AgentScale for public deployment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run deployment only from the intended project directory and remove secrets or unrelated files before packaging.
+
+Risk: AGENTSCALE_API_URL can redirect API calls carrying the stored API key and project archive.
+
+Mitigation: Check the environment and local .env files for AGENTSCALE_API_URL before use, and unset unexpected overrides.
+
+Risk: The documented npx commands do not pin an AgentScale package version.
+
+Mitigation: Prefer a pinned agentscale version when invoking the CLI.
+
+## Reference(s):
+
+- [ClawHub AgentScale skill page](https://clawhub.ai/jpbonch/skills/agentscale)
+- [Nixpacks](https://nixpacks.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command examples, deployment limits, account setup steps, and environment-variable cautions.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,64 @@
-## Description: <br>
-Skill Autogenesis helps agents review completed work, identify reusable recurring procedures, and decide whether to create or patch a skill, store a memory note, or take no persistence action. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Autogenesis helps tool-using agents summarize completed work, detect recurring workflows, and decide whether to create or patch a skill, store a memory note, or take no persistence action.
 
-## Publisher: <br>
-[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add guarded procedural-memory behavior to Hermes, OpenClaw, or similar tool-using agents. It helps classify completed work and choose the lightest persistence action before creating or patching reusable skill files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause an agent to actively maintain procedural memory and create or patch skills when the runtime permits it. <br>
-Mitigation: Keep skill-management permissions scoped, require human approval when autonomous persistence is not desired, and review generated or patched skills before deployment. <br>
-Risk: Generated or patched skills could accidentally preserve secrets, temporary details, or overfit instructions from a single task. <br>
-Mitigation: Review and scan outputs before relying on them, and enforce the skill's guidance to exclude secrets, temporary identifiers, and mostly user-specific data. <br>
-Risk: A preference, policy, or one-off result could be misclassified as a reusable procedural skill. <br>
-Mitigation: Use the required classification record and hard stop rules so only verified executable procedures with triggers, ordered actions, and verification become skill updates. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn repeated, verified workflows into durable procedural memory. It helps decide whether a completed task should become a skill update, memory note, prompt guidance, or no-op.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codeblackhole1024/skill-autogenesis) <br>
-- [Skill source links](references/sources.md) <br>
-- [Classification examples](references/classification-examples.md) <br>
-- [Hard stop rules](references/hard-stop-rules.md) <br>
-- [Hermes Agent skill creation format](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/developer-guide/creating-skills.md) <br>
-- [Hermes Agent skill lifecycle guidance](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md) <br>
-- [Hermes Agent skill management tool](https://github.com/NousResearch/hermes-agent/blob/main/tools/skill_manager_tool.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, classification records, and generated or patched skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce SKILL.md, README.md, reference files, templates, or memory and prompt recommendations when the runtime supports those persistence targets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: ClawHub release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can lead an agent to change skills, memory, prompts, or runtime behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure the host to require approval before any skill-file, memory, prompt, or runtime-configuration write.
+
+Risk: Past-session search can pull in broad or stale context.
+
+Mitigation: Limit session-history searches to approved projects, time ranges, or explicitly relevant task scopes.
+
+Risk: Untrusted repository text, web content, or tool output could be promoted into future agent instructions.
+
+Mitigation: Review proposed procedural-memory changes before persistence and keep the hard stop rules active for preferences, policies, and one-off results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codeblackhole1024/skills/skill-autogenesis)
+- [Source References](references/sources.md)
+- [Classification Examples](references/classification-examples.md)
+- [Hard Stop Rules](references/hard-stop-rules.md)
+- [Hermes Agent Skill Creation Format](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/developer-guide/creating-skills.md)
+- [Hermes Agent Skills Feature](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md)
+- [Hermes Agent Prompt Guidance](https://github.com/NousResearch/hermes-agent/blob/main/agent/prompt_builder.py)
+- [Hermes Agent Skill Manager Tool](https://github.com/NousResearch/hermes-agent/blob/main/tools/skill_manager_tool.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, classification records, skill-file drafts, patches, and supporting snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or modify procedural memory only after classification, recurrence, stability, and verification checks pass.]
+
+## Skill Version(s):
+
+1.3.2 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,65 @@
-## Description: <br>
-CorpusGraph helps agents ingest documents, extract entities, search structured content, and map relationships across document corpora through the Ingestigate platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document ETL, entity extraction, and relationship graphing engine. Convert 1,000+ file formats into searchable, structured data with automatic entity and relationship mapping.
 
-## Publisher: <br>
-[aingestigate](https://clawhub.ai/user/aingestigate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aingestigate](https://clawhub.ai/user/aingestigate)
 
-## Use Case: <br>
-Developers and analysts use CorpusGraph to turn varied document collections into searchable text, structured records, extracted entities, and relationship evidence that an agent can query without parsing raw files directly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected documents and corpus queries to the Ingestigate platform for ETL, indexing, entity extraction, search, and graph analysis. <br>
-Mitigation: Use it only with corpora approved for the provider and deployment environment, and avoid sensitive or regulated data unless organizational terms and controls allow it. <br>
-Risk: Corpus results may be incomplete while processing is still running. <br>
-Mitigation: Check readiness and processing status before drawing conclusions, and tell the user when returned results may be incomplete. <br>
-Risk: The skill depends on short-lived Ingestigate credentials and authenticated API access. <br>
-Mitigation: Configure tokens only in secure skill settings, do not ask users to paste secrets into chat, and refresh expired tokens through the provider workflow. <br>
+## Use Case:
 
+Developers and external users use CorpusGraph to ingest document collections, convert varied file formats into searchable structured data, extract entities, and query relationship evidence across a corpus.
 
-## Reference(s): <br>
-- [CorpusGraph](https://ingestigate.com/corpusgraph) <br>
-- [Ingestigate Platform](https://ingestigate.com) <br>
-- [Authenticated API Guide](https://app1.ingestigate.com/api/agent/guide) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aingestigate/corpusgraph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API request examples and concise analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Ingestigate credentials; API responses should be treated as the source of truth for corpus status, search results, entity extraction, and relationship evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill fetches a mutable remote agent guide using the user's token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the remote guide as reference material only and keep the local skill safety constraints authoritative.
+
+Risk: A misconfigured API base URL could point the agent at an untrusted host.
+
+Mitigation: Configure INGESTIGATE_BASE_URL only through trusted platform settings and avoid arbitrary or user-supplied hosts.
+
+Risk: The skill can search, read, upload, and process corpus data within the user's token permissions.
+
+Mitigation: Install only for trusted Ingestigate deployments and rely on organization-scoped permissions and audit trails for operational control.
+
+Risk: The access token is short-lived and may expire during use.
+
+Mitigation: When a 401 response occurs, generate a new token through the documented Ingestigate flow and update secure platform settings.
+
+## Reference(s):
+
+- [CorpusGraph homepage](https://ingestigate.com/corpusgraph)
+- [CorpusGraph ClawHub release](https://clawhub.ai/aingestigate/skills/corpusgraph)
+- [Ingestigate platform](https://ingestigate.com)
+- [Authenticated API guide](https://app1.ingestigate.com/api/agent/guide)
+- [Skill README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance]
+
+**Output Format:** [Markdown with API endpoint descriptions and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be grounded in API responses and must call out incomplete corpus processing when readiness signals indicate it.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

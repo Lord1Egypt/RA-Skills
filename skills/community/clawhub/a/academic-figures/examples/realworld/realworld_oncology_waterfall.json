@@ -1,0 +1,15 @@
+{
+  "_note": "真实科研场景示例：晚期非小细胞肺癌 II 期单臂试验（n=26，免疫+化疗一线），每例患者肿瘤靶病灶自基线最佳变化百分比（RECIST 1.1，独立评审）。数据为模拟值，分布形态参照真实试验惯例（多数负值+长尾进展者）。降序为经典发表形态；类别标注与 RECIST 1.1 阈值自洽（PR 需缩小 ≥30%），ORR=事实框 CR+PR 计数（纯计数，推断留给正文统计）。",
+  "_command": "python3 scripts/gen_figure.py -t waterfall -d examples/realworld/realworld_oncology_waterfall.json -o fig4_waterfall.pdf --cjk --show-values",
+  "change": [-83.5, -76.2, -71.8, -66.4, -62.0, -58.7, -55.3, -51.9, -48.2, -45.6,
+             -43.1, -39.8, -36.5, -33.2, -31.7, -29.4, -26.8, -22.3, -18.6, -14.2,
+             -9.5, -4.1, 1.8, 15.6, 29.3, 47.2],
+  "names": ["PT-01", "PT-02", "PT-03", "PT-04", "PT-05", "PT-06", "PT-07", "PT-08",
+            "PT-09", "PT-10", "PT-11", "PT-12", "PT-13", "PT-14", "PT-15", "PT-16",
+            "PT-17", "PT-18", "PT-19", "PT-20", "PT-21", "PT-22", "PT-23", "PT-24",
+            "PT-25", "PT-26"],
+  "group": ["PR", "PR", "CR", "PR", "PR", "PR", "PR", "PR", "PR", "PR",
+            "PR", "PR", "PR", "PR", "PR", "SD", "SD", "SD", "SD", "SD", "SD", "SD", "SD", "SD", "PD", "PD"],
+  "pr_cut": -30.0,
+  "pd_cut": 20.0
+}

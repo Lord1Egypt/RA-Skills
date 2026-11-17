@@ -1,42 +1,55 @@
-## Description: <br>
-Manage WEEEK Task Manager work through the WEEEK Public API, including listing, creating, updating, completing, reopening, and moving tasks across boards and columns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent manage WEEEK Task Manager data through the WEEEK Public API, including listing, creating, updating, completing, reopening, and moving tasks across boards and columns.
 
-## Publisher: <br>
-[alex-indi](https://clawhub.ai/user/alex-indi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alex-indi](https://clawhub.ai/user/alex-indi)
 
-## Use Case: <br>
-Developers and WEEEK users use this skill to operate WEEEK tasks, boards, projects, and board columns from an agent workflow. It is suited for task-management automation where the user can review reads and writes before running them against a workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a WEEEK API token to access task-management data. <br>
-Mitigation: Keep WEEEK_TOKEN private, use the narrowest available token permissions, and avoid exposing command output that contains workspace data. <br>
-Risk: Create, update, complete, uncomplete, and move commands can change tasks in a WEEEK workspace. <br>
-Mitigation: Review the target task, board, column, and payload before executing write commands, especially in shared workspaces. <br>
+## Use Case:
 
+External users and developers can use this skill to let an agent operate on WEEEK tasks, projects, boards, and board columns through command-line calls to the WEEEK Public API. It is useful for task-management workflows where the agent needs to read or update live WEEEK workspace data.
 
-## Reference(s): <br>
-- [WEEEK Public API reference](references/api.md) <br>
-- [WEEEK Public API base URL](https://api.weeek.net/public/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/alex-indi/weeek-tasks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands call the WEEEK Public API using WEEEK_TOKEN and may return JSON responses from WEEEK.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill uses a WEEEK account token to access task data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest WEEEK token available and avoid exposing it in logs, prompts, shared shells, or committed files.
+
+Risk: Create, update, complete, reopen, and move commands can change live WEEEK tasks.
+
+Mitigation: Review the intended task operation and target IDs before allowing the agent to run mutating commands.
+
+## Reference(s):
+
+- [WEEEK Public API reference](references/api.md)
+- [WEEEK Public API base endpoint](https://api.weeek.net/public/v1)
+- [ClawHub skill page](https://clawhub.ai/alex-indi/skills/weeek-tasks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided WEEEK_TOKEN environment variable; optionally uses WEEEK_USER_ID for task assignment.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

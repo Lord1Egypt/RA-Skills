@@ -1,42 +1,59 @@
-## Description: <br>
-Connect to the native board demo through local-mcp and one fixed UXC link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to the native board demo through local-mcp and one fixed UXC link. Use when the user wants to inspect or edit the shared board at board.holon.run or a local board instance through browser WebMCP.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect, edit, lay out, and export the shared board at board.holon.run or a local board instance through browser WebMCP. It supports collaborative visible sessions when a human is editing or reviewing the same board. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can visibly edit a shared demo board and persist changes in the configured browser profile. <br>
-Mitigation: Use it deliberately, read or export the board before edits, and confirm before making visible collaborative changes. <br>
-Risk: Shared board sessions may expose information placed on the board to other collaborators. <br>
-Mitigation: Keep the dedicated browser profile isolated and avoid placing secrets or sensitive data on the shared board. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and update a shared or local board through browser WebMCP, including reading board state, upserting nodes and edges, applying layouts, and exporting diagrams.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Board Webmcp ClawHub release](https://clawhub.ai/jolestar/board-webmcp) <br>
-- [Default public board target](https://board.holon.run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands that may visibly edit or export a shared board; JSON output is recommended for automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can update a shared board through browser automation, so unintended writes may be visible to other users or persist in the board profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a local or sandbox board when possible, review current board state before writing, and keep the board profile isolated from other sites.
+
+Risk: The launcher can run unpinned external npm tooling through npx.
+
+Mitigation: Pin or preinstall the required npm tooling in a controlled environment before enabling the skill.
+
+Risk: Custom WEBMCP_LOCAL_MCP_COMMAND values can change what command the persistent launcher runs.
+
+Mitigation: Avoid custom launcher commands unless the command is fully trusted and reviewed.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Link Creation Helper](scripts/ensure-links.sh)
+- [ClawHub Skill Page](https://clawhub.ai/jolestar/skills/board-webmcp)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide browser WebMCP board reads and writes through a fixed board-webmcp-cli link.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

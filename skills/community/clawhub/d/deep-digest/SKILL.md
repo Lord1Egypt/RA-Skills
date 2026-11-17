@@ -1,10 +1,10 @@
 ---
 name: deep-digest
-description: "Extracts cognitive patterns, key insights, and action signals from any text input (messages, notes, articles, conversations). Turns raw content into structured, actionable digests."
-read_when:
-  - User needs to distill raw information into structured insights
-  - Processing chat logs, meeting notes, articles, or research material
-  - Looking for hidden patterns or cognitive shifts in content
+description: >
+  Extracts cognitive patterns, key insights, and action signals from any
+  text input (messages, notes, articles, conversations). Turns raw content
+  into structured, actionable digests with three layers: facts, patterns,
+  and cognitive transformations.
 ---
 
 # deep-digest — 深度内容萃取

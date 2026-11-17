@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Feishu bots in OpenClaw configuration with add, delete, update, list, and info operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Feishu bots in OpenClaw configuration, including add, delete, update, list, and info operations.
 
-## Publisher: <br>
-[xiangxinag-princess](https://clawhub.ai/user/xiangxinag-princess) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiangxinag-princess](https://clawhub.ai/user/xiangxinag-princess)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Feishu bot entries and bindings in an OpenClaw configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent OpenClaw configuration changes, including adding, updating, or deleting Feishu bot entries and bindings. <br>
-Mitigation: Review intended changes before execution, confirm the target botId before update or delete operations, and keep the generated OpenClaw configuration backups. <br>
-Risk: Feishu app secrets may be stored in ~/.openclaw/openclaw.json and its backups or exposed through shared chats and shell history. <br>
-Mitigation: Use non-production Feishu credentials where possible, protect the OpenClaw config and backup files, and avoid pasting secrets into shared chats or shell history. <br>
-Risk: New Feishu bot entries may allow broad access until allow lists are restricted. <br>
-Mitigation: Restrict Feishu allow lists after adding a bot and restart the OpenClaw gateway only after reviewing the resulting configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiangxinag-princess/feishu-bot-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/xiangxinag-princess) <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to manage Feishu bot accounts and their OpenClaw agent bindings from a shell workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or terminal text with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may update OpenClaw configuration files and create backups when executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Feishu app secrets may be stored in plaintext OpenClaw configuration files, backups, or shell history.
+
+Mitigation: Protect OpenClaw configuration and backup files, avoid exposing command history, and rotate secrets that may have been entered on the command line.
+
+Risk: The generated Feishu account configuration allows broad access by default.
+
+Mitigation: Restrict bot access policies and allowed senders after creation before using the bot in sensitive workspaces.
+
+Risk: Untrusted or path-like bot identifiers can affect filesystem paths used for workspaces and agent directories.
+
+Mitigation: Use only trusted simple bot identifiers until validation is added, and review paths before confirming directory deletion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiangxinag-princess/skills/feishu-bot-manager)
+- [ClawHub publisher profile](https://clawhub.ai/user/xiangxinag-princess)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq and access to the user's OpenClaw configuration file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

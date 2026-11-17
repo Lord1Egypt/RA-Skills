@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/kuaishou/get-video-detail/v2 for Kuaishou Video Details through JustOneAPI with videoId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/kuaishou/get-video-detail/v2 for Kuaishou Video Details through JustOneAPI with videoId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Kuaishou video details from JustOneAPI for a supplied videoId, then summarize fields such as video URL, caption, and author information for content analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent as a URL query parameter. <br>
-Mitigation: Avoid sharing command output, errors, proxy logs, or diagnostic traces that might include the request URL, and install only when the publisher is trusted with the token. <br>
-Risk: The skill requires a sensitive JUST_ONE_API_TOKEN credential. <br>
-Mitigation: Pass the token through the documented environment variable or CLI token argument, and do not paste token values into chat messages, screenshots, or logs. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Kuaishou video detail data from JustOneAPI by videoId, including video URL, caption, and author information for content analysis workflows.
 
-## Reference(s): <br>
-- [JustOneAPI Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_video_detail&utm_content=project_link) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_video_detail&utm_content=project_link) <br>
-- [Kuaishou Video Details operations](artifact/generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON from the JustOneAPI response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JUST_ONE_API_TOKEN credential and a Kuaishou videoId query parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The JustOneAPI token can be exposed through local process metadata or shared command logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token; avoid sharing logs or process listings from runs; and rotate the token if exposure is possible.
+
+Risk: The token is sent to JustOneAPI as a query parameter, which can increase exposure through URL logging.
+
+Mitigation: Monitor quota or billing, restrict token permissions where supported, and run the skill only in trusted environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-kuaishou-get-video-detail)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_video_detail&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_kuaishou_get_video_detail&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, JSON, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Short Markdown summary followed by raw JSON from the API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, a JustOneAPI token, and a Kuaishou videoId.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Systematic quality review for code, skills, configurations, and documents using GLIC or UGLIC dimensions with cited findings and severity tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematic quality check for code, skills, configurations, and documents using GLIC or UGLIC review dimensions with cited findings and severity tags.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers, skill authors, and technical reviewers use Glic Check to run structured multi-dimension reviews of code, agent skills, configuration, and documentation before accepting changes or releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad quality-review requests may activate the skill and cause it to read the target files selected for audit. <br>
-Mitigation: Confirm the intended scope before running when the target is ambiguous, and limit the review to files the user wants audited. <br>
-Risk: The review report may contain incorrect or misleading findings or proposed fixes. <br>
-Mitigation: Review cited locations and severity tags before approving any changes. <br>
-Risk: The optional anti-pattern pre-scan only surfaces candidates and can produce false positives. <br>
-Mitigation: Treat pre-scan output as triage input and require full checklist review with precise citations before reporting a finding. <br>
+## Use Case:
 
+Developers, engineers, and skill authors use this agent skill to run structured GLIC or UGLIC reviews over scoped code, skill, configuration, or documentation changes. It produces cited quality findings with ERR, WARN, and INFO severity labels before asking whether fixes should be applied.
 
-## Reference(s): <br>
-- [Glic Check ClawHub listing](https://clawhub.ai/songhonglei/glic-check) <br>
-- [dimensions.md](artifact/references/dimensions.md) <br>
-- [output-format.md](artifact/references/output-format.md) <br>
-- [examples.md](artifact/references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with file:line citations, severity tags, a summary table, and a fix prompt.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are grouped by GLIC or UGLIC dimensions and tagged ERR, WARN, or INFO.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata and artifact SKILL.md) <br>
+Risk: The skill reads user-scoped files and may surface suggested fixes or review conclusions that are incomplete or incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit review targets and inspect findings or proposed fixes before approving changes.
+
+Risk: The optional pre-scan helper surfaces likely patterns rather than final findings.
+
+Mitigation: Treat helper output as review input and rely on the full GLIC or UGLIC checklist with cited locations for final severity decisions.
+
+## Reference(s):
+
+- [GLIC / UGLIC Dimension Checklists](artifact/references/dimensions.md)
+- [GLIC / UGLIC Report Format](artifact/references/output-format.md)
+- [GLIC / UGLIC Check Examples](artifact/references/examples.md)
+- [build-better-skills repository](https://github.com/Songhonglei/build-better-skills)
+- [build-better-skills stages](https://github.com/Songhonglei/build-better-skills#stages)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with cited findings, severity tags, a summary table, and optional shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings cite file or section locations, separate must-fix from should-fix items, and ask for approval before applying fixes.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

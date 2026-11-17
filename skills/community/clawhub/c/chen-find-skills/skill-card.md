@@ -1,39 +1,54 @@
-## Description: <br>
-Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities.
 
-## Publisher: <br>
-[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cs995279497-byte](https://clawhub.ai/user/cs995279497-byte)
 
-## Use Case: <br>
-Developers and agent users use this skill to search for installable skills that match a requested task, compare candidate skills, and present install commands and reference links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad user requests can lead to persistent third-party skill installation, including global installs that skip confirmation. <br>
-Mitigation: Inspect the suggested skill source before installing, prefer explicit confirmation, avoid global silent installs unless the publisher is trusted, and confirm how to remove the skill afterward. <br>
+## Use Case:
 
+Developers and agent users use this skill to search for installable skills, compare relevant options, and install skills that extend an agent's capabilities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/chen-find-skills) <br>
-- [Skills directory](https://skills.sh/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include install commands for third-party skills; review suggested skills before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may lead agents to run unpinned remote install commands that modify the user's global agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect skill sources before installation, prefer pinned or preinstalled tooling, avoid confirmation-skipping flags, and use global installs only when future sessions should be affected.
+
+Risk: The skill can steer ordinary help requests toward installing third-party skills.
+
+Mitigation: Confirm that installing an additional skill is necessary and review the selected package before acting on install guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cs995279497-byte/skills/chen-find-skills)
+- [Skills directory](https://skills.sh/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with inline shell commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend or run live skill search and install commands when the user asks to find or install skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

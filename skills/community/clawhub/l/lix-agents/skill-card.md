@@ -1,42 +1,59 @@
-## Description: <br>
-Obtain temporary Lix API tokens via CLI with human email approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obtain temporary Lix API tokens via CLI with human email approval.
 
-## Publisher: <br>
-[aakarim](https://clawhub.ai/user/aakarim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aakarim](https://clawhub.ai/user/aakarim)
 
-## Use Case: <br>
-Developers and agents use this skill to obtain temporary Lix API credentials with user approval, then authenticate calls to Lix services for data enrichment and related API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Temporary API tokens can be exposed through logs, chat transcripts, or command output if handled carelessly. <br>
-Mitigation: Treat generated tokens as sensitive, avoid logging or pasting them into shared contexts, and store them only for the intended API workflow. <br>
-Risk: Installing or running an unexpected lix-agents CLI build could grant credentials to an untrusted tool. <br>
-Mitigation: Verify the lix-agents CLI source and release channel before installation, and approve only token requests the user intentionally initiated. <br>
+## Use Case:
 
+Developers and agents use this skill when they need authenticated access to Lix APIs for enrichment or other Lix service requests and do not already have a valid token.
 
-## Reference(s): <br>
-- [Lix API docs](https://lix-it.com/docs) <br>
-- [lix-agents GitHub Releases](https://github.com/lix-it/lix-agents/releases) <br>
-- [ClawHub Lix Agents listing](https://clawhub.ai/aakarim/lix-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and HTTP header configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces temporary bearer-token usage guidance; tokens should be treated as sensitive credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: The skill asks the agent to install or invoke an authentication CLI from an unpinned distribution path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and verified lix-agents CLI release before installation or execution.
+
+Risk: The token request prints a temporary bearer token to stdout, which can be captured in logs or transcripts.
+
+Mitigation: Keep tokens out of logs and transcripts where possible, limit handling to the current task, and revoke or let temporary tokens expire after use.
+
+Risk: Login creates local session state for the Lix CLI.
+
+Mitigation: Review local session behavior before installing and use the skill only when the publisher and CLI distribution path are trusted.
+
+## Reference(s):
+
+- [Lix API Docs](https://lix-it.com/docs)
+- [lix-agents GitHub Releases](https://github.com/lix-it/lix-agents/releases)
+- [ClawHub Skill Page](https://clawhub.ai/aakarim/skills/lix-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and authorization header guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or expose a temporary bearer token after user email approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

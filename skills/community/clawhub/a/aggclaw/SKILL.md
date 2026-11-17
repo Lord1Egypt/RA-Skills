@@ -1,12 +1,17 @@
 ---
 name: aggclaw
-description: "AppGrowing Global intelligent ad creative analysis assistant. Connects to the Explore mode API to analyze user intent, find the most relevant overseas ad creatives, and deliver automated analysis. Includes Inspire mode. Triggers: keywords analyze creatives, creative analysis, overseas campaigns, explore creatives, find creatives; commands /aggclaw, /aggclaw-game, /aggclaw-app, /aggclaw-shortdrama, /agg_inspire"
+version: "1.2.1"
+display_name: "AppGrowing 全球广告素材智能分析助手"
+display_name_en: "AppGrowing Global Ad Creative Analysis Assistant"
+description: "AppGrowing Global intelligent ad creative analysis assistant. Finds the most relevant global ad creatives based on your instruction and delivers automated analysis. Includes Inspire ideation mode. Triggers: keywords analyze creatives, creative analysis, global campaigns, explore creatives, find creatives; commands /aggclaw, /agg_inspire"
+description_zh: "AppGrowing Global 智能广告素材分析助手，基于你的指令检索最相关的全球广告素材并自动完成分析，支持灵感激发（Inspire）模式。触发词：分析素材、素材分析、全球投放、找素材、探索素材；命令：/aggclaw、/aggclaw-game、/aggclaw-app、/agg_inspire"
+description_en: "AppGrowing Global intelligent ad creative analysis assistant. Finds the most relevant global ad creatives based on your instruction and delivers automated analysis. Includes Inspire ideation mode. Triggers: keywords analyze creatives, creative analysis, global campaigns, explore creatives, find creatives; commands /aggclaw, /agg_inspire"
 homepage: https://appgrowing.net/
 metadata:
   {
     "openclaw": {
       "slug": "aggclaw",
-      "version": "1.1.0",
+      "version": "1.2.1",
       "author": "youcloud",
       "emoji": "🌍",
       "requires": {
@@ -18,136 +23,119 @@ metadata:
 
 # aggclaw
 
-AppGrowing Global intelligent ad creative analysis assistant. Connects to the Explore mode API to analyze user intent, find the most relevant overseas ad creatives, and deliver automated analysis — allowing users to interact directly with creative insights. Includes new Inspire mode for creative strategy and ideation.
+AppGrowing Global intelligent ad creative analysis assistant; analyzes global ad creatives, includes Inspire mode. Available to AI plus / Pro subscribers.
 
-## Access
+## Prerequisite: API Key
 
-Available to **AI plus** and **Pro** subscribers of AppGrowing Global. To get an API Key: log in to AppGrowing Global → Profile → Enterprise Info.
+Read from env var `YOUCLOUD_API_KEY`. **Never send requests without a valid key.** When missing, prompt:
 
-## Triggers
+```
+Please configure your API Key first:
+1. Get it from AppGrowing Global → Profile → Enterprise Info
+2. Set env var: Linux/macOS `export YOUCLOUD_API_KEY="..."`; Windows `$env:YOUCLOUD_API_KEY="..."`
+3. Resend your request
+```
 
-- Keywords: analyze creatives, creative analysis, overseas campaigns, explore creatives, find creatives
-- Commands:
-  - `/aggclaw` → Auto-detect: discussion-style questions → Inspire mode; game content → Game mode; other content → Non-game mode
-  - `/aggclaw-game` → Game mode (`chat_mode=7`)
-  - `/aggclaw-app` → Non-game app mode (`chat_mode=8`)
-  - `/aggclaw-shortdrama` → Short drama mode (`chat_mode=8`)
-  - `/agg_inspire` → Inspire mode (`chat_mode=9`)
+## Triggers & Modes
+
+| Trigger | chat_mode |
+|---|---|
+| `/aggclaw` (auto-detect, see below) | — |
+| `/aggclaw-game` | 7 Game |
+| `/aggclaw-app`, `/aggclaw-shortdrama` | 8 Non-game |
+| `/agg_inspire` | 9 Inspire |
+| Keywords (analyze creatives, creative analysis etc.) | Auto-detect |
+
+**`/aggclaw` auto-detect:** discussion-style question (advice/strategy/ideas/comparison/"how to", not asking for specific creative data) → 9; game content (game titles, RPG/SLG/MMO) → 7; other → 8.
 
 ## Language Detection
 
-Before any API call, detect the language of the user's input and respond in that language throughout the session.
+Detect the user's input language and reply in that language throughout (framing text, errors, summaries included); keep `input` in the user's original wording — do not translate. Preference persists for the whole session.
 
-- **Detection rule:**
-  - If the user's input contains Chinese characters (CJK Unified Ideographs) → Chinese
-  - If the user's input contains Japanese characters (Hiragana or Katakana) → Japanese
-  - Otherwise → English
-- This language preference persists for the entire session (including follow-up questions within the same session_id).
-- The `input` field sent to the API should remain in the user's original language — do not translate the user's query.
-- All framing text, error messages, and summaries added by the agent should be in the detected language.
-
-### language_code Parameter
-
-Based on the detected language, set the `language_code` parameter for API calls:
-
-| Detected Language | `language_code` Value |
+| Input contains | language_code |
 |---|---|
-| Chinese | `zh` |
-| Japanese | `ja` |
-| English | `en` |
-| Other / Undetermined | *(omit the parameter)* |
+| Chinese characters | `zh` |
+| Hiragana / Katakana | `ja` |
+| Other | `en` |
+| Undetermined | omit |
 
-**Rule:** `language_code` may only be `zh`, `ja`, or `en`. For any other language, do not include the parameter in the request.
+`language_code` may only be `zh`/`ja`/`en`; omit for any other language.
 
 ## Execution Flow
 
-1. **Check API Key** (read from environment variable `YOUCLOUD_API_KEY`):
-   - Key present → proceed
-   - Key empty/missing → prompt user to configure:
-     ```
-     Please configure your API Key first:
-     1. Log in to AppGrowing Global → Profile → Enterprise Info to get your API Key
-     2. Set it as environment variable YOUCLOUD_API_KEY, e.g.:
-        - Linux/macOS: export YOUCLOUD_API_KEY="your-key-here"
-        - Windows: $env:YOUCLOUD_API_KEY="your-key-here"
-     3. Send your request again after configuration.
-     ```
-   - ✅ Rule: **Never send requests without a valid API Key**
+1. **Check API Key** (above)
+2. **Detect language + determine chat_mode** (above)
+3. **Call the API directly** — do not ask the user for product positioning, target market, or other supplementary info; let the API search on its own:
+   - New analysis → send `input` + `chat_mode` + `language_code`, no `session_id`
+   - Follow-up → reuse `session_id`, omit `chat_mode`/`language_code` (preserve the session's mode & language)
+   - Output `output`; translate if its language differs from the user's; save `session_id` for follow-ups
 
-2. **⚠️ Mandatory Timeout Rules**
-   - API request timeout: **600 seconds**
-   - **🔴 Absolutely forbidden: do NOT interrupt a request before timeout, do NOT send any "still processing" or "will let you know" messages**
-   - **Must: wait for the API to return a complete result, then reply to the user in one shot**
-   - Only two situations allow sending a message:
-     1. API returns a complete analysis result → output the result directly
-     2. API timeout or request error → output error message
+⚠️ **Mandatory timeout rule:** set timeout to **600s** (responses often take 60s+). **Never** interrupt before timeout. **Never** send "still processing" / "will let you know" messages. Wait for the complete result, then reply in one shot; only "result returned" or "timeout/error" situations may send a message.
 
-3. **Detect Language & Set `language_code`** (see Language Detection section above)
-
-4. **Determine chat_mode:**
-   - **Command-specified:**
-     - `/aggclaw-game` → Game mode (`chat_mode=7`)
-     - `/aggclaw-app`, `/aggclaw-shortdrama` → Non-game mode (`chat_mode=8`)
-     - `/agg_inspire` → Inspire mode (`chat_mode=9`)
-   - **Auto-detect (keyword/content trigger):**
-     - Input is a discussion-style question (asking for advice, strategies, ideas, comparisons, "how to", "what should", brainstorming, creative inspiration — as opposed to asking for specific ad creative data analysis) → Inspire mode (`chat_mode=9`)
-     - Input contains game-related content (game titles, gaming terminology like RPG/SLG/MMO) → Game mode (`chat_mode=7`)
-     - Other content (apps, e-commerce, utilities, short dramas) → Default non-game mode (`chat_mode=8`)
-
-5. **Call the API directly — do NOT ask the user questions:**
-   - When the user initiates a creative analysis request, assemble the intent into an `input` and call the API directly. Do not ask for product positioning, target market, or other supplementary info — let the API search and analyze on its own.
-   - New analysis request → start a new session, pass `chat_mode` and `language_code`, do NOT carry `session_id`
-   - Follow-up question (about a previous analysis) → reuse the previous `session_id`, do NOT pass `chat_mode` or `language_code` (preserve the session's existing mode and language)
-   - Output the API response result directly.
-
-## API Specification
+## Analysis Endpoint
 
 - URL: `https://ai-chat-global.youcloud.com/aichat/claw`
 - Method: POST JSON
 - Headers: `Authorization: Bearer {KEY}`, `Content-Type: application/json`
-- Parameters:
-  - `input`: User question (required)
-  - `session_id`: For follow-up questions, omit for new conversations
-  - `chat_mode`: Chat mode, 7=game, 8=non-game, 9=inspire. **Only pass for new conversations (no session_id); omit for follow-ups to preserve the session's mode**
-  - `language_code`: Language code, `zh`/`ja`/`en`. **Only pass for new conversations (no session_id); omit for follow-ups to preserve the session's language**
-- Response: Output `output` (markdown) **as-is unless the user's language differs from the API response language — in that case, translate the output to the user's language**; save `session_id` for future follow-ups
+- Params: `input` (required), `session_id` (follow-ups), `chat_mode` (7/8/9, new sessions only), `language_code` (zh/ja/en, new sessions only)
 - Timeout: ≥600s
 
-## PowerShell Call Template
+## Materials Download
+
+After an analysis completes (`session_id` available), the user may ask to download that conversation's creatives.
+
+**Intent routing:**
+- "Download materials" without a scope → **do not start downloading**; ask the user to choose a scope first. Prefer the host's ask/question tool to pop an interactive card; if the host lacks one (e.g., IM clients), fall back to a plain text message listing the options. All display text must be in the detected language:
+  - Title: information retrieved from the last conversation — which would you like to download?
+  - Option 1: creatives mentioned in the analysis result → download `is_mentioned=true`
+  - Option 2: all creatives → download the entire list (no filtering)
+- "Download mentioned creatives" or close semantics → download `is_mentioned=true`
+
+**Materials endpoint:**
+- URL: `https://ai-chat-global.youcloud.com/aichat/sessions/{session_id}/materials`
+- Method: GET; Header `Authorization: Bearer {KEY}`; Timeout ≥120s
+- Encode `=` in `session_id` as `%3D` (keep `~`). Example: `99QLLyMfj8uUrvalSiHr~g%3D%3D`
+- Response: JSON array `[{id, detail_url, download_url, is_mentioned}]`; **always returns the full list** — filter by `is_mentioned` client-side
+
+**Download rules:**
+- On HTTP 403 (link expired) → **silently** re-fetch materials and retry the failed item, no message to the user
+- Concurrency ≤ 3; queue when exceeded
+- **No messages during download**; on completion send **one** message in the detected language: local path + download count (success x, failure y; append failed ids if y>0)
+- Save to a new folder named after the first `## ` heading of the analysis report (strip `## `, replace illegal chars `/ \ : * ? " < > |` with `_`); filename `{id}.{ext}` (ext from download_url, else response Content-Type)
+
+## Auth (two models — do not mix)
+
+| URL | Auth |
+|---|---|
+| `/aichat/claw`, `/sessions/{id}/materials` | `Authorization: Bearer {KEY}` header |
+| `download_url` (CDN direct link) | **No header** — relies on the `auth_key` embedded in the URL |
+
+## PowerShell Template
 
 ```powershell
+# Analysis
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-$apiKey = $env:YOUCLOUD_API_KEY
 $body = @{input="Your analysis request"; chat_mode=8; language_code="en"} | ConvertTo-Json -Compress
-$params = @{
-  Uri = "https://ai-chat-global.youcloud.com/aichat/claw"
-  Method = "Post"
-  ContentType = "application/json; charset=utf-8"
-  Headers = @{Authorization="Bearer $apiKey"}
-  Body = $body
-  TimeoutSec = 600
-}
-Invoke-RestMethod @params | Select-Object -ExpandProperty output
+Invoke-RestMethod -Uri "https://ai-chat-global.youcloud.com/aichat/claw" -Method Post -ContentType "application/json; charset=utf-8" -Headers @{Authorization="Bearer $env:YOUCLOUD_API_KEY"} -Body $body -TimeoutSec 600 | Select-Object -ExpandProperty output
+
+# Materials list + download (no auth header on download_url)
+$enc = [uri]::EscapeDataString($sessionId)
+$resp = Invoke-RestMethod -Uri "https://ai-chat-global.youcloud.com/aichat/sessions/$enc/materials" -Headers @{Authorization="Bearer $env:YOUCLOUD_API_KEY"} -TimeoutSec 120
+foreach ($m in $resp) { Invoke-WebRequest -Uri $m.download_url -OutFile "$folder\$($m.id).mp4" -TimeoutSec 180 }
 ```
 
 ## Error Handling
 
-- 400 Invalid credentials / 401 Authentication failed:
-  ```
-  API Key authentication failed. Please check if your key is active or expired. Get your API Key from AppGrowing Global Profile → Enterprise Info, or contact support.
-  ```
-- 400 "System error" (API returns "Sorry, system error, please try again later."):
-  - Repeated occurrences indicate temporary server instability, unrelated to API Key or request content.
-  - Retry strategy: try a more generic/shorter query 1-2 times; if still failing, inform the user that the server is temporarily unavailable and suggest trying later.
-  - Observed behavior: certain vertical categories (e.g., AI tool apps) may trigger this error due to insufficient creative data; trying an adjacent category (e.g., e-commerce) may work normally.
-- Timeout: "Analysis is still in progress. Try asking again or resend your request."
-- Other errors: "Request returned an error (code={code}). Please check your API Key permissions, account quota, or contact customer support."
+- 400/401 auth failed: `API Key authentication failed. Check if your key is active or expired. Get it from AppGrowing Global Profile → Enterprise Info, or contact support.`
+- Other: `Request returned an error (code={code}). Check your API Key permissions, account quota, or contact support.`
 
-## Notes
+## Material Link Template
 
-- ⚠️ API response time is typically **60 seconds+**, always use a 600-second timeout
-- ⚠️ API Key is read from environment variable `YOUCLOUD_API_KEY`
-- **Inspire mode**: `/agg_inspire` command uses `chat_mode=9` for creative strategy and ideation. Unlike Explore modes (7/8), Inspire mode focuses on decision trees, creative frameworks, and strategic guidance based on real-world creative data.
+When an analysis result contains a material ID, splice it into the detail-page link below so the user can click through to view the creative video / ad delivery data:
+
+- **Template**: `https://appgrowing-global.youcloud.com/material/{{ID}}`
+- **Usage**: Replace `{{ID}}` with the actual material ID. For example, ID `abc123` → `https://appgrowing-global.youcloud.com/material/abc123`
+- **Output**: Render as a Markdown link, e.g. `[material abc123](https://appgrowing-global.youcloud.com/material/abc123)`, so the user can click to jump to the detail page.
 
 ## Examples
 

@@ -1,39 +1,54 @@
-## Description: <br>
-Generates platform-optimized social media launch copy from one product description across 14 platforms and creates a local HTML copy-paste page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate platform-optimized bilingual social media copy for product launches and output it as an HTML page with one-click copy buttons.
 
-## Publisher: <br>
-[dongsheng123132](https://clawhub.ai/user/dongsheng123132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dongsheng123132](https://clawhub.ai/user/dongsheng123132)
 
-## Use Case: <br>
-External users, developers, and marketers use this skill to turn a project or product description into platform-specific launch posts and an HTML page for reviewing and copying the generated copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated promotional copy may be inaccurate, overstate claims, miss platform rules, or use a tone that does not fit the publisher. <br>
-Mitigation: Review and edit every generated post before publishing, with attention to accuracy, platform limits, and brand tone. <br>
-Risk: The generated HTML page includes a local clipboard script for copy buttons. <br>
-Mitigation: Inspect the generated HTML before opening or sharing it, and use the copy page only in a trusted local browser context. <br>
+## Use Case:
 
+Developers, founders, and marketing teams use this skill to turn one product or project description into platform-specific launch posts for social networks and developer communities.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Files] <br>
-**Output Format:** [HTML file containing platform-specific social copy cards and local copy buttons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific length and tone guidance for launch copy across English and Chinese social channels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The README contains an unpinned npx install command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted, reviewed source and prefer pinned or verified install commands when available.
+
+Risk: Generated HTML copy buttons write card text to the clipboard.
+
+Mitigation: Review the visible card text before clicking copy or posting it publicly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dongsheng123132/skills/social-copy-generator)
+- [Author X profile](https://x.com/vista8)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [HTML with platform-specific copy cards and clipboard buttons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces visible social copy for multiple platforms; generated text should be reviewed before public posting.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

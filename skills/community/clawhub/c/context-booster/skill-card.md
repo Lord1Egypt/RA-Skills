@@ -1,46 +1,61 @@
-## Description: <br>
-Context Booster helps agents compress, summarize, retrieve, and inject conversation context for long-running or cross-session tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Booster helps agents manage long-running conversations by compressing context, extracting key points, retrieving stored memories, and enriching future turns.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve continuity in long conversations, recover prior context across sessions, and compress or retrieve relevant memory before continuing complex tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored context may include sensitive conversation or environment details. <br>
-Mitigation: Avoid storing secrets or sensitive data, verify the storage location before use, and clear local memory when it is no longer needed. <br>
-Risk: Broad cross-session retrieval can reintroduce stale, irrelevant, or misleading context. <br>
-Mitigation: Review retrieved summaries before relying on them, scope use to the relevant workspace, and remove outdated memory. <br>
-Risk: The security evidence flags durable context storage and reuse without clear consent, limits, or deletion controls. <br>
-Mitigation: Install only when durable memory is desired, confirm available inspection and deletion commands, and prefer scoped workspace use over broad personal or project data. <br>
+## Use Case:
 
+Developers and agent users use Context Booster to preserve continuity in long or multi-step work by summarizing active context, retrieving relevant prior memory, and injecting concise background when needed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/context-booster) <br>
-- [Publisher Profile](https://clawhub.ai/user/pagoda111king) <br>
-- [README](README.md) <br>
-- [FAQ](FAQ.md) <br>
-- [Version History](VERSION_HISTORY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples; runtime outputs may include text, JSON, or Markdown context summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses durable local context memory according to artifact documentation; review stored content before reuse.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence and package.json; artifact documentation also mentions v0.1.0) <br>
+Risk: Broad conversation context may be captured and persisted locally across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets or regulated data unless appropriate protections are configured, review local retention settings before installation, and clear stored context when it is no longer needed.
+
+Risk: The release evidence reports an inconsistent manual install source and unavailable server-resolved GitHub provenance.
+
+Mitigation: Verify the canonical repository and publisher profile before following manual installation instructions.
+
+Risk: Compression and retrieval can omit, distort, or mis-rank important context.
+
+Mitigation: Review compressed summaries and retrieved memories before relying on them for consequential work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pagoda111king/skills/context-booster)
+- [README](artifact/README.md)
+- [FAQ](artifact/FAQ.md)
+- [Version history](artifact/VERSION_HISTORY.md)
+- [Declared package repository](https://github.com/cloud-shrimp/meta-skill-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return compressed context, memory summaries, retrieval results, status data, or suggested next context.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

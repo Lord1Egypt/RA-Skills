@@ -1,41 +1,54 @@
-## Description: <br>
-Collects user feedback through questionnaires, automated analysis, sentiment detection, and improvement tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects user feedback through questionnaires, analyzes responses, identifies sentiment, and tracks improvement items.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Product, customer experience, and research teams use this skill to collect customer feedback, run product research and satisfaction surveys, analyze sentiment, and track improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External repository and Python dependencies referenced by install steps may change outside the packaged artifact. <br>
-Mitigation: Review the referenced repository and dependency list before installation, and pin or vendor trusted versions for production use. <br>
-Risk: Real customer or employee feedback may include sensitive or personal information. <br>
-Mitigation: Define consent, retention, storage, access controls, and third-party analysis service usage before deployment. <br>
+## Use Case:
 
+External teams, product researchers, and customer experience teams use this skill to collect feedback across channels, design questionnaires, analyze satisfaction trends, and track improvement work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-feedback-collection) <br>
-- [External repository referenced by install steps](https://github.com/openclaw-skills/ai-intelligent-feedback-collection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No bundled executable code; install steps reference an external repository and Python dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The install steps run unreviewed mutable remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote repository and dependencies before installation, prefer a pinned commit or signed release, and run it in a restricted environment.
+
+Risk: Feedback records can include customer, employee, or other sensitive data.
+
+Mitigation: Use the system only with consent and clear rules for redaction, storage, access, and retention.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-feedback-collection)
+- [Installation Repository Cited by Artifact](https://github.com/openclaw-skills/ai-intelligent-feedback-collection)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May discuss feedback data collection, sentiment analysis, issue tracking, and pricing tiers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

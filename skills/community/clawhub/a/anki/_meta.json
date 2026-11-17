@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "anki",
-  "version": "1.0.1",
-  "publishedAt": 1771173013847
+  "displayName": "Anki",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1785068764933
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1785066064434
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771173014068
+    }
+  ]
 }

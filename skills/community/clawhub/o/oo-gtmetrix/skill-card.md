@@ -1,43 +1,55 @@
-## Description: <br>
-GTmetrix reads, creates, and updates GTmetrix data through the OOMOL gtmetrix connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate a connected GTmetrix account to inspect account data and run performance tests.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to operate GTmetrix through an OOMOL-connected account, including reading account status, pages, reports, tests, browsers, locations, and simulated devices. It can also start new GTmetrix performance tests after confirming the payload and effect with the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires use of OOMOL as an intermediary for the connected GTmetrix account. <br>
-Mitigation: Install and use it only when that account-routing model is acceptable for the user or organization. <br>
-Risk: The start_test action can spend GTmetrix credits or create new account activity. <br>
-Mitigation: Review the exact payload and obtain user confirmation before running start_test. <br>
+## Use Case:
 
+Developers and GTmetrix users use this skill to inspect account status, pages, reports, and test options, and to start performance tests through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [GTmetrix homepage](https://gtmetrix.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-gtmetrix) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the oo CLI to inspect GTmetrix action schemas and run connector actions; command responses include data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup may execute downloaded code that was not verified and may automatically synchronize additional agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing; use a separately approved, verified CLI release and consider disabling automatic agent-skill synchronization.
+
+Risk: Performance tests may consume credits through the connected GTmetrix account.
+
+Mitigation: Review the test request and use the skill's confirmation step before starting a test.
+
+## Reference(s):
+
+- [GTmetrix API documentation](https://gtmetrix.com/api/docs/2.0/)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance, Shell commands]
+
+**Output Format:** [JSON responses with concise text summaries and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions can retrieve account data or start a performance test.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

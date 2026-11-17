@@ -1,44 +1,59 @@
-## Description: <br>
-Billions/Iden3 authentication and identity management tools for agents that create, link, sign, and verify decentralized identities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Billions/Iden3 authentication and identity management tools for agents to link, prove, sign, and verify decentralized identity ownership.
 
-## Publisher: <br>
-[ian4jpg](https://clawhub.ai/user/ian4jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ian4jpg](https://clawhub.ai/user/ian4jpg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and manage Billions Network DIDs, link an agent identity to a human owner, and verify DID ownership through signed challenges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or import identity keys and stores agent private keys locally in plaintext. <br>
-Mitigation: Use a dedicated low-value identity, avoid passing private keys through chat or shared command history, and restrict access to $HOME/.openclaw/billions. <br>
-Risk: The skill can send signed identity proofs or verification links through OpenClaw messages. <br>
-Mitigation: Verify the recipient and challenge before running sign or link commands, and stop if any script reports an error. <br>
-Risk: Identity and challenge files persist outside the workspace. <br>
-Mitigation: Review local retention requirements and remove unused identities or challenges when they are no longer needed. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to create and manage Billions Network decentralized identities, link an agent DID to a human owner, sign challenges, and verify DID ownership.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ian4jpg/billionsnetwork-verified-agent-identity) <br>
-- [Billions Network](https://billions.network/) <br>
-- [Billions Wallet](https://wallet.billions.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; script outputs are plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write identity and challenge data under $HOME/.openclaw/billions and may send OpenClaw messages when linking or signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence and package.json) <br>
+Risk: The skill can create or import cryptographic identities and store unencrypted private keys under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value key, review local file permissions, and confirm you are comfortable with the key storage model before installation.
+
+Risk: Passing real private keys on the command line can expose sensitive material through shell history or process inspection.
+
+Mitigation: Prefer generated dedicated keys and avoid passing real private keys through command-line arguments.
+
+Risk: Signed identity material and verification links may be sent through OpenClaw to another party.
+
+Mitigation: Verify the recipient before linking or signing and review dependency updates before use.
+
+## Reference(s):
+
+- [Billions Network](https://billions.network/)
+- [Skill Source Instructions](SKILL.md)
+- [Artifact README](README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; scripts return DID strings, JSON records, challenges, verification URLs, and status messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and OpenClaw. Identity data and unencrypted private keys are stored under $HOME/.openclaw/billions.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

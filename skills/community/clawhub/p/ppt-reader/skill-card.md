@@ -1,39 +1,53 @@
-## Description: <br>
-Extracts text and slide information from user-provided PPTX PowerPoint files using local shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads PowerPoint PPTX files and extracts slide text content for review, summarization, and basic presentation analysis.
 
-## Publisher: <br>
-[jingqiu2180](https://clawhub.ai/user/jingqiu2180) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingqiu2180](https://clawhub.ai/user/jingqiu2180)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect PPTX files, count slides, and extract slide text into a structured summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local shell commands read user-provided PowerPoint files and may produce incomplete or misleading text when files are malformed or structurally complex. <br>
-Mitigation: Run the commands only on intended .pptx files from trusted paths and review the extracted text before relying on it. <br>
-Risk: The workflow strips slide XML to text and does not preserve images, charts, formatting, complex tables, or legacy .ppt content. <br>
-Mitigation: Treat the result as a text-only aid and use a dedicated presentation parser when non-text content or formatting fidelity matters. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill when an agent needs to inspect a PPTX file, count slides, extract per-slide text, and organize the result into a structured summary.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command snippets and plain-text extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only extraction for .pptx files; images, charts, formatting, complex tables, and legacy .ppt files are not covered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unknown or very large PPTX files can create resource-use or excessive-output issues when processed with local unzip and text extraction commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or reasonably sized presentations, and apply file-size, slide-count, timeout, and output limits before processing unknown PPTX files.
+
+Risk: Extracted PPTX text may omit images, charts, formatting, layout, and some complex table content.
+
+Mitigation: Treat extracted text as a partial content view and review the original presentation when visual or formatting details matter.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jingqiu2180/skills/ppt-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and extracted text summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces local extraction commands and human-readable slide text; it does not extract images, charts, styling, or legacy .ppt files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

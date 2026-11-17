@@ -1,42 +1,54 @@
-## Description: <br>
-Plans complete hiking itineraries and leader-ready route briefs for day hikes, mountain walks, coastal treks, and beginner group outings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans complete hiking itineraries and leader-ready route briefs for day hikes, mountain walks, coastal treks, and beginner group outings.
 
-## Publisher: <br>
-[decin](https://clawhub.ai/user/decin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[decin](https://clawhub.ai/user/decin)
 
-## Use Case: <br>
-Hikers, trip organizers, and group leaders use this skill to turn route constraints into timed hiking plans with segment notes, transport options, bailout points, risks, gear, costs, and leader execution guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated hiking plans may be unsafe if weather, closures, daylight, transport, or trail conditions have changed. <br>
-Mitigation: Verify current conditions with official or first-party sources before relying on a route, and cancel or downgrade the plan when facts conflict with the generated itinerary. <br>
-Risk: Incomplete user inputs can cause route timing, difficulty, or group logistics to be estimated. <br>
-Mitigation: Collect critical inputs before planning and review assumptions, segment timings, bailout points, regroup rules, and leader actions before the hike. <br>
+## Use Case:
 
+External users and trip leaders use this skill to turn hiking constraints into Chinese-language route plans, candidate trail comparisons, timing, transport, bailout options, risk notes, gear lists, cost estimates, and leader organization guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/decin/hike-route-planner) <br>
-- [Local plan template](references/plan-template.md) <br>
-- [Template maintenance source](https://oxktmen1w6t.feishu.cn/wiki/LC1Aw7kCUitLQckoTYxcTkJGn6f) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown hiking plan with route sections, timing, transport, risk notes, gear, costs, and leader checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Chinese output and marks unverified facts as estimated or assumed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A hiking itinerary may be unsafe or impractical if current weather, closures, daylight, permits, transport schedules, or emergency options have changed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify safety-critical facts from official or first-party sources before relying on the plan, especially for real-world group outings.
+
+Risk: Unverified route distance, ascent, timing, or logistics can make a plan appear more precise than the evidence supports.
+
+Mitigation: Label unverified details as estimates or assumptions, use conservative ranges, and ask for missing route, departure time, and group size before generating a final plan.
+
+## Reference(s):
+
+- [固化徒步方案输出模板](references/plan-template.md)
+- [Feishu template maintenance source](https://oxktmen1w6t.feishu.cn/wiki/LC1Aw7kCUitLQckoTYxcTkJGn6f)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown route plan with itinerary, timeline, gear, weather, risk, transport, cost, and leader guidance sections.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a fixed local template and labels verified, estimated, and assumed information separately.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

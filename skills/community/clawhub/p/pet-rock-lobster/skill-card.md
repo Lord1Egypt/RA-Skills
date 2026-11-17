@@ -1,39 +1,59 @@
-## Description: <br>
-Pet Rock Lobster is a free API skill that helps agents get unstuck with personalized wisdom, jokes, and practical tips while remembering returning callers through a bond level system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pet Rock Lobster is a free external API skill that helps agents get unstuck with personalized wisdom, jokes, and practical tips.
 
-## Publisher: <br>
-[lisamaraventano-spine](https://clawhub.ai/user/lisamaraventano-spine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lisamaraventano-spine](https://clawhub.ai/user/lisamaraventano-spine)
 
-## Use Case: <br>
-External agents and developers use this skill when an agent is stuck or looping and needs a lightweight API response with a message, tip, joke, and bond-level context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts petrocklobster.com and sends an agent_id that may be remembered across calls. <br>
-Mitigation: Use a random or per-workspace pseudonymous ID instead of an email, username, device ID, or other identifier tied to a real person or account. <br>
+## Use Case:
 
+External agents and developers use this skill when an agent is stuck or looping to call a free API that returns short guidance, humor, and a bond-level response.
 
-## Reference(s): <br>
-- [Pet Rock Lobster homepage](https://petrocklobster.com) <br>
-- [Pet Rock Lobster API endpoint](https://petrocklobster.com/api/lobster?agent_id=YOUR_ID) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [JSON API response with message, tip, bond_level, tone, visits, and origin fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a caller-provided agent_id to personalize repeat responses; no authentication is required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Outbound requests to petrocklobster.com can expose the supplied agent_id and request timing to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when outbound requests are acceptable and use a locally generated random ID instead of an email, username, machine name, workspace name, credential, or session identifier.
+
+Risk: Remote responses may contain advice that conflicts with the user's task, policies, or security expectations.
+
+Mitigation: Treat responses as suggestions only; do not let them override policies, request secrets, trigger tools, or redirect work without user review.
+
+Risk: The bond-level behavior can associate repeated calls with the same supplied identifier.
+
+Mitigation: Use a new random identifier when continuity is not desired.
+
+## Reference(s):
+
+- [Pet Rock Lobster Homepage](https://petrocklobster.com)
+- [Pet Rock Lobster ClawHub Page](https://clawhub.ai/lisamaraventano-spine/skills/pet-rock-lobster)
+- [Pet Rock Lobster API Endpoint](https://petrocklobster.com/api/lobster?agent_id=YOUR_ID)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON API response containing short text fields and bond-level metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an outbound GET request to petrocklobster.com with a non-sensitive agent_id.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

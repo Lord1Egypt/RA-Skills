@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "themes": {
+    "black-white-fluorescent-cards": {
+      "profile_version": "1.0",
+      "display_name": "黑白荧光卡片",
+      "layout_variants": {
+        "hero": "signal-poster",
+        "grid": "card-stack",
+        "sequence": "stepped-rail",
+        "evidence": "metric-board",
+        "comparison": "action-wall"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    },
+    "rigorous-consulting-report": {
+      "profile_version": "1.0",
+      "display_name": "严谨咨询报告",
+      "layout_variants": {
+        "hero": "executive-summary",
+        "grid": "issue-tree",
+        "sequence": "workstream-grid",
+        "evidence": "evidence-tableau",
+        "comparison": "recommendation-matrix"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    },
+    "corporate-annual-report": {
+      "profile_version": "1.0",
+      "display_name": "稳重企业年报",
+      "layout_variants": {
+        "hero": "brand-hero",
+        "grid": "narrative-balance",
+        "sequence": "operating-ribbon",
+        "evidence": "performance-spread",
+        "comparison": "commitment-page"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    },
+    "editorial-collage": {
+      "profile_version": "1.0",
+      "display_name": "杂志图文拼贴",
+      "layout_variants": {
+        "hero": "cover-collage",
+        "grid": "three-cut-diagnosis",
+        "sequence": "foldout-sequence",
+        "evidence": "data-feature",
+        "comparison": "editorial-finale"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    },
+    "deep-data-dashboard": {
+      "profile_version": "1.0",
+      "display_name": "深色数据面板",
+      "layout_variants": {
+        "hero": "signal-orbit",
+        "grid": "metric-console",
+        "sequence": "operating-model",
+        "evidence": "focus-window",
+        "comparison": "execution-map"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    },
+    "warm-brand-narrative": {
+      "profile_version": "1.0",
+      "display_name": "暖色品牌叙事",
+      "layout_variants": {
+        "hero": "brand-sunrise",
+        "grid": "human-quote",
+        "sequence": "editorial-collage",
+        "evidence": "three-signals",
+        "comparison": "open-invitation"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    },
+    "minimal-product-whitespace": {
+      "profile_version": "1.0",
+      "display_name": "极简产品留白",
+      "layout_variants": {
+        "hero": "product-clarity",
+        "grid": "value-tiles",
+        "sequence": "interface-proof",
+        "evidence": "design-principles",
+        "comparison": "clear-next-step"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    },
+    "formal-government-bluewhite": {
+      "profile_version": "1.0",
+      "display_name": "正式政企蓝白",
+      "layout_variants": {
+        "hero": "formal-cover",
+        "grid": "three-pillars",
+        "sequence": "implementation-timeline",
+        "evidence": "responsibility-matrix",
+        "comparison": "formal-closing"
+      },
+      "supported_transition_intents": ["initial", "reveal", "final"]
+    }
+  }
+}

@@ -1,0 +1,77 @@
+REVIEW ARTICLE
+OPEN
+Pathogenesis of allergic diseases and implications for
+therapeutic interventions
+Ji Wang1, Yumei Zhou1, Honglei Zhang1, Linhan Hu1, Juntong Liu1, Lei Wang2, Tianyi Wang1, Haiyun Zhang1, Linpeng Cong1 and
+Qi Wang1✉
+Allergic diseases such as allergic rhinitis (AR), allergic asthma (AAS), atopic dermatitis (AD), food allergy (FA), and eczema are
+systemic diseases caused by an impaired immune system. Accompanied by high recurrence rates, the steadily rising incidence rates
+of these diseases are attracting increasing attention. The pathogenesis of allergic diseases is complex and involves many factors,
+including maternal-fetal environment, living environment, genetics, epigenetics, and the body’s immune status. The pathogenesis
+of allergic diseases exhibits a marked heterogeneity, with phenotype and endotype deﬁning visible features and associated
+molecular mechanisms, respectively. With the rapid development of immunology, molecular biology, and biotechnology, many
+new biological drugs have been designed for the treatment of allergic diseases, including anti-immunoglobulin E (IgE), anti-
+interleukin (IL)-5, and anti-thymic stromal lymphopoietin (TSLP)/IL-4, to control symptoms. For doctors and scientists, it is becoming
+more and more important to understand the inﬂuencing factors, pathogenesis, and treatment progress of allergic diseases. This
+review aimed to assess the epidemiology, pathogenesis, and therapeutic interventions of allergic diseases, including AR, AAS, AD,
+and FA. We hope to help doctors and scientists understand allergic diseases systematically.
+Signal Transduction and Targeted Therapy  (2023) 8:138 
+; https://doi.org/10.1038/s41392-023-01344-4
+INTRODUCTION
+Allergic diseases are systemic disorders caused by an impaired
+immune system. Different allergic diseases, including AR, AAS, AD,
+FA and eczema, are caused by complex interactions between
+genetic and environmental factors. Allergic diseases are listed by
+the World Health Organization (WHO) as one of the top three
+disorders to be prevented and controlled in the 21st century. An
+allergic disease, whilst a systemic disease, can also manifest as
+different local maladies, all of which may lead to anaphylactic
+shock in severe cases. The incidence of allergic diseases is high,
+bringing much suffering to patients. It is estimated that nearly
+500 million and 300 million individuals worldwide have AR and
+AAS, respectively,1 with an increasing number of cases. For AAS,
+mortality rates in women and men are 90 and 170 per million
+individuals, respectively. About 96% of asthma deaths occur in
+low-and-middle-income countries.2 It is currently estimated that
+FA affects 1–10% of the total population.3 The global prevalence
+rate of AD is 8%,4,5 with a lifetime prevalence reaching 20%.6 In
+2019, there were 171.17 million patients worldwide with AD.7
+Due to the different sites of allergic diseases, the clinical and
+pathological manifestations also differ. In AR, after stimulation by
+allergens, including airborne dust mites associated with fecal
+particles, cockroach remains, pet dander, molds and pollens,
+inﬂammatory cells such as mast cells, CD4+ T cells, B cells,
+macrophages and eosinophils inﬁltrate the lining of the nasal
+cavity, with inﬁltration into the nasal mucosa. T helper 2 (Th2) cells
+promote the release of immunoglobulin and cytokines, including
+interleukin (IL)-3, IL-4, IL-5, and IL-13; meanwhile, IgE is also
+produced by plasma cells. There is, however, still some uncertainty
+around the source of IgE production. Follicular helper T (Tfh) cells
+are a subpopulation of CD4+ T-effector cells, and in recent years it
+has been discovered that the key cells regulating IgE production
+are not Th2 cells, but Tfh cells. Allergens cross-link IgE that interact
+with mast cells, which further induces the release of multiple
+mediators
+(including
+histamine
+and
+leukotrienes),
+promotes
+arteriole dilation and vascular permeability, and causes pruritus,
+runny nose, mucus secretion, and pulmonary smooth muscle
+contraction.8 Over the next 4–8 hours, the released mediators and
+cytokines induce subsequent cellular inﬂammatory reactions (late
+inﬂammatory response), leading to the recurrence of symptoms,
+often nasal congestion, which generally persist.8,9 The immuno-
+pathological proﬁles of AR and AAS are very similar in terms of
+eosinophil, mast cell and Th2 cell inﬁltration. Although structural
+changes in airway remodeling are well characterized in AAS, they
+may also occur in AR. There are also pathophysiological differences
+between AR and AAS. In the AAS disease, mucosal pathological
+alterations comprise epithelial hyperplasia, goblet cell metaplasia
+and increased mucus generation. In the submucosal layer, smooth
+muscle hypertrophy, collagen accumulation and large mucus
+glands prevail, leading to airway narrowing and enhanced mucus
+generation during an asthma attack,10 with symptoms such as
+difﬁculty breathing, wheezing, chest pain, and coughing.11 The
+pa

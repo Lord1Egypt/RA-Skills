@@ -1,0 +1,1 @@
+{"retries":3,"initialDelayMs":1000,"maxDelayMs":30000,"backoffFactor":2,"jitterMs":500,"timeoutMs":5000,"retryOn":["ECONNRESET","ETIMEDOUT","5xx"],"abortOn":["4xx","auth_failed"]}

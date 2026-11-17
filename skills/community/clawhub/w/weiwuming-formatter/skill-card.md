@@ -1,43 +1,55 @@
-## Description: <br>
-Converts uploaded .doc/.docx files or pasted text into WeChat article Markdown using the Weiwuming editor syntax while preserving source content and reporting formatting or review issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts Word documents or pasted article text into editor-ready WeChat markdown using the Weiwuming publication syntax.
 
-## Publisher: <br>
-[roloyty](https://clawhub.ai/user/roloyty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roloyty](https://clawhub.ai/user/roloyty)
 
-## Use Case: <br>
-Developers, editors, and publishing agents use this skill to convert Word documents or pasted article text into WeChat-ready Markdown using the Weiwuming editor syntax. It preserves source content while adding required editorial sections, keyword blocks, image handling reports, and proofreading reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document-related images may be uploaded to a public third-party image host. <br>
-Mitigation: Use only material intended for publication, avoid private or licensed images unless public rehosting is explicitly approved, and review uploaded image URLs before publishing. <br>
-Risk: Web searches for keyword blocks and extended reading can introduce inaccurate or unsuitable metadata. <br>
-Mitigation: Manually review generated keyword blocks, book recommendations, sources, and proofreading reminders before publishing. <br>
-Risk: Local downloaded images may remain in an images/ folder after formatting. <br>
-Mitigation: Delete the local images/ folder when the publishing workflow is complete. <br>
+## Use Case:
 
+Editors and agents use this skill to format source articles, uploaded .doc/.docx files, and pasted text into WeChat article markdown that follows the Weiwuming syntax, including editorial notes, source notes, bios, reading sections, staff credits, and follow blocks.
 
-## Reference(s): <br>
-- [Weiwuming Formatter ClawHub page](https://clawhub.ai/roloyty/weiwuming-formatter) <br>
-- [WeChat Article Editor Syntax Rules](artifact/references/syntax_rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with Weiwuming editor syntax, image-processing report, and proofreading reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a local images/ folder and reference publicly hosted image URLs when image upload succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can perform web lookups and rehost images to a public image service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with content and images that are appropriate for public lookup and public hosting; avoid confidential drafts, private image links, or unpublished media.
+
+Risk: The skill injects fixed Weiwuming publication branding and reviewer text into each output.
+
+Mitigation: Review the generated footer, staff credits, and attribution before publication, especially when branding or reviewer conventions are not appropriate.
+
+## Reference(s):
+
+- [Weiwuming Formatter ClawHub release](https://clawhub.ai/roloyty/skills/weiwuming-formatter)
+- [Publisher profile](https://clawhub.ai/user/roloyty)
+- [WeChat Article Editor Syntax Rules](artifact/references/syntax_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown article output with image-processing notes and proofreading reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include downloaded image handling, public image-host URLs when uploads succeed, and separate reminders for unresolved formatting or content issues.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

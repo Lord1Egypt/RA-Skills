@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "@nomos/medxpert/reg-connector": {
+      "command": "<你的 python 解释器路径>",
+      "args": [
+        "<medxpert-reg-connector 包目录>/reg_connector_server.py"
+      ],
+      "disabled": false,
+      "description": "MedXpert 全球法规连接器：本地只读检索全球医疗器械法规知识库 (NMPA/FDA/MDR/PMDA 等 27 枢纽)"
+    }
+  }
+}

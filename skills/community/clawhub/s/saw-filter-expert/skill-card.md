@@ -1,39 +1,55 @@
-## Description: <br>
-Provides technical guidance for SAW filter design, equivalent-circuit modeling, transverse-mode suppression, temperature compensation, and substrate selection based on Hashimoto and related literature. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language technical support for SAW filter design, equivalent circuit modeling, transverse-mode suppression, temperature compensation, and material selection using Hashimoto's SAW text and related literature.
 
-## Publisher: <br>
-[lujie19941118-star](https://clawhub.ai/user/lujie19941118-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujie19941118-star](https://clawhub.ai/user/lujie19941118-star)
 
-## Use Case: <br>
-Developers and RF engineers use this skill to get SAW filter design calculations, equivalent-circuit modeling guidance, literature-backed troubleshooting, and material or topology tradeoff support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Formulas and literature summaries may be incomplete or unsuitable as final SAW filter design validation because the full cited document corpus is not included in the package. <br>
-Mitigation: Use the skill as a technical reference aid and verify calculations, assumptions, and cited claims against authoritative sources and engineering review before making design decisions. <br>
+## Use Case:
 
+RF filter engineers and developers use this skill to get Chinese-language design guidance, formulas, reference notes, and troubleshooting support for SAW filters, BVD/MBVD models, COM theory, piston-mode suppression, TCSAW/IHPSAW structures, and substrate selection.
 
-## Reference(s): <br>
-- [SAW Filter Expert ClawHub release](https://clawhub.ai/lujie19941118-star/saw-filter-expert) <br>
-- [SAW filter reference notes](artifact/references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text technical guidance with formulas and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; answers may include formulas, calculations, and literature summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may rely on a local SAW knowledge base path, so unintended documents in that path could affect answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that /workspace/knowledge_base/saw/docs/ contains only the technical documents intended for this skill before deployment.
+
+Risk: The skill provides specialized RF filter design guidance that can be misapplied if the user's device context or assumptions are incomplete.
+
+Mitigation: Review calculations, formulas, and material recommendations against project requirements and authoritative engineering references before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lujie19941118-star/skills/saw-filter-expert)
+- [Publisher profile](https://clawhub.ai/user/lujie19941118-star)
+- [SAW filter reference notes](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown with formulas, tables, and technical recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference a local SAW knowledge base when available; no code execution or credential use is indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

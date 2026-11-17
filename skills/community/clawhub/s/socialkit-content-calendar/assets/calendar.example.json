@@ -1,0 +1,8 @@
+{
+  "timezone": "Asia/Karachi",
+  "entries": [
+    { "dir": "posts/facebook-launch", "publishAt": "2026-11-02T10:00:00+05:00", "note": "Launch post" },
+    { "dir": "posts/threads-launch", "publishAt": "2026-11-02T10:05:00+05:00" },
+    { "dir": "posts/instagram-launch", "publishAt": "2026-11-02T18:00:00+05:00" }
+  ]
+}

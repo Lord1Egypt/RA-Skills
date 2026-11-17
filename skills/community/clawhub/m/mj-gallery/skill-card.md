@@ -1,43 +1,58 @@
-## Description: <br>
-Mj Gallery generates MXAI MJ images from text prompts, downloads them locally, archives them in a web gallery, deploys the gallery, and returns accessible result links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MXAI MJ image-generation and gallery skill that submits text-to-image requests, polls for completion, downloads images locally, archives them to a gallery folder, deploys the gallery, and returns accessible result links.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users and developers use this skill to generate MJ-style images through MXAI, keep local image copies, and publish a lightweight gallery for sharing recent outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated images, prompt summaries, filenames, and task metadata may be saved in the workspace and published through the gallery link. <br>
-Mitigation: Avoid confidential prompts, private reference images, client work, or other sensitive content unless the deployment destination is controlled and removable. <br>
-Risk: The skill requires an MX_AI_API_KEY credential for image generation. <br>
-Mitigation: Use a scoped or revocable API key and rotate it if it may have been exposed. <br>
-Risk: Generated or referenced material may create ownership or copyright concerns when shared publicly. <br>
-Mitigation: Use prompts and reference images only when you have the rights needed for the intended gallery publication. <br>
+## Use Case:
 
+External users and developers use this skill to generate MJ images from prompts, preserve generated assets locally, and maintain a public web gallery of recent results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/mj-gallery) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tianheihei002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown response with local image paths, generated gallery files, and deployed gallery links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates WebP image files, updates a gallery index.html, and keeps the most recent 20 gallery entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Generated images and prompt-derived gallery metadata may be published in a public gallery.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts and images unless publication consent and a local-only or cleanup workflow are added.
+
+Risk: User-derived prompt text is inserted into gallery HTML without evidence of safe escaping.
+
+Mitigation: Escape prompt and metadata fields before writing HTML and review generated pages before deployment.
+
+Risk: The skill requires an MX_AI_API_KEY credential to submit image-generation requests.
+
+Mitigation: Store the credential in the agent environment, avoid placing it in prompts or generated files, and rotate it if exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/mj-gallery)
+- [ClawHub publisher profile](https://clawhub.ai/user/tianheihei002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown response with local image paths, public gallery links, and generated HTML gallery files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MX_AI_API_KEY; stores images under /workspace/mj_output and /workspace/mj_gallery; keeps the latest 20 gallery entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,109 @@
+1.0.19
+
+Release/version change metadata for this skill set lives here, not in individual skill files.
+
+Historical notes consolidated from skill docs:
+- checkly-cli v9.4.0-v9.5.0
+  - Reviewed upstream releases `9.4.0` and `9.5.0`, compare `9.3.0...9.5.0`, tags `cac349a` and `6a34c37`, and the released construct source/types/tests on 2026-09-16.
+  - Added automatic-check-repair ownership guidance for `BrowserCheck` and `MultiStepCheck`, including omit, explicit boolean, and account-inheritance semantics.
+  - Expanded Status Page V3 guidance for component history/expansion settings, footer support links, and plan-gated light/dark theme colors with strict hex validation.
+  - Documented transparent pnpm 12 multi-document lockfile handling during Playwright bundle inspection and pruning. Config-declared constructs now retain `checkly.config.*` as their source file, so relative group `browserChecks.testMatch` and setup-script `entrypoint` values resolve from the config directory instead of failing; deploy source-file attribution remains API metadata with no new command or flag.
+- checkly-cli v9.3.0
+  - Reviewed upstream release `9.3.0`, compare `9.2.0...9.3.0`, tag `fa81627`, the integrity-verified npm package, source/types/tests, and exact Checkly CLI `9.3.0` account-plan/usage help output on 2026-09-09.
+  - Added `checkly-usage` coverage for account plans and entitlements plus organization usage terms, pinned date ranges, JSON response contracts, credit projections, filters, grouped series, nullable cursors, literal warnings, permissions, and all usage-specific error codes.
+  - Distinguished current user/service API keys from rejected legacy credentials in `checkly-auth`, and updated the orchestrator and package README to route plan/entitlement questions separately from contract-credit usage.
+- checkly-cli v9.2.0
+  - Reviewed upstream release `9.2.0`, compare `9.1.0...9.2.0`, tag `2ea1376`, the checksum-verified npm package, bundled Playwright guidance, engine-detection source/tests, and live version/root help output on 2026-09-05.
+  - Added Playwright Check Suite engine-detection guidance for Volta's nearest `package.json` Node pin and its priority relative to dedicated version files and `engines.node`.
+  - Updated automatic lockfile-pruning guidance for cached registry metadata, pnpm workspace-store pinning, the 30-second budget, `CHECKLY_LOCKFILE_PRUNE_TIMEOUT`, and debug diagnostics on timeout or subset-verification failure.
+  - Confirmed that the public command/flag surface is unchanged; the remaining release delta only narrows upstream create-checkly CI execution.
+- checkly-cli v9.1.0
+  - Reviewed upstream release `9.1.0`, compare `9.0.0...9.1.0`, tag `d080e8d`, the checksum-verified npm package, bundled Playwright guidance, config declarations/validation code, and live version/help output on 2026-09-04.
+  - Moved dependency-cache invalidation guidance from deprecated `caching.dependencyCache.version` to `runner.cache.install.version`, including mixed-version rollout, conflict, empty-value, and one-off `--refresh-cache` behavior.
+  - Added current config-diagnostics behavior: commands collect multiple attributed issues, fatal config errors exit 1, diagnostics can render on stdout, and `trigger` now rejects invalid configs instead of silently continuing.
+  - Reviewed the dependency-free Node preflight and internal `CHECKLY_E2E_CLI_VERSION` rename; neither adds a public command, flag, or supported operator workflow. Root, `validate`, and `trigger` help surfaces are otherwise unchanged apart from the reported version.
+- checkly-cli v9.0.0
+  - Reviewed upstream release `9.0.0`, compare `8.23.2...9.0.0`, the npm package metadata/tarball, bundled agent reference, construct declarations/tests, and live `checkly@9.0.0` version/help output on 2026-09-01.
+  - Raised the CLI host prerequisite and CI examples to Node.js 22.13.0 or later, matching the package's new `engines.node` floor.
+  - Added `StatusPageV3`, `StatusPageV3Component`, and `StatusPageV3AutomationRule` guidance for component-based pages, nested groups/services, tag-driven incident automation, existing-resource references, add-on requirements, and generation-safe logical IDs.
+  - Reviewed executable PATH probing and end-to-end project cleanup fixes; they change internal correctness but do not add a command, flag, or operator workflow.
+- checkly-cli v8.23.0-v8.23.2
+  - Reviewed upstream releases `8.23.0`, `8.23.1`, and `8.23.2`, compare `8.22.0...8.23.2`, tag `519cfcbd`, bundled Playwright guidance, config types/tests, and live `checkly@8.23.2` version/help output on 2026-08-28.
+  - Expanded `bundle.packages.embed` guidance for ordered `!` exclusions, `**` cross-scope wildcards, automatic bundle lockfile pruning (including pnpm `patchedDependencies` filtering), Yarn Berry/Bun support, and pnpm `auth.ini` credentials.
+  - Added `bundle.packages.prune` guidance for dependency-class and workspace-member `remove`/`keep` rules, including lockfile-consistency and runtime-safety constraints.
+  - Added `runner.registries` routing for runner-only registry overrides with typed upstreams, first-match package rules, mandatory catch-all routing, and environment-reference-only bearer credentials.
+  - The `.npmrc` trailing-slash auth-key fix (#1448), bare `.` / `..` import resolution, and concurrent cache-write fixes required no separate workflow guidance.
+- checkly-cli v8.22.0
+  - Reviewed upstream release `8.22.0`, compare `8.21.0...8.22.0`, tag `98f1c46`, and relevant source for `bundle.packages.embed` plus `CHECKLY_MQTT_URL` on 2026-08-21.
+  - Added Playwright Check Suite guidance for embedding private-registry package tarballs with top-level `bundle.packages.embed`, including exact package specs, wildcard matching, lockfile eligibility, integrity checking, cache behavior, and runner dependency-cache implications.
+  - Documented `CHECKLY_MQTT_URL` as an advanced local/custom event-stream broker override analogous to `CHECKLY_API_URL`.
+- checkly-cli v8.21.0
+  - Reviewed upstream release `8.21.0`, compare `8.20.0...8.21.0`, bundled Checkly skill guidance, construct source/tests, and live `checkly@8.21.0` version output on 2026-08-15.
+  - Added structured check-intent guidance for supported runtime checks and uptime monitors, including `REQUIRED_OUTCOME` / `MUST_PRESERVE` constraints, validation limits, omit-versus-null deployment semantics, and the explicit-construct requirement for Playwright intent.
+  - Corrected URL monitor examples to place `url` under the required `request` object.
+  - Added CLI-versus-MCP routing and account-parity guidance from Checkly's bundled skill. Transparent transient-API retries and result-asset cleanup fixes require no new command or flag workflow.
+- checkly-cli v8.20.0
+  - Reviewed upstream release `8.20.0`, compare `8.19.0...8.20.0`, bundled AI references, and live `checkly@8.20.0` version/help output on 2026-08-11.
+  - Added top-level `caching.dependencyCache.version` guidance for persistent Playwright Check Suite dependency-cache invalidation, while keeping `--refresh-cache` as the one-off run/test control.
+  - Removed legacy Agentic Check discovery guidance after upstream hid that construct from CLI discovery; dependency updates and pnpm symlink extraction fixes required no additional skill workflow changes.
+- checkly-cli v8.19.0
+  - Reviewed upstream release `8.19.0`, compare `8.18.0...8.19.0`, PR `checkly/checkly-cli#1425`, construct source/tests, and live `checkly@8.19.0` version/help output on 2026-08-01.
+  - Documented account-aware response-time validation: standard client-side ceilings remain in force unless the authenticated account advertises extended limits, in which case the CLI defers the upper bound to the API while preserving the degraded-versus-maximum consistency check.
+  - Added the standard response-time ceilings for API, TCP, DNS, URL, gRPC, SSL, and traceroute constructs and distinguished top-level monitor/check thresholds from request assertions.
+- checkly-cli v8.18.0
+  - Reviewed upstream release `8.18.0`, compare `8.17.1...8.18.0`, command/construct source, and live `checkly@8.18.0` version/help output on 2026-07-27.
+  - Added the new `checks run` workflow for triggering deployed checks by ID or tag, including selector semantics, output/detach/cache/timeout behavior, exit-status handling, and live-run safety guidance.
+  - Documented Telegram forum-topic alert delivery through `TelegramAlertChannel.messageThreadId` without hardcoding bot credentials.
+  - Noted that `checkly test` now dispatches through the async scheduling API, fails fast on scheduling errors, and confirms scheduling completes before `--detach` exits.
+- checkly-cli v8.17.1
+  - Reviewed upstream release `8.17.1`, compare `v8.16.0...8.17.1`, construct source/tests, and live `checkly@8.17.1` version/help output on 2026-07-18.
+  - Replaced obsolete source-specific SSL assertion builders with the new property-scoped `certificate()` and `connection()` grammar, including the expanded property/operator surface and response assertions.
+  - Documented gRPC health-status label-to-number handling and the removal of `storeResponseBody` from `GrpcRequest`.
+  - Confirmed that the top-level command surface is unchanged; detached non-TTY CI output deduplication is an internal reporter fix.
+- checkly-cli v8.16.0
+  - Reviewed upstream release `8.16.0`, compare `8.15.0...8.16.0`, bundled agent references, package source, and live `checkly@8.16.0` help output on 2026-07-16.
+  - Rebuilt `checkly-import` around the complete plan/apply/commit/cancel lifecycle, including `--plan-id`, `--no-commit`, non-interactive plan selection, `--dry-run`, and the pinned-target confirmation protocol.
+  - Added current agent-mode confirmation guidance for deploy, destroy, import commit, and import cancel; documented that returned `confirmCommand` flags are deliberate and must be run verbatim only after approval.
+  - Clarified protocol-dependent traceroute default ports and SSL result baseline output, including observed rule values and corrected pass/warn/fail rendering.
+- checkly-cli v8.15.0
+  - Reviewed upstream release `8.15.0`, compare `8.14.1...8.15.0`, official bundled AI references, construct source/tests, and `checkly@8.15.0` version/help output on 2026-07-14.
+  - Added gRPC, SSL, and traceroute monitor construct guidance with typed assertion builders, request shapes, response-time thresholds, and plan-gated property caveats.
+  - Added deployed-check, stats, terminal-reporter, and JSON-reporter guidance for type-specific gRPC/SSL/traceroute diagnostics, including the traceroute stats `Hops` column.
+  - Documented automatic `.npmrc` bundling for Playwright Check Suites; workspace-root and package-root `.npmrc` files no longer need a manual `include`, and credentials should be injected through environment variables.
+  - Moved the orchestrator skill into `checkly-cli-skills/SKILL.md` so Agent Skills discovery exposes all 14 skills instead of hiding the 13 sibling skills behind a root `SKILL.md`; verified selective `checkly-monitors` installation matches its source artifact.
+- checkly-cli v8.14.1
+  - Reviewed upstream release `8.14.1`, PR checkly/checkly-cli#1390, and `npx --yes checkly@8.14.1 deploy --help` on 2026-07-09.
+  - Added `npx checkly deploy --preserve-resources` guidance for detaching resources removed from code while keeping run history and UI management.
+  - Documented the new destructive-delete guard for interactive non-forced deploys; `--force` skips the extra confirmation, so CI examples should use `--preserve-resources` when preserving removed-resource history is desired.
+  - Added preview output guidance for the `Detached (kept in account, now UI-managed)` deploy-diff bucket.
+- checkly-cli v8.11.0
+  - Reviewed upstream release `8.11.0` and `npx -y checkly@8.11.0` help output on 2026-07-03.
+  - Updated auth guidance for env-var credentials: `whoami` now explains when the account comes from `CHECKLY_API_KEY`/`CHECKLY_ACCOUNT_ID`, and `logout` warns that env-var credentials still authenticate until removed.
+  - Added `npx checkly switch --account-id <id>` account-switching guidance instead of manual config deletion.
+  - Added destructive-project cleanup guidance for `npx checkly destroy`, including async progress, idempotent missing-project handling, `--preserve-resources`, and `--cancel-in-progress-deployment`.
+  - Noted that the upstream `checkly rules` command is deprecated in favor of `npx checkly skills` for Checkly's bundled agent references; this external skill pack should not use `checkly rules`.
+
+- checkly-cli v8.10.0
+  - Reviewed upstream release `8.10.0` and `npx -y checkly@8.10.0` help output on 2026-06-25.
+  - Added `npx checkly deploy --cancel-in-progress-deployment` guidance for asynchronous deployments with live progress and in-flight deployment replacement.
+  - Added DNS monitor coverage for HTTPS (RFC 9460) DNS record validation with `recordType: 'HTTPS'`.
+  - Reviewed early Construct diagnostics changes; no new public command or flag was exposed beyond the deploy flag.
+- checkly-cli v8.9.0
+  - Reviewed upstream release `8.9.0` on 2026-06-19.
+  - Added alerting-investigation guidance from the upstream Checkly CLI skill reference: use read-only JSON/API evidence, avoid guessed global-alert endpoints, and explain check/group/global alert-setting precedence from confirmed fields only.
+  - Updated Slack alert-channel guidance to prefer `SlackAppAlertChannel` for new Slack notifications and reserve legacy webhook-style Slack channels for existing setups.
+  - Noted that `checks get` detail/markdown recent-results output is now internally field-projected for performance while `--output json`, `--result`, and `--include-attempts` preserve full result payload behavior.
+  - Reviewed agentic test-session cancellation changes; no public command or flag changes were exposed by `checkly@8.9.0 --help`.
+- checkly-cli v8.8.0
+  - Reviewed `npx -y checkly@8.8.0` release notes and help output on 2026-06-16.
+  - Added `checkly-assets` coverage for `npx checkly assets list` and `assets download` result-artifact investigation workflows.
+  - Updated `checkly-checks` for `checks delete --dry-run/--force`, `checks get --include-attempts`, result pagination/status filtering, and asset handoff guidance.
+- checkly-cli v8.7.0
+  - Reviewed `npx -y checkly@8.7.0` help output on 2026-06-09.
+  - Added `checkly-members` coverage for `npx checkly members`, `members update`, and `members delete` account-access workflows.
+  - Added `checkly-test` coverage for `npx checkly test-sessions list` and `test-sessions get` recorded-session drilldown workflows.
+- checkly-cli v7.12.1
+  - Reviewed upstream compare `7.12.0...7.12.1` on 2026-04-28.
+  - No user-facing CLI commands, flags, auth/config flows, or output formats changed in this release.
+  - The only upstream delta was docs guidance for `npx checkly checks get`: when investigating failures, reuse Rocky AI root-cause analysis surfaced via `errorGroups`, `rootCause`, or `RCA` when available.
+  - Updated the top-level skill docs, README, `checkly-checks`, and troubleshooting reference to reflect that investigation guidance.

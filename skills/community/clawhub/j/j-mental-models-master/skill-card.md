@@ -1,41 +1,53 @@
-## Description: <br>
-A structured mental-model toolkit for analyzing important decisions with first principles, inversion, second-order thinking, probability, competence boundaries, and margin of safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+顶级思维模型工具箱，遇到任何重要问题/决策时自动调用，进行深思熟虑的分析
 
-## Publisher: <br>
-[jearrylee](https://clawhub.ai/user/jearrylee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jearrylee](https://clawhub.ai/user/jearrylee)
 
-## Use Case: <br>
-External users and agents use this skill to apply structured mental-model analysis to important choices, especially investment-style buy, sell, opportunity, and risk decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may over-apply investment-style analysis or produce persuasive decision guidance from incomplete facts. <br>
-Mitigation: Verify important facts independently, use qualified financial advice when appropriate, and keep final buy, sell, or allocation decisions under user control. <br>
-Risk: Model-driven analysis can assign probabilities or confidence levels that appear more certain than the available evidence supports. <br>
-Mitigation: Require source checks, show uncertainty clearly, and treat probability estimates as decision aids rather than guarantees. <br>
+## Use Case:
 
+External users use this Chinese-language skill to structure important decisions, especially investment analysis, with mental models such as first principles, inversion, second-order thinking, probabilistic thinking, circle of competence, and margin of safety. It is intended to guide disciplined analysis, not to replace qualified professional financial, legal, medical, or safety advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jearrylee/j-mental-models-master) <br>
-- [Publisher profile](https://clawhub.ai/user/jearrylee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured decision sections, checklists, probabilities, confidence, and disclaimers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; does not request credentials, persistence, or authority to act.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad activation language may shape many important-decision conversations, including decisions outside investing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as an analysis framework and keep domain-specific conclusions subject to user review and qualified professional advice.
+
+Risk: Investment-oriented analysis may still contain incorrect, outdated, or insufficiently verified information.
+
+Mitigation: Cross-check material facts with at least two independent sources and present uncertainty with probabilities, ranges, source notes, confidence notes, and disclaimers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jearrylee/skills/j-mental-models-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style decision analysis with checklists, probability estimates, confidence notes, source notes, and disclaimers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; no code execution, network access, persistence, credential access, or data-changing authority is described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

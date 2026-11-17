@@ -1,0 +1,61 @@
+# Comparable Market Analysis Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+subject_property:
+  address: ""
+  city: ""
+  state: ""
+  zip: ""
+  sqft: 0
+  beds: 0
+  baths: 0
+  condition: ""
+valuation_date: ""
+list_price_proposed: 0
+comps:
+  - comp_id: 1
+    address: ""
+    status: closed
+    close_price: 0
+    close_date: ""
+    sqft: 0
+    condition: ""
+    adjustments:
+      date: 0
+      condition: 0
+      size: 0
+      lot: 0
+      other: 0
+    adjusted_price: 0
+    source: ""
+  - comp_id: 2
+    address: ""
+    status: closed
+    close_price: 0
+    close_date: ""
+    sqft: 0
+    condition: ""
+    adjustments:
+      date: 0
+      condition: 0
+      size: 0
+      lot: 0
+      other: 0
+    adjusted_price: 0
+    source: ""
+value_range:
+  low: 0
+  mid: 0
+  high: 0
+seller_costs:
+  commission_pct: 0
+  concessions: 0
+  transfer_tax: 0
+  recording_fees: 0
+net_sheet:
+  gross: 0
+  total_costs: 0
+  net_proceeds: 0
+notes:
+  - ""
+prepared_by: ""
+prepared_on: ""

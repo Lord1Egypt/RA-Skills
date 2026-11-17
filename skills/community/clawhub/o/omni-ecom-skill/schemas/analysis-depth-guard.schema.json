@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/analysis-depth-guard-2.0.json",
+  "title": "Omni E-commerce Analysis Depth Guard Receipt",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "run_id", "client_scope", "team_version", "baseline_sha256", "min_required_level", "checked_at", "results", "summary", "status"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "analysis_depth_guard_receipt"},
+    "contract_name": {"const": "omni-ecom.analysis-depth-guard"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.analysis-depth-guard@1.0"], "current_analysis_authority": false}},
+    "run_id": {"type": "string", "minLength": 1},
+    "client_scope": {"type": "string", "minLength": 1},
+    "team_version": {"type": "string", "minLength": 1},
+    "baseline_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "min_required_level": {"enum": ["L0", "L1", "L2", "L3", "L4"]},
+    "checked_at": {"type": "string", "format": "date-time"},
+    "results": {"type": "array", "minItems": 1},
+    "summary": {"type": "object"},
+    "status": {"enum": ["depth_guard_passed", "depth_guard_blocked"]}
+  }
+}

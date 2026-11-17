@@ -1,0 +1,6 @@
+{"video":"billett.mp4",
+ "style":"youtube",
+ "keep":[[0.0,3.5],[37.13,40.63],[87.4,90.4],[112.93,116.43],[171.67,174.4],[211.67,214.33],[283.83,287.33],[325.9,329.27]],
+ "replace":{"Cyrus Rex":"OSIRIS-REx","Osiris-Rex":"OSIRIS-REx","Before launched":"Before launch","gimbled":"gimbaled","arranging acquisition":"ranging acquisition"},
+ "captions":{"srt":true,"burn":false},
+ "chapters":[[0,"Planning the mission with the science team"],[37.2,"Flying in microgravity around Bennu"],[113.0,"A spacecraft built to observe an asteroid"],[171.7,"Bennu was rockier than expected"],[211.7,"Changing how to touch the surface"],[283.9,"Rehearsal: within two meters"],[326.0,"Redesigning the mission as it flies"]]}

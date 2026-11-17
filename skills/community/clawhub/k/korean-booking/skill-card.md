@@ -1,44 +1,66 @@
-## Description: <br>
-Korean Booking helps users find Korean beauty and medical-aesthetic clinics, review booking options, open BeautsGO clinic, price, and support pages, and submit appointment requests after collecting booking details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Korean Booking helps users find Korean and Seoul beauty clinics, review appointment options, open BeautsGO clinic pages, contact online support, and submit appointment requests with user-provided details.
 
-## Publisher: <br>
-[beautsgo](https://clawhub.ai/user/beautsgo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beautsgo](https://clawhub.ai/user/beautsgo)
 
-## Use Case: <br>
-External users use this skill to search for Korean beauty or medical-aesthetic clinics, get appointment guidance, open relevant BeautsGO pages, and submit booking requests. Agents can use it in multi-turn conversations that collect clinic, party size, appointment time, and contact details before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Appointment submission can send contact information and cosmetic or medical-service intent to BeautsGO. <br>
-Mitigation: Collect and submit details only after explicit user intent; verify clinic, date, contact information, and destination domain before submission. <br>
-Risk: Browser and command automation can open third-party pages or local browser processes. <br>
-Mitigation: Keep browser actions user-visible, restrict use to documented BeautsGO domains, and do not run debug or sync scripts unless their local effects are understood. <br>
+## Use Case:
 
+External users use this skill to look up Korean beauty and medical-aesthetic clinics, compare booking paths, open clinic detail, price, and support pages, and submit appointment requests after providing contact details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/beautsgo/korean-booking) <br>
-- [README](README.md) <br>
-- [Multi-turn flow documentation](docs/multi-turn-flow.md) <br>
-- [Consult automation documentation](docs/consult-automation.md) <br>
-- [BeautsGO](https://beautsgo.com) <br>
+### Deployment Geography for Use:
 
+Global, with service content focused on Korean and Seoul beauty clinics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, API Calls, Shell commands] <br>
-**Output Format:** [Markdown text and status messages for booking guidance, browser-opening actions, and appointment submission results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports zh, en, ja, and th; may open BeautsGO pages and submit user-provided appointment details to BeautsGO.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.8 (source: SKILL.md frontmatter and server release evidence; package.json reports 2.1.7) <br>
+Risk: The skill can open unvalidated URLs through shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require URL allowlisting and use a shell-free browser-opening path before deployment.
+
+Risk: The skill can submit appointment requests using user contact details.
+
+Mitigation: Require explicit user confirmation immediately before each appointment submission.
+
+Risk: Appointment contact data may be logged in plaintext.
+
+Mitigation: Remove or redact contact-data logs before production use.
+
+Risk: Developer sync scripts can modify the local OpenClaw cache.
+
+Mitigation: Do not run developer sync scripts unless intentionally maintaining a local OpenClaw development environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/beautsgo/skills/korean-booking)
+- [Skill Definition](SKILL.md)
+- [README](README.md)
+- [Multi-turn Flow](docs/multi-turn-flow.md)
+- [Consult Automation](docs/consult-automation.md)
+- [BeautsGO Website](https://beautsgo.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with appointment guidance, status messages, and browser-operation instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include user-facing booking summaries and next-step guidance after browser or appointment actions.]
+
+## Skill Version(s):
+
+2.6.8 (source: SKILL.md frontmatter and server release evidence; package.json reports 2.1.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn72a3kqhw330jbwe6g1q9hen582whqp",
-  "slug": "web-automation-suite",
+  "name": "web-automation-suite",
   "version": "1.0.0",
-  "publishedAt": 1774068392696
+  "description": "网页自动化套件 - 整合爬虫+浏览器自动化+定时任务。支持Chrome CDP连接、网页操作、数据抓取、表单填写、定时监控。",
+  "author": "swarm-coder",
+  "tags": ["web", "automation", "scraping", "browser", "playwright", "cdp", "monitor"],
+  "license": "MIT",
+  "homepage": "",
+  "keywords": ["web automation", "web scraping", "browser automation", "playwright", "chrome cdp", "form fill", "scheduled task"]
 }

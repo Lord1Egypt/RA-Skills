@@ -1,41 +1,48 @@
-## Description: <br>
-Tracks input and output token usage across conversation turns, summarizes cumulative usage and estimated cost, and warns when configured budgets are approached or exceeded. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks per-turn input and output token usage, cumulative usage statistics, budget thresholds, local history, and estimated model costs.
 
-## Publisher: <br>
-[xhmqq616](https://clawhub.ai/user/xhmqq616) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xhmqq616](https://clawhub.ai/user/xhmqq616)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to record token consumption, review cumulative conversation statistics, estimate costs, and receive budget warnings during normal agent workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The default local state file can be overwritten through a predictable path or symbolic links in an untrusted working directory.
+
+Mitigation: Review before installing in shared or untrusted directories, avoid state-changing commands where .usage-tracker.json may be planted or replaced, and back up the state file before reset.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to track token consumption, estimate Claude API costs, review usage history, and apply simple token budgets during agent conversations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may keep local usage totals and history in .usage-tracker.json. <br>
-Mitigation: Configure the storage path deliberately and avoid recording prompts or usage metadata in shared or sensitive directories. <br>
-Risk: Token and cost estimates are approximate and based on the pricing table embedded in the artifact. <br>
-Mitigation: Use the estimates for budget awareness and confirm billing-critical numbers against the provider's current usage and pricing records. <br>
+**Output Format:** [Markdown and plain text with JavaScript examples and command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xhmqq616/token-usage-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/xhmqq616) <br>
+**Other Properties Related to Output:** [Writes local usage history to .usage-tracker.json by default and can export statistics as JSON.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples and optional CLI text or JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local token usage totals and history in .usage-tracker.json unless configured otherwise.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

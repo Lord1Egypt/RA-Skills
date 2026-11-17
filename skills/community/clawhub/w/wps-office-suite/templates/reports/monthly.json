@@ -1,0 +1,13 @@
+{
+  "type": "monthly",
+  "title": "月报 — {year}年{month}月",
+  "template": "monthly_report",
+  "sections": [
+    {"key": "summary", "title": "📊 本月摘要", "type": "stats_cards"},
+    {"key": "chart_actions", "title": "🔧 命令使用分布", "type": "echarts_pie"},
+    {"key": "chart_trend", "title": "📈 周度调用趋势", "type": "echarts_bar"},
+    {"key": "engine_health", "title": "⚙️ 引擎健康度", "type": "table"},
+    {"key": "highlights", "title": "💡 使用亮点", "type": "bullets"}
+  ],
+  "footer": "由 WPS Office 全家桶 v5.4 自动生成 · {generated_at}"
+}

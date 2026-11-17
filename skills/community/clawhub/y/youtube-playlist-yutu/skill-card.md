@@ -1,48 +1,61 @@
-## Description: <br>
-Guides agents through listing, creating, updating, and deleting YouTube playlists with the yutu CLI, including first-time OAuth setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube playlists by guiding an agent through yutu CLI commands to list, create, update, and delete playlists.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-Developers, creators, and channel operators use this skill to manage YouTube playlists from an agent-assisted shell workflow, including OAuth credential setup and yutu playlist commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The yutu CLI and OAuth token can access the user's YouTube account. <br>
-Mitigation: Install only if the yutu CLI package is trusted and keep YouTube OAuth access scoped to the intended account. <br>
-Risk: OAuth credential and token files may expose YouTube account access if shared or committed. <br>
-Mitigation: Keep client_secret.json and youtube.token.json private, out of source control, and out of shared workspaces. <br>
-Risk: Playlist creation, privacy changes, updates, or deletion can affect public channel content. <br>
-Mitigation: Require explicit confirmation before creating public playlists, changing privacy settings, or deleting playlist IDs. <br>
+## Use Case:
 
+Developers and creators use this skill to operate YouTube playlist workflows through the yutu CLI, including setup, listing playlists, creating new playlists, updating metadata, and deleting playlists.
 
-## Reference(s): <br>
-- [Yutu homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [Yutu setup guide](references/setup.md) <br>
-- [Playlist list reference](references/playlist-list.md) <br>
-- [Playlist insert reference](references/playlist-insert.md) <br>
-- [Playlist update reference](references/playlist-update.md) <br>
-- [Playlist delete reference](references/playlist-delete.md) <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI flag tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference yutu CLI output formats such as table, JSON, YAML, or silent mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server release evidence) <br>
+Risk: OAuth client secrets and cached YouTube tokens can grant access to account or channel playlist data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep client_secret.json and youtube.token.json private, avoid committing them to source control, and restrict access to the configured credential paths.
+
+Risk: Delete and update commands can modify or remove playlists when run against the wrong account, channel, or playlist ID.
+
+Mitigation: Check the authenticated account, channel, playlist IDs, and intended operation before allowing update or delete commands to run.
+
+## Reference(s):
+
+- [Yutu project homepage](https://github.com/eat-pray-ai/yutu)
+- [Yutu README](https://github.com/eat-pray-ai/yutu#readme)
+- [Yutu releases](https://github.com/eat-pray-ai/yutu/releases/latest)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+- [Yutu Setup Guide](references/setup.md)
+- [Playlist List](references/playlist-list.md)
+- [Playlist Insert](references/playlist-insert.md)
+- [Playlist Update](references/playlist-update.md)
+- [Playlist Delete](references/playlist-delete.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with yutu CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yutu, Google OAuth credentials, and a cached YouTube token.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

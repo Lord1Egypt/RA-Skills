@@ -1,42 +1,57 @@
-## Description: <br>
-Provides a community group-buying acquisition and retention playbook covering acquisition channels, community operations SOPs, user segmentation, repeat-purchase incentives, platform-specific tactics, and a user segmentation analyzer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a community group-buying playbook for customer acquisition and retention, covering channel selection, community operations, user segmentation, repeat-purchase incentives, platform-specific tactics, and analysis snippets.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-External platform operators and group leader managers use this skill to plan community group-buying acquisition, community operations, user segmentation, reactivation, and retention workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Retention formulas, ROI ranges, and benchmark claims may not match a specific business or market. <br>
-Mitigation: Validate formulas, assumptions, and benchmark data against first-party business data before using recommendations operationally. <br>
-Risk: Acquisition and recall scripts could be used to contact users without proper consent or after opt-out. <br>
-Mitigation: Use only authorized first-party data, honor opt-outs, and ensure outreach complies with platform rules and anti-spam requirements. <br>
-Risk: Discounts, testimonials, deadlines, or referral incentives could mislead users if copied without verification. <br>
-Mitigation: Confirm all promotional claims are truthful, current, and compliant before publishing campaigns. <br>
+## Use Case:
 
+Platform operators and community group-buying managers use this skill to plan acquisition channels, community operations, user segmentation, retention campaigns, and repeat-purchase actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nic-yuan/local-community-buying-03-acquisition-retention) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a text-only playbook and a Python user segmentation analyzer; does not require external tools or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Customer segmentation, private-message, QR-code, and referral templates can create privacy or anti-spam risk if used with contact lists that lack lawful collection or consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm lawful collection, consent requirements, unsubscribe or opt-out paths, and outreach frequency limits before using the templates.
+
+Risk: KPI formulas and segmentation outputs can mislead business decisions when inputs, assumptions, or thresholds are not reviewed.
+
+Mitigation: Review formulas, validate source data, and compare outputs with business context before acting on acquisition or retention recommendations.
+
+Risk: Referral and incentive campaigns can be abused if launched without fraud controls.
+
+Mitigation: Set invitation limits, require meaningful conversion events before rewards, release budgets in stages, and monitor abnormal account or device patterns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nic-yuan/skills/local-community-buying-03-acquisition-retention)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with embedded Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes manual operating procedures, templates, checklists, and simple analysis utilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

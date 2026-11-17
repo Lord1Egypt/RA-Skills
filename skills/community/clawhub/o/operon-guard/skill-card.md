@@ -1,48 +1,58 @@
-## Description: <br>
-Pre-flight trust verification for AI agents. Verify behavior, detect injection vulnerabilities, check for PII leaks, and measure reliability before granting Write/Execute permissions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-flight trust verification for AI agents. Verify behavior, detect injection vulnerabilities, check for PII leaks, and measure reliability before granting Write/Execute permissions.
 
-## Publisher: <br>
-[brainhiveinc](https://clawhub.ai/user/brainhiveinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brainhiveinc](https://clawhub.ai/user/brainhiveinc)
 
-## Use Case: <br>
-Developers and engineers use this skill to run Operon Guard checks before granting AI agents write, execute, spawn, delete, or similar high-impact permissions. It helps evaluate determinism, concurrency behavior, prompt-injection resistance, PII leakage, latency, and guardfile configuration before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external operon-guard CLI package. <br>
-Mitigation: Install only from a trusted package source and review the package before using results for permission decisions. <br>
-Risk: Operon Guard commands that inspect Python agents can execute target-file top-level code during import. <br>
-Mitigation: Review target code first and run checks for third-party or untrusted agents in a sandboxed environment. <br>
-Risk: The documented scan command always exits 0, even when it detects injection or PII issues. <br>
-Mitigation: Use operon-guard test, not scan, for gating workflows because test exits nonzero when the trust score fails. <br>
-Risk: Modules with multiple top-level callables may cause the CLI to test the wrong callable. <br>
-Mitigation: Specify the entry point explicitly with file.py:callable syntax. <br>
-Risk: Machine-readable output is not pure JSON because the CLI emits preamble lines before the JSON block. <br>
-Mitigation: Extract the JSON object before piping the result to JSON parsers or CI tooling. <br>
+## Use Case:
 
+Developers and engineers use this skill to run pre-deployment behavioral checks on AI agents, including determinism, concurrency, safety, and latency tests before granting elevated tool permissions.
 
-## Reference(s): <br>
-- [Operon Guard on ClawHub](https://clawhub.ai/brainhiveinc/operon-guard) <br>
-- [BrainHive publisher profile](https://clawhub.ai/user/brainhiveinc) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Operon Guard CLI behavior, trust scores, thresholds, guardfile YAML, and JSON-output handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.3 (source: server release evidence) <br>
+Risk: The required operon-guard CLI is an unpinned external package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only from a trusted package source and prefer a pinned or reviewed version when available.
+
+Risk: The documented scan, test, and init --agent flows import target Python code and can execute top-level code before checks run.
+
+Mitigation: Review target source first and run checks in a sandbox when testing third-party or otherwise untrusted agents.
+
+Risk: The quick scan command exits 0 even when it detects injection or PII issues.
+
+Mitigation: Use operon-guard test for gating because it exits nonzero when the trust score fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brainhiveinc/skills/operon-guard)
+- [Publisher profile](https://clawhub.ai/user/brainhiveinc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guardfile YAML examples and command-line verification workflows.]
+
+## Skill Version(s):
+
+0.2.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

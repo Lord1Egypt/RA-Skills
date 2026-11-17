@@ -1,46 +1,59 @@
-## Description: <br>
-Generate or edit images with Sudocode's nano-banana2 remote image service through a bundled API client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images with Sudocode's nano-banana2 remote image service.
 
-## Publisher: <br>
-[shengy983](https://clawhub.ai/user/shengy983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shengy983](https://clawhub.ai/user/shengy983)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate images from text prompts or edit local images by sending the prompt and optional image to Sudocode's remote service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional input images, and the API key are sent to the configured remote endpoint. <br>
-Mitigation: Install only if you trust Sudocode and the configured SUDOCODE_BASE_URL; keep the default endpoint unless you intentionally control the alternative. <br>
-Risk: Credentials may be persisted to ~/.openclaw/.env when the initializer is used. <br>
-Mitigation: Protect the environment file, use a revocable API key, and rotate or revoke the key if it is exposed. <br>
-Risk: Generated image files and per-run logs are written near the selected output path. <br>
-Mitigation: Choose the output location deliberately and review generated files and logs before sharing them. <br>
-Risk: Sensitive prompts or input images may be processed by a remote service. <br>
-Mitigation: Avoid sending confidential, personal, or regulated content unless that use has been approved for the configured endpoint. <br>
+## Use Case:
 
+Developers and creative users use this skill to generate images from prompts or edit local images through Sudocode's remote image-generation API. It also helps agents initialize required credentials and deliver generated image files to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shengy983/sudocode-nano-banana2) <br>
-- [Sudocode registration and account portal](https://sudocode.us) <br>
-- [Default Sudocode API endpoint](https://sudocode.run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Generated image files with text logs and Markdown-style operating guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SUDOCODE_IMAGE_API_KEY; optional SUDOCODE_BASE_URL selects the remote endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: Prompts, optional input images, and the API key are sent to the configured Sudocode endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with a trusted Sudocode HTTPS endpoint and avoid private images or sensitive prompts unless sending them to that service is acceptable.
+
+Risk: The configurable SUDOCODE_BASE_URL can direct requests away from the intended service.
+
+Mitigation: Keep SUDOCODE_BASE_URL set to the real Sudocode HTTPS endpoint before running the image-generation script.
+
+Risk: Credentials and run logs may remain on local disk.
+
+Mitigation: Protect ~/.openclaw/.env with owner-only permissions and review or delete generated log files when outputs may contain sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/shengy983/skills/sudocode-nano-banana2)
+- [Publisher profile](https://clawhub.ai/user/shengy983)
+- [Sudocode service](https://sudocode.us)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image files and per-run logs are written to local disk near the chosen output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

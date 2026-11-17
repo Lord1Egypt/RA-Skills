@@ -1,47 +1,57 @@
-## Description: <br>
-Guides agents in generating configurable random tokens for API keys, session tokens, password resets, and related authentication workflows through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate secure random string tokens for API keys, session tokens, password reset links, and related authentication use cases through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to request configurable tokens for API keys, session identifiers, password resets, 2FA codes, secure URLs, and cryptographic nonces from the AgentPMT-hosted tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be used in contexts that involve account credentials, wallet details, payment headers, or other sensitive setup data. <br>
-Mitigation: Keep credentials out of prompts and logs, use the AgentPMT setup workflow for credential handling, and grant only the minimum access needed for the intended tool call. <br>
-Risk: Generated tokens are secrets and can authorize access if exposed. <br>
-Mitigation: Store generated tokens immediately in an appropriate secret manager or secure destination, and avoid printing or retaining them in chat transcripts, logs, or shared files. <br>
-Risk: The skill invokes a remote AgentPMT product that can consume credits and depends on the live service schema. <br>
-Mitigation: Confirm the selected tool, action, parameters, and live schema before production use, especially when endpoint behavior or examples may have changed. <br>
+## Use Case:
 
+Developers and agents use this skill to request configurable random tokens for API keys, session identifiers, password reset links, 2FA codes, secure URLs, and cryptographic nonces.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/quantum-secure-token-generator) <br>
-- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/quantum-secure-token-generator) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
-- [AgentPMT MCP Server](https://api.agentpmt.com/mcp/) <br>
-- [AgentPMT REST Invoke Endpoint](https://api.agentpmt.com/products/purchase) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated tokens are returned as strings; token length is configurable from 8 to 256 characters with selectable charset and randomness source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: A third-party service may generate values that become credentials or other sensitive authentication material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For production secrets, prefer local OS CSPRNG generation or provider-blind designs; when using this skill, keep requests minimal, avoid logging tokens, and verify provider retention and logging controls.
+
+Risk: Setup paths can rely on mutable remote installs such as npx-based skill installation.
+
+Mitigation: Pin or audit setup skills and install commands before use in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/quantum-secure-token-generator)
+- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/quantum-secure-token-generator)
+- [Quantum Secure Token Generator schema](artifact/schema.md)
+- [AgentPMT account MCP/REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT is](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON responses containing generated token strings and request metadata, with Markdown instructions for tool invocation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token length is configurable from 8 to 256 characters; charset options are alphanumeric, hex, base64, and printable ASCII without whitespace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

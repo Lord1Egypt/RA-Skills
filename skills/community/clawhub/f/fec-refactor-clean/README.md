@@ -1,17 +1,17 @@
-# 重构清理
+# Refactoring cleanup
 
-Frontend Craft skill for 重构清理.
+Identify and remove proven dead frontend code, unused exports, styles, routes, and dependencies.
 
 ## Skill
 
 - ID: `fec-refactor-clean`
 - Category: `review-quality`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-refactor-clean/SKILL.md`
 
 ## Description
 
-Use when safely removing dead frontend code, unused exports, stale components, obsolete routes, unused dependencies, or cleanup targets found by tools such as knip, depcheck, ts-prune, TypeScript, ESLint, or manual review. Do not use for feature rewrites that change behavior; Chinese triggers include 死代码, 清理未使用, refactor clean, 依赖清理, 删除无用代码.
+Use when safely removing dead frontend code, unused exports, stale components, obsolete routes, unused dependencies, or cleanup targets found by tools such as knip, depcheck, ts-prune, TypeScript, ESLint, or manual review. Do not use for feature rewrites that change behavior; Chinese triggers include dead code, clean up unused, refactor clean, dependency cleanup, delete useless code.
 
 ## Usage
 

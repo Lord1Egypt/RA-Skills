@@ -1,40 +1,53 @@
-## Description: <br>
-Claude DevFleet helps agents plan, dispatch, monitor, and report on parallel Claude coding missions in isolated git worktrees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates multi-agent coding work through Claude DevFleet by planning projects, dispatching parallel agents in isolated worktrees, monitoring progress, and reading structured reports.
 
-## Publisher: <br>
-[gensandee-na](https://clawhub.ai/user/gensandee-na) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gensandee-na](https://clawhub.ai/user/gensandee-na)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multiple Claude Code agents across planned coding missions, monitor progress, and read structured completion reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous DevFleet missions can launch full-tool coding agents and automatically merge code changes. <br>
-Mitigation: Use version-controlled, non-production repositories first; review mission plans, diffs, reports, and test results before allowing auto-dispatch or auto-merge. <br>
-Risk: The skill depends on a local DevFleet MCP service that can direct agents to modify code. <br>
-Mitigation: Install only when you trust the local DevFleet service and have explicit approval, rollback procedures, and appropriate repository access controls. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate multiple Claude Code agents on coding projects, review generated mission plans, dispatch work, monitor progress, and summarize completed changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gensandee-na/claude-devfleet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and DevFleet tool call descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate local DevFleet missions that produce structured reports and code changes in isolated worktrees.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic dispatch and merge behavior can apply agent-generated code changes before a team has reviewed them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated mission plan before dispatch and use protected branches or manual review settings when automatic merges are not desired.
+
+Risk: The skill depends on a local DevFleet service that can coordinate multiple coding agents.
+
+Mitigation: Install and use it only when that coordination behavior is intended for the current workspace.
+
+## Reference(s):
+
+- [Claude Devfleet on ClawHub](https://clawhub.ai/gensandee-na/skills/claude-devfleet)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured progress summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates a local Claude DevFleet service through MCP when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

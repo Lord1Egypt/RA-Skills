@@ -1,43 +1,61 @@
-## Description: <br>
-Design and simulate adaptive clinical trials with interim analyses, sample size re-estimation, and early stopping rules, evaluating Type I error control, power, and expected sample size via Monte Carlo simulation before trial initiation. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Design and simulate adaptive clinical trials with interim analyses, sample size re-estimation, and early stopping rules, and evaluate Type I error control, power, and expected sample size via Monte Carlo simulation before trial initiation.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External researchers, clinical trial designers, and biostatistics reviewers use this skill to configure and run local simulations of adaptive clinical-trial designs before trial initiation. It supports planning analyses for interim looks, sample-size re-estimation, early stopping, and operating-characteristic review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Simulation outputs can be mistaken for validated clinical-trial decisions. <br>
-Mitigation: Treat outputs as research support only and require review by qualified biostatistics and regulatory experts before using them for clinical-trial decisions. <br>
-Risk: Dependency versions can affect numerical behavior or security posture. <br>
-Mitigation: Install in an isolated Python environment and pin and review NumPy, SciPy, and Matplotlib versions before serious use. <br>
-Risk: The configured output path may overwrite existing files. <br>
-Mitigation: Choose output paths deliberately and review generated files before relying on them. <br>
+## Use Case:
 
+Developers, researchers, and biostatistics reviewers use this skill to configure and run Monte Carlo simulations for adaptive clinical trial planning. Its outputs can support exploratory design review, but clinical conclusions require qualified statistical validation.
 
-## Reference(s): <br>
-- [Adaptive Trial Simulator on ClawHub](https://clawhub.ai/AIPOCH-AI/adaptive-trial-simulator) <br>
-- [AIPOCH-AI publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON simulation result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write simulation results to a user-selected output path and may generate charts when visualization is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Clinical-trial design results may be incorrect or overtrusted because advertised capabilities and safety claims do not fully match the implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use results only for exploratory planning and require review by qualified biostatisticians and regulatory experts before applying conclusions to real trial design.
+
+Risk: The script can overwrite files at a user-selected output path.
+
+Mitigation: Run it in an isolated, nonprivileged environment and write outputs only to a disposable directory.
+
+Risk: Drop-the-loser, optimization, and visualization behavior is identified as unvalidated in the security guidance.
+
+Mitigation: Treat those features as experimental until implementation and tests are corrected, and independently verify outputs before use.
+
+Risk: Unpinned dependencies can change numerical or plotting behavior over time.
+
+Mitigation: Pin NumPy, SciPy, and Matplotlib versions in a controlled environment before relying on repeatable simulation outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/adaptive-trial-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell commands; the bundled script writes JSON simulation results and can optionally write a PNG visualization.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-selected trial parameters, simulation count, output path, and optional visualization or optimization flags.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

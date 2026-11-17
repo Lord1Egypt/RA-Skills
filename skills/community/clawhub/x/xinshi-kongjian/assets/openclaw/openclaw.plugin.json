@@ -1,0 +1,20 @@
+{
+  "id": "private-reflection",
+  "name": "心事空间",
+  "description": "Capture only the owner's bound private chat and synchronize its dedicated archive.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["agentId", "ownerId", "chatId", "channel", "privateChat"],
+    "properties": {
+      "agentId": { "type": "string", "minLength": 1 },
+      "ownerId": { "type": "string", "minLength": 1 },
+      "chatId": { "type": "string", "minLength": 1 },
+      "channel": { "type": "string", "minLength": 1 },
+      "privateChat": { "type": "boolean", "const": true },
+      "accountId": { "type": "string" },
+      "dataDir": { "type": "string" },
+      "syncIntervalSeconds": { "type": "integer", "minimum": 15, "maximum": 3600, "default": 60 }
+    }
+  }
+}

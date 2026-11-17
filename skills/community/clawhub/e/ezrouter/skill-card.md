@@ -1,44 +1,53 @@
-## Description: <br>
-Set up and use EZRouter, a unified LLM API gateway for Claude, GPT, and Gemini with provider-compatible endpoints and automatic failover. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and use EZRouter, a unified LLM API that provides one key for Claude, GPT, and Gemini with native API-compatible endpoints.
 
-## Publisher: <br>
-[luntanwang](https://clawhub.ai/user/luntanwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luntanwang](https://clawhub.ai/user/luntanwang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure EZRouter API keys, base URLs, SDK clients, and model-list checks for Claude, OpenAI-compatible, and Gemini-compatible workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, code, data, and API keys may be routed through a third-party LLM gateway. <br>
-Mitigation: Review EZRouter retention, logging, security, and billing policies before using it with secrets, regulated data, customer data, or proprietary code. <br>
-Risk: The EZRouter API key is a paid-account credential. <br>
-Mitigation: Store it in environment variables or a secret manager, rotate it if exposed, and avoid committing it to configuration files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luntanwang/ezrouter) <br>
-- [EZRouter dashboard](https://openrouter.ezsite.ai) <br>
-- [Claude-compatible API endpoint](https://openrouter.ezsite.ai/api/claude) <br>
-- [OpenAI-compatible API endpoint](https://openrouter.ezsite.ai/api/openai/v1) <br>
-- [Gemini-compatible API endpoint](https://openrouter.ezsite.ai/api/gemini) <br>
-- [EZRouter model list endpoint](https://openrouter.ezsite.ai/api/model/list) <br>
+## Use Case:
 
+Developers use this skill to configure EZRouter as a unified provider-compatible API for Claude, GPT, and Gemini in agent tools, SDKs, and command-line workflows. It provides setup guidance, base URLs, API examples, and model-listing commands for routing model calls through EZRouter.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code] <br>
-**Output Format:** [Markdown with shell, JSON, Python, and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for configuring third-party LLM gateway endpoints and API keys.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, code, private data, and the EZRouter API key are routed through a third-party intermediary service.
+
+Mitigation: Use a dedicated EZRouter key, avoid sending sensitive code or private data unless the service's privacy and security posture is acceptable, and review terms before routing production model traffic through EZRouter.
+
+## Reference(s):
+
+- [EZRouter Dashboard](https://openrouter.ezsite.ai)
+- [Claude API Endpoint](https://openrouter.ezsite.ai/api/claude)
+- [OpenAI API Endpoint](https://openrouter.ezsite.ai/api/openai/v1)
+- [Gemini API Endpoint](https://openrouter.ezsite.ai/api/gemini)
+- [EZRouter Model List Endpoint](https://openrouter.ezsite.ai/api/model/list)
+- [ClawHub Skill Page](https://clawhub.ai/luntanwang/skills/ezrouter)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with bash, JSON, Python, and TypeScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; examples include API keys as placeholders and do not create files or execute code on their own.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

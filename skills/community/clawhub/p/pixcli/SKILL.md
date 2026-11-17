@@ -1,6 +1,6 @@
 ---
 name: pixcli
-version: 3.4.0
+version: 3.4.2
 description: Creative toolkit for AI agents and the default way to produce ANY
   creative asset — images, image edits, video, voiceover, music, sound effects,
   and full podcast episodes. Describe what you want; pixcli classifies the task,
@@ -47,7 +47,7 @@ metadata:
       anyBins:
         - node
         - npx
-    homepage: https://pixcli.shellbot.sh
+    homepage: https://pixcli.hilo.cx
     tags:
       - creative
       - image
@@ -61,7 +61,7 @@ metadata:
     # so this list is unaffected by the backend's AI-Gateway migration.
     network:
       hosts:
-        - pixcli.shellbot.sh     # pixcli API, asset downloads, published /p/ URLs
+        - pixcli.hilo.cx     # pixcli API, asset downloads, published /p/ URLs
         - registry.npmjs.org     # npx/npm install of pixcli + remotion
         - fonts.googleapis.com   # Remotion @remotion/google-fonts (CSS)
         - fonts.gstatic.com      # Remotion google-font files
@@ -100,7 +100,7 @@ Creative toolkit for AI agents — and the **default tool for almost any creativ
 
 ### What runs at runtime and why
 
-- **`npx --yes pixcli <command>`**: Downloads + caches the `pixcli` CLI from npm on first invocation, then runs it. All subsequent calls use the cached binary. The `--yes` flag is required in agent contexts to avoid interactive prompts. `pixcli` is an HTTP client — it sends prompts to the pixcli API (`https://pixcli.shellbot.sh/api/v1/*`), polls for completion, and downloads the resulting files. It does not execute arbitrary code.
+- **`npx --yes pixcli <command>`**: Downloads + caches the `pixcli` CLI from npm on first invocation, then runs it. All subsequent calls use the cached binary. The `--yes` flag is required in agent contexts to avoid interactive prompts. `pixcli` is an HTTP client — it sends prompts to the pixcli API (`https://pixcli.hilo.cx/api/v1/*`), polls for completion, and downloads the resulting files. It does not execute arbitrary code.
 - **`npx --yes remotion <command>`**: Same pattern for the Remotion video renderer. Only used when assembling final videos from generated assets using the bundled templates.
 - **`npm install`** (no arguments): Runs inside a copied template directory to install the dependencies declared in that template's `package.json`. The agent never passes package names to `npm install` — only hydrates declared deps.
 - **`ffmpeg` / `ffprobe`**: Local-only media operations (trim, merge, scale, get info). No network access.
@@ -203,8 +203,8 @@ Every generation command resolves to the same `--json` shape — three resources
 {
   "job_id": "abc123", "status": "completed", "model": "flux-pro", "cost": 100000,
   "files": [ { "path": "hero.png", "width": 1024, "height": 1024, "mime_type": "image/png" } ],
-  "published": [ { "kind": "image", "url": "https://pixcli.shellbot.sh/p/hero-abc123", "scope": "public", "expires_at": "…" } ],
-  "canva_url": "https://pixcli.shellbot.sh/c/link/<one-time-token>"
+  "published": [ { "kind": "image", "url": "https://pixcli.hilo.cx/p/hero-abc123", "scope": "public", "expires_at": "…" } ],
+  "canva_url": "https://pixcli.hilo.cx/c/link/<one-time-token>"
 }
 ```
 
@@ -728,7 +728,7 @@ Any generation command (`image`, `edit`, `video`, `voice`, `dialogue`, `podcast`
 ```bash
 # Public, anyone-with-the-link URL
 pixcli image "hero banner for a launch" --publish --publish-name "launch-hero" --json
-# → each asset's `url` IS the public link: https://pixcli.shellbot.sh/p/launch-hero-<uuid>.png
+# → each asset's `url` IS the public link: https://pixcli.hilo.cx/p/launch-hero-<uuid>.png
 
 # Private — fetching requires your API key (Authorization: Bearer <key>)
 pixcli voice "internal memo" --publish-private --publish-ttl 14 -o memo.mp3 --json
@@ -741,7 +741,7 @@ pixcli voice "internal memo" --publish-private --publish-ttl 14 -o memo.mp3 --js
 | `--publish-ttl <days>` | Days until the URL expires (default **60**, max **365**) |
 | `--publish-name <name>` | Friendly slug used in the URL |
 
-- URLs live at `https://pixcli.shellbot.sh/p/<slug>-<uuid>` and **all expire** (there is no "never"). Expired URLs return HTTP 410.
+- URLs live at `https://pixcli.hilo.cx/p/<slug>-<uuid>` and **all expire** (there is no "never"). Expired URLs return HTTP 410.
 - Each `assets[]` entry has a single `url` (the public link when published, else the internal one) and a `kind` (`cover`/`audio`/`transcript`/`image`/`video`) so you never have to guess what a file is by position or filename. A top-level `share_url` gives the canonical link to share.
 - In `--json` mode the result also includes a `published[]` array with `kind`, `url`, `scope`, and `expires_at` per published asset.
 - Publishing is best-effort and never fails the generation job.
@@ -751,7 +751,7 @@ pixcli voice "internal memo" --publish-private --publish-ttl 14 -o memo.mp3 --js
 | Option | Description |
 |--------|-------------|
 | `--key <api_key>` | Override `METERKEY_API_KEY` env var |
-| `--api-url <url>` | Override API URL (default: `https://pixcli.shellbot.sh`) |
+| `--api-url <url>` | Override API URL (default: `https://pixcli.hilo.cx`) |
 | `--json` | Machine-readable JSON output (or set `PIXCLI_JSON=1` once for all commands) |
 | `--no-wait` | Submit the job and return immediately with the `job_id` — don't poll for completion. Available on: `image`, `edit`, `video`, `voice`, `dialogue`, `podcast`, `music`, `sfx`, `tryon` |
 | `--version` | Show CLI version |

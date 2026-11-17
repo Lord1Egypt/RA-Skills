@@ -1,7 +1,7 @@
 ---
 name: omniverse-realtime-viewer
-description: "Use as the top-level router for Omniverse Realtime Viewer USD app requests and focused viewer reference documents."
-version: "0.1.0"
+description: "Use as the top-level router for Omniverse Realtime Viewer USD apps, XR delivery, SPG GPU processing, stylized rendering, and focused viewer reference documents."
+version: "0.3.0"
 license: Apache-2.0
 tools:
   - Read
@@ -30,110 +30,102 @@ metadata:
 
 # Omniverse Realtime Viewer
 
-This is the top-level entry point for the Omniverse Realtime Viewer skill package.
-It is self-contained: all required routing, conventions, and validation
-guidance live in the selected references.
+Build responsive USD viewers by composing OVRTX rendering, OVStage scene state,
+and the delivery/UI libraries appropriate to the app. Use this package for
+viewer architecture and interaction; use each selected SDK's upstream guidance
+for installation and exact release-specific APIs.
 
-Use the focused reference documents as implementation recipes. This file chooses the
-right recipes and preserves the architectural rules that must hold across all
-generated viewer apps.
+## Start With The App
 
-## Instructions
+1. When delivery is explicit, select its recipe through
+   `references/routing.md` and follow its current phase. Otherwise start with
+   `references/usd-viewer-app/README.md`. For an existing app, keep its
+   architecture and read only the references for the requested change.
+   Broad app, conventions and UI catalogs are lookups as needed.
+2. Resolve the selected libraries through `references/dependencies/README.md`.
+   Preserve the project's manifest unless an upgrade is requested.
+3. Build a working frame and camera interaction in the chosen shell, then add
+   the requested capabilities. Read `references/conventions.md` for shared input,
+   camera, selection, and protocol conventions.
+4. Use `references/viewer-ux-workflow/README.md` for broader interface design.
+   Loading, selection feedback, errors, and input responsiveness belong in the
+   first working app, alongside rendering.
+5. Validate the actual delivery path with `references/validation.md`. A browser
+   screenshot does not validate a native window or a different transport.
 
-Start by classifying the requested viewer, then read only the references needed
-for that delivery path and feature set. Implement the render path first, layer
-interaction and UI behavior on top of it, and finish by capturing validation
-evidence from `references/validation.md`.
+## Architecture
 
-## Read Order
+| Owner | Responsibility |
+|---|---|
+| Viewer runtime | Own the live OVStage, publication clock, OVRTX renderer, scene changes, and render stepping. |
+| UI and input adapter | Display frames and copied app state; send user intent to the runtime owner. |
+| Storage/query/simulation workers | Perform their assigned work and return results through the selected integration boundary. |
+| Delivery adapter | Present locally or stream through ovstream; respect frame ownership and backpressure. |
 
-1. Read `references/routing.md` to choose the delivery path and focused references.
-2. Read `references/conventions.md` before implementing camera, input,
-   selection, viewport, streaming protocol, scene loading, or environment
-   behavior.
-3. For broad viewer requests, read `references/usd-viewer-app/README.md`.
-4. If the delivery path is unclear, read `references/streaming-vs-local/README.md`.
-5. If the prompt includes layout, panels, controls, inspectors, status, or UX,
-   read `references/viewer-ux-workflow/README.md` and then the focused viewer UI references.
-   This applies to React/WebRTC, Tauri, Electron, `ovui`, `ovwidgets`, and Dear
-   ImGui apps; "frontend" means user-facing UI, not only browser UI.
-6. For viewport interaction, read `references/viewer-input-routing/README.md` before
-   `references/camera-controls/README.md`, `references/native-picking-selection/README.md`, or `references/object-selection/README.md`.
-7. Read only the focused capability references needed for the requested app.
-8. Use `references/validation.md` to capture review evidence before handoff.
+Use OVRTX for USD/3D rendering. Browser apps display its WebRTC video; local apps
+present its output through their native shell. A missing GPU means rendering is
+unverified, not a reason to substitute a browser 3D renderer.
 
-## Non-Negotiables
+Keep viewer cameras, settings, effects, and transient edits in app-owned session
+or runtime state so the source USD stays intact. Serialize scene mutation and
+render stepping through the runtime owner. Read
+`references/ovstage-ovrtx-integration/README.md` for that loop, then the population
+or data-plane references when implementing scene loading or attribute writes.
 
-- Use `ovrtx` for all USD and 3D rendering.
-- Browser apps display an `ovstream` WebRTC video stream plus UI. The browser
-  does not render USD geometry.
-- Do not substitute WebGL, Three.js, Babylon.js, PlayCanvas, A-Frame,
-  model-viewer, react-three-fiber, glTF browser viewers, or other client-side
-  3D renderers.
-- If local validation cannot run because the GPU/runtime environment is absent,
-  scaffold the `ovrtx` path and document the runtime requirement. Do not add a
-  browser-renderer fallback.
-- Keep user USD files unmodified. Viewer cameras, render products, render vars,
-  settings, selection metadata, and runtime state belong in session/composite
-  layers or app state.
-- Keep one owner for `renderer.step()`, stage mutation, native picking,
-  selection writes, and live attribute writes.
-- Keep dependency acquisition in `references/dependencies/README.md` and deployment choices in
-  `references/cloud-deployment/README.md`; do not duplicate package locations or deployment setup.
+Keep expensive loading and metadata work off the UI and render threads. Keep
+transport details behind a delivery adapter so camera, selection, properties,
+and loading state can be reused across local and streamed shells.
 
-## Focused Reference Families
+## Add Capabilities As Needed
 
-- Entry points and recipes: `references/usd-viewer-app/README.md`, `references/streaming-viewer-recipe/README.md`,
-  `references/ovui-local-viewer-recipe/README.md`, `references/streaming-vs-local/README.md`, `references/electron-shm-viewer/README.md`,
-  `references/ovwidgets-editor-shell/README.md`.
-- Rendering and stage: `references/ovrtx-rendering/README.md`, `references/stage-loading/README.md`, `references/stage-management/README.md`,
-  `references/render-settings/README.md`, `references/aov-switching/README.md`, `references/stage-hierarchy/README.md`, `references/stage-queries/README.md`,
-  `references/stage-attribute-reads/README.md`, `references/prim-transform-safety/README.md`, `references/usd-sample-data/README.md`.
-- Delivery and runtime: `references/streaming-server/README.md`, `references/streaming-client/README.md`,
-  `references/streaming-messages/README.md`, `references/streaming-lifecycle/README.md`, `references/local-viewer/README.md`,
-  `references/tauri-local-viewer/README.md`, `references/cpp-native-viewer/README.md`, `references/headless-shm-cli/README.md`,
-  `references/viewer-backend-interface/README.md`, `references/webgl-shm-transport/README.md`.
-- Viewer UI/UX: `references/viewer-ux-workflow/README.md`, `references/viewer-layout-patterns/README.md`,
-  `references/viewer-control-patterns/README.md`, `references/viewer-data-view-patterns/README.md`,
-  `references/viewer-feedback-status/README.md`.
-- Interaction: `references/viewer-input-routing/README.md`, `references/camera-controls/README.md`,
-  `references/object-selection/README.md`, `references/native-picking-selection/README.md`, `references/selection-feedback/README.md`,
-  `references/selection-animation/README.md`, `references/transform-manipulator/README.md`, `references/gl-viewport-overlay/README.md`,
-  `references/ovui-library/README.md`, `references/prim-pick-effects/README.md`, `references/prim-info-display/README.md`,
-  `references/viewport-overlays/README.md`.
-- Infrastructure: `references/dependencies/README.md`, `references/windows-native-setup/README.md`, `references/cloud-assets/README.md`,
-  `references/cloud-deployment/README.md`, `references/troubleshooting/README.md`.
+Use `references/routing.md` to select camera/picking, scene management, render
+settings, cloud assets, simulation, editor tools, deployment, or CAE/CFD
+visualization. Read the selected capability's implementation flow and its linked
+contract; the full reference catalog is not a prerequisite for a first frame.
 
-## Build Workflow
+For simulation, use the routing reference's Simulation Ecosystem section plus
+`references/realtime-sim-integration/README.md`. For UI-driven forces or control,
+add `references/interaction-round-trip/README.md`.
 
-1. Classify the prompt by delivery path, target user, required capabilities,
-   runtime environment, validation needs, and explicit constraints.
-2. Select a small reference set. Start with the recipe or routing reference, then add
-   focused capabilities such as camera, picking, hierarchy, properties, render
-   settings, transform tools, cloud assets, or deployment.
-3. Read selected references before writing app code. Follow their build order,
-   import order, data-channel contracts, and renderer ownership rules.
-4. Implement the core render path first, then input routing and camera, then
-   selection and data panels, then scene/settings features, then packaging or
-   deployment.
-5. Treat the selected references as the behavior contract for API shape,
-   compatibility, and generated project structure.
-6. Capture validation evidence before calling the viewer ready.
+For example scenes, use `references/usd-sample-data/README.md`. When a runtime
+failure needs diagnosis, use `references/troubleshooting/README.md` and the
+selected SDK's matching release guidance before changing the architecture.
 
-## Examples
+## Solid Modeling: Upstream First
 
-- For a browser viewer request, use the streaming recipe references plus camera,
-  picking, hierarchy, properties, render settings, and stream-status references.
-- For a local workstation viewer request, use the local or native delivery
-  references plus renderer setup, stage loading, viewport input, and validation.
+For usd-brep, exact BRep, solid modeling, kernel failures, CAD topology, or
+BrepArray questions, first read `references/dependencies/README.md` → USD BRep. Follow the
+owning repository's current agent guidance, skills, operation docs, and package
+API before selecting local integration references. Discover the upstream router
+rather than assuming skill names or directory layouts remain fixed. Upstream
+owns modeling semantics, schema rules, tuning, and diagnostics; this package
+owns OVRTX display, worker handoff, selection mapping, and publication timing.
 
-## Completion Checklist
+## GPU Processing And Stylized Viewers
 
-- Selected references match the user's intent and delivery path.
-- No code path uses a browser-side 3D renderer for USD.
-- The generated app has one clear owner for render stepping and stage mutation.
-- User USD files remain untouched by viewer-owned session data.
-- Camera, input, selection, scene loading, and stream behavior follow
-  `references/conventions.md`.
-- Setup/build/run results and visual interaction evidence are captured with
-  `references/validation.md`.
+For custom GPU processing, chained outputs and lens sampling, read
+`references/spg-processing/README.md`. For toon, ink, technical/X-Ray styles,
+geometry strokes or full wireframe, continue to
+`references/stylized-visualization/implementation.md`. Its USD/Lua/CUDA starting
+node and geometry/depth/composite build sequence work with the selected viewer
+recipe; use `references/stylized-visualization/style-recipes.md` for the preset
+math and `references/stylized-visualization/README.md` for supporting contracts.
+Implement the result inside the existing OVRTX/runtime owner and deliver the
+published processed output. These instructions do not require a sample checkout
+or a prior stylized-rendering implementation.
+
+For an optional usd-brep geometry source, first read
+`references/dependencies/README.md` → USD BRep and the owning repository's
+current agent guidance, skills, and operation docs; then read
+`references/stylized-visualization/usd-brep-source.md` for the display boundary.
+
+## XR Viewers
+
+For headsets, immersive viewers, or spatial editors, start with
+`references/xr-viewer-recipe/README.md`. Resolve SDK setup and contracts through
+`references/dependencies/ovxr.md`; the library owns OpenXR lifecycle and frame
+submission. For controllers, hands, navigation, or scene tools, add
+`references/xr-spatial-input/README.md` and
+`references/ovxr-python-interactions/README.md`. For projection-integrated UI,
+read `references/ovxr-composition-ui/README.md` and
+`references/ovxr-composition-ui-validation/README.md`.

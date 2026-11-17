@@ -1,43 +1,58 @@
-## Description: <br>
-Issue To Pr helps an agent read a GitHub issue, analyze the target repository, implement a fix, verify the change, and prepare a pull request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+issue-to-pr automatically fixes GitHub issues end-to-end by reading the issue, analyzing repository code, implementing a fix, and preparing a pull request for user-approved submission.
 
-## Publisher: <br>
-[4ydx3906](https://clawhub.ai/user/4ydx3906) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[4ydx3906](https://clawhub.ai/user/4ydx3906)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to turn a GitHub issue reference into a local fix workflow, including issue triage, repository analysis, code changes, verification, and pull request preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use the user's GitHub CLI identity to access repositories, fork projects, push branches, and create pull requests. <br>
-Mitigation: Use it only with GitHub access you are comfortable delegating, confirm the target repository, and require explicit approval before forking, pushing, or opening a pull request. <br>
-Risk: The workflow may run project test, lint, or build commands from the target repository. <br>
-Mitigation: Review commands before execution and prefer an isolated checkout or sandbox when working with untrusted repositories. <br>
-Risk: The agent modifies local source files while attempting to fix an issue. <br>
-Mitigation: Inspect the root cause analysis and diff before commit or PR creation, and keep unrelated local work out of the working tree. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn GitHub issue references into investigated, locally implemented fixes and review-ready pull requests. It is intended for workflows where an agent can inspect code, run project checks, and wait for user approval before pushing or creating a PR.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/4ydx3906/issue-to-pr) <br>
-- [GitHub CLI](https://cli.github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command blocks, code edits, commit messages, and pull request text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May clone repositories, edit local files, run project checks, and create branches or pull requests after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter, changelog, clawhub.json, release evidence) <br>
+Risk: The skill can act through the user's GitHub account to fork repositories, push branches, and create pull requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only with GitHub permissions you are comfortable using, and review the diff and PR body before approving push or PR creation.
+
+Risk: Generated pull request text may include an unrelated promotional footer.
+
+Mitigation: Review the final PR body and remove the footer before allowing PR creation when it is not appropriate.
+
+Risk: Installing from an untrusted or moving source could place unwanted instructions in the local skills directory.
+
+Mitigation: Use a trusted or pinned installer path and review the installer before running it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/4ydx3906/skills/issue-to-pr)
+- [GitHub CLI documentation](https://cli.github.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, code diffs, commit messages, and pull request text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify repository files locally and may prepare GitHub commits, pushes, forks, and pull requests after user approval.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter, clawhub.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

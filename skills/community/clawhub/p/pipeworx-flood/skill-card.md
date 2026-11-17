@@ -1,42 +1,55 @@
-## Description: <br>
-River discharge and flood forecasts for any location — up to 92 days ahead via Open-Meteo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+River discharge and flood forecasts for any location - up to 92 days ahead via Open-Meteo.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-External users, developers, planners, insurers, and emergency-preparedness teams can use this skill to check river discharge forecasts near coordinates and assess potential flood conditions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecast requests send latitude and longitude values to Pipeworx's gateway. <br>
-Mitigation: Avoid sending sensitive or private locations unless that disclosure is acceptable for the deployment. <br>
-Risk: The optional MCP configuration downloads the latest mcp-remote helper through npx. <br>
-Mitigation: Pin the mcp-remote helper version before use to reduce supply-chain uncertainty. <br>
+## Use Case:
 
+External users, developers, and risk teams use this skill to request river discharge and flood forecasts for locations of interest, supporting preparedness, insurance assessment, agriculture planning, and monitoring of flood-prone areas.
 
-## Reference(s): <br>
-- [Pipeworx flood ClawHub page](https://clawhub.ai/b-gutman/pipeworx-flood) <br>
-- [Pipeworx flood homepage](https://pipeworx.io/packs/flood) <br>
-- [Pipeworx flood MCP endpoint](https://gateway.pipeworx.io/flood/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks; remote forecast responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Forecast requests include latitude, longitude, and forecast window; river discharge values are expressed in cubic meters per second.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The MCP setup runs a mutable npm package through npx, which can change between installs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, pin mcp-remote to a specific reviewed version, and run the MCP bridge in a restricted environment.
+
+Risk: Using the flood forecast tools sends requested coordinates to the Pipeworx gateway and upstream forecast service.
+
+Mitigation: Avoid submitting sensitive private locations unless sharing those coordinates is acceptable.
+
+## Reference(s):
+
+- [Pipeworx Flood homepage](https://pipeworx.io/packs/flood)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-flood)
+- [Pipeworx Flood MCP endpoint](https://gateway.pipeworx.io/flood/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON and bash code blocks; forecast service responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Forecasts include daily discharge values and may include mean, median, and maximum discharge metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,63 @@
-## Description: <br>
-Generates images from Chinese prompts through NVIDIA NIM or SiliconFlow APIs, supporting models such as flux.2-klein-4b, Kolors, and Qwen-Image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates image files from Chinese prompts through NVIDIA NIM or SiliconFlow image-generation APIs, supporting Kolors, Qwen-Image, and flux.2-klein-4b.
 
-## Publisher: <br>
-[lianghaoxun](https://clawhub.ai/user/lianghaoxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lianghaoxun](https://clawhub.ai/user/lianghaoxun)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn prompt text into locally saved PNG image files through configured NVIDIA NIM or SiliconFlow provider credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts are sent to NVIDIA or SiliconFlow cloud APIs. <br>
-Mitigation: Avoid sensitive personal, business, or regulated content in prompts and review provider terms before use. <br>
-Risk: Provider API keys are stored in a local plaintext config.json file. <br>
-Mitigation: Use restrictive filesystem permissions or adapt the scripts to read credentials from environment variables or a secret store on shared machines. <br>
-Risk: Generated images are written to local files that may later be shared by an agent. <br>
-Mitigation: Review generated images and file paths before forwarding them outside the local workspace. <br>
+## Use Case:
 
+Developers and external agents use this skill when a user asks for AI image generation. The skill sends prompts to the selected provider and returns saved PNG file paths for the agent to present or pass along.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lianghaoxun/ai-photo-pro) <br>
-- [NVIDIA NIM](https://nim.nvidia.com/) <br>
-- [SiliconFlow](https://cloud.siliconflow.cn/i/IOo0eaWy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell and Python examples; runtime scripts return PNG file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved under the skill scripts directory in img_data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: API keys are stored in scripts/config.json as plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use provider keys with limited quota, do not commit or share config.json, and prefer environment variables or a secure secret store where possible.
+
+Risk: Prompts are sent to NVIDIA or SiliconFlow provider APIs.
+
+Mitigation: Avoid sending sensitive, confidential, or regulated information in prompts unless the deployment has approved provider terms and controls.
+
+Risk: The SiliconFlow path downloads provider-returned image URLs without validation.
+
+Mitigation: Validate HTTPS image hosts, set request timeouts and size limits, and verify downloaded content before saving files.
+
+Risk: Generated files remain on disk after creation.
+
+Mitigation: Apply retention, cleanup, and access controls appropriate for the generated image content.
+
+## Reference(s):
+
+- [AI Photo Pro on ClawHub](https://clawhub.ai/lianghaoxun/skills/ai-photo-pro)
+- [NVIDIA NIM](https://nim.nvidia.com/)
+- [SiliconFlow API](https://cloud.siliconflow.cn/i/IOo0eaWy)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration instructions]
+
+**Output Format:** [PNG image files with returned local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires provider API keys and saves generated images under the skill's img_data directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

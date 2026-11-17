@@ -1,40 +1,52 @@
-## Description: <br>
-Smart Summarizer summarizes articles, PDFs, videos, web pages, long documents, pasted text, and meeting transcripts into key points, action items, and insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Summarizer helps agents summarize articles, PDFs, videos, web pages, documents, transcripts, emails, and pasted text into key points, action items, and takeaways.
 
-## Publisher: <br>
-[27555402-spec](https://clawhub.ai/user/27555402-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[27555402-spec](https://clawhub.ai/user/27555402-spec)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, employees, and developers use this skill to quickly digest public or authorized long-form content, generate structured summaries, create meeting notes, and produce summaries in different languages.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may submit confidential, regulated, paywalled, private, or otherwise unauthorized content for summarization.
+
+Mitigation: Use the skill only with public or authorized content, and avoid secrets, regulated personal data, and confidential material unless approved for the deployment context.
+
+Risk: Summaries may omit nuance or produce misleading takeaways when source material is incomplete, inaccessible, or too long for the agent context.
+
+Mitigation: Review important summaries against the source material before relying on decisions, citations, action items, or compliance-sensitive conclusions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to digest long articles, reports, transcripts, pasted text, and public URLs into concise summaries, meeting notes, action items, and takeaways. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided emails, meeting notes, documents, URLs, or transcripts may contain secrets, credentials, or confidential information. <br>
-Mitigation: Avoid providing sensitive material unless sharing it with the active agent and its configured tools is intentional and acceptable. <br>
-Risk: Summaries can omit nuance or produce misleading takeaways from long or complex source material. <br>
-Mitigation: Review important summaries against the original source before using them for decisions, action items, or external communication. <br>
+**Output Format:** [Markdown or plain text summaries with bullets, structured sections, action items, and optional translated output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Smart Summarizer on ClawHub](https://clawhub.ai/27555402-spec/smart-summarizer) <br>
+**Other Properties Related to Output:** [Summary depth and structure vary by requested mode: quick, standard, deep analysis, meeting notes, or multilingual summary.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with bullet lists and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports quick, standard, deep analysis, meeting-notes, and requested-language summary modes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

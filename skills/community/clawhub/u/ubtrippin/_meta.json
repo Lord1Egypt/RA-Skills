@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn77e642prsnk19kpmaye0mck181pe00",
   "slug": "ubtrippin",
-  "version": "2.3.0",
-  "publishedAt": 1772622363426
+  "name": "UBTRIPPIN",
+  "version": "2.2.0",
+  "description": "Manage travel via UBTRIPPIN — trips, items, loyalty vault, family sharing, city guides, events, concerts, notifications, webhooks, and more. 60+ API endpoints.",
+  "tags": ["travel", "trips", "bookings", "itinerary", "flights", "hotels", "loyalty", "events", "tickets", "concerts"],
+  "homepage": "https://www.ubtrippin.xyz"
 }

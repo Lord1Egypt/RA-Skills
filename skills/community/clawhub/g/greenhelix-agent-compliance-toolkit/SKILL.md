@@ -34,7 +34,7 @@ metadata:
 
 Your agent commerce system goes live in production. It registers services on a marketplace, handles escrow payments, submits performance metrics, and resolves disputes -- all autonomously. On August 2, 2026, the EU AI Act's high-risk obligations take effect. The EU Product Liability Directive eliminates the need for consumers to prove fault when AI causes harm. Your agent is now a regulated product in the largest single market on earth. If it lacks technical documentation, audit trails, risk classification, and human oversight mechanisms, you face fines up to 35 million euros or 7% of global turnover. If it causes damage and you cannot demonstrate compliance, the liability is strict -- no fault required. This guide gives you the technical compliance patterns, contract templates, and working code to ship compliant agent commerce systems before the deadline. Every pattern uses the GreenHelix A2A Commerce Gateway API. Every code example runs against the production endpoint. This is not legal advice -- it is engineering for compliance.
 1. [The Compliance Landscape for Agent Commerce](#chapter-1-the-compliance-landscape-for-agent-commerce)
-2. [Risk Classification for Agent Systems](#chapter-2-risk-classification-for-agent-systems)
+2. [Risk Classification for Agent Systems](#chapter-2-riREDACTED-SECRET)
 
 ## What You'll Learn
 - Chapter 1: The Compliance Landscape for Agent Commerce
@@ -58,7 +58,7 @@ Your agent commerce system goes live in production. It registers services on a m
 ## Table of Contents
 
 1. [The Compliance Landscape for Agent Commerce](#chapter-1-the-compliance-landscape-for-agent-commerce)
-2. [Risk Classification for Agent Systems](#chapter-2-risk-classification-for-agent-systems)
+2. [Risk Classification for Agent Systems](#chapter-2-riREDACTED-SECRET)
 3. [Agent Identity & Technical Documentation](#chapter-3-agent-identity--technical-documentation)
 4. [Cryptographic Audit Trails](#chapter-4-cryptographic-audit-trails)
 5. [Liability-Bounded Escrow Patterns](#chapter-5-liability-bounded-escrow-patterns)

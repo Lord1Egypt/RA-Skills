@@ -1,39 +1,52 @@
-## Description: <br>
-Speak responses aloud on macOS using the built-in `say` command when user input indicates Voice Wake/voice recognition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speak responses aloud on macOS using the built-in `say` command when user input indicates Voice Wake or voice recognition.
 
-## Publisher: <br>
-[xadenryan](https://clawhub.ai/user/xadenryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xadenryan](https://clawhub.ai/user/xadenryan)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent acknowledge and speak responses aloud for a narrowly defined Voice Wake trigger on macOS while keeping non-triggered conversations text-only. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Spoken responses may disclose sensitive conversation details to nearby listeners. <br>
-Mitigation: Avoid triggering the skill for sensitive conversations when others may hear the audio. <br>
-Risk: The local `say` command may be unavailable or fail on non-macOS systems. <br>
-Mitigation: Fall back to the normal text response and notify the user that text-to-speech failed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xadenryan/clawdbot-skill-voice-wake-say) <br>
+## Use Case:
 
+Developers and agent users on macOS use this skill to have voice-initiated assistant responses spoken locally after an exact Voice Wake prefix is detected.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local macOS text-to-speech with `say` only when the latest message begins with the configured voice-recognition trigger.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Spoken output can reveal response contents to people nearby.
+
+Mitigation: Install and use the skill only when local audible responses are intended, and rely on the exact-prefix trigger so ordinary text requests remain silent.
+
+Risk: The local macOS `say` command may be unavailable or may fail.
+
+Mitigation: Return the text response and notify the user that text-to-speech failed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xadenryan/skills/clawdbot-skill-voice-wake-say)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with local shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local macOS speech output only when the exact Voice Wake prefix is present; otherwise the agent responds with text only.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

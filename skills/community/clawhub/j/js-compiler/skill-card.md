@@ -1,40 +1,50 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup material for JS Compiler concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for JS Compiler concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for JavaScript compiler concepts, workflows, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic JavaScript compiler reference material rather than an executable compiler. <br>
-Mitigation: Treat outputs as quick-reference guidance and verify implementation details against project-specific tooling and authoritative documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference for JS compiler concepts, quickstart material, debugging, performance, security, migration, and common implementation patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/js-compiler) <br>
-- [Publisher profile: ckchzh](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain-text reference documentation with Markdown headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access according to the release evidence and bundled skill documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The JS compiler content is mostly generic and may be incomplete or inaccurate for production engineering decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check authoritative JavaScript compiler and toolchain documentation before relying on the guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/js-compiler)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain-text Markdown-style reference documentation emitted by local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access are required by the artifact.]
+
+## Skill Version(s):
+
+2.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

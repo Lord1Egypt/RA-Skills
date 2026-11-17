@@ -1,48 +1,61 @@
-## Description: <br>
-Orchestrates a multi-step AI comic-drama workflow that turns a theme into script, characters, storyboards, generated video, dubbing, lip sync, background music, subtitles, and a final assembled short video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Huo15 Comic Orchestrator coordinates a multi-step AI comic-drama workflow from theme intake through script, character cards, storyboard frames, video generation, TTS, lip sync, background music, subtitles, and final assembly.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-External creators and developers use this skill to coordinate a Chinese-style AI comic-drama production pipeline with budget checks, confirmation gates, checkpointed execution, and resumable output generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can launch paid external media-generation services through sibling skills. <br>
-Mitigation: Keep confirmation enabled, set a cost cap before execution, and avoid --auto-confirm unless the budget and provider account limits are already approved. <br>
-Risk: The release requires sensitive provider credentials such as ARK_API_KEY. <br>
-Mitigation: Store provider credentials outside prompts and skill files, limit provider-account spend, and rotate keys if exposed. <br>
-Risk: Prompts or media may be sent to configured external AI services. <br>
-Mitigation: Do not submit private prompts or media unless the user accepts the configured providers' handling of that data. <br>
-Risk: The security summary notes that the orchestrator depends on the broader huo15 comic skill family. <br>
-Mitigation: Install and review the complete skill family, not only this orchestrator, before running the workflow. <br>
+## Use Case:
 
+Developers and content creators use this skill to orchestrate short AI comic-drama production runs with cost checks, user confirmation, checkpoint resume, and handoff across required sibling skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-comic-orchestrator) <br>
-- [Volcengine Seedance documentation](https://www.volcengine.com/docs/82379/1520757) <br>
-- [Volcengine TTS documentation](https://www.volcengine.com/docs/6561/97465) <br>
-- [Kling API](https://api.klingai.com/v1) <br>
-- [Suno API provider](https://api.sunoapi.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance, shell commands, JSON project artifacts, cost reports, and final media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided project inputs and may generate local output files such as script.json, checkpoint data, audio/video assets, and final.mp4.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Media prompts and referenced assets may be sent to external providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved input content, review provider terms, and supervise each run.
+
+Risk: Billing and dependency controls are too weak for unattended installation.
+
+Mitigation: Avoid unattended or auto-confirmed use until dependencies are pinned and runtime spending is enforced from actual provider usage.
+
+Risk: The workflow depends on required sibling skills and external provider credentials.
+
+Mitigation: Install and pin the required sibling skills, configure provider credentials deliberately, and run in a controlled project directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-comic-orchestrator)
+- [Volcengine Seedance documentation](https://www.volcengine.com/docs/82379/1520757)
+- [Volcengine TTS documentation](https://www.volcengine.com/docs/6561/97465)
+- [Kling API endpoint](https://api.klingai.com/v1)
+- [Suno API endpoint](https://api.sunoapi.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance, command examples, JSON project state, media file paths, and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a final video path, cost report, and checkpointed project outputs when the required sibling skills and provider credentials are available.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

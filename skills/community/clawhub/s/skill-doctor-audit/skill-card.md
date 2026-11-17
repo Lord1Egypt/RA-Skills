@@ -1,43 +1,53 @@
-## Description: <br>
-Audit, debug, and clean up the OpenClaw skills you already have installed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit, debug, and clean up installed OpenClaw skills by detecting trigger conflicts, inline security red flags, stale versions, and likely skill matches for a prompt.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-Developers and OpenClaw users use Skill Doctor to audit installed skills for trigger conflicts, security review prompts, stale versions, and ambiguous skill selection. It helps them interpret local audit results and choose concrete cleanup actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local installed-skill folders and may surface snippets from user files. <br>
-Mitigation: Run it only on skill directories the user intends to audit, and share only the findings and snippets needed to explain concrete issues. <br>
-Risk: Security findings are heuristic review prompts, not proof of malicious behavior. <br>
-Mitigation: Frame flagged items as evidence to review, cite the exact file and line, and avoid declaring a skill malicious from a scanner hit alone. <br>
-Risk: Optional stale-version checks may invoke the clawhub CLI when available. <br>
-Mitigation: Treat remote version checks as optional and continue with local conflict and security analysis when the CLI is unavailable. <br>
+## Use Case:
 
+Developers and skill maintainers use Skill Doctor to audit an installed OpenClaw skill collection, find overlapping triggers, review suspicious inline patterns, check release freshness, and debug which skill is likely to handle a prompt.
 
-## Reference(s): <br>
-- [Skill Doctor release page](https://clawhub.ai/chris-openclaw/skill-doctor-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/chris-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from the bundled audit tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local audit output may include file paths, line numbers, snippets, severity labels, version status, and ambiguity warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, evidence.release.version) <br>
+Risk: The local scanner can follow symlinks or otherwise read outside the intended skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on trusted installed-skill directories, avoid untrusted directories that may contain symlinks, and pass an explicit --skills-dir path when auditing a known collection.
+
+Risk: Security reports may include matched source lines that expose secrets or sensitive local content.
+
+Mitigation: Review generated reports before sharing them, redact secrets or private paths, and treat findings as prompts for human review rather than proof of malicious behavior.
+
+## Reference(s):
+
+- [Skill Doctor on ClawHub](https://clawhub.ai/chris/skills/skill-doctor-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally against installed skill directories; optional ClawHub CLI enables stale-version checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,60 @@
-## Description: <br>
-每日抓取全球AI新闻，自动深度研究，生成高质量公众号长文并发布至微信和小红书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每日抓取全球AI新闻，自动深度研究，生成高质量公众号长文并发布至微信和小红书.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-科技自媒体作者、AI行业从业者和内容创业者使用该技能抓取每日AI新闻、汇总多平台观点、生成公众号长文和封面，并准备发布到微信公众平台与小红书。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can publish to connected WeChat and Xiaohongshu accounts without clear mandatory review controls. <br>
-Mitigation: Use draft-only mode by default, preview the exact title, body, images, target accounts, and platforms, and require explicit approval before each publish action. <br>
+## Use Case:
 
+Content creators, AI industry practitioners, researchers, and personal-brand operators use this skill to gather daily AI news, research cross-platform reactions, draft a long-form WeChat article, generate a cover image, and publish adapted content to WeChat and Xiaohongshu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/2026-04-19) <br>
-- [README](README.md) <br>
-- [Workflow configuration](workflow.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Images, Publishing results] <br>
-**Output Format:** [News summary, Markdown article, cover image, and platform publish results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for a staged content workflow from news discovery through review and publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and workflow.json) <br>
+Risk: The workflow may post generated AI-news content to connected WeChat and Xiaohongshu accounts without a clearly enforced approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use draft-only defaults and require explicit per-platform confirmation before any scheduled or manual publication.
+
+Risk: Generated articles, summaries, and cover images may contain inaccurate, outdated, or misleading claims from news and social sources.
+
+Mitigation: Review source links, article text, image content, and platform-specific captions before publishing.
+
+Risk: A scheduled run could publish to the wrong destination account or with changed dependency behavior.
+
+Mitigation: Confirm destination accounts before each publication and pin dependency versions for the component skills used by the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/2026-04-19)
+- [Publisher profile](https://clawhub.ai/user/zlszhonglongshen)
+- [Artifact README](artifact/README.md)
+- [Workflow definition](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Images, Links, Guidance]
+
+**Output Format:** [Markdown article, text summaries, generated cover image, and platform publication result links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a daily AI news summary, research report, 3000-5000 word WeChat article, 900x383 cover image, and WeChat/Xiaohongshu publication results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

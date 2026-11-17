@@ -1,43 +1,57 @@
-## Description: <br>
-Chinese text-to-speech skill that uses the Microsoft Edge TTS engine to generate Chinese voice audio without an API key, with documented voice, speed, pitch, subtitle, and output options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese text-to-speech audio with Microsoft Edge TTS voices, including curated Mandarin, Cantonese, and Taiwan voice options plus speech-rate, pitch, subtitle, and audio-output controls.
 
-## Publisher: <br>
-[hamlet0168](https://clawhub.ai/user/hamlet0168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hamlet0168](https://clawhub.ai/user/hamlet0168)
 
-## Use Case: <br>
-Developers and agent users can use this skill to convert Chinese text into speech for messages, article reading, notifications, and podcast or video narration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes under-disclosed patching scripts that can silently modify installed skill files. <br>
-Mitigation: Audit or remove artifact/scripts/patch.py and artifact/scripts/fix.py before deployment, and install only from reviewed release contents. <br>
-Risk: Generated audio may play automatically instead of only being saved to a file. <br>
-Mitigation: Run the skill in a controlled environment, confirm playback behavior before use, and disable or remove automatic playback if file-only output is required. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to convert Chinese text, articles, notifications, and dubbing scripts into speech audio from a command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hamlet0168/edge-tts-zh) <br>
-- [Publisher Profile](https://clawhub.ai/user/hamlet0168) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Audio files with command-line status text and output paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text input with voice, rate, pitch, output path, file input, and format options documented by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Bundled helper scripts can rewrite an installed skill and introduce hidden PowerShell playback behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installing; remove or ignore patch.py, fix.py, and speak_temp.txt unless explicitly needed, and avoid running those helpers.
+
+Risk: Text submitted for speech synthesis may be sent to the external Edge TTS service.
+
+Mitigation: Do not synthesize secrets, credentials, or sensitive content unless the user accepts that external-service exposure.
+
+Risk: Generated audio may play automatically when pygame is installed.
+
+Mitigation: Run in an environment where automatic playback is acceptable, or review and disable playback behavior before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hamlet0168/skills/edge-tts-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [MP3 or OGG audio files with command-line status text and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May auto-play generated audio when pygame is installed; speech synthesis uses an external Edge TTS service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

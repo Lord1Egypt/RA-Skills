@@ -1,45 +1,60 @@
-## Description: <br>
-ZeeLin 四平台自运营 — THUQX AutoOps for OpenClaw 0.5（Twitter、微博、小红书、微信公众号草稿）。支持 Hermes agent 风格的参数化编排、dry-run、结构化 JSON 报告与内容落盘；需已登录各平台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates social-content generation, review artifacts, and sequential posting or draft creation for X/Twitter, Weibo, Xiaohongshu, and WeChat through a logged-in local browser profile.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Developers and operators use this skill to generate, review, and publish coordinated social-media content across X/Twitter, Weibo, Xiaohongshu, and WeChat draft workflows. It supports Hermes-style review and publish phases with dry-run output, reusable content JSON, and structured run summaries before public posting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control a logged-in browser profile and publish or reply publicly on social platforms. <br>
-Mitigation: Run review or dry-run first, inspect generated content and JSON summaries, and use publish mode only after explicit approval. <br>
-Risk: Recurring cron jobs can schedule ongoing public posts or replies with limited confirmation safeguards. <br>
-Mitigation: Create scheduled jobs only when recurring automation is intended, review the schedule and platform scope, and monitor generated reports after each run. <br>
-Risk: Generation may send topics or gathered materials to DuckDuckGo and DashScope, and the skill relies on sensitive local credentials or logged-in sessions. <br>
-Mitigation: Use an isolated browser profile, keep credentials scoped to the automation environment, avoid sensitive topics, and do not enable insecure SSL settings. <br>
+## Use Case:
 
+Developers, operators, and agent workflows use this skill to prepare platform-specific social copy, generate structured review artifacts, and publish or save drafts across selected social platforms after account login and content review.
 
-## Reference(s): <br>
-- [Hermes Agent Contract](references/hermes-agent-contract.md) <br>
-- [Hermes Operator Prompt](references/hermes-operator-prompt.md) <br>
-- [Hermes X Growth Operator Prompt](references/hermes-x-growth-operator-prompt.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kelcey2023/zeelin-social-autopublisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON artifacts such as content, report, summary, and materials files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports review/dry-run and publish modes; generated JSON artifacts are intended for agent status checks and human content review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.2 (source: server release metadata) <br>
+Risk: The skill can post or reply from logged-in social-media accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use review or dry-run modes first, inspect generated content and reports, and avoid production accounts during testing.
+
+Risk: Cron, growth-reply, smoke-test, and continuous modes can trigger live public account actions.
+
+Mitigation: Run those modes only when live scheduling, replies, tests, or continuous operation are explicitly intended.
+
+Risk: Content generation may require API keys and includes an insecure SSL override option.
+
+Mitigation: Use low-privilege API keys, keep secrets out of shared artifacts, and do not enable QWEN_INSECURE_SSL.
+
+## Reference(s):
+
+- [Hermes Agent Contract](references/hermes-agent-contract.md)
+- [Hermes Operator Prompt](references/hermes-operator-prompt.md)
+- [Hermes X Growth Operator Prompt](references/hermes-x-growth-operator-prompt.md)
+- [ClawHub Skill Page](https://clawhub.ai/kelcey2023/skills/zeelin-social-autopublisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON files, guidance]
+
+**Output Format:** [Markdown instructions with bash commands and JSON run artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review and dry-run modes can produce content, report, summary, and materials JSON files before live publishing.]
+
+## Skill Version(s):
+
+0.6.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

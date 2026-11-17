@@ -36,16 +36,16 @@ This skill encapsulates 11 core scenario prompts designed by Jacky Shen (Chief A
 
 ## Usage Standards
 
-### Prompt Structure (RACT Framework)
+### Prompt Structure (GRACE Framework)
 
 All prompts follow this five-layer structure:
 
 ```
 ### GOAL ###       → Core purpose and expected outcome
 ### ROLE ###       → Expert identity, capabilities, and "Never Do" guardrails
-### CONTEXT ###    → Business scenario, audience, relevant data
 ### ACTION ###     → Specific tasks with Do / Don't constraints
-### FORMAT ###     → Output structure, length limits, examples
+### CONTEXT ###    → Business scenario, audience, relevant data
+### EXPRESSION ### → Output structure, length limits, examples
 ```
 
 ### Output Principles

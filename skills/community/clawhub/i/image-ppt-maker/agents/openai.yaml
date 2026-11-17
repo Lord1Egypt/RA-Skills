@@ -1,0 +1,4 @@
+interface:
+  display_name: "PPT 图片生成"
+  short_description: "生成大纲、PPT 图片、HTML 播放器和最终讲稿"
+  default_prompt: "使用 $image-ppt-maker 帮我确认 PPT 需求和 LOGO 预留区域，生成麦肯锡式大纲，先确认图片风格，再生成统一风格的 image-2 提示词和 PPT 图片；图片完成后自动生成 16:9 HTML 播放器，并结合最终图片输出逐页口语化讲稿。"

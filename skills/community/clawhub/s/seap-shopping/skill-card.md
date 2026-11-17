@@ -1,42 +1,62 @@
-## Description: <br>
-Supports shopping flows where a user searches for products, selects an item, and buys immediately or schedules a later purchase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports OpenClaw shopping flows for immediate and scheduled product purchases.
 
-## Publisher: <br>
-[pingjiang](https://clawhub.ai/user/pingjiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pingjiang](https://clawhub.ai/user/pingjiang)
 
-## Use Case: <br>
-External OpenClaw users use this skill to turn purchase requests into product search results, numbered item selection, immediate checkout, or scheduled purchase tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store payment-capable tokens and a delivery address in local configuration. <br>
-Mitigation: Replace bundled placeholder or personal values before use, avoid reusable payment tokens when possible, and protect local configuration files. <br>
-Risk: Broad purchase triggers and scheduled tasks could initiate an unintended immediate or future purchase. <br>
-Mitigation: Narrow the trigger and require explicit review of item, price, address, and timing before every purchase. <br>
-Risk: Session identifiers and product selections influence purchase execution. <br>
-Mitigation: Validate session IDs and selected SKU values before running purchase commands. <br>
+## Use Case:
 
+External OpenClaw users can use this skill to search for products, choose an item, and request either immediate purchase or a scheduled purchase task.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pingjiang/seap-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown responses with CLI commands, JSON state/configuration, and purchase-result messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create local session state and scheduled purchase tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill combines payment and scheduled-purchase authority with broad activation on purchase-related language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require narrow explicit purchase intent and a final confirmation that shows item, price, address, time, and total charge before any purchase or scheduled task runs.
+
+Risk: Credential and payment token handling may expose sensitive purchase authority.
+
+Mitigation: Store secrets in a secure secret manager, avoid committing real credentials to configuration files, and restrict access to payment tokens.
+
+Risk: Scheduled purchase tasks may be difficult to reverse.
+
+Mitigation: Provide a clear cancellation path and show the scheduled task identifier and execution time to the user.
+
+Risk: A mock purchase path can report success, which may mislead users about whether a real transaction occurred.
+
+Mitigation: Label simulation behavior clearly or require provider-confirmed transaction status before reporting a purchase as successful.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pingjiang/skills/seap-shopping)
+- [ClawHub publisher profile](https://clawhub.ai/user/pingjiang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown product listings, JSON command output, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses session-scoped JSON files for search and purchase state.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

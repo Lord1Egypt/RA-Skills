@@ -1,0 +1,34 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "data-export-check",
+  "version": "1.0.1",
+  "author": "诺声(Logos)@SynomosAI",
+  "year": "2026",
+  "timestamp_utc": "2026-09-10T08:33:56.000000+00:00",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "43ff02309fe25263756adedfbf06dd431bdb31b18074373ef4f5bb907b87b497"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ba16b76a1ca90acdf96c5b66c53a11a3703f6fc1bbf6d0ea598dbe129e6a585c"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "0245def3475ab87a9594ba570d0f980bc7a975037abdc8016746cc04661f63c3"
+    },
+    {
+      "path": "icon.png",
+      "sha256": "c4fa53244eccc626fe7163aa37084ec91f05800aa36739ab04d8c20a0b9fa9c8"
+    },
+    {
+      "path": "lgd-powered.png",
+      "sha256": "8cc70d51de8cf4fec0b9067b98d29980f24927ae4e3dab93ef2c6663ffec0dc4"
+    },
+    {
+      "path": "scripts/data_export_check.py",
+      "sha256": "88f5c78a1ac4531397b0787ec5ebc6fe80ba573aa3fac52d564884f811d33f3b"
+    }
+  ]
+}

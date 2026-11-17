@@ -1,42 +1,59 @@
-## Description: <br>
-Runs a Machine Payments Protocol conformance test that verifies an agent or wallet can complete a $0.50 USDC payment on Solana and produce a shareable proof. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a Machine Payments Protocol (MPP) conformance test that verifies an agent or wallet can complete a $0.50 USDC payment on Solana and produce a shareable proof.
 
-## Publisher: <br>
-[kris-hansen](https://clawhub.ai/user/kris-hansen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kris-hansen](https://clawhub.ai/user/kris-hansen)
 
-## Use Case: <br>
-Developers and agents use this skill to verify Machine Payments Protocol payment integrations by starting a Solana USDC send or receive test and obtaining a shareable proof after on-chain confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward a real mainnet USDC payment path. <br>
-Mitigation: Use devnet by default, require manual confirmation before any mainnet transaction, and use a dedicated wallet with limited funds. <br>
-Risk: Autonomous execution could sign or send payments without sufficiently clear spend caps or irreversibility warnings. <br>
-Mitigation: Avoid autonomous mainnet execution until spending limits and irreversible transaction warnings are explicit and enforced. <br>
+## Use Case:
 
+Developers and payment-integration testers use this skill to verify that an agent or wallet can send or receive a Solana USDC payment and publish a shareable proof.
 
-## Reference(s): <br>
-- [MPP Tester homepage](https://mpptester.com) <br>
-- [ClawHub skill page](https://clawhub.ai/kris-hansen/mpptester) <br>
-- [Solana Pay documentation](https://docs.solanapay.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, API examples, payment URLs, status text, and receipt links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initiate real or test Solana USDC payment flows depending on the selected network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Mainnet tests spend real USDC and require SOL fees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use devnet for dry runs and confirm intentionally before paying any mainnet Solana Pay request.
+
+Risk: The helper relies on an external payment-testing service and trusts MPP_BASE_URL if it is overridden.
+
+Mitigation: Use the default service URL or only override MPP_BASE_URL with a trusted endpoint.
+
+Risk: Optional labels may be sent to the external service.
+
+Mitigation: Avoid putting secrets, private identifiers, or sensitive customer data in labels.
+
+## Reference(s):
+
+- [MPP Tester Homepage](https://mpptester.com)
+- [ClawHub Skill Page](https://clawhub.ai/kris-hansen/skills/mpptester)
+- [Solana Pay Documentation](https://docs.solanapay.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a Solana Pay URL, polling status, transaction signature, and shareable proof link when the documented flow is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

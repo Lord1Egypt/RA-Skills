@@ -1,41 +1,54 @@
-## Description: <br>
-Strategic planning for festival travel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategic planning for festival travel.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and travel planners use this skill to turn festival or event travel goals into structured planning guidance, including event research, timing, logistics, crowd management, and contingency considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Festival dates, prices, availability, weather, safety advisories, and booking details may be stale because the skill does not use live data. <br>
-Mitigation: Verify time-sensitive details with official event, venue, transportation, booking, and government advisory sources before acting. <br>
-Risk: Cultural etiquette guidance is general and may not fit every local community or event. <br>
-Mitigation: Confirm expectations with official event guidance, local hosts, or knowledgeable local sources, especially for religious, family, or community events. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to structure festival and event trips around timing, logistics, crowd management, cultural considerations, and contingency planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/travel-festival-event-strategist) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON string with analysis, recommendations, frameworks, checklists, considerations, next steps, and a disclaimer.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No live data, bookings, external API calls, network requests, or professional advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Travel recommendations may be stale or incomplete because the skill does not access live dates, ticketing, prices, weather, safety advisories, or booking availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify dates, tickets, prices, weather, safety advisories, cultural rules, accessibility needs, and booking details with official sources before acting.
+
+Risk: Crowd, accessibility, and cultural-etiquette guidance is heuristic and may not fit a specific event or traveler group.
+
+Mitigation: Treat the output as a planning framework and adapt it with current local guidance, venue rules, and traveler-specific needs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/travel-festival-event-strategist)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [JSON string with travel analysis, recommendations, frameworks, checklists, considerations, next steps, and a disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational planning only; no bookings, live prices, availability checks, weather lookup, external APIs, or network requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

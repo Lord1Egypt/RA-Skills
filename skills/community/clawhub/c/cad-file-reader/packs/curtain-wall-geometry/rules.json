@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "curtain_wall_plan",
+      "patterns": [
+        "幕墙平面",
+        "幕墙分格",
+        "CURTAIN WALL PLAN",
+        "CW PLAN"
+      ]
+    },
+    {
+      "type": "curtain_wall_elevation",
+      "patterns": [
+        "幕墙立面",
+        "立面分格",
+        "CURTAIN WALL ELEVATION"
+      ]
+    },
+    {
+      "type": "curtain_wall_section",
+      "patterns": [
+        "幕墙节点",
+        "幕墙大样",
+        "剖面",
+        "CURTAIN WALL DETAIL",
+        "SECTION"
+      ]
+    },
+    {
+      "type": "embed_detail",
+      "patterns": [
+        "预埋件",
+        "埋件",
+        "后置埋件",
+        "EMBED",
+        "ANCHOR"
+      ]
+    },
+    {
+      "type": "opening_detail",
+      "patterns": [
+        "开启扇",
+        "门联窗",
+        "推拉门",
+        "OPENING",
+        "VISION PANEL"
+      ]
+    },
+    {
+      "type": "curtain_wall_schedule",
+      "patterns": [
+        "幕墙材料表",
+        "板块表",
+        "分格表",
+        "CW SCHEDULE",
+        "LEGEND"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "glass_cw",
+      "patterns": [
+        "玻璃幕墙",
+        "明框",
+        "隐框",
+        "半隐框",
+        "GLAZING",
+        "GLASS"
+      ]
+    },
+    {
+      "system": "stone_cw",
+      "patterns": [
+        "石材幕墙",
+        "干挂",
+        "STONE",
+        "GRANITE"
+      ]
+    },
+    {
+      "system": "metal_cw",
+      "patterns": [
+        "金属幕墙",
+        "铝板",
+        "金属板",
+        "METAL",
+        "ALUMINUM"
+      ]
+    },
+    {
+      "system": "unit_cw",
+      "patterns": [
+        "单元式",
+        "Unitized",
+        "构件式"
+      ]
+    },
+    {
+      "system": "support",
+      "patterns": [
+        "立柱",
+        "横梁",
+        "转接件",
+        "埋件",
+        "MULLION",
+        "TRANSOM"
+      ]
+    }
+  ],
+  "component_rules": [
+    {
+      "category": "mullion",
+      "system": "support",
+      "patterns": [
+        "立柱",
+        "竖挺",
+        "MULLION"
+      ]
+    },
+    {
+      "category": "transom",
+      "system": "support",
+      "patterns": [
+        "横梁",
+        "横挺",
+        "TRANSOM"
+      ]
+    },
+    {
+      "category": "panel",
+      "system": "glass_cw",
+      "patterns": [
+        "玻璃面板",
+        "中空玻璃",
+        "彩釉玻璃",
+        "PANEL",
+        "GLASS"
+      ]
+    },
+    {
+      "category": "stone_panel",
+      "system": "stone_cw",
+      "patterns": [
+        "石材面板",
+        "干挂",
+        "STONE",
+        "GRANITE"
+      ]
+    },
+    {
+      "category": "metal_panel",
+      "system": "metal_cw",
+      "patterns": [
+        "铝板",
+        "金属面板",
+        "METAL PANEL",
+        "ALUMINUM"
+      ]
+    },
+    {
+      "category": "opening",
+      "system": "support",
+      "patterns": [
+        "开启扇",
+        "上悬窗",
+        "平开门",
+        "OPENING",
+        "VISION"
+      ]
+    },
+    {
+      "category": "embed",
+      "system": "support",
+      "patterns": [
+        "预埋件",
+        "埋件",
+        "转接件",
+        "EMBED",
+        "ANCHOR"
+      ]
+    },
+    {
+      "category": "gasket",
+      "system": "glass_cw",
+      "patterns": [
+        "密封胶",
+        "胶条",
+        "密封条",
+        "GASKET",
+        "SEALANT"
+      ]
+    }
+  ],
+  "reference_patterns": {
+    "panel_code": "(?<![0-9A-Z])((?:MB|LM|HB|PM|CM)\\s*[-_]?\\d{1,4}[A-Za-z]?)",
+    "elevation": "标高\\s*[-+]?\\d+(?:\\.\\d{1,3})?",
+    "grid_code": "(?<![0-9A-Z])((?:LG|HG|VJ|HJ|分格)[\\s_-]*\\d{1,3}[A-Za-z]?)",
+    "embed_code": "(?<![0-9A-Z])((?:EMB|MBJ|预埋)[\\s_-]*\\d{1,3}[A-Za-z]?)"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,5}",
+  "unit_patterns": {
+    "mm": [
+      "单位\\s*[:：]?\\s*mm",
+      "mm"
+    ],
+    "m": [
+      "单位\\s*[:：]?\\s*m"
+    ]
+  },
+  "layer_rules": [
+    {
+      "category": "mullion",
+      "patterns": [
+        "立柱",
+        "竖挺",
+        "MULLION"
+      ]
+    },
+    {
+      "category": "transom",
+      "patterns": [
+        "横梁",
+        "横挺",
+        "TRANSOM"
+      ]
+    },
+    {
+      "category": "panel",
+      "patterns": [
+        "面板",
+        "玻璃",
+        "PANEL",
+        "GLASS"
+      ]
+    },
+    {
+      "category": "stone_panel",
+      "patterns": [
+        "石材",
+        "干挂",
+        "STONE"
+      ]
+    },
+    {
+      "category": "metal_panel",
+      "patterns": [
+        "铝板",
+        "METAL",
+        "ALUMINUM"
+      ]
+    },
+    {
+      "category": "embed",
+      "patterns": [
+        "预埋",
+        "埋件",
+        "EMBED"
+      ]
+    }
+  ]
+}

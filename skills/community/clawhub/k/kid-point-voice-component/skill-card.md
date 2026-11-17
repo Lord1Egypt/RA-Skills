@@ -1,43 +1,59 @@
-## Description: <br>
-Kid Point Voice Component provides text-to-speech and speech-to-text support with automatic language-based routing across SenseAudio and Edge TTS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides multilingual text-to-speech and speech-to-text voice utilities for a kid points workflow, using SenseAudio for Chinese and Edge TTS for English and Japanese.
 
-## Publisher: <br>
-[cowboy231](https://clawhub.ai/user/cowboy231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cowboy231](https://clawhub.ai/user/cowboy231)
 
-## Use Case: <br>
-Developers and agents use this skill to add multilingual voice output and audio transcription to a kids points or study workflow. It can generate WAV or MP3 audio, play generated speech locally, and transcribe audio through SenseAudio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TTS text and ASR audio may be sent to SenseAudio or Microsoft Edge TTS cloud services. <br>
-Mitigation: Avoid sensitive recordings, secrets, regulated data, and confidential workplace content unless the relevant provider terms are acceptable. <br>
-Risk: The skill can use a configured SENSE_API_KEY when calling SenseAudio. <br>
-Mitigation: Configure the API key only in the intended environment and rotate or remove it if the workspace is shared or no longer trusted. <br>
+## Use Case:
 
+Developers and agents use this skill to add voice output and speech recognition to a kid points or study assistant workflow, including automatic language-based routing between Chinese, English, and Japanese TTS engines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cowboy231/kid-point-voice-component) <br>
-- [SenseAudio text-to-speech API documentation](https://senseaudio.cn/docs/text_to_speech_api) <br>
-- [SenseAudio speech recognition HTTP API documentation](https://senseaudio.cn/docs/speech_recognition/http_api) <br>
-- [SenseAudio](https://senseaudio.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Command-line text output plus generated audio files and optional transcription files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Audio is saved under an audio directory by date unless the caller supplies an explicit output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 2.1.0) <br>
+Risk: Speech text or audio may be sent to SenseAudio and, for non-Chinese TTS, Microsoft Edge TTS.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive recordings or confidential text, and make sure users understand when cloud speech services are used.
+
+Risk: SenseAudio access depends on SENSE_API_KEY configuration.
+
+Mitigation: Configure the API key deliberately, restrict access to local configuration files, and rotate the key if it is exposed.
+
+Risk: Setup and troubleshooting guidance may install Python dependencies or optional local audio players.
+
+Mitigation: Use a virtual environment with pinned Python dependencies, and run optional sudo player-install commands only when trusted and necessary.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cowboy231/skills/kid-point-voice-component)
+- [SenseAudio Text-to-Speech API](https://senseaudio.cn/docs/text_to_speech_api)
+- [SenseAudio Speech Recognition HTTP API](https://senseaudio.cn/docs/speech_recognition/http_api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Audio files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with command examples; generated WAV/MP3 audio files or plain text transcriptions from scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses SENSE_API_KEY for SenseAudio access and may call SenseAudio and Microsoft Edge TTS cloud services.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

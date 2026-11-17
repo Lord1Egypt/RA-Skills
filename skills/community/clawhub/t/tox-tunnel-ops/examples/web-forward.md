@@ -27,8 +27,16 @@ tox:
   udp_enabled: true
   bootstrap_mode: auto
 server:
-  rules_file: rules.yaml
+  rules_file: ~/.config/toxtunnel/server/rules.yaml
 ```
+
+> **`rules_file` must be an absolute path.** ToxTunnel expands `~` and nothing
+> else, then hands the string to the rules loader, so a relative path resolves
+> against the **daemon's working directory** — not this config's directory.
+> Starting the daemon from anywhere else dies with
+> `Failed to load rules file: Rules file not found: rules.yaml`. Verified on
+> v0.4.12.
+
 
 ## Client Config
 
@@ -44,9 +52,23 @@ client:
   server_id: <PASTE_SERVER_TOX_ID_HERE>
   forwards:
     - local_port: 8080
+      local_address: 127.0.0.1
       remote_host: 127.0.0.1
       remote_port: 3000             # adjust to your web app's port
 ```
+
+> ### ⚠️ `local_port: 8080` binds `0.0.0.0` without `local_address` (pre-v0.5.0)
+>
+> Before v0.5.0, without `local_address` a forward has no bind restriction: the client calls
+> `TcpListener(io, 8080)`, which binds the IPv4 wildcard. Anyone on the same
+> network reaches the internal web app through this port — and an admin panel or
+> Grafana instance usually assumes it is behind something. On **v0.4.13+** set `local_address: 127.0.0.1` (the config above
+> does). On v0.4.12 and older there is **no** such key — firewall it instead.
+>
+> Firewall the port to loopback (`ufw deny in to any port 8080`,
+> `nft add rule inet filter input tcp dport 8080 iif != lo drop`, a pf `block in`
+> rule, or `New-NetFirewallRule … -Action Block`), or use a loopback-only SOCKS5
+> listener instead of a static forward.
 
 ## Rules
 
@@ -58,6 +80,11 @@ rules:
         ports: [3000]
 ```
 
+> The `friend` value is the **first 64 hex characters** of that peer's 76-char Tox ID
+> (from its `Client Tox ID: …` startup log line, or `toxtunnel print-id -c client.yaml`),
+> not the whole ID. A wrong length is rejected when the rules file loads
+> (`Invalid public key length: expected 64`).
+
 ## Multiple Web Services
 
 Forward several services at once:
@@ -67,15 +94,19 @@ client:
   server_id: <PASTE_SERVER_TOX_ID_HERE>
   forwards:
     - local_port: 8080
+      local_address: 127.0.0.1
       remote_host: 127.0.0.1
       remote_port: 3000             # Main app (e.g., Next.js)
     - local_port: 8081
+      local_address: 127.0.0.1
       remote_host: 127.0.0.1
       remote_port: 3001             # API server
     - local_port: 3030
+      local_address: 127.0.0.1
       remote_host: 127.0.0.1
       remote_port: 3100             # Grafana (custom port)
     - local_port: 9090
+      local_address: 127.0.0.1
       remote_host: 127.0.0.1
       remote_port: 9090             # Prometheus
 ```
@@ -121,5 +152,13 @@ rules:
 ## Verification
 
 ```bash
-bash verify.sh 8080 http
+bash scripts/verify.sh 8080 http client.yaml
 ```
+
+Run this from the skill root (the script lives at `scripts/verify.sh`).
+Passing the client config lets it read `friends_online` from the running
+daemon instead of guessing from a local TCP accept.
+
+**Judge it by the exit code:** `0` = the remote service answered through the
+tunnel, `2` = local checks passed but end-to-end was **not** proven (do not
+report this as working), `1` = a check failed.

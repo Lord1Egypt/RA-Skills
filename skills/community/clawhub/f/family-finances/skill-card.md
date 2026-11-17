@@ -1,43 +1,50 @@
-## Description: <br>
-A Chinese-language household finance skill for recording assets, liabilities, cash flow, and portfolio holdings, then generating net-worth, cash-flow, portfolio, and financial health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+家庭财务管理系统，用于跟踪资产负债表、现金流量表、投资组合并生成财务健康报告。
 
-## Publisher: <br>
-[cosmos180](https://clawhub.ai/user/cosmos180) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cosmos180](https://clawhub.ai/user/cosmos180)
 
-## Use Case: <br>
-External users use this skill to maintain local household finance records, inspect net worth and monthly cash flow, track portfolio allocation, and generate Chinese-language financial health reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Detailed household financial records are stored as local cleartext JSON files. <br>
-Mitigation: Use the skill only on a trusted device, restrict local filesystem access, and back up the data directory if the records matter. <br>
-Risk: Delete operations remove assets, liabilities, or holdings by record name. <br>
-Mitigation: Confirm exact record names with the user before running deletion commands. <br>
-Risk: Financial health scores and reports are calculated from user-entered data and may be incomplete or stale. <br>
-Mitigation: Ask the user to review source records and update monthly snapshots before relying on a report. <br>
+## Use Case:
 
+External users use this skill to record household assets, liabilities, monthly income and expenses, and investment holdings, then generate Chinese-language summaries and financial health reports. It is intended for local personal finance tracking with user-provided data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cosmos180/family-finances) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/cosmos180) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese-language Markdown or JSON-backed report summaries with inline shell commands when script execution is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and reads local JSON finance records under ~/.openclaw/workspace/data/family-finances/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Household financial records are stored as local plaintext JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on ~/.openclaw/workspace/data/family-finances/, avoid storing highly sensitive account identifiers in notes, and delete records that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cosmos180/skills/family-finances)
+- [Publisher profile](https://clawhub.ai/user/cosmos180)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown guidance with JSON command output from local scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Financial records are stored locally as JSON files under ~/.openclaw/workspace/data/family-finances/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

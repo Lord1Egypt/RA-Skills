@@ -1,38 +1,49 @@
-## Description: <br>
-Turn a vague feature idea or design direction into a clear game design goal with purpose, scope, fit, success criteria, and constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a vague feature idea or design direction into a clear game design goal with purpose, scope, fit, success criteria, and constraints.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product leads, and development teams use this skill to turn fuzzy feature ideas into decision-ready goals with purpose, game fit, success criteria, and practical constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential unreleased game strategy or business metrics while framing goals. <br>
-Mitigation: Avoid including sensitive roadmap, monetization, or business metric details unless the agent environment is approved for that information. <br>
+## Use Case:
 
+Game designers, product teams, and developers use this skill to turn fuzzy feature ideas into decision-ready goals with purpose, game fit, success criteria, and practical constraints.
 
-## Reference(s): <br>
-- [GROW-Derived Family Conventions](references/family-conventions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a goal statement, purpose, game fit, success criteria, and constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated goal framing may be incomplete if the prompt omits important player, business, technical, schedule, or resource constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the framed goal with relevant design, product, analytics, and engineering stakeholders before using it for prioritization or prototyping.
+
+## Reference(s):
+
+- [GROW-Derived Family Conventions](references/family-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured headings and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a goal statement, purpose, fit with the game, success criteria, and constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

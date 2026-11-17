@@ -1,43 +1,59 @@
-## Description: <br>
-Memory Graph provides an agent-agnostic personal knowledge graph stored as Markdown files with YAML frontmatter for persistent context about people, projects, tools, concepts, decisions, and activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Graph helps agents maintain a local, file-based personal knowledge graph using markdown nodes, YAML frontmatter, derived SQLite indexes, and supporting maintenance scripts.
 
-## Publisher: <br>
-[afgonullu](https://clawhub.ai/user/afgonullu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afgonullu](https://clawhub.ai/user/afgonullu)
 
-## Use Case: <br>
-Developers, external users, and agents use this skill to create, query, maintain, and visualize a persistent local memory graph across agent sessions or tools. It is suited for durable personal context, activity logging, relation discovery, and setup guidance for a file-based knowledge store. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents broad durable access to a persistent personal memory folder that may contain sensitive context. <br>
-Mitigation: Install only when that access is acceptable, avoid storing secrets or highly sensitive personal data, and add local rules for what agents may read or write. <br>
-Risk: Server security guidance flags unsafe command and HTML handling around QMD, auto-commit, and graph visualization when memory content is untrusted. <br>
-Mitigation: Review or patch those paths before use with untrusted content, and be cautious when opening generated graph HTML. <br>
+## Use Case:
 
+Developers, external users, and agents use this skill to preserve context about people, projects, tools, concepts, places, and decisions across agent sessions. It supports querying, briefing generation, graph validation, index rebuilding, backfill suggestions, visualization, and optional git-backed change history.
 
-## Reference(s): <br>
-- [Memory Graph README](artifact/README.md) <br>
-- [Memory Graph Setup Guide](artifact/references/setup.md) <br>
-- [ClawHub release page](https://clawhub.ai/afgonullu/agent-memory-graph) <br>
-- [QMD semantic search](https://github.com/tobi/qmd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown files, CLI text, shell commands, and generated local index files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a persistent local ~/memory directory, requires Node.js 22+, and can optionally use QMD for semantic search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill maintains a persistent local memory store that may contain sensitive personal or project information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the memory directory private, do not store secrets or sensitive personal details, and review files before committing or sharing the repository.
+
+Risk: Optional semantic backfill can invoke QMD shell commands.
+
+Mitigation: Use the documented --no-qmd option until the shell invocation concern identified by the security guidance is resolved.
+
+Risk: Generated graph HTML may expose unsafe behavior when opened with untrusted graph content.
+
+Mitigation: Open generated graph HTML only for trusted local graph content until the HTML injection and CDN concerns in the security guidance are addressed.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [Demo Graph HTML](docs/demo-graph.html)
+- [QMD semantic search](https://github.com/tobi/qmd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, file paths, and generated local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 22+ for built-in node:sqlite; QMD semantic search is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

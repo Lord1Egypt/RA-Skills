@@ -1,38 +1,52 @@
-## Description: <br>
-Generate creative code names and encode/decode secret messages using classic and sophisticated ciphers, including Caesar, Vigenere, Polybius, Rail Fence, and hybrid methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate creative code names and encode or decode secret messages using classic ciphers, with guidance for learning cryptography concepts, puzzles, games, and casual secret messages.
 
-## Publisher: <br>
-[akhmittra](https://clawhub.ai/user/akhmittra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[akhmittra](https://clawhub.ai/user/akhmittra)
 
-## Use Case: <br>
-External users, educators, puzzle creators, families, and teams use SecretCodex to generate code names, encode or decode casual messages, and learn how classical ciphers and key management work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Classical ciphers and toy cipher examples can be mistaken for protection suitable for sensitive data. <br>
-Mitigation: Use SecretCodex for education, games, puzzles, and casual obfuscation; use modern, vetted encryption tools for sensitive or confidential information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SecretCodex ClawHub release](https://clawhub.ai/akhmittra/secretcodex) <br>
-- [Publisher profile](https://clawhub.ai/user/akhmittra) <br>
+## Use Case:
 
+External users, educators, puzzle creators, and developers use SecretCodex to generate code names, demonstrate classical cipher techniques, encode or decode casual messages, and create learning or game materials. It should not be used to protect sensitive information.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with cipher examples, code-name options, and step-by-step guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No disclosed executable behavior or external tool requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users could mistake classical ciphers for suitable protection of sensitive personal, financial, medical, legal, or business-confidential information.
+
+Mitigation: Use the skill only for education, puzzles, games, and casual messages; use established encrypted messaging or modern authenticated encryption tools for sensitive information.
+
+Risk: Generated or explained cipher workflows may provide a false sense of security when used against determined adversaries.
+
+Mitigation: Review outputs as educational guidance and avoid relying on classical cipher outputs for real confidentiality needs.
+
+## Reference(s):
+
+- [SecretCodex on ClawHub](https://clawhub.ai/akhmittra/skills/secretcodex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with examples, tables, and step-by-step cipher guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces educational cipher explanations, code-name options, encoded or decoded text, and key-handling guidance; no external tools or API keys are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Convert image to structured prompts for multiple AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert image to structured prompts for multiple AI models.
 
-## Publisher: <br>
-[keweizhan](https://clawhub.ai/user/keweizhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keweizhan](https://clawhub.ai/user/keweizhan)
 
-## Use Case: <br>
-Developers and prompt engineers use this skill to turn input images into structured semantic data and model-specific prompts for generative image systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image uploads may expose sensitive, confidential, regulated, or proprietary content to the configured model provider. <br>
-Mitigation: Avoid using sensitive images unless the provider, account, and data handling terms are approved for that content. <br>
-Risk: The linked implementation may require an OpenAI API key or other sensitive credential. <br>
-Mitigation: Use a dedicated key, keep credentials out of public files, and inspect the repository and requirements before running the implementation. <br>
-Risk: Generated prompts and structured image descriptions may be incomplete or misleading. <br>
-Mitigation: Review generated outputs before using them in production workflows or downstream image generation. <br>
+## Use Case:
 
+Developers, prompt engineers, and creators use this skill to analyze input images, extract structured visual features, and produce prompts adapted for generative image models.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON plus plain-text prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an image input and may rely on an OpenAI API key when used with the linked implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Images may be sent to an external vision/API provider for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images you are permitted to process and avoid sensitive, personal, confidential, or proprietary content unless the provider's data handling terms are approved.
+
+Risk: Generated structured data or prompts may omit or misstate visual details from the source image.
+
+Mitigation: Review the structured output and model-specific prompts before using them in downstream generation workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/keweizhan/skills/prompt-reverse-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON and model-specific prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from an input image path; prompts may be adapted for Stable Diffusion, Midjourney, and DALL-E.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

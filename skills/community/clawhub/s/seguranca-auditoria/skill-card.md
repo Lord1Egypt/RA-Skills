@@ -1,40 +1,55 @@
-## Description: <br>
-A Portuguese security-audit skill for OpenClaw skills that checks for malicious code, prompt injection, dangerous API use, and unsafe practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw skills for malicious code, prompt injection, dangerous APIs, insecure practices, and related ClawHavoc-style attacks.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to review third-party skills before installation and generate Portuguese security reports with high, medium, and low risk findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is documentation-only and its scanner commands or protection claims may not reflect an inspectable implementation. <br>
-Mitigation: Treat the skill as guidance, inspect any implementation before relying on it, and use an independent security scanner for installation decisions. <br>
+## Use Case:
 
+Developers and external users use this Portuguese-language skill to review third-party OpenClaw skills before installation and to generate risk-ranked audit reports with recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/seguranca-auditoria) <br>
-- [Project homepage](https://github.com/eve-agent/seguranca-auditoria) <br>
-- [Support issues](https://github.com/eve-agent/seguranca-auditoria/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown or HTML security reports with risk levels and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Portuguese-language output; findings are grouped as high, medium, and low risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and SKILL.md frontmatter) <br>
+Risk: The security evidence says the package does not include scanner code, so referenced audit commands may not work unless the surrounding platform supplies them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the platform provides the audit command and treat generated findings as guidance rather than a complete automated scan.
+
+Risk: The skill is used to evaluate third-party skills, but guidance-only output can miss issues that a platform scanner or manual review would catch.
+
+Mitigation: Review and scan target skills with platform controls or an additional security tool before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/seguranca-auditoria)
+- [Publisher profile](https://clawhub.ai/user/engsathiago)
+- [Artifact-declared project homepage](https://github.com/eve-agent/seguranca-auditoria)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or HTML report with risk-ranked findings and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language output; release evidence reports no bundled executable scanner code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

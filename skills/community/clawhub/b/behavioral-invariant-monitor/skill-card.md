@@ -1,39 +1,56 @@
-## Description: <br>
-Helps verify that AI agent skills maintain consistent behavioral invariants across repeated executions, including shifts based on execution count, environmental conditions, delayed activation triggers, performance drift, audit trails, and risk-proportional monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps verify that AI agent skills maintain consistent behavioral invariants across repeated executions, including shifts based on execution count, environmental conditions, delayed activation triggers, performance drift, audit-log integrity, and risk tier.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, security reviewers, and agent operators use this skill to test selected skills or execution histories for behavioral drift, delayed activation patterns, side-effect changes, resource anomalies, and invariant violations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Monitoring selected targets can involve repeated execution of workflows that may touch private data or irreversible actions. <br>
-Mitigation: Use the skill only on explicitly selected targets, preferably in a sandbox or dry-run environment. <br>
-Risk: Behavioral audit logs may retain sensitive observations from monitored workflows. <br>
-Mitigation: Decide in advance how audit logs will be stored, redacted, retained, and deleted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyxinweiminicloud/behavioral-invariant-monitor) <br>
+## Use Case:
 
+Developers, security reviewers, and agent operators use this skill to analyze repeated skill executions for invariant violations, resource or side-effect drift, execution-count sensitivity, and trigger-based activation patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown behavioral invariant report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes violation logs, resource trend analysis, side-effect assessment, trigger-sensitivity results, and a consistency verdict.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Monitoring may require repeated analysis or execution of skills that have side effects.
+
+Mitigation: Use controlled test inputs and isolated execution conditions for skills with side effects.
+
+Risk: Audit logs and behavior observations can contain sensitive data if collected from real workloads.
+
+Mitigation: Keep audit logs scoped to non-sensitive data where possible and avoid retaining secrets or private workload content.
+
+Risk: Finite run counts and sampled monitoring may miss delayed or conditional activation patterns.
+
+Mitigation: Scale monitoring depth to the skill's risk tier and increase sampling to full monitoring when drift is observed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/behavioral-invariant-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes invariant violation logs, resource trend analysis, side-effect consistency assessment, trigger-sensitivity findings, and a consistency verdict.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

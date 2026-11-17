@@ -1,44 +1,55 @@
-## Description: <br>
-Detects time and space complexity hotspots via AST scan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects time and space complexity hotspots via AST scan.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and code reviewers use this skill before performance-sensitive merges to scan target source files for likely time and space complexity hotspots, rank findings by severity, and produce an actionable performance review report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may inspect code or run performance-review tooling against a selected deployment or workspace. <br>
-Mitigation: Use explicit prompts that scope the target files or deployment, and review the generated findings before allowing edits. <br>
-Risk: Static complexity findings may be false positives or may not reflect runtime impact. <br>
-Mitigation: Confirm important findings with profiling, benchmarks, before-and-after measurements, or manual hotspot sampling before accepting fixes. <br>
-Risk: Suggested schema, migration, digest-table, fetch-strategy, or optimization changes could alter application behavior. <br>
-Mitigation: Treat proposed changes as review candidates and require human approval plus tests or benchmark evidence before merging. <br>
+## Use Case:
 
+Developers use the skill to review code for likely time and space complexity hotspots before performance-sensitive merges or when investigating code that feels slow. It returns severity-ranked findings and suggestions for further verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-performance-review) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/athola) <br>
-- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown report with severity-grouped findings, source locations, suggestions, tier coverage, and optional command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are informational and should be confirmed with profiling, benchmarks, or manual review before fixes are accepted.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The security assessment rates the skill suspicious with medium confidence, citing a mismatch between its code-analysis purpose and some described capabilities.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full skill and its execution steps, and confirm its described behavior matches your intended use before installing.
+
+Risk: The workflow instructs users to run project code and install a visualization tool, and the scanner assessment is incomplete because linked local references were missing.
+
+Mitigation: Use it with trusted project files, inspect commands and dependencies before running them, and review the missing references before relying on the assessment.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-pensive-performance-review)
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [Kuva visualization project](https://github.com/Psy-Fer/kuva)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown performance review with severity-ranked findings and suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings include file and line locations, severity, category, and suggested actions; tier coverage may be reported.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

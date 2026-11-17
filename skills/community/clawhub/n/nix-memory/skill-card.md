@@ -1,41 +1,58 @@
-## Description: <br>
-nix-memory helps OpenClaw agents maintain identity and memory continuity by hashing key workspace files, detecting drift, and reporting continuity status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+nix-memory provides Bash-based identity hashing, memory integrity checks, drift detection, and continuity scoring for OpenClaw agent workspaces.
 
-## Publisher: <br>
-[cassh100k](https://clawhub.ai/user/cassh100k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cassh100k](https://clawhub.ai/user/cassh100k)
 
-## Use Case: <br>
-Developers and operators use this skill to baseline agent identity files, monitor workspace memory files, detect drift across sessions, and surface continuity alerts for OpenClaw workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace identity and memory files may contain secrets that are copied, hashed, diffed, or summarized into local .nix-memory state. <br>
-Mitigation: Remove secrets from SOUL.md, IDENTITY.md, USER.md, AGENTS.md, MEMORY.md, HEARTBEAT.md, and workspace Markdown files before running setup or quickstart. <br>
-Risk: Quickstart can add local helper files and checks, including agent.json, memory scripts, HEARTBEAT.md entries, and session state templates. <br>
-Mitigation: Review quickstart before running it and set NIX_MEMORY_WORKSPACE to the intended workspace. <br>
+## Use Case:
 
+Developers and agent operators use this skill to baseline identity and memory files, detect unexpected drift, and review continuity signals across OpenClaw sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cassh100k/nix-memory) <br>
-- [nix-memory docs](https://nixus.pro/memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON reports] <br>
-**Output Format:** [Plain text statuses, Markdown guidance, shell command examples, JSON reports, and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local state under .nix-memory/ and may create helper files such as agent.json, HEARTBEAT.md entries, and memory logs when quickstart is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Installer guidance includes remote shell execution patterns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer reviewed local scripts from the package and avoid curl-to-bash installation.
+
+Risk: Setup and quickstart can persist copies, hashes, diffs, logs, and helper files derived from private workspace memory files.
+
+Mitigation: Run setup only in workspaces where .nix-memory state and generated helper files are acceptable, and review stored reports before sharing the workspace.
+
+Risk: Heartbeat integration can add recurring memory checks to HEARTBEAT.md.
+
+Mitigation: Inspect or edit HEARTBEAT.md after quickstart if recurring future execution is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cassh100k/skills/nix-memory)
+- [nix-memory documentation](https://nixus.pro/memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Shell status text, Markdown guidance, JSON reports, and workspace configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates workspace state under .nix-memory and may create heartbeat, memory, and agent discovery files when quickstart is run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

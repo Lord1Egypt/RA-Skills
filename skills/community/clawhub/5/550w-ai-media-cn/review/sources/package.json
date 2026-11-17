@@ -1,0 +1,42 @@
+{
+  "name": "ai-subtitle-remover",
+  "version": "3.1.4",
+  "description": "Remove image watermarks, local video subtitles or visual watermarks, and platform watermarks from copied video links with the 550W Open API",
+  "main": "dist/index.js",
+  "bin": {
+    "550w-skill": "dist/550w-skill.cjs",
+    "550w-mcp": "dist/550w-mcp.cjs"
+  },
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build --silent && node --test test/*.test.js",
+    "package": "node ../mcp-distribution/build-channels.mjs",
+    "package:verify": "node ../mcp-distribution/verify-release.mjs && node ../mcp-distribution/verify-channels.mjs",
+    "package:repro": "node ../mcp-distribution/verify-reproducible.mjs",
+    "package:test": "node --test ../mcp-distribution/test/*.test.mjs && cd regions/global/ai-subtitle-remover && uv run --locked python -m unittest discover -s tests -v",
+    "package:stage-site": "node ../mcp-distribution/stage-official-downloads.mjs --write",
+    "package:verify-site": "node ../mcp-distribution/stage-official-downloads.mjs",
+    "package:verify-live-site": "node ../mcp-distribution/verify-live-downloads.mjs",
+    "package:acceptance": "node ../mcp-distribution/verify-acceptance.mjs",
+    "package:legacy-cn": "bash build.sh cn",
+    "package:legacy-global": "bash build.sh global"
+  },
+  "files": [
+    "dist/",
+    "references/",
+    "skill.json",
+    "SKILL.md"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "axios": "^1.20.0",
+    "form-data": "^4.0.6",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.4.5"
+  }
+}

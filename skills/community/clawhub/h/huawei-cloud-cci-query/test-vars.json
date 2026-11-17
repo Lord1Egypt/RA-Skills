@@ -1,0 +1,58 @@
+{
+  "skill_name": "huawei-cloud-cci-query",
+  "description": "查询华为云 CCI 实例详情的只读 Skill 测试用例",
+  "environment": {
+    "required_env": [
+      "HUAWEICLOUD_SDK_AK",
+      "HUAWEICLOUD_SDK_SK"
+    ],
+    "required_cli": [
+      "hcloud >= 7.2.12",
+      "python3 >= 3.8"
+    ]
+  },
+  "test_cases": [
+    {
+      "name": "列出命名空间 (cn-north-4)",
+      "command": "python3 scripts/cci_query.py list-namespaces --region=cn-north-4",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "返回 NamespaceList JSON，含 kind/items 字段"
+    },
+    {
+      "name": "跨命名空间列出 Pod (cn-north-4)",
+      "command": "python3 scripts/cci_query.py list-all-pods --region=cn-north-4",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "返回 PodList JSON（无资源时 items 为 null）"
+    },
+    {
+      "name": "脚本 --help",
+      "command": "python3 scripts/cci_query.py --help",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "输出用法说明，含全部子命令"
+    },
+    {
+      "name": "capability-list 子命令",
+      "command": "python3 scripts/cci_query.py capability-list",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "列出全部支持的子命令"
+    },
+    {
+      "name": "hcloud CCI --help 验证服务可用",
+      "command": "echo y | hcloud CCI --help",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "列出 CCI 全部可用操作"
+    },
+    {
+      "name": "hcloud CCI readCoreV1NamespacedPod --help",
+      "command": "echo y | hcloud CCI readCoreV1NamespacedPod --help",
+      "method": "GET",
+      "category": "readonly",
+      "expected": "显示 readCoreV1NamespacedPod 参数说明"
+    }
+  ]
+}

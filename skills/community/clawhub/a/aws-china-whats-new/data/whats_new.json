@@ -199,7 +199,7 @@
     "title": "Amazon MSK now supports dual-stack (IPv4 and IPv6) connectivity for existing clusters",
     "body": "<p>Amazon Managed Streaming for Apache Kafka (<a href=\"https://www.amazonaws.cn/en/msk/?nc2=h_ql_prod_an_msak\">Amazon MSK</a>) now supports dual-stack connectivity (IPv4 and IPv6) for existing MSK Provisioned clusters. This capability enables customers to connect to Amazon MSK using both IPv4 and IPv6 protocols, in addition to the existing IPv4-only option. It helps customers modernize applications for IPv6 environments while maintaining IPv4 compatibility, making it easier to meet compliance requirements and prepare for future network architectures.</p>",
     "date": "2026-02-26",
-    "link": "/en/new/2026/amazon-msk-supports-dual-stack-connectivity-for-existing-clusters/",
+    "link": "/en/new/2026/amazon-mREDACTED-SECRET/",
     "year": 2026
   },
   {
@@ -227,7 +227,7 @@
     "title": "Amazon MSK simplifies Kafka topic management with new APIs and console integration",
     "body": "<p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now offers three new APIs (CreateTopic, UpdateTopic, and DeleteTopic), making it easier to manage your Kafka topics for your MSK provisioned clusters without the need to set up and maintain Kafka admin clients. You can programmatically create, update, and delete Kafka topics using your familiar interfaces including Amazon CLI, Amazon SDKs, and Amazon CloudFormation. With these APIs, you can define topic properties such as replication factor and partition count, along with configuration settings like retention and cleanup policies. The new APIs together with the ListTopics and DescribeTopic APIs are integrated into the Amazon MSK console, bringing all topic operstions to one place. You can now create or update topics with just a few clicks using guided defaults while gaining comprehensive visibility into topic configurations, partition-level information, and metrics.<br><br>These MSK topic management capabilities are available at no additional cost for all Amazon MSK provisioned clusters using Kafka version 3.6 and above in Amazon Web Services China (Beijing) Region, operated by Sinnet and Amazon Web Services China (Ningxia) Region, operated by NWCD.&nbsp;To start using these features, you'll need to set up the appropriate IAM permissions. To learn more on how to get started, see the <a href=\"https://docs.amazonaws.cn/msk/latest/developerguide/getting-started.html\">Amazon MSK Developer Guide</a>.</p>",
     "date": "2026-02-12",
-    "link": "/en/new/2026/amazon-msk-simplifies-kafka-topic-management-with-new-apis-and-console-integration/",
+    "link": "/en/new/2026/amazon-mREDACTED-SECRET/",
     "year": 2026
   },
   {
@@ -283,7 +283,7 @@
     "title": "Amazon ECS now enables you to define weekly event windows for scheduling task retirements on Amazon Fargate",
     "body": "<p>Amazon ECS now enables you to define weekly event windows for scheduling task retirements on Amazon Fargate. This capability provides greater control over when infrastructure updates and task replacements occur, helping prevent disruption to mission-critical workloads during peak business hours.<br><br>Amazon Fargate is a serverless, pay-as-you-go compute engine that lets you focus on building applications without managing servers. As part of the shared responsibility model, Fargate maintains the underlying infrastructure with periodic platform updates. Fargate automatically retires your tasks for these updates and notifies you about upcoming task retirements via email and the Amazon Health Dashboard. By default, tasks are retired 7 days after notification, but you can configure the fargateTaskRetirementWaitPeriod account setting to extend the retirement period to 14 days or initiate immediate retirement (0 days). Previously, you could build automation using the task retirement notification and wait period to perform service updates or task replacements on your own cadence. With today's launch, you can now use the Amazon EC2 event windows interface to define weekly event windows for precise control over the timing of Fargate task retirements. For example, you can schedule task retirements for a mission-critical service that requires high uptime during weekdays by configuring retirements to occur only on weekends.<br><br>To get started, configure the account setting fargateEventWindows to enabled as a one-time set up. Once enabled, configure Amazon EC2 event window(s) by specifying time ranges, and associate the event window(s) with your ECS tasks by selecting Amazon ECS-managed tags as the association target. Use the aws:ecs:clusterArn tag for targeting your tasks in an ECS cluster, aws:ecs:serviceArn tag for ECS services, or aws:ecs:fargateTask with a value of true to apply the window to all Fargate tasks. This feature is now available in Amazon Web Services China (Beijing) Region, operated by Sinnet, and Amazon Web Services China (Ningxia) Region, operated by NWCD. To learn more, visit our <a href=\"https://docs.amazonaws.cn/en_us/AmazonECS/latest/developerguide/prepare-task-retirement.html\">documentation</a>.</p>",
     "date": "2026-01-30",
-    "link": "/en/new/2026/amazon-ecs-enables-you-to-define-weekly-event-windows-for-scheduling-task-retirements-on-amazon-fargate/",
+    "link": "/en/new/2026/amazon-ecs-enables-you-to-define-weekly-event-windows-for-scheduling-taREDACTED-SECRET/",
     "year": 2026
   },
   {
@@ -458,7 +458,7 @@
     "title": "Amazon MSK Connect now supports dual-stack (IPv4 and IPv6) connectivity for new connectors",
     "body": "<p>Amazon Managed Streaming for Apache Kafka (<a href=\"https://www.amazonaws.cn/en/msk/?nc2=h_ql_prod_an_msak\">Amazon MSK</a>) now supports dual-stack connectivity (IPv4 and IPv6) for new connectors on Amazon MSK Connect. This capability enables customers to create connectors on MSK Connect using both IPv4 and IPv6 protocols, in addition to the existing IPv4-only option. It helps customers modernize applications for IPv6 environments while maintaining IPv4 compatibility, making it easier to meet compliance requirements and prepare for future network architectures.<br><br>Amazon MSK Connect is a fully managed service that allows you to deploy and operate Apache Kafka Connect connectors in a fully managed environment. Previously, connectors on MSK Connect only supported IPv4 addressing for all connectivity options. With this new capability, customers can now enable dual-stack connectivity (IPv4 and IPv6) on new connectors using Amazon MSK Console, Amazon CLI, SDK, or CloudFormation by setting the Network Type parameter during connector creation. All connectors on MSK Connect will by default use IPv4-only connectivity unless explicitly opted-in for dual-stack while creating new connectors. Existing connectors will continue using IPv4 connectivity. To change that you will need to delete and recreate the connector.<br><br>Dual-stack connectivity for new connectors on MSK Connect is now available in all <a href=\"https://www.amazonaws.cn/en/about-aws/regional-product-services/\">Amazon Web Services Regions</a> where Amazon MSK Connect is available, including the Amazon Web Services China (Beijing) Region, operated by Sinnet, and the Amazon Web Services China (Ningxia) Region, operated by NWCD, at no additional cost. To learn more, visit the <a href=\"https://www.amazonaws.cn/en/msk/?nc2=h_ql_prod_an_msak\">product page</a> and the <a href=\"https://docs.amazonaws.cn/msk/latest/developerguide/what-is-msk.html\">Amazon MSK Developer Guide</a>.</p>",
     "date": "2025-12-31",
-    "link": "/en/new/2025/amazon-msk-connect-supports-dual-stack-connectivity-for-new-connectors/",
+    "link": "/en/new/2025/amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -717,7 +717,7 @@
     "title": "MSK Express brokers now support Intelligent Rebalancing at no additional cost, and with no action required",
     "body": "<p>Effective today, all new Amazon MSK Provisioned clusters with Express brokers will support Intelligent Rebalancing at no additional cost. This new capability makes it effortless for customers to execute automatic partition balancing operations when scaling their Kafka clusters up or down. Intelligent Rebalancing maximizes the capacity utilization of MSK Express-based clusters by optimally rebalancing Kafka resources on them for better performance, eliminating the need for customers to manage partitions themselves or via third-party tools. Intelligent Rebalancing performs these operations up to 180 times faster compared to Standard brokers.<br><br>MSK Express brokers are designed to deliver up to three times more throughput per-broker, scale up to 20 times faster, and reduce recovery time by 90 percent as compared to Standard brokers running Apache Kafka. With Intelligent Rebalancing, MSK Express-based clusters are continuously monitored for resource imbalance or overload based on intelligent Amazon MSK defaults to maximize cluster performance. When required, partitions are efficiently distributed, without affecting cluster availability for clients to produce and consume data. Customers can now take full advantage of the scaling and performance benefits of MSK Provisioned clusters for Express brokers while simplifying cluster management operations. Intelligent Rebalancing performs these operations up to 180x faster compared to Standard brokers.<br><br>Intelligent Rebalancing is being rolled out for all new MSK Provisioned clusters with Express brokers &nbsp;in all Amazon Web Services Regions, including the Amazon Web Services China (Beijing) Region, operated by Sinnet, and the Amazon Web Services China (Ningxia) Region, operated by NWCD. Intelligent Rebalancing does not require any additional configuration or setup to get started. To learn more, see the <a href=\"https://docs.amazonaws.cn/en_us/msk/latest/developerguide/what-is-msk.html\">Amazon MSK Developer Guide</a>.</p>",
     "date": "2025-11-25",
-    "link": "/en/new/2025/msk-express-brokers-support-intelligent-rebalancing-at-no-additional-cost-and-with-no-action-required/",
+    "link": "/en/new/2025/mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -815,7 +815,7 @@
     "title": "Amazon MSK Console now supports viewing Kafka topics with new public APIs",
     "body": "<p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports viewing topics directly through the&nbsp;Amazon MSK console, making it easier to inspect all your Kafka topics without setting up Kafka admin clients.&nbsp;You can browse and search topics within a cluster, quickly review replication settings and partition counts, and drill into individual topics to examine detailed configuration, partition-level information, and metrics. These console capabilities are powered by three new MSK APIs, ListTopics, DescribeTopic, and DescribeTopicPartitions that you can also use directly for&nbsp;programmatic access. The ListTopics API returns the list of all topics in a cluster, while the DescribeTopic and DescribeTopicPartitions APIs provide detailed configuration and partition information for a topic. All three APIs are available through the&nbsp;Amazon CLI and Amazon SDKs.<br><br>These MSK topic viewing capabilities are available for all Amazon MSK Provisioned clusters using Kafka version 3.6 and above in Amazon Web Services China (Beijing) Region, operated by Sinnet and Amazon Web Services China (Ningxia) Region, operated by NWCD.&nbsp;To start using these features, you'll need to set up the appropriate IAM permissions.&nbsp;To learn more on how to get started, see the&nbsp;<a href=\"https://docs.amazonaws.cn/msk/latest/developerguide/getting-started.html\">Amazon MSK Developer Guide</a>.</p>",
     "date": "2025-11-20",
-    "link": "/en/new/2025/amazon-msk-console-supports-viewing-kafka-topics-with-new-public-apis/",
+    "link": "/en/new/2025/amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -1074,7 +1074,7 @@
     "title": "Amazon MSK adds support for Apache Kafka version 4.1",
     "body": "<p><a href=\"https://www.amazonaws.cn/msk\">Amazon Managed Streaming for Apache Kafka</a>&nbsp;(Amazon MSK) now supports Apache Kafka version 4.1, introducing Queues as a preview feature, a new Streams Rebalance Protocol in early access, and Eligible Leader Replicas (ELR). Along with these features, Apache Kafka version 4.1 includes various bug fixes and improvements. For more details, please refer to the&nbsp;<a href=\"https://downloads.apache.org/kafka/4.1.0/RELEASE_NOTES.html\">Apache Kafka release notes for version 4.1.</a></p>",
     "date": "2025-10-16",
-    "link": "/en/new/2025/amazon-msk-adds-support-for-apache-kafka-version-4-1/",
+    "link": "/en/new/2025/amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -1284,7 +1284,7 @@
     "title": "Amazon MSK now supports mutual TLS authentication in Amazon Web Services China regions",
     "body": "<p><a href=\"https://www.amazonaws.cn/msk/\">Amazon Managed Streaming for Apache Kafka</a>&nbsp;(Amazon MSK) now supports mutual Transport Layer Security (mTLS) authentication in the Amazon Web Services China regions. This feature provides security by enabling two-way authentication between a client and broker, ensuring that both parties verify each other’s identity. With mTLS, both a client and Amazon MSK broker can authenticate&nbsp;using valid certificates issued by Amazon Private Certificate Authority (CA) during the TLS handshake. mTLS authentication is now available in the Amazon Web Services China (Beijing) region, operated by Sinnet, and the Amazon Web Services China (Ningxia) region, operated by NWCD.</p>",
     "date": "2025-09-20",
-    "link": "/en/new/2025/amazon-msk-supports-mutual-tls-authentication-in-amazon-web-services-china-regions/",
+    "link": "/en/new/2025/amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -1739,7 +1739,7 @@
     "title": "Announcing Amazon MSK Replicator for cross-region and same-region streaming data replication",
     "body": "<p>You can now use Amazon MSK Replicator to replicate streaming data across Amazon Managed Streaming for Apache Kafka (<a href=\"https://www.amazonaws.cn/en/msk/\">Amazon MSK</a>) clusters in the Amazon Web Services China (Beijing) Region, operated by Sinnet, and Amazon Web Services China (Ningxia) Region, operated by NWCD.</p>",
     "date": "2025-07-30",
-    "link": "/en/new/2025/announcing-amazon-msk-replicator-for-cross-region-and-same-region-streaming-data-replication/",
+    "link": "/en/new/2025/announcing-amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -1872,7 +1872,7 @@
     "title": "Amazon ECS includes Task ID in unhealthy service events",
     "body": "<p><a href=\"https://www.amazonaws.cn/en/ecs/\">Amazon Elastic Container Services</a> (Amazon ECS) now makes it easier to troubleshoot unhealthy tasks by adding the Task ID in service action events generated due to health failures. &nbsp;</p>",
     "date": "2025-06-30",
-    "link": "/en/new/2025/amazon-ecs-includes-task-id-in-unhealthy-service-events/",
+    "link": "/en/new/2025/amazon-ecs-includes-taREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -2075,7 +2075,7 @@
     "title": "Amazon MSK adds support for Apache Kafka version 4.0",
     "body": "<p><a href=\"https://www.amazonaws.cn/msk/\">Amazon Managed Streaming for Apache Kafka</a>&nbsp;(Amazon MSK) now supports Apache Kafka version 4.0, bringing the latest advancements in cluster management and performance to MSK Provisioned. Kafka 4.0 introduces a new consumer rebalance protocol, now generally available, that helps ensure smoother and faster group rebalances. In addition, Kafka 4.0 requires brokers and tools to use Java 17, providing improved security and performance, includes various bug fixes and improvements, and deprecates metadata management via Apache ZooKeeper.</p>",
     "date": "2025-05-18",
-    "link": "/en/new/2025/amazon-msk-adds-support-for-apache-kafka-version-4-0/",
+    "link": "/en/new/2025/amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -2187,7 +2187,7 @@
     "title": "Announcing Amazon MSK Connect: Run serverless, scalable Kafka Connect clusters in Amazon MSK",
     "body": "<p>Amazon MSK Connect is now available in the Amazon Web Services China (Beijing) Region, operated by Sinnet, and Amazon Web Services China (Ningxia) Region, operated by NWCD. MSK Connect enables you to run fully managed Kafka Connect clusters with Amazon Managed Streaming for Apache Kafka (Amazon MSK). With a few clicks, MSK Connect allows you to easily deploy, monitor, and scale connectors that move data in and out of Apache Kafka and Amazon MSK clusters from external systems such as databases, file systems, and search indices. MSK Connect eliminates the need to provision and maintain cluster infrastructure. Connectors scale automatically in response to increases in usage and you pay only for the resources you use. With full compatibility with Kafka Connect, it is easy to migrate workloads without code changes. MSK Connect will support both Amazon MSK-managed and self-managed Apache Kafka clusters.</p>",
     "date": "2025-05-07",
-    "link": "/en/new/2025/announcing-amazon-msk-connect-run-serverless-scalable-kafka-connect-clusters-in-amazon-msk/",
+    "link": "/en/new/2025/announcing-amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -2285,7 +2285,7 @@
     "title": "Express brokers for Amazon MSK is now available in Amazon Web Services China Regions",
     "body": "<p>Today, we announce Express brokers for Amazon Managed Streaming for Apache Kafka (Amazon MSK) are available in Amazon Web Services China Regions. Express brokers are a new broker type for Amazon MSK Provisioned designed to deliver up to 3x more throughput per broker, scale up to 20x faster, and reduce recovery time by 90% as compared to standard Apache Kafka brokers. Express brokers come preconfigured with Kafka best practices by default, support all Kafka APIs, and provide the same low-latency performance that Amazon MSK customers expect, so they can continue using existing client applications without any changes.</p>",
     "date": "2025-04-24",
-    "link": "/en/new/2025/express-brokers-for-amazon-msk-is-now-available-in-amazon-web-services-china-regions/",
+    "link": "/en/new/2025/express-brokers-for-amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -2306,7 +2306,7 @@
     "title": "Amazon MSK adds support for Apache Kafka version 3.9",
     "body": "<p><a href=\"https://www.amazonaws.cn/msk/\">Amazon Managed Streaming for Apache Kafka</a>&nbsp;(Amazon MSK) now supports Apache Kafka version 3.9, which allows users to retain tiered data when disabling Tiered Storage at the topic level. Consumer applications can continue to read historical data from the remote log start offset (Rx) while maintaining continuous log offsets across both local and remote storage.<br>Along with this feature, Apache Kafka version 3.9 includes various bug fixes and improvements. For more details, please refer to the&nbsp;<a href=\"https://downloads.apache.org/kafka/3.9.0/RELEASE_NOTES.html\">Apache Kafka release notes for version 3.9.</a><br>&nbsp;</p>",
     "date": "2025-04-20",
-    "link": "/en/new/2025/amazon-msk-adds-support-for-apache-kafka-versio-3-9/",
+    "link": "/en/new/2025/amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -2768,7 +2768,7 @@
     "title": "Amazon MSK adds support for Apache Kafka version 3.8",
     "body": "<p><a href=\"https://www.amazonaws.cn/en/msk/\">Amazon Managed Streaming for Apache Kafka</a>&nbsp;(Amazon MSK) now supports Apache Kafka version 3.8. You can now create new clusters using version 3.8 with either KRAFT or ZooKeeper mode for metadata management or upgrade your existing ZooKeeper based clusters to use version 3.8. Apache Kafka version 3.8 includes several bug fixes and new features that improve performance. Key new features include support for compression level configuration. This allows you to further optimize your performance when using compression types such as lz4, zstd and gzip, by allowing you to change the default compression level. For more details and a complete list of improvements and bug fixes, see the&nbsp;<a href=\"https://downloads.apache.org/kafka/3.8.0/RELEASE_NOTES.html\">Apache Kafka release notes for version 3.8</a>.</p>",
     "date": "2025-02-25",
-    "link": "/en/new/2025/amazon-msk-adds-support-for-apache-kafka-version-3-8/",
+    "link": "/en/new/2025/amazon-mREDACTED-SECRET/",
     "year": 2025
   },
   {
@@ -3433,7 +3433,7 @@
     "title": "Amazon MSK now supports in-place upgrades from M5, T3 instance types to Graviton3 based M7G instances",
     "body": "<p>You can now upgrade your <a href=\"https://www.amazonaws.cn/en/msk/\">Amazon Managed Streaming for Apache Kafka (Amazon MSK)</a> provisioned clusters running on X-86 based M5 or T3 instances and replace them with Amazon Graviton3-based M7G instances with a single click of a button. In-place upgrades allows you to seamlessly switch over your existing provisioned clusters to M7G instance type for better price performance, while continuing to serve reads and writes for your connecting client applications.</p>",
     "date": "2024-07-01",
-    "link": "/en/new/2024/amazon-msk-supports-in-place-upgrades-from-m5-t3-instance-types-to-graviton3-based-m7g-instances/",
+    "link": "/en/new/2024/amazon-mREDACTED-SECRET/",
     "year": 2024
   },
   {
@@ -3468,7 +3468,7 @@
     "title": "Amazon MSK now supports the removal of brokers from MSK provisioned clusters",
     "body": "<p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports removing brokers from MSK provisioned clusters. Administrators can optimize costs of their Amazon MSK clusters by reducing broker count to meet the changing needs of their streaming workloads, while maintaining cluster performance, availability, and data durability.</p>",
     "date": "2024-06-04",
-    "link": "/en/new/2024/amazon-msk-supports-the-removal-of-brokers-from-msk-provisioned-clusters/",
+    "link": "/en/new/2024/amazon-mREDACTED-SECRET/",
     "year": 2024
   },
   {
@@ -3741,7 +3741,7 @@
     "title": "Amazon MSK now supports Graviton3-based M7g instances for new provisioned clusters",
     "body": "<p>Amazon Graviton3-based M7g instances are now generally available for use with new provisioned&nbsp;Amazon Managed Streaming for Apache Kafka (MSK)&nbsp;clusters. MSK provisioned clusters running on M7g instances deliver up to 24% price/ performance improvement, up to 29% higher write and read throughput, and up to 27% reduction in CPU usage over comparable MSK clusters running on M5 instances.&nbsp;</p>",
     "date": "2024-01-11",
-    "link": "/en/new/2024/amazon-msk-supports-graviton3-based-m7g-instances-for-new-provisioned-clusters/",
+    "link": "/en/new/2024/amazon-mREDACTED-SECRET/",
     "year": 2024
   },
   {
@@ -4623,7 +4623,7 @@
     "title": "Amazon MSK now offers multi-VPC private connectivity and cross-account access",
     "body": "<p><a href=\"/msk/\" target=\"_blank\">Amazon Managed Streaming for Apache Kafka</a> (MSK) now offers two new features: mult-VPC private connectivity and&nbsp;cluster policy support for Amazon MSK clusters that simplify connectivity and access between your Apache Kafka clients hosted in different VPCs and Amazon Web Services accounts and your Amazon MSK clusters.</p>",
     "date": "2023-05-07",
-    "link": "/en/new/2023/amazon-msk-now-offers-multi-vpc-private-connectivity-and-cross-account-access/",
+    "link": "/en/new/2023/amazon-mREDACTED-SECRET/",
     "year": 2023
   },
   {
@@ -4868,7 +4868,7 @@
     "title": "Amazon MSK now offers a new low-cost storage tier that scales to virtually unlimited storage in China",
     "body": "<p><a href=\"/en/msk/\">Amazon Managed Streaming for Apache Kafka</a> (MSK) now offers Tiered storage that brings a virtually unlimited and low-cost storage tier. Tiered Storage lets you store and process data using the same Kafka APIs and clients , while saving your storage costs by 50% or more over existing MSK storage options . Tiered Storage makes it easy and cost-effective when you need a longer safety buffer to handle unexpected processing delays or build new stream processing applications. You can now scale your compute and storage independently, simplifying operations.</p>",
     "date": "2023-02-27",
-    "link": "/en/new/2023/amazon-msk-offers-new-low-cost-storage-tier-scales-to-virtually-unlimited-storage/",
+    "link": "/en/new/2023/amazon-mREDACTED-SECRET/",
     "year": 2023
   },
   {
@@ -5491,7 +5491,7 @@
     "title": "Amazon MSK is now available in Amazon Web Services China (Beijing) region, operated by Sinnet and Amazon Web Services China (Ningxia) region, operated by NWCD",
     "body": "<p><a href=\"/en/msk/\" target=\"_blank\" rel=\"noopener\">Amazon Managed Streaming for Apache Kafka</a> (Amazon MSK) is now available in&nbsp;Amazon Web Services China (Beijing) region, operated by Sinnet and&nbsp;Amazon Web Services China (Ningxia) region, operated by NWCD.&nbsp;</p>",
     "date": "2020-04-15",
-    "link": "/en/new/2020/amazon-msk-now-available-beijing-sinnet-ningxia-nwcd/",
+    "link": "/en/new/2020/amazon-mREDACTED-SECRET/",
     "year": 2020
   },
   {

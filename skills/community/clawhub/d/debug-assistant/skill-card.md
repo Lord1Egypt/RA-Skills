@@ -1,42 +1,54 @@
-## Description: <br>
-Analyze and diagnose common programming error messages and stack traces with root causes and fix suggestions for Python, Node.js, Go, Bash, and system errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and diagnose common programming error messages and stack traces with root causes and fix suggestions for Python, Node.js, Go, Bash, and system errors.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and support agents use this skill to inspect local error messages, stack traces, or logs and receive concise explanations, likely causes, severity, and suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debugging suggestions can be incomplete or incorrect for a specific project or runtime environment. <br>
-Mitigation: Treat the output as advisory, verify the diagnosis against the actual code and logs, and test fixes in a controlled environment before relying on them. <br>
-Risk: Some suggested commands may require elevated privileges or change files, services, containers, or system settings. <br>
-Mitigation: Review each privileged or mutating command before execution and run only the commands that match the user's environment and intent. <br>
-Risk: Pasted or piped logs can contain secrets, tokens, hostnames, or other sensitive operational details. <br>
-Mitigation: Redact sensitive values before analysis and avoid storing diagnostic output where unauthorized users can access it. <br>
+## Use Case:
 
+Developers and engineers use this skill to interpret error messages, stack traces, and logs, then get concise root-cause explanations and practical fix suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xueyetianya/debug-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Guidance] <br>
-**Output Format:** [Terminal text with structured diagnostic sections, suggested shell commands, and short code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Bash and Python standard library; output is advisory and should be reviewed before acting on it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted log or error text could include terminal control characters that make output misleading in some terminals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review pasted or piped input from untrusted sources and avoid relying on terminal-rendered formatting alone.
+
+Risk: Suggested commands may include privileged or system-changing operations such as sudo, service inspection, firewall checks, ownership changes, or permission changes.
+
+Mitigation: Review every suggested command before running it and adapt placeholders to the local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xueyetianya/skills/debug-assistant)
+- [MDN HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Terminal text with diagnostic sections and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ANSI color formatting and command suggestions for manual review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

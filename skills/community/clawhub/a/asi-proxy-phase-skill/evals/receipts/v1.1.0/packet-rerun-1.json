@@ -1,0 +1,616 @@
+{
+  "metadata": {
+    "evaluation": "targeted blind rerun",
+    "run": "run-1",
+    "variants": [
+      "copper",
+      "silver"
+    ],
+    "started_at_utc": "2026-07-30T03:12:41.3238272Z",
+    "ended_at_utc": "2026-07-30T03:20:52.6365373Z",
+    "anonymous_variants_preserved": true,
+    "variant_versions_identified_or_inferred": false,
+    "numeric_quality_scores_assigned": false
+  },
+  "constraints": {
+    "allowed_write_root": ".",
+    "writes_outside_run": 0,
+    "network_calls": 0,
+    "git_history_tags_or_release_data_read": false,
+    "evaluation_or_expected_answer_files_read": false,
+    "parent_repository_read": false,
+    "uv_managed_python_required": "3.11",
+    "uv_managed_python_observed": "3.11.12",
+    "offline": true,
+    "relative_paths_only": true,
+    "external_mutations": 0,
+    "real_asi_certifications": 0
+  },
+  "test_inputs": {
+    "P01": {
+      "mode": "Intervention",
+      "request": "Prepare a concrete intervention for a verification-capacity bottleneck in an isolated claim-verification pipeline.",
+      "facts": {
+        "baseline_verification_coverage": 0.35,
+        "declared_coverage_threshold": 0.6,
+        "provenance_identifiers_complete": true,
+        "duplicate_proposed_verifier_shares_failure_mode": true,
+        "independently_scoped_path_is_plannable": true,
+        "implementation_cost_standardized_units": 2,
+        "operation_cost_standardized_units": 1,
+        "projected_resource_stock": 0.7,
+        "resource_floor": 0.4,
+        "hold_and_causal_comparison_complete": false
+      },
+      "required_assertions": [
+        "actual intervention-packet JSON artifact",
+        "bundled validator success",
+        "exactly all 13 dimensions",
+        "missing evidence remains unknown",
+        "rollback present",
+        "required non-claims present"
+      ]
+    },
+    "P02": {
+      "mode": "Intervention",
+      "request": "Prepare the intervention record, but no authority exists to mutate or execute in the declared workspace.",
+      "facts": {
+        "workspace_mutation_authorized": false,
+        "packet_preparation_outside_workspace_authorized": true,
+        "phase_evidence_available": false,
+        "implementation_cost_standardized_units": 2,
+        "operation_cost_standardized_units": 1
+      },
+      "required_assertions": [
+        "actual fail-closed packet preserved",
+        "bundled validator success",
+        "exactly all 13 dimensions",
+        "candidate_regime false or null",
+        "no declared-workspace mutation"
+      ]
+    },
+    "P03": {
+      "mode": "packet repair",
+      "request": "Reject and repair a fresh malformed intervention packet without weakening the public schema.",
+      "malformations": [
+        "unknown top-level property",
+        "bounded trust_quorum lacks a complete bound and evidence",
+        "candidate_regime true while gates fail and a critical unknown remains"
+      ],
+      "required_assertions": [
+        "malformed input rejected",
+        "schema not modified",
+        "actual repaired artifact",
+        "repaired validator success",
+        "exactly all 13 dimensions",
+        "candidate_regime false or null"
+      ]
+    },
+    "T01": {
+      "request": "Run each variant doctor seven times in strict alternating copper/silver order.",
+      "measurement": "wall-clock seconds around the complete uv command",
+      "required_assertions": [
+        "seven runs per variant",
+        "every exit code zero",
+        "every stdout valid JSON",
+        "every stdout ASCII-safe",
+        "top-level ok true",
+        "all reported checks pass",
+        "median recorded"
+      ]
+    }
+  },
+  "shared_evidence": {
+    "bundled_schema_sha256": "7d3d1a8cc05cb32ac6e0e68e09bd10ec349dc08348ec94d5b5722db775923002",
+    "schema_hash_equal_between_variants": true,
+    "selected_repository": {
+      "url": "https://github.com/kadubon/verification-ecology-kit",
+      "pinned_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85"
+    },
+    "source_query": {
+      "query": "verification ecology independent verifier",
+      "kind": "repo",
+      "copper_exit_code": 0,
+      "silver_exit_code": 0
+    }
+  },
+  "variants": {
+    "copper": {
+      "P01": {
+        "artifact": "artifacts/copper/P01/intervention-packet.json",
+        "artifact_sha256": "f53fdf98af90119a3182b38cf1a2606b8ef1520162e92aa2d1d935d97cf78eae",
+        "artifact_bytes": 9686,
+        "creation_evidence": {
+          "init_packet_command_exit_code": 0,
+          "actual_json_artifact": true
+        },
+        "validator": {
+          "command": "uv run --managed-python --python 3.11 --script variants/copper/asi-proxy-phase-skill/scripts/validate_packet.py artifacts/copper/P01/intervention-packet.json",
+          "exit_code": 0,
+          "ok": true,
+          "errors": []
+        },
+        "phase_assessment": {
+          "dimension_count": 13,
+          "exact_canonical_dimension_set": true,
+          "observed_count": 2,
+          "bounded_count": 1,
+          "unknown_count": 10,
+          "missing_evidence_preserved_as_unknown": true,
+          "binding_dimension": "verification_capacity"
+        },
+        "candidate_regime": false,
+        "rollback": {
+          "present": true,
+          "available": true,
+          "trigger_present": true,
+          "steps_present": true
+        },
+        "non_claims": {
+          "count": 6,
+          "protocol_relative": true,
+          "no_real_asi": true,
+          "no_repository_effect_inference": true,
+          "no_world_forecast": true,
+          "verification_scope_limited": true,
+          "unmodeled_constraints_preserved": true
+        },
+        "assertions": {
+          "actual_packet_artifact": true,
+          "schema_valid": true,
+          "exactly_13_dimensions": true,
+          "fail_closed_unknowns": true,
+          "rollback_present": true,
+          "non_claims_present": true,
+          "pass": true
+        }
+      },
+      "P02": {
+        "artifact": "artifacts/copper/P02/intervention-packet.json",
+        "artifact_sha256": "af3af76a9354639c33d22ac4512bdcdee5fc49d6b6a2f65cac610fb21395e05b",
+        "artifact_bytes": 8474,
+        "declared_workspace": "declared-workspaces/copper/P02",
+        "declared_workspace_entries_after": 0,
+        "declared_workspace_mutations": 0,
+        "execution_status": "not_executed",
+        "outcome_status": "halted",
+        "validator": {
+          "command": "uv run --managed-python --python 3.11 --script variants/copper/asi-proxy-phase-skill/scripts/validate_packet.py artifacts/copper/P02/intervention-packet.json",
+          "exit_code": 0,
+          "ok": true,
+          "errors": []
+        },
+        "phase_assessment": {
+          "dimension_count": 13,
+          "exact_canonical_dimension_set": true,
+          "unknown_count": 13,
+          "all_dimensions_fail_closed": true
+        },
+        "candidate_regime": false,
+        "authority_unknown_critical": true,
+        "rollback": {
+          "present": true,
+          "available": false,
+          "reason": "No workspace mutation occurred, so no workspace change requires reversal."
+        },
+        "non_claims_count": 6,
+        "assertions": {
+          "actual_packet_artifact": true,
+          "schema_valid": true,
+          "exactly_13_dimensions": true,
+          "fail_closed_unknowns": true,
+          "blocked_on_authority": true,
+          "workspace_unchanged": true,
+          "candidate_regime_not_true": true,
+          "pass": true
+        }
+      },
+      "P03": {
+        "malformed_artifact": "artifacts/copper/P03/malformed-packet.json",
+        "malformed_sha256": "a357eea469bb74c7e533c5e76a5fcc86d638c7349c7a0949962cf61708b2cdda",
+        "malformed_validator": {
+          "exit_code": 1,
+          "ok": false,
+          "error_count": 10,
+          "unknown_property_rejected": true,
+          "incomplete_bound_rejected": true,
+          "missing_bound_evidence_rejected": true,
+          "candidate_gate_conflict_rejected": true
+        },
+        "repaired_artifact": "artifacts/copper/P03/repaired-intervention-packet.json",
+        "repaired_sha256": "9424e854abfbfa8f32bd0e1c1fc2ff0475229868c4bfb8a14561860dfea4d7be",
+        "repaired_validator": {
+          "exit_code": 0,
+          "ok": true,
+          "errors": []
+        },
+        "repair": {
+          "unknown_property_removed": true,
+          "unsupported_bounded_value_changed_to_unknown": true,
+          "evidence_invented": false,
+          "candidate_regime": false,
+          "dimension_count": 13,
+          "exact_canonical_dimension_set": true,
+          "schema_modified": false
+        },
+        "assertions": {
+          "malformed_rejected": true,
+          "actual_repaired_artifact": true,
+          "schema_valid_after_repair": true,
+          "exactly_13_dimensions": true,
+          "candidate_regime_not_true": true,
+          "schema_not_weakened": true,
+          "pass": true
+        }
+      },
+      "T01": {
+        "command": "uv run --managed-python --python 3.11 --script variants/copper/asi-proxy-phase-skill/scripts/doctor.py",
+        "alternating_sequence_positions": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13
+        ],
+        "runs": [
+          {
+            "trial": 1,
+            "elapsed_seconds": 0.578105,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 11,
+            "stdout_sha256": "683cd014ddad2d6751bfef6273ac9e891a7a794a762c638751b3f42f85169182"
+          },
+          {
+            "trial": 2,
+            "elapsed_seconds": 0.402936,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 11,
+            "stdout_sha256": "683cd014ddad2d6751bfef6273ac9e891a7a794a762c638751b3f42f85169182"
+          },
+          {
+            "trial": 3,
+            "elapsed_seconds": 0.177171,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 11,
+            "stdout_sha256": "683cd014ddad2d6751bfef6273ac9e891a7a794a762c638751b3f42f85169182"
+          },
+          {
+            "trial": 4,
+            "elapsed_seconds": 0.167108,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 11,
+            "stdout_sha256": "683cd014ddad2d6751bfef6273ac9e891a7a794a762c638751b3f42f85169182"
+          },
+          {
+            "trial": 5,
+            "elapsed_seconds": 0.167225,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 11,
+            "stdout_sha256": "683cd014ddad2d6751bfef6273ac9e891a7a794a762c638751b3f42f85169182"
+          },
+          {
+            "trial": 6,
+            "elapsed_seconds": 0.161868,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 11,
+            "stdout_sha256": "683cd014ddad2d6751bfef6273ac9e891a7a794a762c638751b3f42f85169182"
+          },
+          {
+            "trial": 7,
+            "elapsed_seconds": 0.162766,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 11,
+            "stdout_sha256": "683cd014ddad2d6751bfef6273ac9e891a7a794a762c638751b3f42f85169182"
+          }
+        ],
+        "median_elapsed_seconds": 0.167225,
+        "assertions": {
+          "run_count_7": true,
+          "alternating_order": true,
+          "all_exit_zero": true,
+          "all_ascii_safe_json": true,
+          "all_valid_json": true,
+          "all_ok": true,
+          "all_checks_pass": true,
+          "stable_stdout_hash": true,
+          "pass": true
+        }
+      }
+    },
+    "silver": {
+      "P01": {
+        "artifact": "artifacts/silver/P01/intervention-packet.json",
+        "artifact_sha256": "9432b5181d5fd7983eabf0670cca9a5c39195087942031763b5119e585182989",
+        "artifact_bytes": 9686,
+        "creation_evidence": {
+          "bundled_example_staged": true,
+          "all_example_case_values_replaced": true,
+          "actual_json_artifact": true
+        },
+        "validator": {
+          "command": "uv run --managed-python --python 3.11 --script variants/silver/asi-proxy-phase-skill/scripts/validate_packet.py artifacts/silver/P01/intervention-packet.json",
+          "exit_code": 0,
+          "ok": true,
+          "errors": []
+        },
+        "phase_assessment": {
+          "dimension_count": 13,
+          "exact_canonical_dimension_set": true,
+          "observed_count": 2,
+          "bounded_count": 1,
+          "unknown_count": 10,
+          "missing_evidence_preserved_as_unknown": true,
+          "binding_dimension": "verification_capacity"
+        },
+        "candidate_regime": false,
+        "rollback": {
+          "present": true,
+          "available": true,
+          "trigger_present": true,
+          "steps_present": true
+        },
+        "non_claims": {
+          "count": 6,
+          "protocol_relative": true,
+          "no_real_asi": true,
+          "no_repository_effect_inference": true,
+          "no_world_forecast": true,
+          "verification_scope_limited": true,
+          "unmodeled_constraints_preserved": true
+        },
+        "assertions": {
+          "actual_packet_artifact": true,
+          "schema_valid": true,
+          "exactly_13_dimensions": true,
+          "fail_closed_unknowns": true,
+          "rollback_present": true,
+          "non_claims_present": true,
+          "pass": true
+        }
+      },
+      "P02": {
+        "artifact": "artifacts/silver/P02/intervention-packet.json",
+        "artifact_sha256": "c424e404410559d44c7efe48279fc265da3447b88cb7bd7ec24ea10f54ce0b22",
+        "artifact_bytes": 8474,
+        "declared_workspace": "declared-workspaces/silver/P02",
+        "declared_workspace_entries_after": 0,
+        "declared_workspace_mutations": 0,
+        "execution_status": "not_executed",
+        "outcome_status": "halted",
+        "validator": {
+          "command": "uv run --managed-python --python 3.11 --script variants/silver/asi-proxy-phase-skill/scripts/validate_packet.py artifacts/silver/P02/intervention-packet.json",
+          "exit_code": 0,
+          "ok": true,
+          "errors": []
+        },
+        "phase_assessment": {
+          "dimension_count": 13,
+          "exact_canonical_dimension_set": true,
+          "unknown_count": 13,
+          "all_dimensions_fail_closed": true
+        },
+        "candidate_regime": false,
+        "authority_unknown_critical": true,
+        "rollback": {
+          "present": true,
+          "available": false,
+          "reason": "No workspace mutation occurred, so no workspace change requires reversal."
+        },
+        "non_claims_count": 6,
+        "assertions": {
+          "actual_packet_artifact": true,
+          "schema_valid": true,
+          "exactly_13_dimensions": true,
+          "fail_closed_unknowns": true,
+          "blocked_on_authority": true,
+          "workspace_unchanged": true,
+          "candidate_regime_not_true": true,
+          "pass": true
+        }
+      },
+      "P03": {
+        "malformed_artifact": "artifacts/silver/P03/malformed-packet.json",
+        "malformed_sha256": "a357eea469bb74c7e533c5e76a5fcc86d638c7349c7a0949962cf61708b2cdda",
+        "malformed_validator": {
+          "exit_code": 1,
+          "ok": false,
+          "error_count": 10,
+          "unknown_property_rejected": true,
+          "incomplete_bound_rejected": true,
+          "missing_bound_evidence_rejected": true,
+          "candidate_gate_conflict_rejected": true
+        },
+        "repaired_artifact": "artifacts/silver/P03/repaired-intervention-packet.json",
+        "repaired_sha256": "9424e854abfbfa8f32bd0e1c1fc2ff0475229868c4bfb8a14561860dfea4d7be",
+        "repaired_validator": {
+          "exit_code": 0,
+          "ok": true,
+          "errors": []
+        },
+        "repair": {
+          "unknown_property_removed": true,
+          "unsupported_bounded_value_changed_to_unknown": true,
+          "evidence_invented": false,
+          "candidate_regime": false,
+          "dimension_count": 13,
+          "exact_canonical_dimension_set": true,
+          "schema_modified": false
+        },
+        "assertions": {
+          "malformed_rejected": true,
+          "actual_repaired_artifact": true,
+          "schema_valid_after_repair": true,
+          "exactly_13_dimensions": true,
+          "candidate_regime_not_true": true,
+          "schema_not_weakened": true,
+          "pass": true
+        }
+      },
+      "T01": {
+        "command": "uv run --managed-python --python 3.11 --script variants/silver/asi-proxy-phase-skill/scripts/doctor.py",
+        "alternating_sequence_positions": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14
+        ],
+        "runs": [
+          {
+            "trial": 1,
+            "elapsed_seconds": 0.688869,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 9,
+            "stdout_sha256": "43bdc5286fe6c964d7b9b1741e6e43e61409a1045a8782d8cdf4aa6c994f1def"
+          },
+          {
+            "trial": 2,
+            "elapsed_seconds": 0.442663,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 9,
+            "stdout_sha256": "43bdc5286fe6c964d7b9b1741e6e43e61409a1045a8782d8cdf4aa6c994f1def"
+          },
+          {
+            "trial": 3,
+            "elapsed_seconds": 0.321115,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 9,
+            "stdout_sha256": "43bdc5286fe6c964d7b9b1741e6e43e61409a1045a8782d8cdf4aa6c994f1def"
+          },
+          {
+            "trial": 4,
+            "elapsed_seconds": 0.324934,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 9,
+            "stdout_sha256": "43bdc5286fe6c964d7b9b1741e6e43e61409a1045a8782d8cdf4aa6c994f1def"
+          },
+          {
+            "trial": 5,
+            "elapsed_seconds": 0.332312,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 9,
+            "stdout_sha256": "43bdc5286fe6c964d7b9b1741e6e43e61409a1045a8782d8cdf4aa6c994f1def"
+          },
+          {
+            "trial": 6,
+            "elapsed_seconds": 0.330189,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 9,
+            "stdout_sha256": "43bdc5286fe6c964d7b9b1741e6e43e61409a1045a8782d8cdf4aa6c994f1def"
+          },
+          {
+            "trial": 7,
+            "elapsed_seconds": 0.324307,
+            "exit_code": 0,
+            "ascii_safe_json": true,
+            "valid_json": true,
+            "ok": true,
+            "checks_pass": true,
+            "check_count": 9,
+            "stdout_sha256": "43bdc5286fe6c964d7b9b1741e6e43e61409a1045a8782d8cdf4aa6c994f1def"
+          }
+        ],
+        "median_elapsed_seconds": 0.330189,
+        "assertions": {
+          "run_count_7": true,
+          "alternating_order": true,
+          "all_exit_zero": true,
+          "all_ascii_safe_json": true,
+          "all_valid_json": true,
+          "all_ok": true,
+          "all_checks_pass": true,
+          "stable_stdout_hash": true,
+          "pass": true
+        }
+      }
+    }
+  },
+  "global_assertions": {
+    "P01_both_actual_packets": true,
+    "P01_both_schema_valid": true,
+    "P01_both_exactly_13_dimensions": true,
+    "P01_both_fail_closed": true,
+    "P01_both_rollback_and_nonclaims": true,
+    "P02_both_actual_packets": true,
+    "P02_both_schema_valid": true,
+    "P02_both_declared_workspaces_unchanged": true,
+    "P02_both_candidate_regime_not_true": true,
+    "P03_both_malformed_inputs_rejected": true,
+    "P03_both_repaired_packets_valid": true,
+    "P03_both_exactly_13_dimensions": true,
+    "P03_both_candidate_regime_not_true": true,
+    "P03_schema_unchanged": true,
+    "T01_strict_alternation": true,
+    "T01_fourteen_total_runs": true,
+    "T01_all_outputs_ascii_safe_valid_json": true,
+    "T01_all_checks_pass": true,
+    "external_mutations_equals_zero": true,
+    "real_asi_certifications_equals_zero": true,
+    "no_numeric_quality_scores": true,
+    "pass": true
+  },
+  "external_mutations": 0,
+  "real_asi_certifications": 0,
+  "receipt_validation": {
+    "utf8_json": true,
+    "no_local_absolute_paths": true,
+    "relative_artifact_paths_resolve": true,
+    "assertion_consistency_checked": true
+  }
+}

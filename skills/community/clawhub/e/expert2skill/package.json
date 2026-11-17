@@ -1,0 +1,17 @@
+{
+  "name": "expert2skill",
+  "version": "1.0.2",
+  "type": "skill",
+  "description": "专家方法沉淀器（meta-skill）。仅在用户明确要求把专业方法/经验做成 skill（如\"把我的 XX 方法做成 skill\"\"把我的经验沉淀成工具\"\"方法蒸馏\"）时激活。通过引导式访谈，让不懂 AI 的专家把隐性方法蒸馏为结构化规则库 + 纯本地可运行 skill 包。含适配性判断、按领域免责声明、上架前合规自检。locale: zh-CN",
+  "author": "compliancehub",
+  "license": "MIT",
+  "homepage": "https://compliancehub.cn/account.html?skill=expert2skill",
+  "permissions": {},
+  "openclaw": {
+    "displayName": "专家方法沉淀器",
+    "category": "expert-tool",
+    "pricing": "free",
+    "points": 1,
+    "permissions": {}
+  }
+}

@@ -1,39 +1,53 @@
-## Description: <br>
-Display file contents in hexadecimal and ASCII format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Display file contents in hexadecimal and ASCII format. Use for binary file analysis, forensic examination, and low-level data inspection.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers, engineers, and analysts use this skill to inspect binary files, stdin data, or encoded strings as hexadecimal and printable ASCII. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The tool prints the contents of whichever file or stdin data is provided, which can expose sensitive data in shared logs or chats. <br>
-Mitigation: Inspect only intended files and avoid dumping secrets, credentials, or private data into shared channels. <br>
-Risk: Some documented display features may not be implemented, so output may be plainer than expected. <br>
-Mitigation: Verify output formatting against a small sample before relying on it for review or reporting workflows. <br>
+## Use Case:
 
+Developers, engineers, and analysts use this skill to inspect local file bytes, stdin data, and string or hex conversions during binary analysis, forensic review, and low-level troubleshooting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text hexdump output and command-line usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local files or stdin and prints selected content without network access or system changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The utility reads files or stdin selected by the user and can load large inputs into memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on intended local files or streams, prefer the length option for large data, and avoid very large or untrusted streams until incremental processing is added.
+
+Risk: Encode and decode conversion options are present but lightly under-described in the public description.
+
+Mitigation: Review command arguments before use and update the skill description to document conversion behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/hexdump-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local files or stdin selected by the user; output length depends on input size and the length option.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

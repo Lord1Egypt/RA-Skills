@@ -1,0 +1,27 @@
+{
+  "name": "tiktok-batch-downloader",
+  "version": "1.1.1",
+  "description": "输入关键词、TikTok达人主页链接，自动拉取垂类视频、达人作品并解析下载链接，支持一键批量下载到本地。",
+  "keywords": [
+    "tiktok",
+    "search",
+    "keyword",
+    "content-analysis",
+    "competitor-analysis"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "search": "node scripts/tiktok/search-cli.js",
+    "post": "node scripts/tiktok/post-cli.js",
+    "comment": "node scripts/tiktok/comment-cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/tiktok-skill.git"
+  }
+}

@@ -1,40 +1,58 @@
-## Description: <br>
-Tyche generates professional invoice documents, tracks payment status, calculates late fees, and drafts overdue reminders from a CSV list of clients and work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tyche generates invoice documents, payment status summaries, overdue reports, late-fee calculations, and reminder templates from a CSV of client billing records.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Freelancers, small businesses, and operations teams use this skill to turn invoice CSV data into client-ready invoice text, payment status summaries, overdue reports, and reminder drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports and invoice CSVs can contain sensitive client and billing details. <br>
-Mitigation: Keep input CSVs and generated Markdown reports in intended local or private folders, and avoid shared or synced locations unless approved. <br>
-Risk: Installation and upgrade steps reference local package installation and separate Tyche Pro/Ko-fi content. <br>
-Mitigation: Review the pip install step before running it, and evaluate any Tyche Pro or Ko-fi upgrade as separate third-party content. <br>
+## Use Case:
 
+Freelancers and small business users use this skill to turn a CSV of client invoices into ready-to-send invoice text, payment dashboards, overdue reports, and payment reminder drafts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/tyche) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Console dashboard plus generated Markdown report and ready-to-send invoice and reminder text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a local invoice_report_<date>.md file in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill saves a Markdown report containing client and invoice details by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from a private working directory and protect or delete generated invoice reports according to the user's data-handling requirements.
+
+Risk: The install instructions use broad package installation flags.
+
+Mitigation: Install dependencies in a virtual environment and avoid --break-system-packages.
+
+Risk: The skill advertises a separate Tyche Pro package.
+
+Mitigation: Review the separate tyche-pro package before installing it or providing any license key.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/tyche)
+- [Tyche ClawHub homepage](https://clawhub.ai/occupythemilkyway/tyche)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with shell and Python code blocks; generated console summaries, invoice text, reminder drafts, and a local Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses optional environment variables for the invoice CSV path, sender details, currency, tax rate, late-fee rate, payment terms, and payment method.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

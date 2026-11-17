@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pathway-atlas.example/schemas/rank-estimate.schema.json",
+  "title": "PathwayAtlas provincial rank scenario",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "basis",
+    "optimistic_rank",
+    "central_rank",
+    "conservative_rank",
+    "confidence",
+    "source_ids",
+    "contributing_years",
+    "backtest_error",
+    "reasons",
+    "channel_kinds",
+    "channel_statuses",
+    "rejected_channel_count"
+  ],
+  "properties": {
+    "status": {"enum": ["official", "inferred", "missing", "conflict"]},
+    "basis": {
+      "enum": [
+        "authenticated_interval",
+        "authenticated_interval_intersection",
+        "conflicting_authenticated_channels",
+        "multi_channel_ensemble",
+        "official_province_rank",
+        "official_score_table",
+        "profile_reported_province_rank",
+        "profile_reported_score_table",
+        "school_anchor_ensemble",
+        "school_anchor_interval",
+        "unavailable"
+      ]
+    },
+    "optimistic_rank": {"$ref": "#/$defs/nullableRank"},
+    "central_rank": {"$ref": "#/$defs/nullableRank"},
+    "conservative_rank": {"$ref": "#/$defs/nullableRank"},
+    "confidence": {"enum": ["high", "medium", "low", "none"]},
+    "source_ids": {"$ref": "#/$defs/safeIds"},
+    "contributing_years": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "integer", "minimum": 2000, "maximum": 2100}
+    },
+    "backtest_error": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "number", "minimum": 0, "maximum": 1}
+      ]
+    },
+    "reasons": {"$ref": "#/$defs/safeIds"},
+    "channel_kinds": {"$ref": "#/$defs/safeIds"},
+    "channel_statuses": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["official", "corroborated", "reference", "inferred"]}
+    },
+    "rejected_channel_count": {"type": "integer", "minimum": 0}
+  },
+  "$defs": {
+    "nullableRank": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "integer", "minimum": 1}
+      ]
+    },
+    "safeIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+      }
+    }
+  },
+  "x-semantic-validator": {
+    "locator": "scripts.rank_locator.RankScenario",
+    "checks": ["factory_only", "ordered_bounds", "status_numeric_parity", "source_thresholds"]
+  }
+}

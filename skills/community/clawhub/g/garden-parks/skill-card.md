@@ -1,47 +1,61 @@
-## Description: <br>
-Explore classical Chinese gardens, city parks, botanical gardens, and royal gardens with FlyAI/Fliggy-powered travel search, booking links, and itinerary support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore classical Chinese gardens, city parks, botanical gardens, and royal gardens, with FlyAI/Fliggy-backed travel search and booking links.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel agents use this skill to search for gardens, parks, botanical gardens, and related attractions through the flyai CLI, then present real-time travel results with booking links in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install a global CLI before use. <br>
-Mitigation: Review and manually approve CLI installation before running npm global install commands. <br>
-Risk: Travel searches are sent through FlyAI/Fliggy services. <br>
-Mitigation: Use the skill only when users are comfortable sending garden and park search terms to those services. <br>
-Risk: The artifact describes saving raw travel queries to a local .flyai-execution-log.json file when filesystem writes are available. <br>
-Mitigation: Inspect, disable, or remove local execution logging if travel queries should not be retained on disk. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search garden, park, botanical garden, and attraction options through FlyAI CLI output, then present concise Markdown results with booking links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiejinsong/garden-parks) <br>
-- [README](README.md) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and concise fallback guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai-cli for real-time results; successful attraction results are expected to include detailUrl booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-v3.2.2 (source: ClawHub release metadata; artifact frontmatter lists 3.2.0) <br>
+Risk: The skill can install and invoke an unpinned third-party global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed @fly-ai/flyai-cli version, and require explicit approval before installing or invoking external tools.
+
+Risk: Garden and park searches are routed through FlyAI/Fliggy and may return commercial booking links.
+
+Mitigation: Use the skill only when provider routing and booking links are acceptable, and clearly preserve the provider booking-link context in outputs.
+
+Risk: The artifact describes local plaintext logging of raw user queries.
+
+Mitigation: Disable or remove persistent raw-query logging, or redact sensitive query content before any local persistence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/garden-parks)
+- [Templates reference](references/templates.md)
+- [Playbooks reference](references/playbooks.md)
+- [Fallbacks reference](references/fallbacks.md)
+- [Runbook reference](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, booking links, and inline shell commands for setup or retry guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should be based on FlyAI CLI output and include provider booking links when results are shown.]
+
+## Skill Version(s):
+
+v3.2.2 (source: server release metadata; artifact frontmatter reports 3.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

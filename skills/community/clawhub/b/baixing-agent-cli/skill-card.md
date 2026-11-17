@@ -1,43 +1,58 @@
-## Description: <br>
-Installs and uses the baixing-agent-cli npm package to help agents run Baixing CLI workflows for UUID setup, category discovery, category metadata lookup, posting, listing, search, and detail retrieval from the terminal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and uses the Baixing Agent CLI from npm to run Baixing listing, category, search, detail, and posting workflows from the terminal.
 
-## Publisher: <br>
-[tujinsama](https://clawhub.ai/user/tujinsama) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tujinsama](https://clawhub.ai/user/tujinsama)
 
-## Use Case: <br>
-Developers and automation agents use this skill to install and invoke baixing-agent-cli for Baixing classifieds workflows, especially category-aware post preparation, dry-run review, live posting, and reading resulting listings or search details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to submit real Baixing classifieds listings, which may publish incorrect contact details, prices, locations, or category metadata if the agent acts without user review. <br>
-Mitigation: Require the agent to show the final listing payload or dry-run output and obtain explicit user confirmation before any live post command. <br>
-Risk: The security summary notes missing clear safeguards around live publication, user data, and fabricated required fields. <br>
-Mitigation: Do not allow the agent to invent contact numbers, prices, locations, or other required fields for live submissions; ask the user for missing required values. <br>
+## Use Case:
 
+Developers and agents use this skill to install baixing-agent-cli, initialize configuration, inspect Baixing categories and metadata, publish listings, and retrieve listing/search details through documented CLI commands.
 
-## Reference(s): <br>
-- [Baixing Agent CLI npm package](https://www.npmjs.com/package/baixing-agent-cli) <br>
-- [Baixing website](https://www.baixing.com) <br>
-- [ClawHub skill page](https://clawhub.ai/tujinsama/baixing-agent-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/tujinsama) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output-handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents to parse stdout JSON, inspect stderr on failure, and rely on process exit codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill asks agents to install executable npm code that is not pinned to an exact version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted version of baixing-agent-cli where possible and prefer local installation when global installation is not required.
+
+Risk: The skill can publish real Baixing listings and may use fabricated contact details if user-provided details are missing.
+
+Mitigation: Require explicit user confirmation of contact details and listing intent before publishing.
+
+Risk: A misconfigured Baixing API base URL could point requests at an unintended endpoint.
+
+Mitigation: Verify BX_API_BASE_URL or configured baseUrl before using non-default Baixing endpoints.
+
+## Reference(s):
+
+- [Baixing Agent CLI npm Package](https://www.npmjs.com/package/baixing-agent-cli)
+- [Baixing Agent CLI Complete Reference](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON parsing expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command-line options, environment variables, expected stdout and stderr behavior, and exit-code handling guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

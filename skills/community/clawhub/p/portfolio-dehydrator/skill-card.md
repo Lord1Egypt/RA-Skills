@@ -1,45 +1,60 @@
-## Description: <br>
-Portfolio Dehydrator diagnoses Web3 portfolio overlap and generates constrained allocation recommendations using public exchange OHLCV data, Sortino, Calmar, maximum drawdown, and Chinese Markdown reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portfolio Dehydrator diagnoses hidden overlap in Web3 portfolios, fetches public crypto market data, runs constrained risk-adjusted optimization, and produces allocation recommendations and client-facing reports.
 
-## Publisher: <br>
-[shaozrrr](https://clawhub.ai/user/shaozrrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaozrrr](https://clawhub.ai/user/shaozrrr)
 
-## Use Case: <br>
-Developers and Web3 analysts use this skill to generate or adapt a Python portfolio optimizer that evaluates token lists or holdings weights, fetches public market data, and produces client-facing allocation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat portfolio analysis as financial advice. <br>
-Mitigation: Present outputs as analytical support, include risk disclosure, and require human review before making allocation decisions. <br>
-Risk: Wallet secrets or sensitive holdings data could be exposed if entered directly. <br>
-Mitigation: Do not enter private keys or wallet secrets; preprocess wallet-derived holdings separately and pass only token symbols and weights. <br>
-Risk: Public exchange market-data APIs may be unavailable, rate limited, or incomplete. <br>
-Mitigation: Use the documented fallback chain, skip unavailable assets, and avoid synthetic price paths. <br>
+## Use Case:
 
+Developers and portfolio-analysis agents use this skill to build or run a Web3 portfolio optimizer that identifies redundant exposure, compares downside-adjusted metrics, and generates actionable rebalancing guidance from real market data.
 
-## Reference(s): <br>
-- [Implementation Spec](references/implementation-spec.md) <br>
-- [Bundled Web3 Portfolio Optimizer](assets/web3_portfolio_optimizer.py) <br>
-- [Skill Repository](https://github.com/Shaozrrr/portfolio-dehydrator-skill) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaozrrr/portfolio-dehydrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and requirements code blocks, or a Chinese Markdown portfolio report from the bundled backend] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public exchange market data only; reports include source transparency and data-confidence grading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill metadata) <br>
+Risk: Queried token symbols are sent to public exchange APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass only normalized token symbols and optional allocation weights; do not provide wallet private keys.
+
+Risk: Python dependencies are listed without pinned versions.
+
+Mitigation: Install in a virtual environment or container and pin dependency versions before production deployment.
+
+Risk: Portfolio recommendations depend on available historical market data and may degrade during rate limits, bad tickers, or exchange outages.
+
+Mitigation: Review data-confidence labels, skipped-asset warnings, and cash-buffer recommendations before acting on the report.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaozrrr/skills/portfolio-dehydrator)
+- [Source Repository](https://github.com/Shaozrrr/portfolio-dehydrator-skill)
+- [Implementation Spec](references/implementation-spec.md)
+- [Bundled Backend](assets/web3_portfolio_optimizer.py)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and requirements code blocks; the bundled backend emits Chinese Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public exchange market data and degrades to partial or cash-only recommendations when real data is unavailable.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

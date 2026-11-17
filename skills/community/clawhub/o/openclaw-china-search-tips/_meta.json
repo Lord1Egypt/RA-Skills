@@ -1,6 +1,1 @@
-{
-  "ownerId": "kn79es884s52k6pj53fxccxa4x84ev7j",
-  "slug": "openclaw-china-search-tips",
-  "version": "1.0.1",
-  "publishedAt": 1776654593391
-}
+{"name": "openclaw-china-search-tips", "description": "OpenClaw 国内联网搜索整合，多个免费渠道自动 fallback，国内不用翻墙也能稳定搜索", "author": "海绵宝宝 & 派大星", "license": "MIT", "keywords": ["china", "search", "no-proxy", "fallback", "tips"]}

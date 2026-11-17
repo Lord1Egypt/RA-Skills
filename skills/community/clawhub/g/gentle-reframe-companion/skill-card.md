@@ -1,41 +1,59 @@
-## Description: <br>
-Gently reframe emotional distress into a more accurate and bearable narrative. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gently reframe emotional distress into a more accurate and bearable narrative.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-People experiencing mild everyday distress use this skill to turn self-critical or overwhelming narratives into kinder reframes, reflection questions, and a small next step. It is for lightweight self-reflection support, not clinical or crisis care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may seek help for suicidal thoughts, self-harm, violence risk, severe panic, dissociation, psychosis, or other acute safety situations. <br>
-Mitigation: Use the skill only as a lightweight self-reflection aid for mild everyday distress, and direct users in unsafe or crisis situations to emergency, crisis, or qualified mental-health support. <br>
-Risk: Reframing emotional distress can be misleading if it is treated as clinical mental-health advice. <br>
-Mitigation: Keep responses non-clinical, avoid diagnosing or replacing professional care, and frame outputs as supportive reflection rather than treatment. <br>
+## Use Case:
 
+External users use this skill to turn emotional distress, self-criticism, relationship conflict, or anxiety-related narratives into a gentler reframe, an ignored perspective, reflection questions, and a small next step.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/gentle-reframe-companion) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with reframes, reflection questions, and suggested next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only emotional reframing guidance; no code execution, tools, files, or data access required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat emotional reframing output as therapy, diagnosis, crisis support, or medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill is a coping and reframing aid only, and direct users to emergency services, crisis lines, or licensed professionals for self-harm, suicidal thoughts, violence, inability to stay safe, severe panic, chest pain, or other urgent symptoms.
+
+Risk: The anxiety-attack scenario may encourage overreliance on a prompt during severe symptoms.
+
+Mitigation: Keep anxiety guidance limited to gentle grounding and self-reflection, and include escalation language for urgent or severe symptoms.
+
+Risk: Reframing interpersonal conflict can accidentally invent other people's motives.
+
+Mitigation: Frame alternative perspectives as possibilities, separate facts from interpretations, and avoid presenting guessed motives as true.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/gentle-reframe-companion)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text reframing response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only output; no shell commands, code execution, external tools, environment variables, or API calls are required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

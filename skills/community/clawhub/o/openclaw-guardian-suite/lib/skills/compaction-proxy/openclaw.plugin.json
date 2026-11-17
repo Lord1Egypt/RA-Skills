@@ -1,0 +1,15 @@
+{
+  "id": "compaction-proxy",
+  "description": "Local ollama-based compaction proxy that intercepts LLM API calls, summarises long contexts, and forwards to multi-upstream providers.",
+  "skills": ["./skills"],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "port": { "type": "integer", "default": 19000 },
+      "compactThreshold": { "type": "number", "default": 0.55 },
+      "recompactThreshold": { "type": "number", "default": 0.80 },
+      "ollamaModel": { "type": "string", "default": "qwen3.5:9b-q4_K_M" }
+    }
+  }
+}

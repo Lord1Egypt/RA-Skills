@@ -1,45 +1,56 @@
-## Description: <br>
-Manage projects, tasks, schedules, custom fields, and team collaboration in Motion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage projects, tasks, schedules, custom fields, and team collaboration in Motion. Create projects, manage recurring tasks, configure workspaces, track statuses, and handle team scheduling with timezone-aware work hours.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Employees, teams, and developers use this skill to manage Motion workspaces, projects, tasks, comments, custom fields, statuses, schedules, and users through ClawLink-backed Motion API tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review verdict is suspicious because related ClawHub and Convex maintenance workflows can run nested review processes with broad local authority. <br>
-Mitigation: Install only if the publisher is trusted; when using autoreview-style workflows, prefer --no-yolo or AUTOREVIEW_YOLO=0 unless unrestricted local authority is intentional. <br>
-Risk: The skill can guide write and destructive Motion actions such as deleting tasks, deleting custom fields, or unassigning tasks. <br>
-Mitigation: Preview write operations, confirm the target resource and intended effect with the user, and require explicit confirmation before high-impact actions. <br>
-Risk: Motion access depends on a connected ClawLink account and the permissions of the authenticated Motion workspace. <br>
-Mitigation: Verify the Motion connection and live tool catalog before use, and report permission or missing-connection errors directly instead of assuming capability availability. <br>
+## Use Case:
 
+External Motion users and teams use this skill to inspect workspaces, projects, tasks, schedules, statuses, users, comments, and custom fields, and to perform confirmed project, task, and custom-field updates through ClawLink.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/motion-planning) <br>
-- [Motion API Documentation](https://motion.app/developers) <br>
-- [ClawLink Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs agents to verify the live Motion tool catalog, preview write actions, and require user confirmation for destructive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: ClawLink stores or brokers Motion credentials and can access Motion data available to the connected account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the user trusts ClawLink and the ClawHub plugin source.
+
+Risk: Creates, updates, deletes, unassignments, and custom-field changes can modify or permanently remove Motion data.
+
+Mitigation: Preview and confirm the target resource and intended effect before executing any write or destructive action.
+
+## Reference(s):
+
+- [Motion API Documentation](https://motion.app/developers)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/motion-planning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide agent use of ClawLink-hosted Motion tools; write and destructive actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

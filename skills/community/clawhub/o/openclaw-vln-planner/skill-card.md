@@ -1,43 +1,58 @@
-## Description: <br>
-Plans one high-level robot navigation step from a natural-language instruction, a current image, and optional historical images, returning a validated JSON action for a separate execution layer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans the next high-level robot navigation step from a natural-language instruction, one current image, and historical images, returning one structured JSON action for an OpenAI-compatible multimodal gateway and execution bridge.
 
-## Publisher: <br>
-[tiktokdad](https://clawhub.ai/user/tiktokdad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tiktokdad](https://clawhub.ai/user/tiktokdad)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to convert a navigation instruction plus visual observations into one bounded mid-level robot action for closed-loop replanning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Robot camera frames and navigation context may be sent to an OpenAI-compatible multimodal gateway. <br>
-Mitigation: Use only a trusted gateway, apply privacy controls for image data, and review data-handling requirements before deployment. <br>
-Risk: Navigation predictions can be wrong or unsafe if connected directly to a physical robot. <br>
-Mitigation: Keep dry_run enabled during testing, require human supervision, and use independent safety controls before real robot execution. <br>
-Risk: Plaintext API keys or unpinned Python dependencies can increase operational exposure. <br>
-Mitigation: Store API keys outside plaintext config where possible, and pin and audit Python dependencies before deployment. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to plan closed-loop vision-language navigation steps for a robot from camera observations and a natural-language goal. It returns one bounded mid-level action at a time and falls back to STOP when parsing, confidence, or safety conditions are not acceptable.
 
-## Reference(s): <br>
-- [Navigation Schema Reference](references/navigation-schema.md) <br>
-- [OpenClaw VLN Planner ClawHub Page](https://clawhub.ai/tiktokdad/openclaw-vln-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Code, Configuration] <br>
-**Output Format:** [Pure JSON navigation action with supporting configuration and bridge guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Allowed actions are MOVE_FORWARD, TURN_LEFT, TURN_RIGHT, and STOP; invalid, uncertain, or unsafe results fall back to STOP.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The bridge can send local frame files and robot context to a configurable remote endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict image inputs to trusted camera directories, validate image content and size, and require an HTTPS allowlisted gateway before deployment.
+
+Risk: The documented low_visibility safety fallback is not deterministically enforced before model calls or executor actions.
+
+Mitigation: Add low_visibility to the pre-call force-stop checks so the planner returns STOP before contacting the gateway or bridge.
+
+Risk: The sample configuration stores an API key in ordinary YAML and dependencies are not pinned to exact versions.
+
+Mitigation: Move secrets to a managed secret source or environment variable and pin dependency versions during release packaging.
+
+## Reference(s):
+
+- [Navigation Schema Reference](artifact/references/navigation-schema.md)
+- [OpenClaw VLN Planner on ClawHub](https://clawhub.ai/tiktokdad/skills/openclaw-vln-planner)
+
+## Skill Output:
+
+**Output Type(s):** [json, code, shell commands, configuration, guidance]
+
+**Output Format:** [Pure JSON navigation actions, with supporting Markdown guidance and Python/YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One next action per planning round; allowed actions are MOVE_FORWARD, TURN_LEFT, TURN_RIGHT, and STOP.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

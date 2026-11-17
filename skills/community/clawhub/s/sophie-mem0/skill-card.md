@@ -1,46 +1,61 @@
-## Description: <br>
-Sophie Mem0 provides persistent semantic memory for an OpenClaw agent, including memory storage, retrieval, deletion, health checks, and automatic extraction of important user details from conversation text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sophie Mem0 provides persistent semantic memory for agents using mem0ai, Qdrant, and configurable LLM and embedding providers.
 
-## Publisher: <br>
-[dingdangmaoup](https://clawhub.ai/user/dingdangmaoup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingdangmaoup](https://clawhub.ai/user/dingdangmaoup)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add long-term semantic memory to an OpenClaw agent backed by mem0 and a vector database. It is intended for storing, searching, listing, and deleting user memories across sessions, with optional automatic extraction from chat text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic mode can store personal conversation details without a separate manual confirmation step. <br>
-Mitigation: Use automatic extraction only in contexts where users expect long-term memory, and disable it for sensitive conversations. <br>
-Risk: Memory content may be processed by the configured LLM and embedding providers. <br>
-Mitigation: Review provider configuration before use and avoid sending secrets, regulated data, or other sensitive personal information to external services. <br>
-Risk: Persistent memory in Qdrant and the local configuration file can expose private information or API credentials if not protected. <br>
-Mitigation: Restrict access to the configuration file and vector database, and verify list and delete workflows before relying on stored memories. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure and run long-term memory add, search, list, delete, and health-check workflows. It can also automatically extract user details, preferences, tasks, corrections, and other conversation facts for long-term memory storage.
 
-## Reference(s): <br>
-- [Sophie Mem0 ClawHub listing](https://clawhub.ai/dingdangmaoup/sophie-mem0) <br>
-- [Publisher profile](https://clawhub.ai/user/dingdangmaoup) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/scripts/auto_memory.py](artifact/scripts/auto_memory.py) <br>
-- [artifact/scripts/mem0_cli.py](artifact/scripts/mem0_cli.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write persistent memories through the configured mem0 provider and vector database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Automatic memory capture can store personal conversation details long term.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only after explicit user consent, keep review and deletion controls available, and avoid storing unnecessary raw conversation metadata.
+
+Risk: The privacy claim in the artifact conflicts with configured remote LLM and embedding API processing.
+
+Mitigation: Tell users which model and embedding providers process memory content, and use provider and deployment settings that match the intended privacy requirements.
+
+Risk: API-key prefixes may be printed during health checks.
+
+Mitigation: Avoid exposing key prefixes in logs or user-visible output, and prefer secret-managed configuration.
+
+Risk: Unpinned dependencies and container images may change behavior over time.
+
+Mitigation: Pin Python dependencies and Docker image versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingdangmaoup/skills/sophie-mem0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, Python snippets, and CLI status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Qdrant storage with configured LLM and embedding providers; automatic memory capture can store selected conversation details long term.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

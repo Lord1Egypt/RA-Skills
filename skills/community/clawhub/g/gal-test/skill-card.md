@@ -1,46 +1,62 @@
-## Description: <br>
-Provides agent guidance for using Bria.ai image generation, image editing, background removal, product photography, upscaling, restyling, and related visual asset workflows through Bria API endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI image generation, editing, background removal, upscaling, restyling, and product visual workflows through Bria.ai APIs.
 
-## Publisher: <br>
-[levdavid1](https://clawhub.ai/user/levdavid1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[levdavid1](https://clawhub.ai/user/levdavid1)
 
-## Use Case: <br>
-External users and developers use this skill to generate or edit images, remove or replace backgrounds, create product and marketing visuals, and prepare API calls for Bria.ai-powered image workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles and persists reusable Bria credentials for image generation and editing workflows. <br>
-Mitigation: Use a dedicated revocable Bria API key and review or remove ~/.bria/credentials when token reuse across sessions is not desired. <br>
-Risk: Image prompts and source images may be sent to Bria for remote processing. <br>
-Mitigation: Avoid private, regulated, or sensitive images unless the user accepts Bria's handling terms for that content. <br>
-Risk: Broad activation guidance can cause many visual content requests to be routed through a remote image API. <br>
-Mitigation: Confirm user intent and review the proposed API action before sending prompts, images, or credentials to Bria. <br>
+## Use Case:
 
+Developers and agents use this skill to produce image assets, transparent cutouts, image edits, product photos, and batch visual workflows through Bria.ai endpoints. It is intended for external visual content creation tasks where prompts and selected images can be sent to Bria.ai.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/levdavid1/gal-test) <br>
-- [Bria homepage](https://bria.ai) <br>
-- [Bria agent API docs](https://docs.bria.ai/llms.txt) <br>
-- [API Endpoints Reference](references/api-endpoints.md) <br>
-- [Shell Client](references/code-examples/bria_client.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash snippets and API call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Bria API result URLs or image asset URLs when the agent invokes the documented workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata lists 1.2.7) <br>
+Risk: The skill sends selected images and prompts to Bria.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive images and prompts unless Bria.ai data handling is acceptable for the intended use.
+
+Risk: The skill handles reusable Bria credentials and may cache them under ~/.bria/credentials.
+
+Mitigation: Store credentials only on private machines and prefer a secure secret store or tightly permissioned credential file.
+
+Risk: The security review warns against environments where BRIA_API_BASE or response URLs could be influenced by untrusted code.
+
+Mitigation: Run the skill only in trusted environments and review endpoint configuration before making API calls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/levdavid1/skills/gal-test)
+- [Publisher profile](https://clawhub.ai/user/levdavid1)
+- [Bria.ai homepage](https://bria.ai)
+- [Bria agent API documentation](https://docs.bria.ai/llms.txt)
+- [API Endpoints Reference](references/api-endpoints.md)
+- [Shell Client](references/code-examples/bria_client.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Bria.ai result URLs and local credential setup instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

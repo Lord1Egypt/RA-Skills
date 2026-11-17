@@ -1,44 +1,58 @@
-## Description: <br>
-提供高考志愿填报工具，用于查询学校和专业历年录取分数线、招生计划、院校和专业信息，并基于分数和位次生成志愿推荐。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供高考志愿填报相关工具，用于查询学校和专业历年录取分数线、招生计划、学校与专业信息，并生成志愿推荐参考。
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-External users and education advisors use this skill to query Chinese gaokao admissions data, convert scores to ranks, compare schools and majors, and prepare college application recommendations. The skill requires a XiaoBenYang API key and its source notes that 2026 data is temporarily virtualized from 2025 data until updated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The required XiaoBenYang API key is stored locally in a plaintext .env file. <br>
-Mitigation: Keep the .env file out of shared folders and version control, restrict local file access, and rotate the key if it may have been exposed. <br>
-Risk: Gaokao query details are sent to the XiaoBenYang API. <br>
-Mitigation: Install and use the skill only when sharing those query details with the external API provider is acceptable. <br>
-Risk: The source states that 2026 data is temporarily virtualized from 2025 data. <br>
-Mitigation: Treat 2026 recommendations as provisional and verify final admissions data before making application decisions. <br>
+## Use Case:
 
+Students, families, and admissions advisors use this skill to explore Chinese gaokao admissions options by querying score lines, school and major admission history, enrollment plans, rank conversion, and admission-probability guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cainingnk/gaokao-expert-v) <br>
-- [Publisher profile](https://clawhub.ai/user/cainingnk) <br>
-- [XiaoBenYang API key site](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries of JSON API results and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include school lists, score and rank lookups, admissions probability labels, and raw API-derived values summarized for the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The security review reports that API keys may be stored in plaintext and can expose the key and query data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a key suitable for local storage, keep .env out of source control and backups, and rotate the key if exposure is suspected.
+
+Risk: The security review reports that local configuration can persistently affect future API calls.
+
+Mitigation: Review before installing and prefer a fixed version that validates keys and locks the API host.
+
+Risk: The release notes and security guidance state that 2026 admissions results are simulated preview data.
+
+Mitigation: Verify final admissions decisions against official admissions sources before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/gaokao-expert-v)
+- [XiaoBenYang API key provider](https://xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown summaries with API-returned JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key; 2026 admissions results are described as simulated preview data based on 2025 data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

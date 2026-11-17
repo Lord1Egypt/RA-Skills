@@ -1,0 +1,85 @@
+part: CC2652RSIP
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "TI SimpleLink CC2652RSIP \u2014 Multiprotocol 2.4-GHz Wireless SiP Module"
+main_page: https://www.ti.com/product/CC2652RSIP
+datasheet_path_expected: datasheets/cc2652rsip.pdf
+created_at: '2026-06-30T23:08:00+08:00'
+specs:
+  family: SimpleLink Multiprotocol Wireless (CC2652R in SiP module)
+  cores:
+  - Arm Cortex-M4F @ 48 MHz (with FPU)
+  performance:
+    eembc_coremark: not_in_fetched_spec_block
+  memory:
+    flash: 352 KB
+    rom: 256 KB
+    cache_sram: 8 KB
+    sram: 80 KB ultra-low leakage (parity)
+    sensor_controller_sram: 4 KB
+  wireless:
+    protocol: Bluetooth 5.2 Low Energy + IEEE 802.15.4 (PHY + MAC)
+    modulation:
+    - 2 (G)FSK
+    - 4 (G)FSK
+    - MSK
+    - OOK
+    rx_sensitivity_dbm:
+      ble_coded_125kbps: -103
+    tx_power_max_dbm: 5
+    ota: true
+    dmm: yes (Dynamic multiprotocol manager)
+  power:
+    active_mcu_coremark_ma: 3.5
+    active_mcu_ua_per_mhz: 74
+    standby_ua_rtc_on: 1
+    shutdown_na: 160
+    radio_rx_ma_2_4ghz: 7.3
+    radio_tx_0dbm_ma: 7.5
+    radio_tx_5dbm_ma: 9.8
+    sensor_controller_2mhz_ua: 30.1
+    sensor_controller_24mhz_ua: 808
+  peripherals:
+    gpio: 32
+    timers: 4x 32-bit or 8x 16-bit GP
+    adc_12bit: 200 ksamples/s, 8 channels
+    dac_8bit: true
+    comparators: 2
+    programmable_current_source: true
+    uart: 2
+    ssi_spi: 2
+    i2c: true
+    i2s: true
+    rtc: true
+    temperature_battery_monitor: true
+  protocols_supported:
+  - Thread
+  - Zigbee
+  - Matter
+  - Bluetooth 5.2 LE
+  - SimpleLink TI 15.4-stack
+  - Proprietary systems
+  form_factor: system-in-package (SiP module)
+  regulatory_compliance:
+  - ETSI RED (Europe) / RER (UK)
+  - ISED (Canada)
+  - FCC (USA)
+unverified:
+- exact exact supply voltage range
+- exact operating temp range
+- exact package pin count
+- exact antenna type (PCB vs chip)
+- exact 802.15.4 max data rate
+- exact Per (Packet Error Rate) at sensitivity
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from ti.com CC2652RSIP product page via Firecrawl (278,074 bytes raw)."
+- 'Family differentiator vs CC2652R (existing yaml): CC2652R is bare IC QFN package; CC2652RSIP is the same wireless MCU in
+  a pre-certified SiP module (with integrated antenna + passives).'
+- 'Family differentiator vs CC2642R (existing yaml): CC2642R is BLE-only; CC2652RSIP is multi-protocol (BLE + IEEE 802.15.4
+  + Thread + Zigbee).'
+- 'Use case: PCB-design simplifications; pre-certified wireless module for Matter / Zigbee / Thread / BLE products without
+  needing separate RF certification cycle.'
+extracted_at: '2026-06-30T23:08:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/CC2652RSIP-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/cc2652rsip.pdf

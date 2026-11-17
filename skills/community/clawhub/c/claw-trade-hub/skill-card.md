@@ -1,39 +1,57 @@
-## Description: <br>
-Claw Trade Hub provides a Python WebSocket client for service listings, bids, negotiations, and transaction record management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Trade Hub provides a Python client for creating, querying, pricing, bidding on, negotiating, canceling, and reviewing marketplace service listings in a Claw-Service-Hub.
 
-## Publisher: <br>
-[tangboheng](https://clawhub.ai/user/tangboheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangboheng](https://clawhub.ai/user/tangboheng)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to a Claw-Service-Hub WebSocket endpoint and manage service marketplace flows such as listing creation, bid handling, negotiations, cancellations, price updates, and transaction history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security depends on the WebSocket hub selected by the user; unsafe or untrusted hubs can affect trading, accounting, or settlement workflows. <br>
-Mitigation: Install only when the hub is trusted, use wss:// outside local testing, and require server-side authentication and authorization for bid acceptance, listing changes, batch cancellations, and transaction creation. <br>
+## Use Case:
 
+Developers building OpenClaw or Claw-Service-Hub agents use this skill to send websocket marketplace messages for service listings, bids, negotiation, cancellations, price updates, and transaction history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangboheng/claw-trade-hub) <br>
-- [Publisher profile](https://clawhub.ai/user/tangboheng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Python module and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, the websockets Python package, and HUB_URL for the target WebSocket hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Marketplace actions can affect listings, bids, negotiations, and transaction records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or using against a real marketplace, and require server-side authentication and authorization for every state-changing message.
+
+Risk: Using an untrusted or plaintext Hub endpoint can expose or alter marketplace traffic.
+
+Mitigation: Use only a trusted Hub endpoint and prefer wss:// for remote connections.
+
+Risk: Direct transaction creation is unsafe unless the Hub verifies the business workflow.
+
+Mitigation: Treat direct transaction creation as unsafe unless the Hub validates it from accepted bids or negotiations.
+
+## Reference(s):
+
+- [Claw Trade Hub on ClawHub](https://clawhub.ai/tangboheng/skills/claw-trade-hub)
+
+## Skill Output:
+
+**Output Type(s):** [code, API calls, configuration, guidance]
+
+**Output Format:** [Python module and markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, a Hub endpoint, and websocket connectivity.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and package __version__)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

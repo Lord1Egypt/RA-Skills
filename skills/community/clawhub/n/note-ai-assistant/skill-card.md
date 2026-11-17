@@ -1,38 +1,49 @@
-## Description: <br>
-AI Note Assistant helps note editors rewrite, translate, format, correct, and explain selected note text while preserving custom MDX tags and respecting Document, Block, and Selection context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Note Assistant helps note editors rewrite, translate, format, correct, and explain selected note text while preserving surrounding block context and custom MDX tags.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-People using smart note apps and knowledge management tools use this skill to rewrite, translate, format, correct, or explain selected note text. It is intended for workflows where the assistant receives the full document, the active block, and the selected text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may receive full note content, including the document, active block, and selected text supplied by the user or host app. <br>
-Mitigation: Use it only where sharing that note context with the active AI assistant is acceptable, and avoid providing sensitive notes unless authorized. <br>
+## Use Case:
 
+External users and developers of note-editing or knowledge management tools use this skill to transform or answer questions about selected note text while keeping edits scoped to the selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/note-ai-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction mode returns replacement text only; question mode returns a concise answer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Ambiguous prompts may cause the skill to return replacement text when the user expected an explanatory answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in note-editing flows that clearly distinguish selection edits from questions and allow users to preview or undo replacements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/note-ai-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown replacement content, or concise explanatory answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-mode responses are intended as direct replacements for the selected text; question-mode responses may include brief explanations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

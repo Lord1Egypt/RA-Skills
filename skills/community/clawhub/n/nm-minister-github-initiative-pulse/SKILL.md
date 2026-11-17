@@ -1,7 +1,7 @@
 ---
 name: github-initiative-pulse
 description: Generates markdown digests and CSV exports for GitHub initiative health
-version: 1.9.8
+version: 1.10.3
 triggers:
   - github
   - projects
@@ -14,10 +14,15 @@ source: claude-night-market
 source_plugin: minister
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/minister](https://github.com/athola/claude-night-market/tree/master/plugins/minister). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/minister](https://github.com/athola/claude-night-market/tree/master/plugins/minister). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # GitHub Initiative Pulse
+
+## When NOT To Use
+
+- Delivery-performance metrics (use `minister:dora-metrics`)
+- Approving a release (use `minister:release-health-gates`)
 
 ## Overview
 
@@ -47,9 +52,9 @@ Turns tracker data and GitHub board metadata into initiative-level summaries. Pr
 
 ## Exit Criteria
 
-- All initiatives represented with updated metrics.
-- Markdown digest pasted into relevant GitHub thread.
-- Risk follow-ups filed as issues with owners + due dates.
+- [ ] All initiatives represented with updated metrics.
+- [ ] Markdown digest pasted into relevant GitHub thread.
+- [ ] Risk follow-ups filed as issues with owners and due dates.
 ## Troubleshooting
 
 ### Common Issues

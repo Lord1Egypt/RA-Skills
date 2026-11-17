@@ -1,40 +1,53 @@
-## Description: <br>
-Deep privacy/GDPR-oriented workflow-lawful basis, data inventory, minimization, DSAR process, DPIA triggers, subprocessors, and breach notification mindset. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep privacy/GDPR-oriented workflow--lawful basis, data inventory, minimization, DSAR process, DPIA triggers, subprocessors, and breach notification mindset.
 
-## Publisher: <br>
-[mikeclaw007](https://clawhub.ai/user/mikeclaw007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikeclaw007](https://clawhub.ai/user/mikeclaw007)
 
-## Use Case: <br>
-Developers, product teams, privacy teams, and compliance reviewers use this skill to structure privacy and GDPR planning for personal data collection, vendor review, DSAR operations, DPIA triggers, subprocessors, transfers, and breach-response readiness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Privacy and GDPR guidance can be mistaken for binding legal advice. <br>
-Mitigation: Use the workflow to organize issues and evidence, then require legal or compliance approval for lawful-basis, notice, transfer, DPIA, and breach-notification conclusions. <br>
-Risk: Data inventories, DSAR notes, and breach-response planning can contain sensitive personal data. <br>
-Mitigation: Minimize or redact personal data in agent prompts and outputs, restrict sharing of generated notes, and store any resulting records only in approved compliance systems. <br>
+## Use Case:
 
+Privacy, compliance, legal, product, and engineering teams use this skill to structure GDPR and privacy planning around personal-data scope, processing inventory, lawful basis, user rights, security, subprocessors, DPIA triggers, and transfers. It supports planning and review workflows, not final legal advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mikeclaw007/privacy-gdpr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, staged workflows, RACI-style ownership notes, and operational review prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not provide legal advice; legal and compliance teams must validate jurisdiction-specific conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Privacy or GDPR planning guidance may be incomplete or jurisdiction-specific legal obligations may be misunderstood.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a checklist and involve qualified legal or compliance reviewers before relying on conclusions about lawful basis, DSAR obligations, transfers, breach notification, or jurisdiction-specific requirements.
+
+Risk: Prompts for privacy work can expose unnecessary personal data.
+
+Mitigation: Avoid sharing unnecessary personal data in prompts and use minimized, anonymized, or representative examples where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikeclaw007/skills/privacy-gdpr)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists and structured review steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planning guidance should be reviewed by qualified legal or compliance personnel before decisions are made.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

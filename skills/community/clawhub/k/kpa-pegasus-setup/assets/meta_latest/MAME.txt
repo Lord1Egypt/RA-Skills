@@ -1,0 +1,1724 @@
+collection: MAME
+sort-by: 10
+shortname: mame
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mame2003_plus_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 88games
+file: 88games.zip
+assets.box_front: Imgs/88games.png
+description: 《88games》，由 Konami 出品，1988 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1988
+game: aburner2
+file: aburner2.zip
+assets.box_front: Imgs/aburner2.png
+description: 《aburner2》，由 Sega 出品，1987 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1987
+game: acrobatm
+file: acrobatm.zip
+assets.box_front: Imgs/acrobatm.png
+description: 《acrobatm》，由 UPL (Taito license) 出品，1991 年发行，MAME 街机 平台。
+publisher: UPL (Taito license)
+release: 1991
+game: actfancr
+file: actfancr.zip
+assets.box_front: Imgs/actfancr.png
+description: 《actfancr》，由 Data East Corporation 出品，1989 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1989
+game: aerofgt
+file: aerofgt.zip
+assets.box_front: Imgs/aerofgt.png
+description: 《aerofgt》，由 Video System Co. 出品，1992 年发行，MAME 街机 平台。
+publisher: Video System Co.
+release: 1992
+game: airbustr
+file: airbustr.zip
+assets.box_front: Imgs/airbustr.png
+description: 《airbustr》，由 Kaneko (Namco license) 出品，1990 年发行，MAME 街机 平台。
+publisher: Kaneko (Namco license)
+release: 1990
+game: airduel
+file: airduel.zip
+assets.box_front: Imgs/airduel.png
+description: 《airduel》，由 Irem 出品，MAME 街机 平台。
+publisher: Irem
+developer: Irem
+game: airwolf
+file: airwolf.zip
+assets.box_front: Imgs/airwolf.png
+description: 《airwolf》，由 Kyugo 出品，1987 年发行，MAME 街机 平台。
+publisher: Kyugo
+release: 1987
+game: aliens
+file: aliens.zip
+assets.box_front: Imgs/aliens.png
+description: 《aliens》，由 Steve Strowbridge 出品，1989 年发行，动作类游戏，MAME 街机 平台。
+publisher: Steve Strowbridge
+developer: Steve Strowbridge
+release: 1989
+genre: Action
+game: aliensyn
+file: aliensyn.zip
+assets.box_front: Imgs/aliensyn.png
+description: 《aliensyn》，由 Sega 出品，1987 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1987
+game: aligator
+file: aligator.zip
+assets.box_front: Imgs/aligator.png
+description: 《aligator》，由 Gaelco 出品，1994 年发行，MAME 街机 平台。
+publisher: Gaelco
+release: 1994
+game: alpine
+file: alpine.zip
+assets.box_front: Imgs/alpine.png
+description: 《alpine》，由 Taito Corporation 出品，1982 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1982
+game: amazon
+file: amazon.zip
+assets.box_front: Imgs/amazon.png
+description: 《amazon》，由 MECC 出品，1993 年发行，冒险类游戏，MAME 街机 平台。
+publisher: MECC
+developer: MECC
+release: 1993
+genre: Adventure
+game: arbalest
+file: arbalest.zip
+assets.box_front: Imgs/arbalest.png
+description: 《arbalest》，由 Jordan I.S. / Seta 出品，1989 年发行，MAME 街机 平台。
+publisher: Jordan I.S. / Seta
+release: 1989
+game: arknoid2
+file: arknoid2.zip
+assets.box_front: Imgs/arknoid2.png
+description: 《arknoid2》，由 Taito Corporation Japan 出品，1987 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1987
+game: asterix
+file: asterix.zip
+assets.box_front: Imgs/asterix.png
+description: 《asterix》，由 Infogrames Multimedia SA 出品，1995 年发行，策略类游戏，MAME 街机 平台。
+publisher: Infogrames Multimedia SA
+developer: Infogrames Multimedia SA
+release: 1995
+genre: Strategy
+game: asuka
+file: asuka.zip
+assets.box_front: Imgs/asuka.png
+description: 《asuka》，由 Taito Corporation 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1988
+game: asurabld
+file: asurabld.zip
+assets.box_front: Imgs/asurabld.png
+description: 《asurabld》，由 Fuuki 出品，1998 年发行，MAME 街机 平台。
+publisher: Fuuki
+release: 1998
+game: asylum
+file: asylum.zip
+assets.box_front: Imgs/asylum.png
+description: 《asylum》，由 Asylum Software 出品，1993 年发行，冒险类游戏，MAME 街机 平台。
+publisher: Asylum Software
+developer: Asylum Software
+release: 1993
+genre: Adventure
+game: baddudes
+file: baddudes.zip
+assets.box_front: Imgs/baddudes.png
+description: 《baddudes》，由 Data East USA 出品，1988 年发行，动作类游戏，MAME 街机 平台。
+publisher: Data East USA
+developer: Data East USA
+release: 1988
+genre: Action
+game: bankp
+file: bankp.zip
+assets.box_front: Imgs/bankp.png
+description: 《bankp》，由 Sanritsu / Sega 出品，1984 年发行，MAME 街机 平台。
+publisher: Sanritsu / Sega
+release: 1984
+game: baraduke
+file: baraduke.zip
+assets.box_front: Imgs/baraduke.png
+description: 《baraduke》，由 Namco 出品，1985 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1985
+game: batman
+file: batman.zip
+assets.box_front: Imgs/batman.png
+description: 《batman》，由 Jon Ritman & Kakarot 出品，2000 年发行，动作类游戏，MAME 街机 平台。
+publisher: Jon Ritman & Kakarot
+developer: Jon Ritman & Kakarot
+release: 2000
+genre: Action
+game: batrider
+file: batrider.zip
+assets.box_front: Imgs/batrider.png
+description: 《batrider》，由 Raizing / Eighting 出品，1998 年发行，MAME 街机 平台。
+publisher: Raizing / Eighting
+release: 1998
+game: battlane
+file: battlane.zip
+assets.box_front: Imgs/battlane.png
+description: 《battlane》，由 Technos Japan (Taito license) 出品，1986 年发行，MAME 街机 平台。
+publisher: Technos Japan (Taito license)
+release: 1986
+game: battlcry
+file: battlcry.zip
+assets.box_front: Imgs/battlcry.png
+description: 《battlcry》，由 Home Data 出品，MAME 街机 平台。
+publisher: Home Data
+developer: Home Data
+game: battleg
+file: battleg.zip
+assets.box_front: Imgs/battleg.png
+description: 《battleg》，由 Raizing / Eighting 出品，MAME 街机 平台。
+publisher: Raizing / Eighting
+developer: Raizing / Eighting
+game: battlera
+file: battlera.zip
+assets.box_front: Imgs/battlera.png
+description: 《battlera》，由 Data East Corporation 出品，MAME 街机 平台。
+publisher: Data East Corporation
+developer: Data East Corporation
+game: battroad
+file: battroad.zip
+assets.box_front: Imgs/battroad.png
+description: 《battroad》，由 Irem 出品，1984 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1984
+game: bayroute
+file: bayroute.zip
+assets.box_front: Imgs/bayroute.png
+description: 《bayroute》，由 Sunsoft / Sega 出品，1989 年发行，MAME 街机 平台。
+publisher: Sunsoft / Sega
+release: 1989
+game: benberob
+file: benberob.zip
+assets.box_front: Imgs/benberob.png
+description: 《benberob》，由 Taito 出品，1984 年发行，MAME 街机 平台。
+publisher: Taito
+release: 1984
+game: berlwall
+file: berlwall.zip
+assets.box_front: Imgs/berlwall.png
+description: 《berlwall》，由 Kaneko 出品，1991 年发行，MAME 街机 平台。
+publisher: Kaneko
+release: 1991
+game: bigkarnk
+file: bigkarnk.zip
+assets.box_front: Imgs/bigkarnk.png
+description: 《bigkarnk》，由 Gaelco 出品，1991 年发行，MAME 街机 平台。
+publisher: Gaelco
+release: 1991
+game: blandia
+file: blandia.zip
+assets.box_front: Imgs/blandia.png
+description: 《blandia》，由 Allumer 出品，1992 年发行，MAME 街机 平台。
+publisher: Allumer
+release: 1992
+game: blazeon
+file: blazeon.zip
+assets.box_front: Imgs/blazeon.png
+description: 《blazeon》，由 A.I (Atlus license) 出品，1992 年发行，MAME 街机 平台。
+publisher: A.I (Atlus license)
+release: 1992
+game: blazer
+file: blazer.zip
+assets.box_front: Imgs/blazer.png
+description: 《blazer》，由 Namco 出品，1987 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1987
+game: blkheart
+file: blkheart.zip
+assets.box_front: Imgs/blkheart.png
+description: 《blkheart》，由 UPL 出品，1991 年发行，MAME 街机 平台。
+publisher: UPL
+release: 1991
+game: blkpnthr
+file: blkpnthr.zip
+assets.box_front: Imgs/blkpnthr.png
+description: 《blkpnthr》，由 Konami 出品，1987 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1987
+game: block
+file: block.zip
+assets.box_front: Imgs/block.png
+description: 《block》，由 Chatfield Software 出品，1994 年发行，冒险类游戏，MAME 街机 平台。
+publisher: Chatfield Software
+developer: Chatfield Software
+release: 1994
+genre: Adventure
+game: blockout
+file: blockout.zip
+assets.box_front: Imgs/blockout.png
+description: 《blockout》，由 California Dreams 出品，1989 年发行，动作类游戏，MAME 街机 平台。
+publisher: California Dreams
+developer: California Dreams
+release: 1989
+genre: Action
+game: bloodbro
+file: bloodbro.zip
+assets.box_front: Imgs/bloodbro.png
+description: 《bloodbro》，由 TAD Corporation 出品，1990 年发行，MAME 街机 平台。
+publisher: TAD Corporation
+release: 1990
+game: bloodstm
+file: bloodstm.zip
+assets.box_front: Imgs/bloodstm.png
+description: 《bloodstm》，由 Strata / Incredible Technologies 出品，1994 年发行，MAME 街机 平台。
+publisher: Strata / Incredible Technologies
+release: 1994
+game: bluehawk
+file: bluehawk.zip
+assets.box_front: Imgs/bluehawk.png
+description: 《bluehawk》，由 Dooyong 出品，1993 年发行，MAME 街机 平台。
+publisher: Dooyong
+release: 1993
+game: bmaster
+file: bmaster.zip
+assets.box_front: Imgs/bmaster.png
+description: 《bmaster》，由 Irem 出品，1991 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1991
+game: bnzabros
+file: bnzabros.zip
+assets.box_front: Imgs/bnzabros.png
+description: 《bnzabros》，由 Sega 出品，1990 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1990
+game: bonzeadv
+file: bonzeadv.zip
+assets.box_front: Imgs/bonzeadv.png
+description: 《bonzeadv》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: boxyboy
+file: boxyboy.zip
+assets.box_front: Imgs/boxyboy.png
+description: 《boxyboy》，由 Namco 出品，1990 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1990
+game: bssoccer
+file: bssoccer.zip
+assets.box_front: Imgs/bssoccer.png
+description: 《bssoccer》，由 SunA (Unico license) 出品，1996 年发行，MAME 街机 平台。
+publisher: SunA (Unico license)
+release: 1996
+game: btoads
+file: btoads.zip
+assets.box_front: Imgs/btoads.png
+description: 《btoads》，由 Rare / Electronic Arts 出品，1994 年发行，MAME 街机 平台。
+publisher: Rare / Electronic Arts
+release: 1994
+game: bwing
+file: bwing.zip
+assets.box_front: Imgs/bwing.png
+description: 《bwing》，由 Data East Corporation 出品，MAME 街机 平台。
+publisher: Data East Corporation
+developer: Data East Corporation
+game: cabal
+file: cabal.zip
+assets.box_front: Imgs/cabal.png
+description: 《cabal》，由 Capcom U.S.A. 出品，1989 年发行，动作类游戏，MAME 街机 平台。
+publisher: Capcom U.S.A.
+developer: Capcom U.S.A.
+release: 1989
+genre: Action
+game: cadash
+file: cadash.zip
+assets.box_front: Imgs/cadash.png
+description: 《cadash》，由 Taito Corporation Japan 出品，1989 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1989
+game: calibr50
+file: calibr50.zip
+assets.box_front: Imgs/calibr50.png
+description: 《calibr50》，由 Seta 出品，1989 年发行，MAME 街机 平台。
+publisher: Seta
+release: 1989
+game: cameltry
+file: cameltry.zip
+assets.box_front: Imgs/cameltry.png
+description: 《cameltry》，由 Taito America Corporation 出品，1989 年发行，MAME 街机 平台。
+publisher: Taito America Corporation
+release: 1989
+game: cbuster
+file: cbuster.zip
+assets.box_front: Imgs/cbuster.png
+description: 《cbuster》，由 Data East Corporation 出品，1990 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1990
+game: cclimbr2
+file: cclimbr2.zip
+assets.box_front: Imgs/cclimbr2.png
+description: 《cclimbr2》，由 Nichibutsu 出品，1988 年发行，MAME 街机 平台。
+publisher: Nichibutsu
+release: 1988
+game: chasehq
+file: chasehq.zip
+assets.box_front: Imgs/chasehq.png
+description: 《chasehq》，由 Taito Corporation Japan 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1988
+game: chelnov
+file: chelnov.zip
+assets.box_front: Imgs/chelnov.png
+description: 《chelnov》，由 Data East Corporation 出品，1988 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1988
+game: chukatai
+file: chukatai.zip
+assets.box_front: Imgs/chukatai.png
+description: 《chukatai》，由 Taito Corporation Japan 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1988
+game: circusc
+file: circusc.zip
+assets.box_front: Imgs/circusc.png
+description: 《circusc》，由 Konami 出品，1984 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1984
+game: citybomb
+file: citybomb.zip
+assets.box_front: Imgs/citybomb.png
+description: 《citybomb》，由 Konami 出品，1987 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1987
+game: clshroad
+file: clshroad.zip
+assets.box_front: Imgs/clshroad.png
+description: 《clshroad》，由 Woodplace Inc. 出品，1986 年发行，MAME 街机 平台。
+publisher: Woodplace Inc.
+release: 1986
+game: cninja
+file: cninja.zip
+assets.box_front: Imgs/cninja.png
+description: 《cninja》，由 Data East Corporation 出品，1991 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1991
+game: cobracom
+file: cobracom.zip
+assets.box_front: Imgs/cobracom.png
+description: 《cobracom》，由 Data East Corporation 出品，1988 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1988
+game: contraj
+file: contraj.zip
+assets.box_front: Imgs/contraj.png
+description: 《contraj》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: cosmccop
+file: cosmccop.zip
+assets.box_front: Imgs/cosmccop.png
+description: 《cosmccop》，由 Irem 出品，1991 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1991
+game: crimec
+file: crimec.zip
+assets.box_front: Imgs/crimec.png
+description: 《crimec》，由 Taito Corporation Japan 出品，1989 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1989
+game: ctribe
+file: ctribe.zip
+assets.box_front: Imgs/ctribe.png
+description: 《ctribe》，由 Technos Japan 出品，1990 年发行，MAME 街机 平台。
+publisher: Technos Japan
+release: 1990
+game: dadandrn
+file: dadandrn.zip
+assets.box_front: Imgs/dadandrn.png
+description: 《dadandrn》，由 Konami 出品，1993 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1993
+game: dangar
+file: dangar.zip
+assets.box_front: Imgs/dangar.png
+description: 《dangar》，由 Nichibutsu 出品，1986 年发行，MAME 街机 平台。
+publisher: Nichibutsu
+release: 1986
+game: dangseed
+file: dangseed.zip
+assets.box_front: Imgs/dangseed.png
+description: 《dangseed》，由 Namco 出品，1989 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1989
+game: darius2
+file: darius2.zip
+assets.box_front: Imgs/darius2.png
+description: 《darius2》，由 Taito Corporation 出品，MAME 街机 平台。
+publisher: Taito Corporation
+developer: Taito Corporation
+game: darkseal
+file: darkseal.zip
+assets.box_front: Imgs/darkseal.png
+description: 《darkseal》，由 Data East Corporation 出品，1990 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1990
+game: darktowr
+file: darktowr.zip
+assets.box_front: Imgs/darktowr.png
+description: 《darktowr》，由 The Game Room 出品，1992 年发行，MAME 街机 平台。
+publisher: The Game Room
+release: 1992
+game: dbreed
+file: dbreed.zip
+assets.box_front: Imgs/dbreed.png
+description: 《dbreed》，由 Irem 出品，1989 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1989
+game: dbz
+file: dbz.zip
+assets.box_front: Imgs/dbz.png
+description: 《dbz》，由 Banpresto 出品，1993 年发行，MAME 街机 平台。
+publisher: Banpresto
+release: 1993
+game: dbz2
+file: dbz2.zip
+assets.box_front: Imgs/dbz2.png
+description: 《dbz2》，由 Banpresto 出品，1994 年发行，MAME 街机 平台。
+publisher: Banpresto
+release: 1994
+game: ddribble
+file: ddribble.zip
+assets.box_front: Imgs/ddribble.png
+description: 《ddribble》，由 Konami 出品，1986 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1986
+game: devstors
+file: devstors.zip
+assets.box_front: Imgs/devstors.png
+description: 《devstors》，由 Konami 出品，1988 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1988
+game: drgnunit
+file: drgnunit.zip
+assets.box_front: Imgs/drgnunit.png
+description: 《drgnunit》，由 Athena / Seta 出品，1989 年发行，MAME 街机 平台。
+publisher: Athena / Seta
+release: 1989
+game: dsaber
+file: dsaber.zip
+assets.box_front: Imgs/dsaber.png
+description: 《dsaber》，由 Namco 出品，1990 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1990
+game: dspirit
+file: dspirit.zip
+assets.box_front: Imgs/dspirit.png
+description: 《dspirit》，由 Namco 出品，1987 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1987
+game: dungeonm
+file: dungeonm.zip
+assets.box_front: Imgs/dungeonm.png
+description: 《dungeonm》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: dyger
+file: dyger.zip
+assets.box_front: Imgs/dyger.png
+description: 《dyger》，由 Philko 出品，1989 年发行，MAME 街机 平台。
+publisher: Philko
+release: 1989
+game: edrandy
+file: edrandy.zip
+assets.box_front: Imgs/edrandy.png
+description: 《edrandy》，由 Data East Corporation 出品，1990 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1990
+game: eightfrc
+file: eightfrc.zip
+assets.box_front: Imgs/eightfrc.png
+description: 《eightfrc》，由 Tecmo 出品，1994 年发行，MAME 街机 平台。
+publisher: Tecmo
+release: 1994
+game: elvactr
+file: elvactr.zip
+assets.box_front: Imgs/elvactr.png
+description: 《elvactr》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: extdwnhl
+file: extdwnhl.zip
+assets.box_front: Imgs/extdwnhl.png
+description: 《extdwnhl》，由 Sammy Industries Japan 出品，1995 年发行，MAME 街机 平台。
+publisher: Sammy Industries Japan
+release: 1995
+game: extrmatn
+file: extrmatn.zip
+assets.box_front: Imgs/extrmatn.png
+description: 《extrmatn》，由 Taito Corporation Japan 出品，1987 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1987
+game: fantzone
+file: fantzone.zip
+assets.box_front: Imgs/fantzone.png
+description: 《fantzone》，由 Sega 出品，1986 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1986
+game: fghtatck
+file: fghtatck.zip
+assets.box_front: Imgs/fghtatck.png
+description: 《fghtatck》，由 Namco 出品，1992 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1992
+game: fhawk
+file: fhawk.zip
+assets.box_front: Imgs/fhawk.png
+description: 《fhawk》，由 Taito Corporation Japan 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1988
+game: finalizr
+file: finalizr.zip
+assets.box_front: Imgs/finalizr.png
+description: 《finalizr》，由 Konami 出品，1985 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1985
+game: firebarr
+file: firebarr.zip
+assets.box_front: Imgs/firebarr.png
+description: 《firebarr》，由 Irem 出品，1993 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1993
+game: firetrap
+file: firetrap.zip
+assets.box_front: Imgs/firetrap.png
+description: 《firetrap》，由 Woodplace Inc. (Data East USA license) 出品，1986 年发行，MAME 街机 平台。
+publisher: Woodplace Inc. (Data East USA license)
+release: 1986
+game: flashgal
+file: flashgal.zip
+assets.box_front: Imgs/flashgal.png
+description: 《flashgal》，由 Kyugo / Sega 出品，1985 年发行，MAME 街机 平台。
+publisher: Kyugo / Sega
+release: 1985
+game: fshark
+file: fshark.zip
+assets.box_front: Imgs/fshark.png
+description: 《fshark》，由 Toaplan / Taito Corporation 出品，1987 年发行，MAME 街机 平台。
+publisher: Toaplan / Taito Corporation
+release: 1987
+game: fstarfrc
+file: fstarfrc.zip
+assets.box_front: Imgs/fstarfrc.png
+description: 《fstarfrc》，由 Tecmo 出品，1992 年发行，MAME 街机 平台。
+publisher: Tecmo
+release: 1992
+game: galaga
+file: galaga.zip
+assets.box_front: Imgs/galaga.png
+description: 《galaga》，由 APSS Austria 出品，1994 年发行，动作类游戏，MAME 街机 平台。
+publisher: APSS Austria
+developer: APSS Austria
+release: 1994
+genre: Action
+game: galaga88
+file: galaga88.zip
+assets.box_front: Imgs/galaga88.png
+description: 《galaga88》，由 Namco 出品，1987 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1987
+game: gaplus
+file: gaplus.zip
+assets.box_front: Imgs/gaplus.png
+description: 《gaplus》，由 Namco 出品，1984 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1984
+game: garyoret
+file: garyoret.zip
+assets.box_front: Imgs/garyoret.png
+description: 《garyoret》，由 Data East Corporation 出品，1987 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1987
+game: gberet
+file: gberet.zip
+assets.box_front: Imgs/gberet.png
+description: 《gberet》，由 Konami 出品，1985 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1985
+game: gbusters
+file: gbusters.zip
+assets.box_front: Imgs/gbusters.png
+description: 《gbusters》，由 Konami 出品，1988 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1988
+game: gcpinbal
+file: gcpinbal.zip
+assets.box_front: Imgs/gcpinbal.png
+description: 《gcpinbal》，由 Excellent System 出品，MAME 街机 平台。
+publisher: Excellent System
+developer: Excellent System
+game: gemini
+file: gemini.zip
+assets.box_front: Imgs/gemini.png
+description: 《gemini》，由 Tecmo 出品，1987 年发行，MAME 街机 平台。
+publisher: Tecmo
+release: 1987
+game: gijoe
+file: gijoe.zip
+assets.box_front: Imgs/gijoe.png
+description: 《gijoe》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: gladiatr
+file: gladiatr.zip
+assets.box_front: Imgs/gladiatr.png
+description: 《gladiatr》，由 Allumer / Taito America Corporation 出品，1986 年发行，MAME 街机 平台。
+publisher: Allumer / Taito America Corporation
+release: 1986
+game: gokuparo
+file: gokuparo.zip
+assets.box_front: Imgs/gokuparo.png
+description: 《gokuparo》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: gondo
+file: gondo.zip
+assets.box_front: Imgs/gondo.png
+description: 《gondo》，由 Data East Corporation 出品，1987 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1987
+game: gradius3
+file: gradius3.zip
+assets.box_front: Imgs/gradius3.png
+description: 《gradius3》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: growl
+file: growl.zip
+assets.box_front: Imgs/growl.png
+description: 《growl》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: gseeker
+file: gseeker.zip
+assets.box_front: Imgs/gseeker.png
+description: 《gseeker》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: gulfstrm
+file: gulfstrm.zip
+assets.box_front: Imgs/gulfstrm.png
+description: 《gulfstrm》，由 Dooyong 出品，1991 年发行，MAME 街机 平台。
+publisher: Dooyong
+release: 1991
+game: gundhara
+file: gundhara.zip
+assets.box_front: Imgs/gundhara.png
+description: 《gundhara》，由 Banpresto 出品，1995 年发行，MAME 街机 平台。
+publisher: Banpresto
+release: 1995
+game: gunforc2
+file: gunforc2.zip
+assets.box_front: Imgs/gunforc2.png
+description: 《gunforc2》，由 Irem 出品，1994 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1994
+game: gunforce
+file: gunforce.zip
+assets.box_front: Imgs/gunforce.png
+description: 《gunforce》，由 Irem 出品，1991 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1991
+game: gunfront
+file: gunfront.zip
+assets.box_front: Imgs/gunfront.png
+description: 《gunfront》，由 Taito Corporation Japan 出品，1990 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1990
+game: gunlock
+file: gunlock.zip
+assets.box_front: Imgs/gunlock.png
+description: 《gunlock》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: gunnail
+file: gunnail.zip
+assets.box_front: Imgs/gunnail.png
+description: 《gunnail》，由 NMK / Tecmo 出品，1993 年发行，MAME 街机 平台。
+publisher: NMK / Tecmo
+release: 1993
+game: hangon
+file: hangon.zip
+assets.box_front: Imgs/hangon.png
+description: 《hangon》，由 Sega 出品，1985 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1985
+game: hbarrel
+file: hbarrel.zip
+assets.box_front: Imgs/hbarrel.png
+description: 《hbarrel》，由 Data East Corporation 出品，1987 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1987
+game: hedpanic
+file: hedpanic.zip
+assets.box_front: Imgs/hedpanic.png
+description: 《hedpanic》，由 ESD 出品，2000 年发行，MAME 街机 平台。
+publisher: ESD
+release: 2000
+game: hharry
+file: hharry.zip
+assets.box_front: Imgs/hharry.png
+description: 《hharry》，由 Irem 出品，MAME 街机 平台。
+publisher: Irem
+developer: Irem
+game: histryma
+file: histryma.zip
+assets.box_front: Imgs/histryma.png
+description: 《histryma》，由 bootleg 出品，MAME 街机 平台。
+publisher: bootleg
+developer: bootleg
+game: hook
+file: hook.zip
+assets.box_front: Imgs/hook.png
+description: 《hook》，由 Irem 出品，1992 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1992
+game: hookj
+file: hookj.zip
+assets.box_front: Imgs/hookj.png
+description: 《hookj》，由 Irem 出品，1992 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1992
+game: horekid
+file: horekid.zip
+assets.box_front: Imgs/horekid.png
+description: 《horekid》，由 Nichibutsu 出品，1987 年发行，MAME 街机 平台。
+publisher: Nichibutsu
+release: 1987
+game: imgfight
+file: imgfight.zip
+assets.box_front: Imgs/imgfight.png
+description: 《imgfight》，由 Irem 出品，1988 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1988
+game: insectx
+file: insectx.zip
+assets.box_front: Imgs/insectx.png
+description: 《insectx》，由 Taito Corporation Japan 出品，1989 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1989
+game: inthunt
+file: inthunt.zip
+assets.box_front: Imgs/inthunt.png
+description: 《inthunt》，由 Irem 出品，1993 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1993
+game: ironhors
+file: ironhors.zip
+assets.box_front: Imgs/ironhors.png
+description: 《ironhors》，由 Konami 出品，1986 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1986
+game: jackal
+file: jackal.zip
+assets.box_front: Imgs/jackal.png
+description: 《jackal》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: junglek
+file: junglek.zip
+assets.box_front: Imgs/junglek.png
+description: 《junglek》，由 Taito Corporation 出品，1982 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1982
+game: karatblz
+file: karatblz.zip
+assets.box_front: Imgs/karatblz.png
+description: 《karatblz》，由 Video System Co. 出品，1991 年发行，MAME 街机 平台。
+publisher: Video System Co.
+release: 1991
+game: karnov
+file: karnov.zip
+assets.box_front: Imgs/karnov.png
+description: 《karnov》，由 Data East USA 出品，1988 年发行，动作类游戏，MAME 街机 平台。
+publisher: Data East USA
+developer: Data East USA
+release: 1988
+genre: Action
+game: kengo
+file: kengo.zip
+assets.box_front: Imgs/kengo.png
+description: 《kengo》，由 Irem 出品，1991 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1991
+game: kicker
+file: kicker.zip
+assets.box_front: Imgs/kicker.png
+description: 《kicker》，由 Starbyte Software 出品，1991 年发行，模拟类游戏，MAME 街机 平台。
+publisher: Starbyte Software
+developer: Starbyte Software
+release: 1991
+genre: Simulation
+game: kikikai
+file: kikikai.zip
+assets.box_front: Imgs/kikikai.png
+description: 《kikikai》，由 Taito Corporation 出品，1986 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1986
+game: knckhead
+file: knckhead.zip
+assets.box_front: Imgs/knckhead.png
+description: 《knckhead》，由 Namco 出品，1992 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1992
+game: kurikint
+file: kurikint.zip
+assets.box_front: Imgs/kurikint.png
+description: 《kurikint》，由 Taito Corporation Japan 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1988
+game: lastday
+file: lastday.zip
+assets.box_front: Imgs/lastday.png
+description: 《lastday》，由 Dooyong 出品，1990 年发行，MAME 街机 平台。
+publisher: Dooyong
+release: 1990
+game: ldrun
+file: ldrun.zip
+assets.box_front: Imgs/ldrun.png
+description: 《ldrun》，由 Irem (licensed from Broderbund) 出品，1984 年发行，MAME 街机 平台。
+publisher: Irem (licensed from Broderbund)
+release: 1984
+game: ldrun2
+file: ldrun2.zip
+assets.box_front: Imgs/ldrun2.png
+description: 《ldrun2》，由 Irem (licensed from Broderbund) 出品，1984 年发行，MAME 街机 平台。
+publisher: Irem (licensed from Broderbund)
+release: 1984
+game: ldrun3
+file: ldrun3.zip
+assets.box_front: Imgs/ldrun3.png
+description: 《ldrun3》，由 Irem (licensed from Broderbund) 出品，1985 年发行，MAME 街机 平台。
+publisher: Irem (licensed from Broderbund)
+release: 1985
+game: ldrun4
+file: ldrun4.zip
+assets.box_front: Imgs/ldrun4.png
+description: 《ldrun4》，由 Irem (licensed from Broderbund) 出品，1986 年发行，MAME 街机 平台。
+publisher: Irem (licensed from Broderbund)
+release: 1986
+game: legion
+file: legion.zip
+assets.box_front: Imgs/legion.png
+description: 《legion》，由 Fumunda Software 出品，1995 年发行，策略类游戏，MAME 街机 平台。
+publisher: Fumunda Software
+developer: Fumunda Software
+release: 1995
+genre: Strategy
+game: lethalth
+file: lethalth.zip
+assets.box_front: Imgs/lethalth.png
+description: 《lethalth》，由 Irem 出品，1991 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1991
+game: lgtnfght
+file: lgtnfght.zip
+assets.box_front: Imgs/lgtnfght.png
+description: 《lgtnfght》，由 Konami 出品，1990 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1990
+game: lkage
+file: lkage.zip
+assets.box_front: Imgs/lkage.png
+description: 《lkage》，由 Taito Corporation 出品，1984 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1984
+game: loht
+file: loht.zip
+assets.box_front: Imgs/loht.png
+description: 《loht》，由 Irem 出品，1989 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1989
+game: macross
+file: macross.zip
+assets.box_front: Imgs/macross.png
+description: 《macross》，由 Family Soft 出品，1996 年发行，策略类游戏，MAME 街机 平台。
+publisher: Family Soft
+developer: Family Soft
+release: 1996
+genre: Strategy
+game: macross2
+file: macross2.zip
+assets.box_front: Imgs/macross2.png
+description: 《macross2》，由 Banpresto 出品，1993 年发行，MAME 街机 平台。
+publisher: Banpresto
+release: 1993
+game: madmotor
+file: madmotor.zip
+assets.box_front: Imgs/madmotor.png
+description: 《madmotor》，由 Mitchell 出品，1989 年发行，MAME 街机 平台。
+publisher: Mitchell
+release: 1989
+game: madshark
+file: madshark.zip
+assets.box_front: Imgs/madshark.png
+description: 《madshark》，由 Allumer 出品，1993 年发行，MAME 街机 平台。
+publisher: Allumer
+release: 1993
+game: mahoudai
+file: mahoudai.zip
+assets.box_front: Imgs/mahoudai.png
+description: 《mahoudai》，由 Raizing (Able license) 出品，1993 年发行，MAME 街机 平台。
+publisher: Raizing (Able license)
+release: 1993
+game: metafox
+file: metafox.zip
+assets.box_front: Imgs/metafox.png
+description: 《metafox》，由 Jordan I.S. / Seta 出品，1989 年发行，MAME 街机 平台。
+publisher: Jordan I.S. / Seta
+release: 1989
+game: metamrph
+file: metamrph.zip
+assets.box_front: Imgs/metamrph.png
+description: 《metamrph》，由 Konami 出品，1993 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1993
+game: mia
+file: mia.zip
+assets.box_front: Imgs/mia.png
+description: 《mia》，由 Konami 出品，1989 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1989
+game: midres
+file: midres.zip
+assets.box_front: Imgs/midres.png
+description: 《midres》，由 Data East Corporation 出品，MAME 街机 平台。
+publisher: Data East Corporation
+developer: Data East Corporation
+game: mirninja
+file: mirninja.zip
+assets.box_front: Imgs/mirninja.png
+description: 《mirninja》，由 Namco 出品，MAME 街机 平台。
+publisher: Namco
+developer: Namco
+game: mk
+file: mk.zip
+assets.box_front: Imgs/mk.png
+description: 《mk》，由 Virgin Interactive Entertainment (Europe), Acclaim Entertainment 出品，1993 年发行，动作类游戏，MAME 街机 平台。
+publisher: Virgin Interactive Entertainment (Europe), Acclaim Entertainment
+developer: Virgin Interactive Entertainment (Europe), Acclaim Entertainment
+release: 1993
+genre: Action
+game: mnight
+file: mnight.zip
+assets.box_front: Imgs/mnight.png
+description: 《mnight》，由 UPL 出品，1987 年发行，MAME 街机 平台。
+publisher: UPL
+release: 1987
+game: moo
+file: moo.zip
+assets.box_front: Imgs/moo.png
+description: 《moo》，由 Scholastic 出品，1989 年发行，教育类游戏，MAME 街机 平台。
+publisher: Scholastic
+developer: Scholastic
+release: 1989
+genre: Educational
+game: moonwlkb
+file: moonwlkb.zip
+assets.box_front: Imgs/moonwlkb.png
+description: 《moonwlkb》，由 bootleg 出品，MAME 街机 平台。
+publisher: bootleg
+developer: bootleg
+game: mrgoemon
+file: mrgoemon.zip
+assets.box_front: Imgs/mrgoemon.png
+description: 《mrgoemon》，由 Konami 出品，1986 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1986
+game: mrjong
+file: mrjong.zip
+assets.box_front: Imgs/mrjong.png
+description: 《mrjong》，由 Kiwako 出品，1983 年发行，MAME 街机 平台。
+publisher: Kiwako
+release: 1983
+game: msgundam
+file: msgundam.zip
+assets.box_front: Imgs/msgundam.png
+description: 《msgundam》，由 Banpresto / Allumer 出品，1993 年发行，MAME 街机 平台。
+publisher: Banpresto / Allumer
+release: 1993
+game: mtlchamp
+file: mtlchamp.zip
+assets.box_front: Imgs/mtlchamp.png
+description: 《mtlchamp》，由 Konami 出品，1993 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1993
+game: mugsmash
+file: mugsmash.zip
+assets.box_front: Imgs/mugsmash.png
+description: 《mugsmash》，由 Electronic Devices Italy / 3D Games England 出品，MAME 街机 平台。
+publisher: Electronic Devices Italy / 3D Games England
+game: mutantf
+file: mutantf.zip
+assets.box_front: Imgs/mutantf.png
+description: 《mutantf》，由 Data East Corporation 出品，1991 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1991
+game: mx5000
+file: mx5000.zip
+assets.box_front: Imgs/mx5000.png
+description: 《mx5000》，由 Konami 出品，1987 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1987
+game: mysticri
+file: mysticri.zip
+assets.box_front: Imgs/mysticri.png
+description: 《mysticri》，由 Irem 出品，1992 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1992
+game: mystwarr
+file: mystwarr.zip
+assets.box_front: Imgs/mystwarr.png
+description: 《mystwarr》，由 Konami 出品，1993 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1993
+game: narc
+file: narc.zip
+assets.box_front: Imgs/narc.png
+description: 《narc》，由 Williams 出品，1988 年发行，MAME 街机 平台。
+publisher: Williams
+release: 1988
+game: nastar
+file: nastar.zip
+assets.box_front: Imgs/nastar.png
+description: 《nastar》，由 Taito Corporation Japan 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1988
+game: nbajam
+file: nbajam.zip
+assets.box_front: Imgs/nbajam.png
+description: 《nbajam》，由 Midway 出品，1993 年发行，MAME 街机 平台。
+publisher: Midway
+release: 1993
+game: nbbatman
+file: nbbatman.zip
+assets.box_front: Imgs/nbbatman.png
+description: 《nbbatman》，由 Irem 出品，1993 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1993
+game: nebulray
+file: nebulray.zip
+assets.box_front: Imgs/nebulray.png
+description: 《nebulray》，由 Namco 出品，MAME 街机 平台。
+publisher: Namco
+developer: Namco
+game: ninjak
+file: ninjak.zip
+assets.box_front: Imgs/ninjak.png
+description: 《ninjak》，由 Taito Corporation Japan 出品，1990 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1990
+game: ninjaw
+file: ninjaw.zip
+assets.box_front: Imgs/ninjaw.png
+description: 《ninjaw》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: ninjemak
+file: ninjemak.zip
+assets.box_front: Imgs/ninjemak.png
+description: 《ninjemak》，由 Nichibutsu 出品，1986 年发行，MAME 街机 平台。
+publisher: Nichibutsu
+release: 1986
+game: nost
+file: nost.zip
+assets.box_front: Imgs/nost.png
+description: 《nost》，由 Face 出品，1993 年发行，MAME 街机 平台。
+publisher: Face
+release: 1993
+game: nrallyx
+file: nrallyx.zip
+assets.box_front: Imgs/nrallyx.png
+description: 《nrallyx》，由 Namco 出品，1981 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1981
+game: nspirit
+file: nspirit.zip
+assets.box_front: Imgs/nspirit.png
+description: 《nspirit》，由 Irem 出品，1988 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1988
+game: numanath
+file: numanath.zip
+assets.box_front: Imgs/numanath.png
+description: 《numanath》，由 Namco 出品，1993 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1993
+game: omegaf
+file: omegaf.zip
+assets.box_front: Imgs/omegaf.png
+description: 《omegaf》，由 UPL 出品，1989 年发行，MAME 街机 平台。
+publisher: UPL
+release: 1989
+game: opwolf
+file: opwolf.zip
+assets.box_front: Imgs/opwolf.png
+description: 《opwolf》，由 Taito Corporation 出品，1989 年发行，动作类游戏，MAME 街机 平台。
+publisher: Taito Corporation
+developer: Taito Corporation
+release: 1989
+genre: Action
+game: oscar
+file: oscar.zip
+assets.box_front: Imgs/oscar.png
+description: 《oscar》，由 Flair Software 出品，1994 年发行，动作类游戏，MAME 街机 平台。
+publisher: Flair Software
+developer: Flair Software
+release: 1994
+genre: Action
+game: outrun
+file: outrun.zip
+assets.box_front: Imgs/outrun.png
+description: 《outrun》，由 U.S. Gold 出品，1989 年发行，竞速类游戏，MAME 街机 平台。
+publisher: U.S. Gold
+developer: U.S. Gold
+release: 1989
+genre: Racing
+game: pacmania
+file: pacmania.zip
+assets.box_front: Imgs/pacmania.png
+description: 《pacmania》，由 Sophisticated Software Systems 出品，1990 年发行，动作类游戏，MAME 街机 平台。
+publisher: Sophisticated Software Systems
+developer: Sophisticated Software Systems
+release: 1990
+genre: Action
+game: parodius
+file: parodius.zip
+assets.box_front: Imgs/parodius.png
+description: 《parodius》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: pirates
+file: pirates.zip
+assets.box_front: Imgs/pirates.png
+description: 《pirates》，由 Michael J. Wanta 出品，1988 年发行，策略类游戏，MAME 街机 平台。
+publisher: Michael J. Wanta
+developer: Michael J. Wanta
+release: 1988
+genre: Strategy
+game: punkshot
+file: punkshot.zip
+assets.box_front: Imgs/punkshot.png
+description: 《punkshot》，由 Konami 出品，1990 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1990
+game: raiden
+file: raiden.zip
+assets.box_front: Imgs/raiden.png
+description: 《raiden》，由 Acer 出品，1994 年发行，动作类游戏，MAME 街机 平台。
+publisher: Acer
+developer: Acer
+release: 1994
+genre: Action
+game: rallyx
+file: rallyx.zip
+assets.box_front: Imgs/rallyx.png
+description: 《rallyx》，由 Dario Robak 出品，1992 年发行，动作类游戏，MAME 街机 平台。
+publisher: Dario Robak
+developer: Dario Robak
+release: 1992
+genre: Action
+game: rambo3
+file: rambo3.zip
+assets.box_front: Imgs/rambo3.png
+description: 《rambo3》，由 Taito Europe Corporation 出品，1989 年发行，MAME 街机 平台。
+publisher: Taito Europe Corporation
+release: 1989
+game: raphero
+file: raphero.zip
+assets.box_front: Imgs/raphero.png
+description: 《raphero》，由 NMK 出品，1994 年发行，MAME 街机 平台。
+publisher: NMK
+release: 1994
+game: rastan
+file: rastan.zip
+assets.box_front: Imgs/rastan.png
+description: 《rastan》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: reikaids
+file: reikaids.zip
+assets.box_front: Imgs/reikaids.png
+description: 《reikaids》，由 Home Data 出品，MAME 街机 平台。
+publisher: Home Data
+developer: Home Data
+game: ridingf
+file: ridingf.zip
+assets.box_front: Imgs/ridingf.png
+description: 《ridingf》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: riotcity
+file: riotcity.zip
+assets.box_front: Imgs/riotcity.png
+description: 《riotcity》，由 Sega / Westone 出品，1991 年发行，MAME 街机 平台。
+publisher: Sega / Westone
+release: 1991
+game: robocop
+file: robocop.zip
+assets.box_front: Imgs/robocop.png
+description: 《robocop》，由 Erbe Software, S.A. 出品，1989 年发行，动作类游戏，MAME 街机 平台。
+publisher: Erbe Software, S.A.
+developer: Erbe Software, S.A.
+release: 1989
+genre: Action
+game: robocop2
+file: robocop2.zip
+assets.box_front: Imgs/robocop2.png
+description: 《robocop2》，由 Data East Corporation 出品，MAME 街机 平台。
+publisher: Data East Corporation
+developer: Data East Corporation
+game: robokid
+file: robokid.zip
+assets.box_front: Imgs/robokid.png
+description: 《robokid》，由 UPL 出品，1988 年发行，MAME 街机 平台。
+publisher: UPL
+release: 1988
+game: rshark
+file: rshark.zip
+assets.box_front: Imgs/rshark.png
+description: 《rshark》，由 Dooyong 出品，1995 年发行，MAME 街机 平台。
+publisher: Dooyong
+release: 1995
+game: rthun2
+file: rthun2.zip
+assets.box_front: Imgs/rthun2.png
+description: 《rthun2》，由 Namco 出品，1990 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1990
+game: rthunder
+file: rthunder.zip
+assets.box_front: Imgs/rthunder.png
+description: 《rthunder》，由 Namco 出品，1986 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1986
+game: rtype
+file: rtype.zip
+assets.box_front: Imgs/rtype.png
+description: 《rtype》，由 Irem 出品，1987 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1987
+game: rtype2
+file: rtype2.zip
+assets.box_front: Imgs/rtype2.png
+description: 《rtype2》，由 Irem 出品，1989 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1989
+game: rtypeleo
+file: rtypeleo.zip
+assets.box_front: Imgs/rtypeleo.png
+description: 《rtypeleo》，由 Irem 出品，1992 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1992
+game: ryujin
+file: ryujin.zip
+assets.box_front: Imgs/ryujin.png
+description: 《ryujin》，由 Taito Corporation 出品，MAME 街机 平台。
+publisher: Taito Corporation
+developer: Taito Corporation
+game: ryukendn
+file: ryukendn.zip
+assets.box_front: Imgs/ryukendn.png
+description: 《ryukendn》，由 Tecmo 出品，MAME 街机 平台。
+publisher: Tecmo
+developer: Tecmo
+game: salamand
+file: salamand.zip
+assets.box_front: Imgs/salamand.png
+description: 《salamand》，由 Konami 出品，1986 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1986
+game: salmndr2
+file: salmndr2.zip
+assets.box_front: Imgs/salmndr2.png
+description: 《salmndr2》，MAME 街机 平台。
+game: sandscrp
+file: sandscrp.zip
+assets.box_front: Imgs/sandscrp.png
+description: 《sandscrp》，由 Face 出品，1992 年发行，MAME 街机 平台。
+publisher: Face
+release: 1992
+game: sauro
+file: sauro.zip
+assets.box_front: Imgs/sauro.png
+description: 《sauro》，由 PC3 Programs 出品，1997 年发行，动作类游戏，MAME 街机 平台。
+publisher: PC3 Programs
+developer: PC3 Programs
+release: 1997
+genre: Action
+game: scontra
+file: scontra.zip
+assets.box_front: Imgs/scontra.png
+description: 《scontra》，由 Konami 出品，1988 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1988
+game: shadowld
+file: shadowld.zip
+assets.box_front: Imgs/shadowld.png
+description: 《shadowld》，由 Namco 出品，1987 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1987
+game: sharrier
+file: sharrier.zip
+assets.box_front: Imgs/sharrier.png
+description: 《sharrier》，由 Sega 出品，1985 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1985
+game: shdancer
+file: shdancer.zip
+assets.box_front: Imgs/shdancer.png
+description: 《shdancer》，由 Sega 出品，1989 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1989
+game: shippumd
+file: shippumd.zip
+assets.box_front: Imgs/shippumd.png
+description: 《shippumd》，由 Raizing / Eighting 出品，1994 年发行，MAME 街机 平台。
+publisher: Raizing / Eighting
+release: 1994
+game: sidepckt
+file: sidepckt.zip
+assets.box_front: Imgs/sidepckt.png
+description: 《sidepckt》，由 Data East Corporation 出品，1986 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1986
+game: silentd
+file: silentd.zip
+assets.box_front: Imgs/silentd.png
+description: 《silentd》，由 Taito Corporation Japan 出品，1992 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1992
+game: silkworm
+file: silkworm.zip
+assets.box_front: Imgs/silkworm.png
+description: 《silkworm》，由 Tecmo 出品，1988 年发行，MAME 街机 平台。
+publisher: Tecmo
+release: 1988
+game: simpsons
+file: simpsons.zip
+assets.box_front: Imgs/simpsons.png
+description: 《simpsons》，由 Big Games, Ocean Software 出品，1995 年发行，动作类游戏，MAME 街机 平台。
+publisher: Big Games, Ocean Software
+developer: Big Games, Ocean Software
+release: 1995
+genre: Action
+game: skyalert
+file: skyalert.zip
+assets.box_front: Imgs/skyalert.png
+description: 《skyalert》，由 Metro 出品，1992 年发行，MAME 街机 平台。
+publisher: Metro
+release: 1992
+game: skysmash
+file: skysmash.zip
+assets.box_front: Imgs/skysmash.png
+description: 《skysmash》，由 Nihon System 出品，1990 年发行，MAME 街机 平台。
+publisher: Nihon System
+release: 1990
+game: slyspy
+file: slyspy.zip
+assets.box_front: Imgs/slyspy.png
+description: 《slyspy》，由 Data East USA 出品，1989 年发行，MAME 街机 平台。
+publisher: Data East USA
+release: 1989
+game: solfigtr
+file: solfigtr.zip
+assets.box_front: Imgs/solfigtr.png
+description: 《solfigtr》，由 Taito Corporation Japan 出品，1991 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1991
+game: spacedx
+file: spacedx.zip
+assets.box_front: Imgs/spacedx.png
+description: 《spacedx》，由 Taito Corporation 出品，1994 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1994
+game: spinlbrk
+file: spinlbrk.zip
+assets.box_front: Imgs/spinlbrk.png
+description: 《spinlbrk》，由 V-System Co. 出品，1990 年发行，MAME 街机 平台。
+publisher: V-System Co.
+release: 1990
+game: splatter
+file: splatter.zip
+assets.box_front: Imgs/splatter.png
+description: 《splatter》，由 Namco 出品，MAME 街机 平台。
+publisher: Namco
+developer: Namco
+game: spy
+file: spy.zip
+assets.box_front: Imgs/spy.png
+description: 《spy》，由 Polarware 出品，1987 年发行，冒险类游戏，MAME 街机 平台。
+publisher: Polarware
+developer: Polarware
+release: 1987
+genre: Adventure
+game: ssoldier
+file: ssoldier.zip
+assets.box_front: Imgs/ssoldier.png
+description: 《ssoldier》，由 Irem America 出品，1993 年发行，MAME 街机 平台。
+publisher: Irem America
+release: 1993
+game: ssriders
+file: ssriders.zip
+assets.box_front: Imgs/ssriders.png
+description: 《ssriders》，由 Konami 出品，1991 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1991
+game: strahl
+file: strahl.zip
+assets.box_front: Imgs/strahl.png
+description: 《strahl》，由 UPL 出品，1992 年发行，MAME 街机 平台。
+publisher: UPL
+release: 1992
+game: superman
+file: superman.zip
+assets.box_front: Imgs/superman.png
+description: 《superman》，由 Taito Corporation 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1988
+game: superx
+file: superx.zip
+assets.box_front: Imgs/superx.png
+description: 《superx》，由 Dooyong (NTC license) 出品，1994 年发行，MAME 街机 平台。
+publisher: Dooyong (NTC license)
+release: 1994
+game: suprslam
+file: suprslam.zip
+assets.box_front: Imgs/suprslam.png
+description: 《suprslam》，由 Banpresto / Toei Animation 出品，MAME 街机 平台。
+publisher: Banpresto / Toei Animation
+developer: Banpresto / Toei Animation
+game: syvalion
+file: syvalion.zip
+assets.box_front: Imgs/syvalion.png
+description: 《syvalion》，由 Taito Corporation 出品，1988 年发行，MAME 街机 平台。
+publisher: Taito Corporation
+release: 1988
+game: tankfrce
+file: tankfrce.zip
+assets.box_front: Imgs/tankfrce.png
+description: 《tankfrce》，由 Namco 出品，1991 年发行，MAME 街机 平台。
+publisher: Namco
+release: 1991
+game: taotaido
+file: taotaido.zip
+assets.box_front: Imgs/taotaido.png
+description: 《taotaido》，由 Video System Co. 出品，1993 年发行，MAME 街机 平台。
+publisher: Video System Co.
+release: 1993
+game: tbyahhoo
+file: tbyahhoo.zip
+assets.box_front: Imgs/tbyahhoo.png
+description: 《tbyahhoo》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: tdragon2
+file: tdragon2.zip
+assets.box_front: Imgs/tdragon2.png
+description: 《tdragon2》，由 NMK 出品，1993 年发行，MAME 街机 平台。
+publisher: NMK
+release: 1993
+game: tdragonb
+file: tdragonb.zip
+assets.box_front: Imgs/tdragonb.png
+description: 《tdragonb》，由 bootleg 出品，1991 年发行，MAME 街机 平台。
+publisher: bootleg
+release: 1991
+game: terracre
+file: terracre.zip
+assets.box_front: Imgs/terracre.png
+description: 《terracre》，由 Nichibutsu 出品，1985 年发行，MAME 街机 平台。
+publisher: Nichibutsu
+release: 1985
+game: terraf
+file: terraf.zip
+assets.box_front: Imgs/terraf.png
+description: 《terraf》，由 Nichibutsu 出品，1987 年发行，MAME 街机 平台。
+publisher: Nichibutsu
+release: 1987
+game: tfrceac
+file: tfrceac.zip
+assets.box_front: Imgs/tfrceac.png
+description: 《tfrceac》，由 Technosoft / Sega 出品，1990 年发行，MAME 街机 平台。
+publisher: Technosoft / Sega
+release: 1990
+game: thndzone
+file: thndzone.zip
+assets.box_front: Imgs/thndzone.png
+description: 《thndzone》，由 Data East Corporation 出品，MAME 街机 平台。
+publisher: Data East Corporation
+developer: Data East Corporation
+game: thundfox
+file: thundfox.zip
+assets.box_front: Imgs/thundfox.png
+description: 《thundfox》，由 Taito Corporation Japan 出品，MAME 街机 平台。
+publisher: Taito Corporation Japan
+developer: Taito Corporation Japan
+game: tmht2p
+file: tmht2p.zip
+assets.box_front: Imgs/tmht2p.png
+description: 《tmht2p》，由 Konami 出品，1989 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1989
+game: tmnt
+file: tmnt.zip
+assets.box_front: Imgs/tmnt.png
+description: 《tmnt》，由 Konami 出品，1989 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1989
+game: tmnt2
+file: tmnt2.zip
+assets.box_front: Imgs/tmnt2.png
+description: 《tmnt2》，由 Konami 出品，1991 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1991
+game: tmnt22p
+file: tmnt22p.zip
+assets.box_front: Imgs/tmnt22p.png
+description: 《tmnt22p》，MAME 街机 平台。
+game: tndrcade
+file: tndrcade.zip
+assets.box_front: Imgs/tndrcade.png
+description: 《tndrcade》，由 Seta (Taito license) 出品，1987 年发行，MAME 街机 平台。
+publisher: Seta (Taito license)
+release: 1987
+game: totcarn
+file: totcarn.zip
+assets.box_front: Imgs/totcarn.png
+description: 《totcarn》，由 Midway 出品，1992 年发行，MAME 街机 平台。
+publisher: Midway
+release: 1992
+game: tturf
+file: tturf.zip
+assets.box_front: Imgs/tturf.png
+description: 《tturf》，由 Sega / Sunsoft 出品，MAME 街机 平台。
+publisher: Sega / Sunsoft
+developer: Sega / Sunsoft
+game: tumblep
+file: tumblep.zip
+assets.box_front: Imgs/tumblep.png
+description: 《tumblep》，由 Data East Corporation 出品，1991 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1991
+game: turbofrc
+file: turbofrc.zip
+assets.box_front: Imgs/turbofrc.png
+description: 《turbofrc》，由 Video System Co. 出品，1991 年发行，MAME 街机 平台。
+publisher: Video System Co.
+release: 1991
+game: twineagl
+file: twineagl.zip
+assets.box_front: Imgs/twineagl.png
+description: 《twineagl》，由 Seta (Taito license) 出品，1988 年发行，MAME 街机 平台。
+publisher: Seta (Taito license)
+release: 1988
+game: twinhawk
+file: twinhawk.zip
+assets.box_front: Imgs/twinhawk.png
+description: 《twinhawk》，由 Taito Corporation Japan 出品，1989 年发行，MAME 街机 平台。
+publisher: Taito Corporation Japan
+release: 1989
+game: typhoon
+file: typhoon.zip
+assets.box_front: Imgs/typhoon.png
+description: 《typhoon》，由 Konami 出品，1987 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1987
+game: uccopsj
+file: uccopsj.zip
+assets.box_front: Imgs/uccopsj.png
+description: 《uccopsj》，由 Irem 出品，1992 年发行，MAME 街机 平台。
+publisher: Irem
+release: 1992
+game: vandyke
+file: vandyke.zip
+assets.box_front: Imgs/vandyke.png
+description: 《vandyke》，由 UPL 出品，1990 年发行，MAME 街机 平台。
+publisher: UPL
+release: 1990
+game: vendetta
+file: vendetta.zip
+assets.box_front: Imgs/vendetta.png
+description: 《vendetta》，由 Konami 出品，1991 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1991
+game: vfive
+file: vfive.zip
+assets.box_front: Imgs/vfive.png
+description: 《vfive》，由 Toaplan 出品，1993 年发行，MAME 街机 平台。
+publisher: Toaplan
+release: 1993
+game: vigilant
+file: vigilant.zip
+assets.box_front: Imgs/vigilant.png
+description: 《vigilant》，由 Irem 出品，MAME 街机 平台。
+publisher: Irem
+developer: Irem
+game: viostorm
+file: viostorm.zip
+assets.box_front: Imgs/viostorm.png
+description: 《viostorm》，由 Konami 出品，1993 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1993
+game: wboy
+file: wboy.zip
+assets.box_front: Imgs/wboy.png
+description: 《wboy》，由 Escape (Sega license) 出品，1986 年发行，MAME 街机 平台。
+publisher: Escape (Sega license)
+release: 1986
+game: wizdfire
+file: wizdfire.zip
+assets.box_front: Imgs/wizdfire.png
+description: 《wizdfire》，由 Data East Corporation 出品，1992 年发行，MAME 街机 平台。
+publisher: Data East Corporation
+release: 1992
+game: xexex
+file: xexex.zip
+assets.box_front: Imgs/xexex.png
+description: 《xexex》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: xmen
+file: xmen.zip
+assets.box_front: Imgs/xmen.png
+description: 《xmen》，由 Medalist International 出品，1990 年发行，动作类游戏，MAME 街机 平台。
+publisher: Medalist International
+developer: Medalist International
+release: 1990
+genre: Action
+game: xmen2p
+file: xmen2p.zip
+assets.box_front: Imgs/xmen2p.png
+description: 《xmen2p》，由 Konami 出品，MAME 街机 平台。
+publisher: Konami
+developer: Konami
+game: xmultipl
+file: xmultipl.zip
+assets.box_front: Imgs/xmultipl.png
+description: 《xmultipl》，由 Irem 出品，MAME 街机 平台。
+publisher: Irem
+developer: Irem
+game: yiear
+file: yiear.zip
+assets.box_front: Imgs/yiear.png
+description: 《yiear》，由 Konami 出品，1985 年发行，MAME 街机 平台。
+publisher: Konami
+release: 1985
+game: zingzip
+file: zingzip.zip
+assets.box_front: Imgs/zingzip.png
+description: 《zingzip》，由 Allumer / Tecmo 出品，1992 年发行，MAME 街机 平台。
+publisher: Allumer / Tecmo
+release: 1992
+game: zunkyou
+file: zunkyou.zip
+assets.box_front: Imgs/zunkyou.png
+description: 《zunkyou》，由 Sega 出品，1994 年发行，MAME 街机 平台。
+publisher: Sega
+release: 1994

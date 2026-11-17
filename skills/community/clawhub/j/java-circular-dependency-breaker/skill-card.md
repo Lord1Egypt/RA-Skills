@@ -1,40 +1,53 @@
-## Description: <br>
-Break circular dependencies in Java multi-module Gradle/Maven projects using interface extraction and business service separation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Breaks circular dependencies in Java multi-module Gradle and Maven projects using interface extraction and business service separation.
 
-## Publisher: <br>
-[naozixu](https://clawhub.ai/user/naozixu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naozixu](https://clawhub.ai/user/naozixu)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose and break circular dependencies in Java Gradle or Maven multi-module projects. It guides interface extraction, business service extraction, co-migration choices, and verification steps for preserving behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Refactoring guidance can lead to incorrect source moves or dependency removals if applied without review. <br>
-Mitigation: Review suggested file moves and build-file edits before applying them, then compile and test all affected modules. <br>
-Risk: Circular-dependency refactors can leave a Java project in a non-compiling state during migration. <br>
-Mitigation: Keep git rollback steps available and restore the prior dependency or source tree before retrying if verification fails. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and verify Java multi-module refactors that break Gradle or Maven dependency cycles while preserving Spring wiring and test behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/naozixu/java-circular-dependency-breaker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Java, Gradle, Maven, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes decision points, verification checklists, and rollback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill is intended to guide changes to Java source and build files, including dependency removal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed source and build-file changes before applying them, and verify affected modules compile and tests pass.
+
+Risk: Rollback and cleanup commands can discard local project changes if used carelessly.
+
+Mitigation: Inspect the working tree and confirm the rollback target before running recovery commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/naozixu/skills/java-circular-dependency-breaker)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Java examples, build-file guidance, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces refactoring plans, checkpoints, verification commands, and rollback guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

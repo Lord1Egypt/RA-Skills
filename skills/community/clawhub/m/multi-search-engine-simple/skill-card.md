@@ -1,42 +1,56 @@
-## Description: <br>
-Provides a simplified set of 10 free search engine options focused on domestic and accessible search routes for finding current information online. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a China-focused set of 10 free search engine shortcuts for searching current information on the internet.
 
-## Publisher: <br>
-[jhc888007](https://clawhub.ai/user/jhc888007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhc888007](https://clawhub.ai/user/jhc888007)
 
-## Use Case: <br>
-External users and agents use this skill to choose from a short list of search providers, especially China-accessible search routes, when looking up current information online. It is a search-helper skill rather than a result aggregation tool. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries may be sent to and logged by third-party search providers. <br>
-Mitigation: Do not use private passwords, keys, confidential business information, or sensitive personal details as search queries. <br>
-Risk: The skill may try one search route and stop after a successful response, so results are not an exhaustive multi-engine aggregation. <br>
-Mitigation: Ask the agent to try specific listed providers when broader comparison or provider diversity is needed. <br>
+## Use Case:
 
+External users and developers use this skill to choose a China-focused search shortcut and form a query URL for the selected search provider. It is intended for direct search access, not aggregation across all listed engines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhc888007/multi-search-engine-simple) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Search engine configuration](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown guidance with search engine URLs and query templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not aggregate all engine results; the agent may choose one accessible provider and stop after a successful request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search terms may be sent to the selected external search engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or confidential terms and review the chosen search provider before opening the generated query URL.
+
+Risk: The skill is China-focused and does not provide broad global search coverage or aggregate every engine by default.
+
+Mitigation: Select the search engine intentionally and verify important results with additional sources when broader coverage is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhc888007/skills/multi-search-engine-simple)
+- [Skill definition](artifact/SKILL.md)
+- [Search engine configuration](artifact/config.json)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown guidance with search URL templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search terms may be inserted into external search URL templates; the skill does not aggregate every listed engine.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

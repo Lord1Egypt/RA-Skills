@@ -1,0 +1,52 @@
+{
+  "skill": "natural-light-direction",
+  "version": "0.1.0",
+  "source_book": "纽约摄影学院摄影教程 — 美国纽约摄影学院",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "户外人像用什么方向的光线最好？",
+      "expected_behavior": "调用 natural-light-direction，讲解四种光线方向及人像推荐",
+      "notes": "正面场景：人像光线选择"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "为什么我的人像照片看起来像证件照一样平淡？",
+      "expected_behavior": "调用 natural-light-direction，解释正面光的局限和45°侧光的优势",
+      "notes": "正面场景：照片平淡诊断"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "顺光和逆光各有什么效果？",
+      "expected_behavior": "调用 natural-light-direction，系统对比四种光线方向",
+      "notes": "正面场景：光线方向对比"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "摄影室怎么布光？主灯放哪里？",
+      "expected_behavior": "不应调用 natural-light-direction，应调用 three-point-lighting",
+      "notes": "跨 skill 混淆诱饵：人造光布光问题"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "几点钟太阳角度最好？",
+      "expected_behavior": "不应调用 natural-light-direction（关注角度），应调用 golden-hour（关注时间）",
+      "notes": "跨 skill 混淆诱饵：时间问题"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "阴天拍照光线怎么样？",
+      "expected_behavior": "边界模糊——阴天是光线质量（软硬）问题而非方向问题。可部分回答",
+      "notes": "边界：光线质量 vs 光线方向"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。"
+}

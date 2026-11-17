@@ -1,41 +1,50 @@
-## Description: <br>
-Guides agents through creating and publishing paid skill-service listings on Xianyu, including titles, descriptions, pricing, images, and common listing precautions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance and templates for publishing skill services on Xianyu, including listing setup, titles, descriptions, pricing, images, and posting considerations.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Agents can use this skill to help external users prepare Xianyu skill-service listings with structured copy, pricing guidance, image suggestions, and publication steps. It is most relevant to sellers who want to package freelance or technical services for marketplace transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace listing examples may contain private chat, order, identity, payment, or contact details. <br>
-Mitigation: Redact names, phone numbers, addresses, QR codes, account IDs, order numbers, client data, and private chat content before using examples or dispute evidence. <br>
-Risk: Users may be prompted to handle account login, verification, or payment-related steps while preparing a listing. <br>
-Mitigation: Keep passwords, verification codes, payment details, and identity verification inside official Xianyu, Taobao, or Alipay apps. <br>
+## Use Case:
 
+Chinese-speaking users and marketplace sellers use this skill as a reference for creating Xianyu service listings, including structured content templates and practical posting checks for skill monetization.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shenghoo123-png/xianyu-tool-kay) <br>
-- [Xianyu web portal](https://2.taobao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with listing templates and step-by-step instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no tool execution or data collection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Marketplace rules and fee details may differ from the static guidance in this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review current Xianyu platform rules and fee details before publishing a service listing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shenghoo123-png/skills/xianyu-tool-kay)
+- [Xianyu Website](https://2.taobao.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with Chinese-language templates and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool execution; readers should verify current Xianyu platform rules and fees before posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,40 @@
 {
-  "ownerId": "kn7d3t1fppdftvtz0de5k4xm3d83q4qm",
+  "ownerId": "kn72e4q61j807j4a90azhayc0d80wa2j",
   "slug": "guild-knowledge",
   "version": "1.0.1",
-  "publishedAt": 1774590058378
+  "publishedAt": 1774271580000,
+  "lastModified": 1774669200000,
+  "modifiedBy": "Pipiy416",
+  "author": "Pipiy416",
+  "description": "Guild 经验文档管理技能。核心原则：经验是参考，不是圣经。| Guild experience document management skill. Core principle: Experience is a reference, not scripture.",
+  "description_en": "Guild experience document management skill for OpenClaw. Core principle: Experience is a reference, not scripture. Auto-reads Guild docs, searches latest info, compares and evaluates.",
+  "core_principle": "经验是参考，不是圣经 | Experience is a reference, not scripture",
+  "license": "MIT",
+  "homepage": "https://github.com/Pipiy416/guild-knowledge",
+  "tags": [
+    "经验管理",
+    "文档",
+    "知识管理",
+    "Guild",
+    "experience-management",
+    "documentation",
+    "knowledge-base",
+    "best-practices"
+  ],
+  "languages": ["zh-CN", "en"],
+  "features": [
+    "自动查阅 Guild 文档 | Auto-read Guild documents",
+    "搜索最新信息 | Search latest information",
+    "对比评估 | Compare and evaluate",
+    "月度审查 | Monthly review",
+    "经验提取 | Experience extraction",
+    "版本管理 | Version management"
+  ],
+  "review_cycle": "monthly",
+  "approval_mode": "all_changes_require_approval",
+  "auto_trigger": true,
+  "trigger_keywords": {
+    "zh": ["搭建网站", "创建网站", "PHP 网站", "清理工作区", "删除文件", "整理文件", "技术审查", "新技术", "技术雷达", "Guild", "经验文档", "经验文件"],
+    "en": ["build website", "create website", "PHP website", "cleanup workspace", "delete files", "organize files", "technology review", "new technology", "tech radar", "Guild", "experience docs", "experience documents"]
+  }
 }

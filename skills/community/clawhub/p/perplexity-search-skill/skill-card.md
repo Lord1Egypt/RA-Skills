@@ -1,43 +1,64 @@
-## Description: <br>
-Search the web using Perplexity's Search API for ranked, real-time web results with advanced filtering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Perplexity's Search API for ranked, real-time results with recency filtering, result-count control, and formatted text or JSON output.
 
-## Publisher: <br>
-[M4vF14](https://clawhub.ai/user/M4vF14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[m4vf14](https://clawhub.ai/user/m4vf14)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to let an agent run current web searches through Perplexity, with optional result-count and recency controls for research, news lookup, market research, and competitive analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Perplexity and may include sensitive information if users include it in prompts. <br>
-Mitigation: Avoid secrets, regulated personal data, and confidential business details in search queries. <br>
-Risk: Perplexity API requests can consume paid quota under the user's own API key. <br>
-Mitigation: Monitor Perplexity account usage and configure access only for users who should spend that quota. <br>
+## Use Case:
 
+Developers, researchers, and external users use this skill to give an OpenClaw agent current web search results for market research, recent news, competitive analysis, and fallback search workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/M4vF14/perplexity-search-skill) <br>
-- [Perplexity API documentation](https://docs.perplexity.ai) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Perplexity API account and usage](https://perplexity.ai/account/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Formatted text or JSON search results with titles, URLs, snippets, and optional dates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PERPLEXITY_API_KEY; supports result count from 1 to 10 and optional day, week, month, or year recency filtering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.json, and CHANGELOG.md) <br>
+Risk: Search terms are sent to Perplexity and may contain sensitive or regulated information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for queries permitted by your data-handling policy, and avoid confidential or regulated search terms unless approved.
+
+Risk: Use of the skill can incur Perplexity API usage costs.
+
+Mitigation: Monitor Perplexity API usage and configure access only for users or agents authorized to spend against the API key.
+
+Risk: The skill requires PERPLEXITY_API_KEY to be available to the runtime.
+
+Mitigation: Store PERPLEXITY_API_KEY as a secret in the agent environment or OpenClaw configuration, and do not hardcode or log it.
+
+Risk: Formatted output may print remote URLs directly to a terminal or agent transcript.
+
+Mitigation: Review links before opening them and apply normal remote-content handling policies.
+
+## Reference(s):
+
+- [Perplexity API account and usage](https://perplexity.ai/account/api)
+- [Perplexity API documentation](https://docs.perplexity.ai)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/m4vf14/skills/perplexity-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Formatted terminal text or raw JSON search results containing titles, URLs, snippets, dates, and request metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PERPLEXITY_API_KEY; supports query, result count from 1 to 10, optional recency filter, and a raw JSON mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,1989 @@
+{
+  "schema_version": 1,
+  "description": "Local catalog of Crun model capabilities and routing labels. Do not derive or overwrite these fields from model names, class names, or schemas.",
+  "models": [
+    {
+      "model": "bytedance/seedream-5-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "openai/gpt-image-2-premium",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "qwen-image-2.0-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "qwen-image-3.0",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "qwen-image-3.0-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "qwen-image-edit-2.0-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "vidu/q3-pro-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 65
+    },
+    {
+      "model": "vidu/q3-pro-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 65
+    },
+    {
+      "model": "wan/2-7-image-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "bytedance/seedance1-0-pro-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance1-0-pro-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance1-5-pro-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance1-5-pro-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance2-0-fast-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance2-0-fast-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance2-0-fast-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance2-0-mini-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "balanced",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance2-0-mini-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "balanced",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance2-0-mini-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "balanced",
+      "speed_tier": "fast",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "flux-1-1-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "flux-1-1-pro-ultra",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "flux-2-max",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "flux-2-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "flux-kontext-max",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image",
+        "image-edit"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "flux-kontext-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image",
+        "image-edit"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "google/nano-banana-pro",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "google/nano-banana-pro-v2",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "balanced",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "kling/v2-1-master",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "kling/v3-turbo",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "qwen-image-edit-max",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "qwen-image-max",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "vidu/q2-pro-f2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "first-last-frame-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "vidu/q2-pro-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "vidu/q2-pro-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "vidu/q3-turbo-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "vidu/q3-turbo-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance1-0-pro-fast-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "bytedance/seedance1-0-pro-fast-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "fast",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "bytedance/seedance2-0-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "bytedance/seedance2-0-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 70
+    },
+    {
+      "model": "bytedance/seedance2-0-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "bytedance/seedance2-5-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedance2-5-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 75
+    },
+    {
+      "model": "bytedance/seedance2-5-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 60
+    },
+    {
+      "model": "bytedance/seedream-5",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/gemini-omni",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video",
+        "image-to-video",
+        "reference-to-video",
+        "video-edit"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/nano-banana-2-lite",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/veo3-1-fast-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/veo3-1-fast-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/veo3-1-fast-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/veo3-1-lite-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/veo3-1-lite-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "google/veo3-1-lite-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "kling/v2-5-turbo-pro",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "kling/v3",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "kling/v3-motion-control",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "motion-control",
+        "video-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+        "model": "kling/template",
+        "model_type": "tools",
+        "modality": "video",
+        "operations": [
+            "template-to-video"
+        ],
+        "quality_tier": "high",
+        "speed_tier": "balanced",
+        "supports_reference": true,
+        "supports_native_audio": true,
+        "routing_priority": 65
+    },
+    {
+      "model": "minimax/hailuo-02",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "minimax/hailuo-2-3",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "minimax/h3-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 65
+    },
+    {
+      "model": "minimax/h3-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 65
+    },
+    {
+      "model": "minimax/h3-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 65
+    },
+    {
+      "model": "minimax/h3-regeneration",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "video-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 65
+    },
+    {
+      "model": "openai/gpt-image-2",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "openai/gpt-image-2-stable",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "qwen-image-2.0",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "qwen-image-edit-2.0",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "runway/gen-4-turbo",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "vidu/2-0-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "vidu/q2-pro-fast-f2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "first-last-frame-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "vidu/q2-pro-fast-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 65
+    },
+    {
+      "model": "vidu/q2-turbo-f2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "first-last-frame-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "vidu/q2-turbo-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "vidu/q3-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "wan/2-7-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "wan/2-7-image",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "wan/2-7-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "wan/2-7-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "wan/2-7-video-edit",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "video-edit"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "bytedance/dreamactor",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "motion-control",
+        "video-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "bytedance/seedream-4",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "bytedance/seedream-4-5",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "bytedance/template",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "template-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "flux-2-flex",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "google/image-4",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "google/nano-banana",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "google/nano-banana-2",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "google/nano-banana-2-v2",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "google/nano-banana-v2",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "google/veo3-1-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "google/veo3-1-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "grok-imagine/i2i",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "grok-imagine/i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "grok-imagine/t2i",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "grok-imagine-image-2.0",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "grok-imagine/t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "happyhorse-1-0-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "happyhorse-1-0-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "happyhorse-1-0-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "happyhorse-1-0-video-edit",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "video-edit"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "happyhorse-1-1-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "happyhorse-1-1-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "happyhorse-1-1-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": true,
+      "routing_priority": 50
+    },
+    {
+      "model": "image-background-remove",
+      "model_type": "tools",
+      "modality": "image",
+      "operations": [
+        "background-remove"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "image-upscale",
+      "model_type": "tools",
+      "modality": "image",
+      "operations": [
+        "image-upscale"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "image-watermark-remove",
+      "model_type": "tools",
+      "modality": "image",
+      "operations": [
+        "watermark-remove"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "kling/avatar",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "talking-avatar",
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "kling/v2-1",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "kling/v2-6",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "kling/v2-6-motion-control",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "motion-control",
+        "video-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "openai/gpt-image-1",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "openai/gpt-image-1-5",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "prunaai/p-video-avatar",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "talking-avatar",
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "qwen-image",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 20
+    },
+    {
+      "model": "qwen-image-edit",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 20
+    },
+    {
+      "model": "qwen-image-edit-plus",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 20
+    },
+    {
+      "model": "qwen-image-plus",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 20
+    },
+    {
+      "model": "qwen3-tts/speech-synthesis",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "text-to-speech"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "qwen3-tts/voice-cloning",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "text-to-speech",
+        "voice-cloning"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "qwen3-tts/voice-design",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "text-to-speech",
+        "voice-design"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "runway/gen-4-aleph",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "video-edit",
+        "video-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "suno/music-cover",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "music-cover",
+        "music-generate"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 60
+    },
+    {
+      "model": "suno/music-extend",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "music-extend",
+        "music-generate"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "suno/music-extend-upload",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "music-extend",
+        "music-extend-upload",
+        "music-generate"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "suno/music-generate",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "music-generate",
+        "text-to-music"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 70
+    },
+    {
+      "model": "suno/music-video",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "music-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "suno/sounds-generate",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "sound-effects"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "suno/vocal-separatio",
+      "model_type": "audio",
+      "modality": "audio",
+      "operations": [
+        "vocal-separation"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "video-enhance",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "video-enhance"
+      ],
+      "quality_tier": "high",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "video-watermark-remove",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "watermark-remove"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/lip-sync",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "lip-sync"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/q1-f2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "first-last-frame-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/q1-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/q1-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/q1-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/q2-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/q2-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "vidu/template",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "template-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "wan/2-2-animate-move",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "animate-move",
+        "motion-control"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "wan/2-2-animate-replace",
+      "model_type": "tools",
+      "modality": "video",
+      "operations": [
+        "animate-replace",
+        "motion-control"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 50
+    },
+    {
+      "model": "wan/2-6-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 10
+    },
+    {
+      "model": "wan/2-6-image",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "image-edit",
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 20
+    },
+    {
+      "model": "wan/2-6-r2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 10
+    },
+    {
+      "model": "wan/2-6-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 10
+    },
+    {
+      "model": "z-image",
+      "model_type": "image",
+      "modality": "image",
+      "operations": [
+        "text-to-image"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "fast",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 55
+    },
+    {
+      "model": "grok-imagine-video-1.5-preview",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video",
+        "text-to-video",
+        "reference-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": true,
+      "routing_priority": 55
+    },
+    {
+      "model": "wan/2-5-preview-i2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "image-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": true,
+      "supports_native_audio": false,
+      "routing_priority": 10
+    },
+    {
+      "model": "wan/2-5-preview-t2v",
+      "model_type": "video",
+      "modality": "video",
+      "operations": [
+        "text-to-video"
+      ],
+      "quality_tier": "standard",
+      "speed_tier": "balanced",
+      "supports_reference": false,
+      "supports_native_audio": false,
+      "routing_priority": 10
+    }
+  ]
+}

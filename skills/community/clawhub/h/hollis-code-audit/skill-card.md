@@ -1,44 +1,60 @@
-## Description: <br>
-Runs a read-only, evidence-backed code audit for repositories, pull requests, security reviews, regression-risk reviews, and intent-alignment checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Audit guides agents through read-only, evidence-backed audits of repositories, pull requests, security risks, regressions, and intent alignment.
 
-## Publisher: <br>
-[hollis9087](https://clawhub.ai/user/hollis9087) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hollis9087](https://clawhub.ai/user/hollis9087)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit code changes, modules, repositories, and prior review findings for concrete security, correctness, regression, and intent-alignment risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit snapshots and packets can expose repository metadata such as local paths, branch names, changed-file names, and diff statistics. <br>
-Mitigation: Use .auditignore or configured skip paths for confidential or noisy files, and review packet contents before sharing them. <br>
-Risk: External reviewer routes can share code or metadata outside the local agent environment. <br>
-Mitigation: Use external reviewers only when repository policy and user instructions allow it, and redact secrets, customer data, private documents, and unreleased business material first. <br>
-Risk: A same-model audit can miss issues because it shares blind spots with the development model. <br>
-Mitigation: For high-stakes changes, use a strong non-current-model reviewer or human reviewer and validate candidate findings locally before relying on the audit. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill to run artifact-focused code audits, security reviews, regression-risk reviews, and intent-alignment checks. It helps agents read project intent first, inspect relevant code and tests, disclose independent-review limitations, and report prioritized findings with evidence.
 
-## Reference(s): <br>
-- [Audit Checklist](references/audit-checklist.md) <br>
-- [Independent Reviewer Prompt](references/independent-reviewer-prompt.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/hollis9087/hollis-code-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown audit report with optional shell command blocks, JSON snapshots, and review packet text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only by default; helper scripts can produce repository snapshots, audit packets, reviewer-route inventories, and eval summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The workflow may inspect repository structure, git metadata, selected files, and diffs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in repositories where that inspection is appropriate, and configure skip patterns or .auditignore entries for generated, noisy, or confidential paths.
+
+Risk: External model or subagent review can expose sensitive code or unreleased business context if a diff or audit packet is shared too broadly.
+
+Mitigation: Check project confidentiality rules first, redact sensitive material, and include full diffs only when they are safe to share.
+
+Risk: Independent review may be unavailable or may use a correlated model, leaving shared blind spots.
+
+Mitigation: Disclose the independent-review status in the audit report and seek a strong non-current-model or human second pass for high-stakes decisions.
+
+## Reference(s):
+
+- [Code Audit Skill README](README.md)
+- [Audit Checklist](references/audit-checklist.md)
+- [Independent Reviewer Prompt](references/independent-reviewer-prompt.md)
+- [ClawHub Skill Page](https://clawhub.ai/hollis9087/skills/hollis-code-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown audit reports with optional JSON helper-script output and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce compact audit packets and reviewer-route inventories; helper scripts are optional and use the Python standard library.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

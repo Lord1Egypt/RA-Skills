@@ -1,0 +1,21 @@
+name: path_traversal
+display_name: 路径遍历
+severity: high
+description: 检测路径遍历攻击、敏感文件访问等风险
+
+patterns:
+  - '\.\./'
+  - '\.\.\'' 
+  - '\.\.\%2[fF]'
+  - '\.\.%5[cC]'
+  - '%2[eE]%2[eE]%2[fF]'
+  - '%2[eE]%2[eE]/'
+  - '\.\./etc/passwd'
+  - '\.\./windows/system32'
+  - '/etc/passwd'
+  - '/etc/shadow'
+  - 'c:\\windows\\'
+  - 'c:/windows/'
+
+suggestion: 避免直接拼接路径，使用 Pathlib 安全拼接；访问前验证路径是否在预期目录内
+source: static

@@ -1,40 +1,62 @@
-## Description: <br>
-Use Jimeng AI 4.0 (Volcengine) to generate images from text or image references, and optionally send results to Feishu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Jimeng AI 4.0 (Volcengine) to generate images from text or image references, and optionally send results to Feishu.
 
-## Publisher: <br>
-[Tangc](https://clawhub.ai/user/Tangc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tangc](https://clawhub.ai/user/tangc)
 
-## Use Case: <br>
-Developers and agent users use this skill to generate PNG image results from text prompts or reference image URLs with Jimeng AI 4.0. They can return an image URL directly or optionally send the generated image through Feishu when a target user is provided. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and reference image URLs are sent to Volcengine, and target mode sends the generated image URL and caption through a local Feishu bridge. <br>
-Mitigation: Avoid sensitive prompts and private reference image URLs unless those services are approved for the data, and use target mode only with the intended Feishu recipient. <br>
-Risk: The helper passes the Volcengine secret key through a process argument while generating request signatures. <br>
-Mitigation: Use a dedicated low-privilege Volcengine key and avoid running the helper on shared machines where process arguments may be visible to other users. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tangc/jimeng-t2i-i2i-image-generator) <br>
-- [Volcengine visual API endpoint](https://visual.volcengineapi.com) <br>
+## Use Case:
 
+Developers and automation users use this skill to generate PNG image URLs from text prompts or reference images with Jimeng AI 4.0, with optional Feishu delivery.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Shell command output with generated image URLs and optional Feishu delivery status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are PNG assets returned as service-hosted URLs; i2i mode may use a default reference image when no reference URL is supplied.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends user prompts and optional reference image URLs to an external image-generation service.
+
+Mitigation: Avoid sensitive prompts or reference images and review applicable data-sharing requirements before use.
+
+Risk: Volcengine access keys are used by the local script and may be exposed if the host process list or shell history is not protected.
+
+Mitigation: Use least-privilege Volcengine keys, keep credentials in environment variables, and run the skill only in trusted local environments.
+
+Risk: The optional Feishu delivery path posts generated content to a local service on localhost:18789.
+
+Mitigation: Use the Feishu target option only when the local service is trusted and the destination user ID has been verified.
+
+Risk: Prompt and URL values are interpolated into JSON request bodies by shell script logic.
+
+Mitigation: Review inputs before execution; the publisher should replace manual JSON construction with a real JSON encoder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangc/skills/jimeng-t2i-i2i-image-generator)
+- [Volcengine Visual API endpoint](https://visual.volcengineapi.com)
+- [Default image-to-image reference image](https://cdn.jsdelivr.net/gh/SumeLabs/clawra@main/assets/clawra.png)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with bash examples; runtime output is plain text image URLs and API status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Volcengine credentials; generated images are PNG resources returned as URLs, with optional Feishu delivery through a local service.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

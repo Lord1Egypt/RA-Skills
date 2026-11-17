@@ -1,0 +1,113 @@
+{
+  "standard": "ISO 14001:2015",
+  "templates": [
+    {"id": "EMS-PF-001", "name": "文件控制程序", "name_en": "Document Control Procedure", "clause": "7.5", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "对EMS文件的编制、审批、发放、更改、作废与回收进行有效控制，确保使用有效版本。"},
+       {"title": "2 适用范围", "content": "适用于{company}环境管理体系所有文件及外来环保文件的控制。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口管理，维护《受控文件清单》。\n3.2 各部门：负责本部门文件编制与保管。"},
+       {"title": "4 工作程序", "content": "4.1 文件分类与编号。\n4.2 编制→审核→批准。\n4.3 受控发放与登记。\n4.4 更改换版，旧版回收。\n4.5 作废留档，外来环保法规登记跟踪。"},
+       {"title": "5 相关文件", "content": "记录控制程序。"},
+       {"title": "6 记录", "content": "受控文件清单；文件发放回收记录；文件更改申请单。"}
+     ]},
+    {"id": "EMS-PF-002", "name": "记录控制程序", "name_en": "Record Control Procedure", "clause": "7.5", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "对环境记录的标识、贮存、保护、检索、保留与处置实施控制，提供符合性证据。"},
+       {"title": "2 适用范围", "content": "适用于{company}EMS运行形成的各类记录。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口，制定《记录清单》与保存期。\n3.2 各部门：填写与归档本部门的记录。"},
+       {"title": "4 工作程序", "content": "4.1 填写真实清晰、改错划改签注。\n4.2 编号编目、专柜/电子归档。\n4.3 按期保存，到期评审后处置。"},
+       {"title": "5 相关文件", "content": "文件控制程序。"},
+       {"title": "6 记录", "content": "记录清单；记录归档台账。"}
+     ]},
+    {"id": "EMS-PF-003", "name": "环境因素识别与评价程序", "name_en": "Environmental Aspects Procedure", "clause": "6.1.2", "high_voltage_check": ["environmental_aspects"],
+     "sections": [
+       {"title": "1 目的", "content": "系统识别活动/产品/服务中的环境因素，评价重要环境因素并策划控制。"},
+       {"title": "2 适用范围", "content": "适用于{company}所有场所、活动与过程。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口，组织识别与更新。\n3.2 各部门：识别本部门环境因素。"},
+       {"title": "4 工作程序", "content": "4.1 识别：从原辅材料、能源、工艺、产品、废物、土地污染、资源使用等维度识别。\n4.2 评价：采用多因子打分（影响程度/频次/法规），确定重要环境因素。\n4.3 形成《重要环境因素清单》并评审更新（新改扩建、法规变化时）。\n4.4 策划：对重要环境因素制定目标/管理方案/运行控制。"},
+       {"title": "5 相关文件", "content": "运行控制程序；环境目标管理。"},
+       {"title": "6 记录", "content": "环境因素识别表；重要环境因素清单；评价准则。"}
+     ]},
+    {"id": "EMS-PF-004", "name": "合规义务识别与控制程序", "name_en": "Compliance Obligations Procedure", "clause": "6.1.3", "high_voltage_check": ["compliance_obligation"],
+     "sections": [
+       {"title": "1 目的", "content": "识别、获取并跟踪适用于{company}的环保法律法规与其他要求，确保合规。"},
+       {"title": "2 适用范围", "content": "适用于{company}环保合规义务管理。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口，建立并维护《适用法律法规清单》。\n3.2 各部门：提供与本部门相关的要求。"},
+       {"title": "4 工作程序", "content": "4.1 识别来源：全国人大/国务院/部委、地方法规、许可证（排污/危废）、标准、客户要求。\n4.2 获取与识别：定期检索，摘录适用条款。\n4.3 形成《适用法律法规及其他要求清单》。\n4.4 传达与融入：培训、纳入运行控制。\n4.5 更新：新法发布、许可变更时及时更新并评价符合性。"},
+       {"title": "5 相关文件", "content": "合规性评价程序；运行控制程序。"},
+       {"title": "6 记录", "content": "适用法律法规清单；获取与更新记录。"}
+     ]},
+    {"id": "EMS-PF-005", "name": "人力资源控制程序", "name_en": "Human Resource Procedure", "clause": "7.2", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "确保从事影响重要环境因素岗位人员具备能力，并通过培训提升环境意识。"},
+       {"title": "2 适用范围", "content": "适用于{company}与EMS有关岗位。"},
+       {"title": "3 职责", "content": "3.1 行政人事部：归口。\n3.2 各部门：提出培训需求。"},
+       {"title": "4 工作程序", "content": "4.1 岗位能力要求与矩阵。\n4.2 能力评价与培训实施。\n4.3 环境意识：方针、重要环境因素、合规义务、岗位影响。\n4.4 持证：危废/环保设施操作等持证上岗。"},
+       {"title": "5 相关文件", "content": "环境因素识别与评价程序。"},
+       {"title": "6 记录", "content": "能力矩阵；培训记录；证书台账。"}
+     ]},
+    {"id": "EMS-PF-006", "name": "运行控制程序（水/气/声/渣）", "name_en": "Operational Control Procedure", "clause": "8.1", "high_voltage_check": ["operational_control"],
+     "sections": [
+       {"title": "1 目的", "content": "对与重要环境因素有关的运行与活动实施控制，降低环境影响。"},
+       {"title": "2 适用范围", "content": "适用于{company}废水、废气、噪声、固体废物（含危废）的管理。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口监督。\n3.2 各产生/处置部门：落实控制。"},
+       {"title": "4 工作程序", "content": "4.1 废水：分类收集、处理达标排放，监测。\n4.2 废气：治理设施正常运行，监测。\n4.3 噪声：源头与传播控制。\n4.4 固废：一般固废综合利用；危废专库、标识、交由有资质单位，保留转移联单。\n4.5 对相关方（承包商/供应商）施加影响。"},
+       {"title": "5 相关文件", "content": "应急准备和响应控制程序；监测与测量控制程序。"},
+       {"title": "6 记录", "content": "运行控制记录；危废转移联单；治理设施运行台账。"}
+     ]},
+    {"id": "EMS-PF-007", "name": "应急准备和响应控制程序", "name_en": "Emergency Preparedness Procedure", "clause": "8.2", "high_voltage_check": ["emergency_response"],
+     "sections": [
+       {"title": "1 目的", "content": "识别潜在环境紧急状况，提高应急反应与减轻环境影响的能力。"},
+       {"title": "2 适用范围", "content": "适用于{company}化学品泄漏、火灾、超标排放等紧急状况。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口，组织预案与演练。\n3.2 各部门：按预案响应。"},
+       {"title": "4 工作程序", "content": "4.1 识别紧急状况与环境影响。\n4.2 制定应急预案，配置应急物资（吸油棉、沙袋、灭火器等）。\n4.3 定期演练并评审有效性。\n4.4 事后处置与报告，必要时通报监管。"},
+       {"title": "5 相关文件", "content": "运行控制程序。"},
+       {"title": "6 记录", "content": "应急预案；演练记录与评审；应急物资台账。"}
+     ]},
+    {"id": "EMS-PF-008", "name": "监测与测量控制程序", "name_en": "Monitoring & Measurement Procedure", "clause": "9.1.1", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "对可能具有重大环境影响的运行关键特性进行监视和测量。"},
+       {"title": "2 适用范围", "content": "适用于{company}环保设施与排放指标的监测。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口，制定监测计划。\n3.2 检测机构/部门：实施监测。"},
+       {"title": "4 工作程序", "content": "4.1 确定监测对象（废水/废气/噪声/危废产生量）与频次。\n4.2 委托有资质机构或自检，设备校准。\n4.3 评价结果，超标即启动纠正措施。\n4.4 保留监测记录。"},
+       {"title": "5 相关文件", "content": "合规性评价程序；纠正措施控制程序。"},
+       {"title": "6 记录", "content": "监测计划；监测报告；校准记录。"}
+     ]},
+    {"id": "EMS-PF-009", "name": "合规性评价程序", "name_en": "Compliance Evaluation Procedure", "clause": "9.1.2", "high_voltage_check": ["compliance_evaluation"],
+     "sections": [
+       {"title": "1 目的", "content": "定期评价对适用环保法律法规与其他要求的符合情况。"},
+       {"title": "2 适用范围", "content": "适用于{company}全部合规义务。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口，组织评价。\n3.2 各部门：提供本领域符合性证据。"},
+       {"title": "4 工作程序", "content": "4.1 按策划周期（通常每年）开展。\n4.2 逐条对照适用条款，收集监测/许可/检查证据。\n4.3 形成《合规性评价报告》，判定符合/不符合。\n4.4 不符合时启动纠正措施并跟踪关闭。"},
+       {"title": "5 相关文件", "content": "合规义务识别与控制程序；纠正措施控制程序。"},
+       {"title": "6 记录", "content": "合规性评价报告；支持性证据。"}
+     ]},
+    {"id": "EMS-PF-010", "name": "内部审核控制程序", "name_en": "Internal Audit Procedure", "clause": "9.2", "high_voltage_check": ["internal_audit"],
+     "sections": [
+       {"title": "1 目的", "content": "确认EMS是否符合策划、标准要求并有效实施与改进。"},
+       {"title": "2 适用范围", "content": "适用于{company}EMS全部要素与部门。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口，编制方案。\n3.2 审核组：独立实施。"},
+       {"title": "4 工作程序", "content": "4.1 年度审核方案覆盖全部要素。\n4.2 审核计划与检查表。\n4.3 实施并开具不符合项。\n4.4 报告与跟踪关闭。"},
+       {"title": "5 相关文件", "content": "纠正措施控制程序；管理评审控制程序。"},
+       {"title": "6 记录", "content": "审核方案；检查表；不符合报告；内审报告。"}
+     ]},
+    {"id": "EMS-PF-011", "name": "管理评审控制程序", "name_en": "Management Review Procedure", "clause": "9.3", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "由最高管理者评审EMS的适宜性、充分性与有效性。"},
+       {"title": "2 适用范围", "content": "适用于{company}EMS管理评审。"},
+       {"title": "3 职责", "content": "3.1 管理者代表：归口。\n3.2 最高管理者：主持决议。"},
+       {"title": "4 工作程序", "content": "4.1 频次每年至少一次。\n4.2 输入：绩效、合规、目标、不符合、风险机遇。\n4.3 输出：改进、资源、方针目标调整。\n4.4 决议跟踪验证。"},
+       {"title": "5 相关文件", "content": "内部审核控制程序；合规性评价程序。"},
+       {"title": "6 记录", "content": "管理评审计划；决议纪要；措施跟踪表。"}
+     ]},
+    {"id": "EMS-PF-012", "name": "不符合、纠正措施控制程序", "name_en": "Nonconformity & CAPA Procedure", "clause": "10.2", "high_voltage_check": [],
+     "sections": [
+       {"title": "1 目的", "content": "对EMS不符合采取纠正措施，消除根因防止再发生。"},
+       {"title": "2 适用范围", "content": "适用于{company}EMS各过程的不符合。"},
+       {"title": "3 职责", "content": "3.1 环安部：归口。\n3.2 责任部门：实施整改。"},
+       {"title": "4 工作程序", "content": "4.1 评审不符合并隔离/纠正。\n4.2 根因分析。\n4.3 制定并实施措施。\n4.4 验证有效性与标准化。"},
+       {"title": "5 相关文件", "content": "内部审核控制程序；管理评审控制程序。"},
+       {"title": "6 记录", "content": "不符合报告；纠正措施报告；验证记录。"}
+     ]}
+  ]
+}

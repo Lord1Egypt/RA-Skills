@@ -1,40 +1,57 @@
-## Description: <br>
-Guides agents in applying React composition patterns such as compound components, context providers, explicit variants, and lifted state to build maintainable component APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build flexible React components using compound components, context providers, and explicit variants to avoid boolean prop proliferation and improve scalability.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to have an agent review or design React component architecture with clearer composition boundaries, explicit variants, and dependency-injected state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional installation commands can pull from GitHub or a latest package tag. <br>
-Mitigation: Prefer the reviewed ClawHub registry install path and verify any GitHub or latest-tag command before running it. <br>
-Risk: Architecture guidance may be applied mechanically to cases where simpler React props or local state are sufficient. <br>
-Mitigation: Review suggested refactors against the component's actual complexity, ownership boundaries, and maintainability goals before adopting them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wpank/composition-patterns) <br>
-- [Publisher profile](https://clawhub.ai/user/wpank) <br>
+## Use Case:
 
+Developers and frontend engineers use this skill when refactoring React components with many boolean props, designing reusable component APIs, or building component libraries with clearer composition boundaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript/React examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no hidden data access or execution behavior was found in the server security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation instructions reference mutable, unpinned sources.
+
+Mitigation: Prefer a pinned ClawHub version or immutable Git commit and review installer source before installing globally into Cursor or Claude Code skill directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wpank/skills/composition-patterns)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Avoid Boolean Prop Proliferation](artifact/rules/architecture-avoid-boolean-props.md)
+- [Use Compound Components](artifact/rules/architecture-compound-components.md)
+- [Define Generic Context Interfaces for Dependency Injection](artifact/rules/state-context-interface.md)
+- [Decouple State Management from UI](artifact/rules/state-decouple-implementation.md)
+- [Lift State into Provider Components](artifact/rules/state-lift-state.md)
+- [Create Explicit Component Variants](artifact/rules/patterns-explicit-variants.md)
+- [Prefer Composing Children Over Render Props](artifact/rules/patterns-children-over-render-props.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript/TSX examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance-only output; no direct code execution by the skill itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

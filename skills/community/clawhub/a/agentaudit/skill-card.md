@@ -1,50 +1,72 @@
-## Description: <br>
-Automatic security gate that checks packages against a vulnerability database before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatic security gate that checks packages against a vulnerability database before installation.
 
-## Publisher: <br>
-[starbuck100](https://clawhub.ai/user/starbuck100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL 3.0 <br>
+## Publisher:
 
+[starbuck100](https://clawhub.ai/user/starbuck100)
 
-## Use Case: <br>
-Developers and AI-agent users use AgentAudit to check npm, pip, ClawHub, MCP, and similar package installs against a trust registry before installing external code. It also guides static audit report creation for packages that do not already have registry data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store API credentials locally and the release evidence indicates bundled credentials are present. <br>
-Mitigation: Replace or remove bundled credentials before use, prefer environment-based keys where appropriate, and rotate keys after installation. <br>
-Risk: Audit reports uploaded to the registry may include package metadata and code snippets. <br>
-Mitigation: Do not use uploads on private or proprietary packages unless data sharing is explicitly approved and uploads are disabled or verified. <br>
-Risk: The security verdict is suspicious because the tool combines package gating with remote registry communication and credential handling. <br>
-Mitigation: Review the security guidance, verify configured registry destinations, and test the gate behavior before relying on it in installation workflows. <br>
+## Use Case:
 
+Developers and agent operators use AgentAudit to check package, skill, and MCP server installs against a trust registry, run structured security audits for unknown packages, and submit findings for shared review.
 
-## Reference(s): <br>
-- [ClawHub AgentAudit release](https://clawhub.ai/starbuck100/agentaudit) <br>
-- [AgentAudit trust registry](https://agentaudit.dev) <br>
-- [AgentAudit leaderboard](https://agentaudit.dev/leaderboard) <br>
-- [API Reference](references/API-REFERENCE.md) <br>
-- [Manual Audit Methodology](references/AUDIT-METHODOLOGY.md) <br>
-- [Detection Patterns Reference](references/DETECTION-PATTERNS.md) <br>
-- [Report JSON Format](references/REPORT-FORMAT.md) <br>
-- [Trust Score System](references/TRUST-SCORING.md) <br>
-- [Troubleshooting Guide](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Registry lookups and report uploads require network access and an AgentAudit API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer path includes curl-to-bash setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid the one-line installer; inspect the artifact first and install from a trusted local checkout or package manager path.
+
+Risk: A bundled API key is present in the artifact credentials file.
+
+Mitigation: Revoke or replace the bundled key before use, and prefer an environment-specific AGENTAUDIT_API_KEY or newly registered user credential.
+
+Risk: Private-code audits may upload findings to the registry unless upload behavior is fixed and configured correctly.
+
+Mitigation: Do not use the skill for private or proprietary code until upload behavior is reviewed; keep audits local when sensitive code is involved.
+
+Risk: Registry PASS results are advisory because malformed registry responses can fail open.
+
+Mitigation: Review unexpected registry responses manually, keep WARN/BLOCK handling in place, and combine checks with sandboxing or permission controls.
+
+Risk: The security gate is cooperative and instruction-based rather than OS-enforced.
+
+Mitigation: Use manual pre-checks and platform-level controls for installs that require stronger assurance.
+
+## Reference(s):
+
+- [AgentAudit ClawHub Skill Page](https://clawhub.ai/starbuck100/skills/agentaudit)
+- [AgentAudit Homepage](https://agentaudit.dev)
+- [API Reference](references/API-REFERENCE.md)
+- [Audit Methodology](references/AUDIT-METHODOLOGY.md)
+- [Detection Patterns](references/DETECTION-PATTERNS.md)
+- [Report Format](references/REPORT-FORMAT.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [Trust Scoring](references/TRUST-SCORING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON gate results, shell commands, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires registry access for live checks; local audits may produce report JSON for upload or review.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

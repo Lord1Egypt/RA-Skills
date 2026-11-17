@@ -1,0 +1,118 @@
+{
+  "fixtureVersion": "1.0",
+  "notice": "Synthetic protocol fixtures. They are not market data.",
+  "replays": [
+    {
+      "name": "text-success",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-text", "seq": 0, "shape": "text" },
+        { "schemaVersion": "2.0", "type": "text_delta", "turnId": "turn-text", "seq": 1, "text": "The requested explanation is ready." },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-text", "seq": 2, "status": "success" }
+      ],
+      "expected": { "accepted": 3, "errors": [], "ignored": [], "status": "success", "visibleText": "The requested explanation is ready." }
+    },
+    {
+      "name": "canvas-success",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-canvas", "seq": 0, "shape": "canvas" },
+        { "schemaVersion": "2.0", "type": "tool_call", "turnId": "turn-canvas", "seq": 1, "callId": "call-quote", "toolId": "get_quote", "argSummary": "$TEST" },
+        { "schemaVersion": "2.0", "type": "tool_result", "turnId": "turn-canvas", "seq": 2, "callId": "call-quote", "status": "success", "summary": "Dated quote loaded" },
+        { "schemaVersion": "2.0", "type": "text_delta", "turnId": "turn-canvas", "seq": 3, "text": "Preparing the canvas." },
+        {
+          "schemaVersion": "2.0", "type": "artifact", "turnId": "turn-canvas", "seq": 4,
+          "artifactId": "canvas.success", "kind": "canvas",
+          "body": {
+            "schemaVersion": "2.0", "id": "canvas.success", "title": "Synthetic stock snapshot", "created": "2026-01-15T12:00:00Z",
+            "blocks": [
+              { "id": "heading", "type": "section-header", "width": "full", "props": { "title": "Synthetic snapshot", "subtitle": "Fixture only" } },
+              { "id": "quote", "type": "metric-card", "width": "full", "props": { "label": "Price", "dataRef": "snapshot.quote", "field": "currentPrice" } }
+            ]
+          }
+        },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-canvas", "seq": 5, "status": "success" }
+      ],
+      "expected": { "accepted": 6, "errors": [], "ignored": [], "status": "success", "visibleText": "", "bufferedText": "Preparing the canvas.", "artifactId": "canvas.success" }
+    },
+    {
+      "name": "failed-tool-text-recovery",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-tool-error", "seq": 0, "shape": "text" },
+        { "schemaVersion": "2.0", "type": "tool_call", "turnId": "turn-tool-error", "seq": 1, "callId": "call-data", "toolId": "get_quote", "argSummary": "$NONE" },
+        { "schemaVersion": "2.0", "type": "tool_result", "turnId": "turn-tool-error", "seq": 2, "callId": "call-data", "status": "error", "summary": "No covered security was found" },
+        { "schemaVersion": "2.0", "type": "text_delta", "turnId": "turn-tool-error", "seq": 3, "text": "No covered security matched that symbol." },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-tool-error", "seq": 4, "status": "success" }
+      ],
+      "expected": { "accepted": 5, "errors": [], "ignored": [], "status": "success", "toolStatus": "error" }
+    },
+    {
+      "name": "canvas-repair-then-success",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-repair", "seq": 0, "shape": "canvas" },
+        {
+          "schemaVersion": "2.0", "type": "artifact", "turnId": "turn-repair", "seq": 1,
+          "artifactId": "canvas.repaired", "kind": "canvas",
+          "body": {
+            "schemaVersion": "2.0", "id": "canvas.repaired", "title": "Invalid first draft", "created": "2026-01-15T12:00:00Z",
+            "blocks": [{ "id": "bad", "type": "unknown-widget", "width": "full", "props": {} }]
+          }
+        },
+        {
+          "schemaVersion": "2.0", "type": "artifact", "turnId": "turn-repair", "seq": 1,
+          "artifactId": "canvas.repaired", "kind": "canvas",
+          "body": {
+            "schemaVersion": "2.0", "id": "canvas.repaired", "title": "Synthetic repaired comparison", "created": "2026-01-15T12:01:00Z",
+            "blocks": [{ "id": "summary", "type": "callout", "width": "full", "props": { "tone": "neutral", "title": "Fixture result" }, "content": "The repaired artifact is valid synthetic content." }]
+          }
+        },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-repair", "seq": 2, "status": "success" }
+      ],
+      "expected": { "accepted": 3, "errors": ["INVALID_CANVAS"], "ignored": [], "status": "success", "artifactId": "canvas.repaired" }
+    },
+    {
+      "name": "canvas-repair-exhausted",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-fallback", "seq": 0, "shape": "canvas" },
+        { "schemaVersion": "2.0", "type": "text_delta", "turnId": "turn-fallback", "seq": 1, "text": "A draft that will not be shown." },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-fallback", "seq": 2, "status": "error", "fallbackText": "The canvas could not be validated. Try a narrower request." }
+      ],
+      "expected": { "accepted": 3, "errors": [], "ignored": [], "status": "error", "visibleText": "", "fallbackText": "The canvas could not be validated. Try a narrower request." }
+    },
+    {
+      "name": "canvas-success-requires-artifact",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-missing-artifact", "seq": 0, "shape": "canvas" },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-missing-artifact", "seq": 1, "status": "success" },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-missing-artifact", "seq": 1, "status": "error", "fallbackText": "No validated canvas was produced." }
+      ],
+      "expected": { "accepted": 2, "errors": ["MISSING_ARTIFACT"], "ignored": [], "status": "error", "fallbackText": "No validated canvas was produced." }
+    },
+    {
+      "name": "stopped-turn-rejects-fallback",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-stopped-fallback", "seq": 0, "shape": "canvas" },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-stopped-fallback", "seq": 1, "status": "stopped", "fallbackText": "This is not permitted." },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-stopped-fallback", "seq": 1, "status": "stopped" }
+      ],
+      "expected": { "accepted": 2, "errors": ["INVALID_FALLBACK"], "ignored": [], "status": "stopped", "artifactId": null }
+    },
+    {
+      "name": "stopped-turn-ignores-late-events",
+      "events": [
+        { "schemaVersion": "2.0", "type": "turn_start", "turnId": "turn-stopped", "seq": 0, "shape": "canvas" },
+        { "schemaVersion": "2.0", "type": "tool_call", "turnId": "turn-stopped", "seq": 1, "callId": "call-late", "toolId": "get_quote", "argSummary": "$TEST" },
+        { "schemaVersion": "2.0", "type": "turn_end", "turnId": "turn-stopped", "seq": 2, "status": "stopped" },
+        { "schemaVersion": "2.0", "type": "text_delta", "turnId": "turn-stopped", "seq": 3, "text": "This late text must not render." },
+        { "schemaVersion": "2.0", "type": "tool_result", "turnId": "turn-stopped", "seq": 4, "callId": "call-late", "status": "success", "summary": "Late resolver result" },
+        {
+          "schemaVersion": "2.0", "type": "artifact", "turnId": "turn-stopped", "seq": 5,
+          "artifactId": "canvas.late", "kind": "canvas",
+          "body": {
+            "schemaVersion": "2.0", "id": "canvas.late", "title": "Late synthetic canvas", "created": "2026-01-15T12:02:00Z",
+            "blocks": [{ "id": "late", "type": "narrative", "width": "full", "props": {}, "content": "This valid but late artifact must not replace the screen." }]
+          }
+        }
+      ],
+      "expected": { "accepted": 3, "errors": [], "ignored": ["turn_already_terminal", "turn_already_terminal", "turn_already_terminal"], "status": "stopped", "artifactId": null }
+    }
+  ]
+}

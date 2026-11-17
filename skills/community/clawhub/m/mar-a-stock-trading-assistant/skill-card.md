@@ -1,44 +1,55 @@
-## Description: <br>
-Provides real-time quotes, technical and fundamental analysis, market sentiment, hot-sector tracking, trading strategy support, and price-alert guidance for mainland China A-share stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Trading Assistant helps agents retrieve mainland China A-share market data and produce quotes, technical and fundamental analysis, market sentiment summaries, sector views, strategy suggestions, and price-alert guidance.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Investors and analysts use this skill to query and interpret mainland China A-share market data, individual stocks, market sentiment, sector momentum, and trading plans. It is intended for informational analysis and assistant-generated guidance, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts public Chinese finance data providers to retrieve market data. <br>
-Mitigation: Install only when external finance-data requests are acceptable for the deployment environment. <br>
-Risk: Trading suggestions may be incorrect, incomplete, or unsuitable for a specific user. <br>
-Mitigation: Treat outputs as informational analysis rather than personalized financial advice, and require human review before acting. <br>
-Risk: Price alerts can save user-supplied watchlist details locally. <br>
-Mitigation: Avoid storing sensitive alert data and delete saved alert data when it is no longer needed. <br>
+## Use Case:
 
+External users and agents use this skill to answer mainland China A-share stock questions, including stock quotes, index and sector analysis, trading strategy framing, and alert follow-up. It is scoped to Shanghai and Shenzhen A-share tickers and should be used as informational support, not as a broker or execution system.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marjoriebroad/mar-a-stock-trading-assistant) <br>
-- [Analysis methodology](references/analysis.md) <br>
-- [Data sources](references/data-sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, structured trading notes, risk warnings, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include data source and fetch time when market data is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can produce actionable trading guidance from live market data fetched over unauthenticated HTTP sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as informational only and verify prices, recommendations, and order decisions through a trusted broker or HTTPS market-data source before acting.
+
+Risk: Price-alert watchlists may persist locally when alerts are used.
+
+Mitigation: Review and remove local watchlist entries that are no longer needed, especially on shared or managed systems.
+
+## Reference(s):
+
+- [Individual Stock Analysis Method Reference](references/analysis.md)
+- [Data Source API Reference](references/data-sources.md)
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/mar-a-stock-trading-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional tables, shell command examples, and JSON from the stock-fetch script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Market-data outputs are expected to cite the data source and retrieval time.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

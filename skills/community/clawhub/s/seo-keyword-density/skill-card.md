@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents audit and improve page SEO by checking keyword density, content length, metadata, headings, alt text, Open Graph, Twitter Card, hreflang, and indexability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents audit page content and SEO metadata, calculate keyword density, and propose or apply copy updates for SEO keyword-density goals.
 
-## Publisher: <br>
-[domainrankhq](https://clawhub.ai/user/domainrankhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[domainrankhq](https://clawhub.ai/user/domainrankhq)
 
-## Use Case: <br>
-Developers, SEO operators, and content teams use this skill to analyze web pages or translation files, expand useful page copy, and prepare edits that improve keyword coverage and technical SEO completeness. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO content expansion and keyword-density targets can affect public-facing copy and search quality. <br>
-Mitigation: Review generated diffs before committing and confirm that added keyword usage remains accurate, readable, and aligned with the page's intent. <br>
-Risk: Automated metadata, alt text, or translation edits may introduce misleading descriptions or localization inconsistencies. <br>
-Mitigation: Validate changed metadata, image alt text, and translated strings against the actual page content before release. <br>
+## Use Case:
 
+Developers, marketers, and SEO practitioners use this skill to review web pages or translation files, measure keyword density and content length, check common SEO metadata, and update page copy for search optimization goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/domainrankhq/seo-keyword-density) <br>
-- [DomainRank AI SEO Skills](https://domainrank.app/ai-seo-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code] <br>
-**Output Format:** [Markdown audit report with proposed or applied file edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify page copy, metadata, image alt text, and translation JSON when the agent is allowed to edit files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: The workflow can apply edits to page copy and SEO metadata when optimization is requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For audit-only use, instruct the agent to propose changes and wait for approval before modifying files.
+
+Risk: Over-optimizing for keyword density can make content read unnaturally or resemble keyword stuffing.
+
+Mitigation: Review proposed copy for readability, semantic fit, and natural keyword distribution before publishing.
+
+## Reference(s):
+
+- [SEO Keyword Density on ClawHub](https://clawhub.ai/domainrankhq/skills/seo-keyword-density)
+- [DomainRank AI SEO Skills](https://domainrank.app/ai-seo-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with SEO audit findings, keyword-density calculations, proposed edits, and code or configuration snippets when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file paths, before-and-after metrics, modification summaries, and concrete edit details.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

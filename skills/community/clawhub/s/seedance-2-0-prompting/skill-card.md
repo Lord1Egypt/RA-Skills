@@ -1,44 +1,53 @@
-## Description: <br>
-A prompt engineering skill that helps agents create Seedance 2.0 video-generation prompts using structured motion grammar, stability constraints, bilingual prompt output, and material tagging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Seedance 2.0 video prompts with cinematic motion grammar, stability constraints, and asset tagging for images, video, and audio.
 
-## Publisher: <br>
-[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lumenclaw-cloud](https://clawhub.ai/user/lumenclaw-cloud)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to turn short Seedance 2.0 video ideas into structured prompts with camera motion, subject action, stability constraints, and asset-reference tags. It is especially aimed at AI influencer and cinematic short-form video workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The README installation command uses a package name that does not exactly match the scanned ClawHub slug. <br>
-Mitigation: Verify the package page and install target on ClawHub before installing or recommending the skill. <br>
-Risk: The skill may generate bilingual prompts even when a single output language is expected. <br>
-Mitigation: Specify the desired output language when asking the agent to create a Seedance prompt. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lumenclaw-cloud/seedance-2-0-prompting) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [God-Level Gameplay Library](artifact/examples/god_level_plays.md) <br>
-- [Seedance 2.0 God-Level Playbooks](artifact/templates/god_level_plays.md) <br>
-- [Filtrix AI](https://filtrix.ai) <br>
+## Use Case:
 
+Creators and agent users use this skill to turn short video ideas or supplied media references into optimized Seedance 2.0 prompts for AI video generation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prompt guidance with structured prompt examples and asset-reference tags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce bilingual English and Chinese prompt text when requested or implied by the workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated prompts may reference personal images, video, or audio supplied by the user.
+
+Mitigation: Review prompts before submitting them to a video service, especially when they reference user-provided media.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lumenclaw-cloud/skills/seedance-2-0-prompting)
+- [Publisher profile](https://clawhub.ai/user/lumenclaw-cloud)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [God-Level Gameplay Library](artifact/examples/god_level_plays.md)
+- [Seedance 2.0 God-Level Playbooks](artifact/templates/god_level_plays.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prompt text with structured media-reference tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bilingual English and Chinese prompt phrasing and Seedance media tags such as @image_1, @video_1, or @audio_1.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,68 @@
-## Description: <br>
-VeraData provides hosted LATAM compliance data through API calls for sanctions screening, KYB checks, registry lookup, central bank rates, and market intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VeraData provides autonomous agents with Latin American compliance data for sanctions screening, KYB verification, business registry lookup, central bank rates, and market intelligence through a remote API.
 
-## Publisher: <br>
-[teodorofodocrispin-cmyk](https://clawhub.ai/user/teodorofodocrispin-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teodorofodocrispin-cmyk](https://clawhub.ai/user/teodorofodocrispin-cmyk)
 
-## Use Case: <br>
-Agents and developers use this skill to query VeraData's hosted service for LATAM sanctions, KYB, registry, rates, and market context when compliance screening or regional financial data is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with LATAM-focused coverage <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends sanctions, KYB, registry, rates, or market-intelligence queries to VeraData's hosted service, which may involve regulated personal or business data. <br>
-Mitigation: Use the service only when the organization approves the provider's retention and audit model; minimize submitted data and avoid unnecessary regulated identifiers. <br>
-Risk: Paid calls use x402 USDC micropayments and can spend funds when payment signing is enabled. <br>
-Mitigation: Start with trial mode where possible and require explicit operator approval, wallet controls, and budget limits before enabling paid calls or the remote MCP server. <br>
-Risk: Compliance and registry decisions can depend on hosted API availability, source registry availability, and sanctions-list update timing. <br>
-Mitigation: Handle API errors and trial limits explicitly, monitor the published health or OpenAPI endpoints, and verify high-impact decisions against authoritative sources. <br>
+## Use Case:
 
+Developers and external agent operators use this skill when an agent needs to screen people or entities against sanctions lists, run LATAM KYB checks, retrieve registry records, fetch central bank rates, or call VeraData market-intelligence endpoints.
 
-## Reference(s): <br>
-- [VeraData OpenAPI specification](https://api.veradata.dev/openapi.json) <br>
-- [VeraData x402 discovery](https://api.veradata.dev/.well-known/x402) <br>
-- [VeraData MCP endpoint](https://api.veradata.dev/mcp) <br>
-- [VeraData llms.txt](https://api.veradata.dev/llms.txt) <br>
-- [VeraData public repository](https://github.com/teodorofodocrispin-cmyk/veradata-public) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON response examples, curl commands, Python snippets, and MCP configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on VeraData hosted API availability, trial limits, and approved x402 payment controls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Agents may send sensitive compliance, KYB, registry, rates, or sanctions queries to VeraData.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for workflows that intentionally use VeraData, require approval before screening real people or companies, and avoid unnecessary disclosure in request payloads.
+
+Risk: Wallet-payment examples can lead an agent to sign x402 payments.
+
+Mitigation: Enforce local checks for recipient, token, network, endpoint price, and spend limits before any agent signs a payment.
+
+Risk: Remote MCP tools can expand agent capabilities beyond simple API calls.
+
+Mitigation: Review available MCP tools and permissions before enabling the VeraData MCP endpoint.
+
+Risk: Stream tokens and payment signatures are sensitive operational values.
+
+Mitigation: Do not log stream tokens or payment signatures, and keep token lifetime and replay behavior under operator control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teodorofodocrispin-cmyk/skills/veradata-latam-compliance)
+- [VeraData API base URL](https://api.veradata.dev)
+- [Health check](https://api.veradata.dev/health)
+- [OpenAPI schema](https://api.veradata.dev/openapi.json)
+- [llms.txt](https://api.veradata.dev/llms.txt)
+- [MCP endpoint](https://api.veradata.dev/mcp)
+- [x402 discovery](https://api.veradata.dev/.well-known/x402)
+- [VeraData public repository](https://github.com/teodorofodocrispin-cmyk/veradata-public)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with HTTP examples, code snippets, shell commands, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote API calls may require x402 payment signatures or X-TRIAL headers; paid responses may include audit hashes and compliance metadata.]
+
+## Skill Version(s):
+
+2.3.2 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

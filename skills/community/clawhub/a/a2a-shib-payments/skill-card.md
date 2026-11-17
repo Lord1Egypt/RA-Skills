@@ -1,47 +1,63 @@
-## Description: <br>
-Framework-agnostic agent-to-agent SHIB payment system on Polygon with payment, escrow workflow, price negotiation, and reputation features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A framework-agnostic A2A payment agent that helps agents send SHIB on Polygon and manage escrow, price negotiation, and reputation workflows.
 
-## Publisher: <br>
-[marcus20232023](https://clawhub.ai/user/marcus20232023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcus20232023](https://clawhub.ai/user/marcus20232023)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to let A2A-compatible agents check balances, send SHIB payments, negotiate service prices, coordinate escrow-like workflows, and track counterparty reputation on Polygon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move funds and has weak defaults for a financial workflow. <br>
-Mitigation: Use a low-value hot wallet, set conservative payment limits, rotate API keys, and test all payment paths before use. <br>
-Risk: Exposing the default full agent to the internet can create unnecessary payment and key-management exposure. <br>
-Mitigation: Avoid public exposure of the default full agent; use the production-oriented setup only after hardening authentication, transport security, and logging. <br>
-Risk: The escrow claims should not be treated as independently verified trustless on-chain custody. <br>
-Mitigation: Require independent code review and additional testing before relying on escrow behavior for meaningful value. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to add SHIB payment, escrow-style deal tracking, price negotiation, and reputation flows to A2A-compatible agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marcus20232023/a2a-shib-payments) <br>
-- [Deployment guide](artifact/DEPLOYMENT.md) <br>
-- [Escrow and negotiation guide](artifact/ESCROW-NEGOTIATION-GUIDE.md) <br>
-- [Integration examples](artifact/INTEGRATION-EXAMPLES.md) <br>
-- [Production hardening guide](artifact/PRODUCTION-HARDENING.md) <br>
-- [A2A Protocol](https://a2a-protocol.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON API responses, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown documentation, JavaScript examples, shell commands, and JSON-RPC or REST API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and npm; payment operations require a configured Polygon wallet, RPC endpoint, and SHIB token configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata, package.json) <br>
+Risk: The default agent can execute SHIB transfers without authentication if deployed with a funded wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authentication and per-request authorization on every transfer path before using real funds.
+
+Risk: Wallet credentials and hot-wallet balances can expose funds if they are printed, stored in plaintext, or overfunded.
+
+Mitigation: Use a low-balance hot wallet, protect credentials, and stop printing or plaintext-storing private keys and API credentials.
+
+Risk: The escrow feature may function as an off-chain tracker unless it verifies or controls funds on-chain.
+
+Mitigation: Treat escrow as tracking-only until on-chain fund control and verification are reviewed and tested.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marcus20232023/skills/a2a-shib-payments)
+- [README](README.md)
+- [Integration Examples](INTEGRATION-EXAMPLES.md)
+- [Escrow and Negotiation Guide](ESCROW-NEGOTIATION-GUIDE.md)
+- [Production Hardening](PRODUCTION-HARDENING.md)
+- [Deployment Guide](DEPLOYMENT.md)
+- [A2A Protocol](https://a2a-protocol.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm; payment actions can interact with a configured Polygon wallet.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

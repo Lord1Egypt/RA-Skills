@@ -1,0 +1,4 @@
+interface:
+  display_name: "Match a brand"
+  short_description: "Get a site's colors, fonts and design tokens to build in its style"
+  brand_color: "#6366F1"

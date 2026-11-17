@@ -1,42 +1,53 @@
-## Description: <br>
-Complete reference for a shared memory architecture connecting Claude Code, OpenClaw/Kimi, and LM Studio subagents through an Obsidian vault and MemPalace index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete reference for the shared memory architecture connecting Claude Code, OpenClaw/Kimi, and LM Studio subagents through an Obsidian vault and MemPalace (ChromaDB).
 
-## Publisher: <br>
-[nerua1](https://clawhub.ai/user/nerua1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nerua1](https://clawhub.ai/user/nerua1)
 
-## Use Case: <br>
-Developers and agent operators use this skill to understand and operate a local shared memory stack for multi-agent collaboration, including memory search, idea capture, vault indexing, and inter-agent communication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent shared memory can expose secrets, client data, or private notes if sensitive content is stored in indexed folders. <br>
-Mitigation: Keep sensitive information out of indexed vault paths, review vault contents before indexing, and restrict who can write to the shared memory folders. <br>
-Risk: Shared vault and local gateway workflows can allow unintended cross-agent data sharing. <br>
-Mitigation: Limit access to trusted local agents and users, keep the gateway local, and review shared files before agents rely on them. <br>
-Risk: Publishing commands may make skill contents public using configured GitHub credentials. <br>
-Mitigation: Do not run publishing commands unless public release is intended, and manually review files and credential configuration before publishing. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand and operate a local shared-memory stack for multi-agent workflows, including vault layout, MemPalace mining/search, idea capture, and Claude Code to OpenClaw communication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nerua1/shared-memory-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documents local file paths, memory indexing, idea capture, inter-agent messaging, and publishing workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Persistent shared storage and semantic indexing can retain private, regulated, or secret session content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content intended to be persisted in the shared vault and semantic index, and review storage scope before installation.
+
+Risk: The documented publishing workflow and named SSH/gh credentials could enable unintended public pushes if executed by an agent.
+
+Mitigation: Require explicit human review of repository contents and exact publishing commands before allowing any agent to use those credentials or push publicly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nerua1/skills/shared-memory-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with command examples, path references, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No standalone files are produced by the skill; it guides agents in using an existing shared-memory setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

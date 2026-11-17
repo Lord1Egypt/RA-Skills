@@ -1,38 +1,54 @@
-## Description: <br>
-BluOS CLI (blu) for discovery, playback, grouping, and volume. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blucli provides guidance for using the BluOS blu CLI for discovery, playback, grouping, and volume control.
 
-## Publisher: <br>
-[steipete](https://clawhub.ai/user/steipete) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[steipete](https://clawhub.ai/user/steipete)
 
-## Use Case: <br>
-Developers, operators, and audio-system users use this skill to discover and control Bluesound/NAD BluOS players, including playback, grouping, TuneIn search, and volume. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Blucli homepage](https://blucli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/steipete/blucli) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/steipete) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefer JSON output from blu for scripts, confirm the target device before playback changes, and review or pin the upstream blucli Go module for stricter supply-chain controls.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+External users and developers use this skill to install or operate the blu command-line tool when discovering and controlling Bluesound/NAD BluOS players.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The install metadata uses an unpinned Go module version for the upstream blu CLI.
+
+Mitigation: Review the upstream project or prefer a pinned release before installing, as recommended by the server security guidance.
+
+Risk: Playback and grouping commands can change the state of real Bluesound/NAD devices.
+
+Mitigation: Confirm the target device before changing playback, volume, or grouping.
+
+## Reference(s):
+
+- [Blucli homepage](https://blucli.sh)
+- [Blucli ClawHub skill page](https://clawhub.ai/steipete/skills/blucli)
+- [blu Go module documentation](https://pkg.go.dev/github.com/steipete/blucli/cmd/blu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-oriented CLI guidance when scripts should prefer blu --json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

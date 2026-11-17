@@ -1,51 +1,61 @@
-## Description: <br>
-CLI tool for creating and trading meme tokens on Four.Meme on BSC, with structured JSON outputs for configuration, token details, pricing quotes, on-chain events, and TaxToken fee configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool for creating and trading meme tokens on Four.Meme on BSC, with structured JSON outputs for configuration, token details, pricing quotes, on-chain events, and TaxToken fee configuration.
 
-## Publisher: <br>
-[four-meme-community](https://clawhub.ai/user/four-meme-community) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[four-meme-community](https://clawhub.ai/user/four-meme-community)
 
-## Use Case: <br>
-External users and developers use this skill to create, query, quote, and trade Four.Meme tokens on BSC through the fourmeme CLI. It also supports token event inspection, TaxToken fee queries, BNB or ERC20 transfers, and EIP-8004 registration or balance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet-signed BSC write operations can create tokens, buy, sell, transfer funds, or register identities using the configured private key. <br>
-Mitigation: Use a dedicated low-balance wallet, never expose the private key in chat, and review every recipient, token address, amount, and contract interaction before approval. <br>
-Risk: The skill installs and invokes an external fourmeme npm CLI for live blockchain actions. <br>
-Mitigation: Pin and verify the npm CLI version before use, and review the installed package before enabling write operations. <br>
-Risk: Incorrect parameters or market movement can cause unwanted transaction outcomes. <br>
-Mitigation: Run read-only quote, token-info, config, and event commands first, then require explicit confirmation before create, buy, sell, send, or 8004-register commands. <br>
+## Use Case:
 
+External users and developers use this skill to query Four.Meme data, create meme tokens, estimate trades, execute BSC buy/sell and transfer transactions, inspect token events, and manage TaxToken settings through the fourmeme CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/four-meme-community/four-meme-ai) <br>
-- [Four.meme Protocol Integration](https://four-meme.gitbook.io/four.meme/brand/protocol-integration) <br>
-- [Four.meme API - Create Token](references/api-create-token.md) <br>
-- [Create Token Scripts](references/create-token-scripts.md) <br>
-- [Execute Buy / Sell](references/execute-trade.md) <br>
-- [Token Query REST API](references/token-query-api.md) <br>
-- [Four.meme Contract Addresses](references/contract-addresses.md) <br>
-- [Event Listening](references/event-listening.md) <br>
-- [Tax Token Parameters](references/token-tax-info.md) <br>
-- [Query Tax Token Fee/Tax Info](references/tax-token-query.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with CLI commands and structured JSON command outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require PRIVATE_KEY for wallet-signed BSC write operations; read-only quote and query commands do not send transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: The skill can move wallet funds by creating tokens, buying, selling, sending BNB or ERC20 tokens, and registering an EIP-8004 identity with a PRIVATE_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet and confirm every recipient, token address, amount, approval, transaction value, and slippage limit before allowing write operations.
+
+Risk: The skill runs npm-distributed CLI code that uses the private key in the local execution environment.
+
+Mitigation: Review and pin the exact npm package version before installation, avoid storing private keys in project .env files, and run the skill only in a trusted environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/four-meme-community/skills/four-meme-ai)
+- [Four.Meme Protocol Integration](https://four-meme.gitbook.io/four.meme/brand/protocol-integration)
+- [Contract addresses](references/contract-addresses.md)
+- [Create token scripts](references/create-token-scripts.md)
+- [Execute buy and sell](references/execute-trade.md)
+- [Token query REST API](references/token-query-api.md)
+- [Event listening](references/event-listening.md)
+- [Tax token parameters](references/token-tax-info.md)
+- [Agent creator and wallets](references/agent-creator-and-wallets.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [BSC-only. Write operations require PRIVATE_KEY; BSC_RPC_URL is optional and defaults to a public BSC RPC when unset.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

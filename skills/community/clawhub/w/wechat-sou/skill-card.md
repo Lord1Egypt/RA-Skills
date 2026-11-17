@@ -1,43 +1,54 @@
-## Description: <br>
-微信搜一搜实时搜索工具，支持获取微信生态中的文章、视频和图片搜索数据；当前 artifact 实现了关键词视频搜索。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search public WeChat articles and videos by keyword and return structured results; image search, full-text extraction, and account login are not supported.
 
-## Publisher: <br>
-[um-why](https://clawhub.ai/user/um-why) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[um-why](https://clawhub.ai/user/um-why)
 
-## Use Case: <br>
-External users and developers use this skill to search WeChat content by keyword, especially for real-time video results, market monitoring, competitor analysis, and content planning. It requires a GUAIKEI_API_TOKEN and Node.js runtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Search keywords are sent to guaikei.com using the configured GUAIKEI_API_TOKEN. <br>
-Mitigation: Use only with keywords appropriate to share with the service, protect the token, and rotate it if exposed. <br>
-Risk: Successful search results are saved locally under the skill's logs directory. <br>
-Mitigation: Review generated log files and manage retention according to the user's data-handling requirements. <br>
-Risk: The release description mentions article, video, and image search, while the current artifact implements video search. <br>
-Mitigation: Treat this version as a video-search tool unless additional article or image modes are separately verified. <br>
+## Use Case:
 
+External users and analysts use this skill to search public WeChat articles and videos for topic discovery, trend monitoring, and competitor analysis. Results are intended for individual or team internal analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/um-why/wechat-sou) <br>
-- [Guaikei service site](https://www.guaikei.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files] <br>
-**Output Format:** [JSON object printed to stdout and saved as a local JSON log file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include status, keyword, limit, total count, timestamp, runtime metadata, and result records when the upstream service returns matches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The benign security verdict has medium confidence because analysis covered 60% of components and ten files were partly inspected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled files before installation and reassess if fuller security analysis becomes available.
+
+Risk: Search keywords are sent to the third-party API, and results are written to the skill logs directory.
+
+Mitigation: Use non-sensitive queries and restrict access to local result logs; keep use to public WeChat data for internal analysis.
+
+## Reference(s):
+
+- [Search options and examples](artifact/references/options.md)
+- [GuaiKei API support](https://www.guaikei.com)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured JSON search results with concise natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a GuaiKei API token. Search terms are sent to the API provider, and results are saved in the skill logs directory; use only public WeChat data for internal analysis.]
+
+## Skill Version(s):
+
+1.1.1 (source: server-resolved release metadata, SKILL.md, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,50 @@
-## Description: <br>
-This skill is a migration notice directing users from the old vibevideo-io entry to the new vibevideo-core page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill has been migrated to https://clawhub.ai/vibevideo/vibevideo-core. Use the new skill page instead of the old vibevideo-io entry.
 
-## Publisher: <br>
-[brainchen](https://clawhub.ai/user/brainchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brainchen](https://clawhub.ai/user/brainchen)
 
-## Use Case: <br>
-External users and developers use this entry to identify that the old VibeVideoIO AI Script to Video skill has moved and to navigate to the current vibevideo-core skill page. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install the old entry thinking it is the current VibeVideoIO skill. <br>
-Mitigation: Use the new vibevideo-core skill page and review that separate skill before use. <br>
+## Use Case:
 
+External users and developers use this entry as a migration notice that redirects them from the old vibevideo-io skill to the current vibevideo-core skill page.
 
-## Reference(s): <br>
-- [Current vibevideo-core skill page](https://clawhub.ai/vibevideo/vibevideo-core) <br>
-- [Legacy vibevideo-io skill page](https://clawhub.ai/brainchen/vibevideo-io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No runtime actions; directs users to the new ClawHub skill page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Users may rely on this moved placeholder instead of reviewing the migrated skill that contains the active behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the separate vibevideo-core skill before installing or relying on the migrated version.
+
+## Reference(s):
+
+- [Current ClawHub skill page](https://clawhub.ai/brainchen/skills/vibevideo-io)
+- [Migrated vibevideo-core skill page](https://clawhub.ai/vibevideo/vibevideo-core)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown migration notice with links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not perform actions; directs users to the migrated skill page.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

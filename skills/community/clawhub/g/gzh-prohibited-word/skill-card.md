@@ -1,45 +1,60 @@
-## Description: <br>
-扫描公众号文案、文件或网页中的违禁词与敏感表述，标注风险并提供合规替换建议，帮你安全过审、避免删文限流。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks WeChat Official Account copy from text, documents, images, or webpages for potentially prohibited or sensitive wording and suggests alternatives; when service credits are insufficient, its workflow can initiate a payment-assisted recharge.
 
-## Publisher: <br>
-[if530770](https://clawhub.ai/user/if530770) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[if530770](https://clawhub.ai/user/if530770)
 
-## Use Case: <br>
-WeChat Official Account operators, new media editors, brand teams, and designers use this skill to check draft copy, uploaded text files, extracted page text, or image text for prohibited wording before publication. The skill returns highlighted risks, replacement guidance, and an optimized copy file for review and reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan says checked copy, extracted file text, and fetched webpage text are sent to RedFoxHub for analysis. <br>
-Mitigation: Use only with content approved for that external data flow, and avoid submitting confidential or regulated material unless the organization has approved the service. <br>
-Risk: The security scan notes that the skill scans shell startup files for REDFOX_API_KEY. <br>
-Mitigation: Prefer a dedicated environment or secret mechanism for REDFOX_API_KEY, and avoid storing the key in shell startup files. <br>
-Risk: The security scan notes that optimized copy is written to a local text file after detection. <br>
-Mitigation: Review generated files before sharing or committing them, and remove local outputs that contain sensitive source copy. <br>
+## Use Case:
 
+Creators, editors, and marketing teams use the skill to review WeChat Official Account drafts before publication, identify potentially risky wording, and assess suggested alternatives. Its suggestions are editorial aids and do not replace legal or platform review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/if530770/gzh-prohibited-word) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [Core workflow](artifact/references/core_workflow.md) <br>
-- [Detection script](artifact/scripts/check_sensitive_words.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown detection results and replacement tables, plus a plain-text optimized copy file; the helper script emits JSON for the agent to parse.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY and sends checked content, extracted file text, or fetched webpage text to RedFoxHub for analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Submitted content is sent to RedFox for checking, and rewritten copies may be saved locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Get authorization before sending sensitive copy, avoid submitting confidential content, and review or remove locally saved output after use.
+
+Risk: Insufficient-credit handling can install or use a separate payment tool and act on returned payment details.
+
+Mitigation: Require explicit approval of the recipient and amount for each recharge, validate the checkout destination, safely pass response values to commands, and separately approve and pin payment-tool installation.
+
+Risk: Credential lookup may involve shell configuration files.
+
+Mitigation: Set REDFOX_API_KEY through an environment variable rather than relying on shell-file credential lookup, and do not expose the key in submitted content or logs.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/if530770/skills/gzh-prohibited-word)
+- [RedFoxHub service](https://redfox.hk/?source=clawhub)
+- [Core workflow](references/core_workflow.md)
+- [Recharge workflow and safeguards](references/alipay-recharge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Markdown with marked matches, replacement suggestions, and revised copy; optional plain-text file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts pasted text, supported documents, images for text extraction, and webpages. Detection results are not a guarantee of legal or platform compliance.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

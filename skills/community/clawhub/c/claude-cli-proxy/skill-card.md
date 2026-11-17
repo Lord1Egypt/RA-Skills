@@ -1,43 +1,57 @@
-## Description: <br>
-Set up a local HTTP proxy that routes OpenClaw model requests through Claude Code CLI using a Team, Max, or Pro subscription instead of API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a local HTTP proxy that routes OpenClaw model requests through Claude Code CLI using a Team/Max/Pro subscription instead of API keys.
 
-## Publisher: <br>
-[maxsorto](https://clawhub.ai/user/maxsorto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxsorto](https://clawhub.ai/user/maxsorto)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw to send local Anthropic-compatible model requests through Claude Code CLI and a persistent acpx session. It helps users run OpenClaw with Claude subscription authentication while preserving streaming-compatible provider behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The proxy forwards full OpenClaw system context, recent conversation history, and the current user message through Claude Code. <br>
-Mitigation: Install only when that routing is intended, keep the proxy bound to localhost, and avoid placing secrets or broad identity files in persistent configs. <br>
-Risk: The proxy writes system prompt content to `.ccproxy-system-context.md`, which can persist on disk between requests. <br>
-Mitigation: Use a controlled workspace, review what context is written there, and remove the file or workspace data when decommissioning the proxy. <br>
-Risk: Autostart options can create persistent LaunchAgent, systemd, heartbeat, or acpx session state. <br>
-Mitigation: Review the scripts before enabling autostart and keep clear stop and removal steps for the service and acpx session. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to configure a local Anthropic-compatible proxy that forwards OpenClaw requests to Claude Code CLI through an existing Claude subscription.
 
-## Reference(s): <br>
-- [Claude CLI Proxy on ClawHub](https://clawhub.ai/maxsorto/claude-cli-proxy) <br>
-- [Auto-Start Configuration](references/autostart.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash, JSON, plist, systemd, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup steps and proxy scripts for a localhost HTTP service that forwards OpenClaw context through Claude Code CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Full OpenClaw prompts, system context, and conversation history are routed through Claude Code and Anthropic using the operator's subscription account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that routing is intended, and review what agent context may be sent before enabling the proxy.
+
+Risk: The proxy writes system context to `.ccproxy-system-context.md`, which may persist on disk between requests.
+
+Mitigation: Restrict workspace file permissions and avoid placing the proxy in shared or broadly readable directories.
+
+Risk: Security evidence reports persistent configuration changes and a command-injection risk around session-name handling.
+
+Mitigation: Review and harden the scripts before deployment, especially session-name handling and any global Claude Code settings changes.
+
+## Reference(s):
+
+- [Auto-Start Configuration](references/autostart.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript scripts, shell commands, and JSON or service configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup instructions and local proxy scripts for OpenClaw-to-Claude Code routing.]
+
+## Skill Version(s):
+
+2.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

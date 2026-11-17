@@ -1,41 +1,60 @@
-## Description: <br>
-Drafts an initial Occupational Therapy evaluation report from clinician-provided data, aligned to AOTA OTPF-4 and CMS Medicare documentation requirements, and labels the output for licensed OT review and sign-off. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts an initial Occupational Therapy evaluation report from clinician-provided data, aligned to the AOTA Occupational Therapy Practice Framework 4th edition and CMS / Medicare documentation standards.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Licensed Occupational Therapists, supervised OTAs, OT students, and rehabilitation documentation specialists use this skill to turn intake notes, occupational profile details, ADL/IADL observations, standardized assessment scores, and clinician impressions into a structured draft OT evaluation report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft OT documentation could be mistaken for a finalized clinical record or payer-ready report. <br>
-Mitigation: Keep the output labeled as a draft and require licensed OT review, editing, dating, and signature before record entry or submission. <br>
-Risk: Patient identifiers or other PHI may be included in source notes. <br>
-Mitigation: Use initials and placeholders in the working draft, remove direct identifiers, and call out substitutions for clinician review. <br>
-Risk: The server security evidence marks the bundle suspicious because it includes privileged maintainer workflows. <br>
-Mitigation: Install only when those workflows are expected, require explicit approval for production or account-impacting actions, and run nested review tooling without full-access automation unless intentionally approved. <br>
+## Use Case:
 
+Licensed Occupational Therapists, supervised OTAs, OT students, and rehabilitation documentation specialists use this skill to turn clinician-provided evaluation data into a structured draft OT evaluation report for review and sign-off.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft evaluation report with structured sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only output requiring licensed OT review and sign-off before medical record, school record, or payer submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and changelog, released 2026-05-28) <br>
+Risk: Draft OT documentation could contain inaccurate facts, clinical reasoning, payer language, or final wording if user-provided inputs are incomplete or wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require licensed OT review, editing, dating, and signature before entry into any medical record, school record, or payer submission.
+
+Risk: Patient information may be included while preparing an evaluation draft.
+
+Mitigation: Use initials and placeholders in working drafts and handle any patient information according to clinical privacy policies.
+
+Risk: Safety concerns such as fall risk, pressure injury, or cognitive decline could be under-addressed in a draft.
+
+Mitigation: Flag safety concerns prominently in the unresolved-information list for clinician follow-up.
+
+## Reference(s):
+
+- [AOTA Occupational Therapy Practice Framework, 4th edition (OTPF-4)](artifact/README.md)
+- [CMS Medicare Part B documentation requirements (42 CFR § 410.59, MLN 905364)](artifact/README.md)
+- [IDEA Part B school-based OT evaluation requirements](artifact/README.md)
+- [AOTA Occupational Profile Template (2017)](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown draft evaluation report with tables and unresolved-information list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output is labeled as a draft for licensed OT review and sign-off.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

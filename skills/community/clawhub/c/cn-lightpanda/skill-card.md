@@ -1,47 +1,61 @@
-## Description: <br>
-Lightpanda helps agents install and use the Lightpanda lightweight headless browser for browser automation, page extraction, CDP integrations, and MCP-based browsing workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightpanda guides agents through installing and using the Lightpanda headless browser for CDP, Puppeteer, Playwright, MCP, and page content extraction workflows.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and agent operators use this skill to set up Lightpanda, connect Puppeteer or Playwright through CDP, configure an MCP server, and extract web pages as HTML or Markdown for automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to download and run unpinned nightly browser binaries. <br>
-Mitigation: Use a pinned Lightpanda release, verify checksums or signatures where available, and require user approval before installation or execution. <br>
-Risk: Browser automation can access websites, local services, proxies, and credentials if configured carelessly. <br>
-Mitigation: Keep the CDP server bound to localhost, avoid hardcoded tokens or proxy passwords, and crawl only sites the user is authorized to access. <br>
-Risk: Lightpanda is described as beta and may be unstable or incomplete for some Web APIs and high-concurrency workloads. <br>
-Mitigation: Start with limited concurrency, validate output quality against target sites, and fall back to a more compatible browser when required APIs are missing. <br>
-Risk: The skill notes default telemetry behavior. <br>
-Mitigation: Disable telemetry when required by policy or user preference before starting the browser service. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to set up Lightpanda, connect Puppeteer or Playwright scripts, configure MCP access, and extract webpage content as HTML or Markdown for agent workflows.
 
-## Reference(s): <br>
-- [Lightpanda homepage](https://lightpanda.io) <br>
-- [Lightpanda documentation](https://lightpanda.io/docs) <br>
-- [Lightpanda MCP server documentation](https://lightpanda.io/docs/open-source/guides/mcp-server) <br>
-- [Docker Hub lightpanda/browser](https://hub.docker.com/r/lightpanda/browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and JavaScript or TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup and usage guidance for a local browser binary, Docker container, CDP endpoint, or MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents or users to download and execute mutable Lightpanda nightly binaries or containers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact Lightpanda release before installation, prefer pinned versions or immutable Docker digests, and verify checksums or signatures before granting execute permissions or running containers.
+
+Risk: Browser automation through CDP or MCP can expose authenticated sessions, sensitive pages, or local services to an agent.
+
+Mitigation: Use an isolated browser profile or container, bind services to localhost where possible, and avoid browsing authenticated or sensitive sites unless the agent is explicitly intended to access that data.
+
+Risk: Persistent MCP or browser-server integration can keep automation access available beyond a single task.
+
+Mitigation: Avoid automatic agent execution of install and configuration commands, review MCP configuration changes, and stop or remove unused browser services after the workflow completes.
+
+## Reference(s):
+
+- [Lightpanda homepage](https://lightpanda.io)
+- [Lightpanda documentation](https://lightpanda.io/docs)
+- [Lightpanda MCP server documentation](https://lightpanda.io/docs/open-source/guides/mcp-server)
+- [Lightpanda Docker Hub repository](https://hub.docker.com/r/lightpanda/browser)
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/cn-lightpanda)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash, JavaScript, TypeScript, JSON, and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation, CDP server, Puppeteer, Playwright, MCP, Docker, proxy, telemetry, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

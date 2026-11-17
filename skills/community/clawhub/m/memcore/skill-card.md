@@ -1,41 +1,62 @@
-## Description: <br>
-MemCore provides an enhanced long-term memory system for agents with episodic memory, semantic compression, memory triggers, forgetting-curve cleanup, persistent storage, vector knowledge retrieval, conflict resolution, and confidence tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemCore is a Python long-term memory system for agents with persistent episodic, user, task, knowledge, and experience memory.
 
-## Publisher: <br>
-[laojun509](https://clawhub.ai/user/laojun509) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laojun509](https://clawhub.ai/user/laojun509)
 
-## Use Case: <br>
-Developers building memory-enabled agents use MemCore to store, retrieve, compress, and manage long-term context such as user preferences, task state, knowledge, and prior decisions across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored memories can contain sensitive user preferences, task state, or knowledge records. <br>
-Mitigation: Treat the local ~/.memcore database as sensitive, avoid storing secrets or regulated personal data without additional controls, and apply appropriate access controls and retention policies. <br>
-Risk: Forgetting and cleanup methods can delete memory records that may still be useful. <br>
-Mitigation: Back up important records before running forgetting or cleanup cycles and review retention settings before deployment. <br>
-Risk: The optional OpenAI embedding wrapper can send text to an external provider. <br>
-Mitigation: Use the remote embedding path only for text approved for that provider, or keep the default local embedding behavior for sensitive data. <br>
+## Use Case:
 
+Developers building agents use MemCore to add persistent memory across sessions, semantic knowledge retrieval, automatic memory triggers, and memory quality controls. It is intended for agent implementations that need to remember user preferences, task state, knowledge, and prior interactions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Configuration, Guidance] <br>
-**Output Format:** [Python modules and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local SQLite or JSON memory stores when used by an agent application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and artifact package metadata) <br>
+Risk: Persistent memory may retain user preferences, task state, knowledge, and episodic history under the user's home directory across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit consent, data minimization, access isolation, and deletion or export controls before storing sensitive, regulated, or long-lived user data.
+
+Risk: Automatically recalled suggested_context can introduce stale, incorrect, or untrusted retrieved content into an agent's active context.
+
+Mitigation: Treat recalled context as untrusted input, review high-impact memories before use, and keep confidence or verification checks enabled for important decisions.
+
+Risk: Automatic forgetting can delete low-scoring memories that a user or application expects to preserve.
+
+Mitigation: Review forgetting settings before relying on the store as durable memory, and protect critical records with higher priority or application-level retention rules.
+
+Risk: JSONBackend category names may be unsafe if exposed directly to untrusted input before path validation is added.
+
+Mitigation: Avoid passing untrusted category names to the JSON backend, or add path validation and allow-listing in the host application.
+
+## Reference(s):
+
+- [ClawHub MemCore release page](https://clawhub.ai/laojun509/skills/memcore)
+- [Original MemCore reference](https://clawhub.ai/laojun509/memcore)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persistent memory database configuration and retrieved suggested_context for agent use.]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release evidence, artifact __version__, and SKILL.md version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

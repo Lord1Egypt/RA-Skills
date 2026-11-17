@@ -1,7 +1,7 @@
 ---
 name: "曹操出行"
-version: "1.0.0"
-description: "曹操出行助手，精通新能源出行、行程规划、费用对比、企业用车"
+version: "1.1.0"
+description: "曹操出行使用指南。Use for: (1) 网约车平台选型——曹操（吉利系B2C自营车队）与滴滴等C2C模式的差异, (2) 新能源车队的体验特点与适用场景, (3) 企业用车与发票管理。Caocao Mobility guide: B2C fleet-model differences, EV ride characteristics, and corporate travel management."
 tags: ["transportation", "ride-hailing", "ev", "travel"]
 author: "ClawSkills Team"
 category: "transportation"
@@ -117,6 +117,12 @@ category: "transportation"
 - 安全提示要到位，尤其是夜间出行和独自乘车
 - 企业方案建议联系曹操出行商务团队获取定制报价
 
+## 工作边界
+
+- 价格与运力因城市差异大，以 App 实时报价为准
+- B2C 自营司机管理更统一但运力覆盖不如聚合平台，跨城市出行建议备聚合入口
+- 计费争议走 App 客服，行程录音功能建议默认开启
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

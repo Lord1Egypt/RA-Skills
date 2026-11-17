@@ -1,43 +1,58 @@
-## Description: <br>
-Orchestrates early token launch detection, on-chain risk analysis, social signal verification, and guarded swap execution on Solana and Base chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Meta-skill for early token-launch intelligence and execution orchestration across Solana and Base using minara, torchmarket, and torchliquidationbot.
 
-## Publisher: <br>
-[h4gen](https://clawhub.ai/user/h4gen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[h4gen](https://clawhub.ai/user/h4gen)
 
-## Use Case: <br>
-DeFi operators and agent users use this skill to evaluate early token-launch opportunities, combine on-chain and social checks, and decide whether to observe, paper trade, or execute bounded entries under explicit guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live mode can spend real funds through wallet-backed trading routes. <br>
-Mitigation: Prefer observe or paper mode first, use a dedicated low-balance wallet or constrained vault, and require manual confirmation for live swaps. <br>
-Risk: The skill recommends broad upstream skill updates, which can change trading behavior. <br>
-Mitigation: Pin or inspect upstream trading skills before use and avoid update-all workflows unless every changed skill will be reviewed. <br>
-Risk: Automated token-launch workflows can act on incomplete or misleading market signals. <br>
-Mitigation: Keep hard position and slippage limits, require both security and sentiment gates to pass, and fail closed when evidence is ambiguous. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Defi Sniper ClawHub page](https://clawhub.ai/h4gen/defi-sniper) <br>
-- [ClawHub homepage](https://clawhub.ai) <br>
-- [Inspected upstream skills](references/inspected-skills.md) <br>
+## Use Case:
 
+Developers and operators use this skill to coordinate early token-launch detection, on-chain risk triage, social-signal confirmation, and bounded swap execution decisions for Solana and Base workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured decision sections and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces detection, on-chain risk, social signal, execution decision, and audit trail sections.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup uses unpinned latest installers and a broad update-all command in a wallet and trading context.
+
+Mitigation: Use a dedicated least-privileged environment, avoid update --all, and pin reviewed installer and dependency versions before connecting wallet secrets.
+
+Risk: Live execution can submit real trades through signer or vault-routed paths.
+
+Mitigation: Require manual confirmation unless the execution path and limits have been separately audited, and enforce configured entry-size and slippage caps.
+
+Risk: On-chain and social checks do not provide a single definitive rug, honeypot, or safety verdict.
+
+Mitigation: Require multiple independent indicators, keep ambiguous cases in observe or paper mode, and prefer no_trade when evidence conflicts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/h4gen/skills/defi-sniper)
+- [Publisher profile](https://clawhub.ai/user/h4gen)
+- [Inspected upstream skills](references/inspected-skills.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured decision sections and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include detection, on-chain risk, social signal, execution decision, and audit trail sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

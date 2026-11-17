@@ -1,40 +1,53 @@
-## Description: <br>
-Copywriter Pro helps agents draft and refine marketing copy for ads, landing pages, email sequences, sales pages, and brand messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Copywriter Pro helps agents draft and refine marketing copy for ads, landing pages, email sequences, sales pages, and brand messaging using established copywriting frameworks.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Marketing, growth, and product teams use this skill to create structured copy drafts, campaign variants, landing page sections, email sequences, and sales page messaging for review before publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing copy may include urgency, scarcity, testimonial, guarantee, pricing, or performance claims that need review before publication. <br>
-Mitigation: Review generated claims against product facts, brand standards, and applicable marketing rules before publishing. <br>
-Risk: The security guidance identifies this as a drafting aid and cautions against granting crypto, purchase, account, or publishing authority by default. <br>
-Mitigation: Run the skill with drafting-only permissions unless a separate, explicit workflow authorizes transactional or publishing actions. <br>
+## Use Case:
 
+Marketing teams, founders, and content-focused agents use this skill to generate conversion-oriented copy variants and structure ad campaigns, landing pages, emails, sales pages, and brand messaging.
 
-## Reference(s): <br>
-- [Copywriter Pro code examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with structured copy templates and inline TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft output should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated marketing copy may include unsupported claims, overpromising, or inaccurate product positioning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review claims against product evidence, approved messaging, and legal requirements before publishing.
+
+Risk: Generated ads, emails, or landing page copy may conflict with platform advertising policies or brand standards.
+
+Mitigation: Check outputs against the target platform's ad policies and the organization's brand guidelines before use.
+
+## Reference(s):
+
+- [Copywriter Pro - Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown prose with optional TypeScript examples and structured copy templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces marketing copy suggestions that should be reviewed for truthfulness, brand fit, legal requirements, and platform advertising policy compliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

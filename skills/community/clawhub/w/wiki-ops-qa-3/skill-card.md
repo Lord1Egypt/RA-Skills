@@ -1,40 +1,52 @@
-## Description: <br>
-Use when an agent should answer simple operations questions by retrieving internal wiki content through wiki MCP, and must refuse to answer when the wiki does not provide enough evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent should answer simple operations questions by retrieving internal wiki content through wiki MCP, and must refuse to answer when the wiki does not provide enough evidence.
 
-## Publisher: <br>
-[glylovechina](https://clawhub.ai/user/glylovechina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[glylovechina](https://clawhub.ai/user/glylovechina)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and operations teams use this skill to answer document-oriented operations questions from internal wiki pages for deployment, release, rollback, restart, logs, alerts, SOPs, permissions, and configuration details. It refuses or answers conservatively when retrieved wiki evidence is missing, incomplete, or conflicting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The agent may retrieve and summarize internal operations documentation.
+
+Mitigation: Install only where read-only internal wiki access is appropriate.
+
+Risk: Weak or missing wiki evidence could lead to unsupported operational steps.
+
+Mitigation: Use the skill's evidence-only response contract and refuse or answer conservatively when wiki results are missing, incomplete, or conflicting.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Operations and support teams use this skill to answer document-oriented questions about deployments, releases, rollbacks, restarts, logs, alerts, SOPs, permissions, and configuration using internal wiki evidence. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, API Calls, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may be asked to answer operational questions without enough wiki evidence. <br>
-Mitigation: Use only retrieved wiki content and refuse or answer conservatively when evidence is missing, incomplete, or conflicting. <br>
-Risk: The skill depends on access to configured internal wiki MCP tools. <br>
-Mitigation: Install only where the agent is authorized to query those wiki tools and treat the skill as documentation Q&A, not permission to inspect live systems. <br>
+**Output Format:** [Markdown responses with wiki evidence summaries and refusal statements when evidence is insufficient]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/glylovechina/wiki-ops-qa-3) <br>
+**Other Properties Related to Output:** [Answers are constrained to retrieved wiki MCP content and should separate direct conclusions, supporting evidence, and unknowns.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Concise Markdown response with Conclusion, Evidence, and Unknown sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers must be grounded only in retrieved wiki evidence; missing, incomplete, or conflicting evidence leads to refusal or conservative output.] <br>
+2.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

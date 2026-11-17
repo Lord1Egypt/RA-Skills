@@ -1,47 +1,61 @@
-## Description: <br>
-Trade prediction markets on Kalshi using the kalshi-cli command-line tool for market discovery, order placement, portfolio management, live price streaming, and terminal charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade prediction markets on Kalshi with kalshi-cli for market discovery, order placement, portfolio management, streaming prices, and ASCII candlestick charts.
 
-## Publisher: <br>
-[lacymorrow](https://clawhub.ai/user/lacymorrow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lacymorrow](https://clawhub.ai/user/lacymorrow)
 
-## Use Case: <br>
-External users and developers use this skill to operate the kalshi-cli tool for Kalshi prediction-market research, order entry, portfolio checks, streaming market data, and bot-oriented command workflows. It is informational tooling for user-directed trading, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Production mode can place or cancel real-money Kalshi orders. <br>
-Mitigation: Start in demo mode and require explicit user review of market, side, quantity, price, --prod, --yes, and cancel-all details before execution. <br>
-Risk: The skill depends on an external kalshi-cli installation with access to a Kalshi account. <br>
-Mitigation: Install only from a trusted kalshi-cli source, confirm authentication status, and avoid exposing API keys or private keys in prompts, logs, or shared files. <br>
-Risk: Trading event contracts can result in financial loss and the skill is not a financial advisor. <br>
-Mitigation: Provide tool usage and command construction only; leave trading decisions to the user and encourage demo-mode testing before production use. <br>
+## Use Case:
 
+External users and developers use this skill to operate kalshi-cli for Kalshi market research, order workflows, portfolio review, streaming data, and bot-oriented JSON command flows while keeping live trading behind explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lacymorrow/kalshi-cli-trading) <br>
-- [kalshi-cli](https://github.com/6missedcalls/kalshi-cli) <br>
-- [OpenClaw Kalshi Trading Skill](https://github.com/lacymorrow/openclaw-kalshi-trading-skill) <br>
-- [Kalshi API Docs](https://docs.kalshi.com/welcome) <br>
-- [Kalshi Fee Schedule](https://kalshi.com/fee-schedule) <br>
-- [Liquidity Incentive Program](https://help.kalshi.com/incentive-programs/liquidity-incentive-program) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and optional JSON-oriented command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading command proposals that require user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill installs and relies on an unpinned third-party trading CLI that handles credentials and can place or cancel real-money orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact kalshi-cli version and source before installing, prefer a pinned verified release, and use demo mode before production trading.
+
+Risk: Non-interactive order flows and the --yes flag can bypass command confirmations for live orders.
+
+Mitigation: Keep production trading behind explicit human approval and avoid --yes for live orders unless the full bot workflow has been reviewed.
+
+Risk: Kalshi API credentials are required for authenticated trading and account operations.
+
+Mitigation: Use narrowly scoped credentials that can be revoked quickly, and avoid hardcoding private keys in scripts or configuration.
+
+## Reference(s):
+
+- [kalshi-cli](https://github.com/6missedcalls/kalshi-cli)
+- [OpenClaw Kalshi Trading Skill Repository](https://github.com/lacymorrow/openclaw-kalshi-trading-skill)
+- [Kalshi API Docs](https://docs.kalshi.com/welcome)
+- [Kalshi Fee Schedule](https://kalshi.com/fee-schedule)
+- [Kalshi Liquidity Incentive Program](https://help.kalshi.com/incentive-programs/liquidity-incentive-program)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Code, JSON]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include demo or production Kalshi CLI commands; live trading should require explicit human confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

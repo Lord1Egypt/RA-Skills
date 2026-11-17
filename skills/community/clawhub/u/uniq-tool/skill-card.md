@@ -1,38 +1,54 @@
-## Description: <br>
-Report or filter repeated lines in sorted text for deduplication, frequency counting, and data cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Report or filter repeated lines in sorted text. Use for deduplication, frequency counting, and data cleanup.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and data cleanup workflows use this skill to remove repeated lines from sorted text or count repeated lines in local files or standard input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation lists -d, -u, -i, and output-file behavior, while the included script implements only basic unique-line output and count mode. <br>
-Mitigation: Verify the available command-line behavior before relying on those documented options in production workflows. <br>
+## Use Case:
 
+Developers and engineers can use this skill to remove duplicate lines or count repeated lines while preparing sorted text data for cleanup, inspection, or shell-style data processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dinghaibin/uniq-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text lines or count-prefixed text lines from command-line usage.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Works best with sorted input. The included script supports basic unique-line output and count mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The documented -d, -u, -i, and output-file behaviors are not implemented by the inspected script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the implemented file/stdin input and count or global deduplication behavior, or verify compatibility before relying on documented uniq-style options.
+
+Risk: The inspected script treats non-adjacent duplicate lines as duplicates, which differs from adjacent-line-only uniq behavior.
+
+Mitigation: Install only when global deduplication or counting is acceptable for the workflow, and test representative input before using it in data-cleanup pipelines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/uniq-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell examples and plain-text command output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The tool reads local text input from a file or standard input and writes deduplicated or counted lines to standard output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

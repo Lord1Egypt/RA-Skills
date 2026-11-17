@@ -1,42 +1,57 @@
-## Description: <br>
-EPAI helps agents administer EPAI knowledge bases, documents, and catalogs through a CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EPAI provides a CLI for managing EPAI knowledge bases, documents, and catalogs.
 
-## Publisher: <br>
-[Iamlovingit](https://clawhub.ai/user/Iamlovingit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[iamlovingit](https://clawhub.ai/user/iamlovingit)
 
-## Use Case: <br>
-Developers and operators use EPAI to manage EPAI platform resources from an agent workflow, including listing, creating, and deleting knowledge bases and catalogs, uploading documents, and listing or deleting documents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete remote EPAI resources. <br>
-Mitigation: Use a least-privileged EPAI API key and double-check knowledge base, catalog, and document IDs before running delete commands. <br>
-Risk: The skill can upload selected local files to EPAI. <br>
-Mitigation: Upload only documents intended for EPAI and confirm file paths before execution. <br>
-Risk: Misconfigured service endpoints or TLS settings could send requests to the wrong service or weaken transport security. <br>
-Mitigation: Verify EPAI_API_BASE points to the intended service and keep TLS verification enabled. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Iamlovingit/epaiskill) <br>
-- [Publisher profile](https://clawhub.ai/user/Iamlovingit) <br>
+## Use Case:
 
+Developers and operators use this skill to list, create, delete, upload to, and manage EPAI knowledge bases, documents, and catalog entries through the bundled CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EPAI_API_BASE, EPAI_API_KEY, EPAI_ACCOUNT, and EPAI_VERIFY_TLS environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The CLI can perform high-impact EPAI administration actions, including deleting knowledge bases, catalogs, and documents.
+
+Mitigation: Verify target IDs and intended effects before running delete or administrative commands, and use narrowly scoped API credentials.
+
+Risk: The CLI sends requests and credentials to the configured EPAI_API_BASE and can optionally disable TLS verification through EPAI_VERIFY_TLS.
+
+Mitigation: Use a trusted HTTPS endpoint, keep TLS verification enabled, and install the skill only when the publisher and endpoint are trusted.
+
+Risk: Document upload sends the full selected local files to the configured EPAI service.
+
+Mitigation: Review selected files before upload and avoid uploading sensitive or unauthorized content.
+
+## Reference(s):
+
+- [EPAI skill page](https://clawhub.ai/iamlovingit/skills/epaiskill)
+- [Publisher profile](https://clawhub.ai/user/iamlovingit)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EPAI_API_BASE, EPAI_API_KEY, EPAI_ACCOUNT, and EPAI_VERIFY_TLS environment variables.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Calculates Amazon FBA referral fees, fulfillment fees, storage costs, margins, ROI, projections, and break-even price using a local Python calculator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates estimated Amazon FBA referral fees, fulfillment fees, storage costs, profit, margin, ROI, projections, and break-even pricing from command-line product inputs.
 
-## Publisher: <br>
-[avmw2025](https://clawhub.ai/user/avmw2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avmw2025](https://clawhub.ai/user/avmw2025)
 
-## Use Case: <br>
-Amazon sellers, ecommerce operators, and agents assisting them use this skill to estimate FBA profitability before listing or repricing products. It helps compare fees, margins, ROI, advertising costs, and break-even pricing from supplied product inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Amazon fee schedules and category rules can change, making profitability calculations inaccurate. <br>
-Mitigation: Verify the fee assumptions against current Amazon Seller Central documentation before making listing, pricing, or inventory decisions. <br>
-Risk: Calculator output may be treated as business advice even though it depends on user-supplied costs, dimensions, advertising spend, and unit projections. <br>
-Mitigation: Review all inputs and use the report as an estimate alongside seller account data, tax, returns, and operational costs not modeled by the skill. <br>
+## Use Case:
 
+Amazon sellers, ecommerce operators, and agents assisting them use this skill to estimate FBA costs and profitability for candidate products. It helps compare price, cost, shipping, dimensions, weight, category, advertising cost, and unit-volume assumptions before making selling decisions.
 
-## Reference(s): <br>
-- [Amazon seller fee reference](https://sellercentral.amazon.com/help/hub/reference/G200336920) <br>
-- [ClawHub skill page](https://clawhub.ai/avmw2025/amazon-fee-calculator) <br>
+### Deployment Geography for Use:
 
+Global; calculations target the Amazon US marketplace fee schedule.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text report from a Python command-line calculator, with usage examples in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No dependencies, API keys, network access, or installation steps are required beyond Python 3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Fee schedules, category rules, and Amazon marketplace charges can change, making bundled calculations stale or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Amazon fee rules and seller account terms before relying on the output for pricing or launch decisions.
+
+Risk: Profit, ROI, monthly, and annual projections depend entirely on user-supplied cost, advertising, dimension, weight, and sales-volume assumptions.
+
+Mitigation: Review assumptions, test multiple scenarios, and treat the calculator output as an estimate rather than financial advice.
+
+## Reference(s):
+
+- [Amazon Seller Central fee reference](https://sellercentral.amazon.com/help/hub/reference/G200336920)
+- [ClawHub skill listing](https://clawhub.ai/avmw2025/skills/amazon-fee-calculator)
+- [ClawHub publisher profile](https://clawhub.ai/user/avmw2025)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text report with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces per-unit fees, total cost, profit, margin, ROI, monthly and annual projections, and break-even price.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

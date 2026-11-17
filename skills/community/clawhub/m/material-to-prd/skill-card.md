@@ -1,40 +1,54 @@
-## Description: <br>
-基于提供的图片或物料，自动提取文本与结构，生成符合标准、可直接开发执行的互联网产品需求文档（PRD）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese PRD documents from user-provided product images, diagrams, or materials, grounding the output in the supplied content and OCR results.
 
-## Publisher: <br>
-[sssssHaoa](https://clawhub.ai/user/sssssHaoa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssssshaoa](https://clawhub.ai/user/ssssshaoa)
 
-## Use Case: <br>
-Product managers and product teams use this skill to turn supplied screenshots, diagrams, architecture notes, business flows, and other materials into structured PRD Markdown grounded in the provided source material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input screenshots, diagrams, and documents may contain secrets or confidential business details. <br>
-Mitigation: Review and redact materials before use; provide only approved artifacts to OCR or vision tooling. <br>
-Risk: OCR or vision extraction errors can lead to incorrect PRD requirements or missed relationships. <br>
-Mitigation: Review the generated PRD against the original materials before product, design, development, or test work depends on it. <br>
+## Use Case:
 
+Product managers and product teams use this skill to turn supplied screenshots, diagrams, architecture notes, or written materials into developer-ready PRD Markdown. It is intended for Chinese PRD workflows that require fixed sections, business logic, constraints, and review-ready structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sssssHaoa/material-to-prd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown PRD document using a fixed Chinese PRD template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded only in user-provided materials and OCR or vision extraction results; no invented requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill enforces a fixed Chinese PRD structure that may not match teams needing a different language or document format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the required PRD language and section structure before use, or request an explicit override for another format.
+
+Risk: PRD quality depends on the completeness and accuracy of the supplied materials or OCR results.
+
+Mitigation: Review extracted content and the generated PRD against the original materials before using it for product, engineering, or QA planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ssssshaoa/skills/material-to-prd)
+- [Publisher profile](https://clawhub.ai/user/ssssshaoa)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Text]
+
+**Output Format:** [Markdown PRD document with structured Chinese headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounded in user-provided materials and OCR results; uses a fixed Chinese PRD template.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

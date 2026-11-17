@@ -1,44 +1,55 @@
-## Description: <br>
-Generate or edit images using Google's Nano Banana image models for explicit Gemini or Nano Banana requests, iterative edits, and reference-image workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or edit images using Google's "Nano Banana" image models when a user explicitly asks for Gemini or Nano Banana image generation, iterative image edits, or reference-image composition.
 
-## Publisher: <br>
-[dyagil](https://clawhub.ai/user/dyagil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyagil](https://clawhub.ai/user/dyagil)
 
-## Use Case: <br>
-Developers and agent users use this skill to route image-generation or image-editing requests to a local Nano Banana CLI backed by Gemini image models. It is intended for prompt-based image creation, multi-image reference edits, model selection, and delivery of generated image file paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an unbundled local CLI that can process the Gemini API key, prompts, and reference images outside the reviewed package. <br>
-Mitigation: Review and independently trust the local nano-banana CLI before installation or execution. <br>
-Risk: Gemini API credentials are required for normal use. <br>
-Mitigation: Use a dedicated, restricted Gemini API key, store it with locked-down file permissions, and never log or paste it into chat. <br>
-Risk: Prompts and reference images may be sent to Google and processed by the local helper script. <br>
-Mitigation: Avoid private, regulated, or proprietary images unless the user accepts that data-sharing posture. <br>
+## Use Case:
 
+Developers and agents use this skill to generate or edit images through a local Nano Banana CLI backed by Google's Gemini image models, including prompt-only generation and edits that use one or more reference images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dyagil/dyagil-nano-banana) <br>
-- [Google AI Studio API key setup](https://aistudio.google.com/apikey) <br>
-- [Gemini generateContent API endpoint](https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={KEY}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a MEDIA path or platform attachment convention for generated image outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The reviewed package relies on a separate home-directory CLI implementation that is not included in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after verifying the target of ~/bin/nano-banana, who can modify it, and what code it runs.
+
+Risk: The external CLI receives the user's Gemini API key, prompts, and reference images.
+
+Mitigation: Store the API key in a restricted credentials file, avoid logging or echoing secrets, and only send prompts or images that are acceptable for the Gemini service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dyagil/skills/dyagil-nano-banana)
+- [Google AI Studio API key page](https://aistudio.google.com/apikey)
+- [Gemini generateContent API endpoint](https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={KEY})
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Markdown, Guidance]
+
+**Output Format:** [Markdown with shell commands, generated image file paths, and MEDIA path references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are written as PNG files by an external local CLI; model, aspect ratio, output path, output directory, reference images, and image count can be selected with CLI flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

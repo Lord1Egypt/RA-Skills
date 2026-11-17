@@ -1,0 +1,69 @@
+{
+  "id": "domain-pinterest",
+  "label": "Pinterest — Visual Discovery Browser",
+  "emoji": "📌",
+  "domain": "pinterest.com",
+  "description": "Pinterest — visual discovery engine, masonry grid layout with infinite scroll. Pin-based content organized in boards. React-based SPA. Verified 2026-07-19: multicolumn masonry grid, login gate for save/create but browseable without auth.",
+  "source_patterns": [
+    "Masonry grid scroll: slow visual consumption, 2-4s per screen of pins",
+    "Pin click → detail modal open: wait 1-2s for image + related pins to render",
+    "Save to board flow: hover pin → click Save → board selector dropdown → select board → confirm",
+    "Board creation: click Create board → type name (300-800ms) → create",
+    "Search: click search bar → type query (reading-speed) → visual results grid → scroll",
+    "Login: email form or Google/Apple OAuth redirect"
+  ],
+  "active_hours": {
+    "description": "Lifestyle — peaks morning planning, evening browsing, weekends",
+    "peak": [8, 10, 19, 22, 12, 16],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "wpm": { "min": 50, "max": 85 },
+    "profile": "browsing",
+    "think_prob": 0.025,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.04,
+    "search_typing_wpm": { "min": 40, "max": 70 },
+    "board_name_wpm": { "min": 35, "max": 55 }
+  },
+  "scroll": {
+    "passes": 8,
+    "description": "Image-based infinite scroll — slow passes with long pauses for visual consumption of masonry grid. Source: Pinterest UX patterns",
+    "speed_px_per_ms": { "min": 10, "max": 35 },
+    "pause_between_passes_ms": { "min": 3000, "max": 8000 },
+    "depth_per_pass": { "min": 0.4, "max": 0.7 },
+    "infinite_scroll_detection": "div[data-test-id='masonry-grid'] > div count",
+    "scroll_method": "gradual (visual browsing, not jump-to-bottom)"
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 2000, "max": 4000 },
+    "pre_click_pause_ms": { "min": 300, "max": 1000 },
+    "inter_action_pause_ms": { "min": 500, "max": 1500 },
+    "post_modal_pause_ms": { "min": 1000, "max": 2000 }
+  },
+  "mouse": {
+    "speed": 0.7,
+    "curvature": 0.25,
+    "jitter": 0.35,
+    "description": "Moderate-slow — browsing speed for visual discovery"
+  },
+  "platform_specific": {
+    "selectors_css": {
+      "pin_grid": "div[data-test-id='masonry-grid']",
+      "pin_card": "div[data-test-id='pinRepPresentation']",
+      "save_button": "[data-test-id='save-button']",
+      "board_selector": "[data-test-id='board-selector']",
+      "search_input": "input[data-test-id='search-input']",
+      "login_form": "[data-test-id='login-form']",
+      "modal_close": "[data-test-id='close-button']"
+    },
+    "requires_login": false,
+    "login": {
+      "pre_login_pause_ms": 2000,
+      "field_pause_ms": { "min": 300, "max": 800 },
+      "post_login_wait_ms": { "min": 4000, "max": 7000 },
+      "oauth_options": ["Google", "Apple"]
+    },
+    "sequence_hint": "navigate home feed → scroll masonry grid (6-8 passes) → hover pin → click → modal detail → view related → save to board | close → scroll more"
+  }
+}

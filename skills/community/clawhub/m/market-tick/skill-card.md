@@ -1,44 +1,56 @@
-## Description: <br>
-Provides real-time cross-asset price, volume, and spread snapshots across Kraken, Coinbase Advanced Trade, and Hyperliquid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid x402 endpoint: $0.014 USDC per call on Base. Returns BTC, ETH and SOL prices, market regime, Fear & Greed, and a momentum label.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to fetch a paid real-time crypto market snapshot for dashboards, portfolio monitoring, and spread or volume checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent needs access to an EVM wallet private key to authorize paid market-data calls. <br>
-Mitigation: Use a dedicated low-balance wallet and keep the private key out of chat, prompts, and logs. <br>
-Risk: Repeated automatic calls can spend USDC. <br>
-Mitigation: Confirm expected call volume before enabling the skill and monitor wallet spending. <br>
+## Use Case:
 
+Developers can use the endpoint to retrieve a compact BTC, ETH, and SOL market snapshot with regime, sentiment, and momentum indicators for monitoring or as an input to an agent workflow.
 
-## Reference(s): <br>
-- [Market Tick signal](https://apexrunner.ai/signals/market-tick) <br>
-- [Market Tick pricing](https://apexrunner.ai/signals/my-pricing) <br>
-- [BTC Price Tick signal](https://apexrunner.ai/signals/btc-price-tick) <br>
-- [APEX Pulse signal](https://apexrunner.ai/signals/apex-pulse) <br>
-- [Volume Analysis signal](https://apexrunner.ai/signals/volume-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON market-data snapshot with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an EVM wallet private key for x402 payment authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The documented x402 flow signs paid requests using an EVM wallet and each request incurs a USDC charge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect EVM_PRIVATE_KEY, set a per-request spending cap, and confirm the current price before repeated polling.
+
+Risk: Market snapshots and derived indicators may be incomplete or unsuitable as the sole basis for automated trading decisions.
+
+Mitigation: Check response availability and timestamp, and validate signals against independent sources before acting on them.
+
+## Reference(s):
+
+- [Market Tick endpoint](https://apexrunner.ai/signals/market-tick)
+- [BTC Price Tick](https://apexrunner.ai/signals/btc-price-tick)
+- [APEX Pulse](https://apexrunner.ai/signals/apex-pulse)
+- [Volume Analysis](https://apexrunner.ai/signals/volume-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Code]
+
+**Output Format:** [JSON market snapshot from the endpoint, with a Python request example in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A request returns one compact snapshot; the endpoint may return HTTP 503 when an input is unavailable.]
+
+## Skill Version(s):
+
+1.0.4 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

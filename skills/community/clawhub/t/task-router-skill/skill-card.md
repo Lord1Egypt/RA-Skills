@@ -1,40 +1,51 @@
-## Description: <br>
-Distributed task queue and agent coordinator for OpenClaw multi-agent systems that routes tasks by capability, tracks lifecycle, coordinates async handoffs, rebalances loads, and manages dead letters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distributed task queue and agent coordinator for OpenClaw multi-agent systems that routes tasks by capability, tracks lifecycle state, coordinates async handoffs, rebalances workloads, and manages dead letters.
 
-## Publisher: <br>
-[capt-marbles](https://clawhub.ai/user/capt-marbles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[capt-marbles](https://clawhub.ai/user/capt-marbles)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-agent OpenClaw work through capability-based task routing, task lifecycle tracking, async handoffs, workload rebalancing, and dead-letter handling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local task state and automated routing can expose sensitive payloads or route work to inappropriate agents. <br>
-Mitigation: Register only trusted agents, scope agent capabilities carefully, and avoid putting secrets in task payloads or result files. <br>
-Risk: Heartbeat automation can reassign, retry, or spawn work without immediate human review. <br>
-Mitigation: Review heartbeat behavior, timeouts, and routing rules before enabling automation in a shared workspace. <br>
-Risk: Bulk cleanup, dead-letter, or queue maintenance commands can remove operational history or important failure state. <br>
-Mitigation: Preview or export queue and dead-letter state before running cleanup, drain, archive, or clear commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and agent operators use this skill to coordinate OpenClaw multi-agent work through capability-based task routing, lifecycle tracking, retries, dead-letter review, and asynchronous handoffs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The task router persists queue, agent registry, completion, failure, and log state under the OpenClaw task-router directory.
+
+Mitigation: Enable the router only in workspaces where persistent task state is expected, and review stored queue data and logs before sharing or archiving the workspace.
+
+Risk: Automatic routing, heartbeat, cron, cancel, clear, cleanup, and dead-letter commands can reassign, retry, archive, or remove queued work.
+
+Mitigation: Review heartbeat or cron configuration before enabling automation, keep registered agent capabilities narrow, and inspect queued work before running maintenance commands.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with bash, YAML, TypeScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task schema, CLI workflows, heartbeat integration, routing strategies, and troubleshooting guidance.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with bash, YAML, and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI examples, configuration schemas, task lifecycle guidance, and TypeScript API examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

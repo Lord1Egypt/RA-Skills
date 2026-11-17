@@ -34,6 +34,7 @@ class TaskRunner:
         input_src: str,
         params: Optional[Dict] = None,
         on_async_submitted: Optional[Callable[[str], None]] = None,
+        profile: Optional[Dict] = None,
     ) -> Dict:
         """
         Run a task.
@@ -41,6 +42,7 @@ class TaskRunner:
         :param task_name: Task preset name
         :param input_src: Input file path or URL
         :param params: Optional task parameters
+        :param profile: Optional first-input profile override
         :param on_async_submitted: Callback for async submission
         :return: Task result
         """
@@ -49,6 +51,7 @@ class TaskRunner:
             image_path=input_src,
             params=params,
             on_async_submitted=on_async_submitted,
+            profile=profile,
         )
 
     def resume(self, task_id: str) -> Dict:

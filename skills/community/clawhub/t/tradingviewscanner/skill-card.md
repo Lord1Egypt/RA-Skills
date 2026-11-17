@@ -1,46 +1,62 @@
-## Description: <br>
-Scans a user-provided cross-market stock watchlist with TradingView data, evaluates technical signals, and writes Markdown reports with optional Excel output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans stock watchlists with TradingView market data, computes technical indicators across A-share, Hong Kong, U.S., and Japanese markets, and generates Markdown reports with optional Excel output.
 
-## Publisher: <br>
-[sarahwang94712](https://clawhub.ai/user/sarahwang94712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sarahwang94712](https://clawhub.ai/user/sarahwang94712)
 
-## Use Case: <br>
-External users and developers use this skill to run scheduled or on-demand technical scans over A-share, Hong Kong, US, and Japan stock watchlists stored in an Obsidian vault. It helps generate daily technical-analysis summaries, signal tables, scores, and report files for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a watchlist CSV and writes report and cache files in user-selected Obsidian vault paths. <br>
-Mitigation: Confirm the CSV path and output directory before running, and keep sensitive portfolio amounts out of the watchlist. <br>
-Risk: The skill queries TradingView for ticker data and may be run automatically through a user-created cron job. <br>
-Mitigation: Use scheduled execution only when intentional, and tune concurrency or delays if data-provider limits or failures appear. <br>
-Risk: The setup instructions install Python dependencies for local execution. <br>
-Mitigation: Use an isolated virtual environment rather than installing packages into the system Python environment. <br>
-Risk: Generated technical-analysis reports may be mistaken for investment advice. <br>
-Mitigation: Treat reports as technical-analysis reference material and review results independently before making financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to run batch technical analysis on watchlist tickers and create daily reports in an Obsidian vault. The generated reports support review of market signals and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sarahwang94712/tradingviewscanner) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Sample scan report](artifact/sample_report.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, optional Excel workbooks, terminal summaries, and setup or run commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a CSV watchlist, queries TradingView through tvDatafeed, writes report and cache files to the configured output directory, and can run in offline demo mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads local watchlists and sends ticker symbols to TradingView.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on watchlists whose ticker contents may be shared with TradingView, and avoid including private notes or unnecessary columns in the input CSV.
+
+Risk: The setup guidance includes risky dependency installation flags.
+
+Mitigation: Install dependencies in a virtual environment, avoid sudo, and do not use --break-system-packages unless the environment owner has approved it.
+
+Risk: The skill writes Markdown and optional Excel reports into a local vault.
+
+Mitigation: Confirm output paths before execution, treat imported watchlists as untrusted input, and review generated Excel files before sharing or opening in sensitive environments.
+
+Risk: Recurring scheduled execution can repeatedly read local files and write reports.
+
+Mitigation: Review any cron entry before adding it, use explicit absolute paths, and disable the schedule when the scanner is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sarahwang94712/skills/tradingviewscanner)
+- [Sample technical scan report](artifact/sample_report.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown reports with optional Excel files and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads a watchlist CSV, sends ticker symbols to TradingView, and writes reports to a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

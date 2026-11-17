@@ -1,42 +1,53 @@
-## Description: <br>
-Universal video downloader supporting multiple platforms including Douyin, Bilibili, YouTube, and TikTok, with URL downloads and Douyin keyword search. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Universal video downloader supporting multiple platforms (Douyin, Bilibili, YouTube, TikTok, etc.). Can download videos by URL or search by keyword (Douyin supported). Use when users need to download videos from video platforms.
 
-## Publisher: <br>
-[wwkGit](https://clawhub.ai/user/wwkGit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwkgit](https://clawhub.ai/user/wwkgit)
 
-## Use Case: <br>
-Developers and end users can use this skill to download videos from supported video platforms by URL, batch URL list, or Douyin keyword search. It is best suited for controlled personal or evaluation workflows where the user has permission to download the content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser mode can use authenticated browser state and runs Chromium with reduced sandboxing. <br>
-Mitigation: Use a separate browser profile with only the needed account logged in, prefer a virtual environment, specify an output directory, and avoid browser mode on untrusted sites. <br>
-Risk: The skill depends on third-party downloader and browser automation packages that perform network downloads. <br>
-Mitigation: Review the dependencies before installation, install them in an isolated environment, and run the downloader only for trusted URLs. <br>
-Risk: Downloaded videos may be subject to copyright or platform terms of service. <br>
-Mitigation: Download only content that the user has permission to use and follow the relevant platform rules. <br>
+## Use Case:
 
+External users and developers use this skill to download videos from supported platforms by URL, batch URL list, or Douyin keyword search, with metadata saved alongside downloaded media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwkGit/video-downloader-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, JSON metadata, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; video files and JSON metadata when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped output directories, per-video metadata JSON, and batch summary JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser-download mode uses authenticated browser automation on third-party video pages and disables Chromium sandboxing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in an isolated environment or disposable browser profile, avoid administrator or root execution, and keep Chromium and DrissionPage updated.
+
+Risk: Browser mode may use logged-in cookies while accessing video platforms.
+
+Mitigation: Use a dedicated browser profile without sensitive accounts or cookies when downloading from third-party pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwkgit/skills/video-downloader-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, JSON metadata, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; downloaded MP4 files and JSON metadata when the script is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser mode may use authenticated cookies and visit third-party video pages; downloaded media use sanitized filenames.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

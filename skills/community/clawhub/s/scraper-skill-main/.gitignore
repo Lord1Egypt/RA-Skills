@@ -1,0 +1,14 @@
+# Tor data dirs / logs (never commit)
+/tmp/tor-harvest-data/
+/tmp/tor-harvest*.log
+/tmp/*.html
+
+# Local artifacts
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# OS noise
+.DS_Store
+Thumbs.db

@@ -3,212 +3,43 @@ name: ia-verification-before-completion
 class: discipline
 description: >-
   Enforces fresh verification evidence before any completion claim. Use when
-  about to claim "tests pass", "bug fixed", "done", "ready to merge", or
-  handing off work.
+  about to claim "tests pass", "bug fixed", "done", "ready to merge", handing
+  off work, or before editing when a request has ambiguous scope.
 ---
 
-# Verification Before Completion
+# Verification before completion
 
-## The Rule
+Make completion claims only from fresh evidence for the actual claim. Follow the user's authorized scope; repository instructions supply applicable checks, not permission to mutate, publish, or weaken a requirement.
 
-No completion claims without fresh verification evidence. If the verification command has not been run **immediately before the claim**, the claim cannot be made. Violating the letter of this rule is violating the spirit -- rephrasing a claim to technically avoid the wording does not exempt it from verification.
+## Procedure
 
-"Should pass", "probably works", and "looks correct" are not verification. Only command output confirming the claim counts (typically exit code 0). If pre-existing failures cause non-zero exits unrelated to your changes, see "When Verification Fails" below.
+1. Resolve ambiguous scope before editing. Inspect the repository and state a safe assumption when one interpretation is clear. Ask only when materially different interpretations remain; do not edit the disputed scope while waiting.
+2. Inspect `git status --porcelain` and preserve unrelated work. Before any suite or migration runs, including a baseline, confirm its database and service targets are disposable (a dedicated test database, container, or throwaway schema; never the dev database) ([proof-integrity.md](./references/proof-integrity.md), Pre-Verification Check). For dependency/framework upgrades, codegen, or migrations, capture the existing validation command set before writing and rerun it unchanged afterward. If that baseline is red, report before proceeding. Shared-module verification on a dirty tree needs an isolated base comparison.
+3. **Identify** the command that proves the claim. For ship-level claims, check the full applicable chain: build, types, lint, tests, security scan, and diff review; stop on the first failure. Read project-declared gates and run the ones that apply to this action in their required order; do not invent gates. Use the tooling the project already declares; do not add a dependency, test runner, type checker, or config file to the project only to verify a change, and report a missing check as not run.
+4. **Run** the proof now. Earlier output, a subagent's report, confidence, and a renamed success phrase do not replace fresh execution.
+5. **Read** complete output and exit status, including warnings, executed/passed counts, and missing artifacts. A suite that executes nothing is not proof. Confirm the intended binary, interpreter, source revision, and entry point actually ran.
 
-## Pre-Verification Check
+   - **Preserve raw evidence.** Display filters can produce plausible summaries while dropping records or rewriting bytes. Use unfiltered output when parsing, patches, counts, comparisons, or reviews depend on complete records or exact bytes. A downstream `head`, `tail`, or `cat` cannot restore filtered producer output.
 
-Before running verification, check the working tree state: `git status --porcelain`. If there are uncommitted changes unrelated to the current task, handle them first (commit, stash, or acknowledge). Adding verification commits on top of a dirty tree creates tangled history.
+6. **Verify** that evidence covers the requirements and relevant failure paths. An implemented safe positive capability must work through its intended entry point; a refusal-only path, stub, mock, or unreachable implementation is partial.
+7. **Claim** only what the evidence establishes. Report the outcome, exercise command/URL/click path, failed or skipped checks, and material residual risks. State narrower proof scope and distinguish deterministic fixtures from live behavior. Take each count, total, and ratio from command output produced in this session, without rounding or recomputing it from memory; label a figure derived from such output as computed (with its inputs) and one no command produced as counted by reading.
 
-When verifying work delegated to a subagent, do not trust the implementer's own report. Read the actual code or test output independently. Spec compliance and quality are separate concerns -- verify both.
+Never make an oracle easier to satisfy to obtain green. Review and justify semantic changes before regenerating expected output. Never hard-code the exercised subject or success path. A clean review is valid when it covers the relevant criteria; broaden checks only for a named remaining risk.
 
-## Scope Confirmation (Pre-Edit Gate)
+## Route by verification risk
 
-When a request uses ambiguous spatial scope -- "migrate my project", "refactor the codebase", "update everywhere", "fix this across the app", "my code/repo/project" -- confirm the concrete scope before any Write or Edit. Imperative phrasing is not the same as defined scope.
+- For dirty worktrees, broad changes, strict input validation, or fixture-versus-live provenance, read [proof-integrity.md](./references/proof-integrity.md). For shared modules with unrelated edits, also read [isolated-verification.md](./references/isolated-verification.md).
+- For repository-wide sweeps or “every item” claims, read [scope-and-sweeps.md](./references/scope-and-sweeps.md). Enumerate every item in untracked/ignored scratch state, preserve explicit dispositions, re-enumerate after moves, and account for removals. Completion requires zero pending and zero blocked items.
+- For command wrappers, empty results, aggregate totals, installed binaries, or materialized revisions, read [verification-oracles.md](./references/verification-oracles.md). Require positive controls through the same invocation shape before interpreting an absence.
+- For benchmark results, speedups, or performance regressions, read [performance-measurement.md](./references/performance-measurement.md). Verify completed work and failures before interpreting timing; distinguish a measured effect from its causal explanation.
+- For frontend, backend, CLI, infrastructure, migration, package, schema, documentation, or scripted-sweep changes, read the matching row of [change-strategies.md](./references/change-strategies.md). It also covers adversarial probes, history rewrites, and stale reviews.
+- For integration boundaries, callbacks, or orphaned state, read [system-wide-test-check.md](./references/system-wide-test-check.md).
+- When classifying deliverables, handling failed checks, discussing branch scope, or encountering a pre-commit failure, read [claims-and-failures.md](./references/claims-and-failures.md).
 
-Run a breakdown command to surface the real blast radius, then present it for confirmation:
+## Failure and handoff rules
 
-```bash
-# How many files actually match?
-rg -l 'pattern' | cut -d/ -f1 | sort | uniq -c | sort -rn
+Do not retry unchanged verification until it happens to pass. Fix authorized implementation failures and rerun; otherwise name the concrete blocker. “Pre-existing,” “environmental,” and “flaky” require evidence against the deliberately chosen base or independently established cause.
 
-# Which directories are affected?
-rg -l 'pattern' | xargs dirname | sort -u
-```
+Do not bypass a pre-commit failure caused by this work. The documented exception requires a reproduced base-branch failure and prior visibility to the user; this skill supplies no new bypass authority.
 
-Present the result and ask: "This touches N files across M subsystems. Scope options: (a) everything, (b) just <subset>, (c) let me pick specific files." Do not start editing until the user commits to one.
-
-This is cheap insurance: the alternative is shipping a sprawling diff that the user then has to unwind. "Migrate my project" is the #1 request shape that produces accidental cross-cutting damage.
-
-**When this applies**: any request whose scope could plausibly span more than one directory AND where the user has not enumerated files. For a request with explicit file paths, skip this gate.
-
-## Gate Function
-
-Before any success claim, run through these five steps:
-
-| Step | Action | Example |
-|------|--------|---------|
-| **1. Identify** | What command proves this claim? Run in order: build -> typecheck -> lint -> test -> security scan -> diff review. **Stop on first failure** -- later steps are meaningless if earlier ones fail. | `pytest tests/`, `npm test`, `curl -s localhost:3000/health` |
-| **2. Run** | Execute the full command, fresh (run in this message, with output shown -- cannot reuse prior results) | Not "I ran it earlier" -- run it now |
-| **3. Read** | Read the complete output, check exit code | Don't scan for "passed" -- read failure counts, warnings, errors |
-| **4. Verify** | Does the output actually confirm the claim? | "42 passed, 0 failed" confirms "tests pass". "41 passed, 1 failed" does not. |
-| **5. Claim** | Only now make the statement | "All 42 tests pass" with the evidence visible |
-
-## Verification Strategies by Change Type
-
-Type-check and unit tests are the universal baseline — they are not sufficient proof on their own. Match the strategy to the change:
-
-| Change type | Required verification |
-|-------------|----------------------|
-| Frontend (component, page, form) | Start dev server, exercise the feature in a browser, check console for errors, test the happy path AND one failure path |
-| Backend handler / endpoint | `curl` the endpoint, verify response shape and status code, hit at least one error path (invalid input, missing auth) |
-| CLI tool | Run the binary with real inputs, check stdout, stderr, and exit code. Run from `/tmp` (not the source folder) to catch "only works from source" bugs |
-| Infra / IaC (Terraform, Dockerfile, k8s) | `terraform plan` / `docker build` / `kubectl apply --dry-run=server`; review the diff before applying |
-| Database migration | Run migration up, run migration down, run migration up again against a copy of production-shape data. State what was tested |
-| Refactoring (no behavior change) | Full test suite passes unchanged. Public API surface diff shows no breakage (`grep` exported identifiers) |
-| Library / package update | Run the consumer's test suite against the new version. Check for deprecation warnings |
-| Schema change | Old consumers still parse the new shape (forward compat); new consumers handle old shape if the old data still exists (backward compat) |
-
-Reading code is not a strategy. If the table above doesn't have a row for your change, state explicitly: "No runtime verification available — verified by reading the diff."
-
-## Adversarial Probes
-
-For any change that touches production logic, include at least one adversarial probe in the verification — not a happy-path confirmation dressed up as verification. Pick the most relevant from:
-
-- **Boundary value**: 0, -1, empty string, empty array, `null`, `undefined`, `MAX_INT`, 1-char unicode combining mark
-- **Concurrency**: two parallel requests with the same identifier (for state changes, races, double-spend classes)
-- **Idempotency**: run the same mutation twice; the second should either no-op or error cleanly, not corrupt state
-- **Orphan op**: delete/update/get a nonexistent ID — does it 404/return-null as expected, or throw an internal error?
-
-Docs changes, trivial typo fixes, and pure rename refactors are exempt. Everything else: one probe minimum. A report with zero adversarial probes is a happy-path confirmation, not verification.
-
-## Review Staleness
-
-Before shipping, check whether prior reviews (agent or human) are still valid. If commits landed after the last review, verify the new changes don't invalidate review conclusions -- check that previously flagged issues are still fixed and no new code contradicts the review's approval. `git log --oneline <review-commit>..HEAD` shows what changed since the review.
-
-## When This Applies
-
-- About to say "tests pass" or "build succeeds"
-- About to commit, push, or create a PR
-- About to claim a bug is fixed
-- About to mark a task as complete
-- Moving to the next task in a plan
-- After completing each function or component during long sessions
-- At periodic checkpoints (~every 15 minutes of active coding)
-- Reporting results to the user
-- Agent reports success on delegated work
-- ANY expression of satisfaction about work state ("looking good", "that should do it")
-- ANY positive statement about completion, including paraphrases and synonyms
-
-## Red Flags
-
-**Fantasy assessment auto-fail.** A claim of "zero issues found" on a first implementation pass is a red flag, not a green light. First implementations typically need 2-3 revision cycles. "Perfect on the first try" more likely means incomplete verification than flawless code. Re-verify with a broader scope.
-
-**Negative confirmation at signoff.** When reporting verification results, include a brief statement of what defect classes were checked and NOT found, not just what passed. "Tests pass, no type errors, no lint warnings, no security flags in the changed files" is stronger than "tests pass" because it proves the scope of verification.
-
-## Agent Delegation
-
-When a subagent reports success:
-
-1. Check the VCS diff -- did the agent actually make changes?
-2. Run the verification command yourself
-3. Report the actual state, not the agent's claim
-
-Never forward an agent's "all tests pass" without running the tests yourself.
-
-## Requirements vs Tests
-
-"Tests pass" and "requirements met" are different claims:
-
-1. Re-read the plan or requirements
-2. Create a line-by-line checklist
-3. Verify each item against the implementation
-4. Report gaps or confirm completion
-
-Passing tests prove the code works. They don't prove the right code was written.
-
-## Common Claims and Their Proof
-
-| Claim | Required Proof |
-|-------|---------------|
-| "Tests pass" | Test runner output showing 0 failures, exit code 0 |
-| "Build succeeds" | Build command output with exit code 0 |
-| "Bug is fixed" | Original reproduction case now passes |
-| "Feature complete" | All acceptance criteria verified individually |
-| "No regressions" | Full test suite passes, not just new tests |
-| "Regression test works" | Red-green cycle: test passes, revert fix, test fails, restore fix, test passes |
-| "Linting clean" | Linter output showing 0 errors/warnings |
-
-## When No Verification Command Exists
-
-Some changes have no obvious test command -- documentation, configuration, infrastructure-as-code, skill files. In these cases:
-
-- **Documentation/prose** -- verify by reading the rendered output. Confirm links work, formatting is correct, content matches intent.
-- **Configuration/infra** -- verify syntax (`jq .` for JSON, `yamllint` for YAML, `terraform validate`, `docker build`). If no validator exists, read the file and confirm it matches the intended change.
-- **Non-runnable changes** -- verify by diffing (`git diff`) and confirming the diff matches what was intended. State explicitly: "No automated verification available. Verified by reading the diff."
-
-The principle holds: state what you checked and how, even when a test suite doesn't apply.
-
-## When Verification Fails
-
-If the output does not confirm the claim:
-
-1. **Do not claim completion.** Report the actual failure output to the user.
-2. **Do not retry the same verification hoping for a different result.** If it failed, something is wrong.
-3. **Return to implementation.** Fix the issue, then re-run verification from Step 1 of the Gate Function.
-4. **If the failure is unrelated to your changes** (pre-existing flaky test, environment issue), state this explicitly with evidence -- show that the failure also occurs on the base branch or is a known issue.
-
-## Pre-Commit Hook Failures
-
-A failing pre-commit hook is a verification checkpoint, not an obstacle to route around. `git commit --no-verify` is permitted only when the hook fails on pre-existing or unrelated changes -- a stricter lint landed upstream, a sibling file already violated a rule -- and even then, surface the failure to the user first under the same evidence bar as "When Verification Fails" above (show the failure exists on the base branch). Never pass `--no-verify` for a failure caused by the current session's own changes: fix the root cause and let the hook pass. A `--no-verify` the user never saw is a defeated check -- the same failure mode as claiming completion without evidence.
-
-## Rationalization Prevention
-
-If you're reasoning about the outcome instead of running the command, the Gate is not satisfied. "Should work", "trivial change", "just a refactor", "new tests pass" (not "all tests pass"), "CI will catch it" -- these are all the same failure mode: substituting confidence for evidence. Any satisfaction expression ("looks good", "seems correct") triggers the Gate, spirit over letter.
-
-## Completion Report Format
-
-After verification passes, produce a structured report rather than an open-ended summary. This surfaces scope discipline explicitly and makes the agent's restraint visible to reviewers.
-
-```
-## Completion report
-
-**Status**: DONE / DONE_WITH_CONCERNS / BLOCKED / NEEDS_CONTEXT
-
-**Changes made**
-- path/to/file.ts: [one-line description of what changed and why]
-- path/to/other.ts: [one-line description]
-
-**Things I didn't touch (intentionally)**
-- [thing noticed but out of scope, with one-line reason]
-- [adjacent issue deferred, with one-line reason]
-
-**Potential concerns**
-- [any risk, uncertainty, or open question the reviewer should know about]
-- [or "none"]
-
-**Verification evidence**
-- [command]: [exit code / result summary]
-```
-
-Status meanings:
-- **DONE** — task complete, all tests pass, no concerns
-- **DONE_WITH_CONCERNS** — complete but flagging risks; the `Potential concerns` section is mandatory
-- **BLOCKED** — cannot proceed. Name the blocker and what would unblock it
-- **NEEDS_CONTEXT** — missing information to start or continue. Name what's missing
-
-The `Things I didn't touch` section is not optional — if nothing was noticed, write "nothing noticed." The goal is to prove the agent considered scope, not to pad the report.
-
-## References
-
-- [System-Wide Test Check](./references/system-wide-test-check.md) -- blast-radius verification for task completion (callbacks, integration, orphaned state)
-
-## Integration
-
-This skill is referenced by:
-- `/ia-work` -- before marking tasks complete, before shipping, and before merge/PR creation (Phase 4)
-- `ia-receiving-code-review` -- verify each fix before marking resolved
-- `ia-debugging` -- before claiming a bug is fixed
-- `ia-writing-tests` -- tests as primary verification evidence
-- `ia-design-iterator` agent -- verify design changes render correctly
-- `ia-figma-design-sync` agent -- verify implementation matches Figma
-- `/ia-verify` command -- runs the full pre-PR verification pipeline
+Verify delegated work directly through the diff and relevant command. Check specification compliance separately from quality. Re-read requirements line by line: passing tests and meeting requirements are different claims. Refresh facts and coordinates when new commits or external state could invalidate a prior review. Keep reports decision-relevant, without empty status sections or fabricated certainty.

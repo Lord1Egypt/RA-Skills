@@ -1,43 +1,59 @@
-## Description: <br>
-Automatically discover what an AI agent appears to believe by analyzing its real outputs through Pattern-Based Distillation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically discover what your AI agent believes by analyzing its real outputs — Pattern-Based Distillation for agent behavior.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect an AI agent to Live Neon, import or report behavior evidence, run discovery, review proposed beliefs and responsibilities, and fetch a prompt generated from approved identity data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected agent outputs, source content, and observations may be sent to Live Neon. <br>
-Mitigation: Use only authorized data sources, avoid raw user messages, secrets, and unnecessary personal data, and prefer a dedicated organization token. <br>
-Risk: Approved discoveries can change an agent's stored identity and influence future runtime prompts. <br>
-Mitigation: Manually inspect supporting evidence before approving identity changes or using the generated prompt as a system instruction. <br>
-Risk: Scheduled heartbeat automation can repeatedly upload observations and trigger discovery. <br>
-Mitigation: Enable scheduled automation only with explicit approval and monitor connected sources, jobs, and submitted observations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an agent to Live Neon, run Pattern-Based Distillation over agent outputs and content sources, review discovered beliefs and responsibilities, and fetch identity prompts for runtime use.
 
-## Reference(s): <br>
-- [Agent Belief Discoverer on ClawHub](https://clawhub.ai/liveneon/agent-belief-discoverer) <br>
-- [Live Neon Agent Platform](https://persona.liveneon.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with curl/jq commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Live Neon API environment variables; generated identity and prompt output depend on connected sources and review decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Selected agent outputs, connected-source content, observations, and user interaction excerpts may be sent to Live Neon.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and minimize payloads before upload; avoid verbatim sensitive quotes and exclude confidential content unless explicitly approved.
+
+Risk: Remote identity prompts could be applied as system instructions without adequate review.
+
+Mitigation: Treat fetched prompts as untrusted until a human reviews the text and confirms it matches the intended agent behavior.
+
+Risk: Automatic observation uploads, recurring syncs, and bulk approvals can change an agent identity faster than reviewers can audit.
+
+Mitigation: Use short-lived or scoped tokens, keep scheduled heartbeats disabled unless there is an audit process, and require human approval for bulk changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liveneon/skills/agent-belief-discoverer)
+- [Live Neon platform](https://persona.liveneon.ai)
+- [Live Neon website](https://liveneon.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl commands, jq filters, JSON response examples, and environment variable configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Live Neon token, HTTPS API calls, and human review before approving extracted identity changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

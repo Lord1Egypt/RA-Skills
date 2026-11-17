@@ -2,7 +2,7 @@
 name: skill-authoring
 description: |
   Guide creating Claude Code skills with TDD and persuasion principles. Use for new skill development
-version: 1.9.8
+version: 1.10.3
 triggers:
   - authoring
   - tdd
@@ -10,21 +10,27 @@ triggers:
   - writing
   - best-practices
   - validation
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83d\udee0\ufe0f", "requires": {"config": ["night-market.modular-skills"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83d\udee0\ufe0f", "requires": {"config": ["night-market.modular-skills", "night-market.abstract:skill-graph-audit"]}}}
 source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Skill Authoring Guide
+
+## When NOT To Use
+
+- Scoring a skill that already exists (use `abstract:skills-eval`)
+- Authoring a hook (use `abstract:hook-authoring`)
+- Verifying the skill fires (use `abstract:subagent-testing`)
 
 ## Overview
 
 Writing effective Claude Code skills requires Test-Driven Development (TDD) and persuasion principles from compliance research. We treat skill writing as process documentation that needs empirical validation rather than just theoretical instruction. Skills are behavioral interventions designed to change model behavior in measurable ways.
 
-By using TDD, we ensure skills address actual failure modes identified through testing. Optimized descriptions improve discovery, while a modular structure supports progressive disclosure to manage token usage. This framework also includes anti-rationalization patterns to prevent the assistant from bypassing requirements.
+By using TDD, we ensure skills address actual failure modes identified through testing. Optimized descriptions improve discovery, while a modular structure supports progressive disclosure to manage token usage. It states intent, constraints and exit criteria, and leaves the path between them to the session doing the work. `modules/persuasion-principles.md` carries the strength budget that decides which of the three each statement is.
 
 ### The Iron Law
 
@@ -41,10 +47,10 @@ We categorize skills into three types: **Technique** skills for specific methods
 ### Skill Analysis
 \`\`\`bash
 # Analyze skill complexity
-python scripts/analyze.py
+python scripts/skill_analyzer.py
 
 # Estimate tokens
-python scripts/tokens.py
+python scripts/token_estimator.py
 \`\`\`
 
 ### Validation
@@ -67,11 +73,11 @@ Skill description character budgets now **scale with context window** at 2% of a
 | 200K (Sonnet/Haiku) | ~4,000 characters |
 | 1M (Opus 4.6 GA) | ~20,000 characters |
 
-Previously constrained skills can use more descriptive text on larger windows. However, keep descriptions concise regardless — longer is not better. The scaling primarily prevents truncation for skills with legitimately complex trigger conditions, not as an invitation to add verbose content.
+Previously constrained skills can use more descriptive text on larger windows. However, keep descriptions concise regardless: longer is not better. The scaling primarily prevents truncation for skills with legitimately complex trigger conditions, not as an invitation to add verbose content.
 
 ### Plugin Name Auto-Display (Claude Code 2.1.33+)
 
-Plugin names are now automatically shown alongside skill descriptions in the `/skills` menu. Do not repeat the plugin name in skill descriptions — it is redundant and wastes character budget. Focus descriptions on what the skill does and when to use it.
+Plugin names are now automatically shown alongside skill descriptions in the `/skills` menu. Do not repeat the plugin name in skill descriptions: it is redundant and wastes character budget. Focus descriptions on what the skill does and when to use it.
 
 ## The TDD Cycle for Skills
 
@@ -81,10 +87,10 @@ Establish empirical evidence that an intervention is needed. Create at least thr
 ### GREEN Phase: Minimal Skill Implementation
 Create the smallest intervention that addresses the documented failures. Write the `SKILL.md` with required frontmatter and content that directly counters the baseline failures. Include one example of correct behavior and verify that the same pressure scenarios now show measurable improvement.
 
-### REFACTOR Phase: Anti-Rationalization
+### REFACTOR Phase: Sharpen the Triggers
 Eliminate the ability for Claude to explain away requirements. Run pressure scenarios with the skill active to identify common rationalizations, such as claiming a task is "too simple" for the full process. Add explicit counters, such as exception tables and red flag lists, until rationalizations stop.
 
-## Anti-Rationalization
+## Deciding Whether a Skill Applies
 
 Skills must explicitly counter patterns where Claude attempts to bypass requirements. Common excuses include claiming a task is "too simple" or that a "spirit vs letter of the law" approach is sufficient. Skills should include red flag lists for self-checking, such as "Stop if you think: this is too simple for the full process." When exceptions are necessary, document them explicitly to prevent unauthorized shortcuts.
 
@@ -94,10 +100,10 @@ For detailed implementation guidance:
 
 **Core authoring cycle:**
 - **TDD Methodology**: See `modules/tdd-methodology.md` for RED-GREEN-REFACTOR cycle details
-- **Persuasion Principles**: See `modules/persuasion-principles.md` for compliance research and techniques
+- **Instruction Strength**: See `modules/persuasion-principles.md` for how hard to push, and what earns an invariant
 - **Description Writing**: See `modules/description-writing.md` for discovery optimization
 - **Progressive Disclosure**: See `modules/progressive-disclosure.md` for file structure patterns
-- **Anti-Rationalization**: See `modules/anti-rationalization.md` for bulletproofing techniques
+- **Skill Selection**: See `../../shared-modules/skill-selection-judgment.md` for deciding whether a skill applies
 - **Graphviz Conventions**: See `modules/graphviz-conventions.md` for process diagram standards
 
 **Working with concrete skills (load when implementing or debugging):**
@@ -116,12 +122,33 @@ For detailed implementation guidance:
 
 Before deploying, verify that the RED, GREEN, and REFACTOR phases are complete and documented. Frontmatter must be valid, descriptions optimized, and line counts kept under 500 lines. Ensure all module references are valid and at least one concrete example is included.
 
+### Audience Fit
+
+A SKILL.md hub is a `practitioner` document: its reader knows the
+domain and is meeting this repository's take on it. Write the hub
+for that reader, and put anything only a maintainer of the skill
+would want into `modules/`, listed in the `modules:` frontmatter
+so `progressive_loading` keeps it off the hub's token budget.
+That is the same split the 500-line cap already forces, decided
+by reader rather than by line count.
+
+When the skill's reader is not a practitioner, say so in the
+skill's opening line, and when the author has not decided, **ask,
+do not guess**. Tier table, Socratic set, and extraction protocol:
+`scribe:slop-detector` module `audience-targeting.md`.
+
 ### Scribe Validation
 All markdown files must pass scribe validation. This includes a slop scan to ensure a score under 2.5 and doc verification to confirm all file paths and command examples work. Bullet-to-prose ratios must remain under 60% to maintain readability. Use `Skill(scribe:slop-detector)` and `Agent(scribe:doc-verifier)` for these checks.
 
 ## Integration and Best Practices
 
-Individual skills are created using `skill-authoring`, while `modular-skills` handles the architecture of larger structures. `skills-eval` provides ongoing quality assessment. Avoid the common pitfall of writing skills based on theoretical behavior; always use documented failures to guide development. Use progressive disclosure to prevent monolithic files and ensure that each intervention remains focused and token-efficient.
+Individual skills are created using `skill-authoring`, while `modular-skills` handles the architecture of larger structures. `skills-eval` provides ongoing quality assessment. Avoid the common pitfall of writing skills based on theoretical behavior. Always use documented failures to guide development. Use progressive disclosure to prevent monolithic files and ensure that each intervention remains focused and token-efficient.
+### Companion Skills
+
+- `Skill(superpowers:writing-skills)`: the upstream superpowers take on
+  authoring Claude Code skills. Load it as a complementary reference for
+  skill structure and craft alongside this guide's TDD cycle.
+
 ## Skill Directory Variable (2.1.69+)
 
 Skills can reference their own directory using
@@ -167,3 +194,15 @@ Use progressive disclosure - move details to modules
 
 **Modules not found**
 Verify module paths in SKILL.md are correct
+
+## Exit Criteria
+
+- [ ] The RED phase is documented with at least three pressure scenarios showing Claude failing
+  without the skill, with exact failure descriptions recorded before implementation begins.
+- [ ] The GREEN phase produces a SKILL.md with valid YAML frontmatter (quoted description,
+  required `name` field) that loads without error in Claude Code.
+- [ ] REFACTOR phase documents at least one discovered rationalization pattern and adds an
+  explicit counter to the skill (exception table, red-flag list, or banned excuse list).
+- [ ] `python scripts/abstract_validator.py --check` exits 0 and SKILL.md is under 500 lines.
+- [ ] The hub serves one declared reader tier, and material for a
+  different one is in `modules/` and is listed in the frontmatter.

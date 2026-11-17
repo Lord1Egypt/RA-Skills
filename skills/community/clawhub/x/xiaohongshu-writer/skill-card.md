@@ -1,45 +1,51 @@
-## Description: <br>
-Use this skill to draft Xiaohongshu posts, product notes, travel diaries, lifestyle content, and RED-platform copy with hook titles, structured body text, emoji decoration, and hashtag sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to draft Xiaohongshu/RED posts with hook titles, structured body copy, emoji decoration, and hashtag sets tuned for platform engagement patterns.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Creators, marketers, and social media operators use this skill to generate Xiaohongshu-style post drafts for product recommendations, reviews, tutorials, diaries, guides, travel, lifestyle, fashion, beauty, food, and learning content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated social copy can include inaccurate product, travel, pricing, or recommendation claims if the user's inputs are incomplete or unverified. <br>
-Mitigation: Verify factual claims, prices, locations, availability, and product performance before publishing. <br>
-Risk: Promotional posts can omit required disclosures or conflict with platform rules. <br>
-Mitigation: Review drafts against Xiaohongshu policies and applicable advertising disclosure requirements before publication. <br>
-Risk: Public-facing drafts can expose sensitive personal data if users include it in their prompts. <br>
-Mitigation: Remove sensitive personal data from inputs and final copy before posting. <br>
+## Use Case:
 
+External creators, marketers, and agents use this skill to create Chinese-language Xiaohongshu product notes, travel diaries, lifestyle posts, tutorials, reviews, and hashtag strategies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goldath/xiaohongshu-writer) <br>
-- [小红书内容模板库](references/content-templates.md) <br>
-- [话题标签策略与关键词库](references/hashtag-strategy.md) <br>
-- [小红书平台算法与流量逻辑](references/platform-algorithm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style draft copy with titles, structured body sections, emoji, calls to action, and hashtags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed for factual accuracy, platform compliance, advertising disclosures, and sensitive personal data before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated marketing or lifestyle copy can contain inaccurate claims, prices, locations, or platform-compliance-sensitive wording.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review factual claims, commercial claims, prices, locations, and platform-sensitive content before posting.
+
+## Reference(s):
+
+- [小红书内容模板库](references/content-templates.md)
+- [话题标签策略与关键词库](references/hashtag-strategy.md)
+- [小红书平台算法与流量逻辑](references/platform-algorithm.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown post drafts with titles, body copy, emoji, hashtags, and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output optimized for Xiaohongshu/RED engagement patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

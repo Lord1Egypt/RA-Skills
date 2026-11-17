@@ -1,38 +1,50 @@
-## Description: <br>
-Helps users query Chinese lunar calendar dates by converting Gregorian dates to lunar year, month, day, zodiac, solar terms, and common holiday dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助用户将公历日期转换为中国农历年、月、日、生肖、节气等信息，并查询常见农历节日对应的公历日期。
 
-## Publisher: <br>
-[mysunsi](https://clawhub.ai/user/mysunsi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mysunsi](https://clawhub.ai/user/mysunsi)
 
-## Use Case: <br>
-External users and agents use this skill to answer Chinese lunar calendar questions, including today's lunar date, Gregorian-to-lunar conversion, zodiac details, solar terms, and common festival dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and executes the chinese-lunar-calendar npm package, so dependency drift or package compromise could affect reproducibility or results. <br>
-Mitigation: Pin or review the chinese-lunar-calendar package before use when stronger supply-chain assurance is required. <br>
+## Use Case:
 
+External users and agents use this skill to answer Chinese lunar-calendar questions, including today's lunar date, solar-to-lunar conversion, zodiac details, solar terms, and common festival dates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mysunsi/1lunar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bash code blocks and plain-text date results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a disclosed npm dependency for lunar calendar conversion examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks the agent to install and run an unpinned npm package from shared temporary storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, prefer a version-pinned and integrity-checked dependency, and install it in a private project directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mysunsi/skills/1lunar)
+- [ClawHub publisher profile](https://clawhub.ai/user/mysunsi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown with inline bash and JavaScript command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require installing and running an npm package to compute lunar-calendar results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

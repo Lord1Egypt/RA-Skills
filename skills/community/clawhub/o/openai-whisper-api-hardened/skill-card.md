@@ -1,45 +1,60 @@
-## Description: <br>
-Transcribe audio via OpenAI Audio Transcriptions API (Whisper). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio via OpenAI Audio Transcriptions API (Whisper).
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe selected local audio files through OpenAI's Audio Transcriptions API using a curl-based wrapper. It supports plain text or JSON transcript output with optional model, language, prompt, and output-path settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports an input-handling flaw that could unintentionally send local file contents to OpenAI. <br>
-Mitigation: Avoid untrusted or file-derived --prompt, --model, and --language values, especially values that start with @ or <, until the wrapper uses literal form fields. <br>
-Risk: The skill requires OPENAI_API_KEY and can expose credentials if agents display environment variables or credential files. <br>
-Mitigation: Check only whether credentials are present and never print, encode, transfer, or display API keys or credential-containing files. <br>
-Risk: Selected audio files are transmitted to OpenAI for transcription. <br>
-Mitigation: Use the skill only for audio the operator is comfortable sending to OpenAI, with appropriate permission and data handling review. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio files through OpenAI's Audio Transcriptions API using a curl-based wrapper. It is useful for producing transcript text or JSON while keeping API key handling and common transcription options in one workflow.
 
-## Reference(s): <br>
-- [OpenAI Speech to Text Documentation](https://platform.openai.com/docs/guides/speech-to-text) <br>
-- [OpenAI Audio Transcriptions API Endpoint](https://api.openai.com/v1/audio/transcriptions) <br>
-- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/openai-whisper-api-hardened) <br>
-- [Faberlens Safety Evaluation](https://faberlens.ai/explore/openai-whisper-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; transcription results are written as text or JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and OPENAI_API_KEY; sends chosen audio files to OpenAI for transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The wrapper can unintentionally upload local files when prompt, model, or language values begin with curl multipart metacharacters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change non-file multipart fields to curl --form-string and avoid untrusted prompt, model, or language values until that hardening is complete.
+
+Risk: The skill depends on an OpenAI API key and may expose credentials if debugging or setup commands reveal environment variables or credential files.
+
+Mitigation: Verify credential presence without printing secret values and do not display, encode, transmit, or read credential-containing files.
+
+Risk: Audio files may contain sensitive data and are sent to an external transcription API.
+
+Mitigation: Confirm the user intends to upload the selected audio file and follow the deployment's data handling requirements before transcription.
+
+## Reference(s):
+
+- [OpenAI Speech-to-Text Documentation](https://platform.openai.com/docs/guides/speech-to-text)
+- [OpenAI Audio Transcriptions Endpoint](https://api.openai.com/v1/audio/transcriptions)
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/openai-whisper-api-hardened)
+- [Faberlens Safety Evaluation](https://faberlens.ai/explore/openai-whisper-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; the script writes text or JSON transcript files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and OPENAI_API_KEY. Default model is whisper-1; optional flags include output path, language, prompt, and JSON response format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Batch detect and mask PII across up to 500 text inputs. Flat $6.00 USDC via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch detect and mask PII across up to 500 text inputs. Flat $6.00 USDC via x402.
 
-## Publisher: <br>
-[ntriq-gh](https://clawhub.ai/user/ntriq-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntriq-gh](https://clawhub.ai/user/ntriq-gh)
 
-## Use Case: <br>
-Developers and compliance teams use this skill to submit batches of text to a paid x402 PII-detection service, receive per-input findings, and optionally receive masked text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted text and payment authorization are sent to the provider's remote API. <br>
-Mitigation: Only submit data approved for this provider, and confirm privacy, logging, retention, deletion, and payment practices before use. <br>
-Risk: The skill can initiate a paid $6 USDC batch request through x402. <br>
-Mitigation: Require explicit operator approval before sending an X-PAYMENT header or otherwise authorizing payment. <br>
+## Use Case:
 
+Developers and privacy, compliance, or security teams use this skill to call a paid batch service that detects PII in text and can request masked output. It is intended for authorized review of up to 500 text inputs per batch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ntriq-gh/ntriq-x402-pii-detect-batch) <br>
-- [Ntriq x402 homepage](https://x402.ntriq.co.kr) <br>
-- [PII detect batch endpoint](https://x402.ntriq.co.kr/pii-detect-batch) <br>
-- [Ntriq x402 services](https://x402.ntriq.co.kr/services) <br>
-- [x402 protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline HTTP, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes a batch API that returns JSON PII findings and optional masked text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Raw sensitive text is sent to a third-party remote service before masking.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with text you are authorized to send, and confirm the provider's privacy, retention, deletion, logging, and data-processing terms before processing personal, customer, employee, financial, health, or regulated data.
+
+Risk: The API requires a paid x402 payment header.
+
+Mitigation: Confirm the $6.00 USDC charge, Base mainnet network, and recipient/payment details before attaching a payment header or automating requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ntriq-gh/skills/ntriq-x402-pii-detect-batch)
+- [ntriq x402 service homepage](https://x402.ntriq.co.kr)
+- [PII detect batch API endpoint](https://x402.ntriq.co.kr/pii-detect-batch)
+- [ntriq services endpoint](https://x402.ntriq.co.kr/services)
+- [x402 protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown with HTTP, bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The remote API returns per-input PII findings, risk level, and optional masked text.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

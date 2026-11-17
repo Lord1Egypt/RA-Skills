@@ -1,44 +1,56 @@
-## Description: <br>
-知识星球（星球）管理：列出星球、浏览主题、查询标签、搜索成员。当用户需要查看自己加入或创建的星球、浏览星球内容、获取 group_id、查询星球标签或成员时使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides agents in using zsxq-cli to list Knowledge Planet groups, browse group topics, inspect hashtags, and search groups or members for the logged-in account.
 
-## Publisher: <br>
-[zsxq](https://clawhub.ai/user/zsxq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsxq](https://clawhub.ai/user/zsxq)
 
-## Use Case: <br>
-External users and agents use this skill to operate a logged-in zsxq-cli account for listing Knowledge Planet groups, browsing group topics, viewing hashtags, and searching group members. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands may expose private Knowledge Planet account data, including JSON outputs and member search results. <br>
-Mitigation: Install and use this skill only when the agent is allowed to read the user's logged-in zsxq-cli account data. <br>
-Risk: Raw zsxq-cli api calls can access data beyond the shortcut examples. <br>
-Mitigation: Review proposed raw zsxq-cli api calls before running them. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Knowledge Planet groups available to a logged-in zsxq account, retrieve group, topic, and hashtag identifiers, and prepare read-only zsxq-cli commands for group browsing and member search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zsxq/zsxq-group) <br>
-- [Publisher profile](https://clawhub.ai/user/zsxq) <br>
-- [group +list](references/zsxq-group-list.md) <br>
-- [group +topics](references/zsxq-group-topics.md) <br>
-- [group +hashtags](references/zsxq-group-hashtags.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include group, topic, hashtag, and member data from the user's logged-in Knowledge Planet account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and release evidence) <br>
+Risk: JSON command output can contain more account-scoped group, owner, statistics, topic, or hashtag metadata than table output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share or store JSON output only when appropriate for the logged-in zsxq account; prefer table output when full metadata is not needed.
+
+Risk: The skill relies on an authenticated zsxq-cli session and can only access groups permitted for that account.
+
+Mitigation: Confirm the active account and re-authenticate through the shared zsxq login guidance when a 401, token expiration, or not logged in error appears.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zsxq/skills/zsxq-group)
+- [group +list reference](references/zsxq-group-list.md)
+- [group +topics reference](references/zsxq-group-topics.md)
+- [group +hashtags reference](references/zsxq-group-hashtags.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct use of JSON output from zsxq-cli, which can include account-scoped group, topic, owner, statistics, or hashtag metadata.]
+
+## Skill Version(s):
+
+1.3.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

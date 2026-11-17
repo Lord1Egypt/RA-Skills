@@ -1,42 +1,59 @@
-## Description: <br>
-Provides keyword research, meta tag analysis, content SEO scoring, and meta description generation to improve website search rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SEO Optimizer helps agents research keywords, analyze meta tags, score page content, and generate search-focused recommendations for website content.
 
-## Publisher: <br>
-[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hughtan93-dev](https://clawhub.ai/user/hughtan93-dev)
 
-## Use Case: <br>
-Developers, content teams, and site operators use this skill to generate SEO keyword ideas, review meta tags, score page content, and produce concise optimization recommendations before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO recommendations may be applied to unpublished or confidential content. <br>
-Mitigation: Follow the scanner guidance and avoid pasting confidential unpublished content unless local processing is acceptable. <br>
-Risk: The artifact lists requests and beautifulsoup4 dependencies that the scanner notes appear unnecessary for the included scripts. <br>
-Mitigation: Use a virtual environment when installing packages and review dependencies before deployment. <br>
+## Use Case:
 
+Marketers, website owners, content teams, and developers use this skill to prepare pages for publication by checking keywords, metadata, content structure, links, images, and SEO scoring guidance.
 
-## Reference(s): <br>
-- [SEO Best Practices](artifact/references/best_practices.md) <br>
-- [SEO Checklist](artifact/references/seo_checklist.md) <br>
-- [SEO Optimizer on ClawHub](https://clawhub.ai/hughtan93-dev/seopro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include keyword suggestions, meta tag scores, SEO content scores, generated meta descriptions, and implementation recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned dependency installation can introduce supply-chain or reproducibility issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a virtual environment and pin or review dependencies before use.
+
+Risk: Unusual regex-like keywords may cause analyzer failures.
+
+Mitigation: Use plain keyword input where possible and review analyzer output when keywords contain regex metacharacters.
+
+Risk: SEO scores and recommendations are heuristic and can be misleading if applied without review.
+
+Mitigation: Treat generated recommendations as review aids and validate important content decisions against current site analytics and search guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hughtan93-dev/skills/seopro)
+- [SEO Best Practices](references/best_practices.md)
+- [SEO Checklist](references/seo_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; supporting scripts can emit text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

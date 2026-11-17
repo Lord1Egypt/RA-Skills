@@ -1,41 +1,58 @@
-## Description: <br>
-Agency HQ is a pixel art dashboard for visualizing AI agent status, activity feeds, and personality-driven banter with OpenClaw live mode or standalone demo data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agency HQ provides a pixel art dashboard that visualizes AI agent status, activity feeds, and personality-driven banter in OpenClaw live mode or standalone demo mode.
 
-## Publisher: <br>
-[spockthegreatbot](https://clawhub.ai/user/spockthegreatbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spockthegreatbot](https://clawhub.ai/user/spockthegreatbot)
 
-## Use Case: <br>
-Developers and agent operators use Agency HQ to monitor an OpenClaw agent team through a visual local dashboard, with demo mode available for showcasing simulated activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can expose real OpenClaw prompts, tool usage, cron activity, and host stats through dashboard endpoints. <br>
-Mitigation: Use ARENA_MODE=demo unless live data is explicitly needed; keep live mode local, and add authentication and prompt redaction before any network exposure. <br>
-Risk: The documented default mode is inconsistent with the code, which can cause an operator to run live mode unintentionally. <br>
-Mitigation: Set ARENA_MODE explicitly for each environment and verify the active mode before sharing or deploying the dashboard. <br>
+## Use Case:
 
+External developers and agent operators use Agency HQ to monitor OpenClaw agent activity through a visual office dashboard, or to demonstrate a simulated agent team without connecting to live local data.
 
-## Reference(s): <br>
-- [Agency HQ ClawHub listing](https://clawhub.ai/spockthegreatbot/agency-hq) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown instructions with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes demo and live dashboard modes for a local Next.js application.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Live mode can read private OpenClaw agent logs and host telemetry and expose them through unauthenticated web endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep demo mode enabled unless live monitoring is required; when live mode is needed, bind the service to localhost or place it behind authentication and avoid exposing the Next.js port to a network.
+
+Risk: Agent session content may include sensitive prompts or operational details.
+
+Mitigation: Limit which agent IDs are configured, validate those IDs before deployment, and avoid displaying raw prompt content in shared or public dashboards.
+
+Risk: Dependency vulnerabilities may affect a long-running dashboard.
+
+Mitigation: Review dependency scan results during release intake and keep Next.js, React, and related packages updated.
+
+## Reference(s):
+
+- [Agency HQ ClawHub Release](https://clawhub.ai/spockthegreatbot/skills/agency-hq)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown setup guidance with shell commands and a Next.js TypeScript dashboard project]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in demo mode with simulated data or live mode reading local OpenClaw session files and host telemetry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

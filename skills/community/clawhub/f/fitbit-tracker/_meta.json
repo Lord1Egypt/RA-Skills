@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn71xfc29hgzt1g5a40h0a6rhh83ewm9",
-  "slug": "fitbit-tracker",
-  "version": "0.2.3",
-  "publishedAt": 1780418071816
+  "version": "0.2.2",
+  "createdAt": 1742500000000,
+  "author": "Crabsticksalad",
+  "tags": ["fitbit", "health", "sleep", "activity", "wearable"],
+  "description": "Full Fitbit integration with sleep staging, activity tracking, HR zones, and section-based reporting"
 }

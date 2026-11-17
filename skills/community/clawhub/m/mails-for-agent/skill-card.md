@@ -1,42 +1,62 @@
-## Description: <br>
-Complete service registrations autonomously by receiving verification codes. Also: send and receive emails, monitor inbox, search by keyword, download attachments, view threads, filter by label, extract structured data, manage mailbox and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to use a configured mailbox to receive verification codes, send and receive email, monitor and search inboxes, download attachments, view threads, extract structured data, manage mailbox settings, and configure webhooks.
 
-## Publisher: <br>
-[digidai](https://clawhub.ai/user/digidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[digidai](https://clawhub.ai/user/digidai)
 
-## Use Case: <br>
-Developers and agents use this skill to work with a controlled mailbox API for registration verification, inbox search, message sending, attachment retrieval, structured extraction, and mailbox or webhook management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can delete mailbox messages or pause mailbox operations. <br>
-Mitigation: Confirm before deleting messages or pausing the mailbox, especially outside disposable or controlled email workflows. <br>
-Risk: Agents can send email from the controlled mailbox. <br>
-Mitigation: Confirm recipient, subject, body, and attachments before sending mail. <br>
-Risk: Agents can change mailbox and label webhook URLs. <br>
-Mitigation: Use only webhook destinations controlled by the operator and confirm webhook changes before applying them. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent complete email-based registration flows, retrieve verification codes, manage mailbox content, and automate mailbox-related workflows through a configured mail API.
 
-## Reference(s): <br>
-- [Mails for Agent on ClawHub](https://clawhub.ai/digidai/mails-for-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with HTTP request guidance and JSON request or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAILS_API_URL, MAILS_AUTH_TOKEN, and MAILS_MAILBOX environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: frontmatter and server release evidence) <br>
+Risk: The agent can read mailbox content that may include important records or account-recovery messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-risk mailbox and avoid connecting accounts that receive sensitive records or recovery messages.
+
+Risk: The agent can delete emails and change mailbox or webhook routing settings.
+
+Mitigation: Require explicit user confirmation before deletes, mailbox pause or resume actions, webhook updates, and route changes.
+
+Risk: The authentication token enables broad mailbox actions through the configured mail API.
+
+Mitigation: Restrict who can access MAILS_AUTH_TOKEN and rotate it if it may have been exposed.
+
+Risk: Verification codes or mailbox contents could be forwarded to untrusted destinations.
+
+Mitigation: Avoid forwarding codes or message contents to untrusted recipients, tools, or webhook URLs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/digidai/skills/mails-for-agent)
+- [Publisher profile](https://clawhub.ai/user/digidai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown with HTTP request guidance and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MAILS_API_URL, MAILS_AUTH_TOKEN, and MAILS_MAILBOX environment variables.]
+
+## Skill Version(s):
+
+1.8.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,51 @@
-## Description: <br>
-Generate a structured knowledge graph ontology or schema from unstructured or semi-structured text sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a structured knowledge graph ontology or schema from unstructured or semi-structured text sources.
 
-## Publisher: <br>
-[fisa712](https://clawhub.ai/user/fisa712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fisa712](https://clawhub.ai/user/fisa712)
 
-## Use Case: <br>
-Developers and knowledge graph engineers use this skill to turn domain descriptions, technical documentation, and example data into initial ontology or property-graph schemas with entities, relationships, properties, and constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Domain text supplied to the skill may be echoed or transformed in generated schema output. <br>
-Mitigation: Review sensitive input handling before use and avoid providing confidential text unless the deployment environment is approved for that data. <br>
-Risk: Heuristic extraction can produce incomplete entities, ambiguous relationships, or misleading property assignments. <br>
-Mitigation: Have a domain expert review generated schemas and validate relationship direction, constraints, and terminology before using them in production graph systems. <br>
+## Use Case:
 
+Developers and engineers use this skill to draft knowledge graph schemas from domain descriptions, technical documentation, example records, or structured data samples. It helps identify entities, relationships, properties, and target graph representations such as Property Graph or RDF/OWL.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fisa712/kg-schema-from-text) <br>
-- [Entity & Relationship Extraction Patterns](references/extraction-patterns.md) <br>
-- [Schema Generation Examples](examples/example-schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with schema examples, JSON-like schema structures, Cypher snippets, and RDF/Turtle snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are draft graph schemas derived from supplied text and should be reviewed for domain accuracy before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated Cypher and RDF/Turtle may contain incorrect, misleading, or unsafe identifiers when source text is ambiguous or untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and validate generated entities, relationships, properties, and identifiers before running them against Neo4j or importing them into graph tooling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fisa712/skills/kg-schema-from-text)
+- [Extraction patterns](references/extraction-patterns.md)
+- [Example schemas](examples/example-schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with schema examples, plus optional Python-generated dictionaries, Cypher statements, and RDF/Turtle snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated graph schemas should be treated as drafts and reviewed before import or execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

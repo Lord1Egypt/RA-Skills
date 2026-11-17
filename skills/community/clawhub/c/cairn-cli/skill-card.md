@@ -1,45 +1,57 @@
-## Description: <br>
-Project management for AI agents using markdown files. Install and use the cairn CLI to create projects, manage tasks, track status, and coordinate human-AI collaboration through a shared workspace of markdown files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cairn helps AI agents use the cairn CLI to create projects, manage tasks, track status, and coordinate human-AI collaboration through shared markdown workspace files.
 
-## Publisher: <br>
-[gregoryehill](https://clawhub.ai/user/gregoryehill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gregoryehill](https://clawhub.ai/user/gregoryehill)
 
-## Use Case: <br>
-Developers, AI agents, and teams use this skill to install and operate the Cairn CLI for markdown-based project and task management. It helps agents create projects, track task status, record progress notes, and manage deliverable artifacts in a shared workspace. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installing the cairn-work npm package globally runs package code with global CLI permissions. <br>
-Mitigation: Verify that the npm package and publisher are trusted before running npm install -g. <br>
-Risk: The onboard workflow creates or updates agent context files in the user's home directory or selected workspace. <br>
-Mitigation: Review the target workspace and generated files before relying on them for agent work. <br>
-Risk: Execute autonomy can allow deploy, publish, send, or similar side effects when a workflow authorizes them. <br>
-Mitigation: Use execute mode only for specific workflows that have been explicitly approved. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cairn CLI Command Reference](artifact/COMMANDS.md) <br>
-- [Cairn README](artifact/README.md) <br>
-- [cairn-work npm package](https://www.npmjs.com/package/cairn-work) <br>
-- [Cairn website](https://letcairn.work/) <br>
-- [ClawHub release page](https://clawhub.ai/gregoryehill/cairn-cli) <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to install and operate the Cairn CLI for markdown-backed project and task tracking, work logs, status updates, and project artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and markdown file conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local markdown project, task, artifact, and agent context files through the Cairn CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs users to install and run an external npm CLI package.
+
+Mitigation: Install only if the cairn-work package is trusted, verify the package version and release source before use, and avoid automatic upgrades without review.
+
+Risk: The CLI creates persistent markdown files that agents may later read as workspace context.
+
+Mitigation: Use a project-specific workspace path and review generated AGENTS.md and .cairn/planning.md before relying on them for agent behavior.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gregoryehill/skills/cairn-cli)
+- [Cairn README](artifact/README.md)
+- [Cairn CLI Command Reference](artifact/COMMANDS.md)
+- [cairn-work npm package](https://www.npmjs.com/package/cairn-work)
+- [Cairn website](https://letcairn.work/)
+- [Cairn GitHub Discussions](https://github.com/letcairnwork/cairn-cli/discussions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI workflow instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance centers on creating and maintaining markdown workspace files, projects, tasks, notes, and artifacts with the cairn CLI.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata, created 2026-02-06)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

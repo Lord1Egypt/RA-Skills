@@ -1,43 +1,62 @@
-## Description: <br>
-Generates prompts, shell commands, and configuration guidance for browser-based AI image and video generation through Google Gemini and Google Flow. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Helps agents scaffold browser-automation workflows for generating AI images with Google Gemini and short videos with Google Flow while tracking free-tier quotas.
 
-## Publisher: <br>
-[pbseiya](https://clawhub.ai/user/pbseiya) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pbseiya](https://clawhub.ai/user/pbseiya)
 
-## Use Case: <br>
-Developers and content creators use this skill to draft and run browser-automation workflows for generating AI images, thumbnails, covers, banners, and short videos while tracking free-tier quotas. The bundled scripts currently present a demonstration skeleton that requires review and implementation before real automation is enabled. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a logged-in Google browser session for browser-based media generation. <br>
-Mitigation: Use a dedicated Google account or isolated browser profile, avoid private prompts or media, and delete stored cookies, quota logs, and generated metadata when finished. <br>
-Risk: The bundled scripts are demonstration skeletons and require browser automation code to be completed before they can produce real media. <br>
-Mitigation: Review and implement the automation code with Puppeteer or Playwright, confirm current UI selectors, and test in an isolated environment before operational use. <br>
-Risk: Free-tier quota and website UI behavior can change, which may break automation or produce unreliable results. <br>
-Mitigation: Check quota before each run, monitor generated logs, and revalidate selectors and service behavior after provider UI changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pbseiya/google-free-media-skill) <br>
-- [Google Gemini](https://gemini.google.com) <br>
-- [Google Flow](https://labs.google/flow) <br>
+## Use Case:
 
+Developers and creators can use this skill as a demonstration scaffold for image and video generation workflows that call local Node.js scripts, check free-tier quotas, and prepare browser automation for Google Gemini and Google Flow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON quota configuration, and generated media or metadata file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts require a local browser environment and, as shipped, use demo placeholders unless browser automation code is completed and reviewed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can report generation flow completion while operating as an incomplete demo scaffold.
+
+Mitigation: Treat generated placeholder JSON as demonstration output and verify that real image or video files exist before using results downstream.
+
+Risk: Browser automation may reuse Google session data.
+
+Mitigation: Use a dedicated Google account and store any reusable browser profile or session data in a protected, isolated location.
+
+Risk: Shell command construction should be fixed before execution from untrusted paths.
+
+Mitigation: Run the scripts only from trusted directories until command invocation is hardened and dependencies are pinned with a lockfile.
+
+Risk: Automating Google free-tier web interfaces may create service-terms or availability risk.
+
+Mitigation: Review the applicable Google service terms and keep selectors, quotas, and fallback behavior under manual review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pbseiya/skills/google-free-media-skill)
+- [Google Gemini](https://gemini.google.com)
+- [Google Flow](https://labs.google/flow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, JavaScript CLI scripts, JSON configuration, and local script output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Demo scripts can write placeholder JSON outputs until real Puppeteer or Playwright browser automation is implemented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

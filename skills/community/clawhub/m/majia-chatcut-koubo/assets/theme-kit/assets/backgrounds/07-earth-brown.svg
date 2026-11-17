@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920" role="img" aria-labelledby="title desc">
+<title id="title">大地棕 9:16 口播视频底图</title>
+<desc id="desc">1080×1920 可编辑矢量背景，不含文字与人物。</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F6F1E9"/><stop offset="0.62" stop-color="#EEDCC4"/><stop offset="1" stop-color="#F6F1E9"/></linearGradient>
+<pattern id="paper" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="4" cy="6" r="1" fill="#3E2C23" fill-opacity="0.035"/><circle cx="15" cy="14" r="0.8" fill="#8B5E34" fill-opacity="0.025"/></pattern>
+</defs>
+
+<rect width="1080" height="1920" fill="url(#bg)"/>
+<rect width="1080" height="1920" fill="url(#paper)"/>
+<path d="M0 0H1080V150C850 260 660 270 450 190S170 40 0 130Z" fill="#3E2C23"/>
+<path d="M0 0H1080V82C850 190 660 210 450 132S170-10 0 72Z" fill="#8B5E34"/>
+<path d="M0 0H1080V36C820 120 620 120 400 58S140-24 0 28Z" fill="#D9B38C"/>
+<path d="M0 1625C190 1510 350 1500 560 1630S860 1820 1080 1690V1920H0Z" fill="#3E2C23"/>
+<path d="M0 1685C210 1580 370 1600 570 1720S860 1880 1080 1780V1920H0Z" fill="#8B5E34"/>
+<path d="M0 1750C190 1670 400 1690 580 1800S900 1910 1080 1860V1920H0Z" fill="#D9B38C"/>
+<path d="M88 340H992" stroke="#8B5E34" stroke-opacity="0.14" stroke-width="2"/>
+
+</svg>

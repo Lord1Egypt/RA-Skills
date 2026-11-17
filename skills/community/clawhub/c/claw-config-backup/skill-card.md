@@ -1,41 +1,49 @@
-## Description: <br>
-Backup OpenClaw configuration file with hash-based change detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup OpenClaw configuration files with JSON5 validation, hash-based change detection, and timestamped backup copies.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Developers and engineers use this skill to back up an OpenClaw JSON configuration file, validate it as JSON5, and skip duplicate backups when the file content has not changed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates additional local copies of configuration data. <br>
-Mitigation: Use it only for the intended OpenClaw configuration file and choose a private backup directory. <br>
-Risk: The helper depends on the json5 Python package. <br>
-Mitigation: Install json5 only from a trusted package source if it is missing. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to validate an OpenClaw JSON5 configuration file and create a timestamped backup, while skipping backup creation when the latest copy already matches the source file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/claw-config-backup) <br>
-- [Publisher profile](https://clawhub.ai/user/goog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and local backup files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces timestamped local backup copies and status messages; skips backup when the latest matching backup has the same SHA256 hash.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Copied OpenClaw configuration files may contain sensitive settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit OpenClaw config path and a backup directory you control; protect or delete backup copies according to local data-handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/claw-config-backup)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with inline shell commands and local file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates timestamped JSON backup files in a user-selected directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

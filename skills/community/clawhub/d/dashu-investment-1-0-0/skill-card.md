@@ -1,46 +1,59 @@
-## Description: <br>
-大数投资理论选股技能。当用户提到"大数投资"、"用大数投资理论选股"、"大数投资30个行业"、"齐东平投资法"时激活。执行低估值行业龙头股筛选，输出30个行业配置方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens Chinese A-share equities with the 大数投资 framework to identify low-valuation industry leaders and produce a diversified 30-industry allocation plan.
 
-## Publisher: <br>
-[dewen2018](https://clawhub.ai/user/dewen2018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dewen2018](https://clawhub.ai/user/dewen2018)
 
-## Use Case: <br>
-External users use this skill to research A-share stock candidates with the Dashu investment method, screening low-valuation industry leaders across 30 industries and organizing the result as an allocation plan. Its outputs should be treated as research support, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce stock selections, allocation suggestions, and buy/sell thresholds that may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as research support only; verify market data independently and evaluate decisions against personal risk tolerance or a qualified professional's advice. <br>
-Risk: Market prices and financial ratios can become stale quickly. <br>
-Mitigation: Use the skill only with current data from the referenced financial data sources and confirm PE, PB, ROE, ST status, and material risk signals before acting. <br>
+## Use Case:
 
+External users and analysts use this skill to structure research-oriented A-share screening around low PB, reasonable PE, industry leadership, ROE, and diversification across 30 industries. The output supports investment research workflows and should be independently verified before any financial decision.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dewen2018/dashu-investment-1-0-0) <br>
-- [大数投资完整标准与操作手册](references/criteria.md) <br>
-- [各行业估值特征与选股逻辑](references/industries.md) <br>
-- [东方财富数据中心](https://data.eastmoney.com) <br>
-- [新浪财经](https://finance.sina.com.cn) <br>
-- [理杏仁](https://www.legulegu.com) <br>
-- [雪球](https://xueqiu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown table with screening rationale and allocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current market data verification before stock-screening results are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may generate stock ideas or valuation figures that are stale, incorrect, incomplete, or unsuitable for a user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should independently verify current PE, PB, ROE, dividend, ST status, and other figures with authoritative finance sources and consider professional financial advice before acting.
+
+Risk: The skill's outputs can be mistaken for personalized investment advice.
+
+Mitigation: Present outputs as research assistance and include clear risk reminders rather than instructions to buy, sell, or allocate capital.
+
+## Reference(s):
+
+- [Skill Source](artifact/SKILL.md)
+- [大数投资完整标准与操作手册](artifact/references/criteria.md)
+- [各行业估值特征与选股逻辑](artifact/references/industries.md)
+- [东方财富数据中心](https://data.eastmoney.com)
+- [新浪财经](https://finance.sina.com.cn)
+- [理杏仁](https://www.legulegu.com)
+- [雪球](https://xueqiu.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stock ideas, valuation figures, allocation suggestions, and risk reminders require independent verification against current market data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

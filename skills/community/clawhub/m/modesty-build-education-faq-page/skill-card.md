@@ -1,43 +1,50 @@
-## Description: <br>
-Generate customer-facing FAQ answers for teachers, tutors, and educational institutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customer-facing answers for common education questions. Use when working on FAQ content for teachers, tutors, educational institutions.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Teachers, tutors, and educational institutions use this skill to draft and refine customer-facing FAQ page content for education services. Review generated and web-sourced answers before external publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated or web-sourced FAQ answers may be inaccurate or misleading if published without review. <br>
-Mitigation: Review answers for accuracy, readability, and policy fit before external publication. <br>
-Risk: Prompts or source material could include student-identifiable or otherwise sensitive information. <br>
-Mitigation: Remove student-identifiable and sensitive information before using the skill. <br>
-Risk: Additional SkillBoss enrichment tools may have separate security or data-handling considerations. <br>
-Mitigation: Review those tools independently before enabling them. <br>
+## Use Case:
 
+Teachers, tutors, and educational institutions use this skill to draft and refine FAQ pages with customer-facing answers for common education questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-build-education-faq-page) <br>
-- [SkillBoss skill homepage](https://www.skillboss.co/skills/build-education-faq-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text FAQ content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web-sourced or generated answers that should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: FAQ answers may be inaccurate, outdated, or misaligned with school or institutional policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated answers for accuracy and policy fit before publishing, especially when web search is used for current or school-specific information.
+
+## Reference(s):
+
+- [SkillBoss Build Education FAQ Page](https://www.skillboss.co/skills/build-education-faq-page)
+- [ClawHub Build Education FAQ Page Release](https://clawhub.ai/modestyrichards/skills/modesty-build-education-faq-page)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown FAQ answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed for accuracy and institutional policy fit before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

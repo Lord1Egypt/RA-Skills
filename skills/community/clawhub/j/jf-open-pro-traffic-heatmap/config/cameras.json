@@ -1,0 +1,10 @@
+{
+  "cameras": [
+    
+  ],
+  "settings": {
+    "capture_interval_minutes": 5,
+    "confidence_threshold": 0.4,
+    "image_retention_days": 7
+  }
+}

@@ -1,37 +1,49 @@
-## Description: <br>
-Build a personal goal-setting system with milestones, tracking, and regular reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal goal-setting system with milestones, tracking, and regular reviews.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Individuals and agents use this skill to clarify personal aspirations into concrete goals, milestones, progress logs, and regular review routines. It helps maintain a simple markdown-based goal workspace under ~/goals/. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update markdown files under ~/goals/ in the user's home directory. <br>
-Mitigation: Before installation or use, confirm that ~/goals/ is an acceptable workspace or ask the agent to use a different path and show proposed file changes before writing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/goals) <br>
+## Use Case:
 
+Individuals using an agent use this skill to clarify personal goals, define milestones, track progress, and run regular weekly, monthly, quarterly, and yearly reviews.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown files and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates goal files under ~/goals/ when the agent is allowed to write files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Goal notes may contain sensitive personal, financial, health, or relationship details when stored locally.
+
+Mitigation: Confirm the ~/goals/ folder location before file creation and avoid storing secrets or details that should not be retained in local goal notes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/goals)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text goal plans, goal-file outlines, progress logs, and review prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May help maintain local goal notes under ~/goals/ when the agent is allowed to create or update files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

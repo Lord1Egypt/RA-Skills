@@ -1,49 +1,59 @@
-## Description: <br>
-A quantitative trading workspace for A-share and futures workflows that supports multi-factor stock screening, A-share backtesting, QMT and Wenhua execution, and risk monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+波龙股神量化交易系统 helps agents support A-share and futures quantitative workflows, including factor-based stock screening, backtesting, QMT and Wenhua execution commands, and risk monitoring guidance.
 
-## Publisher: <br>
-[simonstang](https://clawhub.ai/user/simonstang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonstang](https://clawhub.ai/user/simonstang)
 
-## Use Case: <br>
-External users and developers use this skill to generate stock-picking outputs, backtest A-share strategies, configure broker execution adapters, and monitor trading risk. It is not a substitute for investment advice, audited trading systems, or broker-side controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Live broker execution paths can place real trades or close positions when configured for live QMT or Wenhua access. <br>
-Mitigation: Use paper mode unless the executors have been audited, require explicit confirmation for every live order and close_all action, and tightly scope broker credentials. <br>
-Risk: Default stock-picking, risk-monitoring, and backtest paths include simulated or randomly generated data in artifact behavior. <br>
-Mitigation: Replace demo data with validated market data, label outputs as non-investment-grade until verified, and review assumptions before relying on reports. <br>
-Risk: Telegram notification settings can expose tokens, chat identifiers, or sensitive trading information. <br>
-Mitigation: Store notification credentials securely, disable notifications when not needed, and avoid sending account or order details to broad channels. <br>
-Risk: Financial outputs may be mistaken for investment advice or automated trading approval. <br>
-Mitigation: Require qualified human review, broker-side limits, and independent risk controls before any production trading use. <br>
+## Use Case:
 
+Developers, quantitative-trading practitioners, and external users can use this skill to ask an agent for setup commands, configuration guidance, stock-screening workflows, backtest report generation, broker execution commands, and risk-monitoring procedures for A-share and futures trading workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonstang/bowlong-quant-aio) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/simonstang) <br>
-- [README](artifact/README.md) <br>
-- [Optimization V2.1 notes](artifact/docs/OPTIMIZATION_V2.1.md) <br>
-- [Sample momentum backtest report](artifact/output/backtest_reports/backtest_report_momentum_20260327_193303.md) <br>
-- [Project homepage](https://learn2study.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, CSV stock-pick files, Markdown backtest and risk reports, Python code, shell commands, and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce broker execution commands and financial analysis outputs; outputs require human review before trading use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill includes broker credential handling and commands that can place real-money trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in an isolated environment, keep real broker credentials out of checked-in config files, and avoid live mode unless confirmations and order limits are added.
+
+Risk: Generated stock picks and backtest reports may be misleading if the data path or calculations are not independently verified.
+
+Mitigation: Treat generated picks and backtests as demos until data sources, assumptions, and calculations are reviewed against trusted records.
+
+Risk: Telegram alerting can send account, position, or trading alert data to a configured chat.
+
+Mitigation: Disable Telegram unless that data sharing is acceptable, and protect push tokens and chat identifiers as secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonstang/skills/bowlong-quant-aio)
+- [V2.1 optimization notes](artifact/docs/OPTIMIZATION_V2.1.md)
+- [Project homepage](https://learn2study.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline code blocks, shell commands, configuration snippets, CSV or JSON output paths, and generated report content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated stock-pick CSV files, backtest reports, risk-monitoring reports, and trading command examples.]
+
+## Skill Version(s):
+
+2.1.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

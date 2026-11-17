@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7100rj2nk51144zv8j663a15833rfv",
+  "ownerId": "eviost",
   "slug": "orchestrator-v4",
   "version": "2.2.0",
-  "publishedAt": 1775328001946
+  "publishedAt": 1775250000000,
+  "name": "orchestrator-v4",
+  "description": "智能任务编排系统。自动扫描项目、按模块拆分、批量派发子代理并行执行。支持分析模式和修复模式，自适应超时，空结果检测，滚动派发。",
+  "author": "eviost",
+  "license": "MIT",
+  "keywords": ["orchestrator", "multi-agent", "task-scheduling", "subagent", "concurrent"],
+  "dependencies": [],
+  "minOpenClawVersion": "2026.3.0"
 }

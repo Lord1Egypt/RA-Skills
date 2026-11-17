@@ -1,44 +1,61 @@
-## Description: <br>
-Helps users plan, design, run, and analyze A/B tests or experiments with hypotheses, metrics, sample sizing, traffic allocation, launch checks, and result documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, design, implement, and document statistically rigorous A/B tests and experiments.
 
-## Publisher: <br>
-[boleyn](https://clawhub.ai/user/boleyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boleyn](https://clawhub.ai/user/boleyn)
 
-## Use Case: <br>
-Marketing, product, growth, and engineering teams use this skill to plan statistically grounded A/B tests, choose primary and guardrail metrics, estimate sample size and duration, design variants, and document results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local product marketing context files may contain sensitive business information. <br>
-Mitigation: Review and redact product marketing context before use and before sharing generated plans or analysis. <br>
-Risk: Broad activation wording may trigger the skill for generic experimentation language where a narrower skill is more appropriate. <br>
-Mitigation: Confirm the task is an A/B testing or experiment-planning request before relying on the guidance. <br>
+## Use Case:
 
+External users, developers, marketers, and product teams use this skill to structure A/B test hypotheses, choose metrics, estimate sample size, plan traffic allocation, prepare launch checklists, and document experiment results.
 
-## Reference(s): <br>
-- [Sample Size Guide](references/sample-size-guide.md) <br>
-- [A/B Test Templates Reference](references/test-templates.md) <br>
-- [Evan Miller A/B Testing Sample Size Calculator](https://www.evanmiller.org/ab-testing/sample-size.html) <br>
-- [Optimizely Sample Size Calculator](https://www.optimizely.com/sample-size-calculator/) <br>
-- [ClawHub skill page](https://clawhub.ai/boleyn/ocms-ab-test-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, tables, and test plan or results templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local product marketing context when present; no executable code or credential access is described in the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 1.1.0) <br>
+Risk: Broad experiment or hypothesis wording may activate the skill when the user does not intend a formal A/B test.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants experiment planning before applying sample size, metric, or launch guidance.
+
+Risk: Optional local product marketing context can influence recommendations if that context is stale or incomplete.
+
+Mitigation: Review the relevant product context and ask only for missing test-specific details before finalizing recommendations.
+
+Risk: Experiment decisions may be misleading when sample size, primary metric, or stopping rules are not set up front.
+
+Mitigation: Predefine the hypothesis, primary metric, sample size, duration, and guardrail metrics before launching or interpreting a test.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/boleyn/skills/ocms-ab-test-setup)
+- [Sample Size Guide](references/sample-size-guide.md)
+- [A/B Test Templates Reference](references/test-templates.md)
+- [Evan Miller A/B Test Sample Size Calculator](https://www.evanmiller.org/ab-testing/sample-size.html)
+- [Optimizely Sample Size Calculator](https://www.optimizely.com/sample-size-calculator/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, formulas, and experiment templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use optional local product marketing context when present; no code execution or credential handling is described in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

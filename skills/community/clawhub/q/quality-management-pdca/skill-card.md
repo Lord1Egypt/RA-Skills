@@ -1,46 +1,61 @@
-## Description: <br>
-PDCA+ISO9001质量管理 provides PDCA-cycle and ISO9001-based quality management support for lifecycle task control, standardized workflows, decision validation, continuous improvement, and quality reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDCA+ISO9001质量管理决策系统技能 - 基于PDCA循环和ISO9001质量体系的AI决策质量管控技能，实现任务全生命周期管理、标准化流程、持续改进
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Developers, project leads, and quality-management teams use this skill to structure PDCA workflows, evaluate ISO9001-aligned controls, validate decisions, manage reusable knowledge, and generate quality reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved rules can be evaluated as Python expressions. <br>
-Mitigation: Review or disable eval-based rule handling before installation, and use only trusted project and rule inputs. <br>
-Risk: Knowledge-base data is persistent local storage. <br>
-Mitigation: Avoid storing secrets or sensitive customer data, and apply local retention and cleanup controls. <br>
-Risk: Report output paths are not safely constrained and HTML reports may include unsafe content. <br>
-Mitigation: Restrict report filenames to safe basenames and sanitize HTML report content before sharing or publishing. <br>
+## Use Case:
 
+Quality teams, project leads, and developers use this skill to structure PDCA workflows, validate ISO9001-aligned checkpoints, evaluate decision quality, manage knowledge records, and generate quality reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yongjie666888/quality-management-pdca) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Self-Improving integration notes](artifact/docs/Self-Improving对接说明.md) <br>
-- [Development integration notes](artifact/docs/开发方案对接说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON, HTML, and structured text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate project quality reports, ISO9001 validation reports, decision quality reports, statistics reports, check results, recommendations, and reusable knowledge entries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, config.json) <br>
+Risk: Unsafe local rule evaluation could execute or apply untrusted rule conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review rule conditions before installation, keep execution in a contained workspace, and do not let untrusted users control rule conditions.
+
+Risk: Broad file-writing paths could overwrite files or place generated records in unintended locations.
+
+Mitigation: Restrict project IDs and report filenames to trusted values and review generated paths before use.
+
+Risk: Generated reports and knowledge-base records may contain sensitive business information.
+
+Mitigation: Handle generated outputs as confidential records and avoid importing untrusted project data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/quality-management-pdca)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Self-Improving integration notes](artifact/docs/Self-Improving对接说明.md)
+- [Development integration notes](artifact/docs/开发方案对接说明.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, Python code snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate quality reports and knowledge records that should be treated as sensitive business data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

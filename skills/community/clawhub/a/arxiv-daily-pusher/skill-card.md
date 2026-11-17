@@ -1,46 +1,58 @@
-## Description: <br>
-Fetches yesterday's arXiv papers, ranks them by keyword relevance for configured research groups, and pushes selected results to Feishu/Lark via webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches yesterday's arXiv papers, ranks them by keyword relevance, and pushes selected results to Feishu or Lark via webhook for multiple research groups.
 
-## Publisher: <br>
-[ventaozzz](https://clawhub.ai/user/ventaozzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ventaozzz](https://clawhub.ai/user/ventaozzz)
 
-## Use Case: <br>
-Developers and research teams use this skill to automate daily monitoring of arXiv papers for configured topics and deliver ranked paper recommendations to Feishu/Lark groups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured group names, keywords, and selected paper titles or links are sent to the configured Feishu/Lark webhook. <br>
-Mitigation: Use only approved webhook destinations and keep the webhook URL private. <br>
-Risk: The optional scheduled cron command can run the skill automatically. <br>
-Mitigation: Review the cron command and runtime path before enabling scheduled execution. <br>
-Risk: Dependencies are declared with lower bounds rather than exact pins. <br>
-Mitigation: Pin dependency versions in production environments. <br>
-Risk: The HTTP fallback mode can use the plain-HTTP arXiv API endpoint. <br>
-Mitigation: Prefer arxiv library mode when avoiding plain-HTTP fallback is required. <br>
+## Use Case:
 
+Developers, research teams, and technical staff use this skill to automate daily arXiv monitoring by topic, rank papers against group-specific keywords, and send concise paper recommendations to a Feishu or Lark chat.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ventaozzz/arxiv-daily-pusher) <br>
-- [README](artifact/README.md) <br>
-- [Configuration example](artifact/config.example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text Feishu/Lark messages with Markdown setup guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Posts selected paper titles, publication dates, relevance scores, and links to the configured webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The configured webhook can expose selected paper titles, links, group names, and keyword-derived research interests to the destination chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the webhook URL as a secret, restrict access to configuration and logs, and send results only to approved Feishu or Lark chats.
+
+Risk: Default network and logging behavior can expose or misuse the webhook during unattended scheduled runs.
+
+Mitigation: Restrict cron log permissions, avoid printing secrets, pin dependencies, and review scheduled execution settings before deployment.
+
+Risk: The fallback arXiv HTTP mode can forward untrusted cleartext API results into chat.
+
+Mitigation: Prefer the arxiv_only mode or an HTTPS-protected fallback where available, and review pushed links before broad distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ventaozzz/skills/arxiv-daily-pusher)
+- [arXiv API endpoint used by the artifact](http://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Configuration, Shell commands]
+
+**Output Format:** [Plain text Feishu/Lark messages and console output, with YAML configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Ranks results with title matches weighted 2x and abstract matches weighted 1x; default top_k is 6 papers per group.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

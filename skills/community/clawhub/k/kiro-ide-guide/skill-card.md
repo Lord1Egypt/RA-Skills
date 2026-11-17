@@ -1,50 +1,63 @@
-## Description: <br>
-Guides agents through Kiro IDE workflows for spec-driven development, hooks automation, steering rules, MCP server setup, powers extensions, and end-to-end development planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Kiro workflows for spec-driven development, hooks automation, steering rules, MCP integration, powers extensions, and end-to-end development.
 
-## Publisher: <br>
-[xwz119](https://clawhub.ai/user/xwz119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xwz119](https://clawhub.ai/user/xwz119)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to apply Kiro-style spec-driven development, configure hooks and steering rules, connect MCP servers, and scaffold standard spec documents for implementation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hook examples may run commands for formatting, tests, deployment, deletion, notifications, or scheduled jobs. <br>
-Mitigation: Review each hook before use, keep save-time hooks fast and local, and avoid deploying, deleting, or posting messages unless the project owner explicitly approves the action. <br>
-Risk: MCP server examples can expose credentials or filesystem access if configured too broadly. <br>
-Mitigation: Store credentials in environment variables, use least-privilege tokens, enable only required servers, and restrict filesystem allowed paths to the intended project. <br>
-Risk: Generated spec scaffolds are templates and can contain assumptions that do not match a specific project. <br>
-Mitigation: Review and adapt generated requirements, design, and task files before allowing an agent to implement from them. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide Kiro project work with specs, hooks, steering rules, MCP servers, and optional automation scripts from prototype through production workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xwz119/kiro-ide-guide) <br>
-- [Kiro documentation](https://kiro.dev/docs/) <br>
-- [Kiro CLI guide](https://kiro.dev/docs/cli) <br>
-- [Kiro first project tutorial](https://kiro.dev/docs/getting-started/first-project/) <br>
-- [Kiro GitHub repository](https://github.com/kirodotdev/kiro) <br>
-- [Spec template](references/spec-template.md) <br>
-- [Hooks reference](references/hooks-reference.md) <br>
-- [MCP servers reference](references/mcp-servers.md) <br>
-- [Project rules steering template](assets/steering-templates/project-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell command, YAML, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can also produce scaffolded requirements, design, and task markdown files through the bundled create-spec.py script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Persistent Kiro hook examples can run shell commands that delete files, deploy, make network requests, or execute on a schedule.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every hook before use, keep automatic actions narrow, and avoid enabling destructive, deployment, network, or scheduled hooks without explicit project approval.
+
+Risk: MCP examples involve credentials, filesystem access, and third-party tools with weak default safety boundaries.
+
+Mitigation: Pin packages, use least-privilege tokens, narrow filesystem paths, store secrets in environment variables, and enable only required MCP servers.
+
+Risk: Shell-expanded file placeholders in hook examples can behave unexpectedly when paths contain unsafe characters.
+
+Mitigation: Quote placeholders carefully or avoid shell-expanded placeholders in real project hooks.
+
+## Reference(s):
+
+- [Kiro documentation](https://kiro.dev/docs/)
+- [Kiro CLI guide](https://kiro.dev/docs/cli)
+- [Kiro first project tutorial](https://kiro.dev/docs/getting-started/first-project/)
+- [Kiro GitHub repository](https://github.com/kirodotdev/kiro)
+- [Kiro spec template](references/spec-template.md)
+- [Kiro hooks reference](references/hooks-reference.md)
+- [Kiro MCP servers reference](references/mcp-servers.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell, YAML, JSON, Python, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reusable Kiro steering, hook, MCP, and spec templates plus a Python spec scaffold script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

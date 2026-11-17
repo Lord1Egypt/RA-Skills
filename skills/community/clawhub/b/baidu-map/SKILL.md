@@ -1,123 +1,80 @@
 ---
 name: "百度地图"
-version: "1.0.0"
-description: "百度地图开发助手，精通地理编码、路线规划、全景地图、智能交通 API"
-tags: ["map", "lbs", "navigation", "panorama"]
+version: "2.0.0"
+description: "百度地图 Web 服务 API 工具与 BD-09 坐标系指南。Use for: (1) 用附带的零依赖 CLI 查地理编码/POI/路线并做坐标系转换, (2) BD-09 与 WGS-84/GCJ-02 互转避坑, (3) 百度地图开放平台开发指导。Baidu Maps Web API CLI (zero-dependency) for geocoding, POI, routing and coordinate conversion, plus a BD-09 coordinate-system guide."
+tags: ["baidu", "map", "lbs", "geocoding", "bd09", "cli"]
 author: "ClawSkills Team"
-category: "map"
+category: "navigation"
 ---
 
-# 百度地图 AI 助手
+# 百度地图 Web API Skill
 
-你是一个精通百度地图开放平台的 AI 助手，能够帮助开发者快速集成 LBS 服务。
+附带零依赖 CLI（`scripts/bmap.py`，仅 Python 标准库）。百度地图的
+独有能力：**官方坐标转换接口**（WGS-84/GCJ-02 → BD-09）和丰富的
+POI 检索数据。
 
-## 身份与能力
+## 快速开始
 
-- 精通百度地图 Web 服务 API、JavaScript API、Android/iOS SDK
-- 熟悉 BD-09 坐标系及各坐标系转换
-- 了解百度地图全景、智能交通、物流等高级服务
+```bash
+# lbsyun.baidu.com 免费申请 AK，应用类型选 "服务端"
+export BMAP_AK=你的ak
 
-## API 知识库
-
-Base URL: `https://api.map.baidu.com`
-认证方式: `ak` 参数（在百度地图开放平台控制台获取）
-
-### 地理编码
-
-地址 → 坐标：
-```
-GET /geocoding/v3/?address=北京市海淀区上地十街10号&output=json&ak={ak}
+python3 scripts/bmap.py geocode "北京市海淀区上地十街10号"
+python3 scripts/bmap.py around 39.915,116.404 咖啡 1000
+python3 scripts/bmap.py convert 116.404,39.915 1 5   # GPS坐标转百度坐标
 ```
 
-坐标 → 地址（逆地理编码）：
-```
-GET /reverse_geocoding/v3/?location=39.983424,116.322987&output=json&ak={ak}
-```
+脚本行为声明：仅请求 `api.map.baidu.com`，不读写本地文件。
 
-### 路线规划
+## 命令手册
 
-驾车路线：
-```
-GET /directionlite/v1/driving?origin=40.01116,116.339303&destination=39.936404,116.452562&ak={ak}
-```
+| 命令 | 作用 |
+|------|------|
+| `geocode <地址> [城市]` | 地址 → 坐标（**返回 BD-09**） |
+| `regeo <lat,lng>` | 坐标 → 结构化地址 |
+| `search <关键词> <城市>` | POI 城市内检索 |
+| `around <lat,lng> <关键词> [半径米]` | POI 周边检索 |
+| `driving / walking <起点> <终点>` | 轻量路线规划（directionlite） |
+| `convert <lng,lat> <from> <to>` | 坐标转换：1=WGS84 3=GCJ-02 5=BD-09 |
+| `call <path> k=v ...` | 通用兜底：调任意接口 |
 
-公交路线：
-```
-GET /directionlite/v1/transit?origin=40.01116,116.339303&destination=39.936404,116.452562&ak={ak}
-```
+**⚠️ 两个坐标陷阱（跨平台翻车重灾区）**：
 
-步行/骑行路线：将 `driving` 替换为 `walking` 或 `riding`。
+1. **顺序**：百度接口的 location 参数是 `纬度,经度`（lat,lng），
+   但 convert 接口的 coords 是 `经度,纬度`（lng,lat）——同平台内都不统一
+2. **坐标系**：百度全系输入输出默认 BD-09。把高德/腾讯的 GCJ-02 坐标
+   直接传入会偏移几百米；把 GPS 原始坐标传入偏移更大。
+   进百度先 `convert`，出百度无官方反向接口（社区近似算法有精度损失，
+   所以**数据库存坐标建议存 GCJ-02 或 WGS-84，展示层再转 BD-09**）
 
-### POI 搜索
+## Agent 典型用法
 
-区域搜索：
-```
-GET /place/v2/search?query=银行&region=北京&output=json&ak={ak}
-```
+1. **坐标系清洗**：一批 GPS 轨迹要在百度地图展示 → 循环 `convert 1 5`
+2. **位置偏移排障**：用户反馈"标注偏了几百米" → 十有八九是坐标系混用，
+   按上面陷阱清单排查
+3. **找地点/周边分析**：`search`/`around` 拿 POI 数据，按距离评分整理
+4. **批量地址入库**：`geocode` 规范化地址，注意存储坐标系的选择（见上）
 
-周边搜索：
-```
-GET /place/v2/search?query=餐厅&location=39.983424,116.322987&radius=2000&output=json&ak={ak}
-```
+## 高频错误码（实测）
 
-POI 详情：
-```
-GET /place/v2/detail?uid={poi_uid}&output=json&ak={ak}
-```
+| status | 含义 | 处理 |
+|--------|------|------|
+| 200 | AK 不存在 | 检查 AK 拼写（实测拼错返回的就是它，不是 210） |
+| 210 | AK 校验失败 | 服务端 AK 配置了 IP 白名单但请求 IP 不在其中 |
+| 302 | 天配额超限 | 免费版按接口独立计额，次日重置；量大需企业认证 |
+| 401/402 | 并发超限 | 加限速重试 |
 
-### IP 定位
+## 与其他平台对比
 
-```
-GET /location/ip?ip=111.206.214.37&coor=bd09ll&ak={ak}
-```
+| 场景 | 建议 |
+|------|------|
+| 微信小程序 | 腾讯地图（见 `tencent-map` skill） |
+| 导航/车机生态 | 高德（见 `gaode` skill） |
+| 需要街景全景 | 百度（独有全景 API，用 `call` 调 /panorama/v2） |
+| POI 数据对比 | 高德/百度各有覆盖强区，重要项目两家实测对比 |
 
-### 天气查询
+## 本 skill 不做什么
 
-```
-GET /weather/v1/?district_id=110100&data_type=all&ak={ak}
-```
-
-### 静态地图
-
-```
-GET /staticimage/v2?center=116.403874,39.914888&zoom=11&width=400&height=300&ak={ak}
-```
-
-支持添加标注：`&markers=116.403874,39.914888`
-
-### 坐标转换
-
-```
-GET /geoconv/v2/?coords=114.21892734521,29.575429778924&from=1&to=5&ak={ak}
-```
-
-from/to 参数：1=WGS-84, 3=GCJ-02, 5=BD-09
-
-## 坐标系说明
-
-| 坐标系 | 说明 | 使用场景 |
-|--------|------|----------|
-| WGS-84 | GPS 原始坐标 | GPS设备、国际地图 |
-| GCJ-02 | 国测局坐标（火星坐标） | 高德地图、腾讯地图 |
-| BD-09 | 百度坐标 | 百度地图专用 |
-
-百度地图 API 输入输出均为 BD-09 坐标，使用其他来源坐标需先转换。
-
-## 使用场景
-
-1. 地址解析：用户输入地址 → 调用地理编码获取坐标 → 在地图上标注
-2. 路线导航：输入起终点 → 调用路线规划 → 展示距离、时间、路线
-3. 附近搜索：获取用户位置 → 周边 POI 搜索 → 按距离排序展示
-4. 物流追踪：批量地理编码 → 路线规划 → 轨迹展示
-
-## 工作规范
-
-- ak 密钥不要暴露在前端代码中，服务端调用使用 SN 校验
-- 注意配额限制：个人开发者日配额有限，企业认证可提升
-- 批量请求使用批量接口，避免循环单条调用
-- BD-09 坐标不要直接用于其他地图平台，必须先转换
-- 逆地理编码返回的 `formatted_address` 可能不含省市，需拼接 `addressComponent`
-
----
-
-**最后更新**: 2026-03-16
+- 不含 JavaScript API（前端渲染）细节，只覆盖服务端 Web API
+- BD-09 → 其他坐标系的"逆转换"官方不支持，本 skill 不提供
+  近似算法实现（有精度损失，需要时明确告知用户风险）

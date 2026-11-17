@@ -1,43 +1,58 @@
-## Description: <br>
-Search and analyze your own session logs (older/parent conversations) using jq. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and analyze your own session logs (older/parent conversations) using jq.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and agent users use this skill to search local JSONL session transcripts, recover context from earlier conversations, inspect message history, and summarize session costs or tool usage. It is intended for scoped local analysis of the user's own conversation logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session transcript searches can expose sensitive conversation history beyond what the user intended to review. <br>
-Mitigation: Keep searches scoped to the requested session, date, or phrase, and confirm scope before broad all-session searches. <br>
-Risk: Session logs may contain credentials, API keys, tokens, or other secrets pasted during prior debugging. <br>
-Mitigation: Do not display secret values; note their presence and recommend rotation when real credentials are found. <br>
-Risk: Sending session log contents to network commands or remote destinations can disclose private transcripts. <br>
-Mitigation: Process logs locally and avoid piping or redirecting transcript contents to network-transmitting tools. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect local OpenClaw session history when a user asks about prior chats, parent conversations, historical context, message contents, costs, or tool usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/session-logs-hardened) <br>
-- [Faberlens safety evaluation](https://faberlens.ai/explore/session-logs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with jq and ripgrep shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local jq and rg; output should keep session-log searches scoped and local.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Session logs may contain sensitive personal content, credentials, API keys, or tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the requested scope before broad searches, keep processing local, and report secret presence without displaying secret values.
+
+Risk: Unfiltered searches across all sessions can expose conversation patterns or content the user did not intend to review.
+
+Mitigation: Prefer a specific session, date, or phrase, and require user confirmation before all-session searches.
+
+Risk: Session log contents could be exfiltrated if piped or redirected to network-transmitting commands.
+
+Mitigation: Do not send session log contents through curl, wget, nc, scp, ssh, or similar network tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/session-logs-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/session-logs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local jq and rg availability; outputs should stay local and avoid displaying credentials or tokens found in logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Helps create, optimize, or audit startups, education, and special program pages for offers such as discounts, free tiers, credits, or extended trials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants to create, optimize, or audit a startups, education, or special program page.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, growth, and product teams use this skill to structure pages for startup, education, nonprofit, or incubator programs, including the offer, eligibility criteria, application flow, internal links, and SEO metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project context files may influence generated page copy and could expose secrets or internal-only details if those files contain sensitive information. <br>
-Mitigation: Review `.claude/project-context.md` and `.cursor/project-context.md` before use, and avoid storing secrets or internal-only information in those files. <br>
+## Use Case:
 
+Marketing, growth, and product teams use this skill to create, optimize, or audit pages for startup, education, nonprofit, incubator, student, and other special-pricing programs.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with page structure, messaging, eligibility, offer, application flow, internal links, and SEO metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, install hooks, credential handling, persistence, or hidden behavior reported by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and SKILL.md metadata) <br>
+Risk: The skill can trigger for broad student, startup, or special-pricing requests where channel strategy may be the real need.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Route to a more specific pricing or education-program skill when the task is about discount structure, verification, placement, or channel strategy rather than page copy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/startups-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page copy, eligibility criteria, offer details, application flow, internal-link recommendations, and SEO metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

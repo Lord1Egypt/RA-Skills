@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ig-downloader-skill"
+version = "2.3.0"
+description = "Download Instagram media (reels, carousels, photos) via sessionid cookie + Playwright setup or Apify dataset fallback"
+readme = "README.md"
+license = {text = "GPL-2.0-only"}
+authors = [
+    {name = "Edgar Zorrilla"}
+]
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31.0",
+    "instagrapi>=2.0.0",
+    "playwright>=1.48.0",
+]
+
+[project.urls]
+Repository = "https://github.com/cripterhack/ig-downloader-skill"
+Issues = "https://github.com/cripterhack/ig-downloader-skill/issues"
+
+[project.scripts]
+ig-downloader = "instagram_downloader:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["instagram_downloader*"]

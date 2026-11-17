@@ -1,0 +1,529 @@
+# skills-summarize-audit v9.2.2 配置
+# Project Skill Audit — 项目技能审计（加强大脑版）
+# 唯一配置源。scan_paths 以此文件为准。
+# platforms/zcode.yaml 仅存平台特征（归档路径等），不定义扫描路径。
+#
+# ⚠️ 触发词权威来源：SKILL.md 触发词矩阵。
+# platforms/*.yaml 不定义扫描路径，也不重复定义触发词，仅保留平台特征（归档路径、Agent 模型约束等）。
+# 同步规则：修改触发词 → 仅需更新 SKILL.md。
+#
+# v8.0.0 加强大脑：新增 8 个 references 知识库（指纹/市场/TQI/冲突/体检/推荐）
+# 仍保持"只读 + 不动手"底线；输出可执行指令模板由用户的 Agent 执行。
+#
+# 消费方式：本文件为 Agent 行为约定配置，无脚本消费（scripts/*.py 不读取本文件）；脚本参数见各脚本 argparse 与 README「脚本参数」一节。
+
+# 运行时数据目录（v5.9.2 治理）：所有缓存/日志/统计文件统一放 .data/，避免与源码混在一起
+data_dir: "$SKILL_DIR/.data"
+archive_dir: "$SKILL_DIR/../archived"
+
+scan_paths:
+  # 通用路径（跨 AI 助手）— 用户技能通常在此
+  - name: "用户技能 (.agents)"
+    path: "~/.agents/skills/*/"
+    type: user
+    editable: true
+    # ZCode 特有多路径
+  - name: "用户技能 (.zcode)"
+    path: "~/.zcode/skills/*/"
+    type: user
+    editable: true
+    # Claude Code 路径
+  - name: "Claude Code 技能"
+    path: "~/.claude/skills/*/"
+    type: user
+    editable: true
+  - name: "Codex 用户技能"
+    path: "~/.codex/skills/*/"
+    type: user
+    editable: true
+  - name: "Codex 全局技能"
+    path: "$CODEX_HOME/skills/*/"
+    type: user
+    editable: true
+    exclude: [".archived", ".system"]
+  - name: "Codex runtime 插件技能"
+    path: "~/.cache/codex-runtimes/*/plugins/*/plugins/*/skills/*/"
+    type: system
+    editable: false
+  - name: "Codex 插件缓存技能"
+    path: "$CODEX_HOME/plugins/cache/*/*/skills/*/"
+    type: system
+    editable: false
+  - name: "Codex remote catalog 展示元数据"
+    path: "$CODEX_HOME/cache/remote_plugin_catalog/*.json"
+    type: display_metadata
+    editable: false
+  # 插件/系统技能（按实际环境修改路径）
+  - name: "插件技能"
+    path: "~/.zcode/cli/plugins/cache/*/*/skills/*/"
+    type: system
+    editable: false
+
+# 项目私有技能与全局用户技能必须分开清点，避免推荐全局安装污染仓库。
+scope_targets:
+  project:
+    description: "仅服务当前仓库，随代码评审、CI 或团队规范交付"
+    paths:
+      - ".agents/skills/*/"
+      - ".github/skills/*/"
+      - ".claude/skills/*/"
+      - ".cursor/skills/*/"
+  global:
+    description: "跨项目复用的个人能力，仅写入用户目录"
+    paths:
+      - "~/.agents/skills/*/"
+      - "~/.zcode/skills/*/"
+      - "~/.claude/skills/*/"
+      - "~/.codex/skills/*/"
+      - "$CODEX_HOME/skills/*/"
+
+recommendation_scope:
+  enabled: true
+  default: "project"
+  rules:
+    - when: "技能依赖仓库代码、团队规范、项目密钥或仅命中当前项目活动"
+      scope: "project"
+    - when: "技能不读取项目私有数据、在两个以上项目复用且目标 Agent 支持全局目录"
+      scope: "global"
+    - when: "证据不足或目标平台路径未知"
+      scope: "defer"
+
+# 项目扫描配置
+project_scan:
+  max_depth: 10
+  max_files: 2000
+  ignore_patterns:
+  - "node_modules"
+  - ".git"
+  - ".venv"
+  - "__pycache__"
+  - "dist"
+  - "build"
+  - ".next"
+  - "target"
+  - "vendor"
+  - ".svn"
+  - ".hg"
+  - "bower_components"
+  - ".tox"
+  - "*.pyc"
+
+# 版本检查
+version_check:
+  enabled: true
+  registry_url: ""
+  search_template: "{skill_name} AI agent skill latest version"
+
+# (removed v5.7.0 custom_rules — 轻量规则引擎从未启用，于 v5.9.1 移除死代码)
+
+# 操作快照（v5.9.1）— 执行前自动备份，支持 --undo
+snapshot:
+  enabled: true
+  dir: "~/.agents/skills/.audit-snapshots/"
+  retention_days: 7           # 快照保留天数
+  auto_before_exec: true      # 仅在用户确认执行后创建快照
+
+# 审计默认只读。任何持久化都必须在报告展示操作清单后获得明确确认。
+write_policy:
+  default_mode: "read_only"
+  require_explicit_confirmation: true
+  operations: ["profile", "memory", "cache", "log", "snapshot", "archive", "install", "update", "description"]
+
+translation_refinement:
+  glossary: "$SKILL_DIR/references/codex-ui-zh-glossary.json"
+  script: "$SKILL_DIR/scripts/collect_codex_display_candidates.py"
+  target_language: "zh-Hans"
+  require_quality_status: true
+  # v8.0.0：TQI 四维评分（translation-quality.md）
+  tqi:
+    enabled: true
+    weights:
+      term_preservation: 0.30   # 术语保护率
+      trigger_match: 0.30       # 触发词命中率
+      length_compliance: 0.20   # 长度合规
+      source_consistency: 0.20  # 同源一致性
+    thresholds:
+      ready: 8.0                # ≥8 → ready
+      needs_minor: 6.0          # 6-7.9 → needs_minor
+      needs_agent_refinement: 4.0  # 4-5.9 → needs_agent_refinement
+      untranslatable: 0         # <4 → untranslatable
+    # v8.0.0：自学习（用户确认翻译后扩充 glossary）
+    auto_learn:
+      enabled: true
+      store_in: "codex-ui-zh-glossary.json#learned_phrases"
+      require_explicit_confirmation: true
+      min_tqi_to_learn: 8.0     # TQI ≥ 8 才学习
+      log_file: ".data/glossary-learn-log.jsonl"
+  offline_engine:
+    enabled: false
+    name: "argos-translate"
+    require_explicit_confirmation: true
+    reason: "模型下载和运行时依赖不随 Audit 捆绑"
+
+# 输出语言
+output_language: "auto"  # auto / zh / en
+
+# 外部信号缓存（增量获取，避免每次全量 WebFetch）
+# ⚠️ 安全说明（v6.0.1）：外部信号获取涉及向 GitHub/npm 等第三方发出网络请求。
+# 默认关闭（enabled: false），用户知情并同意后才应启用。
+# 如需启用：external_signals_cache.enabled = true
+external_signals_cache:
+  enabled: false            # 默认关闭，用户知情同意后手动开启
+  github_ttl_days: 7        # GitHub ⭐/更新时间 缓存 7 天
+  npm_ttl_days: 30          # npm 下载量 缓存 30 天
+  # 中文社区信号源（v5.9.1，默认关闭）
+  china_sources:
+    enabled: false          # 设为 true 启用知乎/掘金/CSDN 采集（需用户额外知情同意）
+    zhihu_ttl_days: 14
+    juejin_ttl_days: 14
+    csdn_ttl_days: 14
+  cache_file: ".data/external-signals-cache.json"
+
+# 开发搜索策略（先搜索后开发）
+# ⚠️ 安全说明（v6.0.1）：启用后 agent 会搜索 GitHub/PyPI/npm/crates.io 等外部站点。
+# 默认关闭，用户知情并同意后才应启用。
+dev_search_policy:
+  enabled: false            # 默认关闭，用户知情同意后手动开启
+  min_sources: 2            # 至少引用 2 个独立来源
+  required_domains:
+  - "github.com"
+  - "pypi.org"
+  - "npmjs.com"
+  - "crates.io"
+
+# 项目记忆配置
+memory_config:
+  project_memory_file: "memories/MEMORY.md"
+  auto_sync: false         # 仅在用户确认后回写 MEMORY.md
+  sections:
+  - "environment"
+  - "tech_stack"
+  - "interests"
+  - "paths"
+  - "project"
+  - "commands"
+  - "architecture"
+  new_project_ask: true    # 无 MEMORY.md 时询问用户
+
+# 项目画像自动刷新（v5.9.1 新增）
+project_profiles:
+  auto_refresh_days: 3      # 超过 3 天未更新时自动触发重新画像
+  stale_warn: true          # 审计时检测是否过期并输出告警
+  auto_persist: false       # 默认只输出画像，不写入项目目录
+  cache_file: ".data/project-profiles.json"
+
+# MCP 服务器配置路径（v5.3.0 新增 — 跨层能力扫描）
+mcp_config:
+  # 扫描的 MCP 配置文件，读取 mcp.servers / mcpServers 块
+  files:
+    - "~/.zcode/cli/config.json"       # ZCode MCP 服务器
+    - "~/.claude.json"                  # Claude Code MCP 服务器
+  scan_mcp_servers: true               # 启用后，步骤②额外扫描 MCP 工具
+  tool_desc_max_length: 80             # MCP 工具描述截断长度
+
+# 健康阈值（v5.9.1 多平台化）
+health_thresholds:
+  # 通用默认值
+  default:
+    max_total_skills: 30
+    max_t3_ratio: 0.3
+    overlap_threshold: 0.6
+    zero_match_warn: 0
+  # 平台特化（覆盖默认）
+  per_platform:
+    codebuddy:
+      max_total_skills: 20
+    claude-code:
+      max_total_skills: 40
+    cursor:
+      max_total_skills: 50
+
+# trend_tracking 已移至 references/config-candidates.md（未生效候选）
+# capacity_analysis 已移至 references/config-candidates.md（未生效候选）
+
+# CI/CD 无交互模式（v5.8.0 新增）
+ci:
+  enabled: true
+  max_tokens: 8000          # CodeBuddy 专业版上限约束，Claude Code 可调高
+  skip_steps:
+    - "④-bis"               # 跳过逐技能深度阅读（最大节省项）
+  output:
+    format: "json"
+    fields: ["summary", "alerts", "capacity_analysis", "exit_code"]
+  gates:
+    health_min: "🟡"        # 🟡 以下 → exit_code=1
+    t3_ratio_max: 0.35       # 超过 → exit_code=3
+    actions_max: 5           # 超过 → exit_code=2
+
+# 安全扫描（v5.8.0 新增，v6.1.0 默认启用内置规则）
+security_scan:
+  enabled: true             # v6.1.0 默认启用：审计时自检 README/config/脚本安全风险
+  tool: "builtin"            # "skillspector" 或 "builtin"（内置轻量规则）
+  skillspector_path: ""      # 留空自动查找
+  rules: ["all"]             # 或 ["injection", "malware", "secret"]
+  fail_on: "critical"        # critical / high / medium / none
+  output_format: "json"
+  ci_integration: true       # CI 模式自动执行
+
+# 活性检测（v5.9.1 新增 check_agent_access）
+liveness_check:
+  enabled: true
+  # 7 项检测开关（v6.2.1 新增 check_mcp_startup）
+  check_agent_access: true    # v5.9.1 新增：Agent 对扫描路径的可达性
+  check_mcp: true             # MCP 配置存在性
+  check_mcp_startup: true     # v6.2.1 新增：MCP 命令实际可启动
+  check_commands: true
+  check_trigger: true
+  check_data_dir: true
+  check_usage_evidence: true
+  # 增量检测时，上次结果缓存文件
+  cache_file: ".data/stats.json"
+
+# 质量信号（v8.1.0 — 结构化 Codex session/tool-call 证据）
+# summarize 10.2.0 不再自动维护旧版 error-ledger；旧路径只保留作历史兼容说明。
+# 任何无法可靠归因到显式 skill/tool 调用的文本均不得计为使用证据。
+#   - 使用证据状态标记为 unavailable，不参与扣分或推荐排序
+#   - 不触发 P1 缺口搜索
+#   - 报告中标注「使用证据 unavailable」
+usage_signals:
+  enabled: true
+  source: "codex_session_events"
+  session_index: "$CODEX_HOME/session_index.jsonl"
+  sessions_dir: "$CODEX_HOME/sessions"
+  provenance_required: true
+  ignore_prompt_mentions: true
+  window_days: 90
+  min_calls_pass: 5
+  min_calls_warn: 1
+  # 没有可归因事件时不回填分数，避免把未知误写成高使用率
+  fallback_score: null
+
+# 描述格式检查（v6.2.0 新增 — Forma 维度配置）
+forma_check:
+  enabled: true
+  # 格式检查项权重（与 04-scoring.md 同步）
+  weights:
+    format_style: 0.40      # 箭头格式规范
+    language_consistency: 0.30  # 语言一致性（无中英混搭）
+    length_limit: 0.20       # ≤40 字符
+    info_density: 0.10       # 无杂质信息
+  # 扣分阈值
+  threshold: 6.0             # Forma < 6.0 → 在报告中标记为"需优化"
+  # 插件技能只标记不修改
+  plugin_readonly: true      # editable=false 技能只出建议不出修改
+
+# 社区 Feed（v6.0.0 新增 — 能力缺口驱动的 GitHub 搜索）
+community_feed:
+  enabled: false             # 需用户明确同意本次 GitHub/网页查询后才开启
+  require_explicit_consent: true
+  # 搜索上限
+  max_searches: 3
+  max_candidates: 15
+  # 缓存
+  cache_file: ".data/community-feed-cache.json"
+  cache_ttl_days: 7
+  # 发现新工具的最低置信度（0-10）
+  min_confidence: 5.0
+
+# 审计日志（v5.9.2 治理）
+logging:
+  enabled: false             # 仅在用户确认保存审计历史后启用
+  activity_log: ".data/activity-log.jsonl"  # 每次审计/操作的 JSON Lines 日志
+
+# ============================================================================
+# v8.0.0 加强大脑 — 新增配置块
+# ============================================================================
+
+# 项目画像：技术指纹（references/tech-fingerprints.yaml）
+project_fingerprints:
+  enabled: true
+  script: "$SKILL_DIR/scripts/analyze_project_profile.py"
+  fingerprints_file: "$SKILL_DIR/references/tech-fingerprints.yaml"
+  max_files: 2000
+  max_depth: 10
+  # 指纹库覆盖范围（80+ 技术，参考 specfy/stack-analyser 700+ 精选）
+  categories:
+    - frontend           # React/Vue/Angular/Svelte/Next.js/Nuxt/Remix/Astro
+    - backend            # Express/Fastify/NestJS/Django/Flask/FastAPI/Spring Boot/Rails
+    - mobile             # React Native/Flutter/Android/iOS
+    - desktop            # Electron/Tauri/Qt
+    - database           # PostgreSQL/MySQL/SQLite/MongoDB/Redis/Prisma/SQLAlchemy
+    - devops             # Docker/K8s/Terraform/Ansible
+    - ci                 # GitHub Actions/GitLab CI/CircleCI/Jenkins
+    - paas               # Vercel/Netlify/Cloudflare Workers
+    - ai_ml              # PyTorch/TensorFlow/Transformers/LangChain
+    - language           # TypeScript/Python/Go/Rust/Java/Kotlin/Swift/Ruby/PHP
+    - tooling            # Vite/Webpack/esbuild/Rollup/ESLint/Prettier/Ruff/pytest
+    - agent              # Claude Skill/MCP Server/Codex Plugin/ZCode Plugin
+    - docs               # MkDocs/Docusaurus/VitePress/Docsify
+  # CodeGraph 联动（如已启用）
+  codegraph_integration:
+    enabled: true
+    command: "codegraph"
+    fallback_when_unavailable: "降级为文件特征匹配"
+  # 画像趋势追踪
+  trend_tracking:
+    history_file: ".data/project-profile-history.jsonl"
+    max_history_entries: 52  # 保留近 52 次画像
+
+# 市场抓取（references/mcp-marketplaces.md + skill-marketplaces.md）
+# ⚠️ 默认关闭；用户授权后由用户的 Agent 按 URL 模板抓取，Audit 不直接发请求
+market_discovery:
+  enabled: false  # 永远 false；触发词授权后由 agent 抓取
+  
+  mcp_marketplaces:
+    - name: "Glama"
+      url: "https://glama.ai/mcp/servers"
+      api_url: "https://glama.ai/mcp/servers/@v1/servers"
+      weight: 0.35  # 数据源权重
+      features: ["quality_score", "safety_grade", "maintainer_verified"]
+    - name: "Smithery"
+      url: "https://smithery.ai"
+      api_url: "https://registry.smithery.ai/v1/servers"
+      weight: 0.25
+      features: ["install_count", "stars"]
+    - name: "MCP Official Registry"
+      url: "https://registry.modelcontextprotocol.io/"
+      api_url: "https://registry.modelcontextprotocol.io/v0/servers"
+      weight: 0.20
+      features: ["official"]
+    - name: "MCP Toplist"
+      url: "https://mcptoplist.com"
+      api_url: "https://mcptoplist.com/api/toplist"
+      weight: 0.20
+      features: ["aggregated_ranking"]
+  
+  skill_marketplaces:
+    - name: "Skills Directory"
+      url: "https://www.skillsdirectory.com/"
+      api_url: "https://www.skillsdirectory.com/api/registry"
+      weight: 0.40
+      features: ["security_grade", "50_plus_detection_rules"]
+    - name: "SkillRegistry.io"
+      url: "https://skillregistry.io/"
+      api_url: "https://skillregistry.io/api/skills"
+      weight: 0.25
+      features: ["cross_platform"]
+    - name: "csreg.nexus"
+      url: "https://www.csreg.nexus/"
+      api_url: "https://www.csreg.nexus/api/skills"
+      weight: 0.20
+      features: ["versioning", "team_sharing"]
+    - name: "Anthropic Skills"
+      url: "https://claude.com/skills"
+      api_url: ""  # 官方页面，无 API
+      weight: 0.15
+      features: ["official"]
+  
+  # 缓存（agent 抓取后存这里，Audit 读取）
+  cache:
+    enabled: true
+    cache_dir: ".data/market-cache/"
+    mcp_ttl_days: 7
+    skill_ttl_days: 14
+    max_entries: 1000
+
+# 健康度主动体检（references/health-checklist.md）
+health_checkup:
+  enabled: true
+  dimensions:
+    existence: 0.15
+    metadata: 0.10        # 联动 TQI
+    dependency: 0.20      # 联动 liveness_check
+    usage: 0.15           # 联动 usage_signals structured session events
+    version: 0.10
+    trigger: 0.10         # 联动 conflict_detection
+    security: 0.15        # 联动 security_scan
+    consistency: 0.05     # 跨平台一致
+  # 综合健康分阈值
+  thresholds:
+    excellent: 8.0        # 🟢
+    good: 6.0             # 🟡
+    needs_improvement: 4.0  # 🟠
+    dangerous: 0          # 🔴
+  # 增量 vs 全量
+  modes:
+    full:
+      triggers: ["技能体检", "技能体检 深度", "skill checkup"]
+      scope: "all_visible"
+    quick:
+      triggers: ["技能体检 快速"]
+      skip_dimensions: ["usage", "version", "security"]
+    incremental:
+      triggers: ["新增技能", "修改 description"]
+      scope: "affected_only"
+    targeted:
+      triggers: ["体检 <skill-name>"]
+      scope: "single"
+  # 定时检查（参考 Dependabot）
+  scheduled:
+    enabled: false        # 默认关闭；用户在 AGENTS.md 配置
+    interval_days: 30
+    notify_on_critical: true
+
+# 已安装技能/插件问题审查（v8.1.0）
+issue_audit:
+  enabled: true
+  script: "$SKILL_DIR/scripts/audit_skill_plugin_issues.py"
+  default_scope: "installed"
+  visible_scope_requires_evidence: true
+  checks:
+    - source_availability
+    - source_divergence
+    - duplicate_deployment
+    - metadata_completeness
+    - ui_metadata_fallback
+    - description_quality
+    - version_status
+    - profile_alignment
+    - trigger_conflict
+    - capability_complementarity
+  fail_on: "critical"
+  external_version_check_requires_consent: true
+
+# 触发词冲突检测（references/conflict-detection.md）
+conflict_detection:
+  enabled: true
+  thresholds:
+    high: 0.7          # 🔴 同义词冲突
+    medium: 0.5        # 🟠 范围重叠
+    low: 0.3           # 🟡 轻度相似
+  # 同义词表（同源 codex-ui-zh-glossary.json 的扩展）
+  synonyms_file: "$SKILL_DIR/references/conflict-detection.md"
+  # 豁免清单
+  exemptions_file: ".data/conflict-exemptions.json"
+  # 检测模式
+  modes:
+    full: "全量两两"
+    incremental: "仅新增/修改"
+    targeted: "指定技能对"
+
+# 推荐引擎（references/recommendation-framework.md）
+recommendation:
+  enabled: true
+  # 六档输出（取代 v7.1.0 四档）
+  levels: ["保留", "升级", "替换", "引入", "共存", "归档"]
+  # 候选评估维度
+  evaluation:
+    skill_health_dimensions: 7  # 见 skill-marketplaces.md
+    mcp_health_dimensions: 6    # 见 mcp-marketplaces.md
+  # 互补分析
+  relationship:
+    supersede_threshold: 0.7    # overlap_ratio ≥ 0.7 + avg_lead ≥ 2
+    complement_threshold: 0.3   # overlap_ratio ≤ 0.3 + 各有独占
+    supplement_threshold: 0.5   # 0.3-0.7 + avg_lead ≥ 1
+  # 组合套餐
+  combo:
+    enabled: true
+    max_combo_size: 5           # 单套餐最多工具数
+    coverage_target: 0.9        # 套餐覆盖需求的比例
+  # 可达性反推（参考 Safeguard reachability）
+  reachability:
+    enabled: true
+    history_window_days: 14     # 看用户最近 14 天会话
+    weight: 0.30                # 信心加权 30%
+  # 信心阈值
+  confidence_thresholds:
+    strongly_recommended: 8.0
+    recommended: 6.0
+    consider: 4.0

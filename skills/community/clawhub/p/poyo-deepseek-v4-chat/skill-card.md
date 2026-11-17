@@ -1,46 +1,61 @@
-## Description: <br>
-DeepSeek V4 chat on PoYo / poyo.ai via `https://api.poyo.ai/v1/chat/completions`; use for `deepseek-v4-flash`, `deepseek-v4-pro`, OpenAI-compatible chat payloads, system prompts, multi-turn messages, streaming chat, coding assistance, long-context analysis, and server-side chat integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare OpenAI-compatible DeepSeek V4 chat completion requests through PoYo, including model selection, payloads, curl examples, streaming notes, and response parsing guidance.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare PoYo DeepSeek V4 chat completion payloads, choose Flash or Pro model IDs, handle synchronous or streaming responses, and keep PoYo API keys server-side. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys could be exposed if copied into browser code, logs, public repositories, screenshots, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager and avoid logging authorization headers. <br>
-Risk: Chat prompts and payloads may contain sensitive user, system, or business data sent to PoYo. <br>
-Mitigation: Review payloads before using the helper script and send sensitive content only when PoYo is approved for that data. <br>
-Risk: Streaming responses require clients that can correctly consume server-sent events. <br>
-Mitigation: Use `stream: true` only with streaming-aware client handling; otherwise use synchronous chat completion requests. <br>
+## Use Case:
 
+Developers and agent builders use this skill to select PoYo DeepSeek V4 Flash or Pro, prepare chat-completion payloads, and produce curl or integration guidance for synchronous and streaming workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-deepseek-v4-chat) <br>
-- [PoYo chat completions documentation](https://docs.poyo.ai/api-manual/chat-series/chat-completions) <br>
-- [DeepSeek V4 Flash model page](https://poyo.ai/models/deepseek-v4-flash) <br>
-- [DeepSeek V4 Pro model page](https://poyo.ai/models/deepseek-v4-pro) <br>
-- [Local API reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and bash curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model selection, chat payloads, streaming notes, response parsing guidance, and server-side API key handling reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The submit script sends the selected JSON chat payload to PoYo using POYO_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review payloads for confidential content, keep POYO_API_KEY server-side, and make live calls only when intended.
+
+Risk: API keys or private prompts could be exposed through browser code, logs, repositories, screenshots, or chat output.
+
+Mitigation: Store keys in server-side environment variables or a secret manager and avoid logging private messages, system prompts, or authorization headers.
+
+Risk: Streaming responses require an SSE-aware client.
+
+Mitigation: Use streaming only when the integration can consume SSE; otherwise use synchronous chat completions.
+
+## Reference(s):
+
+- [PoYo DeepSeek V4 Chat API Reference](references/api.md)
+- [PoYo Chat Completions API docs](https://docs.poyo.ai/api-manual/chat-series/chat-completions)
+- [DeepSeek V4 Flash model page](https://poyo.ai/models/deepseek-v4-flash)
+- [DeepSeek V4 Pro model page](https://poyo.ai/models/deepseek-v4-pro)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-deepseek-v4-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payloads and bash curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include synchronous or SSE streaming handling notes and server-side API-key handling guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

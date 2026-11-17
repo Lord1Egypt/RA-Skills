@@ -1,42 +1,55 @@
-## Description: <br>
-Hunter Search v1.0 helps agents use the QAX Hunter OpenAPI to create batch asset export tasks, poll task progress, and download export results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent call the QAX Hunter OpenAPI to create, monitor, and download batch asset search exports.
 
-## Publisher: <br>
-[biglizi775](https://clawhub.ai/user/biglizi775) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biglizi775](https://clawhub.ai/user/biglizi775)
 
-## Use Case: <br>
-Developers and security operators use this skill to run authorized QAX Hunter asset-mapping exports from an API key, with non-interactive command output suitable for agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Hunter API key. <br>
-Mitigation: Use a limited API key through an environment variable, avoid pasting keys into chat or files, and do not commit real credentials. <br>
-Risk: The security summary notes that downloaded files may use a server-provided filename without path safety checks. <br>
-Mitigation: Specify a safe output filename or review and patch filename sanitization before running the download path. <br>
+## Use Case:
 
+Security analysts and developers use this skill to run Hunter asset-mapping searches, submit batch export jobs, poll task status, and retrieve exported results through a CLI workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/biglizi775/hunterserach) <br>
-- [QAX Hunter batch search endpoint](https://hunter.qianxin.com/openApi/search/batch) <br>
-- [QAX Hunter download endpoint](https://hunter.qianxin.com/openApi/search/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the CLI can emit one-line JSON and downloaded CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Hunter API key, preferably supplied through HUNTER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A remote download response may choose a local filename and overwrite writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run from a low-risk working directory, set an explicit output path, and review or constrain download filename handling before deployment.
+
+Risk: Hunter API keys may be exposed if passed directly on the command line or captured in logs.
+
+Mitigation: Prefer HUNTER_API_KEY, use a limited-scope key where available, and avoid verbose HTTP or shell logging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/biglizi775/skills/hunterserach)
+- [Hunter batch search OpenAPI endpoint](https://hunter.qianxin.com/openApi/search/batch)
+- [Hunter batch download OpenAPI endpoint](https://hunter.qianxin.com/openApi/search/download)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses HUNTER_API_KEY or an explicit API key, accepts Hunter query and export options, and may produce a downloaded export file path.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

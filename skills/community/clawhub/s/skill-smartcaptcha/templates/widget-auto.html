@@ -1,0 +1,64 @@
+<!-- Шаблон: HTML-страница с формой входа и автоматическим виджетом Yandex SmartCaptcha. Подробности: docs/widget-auto.md -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вход</title>
+
+  <!-- Скрипт виджета: после загрузки сам найдет все div с классом smart-captcha
+       и отрисует в них виджет. defer — чтобы не блокировать отрисовку страницы. -->
+  <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
+
+  <!-- НЕОБЯЗАТЕЛЬНО: функция для data-callback. Вызывается после успешной проверки
+       и получает токен. Чтобы использовать, раскомментируйте этот блок и добавьте
+       атрибут data-callback="onCaptchaSuccess" в контейнер виджета ниже.
+  <script>
+    function onCaptchaSuccess(token) {
+      console.log('SmartCaptcha token:', token);
+    }
+  </script>
+  -->
+</head>
+<body>
+  <h1>Введите логин и пароль</h1>
+
+  <!-- ЗАМЕНИТЕ action="/submit" на URL обработчика формы на вашем бэкенде.
+       Вместе с полями формы на бэкенд придет поле smart-token — проверьте его
+       POST-запросом на https://smartcaptcha.yandexcloud.net/validate
+       (см. docs/server-validation.md и templates/validate.*). -->
+  <form id="auth_form" action="/submit" method="POST">
+    <p>
+      <label for="username">Логин</label><br>
+      <input id="username" type="text" name="user" required>
+    </p>
+    <p>
+      <label for="userpass">Пароль</label><br>
+      <input id="userpass" type="password" name="password" required>
+    </p>
+
+    <!-- Контейнер виджета капчи.
+         ЗАМЕНИТЕ <ключ_клиента> на «Ключ клиента» со страницы капчи
+         в консоли Yandex Cloud (вкладка «Обзор»).
+         height: 100px задана заранее: при загрузке виджет меняет высоту
+         контейнера на 100px, и без этого верстка «прыгнет».
+         Необязательные атрибуты:
+           data-hl="ru"  язык виджета: ru | en | be | kk | tt | uk | uz | tr
+                         (по умолчанию window.navigator.language);
+           data-callback="onCaptchaSuccess"  имя глобальной функции-обработчика.
+         После прохождения проверки виджет добавит внутрь контейнера скрытое поле
+         <input type="hidden" name="smart-token" value="<токен>">,
+         которое уйдет на бэкенд вместе с POST формы. -->
+    <div
+      id="captcha-container"
+      class="smart-captcha"
+      data-sitekey="<ключ_клиента>"
+      style="height: 100px"
+    ></div>
+
+    <p>
+      <input type="submit" value="Войти">
+    </p>
+  </form>
+</body>
+</html>

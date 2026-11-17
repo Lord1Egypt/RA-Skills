@@ -1,44 +1,63 @@
-## Description: <br>
-Let your agent write notes anywhere: local markdown, Apple Notes, Bear, Obsidian, Notion, Evernote, configurable per note type. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures, structures, and retrieves notes in local markdown, Apple Notes, Bear, Obsidian, Notion, or Evernote.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Individuals and teams use this skill to have an agent capture, format, route, search, and track notes across local markdown and optional external note platforms. It is suited to meetings, decisions, brainstorms, journals, project updates, quick notes, and action-item follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive note content may be routed to external services when remote platforms are configured. <br>
-Mitigation: Keep routing local for sensitive content and require user review before remote writes. <br>
-Risk: API tokens or local credential files may be exposed if handled casually. <br>
-Mitigation: Store tokens with restrictive permissions and ask for explicit permission before checking credential files. <br>
-Risk: Delete or modification commands in connected note tools can affect user notes. <br>
-Mitigation: Require review before delete commands or destructive remote writes. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn conversations, transcripts, quick captures, decisions, project updates, research notes, and note-corpus maintenance tasks into durable notes across local files and supported note apps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/notes) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Skill Homepage](https://clawic.com/skills/notes) <br>
-- [Notion Integrations](https://notion.so/my-integrations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, action tables, configuration guidance, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local markdown files under ~/notes/ and may call configured note-platform tools or APIs after user setup and consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter and release evidence) <br>
+Risk: The skill can keep durable local memory and update notes, action trackers, contacts, projects, indexes, and review files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if persistent note-management writes are expected, and review configured paths and write behavior before deployment.
+
+Risk: Deletion and triage workflows may remove notes, actions, tags, or stale records.
+
+Mitigation: Disable destructive sweeps or require explicit confirmation before deletion and bulk cleanup operations.
+
+Risk: Credential and sensitive-note handling appears in the workflow and can expose secrets if copied into notes or temporary files.
+
+Mitigation: Use pointer-based credential storage, avoid fixed /tmp note examples for sensitive content, and verify redaction before writing to synced or network-backed platforms.
+
+Risk: Some supported platforms rely on third-party CLIs or network services.
+
+Mitigation: Pin or independently review third-party CLIs before installation and confirm whether note content may leave the local machine for configured platforms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/notes)
+- [Skill homepage](https://clawic.com/skills/notes)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, note templates, configuration examples, and prose guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local note files, action trackers, indexes, review files, and app-specific note records according to user configuration.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

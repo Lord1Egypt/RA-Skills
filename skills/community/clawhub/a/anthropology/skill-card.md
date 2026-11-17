@@ -1,38 +1,57 @@
-## Description: <br>
-Anthropology helps agents teach and discuss cultural, biological, archaeological, and linguistic anthropology using narrative-driven educational guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anthropology helps agents teach and discuss cultural, biological, archaeological, and linguistic anthropology through conversational educational guidance.
 
-## Publisher: <br>
-[NetworkTheoryAppliedResearchInstitute](https://clawhub.ai/user/NetworkTheoryAppliedResearchInstitute) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[networktheoryappliedresearchinstitute](https://clawhub.ai/user/networktheoryappliedresearchinstitute)
 
-## Use Case: <br>
-External users, educators, students, and general learners use this skill for conversational anthropology instruction, including explanations of concepts, theories, ethnographic examples, archaeological methods, human evolution, and linguistic diversity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The package advertises a large anthropology knowledge base, but the release evidence includes only the instruction file. <br>
-Mitigation: Treat responses as lightweight instructional guidance and verify specialized claims against authoritative anthropology sources or a publisher-provided knowledge base before relying on them. <br>
+## Use Case:
 
+External users, educators, learners, and developers use this skill to support anthropology instruction, answer anthropology questions, compare theoretical perspectives, and connect examples across the field's four subfields.
 
-## Reference(s): <br>
-- [Anthropology on ClawHub](https://clawhub.ai/NetworkTheoryAppliedResearchInstitute/anthropology) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text educational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution, tools, credentials, or special system access are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server-resolved release evidence) <br>
+Risk: Anthropology guidance may be academically incomplete, outdated, or misleading if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have qualified reviewers verify academic accuracy and cultural framing before relying on outputs for teaching or publication.
+
+Risk: Licensing needs confirmation because server evidence has no resolved license even though the artifact text states AGPL-3.0.
+
+Mitigation: Confirm the release license and downstream obligations before commercial deployment or redistribution.
+
+Risk: The package may be smaller than its artifact description suggests because the security evidence says only one Markdown skill file is included.
+
+Mitigation: Inspect installed files and set expectations that the release behaves as an educational prompt unless additional content is supplied elsewhere.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/networktheoryappliedresearchinstitute/skills/anthropology)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown or plain text educational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill; no code, shell commands, data access, or persistence behavior is described by the security evidence.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

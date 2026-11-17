@@ -1,42 +1,55 @@
-## Description: <br>
-Pre-scan a SKILL.md locally before publishing to ClawHub. Simulates the ClawScan security review using the same prompt and evaluation criteria as the real scanner. Use when you want to check if your skill will pass ClawHub's security review before uploading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-scans a SKILL.md file before ClawHub publishing by simulating the ClawScan security review and reporting whether the skill is likely to pass.
 
-## Publisher: <br>
-[hanningwang](https://clawhub.ai/user/hanningwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanningwang](https://clawhub.ai/user/hanningwang)
 
-## Use Case: <br>
-Developers and skill publishers use this skill to run a local pre-scan of a SKILL.md before publishing to ClawHub. It helps them understand likely security review outcomes and privacy considerations before upload. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A scanned SKILL.md is sent to the configured remote LLM provider, which may log, cache, or retain transmitted content. <br>
-Mitigation: Use the skill only with content you are comfortable disclosing, review the provider's retention terms, avoid secrets or proprietary material, and use a dedicated API key where possible. <br>
-Risk: Local pre-scan results are advisory and may differ from ClawHub's production security review. <br>
-Mitigation: Treat results as guidance, review the full skill artifact separately, and rely on ClawHub's hosted review before publishing. <br>
+## Use Case:
 
+Developers and skill publishers use this skill to run a local ClawScan-style pre-check on a SKILL.md file before publishing to ClawHub or after addressing review feedback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hanningwang/skill-prescan) <br>
-- [ClawHub repository homepage](https://github.com/openclaw/clawhub) <br>
-- [ClawScan security prompt reference](https://github.com/openclaw/clawhub/blob/main/convex/lib/securityPrompt.ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Terminal text or JSON, with Markdown usage guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a configured remote LLM endpoint; only the target SKILL.md content is sent for analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The target SKILL.md and a nearby file manifest are sent to the configured remote LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an approved provider, avoid scanning secrets or proprietary material, review the confirmation prompt, and reserve --yes for controlled CI use.
+
+Risk: The local pre-scan does not analyze the contents of other skill files and may differ from ClawHub's production review.
+
+Mitigation: Review companion files separately and treat the local result as pre-publication guidance rather than a final security decision.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hanningwang/skills/skill-prescan)
+- [ClawHub Repository](https://github.com/openclaw/clawhub)
+- [ClawHub Security Prompt Source](https://github.com/openclaw/clawhub/blob/main/convex/lib/securityPrompt.ts)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Terminal text report or raw JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a configured remote LLM provider and can run multiple scans to compare verdict consistency.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

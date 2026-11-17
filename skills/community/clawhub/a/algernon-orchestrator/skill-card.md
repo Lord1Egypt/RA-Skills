@@ -1,42 +1,54 @@
-## Description: <br>
-Main orchestrator for the OpenAlgernon personal study system that starts study sessions, briefs the user, handles /algernon help, and routes study or content commands to companion sub-skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Main orchestrator for the OpenAlgernon personal study system; it starts study sessions, briefs available materials and recent activity, handles /algernon help, and routes study commands to the appropriate sub-skill.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-Developers and learners using OpenAlgernon use this skill to begin study sessions, review available materials and progress context, and route study commands to the appropriate OpenAlgernon mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenAlgernon memory files and queries the local study database at session start. <br>
-Mitigation: Install only when local OpenAlgernon study data is appropriate for the agent to read, and review the memory briefing before acting on it. <br>
-Risk: The skill routes install, update, import, remove, audio, and ingest requests to companion sub-skills. <br>
-Mitigation: Use explicit OpenAlgernon commands for content-management actions and review the companion sub-skills separately before relying on routed behavior. <br>
-Risk: The skill depends on sqlite3 and an initialized OpenAlgernon database for due-card counts. <br>
-Mitigation: Confirm sqlite3 is installed and the OpenAlgernon database is initialized before using the session-start briefing. <br>
+## Use Case:
 
+Developers and external users use this skill to coordinate OpenAlgernon study sessions, load study context, inspect due-card status, and route study intents to specialized OpenAlgernon sub-skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/algernon-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with shell commands and command-routing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads OpenAlgernon memory and study database state when starting a session; routes matched commands to companion OpenAlgernon skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads OpenAlgernon study memory and recent study logs when a study session starts or when materials are requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where the agent is intended to access that local study state, and review the memory briefing before acting on it.
+
+Risk: Broad study-related phrasing may be interpreted and routed to another OpenAlgernon skill.
+
+Mitigation: Use explicit /algernon commands or clear study-mode commands when possible, and confirm unexpected routing before continuing.
+
+## Reference(s):
+
+- [Algernon Orchestrator ClawHub listing](https://clawhub.ai/antoniovfranco/skills/algernon-orchestrator)
+- [Publisher profile](https://clawhub.ai/user/antoniovfranco)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown text with inline bash commands and command-routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read OpenAlgernon memory files, recent conversation logs, and sqlite study state when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
